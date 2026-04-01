@@ -1,0 +1,163 @@
+@import "tailwindcss";
+
+/* ============================================
+   ROADMAN CYCLING — Design Tokens
+   Dark-first, mobile-first brand system
+   ============================================ */
+
+@theme {
+  /* Brand Colours */
+  --color-off-white: #FAFAFA;
+  --color-coral: #F16363;
+  --color-coral-hover: #E84E4E;
+  --color-coral-muted: rgba(241, 99, 99, 0.15);
+  --color-mid-grey: #545559;
+  --color-purple: #4C1273;
+  --color-purple-hover: #5E1A8C;
+  --color-charcoal: #252526;
+  --color-deep-purple: #210140;
+
+  /* Semantic Colours */
+  --color-background: #252526;
+  --color-background-deep: #210140;
+  --color-background-elevated: #2E2E30;
+  --color-foreground: #FAFAFA;
+  --color-foreground-muted: #A0A0A5;
+  --color-foreground-subtle: #545559;
+  --color-accent: #F16363;
+  --color-brand: #4C1273;
+
+  /* Content Pillar Colours */
+  --color-pillar-coaching: #F16363;
+  --color-pillar-nutrition: #4CAF50;
+  --color-pillar-strength: #FF9800;
+  --color-pillar-recovery: #2196F3;
+  --color-pillar-le-metier: #9C27B0;
+
+  /* Typography */
+  --font-heading: 'Bebas Neue', sans-serif;
+  --font-body: 'Work Sans', sans-serif;
+
+  /* Font Sizes — Fluid Scale */
+  --text-hero: clamp(3.5rem, 8vw, 8rem);
+  --text-section: clamp(2.5rem, 5vw, 4rem);
+  --text-subsection: clamp(1.5rem, 3vw, 2rem);
+  --text-body-lg: clamp(1.125rem, 1.5vw, 1.25rem);
+  --text-body: 1rem;
+  --text-caption: 0.875rem;
+  --text-cta: clamp(1.125rem, 1.5vw, 1.25rem);
+
+  /* Spacing */
+  --spacing-section: clamp(3rem, 8vw, 6rem);
+  --spacing-block: clamp(1.5rem, 4vw, 3rem);
+  --spacing-element: clamp(0.75rem, 2vw, 1.5rem);
+
+  /* Border Radius */
+  --radius-sm: 0.25rem;
+  --radius-md: 0.5rem;
+  --radius-lg: 1rem;
+  --radius-xl: 1.5rem;
+  --radius-full: 9999px;
+
+  /* Container */
+  --container-max: 1200px;
+  --container-wide: 1400px;
+  --container-narrow: 720px;
+
+  /* Animation */
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-out-quart: cubic-bezier(0.25, 1, 0.5, 1);
+  --ease-in-out: cubic-bezier(0.4, 0, 0.2, 1);
+  --duration-fast: 150ms;
+  --duration-normal: 300ms;
+  --duration-slow: 600ms;
+  --duration-reveal: 800ms;
+
+  /* Shadows */
+  --shadow-card: 0 4px 24px rgba(0, 0, 0, 0.3);
+  --shadow-elevated: 0 8px 48px rgba(0, 0, 0, 0.4);
+  --shadow-glow-coral: 0 0 20px rgba(241, 99, 99, 0.3);
+  --shadow-glow-purple: 0 0 20px rgba(76, 18, 115, 0.3);
+}
+
+/* ============================================
+   Base Styles
+   ============================================ */
+
+html {
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  background-color: var(--color-background);
+  color: var(--color-foreground);
+  font-family: var(--font-body);
+  line-height: 1.6;
+}
+
+/* ============================================
+   Typography Base
+   ============================================ */
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-heading);
+  text-transform: uppercase;
+  line-height: 1.05;
+  letter-spacing: 0.02em;
+}
+
+/* ============================================
+   Selection
+   ============================================ */
+
+::selection {
+  background-color: var(--color-coral);
+  color: var(--color-off-white);
+}
+
+/* ============================================
+   Scrollbar (dark theme)
+   ============================================ */
+
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--color-charcoal);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--color-mid-grey);
+  border-radius: var(--radius-full);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-coral);
+}
+
+/* ============================================
+   Focus Styles (Accessibility)
+   ============================================ */
+
+:focus-visible {
+  outline: 2px solid var(--color-coral);
+  outline-offset: 2px;
+}
+
+/* ============================================
+   Utility: Grain Overlay (cinematic texture)
+   ============================================ */
+
+.grain-overlay::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  opacity: 0.03;
+  pointer-events: none;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='1'/%3E%3C/svg%3E");
+  background-repeat: repeat;
+  background-size: 256px 256px;
+}
