@@ -90,6 +90,17 @@ html {
   -moz-osx-font-smoothing: grayscale;
 }
 
+/* Custom cursor: hide native cursor only on desktop with fine pointer */
+@media (pointer: fine) {
+  body {
+    cursor: none;
+  }
+
+  a, button, [role="button"], input, select, textarea {
+    cursor: none;
+  }
+}
+
 body {
   background-color: var(--color-background);
   color: var(--color-foreground);

@@ -83,7 +83,7 @@ export default function RootLayout({
       lang="en"
       className={`${bebasNeue.variable} ${workSans.variable} dark`}
     >
-      <body className="min-h-screen bg-charcoal text-off-white font-body antialiased cursor-none md:cursor-none">
+      <body className="min-h-screen bg-charcoal text-off-white font-body antialiased">
         <SmoothCursor />
         {children}
       </body>
