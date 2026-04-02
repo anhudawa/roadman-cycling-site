@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import { Header, Footer, Section, Container } from "@/components/layout";
-import { Card, Badge } from "@/components/ui";
+import { Card, Badge, ScrollReveal } from "@/components/ui";
 import { getAllPosts } from "@/lib/blog";
 import { type ContentPillar, CONTENT_PILLARS } from "@/types";
 
@@ -29,6 +29,7 @@ export default async function BlogPage({
         {/* Hero */}
         <Section background="deep-purple" grain className="pt-32 pb-12">
           <Container className="text-center">
+            <ScrollReveal direction="up">
             <h1
               className="font-heading text-off-white mb-4"
               style={{ fontSize: "var(--text-hero)" }}
@@ -39,6 +40,7 @@ export default async function BlogPage({
               Expert cycling content grounded in science and real conversations
               with the world&apos;s best coaches, scientists, and riders.
             </p>
+            </ScrollReveal>
           </Container>
         </Section>
 

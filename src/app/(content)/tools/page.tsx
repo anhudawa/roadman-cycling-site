@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { Header, Footer, Section, Container } from "@/components/layout";
-import { Card } from "@/components/ui";
+import { Card, ScrollReveal } from "@/components/ui";
 
 export const metadata: Metadata = {
   title: "Cycling Tools & Calculators",
@@ -60,25 +60,27 @@ export default function ToolsPage() {
       <main>
         <Section background="deep-purple" grain className="pt-32 pb-12">
           <Container className="text-center">
-            <h1
-              className="font-heading text-off-white mb-4"
-              style={{ fontSize: "var(--text-hero)" }}
-            >
-              YOUR TOOLKIT
-            </h1>
-            <p className="text-foreground-muted max-w-xl mx-auto text-lg">
-              Free tools built on the same science discussed on the podcast.
-              Stop guessing. Start knowing.
-            </p>
+            <ScrollReveal direction="up">
+              <h1
+                className="font-heading text-off-white mb-4"
+                style={{ fontSize: "var(--text-hero)" }}
+              >
+                YOUR TOOLKIT
+              </h1>
+              <p className="text-foreground-muted max-w-xl mx-auto text-lg">
+                Free tools built on the same science discussed on the podcast.
+                Stop guessing. Start knowing.
+              </p>
+            </ScrollReveal>
           </Container>
         </Section>
 
         <Section background="charcoal">
           <Container>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-              {tools.map((tool) => (
+              {tools.map((tool, i) => (
+                <ScrollReveal key={tool.href} direction="up" delay={i * 0.06}>
                 <Card
-                  key={tool.href}
                   href={tool.href}
                   className="p-6 group h-full"
                 >
@@ -96,6 +98,7 @@ export default function ToolsPage() {
                     Try it free &rarr;
                   </span>
                 </Card>
+                </ScrollReveal>
               ))}
             </div>
           </Container>
