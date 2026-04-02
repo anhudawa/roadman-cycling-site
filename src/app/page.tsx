@@ -10,7 +10,7 @@ const experts = [
   "Professor Seiler",
   "Dan Lorang",
   "Lachlan Morton",
-  "Tim Kerrison",
+  "Ben Healy",
   "John Wakefield",
   "Dr. David Dunne",
 ];

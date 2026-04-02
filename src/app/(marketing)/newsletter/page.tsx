@@ -19,7 +19,7 @@ const pastIssues = [
     topic: "Nutrition",
   },
   {
-    title: "What Dan Lorang told me about Pogacar's winter training",
+    title: "What Dan Lorang told me about building endurance at Bora",
     topic: "Coaching",
   },
   {

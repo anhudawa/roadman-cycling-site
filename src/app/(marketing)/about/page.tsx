@@ -12,9 +12,9 @@ export const metadata: Metadata = {
 
 const expertNetwork = [
   { name: "Professor Stephen Seiler", role: "Exercise physiologist, polarised training pioneer" },
-  { name: "Dan Lorang", role: "Coached Pogacar and Vingegaard" },
+  { name: "Dan Lorang", role: "Head of Performance, Red Bull Bora-Hansgrohe" },
   { name: "Lachlan Morton", role: "EF Education pro, alt-racing pioneer" },
-  { name: "Tim Kerrison", role: "Ex-Team Sky head of performance" },
+  { name: "Ben Healy", role: "Pro cyclist, Tour de France" },
   { name: "John Wakefield", role: "Bora-Hansgrohe coach" },
   { name: "Dr. David Dunne", role: "Sports science researcher" },
   { name: "Ben Healy", role: "Pro cyclist, Tour de France" },
@@ -125,7 +125,7 @@ export default function AboutPage() {
               <ScrollReveal direction="up" delay={0.2}>
                 <p>
                   Professor Stephen Seiler explained polarised training.
-                  Dan Lorang shared what he taught Pogacar. Tim Kerrison
+                  Dan Lorang shared his approach to training methodology. John Wakefield
                   revealed the marginal gains philosophy behind Team Sky.
                   Lachlan Morton opened up about why the World Tour wasn&apos;t
                   enough.
