@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Header, Footer, Section, Container } from "@/components/layout";
 import { Button, Card } from "@/components/ui";
 import { JsonLd } from "@/components/seo/JsonLd";
+import { FAQSchema } from "@/components/seo/FAQSchema";
 
 export const metadata: Metadata = {
   title: "Not Done Yet — Premium Cycling Coaching Community",
@@ -131,6 +132,12 @@ export default function NotDoneYetPage() {
             availability: "https://schema.org/InStock",
           })),
         }}
+      />
+      <FAQSchema
+        faqs={objections.map((o) => ({
+          question: o.question,
+          answer: o.answer,
+        }))}
       />
 
       <Header />

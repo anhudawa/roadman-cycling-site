@@ -186,10 +186,10 @@ export default function HomePage() {
           </Container>
         </Section>
 
-        {/* PARALLAX DIVIDER — Cinematic cycling image */}
+        {/* PARALLAX DIVIDER — Cycling image */}
         <ParallaxImage
           src="/images/cycling/gravel-road-climb.jpg"
-          alt="Cyclists riding through dramatic canyon landscape"
+          alt="Cyclists riding through dramatic landscape"
           className="h-[50vh] md:h-[60vh]"
           speed={0.3}
           overlayColor="from-charcoal via-charcoal/50 to-deep-purple"
