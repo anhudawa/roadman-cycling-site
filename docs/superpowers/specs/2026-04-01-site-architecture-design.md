@@ -1,10 +1,23 @@
 # Roadman Cycling — Site Architecture Design Spec
 
 **Date:** 2026-04-01
-**Status:** DRAFT — Awaiting Review
+**Status:** APPROVED — Decisions finalised 2026-04-02
 **Replaces:** roadmancycling.com (ClickFunnels)
-**Stack:** Next.js 15 (App Router) + Tailwind CSS 4 + Vercel
+**Stack:** Next.js 16 (App Router) + Tailwind CSS 4 + Vercel
 **Design:** Dark-first, mobile-first, award-calibre (Awwwards SOTD target)
+
+### Key Decisions (2026-04-02)
+
+| Decision | Choice | Rationale |
+|----------|--------|-----------|
+| Hero | Video background | Cinematic cycling footage, autoplay muted |
+| CMS | Sanity | Real-time preview, GROQ queries, structured content |
+| Podcast hosting | Spotify for Podcasters | Embed player via Spotify |
+| Payments | Stripe (direct) | Own the payment flow, not through ClickFunnels |
+| Email | Beehiiv | Modern newsletter platform, replaces dormant CF list |
+| Animations | Framer Motion | Component animations + scroll triggers, no GSAP |
+| Build priority | Blog system first | Highest SEO leverage — organic traffic is priority #1 |
+| Domain | roadmancycling.com (keep) | Existing domain authority + brand recognition |
 
 ---
 
