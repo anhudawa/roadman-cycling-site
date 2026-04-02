@@ -161,9 +161,7 @@ export default function ClubPage() {
                     is why you ride.
                   </p>
                   <p className="text-off-white font-medium">
-                    Health. Happiness. Lifelong progression.
-                    <br />
-                    On and off the bike.
+                    We&apos;re all riding through.
                   </p>
                 </div>
               </div>
