@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import { Container } from "./Container";
 
 const footerLinks = {
@@ -183,8 +184,14 @@ export function Footer() {
 
         {/* Bottom Bar */}
         <div className="flex flex-col md:flex-row items-center justify-between gap-4">
-          <Link href="/" className="font-heading text-xl text-off-white tracking-wide">
-            ROADMAN
+          <Link href="/">
+            <Image
+              src="/images/logo-white.png"
+              alt="Roadman Cycling"
+              width={120}
+              height={43}
+              className="h-8 w-auto"
+            />
           </Link>
           <p className="text-xs text-foreground-subtle">
             &copy; {new Date().getFullYear()} Roadman Cycling. All rights

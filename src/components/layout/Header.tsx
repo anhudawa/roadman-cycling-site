@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { NAV_ITEMS } from "@/types";
 import { Container } from "./Container";
 
@@ -49,9 +50,14 @@ export function Header() {
               className="relative z-10 flex items-center gap-3"
               onClick={() => setIsMobileMenuOpen(false)}
             >
-              <span className="font-heading text-2xl md:text-3xl tracking-wide text-off-white">
-                ROADMAN
-              </span>
+              <Image
+                src="/images/logo-white.png"
+                alt="Roadman Cycling"
+                width={140}
+                height={50}
+                className="h-8 md:h-10 w-auto"
+                priority
+              />
             </Link>
 
             {/* Desktop Navigation */}
