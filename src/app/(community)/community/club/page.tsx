@@ -146,9 +146,9 @@ export default function ClubPage() {
                 <div className="space-y-6 text-foreground-muted text-lg leading-relaxed">
                   <p>
                     There&apos;s a moment on the Thursday circuit when the road
-                    tilts and the group stretches and your lungs remind you
-                    they&apos;re not optional. You hold on. Not because anyone&apos;s
-                    watching. Because you said you would.
+                    tilts and the group stretches and your legs start asking
+                    questions you don&apos;t want to answer. You hold on. Not
+                    because anyone&apos;s watching. Because you said you would.
                   </p>
                   <p>
                     There&apos;s a moment on the Saturday ride when someone new
