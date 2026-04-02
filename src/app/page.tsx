@@ -66,15 +66,26 @@ export default function HomePage() {
         <Section background="charcoal">
           <Container>
             <ScrollReveal direction="up" className="text-center mb-12">
+              <p className="text-coral font-heading text-sm tracking-widest mb-3">
+                <a href="/community/not-done-yet" className="hover:underline">
+                  NOT DONE YET COACHING
+                </a>
+              </p>
               <h2
                 className="font-heading text-off-white mb-4"
                 style={{ fontSize: "var(--text-section)" }}
               >
-                FIVE PILLARS. ONE SYSTEM.
+                <a href="/community/not-done-yet" className="hover:text-coral transition-colors">
+                  FIVE PILLARS. ONE SYSTEM.
+                </a>
               </h2>
               <p className="text-foreground-muted max-w-xl mx-auto">
-                The Roadman coaching system is built on five pillars. Not one
-                thing done well — five things done together. That&apos;s what
+                Inside{" "}
+                <a href="/community/not-done-yet" className="text-coral hover:underline">
+                  Not Done Yet
+                </a>
+                , everything connects. Training, nutrition, strength, recovery,
+                and community — coached together as one system. That&apos;s what
                 makes the difference between guessing and getting faster.
               </p>
             </ScrollReveal>
@@ -225,16 +236,15 @@ export default function HomePage() {
                     THE CLUBHOUSE
                   </h3>
                   <p className="text-foreground-muted mb-6 leading-relaxed">
-                    Your entry point. Weekly live Q&amp;A with Anthony, free
-                    training plans, and a community of 1,852 cyclists who get
-                    it.
+                    Free tools, free plans, and 2,000 cyclists who get it. Your
+                    starting point before you&apos;re ready for the full system.
                   </p>
                   <ul className="space-y-2 mb-8">
                     {[
+                      "Free 16-week training plans (road, gravel, sportive)",
                       "Weekly live Q&A with Anthony",
-                      "Free 16-week training plans",
-                      "Community discussion & support",
-                      "Podcast deep-dives",
+                      "Free calculators and resources",
+                      "Community of serious cyclists",
                     ].map((item) => (
                       <li
                         key={item}
@@ -277,11 +287,11 @@ export default function HomePage() {
                   </p>
                   <ul className="space-y-2 mb-8">
                     {[
-                      "Personalised Vekta training plans",
-                      "Weekly coaching calls with Anthony",
-                      "Expert masterclasses",
-                      "S&C roadmap",
-                      "Private community of serious cyclists",
+                      "Pillar 1: Weekly structured training plans",
+                      "Pillar 2: Race weight & nutrition guidance",
+                      "Pillar 3: Cycling-specific strength programme",
+                      "Pillar 4: Recovery protocols & coaching calls",
+                      "Pillar 5: Accountability & coached community",
                     ].map((item) => (
                       <li
                         key={item}

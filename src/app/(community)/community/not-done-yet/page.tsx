@@ -16,13 +16,13 @@ const tiers = [
     price: "$15",
     period: "/month",
     annual: "$75/year",
-    description: "For cyclists who want structure and community.",
+    description: "The five-pillar coaching system. Stop guessing, get structured.",
     features: [
-      "Vekta training plans",
-      "Weekly group coaching calls",
-      "Community access",
-      "Monthly masterclasses",
-      "S&C roadmap",
+      "Weekly training plans (adaptable to your hours)",
+      "Weekly group coaching calls with Anthony",
+      "Cycling-specific strength programme",
+      "Race weight & nutrition guidance",
+      "Community of serious cyclists",
     ],
     cta: "Join Standard",
     href: "https://skool.com/roadmancycling",
@@ -146,19 +146,23 @@ export default function NotDoneYetPage() {
         {/* Hero */}
         <Section background="deep-purple" grain className="pt-32 pb-16">
           <Container className="text-center">
+            <p className="text-coral font-heading text-lg mb-4 tracking-widest">
+              THE COACHING SYSTEM
+            </p>
             <h1
               className="font-heading text-off-white mb-6"
               style={{ fontSize: "var(--text-hero)" }}
             >
               NOT DONE YET
             </h1>
-            <p className="text-foreground-muted text-xl max-w-2xl mx-auto mb-4">
-              You get the same insights Anthony gets from sitting across the
-              table from Dan Lorang, Professor Seiler, and Lachlan Morton —
-              distilled into a system you can actually use.
+            <p className="text-foreground-muted text-xl max-w-2xl mx-auto mb-6">
+              You&apos;re training hard. You&apos;re not improving. Something&apos;s
+              missing — and it&apos;s not motivation. It&apos;s a system.
+              Five pillars. One structure. Weekly coaching that adapts to your
+              life, not the other way around.
             </p>
-            <p className="text-coral font-heading text-lg">
-              113 SERIOUS CYCLISTS. THREE TIERS. ONE MISSION.
+            <p className="text-foreground-subtle text-sm">
+              113 coached cyclists &middot; 7-day free trial &middot; 30-day money-back guarantee
             </p>
           </Container>
         </Section>

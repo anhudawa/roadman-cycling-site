@@ -16,8 +16,8 @@ export default function ClubhousePage() {
         {/* Hero */}
         <Section background="deep-purple" grain className="pt-32 pb-16">
           <Container className="text-center">
-            <p className="text-coral font-heading text-lg mb-4">
-              FREE FOREVER
+            <p className="text-coral font-heading text-lg mb-4 tracking-widest">
+              FREE — NO CATCH
             </p>
             <h1
               className="font-heading text-off-white mb-6"
@@ -26,9 +26,10 @@ export default function ClubhousePage() {
               THE CLUBHOUSE
             </h1>
             <p className="text-foreground-muted text-xl max-w-2xl mx-auto mb-8">
-              1,852 cyclists who refuse to accept that their best days are
-              behind them. Weekly Q&amp;A with Anthony. Free training plans. Zero
-              cost, no catch.
+              Free training plans. Free calculators. A weekly live Q&amp;A with
+              Anthony. And 2,000 cyclists who actually care about getting faster.
+              This is your starting point. No credit card. No upsell pressure.
+              Just tools and a community that gets it.
             </p>
             <Button
               href="https://skool.com/roadman"
