@@ -23,11 +23,15 @@ export async function generateMetadata({
     title: episode.seoTitle || episode.title,
     description: episode.seoDescription,
     keywords: episode.keywords,
+    alternates: {
+      canonical: `https://roadmancycling.com/podcast/${slug}`,
+    },
     openGraph: {
       title: episode.seoTitle || episode.title,
       description: episode.seoDescription,
       type: "article",
       publishedTime: episode.publishDate,
+      url: `https://roadmancycling.com/podcast/${slug}`,
     },
   };
 }

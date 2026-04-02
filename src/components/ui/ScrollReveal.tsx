@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef } from "react";
+import { useRef, useEffect, useState } from "react";
 import { motion, useInView } from "framer-motion";
 import { type ReactNode } from "react";
 
@@ -33,18 +33,36 @@ export function ScrollReveal({
 }: ScrollRevealProps) {
   const ref = useRef<HTMLDivElement>(null);
   const isInView = useInView(ref, { once, margin: "-50px" });
+  const [prefersReducedMotion, setPrefersReducedMotion] = useState(false);
+
+  useEffect(() => {
+    const mq = window.matchMedia("(prefers-reduced-motion: reduce)");
+    setPrefersReducedMotion(mq.matches);
+    const handler = (e: MediaQueryListEvent) => setPrefersReducedMotion(e.matches);
+    mq.addEventListener("change", handler);
+    return () => mq.removeEventListener("change", handler);
+  }, []);
 
   const offset = directionOffsets[direction];
+
+  // Respect prefers-reduced-motion: no animation, just show content
+  if (prefersReducedMotion) {
+    return <div className={className}>{children}</div>;
+  }
 
   return (
     <motion.div
       ref={ref}
       initial={{ opacity: 0, x: offset.x, y: offset.y }}
-      animate={isInView ? { opacity: 1, x: 0, y: 0 } : { opacity: 0, x: offset.x, y: offset.y }}
+      animate={
+        isInView
+          ? { opacity: 1, x: 0, y: 0 }
+          : { opacity: 0, x: offset.x, y: offset.y }
+      }
       transition={{
         duration,
         delay,
-        ease: [0.16, 1, 0.3, 1], // ease-out-expo
+        ease: [0.16, 1, 0.3, 1],
       }}
       className={className}
     >

@@ -1,0 +1,30 @@
+# Roadman Cycling
+> Cycling coaching, podcast, and community for serious amateur cyclists who refuse to accept their best days are behind them.
+
+## About
+Roadman Cycling is founded by Anthony Walsh, host of the Roadman Cycling Podcast (300+ episodes on YouTube, 100M+ audio downloads). The site covers cycling training, nutrition, strength & conditioning, recovery, and cycling culture through expert interviews with world-class coaches and sports scientists.
+
+## Content
+- Blog: /blog — Training guides, nutrition advice, cycling science, cycling culture (30+ articles)
+- Podcast: /podcast — Episode archive with 300+ episodes, embedded YouTube video, show notes
+- Tools: /tools — Free cycling calculators (tyre pressure, FTP zones, race weight, fuelling, energy availability, shock pressure)
+- Community: /community — Free Clubhouse (1,852 members) and premium Not Done Yet coaching community
+- Coaching: /strength-training — S&C course for cyclists ($49.99)
+- Newsletter: /newsletter — Weekly cycling insights via Beehiiv
+
+## Key Topics
+Cycling training, FTP improvement, zone 2 training, polarised training, cycling nutrition, fuel for the work required, cycling over 40, amateur cycling coaching, gravel cycling, cycling strength and conditioning, cycling recovery, low cadence training, cycling weight loss, race weight, VO2max improvement, cycling podcast, cycling community
+
+## Expert Network (Featured on Podcast)
+Professor Stephen Seiler (polarised training), Dan Lorang (Bora-Hansgrohe), John Wakefield (Bora-Hansgrohe coaching), Lachlan Morton (EF Education pro), Greg LeMond (3x Tour winner), Ben Healy (Tour de France), Michael Matthews (15yr World Tour), Joe Friel (coaching legend), Dr Sam Impey (sports nutrition), Rosa Kloser (European gravel champion)
+
+## Five Content Pillars
+1. Coaching — Training methodology, periodisation, what the pros actually do
+2. Nutrition — Fuelling for performance, race weight, body composition
+3. Strength & Conditioning — S&C for cyclists, injury prevention
+4. Recovery — Sleep, stress management, adaptation, longevity
+5. Le Metier — The culture of cycling: rides, skills, customs, traditions
+
+## Contact
+ted@roadmancycling.com
+https://roadmancycling.com

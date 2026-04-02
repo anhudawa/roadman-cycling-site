@@ -24,6 +24,9 @@ export async function generateMetadata({
     title: post.seoTitle || post.title,
     description: post.seoDescription,
     keywords: post.keywords,
+    alternates: {
+      canonical: `https://roadmancycling.com/blog/${slug}`,
+    },
     openGraph: {
       title: post.seoTitle || post.title,
       description: post.seoDescription,
@@ -31,6 +34,7 @@ export async function generateMetadata({
       publishedTime: post.publishDate,
       modifiedTime: post.updatedDate,
       authors: [post.author],
+      url: `https://roadmancycling.com/blog/${slug}`,
       images: post.featuredImage
         ? [{ url: post.featuredImage, width: 1200, height: 630 }]
         : [],

@@ -14,6 +14,12 @@ module.exports = {
         allow: '/',
         disallow: ['/api/'],
       },
+      // AI Search Crawlers — explicitly allowed for AI SEO visibility
+      { userAgent: 'GPTBot', allow: '/' },
+      { userAgent: 'ClaudeBot', allow: '/' },
+      { userAgent: 'PerplexityBot', allow: '/' },
+      { userAgent: 'GoogleOther', allow: '/' },
+      { userAgent: 'Bingbot', allow: '/' },
     ],
   },
   transform: async (config, path) => {
