@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Header, Footer, Section, Container } from "@/components/layout";
 import { Button, Card, ScrollReveal } from "@/components/ui";
 import { JsonLd } from "@/components/seo/JsonLd";
+import { DublinRouteMap } from "@/components/features/club/DublinRouteMap";
 
 export const metadata: Metadata = {
   title: "Roadman CC — Dublin Cycling Club",
@@ -98,6 +99,15 @@ export default function ClubPage() {
                 One message turns into a plan. Routes mapped. Bidon filled. The
                 season begins the moment you show up.
               </p>
+            </ScrollReveal>
+          </Container>
+        </Section>
+
+        {/* Route Map */}
+        <Section background="charcoal" className="!pb-0">
+          <Container>
+            <ScrollReveal direction="up">
+              <DublinRouteMap />
             </ScrollReveal>
           </Container>
         </Section>
