@@ -145,20 +145,23 @@ export default function ClubPage() {
                 </h2>
                 <div className="space-y-6 text-foreground-muted text-lg leading-relaxed">
                   <p>
-                    There&apos;s a moment on the Thursday circuit when the road
-                    tilts and the group stretches and your legs start asking
-                    questions you don&apos;t want to answer. You hold on. Not
-                    because anyone&apos;s watching. Because you said you would.
+                    Saturday morning. You roll out of Clontarf and the group
+                    finds its rhythm. Someone new sits in and you drift back
+                    to make sure they&apos;re okay. The road opens up north of
+                    the city and the chat quiets down because the gradient
+                    doesn&apos;t care about your week.
                   </p>
                   <p>
-                    There&apos;s a moment on the Saturday ride when someone new
-                    sits in and you drift back to check they&apos;re okay. Not
-                    because it&apos;s a rule. Because that&apos;s what this is.
+                    Your legs start asking questions you don&apos;t want to
+                    answer. You hold on anyway. The rider beside you is
+                    holding on too. Neither of you says anything. You don&apos;t
+                    need to.
                   </p>
                   <p>
-                    There&apos;s a moment on the Sunday spin when the coffee is
-                    average and the chat is extraordinary and you realise this
-                    is why you ride.
+                    Over the top. Regroup. The cafe stop where the coffee is
+                    average and the conversation is the best part of your
+                    weekend. Then home. Wind behind you if you&apos;re lucky.
+                    Headwind if you&apos;re not. Either way, you rode through.
                   </p>
                   <p className="text-off-white font-medium">
                     We&apos;re all riding through.
