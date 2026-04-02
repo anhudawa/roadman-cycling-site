@@ -133,7 +133,8 @@ export const NAV_ITEMS: NavItem[] = [
     href: "/community",
     children: [
       { label: "Clubhouse (Free)", href: "/community/clubhouse" },
-      { label: "Not Done Yet", href: "/community/not-done-yet" },
+      { label: "Not Done Yet (Coaching)", href: "/community/not-done-yet" },
+      { label: "Roadman CC (Dublin)", href: "/community/club" },
     ],
   },
   {
