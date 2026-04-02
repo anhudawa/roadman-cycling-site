@@ -1,0 +1,10 @@
+# *
+User-agent: *
+Allow: /
+Disallow: /api/
+
+# Host
+Host: https://roadmancycling.com
+
+# Sitemaps
+Sitemap: https://roadmancycling.com/sitemap.xml
