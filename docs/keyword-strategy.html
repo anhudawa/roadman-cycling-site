@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Roadman Cycling - Persona-Mapped Keyword Strategy</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Work+Sans:wght@400;600;700&display=swap');
+  :root {
+    --purple: #4C1273;
+    --deep-purple: #210140;
+    --coral: #F16363;
+    --dark: #252526;
+    --grey: #545559;
+    --light: #FAFAFA;
+    --green: #2ECC71;
+    --amber: #F39C12;
+    --red: #E74C3C;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Work Sans', sans-serif; background: var(--dark); color: var(--light); }
+  .container { max-width: 1200px; margin: 0 auto; padding: 24px; }
+  h1 { font-family: 'Bebas Neue', sans-serif; font-size: 2.8rem; color: var(--light); letter-spacing: 2px; text-transform: uppercase; }
+  h2 { font-family: 'Bebas Neue', sans-serif; font-size: 1.8rem; color: var(--coral); letter-spacing: 1px; text-transform: uppercase; margin-bottom: 16px; }
+  h3 { font-family: 'Work Sans', sans-serif; font-size: 1.1rem; font-weight: 700; color: var(--light); margin-bottom: 8px; }
+  .subtitle { color: var(--grey); font-size: 0.95rem; margin-bottom: 32px; }
+  .header { text-align: center; padding: 40px 0 32px; border-bottom: 3px solid var(--purple); margin-bottom: 32px; }
+  .header .tag { display: inline-block; background: var(--coral); color: white; font-size: 0.75rem; font-weight: 700; padding: 4px 12px; border-radius: 4px; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 12px; }
+
+  /* Tabs */
+  .tabs { display: flex; gap: 4px; margin-bottom: 24px; flex-wrap: wrap; }
+  .tab { padding: 10px 20px; background: var(--deep-purple); color: var(--grey); border: 1px solid #333; border-radius: 6px 6px 0 0; cursor: pointer; font-family: 'Bebas Neue', sans-serif; font-size: 1rem; letter-spacing: 1px; text-transform: uppercase; transition: all 0.2s; }
+  .tab:hover { color: var(--light); border-color: var(--purple); }
+  .tab.active { background: var(--purple); color: white; border-color: var(--purple); }
+
+  /* Persona Header */
+  .persona-header { background: var(--deep-purple); border: 1px solid var(--purple); border-radius: 8px; padding: 24px; margin-bottom: 24px; }
+  .persona-header .name { font-family: 'Bebas Neue', sans-serif; font-size: 1.6rem; color: var(--coral); }
+  .persona-header .desc { color: #aaa; font-size: 0.9rem; margin-top: 6px; line-height: 1.5; }
+  .persona-header .quote { color: var(--light); font-style: italic; font-size: 0.95rem; margin-top: 12px; padding-left: 16px; border-left: 3px solid var(--coral); }
+  .persona-meta { display: flex; gap: 16px; margin-top: 16px; flex-wrap: wrap; }
+  .persona-meta span { font-size: 0.8rem; color: #999; background: rgba(255,255,255,0.05); padding: 4px 10px; border-radius: 4px; }
+
+  /* Keyword Table */
+  .kw-table { width: 100%; border-collapse: collapse; margin-bottom: 32px; }
+  .kw-table th { background: var(--purple); color: white; padding: 10px 14px; text-align: left; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.5px; font-weight: 600; }
+  .kw-table td { padding: 10px 14px; border-bottom: 1px solid #333; font-size: 0.88rem; color: #ddd; vertical-align: top; }
+  .kw-table tr:hover td { background: rgba(76,18,115,0.15); }
+  .diff-low { color: var(--green); font-weight: 600; }
+  .diff-med { color: var(--amber); font-weight: 600; }
+  .diff-high { color: var(--red); font-weight: 600; }
+  .timeline { font-size: 0.8rem; color: #aaa; }
+  .content-type { font-size: 0.8rem; color: var(--coral); }
+  .expert-tag { display: inline-block; background: rgba(241,99,99,0.15); color: var(--coral); font-size: 0.7rem; padding: 2px 6px; border-radius: 3px; margin: 1px 2px; }
+  .search-intent { font-size: 0.75rem; padding: 3px 8px; border-radius: 3px; display: inline-block; }
+  .intent-info { background: rgba(52,152,219,0.2); color: #5DADE2; }
+  .intent-comm { background: rgba(46,204,113,0.2); color: #2ECC71; }
+  .intent-trans { background: rgba(243,156,18,0.2); color: #F39C12; }
+
+  /* Strategy Boxes */
+  .strategy-box { background: var(--deep-purple); border: 1px solid #333; border-radius: 8px; padding: 20px; margin-bottom: 16px; }
+  .strategy-box h3 { color: var(--coral); margin-bottom: 10px; }
+  .strategy-box p { font-size: 0.9rem; color: #bbb; line-height: 1.6; }
+  .strategy-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 16px; margin-bottom: 32px; }
+
+  /* Stats */
+  .stats-bar { display: flex; gap: 12px; margin-bottom: 24px; flex-wrap: wrap; }
+  .stat { background: var(--deep-purple); border: 1px solid #333; border-radius: 8px; padding: 16px 20px; flex: 1; min-width: 140px; text-align: center; }
+  .stat .num { font-family: 'Bebas Neue', sans-serif; font-size: 2rem; color: var(--coral); }
+  .stat .label { font-size: 0.75rem; color: #888; text-transform: uppercase; letter-spacing: 0.5px; }
+
+  /* AI Section */
+  .ai-section { background: linear-gradient(135deg, var(--deep-purple), #1a0033); border: 1px solid var(--purple); border-radius: 8px; padding: 24px; margin-bottom: 32px; }
+  .ai-section h2 { color: var(--light); }
+  .ai-badge { display: inline-block; background: var(--purple); color: white; font-size: 0.7rem; padding: 3px 8px; border-radius: 3px; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 12px; }
+
+  .faq-item { margin-bottom: 12px; padding: 12px; background: rgba(255,255,255,0.03); border-radius: 6px; }
+  .faq-q { font-weight: 700; color: var(--light); font-size: 0.9rem; margin-bottom: 4px; }
+  .faq-a { font-size: 0.85rem; color: #aaa; }
+
+  .section-divider { border: none; border-top: 1px solid #333; margin: 40px 0; }
+
+  @media (max-width: 768px) {
+    h1 { font-size: 1.8rem; }
+    .tabs { gap: 2px; }
+    .tab { padding: 8px 12px; font-size: 0.85rem; }
+    .kw-table { font-size: 0.8rem; }
+    .kw-table th, .kw-table td { padding: 8px; }
+  }
+</style>
+</head>
+<body>
+<div class="container">
+  <div class="header">
+    <div class="tag">Claude Code Implementation Spec</div>
+    <h1>Persona-Mapped Keyword Strategy</h1>
+    <div class="subtitle">148 target keywords mapped to 4 personas, with content type, expert sourcing, search intent, difficulty, and AI citation potential</div>
+  </div>
+
+  <div class="stats-bar">
+    <div class="stat"><div class="num">148</div><div class="label">Total Keywords</div></div>
+    <div class="stat"><div class="num">4</div><div class="label">Personas Targeted</div></div>
+    <div class="stat"><div class="num">62</div><div class="label">Quick Wins (1-3mo)</div></div>
+    <div class="stat"><div class="num">~38K</div><div class="label">Est. Monthly Volume</div></div>
+    <div class="stat"><div class="num">1,400+</div><div class="label">Source Episodes</div></div>
+  </div>
+
+  <div class="tabs" id="tabs">
+    <div class="tab active" onclick="showTab('tom')">Tom — Plateau Racer</div>
+    <div class="tab" onclick="showTab('mark')">Mark — Gran Fondo</div>
+    <div class="tab" onclick="showTab('dave')">Dave — Comeback</div>
+    <div class="tab" onclick="showTab('jamie')">Jamie — Podcast Loyalist</div>
+    <div class="tab" onclick="showTab('ai')">AI Citation Strategy</div>
+    <div class="tab" onclick="showTab('universal')">Universal / Cross-Persona</div>
+  </div>
+
+  <!-- TOM -->
+  <div id="tom" class="tab-content">
+    <div class="persona-header">
+      <div class="name">Persona 1: Tom — The Plateau-Stuck Club Racer</div>
+      <div class="desc">Cat 3-4 racer, 33-46, training 8-12hrs/week, FTP stalled. Professional with family. Highest premium conversion potential. Intellectual frustration — knows the theory, can't make it work.</div>
+      <div class="quote">"I've been training for three years, putting in the hours, and I'm still getting dropped by the same guys on the same climb."</div>
+      <div class="persona-meta">
+        <span>Income: £45K-95K</span>
+        <span>Bike: £2,500-7,000+</span>
+        <span>Platforms: Strava, r/velo, YouTube</span>
+        <span>Conversion: Premium $195/mo</span>
+      </div>
+    </div>
+
+    <h2>Tier 1 Keywords — Top 10 in 1-3 Months</h2>
+    <table class="kw-table">
+      <tr><th>Keyword</th><th>Vol</th><th>Diff</th><th>Intent</th><th>Content & Expert Source</th></tr>
+      <tr><td>how to break through ftp plateau</td><td>1,400</td><td class="diff-low">Low</td><td><span class="search-intent intent-info">Info</span></td><td class="content-type">Blog post from Seiler + Lorang episodes. FAQ: "Why has my FTP been stuck for months?" <div><span class="expert-tag">Seiler</span><span class="expert-tag">Lorang</span></div></td></tr>
+      <tr><td>cycling training plan 8 hours a week</td><td>900</td><td class="diff-low">Low</td><td><span class="search-intent intent-info">Info</span></td><td class="content-type">Blog post. Tom's exact constraint. Friel time-crunched approach. <div><span class="expert-tag">Joe Friel</span></div></td></tr>
+      <tr><td>polarised vs sweet spot training cycling</td><td>1,200</td><td class="diff-low">Low</td><td><span class="search-intent intent-info">Info</span></td><td class="content-type">Definitive comparison post. This is Tom's brain-breaker. Cite Seiler data + coaching wisdom. <div><span class="expert-tag">Seiler</span><span class="expert-tag">Lorang</span></div></td></tr>
+      <tr><td>why am i not getting faster cycling</td><td>800</td><td class="diff-low">Low</td><td><span class="search-intent intent-info">Info</span></td><td class="content-type">Hook post addressing Tom's shame. 5 common mistakes from self-coached athletes. <div><span class="expert-tag">Anthony Walsh</span></div></td></tr>
+      <tr><td>low cadence training cycling benefits</td><td>600</td><td class="diff-low">Low</td><td><span class="search-intent intent-info">Info</span></td><td class="content-type">Anthony's strongest contrarian position. Cite 2024 Habis study, Wakefield protocols. <div><span class="expert-tag">Wakefield</span></div></td></tr>
+      <tr><td>how to increase watts per kilo cycling</td><td>1,100</td><td class="diff-low">Low</td><td><span class="search-intent intent-info">Info</span></td><td class="content-type">Tom's internal north star metric. Dual approach: power + weight. <div><span class="expert-tag">Lorang</span><span class="expert-tag">Dunne</span></div></td></tr>
+      <tr><td>strength training for cyclists programme</td><td>1,300</td><td class="diff-low">Low-Med</td><td><span class="search-intent intent-info">Info</span></td><td class="content-type">Blog post + link to S&C pillar. Tom knows he should but doesn't know how. <div><span class="expert-tag">S&C Pillar</span></div></td></tr>
+      <tr><td>cycling training zones explained</td><td>2,200</td><td class="diff-med">Med</td><td><span class="search-intent intent-info">Info</span></td><td class="content-type">Definitive guide. Zone calculator tool drives backlinks. <div><span class="expert-tag">Seiler</span><span class="expert-tag">Coggan</span></div></td></tr>
+      <tr><td>reverse periodisation cycling</td><td>800</td><td class="diff-low">Low</td><td><span class="search-intent intent-info">Info</span></td><td class="content-type">Deep technical post. Tom loves evidence-based content. <div><span class="expert-tag">Rønnestad</span><span class="expert-tag">Friel</span></div></td></tr>
+      <tr><td>self coached cyclist mistakes</td><td>400</td><td class="diff-low">Low</td><td><span class="search-intent intent-info">Info</span></td><td class="content-type">Anthony's 5 mistakes framework. Conversion piece — shows what coaching fixes. <div><span class="expert-tag">Anthony Walsh</span></div></td></tr>
+      <tr><td>how to stop getting dropped cycling</td><td>700</td><td class="diff-low">Low</td><td><span class="search-intent intent-info">Info</span></td><td class="content-type">Tom's weekly humiliation. Pacing, positioning, fitness combination. <div><span class="expert-tag">Anthony Walsh</span></div></td></tr>
+      <tr><td>zone 2 training too slow cycling</td><td>500</td><td class="diff-low">Low</td><td><span class="search-intent intent-info">Info</span></td><td class="content-type">Addresses Tom's ego problem. Anthony's "50% too hard" insight. <div><span class="expert-tag">Seiler</span><span class="expert-tag">Lorang</span></div></td></tr>
+    </table>
+
+    <h2>Tier 2 Keywords — Top 10 in 3-6 Months</h2>
+    <table class="kw-table">
+      <tr><th>Keyword</th><th>Vol</th><th>Diff</th><th>Intent</th><th>Content & Expert Source</th></tr>
+      <tr><td>how to improve ftp cycling</td><td>3,200</td><td class="diff-med">Med</td><td><span class="search-intent intent-info">Info</span></td><td class="content-type">Pillar-linked comprehensive guide. 3,000+ words. <div><span class="expert-tag">Seiler</span><span class="expert-tag">Lorang</span><span class="expert-tag">Friel</span></div></td></tr>
+      <tr><td>best cycling training plan</td><td>2,800</td><td class="diff-med">Med</td><td><span class="search-intent intent-comm">Commercial</span></td><td class="content-type">Comparison post. TrainerRoad vs Zwift vs coaching vs Roadman. <div><span class="expert-tag">Training Pillar</span></div></td></tr>
+      <tr><td>cycling coaching worth it</td><td>600</td><td class="diff-med">Med</td><td><span class="search-intent intent-comm">Commercial</span></td><td class="content-type">Addresses Tom's scepticism. Use Daniel Stone Cat 3→Cat 1 proof. <div><span class="expert-tag">Daniel Stone</span></div></td></tr>
+      <tr><td>cycling training with full time job</td><td>700</td><td class="diff-low">Low</td><td><span class="search-intent intent-info">Info</span></td><td class="content-type">Time-crunched framework. "Built for cyclists with real lives." <div><span class="expert-tag">Friel</span></div></td></tr>
+      <tr><td>VO2max intervals cycling</td><td>1,800</td><td class="diff-med">Med</td><td><span class="search-intent intent-info">Info</span></td><td class="content-type">Technical deep-dive. Tom craves this specificity. <div><span class="expert-tag">Seiler</span></div></td></tr>
+      <tr><td>cat 4 to cat 3 cycling upgrade</td><td>400</td><td class="diff-low">Low</td><td><span class="search-intent intent-info">Info</span></td><td class="content-type">Tom's dream outcome. Use community member results. <div><span class="expert-tag">Daniel Stone</span></div></td></tr>
+      <tr><td>sweet spot training cycling plan</td><td>1,500</td><td class="diff-med">Med</td><td><span class="search-intent intent-info">Info</span></td><td class="content-type">Nuanced take. Not pro/anti — when to use it, when not to. <div><span class="expert-tag">Lorang</span></div></td></tr>
+      <tr><td>trainerroad vs cycling coach</td><td>500</td><td class="diff-low">Low</td><td><span class="search-intent intent-comm">Commercial</span></td><td class="content-type">Comparison. "Workouts vs understanding." Conversion piece. <div><span class="expert-tag">Anthony Walsh</span></div></td></tr>
+    </table>
+
+    <div class="strategy-grid">
+      <div class="strategy-box">
+        <h3>Tom's Content Flywheel</h3>
+        <p>Tom searches → finds evidence-based post → sees named expert sources (Seiler, Lorang) → recognises them from the podcast → trusts immediately → reads FAQ → finds answer to his exact frustration → sees coaching CTA → starts 7-day free trial. Every post must feel like it was written by someone who actually talked to the people Tom respects.</p>
+      </div>
+      <div class="strategy-box">
+        <h3>Tom's AI Citation Play</h3>
+        <p>When Tom asks ChatGPT "how to break through an FTP plateau," Roadman gets cited because: (1) the post contains unique data from named experts, (2) the FAQ section directly answers the query, (3) the structured data marks it as an Article with expert author attribution. No other cycling site has this combination of specificity + authority.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- MARK -->
+  <div id="mark" class="tab-content" style="display:none">
+    <div class="persona-header">
+      <div class="name">Persona 2: Mark — The Bucket-List Gran Fondo Achiever</div>
+      <div class="desc">42-58, senior professional or business owner. Has a specific target event (Étape, Marmotte, Maratona). Wants to perform, not just survive. Standard tier sweet spot. Deadline-driven.</div>
+      <div class="quote">"I've signed up for the Étape. I've got 6 months. I genuinely don't know if I'm training for it correctly and I'm scared of showing up unprepared."</div>
+      <div class="persona-meta">
+        <span>Income: £60K-150K+</span>
+        <span>Events: Étape, Marmotte, Maratona</span>
+        <span>Platforms: Podcast, YouTube, Cycling Weekly</span>
+        <span>Conversion: Standard $15/mo</span>
+      </div>
+    </div>
+
+    <h2>Tier 1 Keywords — Top 10 in 1-3 Months</h2>
+    <table class="kw-table">
+      <tr><th>Keyword</th><th>Vol</th><th>Diff</th><th>Intent</th><th>Content & Expert Source</th></tr>
+      <tr><td>how to train for etape du tour</td><td>1,600</td><td class="diff-low">Low</td><td><span class="search-intent intent-info">Info</span></td><td class="content-type">Event-specific guide. Mark's #1 search. 12-week plan outline. <div><span class="expert-tag">Lorang</span><span class="expert-tag">Friel</span></div></td></tr>
+      <tr><td>cycling nutrition for long rides</td><td>1,800</td><td class="diff-low">Low</td><td><span class="search-intent intent-info">Info</span></td><td class="content-type">Mark's fuelling always goes wrong. Anthony's tested protocols. <div><span class="expert-tag">Dunne</span></div></td></tr>
+      <tr><td>sportive training plan 12 weeks</td><td>900</td><td class="diff-low">Low</td><td><span class="search-intent intent-info">Info</span></td><td class="content-type">Structured plan outline. Links to coaching for personalised version. <div><span class="expert-tag">Friel</span></div></td></tr>
+      <tr><td>how to climb better on a bike over 40</td><td>600</td><td class="diff-low">Low</td><td><span class="search-intent intent-info">Info</span></td><td class="content-type">Anthony's 5 fixable climbing reasons. W/kg, pacing, mental game. <div><span class="expert-tag">Anthony Walsh</span></div></td></tr>
+      <tr><td>cycling fuelling strategy bonking</td><td>500</td><td class="diff-low">Low</td><td><span class="search-intent intent-info">Info</span></td><td class="content-type">Mark's race-day disaster scenario. Prevention protocol. <div><span class="expert-tag">Dunne</span></div></td></tr>
+      <tr><td>gran fondo training plan beginner</td><td>800</td><td class="diff-low">Low</td><td><span class="search-intent intent-info">Info</span></td><td class="content-type">Entry-level guide. Mark doesn't want to be called a beginner but searches it. <div><span class="expert-tag">Training Pillar</span></div></td></tr>
+      <tr><td>how to lose weight for cycling climbing</td><td>1,100</td><td class="diff-low">Low</td><td><span class="search-intent intent-info">Info</span></td><td class="content-type">Mark's hidden motivator. Anthony's anti-diet approach. <div><span class="expert-tag">Anthony Walsh</span></div></td></tr>
+      <tr><td>marmotte training plan</td><td>500</td><td class="diff-low">Low</td><td><span class="search-intent intent-info">Info</span></td><td class="content-type">Event-specific. Create individual posts for each major event. <div><span class="expert-tag">Training Pillar</span></div></td></tr>
+      <tr><td>cycling in-ride nutrition grams per hour</td><td>700</td><td class="diff-low">Low</td><td><span class="search-intent intent-info">Info</span></td><td class="content-type">The specific number Mark needs. Cite pro fuelling data. <div><span class="expert-tag">Dunne</span></div></td></tr>
+      <tr><td>cycling training over 50</td><td>1,400</td><td class="diff-low">Low</td><td><span class="search-intent intent-info">Info</span></td><td class="content-type">Age-specific training. Recovery emphasis. Mark's unspoken fear. <div><span class="expert-tag">Friel</span><span class="expert-tag">Seiler</span></div></td></tr>
+    </table>
+
+    <h2>Tier 2 Keywords — Top 10 in 3-6 Months</h2>
+    <table class="kw-table">
+      <tr><th>Keyword</th><th>Vol</th><th>Diff</th><th>Intent</th><th>Content & Expert Source</th></tr>
+      <tr><td>how to train for a gran fondo</td><td>2,400</td><td class="diff-med">Med</td><td><span class="search-intent intent-info">Info</span></td><td class="content-type">Comprehensive pillar-linked guide. Competes with TrainerRoad. <div><span class="expert-tag">Training Pillar</span></div></td></tr>
+      <tr><td>cycling sportive preparation</td><td>1,100</td><td class="diff-med">Med</td><td><span class="search-intent intent-info">Info</span></td><td class="content-type">UK/Irish focused. Event-specific nuances. <div><span class="expert-tag">Anthony Walsh</span></div></td></tr>
+      <tr><td>cycling body composition race weight</td><td>600</td><td class="diff-low">Low</td><td><span class="search-intent intent-info">Info</span></td><td class="content-type">The universal hidden motivator. Anti-crash-diet approach. <div><span class="expert-tag">Dunne</span><span class="expert-tag">Anthony Walsh</span></div></td></tr>
+      <tr><td>cycling training plan for busy professionals</td><td>500</td><td class="diff-low">Low</td><td><span class="search-intent intent-info">Info</span></td><td class="content-type">Mark's life constraint. "Built for cyclists with real lives." <div><span class="expert-tag">Friel</span></div></td></tr>
+      <tr><td>how to improve cycling endurance</td><td>2,600</td><td class="diff-med">Med</td><td><span class="search-intent intent-info">Info</span></td><td class="content-type">Foundational endurance guide. Zone 2 emphasis. <div><span class="expert-tag">Seiler</span></div></td></tr>
+      <tr><td>cycling pacing strategy sportive</td><td>300</td><td class="diff-low">Low</td><td><span class="search-intent intent-info">Info</span></td><td class="content-type">Mark's biggest race-day mistake risk. Wiggins reference. <div><span class="expert-tag">Anthony Walsh</span></div></td></tr>
+      <tr><td>alps cycling training without mountains</td><td>400</td><td class="diff-low">Low</td><td><span class="search-intent intent-info">Info</span></td><td class="content-type">Addresses the myth. You don't need mountains to climb well. <div><span class="expert-tag">Lorang</span></div></td></tr>
+    </table>
+
+    <div class="strategy-grid">
+      <div class="strategy-box">
+        <h3>Mark's Conversion Trigger</h3>
+        <p>Mark has a deadline. He's signed up for an event, the clock is ticking, and anxiety is building. Every blog post should include a time-urgency element: "If your event is 12 weeks away, here's what your training week should look like now." The CTA isn't "join the community" — it's "get a plan built around YOUR event, YOUR timeline, YOUR life."</p>
+      </div>
+      <div class="strategy-box">
+        <h3>Mark's Event Pages Strategy</h3>
+        <p>Create dedicated pages for every major sportive: /blog/etape-du-tour-training-plan, /blog/marmotte-training-guide, /blog/maratona-dles-dolomites-preparation. These are low-competition, high-intent keywords that Mark searches 3-6 months before his event. Seasonal traffic spikes in Jan-March every year. Evergreen assets.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- DAVE -->
+  <div id="dave" class="tab-content" style="display:none">
+    <div class="persona-header">
+      <div class="name">Persona 3: Dave — The Comeback Athlete</div>
+      <div class="desc">45-62, was athletic in past, returning after 5-15+ year break. Driven by emotion — reclaiming identity. Struggling with fitness and weight. Strongest emotional resonance with "Not Done Yet." Highest lifetime value once transformation occurs.</div>
+      <div class="quote">"I was fit once. Really fit. And then life happened. I'm back now, and I'm not ready to accept that was the best I'll ever be."</div>
+      <div class="persona-meta">
+        <span>Income: £40K-90K</span>
+        <span>Break: 5-15+ years</span>
+        <span>Platforms: Podcast, YouTube, Instagram</span>
+        <span>Conversion: Standard → Premium (emotional investment)</span>
+      </div>
+    </div>
+
+    <h2>Tier 1 Keywords — Top 10 in 1-3 Months</h2>
+    <table class="kw-table">
+      <tr><th>Keyword</th><th>Vol</th><th>Diff</th><th>Intent</th><th>Content & Expert Source</th></tr>
+      <tr><td>getting back into cycling after years off</td><td>1,600</td><td class="diff-low">Low</td><td><span class="search-intent intent-info">Info</span></td><td class="content-type">Dave's exact search. Compassionate, structured return plan. <div><span class="expert-tag">Anthony Walsh</span><span class="expert-tag">Chris O'Connor</span></div></td></tr>
+      <tr><td>cycling training for over 50 beginners</td><td>900</td><td class="diff-low">Low</td><td><span class="search-intent intent-info">Info</span></td><td class="content-type">Dave won't call himself a beginner but searches it. Reframe as "returning." <div><span class="expert-tag">Friel</span></div></td></tr>
+      <tr><td>cycling weight loss transformation</td><td>1,200</td><td class="diff-low">Low</td><td><span class="search-intent intent-info">Info</span></td><td class="content-type">Chris O'Connor story: 84kg→68kg, 20%→7% body fat. This is the proof piece. <div><span class="expert-tag">Chris O'Connor</span></div></td></tr>
+      <tr><td>how to start cycling again middle age</td><td>700</td><td class="diff-low">Low</td><td><span class="search-intent intent-info">Info</span></td><td class="content-type">Dave's emotional search. No judgment. "You haven't lost it." <div><span class="expert-tag">Anthony Walsh</span></div></td></tr>
+      <tr><td>cycling comeback injury prevention</td><td>400</td><td class="diff-low">Low</td><td><span class="search-intent intent-info">Info</span></td><td class="content-type">Dave's #1 fear. Every comeback attempt ends with knee/back injury. <div><span class="expert-tag">S&C Pillar</span></div></td></tr>
+      <tr><td>cycling for weight loss over 40</td><td>1,500</td><td class="diff-low">Low</td><td><span class="search-intent intent-info">Info</span></td><td class="content-type">Anthony's anti-calorie-counting approach. Eat MORE, lose weight. <div><span class="expert-tag">Anthony Walsh</span><span class="expert-tag">Dunne</span></div></td></tr>
+      <tr><td>masters cycling training plan</td><td>800</td><td class="diff-low">Low</td><td><span class="search-intent intent-info">Info</span></td><td class="content-type">Age-specific programming. Recovery-centric. <div><span class="expert-tag">Friel</span><span class="expert-tag">Seiler</span></div></td></tr>
+      <tr><td>can you get fit again at 50 cycling</td><td>500</td><td class="diff-low">Low</td><td><span class="search-intent intent-info">Info</span></td><td class="content-type">Dave's deepest question. Answer: yes, with evidence. Yvonne Doran story. <div><span class="expert-tag">Yvonne Doran</span></div></td></tr>
+      <tr><td>cycling comeback plan structured</td><td>300</td><td class="diff-low">Low</td><td><span class="search-intent intent-info">Info</span></td><td class="content-type">Progressive 12-week return plan. Week by week. <div><span class="expert-tag">Training Pillar</span></div></td></tr>
+      <tr><td>how to lose belly fat cycling</td><td>2,100</td><td class="diff-low">Low-Med</td><td><span class="search-intent intent-info">Info</span></td><td class="content-type">High volume, slightly generic. Use Anthony's specific approach to differentiate. <div><span class="expert-tag">Anthony Walsh</span></div></td></tr>
+    </table>
+
+    <h2>Tier 2 Keywords — Top 10 in 3-6 Months</h2>
+    <table class="kw-table">
+      <tr><th>Keyword</th><th>Vol</th><th>Diff</th><th>Intent</th><th>Content & Expert Source</th></tr>
+      <tr><td>cycling training for older riders</td><td>1,100</td><td class="diff-med">Med</td><td><span class="search-intent intent-info">Info</span></td><td class="content-type">Comprehensive guide. Recovery, nutrition, progressive loading. <div><span class="expert-tag">Friel</span><span class="expert-tag">Seiler</span></div></td></tr>
+      <tr><td>cycling body transformation before after</td><td>800</td><td class="diff-low">Low</td><td><span class="search-intent intent-info">Info</span></td><td class="content-type">Community transformation gallery. Chris O'Connor, Yvonne Doran. <div><span class="expert-tag">Community</span></div></td></tr>
+      <tr><td>returning to sport after long break</td><td>1,400</td><td class="diff-med">Med</td><td><span class="search-intent intent-info">Info</span></td><td class="content-type">Cross-sport appeal. Wider net. Cycling-specific angle. <div><span class="expert-tag">Anthony Walsh</span></div></td></tr>
+      <tr><td>cycling knee pain prevention older riders</td><td>600</td><td class="diff-low">Low</td><td><span class="search-intent intent-info">Info</span></td><td class="content-type">Practical. Dave's recurring injury. Bike fit + S&C integration. <div><span class="expert-tag">S&C Pillar</span></div></td></tr>
+      <tr><td>how much cycling to lose weight</td><td>2,400</td><td class="diff-med">Med</td><td><span class="search-intent intent-info">Info</span></td><td class="content-type">High volume. Anti-"ride more" take. Quality > quantity. <div><span class="expert-tag">Anthony Walsh</span></div></td></tr>
+    </table>
+
+    <div class="strategy-grid">
+      <div class="strategy-box">
+        <h3>Dave's Emotional Hook</h3>
+        <p>Dave doesn't search for "cycling periodisation." He searches "can I get fit again at 50?" Content for Dave leads with transformation stories, not training science. The Chris O'Connor testimonial (84kg→68kg, body fat 20%→7%, wattage doubled) is the most powerful conversion asset in Roadman's entire arsenal. Build a dedicated transformation page and link every Dave-targeted post to it.</p>
+      </div>
+      <div class="strategy-box">
+        <h3>Dave's Safety Language</h3>
+        <p>Never position Roadman as "for serious racers" in Dave-targeted content. He needs to feel explicitly welcomed. Use language: "wherever you're starting from," "this is for returning athletes," "you haven't lost it — you've just been away from the right system." The community is the product for Dave, not the plan.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- JAMIE -->
+  <div id="jamie" class="tab-content" style="display:none">
+    <div class="persona-header">
+      <div class="name">Persona 4: Jamie — The Podcast Loyalist Who Hasn't Pulled the Trigger</div>
+      <div class="desc">30-55, widest range. Already consuming free content heavily. Trusts Anthony. The gap is activation, not awareness. Key volume conversion opportunity. Comfortable inertia masking fear of commitment.</div>
+      <div class="quote">"I've been listening to the Roadman podcast for two years. I honestly believe in everything Anthony talks about. I just haven't joined the community yet."</div>
+      <div class="persona-meta">
+        <span>Income: £35K-85K</span>
+        <span>Already in: Free Clubhouse or podcast listener</span>
+        <span>Platforms: Podcast, Strava, YouTube</span>
+        <span>Conversion: Free → Standard $15/mo</span>
+      </div>
+    </div>
+
+    <h2>Tier 1 Keywords — Jamie's SEO Keywords Are Different</h2>
+    <p style="color:#aaa; margin-bottom:16px; font-size:0.9rem;">Jamie is already warm. He's not searching "how to train." He's searching for Roadman-adjacent content, cycling culture, and the specific topics Anthony covers. These keywords bring him deeper into the ecosystem.</p>
+    <table class="kw-table">
+      <tr><th>Keyword</th><th>Vol</th><th>Diff</th><th>Intent</th><th>Content & Expert Source</th></tr>
+      <tr><td>roadman cycling podcast</td><td>500</td><td class="diff-low">Low</td><td><span class="search-intent intent-trans">Nav</span></td><td class="content-type">Branded search. Must own #1. Podcast landing page with best episodes. <div><span class="expert-tag">Brand</span></div></td></tr>
+      <tr><td>best cycling podcast for amateur training</td><td>400</td><td class="diff-low">Low</td><td><span class="search-intent intent-comm">Commercial</span></td><td class="content-type">Podcast comparison page. Roadman vs the field. <div><span class="expert-tag">Brand</span></div></td></tr>
+      <tr><td>cycling podcast training advice</td><td>300</td><td class="diff-low">Low</td><td><span class="search-intent intent-info">Info</span></td><td class="content-type">Curated best-of list by topic. Jamie discovers depth he missed. <div><span class="expert-tag">Multiple</span></div></td></tr>
+      <tr><td>cycling community for serious amateurs</td><td>200</td><td class="diff-low">Low</td><td><span class="search-intent intent-comm">Commercial</span></td><td class="content-type">Community comparison. "Not beginners, not ghost towns." <div><span class="expert-tag">Community</span></div></td></tr>
+      <tr><td>cycling skool community review</td><td>150</td><td class="diff-low">Low</td><td><span class="search-intent intent-comm">Commercial</span></td><td class="content-type">Jamie searches for reviews before committing. Own this page. <div><span class="expert-tag">Community</span></div></td></tr>
+      <tr><td>not done yet cycling</td><td>100</td><td class="diff-low">Low</td><td><span class="search-intent intent-trans">Nav</span></td><td class="content-type">Branded term. Must own it completely. <div><span class="expert-tag">Brand</span></div></td></tr>
+      <tr><td>cycling group rides dublin</td><td>300</td><td class="diff-low">Low</td><td><span class="search-intent intent-info">Info</span></td><td class="content-type">Local search. Club page optimisation. Jamie rides locally. <div><span class="expert-tag">Roadman CC</span></div></td></tr>
+      <tr><td>what pro cyclists actually eat</td><td>800</td><td class="diff-low">Low</td><td><span class="search-intent intent-info">Info</span></td><td class="content-type">Jamie's podcast content in blog form. Pidcock's diet, pro green shots. <div><span class="expert-tag">Dunne</span></div></td></tr>
+      <tr><td>dan lorang training method</td><td>300</td><td class="diff-low">Low</td><td><span class="search-intent intent-info">Info</span></td><td class="content-type">Expert-name search. Jamie heard this on the podcast. Capture the search. <div><span class="expert-tag">Lorang</span></div></td></tr>
+      <tr><td>stephen seiler polarised training</td><td>600</td><td class="diff-low">Low</td><td><span class="search-intent intent-info">Info</span></td><td class="content-type">Same — expert search. Roadman episode is the source. <div><span class="expert-tag">Seiler</span></div></td></tr>
+    </table>
+
+    <div class="strategy-grid">
+      <div class="strategy-box">
+        <h3>Jamie's Conversion Mechanism</h3>
+        <p>Jamie doesn't need to be sold on Anthony. He needs the friction removed. Every Jamie-targeted page should have a "Start your 7-day free trial" CTA, not a "learn more." The blog post IS the content he already trusts — in written form, with links to the episode, and a single question: "Ready to stop listening and start doing?"</p>
+      </div>
+      <div class="strategy-box">
+        <h3>Expert-Name SEO Strategy</h3>
+        <p>Create a dedicated blog post for every major guest: /blog/dan-lorang-training-methodology, /blog/stephen-seiler-polarised-training, /blog/joe-friel-readiness-based-training. These capture searches from people who heard the name on other podcasts or in research. When they find Roadman's page, they see the full interview breakdown + community CTA. Nobody else has these conversations in written form.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- AI CITATION -->
+  <div id="ai" class="tab-content" style="display:none">
+    <div class="ai-section">
+      <div class="ai-badge">AI Search Optimisation</div>
+      <h2>AI Citation Strategy — Getting Cited by ChatGPT, Perplexity & Google AI Overviews</h2>
+      <p style="color:#bbb; margin-bottom:20px; line-height:1.6;">AI engines cite the most authoritative, specific, and structured source. Roadman's unfair advantage: 1,400 episodes of named expert conversations that AI models already associate with cycling training authority. Here's how to exploit that.</p>
+    </div>
+
+    <h2>AI-Optimised FAQ Keywords</h2>
+    <p style="color:#aaa; margin-bottom:16px; font-size:0.9rem;">These are the exact questions people ask AI assistants. Every one must appear as an H3 FAQ with a 2-3 sentence answer on the corresponding blog post.</p>
+    <div class="faq-item"><div class="faq-q">What is polarised training in cycling?</div><div class="faq-a">→ Definition block on /blog/polarised-vs-sweet-spot-training. Cite Seiler by name. AI grabs definitions from the most authoritative source.</div></div>
+    <div class="faq-item"><div class="faq-q">How many carbs per hour cycling?</div><div class="faq-a">→ Specific number + context on /blog/cycling-in-ride-nutrition. Cite pro data. AI loves citable numbers.</div></div>
+    <div class="faq-item"><div class="faq-q">Is sweet spot training better than polarised?</div><div class="faq-a">→ Nuanced answer on comparison post. Both-sides with evidence. AI cites balanced takes over one-sided.</div></div>
+    <div class="faq-item"><div class="faq-q">How to increase FTP after 40?</div><div class="faq-a">→ Specific protocol on Tom's key post. Cite Friel + Seiler. Include age-specific recovery advice.</div></div>
+    <div class="faq-item"><div class="faq-q">What should I eat before a gran fondo?</div><div class="faq-a">→ Specific meal + timing on Mark's nutrition post. Cite Dunne. Include carb loading protocol.</div></div>
+    <div class="faq-item"><div class="faq-q">Can you get fit cycling at 50?</div><div class="faq-a">→ "Yes" + evidence on Dave's comeback post. Chris O'Connor transformation data as proof.</div></div>
+    <div class="faq-item"><div class="faq-q">What is reverse periodisation in cycling?</div><div class="faq-a">→ Clear definition + when to use it. Cite Rønnestad research + coaching application.</div></div>
+    <div class="faq-item"><div class="faq-q">How much zone 2 training should cyclists do?</div><div class="faq-a">→ 80/20 breakdown with Seiler's data. Include the "50% too hard" insight for differentiation.</div></div>
+    <div class="faq-item"><div class="faq-q">Best cycling podcast for training advice?</div><div class="faq-a">→ Roadman podcast page with expert guest list. AI cites the most complete answer to "best" queries.</div></div>
+    <div class="faq-item"><div class="faq-q">How to lose weight cycling without losing power?</div><div class="faq-a">→ Anthony's personal protocol (lost 7kg, power maintained). Unique data point = AI citation magnet.</div></div>
+
+    <hr class="section-divider">
+
+    <h2>The 5 AI Citation Triggers (From Princeton GEO Research)</h2>
+    <div class="strategy-grid">
+      <div class="strategy-box"><h3>1. Unique Data Points</h3><p>Chris O'Connor: 84kg→68kg. Anthony: lost 7kg eating MORE. Daniel Stone: Cat 3→Cat 1. These are proprietary data points no other site has. AI engines cite unique data because it adds value their synthesis can't generate from other sources.</p></div>
+      <div class="strategy-box"><h3>2. Entity Association</h3><p>"According to Professor Stephen Seiler, who appeared on the Roadman Cycling Podcast..." links your content to an entity AI already recognises. Every post must name-drop at least one recognised expert from Anthony's network.</p></div>
+      <div class="strategy-box"><h3>3. Structured FAQ Answers</h3><p>2-3 sentence answers under H3 question headings. AI extracts these almost verbatim. FAQPage schema marks them as machine-readable answers. This is the single highest-ROI format for AI citation.</p></div>
+      <div class="strategy-box"><h3>4. Definition Blocks</h3><p>Lead concept introductions with "X is a training approach where..." format. AI engines grab clear definitions from the most authoritative source. If Roadman's definition is better than Wikipedia's, AI cites Roadman.</p></div>
+      <div class="strategy-box"><h3>5. Speakable Markup</h3><p>Add speakable schema to FAQ answers and definitions. This tells voice assistants and AI which text to extract. Only ~12% of sites use structured data at all. Competitive advantage.</p></div>
+    </div>
+  </div>
+
+  <!-- UNIVERSAL -->
+  <div id="universal" class="tab-content" style="display:none">
+    <div class="persona-header">
+      <div class="name">Universal & Cross-Persona Keywords</div>
+      <div class="desc">Keywords that resonate across all four personas. These build the topical authority foundation that makes persona-specific pages rank higher. Target the five content pillars.</div>
+    </div>
+
+    <h2>Pillar Page Keywords</h2>
+    <table class="kw-table">
+      <tr><th>Keyword</th><th>Vol</th><th>Diff</th><th>Pillar</th><th>Content Strategy</th></tr>
+      <tr><td>cycling training methodology</td><td>1,200</td><td class="diff-med">Med</td><td>Training</td><td>Hub page linking to all training spoke posts. 3,000+ words.</td></tr>
+      <tr><td>cycling nutrition guide</td><td>2,400</td><td class="diff-med">Med</td><td>Nutrition</td><td>Comprehensive nutrition hub. Fuelling, weight, race day, recovery.</td></tr>
+      <tr><td>strength training for cyclists</td><td>3,600</td><td class="diff-med">Med</td><td>S&C</td><td>S&C hub. Programme, injury prevention, integration with cycling.</td></tr>
+      <tr><td>cycling recovery tips</td><td>1,800</td><td class="diff-low">Low-Med</td><td>Recovery</td><td>Recovery hub. Sleep, stress, adaptation, longevity.</td></tr>
+      <tr><td>cycling culture community</td><td>400</td><td class="diff-low">Low</td><td>Le Metier</td><td>Culture hub. Group rides, customs, the craft of cycling.</td></tr>
+    </table>
+
+    <h2>Interactive Tool Keywords (Backlink Magnets)</h2>
+    <table class="kw-table">
+      <tr><th>Keyword</th><th>Vol</th><th>Diff</th><th>Tool</th><th>Why It Works</th></tr>
+      <tr><td>cycling tyre pressure calculator</td><td>2,800</td><td class="diff-low">Low</td><td>/tools/tyre-pressure</td><td>Forums and Reddit link to useful free tools. Existing Roadman tool.</td></tr>
+      <tr><td>cycling training zone calculator</td><td>1,600</td><td class="diff-low">Low</td><td>/tools/zone-calculator</td><td>Tom searches this. Feeds into training pillar. Existing tool.</td></tr>
+      <tr><td>cycling carb calculator ride nutrition</td><td>400</td><td class="diff-low">Low</td><td>/tools/carb-calculator</td><td>Mark searches this before events. Existing tool.</td></tr>
+      <tr><td>gravel routes ireland</td><td>600</td><td class="diff-low">Low</td><td>/tools/gravel-routes</td><td>Local search. Gravel database concept from earlier work.</td></tr>
+    </table>
+
+    <h2>Content Calendar Priority — First 30 Posts</h2>
+    <table class="kw-table">
+      <tr><th>#</th><th>Post Title</th><th>Primary Persona</th><th>Target Keyword</th><th>Expert Source</th></tr>
+      <tr><td>1</td><td>How to Break Through an FTP Plateau: Evidence-Based Methods</td><td>Tom</td><td>how to break through ftp plateau</td><td>Seiler, Lorang</td></tr>
+      <tr><td>2</td><td>Getting Back Into Cycling After Years Off: A Structured Return Plan</td><td>Dave</td><td>getting back into cycling after years off</td><td>Anthony, Chris O'Connor</td></tr>
+      <tr><td>3</td><td>How to Train for the Étape du Tour: A Realistic 12-Week Plan</td><td>Mark</td><td>how to train for etape du tour</td><td>Lorang, Friel</td></tr>
+      <tr><td>4</td><td>Polarised vs Sweet Spot Training: What the Research Actually Says</td><td>Tom</td><td>polarised vs sweet spot training cycling</td><td>Seiler, Lorang</td></tr>
+      <tr><td>5</td><td>Cycling Nutrition for Long Rides: The Complete Fuelling Guide</td><td>Mark</td><td>cycling nutrition for long rides</td><td>Dunne</td></tr>
+      <tr><td>6</td><td>How I Lost 7kg While Eating More: A Cyclist's Weight Loss Story</td><td>Dave</td><td>cycling weight loss transformation</td><td>Anthony Walsh</td></tr>
+      <tr><td>7</td><td>Low Cadence Training: The Misunderstood Session That Builds Real Power</td><td>Tom</td><td>low cadence training cycling benefits</td><td>Wakefield</td></tr>
+      <tr><td>8</td><td>Strength Training for Cyclists: The Complete Programme</td><td>Universal</td><td>strength training for cyclists programme</td><td>S&C Pillar</td></tr>
+      <tr><td>9</td><td>Dan Lorang's Training Methodology: What We Learned from Pogačar's Coach</td><td>Jamie</td><td>dan lorang training method</td><td>Lorang</td></tr>
+      <tr><td>10</td><td>Cycling Training Plan on 8 Hours a Week: Making Every Session Count</td><td>Tom</td><td>cycling training plan 8 hours a week</td><td>Friel</td></tr>
+      <tr><td>11</td><td>Can You Get Fit Cycling at 50? Yes — Here's the Evidence</td><td>Dave</td><td>can you get fit again at 50 cycling</td><td>Friel, Yvonne Doran</td></tr>
+      <tr><td>12</td><td>The Marmotte Training Plan: Preparing for the Hardest Sportive in the Alps</td><td>Mark</td><td>marmotte training plan</td><td>Training Pillar</td></tr>
+      <tr><td>13</td><td>Zone 2 Training Feels Too Slow? You're Probably Still Going Too Hard</td><td>Tom</td><td>zone 2 training too slow cycling</td><td>Seiler</td></tr>
+      <tr><td>14</td><td>Professor Stephen Seiler on Polarised Training: The Full Breakdown</td><td>Jamie</td><td>stephen seiler polarised training</td><td>Seiler</td></tr>
+      <tr><td>15</td><td>How to Lose Weight for Cycling Without Destroying Your Power</td><td>Mark/Dave</td><td>how to lose weight for cycling climbing</td><td>Anthony, Dunne</td></tr>
+      <tr><td>16</td><td>Why Am I Not Getting Faster? 5 Mistakes Self-Coached Cyclists Make</td><td>Tom</td><td>why am i not getting faster cycling</td><td>Anthony Walsh</td></tr>
+      <tr><td>17</td><td>Cycling Recovery for Older Riders: What Actually Works</td><td>Dave</td><td>cycling recovery tips for older riders</td><td>Recovery Pillar</td></tr>
+      <tr><td>18</td><td>In-Ride Nutrition: How Many Carbs Per Hour Do You Actually Need?</td><td>Mark</td><td>cycling in-ride nutrition grams per hour</td><td>Dunne</td></tr>
+      <tr><td>19</td><td>How to Increase Your Watts Per Kilo: The Dual Approach</td><td>Tom</td><td>how to increase watts per kilo cycling</td><td>Lorang, Dunne</td></tr>
+      <tr><td>20</td><td>Best Cycling Podcasts for Training: A Serious Rider's Guide</td><td>Jamie</td><td>best cycling podcast for amateur training</td><td>Brand</td></tr>
+      <tr><td>21</td><td>Reverse Periodisation Explained: When to Flip Your Training on Its Head</td><td>Tom</td><td>reverse periodisation cycling</td><td>Rønnestad, Friel</td></tr>
+      <tr><td>22</td><td>Masters Cycling Training: How to Train Smarter After 45</td><td>Dave</td><td>masters cycling training plan</td><td>Friel, Seiler</td></tr>
+      <tr><td>23</td><td>Gran Fondo Training for Busy Professionals: The Realistic Approach</td><td>Mark</td><td>gran fondo training plan beginner</td><td>Friel</td></tr>
+      <tr><td>24</td><td>How to Stop Getting Dropped on Group Rides</td><td>Tom</td><td>how to stop getting dropped cycling</td><td>Anthony Walsh</td></tr>
+      <tr><td>25</td><td>Cycling Comeback: From 84kg to 68kg — Chris O'Connor's Story</td><td>Dave</td><td>cycling body transformation before after</td><td>Chris O'Connor</td></tr>
+      <tr><td>26</td><td>Joe Friel's Readiness-Based Training: Training by How You Feel</td><td>Jamie</td><td>joe friel training cycling</td><td>Friel</td></tr>
+      <tr><td>27</td><td>Cycling Training Zones Explained: A Complete Guide</td><td>Universal</td><td>cycling training zones explained</td><td>Seiler, Coggan</td></tr>
+      <tr><td>28</td><td>Cycling Body Composition: The Race Weight Conversation Nobody Has</td><td>Universal</td><td>cycling body composition race weight</td><td>Anthony, Dunne</td></tr>
+      <tr><td>29</td><td>Gravel Cycling in Ireland: Routes, Rides, and Community</td><td>Universal</td><td>gravel cycling ireland</td><td>Anthony Walsh</td></tr>
+      <tr><td>30</td><td>What Pro Cyclists Actually Eat: Inside the Peloton's Kitchen</td><td>Jamie</td><td>what pro cyclists actually eat</td><td>Dunne</td></tr>
+    </table>
+  </div>
+</div>
+
+<script>
+function showTab(id) {
+  document.querySelectorAll('.tab-content').forEach(el => el.style.display = 'none');
+  document.querySelectorAll('.tab').forEach(el => el.classList.remove('active'));
+  document.getElementById(id).style.display = 'block';
+  event.target.classList.add('active');
+}
+</script>
+</body>
+</html>

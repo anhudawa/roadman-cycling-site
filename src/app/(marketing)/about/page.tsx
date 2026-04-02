@@ -17,7 +17,6 @@ const expertNetwork = [
   { name: "Ben Healy", role: "Pro cyclist, Tour de France" },
   { name: "John Wakefield", role: "Bora-Hansgrohe coach" },
   { name: "Dr. David Dunne", role: "Sports science researcher" },
-  { name: "Ben Healy", role: "Pro cyclist, Tour de France" },
   { name: "Michael Matthews", role: "15+ year pro, World Tour" },
   { name: "Joe Friel", role: "Legendary cycling coach, author" },
   { name: "Rosa Kloser", role: "European gravel champion" },

@@ -150,6 +150,31 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 /* ============================================
+   Article Prose (shared between blog + podcast)
+   ============================================ */
+
+.prose-roadman h2 { font-family: var(--font-heading); font-size: 1.5rem; text-transform: uppercase; color: var(--color-off-white); margin-top: 3rem; margin-bottom: 1rem; }
+.prose-roadman h3 { font-family: var(--font-heading); font-size: 1.25rem; text-transform: uppercase; color: var(--color-off-white); margin-top: 2rem; margin-bottom: 0.75rem; }
+.prose-roadman p { color: var(--color-foreground-muted); line-height: 1.7; margin-bottom: 1.25rem; }
+.prose-roadman strong { color: var(--color-off-white); font-weight: 600; }
+.prose-roadman em { color: var(--color-foreground-muted); }
+.prose-roadman ul { list-style: disc; padding-left: 1.25rem; margin-bottom: 1.25rem; }
+.prose-roadman ol { list-style: decimal; padding-left: 1.25rem; margin-bottom: 1.25rem; }
+.prose-roadman li { color: var(--color-foreground-muted); line-height: 1.7; margin-bottom: 0.5rem; }
+.prose-roadman blockquote { border-left: 2px solid var(--color-coral); padding-left: 1.25rem; margin: 1.5rem 0; font-style: italic; color: var(--color-foreground-muted); }
+.prose-roadman a { color: var(--color-coral); text-decoration: underline; text-underline-offset: 2px; }
+.prose-roadman a:hover { color: var(--color-coral-hover); }
+.prose-roadman hr { border-color: rgba(255,255,255,0.1); margin: 2.5rem 0; }
+.prose-roadman table { width: 100%; border-collapse: collapse; margin-bottom: 1.25rem; }
+.prose-roadman th { text-align: left; padding: 0.5rem 0.75rem; border-bottom: 1px solid rgba(255,255,255,0.1); color: var(--color-off-white); font-weight: 600; font-size: 0.875rem; }
+.prose-roadman td { padding: 0.5rem 0.75rem; border-bottom: 1px solid rgba(255,255,255,0.05); color: var(--color-foreground-muted); font-size: 0.875rem; }
+
+@media (min-width: 768px) {
+  .prose-roadman h2 { font-size: 1.875rem; }
+  .prose-roadman h3 { font-size: 1.5rem; }
+}
+
+/* ============================================
    Focus Styles (Accessibility)
    ============================================ */
 

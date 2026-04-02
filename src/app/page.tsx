@@ -138,7 +138,7 @@ export default function HomePage() {
               <div className="grid grid-cols-2 gap-3">
                 {experts.map((expert, i) => (
                   <ScrollReveal key={expert} direction="right" delay={i * 0.06}>
-                    <div className="bg-white/5 border border-white/10 rounded-lg p-4 text-center hover:bg-white/8 hover:border-white/20 transition-colors">
+                    <div className="bg-white/5 border border-white/10 rounded-lg p-4 text-center hover:bg-white/10 hover:border-white/20 transition-colors">
                       <p className="font-heading text-lg text-off-white">
                         {expert.toUpperCase()}
                       </p>

@@ -1,6 +1,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import { Container } from "./Container";
+import { EmailCapture } from "@/components/features/conversion/EmailCapture";
 
 const footerLinks = {
   content: {
@@ -87,31 +88,11 @@ export function Footer() {
               No fluff. No filler. Just the stuff that makes you faster, once a
               week.
             </p>
-            <form className="flex gap-3">
-              <input
-                type="email"
-                placeholder="Your email"
-                className="
-                  flex-1 bg-white/5 border border-white/10 rounded-md px-4 py-3
-                  text-off-white placeholder:text-foreground-subtle
-                  focus:border-coral focus:outline-none
-                  transition-colors
-                "
-                style={{ transitionDuration: "var(--duration-fast)" }}
-              />
-              <button
-                type="submit"
-                className="
-                  font-heading tracking-wider
-                  bg-coral hover:bg-coral-hover
-                  text-off-white px-8 py-3 rounded-md
-                  transition-colors shrink-0
-                "
-                style={{ transitionDuration: "var(--duration-fast)" }}
-              >
-                SUBSCRIBE
-              </button>
-            </form>
+            <EmailCapture
+              variant="minimal"
+              source="footer"
+              buttonText="SUBSCRIBE"
+            />
           </div>
         </div>
 

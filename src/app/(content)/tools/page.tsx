@@ -62,7 +62,7 @@ export default function ToolsPage() {
           <Container className="text-center">
             <h1
               className="font-heading text-off-white mb-4"
-              style={{ fontSize: "var(--text-section)" }}
+              style={{ fontSize: "var(--text-hero)" }}
             >
               YOUR TOOLKIT
             </h1>
@@ -80,7 +80,7 @@ export default function ToolsPage() {
                 <Card
                   key={tool.href}
                   href={tool.href}
-                  className="p-6 group"
+                  className="p-6 group h-full"
                 >
                   <h3
                     className="font-heading text-xl mb-2 text-off-white group-hover:text-coral transition-colors"

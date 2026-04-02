@@ -31,7 +31,7 @@ export default async function BlogPage({
           <Container className="text-center">
             <h1
               className="font-heading text-off-white mb-4"
-              style={{ fontSize: "var(--text-section)" }}
+              style={{ fontSize: "var(--text-hero)" }}
             >
               THE KNOWLEDGE
             </h1>
@@ -88,7 +88,7 @@ export default async function BlogPage({
                   <Card
                     key={post.slug}
                     href={`/blog/${post.slug}`}
-                    className="group"
+                    className="group h-full"
                   >
                     <div className="aspect-[16/9] relative bg-gradient-to-br from-deep-purple to-charcoal overflow-hidden">
                       {post.featuredImage && (
