@@ -3,6 +3,26 @@ User-agent: *
 Allow: /
 Disallow: /api/
 
+# GPTBot
+User-agent: GPTBot
+Allow: /
+
+# ClaudeBot
+User-agent: ClaudeBot
+Allow: /
+
+# PerplexityBot
+User-agent: PerplexityBot
+Allow: /
+
+# GoogleOther
+User-agent: GoogleOther
+Allow: /
+
+# Bingbot
+User-agent: Bingbot
+Allow: /
+
 # Host
 Host: https://roadmancycling.com
 

@@ -81,6 +81,14 @@ export default async function BlogPostPage({
             "@id": `https://roadmancycling.com/blog/${slug}`,
           },
           keywords: post.keywords.join(", "),
+          ...(post.featuredImage && {
+            image: {
+              "@type": "ImageObject",
+              url: `https://roadmancycling.com${post.featuredImage}`,
+              width: 1200,
+              height: 630,
+            },
+          }),
         }}
       />
       <JsonLd
