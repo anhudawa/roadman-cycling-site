@@ -63,14 +63,34 @@ export function Header() {
             {/* Desktop Navigation */}
             <div className="hidden lg:flex items-center gap-8">
               {NAV_ITEMS.map((item) => (
-                <Link
-                  key={item.href}
-                  href={item.href}
-                  className="font-body text-sm text-foreground-muted hover:text-off-white transition-colors"
-                  style={{ transitionDuration: "var(--duration-fast)" }}
-                >
-                  {item.label}
-                </Link>
+                <div key={item.href} className="relative group">
+                  <Link
+                    href={item.href}
+                    className="font-body text-sm text-foreground-muted hover:text-off-white transition-colors"
+                    style={{ transitionDuration: "var(--duration-fast)" }}
+                  >
+                    {item.label}
+                    {item.children && (
+                      <span className="ml-1 text-xs opacity-50">&#9662;</span>
+                    )}
+                  </Link>
+                  {item.children && (
+                    <div className="absolute top-full left-1/2 -translate-x-1/2 pt-3 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all" style={{ transitionDuration: "var(--duration-normal)" }}>
+                      <div className="bg-charcoal/95 backdrop-blur-md border border-white/10 rounded-lg p-2 min-w-[200px] shadow-[var(--shadow-elevated)]">
+                        {item.children.map((child) => (
+                          <Link
+                            key={child.href}
+                            href={child.href}
+                            className="block px-3 py-2 text-sm text-foreground-muted hover:text-off-white hover:bg-white/5 rounded-md transition-colors"
+                            style={{ transitionDuration: "var(--duration-fast)" }}
+                          >
+                            {child.label}
+                          </Link>
+                        ))}
+                      </div>
+                    </div>
+                  )}
+                </div>
               ))}
               <Link
                 href="/community/clubhouse"
