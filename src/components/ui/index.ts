@@ -3,3 +3,8 @@ export { Badge } from "./Badge";
 export { Card } from "./Card";
 export { ScrollReveal } from "./ScrollReveal";
 export { AnimatedCounter } from "./AnimatedCounter";
+export { TextReveal } from "./TextReveal";
+export { ParallaxImage } from "./ParallaxImage";
+export { MagneticButton } from "./MagneticButton";
+export { HorizontalScroll } from "./HorizontalScroll";
+export { SmoothCursor } from "./SmoothCursor";

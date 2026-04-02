@@ -1,5 +1,5 @@
 import { Header, Footer, Section, Container } from "@/components/layout";
-import { Button, Card, ScrollReveal } from "@/components/ui";
+import { Button, Card, ScrollReveal, ParallaxImage, MagneticButton } from "@/components/ui";
 import { OrganizationJsonLd, WebSiteJsonLd } from "@/components/seo/JsonLd";
 import { HeroSection } from "@/components/features/home/HeroSection";
 import { StatsSection } from "@/components/features/home/StatsSection";
@@ -130,7 +130,9 @@ export default function HomePage() {
                   cycling. Roadman translates that access into a system you can
                   actually use.
                 </p>
-                <Button href="/podcast">Explore the Archive</Button>
+                <MagneticButton>
+                  <Button href="/podcast">Explore the Archive</Button>
+                </MagneticButton>
               </ScrollReveal>
 
               <div className="grid grid-cols-2 gap-3">
@@ -183,6 +185,15 @@ export default function HomePage() {
             </div>
           </Container>
         </Section>
+
+        {/* PARALLAX DIVIDER — Cinematic cycling image */}
+        <ParallaxImage
+          src="/images/cycling/gravel-road-climb.jpg"
+          alt="Cyclists riding through dramatic canyon landscape"
+          className="h-[50vh] md:h-[60vh]"
+          speed={0.3}
+          overlayColor="from-charcoal via-charcoal/50 to-deep-purple"
+        />
 
         {/* COMMUNITY */}
         <Section background="deep-purple" grain>

@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Bebas_Neue, Work_Sans } from "next/font/google";
+import { SmoothCursor } from "@/components/ui/SmoothCursor";
 import "./globals.css";
 
 const bebasNeue = Bebas_Neue({
@@ -82,7 +83,8 @@ export default function RootLayout({
       lang="en"
       className={`${bebasNeue.variable} ${workSans.variable} dark`}
     >
-      <body className="min-h-screen bg-charcoal text-off-white font-body antialiased">
+      <body className="min-h-screen bg-charcoal text-off-white font-body antialiased cursor-none md:cursor-none">
+        <SmoothCursor />
         {children}
       </body>
     </html>
