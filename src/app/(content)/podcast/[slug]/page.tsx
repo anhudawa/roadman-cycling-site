@@ -147,10 +147,33 @@ export default async function EpisodePage({
           </Container>
         </Section>
 
-        {/* Spotify Embed */}
-        {episode.spotifyId && (
+        {/* YouTube Embed (primary) */}
+        {episode.youtubeId && (
           <Section background="charcoal" className="!py-6 border-b border-white/5">
             <Container width="narrow">
+              <div className="rounded-xl overflow-hidden bg-background-elevated border border-white/5 aspect-video">
+                <iframe
+                  src={`https://www.youtube.com/embed/${episode.youtubeId}`}
+                  width="100%"
+                  height="100%"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                  allowFullScreen
+                  loading="lazy"
+                  className="border-0"
+                  title={`Watch ${episode.title}`}
+                />
+              </div>
+            </Container>
+          </Section>
+        )}
+
+        {/* Spotify Embed (secondary, if available) */}
+        {episode.spotifyId && (
+          <Section background="charcoal" className="!py-4 border-b border-white/5">
+            <Container width="narrow">
+              <p className="text-xs text-foreground-subtle mb-2 uppercase tracking-widest font-heading">
+                Also on Spotify
+              </p>
               <div className="rounded-xl overflow-hidden bg-background-elevated border border-white/5">
                 <iframe
                   src={`https://open.spotify.com/embed/episode/${episode.spotifyId}?theme=0`}
@@ -159,7 +182,7 @@ export default async function EpisodePage({
                   allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
                   loading="lazy"
                   className="border-0"
-                  title={`Listen to ${episode.title}`}
+                  title={`Listen to ${episode.title} on Spotify`}
                 />
               </div>
             </Container>
