@@ -3,7 +3,7 @@ import fs from "fs";
 import path from "path";
 import { type YouTubeVideo } from "./youtube-api.js";
 import {
-  isoDurationToReadable,
+  secondsToReadable,
   generateSlug,
   extractKeywords,
   formatDate,
@@ -16,6 +16,27 @@ import {
 } from "./classifier.js";
 
 const CONTENT_DIR = path.join(process.cwd(), "content/podcast");
+
+/**
+ * Sanitize text to be safe for MDX compilation.
+ * MDX treats {, }, <, > as JSX. We need to escape them.
+ */
+function sanitizeMdx(text: string): string {
+  return text
+    // Remove zero-width characters
+    .replace(/[\u2060\u200B\uFEFF]/g, "")
+    // Escape curly braces (JSX expressions in MDX)
+    .replace(/\{/g, "\\{")
+    .replace(/\}/g, "\\}")
+    // Convert bare URLs to markdown links (prevents < in URLs being parsed as JSX)
+    .replace(/(https?:\/\/[^\s)]+)/g, "[$1]($1)")
+    // Remove HTML comments (MDX handles them differently)
+    .replace(/<!--[\s\S]*?-->/g, "")
+    // Escape < and > that aren't part of markdown
+    .replace(/<(?!\/?\w)/g, "\\<")
+    .replace(/(?<!\w)>/g, "\\>")
+    .trim();
+}
 
 interface GenerateOptions {
   video: YouTubeVideo;
@@ -55,7 +76,7 @@ export function generateMdx(options: GenerateOptions): {
     ...(guest && { guest }),
     description: truncate(video.description.split("\n")[0], 300),
     publishDate: formatDate(video.publishedAt),
-    duration: isoDurationToReadable(video.duration),
+    duration: secondsToReadable(video.duration),
     youtubeId: video.videoId,
     pillar,
     type,
@@ -91,11 +112,13 @@ ${quotes}
   } else {
     // Metadata-only fallback — use YouTube description
     const descLines = video.description.split("\n").filter((l) => l.trim());
-    const descBody = descLines.slice(0, 5).join("\n\n");
+    // Take first 5 meaningful lines, skip sponsor blocks
+    const meaningfulLines = descLines.filter(
+      (l) => !l.startsWith("http") && !l.includes("Use code") && l.length > 10
+    );
+    const descBody = meaningfulLines.slice(0, 5).join("\n\n");
 
-    body = `${descBody || cleanTitle}
-
-<!-- transcript-unavailable: AI enrichment pending -->
+    body = `${sanitizeMdx(descBody || cleanTitle)}
 `;
   }
 

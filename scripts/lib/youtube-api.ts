@@ -1,115 +1,122 @@
-import { google, type youtube_v3 } from "googleapis";
-
-const youtube = google.youtube("v3");
+import { execSync } from "child_process";
 
 export interface YouTubeVideo {
   videoId: string;
   title: string;
   description: string;
   publishedAt: string;
-  duration: string; // ISO 8601 e.g. "PT1H12M34S"
+  duration: number; // seconds
   tags: string[];
   thumbnailUrl: string;
   viewCount: number;
   likeCount: number;
 }
 
-export async function getChannelUploadPlaylistId(
-  apiKey: string,
-  channelHandle: string
-): Promise<string> {
-  // Try handle-based lookup first
-  const res = await youtube.channels.list({
-    key: apiKey,
-    forHandle: channelHandle,
-    part: ["contentDetails"],
-  });
-
-  const channel = res.data.items?.[0];
-  if (!channel?.contentDetails?.relatedPlaylists?.uploads) {
-    throw new Error(
-      `Could not find uploads playlist for channel handle: ${channelHandle}`
-    );
-  }
-
-  return channel.contentDetails.relatedPlaylists.uploads;
+interface YtDlpFlatItem {
+  id: string;
+  title: string;
+  description?: string;
+  duration?: number;
+  url: string;
 }
 
-export async function getAllVideoIds(
-  apiKey: string,
-  playlistId: string,
-  stopAtVideoId?: string
-): Promise<string[]> {
-  const videoIds: string[] = [];
-  let pageToken: string | undefined;
+interface YtDlpFullItem {
+  id: string;
+  title: string;
+  description: string;
+  upload_date: string; // YYYYMMDD
+  duration: number;
+  tags: string[];
+  thumbnail: string;
+  view_count: number;
+  like_count: number;
+}
 
-  while (true) {
-    const res = await youtube.playlistItems.list({
-      key: apiKey,
-      playlistId,
-      part: ["contentDetails"],
-      maxResults: 50,
-      pageToken,
-    });
+/**
+ * Get all video IDs from a YouTube channel using yt-dlp --flat-playlist
+ * This is fast and doesn't need an API key.
+ */
+export function getAllVideoIds(channelHandle: string): string[] {
+  console.log(`   Fetching video list from @${channelHandle}...`);
 
-    const items = res.data.items || [];
-    let shouldStop = false;
+  const output = execSync(
+    `python3 -m yt_dlp --flat-playlist --dump-json "https://www.youtube.com/@${channelHandle}/videos" 2>/dev/null`,
+    { maxBuffer: 50 * 1024 * 1024, encoding: "utf-8" }
+  );
 
-    for (const item of items) {
-      const videoId = item.contentDetails?.videoId;
-      if (!videoId) continue;
+  const lines = output.trim().split("\n").filter(Boolean);
+  const ids: string[] = [];
 
-      if (stopAtVideoId && videoId === stopAtVideoId) {
-        shouldStop = true;
-        break;
+  for (const line of lines) {
+    try {
+      const item = JSON.parse(line) as YtDlpFlatItem;
+      if (item.id) {
+        ids.push(item.id);
       }
-
-      videoIds.push(videoId);
+    } catch {
+      // Skip malformed lines
     }
-
-    if (shouldStop) break;
-
-    pageToken = res.data.nextPageToken || undefined;
-    if (!pageToken) break;
   }
 
-  return videoIds;
+  return ids;
 }
 
-export async function getVideoDetails(
-  apiKey: string,
-  videoIds: string[]
+/**
+ * Get full metadata for a single video using yt-dlp.
+ * Returns null if the video can't be fetched.
+ */
+export function getVideoDetails(videoId: string): YouTubeVideo | null {
+  try {
+    const output = execSync(
+      `python3 -m yt_dlp --dump-json --skip-download "https://www.youtube.com/watch?v=${videoId}" 2>/dev/null`,
+      { maxBuffer: 10 * 1024 * 1024, encoding: "utf-8", timeout: 30000 }
+    );
+
+    const data = JSON.parse(output) as YtDlpFullItem;
+
+    // Convert upload_date (YYYYMMDD) to ISO date
+    const dateStr = data.upload_date;
+    const isoDate = `${dateStr.slice(0, 4)}-${dateStr.slice(4, 6)}-${dateStr.slice(6, 8)}`;
+
+    return {
+      videoId: data.id,
+      title: data.title || "",
+      description: data.description || "",
+      publishedAt: isoDate,
+      duration: data.duration || 0,
+      tags: data.tags || [],
+      thumbnailUrl: data.thumbnail || `https://i.ytimg.com/vi/${data.id}/maxresdefault.jpg`,
+      viewCount: data.view_count || 0,
+      likeCount: data.like_count || 0,
+    };
+  } catch {
+    return null;
+  }
+}
+
+/**
+ * Get full metadata for multiple videos in batch.
+ * Fetches one at a time with a small delay to be polite.
+ */
+export async function getVideoDetailsBatch(
+  videoIds: string[],
+  onProgress?: (current: number, total: number) => void
 ): Promise<YouTubeVideo[]> {
   const videos: YouTubeVideo[] = [];
 
-  // Process in batches of 50
-  for (let i = 0; i < videoIds.length; i += 50) {
-    const batch = videoIds.slice(i, i + 50);
+  for (let i = 0; i < videoIds.length; i++) {
+    const video = getVideoDetails(videoIds[i]);
+    if (video) {
+      videos.push(video);
+    }
 
-    const res = await youtube.videos.list({
-      key: apiKey,
-      id: batch,
-      part: ["snippet", "contentDetails", "statistics"],
-    });
+    if (onProgress) {
+      onProgress(i + 1, videoIds.length);
+    }
 
-    for (const item of res.data.items || []) {
-      if (!item.id || !item.snippet || !item.contentDetails) continue;
-
-      videos.push({
-        videoId: item.id,
-        title: item.snippet.title || "",
-        description: item.snippet.description || "",
-        publishedAt: item.snippet.publishedAt || "",
-        duration: item.contentDetails.duration || "PT0S",
-        tags: item.snippet.tags || [],
-        thumbnailUrl:
-          item.snippet.thumbnails?.maxres?.url ||
-          item.snippet.thumbnails?.high?.url ||
-          item.snippet.thumbnails?.default?.url ||
-          "",
-        viewCount: parseInt(item.statistics?.viewCount || "0"),
-        likeCount: parseInt(item.statistics?.likeCount || "0"),
-      });
+    // Small delay between requests
+    if (i < videoIds.length - 1) {
+      await new Promise((r) => setTimeout(r, 200));
     }
   }
 

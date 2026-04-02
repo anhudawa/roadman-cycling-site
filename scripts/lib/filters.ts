@@ -1,5 +1,4 @@
 import { type YouTubeVideo } from "./youtube-api.js";
-import { isoDurationToSeconds } from "./utils.js";
 
 export interface FilterResult {
   passed: YouTubeVideo[];
@@ -15,7 +14,7 @@ export function filterVideos(videos: YouTubeVideo[]): FilterResult {
   const filtered: { video: YouTubeVideo; reason: string }[] = [];
 
   for (const video of videos) {
-    const durationSec = isoDurationToSeconds(video.duration);
+    const durationSec = video.duration;
 
     // Skip YouTube Shorts (< 60 seconds)
     if (durationSec < 60) {

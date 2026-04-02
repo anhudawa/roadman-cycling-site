@@ -1,32 +1,15 @@
 /**
- * Convert ISO 8601 duration (PT1H12M34S) to readable format (1:12:34)
+ * Convert seconds to readable duration format (1:12:34)
  */
-export function isoDurationToReadable(iso: string): string {
-  const match = iso.match(/PT(?:(\d+)H)?(?:(\d+)M)?(?:(\d+)S)?/);
-  if (!match) return "0:00";
-
-  const hours = parseInt(match[1] || "0");
-  const minutes = parseInt(match[2] || "0");
-  const seconds = parseInt(match[3] || "0");
+export function secondsToReadable(totalSeconds: number): string {
+  const hours = Math.floor(totalSeconds / 3600);
+  const minutes = Math.floor((totalSeconds % 3600) / 60);
+  const seconds = Math.floor(totalSeconds % 60);
 
   if (hours > 0) {
     return `${hours}:${minutes.toString().padStart(2, "0")}:${seconds.toString().padStart(2, "0")}`;
   }
   return `${minutes}:${seconds.toString().padStart(2, "0")}`;
-}
-
-/**
- * Convert ISO 8601 duration to total seconds
- */
-export function isoDurationToSeconds(iso: string): number {
-  const match = iso.match(/PT(?:(\d+)H)?(?:(\d+)M)?(?:(\d+)S)?/);
-  if (!match) return 0;
-
-  const hours = parseInt(match[1] || "0");
-  const minutes = parseInt(match[2] || "0");
-  const seconds = parseInt(match[3] || "0");
-
-  return hours * 3600 + minutes * 60 + seconds;
 }
 
 /**
