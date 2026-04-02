@@ -3,7 +3,7 @@
 import { useState } from "react";
 import { Header, Footer, Section, Container } from "@/components/layout";
 import { Button } from "@/components/ui";
-import { type ContentPillar } from "@/types";
+import { ZoneChart } from "@/components/features/tools/ZoneChart";
 
 interface Zone {
   name: string;
@@ -156,6 +156,20 @@ export default function FTPZonesPage() {
                 <h2 className="font-heading text-2xl text-off-white mb-6">
                   YOUR POWER ZONES — {ftpValue}W FTP
                 </h2>
+
+                {/* Visual Zone Chart */}
+                <div className="bg-background-elevated rounded-xl border border-white/5 p-6 mb-6">
+                  <ZoneChart
+                    ftp={ftpValue}
+                    zones={ZONES.map((z) => ({
+                      name: z.name,
+                      shortName: z.name.split("—")[0].trim(),
+                      minWatts: z.minPercent === 0 ? 0 : Math.round((z.minPercent / 100) * ftpValue),
+                      maxWatts: z.maxPercent === 999 ? null : Math.round((z.maxPercent / 100) * ftpValue),
+                      color: z.color,
+                    }))}
+                  />
+                </div>
 
                 {ZONES.map((zone) => {
                   const min =
