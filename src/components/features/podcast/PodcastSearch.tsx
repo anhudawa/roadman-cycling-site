@@ -39,13 +39,30 @@ export function PodcastSearch({ episodes }: PodcastSearchProps) {
     }
 
     if (query.trim()) {
-      const q = query.toLowerCase().trim();
-      results = results.filter(
-        (ep) =>
-          ep.title.toLowerCase().includes(q) ||
-          (ep.guest && ep.guest.toLowerCase().includes(q)) ||
-          ep.description.toLowerCase().includes(q)
-      );
+      const terms = query.toLowerCase().trim().split(/\s+/).filter(t => t.length > 1);
+
+      // Score-based search: title 10x, guest 8x, description 2x
+      const scored = results.map((ep) => {
+        let score = 0;
+        const titleLower = ep.title.toLowerCase();
+        const guestLower = (ep.guest || "").toLowerCase();
+        const descLower = ep.description.toLowerCase();
+
+        for (const term of terms) {
+          if (titleLower.includes(term)) score += 10;
+          if (guestLower.includes(term)) score += 8;
+          if (descLower.includes(term)) score += 2;
+          // Exact word match bonus
+          if (titleLower.split(/\s+/).includes(term)) score += 5;
+        }
+
+        return { ep, score };
+      });
+
+      results = scored
+        .filter((s) => s.score > 0)
+        .sort((a, b) => b.score - a.score)
+        .map((s) => s.ep);
     }
 
     return results;
