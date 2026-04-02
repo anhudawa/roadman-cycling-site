@@ -1,7 +1,69 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  /* config options here */
+  images: {
+    remotePatterns: [
+      {
+        protocol: "https",
+        hostname: "cdn.sanity.io",
+      },
+      {
+        protocol: "https",
+        hostname: "i.scdn.co",
+      },
+    ],
+  },
+  async redirects() {
+    return [
+      // Redirect old ClickFunnels paths to new site equivalents
+      {
+        source: "/members",
+        destination: "/community/clubhouse",
+        permanent: true,
+      },
+      {
+        source: "/2026",
+        destination: "/community/not-done-yet",
+        permanent: true,
+      },
+      {
+        source: "/strong",
+        destination: "/strength-training",
+        permanent: true,
+      },
+      {
+        source: "/self-coaching-system",
+        destination: "/community/not-done-yet",
+        permanent: true,
+      },
+      {
+        source: "/application-funnel-6",
+        destination: "/community/not-done-yet",
+        permanent: true,
+      },
+    ];
+  },
+  async headers() {
+    return [
+      {
+        source: "/(.*)",
+        headers: [
+          {
+            key: "X-Frame-Options",
+            value: "DENY",
+          },
+          {
+            key: "X-Content-Type-Options",
+            value: "nosniff",
+          },
+          {
+            key: "Referrer-Policy",
+            value: "strict-origin-when-cross-origin",
+          },
+        ],
+      },
+    ];
+  },
 };
 
 export default nextConfig;
