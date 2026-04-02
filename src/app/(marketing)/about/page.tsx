@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import { Header, Footer, Section, Container } from "@/components/layout";
 import { Button, Card, ScrollReveal } from "@/components/ui";
 import { JsonLd } from "@/components/seo/JsonLd";
@@ -68,6 +69,25 @@ export default function AboutPage() {
                 contributing to the team. That&apos;s how we think about Roadman.
                 That&apos;s how we think about life.
               </p>
+            </ScrollReveal>
+          </Container>
+        </Section>
+
+        {/* Anthony Photo */}
+        <Section background="charcoal" className="!pb-0">
+          <Container>
+            <ScrollReveal direction="up">
+              <div className="relative aspect-[21/9] rounded-xl overflow-hidden">
+                <Image
+                  src="/images/about/anthony-walsh-podcast.jpg"
+                  alt="Anthony Walsh recording the Roadman Cycling Podcast"
+                  fill
+                  className="object-cover object-top"
+                  sizes="(max-width: 768px) 100vw, 1200px"
+                  priority
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-charcoal/60 to-transparent" />
+              </div>
             </ScrollReveal>
           </Container>
         </Section>

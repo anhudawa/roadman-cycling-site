@@ -32,7 +32,7 @@ export function HeroSection() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
         >
-          CYCLING IS HARD.
+          CYCLING IS HARD,
           <br />
           <motion.span
             className="text-coral"
@@ -40,7 +40,7 @@ export function HeroSection() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
           >
-            WE MAKE IT LESS HARD.
+            OUR PODCAST WILL HELP.
           </motion.span>
         </motion.h1>
 

@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import { Header, Footer, Section, Container } from "@/components/layout";
 import { Card, Badge } from "@/components/ui";
 import { getAllPosts } from "@/lib/blog";
@@ -89,8 +90,17 @@ export default async function BlogPage({
                     href={`/blog/${post.slug}`}
                     className="group"
                   >
-                    {/* Image placeholder */}
-                    <div className="aspect-[16/9] bg-gradient-to-br from-deep-purple to-charcoal" />
+                    <div className="aspect-[16/9] relative bg-gradient-to-br from-deep-purple to-charcoal overflow-hidden">
+                      {post.featuredImage && (
+                        <Image
+                          src={post.featuredImage}
+                          alt={post.title}
+                          fill
+                          className="object-cover group-hover:scale-105 transition-transform duration-500"
+                          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                        />
+                      )}
+                    </div>
 
                     <div className="p-6">
                       <div className="flex items-center gap-3 mb-3">
