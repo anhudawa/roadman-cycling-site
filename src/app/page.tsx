@@ -3,8 +3,9 @@ import { Button, Card, ScrollReveal, ParallaxImage, MagneticButton } from "@/com
 import { OrganizationJsonLd, WebSiteJsonLd } from "@/components/seo/JsonLd";
 import { HeroSection } from "@/components/features/home/HeroSection";
 import { StatsSection } from "@/components/features/home/StatsSection";
+import { PillarIcon } from "@/components/features/home/PillarIcon";
 import { EmailCapture } from "@/components/features/conversion/EmailCapture";
-import { CONTENT_PILLARS } from "@/types";
+import { CONTENT_PILLARS, type ContentPillar } from "@/types";
 
 const experts = [
   "Professor Seiler",
@@ -102,12 +103,10 @@ export default function HomePage() {
                     href={`/blog?pillar=${key}`}
                     className="p-6 group h-full"
                   >
-                    <div
-                      className="w-1 h-8 rounded-full mb-4 transition-all group-hover:h-12"
-                      style={{
-                        backgroundColor: pillar.color,
-                        transitionDuration: "var(--duration-normal)",
-                      }}
+                    <PillarIcon
+                      pillar={key as ContentPillar}
+                      color={pillar.color}
+                      className="w-10 h-10 mb-4"
                     />
                     <h3 className="font-heading text-xl text-off-white mb-2">
                       {pillar.label.toUpperCase()}
