@@ -73,9 +73,9 @@ export default function HomePage() {
                 FIVE PILLARS. ONE SYSTEM.
               </h2>
               <p className="text-foreground-muted max-w-xl mx-auto">
-                Everything you need to get faster, stay healthy, and love the
-                bike more. Grounded in science. Delivered by the world&apos;s
-                best.
+                The Roadman coaching system is built on five pillars. Not one
+                thing done well — five things done together. That&apos;s what
+                makes the difference between guessing and getting faster.
               </p>
             </ScrollReveal>
 
@@ -206,8 +206,9 @@ export default function HomePage() {
                 YOU&apos;RE NOT DONE YET
               </h2>
               <p className="text-foreground-muted max-w-xl mx-auto">
-                Join a community of serious cyclists who believe they have more
-                in them. Because you do.
+                Stop guessing. Get a simple weekly structure that makes you
+                leaner, stronger, and faster. Free tools to start. A full
+                coaching system when you&apos;re ready.
               </p>
             </ScrollReveal>
 
@@ -269,9 +270,10 @@ export default function HomePage() {
                     NOT DONE YET
                   </h3>
                   <p className="text-foreground-muted mb-6 leading-relaxed">
-                    The system. Personalised Vekta training plans, expert
-                    masterclasses, Anthony&apos;s coaching calls, and the
-                    accountability that makes it stick.
+                    The coaching system. Five pillars — training, nutrition,
+                    S&amp;C, recovery, and community — delivered through weekly
+                    coaching calls, personalised plans, and the accountability
+                    that makes it stick.
                   </p>
                   <ul className="space-y-2 mb-8">
                     {[
