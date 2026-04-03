@@ -101,6 +101,26 @@ export default async function EpisodePage({
           ],
         }}
       />
+      {/* VideoObject for YouTube episodes */}
+      {episode.youtubeId && (
+        <JsonLd
+          data={{
+            "@context": "https://schema.org",
+            "@type": "VideoObject",
+            name: episode.title,
+            description: episode.seoDescription,
+            thumbnailUrl: `https://img.youtube.com/vi/${episode.youtubeId}/maxresdefault.jpg`,
+            uploadDate: episode.publishDate,
+            contentUrl: `https://www.youtube.com/watch?v=${episode.youtubeId}`,
+            embedUrl: `https://www.youtube.com/embed/${episode.youtubeId}`,
+            publisher: {
+              "@type": "Organization",
+              name: "Roadman Cycling",
+              url: "https://roadmancycling.com",
+            },
+          }}
+        />
+      )}
 
       <Header />
 

@@ -38,6 +38,10 @@ export const metadata: Metadata = {
   authors: [{ name: "Anthony Walsh", url: "https://roadmancycling.com" }],
   creator: "Roadman Cycling",
   metadataBase: new URL("https://roadmancycling.com"),
+  alternates: {
+    canonical: "https://roadmancycling.com",
+    languages: { en: "https://roadmancycling.com" },
+  },
   openGraph: {
     type: "website",
     locale: "en_IE",

@@ -23,6 +23,18 @@ Allow: /
 User-agent: Bingbot
 Allow: /
 
+# Applebot-Extended
+User-agent: Applebot-Extended
+Allow: /
+
+# Meta-ExternalAgent
+User-agent: Meta-ExternalAgent
+Allow: /
+
+# cohere-ai
+User-agent: cohere-ai
+Allow: /
+
 # Host
 Host: https://roadmancycling.com
 

@@ -20,6 +20,9 @@ module.exports = {
       { userAgent: 'PerplexityBot', allow: '/' },
       { userAgent: 'GoogleOther', allow: '/' },
       { userAgent: 'Bingbot', allow: '/' },
+      { userAgent: 'Applebot-Extended', allow: '/' },
+      { userAgent: 'Meta-ExternalAgent', allow: '/' },
+      { userAgent: 'cohere-ai', allow: '/' },
     ],
   },
   transform: async (config, path) => {

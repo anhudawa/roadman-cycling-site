@@ -38,6 +38,7 @@ export async function generateMetadata({
       images: post.featuredImage
         ? [{ url: post.featuredImage, width: 1200, height: 630 }]
         : [],
+      tags: post.keywords,
     },
   };
 }
@@ -89,6 +90,31 @@ export default async function BlogPostPage({
               height: 630,
             },
           }),
+        }}
+      />
+      {/* Person schema for E-E-A-T */}
+      <JsonLd
+        data={{
+          "@context": "https://schema.org",
+          "@type": "Person",
+          name: "Anthony Walsh",
+          url: "https://roadmancycling.com/about",
+          jobTitle: "Founder & Host, Roadman Cycling Podcast",
+          worksFor: {
+            "@type": "Organization",
+            name: "Roadman Cycling",
+          },
+          knowsAbout: [
+            "cycling training",
+            "cycling nutrition",
+            "endurance coaching",
+            "cycling performance",
+          ],
+          sameAs: [
+            "https://youtube.com/@theroadmanpodcast",
+            "https://instagram.com/roadman.cycling",
+            "https://x.com/Roadman_Podcast",
+          ],
         }}
       />
       <JsonLd
