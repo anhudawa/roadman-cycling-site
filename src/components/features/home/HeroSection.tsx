@@ -27,7 +27,11 @@ export function HeroSection() {
       <div className="relative z-10 text-center px-5 md:px-8 max-w-[1200px] mx-auto w-full pt-20">
         <motion.h1
           className="font-heading text-off-white leading-none mb-6"
-          style={{ fontSize: "var(--text-hero)" }}
+          style={{
+            fontSize: "var(--text-hero)",
+            letterSpacing: "-0.02em",
+            textShadow: "0 4px 30px rgba(0,0,0,0.4)",
+          }}
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
@@ -36,6 +40,7 @@ export function HeroSection() {
           <br />
           <motion.span
             className="text-coral"
+            style={{ fontSize: "0.88em" }}
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}

@@ -57,6 +57,7 @@ export function Button(props: ButtonProps) {
     inline-flex items-center justify-center gap-2
     font-heading tracking-wider uppercase
     rounded-md transition-all cursor-pointer
+    active:scale-[0.97] active:duration-75
     ${variantClasses[variant]}
     ${sizeClasses[size]}
     ${className}

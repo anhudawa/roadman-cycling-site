@@ -161,7 +161,7 @@ export default function HomePage() {
         </Section>
 
         {/* TOOLS */}
-        <Section background="charcoal">
+        <Section background="charcoal" className="section-glow-coral">
           <Container>
             <ScrollReveal direction="up" className="text-center mb-12">
               <h2
@@ -266,7 +266,7 @@ export default function HomePage() {
 
               <ScrollReveal direction="right">
                 <Card
-                  className="p-8 h-full border-coral/30 bg-gradient-to-br from-background-elevated to-deep-purple/30"
+                  className="p-8 h-full border-rotating rounded-lg bg-gradient-to-br from-background-elevated to-deep-purple/30"
                   hoverable={false}
                 >
                   <div className="flex items-center gap-3 mb-4">

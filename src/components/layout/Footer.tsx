@@ -76,7 +76,9 @@ const podcastPlatforms = [
 
 export function Footer() {
   return (
-    <footer className="bg-deep-purple border-t border-white/5 pt-[var(--spacing-section)] pb-8">
+    <footer className="relative bg-deep-purple pt-[var(--spacing-section)] pb-8">
+      {/* Gradient divider line */}
+      <div className="absolute top-0 left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-coral/40 to-transparent" />
       <Container>
         {/* Newsletter CTA */}
         <div className="mb-16 pb-16 border-b border-white/10">

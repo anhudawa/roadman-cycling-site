@@ -184,6 +184,55 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 /* ============================================
+   Radial Glow Hotspots (ambient lighting)
+   ============================================ */
+
+.section-glow-coral {
+  background-image: radial-gradient(
+    ellipse 600px 400px at 70% 20%,
+    rgba(241, 99, 99, 0.06) 0%,
+    transparent 70%
+  );
+}
+
+.section-glow-purple {
+  background-image: radial-gradient(
+    ellipse 800px 600px at 30% 80%,
+    rgba(76, 18, 115, 0.12) 0%,
+    transparent 70%
+  );
+}
+
+/* ============================================
+   Rotating Gradient Border (featured cards)
+   ============================================ */
+
+@property --angle {
+  syntax: "<angle>";
+  initial-value: 0deg;
+  inherits: false;
+}
+
+@keyframes rotate-gradient {
+  to { --angle: 360deg; }
+}
+
+.border-rotating {
+  position: relative;
+}
+
+.border-rotating::before {
+  content: '';
+  position: absolute;
+  inset: -1px;
+  border-radius: inherit;
+  background: conic-gradient(from var(--angle, 0deg), transparent 40%, var(--color-coral) 50%, var(--color-purple) 60%, transparent 70%);
+  animation: rotate-gradient 4s linear infinite;
+  opacity: 0.6;
+  z-index: -1;
+}
+
+/* ============================================
    Utility: Grain Overlay (cinematic texture)
    ============================================ */
 

@@ -66,8 +66,7 @@ export function Header() {
                 <div key={item.href} className="relative group">
                   <Link
                     href={item.href}
-                    className="font-body text-sm text-foreground-muted hover:text-off-white transition-colors"
-                    style={{ transitionDuration: "var(--duration-fast)" }}
+                    className="relative font-body text-sm text-foreground-muted hover:text-off-white transition-colors after:absolute after:bottom-[-4px] after:left-0 after:h-[1px] after:w-0 hover:after:w-full after:bg-coral after:transition-all after:duration-300 after:ease-[cubic-bezier(0.16,1,0.3,1)]"
                   >
                     {item.label}
                     {item.children && (
