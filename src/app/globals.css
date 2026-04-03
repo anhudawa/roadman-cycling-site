@@ -175,12 +175,140 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 /* ============================================
-   Focus Styles (Accessibility)
+   Focus Styles (Accessibility + Glowing Ring)
    ============================================ */
 
 :focus-visible {
   outline: 2px solid var(--color-coral);
   outline-offset: 2px;
+  box-shadow: 0 0 0 4px rgba(241, 99, 99, 0.15), 0 0 20px rgba(241, 99, 99, 0.1);
+  transition: box-shadow 0.2s ease;
+}
+
+/* ============================================
+   Animated Gradient Divider
+   ============================================ */
+
+.gradient-divider {
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    var(--color-coral) 20%,
+    var(--color-purple) 50%,
+    var(--color-coral) 80%,
+    transparent 100%
+  );
+  background-size: 200% 100%;
+  animation: shimmer-divider 3s ease-in-out infinite;
+  opacity: 0.5;
+}
+
+@keyframes shimmer-divider {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+}
+
+/* ============================================
+   Gradient Text Animation (for key headings)
+   ============================================ */
+
+.text-gradient-animated {
+  background: linear-gradient(
+    135deg,
+    var(--color-off-white) 0%,
+    var(--color-coral) 25%,
+    var(--color-off-white) 50%,
+    var(--color-coral) 75%,
+    var(--color-off-white) 100%
+  );
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: gradient-shift 4s linear infinite;
+}
+
+@keyframes gradient-shift {
+  0% { background-position: 0% center; }
+  100% { background-position: 200% center; }
+}
+
+/* ============================================
+   Glowing dot pulse (for live indicators)
+   ============================================ */
+
+.pulse-glow {
+  position: relative;
+}
+
+.pulse-glow::after {
+  content: '';
+  position: absolute;
+  inset: -4px;
+  border-radius: inherit;
+  background: inherit;
+  opacity: 0;
+  animation: pulse-ring 2s ease-out infinite;
+}
+
+@keyframes pulse-ring {
+  0% { transform: scale(1); opacity: 0.4; }
+  100% { transform: scale(2.5); opacity: 0; }
+}
+
+/* ============================================
+   Card shimmer on hover
+   ============================================ */
+
+.card-shimmer {
+  position: relative;
+  overflow: hidden;
+}
+
+.card-shimmer::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 50%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(255, 255, 255, 0.03) 50%,
+    transparent 100%
+  );
+  transition: none;
+  pointer-events: none;
+}
+
+.card-shimmer:hover::after {
+  left: 100%;
+  transition: left 0.6s ease;
+}
+
+/* ============================================
+   Underline draw animation (nav links)
+   ============================================ */
+
+.underline-draw {
+  position: relative;
+}
+
+.underline-draw::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 0;
+  height: 1px;
+  background: var(--color-coral);
+  transition: width 0.3s var(--ease-out-expo);
+}
+
+.underline-draw:hover::after {
+  width: 100%;
 }
 
 /* ============================================

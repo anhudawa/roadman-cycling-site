@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { Header, Footer, Section, Container } from "@/components/layout";
-import { Button, Card, ScrollReveal } from "@/components/ui";
+import { Button, Card, ScrollReveal, AnimatedCounter } from "@/components/ui";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { CheckoutButton } from "@/components/features/conversion/CheckoutButton";
 
@@ -79,10 +79,15 @@ export default function StrengthTrainingPage() {
                 The strength and conditioning program built specifically for
                 cyclists who want to ride faster, last longer, and stay injury-free.
               </p>
-              <p className="text-foreground-subtle mb-8">
-                114 cyclists enrolled &middot; Video instruction &middot;
-                Programming templates
-              </p>
+              <div className="flex items-center justify-center gap-6 text-foreground-subtle mb-8">
+                <span className="flex items-center gap-1">
+                  <span className="text-off-white font-heading text-lg"><AnimatedCounter value="114" /></span> cyclists enrolled
+                </span>
+                <span>&middot;</span>
+                <span>Video instruction</span>
+                <span>&middot;</span>
+                <span>Programming templates</span>
+              </div>
               <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
                 <Button href="#enrol" size="lg">
                   Enrol Now — $65
@@ -94,6 +99,9 @@ export default function StrengthTrainingPage() {
             </ScrollReveal>
           </Container>
         </Section>
+
+        {/* Gradient divider */}
+        <div className="gradient-divider" />
 
         {/* The Problem */}
         <Section background="charcoal">
@@ -143,7 +151,7 @@ export default function StrengthTrainingPage() {
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 max-w-5xl mx-auto">
               {modules.map((mod, i) => (
                 <ScrollReveal key={mod.title} direction="up" delay={i * 0.06}>
-                  <Card className="p-6 h-full" hoverable={false}>
+                  <Card className="p-6 h-full card-shimmer" hoverable={false}>
                     <span className="text-coral font-heading text-sm tracking-widest">
                       MODULE {i + 1}
                     </span>
@@ -215,7 +223,9 @@ export default function StrengthTrainingPage() {
               One-time payment. Lifetime access. 6 modules of cycling-specific
               strength training.
             </p>
-            <p className="font-heading text-4xl text-off-white mb-8">$65</p>
+            <p className="font-heading text-4xl text-off-white mb-8">
+              $<AnimatedCounter value="65" />
+            </p>
             <CheckoutButton>
               Enrol Now — $65
             </CheckoutButton>

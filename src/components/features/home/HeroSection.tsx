@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui";
+import { FloatingParticles } from "@/components/ui/FloatingParticles";
 
 export function HeroSection() {
   return (
@@ -23,6 +24,10 @@ export function HeroSection() {
 
       {/* Gradient overlay */}
       <div className="absolute inset-0 bg-gradient-to-b from-deep-purple/50 via-charcoal/70 to-charcoal" />
+
+      {/* Ambient floating particles */}
+      <FloatingParticles count={25} color="rgba(241, 99, 99, 0.12)" />
+      <FloatingParticles count={10} color="rgba(76, 18, 115, 0.15)" />
 
       <div className="relative z-10 text-center px-5 md:px-8 max-w-[1200px] mx-auto w-full pt-20">
         <motion.h1

@@ -8,3 +8,6 @@ export { ParallaxImage } from "./ParallaxImage";
 export { MagneticButton } from "./MagneticButton";
 export { HorizontalScroll } from "./HorizontalScroll";
 export { SmoothCursor } from "./SmoothCursor";
+export { TiltCard } from "./TiltCard";
+export { FloatingParticles } from "./FloatingParticles";
+export { GradientText } from "./GradientText";

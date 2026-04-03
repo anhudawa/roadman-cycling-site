@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { Header, Footer, Section, Container } from "@/components/layout";
-import { ScrollReveal, Card, Badge } from "@/components/ui";
+import { ScrollReveal, Card, Badge, AnimatedCounter } from "@/components/ui";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { getAllGuests } from "@/lib/guests";
 
@@ -69,7 +69,8 @@ export default function GuestsPage() {
                 THE EXPERTS
               </h1>
               <p className="text-foreground-muted max-w-xl mx-auto text-lg">
-                {guests.length} world-class coaches, scientists, pro cyclists,
+                <span className="text-off-white font-heading text-2xl"><AnimatedCounter value={String(guests.length)} /></span>{" "}
+                world-class coaches, scientists, pro cyclists,
                 and endurance athletes who&apos;ve shared their knowledge on the
                 podcast.
               </p>

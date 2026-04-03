@@ -1,5 +1,5 @@
 import { Header, Footer, Section, Container } from "@/components/layout";
-import { Button, Card, ScrollReveal, ParallaxImage, MagneticButton } from "@/components/ui";
+import { Button, Card, ScrollReveal, ParallaxImage, MagneticButton, GradientText } from "@/components/ui";
 import { OrganizationJsonLd, WebSiteJsonLd } from "@/components/seo/JsonLd";
 import { HeroSection } from "@/components/features/home/HeroSection";
 import { StatsSection } from "@/components/features/home/StatsSection";
@@ -63,6 +63,9 @@ export default function HomePage() {
         {/* STATS — Animated counters */}
         <StatsSection />
 
+        {/* Gradient divider */}
+        <div className="gradient-divider" />
+
         {/* CONTENT PILLARS */}
         <Section background="charcoal">
           <Container>
@@ -73,11 +76,11 @@ export default function HomePage() {
                 </a>
               </p>
               <h2
-                className="font-heading text-off-white mb-4"
+                className="font-heading mb-4"
                 style={{ fontSize: "var(--text-section)" }}
               >
-                <a href="/community/not-done-yet" className="hover:text-coral transition-colors">
-                  FIVE PILLARS. ONE SYSTEM.
+                <a href="/community/not-done-yet" className="hover:opacity-80 transition-opacity">
+                  <GradientText as="span">FIVE PILLARS. ONE SYSTEM.</GradientText>
                 </a>
               </h2>
               <p className="text-foreground-muted max-w-xl mx-auto">
@@ -101,7 +104,7 @@ export default function HomePage() {
                 <ScrollReveal key={key} direction="up" delay={i * 0.08}>
                   <Card
                     href={`/blog?pillar=${key}`}
-                    className="p-6 group h-full"
+                    className="p-6 group h-full card-shimmer"
                   >
                     <PillarIcon
                       pillar={key as ContentPillar}
@@ -120,6 +123,9 @@ export default function HomePage() {
             </div>
           </Container>
         </Section>
+
+        {/* Gradient divider */}
+        <div className="gradient-divider" />
 
         {/* EXPERT ACCESS */}
         <Section background="deep-purple" grain>
@@ -161,6 +167,9 @@ export default function HomePage() {
           </Container>
         </Section>
 
+        {/* Gradient divider */}
+        <div className="gradient-divider" />
+
         {/* TOOLS */}
         <Section background="charcoal" className="section-glow-coral">
           <Container>
@@ -180,7 +189,7 @@ export default function HomePage() {
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
               {tools.map((tool, i) => (
                 <ScrollReveal key={tool.href} direction="up" delay={i * 0.06} className={i === 0 ? "sm:col-span-2 lg:col-span-2" : ""}>
-                  <Card href={tool.href} className="p-6 group h-full">
+                  <Card href={tool.href} className="p-6 group h-full card-shimmer">
                     <h3 className="font-heading text-xl text-off-white mb-2 group-hover:text-coral transition-colors">
                       {tool.title.toUpperCase()}
                     </h3>
@@ -227,7 +236,7 @@ export default function HomePage() {
               <ScrollReveal direction="left">
                 <Card className="p-8 h-full" hoverable={false}>
                   <div className="flex items-center gap-3 mb-4">
-                    <div className="w-3 h-3 rounded-full bg-coral" />
+                    <div className="w-3 h-3 rounded-full bg-coral pulse-glow" />
                     <span className="text-xs text-foreground-muted uppercase tracking-widest font-body">
                       Free
                     </span>
@@ -271,7 +280,7 @@ export default function HomePage() {
                   hoverable={false}
                 >
                   <div className="flex items-center gap-3 mb-4">
-                    <div className="w-3 h-3 rounded-full bg-purple" />
+                    <div className="w-3 h-3 rounded-full bg-purple pulse-glow" />
                     <span className="text-xs text-foreground-muted uppercase tracking-widest font-body">
                       From $15/month
                     </span>

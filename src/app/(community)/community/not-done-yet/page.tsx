@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { Header, Footer, Section, Container } from "@/components/layout";
-import { Button, Card } from "@/components/ui";
+import { Button, Card, ScrollReveal } from "@/components/ui";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { FAQSchema } from "@/components/seo/FAQSchema";
 
@@ -146,37 +146,42 @@ export default function NotDoneYetPage() {
         {/* Hero */}
         <Section background="deep-purple" grain className="pt-32 pb-16">
           <Container className="text-center">
-            <p className="text-coral font-heading text-lg mb-4 tracking-widest">
-              THE COACHING SYSTEM
-            </p>
-            <h1
-              className="font-heading text-off-white mb-6"
-              style={{ fontSize: "var(--text-hero)" }}
-            >
-              NOT DONE YET
-            </h1>
-            <p className="text-foreground-muted text-xl max-w-2xl mx-auto mb-6">
-              You&apos;re training hard. You&apos;re not improving. Something&apos;s
-              missing — and it&apos;s not motivation. It&apos;s a system.
-              Five pillars. One structure. Weekly coaching that adapts to your
-              life, not the other way around.
-            </p>
-            <p className="text-foreground-subtle text-sm">
-              113 coached cyclists &middot; 7-day free trial &middot; 30-day money-back guarantee
-            </p>
+            <ScrollReveal direction="up">
+              <p className="text-coral font-heading text-lg mb-4 tracking-widest">
+                THE COACHING SYSTEM
+              </p>
+              <h1
+                className="font-heading text-off-white mb-6 text-gradient-animated"
+                style={{ fontSize: "var(--text-hero)" }}
+              >
+                NOT DONE YET
+              </h1>
+              <p className="text-foreground-muted text-xl max-w-2xl mx-auto mb-6">
+                You&apos;re training hard. You&apos;re not improving. Something&apos;s
+                missing — and it&apos;s not motivation. It&apos;s a system.
+                Five pillars. One structure. Weekly coaching that adapts to your
+                life, not the other way around.
+              </p>
+              <p className="text-foreground-subtle text-sm">
+                113 coached cyclists &middot; 7-day free trial &middot; 30-day money-back guarantee
+              </p>
+            </ScrollReveal>
           </Container>
         </Section>
+
+        {/* Gradient divider */}
+        <div className="gradient-divider" />
 
         {/* Pricing */}
         <Section background="charcoal">
           <Container>
             <div className="grid md:grid-cols-3 gap-6 max-w-5xl mx-auto">
-              {tiers.map((tier) => (
+              {tiers.map((tier, i) => (
+                <ScrollReveal key={tier.name} direction="up" delay={i * 0.1}>
                 <Card
-                  key={tier.name}
-                  className={`p-8 ${
+                  className={`p-8 card-shimmer ${
                     tier.highlight
-                      ? "border-coral/40 bg-gradient-to-b from-background-elevated to-deep-purple/20 relative"
+                      ? "border-coral/40 bg-gradient-to-b from-background-elevated to-deep-purple/20 relative border-rotating"
                       : ""
                   }`}
                   hoverable={false}
@@ -233,6 +238,7 @@ export default function NotDoneYetPage() {
                     {tier.cta}
                   </Button>
                 </Card>
+                </ScrollReveal>
               ))}
             </div>
           </Container>
@@ -248,8 +254,9 @@ export default function NotDoneYetPage() {
               REAL RESULTS
             </h2>
             <div className="grid md:grid-cols-3 gap-6 max-w-5xl mx-auto">
-              {testimonials.map((t) => (
-                <Card key={t.name} className="p-6" hoverable={false}>
+              {testimonials.map((t, i) => (
+                <ScrollReveal key={t.name} direction="up" delay={i * 0.08}>
+                <Card className="p-6" hoverable={false}>
                   <p className="text-coral font-heading text-lg mb-3">
                     {t.result.toUpperCase()}
                   </p>
@@ -258,6 +265,7 @@ export default function NotDoneYetPage() {
                   </p>
                   <p className="text-xs text-foreground-subtle">&mdash; {t.name}</p>
                 </Card>
+                </ScrollReveal>
               ))}
             </div>
           </Container>
@@ -289,22 +297,27 @@ export default function NotDoneYetPage() {
             </div>
 
             {/* Final CTA */}
-            <div className="mt-16 text-center">
-              <h2 className="font-heading text-3xl text-off-white mb-4">
-                READY TO STOP GUESSING?
-              </h2>
-              <p className="text-foreground-muted mb-8 max-w-md mx-auto">
-                Join 113 serious cyclists who are actively getting faster with
-                the right system.
-              </p>
-              <Button
-                href="https://skool.com/roadmancycling"
-                external
-                size="lg"
-              >
-                Join Not Done Yet
-              </Button>
-            </div>
+            <ScrollReveal direction="up">
+              <div className="mt-16 text-center bg-deep-purple/30 rounded-xl border border-purple/20 p-10">
+                <h2 className="font-heading text-3xl text-off-white mb-4">
+                  READY TO STOP GUESSING?
+                </h2>
+                <p className="text-foreground-muted mb-8 max-w-md mx-auto">
+                  Join 113 serious cyclists who are actively getting faster with
+                  the right system.
+                </p>
+                <Button
+                  href="https://skool.com/roadmancycling"
+                  external
+                  size="lg"
+                >
+                  Join Not Done Yet
+                </Button>
+                <p className="text-foreground-subtle text-xs mt-4">
+                  7-day free trial. Cancel anytime. No contracts.
+                </p>
+              </div>
+            </ScrollReveal>
           </Container>
         </Section>
       </main>
