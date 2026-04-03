@@ -129,6 +129,10 @@ export const NAV_ITEMS: NavItem[] = [
     ],
   },
   {
+    label: "Guests",
+    href: "/guests",
+  },
+  {
     label: "Community",
     href: "/community",
     children: [

@@ -144,6 +144,24 @@ export default async function BlogPostPage({
         }}
       />
 
+      {/* FAQPage schema for posts with FAQ sections */}
+      {post.faq && post.faq.length > 0 && (
+        <JsonLd
+          data={{
+            "@context": "https://schema.org",
+            "@type": "FAQPage",
+            mainEntity: post.faq.map((item) => ({
+              "@type": "Question",
+              name: item.question,
+              acceptedAnswer: {
+                "@type": "Answer",
+                text: item.answer,
+              },
+            })),
+          }}
+        />
+      )}
+
       <Header />
 
       <main>

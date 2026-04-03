@@ -6,6 +6,11 @@ import { type ContentPillar } from "@/types";
 
 const BLOG_DIR = path.join(process.cwd(), "content/blog");
 
+export interface FaqItem {
+  question: string;
+  answer: string;
+}
+
 export interface BlogFrontmatter {
   title: string;
   seoTitle?: string;
@@ -18,6 +23,7 @@ export interface BlogFrontmatter {
   featuredImage?: string;
   keywords: string[];
   relatedEpisodes?: string[];
+  faq?: FaqItem[];
 }
 
 export interface BlogPostMeta extends BlogFrontmatter {
