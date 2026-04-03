@@ -69,8 +69,8 @@ const socialLinks = [
 ];
 
 const podcastPlatforms = [
-  { label: "Apple Podcasts", href: "#" },
-  { label: "Spotify", href: "#" },
+  { label: "Apple Podcasts", href: "https://podcasts.apple.com/us/podcast/the-roadman-cycling-podcast/id1224143549" },
+  { label: "Spotify", href: "https://open.spotify.com/show/2oCs3N4ahypwzzUrFqgUmC" },
   { label: "YouTube", href: "https://youtube.com/@theroadmanpodcast" },
 ];
 

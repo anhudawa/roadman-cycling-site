@@ -216,7 +216,7 @@ export default function StrengthTrainingPage() {
             </p>
             <p className="font-heading text-4xl text-off-white mb-8">$49.99</p>
             <Button
-              href="https://roadmancycling.com/strength-training/checkout"
+              href="https://skool.com/roadmancycling"
               variant="secondary"
               size="lg"
               className="bg-charcoal hover:bg-deep-purple text-off-white"
