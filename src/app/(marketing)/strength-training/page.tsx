@@ -50,7 +50,7 @@ export default function StrengthTrainingPage() {
           brand: { "@type": "Brand", name: "Roadman Cycling" },
           offers: {
             "@type": "Offer",
-            price: "49.99",
+            price: "65",
             priceCurrency: "USD",
             availability: "https://schema.org/InStock",
           },
@@ -85,7 +85,7 @@ export default function StrengthTrainingPage() {
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
                 <Button href="#enrol" size="lg">
-                  Enrol Now — $49.99
+                  Enrol Now — $65
                 </Button>
                 <span className="text-foreground-subtle text-sm">
                   One-time payment. Lifetime access.
@@ -215,9 +215,9 @@ export default function StrengthTrainingPage() {
               One-time payment. Lifetime access. 6 modules of cycling-specific
               strength training.
             </p>
-            <p className="font-heading text-4xl text-off-white mb-8">$49.99</p>
+            <p className="font-heading text-4xl text-off-white mb-8">$65</p>
             <CheckoutButton>
-              Enrol Now — $49.99
+              Enrol Now — $65
             </CheckoutButton>
             <p className="text-off-white/60 text-xs mt-4">
               Secure payment via Stripe. Instant access after purchase.
