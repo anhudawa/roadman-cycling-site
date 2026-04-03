@@ -13,6 +13,7 @@
     "sync:youtube:dry": "tsx scripts/sync-youtube.ts --full --dry-run"
   },
   "dependencies": {
+    "@stripe/stripe-js": "^9.0.1",
     "framer-motion": "^12.38.0",
     "gray-matter": "^4.0.3",
     "next": "16.2.2",
@@ -24,7 +25,8 @@
     "rehype-autolink-headings": "^7.1.0",
     "rehype-pretty-code": "^0.14.3",
     "rehype-slug": "^6.0.0",
-    "shiki": "^4.0.2"
+    "shiki": "^4.0.2",
+    "stripe": "^22.0.0"
   },
   "devDependencies": {
     "@anthropic-ai/sdk": "^0.82.0",

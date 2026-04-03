@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Header, Footer, Section, Container } from "@/components/layout";
 import { Button, Card, ScrollReveal } from "@/components/ui";
 import { JsonLd } from "@/components/seo/JsonLd";
+import { CheckoutButton } from "@/components/features/conversion/CheckoutButton";
 
 export const metadata: Metadata = {
   title: "Strength Training for Cyclists — The Complete S&C Course",
@@ -215,14 +216,9 @@ export default function StrengthTrainingPage() {
               strength training.
             </p>
             <p className="font-heading text-4xl text-off-white mb-8">$49.99</p>
-            <Button
-              href="https://skool.com/roadmancycling"
-              variant="secondary"
-              size="lg"
-              className="bg-charcoal hover:bg-deep-purple text-off-white"
-            >
-              Enrol Now
-            </Button>
+            <CheckoutButton>
+              Enrol Now — $49.99
+            </CheckoutButton>
             <p className="text-off-white/60 text-xs mt-4">
               Secure payment via Stripe. Instant access after purchase.
             </p>
