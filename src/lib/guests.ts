@@ -88,6 +88,8 @@ const NAME_ALIASES: Record<string, string> = {
   '"Lachlan Morton"': "Lachlan Morton",
   '"Professor Stephen Seiler"': "Stephen Seiler",
   "Aron D": "Aron D'Souza",
+  "Dr David Dunne": "David Dunne",
+  "Dr Sam Impey": "Sam Impey",
   "Jack Ultra Cyclist": "Jack Thompson",
   "Trek Segafredo Star Taylor Wiles": "Tayler Wiles",
   "Dr Gordon Laing": "Dr Mark Gordon",
@@ -121,6 +123,11 @@ const KNOWN_CREDENTIALS: Record<string, string> = {
   "David Gillick": "European indoor 400m champion",
   "Dr Allen Lim": "Sports physiologist, founder of Skratch Labs",
   "Dr Andy Pruitt": "Pioneering bike fit expert, founder of Boulder Center for Sports Medicine",
+  "Dr David Dunne": "Sports scientist, World Tour nutritionist",
+  "David Dunne": "Sports scientist, World Tour nutritionist",
+  "Dr Sam Impey": "Sports nutritionist, World Tour performance researcher",
+  "Sam Impey": "Sports nutritionist, World Tour performance researcher",
+  "Tim Podlogar": "Sports nutritionist, carbohydrate metabolism researcher",
   "Dr David Lipman": "Sports physician, exercise science researcher",
   "Dr Ken Berry": "Family physician, carnivore diet advocate",
   "Dr Mark Gordon": "Endocrinologist, hormone and TBI specialist",
@@ -190,6 +197,11 @@ const GUEST_PILLAR_MAP: Record<string, ContentPillar> = {
   "Dr Allen Lim": "nutrition",
   "Dr Ken Berry": "nutrition",
   "Alex Larson": "nutrition",
+  "Dr David Dunne": "nutrition",
+  "David Dunne": "nutrition",
+  "Sam Impey": "nutrition",
+  "Dr Sam Impey": "nutrition",
+  "Tim Podlogar": "nutrition",
 
   // Strength — S&C, physio, bike fitting
   "Derek Teel": "strength",
@@ -345,6 +357,9 @@ const GUEST_TAGS: Record<string, GuestTag[]> = {
   "Dr Allen Lim": ["science"],
   "Dr Michael Gervais": ["science"],
   "Dr Mark Gordon": ["science"],
+  "David Dunne": ["science"],
+  "Sam Impey": ["science"],
+  "Tim Podlogar": ["science"],
 
   // Industry
   "Uli Schoberer": ["industry"],

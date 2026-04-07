@@ -4,7 +4,8 @@ function getStripe() {
   const key = process.env.STRIPE_SECRET_KEY;
   if (!key) return null;
   // Dynamic import to avoid build-time errors when key is missing
-  const Stripe = require("stripe").default;
+  const StripeModule = require("stripe");
+  const Stripe = StripeModule.default || StripeModule;
   return new Stripe(key);
 }
 

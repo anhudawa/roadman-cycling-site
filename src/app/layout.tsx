@@ -90,6 +90,12 @@ export default function RootLayout({
       className={`${bebasNeue.variable} ${workSans.variable} dark`}
     >
       <head>
+        <link
+          rel="alternate"
+          type="application/rss+xml"
+          title="The Roadman Cycling Podcast"
+          href="https://www.roadmancycling.com/feed/podcast"
+        />
         {/* Meta Pixel */}
         <script
           dangerouslySetInnerHTML={{

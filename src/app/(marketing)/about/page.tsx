@@ -23,7 +23,7 @@ export const metadata: Metadata = {
 type ExpertCategory = "scientist" | "coach" | "athlete";
 
 const categoryStyles: Record<ExpertCategory, { label: string; color: string; border: string }> = {
-  scientist: { label: "SCIENCE", color: "text-purple", border: "border-l-purple" },
+  scientist: { label: "SCIENCE", color: "text-violet-400", border: "border-l-violet-400" },
   coach: { label: "COACHING", color: "text-coral", border: "border-l-coral" },
   athlete: { label: "ATHLETE", color: "text-green-400", border: "border-l-green-400" },
 };

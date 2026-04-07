@@ -110,7 +110,7 @@ export function Footer() {
                   alt="Roadman Cycling"
                   width={160}
                   height={57}
-                  className="h-10 w-auto"
+                  className="h-8 sm:h-10 w-auto"
                 />
               </Link>
               <p className="text-foreground-muted leading-relaxed mb-2">

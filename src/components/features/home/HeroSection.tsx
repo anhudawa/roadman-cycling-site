@@ -165,7 +165,7 @@ export function HeroSection() {
 
       {/* === Animated scroll indicator === */}
       <motion.div
-        className="absolute bottom-8 left-1/2 -translate-x-1/2 z-10 flex flex-col items-center gap-2"
+        className="absolute bottom-8 left-1/2 -translate-x-1/2 z-10 hidden md:flex flex-col items-center gap-2"
         initial={{ opacity: 0 }}
         animate={{ opacity: scrolled ? 0 : 0.6 }}
         transition={{ duration: 0.6, delay: 1.4 }}

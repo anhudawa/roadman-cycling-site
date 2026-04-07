@@ -35,6 +35,62 @@ export default function Layout({ children }: { children: React.ReactNode }) {
           ],
         }}
       />
+      <JsonLd
+        data={{
+          "@context": "https://schema.org",
+          "@type": "FAQPage",
+          mainEntity: [
+            {
+              "@type": "Question",
+              name: "What is FTP in cycling?",
+              acceptedAnswer: {
+                "@type": "Answer",
+                text: "FTP stands for Functional Threshold Power. It represents the highest average power you can sustain for approximately one hour and is measured in watts. FTP is the single most important metric in cycling training because your seven power training zones are all calculated as percentages of it.",
+              },
+            },
+            {
+              "@type": "Question",
+              name: "How do I calculate my FTP?",
+              acceptedAnswer: {
+                "@type": "Answer",
+                text: "The most common method is a 20-minute all-out test: ride as hard as you can sustain for 20 minutes on a power meter or smart trainer, then multiply your average power by 0.95. For example, if your 20-minute average is 260W, your estimated FTP is 247W. Ramp tests and full 60-minute tests are alternatives, but the 20-minute protocol offers the best balance of accuracy and practicality.",
+              },
+            },
+            {
+              "@type": "Question",
+              name: "What is a good FTP for a beginner cyclist?",
+              acceptedAnswer: {
+                "@type": "Answer",
+                text: "For a beginner male cyclist, an FTP of 150-200W is typical; for a beginner female cyclist, 100-160W is common. However, absolute watts matter less than watts per kilogram (W/kg). A beginner might be around 1.5-2.5 W/kg, while a competitive amateur typically reaches 3.5-4.5 W/kg. Focus on your own progression rather than comparing raw numbers.",
+              },
+            },
+            {
+              "@type": "Question",
+              name: "How often should I test my FTP?",
+              acceptedAnswer: {
+                "@type": "Answer",
+                text: "Test your FTP every 6-8 weeks, ideally at the end of a training block and after a rest day. Testing more frequently causes unnecessary fatigue without meaningful data, since FTP changes gradually. Many modern smart trainers and platforms like Zwift and TrainerRoad also estimate FTP passively from your ride data.",
+              },
+            },
+            {
+              "@type": "Question",
+              name: "What are the 7 cycling power zones?",
+              acceptedAnswer: {
+                "@type": "Answer",
+                text: "The 7 standard cycling power zones are: Zone 1 (Active Recovery, below 55% FTP), Zone 2 (Endurance, 56-75% FTP), Zone 3 (Tempo, 76-90% FTP), Zone 4 (Threshold, 91-105% FTP), Zone 5 (VO2max, 106-120% FTP), Zone 6 (Anaerobic Capacity, 121-150% FTP), and Zone 7 (Neuromuscular, 150%+ FTP). This model was developed by Dr Andrew Coggan and is used by most training platforms.",
+              },
+            },
+            {
+              "@type": "Question",
+              name: "What is W/kg and why does it matter in cycling?",
+              acceptedAnswer: {
+                "@type": "Answer",
+                text: "W/kg (watts per kilogram) is your power-to-weight ratio — your FTP divided by your body weight. It is the best predictor of climbing and overall cycling performance. For example, a 70kg rider with a 280W FTP has a ratio of 4.0 W/kg. Improving your W/kg through increasing power, reducing excess body fat, or both is the most effective way to get faster on the bike.",
+              },
+            },
+          ],
+        }}
+      />
       {children}
     </>
   );

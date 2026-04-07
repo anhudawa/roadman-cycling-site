@@ -103,7 +103,7 @@ export function BlogSearch({ posts }: BlogSearchProps) {
         <input
           type="search"
           aria-label="Search articles"
-          placeholder="Search articles by topic, keyword, or title..."
+          placeholder="Search articles..."
           value={query}
           onChange={(e) => setQuery(e.target.value)}
           className="
@@ -116,10 +116,10 @@ export function BlogSearch({ posts }: BlogSearchProps) {
       </div>
 
       {/* Pillar Filters */}
-      <div className="flex flex-wrap gap-2 justify-center mb-3">
+      <div className="flex flex-nowrap overflow-x-auto gap-2 justify-center pb-2 -mx-5 px-5 md:flex-wrap md:overflow-visible md:pb-0 md:mx-0 md:px-0 mb-3">
         <button
           onClick={() => { setPillarFilter(""); setTopicFilter(""); }}
-          className={`px-4 py-2 rounded-full text-sm font-body transition-colors cursor-pointer ${
+          className={`px-4 py-2 rounded-full text-sm font-body transition-colors cursor-pointer whitespace-nowrap ${
             !pillarFilter && !topicFilter
               ? "bg-coral text-off-white"
               : "bg-white/5 text-foreground-muted hover:bg-white/10"
@@ -136,7 +136,7 @@ export function BlogSearch({ posts }: BlogSearchProps) {
                 setPillarFilter(pillarFilter === key ? "" : key);
                 setTopicFilter("");
               }}
-              className={`px-4 py-2 rounded-full text-sm font-body transition-colors cursor-pointer ${
+              className={`px-4 py-2 rounded-full text-sm font-body transition-colors cursor-pointer whitespace-nowrap ${
                 pillarFilter === key
                   ? "bg-coral text-off-white"
                   : "bg-white/5 text-foreground-muted hover:bg-white/10"
@@ -149,7 +149,7 @@ export function BlogSearch({ posts }: BlogSearchProps) {
       </div>
 
       {/* Topic Filters */}
-      <div className="flex flex-wrap gap-2 justify-center mb-8">
+      <div className="flex flex-nowrap overflow-x-auto gap-2 justify-center pb-2 -mx-5 px-5 md:flex-wrap md:overflow-visible md:pb-0 md:mx-0 md:px-0 mb-8">
         {TOPIC_FILTERS.map((topic) => {
           const count = posts.filter(topic.match).length;
           if (count === 0) return null;

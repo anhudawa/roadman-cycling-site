@@ -9,6 +9,9 @@ export async function GET(request: NextRequest) {
   const title = searchParams.get("title") || "Roadman Cycling";
   const subtitle = searchParams.get("subtitle") || "";
   const type = searchParams.get("type") || "default"; // default, blog, podcast, tool
+  const guest = searchParams.get("guest") || "";
+  const episodeNumber = searchParams.get("episodeNumber") || "";
+  const author = searchParams.get("author") || "";
 
   const pillarColors: Record<string, string> = {
     coaching: "#F16363",
@@ -20,6 +23,26 @@ export async function GET(request: NextRequest) {
 
   const pillar = searchParams.get("pillar") || "";
   const accentColor = pillarColors[pillar] || "#F16363";
+
+  // Build the type label
+  const typeLabel =
+    type === "podcast"
+      ? episodeNumber
+        ? `Episode ${episodeNumber}`
+        : "Podcast Episode"
+      : type === "blog"
+        ? "Blog"
+        : type === "tool"
+          ? "Free Tool"
+          : "";
+
+  // Build the meta line (guest for podcast, author for blog)
+  const metaLine =
+    type === "podcast" && guest
+      ? `with ${guest}`
+      : type === "blog" && author
+        ? `By ${author}`
+        : subtitle;
 
   return new ImageResponse(
     (
@@ -97,13 +120,7 @@ export async function GET(request: NextRequest) {
                   letterSpacing: "4px",
                 }}
               >
-                {type === "podcast"
-                  ? "Podcast Episode"
-                  : type === "blog"
-                    ? "Blog"
-                    : type === "tool"
-                      ? "Free Tool"
-                      : ""}
+                {typeLabel}
               </span>
             </div>
           )}
@@ -112,7 +129,8 @@ export async function GET(request: NextRequest) {
           <h1
             style={{
               color: "#FAFAFA",
-              fontSize: title.length > 60 ? "52px" : title.length > 40 ? "64px" : "72px",
+              fontSize:
+                title.length > 60 ? "52px" : title.length > 40 ? "64px" : "72px",
               fontWeight: 700,
               lineHeight: 1.1,
               margin: 0,
@@ -123,8 +141,8 @@ export async function GET(request: NextRequest) {
             {title}
           </h1>
 
-          {/* Subtitle */}
-          {subtitle && (
+          {/* Meta line (guest / author / subtitle) */}
+          {metaLine && (
             <p
               style={{
                 color: "#A0A0A5",
@@ -134,7 +152,7 @@ export async function GET(request: NextRequest) {
                 maxWidth: "700px",
               }}
             >
-              {subtitle}
+              {metaLine}
             </p>
           )}
         </div>

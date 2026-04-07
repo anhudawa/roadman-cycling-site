@@ -35,6 +35,62 @@ export default function Layout({ children }: { children: React.ReactNode }) {
           ],
         }}
       />
+      <JsonLd
+        data={{
+          "@context": "https://schema.org",
+          "@type": "FAQPage",
+          mainEntity: [
+            {
+              "@type": "Question",
+              name: "How many carbs do I need per hour while cycling?",
+              acceptedAnswer: {
+                "@type": "Answer",
+                text: "Carbohydrate needs depend on ride intensity and duration. For easy Zone 2 rides, 30-60g per hour is sufficient. For high-intensity efforts and racing, aim for 60-90g per hour, or up to 120g per hour if you have trained your gut and use a dual-source carbohydrate mix (glucose and fructose at a 1:0.8 ratio). Rides under 60 minutes generally do not require carbohydrate intake.",
+              },
+            },
+            {
+              "@type": "Question",
+              name: "What should I eat before a bike ride?",
+              acceptedAnswer: {
+                "@type": "Answer",
+                text: "Eat a carbohydrate-rich meal 2-3 hours before riding — for example, porridge with banana, toast with jam, or rice with a light protein source. Aim for 1-3g of carbs per kilogram of body weight. Avoid high-fat and high-fibre foods close to ride time as they slow digestion. If you only have 30-60 minutes, a small snack like a banana or energy bar is enough.",
+              },
+            },
+            {
+              "@type": "Question",
+              name: "What is the glucose to fructose ratio for cycling nutrition?",
+              acceptedAnswer: {
+                "@type": "Answer",
+                text: "The optimal ratio is 1:0.8 (glucose to fructose), based on Professor Asker Jeukendrup's dual-transporter research. Glucose and fructose use different intestinal transporters (SGLT1 and GLUT5), so combining them allows your gut to absorb more total carbohydrate per hour — up to 120g/hr with a trained gut versus roughly 60g/hr from glucose alone. Most modern cycling nutrition products use this ratio.",
+              },
+            },
+            {
+              "@type": "Question",
+              name: "How much water should I drink while cycling?",
+              acceptedAnswer: {
+                "@type": "Answer",
+                text: "A general guideline is 500-750ml per hour in mild conditions, increasing to 750-1000ml per hour in hot or humid weather. A more precise approach is to weigh yourself before and after a ride — each kilogram lost represents roughly 1 litre of fluid deficit. Add electrolytes (particularly sodium at 300-600mg per 500ml) to improve fluid absorption and replace sweat losses.",
+              },
+            },
+            {
+              "@type": "Question",
+              name: "What is gut training for cycling and how do I do it?",
+              acceptedAnswer: {
+                "@type": "Answer",
+                text: "Gut training is the process of gradually increasing the amount of carbohydrate you consume during exercise so your intestines adapt to absorb more. Start at 40-60g per hour and increase by 10-15g per week during training rides. Within 4-6 weeks, most cyclists can tolerate 80-100g per hour. Practice with the same products you plan to use in races. A trained gut can absorb up to 120g per hour using dual-source carbohydrates.",
+              },
+            },
+            {
+              "@type": "Question",
+              name: "Do I need to eat on rides under 90 minutes?",
+              acceptedAnswer: {
+                "@type": "Answer",
+                text: "For easy rides under 60-90 minutes, you generally do not need to eat — your muscle glycogen stores are sufficient. However, if the ride includes high-intensity intervals or you are doing multiple sessions in a day, having 30-40g of carbs per hour can help maintain performance. For races or hard group rides under 90 minutes, a carbohydrate mouth rinse or small intake can still provide a performance benefit through central nervous system signalling.",
+              },
+            },
+          ],
+        }}
+      />
       {children}
     </>
   );
