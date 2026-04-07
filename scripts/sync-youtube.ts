@@ -1,4 +1,25 @@
-import "dotenv/config";
+import fs from "fs";
+import path from "path";
+
+// Load env files manually (.env.local takes priority, .env as fallback)
+// Note: dotenv's config() is blocked by some sandboxes so we load directly
+function loadEnvFile(filePath: string) {
+  if (!fs.existsSync(filePath)) return;
+  const content = fs.readFileSync(filePath, "utf-8");
+  for (const line of content.split("\n")) {
+    const trimmed = line.trim();
+    if (!trimmed || trimmed.startsWith("#")) continue;
+    const eqIndex = trimmed.indexOf("=");
+    if (eqIndex === -1) continue;
+    const key = trimmed.slice(0, eqIndex).trim();
+    const value = trimmed.slice(eqIndex + 1).trim();
+    if (!process.env[key]) {
+      process.env[key] = value;
+    }
+  }
+}
+loadEnvFile(path.join(process.cwd(), ".env.local"));
+loadEnvFile(path.join(process.cwd(), ".env"));
 import {
   getAllVideoIds,
   getVideoDetails,
@@ -12,6 +33,7 @@ import {
   generateMdx,
   writeMdxFile,
   videoAlreadyExists,
+  findExistingFile,
 } from "./lib/mdx-generator.js";
 import { loadState, saveState } from "./lib/sync-state.js";
 
@@ -20,6 +42,7 @@ const args = process.argv.slice(2);
 const fullSync = args.includes("--full");
 const dryRun = args.includes("--dry-run");
 const metadataOnly = args.includes("--metadata-only");
+const reEnrich = args.includes("--re-enrich");
 const singleVideo = args.find((a) => a.startsWith("--video="))?.split("=")[1];
 const limit = parseInt(
   args.find((a) => a.startsWith("--limit="))?.split("=")[1] || "0"
@@ -33,6 +56,7 @@ async function main() {
   console.log(`   Channel: @${CHANNEL_HANDLE}`);
   console.log(`   Mode: ${fullSync ? "FULL" : "INCREMENTAL"}`);
   console.log(`   Dry run: ${dryRun}`);
+  console.log(`   Re-enrich: ${reEnrich}`);
   console.log(`   Metadata only: ${metadataOnly}`);
   console.log(
     `   AI: ${process.env.ANTHROPIC_API_KEY ? "ENABLED (Haiku)" : "DISABLED"}`
@@ -53,10 +77,11 @@ async function main() {
     console.log(`   Found ${videoIds.length} videos on channel`);
   }
 
-  // Step 2: Filter to unprocessed videos
+  // Step 2: Filter to unprocessed videos (or all if re-enriching)
   const newVideoIds = videoIds.filter((id) => {
-    if (!fullSync && state.processedVideoIds.includes(id)) return false;
     if (state.skippedVideoIds.includes(id)) return false;
+    if (reEnrich) return true; // Re-enrich mode: process all, overwriting existing
+    if (!fullSync && state.processedVideoIds.includes(id)) return false;
     if (videoAlreadyExists(id)) return false;
     return true;
   });
@@ -161,11 +186,15 @@ async function main() {
         aiContent,
       });
 
+      // In re-enrich mode, overwrite the existing file instead of creating a new one
+      const existingPath = reEnrich ? findExistingFile(video.videoId) : null;
+      const writePath = existingPath || filePath;
+
       if (dryRun) {
-        console.log(`   🏷  Would write: ${slug}.mdx`);
+        console.log(`   🏷  Would write: ${existingPath ? path.basename(existingPath) : slug + ".mdx"}${existingPath ? " (overwrite)" : ""}`);
       } else {
-        writeMdxFile(filePath, content);
-        console.log(`   ✅ ${slug}.mdx`);
+        writeMdxFile(writePath, content);
+        console.log(`   ✅ ${existingPath ? path.basename(existingPath) + " (enriched)" : slug + ".mdx"}`);
       }
 
       state.processedVideoIds.unshift(video.videoId);

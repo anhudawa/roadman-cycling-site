@@ -146,10 +146,10 @@ export function writeMdxFile(filePath: string, content: string): void {
 }
 
 /**
- * Check if a video ID already has an MDX file
+ * Find the existing MDX file path for a video ID, or null if not found
  */
-export function videoAlreadyExists(videoId: string): boolean {
-  if (!fs.existsSync(CONTENT_DIR)) return false;
+export function findExistingFile(videoId: string): string | null {
+  if (!fs.existsSync(CONTENT_DIR)) return null;
 
   const files = fs.readdirSync(CONTENT_DIR).filter((f) => f.endsWith(".mdx"));
 
@@ -158,9 +158,16 @@ export function videoAlreadyExists(videoId: string): boolean {
     const raw = fs.readFileSync(filePath, "utf-8");
     const { data } = matter(raw);
     if (data.youtubeId === videoId) {
-      return true;
+      return filePath;
     }
   }
 
-  return false;
+  return null;
+}
+
+/**
+ * Check if a video ID already has an MDX file
+ */
+export function videoAlreadyExists(videoId: string): boolean {
+  return findExistingFile(videoId) !== null;
 }

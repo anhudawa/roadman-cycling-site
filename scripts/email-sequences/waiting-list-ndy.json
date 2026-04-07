@@ -1,0 +1,18 @@
+{
+  "workflow_name": "Waiting List NDY",
+  "workflow_id": "WbDPdk",
+  "trigger": "NDY waiting list application",
+  "status": "Live",
+  "total_steps": 3,
+  "email_steps": 1,
+  "from_address": "Anthony Walsh <admin@roadmancycling.com>",
+  "emails": [
+    {
+      "step": 1,
+      "subject": "Not Done Yet",
+      "preheadline": "",
+      "delay_before": "immediate",
+      "body_text": "Thank you for your application. I'm working my way through these applications as fast as possible. Expect to hear from me in the next 24 - 48 hours. For this, the first cohort, of Not Done Yet we'll be capping applicants to 100. Looking forward to chatting soon\nAnthony"
+    }
+  ]
+}

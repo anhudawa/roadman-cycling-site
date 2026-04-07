@@ -1,0 +1,18 @@
+{
+  "workflow_name": "Self Coaching Waiting List",
+  "workflow_id": "zmZlWQ",
+  "trigger": "Coach Yourself Academy waiting list sign-up",
+  "status": "Live",
+  "total_steps": 3,
+  "email_steps": 1,
+  "from_address": "Anthony Walsh <admin@roadmancycling.com>",
+  "emails": [
+    {
+      "step": 1,
+      "subject": "You're officially in \u2013 Here's what's coming next \ud83d\udc40",
+      "preheadline": "",
+      "delay_before": "immediate",
+      "body_text": "Thanks for signing up \u2014 I'm genuinely excited you're here.\nI created Coach Yourself Academy for people like you \u2014 driven cyclists who want to go deeper, smarter, and take control of their training. Whether you want to:\nTrain yourself with more purpose and structure\nCoach your child or a small group of clubmates\nOr finally launch your own coaching business\u2026\n\nThis course is going to give you the knowledge, frameworks, and tools to do exactly that. Over the last decade, I've helped cyclists at every level transform their riding \u2014 and now I'm packaging that experience into a self-paced system built around clarity, simplicity, and results.\n\nHere's what's next:\n- You'll get early access before public release\n- I'll send behind-the-scenes sneak peeks as we build\n- There'll be limited launch spots \u2014 and you'll get first pick\n\nThis first cohort is going to shape the future of the Academy. You're not just on the list \u2014 you're part of the founding group.\n\nLet's make something special happen.\nAnthony\nRoadman Cycling"
+    }
+  ]
+}

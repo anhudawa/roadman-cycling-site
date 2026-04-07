@@ -1,0 +1,33 @@
+{
+  "workflow_name": "Cart Abandon Sequence",
+  "workflow_id": "ZxBYow",
+  "trigger": "Cart abandonment",
+  "status": "Live",
+  "total_steps": 8,
+  "email_steps": 3,
+  "from_address": "Anthony Walsh <admin@roadmancycling.com>",
+  "_note": "ALL THREE EMAILS ARE UNCUSTOMIZED CF DEFAULT TEMPLATES — still contain placeholder instructions like [PRODUCT], [YOUR NAME], [SUPPORT CONTACT]. These were never set up for Roadman. Need to be written from scratch for Beehiiv.",
+  "emails": [
+    {
+      "step": 1,
+      "subject": "did something happen?",
+      "preheadline": "",
+      "delay_before": "1 hour",
+      "body_text": "[UNCUSTOMIZED CF TEMPLATE — placeholder content only]"
+    },
+    {
+      "step": 2,
+      "subject": "there must have been a mistake",
+      "preheadline": "",
+      "delay_before": "1 day",
+      "body_text": "[UNCUSTOMIZED CF TEMPLATE — placeholder content only]"
+    },
+    {
+      "step": 3,
+      "subject": "going... going... gone",
+      "preheadline": "",
+      "delay_before": "2 days",
+      "body_text": "[UNCUSTOMIZED CF TEMPLATE — placeholder content only]"
+    }
+  ]
+}

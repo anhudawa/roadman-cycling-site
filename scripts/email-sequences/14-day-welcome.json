@@ -1,0 +1,110 @@
+{
+  "workflow_name": "14 day welcome",
+  "workflow_id": "KnmaAy",
+  "trigger": "New contact / opt-in",
+  "status": "Draft",
+  "total_steps": 29,
+  "email_steps": 14,
+  "from_address": "Anthony Walsh <admin@roadmancycling.com>",
+  "_note": "This workflow is in DRAFT status in ClickFunnels. Emails 4 and 5 share the same subject 'The Road Back' but have different content.",
+  "emails": [
+    {
+      "step": 1,
+      "subject": "You're In \u2014 Here's More Than You Signed Up For",
+      "preheadline": "",
+      "delay_before": "immediate",
+      "body_text": "Hey there,\nYou grabbed the Tyre Pressure Calculator \u2014 smart move. But I didn't want to stop there\u2026\nBecause if you're the kind of rider who cares about marginal gains, I've got a few more tools that'll make a real difference:\n\nBreakfast Calculator \u2014 No more guessing your pre-ride fuel. Eat with purpose.\nTraining Zone Calculator \u2014 Dial in your power and HR zones for maximum gains.\nAll completely free.\n\nClick here to access everything (You'll see it all under the \"Courses\" tab)\n\nQuick heads-up: Over the next couple of weeks, I'll be sending you a short daily note. Nothing overwhelming \u2014 just stories, lessons, and tools that have helped me (and thousands of Roadman athletes) train smarter and feel better.\n\nAnd if you're enjoying these resources, you'll love the Roadman Cycling Podcast. Every week I unpack:\nSmarter ways to train\nPerformance insights to get leaner and faster\nDeep-dive convos with World Tour experts\n\nListen on Spotify | Apple Podcasts | Watch on YouTube\n\nThanks again for trusting me with your inbox. You've just joined a community of over 20,000 athletes who train smarter, recover harder, and chase something deeper than watts.\nWelcome to Roadman.\n\u2014 Anthony"
+    },
+    {
+      "step": 2,
+      "subject": "I Didn't Want to Wear a Tie",
+      "preheadline": "",
+      "delay_before": "1 day",
+      "body_text": "Hey \u2014\nI didn't hate law school. I just hated the life it was pointing toward.\nThe suits. The late nights. The 9-to-5 that bled into 9-to-midnight. So I bailed. Moved to France. Chased the dream of racing full time. It was raw. I was broke. But it was free.\n\nEventually, I came home. Still not ready for the courtroom. So I built businesses. Started small. Then raised money. Hired teams. Took big swings. The plan? Grind now. Ride later. Escape the job I didn't want\u2014by being my own boss.\n\nBut somewhere along the way, I built a new prison. 60, sometimes 70-hour weeks. All \"for me\"\u2026 but I was miserable. Heavy. Disconnected. Training less. Sleeping worse. Libido tanked. On paper, I had everything. In reality, I was falling apart.\n\nBut I kept grinding. Kept telling myself: \"Just get through this month.\" \"Once this deal closes\u2026\" \"Next quarter will be different.\" It wasn't.\n\nThen I lined up for a bike race \u2014 and everything snapped.\nMore on that tomorrow.\n\u2014 Anthony"
+    },
+    {
+      "step": 3,
+      "subject": "Dropped at 5K",
+      "preheadline": "",
+      "delay_before": "1 day",
+      "body_text": "Hey,\nThe Tour of Ulster was a three-day stage race. I'd raced it before. Even had a shot at winning it once.\nThis time was different. I was overweight. Unfit. Running on stress, bad sleep, and blind optimism. But I lined up anyway. Told myself I'd ride into it. Shake off the rust.\n\nFive kilometers in, I was out the back. Alone. Dropped before the race had even started. And I quit. Not after Stage 1. Not after a mechanical. I quit after five kilometers.\n\nOn the drive home, I started crying. Not because I DNF'd. Not even because I'd embarrassed myself. It was deeper than that. When I was a kid, my dad lost his toe in an accident. After that, he gained weight fast. He couldn't play football with us. Couldn't run. Couldn't really do much. I saw what excess weight did to him. What it took away.\n\nAnd I made a silent promise to myself. That would never be me. I would stay active. Stay strong. Stay in control. But on that drive home, I knew the truth. I had broken that promise. That moment wrecked me.\n\nBut it also woke me up.\n\nI'm not sharing this for sympathy. I'm sharing it because I know some of you are in that same place right now. You've let something slip. You feel it. You know it. And you're not sure how to start climbing back.\n\nTomorrow, I'll tell you how I did.\nAnd I'll show you the first tool that helped me get there \u2014 it's free, it's inside the community, and it's waiting for you under \"Courses\" when you log in here: roadmancycling.com"
+    },
+    {
+      "step": 4,
+      "subject": "The Road Back",
+      "preheadline": "",
+      "delay_before": "1 day",
+      "body_text": "Hey \u2014\nAfter that DNF in the Tour of Ulster, I couldn't pretend anymore. The weight. The unhappiness. The constant grind. It wasn't just a bad patch. It was a broken system I'd built around myself. And I didn't want to live inside it anymore.\n\nA mentor gave me advice I didn't want to hear. He said: \"Shut it down. All of it. Give yourself a blank page.\" So I did. I walked away from every business. From everything that was \"working.\" From the version of me that was just surviving.\n\nAnd I sat with one question: How do I use cycling to get my health back? That question wasn't about racing. It wasn't about numbers. It was about energy. Joy. Presence. Feeling like me again.\n\nThat question became a podcast. That podcast became a community. That community became Roadman.\n\nAnd here's what I discovered: Progress isn't found in heroic effort. It's found in structure. The right daily habits. The right recovery. The right balance of stress and rest. Layered slowly, with intention.\n\nTomorrow I'll show you the map. The actual system that brought me back to life.\n\u2014 Anthony\n\nP.S. If you haven't already, check out the free training plans and resources inside the community. They're the same foundation I used on my own comeback. And it's made for real riders with real lives."
+    },
+    {
+      "step": 5,
+      "subject": "The Road Back",
+      "preheadline": "",
+      "delay_before": "1 day",
+      "body_text": "Hey \u2014\nYesterday I told you about my comeback. But I didn't do it with willpower. I did it with a system. Here's the framework I used \u2014 and still use today with every Roadman athlete:\n\nThe 5 Pillars of Performance\n1. Training \u2014 Structured. Periodised. Progressive. Not random rides and Strava KOMs.\n2. Nutrition \u2014 Fuelling for the work required. Not starving yourself lean.\n3. Strength \u2014 Protecting your body. Building power. Preventing injury.\n4. Recovery \u2014 Sleep. Stress management. Deload weeks. The stuff that actually lets adaptation happen.\n5. Community \u2014 Accountability. Shared struggle. People who care whether you show up.\n\nMost riders focus on one. Maybe two. And wonder why they plateau.\n\nElite athletes don't train harder. They train inside a system where all five pillars support each other. That's what I built Roadman around. That's what the podcast explores. And it's what Not Done Yet delivers.\n\nYou don't need to be elite. You just need a system that works.\n\nIf you want to start applying this today, grab the free training plan inside the community. It's structured around the same principles \u2014 and it's built specifically for time-crunched riders like us."
+    },
+    {
+      "step": 6,
+      "subject": "The Training Secret No One's Telling Amateurs",
+      "preheadline": "",
+      "delay_before": "1 day",
+      "body_text": "Hey \u2014\nI've interviewed over 1,400 coaches, scientists, and athletes on the Roadman Podcast. If there's one thing that comes up more than anything else, it's this: Most amateurs train too hard on their easy days and too easy on their hard days.\n\nProfessor Stephen Seiler calls it the \"black hole\" of training \u2014 that grey zone where you feel like you're working, but you're not actually triggering adaptation.\n\nThe fix? Polarisation. Make your easy days genuinely easy. Make your hard days properly hard. And stop living in the middle.\n\nThis single shift \u2014 more than any gadget, supplement, or new bike \u2014 is what separates riders who improve from riders who stagnate.\n\nThe training plans inside the Roadman community are built on this principle. Structured intensity. Genuine recovery. No grey zone.\n\nIf you haven't grabbed yours yet, they're free: Access the plans here\n\nAnd if you want to hear Professor Seiler explain it himself, this is one of the most popular episodes I've ever published: Listen here\n\nTomorrow, I'll share the single biggest mistake riders make with periodisation \u2014 and how to fix it.\n\u2014 Anthony\n\nP.S. If there's a topic you'd like me to cover in the podcast, reply and tell me \u2014 I'm building these weekly to support you."
+    },
+    {
+      "step": 7,
+      "subject": "You're Probably Planning Your Season Backwards",
+      "preheadline": "",
+      "delay_before": "1 day",
+      "body_text": "Hey \u2014\nMost riders start their season by asking: \"What's my goal event?\" Then they count backwards and fill in the weeks. Sounds logical. But it's exactly backwards.\n\nBecause here's what usually happens: You build volume too fast. You skip the base. You peak too early. And by the time your event comes, you're cooked.\n\nThe best coaches I've spoken to \u2014 Dan Lorang, Joe Friel, John Wakefield \u2014 all start with one question: Where is the athlete right now?\n\nNot where they want to be. Not where they were last year. Right now.\n\nFrom there, you build forward. Base first. Then intensity. Then race-specific work. With deload weeks built in. With nutrition adjusted to match. With strength work that complements, not competes.\n\nThat's periodisation done properly. And it's the backbone of every plan inside Roadman.\n\nIf you want a structured approach to your next 16 weeks, the free training plans inside the community are designed exactly this way. They're not random workouts. They're periodised progressions.\n\nGrab yours here: Access the plans\n\nTomorrow \u2014 the most underrated pillar of performance. It's not training. It's not nutrition. And almost every amateur ignores it.\n\u2014 Anthony\n\nP.S. If periodisation feels confusing, don't overthink it. Just start. It's the foundation behind every plan I build."
+    },
+    {
+      "step": 8,
+      "subject": "Why You're Not Stronger on the Bike",
+      "preheadline": "",
+      "delay_before": "1 day",
+      "body_text": "Hey \u2014\nI avoided the gym for years. Thought it was for bodybuilders. Or people who didn't ride enough. Or something I could \"get to later\" if I had extra time.\n\nBut skipping strength work wasn't saving me time. It was costing me performance.\n\nEvery world-class coach I've interviewed says the same thing: Strength training isn't optional. It's essential. Not because it gives you big arms. But because it makes everything else work better.\n\nMore lean muscle = faster metabolism.\nStronger glutes and core = more power to the pedals.\nLifting correctly = fewer injuries, better posture, higher FTP.\n\nThe best part? You don't need to spend hours in the gym. Just two focused sessions a week. With the right exercises. In the right order. That's it.\n\nI built a full plan around exactly that \u2014 and it's the same framework we use with Roadman athletes. No fluff. No filler. Just the strength work that transfers to the bike.\n\nIf you're serious about getting leaner, stronger, and more resilient... Start here.\n\u2014 Anthony\n\nP.S. Strength Training for Cyclists \u2014 a plan built for real riders, with real lives. Two sessions a week. Maximum return. Real-world results."
+    },
+    {
+      "step": 9,
+      "subject": "The Most Important Question to Ask Before Every Ride",
+      "preheadline": "",
+      "delay_before": "1 day",
+      "body_text": "Hey \u2014\nI sat down with Joe Friel a while back \u2014 the author of The Cyclist's Training Bible and founder of TrainingPeaks. One of the smartest minds the sport has ever seen. We talked about periodisation, performance, and longevity.\n\nBut one idea stuck with me more than anything else: \"Don't just follow a plan. Follow your readiness.\"\n\nHere's how Joe trains his athletes: Each morning, before they pick a session, they do a simple self-check:\nHow did I sleep?\nHow sore am I?\nAm I feeling sick?\nAm I mentally motivated to train?\n\nRate each on a 1\u20135 scale. Then \u2014 and only then \u2014 choose the session that matches.\n\nFeeling explosive? Hit the sprints.\nFatigued and flat? Drop into a recovery ride.\nTotally wiped? Rest. No guilt.\n\nIt's not random. It's structured freedom \u2014 a system designed for adaptation. Because here's the truth: We don't get faster from training. We get faster from recovering from training. And you can't adapt when your body is already under stress.\n\nThat conversation was another piece of the puzzle that built the Roadman system. And it's exactly how I coach inside Not Done Yet.\n\nIf you're curious about working together more closely, I open spots a few times a year. Reply to this email and I'll add you to the next intake list.\n\nOver the next few weeks I'll send over the details personally.\n\u2014 Anthony"
+    },
+    {
+      "step": 10,
+      "subject": "You're Not Supposed to Do This Alone",
+      "preheadline": "",
+      "delay_before": "1 day",
+      "body_text": "Hey \u2014\nFor years, I trained alone. Just me, my bike, and the road. At first, it felt efficient. Focused. Intentional. But over time, something started to wear me down. Not the training. The isolation.\n\nI started to feel disconnected \u2014 not just from others, but from why I started riding in the first place.\n\nThen I joined a local club spin. Same bike. Same legs. But everything felt lighter. The effort. The conversation. The sense of momentum.\n\nTraining plans are essential \u2014 no question. But there's a piece they can't replicate: Shared struggle. That moment when you're both gasping, both digging in, and neither willing to drop off the back.\n\nWe don't just get stronger through intervals. We get stronger through connection.\n\nSo if it's been a while since you joined a group ride \u2014 this is your sign. Plug into a local club this week. Because miles feel easier with friends. And suffering always loves companionship.\n\u2014 Anthony\n\nP.S. If you happen to be in Ireland, you might enjoy the Roadman Cycling Club \u2014 our physical riding club based in the southeast. We ride together, train together, and push each other. You can check it out here: Roadman Cycling Club"
+    },
+    {
+      "step": 11,
+      "subject": "Remember Why You Started",
+      "preheadline": "",
+      "delay_before": "1 day",
+      "body_text": "Hey \u2014\nYou've been here for a few days now. Reading these emails. Tuning into the podcast. Taking small steps forward. Maybe you've updated your training zones. Maybe you're lifting again. Maybe you're just thinking differently about what progress looks like. That matters. Even if it's quiet. Even if it's slow.\n\nBut I want to remind you of something: You didn't start cycling because it was easy. You started because it gave you something back. Time alone. A sense of strength. Maybe just a break from the noise of life.\n\nThis journey \u2014 this return to health, to clarity, to feeling like you again \u2014 it doesn't happen all at once. It happens on days like today. When you recommit. Not to perfection. But to showing up.\n\nSo here's the invitation: Get back on the bike today. Even if it's just a spin. Even if you don't feel like it. Because the rider you're becoming? He's not made in big breakthroughs. He's made in the choice to keep going.\n\u2014 Anthony\n\nP.S. If you haven't already, the Strength Training for Cyclists plan is still there for you. Two focused sessions a week. No fluff. No gym bro nonsense. Just what works for real riders with real lives. More muscle. More power. Less fat. Let's go."
+    },
+    {
+      "step": 12,
+      "subject": "For the Rider Who's Ready to Go All In",
+      "preheadline": "",
+      "delay_before": "1 day",
+      "body_text": "Hey \u2014\nYou've made it this far. Not just in this email sequence \u2014 but in your own shift. Something clicked. Maybe you can't name it yet, but you can feel it. The way you see training. The way you think about progress. Even the way you speak to yourself. It's starting to change.\n\nIf you're reading this and you're ready for more \u2014 More structure. More accountability. More clarity, coaching, and honest feedback\u2026\n\nI want to offer you something rare. I work one-on-one with a very small number of athletes each year. It's not for everyone. It's for the person who's serious about reclaiming their health, hitting a new level on the bike, and building a body and life they're proud of.\n\nThis isn't just about watts. It's about identity. It's about building a system that works \u2014 and having someone in your corner who gets it.\n\nIf that sounds like where you're headed, you can apply to work with me here:\nWork With Anthony\n\nIf we're a good fit, we'll build something powerful together.\n\u2014 Anthony"
+    },
+    {
+      "step": 13,
+      "subject": "Your Best Years Aren't Behind You",
+      "preheadline": "",
+      "delay_before": "1 day",
+      "body_text": "Hey \u2014\nThere's a story people like us get told as we get older. That our best years are behind us. That performance is for the young. That vitality fades. That it's time to \"slow down.\"\n\nBut here's what I've seen \u2014 in myself, in our athletes, in this community: That story is a lie.\n\nYou don't need to fade quietly. You don't need to let the extra weight win. You don't need to hand over your energy, your strength, or your spark.\n\nIt's not about becoming someone new. It's about remembering who you are \u2014 and making time to rebuild the version of you that always existed underneath the noise.\n\nYou don't have to race. You don't need a podium. But you do need a mission. Something that says: \"I'm not done yet.\"\n\nIf that's still inside you, even just a flicker \u2014 Keep going. You've got more in you. And your best years? They don't live in the rearview.\n\u2014 Anthony\n\nP.S. If you're ready to train with structure and intention, the Strength Training for Cyclists plan is still there for you. No fluff. Just a system that works \u2014 no matter what age you are."
+    },
+    {
+      "step": 14,
+      "subject": "The Real Reason You're Still Carrying Extra Weight",
+      "preheadline": "",
+      "delay_before": "1 day",
+      "body_text": "Hey \u2014\nI had a conversation recently with Uri Carlson, one of the best performance nutritionists in the world. She's worked with Olympians, elite endurance athletes \u2014 people at the absolute top.\n\nAnd she said something that honestly stopped me in my tracks: \"Most amateur cyclists are carrying extra weight\u2026 because they're eating too little.\"\n\nWait, what? It sounded backwards. But here's what she meant:\n\nMost riders are caught in a downward spiral \u2014 Restricting calories. Neglecting strength training. Losing lean muscle mass. Slowing their metabolism. And then eating even less to compensate. It's a race to the bottom.\n\nHere's what Uri teaches instead:\nEat enough to fuel performance and recovery \u2014 especially carbs around training\nLift weights consistently \u2014 more muscle = higher metabolic rate, even at rest\nRecover like it matters \u2014 undereating and undersleeping are performance killers\n\nWhen you do this, something counterintuitive happens: You eat more. You train better. You lose fat. And you keep losing it \u2014 because your body is working with you, not against you.\n\nThat conversation changed the way I approach body composition coaching inside Roadman. And it's exactly the approach we use inside Not Done Yet.\n\nIf you want to hear more from Uri, I'll be releasing that episode soon on the podcast.\n\nIn the meantime, the Strength Training for Cyclists plan ties directly into this \u2014 because the more lean muscle you carry, the easier it is to stay lean. Two sessions a week. Maximum return. Built for real riders."
+    }
+  ]
+}

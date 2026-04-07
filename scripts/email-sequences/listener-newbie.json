@@ -1,0 +1,60 @@
+{
+  "workflow_name": "skool (listener/newbie)",
+  "workflow_id": "BVGzyw",
+  "trigger": "Tag added: listener/newbie (from Skool free group join)",
+  "status": "Live",
+  "total_steps": 15,
+  "email_steps": 7,
+  "from_address": "Anthony Walsh <admin@roadmancycling.com>",
+  "emails": [
+    {
+      "step": 1,
+      "subject": "You're in — here's where to start",
+      "preheadline": "The one thing to do first inside the Clubhouse",
+      "delay_before": "immediate",
+      "body_text": "Hey,\n\nWelcome to the Roadman Cycling Clubhouse. You said you've been learning about cycling but haven't followed a structured plan yet. You're not alone — that's the most common thing I hear from podcast listeners and community members.\n\nHere's where to start:\n\n👉 Grab your free 16-week training plan: [CLASSROOM LINK]\n\nThis is the bridge between consuming information and actually following a system. Pick the plan that matches your goals. 2 minutes.\n\nOver the next couple of weeks, I'll share some of the most useful things I've learned from 1,400+ podcast conversations — and more importantly, how to actually apply them.\n\nTalk soon,\nAnthony"
+    },
+    {
+      "step": 2,
+      "subject": "Knowing and doing are not the same thing",
+      "preheadline": "",
+      "delay_before": "1 day",
+      "body_text": "Hey,\n\nHere's something I've noticed after 1,400+ podcast episodes: the people who know the most about cycling training are often the ones getting the least results from it.\n\nThat's not a dig. I've been there myself.\n\nYou can explain polarised training to anyone. You understand Zone 2. You know what W/kg means and why it matters. But your actual training week looks pretty much the same as it did a year ago.\n\nThe gap between knowledge and results isn't more knowledge. It's a system.\n\nStart with the free Nutrition Masterclass inside the Clubhouse - Dr David Dunne and Dr Sam Impey (both World Tour nutritionists) break down the exact fuelling strategies the pros use.\n\nBut this time, don't just watch it. Write down one thing you'll change this week.\n\n👉 Watch the Nutrition Masterclass: Link\n\nOne action. That's the difference.\n\nAnthony"
+    },
+    {
+      "step": 3,
+      "subject": "FTP from the low 200s to 295",
+      "preheadline": "",
+      "delay_before": "1 day",
+      "body_text": "Hey,\n\nDamien Maloney was an average sportive rider. Not getting any better. He'd plateaued like a lot of riders do — regular Zone 2 and Zone 3 rides, no clear plan.\n\nHis words: \"I had no clear objective or plan.\" Sound familiar?\n\nWhen Roadman built him a structured programme around his goals and schedule, his FTP went from the low 200s to 295.\n\nHe said joining was one of the smartest things he'd done — not because of the plan, but because he finally had a team behind him and a coach who could see the truth in his numbers.\n\nDamien had all the information before. What changed was he committed to a system.\n\nI'm sharing this story because the content trap is real, consuming content feels productive, but results come from acting on it. And the people getting the best results are the ones who stopped just listening.\n\nMore on that soon.\n\nAnthony"
+    },
+    {
+      "step": 4,
+      "subject": "Score yourself on these 5 things — be honest",
+      "preheadline": "",
+      "delay_before": "1 day",
+      "body_text": "Hey,\n\nYou've consumed enough cycling content to coach half your local club ride. So let me ask you something direct.\n\nScore yourself on the five pillars every serious cycling programme is built on. You score 1 point if \"not doing it\", 2 points if \"doing it but guessing\", 3 points if \"dialled in\":\n\n1. Training structure. Are you following a periodised plan - or just riding when you feel like it with some intervals thrown in because a podcast said to?\n\n2. Nutrition. Do you know what to eat before a hard session versus a rest day - specific amounts, changing by the meal? Or do you eat the same thing every day regardless of what's on the plan?\n\n3. Strength & conditioning. Are you doing gym sessions designed to complement your cycling? Or are you skipping it entirely because no one's told you exactly what to do?\n\n4. Recovery. Do you have prescribed protocols - or is recovery just the day you don't ride?\n\n5. Accountability. Is anyone looking at your training? Does anyone actually care if you follow through?\n\nIf you scored 10 or below, you're not broken. You're just missing the system.\n\nTomorrow I'll show you what it looks like when someone builds all 5 for you.\n\nAnthony"
+    },
+    {
+      "step": 5,
+      "subject": "Here's what it looks like when someone builds all 5 for you",
+      "preheadline": "",
+      "delay_before": "1 day",
+      "body_text": "Hey,\n\nI've been holding off on this because I know you've been consuming cycling content for a while and the last thing you want is another pitch.\n\nSo I'm just going to tell you what's inside and let you decide.\n\nInside the Not Done Yet Coaching Community ($195/month) We have a 7 day trial :)\n\nTraining: A personalised daily coaching plan. A real coach reviews your power files, gets on one-on-one calls with you, and adjusts weekly. Not an algorithm. A human who knows your numbers, your schedule, and what happened last week.\n\nNutrition: Exact amounts prescribed by the meal. Your pre-session fuel changes based on what you're training that day. This is what \"fuel for the work required\" actually looks like when it's applied to your life, not explained in a podcast.\n\nStrength & conditioning: A programme built to feed your cycling, not fight it. The gym sessions you've been skipping because no one told you exactly what to do and when.\n\nRecovery: Prescribed protocols. Sleep, nutrition timing, deload weeks — all built into your plan so you don't have to guess.\n\nAccountability: Weekly coaching calls, monthly one-on-ones, a private community of 113 cyclists who show up every day. You won't disappear here.\n\n👉 Start your 7-day free trial: https://www.skool.com/roadmancycling/about\n\nAnthony"
+    },
+    {
+      "step": 6,
+      "subject": "\"I'm already getting it for free — why would I pay $195?\"",
+      "preheadline": "",
+      "delay_before": "1 day",
+      "body_text": "Hey,\n\nThis is the most honest question I get, so here's the most honest answer I can give.\n\nThe podcast is free. The Clubhouse is free. The training plans, the calculators, the nutrition masterclass — all free. And it's genuinely good. I'm proud of it.\n\nBut here's what free content can never do:\n\nIt can't review your power files and tell you that last Tuesday's interval session was sandbagged because you didn't fuel properly the night before.\n\nIt can't get on a call with you and adjust your plan because your work schedule changed.\n\nIt can't build a strength programme that fits around your bike work.\n\nIt can't sit across from you on a monthly progress call and rebuild next month's plan based on what actually happened this month.\n\nAnd it can't be a weekly live Q&A where you get direct answers to the specific problem you're stuck on right now.\n\nThat's what $195/month buys. Not more content. Coaching.\n\n👉 Start your 7-day free trial: https://www.skool.com/roadmancycling/about\n\nAnthony"
+    },
+    {
+      "step": 7,
+      "subject": "You already know what I'm about. The question is what you're going to do about it.",
+      "preheadline": "",
+      "delay_before": "1 day",
+      "body_text": "Hey,\n\nI'll keep this short.\n\nYou've been learning. Absorbing. You probably know more about training theory than most riders in your local club.\n\nBut knowing isn't doing. And every week that gap stays open, your potential sits there untouched.\n\nThe free tools are a starting line. \"Not Done Yet\" is where the knowledge becomes action — a coach who reviews your files, a monthly one-on-one call to keep your plan honest, a weekly Q&A, and a community that won't let you disappear.\n\nThe 7-day trial is free. One week inside the system, and the difference between education and coaching will be obvious.\n\n👉 Start your 7-day free trial: https://www.skool.com/roadmancycling/about\n\nEither way, I'm glad you're here. But I'd rather see you riding differently than reading about it.\n\nAnthony"
+    }
+  ]
+}
