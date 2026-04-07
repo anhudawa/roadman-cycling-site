@@ -233,7 +233,7 @@ export function Header() {
                 >
                   <Link
                     href={item.href}
-                    className="font-heading text-4xl text-off-white hover:text-coral transition-colors"
+                    className="font-heading text-4xl text-off-white hover:text-coral transition-colors px-4 py-2"
                     onClick={() => setIsMobileMenuOpen(false)}
                     style={{ transitionDuration: "var(--duration-fast)" }}
                   >

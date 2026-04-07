@@ -89,7 +89,7 @@ export function PodcastSearch({ episodes }: PodcastSearchProps) {
 
       {/* Filters */}
       <div className="flex flex-col gap-3 mb-8">
-        <div className="flex flex-wrap gap-2 justify-center">
+        <div className="flex flex-nowrap overflow-x-auto gap-2 justify-center pb-2 -mx-5 px-5 md:flex-wrap md:overflow-visible md:pb-0 md:mx-0 md:px-0">
           <button
             onClick={() => setPillarFilter("")}
             className={`px-4 py-2 rounded-full text-sm font-body transition-colors cursor-pointer ${
@@ -115,7 +115,7 @@ export function PodcastSearch({ episodes }: PodcastSearchProps) {
           ))}
         </div>
 
-        <div className="flex flex-wrap gap-2 justify-center">
+        <div className="flex flex-nowrap overflow-x-auto gap-2 justify-center pb-2 -mx-5 px-5 md:flex-wrap md:overflow-visible md:pb-0 md:mx-0 md:px-0">
           {(
             [
               ["interview", "Interviews"],

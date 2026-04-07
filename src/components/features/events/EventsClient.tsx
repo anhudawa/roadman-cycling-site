@@ -355,7 +355,7 @@ function EventCard({
           />
 
           <div className="p-6 md:p-8">
-            <div className="flex flex-col md:flex-row gap-6">
+            <div className="flex flex-col md:flex-row gap-4 md:gap-6">
               {/* Time block */}
               <div className="shrink-0">
                 <div

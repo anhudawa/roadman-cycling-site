@@ -182,7 +182,7 @@ export default function HomePage() {
         <ParallaxImage
           src="/images/community/DSC05808.JPG"
           alt="Two riders pushing bikes across a beach at sunset"
-          className="h-[40vh] md:h-[50vh]"
+          className="h-[30vh] md:h-[50vh]"
           objectPosition="center 20%"
           speed={0.3}
           overlayColor="from-deep-purple via-deep-purple/50 to-charcoal"
@@ -228,7 +228,7 @@ export default function HomePage() {
         <ParallaxImage
           src="/images/community/DSC05714.JPG"
           alt="Two cyclists riding through golden hour light in a birch forest"
-          className="h-[50vh] md:h-[60vh]"
+          className="h-[35vh] md:h-[60vh]"
           objectPosition="center 40%"
           speed={0.3}
           overlayColor="from-charcoal via-charcoal/50 to-deep-purple"

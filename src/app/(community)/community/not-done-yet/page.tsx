@@ -190,7 +190,7 @@ export default function NotDoneYetPage() {
             <div className="grid md:grid-cols-3 gap-6 max-w-5xl mx-auto items-start">
               {tiers.map((tier, i) => (
                 <ScrollReveal key={tier.name} direction="up" delay={i * 0.1}>
-                <div className={`relative ${tier.highlight ? "md:-mt-4 md:mb-4" : ""}`}>
+                <div className={`relative ${tier.highlight ? "md:-mt-4 md:mb-4 ring-1 ring-coral/30 md:ring-0 rounded-2xl" : ""}`}>
                   {tier.highlight && (
                     <div className="absolute -top-3 left-1/2 -translate-x-1/2 z-10">
                       <span className="bg-coral text-off-white text-xs font-heading tracking-wider px-4 py-1 rounded-full whitespace-nowrap">

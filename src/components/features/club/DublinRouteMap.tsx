@@ -9,7 +9,7 @@ import { motion } from "framer-motion";
  */
 export function DublinRouteMap() {
   return (
-    <div className="relative w-full aspect-[16/9] md:aspect-[2/1] overflow-hidden rounded-2xl border border-white/5">
+    <div className="relative w-full aspect-[4/3] md:aspect-[16/9] overflow-hidden rounded-2xl border border-white/5">
       {/* Background gradient */}
       <div className="absolute inset-0 bg-gradient-to-br from-deep-purple via-[#1a0a2e] to-charcoal" />
 
@@ -188,11 +188,11 @@ export function DublinRouteMap() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 1.5 }}
         >
-          <rect x="195" y="325" width="150" height="44" rx="6" fill="rgba(37, 37, 38, 0.85)" stroke="rgba(250, 250, 250, 0.1)" strokeWidth="0.5" />
-          <text x="270" y="342" textAnchor="middle" fill="#FAFAFA" fontSize="12" fontWeight="700" fontFamily="sans-serif" letterSpacing="1.5">
+          <rect x="185" y="322" width="170" height="52" rx="6" fill="rgba(37, 37, 38, 0.85)" stroke="rgba(250, 250, 250, 0.1)" strokeWidth="0.5" />
+          <text x="270" y="343" textAnchor="middle" fill="#FAFAFA" fontSize="15" fontWeight="700" fontFamily="sans-serif" letterSpacing="1.5">
             PHOENIX PARK
           </text>
-          <text x="270" y="358" textAnchor="middle" fill="#F16363" fontSize="10" fontFamily="sans-serif">
+          <text x="270" y="363" textAnchor="middle" fill="#F16363" fontSize="13" fontFamily="sans-serif">
             Thu 6:30pm · The Circuit
           </text>
         </motion.g>
@@ -224,11 +224,11 @@ export function DublinRouteMap() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 2.1 }}
         >
-          <rect x="690" y="245" width="140" height="44" rx="6" fill="rgba(37, 37, 38, 0.85)" stroke="rgba(250, 250, 250, 0.1)" strokeWidth="0.5" />
-          <text x="760" y="262" textAnchor="middle" fill="#FAFAFA" fontSize="12" fontWeight="700" fontFamily="sans-serif" letterSpacing="1.5">
+          <rect x="680" y="242" width="160" height="52" rx="6" fill="rgba(37, 37, 38, 0.85)" stroke="rgba(250, 250, 250, 0.1)" strokeWidth="0.5" />
+          <text x="760" y="263" textAnchor="middle" fill="#FAFAFA" fontSize="15" fontWeight="700" fontFamily="sans-serif" letterSpacing="1.5">
             360 CYCLES
           </text>
-          <text x="760" y="278" textAnchor="middle" fill="#F16363" fontSize="10" fontFamily="sans-serif">
+          <text x="760" y="283" textAnchor="middle" fill="#F16363" fontSize="13" fontFamily="sans-serif">
             Sat 9:30am · Sun 10am
           </text>
         </motion.g>
@@ -276,13 +276,13 @@ export function DublinRouteMap() {
         >
           <rect x="30" y="505" width="230" height="75" rx="8" fill="rgba(37, 37, 38, 0.6)" stroke="rgba(250, 250, 250, 0.05)" strokeWidth="0.5" />
           <line x1="50" y1="528" x2="80" y2="528" stroke="#F16363" strokeWidth="2.5" strokeDasharray="6 4" />
-          <text x="90" y="532" fill="#A0A0A5" fontSize="10" fontFamily="sans-serif">Thursday Circuit · 40km</text>
+          <text x="90" y="532" fill="#A0A0A5" fontSize="12" fontFamily="sans-serif">Thursday Circuit · 40km</text>
 
           <line x1="50" y1="548" x2="80" y2="548" stroke="#F16363" strokeWidth="2.5" />
-          <text x="90" y="552" fill="#A0A0A5" fontSize="10" fontFamily="sans-serif">Saturday Main Ride · 90km</text>
+          <text x="90" y="552" fill="#A0A0A5" fontSize="12" fontFamily="sans-serif">Saturday Main Ride · 90km</text>
 
           <line x1="50" y1="568" x2="80" y2="568" stroke="#4C1273" strokeWidth="2" />
-          <text x="90" y="572" fill="#A0A0A5" fontSize="10" fontFamily="sans-serif">Sunday Spin · 80km</text>
+          <text x="90" y="572" fill="#A0A0A5" fontSize="12" fontFamily="sans-serif">Sunday Spin · 80km</text>
         </motion.g>
       </svg>
     </div>
