@@ -263,7 +263,7 @@ export default function ClubPage() {
                 All levels. From first sportive to Cat 1.
               </p>
               <Button
-                href="https://skool.com/roadman"
+                href="https://www.skool.com/roadmancycling/plans"
                 external
                 size="lg"
               >

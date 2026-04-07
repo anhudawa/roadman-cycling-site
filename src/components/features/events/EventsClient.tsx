@@ -37,7 +37,7 @@ const weeklyEvents: RecurringEvent[] = [
     type: "call",
     color: "purple",
     cta: "Join Not Done Yet",
-    ctaHref: "https://skool.com/roadmancycling",
+    ctaHref: "https://www.skool.com/roadmancycling/plans",
     external: true,
   },
   {
@@ -56,7 +56,7 @@ const weeklyEvents: RecurringEvent[] = [
     type: "ride",
     color: "coral",
     cta: "Join Roadman CC — $75/year",
-    ctaHref: "https://skool.com/roadmancycling",
+    ctaHref: "https://www.skool.com/roadmancycling/plans",
     external: true,
   },
   {
@@ -75,7 +75,7 @@ const weeklyEvents: RecurringEvent[] = [
     type: "ride",
     color: "coral",
     cta: "Join Roadman CC — $75/year",
-    ctaHref: "https://skool.com/roadmancycling",
+    ctaHref: "https://www.skool.com/roadmancycling/plans",
     external: true,
   },
 ];
