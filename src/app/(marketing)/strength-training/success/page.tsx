@@ -1,11 +1,5 @@
-import type { Metadata } from "next";
 import { Header, Footer, Section, Container } from "@/components/layout";
 import { Button } from "@/components/ui";
-
-export const metadata: Metadata = {
-  title: "Welcome — Strength Training for Cyclists",
-  robots: { index: false, follow: false },
-};
 
 export default function StrengthTrainingSuccess() {
   return (

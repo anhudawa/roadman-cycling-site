@@ -4,10 +4,12 @@ import { MDXRemote } from "next-mdx-remote/rsc";
 import { Header, Footer, Section, Container } from "@/components/layout";
 import { Badge, Button } from "@/components/ui";
 import { JsonLd } from "@/components/seo/JsonLd";
+import { Breadcrumbs } from "@/components/seo/Breadcrumbs";
 import { getEpisodeBySlug, getAllEpisodeSlugs } from "@/lib/podcast";
 import { PodcastLinks } from "@/components/features/podcast/PodcastLinks";
 import { TranscriptViewer } from "@/components/features/podcast/TranscriptViewer";
 import { PlayButton } from "@/components/features/podcast/PlayButton";
+import { RelatedContent } from "@/components/features/RelatedContent";
 import { EmailCapture } from "@/components/features/conversion/EmailCapture";
 
 export async function generateStaticParams() {
@@ -87,15 +89,30 @@ export default async function EpisodePage({
           "@context": "https://schema.org",
           "@type": "PodcastEpisode",
           name: episode.title,
+          url: `https://roadmancycling.com/podcast/${slug}`,
           description: episode.seoDescription,
           episodeNumber: episode.episodeNumber,
           datePublished: episode.publishDate,
-          duration: `PT${episode.duration.replace(":", "H").replace(":", "M")}S`,
+          timeRequired: (() => {
+            const parts = episode.duration.split(":").map(Number);
+            if (parts.length === 3) return `PT${parts[0]}H${parts[1]}M${parts[2]}S`;
+            if (parts.length === 2) return `PT${parts[0]}M${parts[1]}S`;
+            return `PT${parts[0]}M`;
+          })(),
+          image: episode.youtubeId
+            ? `https://img.youtube.com/vi/${episode.youtubeId}/maxresdefault.jpg`
+            : "https://roadmancycling.com/images/podcast-cover.jpg",
           partOfSeries: {
             "@type": "PodcastSeries",
             name: "The Roadman Cycling Podcast",
             url: "https://roadmancycling.com/podcast",
           },
+          associatedMedia: episode.spotifyId
+            ? {
+                "@type": "MediaObject",
+                contentUrl: `https://open.spotify.com/episode/${episode.spotifyId}`,
+              }
+            : undefined,
           ...(episode.guest && {
             actor: {
               "@type": "Person",
@@ -143,6 +160,12 @@ export default async function EpisodePage({
             uploadDate: episode.publishDate,
             contentUrl: `https://www.youtube.com/watch?v=${episode.youtubeId}`,
             embedUrl: `https://www.youtube.com/embed/${episode.youtubeId}`,
+            duration: (() => {
+              const parts = episode.duration.split(":").map(Number);
+              if (parts.length === 3) return `PT${parts[0]}H${parts[1]}M${parts[2]}S`;
+              if (parts.length === 2) return `PT${parts[0]}M${parts[1]}S`;
+              return `PT${parts[0]}M`;
+            })(),
             publisher: {
               "@type": "Organization",
               name: "Roadman Cycling",
@@ -157,7 +180,14 @@ export default async function EpisodePage({
       <main id="main-content">
         {/* Hero */}
         <Section background="deep-purple" grain className="pt-32 pb-12">
-          <Container width="narrow" className="text-center">
+          <Container width="narrow">
+            <Breadcrumbs
+              items={[
+                { label: "Podcast", href: "/podcast" },
+                { label: episode.title },
+              ]}
+            />
+            <div className="text-center">
             <div className="flex items-center justify-center gap-3 mb-4">
               <Badge pillar={episode.pillar} size="md" />
               <span className="text-sm text-foreground-subtle capitalize">
@@ -220,6 +250,7 @@ export default async function EpisodePage({
               episodeTitle={episode.title}
               className="flex flex-col items-center"
             />
+            </div>
           </Container>
         </Section>
 
@@ -319,6 +350,15 @@ export default async function EpisodePage({
               heading="NEVER MISS AN EPISODE"
               subheading="Weekly insights from the podcast. The stuff that actually makes you faster."
               source={`podcast-${slug}`}
+              className="mt-16"
+            />
+
+            {/* Related Content (cross-content: blog + podcast) */}
+            <RelatedContent
+              currentSlug={slug}
+              currentType="podcast"
+              pillar={episode.pillar}
+              keywords={episode.keywords}
               className="mt-16"
             />
 

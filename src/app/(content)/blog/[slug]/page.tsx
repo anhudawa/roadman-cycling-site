@@ -8,6 +8,7 @@ import { Breadcrumbs } from "@/components/seo/Breadcrumbs";
 import { getPostBySlug, getAllSlugs, getRelatedPosts } from "@/lib/blog";
 import { ShareButtons } from "@/components/features/blog/ShareButtons";
 import { RelatedPosts } from "@/components/features/blog/RelatedPosts";
+import { RelatedContent } from "@/components/features/RelatedContent";
 import { EmailCapture } from "@/components/features/conversion/EmailCapture";
 import { TableOfContents } from "@/components/features/blog/TableOfContents";
 
@@ -265,10 +266,19 @@ export default async function BlogPostPage({
               className="mt-12"
             />
 
-            {/* Related Posts */}
+            {/* Related Posts (blog-only) */}
             {relatedPosts.length > 0 && (
               <RelatedPosts posts={relatedPosts} className="mt-16" />
             )}
+
+            {/* Related Content (cross-content: blog + podcast) */}
+            <RelatedContent
+              currentSlug={slug}
+              currentType="blog"
+              pillar={post.pillar}
+              keywords={post.keywords}
+              className="mt-16"
+            />
 
             {/* Back to blog */}
             <div className="mt-12 text-center">

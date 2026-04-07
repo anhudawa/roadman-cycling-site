@@ -153,11 +153,12 @@ export default function RaceWeightPage() {
             <div className="bg-background-elevated rounded-xl border border-white/5 p-8 space-y-6">
               {/* Gender */}
               <div>
-                <label className="block font-heading text-lg text-off-white mb-2">GENDER</label>
-                <div className="flex gap-3">
+                <label id="rw-gender-label" className="block font-heading text-lg text-off-white mb-2">GENDER</label>
+                <div className="flex gap-3" role="group" aria-labelledby="rw-gender-label">
                   {([["male", "Male"], ["female", "Female"]] as const).map(([val, label]) => (
                     <button key={val} type="button"
                       onClick={() => { setGender(val); setResult(null); }}
+                      aria-pressed={gender === val}
                       className={`flex-1 py-3 rounded-lg font-heading text-sm tracking-wider transition-colors cursor-pointer ${
                         gender === val ? "bg-coral text-off-white" : "bg-white/5 text-foreground-muted hover:bg-white/10"
                       }`}
@@ -191,8 +192,8 @@ export default function RaceWeightPage() {
                 {bodyFatError && <p className="text-red-400 text-xs mt-1">{bodyFatError}</p>}
               </div>
               <div>
-                <label className="block font-heading text-lg text-off-white mb-2">TARGET EVENT</label>
-                <div className="grid grid-cols-2 sm:grid-cols-3 gap-2">
+                <label id="rw-event-label" className="block font-heading text-lg text-off-white mb-2">TARGET EVENT</label>
+                <div className="grid grid-cols-2 sm:grid-cols-3 gap-2" role="group" aria-labelledby="rw-event-label">
                   {([
                     ["road-race", "Road Race"],
                     ["gran-fondo", "Gran Fondo"],
@@ -202,6 +203,7 @@ export default function RaceWeightPage() {
                   ] as const).map(([val, label]) => (
                     <button key={val} type="button"
                       onClick={() => { setEventType(val); setResult(null); }}
+                      aria-pressed={eventType === val}
                       className={`py-3 rounded-lg font-heading text-sm tracking-wider transition-colors cursor-pointer ${
                         eventType === val ? "bg-coral text-off-white" : "bg-white/5 text-foreground-muted hover:bg-white/10"
                       }`}

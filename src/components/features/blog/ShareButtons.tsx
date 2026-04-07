@@ -65,6 +65,7 @@ export function ShareButtons({ title, slug, className = "" }: ShareButtonsProps)
           target="_blank"
           rel="noopener noreferrer"
           title={link.label}
+          aria-label={link.label}
           className="
             inline-flex items-center justify-center w-9 h-9
             bg-white/5 border border-white/10 rounded-lg
@@ -80,6 +81,7 @@ export function ShareButtons({ title, slug, className = "" }: ShareButtonsProps)
       <button
         onClick={handleCopyLink}
         title={copied ? "Copied!" : "Copy link"}
+        aria-label={copied ? "Link copied" : "Copy link"}
         className="
           inline-flex items-center justify-center w-9 h-9
           bg-white/5 border border-white/10 rounded-lg

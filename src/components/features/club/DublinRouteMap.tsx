@@ -18,6 +18,8 @@ export function DublinRouteMap() {
         fill="none"
         xmlns="http://www.w3.org/2000/svg"
         className="relative w-full h-full"
+        role="img"
+        aria-label="Map of Dublin showing Roadman CC ride routes: Thursday Circuit in Phoenix Park, Saturday Main Ride and Sunday Spin from 360 Cycles in Clontarf"
       >
         <defs>
           {/* Route glow filter */}

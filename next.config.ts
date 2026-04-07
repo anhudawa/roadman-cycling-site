@@ -1,6 +1,7 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
+  trailingSlash: false,
   images: {
     remotePatterns: [
       {
@@ -16,6 +17,10 @@ const nextConfig: NextConfig = {
         hostname: "i.ytimg.com",
       },
     ],
+    formats: ["image/avif", "image/webp"],
+  },
+  experimental: {
+    optimizePackageImports: ["framer-motion", "shiki", "rehype-pretty-code"],
   },
   async redirects() {
     return [
@@ -72,6 +77,15 @@ const nextConfig: NextConfig = {
       },
       {
         source: "/images/(.*)",
+        headers: [
+          {
+            key: "Cache-Control",
+            value: "public, max-age=31536000, immutable",
+          },
+        ],
+      },
+      {
+        source: "/_next/static/(.*)",
         headers: [
           {
             key: "Cache-Control",

@@ -64,7 +64,7 @@ export function Header() {
         style={{ transitionDuration: "var(--duration-normal)" }}
       >
         <Container>
-          <nav className="flex items-center justify-between">
+          <nav aria-label="Main navigation" className="flex items-center justify-between">
             {/* Logo */}
             <Link
               href="/"
@@ -218,7 +218,7 @@ export function Header() {
             exit={{ opacity: 0 }}
             transition={{ duration: 0.35 }}
           >
-            <nav className="flex flex-col items-center gap-6">
+            <nav aria-label="Mobile navigation" className="flex flex-col items-center gap-6">
               {NAV_ITEMS.map((item, i) => (
                 <motion.div
                   key={item.href}

@@ -328,10 +328,10 @@ export default function MtbSetupPage() {
 
               {/* Riding Style */}
               <div>
-                <label className="block font-heading text-lg text-off-white mb-2">
+                <label id="riding-style-label" className="block font-heading text-lg text-off-white mb-2">
                   RIDING STYLE
                 </label>
-                <div className="grid grid-cols-2 gap-2">
+                <div className="grid grid-cols-2 gap-2" role="group" aria-labelledby="riding-style-label">
                   {(
                     [
                       ["xc", "Cross-Country"],
@@ -344,6 +344,7 @@ export default function MtbSetupPage() {
                       key={val}
                       type="button"
                       onClick={() => { setStyle(val); setShockResult(null); setTyreResult(null); }}
+                      aria-pressed={style === val}
                       className={`py-3 rounded-lg font-heading text-sm tracking-wider transition-colors cursor-pointer ${
                         style === val
                           ? "bg-coral text-off-white"
@@ -377,10 +378,10 @@ export default function MtbSetupPage() {
 
               {/* Tyre Setup */}
               <div>
-                <label className="block font-heading text-lg text-off-white mb-2">
+                <label id="mtb-tyre-setup-label" className="block font-heading text-lg text-off-white mb-2">
                   TYRE SETUP
                 </label>
-                <div className="flex gap-3">
+                <div className="flex gap-3" role="group" aria-labelledby="mtb-tyre-setup-label">
                   {(
                     [
                       ["tubeless", "Tubeless"],
@@ -391,6 +392,7 @@ export default function MtbSetupPage() {
                       key={val}
                       type="button"
                       onClick={() => { setTubeType(val); setTyreResult(null); }}
+                      aria-pressed={tubeType === val}
                       className={`flex-1 py-3 rounded-lg font-heading text-sm tracking-wider transition-colors cursor-pointer ${
                         tubeType === val
                           ? "bg-coral text-off-white"

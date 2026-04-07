@@ -92,7 +92,7 @@ const socialLinks = [
 
 export function Footer() {
   return (
-    <footer className="relative bg-deep-purple grain-overlay overflow-hidden">
+    <footer aria-label="Site footer" className="relative bg-deep-purple grain-overlay overflow-hidden">
       {/* Gradient divider line at top */}
       <div className="absolute top-0 left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-coral/40 to-transparent" />
 

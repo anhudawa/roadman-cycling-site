@@ -4,7 +4,16 @@ import Link from "next/link";
 import { Header, Footer, Section, Container } from "@/components/layout";
 import { Button, Card, ScrollReveal } from "@/components/ui";
 import { JsonLd } from "@/components/seo/JsonLd";
-import { DublinRouteMap } from "@/components/features/club/DublinRouteMap";
+import dynamic from "next/dynamic";
+
+const DublinRouteMap = dynamic(
+  () => import("@/components/features/club/DublinRouteMap").then((mod) => mod.DublinRouteMap),
+  {
+    loading: () => (
+      <div className="w-full aspect-[4/3] md:aspect-[16/9] rounded-2xl bg-background-elevated border border-white/5 skeleton" />
+    ),
+  }
+);
 
 export const metadata: Metadata = {
   title: "Roadman CC — Dublin Cycling Club",

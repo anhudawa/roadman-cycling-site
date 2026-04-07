@@ -457,14 +457,15 @@ export default function FuellingPage() {
 
               {/* Session Type */}
               <div>
-                <label className="block font-heading text-sm text-off-white mb-1 tracking-wider">SESSION TYPE</label>
+                <label id="session-type-label" className="block font-heading text-sm text-off-white mb-1 tracking-wider">SESSION TYPE</label>
                 <p className="text-foreground-subtle text-[11px] mb-3">
                   Session type determines what fraction of energy comes from carbs vs fat (Romijn et al. 1993). Combined with your watts, this gives a precise carb burn rate.
                 </p>
-                <div className="grid grid-cols-2 sm:grid-cols-4 gap-2">
+                <div className="grid grid-cols-2 sm:grid-cols-4 gap-2" role="group" aria-labelledby="session-type-label">
                   {(Object.entries(SESSION_PROFILES) as [SessionType, typeof SESSION_PROFILES[SessionType]][]).map(([key, profile]) => (
                     <button key={key} type="button"
                       onClick={() => { setSessionType(key); setResult(null); }}
+                      aria-pressed={sessionType === key}
                       className={`py-3 px-2 rounded-lg transition-colors cursor-pointer text-center ${
                         sessionType === key ? "bg-coral text-off-white" : "bg-white/5 text-foreground-muted hover:bg-white/10"
                       }`}
@@ -505,11 +506,11 @@ export default function FuellingPage() {
 
               {/* Gut Training */}
               <div>
-                <label className="block font-heading text-sm text-off-white mb-1 tracking-wider">GUT TRAINING LEVEL</label>
+                <label id="gut-training-label" className="block font-heading text-sm text-off-white mb-1 tracking-wider">GUT TRAINING LEVEL</label>
                 <p className="text-foreground-subtle text-[11px] mb-3">
                   How practiced is your gut at absorbing carbs during exercise? This sets your absorption ceiling (Jeukendrup, 2014).
                 </p>
-                <div className="grid grid-cols-3 gap-2">
+                <div className="grid grid-cols-3 gap-2" role="group" aria-labelledby="gut-training-label">
                   {([
                     ["none", "Beginner", "Max ~70g/hr"],
                     ["some", "Moderate", "Max ~90g/hr"],
@@ -517,6 +518,7 @@ export default function FuellingPage() {
                   ] as const).map(([val, label, desc]) => (
                     <button key={val} type="button"
                       onClick={() => { setGutTraining(val); setResult(null); }}
+                      aria-pressed={gutTraining === val}
                       className={`py-3 px-2 rounded-lg transition-colors cursor-pointer text-center ${
                         gutTraining === val ? "bg-coral text-off-white" : "bg-white/5 text-foreground-muted hover:bg-white/10"
                       }`}
@@ -546,6 +548,7 @@ export default function FuellingPage() {
                     <h2 className="font-heading text-2xl text-off-white">YOUR FUELLING PLAN</h2>
                     <button
                       onClick={handleCopyResults}
+                      aria-label={copied ? "Results copied to clipboard" : "Copy fuelling plan to clipboard"}
                       className="text-sm text-coral hover:text-coral/80 font-heading tracking-wider transition-colors cursor-pointer"
                     >
                       {copied ? "Copied!" : "Copy Results"}

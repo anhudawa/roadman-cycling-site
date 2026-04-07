@@ -22,8 +22,8 @@
   --color-background-deep: #210140;
   --color-background-elevated: #2E2E30;
   --color-foreground: #FAFAFA;
-  --color-foreground-muted: #A0A0A5;
-  --color-foreground-subtle: #8B8B90;
+  --color-foreground-muted: #B0B0B5;
+  --color-foreground-subtle: #9A9A9F;
   --color-accent: #F16363;
   --color-brand: #4C1273;
 
@@ -90,8 +90,15 @@ html {
   -moz-osx-font-smoothing: grayscale;
 }
 
-/* Custom cursor: hide native cursor only on desktop with fine pointer */
-@media (pointer: fine) {
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+}
+
+/* Custom cursor: hide native cursor only on desktop with fine pointer, and only
+   when user has NOT requested reduced motion (an accessibility proxy) */
+@media (pointer: fine) and (prefers-reduced-motion: no-preference) {
   body {
     cursor: none;
   }

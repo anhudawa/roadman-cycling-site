@@ -1,8 +1,10 @@
 import type { Metadata } from "next";
 import { Bebas_Neue, Work_Sans } from "next/font/google";
+import Script from "next/script";
 import { SmoothCursorWrapper } from "@/components/ui/SmoothCursorWrapper";
 import { PodcastPlayerShell } from "@/components/features/podcast/PodcastPlayerShell";
-import { ExitIntentPopup } from "@/components/features/conversion/ExitIntentPopup";
+import { LazyExitIntent } from "@/components/features/conversion/LazyExitIntent";
+import { OrganizationJsonLd, WebSiteJsonLd } from "@/components/seo/JsonLd";
 import "./globals.css";
 
 const bebasNeue = Bebas_Neue({
@@ -24,7 +26,7 @@ export const metadata: Metadata = {
     template: "%s | Roadman Cycling",
   },
   description:
-    "The podcast trusted by 1 million monthly listeners. Expert cycling coaching, training plans, nutrition advice, and a community of serious cyclists who refuse to accept their best days are behind them.",
+    "The cycling podcast trusted by 1M+ monthly listeners. Expert coaching, training plans, nutrition, and a community that refuses to settle.",
   keywords: [
     "cycling podcast",
     "cycling training",
@@ -94,10 +96,28 @@ export default function RootLayout({
           rel="alternate"
           type="application/rss+xml"
           title="The Roadman Cycling Podcast"
-          href="https://www.roadmancycling.com/feed/podcast"
+          href="https://roadmancycling.com/feed/podcast"
         />
-        {/* Meta Pixel */}
-        <script
+      </head>
+      <body className="min-h-screen bg-charcoal text-off-white font-body antialiased">
+        <OrganizationJsonLd />
+        <WebSiteJsonLd />
+        <a
+          href="#main-content"
+          className="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[9999] focus:bg-coral focus:text-off-white focus:px-4 focus:py-2 focus:rounded-md focus:font-heading focus:text-sm focus:tracking-wider"
+        >
+          Skip to content
+        </a>
+        <SmoothCursorWrapper />
+        <PodcastPlayerShell>
+          {children}
+        </PodcastPlayerShell>
+        <LazyExitIntent />
+
+        {/* Meta Pixel — deferred to avoid blocking initial paint */}
+        <Script
+          id="meta-pixel"
+          strategy="lazyOnload"
           dangerouslySetInnerHTML={{
             __html: `
               !function(f,b,e,v,n,t,s)
@@ -122,19 +142,6 @@ export default function RootLayout({
             alt=""
           />
         </noscript>
-      </head>
-      <body className="min-h-screen bg-charcoal text-off-white font-body antialiased">
-        <a
-          href="#main-content"
-          className="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[9999] focus:bg-coral focus:text-off-white focus:px-4 focus:py-2 focus:rounded-md focus:font-heading focus:text-sm focus:tracking-wider"
-        >
-          Skip to content
-        </a>
-        <SmoothCursorWrapper />
-        <PodcastPlayerShell>
-          {children}
-        </PodcastPlayerShell>
-        <ExitIntentPopup />
       </body>
     </html>
   );

@@ -133,6 +133,11 @@ export function MiniPlayer() {
       <div
         className="h-1 bg-white/10 cursor-pointer group"
         onClick={handleProgressClick}
+        role="progressbar"
+        aria-label="Playback progress"
+        aria-valuenow={Math.round(progress)}
+        aria-valuemin={0}
+        aria-valuemax={100}
       >
         <div
           className="h-full bg-coral transition-[width] duration-1000 ease-linear group-hover:h-1.5"
@@ -146,6 +151,7 @@ export function MiniPlayer() {
           <button
             onClick={expand}
             className="w-full h-12 flex items-center justify-between text-sm"
+            aria-label={`Expand player: ${currentEpisode.title}`}
           >
             <span className="text-off-white font-heading truncate mr-4">
               {currentEpisode.title}

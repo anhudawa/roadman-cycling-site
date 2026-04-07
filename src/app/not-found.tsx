@@ -24,7 +24,10 @@ export default function NotFound() {
                 Back to Home
               </Button>
               <Button href="/podcast" variant="ghost" size="lg">
-                Browse the Archive
+                Browse the Podcast
+              </Button>
+              <Button href="/blog" variant="ghost" size="lg">
+                Read the Blog
               </Button>
             </div>
 

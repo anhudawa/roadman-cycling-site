@@ -238,12 +238,13 @@ export default function TyrePressurePage() {
 
               {/* Tyre Setup */}
               <div>
-                <label className="block font-heading text-lg text-off-white mb-2">TYRE SETUP</label>
-                <div className="flex gap-3">
+                <label id="tyre-setup-label" className="block font-heading text-lg text-off-white mb-2">TYRE SETUP</label>
+                <div className="flex gap-3" role="group" aria-labelledby="tyre-setup-label">
                   {([["clincher", "Clincher"], ["tubeless", "Tubeless"], ["tubular", "Tubular"]] as const).map(([val, label]) => (
                     <button
                       key={val} type="button"
                       onClick={() => { setTubeType(val); setResult(null); }}
+                      aria-pressed={tubeType === val}
                       className={`flex-1 py-3 rounded-lg font-heading text-sm tracking-wider transition-colors cursor-pointer ${
                         tubeType === val ? "bg-coral text-off-white" : "bg-white/5 text-foreground-muted hover:bg-white/10"
                       }`}
@@ -256,12 +257,13 @@ export default function TyrePressurePage() {
 
               {/* Surface */}
               <div>
-                <label className="block font-heading text-lg text-off-white mb-2">ROAD SURFACE</label>
-                <div className="flex gap-3">
+                <label id="road-surface-label" className="block font-heading text-lg text-off-white mb-2">ROAD SURFACE</label>
+                <div className="flex gap-3" role="group" aria-labelledby="road-surface-label">
                   {([["smooth", "Smooth"], ["rough", "Rough"], ["gravel", "Gravel"]] as const).map(([val, label]) => (
                     <button
                       key={val} type="button"
                       onClick={() => { setSurface(val); setResult(null); }}
+                      aria-pressed={surface === val}
                       className={`flex-1 py-3 rounded-lg font-heading text-sm tracking-wider transition-colors cursor-pointer ${
                         surface === val ? "bg-coral text-off-white" : "bg-white/5 text-foreground-muted hover:bg-white/10"
                       }`}

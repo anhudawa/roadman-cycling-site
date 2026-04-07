@@ -1,6 +1,6 @@
 import { getAllEpisodes } from "@/lib/podcast";
 
-const SITE_URL = "https://www.roadmancycling.com";
+const SITE_URL = "https://roadmancycling.com";
 const PODCAST_TITLE = "The Roadman Cycling Podcast";
 const PODCAST_AUTHOR = "Anthony Walsh";
 const PODCAST_DESCRIPTION =

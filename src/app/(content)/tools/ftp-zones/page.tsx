@@ -198,6 +198,7 @@ export default function FTPZonesPage() {
                   </h2>
                   <button
                     onClick={handleCopyResults}
+                    aria-label={copied ? "Results copied to clipboard" : "Copy zone results to clipboard"}
                     className="text-sm text-coral hover:text-coral/80 font-heading tracking-wider transition-colors cursor-pointer"
                   >
                     {copied ? "Copied!" : "Copy Results"}
