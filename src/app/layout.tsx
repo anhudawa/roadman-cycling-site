@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import { Bebas_Neue, Work_Sans } from "next/font/google";
-import { SmoothCursorWrapper } from "@/components/ui/SmoothCursorWrapper";
 import { PodcastPlayerShell } from "@/components/features/podcast/PodcastPlayerShell";
 import "./globals.css";
 
@@ -95,7 +94,6 @@ export default function RootLayout({
         >
           Skip to content
         </a>
-        <SmoothCursorWrapper />
         <PodcastPlayerShell>
           {children}
         </PodcastPlayerShell>
