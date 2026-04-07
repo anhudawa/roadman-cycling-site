@@ -236,14 +236,10 @@ const audienceProfile = [
 
 const testimonials = [
   {
-    quote: "The Roadman audience doesn't just listen — they buy. Our campaign delivered 4x ROAS within the first month. The host-read format builds trust you can't replicate with programmatic.",
-    author: "Marketing Director",
-    company: "Leading Cycling Nutrition Brand",
-  },
-  {
-    quote: "We've worked with dozens of cycling influencers. The engagement and conversion from Roadman is in a different league entirely. Anthony's endorsement carries genuine weight.",
-    author: "Head of Partnerships",
-    company: "Premium Bike Component Brand",
+    quote: "The ROADMAN Podcast has been a fantastic platform for 4iiii to connect directly with a dedicated and engaged audience of serious cyclists. Anthony Walsh's authentic approach and deep knowledge create highly valuable content that helps listeners improve their riding. It's an ideal partnership for promoting performance tools like our power meters.",
+    author: "Andreja Grenier",
+    company: "4iiii",
+    companyUrl: "https://4iiii.com",
   },
 ];
 
@@ -633,7 +629,11 @@ export default function PartnersPage() {
                             {t.author.toUpperCase()}
                           </p>
                           <p className="text-foreground-subtle text-xs">
-                            {t.company}
+                            {t.companyUrl ? (
+                              <a href={t.companyUrl} target="_blank" rel="noopener noreferrer" className="hover:text-coral transition-colors">
+                                {t.company} ↗
+                              </a>
+                            ) : t.company}
                           </p>
                         </div>
                       </footer>
