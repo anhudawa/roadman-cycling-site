@@ -155,6 +155,7 @@ export const NAV_ITEMS: NavItem[] = [
       { label: "Not Done Yet (Coaching)", href: "/community/not-done-yet" },
       { label: "Strength & Conditioning", href: "/strength-training" },
       { label: "Roadman CC (Dublin)", href: "/community/club" },
+      { label: "Events", href: "/events" },
     ],
   },
   {

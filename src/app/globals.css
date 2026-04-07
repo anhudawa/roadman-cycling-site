@@ -726,3 +726,41 @@ h1, h2, h3, h4, h5, h6 {
   background-repeat: repeat;
   background-size: 256px 256px;
 }
+
+/* ── Events page: Countdown flip ── */
+.countdown-flip {
+  animation: countdown-flip 300ms var(--ease-out-expo);
+}
+
+@keyframes countdown-flip {
+  0% { transform: translateY(-8px); opacity: 0.4; }
+  100% { transform: translateY(0); opacity: 1; }
+}
+
+/* ── Events page: Timeline pulse ── */
+.timeline-pulse {
+  position: relative;
+  overflow: hidden;
+}
+
+.timeline-pulse::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 40px;
+  background: linear-gradient(to bottom, rgba(76, 18, 115, 0.6), transparent);
+  animation: timeline-flow 3s ease-in-out infinite;
+}
+
+@keyframes timeline-flow {
+  0% { top: -40px; opacity: 0; }
+  30% { opacity: 1; }
+  100% { top: 100%; opacity: 0; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .countdown-flip { animation: none; }
+  .timeline-pulse::after { animation: none; opacity: 0; }
+}
