@@ -75,7 +75,7 @@ export default function NewsletterPage() {
                 className="font-heading text-off-white mb-6"
                 style={{ fontSize: "var(--text-hero)" }}
               >
-                THE INSIGHTS
+                THE SATURDAY SPIN
               </h1>
               <p className="text-foreground-muted text-xl leading-relaxed mb-8">
                 Once a week. The stuff that actually makes you faster. Straight
