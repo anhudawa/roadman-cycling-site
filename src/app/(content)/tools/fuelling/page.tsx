@@ -14,7 +14,7 @@ type SessionType = "recovery" | "endurance" | "tempo" | "sweetspot" | "threshold
  *
  * Sources:
  * - James Morton (Liverpool John Moores / Team Sky): "Fuel for the work required"
- * - Sam Impey & David Dunne (Hexis): gut-training, periodised fuelling
+ * - Romijn et al. (1993): substrate utilisation at different intensities
  * - Asker Jeukendrup: dual-transporter model, carb absorption limits
  * - Baker et al. (2016): sweat sodium concentration data
  * - Sawka et al. (2007) ACSM: heat and fluid replacement
@@ -45,69 +45,70 @@ interface FuellingResult {
 }
 
 // Session type → physiological profile
-// Each session type has a known glycolytic demand and sweat characteristics
-// regardless of what the average power reads. A VO2 session at 200W avg
-// has VERY different fuelling needs than a Z2 ride at 200W avg.
+// carbFraction = fraction of total energy from carbohydrate oxidation
+// Based on respiratory exchange ratio (RER) data from Romijn et al. (1993)
+// and Jeukendrup (2014). Higher intensity → higher carb dependency.
+// sweatMultiplier scales fluid/sodium estimates relative to baseline.
 const SESSION_PROFILES: Record<SessionType, {
   label: string;
   ftpRange: string;
-  carbOxidation: number; // g/hr carb oxidation rate
-  sweatMultiplier: number; // relative to baseline
+  carbFraction: number; // fraction of energy from carbs (0-1)
+  sweatMultiplier: number;
   description: string;
 }> = {
   recovery: {
     label: "Recovery Spin",
     ftpRange: "<55% FTP",
-    carbOxidation: 20,
+    carbFraction: 0.30,    // Mostly fat oxidation
     sweatMultiplier: 0.7,
     description: "Easy spin, active recovery. Primarily fat oxidation.",
   },
   endurance: {
     label: "Endurance / Z2",
     ftpRange: "55-75% FTP",
-    carbOxidation: 35,
+    carbFraction: 0.50,    // Mixed fat and carb
     sweatMultiplier: 0.85,
     description: "Steady aerobic riding. Mixed fat and carb oxidation.",
   },
   tempo: {
     label: "Tempo / Z3",
     ftpRange: "76-87% FTP",
-    carbOxidation: 55,
+    carbFraction: 0.65,    // Carbs becoming primary fuel
     sweatMultiplier: 1.0,
     description: "Sustained moderate effort. Meaningful glycogen use.",
   },
   sweetspot: {
     label: "Sweet Spot",
     ftpRange: "88-94% FTP",
-    carbOxidation: 70,
+    carbFraction: 0.75,    // High carb dependency
     sweatMultiplier: 1.1,
     description: "Just below threshold. High glycolytic demand.",
   },
   threshold: {
     label: "Threshold / Z4",
     ftpRange: "95-105% FTP",
-    carbOxidation: 85,
+    carbFraction: 0.85,    // Very high carb oxidation
     sweatMultiplier: 1.2,
     description: "At or near FTP. Very high carb oxidation rate.",
   },
   vo2: {
     label: "VO2max Intervals",
     ftpRange: "106-120% FTP",
-    carbOxidation: 95,
+    carbFraction: 0.90,    // Near-maximal carb oxidation
     sweatMultiplier: 1.3,
     description: "Repeated hard efforts with recovery. Highest glycolytic demand.",
   },
   intervals: {
     label: "Mixed Intervals",
     ftpRange: "Variable",
-    carbOxidation: 75,
+    carbFraction: 0.70,    // Average across work/rest
     sweatMultiplier: 1.15,
     description: "Varied intensity session (e.g. group ride, fartlek, crits). High avg carb burn from surges.",
   },
   race: {
     label: "Race / Sportive",
     ftpRange: "Variable, sustained",
-    carbOxidation: 90,
+    carbFraction: 0.85,    // Racing demands near-maximal carb use
     sweatMultiplier: 1.25,
     description: "Competitive effort with surges. Maximum fuelling needed.",
   },
@@ -116,6 +117,7 @@ const SESSION_PROFILES: Record<SessionType, {
 function calculateFuelling(
   durationMin: number,
   sessionType: SessionType,
+  targetWatts: number,
   weightKg: number,
   gutTraining: GutTraining,
   weather: WeatherData | null
@@ -124,26 +126,40 @@ function calculateFuelling(
   const profile = SESSION_PROFILES[sessionType];
 
   const intensityLabel = profile.label;
-  const intensityPercent = 0; // Not used for display when session-based
 
   // --- CARBOHYDRATE CALCULATION ---
-  // Morton's "fuel for the work required": carb need matches glycolytic demand
-  // Each session type has a known carb oxidation rate from Jeukendrup (2014)
-  const carbOxidation = profile.carbOxidation;
+  // Physics-based: watts → metabolic rate → carb oxidation
+  //
+  // 1. Mechanical power (W) → metabolic power via gross efficiency
+  //    Gross efficiency ~22-25% for trained cyclists (Coyle, 1992)
+  //    Metabolic rate (kJ/hr) = watts × 3.6 / efficiency
+  //
+  // 2. Carb fraction from session type (RER-based, Romijn et al. 1993)
+  //    Recovery: ~30% carbs, Endurance: ~50%, Threshold: ~85%, VO2: ~90%
+  //
+  // 3. Convert to grams: 1g carbohydrate = 16.7 kJ
+  //
+  // Example: 100W Z2 = (100 × 3.6 / 0.23) × 0.50 / 16.7 = 47g/hr
+  //          300W Z2 = (300 × 3.6 / 0.23) × 0.50 / 16.7 = 141g/hr → capped by gut
 
-  // Duration modifier: longer rides need slightly higher rates to preserve glycogen
+  const grossEfficiency = 0.23;
+  const metabolicRateKJhr = (targetWatts * 3.6) / grossEfficiency;
+  const carbKJhr = metabolicRateKJhr * profile.carbFraction;
+  const carbOxidation = carbKJhr / 16.7; // grams per hour
+
+  // Duration modifier: longer rides deplete glycogen faster, slight upward adjustment
   let durationMod: number;
-  if (durationMin <= 60) durationMod = 0.7;       // Short — minimal need
-  else if (durationMin <= 90) durationMod = 0.85;
-  else if (durationMin <= 150) durationMod = 1.0;  // Standard
+  if (durationMin <= 60) durationMod = 0.75;
+  else if (durationMin <= 90) durationMod = 0.9;
+  else if (durationMin <= 150) durationMod = 1.0;
   else if (durationMin <= 240) durationMod = 1.05;
-  else durationMod = 1.1;                           // Ultra — front-load
+  else durationMod = 1.1;
 
-  // Gut training sets the ceiling
+  // Gut training sets the absorption ceiling
   const gutCeiling: Record<GutTraining, number> = {
-    none: 70,     // Untrained gut — GI distress risk above this
-    some: 90,     // Some practice — can handle moderate intake
-    trained: 120, // Systematically trained — can push to max absorption
+    none: 70,
+    some: 90,
+    trained: 120,
   };
 
   const rawCarbs = carbOxidation * durationMod;
@@ -252,7 +268,7 @@ function calculateFuelling(
 
   if (gutTraining === "none" && carbsPerHour > 50) {
     strategy.push(
-      `Your target is ${carbsPerHour}g/hr but without gut training, start at 40-50g/hr and build by 5-10g per week over 4-6 weeks (Impey, Hexis). The gut adapts — trained athletes absorb double what beginners tolerate.`
+      `Your target is ${carbsPerHour}g/hr but without gut training, start at 40-50g/hr and build by 5-10g per week over 4-6 weeks (Jeukendrup & McLaughlin, 2011). The gut adapts — trained athletes absorb double what beginners tolerate.`
     );
   }
 
@@ -277,7 +293,7 @@ function calculateFuelling(
     heatCategory,
     weatherNote,
     intensityLabel,
-    intensityPercent,
+    intensityPercent: 0,
   };
 }
 
@@ -285,6 +301,7 @@ function calculateFuelling(
 const VALIDATION = {
   duration: { min: 10, max: 720, label: "Duration", unit: " minutes" },
   weight: { min: 30, max: 200, label: "Body weight", unit: "kg" },
+  watts: { min: 30, max: 600, label: "Target power", unit: "W" },
 } as const;
 
 function getValidationError(value: string, field: keyof typeof VALIDATION): string | null {
@@ -307,6 +324,7 @@ const heatColors: Record<string, string> = {
 export default function FuellingPage() {
   const [duration, setDuration] = useState("");
   const [sessionType, setSessionType] = useState<SessionType>("endurance");
+  const [watts, setWatts] = useState("");
   const [weight, setWeight] = useState("");
   const [gutTraining, setGutTraining] = useState<GutTraining>("some");
   const [result, setResult] = useState<FuellingResult | null>(null);
@@ -354,21 +372,23 @@ export default function FuellingPage() {
 
   const durationError = getValidationError(duration, "duration");
   const weightError = getValidationError(weight, "weight");
-  const hasErrors = !!durationError || !!weightError;
+  const wattsError = getValidationError(watts, "watts");
+  const hasErrors = !!durationError || !!weightError || !!wattsError;
 
   const handleCalculate = () => {
     if (hasErrors) return;
     const d = parseInt(duration);
+    const w = parseInt(watts);
     const wt = parseFloat(weight);
-    if (d > 0 && wt > 0) {
-      setResult(calculateFuelling(d, sessionType, wt, gutTraining, weather));
+    if (d > 0 && w > 0 && wt > 0) {
+      setResult(calculateFuelling(d, sessionType, w, wt, gutTraining, weather));
     }
   };
 
   const handleCopyResults = async () => {
     if (!result) return;
     const profile = SESSION_PROFILES[sessionType];
-    const text = `Fuelling Plan: ${result.carbsPerHour}g carbs/hr (${result.dualSource ? `${result.glucosePerHour}g glucose + ${result.fructosePerHour}g fructose` : "single source"}), ${result.fluidPerHour}ml fluid/hr, ${result.sodiumPerHour}mg sodium/hr (${duration}min ${profile.label}, ${weight}kg${weather ? `, ${weather.temperature}°C` : ""}) — roadmancycling.com/tools/fuelling`;
+    const text = `Fuelling Plan: ${result.carbsPerHour}g carbs/hr (${result.dualSource ? `${result.glucosePerHour}g glucose + ${result.fructosePerHour}g fructose` : "single source"}), ${result.fluidPerHour}ml fluid/hr, ${result.sodiumPerHour}mg sodium/hr (${duration}min ${profile.label} at ${watts}W, ${weight}kg${weather ? `, ${weather.temperature}°C` : ""}) — roadmancycling.com/tools/fuelling`;
     await navigator.clipboard.writeText(text);
     setCopied(true);
     setTimeout(() => setCopied(false), 2000);
@@ -388,7 +408,7 @@ export default function FuellingPage() {
               IN-RIDE FUELLING CALCULATOR
             </h1>
             <p className="text-foreground-muted text-lg">
-              Personalised carb, fluid, and sodium targets powered by your watts, weather, and gut readiness. Based on Morton, Jeukendrup, and Hexis research.
+              Personalised carb, fluid, and sodium targets calculated from your actual watts, session type, and local weather. Based on Jeukendrup, Morton, and Romijn.
             </p>
           </Container>
         </Section>
@@ -439,7 +459,7 @@ export default function FuellingPage() {
               <div>
                 <label className="block font-heading text-sm text-off-white mb-1 tracking-wider">SESSION TYPE</label>
                 <p className="text-foreground-subtle text-[11px] mb-3">
-                  What kind of ride are you fuelling for? This determines carb oxidation rate more accurately than average watts.
+                  Session type determines what fraction of energy comes from carbs vs fat (Romijn et al. 1993). Combined with your watts, this gives a precise carb burn rate.
                 </p>
                 <div className="grid grid-cols-2 sm:grid-cols-4 gap-2">
                   {(Object.entries(SESSION_PROFILES) as [SessionType, typeof SESSION_PROFILES[SessionType]][]).map(([key, profile]) => (
@@ -460,6 +480,19 @@ export default function FuellingPage() {
                 </p>
               </div>
 
+              {/* Target Power */}
+              <div>
+                <label htmlFor="fuel-watts" className="block font-heading text-sm text-off-white mb-1 tracking-wider">TARGET POWER (WATTS)</label>
+                <p className="text-foreground-subtle text-[11px] mb-2">
+                  Your expected average power for this session. A Z2 ride at 100W needs very different fuel than Z2 at 300W.
+                </p>
+                <input id="fuel-watts" type="number" min="30" max="600" placeholder="e.g. 200"
+                  value={watts} onChange={(e) => { setWatts(e.target.value); setResult(null); }}
+                  className={wattsError ? errorInputClasses : inputClasses}
+                />
+                {wattsError && <p className="text-red-400 text-xs mt-1">{wattsError}</p>}
+              </div>
+
               {/* Body Weight */}
               <div>
                 <label htmlFor="fuel-weight" className="block font-heading text-sm text-off-white mb-2 tracking-wider">BODY WEIGHT (KG)</label>
@@ -474,7 +507,7 @@ export default function FuellingPage() {
               <div>
                 <label className="block font-heading text-sm text-off-white mb-1 tracking-wider">GUT TRAINING LEVEL</label>
                 <p className="text-foreground-subtle text-[11px] mb-3">
-                  How practiced is your gut at absorbing carbs during exercise? This sets your ceiling. (Impey et al., Hexis)
+                  How practiced is your gut at absorbing carbs during exercise? This sets your absorption ceiling (Jeukendrup, 2014).
                 </p>
                 <div className="grid grid-cols-3 gap-2">
                   {([
@@ -521,8 +554,8 @@ export default function FuellingPage() {
 
                   {/* Session badge */}
                   <div className="bg-white/[0.03] rounded-lg px-4 py-2 flex items-center justify-between">
-                    <span className="text-foreground-subtle text-xs">SESSION TYPE</span>
-                    <span className="font-heading text-off-white">{result.intensityLabel} <span className="text-foreground-subtle text-xs font-body">({SESSION_PROFILES[sessionType].ftpRange})</span></span>
+                    <span className="text-foreground-subtle text-xs">SESSION</span>
+                    <span className="font-heading text-off-white">{result.intensityLabel} @ {watts}W</span>
                   </div>
 
                   {/* Primary metrics */}
