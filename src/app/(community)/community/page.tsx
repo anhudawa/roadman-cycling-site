@@ -150,13 +150,13 @@ export default function CommunityPage() {
                   NOT DONE YET
                 </h2>
                 <p className="text-foreground-muted mb-6 leading-relaxed">
-                  The system. Anthony&apos;s coaching, personalised Vekta plans,
+                  The system. Anthony&apos;s coaching, personalised TrainingPeaks plans,
                   expert masterclasses, and a private community of 113 cyclists
                   who are actively getting faster.
                 </p>
                 <ul className="space-y-3 mb-8">
                   {[
-                    "Personalised Vekta training plans",
+                    "Personalised TrainingPeaks training plans",
                     "Weekly coaching calls with Anthony",
                     "Expert masterclasses (Seiler, Lorang, Wakefield)",
                     "S&C roadmap for cyclists",

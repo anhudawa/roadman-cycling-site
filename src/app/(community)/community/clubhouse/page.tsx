@@ -94,7 +94,7 @@ export default function ClubhousePage() {
                 {
                   title: "Free 16-Week Training Plans",
                   description:
-                    "Structured plans for Road Racing, Gravel, and Sportive preparation. Built on the same principles discussed on the podcast. Delivered through Vekta integration.",
+                    "Structured plans for Road Racing, Gravel, and Sportive preparation. Built on the same principles discussed on the podcast. Delivered through TrainingPeaks.",
                 },
                 {
                   title: "Community of Serious Cyclists",

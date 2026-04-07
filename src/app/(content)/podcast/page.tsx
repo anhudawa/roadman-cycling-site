@@ -81,7 +81,7 @@ export default function PodcastPage() {
               ready for you.
             </p>
             <p className="text-coral font-heading text-xl">
-              {episodes.length} EPISODES &middot; 1M+ MONTHLY LISTENERS
+              1M+ MONTHLY LISTENERS
             </p>
           </Container>
         </Section>

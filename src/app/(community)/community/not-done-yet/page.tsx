@@ -7,14 +7,14 @@ import { FAQSchema } from "@/components/seo/FAQSchema";
 export const metadata: Metadata = {
   title: "Not Done Yet — Premium Cycling Coaching",
   description:
-    "Personalised Vekta training plans, weekly coaching with Anthony Walsh, expert masterclasses, and a private community of serious cyclists. From $15/month.",
+    "Personalised TrainingPeaks training plans, weekly coaching with Anthony Walsh, expert masterclasses, and a private community of serious cyclists. From $15/month.",
   alternates: {
     canonical: "https://roadmancycling.com/community/not-done-yet",
   },
   openGraph: {
     title: "Not Done Yet — Premium Cycling Coaching",
     description:
-      "Personalised Vekta training plans, weekly coaching with Anthony Walsh, expert masterclasses, and a private community of serious cyclists. From $15/month.",
+      "Personalised TrainingPeaks training plans, weekly coaching with Anthony Walsh, expert masterclasses, and a private community of serious cyclists. From $15/month.",
     type: "website",
     url: "https://roadmancycling.com/community/not-done-yet",
   },
@@ -46,7 +46,7 @@ const tiers = [
     description: "For cyclists who want personalised coaching at a fraction of 1:1 cost.",
     features: [
       "Everything in Standard",
-      "Personalised Vekta plans",
+      "Personalised TrainingPeaks plans",
       "Priority Q&A with Anthony",
       "Advanced masterclass library",
       "1:1 plan reviews",

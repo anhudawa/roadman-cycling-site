@@ -105,7 +105,7 @@ export default function HomePage() {
                 and community — coached together as one system. That&apos;s what
                 makes the difference between guessing and getting faster.
               </p>
-              <Button href="https://www.skool.com/roadmancycling/plans" external>
+              <Button href="https://www.skool.com/roadmancycling/about" external>
                 Join Not Done Yet
               </Button>
             </ScrollReveal>
