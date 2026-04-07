@@ -201,11 +201,14 @@ export default function NotDoneYetPage() {
               </h1>
               <p className="text-foreground-muted text-xl max-w-2xl mx-auto mb-6">
                 TrainerRoad sells software. Zwift sells a game.
-                We sell who you become. You&apos;re still getting faster.
-                You&apos;re still learning. Five pillars. One system.
-                Built on 1,400+ conversations with Seiler, Lorang, and the
-                world&apos;s best — structured into your week by a coach
-                who&apos;s had every single one of them on his show.
+                We sell who you become.
+              </p>
+              <p className="text-foreground-muted text-xl max-w-2xl mx-auto mb-6">
+                Training. Nutrition. Strength. Recovery. Accountability.
+                Five pillars, one system — built from 1,400+ conversations
+                with the coaches, scientists, and riders at the top of the
+                sport. Not summarised. Not repackaged. Structured into your
+                week by the coach who had every single one of them on his show.
               </p>
               <p className="text-foreground-subtle text-sm">
                 100+ cyclists who refuse to plateau &middot; 7-day free trial &middot; 30-day money-back guarantee
