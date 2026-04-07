@@ -7,7 +7,7 @@ import Link from "next/link";
 
 const brandPartners = [
   { name: "TrainingPeaks", logo: "/images/partners/trainingpeaks.png", invert: true },
-  { name: "SRAM", logo: "/images/partners/sram.svg", invert: false },
+  { name: "SRAM", logo: "/images/partners/sram.png", invert: false },
   { name: "Parlee", logo: "/images/partners/parlee.png", invert: false },
   { name: "4Endurance", logo: "/images/partners/4endurance.png", invert: false },
   { name: "Bikmo", logo: "/images/partners/bikmo.png", invert: true },
