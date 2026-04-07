@@ -40,7 +40,7 @@ export function SmoothCursor() {
       return "image";
     }
     if (target.closest("input") || target.closest("select") || target.closest("textarea")) {
-      return "hidden";
+      return "text";
     }
     return "default";
   }, []);
