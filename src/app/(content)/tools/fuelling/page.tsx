@@ -218,12 +218,12 @@ function calculateFuelling(
   const totalFluid = Math.round((fluidPerHour * hours) / 100) / 10;
 
   // --- SODIUM ---
-  // Baker et al. (2016): sweat [Na+] ~900mg/L average, sweat rate ~0.5-2.0L/hr
-  // Conservative base scaled by intensity and heat
-  const sweatRateLHr = (fluidPerHour / 1000) * 1.4; // Estimate: drinking replaces ~70% of sweat
-  const sweatSodiumConc = 800; // mg/L — moderate estimate (range 200-2000)
-  const sodiumPerHour = Math.round(sweatRateLHr * sweatSodiumConc * (heatMultiplier > 1 ? 1 : 1));
-  // Already captured by heatMultiplier in fluid → sweat rate estimate
+  // Baker et al. (2016): sweat [Na+] averages ~900mg/L (range 200-2000mg/L)
+  // Sweat rate estimated from fluid intake (drinking replaces ~70% of sweat)
+  // Heat is already factored in via heatMultiplier → higher fluid → higher sweat rate → higher sodium
+  const sweatRateLHr = (fluidPerHour / 1000) * 1.4;
+  const sweatSodiumConc = 800; // mg/L — moderate population estimate
+  const sodiumPerHour = Math.round(sweatRateLHr * sweatSodiumConc);
 
   // --- TIMING ---
   const startFuellingAt = durationMin <= 60 ? 30 : durationMin <= 90 ? 20 : 15;
@@ -587,7 +587,7 @@ export default function FuellingPage() {
                     >
                       <p className="text-[10px] text-foreground-subtle mb-1 tracking-wider">SODIUM/HOUR</p>
                       <p className={`font-heading text-3xl ${heatColors[result.heatCategory]}`}>{result.sodiumPerHour}mg</p>
-                      <p className="text-[10px] text-foreground-subtle mt-1">{result.heatCategory} conditions</p>
+                      <p className="text-[10px] text-foreground-subtle mt-1">{weather ? `based on ${weather.temperature}°C` : "standard estimate"}</p>
                     </motion.div>
                     <motion.div
                       className="bg-background-elevated rounded-xl border border-white/5 p-5 text-center"
