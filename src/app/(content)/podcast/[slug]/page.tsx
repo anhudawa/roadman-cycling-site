@@ -7,6 +7,7 @@ import { JsonLd } from "@/components/seo/JsonLd";
 import { getEpisodeBySlug, getAllEpisodeSlugs } from "@/lib/podcast";
 import { PodcastLinks } from "@/components/features/podcast/PodcastLinks";
 import { TranscriptViewer } from "@/components/features/podcast/TranscriptViewer";
+import { PlayButton } from "@/components/features/podcast/PlayButton";
 import { EmailCapture } from "@/components/features/conversion/EmailCapture";
 
 export async function generateStaticParams() {
@@ -168,6 +169,25 @@ export default async function EpisodePage({
                 })}
               </time>
             </div>
+
+            {episode.youtubeId && (
+              <div className="flex items-center justify-center mb-4">
+                <PlayButton
+                  episode={{
+                    slug: episode.slug,
+                    title: episode.title,
+                    guest: episode.guest,
+                    youtubeId: episode.youtubeId,
+                    spotifyId: episode.spotifyId,
+                    duration: episode.duration,
+                  }}
+                  className="mr-3"
+                />
+                <span className="text-sm text-foreground-muted font-heading tracking-wider">
+                  LISTEN NOW
+                </span>
+              </div>
+            )}
 
             <PodcastLinks
               spotifyId={episode.spotifyId}

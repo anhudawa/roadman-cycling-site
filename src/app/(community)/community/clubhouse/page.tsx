@@ -65,7 +65,7 @@ export default function ClubhousePage() {
               Just tools and a community that gets it.
             </p>
             <Button
-              href="https://skool.com/roadman"
+              href="https://www.skool.com/roadman"
               external
               size="lg"
             >
@@ -136,7 +136,7 @@ export default function ClubhousePage() {
                 you&apos;re losing is time by not being part of this.
               </p>
               <Button
-                href="https://skool.com/roadman"
+                href="https://www.skool.com/roadman"
                 external
                 size="lg"
               >

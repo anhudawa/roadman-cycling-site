@@ -126,7 +126,7 @@ export default function CommunityPage() {
                   ))}
                 </ul>
                 <Button
-                  href="https://skool.com/roadman"
+                  href="https://www.skool.com/roadman"
                   external
                   size="lg"
                   className="w-full"

@@ -5,6 +5,7 @@ import { motion } from "framer-motion";
 interface GuestEntry {
   name: string;
   credential: string;
+  href?: string;
 }
 
 /**
@@ -72,19 +73,26 @@ function MarqueeRow({
         x: { duration, repeat: Infinity, ease: "linear" },
       }}
     >
-      {doubled.map((guest, i) => (
-        <div
-          key={`${guest.name}-${i}`}
-          className="flex-shrink-0 bg-white/[0.04] border border-white/[0.07] rounded-lg px-4 py-2.5 hover:border-coral/25 transition-colors group"
-        >
-          <span className="font-heading text-off-white text-[13px] whitespace-nowrap block group-hover:text-coral transition-colors">
-            {guest.name.toUpperCase()}
-          </span>
-          <span className="text-foreground-subtle text-[11px] whitespace-nowrap block">
-            {guest.credential}
-          </span>
-        </div>
-      ))}
+      {doubled.map((guest, i) => {
+        const Tag = guest.href ? "a" : "div";
+        const linkProps = guest.href
+          ? { href: guest.href, target: "_blank" as const, rel: "noopener noreferrer" }
+          : {};
+        return (
+          <Tag
+            key={`${guest.name}-${i}`}
+            {...linkProps}
+            className={`flex-shrink-0 bg-white/[0.04] border border-white/[0.07] rounded-lg px-4 py-2.5 hover:border-coral/25 transition-colors group ${guest.href ? "cursor-pointer" : ""}`}
+          >
+            <span className="font-heading text-off-white text-[13px] whitespace-nowrap block group-hover:text-coral transition-colors">
+              {guest.name.toUpperCase()}
+            </span>
+            <span className="text-foreground-subtle text-[11px] whitespace-nowrap block">
+              {guest.credential}
+            </span>
+          </Tag>
+        );
+      })}
     </motion.div>
   );
 }

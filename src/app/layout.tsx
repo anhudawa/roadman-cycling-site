@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Bebas_Neue, Work_Sans } from "next/font/google";
 import { SmoothCursorWrapper } from "@/components/ui/SmoothCursorWrapper";
+import { PodcastPlayerShell } from "@/components/features/podcast/PodcastPlayerShell";
 import "./globals.css";
 
 const bebasNeue = Bebas_Neue({
@@ -95,7 +96,9 @@ export default function RootLayout({
           Skip to content
         </a>
         <SmoothCursorWrapper />
-        {children}
+        <PodcastPlayerShell>
+          {children}
+        </PodcastPlayerShell>
       </body>
     </html>
   );

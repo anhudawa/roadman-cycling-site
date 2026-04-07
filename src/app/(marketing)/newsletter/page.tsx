@@ -97,7 +97,7 @@ export default function NewsletterPage() {
 
             <ScrollReveal direction="up" delay={0.3}>
               <p className="text-foreground-subtle text-sm mt-6">
-                Join 29,000+ cyclists. Unsubscribe anytime.
+                Join 60,000+ cyclists. Unsubscribe anytime.
               </p>
             </ScrollReveal>
           </Container>
@@ -188,7 +188,7 @@ export default function NewsletterPage() {
         <EmailCapture
           variant="banner"
           heading="STOP GUESSING. START KNOWING."
-          subheading="29,000+ cyclists already get the weekly insights. Join them."
+          subheading="60,000+ cyclists already get the weekly insights. Join them."
           source="newsletter-page-bottom"
         />
       </main>

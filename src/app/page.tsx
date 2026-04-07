@@ -9,24 +9,24 @@ import { EmailCapture } from "@/components/features/conversion/EmailCapture";
 import { CONTENT_PILLARS, type ContentPillar } from "@/types";
 
 const marqueeGuests = [
-  { name: "Greg LeMond", credential: "3× Tour de France winner" },
-  { name: "Professor Seiler", credential: "Polarised training pioneer" },
-  { name: "Dan Lorang", credential: "Red Bull–Bora–Hansgrohe" },
-  { name: "Lachlan Morton", credential: "EF Education, alt-racing pioneer" },
-  { name: "Dan Bigham", credential: "Former Hour Record holder" },
-  { name: "Alistair Brownlee", credential: "2× Olympic triathlon gold" },
-  { name: "Valtteri Bottas", credential: "F1 driver & cyclist" },
-  { name: "Alex Dowsett", credential: "Former Hour Record holder, TT specialist" },
-  { name: "George Hincapie", credential: "17× Tour de France starter" },
-  { name: "André Greipel", credential: "22 Grand Tour stage wins" },
-  { name: "Joe Friel", credential: "Author, Cyclist's Training Bible" },
-  { name: "Hannah Grant", credential: "Pro team chef" },
-  { name: "Ed Clancy", credential: "3× Olympic gold, team pursuit" },
-  { name: "Tim Spector", credential: "ZOE founder, epidemiologist" },
-  { name: "Mark Beaumont", credential: "Around the World record" },
-  { name: "Colin O Brady", credential: "Solo Antarctic crossing, 10 Peaks adventurer" },
-  { name: "Uli Schoberer", credential: "Inventor of the SRM power meter" },
-  { name: "Olav Bu", credential: "Uno-X performance lead" },
+  { name: "Greg LeMond", credential: "3× Tour de France winner", href: "https://www.youtube.com/watch?v=DksKn_qWmqA" },
+  { name: "Professor Seiler", credential: "Polarised training pioneer", href: "https://www.youtube.com/watch?v=UZ47k9D0tGg" },
+  { name: "Dan Lorang", credential: "Red Bull–Bora–Hansgrohe", href: "https://www.youtube.com/watch?v=Qbub4VwLHW4" },
+  { name: "Lachlan Morton", credential: "EF Education, alt-racing pioneer", href: "https://www.youtube.com/watch?v=-X-Owk2VOoM" },
+  { name: "Dan Bigham", credential: "Former Hour Record holder", href: "https://www.youtube.com/watch?v=gxiqIIVB3OA" },
+  { name: "Alistair Brownlee", credential: "2× Olympic triathlon gold", href: "https://www.youtube.com/watch?v=TzmdghORXjE" },
+  { name: "Valtteri Bottas", credential: "F1 driver & cyclist", href: "https://www.youtube.com/watch?v=F9Fnts3Cv_U" },
+  { name: "Alex Dowsett", credential: "Former Hour Record holder, TT specialist", href: "https://www.youtube.com/watch?v=TzmdghORXjE" },
+  { name: "George Hincapie", credential: "17× Tour de France starter", href: "https://www.youtube.com/watch?v=nEBqxv2WZVs" },
+  { name: "André Greipel", credential: "22 Grand Tour stage wins", href: "https://www.youtube.com/watch?v=aLrD94_D13Y" },
+  { name: "Joe Friel", credential: "Author, Cyclist's Training Bible", href: "https://www.youtube.com/watch?v=ov9qv73_lH4" },
+  { name: "Hannah Grant", credential: "Pro team chef", href: "https://www.youtube.com/watch?v=fAvIMy4UQu4" },
+  { name: "Ed Clancy", credential: "3× Olympic gold, team pursuit", href: "https://www.youtube.com/watch?v=NQ2d5IFGmaA" },
+  { name: "Tim Spector", credential: "ZOE founder, epidemiologist", href: "https://www.youtube.com/watch?v=GdIJQ__lqHA" },
+  { name: "Mark Beaumont", credential: "Around the World record", href: "https://www.youtube.com/watch?v=b27wvtFa78g" },
+  { name: "Colin O Brady", credential: "Solo Antarctic crossing, 10 Peaks adventurer", href: "https://www.youtube.com/watch?v=Pu8hNDM9uzU" },
+  { name: "Uli Schoberer", credential: "Inventor of the SRM power meter", href: "https://www.youtube.com/watch?v=GPY7ReSpOpU" },
+  { name: "Olav Bu", credential: "Uno-X performance lead", href: "https://www.youtube.com/watch?v=t73tCc_BA2c" },
 ];
 
 const tools = [
@@ -105,7 +105,7 @@ export default function HomePage() {
                 and community — coached together as one system. That&apos;s what
                 makes the difference between guessing and getting faster.
               </p>
-              <Button href="https://skool.com/roadmancycling" external>
+              <Button href="https://www.skool.com/roadmancycling/plans" external>
                 Join Not Done Yet
               </Button>
             </ScrollReveal>

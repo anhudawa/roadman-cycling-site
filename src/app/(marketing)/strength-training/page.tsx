@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import { Header, Footer, Section, Container } from "@/components/layout";
 import { Button, Card, ScrollReveal, GradientText } from "@/components/ui";
 import { JsonLd } from "@/components/seo/JsonLd";
-import { CheckoutButton } from "@/components/features/conversion/CheckoutButton";
 
 export const metadata: Metadata = {
   title: "Strength Training for Cyclists — 12-Week S&C Plan",
@@ -407,9 +406,15 @@ export default function StrengthTrainingPage() {
             <p className="font-heading text-5xl text-off-white my-8">
               $65
             </p>
-            <CheckoutButton>
+            <Button
+              href="https://www.skool.com/roadmancycling/plans"
+              external
+              size="lg"
+              variant="ghost"
+              className="!bg-charcoal !border-charcoal hover:!bg-deep-purple hover:!border-deep-purple"
+            >
               Get the Plan
-            </CheckoutButton>
+            </Button>
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mt-6 text-off-white/60 text-sm">
               <span>One-time payment</span>
               <span className="hidden sm:inline">&middot;</span>

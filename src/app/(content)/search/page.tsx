@@ -1,7 +1,7 @@
 import { Suspense } from "react";
 import type { Metadata } from "next";
 import { Header, Footer, Section, Container } from "@/components/layout";
-import { GradientText, ScrollReveal } from "@/components/ui";
+import { GradientText } from "@/components/ui";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { getAllPosts } from "@/lib/blog";
 import { getAllEpisodes } from "@/lib/podcast";
@@ -217,20 +217,18 @@ export default function SearchPage() {
         {/* Hero */}
         <Section background="deep-purple" grain className="pt-32 pb-12">
           <Container className="text-center">
-            <ScrollReveal direction="up">
-              <GradientText
-                as="h1"
-                className="font-heading mb-4"
-              >
-                <span style={{ fontSize: "var(--text-hero)" }}>
-                  FIND ANYTHING
-                </span>
-              </GradientText>
-              <p className="text-foreground-muted max-w-xl mx-auto text-lg">
-                Search across every episode, article, guest, and tool on the
-                site. One box to rule them all.
-              </p>
-            </ScrollReveal>
+            <GradientText
+              as="h1"
+              className="font-heading mb-4"
+            >
+              <span style={{ fontSize: "var(--text-hero)" }}>
+                FIND ANYTHING
+              </span>
+            </GradientText>
+            <p className="text-foreground-muted max-w-xl mx-auto text-lg">
+              Search across every episode, article, guest, and tool on the
+              site. One box to rule them all.
+            </p>
           </Container>
         </Section>
 

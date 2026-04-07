@@ -41,7 +41,7 @@ const footerColumns = {
       { label: "Strength Training", href: "/strength-training" },
       {
         label: "Skool Community",
-        href: "https://skool.com/roadmancycling",
+        href: "https://www.skool.com/roadmancycling",
         external: true,
       },
     ],

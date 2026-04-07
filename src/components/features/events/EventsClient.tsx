@@ -612,7 +612,7 @@ export function EventsClient() {
                 </p>
                 <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
                   <Button
-                    href="https://skool.com/roadmancycling"
+                    href="https://www.skool.com/roadmancycling/plans"
                     external
                     size="lg"
                   >

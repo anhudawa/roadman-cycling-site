@@ -35,7 +35,7 @@ const tiers = [
       "Community of serious cyclists",
     ],
     cta: "Join Standard",
-    href: "https://skool.com/roadmancycling",
+    href: "https://www.skool.com/roadmancycling/plans",
     highlight: false,
   },
   {
@@ -53,7 +53,7 @@ const tiers = [
       "Nutrition guidance",
     ],
     cta: "Join Premium",
-    href: "https://skool.com/roadmancycling",
+    href: "https://www.skool.com/roadmancycling/plans",
     highlight: true,
   },
   {
@@ -71,7 +71,7 @@ const tiers = [
       "Early access to new features",
     ],
     cta: "Apply for VIP",
-    href: "https://skool.com/roadmancycling",
+    href: "https://www.skool.com/roadmancycling/plans",
     highlight: false,
   },
 ];
@@ -187,24 +187,25 @@ export default function NotDoneYetPage() {
         {/* Pricing */}
         <Section background="charcoal">
           <Container>
-            <div className="grid md:grid-cols-3 gap-6 max-w-5xl mx-auto">
+            <div className="grid md:grid-cols-3 gap-6 max-w-5xl mx-auto items-start">
               {tiers.map((tier, i) => (
                 <ScrollReveal key={tier.name} direction="up" delay={i * 0.1}>
-                <Card
-                  className={`p-8 card-shimmer ${
-                    tier.highlight
-                      ? "border-coral/40 bg-gradient-to-b from-background-elevated to-deep-purple/20 relative border-rotating"
-                      : ""
-                  }`}
-                  hoverable={false}
-                >
+                <div className={`relative ${tier.highlight ? "md:-mt-4 md:mb-4" : ""}`}>
                   {tier.highlight && (
-                    <div className="absolute -top-3 left-1/2 -translate-x-1/2">
-                      <span className="bg-coral text-off-white text-xs font-heading tracking-wider px-4 py-1 rounded-full">
+                    <div className="absolute -top-3 left-1/2 -translate-x-1/2 z-10">
+                      <span className="bg-coral text-off-white text-xs font-heading tracking-wider px-4 py-1 rounded-full whitespace-nowrap">
                         MOST POPULAR
                       </span>
                     </div>
                   )}
+                <Card
+                  className={`p-8 card-shimmer ${
+                    tier.highlight
+                      ? "border-coral/40 bg-gradient-to-b from-background-elevated to-deep-purple/20 border-rotating pt-10"
+                      : ""
+                  }`}
+                  hoverable={false}
+                >
 
                   <h3 className="font-heading text-2xl text-off-white mb-2">
                     {tier.name.toUpperCase()}
@@ -250,6 +251,7 @@ export default function NotDoneYetPage() {
                     {tier.cta}
                   </Button>
                 </Card>
+                </div>
                 </ScrollReveal>
               ))}
             </div>
@@ -320,7 +322,7 @@ export default function NotDoneYetPage() {
                   a system. Same knowledge. Same coaching. Your turn.
                 </p>
                 <Button
-                  href="https://skool.com/roadmancycling"
+                  href="https://www.skool.com/roadmancycling/plans"
                   external
                   size="lg"
                 >
