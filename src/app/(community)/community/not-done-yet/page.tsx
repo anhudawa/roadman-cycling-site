@@ -217,6 +217,24 @@ export default function NotDoneYetPage() {
           </Container>
         </Section>
 
+        {/* YouTube intro video */}
+        <Section background="charcoal">
+          <Container width="narrow">
+            <ScrollReveal direction="up">
+              <div className="relative aspect-video rounded-xl overflow-hidden border border-white/10 bg-background-elevated shadow-2xl">
+                <iframe
+                  src="https://www.youtube-nocookie.com/embed/mQJuKIjXxXg"
+                  title="Not Done Yet — Roadman Cycling"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                  allowFullScreen
+                  loading="lazy"
+                  className="absolute inset-0 w-full h-full"
+                />
+              </div>
+            </ScrollReveal>
+          </Container>
+        </Section>
+
         {/* Gradient divider */}
         <div className="gradient-divider" />
 
