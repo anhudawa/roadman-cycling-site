@@ -241,6 +241,12 @@ const testimonials = [
     company: "4iiii",
     companyUrl: "https://4iiii.com",
   },
+  {
+    quote: "The Roadman Cycling Podcast was a perfect fit for our discovery+ Giro d'Italia campaign, not only allowing us to contextually target relevant cycling content, but also delivering genuine endorsement from a trusted source. The host made the entire process seamless, delivering scripts and reads quickly and professionally, whilst also taking into account the creative need for multiple variations of the messaging for different campaign phases.",
+    author: "discovery+",
+    company: "Discovery",
+    companyUrl: "https://www.discoveryplus.com",
+  },
 ];
 
 const notableGuests = [
