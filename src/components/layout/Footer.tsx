@@ -39,11 +39,7 @@ const footerColumns = {
       { label: "Clubhouse (Free)", href: "/community/clubhouse" },
       { label: "Not Done Yet Coaching", href: "/community/not-done-yet" },
       { label: "Strength Training", href: "/strength-training" },
-      {
-        label: "Skool Community",
-        href: "https://www.skool.com/roadmancycling",
-        external: true,
-      },
+      { label: "Events", href: "/events" },
     ],
   },
   about: {
