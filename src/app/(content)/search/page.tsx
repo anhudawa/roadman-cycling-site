@@ -233,7 +233,7 @@ export default function SearchPage() {
         </Section>
 
         {/* Search */}
-        <Section background="charcoal">
+        <Section background="charcoal" className="overflow-visible">
           <Container>
             <Suspense>
               <SiteSearch items={searchIndex} />
