@@ -9,6 +9,8 @@ import Link from "next/link";
 const brandPartners = [
   { name: "TrainingPeaks", logo: "/images/partners/trainingpeaks.png", invert: true },
   { name: "SRAM", logo: "/images/partners/sram.png", invert: false },
+  { name: "discovery+", logo: "/images/partners/discovery-plus.svg", invert: true },
+  { name: "4iiii", logo: "/images/partners/4iiii.svg", invert: true },
   { name: "Parlee", logo: "/images/partners/parlee.png", invert: false },
   { name: "4Endurance", logo: "/images/partners/4endurance.png", invert: false },
   { name: "Bikmo", logo: "/images/partners/bikmo.png", invert: true },
@@ -55,7 +57,7 @@ const platformReach = [
     ),
     stat: "800K+",
     statLabel: "monthly views",
-    description: "28K+ subscribers. 8–10 new videos per month. Long-form content with high watch time.",
+    description: "75K subscribers across our YouTube channels. 8–10 new videos per month. Long-form content with high watch time.",
     color: "from-red-500/20 to-red-500/5",
   },
   {
@@ -67,7 +69,7 @@ const platformReach = [
     ),
     stat: "6.5M",
     statLabel: "monthly reach",
-    description: "407K+ engagements per month. 112% growth in reach. 2,400+ new followers monthly.",
+    description: "112% growth in reach. 2,400+ new followers monthly. Highly engaged cycling community.",
     color: "from-blue-500/20 to-blue-500/5",
   },
   {
@@ -79,7 +81,7 @@ const platformReach = [
     ),
     stat: "1.8M",
     statLabel: "monthly views",
-    description: "34K followers. 777K+ interactions per month. High-performing Reels and Stories.",
+    description: "49.5K followers. 777K+ interactions per month. High-performing Reels and Stories.",
     color: "from-pink-500/20 to-pink-500/5",
   },
   {
@@ -91,7 +93,7 @@ const platformReach = [
     ),
     stat: "1.2M",
     statLabel: "monthly impressions",
-    description: "10K followers. Real-time race commentary. Breaking news amplification.",
+    description: "Real-time race commentary. Breaking news amplification. Engaged cycling audience.",
     color: "from-gray-400/20 to-gray-400/5",
   },
   {
@@ -311,7 +313,7 @@ export default function PartnersPage() {
                 style={{ fontSize: "clamp(2.5rem, 6vw, 5rem)" }}
               >
                 <GradientText as="span">
-                  PARTNER WITH THE UK &amp; IRELAND&apos;S MOST TRUSTED CYCLING VOICE
+                  PARTNER WITH THE WORLD&apos;S MOST TRUSTED CYCLING VOICE
                 </GradientText>
               </h1>
             </ScrollReveal>
@@ -594,6 +596,124 @@ export default function PartnersPage() {
         <div className="gradient-divider" />
 
         {/* ═══════════════════════════════════════════
+            HOW IT WORKS — 3-step process
+        ═══════════════════════════════════════════ */}
+        <Section background="deep-purple" grain>
+          <Container>
+            <ScrollReveal direction="up">
+              <div className="text-center mb-16">
+                <p className="text-coral font-heading tracking-[0.3em] uppercase text-sm mb-4">
+                  Simple Process
+                </p>
+                <h2
+                  className="font-heading text-off-white mb-4"
+                  style={{ fontSize: "var(--text-section)" }}
+                >
+                  HOW IT WORKS
+                </h2>
+                <p className="text-foreground-muted max-w-xl mx-auto text-lg">
+                  From first conversation to live campaign in as little as 48 hours.
+                </p>
+              </div>
+            </ScrollReveal>
+
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-4xl mx-auto">
+              {[
+                {
+                  step: "01",
+                  title: "BRIEF",
+                  description: "Tell us your goals, target audience, and budget. We'll recommend the right format — podcast, newsletter, video, or a combination.",
+                },
+                {
+                  step: "02",
+                  title: "SCRIPT",
+                  description: "We craft the messaging. Anthony writes every host-read ad personally, tailored to your brand voice. You approve before anything goes live.",
+                },
+                {
+                  step: "03",
+                  title: "LIVE",
+                  description: "Your campaign goes out to 1M+ engaged cyclists. We share performance data, listener feedback, and optimise for the next run.",
+                },
+              ].map((item, i) => (
+                <ScrollReveal key={item.step} direction="up" delay={i * 0.15}>
+                  <div className="text-center">
+                    <div className="inline-flex items-center justify-center w-16 h-16 rounded-full border-2 border-coral/30 mb-6">
+                      <span className="font-heading text-2xl text-coral">{item.step}</span>
+                    </div>
+                    <h3 className="font-heading text-2xl text-off-white mb-3">{item.title}</h3>
+                    <p className="text-foreground-muted text-sm leading-relaxed">{item.description}</p>
+                  </div>
+                </ScrollReveal>
+              ))}
+            </div>
+          </Container>
+        </Section>
+
+        {/* Gradient divider */}
+        <div className="gradient-divider" />
+
+        {/* ═══════════════════════════════════════════
+            CASE STUDY — Discovery+ Giro d'Italia
+        ═══════════════════════════════════════════ */}
+        <Section background="charcoal" className="section-glow-coral">
+          <Container width="narrow">
+            <ScrollReveal direction="up">
+              <div className="text-center mb-10">
+                <p className="text-coral font-heading tracking-[0.3em] uppercase text-sm mb-4">
+                  Case Study
+                </p>
+                <h2
+                  className="font-heading text-off-white mb-4"
+                  style={{ fontSize: "var(--text-section)" }}
+                >
+                  DISCOVERY+ &times; GIRO D&apos;ITALIA
+                </h2>
+              </div>
+            </ScrollReveal>
+
+            <ScrollReveal direction="up" delay={0.1}>
+              <Card className="p-8 card-shimmer" glass>
+                <div className="space-y-6">
+                  <div>
+                    <p className="text-xs text-coral font-heading tracking-widest mb-3">THE CHALLENGE</p>
+                    <p className="text-foreground-muted leading-relaxed">
+                      Drive subscriptions for discovery+ Giro d&apos;Italia coverage among serious
+                      cycling fans — a niche audience that traditional advertising struggles to reach with authenticity.
+                    </p>
+                  </div>
+                  <div>
+                    <p className="text-xs text-coral font-heading tracking-widest mb-3">THE APPROACH</p>
+                    <p className="text-foreground-muted leading-relaxed">
+                      Multi-phase host-read campaign across podcast episodes timed to the race calendar.
+                      Multiple script variations for different campaign phases — pre-race hype, mid-race
+                      engagement, and post-stage recaps. Anthony delivered every read personally.
+                    </p>
+                  </div>
+                  <div>
+                    <p className="text-xs text-coral font-heading tracking-widest mb-3">THE RESULT</p>
+                    <p className="text-foreground-muted leading-relaxed">
+                      Genuine endorsement from a trusted voice in cycling. Contextually targeted content
+                      that felt native, not forced. Seamless delivery across creative variations —
+                      scripts returned and reads completed within 48 hours of briefing.
+                    </p>
+                  </div>
+                  <div className="pt-4 border-t border-white/5">
+                    <p className="text-off-white text-sm italic leading-relaxed">
+                      &ldquo;The host made the entire process seamless, delivering scripts and reads
+                      quickly and professionally.&rdquo;
+                    </p>
+                    <p className="text-foreground-subtle text-xs mt-2">— discovery+, Discovery</p>
+                  </div>
+                </div>
+              </Card>
+            </ScrollReveal>
+          </Container>
+        </Section>
+
+        {/* Gradient divider */}
+        <div className="gradient-divider" />
+
+        {/* ═══════════════════════════════════════════
             TESTIMONIALS — Social proof quotes
         ═══════════════════════════════════════════ */}
         <Section background="deep-purple" grain>
@@ -729,17 +849,29 @@ export default function PartnersPage() {
                 startup, or anything in between — if your product makes cyclists
                 faster, safer, or happier, we want to hear from you.
               </p>
-              <p className="text-foreground-subtle text-base max-w-xl mx-auto mb-10 leading-relaxed">
+              <p className="text-foreground-subtle text-base max-w-xl mx-auto mb-8 leading-relaxed">
                 Reach out and we&apos;ll send you the full media kit with
                 rates, case studies, and audience data.
               </p>
-              <div className="flex items-center justify-center gap-4 flex-wrap">
+              <div className="flex items-center justify-center gap-4 flex-wrap mb-8">
                 <Button href="/contact" size="lg">
                   Get in Touch
                 </Button>
-                <Button href="/about" variant="ghost" size="lg">
-                  Learn More About Us
+                <Button href="/media-kit.pdf" variant="ghost" size="lg" external>
+                  Download Media Kit
                 </Button>
+              </div>
+              <div className="flex items-center justify-center gap-2 text-foreground-muted">
+                <svg className="w-5 h-5 text-coral" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+                  <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" />
+                  <polyline points="22,6 12,13 2,6" />
+                </svg>
+                <span className="text-sm">
+                  Or email directly:{" "}
+                  <a href="mailto:anthony@roadmancycling.com" className="text-coral hover:underline font-medium">
+                    anthony@roadmancycling.com
+                  </a>
+                </span>
               </div>
             </ScrollReveal>
           </Container>
