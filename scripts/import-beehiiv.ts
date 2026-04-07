@@ -100,7 +100,7 @@ function parseCSVLine(line: string): string[] {
 async function createSubscription(contact: Contact): Promise<{ ok: boolean; status: number }> {
   const body: Record<string, unknown> = {
     email: contact.email,
-    reactivate_existing: false,
+    reactivate_existing: true,
     send_welcome_email: false,
     utm_source: "clickfunnels_migration",
   };
