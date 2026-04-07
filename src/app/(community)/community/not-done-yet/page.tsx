@@ -97,6 +97,39 @@ const testimonials = [
   },
 ];
 
+const memberTestimonials = [
+  {
+    name: "Damien Maloney",
+    highlight: "FTP from low 200s to 295",
+    quote:
+      "I was an average sportive rider who had plateaued. Roadman custom built a plan to achieve my goals. I\u2019ve gotten much more out of Roadman than I ever imagined. The coaches are very generous with their time and knowledge.",
+  },
+  {
+    name: "Chris O\u2019Connor",
+    highlight: "20% body fat down to 7%, 84kg to 68kg",
+    quote:
+      "Anthony set me on a dietary, mental and physical journey. Average wattage doubled and now weekly 100km+ rides are the norm.",
+  },
+  {
+    name: "Brian Morrissey",
+    highlight: "FTP up 15%, hit 4 w/kg at age 46",
+    quote:
+      "This really works. I\u2019m training so much less than last year, at lower intensities and not getting sick. FTHR up from 175 to 180, peak HR up to 193.",
+  },
+  {
+    name: "Aaron Kearney",
+    highlight: "Made the leap to Ultra Cycling",
+    quote:
+      "The expertise and personalised plan allowed me to utilise my past racing experience and gave me the adaptations needed for the changeover. If you\u2019re looking to unlock new potential, I couldn\u2019t recommend Anthony enough.",
+  },
+  {
+    name: "Ciaran O Conluain",
+    highlight: "Cycling all over the world",
+    quote:
+      "Anthony has been the most influential person in my cycling experience. He always knew how to push when needed and encourage when times were tough. None of it would have been possible without Anthony and his team.",
+  },
+];
+
 const objections = [
   {
     question: "I already listen to the podcast — why would I pay?",
@@ -178,6 +211,47 @@ export default function NotDoneYetPage() {
                 100+ cyclists who refuse to plateau &middot; 7-day free trial &middot; 30-day money-back guarantee
               </p>
             </ScrollReveal>
+          </Container>
+        </Section>
+
+        {/* Gradient divider */}
+        <div className="gradient-divider" />
+
+        {/* Member testimonials — social proof before pricing */}
+        <Section background="deep-purple" grain>
+          <Container>
+            <ScrollReveal direction="up">
+              <h2
+                className="font-heading text-off-white text-center mb-4"
+                style={{ fontSize: "var(--text-section)" }}
+              >
+                RESULTS THAT SPEAK
+              </h2>
+              <p className="text-foreground-muted text-center max-w-xl mx-auto mb-12">
+                Real members. Real numbers. No influencer fluff.
+              </p>
+            </ScrollReveal>
+            <div className="grid md:grid-cols-2 gap-6 max-w-4xl mx-auto">
+              {memberTestimonials.map((t, i) => (
+                <ScrollReveal key={t.name} direction="up" delay={i * 0.1}>
+                  <Card className="p-8 card-shimmer relative h-full" glass hoverable={false}>
+                    {/* Coral quote mark decoration */}
+                    <span className="absolute top-4 left-6 font-heading text-coral/20 leading-none select-none" style={{ fontSize: "5rem" }}>
+                      &ldquo;
+                    </span>
+                    <div className="relative z-10 pt-8">
+                      <p className="text-coral font-heading text-lg mb-3">
+                        {t.highlight.toUpperCase()}
+                      </p>
+                      <p className="text-foreground-muted text-sm leading-relaxed mb-4 italic">
+                        &ldquo;{t.quote}&rdquo;
+                      </p>
+                      <p className="text-xs text-foreground-subtle">&mdash; {t.name}</p>
+                    </div>
+                  </Card>
+                </ScrollReveal>
+              ))}
+            </div>
           </Container>
         </Section>
 
