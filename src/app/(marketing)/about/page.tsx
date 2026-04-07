@@ -44,8 +44,8 @@ const expertNetwork: { name: string; role: string; category: ExpertCategory; hig
 ];
 
 const milestones = [
-  { year: "2017", event: "Roadman Cycling Podcast launches", icon: "🎙️" },
-  { year: "2021", event: "1 million downloads", icon: "📈" },
+  { year: "2021", event: "Roadman Cycling Podcast launches", icon: "🎙️" },
+  { year: "2022", event: "1 million downloads", icon: "📈" },
   { year: "2023", event: "Sarah joins the podcast team", icon: "🤝" },
   { year: "2024", event: "Greg LeMond interview — a career highlight", icon: "🏆" },
   { year: "2025", event: "1 million monthly listeners", icon: "🔊" },
