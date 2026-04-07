@@ -81,13 +81,17 @@ export default function AboutPage() {
                 className="font-heading text-off-white mb-6"
                 style={{ fontSize: "var(--text-hero)" }}
               >
-                RIDING THROUGH
+                WHY WE EXIST
               </h1>
               <p className="text-foreground-muted text-xl max-w-3xl mx-auto leading-relaxed">
-                Riding through, always riding through, never sitting up, never
-                coasting. Being smart, working hard, making an effort,
-                contributing to the team. That&apos;s how we think about Roadman.
-                That&apos;s how we think about life.
+                The best information in sport — the stuff that actually moves
+                the needle — reaches elite athletes first, then the mega-rich,
+                and sometimes takes decades to trickle down to the rest of us.
+                I set out to short-circuit that process. To connect you directly
+                with the best minds in the game — the coaches, scientists, and
+                riders at the tip of the spear — so you get the same edge
+                without the wait. Performance, longevity, and a better life on
+                and off the bike. That&apos;s why Roadman exists.
               </p>
             </ScrollReveal>
           </Container>
