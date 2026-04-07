@@ -36,6 +36,16 @@ export async function generateMetadata({
       type: "article",
       publishedTime: episode.publishDate,
       url: `https://roadmancycling.com/podcast/${slug}`,
+      ...(episode.youtubeId && {
+        images: [
+          {
+            url: `https://img.youtube.com/vi/${episode.youtubeId}/maxresdefault.jpg`,
+            width: 1280,
+            height: 720,
+            alt: episode.title,
+          },
+        ],
+      }),
     },
   };
 }

@@ -51,7 +51,7 @@ export function WebSiteJsonLd() {
           target: {
             "@type": "EntryPoint",
             urlTemplate:
-              "https://roadmancycling.com/podcast?q={search_term_string}",
+              "https://roadmancycling.com/search?q={search_term_string}",
           },
           "query-input": "required name=search_term_string",
         },
