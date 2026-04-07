@@ -35,7 +35,7 @@ const tiers = [
       "Community of serious cyclists",
     ],
     cta: "Join Standard",
-    href: "https://www.skool.com/roadmancycling/plans",
+    href: "https://www.skool.com/roadmancycling/about",
     highlight: false,
   },
   {
@@ -53,7 +53,7 @@ const tiers = [
       "Nutrition guidance",
     ],
     cta: "Join Premium",
-    href: "https://www.skool.com/roadmancycling/plans",
+    href: "https://www.skool.com/roadmancycling/about",
     highlight: true,
   },
   {
@@ -71,7 +71,7 @@ const tiers = [
       "Early access to new features",
     ],
     cta: "Apply for VIP",
-    href: "https://www.skool.com/roadmancycling/plans",
+    href: "https://www.skool.com/roadmancycling/about",
     highlight: false,
   },
 ];
@@ -322,7 +322,7 @@ export default function NotDoneYetPage() {
                   a system. Same knowledge. Same coaching. Your turn.
                 </p>
                 <Button
-                  href="https://www.skool.com/roadmancycling/plans"
+                  href="https://www.skool.com/roadmancycling/about"
                   external
                   size="lg"
                 >
