@@ -13,9 +13,9 @@ export function PodcastLinks({
 }: PodcastLinksProps) {
   // Roadman Cycling Podcast show-level links
   const APPLE_PODCASTS_URL =
-    "https://podcasts.apple.com/podcast/the-roadman-cycling-podcast/id1438710892";
+    "https://podcasts.apple.com/us/podcast/the-roadman-cycling-podcast/id1224143549";
   const SPOTIFY_SHOW_URL =
-    "https://open.spotify.com/show/5jnJoLpGMWbMaDBqZZpwVS";
+    "https://open.spotify.com/show/2oCs3N4ahypwzzUrFqgUmC";
   const YOUTUBE_URL = "https://youtube.com/@theroadmanpodcast";
 
   const spotifyEpisodeUrl = spotifyId
