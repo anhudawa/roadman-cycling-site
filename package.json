@@ -10,7 +10,8 @@
     "lint": "eslint",
     "sync:youtube": "tsx scripts/sync-youtube.ts",
     "sync:youtube:full": "tsx scripts/sync-youtube.ts --full",
-    "sync:youtube:dry": "tsx scripts/sync-youtube.ts --full --dry-run"
+    "sync:youtube:dry": "tsx scripts/sync-youtube.ts --full --dry-run",
+    "sync:youtube:enrich": "tsx scripts/sync-youtube.ts --re-enrich"
   },
   "dependencies": {
     "@stripe/stripe-js": "^9.0.1",
