@@ -124,7 +124,7 @@ export function Footer() {
                 faster.
               </p>
               <p className="text-sm text-foreground-subtle italic">
-                Built for cyclists who refuse to plateau.
+                Built for cyclists who are &apos;not done yet&apos;.
               </p>
             </div>
             <div className="max-w-sm w-full">
@@ -224,7 +224,7 @@ export function Footer() {
               reserved.
             </p>
             <p className="italic">
-              Built for cyclists who refuse to plateau.
+              Built for cyclists who are &apos;not done yet&apos;.
             </p>
           </div>
         </Container>
