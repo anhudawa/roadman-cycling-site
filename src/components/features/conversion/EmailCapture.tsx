@@ -175,7 +175,7 @@ export function EmailCapture({
         <p className="text-green-400 font-medium">{message}</p>
       ) : (
         <>
-          <form onSubmit={handleSubmit} className="flex gap-3">
+          <form onSubmit={handleSubmit} className="flex flex-col sm:flex-row gap-3">
             <input
               type="email"
               aria-label="Email address"

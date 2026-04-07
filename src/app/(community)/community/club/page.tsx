@@ -182,7 +182,7 @@ export default function ClubPage() {
             <div className="grid md:grid-cols-3 gap-8">
               {rides.map((ride, i) => (
                 <ScrollReveal key={ride.day} direction="up" delay={i * 0.12}>
-                  <Link href="/events" className="block h-full group">
+                  <Link href="/events" className="block h-full group border-b border-white/5 pb-8 md:border-b-0 md:pb-0">
                     <p className="text-coral font-heading text-sm tracking-widest mb-3">
                       {ride.day.toUpperCase()} &middot; {ride.time}
                     </p>

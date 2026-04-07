@@ -255,7 +255,7 @@ export default function HomePage() {
 
             <div className="grid md:grid-cols-2 gap-6">
               <ScrollReveal direction="left">
-                <Card className="p-8 h-full" hoverable={false}>
+                <Card className="p-6 md:p-8 h-full" hoverable={false}>
                   <div className="flex items-center gap-3 mb-4">
                     <div className="w-3 h-3 rounded-full bg-coral pulse-glow" />
                     <span className="text-xs text-foreground-muted uppercase tracking-widest font-body">
@@ -297,7 +297,7 @@ export default function HomePage() {
 
               <ScrollReveal direction="right">
                 <Card
-                  className="p-8 h-full border-rotating rounded-lg bg-gradient-to-br from-background-elevated to-deep-purple/30"
+                  className="p-6 md:p-8 h-full border-rotating rounded-lg bg-gradient-to-br from-background-elevated to-deep-purple/30"
                   hoverable={false}
                 >
                   <div className="flex items-center gap-3 mb-4">

@@ -602,7 +602,7 @@ export function EventsClient() {
               <div className="absolute inset-0 bg-deep-purple/40 backdrop-blur-sm border border-purple/20 rounded-2xl" />
               <div className="absolute inset-0 bg-gradient-to-br from-purple/10 via-transparent to-coral/5 rounded-2xl" />
 
-              <div className="relative z-10 p-10 md:p-14">
+              <div className="relative z-10 p-6 sm:p-10 md:p-14">
                 <h2 className="font-heading text-4xl md:text-5xl text-off-white mb-4">
                   SHOW UP. CLIP IN.
                 </h2>

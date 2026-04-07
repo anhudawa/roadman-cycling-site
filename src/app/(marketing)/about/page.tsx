@@ -101,7 +101,7 @@ export default function AboutPage() {
         <Section background="charcoal" className="!pb-0">
           <Container>
             <ScrollReveal direction="up">
-              <div className="relative aspect-[21/9] rounded-xl overflow-hidden">
+              <div className="relative aspect-[4/3] md:aspect-[21/9] rounded-xl overflow-hidden">
                 <Image
                   src="/images/about/anthony-walsh-podcast.jpg"
                   alt="Anthony Walsh recording the Roadman Cycling Podcast"
@@ -267,7 +267,7 @@ export default function AboutPage() {
 
             {/* Category legend */}
             <ScrollReveal direction="up" delay={0.05}>
-              <div className="flex items-center justify-center gap-6 mb-12">
+              <div className="flex items-center justify-center gap-3 sm:gap-6 flex-wrap mb-12">
                 {(Object.entries(categoryStyles) as [ExpertCategory, typeof categoryStyles[ExpertCategory]][]).map(([key, style]) => (
                   <div key={key} className="flex items-center gap-2">
                     <div className={`w-2.5 h-2.5 rounded-full bg-current ${style.color}`} />
@@ -334,7 +334,7 @@ export default function AboutPage() {
               </p>
             </ScrollReveal>
 
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6">
               {[
                 { name: "Anthony Walsh", role: "Host & Content", image: "/images/team/anthony.avif", bio: "The voice behind 1,400+ episodes" },
                 { name: "Sarah Ann Egan", role: "Co-Host & Operations", image: "/images/team/sarah-solo.jpg", bio: "Keeps the wheels turning" },

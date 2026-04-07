@@ -50,7 +50,7 @@ export function HeroSection() {
   return (
     <section
       ref={sectionRef}
-      className="relative min-h-[120vh] flex items-start justify-center overflow-hidden"
+      className="relative min-h-screen md:min-h-[120vh] flex items-start justify-center overflow-hidden"
     >
       {/* === LAYER 1: Deep background with parallax === */}
       <motion.div className="absolute inset-0 bg-charcoal" style={{ y: bgY }}>

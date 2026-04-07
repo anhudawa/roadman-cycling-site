@@ -349,7 +349,7 @@ export default function PartnersPage() {
               <p className="text-center text-foreground-subtle text-xs tracking-[0.3em] uppercase mb-8">
                 Trusted by leading brands in cycling
               </p>
-              <div className="flex items-center justify-center gap-10 md:gap-16 flex-wrap">
+              <div className="flex items-center justify-center gap-6 sm:gap-10 md:gap-16 flex-wrap">
                 {brandPartners.map((brand) => (
                   <div
                     key={brand.name}
