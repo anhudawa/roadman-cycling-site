@@ -44,7 +44,7 @@ const platformReach = [
     ),
     stat: "1M+",
     statLabel: "monthly listeners",
-    description: "Top 3 cycling podcast worldwide. 12 new episodes per month across 1,400+ total.",
+    description: "Top 3 cycling podcast worldwide. 12 new episodes per month.",
     color: "from-coral/20 to-coral/5",
   },
   {
