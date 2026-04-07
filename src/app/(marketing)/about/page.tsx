@@ -28,7 +28,7 @@ const categoryStyles: Record<ExpertCategory, { label: string; color: string; bor
   athlete: { label: "ATHLETE", color: "text-green-400", border: "border-l-green-400" },
 };
 
-const expertNetwork: { name: string; role: string; category: ExpertCategory; highlight?: string }[] = [
+const expertNetwork: { name: string; role: string; category: ExpertCategory; highlight?: string; slug?: string }[] = [
   { name: "Professor Stephen Seiler", role: "Exercise physiologist", category: "scientist", highlight: "Polarised training pioneer" },
   { name: "Dan Lorang", role: "Head of Performance, Red Bull–Bora–Hansgrohe", category: "coach", highlight: "World Tour training methodology" },
   { name: "Greg LeMond", role: "3× Tour de France winner", category: "athlete", highlight: "American cycling legend" },
@@ -284,9 +284,9 @@ export default function AboutPage() {
                 const style = categoryStyles[expert.category];
                 return (
                   <ScrollReveal key={expert.name} direction="up" delay={i * 0.04}>
-                    <Card className={`p-5 h-full border-l-2 ${style.border} card-shimmer`} glass>
+                    <Card className={`p-5 h-full border-l-2 ${style.border} card-shimmer`} href={`/guests/${expert.name.toLowerCase().replace(/['']/g, "").replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "")}`} glass>
                       <div className="flex items-start justify-between gap-3 mb-2">
-                        <p className="font-heading text-lg text-off-white leading-tight">
+                        <p className="font-heading text-lg text-off-white leading-tight group-hover:text-coral transition-colors">
                           {expert.name.toUpperCase()}
                         </p>
                         <span className={`text-[10px] font-body tracking-widest ${style.color} shrink-0 mt-1`}>
