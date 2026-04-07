@@ -5,7 +5,7 @@ import { type ContentPillar } from "@/types";
  * This powers the site-wide search functionality.
  */
 export interface SearchableItem {
-  type: "blog" | "podcast" | "tool";
+  type: "blog" | "podcast" | "tool" | "guest";
   slug: string;
   title: string;
   description: string;

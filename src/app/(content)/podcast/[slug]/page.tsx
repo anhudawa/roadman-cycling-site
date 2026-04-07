@@ -6,6 +6,7 @@ import { Badge, Button } from "@/components/ui";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { getEpisodeBySlug, getAllEpisodeSlugs } from "@/lib/podcast";
 import { PodcastLinks } from "@/components/features/podcast/PodcastLinks";
+import { TranscriptViewer } from "@/components/features/podcast/TranscriptViewer";
 import { EmailCapture } from "@/components/features/conversion/EmailCapture";
 
 export async function generateStaticParams() {
@@ -257,6 +258,14 @@ export default async function EpisodePage({
             <article className="prose-roadman prose-episode">
               <MDXRemote source={episode.content} />
             </article>
+
+            {/* Transcript */}
+            {episode.transcript && (
+              <TranscriptViewer
+                transcript={episode.transcript}
+                className="mt-12"
+              />
+            )}
 
             {/* Newsletter */}
             <EmailCapture

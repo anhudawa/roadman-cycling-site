@@ -20,6 +20,7 @@ export interface EpisodeFrontmatter {
   keywords: string[];
   seoTitle?: string;
   seoDescription: string;
+  transcript?: string;
 }
 
 export interface EpisodeMeta extends EpisodeFrontmatter {

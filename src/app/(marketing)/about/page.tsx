@@ -334,7 +334,7 @@ export default function AboutPage() {
               {[
                 { name: "Anthony Walsh", role: "Host & Content", image: "/images/team/anthony.avif", bio: "The voice behind 1,400+ episodes" },
                 { name: "Sarah Ann Egan", role: "Operations & Community", image: "/images/team/sarah-solo.jpg", bio: "Keeps the wheels turning" },
-                { name: "Wes Andrade", role: "Production", image: "/images/team/ant.avif", bio: "Makes it sound this good" },
+                { name: "Wes Andrade", role: "Production", image: "/images/team/wes.jpg", bio: "Makes it sound this good" },
                 { name: "Matthew Devins", role: "Coaching", image: "/images/team/devins.jpg", bio: "Not Done Yet programme lead" },
               ].map((member, i) => (
                 <ScrollReveal key={member.name} direction="up" delay={i * 0.1}>

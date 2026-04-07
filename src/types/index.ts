@@ -162,4 +162,8 @@ export const NAV_ITEMS: NavItem[] = [
     label: "About",
     href: "/about",
   },
+  {
+    label: "Partners",
+    href: "/partners",
+  },
 ];
