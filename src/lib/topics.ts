@@ -126,6 +126,41 @@ const TOPIC_DEFINITIONS: Omit<TopicHub, "posts" | "episodes">[] = [
       "cycling basics",
     ],
   },
+  {
+    slug: "triathlon-cycling",
+    title: "Cycling for Triathletes — The Bike Leg Specialist",
+    headline: "OWN THE BIKE LEG",
+    description:
+      "Everything a triathlete needs to get faster on the bike. FTP pacing, bike nutrition, aero position, power-to-weight, and off-season bike training — from the podcast trusted by Alistair Brownlee and Olav Bu.",
+    pillar: "coaching",
+    keywords: [
+      "triathlon cycling",
+      "triathlon bike training",
+      "ironman bike pacing",
+      "triathlon cycling plan",
+      "cycling for triathletes",
+      "triathlon bike nutrition",
+      "triathlon ftp",
+    ],
+  },
+  {
+    slug: "mountain-biking",
+    title: "Mountain Biking — Setup, Skills & Routes",
+    headline: "DIAL IN YOUR MTB",
+    description:
+      "Everything you need to set up, ride, and maintain your mountain bike. Suspension setup, tyre pressure, fork tuning, trail guides, and the best MTB routes in Ireland.",
+    pillar: "le-metier",
+    keywords: [
+      "mountain bike setup",
+      "mtb tyre pressure",
+      "fork setup mtb",
+      "mountain bike suspension",
+      "mtb routes ireland",
+      "mountain biking tips",
+      "mtb trail guide",
+      "mountain bike beginners",
+    ],
+  },
 ];
 
 /** Map of topic slugs to relevant blog post slugs */
@@ -196,6 +231,33 @@ const TOPIC_POST_MAP: Record<string, string[]> = {
     "cycling-indoor-training-tips",
     "best-cycling-podcasts-2026",
   ],
+  "triathlon-cycling": [
+    "triathlon-cycling-training-plan",
+    "triathlon-ftp-pacing-strategy",
+    "triathlon-bike-nutrition-strategy",
+    "triathlon-cycling-power-to-weight",
+    "triathlon-aero-position-guide",
+    "triathlon-off-season-cycling",
+    "ftp-training-zones-cycling-complete-guide",
+    "zone-2-training-complete-guide",
+    "cycling-nutrition-race-day-guide",
+    "polarised-training-cycling-guide",
+  ],
+  "mountain-biking": [
+    "mtb-fork-setup-guide",
+    "mtb-tyre-pressure-guide",
+    "mtb-suspension-setup-complete-guide",
+    "mtb-dropper-post-setup-guide",
+    "best-mtb-trails-ireland",
+    "best-mtb-trails-wicklow",
+    "best-mtb-trails-belfast",
+    "mtb-winter-riding-guide",
+    "mtb-tubeless-conversion-guide",
+    "mtb-bike-fit-basics",
+    "mtb-skills-beginners-guide",
+    "best-gravel-trails-ireland",
+    "mtb-maintenance-guide",
+  ],
 };
 
 /** Keyword patterns for matching episodes to topics */
@@ -208,6 +270,8 @@ const TOPIC_EPISODE_KEYWORDS: Record<string, RegExp> = {
   "cycling-strength-conditioning": /strength|gym|s&c|stretch|core|muscle|lift/i,
   "cycling-weight-loss": /weight|fat|lean|body comp|diet|kilo|kg|w\/kg/i,
   "cycling-beginners": /beginn|start|new to|etiquette|gravel|tyre|tire|bike fit/i,
+  "triathlon-cycling": /triath|ironman|70\.3|half iron|brick|swim.bike|bike.run|t1|t2|aero position|tri bike|tt bike/i,
+  "mountain-biking": /mountain.?bik|mtb|enduro|downhill|trail.?rid|suspension|fork.?setup|sag|shock.?pressur|dropper|trail.?centre/i,
 };
 
 export function getAllTopics(): TopicHub[] {

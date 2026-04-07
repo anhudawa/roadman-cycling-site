@@ -4,6 +4,7 @@ import { notFound } from "next/navigation";
 import { Header, Footer, Section, Container } from "@/components/layout";
 import { ScrollReveal, Card, Badge, Button } from "@/components/ui";
 import { JsonLd } from "@/components/seo/JsonLd";
+import { EmailCapture } from "@/components/features/conversion/EmailCapture";
 import { getTopicBySlug, getAllTopicSlugs } from "@/lib/topics";
 
 export async function generateStaticParams() {
@@ -92,7 +93,7 @@ export default async function TopicPage({
 
       <Header />
 
-      <main>
+      <main id="main-content">
         {/* Hero */}
         <Section background="deep-purple" grain className="pt-32 pb-12">
           <Container className="text-center">
@@ -157,6 +158,27 @@ export default async function TopicPage({
           </Section>
         )}
 
+        {/* Newsletter CTA */}
+        <Section background="deep-purple">
+          <Container width="narrow">
+            <ScrollReveal direction="up">
+              <EmailCapture
+                heading={
+                  {
+                    coaching: "GET FASTER EVERY WEEK",
+                    nutrition: "EAT SMARTER, RIDE STRONGER",
+                    strength: "BUILD THE ENGINE OFF THE BIKE",
+                    recovery: "RECOVER LIKE A PRO",
+                    "le-metier": "THE CRAFT, DELIVERED WEEKLY",
+                  }[topic.pillar] || "GET THE INSIGHTS"
+                }
+                subheading={`The best of ${topic.title.toLowerCase()} — evidence-based, once a week. No fluff.`}
+                source={`topic-${topic.slug}`}
+              />
+            </ScrollReveal>
+          </Container>
+        </Section>
+
         {/* Podcast Episodes */}
         {topic.episodes.length > 0 && (
           <Section background="deep-purple" grain>
@@ -179,9 +201,6 @@ export default async function TopicPage({
                     >
                       <Card className="p-5 h-full transition-all group-hover:border-coral/30">
                         <div className="flex items-center gap-2 mb-2">
-                          <span className="font-heading text-coral text-xs">
-                            EP {ep.episodeNumber}
-                          </span>
                           <span className="text-xs text-foreground-subtle">
                             {ep.duration}
                           </span>

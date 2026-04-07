@@ -7,29 +7,50 @@ import { JsonLd } from "@/components/seo/JsonLd";
 export const metadata: Metadata = {
   title: "About — Anthony Walsh & Roadman Cycling",
   description:
-    "The story behind Roadman Cycling. How Anthony Walsh built a 100M+ download podcast and a community of serious cyclists who refuse to accept their best days are behind them.",
+    "The story behind Roadman Cycling. How Anthony Walsh built a 1M+ listener podcast and a community of serious cyclists who refuse to accept their best days are behind them.",
+  alternates: {
+    canonical: "https://roadmancycling.com/about",
+  },
+  openGraph: {
+    title: "About — Anthony Walsh & Roadman Cycling",
+    description:
+      "The story behind Roadman Cycling. How Anthony Walsh built a 1M+ listener podcast and a community of serious cyclists who refuse to accept their best days are behind them.",
+    type: "profile",
+    url: "https://roadmancycling.com/about",
+  },
 };
 
-const expertNetwork = [
-  { name: "Professor Stephen Seiler", role: "Exercise physiologist, polarised training pioneer" },
-  { name: "Dan Lorang", role: "Head of Performance, Red Bull Bora-Hansgrohe" },
-  { name: "Lachlan Morton", role: "EF Education pro, alt-racing pioneer" },
-  { name: "Ben Healy", role: "Pro cyclist, Tour de France" },
-  { name: "John Wakefield", role: "Bora-Hansgrohe coach" },
-  { name: "Dr. David Dunne", role: "Sports science researcher" },
-  { name: "Michael Matthews", role: "15+ year pro, World Tour" },
-  { name: "Joe Friel", role: "Legendary cycling coach, author" },
-  { name: "Rosa Kloser", role: "European gravel champion" },
+type ExpertCategory = "scientist" | "coach" | "athlete";
+
+const categoryStyles: Record<ExpertCategory, { label: string; color: string; border: string }> = {
+  scientist: { label: "SCIENCE", color: "text-purple", border: "border-l-purple" },
+  coach: { label: "COACHING", color: "text-coral", border: "border-l-coral" },
+  athlete: { label: "ATHLETE", color: "text-green-400", border: "border-l-green-400" },
+};
+
+const expertNetwork: { name: string; role: string; category: ExpertCategory; highlight?: string }[] = [
+  { name: "Professor Stephen Seiler", role: "Exercise physiologist", category: "scientist", highlight: "Polarised training pioneer" },
+  { name: "Dan Lorang", role: "Head of Performance, Red Bull–Bora–Hansgrohe", category: "coach", highlight: "World Tour training methodology" },
+  { name: "Greg LeMond", role: "3× Tour de France winner", category: "athlete", highlight: "American cycling legend" },
+  { name: "Lachlan Morton", role: "EF Education pro", category: "athlete", highlight: "Alt-racing pioneer" },
+  { name: "Joe Friel", role: "Author, Cyclist's Training Bible", category: "coach", highlight: "Legendary cycling coach" },
+  { name: "Dr. David Dunne", role: "Sports science researcher", category: "scientist", highlight: "Performance physiology" },
+  { name: "Ben Healy", role: "Pro cyclist, Tour de France", category: "athlete", highlight: "Irish cycling star" },
+  { name: "John Wakefield", role: "Red Bull–Bora–Hansgrohe coach", category: "coach", highlight: "World Tour performance" },
+  { name: "Michael Matthews", role: "15+ year World Tour pro", category: "athlete", highlight: "Grand Tour stage winner" },
+  { name: "Dan Bigham", role: "Former Hour Record holder", category: "athlete", highlight: "Aerodynamics specialist" },
+  { name: "Rosa Kloser", role: "Gravel World Champion", category: "athlete", highlight: "Off-road trailblazer" },
+  { name: "Tim Spector", role: "ZOE founder, epidemiologist", category: "scientist", highlight: "Nutrition science" },
 ];
 
 const milestones = [
-  { year: "2016", event: "Roadman Cycling Podcast launches" },
-  { year: "2019", event: "10 million podcast downloads" },
-  { year: "2021", event: "50 million downloads, YouTube channel launches" },
-  { year: "2023", event: "Free Clubhouse community created on Skool" },
-  { year: "2024", event: "Not Done Yet paid community launches" },
-  { year: "2025", event: "100 million podcast downloads" },
-  { year: "2026", event: "New site, new era. We're just getting started." },
+  { year: "2017", event: "Roadman Cycling Podcast launches", icon: "🎙️" },
+  { year: "2021", event: "1 million downloads", icon: "📈" },
+  { year: "2023", event: "Sarah joins the podcast team", icon: "🤝" },
+  { year: "2024", event: "Greg LeMond interview — a career highlight", icon: "🏆" },
+  { year: "2025", event: "1 million monthly listeners", icon: "🔊" },
+  { year: "2026", event: "Not Done Yet community launches", icon: "💪" },
+  { year: "NOW", event: "New site. New era. We're just getting started.", icon: "🚀" },
 ];
 
 export default function AboutPage() {
@@ -51,7 +72,7 @@ export default function AboutPage() {
 
       <Header />
 
-      <main>
+      <main id="main-content">
         {/* Hero */}
         <Section background="deep-purple" grain className="pt-32 pb-16">
           <Container className="text-center">
@@ -106,37 +127,39 @@ export default function AboutPage() {
             <div className="space-y-6 text-foreground-muted leading-relaxed">
               <ScrollReveal direction="up" delay={0.1}>
                 <p>
-                  Roadman Cycling started with a simple idea: what if the best
-                  cycling knowledge in the world — the stuff that World Tour
-                  coaches discuss behind closed doors — was available to everyone?
+                  Most of what makes cyclists faster never leaves the team bus.
+                  The periodisation models, the nutrition protocols, the recovery
+                  strategies — they stay behind closed doors. Roadman Cycling
+                  was built to change that.
                 </p>
               </ScrollReveal>
 
               <ScrollReveal direction="up" delay={0.15}>
                 <p>
-                  Anthony Walsh didn&apos;t set out to build a media company. He
-                  was a cyclist who wanted to get faster, and he started asking
-                  questions. The right questions, to the right people. And those
-                  people said yes.
+                  Anthony Walsh started as a cyclist chasing marginal gains with
+                  no access to the people who actually understood them. So he
+                  picked up a microphone and went straight to the source —
+                  the coaches, the scientists, the riders living it every day.
                 </p>
               </ScrollReveal>
 
               <ScrollReveal direction="up" delay={0.2}>
                 <p>
-                  Professor Stephen Seiler explained polarised training.
-                  Dan Lorang shared his approach to training methodology. John Wakefield
-                  revealed the marginal gains philosophy behind Team Sky.
-                  Lachlan Morton opened up about why the World Tour wasn&apos;t
-                  enough.
+                  Professor Stephen Seiler broke down polarised training.
+                  Dan Lorang explained World Tour training methodology.
+                  Greg LeMond shared what it took to win three Tours de France.
+                  Lachlan Morton talked about why the World Tour wasn&apos;t
+                  enough. Over 1,400 conversations later, the access hasn&apos;t
+                  slowed down.
                 </p>
               </ScrollReveal>
 
               <ScrollReveal direction="up" delay={0.25}>
                 <p>
-                  100 million downloads later, Roadman Cycling isn&apos;t just a
-                  podcast. It&apos;s a community of serious cyclists — professionals
-                  with families, limited time, and genuine ambitions on the
-                  bike — who refuse to accept that their best days are behind them.
+                  Today, 1 million monthly listeners tune in — not casual fans,
+                  but serious cyclists with families, limited time, and real
+                  ambitions on the bike. People who refuse to accept that their
+                  best days are behind them.
                 </p>
               </ScrollReveal>
 
@@ -155,38 +178,75 @@ export default function AboutPage() {
           <Container width="narrow">
             <ScrollReveal direction="up">
               <h2
-                className="font-heading text-off-white text-center mb-12"
+                className="font-heading text-off-white text-center mb-16"
                 style={{ fontSize: "var(--text-section)" }}
               >
                 THE TIMELINE
               </h2>
             </ScrollReveal>
 
-            <div className="space-y-0">
-              {milestones.map((m, i) => (
-                <ScrollReveal key={m.year} direction="left" delay={i * 0.08}>
-                  <div className="flex gap-6 items-start pb-8 relative">
-                    {/* Line */}
-                    {i < milestones.length - 1 && (
-                      <div className="absolute left-[39px] top-8 bottom-0 w-px bg-white/10" />
-                    )}
-                    <div className="w-20 shrink-0 text-right">
-                      <span className="font-heading text-2xl text-coral">
-                        {m.year}
-                      </span>
+            <div className="relative">
+              {/* Central line */}
+              <div className="absolute left-6 md:left-1/2 top-0 bottom-0 w-px bg-gradient-to-b from-coral/60 via-purple/40 to-transparent md:-translate-x-px" />
+
+              {milestones.map((m, i) => {
+                const isLast = i === milestones.length - 1;
+                const isEven = i % 2 === 0;
+                return (
+                  <ScrollReveal
+                    key={m.year}
+                    direction={isEven ? "left" : "right"}
+                    delay={i * 0.1}
+                  >
+                    <div
+                      className={`relative flex items-start gap-6 mb-12 last:mb-0 md:gap-0 ${
+                        isEven ? "md:flex-row" : "md:flex-row-reverse"
+                      }`}
+                    >
+                      {/* Dot on the line */}
+                      <div
+                        className={`absolute left-6 md:left-1/2 -translate-x-1/2 top-1 z-10 w-4 h-4 rounded-full border-2 ${
+                          isLast
+                            ? "border-coral bg-coral shadow-[0_0_12px_rgba(255,107,74,0.6)]"
+                            : "border-coral/60 bg-deep-purple"
+                        }`}
+                      />
+
+                      {/* Content card — mobile: always right of line, desktop: alternating */}
+                      <div className="pl-12 md:pl-0 md:w-1/2">
+                        <div
+                          className={`${
+                            isEven ? "md:pr-12 md:text-right" : "md:pl-12"
+                          }`}
+                        >
+                          <span className="font-heading text-3xl text-coral block mb-1">
+                            {m.year}
+                          </span>
+                          <span className="text-2xl block mb-2" aria-hidden="true">
+                            {m.icon}
+                          </span>
+                          <p
+                            className={`text-foreground-muted text-lg leading-relaxed ${
+                              isLast ? "text-off-white font-medium" : ""
+                            }`}
+                          >
+                            {m.event}
+                          </p>
+                        </div>
+                      </div>
+
+                      {/* Spacer for the other side on desktop */}
+                      <div className="hidden md:block md:w-1/2" />
                     </div>
-                    <div className="pt-1">
-                      <p className="text-foreground-muted">{m.event}</p>
-                    </div>
-                  </div>
-                </ScrollReveal>
-              ))}
+                  </ScrollReveal>
+                );
+              })}
             </div>
           </Container>
         </Section>
 
         {/* Expert Network */}
-        <Section background="charcoal">
+        <Section background="charcoal" className="section-glow-coral">
           <Container>
             <ScrollReveal direction="up">
               <h2
@@ -195,58 +255,122 @@ export default function AboutPage() {
               >
                 THE EXPERT NETWORK
               </h2>
-              <p className="text-foreground-muted text-center max-w-xl mx-auto mb-12">
+              <p className="text-foreground-muted text-center max-w-xl mx-auto mb-6">
                 The coaches, scientists, and athletes who have shaped Roadman
                 Cycling through hundreds of conversations.
               </p>
             </ScrollReveal>
 
+            {/* Category legend */}
+            <ScrollReveal direction="up" delay={0.05}>
+              <div className="flex items-center justify-center gap-6 mb-12">
+                {(Object.entries(categoryStyles) as [ExpertCategory, typeof categoryStyles[ExpertCategory]][]).map(([key, style]) => (
+                  <div key={key} className="flex items-center gap-2">
+                    <div className={`w-2.5 h-2.5 rounded-full bg-current ${style.color}`} />
+                    <span className={`text-xs font-body tracking-widest ${style.color}`}>
+                      {style.label}
+                    </span>
+                  </div>
+                ))}
+              </div>
+            </ScrollReveal>
+
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-              {expertNetwork.map((expert, i) => (
-                <ScrollReveal key={expert.name} direction="up" delay={i * 0.05}>
-                  <Card className="p-5" hoverable={false}>
-                    <p className="font-heading text-lg text-off-white mb-1">
-                      {expert.name.toUpperCase()}
-                    </p>
-                    <p className="text-sm text-foreground-muted">
-                      {expert.role}
-                    </p>
-                  </Card>
-                </ScrollReveal>
-              ))}
+              {expertNetwork.map((expert, i) => {
+                const style = categoryStyles[expert.category];
+                return (
+                  <ScrollReveal key={expert.name} direction="up" delay={i * 0.04}>
+                    <Card className={`p-5 h-full border-l-2 ${style.border} card-shimmer`} glass>
+                      <div className="flex items-start justify-between gap-3 mb-2">
+                        <p className="font-heading text-lg text-off-white leading-tight">
+                          {expert.name.toUpperCase()}
+                        </p>
+                        <span className={`text-[10px] font-body tracking-widest ${style.color} shrink-0 mt-1`}>
+                          {style.label}
+                        </span>
+                      </div>
+                      <p className="text-sm text-foreground-muted mb-2">
+                        {expert.role}
+                      </p>
+                      {expert.highlight && (
+                        <p className={`text-xs ${style.color} font-medium`}>
+                          {expert.highlight}
+                        </p>
+                      )}
+                    </Card>
+                  </ScrollReveal>
+                );
+              })}
             </div>
+
+            <ScrollReveal direction="up" delay={0.5}>
+              <p className="text-center text-foreground-muted text-sm mt-8">
+                Plus 1,400+ more conversations in{" "}
+                <a href="/guests" className="text-coral hover:underline">
+                  the full guest archive
+                </a>
+                .
+              </p>
+            </ScrollReveal>
           </Container>
         </Section>
 
         {/* Team */}
         <Section background="deep-purple" grain>
-          <Container width="narrow">
+          <Container>
             <ScrollReveal direction="up">
               <h2
-                className="font-heading text-off-white text-center mb-12"
+                className="font-heading text-off-white text-center mb-4"
                 style={{ fontSize: "var(--text-section)" }}
               >
                 THE TEAM
               </h2>
+              <p className="text-foreground-muted text-center max-w-lg mx-auto mb-12">
+                Small team. Big ambitions. Every one of us rides.
+              </p>
             </ScrollReveal>
 
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
               {[
-                { name: "Anthony Walsh", role: "Host & Content" },
-                { name: "Sarah", role: "Operations & Community" },
-                { name: "Sinead", role: "Support" },
-                { name: "Wes", role: "Support" },
+                { name: "Anthony Walsh", role: "Host & Content", image: "/images/team/anthony.avif", bio: "The voice behind 1,400+ episodes" },
+                { name: "Sarah Ann Egan", role: "Operations & Community", image: "/images/team/sarah-solo.jpg", bio: "Keeps the wheels turning" },
+                { name: "Wes Andrade", role: "Production", image: "/images/team/ant.avif", bio: "Makes it sound this good" },
+                { name: "Matthew Devins", role: "Coaching", image: "/images/team/devins.jpg", bio: "Not Done Yet programme lead" },
               ].map((member, i) => (
                 <ScrollReveal key={member.name} direction="up" delay={i * 0.1}>
-                  <div className="w-20 h-20 rounded-full bg-purple/30 border border-purple/40 mx-auto mb-3 flex items-center justify-center">
-                    <span className="font-heading text-xl text-off-white">
-                      {member.name.charAt(0)}
-                    </span>
+                  <div className="group relative h-full">
+                    {/* Photo area */}
+                    <div className="relative aspect-[3/4] rounded-xl overflow-hidden mb-4">
+                      {member.image ? (
+                        <>
+                          <Image
+                            src={member.image}
+                            alt={member.name}
+                            fill
+                            className="object-cover group-hover:scale-105 transition-transform duration-700"
+                            sizes="(max-width: 768px) 50vw, 25vw"
+                          />
+                          <div className="absolute inset-0 bg-gradient-to-t from-deep-purple/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                          <div className="absolute bottom-4 left-4 right-4 opacity-0 group-hover:opacity-100 translate-y-2 group-hover:translate-y-0 transition-all duration-500">
+                            <p className="text-sm text-off-white/90">{member.bio}</p>
+                          </div>
+                        </>
+                      ) : (
+                        <div className="w-full h-full bg-gradient-to-br from-coral/10 via-purple/20 to-deep-purple flex items-center justify-center rounded-xl border border-white/5">
+                          <span className="font-heading text-5xl text-off-white/30 group-hover:text-off-white/50 transition-colors duration-300">
+                            {"initials" in member ? (member as { initials: string }).initials : ""}
+                          </span>
+                        </div>
+                      )}
+                    </div>
+                    {/* Name + role */}
+                    <p className="font-heading text-lg text-off-white group-hover:text-coral transition-colors duration-300">
+                      {member.name.toUpperCase()}
+                    </p>
+                    <p className="text-xs text-foreground-subtle font-body tracking-widest mt-1">
+                      {member.role.toUpperCase()}
+                    </p>
                   </div>
-                  <p className="font-heading text-lg text-off-white">
-                    {member.name.toUpperCase()}
-                  </p>
-                  <p className="text-xs text-foreground-muted">{member.role}</p>
                 </ScrollReveal>
               ))}
             </div>

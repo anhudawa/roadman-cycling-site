@@ -13,8 +13,8 @@ interface EmailCaptureProps {
 
 export function EmailCapture({
   variant = "inline",
-  heading = "GET THE INSIGHTS",
-  subheading = "No fluff. No filler. Just the stuff that makes you faster, once a week.",
+  heading = "THE SATURDAY SPIN",
+  subheading = "One email every Saturday. What the best coaches and scientists said this week — translated into stuff you can actually use on the bike.",
   buttonText = "SUBSCRIBE",
   source = "website",
   className = "",
@@ -61,6 +61,7 @@ export function EmailCapture({
       <form onSubmit={handleSubmit} className={`flex gap-2 ${className}`}>
         <input
           type="email"
+          aria-label="Email address"
           placeholder="Your email"
           value={email}
           onChange={(e) => {
@@ -121,6 +122,7 @@ export function EmailCapture({
               >
                 <input
                   type="email"
+                  aria-label="Email address"
                   placeholder="Your email"
                   value={email}
                   onChange={(e) => {
@@ -176,6 +178,7 @@ export function EmailCapture({
           <form onSubmit={handleSubmit} className="flex gap-3">
             <input
               type="email"
+              aria-label="Email address"
               placeholder="Your email"
               value={email}
               onChange={(e) => {

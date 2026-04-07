@@ -1,18 +1,45 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import { Header, Footer, Section, Container } from "@/components/layout";
-import { Button, Card } from "@/components/ui";
+import { Button, Card, ScrollReveal } from "@/components/ui";
+import { JsonLd } from "@/components/seo/JsonLd";
 
 export const metadata: Metadata = {
-  title: "Community — Join Serious Cyclists Who Refuse to Settle",
+  title: "Community — Serious Cyclists Who Refuse to Settle",
   description:
     "Two communities. One mission. Join the free Clubhouse or go premium with Not Done Yet — personalised coaching, training plans, and accountability.",
+  alternates: {
+    canonical: "https://roadmancycling.com/community",
+  },
+  openGraph: {
+    title: "Community — Serious Cyclists Who Refuse to Settle",
+    description:
+      "Two communities. One mission. Join the free Clubhouse or go premium with Not Done Yet — personalised coaching, training plans, and accountability.",
+    type: "website",
+    url: "https://roadmancycling.com/community",
+  },
 };
 
 export default function CommunityPage() {
   return (
     <>
+      <JsonLd
+        data={{
+          "@context": "https://schema.org",
+          "@type": "Organization",
+          name: "Roadman Cycling Community",
+          description:
+            "Two communities for serious cyclists. The free Clubhouse and premium Not Done Yet coaching programme.",
+          url: "https://roadmancycling.com/community",
+          parentOrganization: {
+            "@type": "Organization",
+            name: "Roadman Cycling",
+            url: "https://roadmancycling.com",
+          },
+        }}
+      />
       <Header />
-      <main>
+      <main id="main-content">
         <Section background="deep-purple" grain fullHeight>
           <Container>
             <div className="text-center mb-16 pt-20">
@@ -31,6 +58,37 @@ export default function CommunityPage() {
               </p>
             </div>
 
+            {/* Photo strip */}
+            <div className="flex gap-3 mb-16 max-w-4xl mx-auto overflow-hidden rounded-xl">
+              <div className="relative flex-1 aspect-[4/3] rounded-lg overflow-hidden">
+                <Image
+                  src="/images/community/DSC05602.JPG"
+                  alt="Riders on a gravel road through canyon terrain"
+                  fill
+                  className="object-cover"
+                  sizes="33vw"
+                />
+              </div>
+              <div className="relative flex-1 aspect-[4/3] rounded-lg overflow-hidden">
+                <Image
+                  src="/images/community/DSC05644.JPG"
+                  alt="Post-ride rest in the shade"
+                  fill
+                  className="object-cover"
+                  sizes="33vw"
+                />
+              </div>
+              <div className="relative flex-1 aspect-[4/3] rounded-lg overflow-hidden hidden sm:block">
+                <Image
+                  src="/images/community/DSC05670.JPG"
+                  alt="Riders at the summit"
+                  fill
+                  className="object-cover"
+                  sizes="33vw"
+                />
+              </div>
+            </div>
+
             <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
               {/* Clubhouse */}
               <Card className="p-8" hoverable={false}>
@@ -44,7 +102,7 @@ export default function CommunityPage() {
                   THE CLUBHOUSE
                 </h2>
                 <p className="text-foreground-muted mb-6 leading-relaxed">
-                  1,852 cyclists. Weekly live Q&amp;A with Anthony. Free
+                  2,100+ cyclists. Weekly live Q&amp;A with Anthony. Free
                   training plans. The entry point for everyone who&apos;s ready
                   to take their cycling seriously.
                 </p>

@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import { Header, Footer, Section, Container } from "@/components/layout";
 import { Button, Card, ScrollReveal } from "@/components/ui";
 import { JsonLd } from "@/components/seo/JsonLd";
@@ -16,6 +17,13 @@ export const metadata: Metadata = {
     "cycling club Ireland",
   ],
   alternates: { canonical: "https://roadmancycling.com/community/club" },
+  openGraph: {
+    title: "Roadman CC — Dublin Cycling Club",
+    description:
+      "Three rides a week. One community. Dublin's cycling club for riders who still believe the best is ahead. Thursday Phoenix Park. Saturday and Sunday from Clontarf.",
+    type: "website",
+    url: "https://roadmancycling.com/community/club",
+  },
 };
 
 const rides = [
@@ -81,7 +89,7 @@ export default function ClubPage() {
 
       <Header />
 
-      <main>
+      <main id="main-content">
         {/* Hero */}
         <Section background="deep-purple" grain className="pt-32 pb-20">
           <Container width="narrow" className="text-center">
@@ -99,6 +107,61 @@ export default function ClubPage() {
                 One message turns into a plan. Routes mapped. Bidon filled. The
                 season begins the moment you show up.
               </p>
+            </ScrollReveal>
+          </Container>
+        </Section>
+
+        {/* Photo Grid */}
+        <Section background="charcoal" className="!py-8">
+          <Container>
+            <ScrollReveal direction="up">
+              <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
+                <div className="relative aspect-square rounded-lg overflow-hidden col-span-2 row-span-2">
+                  <Image
+                    src="/images/community/club-3.jpg"
+                    alt="The Roadman CC crew at the summit — group photo"
+                    fill
+                    className="object-cover hover:scale-105 transition-transform duration-700"
+                    sizes="(max-width: 768px) 100vw, 50vw"
+                  />
+                </div>
+                <div className="relative aspect-square rounded-lg overflow-hidden">
+                  <Image
+                    src="/images/community/club-4.png"
+                    alt="Riders in Roadman kit from above"
+                    fill
+                    className="object-cover hover:scale-105 transition-transform duration-700"
+                    sizes="(max-width: 768px) 50vw, 25vw"
+                  />
+                </div>
+                <div className="relative aspect-square rounded-lg overflow-hidden">
+                  <Image
+                    src="/images/community/DSC05601.JPG"
+                    alt="Riders on an epic climb through canyon terrain"
+                    fill
+                    className="object-cover hover:scale-105 transition-transform duration-700"
+                    sizes="(max-width: 768px) 50vw, 25vw"
+                  />
+                </div>
+                <div className="relative aspect-square rounded-lg overflow-hidden">
+                  <Image
+                    src="/images/community/DSC05644.JPG"
+                    alt="Post-ride refuelling in the shade"
+                    fill
+                    className="object-cover hover:scale-105 transition-transform duration-700"
+                    sizes="(max-width: 768px) 50vw, 25vw"
+                  />
+                </div>
+                <div className="relative aspect-square rounded-lg overflow-hidden">
+                  <Image
+                    src="/images/community/DSC05670.JPG"
+                    alt="Riders stretching at a summit with observatory views"
+                    fill
+                    className="object-cover hover:scale-105 transition-transform duration-700"
+                    sizes="(max-width: 768px) 50vw, 25vw"
+                  />
+                </div>
+              </div>
             </ScrollReveal>
           </Container>
         </Section>
@@ -200,7 +263,7 @@ export default function ClubPage() {
                 All levels. From first sportive to Cat 1.
               </p>
               <Button
-                href="https://www.roadmancycling.com/roadman-club-membership"
+                href="https://skool.com/roadman"
                 external
                 size="lg"
               >

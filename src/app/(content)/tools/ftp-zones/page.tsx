@@ -1,9 +1,11 @@
 "use client";
 
 import { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 import { Header, Footer, Section, Container } from "@/components/layout";
 import { Button } from "@/components/ui";
 import { ZoneChart } from "@/components/features/tools/ZoneChart";
+import { EmailCapture } from "@/components/features/conversion/EmailCapture";
 
 interface Zone {
   name: string;
@@ -71,21 +73,45 @@ const ZONES: Zone[] = [
   },
 ];
 
+function getFtpError(value: string): string | null {
+  if (!value) return null;
+  const num = parseInt(value);
+  if (isNaN(num)) return "Please enter a valid number";
+  if (num < 50) return "FTP must be at least 50W";
+  if (num > 600) return "FTP must be under 600W";
+  return null;
+}
+
 export default function FTPZonesPage() {
   const [ftp, setFtp] = useState<string>("");
   const [calculated, setCalculated] = useState(false);
+  const [copied, setCopied] = useState(false);
   const ftpValue = parseInt(ftp) || 0;
+  const ftpError = getFtpError(ftp);
 
   const handleCalculate = () => {
-    if (ftpValue > 0) {
+    if (ftpValue > 0 && !ftpError) {
       setCalculated(true);
     }
+  };
+
+  const handleCopyResults = async () => {
+    if (!calculated || ftpValue <= 0) return;
+    const zoneLines = ZONES.map((z) => {
+      const min = z.minPercent === 0 ? 0 : Math.round((z.minPercent / 100) * ftpValue);
+      const max = z.maxPercent === 999 ? null : Math.round((z.maxPercent / 100) * ftpValue);
+      return `${z.name}: ${max ? `${min}-${max}W` : `${min}W+`}`;
+    }).join("\n");
+    const text = `FTP Zones (${ftpValue}W FTP)\n${zoneLines}\n— roadmancycling.com/tools/ftp-zones`;
+    await navigator.clipboard.writeText(text);
+    setCopied(true);
+    setTimeout(() => setCopied(false), 2000);
   };
 
   return (
     <>
       <Header />
-      <main>
+      <main id="main-content">
         {/* Hero */}
         <Section background="deep-purple" grain className="pt-32 pb-12">
           <Container width="narrow" className="text-center">
@@ -135,30 +161,56 @@ export default function FTPZonesPage() {
                   onKeyDown={(e) => {
                     if (e.key === "Enter") handleCalculate();
                   }}
-                  className="
-                    flex-1 bg-white/5 border border-white/10 rounded-lg px-4 py-3
+                  className={`
+                    flex-1 bg-white/5 border rounded-lg px-4 py-3
                     text-off-white text-xl font-heading tracking-wider
                     placeholder:text-foreground-subtle
-                    focus:border-coral focus:outline-none
+                    focus:outline-none
                     transition-colors
-                  "
+                    ${ftpError ? "border-red-500/60 focus:border-red-500" : "border-white/10 focus:border-coral"}
+                  `}
                   style={{ transitionDuration: "var(--duration-fast)" }}
                 />
                 <Button onClick={handleCalculate} size="lg">
                   Calculate
                 </Button>
               </div>
+              {ftpError && (
+                <p className="text-red-400 text-xs mt-1">{ftpError}</p>
+              )}
             </div>
 
             {/* Results */}
+            <div aria-live="polite" aria-atomic="false">
+            <AnimatePresence mode="wait">
             {calculated && ftpValue > 0 && (
-              <div className="space-y-3">
-                <h2 className="font-heading text-2xl text-off-white mb-6">
-                  YOUR POWER ZONES — {ftpValue}W FTP
-                </h2>
+              <motion.div
+                className="space-y-3"
+                key={ftpValue}
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -10 }}
+                transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
+              >
+                <div className="flex items-center justify-between mb-6">
+                  <h2 className="font-heading text-2xl text-off-white">
+                    YOUR POWER ZONES — {ftpValue}W FTP
+                  </h2>
+                  <button
+                    onClick={handleCopyResults}
+                    className="text-sm text-coral hover:text-coral/80 font-heading tracking-wider transition-colors cursor-pointer"
+                  >
+                    {copied ? "Copied!" : "Copy Results"}
+                  </button>
+                </div>
 
                 {/* Visual Zone Chart */}
-                <div className="bg-background-elevated rounded-xl border border-white/5 p-6 mb-6">
+                <motion.div
+                  className="bg-background-elevated rounded-xl border border-white/5 p-6 mb-6"
+                  initial={{ opacity: 0, scale: 0.97 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  transition={{ duration: 0.5, delay: 0.1 }}
+                >
                   <ZoneChart
                     ftp={ftpValue}
                     zones={ZONES.map((z) => ({
@@ -169,9 +221,9 @@ export default function FTPZonesPage() {
                       color: z.color,
                     }))}
                   />
-                </div>
+                </motion.div>
 
-                {ZONES.map((zone) => {
+                {ZONES.map((zone, zoneIndex) => {
                   const min =
                     zone.minPercent === 0
                       ? 0
@@ -182,9 +234,16 @@ export default function FTPZonesPage() {
                       : Math.round((zone.maxPercent / 100) * ftpValue);
 
                   return (
-                    <div
+                    <motion.div
                       key={zone.name}
                       className="bg-background-elevated rounded-lg border border-white/5 p-5 flex flex-col sm:flex-row sm:items-center gap-4"
+                      initial={{ opacity: 0, x: -20 }}
+                      animate={{ opacity: 1, x: 0 }}
+                      transition={{
+                        duration: 0.35,
+                        delay: 0.15 + zoneIndex * 0.06,
+                        ease: [0.16, 1, 0.3, 1],
+                      }}
                     >
                       <div
                         className="w-2 h-2 rounded-full shrink-0 sm:w-3 sm:h-3"
@@ -199,7 +258,7 @@ export default function FTPZonesPage() {
                         </p>
                       </div>
                       <div className="sm:text-right shrink-0">
-                        <p className="font-heading text-2xl text-coral">
+                        <p className="font-heading text-2xl text-coral stat-glow">
                           {max ? `${min}–${max}W` : `${min}W+`}
                         </p>
                         <p className="text-xs text-foreground-subtle">
@@ -208,7 +267,7 @@ export default function FTPZonesPage() {
                             : `${zone.minPercent}%+ FTP`}
                         </p>
                       </div>
-                    </div>
+                    </motion.div>
                   );
                 })}
 
@@ -246,21 +305,40 @@ export default function FTPZonesPage() {
                   </div>
                 </div>
 
-                {/* CTA */}
-                <div className="mt-8 bg-coral/10 rounded-xl border border-coral/20 p-8 text-center">
-                  <h3 className="font-heading text-2xl text-off-white mb-3">
-                    WANT A PLAN THAT USES THESE ZONES?
-                  </h3>
-                  <p className="text-foreground-muted mb-6">
-                    Join the Clubhouse for free 16-week training plans built
-                    around your zones, plus weekly Q&amp;A with Anthony.
-                  </p>
-                  <Button href="/community/clubhouse" size="lg">
-                    Join the Clubhouse — Free
-                  </Button>
+                {/* Learn More */}
+                <motion.div
+                  className="mt-8 rounded-xl border border-white/10 p-6"
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.35, delay: 0.6 }}
+                >
+                  <h3 className="font-heading text-lg text-off-white mb-3">LEARN MORE</h3>
+                  <ul className="space-y-2">
+                    <li>
+                      <a href="/blog/ftp-training-zones-cycling-complete-guide" className="text-coral hover:text-coral/80 text-sm transition-colors">
+                        FTP Training Zones: The Complete Guide
+                      </a>
+                    </li>
+                    <li>
+                      <a href="/blog/how-to-improve-ftp-cycling" className="text-coral hover:text-coral/80 text-sm transition-colors">
+                        How to Improve Your FTP
+                      </a>
+                    </li>
+                  </ul>
+                </motion.div>
+
+                {/* Newsletter CTA */}
+                <div className="mt-8">
+                  <EmailCapture
+                    heading="GET THE TRAINING INSIGHTS THAT MOVE THE NEEDLE"
+                    subheading="Evidence-based training tips to make your zones count. Once a week."
+                    source="tool-ftp-zones"
+                  />
                 </div>
-              </div>
+              </motion.div>
             )}
+            </AnimatePresence>
+            </div>
           </Container>
         </Section>
       </main>

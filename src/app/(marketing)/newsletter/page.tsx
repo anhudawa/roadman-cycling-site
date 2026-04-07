@@ -2,11 +2,22 @@ import type { Metadata } from "next";
 import { Header, Footer, Section, Container } from "@/components/layout";
 import { ScrollReveal } from "@/components/ui";
 import { EmailCapture } from "@/components/features/conversion/EmailCapture";
+import { JsonLd } from "@/components/seo/JsonLd";
 
 export const metadata: Metadata = {
-  title: "Newsletter — Weekly Cycling Insights from the World's Best",
+  title: "Newsletter — Weekly Cycling Insights",
   description:
     "Get the stuff that actually makes you faster. Once a week. No fluff. Training, nutrition, and performance insights from Anthony Walsh and the Roadman Cycling Podcast.",
+  alternates: {
+    canonical: "https://roadmancycling.com/newsletter",
+  },
+  openGraph: {
+    title: "Newsletter — Weekly Cycling Insights",
+    description:
+      "Get the stuff that actually makes you faster. Once a week. No fluff. Training, nutrition, and performance insights from Anthony Walsh and the Roadman Cycling Podcast.",
+    type: "website",
+    url: "https://roadmancycling.com/newsletter",
+  },
 };
 
 const pastIssues = [
@@ -35,8 +46,28 @@ const pastIssues = [
 export default function NewsletterPage() {
   return (
     <>
+      <JsonLd
+        data={{
+          "@context": "https://schema.org",
+          "@type": "WebPage",
+          name: "The Saturday Spin — Roadman Cycling Newsletter",
+          description:
+            "Weekly cycling insights from Anthony Walsh. Training, nutrition, and performance content drawn from conversations with the world's best coaches and scientists.",
+          url: "https://roadmancycling.com/newsletter",
+          isPartOf: {
+            "@type": "WebSite",
+            name: "Roadman Cycling",
+            url: "https://roadmancycling.com",
+          },
+          publisher: {
+            "@type": "Organization",
+            name: "Roadman Cycling",
+            url: "https://roadmancycling.com",
+          },
+        }}
+      />
       <Header />
-      <main>
+      <main id="main-content">
         <Section background="deep-purple" grain className="pt-32 pb-16">
           <Container width="narrow" className="text-center">
             <ScrollReveal direction="up">
@@ -66,7 +97,7 @@ export default function NewsletterPage() {
 
             <ScrollReveal direction="up" delay={0.3}>
               <p className="text-foreground-subtle text-sm mt-6">
-                Join 29,782 cyclists. Unsubscribe anytime.
+                Join 29,000+ cyclists. Unsubscribe anytime.
               </p>
             </ScrollReveal>
           </Container>
@@ -157,7 +188,7 @@ export default function NewsletterPage() {
         <EmailCapture
           variant="banner"
           heading="STOP GUESSING. START KNOWING."
-          subheading="29,782 cyclists already get the weekly insights. Join them."
+          subheading="29,000+ cyclists already get the weekly insights. Join them."
           source="newsletter-page-bottom"
         />
       </main>

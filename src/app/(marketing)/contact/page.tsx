@@ -35,12 +35,12 @@ export default function ContactPage() {
   return (
     <>
       <Header />
-      <main>
+      <main id="main-content">
         <Section background="deep-purple" grain className="pt-32 pb-12">
           <Container width="narrow" className="text-center">
             <h1
               className="font-heading text-off-white mb-4"
-              style={{ fontSize: "var(--text-section)" }}
+              style={{ fontSize: "var(--text-hero)" }}
             >
               GET IN TOUCH
             </h1>
@@ -70,10 +70,11 @@ export default function ContactPage() {
               >
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   <div>
-                    <label className="block font-heading text-sm text-off-white mb-2">
+                    <label htmlFor="contact-name" className="block font-heading text-sm text-off-white mb-2">
                       NAME
                     </label>
                     <input
+                      id="contact-name"
                       type="text"
                       required
                       placeholder="Your name"
@@ -85,10 +86,11 @@ export default function ContactPage() {
                     />
                   </div>
                   <div>
-                    <label className="block font-heading text-sm text-off-white mb-2">
+                    <label htmlFor="contact-email" className="block font-heading text-sm text-off-white mb-2">
                       EMAIL
                     </label>
                     <input
+                      id="contact-email"
                       type="email"
                       required
                       placeholder="your@email.com"
@@ -102,10 +104,11 @@ export default function ContactPage() {
                 </div>
 
                 <div>
-                  <label className="block font-heading text-sm text-off-white mb-2">
+                  <label htmlFor="contact-subject" className="block font-heading text-sm text-off-white mb-2">
                     SUBJECT
                   </label>
                   <select
+                    id="contact-subject"
                     value={formData.subject}
                     onChange={(e) =>
                       setFormData({ ...formData, subject: e.target.value })
@@ -135,10 +138,11 @@ export default function ContactPage() {
                 </div>
 
                 <div>
-                  <label className="block font-heading text-sm text-off-white mb-2">
+                  <label htmlFor="contact-message" className="block font-heading text-sm text-off-white mb-2">
                     MESSAGE
                   </label>
                   <textarea
+                    id="contact-message"
                     required
                     rows={5}
                     placeholder="How can we help?"

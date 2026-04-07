@@ -23,7 +23,7 @@
   --color-background-elevated: #2E2E30;
   --color-foreground: #FAFAFA;
   --color-foreground-muted: #A0A0A5;
-  --color-foreground-subtle: #545559;
+  --color-foreground-subtle: #8B8B90;
   --color-accent: #F16363;
   --color-brand: #4C1273;
 
@@ -161,7 +161,29 @@ h1, h2, h3, h4, h5, h6 {
 .prose-roadman ul { list-style: disc; padding-left: 1.25rem; margin-bottom: 1.25rem; }
 .prose-roadman ol { list-style: decimal; padding-left: 1.25rem; margin-bottom: 1.25rem; }
 .prose-roadman li { color: var(--color-foreground-muted); line-height: 1.7; margin-bottom: 0.5rem; }
-.prose-roadman blockquote { border-left: 2px solid var(--color-coral); padding-left: 1.25rem; margin: 1.5rem 0; font-style: italic; color: var(--color-foreground-muted); }
+.prose-roadman blockquote {
+  position: relative;
+  border-left: 3px solid var(--color-coral);
+  padding: 1.25rem 1.5rem;
+  margin: 2rem 0;
+  font-style: italic;
+  color: var(--color-foreground-muted);
+  background: rgba(241, 99, 99, 0.04);
+  border-radius: 0 var(--radius-md) var(--radius-md) 0;
+}
+.prose-roadman blockquote p:last-child { margin-bottom: 0; }
+.prose-roadman blockquote::before {
+  content: '\201C';
+  position: absolute;
+  top: -0.25rem;
+  left: 0.75rem;
+  font-family: var(--font-heading);
+  font-size: 3rem;
+  color: var(--color-coral);
+  opacity: 0.3;
+  line-height: 1;
+  font-style: normal;
+}
 .prose-roadman a { color: var(--color-coral); text-decoration: underline; text-underline-offset: 2px; }
 .prose-roadman a:hover { color: var(--color-coral-hover); }
 .prose-roadman hr { border-color: rgba(255,255,255,0.1); margin: 2.5rem 0; }
@@ -358,11 +380,341 @@ h1, h2, h3, h4, h5, h6 {
   animation: rotate-gradient 4s linear infinite;
   opacity: 0.6;
   z-index: -1;
+  will-change: --angle;
 }
 
 /* ============================================
    Utility: Grain Overlay (cinematic texture)
    ============================================ */
+
+/* ============================================
+   Enhanced Prose (blog articles — optimal reading)
+   ============================================ */
+
+.prose-enhanced {
+  font-size: clamp(1.05rem, 1.2vw, 1.15rem);
+  max-width: 680px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.prose-enhanced p {
+  line-height: 1.8;
+  margin-bottom: 1.5rem;
+  letter-spacing: 0.005em;
+}
+
+.prose-enhanced h2 {
+  margin-top: 3.5rem;
+  padding-top: 2rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.prose-enhanced h2:first-child {
+  margin-top: 0;
+  padding-top: 0;
+  border-top: none;
+}
+
+.prose-enhanced h3 {
+  margin-top: 2.5rem;
+}
+
+.prose-enhanced li {
+  line-height: 1.8;
+  margin-bottom: 0.625rem;
+}
+
+.prose-enhanced > p:first-of-type {
+  font-size: 1.15em;
+  line-height: 1.75;
+  color: var(--color-off-white);
+}
+
+.prose-enhanced img {
+  border-radius: var(--radius-lg);
+  margin: 2.5rem 0;
+}
+
+.prose-enhanced pre {
+  background: rgba(0, 0, 0, 0.3);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: var(--radius-md);
+  padding: 1.25rem;
+  overflow-x: auto;
+  margin: 2rem 0;
+  font-size: 0.875rem;
+  line-height: 1.6;
+}
+
+.prose-enhanced code {
+  background: rgba(255, 255, 255, 0.06);
+  padding: 0.15em 0.35em;
+  border-radius: var(--radius-sm);
+  font-size: 0.9em;
+  color: var(--color-coral);
+}
+
+.prose-enhanced pre code {
+  background: none;
+  padding: 0;
+  border-radius: 0;
+  color: var(--color-foreground-muted);
+}
+
+/* ============================================
+   Podcast Episode Prose (chapters / takeaways)
+   ============================================ */
+
+.prose-episode h2 {
+  position: relative;
+  padding-left: 1.25rem;
+  margin-top: 3rem;
+}
+
+.prose-episode h2::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0.15em;
+  bottom: 0.15em;
+  width: 3px;
+  background: var(--color-coral);
+  border-radius: 2px;
+}
+
+.prose-episode h3 {
+  color: var(--color-coral);
+}
+
+/* Numbered list styling for chapters/timestamps */
+.prose-episode ol {
+  counter-reset: chapter;
+  list-style: none;
+  padding-left: 0;
+}
+
+.prose-episode ol > li {
+  counter-increment: chapter;
+  position: relative;
+  padding-left: 2.5rem;
+  margin-bottom: 1rem;
+}
+
+.prose-episode ol > li::before {
+  content: counter(chapter, decimal-leading-zero);
+  position: absolute;
+  left: 0;
+  top: 0;
+  font-family: var(--font-heading);
+  font-size: 1rem;
+  color: var(--color-coral);
+  opacity: 0.6;
+}
+
+/* ============================================
+   Skeleton Loading Animations
+   ============================================ */
+
+@keyframes skeleton-pulse {
+  0%, 100% { opacity: 0.06; }
+  50% { opacity: 0.12; }
+}
+
+.skeleton {
+  background: rgba(255, 255, 255, 0.08);
+  border-radius: var(--radius-md);
+  animation: skeleton-pulse 1.8s ease-in-out infinite;
+}
+
+.skeleton-text {
+  height: 1rem;
+  border-radius: var(--radius-sm);
+}
+
+.skeleton-heading {
+  height: 1.5rem;
+  border-radius: var(--radius-sm);
+}
+
+/* ============================================
+   Aurora / Northern Lights Effect (Hero)
+   ============================================ */
+
+.aurora-container {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  filter: blur(80px);
+  opacity: 0.4;
+}
+
+.aurora-band {
+  position: absolute;
+  border-radius: 50%;
+  will-change: transform;
+}
+
+.aurora-band-1 {
+  width: 120%;
+  height: 50%;
+  left: -10%;
+  top: 10%;
+  background: radial-gradient(
+    ellipse at center,
+    rgba(76, 18, 115, 0.5) 0%,
+    rgba(241, 99, 99, 0.15) 40%,
+    transparent 70%
+  );
+  animation: aurora-drift-1 12s ease-in-out infinite alternate;
+}
+
+.aurora-band-2 {
+  width: 80%;
+  height: 40%;
+  right: -10%;
+  top: 20%;
+  background: radial-gradient(
+    ellipse at center,
+    rgba(241, 99, 99, 0.3) 0%,
+    rgba(76, 18, 115, 0.1) 50%,
+    transparent 70%
+  );
+  animation: aurora-drift-2 15s ease-in-out infinite alternate;
+}
+
+.aurora-band-3 {
+  width: 100%;
+  height: 35%;
+  left: 5%;
+  top: 30%;
+  background: radial-gradient(
+    ellipse at center,
+    rgba(33, 1, 64, 0.4) 0%,
+    rgba(241, 99, 99, 0.08) 50%,
+    transparent 70%
+  );
+  animation: aurora-drift-3 18s ease-in-out infinite alternate;
+}
+
+@keyframes aurora-drift-1 {
+  0% { transform: translate(0%, 0%) rotate(-5deg) scale(1); }
+  33% { transform: translate(5%, -8%) rotate(2deg) scale(1.05); }
+  66% { transform: translate(-3%, 5%) rotate(-3deg) scale(0.95); }
+  100% { transform: translate(8%, -3%) rotate(5deg) scale(1.02); }
+}
+
+@keyframes aurora-drift-2 {
+  0% { transform: translate(0%, 0%) rotate(3deg) scale(1); }
+  50% { transform: translate(-8%, 5%) rotate(-4deg) scale(1.08); }
+  100% { transform: translate(5%, -5%) rotate(2deg) scale(0.97); }
+}
+
+@keyframes aurora-drift-3 {
+  0% { transform: translate(0%, 0%) rotate(0deg) scale(1); }
+  50% { transform: translate(6%, 8%) rotate(-6deg) scale(1.1); }
+  100% { transform: translate(-4%, -4%) rotate(3deg) scale(0.95); }
+}
+
+/* Reduced motion: disable aurora animation */
+@media (prefers-reduced-motion: reduce) {
+  .aurora-band-1,
+  .aurora-band-2,
+  .aurora-band-3 {
+    animation: none;
+  }
+}
+
+/* ============================================
+   Scroll Progress Bar
+   ============================================ */
+
+.scroll-progress-bar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 2px;
+  background: linear-gradient(90deg, var(--color-coral), var(--color-purple));
+  z-index: 60;
+  transform-origin: left;
+  will-change: transform;
+  pointer-events: none;
+}
+
+/* ============================================
+   Glassmorphism Card Styles
+   ============================================ */
+
+.glass-card {
+  background: rgba(46, 46, 48, 0.6);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.glass-card-gradient-border {
+  position: relative;
+}
+
+.glass-card-gradient-border::before {
+  content: '';
+  position: absolute;
+  inset: -1px;
+  border-radius: inherit;
+  background: conic-gradient(
+    from var(--angle, 0deg),
+    transparent 60%,
+    rgba(241, 99, 99, 0.3) 70%,
+    rgba(76, 18, 115, 0.3) 80%,
+    transparent 90%
+  );
+  animation: rotate-gradient 6s linear infinite;
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  z-index: -1;
+}
+
+.glass-card-gradient-border:hover::before {
+  opacity: 1;
+}
+
+/* ============================================
+   Stat card glow pulse
+   ============================================ */
+
+.stat-glow {
+  text-shadow: 0 0 20px rgba(241, 99, 99, 0.3), 0 0 40px rgba(241, 99, 99, 0.1);
+}
+
+.stat-card-pulse {
+  position: relative;
+}
+
+.stat-card-pulse::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: radial-gradient(
+    ellipse at center,
+    rgba(241, 99, 99, 0.06) 0%,
+    transparent 70%
+  );
+  animation: stat-pulse 3s ease-in-out infinite;
+  pointer-events: none;
+}
+
+@keyframes stat-pulse {
+  0%, 100% { opacity: 0.3; transform: scale(0.95); }
+  50% { opacity: 1; transform: scale(1); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .stat-card-pulse::after {
+    animation: none;
+    opacity: 0.5;
+  }
+}
 
 .grain-overlay::after {
   content: '';

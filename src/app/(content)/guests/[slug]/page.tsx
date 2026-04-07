@@ -96,7 +96,7 @@ export default async function GuestPage({
 
       <Header />
 
-      <main>
+      <main id="main-content">
         {/* Hero */}
         <Section background="deep-purple" grain className="pt-32 pb-12">
           <Container width="narrow" className="text-center">
@@ -157,9 +157,6 @@ export default async function GuestPage({
                       <div className="flex items-start justify-between gap-4">
                         <div className="flex-1 min-w-0">
                           <div className="flex items-center gap-3 mb-2">
-                            <span className="font-heading text-coral text-sm">
-                              EP {ep.episodeNumber}
-                            </span>
                             <Badge pillar={ep.pillar} size="sm" />
                           </div>
                           <h3 className="font-heading text-lg text-off-white group-hover:text-coral transition-colors leading-snug">

@@ -21,7 +21,7 @@ interface ZoneChartProps {
  * The width of each bar represents the zone's power range relative to max.
  */
 export function ZoneChart({ zones, ftp }: ZoneChartProps) {
-  const maxPower = Math.round(ftp * 1.5);
+  const maxPower = Math.round(ftp * 1.7);
 
   return (
     <div className="space-y-2">

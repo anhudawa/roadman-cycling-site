@@ -19,9 +19,9 @@ export function OrganizationJsonLd() {
         "@type": "Organization",
         name: "Roadman Cycling",
         url: "https://roadmancycling.com",
-        logo: "https://roadmancycling.com/images/logo.png",
+        logo: "https://roadmancycling.com/images/logo-white.png",
         description:
-          "The podcast trusted by 100 million listeners. Expert cycling coaching, training, nutrition, and community.",
+          "The podcast trusted by 1 million monthly listeners. Expert cycling coaching, training, nutrition, and community.",
         founder: {
           "@type": "Person",
           name: "Anthony Walsh",

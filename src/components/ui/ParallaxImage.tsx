@@ -11,6 +11,7 @@ interface ParallaxImageProps {
   speed?: number; // 0.1 = subtle, 0.5 = dramatic
   overlay?: boolean;
   overlayColor?: string;
+  objectPosition?: string;
 }
 
 /**
@@ -24,6 +25,7 @@ export function ParallaxImage({
   speed = 0.2,
   overlay = true,
   overlayColor = "from-charcoal/70 to-charcoal/40",
+  objectPosition = "center",
 }: ParallaxImageProps) {
   const ref = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({
@@ -49,6 +51,7 @@ export function ParallaxImage({
           alt={alt}
           fill
           className="object-cover"
+          style={{ objectPosition }}
           sizes="100vw"
           quality={85}
         />

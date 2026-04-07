@@ -1,13 +1,24 @@
 import type { Metadata } from "next";
 import { Header, Footer, Section, Container } from "@/components/layout";
 import { ScrollReveal } from "@/components/ui";
+import { JsonLd } from "@/components/seo/JsonLd";
 import { getAllPosts } from "@/lib/blog";
 import { BlogSearch } from "@/components/features/blog/BlogSearch";
 
 export const metadata: Metadata = {
-  title: "Blog — Cycling Training, Nutrition & Performance",
+  title: "Blog — Training, Nutrition & Performance",
   description:
     "Expert cycling content grounded in science. Training methodology, nutrition, strength & conditioning, recovery, and cycling culture — from the conversations with the world's best.",
+  alternates: {
+    canonical: "https://roadmancycling.com/blog",
+  },
+  openGraph: {
+    title: "Blog — Training, Nutrition & Performance",
+    description:
+      "Expert cycling content grounded in science. Training methodology, nutrition, strength & conditioning, recovery, and cycling culture — from the conversations with the world's best.",
+    type: "website",
+    url: "https://roadmancycling.com/blog",
+  },
 };
 
 export default function BlogPage() {
@@ -15,8 +26,44 @@ export default function BlogPage() {
 
   return (
     <>
+      <JsonLd
+        data={{
+          "@context": "https://schema.org",
+          "@type": "CollectionPage",
+          name: "Roadman Cycling Blog",
+          description:
+            "Expert cycling content grounded in science. Training methodology, nutrition, strength & conditioning, recovery, and cycling culture.",
+          url: "https://roadmancycling.com/blog",
+          numberOfItems: posts.length,
+          isPartOf: {
+            "@type": "WebSite",
+            name: "Roadman Cycling",
+            url: "https://roadmancycling.com",
+          },
+        }}
+      />
+      <JsonLd
+        data={{
+          "@context": "https://schema.org",
+          "@type": "BreadcrumbList",
+          itemListElement: [
+            {
+              "@type": "ListItem",
+              position: 1,
+              name: "Home",
+              item: "https://roadmancycling.com",
+            },
+            {
+              "@type": "ListItem",
+              position: 2,
+              name: "Blog",
+              item: "https://roadmancycling.com/blog",
+            },
+          ],
+        }}
+      />
       <Header />
-      <main>
+      <main id="main-content">
         {/* Hero */}
         <Section background="deep-purple" grain className="pt-32 pb-12">
           <Container className="text-center">
@@ -28,9 +75,8 @@ export default function BlogPage() {
                 THE KNOWLEDGE
               </h1>
               <p className="text-foreground-muted max-w-xl mx-auto text-lg">
-                {posts.length} articles grounded in science and real
-                conversations with the world&apos;s best coaches, scientists,
-                and riders.
+                Evidence-based cycling content — grounded in real conversations
+                with the world&apos;s best coaches, scientists, and riders.
               </p>
             </ScrollReveal>
           </Container>

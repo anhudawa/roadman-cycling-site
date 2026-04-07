@@ -1,9 +1,9 @@
 import type { Metadata } from "next";
-import Link from "next/link";
 import { Header, Footer, Section, Container } from "@/components/layout";
-import { ScrollReveal, Card, Badge, AnimatedCounter } from "@/components/ui";
+import { ScrollReveal } from "@/components/ui";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { getAllGuests } from "@/lib/guests";
+import { GuestGrid } from "@/components/features/guests/GuestGrid";
 
 export const metadata: Metadata = {
   title: "Podcast Guests — World-Class Coaches, Scientists & Pro Cyclists",
@@ -12,10 +12,27 @@ export const metadata: Metadata = {
   alternates: {
     canonical: "https://roadmancycling.com/guests",
   },
+  openGraph: {
+    title: "Podcast Guests — World-Class Coaches, Scientists & Pro Cyclists",
+    description:
+      "Browse every guest who's appeared on The Roadman Cycling Podcast. World Tour coaches, exercise scientists, pro cyclists, nutritionists, and endurance athletes sharing real knowledge.",
+    type: "website",
+    url: "https://roadmancycling.com/guests",
+  },
 };
 
 export default function GuestsPage() {
   const guests = getAllGuests();
+
+  // Serialize only what the client component needs
+  const guestCards = guests.map((g) => ({
+    name: g.name,
+    slug: g.slug,
+    credential: g.credential,
+    episodeCount: g.episodeCount,
+    pillars: g.pillars,
+    tags: g.tags,
+  }));
 
   return (
     <>
@@ -57,7 +74,7 @@ export default function GuestsPage() {
 
       <Header />
 
-      <main>
+      <main id="main-content">
         {/* Hero */}
         <Section background="deep-purple" grain className="pt-32 pb-12">
           <Container className="text-center">
@@ -69,57 +86,17 @@ export default function GuestsPage() {
                 THE EXPERTS
               </h1>
               <p className="text-foreground-muted max-w-xl mx-auto text-lg">
-                <span className="text-off-white font-heading text-2xl"><AnimatedCounter value={String(guests.length)} /></span>{" "}
-                world-class coaches, scientists, pro cyclists,
-                and endurance athletes who&apos;ve shared their knowledge on the
-                podcast.
+                World-class coaches, scientists, pro cyclists, and endurance
+                athletes who&apos;ve shared their knowledge on the podcast.
               </p>
             </ScrollReveal>
           </Container>
         </Section>
 
-        {/* Guest Grid */}
+        {/* Guest Grid with filters */}
         <Section background="charcoal">
           <Container>
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-              {guests.map((guest, i) => (
-                <ScrollReveal
-                  key={guest.slug}
-                  direction="up"
-                  delay={Math.min(i * 0.03, 0.3)}
-                >
-                  <Link href={`/guests/${guest.slug}`} className="block group">
-                    <Card className="p-6 h-full transition-all group-hover:border-coral/30">
-                      <div className="flex items-start justify-between mb-3">
-                        <h2 className="font-heading text-xl text-off-white group-hover:text-coral transition-colors">
-                          {guest.name.toUpperCase()}
-                        </h2>
-                        <span className="text-xs text-foreground-subtle font-heading whitespace-nowrap ml-3">
-                          {guest.episodeCount}{" "}
-                          {guest.episodeCount === 1 ? "EP" : "EPS"}
-                        </span>
-                      </div>
-
-                      {guest.credential && (
-                        <p className="text-sm text-foreground-muted mb-3 leading-relaxed">
-                          {guest.credential}
-                        </p>
-                      )}
-
-                      <div className="flex flex-wrap gap-2">
-                        {guest.pillars.map((pillar) => (
-                          <Badge
-                            key={pillar}
-                            pillar={pillar}
-                            size="sm"
-                          />
-                        ))}
-                      </div>
-                    </Card>
-                  </Link>
-                </ScrollReveal>
-              ))}
-            </div>
+            <GuestGrid guests={guestCards} />
           </Container>
         </Section>
       </main>

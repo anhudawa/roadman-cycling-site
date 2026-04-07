@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { Bebas_Neue, Work_Sans } from "next/font/google";
-import { SmoothCursor } from "@/components/ui/SmoothCursor";
+import { SmoothCursorWrapper } from "@/components/ui/SmoothCursorWrapper";
 import "./globals.css";
 
 const bebasNeue = Bebas_Neue({
@@ -22,7 +22,7 @@ export const metadata: Metadata = {
     template: "%s | Roadman Cycling",
   },
   description:
-    "The podcast trusted by 100 million listeners. Expert cycling coaching, training plans, nutrition advice, and a community of serious cyclists who refuse to accept their best days are behind them.",
+    "The podcast trusted by 1 million monthly listeners. Expert cycling coaching, training plans, nutrition advice, and a community of serious cyclists who refuse to accept their best days are behind them.",
   keywords: [
     "cycling podcast",
     "cycling training",
@@ -49,7 +49,7 @@ export const metadata: Metadata = {
     siteName: "Roadman Cycling",
     title: "Roadman Cycling — Cycling Is Hard, We Make It Less Hard",
     description:
-      "The podcast trusted by 100 million listeners. Expert cycling coaching, training, nutrition, and community.",
+      "The podcast trusted by 1 million monthly listeners. Expert cycling coaching, training, nutrition, and community.",
     images: [
       {
         url: "/og-image.jpg",
@@ -88,7 +88,13 @@ export default function RootLayout({
       className={`${bebasNeue.variable} ${workSans.variable} dark`}
     >
       <body className="min-h-screen bg-charcoal text-off-white font-body antialiased">
-        <SmoothCursor />
+        <a
+          href="#main-content"
+          className="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[9999] focus:bg-coral focus:text-off-white focus:px-4 focus:py-2 focus:rounded-md focus:font-heading focus:text-sm focus:tracking-wider"
+        >
+          Skip to content
+        </a>
+        <SmoothCursorWrapper />
         {children}
       </body>
     </html>

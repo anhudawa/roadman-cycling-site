@@ -5,6 +5,8 @@ import { Header, Footer, Section, Container } from "@/components/layout";
 import { Badge, Button } from "@/components/ui";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { getEpisodeBySlug, getAllEpisodeSlugs } from "@/lib/podcast";
+import { PodcastLinks } from "@/components/features/podcast/PodcastLinks";
+import { EmailCapture } from "@/components/features/conversion/EmailCapture";
 
 export async function generateStaticParams() {
   return getAllEpisodeSlugs().map((slug) => ({ slug }));
@@ -124,14 +126,11 @@ export default async function EpisodePage({
 
       <Header />
 
-      <main>
+      <main id="main-content">
         {/* Hero */}
         <Section background="deep-purple" grain className="pt-32 pb-12">
           <Container width="narrow" className="text-center">
             <div className="flex items-center justify-center gap-3 mb-4">
-              <span className="font-heading text-coral text-lg">
-                EP {episode.episodeNumber}
-              </span>
               <Badge pillar={episode.pillar} size="md" />
               <span className="text-sm text-foreground-subtle capitalize">
                 {episode.type.replace("-", " & ")}
@@ -157,7 +156,7 @@ export default async function EpisodePage({
               </p>
             )}
 
-            <div className="flex items-center justify-center gap-4 text-sm text-foreground-subtle">
+            <div className="flex items-center justify-center gap-4 text-sm text-foreground-subtle mb-6">
               <span>{episode.duration}</span>
               <span>&middot;</span>
               <time dateTime={episode.publishDate}>
@@ -168,14 +167,20 @@ export default async function EpisodePage({
                 })}
               </time>
             </div>
+
+            <PodcastLinks
+              spotifyId={episode.spotifyId}
+              episodeTitle={episode.title}
+              className="flex flex-col items-center"
+            />
           </Container>
         </Section>
 
-        {/* YouTube Embed (primary) */}
+        {/* YouTube Embed (primary) — Wide for cinematic feel */}
         {episode.youtubeId && (
-          <Section background="charcoal" className="!py-6 border-b border-white/5">
-            <Container width="narrow">
-              <div className="rounded-xl overflow-hidden bg-background-elevated border border-white/5 aspect-video">
+          <Section background="charcoal" className="!py-8 border-b border-white/5">
+            <Container>
+              <div className="max-w-4xl mx-auto rounded-xl overflow-hidden bg-background-elevated border border-white/5 aspect-video shadow-[var(--shadow-elevated)]">
                 <iframe
                   src={`https://www.youtube.com/embed/${episode.youtubeId}`}
                   width="100%"
@@ -191,37 +196,79 @@ export default async function EpisodePage({
           </Section>
         )}
 
-        {/* Spotify Embed (secondary, if available) */}
-        {episode.spotifyId && (
-          <Section background="charcoal" className="!py-4 border-b border-white/5">
-            <Container width="narrow">
-              <p className="text-xs text-foreground-subtle mb-2 uppercase tracking-widest font-heading">
-                Also on Spotify
-              </p>
-              <div className="rounded-xl overflow-hidden bg-background-elevated border border-white/5">
-                <iframe
-                  src={`https://open.spotify.com/embed/episode/${episode.spotifyId}?theme=0`}
-                  width="100%"
-                  height="152"
-                  allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
-                  loading="lazy"
-                  className="border-0"
-                  title={`Listen to ${episode.title} on Spotify`}
-                />
-              </div>
-            </Container>
-          </Section>
-        )}
+        {/* Guest Info Card + Spotify */}
+        <Section background="charcoal" className="!py-6 border-b border-white/5">
+          <Container width="narrow">
+            <div className="flex flex-col gap-6">
+              {/* Guest card with link to guest page */}
+              {episode.guest && (
+                <a
+                  href={`/guests/${episode.guest.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/(^-|-$)/g, "")}`}
+                  className="flex items-center gap-4 p-5 bg-background-elevated rounded-xl border border-white/5 hover:border-coral/30 transition-all group"
+                  style={{ transitionDuration: "var(--duration-normal)" }}
+                >
+                  <div className="w-14 h-14 rounded-full bg-purple/40 border border-purple/30 flex items-center justify-center shrink-0 group-hover:border-coral/40 transition-colors">
+                    <span className="font-heading text-lg text-off-white">
+                      {episode.guest.split(" ").map(w => w[0]).join("").slice(0, 2)}
+                    </span>
+                  </div>
+                  <div className="flex-1 min-w-0">
+                    <p className="font-heading text-lg text-off-white group-hover:text-coral transition-colors">
+                      {episode.guest.toUpperCase()}
+                    </p>
+                    {episode.guestCredential && (
+                      <p className="text-sm text-foreground-muted truncate">
+                        {episode.guestCredential}
+                      </p>
+                    )}
+                  </div>
+                  <span className="text-coral text-sm font-heading shrink-0 opacity-0 group-hover:opacity-100 transition-opacity">
+                    VIEW &rarr;
+                  </span>
+                </a>
+              )}
+
+              {/* Spotify Embed (secondary, if available) */}
+              {episode.spotifyId && (
+                <div>
+                  <p className="text-xs text-foreground-subtle mb-2 uppercase tracking-widest font-heading">
+                    Also on Spotify
+                  </p>
+                  <div className="rounded-xl overflow-hidden bg-background-elevated border border-white/5">
+                    <iframe
+                      src={`https://open.spotify.com/embed/episode/${episode.spotifyId}?theme=0`}
+                      width="100%"
+                      height="152"
+                      allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+                      loading="lazy"
+                      className="border-0"
+                      title={`Listen to ${episode.title} on Spotify`}
+                    />
+                  </div>
+                </div>
+              )}
+            </div>
+          </Container>
+        </Section>
 
         {/* Content / Show Notes */}
         <Section background="charcoal" className="!py-12">
           <Container width="narrow">
-            <article className="prose-roadman">
+            <article className="prose-roadman prose-episode">
               <MDXRemote source={episode.content} />
             </article>
 
+            {/* Newsletter */}
+            <EmailCapture
+              variant="inline"
+              heading="NEVER MISS AN EPISODE"
+              subheading="Weekly insights from the podcast. The stuff that actually makes you faster."
+              source={`podcast-${slug}`}
+              className="mt-16"
+            />
+
             {/* CTA */}
-            <div className="mt-16 bg-deep-purple/30 rounded-xl border border-purple/20 p-8 text-center">
+            <div className="mt-12 bg-deep-purple/30 rounded-xl border border-purple/20 p-8 text-center">
               <h3 className="font-heading text-2xl text-off-white mb-3">
                 LIKED THIS EPISODE?
               </h3>

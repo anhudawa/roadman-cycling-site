@@ -1,11 +1,22 @@
 import type { Metadata } from "next";
 import { Header, Footer, Section, Container } from "@/components/layout";
 import { Card, ScrollReveal } from "@/components/ui";
+import { JsonLd } from "@/components/seo/JsonLd";
 
 export const metadata: Metadata = {
   title: "Cycling Tools & Calculators",
   description:
     "Free interactive tools for serious cyclists. Tyre pressure, FTP zones, race weight, fuelling, energy availability, and shock pressure calculators.",
+  alternates: {
+    canonical: "https://roadmancycling.com/tools",
+  },
+  openGraph: {
+    title: "Cycling Tools & Calculators",
+    description:
+      "Free interactive tools for serious cyclists. Tyre pressure, FTP zones, race weight, fuelling, energy availability, and shock pressure calculators.",
+    type: "website",
+    url: "https://roadmancycling.com/tools",
+  },
 };
 
 const tools = [
@@ -19,7 +30,7 @@ const tools = [
   {
     title: "Tyre Pressure Calculator",
     description:
-      "Optimal front and rear PSI based on your weight, tyre width, road surface, and conditions.",
+      "SILCA-grade front and rear PSI based on weight, tyre width, rim width, tube type, and road surface.",
     href: "/tools/tyre-pressure",
     status: "live" as const,
   },
@@ -45,9 +56,9 @@ const tools = [
     status: "live" as const,
   },
   {
-    title: "Shock Pressure Calculator",
+    title: "MTB Setup Calculator",
     description:
-      "Recommended air pressure and sag percentage for your suspension based on rider weight and riding style.",
+      "Suspension pressure, sag targets, and tyre pressure for your mountain bike. One form, complete setup.",
     href: "/tools/shock-pressure",
     status: "live" as const,
   },
@@ -56,8 +67,24 @@ const tools = [
 export default function ToolsPage() {
   return (
     <>
+      <JsonLd
+        data={{
+          "@context": "https://schema.org",
+          "@type": "CollectionPage",
+          name: "Cycling Tools & Calculators",
+          description:
+            "Free interactive tools for serious cyclists. Tyre pressure, FTP zones, race weight, fuelling, energy availability, and shock pressure calculators.",
+          url: "https://roadmancycling.com/tools",
+          numberOfItems: tools.length,
+          isPartOf: {
+            "@type": "WebSite",
+            name: "Roadman Cycling",
+            url: "https://roadmancycling.com",
+          },
+        }}
+      />
       <Header />
-      <main>
+      <main id="main-content">
         <Section background="deep-purple" grain className="pt-32 pb-12">
           <Container className="text-center">
             <ScrollReveal direction="up">

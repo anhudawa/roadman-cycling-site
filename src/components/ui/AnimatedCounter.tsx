@@ -8,8 +8,12 @@ interface AnimatedCounterProps {
   className?: string;
 }
 
+/**
+ * Parse a display value like "61K+", "2,100+", "100M+", "$65", "114"
+ * into { number, prefix, suffix } where number is just the digits.
+ */
 function parseValue(value: string): { number: number; prefix: string; suffix: string } {
-  const match = value.match(/^([^\d]*)([\d,.]+)([^\d]*)$/);
+  const match = value.match(/^([^\d]*)([\d,.]+)(.*)$/);
   if (!match) return { number: 0, prefix: "", suffix: value };
 
   return {
@@ -19,14 +23,12 @@ function parseValue(value: string): { number: number; prefix: string; suffix: st
   };
 }
 
-function formatNumber(num: number, original: string): string {
-  if (original.includes(",")) {
-    return num.toLocaleString("en-US");
+function formatNumber(num: number, hasCommas: boolean): string {
+  const rounded = Math.round(num);
+  if (hasCommas) {
+    return rounded.toLocaleString("en-US");
   }
-  if (original.includes("K")) {
-    return `${Math.round(num / 1000)}`;
-  }
-  return Math.round(num).toString();
+  return rounded.toString();
 }
 
 export function AnimatedCounter({ value, className = "" }: AnimatedCounterProps) {
@@ -34,6 +36,7 @@ export function AnimatedCounter({ value, className = "" }: AnimatedCounterProps)
   const isInView = useInView(ref, { once: true, margin: "-50px" });
   const [displayValue, setDisplayValue] = useState("0");
   const { number, prefix, suffix } = parseValue(value);
+  const hasCommas = value.includes(",");
 
   useEffect(() => {
     if (!isInView) return;
@@ -48,20 +51,17 @@ export function AnimatedCounter({ value, className = "" }: AnimatedCounterProps)
       const eased = 1 - Math.pow(1 - progress, 4);
       const current = number * eased;
 
-      setDisplayValue(formatNumber(current, value));
+      setDisplayValue(formatNumber(current, hasCommas));
 
       if (progress < 1) {
         requestAnimationFrame(animate);
       } else {
-        // Set final formatted value
-        setDisplayValue(value.replace(/^[^\d]*/, "").replace(/[^\d,.KM+]*$/, "").replace(/,/g, "").includes("K")
-          ? value.replace(/^[^\d]*/, "").replace(/[^\d,.KM+]*$/, "")
-          : formatNumber(number, value));
+        setDisplayValue(formatNumber(number, hasCommas));
       }
     };
 
     requestAnimationFrame(animate);
-  }, [isInView, number, value]);
+  }, [isInView, number, hasCommas]);
 
   return (
     <span ref={ref} className={className}>

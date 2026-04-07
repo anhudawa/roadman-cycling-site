@@ -27,12 +27,37 @@ export default function TopicsPage() {
           description:
             "In-depth cycling topic hubs covering training, nutrition, recovery, and more",
           url: "https://roadmancycling.com/topics",
+          isPartOf: {
+            "@type": "WebSite",
+            name: "Roadman Cycling",
+            url: "https://roadmancycling.com",
+          },
+        }}
+      />
+      <JsonLd
+        data={{
+          "@context": "https://schema.org",
+          "@type": "BreadcrumbList",
+          itemListElement: [
+            {
+              "@type": "ListItem",
+              position: 1,
+              name: "Home",
+              item: "https://roadmancycling.com",
+            },
+            {
+              "@type": "ListItem",
+              position: 2,
+              name: "Topics",
+              item: "https://roadmancycling.com/topics",
+            },
+          ],
         }}
       />
 
       <Header />
 
-      <main>
+      <main id="main-content">
         <Section background="deep-purple" grain className="pt-32 pb-12">
           <Container className="text-center">
             <ScrollReveal direction="up">

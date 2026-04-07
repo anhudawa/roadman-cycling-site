@@ -1,11 +1,17 @@
+import type { Metadata } from "next";
 import { Header, Footer, Section, Container } from "@/components/layout";
 import { Button } from "@/components/ui";
+
+export const metadata: Metadata = {
+  title: "Welcome — Strength Training for Cyclists",
+  robots: { index: false, follow: false },
+};
 
 export default function StrengthTrainingSuccess() {
   return (
     <>
       <Header />
-      <main>
+      <main id="main-content">
         <Section background="deep-purple" grain fullHeight>
           <Container className="text-center pt-20">
             <p className="text-coral font-heading text-6xl mb-6">&#10003;</p>

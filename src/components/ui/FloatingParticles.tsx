@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { useMemo } from "react";
+import { useMemo, useState, useEffect } from "react";
 
 interface FloatingParticlesProps {
   count?: number;
@@ -12,13 +12,21 @@ interface FloatingParticlesProps {
 /**
  * Ambient floating particles — adds depth and atmosphere.
  * Pure CSS/Framer Motion, no canvas. Lightweight.
+ * Renders only after mount to avoid hydration mismatch from Math.random().
  */
 export function FloatingParticles({
   count = 20,
   color = "rgba(241, 99, 99, 0.15)",
   className = "",
 }: FloatingParticlesProps) {
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
   const particles = useMemo(() => {
+    if (!mounted) return [];
     return Array.from({ length: count }, (_, i) => ({
       id: i,
       x: Math.random() * 100,
@@ -29,7 +37,16 @@ export function FloatingParticles({
       driftX: (Math.random() - 0.5) * 60,
       driftY: -(Math.random() * 40 + 20),
     }));
-  }, [count]);
+  }, [count, mounted]);
+
+  if (!mounted) {
+    return (
+      <div
+        className={`absolute inset-0 overflow-hidden pointer-events-none ${className}`}
+        aria-hidden="true"
+      />
+    );
+  }
 
   return (
     <div

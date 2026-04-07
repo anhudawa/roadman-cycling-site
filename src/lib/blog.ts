@@ -91,6 +91,32 @@ export function getPostsByPillar(pillar: ContentPillar): BlogPostMeta[] {
   return getAllPosts().filter((post) => post.pillar === pillar);
 }
 
+export function getRelatedPosts(
+  currentSlug: string,
+  pillar: ContentPillar,
+  keywords: string[],
+  limit: number = 3
+): BlogPostMeta[] {
+  const allPosts = getAllPosts().filter((p) => p.slug !== currentSlug);
+
+  // Score each post by relevance: pillar match + keyword overlap
+  const scored = allPosts.map((post) => {
+    let score = 0;
+    if (post.pillar === pillar) score += 10;
+    const postKeywords = new Set(post.keywords.map((k) => k.toLowerCase()));
+    for (const kw of keywords) {
+      if (postKeywords.has(kw.toLowerCase())) score += 3;
+    }
+    return { post, score };
+  });
+
+  return scored
+    .filter((s) => s.score > 0)
+    .sort((a, b) => b.score - a.score)
+    .slice(0, limit)
+    .map((s) => s.post);
+}
+
 export function getAllSlugs(): string[] {
   ensureBlogDir();
   return fs

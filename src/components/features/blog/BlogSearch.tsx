@@ -21,15 +21,47 @@ interface BlogSearchProps {
   posts: BlogSearchItem[];
 }
 
+/** Topic filters — keyword-based filters that cut across pillars */
+const TOPIC_FILTERS: Array<{
+  id: string;
+  label: string;
+  match: (post: BlogSearchItem) => boolean;
+}> = [
+  {
+    id: "mtb",
+    label: "Mountain Biking",
+    match: (p) => {
+      const haystack = `${p.title} ${p.keywords.join(" ")} ${p.excerpt}`.toLowerCase();
+      return /\bmtb\b|mountain.?bik|fork.?setup|suspension.?setup|dropper|trail.?rid|enduro|shock.?pressur|tyre.?pressure.?mtb|rostrevor|ballinastoe|mtb.?trail|mountain.?bike.?trail/.test(haystack);
+    },
+  },
+  {
+    id: "triathlon",
+    label: "Triathlon",
+    match: (p) => {
+      const haystack = `${p.title} ${p.keywords.join(" ")} ${p.excerpt}`.toLowerCase();
+      return /triath|ironman|70\.3|bike.?leg|tri.?bike/.test(haystack);
+    },
+  },
+];
+
 export function BlogSearch({ posts }: BlogSearchProps) {
   const [query, setQuery] = useState("");
   const [pillarFilter, setPillarFilter] = useState<string>("");
+  const [topicFilter, setTopicFilter] = useState<string>("");
 
   const filtered = useMemo(() => {
     let results = posts;
 
     if (pillarFilter) {
       results = results.filter((p) => p.pillar === pillarFilter);
+    }
+
+    if (topicFilter) {
+      const topic = TOPIC_FILTERS.find((t) => t.id === topicFilter);
+      if (topic) {
+        results = results.filter(topic.match);
+      }
     }
 
     if (query.trim()) {
@@ -62,7 +94,7 @@ export function BlogSearch({ posts }: BlogSearchProps) {
     }
 
     return results;
-  }, [posts, query, pillarFilter]);
+  }, [posts, query, pillarFilter, topicFilter]);
 
   return (
     <div>
@@ -70,6 +102,7 @@ export function BlogSearch({ posts }: BlogSearchProps) {
       <div className="mb-6">
         <input
           type="search"
+          aria-label="Search articles"
           placeholder="Search articles by topic, keyword, or title..."
           value={query}
           onChange={(e) => setQuery(e.target.value)}
@@ -83,11 +116,11 @@ export function BlogSearch({ posts }: BlogSearchProps) {
       </div>
 
       {/* Pillar Filters */}
-      <div className="flex flex-wrap gap-2 justify-center mb-8">
+      <div className="flex flex-wrap gap-2 justify-center mb-3">
         <button
-          onClick={() => setPillarFilter("")}
+          onClick={() => { setPillarFilter(""); setTopicFilter(""); }}
           className={`px-4 py-2 rounded-full text-sm font-body transition-colors cursor-pointer ${
-            !pillarFilter
+            !pillarFilter && !topicFilter
               ? "bg-coral text-off-white"
               : "bg-white/5 text-foreground-muted hover:bg-white/10"
           }`}
@@ -99,9 +132,10 @@ export function BlogSearch({ posts }: BlogSearchProps) {
           return (
             <button
               key={key}
-              onClick={() =>
-                setPillarFilter(pillarFilter === key ? "" : key)
-              }
+              onClick={() => {
+                setPillarFilter(pillarFilter === key ? "" : key);
+                setTopicFilter("");
+              }}
               className={`px-4 py-2 rounded-full text-sm font-body transition-colors cursor-pointer ${
                 pillarFilter === key
                   ? "bg-coral text-off-white"
@@ -109,6 +143,30 @@ export function BlogSearch({ posts }: BlogSearchProps) {
               }`}
             >
               {CONTENT_PILLARS[key].label} ({count})
+            </button>
+          );
+        })}
+      </div>
+
+      {/* Topic Filters */}
+      <div className="flex flex-wrap gap-2 justify-center mb-8">
+        {TOPIC_FILTERS.map((topic) => {
+          const count = posts.filter(topic.match).length;
+          if (count === 0) return null;
+          return (
+            <button
+              key={topic.id}
+              onClick={() => {
+                setTopicFilter(topicFilter === topic.id ? "" : topic.id);
+                setPillarFilter("");
+              }}
+              className={`px-4 py-2 rounded-full text-sm font-body transition-colors cursor-pointer border ${
+                topicFilter === topic.id
+                  ? "bg-coral text-off-white border-coral"
+                  : "bg-white/5 text-foreground-muted hover:bg-white/10 border-white/10"
+              }`}
+            >
+              {topic.label} ({count})
             </button>
           );
         })}

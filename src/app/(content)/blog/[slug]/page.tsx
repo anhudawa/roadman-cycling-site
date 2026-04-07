@@ -5,7 +5,11 @@ import { Header, Footer, Section, Container } from "@/components/layout";
 import { Badge, Button } from "@/components/ui";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { Breadcrumbs } from "@/components/seo/Breadcrumbs";
-import { getPostBySlug, getAllSlugs } from "@/lib/blog";
+import { getPostBySlug, getAllSlugs, getRelatedPosts } from "@/lib/blog";
+import { ShareButtons } from "@/components/features/blog/ShareButtons";
+import { RelatedPosts } from "@/components/features/blog/RelatedPosts";
+import { EmailCapture } from "@/components/features/conversion/EmailCapture";
+import { TableOfContents } from "@/components/features/blog/TableOfContents";
 
 export async function generateStaticParams() {
   return getAllSlugs().map((slug) => ({ slug }));
@@ -55,6 +59,7 @@ export default async function BlogPostPage({
     notFound();
   }
 
+  const relatedPosts = getRelatedPosts(slug, post.pillar, post.keywords, 3);
   const publishDate = new Date(post.publishDate);
 
   return (
@@ -164,7 +169,7 @@ export default async function BlogPostPage({
 
       <Header />
 
-      <main>
+      <main id="main-content">
         {/* Hero */}
         <Section background="deep-purple" grain className="pt-32 pb-12">
           <Container width="narrow">
@@ -186,7 +191,7 @@ export default async function BlogPostPage({
               {post.title.toUpperCase()}
             </h1>
 
-            <div className="flex items-center justify-center gap-4 text-sm text-foreground-muted">
+            <div className="flex items-center justify-center gap-4 text-sm text-foreground-muted mb-6">
               <span>By {post.author}</span>
               <span>&middot;</span>
               <time dateTime={post.publishDate}>
@@ -197,51 +202,59 @@ export default async function BlogPostPage({
                 })}
               </time>
             </div>
+
+            <ShareButtons title={post.title} slug={slug} className="justify-center" />
             </div>
           </Container>
         </Section>
 
         {/* Content */}
         <Section background="charcoal" className="!py-12">
+          {/* Floating Table of Contents */}
+          <TableOfContents containerSelector=".prose-roadman" />
+
           <Container width="narrow">
-            <article className="prose-roadman">
+            <article className="prose-roadman prose-enhanced">
               <MDXRemote source={post.content} />
             </article>
 
-            {/* CTA */}
-            <div className="mt-16 bg-deep-purple/30 rounded-xl border border-purple/20 p-8 text-center">
-              <h3 className="font-heading text-2xl text-off-white mb-3">
-                WANT MORE LIKE THIS?
-              </h3>
-              <p className="text-foreground-muted mb-6 max-w-md mx-auto">
-                Join the Clubhouse for weekly insights, free training plans, and
-                live Q&amp;A with Anthony.
-              </p>
-              <div className="flex flex-col sm:flex-row gap-3 justify-center">
-                <Button href="/community/clubhouse">
-                  Join the Clubhouse — Free
-                </Button>
-                <Button href="/blog" variant="ghost">
-                  More Articles
-                </Button>
+            {/* Share + Author */}
+            <div className="mt-16 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6 py-6 border-t border-white/5">
+              <div className="flex items-center gap-4">
+                <div className="w-14 h-14 rounded-full bg-purple flex items-center justify-center shrink-0">
+                  <span className="font-heading text-lg text-off-white">AW</span>
+                </div>
+                <div>
+                  <p className="font-heading text-lg text-off-white">
+                    ANTHONY WALSH
+                  </p>
+                  <p className="text-sm text-foreground-muted">
+                    Host of the Roadman Cycling Podcast
+                  </p>
+                </div>
               </div>
+              <ShareButtons title={post.title} slug={slug} />
             </div>
 
-            {/* Author */}
-            <div className="mt-12 flex items-center gap-4 p-6 bg-background-elevated rounded-lg border border-white/5">
-              <div className="w-14 h-14 rounded-full bg-purple flex items-center justify-center shrink-0">
-                <span className="font-heading text-lg text-off-white">AW</span>
-              </div>
-              <div>
-                <p className="font-heading text-lg text-off-white">
-                  ANTHONY WALSH
-                </p>
-                <p className="text-sm text-foreground-muted">
-                  Host of the Roadman Cycling Podcast. 100M+ downloads.
-                  Translating access to the world&apos;s best cycling minds into
-                  content that makes you faster.
-                </p>
-              </div>
+            {/* Newsletter */}
+            <EmailCapture
+              variant="inline"
+              heading="THE SATURDAY SPIN"
+              subheading="Every Saturday. The week's sharpest cycling insights — training, nutrition, performance — from the podcast."
+              source={`blog-${slug}`}
+              className="mt-12"
+            />
+
+            {/* Related Posts */}
+            {relatedPosts.length > 0 && (
+              <RelatedPosts posts={relatedPosts} className="mt-16" />
+            )}
+
+            {/* Back to blog */}
+            <div className="mt-12 text-center">
+              <Button href="/blog" variant="ghost">
+                All Articles
+              </Button>
             </div>
           </Container>
         </Section>

@@ -1,18 +1,51 @@
 import type { Metadata } from "next";
 import { Header, Footer, Section, Container } from "@/components/layout";
 import { Button } from "@/components/ui";
+import { JsonLd } from "@/components/seo/JsonLd";
 
 export const metadata: Metadata = {
   title: "The Clubhouse — Free Cycling Community",
   description:
-    "Join 1,852 serious cyclists in the free Roadman Cycling Clubhouse. Weekly live Q&A with Anthony Walsh, free training plans, and a community that gets it.",
+    "Join 2,100+ serious cyclists in the free Roadman Cycling Clubhouse. Weekly live Q&A with Anthony Walsh, free training plans, and a community that gets it.",
+  alternates: {
+    canonical: "https://roadmancycling.com/community/clubhouse",
+  },
+  openGraph: {
+    title: "The Clubhouse — Free Cycling Community",
+    description:
+      "Join 2,100+ serious cyclists in the free Roadman Cycling Clubhouse. Weekly live Q&A with Anthony Walsh, free training plans, and a community that gets it.",
+    type: "website",
+    url: "https://roadmancycling.com/community/clubhouse",
+  },
 };
 
 export default function ClubhousePage() {
   return (
     <>
+      <JsonLd
+        data={{
+          "@context": "https://schema.org",
+          "@type": "Service",
+          name: "The Clubhouse — Free Cycling Community",
+          description:
+            "Free cycling community with weekly live Q&A, 16-week training plans, and peer support for serious cyclists.",
+          url: "https://roadmancycling.com/community/clubhouse",
+          provider: {
+            "@type": "Organization",
+            name: "Roadman Cycling",
+            url: "https://roadmancycling.com",
+          },
+          isAccessibleForFree: true,
+          offers: {
+            "@type": "Offer",
+            price: "0",
+            priceCurrency: "USD",
+            availability: "https://schema.org/InStock",
+          },
+        }}
+      />
       <Header />
-      <main>
+      <main id="main-content">
         {/* Hero */}
         <Section background="deep-purple" grain className="pt-32 pb-16">
           <Container className="text-center">
@@ -27,7 +60,7 @@ export default function ClubhousePage() {
             </h1>
             <p className="text-foreground-muted text-xl max-w-2xl mx-auto mb-8">
               Free training plans. Free calculators. A weekly live Q&amp;A with
-              Anthony. And 2,000 cyclists who actually care about getting faster.
+              Anthony. And 2,100 cyclists who actually care about getting faster.
               This is your starting point. No credit card. No upsell pressure.
               Just tools and a community that gets it.
             </p>
@@ -56,7 +89,7 @@ export default function ClubhousePage() {
                 {
                   title: "Weekly Live Q&A with Anthony",
                   description:
-                    "Every week, Anthony goes live to answer your training, nutrition, and cycling questions. No gatekeeping. No upsell. Just direct access to someone who's spent a decade talking to the world's best.",
+                    "Every week, Anthony goes live to answer your training, nutrition, and cycling questions. No gatekeeping. No upsell. Just direct access to someone who's recorded 1,400+ episodes with the world's best coaches, scientists, and riders.",
                 },
                 {
                   title: "Free 16-Week Training Plans",
@@ -99,7 +132,7 @@ export default function ClubhousePage() {
                 ZERO COST. ZERO CATCH.
               </h2>
               <p className="text-foreground-muted mb-8 max-w-md mx-auto">
-                Join 1,852 cyclists who are already inside. The only thing
+                Join 2,100+ cyclists who are already inside. The only thing
                 you&apos;re losing is time by not being part of this.
               </p>
               <Button

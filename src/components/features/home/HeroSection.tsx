@@ -1,35 +1,97 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { useRef } from "react";
+import {
+  motion,
+  useScroll,
+  useTransform,
+  useSpring,
+  useMotionValueEvent,
+} from "framer-motion";
 import { Button } from "@/components/ui";
 import { FloatingParticles } from "@/components/ui/FloatingParticles";
+import { useState } from "react";
 
+/**
+ * Cinematic hero with:
+ * - Aurora / northern-lights gradient that slowly shifts
+ * - Scroll-driven text scaling (shrinks as you scroll)
+ * - Parallax depth layers
+ * - Clip-path text reveal on load
+ */
 export function HeroSection() {
+  const sectionRef = useRef<HTMLElement>(null);
+  const [scrolled, setScrolled] = useState(false);
+
+  const { scrollYProgress } = useScroll({
+    target: sectionRef,
+    offset: ["start start", "end start"],
+  });
+
+  // Spring-smoothed progress for buttery feel
+  const smoothProgress = useSpring(scrollYProgress, {
+    stiffness: 100,
+    damping: 30,
+    mass: 0.5,
+  });
+
+  // Scroll-driven transforms
+  const textScale = useTransform(smoothProgress, [0, 0.5], [1, 0.7]);
+  const textY = useTransform(smoothProgress, [0, 0.5], [0, -80]);
+  const textOpacity = useTransform(smoothProgress, [0, 0.6], [1, 0]);
+  const bgY = useTransform(smoothProgress, [0, 1], [0, 200]);
+  const auroraY = useTransform(smoothProgress, [0, 1], [0, 100]);
+  const overlayOpacity = useTransform(smoothProgress, [0, 0.5], [0.5, 0.9]);
+
+  useMotionValueEvent(scrollYProgress, "change", (v) => {
+    setScrolled(v > 0.05);
+  });
+
   return (
-    <section className="relative min-h-screen flex items-center justify-center overflow-hidden grain-overlay">
-      {/* Video background placeholder — replace src with real cycling footage */}
-      <div className="absolute inset-0 bg-charcoal">
-        {/* When video is available, uncomment:
-        <video
-          autoPlay
-          muted
-          loop
-          playsInline
-          className="absolute inset-0 w-full h-full object-cover opacity-40"
-        >
-          <source src="/videos/hero-cycling.mp4" type="video/mp4" />
-        </video>
-        */}
-      </div>
+    <section
+      ref={sectionRef}
+      className="relative min-h-[120vh] flex items-start justify-center overflow-hidden"
+    >
+      {/* === LAYER 1: Deep background with parallax === */}
+      <motion.div className="absolute inset-0 bg-charcoal" style={{ y: bgY }}>
+        {/* Grain texture */}
+        <div className="absolute inset-0 grain-overlay" />
+      </motion.div>
 
-      {/* Gradient overlay */}
-      <div className="absolute inset-0 bg-gradient-to-b from-deep-purple/50 via-charcoal/70 to-charcoal" />
+      {/* === LAYER 2: Aurora / northern-lights effect === */}
+      <motion.div
+        className="absolute inset-0 pointer-events-none"
+        style={{ y: auroraY }}
+        aria-hidden="true"
+      >
+        {/* Primary aurora band */}
+        <div className="absolute inset-0 aurora-container">
+          <div className="aurora-band aurora-band-1" />
+          <div className="aurora-band aurora-band-2" />
+          <div className="aurora-band aurora-band-3" />
+        </div>
+      </motion.div>
 
-      {/* Ambient floating particles */}
+      {/* === LAYER 3: Gradient overlay (darkens on scroll) === */}
+      <motion.div
+        className="absolute inset-0 bg-gradient-to-b from-deep-purple/50 via-charcoal/70 to-charcoal"
+        style={{ opacity: overlayOpacity }}
+      />
+
+      {/* === LAYER 4: Floating particles (two layers for depth) === */}
       <FloatingParticles count={25} color="rgba(241, 99, 99, 0.12)" />
       <FloatingParticles count={10} color="rgba(76, 18, 115, 0.15)" />
 
-      <div className="relative z-10 text-center px-5 md:px-8 max-w-[1200px] mx-auto w-full pt-20">
+      {/* === LAYER 5: Content with scroll-driven scaling === */}
+      <motion.div
+        className="relative z-10 text-center px-5 md:px-8 max-w-[1200px] mx-auto w-full pt-[35vh] md:pt-[30vh]"
+        style={{
+          scale: textScale,
+          y: textY,
+          opacity: textOpacity,
+        }}
+      >
+        {/* Headline with clip-path reveal */}
         <motion.h1
           className="font-heading text-off-white leading-none mb-6"
           style={{
@@ -37,18 +99,32 @@ export function HeroSection() {
             letterSpacing: "-0.02em",
             textShadow: "0 4px 30px rgba(0,0,0,0.4)",
           }}
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+          initial={{ clipPath: "inset(100% 0 0 0)" }}
+          animate={{ clipPath: "inset(0% 0 0 0)" }}
+          transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
         >
-          CYCLING IS HARD,
-          <br />
           <motion.span
-            className="text-coral"
-            style={{ fontSize: "0.88em" }}
-            initial={{ opacity: 0, y: 20 }}
+            className="block"
+            initial={{ opacity: 0, y: 40 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
+            transition={{
+              duration: 0.9,
+              delay: 0.15,
+              ease: [0.16, 1, 0.3, 1],
+            }}
+          >
+            CYCLING IS HARD,
+          </motion.span>
+          <motion.span
+            className="text-coral block"
+            style={{ fontSize: "0.88em" }}
+            initial={{ opacity: 0, y: 40 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{
+              duration: 0.9,
+              delay: 0.35,
+              ease: [0.16, 1, 0.3, 1],
+            }}
           >
             OUR PODCAST WILL HELP.
           </motion.span>
@@ -58,17 +134,25 @@ export function HeroSection() {
           className="font-body text-foreground-muted max-w-2xl mx-auto mb-10 text-lg md:text-xl leading-relaxed"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.4, ease: [0.16, 1, 0.3, 1] }}
+          transition={{
+            duration: 0.8,
+            delay: 0.6,
+            ease: [0.16, 1, 0.3, 1],
+          }}
         >
-          The podcast trusted by 100 million listeners. The community where
-          serious cyclists stop guessing and start getting faster.
+          The podcast trusted by 1 million monthly listeners. The community
+          where serious cyclists stop guessing and start getting faster.
         </motion.p>
 
         <motion.div
           className="flex flex-col sm:flex-row items-center justify-center gap-4"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.6, ease: [0.16, 1, 0.3, 1] }}
+          transition={{
+            duration: 0.8,
+            delay: 0.8,
+            ease: [0.16, 1, 0.3, 1],
+          }}
         >
           <Button href="/podcast" size="lg">
             Listen Now
@@ -77,21 +161,24 @@ export function HeroSection() {
             Join Free
           </Button>
         </motion.div>
+      </motion.div>
 
-        {/* Animated scroll indicator */}
+      {/* === Animated scroll indicator === */}
+      <motion.div
+        className="absolute bottom-8 left-1/2 -translate-x-1/2 z-10 flex flex-col items-center gap-2"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: scrolled ? 0 : 0.6 }}
+        transition={{ duration: 0.6, delay: 1.4 }}
+      >
+        <span className="text-xs text-foreground-muted tracking-widest uppercase font-body">
+          Scroll
+        </span>
         <motion.div
-          className="absolute bottom-8 left-1/2 -translate-x-1/2"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 0.5 }}
-          transition={{ duration: 1, delay: 1.2 }}
-        >
-          <motion.div
-            className="w-0.5 h-12 bg-gradient-to-b from-coral to-transparent"
-            animate={{ scaleY: [0.6, 1, 0.6] }}
-            transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
-          />
-        </motion.div>
-      </div>
+          className="w-[1px] h-10 bg-gradient-to-b from-coral to-transparent"
+          animate={{ scaleY: [0.5, 1, 0.5] }}
+          transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+        />
+      </motion.div>
     </section>
   );
 }

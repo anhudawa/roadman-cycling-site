@@ -5,9 +5,19 @@ import { JsonLd } from "@/components/seo/JsonLd";
 import { FAQSchema } from "@/components/seo/FAQSchema";
 
 export const metadata: Metadata = {
-  title: "Not Done Yet — Premium Cycling Coaching Community",
+  title: "Not Done Yet — Premium Cycling Coaching",
   description:
     "Personalised Vekta training plans, weekly coaching with Anthony Walsh, expert masterclasses, and a private community of serious cyclists. From $15/month.",
+  alternates: {
+    canonical: "https://roadmancycling.com/community/not-done-yet",
+  },
+  openGraph: {
+    title: "Not Done Yet — Premium Cycling Coaching",
+    description:
+      "Personalised Vekta training plans, weekly coaching with Anthony Walsh, expert masterclasses, and a private community of serious cyclists. From $15/month.",
+    type: "website",
+    url: "https://roadmancycling.com/community/not-done-yet",
+  },
 };
 
 const tiers = [
@@ -15,7 +25,7 @@ const tiers = [
     name: "Standard",
     price: "$15",
     period: "/month",
-    annual: "$75/year",
+    annual: "$150/year",
     description: "The five-pillar coaching system. Stop guessing, get structured.",
     features: [
       "Weekly training plans (adaptable to your hours)",
@@ -68,22 +78,22 @@ const tiers = [
 
 const testimonials = [
   {
-    name: "Tom S.",
-    result: "Cat 3 to Cat 1 in 18 months",
+    name: "Chris O'Connor",
+    result: "20% body fat down to 7%, 84kg to 68kg",
     quote:
-      "The structured approach changed everything. I stopped guessing and started progressing.",
+      "Anthony is a visionary, an educator, a mentor, a coach. He set me on a dietary, mental and physical journey of true discovery.",
   },
   {
-    name: "Mark D.",
-    result: "Completed the Etape — top 20%",
+    name: "Ian McKnight",
+    result: "Commuter to racer in one season",
     quote:
-      "I didn't just survive the Etape, I performed. The training plan was spot on.",
+      "I had a disappointing season dabbling in racing, mostly getting dropped. My coach gave me a structured pre-season programme and everything changed.",
   },
   {
-    name: "James R.",
-    result: "Lost 12kg, FTP up 40W",
+    name: "Kazim",
+    result: "Novice to 800km, 18,500m climbing in 7 days",
     quote:
-      "Coming back to cycling at 48, I didn't think these numbers were possible. The community kept me accountable.",
+      "From being a complete novice to completing a 7-day race covering more than 800km. They pushed me to the limits and I had full confidence and trust in them.",
   },
 ];
 
@@ -142,7 +152,7 @@ export default function NotDoneYetPage() {
 
       <Header />
 
-      <main>
+      <main id="main-content">
         {/* Hero */}
         <Section background="deep-purple" grain className="pt-32 pb-16">
           <Container className="text-center">
@@ -157,13 +167,15 @@ export default function NotDoneYetPage() {
                 NOT DONE YET
               </h1>
               <p className="text-foreground-muted text-xl max-w-2xl mx-auto mb-6">
-                You&apos;re training hard. You&apos;re not improving. Something&apos;s
-                missing — and it&apos;s not motivation. It&apos;s a system.
-                Five pillars. One structure. Weekly coaching that adapts to your
-                life, not the other way around.
+                TrainerRoad sells software. Zwift sells a game.
+                We sell who you become. You&apos;re still getting faster.
+                You&apos;re still learning. Five pillars. One system.
+                Built on 1,400+ conversations with Seiler, Lorang, and the
+                world&apos;s best — structured into your week by a coach
+                who&apos;s had every single one of them on his show.
               </p>
               <p className="text-foreground-subtle text-sm">
-                113 coached cyclists &middot; 7-day free trial &middot; 30-day money-back guarantee
+                100+ cyclists who refuse to plateau &middot; 7-day free trial &middot; 30-day money-back guarantee
               </p>
             </ScrollReveal>
           </Container>
@@ -300,11 +312,12 @@ export default function NotDoneYetPage() {
             <ScrollReveal direction="up">
               <div className="mt-16 text-center bg-deep-purple/30 rounded-xl border border-purple/20 p-10">
                 <h2 className="font-heading text-3xl text-off-white mb-4">
-                  READY TO STOP GUESSING?
+                  YOU&apos;RE NOT DONE YET.
                 </h2>
                 <p className="text-foreground-muted mb-8 max-w-md mx-auto">
-                  Join 113 serious cyclists who are actively getting faster with
-                  the right system.
+                  100+ cyclists chose to stop guessing and start progressing.
+                  They&apos;re not more talented than you — they just have
+                  a system. Same knowledge. Same coaching. Your turn.
                 </p>
                 <Button
                   href="https://skool.com/roadmancycling"

@@ -1,11 +1,12 @@
 import { Header, Footer, Section, Container } from "@/components/layout";
 import { Button } from "@/components/ui";
+import { EmailCapture } from "@/components/features/conversion/EmailCapture";
 
 export default function NotFound() {
   return (
     <>
       <Header />
-      <main>
+      <main id="main-content">
         <Section background="deep-purple" grain fullHeight>
           <Container className="text-center pt-20">
             <p className="font-heading text-[8rem] md:text-[12rem] text-coral leading-none mb-4">
@@ -25,6 +26,14 @@ export default function NotFound() {
               <Button href="/podcast" variant="ghost" size="lg">
                 Browse the Archive
               </Button>
+            </div>
+
+            <div className="mt-16 max-w-lg mx-auto">
+              <EmailCapture
+                heading="YOU'RE LOST, BUT YOU DON'T HAVE TO MISS OUT"
+                subheading="Every Saturday. The week's sharpest cycling insights from the podcast, straight to your inbox."
+                source="404"
+              />
             </div>
           </Container>
         </Section>

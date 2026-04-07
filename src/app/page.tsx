@@ -1,19 +1,32 @@
 import { Header, Footer, Section, Container } from "@/components/layout";
-import { Button, Card, ScrollReveal, ParallaxImage, MagneticButton, GradientText } from "@/components/ui";
+import { Button, Card, ScrollReveal, ParallaxImage, GradientText, GuestMarquee } from "@/components/ui";
 import { OrganizationJsonLd, WebSiteJsonLd } from "@/components/seo/JsonLd";
+import Link from "next/link";
 import { HeroSection } from "@/components/features/home/HeroSection";
 import { StatsSection } from "@/components/features/home/StatsSection";
 import { PillarIcon } from "@/components/features/home/PillarIcon";
 import { EmailCapture } from "@/components/features/conversion/EmailCapture";
 import { CONTENT_PILLARS, type ContentPillar } from "@/types";
 
-const experts = [
-  "Professor Seiler",
-  "Dan Lorang",
-  "Lachlan Morton",
-  "Ben Healy",
-  "John Wakefield",
-  "Dr. David Dunne",
+const marqueeGuests = [
+  { name: "Greg LeMond", credential: "3× Tour de France winner" },
+  { name: "Professor Seiler", credential: "Polarised training pioneer" },
+  { name: "Dan Lorang", credential: "Red Bull–Bora–Hansgrohe" },
+  { name: "Lachlan Morton", credential: "EF Education, alt-racing pioneer" },
+  { name: "Dan Bigham", credential: "Former Hour Record holder" },
+  { name: "Alistair Brownlee", credential: "2× Olympic triathlon gold" },
+  { name: "Valtteri Bottas", credential: "F1 driver & cyclist" },
+  { name: "Alex Dowsett", credential: "Former Hour Record holder, TT specialist" },
+  { name: "George Hincapie", credential: "17× Tour de France starter" },
+  { name: "André Greipel", credential: "22 Grand Tour stage wins" },
+  { name: "Joe Friel", credential: "Author, Cyclist's Training Bible" },
+  { name: "Hannah Grant", credential: "Pro team chef" },
+  { name: "Ed Clancy", credential: "3× Olympic gold, team pursuit" },
+  { name: "Tim Spector", credential: "ZOE founder, epidemiologist" },
+  { name: "Mark Beaumont", credential: "Around the World record" },
+  { name: "Colin O Brady", credential: "Solo Antarctic crossing, 10 Peaks adventurer" },
+  { name: "Uli Schoberer", credential: "Inventor of the SRM power meter" },
+  { name: "Olav Bu", credential: "Uno-X performance lead" },
 ];
 
 const tools = [
@@ -43,8 +56,8 @@ const tools = [
     href: "/tools/energy-availability",
   },
   {
-    title: "Shock Pressure",
-    description: "Dial in your suspension for your weight and style.",
+    title: "MTB Setup Calculator",
+    description: "Dial in fork and shock pressure for your weight and riding style.",
     href: "/tools/shock-pressure",
   },
 ];
@@ -56,7 +69,7 @@ export default function HomePage() {
       <WebSiteJsonLd />
       <Header />
 
-      <main>
+      <main id="main-content">
         {/* HERO — Animated entrance, video-ready */}
         <HeroSection />
 
@@ -71,27 +84,30 @@ export default function HomePage() {
           <Container>
             <ScrollReveal direction="up" className="text-center mb-12">
               <p className="text-coral font-heading text-sm tracking-widest mb-3">
-                <a href="/community/not-done-yet" className="hover:underline">
+                <Link href="/community/not-done-yet" className="hover:underline">
                   NOT DONE YET COACHING
-                </a>
+                </Link>
               </p>
               <h2
                 className="font-heading mb-4"
                 style={{ fontSize: "var(--text-section)" }}
               >
-                <a href="/community/not-done-yet" className="hover:opacity-80 transition-opacity">
+                <Link href="/community/not-done-yet" className="hover:opacity-80 transition-opacity">
                   <GradientText as="span">FIVE PILLARS. ONE SYSTEM.</GradientText>
-                </a>
+                </Link>
               </h2>
-              <p className="text-foreground-muted max-w-xl mx-auto">
+              <p className="text-foreground-muted max-w-xl mx-auto mb-6">
                 Inside{" "}
-                <a href="/community/not-done-yet" className="text-coral hover:underline">
+                <Link href="/community/not-done-yet" className="text-coral hover:underline">
                   Not Done Yet
-                </a>
+                </Link>
                 , everything connects. Training, nutrition, strength, recovery,
                 and community — coached together as one system. That&apos;s what
                 makes the difference between guessing and getting faster.
               </p>
+              <Button href="https://skool.com/roadmancycling" external>
+                Join Not Done Yet
+              </Button>
             </ScrollReveal>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4">
@@ -127,48 +143,50 @@ export default function HomePage() {
         {/* Gradient divider */}
         <div className="gradient-divider" />
 
-        {/* EXPERT ACCESS */}
-        <Section background="deep-purple" grain>
+        {/* EXPERT ACCESS — The Moat */}
+        <Section background="deep-purple" grain className="overflow-hidden">
           <Container>
-            <div className="grid md:grid-cols-2 gap-12 items-center">
-              <ScrollReveal direction="left">
-                <h2
-                  className="font-heading text-off-white mb-6"
-                  style={{ fontSize: "var(--text-section)" }}
-                >
-                  ACCESS THE WORLD&apos;S
-                  <br />
-                  <span className="text-coral">BEST MINDS</span>
-                </h2>
-                <p className="text-foreground-muted text-lg leading-relaxed mb-8">
-                  Anthony Walsh has spent a decade sitting across the table from
-                  the coaches, scientists, and riders who shape professional
-                  cycling. Roadman translates that access into a system you can
-                  actually use.
-                </p>
-                <MagneticButton>
-                  <Button href="/podcast">Explore the Archive</Button>
-                </MagneticButton>
-              </ScrollReveal>
+            <ScrollReveal direction="up" className="text-center mb-4">
+              <h2
+                className="font-heading text-off-white mb-3"
+                style={{ fontSize: "var(--text-section)" }}
+              >
+                <span className="block">1,400+ EPISODES.</span>
+                <span className="block text-coral">ONE GUEST LIST.</span>
+              </h2>
+              <p className="text-foreground-muted max-w-lg mx-auto">
+                No other cycling podcast has Greg LeMond, Professor Seiler,
+                Dan Lorang, and Lachlan Morton on the same show.
+              </p>
+            </ScrollReveal>
+          </Container>
 
-              <div className="grid grid-cols-2 gap-3">
-                {experts.map((expert, i) => (
-                  <ScrollReveal key={expert} direction="right" delay={i * 0.06}>
-                    <div className="relative overflow-hidden bg-white/5 border border-white/10 rounded-lg p-4 text-center group/expert transition-all duration-300 hover:border-coral/30">
-                      <div className="absolute inset-0 bg-gradient-to-r from-coral/10 to-coral/5 -translate-x-full group-hover/expert:translate-x-0 transition-transform duration-500 ease-[cubic-bezier(0.16,1,0.3,1)]" />
-                      <p className="relative font-heading text-lg text-off-white transition-transform duration-300 group-hover/expert:translate-x-1">
-                        {expert.toUpperCase()}
-                      </p>
-                    </div>
-                  </ScrollReveal>
-                ))}
-              </div>
+          {/* Full-bleed marquee — breaks out of Container for edge-to-edge scroll */}
+          <div className="my-10">
+            <GuestMarquee guests={marqueeGuests} />
+          </div>
+
+          <Container>
+            <div className="flex items-center justify-center gap-4">
+              <Button href="/guests">
+                Meet the Guests
+              </Button>
+              <Button href="/podcast" variant="ghost">
+                Explore the Archive
+              </Button>
             </div>
           </Container>
         </Section>
 
-        {/* Gradient divider */}
-        <div className="gradient-divider" />
+        {/* PARALLAX DIVIDER — Beach bikepacking */}
+        <ParallaxImage
+          src="/images/community/DSC05808.JPG"
+          alt="Two riders pushing bikes across a beach at sunset"
+          className="h-[40vh] md:h-[50vh]"
+          objectPosition="center 20%"
+          speed={0.3}
+          overlayColor="from-deep-purple via-deep-purple/50 to-charcoal"
+        />
 
         {/* TOOLS */}
         <Section background="charcoal" className="section-glow-coral">
@@ -189,7 +207,7 @@ export default function HomePage() {
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
               {tools.map((tool, i) => (
                 <ScrollReveal key={tool.href} direction="up" delay={i * 0.06} className={i === 0 ? "sm:col-span-2 lg:col-span-2" : ""}>
-                  <Card href={tool.href} className="p-6 group h-full card-shimmer">
+                  <Card href={tool.href} className="p-6 h-full card-shimmer" glass tilt>
                     <h3 className="font-heading text-xl text-off-white mb-2 group-hover:text-coral transition-colors">
                       {tool.title.toUpperCase()}
                     </h3>
@@ -206,11 +224,12 @@ export default function HomePage() {
           </Container>
         </Section>
 
-        {/* PARALLAX DIVIDER — Cycling image */}
+        {/* PARALLAX DIVIDER — Golden hour riding */}
         <ParallaxImage
-          src="/images/cycling/gravel-road-climb.jpg"
-          alt="Cyclists riding through dramatic landscape"
+          src="/images/community/DSC05714.JPG"
+          alt="Two cyclists riding through golden hour light in a birch forest"
           className="h-[50vh] md:h-[60vh]"
+          objectPosition="center 40%"
           speed={0.3}
           overlayColor="from-charcoal via-charcoal/50 to-deep-purple"
         />
@@ -220,15 +239,17 @@ export default function HomePage() {
           <Container>
             <ScrollReveal direction="up" className="text-center mb-12">
               <h2
-                className="font-heading text-off-white mb-4"
+                className="font-heading mb-4"
                 style={{ fontSize: "var(--text-section)" }}
               >
-                YOU&apos;RE NOT DONE YET
+                <GradientText as="span">YOU&apos;RE NOT DONE YET</GradientText>
               </h2>
-              <p className="text-foreground-muted max-w-xl mx-auto">
-                Stop guessing. Get a simple weekly structure that makes you
-                leaner, stronger, and faster. Free tools to start. A full
-                coaching system when you&apos;re ready.
+              <p className="text-foreground-muted max-w-2xl mx-auto text-lg">
+                Most cyclists plateau because they train alone, guess at
+                nutrition, and skip the stuff that actually compounds.
+                Inside Not Done Yet, 113 cyclists follow one coached system —
+                training, nutrition, strength, recovery, and accountability —
+                and they&apos;re proving every week that faster is still ahead.
               </p>
             </ScrollReveal>
 
@@ -245,7 +266,7 @@ export default function HomePage() {
                     THE CLUBHOUSE
                   </h3>
                   <p className="text-foreground-muted mb-6 leading-relaxed">
-                    Free tools, free plans, and 2,000 cyclists who get it. Your
+                    Free tools, free plans, and 2,100 cyclists who get it. Your
                     starting point before you&apos;re ready for the full system.
                   </p>
                   <ul className="space-y-2 mb-8">
@@ -289,10 +310,10 @@ export default function HomePage() {
                     NOT DONE YET
                   </h3>
                   <p className="text-foreground-muted mb-6 leading-relaxed">
-                    The coaching system. Five pillars — training, nutrition,
-                    S&amp;C, recovery, and community — delivered through weekly
-                    coaching calls, personalised plans, and the accountability
-                    that makes it stick.
+                    You&apos;re not buying a subscription. You&apos;re joining
+                    a group of cyclists who refuse to plateau. Five pillars.
+                    One coached system. The same principles Seiler and Lorang
+                    discussed on the podcast — structured into your week.
                   </p>
                   <ul className="space-y-2 mb-8">
                     {[
@@ -328,8 +349,8 @@ export default function HomePage() {
         {/* NEWSLETTER — Now using Beehiiv-connected component */}
         <EmailCapture
           variant="banner"
-          heading="GET THE INSIGHTS. NO FLUFF."
-          subheading="Once a week. The stuff that actually makes you faster. Straight from the conversations with the world's best."
+          heading="THE SATURDAY SPIN"
+          subheading="Every Saturday morning. The sharpest cycling insights from the week — training, nutrition, and performance — straight from the conversations with the world's best."
           source="homepage"
         />
       </main>

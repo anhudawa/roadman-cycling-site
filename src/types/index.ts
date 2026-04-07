@@ -117,6 +117,21 @@ export const NAV_ITEMS: NavItem[] = [
     href: "/blog",
   },
   {
+    label: "Topics",
+    href: "/topics",
+    children: [
+      { label: "FTP Training", href: "/topics/ftp-training" },
+      { label: "Nutrition", href: "/topics/cycling-nutrition" },
+      { label: "Training Plans", href: "/topics/cycling-training-plans" },
+      { label: "Recovery", href: "/topics/cycling-recovery" },
+      { label: "Strength & Conditioning", href: "/topics/cycling-strength-conditioning" },
+      { label: "Weight Loss", href: "/topics/cycling-weight-loss" },
+      { label: "Beginners", href: "/topics/cycling-beginners" },
+      { label: "Triathlon", href: "/topics/triathlon-cycling" },
+      { label: "Mountain Biking", href: "/topics/mountain-biking" },
+    ],
+  },
+  {
     label: "Tools",
     href: "/tools",
     children: [
@@ -125,7 +140,7 @@ export const NAV_ITEMS: NavItem[] = [
       { label: "Race Weight", href: "/tools/race-weight" },
       { label: "Energy Availability", href: "/tools/energy-availability" },
       { label: "In-Ride Fuelling", href: "/tools/fuelling" },
-      { label: "Shock Pressure", href: "/tools/shock-pressure" },
+      { label: "MTB Setup", href: "/tools/shock-pressure" },
     ],
   },
   {
@@ -138,6 +153,7 @@ export const NAV_ITEMS: NavItem[] = [
     children: [
       { label: "Clubhouse (Free)", href: "/community/clubhouse" },
       { label: "Not Done Yet (Coaching)", href: "/community/not-done-yet" },
+      { label: "Strength & Conditioning", href: "/strength-training" },
       { label: "Roadman CC (Dublin)", href: "/community/club" },
     ],
   },

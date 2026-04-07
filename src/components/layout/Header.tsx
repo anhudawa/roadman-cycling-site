@@ -3,12 +3,29 @@
 import { useState, useEffect } from "react";
 import Link from "next/link";
 import Image from "next/image";
+import { motion, AnimatePresence, useScroll, useSpring, useTransform } from "framer-motion";
 import { NAV_ITEMS } from "@/types";
 import { Container } from "./Container";
 
+/**
+ * Header with:
+ * - Scroll progress indicator (thin coral gradient at top)
+ * - Staggered dropdown animations
+ * - Animated underline on active/hover
+ * - Dramatic mobile menu with staggered reveals
+ */
 export function Header() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+
+  // Scroll progress
+  const { scrollYProgress } = useScroll();
+  const smoothProgress = useSpring(scrollYProgress, {
+    stiffness: 100,
+    damping: 30,
+    mass: 0.5,
+  });
+  const progressWidth = useTransform(smoothProgress, [0, 1], ["0%", "100%"]);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -31,6 +48,12 @@ export function Header() {
 
   return (
     <>
+      {/* Scroll progress bar */}
+      <motion.div
+        className="scroll-progress-bar"
+        style={{ width: progressWidth }}
+      />
+
       <header
         className={`
           fixed top-0 left-0 right-0 z-50 transition-all
@@ -53,9 +76,9 @@ export function Header() {
               <Image
                 src="/images/logo-white.png"
                 alt="Roadman Cycling"
-                width={140}
-                height={50}
-                className="h-8 md:h-10 w-auto"
+                width={200}
+                height={70}
+                className="h-10 md:h-14 w-auto"
                 priority
               />
             </Link>
@@ -66,27 +89,51 @@ export function Header() {
                 <div key={item.href} className="relative group">
                   <Link
                     href={item.href}
-                    className="relative font-body text-sm text-foreground-muted hover:text-off-white transition-colors after:absolute after:bottom-[-4px] after:left-0 after:h-[1px] after:w-0 hover:after:w-full after:bg-coral after:transition-all after:duration-300 after:ease-[cubic-bezier(0.16,1,0.3,1)]"
+                    className="relative font-body text-sm text-foreground-muted hover:text-off-white transition-colors"
+                    style={{ transitionDuration: "var(--duration-fast)" }}
                   >
                     {item.label}
                     {item.children && (
                       <span className="ml-1 text-xs opacity-50">&#9662;</span>
                     )}
+                    {/* Animated underline */}
+                    <span className="absolute bottom-[-4px] left-0 h-[1.5px] w-0 group-hover:w-full bg-gradient-to-r from-coral to-coral/50 transition-all duration-300 ease-[cubic-bezier(0.16,1,0.3,1)]" />
                   </Link>
                   {item.children && (
                     <div className="absolute top-full left-1/2 -translate-x-1/2 pt-3 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all" style={{ transitionDuration: "var(--duration-normal)" }}>
-                      <div className="bg-charcoal/95 backdrop-blur-md border border-white/10 rounded-lg p-2 min-w-[200px] shadow-[var(--shadow-elevated)]">
+                      <motion.div
+                        className="bg-charcoal/95 backdrop-blur-md border border-white/10 rounded-lg p-2 min-w-[200px] shadow-[var(--shadow-elevated)]"
+                        initial="hidden"
+                        whileInView="visible"
+                        variants={{
+                          hidden: {},
+                          visible: {
+                            transition: { staggerChildren: 0.04 },
+                          },
+                        }}
+                      >
                         {item.children.map((child) => (
-                          <Link
+                          <motion.div
                             key={child.href}
-                            href={child.href}
-                            className="block px-3 py-2 text-sm text-foreground-muted hover:text-off-white hover:bg-white/5 rounded-md transition-colors"
-                            style={{ transitionDuration: "var(--duration-fast)" }}
+                            variants={{
+                              hidden: { opacity: 0, x: -8 },
+                              visible: {
+                                opacity: 1,
+                                x: 0,
+                                transition: { duration: 0.25, ease: [0.16, 1, 0.3, 1] },
+                              },
+                            }}
                           >
-                            {child.label}
-                          </Link>
+                            <Link
+                              href={child.href}
+                              className="block px-3 py-2 text-sm text-foreground-muted hover:text-off-white hover:bg-white/5 rounded-md transition-colors"
+                              style={{ transitionDuration: "var(--duration-fast)" }}
+                            >
+                              {child.label}
+                            </Link>
+                          </motion.div>
                         ))}
-                      </div>
+                      </motion.div>
                     </div>
                   )}
                 </div>
@@ -97,7 +144,7 @@ export function Header() {
                   font-heading text-sm tracking-wider
                   bg-coral hover:bg-coral-hover
                   text-off-white px-6 py-2.5 rounded-md
-                  transition-all
+                  transition-all hover:shadow-[var(--shadow-glow-coral)]
                 "
                 style={{ transitionDuration: "var(--duration-fast)" }}
               >
@@ -111,24 +158,31 @@ export function Header() {
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
               aria-label={isMobileMenuOpen ? "Close menu" : "Open menu"}
               aria-expanded={isMobileMenuOpen}
+              aria-controls="mobile-menu"
             >
-              <span
-                className={`block w-6 h-0.5 bg-off-white transition-transform ${
-                  isMobileMenuOpen ? "rotate-45 translate-y-1" : ""
-                }`}
-                style={{ transitionDuration: "var(--duration-normal)" }}
+              <motion.span
+                className="block w-6 h-0.5 bg-off-white"
+                animate={{
+                  rotate: isMobileMenuOpen ? 45 : 0,
+                  y: isMobileMenuOpen ? 4 : 0,
+                }}
+                transition={{ duration: 0.25, ease: [0.16, 1, 0.3, 1] }}
               />
-              <span
-                className={`block w-6 h-0.5 bg-off-white transition-opacity ${
-                  isMobileMenuOpen ? "opacity-0" : ""
-                }`}
-                style={{ transitionDuration: "var(--duration-normal)" }}
+              <motion.span
+                className="block w-6 h-0.5 bg-off-white"
+                animate={{
+                  opacity: isMobileMenuOpen ? 0 : 1,
+                  scaleX: isMobileMenuOpen ? 0 : 1,
+                }}
+                transition={{ duration: 0.15 }}
               />
-              <span
-                className={`block w-6 h-0.5 bg-off-white transition-transform ${
-                  isMobileMenuOpen ? "-rotate-45 -translate-y-1" : ""
-                }`}
-                style={{ transitionDuration: "var(--duration-normal)" }}
+              <motion.span
+                className="block w-6 h-0.5 bg-off-white"
+                animate={{
+                  rotate: isMobileMenuOpen ? -45 : 0,
+                  y: isMobileMenuOpen ? -4 : 0,
+                }}
+                transition={{ duration: 0.25, ease: [0.16, 1, 0.3, 1] }}
               />
             </button>
           </nav>
@@ -136,42 +190,67 @@ export function Header() {
       </header>
 
       {/* Mobile Menu Overlay */}
-      <div
-        className={`
-          fixed inset-0 z-40 bg-deep-purple/98 backdrop-blur-lg
-          flex flex-col items-center justify-center
-          transition-opacity lg:hidden
-          ${isMobileMenuOpen ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"}
-        `}
-        style={{ transitionDuration: "var(--duration-slow)" }}
-      >
-        <nav className="flex flex-col items-center gap-8">
-          {NAV_ITEMS.map((item) => (
-            <Link
-              key={item.href}
-              href={item.href}
-              className="font-heading text-4xl text-off-white hover:text-coral transition-colors"
-              onClick={() => setIsMobileMenuOpen(false)}
-              style={{ transitionDuration: "var(--duration-fast)" }}
-            >
-              {item.label}
-            </Link>
-          ))}
-          <Link
-            href="/community/clubhouse"
-            className="
-              mt-4 font-heading text-xl tracking-wider
-              bg-coral hover:bg-coral-hover
-              text-off-white px-10 py-4 rounded-md
-              transition-all
-            "
-            onClick={() => setIsMobileMenuOpen(false)}
-            style={{ transitionDuration: "var(--duration-fast)" }}
+      <AnimatePresence>
+        {isMobileMenuOpen && (
+          <motion.div
+            id="mobile-menu"
+            className="fixed inset-0 z-40 bg-deep-purple/98 backdrop-blur-lg flex flex-col items-center justify-center lg:hidden"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.35 }}
           >
-            JOIN THE CLUBHOUSE
-          </Link>
-        </nav>
-      </div>
+            <nav className="flex flex-col items-center gap-6">
+              {NAV_ITEMS.map((item, i) => (
+                <motion.div
+                  key={item.href}
+                  initial={{ opacity: 0, y: 30 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -20 }}
+                  transition={{
+                    duration: 0.4,
+                    delay: 0.05 + i * 0.06,
+                    ease: [0.16, 1, 0.3, 1],
+                  }}
+                >
+                  <Link
+                    href={item.href}
+                    className="font-heading text-4xl text-off-white hover:text-coral transition-colors"
+                    onClick={() => setIsMobileMenuOpen(false)}
+                    style={{ transitionDuration: "var(--duration-fast)" }}
+                  >
+                    {item.label}
+                  </Link>
+                </motion.div>
+              ))}
+              <motion.div
+                initial={{ opacity: 0, y: 30 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -20 }}
+                transition={{
+                  duration: 0.4,
+                  delay: 0.05 + NAV_ITEMS.length * 0.06,
+                  ease: [0.16, 1, 0.3, 1],
+                }}
+              >
+                <Link
+                  href="/community/clubhouse"
+                  className="
+                    mt-4 font-heading text-xl tracking-wider
+                    bg-coral hover:bg-coral-hover
+                    text-off-white px-10 py-4 rounded-md
+                    transition-all
+                  "
+                  onClick={() => setIsMobileMenuOpen(false)}
+                  style={{ transitionDuration: "var(--duration-fast)" }}
+                >
+                  JOIN THE CLUBHOUSE
+                </Link>
+              </motion.div>
+            </nav>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </>
   );
 }

@@ -74,6 +74,7 @@ export function PodcastSearch({ episodes }: PodcastSearchProps) {
       <div className="mb-6">
         <input
           type="search"
+          aria-label="Search episodes"
           placeholder="Search episodes, guests, topics..."
           value={query}
           onChange={(e) => setQuery(e.target.value)}
@@ -158,13 +159,6 @@ export function PodcastSearch({ episodes }: PodcastSearchProps) {
             style={{ transitionDuration: "var(--duration-normal)" }}
           >
             <div className="flex flex-col md:flex-row md:items-center gap-4">
-              {/* Episode Number */}
-              <div className="shrink-0 w-14 h-14 rounded-lg bg-deep-purple flex items-center justify-center">
-                <span className="font-heading text-xl text-coral">
-                  {episode.episodeNumber}
-                </span>
-              </div>
-
               {/* Details */}
               <div className="flex-1 min-w-0">
                 <div className="flex items-center gap-2 mb-1">
