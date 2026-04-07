@@ -1,13 +1,13 @@
 "use client";
 
-import { useEffect, useState, useCallback } from "react";
+import { useEffect, useState, useCallback, useRef } from "react";
 import { motion, useSpring, useMotionValue, useTransform } from "framer-motion";
 
 type CursorVariant = "default" | "hover" | "image" | "text" | "hidden";
 
 /**
  * Custom cursor with shape morphing and magnetic pull.
- * - Smooth spring-lerped following (cursor trails behind mouse)
+ * - Near-instant following with stiff springs
  * - Grows/morphs on interactive elements
  * - Becomes a crosshair on images
  * - Thin line on text links
@@ -18,12 +18,13 @@ export function SmoothCursor() {
   const [isVisible, setIsVisible] = useState(false);
   const [isClicking, setIsClicking] = useState(false);
 
-  const springConfig = { damping: 28, stiffness: 250, mass: 0.4 };
+  // Stiff springs for near-instant response
+  const springConfig = { damping: 40, stiffness: 600, mass: 0.15 };
   const cursorX = useSpring(useMotionValue(0), springConfig);
   const cursorY = useSpring(useMotionValue(0), springConfig);
 
-  // Faster inner dot for parallax effect
-  const dotSpringConfig = { damping: 35, stiffness: 400, mass: 0.2 };
+  // Inner dot — slightly stiffer for parallax feel
+  const dotSpringConfig = { damping: 45, stiffness: 800, mass: 0.1 };
   const dotX = useSpring(useMotionValue(0), dotSpringConfig);
   const dotY = useSpring(useMotionValue(0), dotSpringConfig);
 
@@ -44,17 +45,24 @@ export function SmoothCursor() {
     return "default";
   }, []);
 
+  const rafId = useRef(0);
+
   useEffect(() => {
     const mediaQuery = window.matchMedia("(pointer: fine)");
     if (!mediaQuery.matches) return;
 
     setIsVisible(true);
 
+    // Use rAF to batch mouse updates to display refresh rate
     const handleMove = (e: MouseEvent) => {
-      cursorX.set(e.clientX);
-      cursorY.set(e.clientY);
-      dotX.set(e.clientX);
-      dotY.set(e.clientY);
+      if (rafId.current) return; // skip if a frame is already pending
+      rafId.current = requestAnimationFrame(() => {
+        cursorX.set(e.clientX);
+        cursorY.set(e.clientY);
+        dotX.set(e.clientX);
+        dotY.set(e.clientY);
+        rafId.current = 0;
+      });
     };
 
     const handleOver = (e: MouseEvent) => {
@@ -81,6 +89,7 @@ export function SmoothCursor() {
       document.removeEventListener("mouseout", handleOut);
       document.removeEventListener("mousedown", handleDown);
       document.removeEventListener("mouseup", handleUp);
+      if (rafId.current) cancelAnimationFrame(rafId.current);
     };
   }, [cursorX, cursorY, dotX, dotY, getCursorVariant]);
 
