@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Image from "next/image";
+import Link from "next/link";
 import { Header, Footer, Section, Container } from "@/components/layout";
 import { Button, Card, ScrollReveal } from "@/components/ui";
 import { JsonLd } from "@/components/seo/JsonLd";
@@ -181,11 +182,11 @@ export default function ClubPage() {
             <div className="grid md:grid-cols-3 gap-8">
               {rides.map((ride, i) => (
                 <ScrollReveal key={ride.day} direction="up" delay={i * 0.12}>
-                  <div className="h-full">
+                  <Link href="/events" className="block h-full group">
                     <p className="text-coral font-heading text-sm tracking-widest mb-3">
                       {ride.day.toUpperCase()} &middot; {ride.time}
                     </p>
-                    <h2 className="font-heading text-3xl text-off-white mb-2">
+                    <h2 className="font-heading text-3xl text-off-white mb-2 group-hover:text-coral transition-colors">
                       {ride.name.toUpperCase()}
                     </h2>
                     <p className="text-off-white text-sm font-medium mb-4 italic">
@@ -198,7 +199,7 @@ export default function ClubPage() {
                       <p>{ride.location}</p>
                       <p>{ride.distance}</p>
                     </div>
-                  </div>
+                  </Link>
                 </ScrollReveal>
               ))}
             </div>
