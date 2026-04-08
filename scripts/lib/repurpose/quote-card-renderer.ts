@@ -28,26 +28,36 @@ async function loadFont(): Promise<ArrayBuffer> {
     }
   }
 
-  // Fallback: fetch from Google Fonts
+  // Fallback: fetch from Google Fonts (use non-browser UA to get ttf, not woff2)
   try {
     const cssUrl =
       "https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;700&display=swap";
     const cssRes = await fetch(cssUrl, {
       headers: {
-        "User-Agent":
-          "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120 Safari/537.36",
+        // Non-browser UA forces Google Fonts to serve ttf (satori can't use woff2)
+        "User-Agent": "satori-font-loader/1.0",
       },
     });
     const css = await cssRes.text();
 
-    // Extract a woff2 URL from the CSS
-    const woff2Match = css.match(/url\((https:\/\/fonts\.gstatic\.com\/[^)]+\.woff2)\)/);
-    if (!woff2Match) {
-      throw new Error("Could not parse woff2 URL from Google Fonts CSS");
+    // Extract a ttf URL from the CSS
+    const ttfMatch = css.match(/url\((https:\/\/fonts\.gstatic\.com\/[^)]+\.ttf)\)/);
+    if (!ttfMatch) {
+      throw new Error("Could not parse ttf URL from Google Fonts CSS");
     }
 
-    const fontRes = await fetch(woff2Match[1]);
+    const fontRes = await fetch(ttfMatch[1]);
     fontCache = await fontRes.arrayBuffer();
+
+    // Cache to disk for future runs
+    const fontsDir = path.resolve(process.cwd(), "public/fonts");
+    if (!fs.existsSync(fontsDir)) fs.mkdirSync(fontsDir, { recursive: true });
+    fs.writeFileSync(
+      path.join(fontsDir, "WorkSans-Regular.ttf"),
+      Buffer.from(fontCache)
+    );
+    console.log("  [quote-card-renderer] Cached font to public/fonts/WorkSans-Regular.ttf");
+
     return fontCache;
   } catch (err) {
     throw new Error(
