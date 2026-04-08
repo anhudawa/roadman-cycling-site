@@ -49,6 +49,14 @@ const footerColumns = {
       { label: "Contact", href: "/contact" },
     ],
   },
+  legal: {
+    title: "Legal",
+    links: [
+      { label: "Privacy Policy", href: "/privacy" },
+      { label: "Terms of Service", href: "/terms" },
+      { label: "Cookie Policy", href: "/cookies" },
+    ],
+  },
 };
 
 const socialLinks = [
@@ -140,7 +148,7 @@ export function Footer() {
           </div>
 
           {/* Column Grid */}
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-8 mb-16">
+          <div className="grid grid-cols-2 md:grid-cols-5 gap-6 md:gap-8 mb-16">
             {Object.values(footerColumns).map((section) => (
               <div key={section.title}>
                 <h4 className="font-heading text-lg text-off-white mb-4 tracking-wider">

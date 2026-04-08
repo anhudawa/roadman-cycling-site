@@ -1,6 +1,7 @@
 "use client";
 
 import dynamic from "next/dynamic";
+import { usePathname } from "next/navigation";
 
 const ExitIntentPopup = dynamic(
   () =>
@@ -11,5 +12,7 @@ const ExitIntentPopup = dynamic(
 );
 
 export function LazyExitIntent() {
+  const pathname = usePathname();
+  if (pathname.startsWith("/admin")) return null;
   return <ExitIntentPopup />;
 }

@@ -20,6 +20,7 @@ export function EmailCapture({
   className = "",
 }: EmailCaptureProps) {
   const [email, setEmail] = useState("");
+  const [consent, setConsent] = useState(false);
   const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
   const [message, setMessage] = useState("");
 
@@ -32,13 +33,19 @@ export function EmailCapture({
       return;
     }
 
+    if (!consent) {
+      setStatus("error");
+      setMessage("Please agree to receive our newsletter.");
+      return;
+    }
+
     setStatus("loading");
 
     try {
       const res = await fetch("/api/newsletter", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ email, source }),
+        body: JSON.stringify({ email, source, consent: true }),
       });
 
       if (res.ok) {
@@ -58,41 +65,61 @@ export function EmailCapture({
 
   if (variant === "minimal") {
     return (
-      <form onSubmit={handleSubmit} className={`flex gap-2 ${className}`}>
-        <input
-          type="email"
-          aria-label="Email address"
-          placeholder="Your email"
-          value={email}
-          onChange={(e) => {
-            setEmail(e.target.value);
-            if (status !== "idle") setStatus("idle");
-          }}
-          className="
-            flex-1 bg-white/5 border border-white/10 rounded-md px-3 py-2
-            text-sm text-off-white placeholder:text-foreground-subtle
-            focus:border-coral focus:outline-none transition-colors
-          "
-          style={{ transitionDuration: "var(--duration-fast)" }}
-          disabled={status === "loading"}
-        />
-        <button
-          type="submit"
-          disabled={status === "loading"}
-          className="
-            font-heading text-sm tracking-wider
-            bg-coral hover:bg-coral-hover disabled:opacity-50
-            text-off-white px-4 py-2 rounded-md
-            transition-colors shrink-0 cursor-pointer
-          "
-          style={{ transitionDuration: "var(--duration-fast)" }}
-        >
-          {status === "loading" ? "..." : buttonText}
-        </button>
+      <div className={className}>
+        <form onSubmit={handleSubmit} className="flex gap-2">
+          <input
+            type="email"
+            aria-label="Email address"
+            placeholder="Your email"
+            value={email}
+            onChange={(e) => {
+              setEmail(e.target.value);
+              if (status !== "idle") setStatus("idle");
+            }}
+            className="
+              flex-1 bg-white/5 border border-white/10 rounded-md px-3 py-2
+              text-sm text-off-white placeholder:text-foreground-subtle
+              focus:border-coral focus:outline-none transition-colors
+            "
+            style={{ transitionDuration: "var(--duration-fast)" }}
+            disabled={status === "loading"}
+          />
+          <button
+            type="submit"
+            disabled={status === "loading"}
+            className="
+              font-heading text-sm tracking-wider
+              bg-coral hover:bg-coral-hover disabled:opacity-50
+              text-off-white px-4 py-2 rounded-md
+              transition-colors shrink-0 cursor-pointer
+            "
+            style={{ transitionDuration: "var(--duration-fast)" }}
+          >
+            {status === "loading" ? "..." : buttonText}
+          </button>
+        </form>
+        <label className="flex items-start gap-1.5 mt-2 cursor-pointer">
+          <input
+            type="checkbox"
+            checked={consent}
+            onChange={(e) => {
+              setConsent(e.target.checked);
+              if (status === "error") setStatus("idle");
+            }}
+            className="accent-coral mt-0.5 w-3.5 h-3.5 shrink-0 cursor-pointer"
+          />
+          <span className="text-xs text-foreground-muted leading-tight">
+            I agree to receive The Saturday Spin Newsletter and accept the{" "}
+            <a href="/privacy" className="text-coral hover:underline">Privacy Policy</a>
+          </span>
+        </label>
         {status === "success" && (
-          <span className="text-xs text-green-400 self-center">{message}</span>
+          <span className="text-xs text-green-400 mt-1 block">{message}</span>
         )}
-      </form>
+        {status === "error" && (
+          <p className="text-red-400 text-xs mt-1" role="alert">{message}</p>
+        )}
+      </div>
     );
   }
 
@@ -151,6 +178,21 @@ export function EmailCapture({
                   {status === "loading" ? "SUBSCRIBING..." : buttonText}
                 </button>
               </form>
+              <label className="flex items-center gap-2 mt-3 max-w-md mx-auto cursor-pointer">
+                <input
+                  type="checkbox"
+                  checked={consent}
+                  onChange={(e) => {
+                    setConsent(e.target.checked);
+                    if (status === "error") setStatus("idle");
+                  }}
+                  className="accent-coral w-4 h-4 shrink-0 cursor-pointer"
+                />
+                <span className="text-sm text-off-white/80 text-left">
+                  I agree to receive The Saturday Spin Newsletter and accept the{" "}
+                  <a href="/privacy" className="underline hover:text-off-white">Privacy Policy</a>
+                </span>
+              </label>
               {status === "error" && (
                 <p className="text-off-white text-sm mt-3" role="alert">{message}</p>
               )}
@@ -175,37 +217,54 @@ export function EmailCapture({
         <p className="text-green-400 font-medium">{message}</p>
       ) : (
         <>
-          <form onSubmit={handleSubmit} className="flex flex-col sm:flex-row gap-3">
-            <input
-              type="email"
-              aria-label="Email address"
-              placeholder="Your email"
-              value={email}
-              onChange={(e) => {
-                setEmail(e.target.value);
-                if (status !== "idle") setStatus("idle");
-              }}
-              className="
-                flex-1 bg-white/5 border border-white/10 rounded-md px-4 py-3
-                text-off-white placeholder:text-foreground-subtle
-                focus:border-coral focus:outline-none transition-colors
-              "
-              style={{ transitionDuration: "var(--duration-fast)" }}
-              disabled={status === "loading"}
-            />
-            <button
-              type="submit"
-              disabled={status === "loading"}
-              className="
-                font-heading tracking-wider
-                bg-coral hover:bg-coral-hover disabled:opacity-50
-                text-off-white px-8 py-3 rounded-md
-                transition-colors shrink-0 cursor-pointer
-              "
-              style={{ transitionDuration: "var(--duration-fast)" }}
-            >
-              {status === "loading" ? "..." : buttonText}
-            </button>
+          <form onSubmit={handleSubmit} className="flex flex-col gap-3">
+            <div className="flex flex-col sm:flex-row gap-3">
+              <input
+                type="email"
+                aria-label="Email address"
+                placeholder="Your email"
+                value={email}
+                onChange={(e) => {
+                  setEmail(e.target.value);
+                  if (status !== "idle") setStatus("idle");
+                }}
+                className="
+                  flex-1 bg-white/5 border border-white/10 rounded-md px-4 py-3
+                  text-off-white placeholder:text-foreground-subtle
+                  focus:border-coral focus:outline-none transition-colors
+                "
+                style={{ transitionDuration: "var(--duration-fast)" }}
+                disabled={status === "loading"}
+              />
+              <button
+                type="submit"
+                disabled={status === "loading"}
+                className="
+                  font-heading tracking-wider
+                  bg-coral hover:bg-coral-hover disabled:opacity-50
+                  text-off-white px-8 py-3 rounded-md
+                  transition-colors shrink-0 cursor-pointer
+                "
+                style={{ transitionDuration: "var(--duration-fast)" }}
+              >
+                {status === "loading" ? "..." : buttonText}
+              </button>
+            </div>
+            <label className="flex items-start gap-2 cursor-pointer">
+              <input
+                type="checkbox"
+                checked={consent}
+                onChange={(e) => {
+                  setConsent(e.target.checked);
+                  if (status === "error") setStatus("idle");
+                }}
+                className="accent-coral mt-0.5 w-4 h-4 shrink-0 cursor-pointer"
+              />
+              <span className="text-sm text-foreground-muted">
+                I agree to receive The Saturday Spin Newsletter and accept the{" "}
+                <a href="/privacy" className="text-coral hover:underline">Privacy Policy</a>
+              </span>
+            </label>
           </form>
           {status === "error" && (
             <p className="text-red-400 text-sm mt-2" role="alert">{message}</p>

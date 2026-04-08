@@ -1,7 +1,22 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState, useCallback } from "react";
 import { usePathname } from "next/navigation";
+
+const STORAGE_KEY = "roadman_cookie_consent";
+
+// ── Consent Check ─────────────────────────────────────────
+function hasAnalyticsConsent(): boolean {
+  if (typeof window === "undefined") return false;
+  try {
+    const stored = localStorage.getItem(STORAGE_KEY);
+    if (!stored) return false;
+    const prefs = JSON.parse(stored);
+    return prefs.analytics === true;
+  } catch {
+    return false;
+  }
+}
 
 // ── Session ID ────────────────────────────────────────────
 function getSessionId(): string {
@@ -16,6 +31,9 @@ function getSessionId(): string {
 
 // ── Send Event ────────────────────────────────────────────
 function sendEvent(type: string, data: Record<string, string> = {}) {
+  // Always check consent before sending
+  if (!hasAnalyticsConsent()) return;
+
   const payload = {
     type,
     page: window.location.pathname,
@@ -41,11 +59,13 @@ function sendEvent(type: string, data: Record<string, string> = {}) {
 }
 
 // ── Scroll Depth Tracker ──────────────────────────────────
-function useScrollDepth() {
+function useScrollDepth(consented: boolean) {
   const firedRef = useRef<Set<number>>(new Set());
   const pathname = usePathname();
 
   useEffect(() => {
+    if (!consented) return;
+
     // Reset on page change
     firedRef.current = new Set();
 
@@ -67,14 +87,16 @@ function useScrollDepth() {
 
     window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
-  }, [pathname]);
+  }, [pathname, consented]);
 }
 
 // ── Time on Page Tracker ──────────────────────────────────
-function useTimeOnPage() {
+function useTimeOnPage(consented: boolean) {
   const pathname = usePathname();
 
   useEffect(() => {
+    if (!consented) return;
+
     const startTime = Date.now();
 
     function handleVisibilityChange() {
@@ -88,23 +110,42 @@ function useTimeOnPage() {
     return () => {
       document.removeEventListener("visibilitychange", handleVisibilityChange);
     };
-  }, [pathname]);
+  }, [pathname, consented]);
 }
 
 // ── Tracker Component ─────────────────────────────────────
 export function Tracker() {
   const pathname = usePathname();
+  const [consented, setConsented] = useState(false);
+
+  // Check consent on mount and listen for updates
+  useEffect(() => {
+    setConsented(hasAnalyticsConsent());
+
+    function onConsentUpdated(e: Event) {
+      const detail = (e as CustomEvent).detail;
+      setConsented(detail?.analytics === true);
+    }
+
+    window.addEventListener("consent-updated", onConsentUpdated);
+    return () => window.removeEventListener("consent-updated", onConsentUpdated);
+  }, []);
 
   // Scroll depth and time-on-page tracking
-  useScrollDepth();
-  useTimeOnPage();
+  useScrollDepth(consented);
+  useTimeOnPage(consented);
 
+  // Fire pageview when consent is given (or on navigation if already consented)
+  const hasFiredRef = useRef<string | null>(null);
   useEffect(() => {
-    // Skip admin pages
+    if (!consented) return;
     if (pathname.startsWith("/admin")) return;
+    // Avoid duplicate pageview for same path
+    if (hasFiredRef.current === pathname) return;
+    hasFiredRef.current = pathname;
 
     sendEvent("pageview");
-  }, [pathname]);
+  }, [pathname, consented]);
 
   // Expose global tracking function for form submissions
   useEffect(() => {
