@@ -10,6 +10,7 @@ import { PodcastLinks } from "@/components/features/podcast/PodcastLinks";
 import { TranscriptViewer } from "@/components/features/podcast/TranscriptViewer";
 import { PlayButton } from "@/components/features/podcast/PlayButton";
 import { RelatedContent } from "@/components/features/RelatedContent";
+import { RelatedEpisodes } from "@/components/features/podcast/RelatedEpisodes";
 import { EmailCapture } from "@/components/features/conversion/EmailCapture";
 
 export async function generateStaticParams() {
@@ -350,6 +351,15 @@ export default async function EpisodePage({
               heading="NEVER MISS AN EPISODE"
               subheading="Weekly insights from the podcast. The stuff that actually makes you faster."
               source={`podcast-${slug}`}
+              className="mt-16"
+            />
+
+            {/* Related Episodes (podcast-only, server-rendered for SEO) */}
+            <RelatedEpisodes
+              currentSlug={slug}
+              pillar={episode.pillar}
+              keywords={episode.keywords}
+              title={episode.title}
               className="mt-16"
             />
 

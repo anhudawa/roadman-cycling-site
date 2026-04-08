@@ -86,3 +86,73 @@ export function getAllEpisodeSlugs(): string[] {
     .filter((f) => f.endsWith(".mdx"))
     .map((f) => f.replace(/\.mdx$/, ""));
 }
+
+/**
+ * Find related podcast episodes for a given episode.
+ * Scores by pillar match, keyword overlap, and title-word similarity.
+ * Returns podcast-only results (no blog posts) for the "Related Episodes" section.
+ */
+export function getRelatedEpisodes(
+  currentSlug: string,
+  pillar: ContentPillar,
+  keywords: string[],
+  title: string,
+  limit: number = 3
+): EpisodeMeta[] {
+  const allEpisodes = getAllEpisodes();
+  const inputKeywords = keywords.map((k) => k.toLowerCase());
+
+  // Extract meaningful words from title (>3 chars, lowercased)
+  const titleWords = title
+    .toLowerCase()
+    .replace(/[^a-z0-9\s]/g, "")
+    .split(/\s+/)
+    .filter((w) => w.length > 3);
+
+  const scored = allEpisodes
+    .filter((ep) => ep.slug !== currentSlug)
+    .map((ep) => {
+      let score = 0;
+
+      // Pillar match: +10
+      if (ep.pillar === pillar) score += 10;
+
+      // Keyword overlap
+      const epKeywords = ep.keywords.map((k) => k.toLowerCase());
+      for (const inputKw of inputKeywords) {
+        for (const epKw of epKeywords) {
+          if (epKw === inputKw) {
+            score += 3;
+          } else if (epKw.includes(inputKw) || inputKw.includes(epKw)) {
+            score += 1;
+          }
+        }
+      }
+
+      // Title-word similarity: check overlap between title words
+      const epTitleWords = ep.title
+        .toLowerCase()
+        .replace(/[^a-z0-9\s]/g, "")
+        .split(/\s+/)
+        .filter((w) => w.length > 3);
+
+      for (const tw of titleWords) {
+        if (epTitleWords.includes(tw)) score += 2;
+      }
+
+      // Guest match bonus: same guest = highly related
+      if (
+        ep.guest &&
+        allEpisodes.find((e) => e.slug === currentSlug)?.guest &&
+        ep.guest === allEpisodes.find((e) => e.slug === currentSlug)?.guest
+      ) {
+        score += 15;
+      }
+
+      return { episode: ep, score };
+    })
+    .filter((item) => item.score > 0)
+    .sort((a, b) => b.score - a.score);
+
+  return scored.slice(0, limit).map((item) => item.episode);
+}
