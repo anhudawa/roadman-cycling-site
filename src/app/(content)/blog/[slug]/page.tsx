@@ -9,7 +9,7 @@ import { getPostBySlug, getAllSlugs, getRelatedPosts } from "@/lib/blog";
 import { ShareButtons } from "@/components/features/blog/ShareButtons";
 import { RelatedPosts } from "@/components/features/blog/RelatedPosts";
 import { RelatedContent } from "@/components/features/RelatedContent";
-import { EmailCapture } from "@/components/features/conversion/EmailCapture";
+import { InlineArticleCTA } from "@/components/features/conversion/InlineArticleCTA";
 import { TableOfContents } from "@/components/features/blog/TableOfContents";
 
 export async function generateStaticParams() {
@@ -221,6 +221,12 @@ export default async function BlogPostPage({
               <MDXRemote source={post.content} />
             </article>
 
+            {/* Mid-article inline CTA — injects after 3rd paragraph, pillar-aware */}
+            <InlineArticleCTA
+              pillar={post.pillar}
+              source={`blog-inline-${slug}`}
+            />
+
             {/* Share + Author */}
             <div className="mt-16 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6 py-6 border-t border-white/5">
               <div className="flex items-center gap-4">
@@ -238,15 +244,6 @@ export default async function BlogPostPage({
               </div>
               <ShareButtons title={post.title} slug={slug} />
             </div>
-
-            {/* Newsletter */}
-            <EmailCapture
-              variant="inline"
-              heading="THE SATURDAY SPIN"
-              subheading="Every Saturday. The week's sharpest cycling insights — training, nutrition, performance — from the podcast."
-              source={`blog-${slug}`}
-              className="mt-12"
-            />
 
             {/* Related Posts (blog-only) */}
             {relatedPosts.length > 0 && (

@@ -178,6 +178,14 @@ export default function HomePage() {
           </Container>
         </Section>
 
+        {/* NEWSLETTER — The Saturday Spin (high placement for visibility) */}
+        <EmailCapture
+          variant="banner"
+          heading="THE SATURDAY SPIN"
+          subheading="Every Saturday morning. The sharpest cycling insights from the week — training, nutrition, and performance — straight from the conversations with the world's best."
+          source="homepage-top"
+        />
+
         {/* PARALLAX DIVIDER — Beach bikepacking */}
         <ParallaxImage
           src="/images/community/DSC05808.JPG"
@@ -346,13 +354,6 @@ export default function HomePage() {
           </Container>
         </Section>
 
-        {/* NEWSLETTER — Now using Beehiiv-connected component */}
-        <EmailCapture
-          variant="banner"
-          heading="THE SATURDAY SPIN"
-          subheading="Every Saturday morning. The sharpest cycling insights from the week — training, nutrition, and performance — straight from the conversations with the world's best."
-          source="homepage"
-        />
       </main>
 
       <Footer />
