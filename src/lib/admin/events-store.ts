@@ -591,3 +591,57 @@ export async function getExperimentResults(
 
   return results;
 }
+
+// ── Chart data helpers ────────────────────────────────────
+
+export async function getDailyVisitors(
+  from: Date,
+  to: Date
+): Promise<{ date: string; visitors: number }[]> {
+  const rows = await db
+    .select({
+      day: sql<string>`DATE(${events.timestamp})`,
+      cnt: count(),
+    })
+    .from(events)
+    .where(
+      and(
+        eq(events.type, "pageview"),
+        gte(events.timestamp, from),
+        lte(events.timestamp, to)
+      )
+    )
+    .groupBy(sql`DATE(${events.timestamp})`)
+    .orderBy(sql`DATE(${events.timestamp})`);
+
+  return rows.map((r) => ({
+    date: r.day,
+    visitors: Number(r.cnt),
+  }));
+}
+
+export async function getRevenueSnapshots(
+  from: Date,
+  to: Date
+): Promise<{ date: string; revenue: number }[]> {
+  const { stripeSnapshots } = await import("@/lib/db/schema");
+
+  const rows = await db
+    .select({
+      snapshotDate: stripeSnapshots.snapshotDate,
+      totalRevenueCents: stripeSnapshots.totalRevenueCents,
+    })
+    .from(stripeSnapshots)
+    .where(
+      and(
+        gte(stripeSnapshots.snapshotDate, from.toISOString().split("T")[0]),
+        lte(stripeSnapshots.snapshotDate, to.toISOString().split("T")[0])
+      )
+    )
+    .orderBy(stripeSnapshots.snapshotDate);
+
+  return rows.map((r) => ({
+    date: r.snapshotDate,
+    revenue: r.totalRevenueCents / 100,
+  }));
+}
