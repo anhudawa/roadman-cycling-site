@@ -97,6 +97,42 @@ const testimonials = [
   },
 ];
 
+const featuredResults = [
+  {
+    name: "Daniel Stone",
+    context: "One season",
+    result: "Cat 3 → Cat 1",
+    quote:
+      "One season with the system and I went from Cat 3 to Cat 1. The structured approach changed everything about how I train and race.",
+    ftpBefore: null,
+    ftpAfter: null,
+    statLabel: "CATEGORY JUMP",
+    statValue: "3 → 1",
+  },
+  {
+    name: "Brian Morrissey",
+    context: "52yo shift worker",
+    result: "FTP +15% in 10 weeks",
+    quote:
+      "This really works. I\u2019m training so much less than last year, at lower intensities and not getting sick. FTHR up from 175 to 180, peak HR up to 193.",
+    ftpBefore: 230,
+    ftpAfter: 265,
+    statLabel: "FTP GAIN",
+    statValue: "+15%",
+  },
+  {
+    name: "Damien Maloney",
+    context: "Plateaued sportive rider",
+    result: "FTP from low 200s to 295",
+    quote:
+      "I was an average sportive rider who had plateaued. Roadman custom built a plan to achieve my goals. I\u2019ve gotten much more out of Roadman than I ever imagined.",
+    ftpBefore: 205,
+    ftpAfter: 295,
+    statLabel: "FTP",
+    statValue: "295w",
+  },
+];
+
 const memberTestimonials = [
   {
     name: "Damien Maloney",
@@ -112,7 +148,7 @@ const memberTestimonials = [
   },
   {
     name: "Brian Morrissey",
-    highlight: "FTP up 15%, hit 4 w/kg at age 46",
+    highlight: "FTP up 15%, hit 4 w/kg at age 52",
     quote:
       "This really works. I\u2019m training so much less than last year, at lower intensities and not getting sick. FTHR up from 175 to 180, peak HR up to 193.",
   },
@@ -232,6 +268,84 @@ export default function NotDoneYetPage() {
                 />
               </div>
             </ScrollReveal>
+          </Container>
+        </Section>
+
+        {/* Gradient divider */}
+        <div className="gradient-divider" />
+
+        {/* Featured results — visual before/after */}
+        <Section background="deep-purple" grain>
+          <Container>
+            <ScrollReveal direction="up">
+              <p className="text-coral font-heading text-lg text-center mb-4 tracking-widest">
+                MEMBERS ARE GETTING RESULTS LIKE:
+              </p>
+              <h2
+                className="font-heading text-off-white text-center mb-12"
+                style={{ fontSize: "var(--text-section)" }}
+              >
+                THE NUMBERS DON&apos;T LIE
+              </h2>
+            </ScrollReveal>
+            <div className="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
+              {featuredResults.map((r, i) => (
+                <ScrollReveal key={r.name} direction="up" delay={i * 0.12}>
+                  <Card className="p-8 card-shimmer h-full" glass hoverable={false}>
+                    {/* Stat highlight */}
+                    <div className="text-center mb-6">
+                      <p className="text-foreground-subtle text-xs tracking-widest mb-1">
+                        {r.statLabel}
+                      </p>
+                      <p className="font-heading text-coral" style={{ fontSize: "2.5rem" }}>
+                        {r.statValue}
+                      </p>
+                    </div>
+
+                    {/* FTP bar chart (when applicable) */}
+                    {r.ftpBefore && r.ftpAfter && (
+                      <div className="mb-6 space-y-3">
+                        <div>
+                          <div className="flex justify-between text-xs text-foreground-subtle mb-1">
+                            <span>Before</span>
+                            <span>{r.ftpBefore}w</span>
+                          </div>
+                          <div className="h-3 rounded-full bg-white/5 overflow-hidden">
+                            <div
+                              className="h-full rounded-full bg-foreground-subtle/40"
+                              style={{ width: `${(r.ftpBefore / 320) * 100}%` }}
+                            />
+                          </div>
+                        </div>
+                        <div>
+                          <div className="flex justify-between text-xs text-foreground-subtle mb-1">
+                            <span>After</span>
+                            <span>{r.ftpAfter}w</span>
+                          </div>
+                          <div className="h-3 rounded-full bg-white/5 overflow-hidden">
+                            <div
+                              className="h-full rounded-full bg-gradient-to-r from-coral to-coral/70"
+                              style={{ width: `${(r.ftpAfter / 320) * 100}%` }}
+                            />
+                          </div>
+                        </div>
+                      </div>
+                    )}
+
+                    {/* Name and context */}
+                    <p className="font-heading text-off-white text-lg mb-1">{r.name}</p>
+                    <p className="text-foreground-subtle text-xs tracking-wider mb-3">
+                      {r.context.toUpperCase()}
+                    </p>
+
+                    {/* Quote */}
+                    <p className="text-foreground-muted text-sm leading-relaxed italic">
+                      &ldquo;{r.quote}&rdquo;
+                    </p>
+                  </Card>
+                </ScrollReveal>
+              ))}
+            </div>
           </Container>
         </Section>
 
