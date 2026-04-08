@@ -14,7 +14,9 @@ export async function loginAction(
     return { error: "Password is required" };
   }
 
+  console.log("[Admin Login] Attempting login...");
   const success = await login(password);
+  console.log("[Admin Login] Result:", success);
   if (!success) {
     return { error: "Invalid password" };
   }
