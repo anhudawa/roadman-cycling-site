@@ -1,0 +1,60 @@
+# Podcast Content Repurpose Pipeline
+# ===================================
+# Uncomment this workflow to automate content generation.
+# It runs daily, syncs new episodes from YouTube, generates
+# blog posts + social content + quote cards, and creates a PR
+# for Anthony to review before publishing.
+#
+# Required secrets:
+#   YOUTUBE_API_KEY
+#   ANTHROPIC_API_KEY
+#   GOOGLE_CSE_API_KEY
+#   GOOGLE_CSE_ID
+#
+# name: Podcast Content Repurpose
+#
+# on:
+#   schedule:
+#     - cron: '0 8 * * *'  # Daily at 8am UTC
+#   workflow_dispatch: {}
+#
+# jobs:
+#   repurpose:
+#     runs-on: ubuntu-latest
+#     steps:
+#       - uses: actions/checkout@v4
+#
+#       - uses: actions/setup-node@v4
+#         with:
+#           node-version: '22'
+#           cache: 'npm'
+#
+#       - run: npm ci
+#
+#       - name: Sync new episodes from YouTube
+#         run: npm run sync:youtube:full
+#         env:
+#           YOUTUBE_API_KEY: ${{ secrets.YOUTUBE_API_KEY }}
+#           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+#
+#       - name: Generate repurposed content
+#         run: npm run repurpose:latest
+#         env:
+#           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+#           GOOGLE_CSE_API_KEY: ${{ secrets.GOOGLE_CSE_API_KEY }}
+#           GOOGLE_CSE_ID: ${{ secrets.GOOGLE_CSE_ID }}
+#
+#       - name: Create PR with generated content
+#         uses: peter-evans/create-pull-request@v6
+#         with:
+#           title: 'content: new podcast repurposed content'
+#           body: |
+#             Auto-generated content from the latest podcast episode.
+#
+#             **Please review before merging:**
+#             - [ ] Blog post reads well and is factually accurate
+#             - [ ] Social posts match Anthony's voice
+#             - [ ] Quote cards look good
+#             - [ ] No sensitive information leaked
+#           branch: repurpose/latest
+#           commit-message: 'content: auto-generated repurposed podcast content'
