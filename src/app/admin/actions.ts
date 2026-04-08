@@ -5,18 +5,16 @@ import { redirect } from "next/navigation";
 import { seedEvents } from "@/lib/admin/seed";
 
 export async function loginAction(
-  _prevState: { error?: string } | null,
+  _prevState: { error?: string; success?: boolean } | null,
   formData: FormData
-): Promise<{ error?: string }> {
+): Promise<{ error?: string; success?: boolean }> {
   const password = formData.get("password") as string;
 
   if (!password) {
     return { error: "Password is required" };
   }
 
-  console.log("[Admin Login] Attempting login...");
   const success = await login(password);
-  console.log("[Admin Login] Result:", success);
   if (!success) {
     return { error: "Invalid password" };
   }
@@ -28,7 +26,9 @@ export async function loginAction(
     // Non-critical — dashboard works without seed data
   }
 
-  redirect("/admin");
+  // Return success instead of redirect() — the client handles navigation
+  // so the Set-Cookie header is properly applied before the redirect
+  return { success: true };
 }
 
 export async function logoutAction(): Promise<void> {

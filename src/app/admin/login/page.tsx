@@ -1,10 +1,19 @@
 "use client";
 
-import { useActionState } from "react";
+import { useActionState, useEffect } from "react";
+import { useRouter } from "next/navigation";
 import { loginAction } from "../actions";
 
 export default function AdminLoginPage() {
   const [state, formAction, isPending] = useActionState(loginAction, null);
+  const router = useRouter();
+
+  // When login succeeds, navigate client-side so the cookie is applied first
+  useEffect(() => {
+    if (state?.success) {
+      router.push("/admin");
+    }
+  }, [state?.success, router]);
 
   return (
     <div className="min-h-screen bg-charcoal flex items-center justify-center px-4">
@@ -40,10 +49,10 @@ export default function AdminLoginPage() {
 
           <button
             type="submit"
-            disabled={isPending}
+            disabled={isPending || state?.success}
             className="w-full py-3 bg-coral hover:bg-coral-hover disabled:opacity-50 text-off-white font-heading text-lg tracking-wider rounded-lg transition-colors"
           >
-            {isPending ? "SIGNING IN..." : "SIGN IN"}
+            {state?.success ? "REDIRECTING..." : isPending ? "SIGNING IN..." : "SIGN IN"}
           </button>
         </form>
       </div>

@@ -56,16 +56,12 @@ function verifySignedToken(token: string): boolean {
 
 export async function login(password: string): Promise<boolean> {
   const adminPassword = process.env.ADMIN_PASSWORD;
-  console.log("[Admin] ADMIN_PASSWORD set:", !!adminPassword, "length:", adminPassword?.length);
   if (!adminPassword) {
     console.error("[Admin] ADMIN_PASSWORD env var is not set");
     return false;
   }
 
-  const inputHash = hashPassword(password);
-  const storedHash = hashPassword(adminPassword);
-  console.log("[Admin] Input hash:", inputHash.substring(0, 8), "Stored hash:", storedHash.substring(0, 8), "Match:", inputHash === storedHash);
-  if (inputHash !== storedHash) {
+  if (hashPassword(password) !== hashPassword(adminPassword)) {
     return false;
   }
 
@@ -91,11 +87,8 @@ export async function logout(): Promise<void> {
 export async function isAuthenticated(): Promise<boolean> {
   const cookieStore = await cookies();
   const token = cookieStore.get(COOKIE_NAME)?.value;
-  console.log("[Admin Auth] Cookie present:", !!token, token ? `length:${token.length}` : "");
   if (!token) return false;
-  const valid = verifySignedToken(token);
-  console.log("[Admin Auth] Token valid:", valid);
-  return valid;
+  return verifySignedToken(token);
 }
 
 export async function requireAuth(): Promise<void> {
