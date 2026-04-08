@@ -94,8 +94,10 @@ function findLatestEpisode(): LoadedEpisode | null {
 
   const files = fs.readdirSync(podcastDir).filter((f) => f.endsWith(".mdx"));
 
-  let latestEp: LoadedEpisode | null = null;
-  let latestDate = "";
+  let latestWithTranscript: LoadedEpisode | null = null;
+  let latestDateTranscript = "";
+  let latestAny: LoadedEpisode | null = null;
+  let latestDateAny = "";
 
   for (const file of files) {
     const slug = file.replace(/\.mdx$/, "");
@@ -105,13 +107,22 @@ function findLatestEpisode(): LoadedEpisode | null {
     const publishDate = String(data.publishDate ?? "");
     if (!publishDate) continue;
 
-    if (!latestDate || publishDate > latestDate) {
-      latestDate = publishDate;
-      latestEp = { slug, frontmatter: data as Record<string, unknown>, content };
+    const ep: LoadedEpisode = { slug, frontmatter: data as Record<string, unknown>, content };
+
+    if (!latestDateAny || publishDate > latestDateAny) {
+      latestDateAny = publishDate;
+      latestAny = ep;
+    }
+
+    const transcript = String(data.transcript ?? "").trim();
+    if (transcript && (!latestDateTranscript || publishDate > latestDateTranscript)) {
+      latestDateTranscript = publishDate;
+      latestWithTranscript = ep;
     }
   }
 
-  return latestEp;
+  // Prefer episode with transcript; fall back to any (will warn in toEpisodeInput)
+  return latestWithTranscript || latestAny;
 }
 
 // ---------------------------------------------------------------------------
@@ -261,17 +272,17 @@ async function processEpisode(ep: LoadedEpisode, state: RepurposeState): Promise
     console.log(`✓ ${quotes.length} extracted`);
 
     if (quotes.length > 0) {
-      // Guest image
-      process.stdout.write("   🖼  Guest image... ");
-      const imageBuffer = await fetchGuestImage(input.guest, input.youtubeId);
-      if (imageBuffer) {
-        console.log("✓");
-      } else {
-        console.log("⚠ none found — cards will use solid background");
-      }
-
-      // Render quote cards (skip in dry-run)
+      // Render quote cards (skip in dry-run — no image fetch or rendering)
       if (!dryRun) {
+        // Guest image
+        process.stdout.write("   🖼  Guest image... ");
+        const imageBuffer = await fetchGuestImage(input.guest, input.youtubeId);
+        if (imageBuffer) {
+          console.log("✓");
+        } else {
+          console.log("⚠ none found — cards will use solid background");
+        }
+
         process.stdout.write("   🎨 Quote cards... ");
         const outputDir = getOutputDir(input.episodeNumber, input.slug);
 

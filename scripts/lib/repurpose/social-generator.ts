@@ -29,7 +29,7 @@ export async function generateSocialPosts(
     const { system, user } = socialPrompt(episode);
 
     const response = await getClient().messages.create({
-      model: "claude-haiku-4-5-20251001",
+      model: "claude-sonnet-4-20250514",
       max_tokens: 4096,
       system,
       messages: [{ role: "user", content: user }],
@@ -49,7 +49,7 @@ export async function generateSocialPosts(
       jsonStr = codeBlockMatch[1];
     }
 
-    let parsed: SocialOutput;
+    let parsed: Record<string, unknown>;
     try {
       parsed = JSON.parse(jsonStr);
     } catch {
@@ -59,30 +59,52 @@ export async function generateSocialPosts(
       return null;
     }
 
+    // Validate required structure
+    const tw = parsed.twitter as Record<string, unknown> | undefined;
+    const ig = parsed.instagram as Record<string, unknown> | undefined;
+    const li = parsed.linkedin as Record<string, unknown> | undefined;
+    const fb = parsed.facebook as Record<string, unknown> | undefined;
+
+    if (
+      !tw || !Array.isArray(tw.tweets) ||
+      !ig || typeof ig.caption !== "string" || !Array.isArray(ig.hashtags) ||
+      !li || typeof li.post !== "string" ||
+      !fb || typeof fb.post !== "string" || typeof fb.angle !== "string"
+    ) {
+      console.error(
+        `  ✗ Social JSON missing required fields for: ${episode.title}`
+      );
+      return null;
+    }
+
     // Stamp episodeSlug and generatedAt on each platform output
     const now = new Date().toISOString();
-    parsed.twitter = {
-      ...parsed.twitter,
-      episodeSlug: episode.slug,
-      generatedAt: now,
-    };
-    parsed.instagram = {
-      ...parsed.instagram,
-      episodeSlug: episode.slug,
-      generatedAt: now,
-    };
-    parsed.linkedin = {
-      ...parsed.linkedin,
-      episodeSlug: episode.slug,
-      generatedAt: now,
-    };
-    parsed.facebook = {
-      ...parsed.facebook,
-      episodeSlug: episode.slug,
-      generatedAt: now,
+    const output: SocialOutput = {
+      twitter: {
+        tweets: tw.tweets as { text: string; index: number }[],
+        episodeSlug: episode.slug,
+        generatedAt: now,
+      },
+      instagram: {
+        caption: ig.caption as string,
+        hashtags: ig.hashtags as string[],
+        episodeSlug: episode.slug,
+        generatedAt: now,
+      },
+      linkedin: {
+        post: li.post as string,
+        episodeSlug: episode.slug,
+        generatedAt: now,
+      },
+      facebook: {
+        post: fb.post as string,
+        angle: fb.angle as string,
+        episodeSlug: episode.slug,
+        generatedAt: now,
+      },
     };
 
-    return parsed;
+    return output;
   } catch (error) {
     const msg = error instanceof Error ? error.message : String(error);
     console.error(

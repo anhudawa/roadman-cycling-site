@@ -26,8 +26,8 @@ function sanitizeMdx(text: string): string {
     // Escape curly braces (JSX expressions in MDX)
     .replace(/\{/g, "\\{")
     .replace(/\}/g, "\\}")
-    // Convert bare URLs to markdown links (prevents < in URLs being parsed as JSX)
-    .replace(/(https?:\/\/[^\s)]+)/g, "[$1]($1)")
+    // Convert bare URLs to markdown links (skip URLs already inside markdown links)
+    .replace(/(?<!\]\()(?<!\()(https?:\/\/[^\s)]+)(?!\))/g, "[$1]($1)")
     // Remove HTML comments (MDX handles them differently)
     .replace(/<!--[\s\S]*?-->/g, "")
     // Escape < and > that aren't part of markdown
