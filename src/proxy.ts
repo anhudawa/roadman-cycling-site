@@ -18,22 +18,35 @@ interface ActiveTest {
   variantIds: string[];
 }
 
-const ACTIVE_TESTS: ActiveTest[] = [
-  // Example — uncomment when a real test is running:
-  // {
-  //   id: "exp_homepage_hero",
-  //   pathPrefix: "/",
-  //   variantIds: ["control", "var_1", "var_2"],
-  // },
-];
+let cachedTests: ActiveTest[] = [];
+let cacheTimestamp = 0;
+const CACHE_TTL = 60_000; // 60 seconds
+
+async function getActiveTests(origin: string): Promise<ActiveTest[]> {
+  const now = Date.now();
+  if (now - cacheTimestamp < CACHE_TTL) return cachedTests;
+  try {
+    const res = await fetch(`${origin}/api/admin/experiments/active`);
+    if (res.ok) {
+      const data = await res.json();
+      cachedTests = data.tests ?? [];
+      cacheTimestamp = now;
+    }
+  } catch {
+    // Use last known good value
+  }
+  return cachedTests;
+}
 
 /** Generate a UUID v4 using the Web Crypto API (available in all proxy runtimes). */
 function generateUUID(): string {
   return crypto.randomUUID();
 }
 
-export function proxy(request: NextRequest) {
+export async function proxy(request: NextRequest) {
   const { pathname } = request.nextUrl;
+  const origin = new URL(request.url).origin;
+  const activeTests = await getActiveTests(origin);
   const response = NextResponse.next();
 
   // ── Global visitor variant assignment cookie ──────────────────────────
@@ -52,13 +65,13 @@ export function proxy(request: NextRequest) {
   }
 
   // ── Per-experiment variant assignment ─────────────────────────────────
-  if (ACTIVE_TESTS.length === 0) {
+  if (activeTests.length === 0) {
     return response;
   }
 
   const assignments: Record<string, string> = {};
 
-  for (const test of ACTIVE_TESTS) {
+  for (const test of activeTests) {
     // Only process tests whose path matches
     if (!pathname.startsWith(test.pathPrefix)) continue;
 
