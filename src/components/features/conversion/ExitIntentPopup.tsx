@@ -79,7 +79,7 @@ export function ExitIntentPopup() {
 
   return (
     <div
-      className="fixed inset-0 z-[9999] flex items-center justify-center p-4"
+      className="fixed inset-0 z-[10000] flex items-center justify-center p-4 !cursor-auto [&_*]:!cursor-auto"
       role="dialog"
       aria-modal="true"
       aria-label="Subscribe to newsletter"
@@ -95,10 +95,11 @@ export function ExitIntentPopup() {
         {/* Close button */}
         <button
           onClick={handleDismiss}
-          className="absolute -top-3 -right-3 z-10 w-10 h-10 rounded-full bg-charcoal border border-white/10 flex items-center justify-center text-foreground-muted hover:text-off-white hover:border-coral/30 transition-all"
+          className="absolute -top-4 -right-4 z-10 w-12 h-12 rounded-full bg-charcoal border-2 border-white/20 flex items-center justify-center text-off-white hover:bg-coral hover:border-coral transition-all"
+          style={{ transitionDuration: "var(--duration-fast)" }}
           aria-label="Close"
         >
-          <svg className="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round">
+          <svg className="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round">
             <path d="M18 6L6 18M6 6l12 12" />
           </svg>
         </button>
