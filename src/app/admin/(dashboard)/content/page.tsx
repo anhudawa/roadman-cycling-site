@@ -1,4 +1,5 @@
-import { getPageStats, type PageStats } from "@/lib/admin/events-store";
+import { getStatsForRange, type PageStats } from "@/lib/admin/events-store";
+import { parseTimeRange } from "@/lib/admin/time-ranges";
 import { Suspense } from "react";
 import { TimeRangePicker } from "../components/TimeRangePicker";
 
@@ -25,12 +26,21 @@ function ConvBadge({ rate }: { rate: number }) {
   );
 }
 
-export default async function ContentPage() {
+export default async function ContentPage({
+  searchParams,
+}: {
+  searchParams: Promise<{ [key: string]: string | string[] | undefined }>;
+}) {
+  const resolvedParams = await searchParams;
+  const rangeParam = typeof resolvedParams.range === "string" ? resolvedParams.range : "7d";
+  const { from, to } = parseTimeRange(rangeParam);
+
   let pages: PageStats[];
   let usingLiveData = false;
 
   try {
-    pages = await getPageStats();
+    const rangedStats = await getStatsForRange(from, to);
+    pages = rangedStats.pages;
     usingLiveData = true;
   } catch {
     // Database not provisioned yet — use placeholder data

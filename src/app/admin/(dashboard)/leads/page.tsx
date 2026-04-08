@@ -1,4 +1,7 @@
-import { getRecentLeads, getLeadTotals } from "@/lib/admin/events-store";
+import { getStatsForRange, getLeadTotals } from "@/lib/admin/events-store";
+import { parseTimeRange } from "@/lib/admin/time-ranges";
+import { Suspense } from "react";
+import { TimeRangePicker } from "../components/TimeRangePicker";
 
 function TrendIndicator({ current, previous }: { current: number; previous: number }) {
   if (previous === 0 && current === 0) return <span className="text-foreground-subtle text-xs">--</span>;
@@ -32,7 +35,15 @@ function formatDate(iso: string): string {
   });
 }
 
-export default async function LeadsPage() {
+export default async function LeadsPage({
+  searchParams,
+}: {
+  searchParams: Promise<{ [key: string]: string | string[] | undefined }>;
+}) {
+  const resolvedParams = await searchParams;
+  const rangeParam = typeof resolvedParams.range === "string" ? resolvedParams.range : "7d";
+  const { from, to } = parseTimeRange(rangeParam);
+
   let leads: { email: string; date: string; source: string }[];
   let totals: {
     today: number;
@@ -44,7 +55,12 @@ export default async function LeadsPage() {
   };
 
   try {
-    [leads, totals] = await Promise.all([getRecentLeads(100), getLeadTotals()]);
+    const [rangedStats, leadTotals] = await Promise.all([
+      getStatsForRange(from, to),
+      getLeadTotals(),
+    ]);
+    leads = rangedStats.leads;
+    totals = leadTotals;
   } catch {
     // Database not provisioned yet — use realistic demo data
     const now = Date.now();
@@ -70,11 +86,16 @@ export default async function LeadsPage() {
 
   return (
     <div className="space-y-6">
-      <div>
-        <h1 className="font-heading text-3xl text-off-white tracking-wider">LEADS</h1>
-        <p className="text-foreground-muted text-sm mt-1">
-          Recent email signups and lead trends
-        </p>
+      <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+        <div>
+          <h1 className="font-heading text-3xl text-off-white tracking-wider">LEADS</h1>
+          <p className="text-foreground-muted text-sm mt-1">
+            Recent email signups and lead trends
+          </p>
+        </div>
+        <Suspense fallback={null}>
+          <TimeRangePicker />
+        </Suspense>
       </div>
 
       {/* Totals */}

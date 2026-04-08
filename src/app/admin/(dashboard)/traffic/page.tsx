@@ -1,4 +1,7 @@
-import { getTrafficStats } from "@/lib/admin/events-store";
+import { getStatsForRange } from "@/lib/admin/events-store";
+import { parseTimeRange } from "@/lib/admin/time-ranges";
+import { Suspense } from "react";
+import { TimeRangePicker } from "../components/TimeRangePicker";
 
 function HorizontalBar({ value, max, label }: { value: number; max: number; label: string }) {
   const pct = max > 0 ? (value / max) * 100 : 0;
@@ -63,10 +66,21 @@ function cleanReferrer(ref: string): string {
   }
 }
 
-export default async function TrafficPage() {
+export default async function TrafficPage({
+  searchParams,
+}: {
+  searchParams: Promise<{ [key: string]: string | string[] | undefined }>;
+}) {
+  const resolvedParams = await searchParams;
+  const rangeParam = typeof resolvedParams.range === "string" ? resolvedParams.range : "7d";
+  const { from, to } = parseTimeRange(rangeParam);
+
   let topPages, referrers, devices;
   try {
-    ({ topPages, referrers, devices } = await getTrafficStats());
+    const rangedStats = await getStatsForRange(from, to);
+    topPages = rangedStats.traffic.topPages;
+    referrers = rangedStats.traffic.referrers;
+    devices = rangedStats.traffic.devices;
   } catch {
     topPages = [
       { page: "/", views: 842 }, { page: "/blog/zone-2-training", views: 621 },
@@ -89,11 +103,16 @@ export default async function TrafficPage() {
 
   return (
     <div className="space-y-6">
-      <div>
-        <h1 className="font-heading text-3xl text-off-white tracking-wider">TRAFFIC</h1>
-        <p className="text-foreground-muted text-sm mt-1">
-          Page views, referrers, and device breakdown (this week)
-        </p>
+      <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+        <div>
+          <h1 className="font-heading text-3xl text-off-white tracking-wider">TRAFFIC</h1>
+          <p className="text-foreground-muted text-sm mt-1">
+            Page views, referrers, and device breakdown
+          </p>
+        </div>
+        <Suspense fallback={null}>
+          <TimeRangePicker />
+        </Suspense>
       </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
