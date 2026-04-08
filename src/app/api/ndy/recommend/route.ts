@@ -1,5 +1,6 @@
 import { NextResponse } from 'next/server';
 import { routeProspect } from '@/lib/ndy/routing';
+import { renderResponse } from '@/lib/ndy/templates';
 import { createProspect } from '@/lib/ndy/airtable';
 import type {
   TrainingGoal,
@@ -103,6 +104,7 @@ export async function POST(request: Request) {
 
     const { answers } = validation;
     const routing = routeProspect(answers);
+    const response = renderResponse(answers, routing);
 
     // Write to Airtable (non-blocking — don't fail the response if Airtable is down)
     const airtablePromise = createProspect({
@@ -129,6 +131,7 @@ export async function POST(request: Request) {
       computedWpkg: routing.computedWpkg,
       budgetFlag: routing.budgetFlag,
       injuryFlag: routing.injuryFlag,
+      response,
     });
   } catch (error) {
     console.error('NDY recommend error:', error);
