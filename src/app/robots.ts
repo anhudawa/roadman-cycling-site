@@ -6,7 +6,10 @@ export default function robots(): MetadataRoute.Robots {
       {
         userAgent: "*",
         allow: "/",
-        disallow: ["/api/"],
+        disallow: [
+          "/api/",
+          "/strength-training/success",
+        ],
       },
       // AI search crawlers — explicitly allowed for AI SEO visibility
       { userAgent: "GPTBot", allow: "/" },

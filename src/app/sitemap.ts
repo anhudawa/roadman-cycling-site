@@ -6,6 +6,22 @@ import { getAllTopicSlugs } from "@/lib/topics";
 
 const BASE_URL = "https://roadmancycling.com";
 
+/**
+ * How recently was content updated? Returns an appropriate changeFrequency.
+ * - Under 30 days  → "weekly"
+ * - Under 180 days → "monthly"
+ * - Older          → "yearly"
+ */
+function changeFreqByAge(
+  date: Date,
+): "weekly" | "monthly" | "yearly" {
+  const ageMs = Date.now() - date.getTime();
+  const ageDays = ageMs / (1000 * 60 * 60 * 24);
+  if (ageDays < 30) return "weekly";
+  if (ageDays < 180) return "monthly";
+  return "yearly";
+}
+
 export default function sitemap(): MetadataRoute.Sitemap {
   // ---------------------------------------------------------------------------
   // Static pages — grouped by priority tier
@@ -74,6 +90,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
       lastModified: new Date(),
       changeFrequency: "weekly",
       priority: 0.8,
+    },
+    {
+      url: `${BASE_URL}/search`,
+      lastModified: new Date(),
+      changeFrequency: "weekly",
+      priority: 0.5,
     },
 
     // Community sub-pages — priority 0.7
@@ -157,41 +179,52 @@ export default function sitemap(): MetadataRoute.Sitemap {
 
   // ---------------------------------------------------------------------------
   // Blog posts — priority 0.6, use frontmatter dates for lastModified
+  // changeFrequency adapts based on age: recent posts update more often
   // ---------------------------------------------------------------------------
 
   const posts = getAllPosts();
-  const blogPages: MetadataRoute.Sitemap = posts.map((post) => ({
-    url: `${BASE_URL}/blog/${post.slug}`,
-    lastModified: post.updatedDate
+  const blogPages: MetadataRoute.Sitemap = posts.map((post) => {
+    const lastMod = post.updatedDate
       ? new Date(post.updatedDate)
-      : new Date(post.publishDate),
-    changeFrequency: "weekly",
-    priority: 0.6,
-  }));
+      : new Date(post.publishDate);
+    return {
+      url: `${BASE_URL}/blog/${post.slug}`,
+      lastModified: lastMod,
+      changeFrequency: changeFreqByAge(lastMod),
+      priority: 0.6,
+    };
+  });
 
   // ---------------------------------------------------------------------------
   // Podcast episodes — priority 0.6, use publishDate for lastModified
+  // changeFrequency adapts based on age: recent episodes may get show-notes edits
   // ---------------------------------------------------------------------------
 
   const episodes = getAllEpisodes();
-  const podcastPages: MetadataRoute.Sitemap = episodes.map((ep) => ({
-    url: `${BASE_URL}/podcast/${ep.slug}`,
-    lastModified: new Date(ep.publishDate),
-    changeFrequency: "weekly",
-    priority: 0.6,
-  }));
+  const podcastPages: MetadataRoute.Sitemap = episodes.map((ep) => {
+    const lastMod = new Date(ep.publishDate);
+    return {
+      url: `${BASE_URL}/podcast/${ep.slug}`,
+      lastModified: lastMod,
+      changeFrequency: changeFreqByAge(lastMod),
+      priority: 0.6,
+    };
+  });
 
   // ---------------------------------------------------------------------------
   // Guest pages — priority 0.6, use latestAppearance date for lastModified
   // ---------------------------------------------------------------------------
 
   const guests = getAllGuests();
-  const guestPages: MetadataRoute.Sitemap = guests.map((guest) => ({
-    url: `${BASE_URL}/guests/${guest.slug}`,
-    lastModified: new Date(guest.latestAppearance),
-    changeFrequency: "monthly",
-    priority: 0.6,
-  }));
+  const guestPages: MetadataRoute.Sitemap = guests.map((guest) => {
+    const lastMod = new Date(guest.latestAppearance);
+    return {
+      url: `${BASE_URL}/guests/${guest.slug}`,
+      lastModified: lastMod,
+      changeFrequency: changeFreqByAge(lastMod),
+      priority: 0.6,
+    };
+  });
 
   // ---------------------------------------------------------------------------
   // Topic hub pages — priority 0.7 (high-value SEO landing pages)
