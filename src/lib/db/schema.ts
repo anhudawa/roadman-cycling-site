@@ -81,6 +81,7 @@ export const abTests = pgTable("ab_tests", {
   endedAt: timestamp("ended_at", { withTimezone: true }),
   winnerVariantId: text("winner_variant_id"),
   createdBy: text("created_by").notNull().default("manual"),
+  completedBy: text("completed_by"),
 });
 
 // ── Agent Reports ─────────────────────────────────────────
