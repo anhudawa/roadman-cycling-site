@@ -11,12 +11,14 @@ type CursorVariant = "default" | "hover" | "image" | "text" | "hidden";
  * - Grows/morphs on interactive elements
  * - Becomes a crosshair on images
  * - Thin line on text links
+ * - Switches to white on coral/pink backgrounds
  * - Only visible on desktop with fine pointer
  */
 export function SmoothCursor() {
   const [variant, setVariant] = useState<CursorVariant>("default");
   const [isVisible, setIsVisible] = useState(false);
   const [isClicking, setIsClicking] = useState(false);
+  const [onCoralBg, setOnCoralBg] = useState(false);
 
   // Stiff springs for near-instant response
   const springConfig = { damping: 40, stiffness: 600, mass: 0.15 };
@@ -68,6 +70,25 @@ export function SmoothCursor() {
     const handleOver = (e: MouseEvent) => {
       const target = e.target as HTMLElement;
       setVariant(getCursorVariant(target));
+
+      // Detect coral/pink backgrounds where the coral cursor would be invisible
+      try {
+        const el = document.elementFromPoint(e.clientX, e.clientY) as HTMLElement | null;
+        if (el) {
+          const bg = window.getComputedStyle(el).backgroundColor;
+          const match = bg.match(/rgba?\((\d+),\s*(\d+),\s*(\d+)/);
+          if (match) {
+            const [, r, g, b] = match.map(Number);
+            // Detect coral-ish backgrounds (high red, lower green/blue)
+            const isCoralish = r > 180 && g < 130 && b < 130;
+            setOnCoralBg(isCoralish);
+          } else {
+            setOnCoralBg(false);
+          }
+        }
+      } catch {
+        // Non-critical — keep current state
+      }
     };
 
     const handleOut = () => {
@@ -119,7 +140,7 @@ export function SmoothCursor() {
         }}
       >
         <motion.div
-          className="rounded-full border border-coral/60 flex items-center justify-center"
+          className={`rounded-full border flex items-center justify-center ${onCoralBg ? "border-white/80" : "border-coral/60"}`}
           animate={{
             width: isClicking ? size * 0.85 : size,
             height: isClicking ? size * 0.85 : size,
@@ -130,7 +151,7 @@ export function SmoothCursor() {
         >
           {showLabel && (
             <motion.span
-              className="text-[10px] text-coral font-body uppercase tracking-widest"
+              className={`text-[10px] font-body uppercase tracking-widest ${onCoralBg ? "text-white" : "text-coral"}`}
               initial={{ opacity: 0, scale: 0.5 }}
               animate={{ opacity: 1, scale: 1 }}
               exit={{ opacity: 0, scale: 0.5 }}
@@ -153,7 +174,7 @@ export function SmoothCursor() {
         }}
       >
         <motion.div
-          className="rounded-full bg-coral"
+          className={`rounded-full ${onCoralBg ? "bg-white" : "bg-coral"}`}
           animate={{
             width: variant === "hover" ? 6 : variant === "hidden" ? 0 : 4,
             height: variant === "hover" ? 6 : variant === "hidden" ? 0 : 4,

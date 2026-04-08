@@ -108,9 +108,9 @@ export function Footer() {
                 <Image
                   src="/images/logo-white.png"
                   alt="Roadman Cycling"
-                  width={160}
-                  height={57}
-                  className="h-8 sm:h-10 w-auto"
+                  width={200}
+                  height={71}
+                  className="h-10 sm:h-12 w-auto"
                 />
               </Link>
               <p className="text-foreground-muted leading-relaxed mb-2">
@@ -125,7 +125,7 @@ export function Footer() {
             </div>
             <div className="max-w-sm w-full">
               <h3 className="font-heading text-2xl text-off-white mb-3 tracking-wider">
-                THE SATURDAY SPIN
+                THE SATURDAY SPIN NEWSLETTER
               </h3>
               <p className="text-foreground-muted text-sm mb-4">
                 Every Saturday. The week&apos;s sharpest cycling insights — straight
