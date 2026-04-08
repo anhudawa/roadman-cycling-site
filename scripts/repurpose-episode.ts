@@ -29,7 +29,7 @@ import { generateSocialPosts } from "./lib/repurpose/social-generator.js";
 import { extractQuotes } from "./lib/repurpose/quote-extractor.js";
 import { fetchGuestImage } from "./lib/repurpose/guest-image-fetcher.js";
 import { renderQuoteCards } from "./lib/repurpose/quote-card-renderer.js";
-import { writeRepurposedContent, outputExists, getOutputDir } from "./lib/repurpose/content-writer.js";
+import { writeRepurposedContent, writeToDatabase, outputExists, getOutputDir } from "./lib/repurpose/content-writer.js";
 import { truncateTranscript } from "./lib/transcript.js";
 
 // ---------------------------------------------------------------------------
@@ -330,6 +330,16 @@ async function processEpisode(ep: LoadedEpisode, state: RepurposeState): Promise
 
   if (!dryRun) {
     console.log(`   ✅ Wrote ${writtenPaths.length} files`);
+
+    // --- Write to database ---
+    await writeToDatabase(
+      input.slug,
+      input.title,
+      input.episodeNumber,
+      input.pillar,
+      result
+    );
+
     // Update state
     if (!state.processedEpisodeSlugs.includes(input.slug)) {
       state.processedEpisodeSlugs.unshift(input.slug);

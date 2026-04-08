@@ -1,5 +1,6 @@
 import fs from "fs";
 import path from "path";
+import { createPool } from "@vercel/postgres";
 import { type RepurposeResult } from "./types.js";
 
 const REPURPOSED_DIR = path.join(process.cwd(), "content/repurposed");
@@ -105,4 +106,88 @@ export function writeRepurposedContent(
   }
 
   return writtenPaths;
+}
+
+/**
+ * Write repurposed content to the Postgres database.
+ * Upserts the episode record and inserts content rows.
+ * On re-run (--force), deletes existing content rows then re-inserts.
+ * Errors are logged but do not crash the pipeline.
+ */
+export async function writeToDatabase(
+  episodeSlug: string,
+  episodeTitle: string,
+  episodeNumber: number,
+  pillar: string,
+  result: RepurposeResult
+): Promise<void> {
+  const connectionString = process.env.POSTGRES_URL;
+  if (!connectionString) {
+    console.warn("   ⚠ POSTGRES_URL not set — skipping database write");
+    return;
+  }
+
+  const pool = createPool({ connectionString });
+
+  try {
+    // Upsert episode row
+    const episodeResult = await pool.query(
+      `INSERT INTO repurposed_episodes
+         (episode_slug, episode_title, episode_number, pillar, status, generated_at, created_at, updated_at)
+       VALUES ($1, $2, $3, $4, 'pending', NOW(), NOW(), NOW())
+       ON CONFLICT (episode_slug) DO UPDATE SET
+         episode_title  = EXCLUDED.episode_title,
+         episode_number = EXCLUDED.episode_number,
+         pillar         = EXCLUDED.pillar,
+         generated_at   = NOW(),
+         updated_at     = NOW()
+       RETURNING id`,
+      [episodeSlug, episodeTitle, episodeNumber, pillar]
+    );
+
+    const episodeId: number = episodeResult.rows[0].id;
+
+    // Delete existing content rows (handles --force re-runs)
+    await pool.query(
+      `DELETE FROM repurposed_content WHERE episode_id = $1`,
+      [episodeId]
+    );
+
+    // Collect content rows to insert
+    const rows: Array<{ contentType: string; content: string }> = [];
+
+    if (result.blog) {
+      rows.push({ contentType: "blog", content: result.blog.mdxContent });
+    }
+
+    if (result.social) {
+      rows.push({ contentType: "twitter", content: JSON.stringify(result.social.twitter) });
+      rows.push({ contentType: "instagram", content: JSON.stringify(result.social.instagram) });
+      rows.push({ contentType: "linkedin", content: JSON.stringify(result.social.linkedin) });
+      rows.push({ contentType: "facebook", content: JSON.stringify(result.social.facebook) });
+    }
+
+    if (result.quotes) {
+      for (const quote of result.quotes.extracted) {
+        rows.push({ contentType: "quote-card", content: JSON.stringify(quote) });
+      }
+    }
+
+    // Insert each content row
+    for (const { contentType, content } of rows) {
+      await pool.query(
+        `INSERT INTO repurposed_content
+           (episode_id, content_type, content, status, version, created_at, updated_at)
+         VALUES ($1, $2, $3, 'pending', 1, NOW(), NOW())`,
+        [episodeId, contentType, content]
+      );
+    }
+
+    console.log(`   💾 DB: wrote ${rows.length} content rows for episode ${episodeId}`);
+  } catch (error) {
+    const msg = error instanceof Error ? error.message : String(error);
+    console.error(`   ⚠ DB write failed (non-fatal): ${msg}`);
+  } finally {
+    await pool.end();
+  }
 }
