@@ -3,6 +3,9 @@
 # YouTube sync state
 scripts/sync-state.json
 
+# Admin analytics data (generated at runtime)
+/data/events.json
+
 # dependencies
 /node_modules
 /.pnp

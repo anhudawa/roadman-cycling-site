@@ -1,4 +1,5 @@
 import { NextResponse } from "next/server";
+import { recordEvent } from "@/lib/admin/events-store";
 
 const BEEHIIV_API_KEY = process.env.BEEHIIV_API_KEY;
 const BEEHIIV_PUBLICATION_ID = process.env.BEEHIIV_PUBLICATION_ID;
@@ -45,6 +46,17 @@ export async function POST(request: Request) {
       }
 
       return NextResponse.json({ success: true });
+    }
+
+    // Record signup event for admin analytics
+    try {
+      await recordEvent("signup", source || "/newsletter", {
+        email,
+        source: source || "newsletter",
+        userAgent: request.headers.get("user-agent") || undefined,
+      });
+    } catch {
+      // Non-critical — don't fail the signup if analytics fails
     }
 
     // Fallback: log the email if no Beehiiv credentials

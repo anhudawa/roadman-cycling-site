@@ -4,6 +4,7 @@ import Script from "next/script";
 import { SmoothCursorWrapper } from "@/components/ui/SmoothCursorWrapper";
 import { PodcastPlayerShell } from "@/components/features/podcast/PodcastPlayerShell";
 import { LazyExitIntent } from "@/components/features/conversion/LazyExitIntent";
+import { Tracker } from "@/components/analytics/Tracker";
 import { OrganizationJsonLd, WebSiteJsonLd } from "@/components/seo/JsonLd";
 import "./globals.css";
 
@@ -121,6 +122,7 @@ export default function RootLayout({
           {children}
         </PodcastPlayerShell>
         <LazyExitIntent />
+        <Tracker />
 
         {/* Meta Pixel — deferred to avoid blocking initial paint */}
         <Script
