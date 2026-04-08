@@ -1,5 +1,6 @@
 import Link from "next/link";
 import type { ABTest } from "@/lib/ab/types";
+import { DeleteButton } from "./delete-button";
 
 async function getExperiments(): Promise<ABTest[]> {
   try {
@@ -104,9 +105,14 @@ export default async function ExperimentsPage() {
                     )}
                   </div>
                 </div>
-                <span className="text-xs text-foreground-muted hover:text-off-white transition-colors px-3 py-1.5 border border-white/10 rounded-lg flex-shrink-0">
-                  View
-                </span>
+                <div className="flex items-center gap-1 flex-shrink-0">
+                  {exp.status !== "running" && (
+                    <DeleteButton experimentId={exp.id} />
+                  )}
+                  <span className="text-xs text-foreground-muted hover:text-off-white transition-colors px-3 py-1.5 border border-white/10 rounded-lg">
+                    View
+                  </span>
+                </div>
               </div>
             </Link>
           ))
