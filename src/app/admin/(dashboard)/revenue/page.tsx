@@ -4,6 +4,11 @@ import {
   type RevenueSummary,
   type StripeCharge,
 } from "@/lib/integrations/stripe";
+import { getRevenueSnapshots } from "@/lib/admin/events-store";
+import { parseTimeRange } from "@/lib/admin/time-ranges";
+import { Suspense } from "react";
+import { TimeRangePicker } from "../components/TimeRangePicker";
+import { TimeSeriesChart } from "../components/charts/TimeSeriesChart";
 
 function formatCurrency(cents: number, currency = "eur"): string {
   return new Intl.NumberFormat("en-IE", {
@@ -21,7 +26,15 @@ function formatDate(unixTimestamp: number): string {
   });
 }
 
-export default async function RevenuePage() {
+export default async function RevenuePage({
+  searchParams,
+}: {
+  searchParams: Promise<{ [key: string]: string | string[] | undefined }>;
+}) {
+  const resolvedParams = await searchParams;
+  const rangeParam = typeof resolvedParams.range === "string" ? resolvedParams.range : "30d";
+  const { from, to } = parseTimeRange(rangeParam);
+
   let revenue: RevenueSummary | null = null;
   let recentCharges: StripeCharge[] = [];
   let apiError = false;
@@ -39,19 +52,31 @@ export default async function RevenuePage() {
     apiError = true;
   }
 
+  let revenueSnapshots: { date: string; revenue: number }[] = [];
+  try {
+    revenueSnapshots = await getRevenueSnapshots(from, to);
+  } catch {
+    // DB not available
+  }
+
   const hasTransactions = recentCharges.length > 0;
 
   return (
     <div className="space-y-6">
-      <div>
-        <h1 className="font-heading text-3xl text-off-white tracking-wider">
-          REVENUE
-        </h1>
-        <p className="text-foreground-muted text-sm mt-1">
-          {apiError
-            ? "Stripe API not configured \u2014 add STRIPE_SECRET_KEY to .env.local"
-            : "Data from Stripe (last 30 days)"}
-        </p>
+      <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+        <div>
+          <h1 className="font-heading text-3xl text-off-white tracking-wider">
+            REVENUE
+          </h1>
+          <p className="text-foreground-muted text-sm mt-1">
+            {apiError
+              ? "Stripe API not configured \u2014 add STRIPE_SECRET_KEY to .env.local"
+              : "Data from Stripe"}
+          </p>
+        </div>
+        <Suspense fallback={null}>
+          <TimeRangePicker />
+        </Suspense>
       </div>
 
       {/* Summary cards */}
@@ -97,18 +122,28 @@ export default async function RevenuePage() {
         </div>
       </div>
 
-      {/* Revenue trend placeholder (needs time-series aggregation from Stripe) */}
+      {/* Revenue trend chart */}
       <div className="bg-background-elevated border border-white/5 rounded-xl p-5">
         <h2 className="font-heading text-sm text-foreground-muted tracking-wider mb-4">
           REVENUE OVER TIME
         </h2>
-        <div className="h-64 flex items-center justify-center border border-dashed border-white/10 rounded-lg">
-          <p className="text-foreground-subtle text-sm">
-            {apiError
-              ? "Revenue chart will appear once Stripe is connected"
-              : "Revenue trend chart coming soon \u2014 daily aggregation pending"}
-          </p>
-        </div>
+        {revenueSnapshots.length > 0 ? (
+          <TimeSeriesChart
+            data={revenueSnapshots}
+            dataKeys={[
+              { key: "revenue", color: "#E8836B", label: "Revenue ($)" },
+            ]}
+            height={256}
+          />
+        ) : (
+          <div className="h-64 flex items-center justify-center border border-dashed border-white/10 rounded-lg">
+            <p className="text-foreground-subtle text-sm">
+              {apiError
+                ? "Revenue chart will appear once Stripe is connected"
+                : "Revenue data will appear once daily sync begins"}
+            </p>
+          </div>
+        )}
       </div>
 
       {/* Recent transactions table */}

@@ -1,7 +1,7 @@
 "use client";
 
-import { useState } from "react";
-import { useRouter } from "next/navigation";
+import { useState, useEffect } from "react";
+import { useRouter, useSearchParams } from "next/navigation";
 import type { ABElementType, ABVariant } from "@/lib/ab/types";
 
 const ELEMENT_TYPES: { value: ABElementType; label: string }[] = [
@@ -14,6 +14,7 @@ const ELEMENT_TYPES: { value: ABElementType; label: string }[] = [
 
 export default function NewExperimentPage() {
   const router = useRouter();
+  const searchParams = useSearchParams();
   const [name, setName] = useState("");
   const [page, setPage] = useState("/");
   const [element, setElement] = useState<ABElementType>("headline");
@@ -24,6 +25,20 @@ export default function NewExperimentPage() {
   const [generating, setGenerating] = useState(false);
   const [submitting, setSubmitting] = useState(false);
   const [error, setError] = useState<string | null>(null);
+
+  useEffect(() => {
+    const p = searchParams.get("page");
+    const e = searchParams.get("element");
+    const c = searchParams.get("content");
+    if (p) setPage(p);
+    if (e && ELEMENT_TYPES.some((t) => t.value === e)) setElement(e as ABElementType);
+    if (c) setControlContent(c);
+    if (p && e) {
+      const pageName = p === "/" ? "Homepage" : p.replace(/^\//, "").replace(/-/g, " ");
+      const elementName = e.replace(/_/g, " ");
+      setName(`${pageName} ${elementName} test`);
+    }
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   async function handleGenerateVariants() {
     if (!controlContent.trim()) {
