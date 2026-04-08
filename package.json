@@ -10,10 +10,18 @@
     "sync:youtube": "tsx scripts/sync-youtube.ts",
     "sync:youtube:full": "tsx scripts/sync-youtube.ts --full",
     "sync:youtube:dry": "tsx scripts/sync-youtube.ts --full --dry-run",
-    "sync:youtube:enrich": "tsx scripts/sync-youtube.ts --re-enrich"
+    "sync:youtube:enrich": "tsx scripts/sync-youtube.ts --re-enrich",
+    "db:generate": "drizzle-kit generate",
+    "db:migrate": "drizzle-kit migrate",
+    "db:push": "drizzle-kit push",
+    "db:studio": "drizzle-kit studio"
   },
   "dependencies": {
+    "@anthropic-ai/sdk": "^0.82.0",
     "@stripe/stripe-js": "^9.0.1",
+    "@vercel/postgres": "^0.10.0",
+    "date-fns": "^4.1.0",
+    "drizzle-orm": "^0.45.2",
     "framer-motion": "^12.38.0",
     "gray-matter": "^4.0.3",
     "next": "16.2.2",
@@ -21,6 +29,7 @@
     "react": "19.2.4",
     "react-dom": "19.2.4",
     "reading-time": "^1.5.0",
+    "recharts": "^3.8.1",
     "rehype-autolink-headings": "^7.1.0",
     "rehype-pretty-code": "^0.14.3",
     "rehype-slug": "^6.0.0",
@@ -29,12 +38,12 @@
     "stripe": "^22.0.0"
   },
   "devDependencies": {
-    "@anthropic-ai/sdk": "^0.82.0",
     "@tailwindcss/postcss": "^4",
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",
     "dotenv": "^17.4.0",
+    "drizzle-kit": "^0.31.10",
     "eslint": "^9",
     "eslint-config-next": "16.2.2",
     "tailwindcss": "^4",

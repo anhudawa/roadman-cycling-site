@@ -1,6 +1,7 @@
-import { readFile, writeFile, mkdir } from "fs/promises";
-import { existsSync } from "fs";
-import path from "path";
+import { db } from "@/lib/db";
+import { events } from "@/lib/db/schema";
+import { eq, and, gte, lte, sql, count, desc } from "drizzle-orm";
+import { startOfDay, startOfWeek, startOfMonth, subDays } from "./time-ranges";
 
 // ── Types ──────────────────────────────────────────────────
 export type EventType = "pageview" | "signup" | "form_submit" | "skool_trial";
@@ -13,24 +14,14 @@ export interface TrackingEvent {
   referrer?: string;
   userAgent?: string;
   device?: "mobile" | "desktop" | "tablet";
-  email?: string; // masked for signups
+  email?: string;
   source?: string;
+  sessionId?: string;
+  variantId?: string;
   meta?: Record<string, string>;
 }
 
-interface EventsFile {
-  events: TrackingEvent[];
-}
-
-// ── Storage Path ───────────────────────────────────────────
-const DATA_DIR = path.join(process.cwd(), "data");
-const EVENTS_FILE = path.join(DATA_DIR, "events.json");
-
 // ── Helpers ────────────────────────────────────────────────
-function generateId(): string {
-  return `${Date.now()}-${Math.random().toString(36).slice(2, 9)}`;
-}
-
 function detectDevice(ua: string): "mobile" | "desktop" | "tablet" {
   if (/tablet|ipad/i.test(ua)) return "tablet";
   if (/mobile|android|iphone/i.test(ua)) return "mobile";
@@ -40,28 +31,28 @@ function detectDevice(ua: string): "mobile" | "desktop" | "tablet" {
 export function maskEmail(email: string): string {
   const [local, domain] = email.split("@");
   if (!domain) return "***";
-  const masked = local.length <= 2 ? "*".repeat(local.length) : local[0] + "*".repeat(local.length - 2) + local[local.length - 1];
+  const masked =
+    local.length <= 2
+      ? "*".repeat(local.length)
+      : local[0] + "*".repeat(local.length - 2) + local[local.length - 1];
   return `${masked}@${domain}`;
 }
 
-// ── Read / Write ───────────────────────────────────────────
-async function readEvents(): Promise<EventsFile> {
-  try {
-    if (!existsSync(EVENTS_FILE)) {
-      return { events: [] };
-    }
-    const raw = await readFile(EVENTS_FILE, "utf-8");
-    return JSON.parse(raw) as EventsFile;
-  } catch {
-    return { events: [] };
-  }
-}
-
-async function writeEvents(data: EventsFile): Promise<void> {
-  if (!existsSync(DATA_DIR)) {
-    await mkdir(DATA_DIR, { recursive: true });
-  }
-  await writeFile(EVENTS_FILE, JSON.stringify(data, null, 2), "utf-8");
+function rowToTrackingEvent(row: typeof events.$inferSelect): TrackingEvent {
+  return {
+    id: String(row.id),
+    type: row.type as EventType,
+    timestamp: row.timestamp.toISOString(),
+    page: row.page,
+    referrer: row.referrer ?? undefined,
+    userAgent: row.userAgent ?? undefined,
+    device: row.device as "mobile" | "desktop" | "tablet",
+    email: row.email ?? undefined,
+    source: row.source ?? undefined,
+    sessionId: row.sessionId,
+    variantId: row.variantId ?? undefined,
+    meta: (row.meta as Record<string, string>) ?? undefined,
+  };
 }
 
 // ── Public API ─────────────────────────────────────────────
@@ -73,33 +64,32 @@ export async function recordEvent(
     userAgent?: string;
     email?: string;
     source?: string;
+    sessionId?: string;
+    variantId?: string;
     meta?: Record<string, string>;
   }
 ): Promise<TrackingEvent> {
-  const data = await readEvents();
+  const now = new Date();
+  const device = options?.userAgent ? detectDevice(options.userAgent) : "desktop";
 
-  const event: TrackingEvent = {
-    id: generateId(),
-    type,
-    timestamp: new Date().toISOString(),
-    page,
-    referrer: options?.referrer,
-    userAgent: options?.userAgent,
-    device: options?.userAgent ? detectDevice(options.userAgent) : "desktop",
-    email: options?.email ? maskEmail(options.email) : undefined,
-    source: options?.source,
-    meta: options?.meta,
-  };
+  const [inserted] = await db
+    .insert(events)
+    .values({
+      type,
+      timestamp: now,
+      page,
+      referrer: options?.referrer ?? null,
+      userAgent: options?.userAgent ?? null,
+      device,
+      email: options?.email ? maskEmail(options.email) : null,
+      source: options?.source ?? null,
+      sessionId: options?.sessionId ?? "unknown",
+      variantId: options?.variantId ?? null,
+      meta: options?.meta ?? null,
+    })
+    .returning();
 
-  data.events.push(event);
-
-  // Keep last 50k events to prevent file bloat
-  if (data.events.length > 50000) {
-    data.events = data.events.slice(-50000);
-  }
-
-  await writeEvents(data);
-  return event;
+  return rowToTrackingEvent(inserted);
 }
 
 export async function getEvents(filters?: {
@@ -108,25 +98,28 @@ export async function getEvents(filters?: {
   until?: Date;
   page?: string;
 }): Promise<TrackingEvent[]> {
-  const data = await readEvents();
-  let events = data.events;
+  const conditions = [];
 
   if (filters?.type) {
-    events = events.filter((e) => e.type === filters.type);
+    conditions.push(eq(events.type, filters.type));
   }
   if (filters?.since) {
-    const sinceISO = filters.since.toISOString();
-    events = events.filter((e) => e.timestamp >= sinceISO);
+    conditions.push(gte(events.timestamp, filters.since));
   }
   if (filters?.until) {
-    const untilISO = filters.until.toISOString();
-    events = events.filter((e) => e.timestamp <= untilISO);
+    conditions.push(lte(events.timestamp, filters.until));
   }
   if (filters?.page) {
-    events = events.filter((e) => e.page === filters.page);
+    conditions.push(eq(events.page, filters.page));
   }
 
-  return events;
+  const rows = await db
+    .select()
+    .from(events)
+    .where(conditions.length > 0 ? and(...conditions) : undefined)
+    .orderBy(desc(events.timestamp));
+
+  return rows.map(rowToTrackingEvent);
 }
 
 // ── Aggregate Stats ────────────────────────────────────────
@@ -170,32 +163,26 @@ export interface DashboardStats {
   previousMonth: PeriodStats;
 }
 
-function getStartOfDay(date: Date): Date {
-  const d = new Date(date);
-  d.setHours(0, 0, 0, 0);
-  return d;
-}
+async function computePeriodStats(since: Date, until: Date): Promise<PeriodStats> {
+  const result = await db
+    .select({
+      type: events.type,
+      cnt: count(),
+    })
+    .from(events)
+    .where(and(gte(events.timestamp, since), lte(events.timestamp, until)))
+    .groupBy(events.type);
 
-function getStartOfWeek(date: Date): Date {
-  const d = new Date(date);
-  const day = d.getDay();
-  const diff = d.getDate() - day + (day === 0 ? -6 : 1); // Monday start
-  d.setDate(diff);
-  d.setHours(0, 0, 0, 0);
-  return d;
-}
+  let visitors = 0;
+  let signups = 0;
+  let skoolTrials = 0;
 
-function getStartOfMonth(date: Date): Date {
-  const d = new Date(date);
-  d.setDate(1);
-  d.setHours(0, 0, 0, 0);
-  return d;
-}
+  for (const row of result) {
+    if (row.type === "pageview") visitors = Number(row.cnt);
+    if (row.type === "signup") signups = Number(row.cnt);
+    if (row.type === "skool_trial") skoolTrials = Number(row.cnt);
+  }
 
-function computePeriodStats(events: TrackingEvent[]): PeriodStats {
-  const visitors = events.filter((e) => e.type === "pageview").length;
-  const signups = events.filter((e) => e.type === "signup").length;
-  const skoolTrials = events.filter((e) => e.type === "skool_trial").length;
   return {
     visitors,
     signups,
@@ -205,46 +192,51 @@ function computePeriodStats(events: TrackingEvent[]): PeriodStats {
 }
 
 export async function getDashboardStats(): Promise<DashboardStats> {
-  const allEvents = await getEvents();
   const now = new Date();
 
-  const todayStart = getStartOfDay(now);
-  const yesterdayStart = new Date(todayStart);
-  yesterdayStart.setDate(yesterdayStart.getDate() - 1);
+  const todayStart = startOfDay(now);
+  const yesterdayStart = subDays(todayStart, 1);
 
-  const weekStart = getStartOfWeek(now);
-  const prevWeekStart = new Date(weekStart);
-  prevWeekStart.setDate(prevWeekStart.getDate() - 7);
+  const weekStart = startOfWeek(now, { weekStartsOn: 1 });
+  const prevWeekStart = subDays(weekStart, 7);
 
-  const monthStart = getStartOfMonth(now);
+  const monthStart = startOfMonth(now);
   const prevMonthStart = new Date(monthStart);
   prevMonthStart.setMonth(prevMonthStart.getMonth() - 1);
 
-  const filterPeriod = (since: Date, until: Date) =>
-    allEvents.filter((e) => e.timestamp >= since.toISOString() && e.timestamp < until.toISOString());
+  const [today, thisWeek, thisMonth, previousDay, previousWeek, previousMonth] =
+    await Promise.all([
+      computePeriodStats(todayStart, now),
+      computePeriodStats(weekStart, now),
+      computePeriodStats(monthStart, now),
+      computePeriodStats(yesterdayStart, todayStart),
+      computePeriodStats(prevWeekStart, weekStart),
+      computePeriodStats(prevMonthStart, monthStart),
+    ]);
 
-  return {
-    today: computePeriodStats(filterPeriod(todayStart, now)),
-    thisWeek: computePeriodStats(filterPeriod(weekStart, now)),
-    thisMonth: computePeriodStats(filterPeriod(monthStart, now)),
-    previousDay: computePeriodStats(filterPeriod(yesterdayStart, todayStart)),
-    previousWeek: computePeriodStats(filterPeriod(prevWeekStart, weekStart)),
-    previousMonth: computePeriodStats(filterPeriod(prevMonthStart, monthStart)),
-  };
+  return { today, thisWeek, thisMonth, previousDay, previousWeek, previousMonth };
 }
 
 export async function getPageStats(): Promise<PageStats[]> {
-  const weekStart = getStartOfWeek(new Date());
-  const events = await getEvents({ since: weekStart });
+  const weekStart = startOfWeek(new Date(), { weekStartsOn: 1 });
+
+  const rows = await db
+    .select({
+      page: events.page,
+      type: events.type,
+      cnt: count(),
+    })
+    .from(events)
+    .where(gte(events.timestamp, weekStart))
+    .groupBy(events.page, events.type);
 
   const pages = new Map<string, { views: number; signups: number }>();
 
-  for (const e of events) {
-    const key = e.page;
-    if (!pages.has(key)) pages.set(key, { views: 0, signups: 0 });
-    const p = pages.get(key)!;
-    if (e.type === "pageview") p.views++;
-    if (e.type === "signup") p.signups++;
+  for (const row of rows) {
+    if (!pages.has(row.page)) pages.set(row.page, { views: 0, signups: 0 });
+    const p = pages.get(row.page)!;
+    if (row.type === "pageview") p.views = Number(row.cnt);
+    if (row.type === "signup") p.signups = Number(row.cnt);
   }
 
   return Array.from(pages.entries())
@@ -258,15 +250,22 @@ export async function getPageStats(): Promise<PageStats[]> {
 }
 
 export async function getRecentLeads(limit = 50): Promise<LeadEntry[]> {
-  const events = await getEvents({ type: "signup" });
-  return events
-    .sort((a, b) => b.timestamp.localeCompare(a.timestamp))
-    .slice(0, limit)
-    .map((e) => ({
-      email: e.email || "unknown",
-      date: e.timestamp,
-      source: e.page,
-    }));
+  const rows = await db
+    .select({
+      email: events.email,
+      timestamp: events.timestamp,
+      page: events.page,
+    })
+    .from(events)
+    .where(eq(events.type, "signup"))
+    .orderBy(desc(events.timestamp))
+    .limit(limit);
+
+  return rows.map((r) => ({
+    email: r.email || "unknown",
+    date: r.timestamp.toISOString(),
+    source: r.page,
+  }));
 }
 
 export async function getTrafficStats(): Promise<{
@@ -274,44 +273,60 @@ export async function getTrafficStats(): Promise<{
   referrers: ReferrerStats[];
   devices: DeviceStats[];
 }> {
-  const weekStart = getStartOfWeek(new Date());
-  const events = await getEvents({ type: "pageview", since: weekStart });
+  const weekStart = startOfWeek(new Date(), { weekStartsOn: 1 });
+  const pageviewCondition = and(
+    eq(events.type, "pageview"),
+    gte(events.timestamp, weekStart)
+  );
 
-  // Top pages
-  const pageCounts = new Map<string, number>();
-  for (const e of events) {
-    pageCounts.set(e.page, (pageCounts.get(e.page) || 0) + 1);
-  }
-  const topPages = Array.from(pageCounts.entries())
-    .map(([page, views]) => ({ page, views }))
-    .sort((a, b) => b.views - a.views)
-    .slice(0, 20);
+  // Run all three aggregations in parallel
+  const [pageRows, refRows, devRows] = await Promise.all([
+    // Top pages
+    db
+      .select({ page: events.page, cnt: count() })
+      .from(events)
+      .where(pageviewCondition)
+      .groupBy(events.page)
+      .orderBy(desc(count()))
+      .limit(20),
 
-  // Referrers
-  const refCounts = new Map<string, number>();
-  for (const e of events) {
-    const ref = e.referrer || "Direct";
-    refCounts.set(ref, (refCounts.get(ref) || 0) + 1);
-  }
-  const referrers = Array.from(refCounts.entries())
-    .map(([referrer, count]) => ({ referrer, count }))
-    .sort((a, b) => b.count - a.count)
-    .slice(0, 15);
+    // Referrers
+    db
+      .select({
+        referrer: sql<string>`coalesce(${events.referrer}, 'Direct')`,
+        cnt: count(),
+      })
+      .from(events)
+      .where(pageviewCondition)
+      .groupBy(sql`coalesce(${events.referrer}, 'Direct')`)
+      .orderBy(desc(count()))
+      .limit(15),
 
-  // Devices
-  const devCounts = new Map<string, number>();
-  for (const e of events) {
-    const dev = e.device || "unknown";
-    devCounts.set(dev, (devCounts.get(dev) || 0) + 1);
-  }
-  const total = events.length || 1;
-  const devices = Array.from(devCounts.entries())
-    .map(([device, count]) => ({
-      device,
-      count,
-      percentage: (count / total) * 100,
-    }))
-    .sort((a, b) => b.count - a.count);
+    // Devices
+    db
+      .select({ device: events.device, cnt: count() })
+      .from(events)
+      .where(pageviewCondition)
+      .groupBy(events.device)
+      .orderBy(desc(count())),
+  ]);
+
+  const topPages = pageRows.map((r) => ({
+    page: r.page,
+    views: Number(r.cnt),
+  }));
+
+  const referrers = refRows.map((r) => ({
+    referrer: r.referrer,
+    count: Number(r.cnt),
+  }));
+
+  const totalDevices = devRows.reduce((sum, r) => sum + Number(r.cnt), 0) || 1;
+  const devices = devRows.map((r) => ({
+    device: r.device,
+    count: Number(r.cnt),
+    percentage: (Number(r.cnt) / totalDevices) * 100,
+  }));
 
   return { topPages, referrers, devices };
 }
@@ -324,30 +339,176 @@ export async function getLeadTotals(): Promise<{
   previousWeek: number;
   previousMonth: number;
 }> {
-  const allSignups = await getEvents({ type: "signup" });
   const now = new Date();
 
-  const todayStart = getStartOfDay(now);
-  const yesterdayStart = new Date(todayStart);
-  yesterdayStart.setDate(yesterdayStart.getDate() - 1);
+  const todayStart = startOfDay(now);
+  const yesterdayStart = subDays(todayStart, 1);
 
-  const weekStart = getStartOfWeek(now);
-  const prevWeekStart = new Date(weekStart);
-  prevWeekStart.setDate(prevWeekStart.getDate() - 7);
+  const weekStart = startOfWeek(now, { weekStartsOn: 1 });
+  const prevWeekStart = subDays(weekStart, 7);
 
-  const monthStart = getStartOfMonth(now);
+  const monthStart = startOfMonth(now);
   const prevMonthStart = new Date(monthStart);
   prevMonthStart.setMonth(prevMonthStart.getMonth() - 1);
 
-  const count = (since: Date, until: Date) =>
-    allSignups.filter((e) => e.timestamp >= since.toISOString() && e.timestamp < until.toISOString()).length;
+  async function countSignups(since: Date, until: Date): Promise<number> {
+    const [result] = await db
+      .select({ cnt: count() })
+      .from(events)
+      .where(
+        and(
+          eq(events.type, "signup"),
+          gte(events.timestamp, since),
+          lte(events.timestamp, until)
+        )
+      );
+    return Number(result.cnt);
+  }
 
-  return {
-    today: count(todayStart, now),
-    thisWeek: count(weekStart, now),
-    thisMonth: count(monthStart, now),
-    previousDay: count(yesterdayStart, todayStart),
-    previousWeek: count(prevWeekStart, weekStart),
-    previousMonth: count(prevMonthStart, monthStart),
+  const [today, thisWeek, thisMonth, previousDay, previousWeek, previousMonth] =
+    await Promise.all([
+      countSignups(todayStart, now),
+      countSignups(weekStart, now),
+      countSignups(monthStart, now),
+      countSignups(yesterdayStart, todayStart),
+      countSignups(prevWeekStart, weekStart),
+      countSignups(prevMonthStart, monthStart),
+    ]);
+
+  return { today, thisWeek, thisMonth, previousDay, previousWeek, previousMonth };
+}
+
+// ── NEW: Date-range stats ─────────────────────────────────
+export async function getStatsForRange(
+  from: Date,
+  to: Date
+): Promise<{
+  period: PeriodStats;
+  pages: PageStats[];
+  traffic: {
+    topPages: { page: string; views: number }[];
+    referrers: ReferrerStats[];
+    devices: DeviceStats[];
   };
+  leads: LeadEntry[];
+}> {
+  const rangeCondition = and(gte(events.timestamp, from), lte(events.timestamp, to));
+  const pageviewInRange = and(eq(events.type, "pageview"), rangeCondition);
+
+  // Run all queries in parallel
+  const [periodRows, pageRows, topPageRows, refRows, devRows, leadRows] =
+    await Promise.all([
+      // Period stats by type
+      db
+        .select({ type: events.type, cnt: count() })
+        .from(events)
+        .where(rangeCondition)
+        .groupBy(events.type),
+
+      // Page stats (views + signups per page)
+      db
+        .select({ page: events.page, type: events.type, cnt: count() })
+        .from(events)
+        .where(rangeCondition)
+        .groupBy(events.page, events.type),
+
+      // Top pages (pageviews only)
+      db
+        .select({ page: events.page, cnt: count() })
+        .from(events)
+        .where(pageviewInRange)
+        .groupBy(events.page)
+        .orderBy(desc(count()))
+        .limit(20),
+
+      // Referrers
+      db
+        .select({
+          referrer: sql<string>`coalesce(${events.referrer}, 'Direct')`,
+          cnt: count(),
+        })
+        .from(events)
+        .where(pageviewInRange)
+        .groupBy(sql`coalesce(${events.referrer}, 'Direct')`)
+        .orderBy(desc(count()))
+        .limit(15),
+
+      // Devices
+      db
+        .select({ device: events.device, cnt: count() })
+        .from(events)
+        .where(pageviewInRange)
+        .groupBy(events.device)
+        .orderBy(desc(count())),
+
+      // Leads
+      db
+        .select({
+          email: events.email,
+          timestamp: events.timestamp,
+          page: events.page,
+        })
+        .from(events)
+        .where(and(eq(events.type, "signup"), rangeCondition))
+        .orderBy(desc(events.timestamp))
+        .limit(50),
+    ]);
+
+  // Assemble period stats
+  let visitors = 0;
+  let signups = 0;
+  let skoolTrials = 0;
+  for (const row of periodRows) {
+    if (row.type === "pageview") visitors = Number(row.cnt);
+    if (row.type === "signup") signups = Number(row.cnt);
+    if (row.type === "skool_trial") skoolTrials = Number(row.cnt);
+  }
+  const period: PeriodStats = {
+    visitors,
+    signups,
+    conversionRate: visitors > 0 ? (signups / visitors) * 100 : 0,
+    skoolTrials,
+  };
+
+  // Assemble page stats
+  const pageMap = new Map<string, { views: number; signups: number }>();
+  for (const row of pageRows) {
+    if (!pageMap.has(row.page)) pageMap.set(row.page, { views: 0, signups: 0 });
+    const p = pageMap.get(row.page)!;
+    if (row.type === "pageview") p.views = Number(row.cnt);
+    if (row.type === "signup") p.signups = Number(row.cnt);
+  }
+  const pages = Array.from(pageMap.entries())
+    .map(([page, { views, signups: s }]) => ({
+      page,
+      views,
+      signups: s,
+      conversionRate: views > 0 ? (s / views) * 100 : 0,
+    }))
+    .sort((a, b) => b.views - a.views);
+
+  // Assemble traffic
+  const topPages = topPageRows.map((r) => ({
+    page: r.page,
+    views: Number(r.cnt),
+  }));
+  const referrers = refRows.map((r) => ({
+    referrer: r.referrer,
+    count: Number(r.cnt),
+  }));
+  const totalDev = devRows.reduce((s, r) => s + Number(r.cnt), 0) || 1;
+  const devices = devRows.map((r) => ({
+    device: r.device,
+    count: Number(r.cnt),
+    percentage: (Number(r.cnt) / totalDev) * 100,
+  }));
+
+  // Assemble leads
+  const leads = leadRows.map((r) => ({
+    email: r.email || "unknown",
+    date: r.timestamp.toISOString(),
+    source: r.page,
+  }));
+
+  return { period, pages, traffic: { topPages, referrers, devices }, leads };
 }

@@ -4,13 +4,18 @@ import type { EventType } from "@/lib/admin/events-store";
 export async function POST(request: Request) {
   try {
     const body = await request.json();
-    const { type, page, referrer, email, source, meta } = body;
+    const { type, page, referrer, email, source, meta, session_id, variant_id } = body;
 
     if (!type || !page) {
       return Response.json({ error: "type and page are required" }, { status: 400 });
     }
 
-    const validTypes: EventType[] = ["pageview", "signup", "form_submit", "skool_trial"];
+    const validTypes: EventType[] = [
+      "pageview",
+      "signup",
+      "form_submit",
+      "skool_trial",
+    ];
     if (!validTypes.includes(type)) {
       return Response.json({ error: "Invalid event type" }, { status: 400 });
     }
@@ -23,6 +28,8 @@ export async function POST(request: Request) {
       email,
       source,
       meta,
+      sessionId: session_id,
+      variantId: variant_id,
     });
 
     return Response.json({ success: true, id: event.id });

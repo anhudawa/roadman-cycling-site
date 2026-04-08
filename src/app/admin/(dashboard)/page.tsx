@@ -1,68 +1,31 @@
 import { getDashboardStats } from "@/lib/admin/events-store";
 import { seedEvents } from "@/lib/admin/seed";
+import { Suspense } from "react";
+import { StatCard } from "./components/charts/StatCard";
+import { TimeRangePicker } from "./components/TimeRangePicker";
 
-function TrendIndicator({ current, previous }: { current: number; previous: number }) {
-  if (previous === 0 && current === 0) return <span className="text-foreground-subtle text-xs">--</span>;
-  if (previous === 0) return <span className="text-green-400 text-xs">New</span>;
-
-  const change = ((current - previous) / previous) * 100;
-  const isUp = change >= 0;
-
+function ChartPlaceholder({ label }: { label: string }) {
   return (
-    <span className={`text-xs font-medium flex items-center gap-0.5 ${isUp ? "text-green-400" : "text-coral"}`}>
-      <svg className="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-        {isUp ? (
-          <path strokeLinecap="round" strokeLinejoin="round" d="M4.5 19.5l15-15m0 0H8.25m11.25 0v11.25" />
-        ) : (
-          <path strokeLinecap="round" strokeLinejoin="round" d="M4.5 4.5l15 15m0 0V8.25m0 11.25H8.25" />
-        )}
-      </svg>
-      {Math.abs(change).toFixed(0)}%
-    </span>
-  );
-}
-
-function StatCard({
-  label,
-  value,
-  previousValue,
-  format,
-}: {
-  label: string;
-  value: number;
-  previousValue: number;
-  format?: "number" | "percent";
-}) {
-  const displayValue =
-    format === "percent" ? `${value.toFixed(1)}%` : value.toLocaleString();
-
-  return (
-    <div className="bg-background-elevated border border-white/5 rounded-xl p-5 hover:border-white/10 transition-colors">
-      <p className="text-foreground-subtle text-xs uppercase tracking-wider mb-1">
-        {label}
-      </p>
-      <div className="flex items-end justify-between">
-        <p className="text-2xl font-heading text-off-white tracking-wide">
-          {displayValue}
-        </p>
-        <TrendIndicator current={value} previous={previousValue} />
-      </div>
+    <div className="h-64 flex items-center justify-center border border-dashed border-white/10 rounded-lg">
+      <p className="text-foreground-subtle text-sm">{label}</p>
     </div>
   );
 }
 
-function MiniBar({ value, max, color = "coral" }: { value: number; max: number; color?: string }) {
-  const pct = max > 0 ? (value / max) * 100 : 0;
-  const bg = color === "coral" ? "bg-coral" : color === "purple" ? "bg-purple" : "bg-green-400";
-  return (
-    <div className="h-2 bg-white/5 rounded-full overflow-hidden w-full">
-      <div
-        className={`h-full ${bg} rounded-full transition-all`}
-        style={{ width: `${Math.min(pct, 100)}%` }}
-      />
-    </div>
-  );
-}
+const PLACEHOLDER_TOP_PAGES = [
+  { page: "/", views: 842, signups: 34, convRate: 4.0 },
+  { page: "/blog/zone-2-training", views: 621, signups: 23, convRate: 3.7 },
+  { page: "/podcast", views: 418, signups: 19, convRate: 4.5 },
+  { page: "/blog/winter-base-miles", views: 312, signups: 11, convRate: 3.5 },
+  { page: "/blog/ftp-test", views: 289, signups: 7, convRate: 2.4 },
+];
+
+const PLACEHOLDER_SOURCES = [
+  { name: "Organic Search", value: 42 },
+  { name: "Direct", value: 28 },
+  { name: "Social", value: 18 },
+  { name: "Referral", value: 12 },
+];
 
 export default async function AdminDashboardPage() {
   // Ensure seed data exists
@@ -70,85 +33,195 @@ export default async function AdminDashboardPage() {
 
   const stats = await getDashboardStats();
 
-  const periods = [
-    { label: "Today", current: stats.today, previous: stats.previousDay },
-    { label: "This Week", current: stats.thisWeek, previous: stats.previousWeek },
-    { label: "This Month", current: stats.thisMonth, previous: stats.previousMonth },
-  ];
+  // Compute percentage changes safely
+  function pctChange(current: number, previous: number): number | undefined {
+    if (previous === 0 && current === 0) return undefined;
+    if (previous === 0) return 100;
+    return ((current - previous) / previous) * 100;
+  }
 
   return (
     <div className="space-y-8">
       {/* Header */}
-      <div>
-        <h1 className="font-heading text-3xl text-off-white tracking-wider">
-          DASHBOARD
-        </h1>
-        <p className="text-foreground-muted text-sm mt-1">
-          Overview of site performance
-        </p>
+      <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+        <div>
+          <h1 className="font-heading text-3xl text-off-white tracking-wider">
+            DASHBOARD
+          </h1>
+          <p className="text-foreground-muted text-sm mt-1">
+            Overview of site performance
+          </p>
+        </div>
+        <Suspense fallback={null}>
+          <TimeRangePicker />
+        </Suspense>
       </div>
 
-      {/* Period sections */}
-      {periods.map((period) => (
-        <section key={period.label}>
-          <h2 className="font-heading text-lg text-foreground-muted tracking-wider mb-3">
-            {period.label.toUpperCase()}
-          </h2>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-            <StatCard
-              label="Visitors"
-              value={period.current.visitors}
-              previousValue={period.previous.visitors}
-            />
-            <StatCard
-              label="Email Signups"
-              value={period.current.signups}
-              previousValue={period.previous.signups}
-            />
-            <StatCard
-              label="Conversion Rate"
-              value={period.current.conversionRate}
-              previousValue={period.previous.conversionRate}
-              format="percent"
-            />
-            <StatCard
-              label="Skool Trials"
-              value={period.current.skoolTrials}
-              previousValue={period.previous.skoolTrials}
-            />
-          </div>
-        </section>
-      ))}
+      {/* Stat cards */}
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+        <StatCard
+          label="Visitors (Week)"
+          value={stats.thisWeek.visitors}
+          change={pctChange(stats.thisWeek.visitors, stats.previousWeek.visitors)}
+          changeLabel="vs prev"
+          sparkData={[12, 18, 14, 22, 19, 28, 24]}
+        />
+        <StatCard
+          label="Email Signups (Week)"
+          value={stats.thisWeek.signups}
+          change={pctChange(stats.thisWeek.signups, stats.previousWeek.signups)}
+          changeLabel="vs prev"
+          sparkData={[3, 5, 4, 7, 6, 8, 5]}
+        />
+        <StatCard
+          label="Conversion Rate"
+          value={`${stats.thisWeek.conversionRate.toFixed(1)}%`}
+          change={pctChange(stats.thisWeek.conversionRate, stats.previousWeek.conversionRate)}
+          changeLabel="vs prev"
+        />
+        <StatCard
+          label="Skool Trials (Week)"
+          value={stats.thisWeek.skoolTrials}
+          change={pctChange(stats.thisWeek.skoolTrials, stats.previousWeek.skoolTrials)}
+          changeLabel="vs prev"
+          sparkData={[1, 0, 2, 1, 3, 2, 1]}
+        />
+      </div>
 
-      {/* Quick visual: weekly visitors vs signups */}
-      <section>
-        <h2 className="font-heading text-lg text-foreground-muted tracking-wider mb-3">
-          WEEKLY SNAPSHOT
-        </h2>
-        <div className="bg-background-elevated border border-white/5 rounded-xl p-5 space-y-4">
-          <div>
-            <div className="flex justify-between text-sm mb-1">
-              <span className="text-foreground-muted">Visitors</span>
-              <span className="text-off-white">{stats.thisWeek.visitors.toLocaleString()}</span>
+      {/* Today and Month summaries */}
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
+        <div className="bg-background-elevated border border-white/5 rounded-xl p-5">
+          <h2 className="font-heading text-sm text-foreground-muted tracking-wider mb-3">
+            TODAY
+          </h2>
+          <div className="grid grid-cols-2 gap-3">
+            <div>
+              <p className="text-foreground-subtle text-xs uppercase tracking-wider">Visitors</p>
+              <p className="text-xl font-heading text-off-white">{stats.today.visitors}</p>
             </div>
-            <MiniBar value={stats.thisWeek.visitors} max={stats.thisWeek.visitors} color="purple" />
-          </div>
-          <div>
-            <div className="flex justify-between text-sm mb-1">
-              <span className="text-foreground-muted">Signups</span>
-              <span className="text-off-white">{stats.thisWeek.signups.toLocaleString()}</span>
+            <div>
+              <p className="text-foreground-subtle text-xs uppercase tracking-wider">Signups</p>
+              <p className="text-xl font-heading text-off-white">{stats.today.signups}</p>
             </div>
-            <MiniBar value={stats.thisWeek.signups} max={stats.thisWeek.visitors} color="coral" />
-          </div>
-          <div>
-            <div className="flex justify-between text-sm mb-1">
-              <span className="text-foreground-muted">Skool Trials</span>
-              <span className="text-off-white">{stats.thisWeek.skoolTrials}</span>
+            <div>
+              <p className="text-foreground-subtle text-xs uppercase tracking-wider">Conv. Rate</p>
+              <p className="text-xl font-heading text-off-white">{stats.today.conversionRate.toFixed(1)}%</p>
             </div>
-            <MiniBar value={stats.thisWeek.skoolTrials} max={stats.thisWeek.signups || 1} color="green" />
+            <div>
+              <p className="text-foreground-subtle text-xs uppercase tracking-wider">Skool Trials</p>
+              <p className="text-xl font-heading text-off-white">{stats.today.skoolTrials}</p>
+            </div>
           </div>
         </div>
-      </section>
+        <div className="bg-background-elevated border border-white/5 rounded-xl p-5">
+          <h2 className="font-heading text-sm text-foreground-muted tracking-wider mb-3">
+            THIS MONTH
+          </h2>
+          <div className="grid grid-cols-2 gap-3">
+            <div>
+              <p className="text-foreground-subtle text-xs uppercase tracking-wider">Visitors</p>
+              <p className="text-xl font-heading text-off-white">{stats.thisMonth.visitors.toLocaleString()}</p>
+            </div>
+            <div>
+              <p className="text-foreground-subtle text-xs uppercase tracking-wider">Signups</p>
+              <p className="text-xl font-heading text-off-white">{stats.thisMonth.signups}</p>
+            </div>
+            <div>
+              <p className="text-foreground-subtle text-xs uppercase tracking-wider">Conv. Rate</p>
+              <p className="text-xl font-heading text-off-white">{stats.thisMonth.conversionRate.toFixed(1)}%</p>
+            </div>
+            <div>
+              <p className="text-foreground-subtle text-xs uppercase tracking-wider">Skool Trials</p>
+              <p className="text-xl font-heading text-off-white">{stats.thisMonth.skoolTrials}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* Visitors Over Time chart area */}
+      <div className="bg-background-elevated border border-white/5 rounded-xl p-5">
+        <h2 className="font-heading text-sm text-foreground-muted tracking-wider mb-4">
+          VISITORS OVER TIME
+        </h2>
+        <ChartPlaceholder label="Time series chart will render once daily aggregation is wired up" />
+      </div>
+
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+        {/* Top Converting Pages */}
+        <div className="bg-background-elevated border border-white/5 rounded-xl p-5">
+          <h2 className="font-heading text-sm text-foreground-muted tracking-wider mb-4">
+            TOP CONVERTING PAGES
+          </h2>
+          <div className="overflow-x-auto">
+            <table className="w-full">
+              <thead>
+                <tr className="border-b border-white/5">
+                  <th className="text-left pb-2 text-xs uppercase tracking-wider text-foreground-subtle font-medium">
+                    Page
+                  </th>
+                  <th className="text-right pb-2 text-xs uppercase tracking-wider text-foreground-subtle font-medium">
+                    Views
+                  </th>
+                  <th className="text-right pb-2 text-xs uppercase tracking-wider text-foreground-subtle font-medium">
+                    Conv %
+                  </th>
+                </tr>
+              </thead>
+              <tbody>
+                {PLACEHOLDER_TOP_PAGES.map((row) => (
+                  <tr key={row.page} className="border-b border-white/[0.03]">
+                    <td className="py-2.5 text-sm text-off-white">{row.page}</td>
+                    <td className="py-2.5 text-sm text-foreground-muted text-right tabular-nums">
+                      {row.views}
+                    </td>
+                    <td className="py-2.5 text-right">
+                      <span
+                        className={`text-xs font-medium px-2 py-0.5 rounded-full ${
+                          row.convRate >= 4
+                            ? "text-green-400 bg-green-400/10"
+                            : row.convRate >= 2.5
+                              ? "text-yellow-400 bg-yellow-400/10"
+                              : "text-coral bg-coral/10"
+                        }`}
+                      >
+                        {row.convRate.toFixed(1)}%
+                      </span>
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        {/* Traffic Sources */}
+        <div className="bg-background-elevated border border-white/5 rounded-xl p-5">
+          <h2 className="font-heading text-sm text-foreground-muted tracking-wider mb-4">
+            TRAFFIC SOURCES
+          </h2>
+          <div className="space-y-3">
+            {PLACEHOLDER_SOURCES.map((source) => (
+              <div key={source.name} className="flex items-center gap-3">
+                <span className="text-sm text-foreground-muted w-32 truncate">
+                  {source.name}
+                </span>
+                <div className="flex-1 h-2 bg-white/5 rounded-full overflow-hidden">
+                  <div
+                    className="h-full bg-coral rounded-full transition-all"
+                    style={{ width: `${source.value}%` }}
+                  />
+                </div>
+                <span className="text-sm text-off-white tabular-nums w-10 text-right">
+                  {source.value}%
+                </span>
+              </div>
+            ))}
+          </div>
+          <p className="text-xs text-foreground-subtle mt-4">
+            Donut chart will render once real traffic source data is aggregated
+          </p>
+        </div>
+      </div>
     </div>
   );
 }

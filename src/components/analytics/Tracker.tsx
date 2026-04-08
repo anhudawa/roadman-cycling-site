@@ -1,17 +1,29 @@
 "use client";
 
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
 import { usePathname } from "next/navigation";
 
+// ── Session ID ────────────────────────────────────────────
+function getSessionId(): string {
+  if (typeof window === "undefined") return "";
+  let sid = sessionStorage.getItem("roadman_session_id");
+  if (!sid) {
+    sid = crypto.randomUUID();
+    sessionStorage.setItem("roadman_session_id", sid);
+  }
+  return sid;
+}
+
+// ── Send Event ────────────────────────────────────────────
 function sendEvent(type: string, data: Record<string, string> = {}) {
   const payload = {
     type,
     page: window.location.pathname,
     referrer: document.referrer || undefined,
+    session_id: getSessionId(),
     ...data,
   };
 
-  // Use sendBeacon with Blob for correct Content-Type, fall back to fetch
   const body = JSON.stringify(payload);
   if (navigator.sendBeacon) {
     const blob = new Blob([body], { type: "application/json" });
@@ -28,8 +40,64 @@ function sendEvent(type: string, data: Record<string, string> = {}) {
   }
 }
 
+// ── Scroll Depth Tracker ──────────────────────────────────
+function useScrollDepth() {
+  const firedRef = useRef<Set<number>>(new Set());
+  const pathname = usePathname();
+
+  useEffect(() => {
+    // Reset on page change
+    firedRef.current = new Set();
+
+    const thresholds = [25, 50, 75, 100];
+
+    function handleScroll() {
+      const scrollHeight = document.documentElement.scrollHeight - window.innerHeight;
+      if (scrollHeight <= 0) return;
+
+      const pct = Math.round((window.scrollY / scrollHeight) * 100);
+
+      for (const t of thresholds) {
+        if (pct >= t && !firedRef.current.has(t)) {
+          firedRef.current.add(t);
+          sendEvent("scroll_depth", { depth: String(t) });
+        }
+      }
+    }
+
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, [pathname]);
+}
+
+// ── Time on Page Tracker ──────────────────────────────────
+function useTimeOnPage() {
+  const pathname = usePathname();
+
+  useEffect(() => {
+    const startTime = Date.now();
+
+    function handleVisibilityChange() {
+      if (document.visibilityState === "hidden") {
+        const duration = Math.round((Date.now() - startTime) / 1000);
+        sendEvent("time_on_page", { seconds: String(duration) });
+      }
+    }
+
+    document.addEventListener("visibilitychange", handleVisibilityChange);
+    return () => {
+      document.removeEventListener("visibilitychange", handleVisibilityChange);
+    };
+  }, [pathname]);
+}
+
+// ── Tracker Component ─────────────────────────────────────
 export function Tracker() {
   const pathname = usePathname();
+
+  // Scroll depth and time-on-page tracking
+  useScrollDepth();
+  useTimeOnPage();
 
   useEffect(() => {
     // Skip admin pages
