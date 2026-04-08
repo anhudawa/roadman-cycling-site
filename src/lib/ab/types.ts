@@ -1,4 +1,4 @@
-export type ABElementType = "headline" | "cta" | "layout" | "hero";
+export type ABElementType = "headline" | "cta_button" | "form_copy" | "hero_image" | "layout";
 export type ABTestStatus = "draft" | "running" | "completed";
 
 export interface ABVariant {

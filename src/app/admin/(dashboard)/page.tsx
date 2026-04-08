@@ -1,15 +1,11 @@
 import { getDashboardStats, type DashboardStats } from "@/lib/admin/events-store";
+import { parseTimeRange } from "@/lib/admin/time-ranges";
 import { Suspense } from "react";
 import { StatCard } from "./components/charts/StatCard";
 import { TimeRangePicker } from "./components/TimeRangePicker";
-
-function ChartPlaceholder({ label }: { label: string }) {
-  return (
-    <div className="h-64 flex items-center justify-center border border-dashed border-white/10 rounded-lg">
-      <p className="text-foreground-subtle text-sm">{label}</p>
-    </div>
-  );
-}
+import { TimeSeriesChart } from "./components/charts/TimeSeriesChart";
+import { DonutChart } from "./components/charts/DonutChart";
+import { FunnelDisplay } from "./components/charts/FunnelDisplay";
 
 const PLACEHOLDER_TOP_PAGES = [
   { page: "/", views: 842, signups: 34, convRate: 4.0 },
@@ -35,7 +31,35 @@ const DEMO_STATS: DashboardStats = {
   previousMonth: { visitors: 5890, signups: 212, conversionRate: 3.6, skoolTrials: 19 },
 };
 
-export default async function AdminDashboardPage() {
+// Generate realistic 30-day demo visitor data
+function generateDemoTimeSeries(): { date: string; visitors: number; signups: number }[] {
+  const data: { date: string; visitors: number; signups: number }[] = [];
+  const now = new Date();
+  for (let i = 29; i >= 0; i--) {
+    const d = new Date(now);
+    d.setDate(d.getDate() - i);
+    const dateStr = d.toISOString().split("T")[0];
+    // Weekday boost: Mon-Fri gets higher traffic
+    const dayOfWeek = d.getDay();
+    const isWeekday = dayOfWeek >= 1 && dayOfWeek <= 5;
+    const baseVisitors = isWeekday ? 210 : 140;
+    // Add some variance
+    const visitors = baseVisitors + Math.round(Math.sin(i * 0.5) * 40 + (Math.random() * 30 - 15));
+    const signups = Math.round(visitors * (0.034 + Math.random() * 0.012));
+    data.push({ date: dateStr, visitors, signups });
+  }
+  return data;
+}
+
+export default async function AdminDashboardPage({
+  searchParams,
+}: {
+  searchParams: Promise<{ [key: string]: string | string[] | undefined }>;
+}) {
+  const resolvedParams = await searchParams;
+  const rangeParam = typeof resolvedParams.range === "string" ? resolvedParams.range : "30d";
+  const { from, to } = parseTimeRange(rangeParam);
+
   let stats: DashboardStats;
   try {
     stats = await getDashboardStats();
@@ -50,6 +74,16 @@ export default async function AdminDashboardPage() {
     if (previous === 0) return 100;
     return ((current - previous) / previous) * 100;
   }
+
+  // Demo time series data for the chart
+  const demoTimeSeries = generateDemoTimeSeries();
+
+  // Funnel data from stats
+  const funnelSteps = [
+    { label: "Visitors", value: stats.thisMonth.visitors },
+    { label: "Email Signups", value: stats.thisMonth.signups },
+    { label: "Skool Trials", value: stats.thisMonth.skoolTrials },
+  ];
 
   return (
     <div className="space-y-8">
@@ -149,12 +183,27 @@ export default async function AdminDashboardPage() {
         </div>
       </div>
 
-      {/* Visitors Over Time chart area */}
+      {/* Visitors Over Time chart */}
       <div className="bg-background-elevated border border-white/5 rounded-xl p-5">
         <h2 className="font-heading text-sm text-foreground-muted tracking-wider mb-4">
           VISITORS OVER TIME
         </h2>
-        <ChartPlaceholder label="Time series chart will render once daily aggregation is wired up" />
+        <TimeSeriesChart
+          data={demoTimeSeries}
+          dataKeys={[
+            { key: "visitors", color: "#E8836B", label: "Visitors" },
+            { key: "signups", color: "#4ADE80", label: "Signups" },
+          ]}
+          height={256}
+        />
+      </div>
+
+      {/* Conversion Funnel */}
+      <div className="bg-background-elevated border border-white/5 rounded-xl p-5">
+        <h2 className="font-heading text-sm text-foreground-muted tracking-wider mb-4">
+          CONVERSION FUNNEL (THIS MONTH)
+        </h2>
+        <FunnelDisplay steps={funnelSteps} />
       </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
@@ -205,32 +254,12 @@ export default async function AdminDashboardPage() {
           </div>
         </div>
 
-        {/* Traffic Sources */}
+        {/* Traffic Sources — now with DonutChart */}
         <div className="bg-background-elevated border border-white/5 rounded-xl p-5">
           <h2 className="font-heading text-sm text-foreground-muted tracking-wider mb-4">
             TRAFFIC SOURCES
           </h2>
-          <div className="space-y-3">
-            {PLACEHOLDER_SOURCES.map((source) => (
-              <div key={source.name} className="flex items-center gap-3">
-                <span className="text-sm text-foreground-muted w-32 truncate">
-                  {source.name}
-                </span>
-                <div className="flex-1 h-2 bg-white/5 rounded-full overflow-hidden">
-                  <div
-                    className="h-full bg-coral rounded-full transition-all"
-                    style={{ width: `${source.value}%` }}
-                  />
-                </div>
-                <span className="text-sm text-off-white tabular-nums w-10 text-right">
-                  {source.value}%
-                </span>
-              </div>
-            ))}
-          </div>
-          <p className="text-xs text-foreground-subtle mt-4">
-            Donut chart will render once real traffic source data is aggregated
-          </p>
+          <DonutChart data={PLACEHOLDER_SOURCES} />
         </div>
       </div>
     </div>

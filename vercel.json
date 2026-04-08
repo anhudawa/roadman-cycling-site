@@ -1,0 +1,7 @@
+{
+  "crons": [
+    { "path": "/api/admin/sync/beehiiv", "schedule": "0 6 * * *" },
+    { "path": "/api/admin/sync/stripe", "schedule": "0 6 * * *" },
+    { "path": "/api/admin/agent/weekly-analysis", "schedule": "0 8 * * 1" }
+  ]
+}

@@ -33,16 +33,39 @@ function formatDate(iso: string): string {
 }
 
 export default async function LeadsPage() {
-  let leads, totals;
+  let leads: { email: string; date: string; source: string }[];
+  let totals: {
+    today: number;
+    thisWeek: number;
+    thisMonth: number;
+    previousDay: number;
+    previousWeek: number;
+    previousMonth: number;
+  };
+
   try {
     [leads, totals] = await Promise.all([getRecentLeads(100), getLeadTotals()]);
   } catch {
+    // Database not provisioned yet — use realistic demo data
+    const now = Date.now();
     leads = [
-      { email: "j***n@gmail.com", date: new Date().toISOString(), source: "/newsletter" },
-      { email: "s***a@outlook.com", date: new Date(Date.now() - 3600000).toISOString(), source: "/" },
-      { email: "m***e@yahoo.com", date: new Date(Date.now() - 7200000).toISOString(), source: "/podcast" },
+      { email: "j***n@gmail.com", date: new Date(now - 1200000).toISOString(), source: "/blog/zone-2-training" },
+      { email: "s***a@outlook.com", date: new Date(now - 3600000).toISOString(), source: "/" },
+      { email: "m***e@yahoo.com", date: new Date(now - 7200000).toISOString(), source: "/podcast" },
+      { email: "r***k@gmail.com", date: new Date(now - 14400000).toISOString(), source: "/blog/ftp-test-protocol" },
+      { email: "d***s@icloud.com", date: new Date(now - 21600000).toISOString(), source: "/blog/winter-base-miles" },
+      { email: "l***y@hotmail.com", date: new Date(now - 28800000).toISOString(), source: "/" },
+      { email: "c***n@gmail.com", date: new Date(now - 43200000).toISOString(), source: "/podcast/ep-42-nutrition" },
+      { email: "a***z@proton.me", date: new Date(now - 57600000).toISOString(), source: "/blog/gravel-bike-setup" },
     ];
-    totals = { today: 5, thisWeek: 68, thisMonth: 241, previousDay: 4, previousWeek: 59, previousMonth: 212 };
+    totals = {
+      today: 5,
+      thisWeek: 68,
+      thisMonth: 241,
+      previousDay: 4,
+      previousWeek: 59,
+      previousMonth: 212,
+    };
   }
 
   return (

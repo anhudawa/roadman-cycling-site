@@ -1,29 +1,19 @@
-const PLACEHOLDER_EXPERIMENTS = [
-  {
-    id: "exp-001",
-    name: "Homepage hero CTA copy",
-    status: "running" as const,
-    variants: 2,
-    startDate: "2026-03-25",
-    visitors: 1240,
-  },
-  {
-    id: "exp-002",
-    name: "Blog sidebar signup form vs inline",
-    status: "completed" as const,
-    variants: 2,
-    startDate: "2026-03-10",
-    visitors: 3420,
-  },
-  {
-    id: "exp-003",
-    name: "Podcast page lead magnet offer",
-    status: "draft" as const,
-    variants: 3,
-    startDate: null,
-    visitors: 0,
-  },
-];
+import Link from "next/link";
+import type { ABTest } from "@/lib/ab/types";
+
+async function getExperiments(): Promise<ABTest[]> {
+  try {
+    const baseUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000";
+    const res = await fetch(`${baseUrl}/api/admin/experiments`, {
+      cache: "no-store",
+    });
+    if (!res.ok) return [];
+    const data = await res.json();
+    return data.experiments ?? [];
+  } catch {
+    return [];
+  }
+}
 
 function StatusBadge({ status }: { status: "draft" | "running" | "completed" }) {
   const styles = {
@@ -39,6 +29,8 @@ function StatusBadge({ status }: { status: "draft" | "running" | "completed" }) 
 }
 
 export default async function ExperimentsPage() {
+  const experiments = await getExperiments();
+
   return (
     <div className="space-y-6">
       <div className="flex items-start justify-between">
@@ -50,40 +42,75 @@ export default async function ExperimentsPage() {
             Test variations and measure conversion impact
           </p>
         </div>
-        <button className="px-4 py-2 bg-coral hover:bg-coral/90 text-white text-sm font-medium rounded-lg transition-colors">
+        <Link
+          href="/admin/experiments/new"
+          className="px-4 py-2 bg-coral hover:bg-coral/90 text-white text-sm font-medium rounded-lg transition-colors"
+        >
           Create Experiment
-        </button>
+        </Link>
       </div>
 
       {/* Experiments list */}
       <div className="space-y-3">
-        {PLACEHOLDER_EXPERIMENTS.map((exp) => (
-          <div
-            key={exp.id}
-            className="bg-background-elevated border border-white/5 rounded-xl p-5 hover:border-white/10 transition-colors"
-          >
-            <div className="flex items-start justify-between gap-4">
-              <div className="min-w-0">
-                <div className="flex items-center gap-3 mb-1">
-                  <h3 className="text-off-white font-medium text-sm truncate">
-                    {exp.name}
-                  </h3>
-                  <StatusBadge status={exp.status} />
-                </div>
-                <div className="flex items-center gap-4 text-xs text-foreground-subtle">
-                  <span>{exp.variants} variants</span>
-                  {exp.startDate && <span>Started {exp.startDate}</span>}
-                  {exp.visitors > 0 && (
-                    <span>{exp.visitors.toLocaleString()} visitors</span>
-                  )}
-                </div>
-              </div>
-              <button className="text-xs text-foreground-muted hover:text-off-white transition-colors px-3 py-1.5 border border-white/10 rounded-lg">
-                View
-              </button>
-            </div>
+        {experiments.length === 0 ? (
+          <div className="bg-background-elevated border border-white/5 rounded-xl p-8 text-center">
+            <svg
+              className="w-8 h-8 text-foreground-subtle mx-auto mb-3"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+              strokeWidth={1.5}
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                d="M9.75 3.104v5.714a2.25 2.25 0 0 1-.659 1.591L5 14.5M9.75 3.104c-.251.023-.501.05-.75.082m.75-.082a24.301 24.301 0 0 1 4.5 0m0 0v5.714c0 .597.237 1.17.659 1.591L19.8 15.3M14.25 3.104c.251.023.501.05.75.082M19.8 15.3l-1.57.393A9.065 9.065 0 0 1 12 15a9.065 9.065 0 0 0-6.23.693L5 14.5m14.8.8 1.402 1.402c1.232 1.232.65 3.318-1.067 3.611A48.309 48.309 0 0 1 12 21c-2.773 0-5.491-.235-8.135-.687-1.718-.293-2.3-2.379-1.067-3.61L5 14.5"
+              />
+            </svg>
+            <p className="text-foreground-subtle text-sm">
+              No experiments yet. Create one to start testing.
+            </p>
           </div>
-        ))}
+        ) : (
+          experiments.map((exp) => (
+            <Link
+              key={exp.id}
+              href={`/admin/experiments/${exp.id}`}
+              className="block bg-background-elevated border border-white/5 rounded-xl p-5 hover:border-white/10 transition-colors"
+            >
+              <div className="flex items-start justify-between gap-4">
+                <div className="min-w-0">
+                  <div className="flex items-center gap-3 mb-1">
+                    <h3 className="text-off-white font-medium text-sm truncate">
+                      {exp.name}
+                    </h3>
+                    <StatusBadge status={exp.status} />
+                  </div>
+                  <div className="flex items-center gap-4 text-xs text-foreground-subtle">
+                    <span>{exp.variants.length} variants</span>
+                    <span>{exp.page}</span>
+                    <span>{exp.element}</span>
+                    {exp.startedAt && (
+                      <span>
+                        Started{" "}
+                        {new Date(exp.startedAt).toLocaleDateString("en-GB", {
+                          day: "numeric",
+                          month: "short",
+                        })}
+                      </span>
+                    )}
+                    {exp.winnerVariantId && (
+                      <span className="text-coral">Winner declared</span>
+                    )}
+                  </div>
+                </div>
+                <span className="text-xs text-foreground-muted hover:text-off-white transition-colors px-3 py-1.5 border border-white/10 rounded-lg flex-shrink-0">
+                  View
+                </span>
+              </div>
+            </Link>
+          ))
+        )}
       </div>
 
       {/* Info note */}

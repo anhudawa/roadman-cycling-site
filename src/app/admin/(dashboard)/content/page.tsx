@@ -1,12 +1,16 @@
-const PLACEHOLDER_DATA = [
-  { page: "/blog/zone-2-training-guide", views: 1284, signups: 47, convRate: 3.7 },
-  { page: "/blog/winter-base-miles", views: 892, signups: 31, convRate: 3.5 },
-  { page: "/blog/ftp-test-protocol", views: 756, signups: 19, convRate: 2.5 },
-  { page: "/podcast/ep-42-nutrition", views: 623, signups: 28, convRate: 4.5 },
-  { page: "/blog/gravel-bike-setup", views: 541, signups: 12, convRate: 2.2 },
-  { page: "/", views: 2103, signups: 84, convRate: 4.0 },
-  { page: "/podcast", views: 478, signups: 22, convRate: 4.6 },
-  { page: "/blog/indoor-training-apps", views: 412, signups: 8, convRate: 1.9 },
+import { getPageStats, type PageStats } from "@/lib/admin/events-store";
+import { Suspense } from "react";
+import { TimeRangePicker } from "../components/TimeRangePicker";
+
+const PLACEHOLDER_DATA: PageStats[] = [
+  { page: "/", views: 2103, signups: 84, conversionRate: 4.0 },
+  { page: "/blog/zone-2-training-guide", views: 1284, signups: 47, conversionRate: 3.7 },
+  { page: "/blog/winter-base-miles", views: 892, signups: 31, conversionRate: 3.5 },
+  { page: "/blog/ftp-test-protocol", views: 756, signups: 19, conversionRate: 2.5 },
+  { page: "/podcast/ep-42-nutrition", views: 623, signups: 28, conversionRate: 4.5 },
+  { page: "/blog/gravel-bike-setup", views: 541, signups: 12, conversionRate: 2.2 },
+  { page: "/podcast", views: 478, signups: 22, conversionRate: 4.6 },
+  { page: "/blog/indoor-training-apps", views: 412, signups: 8, conversionRate: 1.9 },
 ];
 
 function ConvBadge({ rate }: { rate: number }) {
@@ -22,15 +26,39 @@ function ConvBadge({ rate }: { rate: number }) {
 }
 
 export default async function ContentPage() {
+  let pages: PageStats[];
+  let usingLiveData = false;
+
+  try {
+    pages = await getPageStats();
+    usingLiveData = true;
+  } catch {
+    // Database not provisioned yet — use placeholder data
+    pages = PLACEHOLDER_DATA;
+  }
+
+  const totalViews = pages.reduce((s, p) => s + p.views, 0);
+  const avgConvRate =
+    pages.length > 0
+      ? pages.reduce((s, p) => s + p.conversionRate, 0) / pages.length
+      : 0;
+
   return (
     <div className="space-y-6">
-      <div>
-        <h1 className="font-heading text-3xl text-off-white tracking-wider">
-          CONTENT PERFORMANCE
-        </h1>
-        <p className="text-foreground-muted text-sm mt-1">
-          Page-level views, signups, and conversion rates
-        </p>
+      <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+        <div>
+          <h1 className="font-heading text-3xl text-off-white tracking-wider">
+            CONTENT PERFORMANCE
+          </h1>
+          <p className="text-foreground-muted text-sm mt-1">
+            {usingLiveData
+              ? "Page-level views, signups, and conversion rates"
+              : "Demo data \u2014 database not connected yet"}
+          </p>
+        </div>
+        <Suspense fallback={null}>
+          <TimeRangePicker />
+        </Suspense>
       </div>
 
       {/* Summary */}
@@ -40,7 +68,7 @@ export default async function ContentPage() {
             Pages Tracked
           </p>
           <p className="text-2xl font-heading text-off-white tracking-wide">
-            {PLACEHOLDER_DATA.length}
+            {pages.length}
           </p>
         </div>
         <div className="bg-background-elevated border border-white/5 rounded-xl p-5">
@@ -48,7 +76,7 @@ export default async function ContentPage() {
             Total Views
           </p>
           <p className="text-2xl font-heading text-off-white tracking-wide">
-            {PLACEHOLDER_DATA.reduce((s, p) => s + p.views, 0).toLocaleString()}
+            {totalViews.toLocaleString()}
           </p>
         </div>
         <div className="bg-background-elevated border border-white/5 rounded-xl p-5">
@@ -56,7 +84,7 @@ export default async function ContentPage() {
             Avg Conv. Rate
           </p>
           <p className="text-2xl font-heading text-off-white tracking-wide">
-            {(PLACEHOLDER_DATA.reduce((s, p) => s + p.convRate, 0) / PLACEHOLDER_DATA.length).toFixed(1)}%
+            {avgConvRate.toFixed(1)}%
           </p>
         </div>
       </div>
@@ -82,7 +110,7 @@ export default async function ContentPage() {
               </tr>
             </thead>
             <tbody>
-              {PLACEHOLDER_DATA.sort((a, b) => b.views - a.views).map((row) => (
+              {[...pages].sort((a, b) => b.views - a.views).map((row) => (
                 <tr
                   key={row.page}
                   className="border-b border-white/[0.03] hover:bg-white/[0.02] transition-colors"
@@ -99,7 +127,7 @@ export default async function ContentPage() {
                     {row.signups}
                   </td>
                   <td className="px-4 py-3 text-right">
-                    <ConvBadge rate={row.convRate} />
+                    <ConvBadge rate={row.conversionRate} />
                   </td>
                 </tr>
               ))}

@@ -1,4 +1,57 @@
+import {
+  fetchSubscriberStats,
+  fetchNewsletterPosts,
+  fetchSubscriberGrowth,
+  type NewsletterPost,
+  type SubscriberStats,
+  type DailyGrowth,
+} from "@/lib/integrations/beehiiv";
+import { TimeSeriesChart } from "../components/charts/TimeSeriesChart";
+
+function formatDate(iso: string): string {
+  const d = new Date(iso);
+  return d.toLocaleDateString("en-IE", {
+    day: "numeric",
+    month: "short",
+    year: "numeric",
+  });
+}
+
 export default async function NewsletterPage() {
+  let subscriberStats: SubscriberStats | null = null;
+  let posts: NewsletterPost[] = [];
+  let growth: DailyGrowth[] = [];
+  let apiError = false;
+
+  try {
+    [subscriberStats, posts, growth] = await Promise.all([
+      fetchSubscriberStats(),
+      fetchNewsletterPosts(20),
+      fetchSubscriberGrowth(30),
+    ]);
+  } catch {
+    apiError = true;
+  }
+
+  // Compute average open/click rates from posts with sends
+  const sentPosts = posts.filter((p) => p.sentAt !== null);
+  const avgOpenRate =
+    sentPosts.length > 0
+      ? sentPosts.reduce((sum, p) => sum + p.stats.openRate, 0) / sentPosts.length
+      : 0;
+  const avgClickRate =
+    sentPosts.length > 0
+      ? sentPosts.reduce((sum, p) => sum + p.stats.clickRate, 0) / sentPosts.length
+      : 0;
+
+  const hasData = subscriberStats !== null || posts.length > 0;
+
+  // Prepare growth chart data
+  const growthChartData = growth.map((g) => ({
+    date: g.date,
+    subscribers: g.count,
+  }));
+
   return (
     <div className="space-y-6">
       <div>
@@ -6,7 +59,9 @@ export default async function NewsletterPage() {
           NEWSLETTER ANALYTICS
         </h1>
         <p className="text-foreground-muted text-sm mt-1">
-          Data syncs daily from Beehiiv
+          {apiError
+            ? "Beehiiv API not configured \u2014 add BEEHIIV_API_KEY and BEEHIIV_PUBLICATION_ID to .env.local"
+            : "Data syncs from Beehiiv (cached 5 min)"}
         </p>
       </div>
 
@@ -16,48 +71,79 @@ export default async function NewsletterPage() {
           <p className="text-foreground-subtle text-xs uppercase tracking-wider mb-1">
             Total Subscribers
           </p>
-          <p className="text-2xl font-heading text-off-white tracking-wide">--</p>
-          <p className="text-xs text-foreground-subtle mt-1">
-            Connect Beehiiv to populate
+          <p className="text-2xl font-heading text-off-white tracking-wide">
+            {subscriberStats
+              ? subscriberStats.totalSubscribers.toLocaleString()
+              : "--"}
           </p>
+          {subscriberStats && (
+            <p className="text-xs text-foreground-subtle mt-1">
+              {subscriberStats.activeSubscribers.toLocaleString()} active
+            </p>
+          )}
+          {!subscriberStats && !apiError && (
+            <p className="text-xs text-foreground-subtle mt-1">
+              No data returned from Beehiiv
+            </p>
+          )}
         </div>
         <div className="bg-background-elevated border border-white/5 rounded-xl p-5">
           <p className="text-foreground-subtle text-xs uppercase tracking-wider mb-1">
             Open Rate (Avg)
           </p>
-          <p className="text-2xl font-heading text-off-white tracking-wide">--%</p>
+          <p className="text-2xl font-heading text-off-white tracking-wide">
+            {hasData ? `${(avgOpenRate * 100).toFixed(1)}%` : "--%"}
+          </p>
           <p className="text-xs text-foreground-subtle mt-1">
-            Last 30 days
+            {sentPosts.length > 0
+              ? `Across ${sentPosts.length} recent sends`
+              : "Last 30 days"}
           </p>
         </div>
         <div className="bg-background-elevated border border-white/5 rounded-xl p-5">
           <p className="text-foreground-subtle text-xs uppercase tracking-wider mb-1">
             Click Rate (Avg)
           </p>
-          <p className="text-2xl font-heading text-off-white tracking-wide">--%</p>
+          <p className="text-2xl font-heading text-off-white tracking-wide">
+            {hasData ? `${(avgClickRate * 100).toFixed(1)}%` : "--%"}
+          </p>
           <p className="text-xs text-foreground-subtle mt-1">
-            Last 30 days
+            {sentPosts.length > 0
+              ? `Across ${sentPosts.length} recent sends`
+              : "Last 30 days"}
           </p>
         </div>
       </div>
 
-      {/* Growth trend placeholder */}
+      {/* Growth trend */}
       <div className="bg-background-elevated border border-white/5 rounded-xl p-5">
         <h2 className="font-heading text-sm text-foreground-muted tracking-wider mb-4">
-          SUBSCRIBER GROWTH
+          SUBSCRIBER GROWTH (30 DAYS)
         </h2>
-        <div className="h-64 flex items-center justify-center border border-dashed border-white/10 rounded-lg">
-          <p className="text-foreground-subtle text-sm">
-            Growth chart will appear once Beehiiv is connected
-          </p>
-        </div>
+        {growthChartData.length > 1 ? (
+          <TimeSeriesChart
+            data={growthChartData}
+            dataKeys={[
+              { key: "subscribers", color: "#E8836B", label: "New Subscribers" },
+            ]}
+            height={256}
+          />
+        ) : (
+          <div className="h-64 flex items-center justify-center border border-dashed border-white/10 rounded-lg">
+            <p className="text-foreground-subtle text-sm">
+              {apiError
+                ? "Connect Beehiiv API to see subscriber growth"
+                : "Not enough data points for growth chart yet"}
+            </p>
+          </div>
+        )}
       </div>
 
       {/* Recent sends table */}
       <div className="bg-background-elevated border border-white/5 rounded-xl overflow-hidden">
         <div className="px-4 py-3 border-b border-white/5">
           <h2 className="font-heading text-sm text-foreground-muted tracking-wider">
-            RECENT SENDS
+            RECENT SENDS{sentPosts.length > 0 ? ` (${sentPosts.length})` : ""}
           </h2>
         </div>
         <div className="overflow-x-auto">
@@ -77,16 +163,72 @@ export default async function NewsletterPage() {
                   Clicks
                 </th>
                 <th className="text-right px-4 py-3 text-xs uppercase tracking-wider text-foreground-subtle font-medium">
-                  Date
+                  Open Rate
+                </th>
+                <th className="text-right px-4 py-3 text-xs uppercase tracking-wider text-foreground-subtle font-medium">
+                  Click Rate
                 </th>
               </tr>
             </thead>
             <tbody>
-              <tr>
-                <td colSpan={5} className="px-4 py-8 text-center text-foreground-subtle text-sm">
-                  No newsletter data yet. Connect Beehiiv API to sync send history.
-                </td>
-              </tr>
+              {sentPosts.length > 0 ? (
+                sentPosts.map((post) => (
+                  <tr
+                    key={post.id}
+                    className="border-b border-white/[0.03] hover:bg-white/[0.02] transition-colors"
+                  >
+                    <td className="px-4 py-3 text-sm text-off-white max-w-xs truncate">
+                      {post.subject || post.title}
+                    </td>
+                    <td className="px-4 py-3 text-sm text-foreground-muted text-right tabular-nums whitespace-nowrap">
+                      {post.sentAt ? formatDate(post.sentAt) : "--"}
+                    </td>
+                    <td className="px-4 py-3 text-sm text-foreground-muted text-right tabular-nums">
+                      {post.stats.opens.toLocaleString()}
+                    </td>
+                    <td className="px-4 py-3 text-sm text-foreground-muted text-right tabular-nums">
+                      {post.stats.clicks.toLocaleString()}
+                    </td>
+                    <td className="px-4 py-3 text-right">
+                      <span
+                        className={`text-xs font-medium px-2 py-0.5 rounded-full ${
+                          post.stats.openRate >= 0.4
+                            ? "text-green-400 bg-green-400/10"
+                            : post.stats.openRate >= 0.2
+                              ? "text-yellow-400 bg-yellow-400/10"
+                              : "text-coral bg-coral/10"
+                        }`}
+                      >
+                        {(post.stats.openRate * 100).toFixed(1)}%
+                      </span>
+                    </td>
+                    <td className="px-4 py-3 text-right">
+                      <span
+                        className={`text-xs font-medium px-2 py-0.5 rounded-full ${
+                          post.stats.clickRate >= 0.04
+                            ? "text-green-400 bg-green-400/10"
+                            : post.stats.clickRate >= 0.02
+                              ? "text-yellow-400 bg-yellow-400/10"
+                              : "text-coral bg-coral/10"
+                        }`}
+                      >
+                        {(post.stats.clickRate * 100).toFixed(1)}%
+                      </span>
+                    </td>
+                  </tr>
+                ))
+              ) : (
+                <tr>
+                  <td
+                    colSpan={6}
+                    className="px-4 py-8 text-center text-foreground-subtle text-sm"
+                  >
+                    {apiError
+                      ? "Connect Beehiiv API to sync send history."
+                      : "No newsletter sends found."}
+                  </td>
+                </tr>
+              )}
             </tbody>
           </table>
         </div>

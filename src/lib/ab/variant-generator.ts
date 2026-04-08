@@ -8,7 +8,7 @@ const client = new Anthropic();
  *
  * @param page - The page being tested (e.g. "/", "/skool")
  * @param currentContent - The current content of the element
- * @param elementType - The type of element ("headline" | "cta" | "layout" | "hero")
+ * @param elementType - The type of element ("headline" | "cta_button" | "form_copy" | "hero_image" | "layout")
  * @returns Array of suggested variants
  */
 export async function generateVariants(
