@@ -1,7 +1,8 @@
 "use client";
 
-import { useState, useTransition } from "react";
+import { useState, useTransition, useCallback } from "react";
 import { approveContent, rejectContent } from "../actions";
+import ChatPanel from "./ChatPanel";
 
 // ---------------------------------------------------------------------------
 // Types
@@ -243,10 +244,14 @@ function ActionButtons({
   contentId,
   episodeId,
   currentStatus,
+  chatOpen,
+  onToggleChat,
 }: {
   contentId: number;
   episodeId: number;
   currentStatus: string | null;
+  chatOpen: boolean;
+  onToggleChat: () => void;
 }) {
   const [optimisticStatus, setOptimisticStatus] = useState<string | null>(currentStatus);
   const [isPending, startTransition] = useTransition();
@@ -272,8 +277,6 @@ function ActionButtons({
       }
     });
   };
-
-  const [chatOpen, setChatOpen] = useState(false);
 
   return (
     <div className="flex items-center gap-2 flex-wrap mt-4 pt-4 border-t border-white/5">
@@ -305,17 +308,15 @@ function ActionButtons({
 
       <button
         type="button"
-        onClick={() => setChatOpen((v) => !v)}
-        className="px-3.5 py-1.5 text-xs font-semibold rounded-lg bg-white/5 text-foreground-muted hover:bg-white/10 hover:text-off-white border border-white/10 transition-colors ml-auto"
+        onClick={onToggleChat}
+        className={`px-3.5 py-1.5 text-xs font-semibold rounded-lg border transition-colors ml-auto ${
+          chatOpen
+            ? "bg-[#F16363]/20 text-[#F16363] border-[#F16363]/30"
+            : "bg-white/5 text-foreground-muted hover:bg-white/10 hover:text-off-white border-white/10"
+        }`}
       >
         Chat
       </button>
-
-      {chatOpen && (
-        <div className="w-full mt-2 p-3 rounded-lg bg-white/[0.03] border border-white/5 text-xs text-foreground-subtle">
-          Chat coming soon — use the chat feature to request amendments.
-        </div>
-      )}
     </div>
   );
 }
@@ -331,49 +332,68 @@ export default function ContentCard({
   piece: ContentPiece;
   episodeId: number;
 }) {
+  const [content, setContent] = useState(piece.content);
+  const [chatOpen, setChatOpen] = useState(false);
+
+  const handleContentUpdated = useCallback((newContent: string) => {
+    setContent(newContent);
+  }, []);
+
   function renderContent() {
     switch (piece.contentType) {
       case "blog":
-        return <BlogContent content={piece.content} />;
+        return <BlogContent content={content} />;
       case "twitter":
-        return <TwitterContent content={piece.content} />;
+        return <TwitterContent content={content} />;
       case "instagram":
-        return <InstagramContent content={piece.content} />;
+        return <InstagramContent content={content} />;
       case "linkedin":
-        return <LinkedInContent content={piece.content} />;
+        return <LinkedInContent content={content} />;
       case "facebook":
-        return <FacebookContent content={piece.content} />;
+        return <FacebookContent content={content} />;
       case "quote-card":
-        return <QuoteCardContent content={piece.content} />;
+        return <QuoteCardContent content={content} />;
       default:
         return (
-          <p className="text-sm text-foreground-muted whitespace-pre-wrap">{piece.content}</p>
+          <p className="text-sm text-foreground-muted whitespace-pre-wrap">{content}</p>
         );
     }
   }
 
   return (
-    <div className="bg-background-elevated border border-white/5 rounded-xl p-5 flex flex-col gap-3">
-      {/* Card header */}
-      <div className="flex items-center justify-between gap-3 flex-wrap">
-        <TypeBadge contentType={piece.contentType} />
-        <StatusBadge status={piece.status} />
+    <div className="bg-background-elevated border border-white/5 rounded-xl flex flex-col">
+      <div className="p-5 flex flex-col gap-3">
+        {/* Card header */}
+        <div className="flex items-center justify-between gap-3 flex-wrap">
+          <TypeBadge contentType={piece.contentType} />
+          <StatusBadge status={piece.status} />
+        </div>
+
+        {/* Content */}
+        <div className="flex-1">{renderContent()}</div>
+
+        {/* Version note */}
+        {piece.version > 1 && (
+          <p className="text-xs text-foreground-subtle">v{piece.version}</p>
+        )}
+
+        {/* Actions */}
+        <ActionButtons
+          contentId={piece.id}
+          episodeId={episodeId}
+          currentStatus={piece.status}
+          chatOpen={chatOpen}
+          onToggleChat={() => setChatOpen((v) => !v)}
+        />
       </div>
 
-      {/* Content */}
-      <div className="flex-1">{renderContent()}</div>
-
-      {/* Version note */}
-      {piece.version > 1 && (
-        <p className="text-xs text-foreground-subtle">v{piece.version}</p>
+      {/* Chat panel */}
+      {chatOpen && (
+        <ChatPanel
+          contentId={piece.id}
+          onContentUpdated={handleContentUpdated}
+        />
       )}
-
-      {/* Actions */}
-      <ActionButtons
-        contentId={piece.id}
-        episodeId={episodeId}
-        currentStatus={piece.status}
-      />
     </div>
   );
 }

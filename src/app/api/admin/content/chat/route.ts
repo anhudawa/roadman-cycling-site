@@ -1,0 +1,160 @@
+import { NextResponse } from "next/server";
+import Anthropic from "@anthropic-ai/sdk";
+import { isAuthenticated } from "@/lib/admin/auth";
+import { db } from "@/lib/db";
+import { repurposedContent, contentChatMessages } from "@/lib/db/schema";
+import { eq, asc } from "drizzle-orm";
+
+const SYSTEM_PROMPT =
+  "You are editing content for Roadman Cycling. Maintain Anthony Walsh's voice: direct, practical, warm, knowledgeable. Aimed at amateur cyclists who want to get faster. You will receive the current content and a request to amend it. Return the COMPLETE revised content — not a diff, the full replacement. Match the exact format of the input.";
+
+export async function POST(request: Request) {
+  try {
+    const authed = await isAuthenticated();
+    if (!authed) {
+      return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+    }
+
+    const { contentId, message } = (await request.json()) as {
+      contentId: number;
+      message: string;
+    };
+
+    if (!contentId || !message) {
+      return NextResponse.json(
+        { error: "contentId and message are required" },
+        { status: 400 },
+      );
+    }
+
+    // Load the content piece
+    const [piece] = await db
+      .select()
+      .from(repurposedContent)
+      .where(eq(repurposedContent.id, contentId));
+
+    if (!piece) {
+      return NextResponse.json(
+        { error: "Content not found" },
+        { status: 404 },
+      );
+    }
+
+    // Load chat history
+    const history = await db
+      .select()
+      .from(contentChatMessages)
+      .where(eq(contentChatMessages.contentId, contentId))
+      .orderBy(asc(contentChatMessages.createdAt));
+
+    // Save the user message
+    await db.insert(contentChatMessages).values({
+      contentId,
+      role: "user",
+      message,
+    });
+
+    // Build messages array for Claude
+    const claudeMessages: Anthropic.MessageParam[] = [];
+
+    // If there's no prior history, include the current content as context in the first user message
+    if (history.length === 0) {
+      claudeMessages.push({
+        role: "user",
+        content: `Here is the current content:\n\n---\n${piece.content}\n---\n\nPlease amend it as follows: ${message}`,
+      });
+    } else {
+      // Add history, injecting content context into the first user message
+      let firstUserDone = false;
+      for (const msg of history) {
+        if (!firstUserDone && msg.role === "user") {
+          claudeMessages.push({
+            role: "user",
+            content: `Here is the current content:\n\n---\n${piece.content}\n---\n\nPlease amend it as follows: ${msg.message}`,
+          });
+          firstUserDone = true;
+        } else {
+          claudeMessages.push({
+            role: msg.role as "user" | "assistant",
+            content: msg.message,
+          });
+        }
+      }
+      // Add the new user message
+      claudeMessages.push({ role: "user", content: message });
+    }
+
+    // Stream from Claude
+    const client = new Anthropic();
+
+    const stream = client.messages.stream({
+      model: "claude-sonnet-4-20250514",
+      max_tokens: 4096,
+      system: SYSTEM_PROMPT,
+      messages: claudeMessages,
+    });
+
+    let fullResponse = "";
+
+    const readable = new ReadableStream({
+      async start(controller) {
+        try {
+          const encoder = new TextEncoder();
+
+          stream.on("text", (text) => {
+            fullResponse += text;
+            controller.enqueue(encoder.encode(text));
+          });
+
+          stream.on("end", async () => {
+            try {
+              // Save assistant response
+              await db.insert(contentChatMessages).values({
+                contentId,
+                role: "assistant",
+                message: fullResponse,
+              });
+
+              // Update the content piece
+              await db
+                .update(repurposedContent)
+                .set({
+                  content: fullResponse,
+                  version: piece.version + 1,
+                  status: "amended",
+                  updatedAt: new Date(),
+                })
+                .where(eq(repurposedContent.id, contentId));
+            } catch (err) {
+              console.error("[Chat] Error saving response:", err);
+            }
+
+            controller.close();
+          });
+
+          stream.on("error", (err) => {
+            console.error("[Chat] Stream error:", err);
+            controller.error(err);
+          });
+        } catch (err) {
+          console.error("[Chat] Setup error:", err);
+          controller.error(err);
+        }
+      },
+    });
+
+    return new Response(readable, {
+      headers: {
+        "Content-Type": "text/plain; charset=utf-8",
+        "Cache-Control": "no-cache",
+        Connection: "keep-alive",
+      },
+    });
+  } catch (error) {
+    console.error("[Chat] Error:", error);
+    return NextResponse.json(
+      { error: "Internal server error" },
+      { status: 500 },
+    );
+  }
+}
