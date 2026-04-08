@@ -176,14 +176,6 @@ export default async function BlogPostPage({
         {/* Hero */}
         <Section background="deep-purple" grain className="pt-32 pb-12">
           <Container width="narrow">
-            <div className="hidden md:block">
-              <Breadcrumbs
-                items={[
-                  { label: "Blog", href: "/blog" },
-                  { label: post.title },
-                ]}
-              />
-            </div>
             <div className="text-center">
             <div className="flex items-center justify-center gap-3 mb-6">
               <Badge pillar={post.pillar} size="md" />
