@@ -96,6 +96,30 @@ export const agentReports = pgTable("agent_reports", {
   createdAt: timestamp("created_at", { withTimezone: true }).defaultNow(),
 });
 
+// ── Subscribers (unified identity) ───────────────────────
+export const subscribers = pgTable(
+  "subscribers",
+  {
+    id: serial("id").primaryKey(),
+    email: text("email").notNull().unique(),
+    source: text("source"),
+    sourcePage: text("source_page"),
+    signedUpAt: timestamp("signed_up_at", { withTimezone: true }),
+    skoolJoinedAt: timestamp("skool_joined_at", { withTimezone: true }),
+    trialStartedAt: timestamp("trial_started_at", { withTimezone: true }),
+    paidAt: timestamp("paid_at", { withTimezone: true }),
+    churnedAt: timestamp("churned_at", { withTimezone: true }),
+    beehiivId: text("beehiiv_id"),
+    stripeCustomerId: text("stripe_customer_id"),
+    persona: text("persona"),
+    meta: jsonb("meta"),
+  },
+  (table) => [
+    index("subscribers_email_idx").on(table.email),
+    index("subscribers_signed_up_at_idx").on(table.signedUpAt),
+  ]
+);
+
 // ── Repurposed Episodes ───────────────────────────────────
 export const repurposedEpisodes = pgTable("repurposed_episodes", {
   id: serial("id").primaryKey(),
