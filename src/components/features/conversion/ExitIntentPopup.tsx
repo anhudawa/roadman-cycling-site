@@ -123,7 +123,7 @@ export function ExitIntentPopup() {
                 BEFORE YOU GO
               </h2>
               <p className="text-foreground-muted leading-relaxed max-w-sm mx-auto">
-                Join 60,000+ cyclists getting <span className="text-off-white font-medium">The Saturday Spin</span> — the week&apos;s sharpest training insights, every Saturday morning.
+                Join 60,000+ cyclists getting <span className="text-off-white font-medium">The Saturday Spin Newsletter</span> — the week&apos;s sharpest training insights, every Saturday morning.
               </p>
             </div>
 

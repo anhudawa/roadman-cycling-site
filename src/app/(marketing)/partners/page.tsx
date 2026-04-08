@@ -104,7 +104,7 @@ const platformReach = [
     ),
     stat: "60K+",
     statLabel: "weekly readers",
-    description: "65%+ open rate (industry avg: 21%). The Saturday Spin every week. Direct click-through.",
+    description: "65%+ open rate (industry avg: 21%). The Saturday Spin Newsletter every week. Direct click-through.",
     color: "from-emerald-500/20 to-emerald-500/5",
   },
 ];
@@ -134,7 +134,7 @@ const partnershipOptions = [
     title: "NEWSLETTER SPONSORSHIP",
     badge: "Highest ROI",
     description:
-      "The Saturday Spin lands in 60,000+ inboxes every week with a 65%+ open rate. Dedicated sends or banner placements — your brand in front of cyclists who actually open, read, and click.",
+      "The Saturday Spin Newsletter lands in 60,000+ inboxes every week with a 65%+ open rate. Dedicated sends or banner placements — your brand in front of cyclists who actually open, read, and click.",
     features: [
       "60,000+ engaged subscribers",
       "65%+ open rate — 3x industry average",

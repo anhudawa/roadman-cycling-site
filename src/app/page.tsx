@@ -178,10 +178,10 @@ export default function HomePage() {
           </Container>
         </Section>
 
-        {/* NEWSLETTER — The Saturday Spin (high placement for visibility) */}
+        {/* NEWSLETTER — The Saturday Spin Newsletter (high placement for visibility) */}
         <EmailCapture
           variant="banner"
-          heading="THE SATURDAY SPIN"
+          heading="THE SATURDAY SPIN NEWSLETTER"
           subheading="Every Saturday morning. The sharpest cycling insights from the week — training, nutrition, and performance — straight from the conversations with the world's best."
           source="homepage-top"
         />

@@ -31,7 +31,7 @@ const PILLAR_CTA: Record<ContentPillar, { heading: string; subheading: string }>
   },
   "le-metier": {
     heading: "MORE FROM THE WORLD OF CYCLING",
-    subheading: "The culture, the craft, and the unwritten rules. The Saturday Spin, every week.",
+    subheading: "The culture, the craft, and the unwritten rules. The Saturday Spin Newsletter, every week.",
   },
 };
 

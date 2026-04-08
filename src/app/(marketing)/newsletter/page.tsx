@@ -50,7 +50,7 @@ export default function NewsletterPage() {
         data={{
           "@context": "https://schema.org",
           "@type": "WebPage",
-          name: "The Saturday Spin — Roadman Cycling Newsletter",
+          name: "The Saturday Spin Newsletter — Roadman Cycling",
           description:
             "Weekly cycling insights from Anthony Walsh. Training, nutrition, and performance content drawn from conversations with the world's best coaches and scientists.",
           url: "https://roadmancycling.com/newsletter",
