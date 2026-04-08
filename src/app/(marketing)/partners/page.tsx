@@ -328,8 +328,8 @@ export default function PartnersPage() {
             </ScrollReveal>
             <ScrollReveal direction="up" delay={0.3}>
               <div className="flex items-center justify-center gap-4 flex-wrap">
-                <Button href="/contact" size="lg">
-                  Become a Partner
+                <Button href="/sponsor" size="lg">
+                  See Rates &amp; Availability
                 </Button>
                 <Button href="#the-reach" variant="ghost" size="lg">
                   See the Numbers
@@ -852,11 +852,11 @@ export default function PartnersPage() {
                 rates, case studies, and audience data.
               </p>
               <div className="flex items-center justify-center gap-4 flex-wrap mb-8">
-                <Button href="/contact" size="lg">
-                  Get in Touch
+                <Button href="/sponsor" size="lg">
+                  See Rates &amp; Availability
                 </Button>
-                <Button href="/media-kit.pdf" variant="ghost" size="lg" external>
-                  Download Media Kit
+                <Button href="/sponsor#quiz" variant="ghost" size="lg">
+                  Find Your Fit
                 </Button>
               </div>
               <div className="flex items-center justify-center gap-2 text-foreground-muted">

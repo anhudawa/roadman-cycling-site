@@ -1,4 +1,5 @@
 import { getStatsForRange, type PageStats } from "@/lib/admin/events-store";
+import { getContentROI, type ContentROI } from "@/lib/admin/subscribers-store";
 import { parseTimeRange } from "@/lib/admin/time-ranges";
 import { Suspense } from "react";
 import { TimeRangePicker } from "../components/TimeRangePicker";
@@ -46,6 +47,16 @@ export default async function ContentPage({
     // Database not provisioned yet — use placeholder data
     pages = PLACEHOLDER_DATA;
   }
+
+  let contentROI: ContentROI[] = [];
+  try {
+    contentROI = await getContentROI();
+  } catch {
+    // DB not available
+  }
+
+  // Merge ROI data into pages
+  const roiMap = new Map(contentROI.map((r) => [r.sourcePage, r]));
 
   const totalViews = pages.reduce((s, p) => s + p.views, 0);
   const avgConvRate =
@@ -99,6 +110,34 @@ export default async function ContentPage({
         </div>
       </div>
 
+      {/* Content ROI highlights */}
+      {contentROI.length > 0 && (
+        <div className="bg-background-elevated border border-coral/10 rounded-xl p-5">
+          <h2 className="font-heading text-sm text-coral tracking-wider mb-3">
+            CONTENT ROI
+          </h2>
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 text-sm">
+            {contentROI[0] && (
+              <div>
+                <p className="text-foreground-subtle text-xs uppercase tracking-wider mb-1">Best Converter</p>
+                <p className="text-off-white">{contentROI[0].sourcePage}</p>
+                <p className="text-foreground-muted text-xs">{contentROI[0].paidConversions} paid from {contentROI[0].signups} signups</p>
+              </div>
+            )}
+            {(() => {
+              const worst = [...pages].filter(p => p.views > 100).sort((a, b) => a.conversionRate - b.conversionRate)[0];
+              return worst ? (
+                <div>
+                  <p className="text-foreground-subtle text-xs uppercase tracking-wider mb-1">Needs Attention</p>
+                  <p className="text-off-white">{worst.page}</p>
+                  <p className="text-foreground-muted text-xs">{worst.views} views, {worst.conversionRate.toFixed(1)}% conv rate</p>
+                </div>
+              ) : null;
+            })()}
+          </div>
+        </div>
+      )}
+
       {/* Content table */}
       <div className="bg-background-elevated border border-white/5 rounded-xl overflow-hidden">
         <div className="overflow-x-auto">
@@ -116,6 +155,12 @@ export default async function ContentPage({
                 </th>
                 <th className="text-right px-4 py-3 text-xs uppercase tracking-wider text-foreground-subtle font-medium">
                   Conv Rate
+                </th>
+                <th className="text-right px-4 py-3 text-xs uppercase tracking-wider text-foreground-subtle font-medium">
+                  Paid
+                </th>
+                <th className="text-right px-4 py-3 text-xs uppercase tracking-wider text-foreground-subtle font-medium">
+                  Revenue
                 </th>
               </tr>
             </thead>
@@ -138,6 +183,14 @@ export default async function ContentPage({
                   </td>
                   <td className="px-4 py-3 text-right">
                     <ConvBadge rate={row.conversionRate} />
+                  </td>
+                  <td className="px-4 py-3 text-right text-sm text-foreground-muted tabular-nums">
+                    {roiMap.get(row.page)?.paidConversions ?? 0}
+                  </td>
+                  <td className="px-4 py-3 text-right text-sm text-off-white tabular-nums font-medium">
+                    {roiMap.get(row.page)?.revenue
+                      ? `$${(roiMap.get(row.page)!.revenue / 100).toLocaleString()}`
+                      : "--"}
                   </td>
                 </tr>
               ))}
