@@ -4,7 +4,6 @@ import { MDXRemote } from "next-mdx-remote/rsc";
 import { Header, Footer, Section, Container } from "@/components/layout";
 import { Badge, Button } from "@/components/ui";
 import { JsonLd } from "@/components/seo/JsonLd";
-import { Breadcrumbs } from "@/components/seo/Breadcrumbs";
 import { getPostBySlug, getAllSlugs, getRelatedPosts } from "@/lib/blog";
 import { ShareButtons } from "@/components/features/blog/ShareButtons";
 import { RelatedPosts } from "@/components/features/blog/RelatedPosts";

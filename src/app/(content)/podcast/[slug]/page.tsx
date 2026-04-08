@@ -4,7 +4,6 @@ import { MDXRemote } from "next-mdx-remote/rsc";
 import { Header, Footer, Section, Container } from "@/components/layout";
 import { Badge, Button } from "@/components/ui";
 import { JsonLd } from "@/components/seo/JsonLd";
-import { Breadcrumbs } from "@/components/seo/Breadcrumbs";
 import { getEpisodeBySlug, getAllEpisodeSlugs } from "@/lib/podcast";
 import { PodcastLinks } from "@/components/features/podcast/PodcastLinks";
 import { TranscriptViewer } from "@/components/features/podcast/TranscriptViewer";
@@ -161,12 +160,6 @@ export default async function EpisodePage({
         {/* Hero */}
         <Section background="deep-purple" grain className="pt-32 pb-12">
           <Container width="narrow">
-            <Breadcrumbs
-              items={[
-                { label: "Podcast", href: "/podcast" },
-                { label: episode.title },
-              ]}
-            />
             <div className="text-center">
             <div className="flex items-center justify-center gap-3 mb-4">
               <Badge pillar={episode.pillar} size="md" />
