@@ -1,4 +1,4 @@
-import { getDashboardStats, type DashboardStats } from "@/lib/admin/events-store";
+import { getDashboardStats, getStatsForRange, getDailyVisitors, type DashboardStats } from "@/lib/admin/events-store";
 import { parseTimeRange } from "@/lib/admin/time-ranges";
 import { Suspense } from "react";
 import { StatCard } from "./components/charts/StatCard";
@@ -75,8 +75,43 @@ export default async function AdminDashboardPage({
     return ((current - previous) / previous) * 100;
   }
 
-  // Demo time series data for the chart
-  const demoTimeSeries = generateDemoTimeSeries();
+  // Ranged data for tables and charts
+  let topPages = PLACEHOLDER_TOP_PAGES;
+  let trafficSources = PLACEHOLDER_SOURCES;
+  let timeSeries = generateDemoTimeSeries();
+
+  try {
+    const [rangedStats, dailyVisitors] = await Promise.all([
+      getStatsForRange(from, to),
+      getDailyVisitors(from, to),
+    ]);
+
+    if (rangedStats.pages.length > 0) {
+      topPages = rangedStats.pages.slice(0, 5).map((p) => ({
+        page: p.page,
+        views: p.views,
+        signups: p.signups,
+        convRate: p.conversionRate,
+      }));
+    }
+
+    if (rangedStats.traffic.referrers.length > 0) {
+      trafficSources = rangedStats.traffic.referrers.slice(0, 6).map((r) => ({
+        name: r.referrer,
+        value: r.count,
+      }));
+    }
+
+    if (dailyVisitors.length > 0) {
+      timeSeries = dailyVisitors.map((d) => ({
+        date: d.date,
+        visitors: d.visitors,
+        signups: 0,
+      }));
+    }
+  } catch {
+    // DB not available — placeholders already set above
+  }
 
   // Funnel data from stats
   const funnelSteps = [
@@ -189,7 +224,7 @@ export default async function AdminDashboardPage({
           VISITORS OVER TIME
         </h2>
         <TimeSeriesChart
-          data={demoTimeSeries}
+          data={timeSeries}
           dataKeys={[
             { key: "visitors", color: "#E8836B", label: "Visitors" },
             { key: "signups", color: "#4ADE80", label: "Signups" },
@@ -228,7 +263,7 @@ export default async function AdminDashboardPage({
                 </tr>
               </thead>
               <tbody>
-                {PLACEHOLDER_TOP_PAGES.map((row) => (
+                {topPages.map((row) => (
                   <tr key={row.page} className="border-b border-white/[0.03]">
                     <td className="py-2.5 text-sm text-off-white">{row.page}</td>
                     <td className="py-2.5 text-sm text-foreground-muted text-right tabular-nums">
@@ -259,7 +294,7 @@ export default async function AdminDashboardPage({
           <h2 className="font-heading text-sm text-foreground-muted tracking-wider mb-4">
             TRAFFIC SOURCES
           </h2>
-          <DonutChart data={PLACEHOLDER_SOURCES} />
+          <DonutChart data={trafficSources} />
         </div>
       </div>
     </div>
