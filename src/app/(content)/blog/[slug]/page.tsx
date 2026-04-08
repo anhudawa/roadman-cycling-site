@@ -25,15 +25,6 @@ export async function generateMetadata({
   const post = getPostBySlug(slug);
   if (!post) return { title: "Post Not Found" };
 
-  const ogParams = new URLSearchParams({
-    type: "blog",
-    title: post.title,
-    pillar: post.pillar,
-    author: post.author,
-  });
-
-  const ogImageUrl = `https://roadmancycling.com/api/og?${ogParams.toString()}`;
-
   return {
     title: post.seoTitle || post.title,
     description: post.seoDescription,
@@ -49,21 +40,12 @@ export async function generateMetadata({
       modifiedTime: post.updatedDate,
       authors: [post.author],
       url: `https://roadmancycling.com/blog/${slug}`,
-      images: [
-        {
-          url: ogImageUrl,
-          width: 1200,
-          height: 630,
-          alt: post.title,
-        },
-      ],
       tags: post.keywords,
     },
     twitter: {
       card: "summary_large_image",
       title: post.seoTitle || post.title,
       description: post.seoDescription,
-      images: [ogImageUrl],
     },
   };
 }

@@ -26,18 +26,6 @@ export async function generateMetadata({
   const episode = getEpisodeBySlug(slug);
   if (!episode) return { title: "Episode Not Found" };
 
-  const ogParams = new URLSearchParams({
-    type: "podcast",
-    title: episode.title,
-    pillar: episode.pillar,
-    ...(episode.episodeNumber && {
-      episodeNumber: String(episode.episodeNumber),
-    }),
-    ...(episode.guest && { guest: episode.guest }),
-  });
-
-  const ogImageUrl = `https://roadmancycling.com/api/og?${ogParams.toString()}`;
-
   return {
     title: episode.seoTitle || episode.title,
     description: episode.seoDescription,
@@ -51,20 +39,11 @@ export async function generateMetadata({
       type: "article",
       publishedTime: episode.publishDate,
       url: `https://roadmancycling.com/podcast/${slug}`,
-      images: [
-        {
-          url: ogImageUrl,
-          width: 1200,
-          height: 630,
-          alt: episode.title,
-        },
-      ],
     },
     twitter: {
       card: "summary_large_image",
       title: episode.seoTitle || episode.title,
       description: episode.seoDescription,
-      images: [ogImageUrl],
     },
   };
 }
