@@ -9,29 +9,111 @@ const SKOOL_WEBHOOK_SECRET = process.env.SKOOL_WEBHOOK_SECRET;
  *
  * When a new member joins the free Skool community and fills out the
  * questionnaire, Skool sends a webhook POST to this endpoint.
- * We create a Beehiiv subscriber with their email + name + UTM tags.
+ * We create a Beehiiv subscriber, classify their persona from the
+ * questionnaire answers, and tag them to trigger the correct email sequence.
  *
- * Skool webhook payload (new member):
- * {
- *   "event": "member.joined",
- *   "data": {
- *     "id": "...",
- *     "name": "First Last",
- *     "email": "user@example.com",
- *     "bio": "...",
- *     "questions": [
- *       { "question": "...", "answer": "..." }
- *     ]
- *   }
- * }
+ * Persona classification from questionnaire answers:
+ *   - "plateau"    → stuck, not improving, hit a wall
+ *   - "comeback"   → returning, injury, time off, getting back
+ *   - "event-prep" → event, race, sportive, gran fondo, training plan
+ *   - "listener"   → new, just started, beginner, curious (default fallback)
+ *
+ * Tags applied:
+ *   - "skool-member" (always)
+ *   - One of: "plateau", "comeback", "event-prep", "listener"
  *
  * Setup: In Skool admin → Settings → Webhooks → Add this URL:
  *   https://roadmancycling.com/api/skool-webhook
- *
- * Env vars needed:
- *   BEEHIIV_API_KEY, BEEHIIV_PUBLICATION_ID (already set)
- *   SKOOL_WEBHOOK_SECRET (optional — set in Skool webhook config for verification)
  */
+
+// ── Persona classification ─────────────────────────────────
+
+type Persona = "plateau" | "comeback" | "event-prep" | "listener";
+
+const PERSONA_KEYWORDS: Record<Persona, string[]> = {
+  plateau: [
+    "plateau", "stuck", "not improving", "stagnant", "same level",
+    "can't improve", "hit a wall", "no progress", "flatlined", "stalled",
+    "not getting faster", "lost motivation", "going nowhere",
+  ],
+  comeback: [
+    "comeback", "coming back", "returning", "injury", "time off",
+    "getting back", "break from cycling", "haven't ridden", "used to ride",
+    "restart", "back into", "off the bike", "rehab", "recovery from",
+  ],
+  "event-prep": [
+    "event", "race", "sportive", "gran fondo", "training plan",
+    "preparing for", "first race", "goal event", "target event",
+    "etape", "ironman", "triathlon", "century", "audax", "ultra",
+    "competition", "time trial",
+  ],
+  // listener is the default — no keywords needed
+  listener: [],
+};
+
+function classifyPersona(answers: string[]): Persona {
+  const combined = answers.join(" ").toLowerCase();
+
+  // Score each persona by keyword matches
+  let bestPersona: Persona = "listener";
+  let bestScore = 0;
+
+  for (const [persona, keywords] of Object.entries(PERSONA_KEYWORDS)) {
+    if (persona === "listener") continue;
+    let score = 0;
+    for (const keyword of keywords) {
+      if (combined.includes(keyword)) {
+        score += 1;
+      }
+    }
+    if (score > bestScore) {
+      bestScore = score;
+      bestPersona = persona as Persona;
+    }
+  }
+
+  return bestPersona;
+}
+
+// ── Beehiiv tagging ─────────────────────────────────────────
+
+async function tagSubscriber(
+  subscriberId: string,
+  tags: string[]
+): Promise<boolean> {
+  if (!BEEHIIV_API_KEY || !BEEHIIV_PUBLICATION_ID) return false;
+
+  try {
+    // Beehiiv v2: PATCH subscriber to add tags
+    const res = await fetch(
+      `https://api.beehiiv.com/v2/publications/${BEEHIIV_PUBLICATION_ID}/subscriptions/${subscriberId}`,
+      {
+        method: "PATCH",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${BEEHIIV_API_KEY}`,
+        },
+        body: JSON.stringify({
+          tags,
+        }),
+      }
+    );
+
+    if (!res.ok) {
+      const errData = await res.json().catch(() => ({}));
+      console.error("[Skool Webhook] Tag error:", res.status, errData);
+      return false;
+    }
+
+    return true;
+  } catch (err) {
+    console.error("[Skool Webhook] Tag request failed:", err);
+    return false;
+  }
+}
+
+// ── Main handler ────────────────────────────────────────────
+
 export async function POST(request: Request) {
   try {
     // Verify webhook secret if configured
@@ -66,28 +148,39 @@ export async function POST(request: Request) {
     const firstName = nameParts[0] || "";
     const lastName = nameParts.slice(1).join(" ") || "";
 
-    // Extract questionnaire answers as custom fields
+    // Extract questionnaire answers for persona classification
+    const answers: string[] = [];
     const customFields: { name: string; value: string }[] = [];
+
     if (firstName) customFields.push({ name: "first_name", value: firstName });
     if (lastName) customFields.push({ name: "last_name", value: lastName });
 
     if (data?.questions && Array.isArray(data.questions)) {
-      data.questions.forEach((q: { question: string; answer: string }, i: number) => {
-        if (q.answer) {
-          customFields.push({
-            name: `skool_q${i + 1}`,
-            value: q.answer.slice(0, 500),
-          });
+      data.questions.forEach(
+        (q: { question: string; answer: string }, i: number) => {
+          if (q.answer) {
+            answers.push(q.answer);
+            customFields.push({
+              name: `skool_q${i + 1}`,
+              value: q.answer.slice(0, 500),
+            });
+          }
         }
-      });
+      );
     }
+
+    // Classify persona from questionnaire answers
+    const persona = classifyPersona(answers);
 
     if (!BEEHIIV_API_KEY || !BEEHIIV_PUBLICATION_ID) {
-      console.log(`[Skool Webhook] ${email} (${fullName}) — Beehiiv not configured, logging only`);
-      return NextResponse.json({ success: true });
+      console.log(
+        `[Skool Webhook] ${email} (${fullName}) persona=${persona} — Beehiiv not configured`
+      );
+      return NextResponse.json({ success: true, persona });
     }
 
-    const res = await fetch(
+    // Step 1: Create subscriber in Beehiiv
+    const createRes = await fetch(
       `https://api.beehiiv.com/v2/publications/${BEEHIIV_PUBLICATION_ID}/subscriptions`,
       {
         method: "POST",
@@ -108,19 +201,49 @@ export async function POST(request: Request) {
       }
     );
 
-    if (!res.ok) {
-      const errData = await res.json().catch(() => ({}));
-      // 409 = already exists, which is fine
-      if (res.status === 409) {
-        console.log(`[Skool Webhook] ${email} already in Beehiiv`);
-        return NextResponse.json({ success: true, existing: true });
+    let subscriberId: string | null = null;
+
+    if (createRes.ok) {
+      const createData = await createRes.json();
+      subscriberId = createData?.data?.id || null;
+      console.log(
+        `[Skool Webhook] ${email} (${fullName}) → Beehiiv created, id=${subscriberId}`
+      );
+    } else if (createRes.status === 409) {
+      // Already exists — look up their subscriber ID to add tags
+      console.log(`[Skool Webhook] ${email} already in Beehiiv, looking up ID`);
+      const lookupRes = await fetch(
+        `https://api.beehiiv.com/v2/publications/${BEEHIIV_PUBLICATION_ID}/subscriptions?email=${encodeURIComponent(email)}`,
+        {
+          headers: { Authorization: `Bearer ${BEEHIIV_API_KEY}` },
+        }
+      );
+      if (lookupRes.ok) {
+        const lookupData = await lookupRes.json();
+        subscriberId = lookupData?.data?.[0]?.id || null;
       }
-      console.error("[Skool Webhook] Beehiiv error:", res.status, errData);
+    } else {
+      const errData = await createRes.json().catch(() => ({}));
+      console.error("[Skool Webhook] Beehiiv create error:", createRes.status, errData);
       return NextResponse.json({ error: "Beehiiv API error" }, { status: 502 });
     }
 
-    console.log(`[Skool Webhook] ${email} (${fullName}) → Beehiiv OK`);
-    return NextResponse.json({ success: true });
+    // Step 2: Tag the subscriber with persona + skool-member
+    if (subscriberId) {
+      const tags = ["skool-member", persona];
+      const tagged = await tagSubscriber(subscriberId, tags);
+      console.log(
+        `[Skool Webhook] ${email} tagged: [${tags.join(", ")}] → ${tagged ? "OK" : "FAILED"}`
+      );
+    } else {
+      console.warn(`[Skool Webhook] ${email} — could not get subscriber ID for tagging`);
+    }
+
+    return NextResponse.json({
+      success: true,
+      persona,
+      tagged: !!subscriberId,
+    });
   } catch (error) {
     console.error("[Skool Webhook] Error:", error);
     return NextResponse.json(
