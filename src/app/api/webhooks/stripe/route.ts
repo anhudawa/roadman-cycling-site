@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from "next/server";
 import Stripe from "stripe";
 import { updateSlot, getSlots } from "@/lib/inventory";
 import { notifySpotlightPurchase } from "@/lib/notifications";
+import { upsertOnTrialStart, upsertOnPaid, upsertOnChurn } from "@/lib/admin/subscribers-store";
 
 /**
  * POST /api/webhooks/stripe
@@ -58,6 +59,66 @@ export async function POST(request: NextRequest) {
       await handleCheckoutCompleted(session);
       break;
     }
+
+    case "customer.subscription.created": {
+      try {
+        const subscription = event.data.object as Stripe.Subscription;
+        const customer = await stripe.customers.retrieve(subscription.customer as string);
+        if (!customer.deleted && customer.email) {
+          if (subscription.trial_end) {
+            await upsertOnTrialStart(customer.email, customer.id);
+            console.log(`[Stripe Webhook] Trial started: ${customer.email}`);
+          } else {
+            await upsertOnPaid(customer.email, customer.id);
+            console.log(`[Stripe Webhook] Paid directly: ${customer.email}`);
+          }
+        }
+      } catch (err) {
+        console.error("[Stripe Webhook] subscription.created handler error:", err);
+      }
+      break;
+    }
+
+    case "invoice.paid": {
+      try {
+        const invoice = event.data.object as Stripe.Invoice;
+        // Only process subscription-related invoices
+        const isSubscriptionInvoice =
+          invoice.billing_reason === "subscription_cycle" ||
+          invoice.billing_reason === "subscription_create" ||
+          invoice.billing_reason === "subscription_update";
+        if (isSubscriptionInvoice) {
+          const customer = await stripe.customers.retrieve(invoice.customer as string);
+          if (!customer.deleted && customer.email) {
+            if (
+              invoice.billing_reason === "subscription_cycle" ||
+              (invoice.billing_reason === "subscription_create" && (invoice.amount_paid ?? 0) > 0)
+            ) {
+              await upsertOnPaid(customer.email, customer.id);
+              console.log(`[Stripe Webhook] Paid invoice: ${customer.email}, amount: ${invoice.amount_paid}`);
+            }
+          }
+        }
+      } catch (err) {
+        console.error("[Stripe Webhook] invoice.paid handler error:", err);
+      }
+      break;
+    }
+
+    case "customer.subscription.deleted": {
+      try {
+        const subscription = event.data.object as Stripe.Subscription;
+        const customer = await stripe.customers.retrieve(subscription.customer as string);
+        if (!customer.deleted && customer.email) {
+          await upsertOnChurn(customer.email);
+          console.log(`[Stripe Webhook] Churned: ${customer.email}`);
+        }
+      } catch (err) {
+        console.error("[Stripe Webhook] subscription.deleted handler error:", err);
+      }
+      break;
+    }
+
     default:
       // Unhandled event type — log and acknowledge
       console.log(`Unhandled Stripe event type: ${event.type}`);

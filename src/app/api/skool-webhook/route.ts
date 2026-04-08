@@ -1,4 +1,5 @@
 import { NextResponse } from "next/server";
+import { upsertOnSkoolJoin } from "@/lib/admin/subscribers-store";
 
 const BEEHIIV_API_KEY = process.env.BEEHIIV_API_KEY;
 const BEEHIIV_PUBLICATION_ID = process.env.BEEHIIV_PUBLICATION_ID;
@@ -178,6 +179,14 @@ export async function POST(request: Request) {
 
     // Classify persona from questionnaire answers
     const persona = classifyPersona(answers);
+
+    // Upsert subscriber with Skool join timestamp
+    try {
+      await upsertOnSkoolJoin(email, persona);
+    } catch (err) {
+      console.error("[Skool Webhook] Subscriber upsert failed:", err);
+      // Non-blocking — continue with Beehiiv flow
+    }
 
     if (!BEEHIIV_API_KEY || !BEEHIIV_PUBLICATION_ID) {
       console.log(

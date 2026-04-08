@@ -1,5 +1,6 @@
 import { recordEvent } from "@/lib/admin/events-store";
 import type { EventType } from "@/lib/admin/events-store";
+import { upsertOnSignup } from "@/lib/admin/subscribers-store";
 
 export async function POST(request: Request) {
   try {
@@ -31,6 +32,16 @@ export async function POST(request: Request) {
       sessionId: session_id,
       variantId: variant_id,
     });
+
+    // Upsert subscriber on signup events
+    if (type === "signup" && email) {
+      try {
+        await upsertOnSignup(email, page, source);
+      } catch (err) {
+        console.error("[Events API] Subscriber upsert failed:", err);
+        // Non-blocking — event was already recorded
+      }
+    }
 
     return Response.json({ success: true, id: event.id });
   } catch (error) {
