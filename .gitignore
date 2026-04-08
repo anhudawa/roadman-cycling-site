@@ -46,3 +46,6 @@ yarn-error.log*
 *.tsbuildinfo
 next-env.d.ts
 .superpowers/
+
+# Repurpose pipeline state (local tracking)
+scripts/repurpose-state.json
