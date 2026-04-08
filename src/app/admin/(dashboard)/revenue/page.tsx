@@ -9,6 +9,7 @@ import { parseTimeRange } from "@/lib/admin/time-ranges";
 import { Suspense } from "react";
 import { TimeRangePicker } from "../components/TimeRangePicker";
 import { TimeSeriesChart } from "../components/charts/TimeSeriesChart";
+import { CsvExportButton } from "./csv-export-button";
 
 function formatCurrency(cents: number, currency = "eur"): string {
   return new Intl.NumberFormat("en-IE", {
@@ -148,11 +149,12 @@ export default async function RevenuePage({
 
       {/* Recent transactions table */}
       <div className="bg-background-elevated border border-white/5 rounded-xl overflow-hidden">
-        <div className="px-4 py-3 border-b border-white/5">
+        <div className="px-4 py-3 border-b border-white/5 flex items-center justify-between">
           <h2 className="font-heading text-sm text-foreground-muted tracking-wider">
             RECENT TRANSACTIONS
             {hasTransactions ? ` (${recentCharges.length})` : ""}
           </h2>
+          <CsvExportButton charges={recentCharges} />
         </div>
         <div className="overflow-x-auto">
           <table className="w-full">

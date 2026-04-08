@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import Link from "next/link";
+import { DownloadReportButton } from "./download-report-button";
 
 interface WeeklyPageAnalysis {
   page: string;
@@ -91,11 +92,13 @@ export default function AgentPage() {
             Weekly analysis runs every Monday at 8am
           </p>
         </div>
-        <button
-          onClick={runAnalysis}
-          disabled={loading}
-          className="px-4 py-2.5 bg-coral hover:bg-coral/90 disabled:bg-coral/40 disabled:cursor-not-allowed text-white text-sm font-medium rounded-lg transition-colors flex items-center gap-2 flex-shrink-0"
-        >
+        <div className="flex items-center gap-2 flex-shrink-0">
+          {analysis && <DownloadReportButton analysis={analysis} />}
+          <button
+            onClick={runAnalysis}
+            disabled={loading}
+            className="px-4 py-2.5 bg-coral hover:bg-coral/90 disabled:bg-coral/40 disabled:cursor-not-allowed text-white text-sm font-medium rounded-lg transition-colors flex items-center gap-2"
+          >
           {loading ? (
             <>
               <svg
@@ -122,7 +125,8 @@ export default function AgentPage() {
           ) : (
             "Run Analysis Now"
           )}
-        </button>
+          </button>
+        </div>
       </div>
 
       {/* Error */}

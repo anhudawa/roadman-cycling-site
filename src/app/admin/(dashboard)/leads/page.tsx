@@ -2,6 +2,7 @@ import { getStatsForRange, getLeadTotals } from "@/lib/admin/events-store";
 import { parseTimeRange } from "@/lib/admin/time-ranges";
 import { Suspense } from "react";
 import { TimeRangePicker } from "../components/TimeRangePicker";
+import { CsvExportButton } from "./csv-export-button";
 
 function TrendIndicator({ current, previous }: { current: number; previous: number }) {
   if (previous === 0 && current === 0) return <span className="text-foreground-subtle text-xs">--</span>;
@@ -125,10 +126,11 @@ export default async function LeadsPage({
 
       {/* Leads table */}
       <div className="bg-background-elevated border border-white/5 rounded-xl overflow-hidden">
-        <div className="px-4 py-3 border-b border-white/5">
+        <div className="px-4 py-3 border-b border-white/5 flex items-center justify-between">
           <h2 className="font-heading text-sm text-foreground-muted tracking-wider">
             RECENT SIGNUPS ({leads.length})
           </h2>
+          <CsvExportButton leads={leads} />
         </div>
         <div className="overflow-x-auto">
           <table className="w-full">
