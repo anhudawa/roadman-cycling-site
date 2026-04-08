@@ -95,3 +95,37 @@ export const agentReports = pgTable("agent_reports", {
   suggestedExperiments: jsonb("suggested_experiments"),
   createdAt: timestamp("created_at", { withTimezone: true }).defaultNow(),
 });
+
+// ── Repurposed Episodes ───────────────────────────────────
+export const repurposedEpisodes = pgTable("repurposed_episodes", {
+  id: serial("id").primaryKey(),
+  episodeSlug: text("episode_slug").notNull().unique(),
+  episodeTitle: text("episode_title").notNull(),
+  episodeNumber: integer("episode_number").notNull(),
+  pillar: text("pillar").notNull(),
+  status: text("status").notNull().default("pending"), // pending | approved | partial
+  generatedAt: timestamp("generated_at").notNull().defaultNow(),
+  createdAt: timestamp("created_at").notNull().defaultNow(),
+  updatedAt: timestamp("updated_at").notNull().defaultNow(),
+});
+
+// ── Repurposed Content ────────────────────────────────────
+export const repurposedContent = pgTable("repurposed_content", {
+  id: serial("id").primaryKey(),
+  episodeId: integer("episode_id").notNull().references(() => repurposedEpisodes.id),
+  contentType: text("content_type").notNull(), // blog | twitter | instagram | linkedin | facebook | quote-card
+  content: text("content").notNull(),
+  status: text("status").notNull().default("pending"), // pending | approved | rejected | amended
+  version: integer("version").notNull().default(1),
+  createdAt: timestamp("created_at").notNull().defaultNow(),
+  updatedAt: timestamp("updated_at").notNull().defaultNow(),
+});
+
+// ── Content Chat Messages ─────────────────────────────────
+export const contentChatMessages = pgTable("content_chat_messages", {
+  id: serial("id").primaryKey(),
+  contentId: integer("content_id").notNull().references(() => repurposedContent.id),
+  role: text("role").notNull(), // user | assistant
+  message: text("message").notNull(),
+  createdAt: timestamp("created_at").notNull().defaultNow(),
+});
