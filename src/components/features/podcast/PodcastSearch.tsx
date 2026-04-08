@@ -89,9 +89,10 @@ export function PodcastSearch({ episodes }: PodcastSearchProps) {
 
       {/* Filters */}
       <div className="flex flex-col gap-3 mb-8">
-        <div className="flex flex-nowrap overflow-x-auto gap-2 justify-center pb-2 -mx-5 px-5 md:flex-wrap md:overflow-visible md:pb-0 md:mx-0 md:px-0">
+        <div className="flex flex-nowrap overflow-x-auto gap-2 justify-center pb-2 -mx-5 px-5 md:flex-wrap md:overflow-visible md:pb-0 md:mx-0 md:px-0" role="group" aria-label="Filter by topic">
           <button
             onClick={() => setPillarFilter("")}
+            aria-pressed={!pillarFilter}
             className={`px-4 py-2 rounded-full text-sm font-body transition-colors cursor-pointer ${
               !pillarFilter
                 ? "bg-coral text-off-white"
@@ -104,6 +105,7 @@ export function PodcastSearch({ episodes }: PodcastSearchProps) {
             <button
               key={key}
               onClick={() => setPillarFilter(pillarFilter === key ? "" : key)}
+              aria-pressed={pillarFilter === key}
               className={`px-4 py-2 rounded-full text-sm font-body transition-colors cursor-pointer ${
                 pillarFilter === key
                   ? "bg-coral text-off-white"
@@ -115,7 +117,7 @@ export function PodcastSearch({ episodes }: PodcastSearchProps) {
           ))}
         </div>
 
-        <div className="flex flex-nowrap overflow-x-auto gap-2 justify-center pb-2 -mx-5 px-5 md:flex-wrap md:overflow-visible md:pb-0 md:mx-0 md:px-0">
+        <div className="flex flex-nowrap overflow-x-auto gap-2 justify-center pb-2 -mx-5 px-5 md:flex-wrap md:overflow-visible md:pb-0 md:mx-0 md:px-0" role="group" aria-label="Filter by episode type">
           {(
             [
               ["interview", "Interviews"],
@@ -127,6 +129,7 @@ export function PodcastSearch({ episodes }: PodcastSearchProps) {
             <button
               key={type}
               onClick={() => setTypeFilter(typeFilter === type ? "" : type)}
+              aria-pressed={typeFilter === type}
               className={`px-3 py-1.5 rounded-full text-xs font-body transition-colors cursor-pointer ${
                 typeFilter === type
                   ? "bg-purple text-off-white"

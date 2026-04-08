@@ -157,6 +157,7 @@ export default function ContactPage() {
                 <button
                   type="submit"
                   disabled={status === "loading"}
+                  aria-busy={status === "loading"}
                   className="
                     w-full font-heading tracking-wider text-lg
                     bg-coral hover:bg-coral-hover disabled:opacity-50
@@ -168,7 +169,7 @@ export default function ContactPage() {
                 </button>
 
                 {status === "error" && (
-                  <p className="text-red-400 text-sm text-center">
+                  <p className="text-red-400 text-sm text-center" role="alert">
                     Something went wrong. Please try again.
                   </p>
                 )}

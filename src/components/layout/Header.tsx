@@ -92,7 +92,7 @@ export function Header() {
                   >
                     {item.label}
                     {item.children && (
-                      <span className="ml-1 text-xs opacity-50">&#9662;</span>
+                      <span className="ml-1 text-xs opacity-50" aria-hidden="true">&#9662;</span>
                     )}
                     {/* Animated underline */}
                     <span className="absolute bottom-[-4px] left-0 h-[1.5px] w-0 group-hover:w-full bg-gradient-to-r from-coral to-coral/50 transition-all duration-300 ease-[cubic-bezier(0.16,1,0.3,1)]" />

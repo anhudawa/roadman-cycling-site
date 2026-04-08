@@ -41,6 +41,7 @@ function TypeIcon({ type }: { type: SearchableItem["type"] }) {
           viewBox="0 0 24 24"
           stroke="currentColor"
           strokeWidth={1.5}
+          aria-hidden="true"
         >
           <path
             strokeLinecap="round"
@@ -57,6 +58,7 @@ function TypeIcon({ type }: { type: SearchableItem["type"] }) {
           viewBox="0 0 24 24"
           stroke="currentColor"
           strokeWidth={1.5}
+          aria-hidden="true"
         >
           <path
             strokeLinecap="round"
@@ -73,6 +75,7 @@ function TypeIcon({ type }: { type: SearchableItem["type"] }) {
           viewBox="0 0 24 24"
           stroke="currentColor"
           strokeWidth={1.5}
+          aria-hidden="true"
         >
           <path
             strokeLinecap="round"
@@ -89,6 +92,7 @@ function TypeIcon({ type }: { type: SearchableItem["type"] }) {
           viewBox="0 0 24 24"
           stroke="currentColor"
           strokeWidth={1.5}
+          aria-hidden="true"
         >
           <path
             strokeLinecap="round"
@@ -254,6 +258,7 @@ export function SiteSearch({ items }: SiteSearchProps) {
           viewBox="0 0 24 24"
           stroke="currentColor"
           strokeWidth={2}
+          aria-hidden="true"
         >
           <path
             strokeLinecap="round"
@@ -294,10 +299,12 @@ export function SiteSearch({ items }: SiteSearchProps) {
       </div>
 
       {/* Tabs */}
-      <div className="flex flex-wrap gap-2 justify-center mb-8">
+      <div className="flex flex-wrap gap-2 justify-center mb-8" role="tablist" aria-label="Filter results by type">
         {TABS.map((tab) => (
           <button
             key={tab.key}
+            role="tab"
+            aria-selected={activeTab === tab.key}
             onClick={() => setActiveTab(tab.key)}
             className={`px-5 py-2.5 rounded-full text-sm font-body transition-all cursor-pointer ${
               activeTab === tab.key
@@ -335,6 +342,7 @@ export function SiteSearch({ items }: SiteSearchProps) {
               viewBox="0 0 24 24"
               stroke="currentColor"
               strokeWidth={1.5}
+              aria-hidden="true"
             >
               <path
                 strokeLinecap="round"
@@ -362,6 +370,7 @@ export function SiteSearch({ items }: SiteSearchProps) {
               viewBox="0 0 24 24"
               stroke="currentColor"
               strokeWidth={1.5}
+              aria-hidden="true"
             >
               <path
                 strokeLinecap="round"
@@ -433,6 +442,7 @@ export function SiteSearch({ items }: SiteSearchProps) {
                     stroke="currentColor"
                     strokeWidth={2}
                     style={{ transitionDuration: "var(--duration-fast)" }}
+                    aria-hidden="true"
                   >
                     <path
                       strokeLinecap="round"

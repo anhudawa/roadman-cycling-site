@@ -452,7 +452,7 @@ export default function FuellingPage() {
                   value={duration} onChange={(e) => { setDuration(e.target.value); setResult(null); }}
                   className={`${durationError ? errorInputClasses : inputClasses} text-xl`}
                 />
-                {durationError && <p className="text-red-400 text-xs mt-1">{durationError}</p>}
+                {durationError && <p className="text-red-400 text-xs mt-1" role="alert">{durationError}</p>}
               </div>
 
               {/* Session Type */}
@@ -491,7 +491,7 @@ export default function FuellingPage() {
                   value={watts} onChange={(e) => { setWatts(e.target.value); setResult(null); }}
                   className={wattsError ? errorInputClasses : inputClasses}
                 />
-                {wattsError && <p className="text-red-400 text-xs mt-1">{wattsError}</p>}
+                {wattsError && <p className="text-red-400 text-xs mt-1" role="alert">{wattsError}</p>}
               </div>
 
               {/* Body Weight */}
@@ -501,7 +501,7 @@ export default function FuellingPage() {
                   value={weight} onChange={(e) => { setWeight(e.target.value); setResult(null); }}
                   className={weightError ? errorInputClasses : inputClasses}
                 />
-                {weightError && <p className="text-red-400 text-xs mt-1">{weightError}</p>}
+                {weightError && <p className="text-red-400 text-xs mt-1" role="alert">{weightError}</p>}
               </div>
 
               {/* Gut Training */}

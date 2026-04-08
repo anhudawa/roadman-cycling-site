@@ -107,7 +107,7 @@ export function EmailCapture({
             {heading}
           </h2>
           {subheading && (
-            <p className="text-off-white/80 max-w-lg mx-auto mb-8">
+            <p className="text-off-white max-w-lg mx-auto mb-8">
               {subheading}
             </p>
           )}
@@ -131,7 +131,7 @@ export function EmailCapture({
                   }}
                   className="
                     flex-1 bg-white/20 border border-white/30 rounded-md px-4 py-3
-                    text-off-white placeholder:text-off-white/60
+                    text-off-white placeholder:text-off-white/70
                     focus:border-white focus:outline-none transition-colors
                   "
                   style={{ transitionDuration: "var(--duration-fast)" }}
@@ -152,7 +152,7 @@ export function EmailCapture({
                 </button>
               </form>
               {status === "error" && (
-                <p className="text-off-white/90 text-sm mt-3">{message}</p>
+                <p className="text-off-white text-sm mt-3" role="alert">{message}</p>
               )}
             </>
           )}
@@ -208,7 +208,7 @@ export function EmailCapture({
             </button>
           </form>
           {status === "error" && (
-            <p className="text-red-400 text-sm mt-2">{message}</p>
+            <p className="text-red-400 text-sm mt-2" role="alert">{message}</p>
           )}
         </>
       )}

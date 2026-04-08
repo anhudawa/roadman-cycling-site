@@ -176,7 +176,7 @@ export default function FTPZonesPage() {
                 </Button>
               </div>
               {ftpError && (
-                <p className="text-red-400 text-xs mt-1">{ftpError}</p>
+                <p className="text-red-400 text-xs mt-1" role="alert">{ftpError}</p>
               )}
             </div>
 

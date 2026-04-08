@@ -61,12 +61,10 @@ function MarqueeRow({
   direction: "left" | "right";
   duration: number;
 }) {
-  // Duplicate items to create seamless loop
-  const doubled = [...guests, ...guests];
-
   return (
     <div
       className="flex gap-3 w-max marquee-row"
+      aria-hidden="true"
       style={{
         animationName: direction === "left" ? "marquee-left" : "marquee-right",
         animationDuration: `${duration}s`,
@@ -75,10 +73,11 @@ function MarqueeRow({
         willChange: "transform",
       }}
     >
-      {doubled.map((guest, i) => {
+      {/* Duplicate items to create seamless loop — aria-hidden on parent prevents screen readers from reading duplicates */}
+      {[...guests, ...guests].map((guest, i) => {
         const Tag = guest.href ? "a" : "div";
         const linkProps = guest.href
-          ? { href: guest.href, target: "_blank" as const, rel: "noopener noreferrer" }
+          ? { href: guest.href, target: "_blank" as const, rel: "noopener noreferrer", tabIndex: -1 as const }
           : {};
         return (
           <Tag

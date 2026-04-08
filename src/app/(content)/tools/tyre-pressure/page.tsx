@@ -10,17 +10,60 @@ type Surface = "smooth" | "rough" | "gravel";
 type TubeType = "clincher" | "tubeless" | "tubular";
 
 /**
- * Tyre pressure calculator calibrated against SILCA Professional Pressure Calculator.
+ * Tyre pressure calculator based on Frank Berto's 15% tyre deflection research
+ * and calibrated against SILCA Professional Pressure Calculator outputs.
  *
- * Model: P = (wheelLoad_kg × K) / (tyreWidth_mm ^ 1.5)
- * Based on the 15% tyre deflection / contact patch optimisation model
- * (Frank Berto research, used by SILCA).
+ * Model overview:
+ *   1. Look up base rear pressure from a table interpolated by tyre width
+ *      (table values calibrated for an 83.5kg system weight — 75kg + 8.5kg)
+ *   2. Scale linearly by actual total weight vs reference weight
+ *   3. Derive front pressure as ~93% of rear (matching the ~5-7% front/rear
+ *      split seen in SILCA and Berto's 45/55 weight distribution research)
+ *   4. Adjust for rim width, tube type, and surface condition
  *
- * K constants calibrated against SILCA reference outputs:
- *   80kg rider + 8kg bike, 25mm, clincher, smooth, 19mm rim → ~87 rear, ~78 front
- *   80kg rider + 8kg bike, 28mm, clincher, smooth, 21mm rim → ~75 rear, ~68 front
- *   80kg rider + 8kg bike, 32mm, clincher, smooth, 21mm rim → ~58 rear, ~50 front
+ * Calibration targets (75kg rider + 8.5kg bike, clincher, smooth, standard rim):
+ *   25mm → front ~85, rear ~90
+ *   28mm → front ~70, rear ~75
+ *   32mm → front ~55, rear ~60
+ *   40mm → front ~35, rear ~38
+ *   45mm → front ~28, rear ~31
  */
+
+// Reference REAR pressures (PSI) at 83.5kg system weight (75kg rider + 8.5kg bike).
+// Derived from SILCA calculator outputs, Berto deflection charts, and BRR test data.
+const BASE_REAR_PRESSURE_TABLE: [number, number][] = [
+  // [tyreWidth_mm, rearPSI_at_83.5kg_system]
+  [23, 105],
+  [25, 90],
+  [28, 75],
+  [30, 67],
+  [32, 60],
+  [35, 50],
+  [38, 43],
+  [40, 38],
+  [42, 35],
+  [45, 31],
+  [50, 26],
+  [55, 22],
+  [60, 19],
+];
+
+/** Linear interpolation between lookup table entries */
+function interpolateBasePressure(tyreWidth: number): number {
+  const table = BASE_REAR_PRESSURE_TABLE;
+  if (tyreWidth <= table[0][0]) return table[0][1];
+  if (tyreWidth >= table[table.length - 1][0]) return table[table.length - 1][1];
+  for (let i = 0; i < table.length - 1; i++) {
+    const [w0, p0] = table[i];
+    const [w1, p1] = table[i + 1];
+    if (tyreWidth >= w0 && tyreWidth <= w1) {
+      const t = (tyreWidth - w0) / (w1 - w0);
+      return p0 + t * (p1 - p0);
+    }
+  }
+  return table[0][1];
+}
+
 function calculatePressure(
   riderWeight: number,
   bikeWeight: number,
@@ -30,37 +73,42 @@ function calculatePressure(
   tubeType: TubeType
 ): { front: number; rear: number } {
   const totalWeight = riderWeight + bikeWeight;
+  const refWeight = 83.5; // reference system weight the table is calibrated for
 
-  // SILCA uses 40% front / 60% rear weight distribution
-  const rearLoad = totalWeight * 0.60;
-  const frontLoad = totalWeight * 0.40;
+  // Look up base rear pressure and scale linearly by weight.
+  // Pressure is proportional to load at constant deflection (Berto).
+  const baseRearPSI = interpolateBasePressure(tyreWidth);
+  let rearPSI = baseRearPSI * (totalWeight / refWeight);
 
-  // Core model: P = load × K / tyreWidth^1.5
-  // K_rear and K_front calibrated against SILCA reference data
-  const K_rear = 207;
-  const K_front = 275;
-  const widthPow = Math.pow(tyreWidth, 1.5);
+  // Front tyre runs ~7% lower than rear.
+  // This corresponds to ~45/55 weight distribution (Berto) and matches
+  // the 5-10 PSI front/rear gap seen in SILCA outputs across all widths.
+  let frontPSI = rearPSI * 0.93;
 
-  let rearPSI = (rearLoad * K_rear) / widthPow;
-  let frontPSI = (frontLoad * K_front) / widthPow;
-
-  // Rim width correction: wider rim spreads tyre → lower pressure needed
-  // Baseline internal rim widths per tyre size (SILCA standard pairings)
+  // Rim width correction: wider rims spread the tyre casing, increasing
+  // effective air volume → lower pressure needed for the same deflection.
+  // Baseline internal rim widths per tyre size (modern standard pairings).
   const baselineRims: Record<number, number> = {
     23: 15, 25: 17, 28: 19, 30: 19, 32: 21,
     35: 21, 38: 23, 40: 25, 42: 25, 45: 27,
+    50: 29, 55: 30, 60: 30,
   };
-  const closestTyre = [23, 25, 28, 30, 32, 35, 38, 40, 42, 45].reduce(
+  const tyreSizes = [23, 25, 28, 30, 32, 35, 38, 40, 42, 45, 50, 55, 60];
+  const closestTyre = tyreSizes.reduce(
     (prev, curr) =>
       Math.abs(curr - tyreWidth) < Math.abs(prev - tyreWidth) ? curr : prev
   );
   const baseRim = baselineRims[closestTyre] || 19;
   const rimDelta = rimWidth - baseRim;
-  const rimFactor = 1 - rimDelta * 0.015; // ~3% per 2mm wider
+  // ~1.5% pressure reduction per mm of extra rim width (SILCA methodology)
+  const rimFactor = 1 - rimDelta * 0.015;
   rearPSI *= rimFactor;
   frontPSI *= rimFactor;
 
-  // Tube type: tubeless ~9% lower, tubular ~3% lower (SILCA reference)
+  // Tube type adjustment (SILCA / BRR data):
+  //   Tubeless: 8-10% lower — eliminates pinch-flat risk so lower pressure
+  //   is safe, and reduces hysteresis from inner tube friction.
+  //   Tubular: ~3% lower — supple casing, lower hysteresis.
   const tubeModifier: Record<TubeType, number> = {
     clincher: 1.0,
     tubeless: 0.91,
@@ -69,18 +117,22 @@ function calculatePressure(
   rearPSI *= tubeModifier[tubeType];
   frontPSI *= tubeModifier[tubeType];
 
-  // Surface: rough ~12% lower, gravel ~18% lower
+  // Surface condition (SILCA K-factor approach simplified):
+  //   Rough roads: ~10% lower — tyre needs to absorb vibration, lower
+  //   pressure reduces impedance losses from surface roughness.
+  //   Gravel: ~20% lower — maximise contact patch and comfort,
+  //   prevent bouncing over loose surfaces.
   const surfaceModifier: Record<Surface, number> = {
     smooth: 1.0,
-    rough: 0.88,
-    gravel: 0.82,
+    rough: 0.90,
+    gravel: 0.80,
   };
   rearPSI *= surfaceModifier[surface];
   frontPSI *= surfaceModifier[surface];
 
   // Clamp to safe ranges
-  rearPSI = Math.max(20, Math.min(130, rearPSI));
-  frontPSI = Math.max(20, Math.min(120, frontPSI));
+  rearPSI = Math.max(18, Math.min(130, rearPSI));
+  frontPSI = Math.max(18, Math.min(120, frontPSI));
 
   return {
     front: Math.round(frontPSI),
@@ -178,7 +230,7 @@ export default function TyrePressurePage() {
                   className={`${riderWeightError ? errorInputClasses : inputClasses} text-xl`}
                 />
                 {riderWeightError && (
-                  <p className="text-red-400 text-xs mt-1">{riderWeightError}</p>
+                  <p className="text-red-400 text-xs mt-1" role="alert">{riderWeightError}</p>
                 )}
               </div>
 
@@ -195,7 +247,7 @@ export default function TyrePressurePage() {
                   className={bikeWeightError ? errorInputClasses : inputClasses}
                 />
                 {bikeWeightError && (
-                  <p className="text-red-400 text-xs mt-1">{bikeWeightError}</p>
+                  <p className="text-red-400 text-xs mt-1" role="alert">{bikeWeightError}</p>
                 )}
               </div>
 
@@ -210,8 +262,8 @@ export default function TyrePressurePage() {
                   onChange={(e) => { setTyreWidth(e.target.value); setResult(null); }}
                   className={`${inputClasses} appearance-none`}
                 >
-                  {[23, 25, 28, 30, 32, 35, 38, 40, 42, 45].map((w) => (
-                    <option key={w} value={w} className="bg-charcoal">{w}mm</option>
+                  {[23, 25, 28, 30, 32, 35, 38, 40, 42, 45, 50, 55, 60].map((w) => (
+                    <option key={w} value={w} className="bg-charcoal">{w}mm{w >= 38 && w <= 45 ? " (gravel)" : w > 45 ? " (MTB)" : ""}</option>
                   ))}
                 </select>
               </div>
@@ -227,7 +279,7 @@ export default function TyrePressurePage() {
                   onChange={(e) => { setRimWidth(e.target.value); setResult(null); }}
                   className={`${inputClasses} appearance-none`}
                 >
-                  {[15, 17, 19, 21, 23, 25, 27, 30].map((w) => (
+                  {[15, 17, 19, 21, 23, 25, 27, 30, 35].map((w) => (
                     <option key={w} value={w} className="bg-charcoal">{w}mm</option>
                   ))}
                 </select>
@@ -293,6 +345,7 @@ export default function TyrePressurePage() {
                     <h2 className="font-heading text-2xl text-off-white">YOUR RECOMMENDED PRESSURE</h2>
                     <button
                       onClick={handleCopyResults}
+                      aria-label={copied ? "Results copied to clipboard" : "Copy results to clipboard"}
                       className="text-sm text-coral hover:text-coral/80 font-heading tracking-wider transition-colors cursor-pointer"
                     >
                       {copied ? "Copied!" : "Copy Results"}
@@ -329,14 +382,21 @@ export default function TyrePressurePage() {
                   >
                     <h3 className="font-heading text-lg text-off-white">HOW THIS WORKS</h3>
                     <p className="text-foreground-muted text-sm leading-relaxed">
-                      This calculator uses the 15% tyre deflection model based on Frank Berto&apos;s research.
-                      Your weight distribution on a road bike is approximately 40% front / 60% rear,
-                      so the rear tyre needs higher pressure. Rim width affects the effective tyre volume,
-                      and tubeless setups run 8-10% lower than clincher for equivalent performance.
+                      This calculator uses Frank Berto&apos;s 15% tyre deflection model, calibrated against
+                      SILCA&apos;s professional pressure calculator and Bicycle Rolling Resistance test data.
+                      Weight distribution on a road bike is roughly 45% front / 55% rear, so the rear
+                      tyre always needs slightly higher pressure. Wider rims spread the tyre casing,
+                      increasing air volume and reducing the pressure needed for the same support.
+                    </p>
+                    <p className="text-foreground-muted text-sm leading-relaxed">
+                      Tubeless setups run 8-10% lower than clincher because there&apos;s no inner tube to
+                      pinch flat and less hysteresis in the casing. Rough roads and gravel benefit from
+                      lower pressure to reduce vibration losses and improve grip.
                     </p>
                     <p className="text-foreground-muted text-sm leading-relaxed">
                       These are starting points. Fine-tune by 2-3 PSI based on feel. If you&apos;re getting
-                      pinch flats, go higher. If the ride feels harsh, go lower.
+                      pinch flats, go higher. If the ride feels harsh or you&apos;re losing grip in corners,
+                      go lower.
                     </p>
                   </motion.div>
 

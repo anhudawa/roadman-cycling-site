@@ -1065,7 +1065,7 @@ export default function MtbSetupPage() {
                     ))}
                   </div>
                 </div>
-                {weightError && <p className="text-red-400 text-xs mt-1">{weightError}</p>}
+                {weightError && <p className="text-red-400 text-xs mt-1" role="alert">{weightError}</p>}
               </div>
 
               {/* ---- Bike Weight ---- */}
@@ -1080,7 +1080,7 @@ export default function MtbSetupPage() {
                   onChange={(e) => { setBikeWeight(e.target.value); clearResults(); }}
                   className={bikeWeightError ? errorInputClasses : inputClasses}
                 />
-                {bikeWeightError && <p className="text-red-400 text-xs mt-1">{bikeWeightError}</p>}
+                {bikeWeightError && <p className="text-red-400 text-xs mt-1" role="alert">{bikeWeightError}</p>}
               </div>
 
               {/* ---- Riding Style ---- */}
@@ -1366,6 +1366,7 @@ export default function MtbSetupPage() {
                   <div className="flex justify-end">
                     <button
                       onClick={handleCopyResults}
+                      aria-label={copied ? "Results copied to clipboard" : "Copy setup results to clipboard"}
                       className="text-sm text-coral hover:text-coral/80 font-heading tracking-wider transition-colors cursor-pointer"
                     >
                       {copied ? "Copied!" : "Copy Results"}

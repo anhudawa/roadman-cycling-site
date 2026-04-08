@@ -136,7 +136,7 @@ export default function EnergyAvailabilityPage() {
                   value={weight} onChange={(e) => { setWeight(e.target.value); setResult(null); }}
                   className={`${weightError ? errorInputClasses : inputClasses} text-xl`}
                 />
-                {weightError && <p className="text-red-400 text-xs mt-1">{weightError}</p>}
+                {weightError && <p className="text-red-400 text-xs mt-1" role="alert">{weightError}</p>}
               </div>
               <div>
                 <label htmlFor="ea-bodyfat" className="block font-heading text-lg text-off-white mb-2">BODY FAT %</label>
@@ -144,7 +144,7 @@ export default function EnergyAvailabilityPage() {
                   value={bodyFat} onChange={(e) => { setBodyFat(e.target.value); setResult(null); }}
                   className={bodyFatError ? errorInputClasses : inputClasses}
                 />
-                {bodyFatError && <p className="text-red-400 text-xs mt-1">{bodyFatError}</p>}
+                {bodyFatError && <p className="text-red-400 text-xs mt-1" role="alert">{bodyFatError}</p>}
               </div>
               <div>
                 <label htmlFor="ea-calories" className="block font-heading text-lg text-off-white mb-2">DAILY CALORIE INTAKE</label>
@@ -153,7 +153,7 @@ export default function EnergyAvailabilityPage() {
                   value={calories} onChange={(e) => { setCalories(e.target.value); setResult(null); }}
                   className={caloriesError ? errorInputClasses : inputClasses}
                 />
-                {caloriesError && <p className="text-red-400 text-xs mt-1">{caloriesError}</p>}
+                {caloriesError && <p className="text-red-400 text-xs mt-1" role="alert">{caloriesError}</p>}
               </div>
               <div>
                 <label htmlFor="ea-hours" className="block font-heading text-lg text-off-white mb-2">TRAINING HOURS PER WEEK</label>
@@ -161,14 +161,15 @@ export default function EnergyAvailabilityPage() {
                   value={hours} onChange={(e) => { setHours(e.target.value); setResult(null); }}
                   className={hoursError ? errorInputClasses : inputClasses}
                 />
-                {hoursError && <p className="text-red-400 text-xs mt-1">{hoursError}</p>}
+                {hoursError && <p className="text-red-400 text-xs mt-1" role="alert">{hoursError}</p>}
               </div>
               <div>
-                <label className="block font-heading text-lg text-off-white mb-2">AVERAGE TRAINING INTENSITY</label>
-                <div className="grid grid-cols-3 gap-2">
+                <label id="ea-intensity-label" className="block font-heading text-lg text-off-white mb-2">AVERAGE TRAINING INTENSITY</label>
+                <div className="grid grid-cols-3 gap-2" role="group" aria-labelledby="ea-intensity-label">
                   {([["low", "Low (Z1-2)"], ["moderate", "Moderate (Z2-3)"], ["high", "High (Z4+)"]] as const).map(([val, label]) => (
                     <button key={val} type="button"
                       onClick={() => { setIntensity(val); setResult(null); }}
+                      aria-pressed={intensity === val}
                       className={`py-3 rounded-lg font-heading text-xs tracking-wider transition-colors cursor-pointer ${
                         intensity === val ? "bg-coral text-off-white" : "bg-white/5 text-foreground-muted hover:bg-white/10"
                       }`}
@@ -179,6 +180,7 @@ export default function EnergyAvailabilityPage() {
               <Button onClick={handleCalculate} size="lg" className="w-full">Calculate</Button>
             </div>
 
+            <div aria-live="polite" aria-atomic="false">
             <AnimatePresence mode="wait">
               {result && (
                 <motion.div
@@ -193,6 +195,7 @@ export default function EnergyAvailabilityPage() {
                     <h2 className="font-heading text-2xl text-off-white">YOUR ENERGY AVAILABILITY</h2>
                     <button
                       onClick={handleCopyResults}
+                      aria-label={copied ? "Results copied to clipboard" : "Copy results to clipboard"}
                       className="text-sm text-coral hover:text-coral/80 font-heading tracking-wider transition-colors cursor-pointer"
                     >
                       {copied ? "Copied!" : "Copy Results"}
@@ -296,6 +299,7 @@ export default function EnergyAvailabilityPage() {
                 </motion.div>
               )}
             </AnimatePresence>
+            </div>
           </Container>
         </Section>
       </main>

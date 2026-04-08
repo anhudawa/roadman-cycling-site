@@ -45,7 +45,7 @@ export function GuestGrid({ guests }: { guests: GuestCardData[] }) {
   return (
     <>
       {/* Filter bar */}
-      <div className="flex flex-wrap gap-2 justify-center mb-10">
+      <div className="flex flex-wrap gap-2 justify-center mb-10" role="group" aria-label="Filter guests by topic">
         {FILTERS.map(({ key, label }) => {
           const isActive = activeFilter === key;
           const pillarColor =
@@ -57,6 +57,7 @@ export function GuestGrid({ guests }: { guests: GuestCardData[] }) {
             <button
               key={key}
               onClick={() => setActiveFilter(key)}
+              aria-pressed={isActive}
               className={`
                 font-heading text-sm tracking-wider px-5 py-2 rounded-full
                 border transition-all duration-200

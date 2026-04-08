@@ -172,7 +172,7 @@ export default function RaceWeightPage() {
                   value={height} onChange={(e) => { setHeight(e.target.value); setResult(null); }}
                   className={heightError ? errorInputClasses : inputClasses}
                 />
-                {heightError && <p className="text-red-400 text-xs mt-1">{heightError}</p>}
+                {heightError && <p className="text-red-400 text-xs mt-1" role="alert">{heightError}</p>}
               </div>
               <div>
                 <label htmlFor="rw-weight" className="block font-heading text-lg text-off-white mb-2">CURRENT WEIGHT (KG)</label>
@@ -180,7 +180,7 @@ export default function RaceWeightPage() {
                   value={weight} onChange={(e) => { setWeight(e.target.value); setResult(null); }}
                   className={weightError ? errorInputClasses : inputClasses}
                 />
-                {weightError && <p className="text-red-400 text-xs mt-1">{weightError}</p>}
+                {weightError && <p className="text-red-400 text-xs mt-1" role="alert">{weightError}</p>}
               </div>
               <div>
                 <label htmlFor="rw-bodyfat" className="block font-heading text-lg text-off-white mb-2">BODY FAT %</label>
@@ -189,7 +189,7 @@ export default function RaceWeightPage() {
                   value={bodyFat} onChange={(e) => { setBodyFat(e.target.value); setResult(null); }}
                   className={bodyFatError ? errorInputClasses : inputClasses}
                 />
-                {bodyFatError && <p className="text-red-400 text-xs mt-1">{bodyFatError}</p>}
+                {bodyFatError && <p className="text-red-400 text-xs mt-1" role="alert">{bodyFatError}</p>}
               </div>
               <div>
                 <label id="rw-event-label" className="block font-heading text-lg text-off-white mb-2">TARGET EVENT</label>
@@ -229,6 +229,7 @@ export default function RaceWeightPage() {
                     <h2 className="font-heading text-2xl text-off-white">YOUR RACE WEIGHT RANGE</h2>
                     <button
                       onClick={handleCopyResults}
+                      aria-label={copied ? "Results copied to clipboard" : "Copy results to clipboard"}
                       className="text-sm text-coral hover:text-coral/80 font-heading tracking-wider transition-colors cursor-pointer"
                     >
                       {copied ? "Copied!" : "Copy Results"}

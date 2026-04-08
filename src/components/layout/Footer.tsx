@@ -168,6 +168,7 @@ export function Footer() {
                               stroke="currentColor"
                               strokeWidth="1.5"
                               className="w-3 h-3 opacity-40"
+                              aria-hidden="true"
                             >
                               <path d="M3.5 3.5h5v5M8.5 3.5L3 9" />
                             </svg>
