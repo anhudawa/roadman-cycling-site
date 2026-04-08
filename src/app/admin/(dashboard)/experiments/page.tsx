@@ -86,6 +86,11 @@ export default async function ExperimentsPage() {
                       {exp.name}
                     </h3>
                     <StatusBadge status={exp.status} />
+                    {(exp as unknown as Record<string, unknown>).completedBy === "auto" && (
+                      <span className="text-[10px] font-medium px-1.5 py-0.5 rounded-full bg-purple/10 text-purple">
+                        Auto
+                      </span>
+                    )}
                   </div>
                   <div className="flex items-center gap-4 text-xs text-foreground-subtle">
                     <span>{exp.variants.length} variants</span>
