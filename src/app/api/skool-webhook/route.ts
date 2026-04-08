@@ -155,14 +155,21 @@ export async function POST(request: Request) {
     if (firstName) customFields.push({ name: "first_name", value: firstName });
     if (lastName) customFields.push({ name: "last_name", value: lastName });
 
-    if (data?.questions && Array.isArray(data.questions)) {
-      data.questions.forEach(
-        (q: { question: string; answer: string }, i: number) => {
-          if (q.answer) {
-            answers.push(q.answer);
+    if (data?.questions) {
+      // Handle both array format (native Skool) and object format (Zapier flattened)
+      const questionsArr = Array.isArray(data.questions)
+        ? data.questions
+        : Object.values(data.questions);
+
+      questionsArr.forEach(
+        (q: string | { question?: string; answer?: string }, i: number) => {
+          // Zapier may send just the answer string, or {answer: "..."}
+          const answer = typeof q === "string" ? q : q?.answer;
+          if (answer) {
+            answers.push(answer);
             customFields.push({
               name: `skool_q${i + 1}`,
-              value: q.answer.slice(0, 500),
+              value: answer.slice(0, 500),
             });
           }
         }
