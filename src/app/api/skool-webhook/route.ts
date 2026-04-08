@@ -84,11 +84,11 @@ async function tagSubscriber(
   if (!BEEHIIV_API_KEY || !BEEHIIV_PUBLICATION_ID) return false;
 
   try {
-    // Beehiiv v2: PATCH subscriber to add tags
+    // Beehiiv v2: POST to /tags sub-resource to add tags
     const res = await fetch(
-      `https://api.beehiiv.com/v2/publications/${BEEHIIV_PUBLICATION_ID}/subscriptions/${subscriberId}`,
+      `https://api.beehiiv.com/v2/publications/${BEEHIIV_PUBLICATION_ID}/subscriptions/${subscriberId}/tags`,
       {
-        method: "PATCH",
+        method: "POST",
         headers: {
           "Content-Type": "application/json",
           Authorization: `Bearer ${BEEHIIV_API_KEY}`,
