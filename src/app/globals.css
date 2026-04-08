@@ -811,4 +811,21 @@ h1, h2, h3, h4, h5, h6 {
   .animate-fade-in { animation: none; opacity: 1; }
   .animate-slide-up { animation: none; opacity: 1; transform: none; }
   .marquee-row { animation: none !important; }
+  .tier-highlight-active { animation: none; }
+}
+
+/* ============================================
+   Tier card highlight (after fit flow)
+   ============================================ */
+
+@keyframes tier-highlight-pulse {
+  0% { box-shadow: 0 0 0 0 rgba(241, 99, 99, 0.4), 0 0 20px rgba(241, 99, 99, 0.2); }
+  50% { box-shadow: 0 0 0 8px rgba(241, 99, 99, 0), 0 0 40px rgba(241, 99, 99, 0.3); }
+  100% { box-shadow: 0 0 0 0 rgba(241, 99, 99, 0), 0 0 0 rgba(241, 99, 99, 0); }
+}
+
+.tier-highlight-active {
+  animation: tier-highlight-pulse 1.5s ease-out 2;
+  border-color: var(--color-coral) !important;
+  border-radius: 0.75rem;
 }

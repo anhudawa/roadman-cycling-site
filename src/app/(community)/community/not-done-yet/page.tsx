@@ -3,6 +3,7 @@ import { Header, Footer, Section, Container } from "@/components/layout";
 import { Button, Card, ScrollReveal } from "@/components/ui";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { FAQSchema } from "@/components/seo/FAQSchema";
+import { FitIntegration } from "@/components/features/ndy/FitIntegration";
 
 export const metadata: Metadata = {
   title: "Not Done Yet — Premium Cycling Coaching",
@@ -393,21 +394,12 @@ export default function NotDoneYetPage() {
         {/* Gradient divider */}
         <div className="gradient-divider" />
 
-        {/* Tier finder CTA */}
+        {/* Tier finder CTA — opens fullscreen overlay */}
         <Section background="charcoal" className="pb-0">
           <Container width="narrow">
             <ScrollReveal direction="up">
-              <div className="text-center bg-white/[0.03] rounded-xl border border-white/5 px-8 py-8">
-                <p className="text-foreground-muted text-base mb-4">
-                  Not sure which tier fits? Two minutes, no email required.
-                </p>
-                <Button
-                  href="/community/not-done-yet/fit"
-                  variant="outline"
-                  size="md"
-                >
-                  Find your fit
-                </Button>
+              <div className="bg-white/[0.03] rounded-xl border border-white/5 px-8 py-10">
+                <FitIntegration />
               </div>
             </ScrollReveal>
           </Container>
@@ -419,7 +411,7 @@ export default function NotDoneYetPage() {
             <div className="grid md:grid-cols-3 gap-6 max-w-5xl mx-auto items-start">
               {tiers.map((tier, i) => (
                 <ScrollReveal key={tier.name} direction="up" delay={i * 0.1}>
-                <div className={`relative ${tier.highlight ? "md:-mt-4 md:mb-4 ring-1 ring-coral/30 md:ring-0 rounded-2xl" : ""}`}>
+                <div id={`tier-${tier.name.toLowerCase()}`} className={`relative ${tier.highlight ? "md:-mt-4 md:mb-4 ring-1 ring-coral/30 md:ring-0 rounded-2xl" : ""}`}>
                   {tier.highlight && (
                     <div className="absolute -top-3 left-1/2 -translate-x-1/2 z-10">
                       <span className="bg-coral text-off-white text-xs font-heading tracking-wider px-4 py-1 rounded-full whitespace-nowrap">
