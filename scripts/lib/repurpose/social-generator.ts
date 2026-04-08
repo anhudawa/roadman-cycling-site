@@ -82,6 +82,7 @@ export async function generateSocialPosts(
 ): Promise<SocialOutput | null> {
   const apiKey = process.env.ANTHROPIC_API_KEY;
   if (!apiKey) {
+    console.error("  ✗ ANTHROPIC_API_KEY not set — skipping social generation");
     return null;
   }
 
@@ -89,7 +90,7 @@ export async function generateSocialPosts(
 
   try {
     const response = await getClient().messages.create({
-      model: "claude-sonnet-4-20250514",
+      model: "claude-haiku-4-5-20251001",
       max_tokens: 4096,
       system,
       messages: [{ role: "user", content: user }],

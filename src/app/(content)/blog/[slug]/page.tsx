@@ -211,6 +211,18 @@ export default async function BlogPostPage({
           </Container>
         </Section>
 
+        {/* Featured Image */}
+        {post.featuredImage && (
+          <div className="w-full max-h-[480px] overflow-hidden">
+            <img
+              src={post.featuredImage}
+              alt={post.title}
+              className="w-full h-full object-cover"
+              loading="eager"
+            />
+          </div>
+        )}
+
         {/* Content */}
         <Section background="charcoal" className="!py-12">
           {/* Floating Table of Contents */}
