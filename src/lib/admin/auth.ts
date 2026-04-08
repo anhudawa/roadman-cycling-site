@@ -2,8 +2,8 @@ import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
 import crypto from "crypto";
 
-const COOKIE_NAME = "roadman_admin_session";
-const SESSION_DURATION = 60 * 60 * 24 * 7; // 7 days in seconds
+export const COOKIE_NAME = "roadman_admin_session";
+export const SESSION_DURATION = 60 * 60 * 24 * 7; // 7 days in seconds
 
 function hashPassword(password: string): string {
   return crypto.createHash("sha256").update(password).digest("hex");
@@ -54,18 +54,25 @@ function verifySignedToken(token: string): boolean {
   return true;
 }
 
-export async function login(password: string): Promise<boolean> {
+/** Verify password and return a signed token (does NOT set cookie). */
+export function verifyAndCreateToken(password: string): string | null {
   const adminPassword = process.env.ADMIN_PASSWORD;
   if (!adminPassword) {
     console.error("[Admin] ADMIN_PASSWORD env var is not set");
-    return false;
+    return null;
   }
 
   if (hashPassword(password) !== hashPassword(adminPassword)) {
-    return false;
+    return null;
   }
 
-  const token = createSignedToken();
+  return createSignedToken();
+}
+
+/** Legacy: verify password and set cookie via next/headers. */
+export async function login(password: string): Promise<boolean> {
+  const token = verifyAndCreateToken(password);
+  if (!token) return false;
 
   const cookieStore = await cookies();
   cookieStore.set(COOKIE_NAME, token, {
