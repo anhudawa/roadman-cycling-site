@@ -40,11 +40,24 @@ export async function generateMetadata({
       authors: [post.author],
       url: `https://roadmancycling.com/blog/${slug}`,
       tags: post.keywords,
+      ...(post.featuredImage && {
+        images: [
+          {
+            url: `https://roadmancycling.com${post.featuredImage}`,
+            width: 1200,
+            height: 630,
+            alt: post.title,
+          },
+        ],
+      }),
     },
     twitter: {
       card: "summary_large_image",
       title: post.seoTitle || post.title,
       description: post.seoDescription,
+      ...(post.featuredImage && {
+        images: [`https://roadmancycling.com${post.featuredImage}`],
+      }),
     },
   };
 }
