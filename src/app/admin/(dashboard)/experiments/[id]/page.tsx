@@ -2,6 +2,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import type { ABTest, ABResult } from "@/lib/ab/types";
 import { estimateSampleSize } from "@/lib/ab/statistics";
+import ExperimentActions from "./experiment-actions";
 
 // ── Data fetching ────────────────────────────────────────
 
@@ -51,51 +52,6 @@ function StatusBadge({ status }: { status: ABTest["status"] }) {
     >
       {status.charAt(0).toUpperCase() + status.slice(1)}
     </span>
-  );
-}
-
-function ExperimentActions({
-  experiment,
-  results,
-}: {
-  experiment: ABTest;
-  results: ABResult[];
-}) {
-  const hasSignificant = results.some((r) => r.isSignificant);
-
-  return (
-    <div className="flex items-center gap-3">
-      {experiment.status === "draft" && (
-        <form action={`/api/admin/experiments`} method="POST">
-          <input type="hidden" name="id" value={experiment.id} />
-          <input type="hidden" name="action" value="start" />
-          <button
-            type="button"
-            className="px-4 py-2 bg-green-500/20 text-green-400 hover:bg-green-500/30 text-sm font-medium rounded-lg transition-colors border border-green-500/20"
-          >
-            Start Test
-          </button>
-        </form>
-      )}
-      {experiment.status === "running" && (
-        <>
-          <button
-            type="button"
-            className="px-4 py-2 bg-white/5 text-foreground-muted hover:text-off-white text-sm font-medium rounded-lg transition-colors border border-white/10"
-          >
-            Stop Test
-          </button>
-          {hasSignificant && (
-            <button
-              type="button"
-              className="px-4 py-2 bg-coral/20 text-coral hover:bg-coral/30 text-sm font-medium rounded-lg transition-colors border border-coral/20"
-            >
-              Declare Winner
-            </button>
-          )}
-        </>
-      )}
-    </div>
   );
 }
 
@@ -162,7 +118,7 @@ export default async function ExperimentDetailPage({
             </p>
           )}
         </div>
-        <ExperimentActions experiment={experiment} results={results} />
+        <ExperimentActions experimentId={experiment.id} status={experiment.status} variants={experiment.variants} />
       </div>
 
       {/* Variants */}
