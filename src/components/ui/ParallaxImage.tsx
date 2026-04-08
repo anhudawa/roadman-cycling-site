@@ -12,6 +12,8 @@ interface ParallaxImageProps {
   overlay?: boolean;
   overlayColor?: string;
   objectPosition?: string;
+  /** Set to true for above-the-fold parallax images */
+  priority?: boolean;
 }
 
 /**
@@ -26,6 +28,7 @@ export function ParallaxImage({
   overlay = true,
   overlayColor = "from-charcoal/70 to-charcoal/40",
   objectPosition = "center",
+  priority = false,
 }: ParallaxImageProps) {
   const ref = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({
@@ -54,6 +57,8 @@ export function ParallaxImage({
           style={{ objectPosition }}
           sizes="100vw"
           quality={85}
+          loading={priority ? "eager" : "lazy"}
+          priority={priority}
         />
       </motion.div>
       {overlay && (

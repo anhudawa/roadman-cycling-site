@@ -25,9 +25,14 @@ export function FloatingParticles({
     setMounted(true);
   }, []);
 
+  // Reduce particle count on mobile/low-power devices to improve FPS
+  const effectiveCount = typeof window !== "undefined" && window.innerWidth < 768
+    ? Math.min(count, 8)
+    : count;
+
   const particles = useMemo(() => {
     if (!mounted) return [];
-    return Array.from({ length: count }, (_, i) => ({
+    return Array.from({ length: effectiveCount }, (_, i) => ({
       id: i,
       x: Math.random() * 100,
       y: Math.random() * 100,
@@ -37,7 +42,7 @@ export function FloatingParticles({
       driftX: (Math.random() - 0.5) * 60,
       driftY: -(Math.random() * 40 + 20),
     }));
-  }, [count, mounted]);
+  }, [effectiveCount, mounted]);
 
   if (!mounted) {
     return (

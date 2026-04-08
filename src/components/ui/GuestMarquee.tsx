@@ -1,7 +1,5 @@
 "use client";
 
-import { motion } from "framer-motion";
-
 interface GuestEntry {
   name: string;
   credential: string;
@@ -10,6 +8,8 @@ interface GuestEntry {
 
 /**
  * Two-row infinite scrolling marquee of notable podcast guests.
+ * Uses CSS animations instead of JS-driven framer-motion for better
+ * performance — reduces main thread work and improves CLS/INP.
  * Rows scroll in opposite directions for visual depth.
  */
 export function GuestMarquee({
@@ -61,16 +61,18 @@ function MarqueeRow({
   direction: "left" | "right";
   duration: number;
 }) {
+  // Duplicate items to create seamless loop
   const doubled = [...guests, ...guests];
 
   return (
-    <motion.div
-      className="flex gap-3 w-max"
-      animate={{
-        x: direction === "left" ? ["0%", "-50%"] : ["-50%", "0%"],
-      }}
-      transition={{
-        x: { duration, repeat: Infinity, ease: "linear" },
+    <div
+      className="flex gap-3 w-max marquee-row"
+      style={{
+        animationName: direction === "left" ? "marquee-left" : "marquee-right",
+        animationDuration: `${duration}s`,
+        animationTimingFunction: "linear",
+        animationIterationCount: "infinite",
+        willChange: "transform",
       }}
     >
       {doubled.map((guest, i) => {
@@ -93,6 +95,6 @@ function MarqueeRow({
           </Tag>
         );
       })}
-    </motion.div>
+    </div>
   );
 }
