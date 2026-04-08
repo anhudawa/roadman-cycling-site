@@ -67,7 +67,7 @@ async function insertExperiment(experiment: ABTest): Promise<boolean> {
 
 async function updateExperimentStatus(
   id: number,
-  updates: { status?: string; startedAt?: Date; endedAt?: Date; winnerVariantId?: string }
+  updates: { status?: string; startedAt?: Date; endedAt?: Date; winnerVariantId?: string; completedBy?: string }
 ): Promise<boolean> {
   try {
     const deps = await getDb();
@@ -202,10 +202,11 @@ export async function PATCH(req: NextRequest) {
 
   try {
     const body = await req.json();
-    const { id, action, winnerVariantId } = body as {
+    const { id, action, winnerVariantId, completedBy } = body as {
       id: string;
       action: "start" | "stop" | "declare_winner";
       winnerVariantId?: string;
+      completedBy?: string;
     };
 
     if (!id || !action) {
@@ -221,7 +222,7 @@ export async function PATCH(req: NextRequest) {
       return NextResponse.json({ error: "Invalid experiment id" }, { status: 400 });
     }
 
-    let updates: { status?: string; startedAt?: Date; endedAt?: Date; winnerVariantId?: string } = {};
+    let updates: { status?: string; startedAt?: Date; endedAt?: Date; winnerVariantId?: string; completedBy?: string } = {};
 
     switch (action) {
       case "start":
@@ -241,6 +242,7 @@ export async function PATCH(req: NextRequest) {
           status: "completed",
           endedAt: new Date(),
           winnerVariantId,
+          completedBy: completedBy ?? "manual",
         };
         break;
       default:

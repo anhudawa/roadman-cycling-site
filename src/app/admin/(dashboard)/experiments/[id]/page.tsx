@@ -2,6 +2,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import type { ABTest, ABResult } from "@/lib/ab/types";
 import { estimateSampleSize } from "@/lib/ab/statistics";
+import { getExperimentResults } from "@/lib/admin/events-store";
 import ExperimentActions from "./experiment-actions";
 
 // ── Data fetching ────────────────────────────────────────
@@ -19,23 +20,6 @@ async function getExperiment(id: string): Promise<ABTest | null> {
   } catch {
     return null;
   }
-}
-
-// Placeholder — in production this would aggregate from the events table
-function getMockResults(experiment: ABTest): ABResult[] {
-  return experiment.variants.map((v, i) => {
-    const impressions = experiment.status === "draft" ? 0 : Math.floor(Math.random() * 500) + 100;
-    const conversions = Math.floor(impressions * (0.03 + Math.random() * 0.05));
-    const conversionRate = impressions > 0 ? conversions / impressions : 0;
-    return {
-      variantId: v.id,
-      impressions,
-      conversions,
-      conversionRate,
-      isSignificant: i > 0 && impressions > 300,
-      confidence: i > 0 ? 70 + Math.random() * 25 : 0,
-    };
-  });
 }
 
 // ── Sub-components ───────────────────────────────────────
@@ -63,13 +47,61 @@ export default async function ExperimentDetailPage({
   params: Promise<{ id: string }>;
 }) {
   const { id } = await params;
-  const experiment = await getExperiment(id);
+  let experiment = await getExperiment(id);
 
   if (!experiment) {
-    notFound();
+    return notFound();
   }
 
-  const results = getMockResults(experiment);
+  let results: ABResult[];
+  try {
+    results = await getExperimentResults(
+      experiment.variants.map((v) => v.id),
+      experiment.page
+    );
+  } catch {
+    results = experiment.variants.map((v) => ({
+      variantId: v.id,
+      impressions: 0,
+      conversions: 0,
+      conversionRate: 0,
+      isSignificant: false,
+      confidence: 0,
+    }));
+  }
+
+  // Auto-declare winner if experiment is running and a variant is significant
+  if (experiment.status === "running") {
+    const significantResults = results.filter(
+      (r) => r.isSignificant && r.variantId !== experiment!.variants[0]?.id
+    );
+    if (significantResults.length > 0) {
+      const winner = significantResults.reduce((best, r) =>
+        r.conversionRate > best.conversionRate ? r : best
+      );
+      const controlRate = results[0]?.conversionRate ?? 0;
+      const minSamples = estimateSampleSize(Math.max(controlRate, 0.01), 0.1);
+      if (winner.impressions >= minSamples) {
+        try {
+          const baseUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000";
+          await fetch(`${baseUrl}/api/admin/experiments`, {
+            method: "PATCH",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+              id: experiment.id,
+              action: "declare_winner",
+              winnerVariantId: winner.variantId,
+              completedBy: "auto",
+            }),
+          });
+          experiment = (await getExperiment(id))!;
+        } catch {
+          // Auto-declare failed silently
+        }
+      }
+    }
+  }
+
   const requiredSampleSize = estimateSampleSize(0.05, 0.2); // 5% baseline, 20% MDE
 
   return (
@@ -305,6 +337,15 @@ export default async function ExperimentDetailPage({
               (v) => v.id === experiment.winnerVariantId
             )?.label ?? "Unknown variant"}{" "}
             was declared the winner of this experiment.
+          </p>
+        </div>
+      )}
+
+      {(experiment as unknown as Record<string, unknown>).completedBy === "auto" && (
+        <div className="bg-purple/10 border border-purple/20 rounded-xl p-5">
+          <p className="text-sm text-off-white">
+            <span className="text-purple font-medium">Auto-optimized</span> — This experiment was
+            automatically completed when a variant reached statistical significance.
           </p>
         </div>
       )}

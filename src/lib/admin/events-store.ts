@@ -2,6 +2,8 @@ import { db } from "@/lib/db";
 import { events } from "@/lib/db/schema";
 import { eq, and, gte, lte, sql, count, desc } from "drizzle-orm";
 import { startOfDay, startOfWeek, startOfMonth, subDays } from "./time-ranges";
+import { calculateChiSquared } from "@/lib/ab/statistics";
+import type { ABResult } from "@/lib/ab/types";
 
 // ── Types ──────────────────────────────────────────────────
 export type EventType = "pageview" | "signup" | "form_submit" | "skool_trial";
@@ -511,4 +513,81 @@ export async function getStatsForRange(
   }));
 
   return { period, pages, traffic: { topPages, referrers, devices }, leads };
+}
+
+// ── Experiment results aggregation ────────────────────────
+
+export async function getExperimentResults(
+  variantIds: string[],
+  page: string
+): Promise<ABResult[]> {
+  if (variantIds.length === 0) return [];
+
+  const rows = await db
+    .select({
+      variantId: events.variantId,
+      type: events.type,
+      cnt: count(),
+    })
+    .from(events)
+    .where(
+      and(
+        sql`${events.variantId} IN (${sql.join(
+          variantIds.map((id) => sql`${id}`),
+          sql`, `
+        )})`,
+        eq(events.page, page)
+      )
+    )
+    .groupBy(events.variantId, events.type);
+
+  // Build per-variant counts
+  const variantMap = new Map<string, { impressions: number; conversions: number }>();
+  for (const id of variantIds) {
+    variantMap.set(id, { impressions: 0, conversions: 0 });
+  }
+  for (const row of rows) {
+    if (!row.variantId) continue;
+    const entry = variantMap.get(row.variantId);
+    if (!entry) continue;
+    if (row.type === "pageview") entry.impressions = Number(row.cnt);
+    if (row.type === "signup") entry.conversions = Number(row.cnt);
+  }
+
+  const controlId = variantIds[0];
+  const control = variantMap.get(controlId)!;
+
+  const results: ABResult[] = variantIds.map((id) => {
+    const data = variantMap.get(id)!;
+    const conversionRate = data.impressions > 0 ? data.conversions / data.impressions : 0;
+
+    if (id === controlId) {
+      return {
+        variantId: id,
+        impressions: data.impressions,
+        conversions: data.conversions,
+        conversionRate,
+        isSignificant: false,
+        confidence: 0,
+      };
+    }
+
+    const chi = calculateChiSquared(
+      control.impressions,
+      control.conversions,
+      data.impressions,
+      data.conversions
+    );
+
+    return {
+      variantId: id,
+      impressions: data.impressions,
+      conversions: data.conversions,
+      conversionRate,
+      isSignificant: chi.significant,
+      confidence: chi.confidence,
+    };
+  });
+
+  return results;
 }
