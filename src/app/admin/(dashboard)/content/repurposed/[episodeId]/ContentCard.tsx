@@ -95,7 +95,10 @@ function TwitterContent({ content }: { content: string }) {
   let tweets: string[] = [];
   try {
     const parsed = JSON.parse(content);
-    tweets = Array.isArray(parsed) ? parsed : Array.isArray(parsed.tweets) ? parsed.tweets : [String(parsed)];
+    const raw: unknown[] = Array.isArray(parsed) ? parsed : Array.isArray(parsed.tweets) ? parsed.tweets : [parsed];
+    tweets = raw.map((t) =>
+      typeof t === "string" ? t : typeof t === "object" && t !== null && "text" in t ? String((t as { text: string }).text) : String(t)
+    );
   } catch {
     tweets = [content];
   }
