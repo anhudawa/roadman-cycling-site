@@ -635,7 +635,24 @@ export default function NdyFitPage() {
               {step === "loading" && <LoadingScreen />}
 
               {step === "result" && result?.response && (
-                <ResultScreen response={result.response} />
+                <ResultScreen
+                  response={result.response}
+                  onEmailSubmit={async (email) => {
+                    // Subscribe to Beehiiv nurture sequence
+                    try {
+                      await fetch("/api/newsletter", {
+                        method: "POST",
+                        headers: { "Content-Type": "application/json" },
+                        body: JSON.stringify({
+                          email,
+                          source: "ndy_fit_not_a_fit",
+                        }),
+                      });
+                    } catch {
+                      // Non-critical — don't break the UX if subscription fails
+                    }
+                  }}
+                />
               )}
             </motion.div>
           </AnimatePresence>

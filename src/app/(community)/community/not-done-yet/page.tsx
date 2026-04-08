@@ -393,6 +393,26 @@ export default function NotDoneYetPage() {
         {/* Gradient divider */}
         <div className="gradient-divider" />
 
+        {/* Tier finder CTA */}
+        <Section background="charcoal" className="pb-0">
+          <Container width="narrow">
+            <ScrollReveal direction="up">
+              <div className="text-center bg-white/[0.03] rounded-xl border border-white/5 px-8 py-8">
+                <p className="text-foreground-muted text-base mb-4">
+                  Not sure which tier fits? Two minutes, no email required.
+                </p>
+                <Button
+                  href="/community/not-done-yet/fit"
+                  variant="outline"
+                  size="md"
+                >
+                  Find your fit
+                </Button>
+              </div>
+            </ScrollReveal>
+          </Container>
+        </Section>
+
         {/* Pricing */}
         <Section background="charcoal">
           <Container>

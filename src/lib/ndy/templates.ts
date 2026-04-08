@@ -8,6 +8,7 @@ import type {
   Frustration,
   CoachingHistory,
 } from './types';
+import { NDY_CONFIG } from './config';
 
 // ---------------------------------------------------------------------------
 // Human-readable label maps
@@ -104,15 +105,15 @@ function renderStandard(ctx: TemplateContext): RenderedResponse {
     ].join('\n\n'),
     primaryCta: {
       label: 'Start your 7-day free trial',
-      url: 'https://www.skool.com/roadmancycling/about',
+      url: NDY_CONFIG.skoolStandard,
     },
     secondaryCta: {
       label: 'Talk to someone first',
-      url: '/contact',
+      url: NDY_CONFIG.contactPage,
     },
     tertiaryCta: {
       label: 'Not ready yet \u2014 send me the free resources',
-      url: '#free-resources',
+      url: NDY_CONFIG.freeResources,
     },
   };
 }
@@ -132,15 +133,15 @@ function renderPremium(ctx: TemplateContext): RenderedResponse {
     ].join('\n\n'),
     primaryCta: {
       label: 'Start your 7-day free trial',
-      url: 'https://www.skool.com/roadmancycling/about',
+      url: NDY_CONFIG.skoolPremium,
     },
     secondaryCta: {
       label: 'Book a call first',
-      url: '/contact',
+      url: NDY_CONFIG.calendlyPremium,
     },
     tertiaryCta: {
       label: 'Not ready yet \u2014 send me the free resources',
-      url: '#free-resources',
+      url: NDY_CONFIG.freeResources,
     },
   };
 }
@@ -160,15 +161,15 @@ function renderInnerCircle(ctx: TemplateContext): RenderedResponse {
     ].join('\n\n'),
     primaryCta: {
       label: 'Book a call with Anthony',
-      url: '/contact',
+      url: NDY_CONFIG.calendlyInnerCircle,
     },
     secondaryCta: {
       label: 'Tell me more first',
-      url: '/contact',
+      url: NDY_CONFIG.contactPage,
     },
     tertiaryCta: {
       label: 'Not ready yet \u2014 send me the free resources',
-      url: '#free-resources',
+      url: NDY_CONFIG.freeResources,
     },
   };
 }
@@ -196,7 +197,7 @@ function renderNotAFit(ctx: TemplateContext): RenderedResponse {
     },
     secondaryCta: {
       label: 'Talk to someone anyway',
-      url: '/contact',
+      url: NDY_CONFIG.contactPage,
     },
     tertiaryCta: null,
   };
