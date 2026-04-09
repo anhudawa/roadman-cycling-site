@@ -145,6 +145,24 @@ export const repurposedContent = pgTable("repurposed_content", {
   updatedAt: timestamp("updated_at").notNull().defaultNow(),
 });
 
+// ── Contact Submissions ──────────────────────────────────
+export const contactSubmissions = pgTable(
+  "contact_submissions",
+  {
+    id: serial("id").primaryKey(),
+    name: text("name").notNull(),
+    email: text("email").notNull(),
+    subject: text("subject").notNull(),
+    message: text("message").notNull(),
+    readAt: timestamp("read_at", { withTimezone: true }),
+    createdAt: timestamp("created_at", { withTimezone: true }).notNull().defaultNow(),
+  },
+  (table) => [
+    index("contact_submissions_created_at_idx").on(table.createdAt),
+    index("contact_submissions_read_at_idx").on(table.readAt),
+  ]
+);
+
 // ── Content Chat Messages ─────────────────────────────────
 export const contentChatMessages = pgTable("content_chat_messages", {
   id: serial("id").primaryKey(),

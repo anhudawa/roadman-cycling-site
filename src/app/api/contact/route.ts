@@ -1,5 +1,7 @@
 import { NextResponse } from "next/server";
 import { Resend } from "resend";
+import { db } from "@/lib/db";
+import { contactSubmissions } from "@/lib/db/schema";
 
 const NOTIFICATION_EMAIL = "anthony@roadmancycling.com";
 
@@ -22,6 +24,19 @@ export async function POST(request: Request) {
 
     console.log(`[Contact Form] From: ${name} <${email}> | Subject: ${subject}`);
 
+    // Store in database
+    try {
+      await db.insert(contactSubmissions).values({
+        name,
+        email,
+        subject,
+        message,
+      });
+    } catch (dbErr) {
+      console.error("[Contact Form] DB insert failed:", dbErr);
+    }
+
+    // Send email notification
     const resend = getResend();
     if (resend) {
       await resend.emails.send({
