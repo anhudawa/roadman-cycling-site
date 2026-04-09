@@ -4,15 +4,13 @@ import { useEffect, useCallback } from "react";
 import { createPortal } from "react-dom";
 import { motion, AnimatePresence } from "framer-motion";
 import { FitFlow } from "./FitFlow";
-import type { RoutingDecision } from "@/lib/ndy/types";
 
 interface FitOverlayProps {
   isOpen: boolean;
   onClose: () => void;
-  onComplete: (decision: RoutingDecision) => void;
 }
 
-export function FitOverlay({ isOpen, onClose, onComplete }: FitOverlayProps) {
+export function FitOverlay({ isOpen, onClose }: FitOverlayProps) {
   // Body scroll lock
   useEffect(() => {
     if (isOpen) {
@@ -61,7 +59,7 @@ export function FitOverlay({ isOpen, onClose, onComplete }: FitOverlayProps) {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.3, ease: "easeOut" }}
-            className="fixed inset-0 z-[9998] bg-black/80 backdrop-blur-sm"
+            className="fixed inset-0 z-[9990] bg-black/80 backdrop-blur-sm"
             onClick={onClose}
           />
 
@@ -74,7 +72,7 @@ export function FitOverlay({ isOpen, onClose, onComplete }: FitOverlayProps) {
               duration: 0.5,
               ease: [0.16, 1, 0.3, 1],
             }}
-            className="fixed inset-0 z-[9999] bg-charcoal overflow-y-auto"
+            className="fixed inset-0 z-[9991] bg-charcoal overflow-y-auto"
             role="dialog"
             aria-modal="true"
             aria-label="Find your fit quiz"
@@ -84,7 +82,7 @@ export function FitOverlay({ isOpen, onClose, onComplete }: FitOverlayProps) {
               onClick={onClose}
               aria-label="Close quiz"
               className="
-                fixed top-5 right-5 z-[10000]
+                fixed top-5 right-5 z-[9992]
                 w-10 h-10 rounded-full
                 bg-white/10 hover:bg-white/20
                 flex items-center justify-center
@@ -106,7 +104,7 @@ export function FitOverlay({ isOpen, onClose, onComplete }: FitOverlayProps) {
               </svg>
             </button>
 
-            <FitFlow onComplete={onComplete} />
+            <FitFlow />
           </motion.div>
         </>
       )}

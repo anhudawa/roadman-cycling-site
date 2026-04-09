@@ -3,7 +3,6 @@
 import { useState, useCallback, useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Button } from "@/components/ui";
-import { SplitText } from "@/components/ui/SplitText";
 import {
   Q1_OPTIONS,
   Q2_OPTIONS,
@@ -24,7 +23,7 @@ import type { RenderedResponse } from "@/lib/ndy/templates";
 // ---------------------------------------------------------------------------
 
 interface FitFlowProps {
-  onComplete?: (decision: RoutingDecision) => void;
+  className?: string;
 }
 
 interface ApiResponse {
@@ -397,11 +396,9 @@ function LoadingScreen() {
 
 function ResultScreen({
   response,
-  onComplete,
   onEmailSubmit,
 }: {
   response: RenderedResponse;
-  onComplete?: (decision: RoutingDecision) => void;
   onEmailSubmit?: (email: string) => void;
 }) {
   const [email, setEmail] = useState("");
@@ -424,16 +421,16 @@ function ResultScreen({
 
   return (
     <div className="w-full max-w-xl mx-auto space-y-8">
-      {/* Headline — word-by-word reveal */}
-      <SplitText
-        text={response.headline}
-        as="h2"
-        mode="words"
+      {/* Headline */}
+      <motion.h2
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
         className="font-heading tracking-wider uppercase text-off-white"
         style={{ fontSize: "clamp(2rem, 5vw, 3rem)" }}
-        staggerChildren={0.04}
-        duration={0.6}
-      />
+      >
+        {response.headline}
+      </motion.h2>
 
       {/* Body paragraphs — staggered fade-in */}
       <div className="space-y-4">
@@ -520,22 +517,8 @@ function ResultScreen({
           visible: { transition: { staggerChildren: 0.12, delayChildren: 0.9 } },
         }}
       >
-        {/* Overlay mode: "See your recommendation" CTA */}
-        {onComplete && !isNotAFit && (
-          <motion.div variants={{ hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0 } }}>
-            <Button
-              onClick={() => onComplete(response.decision)}
-              variant="primary"
-              size="lg"
-              className="w-full"
-            >
-              See your recommendation
-            </Button>
-          </motion.div>
-        )}
-
-        {/* Standalone mode or not_a_fit: direct CTAs */}
-        {(!onComplete || isNotAFit) && (!isNotAFit || emailSent) && (
+        {/* Primary CTA — always the real action, whether overlay or standalone */}
+        {(!isNotAFit || emailSent) && (
           <motion.div variants={{ hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0 } }}>
             <Button
               onClick={() => navigateTo(response.primaryCta.url)}
@@ -593,7 +576,7 @@ function QuestionHeading({ text }: { text: string }) {
 // Main FitFlow component
 // ---------------------------------------------------------------------------
 
-export function FitFlow({ onComplete }: FitFlowProps) {
+export function FitFlow(_props: FitFlowProps = {}) {
   const [step, setStep] = useState<StepId>("q1");
   const [direction, setDirection] = useState(1);
   const [answers, setAnswers] = useState<Partial<ProspectAnswers>>({});
@@ -864,7 +847,6 @@ export function FitFlow({ onComplete }: FitFlowProps) {
               {step === "result" && result?.response && (
                 <ResultScreen
                   response={result.response}
-                  onComplete={onComplete}
                   onEmailSubmit={async (email) => {
                     try {
                       await fetch("/api/newsletter", {
