@@ -89,7 +89,9 @@ describe('renderResponse', () => {
     const response = renderResponse(answers, result);
 
     expect(response.decision).toBe('premium');
-    expect(response.headline).toContain('Premium');
+    expect(response.headline).toContain('coaching');
+    expect(response.recommendation?.tierName).toBe('Premium');
+    expect(response.recommendation?.price).toBe('$195');
     expect(response.body).toContain('280 to 350W');
     expect(response.body).toContain('4.2 w/kg');
     expect(response.body).toContain('a specific race or event');

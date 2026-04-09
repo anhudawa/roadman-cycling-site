@@ -81,10 +81,19 @@ export function buildContext(answers: ProspectAnswers, result: RoutingResult): T
 // Response template type
 // ---------------------------------------------------------------------------
 
+export interface TierRecommendation {
+  tierName: string;
+  tagline: string;
+  price: string;
+  period: string;
+  features: string[];
+}
+
 export interface RenderedResponse {
   decision: RoutingDecision;
   headline: string;
   body: string;
+  recommendation: TierRecommendation | null;
   primaryCta: { label: string; url: string };
   secondaryCta: { label: string; url: string };
   tertiaryCta: { label: string; url: string } | null;
@@ -101,8 +110,20 @@ function renderStandard(ctx: TemplateContext): RenderedResponse {
     body: [
       `So you're training ${ctx.hours}, you're ${ctx.frustration}, and you've ${ctx.coaching}. Here's the thing \u2014 that's a fixable situation. Most of the riders in our community started exactly where you are right now.`,
       `What you're missing isn't more hours or more intensity. It's structure. A clear plan that fits the time you actually have, not the time you wish you had. That's what Standard gives you.`,
-      `You get weekly structured training plans, group coaching calls with me, a strength programme built for cyclists, nutrition guidance, and a community of serious riders who are all working through the same problems. No guesswork, no forum-scrolling, no making it up as you go.`,
     ].join('\n\n'),
+    recommendation: {
+      tierName: 'Standard',
+      tagline: 'The 5-pillar coaching system',
+      price: '$15',
+      period: '/month',
+      features: [
+        'Weekly structured training plans',
+        'Group coaching calls with Anthony',
+        'Cycling-specific strength programme',
+        'Nutrition guidance',
+        'Community of serious cyclists',
+      ],
+    },
     primaryCta: {
       label: 'Start your 7-day free trial',
       url: NDY_CONFIG.skoolStandard,
@@ -125,12 +146,24 @@ function renderPremium(ctx: TemplateContext): RenderedResponse {
 
   return {
     decision: 'premium',
-    headline: 'Premium is where this gets serious.',
+    headline: 'Personal coaching is the right fit.',
     body: [
       `${ftpLine} You've been around long enough to know that more volume isn't the answer. The riders who break through plateaus aren't training more \u2014 they're training with precision.`,
-      `Premium gives you personalised TrainingPeaks plans built around your life, not a template. You get priority access on coaching calls, advanced masterclasses on periodisation and race preparation, and regular 1:1 plan reviews. The difference between this and Standard is the difference between a group class and having someone in your corner who knows your numbers.`,
       `You're training ${ctx.hours} with ${ctx.goal} in mind. That's enough time to do real work if the structure is right. This is how we make those hours count.`,
     ].join('\n\n'),
+    recommendation: {
+      tierName: 'Premium',
+      tagline: 'Personal coaching using the 5-pillar system',
+      price: '$195',
+      period: '/month',
+      features: [
+        'Personalised TrainingPeaks plans built around your life',
+        'Priority coaching calls with Anthony',
+        'Advanced masterclasses on periodisation and race prep',
+        'Regular 1:1 plan reviews',
+        'Everything in Standard included',
+      ],
+    },
     primaryCta: {
       label: 'Start your 7-day free trial',
       url: NDY_CONFIG.skoolPremium,
@@ -157,8 +190,20 @@ function renderInnerCircle(ctx: TemplateContext): RenderedResponse {
     body: [
       `You're doing ${ctx.hours}, targeting ${ctx.goal}, sitting at ${ftpLine}, and you've ${ctx.coaching}. That's not a beginner profile. That's someone who's done the work and hit a ceiling.`,
       `Inner Circle is something we don't list publicly. It's a small group \u2014 direct access to me, quarterly strategy calls, priority on everything, and a level of personalisation that doesn't scale beyond a handful of riders. The conversation comes first because this only works if it's the right fit on both sides.`,
-      `No checkout link here. Book a call and we'll talk through where you are, what you're trying to do, and whether this makes sense.`,
     ].join('\n\n'),
+    recommendation: {
+      tierName: 'Inner Circle',
+      tagline: 'Direct access to Anthony. By conversation only.',
+      price: '$697',
+      period: '/month',
+      features: [
+        'Direct access to Anthony',
+        'Quarterly strategy calls',
+        'Priority on everything',
+        'Full personalisation',
+        'Everything in Premium included',
+      ],
+    },
     primaryCta: {
       label: 'Book a call with Anthony',
       url: NDY_CONFIG.calendlyInnerCircle,
@@ -191,6 +236,7 @@ function renderNotAFit(ctx: TemplateContext): RenderedResponse {
     decision: 'not_a_fit',
     headline: 'Honest answer \u2014 not right now.',
     body,
+    recommendation: null,
     primaryCta: {
       label: 'Get the free resources',
       url: '#email-capture',

@@ -16,7 +16,7 @@ import {
   type StepId,
 } from "@/lib/ndy/questions";
 import type { ProspectAnswers, RoutingDecision } from "@/lib/ndy/types";
-import type { RenderedResponse } from "@/lib/ndy/templates";
+import type { RenderedResponse, TierRecommendation } from "@/lib/ndy/templates";
 
 // ---------------------------------------------------------------------------
 // Types
@@ -451,13 +451,43 @@ function ResultScreen({
         ))}
       </div>
 
-      {/* Gradient divider */}
-      <motion.div
-        initial={{ scaleX: 0 }}
-        animate={{ scaleX: 1 }}
-        transition={{ duration: 0.8, delay: 0.6, ease: [0.16, 1, 0.3, 1] }}
-        className="h-px bg-gradient-to-r from-coral/40 via-coral/20 to-transparent origin-left"
-      />
+      {/* Recommendation card */}
+      {response.recommendation && (
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.6, ease: [0.16, 1, 0.3, 1] }}
+          className="rounded-xl border border-coral/30 bg-coral/[0.04] p-6 md:p-8"
+        >
+          <div className="flex items-baseline justify-between mb-1">
+            <p className="text-coral font-heading text-sm tracking-widest uppercase">
+              {response.recommendation.tierName}
+            </p>
+          </div>
+          <p className="text-white/50 font-body text-sm mb-4">
+            {response.recommendation.tagline}
+          </p>
+          <div className="mb-5">
+            <span className="font-heading text-off-white" style={{ fontSize: "2.5rem" }}>
+              {response.recommendation.price}
+            </span>
+            <span className="text-white/40 font-body text-sm ml-1">
+              {response.recommendation.period}
+            </span>
+          </div>
+          <ul className="space-y-2.5">
+            {response.recommendation.features.map((feature) => (
+              <li
+                key={feature}
+                className="flex items-start gap-2.5 text-sm text-white/60 font-body"
+              >
+                <span className="text-coral mt-0.5 shrink-0">&#10003;</span>
+                {feature}
+              </li>
+            ))}
+          </ul>
+        </motion.div>
+      )}
 
       {/* Email capture for not_a_fit */}
       {isNotAFit && !emailSent && (
