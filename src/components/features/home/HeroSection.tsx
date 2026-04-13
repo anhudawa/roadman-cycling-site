@@ -60,7 +60,8 @@ export function HeroSection() {
           src="/images/about/anthony-podcast-promo.jpg"
           alt=""
           fill
-          className="object-cover object-top opacity-40"
+          className="object-cover opacity-40"
+          style={{ objectPosition: "center 25%" }}
           sizes="100vw"
           priority
         />
