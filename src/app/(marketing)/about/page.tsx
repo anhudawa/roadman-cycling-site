@@ -193,8 +193,8 @@ export default function AboutPage() {
         <ParallaxImage
           src="/images/cycling/gravel-roadside-break.jpg"
           alt="Two cyclists taking a break on a dusty road beside rock formations"
-          className="h-[30vh] md:h-[50vh]"
-          objectPosition="center 50%"
+          className="h-[50vh] md:h-[70vh]"
+          objectPosition="center 60%"
           speed={0.3}
           overlayColor="from-charcoal via-charcoal/50 to-deep-purple"
         />
