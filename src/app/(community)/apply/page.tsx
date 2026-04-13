@@ -188,7 +188,7 @@ export default function Cohort2Page() {
                 NOT DONE YET
               </h1>
               <p className="text-foreground-muted text-lg max-w-md mx-auto mb-6">
-                5 pillars. $195/mo. Cancel anytime.
+                7-day free trial. 5 pillars. $195/mo. Cancel anytime.
               </p>
 
               <div className="mb-6">
@@ -409,7 +409,7 @@ export default function Cohort2Page() {
                   APPLY NOW
                 </h2>
                 <p className="text-foreground-muted max-w-md mx-auto">
-                  $195/mo. Cancel anytime. Takes 60 seconds.
+                  7-day free trial. $195/mo. Cancel anytime.
                 </p>
               </div>
             </ScrollReveal>
