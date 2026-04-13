@@ -199,8 +199,9 @@ export async function getDashboardStats(): Promise<DashboardStats> {
   const todayStart = startOfDay(now);
   const yesterdayStart = subDays(todayStart, 1);
 
-  const weekStart = startOfWeek(now, { weekStartsOn: 1 });
-  const prevWeekStart = subDays(weekStart, 7);
+  // Rolling 7-day windows (not calendar weeks) for fair comparison
+  const sevenDaysAgo = subDays(now, 7);
+  const fourteenDaysAgo = subDays(now, 14);
 
   const monthStart = startOfMonth(now);
   const prevMonthStart = new Date(monthStart);
@@ -209,10 +210,10 @@ export async function getDashboardStats(): Promise<DashboardStats> {
   const [today, thisWeek, thisMonth, previousDay, previousWeek, previousMonth] =
     await Promise.all([
       computePeriodStats(todayStart, now),
-      computePeriodStats(weekStart, now),
+      computePeriodStats(sevenDaysAgo, now),
       computePeriodStats(monthStart, now),
       computePeriodStats(yesterdayStart, todayStart),
-      computePeriodStats(prevWeekStart, weekStart),
+      computePeriodStats(fourteenDaysAgo, sevenDaysAgo),
       computePeriodStats(prevMonthStart, monthStart),
     ]);
 
@@ -593,6 +594,35 @@ export async function getExperimentResults(
 }
 
 // ── Chart data helpers ────────────────────────────────────
+
+export async function getDailyBreakdown(
+  from: Date,
+  to: Date
+): Promise<{ date: string; visitors: number; signups: number; trials: number }[]> {
+  const rows = await db
+    .select({
+      day: sql<string>`DATE(${events.timestamp})`,
+      type: events.type,
+      cnt: count(),
+    })
+    .from(events)
+    .where(and(gte(events.timestamp, from), lte(events.timestamp, to)))
+    .groupBy(sql`DATE(${events.timestamp})`, events.type)
+    .orderBy(sql`DATE(${events.timestamp})`);
+
+  const dayMap = new Map<string, { visitors: number; signups: number; trials: number }>();
+  for (const row of rows) {
+    if (!dayMap.has(row.day)) dayMap.set(row.day, { visitors: 0, signups: 0, trials: 0 });
+    const d = dayMap.get(row.day)!;
+    if (row.type === "pageview") d.visitors = Number(row.cnt);
+    if (row.type === "signup") d.signups = Number(row.cnt);
+    if (row.type === "skool_trial") d.trials = Number(row.cnt);
+  }
+
+  return Array.from(dayMap.entries())
+    .map(([date, data]) => ({ date, ...data }))
+    .sort((a, b) => a.date.localeCompare(b.date));
+}
 
 export async function getDailyVisitors(
   from: Date,

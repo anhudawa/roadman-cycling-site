@@ -1,4 +1,4 @@
-import { getDashboardStats, getStatsForRange, getDailyVisitors, type DashboardStats } from "@/lib/admin/events-store";
+import { getDashboardStats, getStatsForRange, getDailyVisitors, getDailyBreakdown, type DashboardStats } from "@/lib/admin/events-store";
 import { parseTimeRange } from "@/lib/admin/time-ranges";
 import { Suspense } from "react";
 import { StatCard } from "./components/charts/StatCard";
@@ -75,6 +75,23 @@ export default async function AdminDashboardPage({
     return ((current - previous) / previous) * 100;
   }
 
+  // Sparkline data from last 7 days
+  let sparkVisitors = [0, 0, 0, 0, 0, 0, 0];
+  let sparkSignups = [0, 0, 0, 0, 0, 0, 0];
+  let sparkTrials = [0, 0, 0, 0, 0, 0, 0];
+
+  try {
+    const sevenDaysAgo = new Date(Date.now() - 7 * 24 * 60 * 60 * 1000);
+    const daily = await getDailyBreakdown(sevenDaysAgo, new Date());
+    if (daily.length > 0) {
+      sparkVisitors = daily.map((d) => d.visitors);
+      sparkSignups = daily.map((d) => d.signups);
+      sparkTrials = daily.map((d) => d.trials);
+    }
+  } catch {
+    // Non-critical — hardcoded fallback already set
+  }
+
   // Ranged data for tables and charts
   let topPages = PLACEHOLDER_TOP_PAGES;
   let trafficSources = PLACEHOLDER_SOURCES;
@@ -140,31 +157,31 @@ export default async function AdminDashboardPage({
       {/* Stat cards */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
         <StatCard
-          label="Visitors (Week)"
+          label="Visitors (7d)"
           value={stats.thisWeek.visitors}
           change={pctChange(stats.thisWeek.visitors, stats.previousWeek.visitors)}
-          changeLabel="vs prev"
-          sparkData={[12, 18, 14, 22, 19, 28, 24]}
+          changeLabel="vs prev 7d"
+          sparkData={sparkVisitors}
         />
         <StatCard
-          label="Email Signups (Week)"
+          label="Email Signups (7d)"
           value={stats.thisWeek.signups}
           change={pctChange(stats.thisWeek.signups, stats.previousWeek.signups)}
-          changeLabel="vs prev"
-          sparkData={[3, 5, 4, 7, 6, 8, 5]}
+          changeLabel="vs prev 7d"
+          sparkData={sparkSignups}
         />
         <StatCard
           label="Conversion Rate"
           value={`${stats.thisWeek.conversionRate.toFixed(1)}%`}
           change={pctChange(stats.thisWeek.conversionRate, stats.previousWeek.conversionRate)}
-          changeLabel="vs prev"
+          changeLabel="vs prev 7d"
         />
         <StatCard
-          label="Skool Trials (Week)"
+          label="Skool Trials (7d)"
           value={stats.thisWeek.skoolTrials}
           change={pctChange(stats.thisWeek.skoolTrials, stats.previousWeek.skoolTrials)}
-          changeLabel="vs prev"
-          sparkData={[1, 0, 2, 1, 3, 2, 1]}
+          changeLabel="vs prev 7d"
+          sparkData={sparkTrials}
         />
       </div>
 
