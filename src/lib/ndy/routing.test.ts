@@ -114,9 +114,9 @@ const testCases: TestCase[] = [
     }),
     expected: 'premium',
   },
-  // --- Standard (profiles 8-14) ---
+  // --- Premium (profiles 8-12, now default for non-IC, non-disqualified) ---
   {
-    name: '#8: Standard — strong profile but never coached (blocks Premium)',
+    name: '#8: Premium — strong profile, never coached (no longer blocks Premium)',
     answers: prospect({
       q1TrainingFor: 'specific_watts_target',
       q2HoursPerWeek: '9_to_12',
@@ -126,10 +126,10 @@ const testCases: TestCase[] = [
       q6WeightKg: 70,
       q7CoachingHistory: 'never',
     }),
-    expected: 'standard',
+    expected: 'premium',
   },
   {
-    name: '#9: Standard — race goal, 4-6hrs, never coached',
+    name: '#9: Premium — race goal, 4-6hrs, never coached',
     answers: prospect({
       q1TrainingFor: 'race_with_date',
       q2HoursPerWeek: '4_to_6',
@@ -138,10 +138,10 @@ const testCases: TestCase[] = [
       q5Frustration: 'no_structure',
       q7CoachingHistory: 'never',
     }),
-    expected: 'standard',
+    expected: 'premium',
   },
   {
-    name: '#10: Standard — general fitness, 4-6hrs, lost motivation, never coached',
+    name: '#10: Premium — general fitness, 4-6hrs, lost motivation, never coached',
     answers: prospect({
       q1TrainingFor: 'general_fitness',
       q2HoursPerWeek: '4_to_6',
@@ -150,10 +150,10 @@ const testCases: TestCase[] = [
       q5Frustration: 'lost_motivation',
       q7CoachingHistory: 'never',
     }),
-    expected: 'standard',
+    expected: 'premium',
   },
   {
-    name: '#11: Standard — group ride, 4-6hrs, lost motivation, self-coached',
+    name: '#11: Premium — group ride, 4-6hrs, lost motivation, self-coached',
     answers: prospect({
       q1TrainingFor: 'group_ride_fitness',
       q2HoursPerWeek: '4_to_6',
@@ -162,10 +162,10 @@ const testCases: TestCase[] = [
       q5Frustration: 'lost_motivation',
       q7CoachingHistory: 'self_coached',
     }),
-    expected: 'standard',
+    expected: 'premium',
   },
   {
-    name: '#12: Standard — other goal, 6-9hrs, not sure FTP, never coached',
+    name: '#12: Premium — other goal, 6-9hrs, not sure FTP, never coached',
     answers: prospect({
       q1TrainingFor: 'other',
       q2HoursPerWeek: '6_to_9',
@@ -174,8 +174,9 @@ const testCases: TestCase[] = [
       q5Frustration: 'other',
       q7CoachingHistory: 'never',
     }),
-    expected: 'standard',
+    expected: 'premium',
   },
+  // --- Standard (only via budget override) ---
   {
     name: '#13: Standard (budget override) — IC profile but mentions cost',
     answers: prospect({

@@ -105,27 +105,8 @@ export function routeProspect(answers: ProspectAnswers): RoutingResult {
     return { decision: 'inner_circle', budgetFlag, injuryFlag, computedWpkg: wpkg };
   }
 
-  // Rule 4: Premium
-  const moderateHours =
-    answers.q2HoursPerWeek === '6_to_9' ||
-    answers.q2HoursPerWeek === '9_to_12' ||
-    answers.q2HoursPerWeek === '12_plus';
-  const specificGoal =
-    answers.q1TrainingFor === 'race_with_date' ||
-    answers.q1TrainingFor === 'specific_watts_target' ||
-    answers.q1TrainingFor === 'group_ride_fitness';
-  const premiumFrustration =
-    answers.q5Frustration === 'plateaued_at_number' ||
-    answers.q5Frustration === 'no_structure' ||
-    answers.q5Frustration === 'other';
-  const premiumCoaching =
-    answers.q7CoachingHistory === 'self_coached' ||
-    answers.q7CoachingHistory === 'had_coach_before';
-
-  if (moderateHours && specificGoal && premiumFrustration && premiumCoaching) {
-    return { decision: 'premium', budgetFlag, injuryFlag, computedWpkg: wpkg };
-  }
-
-  // Rule 5: Standard (default)
-  return { decision: 'standard', budgetFlag, injuryFlag, computedWpkg: wpkg };
+  // Rule 4: Premium (default for almost everyone)
+  // Standard is now a basic community tier ($75/yr) without coaching or 5 pillars.
+  // Anyone who isn't disqualified, budget-flagged, or Inner Circle should land here.
+  return { decision: 'premium', budgetFlag, injuryFlag, computedWpkg: wpkg };
 }

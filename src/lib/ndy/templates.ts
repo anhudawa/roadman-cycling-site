@@ -106,26 +106,24 @@ export interface RenderedResponse {
 function renderStandard(ctx: TemplateContext): RenderedResponse {
   return {
     decision: 'standard',
-    headline: 'Standard is the right starting point.',
+    headline: 'Here\u2019s a way to start.',
     body: [
-      `So you're training ${ctx.hours}, you're ${ctx.frustration}, and you've ${ctx.coaching}. Here's the thing \u2014 that's a fixable situation. Most of the riders in our community started exactly where you are right now.`,
-      `What you're missing isn't more hours or more intensity. It's structure. A clear plan that fits the time you actually have, not the time you wish you had. That's what Standard gives you.`,
+      `So you're training ${ctx.hours}, you're ${ctx.frustration}, and you've ${ctx.coaching}. You mentioned budget matters right now \u2014 that's fair, and I'd rather point you somewhere useful than try to sell you something that doesn't fit.`,
+      `The community membership gives you access to the group, the conversation, and a place to ask questions. It's not coaching and it doesn't include the 5-pillar system \u2014 but it's a solid starting point while you figure out what you need.`,
     ].join('\n\n'),
     recommendation: {
-      tierName: 'Standard',
-      tagline: 'The 5-pillar coaching system',
-      price: '$15',
-      period: '/month',
+      tierName: 'Community',
+      tagline: 'Join the conversation',
+      price: '$75',
+      period: '/year',
       features: [
-        'Weekly structured training plans',
-        'Group coaching calls with Anthony',
-        'Cycling-specific strength programme',
-        'Nutrition guidance',
-        'Community of serious cyclists',
+        'Access to the Roadman community',
+        'Group discussions and Q&A threads',
+        'Free resources and guides',
       ],
     },
     primaryCta: {
-      label: 'Start your 7-day free trial',
+      label: 'Join the community',
       url: NDY_CONFIG.skoolStandard,
     },
     secondaryCta: {
