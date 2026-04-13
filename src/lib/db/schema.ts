@@ -176,6 +176,7 @@ export const cohortApplications = pgTable(
     frustration: text("frustration").notNull(),
     cohort: text("cohort").notNull().default("2026"),
     persona: text("persona"),
+    status: text("status").notNull().default("awaiting_response"),
     readAt: timestamp("read_at", { withTimezone: true }),
     createdAt: timestamp("created_at", { withTimezone: true }).notNull().defaultNow(),
   },

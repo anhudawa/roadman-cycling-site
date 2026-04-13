@@ -12,9 +12,17 @@ interface Application {
   frustration: string;
   cohort: string;
   persona: string | null;
+  status: string;
   readAt: string | null;
   createdAt: string;
 }
+
+const STATUS_OPTIONS = [
+  { value: "awaiting_response", label: "Awaiting Response", color: "bg-amber-500/10 text-amber-400 border-amber-500/20" },
+  { value: "responded", label: "Responded", color: "bg-blue-500/10 text-blue-400 border-blue-500/20" },
+  { value: "follow_up", label: "Need Follow Up", color: "bg-orange-500/10 text-orange-400 border-orange-500/20" },
+  { value: "signed_up", label: "Signed Up", color: "bg-green-500/10 text-green-400 border-green-500/20" },
+] as const;
 
 export default function ApplicationsPage() {
   const [applications, setApplications] = useState<Application[]>([]);
@@ -45,6 +53,18 @@ export default function ApplicationsPage() {
         )
       );
     }
+  }
+
+  async function updateStatus(app: Application, status: string) {
+    await fetch("/api/admin/applications", {
+      method: "PATCH",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ id: app.id, status }),
+    });
+    setApplications((prev) =>
+      prev.map((a) => (a.id === app.id ? { ...a, status } : a))
+    );
+    setSelected((prev) => (prev?.id === app.id ? { ...prev, status } : prev));
   }
 
   function timeAgo(dateStr: string) {
@@ -111,7 +131,7 @@ export default function ApplicationsPage() {
               <p className="text-foreground-muted text-xs truncate">
                 {app.goal}
               </p>
-              <div className="flex items-center gap-2 mt-2">
+              <div className="flex items-center gap-2 mt-2 flex-wrap">
                 {app.persona && (
                   <span
                     className={`text-[10px] px-2 py-0.5 rounded-full border font-medium ${
@@ -121,6 +141,14 @@ export default function ApplicationsPage() {
                     {app.persona}
                   </span>
                 )}
+                {(() => {
+                  const s = STATUS_OPTIONS.find((o) => o.value === (app.status || "awaiting_response"));
+                  return s ? (
+                    <span className={`text-[10px] px-2 py-0.5 rounded-full border font-medium ${s.color}`}>
+                      {s.label}
+                    </span>
+                  ) : null;
+                })()}
                 <span className="text-foreground-subtle text-[10px]">
                   {app.hours}
                 </span>
@@ -161,6 +189,26 @@ export default function ApplicationsPage() {
                   >
                     Reply
                   </a>
+                </div>
+              </div>
+
+              {/* Status selector */}
+              <div className="mb-6 p-4 rounded-lg bg-white/[0.02] border border-white/5">
+                <p className="text-foreground-subtle text-xs tracking-wider mb-3">STATUS</p>
+                <div className="flex flex-wrap gap-2">
+                  {STATUS_OPTIONS.map((opt) => (
+                    <button
+                      key={opt.value}
+                      onClick={() => updateStatus(selected, opt.value)}
+                      className={`text-xs px-3 py-1.5 rounded-full border font-medium transition-all ${
+                        (selected.status || "awaiting_response") === opt.value
+                          ? opt.color + " ring-1 ring-current"
+                          : "border-white/10 text-foreground-subtle hover:border-white/20"
+                      }`}
+                    >
+                      {opt.label}
+                    </button>
+                  ))}
                 </div>
               </div>
 

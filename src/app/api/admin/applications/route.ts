@@ -32,7 +32,7 @@ export async function GET(request: Request) {
   return NextResponse.json({ applications });
 }
 
-// PATCH /api/admin/applications — mark as read
+// PATCH /api/admin/applications — mark as read and/or update status
 export async function PATCH(request: Request) {
   try {
     await requireAuth();
@@ -40,14 +40,27 @@ export async function PATCH(request: Request) {
     return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
   }
 
-  const { id } = await request.json();
+  const { id, status } = await request.json();
   if (!id) {
     return NextResponse.json({ error: "id required" }, { status: 400 });
   }
 
+  const updates: Record<string, unknown> = {};
+
+  if (status) {
+    const validStatuses = ["awaiting_response", "responded", "follow_up", "signed_up"];
+    if (!validStatuses.includes(status)) {
+      return NextResponse.json({ error: "Invalid status" }, { status: 400 });
+    }
+    updates.status = status;
+  }
+
+  // Always mark as read when patching
+  updates.readAt = new Date();
+
   await db
     .update(cohortApplications)
-    .set({ readAt: new Date() })
+    .set(updates)
     .where(eq(cohortApplications.id, id));
 
   return NextResponse.json({ success: true });
