@@ -24,6 +24,7 @@ export interface BlogFrontmatter {
   keywords: string[];
   relatedEpisodes?: string[];
   faq?: FaqItem[];
+  answerCapsule?: string;
 }
 
 export interface BlogPostMeta extends BlogFrontmatter {

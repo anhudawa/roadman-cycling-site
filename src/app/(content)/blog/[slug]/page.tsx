@@ -10,6 +10,7 @@ import { RelatedPosts } from "@/components/features/blog/RelatedPosts";
 import { RelatedContent } from "@/components/features/RelatedContent";
 import { InlineArticleCTA } from "@/components/features/conversion/InlineArticleCTA";
 import { TableOfContents } from "@/components/features/blog/TableOfContents";
+import { AnswerCapsule } from "@/components/ui/AnswerCapsule";
 
 export async function generateStaticParams() {
   return getAllSlugs().map((slug) => ({ slug }));
@@ -102,6 +103,12 @@ export default async function BlogPostPage({
             "@id": `https://roadmancycling.com/blog/${slug}`,
           },
           keywords: post.keywords.join(", "),
+          ...(post.answerCapsule && {
+            speakable: {
+              "@type": "SpeakableSpecification",
+              cssSelector: [".answer-capsule"],
+            },
+          }),
           ...(post.featuredImage && {
             image: {
               "@type": "ImageObject",
@@ -235,6 +242,12 @@ export default async function BlogPostPage({
           <TableOfContents containerSelector=".prose-roadman" />
 
           <Container width="narrow">
+            {post.answerCapsule && (
+              <div className="answer-capsule mb-8">
+                <AnswerCapsule text={post.answerCapsule} pillar={post.pillar} />
+              </div>
+            )}
+
             <article className="prose-roadman prose-enhanced">
               <MDXRemote source={post.content} />
             </article>

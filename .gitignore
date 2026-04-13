@@ -3,6 +3,9 @@
 # YouTube sync state
 scripts/sync-state.json
 
+# SEO content drafts (generated, reviewed before publishing)
+content/drafts/
+
 # Admin analytics data (generated at runtime)
 /data/events.json
 
