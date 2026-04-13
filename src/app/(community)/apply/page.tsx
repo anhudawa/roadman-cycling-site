@@ -187,6 +187,12 @@ export default function Cohort2Page() {
               >
                 NOT DONE YET
               </h1>
+              <p
+                className="font-heading text-off-white/60 mb-4 tracking-widest"
+                style={{ fontSize: "clamp(0.9rem, 2vw, 1.2rem)" }}
+              >
+                COACHING PROGRAM
+              </p>
               <p className="text-foreground-muted text-lg max-w-md mx-auto mb-6">
                 7-day free trial. 5 pillars. $195/mo. Cancel anytime.
               </p>
