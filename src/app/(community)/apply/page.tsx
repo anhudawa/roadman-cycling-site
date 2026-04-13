@@ -83,11 +83,11 @@ const communityWins = [
 const featuredResults = [
   {
     name: "Daniel Stone",
-    context: "One season",
+    context: "Club racer",
     statLabel: "CATEGORY JUMP",
     statValue: "3 → 1",
     quote:
-      "One season with the system and I went from Cat 3 to Cat 1. The structured approach changed everything about how I train and race.",
+      "The system took me from Cat 3 to Cat 1. The structured approach changed everything about how I train and race.",
     ftpBefore: null,
     ftpAfter: null,
   },
@@ -200,6 +200,24 @@ export default function Cohort2Page() {
                     <p className="text-foreground-subtle text-xs mt-1">{s.label}</p>
                   </div>
                 ))}
+              </div>
+            </ScrollReveal>
+          </Container>
+        </Section>
+
+        {/* ── YouTube intro video ────────────────────────── */}
+        <Section background="charcoal">
+          <Container width="narrow">
+            <ScrollReveal direction="up">
+              <div className="relative aspect-video rounded-xl overflow-hidden border border-white/10 bg-background-elevated shadow-2xl">
+                <iframe
+                  src="https://www.youtube-nocookie.com/embed/mQJuKIjXxXg"
+                  title="Not Done Yet — Roadman Cycling"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                  allowFullScreen
+                  loading="lazy"
+                  className="absolute inset-0 w-full h-full"
+                />
               </div>
             </ScrollReveal>
           </Container>
