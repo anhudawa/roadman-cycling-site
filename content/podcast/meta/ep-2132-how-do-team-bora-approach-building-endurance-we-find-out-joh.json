@@ -1,0 +1,55 @@
+{
+  "slug": "ep-2132-how-do-team-bora-approach-building-endurance-we-find-out-joh",
+  "guest_name": "John Wakefield",
+  "guest_credentials": "World Tour cycling coach at Team Bora-Hansgrohe, formerly at UAE Team Emirates and Science to Sport, specializing in endurance and ultra-distance training",
+  "key_claims": [
+    "Training for ultra-endurance events should prioritize neuromuscular efforts and metabolic work on the bike, with significant off-bike strength training from day one",
+    "Sustainable power output in a comfortable position is more valuable than aggressive aerodynamic positioning that cannot be held; a rider doing 220W for the full duration in non-aggressive position beats an aggressive position they cannot sustain",
+    "Cadence drops progressively with fatigue in ultra events; athletes eventually switch from higher cadence/power to lower cadence/higher torque (newton meters) to continue forward progress",
+    "A three-week-on, one-week-off (3+1) or four-week-on, one-week-off (4+1) periodization structure is standard, with reverse periodization rarely used except in 1-2 specific cases",
+    "The submaximal fatigue test (3-minute effort at threshold to 110% threshold power, performed every 7-10 days) combined with RPE, time to exertion, sleep, mood, wellness, and body weight tracking provides near-bulletproof feedback on whether training stimulus is correct or if athlete is fatigued"
+  ],
+  "named_experts": [
+    "Seiler",
+    "Friel",
+    "Wakefield",
+    "Lorang",
+    "Alan Davies",
+    "Lambert",
+    "Paul Mars",
+    "Michael Phelps"
+  ],
+  "specific_numbers": [
+    "780 km over 3 days (Badlands)",
+    "6 hours per week training availability",
+    "190 watts average power (Rob Britain winning Badlands)",
+    "220 watts sustainable power example",
+    "3-minute submaximal fatigue test at threshold to 110% threshold power",
+    "7-10 days between fatigue tests",
+    "3+1 or 4+1 periodization (3-4 weeks on, 1 week off)",
+    "4,000 km nonstop race mentioned",
+    "24-hour mountain bike race mentioned",
+    "320-270 km gravel race distances mentioned"
+  ],
+  "ndy_members": [],
+  "episode_type": "interview",
+  "topics": [
+    "ultra-endurance-training",
+    "gravel-racing",
+    "badlands-preparation",
+    "periodization",
+    "neuromuscular-training",
+    "submaximal-fatigue-testing",
+    "sustainable-power",
+    "mental-toughness",
+    "coaching-philosophy"
+  ],
+  "primary_cluster": "coaching",
+  "secondary_clusters": [
+    "strength"
+  ],
+  "primary_persona": "tom",
+  "cluster_reasoning": "John Wakefield's expertise centers on training methodology, periodization structures (3+1, 4+1), neuromuscular training, submaximal fatigue testing, and sustainable power output — all core coaching pillars; strength training is secondary because off-bike S&C is mentioned as foundational but not the episode's primary focus.",
+  "sacred_cow_score": 7,
+  "indexed_at": "2026-04-13T15:53:17.702Z"
+}
