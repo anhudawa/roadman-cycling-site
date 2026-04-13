@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { logoutAction } from "../actions";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 interface NavItem {
   href: string;
@@ -153,6 +153,22 @@ function NavIcon({ icon, className }: { icon: string; className?: string }) {
 export function AdminSidebar() {
   const pathname = usePathname();
   const [mobileOpen, setMobileOpen] = useState(false);
+  const [unreadApps, setUnreadApps] = useState(0);
+
+  useEffect(() => {
+    async function fetchUnread() {
+      try {
+        const res = await fetch("/api/admin/applications?count=1");
+        if (res.ok) {
+          const data = await res.json();
+          setUnreadApps(data.unread ?? 0);
+        }
+      } catch { /* silent */ }
+    }
+    fetchUnread();
+    const id = setInterval(fetchUnread, 30_000);
+    return () => clearInterval(id);
+  }, []);
 
   return (
     <>
@@ -224,6 +240,11 @@ export function AdminSidebar() {
                     >
                       <NavIcon icon={item.icon} />
                       {item.label}
+                      {item.href === "/admin/applications" && unreadApps > 0 && (
+                        <span className="ml-auto flex items-center justify-center min-w-[20px] h-5 px-1.5 text-[10px] font-bold text-white bg-coral rounded-full">
+                          {unreadApps}
+                        </span>
+                      )}
                     </Link>
                   );
                 })}
