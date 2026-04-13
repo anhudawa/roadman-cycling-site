@@ -116,9 +116,9 @@ export function Footer() {
                 <Image
                   src="/images/logo-white.png"
                   alt="Roadman Cycling"
-                  width={200}
-                  height={71}
-                  className="h-10 sm:h-12 w-auto"
+                  width={763}
+                  height={345}
+                  className="max-w-none h-10 sm:h-12 w-auto"
                 />
               </Link>
               <p className="text-foreground-muted leading-relaxed mb-2">

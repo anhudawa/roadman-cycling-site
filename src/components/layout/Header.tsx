@@ -74,9 +74,9 @@ export function Header() {
               <Image
                 src="/images/logo-white.png"
                 alt="Roadman Cycling"
-                width={200}
-                height={70}
-                className="h-10 md:h-14 w-auto"
+                width={763}
+                height={345}
+                className="max-w-none h-10 md:h-14 w-auto"
                 priority
               />
             </Link>
