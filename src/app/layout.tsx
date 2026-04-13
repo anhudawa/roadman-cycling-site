@@ -24,7 +24,7 @@ const workSans = Work_Sans({
 
 export const metadata: Metadata = {
   title: {
-    default: "Roadman Cycling — Cycling Is Hard, We Make It Less Hard",
+    default: "Roadman Cycling — Cycling Coaching, Training & Performance Podcast",
     template: "%s | Roadman Cycling",
   },
   description:
@@ -53,7 +53,7 @@ export const metadata: Metadata = {
     locale: "en_IE",
     url: "https://roadmancycling.com",
     siteName: "Roadman Cycling",
-    title: "Roadman Cycling — Cycling Is Hard, We Make It Less Hard",
+    title: "Roadman Cycling — Cycling Coaching, Training & Performance Podcast",
     description:
       "The podcast trusted by 1 million monthly listeners. Expert cycling coaching, training, nutrition, and community.",
     images: [

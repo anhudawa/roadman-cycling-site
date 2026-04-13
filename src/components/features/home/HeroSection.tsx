@@ -126,7 +126,7 @@ export function HeroSection() {
               ease: [0.16, 1, 0.3, 1],
             }}
           >
-            OUR PODCAST WILL HELP.
+            OUR COACHING WILL HELP.
           </motion.span>
         </motion.h1>
 

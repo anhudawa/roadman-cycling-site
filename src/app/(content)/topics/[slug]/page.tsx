@@ -21,7 +21,7 @@ export async function generateMetadata({
   if (!topic) return { title: "Topic Not Found" };
 
   return {
-    title: `${topic.title} — Roadman Cycling`,
+    title: topic.title,
     description: topic.description,
     keywords: topic.keywords,
     alternates: {
