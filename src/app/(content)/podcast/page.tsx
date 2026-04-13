@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import { Header, Footer, Section, Container } from "@/components/layout";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { getAllEpisodes } from "@/lib/podcast";
@@ -70,6 +71,16 @@ export default function PodcastPage() {
         {/* Hero */}
         <Section background="deep-purple" grain className="pt-32 pb-12">
           <Container className="text-center">
+            <div className="relative w-32 h-32 md:w-40 md:h-40 mx-auto mb-8 rounded-full overflow-hidden ring-2 ring-coral/30 ring-offset-4 ring-offset-deep-purple">
+              <Image
+                src="/images/about/anthony-podcast-promo.jpg"
+                alt="Anthony Walsh — Roadman Cycling Podcast host"
+                fill
+                className="object-cover object-top"
+                sizes="160px"
+                priority
+              />
+            </div>
             <h1
               className="font-heading text-off-white mb-4"
               style={{ fontSize: "var(--text-hero)" }}

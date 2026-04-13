@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import { Header, Footer, Section, Container } from "@/components/layout";
-import { Button, Card, ScrollReveal } from "@/components/ui";
+import { Button, Card, ScrollReveal, ParallaxImage } from "@/components/ui";
 import { JsonLd } from "@/components/seo/JsonLd";
 
 export const metadata: Metadata = {
@@ -97,20 +97,32 @@ export default function AboutPage() {
           </Container>
         </Section>
 
-        {/* Anthony Photo */}
+        {/* Anthony Photos */}
         <Section background="charcoal" className="!pb-0">
           <Container>
             <ScrollReveal direction="up">
-              <div className="relative aspect-[4/3] md:aspect-[21/9] rounded-xl overflow-hidden">
-                <Image
-                  src="/images/about/anthony-walsh-podcast.jpg"
-                  alt="Anthony Walsh recording the Roadman Cycling Podcast"
-                  fill
-                  className="object-cover object-top"
-                  sizes="(max-width: 768px) 100vw, 1200px"
-                  priority
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-charcoal/60 to-transparent" />
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                <div className="md:col-span-2 relative aspect-[4/3] md:aspect-[16/9] rounded-xl overflow-hidden">
+                  <Image
+                    src="/images/about/anthony-walsh-podcast.jpg"
+                    alt="Anthony Walsh recording the Roadman Cycling Podcast"
+                    fill
+                    className="object-cover object-top"
+                    sizes="(max-width: 768px) 100vw, 800px"
+                    priority
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-charcoal/60 to-transparent" />
+                </div>
+                <div className="relative aspect-[4/3] md:aspect-[9/16] rounded-xl overflow-hidden">
+                  <Image
+                    src="/images/about/anthony-profile-closeup.jpg"
+                    alt="Anthony Walsh — close-up profile after a ride"
+                    fill
+                    className="object-cover object-center"
+                    sizes="(max-width: 768px) 100vw, 400px"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-charcoal/60 to-transparent" />
+                </div>
               </div>
             </ScrollReveal>
           </Container>
@@ -176,6 +188,16 @@ export default function AboutPage() {
             </div>
           </Container>
         </Section>
+
+        {/* Parallax — Roadside break */}
+        <ParallaxImage
+          src="/images/cycling/gravel-roadside-break.jpg"
+          alt="Two cyclists taking a break on a dusty road beside rock formations"
+          className="h-[30vh] md:h-[50vh]"
+          objectPosition="center 50%"
+          speed={0.3}
+          overlayColor="from-charcoal via-charcoal/50 to-deep-purple"
+        />
 
         {/* Timeline */}
         <Section background="deep-purple" grain>

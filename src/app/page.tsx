@@ -1,5 +1,6 @@
 import { Header, Footer, Section, Container } from "@/components/layout";
 import { Button, Card, ScrollReveal, ParallaxImage, GradientText, GuestMarquee } from "@/components/ui";
+import Image from "next/image";
 import { OrganizationJsonLd, WebSiteJsonLd } from "@/components/seo/JsonLd";
 import Link from "next/link";
 import { HeroSection } from "@/components/features/home/HeroSection";
@@ -140,8 +141,15 @@ export default function HomePage() {
           </Container>
         </Section>
 
-        {/* Gradient divider */}
-        <div className="gradient-divider" />
+        {/* PARALLAX DIVIDER — Epic desert road climb */}
+        <ParallaxImage
+          src="/images/cycling/gravel-desert-road-epic.jpg"
+          alt="Two cyclists climbing a winding road through dramatic desert terrain"
+          className="h-[30vh] md:h-[50vh]"
+          objectPosition="center 40%"
+          speed={0.3}
+          overlayColor="from-charcoal via-charcoal/50 to-deep-purple"
+        />
 
         {/* EXPERT ACCESS — The Moat */}
         <Section background="deep-purple" grain className="overflow-hidden">
@@ -232,12 +240,12 @@ export default function HomePage() {
           </Container>
         </Section>
 
-        {/* PARALLAX DIVIDER — Golden hour riding */}
+        {/* PARALLAX DIVIDER — Post-ride rest against wall */}
         <ParallaxImage
-          src="/images/community/DSC05714.JPG"
-          alt="Two cyclists riding through golden hour light in a birch forest"
+          src="/images/cycling/post-ride-rest-wall.jpg"
+          alt="Two cyclists resting against a white wall with their gravel bikes after a long ride"
           className="h-[35vh] md:h-[60vh]"
-          objectPosition="center 40%"
+          objectPosition="center 60%"
           speed={0.3}
           overlayColor="from-charcoal via-charcoal/50 to-deep-purple"
         />
