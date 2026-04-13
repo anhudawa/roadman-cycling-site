@@ -4,14 +4,14 @@ import { Card, ScrollReveal } from "@/components/ui";
 import { CohortApplicationForm } from "./CohortApplicationForm";
 
 export const metadata: Metadata = {
-  title: "Cohort 2 — Not Done Yet | Roadman Cycling",
+  title: "Cohort 2 — Not Done Yet",
   description:
     "30 places. 5 pillars. $195/month. Applications open until Friday. Personalised cycling coaching with Anthony Walsh.",
   alternates: {
     canonical: "https://roadmancycling.com/2026",
   },
   openGraph: {
-    title: "Cohort 2 — Not Done Yet | Roadman Cycling",
+    title: "Cohort 2 — Not Done Yet",
     description:
       "30 places. 5 pillars. $195/month. Applications open until Friday. Personalised cycling coaching with Anthony Walsh.",
     type: "website",
@@ -22,7 +22,7 @@ export const metadata: Metadata = {
 // ── Testimonials (existing members + screenshots) ──────────────────
 
 const heroStats = [
-  { value: "295w", label: "Damien's FTP after NDY" },
+  { value: "+90w", label: "Damien's FTP gain" },
   { value: "3→1", label: "Daniel's cat jump in one season" },
   { value: "-16kg", label: "Chris's weight loss" },
   { value: "+15%", label: "Brian's FTP at age 52" },
@@ -104,8 +104,8 @@ const featuredResults = [
   {
     name: "Damien Maloney",
     context: "Plateaued sportive rider",
-    statLabel: "FTP",
-    statValue: "295w",
+    statLabel: "FTP GAIN",
+    statValue: "+90w",
     quote:
       "I was an average sportive rider who had plateaued. Roadman custom built a plan to achieve my goals. I've gotten much more out of Roadman than I ever imagined.",
     ftpBefore: 205,
@@ -176,30 +176,18 @@ export default function Cohort2Page() {
               <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-coral/10 border border-coral/20 mb-6">
                 <span className="w-2 h-2 rounded-full bg-coral animate-pulse" />
                 <span className="text-coral text-sm font-medium tracking-wide">
-                  APPLICATIONS OPEN — CLOSES FRIDAY
+                  CLOSES FRIDAY — 30 PLACES
                 </span>
               </div>
 
               <h1
-                className="font-heading text-off-white mb-4 text-gradient-animated"
+                className="font-heading text-off-white mb-2 text-gradient-animated"
                 style={{ fontSize: "clamp(2.5rem, 8vw, 5rem)" }}
               >
-                COHORT 2
-              </h1>
-              <p
-                className="font-heading text-off-white/80 mb-6"
-                style={{ fontSize: "clamp(1.2rem, 3vw, 1.8rem)" }}
-              >
                 NOT DONE YET
-              </p>
-              <p className="text-foreground-muted text-lg max-w-xl mx-auto mb-4">
-                30 places. 5 pillars. $195/month.
-                Personalised coaching with Anthony Walsh.
-              </p>
-              <p className="text-foreground-subtle text-sm max-w-lg mx-auto mb-10">
-                Training. Nutrition. Strength. Recovery. Accountability.
-                One system — built from 1,400+ conversations with the best coaches
-                and scientists in the sport.
+              </h1>
+              <p className="text-foreground-muted text-lg max-w-md mx-auto mb-10">
+                5 pillars. $195/mo. Cancel anytime.
               </p>
             </ScrollReveal>
 
@@ -383,18 +371,15 @@ export default function Cohort2Page() {
 
           <Container width="narrow" className="relative z-10">
             <ScrollReveal direction="up">
-              <div className="text-center mb-10">
-                <p className="text-coral font-heading text-lg mb-3 tracking-widest">
-                  30 PLACES
-                </p>
+              <div className="text-center mb-10" id="apply">
                 <h2
                   className="font-heading text-off-white mb-3"
                   style={{ fontSize: "var(--text-section)" }}
                 >
-                  APPLY FOR COHORT 2
+                  APPLY NOW
                 </h2>
                 <p className="text-foreground-muted max-w-md mx-auto">
-                  $195/month. Cancel anytime. Takes less than 60 seconds.
+                  $195/mo. Cancel anytime. Takes 60 seconds.
                 </p>
               </div>
             </ScrollReveal>

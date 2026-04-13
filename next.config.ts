@@ -30,11 +30,7 @@ const nextConfig: NextConfig = {
         destination: "/community/clubhouse",
         permanent: true,
       },
-      {
-        source: "/2026",
-        destination: "/community/not-done-yet",
-        permanent: true,
-      },
+      // /2026 now served by app/(community)/2026/page.tsx
       {
         source: "/strong",
         destination: "/strength-training",

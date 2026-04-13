@@ -78,7 +78,7 @@ export function CohortApplicationForm() {
   };
 
   return (
-    <div className="relative" id="apply">
+    <div className="relative">
       {/* Progress dots */}
       {step !== "submitted" && (
         <div className="flex items-center justify-center gap-2 mb-8">
