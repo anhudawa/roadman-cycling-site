@@ -1,4 +1,5 @@
 const BASE_URL = "https://api.beehiiv.com/v2";
+const FETCH_TIMEOUT = 10_000; // 10 second timeout for all Beehiiv API calls
 
 function getHeaders(): HeadersInit {
   const apiKey = process.env.BEEHIIV_API_KEY;
@@ -9,6 +10,12 @@ function getHeaders(): HeadersInit {
     Authorization: `Bearer ${apiKey}`,
     "Content-Type": "application/json",
   };
+}
+
+function fetchWithTimeout(url: string, options: RequestInit = {}): Promise<Response> {
+  const controller = new AbortController();
+  const timeout = setTimeout(() => controller.abort(), FETCH_TIMEOUT);
+  return fetch(url, { ...options, signal: controller.signal }).finally(() => clearTimeout(timeout));
 }
 
 function getPublicationId(): string {
@@ -28,7 +35,7 @@ export interface SubscriberStats {
 export async function fetchSubscriberStats(): Promise<SubscriberStats | null> {
   try {
     const pubId = getPublicationId();
-    const res = await fetch(`${BASE_URL}/publications/${pubId}`, {
+    const res = await fetchWithTimeout(`${BASE_URL}/publications/${pubId}`, {
       headers: getHeaders(),
       next: { revalidate: 300 }, // cache for 5 minutes
     });
@@ -77,7 +84,7 @@ export async function fetchSubscriberGrowth(
       url.searchParams.set("page", String(page));
       url.searchParams.set("expand[]", "stats");
 
-      const res = await fetch(url.toString(), {
+      const res = await fetchWithTimeout(url.toString(), {
         headers: getHeaders(),
       });
 
@@ -107,8 +114,8 @@ export async function fetchSubscriberGrowth(
         hasMore = false;
       } else {
         page++;
-        // Safety limit to avoid runaway pagination
-        if (page > 50) hasMore = false;
+        // Safety limit — with 60k+ subscribers, we can't page through all of them
+        if (page > 5) hasMore = false;
       }
     }
 
@@ -157,7 +164,7 @@ export async function fetchNewsletterPosts(
     url.searchParams.set("limit", String(limit));
     url.searchParams.set("status", "confirmed");
 
-    const res = await fetch(url.toString(), {
+    const res = await fetchWithTimeout(url.toString(), {
       headers: getHeaders(),
       next: { revalidate: 300 },
     });
