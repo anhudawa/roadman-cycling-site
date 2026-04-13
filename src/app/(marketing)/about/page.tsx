@@ -189,12 +189,12 @@ export default function AboutPage() {
           </Container>
         </Section>
 
-        {/* Parallax — Roadside break */}
+        {/* Parallax — Desert road climb */}
         <ParallaxImage
-          src="/images/cycling/gravel-roadside-break.jpg"
-          alt="Two cyclists taking a break on a dusty road beside rock formations"
+          src="/images/cycling/gravel-desert-road-epic.jpg"
+          alt="Two cyclists climbing a winding road through dramatic desert terrain"
           className="h-[50vh] md:h-[70vh]"
-          objectPosition="center 60%"
+          objectPosition="center 45%"
           speed={0.3}
           overlayColor="from-charcoal via-charcoal/50 to-deep-purple"
         />
