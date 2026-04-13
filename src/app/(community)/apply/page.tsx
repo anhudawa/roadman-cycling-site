@@ -83,7 +83,7 @@ const communityWins = [
 const featuredResults = [
   {
     name: "Daniel Stone",
-    context: "Club racer",
+    context: "Roadman Cycling Club",
     statLabel: "CATEGORY JUMP",
     statValue: "3 → 1",
     quote:
