@@ -8,6 +8,7 @@ import {
   useSpring,
   useMotionValueEvent,
 } from "framer-motion";
+import Image from "next/image";
 import { Button } from "@/components/ui";
 import { FloatingParticles } from "@/components/ui/FloatingParticles";
 import { useState } from "react";
@@ -54,6 +55,17 @@ export function HeroSection() {
     >
       {/* === LAYER 1: Deep background with parallax === */}
       <motion.div className="absolute inset-0 bg-charcoal" style={{ y: bgY }}>
+        {/* Hero portrait background */}
+        <Image
+          src="/images/about/anthony-podcast-promo.jpg"
+          alt=""
+          fill
+          className="object-cover object-top opacity-40"
+          sizes="100vw"
+          priority
+        />
+        {/* Radial vignette to blend edges */}
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center_top,transparent_20%,rgba(37,37,38,0.85)_70%,rgb(37,37,38)_100%)]" />
         {/* Grain texture */}
         <div className="absolute inset-0 grain-overlay" />
       </motion.div>
