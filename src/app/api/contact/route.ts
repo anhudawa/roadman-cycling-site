@@ -39,21 +39,26 @@ export async function POST(request: Request) {
     // Send email notification
     const resend = getResend();
     if (resend) {
-      await resend.emails.send({
-        from: "Roadman Cycling <noreply@roadmancycling.com>",
-        to: NOTIFICATION_EMAIL,
-        replyTo: email,
-        subject: `[Contact Form] ${subject} — from ${name}`,
-        html: `
-          <h2>New Contact Form Submission</h2>
-          <p><strong>From:</strong> ${name} &lt;${email}&gt;</p>
-          <p><strong>Subject:</strong> ${subject}</p>
-          <hr />
-          <p>${message.replace(/\n/g, "<br />")}</p>
-          <hr />
-          <p style="color: #666; font-size: 12px;">Reply directly to this email to respond to ${name}.</p>
-        `,
-      });
+      try {
+        const emailResult = await resend.emails.send({
+          from: "Roadman Cycling <noreply@roadmancycling.com>",
+          to: NOTIFICATION_EMAIL,
+          replyTo: email,
+          subject: `[Contact Form] ${subject} — from ${name}`,
+          html: `
+            <h2>New Contact Form Submission</h2>
+            <p><strong>From:</strong> ${name} &lt;${email}&gt;</p>
+            <p><strong>Subject:</strong> ${subject}</p>
+            <hr />
+            <p>${message.replace(/\n/g, "<br />")}</p>
+            <hr />
+            <p style="color: #666; font-size: 12px;">Reply directly to this email to respond to ${name}.</p>
+          `,
+        });
+        console.log("[Contact Form] Email sent:", JSON.stringify(emailResult));
+      } catch (emailErr) {
+        console.error("[Contact Form] Resend email failed:", emailErr);
+      }
     } else {
       console.warn("[Contact Form] RESEND_API_KEY not configured — email not sent");
     }
