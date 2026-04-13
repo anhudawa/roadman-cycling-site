@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Header, Footer, Section, Container } from "@/components/layout";
 import { Card, ScrollReveal } from "@/components/ui";
 import { CohortApplicationForm } from "./CohortApplicationForm";
+import { CountdownTimer } from "./CountdownTimer";
 
 export const metadata: Metadata = {
   title: "Cohort 2 — Not Done Yet",
@@ -176,7 +177,7 @@ export default function Cohort2Page() {
               <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-coral/10 border border-coral/20 mb-6">
                 <span className="w-2 h-2 rounded-full bg-coral animate-pulse" />
                 <span className="text-coral text-sm font-medium tracking-wide">
-                  CLOSES FRIDAY — 30 PLACES
+                  CLOSES FRIDAY 17TH, MIDNIGHT — 30 PLACES
                 </span>
               </div>
 
@@ -186,9 +187,20 @@ export default function Cohort2Page() {
               >
                 NOT DONE YET
               </h1>
-              <p className="text-foreground-muted text-lg max-w-md mx-auto mb-10">
+              <p className="text-foreground-muted text-lg max-w-md mx-auto mb-6">
                 5 pillars. $195/mo. Cancel anytime.
               </p>
+
+              <div className="mb-6">
+                <CountdownTimer />
+              </div>
+
+              <a
+                href="#apply"
+                className="inline-flex items-center px-8 py-4 rounded-xl bg-coral text-off-white font-heading text-lg tracking-wider hover:bg-coral/90 transition-all shadow-lg shadow-coral/20 mb-10"
+              >
+                APPLY NOW
+              </a>
             </ScrollReveal>
 
             {/* Quick stats ticker */}

@@ -309,3 +309,50 @@ export async function notifyStaleSponsor(
     html,
   });
 }
+
+// ---------------------------------------------------------------------------
+// 6. Cohort Application
+// ---------------------------------------------------------------------------
+
+export async function notifyCohortApplication(data: {
+  name: string;
+  email: string;
+  goal: string;
+  hours: string;
+  ftp: string | null;
+  frustration: string;
+  persona: string;
+}) {
+  const personaLabels: Record<string, string> = {
+    plateau: "Plateau",
+    "event-prep": "Event Prep",
+    comeback: "Comeback",
+    listener: "Listener / New",
+  };
+
+  const html = emailWrapper(
+    "NEW COHORT 2 APPLICATION",
+    new Date().toLocaleDateString("en-GB", { weekday: "long", year: "numeric", month: "long", day: "numeric" }),
+    table(
+      row("Name", data.name) +
+      row("Email", data.email) +
+      row("Goal", data.goal) +
+      row("Hours/week", data.hours) +
+      row("FTP", data.ftp || "Not provided") +
+      row("Frustration", data.frustration) +
+      row("Persona", personaLabels[data.persona] ?? data.persona)
+    ) +
+    `<p style="margin-top: 16px;">
+      <a href="https://roadmancycling.com/admin/applications" style="color: #F16363; text-decoration: underline;">
+        View in admin panel →
+      </a>
+    </p>`,
+  );
+
+  return sendEmail({
+    to: RECIPIENTS.anthony,
+    subject: `Cohort 2 Application: ${data.name}`,
+    html,
+    replyTo: data.email,
+  });
+}

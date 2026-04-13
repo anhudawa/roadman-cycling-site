@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server";
 import { db } from "@/lib/db";
 import { cohortApplications } from "@/lib/db/schema";
+import { notifyCohortApplication } from "@/lib/notifications";
 
 export async function POST(request: Request) {
   try {
@@ -52,6 +53,13 @@ export async function POST(request: Request) {
       cohort: "2026",
       persona,
     });
+
+    // Fire-and-forget email notification
+    notifyCohortApplication({
+      name, email, goal, hours,
+      ftp: ftp || null,
+      frustration, persona,
+    }).catch((err) => console.error("[Cohort Apply] Email notification failed:", err));
 
     return NextResponse.json({ success: true, persona });
   } catch (error) {

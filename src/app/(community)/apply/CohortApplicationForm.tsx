@@ -221,7 +221,7 @@ export function CohortApplicationForm() {
                 placeholder="Your name"
                 value={name}
                 onChange={(e) => setName(e.target.value)}
-                className="w-full px-4 py-3 rounded-xl bg-white/[0.05] border border-white/10 text-off-white placeholder:text-foreground-subtle focus:border-coral/50 focus:outline-none focus:ring-1 focus:ring-coral/20 transition-colors"
+                className="w-full px-4 py-3 rounded-xl bg-white/10 border border-white/15 text-off-white caret-coral placeholder:text-foreground-subtle focus:border-coral/50 focus:outline-none focus:ring-1 focus:ring-coral/20 transition-colors"
                 autoFocus
               />
               <input
@@ -229,14 +229,14 @@ export function CohortApplicationForm() {
                 placeholder="Your email"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
-                className="w-full px-4 py-3 rounded-xl bg-white/[0.05] border border-white/10 text-off-white placeholder:text-foreground-subtle focus:border-coral/50 focus:outline-none focus:ring-1 focus:ring-coral/20 transition-colors"
+                className="w-full px-4 py-3 rounded-xl bg-white/10 border border-white/15 text-off-white caret-coral placeholder:text-foreground-subtle focus:border-coral/50 focus:outline-none focus:ring-1 focus:ring-coral/20 transition-colors"
               />
               <input
                 type="text"
                 placeholder="Current FTP (optional)"
                 value={ftp}
                 onChange={(e) => setFtp(e.target.value)}
-                className="w-full px-4 py-3 rounded-xl bg-white/[0.05] border border-white/10 text-off-white placeholder:text-foreground-subtle focus:border-coral/50 focus:outline-none focus:ring-1 focus:ring-coral/20 transition-colors"
+                className="w-full px-4 py-3 rounded-xl bg-white/10 border border-white/15 text-off-white caret-coral placeholder:text-foreground-subtle focus:border-coral/50 focus:outline-none focus:ring-1 focus:ring-coral/20 transition-colors"
               />
               {error && (
                 <p className="text-red-400 text-sm text-center">{error}</p>
