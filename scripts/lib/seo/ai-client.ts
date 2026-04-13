@@ -51,9 +51,10 @@ export async function aiCall(options: AiCallOptions): Promise<AiCallResult> {
     return { text: "[dry run]", inputTokens: 0, outputTokens: 0, model: modelId };
   }
 
-  // Rate limiting — wait between calls
+  // Rate limiting — wait between calls (longer for sonnet to avoid overload)
   if (totalCalls > 0) {
-    await new Promise((r) => setTimeout(r, 600));
+    const delay = model === "sonnet" ? 3000 : 600;
+    await new Promise((r) => setTimeout(r, delay));
   }
 
   let lastError: Error | null = null;
@@ -79,7 +80,7 @@ export async function aiCall(options: AiCallOptions): Promise<AiCallResult> {
       lastError = error instanceof Error ? error : new Error(String(error));
       console.warn(`  ⚠ Attempt ${attempt + 1}/3 failed: ${lastError.message}`);
       if (attempt < 2) {
-        const backoff = Math.pow(2, attempt) * 1000;
+        const backoff = Math.pow(2, attempt) * 5000;
         await new Promise((r) => setTimeout(r, backoff));
       }
     }
