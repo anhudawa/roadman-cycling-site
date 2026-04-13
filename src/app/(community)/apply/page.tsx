@@ -52,9 +52,9 @@ const communityWins = [
   },
   {
     name: "Gregory Gross",
-    title: "Hexis for the win",
+    title: "Not Done Yet for the win",
     quote:
-      "2019 was planning to compete in RAAM. Nov 2019 I was 315 pounds, about to go on disability. Quarantine was a godsend for me. Jan 5, I started Hexis. Today, I'm down 5 pounds and 1% bodyfat, to my lowest weight in 15 years. I cannot believe I'm under 100kg.",
+      "2019 was planning to compete in RAAM. Nov 2019 I was 315 pounds, about to go on disability. Quarantine was a godsend for me. Jan 5, I started Not Done Yet. Today, I'm down 5 pounds and 1% bodyfat, to my lowest weight in 15 years. I cannot believe I'm under 100kg.",
     stat: "315lbs → under 100kg",
   },
   {
