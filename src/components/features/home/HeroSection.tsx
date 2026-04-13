@@ -61,7 +61,7 @@ export function HeroSection() {
           alt=""
           fill
           className="object-cover opacity-40"
-          style={{ objectPosition: "center -5%" }}
+          style={{ objectPosition: "center -25%" }}
           sizes="100vw"
           priority
         />
