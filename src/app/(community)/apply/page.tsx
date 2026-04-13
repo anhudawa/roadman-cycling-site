@@ -8,14 +8,14 @@ export const metadata: Metadata = {
   description:
     "30 places. 5 pillars. $195/month. Applications open until Friday. Personalised cycling coaching with Anthony Walsh.",
   alternates: {
-    canonical: "https://roadmancycling.com/2026",
+    canonical: "https://roadmancycling.com/apply",
   },
   openGraph: {
     title: "Cohort 2 — Not Done Yet",
     description:
       "30 places. 5 pillars. $195/month. Applications open until Friday. Personalised cycling coaching with Anthony Walsh.",
     type: "website",
-    url: "https://roadmancycling.com/2026",
+    url: "https://roadmancycling.com/apply",
   },
 };
 
