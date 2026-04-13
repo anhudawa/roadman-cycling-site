@@ -4,7 +4,7 @@ type Model = "haiku" | "sonnet";
 
 const MODEL_IDS: Record<Model, string> = {
   haiku: "claude-haiku-4-5-20251001",
-  sonnet: "claude-sonnet-4-5-20241022",
+  sonnet: "claude-sonnet-4-20250514",
 };
 
 interface AiCallOptions {
