@@ -9,11 +9,20 @@ export function NotificationBell() {
   useEffect(() => {
     async function fetchCount() {
       try {
-        const res = await fetch("/api/admin/inbox?count=1");
-        if (res.ok) {
-          const data = await res.json();
-          setUnread(data.unread ?? 0);
+        const [inboxRes, appsRes] = await Promise.all([
+          fetch("/api/admin/inbox?count=1"),
+          fetch("/api/admin/applications?count=1"),
+        ]);
+        let total = 0;
+        if (inboxRes.ok) {
+          const data = await inboxRes.json();
+          total += data.unread ?? 0;
         }
+        if (appsRes.ok) {
+          const data = await appsRes.json();
+          total += data.unread ?? 0;
+        }
+        setUnread(total);
       } catch {
         // silently fail
       }

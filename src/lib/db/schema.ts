@@ -163,6 +163,29 @@ export const contactSubmissions = pgTable(
   ]
 );
 
+// ── Cohort Applications ─────────────────────────────────
+export const cohortApplications = pgTable(
+  "cohort_applications",
+  {
+    id: serial("id").primaryKey(),
+    name: text("name").notNull(),
+    email: text("email").notNull(),
+    goal: text("goal").notNull(),
+    hours: text("hours").notNull(),
+    ftp: text("ftp"),
+    frustration: text("frustration").notNull(),
+    cohort: text("cohort").notNull().default("2026"),
+    persona: text("persona"),
+    readAt: timestamp("read_at", { withTimezone: true }),
+    createdAt: timestamp("created_at", { withTimezone: true }).notNull().defaultNow(),
+  },
+  (table) => [
+    index("cohort_applications_created_at_idx").on(table.createdAt),
+    index("cohort_applications_cohort_idx").on(table.cohort),
+    index("cohort_applications_read_at_idx").on(table.readAt),
+  ]
+);
+
 // ── Content Chat Messages ─────────────────────────────────
 export const contentChatMessages = pgTable("content_chat_messages", {
   id: serial("id").primaryKey(),
