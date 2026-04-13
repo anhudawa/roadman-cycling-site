@@ -148,7 +148,7 @@ export const NAV_ITEMS: NavItem[] = [
     href: "/guests",
   },
   {
-    label: "Community",
+    label: "Coaching",
     href: "/community",
     children: [
       { label: "Clubhouse (Free)", href: "/community/clubhouse" },
