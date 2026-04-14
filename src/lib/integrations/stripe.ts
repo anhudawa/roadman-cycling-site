@@ -103,6 +103,68 @@ export async function fetchRevenueForPeriod(
   }
 }
 
+// ── All Customers (bulk import) ──────────────────────────
+export interface StripeCustomer {
+  id: string;
+  email: string;
+  name: string | null;
+  createdAt: Date;
+}
+
+export async function fetchAllCustomers({
+  limit = 2000,
+}: { limit?: number } = {}): Promise<StripeCustomer[]> {
+  const results: StripeCustomer[] = [];
+  let startingAfter: string | null = null;
+  let hasMore = true;
+
+  while (hasMore && results.length < limit) {
+    const params = new URLSearchParams();
+    params.set("limit", "100");
+    if (startingAfter) params.set("starting_after", startingAfter);
+
+    const res = await fetch(`${STRIPE_API}/customers?${params.toString()}`, {
+      headers: getHeaders(),
+    });
+
+    if (!res.ok) {
+      console.error(
+        `[Stripe] fetchAllCustomers failed: ${res.status} ${res.statusText}`
+      );
+      break;
+    }
+
+    const json = await res.json();
+    const customers: Array<{
+      id: string;
+      email: string | null;
+      name: string | null;
+      created: number;
+    }> = json.data ?? [];
+
+    if (customers.length === 0) break;
+
+    for (const c of customers) {
+      if (!c.email) continue;
+      results.push({
+        id: c.id,
+        email: c.email,
+        name: c.name ?? null,
+        createdAt: new Date(c.created * 1000),
+      });
+      if (results.length >= limit) break;
+    }
+
+    hasMore = json.has_more === true;
+    startingAfter = customers[customers.length - 1]?.id ?? null;
+    if (!startingAfter) break;
+
+    await new Promise((r) => setTimeout(r, 250));
+  }
+
+  return results;
+}
+
 // ── Recent Transactions ──────────────────────────────────
 export async function fetchRecentTransactions(
   limit: number

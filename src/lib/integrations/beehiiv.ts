@@ -240,6 +240,71 @@ export async function fetchNewsletterIssues(
   }
 }
 
+// ── All Active Subscribers (bulk import) ─────────────────
+export interface BeehiivSubscriber {
+  email: string;
+  name?: string | null;
+  status: string;
+  createdAt: Date | null;
+}
+
+export async function fetchAllSubscribers({
+  limit = 5000,
+}: { limit?: number } = {}): Promise<BeehiivSubscriber[]> {
+  const pubId = getPublicationId();
+  const results: BeehiivSubscriber[] = [];
+  let page = 1;
+  const pageSize = 100;
+
+  while (results.length < limit) {
+    const url = new URL(`${BASE_URL}/publications/${pubId}/subscriptions`);
+    url.searchParams.set("limit", String(pageSize));
+    url.searchParams.set("page", String(page));
+    url.searchParams.set("status", "active");
+
+    const res = await fetchWithTimeout(url.toString(), {
+      headers: getHeaders(),
+    });
+    if (!res.ok) {
+      console.error(
+        `[Beehiiv] fetchAllSubscribers page ${page} failed: ${res.status}`
+      );
+      break;
+    }
+
+    const json = await res.json();
+    const subs = json.data ?? [];
+    if (subs.length === 0) break;
+
+    for (const s of subs as Array<{
+      email?: string;
+      name?: string;
+      status?: string;
+      created?: number;
+    }>) {
+      if (!s.email) continue;
+      results.push({
+        email: s.email,
+        name: s.name ?? null,
+        status: s.status ?? "active",
+        createdAt: s.created ? new Date(s.created * 1000) : null,
+      });
+      if (results.length >= limit) break;
+    }
+
+    if (subs.length < pageSize) break;
+    page++;
+
+    // Safety cap on pages
+    if (page > Math.ceil(limit / pageSize) + 5) break;
+
+    // Throttle between pages
+    await new Promise((r) => setTimeout(r, 250));
+  }
+
+  return results;
+}
+
 export async function fetchNewsletterIssueBySlug(
   slug: string
 ): Promise<NewsletterIssue | null> {

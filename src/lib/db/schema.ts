@@ -568,6 +568,31 @@ export const customFieldDefs = pgTable(
   (table) => [index("custom_field_defs_sort_order_idx").on(table.sortOrder)]
 );
 
+// ── CRM: Sync Runs ────────────────────────────────────────
+export interface SyncRunResult {
+  scanned: number;
+  created: number;
+  updated: number;
+  skipped: number;
+  errors: number;
+}
+
+export const syncRuns = pgTable(
+  "sync_runs",
+  {
+    id: serial("id").primaryKey(),
+    source: text("source").notNull(), // 'beehiiv' | 'stripe'
+    status: text("status").notNull(), // 'running' | 'success' | 'error'
+    result: jsonb("result").$type<SyncRunResult | null>(),
+    error: text("error"),
+    startedAt: timestamp("started_at", { withTimezone: true }).notNull().defaultNow(),
+    finishedAt: timestamp("finished_at", { withTimezone: true }),
+  },
+  (table) => [
+    index("sync_runs_source_idx").on(table.source, table.startedAt),
+  ]
+);
+
 export const episodeDownloadsCache = pgTable("episode_downloads_cache", {
   episodeId: text("episode_id").primaryKey(),
   downloads: integer("downloads").notNull(),

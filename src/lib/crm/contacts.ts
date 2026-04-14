@@ -10,7 +10,9 @@ export type ContactSource =
   | "cohort_application"
   | "manual"
   | "import"
-  | "subscribers";
+  | "subscribers"
+  | "beehiiv"
+  | "stripe";
 
 export type ActivityType =
   | "contact_submission"

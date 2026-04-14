@@ -4,6 +4,7 @@ import { db } from "@/lib/db";
 import { sql as drizzleSql } from "drizzle-orm";
 import { TeamUsersPanel } from "./_components/TeamUsersPanel";
 import { CustomFieldsPanel } from "./_components/CustomFieldsPanel";
+import { IntegrationsPanel } from "./_components/IntegrationsPanel";
 import { listFieldDefs } from "@/lib/crm/custom-fields";
 import { automationsDisabled } from "@/lib/crm/automations";
 
@@ -62,6 +63,9 @@ export default async function SettingsPage() {
     envPresent("POSTGRES_URL"),
     envPresent("ANTHROPIC_API_KEY"),
     envPresent("BLOB_READ_WRITE_TOKEN"),
+    envPresent("BEEHIIV_API_KEY"),
+    envPresent("BEEHIIV_PUBLICATION_ID"),
+    envPresent("STRIPE_SECRET_KEY"),
   ];
   const database = await dbHealth();
 
@@ -157,6 +161,10 @@ export default async function SettingsPage() {
 
       <section>
         <CustomFieldsPanel initial={customFieldDefsList} />
+      </section>
+
+      <section>
+        <IntegrationsPanel />
       </section>
     </div>
   );
