@@ -7,6 +7,7 @@ import { desc, eq } from "drizzle-orm";
 import { listTemplates } from "@/lib/crm/email";
 import { listAttachments } from "@/lib/crm/attachments";
 import { getPotentialDuplicatesFor } from "@/lib/crm/dedup";
+import { listFieldDefs, getContactCustomValues } from "@/lib/crm/custom-fields";
 import { ContactDetail } from "../_components/ContactDetail";
 
 export const dynamic = "force-dynamic";
@@ -27,7 +28,7 @@ export default async function ContactDetailPage({
   const contact = await getContactById(id);
   if (!contact) notFound();
 
-  const [activities, taskRows, templateRows, attachmentRows, duplicateCandidates] =
+  const [activities, taskRows, templateRows, attachmentRows, duplicateCandidates, customFieldDefsList, customValues] =
     await Promise.all([
       getTimeline(id, { limit: 200 }),
       db
@@ -38,6 +39,8 @@ export default async function ContactDetailPage({
       listTemplates(),
       listAttachments(id),
       getPotentialDuplicatesFor(id).catch(() => []),
+      listFieldDefs(),
+      getContactCustomValues(id),
     ]);
 
   return (
@@ -45,6 +48,8 @@ export default async function ContactDetailPage({
       currentUser={{ slug: user.slug, name: user.name, email: user.email, role: user.role }}
       initialEmailTemplateSlug={sp.email ?? null}
       potentialDuplicates={duplicateCandidates}
+      customFieldDefs={customFieldDefsList}
+      initialCustomValues={customValues}
       initialAttachments={attachmentRows.map((a) => ({
         id: a.id,
         contactId: a.contactId,

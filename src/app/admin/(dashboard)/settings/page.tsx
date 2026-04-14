@@ -3,6 +3,8 @@ import { listAllTeamUsers } from "@/lib/admin/team-users";
 import { db } from "@/lib/db";
 import { sql as drizzleSql } from "drizzle-orm";
 import { TeamUsersPanel } from "./_components/TeamUsersPanel";
+import { CustomFieldsPanel } from "./_components/CustomFieldsPanel";
+import { listFieldDefs } from "@/lib/crm/custom-fields";
 import { automationsDisabled } from "@/lib/crm/automations";
 
 export const dynamic = "force-dynamic";
@@ -50,6 +52,7 @@ function rowPill(status: HealthRow["status"]): { label: string; color: PillColor
 export default async function SettingsPage() {
   const currentUser = await requireAdmin();
   const users = await listAllTeamUsers();
+  const customFieldDefsList = await listFieldDefs();
 
   const envChecks: HealthRow[] = [
     envPresent("RESEND_API_KEY"),
@@ -150,6 +153,10 @@ export default async function SettingsPage() {
 
       <section>
         <TeamUsersPanel initial={serializedUsers} currentUserId={currentUser.id} />
+      </section>
+
+      <section>
+        <CustomFieldsPanel initial={customFieldDefsList} />
       </section>
     </div>
   );

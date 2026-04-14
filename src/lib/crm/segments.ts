@@ -161,6 +161,30 @@ export function buildWhere(filters: SegmentFilters): SQL | undefined {
     parts.push(sql`(${contacts.email} ILIKE ${needle} OR COALESCE(${contacts.name}, '') ILIKE ${needle})`);
   }
 
+  if (Array.isArray(f.customFields)) {
+    for (const cf of f.customFields) {
+      if (!cf || typeof cf.key !== "string" || !/^[a-z0-9_]{1,40}$/.test(cf.key)) continue;
+      const key = cf.key;
+      if (cf.op === "present") {
+        parts.push(sql`${contacts.customFields}->'user' ? ${key}`);
+      } else if (cf.op === "absent") {
+        parts.push(
+          sql`(${contacts.customFields}->'user' IS NULL OR NOT (${contacts.customFields}->'user' ? ${key}))`
+        );
+      } else if (cf.op === "eq") {
+        parts.push(sql`${contacts.customFields}->'user'->>${key} = ${cf.value ?? ""}`);
+      } else if (cf.op === "ne") {
+        parts.push(
+          sql`COALESCE(${contacts.customFields}->'user'->>${key}, '') <> ${cf.value ?? ""}`
+        );
+      } else if (cf.op === "contains") {
+        parts.push(
+          sql`${contacts.customFields}->'user'->>${key} ILIKE ${`%${cf.value ?? ""}%`}`
+        );
+      }
+    }
+  }
+
   if (parts.length === 0) return undefined;
   return sql.join(parts, sql` AND `);
 }
@@ -200,6 +224,28 @@ export function sanitizeFilters(input: unknown): SegmentFilters {
   const cb = iso(r.createdBefore); if (cb) out.createdBefore = cb;
 
   if (typeof r.search === "string" && r.search.trim()) out.search = r.search.trim();
+
+  if (Array.isArray(r.customFields)) {
+    const ops = new Set(["eq", "ne", "contains", "present", "absent"]);
+    const cf: SegmentFilters["customFields"] = [];
+    for (const item of r.customFields) {
+      if (!item || typeof item !== "object") continue;
+      const rec = item as Record<string, unknown>;
+      const key = typeof rec.key === "string" ? rec.key.trim().toLowerCase() : "";
+      const op = typeof rec.op === "string" ? rec.op : "";
+      if (!/^[a-z0-9_]{1,40}$/.test(key)) continue;
+      if (!ops.has(op)) continue;
+      const entry: { key: string; op: "eq" | "ne" | "contains" | "present" | "absent"; value?: string } = {
+        key,
+        op: op as "eq" | "ne" | "contains" | "present" | "absent",
+      };
+      if (op !== "present" && op !== "absent" && typeof rec.value === "string") {
+        entry.value = rec.value;
+      }
+      cf.push(entry);
+    }
+    if (cf.length > 0) out.customFields = cf;
+  }
 
   return out;
 }

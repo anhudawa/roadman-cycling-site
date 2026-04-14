@@ -3,6 +3,14 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 import { useRouter } from "next/navigation";
 
+export type CustomFieldFilterOp = "eq" | "ne" | "contains" | "present" | "absent";
+
+export interface CustomFieldFilterDraft {
+  key: string;
+  op: CustomFieldFilterOp;
+  value?: string;
+}
+
 export interface SegmentFiltersDraft {
   tagsAny?: string[];
   lifecycleStageIn?: string[];
@@ -15,6 +23,14 @@ export interface SegmentFiltersDraft {
   createdAfter?: string;
   createdBefore?: string;
   search?: string;
+  customFields?: CustomFieldFilterDraft[];
+}
+
+interface FieldDefLite {
+  id: number;
+  key: string;
+  label: string;
+  type: string;
 }
 
 export interface SegmentDraft {
@@ -137,6 +153,20 @@ export function SegmentBuilder({
   const [preview, setPreview] = useState<{ count: number; preview: PreviewRow[] } | null>(null);
   const [previewing, setPreviewing] = useState(false);
   const timerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const [fieldDefs, setFieldDefs] = useState<FieldDefLite[]>([]);
+
+  useEffect(() => {
+    let cancelled = false;
+    fetch("/api/admin/crm/custom-fields")
+      .then((r) => (r.ok ? r.json() : { defs: [] }))
+      .then((data) => {
+        if (!cancelled && Array.isArray(data.defs)) setFieldDefs(data.defs);
+      })
+      .catch(() => {});
+    return () => {
+      cancelled = true;
+    };
+  }, []);
 
   const runPreview = useCallback(async (filters: SegmentFiltersDraft) => {
     setPreviewing(true);
@@ -341,6 +371,91 @@ export function SegmentBuilder({
               />
             </div>
           </div>
+        </div>
+
+        <div className="bg-background-elevated border border-white/5 rounded-lg p-5 space-y-3">
+          <div className="flex items-center justify-between">
+            <h3 className="font-heading text-sm text-off-white tracking-wider uppercase">Custom field filters</h3>
+            <button
+              type="button"
+              disabled={fieldDefs.length === 0}
+              onClick={() => {
+                const first = fieldDefs[0];
+                if (!first) return;
+                const next: CustomFieldFilterDraft[] = [
+                  ...(f.customFields ?? []),
+                  { key: first.key, op: "eq", value: "" },
+                ];
+                patchFilters({ customFields: next });
+              }}
+              className="px-2 py-1 text-[11px] bg-white/5 hover:bg-white/10 border border-white/10 rounded text-foreground-muted hover:text-off-white disabled:opacity-40"
+            >
+              + Add filter
+            </button>
+          </div>
+          {fieldDefs.length === 0 && (
+            <p className="text-xs text-foreground-subtle">No custom fields defined.</p>
+          )}
+          {(f.customFields ?? []).map((cf, i) => {
+            const needsValue = cf.op !== "present" && cf.op !== "absent";
+            return (
+              <div key={i} className="flex flex-wrap items-center gap-2">
+                <select
+                  value={cf.key}
+                  onChange={(e) => {
+                    const next = [...(f.customFields ?? [])];
+                    next[i] = { ...next[i], key: e.target.value };
+                    patchFilters({ customFields: next });
+                  }}
+                  className="px-2 py-1.5 bg-background-deep border border-white/10 rounded text-xs text-off-white"
+                >
+                  {fieldDefs.map((d) => (
+                    <option key={d.id} value={d.key}>
+                      {d.label} ({d.key})
+                    </option>
+                  ))}
+                </select>
+                <select
+                  value={cf.op}
+                  onChange={(e) => {
+                    const next = [...(f.customFields ?? [])];
+                    next[i] = { ...next[i], op: e.target.value as CustomFieldFilterOp };
+                    patchFilters({ customFields: next });
+                  }}
+                  className="px-2 py-1.5 bg-background-deep border border-white/10 rounded text-xs text-off-white"
+                >
+                  <option value="eq">equals</option>
+                  <option value="ne">not equals</option>
+                  <option value="contains">contains</option>
+                  <option value="present">is set</option>
+                  <option value="absent">is not set</option>
+                </select>
+                {needsValue && (
+                  <input
+                    type="text"
+                    value={cf.value ?? ""}
+                    onChange={(e) => {
+                      const next = [...(f.customFields ?? [])];
+                      next[i] = { ...next[i], value: e.target.value };
+                      patchFilters({ customFields: next });
+                    }}
+                    placeholder="value"
+                    className="flex-1 min-w-[160px] px-2 py-1.5 bg-background-deep border border-white/10 rounded text-xs text-off-white"
+                  />
+                )}
+                <button
+                  type="button"
+                  onClick={() => {
+                    const next = (f.customFields ?? []).filter((_, j) => j !== i);
+                    patchFilters({ customFields: next.length ? next : undefined });
+                  }}
+                  className="px-2 py-1 text-[11px] bg-red-500/10 hover:bg-red-500/20 border border-red-500/20 rounded text-red-300"
+                >
+                  Remove
+                </button>
+              </div>
+            );
+          })}
         </div>
 
         <div className="flex items-center justify-between">

@@ -4,6 +4,19 @@ import { useEffect, useMemo, useState } from "react";
 import { useRouter } from "next/navigation";
 import { ContactDealsSection } from "./ContactDealsSection";
 import { ContactAttachments, type AttachmentRow } from "./ContactAttachments";
+import { ContactCustomFields } from "./ContactCustomFields";
+
+type CustomFieldType = "text" | "longtext" | "number" | "date" | "url" | "select" | "boolean";
+
+interface CustomFieldDefProp {
+  id: number;
+  key: string;
+  label: string;
+  type: CustomFieldType;
+  options: { label: string; value: string }[];
+  helpText: string | null;
+  sortOrder: number;
+}
 
 const OWNERS = [
   { value: "", label: "Unassigned" },
@@ -244,6 +257,8 @@ export function ContactDetail({
   initialEmailTemplateSlug = null,
   initialAttachments = [],
   potentialDuplicates = [],
+  customFieldDefs = [],
+  initialCustomValues = {},
 }: {
   contact: Contact;
   activities: Activity[];
@@ -253,6 +268,8 @@ export function ContactDetail({
   initialEmailTemplateSlug?: string | null;
   initialAttachments?: AttachmentRow[];
   potentialDuplicates?: DuplicateCandidateProp[];
+  customFieldDefs?: CustomFieldDefProp[];
+  initialCustomValues?: Record<string, unknown>;
 }) {
   const router = useRouter();
   const [contact, setContact] = useState(initialContact);
@@ -834,6 +851,15 @@ export function ContactDetail({
               slug: currentUser?.slug ?? "",
               role: currentUser?.role,
             }}
+          />
+        </div>
+
+        {/* Custom fields */}
+        <div className="lg:col-span-2 lg:col-start-1">
+          <ContactCustomFields
+            contactId={contact.id}
+            initialDefs={customFieldDefs}
+            initialValues={initialCustomValues}
           />
         </div>
 

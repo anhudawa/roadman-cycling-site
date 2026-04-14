@@ -478,6 +478,14 @@ export const automationRuns = pgTable(
 );
 
 // ── CRM: Segments ─────────────────────────────────────────
+export type CustomFieldFilterOp = "eq" | "ne" | "contains" | "present" | "absent";
+
+export interface CustomFieldFilter {
+  key: string;
+  op: CustomFieldFilterOp;
+  value?: string;
+}
+
 export interface SegmentFilters {
   tagsAny?: string[];
   lifecycleStageIn?: string[];
@@ -490,6 +498,7 @@ export interface SegmentFilters {
   createdAfter?: string;
   createdBefore?: string;
   search?: string;
+  customFields?: CustomFieldFilter[];
 }
 
 export const segments = pgTable(
@@ -526,6 +535,37 @@ export const attachments = pgTable(
     index("attachments_contact_id_idx").on(table.contactId),
     index("attachments_created_at_idx").on(table.createdAt),
   ]
+);
+
+// ── CRM: Custom Field Defs ────────────────────────────────
+export type CustomFieldType =
+  | "text"
+  | "longtext"
+  | "number"
+  | "date"
+  | "url"
+  | "select"
+  | "boolean";
+
+export interface CustomFieldOption {
+  label: string;
+  value: string;
+}
+
+export const customFieldDefs = pgTable(
+  "custom_field_defs",
+  {
+    id: serial("id").primaryKey(),
+    key: text("key").notNull().unique(),
+    label: text("label").notNull(),
+    type: text("type").notNull(),
+    options: jsonb("options").$type<CustomFieldOption[]>().notNull().default([]),
+    helpText: text("help_text"),
+    sortOrder: integer("sort_order").notNull().default(0),
+    createdAt: timestamp("created_at", { withTimezone: true }).notNull().defaultNow(),
+    updatedAt: timestamp("updated_at", { withTimezone: true }).notNull().defaultNow(),
+  },
+  (table) => [index("custom_field_defs_sort_order_idx").on(table.sortOrder)]
 );
 
 export const episodeDownloadsCache = pgTable("episode_downloads_cache", {
