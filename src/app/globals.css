@@ -850,3 +850,69 @@ h1, h2, h3, h4, h5, h6 {
   border-color: var(--color-coral) !important;
   border-radius: 0.75rem;
 }
+
+/* ============================================
+   Blood Engine — Print styles
+   Make reports printable / exportable as PDF
+   via the browser's native "Save as PDF".
+   ============================================ */
+@media print {
+  /* Hide site chrome so the report fills the page */
+  header,
+  footer,
+  nav,
+  [aria-label="podcast-player"],
+  .print\:hidden {
+    display: none !important;
+  }
+
+  html,
+  body {
+    background: #ffffff !important;
+    color: #111111 !important;
+  }
+
+  main {
+    padding: 0 !important;
+  }
+
+  section {
+    padding: 0 !important;
+    background: #ffffff !important;
+  }
+
+  /* Force dark-on-light for print legibility */
+  .text-off-white,
+  .text-coral,
+  .text-foreground-muted,
+  .text-foreground-subtle {
+    color: #111111 !important;
+  }
+
+  .bg-background-elevated,
+  .bg-deep-purple,
+  .bg-charcoal,
+  .bg-coral-muted {
+    background: #ffffff !important;
+  }
+
+  .border-white\/10,
+  .border-white\/5,
+  .border-coral\/30,
+  .border-coral\/40,
+  .border-coral\/20 {
+    border-color: #dddddd !important;
+  }
+
+  a {
+    color: #111111 !important;
+    text-decoration: underline;
+  }
+
+  /* Avoid awkward page breaks inside cards */
+  .rounded-lg {
+    break-inside: avoid;
+    page-break-inside: avoid;
+  }
+}
+

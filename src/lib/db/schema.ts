@@ -510,3 +510,52 @@ export const episodeDownloadsCache = pgTable("episode_downloads_cache", {
   source: text("source").notNull().default("seeded"), // 'seeded' | 'spotify' | 'manual'
   updatedAt: timestamp("updated_at", { withTimezone: true }).defaultNow(),
 });
+
+// ── Blood Engine: Users ──────────────────────────────────
+// Standalone user table for the Blood Engine product. Not tied to NextAuth
+// (admin-only) — lifecycle is: Stripe purchase → row created with hasAccess=true
+// → magic-link email → HMAC-signed session cookie for subsequent visits.
+export const bloodEngineUsers = pgTable(
+  "blood_engine_users",
+  {
+    id: serial("id").primaryKey(),
+    email: text("email").notNull().unique(),
+    hasAccess: boolean("has_access").notNull().default(false),
+    stripeCustomerId: text("stripe_customer_id"),
+    stripeSessionId: text("stripe_session_id"),
+    accessGrantedAt: timestamp("access_granted_at", { withTimezone: true }),
+    tosAcceptedAt: timestamp("tos_accepted_at", { withTimezone: true }),
+    tosVersion: text("tos_version"),
+    lastLoginAt: timestamp("last_login_at", { withTimezone: true }),
+    createdAt: timestamp("created_at", { withTimezone: true }).notNull().defaultNow(),
+  },
+  (table) => [
+    index("blood_engine_users_email_idx").on(table.email),
+  ]
+);
+
+// ── Blood Engine: Reports ────────────────────────────────
+// One row per interpretation run. Raw context + normalized results + Claude's
+// interpretation JSON are all captured; promptVersion records which prompt
+// version generated the interpretation so we can display / re-run later.
+export const bloodReports = pgTable(
+  "blood_reports",
+  {
+    id: serial("id").primaryKey(),
+    userId: integer("user_id")
+      .notNull()
+      .references(() => bloodEngineUsers.id, { onDelete: "cascade" }),
+    drawDate: date("draw_date"),
+    context: jsonb("context").notNull(),
+    results: jsonb("results").notNull(),
+    interpretation: jsonb("interpretation"),
+    promptVersion: text("prompt_version"),
+    retestDueAt: timestamp("retest_due_at", { withTimezone: true }),
+    retestNudgeSentAt: timestamp("retest_nudge_sent_at", { withTimezone: true }),
+    createdAt: timestamp("created_at", { withTimezone: true }).notNull().defaultNow(),
+  },
+  (table) => [
+    index("blood_reports_user_id_idx").on(table.userId),
+    index("blood_reports_retest_due_idx").on(table.retestDueAt),
+  ]
+);
