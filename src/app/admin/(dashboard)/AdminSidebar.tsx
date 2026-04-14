@@ -35,6 +35,7 @@ const NAV_SECTIONS: NavSection[] = [
       { href: "/admin/traffic", label: "Traffic", icon: "trending" },
       { href: "/admin/emails", label: "Conversions", icon: "trending" },
       { href: "/admin/leads", label: "Leads", icon: "users" },
+      { href: "/admin/reports", label: "Reports", icon: "trending" },
     ],
   },
   {
