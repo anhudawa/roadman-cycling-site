@@ -18,6 +18,12 @@ interface NavSection {
 
 const NAV_SECTIONS: NavSection[] = [
   {
+    title: "Personal",
+    items: [
+      { href: "/admin/my-day", label: "My Day", icon: "sunrise" },
+    ],
+  },
+  {
     title: "Analytics",
     items: [
       { href: "/admin", label: "Overview", icon: "grid" },
@@ -161,6 +167,12 @@ function NavIcon({ icon, className }: { icon: string; className?: string }) {
           <path strokeLinecap="round" strokeLinejoin="round" d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12Z" />
         </svg>
       );
+    case "sunrise":
+      return (
+        <svg className={cls} fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
+          <path strokeLinecap="round" strokeLinejoin="round" d="M12 3v2.25m6.364.386-1.591 1.591M21 12h-2.25m-.386 6.364-1.591-1.591M12 18.75V21m-4.773-4.227-1.591 1.591M5.25 12H3m4.227-4.773L5.636 5.636M15.75 12a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0Z" />
+        </svg>
+      );
     default:
       return null;
   }
@@ -234,6 +246,27 @@ export function AdminSidebar({ currentUser, overdueTaskCount = 0 }: AdminSidebar
               Admin Dashboard
             </span>
           </Link>
+        </div>
+
+        {/* Search — opens command palette */}
+        <div className="px-4 pt-4">
+          <button
+            type="button"
+            onClick={() => {
+              if (typeof window !== "undefined") {
+                window.dispatchEvent(new CustomEvent("roadman:open-search"));
+              }
+            }}
+            className="w-full flex items-center gap-2 px-3 py-2 text-xs text-foreground-muted bg-white/[0.03] hover:bg-white/5 border border-white/10 rounded-lg transition-colors"
+          >
+            <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
+              <path strokeLinecap="round" strokeLinejoin="round" d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z" />
+            </svg>
+            <span className="flex-1 text-left">Search...</span>
+            <kbd className="text-[10px] text-foreground-subtle bg-white/5 border border-white/10 rounded px-1.5 py-0.5">
+              ⌘K
+            </kbd>
+          </button>
         </div>
 
         {/* Nav sections */}

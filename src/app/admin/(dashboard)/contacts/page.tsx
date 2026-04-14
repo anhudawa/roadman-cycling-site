@@ -23,6 +23,14 @@ function formatRelative(dateStr: string | Date | null): string {
   return d.toLocaleDateString("en-GB", { day: "numeric", month: "short" });
 }
 
+function lastActivityClass(dateStr: string | Date | null): string {
+  if (!dateStr) return "text-amber-400";
+  const d = typeof dateStr === "string" ? new Date(dateStr) : dateStr;
+  const days = (Date.now() - d.getTime()) / 86_400_000;
+  if (days > 14) return "text-amber-400";
+  return "text-foreground-muted";
+}
+
 function stageBadgeClass(stage: string): string {
   switch (stage) {
     case "customer":
@@ -168,7 +176,7 @@ export default async function ContactsPage({
                     <td className="px-4 py-3 text-right">
                       <Link
                         href={`/admin/contacts/${c.id}`}
-                        className="text-xs text-foreground-muted"
+                        className={`text-xs ${lastActivityClass(c.lastActivityAt)}`}
                       >
                         {formatRelative(c.lastActivityAt ?? c.createdAt)}
                       </Link>

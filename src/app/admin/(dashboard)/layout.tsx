@@ -1,6 +1,7 @@
 import { requireAuth } from "@/lib/admin/auth";
 import { AdminSidebar } from "./AdminSidebar";
 import { NotificationBell } from "./NotificationBell";
+import { CommandPalette } from "./_components/CommandPalette";
 import { countOverdueTasksFor } from "@/lib/crm/tasks";
 
 export default async function DashboardLayout({
@@ -33,6 +34,7 @@ export default async function DashboardLayout({
           {children}
         </div>
       </main>
+      <CommandPalette />
     </div>
   );
 }

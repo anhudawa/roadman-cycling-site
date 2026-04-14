@@ -1,5 +1,7 @@
 import { computePeriodStats, getStatsForRange, getDailyVisitors, getDailyBreakdown, type PeriodStats } from "@/lib/admin/events-store";
 import { parseTimeRangeWithComparison } from "@/lib/admin/time-ranges";
+import { requireAuth } from "@/lib/admin/auth";
+import { redirect } from "next/navigation";
 import { Suspense } from "react";
 import { StatCard } from "./components/charts/StatCard";
 import { TimeRangePicker } from "./components/TimeRangePicker";
@@ -50,6 +52,11 @@ export default async function AdminDashboardPage({
 }: {
   searchParams: Promise<{ [key: string]: string | string[] | undefined }>;
 }) {
+  const user = await requireAuth();
+  if (user.role !== "admin") {
+    redirect("/admin/my-day");
+  }
+
   const resolvedParams = await searchParams;
   const rangeParam = typeof resolvedParams.range === "string" ? resolvedParams.range : "30d";
   const { from, to, prevFrom, prevTo, label: rangeLabel, compLabel } =
