@@ -12,6 +12,84 @@ const REVALIDATE_PATH = "/admin/content/repurposed";
 const PODCAST_DIR = path.join(process.cwd(), "content/podcast");
 const BLOG_DIR = path.join(process.cwd(), "content/blog");
 
+const GITHUB_REPO = "anhudawa/roadman-cycling-site";
+const isVercel = !!process.env.VERCEL;
+
+/**
+ * Write a file to the repo — locally in dev, via GitHub API on Vercel.
+ */
+async function writeFileToRepo(filePath: string, content: string) {
+  if (!isVercel) {
+    const dir = path.dirname(path.join(process.cwd(), filePath));
+    fs.mkdirSync(dir, { recursive: true });
+    fs.writeFileSync(path.join(process.cwd(), filePath), content);
+    return;
+  }
+
+  const token = process.env.GITHUB_TOKEN;
+  if (!token) {
+    console.error("[Publish] GITHUB_TOKEN not set — cannot write to repo from Vercel");
+    return;
+  }
+
+  const url = `https://api.github.com/repos/${GITHUB_REPO}/contents/${filePath}`;
+
+  // Check if file exists (need the sha to update)
+  let sha: string | undefined;
+  const getRes = await fetch(url, {
+    headers: { Authorization: `Bearer ${token}`, Accept: "application/vnd.github.v3+json" },
+  });
+  if (getRes.ok) {
+    const existing = await getRes.json();
+    sha = existing.sha;
+  }
+
+  const body: Record<string, string> = {
+    message: `Publish: ${filePath}`,
+    content: Buffer.from(content).toString("base64"),
+  };
+  if (sha) body.sha = sha;
+
+  const putRes = await fetch(url, {
+    method: "PUT",
+    headers: {
+      Authorization: `Bearer ${token}`,
+      Accept: "application/vnd.github.v3+json",
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(body),
+  });
+
+  if (!putRes.ok) {
+    const err = await putRes.text();
+    console.error(`[Publish] GitHub API error for ${filePath}:`, err);
+  } else {
+    console.log(`[Publish] Committed ${filePath} to GitHub`);
+  }
+}
+
+/**
+ * Read a file from the repo — locally in dev, via GitHub API on Vercel.
+ */
+async function readFileFromRepo(filePath: string): Promise<string | null> {
+  const fullPath = path.join(process.cwd(), filePath);
+  if (!isVercel) {
+    if (fs.existsSync(fullPath)) return fs.readFileSync(fullPath, "utf-8");
+    return null;
+  }
+
+  const token = process.env.GITHUB_TOKEN;
+  if (!token) return null;
+
+  const url = `https://api.github.com/repos/${GITHUB_REPO}/contents/${filePath}`;
+  const res = await fetch(url, {
+    headers: { Authorization: `Bearer ${token}`, Accept: "application/vnd.github.v3+json" },
+  });
+  if (!res.ok) return null;
+  const data = await res.json();
+  return Buffer.from(data.content, "base64").toString("utf-8");
+}
+
 // ---------------------------------------------------------------------------
 // Episode queries
 // ---------------------------------------------------------------------------
@@ -189,12 +267,12 @@ async function publishEpisodePage(episodeId: number) {
 
   if (!pagePiece) return;
 
-  const mdxPath = path.join(PODCAST_DIR, `${episode.episodeSlug}.mdx`);
+  const mdxRelPath = `content/podcast/${episode.episodeSlug}.mdx`;
 
   // Read existing frontmatter (has youtubeId, guest, duration, etc.)
   let frontmatter: Record<string, unknown> = {};
-  if (fs.existsSync(mdxPath)) {
-    const existing = fs.readFileSync(mdxPath, "utf-8");
+  const existing = await readFileFromRepo(mdxRelPath);
+  if (existing) {
     const { data } = matter(existing);
     frontmatter = data;
   } else {
@@ -231,7 +309,7 @@ async function publishEpisodePage(episodeId: number) {
   }
 
   const mdxContent = matter.stringify(body, frontmatter);
-  fs.writeFileSync(mdxPath, mdxContent);
+  await writeFileToRepo(mdxRelPath, mdxContent);
 
   // Revalidate the public podcast page
   revalidatePath(`/podcast/${episode.episodeSlug}`);
@@ -287,9 +365,8 @@ async function publishBlogPost(contentJson: string) {
     ];
   }
 
-  fs.mkdirSync(BLOG_DIR, { recursive: true });
   const mdxContent = matter.stringify(body, frontmatter);
-  fs.writeFileSync(path.join(BLOG_DIR, `${slug}.mdx`), mdxContent);
+  await writeFileToRepo(`content/blog/${slug}.mdx`, mdxContent);
 
   revalidatePath(`/blog/${slug}`);
   revalidatePath("/blog");
