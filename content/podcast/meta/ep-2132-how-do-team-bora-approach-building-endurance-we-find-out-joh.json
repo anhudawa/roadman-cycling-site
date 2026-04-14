@@ -1,0 +1,57 @@
+{
+  "slug": "ep-2132-how-do-team-bora-approach-building-endurance-we-find-out-joh",
+  "guest_name": "John Wakefield",
+  "guest_credentials": "Cycling coach at World Tour team Bora-Hansgrohe, formerly at Science to Sport and UAE Team Emirates, works with elite riders including Primož Roglič and Jay Hindley",
+  "key_claims": [
+    "Training for ultra-endurance events should prioritize neuromuscular efforts and metabolic conditioning on the bike, with significant off-bike strength work throughout the training block",
+    "Cadence decreases as fatigue accumulates in ultra events; athletes must build torque-based power through strength training to maintain forward momentum when high cadence becomes impossible",
+    "The submaximal fatigue test (3-minute effort at threshold-to-110% threshold power, conducted every 7-10 days) tracks whether training stimulus is correct, the athlete is fatigued, or progression has stagnated",
+    "Professional cyclists distinguish themselves through attention to detail and structured professionalism; 'how you do anything is how you do everything' applies from bike cleanliness to tire pressure decisions",
+    "Amateur cyclists should focus on sustainable power in a position they can hold for the entire duration rather than adopting aggressive aerodynamic positions they cannot maintain"
+  ],
+  "named_experts": [
+    "Seiler",
+    "Friel",
+    "Wakefield",
+    "Lambert",
+    "Alan Davis",
+    "Alexander Kristoff",
+    "Robbe Ghys",
+    "Bradley Wiggins",
+    "Michael Phelps",
+    "Rob Britain",
+    "Dylan Johnson"
+  ],
+  "specific_numbers": [
+    "Badlands: 780 km over three days",
+    "6 hours per week training time constraint example",
+    "Rob Britain average power winning Badlands: approximately 190 watts",
+    "Submaximal fatigue test: 3-minute duration at threshold to 110% threshold power",
+    "Testing frequency: every 7-10 days",
+    "Periodization: 3+1 or 4+1 block structure (three or four weeks on, one week off)",
+    "One athlete completed 4,000 km nonstop event",
+    "24-hour mountain bike race as endurance example"
+  ],
+  "ndy_members": [],
+  "episode_type": "interview",
+  "topics": [
+    "ultra-endurance-training",
+    "gravel-racing",
+    "periodization",
+    "strength-training-cycling",
+    "submaximal-fatigue-testing",
+    "badlands-bikepacking",
+    "world-tour-coaching",
+    "professional-cyclist-mindset",
+    "mental-toughness-endurance",
+    "aerodynamics-amateur-cyclists"
+  ],
+  "primary_cluster": "coaching",
+  "secondary_clusters": [
+    "strength"
+  ],
+  "primary_persona": "tom",
+  "cluster_reasoning": "John Wakefield's discussion of periodization, submaximal fatigue testing, neuromuscular efforts, metabolic conditioning, and structured training methodology is core coaching content; strength work is secondary because torque-based power development and off-bike conditioning are integral to the endurance-building system he describes.",
+  "sacred_cow_score": 7,
+  "indexed_at": "2026-04-14T11:44:50.860Z"
+}
