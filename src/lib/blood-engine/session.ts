@@ -53,6 +53,19 @@ export function mintToken(userId: number, ttlSeconds = SESSION_TTL_SECONDS): str
 
 /** Verify a token's signature + expiry. Returns the parsed token or null. */
 export function verifyToken(token: string | undefined | null): BloodEngineToken | null {
+  const sigOnly = verifyTokenSignatureOnly(token);
+  if (!sigOnly) return null;
+  if (sigOnly.expiresAt < Math.floor(Date.now() / 1000)) return null;
+  return sigOnly;
+}
+
+/**
+ * Verify HMAC signature only — IGNORES expiry. Use ONLY for UX (e.g. pre-fill
+ * an email field on the "link expired" page). Never grant access from this.
+ */
+export function verifyTokenSignatureOnly(
+  token: string | undefined | null
+): BloodEngineToken | null {
   if (!token) return null;
   const parts = token.split(".");
   if (parts.length !== 3) return null;
@@ -60,10 +73,8 @@ export function verifyToken(token: string | undefined | null): BloodEngineToken 
   const userId = Number(userIdStr);
   const expiresAt = Number(expiresAtStr);
   if (!Number.isInteger(userId) || !Number.isInteger(expiresAt)) return null;
-  if (expiresAt < Math.floor(Date.now() / 1000)) return null;
 
   const expectedSig = sign(`${userId}.${expiresAt}`);
-  // timing-safe compare
   let a: Buffer;
   let b: Buffer;
   try {

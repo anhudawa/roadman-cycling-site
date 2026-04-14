@@ -3,6 +3,7 @@ import { Section, Container } from "@/components/layout";
 import { Button } from "@/components/ui";
 import { requireBloodEngineAccess } from "@/lib/blood-engine/access";
 import { listReports } from "@/lib/blood-engine/db";
+import { getRemainingHeadroom } from "@/lib/blood-engine/rate-limit";
 import type { InterpretationJSON, ReportContext } from "@/lib/blood-engine/schemas";
 import { computeTrends } from "@/lib/blood-engine/trends";
 import { CompareLauncher } from "./CompareLauncher";
@@ -13,7 +14,11 @@ export const dynamic = "force-dynamic";
 
 export default async function DashboardPage() {
   const user = await requireBloodEngineAccess();
-  const reports = await listReports(user.id);
+  const [reports, interpretHeadroom, pdfHeadroom] = await Promise.all([
+    listReports(user.id),
+    getRemainingHeadroom(user.id, "interpret"),
+    getRemainingHeadroom(user.id, "parse-pdf"),
+  ]);
 
   // Trends use the sex from the most recent report (no per-user demographics yet).
   const latestCtx = reports[0]?.context as ReportContext | undefined;
@@ -33,6 +38,21 @@ export default async function DashboardPage() {
             New report
           </Button>
         </div>
+
+        {reports.length > 0 ? (
+          <div className="mb-8 grid sm:grid-cols-2 gap-3">
+            <UsageBadge
+              label="Interpretations"
+              today={pickDay(interpretHeadroom)}
+              hour={pickHour(interpretHeadroom)}
+            />
+            <UsageBadge
+              label="PDF extractions"
+              today={pickDay(pdfHeadroom)}
+              hour={pickHour(pdfHeadroom)}
+            />
+          </div>
+        ) : null}
 
         {reports.length === 0 ? (
           <div className="rounded-lg border border-white/10 bg-background-elevated p-12 text-center">
@@ -125,4 +145,50 @@ function StatusDot({ status }: { status: "optimal" | "suboptimal" | "flag" }) {
   const color =
     status === "optimal" ? "bg-emerald-500" : status === "suboptimal" ? "bg-amber-400" : "bg-coral";
   return <span className={`inline-block w-4 h-4 rounded-full ${color}`} aria-label={status} />;
+}
+
+type Headroom = Awaited<ReturnType<typeof getRemainingHeadroom>>[number];
+
+function pickDay(arr: Headroom[]): Headroom | undefined {
+  return arr.find((h) => h.windowLabel === "day");
+}
+function pickHour(arr: Headroom[]): Headroom | undefined {
+  return arr.find((h) => h.windowLabel === "hour");
+}
+
+function UsageBadge({
+  label,
+  today,
+  hour,
+}: {
+  label: string;
+  today?: Headroom;
+  hour?: Headroom;
+}) {
+  if (!today && !hour) return null;
+  const main = today ?? hour;
+  if (!main) return null;
+  const pct = main.used / main.max;
+  const color =
+    pct >= 1 ? "text-coral" : pct >= 0.7 ? "text-amber-300" : "text-emerald-400";
+  return (
+    <div className="rounded-lg border border-white/10 bg-background-elevated px-4 py-3 flex items-center justify-between gap-3">
+      <div>
+        <p className="text-[10px] font-heading uppercase tracking-wider text-foreground-subtle">
+          {label}
+        </p>
+        <p className={`font-heading text-xl tabular-nums ${color}`}>
+          {main.remaining} <span className="text-foreground-subtle text-xs">/ {main.max}</span>
+        </p>
+      </div>
+      <div className="text-right text-[11px] text-foreground-subtle">
+        <p>left today</p>
+        {hour && hour.used > 0 ? (
+          <p>
+            {hour.remaining}/{hour.max} this hour
+          </p>
+        ) : null}
+      </div>
+    </div>
+  );
 }

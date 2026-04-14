@@ -2,7 +2,8 @@ import { redirect } from "next/navigation";
 import { Section, Container } from "@/components/layout";
 import { getUserById, recordLogin } from "@/lib/blood-engine/db";
 import { verifyMagicLinkToken } from "@/lib/blood-engine/magic-link";
-import { setSessionCookie } from "@/lib/blood-engine/session";
+import { setSessionCookie, verifyTokenSignatureOnly } from "@/lib/blood-engine/session";
+import { ResendLinkForm } from "./ResendLinkForm";
 
 export const dynamic = "force-dynamic";
 
@@ -24,6 +25,16 @@ export default async function VerifyPage({
     }
   }
 
+  // Token was signed by us (we can prove it via HMAC) but is expired — look up
+  // the email so we can pre-fill the resend form. Pure UX, no access granted.
+  // If the signature is wrong we just present a blank form.
+  let prefillEmail: string | null = null;
+  const decoded = verifyTokenSignatureOnly(token);
+  if (decoded) {
+    const user = await getUserById(decoded.userId);
+    if (user?.hasAccess) prefillEmail = user.email;
+  }
+
   return (
     <Section background="deep-purple" fullHeight>
       <Container width="narrow" className="text-center">
@@ -31,16 +42,18 @@ export default async function VerifyPage({
           Link invalid or expired
         </h1>
         <p className="mt-6 text-body-lg text-foreground-muted max-w-md mx-auto">
-          Sign-in links expire after 30 minutes. Request a fresh one — it&apos;ll take a few seconds.
+          Sign-in links expire after 30 minutes. Request a fresh one — it&apos;ll
+          take a few seconds.
         </p>
-        <div className="mt-10">
-          <a
-            href="/blood-engine/login"
-            className="inline-block font-heading tracking-wider uppercase bg-coral hover:bg-coral-hover text-off-white px-8 py-4 rounded-md"
-          >
-            Send a new link
-          </a>
+        <div className="mt-10 max-w-md mx-auto">
+          <ResendLinkForm initialEmail={prefillEmail ?? ""} />
         </div>
+        <p className="mt-8 text-sm text-foreground-subtle">
+          Don&apos;t have access yet?{" "}
+          <a href="/blood-engine" className="text-coral hover:underline">
+            Get lifetime access for €97 →
+          </a>
+        </p>
       </Container>
     </Section>
   );

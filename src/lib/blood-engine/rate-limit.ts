@@ -109,6 +109,49 @@ export async function recordApiCall(
   await db.insert(bloodEngineApiCalls).values({ userId, action });
 }
 
+export interface WindowHeadroom {
+  windowLabel: string;
+  used: number;
+  max: number;
+  remaining: number;
+  /** Seconds until the oldest in-window call ages out (i.e. a slot frees). */
+  resetInSeconds: number;
+}
+
+/**
+ * For UI / introspection: how many calls the user has left in each configured
+ * window for an action. Pure read, doesn't mutate.
+ */
+export async function getRemainingHeadroom(
+  userId: number,
+  action: RateLimitedAction,
+  now: Date = new Date()
+): Promise<WindowHeadroom[]> {
+  const longest = Math.max(...RATE_LIMITS[action].map((w) => w.windowSeconds));
+  const since = new Date(now.getTime() - longest * 1000);
+  const callTimes = await loadCallTimes(userId, action, since);
+  return RATE_LIMITS[action].map((w) => {
+    const windowStart = now.getTime() - w.windowSeconds * 1000;
+    const inWindow = callTimes.filter((t) => t.getTime() >= windowStart);
+    const oldest = inWindow.length
+      ? inWindow.reduce((a, b) => (a.getTime() < b.getTime() ? a : b))
+      : null;
+    const resetInSeconds = oldest
+      ? Math.max(
+          0,
+          Math.ceil((oldest.getTime() + w.windowSeconds * 1000 - now.getTime()) / 1000)
+        )
+      : 0;
+    return {
+      windowLabel: w.label,
+      used: inWindow.length,
+      max: w.max,
+      remaining: Math.max(0, w.max - inWindow.length),
+      resetInSeconds,
+    };
+  });
+}
+
 async function loadCallTimes(
   userId: number,
   action: RateLimitedAction,
