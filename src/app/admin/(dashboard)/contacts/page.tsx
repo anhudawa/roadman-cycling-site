@@ -7,6 +7,7 @@ import { ContactsFilters } from "./_components/ContactsFilters";
 import { ContactsTable, type ContactRow } from "./_components/ContactsTable";
 import { EnrichAllButton } from "./_components/EnrichAllButton";
 import { SavedViewsBar } from "./_components/SavedViewsBar";
+import { findDuplicateGroups } from "@/lib/crm/dedup";
 
 export const dynamic = "force-dynamic";
 
@@ -40,6 +41,8 @@ export default async function ContactsPage({
   const totalPages = Math.max(1, Math.ceil(total / PAGE_SIZE));
 
   const savedViews = await listSavedViews("contacts").catch(() => []);
+  const duplicateGroups =
+    user.role === "admin" ? await findDuplicateGroups(50).catch(() => []) : [];
   const currentFilters: Record<string, string> = {};
   if (search) currentFilters.search = search;
   if (owner) currentFilters.owner = owner;
@@ -85,6 +88,14 @@ export default async function ContactsPage({
           </Link>
           <BackfillButton />
           {user.role === "admin" && <EnrichAllButton />}
+          {user.role === "admin" && duplicateGroups.length > 0 && (
+            <Link
+              href="/admin/contacts/duplicates"
+              className="px-3 py-2 text-xs font-heading tracking-wider uppercase bg-amber-500/10 border border-amber-500/30 text-amber-400 rounded hover:bg-amber-500/20 transition-colors"
+            >
+              {duplicateGroups.length} potential duplicate{duplicateGroups.length === 1 ? "" : "s"}
+            </Link>
+          )}
         </div>
       </div>
 

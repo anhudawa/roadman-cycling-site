@@ -29,7 +29,8 @@ export type ActivityType =
   | "email_opened"
   | "email_clicked"
   | "file_uploaded"
-  | "file_removed";
+  | "file_removed"
+  | "contact_merged";
 
 export interface UpsertContactParams {
   email: string;

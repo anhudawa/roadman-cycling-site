@@ -222,6 +222,19 @@ function renderTemplateClient(body: string, vars: Record<string, string>): strin
   });
 }
 
+interface DuplicateCandidateProp {
+  id: number;
+  email: string;
+  name: string | null;
+  phone: string | null;
+  owner: string | null;
+  lifecycleStage: string;
+  lastActivityAt: string | null;
+  createdAt: string;
+  reason: "phone" | "name+metadata" | "name-only";
+  confidence: number;
+}
+
 export function ContactDetail({
   contact: initialContact,
   activities: initialActivities,
@@ -230,6 +243,7 @@ export function ContactDetail({
   templates = [],
   initialEmailTemplateSlug = null,
   initialAttachments = [],
+  potentialDuplicates = [],
 }: {
   contact: Contact;
   activities: Activity[];
@@ -238,6 +252,7 @@ export function ContactDetail({
   templates?: EmailTemplateSummary[];
   initialEmailTemplateSlug?: string | null;
   initialAttachments?: AttachmentRow[];
+  potentialDuplicates?: DuplicateCandidateProp[];
 }) {
   const router = useRouter();
   const [contact, setContact] = useState(initialContact);
@@ -250,6 +265,33 @@ export function ContactDetail({
   const [taskDue, setTaskDue] = useState("");
   const [taskAssigned, setTaskAssigned] = useState("");
   const [busy, setBusy] = useState(false);
+  const [duplicates, setDuplicates] = useState(potentialDuplicates);
+  const [mergeBusyId, setMergeBusyId] = useState<number | null>(null);
+  const [mergeError, setMergeError] = useState<string | null>(null);
+
+  async function mergeDuplicateIntoHere(secondaryId: number, secondaryEmail: string) {
+    const confirmed = window.confirm(
+      `This will delete ${secondaryEmail} and move its data to ${contact.email}. Continue?`
+    );
+    if (!confirmed) return;
+    setMergeBusyId(secondaryId);
+    setMergeError(null);
+    try {
+      const res = await fetch(`/api/admin/crm/contacts/merge`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ primaryId: contact.id, secondaryId }),
+      });
+      const data = await res.json().catch(() => ({}));
+      if (!res.ok) throw new Error(data.error ?? `Merge failed (${res.status})`);
+      setDuplicates((prev) => prev.filter((d) => d.id !== secondaryId));
+      router.refresh();
+    } catch (err) {
+      setMergeError(err instanceof Error ? err.message : "Merge failed");
+    } finally {
+      setMergeBusyId(null);
+    }
+  }
 
   // Email drawer state
   const [emailOpen, setEmailOpen] = useState(false);
@@ -521,6 +563,68 @@ export function ContactDetail({
       {emailToast && (
         <div className="fixed bottom-6 right-6 z-50 bg-coral text-white px-4 py-2 rounded-lg shadow-lg text-sm font-heading tracking-wider uppercase">
           {emailToast}
+        </div>
+      )}
+
+      {duplicates.length > 0 && currentUser?.role === "admin" && (
+        <div className="mb-6 bg-amber-500/5 border border-amber-500/20 rounded-xl p-4">
+          <div className="flex items-center justify-between mb-2">
+            <p className="text-[10px] uppercase tracking-widest text-amber-400 font-heading">
+              Potential duplicates ({duplicates.length})
+            </p>
+            <span className="text-[10px] text-foreground-subtle">
+              Merging keeps this contact; other is deleted
+            </span>
+          </div>
+          {mergeError && (
+            <div className="mb-2 px-3 py-2 rounded border border-red-500/30 bg-red-500/10 text-red-400 text-sm">
+              {mergeError}
+            </div>
+          )}
+          <ul className="space-y-2">
+            {duplicates.map((d) => (
+              <li
+                key={d.id}
+                className="flex items-center justify-between gap-3 bg-background-deep border border-white/10 rounded-lg px-3 py-2 text-sm"
+              >
+                <div className="min-w-0 flex-1">
+                  <div className="flex items-center gap-2 flex-wrap">
+                    <span className="text-off-white truncate">
+                      {d.name ?? d.email}
+                    </span>
+                    <span
+                      className="text-[10px] uppercase tracking-widest px-1.5 py-0.5 rounded border border-white/10 text-foreground-muted"
+                      title={`Confidence ${d.confidence}`}
+                    >
+                      {d.reason === "phone"
+                        ? "Phone match"
+                        : d.reason === "name+metadata"
+                        ? "Name + metadata"
+                        : "Name match"}
+                    </span>
+                  </div>
+                  <p className="text-xs text-foreground-muted truncate">
+                    {d.email}
+                    {d.phone ? ` · ${d.phone}` : ""}
+                    {d.owner ? ` · ${d.owner}` : ""}
+                  </p>
+                </div>
+                <button
+                  onClick={() => router.push(`/admin/contacts/${d.id}`)}
+                  className="px-2 py-1 text-xs border border-white/10 text-foreground-muted rounded hover:border-coral/30"
+                >
+                  View
+                </button>
+                <button
+                  onClick={() => mergeDuplicateIntoHere(d.id, d.email)}
+                  disabled={mergeBusyId === d.id}
+                  className="px-2 py-1 text-xs font-heading tracking-wider uppercase bg-coral text-white rounded hover:bg-coral/90 disabled:opacity-50"
+                >
+                  {mergeBusyId === d.id ? "Merging..." : "Merge into this one"}
+                </button>
+              </li>
+            ))}
+          </ul>
         </div>
       )}
 

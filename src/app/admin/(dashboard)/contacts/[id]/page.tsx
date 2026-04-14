@@ -6,6 +6,7 @@ import { tasks as tasksTable } from "@/lib/db/schema";
 import { desc, eq } from "drizzle-orm";
 import { listTemplates } from "@/lib/crm/email";
 import { listAttachments } from "@/lib/crm/attachments";
+import { getPotentialDuplicatesFor } from "@/lib/crm/dedup";
 import { ContactDetail } from "../_components/ContactDetail";
 
 export const dynamic = "force-dynamic";
@@ -26,21 +27,24 @@ export default async function ContactDetailPage({
   const contact = await getContactById(id);
   if (!contact) notFound();
 
-  const [activities, taskRows, templateRows, attachmentRows] = await Promise.all([
-    getTimeline(id, { limit: 200 }),
-    db
-      .select()
-      .from(tasksTable)
-      .where(eq(tasksTable.contactId, id))
-      .orderBy(desc(tasksTable.createdAt)),
-    listTemplates(),
-    listAttachments(id),
-  ]);
+  const [activities, taskRows, templateRows, attachmentRows, duplicateCandidates] =
+    await Promise.all([
+      getTimeline(id, { limit: 200 }),
+      db
+        .select()
+        .from(tasksTable)
+        .where(eq(tasksTable.contactId, id))
+        .orderBy(desc(tasksTable.createdAt)),
+      listTemplates(),
+      listAttachments(id),
+      getPotentialDuplicatesFor(id).catch(() => []),
+    ]);
 
   return (
     <ContactDetail
       currentUser={{ slug: user.slug, name: user.name, email: user.email, role: user.role }}
       initialEmailTemplateSlug={sp.email ?? null}
+      potentialDuplicates={duplicateCandidates}
       initialAttachments={attachmentRows.map((a) => ({
         id: a.id,
         contactId: a.contactId,
