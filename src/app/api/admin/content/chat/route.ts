@@ -132,23 +132,28 @@ export async function POST(request: Request) {
 
           stream.on("end", async () => {
             try {
-              // Save assistant response
-              await db.insert(contentChatMessages).values({
-                contentId,
-                role: "assistant",
-                message: fullResponse,
-              });
+              // Only save if we actually got a response — prevents wiping content on API errors
+              if (fullResponse.trim().length > 0) {
+                // Save assistant response
+                await db.insert(contentChatMessages).values({
+                  contentId,
+                  role: "assistant",
+                  message: fullResponse,
+                });
 
-              // Update the content piece
-              await db
-                .update(repurposedContent)
-                .set({
-                  content: fullResponse,
-                  version: piece.version + 1,
-                  status: "amended",
-                  updatedAt: new Date(),
-                })
-                .where(eq(repurposedContent.id, contentId));
+                // Update the content piece
+                await db
+                  .update(repurposedContent)
+                  .set({
+                    content: fullResponse,
+                    version: piece.version + 1,
+                    status: "amended",
+                    updatedAt: new Date(),
+                  })
+                  .where(eq(repurposedContent.id, contentId));
+              } else {
+                console.warn("[Chat] Empty response from Claude — content not updated");
+              }
             } catch (err) {
               console.error("[Chat] Error saving response:", err);
             }
