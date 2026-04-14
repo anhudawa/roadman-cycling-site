@@ -3,6 +3,7 @@ import { getAllPosts } from "@/lib/blog";
 import { getAllEpisodes } from "@/lib/podcast";
 import { getAllGuests } from "@/lib/guests";
 import { getAllTopicSlugs } from "@/lib/topics";
+import { fetchNewsletterIssues } from "@/lib/integrations/beehiiv";
 
 const BASE_URL = "https://roadmancycling.com";
 
@@ -22,7 +23,7 @@ function changeFreqByAge(
   return "yearly";
 }
 
-export default function sitemap(): MetadataRoute.Sitemap {
+export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   // ---------------------------------------------------------------------------
   // Static pages — grouped by priority tier
   // ---------------------------------------------------------------------------
@@ -262,11 +263,31 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.7,
   }));
 
+  // ---------------------------------------------------------------------------
+  // Newsletter issues — priority 0.5 (monthly content, indexed for SEO)
+  // ---------------------------------------------------------------------------
+
+  let newsletterPages: MetadataRoute.Sitemap = [];
+  try {
+    const issues = await fetchNewsletterIssues(100);
+    newsletterPages = issues
+      .filter((issue): issue is typeof issue & { publishDate: string } => Boolean(issue.publishDate))
+      .map((issue) => ({
+        url: `${BASE_URL}/newsletter/${issue.slug}`,
+        lastModified: new Date(issue.publishDate),
+        changeFrequency: "monthly" as const,
+        priority: 0.5,
+      }));
+  } catch {
+    // Beehiiv API unavailable — skip newsletter pages in sitemap
+  }
+
   return [
     ...staticPages,
     ...blogPages,
     ...podcastPages,
     ...guestPages,
     ...topicPages,
+    ...newsletterPages,
   ];
 }
