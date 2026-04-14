@@ -90,6 +90,7 @@ export async function PATCH(
         applicationId: id,
       },
       authorName: user.name,
+      authorSlug: user.slug,
     });
   } catch (err) {
     console.error("[applications/stage] contact mirror failed", err);

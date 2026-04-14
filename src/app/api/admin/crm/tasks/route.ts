@@ -70,6 +70,7 @@ export async function POST(request: Request) {
       title: `Task created: ${title}`,
       meta: { taskId: task.id, assignedTo, dueAt: dueAt ? dueAt.toISOString() : null },
       authorName: user.name,
+      authorSlug: user.slug,
     });
   }
 

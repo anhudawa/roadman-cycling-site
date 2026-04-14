@@ -57,6 +57,8 @@ export default async function ContactsPage({
   const search = typeof sp.search === "string" ? sp.search : "";
   const owner = typeof sp.owner === "string" ? sp.owner : "";
   const stage = typeof sp.stage === "string" ? sp.stage : "";
+  const staleRaw = typeof sp.stale === "string" ? sp.stale : "";
+  const staleOnly = staleRaw === "1" || staleRaw === "true";
   const pageNum = Math.max(1, parseInt(typeof sp.page === "string" ? sp.page : "1", 10) || 1);
   const offset = (pageNum - 1) * PAGE_SIZE;
 
@@ -64,6 +66,7 @@ export default async function ContactsPage({
     search: search || undefined,
     owner: owner || undefined,
     stage: stage || undefined,
+    staleOnly,
     limit: PAGE_SIZE,
     offset,
   });
@@ -75,6 +78,7 @@ export default async function ContactsPage({
     if (search) p.set("search", search);
     if (owner) p.set("owner", owner);
     if (stage) p.set("stage", stage);
+    if (staleOnly) p.set("stale", "1");
     p.set("page", String(n));
     return `/admin/contacts?${p.toString()}`;
   }
@@ -99,6 +103,7 @@ export default async function ContactsPage({
           initialSearch={search}
           initialOwner={owner}
           initialStage={stage}
+          initialStale={staleOnly}
         />
       </div>
 

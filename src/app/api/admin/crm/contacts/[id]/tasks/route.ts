@@ -67,6 +67,7 @@ export async function POST(
     title: `Task created: ${title}`,
     meta: { taskId: task.id, assignedTo, dueAt: dueAt ? dueAt.toISOString() : null },
     authorName: author,
+    authorSlug: user.slug,
   });
 
   return NextResponse.json({

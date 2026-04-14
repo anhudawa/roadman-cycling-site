@@ -226,11 +226,13 @@ export const contactActivities = pgTable(
     body: text("body"),
     meta: jsonb("meta").$type<Record<string, unknown>>(),
     authorName: text("author_name"),
+    authorSlug: text("author_slug"),
     createdAt: timestamp("created_at", { withTimezone: true }).notNull().defaultNow(),
   },
   (table) => [
     index("contact_activities_contact_id_idx").on(table.contactId),
     index("contact_activities_created_at_idx").on(table.createdAt),
+    index("contact_activities_author_slug_idx").on(table.authorSlug),
   ]
 );
 

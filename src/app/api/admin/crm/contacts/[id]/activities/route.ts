@@ -45,6 +45,7 @@ export async function POST(
     body: typeof body.body === "string" ? body.body : null,
     meta: body.meta ?? null,
     authorName: author,
+    authorSlug: user.slug,
   });
 
   return NextResponse.json({

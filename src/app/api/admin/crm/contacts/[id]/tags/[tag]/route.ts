@@ -44,6 +44,7 @@ export async function DELETE(
     title: `Tag removed: ${tag}`,
     meta: { tag },
     authorName: author,
+    authorSlug: user.slug,
   });
 
   return NextResponse.json({

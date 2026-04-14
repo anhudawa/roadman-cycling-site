@@ -1,7 +1,7 @@
 import Link from "next/link";
-import { desc, eq } from "drizzle-orm";
+import { desc, eq, inArray } from "drizzle-orm";
 import { db } from "@/lib/db";
-import { cohortApplications } from "@/lib/db/schema";
+import { cohortApplications, contacts } from "@/lib/db/schema";
 import { requireAuth } from "@/lib/admin/auth";
 import {
   APPLICATION_STAGES,
@@ -18,7 +18,11 @@ interface PageProps {
   searchParams: Promise<Record<string, string | string[] | undefined>>;
 }
 
-function serialize(row: typeof cohortApplications.$inferSelect, contactId: number | null): KanbanApplication {
+function serialize(
+  row: typeof cohortApplications.$inferSelect,
+  contactId: number | null,
+  owner: string | null
+): KanbanApplication {
   return {
     id: row.id,
     name: row.name,
@@ -33,6 +37,7 @@ function serialize(row: typeof cohortApplications.$inferSelect, contactId: numbe
     readAt: row.readAt ? row.readAt.toISOString() : null,
     createdAt: row.createdAt.toISOString(),
     contactId,
+    owner,
   };
 }
 
@@ -92,13 +97,24 @@ export default async function ApplicationsPage({ searchParams }: PageProps) {
       }
     }
 
+    // Resolve owner for each contact.
+    const contactIds = Array.from(new Set(emailToContactId.values()));
+    const ownerById = new Map<number, string | null>();
+    if (contactIds.length > 0) {
+      const ownerRows = await db
+        .select({ id: contacts.id, owner: contacts.owner })
+        .from(contacts)
+        .where(inArray(contacts.id, contactIds));
+      for (const o of ownerRows) ownerById.set(o.id, o.owner);
+    }
+
     for (const r of rows) {
       const stage: ApplicationStage = isApplicationStage(r.status)
         ? r.status
         : "awaiting_response";
-      initialStages[stage].push(
-        serialize(r, emailToContactId.get(r.email.toLowerCase()) ?? null)
-      );
+      const cid = emailToContactId.get(r.email.toLowerCase()) ?? null;
+      const owner = cid !== null ? ownerById.get(cid) ?? null : null;
+      initialStages[stage].push(serialize(r, cid, owner));
     }
   }
 

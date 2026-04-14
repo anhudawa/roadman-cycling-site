@@ -1,7 +1,7 @@
 import { NextResponse } from "next/server";
 import { db } from "@/lib/db";
-import { cohortApplications } from "@/lib/db/schema";
-import { desc, isNull, eq } from "drizzle-orm";
+import { cohortApplications, contacts } from "@/lib/db/schema";
+import { desc, isNull, eq, inArray } from "drizzle-orm";
 import { requireAuth } from "@/lib/admin/auth";
 import {
   APPLICATION_STAGES,
@@ -73,7 +73,20 @@ export async function GET(request: Request) {
       }
     }
 
-    const stages: Record<ApplicationStage, (ApplicationRow & { contactId: number | null })[]> = {
+    const contactIds = Array.from(new Set(emailToContactId.values()));
+    const ownerById = new Map<number, string | null>();
+    if (contactIds.length > 0) {
+      const ownerRows = await db
+        .select({ id: contacts.id, owner: contacts.owner })
+        .from(contacts)
+        .where(inArray(contacts.id, contactIds));
+      for (const o of ownerRows) ownerById.set(o.id, o.owner);
+    }
+
+    const stages: Record<
+      ApplicationStage,
+      (ApplicationRow & { contactId: number | null; owner: string | null })[]
+    > = {
       awaiting_response: [],
       contacted: [],
       qualified: [],
@@ -85,9 +98,11 @@ export async function GET(request: Request) {
       const stage: ApplicationStage = isApplicationStage(r.status)
         ? r.status
         : "awaiting_response";
+      const cid = emailToContactId.get(r.email.toLowerCase()) ?? null;
       stages[stage].push({
         ...r,
-        contactId: emailToContactId.get(r.email.toLowerCase()) ?? null,
+        contactId: cid,
+        owner: cid !== null ? ownerById.get(cid) ?? null : null,
       });
     }
 

@@ -86,6 +86,7 @@ export async function PATCH(
       title: `Task completed: ${task.title}`,
       meta: { taskId: task.id },
       authorName: author,
+      authorSlug: user.slug,
     });
   }
 

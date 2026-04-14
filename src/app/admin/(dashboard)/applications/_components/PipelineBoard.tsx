@@ -1,6 +1,6 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { useRouter } from "next/navigation";
 import {
   APPLICATION_STAGES,
@@ -23,7 +23,16 @@ export interface KanbanApplication {
   readAt: string | null;
   createdAt: string;
   contactId: number | null;
+  owner?: string | null;
 }
+
+const OWNER_OPTIONS: { value: string | null; label: string }[] = [
+  { value: null, label: "Unassigned" },
+  { value: "sarah", label: "Sarah" },
+  { value: "wes", label: "Wes" },
+  { value: "matthew", label: "Matthew" },
+  { value: "ted", label: "Ted" },
+];
 
 export type StageMap = Record<ApplicationStage, KanbanApplication[]>;
 
@@ -65,6 +74,56 @@ export function PipelineBoard({ initialStages, cohorts, initialCohort }: Props) 
   const [detail, setDetail] = useState<KanbanApplication | null>(null);
   const [error, setError] = useState<string | null>(null);
   const [loadingCohort, setLoadingCohort] = useState(false);
+  const [ownerMenuFor, setOwnerMenuFor] = useState<number | null>(null);
+  const [assigningId, setAssigningId] = useState<number | null>(null);
+
+  useEffect(() => {
+    if (ownerMenuFor === null) return;
+    const close = () => setOwnerMenuFor(null);
+    window.addEventListener("click", close);
+    return () => window.removeEventListener("click", close);
+  }, [ownerMenuFor]);
+
+  async function assignOwner(
+    app: KanbanApplication,
+    nextOwner: string | null
+  ) {
+    if (!app.contactId) {
+      setError("No contact linked to this application");
+      window.setTimeout(() => setError(null), 4000);
+      return;
+    }
+    setAssigningId(app.id);
+    setOwnerMenuFor(null);
+    const prev = stages;
+    setStages((s) => {
+      const next: StageMap = { ...s };
+      for (const stage of APPLICATION_STAGES) {
+        next[stage] = s[stage].map((c) =>
+          c.id === app.id ? { ...c, owner: nextOwner } : c
+        );
+      }
+      return next;
+    });
+    try {
+      const res = await fetch(`/api/admin/crm/contacts/${app.contactId}`, {
+        method: "PATCH",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ owner: nextOwner }),
+      });
+      if (!res.ok) {
+        const data = await res.json().catch(() => ({}));
+        throw new Error(data.error ?? `HTTP ${res.status}`);
+      }
+      setError(null);
+    } catch (err) {
+      setStages(prev);
+      setError(err instanceof Error ? err.message : "Failed to assign");
+      window.setTimeout(() => setError(null), 4000);
+    } finally {
+      setAssigningId(null);
+    }
+  }
 
   const totalCount = useMemo(
     () =>
@@ -271,6 +330,56 @@ export function PipelineBoard({ initialStages, cohorts, initialCohort }: Props) 
                         )}
                         <span className="text-foreground-subtle text-[10px]">
                           {app.hours}
+                        </span>
+                        <span
+                          role="button"
+                          tabIndex={0}
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            setOwnerMenuFor(ownerMenuFor === app.id ? null : app.id);
+                          }}
+                          onKeyDown={(e) => {
+                            if (e.key === "Enter" || e.key === " ") {
+                              e.preventDefault();
+                              e.stopPropagation();
+                              setOwnerMenuFor(ownerMenuFor === app.id ? null : app.id);
+                            }
+                          }}
+                          className={`relative ml-auto text-[10px] px-2 py-0.5 rounded-full font-medium border capitalize cursor-pointer ${
+                            app.owner
+                              ? "bg-coral/15 text-coral border-coral/30"
+                              : "border-dashed border-white/15 text-foreground-subtle"
+                          } ${assigningId === app.id ? "opacity-60" : ""}`}
+                          aria-label="Assign owner"
+                        >
+                          {app.owner
+                            ? `${app.owner.charAt(0).toUpperCase()} · ${app.owner}`
+                            : "unassigned"}
+                          {ownerMenuFor === app.id && (
+                            <span
+                              onClick={(e) => e.stopPropagation()}
+                              className="absolute right-0 top-full mt-1 z-20 min-w-[140px] rounded-lg border border-white/10 bg-background-elevated shadow-lg p-1 flex flex-col gap-0.5 normal-case"
+                            >
+                              {OWNER_OPTIONS.map((opt) => {
+                                const selected = (app.owner ?? null) === opt.value;
+                                return (
+                                  <button
+                                    key={opt.label}
+                                    type="button"
+                                    onClick={(e) => {
+                                      e.stopPropagation();
+                                      assignOwner(app, opt.value);
+                                    }}
+                                    className={`text-left text-[11px] px-2 py-1 rounded hover:bg-white/5 ${
+                                      selected ? "text-coral" : "text-off-white"
+                                    }`}
+                                  >
+                                    {opt.label}
+                                  </button>
+                                );
+                              })}
+                            </span>
+                          )}
                         </span>
                       </div>
                     </button>

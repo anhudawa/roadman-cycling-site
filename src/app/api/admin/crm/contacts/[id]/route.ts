@@ -81,6 +81,7 @@ export async function PATCH(
       title: `Stage changed: ${stageActivity.prev} -> ${stageActivity.next}`,
       meta: { prev: stageActivity.prev, next: stageActivity.next },
       authorName: author,
+      authorSlug: user.slug,
     });
   }
   if (ownerActivity) {
@@ -91,6 +92,7 @@ export async function PATCH(
         : "Unassigned",
       meta: { prev: ownerActivity.prev, next: ownerActivity.next },
       authorName: author,
+      authorSlug: user.slug,
     });
     if (!activity) activity = a;
   }

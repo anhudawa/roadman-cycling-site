@@ -25,10 +25,12 @@ export function ContactsFilters({
   initialSearch,
   initialOwner,
   initialStage,
+  initialStale,
 }: {
   initialSearch: string;
   initialOwner: string;
   initialStage: string;
+  initialStale?: boolean;
 }) {
   const router = useRouter();
   const searchParams = useSearchParams();
@@ -78,6 +80,18 @@ export function ContactsFilters({
           </option>
         ))}
       </select>
+      <button
+        type="button"
+        onClick={() => update("stale", initialStale ? "" : "1")}
+        className={`px-3 py-2 text-xs font-heading tracking-wider uppercase rounded border transition ${
+          initialStale
+            ? "bg-coral/15 text-coral border-coral/30"
+            : "bg-background-elevated text-foreground-muted border-white/10 hover:border-coral/30"
+        }`}
+        aria-pressed={initialStale ? "true" : "false"}
+      >
+        Stale only
+      </button>
     </div>
   );
 }

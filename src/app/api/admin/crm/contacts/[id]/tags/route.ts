@@ -50,6 +50,7 @@ export async function POST(
     title: `Tag added: ${tag}`,
     meta: { tag },
     authorName: author,
+    authorSlug: user.slug,
   });
 
   return NextResponse.json({

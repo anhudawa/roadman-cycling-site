@@ -168,6 +168,7 @@ export async function sendEmailToContact(params: SendEmailParams): Promise<SendE
       errorMessage: errorMessage ?? null,
     },
     authorName: params.user.name,
+    authorSlug: params.user.slug,
   });
 
   return {

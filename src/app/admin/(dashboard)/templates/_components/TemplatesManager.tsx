@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useRouter } from "next/navigation";
 
 interface Template {
@@ -38,12 +38,39 @@ function formatDate(iso: string): string {
   });
 }
 
-export function TemplatesManager({ initial }: { initial: Template[] }) {
+export function TemplatesManager({
+  initial,
+  focusSlug,
+}: {
+  initial: Template[];
+  focusSlug?: string | null;
+}) {
   const router = useRouter();
   const [templates, setTemplates] = useState<Template[]>(initial);
   const [draft, setDraft] = useState<DraftState | null>(null);
   const [busy, setBusy] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const [highlightId, setHighlightId] = useState<number | null>(null);
+  const rowRefs = useRef<Map<number, HTMLTableRowElement | null>>(new Map());
+
+  useEffect(() => {
+    if (!focusSlug) return;
+    const match = initial.find((t) => t.slug === focusSlug);
+    if (!match) return;
+    setHighlightId(match.id);
+    setDraft({
+      id: match.id,
+      name: match.name,
+      slug: match.slug,
+      subject: match.subject,
+      body: match.body,
+    });
+    // Defer to next tick so the row exists in the DOM.
+    requestAnimationFrame(() => {
+      const row = rowRefs.current.get(match.id);
+      if (row) row.scrollIntoView({ behavior: "smooth", block: "center" });
+    });
+  }, [focusSlug, initial]);
 
   function openNew() {
     setDraft({ ...EMPTY_DRAFT });
@@ -164,7 +191,15 @@ export function TemplatesManager({ initial }: { initial: Template[] }) {
             </thead>
             <tbody>
               {templates.map((t) => (
-                <tr key={t.id} className="border-b border-white/5 last:border-b-0">
+                <tr
+                  key={t.id}
+                  ref={(el) => {
+                    rowRefs.current.set(t.id, el);
+                  }}
+                  className={`border-b border-white/5 last:border-b-0 transition-colors ${
+                    highlightId === t.id ? "bg-coral/5" : ""
+                  }`}
+                >
                   <td className="px-4 py-3 text-off-white">{t.name}</td>
                   <td className="px-4 py-3 text-foreground-muted font-mono text-xs">
                     {t.slug}

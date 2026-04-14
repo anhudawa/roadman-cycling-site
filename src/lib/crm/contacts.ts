@@ -101,6 +101,7 @@ export interface AddActivityParams {
   body?: string | null;
   meta?: Record<string, unknown> | null;
   authorName?: string | null;
+  authorSlug?: string | null;
 }
 
 export async function addActivity(
@@ -117,6 +118,7 @@ export async function addActivity(
       body: params.body ?? null,
       meta: params.meta ?? null,
       authorName: params.authorName ?? null,
+      authorSlug: params.authorSlug ?? null,
     })
     .returning();
 
@@ -178,9 +180,12 @@ export interface ListContactsParams {
   search?: string;
   owner?: string | "unassigned" | null;
   stage?: string | null;
+  staleOnly?: boolean;
   limit?: number;
   offset?: number;
 }
+
+const STALE_DAYS = 7;
 
 export interface ListContactsResult {
   rows: Contact[];
@@ -203,6 +208,15 @@ export async function listContacts(params: ListContactsParams = {}): Promise<Lis
   }
   if (params.stage) {
     conditions.push(eq(contacts.lifecycleStage, params.stage));
+  }
+  if (params.staleOnly) {
+    const cutoff = new Date();
+    cutoff.setDate(cutoff.getDate() - STALE_DAYS);
+    const stale = or(
+      isNull(contacts.lastActivityAt),
+      sql`${contacts.lastActivityAt} < ${cutoff}`
+    );
+    if (stale) conditions.push(stale);
   }
 
   const whereClause = conditions.length > 0 ? and(...conditions) : undefined;

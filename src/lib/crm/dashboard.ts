@@ -261,7 +261,7 @@ export async function getMyDayData(user: TeamUser): Promise<MyDayData> {
     })
     .from(contactActivities)
     .leftJoin(contacts, eq(contactActivities.contactId, contacts.id))
-    .where(eq(contactActivities.authorName, user.name))
+    .where(eq(contactActivities.authorSlug, user.slug))
     .orderBy(desc(contactActivities.createdAt))
     .limit(15);
 

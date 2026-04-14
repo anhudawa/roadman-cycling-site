@@ -4,8 +4,16 @@ import { TemplatesManager } from "./_components/TemplatesManager";
 
 export const dynamic = "force-dynamic";
 
-export default async function TemplatesPage() {
+export default async function TemplatesPage({
+  searchParams,
+}: {
+  searchParams: Promise<Record<string, string | string[] | undefined>>;
+}) {
   await requireAuth();
+  const sp = await searchParams;
+  const slugRaw = sp.slug;
+  const focusSlug = typeof slugRaw === "string" ? slugRaw : null;
+
   const rows = await listTemplates();
   const templates = rows.map((t) => ({
     ...t,
@@ -24,7 +32,7 @@ export default async function TemplatesPage() {
           {"{{agent_name}}"} placeholders — they get replaced when you send.
         </p>
       </div>
-      <TemplatesManager initial={templates} />
+      <TemplatesManager initial={templates} focusSlug={focusSlug} />
     </div>
   );
 }
