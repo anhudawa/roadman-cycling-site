@@ -354,6 +354,23 @@ export const monthlySocialStats = pgTable(
   }),
 );
 
+// ── CRM: Saved Views ──────────────────────────────────────
+export const savedViews = pgTable(
+  "saved_views",
+  {
+    id: serial("id").primaryKey(),
+    name: text("name").notNull(),
+    entity: text("entity").notNull(),
+    filters: jsonb("filters").$type<Record<string, unknown>>().notNull().default({}),
+    createdBySlug: text("created_by_slug").notNull(),
+    createdAt: timestamp("created_at", { withTimezone: true }).notNull().defaultNow(),
+  },
+  (table) => [
+    index("saved_views_entity_idx").on(table.entity),
+    index("saved_views_created_by_slug_idx").on(table.createdBySlug),
+  ]
+);
+
 export const episodeDownloadsCache = pgTable("episode_downloads_cache", {
   episodeId: text("episode_id").primaryKey(),
   downloads: integer("downloads").notNull(),

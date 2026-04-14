@@ -1,10 +1,12 @@
 import Link from "next/link";
 import { requireAuth } from "@/lib/admin/auth";
 import { listContacts } from "@/lib/crm/contacts";
+import { listSavedViews } from "@/lib/crm/saved-views";
 import { BackfillButton } from "./_components/BackfillButton";
 import { ContactsFilters } from "./_components/ContactsFilters";
 import { ContactsTable, type ContactRow } from "./_components/ContactsTable";
 import { EnrichAllButton } from "./_components/EnrichAllButton";
+import { SavedViewsBar } from "./_components/SavedViewsBar";
 
 export const dynamic = "force-dynamic";
 
@@ -36,6 +38,13 @@ export default async function ContactsPage({
   });
 
   const totalPages = Math.max(1, Math.ceil(total / PAGE_SIZE));
+
+  const savedViews = await listSavedViews("contacts").catch(() => []);
+  const currentFilters: Record<string, string> = {};
+  if (search) currentFilters.search = search;
+  if (owner) currentFilters.owner = owner;
+  if (stage) currentFilters.stage = stage;
+  if (staleOnly) currentFilters.stale = "1";
 
   function pageHref(n: number): string {
     const p = new URLSearchParams();
@@ -80,6 +89,11 @@ export default async function ContactsPage({
       </div>
 
       <div className="mb-6">
+        <SavedViewsBar
+          views={savedViews}
+          currentUserSlug={user.slug}
+          currentFilters={currentFilters}
+        />
         <ContactsFilters
           initialSearch={search}
           initialOwner={owner}
