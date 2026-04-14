@@ -22,7 +22,7 @@ export async function GET(request: Request) {
     return NextResponse.json({ error: "Missing ?email=" }, { status: 400 });
   }
 
-  const user = await grantAccess({ email });
+  const { user } = await grantAccess({ email });
   const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || url.origin;
   const token = mintMagicLinkToken(user.id);
   return NextResponse.json({

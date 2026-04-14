@@ -31,11 +31,27 @@ export interface GrantAccessParams {
   stripeSessionId?: string;
 }
 
-/** Upsert a user as paid. Returns the row (with its id). */
-export async function grantAccess(params: GrantAccessParams): Promise<BloodEngineUser> {
+export interface GrantAccessResult {
+  user: BloodEngineUser;
+  /** True only the FIRST time a user transitions to hasAccess=true. */
+  isFirstGrant: boolean;
+  /** True if this exact stripeSessionId has already been processed. */
+  isDuplicateSession: boolean;
+}
+
+/**
+ * Upsert a user as paid. Idempotent: re-calling with the same stripeSessionId
+ * flags it as a duplicate so the webhook handler can skip re-sending emails
+ * without losing access. Bumps accessGrantedAt only on the first grant.
+ */
+export async function grantAccess(params: GrantAccessParams): Promise<GrantAccessResult> {
   const email = params.email.toLowerCase();
   const existing = await getUserByEmail(email);
+
   if (existing) {
+    const isDuplicateSession =
+      !!params.stripeSessionId && existing.stripeSessionId === params.stripeSessionId;
+    const isFirstGrant = !existing.hasAccess;
     const [updated] = await db
       .update(bloodEngineUsers)
       .set({
@@ -46,8 +62,9 @@ export async function grantAccess(params: GrantAccessParams): Promise<BloodEngin
       })
       .where(eq(bloodEngineUsers.id, existing.id))
       .returning();
-    return updated;
+    return { user: updated, isFirstGrant, isDuplicateSession };
   }
+
   const [created] = await db
     .insert(bloodEngineUsers)
     .values({
@@ -58,7 +75,7 @@ export async function grantAccess(params: GrantAccessParams): Promise<BloodEngin
       stripeSessionId: params.stripeSessionId,
     })
     .returning();
-  return created;
+  return { user: created, isFirstGrant: true, isDuplicateSession: false };
 }
 
 export async function recordTosAcceptance(userId: number, version: string): Promise<void> {

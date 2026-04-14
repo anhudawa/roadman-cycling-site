@@ -72,12 +72,24 @@ export async function POST(request: Request) {
   }
 
   try {
-    const user = await grantAccess({
+    const { user, isFirstGrant, isDuplicateSession } = await grantAccess({
       email,
       stripeCustomerId:
         typeof session.customer === "string" ? session.customer : session.customer?.id,
       stripeSessionId: session.id,
     });
+
+    // Idempotency: Stripe retries webhooks on 5xx, and deduplication on Stripe's
+    // side isn't guaranteed. If we've already processed this session id OR the
+    // user already had access from a different path, skip the side effects and
+    // return 200 so Stripe marks the delivery successful.
+    if (isDuplicateSession || !isFirstGrant) {
+      return NextResponse.json({
+        received: true,
+        userId: user.id,
+        deduplicated: true,
+      });
+    }
 
     const token = mintMagicLinkToken(user.id);
     const link = magicLinkUrl(siteUrl(), token);
