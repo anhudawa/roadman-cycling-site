@@ -1,7 +1,7 @@
 "use client";
 
 import { useRouter } from "next/navigation";
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Button } from "@/components/ui";
 import { MARKERS, type MarkerId, type Sex } from "@/lib/blood-engine/markers";
 import {
@@ -64,6 +64,14 @@ export function NewReportWizard({
 }: Props) {
   const router = useRouter();
   const [step, setStep] = useState<Step>("context");
+  const stepHeadingRef = useRef<HTMLOListElement | null>(null);
+
+  // When the step changes, move keyboard focus to the step header so
+  // screen-reader users hear the new step rather than being left in the
+  // previous form's last input.
+  useEffect(() => {
+    stepHeadingRef.current?.focus();
+  }, [step]);
   const [context, setContext] = useState<ContextState>({
     age: initialContext?.age ? String(initialContext.age) : "",
     sex: initialContext?.sex ?? "m",
@@ -92,7 +100,7 @@ export function NewReportWizard({
         }}
         className="space-y-6"
       >
-        <StepHeader current={1} />
+        <StepHeader current={1} forwardRef={stepHeadingRef} />
 
         {hasPreviousReports && initialContext ? (
           <p className="text-xs text-foreground-subtle bg-background-elevated border border-white/5 rounded-md px-3 py-2">
@@ -112,20 +120,20 @@ export function NewReportWizard({
           />
         </Field>
 
-        <Field label="Sex">
-          <div className="flex gap-3">
-            {(["m", "f"] as const).map((s) => (
-              <button
-                type="button"
-                key={s}
-                onClick={() => setContext({ ...context, sex: s })}
-                className={chipClass(context.sex === s)}
-              >
-                {s === "m" ? "Male" : "Female"}
-              </button>
-            ))}
-          </div>
-        </Field>
+        <ChipGroup label="Sex" role="radiogroup">
+          {(["m", "f"] as const).map((s) => (
+            <button
+              type="button"
+              role="radio"
+              aria-checked={context.sex === s}
+              key={s}
+              onClick={() => setContext({ ...context, sex: s })}
+              className={chipClass(context.sex === s)}
+            >
+              {s === "m" ? "Male" : "Female"}
+            </button>
+          ))}
+        </ChipGroup>
 
         <Field label="Weekly training hours">
           <input
@@ -140,49 +148,48 @@ export function NewReportWizard({
           />
         </Field>
 
-        <Field label="Training phase">
-          <div className="flex flex-wrap gap-2">
-            {TRAINING_PHASES.map((p) => (
+        <ChipGroup label="Training phase" role="radiogroup">
+          {TRAINING_PHASES.map((p) => (
+            <button
+              type="button"
+              role="radio"
+              aria-checked={context.trainingPhase === p}
+              key={p}
+              onClick={() => setContext({ ...context, trainingPhase: p })}
+              className={chipClass(context.trainingPhase === p)}
+            >
+              {p}
+            </button>
+          ))}
+        </ChipGroup>
+
+        <ChipGroup label="Symptoms (tap all that apply)" role="group">
+          {SYMPTOMS.map((s) => {
+            const on = context.symptoms.includes(s.id);
+            return (
               <button
                 type="button"
-                key={p}
-                onClick={() => setContext({ ...context, trainingPhase: p })}
-                className={chipClass(context.trainingPhase === p)}
+                aria-pressed={on}
+                key={s.id}
+                onClick={() => {
+                  setContext((prev) => {
+                    const next = on
+                      ? prev.symptoms.filter((x) => x !== s.id)
+                      : [...prev.symptoms.filter((x) => x !== "none" || s.id === "none"), s.id];
+                    // "none" is exclusive
+                    return {
+                      ...prev,
+                      symptoms: s.id === "none" ? ["none"] : next.filter((x) => x !== "none"),
+                    };
+                  });
+                }}
+                className={chipClass(on)}
               >
-                {p}
+                {s.label}
               </button>
-            ))}
-          </div>
-        </Field>
-
-        <Field label="Symptoms (tap all that apply)">
-          <div className="flex flex-wrap gap-2">
-            {SYMPTOMS.map((s) => {
-              const on = context.symptoms.includes(s.id);
-              return (
-                <button
-                  type="button"
-                  key={s.id}
-                  onClick={() => {
-                    setContext((prev) => {
-                      const next = on
-                        ? prev.symptoms.filter((x) => x !== s.id)
-                        : [...prev.symptoms.filter((x) => x !== "none" || s.id === "none"), s.id];
-                      // "none" is exclusive
-                      return {
-                        ...prev,
-                        symptoms: s.id === "none" ? ["none"] : next.filter((x) => x !== "none"),
-                      };
-                    });
-                  }}
-                  className={chipClass(on)}
-                >
-                  {s.label}
-                </button>
-              );
-            })}
-          </div>
-        </Field>
+            );
+          })}
+        </ChipGroup>
 
         <Field label="Date of blood draw">
           <input
@@ -245,7 +252,7 @@ export function NewReportWizard({
 
     return (
       <div className="space-y-6">
-        <StepHeader current={2} />
+        <StepHeader current={2} forwardRef={stepHeadingRef} />
 
         <div className="rounded-lg border border-white/10 bg-background-elevated p-6">
           <h3 className="font-heading uppercase text-off-white text-xl mb-3">Upload a PDF (optional)</h3>
@@ -263,8 +270,16 @@ export function NewReportWizard({
             }}
             className="block text-sm text-foreground-muted file:mr-4 file:py-2 file:px-4 file:rounded file:border-0 file:bg-coral file:text-off-white file:font-heading file:uppercase file:tracking-wider"
           />
-          {pdfLoading ? <p className="mt-3 text-sm text-foreground-muted">Extracting…</p> : null}
-          {pdfStatus ? <p className="mt-3 text-sm text-coral">{pdfStatus}</p> : null}
+          {pdfLoading ? (
+            <p aria-live="polite" className="mt-3 text-sm text-foreground-muted">
+              Extracting…
+            </p>
+          ) : null}
+          {pdfStatus ? (
+            <p aria-live="polite" className="mt-3 text-sm text-coral">
+              {pdfStatus}
+            </p>
+          ) : null}
         </div>
 
         <div className="rounded-lg border border-white/10 bg-background-elevated overflow-hidden">
@@ -356,7 +371,11 @@ export function NewReportWizard({
             Continue →
           </Button>
         </div>
-        {error ? <p className="text-sm text-coral">{error}</p> : null}
+        {error ? (
+          <p role="alert" className="text-sm text-coral">
+            {error}
+          </p>
+        ) : null}
       </div>
     );
   }
@@ -409,7 +428,7 @@ export function NewReportWizard({
 
   return (
     <div className="space-y-6">
-      <StepHeader current={3} />
+      <StepHeader current={3} forwardRef={stepHeadingRef} />
       <div className="rounded-lg border border-white/10 bg-background-elevated p-6">
         <h3 className="font-heading uppercase text-off-white text-xl mb-3">Ready to run</h3>
         <p className="text-foreground-muted">
@@ -456,21 +475,35 @@ export function NewReportWizard({
 
 // ── small helpers / presentational pieces ──────────────────
 
-function StepHeader({ current }: { current: 1 | 2 | 3 }) {
+const StepHeader = ({
+  current,
+  forwardRef,
+}: {
+  current: 1 | 2 | 3;
+  forwardRef?: React.Ref<HTMLOListElement>;
+}) => {
   const steps: Array<{ n: 1 | 2 | 3; label: string }> = [
     { n: 1, label: "Context" },
     { n: 2, label: "Results" },
     { n: 3, label: "Submit" },
   ];
+  const currentLabel = steps.find((s) => s.n === current)?.label ?? "";
   return (
-    <ol className="flex items-center gap-3 text-sm mb-4">
+    <ol
+      ref={forwardRef}
+      tabIndex={-1}
+      aria-label={`Report wizard, step ${current} of 3: ${currentLabel}`}
+      className="flex items-center gap-3 text-sm mb-4 outline-none"
+    >
       {steps.map((s) => (
         <li
           key={s.n}
+          aria-current={s.n === current ? "step" : undefined}
           className={`flex items-center gap-2 ${s.n === current ? "text-coral" : "text-foreground-subtle"}`}
         >
           <span
             className={`inline-flex items-center justify-center w-6 h-6 rounded-full border ${s.n === current ? "border-coral bg-coral text-off-white" : "border-foreground-subtle"}`}
+            aria-hidden="true"
           >
             {s.n}
           </span>
@@ -478,6 +511,27 @@ function StepHeader({ current }: { current: 1 | 2 | 3 }) {
         </li>
       ))}
     </ol>
+  );
+};
+
+function ChipGroup({
+  label,
+  role,
+  children,
+}: {
+  label: string;
+  role: "radiogroup" | "group";
+  children: React.ReactNode;
+}) {
+  return (
+    <fieldset className="block">
+      <legend className="font-heading tracking-wider uppercase text-sm text-off-white block mb-2">
+        {label}
+      </legend>
+      <div role={role} aria-label={label} className="flex flex-wrap gap-2">
+        {children}
+      </div>
+    </fieldset>
   );
 }
 
