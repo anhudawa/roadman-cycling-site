@@ -41,9 +41,10 @@ export async function POST(request: Request) {
       ],
     });
 
-    const text =
+    const raw =
       msg.content[0].type === "text" ? msg.content[0].text : "";
-    const ideas = JSON.parse(text);
+    const cleaned = raw.replace(/^```json?\n?/m, "").replace(/\n?```$/m, "").trim();
+    const ideas = JSON.parse(cleaned);
     return NextResponse.json({ ideas });
   } catch (err) {
     console.error("[Exploder] Ideas generation failed:", err);
