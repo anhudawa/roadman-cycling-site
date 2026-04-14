@@ -2,6 +2,7 @@
 
 import { useEffect, useMemo, useState } from "react";
 import { useRouter } from "next/navigation";
+import { ContactDealsSection } from "./ContactDealsSection";
 
 const OWNERS = [
   { value: "", label: "Unassigned" },
@@ -714,6 +715,11 @@ export function ContactDetail({
               </ul>
             )}
           </div>
+        </div>
+
+        {/* Deals */}
+        <div className="lg:col-span-2 lg:col-start-1">
+          <ContactDealsSection contactId={contact.id} />
         </div>
 
         {/* Right sidebar */}

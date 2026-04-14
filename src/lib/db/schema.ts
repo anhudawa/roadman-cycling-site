@@ -391,6 +391,32 @@ export const notifications = pgTable(
   ]
 );
 
+// ── CRM: Deals ────────────────────────────────────────────
+export const deals = pgTable(
+  "deals",
+  {
+    id: serial("id").primaryKey(),
+    contactId: integer("contact_id").references(() => contacts.id),
+    title: text("title").notNull(),
+    valueCents: integer("value_cents").notNull().default(0),
+    currency: text("currency").notNull().default("EUR"),
+    stage: text("stage").notNull().default("qualified"),
+    ownerSlug: text("owner_slug"),
+    source: text("source"),
+    expectedCloseDate: date("expected_close_date"),
+    closedAt: timestamp("closed_at", { withTimezone: true }),
+    notes: text("notes"),
+    createdAt: timestamp("created_at", { withTimezone: true }).notNull().defaultNow(),
+    updatedAt: timestamp("updated_at", { withTimezone: true }).notNull().defaultNow(),
+  },
+  (table) => [
+    index("deals_contact_id_idx").on(table.contactId),
+    index("deals_stage_idx").on(table.stage),
+    index("deals_owner_slug_idx").on(table.ownerSlug),
+    index("deals_expected_close_date_idx").on(table.expectedCloseDate),
+  ]
+);
+
 export const episodeDownloadsCache = pgTable("episode_downloads_cache", {
   episodeId: text("episode_id").primaryKey(),
   downloads: integer("downloads").notNull(),

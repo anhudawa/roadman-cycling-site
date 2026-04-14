@@ -1,12 +1,14 @@
 import { db } from "@/lib/db";
 import {
   cohortApplications,
+  deals,
   emailMessages,
   tasks,
   teamUsers,
 } from "@/lib/db/schema";
-import { and, eq, gte, isNull, isNotNull, sql } from "drizzle-orm";
+import { and, desc, eq, gte, isNull, isNotNull, sql } from "drizzle-orm";
 import { APPLICATION_STAGES, type ApplicationStage } from "./pipeline";
+import { DEAL_STAGES, type DealStage, isDealStage } from "./deals";
 
 export interface PipelineFunnelRow {
   stage: ApplicationStage;
@@ -238,12 +240,135 @@ export async function getTaskThroughput(): Promise<TaskThroughputRow[]> {
 }
 
 export async function getAllReports() {
-  const [funnel, weekly, owners, email, throughput] = await Promise.all([
+  const [funnel, weekly, owners, email, throughput, deals] = await Promise.all([
     getPipelineFunnel(),
     getApplicationsPerWeek(),
     getOwnerBreakdown(),
     getEmailEngagement(),
     getTaskThroughput(),
+    getDealMetrics(),
   ]);
-  return { funnel, weekly, owners, email, throughput };
+  return { funnel, weekly, owners, email, throughput, deals };
+}
+
+// ── Deals ─────────────────────────────────────────────────
+
+export interface DealStageMetric {
+  stage: DealStage;
+  count: number;
+  totalCents: number;
+}
+
+export interface WonByWeekRow {
+  weekStart: string;
+  label: string;
+  totalCents: number;
+}
+
+export interface TopDealRow {
+  id: number;
+  title: string;
+  valueCents: number;
+  currency: string;
+  stage: DealStage;
+  ownerSlug: string | null;
+}
+
+export interface DealMetrics {
+  pipelineByStage: DealStageMetric[];
+  wonLast90dByWeek: WonByWeekRow[];
+  winRate90d: number; // percent
+  topOpenDeals: TopDealRow[];
+}
+
+export async function getDealMetrics(): Promise<DealMetrics> {
+  const stageRows = await db
+    .select({
+      stage: deals.stage,
+      count: sql<number>`count(*)::int`,
+      total: sql<number>`coalesce(sum(${deals.valueCents}),0)::bigint`,
+    })
+    .from(deals)
+    .groupBy(deals.stage);
+
+  const pipelineByStage: DealStageMetric[] = DEAL_STAGES.map((stage) => {
+    const row = stageRows.find((r) => r.stage === stage);
+    return {
+      stage,
+      count: row?.count ?? 0,
+      totalCents: Number(row?.total ?? 0),
+    };
+  });
+
+  const cutoff90 = daysAgo(90);
+
+  const wonRows = await db
+    .select({
+      weekStart: sql<string>`to_char(date_trunc('week', ${deals.closedAt}), 'YYYY-MM-DD')`,
+      totalCents: sql<number>`coalesce(sum(${deals.valueCents}),0)::bigint`,
+    })
+    .from(deals)
+    .where(
+      and(
+        eq(deals.stage, "won"),
+        isNotNull(deals.closedAt),
+        gte(deals.closedAt, cutoff90)
+      )
+    )
+    .groupBy(sql`date_trunc('week', ${deals.closedAt})`)
+    .orderBy(sql`date_trunc('week', ${deals.closedAt})`);
+
+  const byWeek = new Map<string, number>();
+  for (const r of wonRows) byWeek.set(r.weekStart, Number(r.totalCents));
+
+  const now = new Date();
+  const day = now.getUTCDay() || 7;
+  const thisMonday = new Date(
+    Date.UTC(now.getUTCFullYear(), now.getUTCMonth(), now.getUTCDate() - (day - 1))
+  );
+  const wonLast90dByWeek: WonByWeekRow[] = [];
+  for (let i = 12; i >= 0; i--) {
+    const d = new Date(thisMonday);
+    d.setUTCDate(d.getUTCDate() - i * 7);
+    const iso = d.toISOString().slice(0, 10);
+    wonLast90dByWeek.push({
+      weekStart: iso,
+      label: d.toLocaleDateString("en-GB", { day: "numeric", month: "short" }),
+      totalCents: byWeek.get(iso) ?? 0,
+    });
+  }
+
+  const [winRateRow] = await db
+    .select({
+      won: sql<number>`count(*) filter (where ${deals.stage} = 'won')::int`,
+      lost: sql<number>`count(*) filter (where ${deals.stage} = 'lost')::int`,
+    })
+    .from(deals)
+    .where(and(isNotNull(deals.closedAt), gte(deals.closedAt, cutoff90)));
+
+  const wonN = winRateRow?.won ?? 0;
+  const lostN = winRateRow?.lost ?? 0;
+  const winRate90d = wonN + lostN === 0 ? 0 : Math.round((wonN / (wonN + lostN)) * 100);
+
+  const topRows = await db
+    .select()
+    .from(deals)
+    .where(
+      and(
+        sql`${deals.stage} not in ('won','lost')`
+      )
+    )
+    .orderBy(desc(deals.valueCents))
+    .limit(5);
+
+  const topOpenDeals: TopDealRow[] = topRows.map((r) => ({
+    id: r.id,
+    title: r.title,
+    valueCents: r.valueCents,
+    currency: r.currency,
+    stage: isDealStage(r.stage) ? r.stage : "qualified",
+    ownerSlug: r.ownerSlug,
+  }));
+
+  return { pipelineByStage, wonLast90dByWeek, winRate90d, topOpenDeals };
 }

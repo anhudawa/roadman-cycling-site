@@ -1,6 +1,12 @@
+import Link from "next/link";
 import { requireAuth } from "@/lib/admin/auth";
 import { getAllReports } from "@/lib/crm/reports";
 import { STAGE_COLORS, STAGE_LABELS } from "@/lib/crm/pipeline";
+import {
+  STAGE_LABELS as DEAL_STAGE_LABELS,
+  STAGE_COLORS as DEAL_STAGE_COLORS,
+  formatCurrency,
+} from "@/lib/crm/deals";
 
 export const dynamic = "force-dynamic";
 
@@ -23,7 +29,7 @@ function Card({
 
 export default async function ReportsPage() {
   const user = await requireAuth();
-  const { funnel, weekly, owners, email, throughput } = await getAllReports();
+  const { funnel, weekly, owners, email, throughput, deals } = await getAllReports();
 
   const funnelMax = Math.max(1, ...funnel.map((f) => f.count));
   const weeklyMax = Math.max(1, ...weekly.map((w) => w.count));
@@ -231,6 +237,121 @@ export default async function ReportsPage() {
             </ul>
           )}
         </Card>
+      </div>
+
+      {/* Revenue */}
+      <div className="pt-2">
+        <h2 className="font-heading text-xl text-off-white tracking-wider uppercase mb-4">
+          Revenue
+        </h2>
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+          <Card title="Pipeline by Stage">
+            {deals.pipelineByStage.every((p) => p.count === 0) ? (
+              <p className="text-sm text-foreground-subtle">No deals yet.</p>
+            ) : (
+              <ul className="space-y-3">
+                {deals.pipelineByStage.map((row) => {
+                  const color = DEAL_STAGE_COLORS[row.stage];
+                  return (
+                    <li key={row.stage}>
+                      <div className="flex items-center justify-between text-xs mb-1">
+                        <span className="text-off-white uppercase tracking-wider flex items-center gap-2">
+                          <span className={`w-2 h-2 rounded-full ${color.dot}`} />
+                          {DEAL_STAGE_LABELS[row.stage]}
+                        </span>
+                        <span className="tabular-nums text-foreground-muted">
+                          {row.count}{" "}
+                          <span className="text-foreground-subtle ml-2">
+                            {formatCurrency(row.totalCents, "EUR")}
+                          </span>
+                        </span>
+                      </div>
+                    </li>
+                  );
+                })}
+              </ul>
+            )}
+          </Card>
+
+          <Card title="Won Revenue — Last 90 Days">
+            {(() => {
+              const max = Math.max(
+                1,
+                ...deals.wonLast90dByWeek.map((w) => w.totalCents)
+              );
+              return (
+                <div>
+                  <div className="flex items-end gap-1.5 h-40">
+                    {deals.wonLast90dByWeek.map((w) => {
+                      const pct = Math.round((w.totalCents / max) * 100);
+                      return (
+                        <div
+                          key={w.weekStart}
+                          className="flex-1 flex flex-col items-center gap-1"
+                          title={`${w.label}: ${formatCurrency(w.totalCents, "EUR")}`}
+                        >
+                          <div className="w-full flex-1 flex items-end">
+                            <div
+                              className="w-full bg-green-500/60 hover:bg-green-400 rounded-t transition-colors"
+                              style={{ height: `${pct}%` }}
+                            />
+                          </div>
+                        </div>
+                      );
+                    })}
+                  </div>
+                  <div className="flex justify-between mt-2 text-[10px] text-foreground-subtle">
+                    <span>{deals.wonLast90dByWeek[0]?.label}</span>
+                    <span>
+                      {deals.wonLast90dByWeek[deals.wonLast90dByWeek.length - 1]?.label}
+                    </span>
+                  </div>
+                </div>
+              );
+            })()}
+          </Card>
+        </div>
+
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mt-6">
+          <Card title="Win Rate (Last 90d)">
+            <p className="font-heading text-5xl text-off-white tracking-wider tabular-nums">
+              {deals.winRate90d}%
+            </p>
+            <p className="text-xs text-foreground-subtle mt-2 uppercase tracking-widest">
+              Won ÷ (Won + Lost) among deals closed in last 90d
+            </p>
+          </Card>
+
+          <Card title="Top 5 Open Deals">
+            {deals.topOpenDeals.length === 0 ? (
+              <p className="text-sm text-foreground-subtle">No open deals.</p>
+            ) : (
+              <ul className="space-y-2">
+                {deals.topOpenDeals.map((d) => (
+                  <li
+                    key={d.id}
+                    className="flex items-center justify-between py-1.5 border-b border-white/5 last:border-0"
+                  >
+                    <Link
+                      href={`/admin/deals/${d.id}`}
+                      className="text-sm text-off-white hover:text-coral truncate"
+                    >
+                      {d.title}
+                    </Link>
+                    <div className="flex items-center gap-3 text-xs tabular-nums">
+                      <span className="text-foreground-subtle uppercase tracking-widest text-[10px]">
+                        {DEAL_STAGE_LABELS[d.stage]}
+                      </span>
+                      <span className="text-coral font-heading tracking-wider">
+                        {formatCurrency(d.valueCents, d.currency)}
+                      </span>
+                    </div>
+                  </li>
+                ))}
+              </ul>
+            )}
+          </Card>
+        </div>
       </div>
     </div>
   );
