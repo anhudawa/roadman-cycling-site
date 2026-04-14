@@ -63,7 +63,11 @@ export default async function AccountPage() {
         </div>
 
         {/* ── Sign out ──────────────────────────────────────── */}
-        <div className="rounded-lg border border-white/10 bg-background-elevated p-6 mb-6 flex items-center justify-between flex-wrap gap-3">
+        <form
+          action="/api/blood-engine/auth/logout"
+          method="post"
+          className="rounded-lg border border-white/10 bg-background-elevated p-6 mb-6 flex items-center justify-between flex-wrap gap-3"
+        >
           <div>
             <h2 className="font-heading uppercase text-off-white text-xl">
               Sign out of this device
@@ -72,10 +76,13 @@ export default async function AccountPage() {
               Clears your sign-in cookie. You can sign back in at any time.
             </p>
           </div>
-          <Button href="/api/blood-engine/auth/logout" variant="ghost">
+          <button
+            type="submit"
+            className="inline-flex items-center justify-center font-heading tracking-wider uppercase rounded-md px-6 py-3 text-base bg-transparent hover:bg-white/5 text-off-white border border-white/20 hover:border-white/40 cursor-pointer transition-all"
+          >
             Sign out
-          </Button>
-        </div>
+          </button>
+        </form>
 
         {/* ── Data export ───────────────────────────────────── */}
         <div className="rounded-lg border border-white/10 bg-background-elevated p-6 mb-6">
