@@ -569,8 +569,11 @@ export default function CoachingPage() {
                   { href: "/coaching/dublin", label: "DUBLIN" },
                   { href: "/coaching/cork", label: "CORK" },
                   { href: "/coaching/galway", label: "GALWAY" },
+                  { href: "/coaching/belfast", label: "BELFAST" },
                   { href: "/coaching/london", label: "LONDON" },
                   { href: "/coaching/manchester", label: "MANCHESTER" },
+                  { href: "/coaching/leeds", label: "LEEDS" },
+                  { href: "/coaching/edinburgh", label: "EDINBURGH" },
                 ].map(({ href, label }) => (
                   <Link
                     key={href}

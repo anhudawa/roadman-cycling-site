@@ -490,6 +490,200 @@ const LOCATIONS: Record<string, LocationData> = {
       "Members in Manchester Wheelers, Rapha CC, and NW clubs",
     ],
   },
+  belfast: {
+    title: "Cycling Coach Belfast",
+    seoTitle: "Cycling Coach Belfast — Online Coaching from Roadman",
+    seoDescription:
+      "Cycling coach for Belfast and Northern Ireland riders. Online coaching from Roadman Cycling with training plans built for the Mournes, Antrim Coast, and NI racing calendar. Based in Dublin, coaching across the island of Ireland.",
+    localBusiness: {
+      locality: "Belfast",
+      countryCode: "GB",
+      latitude: 54.5973,
+      longitude: -5.9301,
+    },
+    heroSubtitle: "COACHING BELFAST AND NORTHERN IRELAND CYCLISTS",
+    heroBody:
+      "Roadman Cycling coaches riders across Belfast and Northern Ireland. Whether you climb the Mournes, train the Antrim Coast Road, race with Phoenix CC or North Down, or are targeting the Giant's Causeway Coast Sportive — your plan is built around NI roads, Irish Sea weather, and your schedule.",
+    areaServed: "Belfast, Northern Ireland",
+    countryCode: "GB",
+    localContext: "Belfast, Northern Ireland",
+    testimonials: [
+      {
+        quote:
+          "I was an average sportive rider who had plateaued. Roadman custom built a plan to achieve my goals. I've gotten much more out of Roadman than I ever imagined.",
+        name: "Damien Maloney",
+        detail: "Ireland — FTP: 205w → 295w",
+      },
+      {
+        quote:
+          "The system took me from Cat 3 to Cat 1. The structured approach changed everything about how I train and race.",
+        name: "Daniel Stone",
+        detail: "UK — Cat 3 → Cat 1",
+      },
+      {
+        quote:
+          "The accountability and structure is what makes the difference. Having someone who understands Irish racing and the conditions we train in — it just works.",
+        name: "John Devlin",
+        detail: "Ireland — Club racer",
+      },
+    ],
+    faqs: [
+      {
+        question: "Can you coach Belfast riders for Cycling Ulster races?",
+        answer:
+          "Yes. We coach riders across Cycling Ulster road race leagues, time trial series, and crits at venues like Nutts Corner. Your plan is periodised around the Ulster calendar with specific blocks for your priority events. Multiple NI members have achieved category upgrades in the past two seasons.",
+      },
+      {
+        question: "Do you coach for the Giant's Causeway Coast Sportive and Mournes events?",
+        answer:
+          "Absolutely. The Giant's Causeway Coast Sportive, the Mourne Gran Fondo, and the Tour of the North are all events we regularly coach riders for. Your plan accounts for the specific climbs, distance, and race profile you are targeting.",
+      },
+      {
+        question: "Is the coaching suitable for riders training across the NI/Republic border?",
+        answer:
+          "Yes. Many NI riders race on both sides of the border — Cycling Ulster events plus Cycling Ireland leagues and sportives. Your plan handles the full calendar as one integrated season. Based in Dublin and deeply connected to Irish cycling, we understand the all-island racing landscape.",
+      },
+    ],
+    localContent: [
+      "Coaching for Cycling Ulster leagues and the Ulster calendar",
+      "Plans built for the Mournes, Antrim Coast, and NI climbs",
+      "Same time zone — Dublin operates on GMT/BST like Belfast",
+      "Members racing across NI and the Republic of Ireland",
+    ],
+  },
+  edinburgh: {
+    title: "Cycling Coach Edinburgh",
+    seoTitle: "Cycling Coach Edinburgh — Online Coaching from Roadman",
+    seoDescription:
+      "Cycling coach for Edinburgh and Scottish riders. Online coaching from Roadman Cycling with training plans built for the Pentlands, Highland climbs, and Scottish racing. Trusted by cyclists across Edinburgh, Glasgow, and beyond.",
+    localBusiness: {
+      locality: "Edinburgh",
+      countryCode: "GB",
+      latitude: 55.9533,
+      longitude: -3.1883,
+    },
+    heroSubtitle: "COACHING EDINBURGH AND SCOTTISH CYCLISTS",
+    heroBody:
+      "Roadman Cycling coaches riders across Edinburgh and Scotland. Whether you train in the Pentlands, chase chaingangs on the Meldons, race with Edinburgh RC or Dunedin CC, or target the Etape Caledonia — your plan is built around Scottish roads, Highland weather, and your schedule.",
+    areaServed: "Edinburgh, Scotland",
+    countryCode: "GB",
+    localContext: "Edinburgh, Scotland",
+    testimonials: [
+      {
+        quote:
+          "The system took me from Cat 3 to Cat 1. The structured approach changed everything about how I train and race.",
+        name: "Daniel Stone",
+        detail: "UK — Cat 3 → Cat 1",
+      },
+      {
+        quote:
+          "I tried TrainerRoad, Zwift plans, self-coaching — nothing stuck. Having a real coach who adjusts my plan weekly based on how I actually feel is a completely different experience.",
+        name: "Aaron Kearney",
+        detail: "UK — Time-crunched rider",
+      },
+      {
+        quote:
+          "This really works. I'm training so much less than last year, at lower intensities and not getting sick.",
+        name: "Brian Morrissey",
+        detail: "UK — Age 52",
+      },
+    ],
+    faqs: [
+      {
+        question: "Do you coach Edinburgh riders for Scottish Cycling events?",
+        answer:
+          "Yes. We coach riders competing in Scottish Cycling road races, time trials, and the Scottish National Series. Your plan is periodised around the Scottish calendar with specific preparation blocks for events like the Etape Caledonia, Tour o' the Borders, and local league racing.",
+      },
+      {
+        question: "How does your coaching handle Scottish weather and shorter winter daylight?",
+        answer:
+          "Scottish winters demand more indoor structure than most. Your plan integrates TrainerRoad, Zwift, and structured turbo sessions for the genuine washout weeks, with outdoor endurance rides scheduled for workable daylight windows. Winter training is not an afterthought — it is periodised intentionally.",
+      },
+      {
+        question: "Can you coach riders across both Edinburgh and Glasgow?",
+        answer:
+          "Yes. All coaching is delivered online so location within Scotland has no effect. We coach members across the Central Belt and into the Highlands. Community group rides and Zoom coaching calls bring members together from across Scotland.",
+      },
+    ],
+    localContent: [
+      "Coaching for Scottish Cycling events and the SNS calendar",
+      "Plans built for the Pentlands, Meldons, and Highland climbs",
+      "Same time zone — Dublin operates on GMT/BST like Edinburgh",
+      "Members in Edinburgh RC, Dunedin CC, and Scottish clubs",
+    ],
+  },
+  leeds: {
+    title: "Cycling Coach Leeds",
+    seoTitle: "Cycling Coach Leeds — Online Coaching from Roadman",
+    seoDescription:
+      "Cycling coach for Leeds and Yorkshire riders. Online coaching from Roadman Cycling with training plans built for the Dales, Yorkshire climbs, and Tour de Yorkshire routes. Trusted by cyclists across Leeds, Harrogate, and Yorkshire.",
+    heroSubtitle: "COACHING LEEDS AND YORKSHIRE CYCLISTS",
+    heroBody:
+      "Roadman Cycling coaches riders across Leeds and Yorkshire. Whether you chain Dales loops on the weekend, race with Otley CC or Albarosa, climb Buttertubs and Holme Moss, or target the Étape du Dales — your plan is built around Yorkshire roads, Pennine weather, and your schedule.",
+    areaServed: "Leeds, United Kingdom",
+    countryCode: "GB",
+    localContext: "Leeds, United Kingdom",
+    testimonials: [
+      {
+        quote:
+          "The system took me from Cat 3 to Cat 1. The structured approach changed everything about how I train and race.",
+        name: "Daniel Stone",
+        detail: "UK — Cat 3 → Cat 1",
+      },
+      {
+        quote:
+          "I tried TrainerRoad, Zwift plans, self-coaching — nothing stuck. Having a real coach who adjusts my plan weekly based on how I actually feel is a completely different experience.",
+        name: "Aaron Kearney",
+        detail: "UK — Time-crunched rider",
+      },
+      {
+        quote:
+          "This really works. I'm training so much less than last year, at lower intensities and not getting sick.",
+        name: "Brian Morrissey",
+        detail: "UK — Age 52",
+      },
+    ],
+    faqs: [
+      {
+        question: "Do you coach Leeds riders for Yorkshire sportives and Dales events?",
+        answer:
+          "Yes. The Étape du Dales, Dave Rayner, Fred Whitton, and Yorkshire True Grit are all events we regularly coach riders for. Your plan accounts for Yorkshire's specific climbing profiles — sustained efforts on Buttertubs, Holme Moss, and the steeper walls in the Dales.",
+      },
+      {
+        question: "Can you coach for Yorkshire road race leagues?",
+        answer:
+          "Absolutely. We coach riders competing in Yorkshire Cycling Federation events, the CDNW series, and TLI Cycling races. Your plan is periodised around the Yorkshire racing calendar with targeted preparation for your priority events.",
+      },
+      {
+        question: "How does your plan handle commuting miles in Leeds?",
+        answer:
+          "We integrate commute miles as part of your weekly load rather than ignoring them. For most Leeds riders commuting 2-4 days a week, those miles form endurance base while weekend and midweek sessions deliver structured intensity. Your plan is built to work with your commute, not on top of it.",
+      },
+    ],
+    localContent: [
+      "Coaching for Étape du Dales, Fred Whitton, and Yorkshire sportives",
+      "Plans built for Yorkshire Dales climbs and Pennine routes",
+      "Same time zone — Dublin operates on GMT/BST like Leeds",
+      "Members in Otley CC, Albarosa, and Yorkshire clubs",
+    ],
+  },
+};
+
+/** Cities linked from country landing pages for internal link equity */
+const COUNTRY_CITIES: Record<string, { slug: string; label: string }[]> = {
+  ireland: [
+    { slug: "dublin", label: "DUBLIN" },
+    { slug: "cork", label: "CORK" },
+    { slug: "galway", label: "GALWAY" },
+    { slug: "belfast", label: "BELFAST" },
+  ],
+  uk: [
+    { slug: "london", label: "LONDON" },
+    { slug: "manchester", label: "MANCHESTER" },
+    { slug: "leeds", label: "LEEDS" },
+    { slug: "edinburgh", label: "EDINBURGH" },
+    { slug: "belfast", label: "BELFAST" },
+  ],
 };
 
 interface Props {
@@ -671,6 +865,25 @@ export default async function CoachingLocationPage({ params }: Props) {
                 </ScrollReveal>
               ))}
             </div>
+
+            {COUNTRY_CITIES[location] && (
+              <ScrollReveal direction="up" className="text-center mt-12">
+                <p className="text-foreground-subtle text-xs mb-4 tracking-wider font-heading">
+                  OR EXPLORE COACHING BY CITY
+                </p>
+                <div className="flex flex-wrap justify-center gap-3">
+                  {COUNTRY_CITIES[location].map((city) => (
+                    <Link
+                      key={city.slug}
+                      href={`/coaching/${city.slug}`}
+                      className="px-4 py-2 rounded-lg bg-white/5 text-foreground-subtle hover:bg-white/10 hover:text-off-white transition-colors font-heading text-xs tracking-wider"
+                    >
+                      {city.label}
+                    </Link>
+                  ))}
+                </div>
+              </ScrollReveal>
+            )}
           </Container>
         </Section>
 
