@@ -367,24 +367,44 @@ export default async function EpisodePage({
               className="mt-16"
             />
 
-            {/* CTA */}
-            <div className="mt-12 bg-deep-purple/30 rounded-xl border border-purple/20 p-8 text-center">
-              <h3 className="font-heading text-2xl text-off-white mb-3">
-                LIKED THIS EPISODE?
-              </h3>
-              <p className="text-foreground-muted mb-6 max-w-md mx-auto">
-                Join the Clubhouse to discuss this episode, ask Anthony your
-                questions, and connect with serious cyclists.
-              </p>
-              <div className="flex flex-col sm:flex-row gap-3 justify-center">
-                <Button href="/community/clubhouse">
-                  Join the Clubhouse — Free
-                </Button>
-                <Button href="/podcast" variant="ghost">
-                  More Episodes
-                </Button>
+            {/* CTA — coaching-pillar episodes get a coaching funnel,
+                others get the Clubhouse community CTA */}
+            {episode.pillar === "coaching" ? (
+              <div className="mt-12 bg-deep-purple/30 rounded-xl border border-purple/20 p-8 text-center">
+                <h3 className="font-heading text-2xl text-off-white mb-3">
+                  WANT THIS APPLIED TO YOUR TRAINING?
+                </h3>
+                <p className="text-foreground-muted mb-6 max-w-md mx-auto">
+                  Not Done Yet is 1:1 personalised coaching — training, nutrition,
+                  strength, recovery, and accountability. $195/month. 7-day free
+                  trial.
+                </p>
+                <div className="flex flex-col sm:flex-row gap-3 justify-center">
+                  <Button href="/apply">Apply Now — 7-Day Free Trial</Button>
+                  <Button href="/coaching" variant="ghost">
+                    See Coaching Options
+                  </Button>
+                </div>
               </div>
-            </div>
+            ) : (
+              <div className="mt-12 bg-deep-purple/30 rounded-xl border border-purple/20 p-8 text-center">
+                <h3 className="font-heading text-2xl text-off-white mb-3">
+                  LIKED THIS EPISODE?
+                </h3>
+                <p className="text-foreground-muted mb-6 max-w-md mx-auto">
+                  Join the Clubhouse to discuss this episode, ask Anthony your
+                  questions, and connect with serious cyclists.
+                </p>
+                <div className="flex flex-col sm:flex-row gap-3 justify-center">
+                  <Button href="/community/clubhouse">
+                    Join the Clubhouse — Free
+                  </Button>
+                  <Button href="/podcast" variant="ghost">
+                    More Episodes
+                  </Button>
+                </div>
+              </div>
+            )}
           </Container>
         </Section>
       </main>

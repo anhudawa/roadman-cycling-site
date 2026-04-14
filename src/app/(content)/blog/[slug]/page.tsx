@@ -293,6 +293,26 @@ export default async function BlogPostPage({
               className="mt-16"
             />
 
+            {/* Coaching funnel CTA — coaching-pillar posts only */}
+            {post.pillar === "coaching" && (
+              <div className="mt-16 bg-deep-purple/30 rounded-xl border border-purple/20 p-8 text-center">
+                <h3 className="font-heading text-2xl text-off-white mb-3">
+                  READY TO APPLY THIS TO YOUR TRAINING?
+                </h3>
+                <p className="text-foreground-muted mb-6 max-w-md mx-auto">
+                  Not Done Yet is 1:1 personalised coaching across training,
+                  nutrition, strength, recovery, and accountability. $195/month
+                  with a 7-day free trial.
+                </p>
+                <div className="flex flex-col sm:flex-row gap-3 justify-center">
+                  <Button href="/apply">Apply Now — 7-Day Free Trial</Button>
+                  <Button href="/coaching" variant="ghost">
+                    See Coaching Options
+                  </Button>
+                </div>
+              </div>
+            )}
+
             {/* Back to blog */}
             <div className="mt-12 text-center">
               <Button href="/blog" variant="ghost">

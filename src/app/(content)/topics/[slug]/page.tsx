@@ -222,31 +222,76 @@ export default async function TopicPage({
           </Section>
         )}
 
-        {/* CTA */}
-        <Section background="charcoal">
-          <Container className="text-center">
-            <ScrollReveal direction="up">
-              <div className="bg-deep-purple/30 rounded-xl border border-purple/20 p-10">
-                <h2 className="font-heading text-2xl text-off-white mb-3">
-                  GO DEEPER
-                </h2>
-                <p className="text-foreground-muted max-w-lg mx-auto mb-6">
-                  The podcast conversations go further than any article can.
-                  Join the Clubhouse to discuss these topics with Anthony and
-                  serious cyclists.
-                </p>
-                <div className="flex flex-col sm:flex-row gap-3 justify-center">
-                  <Button href="/community/clubhouse">
-                    Join the Clubhouse — Free
-                  </Button>
-                  <Button href="/topics" variant="ghost">
-                    Browse All Topics
-                  </Button>
+        {/* CTA — coaching hub gets a coaching-specific funnel */}
+        {topic.slug === "cycling-coaching" ? (
+          <Section background="charcoal">
+            <Container className="text-center">
+              <ScrollReveal direction="up">
+                <div className="bg-deep-purple/30 rounded-xl border border-purple/20 p-10">
+                  <h2 className="font-heading text-2xl text-off-white mb-3">
+                    READY FOR A REAL COACH?
+                  </h2>
+                  <p className="text-foreground-muted max-w-lg mx-auto mb-6">
+                    Not Done Yet is 1:1 personalised cycling coaching — training,
+                    nutrition, strength, recovery, and accountability. $195/month
+                    with a 7-day free trial.
+                  </p>
+                  <div className="flex flex-col sm:flex-row gap-3 justify-center mb-6">
+                    <Button href="/apply">Apply Now — 7-Day Free Trial</Button>
+                    <Button href="/coaching" variant="ghost">
+                      See All Coaching Options
+                    </Button>
+                  </div>
+                  <p className="text-foreground-subtle text-xs mb-3 tracking-wider font-heading">
+                    OR COACHING BY REGION
+                  </p>
+                  <div className="flex flex-wrap justify-center gap-2">
+                    {[
+                      { href: "/coaching/ireland", label: "IRELAND" },
+                      { href: "/coaching/uk", label: "UK" },
+                      { href: "/coaching/usa", label: "USA" },
+                      { href: "/coaching/dublin", label: "DUBLIN" },
+                      { href: "/coaching/london", label: "LONDON" },
+                    ].map(({ href, label }) => (
+                      <Link
+                        key={href}
+                        href={href}
+                        className="px-3 py-1.5 rounded-md bg-white/5 text-foreground-subtle hover:bg-white/10 hover:text-off-white transition-colors font-heading text-xs tracking-wider"
+                      >
+                        {label}
+                      </Link>
+                    ))}
+                  </div>
                 </div>
-              </div>
-            </ScrollReveal>
-          </Container>
-        </Section>
+              </ScrollReveal>
+            </Container>
+          </Section>
+        ) : (
+          <Section background="charcoal">
+            <Container className="text-center">
+              <ScrollReveal direction="up">
+                <div className="bg-deep-purple/30 rounded-xl border border-purple/20 p-10">
+                  <h2 className="font-heading text-2xl text-off-white mb-3">
+                    GO DEEPER
+                  </h2>
+                  <p className="text-foreground-muted max-w-lg mx-auto mb-6">
+                    The podcast conversations go further than any article can.
+                    Join the Clubhouse to discuss these topics with Anthony and
+                    serious cyclists.
+                  </p>
+                  <div className="flex flex-col sm:flex-row gap-3 justify-center">
+                    <Button href="/community/clubhouse">
+                      Join the Clubhouse — Free
+                    </Button>
+                    <Button href="/topics" variant="ghost">
+                      Browse All Topics
+                    </Button>
+                  </div>
+                </div>
+              </ScrollReveal>
+            </Container>
+          </Section>
+        )}
       </main>
 
       <Footer />
