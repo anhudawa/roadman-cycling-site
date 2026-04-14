@@ -126,6 +126,14 @@ export function PipelineBoard({ initialStages, cohorts, initialCohort }: Props) 
         throw new Error(data.error ?? `HTTP ${res.status}`);
       }
       setError(null);
+
+      // Suggest an email template when moving to accepted/rejected.
+      if ((to === "accepted" || to === "rejected") && found.card.contactId) {
+        const templateSlug = to === "accepted" ? "cohort-welcome" : "cohort-rejection";
+        router.push(
+          `/admin/contacts/${found.card.contactId}?email=${encodeURIComponent(templateSlug)}`
+        );
+      }
     } catch (err) {
       setStages(prev);
       setError(err instanceof Error ? err.message : "Failed to move card");

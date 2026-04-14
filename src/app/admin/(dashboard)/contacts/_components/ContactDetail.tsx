@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { useRouter } from "next/navigation";
 
 const OWNERS = [
@@ -141,7 +141,7 @@ function activityDotColor(type: string): string {
     case "note":
       return "bg-blue-400";
     case "email_sent":
-      return "bg-purple-400";
+      return "bg-coral";
     case "stage_change":
       return "bg-green-400";
     case "assigned":
@@ -161,14 +161,41 @@ function activityDotColor(type: string): string {
   }
 }
 
+interface EmailTemplateSummary {
+  id: number;
+  name: string;
+  slug: string;
+  subject: string;
+  body: string;
+}
+
+interface CurrentUserSummary {
+  slug: string;
+  name: string;
+  email: string;
+}
+
+function renderTemplateClient(body: string, vars: Record<string, string>): string {
+  return body.replace(/\{\{\s*([a-zA-Z0-9_]+)\s*\}\}/g, (match, key: string) => {
+    if (Object.prototype.hasOwnProperty.call(vars, key)) return vars[key];
+    return match;
+  });
+}
+
 export function ContactDetail({
   contact: initialContact,
   activities: initialActivities,
   tasks: initialTasks,
+  currentUser,
+  templates = [],
+  initialEmailTemplateSlug = null,
 }: {
   contact: Contact;
   activities: Activity[];
   tasks: Task[];
+  currentUser?: CurrentUserSummary;
+  templates?: EmailTemplateSummary[];
+  initialEmailTemplateSlug?: string | null;
 }) {
   const router = useRouter();
   const [contact, setContact] = useState(initialContact);
@@ -181,6 +208,89 @@ export function ContactDetail({
   const [taskDue, setTaskDue] = useState("");
   const [taskAssigned, setTaskAssigned] = useState("");
   const [busy, setBusy] = useState(false);
+
+  // Email drawer state
+  const [emailOpen, setEmailOpen] = useState(false);
+  const [emailTemplateId, setEmailTemplateId] = useState<number | "">("");
+  const [emailSubject, setEmailSubject] = useState("");
+  const [emailBody, setEmailBody] = useState("");
+  const [emailError, setEmailError] = useState<string | null>(null);
+  const [emailToast, setEmailToast] = useState<string | null>(null);
+  const [emailSending, setEmailSending] = useState(false);
+
+  const contactVars = useMemo(() => {
+    const name = (contact.name ?? "").trim();
+    const first = name ? name.split(/\s+/)[0] : "there";
+    return {
+      first_name: first,
+      name: name || contact.email,
+      email: contact.email,
+      agent_name: currentUser?.name ?? "",
+    };
+  }, [contact, currentUser]);
+
+  function applyTemplate(templateId: number | "") {
+    setEmailTemplateId(templateId);
+    if (templateId === "") return;
+    const tpl = templates.find((t) => t.id === templateId);
+    if (!tpl) return;
+    setEmailSubject(renderTemplateClient(tpl.subject, contactVars));
+    setEmailBody(renderTemplateClient(tpl.body, contactVars));
+  }
+
+  function openEmailDrawer(templateSlug?: string | null) {
+    setEmailError(null);
+    if (templateSlug) {
+      const tpl = templates.find((t) => t.slug === templateSlug);
+      if (tpl) {
+        applyTemplate(tpl.id);
+      }
+    }
+    setEmailOpen(true);
+  }
+
+  // Auto-open from ?email=slug
+  useEffect(() => {
+    if (initialEmailTemplateSlug && templates.length > 0) {
+      openEmailDrawer(initialEmailTemplateSlug);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  async function sendEmail() {
+    if (!emailSubject.trim() || !emailBody.trim()) {
+      setEmailError("Subject and body required");
+      return;
+    }
+    setEmailSending(true);
+    setEmailError(null);
+    try {
+      const res = await fetch(`/api/admin/crm/contacts/${contact.id}/email`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          subject: emailSubject,
+          body: emailBody,
+          templateId: emailTemplateId === "" ? undefined : emailTemplateId,
+        }),
+      });
+      const data = await res.json().catch(() => ({}));
+      if (!res.ok) {
+        throw new Error(data.error ?? `Send failed (${res.status})`);
+      }
+      setEmailToast("Email sent");
+      setEmailOpen(false);
+      setEmailSubject("");
+      setEmailBody("");
+      setEmailTemplateId("");
+      router.refresh();
+      window.setTimeout(() => setEmailToast(null), 3000);
+    } catch (err) {
+      setEmailError(err instanceof Error ? err.message : "Send failed");
+    } finally {
+      setEmailSending(false);
+    }
+  }
 
   async function patchContact(updates: Partial<Contact>) {
     setBusy(true);
@@ -351,13 +461,26 @@ export function ContactDetail({
             <p className="text-sm text-foreground-muted">{contact.phone}</p>
           )}
         </div>
-        <a
-          href={`mailto:${contact.email}`}
-          className="px-4 py-2 bg-coral text-white text-sm font-heading tracking-wider rounded-lg hover:bg-coral/90 transition-colors"
-        >
-          EMAIL
-        </a>
+        <div className="flex gap-2">
+          <button
+            onClick={() => openEmailDrawer(null)}
+            className="px-4 py-2 bg-coral text-white text-sm font-heading tracking-wider rounded-lg hover:bg-coral/90 transition-colors uppercase"
+          >
+            Send Email
+          </button>
+          <a
+            href={`mailto:${contact.email}`}
+            className="px-4 py-2 border border-white/10 text-foreground-muted text-sm font-heading tracking-wider rounded-lg hover:border-coral/30 hover:text-coral transition-colors uppercase"
+          >
+            Mailto
+          </a>
+        </div>
       </div>
+      {emailToast && (
+        <div className="fixed bottom-6 right-6 z-50 bg-coral text-white px-4 py-2 rounded-lg shadow-lg text-sm font-heading tracking-wider uppercase">
+          {emailToast}
+        </div>
+      )}
 
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
         {/* Main column: timeline + tasks */}
@@ -399,31 +522,55 @@ export function ContactDetail({
               <p className="text-sm text-foreground-subtle">No activity yet.</p>
             ) : (
               <ol className="space-y-4">
-                {activities.map((a) => (
-                  <li key={a.id} className="flex gap-3">
-                    <div className="flex flex-col items-center">
-                      <span className={`w-2 h-2 rounded-full mt-1.5 ${activityDotColor(a.type)}`} />
-                      <span className="flex-1 w-px bg-white/5 mt-1" />
-                    </div>
-                    <div className="flex-1 pb-2">
-                      <div className="flex items-baseline justify-between gap-2">
-                        <p className="text-sm text-off-white">{a.title}</p>
-                        <span className="text-xs text-foreground-subtle shrink-0">
-                          {relativeTime(a.createdAt)}
-                        </span>
+                {activities.map((a) => {
+                  const isEmail = a.type === "email_sent";
+                  const emailStatus =
+                    isEmail && a.meta && typeof a.meta.status === "string"
+                      ? (a.meta.status as string)
+                      : null;
+                  return (
+                    <li key={a.id} className="flex gap-3">
+                      <div className="flex flex-col items-center">
+                        {isEmail ? (
+                          <span className="mt-1 w-4 h-4 rounded-full bg-coral/20 border border-coral/40 flex items-center justify-center text-coral">
+                            <svg className="w-2.5 h-2.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                              <path strokeLinecap="round" strokeLinejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 0 1-2.25 2.25h-15a2.25 2.25 0 0 1-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0 0 19.5 4.5h-15a2.25 2.25 0 0 0-2.25 2.25m19.5 0v.243a2.25 2.25 0 0 1-1.07 1.916l-7.5 4.615a2.25 2.25 0 0 1-2.36 0L3.32 8.91a2.25 2.25 0 0 1-1.07-1.916V6.75" />
+                            </svg>
+                          </span>
+                        ) : (
+                          <span className={`w-2 h-2 rounded-full mt-1.5 ${activityDotColor(a.type)}`} />
+                        )}
+                        <span className="flex-1 w-px bg-white/5 mt-1" />
                       </div>
-                      <p className="text-[10px] uppercase tracking-widest text-foreground-subtle mt-0.5">
-                        {a.type.replace(/_/g, " ")}
-                        {a.authorName ? ` · ${a.authorName}` : ""}
-                      </p>
-                      {a.body && (
-                        <p className="text-sm text-foreground-muted mt-2 whitespace-pre-wrap">
-                          {a.body}
+                      <div
+                        className={`flex-1 pb-2 ${
+                          isEmail
+                            ? "border-l-2 border-coral/30 pl-3 -ml-1 bg-coral/[0.03] rounded-r"
+                            : ""
+                        }`}
+                      >
+                        <div className="flex items-baseline justify-between gap-2">
+                          <p className={`text-sm ${isEmail ? "text-coral" : "text-off-white"}`}>
+                            {a.title}
+                          </p>
+                          <span className="text-xs text-foreground-subtle shrink-0">
+                            {relativeTime(a.createdAt)}
+                          </span>
+                        </div>
+                        <p className="text-[10px] uppercase tracking-widest text-foreground-subtle mt-0.5">
+                          {isEmail ? "email sent" : a.type.replace(/_/g, " ")}
+                          {a.authorName ? ` · ${a.authorName}` : ""}
+                          {emailStatus && emailStatus !== "sent" ? ` · ${emailStatus}` : ""}
                         </p>
-                      )}
-                    </div>
-                  </li>
-                ))}
+                        {a.body && (
+                          <p className="text-sm text-foreground-muted mt-2 whitespace-pre-wrap">
+                            {a.body}
+                          </p>
+                        )}
+                      </div>
+                    </li>
+                  );
+                })}
               </ol>
             )}
           </div>
@@ -752,6 +899,110 @@ export function ContactDetail({
           </div>
         </div>
       </div>
+
+      {emailOpen && (
+        <div
+          className="fixed inset-0 z-50 bg-black/70 flex items-start justify-center p-6 overflow-y-auto"
+          onClick={() => !emailSending && setEmailOpen(false)}
+        >
+          <div
+            className="bg-background-elevated border border-white/10 rounded-xl max-w-2xl w-full p-6 my-8"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <div className="flex items-start justify-between mb-4">
+              <div>
+                <h2 className="font-heading tracking-wider uppercase text-off-white text-lg">
+                  Send Email
+                </h2>
+                <p className="text-xs text-foreground-muted mt-1">
+                  To <span className="text-off-white">{contact.email}</span>
+                </p>
+                {currentUser && (
+                  <p className="text-[11px] text-foreground-subtle mt-0.5">
+                    Sending as {currentUser.name} · replies route to {currentUser.email}
+                  </p>
+                )}
+              </div>
+              <button
+                onClick={() => !emailSending && setEmailOpen(false)}
+                className="text-foreground-subtle hover:text-off-white text-sm"
+              >
+                Close
+              </button>
+            </div>
+
+            {emailError && (
+              <div className="mb-3 px-3 py-2 rounded border border-red-500/30 bg-red-500/10 text-red-400 text-sm">
+                {emailError}
+              </div>
+            )}
+
+            <div className="space-y-3">
+              <div>
+                <label className="block text-[10px] uppercase tracking-widest text-foreground-subtle font-medium mb-1">
+                  Template
+                </label>
+                <select
+                  value={emailTemplateId}
+                  onChange={(e) =>
+                    applyTemplate(e.target.value === "" ? "" : parseInt(e.target.value, 10))
+                  }
+                  className="w-full px-3 py-2 text-sm bg-background-deep border border-white/10 text-off-white rounded focus:outline-none focus:border-coral/50"
+                >
+                  <option value="">— Ad-hoc (no template) —</option>
+                  {templates.map((t) => (
+                    <option key={t.id} value={t.id}>
+                      {t.name}
+                    </option>
+                  ))}
+                </select>
+              </div>
+              <div>
+                <label className="block text-[10px] uppercase tracking-widest text-foreground-subtle font-medium mb-1">
+                  Subject
+                </label>
+                <input
+                  type="text"
+                  value={emailSubject}
+                  onChange={(e) => setEmailSubject(e.target.value)}
+                  className="w-full px-3 py-2 text-sm bg-background-deep border border-white/10 text-off-white rounded focus:outline-none focus:border-coral/50"
+                />
+              </div>
+              <div>
+                <label className="block text-[10px] uppercase tracking-widest text-foreground-subtle font-medium mb-1">
+                  Body
+                </label>
+                <textarea
+                  value={emailBody}
+                  onChange={(e) => setEmailBody(e.target.value)}
+                  rows={14}
+                  className="w-full px-3 py-2 text-sm bg-background-deep border border-white/10 text-off-white rounded focus:outline-none focus:border-coral/50 font-mono resize-vertical"
+                />
+                <p className="text-[11px] text-foreground-subtle mt-1">
+                  Placeholders already rendered with this contact&apos;s details.
+                </p>
+              </div>
+            </div>
+
+            <div className="flex justify-end gap-2 mt-5">
+              <button
+                onClick={() => setEmailOpen(false)}
+                disabled={emailSending}
+                className="px-3 py-1.5 text-xs font-heading tracking-wider uppercase border border-white/10 text-foreground-muted rounded hover:border-white/20"
+              >
+                Cancel
+              </button>
+              <button
+                onClick={sendEmail}
+                disabled={emailSending}
+                className="px-4 py-1.5 text-xs font-heading tracking-wider uppercase bg-coral text-white rounded hover:bg-coral/90 disabled:opacity-50"
+              >
+                {emailSending ? "Sending..." : "Send"}
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 }

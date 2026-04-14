@@ -4,34 +4,48 @@ import { getContactById, getTimeline } from "@/lib/crm/contacts";
 import { db } from "@/lib/db";
 import { tasks as tasksTable } from "@/lib/db/schema";
 import { desc, eq } from "drizzle-orm";
+import { listTemplates } from "@/lib/crm/email";
 import { ContactDetail } from "../_components/ContactDetail";
 
 export const dynamic = "force-dynamic";
 
 export default async function ContactDetailPage({
   params,
+  searchParams,
 }: {
   params: Promise<{ id: string }>;
+  searchParams: Promise<{ email?: string }>;
 }) {
-  await requireAuth();
+  const user = await requireAuth();
   const { id: idStr } = await params;
+  const sp = await searchParams;
   const id = parseInt(idStr, 10);
   if (Number.isNaN(id)) notFound();
 
   const contact = await getContactById(id);
   if (!contact) notFound();
 
-  const [activities, taskRows] = await Promise.all([
+  const [activities, taskRows, templateRows] = await Promise.all([
     getTimeline(id, { limit: 200 }),
     db
       .select()
       .from(tasksTable)
       .where(eq(tasksTable.contactId, id))
       .orderBy(desc(tasksTable.createdAt)),
+    listTemplates(),
   ]);
 
   return (
     <ContactDetail
+      currentUser={{ slug: user.slug, name: user.name, email: user.email }}
+      initialEmailTemplateSlug={sp.email ?? null}
+      templates={templateRows.map((t) => ({
+        id: t.id,
+        name: t.name,
+        slug: t.slug,
+        subject: t.subject,
+        body: t.body,
+      }))}
       contact={{
         ...contact,
         tags: Array.isArray(contact.tags) ? contact.tags : [],

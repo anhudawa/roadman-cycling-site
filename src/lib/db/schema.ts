@@ -276,6 +276,50 @@ export const teamUsers = pgTable(
   ]
 );
 
+// ── CRM: Email Templates ──────────────────────────────────
+export const emailTemplates = pgTable(
+  "email_templates",
+  {
+    id: serial("id").primaryKey(),
+    name: text("name").notNull(),
+    slug: text("slug").notNull().unique(),
+    subject: text("subject").notNull(),
+    body: text("body").notNull(),
+    createdBy: text("created_by"),
+    createdAt: timestamp("created_at", { withTimezone: true }).notNull().defaultNow(),
+    updatedAt: timestamp("updated_at", { withTimezone: true }).notNull().defaultNow(),
+  },
+  (table) => [
+    index("email_templates_slug_idx").on(table.slug),
+    index("email_templates_updated_at_idx").on(table.updatedAt),
+  ]
+);
+
+// ── CRM: Email Messages ───────────────────────────────────
+export const emailMessages = pgTable(
+  "email_messages",
+  {
+    id: serial("id").primaryKey(),
+    contactId: integer("contact_id").notNull().references(() => contacts.id),
+    templateId: integer("template_id").references(() => emailTemplates.id),
+    fromUser: text("from_user").notNull(),
+    fromAddress: text("from_address").notNull(),
+    toAddress: text("to_address").notNull(),
+    subject: text("subject").notNull(),
+    body: text("body").notNull(),
+    resendMessageId: text("resend_message_id"),
+    status: text("status").notNull().default("queued"),
+    errorMessage: text("error_message"),
+    sentAt: timestamp("sent_at", { withTimezone: true }),
+    createdAt: timestamp("created_at", { withTimezone: true }).notNull().defaultNow(),
+  },
+  (table) => [
+    index("email_messages_contact_id_idx").on(table.contactId),
+    index("email_messages_sent_at_idx").on(table.sentAt),
+    index("email_messages_status_idx").on(table.status),
+  ]
+);
+
 // ── Content Chat Messages ─────────────────────────────────
 export const contentChatMessages = pgTable("content_chat_messages", {
   id: serial("id").primaryKey(),
