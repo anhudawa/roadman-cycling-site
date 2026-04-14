@@ -473,6 +473,37 @@ export const automationRuns = pgTable(
   ]
 );
 
+// ── CRM: Segments ─────────────────────────────────────────
+export interface SegmentFilters {
+  tagsAny?: string[];
+  lifecycleStageIn?: string[];
+  ownerIn?: string[];
+  sourceIn?: string[];
+  isSubscriber?: boolean;
+  isCustomer?: boolean;
+  lastActivityBefore?: string;
+  lastActivityAfter?: string;
+  createdAfter?: string;
+  createdBefore?: string;
+  search?: string;
+}
+
+export const segments = pgTable(
+  "segments",
+  {
+    id: serial("id").primaryKey(),
+    name: text("name").notNull(),
+    description: text("description"),
+    filters: jsonb("filters").$type<SegmentFilters>().notNull().default({}),
+    createdBySlug: text("created_by_slug"),
+    createdAt: timestamp("created_at", { withTimezone: true }).notNull().defaultNow(),
+    updatedAt: timestamp("updated_at", { withTimezone: true }).notNull().defaultNow(),
+  },
+  (table) => [
+    index("segments_created_by_slug_idx").on(table.createdBySlug),
+  ]
+);
+
 export const episodeDownloadsCache = pgTable("episode_downloads_cache", {
   episodeId: text("episode_id").primaryKey(),
   downloads: integer("downloads").notNull(),

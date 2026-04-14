@@ -30,6 +30,7 @@ const NAV_SECTIONS: NavSection[] = [
       { href: "/admin/inbox", label: "Inbox", icon: "inbox" },
       { href: "/admin/contacts", label: "Contacts", icon: "users" },
       { href: "/admin/deals", label: "Deals", icon: "tag" },
+      { href: "/admin/segments", label: "Segments", icon: "segment-filter" },
       { href: "/admin/tasks", label: "Tasks", icon: "check-list" },
       { href: "/admin/templates", label: "Templates", icon: "mail" },
       { href: "/admin/applications", label: "Applications", icon: "clipboard" },
@@ -181,6 +182,12 @@ function NavIcon({ icon, className }: { icon: string; className?: string }) {
       return (
         <svg className={cls} fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
           <path strokeLinecap="round" strokeLinejoin="round" d="M3.75 13.5l10.5-11.25L12 10.5h8.25L9.75 21.75 12 13.5H3.75z" />
+        </svg>
+      );
+    case "segment-filter":
+      return (
+        <svg className={cls} fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
+          <path strokeLinecap="round" strokeLinejoin="round" d="M3 4.5h18l-7 8.25v6l-4 2.25v-8.25L3 4.5Z" />
         </svg>
       );
     case "sunrise":
