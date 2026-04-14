@@ -301,6 +301,9 @@ const TOPIC_POST_MAP: Record<string, string[]> = {
     "mtb-skills-beginners-guide",
     "best-gravel-trails-ireland",
     "mtb-maintenance-guide",
+    "mtb-vs-road-cycling-fitness",
+    "mtb-heart-rate-zones-guide",
+    "mtb-nutrition-trail-fuelling",
   ],
 };
 

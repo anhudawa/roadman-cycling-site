@@ -15,6 +15,13 @@ interface LocationData {
   areaServed: string;
   countryCode: string;
   localContext: string;
+  /** If set, renders LocalBusiness schema with these coordinates */
+  localBusiness?: {
+    locality: string;
+    countryCode: "IE" | "GB";
+    latitude: number;
+    longitude: number;
+  };
   testimonials: {
     quote: string;
     name: string;
@@ -30,6 +37,12 @@ const LOCATIONS: Record<string, LocationData> = {
     seoTitle: "Cycling Coach Ireland — Online Coaching from Dublin",
     seoDescription:
       "Online cycling coaching from Dublin, Ireland. Personalised training plans, nutrition, strength, and accountability from Anthony Walsh and the Roadman Cycling team. Trusted by Irish cyclists from club racers to national-level competitors.",
+    localBusiness: {
+      locality: "Dublin",
+      countryCode: "IE",
+      latitude: 53.3498,
+      longitude: -6.2603,
+    },
     heroSubtitle: "IRELAND'S MOST LISTENED-TO CYCLING COACH",
     heroBody:
       "Roadman Cycling is based in Dublin and has been coaching Irish cyclists since the podcast launched. Whether you ride the Wicklow mountains, race on the Mondello circuit, or are training for the Ring of Kerry, your plan is built around Irish roads, Irish weather, and your actual schedule.",
@@ -190,6 +203,293 @@ const LOCATIONS: Record<string, LocationData> = {
       "Members across all 50 states from New York to California",
     ],
   },
+  dublin: {
+    title: "Cycling Coach Dublin",
+    seoTitle: "Cycling Coach Dublin — Online Coaching from Roadman",
+    seoDescription:
+      "Cycling coach in Dublin. Personalised online coaching from Anthony Walsh and the Roadman Cycling team. Based in Dublin, home of Roadman CC. Training plans built for Wicklow climbs, Dublin Mountains, and Irish racing.",
+    localBusiness: {
+      locality: "Dublin",
+      countryCode: "IE",
+      latitude: 53.3498,
+      longitude: -6.2603,
+    },
+    heroSubtitle: "DUBLIN'S MOST LISTENED-TO CYCLING COACH",
+    heroBody:
+      "Roadman Cycling is based in Dublin and coaches riders across the capital and Greater Dublin area. Whether you ride the Dublin Mountains on a Saturday, race with the Orwell or Sundrive, or commute through the city — your plan is built around Dublin roads, Irish weather, and your schedule.",
+    areaServed: "Dublin, Ireland",
+    countryCode: "IE",
+    localContext: "Dublin, Ireland",
+    testimonials: [
+      {
+        quote:
+          "I was an average sportive rider who had plateaued. Roadman custom built a plan to achieve my goals. I've gotten much more out of Roadman than I ever imagined.",
+        name: "Damien Maloney",
+        detail: "Dublin — FTP: 205w → 295w",
+      },
+      {
+        quote:
+          "The accountability and structure is what makes the difference. Having someone who understands Irish racing and the conditions we train in — it just works.",
+        name: "John Devlin",
+        detail: "Dublin — Club racer",
+      },
+      {
+        quote:
+          "From 113kg to 97kg. The structured approach to training and nutrition changed everything. I'm faster, lighter, and actually enjoying the process.",
+        name: "Chris O'Connor",
+        detail: "Ireland — Lost 16kg",
+      },
+    ],
+    faqs: [
+      {
+        question: "Is Roadman Cycling actually based in Dublin?",
+        answer:
+          "Yes. Anthony Walsh and Roadman Cycling are based in Dublin and have been since the podcast launched. Coaching is delivered online through TrainingPeaks and Zoom so your coach's location does not affect plan quality — but being local means we understand Dublin-specific context like Wicklow climbs, club racing, and Irish weather.",
+      },
+      {
+        question: "Can I join Roadman CC club rides in Dublin?",
+        answer:
+          "Yes. Roadman CC runs weekly rides from Dublin and Premium coaching members are welcome to join. Club rides are one way we build community — coaching is the 1:1 plan, the club is the shared ride. Both operate out of Dublin.",
+      },
+      {
+        question: "Do you coach Dublin-based riders for Wicklow 200 and local leagues?",
+        answer:
+          "Absolutely. We coach riders for the Wicklow 200, Ras na mBan, Ras Tailteann, and Cycling Ireland leagues. Your training plan is periodised around your target events with specific preparation blocks for the climbs, distance, and race format you are targeting.",
+      },
+    ],
+    localContent: [
+      "Based in Dublin — home of Anthony Walsh and Roadman CC",
+      "Plans built for the Dublin Mountains and Wicklow climbs",
+      "Coaching riders in Orwell, Sundrive, and Dublin clubs",
+      "Local coach for Dublin-based racing, sportives, and gran fondos",
+    ],
+  },
+  cork: {
+    title: "Cycling Coach Cork",
+    seoTitle: "Cycling Coach Cork — Online Coaching from Roadman",
+    seoDescription:
+      "Cycling coach for Cork riders. Online coaching from Roadman Cycling with training plans built for West Cork climbs, Nire Valley, and Munster racing. Trusted by Cork cyclists from sportive riders to league racers.",
+    heroSubtitle: "COACHING CORK CYCLISTS ACROSS MUNSTER",
+    heroBody:
+      "Roadman Cycling coaches riders across Cork and Munster. Whether you ride the Healy Pass, race with Cork Ridgerunners or Blarney CC, or are training for the Sean Kelly Tour — your plan is built around Munster roads, West Cork climbs, and your schedule.",
+    areaServed: "Cork, Ireland",
+    countryCode: "IE",
+    localContext: "Cork, Ireland",
+    testimonials: [
+      {
+        quote:
+          "I was an average sportive rider who had plateaued. Roadman custom built a plan to achieve my goals. I've gotten much more out of Roadman than I ever imagined.",
+        name: "Damien Maloney",
+        detail: "Ireland — FTP: 205w → 295w",
+      },
+      {
+        quote:
+          "The accountability and structure is what makes the difference. Having someone who understands Irish racing and the conditions we train in — it just works.",
+        name: "John Devlin",
+        detail: "Ireland — Club racer",
+      },
+      {
+        quote:
+          "From 113kg to 97kg. The structured approach to training and nutrition changed everything.",
+        name: "Chris O'Connor",
+        detail: "Ireland — Lost 16kg",
+      },
+    ],
+    faqs: [
+      {
+        question: "Can you coach me from Cork if Roadman is based in Dublin?",
+        answer:
+          "Yes. All coaching is delivered online through TrainingPeaks and Zoom — your coach's physical location has no effect on plan quality or communication. Many of our Irish members are based in Cork and Munster. The advantage over an international coach is we understand Irish context: West Cork climbs, Munster weather, the Sean Kelly Tour, and the Munster racing calendar.",
+      },
+      {
+        question: "Do you coach Cork riders for the Sean Kelly Tour and Munster events?",
+        answer:
+          "Yes. The Sean Kelly Tour is one of the most popular Irish events we coach riders for. We also coach for Tour de Munster, the Ring of Beara, Ras Mumhan, and Munster league racing. Your plan is periodised around your target events.",
+      },
+      {
+        question: "Is there a minimum FTP or racing level to be coached?",
+        answer:
+          "No. We coach complete beginners through to A1 racers. What matters is your commitment to the process — the plan is built around your current fitness, goals, and available hours. Many of our transformation stories start with riders who thought they were too slow or too new to be coached.",
+      },
+    ],
+    localContent: [
+      "Coaching Cork riders for West Cork climbs and Munster racing",
+      "Plans built for the Sean Kelly Tour and Tour de Munster",
+      "Irish coach who understands Munster roads and weather",
+      "Members in Cork Ridgerunners, Blarney CC, and Munster clubs",
+    ],
+  },
+  galway: {
+    title: "Cycling Coach Galway",
+    seoTitle: "Cycling Coach Galway — Online Coaching from Roadman",
+    seoDescription:
+      "Cycling coach for Galway and Connacht riders. Online coaching from Roadman Cycling with training plans built for Connemara climbs, Burren roads, and Western racing. Trusted by Galway cyclists across all levels.",
+    heroSubtitle: "COACHING GALWAY AND CONNACHT CYCLISTS",
+    heroBody:
+      "Roadman Cycling coaches riders across Galway and the West of Ireland. Whether you ride the Sky Road, train in the Burren, race with Western Lakes CC, or are targeting the Connemara 100 — your plan is built around Western roads, Atlantic weather, and your schedule.",
+    areaServed: "Galway, Ireland",
+    countryCode: "IE",
+    localContext: "Galway, Ireland",
+    testimonials: [
+      {
+        quote:
+          "I was an average sportive rider who had plateaued. Roadman custom built a plan to achieve my goals. I've gotten much more out of Roadman than I ever imagined.",
+        name: "Damien Maloney",
+        detail: "Ireland — FTP: 205w → 295w",
+      },
+      {
+        quote:
+          "The accountability and structure is what makes the difference. Having someone who understands Irish racing and the conditions we train in — it just works.",
+        name: "John Devlin",
+        detail: "Ireland — Club racer",
+      },
+      {
+        quote:
+          "From 113kg to 97kg. The structured approach to training and nutrition changed everything.",
+        name: "Chris O'Connor",
+        detail: "Ireland — Lost 16kg",
+      },
+    ],
+    faqs: [
+      {
+        question: "Can you coach riders in Galway and the West of Ireland?",
+        answer:
+          "Yes. All coaching is delivered online through TrainingPeaks and Zoom, so location does not affect plan quality. We coach riders across Galway, Mayo, Sligo, and Clare. The advantage of an Irish coach is we understand the Western context: Atlantic weather, Connemara climbs, and the specific demands of training in the West of Ireland.",
+      },
+      {
+        question: "Do you coach for the Connemara 100 and Western events?",
+        answer:
+          "Yes. The Connemara 100 is one of Ireland's most iconic events and we coach multiple riders for it each year. We also coach for the Burren Gran Fondo, Tour of the West, and Connacht league racing. Your plan is periodised around your target events.",
+      },
+      {
+        question: "How does online coaching work for rural Galway riders?",
+        answer:
+          "Most of our Galway members train on their own roads — the quiet lanes around Connemara, the Burren, or the Galway hinterland are ideal for structured sessions. Online coaching means you get a personalised plan without driving to a gym or coach's office. You train on your roads, sync your data to TrainingPeaks, and your coach adjusts the plan based on what you actually did.",
+      },
+    ],
+    localContent: [
+      "Coaching Galway riders for Connemara 100 and Western events",
+      "Plans built for the Sky Road, Connemara, and Burren climbs",
+      "Understands Atlantic weather and Western training context",
+      "Members in Western Lakes, Galway Bay, and Connacht clubs",
+    ],
+  },
+  london: {
+    title: "Cycling Coach London",
+    seoTitle: "Cycling Coach London — Online Coaching from Roadman",
+    seoDescription:
+      "Cycling coach for London riders. Online coaching from Roadman Cycling with training plans built for Surrey Hills, Ride London, and British Cycling racing. Trusted by London cyclists from commuters to Cat 1 racers.",
+    localBusiness: {
+      locality: "London",
+      countryCode: "GB",
+      latitude: 51.5074,
+      longitude: -0.1278,
+    },
+    heroSubtitle: "COACHING LONDON CYCLISTS FROM COMMUTERS TO CAT 1",
+    heroBody:
+      "Roadman Cycling coaches riders across Greater London. Whether you chain Surrey Hills loops on a Saturday, race with Rapha CC or Dulwich Paragon, or are training for Ride London — your plan is built around London traffic, Surrey climbs, and the hours you actually have.",
+    areaServed: "London, United Kingdom",
+    countryCode: "GB",
+    localContext: "London, United Kingdom",
+    testimonials: [
+      {
+        quote:
+          "The system took me from Cat 3 to Cat 1. The structured approach changed everything about how I train and race.",
+        name: "Daniel Stone",
+        detail: "UK — Cat 3 → Cat 1",
+      },
+      {
+        quote:
+          "I tried TrainerRoad, Zwift plans, self-coaching — nothing stuck. Having a real coach who adjusts my plan weekly based on how I actually feel is a completely different experience.",
+        name: "Aaron Kearney",
+        detail: "UK — Time-crunched rider",
+      },
+      {
+        quote:
+          "This really works. I'm training so much less than last year, at lower intensities and not getting sick. FTHR up from 175 to 180.",
+        name: "Brian Morrissey",
+        detail: "UK — Age 52",
+      },
+    ],
+    faqs: [
+      {
+        question: "Can you coach me for Ride London or London club racing?",
+        answer:
+          "Yes. Ride London is one of our most popular target events for UK riders. We also coach for Tuesday/Thursday Regent's Park chaingangs, Surrey League racing, Hillingdon crits, and Herne Hill track events. Your plan is periodised around your priority events with London-specific training windows.",
+      },
+      {
+        question: "How do you handle London commute miles in training plans?",
+        answer:
+          "We account for commute miles as part of your weekly load rather than ignoring them. For most London riders commuting 2-4 days a week, those miles form the base endurance while weekend and midweek sessions deliver the structured intensity. Your plan is built to work with your commute, not on top of it.",
+      },
+      {
+        question: "What time zone are coaching calls for London riders?",
+        answer:
+          "We are based in Dublin which is GMT/BST — the same time zone as London. Live coaching calls, group sessions, and community events are all at times that work for UK riders. No awkward cross-timezone scheduling.",
+      },
+    ],
+    localContent: [
+      "Coaching for Ride London, Surrey League, and London crits",
+      "Plans built around London commuting and Surrey Hills riding",
+      "Same time zone — Dublin operates on GMT/BST like London",
+      "Members in Rapha CC, Dulwich Paragon, and London clubs",
+    ],
+  },
+  manchester: {
+    title: "Cycling Coach Manchester",
+    seoTitle: "Cycling Coach Manchester — Online Coaching from Roadman",
+    seoDescription:
+      "Cycling coach for Manchester riders. Online coaching from Roadman Cycling with training plans built for the Peak District, North West racing, and National Cycling Centre track. Trusted by Manchester cyclists at every level.",
+    heroSubtitle: "COACHING MANCHESTER AND NORTH WEST CYCLISTS",
+    heroBody:
+      "Roadman Cycling coaches riders across Manchester and the North West. Whether you train in the Peak District, race at the National Cycling Centre velodrome, or are targeting the Fred Whitton Challenge — your plan is built around Peak District roads, North West weather, and your schedule.",
+    areaServed: "Manchester, United Kingdom",
+    countryCode: "GB",
+    localContext: "Manchester, United Kingdom",
+    testimonials: [
+      {
+        quote:
+          "The system took me from Cat 3 to Cat 1. The structured approach changed everything about how I train and race.",
+        name: "Daniel Stone",
+        detail: "UK — Cat 3 → Cat 1",
+      },
+      {
+        quote:
+          "I tried TrainerRoad, Zwift plans, self-coaching — nothing stuck. Having a real coach who adjusts my plan weekly based on how I actually feel is a completely different experience.",
+        name: "Aaron Kearney",
+        detail: "UK — Time-crunched rider",
+      },
+      {
+        quote:
+          "This really works. I'm training so much less than last year, at lower intensities and not getting sick.",
+        name: "Brian Morrissey",
+        detail: "UK — Age 52",
+      },
+    ],
+    faqs: [
+      {
+        question: "Do you coach Manchester riders for the Fred Whitton and Peak District events?",
+        answer:
+          "Yes. The Fred Whitton Challenge is one of the most demanding UK sportives and we coach multiple riders for it each year. We also coach for Tour of the Peak, Peak District Gran Fondo, North West Road Race League, and Manchester Wheelers events. Your plan is periodised around your target event.",
+      },
+      {
+        question: "Can you coach track cyclists at the National Cycling Centre?",
+        answer:
+          "We coach road, time trial, and endurance cyclists. For pure track sprint specialists a track-specific coach is the better fit. For endurance track riders (Madison, Points, Scratch) our methodology adapts well — we have coached riders combining track and road racing across the UK calendar.",
+      },
+      {
+        question: "How does online coaching handle Manchester weather?",
+        answer:
+          "Planning around North West weather is part of the craft. Your plan has indoor backup sessions for the genuine washout weeks and outdoor sessions scheduled when conditions typically allow. TrainerRoad, Zwift, and structured turbo sessions are fully integrated into the programme — not an afterthought.",
+      },
+    ],
+    localContent: [
+      "Coaching for Fred Whitton, Peak District sportives, and UK racing",
+      "Plans built around Peak District roads and North West climbs",
+      "Same time zone — Dublin operates on GMT/BST like Manchester",
+      "Members in Manchester Wheelers, Rapha CC, and NW clubs",
+    ],
+  },
 };
 
 interface Props {
@@ -281,26 +581,25 @@ export default async function CoachingLocationPage({ params }: Props) {
         }}
       />
 
-      {/* LocalBusiness schema for Ireland — triggers Google local business features */}
-      {location === "ireland" && (
+      {/* LocalBusiness schema — triggers Google local business features for geo-targeted pages */}
+      {data.localBusiness && (
         <JsonLd
           data={{
             "@context": "https://schema.org",
             "@type": "LocalBusiness",
             name: "Roadman Cycling",
-            description:
-              "Personalised online cycling coaching from Dublin, Ireland. Training, nutrition, strength, recovery, and accountability.",
+            description: data.seoDescription,
             address: {
               "@type": "PostalAddress",
-              addressLocality: "Dublin",
-              addressCountry: "IE",
+              addressLocality: data.localBusiness.locality,
+              addressCountry: data.localBusiness.countryCode,
             },
             geo: {
               "@type": "GeoCoordinates",
-              latitude: 53.3498,
-              longitude: -6.2603,
+              latitude: data.localBusiness.latitude,
+              longitude: data.localBusiness.longitude,
             },
-            url: "https://roadmancycling.com/coaching/ireland",
+            url: `https://roadmancycling.com/coaching/${location}`,
             priceRange: "$195/month",
             sameAs: [
               "https://youtube.com/@theroadmanpodcast",

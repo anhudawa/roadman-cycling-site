@@ -561,6 +561,26 @@ export default function CoachingPage() {
                   UNITED STATES
                 </Link>
               </div>
+              <p className="text-foreground-subtle text-xs mt-8 mb-4 tracking-wider font-heading">
+                OR BY CITY
+              </p>
+              <div className="flex flex-wrap justify-center gap-3">
+                {[
+                  { href: "/coaching/dublin", label: "DUBLIN" },
+                  { href: "/coaching/cork", label: "CORK" },
+                  { href: "/coaching/galway", label: "GALWAY" },
+                  { href: "/coaching/london", label: "LONDON" },
+                  { href: "/coaching/manchester", label: "MANCHESTER" },
+                ].map(({ href, label }) => (
+                  <Link
+                    key={href}
+                    href={href}
+                    className="px-4 py-2 rounded-lg bg-white/5 text-foreground-subtle hover:bg-white/10 hover:text-off-white transition-colors font-heading text-xs tracking-wider"
+                  >
+                    {label}
+                  </Link>
+                ))}
+              </div>
             </ScrollReveal>
           </Container>
         </Section>
