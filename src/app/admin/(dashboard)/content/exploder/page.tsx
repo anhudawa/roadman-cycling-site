@@ -12,6 +12,7 @@ interface Video {
 interface Idea {
   title: string;
   hook: string;
+  framework?: string;
 }
 
 interface GeneratedContent {
@@ -358,9 +359,16 @@ export default function ExploderPage() {
                   {i + 1}
                 </span>
                 <div>
-                  <p className="text-sm text-off-white font-medium group-hover:text-coral transition-colors">
-                    {idea.title}
-                  </p>
+                  <div className="flex items-center gap-2">
+                    <p className="text-sm text-off-white font-medium group-hover:text-coral transition-colors">
+                      {idea.title}
+                    </p>
+                    {idea.framework && (
+                      <span className="shrink-0 text-[10px] font-medium px-2 py-0.5 rounded-full bg-white/5 text-foreground-subtle uppercase tracking-wider">
+                        {idea.framework}
+                      </span>
+                    )}
+                  </div>
                   <p className="text-xs text-foreground-muted mt-1">
                     {idea.hook}
                   </p>
