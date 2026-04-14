@@ -284,3 +284,29 @@ export const contentChatMessages = pgTable("content_chat_messages", {
   message: text("message").notNull(),
   createdAt: timestamp("created_at").notNull().defaultNow(),
 });
+
+// ── Sponsor Reports ───────────────────────────────────────
+export const monthlySocialStats = pgTable(
+  "monthly_social_stats",
+  {
+    id: serial("id").primaryKey(),
+    month: text("month").notNull(), // 'YYYY-MM'
+    platform: text("platform").notNull(), // 'facebook' | 'x' | 'instagram'
+    views: integer("views").notNull(),
+    enteredAt: timestamp("entered_at", { withTimezone: true }).defaultNow(),
+    enteredBy: text("entered_by"),
+  },
+  (t) => ({
+    monthPlatformIdx: uniqueIndex("monthly_social_stats_month_platform_idx").on(
+      t.month,
+      t.platform,
+    ),
+  }),
+);
+
+export const episodeDownloadsCache = pgTable("episode_downloads_cache", {
+  episodeId: text("episode_id").primaryKey(),
+  downloads: integer("downloads").notNull(),
+  source: text("source").notNull().default("seeded"), // 'seeded' | 'spotify' | 'manual'
+  updatedAt: timestamp("updated_at", { withTimezone: true }).defaultNow(),
+});
