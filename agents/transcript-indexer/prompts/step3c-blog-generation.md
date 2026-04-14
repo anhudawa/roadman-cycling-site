@@ -41,7 +41,7 @@ WHY IT FAILS: LinkedIn motivational post. Anthony doesn't do grand philosophical
 6. **1500-2000 words.** This is a proper blog post, not a summary.
 7. **4-6 H2 sections.** Each with actionable insights, not vague summaries.
 8. **Key Takeaways section** near the end with 4-6 bullet points.
-9. **End with a CTA** to listen to the full episode.
+9. **End with a CTA** linking to roadmancycling.com/apply — frame it naturally (e.g. "If you want coaching that actually works for your schedule, apply here: roadmancycling.com/apply"). Every CTA in the post should point to /apply, not to the episode or any other URL.
 
 ## EM-DASH LIMIT — Maximum 3 em-dashes (—) in the ENTIRE output.
 

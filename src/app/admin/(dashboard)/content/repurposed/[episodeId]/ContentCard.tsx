@@ -97,7 +97,7 @@ function BlogContent({ content }: { content: string }) {
         <p className="text-xs text-foreground-subtle">Meta: {seoDescription}</p>
       )}
       <p className="text-xs text-foreground-subtle">{words} words</p>
-      <div className="text-sm text-foreground-muted whitespace-pre-wrap leading-relaxed font-mono">
+      <div className="text-sm text-foreground-muted whitespace-pre-wrap leading-relaxed">
         {expanded ? body : preview}
         {hasMore && !expanded && <span className="text-foreground-subtle">…</span>}
       </div>
@@ -105,7 +105,7 @@ function BlogContent({ content }: { content: string }) {
         <button
           type="button"
           onClick={() => setExpanded((v) => !v)}
-          className="text-xs text-coral hover:text-coral/80 transition-colors"
+          className="text-xs text-off-white hover:text-white transition-colors underline"
         >
           {expanded ? "Show less" : "Show full"}
         </button>
@@ -213,9 +213,9 @@ function FacebookContent({ content }: { content: string }) {
   return (
     <div className="space-y-2">
       {angle && (
-        <span className="inline-block text-xs font-medium px-2.5 py-1 rounded-full bg-purple-400/10 text-purple-300">
-          {angle}
-        </span>
+        <p className="text-xs text-foreground-subtle italic">
+          Angle: {angle}
+        </p>
       )}
       <div className="text-sm text-foreground-muted whitespace-pre-wrap leading-relaxed">
         {expanded ? text : preview}
@@ -225,7 +225,7 @@ function FacebookContent({ content }: { content: string }) {
         <button
           type="button"
           onClick={() => setExpanded((v) => !v)}
-          className="text-xs text-coral hover:text-coral/80 transition-colors"
+          className="text-xs text-off-white hover:text-white transition-colors underline"
         >
           {expanded ? "Show less" : "Show full"}
         </button>
@@ -249,7 +249,7 @@ function EpisodePageContent({ content }: { content: string }) {
         <button
           type="button"
           onClick={() => setExpanded((v) => !v)}
-          className="text-xs text-coral hover:text-coral/80 transition-colors"
+          className="text-xs text-off-white hover:text-white transition-colors underline"
         >
           {expanded ? "Show less" : "Show full"}
         </button>
@@ -346,6 +346,7 @@ function ActionButtons({
   const [isPending, startTransition] = useTransition();
   const [copied, setCopied] = useState(false);
   const [uploading, setUploading] = useState(false);
+  const [publishedMessage, setPublishedMessage] = useState<string | null>(null);
   const fileInputRef = useRef<HTMLInputElement>(null);
 
   const handleImageUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -378,11 +379,19 @@ function ActionButtons({
     }
   };
 
+  const PUBLISH_MESSAGES: Record<string, string> = {
+    "episode-page": "Episode page is now live on the site",
+    "blog": "Blog post is now live on the site",
+  };
+
   const handleApprove = () => {
     setOptimisticStatus("approved");
+    setPublishedMessage(null);
     startTransition(async () => {
       try {
         await approveContent(contentId);
+        const msg = PUBLISH_MESSAGES[contentType];
+        if (msg) setPublishedMessage(msg);
       } catch {
         setOptimisticStatus(currentStatus);
       }
@@ -401,7 +410,14 @@ function ActionButtons({
   };
 
   return (
-    <div className="flex items-center gap-2 flex-wrap mt-4 pt-4 border-t border-white/5">
+    <div className="mt-4 pt-4 border-t border-white/5 space-y-3">
+      {publishedMessage && (
+        <div className="flex items-center gap-2 px-3 py-2 rounded-lg bg-green-500/10 border border-green-500/20">
+          <span className="text-green-400 text-sm">&#10003;</span>
+          <span className="text-sm text-green-400">{publishedMessage}</span>
+        </div>
+      )}
+      <div className="flex items-center gap-2 flex-wrap">
       <button
         type="button"
         onClick={handleApprove}
@@ -472,6 +488,7 @@ function ActionButtons({
       >
         Chat
       </button>
+      </div>
     </div>
   );
 }

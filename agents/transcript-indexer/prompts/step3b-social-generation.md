@@ -53,7 +53,7 @@ Return a JSON object:
     "angle": "Brief 1-sentence description of the angle chosen"
   },
   "linkedin": {
-    "post": "3-4 paragraphs. Professional but accessible. Mention the guest by name and credential. No hashtags. End with a link to the episode."
+    "post": "3-4 paragraphs. Professional but accessible. Mention the guest by name and credential. No hashtags. End with a CTA to roadmancycling.com/apply."
   },
   "twitter": {
     "tweets": [
@@ -62,7 +62,7 @@ Return a JSON object:
       {"text": "Key insight #2", "index": 3},
       {"text": "Key insight #3", "index": 4},
       {"text": "Actionable takeaway", "index": 5},
-      {"text": "Full episode link + CTA", "index": 6}
+      {"text": "CTA linking to roadmancycling.com/apply", "index": 6}
     ]
   }
 }
@@ -70,7 +70,7 @@ Return a JSON object:
 
 ## PLATFORM RULES
 
-- **Facebook**: 500-800 words. First person. Storytelling. Pick ONE insight and go deep. Personal anecdotes where natural. This is the long-form platform.
-- **LinkedIn**: 3-4 paragraphs. Name the guest and their credentials up front. Specific data points. Professional but not corporate. No hashtags.
-- **Twitter/X**: 5-7 tweets. Each under 280 characters. Hook tweet first. Thread should tell a story, not just list facts. Last tweet links to the episode.
+- **Facebook**: 500-800 words. First person. Storytelling. Pick ONE insight and go deep. Personal anecdotes where natural. This is the long-form platform. End with a CTA to roadmancycling.com/apply.
+- **LinkedIn**: 3-4 paragraphs. Name the guest and their credentials up front. Specific data points. Professional but not corporate. No hashtags. End with a CTA to roadmancycling.com/apply.
+- **Twitter/X**: 5-7 tweets. Each under 280 characters. Hook tweet first. Thread should tell a story, not just list facts. Last tweet links to roadmancycling.com/apply with a coaching CTA.
 - Each platform must take a DIFFERENT angle on the episode. Don't repeat the same points across all three.
