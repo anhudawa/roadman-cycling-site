@@ -5,8 +5,8 @@ import { requireBloodEngineAccess } from "@/lib/blood-engine/access";
 import { listReports } from "@/lib/blood-engine/db";
 import type { InterpretationJSON, ReportContext } from "@/lib/blood-engine/schemas";
 import { computeTrends } from "@/lib/blood-engine/trends";
-import { BLOOD_ENGINE_DISCLAIMER } from "../../../../content/blood-engine/disclaimer";
 import { MarkerTrendCard } from "./MarkerTrendCard";
+import { MedicalDisclaimer } from "../MedicalDisclaimer";
 
 export const dynamic = "force-dynamic";
 
@@ -100,8 +100,8 @@ export default async function DashboardPage() {
           </div>
         ) : null}
 
-        <div className="mt-16 border border-coral/20 bg-coral-muted rounded-lg p-6 text-sm text-off-white/90">
-          {BLOOD_ENGINE_DISCLAIMER}
+        <div className="mt-16">
+          <MedicalDisclaimer variant="muted" />
         </div>
       </Container>
     </Section>

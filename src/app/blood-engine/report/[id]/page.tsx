@@ -4,7 +4,7 @@ import { Button } from "@/components/ui";
 import { requireBloodEngineAccess } from "@/lib/blood-engine/access";
 import { getReport } from "@/lib/blood-engine/db";
 import type { InterpretationJSON, ReportContext } from "@/lib/blood-engine/schemas";
-import { BLOOD_ENGINE_DISCLAIMER } from "../../../../../content/blood-engine/disclaimer";
+import { MedicalDisclaimer } from "../../MedicalDisclaimer";
 import { PrintButton } from "./PrintButton";
 
 export const dynamic = "force-dynamic";
@@ -210,11 +210,8 @@ export default async function ReportPage({
         </div>
 
         {/* Disclaimer */}
-        <div className="rounded-lg border border-coral/40 bg-coral-muted p-6 mb-10 text-off-white">
-          <p className="font-heading uppercase tracking-wider text-coral mb-2">
-            Medical disclaimer
-          </p>
-          <p className="text-sm leading-relaxed">{BLOOD_ENGINE_DISCLAIMER}</p>
+        <div className="mb-10">
+          <MedicalDisclaimer variant="prominent" />
         </div>
 
         {/* Upsell */}

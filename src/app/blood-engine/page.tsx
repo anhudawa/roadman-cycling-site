@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { Section, Container } from "@/components/layout";
 import { Card, ScrollReveal } from "@/components/ui";
 import { CheckoutCta } from "./CheckoutCta";
-import { BLOOD_ENGINE_DISCLAIMER } from "../../../content/blood-engine/disclaimer";
+import { MedicalDisclaimer } from "./MedicalDisclaimer";
 import { MARKERS } from "@/lib/blood-engine/markers";
 
 export const metadata: Metadata = {
@@ -172,10 +172,7 @@ export default function BloodEngineLanding() {
       {/* ── Disclaimer ──────────────────────────────────────── */}
       <Section background="charcoal">
         <Container width="narrow">
-          <div className="border border-coral/30 bg-coral-muted rounded-lg p-6 text-sm text-off-white/90 leading-relaxed">
-            <p className="font-heading uppercase tracking-wider text-coral mb-2">Important</p>
-            <p>{BLOOD_ENGINE_DISCLAIMER}</p>
-          </div>
+          <MedicalDisclaimer variant="muted" />
         </Container>
       </Section>
     </>
