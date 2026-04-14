@@ -3,6 +3,7 @@
 import { useState, useCallback } from "react";
 import { SponsorDetailDrawer } from "./SponsorDetailDrawer";
 import { FillBar } from "./FillBar";
+import { MonthPicker } from "@/components/admin/reports/MonthPicker";
 import {
   formatCurrency,
   formatDate,
@@ -174,6 +175,9 @@ export function SponsorsClient({
                 <th className="text-left p-3 text-[11px] text-foreground-subtle uppercase tracking-wider font-medium">
                   Notes
                 </th>
+                <th className="text-left p-3 text-[11px] text-foreground-subtle uppercase tracking-wider font-medium">
+                  Report
+                </th>
               </tr>
             </thead>
             <tbody>
@@ -240,6 +244,9 @@ export function SponsorsClient({
                       <p className="text-xs text-foreground-subtle truncate">
                         {sponsor.notes || "--"}
                       </p>
+                    </td>
+                    <td className="p-3" onClick={(e) => e.stopPropagation()}>
+                      <MonthPicker sponsorId={sponsor.id} />
                     </td>
                   </tr>
                 );
