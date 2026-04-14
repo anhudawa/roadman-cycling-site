@@ -417,6 +417,62 @@ export const deals = pgTable(
   ]
 );
 
+// ── CRM: Automations ──────────────────────────────────────
+export type AutomationTriggerType =
+  | "application.stage_changed"
+  | "deal.stage_changed"
+  | "contact.created"
+  | "contact.lifecycle_changed";
+
+export interface AutomationTriggerConfig {
+  toStage?: string;
+  source?: string;
+}
+
+export type AutomationAction =
+  | { type: "send_email"; config: { templateSlug: string } }
+  | { type: "create_task"; config: { title: string; assignedTo?: string; dueInDays?: number } }
+  | { type: "add_tag"; config: { tag: string } }
+  | { type: "notify_user"; config: { recipientSlug: string; title: string } };
+
+export const automationRules = pgTable(
+  "automation_rules",
+  {
+    id: serial("id").primaryKey(),
+    name: text("name").notNull(),
+    active: boolean("active").notNull().default(true),
+    triggerType: text("trigger_type").notNull(),
+    triggerConfig: jsonb("trigger_config").$type<AutomationTriggerConfig>().notNull().default({}),
+    actions: jsonb("actions").$type<AutomationAction[]>().notNull().default([]),
+    createdBySlug: text("created_by_slug"),
+    createdAt: timestamp("created_at", { withTimezone: true }).notNull().defaultNow(),
+    updatedAt: timestamp("updated_at", { withTimezone: true }).notNull().defaultNow(),
+    lastRunAt: timestamp("last_run_at", { withTimezone: true }),
+    runCount: integer("run_count").notNull().default(0),
+  },
+  (table) => [
+    index("automation_rules_trigger_type_idx").on(table.triggerType),
+    index("automation_rules_active_idx").on(table.active),
+  ]
+);
+
+export const automationRuns = pgTable(
+  "automation_runs",
+  {
+    id: serial("id").primaryKey(),
+    ruleId: integer("rule_id").references(() => automationRules.id, { onDelete: "cascade" }),
+    status: text("status").notNull(), // 'success' | 'partial' | 'error'
+    event: jsonb("event").$type<Record<string, unknown>>(),
+    result: jsonb("result").$type<Record<string, unknown>>(),
+    error: text("error"),
+    createdAt: timestamp("created_at", { withTimezone: true }).notNull().defaultNow(),
+  },
+  (table) => [
+    index("automation_runs_rule_id_idx").on(table.ruleId),
+    index("automation_runs_created_at_idx").on(table.createdAt),
+  ]
+);
+
 export const episodeDownloadsCache = pgTable("episode_downloads_cache", {
   episodeId: text("episode_id").primaryKey(),
   downloads: integer("downloads").notNull(),

@@ -71,7 +71,18 @@ export async function upsertContact(params: UpsertContactParams): Promise<Contac
         lastActivityAt: now,
       })
       .returning();
-    return inserted[0];
+    const created = inserted[0];
+    try {
+      const { runAutomations } = await import("./automations");
+      await runAutomations({
+        type: "contact.created",
+        contactId: created.id,
+        source: created.source ?? null,
+      });
+    } catch (err) {
+      console.error("[contacts] automations (contact.created) failed", err);
+    }
+    return created;
   }
 
   const current = existing[0];

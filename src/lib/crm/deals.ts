@@ -253,6 +253,21 @@ export async function updateDeal(
     }
   }
 
+  if (stageChanged) {
+    try {
+      const { runAutomations } = await import("./automations");
+      await runAutomations({
+        type: "deal.stage_changed",
+        contactId: row.contactId ?? null,
+        dealId: row.id,
+        toStage,
+        fromStage,
+      });
+    } catch (err) {
+      console.error("[deals] automations failed", err);
+    }
+  }
+
   return row;
 }
 

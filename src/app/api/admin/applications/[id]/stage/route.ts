@@ -11,6 +11,7 @@ import {
 } from "@/lib/crm/pipeline";
 import { addActivity, getOrCreateContactForApplication, getContactById } from "@/lib/crm/contacts";
 import { createNotification } from "@/lib/crm/notifications";
+import { runAutomations } from "@/lib/crm/automations";
 
 export async function PATCH(
   request: Request,
@@ -110,6 +111,22 @@ export async function PATCH(
     });
   } catch (err) {
     console.error("[applications/stage] contact mirror failed", err);
+  }
+
+  try {
+    const contact = await (async () => {
+      const { getContactByEmail } = await import("@/lib/crm/contacts");
+      return getContactByEmail(existing.email);
+    })();
+    await runAutomations({
+      type: "application.stage_changed",
+      contactId: contact?.id ?? null,
+      applicationId: id,
+      toStage: nextStage,
+      fromStage,
+    });
+  } catch (err) {
+    console.error("[applications/stage] automations failed", err);
   }
 
   return NextResponse.json({ application: updated[0] });
