@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Section, Container } from "@/components/layout";
 import { Card, ScrollReveal } from "@/components/ui";
+import { JsonLd } from "@/components/seo/JsonLd";
 import { CheckoutCta } from "./CheckoutCta";
 import { MedicalDisclaimer } from "./MedicalDisclaimer";
 import { MARKERS } from "@/lib/blood-engine/markers";
@@ -14,6 +15,36 @@ export const metadata: Metadata = {
 export default function BloodEngineLanding() {
   return (
     <>
+      <JsonLd
+        data={{
+          "@context": "https://schema.org",
+          "@type": "Product",
+          name: "Blood Engine",
+          description:
+            "Cycling-specific bloodwork interpretation tool for masters cyclists. Reads any blood test through the lens of athlete-optimal reference ranges, not the standard lab ranges that miss endurance-athlete patterns.",
+          brand: { "@type": "Brand", name: "Roadman Cycling" },
+          category: "Health and fitness software",
+          url: "https://roadmancycling.com/blood-engine",
+          offers: {
+            "@type": "Offer",
+            price: "97",
+            priceCurrency: "EUR",
+            availability: "https://schema.org/InStock",
+            url: "https://roadmancycling.com/blood-engine",
+          },
+        }}
+      />
+      <JsonLd
+        data={{
+          "@context": "https://schema.org",
+          "@type": "FAQPage",
+          mainEntity: FAQ.map((f) => ({
+            "@type": "Question",
+            name: f.q,
+            acceptedAnswer: { "@type": "Answer", text: f.a },
+          })),
+        }}
+      />
       {/* ── Hero ─────────────────────────────────────────────── */}
       <Section background="deep-purple" fullHeight grain>
         <Container width="narrow" className="relative z-10 text-center">

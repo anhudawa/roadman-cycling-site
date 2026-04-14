@@ -87,6 +87,18 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       priority: 0.8,
     },
     {
+      url: `${BASE_URL}/blood-engine`,
+      lastModified: new Date("2026-04-14"),
+      changeFrequency: "monthly",
+      priority: 0.8,
+    },
+    {
+      url: `${BASE_URL}/blood-engine/markers`,
+      lastModified: new Date("2026-04-14"),
+      changeFrequency: "monthly",
+      priority: 0.7,
+    },
+    {
       url: `${BASE_URL}/coaching`,
       lastModified: new Date(),
       changeFrequency: "weekly",
