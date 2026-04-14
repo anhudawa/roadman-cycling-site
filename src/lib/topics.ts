@@ -161,6 +161,24 @@ const TOPIC_DEFINITIONS: Omit<TopicHub, "posts" | "episodes">[] = [
       "mountain bike beginners",
     ],
   },
+  {
+    slug: "cycling-coaching",
+    title: "Cycling Coaching — Online & In-Person",
+    headline: "THE COMPLETE GUIDE TO CYCLING COACHING",
+    description:
+      "Everything you need to know about cycling coaching. When to get a coach, what to look for, how online coaching works, and why most cyclists plateau without structured guidance. Built from 1,400+ podcast conversations with the coaches behind World Tour teams.",
+    pillar: "coaching",
+    keywords: [
+      "cycling coach",
+      "cycling coaching",
+      "online cycling coach",
+      "cycling coaching program",
+      "is a cycling coach worth it",
+      "personalised cycling training plan",
+      "cycling coach ireland",
+      "cycling coach uk",
+    ],
+  },
 ];
 
 /** Map of topic slugs to relevant blog post slugs */
@@ -243,6 +261,27 @@ const TOPIC_POST_MAP: Record<string, string[]> = {
     "cycling-nutrition-race-day-guide",
     "polarised-training-cycling-guide",
   ],
+  "cycling-coaching": [
+    "trainerroad-vs-coaching",
+    "self-coached-cyclist-mistakes",
+    "cycling-periodisation-plan-guide",
+    "cycling-training-full-time-job",
+    "cycling-over-40-getting-faster",
+    "cycling-over-50-training",
+    "ftp-plateau-breakthrough",
+    "how-to-get-faster-cycling",
+    "cycling-base-training-guide",
+    "zone-2-training-complete-guide",
+    "polarised-training-cycling-guide",
+    "cycling-sportive-preparation",
+    "new-study-confirms-heavy-strength-training-beats-more-miles-after-40",
+    "is-a-cycling-coach-worth-it",
+    "best-online-cycling-coach-how-to-choose",
+    "personalised-cycling-training-plan-why-generic-plans-fail",
+    "cycling-coach-near-me-why-location-doesnt-matter",
+    "cycling-coaching-for-beginners-when-ready",
+    "what-does-a-cycling-coach-do",
+  ],
   "mountain-biking": [
     "mtb-fork-setup-guide",
     "mtb-tyre-pressure-guide",
@@ -271,6 +310,7 @@ const TOPIC_EPISODE_KEYWORDS: Record<string, RegExp> = {
   "cycling-weight-loss": /weight|fat|lean|body comp|diet|kilo|kg|w\/kg/i,
   "cycling-beginners": /beginn|start|new to|etiquette|gravel|tyre|tire|bike fit/i,
   "triathlon-cycling": /triath|ironman|70\.3|half iron|brick|swim.bike|bike.run|t1|t2|aero position|tri bike|tt bike/i,
+  "cycling-coaching": /coach|coaching|personalise|structured|methodology|plan.?review|self.?coach|mentor|guided|accountability/i,
   "mountain-biking": /mountain.?bik|mtb|enduro|downhill|trail.?rid|suspension|fork.?setup|sag|shock.?pressur|dropper|trail.?centre/i,
 };
 

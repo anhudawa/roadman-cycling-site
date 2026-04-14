@@ -129,6 +129,7 @@ export const NAV_ITEMS: NavItem[] = [
       { label: "Beginners", href: "/topics/cycling-beginners" },
       { label: "Triathlon", href: "/topics/triathlon-cycling" },
       { label: "Mountain Biking", href: "/topics/mountain-biking" },
+      { label: "Cycling Coaching", href: "/topics/cycling-coaching" },
     ],
   },
   {
