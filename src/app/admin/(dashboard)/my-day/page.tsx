@@ -3,6 +3,7 @@ import { requireAuth } from "@/lib/admin/auth";
 import { getMyDayData } from "@/lib/crm/dashboard";
 import { STAGE_COLORS, STAGE_LABELS, isApplicationStage } from "@/lib/crm/pipeline";
 import { TaskCompleteCheckbox } from "./_components/TaskCompleteCheckbox";
+import { SendTestDigestButton } from "./_components/SendTestDigestButton";
 
 export const dynamic = "force-dynamic";
 
@@ -105,13 +106,16 @@ export default async function MyDayPage() {
   return (
     <div className="space-y-6">
       {/* Header */}
-      <div>
-        <h1 className="font-heading text-3xl text-off-white tracking-wider uppercase">
-          MY DAY — {user.name}
-        </h1>
-        <p className="text-foreground-muted text-sm mt-1">
-          {weekday}, {dateStr}
-        </p>
+      <div className="flex items-start justify-between gap-4">
+        <div>
+          <h1 className="font-heading text-3xl text-off-white tracking-wider uppercase">
+            MY DAY — {user.name}
+          </h1>
+          <p className="text-foreground-muted text-sm mt-1">
+            {weekday}, {dateStr}
+          </p>
+        </div>
+        <SendTestDigestButton />
       </div>
 
       {/* Stat cards */}
