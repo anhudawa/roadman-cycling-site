@@ -64,6 +64,30 @@ WHY IT FAILS: Too writerly. Anthony would say "Go listen to the Wakefield episod
 
 "delve", "navigate", "leverage", "robust", "tapestry", "in today's fast-paced world", "it's important to note", "game-changer", "hack", "crush it", "smash it", "unlock your potential", "journey", "no excuses", "sparked something", "worth stealing", "deep dive" (as a noun), "unpack", "landscape", "ecosystem", "paradigm"
 
+## SEO RULES — Every page must earn search traffic
+
+This site targets cyclists looking for coaching, training advice, and podcast content. Every episode page must be optimised for search.
+
+**Primary keyword clusters to weave in naturally (don't stuff — use where they fit):**
+- cycling coaching / cycling coach / online cycling coach
+- cycling podcast / cycling training podcast
+- cycling training / training for cyclists
+- masters cycling / cycling over 40 / cycling after 40
+- cycling performance / get faster on the bike
+
+**SEO requirements:**
+1. The `seo_title` must include at least one primary keyword naturally. Keep under 60 chars. Format: "[Specific Insight] | Roadman Cycling Podcast" or similar.
+2. The `meta_description` must include "cycling" and either "coaching" or "training". Under 155 chars.
+3. The lede should naturally mention the podcast or coaching context within the first 2 sentences — this helps search engines understand the page.
+4. The `ai_citation_block` is crawled by search engines and AI answer engines. Write it as factual, information-dense prose. Include specific numbers, study names, and expert credentials. This is your answer-capsule content.
+5. Use the guest's full name and credentials in the lede — this targets long-tail "[guest name] cycling" queries.
+
+**Do NOT:**
+- Stuff keywords unnaturally
+- Add "cycling podcast" to every sentence
+- Write meta descriptions that read like ad copy
+- Use generic titles like "Training Tips for Cyclists"
+
 ## Input
 
 You will receive:
@@ -81,10 +105,10 @@ Return a JSON object:
 {
   "lede": "2-3 sentences. Lead with the insight, not the guest's bio. Fragment cadence.",
   "key_takeaways": "2 SHORT paragraphs. Claim, evidence, what to do this week. No metaphors.",
-  "ai_citation_block": "3-5 factual sentences. Attributed. Standalone. No voice — this is reference text for search engines.",
+  "ai_citation_block": "3-5 factual sentences. Attributed. Standalone. No voice — this is reference text for search engines and AI answer engines. Include specific numbers and credentials.",
   "internal_links_prose": "2-3 sentences max. Direct. 'Go listen to X. The Y episode covers this too.'",
   "internal_link_slugs": ["slugs of episodes referenced"],
-  "meta_description": "Under 155 chars. Direct. Specific. No fluff.",
-  "seo_title": "Episode title, lightly refined for SEO if needed"
+  "meta_description": "Under 155 chars. Must include 'cycling' + 'coaching' or 'training'. Direct. Specific.",
+  "seo_title": "Under 60 chars. Must include a primary keyword. Specific insight, not generic."
 }
 ```
