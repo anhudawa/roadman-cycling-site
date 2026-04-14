@@ -27,7 +27,9 @@ export type ActivityType =
   | "enrichment_beehiiv"
   | "enrichment_stripe_purchase"
   | "email_opened"
-  | "email_clicked";
+  | "email_clicked"
+  | "file_uploaded"
+  | "file_removed";
 
 export interface UpsertContactParams {
   email: string;

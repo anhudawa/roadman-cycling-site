@@ -3,6 +3,7 @@
 import { useEffect, useMemo, useState } from "react";
 import { useRouter } from "next/navigation";
 import { ContactDealsSection } from "./ContactDealsSection";
+import { ContactAttachments, type AttachmentRow } from "./ContactAttachments";
 
 const OWNERS = [
   { value: "", label: "Unassigned" },
@@ -211,6 +212,7 @@ interface CurrentUserSummary {
   slug: string;
   name: string;
   email: string;
+  role?: "admin" | "member";
 }
 
 function renderTemplateClient(body: string, vars: Record<string, string>): string {
@@ -227,6 +229,7 @@ export function ContactDetail({
   currentUser,
   templates = [],
   initialEmailTemplateSlug = null,
+  initialAttachments = [],
 }: {
   contact: Contact;
   activities: Activity[];
@@ -234,6 +237,7 @@ export function ContactDetail({
   currentUser?: CurrentUserSummary;
   templates?: EmailTemplateSummary[];
   initialEmailTemplateSlug?: string | null;
+  initialAttachments?: AttachmentRow[];
 }) {
   const router = useRouter();
   const [contact, setContact] = useState(initialContact);
@@ -715,6 +719,18 @@ export function ContactDetail({
               </ul>
             )}
           </div>
+        </div>
+
+        {/* Attachments */}
+        <div className="lg:col-span-2 lg:col-start-1">
+          <ContactAttachments
+            contactId={contact.id}
+            initial={initialAttachments}
+            currentUser={{
+              slug: currentUser?.slug ?? "",
+              role: currentUser?.role,
+            }}
+          />
         </div>
 
         {/* Deals */}

@@ -58,6 +58,7 @@ export default async function SettingsPage() {
     envPresent("AUTH_SECRET"),
     envPresent("POSTGRES_URL"),
     envPresent("ANTHROPIC_API_KEY"),
+    envPresent("BLOB_READ_WRITE_TOKEN"),
   ];
   const database = await dbHealth();
 

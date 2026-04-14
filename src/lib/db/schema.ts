@@ -508,6 +508,26 @@ export const segments = pgTable(
   ]
 );
 
+// ── CRM: Attachments ──────────────────────────────────────
+export const attachments = pgTable(
+  "attachments",
+  {
+    id: serial("id").primaryKey(),
+    contactId: integer("contact_id").references(() => contacts.id, { onDelete: "cascade" }),
+    filename: text("filename").notNull(),
+    contentType: text("content_type"),
+    sizeBytes: integer("size_bytes"),
+    blobUrl: text("blob_url").notNull(),
+    blobPathname: text("blob_pathname").notNull(),
+    uploadedBySlug: text("uploaded_by_slug"),
+    createdAt: timestamp("created_at", { withTimezone: true }).notNull().defaultNow(),
+  },
+  (table) => [
+    index("attachments_contact_id_idx").on(table.contactId),
+    index("attachments_created_at_idx").on(table.createdAt),
+  ]
+);
+
 export const episodeDownloadsCache = pgTable("episode_downloads_cache", {
   episodeId: text("episode_id").primaryKey(),
   downloads: integer("downloads").notNull(),

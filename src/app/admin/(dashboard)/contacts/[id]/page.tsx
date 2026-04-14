@@ -5,6 +5,7 @@ import { db } from "@/lib/db";
 import { tasks as tasksTable } from "@/lib/db/schema";
 import { desc, eq } from "drizzle-orm";
 import { listTemplates } from "@/lib/crm/email";
+import { listAttachments } from "@/lib/crm/attachments";
 import { ContactDetail } from "../_components/ContactDetail";
 
 export const dynamic = "force-dynamic";
@@ -25,7 +26,7 @@ export default async function ContactDetailPage({
   const contact = await getContactById(id);
   if (!contact) notFound();
 
-  const [activities, taskRows, templateRows] = await Promise.all([
+  const [activities, taskRows, templateRows, attachmentRows] = await Promise.all([
     getTimeline(id, { limit: 200 }),
     db
       .select()
@@ -33,12 +34,24 @@ export default async function ContactDetailPage({
       .where(eq(tasksTable.contactId, id))
       .orderBy(desc(tasksTable.createdAt)),
     listTemplates(),
+    listAttachments(id),
   ]);
 
   return (
     <ContactDetail
-      currentUser={{ slug: user.slug, name: user.name, email: user.email }}
+      currentUser={{ slug: user.slug, name: user.name, email: user.email, role: user.role }}
       initialEmailTemplateSlug={sp.email ?? null}
+      initialAttachments={attachmentRows.map((a) => ({
+        id: a.id,
+        contactId: a.contactId,
+        filename: a.filename,
+        contentType: a.contentType,
+        sizeBytes: a.sizeBytes,
+        blobUrl: a.blobUrl,
+        blobPathname: a.blobPathname,
+        uploadedBySlug: a.uploadedBySlug,
+        createdAt: a.createdAt.toISOString(),
+      }))}
       templates={templateRows.map((t) => ({
         id: t.id,
         name: t.name,
