@@ -2,6 +2,7 @@ import { NextResponse } from "next/server";
 import { db } from "@/lib/db";
 import { cohortApplications } from "@/lib/db/schema";
 import { notifyCohortApplication } from "@/lib/notifications";
+import { upsertContact, addActivity } from "@/lib/crm/contacts";
 
 export async function POST(request: Request) {
   try {
@@ -53,6 +54,32 @@ export async function POST(request: Request) {
       cohort: "2026",
       persona,
     });
+
+    // CRM: upsert contact + activity (non-fatal)
+    try {
+      const contact = await upsertContact({
+        email,
+        name,
+        source: "cohort_application",
+        customFields: {
+          goal,
+          hours,
+          ftp: ftp || null,
+          frustration,
+          cohort: "2026",
+          persona,
+        },
+      });
+      await addActivity(contact.id, {
+        type: "cohort_application",
+        title: `Applied to ${persona} cohort`,
+        body: `Goal: ${goal}\n\nHours/week: ${hours}\n\nFTP: ${ftp || "n/a"}\n\nFrustration: ${frustration}`,
+        meta: { goal, hours, ftp: ftp || null, frustration, persona, cohort: "2026" },
+        authorName: "system",
+      });
+    } catch (crmErr) {
+      console.error("[Cohort Apply] CRM sync failed:", crmErr);
+    }
 
     // Fire-and-forget email notification
     notifyCohortApplication({

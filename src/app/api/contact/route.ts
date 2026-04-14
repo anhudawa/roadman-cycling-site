@@ -2,6 +2,7 @@ import { NextResponse } from "next/server";
 import { Resend } from "resend";
 import { db } from "@/lib/db";
 import { contactSubmissions } from "@/lib/db/schema";
+import { upsertContact, addActivity } from "@/lib/crm/contacts";
 
 const NOTIFICATION_EMAIL = "anthony@roadmancycling.com";
 
@@ -34,6 +35,23 @@ export async function POST(request: Request) {
       });
     } catch (dbErr) {
       console.error("[Contact Form] DB insert failed:", dbErr);
+    }
+
+    // CRM: upsert contact + activity (non-fatal)
+    try {
+      const contact = await upsertContact({
+        email,
+        name,
+        source: "contact_form",
+      });
+      await addActivity(contact.id, {
+        type: "contact_submission",
+        title: subject,
+        body: message,
+        authorName: "system",
+      });
+    } catch (crmErr) {
+      console.error("[Contact Form] CRM sync failed:", crmErr);
     }
 
     // Send email notification

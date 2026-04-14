@@ -188,6 +188,73 @@ export const cohortApplications = pgTable(
   ]
 );
 
+// ── CRM: Contacts ─────────────────────────────────────────
+export const contacts = pgTable(
+  "contacts",
+  {
+    id: serial("id").primaryKey(),
+    email: text("email").notNull().unique(),
+    name: text("name"),
+    phone: text("phone"),
+    owner: text("owner"),
+    tags: jsonb("tags").$type<string[]>().default([]).notNull(),
+    customFields: jsonb("custom_fields").$type<Record<string, unknown>>().default({}).notNull(),
+    source: text("source"),
+    lifecycleStage: text("lifecycle_stage").notNull().default("lead"),
+    firstSeenAt: timestamp("first_seen_at", { withTimezone: true }),
+    lastActivityAt: timestamp("last_activity_at", { withTimezone: true }),
+    createdAt: timestamp("created_at", { withTimezone: true }).notNull().defaultNow(),
+    updatedAt: timestamp("updated_at", { withTimezone: true }).notNull().defaultNow(),
+  },
+  (table) => [
+    index("contacts_email_idx").on(table.email),
+    index("contacts_owner_idx").on(table.owner),
+    index("contacts_lifecycle_stage_idx").on(table.lifecycleStage),
+    index("contacts_last_activity_at_idx").on(table.lastActivityAt),
+  ]
+);
+
+// ── CRM: Contact Activities ───────────────────────────────
+export const contactActivities = pgTable(
+  "contact_activities",
+  {
+    id: serial("id").primaryKey(),
+    contactId: integer("contact_id").notNull().references(() => contacts.id),
+    type: text("type").notNull(),
+    title: text("title").notNull(),
+    body: text("body"),
+    meta: jsonb("meta").$type<Record<string, unknown>>(),
+    authorName: text("author_name"),
+    createdAt: timestamp("created_at", { withTimezone: true }).notNull().defaultNow(),
+  },
+  (table) => [
+    index("contact_activities_contact_id_idx").on(table.contactId),
+    index("contact_activities_created_at_idx").on(table.createdAt),
+  ]
+);
+
+// ── CRM: Tasks ────────────────────────────────────────────
+export const tasks = pgTable(
+  "tasks",
+  {
+    id: serial("id").primaryKey(),
+    contactId: integer("contact_id").references(() => contacts.id),
+    title: text("title").notNull(),
+    notes: text("notes"),
+    dueAt: timestamp("due_at", { withTimezone: true }),
+    completedAt: timestamp("completed_at", { withTimezone: true }),
+    assignedTo: text("assigned_to"),
+    createdBy: text("created_by"),
+    createdAt: timestamp("created_at", { withTimezone: true }).notNull().defaultNow(),
+  },
+  (table) => [
+    index("tasks_contact_id_idx").on(table.contactId),
+    index("tasks_assigned_to_idx").on(table.assignedTo),
+    index("tasks_due_at_idx").on(table.dueAt),
+    index("tasks_completed_at_idx").on(table.completedAt),
+  ]
+);
+
 // ── Content Chat Messages ─────────────────────────────────
 export const contentChatMessages = pgTable("content_chat_messages", {
   id: serial("id").primaryKey(),
