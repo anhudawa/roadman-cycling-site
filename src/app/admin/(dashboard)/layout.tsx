@@ -20,7 +20,7 @@ export default async function DashboardLayout({
   return (
     <div className="min-h-screen bg-charcoal flex">
       <AdminSidebar
-        currentUser={{ slug: user.slug, name: user.name, email: user.email }}
+        currentUser={{ slug: user.slug, name: user.name, email: user.email, role: user.role }}
         overdueTaskCount={overdueTasks}
       />
       <main className="flex-1 ml-0 lg:ml-64 min-h-screen">

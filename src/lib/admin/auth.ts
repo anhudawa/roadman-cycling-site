@@ -4,6 +4,7 @@ import crypto from "crypto";
 import { db } from "@/lib/db";
 import { teamUsers } from "@/lib/db/schema";
 import { eq } from "drizzle-orm";
+import { hashPassword } from "@/lib/admin/password";
 
 export const COOKIE_NAME = "roadman_admin_session";
 export const SESSION_DURATION = 60 * 60 * 24 * 7; // 7 days in seconds
@@ -16,10 +17,6 @@ export interface TeamUser {
   name: string;
   email: string;
   role: TeamUserRole;
-}
-
-function hashPassword(password: string): string {
-  return crypto.createHash("sha256").update(password).digest("hex");
 }
 
 function authSecret(): string {
@@ -198,6 +195,18 @@ export async function requireAuth(): Promise<TeamUser> {
   const user = await getCurrentUser();
   if (!user) {
     redirect("/admin/login");
+  }
+  return user;
+}
+
+/**
+ * Admin-only gate. Redirects unauthenticated users to /admin/login, and
+ * authenticated non-admins to /admin/my-day.
+ */
+export async function requireAdmin(): Promise<TeamUser> {
+  const user = await requireAuth();
+  if (user.role !== "admin") {
+    redirect("/admin/my-day");
   }
   return user;
 }

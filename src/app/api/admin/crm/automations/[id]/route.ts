@@ -115,6 +115,12 @@ export async function PATCH(
   if (body.triggerConfig !== undefined) patch.triggerConfig = sanitizeTriggerConfig(body.triggerConfig);
   if (body.actions !== undefined) patch.actions = sanitizeActions(body.actions);
   if (typeof body.active === "boolean") patch.active = body.active;
+  if (typeof body.maxRunsPerDay === "number" && body.maxRunsPerDay >= 0) {
+    patch.maxRunsPerDay = Math.floor(body.maxRunsPerDay);
+  }
+  if (typeof body.dedupeWindowMinutes === "number" && body.dedupeWindowMinutes >= 0) {
+    patch.dedupeWindowMinutes = Math.floor(body.dedupeWindowMinutes);
+  }
 
   const updated = await updateRule(id, patch);
   if (!updated) return NextResponse.json({ error: "Not found" }, { status: 404 });

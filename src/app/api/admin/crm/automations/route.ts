@@ -101,6 +101,14 @@ export async function POST(request: Request) {
     actions: sanitizeActions(body.actions),
     active: typeof body.active === "boolean" ? body.active : true,
     createdBySlug: user.slug,
+    maxRunsPerDay:
+      typeof body.maxRunsPerDay === "number" && body.maxRunsPerDay >= 0
+        ? Math.floor(body.maxRunsPerDay)
+        : 0,
+    dedupeWindowMinutes:
+      typeof body.dedupeWindowMinutes === "number" && body.dedupeWindowMinutes >= 0
+        ? Math.floor(body.dedupeWindowMinutes)
+        : 0,
   });
 
   return NextResponse.json({

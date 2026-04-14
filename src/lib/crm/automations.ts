@@ -9,7 +9,7 @@ import {
   type AutomationTriggerConfig,
   type AutomationTriggerType,
 } from "@/lib/db/schema";
-import { and, desc, eq, sql } from "drizzle-orm";
+import { and, desc, eq, gte, sql } from "drizzle-orm";
 import { addActivity, getContactById } from "@/lib/crm/contacts";
 import { getTemplate, renderTemplate, buildContactVars, sendEmailToContact } from "@/lib/crm/email";
 import { createNotification } from "@/lib/crm/notifications";
@@ -82,6 +82,8 @@ export interface CreateRulePatch {
   actions?: AutomationAction[];
   active?: boolean;
   createdBySlug?: string | null;
+  maxRunsPerDay?: number;
+  dedupeWindowMinutes?: number;
 }
 
 export async function createRule(patch: CreateRulePatch): Promise<AutomationRule> {
@@ -94,6 +96,8 @@ export async function createRule(patch: CreateRulePatch): Promise<AutomationRule
       actions: patch.actions ?? [],
       active: patch.active ?? true,
       createdBySlug: patch.createdBySlug ?? null,
+      maxRunsPerDay: patch.maxRunsPerDay ?? 0,
+      dedupeWindowMinutes: patch.dedupeWindowMinutes ?? 0,
     })
     .returning();
   return inserted[0];
@@ -105,6 +109,8 @@ export interface UpdateRulePatch {
   triggerConfig?: AutomationTriggerConfig;
   actions?: AutomationAction[];
   active?: boolean;
+  maxRunsPerDay?: number;
+  dedupeWindowMinutes?: number;
 }
 
 export async function updateRule(id: number, patch: UpdateRulePatch): Promise<AutomationRule | null> {
@@ -116,6 +122,8 @@ export async function updateRule(id: number, patch: UpdateRulePatch): Promise<Au
   if (patch.triggerConfig !== undefined) updates.triggerConfig = patch.triggerConfig;
   if (patch.actions !== undefined) updates.actions = patch.actions;
   if (patch.active !== undefined) updates.active = patch.active;
+  if (patch.maxRunsPerDay !== undefined) updates.maxRunsPerDay = patch.maxRunsPerDay;
+  if (patch.dedupeWindowMinutes !== undefined) updates.dedupeWindowMinutes = patch.dedupeWindowMinutes;
 
   const updated = await db
     .update(automationRules)
@@ -344,7 +352,15 @@ async function executeAction(
   }
 }
 
+export function automationsDisabled(): boolean {
+  return process.env.AUTOMATIONS_DISABLED === "true";
+}
+
 export async function runAutomations(event: AutomationEvent): Promise<void> {
+  if (automationsDisabled()) {
+    console.log("[automations] no-op: AUTOMATIONS_DISABLED=true");
+    return;
+  }
   try {
     const rules = await db
       .select()
@@ -353,6 +369,45 @@ export async function runAutomations(event: AutomationEvent): Promise<void> {
 
     for (const rule of rules) {
       if (!eventMatches(rule, event)) continue;
+
+      // Safety guard: max runs per day
+      if (rule.maxRunsPerDay && rule.maxRunsPerDay > 0) {
+        const dayStart = new Date();
+        dayStart.setHours(0, 0, 0, 0);
+        const countRows = await db
+          .select({ c: sql<number>`count(*)::int` })
+          .from(automationRuns)
+          .where(and(eq(automationRuns.ruleId, rule.id), gte(automationRuns.createdAt, dayStart)));
+        const todayCount = countRows[0]?.c ?? 0;
+        if (todayCount >= rule.maxRunsPerDay) {
+          console.log(`[automations] rule ${rule.id} skipped: max_runs_per_day cap reached (${todayCount}/${rule.maxRunsPerDay})`);
+          continue;
+        }
+      }
+
+      // Safety guard: dedupe window per contact
+      if (
+        rule.dedupeWindowMinutes &&
+        rule.dedupeWindowMinutes > 0 &&
+        event.contactId != null
+      ) {
+        const since = new Date(Date.now() - rule.dedupeWindowMinutes * 60_000);
+        const existing = await db
+          .select({ id: automationRuns.id })
+          .from(automationRuns)
+          .where(
+            and(
+              eq(automationRuns.ruleId, rule.id),
+              eq(automationRuns.contactId, event.contactId),
+              gte(automationRuns.createdAt, since)
+            )
+          )
+          .limit(1);
+        if (existing.length > 0) {
+          console.log(`[automations] rule ${rule.id} skipped: dedup window for contact ${event.contactId}`);
+          continue;
+        }
+      }
 
       const results: ActionResult[] = [];
       let hadError = false;
@@ -372,6 +427,7 @@ export async function runAutomations(event: AutomationEvent): Promise<void> {
       try {
         await db.insert(automationRuns).values({
           ruleId: rule.id,
+          contactId: event.contactId ?? null,
           status,
           event: event as unknown as Record<string, unknown>,
           result: { actions: results } as Record<string, unknown>,

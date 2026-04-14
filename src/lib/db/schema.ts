@@ -449,6 +449,8 @@ export const automationRules = pgTable(
     updatedAt: timestamp("updated_at", { withTimezone: true }).notNull().defaultNow(),
     lastRunAt: timestamp("last_run_at", { withTimezone: true }),
     runCount: integer("run_count").notNull().default(0),
+    maxRunsPerDay: integer("max_runs_per_day").notNull().default(0),
+    dedupeWindowMinutes: integer("dedupe_window_minutes").notNull().default(0),
   },
   (table) => [
     index("automation_rules_trigger_type_idx").on(table.triggerType),
@@ -461,6 +463,7 @@ export const automationRuns = pgTable(
   {
     id: serial("id").primaryKey(),
     ruleId: integer("rule_id").references(() => automationRules.id, { onDelete: "cascade" }),
+    contactId: integer("contact_id"),
     status: text("status").notNull(), // 'success' | 'partial' | 'error'
     event: jsonb("event").$type<Record<string, unknown>>(),
     result: jsonb("result").$type<Record<string, unknown>>(),
@@ -470,6 +473,7 @@ export const automationRuns = pgTable(
   (table) => [
     index("automation_runs_rule_id_idx").on(table.ruleId),
     index("automation_runs_created_at_idx").on(table.createdAt),
+    index("automation_runs_rule_contact_idx").on(table.ruleId, table.contactId, table.createdAt),
   ]
 );
 

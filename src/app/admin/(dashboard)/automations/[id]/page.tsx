@@ -45,6 +45,8 @@ export default async function AutomationDetailPage({
       type: a.type,
       config: a.config as Record<string, string | number | undefined>,
     })),
+    maxRunsPerDay: rule.maxRunsPerDay ?? 0,
+    dedupeWindowMinutes: rule.dedupeWindowMinutes ?? 0,
   };
 
   return (

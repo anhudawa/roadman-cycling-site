@@ -23,6 +23,8 @@ export interface RuleDraft {
   triggerType: TriggerType;
   triggerConfig: { toStage?: string; source?: string };
   actions: ActionDraft[];
+  maxRunsPerDay: number;
+  dedupeWindowMinutes: number;
 }
 
 const TRIGGER_LABELS: Record<TriggerType, string> = {
@@ -50,6 +52,8 @@ const EMPTY_DRAFT: RuleDraft = {
   triggerType: "application.stage_changed",
   triggerConfig: {},
   actions: [],
+  maxRunsPerDay: 0,
+  dedupeWindowMinutes: 0,
 };
 
 export function RuleBuilder({
@@ -109,6 +113,8 @@ export function RuleBuilder({
         triggerType: draft.triggerType,
         triggerConfig: draft.triggerConfig,
         actions: actionsPayload,
+        maxRunsPerDay: Number(draft.maxRunsPerDay) || 0,
+        dedupeWindowMinutes: Number(draft.dedupeWindowMinutes) || 0,
       };
       const url = mode === "create" ? "/api/admin/crm/automations" : `/api/admin/crm/automations/${draft.id}`;
       const method = mode === "create" ? "POST" : "PATCH";
@@ -179,6 +185,33 @@ export function RuleBuilder({
             className="accent-coral"
           />
           <label htmlFor="active" className="text-sm text-foreground-muted">Active</label>
+        </div>
+
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-2 border-t border-white/5">
+          <div>
+            <label className="text-[10px] uppercase tracking-widest text-foreground-subtle font-medium">
+              Max runs per day (0 = unlimited)
+            </label>
+            <input
+              type="number"
+              min={0}
+              value={String(draft.maxRunsPerDay)}
+              onChange={(e) => setField("maxRunsPerDay", e.target.value === "" ? 0 : Math.max(0, Number(e.target.value)))}
+              className="mt-1 w-full px-3 py-2 bg-background-deep border border-white/10 rounded text-sm text-off-white"
+            />
+          </div>
+          <div>
+            <label className="text-[10px] uppercase tracking-widest text-foreground-subtle font-medium">
+              Dedupe window in minutes (0 = off)
+            </label>
+            <input
+              type="number"
+              min={0}
+              value={String(draft.dedupeWindowMinutes)}
+              onChange={(e) => setField("dedupeWindowMinutes", e.target.value === "" ? 0 : Math.max(0, Number(e.target.value)))}
+              className="mt-1 w-full px-3 py-2 bg-background-deep border border-white/10 rounded text-sm text-off-white"
+            />
+          </div>
         </div>
       </div>
 
