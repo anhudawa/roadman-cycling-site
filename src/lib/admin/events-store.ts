@@ -220,8 +220,9 @@ export async function getDashboardStats(): Promise<DashboardStats> {
   return { today, thisWeek, thisMonth, previousDay, previousWeek, previousMonth };
 }
 
-export async function getPageStats(): Promise<PageStats[]> {
-  const weekStart = startOfWeek(new Date(), { weekStartsOn: 1 });
+export async function getPageStats(from?: Date, to?: Date): Promise<PageStats[]> {
+  const since = from ?? startOfWeek(new Date(), { weekStartsOn: 1 });
+  const until = to ?? new Date();
 
   const rows = await db
     .select({
@@ -230,7 +231,7 @@ export async function getPageStats(): Promise<PageStats[]> {
       cnt: count(),
     })
     .from(events)
-    .where(gte(events.timestamp, weekStart))
+    .where(and(gte(events.timestamp, since), lte(events.timestamp, until)))
     .groupBy(events.page, events.type);
 
   const pages = new Map<string, { views: number; signups: number }>();

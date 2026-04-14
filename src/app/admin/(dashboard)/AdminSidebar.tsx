@@ -24,7 +24,7 @@ const NAV_SECTIONS: NavSection[] = [
       { href: "/admin/inbox", label: "Inbox", icon: "inbox" },
       { href: "/admin/applications", label: "Applications", icon: "clipboard" },
       { href: "/admin/traffic", label: "Traffic", icon: "trending" },
-      { href: "/admin/emails", label: "Conversions", icon: "mail" },
+      { href: "/admin/emails", label: "Conversions", icon: "trending" },
       { href: "/admin/leads", label: "Leads", icon: "users" },
     ],
   },

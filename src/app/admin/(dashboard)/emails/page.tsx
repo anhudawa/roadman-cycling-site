@@ -1,4 +1,7 @@
 import { getPageStats } from "@/lib/admin/events-store";
+import { parseTimeRange } from "@/lib/admin/time-ranges";
+import { Suspense } from "react";
+import { TimeRangePicker } from "../components/TimeRangePicker";
 
 function ConversionBadge({ rate }: { rate: number }) {
   let color = "text-foreground-subtle bg-white/5";
@@ -13,7 +16,6 @@ function ConversionBadge({ rate }: { rate: number }) {
 }
 
 function OpportunityFlag({ views, rate }: { views: number; rate: number }) {
-  // High traffic (top quartile-ish) but low conversion
   if (views >= 30 && rate < 3) {
     return (
       <span className="text-xs text-yellow-400 bg-yellow-400/10 px-2 py-0.5 rounded-full flex items-center gap-1">
@@ -42,10 +44,28 @@ function BarInline({ value, max }: { value: number; max: number }) {
   );
 }
 
-export default async function EmailAnalyticsPage() {
+const RANGE_LABELS: Record<string, string> = {
+  today: "today",
+  "7d": "last 7 days",
+  "30d": "last 30 days",
+  "90d": "last 90 days",
+  ytd: "year to date",
+  all: "all time",
+};
+
+export default async function ConversionsPage({
+  searchParams,
+}: {
+  searchParams: Promise<{ [key: string]: string | string[] | undefined }>;
+}) {
+  const resolvedParams = await searchParams;
+  const rangeParam = typeof resolvedParams.range === "string" ? resolvedParams.range : "30d";
+  const { from, to } = parseTimeRange(rangeParam);
+  const rangeLabel = RANGE_LABELS[rangeParam] || "last 30 days";
+
   let pageStats;
   try {
-    pageStats = await getPageStats();
+    pageStats = await getPageStats(from, to);
   } catch {
     pageStats = [
       { page: "/", views: 842, signups: 34, conversionRate: 4.0 },
@@ -56,36 +76,40 @@ export default async function EmailAnalyticsPage() {
     ];
   }
   const maxViews = pageStats.length > 0 ? pageStats[0].views : 1;
+  const totalSignups = pageStats.reduce((s, p) => s + p.signups, 0);
+  const totalViews = pageStats.reduce((s, p) => s + p.views, 0);
+  const avgConversion = totalViews > 0 ? (totalSignups / totalViews) * 100 : 0;
 
   return (
     <div className="space-y-6">
-      <div>
-        <h1 className="font-heading text-3xl text-off-white tracking-wider">
-          EMAIL ANALYTICS
-        </h1>
-        <p className="text-foreground-muted text-sm mt-1">
-          Per-page opt-in rates this week — find your best and worst converters
-        </p>
+      <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+        <div>
+          <h1 className="font-heading text-3xl text-off-white tracking-wider">
+            CONVERSIONS
+          </h1>
+          <p className="text-foreground-muted text-sm mt-1">
+            Per-page opt-in rates for {rangeLabel}
+          </p>
+        </div>
+        <Suspense fallback={null}>
+          <TimeRangePicker />
+        </Suspense>
       </div>
 
       {/* Summary cards */}
       <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
         <div className="bg-background-elevated border border-white/5 rounded-xl p-4">
-          <p className="text-foreground-subtle text-xs uppercase tracking-wider">Total Pages Tracked</p>
+          <p className="text-foreground-subtle text-xs uppercase tracking-wider">Pages Tracked</p>
           <p className="text-2xl font-heading text-off-white mt-1">{pageStats.length}</p>
         </div>
         <div className="bg-background-elevated border border-white/5 rounded-xl p-4">
-          <p className="text-foreground-subtle text-xs uppercase tracking-wider">Total Signups (Week)</p>
-          <p className="text-2xl font-heading text-off-white mt-1">
-            {pageStats.reduce((s, p) => s + p.signups, 0)}
-          </p>
+          <p className="text-foreground-subtle text-xs uppercase tracking-wider">Total Signups</p>
+          <p className="text-2xl font-heading text-off-white mt-1">{totalSignups}</p>
         </div>
         <div className="bg-background-elevated border border-white/5 rounded-xl p-4">
           <p className="text-foreground-subtle text-xs uppercase tracking-wider">Avg Conversion</p>
           <p className="text-2xl font-heading text-off-white mt-1">
-            {pageStats.length > 0
-              ? (pageStats.reduce((s, p) => s + p.conversionRate, 0) / pageStats.length).toFixed(1)
-              : "0"}%
+            {avgConversion.toFixed(1)}%
           </p>
         </div>
       </div>
