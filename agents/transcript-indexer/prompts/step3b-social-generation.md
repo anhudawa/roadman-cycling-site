@@ -57,7 +57,7 @@ Return a JSON object:
   },
   "twitter": {
     "tweets": [
-      {"text": "Hook tweet — bold claim or surprising insight", "index": 1},
+      {"text": "Hook tweet — contrarian, scroll-stopping claim that challenges what cyclists believe", "index": 1},
       {"text": "Key insight #1", "index": 2},
       {"text": "Key insight #2", "index": 3},
       {"text": "Key insight #3", "index": 4},
@@ -68,9 +68,25 @@ Return a JSON object:
 }
 ```
 
+## HOOK RULES — THIS IS THE MOST IMPORTANT PART
+
+Every post on every platform MUST open with a scroll-stopping hook. The hook should be contrarian — it should challenge something the audience believes is true, or state something that sounds wrong but isn't. Think "stop doing X" or "Y is actually making you slower."
+
+Good hooks:
+- "You're doing more damage to your FTP by riding every day than by taking three days off."
+- "The cycling internet told you to eat less and ride more. That advice is destroying your performance."
+- "I tested 6 recovery protocols over 12 weeks. The one that worked best cost nothing."
+
+Bad hooks:
+- "Here's what I learned from talking to an expert." (boring, no tension)
+- "Great conversation about nutrition this week." (no stakes)
+- "Training tips for cyclists over 40." (headline, not a hook)
+
+The hook must create tension or curiosity in the first sentence. If the reader can scroll past without feeling they'll miss something, the hook has failed.
+
 ## PLATFORM RULES
 
-- **Facebook**: 500-800 words. First person. Storytelling. Pick ONE insight and go deep. Personal anecdotes where natural. This is the long-form platform. End with a CTA to roadmancycling.com/apply.
-- **LinkedIn**: 3-4 paragraphs. Name the guest and their credentials up front. Specific data points. Professional but not corporate. No hashtags. End with a CTA to roadmancycling.com/apply.
-- **Twitter/X**: 5-7 tweets. Each under 280 characters. Hook tweet first. Thread should tell a story, not just list facts. Last tweet links to roadmancycling.com/apply with a coaching CTA.
+- **Facebook**: 500-800 words. First person. Storytelling. Pick ONE insight and go deep. Personal anecdotes where natural. This is the long-form platform. Open with a contrarian hook that stops the scroll. End with a CTA to roadmancycling.com/apply.
+- **LinkedIn**: 3-4 paragraphs. Name the guest and their credentials up front. Specific data points. Professional but not corporate. No hashtags. Open with a contrarian or surprising claim. End with a CTA to roadmancycling.com/apply.
+- **Twitter/X**: 5-7 tweets. Each under 280 characters. Hook tweet MUST be contrarian and scroll-stopping — not a summary. Thread should tell a story, not just list facts. Last tweet links to roadmancycling.com/apply with a coaching CTA.
 - Each platform must take a DIFFERENT angle on the episode. Don't repeat the same points across all three.
