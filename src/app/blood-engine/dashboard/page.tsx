@@ -3,14 +3,20 @@ import { Section, Container } from "@/components/layout";
 import { Button } from "@/components/ui";
 import { requireBloodEngineAccess } from "@/lib/blood-engine/access";
 import { listReports } from "@/lib/blood-engine/db";
-import type { InterpretationJSON } from "@/lib/blood-engine/schemas";
+import type { InterpretationJSON, ReportContext } from "@/lib/blood-engine/schemas";
+import { computeTrends } from "@/lib/blood-engine/trends";
 import { BLOOD_ENGINE_DISCLAIMER } from "../../../../content/blood-engine/disclaimer";
+import { MarkerTrendCard } from "./MarkerTrendCard";
 
 export const dynamic = "force-dynamic";
 
 export default async function DashboardPage() {
   const user = await requireBloodEngineAccess();
   const reports = await listReports(user.id);
+
+  // Trends use the sex from the most recent report (no per-user demographics yet).
+  const latestCtx = reports[0]?.context as ReportContext | undefined;
+  const trends = latestCtx ? computeTrends(reports, latestCtx.sex) : [];
 
   return (
     <Section background="deep-purple">
@@ -75,6 +81,24 @@ export default async function DashboardPage() {
             })}
           </div>
         )}
+
+        {trends.length > 0 ? (
+          <div className="mt-16">
+            <div className="flex items-baseline justify-between mb-6">
+              <h2 className="font-heading uppercase text-off-white text-3xl">
+                What&apos;s moving
+              </h2>
+              <p className="text-sm text-foreground-subtle">
+                Across {reports.length} reports · green band = athlete-optimal
+              </p>
+            </div>
+            <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
+              {trends.map((t) => (
+                <MarkerTrendCard key={t.markerId} trend={t} />
+              ))}
+            </div>
+          </div>
+        ) : null}
 
         <div className="mt-16 border border-coral/20 bg-coral-muted rounded-lg p-6 text-sm text-off-white/90">
           {BLOOD_ENGINE_DISCLAIMER}

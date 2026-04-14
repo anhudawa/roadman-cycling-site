@@ -1,20 +1,11 @@
-import Anthropic from "@anthropic-ai/sdk";
 import { NextResponse } from "next/server";
 import { requireBloodEngineAccess } from "@/lib/blood-engine/access";
 import { recordTosAcceptance, saveReport } from "@/lib/blood-engine/db";
+import { runInterpretation } from "@/lib/blood-engine/run-interpretation";
 import {
-  INTERPRETATION_SYSTEM_PROMPT,
-  PROMPT_VERSION,
-} from "@/lib/blood-engine/interpretation-prompt";
-import { getMarker } from "@/lib/blood-engine/markers";
-import {
-  type NormalizedMarkerValue,
-  retestTimeframeToDays,
   validateContext,
-  validateInterpretation,
   validateRawResults,
 } from "@/lib/blood-engine/schemas";
-import { normalize } from "@/lib/blood-engine/units";
 import { TOS_VERSION } from "../../../../../content/blood-engine/disclaimer";
 
 /**
@@ -57,113 +48,32 @@ export async function POST(request: Request) {
     return NextResponse.json({ error: message }, { status: 400 });
   }
 
-  if (rawResults.length === 0) {
-    return NextResponse.json({ error: "At least one marker value is required" }, { status: 400 });
-  }
-
-  // Server-side normalisation — never trust client-computed canonical values.
-  let normalized: NormalizedMarkerValue[];
+  let result;
   try {
-    normalized = rawResults.map((r) => ({
-      markerId: r.markerId,
-      originalValue: r.value,
-      originalUnit: r.unit,
-      canonicalValue: normalize(r.markerId, r.value, r.unit),
-    }));
+    result = await runInterpretation(context, rawResults);
   } catch (err) {
-    const message = err instanceof Error ? err.message : "Unit conversion failed";
-    return NextResponse.json({ error: message }, { status: 400 });
+    const message = err instanceof Error ? err.message : "Interpretation failed";
+    console.error("[blood-engine/interpret]", message);
+    // 400 for validation-style messages, 502 for upstream Anthropic issues
+    const status =
+      message.startsWith("At least one marker") ||
+      message.startsWith("Unsupported unit") ||
+      message.includes("invalid") ||
+      message.startsWith("interpretation.")
+        ? 400
+        : 502;
+    return NextResponse.json({ error: message }, { status });
   }
-
-  const apiKey = process.env.ANTHROPIC_API_KEY;
-  if (!apiKey) {
-    return NextResponse.json(
-      { error: "ANTHROPIC_API_KEY not configured" },
-      { status: 500 }
-    );
-  }
-
-  const anthropic = new Anthropic({ apiKey });
-
-  // Shape the user message so the model sees marker NAMES + canonical units,
-  // not opaque ids. Keeps the prompt stable even if we rename a markerId.
-  const markerLines = normalized.map((n) => {
-    const m = getMarker(n.markerId);
-    return {
-      markerId: n.markerId,
-      name: m.displayName,
-      value: n.canonicalValue,
-      unit: m.canonicalUnit,
-      original: { value: n.originalValue, unit: n.originalUnit },
-    };
-  });
-
-  const userPayload = JSON.stringify({ context, markers: markerLines }, null, 2);
-
-  let raw;
-  try {
-    const message = await anthropic.messages.create({
-      model: "claude-sonnet-4-6",
-      max_tokens: 4096,
-      system: INTERPRETATION_SYSTEM_PROMPT,
-      messages: [
-        {
-          role: "user",
-          content: `Here is the athlete's context and marker values. Return the interpretation JSON as specified.\n\n${userPayload}`,
-        },
-      ],
-    });
-    const textBlock = message.content.find((b) => b.type === "text");
-    if (!textBlock || textBlock.type !== "text") {
-      throw new Error("No text block in Anthropic response");
-    }
-    raw = stripJsonFences(textBlock.text);
-  } catch (err) {
-    console.error("[blood-engine/interpret] Anthropic call failed:", err);
-    return NextResponse.json({ error: "Interpretation engine unavailable" }, { status: 502 });
-  }
-
-  let parsed;
-  try {
-    parsed = JSON.parse(raw);
-  } catch {
-    console.error("[blood-engine/interpret] model returned non-JSON:", raw.slice(0, 400));
-    return NextResponse.json({ error: "Interpretation engine returned invalid JSON" }, { status: 502 });
-  }
-
-  let interpretation;
-  try {
-    interpretation = validateInterpretation(parsed);
-  } catch (err) {
-    const message = err instanceof Error ? err.message : "Invalid interpretation shape";
-    console.error("[blood-engine/interpret] validation failed:", message);
-    return NextResponse.json({ error: "Interpretation failed validation: " + message }, { status: 502 });
-  }
-
-  // Compute retest due date from draw date + recommended timeframe
-  const retestDays = retestTimeframeToDays(interpretation.retest_recommendation.timeframe);
-  const retestDueAt = new Date(context.drawDate + "T00:00:00Z");
-  retestDueAt.setUTCDate(retestDueAt.getUTCDate() + retestDays);
 
   const report = await saveReport({
     userId: user.id,
     context,
-    results: normalized,
-    interpretation,
-    promptVersion: PROMPT_VERSION,
-    retestDueAt,
+    results: result.normalized,
+    interpretation: result.interpretation,
+    promptVersion: result.promptVersion,
+    retestDueAt: result.retestDueAt,
     drawDate: context.drawDate,
   });
 
-  return NextResponse.json({ reportId: report.id, interpretation });
-}
-
-/**
- * Strip ```json fences if the model decided to ignore instructions and wrap
- * its output. We're strict about parsing but kind about what we accept.
- */
-function stripJsonFences(text: string): string {
-  const trimmed = text.trim();
-  const fenceMatch = trimmed.match(/^```(?:json)?\s*([\s\S]*?)\s*```$/);
-  return fenceMatch ? fenceMatch[1].trim() : trimmed;
+  return NextResponse.json({ reportId: report.id, interpretation: result.interpretation });
 }

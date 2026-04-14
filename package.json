@@ -35,7 +35,8 @@
     "seo:hubs:dry": "tsx scripts/generate-hub-content.ts --dry-run",
     "seo:companion": "tsx scripts/generate-companion-articles.ts",
     "seo:companion:dry": "tsx scripts/generate-companion-articles.ts --dry-run",
-    "seo:companion:rank": "tsx scripts/generate-companion-articles.ts --rank-only"
+    "seo:companion:rank": "tsx scripts/generate-companion-articles.ts --rank-only",
+    "blood-engine:replay": "tsx scripts/blood-engine-replay-fixtures.ts"
   },
   "dependencies": {
     "@anthropic-ai/sdk": "^0.82.0",
