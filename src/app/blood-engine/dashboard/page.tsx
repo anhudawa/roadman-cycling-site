@@ -34,9 +34,17 @@ export default async function DashboardPage() {
               {user.email}
             </h1>
           </div>
-          <Button href="/blood-engine/new" size="lg">
-            New report
-          </Button>
+          <div className="flex gap-3 items-center">
+            <Link
+              href="/blood-engine/account"
+              className="font-heading tracking-wider uppercase text-sm text-foreground-muted hover:text-off-white"
+            >
+              Account
+            </Link>
+            <Button href="/blood-engine/new" size="lg">
+              New report
+            </Button>
+          </div>
         </div>
 
         {reports.length > 0 ? (

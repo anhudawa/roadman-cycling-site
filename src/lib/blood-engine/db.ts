@@ -132,3 +132,11 @@ export async function markRetestNudgeSent(reportId: number): Promise<void> {
     .set({ retestNudgeSentAt: new Date() })
     .where(eq(bloodReports.id, reportId));
 }
+
+/**
+ * Hard-delete a Blood Engine user. ON DELETE CASCADE on blood_reports.user_id
+ * and blood_engine_api_calls.user_id removes the dependent rows automatically.
+ */
+export async function deleteUser(userId: number): Promise<void> {
+  await db.delete(bloodEngineUsers).where(eq(bloodEngineUsers.id, userId));
+}
