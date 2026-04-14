@@ -1,0 +1,151 @@
+{
+  "personas": {
+    "tom": {
+      "id": "tom",
+      "label": "The Plateau-Stuck Club Racer",
+      "codename": "Tom",
+      "demographics": "Age 33-46, Cat 3-4 racer, training 8-12hrs/week, professional with family",
+      "core_emotion": "Quiet shame that effort isn't yielding results",
+      "tier_target": "Premium",
+      "trigger_keywords": [
+        "FTP stuck",
+        "plateau",
+        "training plan not working",
+        "conflicting advice",
+        "Cat 3",
+        "Cat 4",
+        "racing",
+        "race results",
+        "structured training",
+        "power numbers",
+        "threshold",
+        "intervals",
+        "time-crunched",
+        "limited training time",
+        "Zwift",
+        "indoor training",
+        "turbo trainer",
+        "smart trainer",
+        "indoor cycling"
+      ],
+      "meta_description_angles": [
+        "Stop guessing. Here's the system.",
+        "Why your FTP won't budge — and the fix the pros use.",
+        "The training structure that changed everything."
+      ],
+      "content_hooks": [
+        "If your power numbers haven't moved in months",
+        "You're training hard but the results stopped matching the effort",
+        "What separates Cat 4 from Cat 2 isn't talent — it's structure"
+      ]
+    },
+    "mark": {
+      "id": "mark",
+      "label": "The Bucket-List Gran Fondo Achiever",
+      "codename": "Mark",
+      "demographics": "Age 42-58, senior professional/business owner, specific target event",
+      "core_emotion": "Fear the window is closing",
+      "tier_target": "Standard",
+      "trigger_keywords": [
+        "Etape",
+        "Marmotte",
+        "gran fondo",
+        "sportive",
+        "bucket list",
+        "first big event",
+        "climbing",
+        "alpine cycling",
+        "event preparation",
+        "age-group",
+        "cycling holiday",
+        "Mallorca",
+        "Girona",
+        "cycling in France",
+        "cycling Alps",
+        "cycling Pyrenees",
+        "cycling Dolomites"
+      ],
+      "meta_description_angles": [
+        "Your target event is closer than you think.",
+        "Perform, don't just survive.",
+        "The preparation the finishers never skip."
+      ],
+      "content_hooks": [
+        "You've entered the event, now you need the plan",
+        "Most riders show up hoping to survive — you can show up ready to perform",
+        "The window isn't closing. You just need the right approach."
+      ]
+    },
+    "james": {
+      "id": "james",
+      "label": "The Comeback Athlete Reclaiming Lost Form",
+      "codename": "James",
+      "demographics": "Previously athletic, returning after a break, struggling with fitness and weight",
+      "core_emotion": "Longing for a former version of himself",
+      "tier_target": "Standard/Premium",
+      "trigger_keywords": [
+        "comeback",
+        "getting back into cycling",
+        "lost fitness",
+        "weight gain",
+        "over 40",
+        "after 40",
+        "reclaiming form",
+        "used to be fast",
+        "body composition",
+        "returning cyclist",
+        "cycling motivation",
+        "not done yet",
+        "cycling after injury",
+        "cycling weight management",
+        "starting cycling again"
+      ],
+      "meta_description_angles": [
+        "Your best days aren't behind you.",
+        "Not Done Yet. Here's how to prove it.",
+        "The comeback doesn't start with the bike — it starts with the plan."
+      ],
+      "content_hooks": [
+        "You remember what it felt like to be fit",
+        "The science says you can be faster at 45 than you were at 35",
+        "Not Done Yet isn't just a slogan — it's a system"
+      ]
+    },
+    "dave": {
+      "id": "dave",
+      "label": "The Podcast Loyalist Who Hasn't Pulled the Trigger",
+      "codename": "Dave",
+      "demographics": "Already consuming free content heavily, hesitant about committing",
+      "core_emotion": "Comfortable inertia masking fear of commitment",
+      "tier_target": "Free → Standard conversion",
+      "trigger_keywords": [
+        "podcast",
+        "free content",
+        "listener",
+        "community",
+        "Clubhouse",
+        "subscribe",
+        "should I join",
+        "worth it",
+        "coaching community",
+        "accountability"
+      ],
+      "meta_description_angles": [
+        "You've been listening. Now it's time to act.",
+        "The difference between knowing and doing.",
+        "Everything you've heard — now in a system that works."
+      ],
+      "content_hooks": [
+        "You've listened to 200 episodes. What changed?",
+        "Knowledge without action is just entertainment",
+        "The riders who pull the trigger are the ones who get faster"
+      ]
+    }
+  },
+  "_meta": {
+    "version": "1.0.0",
+    "created": "2026-04-13",
+    "priority_note": "Dave (Persona 4) for volume conversion, Tom (Persona 1) for premium upsell.",
+    "notes": "Derived from audience-personas.md. Flag for Anthony's review before agent runs against real episodes."
+  }
+}

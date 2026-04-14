@@ -1,0 +1,172 @@
+{
+  "clusters": {
+    "coaching": {
+      "id": "coaching",
+      "label": "Coaching & Training Methodology",
+      "pillar": "coaching",
+      "description": "Training methodology, periodisation, structured plans, what the pros actually do. Zone 2, polarised training, VO2max, self-coaching, and training metrics.",
+      "keywords": [
+        "cycling training plan",
+        "zone 2 training cycling",
+        "polarised training",
+        "cycling coaching",
+        "periodisation cycling",
+        "VO2max cycling",
+        "cycling intervals",
+        "self-coached cyclist",
+        "training metrics cycling",
+        "sweet spot training",
+        "low cadence training",
+        "cycling power zones",
+        "FTP training",
+        "winter cycling training",
+        "training volume cycling",
+        "cycling base training",
+        "cycling threshold test",
+        "cycling ramp test",
+        "cycling training peaks"
+      ],
+      "named_experts": [
+        "Professor Stephen Seiler",
+        "Dan Lorang",
+        "John Wakefield",
+        "Tim Kerrison",
+        "Joe Friel",
+        "Matt Bottrill"
+      ],
+      "related_clusters": ["nutrition", "recovery", "strength"]
+    },
+    "nutrition": {
+      "id": "nutrition",
+      "label": "Nutrition & Fuelling",
+      "pillar": "nutrition",
+      "description": "Fueling for performance, race weight, body composition, in-ride nutrition. Anti-diet-culture, protein timing, fuelling strategies used by World Tour pros.",
+      "keywords": [
+        "cycling nutrition",
+        "cycling weight loss",
+        "cyclist diet",
+        "in-ride fuelling",
+        "cycling body composition",
+        "protein for cyclists",
+        "race weight cycling",
+        "cycling meal plan",
+        "carb loading cycling",
+        "fasted riding cycling",
+        "cycling supplements",
+        "cycling hydration",
+        "endurance nutrition",
+        "cycling energy gels",
+        "cycling bonking",
+        "what to eat before cycling"
+      ],
+      "named_experts": [
+        "Hannah Grant",
+        "Alan Murchison",
+        "Alex Larson",
+        "Mark Sherwood",
+        "Cynthia Thurlow"
+      ],
+      "related_clusters": ["coaching", "recovery"]
+    },
+    "strength": {
+      "id": "strength",
+      "label": "Strength & Conditioning",
+      "pillar": "strength",
+      "description": "S&C for cyclists, injury prevention, power development off the bike. Pre-ride activation, core work, gym routines adapted from World Tour programmes.",
+      "keywords": [
+        "strength training for cyclists",
+        "cycling gym workout",
+        "core exercises cycling",
+        "injury prevention cycling",
+        "cycling stretching routine",
+        "pre-ride activation",
+        "cycling power development",
+        "cyclist lower back pain",
+        "resistance bands cycling",
+        "off-bike training cycling",
+        "cycling flexibility",
+        "bike fit exercises",
+        "glute activation cycling",
+        "cycling knee pain",
+        "cycling hip pain"
+      ],
+      "named_experts": [
+        "Derek Teel",
+        "Keegan Swenson",
+        "Courtney [SURNAME TBD — confirm with Anthony]"
+      ],
+      "related_clusters": ["coaching", "recovery"]
+    },
+    "recovery": {
+      "id": "recovery",
+      "label": "Recovery & Longevity",
+      "pillar": "recovery",
+      "description": "Sleep, stress management, adaptation, longevity in the sport. Heart rate variability, getting faster after 40, mental health, comeback stories.",
+      "keywords": [
+        "cycling recovery",
+        "cyclist sleep",
+        "HRV training cycling",
+        "cycling after 40",
+        "cycling longevity",
+        "overtraining cycling",
+        "rest days cycling",
+        "cycling mental health",
+        "cycling comeback",
+        "adaptation cycling",
+        "cyclist burnout",
+        "infrared sauna athletes",
+        "cycling fatigue",
+        "cycling rest week",
+        "compression socks cycling"
+      ],
+      "named_experts": [
+        "Dr. David Lipman",
+        "Dr. Gordan",
+        "Chris Kilham",
+        "Erin Ayala"
+      ],
+      "related_clusters": ["nutrition", "coaching"]
+    },
+    "le-metier": {
+      "id": "le-metier",
+      "label": "Le Metier — The Craft of Cycling",
+      "pillar": "le-metier",
+      "description": "The culture of cycling: rides, skills, customs, traditions, the unwritten rules. Pro stories, cycling history, the rise and fall of brands, doping stories, community.",
+      "keywords": [
+        "cycling culture",
+        "pro cycling stories",
+        "cycling history",
+        "cycling doping",
+        "cycling etiquette",
+        "cycling group ride",
+        "cycling community",
+        "gravel cycling",
+        "ultra distance cycling",
+        "bikepacking",
+        "cycling industry",
+        "cycling brands",
+        "Tour de France stories",
+        "pro cyclist interview",
+        "cycling podcast",
+        "best cycling podcasts"
+      ],
+      "named_experts": [
+        "Lachlan Morton",
+        "Ben Healy",
+        "Michael Matthews",
+        "Greg LeMond",
+        "George Hincapie",
+        "Mark Beaumont",
+        "Alex Dowsett",
+        "Dan Martin",
+        "Fred Wright"
+      ],
+      "related_clusters": ["coaching"]
+    }
+  },
+  "_meta": {
+    "version": "1.0.0",
+    "created": "2026-04-13",
+    "notes": "Derived from the 5 Roadman Cycling content pillars. Flag for Anthony's review before agent runs against real episodes."
+  }
+}

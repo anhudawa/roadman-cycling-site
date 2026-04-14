@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useTransition, useCallback } from "react";
+import { useState, useTransition, useCallback, useRef } from "react";
 import { approveContent, rejectContent } from "../actions";
 import ChatPanel from "./ChatPanel";
 
@@ -51,6 +51,9 @@ const TYPE_LABELS: Record<string, string> = {
   linkedin: "LinkedIn",
   facebook: "Facebook",
   "quote-card": "Quote Card",
+  "episode-page": "Episode Page",
+  "episode-meta": "SEO / Meta",
+  "episode-citation": "AI Citation",
 };
 
 function TypeBadge({ contentType }: { contentType: string }) {
@@ -67,15 +70,35 @@ function TypeBadge({ contentType }: { contentType: string }) {
 
 function BlogContent({ content }: { content: string }) {
   const [expanded, setExpanded] = useState(false);
-  const words = content.split(/\s+/).filter(Boolean).length;
-  const preview = content.slice(0, 500);
-  const hasMore = content.length > 500;
+
+  let title = "";
+  let excerpt = "";
+  let body = content;
+  let seoDescription = "";
+  try {
+    const parsed = JSON.parse(content);
+    title = parsed.title ?? "";
+    excerpt = parsed.excerpt ?? "";
+    body = parsed.body ?? content;
+    seoDescription = parsed.seoDescription ?? "";
+  } catch {
+    // plain text blog content
+  }
+
+  const words = body.split(/\s+/).filter(Boolean).length;
+  const preview = body.slice(0, 500);
+  const hasMore = body.length > 500;
 
   return (
-    <div className="space-y-2">
+    <div className="space-y-3">
+      {title && <p className="text-sm font-semibold text-off-white">{title}</p>}
+      {excerpt && <p className="text-xs text-foreground-muted italic">{excerpt}</p>}
+      {seoDescription && (
+        <p className="text-xs text-foreground-subtle">Meta: {seoDescription}</p>
+      )}
       <p className="text-xs text-foreground-subtle">{words} words</p>
       <div className="text-sm text-foreground-muted whitespace-pre-wrap leading-relaxed font-mono">
-        {expanded ? content : preview}
+        {expanded ? body : preview}
         {hasMore && !expanded && <span className="text-foreground-subtle">…</span>}
       </div>
       {hasMore && (
@@ -211,6 +234,63 @@ function FacebookContent({ content }: { content: string }) {
   );
 }
 
+function EpisodePageContent({ content }: { content: string }) {
+  const [expanded, setExpanded] = useState(false);
+  const preview = content.slice(0, 600);
+  const hasMore = content.length > 600;
+
+  return (
+    <div className="space-y-2">
+      <div className="text-sm text-foreground-muted whitespace-pre-wrap leading-relaxed">
+        {expanded ? content : preview}
+        {hasMore && !expanded && <span className="text-foreground-subtle">...</span>}
+      </div>
+      {hasMore && (
+        <button
+          type="button"
+          onClick={() => setExpanded((v) => !v)}
+          className="text-xs text-coral hover:text-coral/80 transition-colors"
+        >
+          {expanded ? "Show less" : "Show full"}
+        </button>
+      )}
+    </div>
+  );
+}
+
+function EpisodeMetaContent({ content }: { content: string }) {
+  let seoTitle = "";
+  let metaDescription = "";
+  try {
+    const parsed = JSON.parse(content);
+    seoTitle = parsed.seoTitle ?? "";
+    metaDescription = parsed.metaDescription ?? "";
+  } catch {
+    return <p className="text-sm text-foreground-muted whitespace-pre-wrap">{content}</p>;
+  }
+
+  return (
+    <div className="space-y-3">
+      <div>
+        <p className="text-xs text-foreground-subtle mb-1">SEO Title</p>
+        <p className="text-sm text-off-white font-medium">{seoTitle}</p>
+      </div>
+      <div>
+        <p className="text-xs text-foreground-subtle mb-1">Meta Description ({metaDescription.length} chars)</p>
+        <p className="text-sm text-foreground-muted">{metaDescription}</p>
+      </div>
+    </div>
+  );
+}
+
+function EpisodeCitationContent({ content }: { content: string }) {
+  return (
+    <div className="text-sm text-foreground-muted leading-relaxed border-l-2 border-coral/30 pl-3">
+      {content}
+    </div>
+  );
+}
+
 function QuoteCardContent({ content }: { content: string }) {
   let quote = "";
   let speaker = "";
@@ -247,17 +327,56 @@ function ActionButtons({
   contentId,
   episodeId,
   currentStatus,
+  currentContent,
+  contentType,
   chatOpen,
   onToggleChat,
+  onImageUploaded,
 }: {
   contentId: number;
   episodeId: number;
   currentStatus: string | null;
+  currentContent: string;
+  contentType: string;
   chatOpen: boolean;
   onToggleChat: () => void;
+  onImageUploaded?: (imagePath: string) => void;
 }) {
   const [optimisticStatus, setOptimisticStatus] = useState<string | null>(currentStatus);
   const [isPending, startTransition] = useTransition();
+  const [copied, setCopied] = useState(false);
+  const [uploading, setUploading] = useState(false);
+  const fileInputRef = useRef<HTMLInputElement>(null);
+
+  const handleImageUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (!file) return;
+
+    setUploading(true);
+    try {
+      const formData = new FormData();
+      formData.append("image", file);
+      formData.append("contentId", String(contentId));
+
+      const res = await fetch("/api/admin/content/upload-image", {
+        method: "POST",
+        body: formData,
+      });
+
+      if (!res.ok) {
+        const err = await res.json().catch(() => ({ error: "Upload failed" }));
+        throw new Error(err.error);
+      }
+
+      const { imagePath } = await res.json();
+      onImageUploaded?.(imagePath);
+    } catch (err) {
+      console.error("Image upload failed:", err);
+    } finally {
+      setUploading(false);
+      if (fileInputRef.current) fileInputRef.current.value = "";
+    }
+  };
 
   const handleApprove = () => {
     setOptimisticStatus("approved");
@@ -311,6 +430,39 @@ function ActionButtons({
 
       <button
         type="button"
+        onClick={() => {
+          navigator.clipboard.writeText(currentContent).then(() => {
+            setCopied(true);
+            setTimeout(() => setCopied(false), 2000);
+          });
+        }}
+        className="px-3.5 py-1.5 text-xs font-semibold rounded-lg border transition-colors bg-white/5 text-foreground-muted hover:bg-white/10 hover:text-off-white border-white/10"
+      >
+        {copied ? "Copied" : "Copy"}
+      </button>
+
+      {contentType === "blog" && (
+        <>
+          <input
+            ref={fileInputRef}
+            type="file"
+            accept="image/jpeg,image/png,image/webp,image/avif"
+            onChange={handleImageUpload}
+            className="hidden"
+          />
+          <button
+            type="button"
+            onClick={() => fileInputRef.current?.click()}
+            disabled={uploading}
+            className="px-3.5 py-1.5 text-xs font-semibold rounded-lg border transition-colors bg-white/5 text-foreground-muted hover:bg-white/10 hover:text-off-white border-white/10 disabled:opacity-50"
+          >
+            {uploading ? "Uploading..." : "Upload Image"}
+          </button>
+        </>
+      )}
+
+      <button
+        type="button"
         onClick={onToggleChat}
         className={`px-3.5 py-1.5 text-xs font-semibold rounded-lg border transition-colors ml-auto ${
           chatOpen
@@ -337,10 +489,24 @@ export default function ContentCard({
 }) {
   const [content, setContent] = useState(piece.content);
   const [chatOpen, setChatOpen] = useState(false);
+  const [featuredImage, setFeaturedImage] = useState<string | null>(null);
+  const chatRef = useRef<HTMLDivElement>(null);
 
   const handleContentUpdated = useCallback((newContent: string) => {
     setContent(newContent);
   }, []);
+
+  const handleImageUploaded = useCallback((imagePath: string) => {
+    setFeaturedImage(imagePath);
+    // Store image path in the blog content JSON
+    try {
+      const parsed = JSON.parse(content);
+      parsed.featuredImage = imagePath;
+      setContent(JSON.stringify(parsed));
+    } catch {
+      // not JSON content, ignore
+    }
+  }, [content]);
 
   function renderContent() {
     switch (piece.contentType) {
@@ -356,6 +522,12 @@ export default function ContentCard({
         return <FacebookContent content={content} />;
       case "quote-card":
         return <QuoteCardContent content={content} />;
+      case "episode-page":
+        return <EpisodePageContent content={content} />;
+      case "episode-meta":
+        return <EpisodeMetaContent content={content} />;
+      case "episode-citation":
+        return <EpisodeCitationContent content={content} />;
       default:
         return (
           <p className="text-sm text-foreground-muted whitespace-pre-wrap">{content}</p>
@@ -380,22 +552,45 @@ export default function ContentCard({
           <p className="text-xs text-foreground-subtle">v{piece.version}</p>
         )}
 
+        {/* Featured image preview */}
+        {featuredImage && (
+          <div className="mt-2">
+            <p className="text-xs text-foreground-subtle mb-1">Featured Image</p>
+            <img
+              src={featuredImage}
+              alt="Featured"
+              className="w-full max-h-48 object-cover rounded-lg"
+            />
+          </div>
+        )}
+
         {/* Actions */}
         <ActionButtons
           contentId={piece.id}
           episodeId={episodeId}
           currentStatus={piece.status}
+          currentContent={content}
+          contentType={piece.contentType}
           chatOpen={chatOpen}
-          onToggleChat={() => setChatOpen((v) => !v)}
+          onToggleChat={() => {
+            const opening = !chatOpen;
+            setChatOpen(opening);
+            if (opening) {
+              setTimeout(() => chatRef.current?.scrollIntoView({ behavior: "smooth", block: "end" }), 100);
+            }
+          }}
+          onImageUploaded={handleImageUploaded}
         />
       </div>
 
       {/* Chat panel */}
       {chatOpen && (
-        <ChatPanel
-          contentId={piece.id}
-          onContentUpdated={handleContentUpdated}
-        />
+        <div ref={chatRef}>
+          <ChatPanel
+            contentId={piece.id}
+            onContentUpdated={handleContentUpdated}
+          />
+        </div>
       )}
     </div>
   );

@@ -8,6 +8,25 @@ import { eq, asc } from "drizzle-orm";
 const SYSTEM_PROMPT =
   "You are editing content for Roadman Cycling. Maintain Anthony Walsh's voice: direct, practical, warm, knowledgeable. Aimed at amateur cyclists who want to get faster. You will receive the current content and a request to amend it. Return the COMPLETE revised content — not a diff, the full replacement. Match the exact format of the input.";
 
+const EPISODE_PAGE_SYSTEM_PROMPT = `You are editing episode page content for Roadman Cycling. You are writing as Anthony Walsh — not "in the style of", as him.
+
+VOICE RULES:
+- Write rough, not polished. First-draft energy. Anthony doesn't revise for elegance.
+- No metaphors from outside cycling. No engines, chassis, foundations, architecture.
+- No pithy one-liners. If it sounds like a motivational poster, delete it.
+- No "writerly" transitions. Just say the next thing.
+- Ground every claim. "Wakefield told me" not "research suggests."
+- Short declarative sentences punctuated by longer explanations.
+- Fragment cadence: "Same sessions, same errors, same effort."
+- Direct address: "You know the moment when..."
+- Maximum 2 em-dashes in the entire output.
+
+HARD FAIL WORDS — never use:
+"delve", "navigate", "leverage", "robust", "tapestry", "game-changer", "hack", "crush it", "unlock your potential", "journey", "no excuses", "sparked something", "deep dive", "unpack", "landscape", "ecosystem"
+
+Return the COMPLETE revised content — not a diff, the full replacement.`;
+
+
 export async function POST(request: Request) {
   try {
     const authed = await isAuthenticated();
@@ -39,6 +58,11 @@ export async function POST(request: Request) {
         { status: 404 },
       );
     }
+
+    // Select system prompt based on content type
+    const systemPrompt = piece.contentType === "episode-page"
+      ? EPISODE_PAGE_SYSTEM_PROMPT
+      : SYSTEM_PROMPT;
 
     // Load chat history
     const history = await db
@@ -88,9 +112,9 @@ export async function POST(request: Request) {
     const client = new Anthropic();
 
     const stream = client.messages.stream({
-      model: "claude-sonnet-4-20250514",
+      model: "claude-sonnet-4-6",
       max_tokens: 4096,
-      system: SYSTEM_PROMPT,
+      system: systemPrompt,
       messages: claudeMessages,
     });
 
