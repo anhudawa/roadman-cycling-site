@@ -1,12 +1,10 @@
 "use client";
 
 import { useState } from "react";
-import { useRouter } from "next/navigation";
 
 export default function AdminLoginPage() {
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
-  const router = useRouter();
 
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
@@ -14,13 +12,14 @@ export default function AdminLoginPage() {
     setLoading(true);
 
     const formData = new FormData(e.currentTarget);
+    const email = (formData.get("email") as string | null)?.trim() ?? "";
     const password = formData.get("password") as string;
 
     try {
       const res = await fetch("/api/admin/login", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ password }),
+        body: JSON.stringify(email ? { email, password } : { password }),
       });
 
       const data = await res.json();
@@ -53,6 +52,20 @@ export default function AdminLoginPage() {
 
         <form onSubmit={handleSubmit} className="space-y-4">
           <div>
+            <label htmlFor="email" className="sr-only">
+              Email
+            </label>
+            <input
+              id="email"
+              name="email"
+              type="email"
+              placeholder="Email"
+              autoComplete="username"
+              autoFocus
+              className="w-full px-4 py-3 bg-background-elevated border border-white/10 rounded-lg text-off-white placeholder:text-foreground-subtle focus:outline-none focus:border-coral focus:ring-1 focus:ring-coral/30 transition-colors"
+            />
+          </div>
+          <div>
             <label htmlFor="password" className="sr-only">
               Password
             </label>
@@ -60,9 +73,9 @@ export default function AdminLoginPage() {
               id="password"
               name="password"
               type="password"
-              placeholder="Enter admin password"
+              placeholder="Password"
+              autoComplete="current-password"
               required
-              autoFocus
               className="w-full px-4 py-3 bg-background-elevated border border-white/10 rounded-lg text-off-white placeholder:text-foreground-subtle focus:outline-none focus:border-coral focus:ring-1 focus:ring-coral/30 transition-colors"
             />
           </div>
@@ -78,6 +91,10 @@ export default function AdminLoginPage() {
           >
             {loading ? "SIGNING IN..." : "SIGN IN"}
           </button>
+
+          <p className="text-[11px] text-foreground-subtle text-center pt-2">
+            Leave email blank to use legacy admin password.
+          </p>
         </form>
       </div>
     </div>

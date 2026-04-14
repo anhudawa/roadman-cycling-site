@@ -1,17 +1,27 @@
 import { requireAuth } from "@/lib/admin/auth";
 import { AdminSidebar } from "./AdminSidebar";
 import { NotificationBell } from "./NotificationBell";
+import { countOverdueTasksFor } from "@/lib/crm/tasks";
 
 export default async function DashboardLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
-  await requireAuth();
+  const user = await requireAuth();
+  let overdueTasks = 0;
+  try {
+    overdueTasks = await countOverdueTasksFor(user.slug);
+  } catch {
+    // table may not exist yet in some envs — swallow
+  }
 
   return (
     <div className="min-h-screen bg-charcoal flex">
-      <AdminSidebar />
+      <AdminSidebar
+        currentUser={{ slug: user.slug, name: user.name, email: user.email }}
+        overdueTaskCount={overdueTasks}
+      />
       <main className="flex-1 ml-0 lg:ml-64 min-h-screen">
         {/* Top bar with notification bell */}
         <div className="sticky top-0 z-20 bg-charcoal/80 backdrop-blur-sm border-b border-white/5">

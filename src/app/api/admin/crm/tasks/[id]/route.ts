@@ -11,8 +11,9 @@ export async function PATCH(
   request: Request,
   { params }: { params: Promise<{ id: string }> }
 ) {
+  let user;
   try {
-    await requireAuth();
+    user = await requireAuth();
   } catch {
     return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
   }
@@ -79,7 +80,7 @@ export async function PATCH(
 
   let activity = null;
   if (completedNow && task.contactId) {
-    const author = request.headers.get("X-CRM-User") ?? "admin";
+    const author = user.name;
     activity = await addActivity(task.contactId, {
       type: "task_completed",
       title: `Task completed: ${task.title}`,

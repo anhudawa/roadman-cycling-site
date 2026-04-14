@@ -4,10 +4,7 @@ import { contacts } from "@/lib/db/schema";
 import { eq } from "drizzle-orm";
 import { requireAuth } from "@/lib/admin/auth";
 import { addActivity, getContactById } from "@/lib/crm/contacts";
-
-function authorFrom(request: Request): string {
-  return request.headers.get("X-CRM-User") ?? "admin";
-}
+import type { TeamUser } from "@/lib/admin/auth";
 
 const ALLOWED_STAGES = ["lead", "contacted", "qualified", "customer", "churned"];
 const ALLOWED_OWNERS = ["sarah", "wes", "matthew", "ted"];
@@ -16,8 +13,9 @@ export async function PATCH(
   request: Request,
   { params }: { params: Promise<{ id: string }> }
 ) {
+  let user: TeamUser;
   try {
-    await requireAuth();
+    user = await requireAuth();
   } catch {
     return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
   }
@@ -34,7 +32,7 @@ export async function PATCH(
   }
 
   const body = await request.json();
-  const author = authorFrom(request);
+  const author = user.name;
 
   const updates: Record<string, unknown> = { updatedAt: new Date() };
   let stageActivity: { prev: string; next: string } | null = null;

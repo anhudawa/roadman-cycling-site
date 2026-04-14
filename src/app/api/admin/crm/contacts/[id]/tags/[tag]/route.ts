@@ -9,8 +9,9 @@ export async function DELETE(
   request: Request,
   { params }: { params: Promise<{ id: string; tag: string }> }
 ) {
+  let user;
   try {
-    await requireAuth();
+    user = await requireAuth();
   } catch {
     return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
   }
@@ -37,7 +38,7 @@ export async function DELETE(
     .where(eq(contacts.id, id))
     .returning();
 
-  const author = request.headers.get("X-CRM-User") ?? "admin";
+  const author = user.name;
   const activity = await addActivity(id, {
     type: "tag_removed",
     title: `Tag removed: ${tag}`,

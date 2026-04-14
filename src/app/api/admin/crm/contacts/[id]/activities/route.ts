@@ -12,8 +12,9 @@ export async function POST(
   request: Request,
   { params }: { params: Promise<{ id: string }> }
 ) {
+  let user;
   try {
-    await requireAuth();
+    user = await requireAuth();
   } catch {
     return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
   }
@@ -37,7 +38,7 @@ export async function POST(
     return NextResponse.json({ error: "Title required" }, { status: 400 });
   }
 
-  const author = request.headers.get("X-CRM-User") ?? "admin";
+  const author = user.name;
   const activity = await addActivity(id, {
     type,
     title,

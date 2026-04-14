@@ -6,10 +6,7 @@ import { addActivity, getContactById } from "@/lib/crm/contacts";
 
 const ALLOWED_ASSIGNEES = ["sarah", "wes", "matthew", "ted"];
 
-export async function POST(
-  request: Request,
-  { params }: { params: Promise<{ id: string }> }
-) {
+export async function POST(request: Request) {
   let user;
   try {
     user = await requireAuth();
@@ -17,18 +14,21 @@ export async function POST(
     return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
   }
 
-  const { id: idStr } = await params;
-  const id = parseInt(idStr, 10);
-  if (Number.isNaN(id)) {
-    return NextResponse.json({ error: "Invalid id" }, { status: 400 });
-  }
-
-  const existing = await getContactById(id);
-  if (!existing) return NextResponse.json({ error: "Not found" }, { status: 404 });
-
   const body = await request.json();
+
   const title = typeof body.title === "string" ? body.title.trim() : "";
   if (!title) return NextResponse.json({ error: "Title required" }, { status: 400 });
+
+  let contactId: number | null = null;
+  if (body.contactId !== undefined && body.contactId !== null && body.contactId !== "") {
+    const parsed = typeof body.contactId === "number" ? body.contactId : parseInt(String(body.contactId), 10);
+    if (Number.isNaN(parsed)) {
+      return NextResponse.json({ error: "Invalid contactId" }, { status: 400 });
+    }
+    const existing = await getContactById(parsed);
+    if (!existing) return NextResponse.json({ error: "Contact not found" }, { status: 404 });
+    contactId = parsed;
+  }
 
   let assignedTo: string | null = null;
   if (body.assignedTo) {
@@ -36,6 +36,8 @@ export async function POST(
       return NextResponse.json({ error: "Invalid assignee" }, { status: 400 });
     }
     assignedTo = body.assignedTo;
+  } else {
+    assignedTo = user.slug;
   }
 
   let dueAt: Date | null = null;
@@ -47,27 +49,29 @@ export async function POST(
     dueAt = d;
   }
 
-  const author = user.name;
-
   const inserted = await db
     .insert(tasksTable)
     .values({
-      contactId: id,
+      contactId,
       title,
       notes: typeof body.notes === "string" ? body.notes : null,
       dueAt,
       assignedTo,
-      createdBy: author,
+      createdBy: user.name,
     })
     .returning();
 
   const task = inserted[0];
-  const activity = await addActivity(id, {
-    type: "task_created",
-    title: `Task created: ${title}`,
-    meta: { taskId: task.id, assignedTo, dueAt: dueAt ? dueAt.toISOString() : null },
-    authorName: author,
-  });
+
+  let activity = null;
+  if (contactId) {
+    activity = await addActivity(contactId, {
+      type: "task_created",
+      title: `Task created: ${title}`,
+      meta: { taskId: task.id, assignedTo, dueAt: dueAt ? dueAt.toISOString() : null },
+      authorName: user.name,
+    });
+  }
 
   return NextResponse.json({
     task: {
@@ -76,10 +80,8 @@ export async function POST(
       completedAt: task.completedAt ? task.completedAt.toISOString() : null,
       createdAt: task.createdAt.toISOString(),
     },
-    activity: {
-      ...activity,
-      meta: activity.meta ?? null,
-      createdAt: activity.createdAt.toISOString(),
-    },
+    activity: activity
+      ? { ...activity, meta: activity.meta ?? null, createdAt: activity.createdAt.toISOString() }
+      : null,
   });
 }

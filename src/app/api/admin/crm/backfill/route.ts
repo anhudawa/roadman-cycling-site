@@ -31,6 +31,7 @@ export async function POST() {
   } catch {
     return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
   }
+  // Backfill activities are always authored as "system" regardless of user.
 
   let contactsProcessed = 0;
   let activitiesAdded = 0;

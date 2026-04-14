@@ -7,6 +7,7 @@ import {
   integer,
   real,
   jsonb,
+  boolean,
   index,
   uniqueIndex,
 } from "drizzle-orm/pg-core";
@@ -252,6 +253,26 @@ export const tasks = pgTable(
     index("tasks_assigned_to_idx").on(table.assignedTo),
     index("tasks_due_at_idx").on(table.dueAt),
     index("tasks_completed_at_idx").on(table.completedAt),
+  ]
+);
+
+// ── Team Users ────────────────────────────────────────────
+export const teamUsers = pgTable(
+  "team_users",
+  {
+    id: serial("id").primaryKey(),
+    email: text("email").notNull().unique(),
+    name: text("name").notNull(),
+    slug: text("slug").notNull().unique(),
+    passwordHash: text("password_hash").notNull(),
+    role: text("role").notNull().default("member"),
+    active: boolean("active").notNull().default(true),
+    createdAt: timestamp("created_at", { withTimezone: true }).notNull().defaultNow(),
+    lastLoginAt: timestamp("last_login_at", { withTimezone: true }),
+  },
+  (table) => [
+    index("team_users_email_idx").on(table.email),
+    index("team_users_slug_idx").on(table.slug),
   ]
 );
 

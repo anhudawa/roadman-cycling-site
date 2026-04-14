@@ -23,6 +23,7 @@ const NAV_SECTIONS: NavSection[] = [
       { href: "/admin", label: "Overview", icon: "grid" },
       { href: "/admin/inbox", label: "Inbox", icon: "inbox" },
       { href: "/admin/contacts", label: "Contacts", icon: "users" },
+      { href: "/admin/tasks", label: "Tasks", icon: "check-list" },
       { href: "/admin/applications", label: "Applications", icon: "clipboard" },
       { href: "/admin/traffic", label: "Traffic", icon: "trending" },
       { href: "/admin/emails", label: "Conversions", icon: "trending" },
@@ -147,6 +148,12 @@ function NavIcon({ icon, className }: { icon: string; className?: string }) {
           <path strokeLinecap="round" strokeLinejoin="round" d="M9 12h3.75M9 15h3.75M9 18h3.75m3 .75H18a2.25 2.25 0 0 0 2.25-2.25V6.108c0-1.135-.845-2.098-1.976-2.192a48.424 48.424 0 0 0-1.123-.08m-5.801 0c-.065.21-.1.433-.1.664 0 .414.336.75.75.75h4.5a.75.75 0 0 0 .75-.75 2.25 2.25 0 0 0-.1-.664m-5.8 0A2.251 2.251 0 0 1 13.5 2.25H15a2.25 2.25 0 0 1 2.15 1.586m-5.8 0c-.376.023-.75.05-1.124.08C9.095 4.01 8.25 4.973 8.25 6.108V8.25m0 0H4.875c-.621 0-1.125.504-1.125 1.125v11.25c0 .621.504 1.125 1.125 1.125h9.75c.621 0 1.125-.504 1.125-1.125V9.375c0-.621-.504-1.125-1.125-1.125H8.25Z" />
         </svg>
       );
+    case "check-list":
+      return (
+        <svg className={cls} fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
+          <path strokeLinecap="round" strokeLinejoin="round" d="M9 12.75 11.25 15 15 9.75M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
+        </svg>
+      );
     case "heart":
       return (
         <svg className={cls} fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
@@ -158,7 +165,12 @@ function NavIcon({ icon, className }: { icon: string; className?: string }) {
   }
 }
 
-export function AdminSidebar() {
+interface AdminSidebarProps {
+  currentUser?: { slug: string; name: string; email: string };
+  overdueTaskCount?: number;
+}
+
+export function AdminSidebar({ currentUser, overdueTaskCount = 0 }: AdminSidebarProps = {}) {
   const pathname = usePathname();
   const [mobileOpen, setMobileOpen] = useState(false);
   const [unreadApps, setUnreadApps] = useState(0);
@@ -253,6 +265,11 @@ export function AdminSidebar() {
                           {unreadApps}
                         </span>
                       )}
+                      {item.href === "/admin/tasks" && overdueTaskCount > 0 && (
+                        <span className="ml-auto flex items-center justify-center min-w-[20px] h-5 px-1.5 text-[10px] font-bold text-white bg-coral rounded-full">
+                          {overdueTaskCount}
+                        </span>
+                      )}
                     </Link>
                   );
                 })}
@@ -263,6 +280,15 @@ export function AdminSidebar() {
 
         {/* Footer */}
         <div className="p-4 border-t border-white/5 space-y-2">
+          {currentUser && (
+            <div className="px-3 py-2 text-xs">
+              <div className="text-foreground-subtle uppercase tracking-widest text-[10px]">
+                Signed in as
+              </div>
+              <div className="text-off-white font-medium mt-0.5">{currentUser.name}</div>
+              <div className="text-foreground-subtle text-[11px] truncate">{currentUser.email}</div>
+            </div>
+          )}
           <Link
             href="/"
             className="flex items-center gap-2 px-3 py-2 text-sm text-foreground-subtle hover:text-off-white transition-colors"
