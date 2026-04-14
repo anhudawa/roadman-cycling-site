@@ -559,3 +559,21 @@ export const bloodReports = pgTable(
     index("blood_reports_retest_due_idx").on(table.retestDueAt),
   ]
 );
+
+// ── Blood Engine: API Call Log (for rate limiting) ───────
+// One row per paid Anthropic call. Action is "interpret" or "parse-pdf".
+// Used by enforceRateLimit() to count calls per user inside a sliding window.
+export const bloodEngineApiCalls = pgTable(
+  "blood_engine_api_calls",
+  {
+    id: serial("id").primaryKey(),
+    userId: integer("user_id")
+      .notNull()
+      .references(() => bloodEngineUsers.id, { onDelete: "cascade" }),
+    action: text("action").notNull(),
+    createdAt: timestamp("created_at", { withTimezone: true }).notNull().defaultNow(),
+  },
+  (table) => [
+    index("blood_engine_api_calls_user_action_idx").on(table.userId, table.action, table.createdAt),
+  ]
+);

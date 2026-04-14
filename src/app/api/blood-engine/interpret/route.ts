@@ -1,6 +1,11 @@
 import { NextResponse } from "next/server";
 import { requireBloodEngineAccess } from "@/lib/blood-engine/access";
 import { recordTosAcceptance, saveReport } from "@/lib/blood-engine/db";
+import {
+  enforceRateLimit,
+  RateLimitError,
+  recordApiCall,
+} from "@/lib/blood-engine/rate-limit";
 import { runInterpretation } from "@/lib/blood-engine/run-interpretation";
 import {
   validateContext,
@@ -48,6 +53,19 @@ export async function POST(request: Request) {
     return NextResponse.json({ error: message }, { status: 400 });
   }
 
+  // Rate limit BEFORE the LLM call so we don't even bill an over-cap user.
+  try {
+    await enforceRateLimit(user.id, "interpret");
+  } catch (err) {
+    if (err instanceof RateLimitError) {
+      return NextResponse.json(
+        { error: err.message, retryAfterSeconds: err.retryAfterSeconds },
+        { status: 429, headers: { "Retry-After": String(err.retryAfterSeconds) } }
+      );
+    }
+    throw err;
+  }
+
   let result;
   try {
     result = await runInterpretation(context, rawResults);
@@ -64,6 +82,9 @@ export async function POST(request: Request) {
         : 502;
     return NextResponse.json({ error: message }, { status });
   }
+
+  // Only count the slot once the call actually succeeded.
+  await recordApiCall(user.id, "interpret");
 
   const report = await saveReport({
     userId: user.id,

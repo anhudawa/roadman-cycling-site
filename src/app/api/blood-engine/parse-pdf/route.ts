@@ -2,6 +2,11 @@ import Anthropic from "@anthropic-ai/sdk";
 import { NextResponse } from "next/server";
 import { requireBloodEngineAccess } from "@/lib/blood-engine/access";
 import { isValidMarkerId, MARKERS, type MarkerId } from "@/lib/blood-engine/markers";
+import {
+  enforceRateLimit,
+  RateLimitError,
+  recordApiCall,
+} from "@/lib/blood-engine/rate-limit";
 import { normalize } from "@/lib/blood-engine/units";
 
 /**
@@ -20,7 +25,19 @@ export const maxDuration = 60;
 const MAX_SIZE_BYTES = 10 * 1024 * 1024;
 
 export async function POST(request: Request) {
-  await requireBloodEngineAccess();
+  const user = await requireBloodEngineAccess();
+
+  try {
+    await enforceRateLimit(user.id, "parse-pdf");
+  } catch (err) {
+    if (err instanceof RateLimitError) {
+      return NextResponse.json(
+        { error: err.message, retryAfterSeconds: err.retryAfterSeconds },
+        { status: 429, headers: { "Retry-After": String(err.retryAfterSeconds) } }
+      );
+    }
+    throw err;
+  }
 
   const apiKey = process.env.ANTHROPIC_API_KEY;
   if (!apiKey) {
@@ -101,6 +118,9 @@ ${markerCatalogue}`;
     console.error("[blood-engine/parse-pdf] Anthropic call failed:", err);
     return NextResponse.json({ error: "PDF extraction failed" }, { status: 502 });
   }
+
+  // Charge a slot only once the upstream call succeeded.
+  await recordApiCall(user.id, "parse-pdf");
 
   let parsed;
   try {
