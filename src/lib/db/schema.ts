@@ -371,6 +371,26 @@ export const savedViews = pgTable(
   ]
 );
 
+// ── CRM: Notifications ────────────────────────────────────
+export const notifications = pgTable(
+  "notifications",
+  {
+    id: serial("id").primaryKey(),
+    recipientSlug: text("recipient_slug").notNull(),
+    type: text("type").notNull(), // 'mention' | 'task_assigned' | 'stage_change'
+    title: text("title").notNull(),
+    body: text("body"),
+    link: text("link"),
+    readAt: timestamp("read_at", { withTimezone: true }),
+    createdAt: timestamp("created_at", { withTimezone: true }).notNull().defaultNow(),
+  },
+  (table) => [
+    index("notifications_recipient_slug_idx").on(table.recipientSlug),
+    index("notifications_read_at_idx").on(table.readAt),
+    index("notifications_created_at_idx").on(table.createdAt),
+  ]
+);
+
 export const episodeDownloadsCache = pgTable("episode_downloads_cache", {
   episodeId: text("episode_id").primaryKey(),
   downloads: integer("downloads").notNull(),

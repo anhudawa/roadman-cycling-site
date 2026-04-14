@@ -132,6 +132,39 @@ function beehiivStatusClass(status: string): string {
   }
 }
 
+const MENTION_SLUGS = new Set(["ted", "sarah", "wes", "matthew"]);
+
+/** Render note body: linkify @-mentions, preserve newlines. Returns React nodes. */
+function renderNoteBody(body: string): React.ReactNode[] {
+  const lines = body.split(/\r?\n/);
+  const nodes: React.ReactNode[] = [];
+  lines.forEach((line, lineIdx) => {
+    const parts = line.split(/(@[a-zA-Z]+)/g);
+    parts.forEach((part, partIdx) => {
+      const key = `${lineIdx}-${partIdx}`;
+      if (part.startsWith("@")) {
+        const slug = part.slice(1).toLowerCase();
+        if (MENTION_SLUGS.has(slug)) {
+          nodes.push(
+            <span
+              key={key}
+              className="text-accent font-medium bg-accent/10 px-1 rounded"
+            >
+              {part}
+            </span>
+          );
+          return;
+        }
+      }
+      if (part) nodes.push(<span key={key}>{part}</span>);
+    });
+    if (lineIdx < lines.length - 1) {
+      nodes.push(<br key={`br-${lineIdx}`} />);
+    }
+  });
+  return nodes;
+}
+
 function activityDotColor(type: string): string {
   switch (type) {
     case "contact_submission":
@@ -502,7 +535,7 @@ export function ContactDetail({
               className="w-full mb-2 px-3 py-2 text-sm bg-background-deep border border-white/10 text-off-white rounded focus:outline-none focus:border-coral/50"
             />
             <textarea
-              placeholder="Body (optional)"
+              placeholder="Body (optional) — mention teammates with @ted, @sarah, @wes, @matthew"
               value={noteBody}
               onChange={(e) => setNoteBody(e.target.value)}
               rows={3}
@@ -528,6 +561,7 @@ export function ContactDetail({
               <ol className="space-y-4">
                 {activities.map((a) => {
                   const isEmail = a.type === "email_sent";
+                  const isNote = a.type === "note";
                   const isLowSignal = a.type === "email_opened" || a.type === "email_clicked";
                   const emailStatus =
                     isEmail && a.meta && typeof a.meta.status === "string"
@@ -571,6 +605,8 @@ export function ContactDetail({
                         className={`flex-1 pb-2 ${
                           isEmail
                             ? "border-l-2 border-coral/30 pl-3 -ml-1 bg-coral/[0.03] rounded-r"
+                            : isNote
+                            ? "border-l-2 border-blue-400/40 pl-3 -ml-1 bg-blue-400/[0.03] rounded-r"
                             : ""
                         }`}
                       >
@@ -591,9 +627,15 @@ export function ContactDetail({
                           <p className="text-xs text-cyan-300/80 mt-1 truncate">{clickLink}</p>
                         )}
                         {a.body && (
-                          <p className="text-sm text-foreground-muted mt-2 whitespace-pre-wrap">
-                            {a.body}
-                          </p>
+                          isNote ? (
+                            <p className="text-[15px] text-off-white/90 mt-2 leading-relaxed">
+                              {renderNoteBody(a.body)}
+                            </p>
+                          ) : (
+                            <p className="text-sm text-foreground-muted mt-2 whitespace-pre-wrap">
+                              {a.body}
+                            </p>
+                          )
                         )}
                       </div>
                     </li>
