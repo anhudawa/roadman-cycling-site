@@ -172,7 +172,82 @@ export async function fetchSubscriberGrowth(
   }
 }
 
-// ── Newsletter Posts ─────────────────────────────────────
+// ── Newsletter Posts (with content) ──────────────────────
+export interface NewsletterIssue {
+  id: string;
+  title: string;
+  subtitle: string | null;
+  slug: string;
+  subject: string;
+  previewText: string | null;
+  thumbnailUrl: string | null;
+  webUrl: string;
+  publishDate: string | null;
+  content: string | null;
+}
+
+export async function fetchNewsletterIssues(
+  limit = 50
+): Promise<NewsletterIssue[]> {
+  try {
+    const pubId = getPublicationId();
+    const allPosts: NewsletterIssue[] = [];
+    let page = 1;
+    let hasMore = true;
+
+    while (hasMore && allPosts.length < limit) {
+      const url = new URL(`${BASE_URL}/publications/${pubId}/posts`);
+      url.searchParams.set("limit", String(Math.min(limit - allPosts.length, 50)));
+      url.searchParams.set("page", String(page));
+      url.searchParams.set("status", "confirmed");
+      url.searchParams.set("expand[]", "free_web_content");
+
+      const res = await fetchWithTimeout(url.toString(), {
+        headers: getHeaders(),
+        next: { revalidate: 300 },
+      });
+
+      if (!res.ok) break;
+      const json = await res.json();
+      const posts = json.data ?? [];
+      if (posts.length === 0) break;
+
+      for (const p of posts) {
+        allPosts.push({
+          id: p.id,
+          title: p.title ?? "",
+          subtitle: p.subtitle ?? null,
+          slug: p.slug ?? "",
+          subject: p.subject_line ?? "",
+          previewText: p.preview_text ?? null,
+          thumbnailUrl: p.thumbnail_url ?? null,
+          webUrl: p.web_url ?? "",
+          publishDate: p.publish_date
+            ? new Date(p.publish_date * 1000).toISOString()
+            : null,
+          content: p.content?.free?.web ?? null,
+        });
+      }
+
+      hasMore = posts.length >= 50;
+      page++;
+    }
+
+    return allPosts;
+  } catch (err) {
+    console.error("[Beehiiv] fetchNewsletterIssues error:", err);
+    return [];
+  }
+}
+
+export async function fetchNewsletterIssueBySlug(
+  slug: string
+): Promise<NewsletterIssue | null> {
+  const issues = await fetchNewsletterIssues(100);
+  return issues.find((i) => i.slug === slug) ?? null;
+}
+
+// ── Newsletter Posts (stats only) ───────────────────────
 export interface NewsletterPost {
   id: string;
   title: string;

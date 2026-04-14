@@ -1,8 +1,10 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import { Header, Footer, Section, Container } from "@/components/layout";
 import { ScrollReveal } from "@/components/ui";
 import { EmailCapture } from "@/components/features/conversion/EmailCapture";
 import { JsonLd } from "@/components/seo/JsonLd";
+import { fetchNewsletterIssues } from "@/lib/integrations/beehiiv";
 
 export const metadata: Metadata = {
   title: "Newsletter — Weekly Cycling Insights",
@@ -20,30 +22,10 @@ export const metadata: Metadata = {
   },
 };
 
-const pastIssues = [
-  {
-    title: "Why 80% of your training should feel embarrassingly easy",
-    topic: "Training",
-  },
-  {
-    title: "The fuelling mistake that's costing you 20 watts on climbs",
-    topic: "Nutrition",
-  },
-  {
-    title: "What Dan Lorang told me about building endurance at Bora",
-    topic: "Coaching",
-  },
-  {
-    title: "3 core exercises that fixed my lower back pain on the bike",
-    topic: "S&C",
-  },
-  {
-    title: "Why your recovery rides are making you slower (and what to do instead)",
-    topic: "Recovery",
-  },
-];
+export const revalidate = 3600; // Revalidate every hour
 
-export default function NewsletterPage() {
+export default async function NewsletterPage() {
+  const issues = await fetchNewsletterIssues(20);
   return (
     <>
       <JsonLd
@@ -157,33 +139,48 @@ export default function NewsletterPage() {
           </Container>
         </Section>
 
-        <Section background="deep-purple" grain>
-          <Container width="narrow">
-            <ScrollReveal direction="up">
-              <h2
-                className="font-heading text-off-white text-center mb-12"
-                style={{ fontSize: "var(--text-section)" }}
-              >
-                RECENT ISSUES
-              </h2>
-            </ScrollReveal>
+        {issues.length > 0 && (
+          <Section background="deep-purple" grain>
+            <Container width="narrow">
+              <ScrollReveal direction="up">
+                <h2
+                  className="font-heading text-off-white text-center mb-12"
+                  style={{ fontSize: "var(--text-section)" }}
+                >
+                  RECENT ISSUES
+                </h2>
+              </ScrollReveal>
 
-            <div className="space-y-4">
-              {pastIssues.map((issue, i) => (
-                <ScrollReveal key={issue.title} direction="left" delay={i * 0.08}>
-                  <div className="flex items-center gap-4 bg-white/5 rounded-lg p-4">
-                    <span className="text-xs text-coral font-heading tracking-widest shrink-0 w-20">
-                      {issue.topic.toUpperCase()}
-                    </span>
-                    <p className="text-foreground-muted text-sm">
-                      {issue.title}
-                    </p>
-                  </div>
-                </ScrollReveal>
-              ))}
-            </div>
-          </Container>
-        </Section>
+              <div className="space-y-4">
+                {issues.map((issue, i) => {
+                  const date = issue.publishDate
+                    ? new Date(issue.publishDate).toLocaleDateString("en-GB", {
+                        day: "numeric",
+                        month: "short",
+                      })
+                    : null;
+                  return (
+                    <ScrollReveal key={issue.id} direction="left" delay={i * 0.08}>
+                      <Link
+                        href={`/newsletter/${issue.slug}`}
+                        className="flex items-center gap-4 bg-white/5 rounded-lg p-4 hover:bg-white/10 transition-colors group"
+                      >
+                        {date && (
+                          <span className="text-xs text-coral font-heading tracking-widest shrink-0 w-20">
+                            {date.toUpperCase()}
+                          </span>
+                        )}
+                        <p className="text-foreground-muted text-sm group-hover:text-off-white transition-colors">
+                          {issue.title}
+                        </p>
+                      </Link>
+                    </ScrollReveal>
+                  );
+                })}
+              </div>
+            </Container>
+          </Section>
+        )}
 
         <EmailCapture
           variant="banner"

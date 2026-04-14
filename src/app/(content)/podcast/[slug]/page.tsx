@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { MDXRemote } from "next-mdx-remote/rsc";
 import { Header, Footer, Section, Container } from "@/components/layout";
-import { Badge, Button } from "@/components/ui";
+import { AICitationBlock, Badge, Button } from "@/components/ui";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { getEpisodeBySlug, getAllEpisodeSlugs } from "@/lib/podcast";
 import { PodcastLinks } from "@/components/features/podcast/PodcastLinks";
@@ -306,7 +306,10 @@ export default async function EpisodePage({
         <Section background="charcoal" className="!py-12">
           <Container width="narrow">
             <article className="prose-roadman prose-episode">
-              <MDXRemote source={episode.content} />
+              <MDXRemote
+                source={episode.content}
+                components={{ AICitationBlock }}
+              />
             </article>
 
             {/* Transcript */}

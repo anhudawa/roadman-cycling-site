@@ -208,6 +208,27 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 /* ============================================
+   Newsletter Content (Beehiiv HTML overrides)
+   ============================================ */
+.newsletter-content { color: var(--color-foreground-muted); line-height: 1.8; font-size: 1.0625rem; }
+.newsletter-content * { max-width: 100% !important; box-sizing: border-box; }
+.newsletter-content table { width: 100% !important; }
+.newsletter-content td, .newsletter-content th { background: transparent !important; }
+.newsletter-content div, .newsletter-content td, .newsletter-content p, .newsletter-content span, .newsletter-content li {
+  color: var(--color-foreground-muted) !important;
+  font-family: var(--font-body), sans-serif !important;
+  background-color: transparent !important;
+}
+.newsletter-content h1, .newsletter-content h2, .newsletter-content h3, .newsletter-content h4 {
+  color: var(--color-off-white) !important;
+  font-family: var(--font-heading), sans-serif !important;
+  font-weight: 400 !important;
+}
+.newsletter-content a { color: var(--color-coral) !important; }
+.newsletter-content img { border-radius: 0.5rem; height: auto; }
+.newsletter-content hr { border-color: rgba(255,255,255,0.1) !important; }
+
+/* ============================================
    Focus Styles (Accessibility + Glowing Ring)
    ============================================ */
 

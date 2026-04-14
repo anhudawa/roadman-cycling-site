@@ -1,3 +1,4 @@
+export { AICitationBlock } from "./AICitationBlock";
 export { Button } from "./Button";
 export { Badge } from "./Badge";
 export { Card } from "./Card";
