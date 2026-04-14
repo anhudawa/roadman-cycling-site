@@ -33,6 +33,16 @@ const footerColumns = {
       { label: "All Tools", href: "/tools" },
     ],
   },
+  coaching: {
+    title: "Coaching",
+    links: [
+      { label: "Coaching Overview", href: "/coaching" },
+      { label: "Cycling Coach Ireland", href: "/coaching/ireland" },
+      { label: "Cycling Coach UK", href: "/coaching/uk" },
+      { label: "Cycling Coach USA", href: "/coaching/usa" },
+      { label: "Apply Now", href: "/apply" },
+    ],
+  },
   community: {
     title: "Community",
     links: [
@@ -148,7 +158,7 @@ export function Footer() {
           </div>
 
           {/* Column Grid */}
-          <div className="grid grid-cols-2 md:grid-cols-5 gap-6 md:gap-8 mb-16">
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6 md:gap-8 mb-16">
             {Object.values(footerColumns).map((section) => (
               <div key={section.title}>
                 <h4 className="font-heading text-lg text-off-white mb-4 tracking-wider">
