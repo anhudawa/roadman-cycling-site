@@ -23,6 +23,13 @@ interface ContextState {
   drawDate: string;
 }
 
+export interface InitialContext {
+  age: number;
+  sex: Sex;
+  trainingHoursPerWeek: number;
+  trainingPhase: TrainingPhase;
+}
+
 interface ResultRow {
   value: string;
   unit: string;
@@ -44,14 +51,26 @@ function todayIso(): string {
   return `${d.getUTCFullYear()}-${String(d.getUTCMonth() + 1).padStart(2, "0")}-${String(d.getUTCDate()).padStart(2, "0")}`;
 }
 
-export function NewReportWizard({ tosAlreadyAccepted }: { tosAlreadyAccepted: boolean }) {
+interface Props {
+  tosAlreadyAccepted: boolean;
+  initialContext?: InitialContext | null;
+  hasPreviousReports?: boolean;
+}
+
+export function NewReportWizard({
+  tosAlreadyAccepted,
+  initialContext = null,
+  hasPreviousReports = false,
+}: Props) {
   const router = useRouter();
   const [step, setStep] = useState<Step>("context");
   const [context, setContext] = useState<ContextState>({
-    age: "",
-    sex: "m",
-    trainingHoursPerWeek: "",
-    trainingPhase: "base",
+    age: initialContext?.age ? String(initialContext.age) : "",
+    sex: initialContext?.sex ?? "m",
+    trainingHoursPerWeek: initialContext?.trainingHoursPerWeek
+      ? String(initialContext.trainingHoursPerWeek)
+      : "",
+    trainingPhase: initialContext?.trainingPhase ?? "base",
     symptoms: [],
     drawDate: todayIso(),
   });
@@ -74,6 +93,12 @@ export function NewReportWizard({ tosAlreadyAccepted }: { tosAlreadyAccepted: bo
         className="space-y-6"
       >
         <StepHeader current={1} />
+
+        {hasPreviousReports && initialContext ? (
+          <p className="text-xs text-foreground-subtle bg-background-elevated border border-white/5 rounded-md px-3 py-2">
+            Pre-filled from your last report. Update anything that&apos;s changed.
+          </p>
+        ) : null}
 
         <Field label="Age">
           <input
