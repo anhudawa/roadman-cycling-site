@@ -1,273 +1,158 @@
-"use client";
+import Link from "next/link";
+import { desc, eq } from "drizzle-orm";
+import { db } from "@/lib/db";
+import { cohortApplications } from "@/lib/db/schema";
+import { requireAuth } from "@/lib/admin/auth";
+import {
+  APPLICATION_STAGES,
+  isApplicationStage,
+  type ApplicationStage,
+} from "@/lib/crm/pipeline";
+import { getOrCreateContactForApplication } from "@/lib/crm/contacts";
+import { PipelineBoard, type KanbanApplication, type StageMap } from "./_components/PipelineBoard";
+import { ApplicationsList } from "./_components/ApplicationsList";
 
-import { useEffect, useState } from "react";
+export const dynamic = "force-dynamic";
 
-interface Application {
-  id: number;
-  name: string;
-  email: string;
-  goal: string;
-  hours: string;
-  ftp: string | null;
-  frustration: string;
-  cohort: string;
-  persona: string | null;
-  status: string;
-  readAt: string | null;
-  createdAt: string;
+interface PageProps {
+  searchParams: Promise<Record<string, string | string[] | undefined>>;
 }
 
-const STATUS_OPTIONS = [
-  { value: "awaiting_response", label: "Awaiting Response", color: "bg-amber-500/10 text-amber-400 border-amber-500/20" },
-  { value: "responded", label: "Responded", color: "bg-blue-500/10 text-blue-400 border-blue-500/20" },
-  { value: "follow_up", label: "Need Follow Up", color: "bg-orange-500/10 text-orange-400 border-orange-500/20" },
-  { value: "signed_up", label: "Signed Up", color: "bg-green-500/10 text-green-400 border-green-500/20" },
-] as const;
+function serialize(row: typeof cohortApplications.$inferSelect, contactId: number | null): KanbanApplication {
+  return {
+    id: row.id,
+    name: row.name,
+    email: row.email,
+    goal: row.goal,
+    hours: row.hours,
+    ftp: row.ftp,
+    frustration: row.frustration,
+    cohort: row.cohort,
+    persona: row.persona,
+    status: row.status,
+    readAt: row.readAt ? row.readAt.toISOString() : null,
+    createdAt: row.createdAt.toISOString(),
+    contactId,
+  };
+}
 
-export default function ApplicationsPage() {
-  const [applications, setApplications] = useState<Application[]>([]);
-  const [selected, setSelected] = useState<Application | null>(null);
-  const [loading, setLoading] = useState(true);
+export default async function ApplicationsPage({ searchParams }: PageProps) {
+  await requireAuth();
+  const sp = await searchParams;
 
-  useEffect(() => {
-    fetch("/api/admin/applications")
-      .then((r) => r.json())
-      .then((data) => {
-        setApplications(data.applications || []);
-        setLoading(false);
-      })
-      .catch(() => setLoading(false));
-  }, []);
+  const viewRaw = sp.view;
+  const view = Array.isArray(viewRaw) ? viewRaw[0] : viewRaw;
+  const currentView: "kanban" | "list" = view === "list" ? "list" : "kanban";
 
-  async function markRead(app: Application) {
-    setSelected(app);
-    if (!app.readAt) {
-      await fetch("/api/admin/applications", {
-        method: "PATCH",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ id: app.id }),
-      });
-      setApplications((prev) =>
-        prev.map((a) =>
-          a.id === app.id ? { ...a, readAt: new Date().toISOString() } : a
-        )
+  const cohortRaw = sp.cohort;
+  const cohort = Array.isArray(cohortRaw) ? cohortRaw[0] : cohortRaw;
+  const currentCohort = cohort && cohort.trim() ? cohort : "all";
+
+  const cohortsRows = await db
+    .selectDistinct({ cohort: cohortApplications.cohort })
+    .from(cohortApplications);
+  const cohorts = cohortsRows.map((c) => c.cohort).filter(Boolean) as string[];
+
+  let initialStages: StageMap = {
+    awaiting_response: [],
+    contacted: [],
+    qualified: [],
+    offered: [],
+    accepted: [],
+    rejected: [],
+  };
+
+  if (currentView === "kanban") {
+    const baseQuery = db
+      .select()
+      .from(cohortApplications)
+      .orderBy(desc(cohortApplications.createdAt));
+    const rows = await (currentCohort !== "all"
+      ? baseQuery.where(eq(cohortApplications.cohort, currentCohort))
+      : baseQuery);
+
+    const emailToContactId = new Map<string, number>();
+    for (const r of rows) {
+      const key = r.email.toLowerCase();
+      if (emailToContactId.has(key)) continue;
+      try {
+        const cid = await getOrCreateContactForApplication({
+          email: r.email,
+          name: r.name,
+          goal: r.goal,
+          hours: r.hours,
+          ftp: r.ftp,
+          cohort: r.cohort,
+          persona: r.persona,
+          createdAt: r.createdAt,
+        });
+        emailToContactId.set(key, cid);
+      } catch (err) {
+        console.error("[applications page] upsert failed", err);
+      }
+    }
+
+    for (const r of rows) {
+      const stage: ApplicationStage = isApplicationStage(r.status)
+        ? r.status
+        : "awaiting_response";
+      initialStages[stage].push(
+        serialize(r, emailToContactId.get(r.email.toLowerCase()) ?? null)
       );
     }
   }
 
-  async function updateStatus(app: Application, status: string) {
-    await fetch("/api/admin/applications", {
-      method: "PATCH",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ id: app.id, status }),
-    });
-    setApplications((prev) =>
-      prev.map((a) => (a.id === app.id ? { ...a, status } : a))
-    );
-    setSelected((prev) => (prev?.id === app.id ? { ...prev, status } : prev));
-  }
-
-  function timeAgo(dateStr: string) {
-    const diff = Date.now() - new Date(dateStr).getTime();
-    const mins = Math.floor(diff / 60000);
-    if (mins < 60) return `${mins}m ago`;
-    const hrs = Math.floor(mins / 60);
-    if (hrs < 24) return `${hrs}h ago`;
-    return `${Math.floor(hrs / 24)}d ago`;
-  }
-
-  const personaColors: Record<string, string> = {
-    plateau: "bg-red-500/10 text-red-400 border-red-500/20",
-    "event-prep": "bg-blue-500/10 text-blue-400 border-blue-500/20",
-    comeback: "bg-amber-500/10 text-amber-400 border-amber-500/20",
-    listener: "bg-gray-500/10 text-gray-400 border-gray-500/20",
-  };
-
-  if (loading) {
-    return (
-      <div className="p-8 text-foreground-muted">Loading applications...</div>
-    );
-  }
-
-  const unreadCount = applications.filter((a) => !a.readAt).length;
+  const totalCount = APPLICATION_STAGES.reduce(
+    (sum, s) => sum + initialStages[s].length,
+    0
+  );
 
   return (
     <div className="p-6">
-      <div className="flex items-center justify-between mb-6">
+      <div className="flex items-center justify-between mb-6 gap-4 flex-wrap">
         <div>
-          <h1 className="font-heading text-2xl text-off-white">
-            COHORT APPLICATIONS
+          <h1 className="font-heading text-2xl text-off-white tracking-wider uppercase">
+            Applications
           </h1>
           <p className="text-foreground-muted text-sm mt-1">
-            {applications.length} total &middot; {unreadCount} unread
+            {currentView === "kanban"
+              ? `${totalCount} in pipeline`
+              : "List view"}
           </p>
         </div>
-      </div>
-
-      <div className="flex gap-6 h-[calc(100vh-200px)]">
-        {/* List */}
-        <div className="w-1/3 overflow-y-auto space-y-1 pr-2">
-          {applications.map((app) => (
-            <button
-              key={app.id}
-              onClick={() => markRead(app)}
-              className={`w-full text-left p-4 rounded-lg border transition-colors ${
-                selected?.id === app.id
-                  ? "border-coral/30 bg-coral/5"
-                  : "border-white/5 bg-white/[0.02] hover:bg-white/[0.04]"
-              }`}
-            >
-              <div className="flex items-center gap-2 mb-1">
-                {!app.readAt && (
-                  <span className="w-2 h-2 rounded-full bg-coral shrink-0" />
-                )}
-                <span className="text-off-white text-sm font-medium truncate">
-                  {app.name}
-                </span>
-                <span className="text-foreground-subtle text-xs ml-auto shrink-0">
-                  {timeAgo(app.createdAt)}
-                </span>
-              </div>
-              <p className="text-foreground-muted text-xs truncate">
-                {app.goal}
-              </p>
-              <div className="flex items-center gap-2 mt-2 flex-wrap">
-                {app.persona && (
-                  <span
-                    className={`text-[10px] px-2 py-0.5 rounded-full border font-medium ${
-                      personaColors[app.persona] || personaColors.listener
-                    }`}
-                  >
-                    {app.persona}
-                  </span>
-                )}
-                {(() => {
-                  const s = STATUS_OPTIONS.find((o) => o.value === (app.status || "awaiting_response"));
-                  return s ? (
-                    <span className={`text-[10px] px-2 py-0.5 rounded-full border font-medium ${s.color}`}>
-                      {s.label}
-                    </span>
-                  ) : null;
-                })()}
-                <span className="text-foreground-subtle text-[10px]">
-                  {app.hours}
-                </span>
-              </div>
-            </button>
-          ))}
-          {applications.length === 0 && (
-            <p className="text-foreground-subtle text-sm p-4">
-              No applications yet.
-            </p>
-          )}
-        </div>
-
-        {/* Detail */}
-        <div className="flex-1 overflow-y-auto">
-          {selected ? (
-            <div className="bg-white/[0.02] rounded-lg border border-white/5 p-8">
-              <div className="flex items-start justify-between mb-6">
-                <div>
-                  <h2 className="font-heading text-xl text-off-white">
-                    {selected.name}
-                  </h2>
-                  <p className="text-foreground-muted text-sm">{selected.email}</p>
-                </div>
-                <div className="flex items-center gap-2">
-                  {selected.persona && (
-                    <span
-                      className={`text-xs px-3 py-1 rounded-full border font-medium ${
-                        personaColors[selected.persona] || personaColors.listener
-                      }`}
-                    >
-                      {selected.persona}
-                    </span>
-                  )}
-                  <a
-                    href={`mailto:${selected.email}?subject=Your NDY Cohort 2 Application`}
-                    className="inline-flex items-center gap-1.5 px-4 py-2 rounded-lg bg-coral text-off-white text-sm font-medium hover:bg-coral/90 transition-colors"
-                  >
-                    Reply
-                  </a>
-                </div>
-              </div>
-
-              {/* Status selector */}
-              <div className="mb-6 p-4 rounded-lg bg-white/[0.02] border border-white/5">
-                <p className="text-foreground-subtle text-xs tracking-wider mb-3">STATUS</p>
-                <div className="flex flex-wrap gap-2">
-                  {STATUS_OPTIONS.map((opt) => (
-                    <button
-                      key={opt.value}
-                      onClick={() => updateStatus(selected, opt.value)}
-                      className={`text-xs px-3 py-1.5 rounded-full border font-medium transition-all ${
-                        (selected.status || "awaiting_response") === opt.value
-                          ? opt.color + " ring-1 ring-current"
-                          : "border-white/10 text-foreground-subtle hover:border-white/20"
-                      }`}
-                    >
-                      {opt.label}
-                    </button>
-                  ))}
-                </div>
-              </div>
-
-              <div className="grid grid-cols-2 gap-6">
-                <div>
-                  <p className="text-foreground-subtle text-xs tracking-wider mb-1">
-                    GOAL
-                  </p>
-                  <p className="text-off-white text-sm">{selected.goal}</p>
-                </div>
-                <div>
-                  <p className="text-foreground-subtle text-xs tracking-wider mb-1">
-                    HOURS/WEEK
-                  </p>
-                  <p className="text-off-white text-sm">{selected.hours}</p>
-                </div>
-                <div>
-                  <p className="text-foreground-subtle text-xs tracking-wider mb-1">
-                    FRUSTRATION
-                  </p>
-                  <p className="text-off-white text-sm">{selected.frustration}</p>
-                </div>
-                <div>
-                  <p className="text-foreground-subtle text-xs tracking-wider mb-1">
-                    FTP
-                  </p>
-                  <p className="text-off-white text-sm">
-                    {selected.ftp || "Not provided"}
-                  </p>
-                </div>
-                <div>
-                  <p className="text-foreground-subtle text-xs tracking-wider mb-1">
-                    APPLIED
-                  </p>
-                  <p className="text-off-white text-sm">
-                    {new Date(selected.createdAt).toLocaleDateString("en-GB", {
-                      day: "numeric",
-                      month: "long",
-                      year: "numeric",
-                      hour: "2-digit",
-                      minute: "2-digit",
-                    })}
-                  </p>
-                </div>
-                <div>
-                  <p className="text-foreground-subtle text-xs tracking-wider mb-1">
-                    COHORT
-                  </p>
-                  <p className="text-off-white text-sm">{selected.cohort}</p>
-                </div>
-              </div>
-            </div>
-          ) : (
-            <div className="flex items-center justify-center h-full text-foreground-subtle">
-              Select an application to view details
-            </div>
-          )}
+        <div className="inline-flex rounded-lg border border-white/10 bg-background-elevated p-1 text-xs">
+          <Link
+            href={{ pathname: "/admin/applications", query: { view: "kanban" } }}
+            className={`px-3 py-1.5 rounded-md font-heading tracking-wider uppercase transition ${
+              currentView === "kanban"
+                ? "bg-coral/15 text-coral"
+                : "text-foreground-subtle hover:text-off-white"
+            }`}
+          >
+            Kanban
+          </Link>
+          <Link
+            href={{ pathname: "/admin/applications", query: { view: "list" } }}
+            className={`px-3 py-1.5 rounded-md font-heading tracking-wider uppercase transition ${
+              currentView === "list"
+                ? "bg-coral/15 text-coral"
+                : "text-foreground-subtle hover:text-off-white"
+            }`}
+          >
+            List
+          </Link>
         </div>
       </div>
+
+      {currentView === "kanban" ? (
+        <PipelineBoard
+          initialStages={initialStages}
+          cohorts={cohorts}
+          initialCohort={currentCohort}
+        />
+      ) : (
+        <ApplicationsList />
+      )}
     </div>
   );
 }

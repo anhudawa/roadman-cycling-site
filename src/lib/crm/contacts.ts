@@ -126,6 +126,41 @@ export async function addActivity(
   return inserted[0];
 }
 
+export interface ApplicationLike {
+  email: string;
+  name?: string | null;
+  goal?: string | null;
+  hours?: string | null;
+  ftp?: string | null;
+  cohort?: string | null;
+  persona?: string | null;
+  createdAt?: Date | string | null;
+}
+
+export async function getOrCreateContactForApplication(
+  app: ApplicationLike
+): Promise<number> {
+  const firstSeenAt = app.createdAt
+    ? app.createdAt instanceof Date
+      ? app.createdAt
+      : new Date(app.createdAt)
+    : undefined;
+  const contact = await upsertContact({
+    email: app.email,
+    name: app.name ?? null,
+    source: "cohort_application",
+    customFields: {
+      goal: app.goal ?? null,
+      hours: app.hours ?? null,
+      ftp: app.ftp ?? null,
+      cohort: app.cohort ?? null,
+      persona: app.persona ?? null,
+    },
+    firstSeenAt,
+  });
+  return contact.id;
+}
+
 export async function getContactById(id: number): Promise<Contact | null> {
   const rows = await db.select().from(contacts).where(eq(contacts.id, id)).limit(1);
   return rows[0] ?? null;

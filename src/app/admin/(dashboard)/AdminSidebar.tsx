@@ -174,19 +174,21 @@ export function AdminSidebar({ currentUser, overdueTaskCount = 0 }: AdminSidebar
   const pathname = usePathname();
   const [mobileOpen, setMobileOpen] = useState(false);
   const [unreadApps, setUnreadApps] = useState(0);
+  const [awaitingApps, setAwaitingApps] = useState(0);
 
   useEffect(() => {
-    async function fetchUnread() {
+    async function fetchCounts() {
       try {
         const res = await fetch("/api/admin/applications?count=1");
         if (res.ok) {
           const data = await res.json();
           setUnreadApps(data.unread ?? 0);
+          setAwaitingApps(data.awaiting ?? 0);
         }
       } catch { /* silent */ }
     }
-    fetchUnread();
-    const id = setInterval(fetchUnread, 30_000);
+    fetchCounts();
+    const id = setInterval(fetchCounts, 30_000);
     return () => clearInterval(id);
   }, []);
 
@@ -260,9 +262,12 @@ export function AdminSidebar({ currentUser, overdueTaskCount = 0 }: AdminSidebar
                     >
                       <NavIcon icon={item.icon} />
                       {item.label}
-                      {item.href === "/admin/applications" && unreadApps > 0 && (
-                        <span className="ml-auto flex items-center justify-center min-w-[20px] h-5 px-1.5 text-[10px] font-bold text-white bg-coral rounded-full">
-                          {unreadApps}
+                      {item.href === "/admin/applications" && (awaitingApps > 0 || unreadApps > 0) && (
+                        <span
+                          className="ml-auto flex items-center justify-center min-w-[20px] h-5 px-1.5 text-[10px] font-bold text-white bg-coral rounded-full"
+                          title={`${awaitingApps} awaiting response`}
+                        >
+                          {awaitingApps > 0 ? awaitingApps : unreadApps}
                         </span>
                       )}
                       {item.href === "/admin/tasks" && overdueTaskCount > 0 && (
