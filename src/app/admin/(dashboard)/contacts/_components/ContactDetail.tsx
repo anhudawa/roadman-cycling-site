@@ -153,6 +153,10 @@ function activityDotColor(type: string): string {
     case "tag_added":
     case "tag_removed":
       return "bg-white/30";
+    case "email_opened":
+      return "bg-cyan-400/60";
+    case "email_clicked":
+      return "bg-cyan-400/60";
     case "task_created":
     case "task_completed":
       return "bg-yellow-400";
@@ -278,13 +282,13 @@ export function ContactDetail({
       if (!res.ok) {
         throw new Error(data.error ?? `Send failed (${res.status})`);
       }
-      setEmailToast("Email sent");
+      setEmailToast("Sent. Waiting for delivery confirmation...");
       setEmailOpen(false);
       setEmailSubject("");
       setEmailBody("");
       setEmailTemplateId("");
       router.refresh();
-      window.setTimeout(() => setEmailToast(null), 3000);
+      window.setTimeout(() => setEmailToast(null), 4500);
     } catch (err) {
       setEmailError(err instanceof Error ? err.message : "Send failed");
     } finally {
@@ -524,17 +528,38 @@ export function ContactDetail({
               <ol className="space-y-4">
                 {activities.map((a) => {
                   const isEmail = a.type === "email_sent";
+                  const isLowSignal = a.type === "email_opened" || a.type === "email_clicked";
                   const emailStatus =
                     isEmail && a.meta && typeof a.meta.status === "string"
                       ? (a.meta.status as string)
                       : null;
+                  const clickLink =
+                    a.type === "email_clicked" &&
+                    a.meta &&
+                    typeof a.meta.link === "string"
+                      ? (a.meta.link as string)
+                      : null;
                   return (
-                    <li key={a.id} className="flex gap-3">
+                    <li key={a.id} className={`flex gap-3 ${isLowSignal ? "opacity-60" : ""}`}>
                       <div className="flex flex-col items-center">
                         {isEmail ? (
                           <span className="mt-1 w-4 h-4 rounded-full bg-coral/20 border border-coral/40 flex items-center justify-center text-coral">
                             <svg className="w-2.5 h-2.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                               <path strokeLinecap="round" strokeLinejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 0 1-2.25 2.25h-15a2.25 2.25 0 0 1-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0 0 19.5 4.5h-15a2.25 2.25 0 0 0-2.25 2.25m19.5 0v.243a2.25 2.25 0 0 1-1.07 1.916l-7.5 4.615a2.25 2.25 0 0 1-2.36 0L3.32 8.91a2.25 2.25 0 0 1-1.07-1.916V6.75" />
+                            </svg>
+                          </span>
+                        ) : a.type === "email_opened" ? (
+                          <span className="mt-1 w-4 h-4 rounded-full bg-cyan-400/10 border border-cyan-400/30 flex items-center justify-center text-cyan-300">
+                            <svg className="w-2.5 h-2.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                              <path strokeLinecap="round" strokeLinejoin="round" d="M2.036 12.322a1.012 1.012 0 0 1 0-.639C3.423 7.51 7.36 4.5 12 4.5c4.638 0 8.573 3.007 9.963 7.178.07.207.07.431 0 .639C20.577 16.49 16.64 19.5 12 19.5c-4.638 0-8.573-3.007-9.963-7.178Z" />
+                              <path strokeLinecap="round" strokeLinejoin="round" d="M15 12a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" />
+                            </svg>
+                          </span>
+                        ) : a.type === "email_clicked" ? (
+                          <span className="mt-1 w-4 h-4 rounded-full bg-cyan-400/10 border border-cyan-400/30 flex items-center justify-center text-cyan-300">
+                            <svg className="w-2.5 h-2.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                              <path strokeLinecap="round" strokeLinejoin="round" d="M15 15 6.75 6.75M15 15v-4.5M15 15h-4.5" />
+                              <path strokeLinecap="round" strokeLinejoin="round" d="M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
                             </svg>
                           </span>
                         ) : (
@@ -562,6 +587,9 @@ export function ContactDetail({
                           {a.authorName ? ` · ${a.authorName}` : ""}
                           {emailStatus && emailStatus !== "sent" ? ` · ${emailStatus}` : ""}
                         </p>
+                        {clickLink && (
+                          <p className="text-xs text-cyan-300/80 mt-1 truncate">{clickLink}</p>
+                        )}
                         {a.body && (
                           <p className="text-sm text-foreground-muted mt-2 whitespace-pre-wrap">
                             {a.body}

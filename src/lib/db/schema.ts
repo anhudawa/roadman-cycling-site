@@ -310,9 +310,13 @@ export const emailMessages = pgTable(
     subject: text("subject").notNull(),
     body: text("body").notNull(),
     resendMessageId: text("resend_message_id"),
+    // queued | sent | delivered | bounced | complained | failed
     status: text("status").notNull().default("queued"),
     errorMessage: text("error_message"),
     sentAt: timestamp("sent_at", { withTimezone: true }),
+    deliveredAt: timestamp("delivered_at", { withTimezone: true }),
+    openedAt: timestamp("opened_at", { withTimezone: true }),
+    clickedAt: timestamp("clicked_at", { withTimezone: true }),
     createdAt: timestamp("created_at", { withTimezone: true }).notNull().defaultNow(),
   },
   (table) => [
