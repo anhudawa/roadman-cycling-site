@@ -6,9 +6,20 @@ import { listReports } from "@/lib/blood-engine/db";
 import { getRemainingHeadroom } from "@/lib/blood-engine/rate-limit";
 import type { InterpretationJSON, ReportContext } from "@/lib/blood-engine/schemas";
 import { computeTrends } from "@/lib/blood-engine/trends";
+import dynamicImport from "next/dynamic";
 import { CompareLauncher } from "./CompareLauncher";
-import { MarkerTrendCard } from "./MarkerTrendCard";
 import { MedicalDisclaimer } from "../MedicalDisclaimer";
+
+// Recharts is ~100KB gzipped. It's only needed once the user has 2+ reports,
+// so don't ship it to the first-run dashboard at all.
+const MarkerTrendCard = dynamicImport(
+  () => import("./MarkerTrendCard").then((m) => m.MarkerTrendCard),
+  {
+    loading: () => (
+      <div className="rounded-lg border border-white/10 bg-background-elevated p-5 h-[180px] animate-pulse" />
+    ),
+  }
+);
 
 export const dynamic = "force-dynamic";
 
