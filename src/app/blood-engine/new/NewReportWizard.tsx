@@ -289,9 +289,16 @@ export function NewReportWizard({
                           [m.id]: { ...prev[m.id], include: e.target.checked },
                         }))
                       }
-                      className="accent-coral w-4 h-4"
+                      className="accent-coral w-4 h-4 flex-shrink-0"
                     />
                     <span className="font-heading uppercase text-off-white">{m.displayName}</span>
+                    <span
+                      className="ml-1 inline-flex items-center justify-center w-4 h-4 rounded-full border border-white/20 text-[10px] text-foreground-subtle cursor-help"
+                      title={`${m.cyclingContext}\n\nAthlete-optimal: ${formatRange(m.optimal[context.sex])} ${m.canonicalUnit}\nStandard lab range: ${m.standardLabRange}`}
+                      aria-label={`${m.displayName} info: ${m.cyclingContext}`}
+                    >
+                      ?
+                    </span>
                   </label>
                   <input
                     type="number"
@@ -495,4 +502,11 @@ function chipClass(active: boolean) {
       ? "bg-coral text-off-white border-coral"
       : "bg-transparent text-foreground-muted border-white/15 hover:border-white/30",
   ].join(" ");
+}
+
+function formatRange(r: { low: number | null; high: number | null }): string {
+  if (r.low !== null && r.high !== null) return `${r.low}–${r.high}`;
+  if (r.low !== null) return `>${r.low}`;
+  if (r.high !== null) return `<${r.high}`;
+  return "—";
 }
