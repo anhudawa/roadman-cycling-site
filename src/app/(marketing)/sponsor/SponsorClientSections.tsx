@@ -59,10 +59,10 @@ const DURATION_OPTIONS: DurationOption[] = [
 ];
 
 const SLOT_TYPES: SlotType[] = [
-  { id: "pre-roll", name: "Pre-roll", baseRate: 900, description: "First thing listeners hear. Premium position." },
-  { id: "mid-roll", name: "Mid-roll", baseRate: 1200, description: "Peak attention. Lowest skip rate.", popular: true },
-  { id: "end-roll", name: "End-roll", baseRate: 500, description: "Frequency play. Lower cost, consistent presence." },
-  { id: "newsletter", name: "Newsletter", baseRate: 1800, description: "60,000 inboxes. 65% open rate. Direct to inbox." },
+  { id: "pre-roll", name: "Pre-roll", baseRate: 650, description: "First thing listeners hear. Premium position." },
+  { id: "mid-roll", name: "Mid-roll", baseRate: 500, description: "Peak attention. Lowest skip rate.", popular: true },
+  { id: "end-roll", name: "End-roll", baseRate: 250, description: "Frequency play. Lower cost, consistent presence." },
+  { id: "newsletter", name: "Newsletter", baseRate: 500, description: "60,000 inboxes. 65% open rate. Direct to inbox." },
 ];
 
 const EPISODES_PER_MONTH = 13; // 3/week × 4.33 weeks
@@ -75,7 +75,7 @@ const NEWSLETTERS_PER_MONTH = 4.33; // 1/week × 4.33 weeks
 function formatCurrency(value: number): string {
   return new Intl.NumberFormat("en-GB", {
     style: "currency",
-    currency: "GBP",
+    currency: "EUR",
     minimumFractionDigits: 0,
     maximumFractionDigits: 0,
   }).format(value);
@@ -223,7 +223,7 @@ function EventBlockCards({
             <div className="flex items-center gap-2 text-sm">
               <span className="text-coral font-medium">{event.availableSlots}</span>
               <span className="text-foreground-muted">
-                of {event.totalSlots} slots left
+                of {event.totalSlots} positions open
               </span>
             </div>
           </GlassCard>

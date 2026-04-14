@@ -8,14 +8,14 @@ import { FitIntegration } from "@/components/features/ndy/FitIntegration";
 export const metadata: Metadata = {
   title: "Not Done Yet — Premium Cycling Coaching",
   description:
-    "Personalised TrainingPeaks training plans, weekly coaching with Anthony Walsh, expert masterclasses, and a private community of serious cyclists. From $15/month.",
+    "Personalised TrainingPeaks training plans, weekly coaching with Anthony Walsh, expert masterclasses, and a private community of serious cyclists. From $15/month (Standard) or $195/month (Premium).",
   alternates: {
     canonical: "https://roadmancycling.com/community/not-done-yet",
   },
   openGraph: {
     title: "Not Done Yet — Premium Cycling Coaching",
     description:
-      "Personalised TrainingPeaks training plans, weekly coaching with Anthony Walsh, expert masterclasses, and a private community of serious cyclists. From $15/month.",
+      "Personalised TrainingPeaks training plans, weekly coaching with Anthony Walsh, expert masterclasses, and a private community of serious cyclists. From $15/month (Standard) or $195/month (Premium).",
     type: "website",
     url: "https://roadmancycling.com/community/not-done-yet",
   },

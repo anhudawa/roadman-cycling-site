@@ -244,23 +244,13 @@ export default async function CoachingLocationPage({ params }: Props) {
             "@type": "Country",
             name: data.areaServed,
           },
-          hasOfferCatalog: {
-            "@type": "OfferCatalog",
-            name: "Coaching Tiers",
-            itemListElement: [
-              {
-                "@type": "Offer",
-                name: "Standard",
-                price: "15",
-                priceCurrency: "USD",
-              },
-              {
-                "@type": "Offer",
-                name: "Premium — Not Done Yet",
-                price: "195",
-                priceCurrency: "USD",
-              },
-            ],
+          offers: {
+            "@type": "Offer",
+            name: "Not Done Yet — Personalised Coaching",
+            price: "195",
+            priceCurrency: "USD",
+            description:
+              "1:1 personalised coaching across training, nutrition, strength, recovery, and accountability",
           },
         }}
       />
@@ -291,6 +281,35 @@ export default async function CoachingLocationPage({ params }: Props) {
         }}
       />
 
+      {/* LocalBusiness schema for Ireland — triggers Google local business features */}
+      {location === "ireland" && (
+        <JsonLd
+          data={{
+            "@context": "https://schema.org",
+            "@type": "LocalBusiness",
+            name: "Roadman Cycling",
+            description:
+              "Personalised online cycling coaching from Dublin, Ireland. Training, nutrition, strength, recovery, and accountability.",
+            address: {
+              "@type": "PostalAddress",
+              addressLocality: "Dublin",
+              addressCountry: "IE",
+            },
+            geo: {
+              "@type": "GeoCoordinates",
+              latitude: 53.3498,
+              longitude: -6.2603,
+            },
+            url: "https://roadmancycling.com/coaching/ireland",
+            priceRange: "$195/month",
+            sameAs: [
+              "https://youtube.com/@theroadmanpodcast",
+              "https://instagram.com/roadman.cycling",
+            ],
+          }}
+        />
+      )}
+
       <Header />
 
       <main id="main-content">
@@ -319,7 +338,7 @@ export default async function CoachingLocationPage({ params }: Props) {
                 </Button>
               </div>
               <p className="text-foreground-subtle text-sm">
-                From $15/month. 7-day free trial. Cancel anytime.
+                $195/month. 7-day free trial. Cancel anytime.
               </p>
             </ScrollReveal>
           </Container>
@@ -476,7 +495,7 @@ export default async function CoachingLocationPage({ params }: Props) {
               Apply Now
             </Button>
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mt-6 text-off-white/60 text-sm">
-              <span>From $15/month</span>
+              <span>$195/month</span>
               <span className="hidden sm:inline">&middot;</span>
               <span>7-day free trial</span>
               <span className="hidden sm:inline">&middot;</span>

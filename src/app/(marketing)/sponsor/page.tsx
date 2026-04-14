@@ -84,11 +84,12 @@ async function getBookingFlowData() {
       }),
     ]);
 
-    // Filter to the 3 marquee Grand Tour events
+    // Filter to the marquee events
     const marqueeEventNames = [
       "Tour de France",
       "Giro d\u2019Italia",
       "Vuelta a Espa\u00f1a",
+      "UCI World Championships",
     ];
 
     const marqueeEvents = events
@@ -98,20 +99,26 @@ async function getBookingFlowData() {
         ),
       )
       .map((event) => {
-        // Compute availability for this event
-        let totalSlots = 0;
-        let availableSlots = 0;
+        // Compute position-level availability (4 positions: pre-roll, mid-roll, end-roll, newsletter)
+        // A position is "available" if ANY slot of that type in the window is still available
+        const positionTypes = ["podcast_preroll", "podcast_midroll", "podcast_endroll", "newsletter_dedicated"] as const;
+        let availablePositions = 0;
+        const totalPositions = positionTypes.length; // always 4
 
-        for (const monthData of availability) {
-          const monthStart = `${monthData.month}-01`;
-          const monthEnd = `${monthData.month}-31`;
-
-          if (monthStart <= event.endDate && monthEnd >= event.startDate) {
-            for (const [, counts] of Object.entries(monthData.byType)) {
-              totalSlots += counts.total;
-              availableSlots += counts.available;
+        for (const posType of positionTypes) {
+          let hasAvailable = false;
+          for (const monthData of availability) {
+            const monthStart = `${monthData.month}-01`;
+            const monthEnd = `${monthData.month}-31`;
+            if (monthStart <= event.endDate && monthEnd >= event.startDate) {
+              const counts = monthData.byType[posType];
+              if (counts && counts.available > 0) {
+                hasAvailable = true;
+                break;
+              }
             }
           }
+          if (hasAvailable) availablePositions++;
         }
 
         return {
@@ -121,26 +128,31 @@ async function getBookingFlowData() {
           endDate: event.endDate,
           premiumTier: event.premiumTier,
           status: event.status,
-          totalSlots,
-          availableSlots,
+          totalSlots: totalPositions,
+          availableSlots: availablePositions,
         };
       });
 
-    // Compute availability for season blocks by aggregating slots in their windows
+    // Compute position-level availability for season blocks (same 4-position model)
+    const positionTypes = ["podcast_preroll", "podcast_midroll", "podcast_endroll", "newsletter_dedicated"] as const;
     const seasonBlocks = SEASON_BLOCKS.map((block) => {
-      let totalSlots = 0;
-      let availableSlots = 0;
+      let availablePositions = 0;
+      const totalPositions = positionTypes.length;
 
-      for (const monthData of availability) {
-        const monthStart = `${monthData.month}-01`;
-        const monthEnd = `${monthData.month}-31`;
-
-        if (monthStart <= block.endDate && monthEnd >= block.startDate) {
-          for (const [, counts] of Object.entries(monthData.byType)) {
-            totalSlots += counts.total;
-            availableSlots += counts.available;
+      for (const posType of positionTypes) {
+        let hasAvailable = false;
+        for (const monthData of availability) {
+          const monthStart = `${monthData.month}-01`;
+          const monthEnd = `${monthData.month}-31`;
+          if (monthStart <= block.endDate && monthEnd >= block.startDate) {
+            const counts = monthData.byType[posType];
+            if (counts && counts.available > 0) {
+              hasAvailable = true;
+              break;
+            }
           }
         }
+        if (hasAvailable) availablePositions++;
       }
 
       return {
@@ -152,8 +164,8 @@ async function getBookingFlowData() {
         coverageDescription: block.coverageDescription,
         episodeCount: block.episodeCount,
         newsletterCount: block.newsletterCount,
-        totalSlots,
-        availableSlots,
+        totalSlots: totalPositions,
+        availableSlots: availablePositions,
       };
     });
 
@@ -244,21 +256,37 @@ export default async function SponsorPage() {
           <Container>
             <BookingFlow
               eventBlocks={[
-                // Grand Tour events from Airtable
+                // Marquee events from Airtable — calculate duration from dates
                 ...events.map((e) => {
                   const premiumMap: Record<string, number> = { "1": 1.15, "2": 1.10 };
+                  const start = new Date(e.startDate);
+                  const end = new Date(e.endDate);
+                  const weeks = Math.ceil((end.getTime() - start.getTime()) / (7 * 24 * 60 * 60 * 1000));
+                  const episodeCount = weeks * 3; // 3 episodes/week
+                  const newsletterCount = weeks; // 1 newsletter/week
+                  const isGrandTour = e.eventName.toLowerCase().includes("tour") || e.eventName.toLowerCase().includes("giro") || e.eventName.toLowerCase().includes("vuelta");
+
+                  // Event-specific descriptions
+                  const descriptions: Record<string, string> = {
+                    "tour": "Three weeks. Twenty-one stages. Daily dispatches from the road, two YouTube pieces, dedicated newsletter sends throughout.",
+                    "giro": "Three weeks of Italian racing. Daily dispatches, YouTube analysis, and newsletter coverage from start to finish.",
+                    "vuelta": "Three weeks of Spanish racing to close the Grand Tour season. Daily dispatches, newsletter coverage, and race analysis.",
+                    "world": "The rainbow jersey races. Daily podcast coverage, social content, and dedicated newsletter sends. Peak cycling attention.",
+                  };
+                  const descKey = Object.keys(descriptions).find(k => e.eventName.toLowerCase().includes(k)) ?? "tour";
+
                   return {
                     name: e.eventName,
-                    dates: `${new Date(e.startDate).toLocaleDateString("en-GB", { month: "short", day: "numeric" })} \u2013 ${new Date(e.endDate).toLocaleDateString("en-GB", { month: "short", day: "numeric", year: "numeric" })}`,
+                    dates: `${start.toLocaleDateString("en-GB", { month: "short", day: "numeric" })} \u2013 ${end.toLocaleDateString("en-GB", { month: "short", day: "numeric", year: "numeric" })}`,
                     startDate: e.startDate,
                     endDate: e.endDate,
-                    description: "Three weeks of Grand Tour dispatches, daily hot-takes, and race analysis.",
-                    episodeCount: 9,
-                    newsletterCount: 3,
+                    description: descriptions[descKey],
+                    episodeCount,
+                    newsletterCount,
                     premiumMultiplier: premiumMap[e.premiumTier] ?? 1.0,
                     totalSlots: e.totalSlots,
                     availableSlots: e.availableSlots,
-                    selfServe: true,
+                    selfServe: isGrandTour || weeks <= 3, // Grand Tours + short events are self-serve
                   };
                 }),
                 // Season blocks (hardcoded durations)
@@ -343,10 +371,10 @@ export default async function SponsorPage() {
               <ScrollReveal delay={0.1}>
                 <div className="text-center stat-card-pulse rounded-xl p-6">
                   <p className="font-heading text-[clamp(2.5rem,5vw,4rem)] text-coral stat-glow">
-                    <AnimatedCounter value="\u00a385K" />
+                    <AnimatedCounter value="€95K" />
                   </p>
                   <p className="text-foreground-muted text-sm mt-2">
-                    Average household income
+                    Avg. household income
                   </p>
                 </div>
               </ScrollReveal>
@@ -365,10 +393,10 @@ export default async function SponsorPage() {
               <ScrollReveal delay={0.3}>
                 <div className="text-center stat-card-pulse rounded-xl p-6">
                   <p className="font-heading text-[clamp(2.5rem,5vw,4rem)] text-coral stat-glow">
-                    <AnimatedCounter value="\u00a34,200" />
+                    <AnimatedCounter value="€5,000" />
                   </p>
                   <p className="text-foreground-muted text-sm mt-2">
-                    Annual cycling spend
+                    Avg. annual cycling spend
                   </p>
                 </div>
               </ScrollReveal>

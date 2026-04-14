@@ -319,7 +319,7 @@ export default function HomePage() {
                   <div className="flex items-center gap-3 mb-4">
                     <div className="w-3 h-3 rounded-full bg-purple pulse-glow" />
                     <span className="text-xs text-foreground-muted uppercase tracking-widest font-body">
-                      From $15/month
+                      $195/month
                     </span>
                   </div>
                   <h3 className="font-heading text-3xl text-off-white mb-3">

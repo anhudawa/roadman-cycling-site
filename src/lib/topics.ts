@@ -231,6 +231,11 @@ const TOPIC_POST_MAP: Record<string, string[]> = {
     "cycling-strength-training-guide",
     "cycling-stretching-routine",
     "cycling-knee-pain-causes-fixes",
+    "cycling-gym-exercises-best",
+    "cycling-core-workout-routine",
+    "cycling-leg-day-should-cyclists",
+    "yoga-for-cyclists-guide",
+    "new-study-confirms-heavy-strength-training-beats-more-miles-after-40",
   ],
   "cycling-weight-loss": [
     "cycling-weight-loss-fuel-for-the-work-required",

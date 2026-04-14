@@ -6,7 +6,7 @@ import { JsonLd } from "@/components/seo/JsonLd";
 import { FAQSchema } from "@/components/seo/FAQSchema";
 
 export const metadata: Metadata = {
-  title: "Online Cycling Coach — Personalised Coaching from $15/month",
+  title: "Online Cycling Coach — Personalised Coaching | $195/month",
   description:
     "Personalised cycling coaching built on 1,400+ expert podcast conversations. Training plans, nutrition, strength, recovery, and accountability. Trusted by 60,000+ cyclists in Ireland, UK, and USA.",
   keywords: [
@@ -23,7 +23,7 @@ export const metadata: Metadata = {
     canonical: "https://roadmancycling.com/coaching",
   },
   openGraph: {
-    title: "Online Cycling Coach — Personalised Coaching from $15/month",
+    title: "Online Cycling Coach — Personalised Coaching | $195/month",
     description:
       "Personalised cycling coaching built on 1,400+ expert podcast conversations. Training, nutrition, strength, recovery, and accountability.",
     type: "website",
@@ -89,7 +89,7 @@ const faqItems = [
   {
     question: "Is a cycling coach worth it?",
     answer:
-      "A cycling coach is worth it when you have been training consistently for 1-2 years and stopped improving, when you cannot figure out why your FTP has plateaued, or when you need structured accountability. Our members typically see measurable improvements within 8-12 weeks. At $15-195 per month, coaching costs less than a single bike upgrade and delivers better long-term results.",
+      "A cycling coach is worth it when you have been training consistently for 1-2 years and stopped improving, when you cannot figure out why your FTP has plateaued, or when you need structured accountability. Our members typically see measurable improvements within 8-12 weeks. At $195 per month, coaching costs less than a single bike upgrade and delivers better long-term results.",
   },
   {
     question: "How does online cycling coaching work?",
@@ -99,7 +99,7 @@ const faqItems = [
   {
     question: "How much does a cycling coach cost?",
     answer:
-      "Our Standard tier starts at $15 per month and includes the training plan, community access, and weekly group coaching calls. The Premium tier is $195 per month and adds 1:1 coaching with Anthony Walsh across all five pillars — training, nutrition, strength, recovery, and accountability. Both include a 7-day free trial.",
+      "Coaching is $195 per month and includes 1:1 personalised coaching with Anthony Walsh across all five pillars — training, nutrition, strength, recovery, and accountability. You get a personalised TrainingPeaks plan, weekly coaching calls, and a private community of serious cyclists. Includes a 7-day free trial.",
   },
   {
     question:
@@ -178,27 +178,13 @@ export default function CoachingPage() {
             { "@type": "Country", name: "United Kingdom" },
             { "@type": "Country", name: "United States" },
           ],
-          hasOfferCatalog: {
-            "@type": "OfferCatalog",
-            name: "Coaching Tiers",
-            itemListElement: [
-              {
-                "@type": "Offer",
-                name: "Standard",
-                price: "15",
-                priceCurrency: "USD",
-                description:
-                  "Training plan, community, weekly group coaching calls",
-              },
-              {
-                "@type": "Offer",
-                name: "Premium — Not Done Yet",
-                price: "195",
-                priceCurrency: "USD",
-                description:
-                  "1:1 coaching across training, nutrition, strength, recovery, accountability",
-              },
-            ],
+          offers: {
+            "@type": "Offer",
+            name: "Not Done Yet — Personalised Coaching",
+            price: "195",
+            priceCurrency: "USD",
+            description:
+              "1:1 personalised coaching across training, nutrition, strength, recovery, and accountability",
           },
         }}
       />
@@ -256,7 +242,7 @@ export default function CoachingPage() {
                 </Button>
               </div>
               <p className="text-foreground-subtle text-sm">
-                From $15/month. 7-day free trial. Cancel anytime.
+                $195/month. 7-day free trial. Cancel anytime.
               </p>
             </ScrollReveal>
           </Container>
@@ -627,7 +613,7 @@ export default function CoachingPage() {
               Apply Now
             </Button>
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mt-6 text-off-white/60 text-sm">
-              <span>From $15/month</span>
+              <span>$195/month</span>
               <span className="hidden sm:inline">&middot;</span>
               <span>7-day free trial</span>
               <span className="hidden sm:inline">&middot;</span>

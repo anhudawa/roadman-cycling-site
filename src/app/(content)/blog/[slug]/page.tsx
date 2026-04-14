@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import { notFound } from "next/navigation";
 import { MDXRemote } from "next-mdx-remote/rsc";
 import { Header, Footer, Section, Container } from "@/components/layout";
@@ -226,12 +227,14 @@ export default async function BlogPostPage({
 
         {/* Featured Image */}
         {post.featuredImage && (
-          <div className="w-full max-h-[480px] overflow-hidden">
-            <img
+          <div className="w-full max-h-[480px] overflow-hidden relative aspect-[21/9]">
+            <Image
               src={post.featuredImage}
               alt={post.title}
-              className="w-full h-full object-cover"
-              loading="eager"
+              fill
+              priority
+              sizes="100vw"
+              className="object-cover"
             />
           </div>
         )}

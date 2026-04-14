@@ -63,8 +63,30 @@ export default async function GuestPage({
           "@context": "https://schema.org",
           "@type": "Person",
           name: guest.name,
-          description: guest.credential || `Podcast guest on The Roadman Cycling Podcast`,
+          ...(guest.credential && { jobTitle: guest.credential }),
+          description:
+            guest.credential
+              ? `${guest.name} — ${guest.credential}. Expert guest on The Roadman Cycling Podcast.`
+              : `${guest.name} — expert guest on The Roadman Cycling Podcast.`,
           url: `https://roadmancycling.com/guests/${slug}`,
+          knowsAbout: guest.pillars.map((p) =>
+            p === "coaching"
+              ? "cycling coaching"
+              : p === "nutrition"
+                ? "cycling nutrition"
+                : p === "recovery"
+                  ? "cycling recovery"
+                  : p === "strength"
+                    ? "strength training for cyclists"
+                    : p === "le-metier"
+                      ? "cycling culture"
+                      : p
+          ),
+          subjectOf: guest.episodes.slice(0, 5).map((ep) => ({
+            "@type": "PodcastEpisode",
+            name: ep.title,
+            url: `https://roadmancycling.com/podcast/${ep.slug}`,
+          })),
         }}
       />
       <JsonLd

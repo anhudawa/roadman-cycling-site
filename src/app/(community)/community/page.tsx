@@ -143,7 +143,7 @@ export default function CommunityPage() {
                 <div className="flex items-center gap-3 mb-6">
                   <div className="w-3 h-3 rounded-full bg-purple" />
                   <span className="text-xs text-foreground-muted uppercase tracking-widest font-body">
-                    From $15/month
+                    $195/month
                   </span>
                 </div>
                 <h2 className="font-heading text-4xl text-off-white mb-4">
