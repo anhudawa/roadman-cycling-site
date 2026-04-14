@@ -155,6 +155,7 @@ export const contactSubmissions = pgTable(
     subject: text("subject").notNull(),
     message: text("message").notNull(),
     readAt: timestamp("read_at", { withTimezone: true }),
+    assignedTo: text("assigned_to"),
     createdAt: timestamp("created_at", { withTimezone: true }).notNull().defaultNow(),
   },
   (table) => [

@@ -32,8 +32,46 @@ export async function GET(request: Request) {
   return NextResponse.json({ submissions });
 }
 
-// PATCH /api/admin/inbox — mark as read
+// PATCH /api/admin/inbox — mark as read and/or assign to team member
 export async function PATCH(request: Request) {
+  try {
+    await requireAuth();
+  } catch {
+    return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+  }
+
+  const body = await request.json();
+  const { id, assignedTo } = body;
+  if (!id) {
+    return NextResponse.json({ error: "id required" }, { status: 400 });
+  }
+
+  const updates: Record<string, unknown> = {};
+
+  // If assignedTo is explicitly provided (including null to unassign), update it
+  if ("assignedTo" in body) {
+    const valid = [null, "sarah", "wes", "matthew"];
+    if (!valid.includes(assignedTo)) {
+      return NextResponse.json({ error: "Invalid assignedTo value" }, { status: 400 });
+    }
+    updates.assignedTo = assignedTo;
+  }
+
+  // If no assignedTo field was sent, treat as mark-as-read (original behavior)
+  if (!("assignedTo" in body)) {
+    updates.readAt = new Date();
+  }
+
+  await db
+    .update(contactSubmissions)
+    .set(updates)
+    .where(eq(contactSubmissions.id, id));
+
+  return NextResponse.json({ success: true });
+}
+
+// DELETE /api/admin/inbox — delete a submission
+export async function DELETE(request: Request) {
   try {
     await requireAuth();
   } catch {
@@ -46,8 +84,7 @@ export async function PATCH(request: Request) {
   }
 
   await db
-    .update(contactSubmissions)
-    .set({ readAt: new Date() })
+    .delete(contactSubmissions)
     .where(eq(contactSubmissions.id, id));
 
   return NextResponse.json({ success: true });

@@ -165,7 +165,7 @@ export interface DashboardStats {
   previousMonth: PeriodStats;
 }
 
-async function computePeriodStats(since: Date, until: Date): Promise<PeriodStats> {
+export async function computePeriodStats(since: Date, until: Date): Promise<PeriodStats> {
   const result = await db
     .select({
       type: events.type,

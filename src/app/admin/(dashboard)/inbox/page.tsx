@@ -2,6 +2,13 @@
 
 import { useEffect, useState, useCallback } from "react";
 
+const TEAM_MEMBERS = [
+  { value: null, label: "Unassigned" },
+  { value: "sarah", label: "Sarah" },
+  { value: "wes", label: "Wes" },
+  { value: "matthew", label: "Matthew" },
+] as const;
+
 interface Submission {
   id: number;
   name: string;
@@ -9,6 +16,7 @@ interface Submission {
   subject: string;
   message: string;
   readAt: string | null;
+  assignedTo: string | null;
   createdAt: string;
 }
 
@@ -16,6 +24,8 @@ export default function InboxPage() {
   const [submissions, setSubmissions] = useState<Submission[]>([]);
   const [selected, setSelected] = useState<Submission | null>(null);
   const [loading, setLoading] = useState(true);
+  const [confirmingDelete, setConfirmingDelete] = useState(false);
+  const [deleting, setDeleting] = useState(false);
 
   const fetchSubmissions = useCallback(async () => {
     try {
@@ -37,6 +47,7 @@ export default function InboxPage() {
 
   const markAsRead = async (submission: Submission) => {
     setSelected(submission);
+    setConfirmingDelete(false);
 
     if (!submission.readAt) {
       await fetch("/api/admin/inbox", {
@@ -49,6 +60,47 @@ export default function InboxPage() {
         prev.map((s) =>
           s.id === submission.id ? { ...s, readAt: new Date().toISOString() } : s
         )
+      );
+      setSelected((prev) =>
+        prev && prev.id === submission.id
+          ? { ...prev, readAt: new Date().toISOString() }
+          : prev
+      );
+    }
+  };
+
+  const handleDelete = async (id: number) => {
+    setDeleting(true);
+    try {
+      const res = await fetch("/api/admin/inbox", {
+        method: "DELETE",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ id }),
+      });
+      if (res.ok) {
+        setSubmissions((prev) => prev.filter((s) => s.id !== id));
+        setSelected(null);
+        setConfirmingDelete(false);
+      }
+    } catch {
+      // silently fail
+    } finally {
+      setDeleting(false);
+    }
+  };
+
+  const handleAssign = async (id: number, assignedTo: string | null) => {
+    const res = await fetch("/api/admin/inbox", {
+      method: "PATCH",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ id, assignedTo }),
+    });
+    if (res.ok) {
+      setSubmissions((prev) =>
+        prev.map((s) => (s.id === id ? { ...s, assignedTo } : s))
+      );
+      setSelected((prev) =>
+        prev && prev.id === id ? { ...prev, assignedTo } : prev
       );
     }
   };
@@ -137,9 +189,16 @@ export default function InboxPage() {
                       {s.name}
                     </span>
                   </div>
-                  <span className="text-xs text-foreground-subtle shrink-0">
-                    {formatDate(s.createdAt)}
-                  </span>
+                  <div className="flex items-center gap-2 shrink-0">
+                    {s.assignedTo && (
+                      <span className="text-[10px] px-1.5 py-0.5 rounded bg-white/10 text-foreground-muted capitalize">
+                        {s.assignedTo}
+                      </span>
+                    )}
+                    <span className="text-xs text-foreground-subtle">
+                      {formatDate(s.createdAt)}
+                    </span>
+                  </div>
                 </div>
                 <p
                   className={`text-xs mt-1 truncate ${
@@ -179,13 +238,68 @@ export default function InboxPage() {
                       })}
                     </p>
                   </div>
-                  <a
-                    href={`mailto:${selected.email}?subject=Re: ${encodeURIComponent(selected.subject)}`}
-                    className="shrink-0 px-4 py-2 bg-coral text-white text-sm font-heading rounded-lg hover:bg-coral/90 transition-colors"
-                  >
-                    REPLY
-                  </a>
+                  <div className="flex items-center gap-2 shrink-0">
+                    <a
+                      href={`mailto:${selected.email}?subject=Re: ${encodeURIComponent(selected.subject)}`}
+                      className="px-4 py-2 bg-coral text-white text-sm font-heading rounded-lg hover:bg-coral/90 transition-colors"
+                    >
+                      REPLY
+                    </a>
+                  </div>
                 </div>
+
+                {/* Assign + Delete row */}
+                <div className="flex items-center justify-between mb-4">
+                  <div className="flex items-center gap-2">
+                    <label className="text-xs text-foreground-muted">Assign to</label>
+                    <select
+                      value={selected.assignedTo ?? ""}
+                      onChange={(e) =>
+                        handleAssign(
+                          selected.id,
+                          e.target.value === "" ? null : e.target.value
+                        )
+                      }
+                      className="text-xs bg-background-elevated border border-white/10 text-off-white rounded px-2 py-1 focus:outline-none focus:border-coral/50"
+                    >
+                      {TEAM_MEMBERS.map((m) => (
+                        <option key={m.label} value={m.value ?? ""}>
+                          {m.label}
+                        </option>
+                      ))}
+                    </select>
+                  </div>
+
+                  {/* Inline delete confirmation */}
+                  <div className="flex items-center gap-1">
+                    {confirmingDelete ? (
+                      <>
+                        <button
+                          onClick={() => handleDelete(selected.id)}
+                          disabled={deleting}
+                          className="px-2 py-1 bg-red-500/20 text-red-400 hover:bg-red-500/30 text-xs font-medium rounded"
+                        >
+                          {deleting ? "Deleting..." : "Confirm"}
+                        </button>
+                        <button
+                          onClick={() => setConfirmingDelete(false)}
+                          disabled={deleting}
+                          className="px-2 py-1 text-foreground-subtle hover:text-off-white text-xs"
+                        >
+                          Cancel
+                        </button>
+                      </>
+                    ) : (
+                      <button
+                        onClick={() => setConfirmingDelete(true)}
+                        className="px-3 py-1 text-foreground-subtle hover:text-red-400 text-xs transition-colors rounded border border-white/5 hover:border-red-400/30"
+                      >
+                        Delete
+                      </button>
+                    )}
+                  </div>
+                </div>
+
                 <hr className="border-white/5 mb-4" />
                 <div className="text-foreground-muted leading-relaxed whitespace-pre-wrap text-sm">
                   {selected.message}

@@ -1,5 +1,5 @@
-import { getDashboardStats, getStatsForRange, getDailyVisitors, getDailyBreakdown, type DashboardStats } from "@/lib/admin/events-store";
-import { parseTimeRange } from "@/lib/admin/time-ranges";
+import { computePeriodStats, getStatsForRange, getDailyVisitors, getDailyBreakdown, type PeriodStats } from "@/lib/admin/events-store";
+import { parseTimeRangeWithComparison } from "@/lib/admin/time-ranges";
 import { Suspense } from "react";
 import { StatCard } from "./components/charts/StatCard";
 import { TimeRangePicker } from "./components/TimeRangePicker";
@@ -22,14 +22,8 @@ const PLACEHOLDER_SOURCES = [
   { name: "Referral", value: 12 },
 ];
 
-const DEMO_STATS: DashboardStats = {
-  today: { visitors: 127, signups: 5, conversionRate: 3.9, skoolTrials: 1 },
-  thisWeek: { visitors: 1842, signups: 68, conversionRate: 3.7, skoolTrials: 8 },
-  thisMonth: { visitors: 6430, signups: 241, conversionRate: 3.7, skoolTrials: 24 },
-  previousDay: { visitors: 118, signups: 4, conversionRate: 3.4, skoolTrials: 0 },
-  previousWeek: { visitors: 1650, signups: 59, conversionRate: 3.6, skoolTrials: 6 },
-  previousMonth: { visitors: 5890, signups: 212, conversionRate: 3.6, skoolTrials: 19 },
-};
+const DEMO_CURRENT: PeriodStats = { visitors: 1842, signups: 68, conversionRate: 3.7, skoolTrials: 8 };
+const DEMO_PREVIOUS: PeriodStats = { visitors: 1650, signups: 59, conversionRate: 3.6, skoolTrials: 6 };
 
 // Generate realistic 30-day demo visitor data
 function generateDemoTimeSeries(): { date: string; visitors: number; signups: number }[] {
@@ -58,14 +52,22 @@ export default async function AdminDashboardPage({
 }) {
   const resolvedParams = await searchParams;
   const rangeParam = typeof resolvedParams.range === "string" ? resolvedParams.range : "30d";
-  const { from, to } = parseTimeRange(rangeParam);
+  const { from, to, prevFrom, prevTo, label: rangeLabel, compLabel } =
+    parseTimeRangeWithComparison(rangeParam);
 
-  let stats: DashboardStats;
+  // ── Range-aware stats for stat cards ────────────────────────
+  let currentStats: PeriodStats;
+  let previousStats: PeriodStats;
+
   try {
-    stats = await getDashboardStats();
+    [currentStats, previousStats] = await Promise.all([
+      computePeriodStats(from, to),
+      computePeriodStats(prevFrom, prevTo),
+    ]);
   } catch {
     // Database not provisioned yet — use demo data
-    stats = DEMO_STATS;
+    currentStats = DEMO_CURRENT;
+    previousStats = DEMO_PREVIOUS;
   }
 
   // Compute percentage changes safely
@@ -75,24 +77,25 @@ export default async function AdminDashboardPage({
     return ((current - previous) / previous) * 100;
   }
 
-  // Sparkline data from last 7 days
+  // ── Sparkline data — use the selected range (up to last 30 points) ──
   let sparkVisitors = [0, 0, 0, 0, 0, 0, 0];
   let sparkSignups = [0, 0, 0, 0, 0, 0, 0];
   let sparkTrials = [0, 0, 0, 0, 0, 0, 0];
 
   try {
-    const sevenDaysAgo = new Date(Date.now() - 7 * 24 * 60 * 60 * 1000);
-    const daily = await getDailyBreakdown(sevenDaysAgo, new Date());
+    const daily = await getDailyBreakdown(from, to);
     if (daily.length > 0) {
-      sparkVisitors = daily.map((d) => d.visitors);
-      sparkSignups = daily.map((d) => d.signups);
-      sparkTrials = daily.map((d) => d.trials);
+      // Take up to last 30 data points for sparklines
+      const tail = daily.slice(-30);
+      sparkVisitors = tail.map((d) => d.visitors);
+      sparkSignups = tail.map((d) => d.signups);
+      sparkTrials = tail.map((d) => d.trials);
     }
   } catch {
     // Non-critical — hardcoded fallback already set
   }
 
-  // Ranged data for tables and charts
+  // ── Ranged data for tables and charts ───────────────────────
   let topPages = PLACEHOLDER_TOP_PAGES;
   let trafficSources = PLACEHOLDER_SOURCES;
   let timeSeries = generateDemoTimeSeries();
@@ -130,12 +133,13 @@ export default async function AdminDashboardPage({
     // DB not available — placeholders already set above
   }
 
-  // Funnel data from stats
+  // ── Funnel uses the selected range ──────────────────────────
   const funnelSteps = [
-    { label: "Visitors", value: stats.thisMonth.visitors },
-    { label: "Email Signups", value: stats.thisMonth.signups },
-    { label: "Skool Trials", value: stats.thisMonth.skoolTrials },
+    { label: "Visitors", value: currentStats.visitors },
+    { label: "Email Signups", value: currentStats.signups },
+    { label: "Skool Trials", value: currentStats.skoolTrials },
   ];
+
 
   return (
     <div className="space-y-8">
@@ -154,85 +158,87 @@ export default async function AdminDashboardPage({
         </Suspense>
       </div>
 
-      {/* Stat cards */}
+      {/* Stat cards — reflect selected range */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
         <StatCard
-          label="Visitors (7d)"
-          value={stats.thisWeek.visitors}
-          change={pctChange(stats.thisWeek.visitors, stats.previousWeek.visitors)}
-          changeLabel="vs prev 7d"
+          label={`Visitors (${rangeLabel})`}
+          value={currentStats.visitors}
+          change={pctChange(currentStats.visitors, previousStats.visitors)}
+          changeLabel={compLabel}
           sparkData={sparkVisitors}
         />
         <StatCard
-          label="Email Signups (7d)"
-          value={stats.thisWeek.signups}
-          change={pctChange(stats.thisWeek.signups, stats.previousWeek.signups)}
-          changeLabel="vs prev 7d"
+          label={`Email Signups (${rangeLabel})`}
+          value={currentStats.signups}
+          change={pctChange(currentStats.signups, previousStats.signups)}
+          changeLabel={compLabel}
           sparkData={sparkSignups}
         />
         <StatCard
-          label="Conversion Rate"
-          value={`${stats.thisWeek.conversionRate.toFixed(1)}%`}
-          change={pctChange(stats.thisWeek.conversionRate, stats.previousWeek.conversionRate)}
-          changeLabel="vs prev 7d"
+          label={`Conversion Rate (${rangeLabel})`}
+          value={`${currentStats.conversionRate.toFixed(1)}%`}
+          change={pctChange(currentStats.conversionRate, previousStats.conversionRate)}
+          changeLabel={compLabel}
         />
         <StatCard
-          label="Skool Trials (7d)"
-          value={stats.thisWeek.skoolTrials}
-          change={pctChange(stats.thisWeek.skoolTrials, stats.previousWeek.skoolTrials)}
-          changeLabel="vs prev 7d"
+          label={`Skool Trials (${rangeLabel})`}
+          value={currentStats.skoolTrials}
+          change={pctChange(currentStats.skoolTrials, previousStats.skoolTrials)}
+          changeLabel={compLabel}
           sparkData={sparkTrials}
         />
       </div>
 
-      {/* Today and Month summaries */}
+      {/* Period vs Previous comparison — contextual to selected range */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
         <div className="bg-background-elevated border border-white/5 rounded-xl p-5">
           <h2 className="font-heading text-sm text-foreground-muted tracking-wider mb-3">
-            TODAY
+            CURRENT PERIOD ({rangeLabel.toUpperCase()})
           </h2>
           <div className="grid grid-cols-2 gap-3">
             <div>
               <p className="text-foreground-subtle text-xs uppercase tracking-wider">Visitors</p>
-              <p className="text-xl font-heading text-off-white">{stats.today.visitors}</p>
+              <p className="text-xl font-heading text-off-white">{currentStats.visitors.toLocaleString()}</p>
             </div>
             <div>
               <p className="text-foreground-subtle text-xs uppercase tracking-wider">Signups</p>
-              <p className="text-xl font-heading text-off-white">{stats.today.signups}</p>
+              <p className="text-xl font-heading text-off-white">{currentStats.signups}</p>
             </div>
             <div>
               <p className="text-foreground-subtle text-xs uppercase tracking-wider">Conv. Rate</p>
-              <p className="text-xl font-heading text-off-white">{stats.today.conversionRate.toFixed(1)}%</p>
+              <p className="text-xl font-heading text-off-white">{currentStats.conversionRate.toFixed(1)}%</p>
             </div>
             <div>
               <p className="text-foreground-subtle text-xs uppercase tracking-wider">Skool Trials</p>
-              <p className="text-xl font-heading text-off-white">{stats.today.skoolTrials}</p>
+              <p className="text-xl font-heading text-off-white">{currentStats.skoolTrials}</p>
             </div>
           </div>
         </div>
-        <div className="bg-background-elevated border border-white/5 rounded-xl p-5">
-          <h2 className="font-heading text-sm text-foreground-muted tracking-wider mb-3">
-            THIS MONTH
-          </h2>
-          <div className="grid grid-cols-2 gap-3">
-            <div>
-              <p className="text-foreground-subtle text-xs uppercase tracking-wider">Visitors</p>
-              <p className="text-xl font-heading text-off-white">{stats.thisMonth.visitors.toLocaleString()}</p>
-            </div>
-            <div>
-              <p className="text-foreground-subtle text-xs uppercase tracking-wider">Signups</p>
-              <p className="text-xl font-heading text-off-white">{stats.thisMonth.signups}</p>
-            </div>
-            <div>
-              <p className="text-foreground-subtle text-xs uppercase tracking-wider">Conv. Rate</p>
-              <p className="text-xl font-heading text-off-white">{stats.thisMonth.conversionRate.toFixed(1)}%</p>
-            </div>
-            <div>
-              <p className="text-foreground-subtle text-xs uppercase tracking-wider">Skool Trials</p>
-              <p className="text-xl font-heading text-off-white">{stats.thisMonth.skoolTrials}</p>
+        {compLabel && (
+          <div className="bg-background-elevated border border-white/5 rounded-xl p-5">
+            <h2 className="font-heading text-sm text-foreground-muted tracking-wider mb-3">
+              PREVIOUS PERIOD ({compLabel.toUpperCase()})
+            </h2>
+            <div className="grid grid-cols-2 gap-3">
+              <div>
+                <p className="text-foreground-subtle text-xs uppercase tracking-wider">Visitors</p>
+                <p className="text-xl font-heading text-off-white">{previousStats.visitors.toLocaleString()}</p>
+              </div>
+              <div>
+                <p className="text-foreground-subtle text-xs uppercase tracking-wider">Signups</p>
+                <p className="text-xl font-heading text-off-white">{previousStats.signups}</p>
+              </div>
+              <div>
+                <p className="text-foreground-subtle text-xs uppercase tracking-wider">Conv. Rate</p>
+                <p className="text-xl font-heading text-off-white">{previousStats.conversionRate.toFixed(1)}%</p>
+              </div>
+              <div>
+                <p className="text-foreground-subtle text-xs uppercase tracking-wider">Skool Trials</p>
+                <p className="text-xl font-heading text-off-white">{previousStats.skoolTrials}</p>
+              </div>
             </div>
           </div>
-        </div>
+        )}
       </div>
 
       {/* Visitors Over Time chart */}
@@ -253,7 +259,7 @@ export default async function AdminDashboardPage({
       {/* Conversion Funnel */}
       <div className="bg-background-elevated border border-white/5 rounded-xl p-5">
         <h2 className="font-heading text-sm text-foreground-muted tracking-wider mb-4">
-          CONVERSION FUNNEL (THIS MONTH)
+          CONVERSION FUNNEL ({rangeLabel.toUpperCase()})
         </h2>
         <FunnelDisplay steps={funnelSteps} />
       </div>
