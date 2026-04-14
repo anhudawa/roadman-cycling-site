@@ -72,9 +72,15 @@ export default async function ReportPage({
               {report.promptVersion ?? "n/a"}
             </p>
           </div>
-          <div className="flex gap-3 print:hidden">
+          <div className="flex gap-3 print:hidden flex-wrap">
             <Button href="/blood-engine/dashboard" variant="ghost">
               ← Dashboard
+            </Button>
+            <Button
+              href={`/api/blood-engine/report/${report.id}/markdown`}
+              variant="ghost"
+            >
+              Export markdown
             </Button>
             <PrintButton />
           </div>
