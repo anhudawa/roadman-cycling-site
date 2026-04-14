@@ -130,6 +130,47 @@ export default function ToolsPage() {
             </div>
           </Container>
         </Section>
+
+        <Section background="deep-purple">
+          <Container>
+            <div className="text-center mb-10">
+              <p className="font-heading tracking-[0.3em] text-coral text-sm mb-2">
+                Premium
+              </p>
+              <h2
+                className="font-heading text-off-white"
+                style={{ fontSize: "var(--text-section)" }}
+              >
+                Decode something deeper
+              </h2>
+              <p className="text-foreground-muted mt-3 max-w-xl mx-auto">
+                When the calculators don&apos;t go far enough — when you&apos;ve got
+                bloodwork in hand and you need it read through a cycling lens.
+              </p>
+            </div>
+            <div className="max-w-3xl mx-auto">
+              <Card href="/blood-engine" className="p-8 group">
+                <div className="flex items-start justify-between gap-4 mb-3 flex-wrap">
+                  <h3 className="font-heading text-2xl text-off-white group-hover:text-coral transition-colors uppercase">
+                    Blood Engine
+                  </h3>
+                  <span className="text-xs font-heading uppercase tracking-wider text-coral border border-coral/40 rounded-full px-3 py-1">
+                    €97 lifetime
+                  </span>
+                </div>
+                <p className="text-foreground-muted mb-4">
+                  Cycling-specific bloodwork interpretation for masters
+                  cyclists. Upload any blood test, get a report tuned to
+                  athlete-optimal ranges — not the generic lab norms your GP
+                  reads from. Every retest decoded forever.
+                </p>
+                <span className="text-coral text-sm font-body font-medium">
+                  How it works &rarr;
+                </span>
+              </Card>
+            </div>
+          </Container>
+        </Section>
       </main>
       <Footer />
     </>
