@@ -226,6 +226,10 @@ const TOPIC_POST_MAP: Record<string, string[]> = {
     "cycling-knee-pain-causes-fixes",
     "cycling-returning-after-break",
     "cycling-stretching-routine",
+    "cycling-overtraining-signs-guide",
+    "cycling-active-recovery-rides-guide",
+    "cycling-hrv-training-guide",
+    "cycling-rest-week-guide",
   ],
   "cycling-strength-conditioning": [
     "cycling-strength-training-guide",

@@ -13,6 +13,8 @@ interface LocationData {
   heroSubtitle: string;
   heroBody: string;
   areaServed: string;
+  /** Short label used in H2 headings — e.g. "Belfast" instead of "Belfast, Northern Ireland" */
+  headingLabel: string;
   countryCode: string;
   localContext: string;
   /** If set, renders LocalBusiness schema with these coordinates */
@@ -45,8 +47,9 @@ const LOCATIONS: Record<string, LocationData> = {
     },
     heroSubtitle: "IRELAND'S MOST LISTENED-TO CYCLING COACH",
     heroBody:
-      "Roadman Cycling is based in Dublin and has been coaching Irish cyclists since the podcast launched. Whether you ride the Wicklow mountains, race on the Mondello circuit, or are training for the Ring of Kerry, your plan is built around Irish roads, Irish weather, and your actual schedule.",
+      "Roadman Cycling is based in Dublin and has been coaching Irish cyclists since the podcast launched. Whether you are building to the Wicklow 200, the Ring of Beara, the Ring of Kerry, or racing on the Mondello circuit, your plan is built around Irish roads, Irish weather, and your actual schedule.",
     areaServed: "Ireland",
+    headingLabel: "Ireland",
     countryCode: "IE",
     localContext: "Dublin, Ireland",
     testimonials: [
@@ -76,9 +79,9 @@ const LOCATIONS: Record<string, LocationData> = {
           "Yes. Roadman Cycling is based in Dublin and runs the Roadman CC club rides. While all coaching is delivered online through TrainingPeaks and Zoom, Premium members in Dublin can join club rides and occasionally meet Anthony in person. The online delivery means you get the same quality of coaching whether you are in Dublin, Cork, Galway, or anywhere in Ireland.",
       },
       {
-        question: "Does Roadman coach for Irish cycling events?",
+        question: "Does Roadman coach for the Wicklow 200, Ring of Beara and other Irish sportives?",
         answer:
-          "Yes. We regularly coach riders for events like the Ring of Kerry, Wicklow 200, Ras Tailteann, and local league racing. Your training plan is periodised around your target events with specific preparation blocks, tapering, and race-day strategy.",
+          "Yes — these are two of the events we coach most often. The Wicklow 200 (200km with ~3,000m of climbing through Sally Gap, Wicklow Gap and the Glen of Imaal) and the Ring of Beara (140km around the Beara Peninsula in Cork/Kerry) are on a huge number of Irish cyclists' bucket lists. We periodise the full build — endurance base, climbing-specific work on Wicklow-grade gradients, a proper taper, and a race-day fuelling and pacing plan. Same approach for the Ring of Kerry, Tour de Burren, Ras Tailteann and local league racing.",
       },
       {
         question: "Is this suitable for Cycling Ireland licence holders?",
@@ -88,7 +91,8 @@ const LOCATIONS: Record<string, LocationData> = {
     ],
     localContent: [
       "Based in Dublin with deep roots in Irish cycling",
-      "Coaching riders for Ring of Kerry, Wicklow 200, and league racing",
+      "Wicklow 200 & Ring of Beara specialists — full periodised builds, climbing-specific blocks, race-day pacing plans",
+      "Also coaching for Ring of Kerry, Tour de Burren, Ras Tailteann and local league racing",
       "Home of Roadman CC — Dublin's fastest-growing cycling club",
       "Plans built for Irish weather, Irish roads, and Irish racing",
     ],
@@ -102,6 +106,7 @@ const LOCATIONS: Record<string, LocationData> = {
     heroBody:
       "Roadman Cycling coaches riders across England, Scotland, Wales, and Northern Ireland. Whether you are training for a sportive like Ride London, racing in your local league, or chasing a British Cycling category upgrade, your plan is built around your goals, your hours, and your life.",
     areaServed: "United Kingdom",
+    headingLabel: "UK",
     countryCode: "GB",
     localContext: "United Kingdom",
     testimonials: [
@@ -157,6 +162,7 @@ const LOCATIONS: Record<string, LocationData> = {
     heroBody:
       "Roadman Cycling coaches riders across the United States — from New York to California, Texas to Colorado. Whether you are training for a USAC crit, a gran fondo, or your first century ride, your plan is built around your goals, your time zone, and your life.",
     areaServed: "United States",
+    headingLabel: "USA",
     countryCode: "US",
     localContext: "United States",
     testimonials: [
@@ -218,6 +224,7 @@ const LOCATIONS: Record<string, LocationData> = {
     heroBody:
       "Roadman Cycling is based in Dublin and coaches riders across the capital and Greater Dublin area. Whether you ride the Dublin Mountains on a Saturday, race with the Orwell or Sundrive, or commute through the city — your plan is built around Dublin roads, Irish weather, and your schedule.",
     areaServed: "Dublin, Ireland",
+    headingLabel: "Dublin",
     countryCode: "IE",
     localContext: "Dublin, Ireland",
     testimonials: [
@@ -273,6 +280,7 @@ const LOCATIONS: Record<string, LocationData> = {
     heroBody:
       "Roadman Cycling coaches riders across Cork and Munster. Whether you ride the Healy Pass, race with Cork Ridgerunners or Blarney CC, or are training for the Sean Kelly Tour — your plan is built around Munster roads, West Cork climbs, and your schedule.",
     areaServed: "Cork, Ireland",
+    headingLabel: "Cork",
     countryCode: "IE",
     localContext: "Cork, Ireland",
     testimonials: [
@@ -328,6 +336,7 @@ const LOCATIONS: Record<string, LocationData> = {
     heroBody:
       "Roadman Cycling coaches riders across Galway and the West of Ireland. Whether you ride the Sky Road, train in the Burren, race with Western Lakes CC, or are targeting the Connemara 100 — your plan is built around Western roads, Atlantic weather, and your schedule.",
     areaServed: "Galway, Ireland",
+    headingLabel: "Galway",
     countryCode: "IE",
     localContext: "Galway, Ireland",
     testimonials: [
@@ -389,6 +398,7 @@ const LOCATIONS: Record<string, LocationData> = {
     heroBody:
       "Roadman Cycling coaches riders across Greater London. Whether you chain Surrey Hills loops on a Saturday, race with Rapha CC or Dulwich Paragon, or are training for Ride London — your plan is built around London traffic, Surrey climbs, and the hours you actually have.",
     areaServed: "London, United Kingdom",
+    headingLabel: "London",
     countryCode: "GB",
     localContext: "London, United Kingdom",
     testimonials: [
@@ -444,6 +454,7 @@ const LOCATIONS: Record<string, LocationData> = {
     heroBody:
       "Roadman Cycling coaches riders across Manchester and the North West. Whether you train in the Peak District, race at the National Cycling Centre velodrome, or are targeting the Fred Whitton Challenge — your plan is built around Peak District roads, North West weather, and your schedule.",
     areaServed: "Manchester, United Kingdom",
+    headingLabel: "Manchester",
     countryCode: "GB",
     localContext: "Manchester, United Kingdom",
     testimonials: [
@@ -505,6 +516,7 @@ const LOCATIONS: Record<string, LocationData> = {
     heroBody:
       "Roadman Cycling coaches riders across Belfast and Northern Ireland. Whether you climb the Mournes, train the Antrim Coast Road, race with Phoenix CC or North Down, or are targeting the Giant's Causeway Coast Sportive — your plan is built around NI roads, Irish Sea weather, and your schedule.",
     areaServed: "Belfast, Northern Ireland",
+    headingLabel: "Belfast",
     countryCode: "GB",
     localContext: "Belfast, Northern Ireland",
     testimonials: [
@@ -566,6 +578,7 @@ const LOCATIONS: Record<string, LocationData> = {
     heroBody:
       "Roadman Cycling coaches riders across Edinburgh and Scotland. Whether you train in the Pentlands, chase chaingangs on the Meldons, race with Edinburgh RC or Dunedin CC, or target the Etape Caledonia — your plan is built around Scottish roads, Highland weather, and your schedule.",
     areaServed: "Edinburgh, Scotland",
+    headingLabel: "Edinburgh",
     countryCode: "GB",
     localContext: "Edinburgh, Scotland",
     testimonials: [
@@ -621,6 +634,7 @@ const LOCATIONS: Record<string, LocationData> = {
     heroBody:
       "Roadman Cycling coaches riders across Leeds and Yorkshire. Whether you chain Dales loops on the weekend, race with Otley CC or Albarosa, climb Buttertubs and Holme Moss, or target the Étape du Dales — your plan is built around Yorkshire roads, Pennine weather, and your schedule.",
     areaServed: "Leeds, United Kingdom",
+    headingLabel: "Leeds",
     countryCode: "GB",
     localContext: "Leeds, United Kingdom",
     testimonials: [
@@ -845,7 +859,7 @@ export default async function CoachingLocationPage({ params }: Props) {
                 className="font-heading text-off-white mb-4"
                 style={{ fontSize: "var(--text-section)" }}
               >
-                WHY ROADMAN FOR {data.areaServed.toUpperCase()} CYCLISTS
+                WHY ROADMAN FOR {data.headingLabel.toUpperCase()} CYCLISTS
               </h2>
             </ScrollReveal>
 
@@ -930,7 +944,7 @@ export default async function CoachingLocationPage({ params }: Props) {
                 className="font-heading text-off-white mb-4"
                 style={{ fontSize: "var(--text-section)" }}
               >
-                RESULTS FROM {data.areaServed.toUpperCase()} CYCLISTS
+                RESULTS FROM {data.headingLabel.toUpperCase()} CYCLISTS
               </h2>
             </ScrollReveal>
 
@@ -1003,9 +1017,13 @@ export default async function CoachingLocationPage({ params }: Props) {
               7-day free trial. Five pillars. Personalised to your goals.
               Coaching cyclists in {data.areaServed} and worldwide.
             </p>
-            <Button href="/apply" size="lg" className="bg-off-white text-coral hover:bg-off-white/90">
+            <Link
+              href="/apply"
+              className="inline-flex items-center justify-center gap-2 font-heading tracking-wider uppercase rounded-md transition-all cursor-pointer active:scale-[0.97] px-8 md:px-10 py-4 text-lg bg-off-white text-coral hover:bg-off-white/90 shadow-lg"
+              style={{ transitionDuration: "var(--duration-fast)" }}
+            >
               Apply Now
-            </Button>
+            </Link>
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mt-6 text-off-white/60 text-sm">
               <span>$195/month</span>
               <span className="hidden sm:inline">&middot;</span>
