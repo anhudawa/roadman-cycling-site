@@ -98,6 +98,7 @@ export interface Sponsor {
   lastContact: string | null;
   notes: string | null;
   logoUrl: string | null;
+  brandAliases?: string; // comma-separated; used for transcript mention matching
 }
 
 export interface SponsorWithInventory extends Sponsor {

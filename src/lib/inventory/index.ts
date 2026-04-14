@@ -124,6 +124,7 @@ function recordToSponsor(record: AirtableRecord): Sponsor {
     lastContact: (fields.lastContact as string) ?? null,
     notes: (fields.notes as string) ?? null,
     logoUrl: (fields.logoUrl as string) ?? null,
+    brandAliases: (fields.brandAliases as string) ?? undefined,
   };
 }
 
