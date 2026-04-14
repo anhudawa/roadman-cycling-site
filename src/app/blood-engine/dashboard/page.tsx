@@ -74,17 +74,42 @@ export default async function DashboardPage() {
         ) : null}
 
         {reports.length === 0 ? (
-          <div className="rounded-lg border border-white/10 bg-background-elevated p-12 text-center">
-            <h2 className="font-heading uppercase text-off-white text-3xl mb-4">
-              No reports yet
-            </h2>
-            <p className="text-foreground-muted max-w-xl mx-auto mb-8">
-              Kick off your first interpretation. You&apos;ll need your latest blood-test PDF — or just the
-              values. Either way takes a few minutes.
-            </p>
-            <Button href="/blood-engine/new" size="lg">
-              Run your first report
-            </Button>
+          <div className="rounded-lg border border-white/10 bg-background-elevated p-10 md:p-12">
+            <div className="max-w-2xl mx-auto text-center">
+              <h2 className="font-heading uppercase text-off-white text-3xl mb-4">
+                Run your first report
+              </h2>
+              <p className="text-foreground-muted mb-8">
+                Grab your latest blood-test PDF — or just the numbers. Either
+                way takes a few minutes and unlocks the interpretation engine
+                for good.
+              </p>
+              <div className="flex flex-col sm:flex-row gap-3 justify-center">
+                <Button href="/blood-engine/new" size="lg">
+                  Start a report →
+                </Button>
+                <Button href="/blood-engine/markers" variant="ghost" size="lg">
+                  See the 17-marker panel
+                </Button>
+              </div>
+            </div>
+            <div className="mt-10 pt-8 border-t border-white/5 grid sm:grid-cols-3 gap-4 text-left max-w-2xl mx-auto">
+              <EmptyStep
+                n="01"
+                title="Order any panel"
+                body="Medichecks, Forth, Thriva, your GP — doesn't matter. Ask for the 17 markers we list."
+              />
+              <EmptyStep
+                n="02"
+                title="Upload or type"
+                body="PDF goes through the extractor, or enter values by hand."
+              />
+              <EmptyStep
+                n="03"
+                title="Get decoded"
+                body="Cycling-specific interpretation, patterns, and a three-step action plan."
+              />
+            </div>
           </div>
         ) : (
           <div className="space-y-4">
@@ -164,6 +189,16 @@ function StatusDot({ status }: { status: "optimal" | "suboptimal" | "flag" }) {
   const color =
     status === "optimal" ? "bg-emerald-500" : status === "suboptimal" ? "bg-amber-400" : "bg-coral";
   return <span className={`inline-block w-4 h-4 rounded-full ${color}`} aria-label={status} />;
+}
+
+function EmptyStep({ n, title, body }: { n: string; title: string; body: string }) {
+  return (
+    <div>
+      <p className="font-heading text-coral text-2xl mb-1">{n}</p>
+      <p className="font-heading uppercase text-off-white text-sm mb-1">{title}</p>
+      <p className="text-xs text-foreground-subtle leading-relaxed">{body}</p>
+    </div>
+  );
 }
 
 type Headroom = Awaited<ReturnType<typeof getRemainingHeadroom>>[number];
