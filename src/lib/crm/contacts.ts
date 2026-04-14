@@ -23,7 +23,9 @@ export type ActivityType =
   | "stage_change"
   | "call_logged"
   | "task_created"
-  | "task_completed";
+  | "task_completed"
+  | "enrichment_beehiiv"
+  | "enrichment_stripe_purchase";
 
 export interface UpsertContactParams {
   email: string;

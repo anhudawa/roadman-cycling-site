@@ -3,6 +3,7 @@ import { requireAuth } from "@/lib/admin/auth";
 import { listContacts } from "@/lib/crm/contacts";
 import { BackfillButton } from "./_components/BackfillButton";
 import { ContactsFilters } from "./_components/ContactsFilters";
+import { EnrichAllButton } from "./_components/EnrichAllButton";
 
 export const dynamic = "force-dynamic";
 
@@ -42,7 +43,7 @@ export default async function ContactsPage({
 }: {
   searchParams: Promise<Record<string, string | string[] | undefined>>;
 }) {
-  await requireAuth();
+  const user = await requireAuth();
   const sp = await searchParams;
 
   const search = typeof sp.search === "string" ? sp.search : "";
@@ -79,7 +80,10 @@ export default async function ContactsPage({
             {total} total {total === 1 ? "contact" : "contacts"}
           </p>
         </div>
-        <BackfillButton />
+        <div className="flex items-center gap-3 flex-wrap">
+          <BackfillButton />
+          {user.role === "admin" && <EnrichAllButton />}
+        </div>
       </div>
 
       <div className="mb-6">

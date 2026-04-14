@@ -68,6 +68,70 @@ function relativeTime(iso: string): string {
   return d.toLocaleDateString("en-GB", { day: "numeric", month: "short", year: "numeric" });
 }
 
+interface BeehiivEnrichment {
+  subscriberId: string;
+  status: "active" | "unsubscribed" | "pending" | "inactive";
+  subscribedAt: string | null;
+  tier: string | null;
+  totalOpens: number;
+  totalClicks: number;
+  lastOpenedAt: string | null;
+  lastClickedAt: string | null;
+  utmSource: string | null;
+  utmMedium: string | null;
+  utmCampaign: string | null;
+}
+
+interface StripeSubSummary {
+  id: string;
+  status: string;
+  priceId: string;
+  productName: string;
+  currentPeriodEnd: string | null;
+  amountCents: number;
+}
+
+interface StripeEnrichment {
+  customerId: string;
+  lifetimeValueCents: number;
+  subscriptions: StripeSubSummary[];
+  lastPaymentAt: string | null;
+  totalPayments: number;
+}
+
+interface EnrichmentBlob {
+  beehiiv: BeehiivEnrichment | null;
+  stripe: StripeEnrichment | null;
+  enrichedAt: string;
+}
+
+function extractEnrichmentBlob(cf: Record<string, unknown>): EnrichmentBlob | null {
+  const e = cf?.enrichment;
+  if (!e || typeof e !== "object") return null;
+  return e as EnrichmentBlob;
+}
+
+function formatGbp(cents: number): string {
+  return new Intl.NumberFormat("en-GB", {
+    style: "currency",
+    currency: "GBP",
+    maximumFractionDigits: 0,
+  }).format(cents / 100);
+}
+
+function beehiivStatusClass(status: string): string {
+  switch (status) {
+    case "active":
+      return "bg-green-500/10 text-green-400 border-green-500/20";
+    case "pending":
+      return "bg-amber-500/10 text-amber-400 border-amber-500/20";
+    case "unsubscribed":
+    case "inactive":
+    default:
+      return "bg-white/5 text-foreground-muted border-white/10";
+  }
+}
+
 function activityDotColor(type: string): string {
   switch (type) {
     case "contact_submission":
@@ -82,6 +146,10 @@ function activityDotColor(type: string): string {
       return "bg-green-400";
     case "assigned":
       return "bg-cyan-400";
+    case "enrichment_beehiiv":
+      return "bg-pink-400";
+    case "enrichment_stripe_purchase":
+      return "bg-emerald-400";
     case "tag_added":
     case "tag_removed":
       return "bg-white/30";
@@ -242,7 +310,25 @@ export function ContactDetail({
   }
 
   const openTasks = tasks.filter((t) => !t.completedAt);
-  const customFieldEntries = Object.entries(contact.customFields ?? {});
+  const customFieldEntries = Object.entries(contact.customFields ?? {}).filter(
+    ([k]) => k !== "enrichment"
+  );
+  const enrichment = extractEnrichmentBlob(contact.customFields);
+
+  async function refreshEnrichment() {
+    setBusy(true);
+    try {
+      const res = await fetch(`/api/admin/crm/contacts/${contact.id}/enrich`, {
+        method: "POST",
+        headers: { "X-CRM-User": "admin" },
+      });
+      if (res.ok) {
+        router.refresh();
+      }
+    } finally {
+      setBusy(false);
+    }
+  }
 
   return (
     <div>
@@ -534,6 +620,135 @@ export function ContactDetail({
                 </div>
               )}
             </div>
+          </div>
+
+          {/* Enrichment card */}
+          <div className="bg-background-elevated rounded-xl border border-white/5 p-4 space-y-4">
+            <div className="flex items-center justify-between">
+              <p className="text-[10px] uppercase tracking-widest text-foreground-subtle font-medium font-heading">
+                Enrichment
+              </p>
+              {enrichment?.enrichedAt && (
+                <span className="text-[10px] text-foreground-subtle">
+                  {relativeTime(enrichment.enrichedAt)}
+                </span>
+              )}
+            </div>
+
+            {!enrichment ? (
+              <p className="text-xs text-foreground-subtle">
+                Not enriched yet — click Refresh.
+              </p>
+            ) : (
+              <>
+                {/* Beehiiv */}
+                <div className="space-y-2">
+                  <p className="text-[10px] uppercase tracking-widest text-foreground-subtle font-heading">
+                    Beehiiv
+                  </p>
+                  {enrichment.beehiiv ? (
+                    <div className="space-y-1.5 text-xs">
+                      <div className="flex items-center gap-2">
+                        <span
+                          className={`px-2 py-0.5 rounded border capitalize ${beehiivStatusClass(
+                            enrichment.beehiiv.status
+                          )}`}
+                        >
+                          {enrichment.beehiiv.status}
+                        </span>
+                        {enrichment.beehiiv.tier && (
+                          <span className="px-2 py-0.5 rounded bg-coral/10 text-coral/90 border border-coral/20">
+                            {enrichment.beehiiv.tier}
+                          </span>
+                        )}
+                      </div>
+                      {enrichment.beehiiv.subscribedAt && (
+                        <div className="flex justify-between text-foreground-muted">
+                          <span className="text-foreground-subtle">Subscribed</span>
+                          <span>
+                            {new Date(enrichment.beehiiv.subscribedAt).toLocaleDateString("en-GB")}
+                          </span>
+                        </div>
+                      )}
+                      <div className="flex justify-between text-foreground-muted">
+                        <span className="text-foreground-subtle">Opens / Clicks</span>
+                        <span>
+                          {enrichment.beehiiv.totalOpens} / {enrichment.beehiiv.totalClicks}
+                        </span>
+                      </div>
+                      {enrichment.beehiiv.lastOpenedAt && (
+                        <div className="flex justify-between text-foreground-muted">
+                          <span className="text-foreground-subtle">Last open</span>
+                          <span>{relativeTime(enrichment.beehiiv.lastOpenedAt)}</span>
+                        </div>
+                      )}
+                    </div>
+                  ) : (
+                    <p className="text-xs text-foreground-subtle">Not a subscriber</p>
+                  )}
+                </div>
+
+                {/* Stripe */}
+                <div className="space-y-2 pt-2 border-t border-white/5">
+                  <p className="text-[10px] uppercase tracking-widest text-foreground-subtle font-heading">
+                    Stripe
+                  </p>
+                  {enrichment.stripe ? (
+                    <div className="space-y-1.5 text-xs">
+                      <div className="flex justify-between">
+                        <span className="text-foreground-subtle">LTV</span>
+                        <span className="text-off-white font-medium">
+                          {formatGbp(enrichment.stripe.lifetimeValueCents)}
+                        </span>
+                      </div>
+                      <div className="flex justify-between text-foreground-muted">
+                        <span className="text-foreground-subtle">Payments</span>
+                        <span>{enrichment.stripe.totalPayments}</span>
+                      </div>
+                      {enrichment.stripe.lastPaymentAt && (
+                        <div className="flex justify-between text-foreground-muted">
+                          <span className="text-foreground-subtle">Last payment</span>
+                          <span>{relativeTime(enrichment.stripe.lastPaymentAt)}</span>
+                        </div>
+                      )}
+                      {enrichment.stripe.subscriptions
+                        .filter((s) => s.status === "active" || s.status === "trialing")
+                        .map((s) => (
+                          <div
+                            key={s.id}
+                            className="mt-2 p-2 rounded border border-green-500/20 bg-green-500/5"
+                          >
+                            <div className="flex items-center justify-between">
+                              <span className="text-green-400 text-[10px] uppercase tracking-widest font-heading">
+                                {s.status}
+                              </span>
+                              <span className="text-off-white text-xs">
+                                {formatGbp(s.amountCents)}
+                              </span>
+                            </div>
+                            <div className="text-foreground-muted mt-1">{s.productName}</div>
+                            {s.currentPeriodEnd && (
+                              <div className="text-[10px] text-foreground-subtle mt-0.5">
+                                Renews {new Date(s.currentPeriodEnd).toLocaleDateString("en-GB")}
+                              </div>
+                            )}
+                          </div>
+                        ))}
+                    </div>
+                  ) : (
+                    <p className="text-xs text-foreground-subtle">Not a customer</p>
+                  )}
+                </div>
+              </>
+            )}
+
+            <button
+              onClick={refreshEnrichment}
+              disabled={busy}
+              className="w-full px-3 py-2 text-xs font-heading tracking-wider uppercase bg-coral/20 text-coral border border-coral/30 rounded hover:bg-coral/30 disabled:opacity-50"
+            >
+              Refresh from Beehiiv + Stripe
+            </button>
           </div>
         </div>
       </div>
