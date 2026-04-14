@@ -5,6 +5,7 @@ import { requireBloodEngineAccess } from "@/lib/blood-engine/access";
 import { listReports } from "@/lib/blood-engine/db";
 import type { InterpretationJSON, ReportContext } from "@/lib/blood-engine/schemas";
 import { computeTrends } from "@/lib/blood-engine/trends";
+import { CompareLauncher } from "./CompareLauncher";
 import { MarkerTrendCard } from "./MarkerTrendCard";
 import { MedicalDisclaimer } from "../MedicalDisclaimer";
 
@@ -81,6 +82,18 @@ export default async function DashboardPage() {
             })}
           </div>
         )}
+
+        {reports.length >= 2 ? (
+          <div className="mt-12">
+            <CompareLauncher
+              reports={reports.map((r) => ({
+                id: r.id,
+                drawDate: r.drawDate,
+                createdAt: r.createdAt?.toISOString() ?? null,
+              }))}
+            />
+          </div>
+        ) : null}
 
         {trends.length > 0 ? (
           <div className="mt-16">
