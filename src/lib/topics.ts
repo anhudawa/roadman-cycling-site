@@ -208,6 +208,7 @@ const TOPIC_POST_MAP: Record<string, string[]> = {
   "cycling-training-plans": [
     "cycling-periodisation-plan-guide",
     "polarised-training-cycling-guide",
+    "stephen-seiler-research-polarised-training-lessons",
     "cycling-base-training-guide",
     "reverse-periodisation-cycling",
     "winter-training-cycling-guide",
@@ -286,6 +287,7 @@ const TOPIC_POST_MAP: Record<string, string[]> = {
     "cycling-base-training-guide",
     "zone-2-training-complete-guide",
     "polarised-training-cycling-guide",
+    "stephen-seiler-research-polarised-training-lessons",
     "cycling-sportive-preparation",
     "new-study-confirms-heavy-strength-training-beats-more-miles-after-40",
     "is-a-cycling-coach-worth-it",
