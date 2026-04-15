@@ -4,7 +4,7 @@ import { Button } from "@/components/ui";
 import { requireBloodEngineAccess } from "@/lib/blood-engine/access";
 import { getReport } from "@/lib/blood-engine/db";
 import type { InterpretationJSON, ReportContext } from "@/lib/blood-engine/schemas";
-import { MedicalDisclaimer } from "../../MedicalDisclaimer";
+import { MedicalDisclaimer } from "../../../MedicalDisclaimer";
 import { PrintButton } from "./PrintButton";
 
 export const dynamic = "force-dynamic";

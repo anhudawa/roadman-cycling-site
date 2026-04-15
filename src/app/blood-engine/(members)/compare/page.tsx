@@ -10,7 +10,7 @@ import type {
   NormalizedMarkerValue,
   ReportContext,
 } from "@/lib/blood-engine/schemas";
-import { MedicalDisclaimer } from "../MedicalDisclaimer";
+import { MedicalDisclaimer } from "../../MedicalDisclaimer";
 
 export const dynamic = "force-dynamic";
 

@@ -3,7 +3,7 @@ import Link from "next/link";
 import { Section, Container } from "@/components/layout";
 import { Button } from "@/components/ui";
 import { MARKERS, type MarkerRange } from "@/lib/blood-engine/markers";
-import { MedicalDisclaimer } from "../MedicalDisclaimer";
+import { MedicalDisclaimer } from "../../MedicalDisclaimer";
 
 export const metadata: Metadata = {
   title: "The Cyclist's Blood Marker Reference — 17 markers, athlete-optimal ranges",

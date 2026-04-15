@@ -8,7 +8,7 @@ import type { InterpretationJSON, ReportContext } from "@/lib/blood-engine/schem
 import { computeTrends } from "@/lib/blood-engine/trends";
 import dynamicImport from "next/dynamic";
 import { CompareLauncher } from "./CompareLauncher";
-import { MedicalDisclaimer } from "../MedicalDisclaimer";
+import { MedicalDisclaimer } from "../../MedicalDisclaimer";
 
 // Recharts is ~100KB gzipped. It's only needed once the user has 2+ reports,
 // so don't ship it to the first-run dashboard at all.

@@ -136,6 +136,7 @@ export const NAV_ITEMS: NavItem[] = [
     label: "Tools",
     href: "/tools",
     children: [
+      { label: "Blood Engine", href: "/blood-engine" },
       { label: "Tyre Pressure", href: "/tools/tyre-pressure" },
       { label: "FTP Zones", href: "/tools/ftp-zones" },
       { label: "Race Weight", href: "/tools/race-weight" },

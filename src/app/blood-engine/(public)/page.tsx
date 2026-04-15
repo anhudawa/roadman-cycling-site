@@ -2,8 +2,8 @@ import type { Metadata } from "next";
 import { Section, Container } from "@/components/layout";
 import { Card, ScrollReveal } from "@/components/ui";
 import { JsonLd } from "@/components/seo/JsonLd";
-import { CheckoutCta } from "./CheckoutCta";
-import { MedicalDisclaimer } from "./MedicalDisclaimer";
+import { CheckoutCta } from "../CheckoutCta";
+import { MedicalDisclaimer } from "../MedicalDisclaimer";
 import { MARKERS } from "@/lib/blood-engine/markers";
 
 export const metadata: Metadata = {

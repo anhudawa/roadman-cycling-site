@@ -47,7 +47,17 @@ export async function proxy(request: NextRequest) {
   const { pathname } = request.nextUrl;
   const origin = new URL(request.url).origin;
   const activeTests = await getActiveTests(origin);
-  const response = NextResponse.next();
+
+  // Forward the current pathname to server components via a request header.
+  // Next 16 server components don't have direct access to the pathname, so
+  // any component that needs it (e.g. MembersHeader for active-link state)
+  // reads it from this header.
+  const requestHeaders = new Headers(request.headers);
+  requestHeaders.set("x-pathname", pathname);
+
+  const response = NextResponse.next({
+    request: { headers: requestHeaders },
+  });
 
   // ── Global visitor variant assignment cookie ──────────────────────────
   // Every visitor gets a stable `ab_variant` UUID that persists for 30 days.

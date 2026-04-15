@@ -2,7 +2,7 @@ import { Section, Container } from "@/components/layout";
 import { Button } from "@/components/ui";
 import { requireBloodEngineAccess } from "@/lib/blood-engine/access";
 import { listReports } from "@/lib/blood-engine/db";
-import { MedicalDisclaimer } from "../MedicalDisclaimer";
+import { MedicalDisclaimer } from "../../MedicalDisclaimer";
 import { DangerZone } from "./DangerZone";
 
 export const dynamic = "force-dynamic";

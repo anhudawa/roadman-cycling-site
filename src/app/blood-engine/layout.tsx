@@ -1,6 +1,15 @@
 import type { Metadata } from "next";
-import { Header, Footer } from "@/components/layout";
 
+/**
+ * Root Blood Engine layout — intentionally minimal.
+ *
+ * Actual page chrome lives in the two nested group layouts:
+ *   - (public)/layout.tsx → main Roadman Header + Footer, shown on the
+ *     waiting-list landing, markers reference, login, checkout-success
+ *   - (members)/layout.tsx → MembersHeader, shown once signed in
+ *
+ * Site-wide metadata defaults live here.
+ */
 export const metadata: Metadata = {
   title: {
     default: "Blood Engine — Decode your bloodwork like a pro cyclist",
@@ -12,7 +21,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Blood Engine — Decode your bloodwork like a pro cyclist",
     description:
-      "Cycling-specific bloodwork interpretation for masters cyclists. €97 lifetime access — every retest decoded forever.",
+      "Cycling-specific bloodwork interpretation for masters cyclists. Athlete-optimal ranges, not generic lab norms.",
     type: "website",
     url: "https://roadmancycling.com/blood-engine",
     siteName: "Roadman Cycling",
@@ -25,14 +34,10 @@ export const metadata: Metadata = {
   },
 };
 
-export default function BloodEngineLayout({ children }: { children: React.ReactNode }) {
-  return (
-    <div className="min-h-screen flex flex-col">
-      <Header />
-      <main id="main-content" className="flex-1">
-        {children}
-      </main>
-      <Footer />
-    </div>
-  );
+export default function BloodEngineRootLayout({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
+  return children;
 }

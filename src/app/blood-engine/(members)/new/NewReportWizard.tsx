@@ -10,7 +10,7 @@ import {
   type Symptom,
   type TrainingPhase,
 } from "@/lib/blood-engine/schemas";
-import { BLOOD_ENGINE_DISCLAIMER } from "../../../../content/blood-engine/disclaimer";
+import { BLOOD_ENGINE_DISCLAIMER } from "../../../../../content/blood-engine/disclaimer";
 
 type Step = "context" | "results" | "submit";
 
