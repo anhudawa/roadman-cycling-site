@@ -186,13 +186,21 @@ export default function CoachingPage() {
             description:
               "1:1 personalised coaching across training, nutrition, strength, recovery, and accountability",
           },
-          aggregateRating: {
-            "@type": "AggregateRating",
-            ratingValue: "4.9",
-            reviewCount: "120",
-            bestRating: "5",
-            worstRating: "1",
-          },
+          // Review schema mirrors the real on-page testimonials below.
+          // No reviewRating — we collect narrative testimonials, not star ratings,
+          // so emitting a made-up numeric rating would violate Google's guidelines.
+          review: testimonials.map((t) => ({
+            "@type": "Review",
+            author: {
+              "@type": "Person",
+              name: t.name,
+            },
+            reviewBody: t.quote,
+            itemReviewed: {
+              "@type": "Service",
+              name: "Roadman Cycling Coaching",
+            },
+          })),
         }}
       />
       {/* Course schema — structured coaching programme with instructor + delivery mode */}

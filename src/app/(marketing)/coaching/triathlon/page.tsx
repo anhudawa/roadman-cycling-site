@@ -145,24 +145,28 @@ const faqItems = [
   },
 ];
 
+// Real Roadman members whose results translate directly to the demands of the
+// triathlon bike leg: sustainable aerobic power, polarised intensity control,
+// and endurance adaptation. Presented honestly as Roadman coaching members —
+// not claimed to be triathletes — so the social proof is verifiable.
 const testimonials = [
   {
     quote:
-      "I came from a triathlon background where the bike was treated like a box to tick. Having a coach who treats the bike as its own craft — and who knows exactly how it lands on my run — has been the biggest performance change of my athletic career.",
-    name: "70.3 age-grouper",
-    detail: "AG40–44 — first Kona slot contender",
+      "I was an average sportive rider who had plateaued. Roadman custom built a plan to achieve my goals. I've gotten much more out of Roadman than I ever imagined.",
+    name: "Damien Maloney",
+    detail: "Roadman member — FTP 205w → 295w",
   },
   {
     quote:
-      "My triathlon coach handed off my bike block to Roadman. Best decision of the season. Bike split dropped 18 minutes at Ironman and for the first time ever I negative-split the run.",
-    name: "Ironman age-grouper",
-    detail: "AG50–54 — sub-10 at Ironman UK",
+      "This really works. I'm training so much less than last year, at lower intensities and not getting sick. FTHR up from 175 to 180, peak HR up to 193.",
+    name: "Brian Morrissey",
+    detail: "Roadman member — 52yo, FTP +15%",
   },
   {
     quote:
-      "I was riding hard on every bike and wondering why my run kept falling apart at 15km. Polarised bike work changed everything. I train the bike less intensely and run off it better than I ever have.",
-    name: "Returning triathlete",
-    detail: "Mid-distance — AG35–39",
+      "The expertise and personalised plan allowed me to utilise my past racing experience and gave me the adaptations needed for the changeover. If you're looking to unlock new potential, I couldn't recommend Anthony enough.",
+    name: "Aaron Kearney",
+    detail: "Roadman member — endurance crossover",
   },
 ];
 
@@ -202,13 +206,21 @@ export default function TriathlonCoachingPage() {
             description:
               "1:1 bike-leg coaching for triathletes — power, pacing, bricks, fuelling, strength",
           },
-          aggregateRating: {
-            "@type": "AggregateRating",
-            ratingValue: "4.9",
-            reviewCount: "120",
-            bestRating: "5",
-            worstRating: "1",
-          },
+          // Review schema mirrors the real on-page testimonials below.
+          // No reviewRating — we collect narrative testimonials, not star ratings,
+          // so emitting a made-up numeric rating would violate Google's guidelines.
+          review: testimonials.map((t) => ({
+            "@type": "Review",
+            author: {
+              "@type": "Person",
+              name: t.name,
+            },
+            reviewBody: t.quote,
+            itemReviewed: {
+              "@type": "Service",
+              name: "Roadman Cycling — Triathlon Bike Coaching",
+            },
+          })),
         }}
       />
 
@@ -547,8 +559,13 @@ export default function TriathlonCoachingPage() {
                 className="font-heading text-off-white mb-4"
                 style={{ fontSize: "var(--text-section)" }}
               >
-                FROM TRIATHLETES WHO&apos;VE DONE THE BLOCK
+                REAL ROADMAN MEMBERS. RESULTS THAT TRANSFER.
               </h2>
+              <p className="text-foreground-muted max-w-xl mx-auto leading-relaxed">
+                The same methodology that delivers sustainable bike power
+                for our coaching members is what builds a protected,
+                run-friendly bike leg for triathletes.
+              </p>
             </ScrollReveal>
 
             <div className="space-y-4">

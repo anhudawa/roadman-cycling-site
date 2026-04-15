@@ -56,17 +56,51 @@ const milestones = [
 export default function AboutPage() {
   return (
     <>
+      {/* Full Person entity for Anthony Walsh — supports Google Knowledge Panel
+          eligibility by linking the same-name entity across Roadman's podcast
+          feeds, YouTube, and social platforms. Kept consistent with the founder
+          Person inside Organization JsonLd emitted in JsonLd.tsx. */}
       <JsonLd
         data={{
           "@context": "https://schema.org",
           "@type": "Person",
           name: "Anthony Walsh",
-          jobTitle: "Host, Roadman Cycling Podcast",
+          alternateName: "Anthony Walsh (Roadman Cycling)",
+          description:
+            "Cycling coach and founder of Roadman Cycling. Host of the Roadman Cycling Podcast, with over 1,400 conversations with World Tour coaches, sports scientists, and professional riders — including Prof. Stephen Seiler, Dan Lorang, Greg LeMond, and Lachlan Morton.",
+          image: "https://roadmancycling.com/images/about/anthony-walsh-podcast.jpg",
+          jobTitle: "Cycling Coach & Podcast Host",
           url: "https://roadmancycling.com/about",
+          sameAs: [
+            "https://youtube.com/@theroadmanpodcast",
+            "https://instagram.com/roadman.cycling",
+            "https://facebook.com/roadmancycling",
+            "https://x.com/Roadman_Podcast",
+            "https://tiktok.com/@roadmancyclingpodcast",
+            "https://open.spotify.com/show/2oCs3N4ahypwzzUrFqgUmC",
+            "https://podcasts.apple.com/us/podcast/the-roadman-cycling-podcast/id1224143549",
+          ],
+          knowsAbout: [
+            "Cycling coaching",
+            "Cycling training methodology",
+            "Polarised training",
+            "Functional Threshold Power (FTP)",
+            "Cycling nutrition",
+            "Strength training for cyclists",
+            "Triathlon bike coaching",
+            "Endurance sports podcasting",
+          ],
           worksFor: {
             "@type": "Organization",
             name: "Roadman Cycling",
+            url: "https://roadmancycling.com",
           },
+          founder: {
+            "@type": "Organization",
+            name: "Roadman Cycling",
+            url: "https://roadmancycling.com",
+          },
+          mainEntityOfPage: "https://roadmancycling.com/about",
         }}
       />
 
@@ -402,9 +436,12 @@ export default function AboutPage() {
             </div>
 
             {/* CTA */}
-            <div className="mt-16 text-center">
+            <div className="mt-16 text-center flex flex-col sm:flex-row gap-4 justify-center items-center">
               <Button href="/community/clubhouse" size="lg">
                 Join the Community
+              </Button>
+              <Button href="/about/press" variant="ghost" size="lg">
+                Press &amp; Media Kit
               </Button>
             </div>
           </Container>
