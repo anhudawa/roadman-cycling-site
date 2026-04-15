@@ -199,6 +199,7 @@ export interface ListContactsParams {
   owner?: string | "unassigned" | null;
   stage?: string | null;
   staleOnly?: boolean;
+  sort?: "score" | "recent";
   limit?: number;
   offset?: number;
 }
@@ -239,10 +240,18 @@ export async function listContacts(params: ListContactsParams = {}): Promise<Lis
 
   const whereClause = conditions.length > 0 ? and(...conditions) : undefined;
 
+  const orderBy =
+    params.sort === "score"
+      ? [
+          sql`(${contacts.customFields}->'system'->>'lead_score')::int DESC NULLS LAST`,
+          desc(contacts.lastActivityAt),
+        ]
+      : [desc(contacts.lastActivityAt), desc(contacts.createdAt)];
+
   const rowsQuery = db
     .select()
     .from(contacts)
-    .orderBy(desc(contacts.lastActivityAt), desc(contacts.createdAt))
+    .orderBy(...orderBy)
     .limit(limit)
     .offset(offset);
 

@@ -286,6 +286,61 @@ export function ContactDetail({
   const [mergeBusyId, setMergeBusyId] = useState<number | null>(null);
   const [mergeError, setMergeError] = useState<string | null>(null);
 
+  // Lead score
+  function readScoreFrom(cf: Record<string, unknown>): number | null {
+    const sys = (cf.system ?? {}) as Record<string, unknown>;
+    const raw = sys.lead_score;
+    if (typeof raw === "number") return raw;
+    if (typeof raw === "string" && raw !== "") {
+      const n = parseInt(raw, 10);
+      return Number.isFinite(n) ? n : null;
+    }
+    return null;
+  }
+  type LeadBand = "hot" | "warm" | "cool" | "cold";
+  function leadBand(score: number): LeadBand {
+    if (score >= 250) return "hot";
+    if (score >= 120) return "warm";
+    if (score >= 50) return "cool";
+    return "cold";
+  }
+  function leadBandClass(b: LeadBand): string {
+    switch (b) {
+      case "hot":
+        return "bg-red-500/15 text-red-300 border-red-500/30";
+      case "warm":
+        return "bg-orange-500/15 text-orange-300 border-orange-500/30";
+      case "cool":
+        return "bg-blue-500/15 text-blue-300 border-blue-500/30";
+      case "cold":
+      default:
+        return "bg-slate-600/20 text-slate-400 border-slate-600/30";
+    }
+  }
+  const [leadScore, setLeadScore] = useState<number | null>(
+    readScoreFrom(contact.customFields ?? {})
+  );
+  const [rescoring, setRescoring] = useState(false);
+  const canRescore =
+    currentUser?.role === "admin" ||
+    (currentUser?.slug && contact.owner === currentUser.slug);
+
+  async function recomputeScore() {
+    setRescoring(true);
+    try {
+      const res = await fetch(`/api/admin/crm/contacts/${contact.id}/score`, {
+        method: "POST",
+      });
+      const data = await res.json().catch(() => ({}));
+      if (res.ok && typeof data.score === "number") {
+        setLeadScore(data.score);
+        router.refresh();
+      }
+    } finally {
+      setRescoring(false);
+    }
+  }
+
   async function mergeDuplicateIntoHere(secondaryId: number, secondaryEmail: string) {
     const confirmed = window.confirm(
       `This will delete ${secondaryEmail} and move its data to ${contact.email}. Continue?`
@@ -554,9 +609,29 @@ export function ContactDetail({
 
       <div className="flex items-start justify-between mb-6 gap-4 flex-wrap">
         <div>
-          <h1 className="font-heading text-2xl text-off-white tracking-wider">
-            {(contact.name ?? contact.email).toUpperCase()}
-          </h1>
+          <div className="flex items-center gap-3 flex-wrap">
+            <h1 className="font-heading text-2xl text-off-white tracking-wider">
+              {(contact.name ?? contact.email).toUpperCase()}
+            </h1>
+            {leadScore !== null && (
+              <span
+                className={`text-[10px] px-2 py-0.5 rounded border tabular-nums uppercase tracking-widest ${leadBandClass(leadBand(leadScore))}`}
+                title="Lead score"
+              >
+                {leadScore} · {leadBand(leadScore)}
+              </span>
+            )}
+            {canRescore && (
+              <button
+                type="button"
+                onClick={recomputeScore}
+                disabled={rescoring}
+                className="text-[10px] px-2 py-0.5 rounded border border-white/10 text-foreground-muted hover:border-coral/40 hover:text-coral uppercase tracking-widest disabled:opacity-50"
+              >
+                {rescoring ? "Scoring..." : leadScore === null ? "Score" : "Recompute"}
+              </button>
+            )}
+          </div>
           <p className="text-sm text-foreground-muted mt-1">{contact.email}</p>
           {contact.phone && (
             <p className="text-sm text-foreground-muted">{contact.phone}</p>

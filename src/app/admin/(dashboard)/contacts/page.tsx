@@ -26,6 +26,8 @@ export default async function ContactsPage({
   const stage = typeof sp.stage === "string" ? sp.stage : "";
   const staleRaw = typeof sp.stale === "string" ? sp.stale : "";
   const staleOnly = staleRaw === "1" || staleRaw === "true";
+  const sortParam = typeof sp.sort === "string" ? sp.sort : "";
+  const sort = sortParam === "score" ? ("score" as const) : undefined;
   const pageNum = Math.max(1, parseInt(typeof sp.page === "string" ? sp.page : "1", 10) || 1);
   const offset = (pageNum - 1) * PAGE_SIZE;
 
@@ -34,6 +36,7 @@ export default async function ContactsPage({
     owner: owner || undefined,
     stage: stage || undefined,
     staleOnly,
+    sort,
     limit: PAGE_SIZE,
     offset,
   });
@@ -55,20 +58,33 @@ export default async function ContactsPage({
     if (owner) p.set("owner", owner);
     if (stage) p.set("stage", stage);
     if (staleOnly) p.set("stale", "1");
+    if (sort) p.set("sort", sort);
     p.set("page", String(n));
     return `/admin/contacts?${p.toString()}`;
   }
 
-  const tableRows: ContactRow[] = rows.map((c) => ({
-    id: c.id,
-    email: c.email,
-    name: c.name,
-    owner: c.owner,
-    lifecycleStage: c.lifecycleStage,
-    tags: Array.isArray(c.tags) ? c.tags : [],
-    lastActivityAt: c.lastActivityAt ? c.lastActivityAt.toISOString() : null,
-    createdAt: c.createdAt.toISOString(),
-  }));
+  const tableRows: ContactRow[] = rows.map((c) => {
+    const cf = (c.customFields ?? {}) as Record<string, unknown>;
+    const sys = (cf.system ?? {}) as Record<string, unknown>;
+    const raw = sys.lead_score;
+    const score =
+      typeof raw === "number"
+        ? raw
+        : typeof raw === "string" && raw !== ""
+          ? parseInt(raw, 10)
+          : null;
+    return {
+      id: c.id,
+      email: c.email,
+      name: c.name,
+      owner: c.owner,
+      lifecycleStage: c.lifecycleStage,
+      tags: Array.isArray(c.tags) ? c.tags : [],
+      lastActivityAt: c.lastActivityAt ? c.lastActivityAt.toISOString() : null,
+      createdAt: c.createdAt.toISOString(),
+      score: Number.isFinite(score) ? (score as number) : null,
+    };
+  });
 
   return (
     <div>
@@ -111,6 +127,47 @@ export default async function ContactsPage({
           initialStage={stage}
           initialStale={staleOnly}
         />
+        <div className="mt-2 flex items-center gap-3 text-xs text-foreground-muted">
+          <span className="uppercase tracking-widest text-[10px] text-foreground-subtle">
+            Order by:
+          </span>
+          <Link
+            href={(() => {
+              const p = new URLSearchParams();
+              if (search) p.set("search", search);
+              if (owner) p.set("owner", owner);
+              if (stage) p.set("stage", stage);
+              if (staleOnly) p.set("stale", "1");
+              const qs = p.toString();
+              return qs ? `/admin/contacts?${qs}` : "/admin/contacts";
+            })()}
+            className={
+              sort !== "score"
+                ? "text-off-white underline underline-offset-2"
+                : "hover:text-off-white"
+            }
+          >
+            Recent activity
+          </Link>
+          <Link
+            href={(() => {
+              const p = new URLSearchParams();
+              if (search) p.set("search", search);
+              if (owner) p.set("owner", owner);
+              if (stage) p.set("stage", stage);
+              if (staleOnly) p.set("stale", "1");
+              p.set("sort", "score");
+              return `/admin/contacts?${p.toString()}`;
+            })()}
+            className={
+              sort === "score"
+                ? "text-off-white underline underline-offset-2"
+                : "hover:text-off-white"
+            }
+          >
+            Score desc
+          </Link>
+        </div>
       </div>
 
       {rows.length === 0 ? (

@@ -13,6 +13,28 @@ export interface ContactRow {
   tags: string[];
   lastActivityAt: string | null;
   createdAt: string;
+  score?: number | null;
+}
+
+type ScoreBand = "hot" | "warm" | "cool" | "cold";
+function getBand(score: number): ScoreBand {
+  if (score >= 250) return "hot";
+  if (score >= 120) return "warm";
+  if (score >= 50) return "cool";
+  return "cold";
+}
+function bandClass(b: ScoreBand): string {
+  switch (b) {
+    case "hot":
+      return "bg-red-500/15 text-red-300 border-red-500/30";
+    case "warm":
+      return "bg-orange-500/15 text-orange-300 border-orange-500/30";
+    case "cool":
+      return "bg-blue-500/15 text-blue-300 border-blue-500/30";
+    case "cold":
+    default:
+      return "bg-slate-600/20 text-slate-400 border-slate-600/30";
+  }
 }
 
 const OWNERS: Array<{ value: string; label: string }> = [
@@ -293,6 +315,7 @@ export function ContactsTable({ rows }: { rows: ContactRow[] }) {
               <th className="px-4 py-3 font-medium">Owner</th>
               <th className="px-4 py-3 font-medium">Stage</th>
               <th className="px-4 py-3 font-medium">Tags</th>
+              <th className="px-4 py-3 font-medium text-right">Score</th>
               <th className="px-4 py-3 font-medium text-right">Last Activity</th>
             </tr>
           </thead>
@@ -355,6 +378,20 @@ export function ContactsTable({ rows }: { rows: ContactRow[] }) {
                             {t}
                           </span>
                         ))
+                      )}
+                    </Link>
+                  </td>
+                  <td className="px-4 py-3 text-right">
+                    <Link href={`/admin/contacts/${c.id}`} className="inline-block">
+                      {typeof c.score === "number" ? (
+                        <span
+                          className={`text-[10px] px-2 py-0.5 rounded border tabular-nums uppercase tracking-widest ${bandClass(getBand(c.score))}`}
+                          title={`Score ${c.score}`}
+                        >
+                          {c.score} · {getBand(c.score)}
+                        </span>
+                      ) : (
+                        <span className="text-xs text-foreground-subtle">—</span>
                       )}
                     </Link>
                   </td>

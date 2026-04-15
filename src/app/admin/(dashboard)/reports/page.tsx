@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { requireAuth } from "@/lib/admin/auth";
 import { getAllReports } from "@/lib/crm/reports";
+import { getScoreBandDistribution, bandBadgeClass } from "@/lib/crm/scoring";
 import { STAGE_COLORS, STAGE_LABELS } from "@/lib/crm/pipeline";
 import {
   STAGE_LABELS as DEAL_STAGE_LABELS,
@@ -30,6 +31,13 @@ function Card({
 export default async function ReportsPage() {
   const user = await requireAuth();
   const { funnel, weekly, owners, email, throughput, deals } = await getAllReports();
+  const scoreDist = await getScoreBandDistribution().catch(() => ({
+    hot: 0,
+    warm: 0,
+    cool: 0,
+    cold: 0,
+  }));
+  const scoreTotal = scoreDist.hot + scoreDist.warm + scoreDist.cool + scoreDist.cold;
 
   const funnelMax = Math.max(1, ...funnel.map((f) => f.count));
   const weeklyMax = Math.max(1, ...weekly.map((w) => w.count));
@@ -109,6 +117,36 @@ export default async function ReportsPage() {
           </div>
         </Card>
       </div>
+
+      {/* Lead score distribution */}
+      <Card title="Lead Score Distribution">
+        {scoreTotal === 0 ? (
+          <p className="text-sm text-foreground-subtle">
+            No scores yet. Run the score-all cron or use Recompute on a contact.
+          </p>
+        ) : (
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
+            {(["hot", "warm", "cool", "cold"] as const).map((b) => {
+              const count = scoreDist[b];
+              const pct = Math.round((count / scoreTotal) * 100);
+              return (
+                <div
+                  key={b}
+                  className={`rounded-lg border px-3 py-3 ${bandBadgeClass(b)}`}
+                >
+                  <p className="text-[10px] uppercase tracking-widest opacity-80">
+                    {b}
+                  </p>
+                  <p className="font-heading text-2xl tracking-wider mt-1 tabular-nums">
+                    {count}
+                  </p>
+                  <p className="text-xs tabular-nums opacity-70">{pct}%</p>
+                </div>
+              );
+            })}
+          </div>
+        )}
+      </Card>
 
       {/* Owner breakdown */}
       <Card title="Owner Breakdown">
