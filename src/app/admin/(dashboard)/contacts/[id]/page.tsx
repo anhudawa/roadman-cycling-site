@@ -2,8 +2,8 @@ import { notFound } from "next/navigation";
 import { requireAuth } from "@/lib/admin/auth";
 import { getContactById, getTimeline } from "@/lib/crm/contacts";
 import { db } from "@/lib/db";
-import { tasks as tasksTable } from "@/lib/db/schema";
-import { desc, eq } from "drizzle-orm";
+import { tasks as tasksTable, cohortApplications } from "@/lib/db/schema";
+import { desc, eq, sql } from "drizzle-orm";
 import { listTemplates, listEmailsForContact } from "@/lib/crm/email";
 import { listAttachments } from "@/lib/crm/attachments";
 import { getPotentialDuplicatesFor } from "@/lib/crm/dedup";
@@ -28,7 +28,7 @@ export default async function ContactDetailPage({
   const contact = await getContactById(id);
   if (!contact) notFound();
 
-  const [activities, taskRows, templateRows, attachmentRows, duplicateCandidates, customFieldDefsList, customValues, emailRows] =
+  const [activities, taskRows, templateRows, attachmentRows, duplicateCandidates, customFieldDefsList, customValues, emailRows, applicationRows] =
     await Promise.all([
       getTimeline(id, { limit: 200 }),
       db
@@ -42,6 +42,13 @@ export default async function ContactDetailPage({
       listFieldDefs(),
       getContactCustomValues(id),
       listEmailsForContact(id, 20),
+      contact.email
+        ? db
+            .select()
+            .from(cohortApplications)
+            .where(eq(sql`lower(${cohortApplications.email})`, contact.email))
+            .orderBy(desc(cohortApplications.createdAt))
+        : Promise.resolve([]),
     ]);
 
   return (
@@ -103,6 +110,19 @@ export default async function ContactDetailPage({
         dueAt: t.dueAt ? t.dueAt.toISOString() : null,
         completedAt: t.completedAt ? t.completedAt.toISOString() : null,
         createdAt: t.createdAt.toISOString(),
+      }))}
+      applications={applicationRows.map((a) => ({
+        id: a.id,
+        name: a.name,
+        email: a.email,
+        goal: a.goal,
+        hours: a.hours,
+        ftp: a.ftp,
+        frustration: a.frustration,
+        cohort: a.cohort,
+        persona: a.persona,
+        status: a.status,
+        createdAt: a.createdAt.toISOString(),
       }))}
     />
   );

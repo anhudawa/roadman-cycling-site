@@ -297,6 +297,20 @@ interface DuplicateCandidateProp {
   confidence: number;
 }
 
+export interface ApplicationRow {
+  id: number;
+  name: string;
+  email: string;
+  goal: string;
+  hours: string;
+  ftp: string | null;
+  frustration: string;
+  cohort: string;
+  persona: string | null;
+  status: string;
+  createdAt: string;
+}
+
 export function ContactDetail({
   contact: initialContact,
   activities: initialActivities,
@@ -309,6 +323,7 @@ export function ContactDetail({
   customFieldDefs = [],
   initialCustomValues = {},
   initialEmails = [],
+  applications = [],
 }: {
   contact: Contact;
   activities: Activity[];
@@ -321,6 +336,7 @@ export function ContactDetail({
   customFieldDefs?: CustomFieldDefProp[];
   initialCustomValues?: Record<string, unknown>;
   initialEmails?: EmailRow[];
+  applications?: ApplicationRow[];
 }) {
   const router = useRouter();
   const [contact, setContact] = useState(initialContact);
@@ -849,6 +865,10 @@ export function ContactDetail({
       >
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
           <div className="lg:col-span-2 space-y-6">
+            {applications.length > 0 && (
+              <ApplicationsSection applications={applications} />
+            )}
+
             <ContactCustomFields
               contactId={contact.id}
               initialDefs={customFieldDefs}
@@ -1550,6 +1570,166 @@ export function ContactDetail({
           </div>
         </div>
       )}
+    </div>
+  );
+}
+
+function ApplicationsSection({ applications }: { applications: ApplicationRow[] }) {
+  return (
+    <div className="bg-background-elevated rounded-xl border border-coral/20 overflow-hidden">
+      <div className="px-4 py-3 border-b border-coral/20 bg-coral/[0.04] flex items-center gap-2">
+        <span className="w-2 h-2 rounded-full bg-coral" />
+        <p className="text-[10px] uppercase tracking-widest text-coral font-semibold">
+          Application{applications.length === 1 ? "" : "s"} from /apply
+        </p>
+        <span className="ml-auto text-[10px] text-foreground-subtle">
+          {applications.length} submission{applications.length === 1 ? "" : "s"}
+        </span>
+      </div>
+      <div className="divide-y divide-white/5">
+        {applications.map((app) => (
+          <ApplicationCard key={app.id} app={app} />
+        ))}
+      </div>
+    </div>
+  );
+}
+
+function ApplicationCard({ app }: { app: ApplicationRow }) {
+  const [copiedAll, setCopiedAll] = useState(false);
+  const submitted = new Date(app.createdAt).toLocaleString("en-GB", {
+    day: "numeric",
+    month: "short",
+    year: "numeric",
+    hour: "2-digit",
+    minute: "2-digit",
+  });
+
+  const allText = [
+    `Name: ${app.name}`,
+    `Email: ${app.email}`,
+    `Cohort: ${app.cohort}`,
+    `Hours/week: ${app.hours}`,
+    `FTP: ${app.ftp ?? "—"}`,
+    `Persona: ${app.persona ?? "—"}`,
+    `Status: ${app.status}`,
+    `Submitted: ${submitted}`,
+    ``,
+    `Goal:`,
+    app.goal || "—",
+    ``,
+    `What's doing your head in:`,
+    app.frustration || "—",
+  ].join("\n");
+
+  async function handleCopyAll() {
+    try {
+      await navigator.clipboard.writeText(allText);
+      setCopiedAll(true);
+      window.setTimeout(() => setCopiedAll(false), 1500);
+    } catch {}
+  }
+
+  return (
+    <div className="p-4 space-y-3">
+      <div className="flex items-center gap-3 flex-wrap text-[11px]">
+        <span className="text-foreground-subtle">
+          Submitted <span className="text-off-white">{submitted}</span>
+        </span>
+        <span className="text-foreground-subtle">·</span>
+        <span className="text-foreground-subtle">
+          Cohort <span className="text-off-white">{app.cohort}</span>
+        </span>
+        <span className="text-foreground-subtle">·</span>
+        <span className="text-foreground-subtle">
+          Status <span className="text-off-white">{app.status.replace(/_/g, " ")}</span>
+        </span>
+        {app.persona && (
+          <>
+            <span className="text-foreground-subtle">·</span>
+            <span className="text-foreground-subtle">
+              Persona <span className="text-off-white capitalize">{app.persona}</span>
+            </span>
+          </>
+        )}
+        <button
+          type="button"
+          onClick={handleCopyAll}
+          className={`ml-auto text-[10px] px-2 py-1 rounded border font-medium transition ${
+            copiedAll
+              ? "bg-coral/20 text-coral border-coral/40"
+              : "bg-coral/10 text-coral border-coral/30 hover:bg-coral/20"
+          }`}
+        >
+          {copiedAll ? "Copied all" : "Copy all"}
+        </button>
+      </div>
+
+      <div className="grid grid-cols-2 gap-3">
+        <AppField label="Hours / week" value={app.hours} />
+        <AppField label="FTP" value={app.ftp} mono />
+      </div>
+
+      <AppField label="Goal" value={app.goal} />
+      <AppField label="What's doing your head in" value={app.frustration} highlight />
+    </div>
+  );
+}
+
+function AppField({
+  label,
+  value,
+  mono,
+  highlight,
+}: {
+  label: string;
+  value: string | null | undefined;
+  mono?: boolean;
+  highlight?: boolean;
+}) {
+  const [copied, setCopied] = useState(false);
+  const v = value ?? "";
+  async function copy() {
+    if (!v) return;
+    try {
+      await navigator.clipboard.writeText(v);
+      setCopied(true);
+      window.setTimeout(() => setCopied(false), 1500);
+    } catch {}
+  }
+  return (
+    <div
+      className={`flex flex-col gap-1.5 p-3 rounded-lg border ${
+        highlight
+          ? "border-coral/20 bg-coral/[0.03]"
+          : "border-white/5 bg-white/[0.02]"
+      }`}
+    >
+      <div className="flex items-center gap-2">
+        <span className="text-foreground-subtle text-[10px] tracking-widest uppercase">
+          {label}
+        </span>
+        {v && (
+          <button
+            type="button"
+            onClick={copy}
+            className={`ml-auto text-[10px] px-2 py-0.5 rounded-full border font-medium transition ${
+              copied
+                ? "bg-coral/20 text-coral border-coral/40"
+                : "border-white/10 text-foreground-subtle hover:text-off-white hover:border-white/30"
+            }`}
+          >
+            {copied ? "Copied" : "Copy"}
+          </button>
+        )}
+      </div>
+      <p
+        className={`text-off-white text-sm whitespace-pre-wrap break-words ${
+          mono ? "font-mono" : ""
+        } ${!v ? "text-foreground-subtle italic" : ""}`}
+      >
+        {v || "—"}
+      </p>
     </div>
   );
 }
