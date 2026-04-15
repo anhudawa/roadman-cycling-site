@@ -10,5 +10,5 @@ export default function AdminRootLayout({
 }: {
   children: React.ReactNode;
 }) {
-  return <div data-admin-root>{children}</div>;
+  return children;
 }

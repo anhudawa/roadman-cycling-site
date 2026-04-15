@@ -112,32 +112,6 @@ html {
   }
 }
 
-/* Admin panel: always use native OS cursor, override the global cursor:none. */
-[data-admin-root],
-[data-admin-root] * {
-  cursor: auto !important;
-}
-
-[data-admin-root] a,
-[data-admin-root] button,
-[data-admin-root] [role="button"],
-[data-admin-root] [role="tab"],
-[data-admin-root] summary,
-[data-admin-root] label[for] {
-  cursor: pointer !important;
-}
-
-[data-admin-root] input:not([type="button"]):not([type="submit"]):not([type="checkbox"]):not([type="radio"]),
-[data-admin-root] textarea,
-[data-admin-root] [contenteditable="true"] {
-  cursor: text !important;
-}
-
-[data-admin-root] [disabled],
-[data-admin-root] button[disabled] {
-  cursor: not-allowed !important;
-}
-
 body {
   background-color: var(--color-background);
   color: var(--color-foreground);
