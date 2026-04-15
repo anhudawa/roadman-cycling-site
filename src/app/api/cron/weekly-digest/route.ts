@@ -7,6 +7,7 @@ import {
   renderWeeklyDigest,
   sendWeeklyDigestEmail,
 } from "@/lib/crm/weekly-digest";
+import { startCronRun, finishCronRun } from "@/lib/crm/cron-runs";
 
 export const dynamic = "force-dynamic";
 
@@ -22,6 +23,8 @@ export async function GET(req: NextRequest) {
     return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
   }
 
+  const { id: runId } = await startCronRun("weekly_digest");
+  try {
   const admins = await db
     .select()
     .from(teamUsers)
@@ -49,6 +52,16 @@ export async function GET(req: NextRequest) {
     }
   }
 
+  await finishCronRun(runId, errors.length === 0 ? "success" : "error", {
+    result: {
+      sent: sent.length,
+      errors: errors.length,
+      subject: rendered.subject,
+      sentSlugs: sent.map((s) => s.slug),
+    },
+    error: errors.length ? errors.map((e) => `${e.slug}: ${e.error}`).join("; ") : null,
+  });
+
   return NextResponse.json({
     ok: true,
     ranAt: new Date().toISOString(),
@@ -56,4 +69,10 @@ export async function GET(req: NextRequest) {
     sent,
     errors,
   });
+  } catch (err) {
+    await finishCronRun(runId, "error", {
+      error: err instanceof Error ? err.message : String(err),
+    });
+    throw err;
+  }
 }

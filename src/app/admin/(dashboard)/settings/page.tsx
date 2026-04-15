@@ -7,6 +7,10 @@ import { CustomFieldsPanel } from "./_components/CustomFieldsPanel";
 import { IntegrationsPanel } from "./_components/IntegrationsPanel";
 import { listFieldDefs } from "@/lib/crm/custom-fields";
 import { automationsDisabled } from "@/lib/crm/automations";
+import { listCronRuns } from "@/lib/crm/cron-runs";
+import { syncRuns } from "@/lib/db/schema";
+import { desc, eq } from "drizzle-orm";
+import { CronHealthPanel, type CronKindRow } from "./_components/CronHealthPanel";
 
 export const dynamic = "force-dynamic";
 
@@ -98,6 +102,116 @@ export default async function SettingsPage() {
     resendDomainRow,
   ];
 
+  // ── Cron health ──────────────────────────────────────────
+  const CRON_KINDS: Array<{ kind: string; label: string; schedule: string }> = [
+    { kind: "daily_digest", label: "Daily digest", schedule: "0 8 * * *" },
+    { kind: "weekly_digest", label: "Weekly digest", schedule: "0 8 * * 1" },
+    { kind: "sync_all", label: "Sync all (Beehiiv+Stripe)", schedule: "0 6 * * *" },
+    { kind: "score_all", label: "Lead scoring", schedule: "30 6 * * *" },
+  ];
+
+  function serializeRun(r: {
+    id: number;
+    status: string;
+    result: Record<string, unknown> | null;
+    error: string | null;
+    startedAt: Date;
+    finishedAt: Date | null;
+  }) {
+    return {
+      id: r.id,
+      status: r.status,
+      result: r.result,
+      error: r.error,
+      startedAt: r.startedAt.toISOString(),
+      finishedAt: r.finishedAt ? r.finishedAt.toISOString() : null,
+    };
+  }
+
+  function summarizeCron(kind: string, result: Record<string, unknown> | null, error: string | null): string {
+    if (error) return error.length > 80 ? error.slice(0, 77) + "..." : error;
+    if (!result) return "—";
+    if (kind === "daily_digest" || kind === "weekly_digest") {
+      const sent = result.sent ?? 0;
+      const skipped = result.skipped ?? 0;
+      const errs = result.errors ?? 0;
+      return `Sent ${sent} / Skipped ${skipped}${errs ? ` / Errors ${errs}` : ""}`;
+    }
+    if (kind === "score_all") {
+      const scored = result.scored ?? "?";
+      const errs = result.errorCount ?? 0;
+      return `Scored ${scored}${errs ? ` / Errors ${errs}` : ""}`;
+    }
+    if (kind === "sync_all") {
+      const errs = result.errorCount ?? 0;
+      return errs ? `Errors ${errs}` : "OK";
+    }
+    return "OK";
+  }
+
+  const cronRows: CronKindRow[] = [];
+  for (const c of CRON_KINDS) {
+    const history = await listCronRuns({ kind: c.kind as "daily_digest" | "weekly_digest" | "sync_all" | "score_all", limit: 10 });
+    const latest = history[0] ?? null;
+    cronRows.push({
+      kind: c.kind,
+      label: c.label,
+      schedule: c.schedule,
+      latest: latest ? serializeRun(latest) : null,
+      history: history.map(serializeRun),
+      summary: latest ? summarizeCron(c.kind, latest.result, latest.error) : "Never",
+    });
+  }
+
+  // Also include sync_runs (beehiiv/stripe) side-by-side
+  for (const source of ["beehiiv", "stripe"] as const) {
+    try {
+      const history = await db
+        .select()
+        .from(syncRuns)
+        .where(eq(syncRuns.source, source))
+        .orderBy(desc(syncRuns.startedAt))
+        .limit(10);
+      const latest = history[0] ?? null;
+      const toRow = (r: typeof syncRuns.$inferSelect) => ({
+        id: r.id,
+        status: r.status,
+        result: (r.result as unknown) as Record<string, unknown> | null,
+        error: r.error,
+        startedAt: r.startedAt.toISOString(),
+        finishedAt: r.finishedAt ? r.finishedAt.toISOString() : null,
+      });
+      let summary = "Never";
+      if (latest) {
+        if (latest.error) {
+          summary = latest.error.slice(0, 80);
+        } else if (latest.result) {
+          const res = latest.result as { scanned?: number; created?: number; updated?: number; errors?: number };
+          summary = `Scanned ${res.scanned ?? 0} / Created ${res.created ?? 0} / Updated ${res.updated ?? 0}${res.errors ? ` / Errors ${res.errors}` : ""}`;
+        } else {
+          summary = "OK";
+        }
+      }
+      cronRows.push({
+        kind: `sync_${source}`,
+        label: `Sync: ${source}`,
+        schedule: "via sync_all",
+        latest: latest ? toRow(latest) : null,
+        history: history.map(toRow),
+        summary,
+      });
+    } catch {
+      cronRows.push({
+        kind: `sync_${source}`,
+        label: `Sync: ${source}`,
+        schedule: "via sync_all",
+        latest: null,
+        history: [],
+        summary: "Never",
+      });
+    }
+  }
+
   const serializedUsers = users.map((u) => ({
     id: u.id,
     email: u.email,
@@ -117,6 +231,8 @@ export default async function SettingsPage() {
           System health, team user management, and operational safety controls.
         </p>
       </div>
+
+      <CronHealthPanel rows={cronRows} />
 
       <section>
         <h2 className="font-heading text-sm uppercase tracking-widest text-off-white mb-3">

@@ -3,6 +3,7 @@ import {
   syncBeehiivSubscribers,
   syncStripeCustomers,
 } from "@/lib/crm/sync";
+import { startCronRun, finishCronRun } from "@/lib/crm/cron-runs";
 
 export const runtime = "nodejs";
 export const maxDuration = 600;
@@ -18,6 +19,8 @@ export async function GET(req: NextRequest) {
   if (!isAuthorized(req)) {
     return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
   }
+
+  const { id: runId } = await startCronRun("sync_all");
 
   const out: {
     beehiiv?: unknown;
@@ -38,6 +41,15 @@ export async function GET(req: NextRequest) {
   } catch (err) {
     out.errors.push(`stripe: ${err instanceof Error ? err.message : String(err)}`);
   }
+
+  await finishCronRun(runId, out.errors.length === 0 ? "success" : "error", {
+    result: {
+      beehiiv: out.beehiiv ?? null,
+      stripe: out.stripe ?? null,
+      errorCount: out.errors.length,
+    },
+    error: out.errors.length ? out.errors.join("; ") : null,
+  });
 
   return NextResponse.json({ ok: out.errors.length === 0, ...out });
 }

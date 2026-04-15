@@ -218,6 +218,12 @@ function NavIcon({ icon, className }: { icon: string; className?: string }) {
           <path strokeLinecap="round" strokeLinejoin="round" d="M12 3v2.25m6.364.386-1.591 1.591M21 12h-2.25m-.386 6.364-1.591-1.591M12 18.75V21m-4.773-4.227-1.591 1.591M5.25 12H3m4.227-4.773L5.636 5.636M15.75 12a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0Z" />
         </svg>
       );
+    case "help":
+      return (
+        <svg className={cls} fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
+          <path strokeLinecap="round" strokeLinejoin="round" d="M9.879 7.519c1.171-1.025 3.071-1.025 4.242 0 1.172 1.025 1.172 2.687 0 3.712-.203.179-.43.326-.67.442-.745.361-1.45.999-1.45 1.827v.75M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Zm-9 5.25h.008v.008H12v-.008Z" />
+        </svg>
+      );
     default:
       return null;
   }
@@ -361,6 +367,22 @@ export function AdminSidebar({ currentUser, overdueTaskCount = 0 }: AdminSidebar
             </div>
           ))}
         </nav>
+
+        {/* Help link — visible to all roles */}
+        <div className="px-4 pb-2">
+          <Link
+            href="/admin/help"
+            onClick={() => setMobileOpen(false)}
+            className={`flex items-center gap-3 px-3 py-2 rounded-lg text-sm font-medium transition-colors ${
+              pathname.startsWith("/admin/help")
+                ? "bg-coral/10 text-coral"
+                : "text-foreground-muted hover:text-off-white hover:bg-white/5"
+            }`}
+          >
+            <NavIcon icon="help" />
+            Help
+          </Link>
+        </div>
 
         {/* Admin-only settings link, pinned above footer */}
         {currentUser?.role === "admin" && (

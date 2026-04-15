@@ -620,6 +620,29 @@ export const bookings = pgTable(
   ]
 );
 
+// ── CRM: Cron Runs ────────────────────────────────────────
+export type CronRunKind =
+  | "daily_digest"
+  | "weekly_digest"
+  | "sync_all"
+  | "score_all";
+
+export const cronRuns = pgTable(
+  "cron_runs",
+  {
+    id: serial("id").primaryKey(),
+    kind: text("kind").notNull(),
+    status: text("status").notNull(), // 'running' | 'success' | 'error'
+    result: jsonb("result").$type<Record<string, unknown> | null>(),
+    error: text("error"),
+    startedAt: timestamp("started_at", { withTimezone: true }).notNull().defaultNow(),
+    finishedAt: timestamp("finished_at", { withTimezone: true }),
+  },
+  (table) => [
+    index("cron_runs_kind_idx").on(table.kind, table.startedAt),
+  ]
+);
+
 export const episodeDownloadsCache = pgTable("episode_downloads_cache", {
   episodeId: text("episode_id").primaryKey(),
   downloads: integer("downloads").notNull(),

@@ -5,6 +5,7 @@ import { and, eq } from "drizzle-orm";
 import type { TeamUser, TeamUserRole } from "@/lib/admin/auth";
 import { getMyDayData } from "@/lib/crm/dashboard";
 import { hasActionable, renderDailyDigest, sendDigestEmail } from "@/lib/crm/digest";
+import { startCronRun, finishCronRun } from "@/lib/crm/cron-runs";
 
 export const dynamic = "force-dynamic";
 
@@ -51,12 +52,15 @@ export async function GET(req: NextRequest) {
     ? and(eq(teamUsers.active, true), eq(teamUsers.slug, slugParam))
     : eq(teamUsers.active, true);
 
+  const { id: runId } = await startCronRun("daily_digest");
+
   const rows = await db.select().from(teamUsers).where(whereClause);
 
   const sent: SentEntry[] = [];
   const skipped: SkippedEntry[] = [];
   const errors: ErrorEntry[] = [];
 
+  try {
   for (const row of rows) {
     const user = toTeamUser(row);
     try {
@@ -80,6 +84,17 @@ export async function GET(req: NextRequest) {
     }
   }
 
+  await finishCronRun(runId, errors.length === 0 ? "success" : "error", {
+    result: {
+      sent: sent.length,
+      skipped: skipped.length,
+      errors: errors.length,
+      sentSlugs: sent.map((s) => s.slug),
+      skippedSlugs: skipped.map((s) => s.slug),
+    },
+    error: errors.length ? errors.map((e) => `${e.slug}: ${e.error}`).join("; ") : null,
+  });
+
   return NextResponse.json({
     ok: true,
     ranAt: new Date().toISOString(),
@@ -87,4 +102,10 @@ export async function GET(req: NextRequest) {
     skipped,
     errors,
   });
+  } catch (err) {
+    await finishCronRun(runId, "error", {
+      error: err instanceof Error ? err.message : String(err),
+    });
+    throw err;
+  }
 }
