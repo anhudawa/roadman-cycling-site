@@ -391,56 +391,183 @@ export function PipelineBoard({ initialStages, cohorts, initialCohort }: Props) 
         })}
       </div>
 
-      {detail && (
-        <div
-          className="fixed inset-0 z-50 bg-black/70 flex items-center justify-center p-6"
-          onClick={() => setDetail(null)}
-        >
-          <div
-            className="bg-background-elevated border border-white/10 rounded-xl max-w-lg w-full p-6"
-            onClick={(e) => e.stopPropagation()}
+      {detail && <ApplicationDetailModal app={detail} onClose={() => setDetail(null)} />}
+    </div>
+  );
+}
+
+function CopyButton({ value, label }: { value: string; label?: string }) {
+  const [copied, setCopied] = useState(false);
+  if (!value) return null;
+  return (
+    <button
+      type="button"
+      onClick={async (e) => {
+        e.stopPropagation();
+        try {
+          await navigator.clipboard.writeText(value);
+          setCopied(true);
+          window.setTimeout(() => setCopied(false), 1500);
+        } catch {}
+      }}
+      className={`text-[10px] px-2 py-0.5 rounded-full border font-medium transition shrink-0 ${
+        copied
+          ? "bg-coral/20 text-coral border-coral/40"
+          : "border-white/10 text-foreground-subtle hover:text-off-white hover:border-white/30"
+      }`}
+    >
+      {copied ? "Copied" : label ?? "Copy"}
+    </button>
+  );
+}
+
+function Field({
+  label,
+  value,
+  mono,
+}: {
+  label: string;
+  value: string | null | undefined;
+  mono?: boolean;
+}) {
+  const v = value ?? "";
+  return (
+    <div className="flex flex-col gap-1.5 p-3 rounded-lg border border-white/5 bg-white/[0.02]">
+      <div className="flex items-center gap-2">
+        <span className="text-foreground-subtle text-[10px] tracking-widest uppercase">
+          {label}
+        </span>
+        <span className="ml-auto">
+          <CopyButton value={v} />
+        </span>
+      </div>
+      <p
+        className={`text-off-white text-sm whitespace-pre-wrap break-words ${
+          mono ? "font-mono" : ""
+        } ${!v ? "text-foreground-subtle italic" : ""}`}
+      >
+        {v || "—"}
+      </p>
+    </div>
+  );
+}
+
+function ApplicationDetailModal({
+  app,
+  onClose,
+}: {
+  app: KanbanApplication;
+  onClose: () => void;
+}) {
+  const [copiedAll, setCopiedAll] = useState(false);
+
+  const allText = [
+    `Name: ${app.name}`,
+    `Email: ${app.email}`,
+    `Cohort: ${app.cohort}`,
+    `Hours/week: ${app.hours}`,
+    `FTP: ${app.ftp ?? "—"}`,
+    `Persona: ${app.persona ?? "—"}`,
+    `Status: ${app.status}`,
+    `Submitted: ${new Date(app.createdAt).toLocaleString("en-GB")}`,
+    ``,
+    `Goal:`,
+    app.goal || "—",
+    ``,
+    `Frustration:`,
+    app.frustration || "—",
+  ].join("\n");
+
+  async function copyAll() {
+    try {
+      await navigator.clipboard.writeText(allText);
+      setCopiedAll(true);
+      window.setTimeout(() => setCopiedAll(false), 1500);
+    } catch {}
+  }
+
+  return (
+    <div
+      onClick={onClose}
+      className="fixed inset-0 z-50 bg-black/70 backdrop-blur-sm flex items-start justify-center p-4 overflow-y-auto"
+    >
+      <div
+        onClick={(e) => e.stopPropagation()}
+        className="w-full max-w-2xl my-8 rounded-xl border border-white/10 bg-background-elevated shadow-2xl"
+      >
+        <div className="flex items-center gap-3 px-5 py-4 border-b border-white/10">
+          <h2 className="font-heading tracking-wider uppercase text-off-white text-sm">
+            Application
+          </h2>
+          <span className="text-foreground-subtle text-[10px]">
+            #{app.id} · {new Date(app.createdAt).toLocaleDateString("en-GB")}
+          </span>
+          <button
+            type="button"
+            onClick={copyAll}
+            className={`ml-auto text-xs px-3 py-1.5 rounded-lg border font-medium transition ${
+              copiedAll
+                ? "bg-coral/20 text-coral border-coral/40"
+                : "bg-coral/10 text-coral border-coral/30 hover:bg-coral/20"
+            }`}
           >
-            <div className="flex items-start justify-between mb-4">
-              <div>
-                <h2 className="font-heading tracking-wider uppercase text-off-white text-lg">
-                  {detail.name}
-                </h2>
-                <p className="text-foreground-muted text-xs">{detail.email}</p>
+            {copiedAll ? "Copied all" : "Copy all"}
+          </button>
+          <button
+            type="button"
+            onClick={onClose}
+            className="text-foreground-subtle hover:text-off-white text-lg leading-none px-2"
+            aria-label="Close"
+          >
+            ×
+          </button>
+        </div>
+
+        <div className="p-5 space-y-3">
+          <div className="flex items-center gap-2 p-3 rounded-lg border border-coral/20 bg-coral/[0.04]">
+            <div className="flex-1 min-w-0">
+              <div className="text-foreground-subtle text-[10px] tracking-widest uppercase">
+                Email
               </div>
-              <button
-                onClick={() => setDetail(null)}
-                className="text-foreground-subtle hover:text-off-white text-sm"
+              <a
+                href={`mailto:${app.email}`}
+                className="text-coral text-base font-semibold break-all hover:underline"
               >
-                Close
-              </button>
+                {app.email}
+              </a>
             </div>
-            <div className="space-y-3 text-sm">
-              <div>
-                <p className="text-foreground-subtle text-[10px] tracking-widest uppercase">Goal</p>
-                <p className="text-off-white">{detail.goal}</p>
+            <CopyButton value={app.email} label="Copy" />
+          </div>
+
+          <div className="flex items-center gap-2 p-3 rounded-lg border border-white/10 bg-white/[0.02]">
+            <div className="flex-1 min-w-0">
+              <div className="text-foreground-subtle text-[10px] tracking-widest uppercase">
+                Name
               </div>
-              <div>
-                <p className="text-foreground-subtle text-[10px] tracking-widest uppercase">Frustration</p>
-                <p className="text-off-white">{detail.frustration}</p>
-              </div>
-              <div className="grid grid-cols-3 gap-3">
-                <div>
-                  <p className="text-foreground-subtle text-[10px] tracking-widest uppercase">Hours</p>
-                  <p className="text-off-white">{detail.hours}</p>
-                </div>
-                <div>
-                  <p className="text-foreground-subtle text-[10px] tracking-widest uppercase">FTP</p>
-                  <p className="text-off-white">{detail.ftp ?? "—"}</p>
-                </div>
-                <div>
-                  <p className="text-foreground-subtle text-[10px] tracking-widest uppercase">Cohort</p>
-                  <p className="text-off-white">{detail.cohort}</p>
-                </div>
-              </div>
+              <p className="text-off-white text-base font-semibold break-words">
+                {app.name}
+              </p>
             </div>
+            <CopyButton value={app.name} label="Copy" />
+          </div>
+
+          <div className="grid grid-cols-2 gap-3">
+            <Field label="Cohort" value={app.cohort} />
+            <Field label="Hours / week" value={app.hours} />
+            <Field label="FTP" value={app.ftp} mono />
+            <Field label="Persona" value={app.persona} />
+          </div>
+
+          <Field label="Goal" value={app.goal} />
+          <Field label="Frustration" value={app.frustration} />
+
+          <div className="flex items-center gap-3 text-[11px] text-foreground-subtle pt-2 border-t border-white/5">
+            <span>Status: <span className="text-off-white">{app.status}</span></span>
+            <span>·</span>
+            <span>Submitted {new Date(app.createdAt).toLocaleString("en-GB")}</span>
           </div>
         </div>
-      )}
+      </div>
     </div>
   );
 }
