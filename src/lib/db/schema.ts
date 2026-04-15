@@ -593,6 +593,33 @@ export const syncRuns = pgTable(
   ]
 );
 
+// ── CRM: Bookings ─────────────────────────────────────────
+export const bookings = pgTable(
+  "bookings",
+  {
+    id: serial("id").primaryKey(),
+    contactId: integer("contact_id").references(() => contacts.id, { onDelete: "cascade" }),
+    ownerSlug: text("owner_slug").notNull(),
+    title: text("title").notNull(),
+    scheduledAt: timestamp("scheduled_at", { withTimezone: true }).notNull(),
+    durationMinutes: integer("duration_minutes").notNull().default(30),
+    location: text("location"),
+    notes: text("notes"),
+    // 'scheduled' | 'completed' | 'cancelled' | 'no_show'
+    status: text("status").notNull().default("scheduled"),
+    completedAt: timestamp("completed_at", { withTimezone: true }),
+    createdBySlug: text("created_by_slug"),
+    createdAt: timestamp("created_at", { withTimezone: true }).notNull().defaultNow(),
+    updatedAt: timestamp("updated_at", { withTimezone: true }).notNull().defaultNow(),
+  },
+  (table) => [
+    index("bookings_contact_id_idx").on(table.contactId),
+    index("bookings_owner_slug_idx").on(table.ownerSlug),
+    index("bookings_scheduled_at_idx").on(table.scheduledAt),
+    index("bookings_status_idx").on(table.status),
+  ]
+);
+
 export const episodeDownloadsCache = pgTable("episode_downloads_cache", {
   episodeId: text("episode_id").primaryKey(),
   downloads: integer("downloads").notNull(),

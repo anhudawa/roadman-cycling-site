@@ -1,5 +1,6 @@
 import type { TeamUser } from "@/lib/admin/auth";
 import type { MyDayData, MyDayTaskRow, MyDayApplicationRow, MyDayStaleContactRow } from "@/lib/crm/dashboard";
+import type { BookingRow } from "@/lib/crm/bookings";
 
 const BASE_URL = "https://roadmancycling.com";
 const ACCENT = "#f5532e";
@@ -78,6 +79,18 @@ function appRowHtml(a: MyDayApplicationRow): string {
   </td></tr>`;
 }
 
+function bookingRowHtml(b: BookingRow): string {
+  const d = new Date(b.scheduledAt);
+  const time = d.toLocaleTimeString("en-GB", { hour: "2-digit", minute: "2-digit" });
+  const contactLine = b.contactEmail
+    ? `<div style="font-size:12px;color:#666;margin-top:2px;">${esc(b.contactName ?? b.contactEmail)}</div>`
+    : "";
+  return `<tr><td style="padding:8px 0;border-bottom:1px solid #eee;">
+    <div style="font-size:14px;color:#222;"><strong>${esc(time)}</strong> <span style="color:#888;font-weight:normal;">· ${esc(b.title)} · ${b.durationMinutes}m</span></div>
+    ${contactLine}
+  </td></tr>`;
+}
+
 function staleRowHtml(c: MyDayStaleContactRow): string {
   return `<tr><td style="padding:8px 0;border-bottom:1px solid #eee;">
     <div style="font-size:14px;color:#222;">${esc(c.name ?? c.email)}</div>
@@ -102,6 +115,8 @@ export function renderDailyDigest(user: TeamUser, data: MyDayData): RenderedDige
   const totals = digestTotals(data);
   const subject = `Your day — ${totals.todayTasks} task${totals.todayTasks === 1 ? "" : "s"}, ${totals.overdueTasks} overdue`;
 
+  const todayScheduledBookings = data.todayBookings.filter((b) => b.status === "scheduled");
+  const bookingRows = todayScheduledBookings.slice(0, MAX_ROWS).map(bookingRowHtml).join("");
   const overdueRows = data.overdueTasks.slice(0, MAX_ROWS).map(taskRowHtml).join("");
   const todayRows = data.todaysTasks.slice(0, MAX_ROWS).map(taskRowHtml).join("");
   const appRows = data.applicationsWaiting.slice(0, MAX_ROWS).map(appRowHtml).join("");
@@ -109,6 +124,7 @@ export function renderDailyDigest(user: TeamUser, data: MyDayData): RenderedDige
 
   const today = formatDate(new Date());
   const tasksUrl = `${BASE_URL}/admin/tasks`;
+  const bookingsUrl = `${BASE_URL}/admin/bookings`;
   const appsUrl = `${BASE_URL}/admin/applications`;
   const contactsUrl = `${BASE_URL}/admin/contacts?owner=${encodeURIComponent(user.slug)}&stale=1`;
   const myDayUrl = `${BASE_URL}/admin/my-day`;
@@ -138,6 +154,7 @@ export function renderDailyDigest(user: TeamUser, data: MyDayData): RenderedDige
     </tr>
   </table>
 
+  ${todayScheduledBookings.length > 0 ? sectionHtml("Today's bookings", bookingsUrl, bookingRows, "Nothing scheduled today.") : ""}
   ${sectionHtml("Overdue tasks", tasksUrl, overdueRows, "Nothing overdue. Solid.")}
   ${sectionHtml("Due today", tasksUrl, todayRows, "No tasks due today.")}
   ${sectionHtml("Applications waiting", appsUrl, appRows, "No applications waiting on you.")}
@@ -159,6 +176,15 @@ export function renderDailyDigest(user: TeamUser, data: MyDayData): RenderedDige
   textLines.push(`Overdue: ${totals.overdueTasks}  |  Due today: ${totals.todayTasks}  |  Apps waiting: ${totals.applicationsWaiting}  |  Stale: ${totals.staleContacts}`);
   textLines.push("");
 
+  if (todayScheduledBookings.length) {
+    textLines.push("TODAY'S BOOKINGS");
+    for (const b of todayScheduledBookings.slice(0, MAX_ROWS)) {
+      const d = new Date(b.scheduledAt);
+      const time = d.toLocaleTimeString("en-GB", { hour: "2-digit", minute: "2-digit" });
+      textLines.push(`  - ${time} · ${b.title} (${b.durationMinutes}m)${b.contactEmail ? ` — ${b.contactName ?? b.contactEmail}` : ""}`);
+    }
+    textLines.push("");
+  }
   if (data.overdueTasks.length) {
     textLines.push("OVERDUE TASKS");
     for (const t of data.overdueTasks.slice(0, MAX_ROWS)) {

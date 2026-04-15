@@ -32,7 +32,10 @@ export type ActivityType =
   | "email_clicked"
   | "file_uploaded"
   | "file_removed"
-  | "contact_merged";
+  | "contact_merged"
+  | "booking_scheduled"
+  | "booking_completed"
+  | "booking_cancelled";
 
 export interface UpsertContactParams {
   email: string;

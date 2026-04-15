@@ -3,6 +3,7 @@
 import { useEffect, useMemo, useState } from "react";
 import { useRouter } from "next/navigation";
 import { ContactDealsSection } from "./ContactDealsSection";
+import { ContactBookingsSection } from "./ContactBookingsSection";
 import { ContactAttachments, type AttachmentRow } from "./ContactAttachments";
 import { ContactCustomFields } from "./ContactCustomFields";
 
@@ -935,6 +936,16 @@ export function ContactDetail({
             contactId={contact.id}
             initialDefs={customFieldDefs}
             initialValues={initialCustomValues}
+          />
+        </div>
+
+        {/* Bookings */}
+        <div className="lg:col-span-2 lg:col-start-1">
+          <ContactBookingsSection
+            contactId={contact.id}
+            contactName={contact.name}
+            contactEmail={contact.email}
+            currentUserSlug={currentUser?.slug ?? "ted"}
           />
         </div>
 
