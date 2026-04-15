@@ -560,6 +560,28 @@ export const bloodReports = pgTable(
   ]
 );
 
+// ── Blood Engine: Waiting List ───────────────────────────
+// Pre-launch email capture from /blood-engine. One row per email,
+// with source tracking so we can attribute which channel brought them in.
+export const bloodEngineWaitlist = pgTable(
+  "blood_engine_waitlist",
+  {
+    id: serial("id").primaryKey(),
+    email: text("email").notNull().unique(),
+    source: text("source"), // e.g. "landing", "podcast", "social"
+    referrer: text("referrer"),
+    userAgent: text("user_agent"),
+    ip: text("ip"),
+    notifiedAt: timestamp("notified_at", { withTimezone: true }),
+    unsubscribedAt: timestamp("unsubscribed_at", { withTimezone: true }),
+    createdAt: timestamp("created_at", { withTimezone: true }).notNull().defaultNow(),
+  },
+  (table) => [
+    index("blood_engine_waitlist_created_at_idx").on(table.createdAt),
+    index("blood_engine_waitlist_source_idx").on(table.source),
+  ]
+);
+
 // ── Blood Engine: API Call Log (for rate limiting) ───────
 // One row per paid Anthropic call. Action is "interpret" or "parse-pdf".
 // Used by enforceRateLimit() to count calls per user inside a sliding window.

@@ -46,6 +46,7 @@ const NAV_SECTIONS: NavSection[] = [
     items: [
       { href: "/admin/funnel", label: "Funnel", icon: "funnel" },
       { href: "/admin/health", label: "Health", icon: "heart" },
+      { href: "/admin/blood-engine/waitlist", label: "Blood Engine Waitlist", icon: "clipboard" },
     ],
   },
   {

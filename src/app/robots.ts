@@ -9,6 +9,13 @@ export default function robots(): MetadataRoute.Robots {
         disallow: [
           "/api/",
           "/strength-training/success",
+          "/blood-engine/preview",
+          "/blood-engine/dashboard",
+          "/blood-engine/new",
+          "/blood-engine/report",
+          "/blood-engine/compare",
+          "/blood-engine/account",
+          "/blood-engine/login",
         ],
       },
       // AI search crawlers — explicitly allowed for AI SEO visibility
