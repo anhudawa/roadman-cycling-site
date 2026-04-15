@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { HowToSchema } from "@/components/seo/HowToSchema";
 import { JsonLd } from "@/components/seo/JsonLd";
+import { SoftwareApplicationSchema } from "@/components/seo/SoftwareApplicationSchema";
 
 export const metadata: Metadata = {
   title: "Shock Pressure Calculator — Suspension Setup",
@@ -13,6 +14,17 @@ export const metadata: Metadata = {
 export default function Layout({ children }: { children: React.ReactNode }) {
   return (
     <>
+      <SoftwareApplicationSchema
+        name="MTB Shock Pressure Calculator"
+        description="Recommend shock pressure, fork PSI, and sag percentage from rider weight and riding style. Free mountain bike suspension setup calculator."
+        url="https://roadmancycling.com/tools/shock-pressure"
+        features={[
+          "Rear shock and fork PSI recommendations",
+          "Target sag percentage by discipline",
+          "XC, trail, enduro, and DH presets",
+          "Includes MTB tyre pressure guidance",
+        ]}
+      />
       <HowToSchema
         name="How to Set Up MTB Suspension and Tyre Pressure"
         description="Calculate the recommended air pressure for your rear shock, front fork, and mountain bike tyres based on rider weight, bike weight, riding style, and tyre setup."

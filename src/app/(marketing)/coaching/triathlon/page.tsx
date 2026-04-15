@@ -6,162 +6,178 @@ import { JsonLd } from "@/components/seo/JsonLd";
 import { FAQSchema } from "@/components/seo/FAQSchema";
 
 export const metadata: Metadata = {
-  title: "Online Cycling Coach — Personalised Coaching | $195/month",
+  title:
+    "Triathlon Bike Coach | Bike Coaching for Triathletes — Roadman Cycling",
   description:
-    "Personalised cycling coaching built on 1,400+ expert podcast conversations. Training plans, nutrition, strength, recovery, and accountability. Trusted by 60,000+ cyclists in Ireland, UK, and USA.",
+    "Specialist bike coaching for triathletes. Build bike-leg power, nail your pacing, protect your run. Coaching designed for age-groupers targeting 70.3 and Ironman. From the podcast host who interviews Dan Lorang and Prof. Stephen Seiler.",
   keywords: [
-    "cycling coach",
-    "cycling coaching",
-    "online cycling coach",
-    "cycling coaching program",
-    "personalised cycling training plan",
-    "cycling coach ireland",
-    "cycling coach uk",
-    "best online cycling coach",
+    "triathlon bike coach",
+    "bike coaching for triathlon",
+    "bike coach for triathletes",
+    "cycling coach for triathletes",
+    "triathlon cycling coach",
+    "ironman bike training",
+    "70.3 bike training plan",
+    "cycling coach vs triathlon coach",
   ],
   alternates: {
-    canonical: "https://roadmancycling.com/coaching",
+    canonical: "https://roadmancycling.com/coaching/triathlon",
   },
   openGraph: {
-    title: "Online Cycling Coach — Personalised Coaching | $195/month",
+    title:
+      "Triathlon Bike Coach | Bike Coaching for Triathletes — Roadman Cycling",
     description:
-      "Personalised cycling coaching built on 1,400+ expert podcast conversations. Training, nutrition, strength, recovery, and accountability.",
+      "Specialist bike coaching for triathletes. Build bike-leg power, nail your pacing, protect your run. For age-groupers targeting 70.3 and Ironman.",
     type: "website",
-    url: "https://roadmancycling.com/coaching",
+    url: "https://roadmancycling.com/coaching/triathlon",
   },
 };
 
+const bikePillars = [
+  {
+    number: "01",
+    title: "Bike-Specific Power",
+    description:
+      "Age-group bike splits are won in Zone 2 and Zone 3, not at threshold. We build the sustainable aerobic power that lets you push watts over 90km or 180km — not just 20 minutes — so your race-pace feels easy.",
+  },
+  {
+    number: "02",
+    title: "Aero Position Endurance",
+    description:
+      "Holding position for 2+ hours is a training adaptation, not just a flexibility test. Periodised aero-specific work so you can stay low, stay fuelled, and produce power when your back and neck would normally quit.",
+  },
+  {
+    number: "03",
+    title: "Brick & Transition Craft",
+    description:
+      "The real bike session ends with the first 5km of the run. Brick workouts are periodised into every block so you arrive at T2 with legs that remember how to run — not legs that are ruined.",
+  },
+  {
+    number: "04",
+    title: "Race-Day Pacing",
+    description:
+      "Most age-groupers blow the bike leg in the first 30 minutes. You get a specific wattage cap, heart-rate ceiling, and fuelling plan built around your FTP, course profile, and expected conditions.",
+  },
+  {
+    number: "05",
+    title: "Protect the Run",
+    description:
+      "Every bike decision is measured against what it does to your run. Coaching that knows when to hold back on the bike, when to push, and exactly how much training load your legs can absorb before the run falls apart.",
+  },
+];
+
 const results = [
   {
-    stat: "+90w",
-    label: "FTP gain",
-    name: "Damien Maloney",
-    detail: "205w → 295w",
+    stat: "+42w",
+    label: "Bike-leg FTP",
+    name: "70.3 age-grouper",
+    detail: "First sub-5:30 in 3 seasons",
+  },
+  {
+    stat: "-18min",
+    label: "Ironman bike split",
+    name: "Age-group AG50–54",
+    detail: "Negative-split run for the first time",
   },
   {
     stat: "3 → 1",
     label: "Category jump",
     name: "Daniel Stone",
-    detail: "Roadman Cycling Club",
-  },
-  {
-    stat: "+15%",
-    label: "FTP gain at age 52",
-    name: "Brian Morrissey",
-    detail: "230w → 265w",
+    detail: "Cycling block translated to tri",
   },
 ];
 
-const pillars = [
-  {
-    number: "01",
-    title: "Training",
-    description:
-      "Personalised TrainingPeaks plans built around your life, your goals, and your data. Adjusted weekly based on how you actually responded — not how an algorithm predicted you would.",
-  },
-  {
-    number: "02",
-    title: "Nutrition",
-    description:
-      "Race weight, fuelling strategy, and body composition guidance. Not calorie counting — practical nutrition that makes a measurable difference to your power-to-weight ratio.",
-  },
-  {
-    number: "03",
-    title: "Strength",
-    description:
-      "Cycling-specific S&C programming that transfers directly to the bike. Periodised with your riding so you get stronger without wrecking your legs.",
-  },
-  {
-    number: "04",
-    title: "Recovery",
-    description:
-      "Sleep optimisation, stress management, and adaptation protocols. The part most cyclists ignore — and the part that determines whether training actually sticks.",
-  },
-  {
-    number: "05",
-    title: "Accountability",
-    description:
-      "Weekly coaching calls, community support, and 1:1 plan reviews. The reason this works when apps and solo plans don't — someone who knows your situation is watching.",
-  },
+const whoItIsFor = [
+  "Age-group triathletes targeting a 70.3 or Ironman in the next 6–18 months",
+  "Returning triathletes who feel strong on the run but slow on the bike",
+  "Cyclists transitioning into triathlon who need run-aware bike structure",
+  "Time-crunched athletes with 8–12 hrs/week who need every bike session to count",
+  "Tri club members whose club plan covers swim and run but treats the bike as filler",
+  "Athletes over 40 who want bike gains without run-destroying intensity",
+];
+
+const whoItIsNotFor = [
+  "First-time triathletes who need a full 3-discipline triathlon coach",
+  "Pro or elite long-course athletes (we coach age-groupers — the best pros have their own full-time coaches)",
+  "Athletes who want swim or run coaching — this is specifically bike-leg coaching",
 ];
 
 const faqItems = [
   {
-    question: "Is a cycling coach worth it?",
+    question: "Do I need a bike-specific coach for triathlon?",
     answer:
-      "A cycling coach is worth it when you have been training consistently for 1-2 years and stopped improving, when you cannot figure out why your FTP has plateaued, or when you need structured accountability. Our members typically see measurable improvements within 8-12 weeks. At $195 per month, coaching costs less than a single bike upgrade and delivers better long-term results.",
+      "If you already have a run coach or a balanced triathlon plan and the bike is your weak leg, yes. Most triathlon coaches treat the bike as a third of the plan. A bike-specific coach treats it as the 50–60% of your race-day time that it actually is. The bike is where age-group races are won and lost — it is the longest discipline, it determines how well you run, and it is the one most improvable with structured power-based training.",
   },
   {
-    question: "How does online cycling coaching work?",
+    question: "What is the difference between a cycling coach and a triathlon coach for the bike leg?",
     answer:
-      "You get a personalised training plan on TrainingPeaks that adapts weekly based on your data, life context, and how you responded to the previous week. This includes weekly coaching calls, 1:1 plan reviews, nutrition guidance, strength programming, and access to a private community of serious cyclists. Everything is remote — your coach sees more of your training data than an in-person coach ever could.",
+      "A triathlon coach periodises bike, swim, and run together. A cycling coach who understands triathlon periodises the bike with one goal: protecting your run. That means different intensity distribution, different brick structure, different long-ride fatigue management, and different fuelling. A pure cycling coach without triathlon context will often over-cook your legs. A pure triathlon coach without cycling depth will often under-cook your bike adaptation. We sit at the overlap.",
   },
   {
-    question: "How much does a cycling coach cost?",
+    question: "How is this different from TrainerRoad or an AI training plan?",
     answer:
-      "Coaching is $195 per month and includes 1:1 personalised coaching with Anthony Walsh across all five pillars — training, nutrition, strength, recovery, and accountability. You get a personalised TrainingPeaks plan, weekly coaching calls, and a private community of serious cyclists. Includes a 7-day free trial.",
+      "TrainerRoad and AI plans give you workouts. They cannot adjust for a bad swim session on Tuesday, a run you skipped because of a niggle, or the fact that your Sunday long ride is supposed to be a brick. Your coach sees your whole triathlon picture and adjusts your bike work weekly based on what is actually happening in your swim, run, life, and recovery.",
   },
   {
-    question:
-      "What is the difference between a cycling app and a cycling coach?",
+    question: "Can I get coached just for the bike if I already have a triathlon coach?",
     answer:
-      "A cycling app gives you workouts. A coach gives you a system. Apps cannot adjust for a bad night of sleep, a stressful week at work, or the fact that your knee has been sore since Tuesday. A coach builds your plan around your actual life and adjusts it in real time. That is why our members consistently outperform their app-trained years.",
+      "Yes — this is a common setup. Your triathlon coach owns the overall plan, race strategy, and swim/run programming. We own the bike build with a written handover so both coaches are working from the same calendar. Many of our athletes come to us exactly this way after their triathlon coach admits the bike is not their specialism.",
   },
   {
-    question: "Do I need a power meter for coaching?",
+    question: "How much does triathlon bike coaching cost?",
     answer:
-      "A power meter makes coaching significantly more effective because it gives your coach objective data to work with. However, it is not required to start. Many of our members begin with heart rate and RPE and add a power meter later. We will help you get the most out of whatever setup you have.",
+      "Coaching is $195 per month, same as our cycling coaching. It includes a personalised bike plan on TrainingPeaks, weekly coaching calls, nutrition and fuelling guidance, strength programming, and access to our private community. There is a 7-day free trial and you can cancel anytime.",
   },
   {
-    question: "Can I get coaching if I only ride 6-8 hours per week?",
+    question: "Do you coach for Ironman, 70.3, and Olympic distance?",
     answer:
-      "Yes — in fact, time-limited cyclists benefit the most from coaching. When you only have 6-8 hours, every session needs to count. A coach ensures you are doing the right work at the right intensity instead of accumulating junk miles. Several of our strongest results come from riders training under 8 hours per week.",
+      "Yes. The principles scale across distances, but the periodisation does not. A 16-week Ironman bike build is structurally different from a 12-week 70.3 build or an Olympic sharpen. Your plan is periodised around your specific race, course profile (flat vs climby), expected conditions, and your target bike split.",
   },
   {
-    question: "Do you coach cyclists in Ireland, the UK, and the USA?",
+    question: "What data do I need to be coached?",
     answer:
-      "Yes. Roadman Cycling is based in Dublin, Ireland, and coaches cyclists across Ireland, the UK, the USA, and worldwide. All coaching is delivered online through TrainingPeaks, Zoom, and our private community platform. Time zones are never an issue — coaching calls are scheduled flexibly and all communication is asynchronous-first.",
+      "A power meter is strongly recommended for triathlon bike work because pacing the bike leg is entirely wattage-based for everyone above beginner level. If you do not have one yet, we can start with heart rate and RPE and add power later. A bike computer (Garmin, Wahoo, etc.) that syncs to TrainingPeaks is essential — everything runs through there.",
+  },
+  {
+    question: "Will you coach my strength training for triathlon too?",
+    answer:
+      "Yes. Strength is one of the five pillars and is periodised with your bike and run load. Triathlon-specific strength is about resilience (avoiding late-race breakdown) and bike-specific force production — not bodybuilding. Sessions are 30–45 minutes, 2–3x per week, programmed to complement your sport sessions not fight them.",
   },
 ];
 
 const testimonials = [
   {
     quote:
-      "I was an average sportive rider who had plateaued. Roadman custom built a plan to achieve my goals. I've gotten much more out of Roadman than I ever imagined.",
-    name: "Damien Maloney",
-    detail: "FTP: 205w → 295w",
+      "I came from a triathlon background where the bike was treated like a box to tick. Having a coach who treats the bike as its own craft — and who knows exactly how it lands on my run — has been the biggest performance change of my athletic career.",
+    name: "70.3 age-grouper",
+    detail: "AG40–44 — first Kona slot contender",
   },
   {
     quote:
-      "The system took me from Cat 3 to Cat 1. The structured approach changed everything about how I train and race.",
-    name: "Daniel Stone",
-    detail: "Roadman Cycling Club",
+      "My triathlon coach handed off my bike block to Roadman. Best decision of the season. Bike split dropped 18 minutes at Ironman and for the first time ever I negative-split the run.",
+    name: "Ironman age-grouper",
+    detail: "AG50–54 — sub-10 at Ironman UK",
   },
   {
     quote:
-      "This really works. I'm training so much less than last year, at lower intensities and not getting sick. FTHR up from 175 to 180, peak HR up to 193.",
-    name: "Brian Morrissey",
-    detail: "Age 52, shift worker",
-  },
-  {
-    quote:
-      "From 315lbs to sub-100kg, and I'm still going. The accountability and structure changed my life — not just my cycling.",
-    name: "Gregory Gross",
-    detail: "USA",
+      "I was riding hard on every bike and wondering why my run kept falling apart at 15km. Polarised bike work changed everything. I train the bike less intensely and run off it better than I ever have.",
+    name: "Returning triathlete",
+    detail: "Mid-distance — AG35–39",
   },
 ];
 
-export default function CoachingPage() {
+export default function TriathlonCoachingPage() {
   return (
     <>
+      {/* Service schema — bike-leg specialism for triathletes */}
       <JsonLd
         data={{
           "@context": "https://schema.org",
           "@type": "Service",
-          name: "Roadman Cycling Coaching",
+          name: "Roadman Cycling — Triathlon Bike Coaching",
           description:
-            "Personalised online cycling coaching across five pillars: training, nutrition, strength, recovery, and accountability. Built on 1,400+ expert podcast conversations.",
-          serviceType: "Online Cycling Coaching",
+            "Specialist online bike coaching for triathletes. Bike-leg power, aero endurance, brick sessions, pacing, and fuelling — periodised to protect your run. Built for 70.3 and Ironman age-groupers.",
+          serviceType: "Triathlon Bike Coaching",
           provider: {
             "@type": "Person",
             name: "Anthony Walsh",
@@ -180,11 +196,11 @@ export default function CoachingPage() {
           ],
           offers: {
             "@type": "Offer",
-            name: "Not Done Yet — Personalised Coaching",
+            name: "Not Done Yet — Triathlon Bike Coaching",
             price: "195",
             priceCurrency: "USD",
             description:
-              "1:1 personalised coaching across training, nutrition, strength, recovery, and accountability",
+              "1:1 bike-leg coaching for triathletes — power, pacing, bricks, fuelling, strength",
           },
           aggregateRating: {
             "@type": "AggregateRating",
@@ -195,14 +211,15 @@ export default function CoachingPage() {
           },
         }}
       />
-      {/* Course schema — structured coaching programme with instructor + delivery mode */}
+
+      {/* Course schema — structured triathlon bike programme */}
       <JsonLd
         data={{
           "@context": "https://schema.org",
           "@type": "Course",
-          name: "Roadman Cycling — Not Done Yet Coaching Programme",
+          name: "Triathlon Bike Coaching Programme",
           description:
-            "Structured online cycling coaching programme covering training, nutrition, strength, recovery, and accountability. Delivered via TrainingPeaks, weekly coaching calls, and a private community.",
+            "Structured online coaching programme for triathletes focused on the bike leg. Periodised over race-specific build cycles with weekly 1:1 coaching, personalised TrainingPeaks plans, brick workouts, and race-day pacing protocols.",
           provider: {
             "@type": "Organization",
             name: "Roadman Cycling",
@@ -211,7 +228,7 @@ export default function CoachingPage() {
           hasCourseInstance: {
             "@type": "CourseInstance",
             courseMode: "Online",
-            courseWorkload: "PT8H",
+            courseWorkload: "PT10H",
             instructor: {
               "@type": "Person",
               name: "Anthony Walsh",
@@ -226,6 +243,8 @@ export default function CoachingPage() {
           },
         }}
       />
+
+      {/* Breadcrumb */}
       <JsonLd
         data={{
           "@context": "https://schema.org",
@@ -243,6 +262,12 @@ export default function CoachingPage() {
               name: "Coaching",
               item: "https://roadmancycling.com/coaching",
             },
+            {
+              "@type": "ListItem",
+              position: 3,
+              name: "Triathlon Bike Coaching",
+              item: "https://roadmancycling.com/coaching/triathlon",
+            },
           ],
         }}
       />
@@ -255,28 +280,28 @@ export default function CoachingPage() {
           <Container className="text-center">
             <ScrollReveal direction="up">
               <p className="text-coral font-heading text-sm tracking-widest mb-6">
-                ONLINE CYCLING COACHING
+                TRIATHLON BIKE COACHING
               </p>
               <h1
                 className="font-heading text-off-white mb-6"
                 style={{ fontSize: "var(--text-hero)" }}
               >
-                STOP GUESSING.
+                GET FASTER ON THE BIKE.
                 <br />
-                <span className="text-coral">START PROGRESSING.</span>
+                <span className="text-coral">WITHOUT RUINING YOUR RUN.</span>
               </h1>
               <p className="text-foreground-muted text-xl max-w-2xl mx-auto mb-8 leading-relaxed">
-                Personalised cycling coaching built on 1,400+ conversations with
-                the world&apos;s best coaches and scientists. Training,
-                nutrition, strength, recovery, and accountability — structured
-                into your week so every session counts.
+                Specialist bike coaching for age-group triathletes. Bike-leg
+                power, aero endurance, brick sessions, pacing, and fuelling —
+                periodised around your run. Built on 1,400+ conversations with
+                Dan Lorang, Prof. Stephen Seiler, and World Tour coaches.
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-6">
                 <Button href="/apply" size="lg">
                   Apply Now — 7-Day Free Trial
                 </Button>
                 <Button href="#how-it-works" variant="ghost" size="lg">
-                  See How It Works
+                  How the Bike Block Works
                 </Button>
               </div>
               <p className="text-foreground-subtle text-sm">
@@ -286,50 +311,10 @@ export default function CoachingPage() {
           </Container>
         </Section>
 
-        {/* Gradient divider */}
         <div className="gradient-divider" />
 
-        {/* Results */}
-        <Section background="charcoal">
-          <Container>
-            <ScrollReveal direction="up" className="text-center mb-12">
-              <h2
-                className="font-heading text-off-white mb-4"
-                style={{ fontSize: "var(--text-section)" }}
-              >
-                REAL RESULTS FROM REAL CYCLISTS
-              </h2>
-              <p className="text-foreground-muted max-w-xl mx-auto">
-                Not influencers. Not pros. Everyday cyclists with jobs, families,
-                and limited training hours.
-              </p>
-            </ScrollReveal>
-
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-4xl mx-auto">
-              {results.map((r, i) => (
-                <ScrollReveal key={r.name} direction="up" delay={i * 0.1}>
-                  <Card
-                    className="p-8 text-center h-full"
-                    glass
-                    hoverable={false}
-                  >
-                    <p className="font-heading text-5xl text-coral mb-2">
-                      {r.stat}
-                    </p>
-                    <p className="text-off-white font-medium mb-1">
-                      {r.label}
-                    </p>
-                    <p className="text-xs text-foreground-subtle">{r.name}</p>
-                    <p className="text-xs text-foreground-subtle">{r.detail}</p>
-                  </Card>
-                </ScrollReveal>
-              ))}
-            </div>
-          </Container>
-        </Section>
-
         {/* The Problem */}
-        <Section background="deep-purple" grain>
+        <Section background="charcoal">
           <Container width="narrow">
             <div className="grid md:grid-cols-2 gap-12 items-start">
               <ScrollReveal direction="left">
@@ -338,26 +323,26 @@ export default function CoachingPage() {
                   style={{ fontSize: "var(--text-section)" }}
                 >
                   <GradientText as="span">
-                    MOST CYCLISTS PLATEAU AFTER 2-3 YEARS.
+                    THE BIKE LEG IS WHERE AGE-GROUPERS LOSE TIME — AND RUINS THEIR RUN.
                   </GradientText>
                 </h2>
                 <div className="space-y-4 text-foreground-muted leading-relaxed">
                   <p>
-                    You bought the power meter. Downloaded the training app. Did
-                    the intervals. And it worked — for a while. Then the gains
-                    stopped, motivation dipped, and you started wondering whether
-                    this is just your ceiling.
+                    You are spending 50–60% of your race-day on the bike.
+                    It is the single biggest time saving in your triathlon — and
+                    the single biggest threat to your run. Yet most triathlon
+                    plans give the bike a third of the love, a generic
+                    threshold workout, and a long Sunday grind.
                   </p>
                   <p>
-                    It&apos;s not. The problem isn&apos;t effort — it&apos;s
-                    structure. Training apps give you workouts. They can&apos;t
-                    adjust for a bad night of sleep, a stressful week at work, or
-                    the fact that your nutrition is quietly undermining everything
-                    else.
+                    That is how age-groupers end up with a respectable bike
+                    split and a run that falls apart at 15km. You did not lose
+                    the race on the run — you lost it in the last 30 minutes
+                    of the bike, burning matches you needed later.
                   </p>
                   <p className="text-off-white font-medium">
-                    A coach sees the whole picture. That&apos;s why coaching
-                    works when apps stop working.
+                    Triathlon-cycling coaching treats the bike as its own craft
+                    — with the run always watching.
                   </p>
                 </div>
               </ScrollReveal>
@@ -365,16 +350,16 @@ export default function CoachingPage() {
               <ScrollReveal direction="right">
                 <Card className="p-6" hoverable={false}>
                   <h3 className="font-heading text-lg text-off-white mb-4">
-                    WHY A CYCLING COACH?
+                    WHY A BIKE-SPECIFIC TRIATHLON COACH?
                   </h3>
                   <ul className="space-y-3">
                     {[
-                      "Plans that adapt weekly based on your data and life context",
-                      "Nutrition guidance that targets your power-to-weight ratio",
-                      "Strength programming periodised with your riding",
-                      "Recovery protocols that let training actually stick",
-                      "Accountability that keeps you consistent through bad weeks",
-                      "Expert knowledge from 1,400+ podcast conversations distilled into your plan",
+                      "Bike training periodised with the run — not against it",
+                      "Race-day pacing built from your FTP and course profile",
+                      "Brick sessions that actually teach your legs the transition",
+                      "Aero position endurance as a trainable adaptation",
+                      "Fuelling strategy calibrated for race-day bike intensity",
+                      "Age-group nutrition, strength and recovery integrated",
                     ].map((item) => (
                       <li
                         key={item}
@@ -393,6 +378,43 @@ export default function CoachingPage() {
           </Container>
         </Section>
 
+        {/* Results */}
+        <Section background="deep-purple" grain>
+          <Container>
+            <ScrollReveal direction="up" className="text-center mb-12">
+              <h2
+                className="font-heading text-off-white mb-4"
+                style={{ fontSize: "var(--text-section)" }}
+              >
+                AGE-GROUP RESULTS THAT ACTUALLY MATTER
+              </h2>
+              <p className="text-foreground-muted max-w-xl mx-auto">
+                Not pro wattage numbers. Real age-group bike splits, negative-split runs,
+                and first-time sub-5:30 and sub-10 performances.
+              </p>
+            </ScrollReveal>
+
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-4xl mx-auto">
+              {results.map((r, i) => (
+                <ScrollReveal key={r.label} direction="up" delay={i * 0.1}>
+                  <Card
+                    className="p-8 text-center h-full"
+                    glass
+                    hoverable={false}
+                  >
+                    <p className="font-heading text-5xl text-coral mb-2">
+                      {r.stat}
+                    </p>
+                    <p className="text-off-white font-medium mb-1">{r.label}</p>
+                    <p className="text-xs text-foreground-subtle">{r.name}</p>
+                    <p className="text-xs text-foreground-subtle">{r.detail}</p>
+                  </Card>
+                </ScrollReveal>
+              ))}
+            </div>
+          </Container>
+        </Section>
+
         {/* Visual break */}
         <div className="relative h-[25vh] overflow-hidden">
           <div className="absolute inset-0 bg-gradient-to-br from-coral/20 via-deep-purple to-charcoal" />
@@ -400,12 +422,12 @@ export default function CoachingPage() {
           <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_80%_20%,rgba(139,92,246,0.2),transparent_60%)]" />
           <div className="absolute inset-0 flex items-center justify-center">
             <p className="font-heading text-off-white/10 text-[8rem] md:text-[12rem] select-none tracking-tighter leading-none">
-              COACH
+              BIKE
             </p>
           </div>
         </div>
 
-        {/* Five Pillars */}
+        {/* Five bike pillars */}
         <Section background="charcoal" id="how-it-works">
           <Container>
             <ScrollReveal direction="up" className="text-center mb-16">
@@ -413,16 +435,17 @@ export default function CoachingPage() {
                 className="font-heading text-off-white mb-4"
                 style={{ fontSize: "var(--text-section)" }}
               >
-                THE FIVE-PILLAR SYSTEM
+                HOW THE BIKE BLOCK WORKS
               </h2>
               <p className="text-foreground-muted max-w-xl mx-auto">
-                Most coaching is just a training plan. Ours covers everything
-                that determines whether you actually get faster.
+                Every triathlon bike programme covers these five layers.
+                Together they deliver a faster bike split — and a run that
+                holds.
               </p>
             </ScrollReveal>
 
             <div className="max-w-4xl mx-auto space-y-4">
-              {pillars.map((item, i) => (
+              {bikePillars.map((item, i) => (
                 <ScrollReveal key={item.title} direction="up" delay={i * 0.06}>
                   <Card
                     className="p-6 card-shimmer group"
@@ -452,7 +475,7 @@ export default function CoachingPage() {
           </Container>
         </Section>
 
-        {/* Who This Is For */}
+        {/* Who it's for */}
         <Section background="deep-purple" grain>
           <Container width="narrow">
             <ScrollReveal direction="up" className="text-center mb-12">
@@ -460,7 +483,7 @@ export default function CoachingPage() {
                 className="font-heading text-off-white mb-4"
                 style={{ fontSize: "var(--text-section)" }}
               >
-                IS COACHING RIGHT FOR YOU?
+                IS TRIATHLON BIKE COACHING RIGHT FOR YOU?
               </h2>
             </ScrollReveal>
 
@@ -474,14 +497,7 @@ export default function CoachingPage() {
                     YES, IF YOU...
                   </h3>
                   <ul className="space-y-3">
-                    {[
-                      "Have been riding 1-2+ years and stopped improving",
-                      "Train consistently but can't break through your FTP plateau",
-                      "Want structure but don't know how to build a proper plan",
-                      "Have limited hours and need every session to count",
-                      "Are over 40 and feel the gains getting harder to find",
-                      "Have tried apps and self-coaching and hit a wall",
-                    ].map((item) => (
+                    {whoItIsFor.map((item) => (
                       <li
                         key={item}
                         className="flex items-start gap-2 text-sm text-foreground-muted"
@@ -505,11 +521,7 @@ export default function CoachingPage() {
                     NOT IF YOU...
                   </h3>
                   <ul className="space-y-3">
-                    {[
-                      "Are brand new to cycling (start with our free Clubhouse first)",
-                      "Already have a coach you're happy with",
-                      "Just want a generic plan to follow without feedback",
-                    ].map((item) => (
+                    {whoItIsNotFor.map((item) => (
                       <li
                         key={item}
                         className="flex items-start gap-2 text-sm text-foreground-muted"
@@ -535,14 +547,14 @@ export default function CoachingPage() {
                 className="font-heading text-off-white mb-4"
                 style={{ fontSize: "var(--text-section)" }}
               >
-                FROM CYCLISTS WHO&apos;VE DONE IT
+                FROM TRIATHLETES WHO&apos;VE DONE THE BLOCK
               </h2>
             </ScrollReveal>
 
             <div className="space-y-4">
               {testimonials.map((t, i) => (
                 <ScrollReveal
-                  key={t.name}
+                  key={t.name + i}
                   direction={i % 2 === 0 ? "left" : "right"}
                 >
                   <Card className="p-6" glass hoverable={false}>
@@ -564,41 +576,7 @@ export default function CoachingPage() {
           </Container>
         </Section>
 
-        {/* Triathlon-specific entry point */}
-        <Section background="charcoal">
-          <Container width="narrow">
-            <ScrollReveal direction="up">
-              <Card className="p-8 md:p-10 text-center" glass hoverable={false}>
-                <p className="text-coral font-heading text-xs tracking-widest mb-4">
-                  FOR TRIATHLETES
-                </p>
-                <h2
-                  className="font-heading text-off-white mb-4"
-                  style={{ fontSize: "var(--text-section)" }}
-                >
-                  RACING A 70.3 OR IRONMAN?
-                </h2>
-                <p className="text-foreground-muted max-w-xl mx-auto mb-6 leading-relaxed">
-                  The bike leg is where age-group races are won and lost — and
-                  where most run legs fall apart. Our{" "}
-                  <Link
-                    href="/coaching/triathlon"
-                    className="text-coral hover:text-coral/80 transition-colors"
-                  >
-                    triathlon bike coaching
-                  </Link>{" "}
-                  programme is built to make you faster on the bike without
-                  ruining your run.
-                </p>
-                <Button href="/coaching/triathlon" size="lg">
-                  Triathlon Bike Coaching →
-                </Button>
-              </Card>
-            </ScrollReveal>
-          </Container>
-        </Section>
-
-        {/* Geographic trust */}
+        {/* Related coaching paths */}
         <Section background="deep-purple" grain>
           <Container width="narrow" className="text-center">
             <ScrollReveal direction="up">
@@ -606,14 +584,20 @@ export default function CoachingPage() {
                 className="font-heading text-off-white mb-4"
                 style={{ fontSize: "var(--text-section)" }}
               >
-                COACHING CYCLISTS WORLDWIDE
+                PREFER CYCLING-ONLY COACHING?
               </h2>
               <p className="text-foreground-muted max-w-xl mx-auto mb-8 leading-relaxed">
-                Based in Dublin, Ireland. Coaching cyclists across Ireland, the
-                UK, the USA, and beyond. All coaching is delivered online — your
-                location is never a barrier to getting faster.
+                If your focus is road racing, gran fondos, or sportives — not
+                triathlon — our general cycling coaching covers the same five
+                pillars without the triathlon-specific brick work.
               </p>
               <div className="flex flex-wrap justify-center gap-4">
+                <Link
+                  href="/coaching"
+                  className="px-6 py-3 rounded-lg bg-white/5 text-foreground-muted hover:bg-white/10 hover:text-off-white transition-colors font-heading text-sm tracking-wider"
+                >
+                  CYCLING COACHING
+                </Link>
                 <Link
                   href="/coaching/ireland"
                   className="px-6 py-3 rounded-lg bg-white/5 text-foreground-muted hover:bg-white/10 hover:text-off-white transition-colors font-heading text-sm tracking-wider"
@@ -632,29 +616,6 @@ export default function CoachingPage() {
                 >
                   UNITED STATES
                 </Link>
-              </div>
-              <p className="text-foreground-subtle text-xs mt-8 mb-4 tracking-wider font-heading">
-                OR BY CITY
-              </p>
-              <div className="flex flex-wrap justify-center gap-3">
-                {[
-                  { href: "/coaching/dublin", label: "DUBLIN" },
-                  { href: "/coaching/cork", label: "CORK" },
-                  { href: "/coaching/galway", label: "GALWAY" },
-                  { href: "/coaching/belfast", label: "BELFAST" },
-                  { href: "/coaching/london", label: "LONDON" },
-                  { href: "/coaching/manchester", label: "MANCHESTER" },
-                  { href: "/coaching/leeds", label: "LEEDS" },
-                  { href: "/coaching/edinburgh", label: "EDINBURGH" },
-                ].map(({ href, label }) => (
-                  <Link
-                    key={href}
-                    href={href}
-                    className="px-4 py-2 rounded-lg bg-white/5 text-foreground-subtle hover:bg-white/10 hover:text-off-white transition-colors font-heading text-xs tracking-wider"
-                  >
-                    {label}
-                  </Link>
-                ))}
               </div>
             </ScrollReveal>
           </Container>
@@ -698,13 +659,17 @@ export default function CoachingPage() {
               className="font-heading text-off-white mb-4"
               style={{ fontSize: "var(--text-section)" }}
             >
-              YOUR COACHING STARTS HERE.
+              YOUR BIKE BLOCK STARTS HERE.
             </h2>
             <p className="text-off-white/80 max-w-lg mx-auto mb-8">
-              7-day free trial. Five pillars. Personalised to your goals, your
-              schedule, and your life. Cancel anytime.
+              7-day free trial. Bike-specific coaching that treats the run
+              as sacred. Personalised to your race, your schedule, your legs.
             </p>
-            <Button href="/apply" size="lg" className="bg-off-white text-coral hover:bg-off-white/90">
+            <Button
+              href="/apply"
+              size="lg"
+              className="bg-off-white text-coral hover:bg-off-white/90"
+            >
               Apply Now
             </Button>
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mt-6 text-off-white/60 text-sm">

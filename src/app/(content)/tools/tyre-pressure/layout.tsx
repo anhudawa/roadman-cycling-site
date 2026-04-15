@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { HowToSchema } from "@/components/seo/HowToSchema";
 import { JsonLd } from "@/components/seo/JsonLd";
+import { SoftwareApplicationSchema } from "@/components/seo/SoftwareApplicationSchema";
 
 export const metadata: Metadata = {
   title: "Tyre Pressure Calculator — Optimal PSI for Cycling",
@@ -13,6 +14,17 @@ export const metadata: Metadata = {
 export default function Layout({ children }: { children: React.ReactNode }) {
   return (
     <>
+      <SoftwareApplicationSchema
+        name="Cycling Tyre Pressure Calculator"
+        description="Calculate optimal front and rear tyre pressure based on rider weight, tyre width, rim width, and road surface. Free browser-based calculator using the 15% tyre deflection model."
+        url="https://roadmancycling.com/tools/tyre-pressure"
+        features={[
+          "Separate front and rear PSI recommendations",
+          "Accounts for tubeless, clincher, and tubular setups",
+          "Surface-specific adjustments (smooth, rough, gravel)",
+          "Based on Frank Berto 15% tyre deflection research",
+        ]}
+      />
       <HowToSchema
         name="How to Calculate Tyre Pressure"
         description="Calculate the optimal front and rear tyre pressure for your road bike based on rider weight, tyre width, rim width, tyre setup, and road surface."

@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { HowToSchema } from "@/components/seo/HowToSchema";
 import { JsonLd } from "@/components/seo/JsonLd";
+import { SoftwareApplicationSchema } from "@/components/seo/SoftwareApplicationSchema";
 
 export const metadata: Metadata = {
   title: "Race Weight Calculator — Peak Cycling Weight",
@@ -13,6 +14,17 @@ export const metadata: Metadata = {
 export default function Layout({ children }: { children: React.ReactNode }) {
   return (
     <>
+      <SoftwareApplicationSchema
+        name="Cycling Race Weight Calculator"
+        description="Calculate your target race weight based on body composition, FTP, and event type. Free browser-based calculator built on competitive cyclist reference ranges."
+        url="https://roadmancycling.com/tools/race-weight"
+        features={[
+          "Target weight from body-fat percentage goals",
+          "Event-specific race weight guidance",
+          "Watts-per-kg projections at target weight",
+          "Safe rate-of-loss recommendations",
+        ]}
+      />
       <HowToSchema
         name="How to Calculate Race Weight"
         description="Calculate your target race weight range for peak cycling performance based on body composition, gender, and event type rather than BMI."

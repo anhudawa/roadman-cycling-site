@@ -276,6 +276,12 @@ const LOCATIONS: Record<string, LocationData> = {
     seoTitle: "Cycling Coach Cork — Online Coaching from Roadman",
     seoDescription:
       "Cycling coach for Cork riders. Online coaching from Roadman Cycling with training plans built for West Cork climbs, Nire Valley, and Munster racing. Trusted by Cork cyclists from sportive riders to league racers.",
+    localBusiness: {
+      locality: "Cork",
+      countryCode: "IE",
+      latitude: 51.8985,
+      longitude: -8.4756,
+    },
     heroSubtitle: "COACHING CORK CYCLISTS ACROSS MUNSTER",
     heroBody:
       "Roadman Cycling coaches riders across Cork and Munster. Whether you ride the Healy Pass, race with Cork Ridgerunners or Blarney CC, or are training for the Sean Kelly Tour — your plan is built around Munster roads, West Cork climbs, and your schedule.",
@@ -332,6 +338,12 @@ const LOCATIONS: Record<string, LocationData> = {
     seoTitle: "Cycling Coach Galway — Online Coaching from Roadman",
     seoDescription:
       "Cycling coach for Galway and Connacht riders. Online coaching from Roadman Cycling with training plans built for Connemara climbs, Burren roads, and Western racing. Trusted by Galway cyclists across all levels.",
+    localBusiness: {
+      locality: "Galway",
+      countryCode: "IE",
+      latitude: 53.2707,
+      longitude: -9.0568,
+    },
     heroSubtitle: "COACHING GALWAY AND CONNACHT CYCLISTS",
     heroBody:
       "Roadman Cycling coaches riders across Galway and the West of Ireland. Whether you ride the Sky Road, train in the Burren, race with Western Lakes CC, or are targeting the Connemara 100 — your plan is built around Western roads, Atlantic weather, and your schedule.",
@@ -450,6 +462,12 @@ const LOCATIONS: Record<string, LocationData> = {
     seoTitle: "Cycling Coach Manchester — Online Coaching from Roadman",
     seoDescription:
       "Cycling coach for Manchester riders. Online coaching from Roadman Cycling with training plans built for the Peak District, North West racing, and National Cycling Centre track. Trusted by Manchester cyclists at every level.",
+    localBusiness: {
+      locality: "Manchester",
+      countryCode: "GB",
+      latitude: 53.4808,
+      longitude: -2.2426,
+    },
     heroSubtitle: "COACHING MANCHESTER AND NORTH WEST CYCLISTS",
     heroBody:
       "Roadman Cycling coaches riders across Manchester and the North West. Whether you train in the Peak District, race at the National Cycling Centre velodrome, or are targeting the Fred Whitton Challenge — your plan is built around Peak District roads, North West weather, and your schedule.",
@@ -630,6 +648,12 @@ const LOCATIONS: Record<string, LocationData> = {
     seoTitle: "Cycling Coach Leeds — Online Coaching from Roadman",
     seoDescription:
       "Cycling coach for Leeds and Yorkshire riders. Online coaching from Roadman Cycling with training plans built for the Dales, Yorkshire climbs, and Tour de Yorkshire routes. Trusted by cyclists across Leeds, Harrogate, and Yorkshire.",
+    localBusiness: {
+      locality: "Leeds",
+      countryCode: "GB",
+      latitude: 53.8008,
+      longitude: -1.5491,
+    },
     heroSubtitle: "COACHING LEEDS AND YORKSHIRE CYCLISTS",
     heroBody:
       "Roadman Cycling coaches riders across Leeds and Yorkshire. Whether you chain Dales loops on the weekend, race with Otley CC or Albarosa, climb Buttertubs and Holme Moss, or target the Étape du Dales — your plan is built around Yorkshire roads, Pennine weather, and your schedule.",

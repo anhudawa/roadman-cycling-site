@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { HowToSchema } from "@/components/seo/HowToSchema";
 import { JsonLd } from "@/components/seo/JsonLd";
+import { SoftwareApplicationSchema } from "@/components/seo/SoftwareApplicationSchema";
 
 export const metadata: Metadata = {
   title: "In-Ride Fuelling Calculator — Carbs Per Hour for Cycling",
@@ -13,6 +14,17 @@ export const metadata: Metadata = {
 export default function Layout({ children }: { children: React.ReactNode }) {
   return (
     <>
+      <SoftwareApplicationSchema
+        name="Cycling In-Ride Fuelling Calculator"
+        description="Calculate carbs per hour, fluid needs, and sodium requirements for any cycling session based on ride duration, intensity, and body weight."
+        url="https://roadmancycling.com/tools/fuelling"
+        features={[
+          "Carbs-per-hour based on duration and intensity",
+          "Fluid-loss estimates by conditions",
+          "Sodium targets for long rides",
+          "Race-specific fuelling presets",
+        ]}
+      />
       <HowToSchema
         name="How to Calculate In-Ride Fuelling"
         description="Calculate your optimal carbohydrate intake, fluid requirements, and sodium needs per hour for cycling based on ride duration, intensity, and body weight."
