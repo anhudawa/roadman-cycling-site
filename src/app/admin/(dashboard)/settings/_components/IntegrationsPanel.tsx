@@ -1,6 +1,7 @@
 "use client";
 
 import { useCallback, useEffect, useRef, useState } from "react";
+import { DigestTestButtons } from "./DigestTestButtons";
 
 interface SyncRun {
   id: number;
@@ -196,6 +197,8 @@ export function IntegrationsPanel() {
           );
         })}
       </div>
+
+      <DigestTestButtons />
 
       <div>
         <h3 className="text-xs uppercase tracking-widest text-foreground-subtle mb-2">
