@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useMemo, useState } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { useRouter } from "next/navigation";
 import { ContactDealsSection } from "./ContactDealsSection";
 import { ContactBookingsSection } from "./ContactBookingsSection";
@@ -236,6 +236,54 @@ function renderTemplateClient(body: string, vars: Record<string, string>): strin
   });
 }
 
+interface EmailRow {
+  id: number;
+  toAddress: string;
+  fromUser: string;
+  fromAddress: string;
+  subject: string;
+  body: string;
+  templateId: number | null;
+  status: string;
+  errorMessage: string | null;
+  sentAt: string | null;
+  deliveredAt: string | null;
+  openedAt: string | null;
+  clickedAt: string | null;
+  createdAt: string;
+}
+
+type TabId = "overview" | "timeline" | "email" | "bookings" | "deals" | "files";
+const TAB_ORDER: TabId[] = ["overview", "timeline", "email", "bookings", "deals", "files"];
+const TAB_LABELS: Record<TabId, string> = {
+  overview: "Overview",
+  timeline: "Timeline",
+  email: "Email",
+  bookings: "Bookings",
+  deals: "Deals",
+  files: "Files",
+};
+
+function emailStatusClass(status: string): string {
+  switch (status) {
+    case "delivered":
+      return "bg-green-500/10 text-green-400 border-green-500/20";
+    case "sent":
+      return "bg-cyan-500/10 text-cyan-300 border-cyan-500/20";
+    case "opened":
+      return "bg-blue-500/10 text-blue-300 border-blue-500/20";
+    case "clicked":
+      return "bg-purple-500/10 text-purple-300 border-purple-500/20";
+    case "bounced":
+    case "complained":
+    case "failed":
+      return "bg-red-500/10 text-red-400 border-red-500/20";
+    case "queued":
+    default:
+      return "bg-white/5 text-foreground-muted border-white/10";
+  }
+}
+
 interface DuplicateCandidateProp {
   id: number;
   email: string;
@@ -260,6 +308,7 @@ export function ContactDetail({
   potentialDuplicates = [],
   customFieldDefs = [],
   initialCustomValues = {},
+  initialEmails = [],
 }: {
   contact: Contact;
   activities: Activity[];
@@ -271,6 +320,7 @@ export function ContactDetail({
   potentialDuplicates?: DuplicateCandidateProp[];
   customFieldDefs?: CustomFieldDefProp[];
   initialCustomValues?: Record<string, unknown>;
+  initialEmails?: EmailRow[];
 }) {
   const router = useRouter();
   const [contact, setContact] = useState(initialContact);
@@ -286,6 +336,44 @@ export function ContactDetail({
   const [duplicates, setDuplicates] = useState(potentialDuplicates);
   const [mergeBusyId, setMergeBusyId] = useState<number | null>(null);
   const [mergeError, setMergeError] = useState<string | null>(null);
+  const [emails] = useState<EmailRow[]>(initialEmails);
+  const [expandedEmailId, setExpandedEmailId] = useState<number | null>(null);
+
+  // Tabs (URL hash driven)
+  const [activeTab, setActiveTab] = useState<TabId>("overview");
+  useEffect(() => {
+    function readHash(): TabId {
+      const h = (typeof window !== "undefined" ? window.location.hash : "").replace("#", "");
+      return (TAB_ORDER as string[]).includes(h) ? (h as TabId) : "overview";
+    }
+    setActiveTab(readHash());
+    function onHash() {
+      setActiveTab(readHash());
+    }
+    window.addEventListener("hashchange", onHash);
+    return () => window.removeEventListener("hashchange", onHash);
+  }, []);
+  const selectTab = useCallback((t: TabId) => {
+    if (typeof window !== "undefined") {
+      window.history.replaceState(null, "", `#${t}`);
+    }
+    setActiveTab(t);
+  }, []);
+  const tabRefs = useRef<Record<TabId, HTMLButtonElement | null>>({
+    overview: null, timeline: null, email: null, bookings: null, deals: null, files: null,
+  });
+  function onTabKey(e: React.KeyboardEvent<HTMLButtonElement>, idx: number) {
+    if (e.key !== "ArrowRight" && e.key !== "ArrowLeft" && e.key !== "Home" && e.key !== "End") return;
+    e.preventDefault();
+    let next = idx;
+    if (e.key === "ArrowRight") next = (idx + 1) % TAB_ORDER.length;
+    else if (e.key === "ArrowLeft") next = (idx - 1 + TAB_ORDER.length) % TAB_ORDER.length;
+    else if (e.key === "Home") next = 0;
+    else if (e.key === "End") next = TAB_ORDER.length - 1;
+    const id = TAB_ORDER[next];
+    selectTab(id);
+    tabRefs.current[id]?.focus();
+  }
 
   // Lead score
   function readScoreFrom(cf: Record<string, unknown>): number | null {
@@ -721,10 +809,392 @@ export function ContactDetail({
         </div>
       )}
 
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-        {/* Main column: timeline + tasks */}
-        <div className="lg:col-span-2 space-y-6">
-          {/* Add note */}
+      {/* Tab bar (sticky under header) */}
+      <div
+        role="tablist"
+        aria-label="Contact sections"
+        className="sticky top-0 z-30 -mx-2 px-2 mb-6 flex gap-1 border-b border-white/5 bg-background/95 backdrop-blur"
+      >
+        {TAB_ORDER.map((t, idx) => {
+          const isActive = activeTab === t;
+          return (
+            <button
+              key={t}
+              ref={(el) => { tabRefs.current[t] = el; }}
+              role="tab"
+              id={`tab-${t}`}
+              aria-controls={`panel-${t}`}
+              aria-selected={isActive}
+              tabIndex={isActive ? 0 : -1}
+              onClick={() => selectTab(t)}
+              onKeyDown={(e) => onTabKey(e, idx)}
+              className={`px-4 py-2.5 text-xs font-heading uppercase tracking-widest border-b-2 -mb-px transition-colors ${
+                isActive
+                  ? "text-coral border-coral"
+                  : "text-foreground-muted border-transparent hover:text-off-white"
+              }`}
+            >
+              {TAB_LABELS[t]}
+            </button>
+          );
+        })}
+      </div>
+
+      {/* Overview tab */}
+      <div
+        id="panel-overview"
+        role="tabpanel"
+        aria-labelledby="tab-overview"
+        className={activeTab === "overview" ? "" : "hidden"}
+      >
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+          <div className="lg:col-span-2 space-y-6">
+            <ContactCustomFields
+              contactId={contact.id}
+              initialDefs={customFieldDefs}
+              initialValues={initialCustomValues}
+            />
+
+            {/* Tasks here too — quick actions belong on overview */}
+            <div className="bg-background-elevated rounded-xl border border-white/5 p-4">
+              <p className="text-[10px] uppercase tracking-widest text-foreground-subtle font-medium mb-3">
+                Tasks
+              </p>
+              <div className="flex flex-wrap gap-2 mb-3">
+                <input
+                  type="text"
+                  placeholder="Task title"
+                  value={taskTitle}
+                  onChange={(e) => setTaskTitle(e.target.value)}
+                  className="flex-1 min-w-[180px] px-3 py-2 text-sm bg-background-deep border border-white/10 text-off-white rounded focus:outline-none focus:border-coral/50"
+                />
+                <input
+                  type="date"
+                  value={taskDue}
+                  onChange={(e) => setTaskDue(e.target.value)}
+                  className="px-3 py-2 text-sm bg-background-deep border border-white/10 text-off-white rounded focus:outline-none focus:border-coral/50"
+                />
+                <select
+                  value={taskAssigned}
+                  onChange={(e) => setTaskAssigned(e.target.value)}
+                  className="px-3 py-2 text-sm bg-background-deep border border-white/10 text-off-white rounded focus:outline-none focus:border-coral/50"
+                >
+                  <option value="">Unassigned</option>
+                  {OWNERS.filter((o) => o.value).map((o) => (
+                    <option key={o.value} value={o.value}>
+                      {o.label}
+                    </option>
+                  ))}
+                </select>
+                <button
+                  onClick={addTask}
+                  disabled={busy}
+                  className="px-3 py-1.5 text-xs font-heading tracking-wider uppercase bg-coral/20 text-coral border border-coral/30 rounded hover:bg-coral/30 disabled:opacity-50"
+                >
+                  Add
+                </button>
+              </div>
+              {openTasks.length === 0 ? (
+                <p className="text-sm text-foreground-subtle">No open tasks.</p>
+              ) : (
+                <ul className="space-y-2">
+                  {openTasks.map((t) => (
+                    <li
+                      key={t.id}
+                      className="flex items-center justify-between gap-3 p-3 rounded border border-white/5 bg-background-deep"
+                    >
+                      <div>
+                        <p className="text-sm text-off-white">{t.title}</p>
+                        <p className="text-xs text-foreground-subtle">
+                          {t.dueAt
+                            ? `Due ${new Date(t.dueAt).toLocaleDateString("en-GB")}`
+                            : "No due date"}
+                          {t.assignedTo ? ` · ${t.assignedTo}` : ""}
+                        </p>
+                      </div>
+                      <button
+                        onClick={() => completeTask(t.id)}
+                        disabled={busy}
+                        className="px-2 py-1 text-xs rounded border border-white/10 text-foreground-muted hover:border-green-400/30 hover:text-green-400"
+                      >
+                        Complete
+                      </button>
+                    </li>
+                  ))}
+                </ul>
+              )}
+            </div>
+          </div>
+
+          {/* Right column: metadata, tags, enrichment */}
+          <div className="space-y-6">
+            <div className="bg-background-elevated rounded-xl border border-white/5 p-4 space-y-4">
+              <div>
+                <label className="block text-[10px] uppercase tracking-widest text-foreground-subtle font-medium mb-1">
+                  Owner
+                </label>
+                <select
+                  value={contact.owner ?? ""}
+                  onChange={(e) =>
+                    patchContact({ owner: e.target.value === "" ? null : e.target.value })
+                  }
+                  disabled={busy}
+                  className="w-full px-3 py-2 text-sm bg-background-deep border border-white/10 text-off-white rounded focus:outline-none focus:border-coral/50"
+                >
+                  {OWNERS.map((o) => (
+                    <option key={o.value} value={o.value}>
+                      {o.label}
+                    </option>
+                  ))}
+                </select>
+              </div>
+
+              <div>
+                <label className="block text-[10px] uppercase tracking-widest text-foreground-subtle font-medium mb-1">
+                  Stage
+                </label>
+                <select
+                  value={contact.lifecycleStage}
+                  onChange={(e) => patchContact({ lifecycleStage: e.target.value })}
+                  disabled={busy}
+                  className="w-full px-3 py-2 text-sm bg-background-deep border border-white/10 text-off-white rounded focus:outline-none focus:border-coral/50"
+                >
+                  {STAGES.map((s) => (
+                    <option key={s.value} value={s.value}>
+                      {s.label}
+                    </option>
+                  ))}
+                </select>
+              </div>
+
+              <div>
+                <label className="block text-[10px] uppercase tracking-widest text-foreground-subtle font-medium mb-2">
+                  Tags
+                </label>
+                <div className="flex flex-wrap gap-1.5 mb-2">
+                  {(contact.tags ?? []).length === 0 ? (
+                    <span className="text-xs text-foreground-subtle">None</span>
+                  ) : (
+                    contact.tags.map((t) => (
+                      <span
+                        key={t}
+                        className="text-xs px-2 py-0.5 rounded bg-coral/10 text-coral/90 border border-coral/20 flex items-center gap-1"
+                      >
+                        {t}
+                        <button
+                          onClick={() => removeTag(t)}
+                          disabled={busy}
+                          className="text-coral/70 hover:text-coral"
+                          aria-label={`Remove tag ${t}`}
+                        >
+                          &times;
+                        </button>
+                      </span>
+                    ))
+                  )}
+                </div>
+                <div className="flex gap-1">
+                  <input
+                    type="text"
+                    placeholder="Add tag"
+                    value={newTag}
+                    onChange={(e) => setNewTag(e.target.value)}
+                    onKeyDown={(e) => {
+                      if (e.key === "Enter") addTag();
+                    }}
+                    className="flex-1 px-2 py-1 text-xs bg-background-deep border border-white/10 text-off-white rounded focus:outline-none focus:border-coral/50"
+                  />
+                  <button
+                    onClick={addTag}
+                    disabled={busy}
+                    className="px-2 py-1 text-xs border border-white/10 text-foreground-muted rounded hover:border-coral/30"
+                  >
+                    Add
+                  </button>
+                </div>
+              </div>
+
+              {customFieldEntries.length > 0 && (
+                <div>
+                  <label className="block text-[10px] uppercase tracking-widest text-foreground-subtle font-medium mb-2">
+                    Custom Fields
+                  </label>
+                  <dl className="space-y-1 text-xs">
+                    {customFieldEntries.map(([k, v]) => (
+                      <div key={k} className="flex justify-between gap-2">
+                        <dt className="text-foreground-subtle capitalize">{k}</dt>
+                        <dd className="text-foreground-muted text-right break-words max-w-[60%]">
+                          {v === null || v === undefined ? "—" : String(v)}
+                        </dd>
+                      </div>
+                    ))}
+                  </dl>
+                </div>
+              )}
+
+              <div className="pt-2 border-t border-white/5 text-xs text-foreground-subtle space-y-1">
+                {contact.source && (
+                  <div>
+                    Source: <span className="text-foreground-muted">{contact.source}</span>
+                  </div>
+                )}
+                {contact.firstSeenAt && (
+                  <div>
+                    First seen:{" "}
+                    <span className="text-foreground-muted">
+                      {new Date(contact.firstSeenAt).toLocaleDateString("en-GB")}
+                    </span>
+                  </div>
+                )}
+                {contact.lastActivityAt && (
+                  <div>
+                    Last activity:{" "}
+                    <span className="text-foreground-muted">
+                      {relativeTime(contact.lastActivityAt)}
+                    </span>
+                  </div>
+                )}
+              </div>
+            </div>
+
+            {/* Enrichment card */}
+            <div className="bg-background-elevated rounded-xl border border-white/5 p-4 space-y-4">
+              <div className="flex items-center justify-between">
+                <p className="text-[10px] uppercase tracking-widest text-foreground-subtle font-medium font-heading">
+                  Enrichment
+                </p>
+                {enrichment?.enrichedAt && (
+                  <span className="text-[10px] text-foreground-subtle">
+                    {relativeTime(enrichment.enrichedAt)}
+                  </span>
+                )}
+              </div>
+
+              {!enrichment ? (
+                <p className="text-xs text-foreground-subtle">
+                  Not enriched yet — click Refresh.
+                </p>
+              ) : (
+                <>
+                  <div className="space-y-2">
+                    <p className="text-[10px] uppercase tracking-widest text-foreground-subtle font-heading">
+                      Beehiiv
+                    </p>
+                    {enrichment.beehiiv ? (
+                      <div className="space-y-1.5 text-xs">
+                        <div className="flex items-center gap-2">
+                          <span
+                            className={`px-2 py-0.5 rounded border capitalize ${beehiivStatusClass(
+                              enrichment.beehiiv.status
+                            )}`}
+                          >
+                            {enrichment.beehiiv.status}
+                          </span>
+                          {enrichment.beehiiv.tier && (
+                            <span className="px-2 py-0.5 rounded bg-coral/10 text-coral/90 border border-coral/20">
+                              {enrichment.beehiiv.tier}
+                            </span>
+                          )}
+                        </div>
+                        {enrichment.beehiiv.subscribedAt && (
+                          <div className="flex justify-between text-foreground-muted">
+                            <span className="text-foreground-subtle">Subscribed</span>
+                            <span>
+                              {new Date(enrichment.beehiiv.subscribedAt).toLocaleDateString("en-GB")}
+                            </span>
+                          </div>
+                        )}
+                        <div className="flex justify-between text-foreground-muted">
+                          <span className="text-foreground-subtle">Opens / Clicks</span>
+                          <span>
+                            {enrichment.beehiiv.totalOpens} / {enrichment.beehiiv.totalClicks}
+                          </span>
+                        </div>
+                        {enrichment.beehiiv.lastOpenedAt && (
+                          <div className="flex justify-between text-foreground-muted">
+                            <span className="text-foreground-subtle">Last open</span>
+                            <span>{relativeTime(enrichment.beehiiv.lastOpenedAt)}</span>
+                          </div>
+                        )}
+                      </div>
+                    ) : (
+                      <p className="text-xs text-foreground-subtle">Not a subscriber</p>
+                    )}
+                  </div>
+
+                  <div className="space-y-2 pt-2 border-t border-white/5">
+                    <p className="text-[10px] uppercase tracking-widest text-foreground-subtle font-heading">
+                      Stripe
+                    </p>
+                    {enrichment.stripe ? (
+                      <div className="space-y-1.5 text-xs">
+                        <div className="flex justify-between">
+                          <span className="text-foreground-subtle">LTV</span>
+                          <span className="text-off-white font-medium">
+                            {formatGbp(enrichment.stripe.lifetimeValueCents)}
+                          </span>
+                        </div>
+                        <div className="flex justify-between text-foreground-muted">
+                          <span className="text-foreground-subtle">Payments</span>
+                          <span>{enrichment.stripe.totalPayments}</span>
+                        </div>
+                        {enrichment.stripe.lastPaymentAt && (
+                          <div className="flex justify-between text-foreground-muted">
+                            <span className="text-foreground-subtle">Last payment</span>
+                            <span>{relativeTime(enrichment.stripe.lastPaymentAt)}</span>
+                          </div>
+                        )}
+                        {enrichment.stripe.subscriptions
+                          .filter((s) => s.status === "active" || s.status === "trialing")
+                          .map((s) => (
+                            <div
+                              key={s.id}
+                              className="mt-2 p-2 rounded border border-green-500/20 bg-green-500/5"
+                            >
+                              <div className="flex items-center justify-between">
+                                <span className="text-green-400 text-[10px] uppercase tracking-widest font-heading">
+                                  {s.status}
+                                </span>
+                                <span className="text-off-white text-xs">
+                                  {formatGbp(s.amountCents)}
+                                </span>
+                              </div>
+                              <div className="text-foreground-muted mt-1">{s.productName}</div>
+                              {s.currentPeriodEnd && (
+                                <div className="text-[10px] text-foreground-subtle mt-0.5">
+                                  Renews {new Date(s.currentPeriodEnd).toLocaleDateString("en-GB")}
+                                </div>
+                              )}
+                            </div>
+                          ))}
+                      </div>
+                    ) : (
+                      <p className="text-xs text-foreground-subtle">Not a customer</p>
+                    )}
+                  </div>
+                </>
+              )}
+
+              <button
+                onClick={refreshEnrichment}
+                disabled={busy}
+                className="w-full px-3 py-2 text-xs font-heading tracking-wider uppercase bg-coral/20 text-coral border border-coral/30 rounded hover:bg-coral/30 disabled:opacity-50"
+              >
+                Refresh from Beehiiv + Stripe
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* Timeline tab */}
+      <div
+        id="panel-timeline"
+        role="tabpanel"
+        aria-labelledby="tab-timeline"
+        className={activeTab === "timeline" ? "space-y-6" : "hidden"}
+      >
+        {/* Add note */}
           <div className="bg-background-elevated rounded-xl border border-white/5 p-4">
             <p className="text-[10px] uppercase tracking-widest text-foreground-subtle font-medium mb-3">
               Add Note
@@ -847,366 +1317,135 @@ export function ContactDetail({
             )}
           </div>
 
-          {/* Tasks */}
-          <div className="bg-background-elevated rounded-xl border border-white/5 p-4">
-            <p className="text-[10px] uppercase tracking-widest text-foreground-subtle font-medium mb-3">
-              Tasks
-            </p>
-            <div className="flex flex-wrap gap-2 mb-3">
-              <input
-                type="text"
-                placeholder="Task title"
-                value={taskTitle}
-                onChange={(e) => setTaskTitle(e.target.value)}
-                className="flex-1 min-w-[180px] px-3 py-2 text-sm bg-background-deep border border-white/10 text-off-white rounded focus:outline-none focus:border-coral/50"
-              />
-              <input
-                type="date"
-                value={taskDue}
-                onChange={(e) => setTaskDue(e.target.value)}
-                className="px-3 py-2 text-sm bg-background-deep border border-white/10 text-off-white rounded focus:outline-none focus:border-coral/50"
-              />
-              <select
-                value={taskAssigned}
-                onChange={(e) => setTaskAssigned(e.target.value)}
-                className="px-3 py-2 text-sm bg-background-deep border border-white/10 text-off-white rounded focus:outline-none focus:border-coral/50"
-              >
-                <option value="">Unassigned</option>
-                {OWNERS.filter((o) => o.value).map((o) => (
-                  <option key={o.value} value={o.value}>
-                    {o.label}
-                  </option>
-                ))}
-              </select>
-              <button
-                onClick={addTask}
-                disabled={busy}
-                className="px-3 py-1.5 text-xs font-heading tracking-wider uppercase bg-coral/20 text-coral border border-coral/30 rounded hover:bg-coral/30 disabled:opacity-50"
-              >
-                Add
-              </button>
-            </div>
-            {openTasks.length === 0 ? (
-              <p className="text-sm text-foreground-subtle">No open tasks.</p>
-            ) : (
-              <ul className="space-y-2">
-                {openTasks.map((t) => (
-                  <li
-                    key={t.id}
-                    className="flex items-center justify-between gap-3 p-3 rounded border border-white/5 bg-background-deep"
-                  >
-                    <div>
-                      <p className="text-sm text-off-white">{t.title}</p>
-                      <p className="text-xs text-foreground-subtle">
-                        {t.dueAt
-                          ? `Due ${new Date(t.dueAt).toLocaleDateString("en-GB")}`
-                          : "No due date"}
-                        {t.assignedTo ? ` · ${t.assignedTo}` : ""}
-                      </p>
-                    </div>
-                    <button
-                      onClick={() => completeTask(t.id)}
-                      disabled={busy}
-                      className="px-2 py-1 text-xs rounded border border-white/10 text-foreground-muted hover:border-green-400/30 hover:text-green-400"
-                    >
-                      Complete
-                    </button>
-                  </li>
-                ))}
-              </ul>
-            )}
-          </div>
-        </div>
-
-        {/* Attachments */}
-        <div className="lg:col-span-2 lg:col-start-1">
-          <ContactAttachments
-            contactId={contact.id}
-            initial={initialAttachments}
-            currentUser={{
-              slug: currentUser?.slug ?? "",
-              role: currentUser?.role,
-            }}
-          />
-        </div>
-
-        {/* Custom fields */}
-        <div className="lg:col-span-2 lg:col-start-1">
-          <ContactCustomFields
-            contactId={contact.id}
-            initialDefs={customFieldDefs}
-            initialValues={initialCustomValues}
-          />
-        </div>
-
-        {/* Bookings */}
-        <div className="lg:col-span-2 lg:col-start-1">
-          <ContactBookingsSection
-            contactId={contact.id}
-            contactName={contact.name}
-            contactEmail={contact.email}
-            currentUserSlug={currentUser?.slug ?? "ted"}
-          />
-        </div>
-
-        {/* Deals */}
-        <div className="lg:col-span-2 lg:col-start-1">
-          <ContactDealsSection contactId={contact.id} />
-        </div>
-
-        {/* Right sidebar */}
-        <div className="space-y-6">
-          <div className="bg-background-elevated rounded-xl border border-white/5 p-4 space-y-4">
-            <div>
-              <label className="block text-[10px] uppercase tracking-widest text-foreground-subtle font-medium mb-1">
-                Owner
-              </label>
-              <select
-                value={contact.owner ?? ""}
-                onChange={(e) =>
-                  patchContact({ owner: e.target.value === "" ? null : e.target.value })
-                }
-                disabled={busy}
-                className="w-full px-3 py-2 text-sm bg-background-deep border border-white/10 text-off-white rounded focus:outline-none focus:border-coral/50"
-              >
-                {OWNERS.map((o) => (
-                  <option key={o.value} value={o.value}>
-                    {o.label}
-                  </option>
-                ))}
-              </select>
-            </div>
-
-            <div>
-              <label className="block text-[10px] uppercase tracking-widest text-foreground-subtle font-medium mb-1">
-                Stage
-              </label>
-              <select
-                value={contact.lifecycleStage}
-                onChange={(e) => patchContact({ lifecycleStage: e.target.value })}
-                disabled={busy}
-                className="w-full px-3 py-2 text-sm bg-background-deep border border-white/10 text-off-white rounded focus:outline-none focus:border-coral/50"
-              >
-                {STAGES.map((s) => (
-                  <option key={s.value} value={s.value}>
-                    {s.label}
-                  </option>
-                ))}
-              </select>
-            </div>
-
-            <div>
-              <label className="block text-[10px] uppercase tracking-widest text-foreground-subtle font-medium mb-2">
-                Tags
-              </label>
-              <div className="flex flex-wrap gap-1.5 mb-2">
-                {(contact.tags ?? []).length === 0 ? (
-                  <span className="text-xs text-foreground-subtle">None</span>
-                ) : (
-                  contact.tags.map((t) => (
-                    <span
-                      key={t}
-                      className="text-xs px-2 py-0.5 rounded bg-coral/10 text-coral/90 border border-coral/20 flex items-center gap-1"
-                    >
-                      {t}
-                      <button
-                        onClick={() => removeTag(t)}
-                        disabled={busy}
-                        className="text-coral/70 hover:text-coral"
-                        aria-label={`Remove tag ${t}`}
-                      >
-                        &times;
-                      </button>
-                    </span>
-                  ))
-                )}
-              </div>
-              <div className="flex gap-1">
-                <input
-                  type="text"
-                  placeholder="Add tag"
-                  value={newTag}
-                  onChange={(e) => setNewTag(e.target.value)}
-                  onKeyDown={(e) => {
-                    if (e.key === "Enter") addTag();
-                  }}
-                  className="flex-1 px-2 py-1 text-xs bg-background-deep border border-white/10 text-off-white rounded focus:outline-none focus:border-coral/50"
-                />
-                <button
-                  onClick={addTag}
-                  disabled={busy}
-                  className="px-2 py-1 text-xs border border-white/10 text-foreground-muted rounded hover:border-coral/30"
-                >
-                  Add
-                </button>
-              </div>
-            </div>
-
-            {customFieldEntries.length > 0 && (
-              <div>
-                <label className="block text-[10px] uppercase tracking-widest text-foreground-subtle font-medium mb-2">
-                  Custom Fields
-                </label>
-                <dl className="space-y-1 text-xs">
-                  {customFieldEntries.map(([k, v]) => (
-                    <div key={k} className="flex justify-between gap-2">
-                      <dt className="text-foreground-subtle capitalize">{k}</dt>
-                      <dd className="text-foreground-muted text-right break-words max-w-[60%]">
-                        {v === null || v === undefined ? "—" : String(v)}
-                      </dd>
-                    </div>
-                  ))}
-                </dl>
-              </div>
-            )}
-
-            <div className="pt-2 border-t border-white/5 text-xs text-foreground-subtle space-y-1">
-              {contact.source && (
-                <div>
-                  Source: <span className="text-foreground-muted">{contact.source}</span>
-                </div>
-              )}
-              {contact.firstSeenAt && (
-                <div>
-                  First seen:{" "}
-                  <span className="text-foreground-muted">
-                    {new Date(contact.firstSeenAt).toLocaleDateString("en-GB")}
-                  </span>
-                </div>
-              )}
-            </div>
-          </div>
-
-          {/* Enrichment card */}
-          <div className="bg-background-elevated rounded-xl border border-white/5 p-4 space-y-4">
-            <div className="flex items-center justify-between">
-              <p className="text-[10px] uppercase tracking-widest text-foreground-subtle font-medium font-heading">
-                Enrichment
-              </p>
-              {enrichment?.enrichedAt && (
-                <span className="text-[10px] text-foreground-subtle">
-                  {relativeTime(enrichment.enrichedAt)}
-                </span>
-              )}
-            </div>
-
-            {!enrichment ? (
-              <p className="text-xs text-foreground-subtle">
-                Not enriched yet — click Refresh.
-              </p>
-            ) : (
-              <>
-                {/* Beehiiv */}
-                <div className="space-y-2">
-                  <p className="text-[10px] uppercase tracking-widest text-foreground-subtle font-heading">
-                    Beehiiv
-                  </p>
-                  {enrichment.beehiiv ? (
-                    <div className="space-y-1.5 text-xs">
-                      <div className="flex items-center gap-2">
-                        <span
-                          className={`px-2 py-0.5 rounded border capitalize ${beehiivStatusClass(
-                            enrichment.beehiiv.status
-                          )}`}
-                        >
-                          {enrichment.beehiiv.status}
-                        </span>
-                        {enrichment.beehiiv.tier && (
-                          <span className="px-2 py-0.5 rounded bg-coral/10 text-coral/90 border border-coral/20">
-                            {enrichment.beehiiv.tier}
-                          </span>
-                        )}
-                      </div>
-                      {enrichment.beehiiv.subscribedAt && (
-                        <div className="flex justify-between text-foreground-muted">
-                          <span className="text-foreground-subtle">Subscribed</span>
-                          <span>
-                            {new Date(enrichment.beehiiv.subscribedAt).toLocaleDateString("en-GB")}
-                          </span>
-                        </div>
-                      )}
-                      <div className="flex justify-between text-foreground-muted">
-                        <span className="text-foreground-subtle">Opens / Clicks</span>
-                        <span>
-                          {enrichment.beehiiv.totalOpens} / {enrichment.beehiiv.totalClicks}
-                        </span>
-                      </div>
-                      {enrichment.beehiiv.lastOpenedAt && (
-                        <div className="flex justify-between text-foreground-muted">
-                          <span className="text-foreground-subtle">Last open</span>
-                          <span>{relativeTime(enrichment.beehiiv.lastOpenedAt)}</span>
-                        </div>
-                      )}
-                    </div>
-                  ) : (
-                    <p className="text-xs text-foreground-subtle">Not a subscriber</p>
-                  )}
-                </div>
-
-                {/* Stripe */}
-                <div className="space-y-2 pt-2 border-t border-white/5">
-                  <p className="text-[10px] uppercase tracking-widest text-foreground-subtle font-heading">
-                    Stripe
-                  </p>
-                  {enrichment.stripe ? (
-                    <div className="space-y-1.5 text-xs">
-                      <div className="flex justify-between">
-                        <span className="text-foreground-subtle">LTV</span>
-                        <span className="text-off-white font-medium">
-                          {formatGbp(enrichment.stripe.lifetimeValueCents)}
-                        </span>
-                      </div>
-                      <div className="flex justify-between text-foreground-muted">
-                        <span className="text-foreground-subtle">Payments</span>
-                        <span>{enrichment.stripe.totalPayments}</span>
-                      </div>
-                      {enrichment.stripe.lastPaymentAt && (
-                        <div className="flex justify-between text-foreground-muted">
-                          <span className="text-foreground-subtle">Last payment</span>
-                          <span>{relativeTime(enrichment.stripe.lastPaymentAt)}</span>
-                        </div>
-                      )}
-                      {enrichment.stripe.subscriptions
-                        .filter((s) => s.status === "active" || s.status === "trialing")
-                        .map((s) => (
-                          <div
-                            key={s.id}
-                            className="mt-2 p-2 rounded border border-green-500/20 bg-green-500/5"
-                          >
-                            <div className="flex items-center justify-between">
-                              <span className="text-green-400 text-[10px] uppercase tracking-widest font-heading">
-                                {s.status}
-                              </span>
-                              <span className="text-off-white text-xs">
-                                {formatGbp(s.amountCents)}
-                              </span>
-                            </div>
-                            <div className="text-foreground-muted mt-1">{s.productName}</div>
-                            {s.currentPeriodEnd && (
-                              <div className="text-[10px] text-foreground-subtle mt-0.5">
-                                Renews {new Date(s.currentPeriodEnd).toLocaleDateString("en-GB")}
-                              </div>
-                            )}
-                          </div>
-                        ))}
-                    </div>
-                  ) : (
-                    <p className="text-xs text-foreground-subtle">Not a customer</p>
-                  )}
-                </div>
-              </>
-            )}
-
-            <button
-              onClick={refreshEnrichment}
-              disabled={busy}
-              className="w-full px-3 py-2 text-xs font-heading tracking-wider uppercase bg-coral/20 text-coral border border-coral/30 rounded hover:bg-coral/30 disabled:opacity-50"
-            >
-              Refresh from Beehiiv + Stripe
-            </button>
-          </div>
-        </div>
       </div>
+
+      {/* Email tab */}
+      <div
+        id="panel-email"
+        role="tabpanel"
+        aria-labelledby="tab-email"
+        className={activeTab === "email" ? "space-y-4" : "hidden"}
+      >
+        <div className="flex items-center justify-between">
+          <p className="text-[10px] uppercase tracking-widest text-foreground-subtle font-heading">
+            Recent emails ({emails.length})
+          </p>
+          <button
+            onClick={() => openEmailDrawer(null)}
+            className="px-3 py-1.5 text-xs font-heading tracking-wider uppercase bg-coral text-white rounded hover:bg-coral/90"
+          >
+            Send Email
+          </button>
+        </div>
+        {emails.length === 0 ? (
+          <div className="bg-background-elevated rounded-xl border border-white/5 p-8 text-center text-sm text-foreground-subtle">
+            No emails sent to this contact yet.
+          </div>
+        ) : (
+          <ul className="space-y-2">
+            {emails.map((m) => {
+              const isOpen = expandedEmailId === m.id;
+              const tpl = m.templateId ? templates.find((t) => t.id === m.templateId) : null;
+              const sentLabel = m.sentAt ?? m.createdAt;
+              return (
+                <li
+                  key={m.id}
+                  className="bg-background-elevated rounded-xl border border-white/5 overflow-hidden"
+                >
+                  <button
+                    type="button"
+                    onClick={() => setExpandedEmailId(isOpen ? null : m.id)}
+                    className="w-full text-left p-3 hover:bg-white/[0.02] transition-colors"
+                  >
+                    <div className="flex items-start justify-between gap-3">
+                      <div className="min-w-0 flex-1">
+                        <div className="flex items-center gap-2 flex-wrap">
+                          <span className="text-sm text-off-white truncate">{m.subject}</span>
+                          <span
+                            className={`text-[10px] uppercase tracking-widest px-1.5 py-0.5 rounded border ${emailStatusClass(m.status)}`}
+                          >
+                            {m.status}
+                          </span>
+                          {m.openedAt && (
+                            <span className="text-[10px] uppercase tracking-widest px-1.5 py-0.5 rounded border bg-blue-500/10 text-blue-300 border-blue-500/20">
+                              opened
+                            </span>
+                          )}
+                          {m.clickedAt && (
+                            <span className="text-[10px] uppercase tracking-widest px-1.5 py-0.5 rounded border bg-purple-500/10 text-purple-300 border-purple-500/20">
+                              clicked
+                            </span>
+                          )}
+                        </div>
+                        <p className="text-[11px] text-foreground-subtle mt-1">
+                          To {m.toAddress}
+                          {tpl ? ` · ${tpl.name}` : ""} · from {m.fromUser} · {relativeTime(sentLabel)}
+                        </p>
+                      </div>
+                      <span className="text-foreground-subtle text-xs shrink-0">{isOpen ? "−" : "+"}</span>
+                    </div>
+                  </button>
+                  {isOpen && (
+                    <div className="border-t border-white/5 p-3 bg-background-deep">
+                      {m.errorMessage && (
+                        <div className="mb-2 px-3 py-2 rounded border border-red-500/30 bg-red-500/10 text-red-400 text-xs">
+                          {m.errorMessage}
+                        </div>
+                      )}
+                      <pre className="text-xs text-foreground-muted whitespace-pre-wrap font-sans leading-relaxed">
+                        {m.body}
+                      </pre>
+                    </div>
+                  )}
+                </li>
+              );
+            })}
+          </ul>
+        )}
+      </div>
+
+      {/* Bookings tab */}
+      <div
+        id="panel-bookings"
+        role="tabpanel"
+        aria-labelledby="tab-bookings"
+        className={activeTab === "bookings" ? "" : "hidden"}
+      >
+        <ContactBookingsSection
+          contactId={contact.id}
+          contactName={contact.name}
+          contactEmail={contact.email}
+          currentUserSlug={currentUser?.slug ?? "ted"}
+        />
+      </div>
+
+      {/* Deals tab */}
+      <div
+        id="panel-deals"
+        role="tabpanel"
+        aria-labelledby="tab-deals"
+        className={activeTab === "deals" ? "" : "hidden"}
+      >
+        <ContactDealsSection contactId={contact.id} />
+      </div>
+
+      {/* Files tab */}
+      <div
+        id="panel-files"
+        role="tabpanel"
+        aria-labelledby="tab-files"
+        className={activeTab === "files" ? "" : "hidden"}
+      >
+        <ContactAttachments
+          contactId={contact.id}
+          initial={initialAttachments}
+          currentUser={{
+            slug: currentUser?.slug ?? "",
+            role: currentUser?.role,
+          }}
+        />
+      </div>
+
 
       {emailOpen && (
         <div

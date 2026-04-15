@@ -4,7 +4,7 @@ import { getContactById, getTimeline } from "@/lib/crm/contacts";
 import { db } from "@/lib/db";
 import { tasks as tasksTable } from "@/lib/db/schema";
 import { desc, eq } from "drizzle-orm";
-import { listTemplates } from "@/lib/crm/email";
+import { listTemplates, listEmailsForContact } from "@/lib/crm/email";
 import { listAttachments } from "@/lib/crm/attachments";
 import { getPotentialDuplicatesFor } from "@/lib/crm/dedup";
 import { listFieldDefs, getContactCustomValues } from "@/lib/crm/custom-fields";
@@ -28,7 +28,7 @@ export default async function ContactDetailPage({
   const contact = await getContactById(id);
   if (!contact) notFound();
 
-  const [activities, taskRows, templateRows, attachmentRows, duplicateCandidates, customFieldDefsList, customValues] =
+  const [activities, taskRows, templateRows, attachmentRows, duplicateCandidates, customFieldDefsList, customValues, emailRows] =
     await Promise.all([
       getTimeline(id, { limit: 200 }),
       db
@@ -41,6 +41,7 @@ export default async function ContactDetailPage({
       getPotentialDuplicatesFor(id).catch(() => []),
       listFieldDefs(),
       getContactCustomValues(id),
+      listEmailsForContact(id, 20),
     ]);
 
   return (
@@ -80,6 +81,22 @@ export default async function ContactDetailPage({
         ...a,
         meta: (a.meta ?? null) as Record<string, unknown> | null,
         createdAt: a.createdAt.toISOString(),
+      }))}
+      initialEmails={emailRows.map((m) => ({
+        id: m.id,
+        toAddress: m.toAddress,
+        fromUser: m.fromUser,
+        fromAddress: m.fromAddress,
+        subject: m.subject,
+        body: m.body,
+        templateId: m.templateId,
+        status: m.status,
+        errorMessage: m.errorMessage,
+        sentAt: m.sentAt ? m.sentAt.toISOString() : null,
+        deliveredAt: m.deliveredAt ? m.deliveredAt.toISOString() : null,
+        openedAt: m.openedAt ? m.openedAt.toISOString() : null,
+        clickedAt: m.clickedAt ? m.clickedAt.toISOString() : null,
+        createdAt: m.createdAt.toISOString(),
       }))}
       tasks={taskRows.map((t) => ({
         ...t,
