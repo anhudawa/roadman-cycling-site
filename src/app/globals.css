@@ -99,15 +99,19 @@ html {
 /* Custom cursor: hide native cursor only on desktop with fine pointer, and only
    when user has NOT requested reduced motion (an accessibility proxy) */
 @media (pointer: fine) and (prefers-reduced-motion: no-preference) {
-  body {
+  body:not(:has([data-admin-root])) {
     cursor: none;
   }
 
-  a, button, [role="button"] {
+  body:not(:has([data-admin-root])) a,
+  body:not(:has([data-admin-root])) button,
+  body:not(:has([data-admin-root])) [role="button"] {
     cursor: none;
   }
 
-  input, select, textarea {
+  body:not(:has([data-admin-root])) input,
+  body:not(:has([data-admin-root])) select,
+  body:not(:has([data-admin-root])) textarea {
     cursor: text;
   }
 }
