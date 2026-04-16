@@ -14,6 +14,10 @@ on:
         description: "Dry run"
         required: false
         default: "false"
+      force:
+        description: "Force drafting even when fewer than 3 welcomes are pending"
+        required: false
+        default: "false"
 
 jobs:
   welcomes:
@@ -40,6 +44,7 @@ jobs:
         run: |
           ARGS="--job=draft-welcome"
           if [ "${{ inputs.dry_run }}" = "true" ]; then ARGS="$ARGS --dry-run"; fi
+          if [ "${{ inputs.force }}" = "true" ]; then ARGS="$ARGS --force"; fi
           npx tsx agents/ted/src/index.ts $ARGS
 
       - name: Post approved welcomes

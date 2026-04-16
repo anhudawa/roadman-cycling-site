@@ -7,7 +7,10 @@ import { generateWelcome } from "../generators/welcome-generator.js";
 export interface DraftWelcomeOpts {
   dryRun?: boolean;
   limit?: number;
+  force?: boolean;
 }
+
+const MIN_PENDING_FOR_DAILY_BATCH = 3;
 
 export async function runDraftWelcome(opts: DraftWelcomeOpts = {}): Promise<void> {
   const repoRoot = findRepoRoot();
@@ -20,13 +23,26 @@ export async function runDraftWelcome(opts: DraftWelcomeOpts = {}): Promise<void
     await logger.write({
       job: "draft-welcome",
       action: "start",
-      payload: { count: pending.length, dryRun: !!opts.dryRun },
+      payload: { count: pending.length, dryRun: !!opts.dryRun, force: !!opts.force },
     });
 
     if (pending.length === 0) return;
 
-    // Daily welcome flood protection: if there's 1 pending and it's brand new, wait — spec says "skip a day if fewer than 3 new members joined (daily welcomes for one person feels weird)".
-    // For v1 we process every pending; the wait-for-more behaviour can be a later refinement.
+    // Daily flood protection (per spec): "skip a day if fewer than 3 new members joined
+    // (daily welcomes for one person feels weird)". Force overrides for manual runs.
+    if (pending.length < MIN_PENDING_FOR_DAILY_BATCH && !opts.force) {
+      await logger.write({
+        job: "draft-welcome",
+        action: "skip-below-threshold",
+        level: "warn",
+        payload: {
+          pending: pending.length,
+          threshold: MIN_PENDING_FOR_DAILY_BATCH,
+          hint: "re-run with --force to draft anyway",
+        },
+      });
+      return;
+    }
 
     let successCount = 0;
     for (const row of pending) {

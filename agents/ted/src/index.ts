@@ -45,6 +45,7 @@ async function main() {
       await runDraftWelcome({
         dryRun,
         limit: flagValue("limit") ? Number(flagValue("limit")) : undefined,
+        force: flag("force"),
       });
       break;
     case "post-welcome":
