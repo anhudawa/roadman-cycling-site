@@ -170,6 +170,19 @@ export const GUEST_PROFILE_OVERRIDES: Record<string, GuestProfileOverride> = {
       "https://www.britishcycling.org.uk/gbcyclingteam/bio/Dan_Bigham",
     ],
   },
+
+  "rosa-kloser": {
+    description:
+      "German professional gravel and road cyclist, 2024 Unbound Gravel 200 winner and Gravel World Champion. Races both as a gravel privateer and for the CANYON//SRAM zondacrypto road team. PhD researcher in green shipping at Copenhagen Business School.",
+    worksFor: {
+      name: "CANYON//SRAM zondacrypto",
+      type: "SportsTeam",
+    },
+    sameAs: [
+      "https://en.wikipedia.org/wiki/Rosa_Kl%C3%B6ser",
+      "https://www.canyon.com/en-us/blog-content/athletes/rosa-kloser-the-new-fast/b19122025.html",
+    ],
+  },
 };
 
 /** Look up overrides for a guest by slug. Returns undefined if no curated data. */
