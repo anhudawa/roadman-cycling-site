@@ -1,4 +1,5 @@
 import { computePeriodStats, getStatsForRange, getDailyVisitors, getDailyBreakdown, type PeriodStats } from "@/lib/admin/events-store";
+import { getFunnelStats } from "@/lib/admin/subscribers-store";
 import { parseTimeRangeWithComparison } from "@/lib/admin/time-ranges";
 import { requireAuth } from "@/lib/admin/auth";
 import { redirect } from "next/navigation";
@@ -75,6 +76,21 @@ export default async function AdminDashboardPage({
     // Database not provisioned yet — use demo data
     currentStats = DEMO_CURRENT;
     previousStats = DEMO_PREVIOUS;
+  }
+
+  // Actual Skool joins (from subscribers.skoolJoinedAt / Skool webhook) —
+  // distinct from skoolTrials (CTA click events on Clubhouse page).
+  let currentSkoolJoins = 0;
+  let previousSkoolJoins = 0;
+  try {
+    const [nowFunnel, prevFunnel] = await Promise.all([
+      getFunnelStats(from, to),
+      getFunnelStats(prevFrom, prevTo),
+    ]);
+    currentSkoolJoins = nowFunnel.skoolJoins;
+    previousSkoolJoins = prevFunnel.skoolJoins;
+  } catch {
+    // Non-critical
   }
 
   // Compute percentage changes safely
@@ -163,7 +179,7 @@ export default async function AdminDashboardPage({
       </div>
 
       {/* Stat cards — reflect selected range */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 xl:grid-cols-5 gap-4">
         <StatCard
           label={`Visitors (${rangeLabel})`}
           value={currentStats.visitors}
@@ -185,11 +201,17 @@ export default async function AdminDashboardPage({
           changeLabel={compLabel}
         />
         <StatCard
-          label={`Skool Trials (${rangeLabel})`}
+          label={`Clubhouse Clicks (${rangeLabel})`}
           value={currentStats.skoolTrials}
           change={pctChange(currentStats.skoolTrials, previousStats.skoolTrials)}
           changeLabel={compLabel}
           sparkData={sparkTrials}
+        />
+        <StatCard
+          label={`Skool Joins (${rangeLabel})`}
+          value={currentSkoolJoins}
+          change={pctChange(currentSkoolJoins, previousSkoolJoins)}
+          changeLabel={compLabel}
         />
       </div>
 
