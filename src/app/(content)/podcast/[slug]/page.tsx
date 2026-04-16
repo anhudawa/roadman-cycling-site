@@ -5,6 +5,7 @@ import { Header, Footer, Section, Container } from "@/components/layout";
 import { AICitationBlock, Badge, Button } from "@/components/ui";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { getEpisodeBySlug, getAllEpisodeSlugs } from "@/lib/podcast";
+import { segmentTranscript } from "@/lib/transcript";
 import { PodcastLinks } from "@/components/features/podcast/PodcastLinks";
 import { TranscriptViewer } from "@/components/features/podcast/TranscriptViewer";
 import { PlayButton } from "@/components/features/podcast/PlayButton";
@@ -80,6 +81,14 @@ export default async function EpisodePage({
   }
 
   const publishDate = new Date(episode.publishDate);
+  const episodeUrl = `https://roadmancycling.com/podcast/${slug}`;
+
+  // Segment the transcript once on the server so the schema and the
+  // TranscriptViewer render from the same segmentation — keeping schema
+  // `hasPart` anchors in sync with the actual `<h3 id>`s in the DOM.
+  const segments = episode.transcript
+    ? segmentTranscript(episode.transcript)
+    : [];
 
   return (
     <>
@@ -88,7 +97,7 @@ export default async function EpisodePage({
           "@context": "https://schema.org",
           "@type": "PodcastEpisode",
           name: episode.title,
-          url: `https://roadmancycling.com/podcast/${slug}`,
+          url: episodeUrl,
           description: episode.seoDescription,
           episodeNumber: episode.episodeNumber,
           datePublished: episode.publishDate,
@@ -118,6 +127,35 @@ export default async function EpisodePage({
               name: episode.guest,
               description: episode.guestCredential,
             },
+          }),
+          // Expose the full transcript text to search + AI assistants as a
+          // first-class schema field (supported under PodcastEpisode via
+          // schema.org CreativeWork inheritance). Lets LLM crawlers ingest
+          // the episode content without needing to render the page.
+          ...(episode.transcript && { transcript: episode.transcript }),
+          // Point Speakable at the stable CSS selectors Google's Assistant
+          // / voice search can read aloud — episode title + first transcript
+          // segment act as the TL;DR of the episode.
+          speakable: {
+            "@type": "SpeakableSpecification",
+            cssSelector: [
+              "h1",
+              "[data-speakable-transcript] section:first-of-type p",
+            ],
+          },
+          // Declare every transcript segment as a CreativeWork part with a
+          // fragment URL pointing at its h3 anchor. Gives Google a native
+          // route to "passage indexing" — each segment can rank independently
+          // for its specific topic.
+          ...(segments.length > 1 && {
+            hasPart: segments.map((segment) => ({
+              "@type": "CreativeWork",
+              name: segment.title,
+              url: `${episodeUrl}#${segment.id}`,
+              position: segment.index,
+              wordCount: segment.wordCount,
+              isPartOf: { "@type": "PodcastEpisode", url: episodeUrl },
+            })),
           }),
         }}
       />
