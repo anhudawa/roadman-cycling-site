@@ -187,17 +187,19 @@ async function generateArticle(
     return null;
   }
 
-  // Streaming with finalMessage() so we can give the model plenty of room
-  // (max_tokens 8000) without hitting the SDK HTTP timeout on long outputs.
-  const stream = client.messages.stream({
+  // Non-streaming messages.create. max_tokens 6000 is plenty for a 2800-word
+  // article (typically ~4000 output tokens). Empirically more reliable than
+  // streaming with SDK 0.82 + Opus 4.7 — streamed calls were hanging
+  // indefinitely on adaptive-thinking-triggered prompts without surfacing
+  // a timeout.
+  const response = await client.messages.create({
     model: MODEL,
-    max_tokens: 8000,
+    max_tokens: 6000,
     system: SYSTEM_PROMPT,
     messages: [{ role: "user", content: buildUserPrompt(spec) }],
   });
 
-  const finalMessage = await stream.finalMessage();
-  const textBlock = finalMessage.content.find((b) => b.type === "text");
+  const textBlock = response.content.find((b) => b.type === "text");
   if (!textBlock || textBlock.type !== "text") return null;
 
   const raw = stripOutputFences(textBlock.text);
