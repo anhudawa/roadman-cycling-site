@@ -125,6 +125,7 @@ export async function runSurfaceThreads(
               threadId: thread.id,
               surfaceType: surface.surfaceType,
               body: surface.body,
+              cost: surface.cost,
             },
           });
           surfaceCount += 1;
@@ -149,6 +150,7 @@ export async function runSurfaceThreads(
               threadId: thread.id,
               surfaceType: surface.surfaceType,
               url: result?.url,
+              cost: surface.cost,
             },
           });
           surfaceCount += 1;

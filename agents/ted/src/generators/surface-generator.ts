@@ -55,6 +55,7 @@ export async function generateSurfaceForThread(opts: {
     user: buildSummaryUser(opts.thread),
   });
 
+  let totalCost = 0;
   for (const attempt of attempts) {
     const pillarPrompt = loadPrompt(opts.promptsDir, attempt.promptFile);
     const system = `${systemBase}\n\n---\n\n${pillarPrompt}`;
@@ -65,6 +66,7 @@ export async function generateSurfaceForThread(opts: {
       userMessage: attempt.user,
       maxTokens: 400,
     });
+    totalCost += gen.cost;
 
     const body = gen.text.trim();
     if (body.startsWith("[SKIP")) continue;
@@ -81,6 +83,7 @@ export async function generateSurfaceForThread(opts: {
       maxWords: SURFACE_WORD_CAP,
       draftBody: body,
     });
+    totalCost += voice.usage.cost;
 
     if (!voice.result.pass) {
       continue;
@@ -91,6 +94,7 @@ export async function generateSurfaceForThread(opts: {
       body,
       targetPostId: opts.thread.id,
       voiceCheck: voice.result,
+      cost: totalCost,
     };
   }
 

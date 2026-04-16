@@ -44,6 +44,7 @@ export async function generateWelcome(opts: {
   let lastBody = "";
   let lastVoiceCheck: VoiceCheckResult | null = null;
   let retryNotes = "";
+  let totalCost = 0;
 
   for (let i = 0; i <= MAX_VOICE_RETRIES; i++) {
     attempts = i + 1;
@@ -58,6 +59,7 @@ export async function generateWelcome(opts: {
       maxTokens: 500,
     });
     lastBody = gen.text.trim();
+    totalCost += gen.cost;
 
     const cheapHits = quickBannedWordScan(lastBody);
     if (cheapHits.length > 0) {
@@ -78,6 +80,7 @@ export async function generateWelcome(opts: {
       draftBody: lastBody,
     });
     lastVoiceCheck = voice.result;
+    totalCost += voice.usage.cost;
 
     if (voice.result.pass) break;
     retryNotes = voice.result.regenerationNotes || voice.result.redFlags.join("; ");
@@ -94,5 +97,6 @@ export async function generateWelcome(opts: {
       },
     attempts,
     personaNote: hook || undefined,
+    cost: totalCost,
   };
 }

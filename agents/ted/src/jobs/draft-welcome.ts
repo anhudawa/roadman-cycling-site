@@ -62,6 +62,7 @@ export async function runDraftWelcome(opts: DraftWelcomeOpts = {}): Promise<void
             memberEmail: row.memberEmail,
             attempts: result.attempts,
             voiceCheckPass: result.voiceCheck.pass,
+            cost: result.cost,
           },
         });
 

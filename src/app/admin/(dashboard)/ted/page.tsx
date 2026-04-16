@@ -148,6 +148,19 @@ export default async function TedDashboardPage() {
       ? new Set(recentEdits.map((e) => e.draftId)).size / draftsThisWeek.length
       : 0;
 
+  // Weekly token cost — every job logs {payload: {cost: number}} into
+  // ted_activity_log. Sum it for a rough $/week figure.
+  const costRows = await db
+    .select({ payload: tedActivityLog.payload })
+    .from(tedActivityLog)
+    .where(gte(tedActivityLog.timestamp, weekAgo));
+  const weeklyCost = costRows.reduce((total, row) => {
+    const p = row.payload as Record<string, unknown> | null;
+    if (!p) return total;
+    const direct = typeof p.cost === "number" ? p.cost : 0;
+    return total + direct;
+  }, 0);
+
   const kill = ks[0];
 
   const [dbResult, freshness] = await Promise.all([dbCheck(), freshnessCheck()]);
@@ -173,6 +186,9 @@ export default async function TedDashboardPage() {
           <Link href="/admin/ted/queue" className="text-sm rounded-md bg-white/10 px-3 py-1.5 text-white hover:bg-white/15">
             Review queue
           </Link>
+          <Link href="/admin/ted/welcomes" className="text-sm rounded-md bg-white/10 px-3 py-1.5 text-white hover:bg-white/15">
+            Welcomes
+          </Link>
           <Link href="/admin/ted/log" className="text-sm rounded-md bg-white/10 px-3 py-1.5 text-white hover:bg-white/15">
             Activity log
           </Link>
@@ -195,11 +211,12 @@ export default async function TedDashboardPage() {
         </div>
       ) : null}
 
-      <section className="grid grid-cols-1 md:grid-cols-4 gap-4">
+      <section className="grid grid-cols-1 md:grid-cols-5 gap-4">
         <StatCard label="Drafts pending review" value={pendingDrafts.length} />
         <StatCard label="Edit rate (7d)" value={`${Math.round(editRate * 100)}%`} />
         <StatCard label="Welcomes ready to post" value={pendingWelcomes.length} />
         <StatCard label="Threads surfaced (7d)" value={recentSurfaces.length} />
+        <StatCard label="Cost (7d)" value={`$${weeklyCost.toFixed(2)}`} />
       </section>
 
       <section className="grid grid-cols-1 md:grid-cols-3 gap-4">

@@ -27,6 +27,7 @@ export interface WelcomeDraftResult {
   voiceCheck: VoiceCheckResult;
   attempts: number;
   personaNote?: string;
+  cost: number;
 }
 
 export type SurfaceType = "tag" | "link" | "summary";
@@ -36,6 +37,7 @@ export interface SurfaceDraftResult {
   body: string;
   targetPostId: string;
   voiceCheck: VoiceCheckResult;
+  cost: number;
 }
 
 export interface SkoolPost {
