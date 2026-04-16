@@ -3,6 +3,7 @@ import { notFound } from "next/navigation";
 import { MDXRemote } from "next-mdx-remote/rsc";
 import { Header, Footer, Section, Container } from "@/components/layout";
 import { AICitationBlock, Badge, Button } from "@/components/ui";
+import { AnswerCapsule } from "@/components/ui/AnswerCapsule";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { getEpisodeBySlug, getAllEpisodeSlugs } from "@/lib/podcast";
 import { segmentTranscript } from "@/lib/transcript";
@@ -133,15 +134,13 @@ export default async function EpisodePage({
           // schema.org CreativeWork inheritance). Lets LLM crawlers ingest
           // the episode content without needing to render the page.
           ...(episode.transcript && { transcript: episode.transcript }),
-          // Point Speakable at the stable CSS selectors Google's Assistant
-          // / voice search can read aloud — episode title + first transcript
-          // segment act as the TL;DR of the episode.
+          // Speakable targets the same `.answer-capsule` block blog posts
+          // use, so voice search gets a consistent TL;DR across all content
+          // types. The h1 fallback ensures voice UAs always have something
+          // to read even for episodes that pre-date the capsule rollout.
           speakable: {
             "@type": "SpeakableSpecification",
-            cssSelector: [
-              "h1",
-              "[data-speakable-transcript] section:first-of-type p",
-            ],
+            cssSelector: ["h1", ".answer-capsule"],
           },
           // Declare every transcript segment as a CreativeWork part with a
           // fragment URL pointing at its h3 anchor. Gives Google a native
@@ -363,6 +362,17 @@ export default async function EpisodePage({
         {/* Content / Show Notes */}
         <Section background="charcoal" className="!py-12">
           <Container width="narrow">
+            {/* Answer capsule — surfaces seoDescription as the canonical TL;DR
+                of the episode, aligned with the .answer-capsule CSS selector
+                referenced by Speakable schema. Primary AI-citation target
+                for ChatGPT / Perplexity / Claude when this episode is used
+                as a source. */}
+            {episode.seoDescription && (
+              <AnswerCapsule
+                text={episode.seoDescription}
+                pillar={episode.pillar}
+              />
+            )}
             <article className="prose-roadman prose-episode">
               <MDXRemote
                 source={episode.content}
