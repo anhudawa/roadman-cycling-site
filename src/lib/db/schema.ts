@@ -649,3 +649,24 @@ export const episodeDownloadsCache = pgTable("episode_downloads_cache", {
   source: text("source").notNull().default("seeded"), // 'seeded' | 'spotify' | 'manual'
   updatedAt: timestamp("updated_at", { withTimezone: true }).defaultNow(),
 });
+
+// ── Skool Webhook Events (audit log) ──────────────────────
+export const skoolEvents = pgTable(
+  "skool_events",
+  {
+    id: serial("id").primaryKey(),
+    eventType: text("event_type").notNull(),            // member_joined | member_updated | other | bad_payload | unauthorized
+    source: text("source").notNull().default("unknown"), // skool_native | zapier | make | curl | unknown
+    email: text("email"),
+    name: text("name"),
+    persona: text("persona"),
+    rawPayload: jsonb("raw_payload").notNull().$type<Record<string, unknown>>(),
+    status: text("status").notNull(),                    // accepted | skipped | error
+    errorMessage: text("error_message"),
+    createdAt: timestamp("created_at", { withTimezone: true }).notNull().defaultNow(),
+  },
+  (table) => [
+    index("skool_events_created_at_idx").on(table.createdAt),
+    index("skool_events_status_idx").on(table.status),
+  ]
+);

@@ -56,6 +56,7 @@ const NAV_SECTIONS: NavSection[] = [
     items: [
       { href: "/admin/newsletter", label: "Newsletter", icon: "newspaper" },
       { href: "/admin/revenue", label: "Revenue", icon: "dollar" },
+      { href: "/admin/integrations/skool", label: "Skool Clubhouse", icon: "users" },
     ],
   },
   {

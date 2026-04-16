@@ -1,0 +1,297 @@
+import { requireAuth } from "@/lib/admin/auth";
+import { db } from "@/lib/db";
+import { skoolEvents } from "@/lib/db/schema";
+import { desc, sql } from "drizzle-orm";
+
+export const dynamic = "force-dynamic";
+
+function fmt(ts: Date | string | null): string {
+  if (!ts) return "—";
+  const d = typeof ts === "string" ? new Date(ts) : ts;
+  return d.toLocaleString("en-GB", {
+    day: "numeric",
+    month: "short",
+    year: "numeric",
+    hour: "2-digit",
+    minute: "2-digit",
+  });
+}
+
+function ago(ts: Date | string | null): string {
+  if (!ts) return "never";
+  const d = typeof ts === "string" ? new Date(ts) : ts;
+  const diff = Date.now() - d.getTime();
+  const mins = Math.floor(diff / 60000);
+  if (mins < 1) return "just now";
+  if (mins < 60) return `${mins}m ago`;
+  const hrs = Math.floor(mins / 60);
+  if (hrs < 24) return `${hrs}h ago`;
+  return `${Math.floor(hrs / 24)}d ago`;
+}
+
+export default async function SkoolIntegrationPage() {
+  await requireAuth();
+
+  const secretConfigured = Boolean(process.env.SKOOL_WEBHOOK_SECRET);
+  const beehiivConfigured = Boolean(
+    process.env.BEEHIIV_API_KEY && process.env.BEEHIIV_PUBLICATION_ID
+  );
+
+  const [
+    [counts],
+    recent,
+    [latestOk],
+  ] = await Promise.all([
+    db
+      .select({
+        total: sql<number>`count(*)::int`,
+        day: sql<number>`count(*) filter (where created_at > now() - interval '24 hours')::int`,
+        week: sql<number>`count(*) filter (where created_at > now() - interval '7 days')::int`,
+        month: sql<number>`count(*) filter (where created_at > now() - interval '30 days')::int`,
+        accepted: sql<number>`count(*) filter (where status = 'accepted')::int`,
+        errors: sql<number>`count(*) filter (where status = 'error')::int`,
+        skipped: sql<number>`count(*) filter (where status = 'skipped')::int`,
+      })
+      .from(skoolEvents),
+    db
+      .select()
+      .from(skoolEvents)
+      .orderBy(desc(skoolEvents.createdAt))
+      .limit(50),
+    db
+      .select({ createdAt: skoolEvents.createdAt })
+      .from(skoolEvents)
+      .where(sql`status = 'accepted'`)
+      .orderBy(desc(skoolEvents.createdAt))
+      .limit(1),
+  ]);
+
+  const lastAccepted = latestOk?.createdAt ?? null;
+
+  return (
+    <div className="space-y-6">
+      <div>
+        <h1 className="font-heading text-3xl text-off-white tracking-wider">
+          SKOOL CLUBHOUSE
+        </h1>
+        <p className="text-foreground-muted text-sm mt-1">
+          Every webhook payload is logged here so you can prove signups are
+          landing — even if Zapier / Skool sends a malformed body.
+        </p>
+      </div>
+
+      {/* Health pills */}
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3">
+        <HealthCard
+          label="Webhook secret"
+          value={secretConfigured ? "Configured" : "Missing"}
+          ok={secretConfigured}
+        />
+        <HealthCard
+          label="Beehiiv bridge"
+          value={beehiivConfigured ? "Configured" : "Missing"}
+          ok={beehiivConfigured}
+        />
+        <HealthCard
+          label="Last accepted signup"
+          value={lastAccepted ? ago(lastAccepted) : "never"}
+          ok={Boolean(lastAccepted)}
+        />
+        <HealthCard
+          label="Total events logged"
+          value={String(counts?.total ?? 0)}
+          ok={(counts?.total ?? 0) > 0}
+        />
+      </div>
+
+      {/* Volume */}
+      <div className="bg-background-elevated rounded-xl border border-white/5 p-4">
+        <p className="text-[10px] uppercase tracking-widest text-foreground-subtle font-medium mb-3">
+          Volume
+        </p>
+        <div className="grid grid-cols-3 sm:grid-cols-6 gap-3 text-sm">
+          <Metric label="Last 24h" value={counts?.day ?? 0} />
+          <Metric label="Last 7d" value={counts?.week ?? 0} />
+          <Metric label="Last 30d" value={counts?.month ?? 0} />
+          <Metric label="Accepted" value={counts?.accepted ?? 0} tone="ok" />
+          <Metric label="Skipped" value={counts?.skipped ?? 0} tone="warn" />
+          <Metric label="Errors" value={counts?.errors ?? 0} tone="err" />
+        </div>
+      </div>
+
+      {/* Setup instructions */}
+      <details className="bg-background-elevated rounded-xl border border-white/5 p-4">
+        <summary className="cursor-pointer text-off-white text-sm font-heading tracking-wider uppercase">
+          How to connect Skool →
+        </summary>
+        <div className="mt-4 text-sm text-foreground-muted space-y-3">
+          <p>
+            Skool&apos;s native webhooks live at
+            <span className="text-off-white"> Community → Settings → Webhooks</span>.
+            Add:
+          </p>
+          <pre className="bg-background-deep border border-white/10 rounded p-3 text-xs text-off-white overflow-x-auto">
+POST https://roadmancycling.com/api/skool-webhook?secret=$SKOOL_WEBHOOK_SECRET
+event: member.joined, member.created
+          </pre>
+          <p>
+            If you&apos;re piping via Zapier, use the
+            <span className="text-off-white"> &quot;Webhooks by Zapier&quot; → POST</span>
+            action. Body must contain at least <code>email</code>. Auth can be:
+          </p>
+          <ul className="list-disc list-inside space-y-1">
+            <li>
+              Header <code>Authorization: Bearer $SKOOL_WEBHOOK_SECRET</code>
+            </li>
+            <li>
+              Header <code>X-Webhook-Secret: $SKOOL_WEBHOOK_SECRET</code>
+            </li>
+            <li>
+              Or query <code>?secret=$SKOOL_WEBHOOK_SECRET</code>
+            </li>
+          </ul>
+          <p>
+            To smoke-test:{" "}
+            <code className="text-off-white text-xs">
+              curl -X POST {'https://roadmancycling.com/api/skool-webhook?secret=…'} -H
+              &apos;Content-Type: application/json&apos; -d &apos;{`{"email":"you@roadman.com","name":"Test"}`}&apos;
+            </code>{" "}
+            then refresh this page.
+          </p>
+        </div>
+      </details>
+
+      {/* Recent events */}
+      <div className="bg-background-elevated rounded-xl border border-white/5 overflow-hidden">
+        <div className="px-4 py-3 border-b border-white/5 flex items-center">
+          <p className="text-[10px] uppercase tracking-widest text-foreground-subtle font-medium">
+            Recent events ({recent.length})
+          </p>
+        </div>
+        <div className="overflow-x-auto">
+          <table className="w-full text-sm">
+            <thead>
+              <tr className="text-foreground-subtle text-[10px] uppercase tracking-widest border-b border-white/5">
+                <th className="text-left px-4 py-2">When</th>
+                <th className="text-left px-4 py-2">Status</th>
+                <th className="text-left px-4 py-2">Event</th>
+                <th className="text-left px-4 py-2">Source</th>
+                <th className="text-left px-4 py-2">Email</th>
+                <th className="text-left px-4 py-2">Persona</th>
+                <th className="text-left px-4 py-2">Note</th>
+              </tr>
+            </thead>
+            <tbody>
+              {recent.length === 0 && (
+                <tr>
+                  <td
+                    colSpan={7}
+                    className="px-4 py-8 text-center text-foreground-subtle"
+                  >
+                    No webhook calls yet. Send a test from Zapier / Skool.
+                  </td>
+                </tr>
+              )}
+              {recent.map((e) => (
+                <tr
+                  key={e.id}
+                  className="border-b border-white/[0.03] hover:bg-white/[0.02]"
+                >
+                  <td className="px-4 py-2 text-foreground-muted whitespace-nowrap">
+                    <span title={fmt(e.createdAt)}>{ago(e.createdAt)}</span>
+                  </td>
+                  <td className="px-4 py-2">
+                    <StatusPill status={e.status} />
+                  </td>
+                  <td className="px-4 py-2 text-foreground-muted whitespace-nowrap">
+                    {e.eventType}
+                  </td>
+                  <td className="px-4 py-2 text-foreground-muted whitespace-nowrap">
+                    {e.source}
+                  </td>
+                  <td className="px-4 py-2 text-off-white whitespace-nowrap max-w-[240px] truncate">
+                    {e.email ?? "—"}
+                  </td>
+                  <td className="px-4 py-2 text-foreground-muted whitespace-nowrap">
+                    {e.persona ?? "—"}
+                  </td>
+                  <td className="px-4 py-2 text-foreground-subtle max-w-[320px] truncate">
+                    {e.errorMessage ?? (e.name ?? "")}
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function HealthCard({
+  label,
+  value,
+  ok,
+}: {
+  label: string;
+  value: string;
+  ok: boolean;
+}) {
+  return (
+    <div className="bg-background-elevated border border-white/5 rounded-xl p-4">
+      <p className="text-foreground-subtle text-xs uppercase tracking-wider mb-1">
+        {label}
+      </p>
+      <p
+        className={`text-xl font-heading tracking-wide ${
+          ok ? "text-green-400" : "text-coral"
+        }`}
+      >
+        {value}
+      </p>
+    </div>
+  );
+}
+
+function Metric({
+  label,
+  value,
+  tone,
+}: {
+  label: string;
+  value: number;
+  tone?: "ok" | "warn" | "err";
+}) {
+  const color =
+    tone === "ok"
+      ? "text-green-400"
+      : tone === "warn"
+        ? "text-yellow-400"
+        : tone === "err"
+          ? "text-coral"
+          : "text-off-white";
+  return (
+    <div className="p-3 rounded-lg bg-white/[0.02] border border-white/5">
+      <p className="text-[10px] uppercase tracking-widest text-foreground-subtle mb-1">
+        {label}
+      </p>
+      <p className={`text-xl font-heading tracking-wide ${color}`}>{value}</p>
+    </div>
+  );
+}
+
+function StatusPill({ status }: { status: string }) {
+  const styles =
+    status === "accepted"
+      ? "bg-green-500/10 text-green-400 border-green-500/20"
+      : status === "skipped"
+        ? "bg-yellow-500/10 text-yellow-400 border-yellow-500/20"
+        : "bg-coral/10 text-coral border-coral/20";
+  return (
+    <span
+      className={`text-[10px] px-2 py-0.5 rounded-full border font-medium capitalize ${styles}`}
+    >
+      {status}
+    </span>
+  );
+}
