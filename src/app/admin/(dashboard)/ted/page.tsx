@@ -176,6 +176,9 @@ export default async function TedDashboardPage() {
           <Link href="/admin/ted/log" className="text-sm rounded-md bg-white/10 px-3 py-1.5 text-white hover:bg-white/15">
             Activity log
           </Link>
+          <Link href="/admin/ted/members" className="text-sm rounded-md bg-white/10 px-3 py-1.5 text-white hover:bg-white/15">
+            Members
+          </Link>
           <Link href="/admin/ted/settings" className="text-sm rounded-md bg-white/10 px-3 py-1.5 text-white hover:bg-white/15">
             Settings
           </Link>
