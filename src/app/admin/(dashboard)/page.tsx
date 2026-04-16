@@ -113,29 +113,26 @@ export default async function AdminDashboardPage({
       getDailyVisitors(from, to),
     ]);
 
-    if (rangedStats.pages.length > 0) {
-      topPages = rangedStats.pages.slice(0, 5).map((p) => ({
-        page: p.page,
-        views: p.views,
-        signups: p.signups,
-        convRate: p.conversionRate,
-      }));
-    }
+    // Trust the DB query outcome — if it returns empty arrays, show an empty
+    // state instead of substituting fake top pages / referrers, which made
+    // the dashboard look alive when nothing had been tracked yet.
+    topPages = rangedStats.pages.slice(0, 5).map((p) => ({
+      page: p.page,
+      views: p.views,
+      signups: p.signups,
+      convRate: p.conversionRate,
+    }));
 
-    if (rangedStats.traffic.referrers.length > 0) {
-      trafficSources = rangedStats.traffic.referrers.slice(0, 6).map((r) => ({
-        name: r.referrer,
-        value: r.count,
-      }));
-    }
+    trafficSources = rangedStats.traffic.referrers.slice(0, 6).map((r) => ({
+      name: r.referrer,
+      value: r.count,
+    }));
 
-    if (dailyVisitors.length > 0) {
-      timeSeries = dailyVisitors.map((d) => ({
-        date: d.date,
-        visitors: d.visitors,
-        signups: 0,
-      }));
-    }
+    timeSeries = dailyVisitors.map((d) => ({
+      date: d.date,
+      visitors: d.visitors,
+      signups: 0,
+    }));
   } catch {
     // DB not available — placeholders already set above
   }
