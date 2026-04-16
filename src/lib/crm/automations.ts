@@ -295,7 +295,9 @@ async function executeAction(
               authorName: "Automation",
               authorSlug: rule.createdBySlug ?? null,
             });
-          } catch { /* ignore */ }
+          } catch (err) {
+            console.error("[Automations] addActivity failed:", err);
+          }
         }
         return { type: action.type, status: "success", detail: { taskId: task.id } };
       }
@@ -321,7 +323,9 @@ async function executeAction(
             authorName: "Automation",
             authorSlug: rule.createdBySlug ?? null,
           });
-        } catch { /* ignore */ }
+        } catch (err) {
+          console.error("[Automations] addActivity(tag) failed:", err);
+        }
         return { type: action.type, status: "success", detail: { tag } };
       }
 

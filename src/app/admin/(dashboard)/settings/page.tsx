@@ -70,6 +70,7 @@ export default async function SettingsPage() {
     envPresent("BEEHIIV_API_KEY"),
     envPresent("BEEHIIV_PUBLICATION_ID"),
     envPresent("STRIPE_SECRET_KEY"),
+    envPresent("SKOOL_WEBHOOK_SECRET"),
   ];
   const database = await dbHealth();
 
@@ -108,6 +109,7 @@ export default async function SettingsPage() {
     { kind: "weekly_digest", label: "Weekly digest", schedule: "0 8 * * 1" },
     { kind: "sync_all", label: "Sync all (Beehiiv+Stripe)", schedule: "0 6 * * *" },
     { kind: "score_all", label: "Lead scoring", schedule: "30 6 * * *" },
+    { kind: "complete_past_bookings", label: "Auto-complete past bookings", schedule: "15 * * * *" },
   ];
 
   function serializeRun(r: {
@@ -146,12 +148,24 @@ export default async function SettingsPage() {
       const errs = result.errorCount ?? 0;
       return errs ? `Errors ${errs}` : "OK";
     }
+    if (kind === "complete_past_bookings") {
+      const completed = result.completed ?? 0;
+      return `Completed ${completed}`;
+    }
     return "OK";
   }
 
   const cronRows: CronKindRow[] = [];
   for (const c of CRON_KINDS) {
-    const history = await listCronRuns({ kind: c.kind as "daily_digest" | "weekly_digest" | "sync_all" | "score_all", limit: 10 });
+    const history = await listCronRuns({
+      kind: c.kind as
+        | "daily_digest"
+        | "weekly_digest"
+        | "sync_all"
+        | "score_all"
+        | "complete_past_bookings",
+      limit: 10,
+    });
     const latest = history[0] ?? null;
     cronRows.push({
       kind: c.kind,
