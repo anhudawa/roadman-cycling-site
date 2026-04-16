@@ -13,6 +13,7 @@ import { requireAuth } from "@/lib/admin/auth";
 import { TedBioCopy } from "./_components/TedBioCopy";
 import { ScheduleCard } from "./_components/ScheduleCard";
 import { CostTrendChart, type CostPoint } from "./_components/CostTrendChart";
+import { WorkflowRuns } from "./_components/WorkflowRuns";
 
 export const dynamic = "force-dynamic";
 
@@ -302,6 +303,8 @@ export default async function TedDashboardPage() {
       </section>
 
       <ScheduleCard />
+
+      <WorkflowRuns />
 
       <TedBioCopy />
     </div>
