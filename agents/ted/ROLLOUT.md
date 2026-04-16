@@ -38,9 +38,15 @@ Optional but recommended:
 
 ### 4. Set Vercel env vars
 
-For the weekly digest email to work, Vercel project needs:
+For the weekly digest email + heartbeat alerts to work, Vercel project needs:
 - `CRON_SECRET` (should already exist for other cron routes)
 - `RESEND_API_KEY` and `TED_ADMIN_ALERT_EMAIL`
+- `ANTHROPIC_API_KEY` and `POSTGRES_URL` for the `/api/admin/ted/*` routes
+
+Optional — enables the "Run a job now" buttons on `/admin/ted/settings`:
+- `GITHUB_TOKEN` (fine-grained, scope = `actions:write` on the repo)
+- `GITHUB_REPO` (e.g. `anhudawa/roadman-cycling-site`)
+- `GITHUB_DEFAULT_BRANCH` (defaults to `main`)
 
 ### 5. Set up Ted's Skool profile
 

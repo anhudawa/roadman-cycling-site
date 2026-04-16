@@ -3,6 +3,7 @@ import { tedKillSwitch } from "@/lib/db/schema";
 import { eq } from "drizzle-orm";
 import { requireAuth } from "@/lib/admin/auth";
 import { SettingsPanel } from "./_components/SettingsPanel";
+import { TriggerPanel } from "./_components/TriggerPanel";
 
 export const dynamic = "force-dynamic";
 
@@ -46,6 +47,8 @@ export default async function TedSettingsPage() {
           surfaceThreadsEnabled: state.surfaceThreadsEnabled,
         }}
       />
+
+      <TriggerPanel />
     </div>
   );
 }
