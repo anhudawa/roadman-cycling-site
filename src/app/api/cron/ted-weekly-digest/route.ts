@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { db } from "@/lib/db";
 import {
+  tedActivityLog,
   tedDrafts,
   tedEdits,
   tedWelcomeQueue,
@@ -25,7 +26,7 @@ export async function GET(req: NextRequest) {
 
   const weekAgo = new Date(Date.now() - 7 * 24 * 60 * 60 * 1000);
 
-  const [drafts, edits, welcomes, surfaces, killSwitch] = await Promise.all([
+  const [drafts, edits, welcomes, surfaces, killSwitch, activity] = await Promise.all([
     db
       .select({ status: tedDrafts.status, id: tedDrafts.id })
       .from(tedDrafts)
@@ -43,7 +44,28 @@ export async function GET(req: NextRequest) {
       .from(tedSurfaced)
       .where(gte(tedSurfaced.surfacedAt, weekAgo)),
     db.select().from(tedKillSwitch).limit(1),
+    db
+      .select({ payload: tedActivityLog.payload, level: tedActivityLog.level })
+      .from(tedActivityLog)
+      .where(gte(tedActivityLog.timestamp, weekAgo)),
   ]);
+
+  let totalCost = 0;
+  let voicePassCount = 0;
+  let voiceCheckCount = 0;
+  let errorCount = 0;
+  for (const entry of activity) {
+    if (entry.level === "error") errorCount += 1;
+    const payload = entry.payload as Record<string, unknown> | null;
+    if (!payload) continue;
+    if (typeof payload.cost === "number") totalCost += payload.cost;
+    if (typeof payload.voiceCheckPass === "boolean") {
+      voiceCheckCount += 1;
+      if (payload.voiceCheckPass) voicePassCount += 1;
+    }
+  }
+  const voicePassRate =
+    voiceCheckCount > 0 ? voicePassCount / voiceCheckCount : null;
 
   const postedDrafts = drafts.filter((d) => d.status === "posted").length;
   const flaggedDrafts = drafts.filter((d) => d.status === "voice_flagged").length;
@@ -77,6 +99,12 @@ export async function GET(req: NextRequest) {
         summary: surfaces.filter((s) => s.surfaceType === "summary").length,
       },
     },
+    activity: {
+      totalCost: Number(totalCost.toFixed(4)),
+      voicePassRate: voicePassRate === null ? null : Number(voicePassRate.toFixed(2)),
+      voiceCheckCount,
+      errorCount,
+    },
     killSwitch: killSwitch[0] ?? null,
   };
 
@@ -92,14 +120,44 @@ async function sendDigestEmail(summary: Record<string, unknown>): Promise<void> 
   if (!apiKey || !to) return;
 
   const body = JSON.stringify(summary, null, 2);
+  const drafts = summary.drafts as {
+    posted: number;
+    voiceFlagged: number;
+    editRate: number;
+    edited: number;
+    total: number;
+  };
+  const welcomes = summary.welcomes as { posted: number; failed: number };
+  const surfaces = summary.surfaces as {
+    total: number;
+    byType: { tag: number; link: number; summary: number };
+  };
+  const activity = summary.activity as {
+    totalCost: number;
+    voicePassRate: number | null;
+    errorCount: number;
+  };
+
   const lines = [
     "Ted — weekly digest",
     "",
-    `Posted prompts:     ${(summary.drafts as { posted: number }).posted}`,
-    `Voice-flagged:      ${(summary.drafts as { voiceFlagged: number }).voiceFlagged}`,
-    `Edit rate:          ${(summary.drafts as { editRate: number }).editRate}`,
-    `Welcomes posted:    ${(summary.welcomes as { posted: number }).posted}`,
-    `Threads surfaced:   ${(summary.surfaces as { total: number }).total}`,
+    "Prompts",
+    `  Posted:          ${drafts.posted} / ${drafts.total}`,
+    `  Voice-flagged:   ${drafts.voiceFlagged}`,
+    `  Edits by human:  ${drafts.edited}`,
+    `  Edit rate:       ${Math.round(drafts.editRate * 100)}%`,
+    "",
+    "Welcomes",
+    `  Posted:          ${welcomes.posted}`,
+    `  Failed:          ${welcomes.failed}`,
+    "",
+    "Surfaces",
+    `  Total:           ${surfaces.total} (tag ${surfaces.byType.tag} / link ${surfaces.byType.link} / summary ${surfaces.byType.summary})`,
+    "",
+    "Pipeline health",
+    `  Voice-pass rate: ${activity.voicePassRate === null ? "—" : `${Math.round(activity.voicePassRate * 100)}%`}`,
+    `  Errors (7d):     ${activity.errorCount}`,
+    `  Token cost (7d): $${activity.totalCost.toFixed(2)}`,
     "",
     "Raw:",
     body,
