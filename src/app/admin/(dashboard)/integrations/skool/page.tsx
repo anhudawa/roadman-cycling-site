@@ -2,6 +2,7 @@ import { requireAuth } from "@/lib/admin/auth";
 import { db } from "@/lib/db";
 import { skoolEvents } from "@/lib/db/schema";
 import { desc, sql } from "drizzle-orm";
+import { TestWebhookButton } from "./TestWebhookButton";
 
 export const dynamic = "force-dynamic";
 
@@ -117,6 +118,21 @@ export default async function SkoolIntegrationPage() {
           <Metric label="Skipped" value={counts?.skipped ?? 0} tone="warn" />
           <Metric label="Errors" value={counts?.errors ?? 0} tone="err" />
         </div>
+      </div>
+
+      {/* Smoke test */}
+      <div className="bg-background-elevated rounded-xl border border-white/5 p-4">
+        <p className="text-[10px] uppercase tracking-widest text-foreground-subtle font-medium mb-3">
+          Smoke test
+        </p>
+        <TestWebhookButton />
+        <p className="text-foreground-subtle text-xs mt-3">
+          &quot;Send test webhook&quot; uses your admin session to attach the
+          configured secret server-side (same path a real Skool / Zapier call
+          would take). &quot;Send unauthenticated&quot; proves the secret is
+          enforced — it should land in the table below with status
+          <span className="text-coral"> error · unauthorized</span>.
+        </p>
       </div>
 
       {/* Setup instructions */}
