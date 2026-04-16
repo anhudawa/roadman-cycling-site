@@ -100,9 +100,39 @@ export function QueueTable({ rows }: { rows: Row[] }) {
             </div>
 
             {flagged && r.voiceCheck ? (
-              <div className="mb-2 text-xs text-yellow-300">
-                Voice-check failed.{" "}
-                <code>{JSON.stringify((r.voiceCheck as { redFlags?: string[] })?.redFlags ?? [])}</code>
+              <div className="mb-2 rounded-md bg-yellow-500/10 border border-yellow-500/30 p-2 text-xs">
+                <div className="font-semibold text-yellow-300 mb-1">
+                  Voice-check failed after {r.generationAttempts} attempt
+                  {r.generationAttempts === 1 ? "" : "s"}.
+                </div>
+                {(() => {
+                  const vc = r.voiceCheck as {
+                    redFlags?: string[];
+                    notes?: string;
+                    regenerationNotes?: string;
+                  };
+                  return (
+                    <div className="space-y-1 text-foreground-subtle">
+                      {vc.redFlags && vc.redFlags.length > 0 ? (
+                        <div>
+                          <span className="text-yellow-200">Red flags:</span>{" "}
+                          {vc.redFlags.join(", ")}
+                        </div>
+                      ) : null}
+                      {vc.notes ? (
+                        <div>
+                          <span className="text-yellow-200">Notes:</span> {vc.notes}
+                        </div>
+                      ) : null}
+                      {vc.regenerationNotes ? (
+                        <div>
+                          <span className="text-yellow-200">Fix:</span>{" "}
+                          {vc.regenerationNotes}
+                        </div>
+                      ) : null}
+                    </div>
+                  );
+                })()}
               </div>
             ) : null}
 
