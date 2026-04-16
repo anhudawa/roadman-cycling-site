@@ -8,7 +8,7 @@ import { FAQSchema } from "@/components/seo/FAQSchema";
 export const metadata: Metadata = {
   title: "Online Cycling Coach — Personalised Coaching | $195/month",
   description:
-    "Personalised cycling coaching built on 1,400+ expert podcast conversations. Training plans, nutrition, strength, recovery, and accountability. Trusted by 60,000+ cyclists in Ireland, UK, and USA.",
+    "Personalised cycling coaching built on 1,400+ expert podcast conversations. Training plans, nutrition, strength, recovery, and accountability. Trusted by cyclists in Ireland, UK, and USA.",
   keywords: [
     "cycling coach",
     "cycling coaching",
@@ -49,6 +49,30 @@ const results = [
     label: "FTP gain at age 52",
     name: "Brian Morrissey",
     detail: "230w → 265w",
+  },
+];
+
+const voiceTestimonials = [
+  {
+    quote:
+      "I was an average sportive rider who had plateaued. Roadman custom built a plan to achieve my goals. I've gotten much more out of it than I ever imagined.",
+    name: "Damien Maloney",
+    detail: "Ireland · FTP 205w → 295w",
+    tag: "PLATEAU BROKEN",
+  },
+  {
+    quote:
+      "I signed up for Not Done Yet after a bad accident in March 2025 and was starting to lose my enthusiasm. Four months later, I've got my mojo back. Just signed up for my first race.",
+    name: "David Lundy",
+    detail: "Comeback after crash · Back racing in 4 months",
+    tag: "COMEBACK",
+  },
+  {
+    quote:
+      "From 113kg to 97kg. The structured approach to training and nutrition changed everything. I'm faster, lighter, and actually enjoying the process.",
+    name: "Chris O'Connor",
+    detail: "Ireland · Lost 16kg",
+    tag: "BODY COMPOSITION",
   },
 ];
 
@@ -299,7 +323,7 @@ export default function CoachingPage() {
               </p>
             </ScrollReveal>
 
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-4xl mx-auto">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-4xl mx-auto mb-16">
               {results.map((r, i) => (
                 <ScrollReveal key={r.name} direction="up" delay={i * 0.1}>
                   <Card
@@ -315,6 +339,43 @@ export default function CoachingPage() {
                     </p>
                     <p className="text-xs text-foreground-subtle">{r.name}</p>
                     <p className="text-xs text-foreground-subtle">{r.detail}</p>
+                  </Card>
+                </ScrollReveal>
+              ))}
+            </div>
+
+            {/* In-their-words testimonial row — three different persona
+                angles (plateau, comeback, body comp) with full quotes so
+                prospects can self-identify with a specific case. */}
+            <ScrollReveal direction="up" className="text-center mb-8">
+              <p className="font-heading text-coral text-sm tracking-widest">
+                IN THEIR WORDS
+              </p>
+            </ScrollReveal>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-5 max-w-5xl mx-auto">
+              {voiceTestimonials.map((t, i) => (
+                <ScrollReveal key={t.name} direction="up" delay={i * 0.08}>
+                  <Card
+                    className="p-6 md:p-7 h-full flex flex-col"
+                    glass
+                    hoverable={false}
+                  >
+                    <div className="inline-flex items-center self-start mb-4 px-2.5 py-1 rounded-full bg-coral/10 border border-coral/20">
+                      <span className="text-coral text-[10px] font-heading tracking-widest">
+                        {t.tag}
+                      </span>
+                    </div>
+                    <p className="text-off-white italic text-sm leading-relaxed mb-5 flex-1">
+                      &ldquo;{t.quote}&rdquo;
+                    </p>
+                    <div>
+                      <p className="text-off-white font-medium text-sm">
+                        {t.name}
+                      </p>
+                      <p className="text-foreground-subtle text-xs mt-0.5">
+                        {t.detail}
+                      </p>
+                    </div>
                   </Card>
                 </ScrollReveal>
               ))}

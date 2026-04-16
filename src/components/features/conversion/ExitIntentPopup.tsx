@@ -1,7 +1,28 @@
 "use client";
 
+import Link from "next/link";
 import { useState, useEffect, useCallback } from "react";
+import { usePathname } from "next/navigation";
 import { EmailCapture } from "./EmailCapture";
+
+/**
+ * Paths where an exiting visitor is MORE likely to be a lukewarm
+ * coaching prospect than a cold newsletter opportunity. On these pages
+ * the popup offers the Apply CTA rather than the Saturday Spin.
+ */
+const COACHING_INTENT_PATHS = [
+  "/coaching",
+  "/apply",
+  "/community/not-done-yet",
+  "/about",
+];
+
+function isCoachingIntent(pathname: string | null): boolean {
+  if (!pathname) return false;
+  return COACHING_INTENT_PATHS.some(
+    (prefix) => pathname === prefix || pathname.startsWith(prefix + "/"),
+  );
+}
 
 /**
  * Exit-intent popup for email capture.
@@ -12,6 +33,8 @@ import { EmailCapture } from "./EmailCapture";
 export function ExitIntentPopup() {
   const [show, setShow] = useState(false);
   const [dismissed, setDismissed] = useState(false);
+  const pathname = usePathname();
+  const showCoachingVariant = isCoachingIntent(pathname);
 
   const triggerPopup = useCallback(() => {
     // Don't show if already dismissed or already showing
@@ -121,23 +144,61 @@ export function ExitIntentPopup() {
 
             <div className="text-center mb-6">
               <h2 className="font-heading text-3xl md:text-4xl text-off-white mb-3">
-                BEFORE YOU GO
+                {showCoachingVariant ? "STILL THINKING ABOUT IT?" : "BEFORE YOU GO"}
               </h2>
               <p className="text-foreground-muted leading-relaxed max-w-sm mx-auto">
-                Join 60,000+ cyclists getting <span className="text-off-white font-medium">The Saturday Spin Newsletter</span> — the week&apos;s sharpest training insights, every Saturday morning.
+                {showCoachingVariant ? (
+                  <>
+                    Cohort 2 is open, and the 7-day trial is{" "}
+                    <span className="text-off-white font-medium">
+                      risk-free
+                    </span>
+                    . Apply today, Anthony replies personally within 48 hours.
+                  </>
+                ) : (
+                  <>
+                    Join 29,000+ cyclists getting{" "}
+                    <span className="text-off-white font-medium">
+                      The Saturday Spin Newsletter
+                    </span>{" "}
+                    &mdash; the week&apos;s sharpest training insights, every
+                    Saturday morning.
+                  </>
+                )}
               </p>
             </div>
 
-            <EmailCapture
-              variant="minimal"
-              source="exit-intent"
-              buttonText="GET FASTER"
-              heading=""
-              subheading=""
-            />
+            {showCoachingVariant ? (
+              <div className="flex flex-col gap-3 items-center">
+                <Link
+                  href="/apply"
+                  onClick={handleDismiss}
+                  className="w-full inline-flex items-center justify-center px-8 py-4 rounded-md bg-coral hover:bg-coral-hover text-off-white font-heading tracking-wider text-lg transition-colors"
+                  style={{ transitionDuration: "var(--duration-fast)" }}
+                >
+                  APPLY — 7-DAY FREE TRIAL
+                </Link>
+                <button
+                  onClick={handleDismiss}
+                  className="text-foreground-subtle text-sm hover:text-foreground-muted underline underline-offset-2"
+                >
+                  No thanks, I&apos;ll keep reading
+                </button>
+              </div>
+            ) : (
+              <EmailCapture
+                variant="minimal"
+                source="exit-intent"
+                buttonText="GET FASTER"
+                heading=""
+                subheading=""
+              />
+            )}
 
             <p className="text-center text-foreground-subtle text-xs mt-4">
-              One email per week. Unsubscribe anytime.
+              {showCoachingVariant
+                ? "Cancel anytime inside the 7-day trial — no charge."
+                : "One email per week. Unsubscribe anytime."}
             </p>
           </div>
         </div>

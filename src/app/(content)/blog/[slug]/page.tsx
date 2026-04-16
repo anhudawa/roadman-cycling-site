@@ -276,6 +276,34 @@ export default async function BlogPostPage({
               />
             </div>
 
+            {/* Soft coaching CTA — only on high-intent pillars (coaching /
+                nutrition). Visitors reading a training/nutrition deep-dive
+                have already demonstrated problem-awareness; a gentle Apply
+                prompt converts the highest-intent tail. */}
+            {(post.pillar === "coaching" || post.pillar === "nutrition") && (
+              <div className="mt-10 rounded-xl border border-white/10 bg-gradient-to-br from-deep-purple/50 to-charcoal p-6 md:p-8 text-center">
+                <p className="font-heading text-coral text-xs tracking-widest mb-3">
+                  WANT THIS APPLIED TO YOUR TRAINING?
+                </p>
+                <p className="font-heading text-off-white text-xl md:text-2xl mb-3 leading-tight">
+                  NOT DONE YET — PERSONALISED COACHING.
+                </p>
+                <p className="text-foreground-muted text-sm mb-5 max-w-xl mx-auto">
+                  Your power numbers, your events, your calendar. 7-day free
+                  trial. $195/month. Applications reviewed personally by
+                  Anthony.
+                </p>
+                <div className="flex flex-col sm:flex-row gap-3 justify-center items-center">
+                  <Button href="/apply" size="md">
+                    Apply — 7-Day Free Trial
+                  </Button>
+                  <Button href="/coaching" variant="ghost" size="md">
+                    How Coaching Works
+                  </Button>
+                </div>
+              </div>
+            )}
+
             {/* Share + Author */}
             <div className="mt-16 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6 py-6 border-t border-white/5">
               <div className="flex items-center gap-4">

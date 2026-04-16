@@ -53,16 +53,20 @@ export default async function NewsletterPage() {
         <Section background="deep-purple" grain className="pt-32 pb-16">
           <Container width="narrow" className="text-center">
             <ScrollReveal direction="up">
+              <p className="text-coral font-heading text-sm tracking-widest mb-4">
+                EVERY SATURDAY · FROM THE ROADMAN PODCAST
+              </p>
               <h1
                 className="font-heading text-off-white mb-6"
                 style={{ fontSize: "var(--text-hero)" }}
               >
-                THE SATURDAY SPIN NEWSLETTER
+                THE SATURDAY SPIN
               </h1>
               <p className="text-foreground-muted text-xl leading-relaxed mb-8">
-                Once a week. The stuff that actually makes you faster. Straight
-                from the conversations with the world&apos;s best coaches,
-                scientists, and riders.
+                The week&apos;s sharpest training takeaway, one specific
+                action you can use this week, and what the pros did
+                differently &mdash; distilled from the conversations most of
+                the sport will never hear. Free. Once a week.
               </p>
             </ScrollReveal>
 
@@ -79,7 +83,7 @@ export default async function NewsletterPage() {
 
             <ScrollReveal direction="up" delay={0.3}>
               <p className="text-foreground-subtle text-sm mt-6">
-                Join 60,000+ cyclists. Unsubscribe anytime.
+                Join 29,000+ cyclists. One email a week. Unsubscribe anytime.
               </p>
             </ScrollReveal>
           </Container>
@@ -185,7 +189,7 @@ export default async function NewsletterPage() {
         <EmailCapture
           variant="banner"
           heading="STOP GUESSING. START KNOWING."
-          subheading="60,000+ cyclists already get the weekly insights. Join them."
+          subheading="29,000+ cyclists get the week's sharpest training insights every Saturday. Join them."
           source="newsletter-page-bottom"
         />
       </main>
