@@ -625,7 +625,8 @@ export type CronRunKind =
   | "daily_digest"
   | "weekly_digest"
   | "sync_all"
-  | "score_all";
+  | "score_all"
+  | "complete_past_bookings";
 
 export const cronRuns = pgTable(
   "cron_runs",
