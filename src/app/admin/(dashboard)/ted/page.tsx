@@ -12,6 +12,7 @@ import { and, desc, eq, gte, sql as drizzleSql } from "drizzle-orm";
 import { requireAuth } from "@/lib/admin/auth";
 import { TedBioCopy } from "./_components/TedBioCopy";
 import { ScheduleCard } from "./_components/ScheduleCard";
+import { CostTrendChart, type CostPoint } from "./_components/CostTrendChart";
 
 export const dynamic = "force-dynamic";
 
@@ -150,17 +151,39 @@ export default async function TedDashboardPage() {
       : 0;
 
   // Weekly token cost — every job logs {payload: {cost: number}} into
-  // ted_activity_log. Sum it for a rough $/week figure.
+  // ted_activity_log. Sum it for a rough $/week figure and bucket by day
+  // for the chart.
   const costRows = await db
-    .select({ payload: tedActivityLog.payload })
+    .select({ timestamp: tedActivityLog.timestamp, payload: tedActivityLog.payload })
     .from(tedActivityLog)
     .where(gte(tedActivityLog.timestamp, weekAgo));
-  const weeklyCost = costRows.reduce((total, row) => {
+  const costByDay = new Map<string, number>();
+  // Pre-seed last 7 days with 0 so the chart shows gaps too.
+  for (let i = 6; i >= 0; i--) {
+    const d = new Date(Date.now() - i * 24 * 60 * 60 * 1000);
+    costByDay.set(d.toISOString().slice(0, 10), 0);
+  }
+  let weeklyCost = 0;
+  let voicePass = 0;
+  let voiceTotal = 0;
+  for (const row of costRows) {
     const p = row.payload as Record<string, unknown> | null;
-    if (!p) return total;
-    const direct = typeof p.cost === "number" ? p.cost : 0;
-    return total + direct;
-  }, 0);
+    if (!p) continue;
+    const cost = typeof p.cost === "number" ? p.cost : 0;
+    if (cost > 0) {
+      weeklyCost += cost;
+      const day = row.timestamp.toISOString().slice(0, 10);
+      costByDay.set(day, (costByDay.get(day) ?? 0) + cost);
+    }
+    if (typeof p.voiceCheckPass === "boolean") {
+      voiceTotal += 1;
+      if (p.voiceCheckPass) voicePass += 1;
+    }
+  }
+  const voicePassRate = voiceTotal > 0 ? voicePass / voiceTotal : null;
+  const costChartData: CostPoint[] = Array.from(costByDay.entries()).map(
+    ([date, cost]) => ({ date, cost })
+  );
 
   const kill = ks[0];
 
@@ -212,13 +235,19 @@ export default async function TedDashboardPage() {
         </div>
       ) : null}
 
-      <section className="grid grid-cols-1 md:grid-cols-5 gap-4">
+      <section className="grid grid-cols-2 md:grid-cols-6 gap-4">
         <StatCard label="Drafts pending review" value={pendingDrafts.length} />
         <StatCard label="Edit rate (7d)" value={`${Math.round(editRate * 100)}%`} />
+        <StatCard
+          label="Voice-pass rate (7d)"
+          value={voicePassRate === null ? "—" : `${Math.round(voicePassRate * 100)}%`}
+        />
         <StatCard label="Welcomes ready to post" value={pendingWelcomes.length} />
         <StatCard label="Threads surfaced (7d)" value={recentSurfaces.length} />
         <StatCard label="Cost (7d)" value={`$${weeklyCost.toFixed(2)}`} />
       </section>
+
+      <CostTrendChart data={costChartData} />
 
       <section className="grid grid-cols-1 md:grid-cols-3 gap-4">
         <GateCard label="Prompts" enabled={kill?.postPromptEnabled ?? false} />

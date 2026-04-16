@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { wordDiff } from "@/lib/text/word-diff";
 
 interface Row {
   id: number;
@@ -15,10 +16,38 @@ interface Row {
   createdAt: string;
 }
 
+function DiffView({ before, after }: { before: string; after: string }) {
+  if (before === after) {
+    return (
+      <div className="text-xs text-foreground-subtle italic">No edits vs. original.</div>
+    );
+  }
+  const tokens = wordDiff(before, after);
+  return (
+    <div className="text-xs font-mono whitespace-pre-wrap leading-relaxed">
+      {tokens.map((t, idx) => {
+        if (t.kind === "kept") return <span key={idx}>{t.token}</span>;
+        if (t.kind === "removed")
+          return (
+            <span key={idx} className="bg-coral/20 text-coral line-through">
+              {t.token}
+            </span>
+          );
+        return (
+          <span key={idx} className="bg-emerald-500/20 text-emerald-300">
+            {t.token}
+          </span>
+        );
+      })}
+    </div>
+  );
+}
+
 export function QueueTable({ rows }: { rows: Row[] }) {
   const [items, setItems] = useState<Row[]>(rows);
   const [edits, setEdits] = useState<Record<number, string>>({});
   const [busy, setBusy] = useState<number | null>(null);
+  const [showDiff, setShowDiff] = useState<Record<number, boolean>>({});
 
   async function call(id: number, action: "approve" | "edit" | "reject") {
     setBusy(id);
@@ -83,6 +112,24 @@ export function QueueTable({ rows }: { rows: Row[] }) {
               onChange={(e) => setEdits((prev) => ({ ...prev, [r.id]: e.target.value }))}
               disabled={busy === r.id}
             />
+
+            {body !== r.originalBody ? (
+              <div className="mt-3">
+                <button
+                  onClick={() =>
+                    setShowDiff((prev) => ({ ...prev, [r.id]: !prev[r.id] }))
+                  }
+                  className="text-xs text-foreground-subtle underline hover:text-white"
+                >
+                  {showDiff[r.id] ? "Hide" : "Show"} diff vs. original
+                </button>
+                {showDiff[r.id] ? (
+                  <div className="mt-2 rounded-md bg-charcoal/50 border border-white/10 p-3">
+                    <DiffView before={r.originalBody} after={body} />
+                  </div>
+                ) : null}
+              </div>
+            ) : null}
 
             <div className="mt-3 flex gap-2">
               <button
