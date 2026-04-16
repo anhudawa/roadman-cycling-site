@@ -23,18 +23,25 @@ export async function generateDailyPrompt(opts: {
   targetDate: string; // YYYY-MM-DD
 }): Promise<PromptDraftResult> {
   const systemBase = loadPrompt(opts.promptsDir, "system-ted.md");
-  const pillarInstructions = loadPrompt(
-    opts.promptsDir,
-    `pillar-${opts.pillar}.md`
-  );
-  const system = `${systemBase}\n\n---\n\n${pillarInstructions}`;
 
+  // Saturday is meant to prompt on a recent episode. If none is found in the
+  // local catalogue, fall back to the Sunday weekend-ride pillar — Ted still
+  // posts a sensible prompt instead of parking a [SKIP] draft that blocks
+  // the queue until a human intervenes.
+  let effectivePillar: Pillar = opts.pillar;
   let episodeContext: EpisodeContext | null = null;
   if (opts.pillar === "saturday") {
     episodeContext = loadMostRecentEpisode(opts.podcastDir);
+    if (!episodeContext) effectivePillar = "sunday";
   }
 
-  const baseUser = buildUserMessage(opts.pillar, opts.targetDate, episodeContext);
+  const pillarInstructions = loadPrompt(
+    opts.promptsDir,
+    `pillar-${effectivePillar}.md`
+  );
+  const system = `${systemBase}\n\n---\n\n${pillarInstructions}`;
+
+  const baseUser = buildUserMessage(effectivePillar, opts.targetDate, episodeContext);
 
   let genUsage: LLMUsage = { inputTokens: 0, outputTokens: 0, cost: 0, runtimeMs: 0 };
   let checkUsage: LLMUsage = { inputTokens: 0, outputTokens: 0, cost: 0, runtimeMs: 0 };
@@ -97,7 +104,7 @@ export async function generateDailyPrompt(opts: {
   }
 
   return {
-    pillar: opts.pillar,
+    pillar: effectivePillar,
     body: lastBody,
     voiceCheck:
       lastVoiceCheck ?? {

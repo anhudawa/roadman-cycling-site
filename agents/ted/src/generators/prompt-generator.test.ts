@@ -167,8 +167,16 @@ describe("generateDailyPrompt", () => {
     expect(runVoiceCheck).toHaveBeenCalledTimes(1);
   });
 
-  it("honours a [SKIP marker and returns a flagged draft for human review", async () => {
-    mockLLMBodies(["[SKIP — no recent episode found]"]);
+  it("falls back from Saturday to Sunday pillar when no episode is available", async () => {
+    // Empty podcast dir → no episode context → effectivePillar becomes Sunday
+    mockLLMBodies([
+      "What did you ride this weekend? What did you learn?\n\n— Ted",
+    ]);
+    vi.mocked(runVoiceCheck).mockResolvedValue({
+      result: PASS,
+      usage: { inputTokens: 80, outputTokens: 30, cost: 0.005, runtimeMs: 300 },
+      modelUsed: "claude-opus-4-6",
+    });
 
     const result = await generateDailyPrompt({
       promptsDir: "/ignored",
@@ -177,10 +185,26 @@ describe("generateDailyPrompt", () => {
       targetDate: "2026-04-25",
     });
 
+    expect(result.body).not.toContain("[SKIP");
+    expect(result.voiceCheck.pass).toBe(true);
+    expect(result.pillar).toBe("sunday");
+  });
+
+  it("honours the [SKIP] marker if a pillar prompt returns it", async () => {
+    // Force a SKIP via the response even when context exists — proves the
+    // short-circuit still works if the model declines.
+    mockLLMBodies(["[SKIP — generator declined]"]);
+
+    const result = await generateDailyPrompt({
+      promptsDir: "/ignored",
+      podcastDir: emptyPodcastDir,
+      pillar: "monday",
+      targetDate: "2026-04-27",
+    });
+
     expect(result.body.startsWith("[SKIP")).toBe(true);
     expect(result.voiceCheck.pass).toBe(false);
     expect(result.voiceCheck.redFlags).toContain("generator returned SKIP marker");
-    // SKIP short-circuits the loop; runVoiceCheck should never run
     expect(runVoiceCheck).not.toHaveBeenCalled();
   });
 });

@@ -64,7 +64,8 @@ export async function runDraftPrompt(opts: DraftPromptOpts = {}): Promise<void> 
       action: "generated",
       payload: {
         targetDate,
-        pillar,
+        scheduledPillar: pillar,
+        effectivePillar: result.pillar,
         attempts: result.attempts,
         voiceCheckPass: result.voiceCheck.pass,
         redFlags: result.voiceCheck.redFlags,
@@ -84,7 +85,7 @@ export async function runDraftPrompt(opts: DraftPromptOpts = {}): Promise<void> 
 
     const voiceFlagged = !result.voiceCheck.pass;
     const draftId = await insertDraft({
-      pillar,
+      pillar: result.pillar,
       scheduledFor: targetDate,
       body: result.body,
       voiceCheck: result.voiceCheck,
@@ -95,13 +96,13 @@ export async function runDraftPrompt(opts: DraftPromptOpts = {}): Promise<void> 
     await logger.write({
       job: "draft-prompt",
       action: "persisted",
-      payload: { draftId, voiceFlagged, targetDate, pillar },
+      payload: { draftId, voiceFlagged, targetDate, pillar: result.pillar },
     });
 
     if (voiceFlagged) {
       await sendTedAlert({
         severity: "warn",
-        subject: `Draft parked for review (${pillar} / ${targetDate})`,
+        subject: `Draft parked for review (${result.pillar} / ${targetDate})`,
         body: `Ted generated a ${pillar} prompt but voice-check failed after ${result.attempts} attempts. Review at /admin/ted/queue.\n\nRed flags:\n- ${result.voiceCheck.redFlags.join("\n- ")}\n\nBody:\n${result.body}`,
       });
     }

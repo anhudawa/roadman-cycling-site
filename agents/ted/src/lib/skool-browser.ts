@@ -24,21 +24,73 @@ export interface SkoolBrowserOpts {
   dryRun?: boolean;
 }
 
-// Skool UI selectors — edit here if the DOM drifts.
+// Skool UI selectors — edit here if the DOM drifts. Each field is a COMMA-
+// SEPARATED LIST of selectors; waitForFirst() tries them in order and returns
+// the first one that exists. This tolerates minor Skool rebrands / A/B tests
+// without needing a code change if one of the alternates keeps working.
 const SELECTORS = {
-  loginEmail: 'input[name="email"]',
-  loginPassword: 'input[name="password"]',
-  loginSubmit: 'button[type="submit"]',
-  composePostButton: 'button:has-text("Write something")',
-  composeBody: 'div[contenteditable="true"]',
-  composeCategoryDropdown: 'button[aria-haspopup="listbox"]',
-  composeSubmit: 'button:has-text("Post")',
-  threadCard: 'div[data-testid="post-card"], article',
-  threadBody: 'div[data-testid="post-body"]',
-  threadReplies: 'a[href*="/comments"]',
-  replyField: 'div[contenteditable="true"][data-placeholder*="Reply"]',
-  replySubmit: 'button:has-text("Reply")',
+  loginEmail: [
+    'input[name="email"]',
+    'input[type="email"]',
+    'input[autocomplete="email"]',
+  ],
+  loginPassword: [
+    'input[name="password"]',
+    'input[type="password"]',
+    'input[autocomplete="current-password"]',
+  ],
+  loginSubmit: [
+    'button[type="submit"]',
+    'button:has-text("Log in")',
+    'button:has-text("Sign in")',
+  ],
+  composePostButton: [
+    'button:has-text("Write something")',
+    'button:has-text("Create post")',
+    'button:has-text("New post")',
+    '[data-testid="composer-open"]',
+  ],
+  composeBody: [
+    '[data-testid="composer-body"]',
+    'div[contenteditable="true"][role="textbox"]',
+    'div[contenteditable="true"]',
+    'textarea[name="body"]',
+  ],
+  composeCategoryDropdown: [
+    '[data-testid="composer-category"]',
+    'button[aria-haspopup="listbox"]',
+  ],
+  composeSubmit: [
+    '[data-testid="composer-submit"]',
+    'button:has-text("Post")',
+    'button:has-text("Publish")',
+  ],
+  threadCard: [
+    'div[data-testid="post-card"]',
+    'article[data-testid="post"]',
+    'article',
+  ],
+  threadBody: [
+    '[data-testid="post-body"]',
+    'div[data-testid="post-content"]',
+  ],
+  replyField: [
+    '[data-testid="reply-field"]',
+    'div[contenteditable="true"][data-placeholder*="Reply"]',
+    'div[contenteditable="true"][aria-label*="Reply"]',
+    'textarea[name="reply"]',
+  ],
+  replySubmit: [
+    '[data-testid="reply-submit"]',
+    'button:has-text("Reply")',
+    'button:has-text("Post reply")',
+  ],
 };
+
+/** Join an array of alternate selectors into a single comma-separated Playwright selector. */
+function sel(list: string[]): string {
+  return list.join(", ");
+}
 
 export class SkoolBrowser {
   private opts: SkoolBrowserOpts;
@@ -107,9 +159,9 @@ export class SkoolBrowser {
     await page.goto("https://www.skool.com/login", {
       waitUntil: "domcontentloaded",
     });
-    await page.fill(SELECTORS.loginEmail, this.opts.email);
-    await page.fill(SELECTORS.loginPassword, this.opts.password);
-    await page.click(SELECTORS.loginSubmit);
+    await page.fill(sel(SELECTORS.loginEmail), this.opts.email);
+    await page.fill(sel(SELECTORS.loginPassword), this.opts.password);
+    await page.click(sel(SELECTORS.loginSubmit));
     // Wait for redirect off /login
     await page.waitForURL((url) => !url.toString().includes("/login"), {
       timeout: 15000,
@@ -133,14 +185,14 @@ export class SkoolBrowser {
     await this.screenshot("community-home");
 
     // Open composer
-    await page.click(SELECTORS.composePostButton);
-    await page.waitForSelector(SELECTORS.composeBody, { timeout: 10000 });
+    await page.click(sel(SELECTORS.composePostButton));
+    await page.waitForSelector(sel(SELECTORS.composeBody), { timeout: 10000 });
     await this.jitter();
 
     // Category selection (best-effort; optional)
     if (params.category) {
       try {
-        await page.click(SELECTORS.composeCategoryDropdown, { timeout: 3000 });
+        await page.click(sel(SELECTORS.composeCategoryDropdown), { timeout: 3000 });
         await page
           .getByRole("option", { name: params.category })
           .click({ timeout: 3000 });
@@ -149,7 +201,7 @@ export class SkoolBrowser {
       }
     }
 
-    await page.fill(SELECTORS.composeBody, params.body);
+    await page.fill(sel(SELECTORS.composeBody), params.body);
     await this.jitter();
     await this.screenshot("compose-filled");
 
@@ -158,7 +210,7 @@ export class SkoolBrowser {
       return null;
     }
 
-    await page.click(SELECTORS.composeSubmit);
+    await page.click(sel(SELECTORS.composeSubmit));
     await page.waitForLoadState("networkidle", { timeout: 15000 });
     await this.jitter();
     await this.screenshot("post-submitted");
@@ -177,8 +229,8 @@ export class SkoolBrowser {
 
     await page.goto(params.threadUrl, { waitUntil: "domcontentloaded" });
     await this.jitter();
-    await page.waitForSelector(SELECTORS.replyField, { timeout: 10000 });
-    await page.fill(SELECTORS.replyField, params.body);
+    await page.waitForSelector(sel(SELECTORS.replyField), { timeout: 10000 });
+    await page.fill(sel(SELECTORS.replyField), params.body);
     await this.jitter();
     await this.screenshot("reply-filled");
 
@@ -187,7 +239,7 @@ export class SkoolBrowser {
       return null;
     }
 
-    await page.click(SELECTORS.replySubmit);
+    await page.click(sel(SELECTORS.replySubmit));
     await page.waitForLoadState("networkidle", { timeout: 15000 });
     await this.screenshot("reply-submitted");
     return { url: params.threadUrl };
@@ -217,7 +269,7 @@ export class SkoolBrowser {
     // Collect what we can from the feed. Real-world selectors will need tuning
     // against the live DOM; the contract below is stable.
     const threads = await page
-      .locator(SELECTORS.threadCard)
+      .locator(sel(SELECTORS.threadCard))
       .evaluateAll((cards) => {
         return cards.slice(0, 40).map((card) => {
           const el = card as HTMLElement;
