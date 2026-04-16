@@ -1,58 +1,308 @@
 {
   "_meta": {
-    "description": "Top-50 podcast episodes mapped to topics Ted uses for thread-surfacing replies. Hand-curated for v1. Each topic should have 5-10 entries. Each entry is {slug, title, guest?, relevance}. Slugs match files in content/podcast/.",
-    "todo": "Replace seed entries below with actual top-50 curation. Start with 5 per topic; grow over time. The thread-surface generator picks by topic match; more entries = better matches.",
-    "lastReviewed": "2026-04-16"
+    "description": "Top podcast episodes mapped to topics Ted uses for thread-surfacing replies. Rebuilt from content/podcast/ frontmatter. Regenerate via `npx tsx agents/ted/scripts/rebuild-topic-map.ts`.",
+    "generatedAt": "2026-04-16",
+    "perTopic": 15,
+    "sourceEpisodes": 310
   },
   "endurance": [
     {
-      "slug": "ep-1-the-dark-truth-behind-team-skys-marginal-gains",
-      "title": "The Dark Truth Behind Team Sky's Marginal Gains",
-      "relevance": "Questioning the training-load orthodoxy; prompts for Z2 / interval debates."
+      "slug": "ep-2535-5-fixable-bike-fit-mistake-most-riders-make",
+      "title": "5 Fixable Bike Fit Mistake Most Riders Make",
+      "relevance": "Former Team Sky bike fitter Phil Bert reveals the 5 most common bike fit mistakes and how to fix them. Crank length, saddle comfort, back pain, and knee health."
+    },
+    {
+      "slug": "ep-2-cycling-s-black-market-is-out-of-control",
+      "title": "Cycling’s Black Market Is Out of Control",
+      "relevance": "Cycling's underground economy is bigger and darker than most of us realize. We're diving into three interconnected corners of this hidden world."
+    },
+    {
+      "slug": "ep-3-how-to-run-as-a-cyclist-mistakes-to-avoid",
+      "title": "How To Run As A Cyclist (Mistakes To Avoid)",
+      "relevance": "Former WorldTour pro Jimmy Wheelen shares exactly how cyclists are getting running wrong—from shoe choices to biomechanics—and how to build running."
+    },
+    {
+      "slug": "ep-4-new-study-finally-confirms-what-cycling-coaches-have-been-sa",
+      "title": "New Study FINALLY Confirms What Cycling Coaches Have Been Saying For Years",
+      "relevance": "A brand new peer-reviewed study has finally confirmed what world tour coaches have known for years: low cadence, high-torque training produces nearly."
+    },
+    {
+      "slug": "ep-2-5-fixable-mistakes-self-coached-cyclists-make",
+      "title": "5 Fixable Mistakes Self-Coached Cyclists Make",
+      "relevance": "The 5 biggest mistakes self-coached cyclists repeat. From AI coaching pitfalls to chasing FTP over race-specific fitness. Here's how to fix each one."
+    },
+    {
+      "slug": "ep-3-is-losing-weight-actually-making-you-slower",
+      "title": "Is Losing Weight Actually Making You Slower?",
+      "relevance": "Your optimal race weight is largely genetic. Plus: gradual, structured nutrition (like using Hexus) works better than self-imposed calorie cutting because."
+    },
+    {
+      "slug": "ep-4-15-years-of-pro-riding-what-amateurs-don-t-know-matthews",
+      "title": "15 Years Of Pro Riding - What Amateurs Don’t Know | Matthews",
+      "relevance": "Michael Matthews sits down to share 15 years of hard-won knowledge about what separates professional cyclists from amateurs."
+    },
+    {
+      "slug": "ep-5-secret-to-winter-training-dose-frequency-duration",
+      "title": "Secret To Winter Training - Dose, Frequency & Duration",
+      "relevance": "Winter training fails not because you do too little, but because you stack too much unstructured work that feels easy while fatigue quietly accumulates in."
+    },
+    {
+      "slug": "ep-6-5-fixable-reasons-your-climbing-is-slow",
+      "title": "5 Fixable Reasons Your Climbing Is Slow",
+      "relevance": "5 fixable reasons you're slow on climbs. Pacing mistakes, fuelling errors, power-to-weight gaps, and practical strategies to get faster on every ascent."
+    },
+    {
+      "slug": "ep-8-how-to-structure-winter-training-intensity-frequency-duratio",
+      "title": "How To Structure Winter Training - Intensity, Frequency & Duration",
+      "relevance": "How to structure winter cycling training. Intensity, frequency, and duration explained by Science to Sport coach Daryl Fitzgerald. Zone 1 benefits revealed."
+    },
+    {
+      "slug": "ep-9-the-smartest-way-to-train-for-more-speed-on-gravel-rosa-kl-s",
+      "title": "The Smartest Way To Train For More Speed On Gravel - Rosa Klöser",
+      "relevance": "Rosa Kloser reveals her gravel racing training system. Polarized blocks, VO2max and fatmax intervals, altitude protocols, and race-day nutrition strategy."
+    },
+    {
+      "slug": "ep-11-i-asked-a-pro-rider-about-his-training-heres-what-he-said",
+      "title": "I Asked A Pro Rider About His Training - Here's What He Said",
+      "relevance": "EF Education pro Darren Raferty reveals what WorldTour training actually looks like. Daily routines, rest day strategy, and what separates good from great."
+    },
+    {
+      "slug": "ep-12-i-trained-like-a-pro-cyclist-for-60-days-heres-what-happened",
+      "title": "I Trained Like A Pro Cyclist For 60 Days - Here's What Happened",
+      "relevance": "What actually happens when you train like a World Tour pro for 60 days straight? This episode unpacks a radical experiment where two elite coaches put the."
+    },
+    {
+      "slug": "ep-13-5-fixable-reasons-you-cant-lose-weight",
+      "title": "5 Fixable Reasons You Can't Lose Weight",
+      "relevance": "5 fixable reasons cyclists can’t lose weight. Under-fuelling, wrong training zones, hidden liquid calories, and the cortisol trap explained."
+    },
+    {
+      "slug": "ep-16-5-things-pros-secretly-do-in-winter-that-you-don-t",
+      "title": "5 Things Pros Secretly Do in Winter (That You Don’t)",
+      "relevance": "Pro cyclists have a completely different approach to winter than most amateur riders—and it's not about grinding through the off-season."
     }
   ],
   "nutrition": [
     {
       "slug": "ep-1-i-lost-9kg-eating-more-and-got-faster-on-the-bike",
-      "title": "I Lost 9kg Eating More and Got Faster on the Bike",
-      "relevance": "Under-fuelling as the amateur default; carbs-per-hour discussion."
+      "title": "I Lost 9kg Eating More (And Got Faster on the Bike)",
+      "relevance": "You've been told weight loss comes down to eating less and riding more—but that advice is making you slower and more miserable on the bike."
     },
     {
       "slug": "ep-14-i-tried-eating-like-pidcock-for-60-days-here-s-what-happened",
-      "title": "I Tried Eating Like Pidcock for 60 Days",
-      "guest": "Tom Pidcock (subject)",
-      "relevance": "Pro-level fuelling volume vs. amateur habits."
+      "title": "I Tried Eating Like Pidcock For 60 Days - Here’s What Happened",
+      "relevance": "Losing 9kg without losing power sounds impossible, but it's entirely achievable—if you know how to fuel properly. We break down the exact strategy World."
+    },
+    {
+      "slug": "ep-27-protein-before-bed-builds-cyclists-muscles-faster-new-study",
+      "title": "Protein Before Bed - Builds Cyclists Muscles Faster (New Study)",
+      "relevance": "Bedtime protein isn't the fat-trap you've been told it is—in fact, research shows a 30-40g protein shake 30 minutes before bed can boost muscle growth."
+    },
+    {
+      "slug": "ep-34-how-pro-cyclists-get-so-lean-what-amateurs-don-t-know",
+      "title": "How Pro Cyclists Get So Lean - What Amateurs Don’t Know",
+      "relevance": "Tim Podlar, a performance nutritionist for WorldTour pro teams, breaks down exactly how professional cyclists stay so lean and what actually happens to."
+    },
+    {
+      "slug": "ep-36-i-tried-under-over-optimal-fuelling-heres-what-no-one-tells",
+      "title": "I Tried Under, Over & Optimal Fuelling - Here's What No One Tells You",
+      "relevance": "Fueling strategy is rarely one-size-fits-all, and more carbs don't always mean better performance. We tested underfueled, optimally fueled, and overfueled."
+    },
+    {
+      "slug": "ep-2031-ben-healy-s-insane-fueling-strategy-revealed",
+      "title": "Ben Healy’s INSANE Fueling Strategy Revealed",
+      "relevance": "Ben Healy consumed 140g carbs per hour to win at the Tour de France. How pro-level fueling works, gut training protocols, and why amateurs get it wrong."
+    },
+    {
+      "slug": "ep-2035-world-tour-nutritionist-we-got-fuelling-wrong",
+      "title": "World Tour Nutritionist \"We Got Fuelling WRONG\"",
+      "relevance": "Everything you've heard about cycling nutrition—from the 120g carb-per-hour protocol to high-fat adaptation—might be oversimplified or just plain wrong."
+    },
+    {
+      "slug": "ep-2044-world-tour-nutritionist-we-got-weight-loss-wrong",
+      "title": "World Tour Nutritionist - “We Got Weight Loss Wrong”",
+      "relevance": "Dr. David Dunn, nutritionist to World Tour teams, challenges everything you think you know about weight loss and cycling performance."
+    },
+    {
+      "slug": "ep-2080-struggling-to-lose-weight-this-is-why",
+      "title": "Struggling to Lose Weight? This is Why!",
+      "relevance": "Dr Sharon Madigan, who's worked with Olympic athletes for years, breaks down why so many cyclists struggle with weight loss while maintaining training."
+    },
+    {
+      "slug": "ep-2086-100-christmas-gift-ideas-for-cyclists-and-triathletes",
+      "title": "100+ Christmas Gift Ideas For Cyclists (And Triathletes)",
+      "relevance": "Whether you're shopping for a cyclist, triathlete, or yourself, this guide covers over 116 gift ideas across every category you can imagine—from bike tech."
+    },
+    {
+      "slug": "ep-2088-how-cyclists-can-get-lean-stay-lean-forever-alex-larson",
+      "title": "How Cyclists Can Get Lean & Stay Lean Forever | Alex Larson",
+      "relevance": "Getting lean doesn't mean starving yourself or sacrificing performance—it's about strategic body recomposition. Alex Larson breaks down the exact approach."
+    },
+    {
+      "slug": "ep-2092-sports-nutritionist-the-one-food-thats-slowing-us-down",
+      "title": "Sports Nutritionist \"The One Food That's Slowing Us Down\"",
+      "relevance": "Yori Carlson, nutritionist to some of cycling's biggest names, reveals why protein-obsessed recovery strategies are actually holding endurance athletes back."
+    },
+    {
+      "slug": "ep-2102-is-lachlan-attempting-around-the-world-record-rider-support",
+      "title": "Is Lachlan Attempting Around The World Record? | Rider Support",
+      "relevance": "This week we're diving into the rumours surrounding Lachlan Morton's potential around-the-world record attempt, breaking down what it would take to beat."
+    },
+    {
+      "slug": "ep-2109-i-rode-the-toughest-roads-in-bosnia-albania",
+      "title": "I Rode The Toughest Roads In Bosnia & Albania",
+      "relevance": "The host takes on some of the Balkans' most challenging terrain, starting with a grueling first day in Bosnia that tests both bike setup and physical endurance."
+    },
+    {
+      "slug": "ep-2130-how-cycling-can-sabotage-your-weight-loss-and-the-fix",
+      "title": "How Cycling Can Sabotage Your Weight Loss (And The Fix)",
+      "relevance": "Todays guest is Nutritionist Uri Carlson and during this chat we aim to answer one fundamental question, how cyclists can lose weight without sacrificing..."
     }
   ],
   "strength": [
     {
-      "slug": "ep-1-pro-bike-fitter-reveals-the-1-change-amateurs-should-make",
-      "title": "Pro Bike Fitter Reveals the #1 Change Amateurs Should Make",
-      "relevance": "Hip/pelvis mechanics that translate to S&C programme choices."
+      "slug": "ep-new-study-finally-confirms-what-winning-masters-cyclists-have-known",
+      "title": "New Study Confirms Heavy Strength Training Works for Masters Cyclists Over 40",
+      "relevance": "2025 meta-analysis of 262 cyclists confirms heavy strength training boosts efficiency and power after 40. Here's the exact protocol to start this week."
+    },
+    {
+      "slug": "ep-2036-5-exercises-pogacar-always-does-before-a-ride",
+      "title": "5 Exercises Pogacar Always Does Before A Ride",
+      "relevance": "Ever wondered why Pogaçar and the world's top pros spend time doing band walks and glute bridges before races? It's not for show—activation drills."
+    },
+    {
+      "slug": "ep-2054-i-tried-keegan-swensons-insane-strength-routine-heres-what-n",
+      "title": "I Tried Keegan Swenson's Insane Strength Routine - Here's What No One Tells You",
+      "relevance": "Art O'Connor, strength coach to Keegan Swenson, Alex Wild, and Sophia Gomez, breaks down why cyclists who skip the gym are leaving their biggest."
+    },
+    {
+      "slug": "ep-2091-the-best-exercises-for-cyclists-strength-training",
+      "title": "The Best Exercises For Cyclists (Strength Training)",
+      "relevance": "Derek Tal breaks down exactly how to strength train as a cyclist—whether you should lift heavy or light, how many times per week to hit the gym, and how."
+    },
+    {
+      "slug": "ep-2107-the-surprising-downside-of-incorrect-cycling-shoes-courtney",
+      "title": "The Surprising Downside of Incorrect Cycling Shoes | Courtney Conley",
+      "relevance": "Your feet are the foundation of everything—literally. Courtney Conley, a foot and gait specialist, walks us through how your cycling shoes, the way your."
+    },
+    {
+      "slug": "ep-2238-how-to-breathe-when-cycling-mouth-vs-nose-roadman-podcast",
+      "title": "How to Breathe When Cycling (Mouth Vs Nose) | Roadman Podcast",
+      "relevance": "James Nestor on why nasal breathing beats mouth breathing for cyclists. CO2 tolerance, mouth taping, and the overlooked frontier of cycling performance."
+    },
+    {
+      "slug": "ep-2250-how-to-improve-core-strength-for-cyclists-part-2",
+      "title": "How To Improve Core Strength For Cyclists - Part 2",
+      "relevance": "Core strength workout for cyclists part 2. Split squats, single-leg deadlifts, and side planks to boost power transfer and eliminate back pain on the bike."
+    },
+    {
+      "slug": "ep-2252-4-core-exercises-for-cyclists-improve-your-strength-on-the-b",
+      "title": "4 Core Exercises For Cyclists - Improve Your Strength On The Bike",
+      "relevance": "A strong upper body isn't just about looking good on the bike—it's essential for better power transfer and holding your position during hard efforts."
+    },
+    {
+      "slug": "ep-12-should-you-workout-when-youre-sick-vlog-012",
+      "title": "Should you workout when you're sick? Vlog #012",
+      "relevance": "Getting sick doesn't automatically mean you should stop training—but there's a smart way to decide. We break down the simple rules for knowing when to."
     }
   ],
   "recovery": [
     {
-      "slug": "ep-12-should-you-workout-when-youre-sick-vlog-012",
-      "title": "Should You Workout When You're Sick?",
-      "relevance": "Illness vs. training — the ride-through-it decision."
+      "slug": "ep-2163-heart-rate-variability-training-simplified",
+      "title": "Heart Rate Variability Training Simplified",
+      "relevance": "Heart rate variability has gone from a medical marker of overall health to a powerful tool for optimizing training and recovery in endurance sports."
+    },
+    {
+      "slug": "ep-2219-effect-of-a-huge-crash-youll-never-be-as-good-as-you-were",
+      "title": "Effect Of A Huge Crash - You'll Never Be As Good As You Were",
+      "relevance": "The brutal reality of recovery after a life-changing cycling crash. Trauma, prosthetics, identity, and accepting that performance may never return."
+    },
+    {
+      "slug": "ep-2226-building-the-impossible-route-vegan-cyclist-roadman-podcast",
+      "title": "Building The Impossible Route - Vegan Cyclist | Roadman Podcast",
+      "relevance": "Tyler breaks down how he's built impossible cycling routes into compelling long-form content, exploring the craft of storytelling, the power of unscripted."
     },
     {
       "slug": "ep-15-3-tips-for-beating-travel-fatigue-vlog-015",
-      "title": "3 Tips for Beating Travel Fatigue",
-      "relevance": "Recovery disruption from travel / life stress."
+      "title": "3 Tips for Beating Travel Fatigue - Vlog #015",
+      "relevance": "Travel fatigue can wreck your performance, but it doesn't have to. We've picked up three solid strategies for staying fresh and functional on long."
     }
   ],
   "culture": [
     {
-      "slug": "ep-10-it-took-me-10-years-to-realise-you-could-just-do-this",
-      "title": "It Took Me 10 Years to Realise You Could Just Do This",
-      "relevance": "Unwritten-rules / le-metier tone setting."
+      "slug": "ep-2536-hincape-opens-up-about-how-pogacar-can-win-roubaix",
+      "title": "Hincape Opens Up About How Pogacar Can Win Roubaix",
+      "relevance": "To get your FREE 16 week training plan go to www.skool.com/roadman"
     },
     {
-      "slug": "ep-1-1-thing-i-learned-riding-37-ultra-distance-races-roadman-pod",
-      "title": "1 Thing I Learned Riding 37 Ultra-Distance Races",
-      "relevance": "Long-ride culture; peer-to-peer learning angle."
+      "slug": "ep-1-the-dark-truth-behind-team-skys-marginal-gains",
+      "title": "The Dark Truth Behind Team Sky's Marginal Gains",
+      "relevance": "The dark story behind Team Sky's marginal gains. Banned testosterone orders, destroyed evidence, and the questions that stretch from 2011 to 2025."
+    },
+    {
+      "slug": "ep-5-your-brain-has-a-fear-off-switch-for-descending-here-s-how-t",
+      "title": "Your Brain Has A Fear OFF Switch For Descending (Here’s How To Turn It On)",
+      "relevance": "Your fear of descending isn't a character flaw—it's your amygdala doing its job. The gap between nervous brakers and confident flyers like Vincenzo Nibali."
+    },
+    {
+      "slug": "ep-1-pro-bike-fitter-reveals-the-1-change-amateurs-should-make",
+      "title": "Pro Bike Fitter Reveals The 1 Change Amateurs Should Make",
+      "relevance": "World Tour bike fitter Daryl Fitzgerald reveals the most common bike setup mistakes amateurs make—and how small adjustments can transform your comfort."
+    },
+    {
+      "slug": "ep-7-did-we-kill-gravel-how-we-ruined-it",
+      "title": "Did We Kill Gravel? (how we ruined it)",
+      "relevance": "Nathan Haas, a former WorldTour pro turned gravel racer, sits down to discuss why he's stepping away from competitive gravel at the height of the sport's."
+    },
+    {
+      "slug": "ep-10-inside-gravels-first-super-team-with-european-gravel-champio",
+      "title": "Inside Gravels First Super Team With European Gravel Champion",
+      "relevance": "European gravel champion Mads Schmidt on what pro teams mean for gravel racing. Tactical shifts, equipment evolution, and the sport's future."
+    },
+    {
+      "slug": "ep-15-untold-story-of-how-pogacar-became-the-greatest-rider-ever",
+      "title": "Untold Story Of How Pogacar Became The Greatest Rider Ever",
+      "relevance": "Andy McGrath, author of 'Unstoppable', joins us to unpick what makes Tadej Pogačar the greatest rider of this generation."
+    },
+    {
+      "slug": "ep-18-the-rise-and-fall-of-peloton-the-50-billion-fail",
+      "title": "The Rise And Fall Of Peloton - The $50 Billion Fail",
+      "relevance": "Peloton went from a $50 billion pandemic darling to a 94% collapse in just two years—and the story reveals far more than one company's failure."
+    },
+    {
+      "slug": "ep-19-my-untold-story-of-how-yellow-didn-t-feel-like-victory-ben-h",
+      "title": "My Untold Story of How Yellow Didn’t Feel Like Victory - Ben Healy",
+      "relevance": "Ben Healey went into yellow at the Tour de France this year—but wearing that jersey didn't feel like victory. He breaks down the mentality shift that took."
+    },
+    {
+      "slug": "ep-21-my-untold-story-about-why-i-quit-world-tour-lachlan-morton",
+      "title": "My Untold Story About Why I Quit World Tour - Lachlan Morton",
+      "relevance": "Lachlan Morton opens up about why he walked away from World Tour racing at the peak of his career to chase gravel, bikepacking, and adventure instead."
+    },
+    {
+      "slug": "ep-24-i-asked-a-40-year-old-amateur-how-he-beat-pogacar",
+      "title": "I Asked A 40 Year Old Amateur How He Beat Pogacar?",
+      "relevance": "Andrew Feather’s strategy was deceptively simple: pace himself conservatively on the early ramps while Pogačar surged, then capitalise on Pogačar’s fade."
+    },
+    {
+      "slug": "ep-25-the-dark-secret-behind-cycling-s-legal-drug-problem",
+      "title": "The Dark Secret Behind Cycling’s Legal Drug Problem",
+      "relevance": "Cycling has a painkiller problem that's been hiding in plain sight for decades—and most of it is completely legal. We explore how teams systematized drug."
+    },
+    {
+      "slug": "ep-30-how-a-pro-s-insane-fuel-plan-almost-won-badlands",
+      "title": "How a Pro’s Insane Fuel Plan Almost Won BADLANDS",
+      "relevance": "Chris Melmän finished third at Badlands 600, one of the world's toughest ultra-endurance races, riding non-stop for nearly 60 hours across remote Spanish."
+    },
+    {
+      "slug": "ep-31-5-things-pogacar-always-does-after-a-ride",
+      "title": "5 Things Pogacar Always Does After a Ride",
+      "relevance": "Ever wondered what happens in the critical first hour after a pro cyclist crosses the finish line? We break down Pogacar's exact post-race routine and the."
+    },
+    {
+      "slug": "ep-33-the-untold-story-of-how-trek-silenced-greg-lemond",
+      "title": "The Untold Story Of How TREK Silenced Greg LeMond",
+      "relevance": "Trek and Greg LeMond's 15-year partnership ended not in court but in silence—a $200,000 donation to charity and a settlement that raised more questions."
     }
   ]
 }
