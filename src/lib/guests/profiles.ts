@@ -171,6 +171,43 @@ export const GUEST_PROFILE_OVERRIDES: Record<string, GuestProfileOverride> = {
     ],
   },
 
+  "dan-lorang": {
+    description:
+      "German performance coach. Long-time triathlon coach to Jan Frodeno, Anne Haug and Lucy Charles-Barclay; Head of Performance at Red Bull–Bora–Hansgrohe from 2017 through the 2025 season. Now Head of Endurance Sports at Red Bull's Athletic Performance Centre.",
+    worksFor: {
+      name: "Red Bull — Athletic Performance Centre",
+      type: "Organization",
+    },
+    sameAs: ["https://de.linkedin.com/in/dan-lorang-33296319"],
+  },
+
+  "john-wakefield": {
+    description:
+      "Cycling coach, bike fitter and Director of Development at Red Bull–Bora–Hansgrohe. Runs the Science to Sport Performance Laboratory in Girona, Spain. Previously Performance Co-ordinator and Coach at UAE Team Emirates over four seasons.",
+    worksFor: {
+      name: "Red Bull–Bora–Hansgrohe",
+      type: "SportsTeam",
+    },
+    sameAs: [
+      "https://www.linkedin.com/in/john-wakefield-a7449785/",
+      "https://www.trainingpeaks.com/coach/john-sciencetosport",
+    ],
+  },
+
+  "david-dunne": {
+    description:
+      "Performance nutritionist and researcher. PhD in Behaviour Change, Design Thinking, and Technology Innovation in Sports Nutrition from Liverpool John Moores University. IOC alumnus. Co-founder and CEO of Hexis, a personalised sports-nutrition platform; has worked with athletes across World Tour cycling, Premier League, NBA, Super League and Ryder Cup Team Europe.",
+    worksFor: {
+      name: "Hexis",
+      type: "Organization",
+      url: "https://www.hexis.live",
+    },
+    sameAs: [
+      "https://www.researchgate.net/profile/David-Dunne-9",
+      "https://www.hexis.live/blog/meet-the-team-david-dunne",
+    ],
+  },
+
   "rosa-kloser": {
     description:
       "German professional gravel and road cyclist, 2024 Unbound Gravel 200 winner and Gravel World Champion. Races both as a gravel privateer and for the CANYON//SRAM zondacrypto road team. PhD researcher in green shipping at Copenhagen Business School.",

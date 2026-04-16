@@ -362,14 +362,16 @@ export default async function EpisodePage({
         {/* Content / Show Notes */}
         <Section background="charcoal" className="!py-12">
           <Container width="narrow">
-            {/* Answer capsule — surfaces seoDescription as the canonical TL;DR
-                of the episode, aligned with the .answer-capsule CSS selector
-                referenced by Speakable schema. Primary AI-citation target
-                for ChatGPT / Perplexity / Claude when this episode is used
-                as a source. */}
-            {episode.seoDescription && (
+            {/* Answer capsule — AI-citation-optimised TL;DR of the episode.
+                Prefers the curated `answerCapsule` (60–100 words, generated
+                from the full transcript) over `seoDescription` (150-char
+                SERP snippet). Aligned with the .answer-capsule CSS selector
+                referenced by SpeakableSpecification schema. Primary AI-
+                citation target for ChatGPT / Perplexity / Claude when this
+                episode is quoted as a source. */}
+            {(episode.answerCapsule ?? episode.seoDescription) && (
               <AnswerCapsule
-                text={episode.seoDescription}
+                text={episode.answerCapsule ?? episode.seoDescription}
                 pillar={episode.pillar}
               />
             )}

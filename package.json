@@ -37,7 +37,9 @@
     "seo:companion:dry": "tsx scripts/generate-companion-articles.ts --dry-run",
     "seo:companion:rank": "tsx scripts/generate-companion-articles.ts --rank-only",
     "seo:titles": "tsx scripts/generate-segment-titles.ts",
-    "seo:titles:dry": "tsx scripts/generate-segment-titles.ts --dry-run"
+    "seo:titles:dry": "tsx scripts/generate-segment-titles.ts --dry-run",
+    "seo:capsules:episodes": "tsx scripts/generate-episode-capsules.ts",
+    "seo:capsules:episodes:dry": "tsx scripts/generate-episode-capsules.ts --dry-run"
   },
   "dependencies": {
     "@anthropic-ai/sdk": "^0.82.0",
