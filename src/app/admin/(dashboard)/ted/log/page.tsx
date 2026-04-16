@@ -2,6 +2,7 @@ import { db } from "@/lib/db";
 import { tedActivityLog } from "@/lib/db/schema";
 import { desc } from "drizzle-orm";
 import { requireAuth } from "@/lib/admin/auth";
+import { LogAutoRefresh } from "./_components/LogAutoRefresh";
 
 export const dynamic = "force-dynamic";
 
@@ -34,12 +35,15 @@ export default async function TedLogPage({
             Last 200 events. Filter via ?job= or ?level= in the URL.
           </p>
         </div>
-        <a
-          href="/api/admin/ted/log/export?limit=5000"
-          className="text-sm rounded-md bg-white/10 px-3 py-1.5 text-white hover:bg-white/15"
-        >
-          Export JSONL
-        </a>
+        <div className="flex items-center gap-4">
+          <LogAutoRefresh />
+          <a
+            href="/api/admin/ted/log/export?limit=5000"
+            className="text-sm rounded-md bg-white/10 px-3 py-1.5 text-white hover:bg-white/15"
+          >
+            Export JSONL
+          </a>
+        </div>
       </div>
 
       <div className="rounded-md bg-white/5 border border-white/10 overflow-x-auto">

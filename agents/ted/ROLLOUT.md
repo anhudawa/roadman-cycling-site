@@ -182,6 +182,21 @@ Re-run any time. The seeder upserts, so repeated rows update `last_seen_at` and 
 
 ---
 
+## Admin UI tour
+
+Every `/admin/ted/*` page shares a navigation bar across the top:
+
+- **Dashboard** — six stat cards (drafts pending, edit rate, voice-pass rate, welcomes ready, surfaces, 7d cost), per-gate status pills, daily-cost bar chart, recent errors, preflight checks, schedule with live countdowns, recent GitHub Actions runs, Ted's Skool bio with a copy button.
+- **Queue** — draft-by-draft review. Approve, edit (captures a word-level diff + logs the change), or reject. Chips at the top filter by status or pillar and are URL-param driven for bookmarkable views.
+- **Welcomes** — read-only view of the welcome pipeline (pending → drafted → posted), showing persona, draft body, and Skool link once posted.
+- **Members** — `ted_active_members` roster plus a paste-CSV upsert form. Sample CSV at `agents/ted/data/example-members.csv`.
+- **Log** — latest 200 activity log entries with filter query-params, auto-refresh toggle (default 30s), and a JSONL export for archival.
+- **Settings** — kill switch + three per-job posting gates + a "Run a job now" panel (requires `GITHUB_TOKEN`).
+
+## Health endpoint for external monitoring
+
+`GET /api/admin/ted/health` returns `{status, checks[]}` and a 200/503 status code. Accepts either the admin session OR `Authorization: Bearer <CRON_SECRET>` so UptimeRobot / Pingdom / Better Uptime can ping it directly. Useful to wire into whatever monitoring Anthony already uses.
+
 ## Emergency pause
 
 From `/admin/ted/settings`, click the kill switch. Every scheduled Ted job reads the flag at start and between items — a mid-run pause aborts within one post/welcome/surface.
