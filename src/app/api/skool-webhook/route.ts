@@ -1,5 +1,8 @@
 import { NextResponse } from "next/server";
 import { upsertOnSkoolJoin } from "@/lib/admin/subscribers-store";
+import { db } from "@/lib/db";
+import { tedWelcomeQueue } from "@/lib/db/schema";
+import { eq } from "drizzle-orm";
 
 const BEEHIIV_API_KEY = process.env.BEEHIIV_API_KEY;
 const BEEHIIV_PUBLICATION_ID = process.env.BEEHIIV_PUBLICATION_ID;
@@ -186,6 +189,29 @@ export async function POST(request: Request) {
     } catch (err) {
       console.error("[Skool Webhook] Subscriber upsert failed:", err);
       // Non-blocking — continue with Beehiiv flow
+    }
+
+    // Enqueue a Ted welcome (idempotent — duplicate joins don't duplicate welcomes)
+    try {
+      const existing = await db
+        .select({ email: tedWelcomeQueue.memberEmail })
+        .from(tedWelcomeQueue)
+        .where(eq(tedWelcomeQueue.memberEmail, email))
+        .limit(1);
+      if (existing.length === 0) {
+        await db.insert(tedWelcomeQueue).values({
+          memberEmail: email,
+          firstName: firstName || "",
+          persona,
+          questionnaireAnswers: answers.length
+            ? ({ answers } as Record<string, unknown>)
+            : null,
+          status: "pending",
+        });
+      }
+    } catch (err) {
+      console.error("[Skool Webhook] Ted welcome enqueue failed:", err);
+      // Non-blocking — Ted welcome is optional, Beehiiv flow continues
     }
 
     if (!BEEHIIV_API_KEY || !BEEHIIV_PUBLICATION_ID) {

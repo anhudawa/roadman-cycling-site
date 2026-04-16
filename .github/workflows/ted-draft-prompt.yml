@@ -1,0 +1,52 @@
+name: Ted — draft daily prompt
+
+# Drafts tomorrow's Clubhouse prompt and parks it in the review queue
+# at /admin/ted/queue. Runs daily at 06:00 UTC so there's time for
+# batch approval before the posting cron at 07:30 Dublin.
+
+on:
+  schedule:
+    - cron: "0 6 * * *"
+  workflow_dispatch:
+    inputs:
+      dry_run:
+        description: "Dry run — generate and print, don't write to DB"
+        required: false
+        default: "false"
+      date:
+        description: "Target date (YYYY-MM-DD); defaults to tomorrow Dublin time"
+        required: false
+        default: ""
+
+jobs:
+  draft:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+          cache: "npm"
+
+      - run: npm ci
+
+      - name: Draft prompt
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          POSTGRES_URL: ${{ secrets.POSTGRES_URL }}
+          RESEND_API_KEY: ${{ secrets.RESEND_API_KEY }}
+          TED_ADMIN_ALERT_EMAIL: ${{ secrets.TED_ADMIN_ALERT_EMAIL }}
+          TED_ALERT_FROM: ${{ secrets.TED_ALERT_FROM }}
+        run: |
+          ARGS="--job=draft-prompt"
+          if [ "${{ inputs.dry_run }}" = "true" ]; then ARGS="$ARGS --dry-run"; fi
+          if [ -n "${{ inputs.date }}" ]; then ARGS="$ARGS --date=${{ inputs.date }}"; fi
+          npx tsx agents/ted/src/index.ts $ARGS
+
+      - name: Upload run logs
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: ted-draft-prompt-logs
+          path: logs/ted/
+          retention-days: 14

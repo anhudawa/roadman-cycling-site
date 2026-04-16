@@ -1,0 +1,67 @@
+name: Ted — welcomes
+
+# Drafts and posts welcomes for pending new members.
+# Runs twice daily (09:00 and 18:00 Dublin → 08:00/17:00 UTC year-round, ±1h DST).
+# Gate: post-welcome is skipped if ted_kill_switch.post_welcome_enabled=false.
+
+on:
+  schedule:
+    - cron: "0 8 * * *"
+    - cron: "0 17 * * *"
+  workflow_dispatch:
+    inputs:
+      dry_run:
+        description: "Dry run"
+        required: false
+        default: "false"
+
+jobs:
+  welcomes:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+          cache: "npm"
+
+      - run: npm ci
+
+      - name: Install Playwright browsers
+        run: npx playwright install chromium --with-deps
+
+      - name: Draft welcomes
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          POSTGRES_URL: ${{ secrets.POSTGRES_URL }}
+          RESEND_API_KEY: ${{ secrets.RESEND_API_KEY }}
+          TED_ADMIN_ALERT_EMAIL: ${{ secrets.TED_ADMIN_ALERT_EMAIL }}
+          TED_ALERT_FROM: ${{ secrets.TED_ALERT_FROM }}
+        run: |
+          ARGS="--job=draft-welcome"
+          if [ "${{ inputs.dry_run }}" = "true" ]; then ARGS="$ARGS --dry-run"; fi
+          npx tsx agents/ted/src/index.ts $ARGS
+
+      - name: Post approved welcomes
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          POSTGRES_URL: ${{ secrets.POSTGRES_URL }}
+          RESEND_API_KEY: ${{ secrets.RESEND_API_KEY }}
+          TED_ADMIN_ALERT_EMAIL: ${{ secrets.TED_ADMIN_ALERT_EMAIL }}
+          TED_ALERT_FROM: ${{ secrets.TED_ALERT_FROM }}
+          SKOOL_EMAIL: ${{ secrets.SKOOL_EMAIL }}
+          SKOOL_PASSWORD: ${{ secrets.SKOOL_PASSWORD }}
+          SKOOL_COMMUNITY_SLUG: ${{ secrets.SKOOL_COMMUNITY_SLUG }}
+          SKOOL_INTRO_CATEGORY: ${{ secrets.SKOOL_INTRO_CATEGORY }}
+        run: |
+          ARGS="--job=post-welcome"
+          if [ "${{ inputs.dry_run }}" = "true" ]; then ARGS="$ARGS --dry-run"; fi
+          npx tsx agents/ted/src/index.ts $ARGS
+
+      - name: Upload screenshots + logs
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: ted-welcomes-logs
+          path: logs/ted/
+          retention-days: 14

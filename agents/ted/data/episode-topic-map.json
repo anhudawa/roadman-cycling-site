@@ -1,0 +1,58 @@
+{
+  "_meta": {
+    "description": "Top-50 podcast episodes mapped to topics Ted uses for thread-surfacing replies. Hand-curated for v1. Each topic should have 5-10 entries. Each entry is {slug, title, guest?, relevance}. Slugs match files in content/podcast/.",
+    "todo": "Replace seed entries below with actual top-50 curation. Start with 5 per topic; grow over time. The thread-surface generator picks by topic match; more entries = better matches.",
+    "lastReviewed": "2026-04-16"
+  },
+  "endurance": [
+    {
+      "slug": "ep-1-the-dark-truth-behind-team-skys-marginal-gains",
+      "title": "The Dark Truth Behind Team Sky's Marginal Gains",
+      "relevance": "Questioning the training-load orthodoxy; prompts for Z2 / interval debates."
+    }
+  ],
+  "nutrition": [
+    {
+      "slug": "ep-1-i-lost-9kg-eating-more-and-got-faster-on-the-bike",
+      "title": "I Lost 9kg Eating More and Got Faster on the Bike",
+      "relevance": "Under-fuelling as the amateur default; carbs-per-hour discussion."
+    },
+    {
+      "slug": "ep-14-i-tried-eating-like-pidcock-for-60-days-here-s-what-happened",
+      "title": "I Tried Eating Like Pidcock for 60 Days",
+      "guest": "Tom Pidcock (subject)",
+      "relevance": "Pro-level fuelling volume vs. amateur habits."
+    }
+  ],
+  "strength": [
+    {
+      "slug": "ep-1-pro-bike-fitter-reveals-the-1-change-amateurs-should-make",
+      "title": "Pro Bike Fitter Reveals the #1 Change Amateurs Should Make",
+      "relevance": "Hip/pelvis mechanics that translate to S&C programme choices."
+    }
+  ],
+  "recovery": [
+    {
+      "slug": "ep-12-should-you-workout-when-youre-sick-vlog-012",
+      "title": "Should You Workout When You're Sick?",
+      "relevance": "Illness vs. training — the ride-through-it decision."
+    },
+    {
+      "slug": "ep-15-3-tips-for-beating-travel-fatigue-vlog-015",
+      "title": "3 Tips for Beating Travel Fatigue",
+      "relevance": "Recovery disruption from travel / life stress."
+    }
+  ],
+  "culture": [
+    {
+      "slug": "ep-10-it-took-me-10-years-to-realise-you-could-just-do-this",
+      "title": "It Took Me 10 Years to Realise You Could Just Do This",
+      "relevance": "Unwritten-rules / le-metier tone setting."
+    },
+    {
+      "slug": "ep-1-1-thing-i-learned-riding-37-ultra-distance-races-roadman-pod",
+      "title": "1 Thing I Learned Riding 37 Ultra-Distance Races",
+      "relevance": "Long-ride culture; peer-to-peer learning angle."
+    }
+  ]
+}

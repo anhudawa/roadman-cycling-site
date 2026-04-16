@@ -1,0 +1,57 @@
+name: Ted — surface threads
+
+# Scans Clubhouse threads in the last 48h and surfaces up to 2.
+# Gate: skipped if ted_kill_switch.surface_threads_enabled=false.
+# Runs at 13:00 UTC ≈ 14:00 Dublin year-round with ±1h DST drift.
+
+on:
+  schedule:
+    - cron: "0 13 * * *"
+  workflow_dispatch:
+    inputs:
+      dry_run:
+        description: "Dry run — scan + generate, don't post"
+        required: false
+        default: "false"
+      max:
+        description: "Max surfaces this run"
+        required: false
+        default: "2"
+
+jobs:
+  surface:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+          cache: "npm"
+
+      - run: npm ci
+
+      - name: Install Playwright browsers
+        run: npx playwright install chromium --with-deps
+
+      - name: Surface threads
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          POSTGRES_URL: ${{ secrets.POSTGRES_URL }}
+          RESEND_API_KEY: ${{ secrets.RESEND_API_KEY }}
+          TED_ADMIN_ALERT_EMAIL: ${{ secrets.TED_ADMIN_ALERT_EMAIL }}
+          TED_ALERT_FROM: ${{ secrets.TED_ALERT_FROM }}
+          SKOOL_EMAIL: ${{ secrets.SKOOL_EMAIL }}
+          SKOOL_PASSWORD: ${{ secrets.SKOOL_PASSWORD }}
+          SKOOL_COMMUNITY_SLUG: ${{ secrets.SKOOL_COMMUNITY_SLUG }}
+        run: |
+          ARGS="--job=surface-threads --max=${{ inputs.max || '2' }}"
+          if [ "${{ inputs.dry_run }}" = "true" ]; then ARGS="$ARGS --dry-run"; fi
+          npx tsx agents/ted/src/index.ts $ARGS
+
+      - name: Upload screenshots + logs
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: ted-surface-logs
+          path: logs/ted/
+          retention-days: 14
