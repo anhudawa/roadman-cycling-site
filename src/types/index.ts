@@ -107,6 +107,14 @@ export const CONTENT_PILLARS: Record<
   },
 };
 
+/**
+ * Top-level nav is intentionally minimal — the 35-55 professional audience
+ * has zero patience for 9-item navigation bars. Everything else lives in
+ * the footer or is reachable from page-level content (Topics from /blog,
+ * Guests from /about or /podcast, Partners/Events in footer).
+ *
+ * Coaching is the revenue channel so its dropdown leads with APPLY.
+ */
 export const NAV_ITEMS: NavItem[] = [
   {
     label: "Podcast",
@@ -117,27 +125,22 @@ export const NAV_ITEMS: NavItem[] = [
     href: "/blog",
   },
   {
-    label: "Topics",
-    href: "/topics",
+    label: "Coaching",
+    href: "/coaching",
     children: [
-      { label: "FTP Training", href: "/topics/ftp-training" },
-      { label: "Nutrition", href: "/topics/cycling-nutrition" },
-      { label: "Training Plans", href: "/topics/cycling-training-plans" },
-      { label: "Recovery", href: "/topics/cycling-recovery" },
-      { label: "Strength & Conditioning", href: "/topics/cycling-strength-conditioning" },
-      { label: "Weight Loss", href: "/topics/cycling-weight-loss" },
-      { label: "Beginners", href: "/topics/cycling-beginners" },
-      { label: "Triathlon", href: "/topics/triathlon-cycling" },
-      { label: "Mountain Biking", href: "/topics/mountain-biking" },
-      { label: "Cycling Coaching", href: "/topics/cycling-coaching" },
+      { label: "Apply for Not Done Yet", href: "/apply" },
+      { label: "How Coaching Works", href: "/coaching" },
+      { label: "Not Done Yet (Paid)", href: "/community/not-done-yet" },
+      { label: "Clubhouse (Free)", href: "/community/clubhouse" },
+      { label: "Strength Training Course", href: "/strength-training" },
     ],
   },
   {
     label: "Tools",
     href: "/tools",
     children: [
-      { label: "Tyre Pressure", href: "/tools/tyre-pressure" },
       { label: "FTP Zones", href: "/tools/ftp-zones" },
+      { label: "Tyre Pressure", href: "/tools/tyre-pressure" },
       { label: "Race Weight", href: "/tools/race-weight" },
       { label: "Energy Availability", href: "/tools/energy-availability" },
       { label: "In-Ride Fuelling", href: "/tools/fuelling" },
@@ -145,26 +148,7 @@ export const NAV_ITEMS: NavItem[] = [
     ],
   },
   {
-    label: "Guests",
-    href: "/guests",
-  },
-  {
-    label: "Coaching",
-    href: "/community",
-    children: [
-      { label: "Clubhouse (Free)", href: "/community/clubhouse" },
-      { label: "Not Done Yet (Coaching)", href: "/community/not-done-yet" },
-      { label: "Strength & Conditioning", href: "/strength-training" },
-      { label: "Roadman CC (Dublin)", href: "/community/club" },
-      { label: "Events", href: "/events" },
-    ],
-  },
-  {
     label: "About",
     href: "/about",
-  },
-  {
-    label: "Partners",
-    href: "/partners",
   },
 ];

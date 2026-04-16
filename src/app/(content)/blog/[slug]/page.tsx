@@ -10,8 +10,10 @@ import { ShareButtons } from "@/components/features/blog/ShareButtons";
 import { RelatedPosts } from "@/components/features/blog/RelatedPosts";
 import { RelatedContent } from "@/components/features/RelatedContent";
 import { InlineArticleCTA } from "@/components/features/conversion/InlineArticleCTA";
+import { EmailCapture } from "@/components/features/conversion/EmailCapture";
 import { TableOfContents } from "@/components/features/blog/TableOfContents";
 import { AnswerCapsule } from "@/components/ui/AnswerCapsule";
+import { mdxComponents } from "@/components/mdx/MDXComponents";
 
 export async function generateStaticParams() {
   return getAllSlugs().map((slug) => ({ slug }));
@@ -45,7 +47,7 @@ export async function generateMetadata({
       ...(post.featuredImage && {
         images: [
           {
-            url: `https://roadmancycling.com${post.featuredImage}`,
+            url: post.featuredImage.startsWith('http') ? post.featuredImage : `https://roadmancycling.com${post.featuredImage}`,
             width: 1200,
             height: 630,
             alt: post.title,
@@ -58,7 +60,7 @@ export async function generateMetadata({
       title: post.seoTitle || post.title,
       description: post.seoDescription,
       ...(post.featuredImage && {
-        images: [`https://roadmancycling.com${post.featuredImage}`],
+        images: [post.featuredImage.startsWith('http') ? post.featuredImage : `https://roadmancycling.com${post.featuredImage}`],
       }),
     },
   };
@@ -113,7 +115,7 @@ export default async function BlogPostPage({
           ...(post.featuredImage && {
             image: {
               "@type": "ImageObject",
-              url: `https://roadmancycling.com${post.featuredImage}`,
+              url: post.featuredImage.startsWith('http') ? post.featuredImage : `https://roadmancycling.com${post.featuredImage}`,
               width: 1200,
               height: 630,
             },
@@ -252,14 +254,27 @@ export default async function BlogPostPage({
             )}
 
             <article className="prose-roadman prose-enhanced">
-              <MDXRemote source={post.content} />
+              <MDXRemote source={post.content} components={mdxComponents} />
             </article>
 
-            {/* Mid-article inline CTA — injects after 3rd paragraph, pillar-aware */}
+            {/* Mid-article inline CTA — injects after 3rd paragraph, pillar-aware.
+                Client-side portal so only JS users see it. */}
             <InlineArticleCTA
               pillar={post.pillar}
               source={`blog-inline-${slug}`}
             />
+
+            {/* End-of-article email capture — SSR-rendered so Googlebot,
+                AI crawlers, and no-JS visitors all see a newsletter opp. */}
+            <div className="mt-16">
+              <EmailCapture
+                variant="inline"
+                heading="KEEP READING — THE SATURDAY SPIN"
+                subheading="The week's training takeaways, pro insights, and what to do about them. 1,900+ serious cyclists open it every Saturday."
+                source={`blog-end-${slug}`}
+                buttonText="SUBSCRIBE"
+              />
+            </div>
 
             {/* Share + Author */}
             <div className="mt-16 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6 py-6 border-t border-white/5">

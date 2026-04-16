@@ -215,7 +215,7 @@ export default function CoachingPage() {
         {/* Hero */}
         <Section background="deep-purple" grain className="pt-32 pb-20">
           <Container className="text-center">
-            <ScrollReveal direction="up">
+            <ScrollReveal direction="up" eager>
               <p className="text-coral font-heading text-sm tracking-widest mb-6">
                 ONLINE CYCLING COACHING
               </p>
@@ -233,6 +233,38 @@ export default function CoachingPage() {
                 nutrition, strength, recovery, and accountability — structured
                 into your week so every session counts.
               </p>
+
+              {/* Hero proof point — single killer stat + quote, above the fold */}
+              <div className="relative mx-auto max-w-2xl mb-10">
+                <div className="rounded-2xl border border-coral/20 bg-gradient-to-br from-coral/10 via-deep-purple/30 to-deep-purple/50 px-6 py-6 md:px-10 md:py-7 text-left">
+                  <div className="flex flex-col md:flex-row md:items-center gap-5 md:gap-7">
+                    <div className="shrink-0 text-center md:text-left">
+                      <p
+                        className="font-heading text-coral leading-none"
+                        style={{ fontSize: "clamp(2.5rem, 5vw, 3.5rem)" }}
+                      >
+                        +90w
+                      </p>
+                      <p className="text-xs font-body tracking-widest text-foreground-subtle uppercase mt-1">
+                        FTP gain
+                      </p>
+                    </div>
+                    <div className="h-px md:h-14 md:w-px bg-white/10 shrink-0" />
+                    <div>
+                      <p className="text-off-white italic leading-relaxed text-base md:text-lg">
+                        &ldquo;I was an average sportive rider who had plateaued.
+                        Roadman custom built a plan to achieve my goals. I&apos;ve
+                        gotten much more out of it than I ever imagined.&rdquo;
+                      </p>
+                      <p className="text-foreground-subtle text-sm mt-3">
+                        <span className="text-off-white font-medium">Damien Maloney</span>
+                        &nbsp;· Ireland · 205w &rarr; 295w
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
               <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-6">
                 <Button href="/apply" size="lg">
                   Apply Now — 7-Day Free Trial
