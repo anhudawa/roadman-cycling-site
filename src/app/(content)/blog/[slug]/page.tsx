@@ -1,11 +1,13 @@
 import type { Metadata } from "next";
 import Image from "next/image";
+import Link from "next/link";
 import { notFound } from "next/navigation";
 import { MDXRemote } from "next-mdx-remote/rsc";
 import { Header, Footer, Section, Container } from "@/components/layout";
 import { Badge, Button } from "@/components/ui";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { getPostBySlug, getAllSlugs, getRelatedPosts } from "@/lib/blog";
+import { getTopicsForPost } from "@/lib/topics";
 import { ShareButtons } from "@/components/features/blog/ShareButtons";
 import { RelatedPosts } from "@/components/features/blog/RelatedPosts";
 import { RelatedContent } from "@/components/features/RelatedContent";
@@ -79,6 +81,7 @@ export default async function BlogPostPage({
   }
 
   const relatedPosts = getRelatedPosts(slug, post.pillar, post.keywords, 3);
+  const parentTopics = getTopicsForPost(slug);
   const publishDate = new Date(post.publishDate);
 
   return (
@@ -300,6 +303,33 @@ export default async function BlogPostPage({
                   <Button href="/coaching" variant="ghost" size="md">
                     How Coaching Works
                   </Button>
+                </div>
+              </div>
+            )}
+
+            {/* Topic hub back-links — bidirectional signal for Google +
+                natural "keep exploring" path for readers. */}
+            {parentTopics.length > 0 && (
+              <div className="mt-12 pt-8 border-t border-white/5">
+                <p className="font-heading text-coral text-xs tracking-widest mb-3">
+                  MORE ON THIS TOPIC
+                </p>
+                <div className="flex flex-wrap gap-2">
+                  {parentTopics.map((t) => (
+                    <Link
+                      key={t.slug}
+                      href={`/topics/${t.slug}`}
+                      className="
+                        inline-flex items-center px-4 py-2 rounded-full
+                        bg-white/5 border border-white/10
+                        text-sm text-foreground-muted
+                        hover:bg-white/10 hover:border-coral/30 hover:text-off-white
+                        transition-all
+                      "
+                    >
+                      {t.title} <span aria-hidden="true" className="ml-1">&rarr;</span>
+                    </Link>
+                  ))}
                 </div>
               </div>
             )}
