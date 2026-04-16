@@ -183,62 +183,72 @@ event: member.joined, member.created
           <p className="text-[10px] uppercase tracking-widest text-foreground-subtle font-medium">
             Recent events ({recent.length})
           </p>
+          <span className="ml-auto text-[10px] text-foreground-subtle">
+            Click a row to see the raw payload
+          </span>
         </div>
-        <div className="overflow-x-auto">
-          <table className="w-full text-sm">
-            <thead>
-              <tr className="text-foreground-subtle text-[10px] uppercase tracking-widest border-b border-white/5">
-                <th className="text-left px-4 py-2">When</th>
-                <th className="text-left px-4 py-2">Status</th>
-                <th className="text-left px-4 py-2">Event</th>
-                <th className="text-left px-4 py-2">Source</th>
-                <th className="text-left px-4 py-2">Email</th>
-                <th className="text-left px-4 py-2">Persona</th>
-                <th className="text-left px-4 py-2">Note</th>
-              </tr>
-            </thead>
-            <tbody>
-              {recent.length === 0 && (
-                <tr>
-                  <td
-                    colSpan={7}
-                    className="px-4 py-8 text-center text-foreground-subtle"
+        {recent.length === 0 ? (
+          <div className="px-4 py-12 text-center text-foreground-subtle text-sm">
+            No webhook calls yet. Send a test from the Smoke test block above,
+            or wire Zapier to the URL in the setup instructions.
+          </div>
+        ) : (
+          <div>
+            {recent.map((e) => (
+              <details
+                key={e.id}
+                className="border-b border-white/[0.03] group [&_summary]:list-none"
+              >
+                <summary className="cursor-pointer px-4 py-2 hover:bg-white/[0.02] grid grid-cols-12 gap-3 items-center text-sm">
+                  <span
+                    className="col-span-2 text-foreground-muted whitespace-nowrap"
+                    title={fmt(e.createdAt)}
                   >
-                    No webhook calls yet. Send a test from Zapier / Skool.
-                  </td>
-                </tr>
-              )}
-              {recent.map((e) => (
-                <tr
-                  key={e.id}
-                  className="border-b border-white/[0.03] hover:bg-white/[0.02]"
-                >
-                  <td className="px-4 py-2 text-foreground-muted whitespace-nowrap">
-                    <span title={fmt(e.createdAt)}>{ago(e.createdAt)}</span>
-                  </td>
-                  <td className="px-4 py-2">
+                    {ago(e.createdAt)}
+                  </span>
+                  <span className="col-span-1">
                     <StatusPill status={e.status} />
-                  </td>
-                  <td className="px-4 py-2 text-foreground-muted whitespace-nowrap">
+                  </span>
+                  <span className="col-span-2 text-foreground-muted whitespace-nowrap truncate">
                     {e.eventType}
-                  </td>
-                  <td className="px-4 py-2 text-foreground-muted whitespace-nowrap">
+                  </span>
+                  <span className="col-span-2 text-foreground-muted whitespace-nowrap truncate">
                     {e.source}
-                  </td>
-                  <td className="px-4 py-2 text-off-white whitespace-nowrap max-w-[240px] truncate">
+                  </span>
+                  <span className="col-span-3 text-off-white whitespace-nowrap truncate">
                     {e.email ?? "—"}
-                  </td>
-                  <td className="px-4 py-2 text-foreground-muted whitespace-nowrap">
+                  </span>
+                  <span className="col-span-1 text-foreground-muted whitespace-nowrap truncate">
                     {e.persona ?? "—"}
-                  </td>
-                  <td className="px-4 py-2 text-foreground-subtle max-w-[320px] truncate">
-                    {e.errorMessage ?? (e.name ?? "")}
-                  </td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
+                  </span>
+                  <span className="col-span-1 text-foreground-subtle text-[10px] text-right group-open:rotate-90 transition-transform">
+                    ▸
+                  </span>
+                </summary>
+                <div className="px-4 pb-4 space-y-2">
+                  {e.errorMessage && (
+                    <div className="text-xs text-coral bg-coral/5 border border-coral/20 rounded p-2">
+                      {e.errorMessage}
+                    </div>
+                  )}
+                  {e.name && (
+                    <p className="text-[10px] text-foreground-subtle uppercase tracking-widest">
+                      Name: <span className="text-off-white normal-case">{e.name}</span>
+                    </p>
+                  )}
+                  <div>
+                    <p className="text-[10px] text-foreground-subtle uppercase tracking-widest mb-1">
+                      Raw payload
+                    </p>
+                    <pre className="bg-background-deep border border-white/10 rounded p-3 text-[11px] text-off-white overflow-x-auto max-h-64">
+{JSON.stringify(e.rawPayload ?? {}, null, 2)}
+                    </pre>
+                  </div>
+                </div>
+              </details>
+            ))}
+          </div>
+        )}
       </div>
     </div>
   );
