@@ -33,16 +33,28 @@ export default async function NewsletterPage() {
     apiError = true;
   }
 
-  // Compute average open/click rates from posts with sends
-  const sentPosts = posts.filter((p) => p.sentAt !== null);
+  // Compute open/click rates across sent posts.
+  // Send-weighted (total opens / total recipients) so a tiny re-send doesn't
+  // distort the top-line number; fall back to arithmetic mean of Beehiiv's
+  // per-post rates when recipient counts aren't available.
+  const sentPosts = posts.filter(
+    (p) => p.sentAt !== null && (p.stats.recipients > 0 || p.stats.openRate > 0)
+  );
+  const totalRecipients = sentPosts.reduce((s, p) => s + p.stats.recipients, 0);
+  const totalOpens = sentPosts.reduce((s, p) => s + p.stats.opens, 0);
+  const totalClicks = sentPosts.reduce((s, p) => s + p.stats.clicks, 0);
   const avgOpenRate =
-    sentPosts.length > 0
-      ? sentPosts.reduce((sum, p) => sum + p.stats.openRate, 0) / sentPosts.length
-      : 0;
+    totalRecipients > 0
+      ? totalOpens / totalRecipients
+      : sentPosts.length > 0
+        ? sentPosts.reduce((sum, p) => sum + p.stats.openRate, 0) / sentPosts.length
+        : 0;
   const avgClickRate =
-    sentPosts.length > 0
-      ? sentPosts.reduce((sum, p) => sum + p.stats.clickRate, 0) / sentPosts.length
-      : 0;
+    totalRecipients > 0
+      ? totalClicks / totalRecipients
+      : sentPosts.length > 0
+        ? sentPosts.reduce((sum, p) => sum + p.stats.clickRate, 0) / sentPosts.length
+        : 0;
 
   const hasData = subscriberStats !== null || posts.length > 0;
 

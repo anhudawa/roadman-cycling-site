@@ -7,7 +7,7 @@ export const maxDuration = 300;
 
 function isAuthorized(req: NextRequest): boolean {
   const cronSecret = process.env.CRON_SECRET;
-  if (!cronSecret) return true;
+  if (!cronSecret) return false; // fail-closed: missing secret is a misconfig, not a bypass
   const authHeader = req.headers.get("authorization");
   return authHeader === `Bearer ${cronSecret}`;
 }

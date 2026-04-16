@@ -83,14 +83,20 @@ function verifySvixSignature(
 export async function POST(request: Request) {
   const rawBody = await request.text();
   const secret = process.env.RESEND_WEBHOOK_SECRET;
-  if (secret) {
-    if (!verifySvixSignature(rawBody, request.headers, secret)) {
-      return NextResponse.json({ error: "Invalid signature" }, { status: 401 });
-    }
-  } else {
-    console.warn(
-      "[resend webhook] RESEND_WEBHOOK_SECRET not set — accepting event unverified"
+  // Fail-closed: missing secret is a misconfig, not a bypass. Allowing
+  // unverified events would let anyone inflate open/click stats by POSTing
+  // fabricated events to this endpoint.
+  if (!secret) {
+    console.error(
+      "[resend webhook] RESEND_WEBHOOK_SECRET not set — rejecting event"
     );
+    return NextResponse.json(
+      { error: "Webhook secret not configured" },
+      { status: 503 }
+    );
+  }
+  if (!verifySvixSignature(rawBody, request.headers, secret)) {
+    return NextResponse.json({ error: "Invalid signature" }, { status: 401 });
   }
 
   let event: ResendEvent;

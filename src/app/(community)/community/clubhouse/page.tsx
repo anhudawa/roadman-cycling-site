@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { Header, Footer, Section, Container } from "@/components/layout";
-import { Button } from "@/components/ui";
 import { JsonLd } from "@/components/seo/JsonLd";
+import { SkoolTrialButton } from "@/components/features/community/SkoolTrialButton";
 
 export const metadata: Metadata = {
   title: "The Clubhouse — Free Cycling Community",
@@ -64,13 +64,13 @@ export default function ClubhousePage() {
               This is your starting point. No credit card. No upsell pressure.
               Just tools and a community that gets it.
             </p>
-            <Button
+            <SkoolTrialButton
               href="https://www.skool.com/roadman"
-              external
+              source="clubhouse_hero"
               size="lg"
             >
               Join the Clubhouse — Free
-            </Button>
+            </SkoolTrialButton>
           </Container>
         </Section>
 
@@ -135,13 +135,13 @@ export default function ClubhousePage() {
                 Join 2,100+ cyclists who are already inside. The only thing
                 you&apos;re losing is time by not being part of this.
               </p>
-              <Button
+              <SkoolTrialButton
                 href="https://www.skool.com/roadman"
-                external
+                source="clubhouse_footer"
                 size="lg"
               >
                 Join the Clubhouse — Free
-              </Button>
+              </SkoolTrialButton>
             </div>
           </Container>
         </Section>
