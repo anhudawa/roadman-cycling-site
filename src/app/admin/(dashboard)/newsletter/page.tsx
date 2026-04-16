@@ -7,6 +7,9 @@ import {
   type DailyGrowth,
 } from "@/lib/integrations/beehiiv";
 import { TimeSeriesChart } from "../components/charts/TimeSeriesChart";
+import { db } from "@/lib/db";
+import { beehiivSnapshots } from "@/lib/db/schema";
+import { asc, gte } from "drizzle-orm";
 
 function formatDate(iso: string): string {
   const d = new Date(iso);
@@ -31,6 +34,41 @@ export default async function NewsletterPage() {
     ]);
   } catch {
     apiError = true;
+  }
+
+  // Prefer DB-backed growth from the daily cron (accurate 60k-scale counts)
+  // when we have ≥2 days of snapshots; fall back to the live Beehiiv paginate
+  // otherwise.
+  let growthSource: "snapshot" | "live" = "live";
+  try {
+    const cutoff = new Date(Date.now() - 60 * 24 * 60 * 60 * 1000);
+    const cutoffDate = cutoff.toISOString().slice(0, 10);
+    const snapshots = await db
+      .select({
+        date: beehiivSnapshots.snapshotDate,
+        total: beehiivSnapshots.totalSubscribers,
+        newToday: beehiivSnapshots.newSubscribersToday,
+      })
+      .from(beehiivSnapshots)
+      .where(gte(beehiivSnapshots.snapshotDate, cutoffDate))
+      .orderBy(asc(beehiivSnapshots.snapshotDate));
+    if (snapshots.length >= 2) {
+      growth = snapshots.map((s) => ({
+        date: String(s.date),
+        count: Number(s.newToday ?? 0),
+      }));
+      growthSource = "snapshot";
+      // If live API couldn't return a total, use the newest snapshot.
+      if (!subscriberStats) {
+        const last = snapshots[snapshots.length - 1];
+        subscriberStats = {
+          totalSubscribers: Number(last.total ?? 0),
+          activeSubscribers: Number(last.total ?? 0),
+        };
+      }
+    }
+  } catch {
+    // Snapshots table / DB unavailable — stick with live growth
   }
 
   // Compute open/click rates across sent posts.
@@ -73,7 +111,9 @@ export default async function NewsletterPage() {
         <p className="text-foreground-muted text-sm mt-1">
           {apiError
             ? "Beehiiv API not configured \u2014 add BEEHIIV_API_KEY and BEEHIIV_PUBLICATION_ID to .env.local"
-            : "Data syncs from Beehiiv (cached 5 min)"}
+            : growthSource === "snapshot"
+              ? "Subscriber growth sourced from daily DB snapshots; engagement from live Beehiiv (cached 5 min)"
+              : "Data syncs from Beehiiv (cached 5 min)"}
         </p>
       </div>
 

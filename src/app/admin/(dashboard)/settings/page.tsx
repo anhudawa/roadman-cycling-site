@@ -110,6 +110,7 @@ export default async function SettingsPage() {
     { kind: "sync_all", label: "Sync all (Beehiiv+Stripe)", schedule: "0 6 * * *" },
     { kind: "score_all", label: "Lead scoring", schedule: "30 6 * * *" },
     { kind: "complete_past_bookings", label: "Auto-complete past bookings", schedule: "15 * * * *" },
+    { kind: "beehiiv_snapshot", label: "Beehiiv daily snapshot", schedule: "45 6 * * *" },
   ];
 
   function serializeRun(r: {
@@ -152,6 +153,11 @@ export default async function SettingsPage() {
       const completed = result.completed ?? 0;
       return `Completed ${completed}`;
     }
+    if (kind === "beehiiv_snapshot") {
+      const total = result.totalSubscribers ?? "?";
+      const delta = result.newSubscribersToday ?? 0;
+      return `Subs ${total}${Number(delta) > 0 ? ` (+${delta})` : ""}`;
+    }
     return "OK";
   }
 
@@ -163,7 +169,8 @@ export default async function SettingsPage() {
         | "weekly_digest"
         | "sync_all"
         | "score_all"
-        | "complete_past_bookings",
+        | "complete_past_bookings"
+        | "beehiiv_snapshot",
       limit: 10,
     });
     const latest = history[0] ?? null;
