@@ -5,6 +5,7 @@ import { Header, Footer, Section, Container } from "@/components/layout";
 import { ScrollReveal, Card, Badge, Button } from "@/components/ui";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { getGuestBySlug, getAllGuestSlugs } from "@/lib/guests";
+import { getGuestProfileOverride } from "@/lib/guests/profiles";
 
 export async function generateStaticParams() {
   return getAllGuestSlugs().map((slug) => ({ slug }));
@@ -56,6 +57,12 @@ export default async function GuestPage({
       new Date(b.publishDate).getTime() - new Date(a.publishDate).getTime()
   );
 
+  // Curated entity overrides for featured guests (Wikipedia + Wikidata links,
+  // verified social profiles, team/university affiliation). Absent for
+  // long-tail guests; in that case the Person schema falls back to the
+  // heuristic fields computed from episode data.
+  const override = getGuestProfileOverride(slug);
+
   return (
     <>
       <JsonLd
@@ -65,10 +72,24 @@ export default async function GuestPage({
           name: guest.name,
           ...(guest.credential && { jobTitle: guest.credential }),
           description:
-            guest.credential
+            override?.description ??
+            (guest.credential
               ? `${guest.name} — ${guest.credential}. Expert guest on The Roadman Cycling Podcast.`
-              : `${guest.name} — expert guest on The Roadman Cycling Podcast.`,
+              : `${guest.name} — expert guest on The Roadman Cycling Podcast.`),
           url: `https://roadmancycling.com/guests/${slug}`,
+          ...(override?.image && { image: override.image }),
+          // sameAs is the single strongest Knowledge Graph disambiguation
+          // signal — it tells Google our "Greg LeMond" is THE Greg LeMond,
+          // not some other person with the same name.
+          ...(override?.sameAs &&
+            override.sameAs.length > 0 && { sameAs: override.sameAs }),
+          ...(override?.worksFor && {
+            worksFor: {
+              "@type": override.worksFor.type,
+              name: override.worksFor.name,
+              ...(override.worksFor.url && { url: override.worksFor.url }),
+            },
+          }),
           knowsAbout: guest.pillars.map((p) =>
             p === "coaching"
               ? "cycling coaching"
