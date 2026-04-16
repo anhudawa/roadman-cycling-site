@@ -5,6 +5,8 @@ import { segmentTranscript, type TranscriptSegment } from "@/lib/transcript";
 
 interface TranscriptViewerProps {
   transcript: string;
+  /** Optional chapter-title overrides, 1:1 aligned with the emitted segments. */
+  titles?: string[];
   className?: string;
 }
 
@@ -22,6 +24,7 @@ interface TranscriptViewerProps {
  */
 export function TranscriptViewer({
   transcript,
+  titles,
   className = "",
 }: TranscriptViewerProps) {
   const [searchQuery, setSearchQuery] = useState("");
@@ -29,8 +32,8 @@ export function TranscriptViewer({
   const detailsRef = useRef<HTMLDetailsElement>(null);
 
   const segments = useMemo<TranscriptSegment[]>(
-    () => segmentTranscript(transcript),
-    [transcript],
+    () => segmentTranscript(transcript, { titles }),
+    [transcript, titles],
   );
 
   // Derive match count straight from state — no effect needed.

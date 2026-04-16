@@ -88,7 +88,7 @@ export default async function EpisodePage({
   // TranscriptViewer render from the same segmentation — keeping schema
   // `hasPart` anchors in sync with the actual `<h3 id>`s in the DOM.
   const segments = episode.transcript
-    ? segmentTranscript(episode.transcript)
+    ? segmentTranscript(episode.transcript, { titles: episode.segmentTitles })
     : [];
 
   return (
@@ -384,6 +384,7 @@ export default async function EpisodePage({
             {episode.transcript && (
               <TranscriptViewer
                 transcript={episode.transcript}
+                titles={episode.segmentTitles}
                 className="mt-12"
               />
             )}

@@ -42,6 +42,16 @@ interface SegmentOptions {
   minSegments?: number;
   /** Max characters for the generated segment title. Default 70. */
   titleMaxChars?: number;
+  /**
+   * Optional title override for each segment, 1:1 aligned with the order of
+   * segments this function emits. Typically populated by the offline
+   * `scripts/generate-segment-titles.ts` pipeline which calls Claude to
+   * produce human-readable chapter titles. If provided but the length does
+   * not match the number of produced segments, the override is silently
+   * ignored and the heuristic title is used instead — keeps segmentation
+   * stable if chunking changes after titles were generated.
+   */
+  titles?: string[];
 }
 
 /**
@@ -57,6 +67,7 @@ export function segmentTranscript(
     maxSegments = 10,
     minSegments = 3,
     titleMaxChars = 70,
+    titles,
   } = opts;
 
   const clean = transcript.trim();
@@ -67,11 +78,12 @@ export function segmentTranscript(
   // Very short transcripts: return as a single segment.
   if (totalWords < targetWords * 1.5) {
     const body = normaliseTranscriptText(clean);
+    const overrideTitle = titles && titles.length === 1 ? titles[0] : undefined;
     return [
       {
         id: "segment-1",
         index: 1,
-        title: generateSegmentTitle(body, titleMaxChars),
+        title: overrideTitle ?? generateSegmentTitle(body, titleMaxChars),
         text: body,
         wordCount: countWords(body),
       },
@@ -130,6 +142,16 @@ export function segmentTranscript(
       text: body,
       wordCount: countWords(body),
     });
+  }
+
+  // Apply title overrides only if the provided array length matches the
+  // segments we actually produced — otherwise the mapping is ambiguous and
+  // we fall back to the heuristic titles above.
+  if (titles && titles.length === segments.length) {
+    return segments.map((segment, i) => ({
+      ...segment,
+      title: titles[i].trim() || segment.title,
+    }));
   }
 
   return segments;

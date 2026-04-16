@@ -21,6 +21,14 @@ export interface EpisodeFrontmatter {
   seoTitle?: string;
   seoDescription: string;
   transcript?: string;
+  /**
+   * Human-readable chapter titles for each transcript segment, ordered.
+   * Populated by `scripts/generate-segment-titles.ts` (Claude Opus 4.7).
+   * When present, these override the heuristic first-sentence titles
+   * produced by `segmentTranscript()` — length must match segment count
+   * or the overrides are ignored to keep segmentation stable.
+   */
+  segmentTitles?: string[];
 }
 
 export interface EpisodeMeta extends EpisodeFrontmatter {
