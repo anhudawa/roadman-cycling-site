@@ -11,6 +11,7 @@ import {
 import { and, desc, eq, gte, sql as drizzleSql } from "drizzle-orm";
 import { requireAuth } from "@/lib/admin/auth";
 import { TedBioCopy } from "./_components/TedBioCopy";
+import { ScheduleCard } from "./_components/ScheduleCard";
 
 export const dynamic = "force-dynamic";
 
@@ -270,6 +271,8 @@ export default async function TedDashboardPage() {
           </table>
         </div>
       </section>
+
+      <ScheduleCard />
 
       <TedBioCopy />
     </div>
