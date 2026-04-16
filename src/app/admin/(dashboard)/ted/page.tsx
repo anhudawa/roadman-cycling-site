@@ -8,13 +8,97 @@ import {
   tedKillSwitch,
   tedActivityLog,
 } from "@/lib/db/schema";
-import { and, desc, eq, gte } from "drizzle-orm";
+import { and, desc, eq, gte, sql as drizzleSql } from "drizzle-orm";
 import { requireAuth } from "@/lib/admin/auth";
+import { TedBioCopy } from "./_components/TedBioCopy";
 
 export const dynamic = "force-dynamic";
 
 function weekAgoTimestamp(): Date {
   return new Date(Date.now() - 7 * 24 * 60 * 60 * 1000);
+}
+
+interface Check {
+  label: string;
+  status: "ok" | "warn" | "missing";
+  note: string;
+}
+
+function envCheck(name: string, required: boolean): Check {
+  const val = process.env[name];
+  const present = typeof val === "string" && val.length > 0;
+  if (present) return { label: name, status: "ok", note: "present" };
+  return {
+    label: name,
+    status: required ? "missing" : "warn",
+    note: required ? "not set (required)" : "not set (optional)",
+  };
+}
+
+async function dbCheck(): Promise<Check> {
+  try {
+    await db.execute(drizzleSql`SELECT 1`);
+    return { label: "Database reachable", status: "ok", note: "SELECT 1 succeeded" };
+  } catch (err) {
+    return {
+      label: "Database reachable",
+      status: "missing",
+      note: err instanceof Error ? err.message : String(err),
+    };
+  }
+}
+
+async function freshnessCheck(): Promise<Check[]> {
+  const now = Date.now();
+  const results: Check[] = [];
+  try {
+    const latestDraft = await db
+      .select({ createdAt: tedDrafts.createdAt })
+      .from(tedDrafts)
+      .orderBy(desc(tedDrafts.createdAt))
+      .limit(1);
+    if (latestDraft[0]) {
+      const ageHours = (now - latestDraft[0].createdAt.getTime()) / (60 * 60 * 1000);
+      results.push({
+        label: "Latest draft",
+        status: ageHours < 36 ? "ok" : ageHours < 72 ? "warn" : "missing",
+        note: `${Math.round(ageHours)}h ago`,
+      });
+    } else {
+      results.push({
+        label: "Latest draft",
+        status: "warn",
+        note: "no drafts yet — first cron run or shadow-mode catching up",
+      });
+    }
+
+    const latestLog = await db
+      .select({ timestamp: tedActivityLog.timestamp })
+      .from(tedActivityLog)
+      .orderBy(desc(tedActivityLog.timestamp))
+      .limit(1);
+    if (latestLog[0]) {
+      const ageHours = (now - latestLog[0].timestamp.getTime()) / (60 * 60 * 1000);
+      results.push({
+        label: "Latest activity",
+        status: ageHours < 12 ? "ok" : ageHours < 36 ? "warn" : "missing",
+        note: `${Math.round(ageHours)}h ago`,
+      });
+    } else {
+      results.push({
+        label: "Latest activity",
+        status: "warn",
+        note: "no activity logged yet",
+      });
+    }
+  } catch (err) {
+    results.push({
+      label: "Freshness check",
+      status: "missing",
+      note: err instanceof Error ? err.message : String(err),
+    });
+  }
+  return results;
 }
 
 export default async function TedDashboardPage() {
@@ -65,6 +149,16 @@ export default async function TedDashboardPage() {
       : 0;
 
   const kill = ks[0];
+
+  const [dbResult, freshness] = await Promise.all([dbCheck(), freshnessCheck()]);
+  const checks: Check[] = [
+    dbResult,
+    envCheck("ANTHROPIC_API_KEY", true),
+    envCheck("POSTGRES_URL", true),
+    envCheck("RESEND_API_KEY", false),
+    envCheck("TED_ADMIN_ALERT_EMAIL", false),
+    ...freshness,
+  ];
 
   return (
     <div className="space-y-6">
@@ -127,6 +221,37 @@ export default async function TedDashboardPage() {
           </div>
         </section>
       ) : null}
+
+      <section>
+        <h2 className="text-lg font-semibold text-white mb-2">Preflight</h2>
+        <div className="rounded-md bg-white/5 border border-white/10 overflow-hidden">
+          <table className="w-full text-xs">
+            <tbody>
+              {checks.map((c) => (
+                <tr key={c.label} className="border-b border-white/5 last:border-0">
+                  <td className="p-2 text-white w-1/3">{c.label}</td>
+                  <td className="p-2 w-24">
+                    <span
+                      className={`px-2 py-0.5 rounded-full ${
+                        c.status === "ok"
+                          ? "bg-emerald-500/10 text-emerald-300"
+                          : c.status === "warn"
+                            ? "bg-yellow-500/10 text-yellow-300"
+                            : "bg-coral/10 text-coral"
+                      }`}
+                    >
+                      {c.status}
+                    </span>
+                  </td>
+                  <td className="p-2 text-foreground-subtle">{c.note}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <TedBioCopy />
     </div>
   );
 }
