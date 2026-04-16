@@ -27,11 +27,19 @@ export default async function TedLogPage({
 
   return (
     <div className="space-y-4">
-      <div>
-        <h1 className="text-2xl font-semibold text-white">Ted — activity log</h1>
-        <p className="text-sm text-foreground-subtle">
-          Last 200 events. Filter via ?job= or ?level= in the URL.
-        </p>
+      <div className="flex items-baseline justify-between">
+        <div>
+          <h1 className="text-2xl font-semibold text-white">Ted — activity log</h1>
+          <p className="text-sm text-foreground-subtle">
+            Last 200 events. Filter via ?job= or ?level= in the URL.
+          </p>
+        </div>
+        <a
+          href="/api/admin/ted/log/export?limit=5000"
+          className="text-sm rounded-md bg-white/10 px-3 py-1.5 text-white hover:bg-white/15"
+        >
+          Export JSONL
+        </a>
       </div>
 
       <div className="rounded-md bg-white/5 border border-white/10 overflow-x-auto">

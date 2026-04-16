@@ -2,6 +2,7 @@ import { db } from "@/lib/db";
 import { tedActiveMembers } from "@/lib/db/schema";
 import { desc } from "drizzle-orm";
 import { requireAuth } from "@/lib/admin/auth";
+import { MembersUploader } from "./_components/MembersUploader";
 
 export const dynamic = "force-dynamic";
 
@@ -19,13 +20,16 @@ export default async function TedMembersPage() {
       <div>
         <h1 className="text-2xl font-semibold text-white">Ted — active members</h1>
         <p className="text-sm text-foreground-subtle">
-          Members Ted can tag in thread-surface replies. Seeded via
+          Members Ted can tag in thread-surface replies. Upsert below, or seed
+          via
           <code className="mx-1 px-1 rounded bg-white/5 text-xs">
             agents/ted/scripts/seed-active-members.ts
           </code>
-          or populated by the Playwright scanner once live.
+          for large imports.
         </p>
       </div>
+
+      <MembersUploader />
 
       {rows.length === 0 ? (
         <div className="rounded-md bg-yellow-500/5 border border-yellow-500/20 p-4 text-sm text-yellow-300">
