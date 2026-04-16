@@ -106,12 +106,12 @@ export default async function BlogPostPage({
             "@id": `https://roadmancycling.com/blog/${slug}`,
           },
           keywords: post.keywords.join(", "),
-          ...(post.answerCapsule && {
-            speakable: {
-              "@type": "SpeakableSpecification",
-              cssSelector: [".answer-capsule"],
-            },
-          }),
+          speakable: {
+            "@type": "SpeakableSpecification",
+            cssSelector: post.answerCapsule
+              ? ["h1", ".answer-capsule"]
+              : ["h1", ".prose-roadman > p:first-of-type"],
+          },
           ...(post.featuredImage && {
             image: {
               "@type": "ImageObject",

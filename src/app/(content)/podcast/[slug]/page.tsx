@@ -11,6 +11,7 @@ import { PlayButton } from "@/components/features/podcast/PlayButton";
 import { RelatedContent } from "@/components/features/RelatedContent";
 import { RelatedEpisodes } from "@/components/features/podcast/RelatedEpisodes";
 import { EmailCapture } from "@/components/features/conversion/EmailCapture";
+import { mdxComponents } from "@/components/mdx/MDXComponents";
 
 export async function generateStaticParams() {
   return getAllEpisodeSlugs().map((slug) => ({ slug }));
@@ -119,6 +120,16 @@ export default async function EpisodePage({
               description: episode.guestCredential,
             },
           }),
+          /**
+           * SpeakableSpecification tells Google Assistant / Siri / smart
+           * speakers which parts of the page to read aloud in answer-style
+           * responses. The hero title + byline + episode description
+           * container are the most quotable bits.
+           */
+          speakable: {
+            "@type": "SpeakableSpecification",
+            cssSelector: ["h1", ".prose-episode p:first-of-type"],
+          },
         }}
       />
       <JsonLd
@@ -328,7 +339,7 @@ export default async function EpisodePage({
             <article className="prose-roadman prose-episode">
               <MDXRemote
                 source={episode.content}
-                components={{ AICitationBlock }}
+                components={{ ...mdxComponents, AICitationBlock }}
               />
             </article>
 

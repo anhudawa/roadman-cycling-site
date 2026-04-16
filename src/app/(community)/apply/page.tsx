@@ -31,6 +31,13 @@ const heroStats = [
 
 const communityWins = [
   {
+    name: "David Lundy",
+    title: "Back racing after a crash",
+    quote:
+      "I signed up for Not Done Yet after a bad accident in March 2025 and was struggling to get back to the same level. I was starting to lose my enthusiasm for riding my bike. Four months later I have my mojo back and I'm really enjoying riding again. Just signed up for my first race this coming Tuesday. Brilliant way to get fitness back.",
+    stat: "Back racing in 4 months",
+  },
+  {
     name: "Blair Corey",
     title: "20 minute effort retest",
     quote:
@@ -420,9 +427,54 @@ export default function Cohort2Page() {
               </div>
             </ScrollReveal>
 
+            {/* What happens next — reduces apprehension before the form.
+                Prospects are much more likely to submit when they know a
+                real human (Anthony) is on the other end and what the
+                concrete next step looks like. */}
+            <ScrollReveal direction="up" delay={0.05}>
+              <div className="mb-10 grid grid-cols-1 sm:grid-cols-3 gap-3 sm:gap-4 max-w-2xl mx-auto">
+                {[
+                  {
+                    n: "01",
+                    t: "Submit your application",
+                    d: "Takes under 2 minutes. Four questions, no credit card.",
+                  },
+                  {
+                    n: "02",
+                    t: "Anthony reviews it personally",
+                    d: "Usually within 48 hours. You get a reply from Anthony, not an autoresponder.",
+                  },
+                  {
+                    n: "03",
+                    t: "Start your 7-day trial",
+                    d: "Onboarding call, your first plan, full access to the community. Cancel inside the week if it isn't for you.",
+                  },
+                ].map((step) => (
+                  <div
+                    key={step.n}
+                    className="rounded-xl border border-white/10 bg-white/[0.02] p-5 text-left"
+                  >
+                    <p className="font-heading text-coral text-sm tracking-widest mb-2">
+                      STEP {step.n}
+                    </p>
+                    <p className="font-heading text-off-white text-base leading-tight mb-2">
+                      {step.t.toUpperCase()}
+                    </p>
+                    <p className="text-foreground-muted text-xs leading-relaxed">
+                      {step.d}
+                    </p>
+                  </div>
+                ))}
+              </div>
+            </ScrollReveal>
+
             <ScrollReveal direction="up" delay={0.1}>
               <div className="bg-white/[0.03] rounded-2xl border border-white/10 p-8 md:p-12 backdrop-blur-sm">
                 <CohortApplicationForm />
+                <p className="text-center text-foreground-subtle text-xs mt-6">
+                  Your application goes straight to Anthony. No spam, no
+                  upsell emails &mdash; just a personal reply.
+                </p>
               </div>
             </ScrollReveal>
           </Container>
