@@ -1,4 +1,3 @@
-import Link from "next/link";
 import { db } from "@/lib/db";
 import {
   tedDrafts,
@@ -200,30 +199,11 @@ export default async function TedDashboardPage() {
 
   return (
     <div className="space-y-6">
-      <div className="flex items-baseline justify-between">
-        <div>
-          <h1 className="text-2xl font-semibold text-white">Ted</h1>
-          <p className="text-sm text-foreground-subtle">
-            Community agent for the free Clubhouse. Drafts → human review → posts.
-          </p>
-        </div>
-        <div className="flex gap-2">
-          <Link href="/admin/ted/queue" className="text-sm rounded-md bg-white/10 px-3 py-1.5 text-white hover:bg-white/15">
-            Review queue
-          </Link>
-          <Link href="/admin/ted/welcomes" className="text-sm rounded-md bg-white/10 px-3 py-1.5 text-white hover:bg-white/15">
-            Welcomes
-          </Link>
-          <Link href="/admin/ted/log" className="text-sm rounded-md bg-white/10 px-3 py-1.5 text-white hover:bg-white/15">
-            Activity log
-          </Link>
-          <Link href="/admin/ted/members" className="text-sm rounded-md bg-white/10 px-3 py-1.5 text-white hover:bg-white/15">
-            Members
-          </Link>
-          <Link href="/admin/ted/settings" className="text-sm rounded-md bg-white/10 px-3 py-1.5 text-white hover:bg-white/15">
-            Settings
-          </Link>
-        </div>
+      <div>
+        <h1 className="text-2xl font-semibold text-white">Ted</h1>
+        <p className="text-sm text-foreground-subtle">
+          Community agent for the free Clubhouse. Drafts → human review → posts.
+        </p>
       </div>
 
       {kill?.paused ? (
