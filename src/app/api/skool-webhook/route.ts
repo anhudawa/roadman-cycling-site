@@ -3,6 +3,7 @@ import { upsertOnSkoolJoin } from "@/lib/admin/subscribers-store";
 import { db } from "@/lib/db";
 import { tedWelcomeQueue } from "@/lib/db/schema";
 import { eq } from "drizzle-orm";
+import { classifyPersona } from "@/lib/skool/persona";
 
 const BEEHIIV_API_KEY = process.env.BEEHIIV_API_KEY;
 const BEEHIIV_PUBLICATION_ID = process.env.BEEHIIV_PUBLICATION_ID;
@@ -29,55 +30,6 @@ const SKOOL_WEBHOOK_SECRET = process.env.SKOOL_WEBHOOK_SECRET;
  * Setup: In Skool admin → Settings → Webhooks → Add this URL:
  *   https://roadmancycling.com/api/skool-webhook
  */
-
-// ── Persona classification ─────────────────────────────────
-
-type Persona = "plateau" | "comeback" | "event-prep" | "listener";
-
-const PERSONA_KEYWORDS: Record<Persona, string[]> = {
-  plateau: [
-    "plateau", "stuck", "not improving", "stagnant", "same level",
-    "can't improve", "hit a wall", "no progress", "flatlined", "stalled",
-    "not getting faster", "lost motivation", "going nowhere",
-  ],
-  comeback: [
-    "comeback", "coming back", "returning", "injury", "time off",
-    "getting back", "break from cycling", "haven't ridden", "used to ride",
-    "restart", "back into", "off the bike", "rehab", "recovery from",
-  ],
-  "event-prep": [
-    "event", "race", "sportive", "gran fondo", "training plan",
-    "preparing for", "first race", "goal event", "target event",
-    "etape", "ironman", "triathlon", "century", "audax", "ultra",
-    "competition", "time trial",
-  ],
-  // listener is the default — no keywords needed
-  listener: [],
-};
-
-function classifyPersona(answers: string[]): Persona {
-  const combined = answers.join(" ").toLowerCase();
-
-  // Score each persona by keyword matches
-  let bestPersona: Persona = "listener";
-  let bestScore = 0;
-
-  for (const [persona, keywords] of Object.entries(PERSONA_KEYWORDS)) {
-    if (persona === "listener") continue;
-    let score = 0;
-    for (const keyword of keywords) {
-      if (combined.includes(keyword)) {
-        score += 1;
-      }
-    }
-    if (score > bestScore) {
-      bestScore = score;
-      bestPersona = persona as Persona;
-    }
-  }
-
-  return bestPersona;
-}
 
 // ── Beehiiv tagging ─────────────────────────────────────────
 
