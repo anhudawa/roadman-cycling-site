@@ -3,10 +3,30 @@
 import { useState, useEffect } from "react";
 import Link from "next/link";
 import Image from "next/image";
+import { usePathname } from "next/navigation";
 import { motion, AnimatePresence, useScroll, useSpring, useTransform, useMotionValueEvent } from "framer-motion";
 import { NAV_ITEMS } from "@/types";
 import { Container } from "./Container";
 import { SearchTrigger } from "@/components/features/search/SearchTrigger";
+
+/**
+ * Pages where we show APPLY (high-intent CTA) instead of JOIN FREE
+ * in the header. These are revenue-adjacent pages where leakage to the
+ * free community is costing conversions.
+ */
+const REVENUE_PATH_PREFIXES = [
+  "/coaching",
+  "/apply",
+  "/about",
+  "/community/not-done-yet",
+];
+
+function shouldShowApplyCta(pathname: string | null): boolean {
+  if (!pathname) return false;
+  return REVENUE_PATH_PREFIXES.some(
+    (prefix) => pathname === prefix || pathname.startsWith(prefix + "/"),
+  );
+}
 
 /**
  * Header with:
@@ -18,6 +38,11 @@ import { SearchTrigger } from "@/components/features/search/SearchTrigger";
 export function Header() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const pathname = usePathname();
+  const showApply = shouldShowApplyCta(pathname);
+  const ctaHref = showApply ? "/apply" : "/community/clubhouse";
+  const ctaLabel = showApply ? "APPLY" : "JOIN FREE";
+  const ctaLabelMobile = showApply ? "APPLY NOW" : "JOIN THE CLUBHOUSE";
 
   // Scroll progress — single listener for both progress bar and header style
   const { scrollY, scrollYProgress } = useScroll();
@@ -54,14 +79,17 @@ export function Header() {
 
       <header
         className={`
-          fixed top-0 left-0 right-0 z-50 transition-all
+          fixed left-0 right-0 z-50 transition-all
           ${
             isScrolled
               ? "bg-charcoal/95 backdrop-blur-md border-b border-white/5 py-3"
               : "bg-transparent py-5"
           }
         `}
-        style={{ transitionDuration: "var(--duration-normal)" }}
+        style={{
+          transitionDuration: "var(--duration-normal)",
+          top: "var(--cohort-banner-height, 0px)",
+        }}
       >
         <Container>
           <nav aria-label="Main navigation" className="flex items-center justify-between">
@@ -157,7 +185,7 @@ export function Header() {
                 </svg>
               </Link>
               <Link
-                href="/community/clubhouse"
+                href={ctaHref}
                 className="
                   font-heading text-sm tracking-wider
                   bg-coral hover:bg-coral-hover
@@ -166,7 +194,7 @@ export function Header() {
                 "
                 style={{ transitionDuration: "var(--duration-fast)" }}
               >
-                JOIN FREE
+                {ctaLabel}
               </Link>
             </div>
 
@@ -252,7 +280,7 @@ export function Header() {
                 }}
               >
                 <Link
-                  href="/community/clubhouse"
+                  href={ctaHref}
                   className="
                     mt-4 font-heading text-xl tracking-wider
                     bg-coral hover:bg-coral-hover
@@ -262,7 +290,7 @@ export function Header() {
                   onClick={() => setIsMobileMenuOpen(false)}
                   style={{ transitionDuration: "var(--duration-fast)" }}
                 >
-                  JOIN THE CLUBHOUSE
+                  {ctaLabelMobile}
                 </Link>
               </motion.div>
             </nav>
