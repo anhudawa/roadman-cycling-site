@@ -15,6 +15,7 @@ import { ScheduleCard } from "./_components/ScheduleCard";
 import { CostTrendChart, type CostPoint } from "./_components/CostTrendChart";
 import { WorkflowRuns } from "./_components/WorkflowRuns";
 import { MigrationBanner } from "./_components/MigrationBanner";
+import { SeedSamplesButton } from "./_components/SeedSamplesButton";
 
 export const dynamic = "force-dynamic";
 
@@ -328,6 +329,8 @@ export default async function TedDashboardPage() {
           </table>
         </div>
       </section>
+
+      <SeedSamplesButton />
 
       <ScheduleCard />
 
