@@ -157,13 +157,28 @@ export const contactSubmissions = pgTable(
     message: text("message").notNull(),
     readAt: timestamp("read_at", { withTimezone: true }),
     assignedTo: text("assigned_to"),
+    // new | in_progress | replied | follow_up | closed
+    status: text("status").notNull().default("new"),
     createdAt: timestamp("created_at", { withTimezone: true }).notNull().defaultNow(),
   },
   (table) => [
     index("contact_submissions_created_at_idx").on(table.createdAt),
     index("contact_submissions_read_at_idx").on(table.readAt),
+    index("contact_submissions_status_idx").on(table.status),
   ]
 );
+
+export const INBOX_STAGES = [
+  "new",
+  "in_progress",
+  "replied",
+  "follow_up",
+  "closed",
+] as const;
+export type InboxStage = (typeof INBOX_STAGES)[number];
+export function isInboxStage(x: string): x is InboxStage {
+  return (INBOX_STAGES as readonly string[]).includes(x);
+}
 
 // ── Cohort Applications ─────────────────────────────────
 export const cohortApplications = pgTable(
