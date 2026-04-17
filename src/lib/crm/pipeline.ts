@@ -5,6 +5,7 @@ export const APPLICATION_STAGES = [
   "offered",
   "accepted",
   "rejected",
+  "closed",
 ] as const;
 
 export type ApplicationStage = (typeof APPLICATION_STAGES)[number];
@@ -16,6 +17,7 @@ export const STAGE_LABELS: Record<ApplicationStage, string> = {
   offered: "Offered",
   accepted: "Accepted",
   rejected: "Rejected",
+  closed: "Closed",
 };
 
 export interface StageColor {
@@ -54,6 +56,11 @@ export const STAGE_COLORS: Record<ApplicationStage, StageColor> = {
     badge: "bg-red-500/10 text-red-300/80 border-red-500/20",
     ring: "ring-red-500/30",
     dot: "bg-red-400/70",
+  },
+  closed: {
+    badge: "bg-white/5 text-foreground-subtle border-white/10",
+    ring: "ring-white/20",
+    dot: "bg-white/40",
   },
 };
 
