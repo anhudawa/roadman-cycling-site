@@ -285,8 +285,10 @@ export function PipelineBoard({ initialStages, cohorts, initialCohort }: Props) 
                 {cards.map((app) => {
                   const dragging = dragId === app.id;
                   return (
-                    <button
+                    <div
                       key={app.id}
+                      role="button"
+                      tabIndex={0}
                       draggable
                       onDragStart={(e) => {
                         setDragId(app.id);
@@ -300,6 +302,12 @@ export function PipelineBoard({ initialStages, cohorts, initialCohort }: Props) 
                         setHoverStage(null);
                       }}
                       onClick={() => openCard(app)}
+                      onKeyDown={(e) => {
+                        if (e.key === "Enter" || e.key === " ") {
+                          e.preventDefault();
+                          openCard(app);
+                        }
+                      }}
                       className={`block w-full text-left p-3 rounded-lg border border-white/5 bg-white/[0.02] hover:border-coral/30 transition cursor-grab active:cursor-grabbing ${
                         dragging ? `opacity-40 scale-[0.98] ring-1 ${color.ring}` : ""
                       }`}
@@ -382,7 +390,7 @@ export function PipelineBoard({ initialStages, cohorts, initialCohort }: Props) 
                           )}
                         </span>
                       </div>
-                    </button>
+                    </div>
                   );
                 })}
               </div>
