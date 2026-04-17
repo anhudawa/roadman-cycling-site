@@ -642,8 +642,66 @@ export default function TriathlonCoachingPage() {
           </Container>
         </Section>
 
-        {/* FAQ */}
+        {/* Blog cluster — surfaces triathlon-specific articles for internal
+            link equity from the pillar page to its cluster content. */}
         <Section background="charcoal">
+          <Container width="narrow">
+            <ScrollReveal direction="up" className="text-center mb-10">
+              <h2
+                className="font-heading text-off-white mb-4"
+                style={{ fontSize: "var(--text-section)" }}
+              >
+                FROM THE BLOG
+              </h2>
+              <p className="text-foreground-muted max-w-xl mx-auto">
+                Deep dives into bike-leg training, pacing, and race
+                preparation for triathletes.
+              </p>
+            </ScrollReveal>
+
+            <div className="grid md:grid-cols-2 gap-4">
+              {[
+                {
+                  href: "/blog/bike-leg-of-triathlon-why-age-groupers-get-it-wrong",
+                  title: "The Bike Leg of Triathlon: Why Most Age-Groupers Get It Wrong",
+                },
+                {
+                  href: "/blog/ironman-bike-training-plan-16-weeks",
+                  title: "Ironman Bike Training Plan: 16-Week Build",
+                },
+                {
+                  href: "/blog/70-3-bike-training-plan-12-weeks",
+                  title: "70.3 Bike Training Plan: 12 Weeks to a Faster Split",
+                },
+                {
+                  href: "/blog/how-to-pace-the-bike-in-a-half-ironman",
+                  title: "How to Pace the Bike in a Half Ironman",
+                },
+                {
+                  href: "/blog/brick-workouts-for-ironman",
+                  title: "Brick Workouts for Ironman: 10 Sessions That Work",
+                },
+                {
+                  href: "/blog/what-wattage-should-you-ride-in-an-ironman",
+                  title: "What Wattage Should You Ride in an Ironman?",
+                },
+              ].map((article) => (
+                <Link
+                  key={article.href}
+                  href={article.href}
+                  className="block p-4 rounded-lg bg-white/5 hover:bg-coral/10 border border-white/5 hover:border-coral/30 transition-all group"
+                >
+                  <p className="font-heading text-sm text-off-white group-hover:text-coral transition-colors tracking-wide">
+                    {article.title.toUpperCase()}
+                  </p>
+                </Link>
+              ))}
+            </div>
+          </Container>
+        </Section>
+
+        {/* FAQ */}
+        <Section background="deep-purple" grain>
           <Container width="narrow">
             <ScrollReveal direction="up" className="text-center mb-12">
               <h2
