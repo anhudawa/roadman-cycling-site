@@ -100,6 +100,7 @@ export function InboxPipelineBoard({ initialStages }: Props) {
   const [error, setError] = useState<string | null>(null);
   const [ownerMenuFor, setOwnerMenuFor] = useState<number | null>(null);
   const [assigningId, setAssigningId] = useState<number | null>(null);
+  const [deletingId, setDeletingId] = useState<number | null>(null);
 
   useEffect(() => {
     if (ownerMenuFor === null) return;
@@ -193,6 +194,37 @@ export function InboxPipelineBoard({ initialStages }: Props) {
       window.setTimeout(() => setError(null), 4000);
     } finally {
       setAssigningId(null);
+    }
+  }
+
+  async function deleteCard(id: number) {
+    setDeletingId(id);
+    const prev = stages;
+    setStages((s) => {
+      const next: InboxStageMap = { ...s };
+      for (const stage of INBOX_STAGES) {
+        next[stage] = s[stage].filter((r) => r.id !== id);
+      }
+      return next;
+    });
+    setDetail((d) => (d && d.id === id ? null : d));
+    try {
+      const res = await fetch("/api/admin/inbox", {
+        method: "DELETE",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ id }),
+      });
+      if (!res.ok) {
+        const data = await res.json().catch(() => ({}));
+        throw new Error(data.error ?? `HTTP ${res.status}`);
+      }
+      setError(null);
+    } catch (err) {
+      setStages(prev);
+      setError(err instanceof Error ? err.message : "Failed to delete");
+      window.setTimeout(() => setError(null), 4000);
+    } finally {
+      setDeletingId(null);
     }
   }
 
@@ -399,7 +431,14 @@ export function InboxPipelineBoard({ initialStages }: Props) {
         })}
       </div>
 
-      {detail && <InboxDetailModal sub={detail} onClose={() => setDetail(null)} />}
+      {detail && (
+        <InboxDetailModal
+          sub={detail}
+          onClose={() => setDetail(null)}
+          onDelete={() => deleteCard(detail.id)}
+          deleting={deletingId === detail.id}
+        />
+      )}
     </div>
   );
 }
@@ -407,9 +446,13 @@ export function InboxPipelineBoard({ initialStages }: Props) {
 function InboxDetailModal({
   sub,
   onClose,
+  onDelete,
+  deleting,
 }: {
   sub: InboxSubmission;
   onClose: () => void;
+  onDelete: () => void;
+  deleting: boolean;
 }) {
   const submitted = new Date(sub.createdAt).toLocaleString("en-GB", {
     day: "numeric",
@@ -418,6 +461,7 @@ function InboxDetailModal({
     hour: "2-digit",
     minute: "2-digit",
   });
+  const [confirming, setConfirming] = useState(false);
 
   return (
     <div
@@ -443,6 +487,34 @@ function InboxDetailModal({
           >
             Reply
           </a>
+          {confirming ? (
+            <>
+              <button
+                type="button"
+                onClick={onDelete}
+                disabled={deleting}
+                className="text-xs px-3 py-1.5 rounded-lg bg-red-500/20 text-red-400 border border-red-500/30 hover:bg-red-500/30 disabled:opacity-50 font-heading tracking-wider uppercase"
+              >
+                {deleting ? "Deleting…" : "Confirm"}
+              </button>
+              <button
+                type="button"
+                onClick={() => setConfirming(false)}
+                disabled={deleting}
+                className="text-xs px-2 py-1.5 text-foreground-subtle hover:text-off-white"
+              >
+                Cancel
+              </button>
+            </>
+          ) : (
+            <button
+              type="button"
+              onClick={() => setConfirming(true)}
+              className="text-xs px-3 py-1.5 rounded-lg border border-white/10 text-foreground-subtle hover:text-red-400 hover:border-red-400/30 font-heading tracking-wider uppercase"
+            >
+              Delete
+            </button>
+          )}
           <button
             type="button"
             onClick={onClose}
