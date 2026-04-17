@@ -42,7 +42,7 @@ export function HeroSection() {
   const textOpacity = useTransform(smoothProgress, [0, 0.6], [1, 0]);
   const bgY = useTransform(smoothProgress, [0, 1], [0, 200]);
   const auroraY = useTransform(smoothProgress, [0, 1], [0, 100]);
-  const overlayOpacity = useTransform(smoothProgress, [0, 0.5], [0.35, 0.85]);
+  const overlayOpacity = useTransform(smoothProgress, [0, 0.5], [0.2, 0.8]);
 
   useMotionValueEvent(scrollYProgress, "change", (v) => {
     setScrolled(v > 0.05);
@@ -59,15 +59,13 @@ export function HeroSection() {
           src="/images/about/anthony-podcast-promo.jpg"
           alt=""
           fill
-          className="object-cover opacity-[0.38]"
+          className="object-cover opacity-[0.6]"
           style={{ objectPosition: "center 30%" }}
           sizes="100vw"
           priority
         />
-        <div className="absolute inset-0 bg-gradient-to-b from-charcoal/80 via-charcoal/50 to-transparent" />
-        {/* Radial vignette to blend edges */}
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center_top,transparent_30%,rgba(37,37,38,0.9)_75%,rgb(37,37,38)_100%)]" />
-        {/* Grain texture */}
+        <div className="absolute inset-0 bg-gradient-to-b from-charcoal/60 via-transparent to-transparent" />
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,transparent_50%,rgba(37,37,38,0.7)_85%,rgb(37,37,38)_100%)]" />
         <div className="absolute inset-0 grain-overlay" />
       </motion.div>
 
