@@ -13,6 +13,10 @@ import {
   getAllPersonaSlugs,
   type PersonaContent,
 } from "@/lib/personas";
+import {
+  getHeroTestimonial,
+  getTestimonialsForPersona,
+} from "@/lib/testimonials";
 import { getPostBySlug } from "@/lib/blog";
 import { getEpisodeBySlug } from "@/lib/podcast";
 
@@ -61,6 +65,14 @@ export default async function PersonaPage({
   const episodes = persona.podcastSlugs
     .map((s) => getEpisodeBySlug(s))
     .filter((e): e is NonNullable<typeof e> => e !== null);
+
+  // Hero testimonial = the one-with-stat that matches this persona,
+  // pulled from the central library. Extra testimonials below feed
+  // the social proof wall further down the page.
+  const heroTestimonial = getHeroTestimonial(persona.slug);
+  const wallTestimonials = getTestimonialsForPersona(persona.slug, 6).filter(
+    (t) => t.name !== heroTestimonial.name,
+  );
 
   return (
     <>
@@ -126,24 +138,43 @@ export default async function PersonaPage({
           </Container>
         </Section>
 
-        {/* Testimonial — person who matches the persona */}
+        {/* Hero testimonial — single punchy quote with stat pull-out */}
         <Section background="charcoal" className="!py-14">
           <Container width="narrow">
             <ScrollReveal direction="up">
-              <div className="rounded-2xl border border-coral/20 bg-gradient-to-br from-coral/10 via-deep-purple/30 to-deep-purple/50 px-6 py-8 md:px-10 md:py-10">
+              <div className="rounded-2xl border border-coral/20 bg-gradient-to-br from-coral/10 via-deep-purple/30 to-deep-purple/50 px-6 py-7 md:px-10 md:py-8">
                 <p className="font-heading text-coral text-xs tracking-widest mb-4 text-center">
                   SOMEONE LIKE YOU
                 </p>
-                <p className="text-off-white italic text-lg md:text-xl leading-relaxed text-center mb-5">
-                  &ldquo;{persona.testimonial.quote}&rdquo;
-                </p>
-                <p className="text-foreground-subtle text-sm text-center">
-                  <span className="text-off-white font-medium">
-                    {persona.testimonial.name}
-                  </span>
-                  <span className="mx-2">&middot;</span>
-                  {persona.testimonial.detail}
-                </p>
+                <div className="flex flex-col md:flex-row md:items-center gap-5 md:gap-8">
+                  {heroTestimonial.stat && (
+                    <div className="shrink-0 text-center md:text-left md:border-r md:border-white/10 md:pr-7">
+                      <p
+                        className="font-heading text-coral leading-none"
+                        style={{ fontSize: "clamp(2.5rem, 5vw, 3.5rem)" }}
+                      >
+                        {heroTestimonial.stat}
+                      </p>
+                      {heroTestimonial.statLabel && (
+                        <p className="text-xs font-body tracking-widest text-foreground-subtle uppercase mt-1">
+                          {heroTestimonial.statLabel}
+                        </p>
+                      )}
+                    </div>
+                  )}
+                  <div className="flex-1">
+                    <p className="text-off-white italic text-base md:text-lg leading-relaxed mb-4">
+                      &ldquo;{heroTestimonial.quote}&rdquo;
+                    </p>
+                    <p className="text-foreground-subtle text-sm">
+                      <span className="text-off-white font-medium">
+                        {heroTestimonial.name}
+                      </span>
+                      <span className="mx-2">&middot;</span>
+                      {heroTestimonial.detail}
+                    </p>
+                  </div>
+                </div>
               </div>
             </ScrollReveal>
           </Container>
@@ -304,6 +335,60 @@ export default async function PersonaPage({
                   </div>
                 </div>
               )}
+            </Container>
+          </Section>
+        )}
+
+        {/* Testimonial wall — 6 more quotes tagged for this persona */}
+        {wallTestimonials.length > 0 && (
+          <Section background="charcoal" className="section-glow-coral">
+            <Container>
+              <ScrollReveal direction="up" className="text-center mb-10">
+                <p className="font-heading text-coral text-xs tracking-widest mb-3">
+                  MORE CYCLISTS LIKE YOU
+                </p>
+                <h2
+                  className="font-heading text-off-white"
+                  style={{ fontSize: "var(--text-section)" }}
+                >
+                  WHAT ACTUALLY HAPPENED FOR THEM.
+                </h2>
+              </ScrollReveal>
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 max-w-6xl mx-auto">
+                {wallTestimonials.map((t, i) => (
+                  <ScrollReveal
+                    key={t.name}
+                    direction="up"
+                    delay={i * 0.05}
+                  >
+                    <div className="h-full flex flex-col rounded-xl border border-white/5 bg-white/[0.03] hover:bg-white/[0.05] transition-colors p-5 md:p-6">
+                      {t.stat && (
+                        <div className="inline-flex items-center self-start mb-3 gap-2 px-3 py-1 rounded-full bg-coral/10 border border-coral/20">
+                          <span className="text-coral font-heading text-sm">
+                            {t.stat}
+                          </span>
+                          {t.statLabel && (
+                            <span className="text-coral/70 text-[10px] font-body tracking-widest uppercase">
+                              {t.statLabel}
+                            </span>
+                          )}
+                        </div>
+                      )}
+                      <p className="text-off-white italic text-sm leading-relaxed mb-4 flex-1">
+                        &ldquo;{t.shortQuote ?? t.quote}&rdquo;
+                      </p>
+                      <div className="border-t border-white/5 pt-3">
+                        <p className="text-off-white font-medium text-sm">
+                          {t.name}
+                        </p>
+                        <p className="text-foreground-subtle text-xs mt-0.5">
+                          {t.detail}
+                        </p>
+                      </div>
+                    </div>
+                  </ScrollReveal>
+                ))}
+              </div>
             </Container>
           </Section>
         )}

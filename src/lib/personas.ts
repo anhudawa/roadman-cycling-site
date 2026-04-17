@@ -17,12 +17,6 @@ import { type ContentPillar } from "@/types";
 
 export type PersonaSlug = "plateau" | "event" | "comeback" | "listener";
 
-export interface PersonaTestimonial {
-  quote: string;
-  name: string;
-  detail: string;
-}
-
 export interface PersonaContent {
   slug: PersonaSlug;
   /** Short URL label, e.g. "plateau" */
@@ -36,8 +30,6 @@ export interface PersonaContent {
   /** Meta title & description for SEO */
   metaTitle: string;
   metaDescription: string;
-  /** Primary testimonial — a real member whose story matches this persona */
-  testimonial: PersonaTestimonial;
   /** 3 hand-picked blog post slugs (not auto-filtered by pillar) */
   blogSlugs: string[];
   /** 2 hand-picked podcast episode slugs */
@@ -72,12 +64,6 @@ export const PERSONAS: Record<PersonaSlug, PersonaContent> = {
       "Stuck at a Cycling Plateau? Here's What's Actually Going On (2026)",
     metaDescription:
       "If your FTP hasn't moved in months despite consistent training, the problem isn't effort. It's intensity distribution. Here's the Seiler-backed fix, plus curated resources from the Roadman Podcast.",
-    testimonial: {
-      quote:
-        "I was an average sportive rider who had plateaued. Roadman custom built a plan to achieve my goals. I've gotten much more out of it than I ever imagined.",
-      name: "Damien Maloney",
-      detail: "Ireland · FTP 205w → 295w",
-    },
     blogSlugs: [
       "polarised-training-cycling-guide",
       "stephen-seiler-research-polarised-training-lessons",
@@ -112,12 +98,6 @@ export const PERSONAS: Record<PersonaSlug, PersonaContent> = {
       "Training for a Specific Cycling Event? Build the Right Plan (2026)",
     metaDescription:
       "Structured training for sportives, fondos, and races. Periodisation, peaking, taper — the exact framework amateur cyclists use when they've got a target date and can't afford to wing it.",
-    testimonial: {
-      quote:
-        "From Cat 3 to Cat 1. The structured approach changed everything about how I train and race.",
-      name: "Daniel Stone",
-      detail: "Roadman Cycling Club · Category jump",
-    },
     blogSlugs: [
       "cycling-periodisation-plan-guide",
       "cycling-tapering-guide",
@@ -152,12 +132,6 @@ export const PERSONAS: Record<PersonaSlug, PersonaContent> = {
       "Coming Back to Cycling After a Break? Rebuild Without Wasting Months",
     metaDescription:
       "How to rebuild cycling fitness after a break — injury, life, burnout. Evidence-based return-to-riding protocols, body composition, strength, and the mental side of comeback.",
-    testimonial: {
-      quote:
-        "I signed up for Not Done Yet after a bad accident in March 2025 and was starting to lose my enthusiasm. Four months later, I've got my mojo back. Just signed up for my first race.",
-      name: "David Lundy",
-      detail: "Comeback after crash · Back racing in 4 months",
-    },
     blogSlugs: [
       "cycling-returning-after-break",
       "cycling-over-40-getting-faster",
@@ -192,12 +166,6 @@ export const PERSONAS: Record<PersonaSlug, PersonaContent> = {
       "Train Like the Pros: The Essentials Playlist from the Roadman Podcast",
     metaDescription:
       "The core cycling concepts from 1,400+ Roadman Podcast episodes — polarised training, periodisation, nutrition, recovery — curated into one starting point. Plus what to do next.",
-    testimonial: {
-      quote:
-        "From 113kg to 97kg. The structured approach to training and nutrition changed everything. I'm faster, lighter, and actually enjoying the process.",
-      name: "Chris O'Connor",
-      detail: "Ireland · Lost 16kg",
-    },
     blogSlugs: [
       "is-a-cycling-coach-worth-it",
       "what-does-a-cycling-coach-do",

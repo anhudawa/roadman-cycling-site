@@ -725,9 +725,17 @@ export default function CoachingPage() {
               7-day free trial. Five pillars. Personalised to your goals, your
               schedule, and your life. Cancel anytime.
             </p>
-            <Button href="/apply" size="lg" className="bg-off-white text-coral hover:bg-off-white/90">
+            {/* Inline coloured Link instead of Button: the Button variants
+                always set a bg-* class that collides with our overrides at
+                equal specificity in Tailwind v4, making the button
+                invisible-until-hover on the coral section. */}
+            <Link
+              href="/apply"
+              className="inline-flex items-center justify-center gap-2 font-heading tracking-wider uppercase rounded-md transition-all cursor-pointer active:scale-[0.97] active:duration-75 px-8 md:px-10 py-4 text-lg bg-off-white text-coral hover:bg-off-white/90 shadow-lg"
+              style={{ transitionDuration: "var(--duration-fast)" }}
+            >
               Apply Now
-            </Button>
+            </Link>
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mt-6 text-off-white/60 text-sm">
               <span>$195/month</span>
               <span className="hidden sm:inline">&middot;</span>
