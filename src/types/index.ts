@@ -130,6 +130,7 @@ export const NAV_ITEMS: NavItem[] = [
     children: [
       { label: "Apply for Not Done Yet", href: "/apply" },
       { label: "How Coaching Works", href: "/coaching" },
+      { label: "Not Done Yet Coaching", href: "/community/not-done-yet" },
       { label: "Strength Training Course", href: "/strength-training" },
     ],
   },
@@ -137,7 +138,6 @@ export const NAV_ITEMS: NavItem[] = [
     label: "Community",
     href: "/community",
     children: [
-      { label: "Not Done Yet (Paid)", href: "/community/not-done-yet" },
       { label: "Clubhouse (Free)", href: "/community/clubhouse" },
       { label: "Roadman CC (Dublin club rides)", href: "/community/club" },
       { label: "Events", href: "/events" },

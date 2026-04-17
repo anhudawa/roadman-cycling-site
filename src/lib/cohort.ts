@@ -51,14 +51,13 @@ export interface CohortState {
 /* ============================================================ */
 
 /**
- * Cohort 2 close date. Set to a past date to force the site into
- * waitlist mode immediately. When this is in the future the site
- * runs in "open" (or "closing-today" in the final 60 min).
+ * Cohort 2 close date. Site auto-flips to Cohort 3 waitlist mode
+ * once this is in the past. Within the final 60 min it shows
+ * "FINAL HOURS" urgency copy.
  *
- * Set to 2026-04-17 09:00 UTC (morning of 17 April) — effectively
- * "Cohort 2 is closed; waitlist for Cohort 3 is open".
+ * Currently: midnight Dublin on Friday 17 April 2026 = 23:00 UTC.
  */
-const COHORT_2_CLOSE = new Date("2026-04-17T09:00:00Z");
+const COHORT_2_CLOSE = new Date("2026-04-17T23:00:00Z");
 
 /** When Cohort 3 applications open publicly (for waitlist messaging). */
 const COHORT_3_OPENS = new Date("2026-06-27T09:00:00Z"); // ~10 weeks after Cohort 2 starts
