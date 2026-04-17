@@ -66,12 +66,22 @@ const NAV_SECTIONS: NavSection[] = [
     ],
   },
   {
+    title: "Skool Clubhouse",
+    items: [
+      { href: "/admin/ted/approvals", label: "Approvals", icon: "inbox" },
+      { href: "/admin/ted", label: "Ted dashboard", icon: "sparkle" },
+      { href: "/admin/ted/queue", label: "Prompts", icon: "document" },
+      { href: "/admin/ted/welcomes", label: "Welcomes", icon: "users" },
+      { href: "/admin/ted/surfaces", label: "Thread surfaces", icon: "pulse" },
+      { href: "/admin/ted/settings", label: "Ted settings", icon: "cog" },
+    ],
+  },
+  {
     title: "Optimization",
     items: [
       { href: "/admin/content", label: "Content", icon: "document" },
       { href: "/admin/experiments", label: "Experiments", icon: "beaker" },
       { href: "/admin/agent", label: "AI Agent", icon: "sparkle" },
-      { href: "/admin/ted", label: "Ted", icon: "sparkle" },
     ],
   },
 ];
@@ -233,9 +243,14 @@ function NavIcon({ icon, className }: { icon: string; className?: string }) {
 interface AdminSidebarProps {
   currentUser?: { slug: string; name: string; email: string; role?: string };
   overdueTaskCount?: number;
+  tedPendingCount?: number;
 }
 
-export function AdminSidebar({ currentUser, overdueTaskCount = 0 }: AdminSidebarProps = {}) {
+export function AdminSidebar({
+  currentUser,
+  overdueTaskCount = 0,
+  tedPendingCount = 0,
+}: AdminSidebarProps = {}) {
   const pathname = usePathname();
   const [mobileOpen, setMobileOpen] = useState(false);
   const [unreadApps, setUnreadApps] = useState(0);
@@ -359,6 +374,14 @@ export function AdminSidebar({ currentUser, overdueTaskCount = 0 }: AdminSidebar
                       {item.href === "/admin/tasks" && overdueTaskCount > 0 && (
                         <span className="ml-auto flex items-center justify-center min-w-[20px] h-5 px-1.5 text-[10px] font-bold text-white bg-coral rounded-full">
                           {overdueTaskCount}
+                        </span>
+                      )}
+                      {item.href === "/admin/ted/approvals" && tedPendingCount > 0 && (
+                        <span
+                          className="ml-auto flex items-center justify-center min-w-[20px] h-5 px-1.5 text-[10px] font-bold text-white bg-coral rounded-full"
+                          title={`${tedPendingCount} Ted post${tedPendingCount === 1 ? "" : "s"} awaiting approval`}
+                        >
+                          {tedPendingCount}
                         </span>
                       )}
                     </Link>
