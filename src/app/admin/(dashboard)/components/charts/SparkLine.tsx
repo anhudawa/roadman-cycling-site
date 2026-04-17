@@ -1,38 +1,29 @@
 "use client";
 
-import { ResponsiveContainer, LineChart, Line } from "recharts";
-import { chartColors } from "./theme";
+import dynamic from "next/dynamic";
 
-interface SparkLineProps {
-  data: number[];
-  color?: string;
-  width?: number;
-  height?: number;
-}
+/**
+ * Lazy-load the recharts impl. Recharts is ~100KB gzipped — deferring
+ * it keeps initial admin-page JS bundles lean and delays the parse/
+ * evaluate cost until the chart actually needs to render.
+ *
+ * ssr: false because recharts relies on ResizeObserver / measuring DOM,
+ * which doesn't work during server render. Admin pages are auth-gated
+ * so there's no SEO cost.
+ */
+const SparkLine = dynamic(
+  () => import("./SparkLine.impl").then((m) => ({ default: m.SparkLine })),
+  {
+    ssr: false,
+    loading: () => (
+      <div
+        style={{ width: 80, height: 32 }}
+        aria-hidden
+        className="opacity-0"
+      />
+    ),
+  },
+);
 
-export function SparkLine({
-  data,
-  color = chartColors.coral,
-  width = 80,
-  height = 32,
-}: SparkLineProps) {
-  const chartData = data.map((value, index) => ({ index, value }));
-
-  return (
-    <div style={{ width, height }}>
-      <ResponsiveContainer width="100%" height="100%">
-        <LineChart data={chartData}>
-          <Line
-            type="monotone"
-            dataKey="value"
-            stroke={color}
-            strokeWidth={1.5}
-            dot={false}
-          />
-        </LineChart>
-      </ResponsiveContainer>
-    </div>
-  );
-}
-
+export { SparkLine };
 export default SparkLine;
