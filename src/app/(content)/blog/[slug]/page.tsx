@@ -8,6 +8,8 @@ import { Badge, Button } from "@/components/ui";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { getPostBySlug, getAllSlugs, getRelatedPosts } from "@/lib/blog";
 import { getTopicsForPost } from "@/lib/topics";
+import { EVENTS } from "@/lib/training-plans";
+import { WeeksOutSelector } from "@/components/features/plan/WeeksOutSelector";
 import { ShareButtons } from "@/components/features/blog/ShareButtons";
 import { RelatedPosts } from "@/components/features/blog/RelatedPosts";
 import { RelatedContent } from "@/components/features/RelatedContent";
@@ -82,6 +84,9 @@ export default async function BlogPostPage({
 
   const relatedPosts = getRelatedPosts(slug, post.pillar, post.keywords, 3);
   const parentTopics = getTopicsForPost(slug);
+  // Reverse-lookup: does any event's blogSlug match this post? If so,
+  // we render a WeeksOutSelector widget in the article.
+  const planEvent = EVENTS.find((e) => e.blogSlug === slug) ?? null;
   const publishDate = new Date(post.publishDate);
 
   return (
@@ -259,6 +264,12 @@ export default async function BlogPostPage({
             <article className="prose-roadman prose-enhanced">
               <MDXRemote source={post.content} components={mdxComponents} />
             </article>
+
+            {/* WeeksOutSelector — only renders on event-specific training
+                plan posts whose slug matches an event in training-plans.ts.
+                Routes readers into the programmatic /plan/<event>/<weeks>
+                landing pages. */}
+            {planEvent && <WeeksOutSelector event={planEvent} />}
 
             {/* Mid-article inline CTA — injects after 3rd paragraph, pillar-aware.
                 Client-side portal so only JS users see it. */}
