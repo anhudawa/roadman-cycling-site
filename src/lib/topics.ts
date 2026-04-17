@@ -370,3 +370,36 @@ export function getTopicBySlug(slug: string): TopicHub | null {
 export function getAllTopicSlugs(): string[] {
   return TOPIC_DEFINITIONS.map((t) => t.slug);
 }
+
+/**
+ * Reverse index: post slug → list of topic hubs that include it.
+ *
+ * Used on individual blog posts to link back to their parent topic
+ * hub(s). Gives Google the bidirectional signal it needs for topic
+ * clustering (post → hub, hub → post) and gives readers a natural
+ * "explore this topic further" path.
+ */
+const POST_TO_TOPICS: Map<string, string[]> = (() => {
+  const map = new Map<string, string[]>();
+  for (const [topicSlug, postSlugs] of Object.entries(TOPIC_POST_MAP)) {
+    for (const postSlug of postSlugs) {
+      const existing = map.get(postSlug) ?? [];
+      existing.push(topicSlug);
+      map.set(postSlug, existing);
+    }
+  }
+  return map;
+})();
+
+export function getTopicsForPost(postSlug: string): Array<{
+  slug: string;
+  title: string;
+}> {
+  const topicSlugs = POST_TO_TOPICS.get(postSlug) ?? [];
+  return topicSlugs
+    .map((slug) => {
+      const def = TOPIC_DEFINITIONS.find((t) => t.slug === slug);
+      return def ? { slug: def.slug, title: def.title } : null;
+    })
+    .filter((x): x is { slug: string; title: string } => x !== null);
+}

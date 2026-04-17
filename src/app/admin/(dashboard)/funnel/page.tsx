@@ -49,12 +49,13 @@ export default async function FunnelPage({
       getCohortData(from, to),
       getSourceBreakdown(from, to),
     ]);
-    if (f.signups > 0 || c.length > 0) {
-      funnel = f;
-      cohorts = c;
-      sources = s;
-      usingLiveData = true;
-    }
+    // If the DB query succeeded (even with zeros), trust the live numbers —
+    // showing demo data when real data is just empty misled us into thinking
+    // the site was more active than it was.
+    funnel = f;
+    cohorts = c;
+    sources = s;
+    usingLiveData = true;
   } catch {
     // DB not available — demo data already set
   }

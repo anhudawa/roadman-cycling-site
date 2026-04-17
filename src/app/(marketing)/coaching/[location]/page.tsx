@@ -803,22 +803,50 @@ export function generateStaticParams() {
   return Object.keys(LOCATIONS).map((location) => ({ location }));
 }
 
+/**
+ * Hreflang mapping for the 3 country-level coaching pages. Google uses this
+ * to serve the right page to the right geo. City pages (dublin / cork /
+ * london / manchester / etc) aren't cross-linked here because they're
+ * locality-specific, not language alternates.
+ */
+const COUNTRY_HREFLANG: Record<string, string> = {
+  ireland: "en-IE",
+  uk: "en-GB",
+  usa: "en-US",
+};
+
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { location } = await params;
   const data = LOCATIONS[location];
   if (!data) return {};
+
+  // Only country-level pages get a hreflang cluster. City pages get
+  // their own canonical + a normal locale self-reference.
+  const isCountry = location in COUNTRY_HREFLANG;
+  const languages: Record<string, string> = isCountry
+    ? {
+        "en-IE": "https://roadmancycling.com/coaching/ireland",
+        "en-GB": "https://roadmancycling.com/coaching/uk",
+        "en-US": "https://roadmancycling.com/coaching/usa",
+        "x-default": "https://roadmancycling.com/coaching",
+      }
+    : {};
 
   return {
     title: data.seoTitle,
     description: data.seoDescription,
     alternates: {
       canonical: `https://roadmancycling.com/coaching/${location}`,
+      ...(Object.keys(languages).length > 0 && { languages }),
     },
     openGraph: {
       title: data.seoTitle,
       description: data.seoDescription,
       type: "website",
       url: `https://roadmancycling.com/coaching/${location}`,
+      locale: isCountry
+        ? COUNTRY_HREFLANG[location].replace("-", "_")
+        : "en_IE",
     },
   };
 }

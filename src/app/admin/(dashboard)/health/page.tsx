@@ -49,10 +49,12 @@ export default async function HealthPage() {
       getStalledSubscribers(),
       getHealthStats(),
     ]);
-    trials = t.length > 0 ? t : DEMO_TRIALS;
-    stalled = s.length > 0 ? s : DEMO_STALLED;
-    healthStats = h.trialToPaidRate > 0 || h.newSignupsTrend !== 0 ? h : healthStats;
-    usingLiveData = t.length > 0 || s.length > 0;
+    // If the DB query succeeded (even with empty arrays / zeros), show the
+    // real numbers instead of fake demo placeholders.
+    trials = t;
+    stalled = s;
+    healthStats = h;
+    usingLiveData = true;
   } catch {
     // DB not available — demo data already set
   }

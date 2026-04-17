@@ -1,17 +1,21 @@
 import type { Metadata } from "next";
 import Image from "next/image";
+import Link from "next/link";
 import { notFound } from "next/navigation";
 import { MDXRemote } from "next-mdx-remote/rsc";
 import { Header, Footer, Section, Container } from "@/components/layout";
 import { Badge, Button } from "@/components/ui";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { getPostBySlug, getAllSlugs, getRelatedPosts } from "@/lib/blog";
+import { getTopicsForPost } from "@/lib/topics";
 import { ShareButtons } from "@/components/features/blog/ShareButtons";
 import { RelatedPosts } from "@/components/features/blog/RelatedPosts";
 import { RelatedContent } from "@/components/features/RelatedContent";
 import { InlineArticleCTA } from "@/components/features/conversion/InlineArticleCTA";
+import { EmailCapture } from "@/components/features/conversion/EmailCapture";
 import { TableOfContents } from "@/components/features/blog/TableOfContents";
 import { AnswerCapsule } from "@/components/ui/AnswerCapsule";
+import { mdxComponents } from "@/components/mdx/MDXComponents";
 
 export async function generateStaticParams() {
   return getAllSlugs().map((slug) => ({ slug }));
@@ -45,7 +49,7 @@ export async function generateMetadata({
       ...(post.featuredImage && {
         images: [
           {
-            url: `https://roadmancycling.com${post.featuredImage}`,
+            url: post.featuredImage.startsWith('http') ? post.featuredImage : `https://roadmancycling.com${post.featuredImage}`,
             width: 1200,
             height: 630,
             alt: post.title,
@@ -58,7 +62,7 @@ export async function generateMetadata({
       title: post.seoTitle || post.title,
       description: post.seoDescription,
       ...(post.featuredImage && {
-        images: [`https://roadmancycling.com${post.featuredImage}`],
+        images: [post.featuredImage.startsWith('http') ? post.featuredImage : `https://roadmancycling.com${post.featuredImage}`],
       }),
     },
   };
@@ -77,6 +81,7 @@ export default async function BlogPostPage({
   }
 
   const relatedPosts = getRelatedPosts(slug, post.pillar, post.keywords, 3);
+  const parentTopics = getTopicsForPost(slug);
   const publishDate = new Date(post.publishDate);
 
   return (
@@ -104,16 +109,16 @@ export default async function BlogPostPage({
             "@id": `https://roadmancycling.com/blog/${slug}`,
           },
           keywords: post.keywords.join(", "),
-          ...(post.answerCapsule && {
-            speakable: {
-              "@type": "SpeakableSpecification",
-              cssSelector: [".answer-capsule"],
-            },
-          }),
+          speakable: {
+            "@type": "SpeakableSpecification",
+            cssSelector: post.answerCapsule
+              ? ["h1", ".answer-capsule"]
+              : ["h1", ".prose-roadman > p:first-of-type"],
+          },
           ...(post.featuredImage && {
             image: {
               "@type": "ImageObject",
-              url: `https://roadmancycling.com${post.featuredImage}`,
+              url: post.featuredImage.startsWith('http') ? post.featuredImage : `https://roadmancycling.com${post.featuredImage}`,
               width: 1200,
               height: 630,
             },
@@ -252,14 +257,82 @@ export default async function BlogPostPage({
             )}
 
             <article className="prose-roadman prose-enhanced">
-              <MDXRemote source={post.content} />
+              <MDXRemote source={post.content} components={mdxComponents} />
             </article>
 
-            {/* Mid-article inline CTA — injects after 3rd paragraph, pillar-aware */}
+            {/* Mid-article inline CTA — injects after 3rd paragraph, pillar-aware.
+                Client-side portal so only JS users see it. */}
             <InlineArticleCTA
               pillar={post.pillar}
               source={`blog-inline-${slug}`}
             />
+
+            {/* End-of-article email capture — SSR-rendered so Googlebot,
+                AI crawlers, and no-JS visitors all see a newsletter opp. */}
+            <div className="mt-16">
+              <EmailCapture
+                variant="inline"
+                heading="KEEP READING — THE SATURDAY SPIN"
+                subheading="The week's training takeaways, pro insights, and what to do about them. 1,900+ serious cyclists open it every Saturday."
+                source={`blog-end-${slug}`}
+                buttonText="SUBSCRIBE"
+              />
+            </div>
+
+            {/* Soft coaching CTA — only on high-intent pillars (coaching /
+                nutrition). Visitors reading a training/nutrition deep-dive
+                have already demonstrated problem-awareness; a gentle Apply
+                prompt converts the highest-intent tail. */}
+            {(post.pillar === "coaching" || post.pillar === "nutrition") && (
+              <div className="mt-10 rounded-xl border border-white/10 bg-gradient-to-br from-deep-purple/50 to-charcoal p-6 md:p-8 text-center">
+                <p className="font-heading text-coral text-xs tracking-widest mb-3">
+                  WANT THIS APPLIED TO YOUR TRAINING?
+                </p>
+                <p className="font-heading text-off-white text-xl md:text-2xl mb-3 leading-tight">
+                  NOT DONE YET — PERSONALISED COACHING.
+                </p>
+                <p className="text-foreground-muted text-sm mb-5 max-w-xl mx-auto">
+                  Your power numbers, your events, your calendar. 7-day free
+                  trial. $195/month. Applications reviewed personally by
+                  Anthony.
+                </p>
+                <div className="flex flex-col sm:flex-row gap-3 justify-center items-center">
+                  <Button href="/apply" size="md">
+                    Apply — 7-Day Free Trial
+                  </Button>
+                  <Button href="/coaching" variant="ghost" size="md">
+                    How Coaching Works
+                  </Button>
+                </div>
+              </div>
+            )}
+
+            {/* Topic hub back-links — bidirectional signal for Google +
+                natural "keep exploring" path for readers. */}
+            {parentTopics.length > 0 && (
+              <div className="mt-12 pt-8 border-t border-white/5">
+                <p className="font-heading text-coral text-xs tracking-widest mb-3">
+                  MORE ON THIS TOPIC
+                </p>
+                <div className="flex flex-wrap gap-2">
+                  {parentTopics.map((t) => (
+                    <Link
+                      key={t.slug}
+                      href={`/topics/${t.slug}`}
+                      className="
+                        inline-flex items-center px-4 py-2 rounded-full
+                        bg-white/5 border border-white/10
+                        text-sm text-foreground-muted
+                        hover:bg-white/10 hover:border-coral/30 hover:text-off-white
+                        transition-all
+                      "
+                    >
+                      {t.title} <span aria-hidden="true" className="ml-1">&rarr;</span>
+                    </Link>
+                  ))}
+                </div>
+              </div>
+            )}
 
             {/* Share + Author */}
             <div className="mt-16 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6 py-6 border-t border-white/5">

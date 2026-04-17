@@ -13,6 +13,13 @@ interface ScrollRevealProps {
   duration?: number;
   className?: string;
   once?: boolean;
+  /**
+   * When true, render children fully visible during SSR + pre-hydration
+   * instead of opacity-0. Use for above-fold content where the reveal
+   * animation would otherwise hide content from Googlebot / no-JS users.
+   * The reveal animation still plays once on hydration for users with JS.
+   */
+  eager?: boolean;
 }
 
 const directionOffsets: Record<RevealDirection, { x: number; y: number }> = {
@@ -30,6 +37,7 @@ export function ScrollReveal({
   duration = 0.6,
   className = "",
   once = true,
+  eager = false,
 }: ScrollRevealProps) {
   const ref = useRef<HTMLDivElement>(null);
   const isInView = useInView(ref, { once, margin: "-50px" });
@@ -47,6 +55,13 @@ export function ScrollReveal({
 
   // Respect prefers-reduced-motion: no animation, just show content
   if (prefersReducedMotion) {
+    return <div className={className}>{children}</div>;
+  }
+
+  // Eager = render fully visible at SSR and on initial hydration. Skips the
+  // animation entirely. Use for above-fold content that Googlebot / no-JS
+  // users would otherwise see as opacity-0 invisible blocks.
+  if (eager) {
     return <div className={className}>{children}</div>;
   }
 

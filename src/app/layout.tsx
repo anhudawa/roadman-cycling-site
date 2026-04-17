@@ -3,6 +3,8 @@ import { Bebas_Neue, Work_Sans } from "next/font/google";
 import { SmoothCursorWrapper } from "@/components/ui/SmoothCursorWrapper";
 import { PodcastPlayerShell } from "@/components/features/podcast/PodcastPlayerShell";
 import { LazyExitIntent } from "@/components/features/conversion/LazyExitIntent";
+import { CohortBanner } from "@/components/features/conversion/CohortBanner";
+import { MobileStickyApply } from "@/components/features/conversion/MobileStickyApply";
 import { LazyCookieConsent } from "@/components/features/consent/LazyCookieConsent";
 import { Tracker } from "@/components/analytics/Tracker";
 import { ConsentAwarePixel } from "@/components/analytics/ConsentAwarePixel";
@@ -119,9 +121,11 @@ export default function RootLayout({
           Skip to content
         </a>
         <SmoothCursorWrapper />
+        <CohortBanner />
         <PodcastPlayerShell>
           {children}
         </PodcastPlayerShell>
+        <MobileStickyApply />
         <LazyExitIntent />
         <LazyCookieConsent />
         <Tracker />

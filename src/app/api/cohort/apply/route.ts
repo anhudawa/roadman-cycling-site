@@ -3,6 +3,11 @@ import { db } from "@/lib/db";
 import { cohortApplications } from "@/lib/db/schema";
 import { notifyCohortApplication } from "@/lib/notifications";
 import { upsertContact, addActivity } from "@/lib/crm/contacts";
+import { subscribeToBeehiiv } from "@/lib/integrations/beehiiv";
+import { getCohortState } from "@/lib/cohort";
+
+/** RFC-5322 lite — rejects foo@, @bar, and other common fat-finger failures. */
+const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
 export async function POST(request: Request) {
   try {
@@ -13,6 +18,12 @@ export async function POST(request: Request) {
     if (!name || !email || !goal || !hours || !frustration) {
       return NextResponse.json(
         { error: "Missing required fields" },
+        { status: 400 }
+      );
+    }
+    if (typeof email !== "string" || !EMAIL_REGEX.test(email.trim())) {
+      return NextResponse.json(
+        { error: "Please enter a valid email address." },
         { status: 400 }
       );
     }
@@ -44,51 +55,123 @@ export async function POST(request: Request) {
       persona = "comeback";
     }
 
-    await db.insert(cohortApplications).values({
-      name: name.slice(0, 200),
-      email: email.slice(0, 200),
-      goal: goal.slice(0, 500),
-      hours: hours.slice(0, 50),
-      ftp: ftp ? ftp.slice(0, 50) : null,
-      frustration: frustration.slice(0, 500),
-      cohort: "2026",
-      persona,
-    });
+    const normalisedEmail = email.trim().toLowerCase();
+
+    // Read cohort state — drives which tag/cohort this submission gets.
+    // During "open" + "closing-today" the submission is a real Cohort 2
+    // application; during "waitlist" it's a Cohort 3 waitlist signup.
+    const cohortState = getCohortState();
+    const cohortLabel = `cohort-${cohortState.targetCohort}`;
+
+    // Idempotent by (email, cohort): re-submitting the form updates the
+    // existing row rather than creating a duplicate. Matches the
+    // uniqueIndex on cohort_applications(email, cohort) in schema.ts.
+    await db
+      .insert(cohortApplications)
+      .values({
+        name: name.slice(0, 200),
+        email: normalisedEmail.slice(0, 200),
+        goal: goal.slice(0, 500),
+        hours: hours.slice(0, 50),
+        ftp: ftp ? ftp.slice(0, 50) : null,
+        frustration: frustration.slice(0, 500),
+        cohort: cohortLabel,
+        persona,
+      })
+      .onConflictDoUpdate({
+        target: [cohortApplications.email, cohortApplications.cohort],
+        set: {
+          name: name.slice(0, 200),
+          goal: goal.slice(0, 500),
+          hours: hours.slice(0, 50),
+          ftp: ftp ? ftp.slice(0, 50) : null,
+          frustration: frustration.slice(0, 500),
+          persona,
+        },
+      });
 
     // CRM: upsert contact + activity (non-fatal)
     try {
       const contact = await upsertContact({
-        email,
+        email: normalisedEmail,
         name,
-        source: "cohort_application",
+        source: cohortState.phase === "waitlist" ? "cohort_waitlist" : "cohort_application",
         customFields: {
           goal,
           hours,
           ftp: ftp || null,
           frustration,
-          cohort: "2026",
+          cohort: cohortLabel,
           persona,
+          phase: cohortState.phase,
         },
       });
       await addActivity(contact.id, {
-        type: "cohort_application",
-        title: `Applied to ${persona} cohort`,
+        type: cohortState.phase === "waitlist" ? "cohort_waitlist" : "cohort_application",
+        title:
+          cohortState.phase === "waitlist"
+            ? `Joined ${cohortLabel} waitlist (${persona})`
+            : `Applied to ${cohortLabel} (${persona})`,
         body: `Goal: ${goal}\n\nHours/week: ${hours}\n\nFTP: ${ftp || "n/a"}\n\nFrustration: ${frustration}`,
-        meta: { goal, hours, ftp: ftp || null, frustration, persona, cohort: "2026" },
+        meta: {
+          goal,
+          hours,
+          ftp: ftp || null,
+          frustration,
+          persona,
+          cohort: cohortLabel,
+          phase: cohortState.phase,
+        },
         authorName: "system",
       });
     } catch (crmErr) {
       console.error("[Cohort Apply] CRM sync failed:", crmErr);
     }
 
-    // Fire-and-forget email notification
+    // Beehiiv: upsert subscriber + tag. Tag varies by phase:
+    //   open / closing-today → "cohort-2-applicant"
+    //   waitlist             → "cohort-3-waitlist"
+    // Non-fatal — application still succeeds if Beehiiv is down.
+    subscribeToBeehiiv({
+      email: normalisedEmail,
+      name,
+      tags: [cohortState.submissionTag, `persona-${persona}`],
+      customFields: {
+        goal,
+        hours,
+        ftp: ftp || null,
+        frustration,
+        cohort: cohortLabel,
+        persona,
+        phase: cohortState.phase,
+      },
+      utm: {
+        source: "site",
+        medium:
+          cohortState.phase === "waitlist" ? "cohort-waitlist" : "cohort-application",
+        campaign: cohortState.submissionTag,
+      },
+    }).catch((err) =>
+      console.error("[Cohort Apply] Beehiiv sync failed:", err),
+    );
+
+    // Fire-and-forget email notification via Resend
     notifyCohortApplication({
-      name, email, goal, hours,
+      name,
+      email: normalisedEmail,
+      goal,
+      hours,
       ftp: ftp || null,
-      frustration, persona,
+      frustration,
+      persona,
     }).catch((err) => console.error("[Cohort Apply] Email notification failed:", err));
 
-    return NextResponse.json({ success: true, persona });
+    return NextResponse.json({
+      success: true,
+      persona,
+      phase: cohortState.phase,
+      cohort: cohortState.targetCohort,
+    });
   } catch (error) {
     console.error("[Cohort Apply] Error:", error);
     return NextResponse.json(

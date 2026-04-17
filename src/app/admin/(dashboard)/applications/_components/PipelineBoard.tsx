@@ -76,6 +76,7 @@ export function PipelineBoard({ initialStages, cohorts, initialCohort }: Props) 
   const [loadingCohort, setLoadingCohort] = useState(false);
   const [ownerMenuFor, setOwnerMenuFor] = useState<number | null>(null);
   const [assigningId, setAssigningId] = useState<number | null>(null);
+  const [deletingId, setDeletingId] = useState<number | null>(null);
 
   useEffect(() => {
     if (ownerMenuFor === null) return;
@@ -208,6 +209,37 @@ export function PipelineBoard({ initialStages, cohorts, initialCohort }: Props) 
     }
   }
 
+  async function deleteCard(id: number) {
+    setDeletingId(id);
+    const prev = stages;
+    setStages((s) => {
+      const next: StageMap = { ...s };
+      for (const stage of APPLICATION_STAGES) {
+        next[stage] = s[stage].filter((c) => c.id !== id);
+      }
+      return next;
+    });
+    setDetail((d) => (d && d.id === id ? null : d));
+    try {
+      const res = await fetch("/api/admin/applications", {
+        method: "DELETE",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ id }),
+      });
+      if (!res.ok) {
+        const data = await res.json().catch(() => ({}));
+        throw new Error(data.error ?? `HTTP ${res.status}`);
+      }
+      setError(null);
+    } catch (err) {
+      setStages(prev);
+      setError(err instanceof Error ? err.message : "Failed to delete");
+      window.setTimeout(() => setError(null), 4000);
+    } finally {
+      setDeletingId(null);
+    }
+  }
+
   return (
     <div className="flex flex-col gap-4">
       <div className="flex items-center gap-3 flex-wrap">
@@ -285,8 +317,10 @@ export function PipelineBoard({ initialStages, cohorts, initialCohort }: Props) 
                 {cards.map((app) => {
                   const dragging = dragId === app.id;
                   return (
-                    <button
+                    <div
                       key={app.id}
+                      role="button"
+                      tabIndex={0}
                       draggable
                       onDragStart={(e) => {
                         setDragId(app.id);
@@ -300,11 +334,21 @@ export function PipelineBoard({ initialStages, cohorts, initialCohort }: Props) 
                         setHoverStage(null);
                       }}
                       onClick={() => openCard(app)}
-                      className={`block w-full text-left p-3 rounded-lg border border-white/5 bg-white/[0.02] hover:border-coral/30 transition cursor-grab active:cursor-grabbing ${
+                      onKeyDown={(e) => {
+                        if (e.key === "Enter" || e.key === " ") {
+                          e.preventDefault();
+                          openCard(app);
+                        }
+                      }}
+                      className={`group relative block w-full text-left p-3 rounded-lg border border-white/5 bg-white/[0.02] hover:border-coral/30 transition cursor-grab active:cursor-grabbing ${
                         dragging ? `opacity-40 scale-[0.98] ring-1 ${color.ring}` : ""
-                      }`}
+                      } ${deletingId === app.id ? "opacity-40 pointer-events-none" : ""}`}
                     >
-                      <div className="flex items-start gap-2 mb-1">
+                      <InlineDelete
+                        disabled={deletingId !== null}
+                        onConfirm={() => deleteCard(app.id)}
+                      />
+                      <div className="flex items-start gap-2 mb-1 pr-6">
                         <span className="text-off-white text-sm font-semibold truncate">
                           {app.name}
                         </span>
@@ -382,7 +426,7 @@ export function PipelineBoard({ initialStages, cohorts, initialCohort }: Props) 
                           )}
                         </span>
                       </div>
-                    </button>
+                    </div>
                   );
                 })}
               </div>
@@ -391,8 +435,81 @@ export function PipelineBoard({ initialStages, cohorts, initialCohort }: Props) 
         })}
       </div>
 
-      {detail && <ApplicationDetailModal app={detail} onClose={() => setDetail(null)} />}
+      {detail && (
+        <ApplicationDetailModal
+          app={detail}
+          onClose={() => setDetail(null)}
+          onDelete={() => deleteCard(detail.id)}
+          deleting={deletingId === detail.id}
+        />
+      )}
     </div>
+  );
+}
+
+function InlineDelete({
+  onConfirm,
+  disabled,
+}: {
+  onConfirm: () => void;
+  disabled?: boolean;
+}) {
+  const [confirming, setConfirming] = useState(false);
+  // Auto-cancel after a few seconds so a half-click doesn't sit in confirm
+  // state indefinitely.
+  useEffect(() => {
+    if (!confirming) return;
+    const t = window.setTimeout(() => setConfirming(false), 4000);
+    return () => window.clearTimeout(t);
+  }, [confirming]);
+
+  if (confirming) {
+    return (
+      <div
+        className="absolute right-1 top-1 z-10 flex gap-1"
+        onClick={(e) => e.stopPropagation()}
+        onMouseDown={(e) => e.stopPropagation()}
+        draggable={false}
+      >
+        <button
+          type="button"
+          disabled={disabled}
+          onClick={(e) => {
+            e.stopPropagation();
+            onConfirm();
+          }}
+          className="text-[10px] px-2 py-0.5 rounded bg-red-500/30 text-red-300 border border-red-400/40 hover:bg-red-500/50 font-heading tracking-wider uppercase disabled:opacity-50"
+        >
+          Confirm
+        </button>
+        <button
+          type="button"
+          onClick={(e) => {
+            e.stopPropagation();
+            setConfirming(false);
+          }}
+          className="text-[10px] px-2 py-0.5 rounded border border-white/10 text-foreground-subtle hover:text-off-white"
+        >
+          Cancel
+        </button>
+      </div>
+    );
+  }
+
+  return (
+    <button
+      type="button"
+      aria-label="Delete application"
+      draggable={false}
+      onMouseDown={(e) => e.stopPropagation()}
+      onClick={(e) => {
+        e.stopPropagation();
+        setConfirming(true);
+      }}
+      className="absolute right-1 top-1 z-10 w-5 h-5 rounded-full flex items-center justify-center text-foreground-subtle/60 hover:text-red-400 hover:bg-red-500/10 opacity-0 group-hover:opacity-100 transition"
+    >
+      ×
+    </button>
   );
 }
 
@@ -455,11 +572,16 @@ function Field({
 function ApplicationDetailModal({
   app,
   onClose,
+  onDelete,
+  deleting,
 }: {
   app: KanbanApplication;
   onClose: () => void;
+  onDelete?: () => void;
+  deleting?: boolean;
 }) {
   const [copiedAll, setCopiedAll] = useState(false);
+  const [confirmingDelete, setConfirmingDelete] = useState(false);
 
   const allText = [
     `Name: ${app.name}`,
@@ -513,6 +635,35 @@ function ApplicationDetailModal({
           >
             {copiedAll ? "Copied all" : "Copy all"}
           </button>
+          {onDelete &&
+            (confirmingDelete ? (
+              <>
+                <button
+                  type="button"
+                  onClick={onDelete}
+                  disabled={deleting}
+                  className="text-xs px-3 py-1.5 rounded-lg bg-red-500/20 text-red-400 border border-red-500/30 hover:bg-red-500/30 disabled:opacity-50 font-heading tracking-wider uppercase"
+                >
+                  {deleting ? "Deleting…" : "Confirm"}
+                </button>
+                <button
+                  type="button"
+                  onClick={() => setConfirmingDelete(false)}
+                  disabled={deleting}
+                  className="text-xs px-2 py-1.5 text-foreground-subtle hover:text-off-white"
+                >
+                  Cancel
+                </button>
+              </>
+            ) : (
+              <button
+                type="button"
+                onClick={() => setConfirmingDelete(true)}
+                className="text-xs px-3 py-1.5 rounded-lg border border-white/10 text-foreground-subtle hover:text-red-400 hover:border-red-400/30 font-heading tracking-wider uppercase"
+              >
+                Delete
+              </button>
+            ))}
           <button
             type="button"
             onClick={onClose}

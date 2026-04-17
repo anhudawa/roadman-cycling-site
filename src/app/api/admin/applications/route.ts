@@ -162,3 +162,24 @@ export async function PATCH(request: Request) {
 
   return NextResponse.json({ success: true });
 }
+
+// DELETE /api/admin/applications — permanently remove an application row.
+// Does NOT touch the linked contact, deals, timeline, or notes — deleting the
+// application is treated as "we reject this submission" rather than "nuke
+// this person from the CRM". Use /admin/contacts if you need to remove the
+// human record entirely.
+export async function DELETE(request: Request) {
+  try {
+    await requireAuth();
+  } catch {
+    return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+  }
+
+  const { id } = await request.json();
+  if (!id || typeof id !== "number") {
+    return NextResponse.json({ error: "id required" }, { status: 400 });
+  }
+
+  await db.delete(cohortApplications).where(eq(cohortApplications.id, id));
+  return NextResponse.json({ success: true });
+}

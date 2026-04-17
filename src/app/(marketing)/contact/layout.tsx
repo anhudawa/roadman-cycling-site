@@ -38,6 +38,12 @@ export default function ContactLayout({
             url: "https://roadmancycling.com",
             email: "hello@roadmancycling.com",
           },
+          contactPoint: {
+            "@type": "ContactPoint",
+            email: "hello@roadmancycling.com",
+            contactType: "customer support",
+            availableLanguage: ["en"],
+          },
         }}
       />
       {children}

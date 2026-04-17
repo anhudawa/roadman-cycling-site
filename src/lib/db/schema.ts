@@ -63,6 +63,13 @@ export const stripeSnapshots = pgTable(
     totalRevenueCents: integer("total_revenue_cents").notNull(),
     transactionCount: integer("transaction_count").notNull(),
     mrrCents: integer("mrr_cents").notNull(),
+    activeSubscriptions: integer("active_subscriptions").notNull().default(0),
+    trialingCount: integer("trialing_count").notNull().default(0),
+    pastDueCount: integer("past_due_count").notNull().default(0),
+    pastDueMrrCents: integer("past_due_mrr_cents").notNull().default(0),
+    annualMrrCents: integer("annual_mrr_cents").notNull().default(0),
+    netNewMrrCents: integer("net_new_mrr_cents").notNull().default(0),
+    netNewSubs: integer("net_new_subs").notNull().default(0),
     rawData: jsonb("raw_data"),
   },
   (table) => [
@@ -157,13 +164,28 @@ export const contactSubmissions = pgTable(
     message: text("message").notNull(),
     readAt: timestamp("read_at", { withTimezone: true }),
     assignedTo: text("assigned_to"),
+    // new | in_progress | replied | follow_up | closed
+    status: text("status").notNull().default("new"),
     createdAt: timestamp("created_at", { withTimezone: true }).notNull().defaultNow(),
   },
   (table) => [
     index("contact_submissions_created_at_idx").on(table.createdAt),
     index("contact_submissions_read_at_idx").on(table.readAt),
+    index("contact_submissions_status_idx").on(table.status),
   ]
 );
+
+export const INBOX_STAGES = [
+  "new",
+  "in_progress",
+  "replied",
+  "follow_up",
+  "closed",
+] as const;
+export type InboxStage = (typeof INBOX_STAGES)[number];
+export function isInboxStage(x: string): x is InboxStage {
+  return (INBOX_STAGES as readonly string[]).includes(x);
+}
 
 // ── Cohort Applications ─────────────────────────────────
 export const cohortApplications = pgTable(
@@ -186,6 +208,11 @@ export const cohortApplications = pgTable(
     index("cohort_applications_created_at_idx").on(table.createdAt),
     index("cohort_applications_cohort_idx").on(table.cohort),
     index("cohort_applications_read_at_idx").on(table.readAt),
+    // One application per email per cohort — prevents duplicate kanban cards.
+    uniqueIndex("cohort_applications_email_cohort_idx").on(
+      table.email,
+      table.cohort,
+    ),
   ]
 );
 
@@ -625,7 +652,10 @@ export type CronRunKind =
   | "daily_digest"
   | "weekly_digest"
   | "sync_all"
-  | "score_all";
+  | "score_all"
+  | "complete_past_bookings"
+  | "beehiiv_snapshot"
+  | "stripe_snapshot";
 
 export const cronRuns = pgTable(
   "cron_runs",
@@ -817,3 +847,24 @@ export const tedKillSwitch = pgTable("ted_kill_switch", {
   surfaceThreadsEnabled: boolean("surface_threads_enabled").notNull().default(false),
   updatedAt: timestamp("updated_at", { withTimezone: true }).notNull().defaultNow(),
 });
+
+// ── Skool Webhook Events (audit log) ──────────────────────
+export const skoolEvents = pgTable(
+  "skool_events",
+  {
+    id: serial("id").primaryKey(),
+    eventType: text("event_type").notNull(),            // member_joined | member_updated | other | bad_payload | unauthorized
+    source: text("source").notNull().default("unknown"), // skool_native | zapier | make | curl | unknown
+    email: text("email"),
+    name: text("name"),
+    persona: text("persona"),
+    rawPayload: jsonb("raw_payload").notNull().$type<Record<string, unknown>>(),
+    status: text("status").notNull(),                    // accepted | skipped | error
+    errorMessage: text("error_message"),
+    createdAt: timestamp("created_at", { withTimezone: true }).notNull().defaultNow(),
+  },
+  (table) => [
+    index("skool_events_created_at_idx").on(table.createdAt),
+    index("skool_events_status_idx").on(table.status),
+  ]
+);

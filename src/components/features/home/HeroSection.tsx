@@ -55,18 +55,24 @@ export function HeroSection() {
     >
       {/* === LAYER 1: Deep background with parallax === */}
       <motion.div className="absolute inset-0 bg-charcoal" style={{ y: bgY }}>
-        {/* Hero portrait background */}
+        {/* Hero portrait background — toned down so the H1 is the hero,
+            not the photo. Dropped opacity 0.4 → 0.22 and pushed the
+            object-position so the subject's face doesn't collide with
+            the headline. */}
         <Image
           src="/images/about/anthony-podcast-promo.jpg"
           alt=""
           fill
-          className="object-cover opacity-40"
-          style={{ objectPosition: "center 80%" }}
+          className="object-cover opacity-[0.22]"
+          style={{ objectPosition: "center 100%" }}
           sizes="100vw"
           priority
         />
+        {/* Top-heavy gradient: keeps the photo atmospheric while reserving
+            the upper third for the H1. */}
+        <div className="absolute inset-0 bg-gradient-to-b from-charcoal via-charcoal/70 to-transparent" />
         {/* Radial vignette to blend edges */}
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center_top,transparent_20%,rgba(37,37,38,0.85)_70%,rgb(37,37,38)_100%)]" />
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center_top,transparent_30%,rgba(37,37,38,0.9)_75%,rgb(37,37,38)_100%)]" />
         {/* Grain texture */}
         <div className="absolute inset-0 grain-overlay" />
       </motion.div>
@@ -95,9 +101,12 @@ export function HeroSection() {
       <FloatingParticles count={25} color="rgba(241, 99, 99, 0.12)" />
       <FloatingParticles count={10} color="rgba(76, 18, 115, 0.15)" />
 
-      {/* === LAYER 5: Content with scroll-driven scaling === */}
+      {/* === LAYER 5: Content with scroll-driven scaling ===
+          Reduced top padding so the H1 lands in the upper third of the
+          viewport on first paint. The old 30-35vh offset pushed the
+          primary value prop below the fold on most laptops. */}
       <motion.div
-        className="relative z-10 text-center px-5 md:px-8 max-w-[1200px] mx-auto w-full pt-[35vh] md:pt-[30vh]"
+        className="relative z-10 text-center px-5 md:px-8 max-w-[1200px] mx-auto w-full pt-[18vh] md:pt-[20vh]"
         style={{
           scale: textScale,
           y: textY,
@@ -170,8 +179,8 @@ export function HeroSection() {
           <Button href="/podcast" size="lg">
             Listen Now
           </Button>
-          <Button href="/community/clubhouse" variant="ghost" size="lg">
-            Join Free
+          <Button href="/apply" variant="ghost" size="lg">
+            Apply for Coaching
           </Button>
         </motion.div>
       </motion.div>

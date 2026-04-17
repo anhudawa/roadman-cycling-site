@@ -271,6 +271,41 @@ export default function AboutPage() {
           </Container>
         </Section>
 
+        {/* Coaching CTA — caught mid-story, highest-intent moment */}
+        <Section background="charcoal" className="!py-16">
+          <Container width="narrow">
+            <ScrollReveal direction="up">
+              <div className="rounded-2xl border border-coral/20 bg-gradient-to-br from-coral/10 via-deep-purple/40 to-charcoal p-8 md:p-12 text-center">
+                <p className="font-heading text-coral text-sm tracking-widest mb-4">
+                  WORK WITH ME
+                </p>
+                <h3
+                  className="font-heading text-off-white mb-4"
+                  style={{ fontSize: "var(--text-section-sm, 2.25rem)" }}
+                >
+                  EVERYTHING I&apos;VE LEARNED, APPLIED TO YOUR TRAINING.
+                </h3>
+                <p className="text-foreground-muted text-lg mb-8 max-w-xl mx-auto leading-relaxed">
+                  1,400+ conversations with the best coaches, scientists and
+                  riders in the sport — distilled into a plan built around
+                  your power numbers, your events, your calendar, your life.
+                </p>
+                <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
+                  <Button href="/apply" size="lg">
+                    Apply for Not Done Yet
+                  </Button>
+                  <Button href="/coaching" variant="ghost" size="lg">
+                    How Coaching Works
+                  </Button>
+                </div>
+                <p className="text-foreground-subtle text-sm mt-6">
+                  7-day free trial · $195/month · Cancel anytime
+                </p>
+              </div>
+            </ScrollReveal>
+          </Container>
+        </Section>
+
         {/* Expert Network */}
         <Section background="charcoal" className="section-glow-coral">
           <Container>
@@ -401,11 +436,16 @@ export default function AboutPage() {
               ))}
             </div>
 
-            {/* CTA */}
+            {/* CTA — apply is primary; free community is the softer option */}
             <div className="mt-16 text-center">
-              <Button href="/community/clubhouse" size="lg">
-                Join the Community
-              </Button>
+              <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
+                <Button href="/apply" size="lg">
+                  Apply to Work With Us
+                </Button>
+                <Button href="/community/clubhouse" variant="ghost" size="lg">
+                  Join Free Community
+                </Button>
+              </div>
             </div>
           </Container>
         </Section>
