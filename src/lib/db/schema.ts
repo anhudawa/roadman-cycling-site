@@ -737,6 +737,39 @@ export const tedActiveMembers = pgTable("ted_active_members", {
   replyCount: integer("reply_count").notNull().default(0),
 });
 
+// Thread-surface drafts awaiting human approval. Populated by the draft-surfaces
+// job, drained by post-surfaces. Successfully-posted surfaces are recorded in
+// ted_surfaced for de-dup.
+export const tedSurfaceDrafts = pgTable(
+  "ted_surface_drafts",
+  {
+    id: serial("id").primaryKey(),
+    skoolPostId: text("skool_post_id").notNull(),
+    threadUrl: text("thread_url").notNull(),
+    threadAuthor: text("thread_author"),
+    threadTitle: text("thread_title"),
+    threadBody: text("thread_body"),
+    surfaceType: text("surface_type").notNull(), // 'tag' | 'link' | 'summary'
+    originalBody: text("original_body").notNull(),
+    editedBody: text("edited_body"),
+    // 'drafted' | 'voice_flagged' | 'approved' | 'edited' | 'rejected' | 'posted' | 'failed'
+    status: text("status").notNull().default("drafted"),
+    voiceCheck: jsonb("voice_check").$type<Record<string, unknown> | null>(),
+    approvedBySlug: text("approved_by_slug"),
+    approvedAt: timestamp("approved_at", { withTimezone: true }),
+    postedAt: timestamp("posted_at", { withTimezone: true }),
+    skoolReplyUrl: text("skool_reply_url"),
+    failureReason: text("failure_reason"),
+    createdAt: timestamp("created_at", { withTimezone: true }).notNull().defaultNow(),
+    updatedAt: timestamp("updated_at", { withTimezone: true }).notNull().defaultNow(),
+  },
+  (table) => [
+    index("ted_surface_drafts_status_idx").on(table.status),
+    index("ted_surface_drafts_skool_post_id_idx").on(table.skoolPostId),
+    index("ted_surface_drafts_created_at_idx").on(table.createdAt),
+  ]
+);
+
 export const tedActivityLog = pgTable(
   "ted_activity_log",
   {

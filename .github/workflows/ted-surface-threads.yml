@@ -1,7 +1,10 @@
 name: Ted — surface threads
 
-# Scans Clubhouse threads in the last 48h and surfaces up to 2.
-# Gate: skipped if ted_kill_switch.surface_threads_enabled=false.
+# Two-phase daily flow:
+#   1. Scan Clubhouse threads in the last 48h and draft up to 2 candidate
+#      surface replies (tag / link / summary) into ted_surface_drafts.
+#   2. Post any drafts a human has approved via /admin/ted/surfaces.
+# Gate: post phase is skipped if ted_kill_switch.surface_threads_enabled=false.
 # Runs at 13:00 UTC ≈ 14:00 Dublin year-round with ±1h DST drift.
 
 on:
@@ -14,7 +17,7 @@ on:
         required: false
         default: "false"
       max:
-        description: "Max surfaces this run"
+        description: "Max drafts this run"
         required: false
         default: "2"
 
@@ -33,7 +36,7 @@ jobs:
       - name: Install Playwright browsers
         run: npx playwright install chromium --with-deps
 
-      - name: Surface threads
+      - name: Draft candidate surfaces
         env:
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
           POSTGRES_URL: ${{ secrets.POSTGRES_URL }}
@@ -44,7 +47,22 @@ jobs:
           SKOOL_PASSWORD: ${{ secrets.SKOOL_PASSWORD }}
           SKOOL_COMMUNITY_SLUG: ${{ secrets.SKOOL_COMMUNITY_SLUG }}
         run: |
-          ARGS="--job=surface-threads --max=${{ inputs.max || '2' }}"
+          ARGS="--job=draft-surfaces --max=${{ inputs.max || '2' }}"
+          if [ "${{ inputs.dry_run }}" = "true" ]; then ARGS="$ARGS --dry-run"; fi
+          npx tsx agents/ted/src/index.ts $ARGS
+
+      - name: Post human-approved surfaces
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          POSTGRES_URL: ${{ secrets.POSTGRES_URL }}
+          RESEND_API_KEY: ${{ secrets.RESEND_API_KEY }}
+          TED_ADMIN_ALERT_EMAIL: ${{ secrets.TED_ADMIN_ALERT_EMAIL }}
+          TED_ALERT_FROM: ${{ secrets.TED_ALERT_FROM }}
+          SKOOL_EMAIL: ${{ secrets.SKOOL_EMAIL }}
+          SKOOL_PASSWORD: ${{ secrets.SKOOL_PASSWORD }}
+          SKOOL_COMMUNITY_SLUG: ${{ secrets.SKOOL_COMMUNITY_SLUG }}
+        run: |
+          ARGS="--job=post-surfaces"
           if [ "${{ inputs.dry_run }}" = "true" ]; then ARGS="$ARGS --dry-run"; fi
           npx tsx agents/ted/src/index.ts $ARGS
 

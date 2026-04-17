@@ -162,6 +162,95 @@ export async function enqueueWelcome(params: {
   });
 }
 
+// ── Surface drafts (awaiting approval) ───────────────────────
+
+export async function hasOpenSurfaceDraft(skoolPostId: string): Promise<boolean> {
+  const rows = await db
+    .select({ id: schema.tedSurfaceDrafts.id })
+    .from(schema.tedSurfaceDrafts)
+    .where(
+      and(
+        eq(schema.tedSurfaceDrafts.skoolPostId, skoolPostId),
+        inArray(schema.tedSurfaceDrafts.status, [
+          "drafted",
+          "voice_flagged",
+          "approved",
+          "edited",
+        ])
+      )
+    )
+    .limit(1);
+  return rows.length > 0;
+}
+
+export async function insertSurfaceDraft(params: {
+  skoolPostId: string;
+  threadUrl: string;
+  threadAuthor?: string;
+  threadTitle?: string;
+  threadBody?: string;
+  surfaceType: SurfaceType;
+  body: string;
+  voiceCheck: VoiceCheckResult;
+  voiceFlagged: boolean;
+}): Promise<number> {
+  const [row] = await db
+    .insert(schema.tedSurfaceDrafts)
+    .values({
+      skoolPostId: params.skoolPostId,
+      threadUrl: params.threadUrl,
+      threadAuthor: params.threadAuthor ?? null,
+      threadTitle: params.threadTitle ?? null,
+      threadBody: params.threadBody ?? null,
+      surfaceType: params.surfaceType,
+      originalBody: params.body,
+      status: params.voiceFlagged ? "voice_flagged" : "drafted",
+      voiceCheck: params.voiceCheck as unknown as Record<string, unknown>,
+    })
+    .returning({ id: schema.tedSurfaceDrafts.id });
+  return row.id;
+}
+
+export async function listApprovedSurfaceDrafts(limit = 10) {
+  return db
+    .select()
+    .from(schema.tedSurfaceDrafts)
+    .where(
+      inArray(schema.tedSurfaceDrafts.status, ["approved", "edited"])
+    )
+    .orderBy(schema.tedSurfaceDrafts.createdAt)
+    .limit(limit);
+}
+
+export async function markSurfaceDraftPosted(
+  id: number,
+  skoolReplyUrl: string
+): Promise<void> {
+  await db
+    .update(schema.tedSurfaceDrafts)
+    .set({
+      status: "posted",
+      postedAt: new Date(),
+      skoolReplyUrl,
+      updatedAt: new Date(),
+    })
+    .where(eq(schema.tedSurfaceDrafts.id, id));
+}
+
+export async function markSurfaceDraftFailed(
+  id: number,
+  reason: string
+): Promise<void> {
+  await db
+    .update(schema.tedSurfaceDrafts)
+    .set({
+      status: "failed",
+      failureReason: reason,
+      updatedAt: new Date(),
+    })
+    .where(eq(schema.tedSurfaceDrafts.id, id));
+}
+
 // ── Surfaced threads ─────────────────────────────────────────
 
 export async function hasSurfacedRecently(

@@ -5,8 +5,9 @@ import { usePathname } from "next/navigation";
 
 const LINKS: Array<{ href: string; label: string }> = [
   { href: "/admin/ted", label: "Dashboard" },
-  { href: "/admin/ted/queue", label: "Queue" },
+  { href: "/admin/ted/queue", label: "Prompts" },
   { href: "/admin/ted/welcomes", label: "Welcomes" },
+  { href: "/admin/ted/surfaces", label: "Surfaces" },
   { href: "/admin/ted/members", label: "Members" },
   { href: "/admin/ted/log", label: "Log" },
   { href: "/admin/ted/settings", label: "Settings" },

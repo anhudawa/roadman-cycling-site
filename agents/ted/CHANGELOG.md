@@ -1,5 +1,24 @@
 # Ted — Changelog
 
+## Unreleased — human-approval on every post
+
+Extends the v1 review queue so **every** Ted post (prompts, welcomes, and
+thread surfaces) requires human approval before it goes live — not just
+prompts.
+
+- **Welcomes** now gate on `status='approved'`. Previously `post-welcome`
+  auto-picked `drafted` rows. New `/admin/ted/welcomes` has an interactive
+  "Needs review" section with approve / edit-and-approve / reject per draft
+  and the same word-level diff used on the prompt queue.
+- **Surfaces** get a new table `ted_surface_drafts` (migration
+  `0020_ted_surface_drafts.sql`). The old single `surface-threads` job is
+  split into `draft-surfaces` (scan → generate → store) and `post-surfaces`
+  (drain approved → Playwright). New `/admin/ted/surfaces` page with the
+  same review UX. Thread title + author + body shown in context.
+- New top-nav link **"Surfaces"** on every `/admin/ted/*` page.
+- `ted-surface-threads.yml` GitHub workflow now runs draft then post in one
+  scheduled job.
+
 ## v1 — 2026-04-16
 
 First end-to-end build of the transparent AI community agent for the free Roadman Cycling Clubhouse on Skool. Drafts, welcomes, and thread surfaces via Claude + Playwright, human batch-approval through `/admin/ted`, gated per-job posting with a kill switch.

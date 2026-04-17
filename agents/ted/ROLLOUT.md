@@ -123,11 +123,12 @@ At `/admin/ted/settings`, flip **Daily prompts** to enabled.
 
 Flip **New-member welcomes** to enabled.
 
-- `ted-welcomes` workflow runs twice daily (08:00 and 17:00 UTC) — drafts then posts.
-- Per-day cap: the job skips if fewer than 3 pending welcomes exist, to avoid weird single-member welcome days. Override with `inputs.force=true` on a manual run.
-- Every welcome is first-name-only; persona classification comes from the Skool webhook → `ted_welcome_queue.persona`.
+- `ted-welcomes` workflow runs twice daily (08:00 and 17:00 UTC).
+  Phase 1 drafts; phase 2 posts the rows you've **approved** in `/admin/ted/welcomes`.
+- Per-day draft cap: job skips if fewer than 3 pending welcomes exist, to avoid weird single-member welcome days. Override with `inputs.force=true` on a manual run.
+- Every welcome needs human approve-edit-or-reject at `/admin/ted/welcomes`.
 
-**Success for Week 3:** All new members welcomed within 24h. Copy varies post-to-post. No two welcomes are identical.
+**Success for Week 3:** All new members welcomed within 24h. Every welcome reviewed by a human. No two welcomes are identical.
 
 ---
 
@@ -136,12 +137,13 @@ Flip **New-member welcomes** to enabled.
 Flip **Thread surfacing** to enabled.
 
 - `ted-surface-threads` workflow runs at 13:00 UTC daily.
-- Surfaces up to 2 threads per run.
+  Phase 1 (draft-surfaces) scans the last 48h of threads and drafts up to 2 candidate replies into `ted_surface_drafts`.
+  Phase 2 (post-surfaces) posts only the drafts you've approved in `/admin/ted/surfaces`.
 - Criteria: ≥3 replies, not already surfaced in last 48h, not authored by Ted or Anthony.
 
 **Pre-requisite:** `ted_active_members` should have at least 10 rows so `surface-tag` can fire. See "Seeding active members" below.
 
-**Success for Week 4:** 3+ thread surfaces per week, all with genuine value-add (tag, link, or summary).
+**Success for Week 4:** 3+ thread surfaces per week after your review, all with genuine value-add (tag, link, or summary).
 
 ---
 

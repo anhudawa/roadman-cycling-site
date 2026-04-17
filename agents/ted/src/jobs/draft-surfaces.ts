@@ -5,46 +5,57 @@ import { assertNotPaused, KillSwitchPaused } from "../lib/kill-switch.js";
 import { TedLogger } from "../lib/log.js";
 import { sendTedAlert } from "../lib/alert.js";
 import {
+  hasOpenSurfaceDraft,
   hasSurfacedRecently,
+  insertSurfaceDraft,
   listActiveMembers,
-  recordSurfaced,
 } from "../lib/memory.js";
 import { SkoolBrowser } from "../lib/skool-browser.js";
 import { generateSurfaceForThread } from "../generators/surface-generator.js";
 import type { EpisodeTopicMap, SkoolPost } from "../types.js";
 
-export interface SurfaceThreadsOpts {
+export interface DraftSurfacesOpts {
   dryRun?: boolean;
-  maxSurfacesPerRun?: number;
+  maxDraftsPerRun?: number;
 }
 
 const DEFAULT_MIN_REPLIES = 3;
 const DEFAULT_HOURS_BACK = 48;
 
-export async function runSurfaceThreads(
-  opts: SurfaceThreadsOpts = {}
+// Scan the last 48h of threads, generate surface replies via Claude, store
+// them as drafted rows in ted_surface_drafts. No posting. Separate post-surfaces
+// job drains the approved queue.
+export async function runDraftSurfaces(
+  opts: DraftSurfacesOpts = {}
 ): Promise<void> {
   const repoRoot = findRepoRoot();
   loadEnv(repoRoot);
   const p = paths(repoRoot);
   const logger = new TedLogger({ job: "surface-threads", logsDir: p.logsDir });
-  const maxSurfaces = opts.maxSurfacesPerRun ?? 2;
+  const maxDrafts = opts.maxDraftsPerRun ?? 2;
 
   try {
-    const state = await assertNotPaused();
-    if (!state.surfaceThreadsEnabled && !opts.dryRun) {
-      await logger.write({
-        job: "surface-threads",
-        action: "gate-disabled",
-        payload: { gate: "surface_threads_enabled" },
-      });
-      return;
+    try {
+      await assertNotPaused();
+    } catch (err) {
+      if (err instanceof KillSwitchPaused) {
+        await logger.write({
+          job: "surface-threads",
+          action: "draft-paused-but-continuing",
+          level: "warn",
+          error: err.message,
+        });
+      } else {
+        throw err;
+      }
     }
 
     const email = process.env.SKOOL_EMAIL;
     const password = process.env.SKOOL_PASSWORD;
     const communitySlug = process.env.SKOOL_COMMUNITY_SLUG ?? "roadman";
-    if (!email || !password) throw new Error("SKOOL_EMAIL and SKOOL_PASSWORD must be set");
+    if (!email || !password) {
+      throw new Error("SKOOL_EMAIL and SKOOL_PASSWORD must be set");
+    }
 
     const episodeMap = loadEpisodeMap(p.dataDir);
 
@@ -53,11 +64,11 @@ export async function runSurfaceThreads(
       password,
       communitySlug,
       headless: true,
-      screenshotDir: path.join(p.logsDir, "screenshots", `surface-${Date.now()}`),
+      screenshotDir: path.join(p.logsDir, "screenshots", `draft-surfaces-${Date.now()}`),
       dryRun: opts.dryRun,
     });
 
-    let surfaceCount = 0;
+    let draftCount = 0;
     try {
       await browser.open();
       await browser.login();
@@ -73,11 +84,8 @@ export async function runSurfaceThreads(
       });
 
       for (const t of threads) {
-        if (surfaceCount >= maxSurfaces) break;
+        if (draftCount >= maxDrafts) break;
 
-        // Include title in the body we pass to the generator — Ted's surface
-        // prompts should see both. Skool's posts are title + preview, and the
-        // title is often the whole question.
         const combinedBody = t.title ? `${t.title}\n\n${t.body}`.trim() : t.body;
         const thread: SkoolPost = {
           id: t.id,
@@ -89,10 +97,10 @@ export async function runSurfaceThreads(
           createdAt: "",
         };
 
-        // Filter — the spec's criteria.
         if (thread.replies < DEFAULT_MIN_REPLIES) continue;
         if (await hasSurfacedRecently(thread.id)) continue;
-        if (/ted|anthony/i.test(thread.author)) continue; // never surface Ted's or Anthony's posts
+        if (await hasOpenSurfaceDraft(thread.id)) continue;
+        if (/ted|anthony/i.test(thread.author)) continue;
 
         const topicTags = inferTopicTags(thread.body);
         const members = await listActiveMembers(topicTags, 6);
@@ -102,7 +110,6 @@ export async function runSurfaceThreads(
           lastSeenAt: m.lastSeenAt?.toISOString() ?? "",
           priorContributionNote: "active on related topics",
         }));
-
         const episodeCandidates = pickEpisodeCandidates(episodeMap, topicTags, 4);
 
         const surface = await generateSurfaceForThread({
@@ -124,7 +131,7 @@ export async function runSurfaceThreads(
         if (opts.dryRun) {
           await logger.write({
             job: "surface-threads",
-            action: "dry-run",
+            action: "draft-dry-run",
             payload: {
               threadId: thread.id,
               surfaceType: surface.surfaceType,
@@ -132,45 +139,42 @@ export async function runSurfaceThreads(
               cost: surface.cost,
             },
           });
-          surfaceCount += 1;
+          draftCount += 1;
           continue;
         }
 
-        try {
-          const result = await browser.replyToThread({
-            threadUrl: thread.url,
-            body: surface.body,
-          });
-          await recordSurfaced({
-            skoolPostId: thread.id,
+        const voiceFlagged = !surface.voiceCheck.pass;
+        const draftId = await insertSurfaceDraft({
+          skoolPostId: thread.id,
+          threadUrl: thread.url,
+          threadAuthor: thread.author,
+          threadTitle: t.title,
+          threadBody: t.body,
+          surfaceType: surface.surfaceType,
+          body: surface.body,
+          voiceCheck: surface.voiceCheck,
+          voiceFlagged,
+        });
+        await logger.write({
+          job: "surface-threads",
+          action: "drafted",
+          payload: {
+            draftId,
+            threadId: thread.id,
             surfaceType: surface.surfaceType,
-            body: surface.body,
-            skoolReplyUrl: result?.url,
-          });
-          await logger.write({
-            job: "surface-threads",
-            action: "surfaced",
-            payload: {
-              threadId: thread.id,
-              surfaceType: surface.surfaceType,
-              url: result?.url,
-              cost: surface.cost,
-            },
-          });
-          surfaceCount += 1;
-        } catch (err) {
-          const msg = err instanceof Error ? err.message : String(err);
-          await logger.write({
-            job: "surface-threads",
-            action: "reply-failed",
-            level: "error",
-            payload: { threadId: thread.id },
-            error: msg,
+            voiceFlagged,
+            cost: surface.cost,
+          },
+        });
+        draftCount += 1;
+
+        if (voiceFlagged) {
+          await sendTedAlert({
+            severity: "warn",
+            subject: `Surface draft parked for review (${surface.surfaceType})`,
+            body: `Thread: ${thread.url}\n\nBody:\n${surface.body}\n\nRed flags:\n- ${surface.voiceCheck.redFlags.join("\n- ")}`,
           });
         }
-
-        const mid = await assertNotPaused();
-        if (!mid.surfaceThreadsEnabled && !opts.dryRun) break;
       }
     } finally {
       await browser.close();
@@ -178,29 +182,20 @@ export async function runSurfaceThreads(
 
     await logger.write({
       job: "surface-threads",
-      action: "done",
-      payload: { surfaced: surfaceCount },
+      action: "draft-done",
+      payload: { drafted: draftCount },
     });
   } catch (err) {
-    if (err instanceof KillSwitchPaused) {
-      await logger.write({
-        job: "surface-threads",
-        action: "paused",
-        level: "warn",
-        error: err.message,
-      });
-      return;
-    }
     const msg = err instanceof Error ? err.message : String(err);
     await logger.write({
       job: "surface-threads",
-      action: "failed",
+      action: "draft-failed",
       level: "error",
       error: msg,
     });
     await sendTedAlert({
       severity: "error",
-      subject: "surface-threads failed",
+      subject: "draft-surfaces failed",
       body: msg,
     });
     throw err;

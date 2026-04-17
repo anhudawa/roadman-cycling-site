@@ -5,16 +5,18 @@
 // Usage:
 //   tsx agents/ted/src/index.ts --job=draft-prompt [--dry-run] [--date=YYYY-MM-DD]
 //   tsx agents/ted/src/index.ts --job=post-prompt [--dry-run]
-//   tsx agents/ted/src/index.ts --job=draft-welcome [--dry-run] [--limit=25]
+//   tsx agents/ted/src/index.ts --job=draft-welcome [--dry-run] [--limit=25] [--force]
 //   tsx agents/ted/src/index.ts --job=post-welcome [--dry-run] [--max=10]
-//   tsx agents/ted/src/index.ts --job=surface-threads [--dry-run] [--max=2]
+//   tsx agents/ted/src/index.ts --job=draft-surfaces [--dry-run] [--max=2]
+//   tsx agents/ted/src/index.ts --job=post-surfaces [--dry-run] [--max=5]
 // ---------------------------------------------------------------------------
 
 import { runDraftPrompt } from "./jobs/draft-prompt.js";
 import { runPostPrompt } from "./jobs/post-prompt.js";
 import { runDraftWelcome } from "./jobs/draft-welcome.js";
 import { runPostWelcome } from "./jobs/post-welcome.js";
-import { runSurfaceThreads } from "./jobs/surface-threads.js";
+import { runDraftSurfaces } from "./jobs/draft-surfaces.js";
+import { runPostSurfaces } from "./jobs/post-surfaces.js";
 
 const args = process.argv.slice(2);
 const flag = (name: string) => args.includes(`--${name}`);
@@ -24,10 +26,19 @@ const flagValue = (name: string) =>
 const job = flagValue("job");
 const dryRun = flag("dry-run");
 
+const JOBS = [
+  "draft-prompt",
+  "post-prompt",
+  "draft-welcome",
+  "post-welcome",
+  "draft-surfaces",
+  "post-surfaces",
+];
+
 async function main() {
   if (!job) {
-      console.error(
-      "Usage: tsx agents/ted/src/index.ts --job=<draft-prompt|post-prompt|draft-welcome|post-welcome|surface-threads> [--dry-run] [flags...]"
+    console.error(
+      `Usage: tsx agents/ted/src/index.ts --job=<${JOBS.join("|")}> [--dry-run] [flags...]`
     );
     process.exit(1);
   }
@@ -54,16 +65,20 @@ async function main() {
         max: flagValue("max") ? Number(flagValue("max")) : undefined,
       });
       break;
-    case "surface-threads":
-      await runSurfaceThreads({
+    case "draft-surfaces":
+      await runDraftSurfaces({
         dryRun,
-        maxSurfacesPerRun: flagValue("max")
-          ? Number(flagValue("max"))
-          : undefined,
+        maxDraftsPerRun: flagValue("max") ? Number(flagValue("max")) : undefined,
+      });
+      break;
+    case "post-surfaces":
+      await runPostSurfaces({
+        dryRun,
+        max: flagValue("max") ? Number(flagValue("max")) : undefined,
       });
       break;
     default:
-          console.error(`Unknown job: ${job}`);
+      console.error(`Unknown job: ${job}`);
       process.exit(1);
   }
 
