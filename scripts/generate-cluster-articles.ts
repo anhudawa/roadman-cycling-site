@@ -50,14 +50,37 @@ import {
   TRIATHLON_CLUSTER_ARTICLES,
   type ClusterArticleSpec,
 } from "./data/triathlon-cluster-articles";
+import { COACHING_CLUSTER_ARTICLES } from "./data/coaching-cluster-articles";
+import { PODCAST_AUTHORITY_ARTICLES } from "./data/podcast-authority-articles";
+
+type ClusterName = "triathlon" | "coaching" | "podcast-authority";
+
+const CLUSTERS: Record<ClusterName, ClusterArticleSpec[]> = {
+  triathlon: TRIATHLON_CLUSTER_ARTICLES,
+  coaching: COACHING_CLUSTER_ARTICLES,
+  "podcast-authority": PODCAST_AUTHORITY_ARTICLES,
+};
 
 const args = process.argv.slice(2);
 const dryRun = args.includes("--dry-run");
 const force = args.includes("--force");
 const slugFilter = args.find((a) => a.startsWith("--slug="))?.split("=")[1];
+const clusterArg =
+  (args.find((a) => a.startsWith("--cluster="))?.split("=")[1] as
+    | ClusterName
+    | undefined) ?? "triathlon";
 const limit = Number(
   args.find((a) => a.startsWith("--limit="))?.split("=")[1] ?? 0,
 );
+
+if (!(clusterArg in CLUSTERS)) {
+  console.error(
+    `Unknown --cluster=${clusterArg}. Valid: ${Object.keys(CLUSTERS).join(", ")}`,
+  );
+  process.exit(1);
+}
+
+const SELECTED_ARTICLES = CLUSTERS[clusterArg];
 
 const BLOG_DIR = path.join(process.cwd(), "content/blog");
 const MODEL = "claude-opus-4-7";
@@ -250,7 +273,7 @@ async function main() {
     fs.mkdirSync(BLOG_DIR, { recursive: true });
   }
 
-  const specs = TRIATHLON_CLUSTER_ARTICLES.filter((s) => {
+  const specs = SELECTED_ARTICLES.filter((s) => {
     if (slugFilter && s.slug !== slugFilter) return false;
     if (force) return true;
     return !articleExists(s.slug);
@@ -258,7 +281,8 @@ async function main() {
 
   const toProcess = limit > 0 ? specs.slice(0, limit) : specs;
 
-  console.log(`   Total articles in cluster: ${TRIATHLON_CLUSTER_ARTICLES.length}`);
+  console.log(`   Cluster: ${clusterArg}`);
+  console.log(`   Total articles in cluster: ${SELECTED_ARTICLES.length}`);
   console.log(`   Needs generation (or --force): ${specs.length}`);
   console.log(`   Will process this run: ${toProcess.length}`);
   console.log("");

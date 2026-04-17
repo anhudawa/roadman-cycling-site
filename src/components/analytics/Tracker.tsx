@@ -153,6 +153,27 @@ export function Tracker() {
     (window as any).__roadmanTrack = sendEvent;
   }, []);
 
+  // Global click delegate — fires a `cta_click` event for any anchor or
+  // button carrying `data-track="<event-name>"`. Lets us tag conversion
+  // CTAs on any page without wiring bespoke onClick handlers through the
+  // Button/Link components. The beacon pattern in sendEvent handles the
+  // page-navigation race (the event fires before the new page loads).
+  useEffect(() => {
+    if (!consented) return;
+    function onClick(e: MouseEvent) {
+      const target = e.target;
+      if (!(target instanceof HTMLElement)) return;
+      const trackEl = target.closest<HTMLElement>("[data-track]");
+      if (!trackEl) return;
+      const trackId = trackEl.getAttribute("data-track");
+      if (!trackId) return;
+      const href = trackEl.getAttribute("href") || "";
+      sendEvent("cta_click", { track_id: trackId, destination: href });
+    }
+    document.addEventListener("click", onClick, { capture: true });
+    return () => document.removeEventListener("click", onClick, { capture: true });
+  }, [consented]);
+
   return null;
 }
 

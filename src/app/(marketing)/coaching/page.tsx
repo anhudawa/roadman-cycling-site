@@ -280,7 +280,11 @@ export default function CoachingPage() {
                 into your week so every session counts.
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-6">
-                <Button href="/apply" size="lg">
+                <Button
+                  href="/apply"
+                  size="lg"
+                  dataTrack="coaching_hub_hero_apply"
+                >
                   Apply Now — 7-Day Free Trial
                 </Button>
                 <Button href="#how-it-works" variant="ghost" size="lg">
@@ -598,7 +602,11 @@ export default function CoachingPage() {
                   programme is built to make you faster on the bike without
                   ruining your run.
                 </p>
-                <Button href="/coaching/triathlon" size="lg">
+                <Button
+                  href="/coaching/triathlon"
+                  size="lg"
+                  dataTrack="coaching_hub_to_triathlon_pillar"
+                >
                   Triathlon Bike Coaching →
                 </Button>
               </Card>
@@ -712,7 +720,12 @@ export default function CoachingPage() {
               7-day free trial. Five pillars. Personalised to your goals, your
               schedule, and your life. Cancel anytime.
             </p>
-            <Button href="/apply" size="lg" className="bg-off-white text-coral hover:bg-off-white/90">
+            <Button
+              href="/apply"
+              size="lg"
+              className="bg-off-white text-coral hover:bg-off-white/90"
+              dataTrack="coaching_hub_footer_apply"
+            >
               Apply Now
             </Button>
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mt-6 text-off-white/60 text-sm">

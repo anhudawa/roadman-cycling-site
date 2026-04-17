@@ -309,7 +309,11 @@ export default function TriathlonCoachingPage() {
                 Dan Lorang, Prof. Stephen Seiler, and World Tour coaches.
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-6">
-                <Button href="/apply" size="lg">
+                <Button
+                  href="/apply"
+                  size="lg"
+                  dataTrack="triathlon_pillar_hero_apply"
+                >
                   Apply Now — 7-Day Free Trial
                 </Button>
                 <Button href="#how-it-works" variant="ghost" size="lg">
@@ -686,6 +690,7 @@ export default function TriathlonCoachingPage() {
               href="/apply"
               size="lg"
               className="bg-off-white text-coral hover:bg-off-white/90"
+              dataTrack="triathlon_pillar_footer_apply"
             >
               Apply Now
             </Button>
