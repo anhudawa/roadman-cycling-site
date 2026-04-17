@@ -12,6 +12,31 @@ export default function Error({
 }) {
   useEffect(() => {
     console.error(error)
+    // Fire-and-forget beacon to our own /api/events. Using sendBeacon
+    // means the request survives navigation (user clicking "Try Again"
+    // or "Back to Home") and doesn't block rendering of this page.
+    if (typeof navigator !== 'undefined' && 'sendBeacon' in navigator) {
+      try {
+        const payload = {
+          type: 'error_report',
+          page: typeof window !== 'undefined' ? window.location.pathname : '/',
+          source: 'client',
+          meta: {
+            message: (error?.message ?? '').slice(0, 500),
+            digest: error?.digest ?? '',
+            stack: (error?.stack ?? '').slice(0, 2000),
+            url:
+              typeof window !== 'undefined' ? window.location.href : '',
+          },
+        }
+        const blob = new Blob([JSON.stringify(payload)], {
+          type: 'application/json',
+        })
+        navigator.sendBeacon('/api/events', blob)
+      } catch {
+        // Swallow — reporting must never block rendering the error UI.
+      }
+    }
   }, [error])
 
   return (

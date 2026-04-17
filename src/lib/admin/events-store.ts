@@ -12,7 +12,8 @@ export type EventType =
   | "form_submit"
   | "skool_trial"
   | "checkout_initiated"
-  | "checkout_completed";
+  | "checkout_completed"
+  | "error_report";
 
 export interface TrackingEvent {
   id: string;

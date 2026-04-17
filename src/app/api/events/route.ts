@@ -18,6 +18,7 @@ export async function POST(request: Request) {
       "skool_trial",
       "checkout_initiated",
       "checkout_completed",
+      "error_report",
     ];
     if (!validTypes.includes(type)) {
       return Response.json({ error: "Invalid event type" }, { status: 400 });
