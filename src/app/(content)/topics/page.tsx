@@ -12,6 +12,13 @@ export const metadata: Metadata = {
   alternates: {
     canonical: "https://roadmancycling.com/topics",
   },
+  openGraph: {
+    title: "Cycling Topics — In-Depth Guides & Resources",
+    description:
+      "Browse cycling topics: FTP training, nutrition, training plans, recovery, strength & conditioning, weight loss, and beginner guides. Curated expert content from the podcast.",
+    type: "website",
+    url: "https://roadmancycling.com/topics",
+  },
 };
 
 export default function TopicsPage() {

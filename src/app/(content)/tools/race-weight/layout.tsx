@@ -8,6 +8,13 @@ export const metadata: Metadata = {
     "Calculate your target race weight based on body composition and event type. Free cycling tool based on competitive cyclist reference ranges.",
   keywords: ["race weight calculator", "cycling race weight", "cycling body composition", "power to weight cycling"],
   alternates: { canonical: "https://roadmancycling.com/tools/race-weight" },
+  openGraph: {
+    title: "Race Weight Calculator — Peak Cycling Weight",
+    description:
+      "Calculate your target race weight based on body composition and event type. Free cycling tool based on competitive cyclist reference ranges.",
+    type: "website",
+    url: "https://roadmancycling.com/tools/race-weight",
+  },
 };
 
 export default function Layout({ children }: { children: React.ReactNode }) {

@@ -21,33 +21,33 @@ const personas = [
   {
     opener: "I've stopped getting faster.",
     detail:
-      "Plateaued FTP, same results for months. Get the 80/20 distribution the Norwegian lab's been proving for 20 years.",
+      "Plateaued FTP, same results for months. Take the 3-question diagnostic — find out what's actually keeping you stuck.",
     cta: "Break the plateau",
-    href: "/topics/ftp-training",
+    href: "/you/plateau",
     accent: "coral",
   },
   {
     opener: "I've got a target event.",
     detail:
-      "A sportive, fondo, or race on the calendar. See the structured plans built around specific events and timeframes.",
-    cta: "See the plans",
-    href: "/topics/cycling-training-plans",
+      "A sportive, race, or fondo on the calendar. Find which phase you should be in right now — and the week's anchor session.",
+    cta: "Build the plan",
+    href: "/you/event",
     accent: "purple",
   },
   {
     opener: "I'm coming back.",
     detail:
-      "Life got in the way. Body composition shifted. How to rebuild without breaking yourself — and without wasting 6 months.",
+      "Life got in the way. Injury, kids, work, a crash. Rebuild the engine without wasting months — the right way back.",
     cta: "Rebuild the engine",
-    href: "/blog/cycling-returning-after-break",
+    href: "/you/comeback",
     accent: "coral",
   },
   {
     opener: "I want to train like the pros.",
     detail:
-      "Start with the conversations. 1,400+ episodes with Seiler, Lorang, LeMond, Morton — everything the World Tour does differently.",
-    cta: "Start with the podcast",
-    href: "/podcast",
+      "You listen. You've absorbed the principles. Here's the short path: the best conversations, the core concepts, what to do next.",
+    cta: "Start here",
+    href: "/you/listener",
     accent: "purple",
   },
 ] as const;

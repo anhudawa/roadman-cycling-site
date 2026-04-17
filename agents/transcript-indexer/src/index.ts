@@ -487,8 +487,17 @@ async function main() {
           console.log("No new episodes from RSS.");
         }
 
-        // Process new episodes (most recent first, dry-run = just one)
-        const toProcess = dryRun ? newFromFeed.slice(0, 1) : newFromFeed;
+        // Process new episodes (most recent first).
+        // Cap at 2 per run to avoid blasting through the entire backlog.
+        const WATCH_BATCH_LIMIT = 2;
+        const toProcess = dryRun
+          ? newFromFeed.slice(0, 1)
+          : newFromFeed.slice(0, WATCH_BATCH_LIMIT);
+        if (newFromFeed.length > toProcess.length) {
+          console.log(
+            `Capping this run at ${toProcess.length} episodes (${newFromFeed.length - toProcess.length} remaining will be picked up next run).`
+          );
+        }
 
         for (const rssEp of toProcess) {
           // Check if we already have this episode locally (by title match)
