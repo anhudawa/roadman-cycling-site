@@ -134,6 +134,17 @@ function buildSearchIndex(): SearchableItem[] {
   // Podcast episodes
   const episodes = getAllEpisodes();
   for (const ep of episodes) {
+    // deepText = segmentTitles + answerCapsule. Gives the client-side
+    // search access to the substantive content we've LLM-polished
+    // without shipping full transcripts.
+    const deepText = [
+      (ep.segmentTitles || []).join(" · "),
+      ep.answerCapsule || "",
+      ep.seoDescription || "",
+    ]
+      .filter(Boolean)
+      .join(" ");
+
     items.push({
       type: "podcast",
       slug: ep.slug,
@@ -147,12 +158,16 @@ function buildSearchIndex(): SearchableItem[] {
       guestCredential: ep.guestCredential,
       duration: ep.duration,
       episodeType: ep.type,
+      deepText,
     });
   }
 
   // Blog posts
   const posts = getAllPosts();
   for (const post of posts) {
+    const deepText = [post.answerCapsule || "", post.seoDescription || ""]
+      .filter(Boolean)
+      .join(" ");
     items.push({
       type: "blog",
       slug: post.slug,
@@ -163,6 +178,7 @@ function buildSearchIndex(): SearchableItem[] {
       keywords: post.keywords,
       readTime: post.readTime,
       excerpt: post.excerpt,
+      deepText,
     });
   }
 
