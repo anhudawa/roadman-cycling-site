@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Image from "next/image";
+import Link from "next/link";
 import { Header, Footer, Section, Container } from "@/components/layout";
 import { Button, Card, ScrollReveal, ParallaxImage } from "@/components/ui";
 import { JsonLd } from "@/components/seo/JsonLd";
@@ -56,17 +57,51 @@ const milestones = [
 export default function AboutPage() {
   return (
     <>
+      {/* Full Person entity for Anthony Walsh — supports Google Knowledge Panel
+          eligibility by linking the same-name entity across Roadman's podcast
+          feeds, YouTube, and social platforms. Kept consistent with the founder
+          Person inside Organization JsonLd emitted in JsonLd.tsx. */}
       <JsonLd
         data={{
           "@context": "https://schema.org",
           "@type": "Person",
           name: "Anthony Walsh",
-          jobTitle: "Host, Roadman Cycling Podcast",
+          alternateName: "Anthony Walsh (Roadman Cycling)",
+          description:
+            "Cycling coach and founder of Roadman Cycling. Host of the Roadman Cycling Podcast, with over 1,400 conversations with World Tour coaches, sports scientists, and professional riders — including Prof. Stephen Seiler, Dan Lorang, Greg LeMond, and Lachlan Morton.",
+          image: "https://roadmancycling.com/images/about/anthony-walsh-podcast.jpg",
+          jobTitle: "Cycling Coach & Podcast Host",
           url: "https://roadmancycling.com/about",
+          sameAs: [
+            "https://youtube.com/@theroadmanpodcast",
+            "https://instagram.com/roadman.cycling",
+            "https://facebook.com/roadmancycling",
+            "https://x.com/Roadman_Podcast",
+            "https://tiktok.com/@roadmancyclingpodcast",
+            "https://open.spotify.com/show/2oCs3N4ahypwzzUrFqgUmC",
+            "https://podcasts.apple.com/us/podcast/the-roadman-cycling-podcast/id1224143549",
+          ],
+          knowsAbout: [
+            "Cycling coaching",
+            "Cycling training methodology",
+            "Polarised training",
+            "Functional Threshold Power (FTP)",
+            "Cycling nutrition",
+            "Strength training for cyclists",
+            "Triathlon bike coaching",
+            "Endurance sports podcasting",
+          ],
           worksFor: {
             "@type": "Organization",
             name: "Roadman Cycling",
+            url: "https://roadmancycling.com",
           },
+          founder: {
+            "@type": "Organization",
+            name: "Roadman Cycling",
+            url: "https://roadmancycling.com",
+          },
+          mainEntityOfPage: "https://roadmancycling.com/about",
         }}
       />
 
@@ -367,9 +402,9 @@ export default function AboutPage() {
             <ScrollReveal direction="up" delay={0.5}>
               <p className="text-center text-foreground-muted text-sm mt-8">
                 Plus 1,400+ more conversations in{" "}
-                <a href="/guests" className="text-coral hover:underline">
+                <Link href="/guests" className="text-coral hover:underline">
                   the full guest archive
-                </a>
+                </Link>
                 .
               </p>
             </ScrollReveal>
@@ -436,7 +471,7 @@ export default function AboutPage() {
               ))}
             </div>
 
-            {/* CTA — apply is primary; free community is the softer option */}
+            {/* CTA — apply is primary; free community + press are softer options */}
             <div className="mt-16 text-center">
               <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
                 <Button href="/apply" size="lg">
@@ -444,6 +479,9 @@ export default function AboutPage() {
                 </Button>
                 <Button href="/community/clubhouse" variant="ghost" size="lg">
                   Join Free Community
+                </Button>
+                <Button href="/about/press" variant="ghost" size="lg">
+                  Press &amp; Media Kit
                 </Button>
               </div>
             </div>

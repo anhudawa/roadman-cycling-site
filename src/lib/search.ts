@@ -21,6 +21,13 @@ export interface SearchableItem {
   // Blog-specific
   readTime?: string;
   excerpt?: string;
+  /**
+   * Deep-content snippet, scored against queries but not displayed.
+   * For episodes: joined segmentTitles + answerCapsule. For blog
+   * posts: answerCapsule. Gives the client-side search access to
+   * substantive text without shipping full transcripts.
+   */
+  deepText?: string;
 }
 
 /**
@@ -47,6 +54,7 @@ export function searchItems(
     const descLower = item.description.toLowerCase();
     const guestLower = (item.guest || "").toLowerCase();
     const keywordsLower = item.keywords.join(" ").toLowerCase();
+    const deepLower = (item.deepText || "").toLowerCase();
 
     for (const term of terms) {
       // Title matches (highest weight)
@@ -57,6 +65,9 @@ export function searchItems(
       if (keywordsLower.includes(term)) score += 5;
       // Description matches
       if (descLower.includes(term)) score += 2;
+      // Deep-content match — catches queries that only appear in the
+      // answer capsule or segment titles (not the metadata above).
+      if (deepLower.includes(term)) score += 1;
       // Exact word match bonus
       if (titleLower.split(/\s+/).includes(term)) score += 5;
     }

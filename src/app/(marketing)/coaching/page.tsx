@@ -196,6 +196,52 @@ export default function CoachingPage() {
             description:
               "1:1 personalised coaching across training, nutrition, strength, recovery, and accountability",
           },
+          // Review schema mirrors the real on-page testimonials below.
+          // No reviewRating — we collect narrative testimonials, not star ratings,
+          // so emitting a made-up numeric rating would violate Google's guidelines.
+          review: testimonials.map((t) => ({
+            "@type": "Review",
+            author: {
+              "@type": "Person",
+              name: t.name,
+            },
+            reviewBody: t.quote,
+            itemReviewed: {
+              "@type": "Service",
+              name: "Roadman Cycling Coaching",
+            },
+          })),
+        }}
+      />
+      {/* Course schema — structured coaching programme with instructor + delivery mode */}
+      <JsonLd
+        data={{
+          "@context": "https://schema.org",
+          "@type": "Course",
+          name: "Roadman Cycling — Not Done Yet Coaching Programme",
+          description:
+            "Structured online cycling coaching programme covering training, nutrition, strength, recovery, and accountability. Delivered via TrainingPeaks, weekly coaching calls, and a private community.",
+          provider: {
+            "@type": "Organization",
+            name: "Roadman Cycling",
+            sameAs: "https://roadmancycling.com",
+          },
+          hasCourseInstance: {
+            "@type": "CourseInstance",
+            courseMode: "Online",
+            courseWorkload: "PT8H",
+            instructor: {
+              "@type": "Person",
+              name: "Anthony Walsh",
+              jobTitle: "Cycling Coach & Founder, Roadman Cycling",
+            },
+          },
+          offers: {
+            "@type": "Offer",
+            price: "195",
+            priceCurrency: "USD",
+            category: "Monthly subscription",
+          },
         }}
       />
       <JsonLd
@@ -276,7 +322,11 @@ export default function CoachingPage() {
               </div>
 
               <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-6">
-                <Button href="/apply" size="lg">
+                <Button
+                  href="/apply"
+                  size="lg"
+                  dataTrack="coaching_hub_hero_apply"
+                >
                   Apply Now — 7-Day Free Trial
                 </Button>
                 <Button href="#how-it-works" variant="ghost" size="lg">
@@ -605,6 +655,44 @@ export default function CoachingPage() {
           </Container>
         </Section>
 
+        {/* Triathlon-specific entry point */}
+        <Section background="charcoal">
+          <Container width="narrow">
+            <ScrollReveal direction="up">
+              <Card className="p-8 md:p-10 text-center" glass hoverable={false}>
+                <p className="text-coral font-heading text-xs tracking-widest mb-4">
+                  FOR TRIATHLETES
+                </p>
+                <h2
+                  className="font-heading text-off-white mb-4"
+                  style={{ fontSize: "var(--text-section)" }}
+                >
+                  RACING A 70.3 OR IRONMAN?
+                </h2>
+                <p className="text-foreground-muted max-w-xl mx-auto mb-6 leading-relaxed">
+                  The bike leg is where age-group races are won and lost — and
+                  where most run legs fall apart. Our{" "}
+                  <Link
+                    href="/coaching/triathlon"
+                    className="text-coral hover:text-coral/80 transition-colors"
+                  >
+                    triathlon bike coaching
+                  </Link>{" "}
+                  programme is built to make you faster on the bike without
+                  ruining your run.
+                </p>
+                <Button
+                  href="/coaching/triathlon"
+                  size="lg"
+                  dataTrack="coaching_hub_to_triathlon_pillar"
+                >
+                  Triathlon Bike Coaching →
+                </Button>
+              </Card>
+            </ScrollReveal>
+          </Container>
+        </Section>
+
         {/* Geographic trust */}
         <Section background="deep-purple" grain>
           <Container width="narrow" className="text-center">
@@ -667,8 +755,77 @@ export default function CoachingPage() {
           </Container>
         </Section>
 
-        {/* FAQ */}
+        {/* Blog cluster — coaching-pillar articles for internal link equity */}
         <Section background="charcoal">
+          <Container width="narrow">
+            <ScrollReveal direction="up" className="text-center mb-10">
+              <h2
+                className="font-heading text-off-white mb-4"
+                style={{ fontSize: "var(--text-section)" }}
+              >
+                FROM THE BLOG
+              </h2>
+              <p className="text-foreground-muted max-w-xl mx-auto">
+                Training science, coaching methodology, and what actually
+                moves the needle for serious amateurs.
+              </p>
+            </ScrollReveal>
+
+            <div className="grid md:grid-cols-2 gap-4">
+              {[
+                {
+                  href: "/blog/polarised-vs-sweet-spot-training",
+                  title: "Polarised vs Sweet Spot: What the Science Says",
+                },
+                {
+                  href: "/blog/is-a-cycling-coach-worth-it",
+                  title: "Is a Cycling Coach Worth It? Cost-Benefit Analysis",
+                },
+                {
+                  href: "/blog/is-a-cycling-coach-worth-it-case-study",
+                  title: "Is a Cycling Coach Worth It? (Cat-3 to Cat-1 Case Study)",
+                },
+                {
+                  href: "/blog/trainerroad-vs-online-cycling-coach",
+                  title: "TrainerRoad vs Online Cycling Coach",
+                },
+                {
+                  href: "/blog/time-crunched-cyclist-8-hours-week",
+                  title: "How to Train on 8 Hours a Week",
+                },
+                {
+                  href: "/blog/how-to-structure-cycling-training-plan",
+                  title: "How to Structure a Cycling Training Plan",
+                },
+                {
+                  href: "/blog/how-to-periodise-cycling-season",
+                  title: "How to Periodise a Cycling Season",
+                },
+                {
+                  href: "/blog/age-group-ftp-benchmarks-2026",
+                  title: "Age-Group FTP Benchmarks 2026",
+                },
+                {
+                  href: "/blog/masters-cyclist-guide-getting-faster-after-40",
+                  title: "Getting Faster After 40: The Masters Guide",
+                },
+              ].map((article) => (
+                <Link
+                  key={article.href}
+                  href={article.href}
+                  className="block p-4 rounded-lg bg-white/5 hover:bg-coral/10 border border-white/5 hover:border-coral/30 transition-all group"
+                >
+                  <p className="font-heading text-sm text-off-white group-hover:text-coral transition-colors tracking-wide">
+                    {article.title.toUpperCase()}
+                  </p>
+                </Link>
+              ))}
+            </div>
+          </Container>
+        </Section>
+
+        {/* FAQ */}
+        <Section background="deep-purple" grain>
           <Container width="narrow">
             <ScrollReveal direction="up" className="text-center mb-12">
               <h2
@@ -719,6 +876,7 @@ export default function CoachingPage() {
               href="/apply"
               className="inline-flex items-center justify-center gap-2 font-heading tracking-wider uppercase rounded-md transition-all cursor-pointer active:scale-[0.97] active:duration-75 px-8 md:px-10 py-4 text-lg bg-off-white text-coral hover:bg-off-white/90 shadow-lg"
               style={{ transitionDuration: "var(--duration-fast)" }}
+              data-track="coaching_hub_footer_apply"
             >
               Apply Now
             </Link>

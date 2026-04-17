@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Image from "next/image";
+import Link from "next/link";
 import { Header, Footer, Section, Container } from "@/components/layout";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { getAllEpisodes } from "@/lib/podcast";
@@ -101,6 +102,55 @@ export default function PodcastPage() {
         <Section background="charcoal">
           <Container>
             <PodcastSearch episodes={episodes} />
+          </Container>
+        </Section>
+
+        {/* Podcast guides — internal links from the pillar to
+            authority cluster articles */}
+        <Section background="deep-purple" grain>
+          <Container width="narrow">
+            <div className="text-center mb-10">
+              <h2
+                className="font-heading text-off-white mb-4"
+                style={{ fontSize: "var(--text-section)" }}
+              >
+                PODCAST GUIDES
+              </h2>
+              <p className="text-foreground-muted max-w-xl mx-auto">
+                Finding the right cycling podcast for your needs.
+              </p>
+            </div>
+
+            <div className="grid md:grid-cols-2 gap-4">
+              {[
+                {
+                  href: "/blog/best-cycling-podcasts-for-2026-edition",
+                  title: "The 20 Best Cycling Podcasts for 2026",
+                },
+                {
+                  href: "/blog/fast-talk-vs-cycling-podcast-vs-roadman",
+                  title: "Fast Talk vs Cycling Podcast vs Roadman",
+                },
+                {
+                  href: "/blog/best-cycling-podcast-for-triathletes",
+                  title: "Best Cycling Podcast for Triathletes",
+                },
+                {
+                  href: "/blog/podcasts-for-cyclists-over-40",
+                  title: "Podcasts for Cyclists Over 40",
+                },
+              ].map((article) => (
+                <Link
+                  key={article.href}
+                  href={article.href}
+                  className="block p-4 rounded-lg bg-white/5 hover:bg-coral/10 border border-white/5 hover:border-coral/30 transition-all group"
+                >
+                  <p className="font-heading text-sm text-off-white group-hover:text-coral transition-colors tracking-wide">
+                    {article.title.toUpperCase()}
+                  </p>
+                </Link>
+              ))}
+            </div>
           </Container>
         </Section>
       </main>

@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { HowToSchema } from "@/components/seo/HowToSchema";
 import { JsonLd } from "@/components/seo/JsonLd";
+import { SoftwareApplicationSchema } from "@/components/seo/SoftwareApplicationSchema";
 
 export const metadata: Metadata = {
   title: "Energy Availability Calculator — RED-S Risk",
@@ -20,6 +21,17 @@ export const metadata: Metadata = {
 export default function Layout({ children }: { children: React.ReactNode }) {
   return (
     <>
+      <SoftwareApplicationSchema
+        name="Cyclist Energy Availability Calculator"
+        description="Calculate your energy availability (EA) score from fat-free mass and training load to screen for RED-S risk. Free browser-based tool for endurance athletes."
+        url="https://roadmancycling.com/tools/energy-availability"
+        features={[
+          "EA score in kcal/kg fat-free mass",
+          "Training-load adjusted energy deficit estimate",
+          "RED-S risk banding (low / optimal / at-risk)",
+          "Based on IOC RED-S consensus thresholds",
+        ]}
+      />
       <HowToSchema
         name="How to Calculate Energy Availability"
         description="Calculate your energy availability (EA) score to assess whether you are eating enough to support your cycling training and overall health, and screen for RED-S risk."

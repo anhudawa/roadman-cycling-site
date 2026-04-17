@@ -42,7 +42,7 @@ export function HeroSection() {
   const textOpacity = useTransform(smoothProgress, [0, 0.6], [1, 0]);
   const bgY = useTransform(smoothProgress, [0, 1], [0, 200]);
   const auroraY = useTransform(smoothProgress, [0, 1], [0, 100]);
-  const overlayOpacity = useTransform(smoothProgress, [0, 0.5], [0.5, 0.9]);
+  const overlayOpacity = useTransform(smoothProgress, [0, 0.5], [0.35, 0.85]);
 
   useMotionValueEvent(scrollYProgress, "change", (v) => {
     setScrolled(v > 0.05);
@@ -55,22 +55,16 @@ export function HeroSection() {
     >
       {/* === LAYER 1: Deep background with parallax === */}
       <motion.div className="absolute inset-0 bg-charcoal" style={{ y: bgY }}>
-        {/* Hero portrait background — toned down so the H1 is the hero,
-            not the photo. Dropped opacity 0.4 → 0.22 and pushed the
-            object-position so the subject's face doesn't collide with
-            the headline. */}
         <Image
           src="/images/about/anthony-podcast-promo.jpg"
           alt=""
           fill
-          className="object-cover opacity-[0.22]"
-          style={{ objectPosition: "center 100%" }}
+          className="object-cover opacity-[0.38]"
+          style={{ objectPosition: "center 30%" }}
           sizes="100vw"
           priority
         />
-        {/* Top-heavy gradient: keeps the photo atmospheric while reserving
-            the upper third for the H1. */}
-        <div className="absolute inset-0 bg-gradient-to-b from-charcoal via-charcoal/70 to-transparent" />
+        <div className="absolute inset-0 bg-gradient-to-b from-charcoal/80 via-charcoal/50 to-transparent" />
         {/* Radial vignette to blend edges */}
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center_top,transparent_30%,rgba(37,37,38,0.9)_75%,rgb(37,37,38)_100%)]" />
         {/* Grain texture */}
@@ -93,7 +87,7 @@ export function HeroSection() {
 
       {/* === LAYER 3: Gradient overlay (darkens on scroll) === */}
       <motion.div
-        className="absolute inset-0 bg-gradient-to-b from-deep-purple/50 via-charcoal/70 to-charcoal"
+        className="absolute inset-0 bg-gradient-to-b from-deep-purple/30 via-charcoal/50 to-charcoal"
         style={{ opacity: overlayOpacity }}
       />
 

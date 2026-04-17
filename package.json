@@ -47,7 +47,20 @@
     "seo:hubs:dry": "tsx scripts/generate-hub-content.ts --dry-run",
     "seo:companion": "tsx scripts/generate-companion-articles.ts",
     "seo:companion:dry": "tsx scripts/generate-companion-articles.ts --dry-run",
-    "seo:companion:rank": "tsx scripts/generate-companion-articles.ts --rank-only"
+    "seo:companion:rank": "tsx scripts/generate-companion-articles.ts --rank-only",
+    "seo:titles": "tsx scripts/generate-segment-titles.ts",
+    "seo:titles:dry": "tsx scripts/generate-segment-titles.ts --dry-run",
+    "seo:capsules:episodes": "tsx scripts/generate-episode-capsules.ts",
+    "seo:capsules:episodes:dry": "tsx scripts/generate-episode-capsules.ts --dry-run",
+    "seo:cluster:triathlon": "tsx scripts/generate-cluster-articles.ts",
+    "seo:cluster:triathlon:dry": "tsx scripts/generate-cluster-articles.ts --dry-run",
+    "seo:indexnow": "tsx scripts/submit-indexnow.ts",
+    "seo:indexnow:dry": "tsx scripts/submit-indexnow.ts --dry-run",
+    "seo:related-episodes": "tsx scripts/populate-related-episodes.ts",
+    "seo:related-episodes:dry": "tsx scripts/populate-related-episodes.ts --dry-run",
+    "seo:episode-related-posts": "tsx scripts/populate-episode-related-posts.ts",
+    "seo:episode-related-posts:dry": "tsx scripts/populate-episode-related-posts.ts --dry-run",
+    "seo:audit-orphans": "tsx scripts/audit-orphans.ts"
   },
   "dependencies": {
     "@anthropic-ai/sdk": "^0.82.0",

@@ -1096,6 +1096,43 @@ export default async function CoachingLocationPage({ params }: Props) {
           </Container>
         </Section>
 
+        {/* Triathlon cross-link — every geo page passes authority to the
+            /coaching/triathlon pillar. City-specific framing keeps it
+            natural rather than boilerplate. */}
+        <Section background="charcoal">
+          <Container width="narrow">
+            <ScrollReveal direction="up">
+              <Card className="p-8 md:p-10 text-center" glass hoverable={false}>
+                <p className="text-coral font-heading text-xs tracking-widest mb-4">
+                  FOR {data.headingLabel.toUpperCase()} TRIATHLETES
+                </p>
+                <h2
+                  className="font-heading text-off-white mb-4"
+                  style={{ fontSize: "var(--text-section)" }}
+                >
+                  RACING A 70.3 OR IRONMAN?
+                </h2>
+                <p className="text-foreground-muted max-w-xl mx-auto mb-6 leading-relaxed">
+                  Our{" "}
+                  <Link
+                    href="/coaching/triathlon"
+                    className="text-coral hover:text-coral/80 transition-colors"
+                  >
+                    triathlon bike coaching
+                  </Link>{" "}
+                  programme is bike-leg-specific, run-protective, and works
+                  for {data.headingLabel} triathletes at 70.3 and Ironman
+                  distances. Same coach, same methodology — different
+                  periodisation.
+                </p>
+                <Button href="/coaching/triathlon" size="lg">
+                  Triathlon Bike Coaching →
+                </Button>
+              </Card>
+            </ScrollReveal>
+          </Container>
+        </Section>
+
         {/* FAQ */}
         <Section background="deep-purple" grain>
           <Container width="narrow">
