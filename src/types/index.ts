@@ -108,12 +108,12 @@ export const CONTENT_PILLARS: Record<
 };
 
 /**
- * Top-level nav is intentionally minimal — the 35-55 professional audience
- * has zero patience for 9-item navigation bars. Everything else lives in
- * the footer or is reachable from page-level content (Topics from /blog,
- * Guests from /about or /podcast, Partners/Events in footer).
+ * Top-level nav: 6 items with purpose-built dropdowns.
  *
  * Coaching is the revenue channel so its dropdown leads with APPLY.
+ * Community groups all the "where you ride with us" options (paid +
+ * free community, Dublin club rides, events). Topics and Guests live
+ * in the footer.
  */
 export const NAV_ITEMS: NavItem[] = [
   {
@@ -130,9 +130,17 @@ export const NAV_ITEMS: NavItem[] = [
     children: [
       { label: "Apply for Not Done Yet", href: "/apply" },
       { label: "How Coaching Works", href: "/coaching" },
+      { label: "Strength Training Course", href: "/strength-training" },
+    ],
+  },
+  {
+    label: "Community",
+    href: "/community",
+    children: [
       { label: "Not Done Yet (Paid)", href: "/community/not-done-yet" },
       { label: "Clubhouse (Free)", href: "/community/clubhouse" },
-      { label: "Strength Training Course", href: "/strength-training" },
+      { label: "Roadman CC (Dublin club rides)", href: "/community/club" },
+      { label: "Events", href: "/events" },
     ],
   },
   {
