@@ -5,9 +5,7 @@ import { notifyCohortApplication } from "@/lib/notifications";
 import { upsertContact, addActivity } from "@/lib/crm/contacts";
 import { subscribeToBeehiiv } from "@/lib/integrations/beehiiv";
 import { getCohortState } from "@/lib/cohort";
-
-/** RFC-5322 lite — rejects foo@, @bar, and other common fat-finger failures. */
-const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+import { EMAIL_REGEX } from "@/lib/validation";
 
 export async function POST(request: Request) {
   try {

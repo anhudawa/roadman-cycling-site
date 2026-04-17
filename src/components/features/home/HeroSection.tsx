@@ -113,17 +113,20 @@ export function HeroSection() {
           opacity: textOpacity,
         }}
       >
-        {/* Headline with clip-path reveal */}
-        <motion.h1
+        {/*
+          Headline — previously had a framer-motion clipPath reveal that
+          competed with the parent motion.div's scroll-driven transforms
+          and got stuck mid-animation on mobile (~62% clipped, H1 invisible).
+          Removed the clip-path; each child span still fades-in-and-up
+          independently for polish.
+        */}
+        <h1
           className="font-heading text-off-white leading-none mb-6"
           style={{
             fontSize: "var(--text-hero)",
             letterSpacing: "-0.02em",
             textShadow: "0 4px 30px rgba(0,0,0,0.4)",
           }}
-          initial={{ clipPath: "inset(100% 0 0 0)" }}
-          animate={{ clipPath: "inset(0% 0 0 0)" }}
-          transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
         >
           <motion.span
             className="block"
@@ -150,7 +153,7 @@ export function HeroSection() {
           >
             OUR COACHING WILL HELP.
           </motion.span>
-        </motion.h1>
+        </h1>
 
         <motion.p
           className="font-body text-foreground-muted max-w-2xl mx-auto mb-10 text-lg md:text-xl leading-relaxed"

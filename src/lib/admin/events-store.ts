@@ -6,7 +6,13 @@ import { calculateChiSquared } from "@/lib/ab/statistics";
 import type { ABResult } from "@/lib/ab/types";
 
 // ── Types ──────────────────────────────────────────────────
-export type EventType = "pageview" | "signup" | "form_submit" | "skool_trial";
+export type EventType =
+  | "pageview"
+  | "signup"
+  | "form_submit"
+  | "skool_trial"
+  | "checkout_initiated"
+  | "checkout_completed";
 
 export interface TrackingEvent {
   id: string;

@@ -2,6 +2,7 @@ import { NextResponse } from "next/server";
 import { subscribeToBeehiiv } from "@/lib/integrations/beehiiv";
 import { generateToolReport, type ToolSlug } from "@/lib/tools/reports";
 import { upsertContact, addActivity } from "@/lib/crm/contacts";
+import { clampString, LIMITS, normaliseEmail } from "@/lib/validation";
 
 /**
  * Unified tool-report endpoint.
@@ -20,8 +21,6 @@ import { upsertContact, addActivity } from "@/lib/crm/contacts";
  * confirmation, which we try very hard to return 200 unless validation
  * fails or the report itself couldn't be generated.
  */
-
-const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
 const VALID_TOOLS: ToolSlug[] = [
   "ftp-zones",
@@ -89,7 +88,8 @@ export async function POST(request: Request) {
         { status: 400 },
       );
     }
-    if (!email || typeof email !== "string" || !EMAIL_REGEX.test(email.trim())) {
+    const normalisedEmail = normaliseEmail(email);
+    if (!normalisedEmail) {
       return NextResponse.json(
         { error: "Please enter a valid email address." },
         { status: 400 },
@@ -102,13 +102,13 @@ export async function POST(request: Request) {
       );
     }
 
-    const normalisedEmail = email.trim().toLowerCase();
+    const normalisedName = clampString(name, LIMITS.name) ?? undefined;
 
     // Generate the report — tool-specific logic lives in
     // src/lib/tools/reports.ts.
     const report = generateToolReport(tool as ToolSlug, {
       ...inputs,
-      name,
+      name: normalisedName,
     });
     if (!report) {
       return NextResponse.json(
@@ -124,7 +124,7 @@ export async function POST(request: Request) {
       sendReportEmail(normalisedEmail, report.subject, report.html),
       subscribeToBeehiiv({
         email: normalisedEmail,
-        name,
+        name: normalisedName,
         tags: [report.beehiivTag, `tool-${tool}`],
         customFields: {
           ...report.beehiivFields,
@@ -142,7 +142,7 @@ export async function POST(request: Request) {
         try {
           const contact = await upsertContact({
             email: normalisedEmail,
-            name,
+            name: normalisedName,
             source: "subscribers",
             customFields: {
               ...report.beehiivFields,
