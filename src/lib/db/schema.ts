@@ -680,6 +680,174 @@ export const episodeDownloadsCache = pgTable("episode_downloads_cache", {
   updatedAt: timestamp("updated_at", { withTimezone: true }).defaultNow(),
 });
 
+// ── Ted Community Agent ───────────────────────────────────
+// Autonomous agent that runs the free Roadman Clubhouse on Skool.
+// See agents/ted/README.md for runtime split (Vercel drafts, GitHub Actions posts).
+
+export type TedDraftStatus =
+  | "draft"
+  | "approved"
+  | "edited"
+  | "rejected"
+  | "posted"
+  | "failed"
+  | "voice_flagged";
+
+export const tedDrafts = pgTable(
+  "ted_drafts",
+  {
+    id: serial("id").primaryKey(),
+    pillar: text("pillar").notNull(),
+    scheduledFor: date("scheduled_for").notNull(),
+    status: text("status").notNull().default("draft"),
+    originalBody: text("original_body").notNull(),
+    editedBody: text("edited_body"),
+    approvedBySlug: text("approved_by_slug"),
+    approvedAt: timestamp("approved_at", { withTimezone: true }),
+    postedAt: timestamp("posted_at", { withTimezone: true }),
+    skoolPostUrl: text("skool_post_url"),
+    voiceCheck: jsonb("voice_check").$type<Record<string, unknown> | null>(),
+    generationAttempts: integer("generation_attempts").notNull().default(1),
+    failureReason: text("failure_reason"),
+    createdAt: timestamp("created_at", { withTimezone: true }).notNull().defaultNow(),
+    updatedAt: timestamp("updated_at", { withTimezone: true }).notNull().defaultNow(),
+  },
+  (table) => [
+    index("ted_drafts_scheduled_for_idx").on(table.scheduledFor),
+    index("ted_drafts_status_idx").on(table.status),
+  ]
+);
+
+export const tedWelcomeQueue = pgTable(
+  "ted_welcome_queue",
+  {
+    memberEmail: text("member_email").primaryKey(),
+    memberId: text("member_id"),
+    firstName: text("first_name").notNull(),
+    persona: text("persona"),
+    questionnaireAnswers: jsonb("questionnaire_answers").$type<
+      Record<string, unknown> | null
+    >(),
+    status: text("status").notNull().default("pending"),
+    draftBody: text("draft_body"),
+    voiceCheck: jsonb("voice_check").$type<Record<string, unknown> | null>(),
+    postedAt: timestamp("posted_at", { withTimezone: true }),
+    skoolPostUrl: text("skool_post_url"),
+    failureReason: text("failure_reason"),
+    createdAt: timestamp("created_at", { withTimezone: true }).notNull().defaultNow(),
+  },
+  (table) => [
+    index("ted_welcome_queue_status_idx").on(table.status),
+    index("ted_welcome_queue_created_at_idx").on(table.createdAt),
+  ]
+);
+
+export const tedSurfaced = pgTable(
+  "ted_surfaced",
+  {
+    id: serial("id").primaryKey(),
+    skoolPostId: text("skool_post_id").notNull(),
+    surfaceType: text("surface_type").notNull(), // 'tag' | 'link' | 'summary'
+    body: text("body").notNull(),
+    skoolReplyUrl: text("skool_reply_url"),
+    surfacedAt: timestamp("surfaced_at", { withTimezone: true }).notNull().defaultNow(),
+  },
+  (table) => [
+    index("ted_surfaced_post_id_idx").on(table.skoolPostId),
+    index("ted_surfaced_at_idx").on(table.surfacedAt),
+  ]
+);
+
+export const tedActiveMembers = pgTable("ted_active_members", {
+  memberId: text("member_id").primaryKey(),
+  firstName: text("first_name").notNull(),
+  lastSeenAt: timestamp("last_seen_at", { withTimezone: true }).notNull().defaultNow(),
+  topicTags: text("topic_tags").array(),
+  postCount: integer("post_count").notNull().default(0),
+  replyCount: integer("reply_count").notNull().default(0),
+});
+
+// Thread-surface drafts awaiting human approval. Populated by the draft-surfaces
+// job, drained by post-surfaces. Successfully-posted surfaces are recorded in
+// ted_surfaced for de-dup.
+export const tedSurfaceDrafts = pgTable(
+  "ted_surface_drafts",
+  {
+    id: serial("id").primaryKey(),
+    skoolPostId: text("skool_post_id").notNull(),
+    threadUrl: text("thread_url").notNull(),
+    threadAuthor: text("thread_author"),
+    threadTitle: text("thread_title"),
+    threadBody: text("thread_body"),
+    surfaceType: text("surface_type").notNull(), // 'tag' | 'link' | 'summary'
+    originalBody: text("original_body").notNull(),
+    editedBody: text("edited_body"),
+    // 'drafted' | 'voice_flagged' | 'approved' | 'edited' | 'rejected' | 'posted' | 'failed'
+    status: text("status").notNull().default("drafted"),
+    voiceCheck: jsonb("voice_check").$type<Record<string, unknown> | null>(),
+    approvedBySlug: text("approved_by_slug"),
+    approvedAt: timestamp("approved_at", { withTimezone: true }),
+    postedAt: timestamp("posted_at", { withTimezone: true }),
+    skoolReplyUrl: text("skool_reply_url"),
+    failureReason: text("failure_reason"),
+    createdAt: timestamp("created_at", { withTimezone: true }).notNull().defaultNow(),
+    updatedAt: timestamp("updated_at", { withTimezone: true }).notNull().defaultNow(),
+  },
+  (table) => [
+    index("ted_surface_drafts_status_idx").on(table.status),
+    index("ted_surface_drafts_skool_post_id_idx").on(table.skoolPostId),
+    index("ted_surface_drafts_created_at_idx").on(table.createdAt),
+  ]
+);
+
+export const tedActivityLog = pgTable(
+  "ted_activity_log",
+  {
+    id: serial("id").primaryKey(),
+    timestamp: timestamp("timestamp", { withTimezone: true }).notNull().defaultNow(),
+    job: text("job").notNull(),
+    action: text("action").notNull(),
+    level: text("level").notNull().default("info"),
+    payload: jsonb("payload").$type<Record<string, unknown> | null>(),
+    error: text("error"),
+  },
+  (table) => [
+    index("ted_activity_log_timestamp_idx").on(table.timestamp),
+    index("ted_activity_log_job_idx").on(table.job, table.timestamp),
+  ]
+);
+
+export const tedEdits = pgTable(
+  "ted_edits",
+  {
+    id: serial("id").primaryKey(),
+    draftId: integer("draft_id")
+      .notNull()
+      .references(() => tedDrafts.id, { onDelete: "cascade" }),
+    beforeText: text("before_text").notNull(),
+    afterText: text("after_text").notNull(),
+    charsChanged: integer("chars_changed").notNull().default(0),
+    editedBySlug: text("edited_by_slug"),
+    createdAt: timestamp("created_at", { withTimezone: true }).notNull().defaultNow(),
+  },
+  (table) => [
+    index("ted_edits_draft_id_idx").on(table.draftId),
+    index("ted_edits_created_at_idx").on(table.createdAt),
+  ]
+);
+
+export const tedKillSwitch = pgTable("ted_kill_switch", {
+  id: integer("id").primaryKey(), // singleton row id=1
+  paused: boolean("paused").notNull().default(false),
+  pausedBySlug: text("paused_by_slug"),
+  pausedAt: timestamp("paused_at", { withTimezone: true }),
+  reason: text("reason"),
+  postPromptEnabled: boolean("post_prompt_enabled").notNull().default(false),
+  postWelcomeEnabled: boolean("post_welcome_enabled").notNull().default(false),
+  surfaceThreadsEnabled: boolean("surface_threads_enabled").notNull().default(false),
+  updatedAt: timestamp("updated_at", { withTimezone: true }).notNull().defaultNow(),
+});
+
 // ── Skool Webhook Events (audit log) ──────────────────────
 export const skoolEvents = pgTable(
   "skool_events",

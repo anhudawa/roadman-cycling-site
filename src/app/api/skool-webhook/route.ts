@@ -1,7 +1,9 @@
 import { NextResponse } from "next/server";
 import { upsertOnSkoolJoin } from "@/lib/admin/subscribers-store";
 import { db } from "@/lib/db";
-import { skoolEvents } from "@/lib/db/schema";
+import { skoolEvents, tedWelcomeQueue } from "@/lib/db/schema";
+import { eq } from "drizzle-orm";
+import { classifyPersona, type Persona } from "@/lib/skool/persona";
 
 const BEEHIIV_API_KEY = process.env.BEEHIIV_API_KEY;
 const BEEHIIV_PUBLICATION_ID = process.env.BEEHIIV_PUBLICATION_ID;
@@ -32,49 +34,6 @@ const SKOOL_WEBHOOK_SECRET = process.env.SKOOL_WEBHOOK_SECRET;
  *   X-Webhook-Secret: <secret>
  *   ?secret=<secret>   (query param, for Zapier flavours that don't do headers)
  */
-
-// ── Persona classification ─────────────────────────────────
-
-type Persona = "plateau" | "comeback" | "event-prep" | "listener";
-
-const PERSONA_KEYWORDS: Record<Persona, string[]> = {
-  plateau: [
-    "plateau", "stuck", "not improving", "stagnant", "same level",
-    "can't improve", "hit a wall", "no progress", "flatlined", "stalled",
-    "not getting faster", "lost motivation", "going nowhere",
-  ],
-  comeback: [
-    "comeback", "coming back", "returning", "injury", "time off",
-    "getting back", "break from cycling", "haven't ridden", "used to ride",
-    "restart", "back into", "off the bike", "rehab", "recovery from",
-  ],
-  "event-prep": [
-    "event", "race", "sportive", "gran fondo", "training plan",
-    "preparing for", "first race", "goal event", "target event",
-    "etape", "ironman", "triathlon", "century", "audax", "ultra",
-    "competition", "time trial",
-  ],
-  listener: [],
-};
-
-function classifyPersona(answers: string[]): Persona {
-  if (!answers.length) return "listener";
-  const combined = answers.join(" ").toLowerCase();
-  let bestPersona: Persona = "listener";
-  let bestScore = 0;
-  for (const [persona, keywords] of Object.entries(PERSONA_KEYWORDS)) {
-    if (persona === "listener") continue;
-    let score = 0;
-    for (const keyword of keywords) {
-      if (combined.includes(keyword)) score += 1;
-    }
-    if (score > bestScore) {
-      bestScore = score;
-      bestPersona = persona as Persona;
-    }
-  }
-  return bestPersona;
-}
 
 // ── Payload normalisation ──────────────────────────────────
 
@@ -419,6 +378,32 @@ export async function POST(request: Request) {
   } catch (err) {
     upsertError = err instanceof Error ? err.message : String(err);
     console.error("[Skool Webhook] Subscriber upsert failed:", err);
+  }
+
+  // Enqueue a Ted welcome (idempotent — duplicate joins don't duplicate
+  // welcomes). Non-blocking — Beehiiv flow continues regardless.
+  if (normalised.eventType === "member_joined") {
+    try {
+      const existing = await db
+        .select({ email: tedWelcomeQueue.memberEmail })
+        .from(tedWelcomeQueue)
+        .where(eq(tedWelcomeQueue.memberEmail, email))
+        .limit(1);
+      if (existing.length === 0) {
+        const firstName = (normalised.name ?? "").split(" ")[0] ?? "";
+        await db.insert(tedWelcomeQueue).values({
+          memberEmail: email,
+          firstName,
+          persona,
+          questionnaireAnswers: normalised.answers.length
+            ? ({ answers: normalised.answers } as Record<string, unknown>)
+            : null,
+          status: "pending",
+        });
+      }
+    } catch (err) {
+      console.error("[Skool Webhook] Ted welcome enqueue failed:", err);
+    }
   }
 
   let beehiivOk = false;
