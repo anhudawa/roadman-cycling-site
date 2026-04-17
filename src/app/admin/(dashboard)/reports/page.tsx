@@ -163,10 +163,10 @@ export default async function ReportsPage() {
                     [
                       "awaiting_response",
                       "contacted",
-                      "qualified",
                       "offered",
                       "accepted",
                       "rejected",
+                      "closed",
                     ] as const
                   ).map((s) => (
                     <th key={s} className="text-right py-2 font-medium">
@@ -189,10 +189,10 @@ export default async function ReportsPage() {
                       [
                         "awaiting_response",
                         "contacted",
-                        "qualified",
                         "offered",
                         "accepted",
                         "rejected",
+                        "closed",
                       ] as const
                     ).map((s) => (
                       <td
