@@ -1,6 +1,10 @@
 import { NextResponse } from "next/server";
 import { db } from "@/lib/db";
-import { contactSubmissions } from "@/lib/db/schema";
+import {
+  contactSubmissions,
+  INBOX_STAGES,
+  isInboxStage,
+} from "@/lib/db/schema";
 import { desc, isNull, eq } from "drizzle-orm";
 import { requireAuth } from "@/lib/admin/auth";
 
@@ -41,7 +45,7 @@ export async function PATCH(request: Request) {
   }
 
   const body = await request.json();
-  const { id, assignedTo } = body;
+  const { id, assignedTo, status } = body;
   if (!id) {
     return NextResponse.json({ error: "id required" }, { status: 400 });
   }
@@ -50,15 +54,29 @@ export async function PATCH(request: Request) {
 
   // If assignedTo is explicitly provided (including null to unassign), update it
   if ("assignedTo" in body) {
-    const valid = [null, "sarah", "wes", "matthew"];
+    const valid = [null, "sarah", "wes", "matthew", "ted"];
     if (!valid.includes(assignedTo)) {
       return NextResponse.json({ error: "Invalid assignedTo value" }, { status: 400 });
     }
     updates.assignedTo = assignedTo;
   }
 
-  // If no assignedTo field was sent, treat as mark-as-read (original behavior)
-  if (!("assignedTo" in body)) {
+  // Kanban stage change
+  if ("status" in body) {
+    if (typeof status !== "string" || !isInboxStage(status)) {
+      return NextResponse.json(
+        { error: `Invalid status; must be one of ${INBOX_STAGES.join(", ")}` },
+        { status: 400 }
+      );
+    }
+    updates.status = status;
+    // Moving off "new" implies it's been seen — mirror readAt.
+    if (status !== "new") updates.readAt = new Date();
+  }
+
+  // If neither field was sent, treat as mark-as-read (preserves the old
+  // list-view behaviour where clicking a row marked it read).
+  if (!("assignedTo" in body) && !("status" in body)) {
     updates.readAt = new Date();
   }
 

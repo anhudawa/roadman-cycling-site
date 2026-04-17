@@ -4,6 +4,10 @@ import { Button, Card, ScrollReveal } from "@/components/ui";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { FAQSchema } from "@/components/seo/FAQSchema";
 import { FitIntegration } from "@/components/features/ndy/FitIntegration";
+import {
+  TESTIMONIALS,
+  getTestimonialsByName,
+} from "@/lib/testimonials";
 
 export const metadata: Metadata = {
   title: "Not Done Yet — Premium Cycling Coaching",
@@ -77,95 +81,42 @@ const tiers = [
   },
 ];
 
-const testimonials = [
-  {
-    name: "Chris O'Connor",
-    result: "20% body fat down to 7%, 84kg to 68kg",
-    quote:
-      "Anthony is a visionary, an educator, a mentor, a coach. He set me on a dietary, mental and physical journey of true discovery.",
-  },
-  {
-    name: "Ian McKnight",
-    result: "Commuter to racer in one season",
-    quote:
-      "I had a disappointing season dabbling in racing, mostly getting dropped. My coach gave me a structured pre-season programme and everything changed.",
-  },
-  {
-    name: "Kazim",
-    result: "Novice to 800km, 18,500m climbing in 7 days",
-    quote:
-      "From being a complete novice to completing a 7-day race covering more than 800km. They pushed me to the limits and I had full confidence and trust in them.",
-  },
-];
+// Pre-pricing trust block — 3 varied-angle testimonials.
+const testimonials = getTestimonialsByName([
+  "Chris O'Connor",
+  "Ian McKnight",
+  "Kazim",
+]);
 
-const featuredResults = [
-  {
-    name: "Daniel Stone",
-    context: "One season",
-    result: "Cat 3 → Cat 1",
-    quote:
-      "One season with the system and I went from Cat 3 to Cat 1. The structured approach changed everything about how I train and race.",
-    ftpBefore: null,
-    ftpAfter: null,
-    statLabel: "CATEGORY JUMP",
-    statValue: "3 → 1",
-  },
-  {
-    name: "Brian Morrissey",
-    context: "52yo shift worker",
-    result: "FTP +15% in 10 weeks",
-    quote:
-      "This really works. I\u2019m training so much less than last year, at lower intensities and not getting sick. FTHR up from 175 to 180, peak HR up to 193.",
-    ftpBefore: 230,
-    ftpAfter: 265,
-    statLabel: "FTP GAIN",
-    statValue: "+15%",
-  },
-  {
-    name: "Damien Maloney",
-    context: "Plateaued sportive rider",
-    result: "FTP from low 200s to 295",
-    quote:
-      "I was an average sportive rider who had plateaued. Roadman custom built a plan to achieve my goals. I\u2019ve gotten much more out of Roadman than I ever imagined.",
-    ftpBefore: 205,
-    ftpAfter: 295,
-    statLabel: "FTP",
-    statValue: "295w",
-  },
-];
+// Featured results — quote + stat from the central library; FTP
+// progress bars are page-specific so they stay local.
+const featuredResults = (
+  [
+    { name: "Daniel Stone", ftpBefore: null, ftpAfter: null },
+    { name: "Brian Morrissey", ftpBefore: 230, ftpAfter: 265 },
+    { name: "Damien Maloney", ftpBefore: 205, ftpAfter: 295 },
+  ] as const
+).map(({ name, ftpBefore, ftpAfter }) => {
+  const t = TESTIMONIALS.find((x) => x.name === name);
+  return {
+    name,
+    context: t?.detail ?? "",
+    quote: t?.quote ?? "",
+    ftpBefore,
+    ftpAfter,
+    statLabel: (t?.statLabel ?? "").toUpperCase(),
+    statValue: t?.stat ?? "",
+  };
+});
 
-const memberTestimonials = [
-  {
-    name: "Damien Maloney",
-    highlight: "FTP from low 200s to 295",
-    quote:
-      "I was an average sportive rider who had plateaued. Roadman custom built a plan to achieve my goals. I\u2019ve gotten much more out of Roadman than I ever imagined. The coaches are very generous with their time and knowledge.",
-  },
-  {
-    name: "Chris O\u2019Connor",
-    highlight: "20% body fat down to 7%, 84kg to 68kg",
-    quote:
-      "Anthony set me on a dietary, mental and physical journey. Average wattage doubled and now weekly 100km+ rides are the norm.",
-  },
-  {
-    name: "Brian Morrissey",
-    highlight: "FTP up 15%, hit 4 w/kg at age 52",
-    quote:
-      "This really works. I\u2019m training so much less than last year, at lower intensities and not getting sick. FTHR up from 175 to 180, peak HR up to 193.",
-  },
-  {
-    name: "Aaron Kearney",
-    highlight: "Made the leap to Ultra Cycling",
-    quote:
-      "The expertise and personalised plan allowed me to utilise my past racing experience and gave me the adaptations needed for the changeover. If you\u2019re looking to unlock new potential, I couldn\u2019t recommend Anthony enough.",
-  },
-  {
-    name: "Ciaran O Conluain",
-    highlight: "Cycling all over the world",
-    quote:
-      "Anthony has been the most influential person in my cycling experience. He always knew how to push when needed and encourage when times were tough. None of it would have been possible without Anthony and his team.",
-  },
-];
+// Member testimonial wall
+const memberTestimonials = getTestimonialsByName([
+  "Damien Maloney",
+  "Chris O'Connor",
+  "Brian Morrissey",
+  "Aaron Kearney",
+  "Ciaran O Conluain",
+]);
 
 const objections = [
   {
@@ -396,7 +347,7 @@ export default function NotDoneYetPage() {
                     </span>
                     <div className="relative z-10 pt-8">
                       <p className="text-coral font-heading text-lg mb-3">
-                        {t.highlight.toUpperCase()}
+                        {t.detail.toUpperCase()}
                       </p>
                       <p className="text-foreground-muted text-sm leading-relaxed mb-4 italic">
                         &ldquo;{t.quote}&rdquo;
@@ -512,7 +463,7 @@ export default function NotDoneYetPage() {
                 <ScrollReveal key={t.name} direction="up" delay={i * 0.08}>
                 <Card className="p-6" hoverable={false}>
                   <p className="text-coral font-heading text-lg mb-3">
-                    {t.result.toUpperCase()}
+                    {t.detail.toUpperCase()}
                   </p>
                   <p className="text-foreground-muted text-sm leading-relaxed mb-4 italic">
                     &ldquo;{t.quote}&rdquo;

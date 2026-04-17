@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { AdminCursor } from "./AdminCursor";
 
 export const metadata: Metadata = {
   title: "Admin Dashboard | Roadman Cycling",
@@ -10,5 +11,10 @@ export default function AdminRootLayout({
 }: {
   children: React.ReactNode;
 }) {
-  return children;
+  return (
+    <>
+      <AdminCursor />
+      {children}
+    </>
+  );
 }

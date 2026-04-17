@@ -1,4 +1,5 @@
 import { computePeriodStats, getStatsForRange, getDailyVisitors, getDailyBreakdown, type PeriodStats } from "@/lib/admin/events-store";
+import { getFunnelStats } from "@/lib/admin/subscribers-store";
 import { parseTimeRangeWithComparison } from "@/lib/admin/time-ranges";
 import { requireAuth } from "@/lib/admin/auth";
 import { redirect } from "next/navigation";
@@ -77,6 +78,21 @@ export default async function AdminDashboardPage({
     previousStats = DEMO_PREVIOUS;
   }
 
+  // Actual Skool joins (from subscribers.skoolJoinedAt / Skool webhook) —
+  // distinct from skoolTrials (CTA click events on Clubhouse page).
+  let currentSkoolJoins = 0;
+  let previousSkoolJoins = 0;
+  try {
+    const [nowFunnel, prevFunnel] = await Promise.all([
+      getFunnelStats(from, to),
+      getFunnelStats(prevFrom, prevTo),
+    ]);
+    currentSkoolJoins = nowFunnel.skoolJoins;
+    previousSkoolJoins = prevFunnel.skoolJoins;
+  } catch {
+    // Non-critical
+  }
+
   // Compute percentage changes safely
   function pctChange(current: number, previous: number): number | undefined {
     if (previous === 0 && current === 0) return undefined;
@@ -113,29 +129,26 @@ export default async function AdminDashboardPage({
       getDailyVisitors(from, to),
     ]);
 
-    if (rangedStats.pages.length > 0) {
-      topPages = rangedStats.pages.slice(0, 5).map((p) => ({
-        page: p.page,
-        views: p.views,
-        signups: p.signups,
-        convRate: p.conversionRate,
-      }));
-    }
+    // Trust the DB query outcome — if it returns empty arrays, show an empty
+    // state instead of substituting fake top pages / referrers, which made
+    // the dashboard look alive when nothing had been tracked yet.
+    topPages = rangedStats.pages.slice(0, 5).map((p) => ({
+      page: p.page,
+      views: p.views,
+      signups: p.signups,
+      convRate: p.conversionRate,
+    }));
 
-    if (rangedStats.traffic.referrers.length > 0) {
-      trafficSources = rangedStats.traffic.referrers.slice(0, 6).map((r) => ({
-        name: r.referrer,
-        value: r.count,
-      }));
-    }
+    trafficSources = rangedStats.traffic.referrers.slice(0, 6).map((r) => ({
+      name: r.referrer,
+      value: r.count,
+    }));
 
-    if (dailyVisitors.length > 0) {
-      timeSeries = dailyVisitors.map((d) => ({
-        date: d.date,
-        visitors: d.visitors,
-        signups: 0,
-      }));
-    }
+    timeSeries = dailyVisitors.map((d) => ({
+      date: d.date,
+      visitors: d.visitors,
+      signups: 0,
+    }));
   } catch {
     // DB not available — placeholders already set above
   }
@@ -166,7 +179,7 @@ export default async function AdminDashboardPage({
       </div>
 
       {/* Stat cards — reflect selected range */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 xl:grid-cols-5 gap-4">
         <StatCard
           label={`Visitors (${rangeLabel})`}
           value={currentStats.visitors}
@@ -188,11 +201,17 @@ export default async function AdminDashboardPage({
           changeLabel={compLabel}
         />
         <StatCard
-          label={`Skool Trials (${rangeLabel})`}
+          label={`Clubhouse Clicks (${rangeLabel})`}
           value={currentStats.skoolTrials}
           change={pctChange(currentStats.skoolTrials, previousStats.skoolTrials)}
           changeLabel={compLabel}
           sparkData={sparkTrials}
+        />
+        <StatCard
+          label={`Skool Joins (${rangeLabel})`}
+          value={currentSkoolJoins}
+          change={pctChange(currentSkoolJoins, previousSkoolJoins)}
+          changeLabel={compLabel}
         />
       </div>
 

@@ -3,6 +3,7 @@ import { requireAuth } from "@/lib/admin/auth";
 import { getMyDayData } from "@/lib/crm/dashboard";
 import { STAGE_COLORS, STAGE_LABELS, isApplicationStage } from "@/lib/crm/pipeline";
 import { TaskCompleteCheckbox } from "./_components/TaskCompleteCheckbox";
+import { SendTestDigestButton } from "./_components/SendTestDigestButton";
 
 export const dynamic = "force-dynamic";
 
@@ -105,13 +106,16 @@ export default async function MyDayPage() {
   return (
     <div className="space-y-6">
       {/* Header */}
-      <div>
-        <h1 className="font-heading text-3xl text-off-white tracking-wider uppercase">
-          MY DAY — {user.name}
-        </h1>
-        <p className="text-foreground-muted text-sm mt-1">
-          {weekday}, {dateStr}
-        </p>
+      <div className="flex items-start justify-between gap-4">
+        <div>
+          <h1 className="font-heading text-3xl text-off-white tracking-wider uppercase">
+            MY DAY — {user.name}
+          </h1>
+          <p className="text-foreground-muted text-sm mt-1">
+            {weekday}, {dateStr}
+          </p>
+        </div>
+        <SendTestDigestButton />
       </div>
 
       {/* Stat cards */}
@@ -139,6 +143,60 @@ export default async function MyDayPage() {
           accent={data.stats.staleContacts > 0}
         />
       </div>
+
+      {/* Today's bookings */}
+      {(data.todayBookings.length > 0 || data.upcomingBookings.length > 0) && (
+        <div className="bg-background-elevated border border-white/5 rounded-xl p-6">
+          <div className="flex items-center justify-between mb-4">
+            <h2 className="font-heading text-sm tracking-wider uppercase text-foreground-muted">
+              Today&apos;s Bookings
+            </h2>
+            <Link href="/admin/bookings" className="text-xs text-coral hover:underline">
+              See all
+            </Link>
+          </div>
+          {data.todayBookings.length === 0 ? (
+            <p className="text-sm text-foreground-subtle">
+              Nothing today. Next 24h: {data.upcomingBookings.length}.
+            </p>
+          ) : (
+            <ul className="space-y-2">
+              {data.todayBookings.map((b) => (
+                <li
+                  key={b.id}
+                  className="flex items-center gap-3 py-1.5 border-b border-white/5 last:border-0"
+                >
+                  <span className="text-xs text-coral tabular-nums font-heading tracking-wider w-14 shrink-0">
+                    {new Date(b.scheduledAt).toLocaleTimeString("en-GB", {
+                      hour: "2-digit",
+                      minute: "2-digit",
+                    })}
+                  </span>
+                  <div className="flex-1 min-w-0">
+                    <Link
+                      href={`/admin/bookings/${b.id}`}
+                      className="text-sm text-off-white hover:text-coral truncate block"
+                    >
+                      {b.title}
+                    </Link>
+                    {b.contactId && (
+                      <Link
+                        href={`/admin/contacts/${b.contactId}`}
+                        className="text-xs text-foreground-muted hover:text-coral"
+                      >
+                        {b.contactName ?? b.contactEmail}
+                      </Link>
+                    )}
+                  </div>
+                  <span className="text-xs text-foreground-subtle shrink-0">
+                    {b.durationMinutes}m
+                  </span>
+                </li>
+              ))}
+            </ul>
+          )}
+        </div>
+      )}
 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
         {/* ── Left column ─────────────────────────────── */}

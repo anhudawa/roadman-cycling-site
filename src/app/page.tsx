@@ -5,6 +5,7 @@ import { OrganizationJsonLd, WebSiteJsonLd } from "@/components/seo/JsonLd";
 import Link from "next/link";
 import { HeroSection } from "@/components/features/home/HeroSection";
 import { StatsSection } from "@/components/features/home/StatsSection";
+import { PersonaRouter } from "@/components/features/home/PersonaRouter";
 import { PillarIcon } from "@/components/features/home/PillarIcon";
 import { EmailCapture } from "@/components/features/conversion/EmailCapture";
 import { CONTENT_PILLARS, type ContentPillar } from "@/types";
@@ -76,6 +77,18 @@ export default function HomePage() {
 
         {/* STATS — Animated counters */}
         <StatsSection />
+
+        {/* PERSONA ROUTER — route visitors by current cycling state */}
+        <PersonaRouter />
+
+        {/* SATURDAY SPIN — moved up from mid-page. Specific promise +
+            social proof count, tied to the community not generic "insights". */}
+        <EmailCapture
+          variant="banner"
+          heading="THE SATURDAY SPIN"
+          subheading="The weekly training breakdown 1,900+ serious cyclists use to break plateaus. What's working, what the pros do, how to apply it this week. Free."
+          source="homepage-top"
+        />
 
         {/* Gradient divider */}
         <div className="gradient-divider" />
@@ -185,14 +198,6 @@ export default function HomePage() {
             </div>
           </Container>
         </Section>
-
-        {/* NEWSLETTER — The Saturday Spin Newsletter (high placement for visibility) */}
-        <EmailCapture
-          variant="banner"
-          heading="THE SATURDAY SPIN NEWSLETTER"
-          subheading="Every Saturday morning. The sharpest cycling insights from the week — training, nutrition, and performance — straight from the conversations with the world's best."
-          source="homepage-top"
-        />
 
         {/* PARALLAX DIVIDER — Beach bikepacking */}
         <ParallaxImage

@@ -3,6 +3,8 @@ import { getAllPosts } from "@/lib/blog";
 import { getAllEpisodes } from "@/lib/podcast";
 import { getAllGuests } from "@/lib/guests";
 import { getAllTopicSlugs } from "@/lib/topics";
+import { fetchNewsletterIssues } from "@/lib/integrations/beehiiv";
+import { getAllPlanCombinations } from "@/lib/training-plans";
 
 const BASE_URL = "https://roadmancycling.com";
 
@@ -182,6 +184,40 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       priority: 0.5,
     },
 
+    // Persona landing pages — high-intent funnel entries
+    {
+      url: `${BASE_URL}/you/plateau`,
+      lastModified: new Date(),
+      changeFrequency: "weekly",
+      priority: 0.8,
+    },
+    {
+      url: `${BASE_URL}/you/event`,
+      lastModified: new Date(),
+      changeFrequency: "weekly",
+      priority: 0.8,
+    },
+    {
+      url: `${BASE_URL}/you/comeback`,
+      lastModified: new Date(),
+      changeFrequency: "weekly",
+      priority: 0.8,
+    },
+    {
+      url: `${BASE_URL}/you/listener`,
+      lastModified: new Date(),
+      changeFrequency: "weekly",
+      priority: 0.8,
+    },
+
+    // Training plan index
+    {
+      url: `${BASE_URL}/plan`,
+      lastModified: new Date(),
+      changeFrequency: "weekly",
+      priority: 0.8,
+    },
+
     // Community sub-pages — priority 0.7
     {
       url: `${BASE_URL}/community/clubhouse`,
@@ -322,11 +358,38 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     priority: 0.7,
   }));
 
-  // Note: individual newsletter issue pages (/newsletter/[slug]) are intentionally
-  // excluded from the sitemap and marked `robots: { index: false }` — each issue
-  // is a one-time email broadcast with thin, time-bound content, and indexing
-  // them risks diluting site-wide quality signals. The /newsletter hub page
-  // itself remains indexed via staticPages above.
+  // ---------------------------------------------------------------------------
+  // Programmatic training plan pages — event × weeks-out combinations
+  // Each is a unique, SEO-targeted long-tail landing page.
+  // ---------------------------------------------------------------------------
+
+  const planPages: MetadataRoute.Sitemap = getAllPlanCombinations().map(
+    ({ event, weeksOut }) => ({
+      url: `${BASE_URL}/plan/${event}/${weeksOut}`,
+      lastModified: new Date(),
+      changeFrequency: "weekly" as const,
+      priority: 0.75,
+    }),
+  );
+
+  // ---------------------------------------------------------------------------
+  // Newsletter issues — priority 0.5 (monthly content, indexed for SEO)
+  // ---------------------------------------------------------------------------
+
+  let newsletterPages: MetadataRoute.Sitemap = [];
+  try {
+    const issues = await fetchNewsletterIssues(100);
+    newsletterPages = issues
+      .filter((issue): issue is typeof issue & { publishDate: string } => Boolean(issue.publishDate))
+      .map((issue) => ({
+        url: `${BASE_URL}/newsletter/${issue.slug}`,
+        lastModified: new Date(issue.publishDate),
+        changeFrequency: "monthly" as const,
+        priority: 0.5,
+      }));
+  } catch {
+    // Beehiiv API unavailable — skip newsletter pages in sitemap
+  }
 
   return [
     ...staticPages,
@@ -334,5 +397,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     ...podcastPages,
     ...guestPages,
     ...topicPages,
+    ...planPages,
+    ...newsletterPages,
   ];
 }

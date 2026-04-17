@@ -250,6 +250,19 @@ export async function updateTemplate(
   return updated[0] ?? null;
 }
 
+/** Recent email_messages for a contact, newest first. */
+export async function listEmailsForContact(
+  contactId: number,
+  limit = 20
+): Promise<EmailMessage[]> {
+  return db
+    .select()
+    .from(emailMessages)
+    .where(eq(emailMessages.contactId, contactId))
+    .orderBy(desc(emailMessages.createdAt))
+    .limit(limit);
+}
+
 export async function deleteTemplate(id: number): Promise<boolean> {
   const deleted = await db
     .delete(emailTemplates)

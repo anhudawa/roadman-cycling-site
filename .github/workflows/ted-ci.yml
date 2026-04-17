@@ -1,0 +1,44 @@
+name: Ted — CI
+
+# Runs on every push to a Ted branch and on PRs touching Ted files.
+# Catches type errors, lint regressions, and broken unit tests.
+
+on:
+  push:
+    branches:
+      - "claude/ted-**"
+      - "ted/**"
+  pull_request:
+    paths:
+      - "agents/ted/**"
+      - "src/app/admin/(dashboard)/ted/**"
+      - "src/app/api/admin/ted/**"
+      - "src/app/api/cron/ted-weekly-digest/**"
+      - "src/app/api/skool-webhook/**"
+      - "src/lib/db/schema.ts"
+      - "drizzle/**"
+      - ".github/workflows/ted-*.yml"
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+          cache: "npm"
+
+      - run: npm ci
+
+      - name: Typecheck
+        run: npx tsc --noEmit
+
+      - name: Ted unit tests
+        run: npx vitest run agents/ted
+
+      - name: Ted CLI boots
+        run: |
+          OUT=$(npx tsx agents/ted/src/index.ts 2>&1 || true)
+          echo "$OUT"
+          echo "$OUT" | grep -q "Usage: tsx agents/ted/src/index.ts"

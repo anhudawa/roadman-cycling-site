@@ -13,10 +13,10 @@
  * Missing TEAM_PASSWORD_* env vars will cause that user to be skipped (row
  * untouched). Idempotent.
  */
-import crypto from "crypto";
 import { db } from "../src/lib/db/index";
 import { teamUsers } from "../src/lib/db/schema";
 import { sql } from "drizzle-orm";
+import { hashPassword } from "../src/lib/admin/password";
 
 interface SeedUser {
   slug: string;
@@ -32,10 +32,6 @@ const USERS: SeedUser[] = [
   { slug: "wes", name: "Wes", email: "wes@roadmancycling.com", role: "member", envVar: "TEAM_PASSWORD_WES" },
   { slug: "matthew", name: "Matthew", email: "matthew@roadmancycling.com", role: "member", envVar: "TEAM_PASSWORD_MATTHEW" },
 ];
-
-function hashPassword(password: string): string {
-  return crypto.createHash("sha256").update(password).digest("hex");
-}
 
 interface Result {
   slug: string;

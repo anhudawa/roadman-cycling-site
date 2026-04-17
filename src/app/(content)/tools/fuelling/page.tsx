@@ -4,7 +4,7 @@ import { useState, useEffect, useCallback } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Header, Footer, Section, Container } from "@/components/layout";
 import { Button } from "@/components/ui";
-import { EmailCapture } from "@/components/features/conversion/EmailCapture";
+import { ReportRequestForm } from "@/components/features/tools/ReportRequestForm";
 
 type GutTraining = "none" | "some" | "trained";
 type SessionType = "recovery" | "endurance" | "tempo" | "sweetspot" | "threshold" | "vo2" | "race" | "intervals";
@@ -720,10 +720,36 @@ export default function FuellingPage() {
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.35, delay: 0.48 }}
                   >
-                    <EmailCapture
-                      heading="NEVER BONK AGAIN"
-                      subheading="Weekly fuelling tips backed by sports science. One email, every week."
-                      source="tool-fuelling"
+                    <ReportRequestForm
+                      tool="fuelling"
+                      inputs={{
+                        duration: parseFloat(duration),
+                        sessionType,
+                        watts: parseFloat(watts),
+                        weight: parseFloat(weight),
+                        gutTraining,
+                        carbsPerHour: result.carbsPerHour,
+                        totalCarbs: result.totalCarbs,
+                        fluidPerHour: result.fluidPerHour,
+                        totalFluid: result.totalFluid,
+                        sodiumPerHour: result.sodiumPerHour,
+                        glucosePerHour: result.glucosePerHour,
+                        fructosePerHour: result.fructosePerHour,
+                        strategy: result.strategy,
+                        feedingInterval: result.feedingInterval,
+                        startFuellingAt: result.startFuellingAt,
+                        heatCategory: result.heatCategory,
+                        intensityLabel: result.intensityLabel,
+                      }}
+                      heading={`Your hour-by-hour fuelling plan`}
+                      subheading="We'll email your full plan — exactly what to eat, when to eat it, how much fluid, how much sodium. Save it to your phone before the ride."
+                      bullets={[
+                        `${result.carbsPerHour}g carbs/hr · ${result.fluidPerHour}ml fluid/hr`,
+                        `Complete hour-by-hour schedule with feeding intervals`,
+                        "Glucose + fructose ratio explained",
+                        "Heat-adjusted sodium targets",
+                        "Gut training progression if you're not there yet",
+                      ]}
                     />
                   </motion.div>
                 </motion.div>

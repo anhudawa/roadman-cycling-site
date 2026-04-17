@@ -31,6 +31,7 @@ interface LocationData {
   }[];
   faqs: { question: string; answer: string }[];
   localContent: string[];
+  relatedGuides?: { title: string; href: string; description: string }[];
 }
 
 const LOCATIONS: Record<string, LocationData> = {
@@ -96,6 +97,23 @@ const LOCATIONS: Record<string, LocationData> = {
       "Home of Roadman CC — Dublin's fastest-growing cycling club",
       "Plans built for Irish weather, Irish roads, and Irish racing",
     ],
+    relatedGuides: [
+      {
+        title: "Wicklow 200 Training Plan",
+        href: "/blog/wicklow-200-training-plan",
+        description: "12-week periodised build for Ireland's toughest 200km sportive. Climbing blocks, pacing, and fuelling.",
+      },
+      {
+        title: "Ring of Beara Training Plan",
+        href: "/blog/ring-of-beara-training-plan",
+        description: "How to train for 140km around the Beara Peninsula — the climbs, the weather, and the race-day plan.",
+      },
+      {
+        title: "Is a Cycling Coach Worth It?",
+        href: "/blog/is-a-cycling-coach-worth-it",
+        description: "Honest look at what coaching does and doesn't do — and when it's the best investment a cyclist can make.",
+      },
+    ],
   },
   uk: {
     title: "Cycling Coach UK",
@@ -151,6 +169,23 @@ const LOCATIONS: Record<string, LocationData> = {
       "Coaching for British Cycling racing, sportives, and time trials",
       "Members across England, Scotland, Wales, and Northern Ireland",
       "Plans built for UK roads, weather, and the British racing calendar",
+    ],
+    relatedGuides: [
+      {
+        title: "Ride London Training Plan",
+        href: "/blog/ride-london-training-plan",
+        description: "How to build to 100 miles of closed roads through London and Surrey — periodisation, pacing, fuelling.",
+      },
+      {
+        title: "Fred Whitton Challenge Training Plan",
+        href: "/blog/fred-whitton-challenge-training-plan",
+        description: "The UK's hardest sportive — 112 miles and 3,950m of climbing through the Lake District. Here's how to train for it.",
+      },
+      {
+        title: "Best Cycling Coach UK — Honest Guide",
+        href: "/blog/best-cycling-coach-uk",
+        description: "How to choose an online cycling coach in the UK, what to look for, and the questions to ask before you sign up.",
+      },
     ],
   },
   usa: {
@@ -332,6 +367,18 @@ const LOCATIONS: Record<string, LocationData> = {
       "Irish coach who understands Munster roads and weather",
       "Members in Cork Ridgerunners, Blarney CC, and Munster clubs",
     ],
+    relatedGuides: [
+      {
+        title: "Ring of Beara Training Plan",
+        href: "/blog/ring-of-beara-training-plan",
+        description: "Cork's biggest sportive — 140km around the Beara Peninsula. How to train for the climbs, the wind, and the finish.",
+      },
+      {
+        title: "Wicklow 200 Training Plan",
+        href: "/blog/wicklow-200-training-plan",
+        description: "12 weeks to the Wicklow 200 — the climbing-specific work, pacing, and fuelling plan.",
+      },
+    ],
   },
   galway: {
     title: "Cycling Coach Galway",
@@ -456,6 +503,18 @@ const LOCATIONS: Record<string, LocationData> = {
       "Same time zone — Dublin operates on GMT/BST like London",
       "Members in Rapha CC, Dulwich Paragon, and London clubs",
     ],
+    relatedGuides: [
+      {
+        title: "Ride London Training Plan",
+        href: "/blog/ride-london-training-plan",
+        description: "12 weeks to Ride London 100 — how to train around London commutes and Saturday Surrey loops.",
+      },
+      {
+        title: "Fred Whitton Challenge Training Plan",
+        href: "/blog/fred-whitton-challenge-training-plan",
+        description: "For London riders stepping up to the Lake District — the climbing-specific block that gets you over Hardknott.",
+      },
+    ],
   },
   manchester: {
     title: "Cycling Coach Manchester",
@@ -517,6 +576,18 @@ const LOCATIONS: Record<string, LocationData> = {
       "Plans built around Peak District roads and North West climbs",
       "Same time zone — Dublin operates on GMT/BST like Manchester",
       "Members in Manchester Wheelers, Rapha CC, and NW clubs",
+    ],
+    relatedGuides: [
+      {
+        title: "Fred Whitton Challenge Training Plan",
+        href: "/blog/fred-whitton-challenge-training-plan",
+        description: "112 miles, 3,950m of climbing, and six of the hardest passes in the Lake District. Here's the build that gets you there.",
+      },
+      {
+        title: "Ride London Training Plan",
+        href: "/blog/ride-london-training-plan",
+        description: "For riders adding Ride London to the calendar alongside a Peak District season.",
+      },
     ],
   },
   belfast: {
@@ -732,22 +803,50 @@ export function generateStaticParams() {
   return Object.keys(LOCATIONS).map((location) => ({ location }));
 }
 
+/**
+ * Hreflang mapping for the 3 country-level coaching pages. Google uses this
+ * to serve the right page to the right geo. City pages (dublin / cork /
+ * london / manchester / etc) aren't cross-linked here because they're
+ * locality-specific, not language alternates.
+ */
+const COUNTRY_HREFLANG: Record<string, string> = {
+  ireland: "en-IE",
+  uk: "en-GB",
+  usa: "en-US",
+};
+
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { location } = await params;
   const data = LOCATIONS[location];
   if (!data) return {};
+
+  // Only country-level pages get a hreflang cluster. City pages get
+  // their own canonical + a normal locale self-reference.
+  const isCountry = location in COUNTRY_HREFLANG;
+  const languages: Record<string, string> = isCountry
+    ? {
+        "en-IE": "https://roadmancycling.com/coaching/ireland",
+        "en-GB": "https://roadmancycling.com/coaching/uk",
+        "en-US": "https://roadmancycling.com/coaching/usa",
+        "x-default": "https://roadmancycling.com/coaching",
+      }
+    : {};
 
   return {
     title: data.seoTitle,
     description: data.seoDescription,
     alternates: {
       canonical: `https://roadmancycling.com/coaching/${location}`,
+      ...(Object.keys(languages).length > 0 && { languages }),
     },
     openGraph: {
       title: data.seoTitle,
       description: data.seoDescription,
       type: "website",
       url: `https://roadmancycling.com/coaching/${location}`,
+      locale: isCountry
+        ? COUNTRY_HREFLANG[location].replace("-", "_")
+        : "en_IE",
     },
   };
 }
@@ -1064,6 +1163,49 @@ export default async function CoachingLocationPage({ params }: Props) {
             </div>
           </Container>
         </Section>
+
+        {/* Related training guides */}
+        {data.relatedGuides && data.relatedGuides.length > 0 && (
+          <Section background="charcoal" grain>
+            <Container width="narrow">
+              <ScrollReveal direction="up" className="text-center mb-12">
+                <h2
+                  className="font-heading text-off-white mb-4"
+                  style={{ fontSize: "var(--text-section)" }}
+                >
+                  TRAINING GUIDES FOR {data.headingLabel.toUpperCase()} RIDERS.
+                </h2>
+                <p className="text-foreground-muted max-w-xl mx-auto">
+                  Free deep-dive guides for the events {data.areaServed} cyclists target most often.
+                </p>
+              </ScrollReveal>
+
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                {data.relatedGuides.map((guide, i) => (
+                  <ScrollReveal
+                    key={guide.href}
+                    direction="up"
+                    delay={i * 0.06}
+                  >
+                    <Link href={guide.href} className="block h-full">
+                      <Card className="p-6 h-full hover:border-coral transition-colors">
+                        <h3 className="font-heading text-lg text-off-white mb-3">
+                          {guide.title.toUpperCase()}
+                        </h3>
+                        <p className="text-sm text-foreground-muted leading-relaxed">
+                          {guide.description}
+                        </p>
+                        <p className="text-xs text-coral font-heading tracking-wider mt-4">
+                          READ THE GUIDE →
+                        </p>
+                      </Card>
+                    </Link>
+                  </ScrollReveal>
+                ))}
+              </div>
+            </Container>
+          </Section>
+        )}
 
         {/* CTA */}
         <Section background="coral" className="!py-16 md:!py-24">

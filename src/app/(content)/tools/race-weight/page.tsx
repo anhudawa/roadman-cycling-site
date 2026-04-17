@@ -4,7 +4,7 @@ import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Header, Footer, Section, Container } from "@/components/layout";
 import { Button } from "@/components/ui";
-import { EmailCapture } from "@/components/features/conversion/EmailCapture";
+import { ReportRequestForm } from "@/components/features/tools/ReportRequestForm";
 
 type EventType = "road-race" | "gran-fondo" | "hill-climb" | "time-trial" | "gravel";
 type Gender = "male" | "female";
@@ -330,10 +330,30 @@ export default function RaceWeightPage() {
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.35, delay: 0.5 }}
                   >
-                    <EmailCapture
-                      heading="GET THE NUTRITION FRAMEWORK THAT ACTUALLY WORKS"
-                      subheading="Body composition, fuelling, and recovery — evidence-based, once a week."
-                      source="tool-race-weight"
+                    <ReportRequestForm
+                      tool="race-weight"
+                      inputs={{
+                        currentWeight: parseFloat(weight),
+                        bodyFat: parseFloat(bodyFat),
+                        height: parseFloat(height),
+                        gender,
+                        eventType,
+                        targetWeightMin: result.targetWeightMin,
+                        targetWeightMax: result.targetWeightMax,
+                        targetBfMin: result.targetBfMin,
+                        targetBfMax: result.targetBfMax,
+                        weeksToTarget: result.weeksToTarget,
+                        approach: result.approach,
+                      }}
+                      heading={`Your race weight plan: ${result.targetWeightMin}–${result.targetWeightMax} kg`}
+                      subheading="We'll email the full plan — target range, realistic timeline, the non-negotiables for keeping power while you lose weight. No diet culture."
+                      bullets={[
+                        `Safe ${result.weeksToTarget || 0}-week timeline to ${result.targetWeightMin}–${result.targetWeightMax} kg`,
+                        "Protein target for your body weight (muscle-sparing)",
+                        "Fuel-around-training approach (deficit on easy days only)",
+                        "Weigh-in protocol that tracks signal over noise",
+                        "Stop signals — when to pause and why",
+                      ]}
                     />
                   </motion.div>
                 </motion.div>

@@ -21,6 +21,7 @@ import {
   sql,
 } from "drizzle-orm";
 import type { TeamUser } from "@/lib/admin/auth";
+import { getTodayForUser as getBookingsToday, getUpcomingForUser as getBookingsUpcoming, type BookingRow } from "@/lib/crm/bookings";
 
 export interface MyDayStats {
   openTasks: number;
@@ -86,6 +87,8 @@ export interface MyDayData {
   recentActivity: MyDayActivityRow[];
   staleContacts: MyDayStaleContactRow[];
   recentEmails: MyDayEmailRow[];
+  todayBookings: BookingRow[];
+  upcomingBookings: BookingRow[];
 }
 
 const STALE_DAYS = 7;
@@ -329,6 +332,12 @@ export async function getMyDayData(user: TeamUser): Promise<MyDayData> {
     contactEmail: r.contactEmail,
   }));
 
+  // ── Bookings ─────────────────────────────────────────
+  const [todayBookings, upcomingBookings] = await Promise.all([
+    getBookingsToday(user.slug).catch(() => []),
+    getBookingsUpcoming(user.slug, { hours: 24 }).catch(() => []),
+  ]);
+
   return {
     stats,
     todaysTasks: todaysTasksRaw.map(mapTask),
@@ -337,5 +346,7 @@ export async function getMyDayData(user: TeamUser): Promise<MyDayData> {
     recentActivity,
     staleContacts,
     recentEmails,
+    todayBookings,
+    upcomingBookings,
   };
 }

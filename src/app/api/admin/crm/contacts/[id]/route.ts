@@ -97,6 +97,20 @@ export async function PATCH(
     if (!activity) activity = a;
   }
 
+  if (stageActivity) {
+    try {
+      const { runAutomations } = await import("@/lib/crm/automations");
+      await runAutomations({
+        type: "contact.lifecycle_changed",
+        contactId: id,
+        toStage: stageActivity.next,
+        fromStage: stageActivity.prev,
+      });
+    } catch (err) {
+      console.error("[contacts/PATCH] automations failed", err);
+    }
+  }
+
   return NextResponse.json({
     contact: serializeContact(updated[0]),
     activity: activity

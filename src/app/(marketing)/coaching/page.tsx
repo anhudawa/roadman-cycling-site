@@ -4,11 +4,12 @@ import { Header, Footer, Section, Container } from "@/components/layout";
 import { Button, Card, ScrollReveal, GradientText } from "@/components/ui";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { FAQSchema } from "@/components/seo/FAQSchema";
+import { getTestimonialsByName } from "@/lib/testimonials";
 
 export const metadata: Metadata = {
   title: "Online Cycling Coach — Personalised Coaching | $195/month",
   description:
-    "Personalised cycling coaching built on 1,400+ expert podcast conversations. Training plans, nutrition, strength, recovery, and accountability. Trusted by 60,000+ cyclists in Ireland, UK, and USA.",
+    "Personalised cycling coaching built on 1,400+ expert podcast conversations. Training plans, nutrition, strength, recovery, and accountability. Trusted by cyclists in Ireland, UK, and USA.",
   keywords: [
     "cycling coach",
     "cycling coaching",
@@ -51,6 +52,15 @@ const results = [
     detail: "230w → 265w",
   },
 ];
+
+// Editorial choice — three different persona angles for the 'IN THEIR
+// WORDS' row. Pulled from the central testimonials library so any quote
+// update ripples across /coaching, /apply, /you/<slug>, etc.
+const voiceTestimonials = getTestimonialsByName([
+  "Damien Maloney",
+  "David Lundy",
+  "Chris O'Connor",
+]);
 
 const pillars = [
   {
@@ -261,7 +271,7 @@ export default function CoachingPage() {
         {/* Hero */}
         <Section background="deep-purple" grain className="pt-32 pb-20">
           <Container className="text-center">
-            <ScrollReveal direction="up">
+            <ScrollReveal direction="up" eager>
               <p className="text-coral font-heading text-sm tracking-widest mb-6">
                 ONLINE CYCLING COACHING
               </p>
@@ -279,6 +289,38 @@ export default function CoachingPage() {
                 nutrition, strength, recovery, and accountability — structured
                 into your week so every session counts.
               </p>
+
+              {/* Hero proof point — single killer stat + quote, above the fold */}
+              <div className="relative mx-auto max-w-2xl mb-10">
+                <div className="rounded-2xl border border-coral/20 bg-gradient-to-br from-coral/10 via-deep-purple/30 to-deep-purple/50 px-6 py-6 md:px-10 md:py-7 text-left">
+                  <div className="flex flex-col md:flex-row md:items-center gap-5 md:gap-7">
+                    <div className="shrink-0 text-center md:text-left">
+                      <p
+                        className="font-heading text-coral leading-none"
+                        style={{ fontSize: "clamp(2.5rem, 5vw, 3.5rem)" }}
+                      >
+                        +90w
+                      </p>
+                      <p className="text-xs font-body tracking-widest text-foreground-subtle uppercase mt-1">
+                        FTP gain
+                      </p>
+                    </div>
+                    <div className="h-px md:h-14 md:w-px bg-white/10 shrink-0" />
+                    <div>
+                      <p className="text-off-white italic leading-relaxed text-base md:text-lg">
+                        &ldquo;I was an average sportive rider who had plateaued.
+                        Roadman custom built a plan to achieve my goals. I&apos;ve
+                        gotten much more out of it than I ever imagined.&rdquo;
+                      </p>
+                      <p className="text-foreground-subtle text-sm mt-3">
+                        <span className="text-off-white font-medium">Damien Maloney</span>
+                        &nbsp;· Ireland · 205w &rarr; 295w
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
               <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-6">
                 <Button
                   href="/apply"
@@ -317,7 +359,7 @@ export default function CoachingPage() {
               </p>
             </ScrollReveal>
 
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-4xl mx-auto">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-4xl mx-auto mb-16">
               {results.map((r, i) => (
                 <ScrollReveal key={r.name} direction="up" delay={i * 0.1}>
                   <Card
@@ -333,6 +375,43 @@ export default function CoachingPage() {
                     </p>
                     <p className="text-xs text-foreground-subtle">{r.name}</p>
                     <p className="text-xs text-foreground-subtle">{r.detail}</p>
+                  </Card>
+                </ScrollReveal>
+              ))}
+            </div>
+
+            {/* In-their-words testimonial row — three different persona
+                angles (plateau, comeback, body comp) with full quotes so
+                prospects can self-identify with a specific case. */}
+            <ScrollReveal direction="up" className="text-center mb-8">
+              <p className="font-heading text-coral text-sm tracking-widest">
+                IN THEIR WORDS
+              </p>
+            </ScrollReveal>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-5 max-w-5xl mx-auto">
+              {voiceTestimonials.map((t, i) => (
+                <ScrollReveal key={t.name} direction="up" delay={i * 0.08}>
+                  <Card
+                    className="p-6 md:p-7 h-full flex flex-col"
+                    glass
+                    hoverable={false}
+                  >
+                    <div className="inline-flex items-center self-start mb-4 px-2.5 py-1 rounded-full bg-coral/10 border border-coral/20">
+                      <span className="text-coral text-[10px] font-heading tracking-widest">
+                        {t.tag}
+                      </span>
+                    </div>
+                    <p className="text-off-white italic text-sm leading-relaxed mb-5 flex-1">
+                      &ldquo;{t.quote}&rdquo;
+                    </p>
+                    <div>
+                      <p className="text-off-white font-medium text-sm">
+                        {t.name}
+                      </p>
+                      <p className="text-foreground-subtle text-xs mt-0.5">
+                        {t.detail}
+                      </p>
+                    </div>
                   </Card>
                 </ScrollReveal>
               ))}
@@ -789,14 +868,18 @@ export default function CoachingPage() {
               7-day free trial. Five pillars. Personalised to your goals, your
               schedule, and your life. Cancel anytime.
             </p>
-            <Button
+            {/* Inline coloured Link instead of Button: the Button variants
+                always set a bg-* class that collides with our overrides at
+                equal specificity in Tailwind v4, making the button
+                invisible-until-hover on the coral section. */}
+            <Link
               href="/apply"
-              size="lg"
-              className="bg-off-white text-coral hover:bg-off-white/90"
-              dataTrack="coaching_hub_footer_apply"
+              className="inline-flex items-center justify-center gap-2 font-heading tracking-wider uppercase rounded-md transition-all cursor-pointer active:scale-[0.97] active:duration-75 px-8 md:px-10 py-4 text-lg bg-off-white text-coral hover:bg-off-white/90 shadow-lg"
+              style={{ transitionDuration: "var(--duration-fast)" }}
+              data-track="coaching_hub_footer_apply"
             >
               Apply Now
-            </Button>
+            </Link>
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mt-6 text-off-white/60 text-sm">
               <span>$195/month</span>
               <span className="hidden sm:inline">&middot;</span>

@@ -15,6 +15,7 @@ import { RelatedEpisodes } from "@/components/features/podcast/RelatedEpisodes";
 import { EmailCapture } from "@/components/features/conversion/EmailCapture";
 import { getPostBySlug } from "@/lib/blog";
 import Link from "next/link";
+import { mdxComponents } from "@/components/mdx/MDXComponents";
 
 export async function generateStaticParams() {
   return getAllEpisodeSlugs().map((slug) => ({ slug }));
@@ -380,7 +381,7 @@ export default async function EpisodePage({
             <article className="prose-roadman prose-episode">
               <MDXRemote
                 source={episode.content}
-                components={{ AICitationBlock }}
+                components={{ ...mdxComponents, AICitationBlock }}
               />
             </article>
 

@@ -9,7 +9,9 @@ import {
   STAGE_LABELS,
   isApplicationStage,
 } from "@/lib/crm/pipeline";
-import { addActivity, getOrCreateContactForApplication } from "@/lib/crm/contacts";
+import { addActivity, getOrCreateContactForApplication, getContactById } from "@/lib/crm/contacts";
+import { createNotification } from "@/lib/crm/notifications";
+import { runAutomations } from "@/lib/crm/automations";
 
 export async function PATCH(
   request: Request,
@@ -80,6 +82,21 @@ export async function PATCH(
       persona: existing.persona,
       createdAt: existing.createdAt,
     });
+    // Notify the contact's owner if someone else moved the stage
+    try {
+      const contact = await getContactById(contactId);
+      if (contact?.owner && contact.owner !== user.slug) {
+        await createNotification({
+          recipientSlug: contact.owner,
+          type: "stage_change",
+          title: `${user.name} moved ${contact.name ?? contact.email} to ${STAGE_LABELS[nextStage]}`,
+          body: reason,
+          link: `/admin/contacts/${contactId}`,
+        });
+      }
+    } catch (err) {
+      console.error("[applications/stage] notification failed", err);
+    }
     await addActivity(contactId, {
       type: "stage_change",
       title: `Application moved to ${STAGE_LABELS[nextStage]}`,
@@ -94,6 +111,22 @@ export async function PATCH(
     });
   } catch (err) {
     console.error("[applications/stage] contact mirror failed", err);
+  }
+
+  try {
+    const contact = await (async () => {
+      const { getContactByEmail } = await import("@/lib/crm/contacts");
+      return getContactByEmail(existing.email);
+    })();
+    await runAutomations({
+      type: "application.stage_changed",
+      contactId: contact?.id ?? null,
+      applicationId: id,
+      toStage: nextStage,
+      fromStage,
+    });
+  } catch (err) {
+    console.error("[applications/stage] automations failed", err);
   }
 
   return NextResponse.json({ application: updated[0] });

@@ -91,7 +91,30 @@ export function CommandPalette() {
   const [activeIdx, setActiveIdx] = useState(0);
   const inputRef = useRef<HTMLInputElement | null>(null);
 
-  const flat = useMemo(() => flatten(results), [results]);
+  const STATIC_DESTINATIONS: FlatResult[] = useMemo(
+    () => [
+      {
+        key: "dest-activity",
+        group: "Go to",
+        label: "Activity feed",
+        sublabel: "Recent CRM events across all contacts",
+        href: "/admin/activity",
+      },
+    ],
+    []
+  );
+
+  const flat = useMemo(() => {
+    const base = flatten(results);
+    const term = q.trim().toLowerCase();
+    if (term.length < 2) return [...STATIC_DESTINATIONS];
+    const matchedStatic = STATIC_DESTINATIONS.filter(
+      (d) =>
+        d.label.toLowerCase().includes(term) ||
+        (d.sublabel ?? "").toLowerCase().includes(term)
+    );
+    return [...matchedStatic, ...base];
+  }, [results, q, STATIC_DESTINATIONS]);
 
   const close = useCallback(() => {
     setOpen(false);
@@ -186,7 +209,7 @@ export function CommandPalette() {
     if (!grouped[r.group]) grouped[r.group] = [];
     grouped[r.group].push(r);
   }
-  const groupOrder = ["Contacts", "Tasks", "Templates", "Emails", "Activities", "Applications"];
+  const groupOrder = ["Go to", "Contacts", "Tasks", "Templates", "Emails", "Activities", "Applications"];
 
   let runningIdx = 0;
 
@@ -221,7 +244,7 @@ export function CommandPalette() {
         </div>
 
         <div className="max-h-[60vh] overflow-y-auto">
-          {q.trim().length < 2 ? (
+          {q.trim().length < 2 && flat.length === 0 ? (
             <div className="px-4 py-8 text-sm text-foreground-subtle text-center">
               Type to search contacts, tasks, templates, emails, activities, applications
             </div>

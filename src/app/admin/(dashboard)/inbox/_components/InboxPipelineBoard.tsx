@@ -1,0 +1,556 @@
+"use client";
+
+import { useEffect, useMemo, useState } from "react";
+
+export const INBOX_STAGES = [
+  "new",
+  "in_progress",
+  "replied",
+  "follow_up",
+  "closed",
+] as const;
+export type InboxStage = (typeof INBOX_STAGES)[number];
+
+export const INBOX_STAGE_LABELS: Record<InboxStage, string> = {
+  new: "New",
+  in_progress: "In progress",
+  replied: "Replied",
+  follow_up: "Follow up",
+  closed: "Closed",
+};
+
+const INBOX_STAGE_COLORS: Record<
+  InboxStage,
+  { dot: string; badge: string; ring: string }
+> = {
+  new: {
+    dot: "bg-coral",
+    badge: "bg-coral/15 text-coral border-coral/30",
+    ring: "ring-coral",
+  },
+  in_progress: {
+    dot: "bg-amber-400",
+    badge: "bg-amber-400/15 text-amber-400 border-amber-400/30",
+    ring: "ring-amber-400",
+  },
+  replied: {
+    dot: "bg-blue-400",
+    badge: "bg-blue-400/15 text-blue-400 border-blue-400/30",
+    ring: "ring-blue-400",
+  },
+  follow_up: {
+    dot: "bg-purple-400",
+    badge: "bg-purple-400/15 text-purple-400 border-purple-400/30",
+    ring: "ring-purple-400",
+  },
+  closed: {
+    dot: "bg-green-400",
+    badge: "bg-green-400/15 text-green-400 border-green-400/30",
+    ring: "ring-green-400",
+  },
+};
+
+const OWNER_OPTIONS: { value: string | null; label: string }[] = [
+  { value: null, label: "Unassigned" },
+  { value: "sarah", label: "Sarah" },
+  { value: "wes", label: "Wes" },
+  { value: "matthew", label: "Matthew" },
+  { value: "ted", label: "Ted" },
+];
+
+export interface InboxSubmission {
+  id: number;
+  name: string;
+  email: string;
+  subject: string;
+  message: string;
+  readAt: string | null;
+  assignedTo: string | null;
+  status: InboxStage;
+  createdAt: string;
+}
+
+export type InboxStageMap = Record<InboxStage, InboxSubmission[]>;
+
+interface Props {
+  initialStages: InboxStageMap;
+}
+
+function timeAgo(dateStr: string): string {
+  const diff = Date.now() - new Date(dateStr).getTime();
+  const mins = Math.floor(diff / 60000);
+  if (mins < 1) return "just now";
+  if (mins < 60) return `${mins}m ago`;
+  const hrs = Math.floor(mins / 60);
+  if (hrs < 24) return `${hrs}h ago`;
+  return `${Math.floor(hrs / 24)}d ago`;
+}
+
+function truncate(s: string, n: number): string {
+  if (!s) return "";
+  return s.length <= n ? s : s.slice(0, n - 1).trimEnd() + "…";
+}
+
+export function InboxPipelineBoard({ initialStages }: Props) {
+  const [stages, setStages] = useState<InboxStageMap>(initialStages);
+  const [dragId, setDragId] = useState<number | null>(null);
+  const [dragFrom, setDragFrom] = useState<InboxStage | null>(null);
+  const [hoverStage, setHoverStage] = useState<InboxStage | null>(null);
+  const [detail, setDetail] = useState<InboxSubmission | null>(null);
+  const [error, setError] = useState<string | null>(null);
+  const [ownerMenuFor, setOwnerMenuFor] = useState<number | null>(null);
+  const [assigningId, setAssigningId] = useState<number | null>(null);
+  const [deletingId, setDeletingId] = useState<number | null>(null);
+
+  useEffect(() => {
+    if (ownerMenuFor === null) return;
+    const close = () => setOwnerMenuFor(null);
+    window.addEventListener("click", close);
+    return () => window.removeEventListener("click", close);
+  }, [ownerMenuFor]);
+
+  const totalCount = useMemo(
+    () =>
+      INBOX_STAGES.reduce(
+        (sum, s) => sum + (stages[s]?.length ?? 0),
+        0
+      ),
+    [stages]
+  );
+
+  function findRow(
+    id: number
+  ): { stage: InboxStage; row: InboxSubmission } | null {
+    for (const s of INBOX_STAGES) {
+      const row = stages[s].find((r) => r.id === id);
+      if (row) return { stage: s, row };
+    }
+    return null;
+  }
+
+  async function moveCard(
+    id: number,
+    from: InboxStage,
+    to: InboxStage
+  ) {
+    if (from === to) return;
+    const found = findRow(id);
+    if (!found) return;
+    const prev = stages;
+    setStages((s) => {
+      const next: InboxStageMap = { ...s };
+      next[from] = s[from].filter((r) => r.id !== id);
+      next[to] = [{ ...found.row, status: to }, ...s[to]];
+      return next;
+    });
+    try {
+      const res = await fetch("/api/admin/inbox", {
+        method: "PATCH",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ id, status: to }),
+      });
+      if (!res.ok) {
+        const data = await res.json().catch(() => ({}));
+        throw new Error(data.error ?? `HTTP ${res.status}`);
+      }
+      setError(null);
+    } catch (err) {
+      setStages(prev);
+      setError(err instanceof Error ? err.message : "Failed to move");
+      window.setTimeout(() => setError(null), 4000);
+    }
+  }
+
+  async function assignOwner(
+    sub: InboxSubmission,
+    nextOwner: string | null
+  ) {
+    setAssigningId(sub.id);
+    setOwnerMenuFor(null);
+    const prev = stages;
+    setStages((s) => {
+      const next: InboxStageMap = { ...s };
+      for (const stage of INBOX_STAGES) {
+        next[stage] = s[stage].map((r) =>
+          r.id === sub.id ? { ...r, assignedTo: nextOwner } : r
+        );
+      }
+      return next;
+    });
+    try {
+      const res = await fetch("/api/admin/inbox", {
+        method: "PATCH",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ id: sub.id, assignedTo: nextOwner }),
+      });
+      if (!res.ok) {
+        const data = await res.json().catch(() => ({}));
+        throw new Error(data.error ?? `HTTP ${res.status}`);
+      }
+      setError(null);
+    } catch (err) {
+      setStages(prev);
+      setError(err instanceof Error ? err.message : "Failed to assign");
+      window.setTimeout(() => setError(null), 4000);
+    } finally {
+      setAssigningId(null);
+    }
+  }
+
+  async function deleteCard(id: number) {
+    setDeletingId(id);
+    const prev = stages;
+    setStages((s) => {
+      const next: InboxStageMap = { ...s };
+      for (const stage of INBOX_STAGES) {
+        next[stage] = s[stage].filter((r) => r.id !== id);
+      }
+      return next;
+    });
+    setDetail((d) => (d && d.id === id ? null : d));
+    try {
+      const res = await fetch("/api/admin/inbox", {
+        method: "DELETE",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ id }),
+      });
+      if (!res.ok) {
+        const data = await res.json().catch(() => ({}));
+        throw new Error(data.error ?? `HTTP ${res.status}`);
+      }
+      setError(null);
+    } catch (err) {
+      setStages(prev);
+      setError(err instanceof Error ? err.message : "Failed to delete");
+      window.setTimeout(() => setError(null), 4000);
+    } finally {
+      setDeletingId(null);
+    }
+  }
+
+  async function openCard(sub: InboxSubmission) {
+    setDetail(sub);
+    // Side-effect: mark as read on first open (matches list-view behaviour).
+    if (!sub.readAt) {
+      try {
+        const res = await fetch("/api/admin/inbox", {
+          method: "PATCH",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ id: sub.id }),
+        });
+        if (res.ok) {
+          const readAt = new Date().toISOString();
+          setStages((s) => {
+            const next: InboxStageMap = { ...s };
+            for (const stage of INBOX_STAGES) {
+              next[stage] = s[stage].map((r) =>
+                r.id === sub.id ? { ...r, readAt } : r
+              );
+            }
+            return next;
+          });
+        }
+      } catch {
+        // non-blocking
+      }
+    }
+  }
+
+  return (
+    <div className="flex flex-col gap-4">
+      <div className="flex items-center gap-3 flex-wrap">
+        <span className="text-foreground-subtle text-xs">
+          {totalCount} message{totalCount === 1 ? "" : "s"} in pipeline
+        </span>
+        {error && (
+          <span className="ml-auto text-xs text-red-400 bg-red-500/10 border border-red-500/20 px-3 py-1 rounded-lg">
+            {error}
+          </span>
+        )}
+      </div>
+
+      <div className="flex gap-3 overflow-x-auto pb-4">
+        {INBOX_STAGES.map((stage) => {
+          const color = INBOX_STAGE_COLORS[stage];
+          const cards = stages[stage] ?? [];
+          const isHover = hoverStage === stage;
+          return (
+            <div
+              key={stage}
+              onDragOver={(e) => {
+                e.preventDefault();
+                if (hoverStage !== stage) setHoverStage(stage);
+              }}
+              onDragLeave={() => {
+                if (hoverStage === stage) setHoverStage(null);
+              }}
+              onDrop={(e) => {
+                e.preventDefault();
+                setHoverStage(null);
+                if (dragId !== null && dragFrom) {
+                  moveCard(dragId, dragFrom, stage);
+                }
+                setDragId(null);
+                setDragFrom(null);
+              }}
+              className={`shrink-0 w-72 flex flex-col rounded-xl border border-white/5 bg-background-elevated transition ${
+                isHover ? "ring-1 ring-coral" : ""
+              }`}
+            >
+              <div className="flex items-center gap-2 px-4 py-3 border-b border-white/5">
+                <span className={`w-2 h-2 rounded-full ${color.dot}`} />
+                <h3 className="font-heading tracking-wider uppercase text-off-white text-xs">
+                  {INBOX_STAGE_LABELS[stage]}
+                </h3>
+                <span
+                  className={`ml-auto text-[10px] px-2 py-0.5 rounded-full border font-medium ${color.badge}`}
+                >
+                  {cards.length}
+                </span>
+              </div>
+              <div className="flex-1 p-2 space-y-2 min-h-[120px]">
+                {cards.length === 0 && (
+                  <div className="text-foreground-subtle text-xs text-center py-8 border border-dashed border-white/5 rounded-lg">
+                    Empty
+                  </div>
+                )}
+                {cards.map((sub) => {
+                  const dragging = dragId === sub.id;
+                  return (
+                    <div
+                      key={sub.id}
+                      role="button"
+                      tabIndex={0}
+                      draggable
+                      onDragStart={(e) => {
+                        setDragId(sub.id);
+                        setDragFrom(stage);
+                        e.dataTransfer.effectAllowed = "move";
+                        e.dataTransfer.setData("text/plain", String(sub.id));
+                      }}
+                      onDragEnd={() => {
+                        setDragId(null);
+                        setDragFrom(null);
+                        setHoverStage(null);
+                      }}
+                      onClick={() => openCard(sub)}
+                      onKeyDown={(e) => {
+                        if (e.key === "Enter" || e.key === " ") {
+                          e.preventDefault();
+                          openCard(sub);
+                        }
+                      }}
+                      className={`block w-full text-left p-3 rounded-lg border border-white/5 bg-white/[0.02] hover:border-coral/30 transition cursor-grab active:cursor-grabbing ${
+                        dragging
+                          ? `opacity-40 scale-[0.98] ring-1 ${color.ring}`
+                          : ""
+                      }`}
+                    >
+                      <div className="flex items-start gap-2 mb-1">
+                        <span className="text-off-white text-sm font-semibold truncate">
+                          {sub.name}
+                        </span>
+                        {!sub.readAt && (
+                          <span className="w-1.5 h-1.5 rounded-full bg-coral shrink-0 mt-1.5" />
+                        )}
+                        <span className="ml-auto text-foreground-subtle text-[10px] shrink-0">
+                          {timeAgo(sub.createdAt)}
+                        </span>
+                      </div>
+                      <p className="text-foreground-muted text-xs truncate mb-1">
+                        {truncate(sub.subject, 70)}
+                      </p>
+                      <p className="text-foreground-subtle text-[11px] leading-snug mb-2">
+                        {truncate(sub.message, 80)}
+                      </p>
+                      <div className="flex items-center gap-1.5 flex-wrap">
+                        <span
+                          role="button"
+                          tabIndex={0}
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            setOwnerMenuFor(
+                              ownerMenuFor === sub.id ? null : sub.id
+                            );
+                          }}
+                          onKeyDown={(e) => {
+                            if (e.key === "Enter" || e.key === " ") {
+                              e.preventDefault();
+                              e.stopPropagation();
+                              setOwnerMenuFor(
+                                ownerMenuFor === sub.id ? null : sub.id
+                              );
+                            }
+                          }}
+                          className={`relative ml-auto text-[10px] px-2 py-0.5 rounded-full font-medium border capitalize cursor-pointer ${
+                            sub.assignedTo
+                              ? "bg-coral/15 text-coral border-coral/30"
+                              : "border-dashed border-white/15 text-foreground-subtle"
+                          } ${
+                            assigningId === sub.id ? "opacity-60" : ""
+                          }`}
+                          aria-label="Assign owner"
+                        >
+                          {sub.assignedTo
+                            ? `${sub.assignedTo.charAt(0).toUpperCase()} · ${sub.assignedTo}`
+                            : "unassigned"}
+                          {ownerMenuFor === sub.id && (
+                            <span
+                              onClick={(e) => e.stopPropagation()}
+                              className="absolute right-0 top-full mt-1 z-20 min-w-[140px] rounded-lg border border-white/10 bg-background-elevated shadow-lg p-1 flex flex-col gap-0.5 normal-case"
+                            >
+                              {OWNER_OPTIONS.map((opt) => {
+                                const selected =
+                                  (sub.assignedTo ?? null) === opt.value;
+                                return (
+                                  <button
+                                    key={opt.label}
+                                    type="button"
+                                    onClick={(e) => {
+                                      e.stopPropagation();
+                                      assignOwner(sub, opt.value);
+                                    }}
+                                    className={`text-left text-[11px] px-2 py-1 rounded hover:bg-white/5 ${
+                                      selected ? "text-coral" : "text-off-white"
+                                    }`}
+                                  >
+                                    {opt.label}
+                                  </button>
+                                );
+                              })}
+                            </span>
+                          )}
+                        </span>
+                      </div>
+                    </div>
+                  );
+                })}
+              </div>
+            </div>
+          );
+        })}
+      </div>
+
+      {detail && (
+        <InboxDetailModal
+          sub={detail}
+          onClose={() => setDetail(null)}
+          onDelete={() => deleteCard(detail.id)}
+          deleting={deletingId === detail.id}
+        />
+      )}
+    </div>
+  );
+}
+
+function InboxDetailModal({
+  sub,
+  onClose,
+  onDelete,
+  deleting,
+}: {
+  sub: InboxSubmission;
+  onClose: () => void;
+  onDelete: () => void;
+  deleting: boolean;
+}) {
+  const submitted = new Date(sub.createdAt).toLocaleString("en-GB", {
+    day: "numeric",
+    month: "short",
+    year: "numeric",
+    hour: "2-digit",
+    minute: "2-digit",
+  });
+  const [confirming, setConfirming] = useState(false);
+
+  return (
+    <div
+      onClick={onClose}
+      className="fixed inset-0 z-50 bg-black/70 backdrop-blur-sm flex items-start justify-center p-4 overflow-y-auto"
+    >
+      <div
+        onClick={(e) => e.stopPropagation()}
+        className="w-full max-w-2xl my-8 rounded-xl border border-white/10 bg-background-elevated shadow-2xl"
+      >
+        <div className="flex items-center gap-3 px-5 py-4 border-b border-white/10">
+          <h2 className="font-heading tracking-wider uppercase text-off-white text-sm">
+            {sub.subject || "Inbox message"}
+          </h2>
+          <span className="text-foreground-subtle text-[10px]">
+            #{sub.id} · {submitted}
+          </span>
+          <a
+            href={`mailto:${sub.email}?subject=Re: ${encodeURIComponent(
+              sub.subject
+            )}`}
+            className="ml-auto text-xs px-3 py-1.5 rounded-lg bg-coral/15 text-coral border border-coral/30 hover:bg-coral/25 font-heading tracking-wider uppercase"
+          >
+            Reply
+          </a>
+          {confirming ? (
+            <>
+              <button
+                type="button"
+                onClick={onDelete}
+                disabled={deleting}
+                className="text-xs px-3 py-1.5 rounded-lg bg-red-500/20 text-red-400 border border-red-500/30 hover:bg-red-500/30 disabled:opacity-50 font-heading tracking-wider uppercase"
+              >
+                {deleting ? "Deleting…" : "Confirm"}
+              </button>
+              <button
+                type="button"
+                onClick={() => setConfirming(false)}
+                disabled={deleting}
+                className="text-xs px-2 py-1.5 text-foreground-subtle hover:text-off-white"
+              >
+                Cancel
+              </button>
+            </>
+          ) : (
+            <button
+              type="button"
+              onClick={() => setConfirming(true)}
+              className="text-xs px-3 py-1.5 rounded-lg border border-white/10 text-foreground-subtle hover:text-red-400 hover:border-red-400/30 font-heading tracking-wider uppercase"
+            >
+              Delete
+            </button>
+          )}
+          <button
+            type="button"
+            onClick={onClose}
+            className="text-foreground-subtle hover:text-off-white text-lg leading-none px-2"
+            aria-label="Close"
+          >
+            ×
+          </button>
+        </div>
+        <div className="p-5 space-y-3">
+          <div className="flex items-center gap-2 p-3 rounded-lg border border-coral/20 bg-coral/[0.04]">
+            <div className="flex-1 min-w-0">
+              <div className="text-foreground-subtle text-[10px] tracking-widest uppercase">
+                From
+              </div>
+              <p className="text-off-white text-base font-semibold break-words">
+                {sub.name}
+              </p>
+              <a
+                href={`mailto:${sub.email}`}
+                className="text-coral text-sm break-all hover:underline"
+              >
+                {sub.email}
+              </a>
+            </div>
+          </div>
+          <div className="p-3 rounded-lg border border-white/5 bg-white/[0.02]">
+            <div className="text-foreground-subtle text-[10px] tracking-widest uppercase mb-1">
+              Message
+            </div>
+            <p className="text-off-white text-sm whitespace-pre-wrap break-words">
+              {sub.message}
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}

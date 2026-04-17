@@ -8,13 +8,17 @@ export type ContactActivity = typeof contactActivities.$inferSelect;
 export type ContactSource =
   | "contact_form"
   | "cohort_application"
+  | "cohort_waitlist"
   | "manual"
   | "import"
-  | "subscribers";
+  | "subscribers"
+  | "beehiiv"
+  | "stripe";
 
 export type ActivityType =
   | "contact_submission"
   | "cohort_application"
+  | "cohort_waitlist"
   | "note"
   | "email_sent"
   | "assigned"
@@ -27,7 +31,13 @@ export type ActivityType =
   | "enrichment_beehiiv"
   | "enrichment_stripe_purchase"
   | "email_opened"
-  | "email_clicked";
+  | "email_clicked"
+  | "file_uploaded"
+  | "file_removed"
+  | "contact_merged"
+  | "booking_scheduled"
+  | "booking_completed"
+  | "booking_cancelled";
 
 export interface UpsertContactParams {
   email: string;
@@ -71,7 +81,18 @@ export async function upsertContact(params: UpsertContactParams): Promise<Contac
         lastActivityAt: now,
       })
       .returning();
-    return inserted[0];
+    const created = inserted[0];
+    try {
+      const { runAutomations } = await import("./automations");
+      await runAutomations({
+        type: "contact.created",
+        contactId: created.id,
+        source: created.source ?? null,
+      });
+    } catch (err) {
+      console.error("[contacts] automations (contact.created) failed", err);
+    }
+    return created;
   }
 
   const current = existing[0];
@@ -183,6 +204,7 @@ export interface ListContactsParams {
   owner?: string | "unassigned" | null;
   stage?: string | null;
   staleOnly?: boolean;
+  sort?: "score" | "recent";
   limit?: number;
   offset?: number;
 }
@@ -223,10 +245,18 @@ export async function listContacts(params: ListContactsParams = {}): Promise<Lis
 
   const whereClause = conditions.length > 0 ? and(...conditions) : undefined;
 
+  const orderBy =
+    params.sort === "score"
+      ? [
+          sql`(${contacts.customFields}->'system'->>'lead_score')::int DESC NULLS LAST`,
+          desc(contacts.lastActivityAt),
+        ]
+      : [desc(contacts.lastActivityAt), desc(contacts.createdAt)];
+
   const rowsQuery = db
     .select()
     .from(contacts)
-    .orderBy(desc(contacts.lastActivityAt), desc(contacts.createdAt))
+    .orderBy(...orderBy)
     .limit(limit)
     .offset(offset);
 

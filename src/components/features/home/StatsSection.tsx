@@ -4,7 +4,7 @@ import { ScrollReveal, AnimatedCounter } from "@/components/ui";
 
 const stats = [
   { value: "1M+", label: "Monthly Listeners" },
-  { value: "2,100+", label: "Community Members" },
+  { value: "1,965+", label: "Community Members" },
   { value: "61K+", label: "YouTube Subscribers" },
   { value: "49K+", label: "Instagram Followers" },
 ];
@@ -33,7 +33,7 @@ export function StatsSection() {
       <div className="relative z-10 mx-auto max-w-[1200px] px-5 md:px-8">
         <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
           {stats.map((stat, i) => (
-            <ScrollReveal key={stat.label} direction="up" delay={i * 0.12}>
+            <ScrollReveal key={stat.label} direction="up" delay={i * 0.12} eager>
               <div className="stat-card-pulse rounded-xl p-4">
                 <p className="font-heading text-3xl md:text-5xl text-coral mb-1 stat-glow">
                   <AnimatedCounter value={stat.value} />

@@ -3,6 +3,7 @@ import { db } from "@/lib/db";
 import { tasks as tasksTable } from "@/lib/db/schema";
 import { requireAuth } from "@/lib/admin/auth";
 import { addActivity, getContactById } from "@/lib/crm/contacts";
+import { createNotification } from "@/lib/crm/notifications";
 
 const ALLOWED_ASSIGNEES = ["sarah", "wes", "matthew", "ted"];
 
@@ -72,6 +73,21 @@ export async function POST(request: Request) {
       authorName: user.name,
       authorSlug: user.slug,
     });
+  }
+
+  // Notify assignee if different from author
+  if (assignedTo && assignedTo !== user.slug) {
+    try {
+      await createNotification({
+        recipientSlug: assignedTo,
+        type: "task_assigned",
+        title: `${user.name} assigned you a task`,
+        body: title,
+        link: contactId ? `/admin/contacts/${contactId}` : `/admin/tasks`,
+      });
+    } catch (err) {
+      console.error("[tasks] notification failed", err);
+    }
   }
 
   return NextResponse.json({

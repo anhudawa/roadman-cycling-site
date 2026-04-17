@@ -5,7 +5,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { Header, Footer, Section, Container } from "@/components/layout";
 import { Button } from "@/components/ui";
 import { ZoneChart } from "@/components/features/tools/ZoneChart";
-import { EmailCapture } from "@/components/features/conversion/EmailCapture";
+import { ReportRequestForm } from "@/components/features/tools/ReportRequestForm";
 
 interface Zone {
   name: string;
@@ -306,6 +306,30 @@ export default function FTPZonesPage() {
                   </div>
                 </div>
 
+                {/* Email-gated report — "get the 7-day training week built
+                    around your exact FTP". Personalised, delivered via Resend,
+                    subscribes to Beehiiv tagged tool-ftp-zones-report. */}
+                <motion.div
+                  className="mt-8"
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.35, delay: 0.5 }}
+                >
+                  <ReportRequestForm
+                    tool="ftp-zones"
+                    inputs={{ ftp: ftpValue }}
+                    heading={`Your personalised ${ftpValue}w training week`}
+                    subheading="We'll email you a polarised 7-day template built around the zones above — with specific wattage targets for each session. The same distribution the Norwegian lab's proven works for twenty years."
+                    bullets={[
+                      "Full 7-zone cheat sheet you can screenshot",
+                      "Tuesday threshold session at your exact wattage",
+                      "Thursday VO2 max 4×4 with your target numbers",
+                      "Long Saturday Zone 2 with your ceiling",
+                      "The three rules that unlock the week",
+                    ]}
+                  />
+                </motion.div>
+
                 {/* Learn More */}
                 <motion.div
                   className="mt-8 rounded-xl border border-white/10 p-6"
@@ -327,15 +351,6 @@ export default function FTPZonesPage() {
                     </li>
                   </ul>
                 </motion.div>
-
-                {/* Newsletter CTA */}
-                <div className="mt-8">
-                  <EmailCapture
-                    heading="GET THE TRAINING INSIGHTS THAT MOVE THE NEEDLE"
-                    subheading="Evidence-based training tips to make your zones count. Once a week."
-                    source="tool-ftp-zones"
-                  />
-                </div>
               </motion.div>
             )}
             </AnimatePresence>

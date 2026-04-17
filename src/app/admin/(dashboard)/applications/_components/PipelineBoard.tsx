@@ -76,6 +76,7 @@ export function PipelineBoard({ initialStages, cohorts, initialCohort }: Props) 
   const [loadingCohort, setLoadingCohort] = useState(false);
   const [ownerMenuFor, setOwnerMenuFor] = useState<number | null>(null);
   const [assigningId, setAssigningId] = useState<number | null>(null);
+  const [deletingId, setDeletingId] = useState<number | null>(null);
 
   useEffect(() => {
     if (ownerMenuFor === null) return;
@@ -208,6 +209,37 @@ export function PipelineBoard({ initialStages, cohorts, initialCohort }: Props) 
     }
   }
 
+  async function deleteCard(id: number) {
+    setDeletingId(id);
+    const prev = stages;
+    setStages((s) => {
+      const next: StageMap = { ...s };
+      for (const stage of APPLICATION_STAGES) {
+        next[stage] = s[stage].filter((c) => c.id !== id);
+      }
+      return next;
+    });
+    setDetail((d) => (d && d.id === id ? null : d));
+    try {
+      const res = await fetch("/api/admin/applications", {
+        method: "DELETE",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ id }),
+      });
+      if (!res.ok) {
+        const data = await res.json().catch(() => ({}));
+        throw new Error(data.error ?? `HTTP ${res.status}`);
+      }
+      setError(null);
+    } catch (err) {
+      setStages(prev);
+      setError(err instanceof Error ? err.message : "Failed to delete");
+      window.setTimeout(() => setError(null), 4000);
+    } finally {
+      setDeletingId(null);
+    }
+  }
+
   return (
     <div className="flex flex-col gap-4">
       <div className="flex items-center gap-3 flex-wrap">
@@ -285,8 +317,10 @@ export function PipelineBoard({ initialStages, cohorts, initialCohort }: Props) 
                 {cards.map((app) => {
                   const dragging = dragId === app.id;
                   return (
-                    <button
+                    <div
                       key={app.id}
+                      role="button"
+                      tabIndex={0}
                       draggable
                       onDragStart={(e) => {
                         setDragId(app.id);
@@ -300,11 +334,21 @@ export function PipelineBoard({ initialStages, cohorts, initialCohort }: Props) 
                         setHoverStage(null);
                       }}
                       onClick={() => openCard(app)}
-                      className={`block w-full text-left p-3 rounded-lg border border-white/5 bg-white/[0.02] hover:border-coral/30 transition cursor-grab active:cursor-grabbing ${
+                      onKeyDown={(e) => {
+                        if (e.key === "Enter" || e.key === " ") {
+                          e.preventDefault();
+                          openCard(app);
+                        }
+                      }}
+                      className={`group relative block w-full text-left p-3 rounded-lg border border-white/5 bg-white/[0.02] hover:border-coral/30 transition cursor-grab active:cursor-grabbing ${
                         dragging ? `opacity-40 scale-[0.98] ring-1 ${color.ring}` : ""
-                      }`}
+                      } ${deletingId === app.id ? "opacity-40 pointer-events-none" : ""}`}
                     >
-                      <div className="flex items-start gap-2 mb-1">
+                      <InlineDelete
+                        disabled={deletingId !== null}
+                        onConfirm={() => deleteCard(app.id)}
+                      />
+                      <div className="flex items-start gap-2 mb-1 pr-6">
                         <span className="text-off-white text-sm font-semibold truncate">
                           {app.name}
                         </span>
@@ -382,7 +426,7 @@ export function PipelineBoard({ initialStages, cohorts, initialCohort }: Props) 
                           )}
                         </span>
                       </div>
-                    </button>
+                    </div>
                   );
                 })}
               </div>
@@ -392,55 +436,289 @@ export function PipelineBoard({ initialStages, cohorts, initialCohort }: Props) 
       </div>
 
       {detail && (
-        <div
-          className="fixed inset-0 z-50 bg-black/70 flex items-center justify-center p-6"
-          onClick={() => setDetail(null)}
+        <ApplicationDetailModal
+          app={detail}
+          onClose={() => setDetail(null)}
+          onDelete={() => deleteCard(detail.id)}
+          deleting={deletingId === detail.id}
+        />
+      )}
+    </div>
+  );
+}
+
+function InlineDelete({
+  onConfirm,
+  disabled,
+}: {
+  onConfirm: () => void;
+  disabled?: boolean;
+}) {
+  const [confirming, setConfirming] = useState(false);
+  // Auto-cancel after a few seconds so a half-click doesn't sit in confirm
+  // state indefinitely.
+  useEffect(() => {
+    if (!confirming) return;
+    const t = window.setTimeout(() => setConfirming(false), 4000);
+    return () => window.clearTimeout(t);
+  }, [confirming]);
+
+  if (confirming) {
+    return (
+      <div
+        className="absolute right-1 top-1 z-10 flex gap-1"
+        onClick={(e) => e.stopPropagation()}
+        onMouseDown={(e) => e.stopPropagation()}
+        draggable={false}
+      >
+        <button
+          type="button"
+          disabled={disabled}
+          onClick={(e) => {
+            e.stopPropagation();
+            onConfirm();
+          }}
+          className="text-[10px] px-2 py-0.5 rounded bg-red-500/30 text-red-300 border border-red-400/40 hover:bg-red-500/50 font-heading tracking-wider uppercase disabled:opacity-50"
         >
-          <div
-            className="bg-background-elevated border border-white/10 rounded-xl max-w-lg w-full p-6"
-            onClick={(e) => e.stopPropagation()}
+          Confirm
+        </button>
+        <button
+          type="button"
+          onClick={(e) => {
+            e.stopPropagation();
+            setConfirming(false);
+          }}
+          className="text-[10px] px-2 py-0.5 rounded border border-white/10 text-foreground-subtle hover:text-off-white"
+        >
+          Cancel
+        </button>
+      </div>
+    );
+  }
+
+  return (
+    <button
+      type="button"
+      aria-label="Delete application"
+      draggable={false}
+      onMouseDown={(e) => e.stopPropagation()}
+      onClick={(e) => {
+        e.stopPropagation();
+        setConfirming(true);
+      }}
+      className="absolute right-1 top-1 z-10 w-5 h-5 rounded-full flex items-center justify-center text-foreground-subtle/60 hover:text-red-400 hover:bg-red-500/10 opacity-0 group-hover:opacity-100 transition"
+    >
+      ×
+    </button>
+  );
+}
+
+function CopyButton({ value, label }: { value: string; label?: string }) {
+  const [copied, setCopied] = useState(false);
+  if (!value) return null;
+  return (
+    <button
+      type="button"
+      onClick={async (e) => {
+        e.stopPropagation();
+        try {
+          await navigator.clipboard.writeText(value);
+          setCopied(true);
+          window.setTimeout(() => setCopied(false), 1500);
+        } catch {}
+      }}
+      className={`text-[10px] px-2 py-0.5 rounded-full border font-medium transition shrink-0 ${
+        copied
+          ? "bg-coral/20 text-coral border-coral/40"
+          : "border-white/10 text-foreground-subtle hover:text-off-white hover:border-white/30"
+      }`}
+    >
+      {copied ? "Copied" : label ?? "Copy"}
+    </button>
+  );
+}
+
+function Field({
+  label,
+  value,
+  mono,
+}: {
+  label: string;
+  value: string | null | undefined;
+  mono?: boolean;
+}) {
+  const v = value ?? "";
+  return (
+    <div className="flex flex-col gap-1.5 p-3 rounded-lg border border-white/5 bg-white/[0.02]">
+      <div className="flex items-center gap-2">
+        <span className="text-foreground-subtle text-[10px] tracking-widest uppercase">
+          {label}
+        </span>
+        <span className="ml-auto">
+          <CopyButton value={v} />
+        </span>
+      </div>
+      <p
+        className={`text-off-white text-sm whitespace-pre-wrap break-words ${
+          mono ? "font-mono" : ""
+        } ${!v ? "text-foreground-subtle italic" : ""}`}
+      >
+        {v || "—"}
+      </p>
+    </div>
+  );
+}
+
+function ApplicationDetailModal({
+  app,
+  onClose,
+  onDelete,
+  deleting,
+}: {
+  app: KanbanApplication;
+  onClose: () => void;
+  onDelete?: () => void;
+  deleting?: boolean;
+}) {
+  const [copiedAll, setCopiedAll] = useState(false);
+  const [confirmingDelete, setConfirmingDelete] = useState(false);
+
+  const allText = [
+    `Name: ${app.name}`,
+    `Email: ${app.email}`,
+    `Cohort: ${app.cohort}`,
+    `Hours/week: ${app.hours}`,
+    `FTP: ${app.ftp ?? "—"}`,
+    `Persona: ${app.persona ?? "—"}`,
+    `Status: ${app.status}`,
+    `Submitted: ${new Date(app.createdAt).toLocaleString("en-GB")}`,
+    ``,
+    `Goal:`,
+    app.goal || "—",
+    ``,
+    `Frustration:`,
+    app.frustration || "—",
+  ].join("\n");
+
+  async function copyAll() {
+    try {
+      await navigator.clipboard.writeText(allText);
+      setCopiedAll(true);
+      window.setTimeout(() => setCopiedAll(false), 1500);
+    } catch {}
+  }
+
+  return (
+    <div
+      onClick={onClose}
+      className="fixed inset-0 z-50 bg-black/70 backdrop-blur-sm flex items-start justify-center p-4 overflow-y-auto"
+    >
+      <div
+        onClick={(e) => e.stopPropagation()}
+        className="w-full max-w-2xl my-8 rounded-xl border border-white/10 bg-background-elevated shadow-2xl"
+      >
+        <div className="flex items-center gap-3 px-5 py-4 border-b border-white/10">
+          <h2 className="font-heading tracking-wider uppercase text-off-white text-sm">
+            Application
+          </h2>
+          <span className="text-foreground-subtle text-[10px]">
+            #{app.id} · {new Date(app.createdAt).toLocaleDateString("en-GB")}
+          </span>
+          <button
+            type="button"
+            onClick={copyAll}
+            className={`ml-auto text-xs px-3 py-1.5 rounded-lg border font-medium transition ${
+              copiedAll
+                ? "bg-coral/20 text-coral border-coral/40"
+                : "bg-coral/10 text-coral border-coral/30 hover:bg-coral/20"
+            }`}
           >
-            <div className="flex items-start justify-between mb-4">
-              <div>
-                <h2 className="font-heading tracking-wider uppercase text-off-white text-lg">
-                  {detail.name}
-                </h2>
-                <p className="text-foreground-muted text-xs">{detail.email}</p>
-              </div>
+            {copiedAll ? "Copied all" : "Copy all"}
+          </button>
+          {onDelete &&
+            (confirmingDelete ? (
+              <>
+                <button
+                  type="button"
+                  onClick={onDelete}
+                  disabled={deleting}
+                  className="text-xs px-3 py-1.5 rounded-lg bg-red-500/20 text-red-400 border border-red-500/30 hover:bg-red-500/30 disabled:opacity-50 font-heading tracking-wider uppercase"
+                >
+                  {deleting ? "Deleting…" : "Confirm"}
+                </button>
+                <button
+                  type="button"
+                  onClick={() => setConfirmingDelete(false)}
+                  disabled={deleting}
+                  className="text-xs px-2 py-1.5 text-foreground-subtle hover:text-off-white"
+                >
+                  Cancel
+                </button>
+              </>
+            ) : (
               <button
-                onClick={() => setDetail(null)}
-                className="text-foreground-subtle hover:text-off-white text-sm"
+                type="button"
+                onClick={() => setConfirmingDelete(true)}
+                className="text-xs px-3 py-1.5 rounded-lg border border-white/10 text-foreground-subtle hover:text-red-400 hover:border-red-400/30 font-heading tracking-wider uppercase"
               >
-                Close
+                Delete
               </button>
+            ))}
+          <button
+            type="button"
+            onClick={onClose}
+            className="text-foreground-subtle hover:text-off-white text-lg leading-none px-2"
+            aria-label="Close"
+          >
+            ×
+          </button>
+        </div>
+
+        <div className="p-5 space-y-3">
+          <div className="flex items-center gap-2 p-3 rounded-lg border border-coral/20 bg-coral/[0.04]">
+            <div className="flex-1 min-w-0">
+              <div className="text-foreground-subtle text-[10px] tracking-widest uppercase">
+                Email
+              </div>
+              <a
+                href={`mailto:${app.email}`}
+                className="text-coral text-base font-semibold break-all hover:underline"
+              >
+                {app.email}
+              </a>
             </div>
-            <div className="space-y-3 text-sm">
-              <div>
-                <p className="text-foreground-subtle text-[10px] tracking-widest uppercase">Goal</p>
-                <p className="text-off-white">{detail.goal}</p>
+            <CopyButton value={app.email} label="Copy" />
+          </div>
+
+          <div className="flex items-center gap-2 p-3 rounded-lg border border-white/10 bg-white/[0.02]">
+            <div className="flex-1 min-w-0">
+              <div className="text-foreground-subtle text-[10px] tracking-widest uppercase">
+                Name
               </div>
-              <div>
-                <p className="text-foreground-subtle text-[10px] tracking-widest uppercase">Frustration</p>
-                <p className="text-off-white">{detail.frustration}</p>
-              </div>
-              <div className="grid grid-cols-3 gap-3">
-                <div>
-                  <p className="text-foreground-subtle text-[10px] tracking-widest uppercase">Hours</p>
-                  <p className="text-off-white">{detail.hours}</p>
-                </div>
-                <div>
-                  <p className="text-foreground-subtle text-[10px] tracking-widest uppercase">FTP</p>
-                  <p className="text-off-white">{detail.ftp ?? "—"}</p>
-                </div>
-                <div>
-                  <p className="text-foreground-subtle text-[10px] tracking-widest uppercase">Cohort</p>
-                  <p className="text-off-white">{detail.cohort}</p>
-                </div>
-              </div>
+              <p className="text-off-white text-base font-semibold break-words">
+                {app.name}
+              </p>
             </div>
+            <CopyButton value={app.name} label="Copy" />
+          </div>
+
+          <div className="grid grid-cols-2 gap-3">
+            <Field label="Cohort" value={app.cohort} />
+            <Field label="Hours / week" value={app.hours} />
+            <Field label="FTP" value={app.ftp} mono />
+            <Field label="Persona" value={app.persona} />
+          </div>
+
+          <Field label="Goal" value={app.goal} />
+          <Field label="Frustration" value={app.frustration} />
+
+          <div className="flex items-center gap-3 text-[11px] text-foreground-subtle pt-2 border-t border-white/5">
+            <span>Status: <span className="text-off-white">{app.status}</span></span>
+            <span>·</span>
+            <span>Submitted {new Date(app.createdAt).toLocaleString("en-GB")}</span>
           </div>
         </div>
-      )}
+      </div>
     </div>
   );
 }

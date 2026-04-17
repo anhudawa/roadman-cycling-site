@@ -20,6 +20,7 @@ const NAV_SECTIONS: NavSection[] = [
   {
     title: "Personal",
     items: [
+      { href: "/admin/mission-control", label: "Mission Control", icon: "trending" },
       { href: "/admin/my-day", label: "My Day", icon: "sunrise" },
     ],
   },
@@ -28,13 +29,20 @@ const NAV_SECTIONS: NavSection[] = [
     items: [
       { href: "/admin", label: "Overview", icon: "grid" },
       { href: "/admin/inbox", label: "Inbox", icon: "inbox" },
+      { href: "/admin/activity", label: "Activity", icon: "pulse" },
       { href: "/admin/contacts", label: "Contacts", icon: "users" },
+      { href: "/admin/tags", label: "Tags", icon: "tag" },
+      { href: "/admin/deals", label: "Deals", icon: "tag" },
+      { href: "/admin/segments", label: "Segments", icon: "segment-filter" },
       { href: "/admin/tasks", label: "Tasks", icon: "check-list" },
+      { href: "/admin/bookings", label: "Bookings", icon: "calendar" },
       { href: "/admin/templates", label: "Templates", icon: "mail" },
       { href: "/admin/applications", label: "Applications", icon: "clipboard" },
       { href: "/admin/traffic", label: "Traffic", icon: "trending" },
       { href: "/admin/emails", label: "Conversions", icon: "trending" },
       { href: "/admin/leads", label: "Leads", icon: "users" },
+      { href: "/admin/reports", label: "Reports", icon: "trending" },
+      { href: "/admin/automations", label: "Automations", icon: "zap" },
     ],
   },
   {
@@ -49,6 +57,7 @@ const NAV_SECTIONS: NavSection[] = [
     items: [
       { href: "/admin/newsletter", label: "Newsletter", icon: "newspaper" },
       { href: "/admin/revenue", label: "Revenue", icon: "dollar" },
+      { href: "/admin/integrations/skool", label: "Skool Clubhouse", icon: "users" },
     ],
   },
   {
@@ -56,6 +65,17 @@ const NAV_SECTIONS: NavSection[] = [
     items: [
       { href: "/admin/content/repurposed", label: "Content Pipeline", icon: "pipeline" },
       { href: "/admin/content/exploder", label: "Exploder", icon: "exploder" },
+    ],
+  },
+  {
+    title: "Skool Clubhouse",
+    items: [
+      { href: "/admin/ted/approvals", label: "Approvals", icon: "inbox" },
+      { href: "/admin/ted", label: "Ted dashboard", icon: "sparkle" },
+      { href: "/admin/ted/queue", label: "Prompts", icon: "document" },
+      { href: "/admin/ted/welcomes", label: "Welcomes", icon: "users" },
+      { href: "/admin/ted/surfaces", label: "Thread surfaces", icon: "pulse" },
+      { href: "/admin/ted/settings", label: "Ted settings", icon: "cog" },
     ],
   },
   {
@@ -155,6 +175,12 @@ function NavIcon({ icon, className }: { icon: string; className?: string }) {
           <path strokeLinecap="round" strokeLinejoin="round" d="M9 12h3.75M9 15h3.75M9 18h3.75m3 .75H18a2.25 2.25 0 0 0 2.25-2.25V6.108c0-1.135-.845-2.098-1.976-2.192a48.424 48.424 0 0 0-1.123-.08m-5.801 0c-.065.21-.1.433-.1.664 0 .414.336.75.75.75h4.5a.75.75 0 0 0 .75-.75 2.25 2.25 0 0 0-.1-.664m-5.8 0A2.251 2.251 0 0 1 13.5 2.25H15a2.25 2.25 0 0 1 2.15 1.586m-5.8 0c-.376.023-.75.05-1.124.08C9.095 4.01 8.25 4.973 8.25 6.108V8.25m0 0H4.875c-.621 0-1.125.504-1.125 1.125v11.25c0 .621.504 1.125 1.125 1.125h9.75c.621 0 1.125-.504 1.125-1.125V9.375c0-.621-.504-1.125-1.125-1.125H8.25Z" />
         </svg>
       );
+    case "calendar":
+      return (
+        <svg className={cls} fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
+          <path strokeLinecap="round" strokeLinejoin="round" d="M6.75 3v2.25M17.25 3v2.25M3 18.75V7.5a2.25 2.25 0 0 1 2.25-2.25h13.5A2.25 2.25 0 0 1 21 7.5v11.25m-18 0A2.25 2.25 0 0 0 5.25 21h13.5A2.25 2.25 0 0 0 21 18.75m-18 0v-7.5A2.25 2.25 0 0 1 5.25 9h13.5A2.25 2.25 0 0 1 21 11.25v7.5" />
+        </svg>
+      );
     case "check-list":
       return (
         <svg className={cls} fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
@@ -167,10 +193,48 @@ function NavIcon({ icon, className }: { icon: string; className?: string }) {
           <path strokeLinecap="round" strokeLinejoin="round" d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12Z" />
         </svg>
       );
+    case "tag":
+      return (
+        <svg className={cls} fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
+          <path strokeLinecap="round" strokeLinejoin="round" d="M9.568 3H5.25A2.25 2.25 0 0 0 3 5.25v4.318c0 .597.237 1.17.659 1.591l9.581 9.581c.699.699 1.78.872 2.607.33a18.095 18.095 0 0 0 5.223-5.223c.542-.827.369-1.908-.33-2.607L11.16 3.66A2.25 2.25 0 0 0 9.568 3Z" />
+          <path strokeLinecap="round" strokeLinejoin="round" d="M6 6h.008v.008H6V6Z" />
+        </svg>
+      );
+    case "zap":
+      return (
+        <svg className={cls} fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
+          <path strokeLinecap="round" strokeLinejoin="round" d="M3.75 13.5l10.5-11.25L12 10.5h8.25L9.75 21.75 12 13.5H3.75z" />
+        </svg>
+      );
+    case "segment-filter":
+      return (
+        <svg className={cls} fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
+          <path strokeLinecap="round" strokeLinejoin="round" d="M3 4.5h18l-7 8.25v6l-4 2.25v-8.25L3 4.5Z" />
+        </svg>
+      );
+    case "cog":
+      return (
+        <svg className={cls} fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
+          <path strokeLinecap="round" strokeLinejoin="round" d="M10.343 3.94c.09-.542.56-.94 1.11-.94h1.093c.55 0 1.02.398 1.11.94l.149.894c.07.424.384.764.78.93.398.164.855.142 1.205-.108l.737-.527a1.125 1.125 0 0 1 1.45.12l.773.774c.39.389.44 1.002.12 1.45l-.527.737c-.25.35-.272.806-.107 1.204.165.397.505.71.93.78l.893.15c.543.09.94.56.94 1.109v1.094c0 .55-.397 1.02-.94 1.11l-.894.149c-.424.07-.764.383-.929.78-.165.398-.143.854.107 1.204l.527.738c.32.447.269 1.06-.12 1.45l-.774.773a1.125 1.125 0 0 1-1.449.12l-.738-.527c-.35-.25-.806-.272-1.203-.107-.397.165-.71.505-.781.929l-.149.894c-.09.542-.56.94-1.11.94h-1.094c-.55 0-1.019-.398-1.11-.94l-.148-.894c-.071-.424-.384-.764-.781-.93-.398-.164-.854-.142-1.204.108l-.738.527c-.447.32-1.06.269-1.45-.12l-.773-.774a1.125 1.125 0 0 1-.12-1.45l.527-.737c.25-.35.272-.806.108-1.204-.165-.397-.506-.71-.93-.78l-.894-.15c-.542-.09-.94-.56-.94-1.109v-1.094c0-.55.398-1.02.94-1.11l.894-.149c.424-.07.765-.383.93-.78.165-.398.143-.854-.108-1.204l-.526-.738a1.125 1.125 0 0 1 .12-1.45l.773-.773a1.125 1.125 0 0 1 1.45-.12l.737.527c.35.25.807.272 1.204.107.397-.165.71-.505.78-.929l.15-.894Z" />
+          <path strokeLinecap="round" strokeLinejoin="round" d="M15 12a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" />
+        </svg>
+      );
+    case "pulse":
+      return (
+        <svg className={cls} fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
+          <path strokeLinecap="round" strokeLinejoin="round" d="M3 12h3l3-7 4 14 3-7h5" />
+        </svg>
+      );
     case "sunrise":
       return (
         <svg className={cls} fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
           <path strokeLinecap="round" strokeLinejoin="round" d="M12 3v2.25m6.364.386-1.591 1.591M21 12h-2.25m-.386 6.364-1.591-1.591M12 18.75V21m-4.773-4.227-1.591 1.591M5.25 12H3m4.227-4.773L5.636 5.636M15.75 12a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0Z" />
+        </svg>
+      );
+    case "help":
+      return (
+        <svg className={cls} fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
+          <path strokeLinecap="round" strokeLinejoin="round" d="M9.879 7.519c1.171-1.025 3.071-1.025 4.242 0 1.172 1.025 1.172 2.687 0 3.712-.203.179-.43.326-.67.442-.745.361-1.45.999-1.45 1.827v.75M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Zm-9 5.25h.008v.008H12v-.008Z" />
         </svg>
       );
     default:
@@ -179,11 +243,16 @@ function NavIcon({ icon, className }: { icon: string; className?: string }) {
 }
 
 interface AdminSidebarProps {
-  currentUser?: { slug: string; name: string; email: string };
+  currentUser?: { slug: string; name: string; email: string; role?: string };
   overdueTaskCount?: number;
+  tedPendingCount?: number;
 }
 
-export function AdminSidebar({ currentUser, overdueTaskCount = 0 }: AdminSidebarProps = {}) {
+export function AdminSidebar({
+  currentUser,
+  overdueTaskCount = 0,
+  tedPendingCount = 0,
+}: AdminSidebarProps = {}) {
   const pathname = usePathname();
   const [mobileOpen, setMobileOpen] = useState(false);
   const [unreadApps, setUnreadApps] = useState(0);
@@ -309,6 +378,14 @@ export function AdminSidebar({ currentUser, overdueTaskCount = 0 }: AdminSidebar
                           {overdueTaskCount}
                         </span>
                       )}
+                      {item.href === "/admin/ted/approvals" && tedPendingCount > 0 && (
+                        <span
+                          className="ml-auto flex items-center justify-center min-w-[20px] h-5 px-1.5 text-[10px] font-bold text-white bg-coral rounded-full"
+                          title={`${tedPendingCount} Ted post${tedPendingCount === 1 ? "" : "s"} awaiting approval`}
+                        >
+                          {tedPendingCount}
+                        </span>
+                      )}
                     </Link>
                   );
                 })}
@@ -316,6 +393,40 @@ export function AdminSidebar({ currentUser, overdueTaskCount = 0 }: AdminSidebar
             </div>
           ))}
         </nav>
+
+        {/* Help link — visible to all roles */}
+        <div className="px-4 pb-2">
+          <Link
+            href="/admin/help"
+            onClick={() => setMobileOpen(false)}
+            className={`flex items-center gap-3 px-3 py-2 rounded-lg text-sm font-medium transition-colors ${
+              pathname.startsWith("/admin/help")
+                ? "bg-coral/10 text-coral"
+                : "text-foreground-muted hover:text-off-white hover:bg-white/5"
+            }`}
+          >
+            <NavIcon icon="help" />
+            Help
+          </Link>
+        </div>
+
+        {/* Admin-only settings link, pinned above footer */}
+        {currentUser?.role === "admin" && (
+          <div className="px-4 pb-2">
+            <Link
+              href="/admin/settings"
+              onClick={() => setMobileOpen(false)}
+              className={`flex items-center gap-3 px-3 py-2 rounded-lg text-sm font-medium transition-colors ${
+                pathname.startsWith("/admin/settings")
+                  ? "bg-coral/10 text-coral"
+                  : "text-foreground-muted hover:text-off-white hover:bg-white/5"
+              }`}
+            >
+              <NavIcon icon="cog" />
+              Settings
+            </Link>
+          </div>
+        )}
 
         {/* Footer */}
         <div className="p-4 border-t border-white/5 space-y-2">

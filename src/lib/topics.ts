@@ -208,12 +208,17 @@ const TOPIC_POST_MAP: Record<string, string[]> = {
   "cycling-training-plans": [
     "cycling-periodisation-plan-guide",
     "polarised-training-cycling-guide",
+    "stephen-seiler-research-polarised-training-lessons",
     "cycling-base-training-guide",
     "reverse-periodisation-cycling",
     "winter-training-cycling-guide",
     "cycling-training-full-time-job",
     "cycling-tapering-guide",
     "etape-du-tour-training-plan",
+    "wicklow-200-training-plan",
+    "ring-of-beara-training-plan",
+    "ride-london-training-plan",
+    "fred-whitton-challenge-training-plan",
     "cycling-indoor-training-tips",
     "zone-2-training-complete-guide",
     "trainerroad-vs-coaching",
@@ -282,6 +287,7 @@ const TOPIC_POST_MAP: Record<string, string[]> = {
     "cycling-base-training-guide",
     "zone-2-training-complete-guide",
     "polarised-training-cycling-guide",
+    "stephen-seiler-research-polarised-training-lessons",
     "cycling-sportive-preparation",
     "new-study-confirms-heavy-strength-training-beats-more-miles-after-40",
     "is-a-cycling-coach-worth-it",
@@ -290,6 +296,12 @@ const TOPIC_POST_MAP: Record<string, string[]> = {
     "cycling-coach-near-me-why-location-doesnt-matter",
     "cycling-coaching-for-beginners-when-ready",
     "what-does-a-cycling-coach-do",
+    "cycling-coaching-cost-guide",
+    "zwift-vs-cycling-coach",
+    "best-cycling-coach-guide",
+    "best-cycling-coach-ireland",
+    "best-cycling-coach-uk",
+    "best-cycling-coach-usa",
   ],
   "mountain-biking": [
     "mtb-fork-setup-guide",
@@ -357,4 +369,37 @@ export function getTopicBySlug(slug: string): TopicHub | null {
 
 export function getAllTopicSlugs(): string[] {
   return TOPIC_DEFINITIONS.map((t) => t.slug);
+}
+
+/**
+ * Reverse index: post slug → list of topic hubs that include it.
+ *
+ * Used on individual blog posts to link back to their parent topic
+ * hub(s). Gives Google the bidirectional signal it needs for topic
+ * clustering (post → hub, hub → post) and gives readers a natural
+ * "explore this topic further" path.
+ */
+const POST_TO_TOPICS: Map<string, string[]> = (() => {
+  const map = new Map<string, string[]>();
+  for (const [topicSlug, postSlugs] of Object.entries(TOPIC_POST_MAP)) {
+    for (const postSlug of postSlugs) {
+      const existing = map.get(postSlug) ?? [];
+      existing.push(topicSlug);
+      map.set(postSlug, existing);
+    }
+  }
+  return map;
+})();
+
+export function getTopicsForPost(postSlug: string): Array<{
+  slug: string;
+  title: string;
+}> {
+  const topicSlugs = POST_TO_TOPICS.get(postSlug) ?? [];
+  return topicSlugs
+    .map((slug) => {
+      const def = TOPIC_DEFINITIONS.find((t) => t.slug === slug);
+      return def ? { slug: def.slug, title: def.title } : null;
+    })
+    .filter((x): x is { slug: string; title: string } => x !== null);
 }
