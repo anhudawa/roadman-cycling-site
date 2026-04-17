@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Image from "next/image";
+import Link from "next/link";
 import { Header, Footer, Section, Container } from "@/components/layout";
 import { Button, Card, ScrollReveal, ParallaxImage } from "@/components/ui";
 import { JsonLd } from "@/components/seo/JsonLd";
@@ -366,9 +367,9 @@ export default function AboutPage() {
             <ScrollReveal direction="up" delay={0.5}>
               <p className="text-center text-foreground-muted text-sm mt-8">
                 Plus 1,400+ more conversations in{" "}
-                <a href="/guests" className="text-coral hover:underline">
+                <Link href="/guests" className="text-coral hover:underline">
                   the full guest archive
-                </a>
+                </Link>
                 .
               </p>
             </ScrollReveal>

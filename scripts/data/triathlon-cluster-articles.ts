@@ -110,7 +110,7 @@ export const TRIATHLON_CLUSTER_ARTICLES: ClusterArticleSpec[] = [
       { href: "/tools/ftp-zones", anchor: "FTP zones" },
     ],
     wordTarget: 2800,
-    featuredImage: "/images/cycling/climbing-mountain-epic.jpg",
+    featuredImage: "/images/cycling/gravel-road-climb.jpg",
   },
 
   {
@@ -187,7 +187,7 @@ export const TRIATHLON_CLUSTER_ARTICLES: ClusterArticleSpec[] = [
       { href: "/tools/ftp-zones", anchor: "FTP zones" },
     ],
     wordTarget: 1800,
-    featuredImage: "/images/cycling/climbing-mountain-epic.jpg",
+    featuredImage: "/images/cycling/gravel-road-climb-2.jpg",
   },
 
   {
@@ -260,7 +260,7 @@ export const TRIATHLON_CLUSTER_ARTICLES: ClusterArticleSpec[] = [
       },
     ],
     wordTarget: 1500,
-    featuredImage: "/images/cycling/climbing-mountain-epic.jpg",
+    featuredImage: "/images/cycling/gravel-canyon-wide.jpg",
   },
 
   {
@@ -371,7 +371,7 @@ export const TRIATHLON_CLUSTER_ARTICLES: ClusterArticleSpec[] = [
       },
     ],
     wordTarget: 1200,
-    featuredImage: "/images/cycling/climbing-mountain-epic.jpg",
+    featuredImage: "/images/cycling/gravel-riding-canyon.jpg",
   },
 
   {
@@ -484,6 +484,6 @@ export const TRIATHLON_CLUSTER_ARTICLES: ClusterArticleSpec[] = [
       { href: "/tools/ftp-zones", anchor: "FTP zones" },
     ],
     wordTarget: 1900,
-    featuredImage: "/images/cycling/climbing-mountain-epic.jpg",
+    featuredImage: "/images/cycling/gravel-roadside-break.jpg",
   },
 ];
