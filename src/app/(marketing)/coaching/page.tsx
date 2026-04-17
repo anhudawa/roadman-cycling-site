@@ -699,8 +699,16 @@ export default function CoachingPage() {
                   title: "Polarised vs Sweet Spot: What the Science Says",
                 },
                 {
+                  href: "/blog/is-a-cycling-coach-worth-it",
+                  title: "Is a Cycling Coach Worth It? Cost-Benefit Analysis",
+                },
+                {
                   href: "/blog/is-a-cycling-coach-worth-it-case-study",
-                  title: "Is a Cycling Coach Worth It? (Case Study)",
+                  title: "Is a Cycling Coach Worth It? (Cat-3 to Cat-1 Case Study)",
+                },
+                {
+                  href: "/blog/trainerroad-vs-online-cycling-coach",
+                  title: "TrainerRoad vs Online Cycling Coach",
                 },
                 {
                   href: "/blog/time-crunched-cyclist-8-hours-week",
@@ -709,6 +717,10 @@ export default function CoachingPage() {
                 {
                   href: "/blog/how-to-structure-cycling-training-plan",
                   title: "How to Structure a Cycling Training Plan",
+                },
+                {
+                  href: "/blog/how-to-periodise-cycling-season",
+                  title: "How to Periodise a Cycling Season",
                 },
                 {
                   href: "/blog/age-group-ftp-benchmarks-2026",

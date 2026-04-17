@@ -685,6 +685,14 @@ export default function TriathlonCoachingPage() {
                   href: "/blog/what-wattage-should-you-ride-in-an-ironman",
                   title: "What Wattage Should You Ride in an Ironman?",
                 },
+                {
+                  href: "/blog/indoor-cycling-for-triathletes-winter-plan",
+                  title: "Indoor Cycling for Triathletes: Winter Plan",
+                },
+                {
+                  href: "/blog/aero-position-training-for-triathletes",
+                  title: "Aero Position Training for Triathletes",
+                },
               ].map((article) => (
                 <Link
                   key={article.href}

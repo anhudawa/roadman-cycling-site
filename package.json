@@ -47,7 +47,8 @@
     "seo:related-episodes": "tsx scripts/populate-related-episodes.ts",
     "seo:related-episodes:dry": "tsx scripts/populate-related-episodes.ts --dry-run",
     "seo:episode-related-posts": "tsx scripts/populate-episode-related-posts.ts",
-    "seo:episode-related-posts:dry": "tsx scripts/populate-episode-related-posts.ts --dry-run"
+    "seo:episode-related-posts:dry": "tsx scripts/populate-episode-related-posts.ts --dry-run",
+    "seo:audit-orphans": "tsx scripts/audit-orphans.ts"
   },
   "dependencies": {
     "@anthropic-ai/sdk": "^0.82.0",
