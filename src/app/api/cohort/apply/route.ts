@@ -4,17 +4,10 @@ import { cohortApplications } from "@/lib/db/schema";
 import { notifyCohortApplication } from "@/lib/notifications";
 import { upsertContact, addActivity } from "@/lib/crm/contacts";
 import { subscribeToBeehiiv } from "@/lib/integrations/beehiiv";
+import { getCohortState } from "@/lib/cohort";
 
 /** RFC-5322 lite — rejects foo@, @bar, and other common fat-finger failures. */
 const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-
-/**
- * Current cohort tag. Single source of truth — read by the /apply route
- * and any future cohort-state UI. When Cohort 2 closes and the site
- * flips to Cohort 3 waitlist mode, this becomes "cohort-3-waitlist".
- */
-const COHORT_APPLICANT_TAG = "cohort-2-applicant";
-const COHORT_LABEL = "2026";
 
 export async function POST(request: Request) {
   try {
@@ -64,6 +57,12 @@ export async function POST(request: Request) {
 
     const normalisedEmail = email.trim().toLowerCase();
 
+    // Read cohort state — drives which tag/cohort this submission gets.
+    // During "open" + "closing-today" the submission is a real Cohort 2
+    // application; during "waitlist" it's a Cohort 3 waitlist signup.
+    const cohortState = getCohortState();
+    const cohortLabel = `cohort-${cohortState.targetCohort}`;
+
     // Idempotent by (email, cohort): re-submitting the form updates the
     // existing row rather than creating a duplicate. Matches the
     // uniqueIndex on cohort_applications(email, cohort) in schema.ts.
@@ -76,7 +75,7 @@ export async function POST(request: Request) {
         hours: hours.slice(0, 50),
         ftp: ftp ? ftp.slice(0, 50) : null,
         frustration: frustration.slice(0, 500),
-        cohort: COHORT_LABEL,
+        cohort: cohortLabel,
         persona,
       })
       .onConflictDoUpdate({
@@ -96,45 +95,61 @@ export async function POST(request: Request) {
       const contact = await upsertContact({
         email: normalisedEmail,
         name,
-        source: "cohort_application",
+        source: cohortState.phase === "waitlist" ? "cohort_waitlist" : "cohort_application",
         customFields: {
           goal,
           hours,
           ftp: ftp || null,
           frustration,
-          cohort: COHORT_LABEL,
+          cohort: cohortLabel,
           persona,
+          phase: cohortState.phase,
         },
       });
       await addActivity(contact.id, {
-        type: "cohort_application",
-        title: `Applied to ${persona} cohort`,
+        type: cohortState.phase === "waitlist" ? "cohort_waitlist" : "cohort_application",
+        title:
+          cohortState.phase === "waitlist"
+            ? `Joined ${cohortLabel} waitlist (${persona})`
+            : `Applied to ${cohortLabel} (${persona})`,
         body: `Goal: ${goal}\n\nHours/week: ${hours}\n\nFTP: ${ftp || "n/a"}\n\nFrustration: ${frustration}`,
-        meta: { goal, hours, ftp: ftp || null, frustration, persona, cohort: COHORT_LABEL },
+        meta: {
+          goal,
+          hours,
+          ftp: ftp || null,
+          frustration,
+          persona,
+          cohort: cohortLabel,
+          phase: cohortState.phase,
+        },
         authorName: "system",
       });
     } catch (crmErr) {
       console.error("[Cohort Apply] CRM sync failed:", crmErr);
     }
 
-    // Beehiiv: upsert subscriber + tag as applicant. Non-fatal — if
-    // Beehiiv is down, the application still succeeds on our side.
+    // Beehiiv: upsert subscriber + tag. Tag varies by phase:
+    //   open / closing-today → "cohort-2-applicant"
+    //   waitlist             → "cohort-3-waitlist"
+    // Non-fatal — application still succeeds if Beehiiv is down.
     subscribeToBeehiiv({
       email: normalisedEmail,
       name,
-      tags: [COHORT_APPLICANT_TAG, `persona-${persona}`],
+      tags: [cohortState.submissionTag, `persona-${persona}`],
       customFields: {
         goal,
         hours,
         ftp: ftp || null,
         frustration,
-        cohort: COHORT_LABEL,
+        cohort: cohortLabel,
         persona,
+        phase: cohortState.phase,
       },
       utm: {
         source: "site",
-        medium: "cohort-application",
-        campaign: COHORT_APPLICANT_TAG,
+        medium:
+          cohortState.phase === "waitlist" ? "cohort-waitlist" : "cohort-application",
+        campaign: cohortState.submissionTag,
       },
     }).catch((err) =>
       console.error("[Cohort Apply] Beehiiv sync failed:", err),
@@ -151,7 +166,12 @@ export async function POST(request: Request) {
       persona,
     }).catch((err) => console.error("[Cohort Apply] Email notification failed:", err));
 
-    return NextResponse.json({ success: true, persona });
+    return NextResponse.json({
+      success: true,
+      persona,
+      phase: cohortState.phase,
+      cohort: cohortState.targetCohort,
+    });
   } catch (error) {
     console.error("[Cohort Apply] Error:", error);
     return NextResponse.json(

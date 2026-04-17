@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import { getCohortState, formatCohortDate } from "@/lib/cohort";
 
 /** RFC-5322 lite — rejects `foo@`, `@bar`, and other common fat-finger failures. */
 const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -123,6 +124,10 @@ export function CohortApplicationForm() {
   const [ftp, setFtp] = useState("");
   const [submitting, setSubmitting] = useState(false);
   const [error, setError] = useState("");
+
+  const cohortState = getCohortState();
+  const isWaitlist = cohortState.phase === "waitlist";
+  const cohortCopy = cohortState.form;
 
   // Restore in-progress draft on mount so a failed submit or
   // accidental tab-close doesn't lose 4 steps of answers.
@@ -373,10 +378,12 @@ export function CohortApplicationForm() {
                 disabled={submitting}
                 className="w-full py-4 rounded-xl bg-coral text-off-white font-heading text-lg tracking-wider hover:bg-coral/90 disabled:opacity-50 transition-all duration-200 shadow-lg shadow-coral/20"
               >
-                {submitting ? "SUBMITTING..." : "APPLY FOR YOUR SPOT"}
+                {submitting ? "SUBMITTING..." : cohortCopy.buttonText}
               </button>
               <p className="text-foreground-subtle text-xs text-center">
-                We review every application. You&apos;ll hear back within 24 hours.
+                {isWaitlist
+                  ? "Cohort 3 opens in June. Waitlist members get 24-hour early access."
+                  : "We review every application. You'll hear back within 24 hours."}
               </p>
             </div>
           </motion.div>
@@ -392,16 +399,18 @@ export function CohortApplicationForm() {
             transition={{ duration: 0.3 }}
             className="text-center py-8"
           >
-            <div className="text-5xl mb-4">🎯</div>
+            <div className="text-5xl mb-4">{isWaitlist ? "✅" : "🎯"}</div>
             <h3 className="font-heading text-off-white text-3xl mb-3">
-              APPLICATION RECEIVED
+              {cohortCopy.submittedHeadline}
             </h3>
             <p className="text-foreground-muted max-w-sm mx-auto mb-6">
-              We&apos;ll review your application and get back to you within 24 hours.
-              Check your inbox at <span className="text-coral">{email}</span>.
+              {cohortCopy.submittedBody}
+              {" "}Confirmation at <span className="text-coral">{email}</span>.
             </p>
             <p className="text-foreground-subtle text-sm">
-              Only 30 spots for Cohort 2. Applications close Friday.
+              {isWaitlist
+                ? `Cohort 3 opens ${formatCohortDate(cohortState.nextOpens)}. You'll get 24-hour early access.`
+                : "Only 30 spots for Cohort 2. Applications close Friday."}
             </p>
           </motion.div>
         )}

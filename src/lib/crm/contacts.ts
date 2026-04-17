@@ -8,6 +8,7 @@ export type ContactActivity = typeof contactActivities.$inferSelect;
 export type ContactSource =
   | "contact_form"
   | "cohort_application"
+  | "cohort_waitlist"
   | "manual"
   | "import"
   | "subscribers"
@@ -17,6 +18,7 @@ export type ContactSource =
 export type ActivityType =
   | "contact_submission"
   | "cohort_application"
+  | "cohort_waitlist"
   | "note"
   | "email_sent"
   | "assigned"

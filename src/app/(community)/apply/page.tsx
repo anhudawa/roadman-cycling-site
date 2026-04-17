@@ -7,22 +7,33 @@ import {
   TESTIMONIALS,
   getTestimonialsByName,
 } from "@/lib/testimonials";
+import { getCohortState, formatCohortDate } from "@/lib/cohort";
 
-export const metadata: Metadata = {
-  title: "Cohort 2 — Not Done Yet",
-  description:
-    "30 places. 5 pillars. $195/month. Applications open until Friday. Personalised cycling coaching with Anthony Walsh.",
-  alternates: {
-    canonical: "https://roadmancycling.com/apply",
-  },
-  openGraph: {
-    title: "Cohort 2 — Not Done Yet",
-    description:
-      "30 places. 5 pillars. $195/month. Applications open until Friday. Personalised cycling coaching with Anthony Walsh.",
-    type: "website",
-    url: "https://roadmancycling.com/apply",
-  },
-};
+// Metadata is cohort-aware. When Cohort 2 closes the page flips to
+// waitlist mode automatically.
+export async function generateMetadata(): Promise<Metadata> {
+  const state = getCohortState();
+  const isWaitlist = state.phase === "waitlist";
+  const title = isWaitlist
+    ? "Cohort 3 Waitlist — Not Done Yet"
+    : "Cohort 2 — Not Done Yet";
+  const description = isWaitlist
+    ? `Cohort 3 opens ${formatCohortDate(state.nextOpens)}. Join the waitlist for 24-hour early access. Personalised cycling coaching with Anthony Walsh.`
+    : "30 places. 5 pillars. $195/month. Applications open until Friday. Personalised cycling coaching with Anthony Walsh.";
+  return {
+    title,
+    description,
+    alternates: {
+      canonical: "https://roadmancycling.com/apply",
+    },
+    openGraph: {
+      title,
+      description,
+      type: "website",
+      url: "https://roadmancycling.com/apply",
+    },
+  };
+}
 
 // ── Testimonials (existing members + screenshots) ──────────────────
 
@@ -116,6 +127,8 @@ const objections = [
 ];
 
 export default function Cohort2Page() {
+  const cohortState = getCohortState();
+  const isWaitlist = cohortState.phase === "waitlist";
   return (
     <>
       <Header />
@@ -131,7 +144,9 @@ export default function Cohort2Page() {
               <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-coral/10 border border-coral/20 mb-6">
                 <span className="w-2 h-2 rounded-full bg-coral animate-pulse" />
                 <span className="text-coral text-sm font-medium tracking-wide">
-                  CLOSES FRIDAY 17TH, MIDNIGHT — 30 PLACES
+                  {isWaitlist
+                    ? `COHORT 3 OPENS ${formatCohortDate(cohortState.nextOpens).toUpperCase()}`
+                    : "CLOSES FRIDAY 17TH, MIDNIGHT — 30 PLACES"}
                 </span>
               </div>
 
@@ -145,21 +160,25 @@ export default function Cohort2Page() {
                 className="font-heading text-off-white/60 mb-4 tracking-widest"
                 style={{ fontSize: "clamp(0.9rem, 2vw, 1.2rem)" }}
               >
-                COACHING PROGRAM
+                {isWaitlist ? "COHORT 3 · WAITLIST" : "COACHING PROGRAM"}
               </p>
               <p className="text-foreground-muted text-lg max-w-md mx-auto mb-6">
-                7-day free trial. 5 pillars. $195/mo. Cancel anytime.
+                {isWaitlist
+                  ? "Cohort 3 opens in June. Waitlist members get 24-hour early access + a heads-up before public launch."
+                  : "7-day free trial. 5 pillars. $195/mo. Cancel anytime."}
               </p>
 
-              <div className="mb-6">
-                <CountdownTimer />
-              </div>
+              {!isWaitlist && (
+                <div className="mb-6">
+                  <CountdownTimer />
+                </div>
+              )}
 
               <a
                 href="#apply"
                 className="inline-flex items-center px-8 py-4 rounded-xl bg-coral text-off-white font-heading text-lg tracking-wider hover:bg-coral/90 transition-all shadow-lg shadow-coral/20 mb-10"
               >
-                APPLY NOW
+                {isWaitlist ? "JOIN THE WAITLIST" : "APPLY NOW"}
               </a>
             </ScrollReveal>
 
@@ -373,10 +392,10 @@ export default function Cohort2Page() {
                   className="font-heading text-off-white mb-3"
                   style={{ fontSize: "var(--text-section)" }}
                 >
-                  APPLY NOW
+                  {cohortState.form.kicker}
                 </h2>
                 <p className="text-foreground-muted max-w-md mx-auto">
-                  7-day free trial. $195/mo. Cancel anytime.
+                  {cohortState.form.subheading}
                 </p>
               </div>
             </ScrollReveal>
@@ -387,23 +406,42 @@ export default function Cohort2Page() {
                 concrete next step looks like. */}
             <ScrollReveal direction="up" delay={0.05}>
               <div className="mb-10 grid grid-cols-1 sm:grid-cols-3 gap-3 sm:gap-4 max-w-2xl mx-auto">
-                {[
-                  {
-                    n: "01",
-                    t: "Submit your application",
-                    d: "Takes under 2 minutes. Four questions, no credit card.",
-                  },
-                  {
-                    n: "02",
-                    t: "Anthony reviews it personally",
-                    d: "Usually within 48 hours. You get a reply from Anthony, not an autoresponder.",
-                  },
-                  {
-                    n: "03",
-                    t: "Start your 7-day trial",
-                    d: "Onboarding call, your first plan, full access to the community. Cancel inside the week if it isn't for you.",
-                  },
-                ].map((step) => (
+                {(isWaitlist
+                  ? [
+                      {
+                        n: "01",
+                        t: "Join the waitlist",
+                        d: "Two minutes. Four questions so we know where you are now and what you're aiming at.",
+                      },
+                      {
+                        n: "02",
+                        t: "Weekly updates from inside Cohort 2",
+                        d: "What's working, what members are achieving, and the coaching ideas worth trying now.",
+                      },
+                      {
+                        n: "03",
+                        t: "24-hour early access",
+                        d: `Cohort 3 opens ${formatCohortDate(cohortState.nextOpens)}. Waitlist gets 24 hours before public. 30 places, first served.`,
+                      },
+                    ]
+                  : [
+                      {
+                        n: "01",
+                        t: "Submit your application",
+                        d: "Takes under 2 minutes. Four questions, no credit card.",
+                      },
+                      {
+                        n: "02",
+                        t: "Anthony reviews it personally",
+                        d: "Usually within 48 hours. You get a reply from Anthony, not an autoresponder.",
+                      },
+                      {
+                        n: "03",
+                        t: "Start your 7-day trial",
+                        d: "Onboarding call, your first plan, full access to the community. Cancel inside the week if it isn't for you.",
+                      },
+                    ]
+                ).map((step) => (
                   <div
                     key={step.n}
                     className="rounded-xl border border-white/10 bg-white/[0.02] p-5 text-left"
@@ -468,14 +506,15 @@ export default function Cohort2Page() {
                   YOU&apos;RE NOT DONE YET.
                 </h2>
                 <p className="text-foreground-muted mb-6 max-w-md mx-auto">
-                  30 places. Applications close Friday.
-                  Same coaches. Same system. Your turn.
+                  {isWaitlist
+                    ? `Cohort 3 opens ${formatCohortDate(cohortState.nextOpens)}. 30 places. Waitlist gets first access.`
+                    : "30 places. Applications close Friday. Same coaches. Same system. Your turn."}
                 </p>
                 <a
                   href="#apply"
                   className="inline-flex items-center px-8 py-4 rounded-xl bg-coral text-off-white font-heading text-lg tracking-wider hover:bg-coral/90 transition-all shadow-lg shadow-coral/20"
                 >
-                  APPLY NOW
+                  {isWaitlist ? "JOIN THE WAITLIST" : "APPLY NOW"}
                 </a>
               </div>
             </ScrollReveal>

@@ -3,26 +3,26 @@
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { getCohortState, type CohortPhase } from "@/lib/cohort";
 
 /**
- * Cohort 2 site-wide urgency banner.
+ * Site-wide cohort banner. Driven entirely by src/lib/cohort.ts — to
+ * change copy, deadlines, or flip from "open" → "waitlist", edit the
+ * state lib, not this component.
  *
- * Renders a skinny strip above the header announcing the Cohort 2 deadline
- * and linking to /apply. Dismissible — dismissal persists in localStorage
- * so the banner does not reappear on every navigation for a user who's
- * already clicked through or opted out.
+ * Renders differently per phase:
+ *   open           — "COHORT 2 IS OPEN" · countdown · APPLY
+ *   closing-today  — "FINAL HOURS" · urgent copy · APPLY
+ *   waitlist       — "COHORT 3 OPENS SOON" · 24h early access · JOIN WAITLIST
+ *
+ * Dismissible — dismissal persists in localStorage per-phase, so
+ * dismissing the Cohort 2 banner doesn't hide the Cohort 3 waitlist
+ * banner when the site flips.
  *
  * Auto-hides:
- *  - on /apply (already there — no point nagging)
- *  - on /admin/* (noindex, internal)
- *  - after the deadline has passed (COHORT_DEADLINE below)
- *
- * Update COHORT_DEADLINE below to re-enable for subsequent cohorts.
+ *  - on /apply (already there)
+ *  - on /admin/*
  */
-
-/** UTC midnight at end of Friday 17 April 2026 (Europe/Dublin is UTC+1 in April). */
-const COHORT_DEADLINE = new Date("2026-04-17T23:00:00Z");
-const DISMISS_KEY = "cohort-banner-dismissed-v1";
 
 const HIDE_ON_PATH_PREFIXES = ["/apply", "/admin"];
 
@@ -33,7 +33,11 @@ function shouldHidePath(pathname: string | null): boolean {
   );
 }
 
-function formatDeadline(ms: number): string {
+function dismissKeyFor(phase: CohortPhase, cohort: number): string {
+  return `cohort-banner-dismissed-${cohort}-${phase}-v1`;
+}
+
+function formatCountdown(ms: number): string {
   if (ms <= 0) return "";
   const hours = Math.floor(ms / (1000 * 60 * 60));
   const days = Math.floor(hours / 24);
@@ -46,51 +50,49 @@ function formatDeadline(ms: number): string {
 export function CohortBanner() {
   const pathname = usePathname();
   const [dismissed, setDismissed] = useState(false);
-  const [msLeft, setMsLeft] = useState<number | null>(null);
+  /** Minute-resolution tick — triggers state re-evaluation + countdown refresh. */
+  const [tick, setTick] = useState(0);
+
+  const state = getCohortState(new Date(Date.now() + tick * 0)); // tick just forces re-render
 
   useEffect(() => {
+    // Pick up any prior dismissal for this phase + cohort
     try {
-      if (localStorage.getItem(DISMISS_KEY) === "1") {
-        setDismissed(true);
-      }
+      const key = dismissKeyFor(state.phase, state.currentCohort);
+      if (localStorage.getItem(key) === "1") setDismissed(true);
     } catch {
-      /* localStorage unavailable — ignore */
+      /* ignore */
     }
-    const update = () => setMsLeft(COHORT_DEADLINE.getTime() - Date.now());
-    update();
-    const id = setInterval(update, 60_000);
+    // Re-tick every minute so countdown updates and phase flips get picked up
+    const id = setInterval(() => setTick((t) => t + 1), 60_000);
     return () => clearInterval(id);
-  }, []);
+  }, [state.phase, state.currentCohort]);
 
-  // Expose banner height to the rest of the layout (Header + first section
-  // top padding) via a CSS variable on <html>. Cleared when banner hides.
+  const hidden = dismissed || shouldHidePath(pathname);
+
+  // CSS variable for Header top offset. Kept in sync with visible state.
   useEffect(() => {
     const root = document.documentElement;
-    const hidden = dismissed || shouldHidePath(pathname) || (msLeft !== null && msLeft <= 0);
     if (hidden) {
       root.style.setProperty("--cohort-banner-height", "0px");
     } else {
-      // mobile smaller than desktop — use CSS min()/max() in consumers if needed
       root.style.setProperty("--cohort-banner-height", "40px");
     }
     return () => {
       root.style.setProperty("--cohort-banner-height", "0px");
     };
-  }, [dismissed, pathname, msLeft]);
+  }, [hidden]);
 
-  if (shouldHidePath(pathname)) return null;
-  if (dismissed) return null;
-  // Before hydration msLeft is null — render optimistically from static
-  // deadline so SSR + first paint show the banner.
-  const remaining = msLeft ?? COHORT_DEADLINE.getTime() - Date.now();
-  if (remaining <= 0) return null;
+  if (hidden) return null;
 
-  const countdown = formatDeadline(remaining);
+  const countdown = state.deadline
+    ? formatCountdown(state.deadline.getTime() - Date.now())
+    : "";
 
   const handleDismiss = () => {
     setDismissed(true);
     try {
-      localStorage.setItem(DISMISS_KEY, "1");
+      localStorage.setItem(dismissKeyFor(state.phase, state.currentCohort), "1");
     } catch {
       /* ignore */
     }
@@ -104,23 +106,28 @@ export function CohortBanner() {
       <div className="mx-auto max-w-[1400px] px-4 w-full flex items-center justify-between gap-3">
         <div className="flex items-center gap-3 min-w-0">
           <span className="font-heading text-xs sm:text-sm tracking-wider shrink-0">
-            COHORT 2 IS OPEN
+            {state.banner.eyebrow}
           </span>
           <span className="text-xs opacity-80 font-body truncate">
-            <span className="hidden sm:inline">30 places · 7-day free trial · </span>
-            {countdown}
+            <span className="hidden sm:inline">{state.banner.detail}</span>
+            {countdown && (
+              <>
+                <span className="hidden sm:inline"> · </span>
+                {countdown}
+              </>
+            )}
           </span>
         </div>
         <div className="flex items-center gap-2 shrink-0">
           <Link
-            href="/apply"
-            className="font-heading text-xs sm:text-sm tracking-wider bg-off-white text-coral px-3 sm:px-4 py-1.5 rounded-md hover:bg-off-white/90 transition-colors"
+            href={state.banner.ctaHref}
+            className="font-heading text-xs sm:text-sm tracking-wider bg-off-white text-coral px-3 sm:px-4 py-1.5 rounded-md hover:bg-off-white/90 transition-colors whitespace-nowrap"
           >
-            APPLY <span aria-hidden="true">→</span>
+            {state.banner.cta} <span aria-hidden="true">→</span>
           </Link>
           <button
             type="button"
-            aria-label="Dismiss Cohort 2 banner"
+            aria-label="Dismiss cohort banner"
             onClick={handleDismiss}
             className="w-7 h-7 flex items-center justify-center rounded-md hover:bg-white/10 transition-colors"
           >
