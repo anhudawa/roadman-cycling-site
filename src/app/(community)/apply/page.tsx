@@ -3,6 +3,10 @@ import { Header, Footer, Section, Container } from "@/components/layout";
 import { Card, ScrollReveal } from "@/components/ui";
 import { CohortApplicationForm } from "./CohortApplicationForm";
 import { CountdownTimer } from "./CountdownTimer";
+import {
+  TESTIMONIALS,
+  getTestimonialsByName,
+} from "@/lib/testimonials";
 
 export const metadata: Metadata = {
   title: "Cohort 2 — Not Done Yet",
@@ -29,97 +33,40 @@ const heroStats = [
   { value: "+15%", label: "Brian's FTP at age 52" },
 ];
 
-const communityWins = [
-  {
-    name: "David Lundy",
-    title: "Back racing after a crash",
-    quote:
-      "I signed up for Not Done Yet after a bad accident in March 2025 and was struggling to get back to the same level. I was starting to lose my enthusiasm for riding my bike. Four months later I have my mojo back and I'm really enjoying riding again. Just signed up for my first race this coming Tuesday. Brilliant way to get fitness back.",
-    stat: "Back racing in 4 months",
-  },
-  {
-    name: "Blair Corey",
-    title: "20 minute effort retest",
-    quote:
-      "Did my second 20 min effort since joining NDY. December 19th avg power 236 — March 30th avg power 296. Hard to believe a 60 watt increase in 3 months! Also felt like I had nothing left back in December, today I was left feeling I paced it wrong and could have gone harder.",
-    stat: "+60W in 3 months",
-  },
-  {
-    name: "Vern Locke",
-    title: "Power PR when you least expect it",
-    quote:
-      "When I started pedaling, I noticed quickly that I felt like there was 'no chain' so to speak. Set a new 5sec PB for the freewheel. Towards the end I told the guys on the last hill I was gonna test myself. MAX power from 77W to 832W, and set a new 5sec PR of 915.",
-    stat: "New 5sec PR: 915W",
-  },
-  {
-    name: "Quinton Gothard",
-    title: "1st Zwift race win",
-    quote:
-      "I've been riding the Zwift races and finally won a race despite the steep climbs coming at the end! Super pleased I had enough in the tank to cut sprint the small bunch that was left.",
-    stat: "First race win",
-  },
-  {
-    name: "Gregory Gross",
-    title: "Not Done Yet for the win",
-    quote:
-      "2019 was planning to compete in RAAM. Nov 2019 I was 315 pounds, about to go on disability. Quarantine was a godsend for me. Jan 5, I started Not Done Yet. Today, I'm down 5 pounds and 1% bodyfat, to my lowest weight in 15 years. I cannot believe I'm under 100kg.",
-    stat: "315lbs → under 100kg",
-  },
-  {
-    name: "John Devlin",
-    title: "Progress despite hurdles",
-    quote:
-      "Work has been beyond crazy the last two weeks. Anthony recently said it's the tougher weeks that define your progress. Since mid December I've gone from 103kg to 98.3kg — down 6.7kg. I'm really encouraged by the progress so far.",
-    stat: "-6.7kg since Dec",
-  },
-  {
-    name: "David Corrigan",
-    title: "15 sec Power PB",
-    quote:
-      "Just back from a 3 hr endurance ride with some sprint efforts in the middle and end. Checked my data and I have just got a power PB for 15 secs. Delighted! Shows the work is paying off.",
-    stat: "New 15sec PB",
-  },
-  {
-    name: "Keano Donne",
-    title: "2min PB",
-    quote:
-      "Got another PB while doing descending 4x2 today. Beat an old Ramblers of 2023 while doing my ever climb on Camber House. My 2min was 615watts and the climb was sub 5min. Big achievement for me. Today I wanted to beat that 2min. I did a 25w improvement to get 610w/2min.",
-    stat: "2min PB: 610W",
-  },
-];
+// "Wins this week" wall — pulled from the central testimonials library
+// in editorial order. David Lundy leads (comeback fits the Cohort 2
+// "not done yet" angle most directly), then the power-PR quotes.
+const communityWins = getTestimonialsByName([
+  "David Lundy",
+  "Blair Corey",
+  "Vern Locke",
+  "Quinton Gothard",
+  "Gregory Gross",
+  "John Devlin",
+  "David Corrigan",
+  "Keano Donne",
+]);
 
-const featuredResults = [
-  {
-    name: "Daniel Stone",
-    context: "Roadman Cycling Club",
-    statLabel: "CATEGORY JUMP",
-    statValue: "3 → 1",
-    quote:
-      "The system took me from Cat 3 to Cat 1. The structured approach changed everything about how I train and race.",
-    ftpBefore: null,
-    ftpAfter: null,
-  },
-  {
-    name: "Brian Morrissey",
-    context: "52yo shift worker",
-    statLabel: "FTP GAIN",
-    statValue: "+15%",
-    quote:
-      "This really works. I'm training so much less than last year, at lower intensities and not getting sick. FTHR up from 175 to 180, peak HR up to 193.",
-    ftpBefore: 230,
-    ftpAfter: 265,
-  },
-  {
-    name: "Damien Maloney",
-    context: "Plateaued sportive rider",
-    statLabel: "FTP GAIN",
-    statValue: "+90w",
-    quote:
-      "I was an average sportive rider who had plateaued. Roadman custom built a plan to achieve my goals. I've gotten much more out of Roadman than I ever imagined.",
-    ftpBefore: 205,
-    ftpAfter: 295,
-  },
-];
+// Featured results — quote + stat pulled from the central library;
+// FTP-before/after bars are page-specific visuals so they stay local.
+const featuredResults = (
+  [
+    { name: "Daniel Stone", ftpBefore: null, ftpAfter: null },
+    { name: "Brian Morrissey", ftpBefore: 230, ftpAfter: 265 },
+    { name: "Damien Maloney", ftpBefore: 205, ftpAfter: 295 },
+  ] as const
+).map(({ name, ftpBefore, ftpAfter }) => {
+  const t = TESTIMONIALS.find((x) => x.name === name);
+  return {
+    name,
+    context: t?.detail ?? "",
+    statLabel: (t?.statLabel ?? "").toUpperCase(),
+    statValue: t?.stat ?? "",
+    quote: t?.quote ?? "",
+    ftpBefore,
+    ftpAfter,
+  };
+});
 
 const pillars = [
   {
@@ -373,7 +320,7 @@ export default function Cohort2Page() {
             </ScrollReveal>
             <div className="columns-1 md:columns-2 lg:columns-3 gap-4 max-w-6xl mx-auto">
               {communityWins.map((w, i) => (
-                <ScrollReveal key={w.name + w.title} direction="up" delay={i * 0.06}>
+                <ScrollReveal key={w.name} direction="up" delay={i * 0.06}>
                   <Card
                     className="p-6 card-shimmer mb-4 break-inside-avoid"
                     glass
@@ -387,17 +334,24 @@ export default function Cohort2Page() {
                       </div>
                       <div>
                         <p className="text-off-white text-sm font-medium">{w.name}</p>
-                        <p className="text-foreground-subtle text-xs">{w.title}</p>
+                        <p className="text-foreground-subtle text-xs">{w.detail}</p>
                       </div>
                     </div>
                     <p className="text-foreground-muted text-sm leading-relaxed mb-3">
                       &ldquo;{w.quote}&rdquo;
                     </p>
-                    <div className="inline-flex items-center px-2.5 py-1 rounded-full bg-coral/10 border border-coral/20">
-                      <span className="text-coral text-xs font-heading tracking-wider">
-                        {w.stat.toUpperCase()}
-                      </span>
-                    </div>
+                    {w.stat && (
+                      <div className="inline-flex items-center gap-2 px-2.5 py-1 rounded-full bg-coral/10 border border-coral/20">
+                        <span className="text-coral text-xs font-heading tracking-wider">
+                          {w.stat.toUpperCase()}
+                        </span>
+                        {w.statLabel && (
+                          <span className="text-coral/70 text-[10px] font-body tracking-widest uppercase">
+                            {w.statLabel}
+                          </span>
+                        )}
+                      </div>
+                    )}
                   </Card>
                 </ScrollReveal>
               ))}

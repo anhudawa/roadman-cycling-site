@@ -266,3 +266,16 @@ export function getHeroTestimonial(persona: PersonaSlug): Testimonial {
   );
   return matched[0] ?? TESTIMONIALS[0];
 }
+
+/**
+ * Pull a specific set of testimonials by name (in the order provided).
+ * Useful for pages with editorial control over exact quotes, like
+ * /coaching 'IN THEIR WORDS' row, /apply featured wins, etc.
+ *
+ * Silently drops names that don't match — safer than throwing in SSR.
+ */
+export function getTestimonialsByName(names: string[]): Testimonial[] {
+  return names
+    .map((n) => TESTIMONIALS.find((t) => t.name === n))
+    .filter((t): t is Testimonial => t !== undefined);
+}

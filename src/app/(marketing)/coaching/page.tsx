@@ -4,6 +4,7 @@ import { Header, Footer, Section, Container } from "@/components/layout";
 import { Button, Card, ScrollReveal, GradientText } from "@/components/ui";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { FAQSchema } from "@/components/seo/FAQSchema";
+import { getTestimonialsByName } from "@/lib/testimonials";
 
 export const metadata: Metadata = {
   title: "Online Cycling Coach — Personalised Coaching | $195/month",
@@ -52,29 +53,14 @@ const results = [
   },
 ];
 
-const voiceTestimonials = [
-  {
-    quote:
-      "I was an average sportive rider who had plateaued. Roadman custom built a plan to achieve my goals. I've gotten much more out of it than I ever imagined.",
-    name: "Damien Maloney",
-    detail: "Ireland · FTP 205w → 295w",
-    tag: "PLATEAU BROKEN",
-  },
-  {
-    quote:
-      "I signed up for Not Done Yet after a bad accident in March 2025 and was starting to lose my enthusiasm. Four months later, I've got my mojo back. Just signed up for my first race.",
-    name: "David Lundy",
-    detail: "Comeback after crash · Back racing in 4 months",
-    tag: "COMEBACK",
-  },
-  {
-    quote:
-      "From 113kg to 97kg. The structured approach to training and nutrition changed everything. I'm faster, lighter, and actually enjoying the process.",
-    name: "Chris O'Connor",
-    detail: "Ireland · Lost 16kg",
-    tag: "BODY COMPOSITION",
-  },
-];
+// Editorial choice — three different persona angles for the 'IN THEIR
+// WORDS' row. Pulled from the central testimonials library so any quote
+// update ripples across /coaching, /apply, /you/<slug>, etc.
+const voiceTestimonials = getTestimonialsByName([
+  "Damien Maloney",
+  "David Lundy",
+  "Chris O'Connor",
+]);
 
 const pillars = [
   {
