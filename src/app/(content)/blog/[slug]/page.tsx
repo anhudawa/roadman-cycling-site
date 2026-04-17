@@ -10,6 +10,7 @@ import { getEpisodeBySlug } from "@/lib/podcast";
 import Link from "next/link";
 import { ShareButtons } from "@/components/features/blog/ShareButtons";
 import { RelatedPosts } from "@/components/features/blog/RelatedPosts";
+import { AuthorBio } from "@/components/features/blog/AuthorBio";
 import { RelatedContent } from "@/components/features/RelatedContent";
 import { InlineArticleCTA } from "@/components/features/conversion/InlineArticleCTA";
 import { TableOfContents } from "@/components/features/blog/TableOfContents";
@@ -280,6 +281,10 @@ export default async function BlogPostPage({
               </div>
               <ShareButtons title={post.title} slug={slug} />
             </div>
+
+            {/* Author bio — E-E-A-T signal + entity-link chain from every
+                blog post to /about + verified social sameAs URLs. */}
+            <AuthorBio />
 
             {/* Related Posts (blog-only) */}
             {relatedPosts.length > 0 && (
