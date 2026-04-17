@@ -20,6 +20,7 @@ const NAV_SECTIONS: NavSection[] = [
   {
     title: "Personal",
     items: [
+      { href: "/admin/mission-control", label: "Mission Control", icon: "trending" },
       { href: "/admin/my-day", label: "My Day", icon: "sunrise" },
     ],
   },

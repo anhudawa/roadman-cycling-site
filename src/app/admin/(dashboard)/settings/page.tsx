@@ -111,6 +111,7 @@ export default async function SettingsPage() {
     { kind: "score_all", label: "Lead scoring", schedule: "30 6 * * *" },
     { kind: "complete_past_bookings", label: "Auto-complete past bookings", schedule: "15 * * * *" },
     { kind: "beehiiv_snapshot", label: "Beehiiv daily snapshot", schedule: "45 6 * * *" },
+    { kind: "stripe_snapshot", label: "Stripe daily snapshot (MRR)", schedule: "50 6 * * *" },
   ];
 
   function serializeRun(r: {
@@ -158,6 +159,13 @@ export default async function SettingsPage() {
       const delta = result.newSubscribersToday ?? 0;
       return `Subs ${total}${Number(delta) > 0 ? ` (+${delta})` : ""}`;
     }
+    if (kind === "stripe_snapshot") {
+      const mrr = Number(result.mrrCents ?? 0);
+      const active = result.activeSubscriptions ?? 0;
+      const net = Number(result.netNewMrrCents ?? 0);
+      const mrrStr = mrr >= 100000 ? `$${Math.round(mrr / 100).toLocaleString()}` : `$${(mrr / 100).toFixed(2)}`;
+      return `MRR ${mrrStr} · ${active} subs${net !== 0 ? ` · ${net >= 0 ? "+" : ""}$${(net / 100).toFixed(2)}` : ""}`;
+    }
     return "OK";
   }
 
@@ -170,7 +178,8 @@ export default async function SettingsPage() {
         | "sync_all"
         | "score_all"
         | "complete_past_bookings"
-        | "beehiiv_snapshot",
+        | "beehiiv_snapshot"
+        | "stripe_snapshot",
       limit: 10,
     });
     const latest = history[0] ?? null;

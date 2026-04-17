@@ -165,6 +165,129 @@ export async function fetchAllCustomers({
   return results;
 }
 
+// ── MRR from active subscriptions ────────────────────────
+
+export interface MrrBreakdown {
+  /** MRR in cents, normalised to monthly. */
+  mrrCents: number;
+  /** Cents billed on annual plans (counted as 1/12 in mrrCents, exposed separately for ARR parity). */
+  annualMrrCents: number;
+  /** Count of active subscriptions. */
+  activeSubscriptionCount: number;
+  /** Count of subscriptions in trial. */
+  trialingCount: number;
+  /** Count of subscriptions past_due (still counted in MRR but flagged). */
+  pastDueCount: number;
+  /** Cents of MRR at risk from past_due subscriptions. */
+  pastDueMrrCents: number;
+}
+
+interface StripeSubscriptionItem {
+  price?: {
+    unit_amount?: number | null;
+    recurring?: { interval?: string; interval_count?: number } | null;
+  } | null;
+  quantity?: number;
+}
+
+interface StripeSubscription {
+  id: string;
+  status: string;
+  items?: { data?: StripeSubscriptionItem[] };
+}
+
+function subscriptionMrr(sub: StripeSubscription): number {
+  const items = sub.items?.data ?? [];
+  let mrr = 0;
+  for (const it of items) {
+    const unit = it.price?.unit_amount ?? 0;
+    const qty = it.quantity ?? 1;
+    const interval = it.price?.recurring?.interval ?? "month";
+    const count = it.price?.recurring?.interval_count ?? 1;
+    // Normalise to monthly cents. Divide price by interval length in months.
+    let monthsPerCycle = 1;
+    if (interval === "year") monthsPerCycle = 12 * count;
+    else if (interval === "month") monthsPerCycle = count;
+    else if (interval === "week") monthsPerCycle = count * (7 / 30);
+    else if (interval === "day") monthsPerCycle = count * (1 / 30);
+    mrr += (unit * qty) / monthsPerCycle;
+  }
+  return Math.round(mrr);
+}
+
+export async function fetchMrrBreakdown(): Promise<MrrBreakdown | null> {
+  try {
+    let mrr = 0;
+    let annualMrr = 0;
+    let active = 0;
+    let trialing = 0;
+    let pastDue = 0;
+    let pastDueMrr = 0;
+    let startingAfter: string | null = null;
+    let hasMore = true;
+
+    while (hasMore) {
+      const params = new URLSearchParams();
+      // status=all returns active, past_due, trialing, canceled, etc.
+      // Filter client-side so we can account past_due separately.
+      params.set("status", "all");
+      params.set("limit", "100");
+      if (startingAfter) params.set("starting_after", startingAfter);
+
+      const res = await fetch(
+        `${STRIPE_API}/subscriptions?${params.toString()}`,
+        { headers: getHeaders() }
+      );
+      if (!res.ok) {
+        console.error(
+          `[Stripe] fetchMrrBreakdown failed: ${res.status} ${res.statusText}`
+        );
+        return null;
+      }
+      const json = await res.json();
+      const subs: StripeSubscription[] = json.data ?? [];
+      if (subs.length === 0) break;
+
+      for (const sub of subs) {
+        if (
+          sub.status === "active" ||
+          sub.status === "trialing" ||
+          sub.status === "past_due"
+        ) {
+          const m = subscriptionMrr(sub);
+          mrr += m;
+          if (sub.status === "active") active++;
+          if (sub.status === "trialing") trialing++;
+          if (sub.status === "past_due") {
+            pastDue++;
+            pastDueMrr += m;
+          }
+          const interval =
+            sub.items?.data?.[0]?.price?.recurring?.interval ?? "month";
+          if (interval === "year") annualMrr += m;
+        }
+      }
+
+      hasMore = json.has_more === true;
+      startingAfter = subs[subs.length - 1]?.id ?? null;
+      if (!startingAfter) break;
+      await new Promise((r) => setTimeout(r, 200));
+    }
+
+    return {
+      mrrCents: mrr,
+      annualMrrCents: annualMrr,
+      activeSubscriptionCount: active,
+      trialingCount: trialing,
+      pastDueCount: pastDue,
+      pastDueMrrCents: pastDueMrr,
+    };
+  } catch (err) {
+    console.error("[Stripe] fetchMrrBreakdown error:", err);
+    return null;
+  }
+}
+
 // ── Recent Transactions ──────────────────────────────────
 export async function fetchRecentTransactions(
   limit: number

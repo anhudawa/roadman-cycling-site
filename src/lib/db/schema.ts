@@ -63,6 +63,13 @@ export const stripeSnapshots = pgTable(
     totalRevenueCents: integer("total_revenue_cents").notNull(),
     transactionCount: integer("transaction_count").notNull(),
     mrrCents: integer("mrr_cents").notNull(),
+    activeSubscriptions: integer("active_subscriptions").notNull().default(0),
+    trialingCount: integer("trialing_count").notNull().default(0),
+    pastDueCount: integer("past_due_count").notNull().default(0),
+    pastDueMrrCents: integer("past_due_mrr_cents").notNull().default(0),
+    annualMrrCents: integer("annual_mrr_cents").notNull().default(0),
+    netNewMrrCents: integer("net_new_mrr_cents").notNull().default(0),
+    netNewSubs: integer("net_new_subs").notNull().default(0),
     rawData: jsonb("raw_data"),
   },
   (table) => [
@@ -642,7 +649,8 @@ export type CronRunKind =
   | "sync_all"
   | "score_all"
   | "complete_past_bookings"
-  | "beehiiv_snapshot";
+  | "beehiiv_snapshot"
+  | "stripe_snapshot";
 
 export const cronRuns = pgTable(
   "cron_runs",
