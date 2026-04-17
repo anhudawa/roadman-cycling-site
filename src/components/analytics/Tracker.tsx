@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef, useState, useCallback } from "react";
+import { useEffect, useRef, useState } from "react";
 import { usePathname } from "next/navigation";
 
 const STORAGE_KEY = "roadman_cookie_consent";
@@ -116,12 +116,12 @@ function useTimeOnPage(consented: boolean) {
 // ── Tracker Component ─────────────────────────────────────
 export function Tracker() {
   const pathname = usePathname();
-  const [consented, setConsented] = useState(false);
+  // Initialise from localStorage synchronously so the first render
+  // already knows consent state (avoids a flash of no-tracking).
+  const [consented, setConsented] = useState(() => hasAnalyticsConsent());
 
-  // Check consent on mount and listen for updates
+  // Listen for runtime consent updates (cookie banner toggle).
   useEffect(() => {
-    setConsented(hasAnalyticsConsent());
-
     function onConsentUpdated(e: Event) {
       const detail = (e as CustomEvent).detail;
       setConsented(detail?.analytics === true);
