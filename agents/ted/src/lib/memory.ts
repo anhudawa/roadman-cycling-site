@@ -92,13 +92,12 @@ export async function listPendingWelcomes(limit = 25) {
     .limit(limit);
 }
 
+/** Welcomes ready for the Playwright poster — only ones a human approved. */
 export async function listApprovedWelcomes(limit = 25) {
   return db
     .select()
     .from(schema.tedWelcomeQueue)
-    .where(
-      inArray(schema.tedWelcomeQueue.status, ["drafted", "approved"])
-    )
+    .where(eq(schema.tedWelcomeQueue.status, "approved"))
     .orderBy(schema.tedWelcomeQueue.createdAt)
     .limit(limit);
 }
