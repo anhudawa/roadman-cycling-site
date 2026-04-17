@@ -3,6 +3,18 @@ import { db } from "@/lib/db";
 import { cohortApplications } from "@/lib/db/schema";
 import { notifyCohortApplication } from "@/lib/notifications";
 import { upsertContact, addActivity } from "@/lib/crm/contacts";
+import { subscribeToBeehiiv } from "@/lib/integrations/beehiiv";
+
+/** RFC-5322 lite — rejects foo@, @bar, and other common fat-finger failures. */
+const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+/**
+ * Current cohort tag. Single source of truth — read by the /apply route
+ * and any future cohort-state UI. When Cohort 2 closes and the site
+ * flips to Cohort 3 waitlist mode, this becomes "cohort-3-waitlist".
+ */
+const COHORT_APPLICANT_TAG = "cohort-2-applicant";
+const COHORT_LABEL = "2026";
 
 export async function POST(request: Request) {
   try {
@@ -13,6 +25,12 @@ export async function POST(request: Request) {
     if (!name || !email || !goal || !hours || !frustration) {
       return NextResponse.json(
         { error: "Missing required fields" },
+        { status: 400 }
+      );
+    }
+    if (typeof email !== "string" || !EMAIL_REGEX.test(email.trim())) {
+      return NextResponse.json(
+        { error: "Please enter a valid email address." },
         { status: 400 }
       );
     }
@@ -44,21 +62,39 @@ export async function POST(request: Request) {
       persona = "comeback";
     }
 
-    await db.insert(cohortApplications).values({
-      name: name.slice(0, 200),
-      email: email.slice(0, 200),
-      goal: goal.slice(0, 500),
-      hours: hours.slice(0, 50),
-      ftp: ftp ? ftp.slice(0, 50) : null,
-      frustration: frustration.slice(0, 500),
-      cohort: "2026",
-      persona,
-    });
+    const normalisedEmail = email.trim().toLowerCase();
+
+    // Idempotent by (email, cohort): re-submitting the form updates the
+    // existing row rather than creating a duplicate. Matches the
+    // uniqueIndex on cohort_applications(email, cohort) in schema.ts.
+    await db
+      .insert(cohortApplications)
+      .values({
+        name: name.slice(0, 200),
+        email: normalisedEmail.slice(0, 200),
+        goal: goal.slice(0, 500),
+        hours: hours.slice(0, 50),
+        ftp: ftp ? ftp.slice(0, 50) : null,
+        frustration: frustration.slice(0, 500),
+        cohort: COHORT_LABEL,
+        persona,
+      })
+      .onConflictDoUpdate({
+        target: [cohortApplications.email, cohortApplications.cohort],
+        set: {
+          name: name.slice(0, 200),
+          goal: goal.slice(0, 500),
+          hours: hours.slice(0, 50),
+          ftp: ftp ? ftp.slice(0, 50) : null,
+          frustration: frustration.slice(0, 500),
+          persona,
+        },
+      });
 
     // CRM: upsert contact + activity (non-fatal)
     try {
       const contact = await upsertContact({
-        email,
+        email: normalisedEmail,
         name,
         source: "cohort_application",
         customFields: {
@@ -66,7 +102,7 @@ export async function POST(request: Request) {
           hours,
           ftp: ftp || null,
           frustration,
-          cohort: "2026",
+          cohort: COHORT_LABEL,
           persona,
         },
       });
@@ -74,18 +110,45 @@ export async function POST(request: Request) {
         type: "cohort_application",
         title: `Applied to ${persona} cohort`,
         body: `Goal: ${goal}\n\nHours/week: ${hours}\n\nFTP: ${ftp || "n/a"}\n\nFrustration: ${frustration}`,
-        meta: { goal, hours, ftp: ftp || null, frustration, persona, cohort: "2026" },
+        meta: { goal, hours, ftp: ftp || null, frustration, persona, cohort: COHORT_LABEL },
         authorName: "system",
       });
     } catch (crmErr) {
       console.error("[Cohort Apply] CRM sync failed:", crmErr);
     }
 
-    // Fire-and-forget email notification
+    // Beehiiv: upsert subscriber + tag as applicant. Non-fatal — if
+    // Beehiiv is down, the application still succeeds on our side.
+    subscribeToBeehiiv({
+      email: normalisedEmail,
+      name,
+      tags: [COHORT_APPLICANT_TAG, `persona-${persona}`],
+      customFields: {
+        goal,
+        hours,
+        ftp: ftp || null,
+        frustration,
+        cohort: COHORT_LABEL,
+        persona,
+      },
+      utm: {
+        source: "site",
+        medium: "cohort-application",
+        campaign: COHORT_APPLICANT_TAG,
+      },
+    }).catch((err) =>
+      console.error("[Cohort Apply] Beehiiv sync failed:", err),
+    );
+
+    // Fire-and-forget email notification via Resend
     notifyCohortApplication({
-      name, email, goal, hours,
+      name,
+      email: normalisedEmail,
+      goal,
+      hours,
       ftp: ftp || null,
-      frustration, persona,
+      frustration,
+      persona,
     }).catch((err) => console.error("[Cohort Apply] Email notification failed:", err));
 
     return NextResponse.json({ success: true, persona });

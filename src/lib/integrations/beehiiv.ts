@@ -449,3 +449,138 @@ export async function fetchNewsletterPosts(
     return [];
   }
 }
+
+// ── Subscribe + tag ─────────────────────────────────────
+/**
+ * Upsert a subscriber in Beehiiv and (optionally) apply tags.
+ *
+ * Handles the three real cases:
+ *   - New email → creates, returns id
+ *   - Already exists (HTTP 409) → looks up the existing id
+ *   - API key missing or Beehiiv down → returns null (non-fatal; caller
+ *     decides whether to retry or just log)
+ *
+ * Never throws — caller never needs to try/catch. We never want an
+ * integration hiccup to block the main flow (e.g. a cohort application
+ * landing in Postgres).
+ */
+export interface SubscribeOptions {
+  email: string;
+  name?: string | null;
+  tags?: string[];
+  customFields?: Record<string, string | number | null | undefined>;
+  utm?: {
+    source?: string;
+    medium?: string;
+    campaign?: string;
+  };
+  /** Whether Beehiiv should send its own welcome email. Default: false. */
+  sendWelcomeEmail?: boolean;
+}
+
+export interface SubscribeResult {
+  subscriberId: string | null;
+  created: boolean;
+}
+
+export async function subscribeToBeehiiv(
+  options: SubscribeOptions,
+): Promise<SubscribeResult> {
+  const apiKey = process.env.BEEHIIV_API_KEY;
+  const pubId = process.env.BEEHIIV_PUBLICATION_ID;
+  if (!apiKey || !pubId) {
+    console.error("[Beehiiv] Missing BEEHIIV_API_KEY or BEEHIIV_PUBLICATION_ID");
+    return { subscriberId: null, created: false };
+  }
+
+  const custom: { name: string; value: string }[] = [];
+  if (options.name) {
+    const parts = options.name.trim().split(/\s+/);
+    custom.push({ name: "first_name", value: parts[0] ?? "" });
+    if (parts.length > 1) {
+      custom.push({ name: "last_name", value: parts.slice(1).join(" ") });
+    }
+  }
+  if (options.customFields) {
+    for (const [name, rawValue] of Object.entries(options.customFields)) {
+      if (rawValue == null || rawValue === "") continue;
+      custom.push({ name, value: String(rawValue) });
+    }
+  }
+
+  const utm = options.utm ?? {};
+  const headers = {
+    "Content-Type": "application/json",
+    Authorization: `Bearer ${apiKey}`,
+  };
+
+  let subscriberId: string | null = null;
+  let created = false;
+
+  try {
+    const createRes = await fetchWithTimeout(
+      `${BASE_URL}/publications/${pubId}/subscriptions`,
+      {
+        method: "POST",
+        headers,
+        body: JSON.stringify({
+          email: options.email,
+          reactivate_existing: true,
+          send_welcome_email: options.sendWelcomeEmail ?? false,
+          ...(utm.source && { utm_source: utm.source }),
+          ...(utm.medium && { utm_medium: utm.medium }),
+          ...(utm.campaign && { utm_campaign: utm.campaign }),
+          ...(custom.length > 0 && { custom_fields: custom }),
+        }),
+      },
+    );
+
+    if (createRes.ok) {
+      const json = (await createRes.json()) as {
+        data?: { id?: string };
+      };
+      subscriberId = json?.data?.id ?? null;
+      created = true;
+    } else if (createRes.status === 409) {
+      // Already exists — look up the id.
+      const lookupRes = await fetchWithTimeout(
+        `${BASE_URL}/publications/${pubId}/subscriptions?email=${encodeURIComponent(options.email)}`,
+        { headers },
+      );
+      if (lookupRes.ok) {
+        const json = (await lookupRes.json()) as {
+          data?: Array<{ id?: string }>;
+        };
+        subscriberId = json?.data?.[0]?.id ?? null;
+      }
+    } else {
+      console.error(
+        "[Beehiiv] subscribeToBeehiiv create error:",
+        createRes.status,
+        await createRes.text().catch(() => ""),
+      );
+      return { subscriberId: null, created: false };
+    }
+  } catch (err) {
+    console.error("[Beehiiv] subscribeToBeehiiv request failed:", err);
+    return { subscriberId: null, created: false };
+  }
+
+  if (subscriberId && options.tags && options.tags.length > 0) {
+    try {
+      await fetchWithTimeout(
+        `${BASE_URL}/publications/${pubId}/subscriptions/${subscriberId}/tags`,
+        {
+          method: "POST",
+          headers,
+          body: JSON.stringify({ tags: options.tags }),
+        },
+      );
+    } catch (err) {
+      console.error("[Beehiiv] tag apply failed:", err);
+      // still return the subscriberId — tagging failure is non-fatal
+    }
+  }
+
+  return { subscriberId, created };
+}

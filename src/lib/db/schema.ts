@@ -208,6 +208,11 @@ export const cohortApplications = pgTable(
     index("cohort_applications_created_at_idx").on(table.createdAt),
     index("cohort_applications_cohort_idx").on(table.cohort),
     index("cohort_applications_read_at_idx").on(table.readAt),
+    // One application per email per cohort — prevents duplicate kanban cards.
+    uniqueIndex("cohort_applications_email_cohort_idx").on(
+      table.email,
+      table.cohort,
+    ),
   ]
 );
 

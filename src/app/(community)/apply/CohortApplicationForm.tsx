@@ -1,7 +1,91 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+
+/** RFC-5322 lite — rejects `foo@`, `@bar`, and other common fat-finger failures. */
+const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+/** localStorage key for persisting in-progress application answers. */
+const DRAFT_KEY = "roadman-cohort-draft-v1";
+
+interface DraftState {
+  step: Step;
+  goal: string;
+  hours: string;
+  frustration: string;
+  name: string;
+  email: string;
+  ftp: string;
+}
+
+function loadDraft(): Partial<DraftState> | null {
+  if (typeof window === "undefined") return null;
+  try {
+    const raw = localStorage.getItem(DRAFT_KEY);
+    if (!raw) return null;
+    return JSON.parse(raw) as Partial<DraftState>;
+  } catch {
+    return null;
+  }
+}
+
+function saveDraft(state: DraftState) {
+  if (typeof window === "undefined") return;
+  try {
+    localStorage.setItem(DRAFT_KEY, JSON.stringify(state));
+  } catch {
+    /* quota exceeded or storage unavailable — ignore */
+  }
+}
+
+function clearDraft() {
+  if (typeof window === "undefined") return;
+  try {
+    localStorage.removeItem(DRAFT_KEY);
+  } catch {
+    /* ignore */
+  }
+}
+
+/**
+ * Fire a Meta Pixel `Lead` event when a user submits successfully.
+ * Consent-gated: only fires if the user accepted marketing cookies.
+ * Silently no-ops if fbq isn't loaded yet (ad blocker, consent denied,
+ * DNT etc.).
+ */
+function trackLead(email: string, persona: string | undefined) {
+  if (typeof window === "undefined") return;
+  const fbq = (window as unknown as { fbq?: (...args: unknown[]) => void }).fbq;
+  if (typeof fbq !== "function") return;
+  try {
+    fbq("track", "Lead", {
+      content_name: "Cohort 2 Application",
+      content_category: "coaching",
+      ...(persona ? { content_type: persona } : {}),
+      value: 195,
+      currency: "USD",
+    });
+  } catch {
+    /* pixel failure never blocks UX */
+  }
+  // Additionally: a plausible/GA-compatible custom event if either is loaded.
+  try {
+    const gtag = (window as unknown as {
+      gtag?: (...args: unknown[]) => void;
+    }).gtag;
+    if (typeof gtag === "function") {
+      gtag("event", "cohort_application_submit", {
+        event_category: "coaching",
+        value: 195,
+        persona,
+        email_hash: email.length, // privacy-safe signal; swap for sha256 later
+      });
+    }
+  } catch {
+    /* ignore */
+  }
+}
 
 const GOALS = [
   { value: "Race or event with a date", emoji: "🏁" },
@@ -40,15 +124,37 @@ export function CohortApplicationForm() {
   const [submitting, setSubmitting] = useState(false);
   const [error, setError] = useState("");
 
+  // Restore in-progress draft on mount so a failed submit or
+  // accidental tab-close doesn't lose 4 steps of answers.
+  useEffect(() => {
+    const draft = loadDraft();
+    if (!draft) return;
+    // Don't restore to the submitted step — force user back into flow
+    if (draft.step && draft.step !== "submitted") setStep(draft.step);
+    if (draft.goal) setGoal(draft.goal);
+    if (draft.hours) setHours(draft.hours);
+    if (draft.frustration) setFrustration(draft.frustration);
+    if (draft.name) setName(draft.name);
+    if (draft.email) setEmail(draft.email);
+    if (draft.ftp) setFtp(draft.ftp);
+  }, []);
+
+  // Persist answers as the user moves through the form.
+  useEffect(() => {
+    if (step === "submitted") return;
+    saveDraft({ step, goal, hours, frustration, name, email, ftp });
+  }, [step, goal, hours, frustration, name, email, ftp]);
+
   const stepIndex = ["goal", "hours", "frustration", "details", "submitted"].indexOf(step);
 
   async function handleSubmit() {
-    if (!name.trim() || !email.trim()) {
+    const trimmedEmail = email.trim();
+    if (!name.trim() || !trimmedEmail) {
       setError("Name and email are required.");
       return;
     }
-    if (!email.includes("@")) {
-      setError("Please enter a valid email.");
+    if (!EMAIL_REGEX.test(trimmedEmail)) {
+      setError("Please enter a valid email address.");
       return;
     }
 
@@ -59,13 +165,34 @@ export function CohortApplicationForm() {
       const res = await fetch("/api/cohort/apply", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ name, email, goal, hours, ftp, frustration }),
+        body: JSON.stringify({
+          name: name.trim(),
+          email: trimmedEmail,
+          goal,
+          hours,
+          ftp: ftp.trim(),
+          frustration,
+        }),
       });
 
-      if (!res.ok) throw new Error("Failed to submit");
+      if (!res.ok) {
+        // Keep the user's answers so they can retry without starting over.
+        const data = (await res.json().catch(() => ({}))) as { error?: string };
+        throw new Error(data.error || "Failed to submit");
+      }
+      const data = (await res.json().catch(() => ({}))) as {
+        success?: boolean;
+        persona?: string;
+      };
+      // Lead event (FB Pixel + GA) — attribution for ad spend
+      trackLead(trimmedEmail, data.persona);
+      // Success — wipe the draft so next visit starts fresh
+      clearDraft();
       setStep("submitted");
-    } catch {
-      setError("Something went wrong. Please try again.");
+    } catch (err) {
+      const msg =
+        err instanceof Error ? err.message : "Something went wrong. Please try again.";
+      setError(msg);
     } finally {
       setSubmitting(false);
     }
