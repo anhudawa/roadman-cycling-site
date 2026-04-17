@@ -676,8 +676,65 @@ export default function CoachingPage() {
           </Container>
         </Section>
 
-        {/* FAQ */}
+        {/* Blog cluster — coaching-pillar articles for internal link equity */}
         <Section background="charcoal">
+          <Container width="narrow">
+            <ScrollReveal direction="up" className="text-center mb-10">
+              <h2
+                className="font-heading text-off-white mb-4"
+                style={{ fontSize: "var(--text-section)" }}
+              >
+                FROM THE BLOG
+              </h2>
+              <p className="text-foreground-muted max-w-xl mx-auto">
+                Training science, coaching methodology, and what actually
+                moves the needle for serious amateurs.
+              </p>
+            </ScrollReveal>
+
+            <div className="grid md:grid-cols-2 gap-4">
+              {[
+                {
+                  href: "/blog/polarised-vs-sweet-spot-training",
+                  title: "Polarised vs Sweet Spot: What the Science Says",
+                },
+                {
+                  href: "/blog/is-a-cycling-coach-worth-it-case-study",
+                  title: "Is a Cycling Coach Worth It? (Case Study)",
+                },
+                {
+                  href: "/blog/time-crunched-cyclist-8-hours-week",
+                  title: "How to Train on 8 Hours a Week",
+                },
+                {
+                  href: "/blog/how-to-structure-cycling-training-plan",
+                  title: "How to Structure a Cycling Training Plan",
+                },
+                {
+                  href: "/blog/age-group-ftp-benchmarks-2026",
+                  title: "Age-Group FTP Benchmarks 2026",
+                },
+                {
+                  href: "/blog/masters-cyclist-guide-getting-faster-after-40",
+                  title: "Getting Faster After 40: The Masters Guide",
+                },
+              ].map((article) => (
+                <Link
+                  key={article.href}
+                  href={article.href}
+                  className="block p-4 rounded-lg bg-white/5 hover:bg-coral/10 border border-white/5 hover:border-coral/30 transition-all group"
+                >
+                  <p className="font-heading text-sm text-off-white group-hover:text-coral transition-colors tracking-wide">
+                    {article.title.toUpperCase()}
+                  </p>
+                </Link>
+              ))}
+            </div>
+          </Container>
+        </Section>
+
+        {/* FAQ */}
+        <Section background="deep-purple" grain>
           <Container width="narrow">
             <ScrollReveal direction="up" className="text-center mb-12">
               <h2
