@@ -145,7 +145,8 @@ export function HeroSection() {
         </motion.h1>
 
         <motion.p
-          className="font-body text-foreground-muted max-w-2xl mx-auto mb-10 text-lg md:text-xl leading-relaxed"
+          className="font-body text-off-white/80 max-w-2xl mx-auto mb-10 text-lg md:text-xl leading-relaxed"
+          style={{ textShadow: "0 2px 20px rgba(0,0,0,0.6)" }}
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{
