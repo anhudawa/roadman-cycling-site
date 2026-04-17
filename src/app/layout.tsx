@@ -108,6 +108,12 @@ export default function RootLayout({
           title="The Roadman Cycling Podcast"
           href="https://roadmancycling.com/feed/podcast"
         />
+        <link
+          rel="alternate"
+          type="application/rss+xml"
+          title="Roadman Cycling Blog"
+          href="https://roadmancycling.com/feed/blog"
+        />
       </head>
       <body className="min-h-screen bg-charcoal text-off-white font-body antialiased">
         <OrganizationJsonLd />

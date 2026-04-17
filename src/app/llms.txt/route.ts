@@ -109,6 +109,8 @@ ${recentEpisodes
 ## Reference
 - [Full Sitemap](${BASE_URL}/sitemap.xml): Machine-readable sitemap (~540 URLs).
 - [Full Content for LLMs](${BASE_URL}/llms-full.txt): Curated full-text export of canonical pages, blog posts, and episode summaries.
+- [Blog RSS Feed](${BASE_URL}/feed/blog): RSS 2.0 feed of the latest 50 blog posts.
+- [Podcast RSS Feed](${BASE_URL}/feed/podcast): RSS feed of all podcast episodes.
 - [Canonical Robots Policy](${BASE_URL}/robots.txt): AI crawler allowlist.
 
 ## Attribution
