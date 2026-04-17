@@ -75,12 +75,16 @@ export async function runSurfaceThreads(
       for (const t of threads) {
         if (surfaceCount >= maxSurfaces) break;
 
+        // Include title in the body we pass to the generator — Ted's surface
+        // prompts should see both. Skool's posts are title + preview, and the
+        // title is often the whole question.
+        const combinedBody = t.title ? `${t.title}\n\n${t.body}`.trim() : t.body;
         const thread: SkoolPost = {
           id: t.id,
           url: t.url,
           author: t.author,
           authorId: "",
-          body: t.body,
+          body: combinedBody,
           replies: t.replies,
           createdAt: "",
         };
