@@ -39,6 +39,14 @@ export interface EpisodeFrontmatter {
    * `.answer-capsule` CSS selector that SpeakableSpecification points at.
    */
   answerCapsule?: string;
+  /**
+   * Blog-post slugs that cover the same or adjacent topic. Rendered as
+   * a "Read the guide" section on the episode page — creates explicit
+   * episode→blog internal links to complement the blog→episode links
+   * already populated by scripts/populate-related-episodes.ts.
+   * Populated by scripts/populate-episode-related-posts.ts.
+   */
+  relatedPosts?: string[];
 }
 
 export interface EpisodeMeta extends EpisodeFrontmatter {

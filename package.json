@@ -45,7 +45,9 @@
     "seo:indexnow": "tsx scripts/submit-indexnow.ts",
     "seo:indexnow:dry": "tsx scripts/submit-indexnow.ts --dry-run",
     "seo:related-episodes": "tsx scripts/populate-related-episodes.ts",
-    "seo:related-episodes:dry": "tsx scripts/populate-related-episodes.ts --dry-run"
+    "seo:related-episodes:dry": "tsx scripts/populate-related-episodes.ts --dry-run",
+    "seo:episode-related-posts": "tsx scripts/populate-episode-related-posts.ts",
+    "seo:episode-related-posts:dry": "tsx scripts/populate-episode-related-posts.ts --dry-run"
   },
   "dependencies": {
     "@anthropic-ai/sdk": "^0.82.0",

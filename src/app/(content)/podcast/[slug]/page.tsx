@@ -13,6 +13,8 @@ import { PlayButton } from "@/components/features/podcast/PlayButton";
 import { RelatedContent } from "@/components/features/RelatedContent";
 import { RelatedEpisodes } from "@/components/features/podcast/RelatedEpisodes";
 import { EmailCapture } from "@/components/features/conversion/EmailCapture";
+import { getPostBySlug } from "@/lib/blog";
+import Link from "next/link";
 
 export async function generateStaticParams() {
   return getAllEpisodeSlugs().map((slug) => ({ slug }));
@@ -399,6 +401,43 @@ export default async function EpisodePage({
               source={`podcast-${slug}`}
               className="mt-16"
             />
+
+            {/* Author-curated related blog posts — explicit episode→blog
+                link equity. Populated by
+                scripts/populate-episode-related-posts.ts. */}
+            {episode.relatedPosts && episode.relatedPosts.length > 0 && (() => {
+              const posts = episode.relatedPosts
+                .map((s) => getPostBySlug(s))
+                .filter((p): p is NonNullable<typeof p> => p !== null);
+              if (posts.length === 0) return null;
+              return (
+                <section className="mt-16" aria-label="Related blog posts">
+                  <h2 className="font-heading text-2xl text-off-white mb-4 tracking-wide">
+                    READ THE GUIDE
+                  </h2>
+                  <p className="text-sm text-foreground-muted mb-6">
+                    The written companion to this episode.
+                  </p>
+                  <div className="space-y-3">
+                    {posts.map((p) => (
+                      <Link
+                        key={p.slug}
+                        href={`/blog/${p.slug}`}
+                        className="block p-4 rounded-lg bg-white/5 hover:bg-coral/10 border border-white/5 hover:border-coral/30 transition-all group"
+                      >
+                        <p className="font-heading text-sm text-off-white group-hover:text-coral transition-colors tracking-wide mb-1">
+                          {p.title}
+                        </p>
+                        <p className="text-xs text-foreground-subtle">
+                          {p.excerpt.slice(0, 140)}
+                          {p.excerpt.length > 140 ? "…" : ""}
+                        </p>
+                      </Link>
+                    ))}
+                  </div>
+                </section>
+              );
+            })()}
 
             {/* Related Episodes (podcast-only, server-rendered for SEO) */}
             <RelatedEpisodes
