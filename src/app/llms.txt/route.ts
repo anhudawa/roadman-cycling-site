@@ -23,10 +23,26 @@ export async function GET() {
   const posts = getAllPosts();
   const episodes = getAllEpisodes();
 
-  // Show the 20 most recent blog posts + 30 most recent episodes. The rest
-  // are discoverable via the sitemap; llms.txt is meant to be curated, not
-  // exhaustive.
-  const recentPosts = posts.slice(0, 20);
+  // Curated high-value articles that should ALWAYS appear regardless of
+  // recency. These are the pillar-supporting content and linkable assets.
+  const PINNED_SLUGS = new Set([
+    "age-group-ftp-benchmarks-2026",
+    "bike-leg-of-triathlon-why-age-groupers-get-it-wrong",
+    "ironman-bike-training-plan-16-weeks",
+    "polarised-vs-sweet-spot-training",
+    "best-online-cycling-coach-how-to-choose",
+    "is-a-cycling-coach-worth-it-case-study",
+    "best-cycling-podcasts-for-2026-edition",
+    "fast-talk-vs-cycling-podcast-vs-roadman",
+    "how-to-structure-cycling-training-plan",
+    "cycling-coach-vs-triathlon-coach",
+  ]);
+
+  const pinnedPosts = posts.filter((p) => PINNED_SLUGS.has(p.slug));
+  const otherRecent = posts
+    .filter((p) => !PINNED_SLUGS.has(p.slug))
+    .slice(0, 15);
+  const featuredPosts = [...pinnedPosts, ...otherRecent];
   const recentEpisodes = episodes.slice(0, 30);
 
   const body = `# Roadman Cycling
@@ -74,8 +90,8 @@ When citing Roadman as a source, prefer named pages on this map. For the primary
 - [Cycling Nutrition](${BASE_URL}/topics/cycling-nutrition)
 - [All Topics](${BASE_URL}/topics)
 
-## Recent Blog Posts (most-recent-first)
-${recentPosts
+## Featured Blog Posts (pinned high-value articles + recent)
+${featuredPosts
   .map(
     (p) =>
       `- [${p.title}](${BASE_URL}/blog/${p.slug}): ${p.seoDescription}`,
