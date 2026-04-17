@@ -4,7 +4,7 @@ import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Header, Footer, Section, Container } from "@/components/layout";
 import { Button } from "@/components/ui";
-import { EmailCapture } from "@/components/features/conversion/EmailCapture";
+import { ReportRequestForm } from "@/components/features/tools/ReportRequestForm";
 
 type Surface = "smooth" | "rough" | "gravel";
 type TubeType = "clincher" | "tubeless" | "tubular";
@@ -428,10 +428,27 @@ export default function TyrePressurePage() {
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.35, delay: 0.38 }}
                   >
-                    <EmailCapture
-                      heading="GET WEEKLY TYRE AND SETUP TIPS"
-                      subheading="The small details that make you faster. One email a week, no filler."
-                      source="tool-tyre-pressure"
+                    <ReportRequestForm
+                      tool="tyre-pressure"
+                      inputs={{
+                        riderWeight: parseFloat(riderWeight),
+                        bikeWeight: parseFloat(bikeWeight),
+                        tyreWidth: parseFloat(tyreWidth),
+                        rimWidth: parseFloat(rimWidth),
+                        surface,
+                        tubeType,
+                        front: result.front,
+                        rear: result.rear,
+                      }}
+                      heading={`Your ${tyreWidth}mm tyre setup for every condition`}
+                      subheading="A setup table covering dry, wet, gravel, and winter — plus how to tune by feel on real rides. One email, save it in the bookmarks."
+                      bullets={[
+                        `Front ${result.front} / rear ${result.rear} psi baseline`,
+                        "Adjustments for wet, gravel, and winter conditions",
+                        "Tubeless vs clincher pressure deltas",
+                        "How to fine-tune by feel on real rides",
+                        "Temperature + altitude corrections",
+                      ]}
                     />
                   </motion.div>
                 </motion.div>

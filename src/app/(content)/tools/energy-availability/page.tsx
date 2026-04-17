@@ -4,7 +4,7 @@ import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Header, Footer, Section, Container } from "@/components/layout";
 import { Button } from "@/components/ui";
-import { EmailCapture } from "@/components/features/conversion/EmailCapture";
+import { ReportRequestForm } from "@/components/features/tools/ReportRequestForm";
 
 function calculateEA(
   weightKg: number,
@@ -290,10 +290,29 @@ export default function EnergyAvailabilityPage() {
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.35, delay: 0.5 }}
                   >
-                    <EmailCapture
-                      heading="STAY HEALTHY, STAY FAST"
-                      subheading="Weekly recovery and nutrition tips to keep you performing without burning out."
-                      source="tool-energy-availability"
+                    <ReportRequestForm
+                      tool="energy-availability"
+                      inputs={{
+                        weight: parseFloat(weight),
+                        bodyFat: parseFloat(bodyFat),
+                        calories: parseFloat(calories),
+                        hours: parseFloat(hours),
+                        intensity,
+                        ea: result.ea,
+                        risk: result.risk,
+                        fatFreeMass: result.fatFreeMass,
+                        exerciseExpenditure: result.exerciseExpenditure,
+                        interpretation: result.interpretation,
+                      }}
+                      heading={`Your EA score: ${result.ea.toFixed(0)} — what to do next`}
+                      subheading="The full interpretation of your number, what to adjust, and the warning signs every endurance athlete should know. Applies to both men and women."
+                      bullets={[
+                        `Personalised calorie target based on your FFM`,
+                        "Risk assessment + what each category actually means",
+                        "Signs of chronic low EA (not just missed periods)",
+                        "Fueling around training vs deficit on rest days",
+                        "When to see a sports physician",
+                      ]}
                     />
                   </motion.div>
                 </motion.div>

@@ -4,7 +4,7 @@ import { useState, useMemo } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Header, Footer, Section, Container } from "@/components/layout";
 import { Button } from "@/components/ui";
-import { EmailCapture } from "@/components/features/conversion/EmailCapture";
+import { ReportRequestForm } from "@/components/features/tools/ReportRequestForm";
 
 type RidingStyle = "xc" | "trail" | "enduro" | "dh";
 type TubeType = "tubeless" | "tubed";
@@ -1595,11 +1595,33 @@ export default function MtbSetupPage() {
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.35, delay: 0.76 }}
                   >
-                    <EmailCapture
-                      heading="GET MTB SETUP SECRETS STRAIGHT TO YOUR INBOX"
-                      subheading="Suspension, tyres, fit, and the details that make you faster on dirt. Once a week."
-                      source="tool-mtb-setup"
-                    />
+                    {suspensionResult && (
+                      <ReportRequestForm
+                        tool="shock-pressure"
+                        inputs={{
+                          weight: weightUnit === "kg" ? parseFloat(weight) : parseFloat(weight) / 2.205,
+                          bikeWeight: parseFloat(bikeWeight),
+                          ridingStyle: style,
+                          terrain,
+                          tyreCasing,
+                          forkBrand: suspensionResult.forkBrand,
+                          forkModel: suspensionResult.forkModel,
+                          shockBrand: suspensionResult.shockBrand,
+                          shockModel: suspensionResult.shockModel,
+                          forkPsi: suspensionResult.forkPSI,
+                          shockPsi: suspensionResult.rearPSI,
+                        }}
+                        heading={`Your MTB setup: ${suspensionResult.forkPSI} psi fork, ${suspensionResult.rearPSI} psi shock`}
+                        subheading="The full setup sheet with sag targets, how to tune rebound + compression, and the seasonal adjustments most riders miss. Save it, reference it after every setup change."
+                        bullets={[
+                          `${suspensionResult.forkBrand} ${suspensionResult.forkModel}: ${suspensionResult.forkPSI} psi baseline`,
+                          `${suspensionResult.shockBrand} ${suspensionResult.shockModel}: ${suspensionResult.rearPSI} psi baseline`,
+                          "Sag setup protocol (front + rear)",
+                          "Rebound + compression tuning by feel",
+                          "Winter / wet / bike park adjustments",
+                        ]}
+                      />
+                    )}
                   </motion.div>
                 </motion.div>
               )}
