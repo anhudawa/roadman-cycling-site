@@ -265,6 +265,254 @@ export const EVENTS: TrainingEvent[] = [
     kitAngle:
       "Climbing bike. 34x30 minimum. Light windproof gilet — descents are cold even in July. Sunscreen on arms + legs — Dolomite UV is brutal.",
   },
+  {
+    slug: "mallorca-312",
+    name: "Mallorca 312",
+    shortName: "Mallorca 312",
+    region: "Spain",
+    type: "sportive",
+    distanceKm: 312,
+    elevationGainM: 5050,
+    typicalFinishTime: "10-14 hours",
+    defaultMonth: "April",
+    description:
+      "The Mallorca 312 is spring's most talked-about sportive — 312km around Mallorca with 5,000m+ of climbing, including Sa Calobra, the iconic hairpin-laced descent-then-climb that defines the day. Runs in late April. Open-road format, closed to traffic in parts.",
+    keyCharacteristics: [
+      "Sa Calobra — 10km descent into the sea then 10km climb back out, 7% average",
+      "Coll de Sóller tunnel + classic north-coast climbs stacked early",
+      "312km distance means fuelling strategy determines who finishes",
+      "Three distance options: 312km, 225km, 167km — pick realistically",
+      "Weather shift from cold morning climbs to afternoon Mediterranean heat",
+    ],
+    commonMistakes: [
+      "Choosing the 312 because you've done other long sportives — Mallorca's combination of distance + heat is different",
+      "Underfuelling the first 80km because the climbing starts easy",
+      "Forgetting the Sa Calobra climb is a 9% average, not a gentle return — many riders bonk here",
+    ],
+    pacingStrategy:
+      "The 312 is a fueling problem more than a fitness one. Pace the opening 100km at 60-65% FTP maximum. Ride the middle 100km conservatively with strict carb/fluid discipline. The last 100km is where preparation shows — those who fuelled correctly can even push. The Sa Calobra climb is at 220km — arrive with reserves, not red-lined.",
+    nutritionAngle:
+      "10+ hours means 80g carbs/hour minimum, 100g if gut-trained. 500-750ml fluid/hour once the heat kicks in. Food at every aid station on the route — don't skip any. Electrolytes become dominant after hour 6. A 'second breakfast' at the Pollença aid stop (km 80) is a classic move.",
+    kitAngle:
+      "Long-finger gloves + gilet for the first two hours (cold on the climbs pre-dawn). 34x30 minimum, 34x32 recommended for Sa Calobra late in the day. Extra bottle cages or a frame bag for the long desert-like middle section.",
+  },
+  {
+    slug: "badlands",
+    name: "Badlands",
+    shortName: "Badlands",
+    region: "Spain",
+    type: "ultra",
+    distanceKm: 800,
+    elevationGainM: 16000,
+    typicalFinishTime: "60-120 hours",
+    defaultMonth: "September",
+    description:
+      "Badlands is one of the hardest self-supported ultras in the world — 800km across Andalusia and the Tabernas Desert (Europe's only true desert) with 16,000m of climbing. Mixed gravel/road, 40°C+ daytime heat, freezing desert nights. The race that made Lachlan Morton famous on the Roadman Podcast.",
+    keyCharacteristics: [
+      "Self-supported format — resupply only at open shops + fountains",
+      "Tabernas Desert crossing: 40°C+ daytime, freezing at night",
+      "16,000m climbing across 800km averages 20m/km — relentless",
+      "Sleep strategy is part of the race (2-6 hours/day at best)",
+      "Mix of road + gravel + rough dirt — tyre choice is a gamble",
+    ],
+    commonMistakes: [
+      "Underestimating the night desert cold — riders treat 'Spain in September' as warm, it isn't at 2am",
+      "Treating it like a long sportive — Badlands breaks people who haven't done shorter ultras first",
+      "Poor tyre pressure — either too light (punctures) or too firm (fatigue)",
+    ],
+    pacingStrategy:
+      "Don't race the start. Badlands has a 4-5 day finishing window for most riders and the leaderboard means almost nothing if you DNF at km 400. Sustainable pace — roughly 60% of your 8-hour FTP as an all-day ceiling. Sleep plan written in advance: where, how long, triggered by which km.",
+    nutritionAngle:
+      "No aid stations. You carry or you resupply from shops. 80-100g carbs/hour on the bike minimum. Calories eaten at shops count. Salt + electrolytes critical in the desert crossing. Cafés and gas stations become your crew.",
+    kitAngle:
+      "Ultra-endurance bikepacking setup: dynamo hub, frame bag, saddle bag, bar bag. 40-45mm gravel tyres with good sidewalls (Challenge Getaway, Pirelli Cinturato, Schwalbe G-One Ultrabite). Bivvy bag + emergency blanket for forced sleep stops.",
+  },
+  {
+    slug: "leadville-100",
+    name: "Leadville Trail 100",
+    shortName: "Leadville 100",
+    region: "USA",
+    type: "mtb",
+    distanceKm: 160,
+    elevationGainM: 3800,
+    typicalFinishTime: "8-12 hours",
+    defaultMonth: "August",
+    description:
+      "Leadville 100 is the definitive high-altitude MTB race — 160km through the Colorado Rockies starting at 3,100m (10,200ft) with 3,800m of climbing and a topout above 3,800m on Columbine Mine. Lottery entry, hard cut-offs, finisher buckle is a career milestone.",
+    keyCharacteristics: [
+      "Altitude 3,100-3,840m — altitude-naive riders lose 20-30% power",
+      "Columbine Mine climb — 9km straight up to 3,840m above sea level",
+      "Cut-off at the Columbine turnaround (6:00) is the race",
+      "Powerline descent — fast, rocky, tyre-popping territory",
+      "Weather varies from freezing dawn to 30°C + thunderstorms",
+    ],
+    commonMistakes: [
+      "Arriving less than 2 weeks before for altitude acclimatisation",
+      "Racing the first 40km on paved road sections and blowing up at altitude",
+      "Running tyres too light — Leadville's rocks destroy XC casings",
+    ],
+    pacingStrategy:
+      "Altitude changes everything. Target a power ceiling 15-20% below what you'd hold at sea level. Heart rate runs 5-10 bpm higher than your lowland rate at the same effort — don't panic. Columbine Mine is a controlled climb at aerobic threshold. The flats + the Powerline descent are where the front group makes time; the back half is where you win your sub-9 buckle.",
+    nutritionAngle:
+      "Altitude suppresses appetite — force-fuel on a timer. 70-90g carbs/hour. Feed zones are excellent (crew + on-course). Hydration is critical: 750ml+/hour with electrolytes. The dry Colorado air dehydrates faster than you feel.",
+    kitAngle:
+      "Hardtail or 120mm trail bike. 2.3-2.4\" tyres with Enduro or MaxxTerra casings — not XC race tyres. CO2 + pump + plug kit + spare tube. Arm warmers + gilet for the 06:30 start (cold). Altitude requires sunglasses with good UV + clear lens backup for the Columbine descent (often cloud + rain).",
+  },
+  {
+    slug: "gran-fondo-nyc",
+    name: "Gran Fondo New York",
+    shortName: "Gran Fondo NYC",
+    region: "USA",
+    type: "sportive",
+    distanceKm: 160,
+    elevationGainM: 2500,
+    typicalFinishTime: "5-9 hours",
+    defaultMonth: "May",
+    description:
+      "Gran Fondo New York (GFNY) is the flagship USA sportive — 160km from the George Washington Bridge up the Hudson Valley with 2,500m of climbing. Competitive timed format (your position matters), international field, closed bridge at the start.",
+    keyCharacteristics: [
+      "Start on the George Washington Bridge — 8,000+ riders",
+      "Bear Mountain climb — the signature climb at km 90",
+      "Timed format: results matter, pacing strategies ruthless",
+      "Rolling Hudson Valley terrain — few flat km",
+      "May weather: anywhere from 10°C and raining to 30°C and humid",
+    ],
+    commonMistakes: [
+      "Burning matches matching pace on the first 30km — it's a race start, not your pace",
+      "Riding solo instead of working groups — drafting saves 25-30% on the Hudson roads",
+      "Underfueling because the early rollers feel 'just easy enough'",
+    ],
+    pacingStrategy:
+      "Get in a pack at your sportive pace within the first 15km. Work the pack on the flats + rollers. Bear Mountain at km 90 is a 25-30 min threshold effort — attack it at 90-95% FTP if you're chasing a time, 80-85% if you're chasing a finish. The back half rewards steady pacing over heroic climbs.",
+    nutritionAngle:
+      "80-90g carbs/hour. Feed zones at km 55 and km 110 are strategic. Don't skip the km 55 stop. US roadie fuelling culture means everyone carries their own — don't rely on aid station variety.",
+    kitAngle:
+      "Aero road bike with 11-30 cassette. Arm warmers + gilet stashed — weather varies. Rear light mandatory (enforced). Sunglasses with clear lenses for the GW Bridge tunnel at the start.",
+  },
+  {
+    slug: "dirty-reiver",
+    name: "Dirty Reiver",
+    shortName: "Dirty Reiver",
+    region: "United Kingdom",
+    type: "gravel",
+    distanceKm: 200,
+    elevationGainM: 2500,
+    typicalFinishTime: "8-14 hours",
+    defaultMonth: "April",
+    description:
+      "Dirty Reiver is the UK's flagship gravel event — 200km across Kielder Forest with 2,500m of climbing on forestry roads, single track, and open fell crossings. Self-supported navigation, weather-exposed. The event that established UK gravel.",
+    keyCharacteristics: [
+      "Forestry roads in Kielder — fast, wide, surprisingly rolling",
+      "Weather can shift from sunny to snowy inside an hour in April",
+      "Self-supported: carry what you eat/drink",
+      "Short 130km + 65km options for first-timers",
+      "Borderline mountain bike terrain in sections",
+    ],
+    commonMistakes: [
+      "Running road tyres — you will puncture",
+      "Underdressing because 'it's April' — Kielder makes its own weather",
+      "Pacing like a sportive — gravel eats your legs faster than tarmac",
+    ],
+    pacingStrategy:
+      "Gravel events punish overpacing effort because the surface varies. Target heart-rate rather than power — aim for high Z2 / low Z3 as your all-day ceiling. Let others go early on the fast sections; you'll catch them when the rough stuff starts. Eat on the flat sections when you can chew safely.",
+    nutritionAngle:
+      "Self-supported means you pack it. 70-90g carbs/hour, more if cold. One water refill at the mid-point feed stop (if it's there — not guaranteed). Real food works better than gels when the ride stretches beyond 8 hours — sandwiches, bars, waffles.",
+    kitAngle:
+      "Gravel bike with 40-45mm tyres — Rene Herse Humptulips, Challenge Getaway, WTB Nano. Tubeless with sealant. Mudguards help in wet years. Frame bag + top tube bag for food. Rain jacket that actually works. Head torch if you're a slower finisher.",
+  },
+  {
+    slug: "unbound-gravel",
+    name: "Unbound Gravel",
+    shortName: "Unbound",
+    region: "USA",
+    type: "gravel",
+    distanceKm: 320,
+    elevationGainM: 2800,
+    typicalFinishTime: "12-20 hours",
+    defaultMonth: "June",
+    description:
+      "Unbound Gravel is the world's biggest gravel event — 320km (200mi) across the Flint Hills of Kansas on rocky unpaved roads. Lottery entry, professional field mixed with amateurs, 100mi + 50mi options. Mud years and dust years both exist.",
+    keyCharacteristics: [
+      "320km (200mi) flagship + 100mi + 50mi options",
+      "Flint Hills rocks destroy tyres, wheels, and souls",
+      "Mud years (historic): bike-carrying, abandonments, DNFs at 50%",
+      "Kansas heat: 25-35°C with no shade",
+      "Self-navigated (GPS) after the first 20km",
+    ],
+    commonMistakes: [
+      "Running tyres under 40mm — Unbound shreds light tyres",
+      "Trying to ride from a sportive background without ultra pacing",
+      "Underfueling because 'it's just bikes, not running' — 12-20 hours is ultra territory",
+    ],
+    pacingStrategy:
+      "Unbound is an ultra with a drop bag. Pace at 55-60% of your 4-hour FTP as a realistic all-day ceiling. The rocks force constant micro-adjustments; you don't hold steady power like on road. Drop bag at checkpoints 2 and 3 — strategise what's in each bag before the start.",
+    nutritionAngle:
+      "80-100g carbs/hour for 12+ hours. Aid stations are official but crowded — own supply between them is faster. Heat means electrolytes dominate. Solid food at checkpoints, gels + bars between. Texan rule: if you're not peeing every 2 hours you're underfuelling.",
+    kitAngle:
+      "Gravel bike with 42-45mm tyres, reinforced sidewalls (Panaracer GravelKing SK+, Challenge Gravine Race, Rene Herse Stampede Pass). Tubeless mandatory. 2-3 tyre plugs + CO2 + spare tube. Mudguards optional (but essential in mud years). Hydration pack optional but helps in heat.",
+  },
+  {
+    slug: "cape-epic",
+    name: "Absa Cape Epic",
+    shortName: "Cape Epic",
+    region: "South Africa",
+    type: "mtb",
+    distanceKm: 700,
+    elevationGainM: 15000,
+    typicalFinishTime: "8 days (stage race)",
+    defaultMonth: "March",
+    description:
+      "The Absa Cape Epic is the premier 8-day MTB stage race — 700km + 15,000m of climbing across the Western Cape of South Africa, raced in teams of two. World Series status, lottery entry, the hardest amateur MTB event on earth.",
+    keyCharacteristics: [
+      "8-day stage race — sleep, recover, repeat",
+      "Raced in teams of 2 — you finish together or you DNF",
+      "Technical singletrack AND long climbs on each stage",
+      "Heat, dust, and altitude variations across the Cape",
+      "Stage cut-offs — slower teams eliminated during the week",
+    ],
+    commonMistakes: [
+      "Arriving undertrained for back-to-back 6-8 hour days",
+      "Mismatching partner fitness — you ride at the slower rider's pace",
+      "Skipping the first two stages' recovery protocols — day 5 is where it breaks",
+    ],
+    pacingStrategy:
+      "Cape Epic pacing is multi-day pacing, not single-stage racing. Target day 1 at 70-75% of a single-day race effort. Recovery — sleep, nutrition, legs up — is the race after day 3. The strongest teams at the finish line are those who held back on days 1-3 and still had legs on days 5-8.",
+    nutritionAngle:
+      "Daily calorie intake 5,000-7,000 kcal during the event. Fuel on the bike aggressively (80g carbs/hour). Recovery window post-stage: 4:1 carb:protein within 30 minutes. Hydrate all day every day — dehydration compounds across stages.",
+    kitAngle:
+      "Trail or lightweight XC full-suspension. 2.3-2.4\" tyres with good sidewalls (MaxxTerra or Enduro casing). Service-day bike fleet access (mandatory at the Cape Epic). 2x kit pieces of everything. Tyre plugs, pump, CO2, multitool.",
+  },
+  {
+    slug: "trans-pyrenees",
+    name: "Trans Pyrenees",
+    shortName: "Trans Pyrenees",
+    region: "France / Spain",
+    type: "ultra",
+    distanceKm: 1500,
+    elevationGainM: 35000,
+    typicalFinishTime: "6-9 days",
+    defaultMonth: "October",
+    description:
+      "Trans Pyrenees is one of the hardest self-supported ultras in Europe — 1,500km from Biarritz to Barcelona (or reverse) across every major pass in the Pyrenees, with 35,000m of climbing. 6-9 day finishes. October weather unpredictable.",
+    keyCharacteristics: [
+      "35,000m climbing — that's 4× Everest across the event",
+      "Every HC and Cat 1 Pyrenean pass featured — Tourmalet, Aubisque, Aspin, Peyresourde, Porto",
+      "October weather: snow on passes, freezing rain, wind",
+      "Self-supported — you carry, you sleep where you can",
+      "Mandatory tracker, daily check-in times",
+    ],
+    commonMistakes: [
+      "Treating it like Badlands (Mediterranean) — the Pyrenees are colder, wetter, mountainous",
+      "Underspecing kit — October above 1,800m needs winter gear",
+      "Sleep deprivation affecting descending safety on day 4+",
+    ],
+    pacingStrategy:
+      "Trans Pyrenees is a climbing-dominated ultra. Pace on the climbs — not the flats. Target sub-threshold on every pass, regardless of time pressure. Sleep 5-7 hours/day for sustainable progress. Check weather nightly and pick tomorrow's start time accordingly.",
+    nutritionAngle:
+      "No aid stations. Resupply at open shops, cafés, petrol stations. 80-100g carbs/hour on the bike, with real food stops at cafés every 4-5 hours. Hot drinks at altitude pass points matter more than people expect. Carry extra gels for nighttime emergencies.",
+    kitAngle:
+      "Full bikepacking kit. Dynamo hub for lights + devices. 32-35mm tyres with reinforcement. Waterproof jacket, waterproof gloves, waterproof socks. Bivvy + sleeping bag rated to 0°C. Emergency mylar blanket. Spare battery pack.",
+  },
 ];
 
 /* ============================================================ */
