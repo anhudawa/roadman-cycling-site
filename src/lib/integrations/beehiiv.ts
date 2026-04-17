@@ -568,7 +568,7 @@ export async function subscribeToBeehiiv(
 
   if (subscriberId && options.tags && options.tags.length > 0) {
     try {
-      await fetchWithTimeout(
+      const tagRes = await fetchWithTimeout(
         `${BASE_URL}/publications/${pubId}/subscriptions/${subscriberId}/tags`,
         {
           method: "POST",
@@ -576,6 +576,13 @@ export async function subscribeToBeehiiv(
           body: JSON.stringify({ tags: options.tags }),
         },
       );
+      if (!tagRes.ok) {
+        console.error(
+          "[Beehiiv] tag apply non-ok:",
+          tagRes.status,
+          await tagRes.text().catch(() => ""),
+        );
+      }
     } catch (err) {
       console.error("[Beehiiv] tag apply failed:", err);
       // still return the subscriberId — tagging failure is non-fatal
