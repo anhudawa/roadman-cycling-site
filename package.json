@@ -41,7 +41,9 @@
     "seo:capsules:episodes": "tsx scripts/generate-episode-capsules.ts",
     "seo:capsules:episodes:dry": "tsx scripts/generate-episode-capsules.ts --dry-run",
     "seo:cluster:triathlon": "tsx scripts/generate-cluster-articles.ts",
-    "seo:cluster:triathlon:dry": "tsx scripts/generate-cluster-articles.ts --dry-run"
+    "seo:cluster:triathlon:dry": "tsx scripts/generate-cluster-articles.ts --dry-run",
+    "seo:indexnow": "tsx scripts/submit-indexnow.ts",
+    "seo:indexnow:dry": "tsx scripts/submit-indexnow.ts --dry-run"
   },
   "dependencies": {
     "@anthropic-ai/sdk": "^0.82.0",
