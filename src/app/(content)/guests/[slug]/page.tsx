@@ -6,6 +6,7 @@ import { ScrollReveal, Card, Badge, Button } from "@/components/ui";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { getGuestBySlug, getAllGuestSlugs } from "@/lib/guests";
 import { getGuestProfileOverride } from "@/lib/guests/profiles";
+import { getPostBySlug } from "@/lib/blog";
 
 export async function generateStaticParams() {
   return getAllGuestSlugs().map((slug) => ({ slug }));
@@ -234,6 +235,44 @@ export default async function GuestPage({
                 </ScrollReveal>
               ))}
             </div>
+
+            {/* Featured articles — blog posts that explicitly cite this
+                guest. Creates bidirectional entity↔content links from the
+                guest page into the blog cluster. */}
+            {override?.featuredArticles && override.featuredArticles.length > 0 && (() => {
+              const articles = override.featuredArticles
+                .map((s) => getPostBySlug(s))
+                .filter((p): p is NonNullable<typeof p> => p !== null);
+              if (articles.length === 0) return null;
+              return (
+                <div className="mt-16">
+                  <h2 className="font-heading text-2xl text-off-white mb-4 tracking-wide">
+                    FEATURED IN THESE GUIDES
+                  </h2>
+                  <p className="text-sm text-foreground-muted mb-6">
+                    Roadman blog articles that reference {guest.name}&rsquo;s
+                    work.
+                  </p>
+                  <div className="space-y-3">
+                    {articles.map((a) => (
+                      <Link
+                        key={a.slug}
+                        href={`/blog/${a.slug}`}
+                        className="block p-4 rounded-lg bg-white/5 hover:bg-coral/10 border border-white/5 hover:border-coral/30 transition-all group"
+                      >
+                        <p className="font-heading text-sm text-off-white group-hover:text-coral transition-colors tracking-wide mb-1">
+                          {a.title}
+                        </p>
+                        <p className="text-xs text-foreground-subtle">
+                          {a.excerpt.slice(0, 140)}
+                          {a.excerpt.length > 140 ? "…" : ""}
+                        </p>
+                      </Link>
+                    ))}
+                  </div>
+                </div>
+              );
+            })()}
 
             {/* Back + CTA */}
             <div className="mt-12 flex flex-col sm:flex-row gap-4 justify-center">

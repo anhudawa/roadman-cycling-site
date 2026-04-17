@@ -50,6 +50,13 @@ export interface GuestProfileOverride {
    * higher-profile entries.
    */
   description?: string;
+  /**
+   * Blog slugs that explicitly feature or cite this guest. Surfaced on
+   * the /guests/[slug] page as a "Featured in" section. Creates a
+   * bidirectional entity↔content link from the guest page to the
+   * articles that reference them.
+   */
+  featuredArticles?: string[];
 }
 
 /**
@@ -84,6 +91,11 @@ export const GUEST_PROFILE_OVERRIDES: Record<string, GuestProfileOverride> = {
       "https://www.uia.no/english/about-uia/employees/stephens/",
       "https://www.linkedin.com/in/stephen-seiler-668202a/",
       "https://www.researchgate.net/profile/Stephen-Seiler",
+    ],
+    featuredArticles: [
+      "every-roadman-episode-with-stephen-seiler",
+      "polarised-vs-sweet-spot-training",
+      "what-cycling-podcasts-got-wrong-about-polarised-training",
     ],
   },
 
@@ -125,6 +137,11 @@ export const GUEST_PROFILE_OVERRIDES: Record<string, GuestProfileOverride> = {
     sameAs: [
       "https://en.wikipedia.org/wiki/Joe_Friel",
       "https://joefrieltraining.com/",
+    ],
+    featuredArticles: [
+      "how-to-periodise-cycling-season",
+      "how-to-structure-cycling-training-plan",
+      "masters-cyclist-guide-getting-faster-after-40",
     ],
   },
 
@@ -179,6 +196,11 @@ export const GUEST_PROFILE_OVERRIDES: Record<string, GuestProfileOverride> = {
       type: "Organization",
     },
     sameAs: ["https://de.linkedin.com/in/dan-lorang-33296319"],
+    featuredArticles: [
+      "every-roadman-episode-with-dan-lorang",
+      "ironman-bike-training-plan-16-weeks",
+      "bike-leg-of-triathlon-why-age-groupers-get-it-wrong",
+    ],
   },
 
   "john-wakefield": {
