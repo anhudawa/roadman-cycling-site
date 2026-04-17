@@ -211,6 +211,25 @@ export default function NotDoneYetPage() {
             priceCurrency: "USD",
             availability: "https://schema.org/InStock",
           })),
+          // Review schema mirrors real named testimonials on the page.
+          // No reviewRating — we collect narrative testimonials rather
+          // than star ratings, and inventing a numeric rating would
+          // violate Google's review-snippet guidelines (see the earlier
+          // AggregateRating removal). Uses the full testimonials
+          // catalogue (memberTestimonials), not just the three hero
+          // quotes above.
+          review: memberTestimonials.map((t) => ({
+            "@type": "Review",
+            author: {
+              "@type": "Person",
+              name: t.name,
+            },
+            reviewBody: t.quote,
+            itemReviewed: {
+              "@type": "Product",
+              name: "Not Done Yet — Roadman Cycling Community",
+            },
+          })),
         }}
       />
       <FAQSchema
