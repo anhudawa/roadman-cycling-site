@@ -3,7 +3,9 @@ import { db } from "@/lib/db";
 import { tedDrafts } from "@/lib/db/schema";
 import { and, desc, eq, inArray } from "drizzle-orm";
 import { requireAuth } from "@/lib/admin/auth";
+import { safeQuery } from "@/lib/ted/safe-db";
 import { QueueTable } from "./_components/QueueTable";
+import { MigrationBanner } from "../_components/MigrationBanner";
 
 export const dynamic = "force-dynamic";
 
@@ -41,12 +43,17 @@ export default async function TedQueuePage({
   }
   if (pillarFilter) conditions.push(eq(tedDrafts.pillar, pillarFilter));
 
-  const rows = await db
-    .select()
-    .from(tedDrafts)
-    .where(conditions.length === 1 ? conditions[0] : and(...conditions))
-    .orderBy(desc(tedDrafts.scheduledFor), desc(tedDrafts.createdAt))
-    .limit(50);
+  const rowsResult = await safeQuery(
+    () =>
+      db
+        .select()
+        .from(tedDrafts)
+        .where(conditions.length === 1 ? conditions[0] : and(...conditions))
+        .orderBy(desc(tedDrafts.scheduledFor), desc(tedDrafts.createdAt))
+        .limit(50),
+    [] as Array<typeof tedDrafts.$inferSelect>
+  );
+  const rows = rowsResult.data;
 
   const statusFilters: Array<{ label: string; status: QueueStatus | null }> = [
     { label: "all open", status: null },
@@ -64,6 +71,8 @@ export default async function TedQueuePage({
           Approve, edit, or reject each draft. Edits feed the weekly edit-rate metric.
         </p>
       </div>
+
+      {rowsResult.migrationsNeeded ? <MigrationBanner /> : null}
 
       <div className="flex flex-wrap gap-2 text-xs">
         <div className="flex gap-1 items-center">

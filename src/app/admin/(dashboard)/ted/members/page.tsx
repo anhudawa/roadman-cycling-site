@@ -2,18 +2,25 @@ import { db } from "@/lib/db";
 import { tedActiveMembers } from "@/lib/db/schema";
 import { desc } from "drizzle-orm";
 import { requireAuth } from "@/lib/admin/auth";
+import { safeQuery } from "@/lib/ted/safe-db";
 import { MembersUploader } from "./_components/MembersUploader";
+import { MigrationBanner } from "../_components/MigrationBanner";
 
 export const dynamic = "force-dynamic";
 
 export default async function TedMembersPage() {
   await requireAuth();
 
-  const rows = await db
-    .select()
-    .from(tedActiveMembers)
-    .orderBy(desc(tedActiveMembers.lastSeenAt))
-    .limit(200);
+  const rowsResult = await safeQuery(
+    () =>
+      db
+        .select()
+        .from(tedActiveMembers)
+        .orderBy(desc(tedActiveMembers.lastSeenAt))
+        .limit(200),
+    [] as Array<typeof tedActiveMembers.$inferSelect>
+  );
+  const rows = rowsResult.data;
 
   return (
     <div className="space-y-4">
@@ -28,6 +35,8 @@ export default async function TedMembersPage() {
           for large imports.
         </p>
       </div>
+
+      {rowsResult.migrationsNeeded ? <MigrationBanner /> : null}
 
       <MembersUploader />
 
