@@ -478,6 +478,46 @@ export function ContactDetail({
   const [emailError, setEmailError] = useState<string | null>(null);
   const [emailToast, setEmailToast] = useState<string | null>(null);
   const [emailSending, setEmailSending] = useState(false);
+  const [apps, setApps] = useState<ApplicationRow[]>(applications);
+  const [confirmDeleteApps, setConfirmDeleteApps] = useState(false);
+  const [deletingApps, setDeletingApps] = useState(false);
+
+  async function deleteAllApplications() {
+    if (apps.length === 0) return;
+    setDeletingApps(true);
+    const previous = apps;
+    // Optimistic: clear the list.
+    setApps([]);
+    try {
+      const results = await Promise.all(
+        previous.map((a) =>
+          fetch("/api/admin/applications", {
+            method: "DELETE",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ id: a.id }),
+          })
+        )
+      );
+      const failed = results.find((r) => !r.ok);
+      if (failed) {
+        const data = await failed.json().catch(() => ({}));
+        throw new Error(data.error ?? `HTTP ${failed.status}`);
+      }
+      setEmailToast(
+        `Deleted ${previous.length} application${previous.length === 1 ? "" : "s"}`
+      );
+      window.setTimeout(() => setEmailToast(null), 3000);
+    } catch (err) {
+      setApps(previous);
+      setEmailError(
+        err instanceof Error ? err.message : "Failed to delete application"
+      );
+      window.setTimeout(() => setEmailError(null), 4000);
+    } finally {
+      setDeletingApps(false);
+      setConfirmDeleteApps(false);
+    }
+  }
 
   const contactVars = useMemo(() => {
     const name = (contact.name ?? "").trim();
@@ -742,7 +782,7 @@ export function ContactDetail({
             <p className="text-sm text-foreground-muted">{contact.phone}</p>
           )}
         </div>
-        <div className="flex gap-2">
+        <div className="flex gap-2 flex-wrap">
           <button
             onClick={() => openEmailDrawer(null)}
             className="px-4 py-2 bg-coral text-white text-sm font-heading tracking-wider rounded-lg hover:bg-coral/90 transition-colors uppercase"
@@ -755,6 +795,39 @@ export function ContactDetail({
           >
             Mailto
           </a>
+          {apps.length > 0 &&
+            (confirmDeleteApps ? (
+              <div className="inline-flex items-stretch gap-1">
+                <button
+                  onClick={deleteAllApplications}
+                  disabled={deletingApps}
+                  className="px-4 py-2 bg-red-500/20 text-red-400 text-sm font-heading tracking-wider rounded-lg border border-red-500/30 hover:bg-red-500/30 disabled:opacity-50 uppercase"
+                >
+                  {deletingApps
+                    ? "Deleting…"
+                    : `Confirm delete${apps.length > 1 ? ` (${apps.length})` : ""}`}
+                </button>
+                <button
+                  onClick={() => setConfirmDeleteApps(false)}
+                  disabled={deletingApps}
+                  className="px-3 py-2 text-sm text-foreground-subtle hover:text-off-white font-heading tracking-wider uppercase"
+                >
+                  Cancel
+                </button>
+              </div>
+            ) : (
+              <button
+                onClick={() => setConfirmDeleteApps(true)}
+                className="px-4 py-2 border border-red-400/30 text-red-400 text-sm font-heading tracking-wider rounded-lg hover:bg-red-500/10 transition-colors uppercase"
+                title={
+                  apps.length === 1
+                    ? "Delete this contact's /apply submission"
+                    : `Delete this contact's ${apps.length} /apply submissions`
+                }
+              >
+                Delete Application{apps.length > 1 ? `s (${apps.length})` : ""}
+              </button>
+            ))}
         </div>
       </div>
       {emailToast && (
@@ -865,8 +938,8 @@ export function ContactDetail({
       >
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
           <div className="lg:col-span-2 space-y-6">
-            {applications.length > 0 && (
-              <ApplicationsSection applications={applications} />
+            {apps.length > 0 && (
+              <ApplicationsSection applications={apps} />
             )}
 
             <ContactCustomFields
