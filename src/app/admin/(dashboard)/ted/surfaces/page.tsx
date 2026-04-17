@@ -2,7 +2,9 @@ import { db } from "@/lib/db";
 import { tedSurfaceDrafts } from "@/lib/db/schema";
 import { desc, inArray } from "drizzle-orm";
 import { requireAuth } from "@/lib/admin/auth";
+import { safeQuery, anyNeedsMigration } from "@/lib/ted/safe-db";
 import { SurfaceReviewTable } from "./_components/SurfaceReviewTable";
+import { MigrationBanner } from "../_components/MigrationBanner";
 
 export const dynamic = "force-dynamic";
 
@@ -23,21 +25,33 @@ function statusPill(s: string): { label: string; cls: string } {
 export default async function TedSurfacesPage() {
   await requireAuth();
 
-  const needReview = await db
-    .select()
-    .from(tedSurfaceDrafts)
-    .where(inArray(tedSurfaceDrafts.status, ["drafted", "voice_flagged"]))
-    .orderBy(desc(tedSurfaceDrafts.createdAt))
-    .limit(50);
+  const needReviewR = await safeQuery(
+    () =>
+      db
+        .select()
+        .from(tedSurfaceDrafts)
+        .where(inArray(tedSurfaceDrafts.status, ["drafted", "voice_flagged"]))
+        .orderBy(desc(tedSurfaceDrafts.createdAt))
+        .limit(50),
+    [] as Array<typeof tedSurfaceDrafts.$inferSelect>
+  );
 
-  const recent = await db
-    .select()
-    .from(tedSurfaceDrafts)
-    .where(
-      inArray(tedSurfaceDrafts.status, ["approved", "edited", "posted", "rejected", "failed"])
-    )
-    .orderBy(desc(tedSurfaceDrafts.createdAt))
-    .limit(50);
+  const recentR = await safeQuery(
+    () =>
+      db
+        .select()
+        .from(tedSurfaceDrafts)
+        .where(
+          inArray(tedSurfaceDrafts.status, ["approved", "edited", "posted", "rejected", "failed"])
+        )
+        .orderBy(desc(tedSurfaceDrafts.createdAt))
+        .limit(50),
+    [] as Array<typeof tedSurfaceDrafts.$inferSelect>
+  );
+
+  const needReview = needReviewR.data;
+  const recent = recentR.data;
+  const migrationsNeeded = anyNeedsMigration([needReviewR, recentR]);
 
   return (
     <div className="space-y-6">
@@ -49,6 +63,8 @@ export default async function TedSurfacesPage() {
           lands them here.
         </p>
       </div>
+
+      {migrationsNeeded ? <MigrationBanner /> : null}
 
       <section className="space-y-3">
         <h2 className="text-sm font-semibold text-white uppercase tracking-wide">

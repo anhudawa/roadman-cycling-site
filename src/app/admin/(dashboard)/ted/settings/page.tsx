@@ -2,19 +2,26 @@ import { db } from "@/lib/db";
 import { tedKillSwitch } from "@/lib/db/schema";
 import { eq } from "drizzle-orm";
 import { requireAuth } from "@/lib/admin/auth";
+import { safeQuery } from "@/lib/ted/safe-db";
 import { SettingsPanel } from "./_components/SettingsPanel";
 import { TriggerPanel } from "./_components/TriggerPanel";
+import { MigrationBanner } from "../_components/MigrationBanner";
 
 export const dynamic = "force-dynamic";
 
 export default async function TedSettingsPage() {
   await requireAuth();
 
-  const rows = await db
-    .select()
-    .from(tedKillSwitch)
-    .where(eq(tedKillSwitch.id, 1))
-    .limit(1);
+  const rowsResult = await safeQuery(
+    () =>
+      db
+        .select()
+        .from(tedKillSwitch)
+        .where(eq(tedKillSwitch.id, 1))
+        .limit(1),
+    [] as Array<typeof tedKillSwitch.$inferSelect>
+  );
+  const rows = rowsResult.data;
 
   const row = rows[0];
   const state = row ?? {
@@ -37,6 +44,8 @@ export default async function TedSettingsPage() {
           Kill switch + per-job posting gates. Scheduled jobs read these on every run.
         </p>
       </div>
+
+      {rowsResult.migrationsNeeded ? <MigrationBanner /> : null}
 
       <SettingsPanel
         initial={{

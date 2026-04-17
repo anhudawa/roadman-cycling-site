@@ -2,7 +2,9 @@ import { db } from "@/lib/db";
 import { tedWelcomeQueue } from "@/lib/db/schema";
 import { desc, inArray } from "drizzle-orm";
 import { requireAuth } from "@/lib/admin/auth";
+import { safeQuery, anyNeedsMigration } from "@/lib/ted/safe-db";
 import { WelcomeReviewTable } from "./_components/WelcomeReviewTable";
+import { MigrationBanner } from "../_components/MigrationBanner";
 
 export const dynamic = "force-dynamic";
 
@@ -26,21 +28,33 @@ export default async function TedWelcomesPage() {
 
   // Anything needing a human decision: drafted (Ted produced a body, awaiting
   // approve/edit/reject) OR failed (voice-check exhausted retries).
-  const needReview = await db
-    .select()
-    .from(tedWelcomeQueue)
-    .where(inArray(tedWelcomeQueue.status, ["drafted", "failed"]))
-    .orderBy(desc(tedWelcomeQueue.createdAt))
-    .limit(50);
+  const needReviewR = await safeQuery(
+    () =>
+      db
+        .select()
+        .from(tedWelcomeQueue)
+        .where(inArray(tedWelcomeQueue.status, ["drafted", "failed"]))
+        .orderBy(desc(tedWelcomeQueue.createdAt))
+        .limit(50),
+    [] as Array<typeof tedWelcomeQueue.$inferSelect>
+  );
 
-  const recent = await db
-    .select()
-    .from(tedWelcomeQueue)
-    .where(
-      inArray(tedWelcomeQueue.status, ["approved", "posted", "skipped", "pending"])
-    )
-    .orderBy(desc(tedWelcomeQueue.createdAt))
-    .limit(50);
+  const recentR = await safeQuery(
+    () =>
+      db
+        .select()
+        .from(tedWelcomeQueue)
+        .where(
+          inArray(tedWelcomeQueue.status, ["approved", "posted", "skipped", "pending"])
+        )
+        .orderBy(desc(tedWelcomeQueue.createdAt))
+        .limit(50),
+    [] as Array<typeof tedWelcomeQueue.$inferSelect>
+  );
+
+  const needReview = needReviewR.data;
+  const recent = recentR.data;
+  const migrationsNeeded = anyNeedsMigration([needReviewR, recentR]);
 
   return (
     <div className="space-y-6">
@@ -51,6 +65,8 @@ export default async function TedWelcomesPage() {
           Flow: pending → drafted → <strong>approved (you)</strong> → posted.
         </p>
       </div>
+
+      {migrationsNeeded ? <MigrationBanner /> : null}
 
       <section className="space-y-3">
         <h2 className="text-sm font-semibold text-white uppercase tracking-wide">

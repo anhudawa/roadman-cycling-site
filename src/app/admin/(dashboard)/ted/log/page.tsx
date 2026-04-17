@@ -2,7 +2,9 @@ import { db } from "@/lib/db";
 import { tedActivityLog } from "@/lib/db/schema";
 import { desc } from "drizzle-orm";
 import { requireAuth } from "@/lib/admin/auth";
+import { safeQuery } from "@/lib/ted/safe-db";
 import { LogAutoRefresh } from "./_components/LogAutoRefresh";
+import { MigrationBanner } from "../_components/MigrationBanner";
 
 export const dynamic = "force-dynamic";
 
@@ -14,11 +16,16 @@ export default async function TedLogPage({
   await requireAuth();
   const params = await searchParams;
 
-  const rows = await db
-    .select()
-    .from(tedActivityLog)
-    .orderBy(desc(tedActivityLog.timestamp))
-    .limit(200);
+  const rowsResult = await safeQuery(
+    () =>
+      db
+        .select()
+        .from(tedActivityLog)
+        .orderBy(desc(tedActivityLog.timestamp))
+        .limit(200),
+    [] as Array<typeof tedActivityLog.$inferSelect>
+  );
+  const rows = rowsResult.data;
 
   const filtered = rows.filter((r) => {
     if (params.job && r.job !== params.job) return false;
@@ -45,6 +52,8 @@ export default async function TedLogPage({
           </a>
         </div>
       </div>
+
+      {rowsResult.migrationsNeeded ? <MigrationBanner /> : null}
 
       <div className="rounded-md bg-white/5 border border-white/10 overflow-x-auto">
         <table className="w-full text-xs">
