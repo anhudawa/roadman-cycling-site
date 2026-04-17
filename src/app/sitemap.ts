@@ -4,6 +4,7 @@ import { getAllEpisodes } from "@/lib/podcast";
 import { getAllGuests } from "@/lib/guests";
 import { getAllTopicSlugs } from "@/lib/topics";
 import { fetchNewsletterIssues } from "@/lib/integrations/beehiiv";
+import { getAllPlanCombinations } from "@/lib/training-plans";
 
 const BASE_URL = "https://roadmancycling.com";
 
@@ -197,6 +198,14 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       priority: 0.8,
     },
 
+    // Training plan index
+    {
+      url: `${BASE_URL}/plan`,
+      lastModified: new Date(),
+      changeFrequency: "weekly",
+      priority: 0.8,
+    },
+
     // Community sub-pages — priority 0.7
     {
       url: `${BASE_URL}/community/clubhouse`,
@@ -338,6 +347,20 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   }));
 
   // ---------------------------------------------------------------------------
+  // Programmatic training plan pages — event × weeks-out combinations
+  // Each is a unique, SEO-targeted long-tail landing page.
+  // ---------------------------------------------------------------------------
+
+  const planPages: MetadataRoute.Sitemap = getAllPlanCombinations().map(
+    ({ event, weeksOut }) => ({
+      url: `${BASE_URL}/plan/${event}/${weeksOut}`,
+      lastModified: new Date(),
+      changeFrequency: "weekly" as const,
+      priority: 0.75,
+    }),
+  );
+
+  // ---------------------------------------------------------------------------
   // Newsletter issues — priority 0.5 (monthly content, indexed for SEO)
   // ---------------------------------------------------------------------------
 
@@ -362,6 +385,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     ...podcastPages,
     ...guestPages,
     ...topicPages,
+    ...planPages,
     ...newsletterPages,
   ];
 }
