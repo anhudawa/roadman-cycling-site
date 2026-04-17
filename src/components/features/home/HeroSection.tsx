@@ -169,10 +169,10 @@ export function HeroSection() {
             ease: [0.16, 1, 0.3, 1],
           }}
         >
-          <Button href="/podcast" size="lg">
+          <Button href="/podcast" size="lg" className="shadow-lg shadow-coral/25">
             Listen Now
           </Button>
-          <Button href="/apply" variant="ghost" size="lg">
+          <Button href="/apply" variant="ghost" size="lg" className="border-white/40 backdrop-blur-sm shadow-lg shadow-black/20">
             Apply for Coaching
           </Button>
         </motion.div>
