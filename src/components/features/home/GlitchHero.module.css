@@ -1,41 +1,46 @@
 /* =========================================================
-   GlitchHero — animated portrait background layer. No overlay
-   text; parent positions headline/CTAs above this element.
-   Pure CSS, respects prefers-reduced-motion.
+   GlitchHero — square animated portrait block.
+   Constrained to a centered square so the glitch effects stay
+   impactful at max quality. Parent (HeroSection) places text
+   and CTAs below this block, never over it.
    ========================================================= */
 
 .hero {
-  --hero-bg: #1d0838;
+  --hero-bg: #1d0838; /* matches the portrait's baked-in background */
   --glow-red: rgba(255, 61, 90, 0.45);
   --glow-purple: rgba(178, 123, 240, 0.4);
   --portrait: url("/images/hero/glitch-portrait.jpg");
 
-  /* Fills its positioned parent — HeroSection uses absolute
-     positioning on its background layer. */
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
+  /* Centred square. 92vmin keeps it from overflowing on any
+     screen shape; cap at 680px so we stay at or below the
+     portrait's native 801x801 and the glitch pixel offsets
+     (±8–16px) stay visually punchy. */
+  position: relative;
+  width: min(92vmin, 680px);
+  aspect-ratio: 1 / 1;
+  margin: 0 auto;
   background: var(--hero-bg);
   overflow: hidden;
-  isolation: isolate; /* keep mix-blend-mode contained */
-  pointer-events: none;
+  border-radius: 20px;
+  isolation: isolate;
+  box-shadow: 0 40px 100px -20px rgba(0, 0, 0, 0.55);
 }
 
-/* Shared background image — identical across portrait, shards,
-   and slices so clip-path cuts stay pixel-aligned. */
+/* Shared background image for portrait + shards + slices.
+   `cover` fills the square with the 801x801 portrait 1:1 —
+   max-quality rendering with no interpolation artefacts. */
 .portrait,
 .shard,
 .slice {
   position: absolute;
   inset: 0;
   background-image: var(--portrait);
-  background-size: contain;
+  background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
 }
 
-/* Layer 1 — ambient radial glow */
+/* Layer 1 — ambient radial glow (behind portrait) */
 .glow {
   position: absolute;
   background: radial-gradient(
@@ -45,10 +50,10 @@
     transparent 75%
   );
   filter: blur(40px);
-  width: 70%;
-  height: 70%;
-  left: 15%;
-  top: 15%;
+  width: 85%;
+  height: 85%;
+  left: 7.5%;
+  top: 7.5%;
   transform-origin: center;
   animation: glowPulse 2.4s ease-in-out infinite;
 }
@@ -64,21 +69,20 @@
   }
 }
 
-/* Layer 2 — portrait, masked to head/shoulders. In a wide hero
-   the portrait is centred and stays roughly circular because of
-   background-size: contain + the radial mask. */
+/* Layer 2 — portrait w/ radial mask.
+   Ellipse sized to hug the head/shoulders in the square crop. */
 .portrait {
   z-index: 1;
   mask-image: radial-gradient(
-    ellipse 32% 60% at center 50%,
-    #000 50%,
-    rgba(0, 0, 0, 0.85) 65%,
+    ellipse 42% 75% at center 50%,
+    #000 45%,
+    rgba(0, 0, 0, 0.85) 60%,
     transparent 95%
   );
   -webkit-mask-image: radial-gradient(
-    ellipse 32% 60% at center 50%,
-    #000 50%,
-    rgba(0, 0, 0, 0.85) 65%,
+    ellipse 42% 75% at center 50%,
+    #000 45%,
+    rgba(0, 0, 0, 0.85) 60%,
     transparent 95%
   );
   transform-origin: center;
@@ -91,7 +95,7 @@
     filter: saturate(1) brightness(1);
   }
   50% {
-    transform: scale(1.04);
+    transform: scale(1.06);
     filter: saturate(1.15) brightness(1.08);
   }
 }
@@ -100,15 +104,15 @@
 .shard {
   z-index: 2;
   mask-image: radial-gradient(
-    ellipse 32% 60% at center 50%,
-    #000 50%,
-    rgba(0, 0, 0, 0.85) 65%,
+    ellipse 42% 75% at center 50%,
+    #000 45%,
+    rgba(0, 0, 0, 0.85) 60%,
     transparent 95%
   );
   -webkit-mask-image: radial-gradient(
-    ellipse 32% 60% at center 50%,
-    #000 50%,
-    rgba(0, 0, 0, 0.85) 65%,
+    ellipse 42% 75% at center 50%,
+    #000 45%,
+    rgba(0, 0, 0, 0.85) 60%,
     transparent 95%
   );
   mix-blend-mode: screen;
@@ -177,27 +181,26 @@
   }
 }
 
-/* Layer 4 — horizontal slice strips (full-size portrait copy
-   clipped to a narrow band via clip-path, then translated X). */
+/* Layer 4 — horizontal slice strips */
 .slice {
   z-index: 3;
   mix-blend-mode: screen;
 }
 .sliceA {
   clip-path: polygon(
-    0% calc(30% - 9px),
-    100% calc(30% - 9px),
-    100% calc(30% + 9px),
-    0% calc(30% + 9px)
+    0% calc(22% - 9px),
+    100% calc(22% - 9px),
+    100% calc(22% + 9px),
+    0% calc(22% + 9px)
   );
   animation: sliceA 3s steps(1, end) infinite;
 }
 .sliceB {
   clip-path: polygon(
-    0% calc(50% - 9px),
-    100% calc(50% - 9px),
-    100% calc(50% + 9px),
-    0% calc(50% + 9px)
+    0% calc(47% - 9px),
+    100% calc(47% - 9px),
+    100% calc(47% + 9px),
+    0% calc(47% + 9px)
   );
   animation: sliceB 3s steps(1, end) infinite;
   animation-delay: 0.7s;
@@ -221,15 +224,15 @@
   }
   65% {
     transform: translateX(-14px);
-    opacity: 0.55;
+    opacity: 0.65;
   }
   75% {
     transform: translateX(16px);
-    opacity: 0.5;
+    opacity: 0.6;
   }
   85% {
     transform: translateX(-6px);
-    opacity: 0.45;
+    opacity: 0.55;
   }
   95% {
     transform: translateX(0);
@@ -245,15 +248,15 @@
   }
   65% {
     transform: translateX(16px);
-    opacity: 0.5;
+    opacity: 0.6;
   }
   75% {
     transform: translateX(-14px);
-    opacity: 0.55;
+    opacity: 0.65;
   }
   85% {
     transform: translateX(8px);
-    opacity: 0.45;
+    opacity: 0.55;
   }
   95% {
     transform: translateX(0);
@@ -269,15 +272,15 @@
   }
   65% {
     transform: translateX(-6px);
-    opacity: 0.5;
+    opacity: 0.6;
   }
   75% {
     transform: translateX(12px);
-    opacity: 0.45;
+    opacity: 0.55;
   }
   85% {
     transform: translateX(-10px);
-    opacity: 0.5;
+    opacity: 0.6;
   }
   95% {
     transform: translateX(0);
@@ -285,21 +288,19 @@
   }
 }
 
-/* Layer 5 — vignette: darker at edges to make headline read
-   cleanly over the portrait. */
+/* Layer 5 — vignette */
 .vignette {
   position: absolute;
   inset: 0;
   z-index: 4;
   background: radial-gradient(
-    ellipse 65% 80% at center 55%,
-    transparent 35%,
-    rgba(29, 8, 56, 0.75) 85%,
-    rgba(29, 8, 56, 0.95) 100%
+    ellipse 70% 80% at center 55%,
+    transparent 45%,
+    rgba(29, 8, 56, 0.55) 100%
   );
 }
 
-/* Kill all motion when the user has asked us to */
+/* Accessibility — kill motion when requested */
 @media (prefers-reduced-motion: reduce) {
   .hero *,
   .hero *::before,
