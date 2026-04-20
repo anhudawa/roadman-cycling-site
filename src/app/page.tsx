@@ -4,6 +4,7 @@ import Image from "next/image";
 import { OrganizationJsonLd, WebSiteJsonLd } from "@/components/seo/JsonLd";
 import Link from "next/link";
 import { HeroSection } from "@/components/features/home/HeroSection";
+import { getLatestEpisode } from "@/lib/podcast";
 import { StatsSection } from "@/components/features/home/StatsSection";
 import { PersonaRouter } from "@/components/features/home/PersonaRouter";
 import { PillarIcon } from "@/components/features/home/PillarIcon";
@@ -65,6 +66,7 @@ const tools = [
 ];
 
 export default function HomePage() {
+  const latestEpisode = getLatestEpisode();
   return (
     <>
       <OrganizationJsonLd />
@@ -72,8 +74,9 @@ export default function HomePage() {
       <Header />
 
       <main id="main-content">
-        {/* HERO — Animated entrance, glitch background + headline + CTAs */}
-        <HeroSection />
+        {/* HERO — podcast-first on mobile (waveform + play latest),
+            glitch portrait on desktop. APPLY is the primary CTA. */}
+        <HeroSection latestEpisode={latestEpisode} />
 
         {/* STATS — Animated counters */}
         <StatsSection />
