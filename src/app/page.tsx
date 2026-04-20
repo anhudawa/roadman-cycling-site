@@ -3,6 +3,7 @@ import { Button, Card, ScrollReveal, ParallaxImage, GradientText, GuestMarquee }
 import Image from "next/image";
 import { OrganizationJsonLd, WebSiteJsonLd } from "@/components/seo/JsonLd";
 import Link from "next/link";
+import { GlitchHero } from "@/components/features/home/GlitchHero";
 import { HeroSection } from "@/components/features/home/HeroSection";
 import { StatsSection } from "@/components/features/home/StatsSection";
 import { PersonaRouter } from "@/components/features/home/PersonaRouter";
@@ -72,7 +73,14 @@ export default function HomePage() {
       <Header />
 
       <main id="main-content">
-        {/* HERO — Animated entrance, video-ready */}
+        {/* GLITCH HERO — pure-CSS animated portrait block.
+            Sits at the very top of the page as the visual lede.
+            Scoped under .hero in GlitchHero.module.css. */}
+        <section className="bg-deep-purple pt-24 pb-10 md:pt-28 md:pb-14">
+          <GlitchHero />
+        </section>
+
+        {/* HERO — Animated entrance, video-ready. Value prop + CTAs. */}
         <HeroSection />
 
         {/* STATS — Animated counters */}

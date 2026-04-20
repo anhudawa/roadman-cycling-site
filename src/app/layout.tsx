@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Bebas_Neue, Work_Sans } from "next/font/google";
+import { Bebas_Neue, Work_Sans, Space_Grotesk, JetBrains_Mono } from "next/font/google";
 import { SmoothCursorWrapper } from "@/components/ui/SmoothCursorWrapper";
 import { PodcastPlayerShell } from "@/components/features/podcast/PodcastPlayerShell";
 import { LazyExitIntent } from "@/components/features/conversion/LazyExitIntent";
@@ -20,6 +20,22 @@ const bebasNeue = Bebas_Neue({
 
 const workSans = Work_Sans({
   variable: "--font-body",
+  subsets: ["latin"],
+  display: "swap",
+});
+
+// Fonts used by the GlitchHero on the homepage — loaded here so they
+// preload alongside the primary site fonts rather than blocking first paint.
+const spaceGrotesk = Space_Grotesk({
+  weight: ["400", "500", "600", "700"],
+  variable: "--font-space-grotesk",
+  subsets: ["latin"],
+  display: "swap",
+});
+
+const jetbrainsMono = JetBrains_Mono({
+  weight: ["400", "500", "600"],
+  variable: "--font-jetbrains-mono",
   subsets: ["latin"],
   display: "swap",
 });
@@ -93,7 +109,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${bebasNeue.variable} ${workSans.variable} dark`}
+      className={`${bebasNeue.variable} ${workSans.variable} ${spaceGrotesk.variable} ${jetbrainsMono.variable} dark`}
     >
       <head>
         {/* Preconnect to critical third-party origins */}

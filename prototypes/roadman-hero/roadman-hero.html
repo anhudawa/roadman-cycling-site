@@ -1,0 +1,509 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Roadman — Ride the signal</title>
+
+    <!-- Fonts: Space Grotesk (400-800) + JetBrains Mono (400-600) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&family=Space+Grotesk:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+
+    <style>
+      /* =========================================================
+         .roadman-hero — self-contained animated hero
+         All styles scoped under .roadman-hero so nothing leaks.
+         All motion via @keyframes, disabled with prefers-reduced-motion.
+         ========================================================= */
+
+      .roadman-hero {
+        /* Config tokens — tweak here, not inline */
+        --hero-bg: #1d0838;
+        --glow-red: rgba(255, 61, 90, 0.45);
+        --glow-purple: rgba(178, 123, 240, 0.4);
+        --accent-red: #ff3d5a;
+        --accent-purple: #b27bf0;
+        --text: #ffffff;
+        --portrait: url("roadman-portrait.jpg");
+
+        position: relative;
+        width: min(92vmin, 900px);
+        aspect-ratio: 1 / 1;
+        margin: 0 auto;
+        background: var(--hero-bg);
+        overflow: hidden;
+        border-radius: 18px; /* remove if undesired */
+        isolation: isolate; /* keep mix-blend-mode contained */
+        font-family: "Space Grotesk", system-ui, -apple-system, sans-serif;
+        color: var(--text);
+        box-shadow: 0 25px 80px -20px rgba(0, 0, 0, 0.55);
+      }
+
+      /* Shared portrait-layer styling so the portrait / shards / slices
+         all render the SAME image at the SAME size. That's essential:
+         for the slices we clip a narrow band out of a full-size copy of
+         the portrait, which only lines up if the background-size
+         matches the portrait layer exactly. */
+      .roadman-hero__portrait,
+      .roadman-hero__shard,
+      .roadman-hero__slice {
+        position: absolute;
+        inset: 0;
+        background-image: var(--portrait);
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+      }
+
+      /* Layer 1 — ambient radial glow */
+      .roadman-hero__glow {
+        position: absolute;
+        inset: 0;
+        z-index: 1;
+        pointer-events: none;
+        background: radial-gradient(
+          circle at center,
+          var(--glow-red) 0%,
+          var(--glow-purple) 45%,
+          transparent 75%
+        );
+        filter: blur(40px);
+        width: 85%;
+        height: 85%;
+        left: 7.5%;
+        top: 7.5%;
+        transform-origin: center;
+        animation: rmh-glow-pulse 2.4s ease-in-out infinite;
+      }
+      @keyframes rmh-glow-pulse {
+        0%,
+        100% {
+          transform: scale(0.9);
+          opacity: 0.6;
+        }
+        50% {
+          transform: scale(1.15);
+          opacity: 1;
+        }
+      }
+
+      /* Layer 2 — portrait, masked to head/shoulders */
+      .roadman-hero__portrait {
+        z-index: 2;
+        mask-image: radial-gradient(
+          ellipse 42% 75% at center 50%,
+          #000 45%,
+          rgba(0, 0, 0, 0.85) 60%,
+          transparent 95%
+        );
+        -webkit-mask-image: radial-gradient(
+          ellipse 42% 75% at center 50%,
+          #000 45%,
+          rgba(0, 0, 0, 0.85) 60%,
+          transparent 95%
+        );
+        transform-origin: center;
+        animation: rmh-portrait-breathe 6s ease-in-out infinite;
+      }
+      @keyframes rmh-portrait-breathe {
+        0%,
+        100% {
+          transform: scale(1);
+          filter: saturate(1) brightness(1);
+        }
+        50% {
+          transform: scale(1.06);
+          filter: saturate(1.15) brightness(1.08);
+        }
+      }
+
+      /* Layer 3 — glitch shards (red + cyan) sitting on top of the
+         portrait. Same mask so they only appear where the portrait does. */
+      .roadman-hero__shard {
+        z-index: 3;
+        mask-image: radial-gradient(
+          ellipse 42% 75% at center 50%,
+          #000 45%,
+          rgba(0, 0, 0, 0.85) 60%,
+          transparent 95%
+        );
+        -webkit-mask-image: radial-gradient(
+          ellipse 42% 75% at center 50%,
+          #000 45%,
+          rgba(0, 0, 0, 0.85) 60%,
+          transparent 95%
+        );
+        mix-blend-mode: screen;
+        pointer-events: none;
+      }
+      .roadman-hero__shard--red {
+        filter: hue-rotate(-20deg) saturate(3) brightness(1.2);
+        animation: rmh-glitch-red 2.2s steps(1, end) infinite;
+      }
+      .roadman-hero__shard--cyan {
+        filter: hue-rotate(160deg) saturate(3) brightness(1.2);
+        animation: rmh-glitch-cyan 2.2s steps(1, end) infinite;
+        animation-delay: 0.1s;
+      }
+      /* Invisible for ~88%, then four displaced snaps across last 12%.
+         Each colour follows similar displacement but mirrored + with a
+         0.1s offset via animation-delay so the chromatic aberration
+         reads as a real glitch rather than two synced copies. */
+      @keyframes rmh-glitch-red {
+        0%,
+        87% {
+          opacity: 0;
+          transform: translate(0, 0);
+        }
+        88% {
+          opacity: 0.75;
+          transform: translate(-8px, 2px);
+        }
+        91% {
+          opacity: 0.8;
+          transform: translate(10px, -3px);
+        }
+        94% {
+          opacity: 0.7;
+          transform: translate(-4px, 0);
+        }
+        97% {
+          opacity: 0.8;
+          transform: translate(6px, 4px);
+        }
+        100% {
+          opacity: 0;
+          transform: translate(0, 0);
+        }
+      }
+      @keyframes rmh-glitch-cyan {
+        0%,
+        87% {
+          opacity: 0;
+          transform: translate(0, 0);
+        }
+        88% {
+          opacity: 0.75;
+          transform: translate(8px, -2px);
+        }
+        91% {
+          opacity: 0.8;
+          transform: translate(-10px, 3px);
+        }
+        94% {
+          opacity: 0.7;
+          transform: translate(4px, 0);
+        }
+        97% {
+          opacity: 0.8;
+          transform: translate(-6px, -4px);
+        }
+        100% {
+          opacity: 0;
+          transform: translate(0, 0);
+        }
+      }
+
+      /* Layer 4 — horizontal slice strips.
+         Implementation: each strip is a FULL-size copy of the portrait
+         that's clipped to a narrow horizontal band via clip-path. That
+         keeps the image in register with the portrait layer — the slice
+         shows exactly the same pixels the portrait would at that Y
+         coordinate — while letting us translate the strip horizontally
+         for the glitch jump. */
+      .roadman-hero__slice {
+        z-index: 4;
+        mix-blend-mode: screen;
+        pointer-events: none;
+        /* each strip is clipped to an 18px-tall band at its target Y.
+           The clip-path is overridden per modifier below. */
+      }
+      .roadman-hero__slice--a {
+        /* band centred at y=22% of the hero — ~9px above / below */
+        clip-path: polygon(
+          0% calc(22% - 9px),
+          100% calc(22% - 9px),
+          100% calc(22% + 9px),
+          0% calc(22% + 9px)
+        );
+        animation: rmh-slice-a 3s steps(1, end) infinite;
+      }
+      .roadman-hero__slice--b {
+        clip-path: polygon(
+          0% calc(47% - 9px),
+          100% calc(47% - 9px),
+          100% calc(47% + 9px),
+          0% calc(47% + 9px)
+        );
+        animation: rmh-slice-b 3s steps(1, end) infinite;
+        animation-delay: 0.7s;
+      }
+      .roadman-hero__slice--c {
+        clip-path: polygon(
+          0% calc(68% - 9px),
+          100% calc(68% - 9px),
+          100% calc(68% + 9px),
+          0% calc(68% + 9px)
+        );
+        animation: rmh-slice-c 3s steps(1, end) infinite;
+        animation-delay: 1.4s;
+      }
+      @keyframes rmh-slice-a {
+        0%,
+        60%,
+        100% {
+          transform: translateX(0);
+          opacity: 0;
+        }
+        65% {
+          transform: translateX(-14px);
+          opacity: 0.65;
+        }
+        75% {
+          transform: translateX(16px);
+          opacity: 0.6;
+        }
+        85% {
+          transform: translateX(-6px);
+          opacity: 0.55;
+        }
+        95% {
+          transform: translateX(0);
+          opacity: 0;
+        }
+      }
+      @keyframes rmh-slice-b {
+        0%,
+        60%,
+        100% {
+          transform: translateX(0);
+          opacity: 0;
+        }
+        65% {
+          transform: translateX(16px);
+          opacity: 0.6;
+        }
+        75% {
+          transform: translateX(-14px);
+          opacity: 0.65;
+        }
+        85% {
+          transform: translateX(8px);
+          opacity: 0.55;
+        }
+        95% {
+          transform: translateX(0);
+          opacity: 0;
+        }
+      }
+      @keyframes rmh-slice-c {
+        0%,
+        60%,
+        100% {
+          transform: translateX(0);
+          opacity: 0;
+        }
+        65% {
+          transform: translateX(-6px);
+          opacity: 0.6;
+        }
+        75% {
+          transform: translateX(12px);
+          opacity: 0.55;
+        }
+        85% {
+          transform: translateX(-10px);
+          opacity: 0.6;
+        }
+        95% {
+          transform: translateX(0);
+          opacity: 0;
+        }
+      }
+
+      /* Layer 5 — vignette */
+      .roadman-hero__vignette {
+        position: absolute;
+        inset: 0;
+        z-index: 5;
+        pointer-events: none;
+        background: radial-gradient(
+          ellipse 70% 80% at center 55%,
+          transparent 45%,
+          rgba(29, 8, 56, 0.55) 100%
+        );
+      }
+
+      /* Overlay content — text + pulsing dot */
+      .roadman-hero__overlay {
+        position: absolute;
+        inset: 0;
+        z-index: 10;
+        pointer-events: none;
+        padding: clamp(16px, 3vmin, 28px);
+        display: grid;
+        grid-template-rows: auto 1fr auto;
+      }
+
+      .roadman-hero__live {
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        font-family: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo,
+          monospace;
+        font-size: 11px;
+        font-weight: 500;
+        letter-spacing: 0.22em;
+        text-transform: uppercase;
+        color: rgba(255, 255, 255, 0.9);
+      }
+      .roadman-hero__dot {
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+        background: var(--accent-red);
+        box-shadow: 0 0 12px var(--accent-red);
+        animation: rmh-dot-pulse 0.9s ease-in-out infinite;
+      }
+      @keyframes rmh-dot-pulse {
+        0%,
+        100% {
+          opacity: 1;
+          transform: scale(1);
+        }
+        50% {
+          opacity: 0.45;
+          transform: scale(0.7);
+        }
+      }
+
+      .roadman-hero__footer {
+        display: flex;
+        align-items: flex-end;
+        justify-content: space-between;
+        gap: 16px;
+      }
+
+      .roadman-hero__headline {
+        font-family: "Space Grotesk", sans-serif;
+        font-weight: 800;
+        font-size: clamp(28px, 5.5vmin, 54px);
+        line-height: 0.95;
+        margin: 0;
+        letter-spacing: -0.01em;
+        color: var(--text);
+        text-shadow: 0 4px 24px rgba(0, 0, 0, 0.6);
+        animation: rmh-headline-breathe 4s ease-in-out infinite;
+      }
+      .roadman-hero__headline > .accent {
+        display: block;
+        color: var(--accent-purple);
+        text-shadow: 0 0 30px rgba(178, 123, 240, 0.85),
+          0 4px 24px rgba(0, 0, 0, 0.55);
+      }
+      @keyframes rmh-headline-breathe {
+        0%,
+        100% {
+          opacity: 1;
+        }
+        50% {
+          opacity: 0.92;
+        }
+      }
+
+      .roadman-hero__brand {
+        font-family: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo,
+          monospace;
+        font-size: 11px;
+        font-weight: 500;
+        letter-spacing: 0.22em;
+        text-transform: uppercase;
+        color: rgba(255, 255, 255, 0.75);
+        text-align: right;
+      }
+
+      /* =========================================================
+         Accessibility: kill all motion when the user has asked us to
+         ========================================================= */
+      @media (prefers-reduced-motion: reduce) {
+        .roadman-hero *,
+        .roadman-hero *::before,
+        .roadman-hero *::after {
+          animation: none !important;
+          transition: none !important;
+        }
+        .roadman-hero__shard--red,
+        .roadman-hero__shard--cyan,
+        .roadman-hero__slice {
+          display: none;
+        }
+      }
+
+      /* Demo-page padding — remove when dropping .roadman-hero into the
+         live site. Everything above this block is the component itself. */
+      body {
+        margin: 0;
+        min-height: 100vh;
+        background: #0f0324;
+        display: grid;
+        place-items: center;
+        padding: 32px;
+        box-sizing: border-box;
+      }
+    </style>
+  </head>
+  <body>
+    <section class="roadman-hero" aria-label="Roadman Cycling">
+      <!-- Layers render back-to-front; z-index keeps them stacked -->
+      <div class="roadman-hero__glow" aria-hidden="true"></div>
+      <div class="roadman-hero__portrait" aria-hidden="true"></div>
+
+      <div
+        class="roadman-hero__shard roadman-hero__shard--red"
+        aria-hidden="true"
+      ></div>
+      <div
+        class="roadman-hero__shard roadman-hero__shard--cyan"
+        aria-hidden="true"
+      ></div>
+
+      <div
+        class="roadman-hero__slice roadman-hero__slice--a"
+        aria-hidden="true"
+      ></div>
+      <div
+        class="roadman-hero__slice roadman-hero__slice--b"
+        aria-hidden="true"
+      ></div>
+      <div
+        class="roadman-hero__slice roadman-hero__slice--c"
+        aria-hidden="true"
+      ></div>
+
+      <div class="roadman-hero__vignette" aria-hidden="true"></div>
+
+      <div class="roadman-hero__overlay">
+        <div>
+          <span class="roadman-hero__live">
+            <span class="roadman-hero__dot" aria-hidden="true"></span>
+            Roadman &middot; Live
+          </span>
+        </div>
+
+        <div></div><!-- grid spacer; fills the middle row -->
+
+        <div class="roadman-hero__footer">
+          <h1 class="roadman-hero__headline">
+            Ride the
+            <span class="accent">signal.</span>
+          </h1>
+          <span class="roadman-hero__brand">Roadman Cycling</span>
+        </div>
+      </div>
+    </section>
+  </body>
+</html>
