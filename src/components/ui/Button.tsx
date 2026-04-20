@@ -9,6 +9,14 @@ interface ButtonBaseProps {
   variant?: ButtonVariant;
   size?: ButtonSize;
   className?: string;
+  /**
+   * Conversion-tracking identifier. When set, the global click delegate in
+   * `src/components/analytics/Tracker.tsx` fires a `cta_click` event with
+   * `track_id = dataTrack` and the destination href. Use stable, semantic
+   * identifiers like `triathlon_pillar_apply_cta` — they feed attribution
+   * reporting.
+   */
+  dataTrack?: string;
 }
 
 interface ButtonAsButton extends ButtonBaseProps {
@@ -51,6 +59,7 @@ export function Button(props: ButtonProps) {
     variant = "primary",
     size = "md",
     className = "",
+    dataTrack,
   } = props;
 
   const baseClasses = `
@@ -63,6 +72,8 @@ export function Button(props: ButtonProps) {
     ${className}
   `;
 
+  const trackAttr = dataTrack ? { "data-track": dataTrack } : {};
+
   if ("href" in props && props.href) {
     const { href, external } = props;
     if (external) {
@@ -73,6 +84,7 @@ export function Button(props: ButtonProps) {
           rel="noopener noreferrer"
           className={baseClasses}
           style={{ transitionDuration: "var(--duration-fast)" }}
+          {...trackAttr}
         >
           {children}
         </a>
@@ -83,6 +95,7 @@ export function Button(props: ButtonProps) {
         href={href}
         className={baseClasses}
         style={{ transitionDuration: "var(--duration-fast)" }}
+        {...trackAttr}
       >
         {children}
       </Link>
@@ -97,6 +110,7 @@ export function Button(props: ButtonProps) {
       disabled={disabled}
       className={`${baseClasses} ${disabled ? "opacity-50 cursor-not-allowed" : ""}`}
       style={{ transitionDuration: "var(--duration-fast)" }}
+      {...trackAttr}
     >
       {children}
     </button>

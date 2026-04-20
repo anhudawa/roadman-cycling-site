@@ -7,11 +7,13 @@ import { Header, Footer, Section, Container } from "@/components/layout";
 import { Badge, Button } from "@/components/ui";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { getPostBySlug, getAllSlugs, getRelatedPosts } from "@/lib/blog";
+import { getEpisodeBySlug } from "@/lib/podcast";
 import { getTopicsForPost } from "@/lib/topics";
 import { EVENTS } from "@/lib/training-plans";
 import { WeeksOutSelector } from "@/components/features/plan/WeeksOutSelector";
 import { ShareButtons } from "@/components/features/blog/ShareButtons";
 import { RelatedPosts } from "@/components/features/blog/RelatedPosts";
+import { AuthorBio } from "@/components/features/blog/AuthorBio";
 import { RelatedContent } from "@/components/features/RelatedContent";
 import { InlineArticleCTA } from "@/components/features/conversion/InlineArticleCTA";
 import { EmailCapture } from "@/components/features/conversion/EmailCapture";
@@ -363,10 +365,56 @@ export default async function BlogPostPage({
               <ShareButtons title={post.title} slug={slug} />
             </div>
 
+            {/* Author bio — E-E-A-T signal + entity-link chain from every
+                blog post to /about + verified social sameAs URLs. */}
+            <AuthorBio />
+
             {/* Related Posts (blog-only) */}
             {relatedPosts.length > 0 && (
               <RelatedPosts posts={relatedPosts} className="mt-16" />
             )}
+
+            {/* Author-curated related episodes — surfaced from the
+                `relatedEpisodes` frontmatter array. Bidirectional blog↔podcast
+                link equity. Only renders when the author explicitly tagged
+                episodes for this post. */}
+            {post.relatedEpisodes && post.relatedEpisodes.length > 0 && (() => {
+              const episodes = post.relatedEpisodes
+                .map((epSlug) => getEpisodeBySlug(epSlug))
+                .filter((ep): ep is NonNullable<typeof ep> => ep !== null);
+              if (episodes.length === 0) return null;
+              return (
+                <section className="mt-16" aria-label="Related podcast episodes">
+                  <h2 className="font-heading text-2xl text-off-white mb-4 tracking-wide">
+                    RELATED PODCAST EPISODES
+                  </h2>
+                  <p className="text-sm text-foreground-muted mb-6">
+                    Hear the conversations behind this article.
+                  </p>
+                  <div className="space-y-3">
+                    {episodes.map((ep) => (
+                      <Link
+                        key={ep.slug}
+                        href={`/podcast/${ep.slug}`}
+                        className="block p-4 rounded-lg bg-white/5 hover:bg-coral/10 border border-white/5 hover:border-coral/30 transition-all group"
+                      >
+                        <p className="font-heading text-sm text-off-white group-hover:text-coral transition-colors mb-1">
+                          {ep.title}
+                        </p>
+                        {ep.guest && (
+                          <p className="text-xs text-foreground-subtle">
+                            with {ep.guest}
+                            {ep.guestCredential
+                              ? ` — ${ep.guestCredential}`
+                              : ""}
+                          </p>
+                        )}
+                      </Link>
+                    ))}
+                  </div>
+                </section>
+              );
+            })()}
 
             {/* Related Content (cross-content: blog + podcast) */}
             <RelatedContent

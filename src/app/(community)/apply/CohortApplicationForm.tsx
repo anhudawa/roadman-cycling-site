@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { getCohortState, formatCohortDate } from "@/lib/cohort";
+import { getCohortState } from "@/lib/cohort";
 
 /** RFC-5322 lite — rejects `foo@`, `@bar`, and other common fat-finger failures. */
 const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -54,14 +54,27 @@ function clearDraft() {
  * Consent-gated: only fires if the user accepted marketing cookies.
  * Silently no-ops if fbq isn't loaded yet (ad blocker, consent denied,
  * DNT etc.).
+ *
+ * Phase-aware: when on a waitlist the content_name reflects that, so
+ * we can segment ad audiences by "applied while open" vs "waitlisted"
+ * in Meta's reporting.
  */
-function trackLead(email: string, persona: string | undefined) {
+function trackLead(
+  email: string,
+  persona: string | undefined,
+  phase: "open" | "closing-today" | "waitlist",
+  cohortNumber: number,
+) {
   if (typeof window === "undefined") return;
   const fbq = (window as unknown as { fbq?: (...args: unknown[]) => void }).fbq;
   if (typeof fbq !== "function") return;
+  const contentName =
+    phase === "waitlist"
+      ? `Cohort ${cohortNumber} Waitlist`
+      : `Cohort ${cohortNumber} Application`;
   try {
     fbq("track", "Lead", {
-      content_name: "Cohort 2 Application",
+      content_name: contentName,
       content_category: "coaching",
       ...(persona ? { content_type: persona } : {}),
       value: 195,
@@ -80,6 +93,8 @@ function trackLead(email: string, persona: string | undefined) {
         event_category: "coaching",
         value: 195,
         persona,
+        phase,
+        cohort: cohortNumber,
         email_hash: email.length, // privacy-safe signal; swap for sha256 later
       });
     }
@@ -190,7 +205,12 @@ export function CohortApplicationForm() {
         persona?: string;
       };
       // Lead event (FB Pixel + GA) — attribution for ad spend
-      trackLead(trimmedEmail, data.persona);
+      trackLead(
+        trimmedEmail,
+        data.persona,
+        cohortState.phase,
+        cohortState.targetCohort,
+      );
       // Success — wipe the draft so next visit starts fresh
       clearDraft();
       setStep("submitted");
@@ -382,7 +402,7 @@ export function CohortApplicationForm() {
               </button>
               <p className="text-foreground-subtle text-xs text-center">
                 {isWaitlist
-                  ? "Cohort 3 opens in June. Waitlist members get 24-hour early access."
+                  ? `Cohort ${cohortState.targetCohort} is coming soon. Waitlist members get 24-hour early access.`
                   : "We review every application. You'll hear back within 24 hours."}
               </p>
             </div>
@@ -409,8 +429,8 @@ export function CohortApplicationForm() {
             </p>
             <p className="text-foreground-subtle text-sm">
               {isWaitlist
-                ? `Cohort 3 opens ${formatCohortDate(cohortState.nextOpens)}. You'll get 24-hour early access.`
-                : "Only 30 spots for Cohort 2. Applications close Friday."}
+                ? `Cohort ${cohortState.targetCohort} is coming soon. You'll get 24-hour early access before public launch.`
+                : `Only 30 spots for Cohort ${cohortState.currentCohort}. Apply now.`}
             </p>
           </motion.div>
         )}

@@ -42,7 +42,7 @@ export function HeroSection() {
   const textOpacity = useTransform(smoothProgress, [0, 0.6], [1, 0]);
   const bgY = useTransform(smoothProgress, [0, 1], [0, 200]);
   const auroraY = useTransform(smoothProgress, [0, 1], [0, 100]);
-  const overlayOpacity = useTransform(smoothProgress, [0, 0.5], [0.5, 0.9]);
+  const overlayOpacity = useTransform(smoothProgress, [0, 0.5], [0.2, 0.8]);
 
   useMotionValueEvent(scrollYProgress, "change", (v) => {
     setScrolled(v > 0.05);
@@ -55,25 +55,17 @@ export function HeroSection() {
     >
       {/* === LAYER 1: Deep background with parallax === */}
       <motion.div className="absolute inset-0 bg-charcoal" style={{ y: bgY }}>
-        {/* Hero portrait background — toned down so the H1 is the hero,
-            not the photo. Dropped opacity 0.4 → 0.22 and pushed the
-            object-position so the subject's face doesn't collide with
-            the headline. */}
         <Image
           src="/images/about/anthony-podcast-promo.jpg"
           alt=""
           fill
-          className="object-cover opacity-[0.22]"
-          style={{ objectPosition: "center 100%" }}
+          className="object-cover opacity-[0.6]"
+          style={{ objectPosition: "center 30%" }}
           sizes="100vw"
           priority
         />
-        {/* Top-heavy gradient: keeps the photo atmospheric while reserving
-            the upper third for the H1. */}
-        <div className="absolute inset-0 bg-gradient-to-b from-charcoal via-charcoal/70 to-transparent" />
-        {/* Radial vignette to blend edges */}
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center_top,transparent_30%,rgba(37,37,38,0.9)_75%,rgb(37,37,38)_100%)]" />
-        {/* Grain texture */}
+        <div className="absolute inset-0 bg-gradient-to-b from-charcoal/60 via-transparent to-transparent" />
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,transparent_50%,rgba(37,37,38,0.7)_85%,rgb(37,37,38)_100%)]" />
         <div className="absolute inset-0 grain-overlay" />
       </motion.div>
 
@@ -93,7 +85,7 @@ export function HeroSection() {
 
       {/* === LAYER 3: Gradient overlay (darkens on scroll) === */}
       <motion.div
-        className="absolute inset-0 bg-gradient-to-b from-deep-purple/50 via-charcoal/70 to-charcoal"
+        className="absolute inset-0 bg-gradient-to-b from-deep-purple/30 via-charcoal/50 to-charcoal"
         style={{ opacity: overlayOpacity }}
       />
 
@@ -113,17 +105,20 @@ export function HeroSection() {
           opacity: textOpacity,
         }}
       >
-        {/* Headline with clip-path reveal */}
-        <motion.h1
+        {/*
+          Headline — previously had a framer-motion clipPath reveal that
+          competed with the parent motion.div's scroll-driven transforms
+          and got stuck mid-animation on mobile (~62% clipped, H1 invisible).
+          Removed the clip-path; each child span still fades-in-and-up
+          independently for polish.
+        */}
+        <h1
           className="font-heading text-off-white leading-none mb-6"
           style={{
             fontSize: "var(--text-hero)",
             letterSpacing: "-0.02em",
             textShadow: "0 4px 30px rgba(0,0,0,0.4)",
           }}
-          initial={{ clipPath: "inset(100% 0 0 0)" }}
-          animate={{ clipPath: "inset(0% 0 0 0)" }}
-          transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
         >
           <motion.span
             className="block"
@@ -150,10 +145,11 @@ export function HeroSection() {
           >
             OUR COACHING WILL HELP.
           </motion.span>
-        </motion.h1>
+        </h1>
 
         <motion.p
-          className="font-body text-foreground-muted max-w-2xl mx-auto mb-10 text-lg md:text-xl leading-relaxed"
+          className="font-body text-off-white/80 max-w-2xl mx-auto mb-10 text-lg md:text-xl leading-relaxed"
+          style={{ textShadow: "0 2px 20px rgba(0,0,0,0.6)" }}
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{
@@ -176,10 +172,10 @@ export function HeroSection() {
             ease: [0.16, 1, 0.3, 1],
           }}
         >
-          <Button href="/podcast" size="lg">
+          <Button href="/podcast" size="lg" className="shadow-lg shadow-coral/25">
             Listen Now
           </Button>
-          <Button href="/apply" variant="ghost" size="lg">
+          <Button href="/apply" variant="ghost" size="lg" className="border-white/40 backdrop-blur-sm shadow-lg shadow-black/20">
             Apply for Coaching
           </Button>
         </motion.div>

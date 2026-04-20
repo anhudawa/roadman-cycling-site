@@ -3,6 +3,13 @@ import { Resend } from "resend";
 import { db } from "@/lib/db";
 import { contactSubmissions } from "@/lib/db/schema";
 import { upsertContact, addActivity } from "@/lib/crm/contacts";
+import { subscribeToBeehiiv } from "@/lib/integrations/beehiiv";
+import {
+  clampString,
+  escapeHtml,
+  LIMITS,
+  normaliseEmail,
+} from "@/lib/validation";
 
 const NOTIFICATION_EMAIL = "anthony@roadmancycling.com";
 
@@ -14,11 +21,27 @@ function getResend() {
 
 export async function POST(request: Request) {
   try {
-    const { name, email, subject, message } = await request.json();
+    const raw = (await request.json()) as {
+      name?: unknown;
+      email?: unknown;
+      subject?: unknown;
+      message?: unknown;
+    };
+
+    // Validate + normalise. Each helper returns null if input is
+    // missing, wrong type, empty after trim, or over the length cap.
+    const name = clampString(raw.name, LIMITS.name);
+    const email = normaliseEmail(raw.email);
+    const subject = clampString(raw.subject, LIMITS.subject);
+    const message = clampString(raw.message, LIMITS.message);
 
     if (!name || !email || !subject || !message) {
       return NextResponse.json(
-        { error: "All fields are required." },
+        {
+          error: !email
+            ? "Please enter a valid email address."
+            : "All fields are required (under length limits).",
+        },
         { status: 400 }
       );
     }
@@ -54,7 +77,19 @@ export async function POST(request: Request) {
       console.error("[Contact Form] CRM sync failed:", crmErr);
     }
 
-    // Send email notification
+    // Beehiiv sync — non-fatal, tagged contact-form so it can be
+    // segmented or suppressed in Saturday Spin campaigns.
+    subscribeToBeehiiv({
+      email,
+      name,
+      tags: ["contact-form"],
+      customFields: { last_contact_subject: subject.slice(0, 120) },
+      utm: { source: "site", medium: "contact-form", campaign: "contact-form" },
+    }).catch((err) => console.error("[Contact Form] Beehiiv sync failed:", err));
+
+    // Send notification email to Anthony (Resend). Escape user input
+    // to prevent HTML injection via contact form — even though only
+    // Anthony sees it, this is the correct posture.
     const resend = getResend();
     if (resend) {
       try {
@@ -65,12 +100,12 @@ export async function POST(request: Request) {
           subject: `[Contact Form] ${subject} — from ${name}`,
           html: `
             <h2>New Contact Form Submission</h2>
-            <p><strong>From:</strong> ${name} &lt;${email}&gt;</p>
-            <p><strong>Subject:</strong> ${subject}</p>
+            <p><strong>From:</strong> ${escapeHtml(name)} &lt;${escapeHtml(email)}&gt;</p>
+            <p><strong>Subject:</strong> ${escapeHtml(subject)}</p>
             <hr />
-            <p>${message.replace(/\n/g, "<br />")}</p>
+            <p>${escapeHtml(message).replace(/\n/g, "<br />")}</p>
             <hr />
-            <p style="color: #666; font-size: 12px;">Reply directly to this email to respond to ${name}.</p>
+            <p style="color: #666; font-size: 12px;">Reply directly to this email to respond to ${escapeHtml(name)}.</p>
           `,
         });
         console.log("[Contact Form] Email sent:", JSON.stringify(emailResult));

@@ -1,28 +1,49 @@
 "use client";
 
-import { useState, useRef, useCallback, useEffect } from "react";
+import { useState, useRef, useCallback, useMemo } from "react";
+import { segmentTranscript, type TranscriptSegment } from "@/lib/transcript";
 
 interface TranscriptViewerProps {
   transcript: string;
+  /** Optional chapter-title overrides, 1:1 aligned with the emitted segments. */
+  titles?: string[];
   className?: string;
 }
 
 /**
- * Collapsible transcript viewer with in-text search.
- * Uses <details>/<summary> for SEO — transcript text is always in the HTML.
+ * Semantic transcript renderer.
+ *
+ * The transcript is always in the DOM (inside a default-open `<details>` so
+ * users can collapse it — but it is fully indexable even when collapsed per
+ * Google's rendering model).
+ *
+ * The key SEO upgrade over the previous "wall of paragraphs" version:
+ * every transcript is split into topic-sized `<section>` blocks with
+ * `<h3 id="segment-N">` anchors, which gives each episode ~6–10 deep-linkable
+ * long-tail landing targets rather than a single flat page.
  */
 export function TranscriptViewer({
   transcript,
+  titles,
   className = "",
 }: TranscriptViewerProps) {
-  const [isOpen, setIsOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
-  const [matchCount, setMatchCount] = useState(0);
   const contentRef = useRef<HTMLDivElement>(null);
   const detailsRef = useRef<HTMLDetailsElement>(null);
 
-  // Split transcript into paragraphs (roughly every 3-4 sentences or double newline)
-  const paragraphs = formatTranscript(transcript);
+  const segments = useMemo<TranscriptSegment[]>(
+    () => segmentTranscript(transcript, { titles }),
+    [transcript, titles],
+  );
+
+  // Derive match count straight from state — no effect needed.
+  const matchCount = useMemo(() => {
+    if (!searchQuery.trim()) return 0;
+    const escaped = searchQuery.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+    const regex = new RegExp(escaped, "gi");
+    const matches = transcript.match(regex);
+    return matches?.length ?? 0;
+  }, [searchQuery, transcript]);
 
   const highlightText = useCallback(
     (text: string): React.ReactNode => {
@@ -44,33 +65,20 @@ export function TranscriptViewer({
           </mark>
         ) : (
           part
-        )
+        ),
       );
     },
-    [searchQuery]
+    [searchQuery],
   );
 
-  // Count matches when search changes
-  useEffect(() => {
-    if (!searchQuery.trim()) {
-      setMatchCount(0);
-      return;
-    }
-    const escaped = searchQuery.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
-    const regex = new RegExp(escaped, "gi");
-    const matches = transcript.match(regex);
-    setMatchCount(matches?.length ?? 0);
-  }, [searchQuery, transcript]);
-
-  const handleToggle = () => {
-    setIsOpen(!isOpen);
-  };
+  if (segments.length === 0) return null;
 
   return (
     <details
       ref={detailsRef}
+      open
       className={`group rounded-xl border border-white/5 bg-background-elevated overflow-hidden ${className}`}
-      onToggle={(e) => setIsOpen((e.target as HTMLDetailsElement).open)}
+      aria-label="Episode transcript"
     >
       <summary
         className="flex items-center justify-between gap-4 px-6 py-4 cursor-pointer select-none list-none [&::-webkit-details-marker]:hidden hover:bg-white/[0.02] transition-colors"
@@ -96,6 +104,9 @@ export function TranscriptViewer({
           <span className="font-heading text-lg text-off-white tracking-wide">
             EPISODE TRANSCRIPT
           </span>
+          <span className="text-xs text-foreground-subtle font-body tracking-widest">
+            {segments.length} SECTIONS
+          </span>
         </div>
         <svg
           viewBox="0 0 24 24"
@@ -112,6 +123,32 @@ export function TranscriptViewer({
       </summary>
 
       <div className="border-t border-white/5">
+        {/* Segment jump-links — each link targets a stable h3#segment-N anchor
+            inside the transcript. Exposes the segment structure to crawlers
+            and gives real users a fast way to skim. */}
+        <nav
+          aria-label="Transcript sections"
+          className="px-6 py-3 border-b border-white/5 bg-white/[0.01]"
+        >
+          <p className="text-xs text-foreground-subtle uppercase tracking-widest font-heading mb-2">
+            Jump to section
+          </p>
+          <ol className="flex flex-wrap gap-2">
+            {segments.map((segment) => (
+              <li key={segment.id}>
+                <a
+                  href={`#${segment.id}`}
+                  className="inline-block px-3 py-1.5 text-xs rounded-md bg-white/5 text-foreground-muted hover:bg-coral/20 hover:text-off-white transition-colors"
+                  style={{ transitionDuration: "var(--duration-fast)" }}
+                >
+                  <span className="text-coral mr-1">{segment.index}.</span>
+                  {segment.title}
+                </a>
+              </li>
+            ))}
+          </ol>
+        </nav>
+
         {/* Search bar */}
         <div className="px-6 py-3 border-b border-white/5 bg-white/[0.01]">
           <div className="relative">
@@ -163,48 +200,41 @@ export function TranscriptViewer({
           </div>
         </div>
 
-        {/* Transcript body */}
-        <div
-          ref={contentRef}
-          className="px-6 py-6 max-h-[60vh] overflow-y-auto scrollbar-thin"
-        >
-          <div className="space-y-4">
-            {paragraphs.map((paragraph, i) => (
-              <p
-                key={i}
-                className="font-body text-foreground-muted text-sm leading-relaxed"
+        {/* Transcript body — semantic sections with h3 anchors */}
+        <div ref={contentRef} className="px-6 py-6 scrollbar-thin">
+          <div
+            className="space-y-8 transcript-body"
+            data-speakable-transcript="true"
+          >
+            {segments.map((segment) => (
+              <section
+                key={segment.id}
+                id={segment.id}
+                aria-labelledby={`${segment.id}-heading`}
+                className="scroll-mt-24"
               >
-                {highlightText(paragraph)}
-              </p>
+                <h3
+                  id={`${segment.id}-heading`}
+                  className="font-heading text-base text-off-white mb-3 tracking-wide"
+                >
+                  <a
+                    href={`#${segment.id}`}
+                    className="hover:text-coral transition-colors no-underline"
+                  >
+                    <span className="text-coral mr-2" aria-hidden="true">
+                      {segment.index}.
+                    </span>
+                    {segment.title}
+                  </a>
+                </h3>
+                <p className="font-body text-foreground-muted text-sm leading-relaxed">
+                  {highlightText(segment.text)}
+                </p>
+              </section>
             ))}
           </div>
         </div>
       </div>
     </details>
   );
-}
-
-/**
- * Break a wall-of-text transcript into readable paragraphs.
- * Splits on existing double newlines, or inserts breaks roughly every 3-4 sentences.
- */
-function formatTranscript(text: string): string[] {
-  // If the text already has paragraph breaks, use them
-  const existingParagraphs = text.split(/\n\s*\n/).filter((p) => p.trim());
-  if (existingParagraphs.length > 1) {
-    return existingParagraphs.map((p) => p.trim());
-  }
-
-  // Otherwise, split single block into chunks of ~3 sentences
-  const sentences = text.match(/[^.!?]+[.!?]+\s*/g);
-  if (!sentences || sentences.length <= 3) {
-    return [text.trim()];
-  }
-
-  const paragraphs: string[] = [];
-  const chunkSize = 3;
-  for (let i = 0; i < sentences.length; i += chunkSize) {
-    paragraphs.push(sentences.slice(i, i + chunkSize).join("").trim());
-  }
-  return paragraphs;
 }

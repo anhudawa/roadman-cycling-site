@@ -11,13 +11,13 @@ import { getCohortState, type CohortPhase } from "@/lib/cohort";
  * state lib, not this component.
  *
  * Renders differently per phase:
- *   open           — "COHORT 2 IS OPEN" · countdown · APPLY
+ *   open           — "COHORT N IS OPEN" · countdown · APPLY
  *   closing-today  — "FINAL HOURS" · urgent copy · APPLY
- *   waitlist       — "COHORT 3 OPENS SOON" · 24h early access · JOIN WAITLIST
+ *   waitlist       — "COHORT N+1 COMING SOON" · 24h early access · APPLY NOW
  *
  * Dismissible — dismissal persists in localStorage per-phase, so
- * dismissing the Cohort 2 banner doesn't hide the Cohort 3 waitlist
- * banner when the site flips.
+ * dismissing an "open" banner doesn't hide the subsequent "waitlist"
+ * banner when the site flips between phases.
  *
  * Auto-hides:
  *  - on /apply (already there)

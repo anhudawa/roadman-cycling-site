@@ -89,10 +89,10 @@ export async function GET(request: Request) {
     > = {
       awaiting_response: [],
       contacted: [],
-      qualified: [],
       offered: [],
       accepted: [],
       rejected: [],
+      closed: [],
     };
     for (const r of rows) {
       const stage: ApplicationStage = isApplicationStage(r.status)

@@ -3,6 +3,7 @@ import { Button, Card, ScrollReveal, ParallaxImage, GradientText, GuestMarquee }
 import Image from "next/image";
 import { OrganizationJsonLd, WebSiteJsonLd } from "@/components/seo/JsonLd";
 import Link from "next/link";
+import { GlitchHero } from "@/components/features/home/GlitchHero";
 import { HeroSection } from "@/components/features/home/HeroSection";
 import { StatsSection } from "@/components/features/home/StatsSection";
 import { PersonaRouter } from "@/components/features/home/PersonaRouter";
@@ -72,7 +73,14 @@ export default function HomePage() {
       <Header />
 
       <main id="main-content">
-        {/* HERO — Animated entrance, video-ready */}
+        {/* GLITCH HERO — pure-CSS animated portrait block.
+            Sits at the very top of the page as the visual lede.
+            Scoped under .hero in GlitchHero.module.css. */}
+        <section className="bg-deep-purple pt-24 pb-10 md:pt-28 md:pb-14">
+          <GlitchHero />
+        </section>
+
+        {/* HERO — Animated entrance, video-ready. Value prop + CTAs. */}
         <HeroSection />
 
         {/* STATS — Animated counters */}
@@ -363,6 +371,56 @@ export default function HomePage() {
                   </Button>
                 </Card>
               </ScrollReveal>
+            </div>
+          </Container>
+        </Section>
+
+        {/* Featured content — passes homepage authority to high-value
+            blog cluster articles. These links are the single strongest
+            internal-link equity transfer on the site. */}
+        <Section background="charcoal">
+          <Container>
+            <ScrollReveal direction="up" className="text-center mb-10">
+              <h2
+                className="font-heading text-off-white mb-4"
+                style={{ fontSize: "var(--text-section)" }}
+              >
+                FEATURED GUIDES
+              </h2>
+            </ScrollReveal>
+
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-4 max-w-4xl mx-auto">
+              {[
+                {
+                  href: "/blog/age-group-ftp-benchmarks-2026",
+                  title: "Age-Group FTP Benchmarks 2026",
+                  sub: "Where your watts actually place you",
+                },
+                {
+                  href: "/blog/polarised-vs-sweet-spot-training",
+                  title: "Polarised vs Sweet Spot",
+                  sub: "What the science actually says",
+                },
+                {
+                  href: "/blog/bike-leg-of-triathlon-why-age-groupers-get-it-wrong",
+                  title: "The Bike Leg of Triathlon",
+                  sub: "Why most age-groupers get it wrong",
+                },
+              ].map((guide) => (
+                <ScrollReveal key={guide.href} direction="up">
+                  <Link
+                    href={guide.href}
+                    className="block p-6 rounded-xl bg-white/5 hover:bg-coral/10 border border-white/5 hover:border-coral/30 transition-all group text-center h-full"
+                  >
+                    <p className="font-heading text-lg text-off-white group-hover:text-coral transition-colors tracking-wide mb-2">
+                      {guide.title.toUpperCase()}
+                    </p>
+                    <p className="text-sm text-foreground-muted">
+                      {guide.sub}
+                    </p>
+                  </Link>
+                </ScrollReveal>
+              ))}
             </div>
           </Container>
         </Section>

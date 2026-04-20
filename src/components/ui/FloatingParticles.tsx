@@ -12,7 +12,11 @@ interface FloatingParticlesProps {
 /**
  * Ambient floating particles — adds depth and atmosphere.
  * Pure CSS/Framer Motion, no canvas. Lightweight.
- * Renders only after mount to avoid hydration mismatch from Math.random().
+ *
+ * Performance-safe:
+ *  - Renders nothing before mount (avoids hydration mismatch from random)
+ *  - Reduces to 8 particles on mobile (FPS-friendly)
+ *  - Renders nothing when prefers-reduced-motion is set
  */
 export function FloatingParticles({
   count = 20,
@@ -20,9 +24,15 @@ export function FloatingParticles({
   className = "",
 }: FloatingParticlesProps) {
   const [mounted, setMounted] = useState(false);
+  const [reducedMotion, setReducedMotion] = useState(false);
 
   useEffect(() => {
     setMounted(true);
+    const mq = window.matchMedia("(prefers-reduced-motion: reduce)");
+    setReducedMotion(mq.matches);
+    const handler = (e: MediaQueryListEvent) => setReducedMotion(e.matches);
+    mq.addEventListener("change", handler);
+    return () => mq.removeEventListener("change", handler);
   }, []);
 
   // Reduce particle count on mobile/low-power devices to improve FPS
@@ -44,7 +54,7 @@ export function FloatingParticles({
     }));
   }, [effectiveCount, mounted]);
 
-  if (!mounted) {
+  if (!mounted || reducedMotion) {
     return (
       <div
         className={`absolute inset-0 overflow-hidden pointer-events-none ${className}`}

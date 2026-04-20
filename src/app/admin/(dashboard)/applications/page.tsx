@@ -61,10 +61,10 @@ export default async function ApplicationsPage({ searchParams }: PageProps) {
   let initialStages: StageMap = {
     awaiting_response: [],
     contacted: [],
-    qualified: [],
     offered: [],
     accepted: [],
     rejected: [],
+    closed: [],
   };
 
   if (currentView === "kanban") {

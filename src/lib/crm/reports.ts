@@ -143,10 +143,10 @@ export async function getOwnerBreakdown(): Promise<OwnerBreakdownRow[]> {
         perStage: {
           awaiting_response: 0,
           contacted: 0,
-          qualified: 0,
           offered: 0,
           accepted: 0,
           rejected: 0,
+          closed: 0,
         },
       });
     }

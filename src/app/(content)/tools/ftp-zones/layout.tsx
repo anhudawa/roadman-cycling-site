@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { HowToSchema } from "@/components/seo/HowToSchema";
 import { JsonLd } from "@/components/seo/JsonLd";
+import { SoftwareApplicationSchema } from "@/components/seo/SoftwareApplicationSchema";
 
 export const metadata: Metadata = {
   title: "FTP Zone Calculator — Free Cycling Power Zone Tool",
@@ -20,6 +21,17 @@ export const metadata: Metadata = {
 export default function Layout({ children }: { children: React.ReactNode }) {
   return (
     <>
+      <SoftwareApplicationSchema
+        name="FTP Zone Calculator"
+        description="Calculate your 7 cycling power zones from your Functional Threshold Power (FTP) instantly. Free browser-based calculator."
+        url="https://roadmancycling.com/tools/ftp-zones"
+        features={[
+          "7-zone Coggan power zone model",
+          "Instant wattage ranges from any FTP value",
+          "Visual zone distribution chart",
+          "Copy-to-clipboard results",
+        ]}
+      />
       <HowToSchema
         name="How to Calculate FTP Training Zones"
         description="Calculate your 7 cycling power training zones from your Functional Threshold Power (FTP) value using the standard percentage-based zone model."

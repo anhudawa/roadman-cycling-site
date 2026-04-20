@@ -3,14 +3,18 @@ import { notFound } from "next/navigation";
 import { MDXRemote } from "next-mdx-remote/rsc";
 import { Header, Footer, Section, Container } from "@/components/layout";
 import { AICitationBlock, Badge, Button } from "@/components/ui";
+import { AnswerCapsule } from "@/components/ui/AnswerCapsule";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { getEpisodeBySlug, getAllEpisodeSlugs } from "@/lib/podcast";
+import { segmentTranscript } from "@/lib/transcript";
 import { PodcastLinks } from "@/components/features/podcast/PodcastLinks";
 import { TranscriptViewer } from "@/components/features/podcast/TranscriptViewer";
 import { PlayButton } from "@/components/features/podcast/PlayButton";
 import { RelatedContent } from "@/components/features/RelatedContent";
 import { RelatedEpisodes } from "@/components/features/podcast/RelatedEpisodes";
 import { EmailCapture } from "@/components/features/conversion/EmailCapture";
+import { getPostBySlug } from "@/lib/blog";
+import Link from "next/link";
 import { mdxComponents } from "@/components/mdx/MDXComponents";
 
 export async function generateStaticParams() {
@@ -81,6 +85,14 @@ export default async function EpisodePage({
   }
 
   const publishDate = new Date(episode.publishDate);
+  const episodeUrl = `https://roadmancycling.com/podcast/${slug}`;
+
+  // Segment the transcript once on the server so the schema and the
+  // TranscriptViewer render from the same segmentation — keeping schema
+  // `hasPart` anchors in sync with the actual `<h3 id>`s in the DOM.
+  const segments = episode.transcript
+    ? segmentTranscript(episode.transcript, { titles: episode.segmentTitles })
+    : [];
 
   return (
     <>
@@ -89,7 +101,7 @@ export default async function EpisodePage({
           "@context": "https://schema.org",
           "@type": "PodcastEpisode",
           name: episode.title,
-          url: `https://roadmancycling.com/podcast/${slug}`,
+          url: episodeUrl,
           description: episode.seoDescription,
           episodeNumber: episode.episodeNumber,
           datePublished: episode.publishDate,
@@ -120,16 +132,33 @@ export default async function EpisodePage({
               description: episode.guestCredential,
             },
           }),
-          /**
-           * SpeakableSpecification tells Google Assistant / Siri / smart
-           * speakers which parts of the page to read aloud in answer-style
-           * responses. The hero title + byline + episode description
-           * container are the most quotable bits.
-           */
+          // Expose the full transcript text to search + AI assistants as a
+          // first-class schema field (supported under PodcastEpisode via
+          // schema.org CreativeWork inheritance). Lets LLM crawlers ingest
+          // the episode content without needing to render the page.
+          ...(episode.transcript && { transcript: episode.transcript }),
+          // Speakable targets the same `.answer-capsule` block blog posts
+          // use, so voice search gets a consistent TL;DR across all content
+          // types. The h1 fallback ensures voice UAs always have something
+          // to read even for episodes that pre-date the capsule rollout.
           speakable: {
             "@type": "SpeakableSpecification",
-            cssSelector: ["h1", ".prose-episode p:first-of-type"],
+            cssSelector: ["h1", ".answer-capsule"],
           },
+          // Declare every transcript segment as a CreativeWork part with a
+          // fragment URL pointing at its h3 anchor. Gives Google a native
+          // route to "passage indexing" — each segment can rank independently
+          // for its specific topic.
+          ...(segments.length > 1 && {
+            hasPart: segments.map((segment) => ({
+              "@type": "CreativeWork",
+              name: segment.title,
+              url: `${episodeUrl}#${segment.id}`,
+              position: segment.index,
+              wordCount: segment.wordCount,
+              isPartOf: { "@type": "PodcastEpisode", url: episodeUrl },
+            })),
+          }),
         }}
       />
       <JsonLd
@@ -336,6 +365,19 @@ export default async function EpisodePage({
         {/* Content / Show Notes */}
         <Section background="charcoal" className="!py-12">
           <Container width="narrow">
+            {/* Answer capsule — AI-citation-optimised TL;DR of the episode.
+                Prefers the curated `answerCapsule` (60–100 words, generated
+                from the full transcript) over `seoDescription` (150-char
+                SERP snippet). Aligned with the .answer-capsule CSS selector
+                referenced by SpeakableSpecification schema. Primary AI-
+                citation target for ChatGPT / Perplexity / Claude when this
+                episode is quoted as a source. */}
+            {(episode.answerCapsule ?? episode.seoDescription) && (
+              <AnswerCapsule
+                text={episode.answerCapsule ?? episode.seoDescription}
+                pillar={episode.pillar}
+              />
+            )}
             <article className="prose-roadman prose-episode">
               <MDXRemote
                 source={episode.content}
@@ -347,6 +389,7 @@ export default async function EpisodePage({
             {episode.transcript && (
               <TranscriptViewer
                 transcript={episode.transcript}
+                titles={episode.segmentTitles}
                 className="mt-12"
               />
             )}
@@ -359,6 +402,43 @@ export default async function EpisodePage({
               source={`podcast-${slug}`}
               className="mt-16"
             />
+
+            {/* Author-curated related blog posts — explicit episode→blog
+                link equity. Populated by
+                scripts/populate-episode-related-posts.ts. */}
+            {episode.relatedPosts && episode.relatedPosts.length > 0 && (() => {
+              const posts = episode.relatedPosts
+                .map((s) => getPostBySlug(s))
+                .filter((p): p is NonNullable<typeof p> => p !== null);
+              if (posts.length === 0) return null;
+              return (
+                <section className="mt-16" aria-label="Related blog posts">
+                  <h2 className="font-heading text-2xl text-off-white mb-4 tracking-wide">
+                    READ THE GUIDE
+                  </h2>
+                  <p className="text-sm text-foreground-muted mb-6">
+                    The written companion to this episode.
+                  </p>
+                  <div className="space-y-3">
+                    {posts.map((p) => (
+                      <Link
+                        key={p.slug}
+                        href={`/blog/${p.slug}`}
+                        className="block p-4 rounded-lg bg-white/5 hover:bg-coral/10 border border-white/5 hover:border-coral/30 transition-all group"
+                      >
+                        <p className="font-heading text-sm text-off-white group-hover:text-coral transition-colors tracking-wide mb-1">
+                          {p.title}
+                        </p>
+                        <p className="text-xs text-foreground-subtle">
+                          {p.excerpt.slice(0, 140)}
+                          {p.excerpt.length > 140 ? "…" : ""}
+                        </p>
+                      </Link>
+                    ))}
+                  </div>
+                </section>
+              );
+            })()}
 
             {/* Related Episodes (podcast-only, server-rendered for SEO) */}
             <RelatedEpisodes

@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef, useState, useCallback } from "react";
+import { useEffect, useRef, useState } from "react";
 import { usePathname } from "next/navigation";
 
 const STORAGE_KEY = "roadman_cookie_consent";
@@ -116,12 +116,12 @@ function useTimeOnPage(consented: boolean) {
 // ── Tracker Component ─────────────────────────────────────
 export function Tracker() {
   const pathname = usePathname();
-  const [consented, setConsented] = useState(false);
+  // Initialise from localStorage synchronously so the first render
+  // already knows consent state (avoids a flash of no-tracking).
+  const [consented, setConsented] = useState(() => hasAnalyticsConsent());
 
-  // Check consent on mount and listen for updates
+  // Listen for runtime consent updates (cookie banner toggle).
   useEffect(() => {
-    setConsented(hasAnalyticsConsent());
-
     function onConsentUpdated(e: Event) {
       const detail = (e as CustomEvent).detail;
       setConsented(detail?.analytics === true);
@@ -152,6 +152,27 @@ export function Tracker() {
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     (window as any).__roadmanTrack = sendEvent;
   }, []);
+
+  // Global click delegate — fires a `cta_click` event for any anchor or
+  // button carrying `data-track="<event-name>"`. Lets us tag conversion
+  // CTAs on any page without wiring bespoke onClick handlers through the
+  // Button/Link components. The beacon pattern in sendEvent handles the
+  // page-navigation race (the event fires before the new page loads).
+  useEffect(() => {
+    if (!consented) return;
+    function onClick(e: MouseEvent) {
+      const target = e.target;
+      if (!(target instanceof HTMLElement)) return;
+      const trackEl = target.closest<HTMLElement>("[data-track]");
+      if (!trackEl) return;
+      const trackId = trackEl.getAttribute("data-track");
+      if (!trackId) return;
+      const href = trackEl.getAttribute("href") || "";
+      sendEvent("cta_click", { track_id: trackId, destination: href });
+    }
+    document.addEventListener("click", onClick, { capture: true });
+    return () => document.removeEventListener("click", onClick, { capture: true });
+  }, [consented]);
 
   return null;
 }
