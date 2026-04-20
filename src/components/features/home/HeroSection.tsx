@@ -81,18 +81,16 @@ export function HeroSection() {
         style={{ background: "radial-gradient(circle, rgba(255,61,90,0.3) 0%, transparent 70%)" }}
       />
 
-      <div
-        className="relative z-10 flex flex-col items-center px-5 md:px-8 pb-20 md:pb-24"
-        style={{
-          paddingTop:
-            "calc(var(--cohort-banner-height, 0px) + clamp(5rem, 10vw, 6rem))",
-        }}
-      >
+      <div className="relative z-10 flex flex-col items-center px-5 md:px-8 pt-[calc(5rem+var(--cohort-banner-height,0px))] md:pt-[calc(6rem+var(--cohort-banner-height,0px))] pb-10 md:pb-24">
         {/* ─── Brand eyebrow ─────────────────────────────────────
             Tiny, tracked-out signature. Anchors the brand before
-            the visitor has visually parsed the glitch block. */}
+            the visitor has visually parsed the glitch block.
+            Hidden on mobile — the words ("PODCAST · COMMUNITY ·
+            COACHING") look like nav items leaking out of the
+            hamburger menu when the eyebrow floats alone in a
+            mobile viewport. */}
         <motion.p
-          className="font-body text-[11px] md:text-xs tracking-[0.3em] uppercase text-coral/80 mb-6 md:mb-8"
+          className="hidden md:block font-body text-[11px] md:text-xs tracking-[0.3em] uppercase text-coral/80 mb-6 md:mb-8"
           initial={{ opacity: 0, y: 12 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7, delay: 0.05, ease: [0.16, 1, 0.3, 1] }}
@@ -116,9 +114,11 @@ export function HeroSection() {
         </motion.div>
 
         {/* ─── Text block ─────────────────────────────────────
-            Tight spacing — visually bonded to the portrait above. */}
+            Small negative gap on mobile so the headline sits
+            in the portrait's faded bottom band (clear of the
+            face) and the primary CTA stays above the fold. */}
         <motion.div
-          className="text-center max-w-[880px] mx-auto w-full mt-10 md:mt-14"
+          className="text-center max-w-[880px] mx-auto w-full -mt-4 md:mt-14"
           style={{ y: textY, opacity: textOpacity }}
         >
           <h1
@@ -157,7 +157,7 @@ export function HeroSection() {
           </h1>
 
           <motion.p
-            className="font-body text-off-white/80 max-w-xl mx-auto mb-9 md:mb-10 text-base md:text-lg leading-relaxed"
+            className="font-body text-off-white/80 max-w-xl mx-auto mb-6 md:mb-10 text-base md:text-lg leading-relaxed"
             style={{ textShadow: "0 2px 20px rgba(0,0,0,0.6)" }}
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -172,7 +172,7 @@ export function HeroSection() {
           </motion.p>
 
           <motion.div
-            className="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4 mb-8"
+            className="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4 mb-5 md:mb-8"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{

@@ -11,12 +11,13 @@
   --glow-purple: rgba(178, 123, 240, 0.4);
   --portrait: url("/images/hero/glitch-portrait.jpg");
 
-  /* Centred square. 92vmin keeps it from overflowing on any
-     screen shape; cap at 680px so we stay at or below the
-     portrait's native 801x801 and the glitch pixel offsets
-     (±8–16px) stay visually punchy. */
+  /* Centred square. Smaller on mobile (72vmin) to leave room
+     for headline + CTAs above the fold on short phones; bumps
+     up to 92vmin past the md breakpoint, capped at 680px so we
+     stay at or below the portrait's native 801×801 and the
+     glitch pixel offsets (±8–16px) stay visually punchy. */
   position: relative;
-  width: min(92vmin, 680px);
+  width: min(72vmin, 520px);
   aspect-ratio: 1 / 1;
   margin: 0 auto;
   background: var(--hero-bg);
@@ -24,6 +25,12 @@
   border-radius: 20px;
   isolation: isolate;
   box-shadow: 0 40px 100px -20px rgba(0, 0, 0, 0.55);
+}
+
+@media (min-width: 48rem) {
+  .hero {
+    width: min(92vmin, 680px);
+  }
 }
 
 /* Shared background image for portrait + shards + slices.
