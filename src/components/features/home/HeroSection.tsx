@@ -81,7 +81,13 @@ export function HeroSection() {
         style={{ background: "radial-gradient(circle, rgba(255,61,90,0.3) 0%, transparent 70%)" }}
       />
 
-      <div className="relative z-10 flex flex-col items-center px-5 md:px-8 pt-20 md:pt-24 pb-20 md:pb-24">
+      <div
+        className="relative z-10 flex flex-col items-center px-5 md:px-8 pb-20 md:pb-24"
+        style={{
+          paddingTop:
+            "calc(var(--cohort-banner-height, 0px) + clamp(5rem, 10vw, 6rem))",
+        }}
+      >
         {/* ─── Brand eyebrow ─────────────────────────────────────
             Tiny, tracked-out signature. Anchors the brand before
             the visitor has visually parsed the glitch block. */}
