@@ -8,9 +8,9 @@ import {
   useSpring,
   useMotionValueEvent,
 } from "framer-motion";
-import Image from "next/image";
 import { Button } from "@/components/ui";
 import { FloatingParticles } from "@/components/ui/FloatingParticles";
+import { GlitchHero } from "./GlitchHero";
 import { useState } from "react";
 
 /**
@@ -41,7 +41,6 @@ export function HeroSection() {
   const textY = useTransform(smoothProgress, [0, 0.5], [0, -80]);
   const textOpacity = useTransform(smoothProgress, [0, 0.6], [1, 0]);
   const bgY = useTransform(smoothProgress, [0, 1], [0, 200]);
-  const auroraY = useTransform(smoothProgress, [0, 1], [0, 100]);
   const overlayOpacity = useTransform(smoothProgress, [0, 0.5], [0.2, 0.8]);
 
   useMotionValueEvent(scrollYProgress, "change", (v) => {
@@ -53,45 +52,19 @@ export function HeroSection() {
       ref={sectionRef}
       className="relative min-h-screen md:min-h-[120vh] flex items-start justify-center overflow-hidden"
     >
-      {/* === LAYER 1: Deep background with parallax === */}
-      <motion.div className="absolute inset-0 bg-charcoal" style={{ y: bgY }}>
-        <Image
-          src="/images/about/anthony-podcast-promo.jpg"
-          alt=""
-          fill
-          className="object-cover opacity-[0.6]"
-          style={{ objectPosition: "center 30%" }}
-          sizes="100vw"
-          priority
-        />
-        <div className="absolute inset-0 bg-gradient-to-b from-charcoal/60 via-transparent to-transparent" />
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,transparent_50%,rgba(37,37,38,0.7)_85%,rgb(37,37,38)_100%)]" />
-        <div className="absolute inset-0 grain-overlay" />
+      {/* === LAYER 1: Glitch portrait background with parallax === */}
+      <motion.div className="absolute inset-0" style={{ y: bgY }}>
+        <GlitchHero />
       </motion.div>
 
-      {/* === LAYER 2: Aurora / northern-lights effect === */}
+      {/* === LAYER 2: Gradient overlay (darkens on scroll so CTAs stay legible) === */}
       <motion.div
-        className="absolute inset-0 pointer-events-none"
-        style={{ y: auroraY }}
-        aria-hidden="true"
-      >
-        {/* Primary aurora band */}
-        <div className="absolute inset-0 aurora-container">
-          <div className="aurora-band aurora-band-1" />
-          <div className="aurora-band aurora-band-2" />
-          <div className="aurora-band aurora-band-3" />
-        </div>
-      </motion.div>
-
-      {/* === LAYER 3: Gradient overlay (darkens on scroll) === */}
-      <motion.div
-        className="absolute inset-0 bg-gradient-to-b from-deep-purple/30 via-charcoal/50 to-charcoal"
+        className="absolute inset-0 bg-gradient-to-b from-transparent via-charcoal/30 to-charcoal pointer-events-none"
         style={{ opacity: overlayOpacity }}
       />
 
-      {/* === LAYER 4: Floating particles (two layers for depth) === */}
-      <FloatingParticles count={25} color="rgba(241, 99, 99, 0.12)" />
-      <FloatingParticles count={10} color="rgba(76, 18, 115, 0.15)" />
+      {/* === LAYER 3: Ambient particles (kept minimal so they don't compete with the glitch) === */}
+      <FloatingParticles count={12} color="rgba(241, 99, 99, 0.1)" />
 
       {/* === LAYER 5: Content with scroll-driven scaling ===
           Reduced top padding so the H1 lands in the upper third of the

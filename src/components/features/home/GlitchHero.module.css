@@ -1,39 +1,36 @@
 /* =========================================================
-   GlitchHero — self-contained animated hero block.
-   Pure CSS, all motion via @keyframes, respects prefers-reduced-motion.
+   GlitchHero — animated portrait background layer. No overlay
+   text; parent positions headline/CTAs above this element.
+   Pure CSS, respects prefers-reduced-motion.
    ========================================================= */
 
 .hero {
   --hero-bg: #1d0838;
   --glow-red: rgba(255, 61, 90, 0.45);
   --glow-purple: rgba(178, 123, 240, 0.4);
-  --accent-red: #ff3d5a;
-  --accent-purple: #b27bf0;
-  --text: #ffffff;
   --portrait: url("/images/hero/glitch-portrait.jpg");
 
-  position: relative;
-  width: min(92vmin, 900px);
-  aspect-ratio: 1 / 1;
-  margin: 0 auto;
+  /* Fills its positioned parent — HeroSection uses absolute
+     positioning on its background layer. */
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
   background: var(--hero-bg);
   overflow: hidden;
-  border-radius: 18px;
   isolation: isolate; /* keep mix-blend-mode contained */
-  color: var(--text);
-  box-shadow: 0 25px 80px -20px rgba(0, 0, 0, 0.55);
+  pointer-events: none;
 }
 
-/* Shared portrait-layer styling — identical background across portrait,
-   shards, and slices so clip-path cuts of the portrait align pixel-perfect
-   with the main portrait layer. */
+/* Shared background image — identical across portrait, shards,
+   and slices so clip-path cuts stay pixel-aligned. */
 .portrait,
 .shard,
 .slice {
   position: absolute;
   inset: 0;
   background-image: var(--portrait);
-  background-size: cover;
+  background-size: contain;
   background-position: center;
   background-repeat: no-repeat;
 }
@@ -41,8 +38,6 @@
 /* Layer 1 — ambient radial glow */
 .glow {
   position: absolute;
-  z-index: 1;
-  pointer-events: none;
   background: radial-gradient(
     circle at center,
     var(--glow-red) 0%,
@@ -50,10 +45,10 @@
     transparent 75%
   );
   filter: blur(40px);
-  width: 85%;
-  height: 85%;
-  left: 7.5%;
-  top: 7.5%;
+  width: 70%;
+  height: 70%;
+  left: 15%;
+  top: 15%;
   transform-origin: center;
   animation: glowPulse 2.4s ease-in-out infinite;
 }
@@ -69,19 +64,21 @@
   }
 }
 
-/* Layer 2 — portrait, masked to head/shoulders */
+/* Layer 2 — portrait, masked to head/shoulders. In a wide hero
+   the portrait is centred and stays roughly circular because of
+   background-size: contain + the radial mask. */
 .portrait {
-  z-index: 2;
+  z-index: 1;
   mask-image: radial-gradient(
-    ellipse 42% 75% at center 50%,
-    #000 45%,
-    rgba(0, 0, 0, 0.85) 60%,
+    ellipse 32% 60% at center 50%,
+    #000 50%,
+    rgba(0, 0, 0, 0.85) 65%,
     transparent 95%
   );
   -webkit-mask-image: radial-gradient(
-    ellipse 42% 75% at center 50%,
-    #000 45%,
-    rgba(0, 0, 0, 0.85) 60%,
+    ellipse 32% 60% at center 50%,
+    #000 50%,
+    rgba(0, 0, 0, 0.85) 65%,
     transparent 95%
   );
   transform-origin: center;
@@ -94,28 +91,27 @@
     filter: saturate(1) brightness(1);
   }
   50% {
-    transform: scale(1.06);
+    transform: scale(1.04);
     filter: saturate(1.15) brightness(1.08);
   }
 }
 
-/* Layer 3 — glitch shards (red + cyan) */
+/* Layer 3 — glitch shards */
 .shard {
-  z-index: 3;
+  z-index: 2;
   mask-image: radial-gradient(
-    ellipse 42% 75% at center 50%,
-    #000 45%,
-    rgba(0, 0, 0, 0.85) 60%,
+    ellipse 32% 60% at center 50%,
+    #000 50%,
+    rgba(0, 0, 0, 0.85) 65%,
     transparent 95%
   );
   -webkit-mask-image: radial-gradient(
-    ellipse 42% 75% at center 50%,
-    #000 45%,
-    rgba(0, 0, 0, 0.85) 60%,
+    ellipse 32% 60% at center 50%,
+    #000 50%,
+    rgba(0, 0, 0, 0.85) 65%,
     transparent 95%
   );
   mix-blend-mode: screen;
-  pointer-events: none;
 }
 .shardRed {
   filter: hue-rotate(-20deg) saturate(3) brightness(1.2);
@@ -181,30 +177,27 @@
   }
 }
 
-/* Layer 4 — horizontal slice strips.
-   Full-size portrait copy clipped to a narrow band via clip-path, so the
-   band stays pixel-aligned with the main portrait layer while the strip
-   translates horizontally for the glitch jump. */
+/* Layer 4 — horizontal slice strips (full-size portrait copy
+   clipped to a narrow band via clip-path, then translated X). */
 .slice {
-  z-index: 4;
+  z-index: 3;
   mix-blend-mode: screen;
-  pointer-events: none;
 }
 .sliceA {
   clip-path: polygon(
-    0% calc(22% - 9px),
-    100% calc(22% - 9px),
-    100% calc(22% + 9px),
-    0% calc(22% + 9px)
+    0% calc(30% - 9px),
+    100% calc(30% - 9px),
+    100% calc(30% + 9px),
+    0% calc(30% + 9px)
   );
   animation: sliceA 3s steps(1, end) infinite;
 }
 .sliceB {
   clip-path: polygon(
-    0% calc(47% - 9px),
-    100% calc(47% - 9px),
-    100% calc(47% + 9px),
-    0% calc(47% + 9px)
+    0% calc(50% - 9px),
+    100% calc(50% - 9px),
+    100% calc(50% + 9px),
+    0% calc(50% + 9px)
   );
   animation: sliceB 3s steps(1, end) infinite;
   animation-delay: 0.7s;
@@ -228,15 +221,15 @@
   }
   65% {
     transform: translateX(-14px);
-    opacity: 0.65;
+    opacity: 0.55;
   }
   75% {
     transform: translateX(16px);
-    opacity: 0.6;
+    opacity: 0.5;
   }
   85% {
     transform: translateX(-6px);
-    opacity: 0.55;
+    opacity: 0.45;
   }
   95% {
     transform: translateX(0);
@@ -252,15 +245,15 @@
   }
   65% {
     transform: translateX(16px);
-    opacity: 0.6;
+    opacity: 0.5;
   }
   75% {
     transform: translateX(-14px);
-    opacity: 0.65;
+    opacity: 0.55;
   }
   85% {
     transform: translateX(8px);
-    opacity: 0.55;
+    opacity: 0.45;
   }
   95% {
     transform: translateX(0);
@@ -276,15 +269,15 @@
   }
   65% {
     transform: translateX(-6px);
-    opacity: 0.6;
+    opacity: 0.5;
   }
   75% {
     transform: translateX(12px);
-    opacity: 0.55;
+    opacity: 0.45;
   }
   85% {
     transform: translateX(-10px);
-    opacity: 0.6;
+    opacity: 0.5;
   }
   95% {
     transform: translateX(0);
@@ -292,105 +285,18 @@
   }
 }
 
-/* Layer 5 — vignette */
+/* Layer 5 — vignette: darker at edges to make headline read
+   cleanly over the portrait. */
 .vignette {
   position: absolute;
   inset: 0;
-  z-index: 5;
-  pointer-events: none;
+  z-index: 4;
   background: radial-gradient(
-    ellipse 70% 80% at center 55%,
-    transparent 45%,
-    rgba(29, 8, 56, 0.55) 100%
+    ellipse 65% 80% at center 55%,
+    transparent 35%,
+    rgba(29, 8, 56, 0.75) 85%,
+    rgba(29, 8, 56, 0.95) 100%
   );
-}
-
-/* Overlay content */
-.overlay {
-  position: absolute;
-  inset: 0;
-  z-index: 10;
-  pointer-events: none;
-  padding: clamp(16px, 3vmin, 28px);
-  display: grid;
-  grid-template-rows: auto 1fr auto;
-}
-
-.live {
-  display: inline-flex;
-  align-items: center;
-  gap: 10px;
-  font-family: var(--font-jetbrains-mono), ui-monospace, SFMono-Regular, Menlo, monospace;
-  font-size: 11px;
-  font-weight: 500;
-  letter-spacing: 0.22em;
-  text-transform: uppercase;
-  color: rgba(255, 255, 255, 0.9);
-}
-.dot {
-  width: 8px;
-  height: 8px;
-  border-radius: 50%;
-  background: var(--accent-red);
-  box-shadow: 0 0 12px var(--accent-red);
-  animation: dotPulse 0.9s ease-in-out infinite;
-}
-@keyframes dotPulse {
-  0%,
-  100% {
-    opacity: 1;
-    transform: scale(1);
-  }
-  50% {
-    opacity: 0.45;
-    transform: scale(0.7);
-  }
-}
-
-.footer {
-  display: flex;
-  align-items: flex-end;
-  justify-content: space-between;
-  gap: 16px;
-}
-
-.headline {
-  /* Space Grotesk tops out at 700 on Google Fonts — spec originally
-     called for 800, treat 700 as the max available weight. */
-  font-family: var(--font-space-grotesk), system-ui, -apple-system, sans-serif;
-  font-weight: 700;
-  font-size: clamp(28px, 5.5vmin, 54px);
-  line-height: 0.95;
-  margin: 0;
-  letter-spacing: -0.01em;
-  color: var(--text);
-  text-shadow: 0 4px 24px rgba(0, 0, 0, 0.6);
-  animation: headlineBreathe 4s ease-in-out infinite;
-}
-.accent {
-  display: block;
-  color: var(--accent-purple);
-  text-shadow: 0 0 30px rgba(178, 123, 240, 0.85),
-    0 4px 24px rgba(0, 0, 0, 0.55);
-}
-@keyframes headlineBreathe {
-  0%,
-  100% {
-    opacity: 1;
-  }
-  50% {
-    opacity: 0.92;
-  }
-}
-
-.brand {
-  font-family: var(--font-jetbrains-mono), ui-monospace, SFMono-Regular, Menlo, monospace;
-  font-size: 11px;
-  font-weight: 500;
-  letter-spacing: 0.22em;
-  text-transform: uppercase;
-  color: rgba(255, 255, 255, 0.75);
-  text-align: right;
 }
 
 /* Kill all motion when the user has asked us to */
