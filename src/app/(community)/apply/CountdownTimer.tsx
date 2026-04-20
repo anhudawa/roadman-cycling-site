@@ -1,11 +1,20 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { getCohortState } from "@/lib/cohort";
 
-const DEADLINE = new Date("2026-04-18T00:00:00+01:00"); // Midnight Friday 17th IST
-
-function getTimeLeft() {
-  const diff = DEADLINE.getTime() - Date.now();
+/**
+ * Live countdown to the current cohort's application deadline.
+ *
+ * Reads the deadline from src/lib/cohort.ts so it rolls from cohort to
+ * cohort automatically — no hardcoded dates. Renders "APPLICATIONS
+ * CLOSED" once the deadline is in the past (at which point the whole
+ * page flips to waitlist mode via getCohortState and this component
+ * stops being rendered by its parent anyway).
+ */
+function getTimeLeft(deadline: Date | null) {
+  if (!deadline) return { days: 0, hours: 0, minutes: 0, seconds: 0, expired: true };
+  const diff = deadline.getTime() - Date.now();
   if (diff <= 0) return { days: 0, hours: 0, minutes: 0, seconds: 0, expired: true };
   return {
     days: Math.floor(diff / 86400000),
@@ -17,12 +26,13 @@ function getTimeLeft() {
 }
 
 export function CountdownTimer() {
-  const [time, setTime] = useState(getTimeLeft);
+  const deadline = getCohortState().deadline;
+  const [time, setTime] = useState(() => getTimeLeft(deadline));
 
   useEffect(() => {
-    const id = setInterval(() => setTime(getTimeLeft()), 1000);
+    const id = setInterval(() => setTime(getTimeLeft(deadline)), 1000);
     return () => clearInterval(id);
-  }, []);
+  }, [deadline]);
 
   if (time.expired) {
     return (

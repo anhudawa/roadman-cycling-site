@@ -4,6 +4,7 @@ import Link from "next/link";
 import { useState, useEffect, useCallback } from "react";
 import { usePathname } from "next/navigation";
 import { EmailCapture } from "./EmailCapture";
+import { getCohortState } from "@/lib/cohort";
 
 /**
  * Paths where an exiting visitor is MORE likely to be a lukewarm
@@ -35,6 +36,8 @@ export function ExitIntentPopup() {
   const [dismissed, setDismissed] = useState(false);
   const pathname = usePathname();
   const showCoachingVariant = isCoachingIntent(pathname);
+  const cohortState = getCohortState();
+  const isWaitlist = cohortState.phase === "waitlist";
 
   const triggerPopup = useCallback(() => {
     // Don't show if already dismissed or already showing
@@ -148,13 +151,24 @@ export function ExitIntentPopup() {
               </h2>
               <p className="text-foreground-muted leading-relaxed max-w-sm mx-auto">
                 {showCoachingVariant ? (
-                  <>
-                    Cohort 2 is open, and the 7-day trial is{" "}
-                    <span className="text-off-white font-medium">
-                      risk-free
-                    </span>
-                    . Apply today, Anthony replies personally within 48 hours.
-                  </>
+                  isWaitlist ? (
+                    <>
+                      Cohort 3 is coming soon. Apply now to join the waitlist
+                      and get{" "}
+                      <span className="text-off-white font-medium">
+                        24-hour early access
+                      </span>{" "}
+                      before public launch — plus a personal reply from Anthony.
+                    </>
+                  ) : (
+                    <>
+                      Applications are open and the 7-day trial is{" "}
+                      <span className="text-off-white font-medium">
+                        risk-free
+                      </span>
+                      . Apply today, Anthony replies personally within 48 hours.
+                    </>
+                  )
                 ) : (
                   <>
                     Join 29,000+ cyclists getting{" "}
@@ -176,7 +190,9 @@ export function ExitIntentPopup() {
                   className="w-full inline-flex items-center justify-center px-8 py-4 rounded-md bg-coral hover:bg-coral-hover text-off-white font-heading tracking-wider text-lg transition-colors"
                   style={{ transitionDuration: "var(--duration-fast)" }}
                 >
-                  APPLY — 7-DAY FREE TRIAL
+                  {isWaitlist
+                    ? "APPLY NOW — JOIN THE WAITLIST"
+                    : "APPLY — 7-DAY FREE TRIAL"}
                 </Link>
                 <button
                   onClick={handleDismiss}
@@ -197,7 +213,9 @@ export function ExitIntentPopup() {
 
             <p className="text-center text-foreground-subtle text-xs mt-4">
               {showCoachingVariant
-                ? "Cancel anytime inside the 7-day trial — no charge."
+                ? isWaitlist
+                  ? "Waitlist members get first dibs when Cohort 3 opens."
+                  : "Cancel anytime inside the 7-day trial — no charge."
                 : "One email per week. Unsubscribe anytime."}
             </p>
           </div>

@@ -88,7 +88,7 @@ html {
   scroll-behavior: smooth;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  /* Default height reserved for the Cohort 2 banner. CohortBanner.tsx
+  /* Default height reserved for the cohort banner. CohortBanner.tsx
      updates this on mount to 0px when the banner is dismissed, past
      deadline, or on /apply and /admin pages. */
   --cohort-banner-height: 40px;

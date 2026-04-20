@@ -32,13 +32,13 @@ export interface CohortState {
   submissionTag: string;
   /** UI strings — keep editorial copy in one place so we don't drift. */
   banner: {
-    eyebrow: string;        // "COHORT 2 IS OPEN" / "COHORT 3 OPENS SOON"
+    eyebrow: string;        // "COHORT 2 IS OPEN" / "COHORT 3 COMING SOON"
     detail: string;          // "30 places · 7-day free trial"
-    cta: string;            // "APPLY" / "JOIN WAITLIST"
+    cta: string;            // "APPLY" / "APPLY NOW"
     ctaHref: string;        // "/apply"
   };
   form: {
-    kicker: string;         // "APPLY NOW" / "JOIN THE COHORT 3 WAITLIST"
+    kicker: string;         // "APPLY NOW" / "APPLY NOW — JOIN THE WAITLIST"
     subheading: string;     // pricing + trial line OR waitlist promise
     buttonText: string;     // "APPLY FOR YOUR SPOT" / "JOIN THE WAITLIST"
     submittedHeadline: string;
@@ -129,19 +129,19 @@ function cohort3Waitlist(): CohortState {
     nextStarts: COHORT_3_STARTS,
     submissionTag: "cohort-3-waitlist",
     banner: {
-      eyebrow: "COHORT 3 OPENS SOON",
-      detail: "Join the waitlist · 24h early access",
-      cta: "JOIN WAITLIST",
+      eyebrow: "COHORT 3 COMING SOON",
+      detail: "Apply now to join the waitlist · 24-hour early access",
+      cta: "APPLY NOW",
       ctaHref: "/apply",
     },
     form: {
-      kicker: "JOIN THE COHORT 3 WAITLIST",
+      kicker: "APPLY NOW — JOIN THE WAITLIST",
       subheading:
-        "Cohort 3 opens in June. Waitlist members get 24-hour early access + a heads-up before public launch.",
+        "Cohort 3 is coming soon. Apply now to secure your spot on the waitlist — members get 24-hour early access before public launch.",
       buttonText: "JOIN THE WAITLIST",
       submittedHeadline: "YOU'RE ON THE LIST",
       submittedBody:
-        "You'll get 24-hour early access when Cohort 3 opens. We'll also drop in with a weekly update on what's happening inside Cohort 2.",
+        "You'll get 24-hour early access when Cohort 3 opens. In the meantime we'll drop in with weekly updates on what's working inside the current cohort.",
     },
   };
 }

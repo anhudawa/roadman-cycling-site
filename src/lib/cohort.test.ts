@@ -39,8 +39,11 @@ describe("getCohortState", () => {
     expect(state.currentCohort).toBe(3);
     expect(state.targetCohort).toBe(3);
     expect(state.submissionTag).toBe("cohort-3-waitlist");
-    expect(state.banner.eyebrow).toBe("COHORT 3 OPENS SOON");
-    expect(state.banner.cta).toBe("JOIN WAITLIST");
+    expect(state.banner.eyebrow).toBe("COHORT 3 COMING SOON");
+    // CTA uses "apply now" framing to match the user-facing marketing line
+    // even though the action is joining the waitlist — keeps the primary
+    // verb consistent between phases.
+    expect(state.banner.cta).toBe("APPLY NOW");
   });
 
   it("stays in 'waitlist' indefinitely after Cohort 2 close", () => {

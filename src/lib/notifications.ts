@@ -323,6 +323,14 @@ export async function notifyCohortApplication(data: {
   frustration: string;
   persona: string;
 }) {
+  // Lazy import to avoid a circular dep between notifications.ts and
+  // src/lib/cohort.ts (both imported from several API routes).
+  const { getCohortState } = await import("@/lib/cohort");
+  const state = getCohortState();
+  const isWaitlist = state.phase === "waitlist";
+  const cohortLabel = `Cohort ${state.targetCohort}`;
+  const typeLabel = isWaitlist ? "WAITLIST SIGNUP" : "APPLICATION";
+
   const personaLabels: Record<string, string> = {
     plateau: "Plateau",
     "event-prep": "Event Prep",
@@ -331,7 +339,7 @@ export async function notifyCohortApplication(data: {
   };
 
   const html = emailWrapper(
-    "NEW COHORT 2 APPLICATION",
+    `NEW ${cohortLabel.toUpperCase()} ${typeLabel}`,
     new Date().toLocaleDateString("en-GB", { weekday: "long", year: "numeric", month: "long", day: "numeric" }),
     table(
       row("Name", data.name) +
@@ -340,7 +348,8 @@ export async function notifyCohortApplication(data: {
       row("Hours/week", data.hours) +
       row("FTP", data.ftp || "Not provided") +
       row("Frustration", data.frustration) +
-      row("Persona", personaLabels[data.persona] ?? data.persona)
+      row("Persona", personaLabels[data.persona] ?? data.persona) +
+      row("Phase", state.phase)
     ) +
     `<p style="margin-top: 16px;">
       <a href="https://roadmancycling.com/admin/applications" style="color: #F16363; text-decoration: underline;">
@@ -349,9 +358,13 @@ export async function notifyCohortApplication(data: {
     </p>`,
   );
 
+  const subjectPrefix = isWaitlist
+    ? `${cohortLabel} Waitlist`
+    : `${cohortLabel} Application`;
+
   return sendEmail({
     to: RECIPIENTS.anthony,
-    subject: `Cohort 2 Application: ${data.name}`,
+    subject: `${subjectPrefix}: ${data.name}`,
     html,
     replyTo: data.email,
   });
