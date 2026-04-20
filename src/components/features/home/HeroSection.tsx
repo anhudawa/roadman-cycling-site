@@ -1,6 +1,7 @@
 "use client";
 
-import { useRef } from "react";
+import { useRef, useState } from "react";
+import Link from "next/link";
 import {
   motion,
   useScroll,
@@ -10,29 +11,31 @@ import {
 } from "framer-motion";
 import { Button } from "@/components/ui";
 import { GlitchHero } from "./GlitchHero";
-import { useState } from "react";
+import { PodcastHero } from "./PodcastHero";
+import type { EpisodeMeta } from "@/lib/podcast";
+
+interface HeroSectionProps {
+  latestEpisode: EpisodeMeta | null;
+}
 
 /**
- * Homepage hero. Vertically-stacked composition:
+ * Homepage hero.
  *
- *   [ brand eyebrow ]
- *   [ glitch portrait — 680px square, centred ]
- *   [ headline ]
- *   [ subtext ]
- *   [ primary + ghost CTAs ]
- *   [ quiet proof line ]
+ * Mobile (`<md`): podcast-first layout — headline + animated
+ * waveform + latest-episode strip + "PLAY LATEST EPISODE" as
+ * the primary coral CTA. Lead with the product 1M listeners/
+ * month actually consume; APPLY is a quiet secondary link.
  *
- * On desktop the portrait stays below its native 801×801 source so
- * quality is preserved, with deep-purple negative space on the
- * left and right. Text never overlaps the face. Section background
- * is #1d0838 to match the portrait's baked-in background so the
- * neg space is seamless at the portrait edge.
+ * Desktop (`md+`): glitch portrait hero. Portrait is now
+ * hard-rectangle (no rounded corners, no shadow, no ambient
+ * blobs) — the glitch is the brand, stop dressing it up. CTA
+ * hierarchy flipped so APPLY (the paid funnel) gets the solid
+ * coral button and Listen is secondary.
  *
- * Gentle parallax on the portrait (down) + fade on the text block
- * (away) gives the hero a cinematic exit as the user scrolls into
- * the stats/pillar sections below.
+ * Gentle parallax on the portrait (down) + fade on the text
+ * block (away) gives the hero a cinematic exit on desktop.
  */
-export function HeroSection() {
+export function HeroSection({ latestEpisode }: HeroSectionProps) {
   const sectionRef = useRef<HTMLElement>(null);
   const [scrolled, setScrolled] = useState(false);
 
@@ -61,36 +64,25 @@ export function HeroSection() {
       className="relative overflow-hidden"
       style={{ background: "#1d0838" }}
     >
-      {/* Top-edge coral seam — tiny accent that ties the hero to the
-          Roadman brand palette and catches the eye on first paint */}
+      {/* Top-edge coral seam */}
       <div
         aria-hidden="true"
         className="absolute top-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-coral/70 to-transparent"
       />
 
-      {/* Soft ambient blobs left + right to break up the flat
-          negative space on wide desktops. Purely decorative. */}
-      <div
-        aria-hidden="true"
-        className="pointer-events-none absolute top-[20%] left-[-10%] w-[520px] h-[520px] rounded-full blur-[120px] opacity-40"
-        style={{ background: "radial-gradient(circle, rgba(178,123,240,0.35) 0%, transparent 70%)" }}
-      />
-      <div
-        aria-hidden="true"
-        className="pointer-events-none absolute bottom-[15%] right-[-10%] w-[480px] h-[480px] rounded-full blur-[120px] opacity-35"
-        style={{ background: "radial-gradient(circle, rgba(255,61,90,0.3) 0%, transparent 70%)" }}
-      />
+      {/* ─── MOBILE: podcast-first hero ───────────────────── */}
+      <div className="md:hidden relative z-10 flex flex-col items-center px-5 pt-[calc(5rem+var(--cohort-banner-height,0px))] pb-12">
+        <PodcastHero
+          episode={latestEpisode}
+          ctaHref="/apply"
+          ctaLabel="Apply for coaching"
+        />
+      </div>
 
-      <div className="relative z-10 flex flex-col items-center px-5 md:px-8 pt-[calc(5rem+var(--cohort-banner-height,0px))] md:pt-[calc(6rem+var(--cohort-banner-height,0px))] pb-10 md:pb-24">
-        {/* ─── Brand eyebrow ─────────────────────────────────────
-            Tiny, tracked-out signature. Anchors the brand before
-            the visitor has visually parsed the glitch block.
-            Hidden on mobile — the words ("PODCAST · COMMUNITY ·
-            COACHING") look like nav items leaking out of the
-            hamburger menu when the eyebrow floats alone in a
-            mobile viewport. */}
+      {/* ─── DESKTOP: glitch portrait hero ────────────────── */}
+      <div className="hidden md:flex relative z-10 flex-col items-center px-8 pt-[calc(6rem+var(--cohort-banner-height,0px))] pb-24">
         <motion.p
-          className="hidden md:block font-body text-[11px] md:text-xs tracking-[0.3em] uppercase text-coral/80 mb-6 md:mb-8"
+          className="font-body text-xs tracking-[0.3em] uppercase text-coral/80 mb-8"
           initial={{ opacity: 0, y: 12 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7, delay: 0.05, ease: [0.16, 1, 0.3, 1] }}
@@ -102,7 +94,6 @@ export function HeroSection() {
           <span>COACHING</span>
         </motion.p>
 
-        {/* ─── Glitch portrait block ────────────────────────── */}
         <motion.div
           className="w-full flex justify-center"
           style={{ y: portraitY }}
@@ -113,16 +104,12 @@ export function HeroSection() {
           <GlitchHero />
         </motion.div>
 
-        {/* ─── Text block ─────────────────────────────────────
-            Small negative gap on mobile so the headline sits
-            in the portrait's faded bottom band (clear of the
-            face) and the primary CTA stays above the fold. */}
         <motion.div
-          className="text-center max-w-[880px] mx-auto w-full -mt-4 md:mt-14"
+          className="text-center max-w-[880px] mx-auto w-full mt-14"
           style={{ y: textY, opacity: textOpacity }}
         >
           <h1
-            className="font-heading text-off-white leading-[0.95] mb-5 md:mb-6"
+            className="font-heading text-off-white leading-[0.95] mb-6"
             style={{
               fontSize: "var(--text-hero)",
               letterSpacing: "-0.02em",
@@ -133,11 +120,7 @@ export function HeroSection() {
               className="block"
               initial={{ opacity: 0, y: 40 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{
-                duration: 0.9,
-                delay: 0.2,
-                ease: [0.16, 1, 0.3, 1],
-              }}
+              transition={{ duration: 0.9, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
             >
               CYCLING IS HARD,
             </motion.span>
@@ -146,63 +129,49 @@ export function HeroSection() {
               style={{ fontSize: "0.88em" }}
               initial={{ opacity: 0, y: 40 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{
-                duration: 0.9,
-                delay: 0.38,
-                ease: [0.16, 1, 0.3, 1],
-              }}
+              transition={{ duration: 0.9, delay: 0.38, ease: [0.16, 1, 0.3, 1] }}
             >
               OUR COACHING WILL HELP.
             </motion.span>
           </h1>
 
           <motion.p
-            className="font-body text-off-white/80 max-w-xl mx-auto mb-6 md:mb-10 text-base md:text-lg leading-relaxed"
+            className="font-body text-off-white/80 max-w-xl mx-auto mb-10 text-lg leading-relaxed"
             style={{ textShadow: "0 2px 20px rgba(0,0,0,0.6)" }}
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{
-              duration: 0.8,
-              delay: 0.55,
-              ease: [0.16, 1, 0.3, 1],
-            }}
+            transition={{ duration: 0.8, delay: 0.55, ease: [0.16, 1, 0.3, 1] }}
           >
             The podcast trusted by 1 million monthly listeners. The community
             where serious cyclists stop guessing and start getting faster.
           </motion.p>
 
+          {/* CTA hierarchy: APPLY is the business goal, so it gets
+              the solid coral button. Listen is the ghost. */}
           <motion.div
-            className="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4 mb-5 md:mb-8"
+            className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-8"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{
-              duration: 0.8,
-              delay: 0.72,
-              ease: [0.16, 1, 0.3, 1],
-            }}
+            transition={{ duration: 0.8, delay: 0.72, ease: [0.16, 1, 0.3, 1] }}
           >
             <Button
-              href="/podcast"
+              href="/apply"
               size="lg"
               className="shadow-[0_12px_40px_-8px_rgba(241,99,99,0.55)] hover:shadow-[0_16px_50px_-6px_rgba(241,99,99,0.7)] transition-shadow"
             >
-              Listen Now
-            </Button>
-            <Button
-              href="/apply"
-              variant="ghost"
-              size="lg"
-              className="border-white/40 backdrop-blur-sm shadow-lg shadow-black/20"
-            >
               Apply for Coaching
             </Button>
+            <Link
+              href={latestEpisode ? `/podcast/${latestEpisode.slug}` : "/podcast"}
+              className="font-heading text-sm tracking-[0.18em] uppercase text-off-white/75 hover:text-coral transition-colors py-3 px-2"
+              style={{ transitionDuration: "var(--duration-fast)" }}
+            >
+              Or listen to the podcast <span aria-hidden="true">→</span>
+            </Link>
           </motion.div>
 
-          {/* ─── Quiet proof line ───────────────────────────
-              Small trust signals under the CTAs. Uses JetBrains
-              Mono so it reads as metadata / data, not marketing. */}
           <motion.p
-            className="text-[11px] md:text-xs tracking-[0.18em] uppercase text-off-white/45"
+            className="text-xs tracking-[0.18em] uppercase text-off-white/45"
             style={{ fontFamily: "var(--font-jetbrains-mono), ui-monospace, monospace" }}
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
@@ -217,8 +186,7 @@ export function HeroSection() {
         </motion.div>
       </div>
 
-      {/* Bottom fade — smooths the transition into the StatsSection
-          below so the hero doesn't feel like a hard-edged box. */}
+      {/* Bottom fade into the StatsSection */}
       <div
         aria-hidden="true"
         className="absolute bottom-0 inset-x-0 h-24 pointer-events-none"

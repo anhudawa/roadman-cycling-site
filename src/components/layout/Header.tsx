@@ -13,6 +13,11 @@ import { SearchTrigger } from "@/components/features/search/SearchTrigger";
  * Pages where we show APPLY (high-intent CTA) instead of JOIN FREE
  * in the header. These are revenue-adjacent pages where leakage to the
  * free community is costing conversions.
+ *
+ * The homepage is included — it's the site's highest-traffic surface
+ * and the podcast-first hero already routes curious listeners via
+ * PLAY LATEST EPISODE, so the header CTA is reserved for the paid
+ * funnel.
  */
 const REVENUE_PATH_PREFIXES = [
   "/coaching",
@@ -23,6 +28,7 @@ const REVENUE_PATH_PREFIXES = [
 
 function shouldShowApplyCta(pathname: string | null): boolean {
   if (!pathname) return false;
+  if (pathname === "/") return true;
   return REVENUE_PATH_PREFIXES.some(
     (prefix) => pathname === prefix || pathname.startsWith(prefix + "/"),
   );

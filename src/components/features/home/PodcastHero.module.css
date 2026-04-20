@@ -1,0 +1,65 @@
+/* =========================================================
+   PodcastHero — mobile-primary hero surface.
+
+   The waveform is pure CSS: a row of 32 vertical bars each
+   with its own staggered scaleY animation. No JS, no canvas
+   — serves SSR, respects prefers-reduced-motion, paints on
+   first frame. Coral-to-deep-purple gradient matches brand
+   tokens in globals.css.
+   ========================================================= */
+
+.waveform {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 3px;
+  height: 72px;
+  width: 100%;
+  max-width: 520px;
+  margin: 0 auto;
+  padding: 0 4px;
+  pointer-events: none;
+}
+
+.bar {
+  flex: 1 1 auto;
+  min-width: 3px;
+  max-width: 10px;
+  height: 100%;
+  background: linear-gradient(
+    to top,
+    var(--color-coral) 0%,
+    var(--color-coral) 40%,
+    rgba(241, 99, 99, 0.55) 100%
+  );
+  border-radius: 2px;
+  transform-origin: center;
+  animation: barPulse 1.4s ease-in-out infinite;
+}
+
+/* Stagger 32 bars across ~1.4s so the wave reads as a travelling
+   pulse rather than a uniform flash. Percentage offsets picked
+   to give an organic, asymmetric feel (not a perfect sine wave). */
+.bar:nth-child(4n)    { animation-delay: -0.05s; }
+.bar:nth-child(4n+1)  { animation-delay: -0.25s; }
+.bar:nth-child(4n+2)  { animation-delay: -0.45s; }
+.bar:nth-child(4n+3)  { animation-delay: -0.65s; }
+
+.bar:nth-child(3n)    { animation-duration: 1.15s; }
+.bar:nth-child(5n)    { animation-duration: 1.65s; }
+.bar:nth-child(7n)    { animation-duration: 1.3s; }
+
+@keyframes barPulse {
+  0%, 100% { transform: scaleY(0.45); opacity: 0.75; }
+  20%      { transform: scaleY(0.7);  opacity: 0.9; }
+  50%      { transform: scaleY(1);    opacity: 1; }
+  80%      { transform: scaleY(0.6);  opacity: 0.85; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .bar {
+    animation: none;
+    transform: scaleY(0.75);
+    opacity: 0.9;
+  }
+}

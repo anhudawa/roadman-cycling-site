@@ -86,6 +86,17 @@ export function getAllEpisodes(): EpisodeMeta[] {
   );
 }
 
+/**
+ * Latest-published episode. Used by the homepage PodcastHero to
+ * surface the newest drop as the primary hero CTA ("play latest
+ * episode"). Returns null only in the empty-library edge case so
+ * callers can fall back to a generic "Listen" CTA without erroring.
+ */
+export function getLatestEpisode(): EpisodeMeta | null {
+  const episodes = getAllEpisodes();
+  return episodes[0] ?? null;
+}
+
 export function getEpisodeBySlug(slug: string): EpisodeFull | null {
   ensurePodcastDir();
   const filePath = path.join(PODCAST_DIR, `${slug}.mdx`);
