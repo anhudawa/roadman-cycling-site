@@ -20,6 +20,7 @@ export function TedNav({ pendingCount = 0 }: { pendingCount?: number }) {
     { href: "/admin/ted/surfaces", label: "Surfaces" },
     { href: "/admin/ted/members", label: "Members" },
     { href: "/admin/ted/log", label: "Log" },
+    { href: "/admin/ted/health", label: "Health" },
     { href: "/admin/ted/settings", label: "Settings" },
   ];
 

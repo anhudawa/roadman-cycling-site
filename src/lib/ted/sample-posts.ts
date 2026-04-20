@@ -1,7 +1,6 @@
 // Seed content used by POST /api/admin/ted/seed-samples — lets an admin click
 // "Seed sample posts" on /admin/ted and immediately see drafts in their
-// approvals inbox to try out the review flow. Idempotent via the seededBy
-// marker on voice_check.
+// approvals inbox to try out the review flow. Idempotent via stable keys.
 
 export interface SamplePromptSeed {
   pillar: string;
@@ -33,6 +32,7 @@ function addDays(daysFromToday: number): string {
 }
 
 export const SAMPLE_PROMPTS: SamplePromptSeed[] = [
+  // ── Week 1 — one per pillar, sitting in the upcoming 7 days ─────────────
   {
     pillar: "monday",
     scheduledFor: addDays(1),
@@ -112,6 +112,71 @@ What did you ride? And what did you learn?
 
 — Ted`,
   },
+
+  // ── Week 2 — second option per pillar so the reviewer can compare voices ──
+  {
+    pillar: "monday",
+    scheduledFor: addDays(8),
+    body: `Coaching question — serious one.
+
+Would you rather coach your former self at 25, or your current self?
+
+Different info, different stubbornness, different stakes. Stephen Seiler told Anthony that the hardest thing about coaching isn't the programme. It's the person.
+
+What would you do differently if you had your old self in front of you?
+
+— Ted`,
+  },
+  {
+    pillar: "tuesday",
+    scheduledFor: addDays(9),
+    body: `Ran a fasted ride on Saturday and bonked at hour two.
+
+Knew better. Did it anyway.
+
+The "train low" idea has been mangled beyond recognition at amateur level. Wakefield is pretty clear — it's a pro-level tool, not a weekend habit.
+
+When did fasted riding actually work for you? When did it backfire?
+
+— Ted`,
+  },
+  {
+    pillar: "wednesday",
+    scheduledFor: addDays(10),
+    body: `Back pain on the bike is almost never a back problem.
+
+It's a hip problem. Or a glute that's switched off. Or a saddle position that forces you to round through the lumbar to breathe.
+
+Most fit-ups fix the saddle and ignore the muscle work that should have happened years earlier.
+
+What did it take for you to fix yours?
+
+— Ted`,
+  },
+  {
+    pillar: "thursday",
+    scheduledFor: addDays(11),
+    body: `HRV is the most misused number in amateur training.
+
+Joe Friel's take — a single-day score tells you almost nothing. The trend over two weeks is the only thing worth looking at.
+
+Does your HRV actually change what you do? Or is it a vibe check before a hard session?
+
+— Ted`,
+  },
+  {
+    pillar: "friday",
+    scheduledFor: addDays(12),
+    body: `First real ride in the rain. First time your hands stopped working.
+
+Those are the rides you remember ten years later.
+
+I've still got the jersey I wore on one of them. Smells like the wash that got stuck in a drawer. Absolutely precious.
+
+What's the ride that stuck?
+
+— Ted`,
+  },
 ];
 
 export const SAMPLE_WELCOMES: SampleWelcomeSeed[] = [
@@ -136,6 +201,30 @@ People will pile in. That's how this place works.
 Saw the note about time off the bike. Loads of folks in here have done the same trip. Some still in it. Some out the other side.
 
 Drop a line with where you're riding now and what you're working back up to. They'll come in with the stuff they wish they'd known.
+
+— Ted`,
+  },
+  {
+    memberEmail: "sample-priya@example.com",
+    firstName: "Priya",
+    persona: "plateau",
+    draftBody: `Welcome in, Priya. Good to have you.
+
+Saw the note — stuck at the same level for a while. You're in good company, more in here are plateaued than will admit it.
+
+Drop a reply with where you're riding, what you've tried, and what hasn't moved. There's usually someone here who's been where you are.
+
+— Ted`,
+  },
+  {
+    memberEmail: "sample-matthew@example.com",
+    firstName: "Matthew",
+    persona: "event-prep",
+    draftBody: `Matthew, welcome.
+
+Event coming up on the calendar. Few folks in here prepping for the same kind of day — some still in the block, some just back from theirs.
+
+Reply with the event, when it is, and where the training's at. People will share what worked and what they'd do differently.
 
 — Ted`,
   },
@@ -177,6 +266,32 @@ export const SAMPLE_SURFACES: SampleSurfaceSeed[] = [
     body: `Good thread for anyone lurking. Three takes so far: the 80/20 crowd saying more base always wins; the time-crunched group defending 6-hour weeks if intensity is right; one vote for "just do what keeps you riding."
 
 What's the fourth?
+
+— Ted`,
+  },
+  {
+    skoolPostId: "sample-thread-bonk",
+    threadUrl: "https://www.skool.com/roadman/sample-bonk-thread",
+    threadAuthor: "Darragh",
+    threadTitle: "Bonked on my long ride AGAIN — what am I missing?",
+    threadBody:
+      "Third Saturday in a row. 3-hour ride, started feeling rough at two hours, crawled home. Eating a banana and a bar on the way out. What's happening?",
+    surfaceType: "summary",
+    body: `Good one for anyone skimming. Four takes already: ate too little at the start; started too fast; didn't practice fuelling in training; sleep debt before the ride.
+
+What's the angle nobody's said yet?
+
+— Ted`,
+  },
+  {
+    skoolPostId: "sample-thread-deload",
+    threadUrl: "https://www.skool.com/roadman/sample-deload-thread",
+    threadAuthor: "Kate",
+    threadTitle: "Is a deload week actually necessary every 4 weeks?",
+    threadBody:
+      "Programme says deload every 4. I feel fine. Skipping it this cycle — talk me out of it if I'm being stupid.",
+    surfaceType: "tag",
+    body: `@Darragh you tested the skip-a-deload experiment last summer and wrote it up. Might be worth saying how it went.
 
 — Ted`,
   },
