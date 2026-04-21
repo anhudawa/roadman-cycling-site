@@ -4,6 +4,7 @@ import { Header, Footer, Section, Container } from "@/components/layout";
 import { Button, Card, ScrollReveal } from "@/components/ui";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { EVENTS, PHASES } from "@/lib/training-plans";
+import { getAllPosts } from "@/lib/blog";
 
 export const metadata: Metadata = {
   title: "Cycling Training Plans by Event and Weeks Out",
@@ -189,6 +190,55 @@ export default function PlanIndexPage() {
             </div>
           </Container>
         </Section>
+
+        {/* Related training articles */}
+        {(() => {
+          const PLAN_BLOG_SLUGS = [
+            "how-to-structure-cycling-training-plan",
+            "polarised-vs-sweet-spot-training",
+            "time-crunched-cyclist-8-hours-week",
+            "gran-fondo-training-plan-12-weeks",
+            "how-to-periodise-cycling-season",
+            "steady-state-vs-interval-training-cycling",
+            "zone-2-vs-endurance-training",
+            "zwift-vs-trainerroad",
+          ];
+          const posts = getAllPosts().filter((p) => PLAN_BLOG_SLUGS.includes(p.slug));
+          if (posts.length === 0) return null;
+          return (
+            <Section background="charcoal">
+              <Container>
+                <ScrollReveal direction="up" className="mb-10 text-center">
+                  <p className="font-heading text-coral text-xs tracking-widest mb-3">
+                    FROM THE BLOG
+                  </p>
+                  <h2
+                    className="font-heading text-off-white"
+                    style={{ fontSize: "var(--text-section)" }}
+                  >
+                    TRAINING GUIDES
+                  </h2>
+                </ScrollReveal>
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 max-w-6xl mx-auto">
+                  {posts.slice(0, 8).map((post, i) => (
+                    <ScrollReveal key={post.slug} direction="up" delay={i * 0.04}>
+                      <Link href={`/blog/${post.slug}`} className="block h-full">
+                        <Card hoverable className="h-full p-5">
+                          <p className="font-heading text-off-white text-sm leading-tight mb-2">
+                            {post.title}
+                          </p>
+                          <p className="text-foreground-muted text-xs leading-relaxed line-clamp-3">
+                            {post.excerpt}
+                          </p>
+                        </Card>
+                      </Link>
+                    </ScrollReveal>
+                  ))}
+                </div>
+              </Container>
+            </Section>
+          );
+        })()}
 
         {/* Coaching CTA */}
         <Section background="charcoal" className="section-glow-coral !py-14">
