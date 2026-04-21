@@ -35,16 +35,25 @@ export default function PodcastPage() {
           description:
             "The podcast trusted by 1M+ monthly listeners. Expert cycling interviews with world-class coaches, scientists, and pro riders.",
           url: "https://roadmancycling.com/podcast",
-          webFeed: "https://roadmancycling.com/podcast",
+          webFeed: "https://roadmancycling.com/feed/podcast",
           author: {
             "@type": "Person",
             name: "Anthony Walsh",
+            url: "https://roadmancycling.com/about",
           },
           publisher: {
             "@type": "Organization",
             name: "Roadman Cycling",
             url: "https://roadmancycling.com",
           },
+          inLanguage: "en",
+          genre: "Sports",
+          numberOfEpisodes: episodes.length,
+          sameAs: [
+            "https://open.spotify.com/show/2oCs3N4ahypwzzUrFqgUmC",
+            "https://podcasts.apple.com/us/podcast/the-roadman-cycling-podcast/id1224143549",
+            "https://youtube.com/@theroadmanpodcast",
+          ],
         }}
       />
       <JsonLd
