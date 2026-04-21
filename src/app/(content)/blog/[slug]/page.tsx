@@ -21,6 +21,17 @@ import { TableOfContents } from "@/components/features/blog/TableOfContents";
 import { AnswerCapsule } from "@/components/ui/AnswerCapsule";
 import { mdxComponents } from "@/components/mdx/MDXComponents";
 
+/**
+ * Slugs that render their hero from the Satori generator at
+ * /api/og/blog-hero instead of their (reused, generic) featuredImage.
+ * Used for the "show me one real preview" phase — keeping this
+ * explicit so rollout is one slug at a time until the template is
+ * signed off.
+ */
+const SATORI_HERO_PREVIEW_SLUGS: ReadonlySet<string> = new Set([
+  "age-group-ftp-benchmarks-2026",
+]);
+
 export async function generateStaticParams() {
   return getAllSlugs().map((slug) => ({ slug }));
 }
@@ -245,19 +256,33 @@ export default async function BlogPostPage({
           </Container>
         </Section>
 
-        {/* Featured Image */}
-        {post.featuredImage && (
-          <div className="w-full max-h-[480px] overflow-hidden relative aspect-[21/9]">
-            <Image
-              src={post.featuredImage}
-              alt={post.title}
-              fill
-              priority
-              sizes="100vw"
-              className="object-cover"
-            />
-          </div>
-        )}
+        {/* Featured Image — either the curated post image or, for
+            preview-enrolled slugs, the Satori-generated hero. */}
+        {(() => {
+          const useSatoriHero = SATORI_HERO_PREVIEW_SLUGS.has(slug);
+          const heroSrc = useSatoriHero
+            ? `/api/og/blog-hero?slug=${encodeURIComponent(slug)}`
+            : post.featuredImage;
+
+          if (!heroSrc) return null;
+
+          return (
+            <div className="w-full max-h-[480px] overflow-hidden relative aspect-[21/9]">
+              <Image
+                src={heroSrc}
+                alt={post.title}
+                fill
+                priority
+                sizes="100vw"
+                className="object-cover"
+                // Satori route returns an already-optimised PNG with
+                // its own long cache. Skip Next's image optimiser for
+                // that path so we don't double-encode.
+                unoptimized={useSatoriHero}
+              />
+            </div>
+          );
+        })()}
 
         {/* Content */}
         <Section background="charcoal" className="!py-12">

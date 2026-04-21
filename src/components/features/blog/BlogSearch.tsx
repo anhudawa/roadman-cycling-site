@@ -10,6 +10,22 @@ import { type ContentPillar, CONTENT_PILLARS } from "@/types";
 const INITIAL_POSTS_PER_PAGE = 24;
 const FEATURED_POST_COUNT = 4;
 
+/**
+ * Slugs whose index card shows a Satori-generated hero instead of
+ * the (often-reused) featuredImage. Keep in sync with the matching
+ * set in src/app/(content)/blog/[slug]/page.tsx.
+ */
+const SATORI_HERO_PREVIEW_SLUGS: ReadonlySet<string> = new Set([
+  "age-group-ftp-benchmarks-2026",
+]);
+
+function heroSrcForCard(post: Pick<BlogSearchItem, "slug" | "featuredImage">): string | undefined {
+  if (SATORI_HERO_PREVIEW_SLUGS.has(post.slug)) {
+    return `/api/og/blog-hero?slug=${encodeURIComponent(post.slug)}`;
+  }
+  return post.featuredImage;
+}
+
 interface BlogSearchItem {
   slug: string;
   title: string;
@@ -149,15 +165,20 @@ export function BlogSearch({ posts }: BlogSearchProps) {
                 style={{ transitionDuration: "var(--duration-normal)" }}
               >
                 <div className="aspect-[16/9] relative bg-gradient-to-br from-deep-purple to-charcoal overflow-hidden">
-                  {post.featuredImage && (
-                    <Image
-                      src={post.featuredImage}
-                      alt={post.title}
-                      fill
-                      className="object-cover group-hover:scale-105 transition-transform duration-500"
-                      sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 25vw"
-                    />
-                  )}
+                  {(() => {
+                    const src = heroSrcForCard(post);
+                    if (!src) return null;
+                    return (
+                      <Image
+                        src={src}
+                        alt={post.title}
+                        fill
+                        className="object-cover group-hover:scale-105 transition-transform duration-500"
+                        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 25vw"
+                        unoptimized={SATORI_HERO_PREVIEW_SLUGS.has(post.slug)}
+                      />
+                    );
+                  })()}
                 </div>
                 <div className="p-4">
                   <div className="flex items-center gap-2 mb-2">
@@ -296,15 +317,20 @@ export function BlogSearch({ posts }: BlogSearchProps) {
                   style={{ transitionDuration: "var(--duration-normal)" }}
                 >
                   <div className="aspect-[16/9] relative bg-gradient-to-br from-deep-purple to-charcoal overflow-hidden">
-                    {post.featuredImage && (
-                      <Image
-                        src={post.featuredImage}
-                        alt={post.title}
-                        fill
-                        className="object-cover group-hover:scale-105 transition-transform duration-500"
-                        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                      />
-                    )}
+                    {(() => {
+                      const src = heroSrcForCard(post);
+                      if (!src) return null;
+                      return (
+                        <Image
+                          src={src}
+                          alt={post.title}
+                          fill
+                          className="object-cover group-hover:scale-105 transition-transform duration-500"
+                          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                          unoptimized={SATORI_HERO_PREVIEW_SLUGS.has(post.slug)}
+                        />
+                      );
+                    })()}
                   </div>
 
                   <div className="p-6">
