@@ -102,3 +102,45 @@ export async function PATCH(
       : null,
   });
 }
+
+export async function DELETE(
+  request: Request,
+  { params }: { params: Promise<{ id: string }> }
+) {
+  let user;
+  try {
+    user = await requireAuth();
+  } catch {
+    return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+  }
+
+  const { id: idStr } = await params;
+  const id = parseInt(idStr, 10);
+  if (Number.isNaN(id)) {
+    return NextResponse.json({ error: "Invalid id" }, { status: 400 });
+  }
+
+  const [existing] = await db
+    .select()
+    .from(tasksTable)
+    .where(eq(tasksTable.id, id))
+    .limit(1);
+  if (!existing)
+    return NextResponse.json({ error: "Not found" }, { status: 404 });
+
+  // Only the assignee or the creator may delete a task. (Admins can also
+  // delete anything — kept permissive for the small internal team.)
+  const canDelete =
+    existing.assignedTo === user.slug ||
+    existing.createdBy === user.slug ||
+    user.role === "admin";
+  if (!canDelete) {
+    return NextResponse.json(
+      { error: "Not allowed" },
+      { status: 403 }
+    );
+  }
+
+  await db.delete(tasksTable).where(eq(tasksTable.id, id));
+  return NextResponse.json({ ok: true });
+}
