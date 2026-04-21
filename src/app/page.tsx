@@ -29,7 +29,7 @@ const marqueeGuests = [
   { name: "Mark Beaumont", credential: "Around the World record", href: "https://www.youtube.com/watch?v=b27wvtFa78g" },
   { name: "Colin O Brady", credential: "Solo Antarctic crossing, 10 Peaks adventurer", href: "https://www.youtube.com/watch?v=Pu8hNDM9uzU" },
   { name: "Uli Schoberer", credential: "Inventor of the SRM power meter", href: "https://www.youtube.com/watch?v=GPY7ReSpOpU" },
-  { name: "Olav Bu", credential: "Uno-X performance lead", href: "https://www.youtube.com/watch?v=t73tCc_BA2c" },
+  { name: "Olav Bu", credential: "Uno-X Mobility head coach", href: "https://www.youtube.com/watch?v=t73tCc_BA2c" },
 ];
 
 const tools = [

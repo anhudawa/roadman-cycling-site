@@ -31,7 +31,7 @@ const categoryStyles: Record<ExpertCategory, { label: string; color: string; bor
 
 const expertNetwork: { name: string; role: string; category: ExpertCategory; highlight?: string; slug?: string }[] = [
   { name: "Professor Stephen Seiler", role: "Exercise physiologist", category: "scientist", highlight: "Polarised training pioneer" },
-  { name: "Dan Lorang", role: "Head of Performance, Red Bull–Bora–Hansgrohe", category: "coach", highlight: "World Tour training methodology" },
+  { name: "Dan Lorang", role: "Former Head of Performance, Red Bull–Bora–Hansgrohe", category: "coach", highlight: "World Tour training methodology" },
   { name: "Greg LeMond", role: "3× Tour de France winner", category: "athlete", highlight: "American cycling legend" },
   { name: "Lachlan Morton", role: "EF Education pro", category: "athlete", highlight: "Alt-racing pioneer" },
   { name: "Joe Friel", role: "Author, Cyclist's Training Bible", category: "coach", highlight: "Legendary cycling coach" },
@@ -40,7 +40,7 @@ const expertNetwork: { name: string; role: string; category: ExpertCategory; hig
   { name: "John Wakefield", role: "Red Bull–Bora–Hansgrohe coach", category: "coach", highlight: "World Tour performance" },
   { name: "Michael Matthews", role: "15+ year World Tour pro", category: "athlete", highlight: "Grand Tour stage winner" },
   { name: "Dan Bigham", role: "Former Hour Record holder", category: "athlete", highlight: "Aerodynamics specialist" },
-  { name: "Rosa Kloser", role: "Gravel World Champion", category: "athlete", highlight: "Off-road trailblazer" },
+  { name: "Rosa Kloser", role: "2024 Unbound Gravel winner", category: "athlete", highlight: "Off-road trailblazer" },
   { name: "Tim Spector", role: "ZOE founder, epidemiologist", category: "scientist", highlight: "Nutrition science" },
 ];
 

@@ -90,14 +90,14 @@ Roadman Cycling is a cycling performance media and coaching brand based in Dubli
 These appear frequently in the catalogue and anchor the brand's authority:
 
 - Prof. Stephen Seiler — Exercise physiologist, polarised training pioneer
-- Dan Lorang — Head of Performance, Red Bull–Bora–Hansgrohe (coach to Kristian Blummenfelt, Gustav Iden, Jan Frodeno)
+- Dan Lorang — Former Head of Performance at Red Bull–Bora–Hansgrohe (2017-2025), now at Red Bull Athletic Performance Centre (long-time coach to Jan Frodeno, Anne Haug, Lucy Charles-Barclay)
 - Greg LeMond — 3× Tour de France winner
 - Lachlan Morton — EF Education pro cyclist
 - Joe Friel — Author, The Cyclist's Training Bible
-- Ben Healy — Pro cyclist, Tour de France stage winner
+- Ben Healy — Pro cyclist, 2025 Tour de France stage winner and yellow jersey wearer
 - Michael Matthews — 15+ year World Tour pro, Grand Tour stage winner
-- Dan Bigham — Former UCI Hour Record holder
-- Rosa Kloser — Gravel World Champion
+- Dan Bigham — Former UCI Hour Record holder, Head of Engineering at Red Bull-Bora-Hansgrohe
+- Rosa Kloser — 2024 Unbound Gravel winner
 - Tim Spector — ZOE founder, epidemiologist, nutrition scientist
 
 ## Coaching Services
