@@ -25,11 +25,11 @@ const footerColumns = {
   learn: {
     title: "Learn",
     links: [
+      { label: "Start Here", href: "/start-here" },
       { label: "Blog", href: "/blog" },
       { label: "Topic Hubs", href: "/topics" },
+      { label: "Training Plans", href: "/plan" },
       { label: "Newsletter", href: "/newsletter" },
-      { label: "Tyre Pressure Calculator", href: "/tools/tyre-pressure" },
-      { label: "FTP Zone Calculator", href: "/tools/ftp-zones" },
       { label: "All Tools", href: "/tools" },
     ],
   },
@@ -57,6 +57,7 @@ const footerColumns = {
     title: "About",
     links: [
       { label: "About Roadman", href: "/about" },
+      { label: "Press & Media", href: "/about/press" },
       { label: "Partners", href: "/partners" },
       { label: "Contact", href: "/contact" },
     ],
