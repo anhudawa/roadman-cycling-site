@@ -10,7 +10,7 @@ import { desc, eq, inArray } from "drizzle-orm";
 import { requireAuth } from "@/lib/admin/auth";
 import { safeQuery, anyNeedsMigration } from "@/lib/ted/safe-db";
 import { MigrationBanner } from "./_components/MigrationBanner";
-import { SeedSamplesButton } from "./_components/SeedSamplesButton";
+import { GenerateDraftPanel } from "./_components/GenerateDraftPanel";
 import { ApprovalsInbox } from "./approvals/_components/ApprovalsInbox";
 import type { ApprovalItem } from "./approvals/_components/types";
 
@@ -201,7 +201,7 @@ export default async function TedDashboardPage() {
         )}
       </section>
 
-      <SeedSamplesButton />
+      <GenerateDraftPanel />
     </div>
   );
 }
