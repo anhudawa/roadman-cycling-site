@@ -65,6 +65,16 @@ export default function StrengthTrainingPage() {
       <JsonLd
         data={{
           "@context": "https://schema.org",
+          "@type": "BreadcrumbList",
+          itemListElement: [
+            { "@type": "ListItem", position: 1, name: "Home", item: "https://roadmancycling.com" },
+            { "@type": "ListItem", position: 2, name: "Strength Training", item: "https://roadmancycling.com/strength-training" },
+          ],
+        }}
+      />
+      <JsonLd
+        data={{
+          "@context": "https://schema.org",
           "@type": "Product",
           name: "Roadman Strength & Conditioning Plan",
           description:
