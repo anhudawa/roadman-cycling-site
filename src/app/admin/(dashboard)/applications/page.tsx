@@ -125,22 +125,22 @@ export default async function ApplicationsPage({ searchParams }: PageProps) {
 
   return (
     <div className="p-6">
-      <div className="flex items-center justify-between mb-6 gap-4 flex-wrap">
-        <div>
-          <h1 className="font-heading text-2xl text-off-white tracking-wider uppercase">
+      <div className="flex items-end justify-between mb-5 gap-4 flex-wrap">
+        <div className="min-w-0">
+          <h1 className="font-heading text-2xl sm:text-3xl text-off-white tracking-wider uppercase leading-none">
             Submissions
           </h1>
-          <p className="text-foreground-muted text-sm mt-1">
+          <p className="text-foreground-muted text-sm mt-1.5">
             {currentView === "kanban"
-              ? `${totalCount} /apply submission${totalCount === 1 ? "" : "s"} in pipeline`
-              : "/apply submissions — list view"}
+              ? `${totalCount} /apply submission${totalCount === 1 ? "" : "s"} · drag to reorder`
+              : "/apply submissions · list view"}
           </p>
         </div>
-        <div className="flex items-center gap-2 flex-wrap">
-          <div className="inline-flex rounded-lg border border-white/10 bg-background-elevated p-1 text-xs">
+        <div className="flex items-center gap-1.5 flex-wrap">
+          <div className="inline-flex rounded-lg border border-white/10 bg-background-elevated p-0.5 text-xs">
             <Link
               href="/admin/inbox"
-              className="px-3 py-1.5 rounded-md font-heading tracking-wider uppercase text-foreground-subtle hover:text-off-white"
+              className="px-3 py-1.5 rounded-md font-heading tracking-wider uppercase text-foreground-subtle hover:text-off-white transition-colors"
             >
               Contact forms
             </Link>
@@ -151,20 +151,20 @@ export default async function ApplicationsPage({ searchParams }: PageProps) {
               Applications
             </Link>
           </div>
-          <div className="inline-flex rounded-lg border border-white/10 bg-background-elevated p-1 text-xs">
+          <div className="inline-flex rounded-lg border border-white/10 bg-background-elevated p-0.5 text-xs">
             <Link
               href={{ pathname: "/admin/applications", query: { view: "kanban" } }}
-              className={`px-3 py-1.5 rounded-md font-heading tracking-wider uppercase transition ${
+              className={`px-3 py-1.5 rounded-md font-heading tracking-wider uppercase transition-colors ${
                 currentView === "kanban"
                   ? "bg-coral/15 text-coral"
                   : "text-foreground-subtle hover:text-off-white"
               }`}
             >
-              Kanban
+              Board
             </Link>
             <Link
               href={{ pathname: "/admin/applications", query: { view: "list" } }}
-              className={`px-3 py-1.5 rounded-md font-heading tracking-wider uppercase transition ${
+              className={`px-3 py-1.5 rounded-md font-heading tracking-wider uppercase transition-colors ${
                 currentView === "list"
                   ? "bg-coral/15 text-coral"
                   : "text-foreground-subtle hover:text-off-white"
