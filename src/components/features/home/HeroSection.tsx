@@ -103,7 +103,7 @@ export function HeroSection({ latestEpisode }: HeroSectionProps) {
           {/* ── LEFT RAIL: eyebrow + headline + CTAs ──────── */}
           <div className="lg:col-span-5 text-center lg:text-left lg:pt-8">
             <motion.p
-              className="font-body text-xs tracking-[0.3em] uppercase text-coral/80 mb-8"
+              className="font-body text-xs tracking-[0.3em] uppercase mb-8"
               initial={{ opacity: 0, y: 12 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{
@@ -112,9 +112,23 @@ export function HeroSection({ latestEpisode }: HeroSectionProps) {
                 ease: [0.16, 1, 0.3, 1],
               }}
             >
-              <span className="text-off-white/40">PODCAST</span>
-              <span className="inline-block mx-2 opacity-40">·</span>
-              <span>COACHING</span>
+              <Link
+                href="/podcast"
+                className="text-off-white/50 hover:text-off-white transition-colors"
+                style={{ transitionDuration: "var(--duration-fast)" }}
+                data-track="home_hero_eyebrow_podcast"
+              >
+                PODCAST
+              </Link>
+              <span className="inline-block mx-2 text-off-white/30">·</span>
+              <Link
+                href="/coaching"
+                className="text-coral/85 hover:text-coral transition-colors"
+                style={{ transitionDuration: "var(--duration-fast)" }}
+                data-track="home_hero_eyebrow_coaching"
+              >
+                COACHING
+              </Link>
             </motion.p>
 
             <h1
