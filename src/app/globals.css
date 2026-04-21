@@ -239,12 +239,48 @@ h1, h2, h3, h4, h5, h6 {
   line-height: 1;
   font-style: normal;
 }
-.prose-roadman a { color: var(--color-coral); text-decoration: underline; text-underline-offset: 2px; }
+.prose-roadman a { color: var(--color-coral); text-decoration: underline; text-underline-offset: 2px; overflow-wrap: anywhere; }
 .prose-roadman a:hover { color: var(--color-coral-hover); }
 .prose-roadman hr { border-color: rgba(255,255,255,0.1); margin: 2.5rem 0; }
-.prose-roadman table { width: 100%; border-collapse: collapse; margin-bottom: 1.25rem; }
+
+/* Tables — horizontal scroll on narrow viewports so wide tables
+   don't force the whole body to overflow. `display: block` turns
+   the table into a scrollable row; the inner thead/tbody still
+   render as a grid within that scroll container. */
+.prose-roadman table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 1.25rem;
+  display: block;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
 .prose-roadman th { text-align: left; padding: 0.5rem 0.75rem; border-bottom: 1px solid rgba(255,255,255,0.1); color: var(--color-off-white); font-weight: 600; font-size: 0.875rem; }
 .prose-roadman td { padding: 0.5rem 0.75rem; border-bottom: 1px solid rgba(255,255,255,0.05); color: var(--color-foreground-muted); font-size: 0.875rem; }
+
+/* Code blocks — keep inline scroll so blog posts with code or
+   long command lines don't cause the page body to scroll sideways. */
+.prose-roadman pre {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  max-width: 100%;
+}
+.prose-roadman code { word-break: break-word; }
+
+/* Break long compound words (Liège-Bastogne-Liège, Milan-Sanremo,
+   long URLs embedded in paragraphs) so they wrap inside narrow
+   mobile viewports instead of clipping at the container edge. */
+.prose-roadman p,
+.prose-roadman li,
+.prose-roadman h1,
+.prose-roadman h2,
+.prose-roadman h3,
+.prose-roadman h4,
+.prose-roadman blockquote {
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+  hyphens: auto;
+}
 
 @media (min-width: 768px) {
   .prose-roadman h2 { font-size: 1.875rem; }
