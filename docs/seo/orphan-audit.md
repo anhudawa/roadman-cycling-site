@@ -1,6 +1,6 @@
 # Orphan page audit
 
-Generated: 2026-04-17
+Generated: 2026-04-21
 
 Pages with zero incoming internal links. Google can still
 discover them via sitemap.xml, but they don't accumulate
@@ -8,45 +8,48 @@ link equity from the rest of the site.
 
 ## Summary
 
-- Blog posts total: **148**
-  - Orphans (0 inbound): **0**
-  - Weak (1 inbound): **14**
+- Blog posts total: **170**
+  - Orphans (0 inbound): **4**
+  - Weak (1 inbound): **29**
 - Episodes total: **310**
-  - Orphans (0 inbound): **192**
-  - Weak (1 inbound): **63**
+  - Orphans (0 inbound): **180**
+  - Weak (1 inbound): **67**
+
+## Orphan blog posts
+
+- [Rouvy vs Zwift: Which Virtual Cycling Platform in 2026?](/blog/rouvy-vs-zwift)
+- [I Read Every Stephen Seiler Paper I Could Get My Hands On. Here's What I Learned.](/blog/stephen-seiler-research-polarised-training-lessons)
+- [The Tactic That Ended Pogačar's Grand Slam](/blog/tactic-that-ended-pogacar-grand-slam)
+- [Wahoo vs Garmin Cycling Computers: Which One in 2026?](/blog/wahoo-vs-garmin-cycling-computers)
 
 ## Orphan episodes
 
 - [#1 Thing I Learned Riding 37 Ultra Distance Races | Roadman Podcast](/podcast/ep-1-1-thing-i-learned-riding-37-ultra-distance-races-roadman-pod)
 - [FBI’s Negotiation Secrets: Why 99% Don’t Get What They Want and How to Be the 1%" | Chris Voss](/podcast/ep-1-fbi-s-negotiation-secrets-why-99-don-t-get-what-they-want-an)
 - [Top 4 cycling questions answered - Vlog #010](/podcast/ep-10-top-4-cycling-questions-answered-vlog-010)
-- [I Asked A Pro Rider About His Training - Here's What He Said](/podcast/ep-11-i-asked-a-pro-rider-about-his-training-heres-what-he-said)
-- [Is training fasted a good idea? Vlog #011](/podcast/ep-11-is-training-fasted-a-good-idea-vlog-011)
+- [Pro Cyclist on Training Fatigue & Racing | Roadman Cycling](/podcast/ep-11-i-asked-a-pro-rider-about-his-training-heres-what-he-said)
 - [I've been selected - Vlog #013](/podcast/ep-13-ive-been-selected-vlog-013)
 - [Ultimate Cycling Tips - Your Most Common Questions Answered - Vlog #016](/podcast/ep-16-ultimate-cycling-tips-your-most-common-questions-answered-vl)
-- [My Untold Story of How Yellow Didn’t Feel Like Victory - Ben Healy](/podcast/ep-19-my-untold-story-of-how-yellow-didn-t-feel-like-victory-ben-h)
+- [Ben Healy on Tour Stage Wins and Cycling Tactics | Roadman](/podcast/ep-19-my-untold-story-of-how-yellow-didn-t-feel-like-victory-ben-h)
 - [Racing in an Irish Jersey - Vlog #019](/podcast/ep-19-racing-in-an-irish-jersey-vlog-019)
-- [Cycling’s Black Market Is Out of Control](/podcast/ep-2-cycling-s-black-market-is-out-of-control)
+- [Fake Frames & Dirty Supplements | Roadman Cycling Podcast](/podcast/ep-2-cycling-s-black-market-is-out-of-control)
 - [How To Combine Zone 2 with High Intensity Training | Rider Support](/podcast/ep-2-how-to-combine-zone-2-with-high-intensity-training-rider-sup)
-- [I Asked Astana Coach About Zone 2 , Here's What He Said](/podcast/ep-2-i-asked-astana-coach-about-zone-2-heres-what-he-said)
-- [I asked World Tour Coaches About Zone 2 , Here's what They Said](/podcast/ep-2-i-asked-world-tour-coaches-about-zone-2-heres-what-they-said)
+- [Astana Coach on Zone 1 Training | Roadman Cycling Podcast](/podcast/ep-2-i-asked-astana-coach-about-zone-2-heres-what-he-said)
 - [I Tried Zone 2 Training For 3 Months, Here's What Happened | Rider Support](/podcast/ep-2-i-tried-zone-2-training-for-3-months-heres-what-happened-rid)
 - [Roadman Reacts to Attia's HORRIBLE Zone 2 Advice](/podcast/ep-2-roadman-reacts-to-attias-horrible-zone-2-advice)
 - [Secret To Zone 2 Training - Dose, Frequency & Duration](/podcast/ep-2-secret-to-zone-2-training-dose-frequency-duration)
 - [Zone training for Cyclists | Is Zone 2 Training The Best? | Rider Support](/podcast/ep-2-zone-training-for-cyclists-is-zone-2-training-the-best-rider)
 - [Are Infrared Sauna's good for athletes? - Vlog #020](/podcast/ep-20-are-infrared-saunas-good-for-athletes-vlog-020)
-- [Alex Wild Reveals His Leadville 2025 Bike Set Up](/podcast/ep-2025-alex-wild-reveals-his-leadville-2025-bike-set-up)
-- [FTP Jumped 30 Watts After This Workout](/podcast/ep-2026-ftp-jumped-30-watts-after-this-workout)
-- [They're Cheating And It's Totally Legal](/podcast/ep-2028-theyre-cheating-and-its-totally-legal)
-- [How Pas Normal Became Cycling’s Inside Joke](/podcast/ep-2033-how-pas-normal-became-cycling-s-inside-joke)
-- [How Netflix’s Unchained FAILED & Why Every Pro Hated It](/podcast/ep-2034-how-netflix-s-unchained-failed-why-every-pro-hated-it)
-- [The New Science of Getting Faster After 40](/podcast/ep-2037-the-new-science-of-getting-faster-after-40)
-- [Why Pros Train So Easy – What Amateurs Don't Know](/podcast/ep-2039-why-pros-train-so-easy-what-amateurs-dont-know)
-- [Alex Wild Reveals What Really Happened at Unbound 2025](/podcast/ep-2041-alex-wild-reveals-what-really-happened-at-unbound-2025)
-- [How Dylan Johnson Saved 13 Mins - Aero Test Revealed](/podcast/ep-2042-how-dylan-johnson-saved-13-mins-aero-test-revealed)
-- [I Tried Creatine for 30 Days – The Results Shocked Me](/podcast/ep-2043-i-tried-creatine-for-30-days-the-results-shocked-me)
+- [Leadville 100 Bike Setup & Fueling Plan | Roadman Cycling](/podcast/ep-2025-alex-wild-reveals-his-leadville-2025-bike-set-up)
+- [Heat Training for Cyclists: +30 Watts FTP | Roadman Cycling](/podcast/ep-2026-ftp-jumped-30-watts-after-this-workout)
+- [Pas Normal Studios: Cycling Brand to Fashion Label | Roadman Cycling Podcast](/podcast/ep-2033-how-pas-normal-became-cycling-s-inside-joke)
+- [Why Netflix Unchained Failed Cycling Fans | Roadman Cycling Podcast](/podcast/ep-2034-how-netflix-s-unchained-failed-why-every-pro-hated-it)
+- [Get Faster After 40: Masters Cycling Training | Roadman Cycling](/podcast/ep-2037-the-new-science-of-getting-faster-after-40)
+- [Why Your Cycling Training Has Stalled | Roadman Cycling Podcast](/podcast/ep-2039-why-pros-train-so-easy-what-amateurs-dont-know)
+- [Unbound 2025 Race Breakdown | Roadman Cycling Podcast](/podcast/ep-2041-alex-wild-reveals-what-really-happened-at-unbound-2025)
+- [Dylan Johnson's 13-Watt Wind Tunnel Test | Roadman Cycling Podcast](/podcast/ep-2042-how-dylan-johnson-saved-13-mins-aero-test-revealed)
+- [Creatine for Cyclists: 30-Day Results | Roadman Cycling](/podcast/ep-2043-i-tried-creatine-for-30-days-the-results-shocked-me)
 - [I Tried Gym And Bike For 30 Days – The Results Shocked Me](/podcast/ep-2045-i-tried-gym-and-bike-for-30-days-the-results-shocked-me)
-- [The Unbound 200 Set Up Everyone Says Will FAIL](/podcast/ep-2046-the-unbound-200-set-up-everyone-says-will-fail)
 - [The Dark Secret Behind Hidden Motors in Cycling](/podcast/ep-2047-the-dark-secret-behind-hidden-motors-in-cycling)
 - [Testosterone's Common Use In Masters Racing (SHOCKING)](/podcast/ep-2048-testosterones-common-use-in-masters-racing-shocking)
 - [Team Jayco’s Secret AI Tech – Is This the End of TrainingPeaks?](/podcast/ep-2049-team-jayco-s-secret-ai-tech-is-this-the-end-of-trainingpeaks)
@@ -57,7 +60,6 @@ link equity from the rest of the site.
 - [Alex Wild Opens Up On Power & Rivals At Sea Otter 2025](/podcast/ep-2058-alex-wild-opens-up-on-power-rivals-at-sea-otter-2025)
 - [How to Ride Faster & Get Fit in 3 Easy Steps](/podcast/ep-2059-how-to-ride-faster-get-fit-in-3-easy-steps)
 - [Dowsett's Aero Masterclass At Astana - What Amateurs Don’t Know](/podcast/ep-2060-dowsetts-aero-masterclass-at-astana-what-amateurs-don-t-know)
-- [Road Racing Is DEAD (WHAT'S REALLY GOING ON?)](/podcast/ep-2061-road-racing-is-dead-whats-really-going-on)
 - [Dylan Johnson Reveals His Weird 2025 Training Plan](/podcast/ep-2062-dylan-johnson-reveals-his-weird-2025-training-plan)
 - [Brownlee - 5  Endurance Lessons I Wish I Knew Earlier](/podcast/ep-2063-brownlee-5-endurance-lessons-i-wish-i-knew-earlier)
 - [5 Easy Fixes for Numb Hands While Cycling](/podcast/ep-2064-5-easy-fixes-for-numb-hands-while-cycling)
@@ -76,7 +78,6 @@ link equity from the rest of the site.
 - [How Cyclists Can Get Lean & Stay Lean Forever | Alex Larson](/podcast/ep-2088-how-cyclists-can-get-lean-stay-lean-forever-alex-larson)
 - [Why is EVERYONE Leaving GIRONA (WHAT'S REALLY GOING ON?)](/podcast/ep-2090-why-is-everyone-leaving-girona-whats-really-going-on)
 - [Rowe Reveals What ACTUALLY Happened Ineos  | Rider Support](/podcast/ep-2093-rowe-reveals-what-actually-happened-ineos-rider-support)
-- [Secret To Cycling Fast At A Low Heart Rate | Prof Seiler](/podcast/ep-2095-secret-to-cycling-fast-at-a-low-heart-rate-prof-seiler)
 - [Riding The World's Most Beautiful Race | Laurens Ten Dam](/podcast/ep-2097-riding-the-worlds-most-beautiful-race-laurens-ten-dam)
 - [How To Stay Safe On The Road & Tips For Urban Cycling | Rider Support](/podcast/ep-2098-how-to-stay-safe-on-the-road-tips-for-urban-cycling-rider-su)
 - [What You Didn't Know About My Kokopelli Record | Hannah Otto](/podcast/ep-2099-what-you-didnt-know-about-my-kokopelli-record-hannah-otto)
@@ -93,13 +94,9 @@ link equity from the rest of the site.
 - [Tour de France Key Stages | Rider Support](/podcast/ep-2120-tour-de-france-key-stages-rider-support)
 - [Why Cavendish Won't Break Tour de France Record | Rider Support](/podcast/ep-2122-why-cavendish-wont-break-tour-de-france-record-rider-support)
 - [The Untold Story of Cycling’s Rebirth After Armstrong | Dr Lim](/podcast/ep-2123-the-untold-story-of-cycling-s-rebirth-after-armstrong-dr-lim)
-- [World's Most Grueling Bike Race: 6 Days Nonstop | Colin O Brady](/podcast/ep-2124-worlds-most-grueling-bike-race-6-days-nonstop-colin-o-brady)
 - [Lachlan's Perfect Unbound: Tyres, Bike & Helmet | Rider Support](/podcast/ep-2125-lachlans-perfect-unbound-tyres-bike-helmet-rider-support)
-- [Dan Martin FINALLY Speaks Out: What Really Happened At Liege](/podcast/ep-2126-dan-martin-finally-speaks-out-what-really-happened-at-liege)
 - [Beers & Keegan Swenson's Insane Unbound Preparation | Matt Beers](/podcast/ep-2127-beers-keegan-swensons-insane-unbound-preparation-matt-beers)
 - [Are Cyclists Risking Their Lives For Our Entertainment? | Rider Support](/podcast/ep-2129-are-cyclists-risking-their-lives-for-our-entertainment-rider)
-- [How Cycling Can Sabotage Your Weight Loss (And The Fix)](/podcast/ep-2130-how-cycling-can-sabotage-your-weight-loss-and-the-fix)
-- [Is Pogacar Too Good To Be True? | Rider Support](/podcast/ep-2131-is-pogacar-too-good-to-be-true-rider-support)
 - [5 Things Pro Cyclists Do That YOU DON'T | Rider Support](/podcast/ep-2135-5-things-pro-cyclists-do-that-you-dont-rider-support)
 - [The Untold Story Of Frank Vandenbroucke's Life & Death | Andy McGrath](/podcast/ep-2137-the-untold-story-of-frank-vandenbrouckes-life-death-andy-mcg)
 - [Why Lemond Thinks Motor Doping Is Destroying Cycling | Rider Support](/podcast/ep-2138-why-lemond-thinks-motor-doping-is-destroying-cycling-rider-s)
@@ -143,7 +140,7 @@ link equity from the rest of the site.
 - [Jay Vine Opens Up About How LESS TRAINING Made Him Faster](/podcast/ep-2197-jay-vine-opens-up-about-how-less-training-made-him-faster)
 - [Weight Loss Simplified (Meal Tips for Busy Cyclists) | Rdmn Podcast Clips](/podcast/ep-2198-weight-loss-simplified-meal-tips-for-busy-cyclists-rdmn-podc)
 - [What Jonas Knows About 1x Drivetrains That Others Don't | Rdmn Podcast Clips](/podcast/ep-2199-what-jonas-knows-about-1x-drivetrains-that-others-dont-rdmn)
-- [I Asked A Pro Mechanic About His Most HATED Products](/podcast/ep-22-i-asked-a-pro-mechanic-about-his-most-hated-products)
+- [Pro Mechanic's Most Hated Products | Roadman Cycling Podcast](/podcast/ep-22-i-asked-a-pro-mechanic-about-his-most-hated-products)
 - [Is Strength Training Essential For Cycling? | Rdmn Podcast Clips](/podcast/ep-2201-is-strength-training-essential-for-cycling-rdmn-podcast-clip)
 - [Brompton's CEO Urges: Bike NOW, Before We're Out of Time | Roadman Podcast](/podcast/ep-2203-bromptons-ceo-urges-bike-now-before-were-out-of-time-roadman)
 - [Pro Cyclist's Terrifying London Bike Heist | RDMN Podcast Clips](/podcast/ep-2204-pro-cyclists-terrifying-london-bike-heist-rdmn-podcast-clips)
@@ -186,44 +183,57 @@ link equity from the rest of the site.
 - [The best coffee shop in Majorca](/podcast/ep-2253-the-best-coffee-shop-in-majorca)
 - [Garmin 820 Review](/podcast/ep-2254-garmin-820-review)
 - [Garmin 1000 review](/podcast/ep-2255-garmin-1000-review)
-- [How Wahoo Became Garmin’s Worst Nightmare (& What It Means For Cycling)](/podcast/ep-23-how-wahoo-became-garmin-s-worst-nightmare-what-it-means-for)
-- [I Asked A 40 Year Old Amateur How He Beat Pogacar?](/podcast/ep-24-i-asked-a-40-year-old-amateur-how-he-beat-pogacar)
-- [The Dark Secret Behind Cycling’s Legal Drug Problem](/podcast/ep-25-the-dark-secret-behind-cycling-s-legal-drug-problem)
-- [Untold Story OfJonas Abrahamsen's Pro Winter Training](/podcast/ep-29-untold-story-ofjonas-abrahamsens-pro-winter-training)
-- [How To Run As A Cyclist (Mistakes To Avoid)](/podcast/ep-3-how-to-run-as-a-cyclist-mistakes-to-avoid)
-- [Is Losing Weight Actually Making You Slower?](/podcast/ep-3-is-losing-weight-actually-making-you-slower)
+- [How an Amateur Beat Pogačar | Roadman Cycling Podcast](/podcast/ep-24-i-asked-a-40-year-old-amateur-how-he-beat-pogacar)
+- [Cycling's Painkiller Problem | Roadman Cycling Podcast](/podcast/ep-25-the-dark-secret-behind-cycling-s-legal-drug-problem)
+- [Jonas Abrahamsen: 18kg Weight Gain & Pro Winter Training](/podcast/ep-29-untold-story-ofjonas-abrahamsens-pro-winter-training)
+- [How Cyclists Should Start Running | Roadman Cycling Podcast](/podcast/ep-3-how-to-run-as-a-cyclist-mistakes-to-avoid)
+- [Race Weight & Carb Timing Mistakes | Roadman Cycling Podcast](/podcast/ep-3-is-losing-weight-actually-making-you-slower)
 - [The 3 Habits Of Highly Effective Cyclists](/podcast/ep-3-the-3-habits-of-highly-effective-cyclists)
-- [How a Pro’s Insane Fuel Plan Almost Won BADLANDS](/podcast/ep-30-how-a-pro-s-insane-fuel-plan-almost-won-badlands)
+- [Badlands 800km Fueling & Pacing Strategy | Roadman Cycling Podcast](/podcast/ep-30-how-a-pro-s-insane-fuel-plan-almost-won-badlands)
 - [What Happens To Your Body When You Cycle 30 Mins Everyday](/podcast/ep-30-what-happens-to-your-body-when-you-cycle-30-mins-everyday)
-- [Pros New Secret Drink: What’s Inside Those Green Shots?](/podcast/ep-32-pros-new-secret-drink-what-s-inside-those-green-shots)
-- [The Untold Story Of How TREK Silenced Greg LeMond](/podcast/ep-33-the-untold-story-of-how-trek-silenced-greg-lemond)
-- [What I Wish I Knew Before I Started Gravel Cycling](/podcast/ep-35-what-i-wish-i-knew-before-i-started-gravel-cycling)
-- [BADLANDS 2025 - Our first Ultra Distance Gravel Race](/podcast/ep-37-badlands-2025-our-first-ultra-distance-gravel-race)
-- [How Cavendish & Thomas Became Legends With Ed Clancy](/podcast/ep-39-how-cavendish-thomas-became-legends-with-ed-clancy)
-- [15 Years Of Pro Riding - What Amateurs Don’t Know | Matthews](/podcast/ep-4-15-years-of-pro-riding-what-amateurs-don-t-know-matthews)
+- [Nomio Green Shots: The Cycling Training Science | Roadman Cycling Podcast](/podcast/ep-32-pros-new-secret-drink-what-s-inside-those-green-shots)
+- [Trek vs LeMond: The Doping Dispute That Ended Everything](/podcast/ep-33-the-untold-story-of-how-trek-silenced-greg-lemond)
+- [Gravel Cycling Training Secrets | Roadman Cycling Podcast](/podcast/ep-35-what-i-wish-i-knew-before-i-started-gravel-cycling)
+- [Badlands 2025: Training, Gear & Strategy | Roadman Cycling](/podcast/ep-37-badlands-2025-our-first-ultra-distance-gravel-race)
+- [Ed Clancy on How GB Cycling Built Its Olympic Dynasty](/podcast/ep-39-how-cavendish-thomas-became-legends-with-ed-clancy)
+- [Michael Matthews on Pro Cycling Training | Roadman Cycling Podcast](/podcast/ep-4-15-years-of-pro-riding-what-amateurs-don-t-know-matthews)
 - [How I Rode 46.6km/hr For 6 Hours - 3 Tweaks That Made It Possible](/podcast/ep-46-how-i-rode-46-6km-hr-for-6-hours-3-tweaks-that-made-it-possi)
-- [These 5 Trends Won't Survive in 2025](/podcast/ep-5-these-5-trends-wont-survive-in-2025)
-- [Majorca - I never expected this to happen. Vlog #006](/podcast/ep-6-majorca-i-never-expected-this-to-happen-vlog-006)
-- [A hack for creating extra training time - vlog # 007](/podcast/ep-7-a-hack-for-creating-extra-training-time-vlog-007)
-- [Did We Kill Gravel? (how we ruined it)](/podcast/ep-7-did-we-kill-gravel-how-we-ruined-it)
-- [One interval to rule them all - Vlog #008](/podcast/ep-8-one-interval-to-rule-them-all-vlog-008)
-- [The Smartest Way To Train For More Speed On Gravel - Rosa Klöser](/podcast/ep-9-the-smartest-way-to-train-for-more-speed-on-gravel-rosa-kl-s)
-- [Outsmart the 99% Trap: Eliminate Toxic Thoughts & Transform Yourself | Shannon Malseed](/podcast/ep-99-outsmart-the-99-trap-eliminate-toxic-thoughts-transform-your)
+- [5 Cycling Trends Dying in 2025 | Roadman Cycling Podcast](/podcast/ep-5-these-5-trends-wont-survive-in-2025)
+- [Taper for Cyclists: 15% Gains | Roadman Cycling](/podcast/ep-6-majorca-i-never-expected-this-to-happen-vlog-006)
+- [Turn a Road Trip Into Cycling Training | Roadman Cycling](/podcast/ep-7-a-hack-for-creating-extra-training-time-vlog-007)
+- [Race Winning Interval Training | Roadman Cycling](/podcast/ep-8-one-interval-to-rule-them-all-vlog-008)
+- [Rosa Klöser's Gravel Training Structure | Roadman Cycling](/podcast/ep-9-the-smartest-way-to-train-for-more-speed-on-gravel-rosa-kl-s)
+- [Emotional Blocks & Cycling Performance | Roadman Cycling Podcast](/podcast/ep-99-outsmart-the-99-trap-eliminate-toxic-thoughts-transform-your)
 
 ## Weakly-linked blog posts (1 inbound)
 
+- [Aero vs Weight: Which Matters More for Your Cycling?](/blog/aero-vs-weight-cyclist) — linked only from `/blog/cycling-power-to-weight-ratio-guide`
+- [Best Cycling Coach in Ireland: How to Choose (No Rankings)](/blog/best-cycling-coach-ireland) — linked only from `/blog/best-cycling-coach-guide`
+- [Best Cycling Coach in the USA: How to Choose (No Rankings)](/blog/best-cycling-coach-usa) — linked only from `/blog/best-cycling-coach-guide`
+- [Cycling Coach Cost: What You Actually Pay in 2026 (Honest Breakdown)](/blog/cycling-coaching-cost-guide) — linked only from `/blog/zwift-vs-cycling-coach`
 - [How to Structure a Cycling Rest Week](/blog/cycling-rest-week-guide) — linked only from `/blog/cycling-overtraining-signs-guide`
 - [Saddle Sore Prevention: Chamois Cream, Bike Fit, and What Actually Works](/blog/cycling-saddle-sore-prevention) — linked only from `/blog/cycling-bike-upgrade-worth-it`
+- [Fasted vs Fuelled Training: Does Training Low Actually Work?](/blog/fasted-vs-fueled-cycling) — linked only from `/blog/cycling-weight-loss-fuel-for-the-work-required`
+- [Fred Whitton Challenge Training Plan: 12 Weeks for the Hardest Sportive in Britain](/blog/fred-whitton-challenge-training-plan) — linked only from `[src]`
 - [FTP Training for Triathletes: How It's Different from Cyclists](/blog/ftp-training-for-triathletes) — linked only from `/podcast/ep-2121-remcos-heat-training-why-it-works-how-to-gain-from-it`
 - [How Much Does an Online Cycling Coach Cost in 2026?](/blog/how-much-does-online-cycling-coach-cost-2026) — linked only from `/blog/best-online-cycling-coach-how-to-choose`
 - [How to Periodise a Cycling Season (Pro Template Inside)](/blog/how-to-periodise-cycling-season) — linked only from `[src]`
 - [Indoor Cycling for Triathletes: The Ultimate Winter Plan](/blog/indoor-cycling-for-triathletes-winter-plan) — linked only from `[src]`
-- [Is a Cycling Coach Worth It? An Honest Cost-Benefit Analysis](/blog/is-a-cycling-coach-worth-it) — linked only from `[src]`
+- [Indoor Trainer vs Rollers: Which One Belongs in Your Pain Cave?](/blog/indoor-trainer-vs-rollers) — linked only from `/blog/cycling-indoor-training-tips`
 - [The Masters Cyclist's Guide to Getting Faster After 40](/blog/masters-cyclist-guide-getting-faster-after-40) — linked only from `[src]`
+- [Power Meter vs Smart Trainer: Where Should Your First £500 Go?](/blog/power-meter-vs-smart-trainer) — linked only from `/blog/cycling-power-meter-guide`
+- [Ride London Training Plan: How to Train for the 100-Mile Closed-Road Sportive](/blog/ride-london-training-plan) — linked only from `[src]`
+- [Ring of Beara Training Plan: 12 Weeks for the Healy Pass](/blog/ring-of-beara-training-plan) — linked only from `[src]`
+- [Steady State vs Interval Training: Which Builds More Cycling Fitness?](/blog/steady-state-vs-interval-training-cycling) — linked only from `/blog/how-to-get-faster-cycling`
 - [The Time-Crunched Cyclist: How to Train on 8 Hours a Week](/blog/time-crunched-cyclist-8-hours-week) — linked only from `[src]`
 - [TrainerRoad vs Online Cycling Coach: Which Is Right for You?](/blog/trainerroad-vs-online-cycling-coach) — linked only from `[src]`
 - [Triathlon Aero Position: How to Actually Make It Faster, Not Just Look Pro](/blog/triathlon-aero-position-guide) — linked only from `/blog/triathlon-cycling-power-to-weight`
 - [Triathlon Bike Nutrition: How to Fuel the Bike Leg Without Wrecking the Run](/blog/triathlon-bike-nutrition-strategy) — linked only from `/blog/triathlon-ftp-pacing-strategy`
+- [Tubeless vs Clincher Road Tyres: The Honest 2026 Comparison](/blog/tubeless-vs-clincher-tyres) — linked only from `/blog/cycling-tyre-pressure-guide`
 - [What Wattage Should You Ride in an Ironman?](/blog/what-wattage-should-you-ride-in-an-ironman) — linked only from `[src]`
+- [Wicklow 200 Training Plan: A 12-Week Build for Ireland's Toughest Sportive](/blog/wicklow-200-training-plan) — linked only from `[src]`
 - [Yoga for Cyclists: Does It Actually Help? An Honest Look](/blog/yoga-for-cyclists-guide) — linked only from `/podcast/ep-2036-5-exercises-pogacar-always-does-before-a-ride`
+- [Zone 2 vs Endurance Training: What's Actually the Difference?](/blog/zone-2-vs-endurance-training) — linked only from `/blog/zone-2-training-complete-guide`
+- [Zwift vs a Cycling Coach: When the App Is Enough (And When It Isn't)](/blog/zwift-vs-cycling-coach) — linked only from `/blog/rouvy-vs-zwift`
+- [Zwift vs TrainerRoad: Which Platform Actually Makes You Faster?](/blog/zwift-vs-trainerroad) — linked only from `/blog/cycling-indoor-training-tips`
 
