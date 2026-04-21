@@ -242,6 +242,12 @@ export function AdminSidebar({
   const [unreadApps, setUnreadApps] = useState(0);
   const [awaitingApps, setAwaitingApps] = useState(0);
 
+  // Auto-close the mobile drawer whenever the route changes so the user
+  // isn't left staring at the overlay on top of their destination page.
+  useEffect(() => {
+    setMobileOpen(false);
+  }, [pathname]);
+
   useEffect(() => {
     async function fetchCounts() {
       try {

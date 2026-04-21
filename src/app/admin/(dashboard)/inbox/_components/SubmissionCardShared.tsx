@@ -5,15 +5,20 @@
  * Contact-form board (InboxPipelineBoard) and the /apply board
  * (PipelineBoard) so the two views look and feel like the same system.
  *
- * Design goals:
- *  • Dense but breathable card — name, preview, timestamp, owner at a glance
- *  • Unread indicator is a coral left border (more scannable than a tiny dot)
- *  • Avatar initials circle replaces the "Unassigned" pill for visual weight
- *  • Column header has enough contrast to locate in peripheral vision
- *  • Columns snap to 85vw on mobile so one is fully visible + peek of next
+ * Design goals (v2, post-mobile audit):
+ *  • Flat columns (no double card nesting). Column is just "header + list".
+ *  • Stage-specific accent colour for each column header — coral reserved
+ *    for primary actions and unread only.
+ *  • 72vw columns on mobile so there's ALWAYS a peek of the next column
+ *    telling the user to swipe — paired with edge fades.
+ *  • Sentence-case column labels; uppercase only on tab pills + CTAs.
+ *  • Single-line message preview (scannable in 1 beat; full text in modal).
+ *  • "Move" dropdown on each card so stage changes work on touch (HTML5
+ *    drag-and-drop is broken on iOS/Android).
+ *  • Larger tap targets (owner avatar + move + open) — 36–40px min.
  */
 
-import { useState, type KeyboardEvent, type ReactNode } from "react";
+import { useEffect, useRef, useState, type KeyboardEvent, type ReactNode } from "react";
 
 // ── Owner avatar ─────────────────────────────────────────────────
 
@@ -27,12 +32,13 @@ const OWNER_COLORS: Record<string, string> = {
 
 export function OwnerAvatar({
   slug,
-  size = "sm",
+  size = "md",
 }: {
   slug: string | null | undefined;
   size?: "sm" | "md";
 }) {
-  const dim = size === "md" ? "w-7 h-7 text-[11px]" : "w-6 h-6 text-[10px]";
+  // Enlarged to 32px/28px for finger-friendly hit areas on touch devices.
+  const dim = size === "md" ? "w-8 h-8 text-[11px]" : "w-7 h-7 text-[10px]";
   if (!slug) {
     return (
       <span
@@ -115,30 +121,32 @@ export function Column({
       onDragOver={onDragOver}
       onDragLeave={onDragLeave}
       onDrop={onDrop}
-      className={`shrink-0 w-[85vw] sm:w-72 snap-start flex flex-col rounded-xl border bg-background-elevated/70 transition ${
-        isHoverTarget
-          ? "border-coral/60 ring-2 ring-coral/30"
-          : count === 0
-            ? "border-white/[0.04]"
-            : "border-white/10"
+      className={`shrink-0 w-[72vw] sm:w-72 snap-start flex flex-col transition ${
+        isHoverTarget ? "bg-coral/[0.04] rounded-xl ring-1 ring-coral/30" : ""
       }`}
     >
-      <div className="flex items-center gap-2 px-4 py-3 border-b border-white/5">
-        <span className={`w-2 h-2 rounded-full ${accent}`} />
-        <h3 className="font-heading tracking-wider uppercase text-off-white text-xs">
+      {/* Flat column header — stage-coloured underline carries the accent;
+          no surrounding card wrapper so content gets all the visual weight. */}
+      <div
+        className={`flex items-center gap-2 px-1 pb-2 border-b ${
+          count === 0 ? "border-white/[0.04]" : "border-white/10"
+        }`}
+      >
+        <span className={`w-1.5 h-1.5 rounded-full ${accent}`} />
+        <h3 className="font-heading tracking-wide text-off-white text-[13px]">
           {label}
         </h3>
         <span
-          className={`ml-auto min-w-[22px] text-center text-[11px] font-heading tabular-nums px-1.5 py-0.5 rounded-full ${
+          className={`ml-auto min-w-[20px] text-center text-[11px] font-heading tabular-nums px-1.5 py-0.5 rounded-full ${
             count === 0
-              ? "text-foreground-subtle bg-white/[0.04]"
-              : "text-off-white bg-white/10"
+              ? "text-foreground-subtle"
+              : "text-off-white bg-white/[0.06]"
           }`}
         >
           {count}
         </span>
       </div>
-      <div className="flex-1 p-2 space-y-2 min-h-[88px]">{children}</div>
+      <div className="flex-1 pt-2 space-y-2 min-h-[60px]">{children}</div>
     </div>
   );
 }
@@ -153,7 +161,6 @@ export function SubmissionCard({
   unread,
   dragging,
   ringAccent = "ring-coral",
-  ownerSlug,
   onClick,
   draggableProps,
   footerSlot,
@@ -162,22 +169,20 @@ export function SubmissionCard({
   headline: string;
   /** Second line: subject, persona/cohort tag, or metadata. Hide if empty. */
   subline?: ReactNode;
-  /** Three-line preview (message body / goal / frustration). */
+  /** Single-line preview of message body / goal — line-clamp-1, full text in modal. */
   preview?: string;
-  /** Top-right chip — typically a relative timestamp. */
+  /** Chip — typically a relative timestamp — rendered bottom-right. */
   rightChip?: ReactNode;
   unread?: boolean;
   dragging?: boolean;
   ringAccent?: string;
-  /** Owner slug — renders a small avatar in the bottom-right. */
-  ownerSlug?: string | null;
   onClick?: () => void;
   draggableProps?: {
     draggable?: boolean;
     onDragStart?: (e: React.DragEvent) => void;
     onDragEnd?: () => void;
   };
-  /** Optional extra elements at the bottom of the card (e.g. tags, persona pill). */
+  /** Footer content. Consumer is responsible for MoveMenu / OwnerPopover / etc. */
   footerSlot?: ReactNode;
 }) {
   return (
@@ -192,14 +197,14 @@ export function SubmissionCard({
           onClick();
         }
       }}
-      className={`group relative rounded-lg bg-white/[0.03] hover:bg-white/[0.05] transition cursor-grab active:cursor-grabbing
-        border border-white/10 hover:border-coral/40
+      className={`group relative rounded-lg bg-white/[0.035] hover:bg-white/[0.06] transition cursor-pointer sm:cursor-grab sm:active:cursor-grabbing
+        border border-white/[0.08] hover:border-white/20
         ${unread ? "border-l-2 border-l-coral" : ""}
         ${dragging ? `opacity-40 scale-[0.98] ring-2 ${ringAccent}` : ""}
       `}
     >
-      <div className="px-3 py-3 space-y-1.5">
-        {/* Line 1: avatar + name + timestamp */}
+      <div className="px-3 pt-2.5 pb-2 space-y-1.5">
+        {/* Line 1: name + (subject) */}
         <div className="flex items-start gap-2.5">
           <NameAvatar name={headline} size="sm" />
           <div className="flex-1 min-w-0">
@@ -212,33 +217,113 @@ export function SubmissionCard({
               </p>
             )}
           </div>
-          {rightChip && (
-            <span className="text-foreground-subtle text-[10px] whitespace-nowrap mt-0.5 shrink-0">
-              {rightChip}
-            </span>
-          )}
         </div>
 
-        {/* Preview paragraph */}
+        {/* Preview — one line; user opens modal for full text */}
         {preview && (
-          <p className="text-foreground-muted text-[12px] leading-snug line-clamp-2 pl-[38px]">
+          <p className="text-foreground-muted text-[12px] leading-snug truncate pl-[38px]">
             {preview}
           </p>
         )}
 
-        {/* Footer row */}
-        {(footerSlot || ownerSlug !== undefined) && (
-          <div className="flex items-center gap-2 pl-[38px] pt-1">
+        {/* Footer: Move + Owner (via footerSlot) + timestamp */}
+        {(footerSlot || rightChip) && (
+          <div className="flex items-center gap-2 pl-[38px] pt-1 min-h-[28px]">
             {footerSlot}
-            {ownerSlug !== undefined && (
-              <span className="ml-auto">
-                <OwnerAvatar slug={ownerSlug} />
+            {rightChip && (
+              <span className="text-foreground-subtle text-[10px] whitespace-nowrap shrink-0 ml-auto">
+                {rightChip}
               </span>
             )}
           </div>
         )}
       </div>
     </div>
+  );
+}
+
+// ── Move-to-stage menu (touch fallback for drag-and-drop) ───────
+
+export interface MoveStage {
+  value: string;
+  label: string;
+}
+
+export function MoveMenu({
+  currentStage,
+  stages,
+  onMove,
+  busy,
+}: {
+  currentStage: string;
+  stages: MoveStage[];
+  onMove: (value: string) => void;
+  busy?: boolean;
+}) {
+  const [open, setOpen] = useState(false);
+  const wrapRef = useRef<HTMLSpanElement | null>(null);
+
+  useEffect(() => {
+    if (!open) return;
+    function handle(e: MouseEvent) {
+      if (wrapRef.current && !wrapRef.current.contains(e.target as Node)) {
+        setOpen(false);
+      }
+    }
+    window.addEventListener("click", handle);
+    return () => window.removeEventListener("click", handle);
+  }, [open]);
+
+  return (
+    <span ref={wrapRef} className="relative inline-flex">
+      <button
+        type="button"
+        onClick={(e) => {
+          e.stopPropagation();
+          setOpen((v) => !v);
+        }}
+        disabled={busy}
+        aria-label="Move to stage"
+        title="Move"
+        className={`inline-flex items-center gap-1 h-7 px-2 rounded-full text-[10px] font-heading tracking-wider uppercase border border-white/10 text-foreground-muted hover:text-off-white hover:border-white/25 transition ${
+          busy ? "opacity-60" : ""
+        }`}
+      >
+        Move
+        <svg
+          className="w-2.5 h-2.5"
+          viewBox="0 0 12 12"
+          fill="none"
+          stroke="currentColor"
+          strokeWidth="2"
+        >
+          <path d="M3 4.5 6 7.5 9 4.5" strokeLinecap="round" strokeLinejoin="round" />
+        </svg>
+      </button>
+      {open && (
+        <span
+          onClick={(e) => e.stopPropagation()}
+          className="absolute z-30 left-0 bottom-full mb-1 min-w-[150px] rounded-lg border border-white/10 bg-background-elevated shadow-xl p-1 flex flex-col gap-0.5"
+        >
+          {stages
+            .filter((s) => s.value !== currentStage)
+            .map((s) => (
+              <button
+                key={s.value}
+                type="button"
+                onClick={(e) => {
+                  e.stopPropagation();
+                  setOpen(false);
+                  onMove(s.value);
+                }}
+                className="text-left text-[12px] px-2.5 py-2 rounded hover:bg-white/5 text-off-white"
+              >
+                {s.label}
+              </button>
+            ))}
+        </span>
+      )}
+    </span>
   );
 }
 

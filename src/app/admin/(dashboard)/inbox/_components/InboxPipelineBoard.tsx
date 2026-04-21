@@ -3,6 +3,7 @@
 import { useEffect, useMemo, useState } from "react";
 import {
   Column,
+  MoveMenu,
   OwnerAvatar,
   OwnerPopover,
   SubmissionCard,
@@ -269,96 +270,125 @@ export function InboxPipelineBoard({ initialStages }: Props) {
       {/* Totals hidden — page header already shows them. Keep totalCount referenced for TS. */}
       <span className="sr-only">{totalCount} total</span>
 
-      <div className="flex gap-3 overflow-x-auto snap-x snap-mandatory pb-4 -mx-2 px-2 scrollbar-thin">
-        {INBOX_STAGES.map((stage) => {
-          const color = INBOX_STAGE_COLORS[stage];
-          const cards = stages[stage] ?? [];
-          return (
-            <Column
-              key={stage}
-              stage={stage}
-              label={INBOX_STAGE_LABELS[stage]}
-              accent={color.dot}
-              count={cards.length}
-              isHoverTarget={hoverStage === stage}
-              onDragOver={(e) => {
-                e.preventDefault();
-                if (hoverStage !== stage) setHoverStage(stage);
-              }}
-              onDragLeave={() => {
-                if (hoverStage === stage) setHoverStage(null);
-              }}
-              onDrop={(e) => {
-                e.preventDefault();
-                setHoverStage(null);
-                if (dragId !== null && dragFrom) {
-                  moveCard(dragId, dragFrom, stage);
-                }
-                setDragId(null);
-                setDragFrom(null);
-              }}
-            >
-              {cards.length === 0 ? (
-                <p className="text-foreground-subtle/60 text-[11px] text-center py-6">
-                  Drop a message here
-                </p>
-              ) : (
-                cards.map((sub) => (
-                  <SubmissionCard
-                    key={sub.id}
-                    headline={sub.name}
-                    subline={
-                      sub.subject &&
-                      sub.subject.toLowerCase() !== "general"
-                        ? sub.subject
-                        : null
-                    }
-                    preview={sub.message}
-                    rightChip={timeAgo(sub.createdAt)}
-                    unread={!sub.readAt}
-                    dragging={dragId === sub.id}
-                    ringAccent={color.ring}
-                    ownerSlug={sub.assignedTo ?? null}
-                    onClick={() => openCard(sub)}
-                    draggableProps={{
-                      draggable: true,
-                      onDragStart: (e) => {
-                        setDragId(sub.id);
-                        setDragFrom(stage);
-                        e.dataTransfer.effectAllowed = "move";
-                        e.dataTransfer.setData(
-                          "text/plain",
-                          String(sub.id)
-                        );
-                      },
-                      onDragEnd: () => {
-                        setDragId(null);
-                        setDragFrom(null);
-                        setHoverStage(null);
-                      },
-                    }}
-                    footerSlot={
-                      <OwnerPopover
-                        options={OWNER_OPTIONS}
-                        selected={sub.assignedTo ?? null}
-                        open={ownerMenuFor === sub.id}
-                        onToggle={() =>
-                          setOwnerMenuFor(
-                            ownerMenuFor === sub.id ? null : sub.id
-                          )
-                        }
-                        onPick={(v) => assignOwner(sub, v)}
-                        busy={assigningId === sub.id}
-                      >
-                        <OwnerAvatar slug={sub.assignedTo ?? null} />
-                      </OwnerPopover>
-                    }
-                  />
-                ))
-              )}
-            </Column>
-          );
-        })}
+      {/* Edge-fade wrapper — the CSS gradient overlays at the viewport edges
+          hint there's more to scroll. Board itself uses snap-scroll with a
+          peek of the next column (72vw on mobile). */}
+      <div className="relative -mx-4 sm:-mx-6">
+        <span
+          aria-hidden="true"
+          className="pointer-events-none absolute left-0 top-0 bottom-4 w-6 bg-gradient-to-r from-background to-transparent z-10"
+        />
+        <span
+          aria-hidden="true"
+          className="pointer-events-none absolute right-0 top-0 bottom-4 w-8 bg-gradient-to-l from-background to-transparent z-10"
+        />
+        <div className="flex gap-3 overflow-x-auto snap-x snap-mandatory sm:snap-none pb-4 px-4 sm:px-6 scrollbar-thin">
+          {INBOX_STAGES.map((stage) => {
+            const color = INBOX_STAGE_COLORS[stage];
+            const cards = stages[stage] ?? [];
+            return (
+              <Column
+                key={stage}
+                stage={stage}
+                label={INBOX_STAGE_LABELS[stage]}
+                accent={color.dot}
+                count={cards.length}
+                isHoverTarget={hoverStage === stage}
+                onDragOver={(e) => {
+                  e.preventDefault();
+                  if (hoverStage !== stage) setHoverStage(stage);
+                }}
+                onDragLeave={() => {
+                  if (hoverStage === stage) setHoverStage(null);
+                }}
+                onDrop={(e) => {
+                  e.preventDefault();
+                  setHoverStage(null);
+                  if (dragId !== null && dragFrom) {
+                    moveCard(dragId, dragFrom, stage);
+                  }
+                  setDragId(null);
+                  setDragFrom(null);
+                }}
+              >
+                {cards.length === 0 ? (
+                  <p className="text-foreground-subtle/60 text-[11px] text-center py-6 border border-dashed border-white/5 rounded-lg">
+                    Drop a message here
+                  </p>
+                ) : (
+                  cards.map((sub) => (
+                    <SubmissionCard
+                      key={sub.id}
+                      headline={sub.name}
+                      subline={
+                        sub.subject &&
+                        sub.subject.toLowerCase() !== "general"
+                          ? sub.subject
+                          : null
+                      }
+                      preview={sub.message}
+                      rightChip={timeAgo(sub.createdAt)}
+                      unread={!sub.readAt}
+                      dragging={dragId === sub.id}
+                      ringAccent={color.ring}
+                      ownerSlug={sub.assignedTo ?? null}
+                      onClick={() => openCard(sub)}
+                      draggableProps={{
+                        draggable: true,
+                        onDragStart: (e) => {
+                          setDragId(sub.id);
+                          setDragFrom(stage);
+                          e.dataTransfer.effectAllowed = "move";
+                          e.dataTransfer.setData(
+                            "text/plain",
+                            String(sub.id)
+                          );
+                        },
+                        onDragEnd: () => {
+                          setDragId(null);
+                          setDragFrom(null);
+                          setHoverStage(null);
+                        },
+                      }}
+                      footerSlot={
+                        <>
+                          <MoveMenu
+                            currentStage={stage}
+                            stages={INBOX_STAGES.map((s) => ({
+                              value: s,
+                              label: INBOX_STAGE_LABELS[s],
+                            }))}
+                            onMove={(next) =>
+                              moveCard(sub.id, stage, next as InboxStage)
+                            }
+                          />
+                          <OwnerPopover
+                            options={OWNER_OPTIONS}
+                            selected={sub.assignedTo ?? null}
+                            open={ownerMenuFor === sub.id}
+                            onToggle={() =>
+                              setOwnerMenuFor(
+                                ownerMenuFor === sub.id ? null : sub.id
+                              )
+                            }
+                            onPick={(v) => assignOwner(sub, v)}
+                            busy={assigningId === sub.id}
+                            anchor="top-right"
+                          >
+                            <OwnerAvatar
+                              slug={sub.assignedTo ?? null}
+                              size="sm"
+                            />
+                          </OwnerPopover>
+                        </>
+                      }
+                    />
+                  ))
+                )}
+              </Column>
+            );
+          })}
+        </div>
       </div>
 
       {detail && (
