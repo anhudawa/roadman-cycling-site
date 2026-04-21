@@ -87,6 +87,9 @@ const CURATED: string[] = [
   `https://${HOST}/you/comeback`,
   `https://${HOST}/you/listener`,
 
+  // Curated onboarding hub
+  `https://${HOST}/start-here`,
+
   // Training plan hub + event hubs (newly shipped)
   `https://${HOST}/plan`,
   `https://${HOST}/plan/wicklow-200`,
