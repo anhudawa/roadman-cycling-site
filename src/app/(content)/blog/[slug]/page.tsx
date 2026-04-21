@@ -51,24 +51,23 @@ export async function generateMetadata({
       authors: [post.author],
       url: `https://roadmancycling.com/blog/${slug}`,
       tags: post.keywords,
-      ...(post.featuredImage && {
-        images: [
-          {
-            url: post.featuredImage.startsWith('http') ? post.featuredImage : `https://roadmancycling.com${post.featuredImage}`,
-            width: 1200,
-            height: 630,
-            alt: post.title,
-          },
-        ],
-      }),
+      // NB: og:image is injected automatically by Next.js from
+      // src/app/(content)/blog/[slug]/opengraph-image.tsx (a
+      // Satori-backed 1200×630 branded card). Do NOT hardcode
+      // openGraph.images here — the previous implementation
+      // declared width:1200 × height:630 for every post regardless
+      // of the actual featuredImage dimensions, which broke
+      // iMessage/Twitter/LinkedIn previews for posts whose
+      // featured image didn't match those dimensions (e.g. the
+      // Seiler portrait is 1000×667). Letting Next auto-inject the
+      // Satori OG route guarantees dimensions always match.
     },
     twitter: {
       card: "summary_large_image",
       title: post.seoTitle || post.title,
       description: post.seoDescription,
-      ...(post.featuredImage && {
-        images: [post.featuredImage.startsWith('http') ? post.featuredImage : `https://roadmancycling.com${post.featuredImage}`],
-      }),
+      // twitter:image falls back to the auto-injected opengraph-image
+      // when no twitter-image.[ext] exists in the route segment.
     },
   };
 }
