@@ -27,8 +27,24 @@ export const metadata: Metadata = {
   },
 };
 
-/** Hardcoded tools — these don't come from MDX files */
+/** Hardcoded pages — these don't come from MDX files */
 const TOOLS: SearchableItem[] = [
+  {
+    type: "tool",
+    slug: "start-here",
+    title: "Start Here — New to Roadman Cycling?",
+    description:
+      "The best episodes, articles, tools, and resources to get you faster on the bike. Curated starting point.",
+    pillar: "coaching",
+    keywords: [
+      "start here",
+      "new",
+      "beginner",
+      "getting started",
+      "best episodes",
+      "best articles",
+    ],
+  },
   {
     type: "tool",
     slug: "ftp-zones",
