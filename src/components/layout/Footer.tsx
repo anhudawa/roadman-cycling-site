@@ -47,7 +47,7 @@ const footerColumns = {
     title: "Community",
     links: [
       { label: "Clubhouse (Free)", href: "/community/clubhouse" },
-      { label: "Not Done Yet Coaching", href: "/community/not-done-yet" },
+      { label: "Not Done Yet Coaching Community", href: "/community/not-done-yet" },
       { label: "Strength Training", href: "/strength-training" },
       { label: "Roadman CC (Dublin)", href: "/community/club" },
       { label: "Events", href: "/events" },

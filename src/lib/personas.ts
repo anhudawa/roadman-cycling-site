@@ -82,7 +82,7 @@ export const PERSONAS: Record<PersonaSlug, PersonaContent> = {
     hasDiagnostic: true,
     ctaHeadline: "Break the plateau for good.",
     ctaBody:
-      "Not Done Yet is the coached 5-pillar system that breaks the grey-zone rut. Personalised plan, weekly calls, expert masterclasses, daily accountability. Same Seiler principles, structured into your week.",
+      "The Not Done Yet coaching community runs a coached 5-pillar system that breaks the grey-zone rut. Personalised plan, weekly calls, expert masterclasses, daily accountability. Same Seiler principles, structured into your week.",
     emailHook:
       "The week's training breakdown. What broke Damien's plateau. Every Saturday.",
     pillar: "coaching",
@@ -116,7 +116,7 @@ export const PERSONAS: Record<PersonaSlug, PersonaContent> = {
     hasDiagnostic: true,
     ctaHeadline: "Build your season around the date.",
     ctaBody:
-      "Not Done Yet coaching builds your plan backwards from your target event. Base, build, peak, taper — all structured around the specific week your event lands. 7-day free trial.",
+      "The Not Done Yet coaching community builds your plan backwards from your target event. Base, build, peak, taper — all structured around the specific week your event lands. 7-day free trial.",
     emailHook:
       "One specific session a week, tied to where you are in the build. Every Saturday.",
     pillar: "coaching",
@@ -150,7 +150,7 @@ export const PERSONAS: Record<PersonaSlug, PersonaContent> = {
     hasDiagnostic: false,
     ctaHeadline: "Rebuild the engine, properly.",
     ctaBody:
-      "Not Done Yet is the coached comeback — especially for cyclists over 40 and anyone returning after a break. Structured, gentle-to-intense progression. Strength training built in. Personal accountability. 7-day free trial.",
+      "The Not Done Yet coaching community is the coached comeback — especially for cyclists over 40 and anyone returning after a break. Structured, gentle-to-intense progression. Strength training built in. Personal accountability. 7-day free trial.",
     emailHook:
       "Every Saturday: what the research shows actually works for cyclists rebuilding form. No guilt, no 'all or nothing'.",
     pillar: "coaching",

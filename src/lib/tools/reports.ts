@@ -69,7 +69,7 @@ function softCoachingCta(): string {
   return `<div style="margin-top:32px;padding:20px;background:rgba(241,99,99,0.06);border:1px solid rgba(241,99,99,0.2);border-radius:12px;">
     <p style="color:#F16363;font-size:11px;letter-spacing:2px;margin:0 0 6px;text-transform:uppercase;">When you're ready</p>
     <p style="color:#FAFAFA;font-size:16px;margin:0 0 4px;font-weight:600;">Want this applied to your whole training week?</p>
-    <p style="color:#9ca3af;font-size:13px;margin:0 0 14px;">Not Done Yet is the coached five-pillar system. Personalised plan, weekly calls, expert masterclasses. 7-day free trial, $195/mo.</p>
+    <p style="color:#9ca3af;font-size:13px;margin:0 0 14px;">The Not Done Yet coaching community runs a coached five-pillar system. Personalised plan, weekly calls, expert masterclasses. 7-day free trial, $195/mo.</p>
     <a href="https://roadmancycling.com/apply" style="display:inline-block;padding:10px 18px;background:#F16363;color:#FAFAFA;text-decoration:none;border-radius:6px;font-size:13px;letter-spacing:1.5px;text-transform:uppercase;font-weight:600;">Apply · 7-day free trial →</a>
   </div>`;
 }

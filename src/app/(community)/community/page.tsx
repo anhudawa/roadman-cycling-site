@@ -7,14 +7,14 @@ import { JsonLd } from "@/components/seo/JsonLd";
 export const metadata: Metadata = {
   title: "Community — Serious Cyclists Who Refuse to Settle",
   description:
-    "Two communities. One mission. Join the free Clubhouse or go premium with Not Done Yet — personalised coaching, training plans, and accountability.",
+    "Two communities. One mission. Join the free Clubhouse or go premium with the Not Done Yet coaching community — personalised coaching, training plans, and accountability.",
   alternates: {
     canonical: "https://roadmancycling.com/community",
   },
   openGraph: {
     title: "Community — Serious Cyclists Who Refuse to Settle",
     description:
-      "Two communities. One mission. Join the free Clubhouse or go premium with Not Done Yet — personalised coaching, training plans, and accountability.",
+      "Two communities. One mission. Join the free Clubhouse or go premium with the Not Done Yet coaching community — personalised coaching, training plans, and accountability.",
     type: "website",
     url: "https://roadmancycling.com/community",
   },
@@ -29,7 +29,7 @@ export default function CommunityPage() {
           "@type": "Organization",
           name: "Roadman Cycling Community",
           description:
-            "Two communities for serious cyclists. The free Clubhouse and premium Not Done Yet coaching programme.",
+            "Two communities for serious cyclists. The free Clubhouse and the premium Not Done Yet coaching community.",
           url: "https://roadmancycling.com/community",
           parentOrganization: {
             "@type": "Organization",
@@ -159,9 +159,12 @@ export default function CommunityPage() {
                       Tier 2 · $195/month
                     </span>
                   </div>
-                  <h2 className="font-heading text-2xl md:text-3xl text-off-white mb-3 leading-tight">
+                  <h2 className="font-heading text-2xl md:text-3xl text-off-white mb-1 leading-tight">
                     NOT DONE YET
                   </h2>
+                  <p className="text-coral font-heading text-[11px] tracking-widest uppercase mb-3">
+                    The coaching community
+                  </p>
                   <p className="text-xs text-foreground-subtle uppercase tracking-widest font-body mb-4">
                     113 members · 7-day free trial
                   </p>
