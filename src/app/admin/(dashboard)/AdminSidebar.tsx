@@ -16,33 +16,26 @@ interface NavSection {
   items: NavItem[];
 }
 
+// Consolidated navigation — evidence-driven pass (see feature-usage audit).
+// Routes removed from the sidebar still exist in the codebase; direct URLs
+// will work. This is about surfacing only what actually has data or daily
+// workflow value, not deleting capability.
 const NAV_SECTIONS: NavSection[] = [
   {
     title: "Personal",
     items: [
       { href: "/admin/mission-control", label: "Mission Control", icon: "trending" },
       { href: "/admin/my-day", label: "My Day", icon: "sunrise" },
+      { href: "/admin/notifications", label: "Notifications", icon: "bell" },
     ],
   },
   {
-    title: "Analytics",
+    title: "CRM",
     items: [
       { href: "/admin", label: "Overview", icon: "grid" },
-      { href: "/admin/inbox", label: "Inbox", icon: "inbox" },
-      { href: "/admin/activity", label: "Activity", icon: "pulse" },
+      { href: "/admin/inbox", label: "Submissions", icon: "inbox" },
       { href: "/admin/contacts", label: "Contacts", icon: "users" },
-      { href: "/admin/tags", label: "Tags", icon: "tag" },
-      { href: "/admin/deals", label: "Deals", icon: "tag" },
-      { href: "/admin/segments", label: "Segments", icon: "segment-filter" },
-      { href: "/admin/tasks", label: "Tasks", icon: "check-list" },
-      { href: "/admin/bookings", label: "Bookings", icon: "calendar" },
-      { href: "/admin/templates", label: "Templates", icon: "mail" },
-      { href: "/admin/applications", label: "Applications", icon: "clipboard" },
-      { href: "/admin/traffic", label: "Traffic", icon: "trending" },
-      { href: "/admin/emails", label: "Conversions", icon: "trending" },
-      { href: "/admin/leads", label: "Leads", icon: "users" },
-      { href: "/admin/reports", label: "Reports", icon: "trending" },
-      { href: "/admin/automations", label: "Automations", icon: "zap" },
+      { href: "/admin/activity", label: "Activity", icon: "pulse" },
     ],
   },
   {
@@ -50,40 +43,19 @@ const NAV_SECTIONS: NavSection[] = [
     items: [
       { href: "/admin/funnel", label: "Funnel", icon: "funnel" },
       { href: "/admin/health", label: "Health", icon: "heart" },
-    ],
-  },
-  {
-    title: "Business",
-    items: [
       { href: "/admin/newsletter", label: "Newsletter", icon: "newspaper" },
-      { href: "/admin/revenue", label: "Revenue", icon: "dollar" },
       { href: "/admin/integrations/skool", label: "Skool Clubhouse", icon: "users" },
+      { href: "/admin/reports", label: "Reports", icon: "trending" },
     ],
   },
   {
     title: "Content",
     items: [
-      { href: "/admin/content/repurposed", label: "Content Pipeline", icon: "pipeline" },
+      { href: "/admin/content/repurposed", label: "Pipeline", icon: "pipeline" },
       { href: "/admin/content/exploder", label: "Exploder", icon: "exploder" },
-    ],
-  },
-  {
-    title: "Skool Clubhouse",
-    items: [
-      { href: "/admin/ted/approvals", label: "Approvals", icon: "inbox" },
-      { href: "/admin/ted", label: "Ted dashboard", icon: "sparkle" },
-      { href: "/admin/ted/queue", label: "Prompts", icon: "document" },
-      { href: "/admin/ted/welcomes", label: "Welcomes", icon: "users" },
-      { href: "/admin/ted/surfaces", label: "Thread surfaces", icon: "pulse" },
-      { href: "/admin/ted/settings", label: "Ted settings", icon: "cog" },
-    ],
-  },
-  {
-    title: "Optimization",
-    items: [
-      { href: "/admin/content", label: "Content", icon: "document" },
-      { href: "/admin/experiments", label: "Experiments", icon: "beaker" },
-      { href: "/admin/agent", label: "AI Agent", icon: "sparkle" },
+      { href: "/admin/ted", label: "Ted Agent", icon: "sparkle" },
+      { href: "/admin/ted/approvals", label: "Ted · Approvals", icon: "inbox" },
+      { href: "/admin/ted/welcomes", label: "Ted · Welcomes", icon: "users" },
     ],
   },
 ];
@@ -229,6 +201,12 @@ function NavIcon({ icon, className }: { icon: string; className?: string }) {
       return (
         <svg className={cls} fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
           <path strokeLinecap="round" strokeLinejoin="round" d="M12 3v2.25m6.364.386-1.591 1.591M21 12h-2.25m-.386 6.364-1.591-1.591M12 18.75V21m-4.773-4.227-1.591 1.591M5.25 12H3m4.227-4.773L5.636 5.636M15.75 12a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0Z" />
+        </svg>
+      );
+    case "bell":
+      return (
+        <svg className={cls} fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
+          <path strokeLinecap="round" strokeLinejoin="round" d="M14.857 17.082a23.848 23.848 0 0 0 5.454-1.31A8.967 8.967 0 0 1 18 9.75V9A6 6 0 0 0 6 9v.75a8.967 8.967 0 0 1-2.312 6.022c1.733.64 3.56 1.085 5.455 1.31m5.714 0a24.255 24.255 0 0 1-5.714 0m5.714 0a3 3 0 1 1-5.714 0" />
         </svg>
       );
     case "help":

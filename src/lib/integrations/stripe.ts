@@ -288,6 +288,100 @@ export async function fetchMrrBreakdown(): Promise<MrrBreakdown | null> {
   }
 }
 
+// ── All Subscriptions with customer/email ────────────────
+// Used by the subscribers-lifecycle sync — we need to know, per email, what
+// the current Stripe subscription status is so we can set trial_started_at /
+// paid_at / churned_at on the subscribers table.
+
+export interface StripeSubscriptionForSync {
+  id: string;
+  customerId: string;
+  email: string | null;
+  status: string; // active | trialing | past_due | canceled | incomplete | etc.
+  createdAt: Date;
+  currentPeriodStart: Date | null;
+  currentPeriodEnd: Date | null;
+  canceledAt: Date | null;
+  trialStart: Date | null;
+  trialEnd: Date | null;
+}
+
+export async function fetchAllSubscriptionsForSync({
+  limit = 1000,
+}: { limit?: number } = {}): Promise<StripeSubscriptionForSync[]> {
+  const results: StripeSubscriptionForSync[] = [];
+  let startingAfter: string | null = null;
+  let hasMore = true;
+
+  while (hasMore && results.length < limit) {
+    const params = new URLSearchParams();
+    params.set("status", "all");
+    params.set("limit", "100");
+    // expand=data.customer means Stripe returns the full customer object
+    // inline (not just the ID) — saves a lookup per subscription.
+    params.append("expand[]", "data.customer");
+    if (startingAfter) params.set("starting_after", startingAfter);
+
+    const res = await fetch(
+      `${STRIPE_API}/subscriptions?${params.toString()}`,
+      { headers: getHeaders() }
+    );
+    if (!res.ok) {
+      console.error(
+        `[Stripe] fetchAllSubscriptionsForSync failed: ${res.status} ${res.statusText}`
+      );
+      break;
+    }
+    const json = (await res.json()) as {
+      data: Array<{
+        id: string;
+        status: string;
+        created: number;
+        current_period_start?: number | null;
+        current_period_end?: number | null;
+        canceled_at?: number | null;
+        trial_start?: number | null;
+        trial_end?: number | null;
+        customer: string | { id: string; email?: string | null };
+      }>;
+      has_more?: boolean;
+    };
+    const subs = json.data ?? [];
+    if (subs.length === 0) break;
+
+    for (const s of subs) {
+      const customerId =
+        typeof s.customer === "string" ? s.customer : s.customer.id;
+      const email =
+        typeof s.customer === "string"
+          ? null
+          : (s.customer.email ?? null);
+      results.push({
+        id: s.id,
+        customerId,
+        email,
+        status: s.status,
+        createdAt: new Date(s.created * 1000),
+        currentPeriodStart: s.current_period_start
+          ? new Date(s.current_period_start * 1000)
+          : null,
+        currentPeriodEnd: s.current_period_end
+          ? new Date(s.current_period_end * 1000)
+          : null,
+        canceledAt: s.canceled_at ? new Date(s.canceled_at * 1000) : null,
+        trialStart: s.trial_start ? new Date(s.trial_start * 1000) : null,
+        trialEnd: s.trial_end ? new Date(s.trial_end * 1000) : null,
+      });
+      if (results.length >= limit) break;
+    }
+    hasMore = !!json.has_more;
+    startingAfter = subs[subs.length - 1]?.id ?? null;
+    if (!startingAfter) break;
+    await new Promise((r) => setTimeout(r, 200));
+  }
+  return results;
+}
+
 // ── Recent Transactions ──────────────────────────────────
 export async function fetchRecentTransactions(
   limit: number

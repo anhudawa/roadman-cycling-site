@@ -81,35 +81,51 @@ export default async function InboxPage({ searchParams }: PageProps) {
       <div className="flex items-center justify-between mb-6 gap-4 flex-wrap">
         <div>
           <h1 className="font-heading text-2xl text-off-white tracking-wider uppercase">
-            Inbox
+            Submissions
           </h1>
           <p className="text-foreground-muted text-sm mt-1">
             {currentView === "kanban"
-              ? `${totalCount} message${totalCount === 1 ? "" : "s"} in pipeline`
-              : "List view"}
+              ? `${totalCount} contact-form message${totalCount === 1 ? "" : "s"} in pipeline`
+              : "Contact-form messages — list view"}
           </p>
         </div>
-        <div className="inline-flex rounded-lg border border-white/10 bg-background-elevated p-1 text-xs">
-          <Link
-            href={{ pathname: "/admin/inbox", query: { view: "kanban" } }}
-            className={`px-3 py-1.5 rounded-md font-heading tracking-wider uppercase transition ${
-              currentView === "kanban"
-                ? "bg-coral/15 text-coral"
-                : "text-foreground-subtle hover:text-off-white"
-            }`}
-          >
-            Kanban
-          </Link>
-          <Link
-            href={{ pathname: "/admin/inbox", query: { view: "list" } }}
-            className={`px-3 py-1.5 rounded-md font-heading tracking-wider uppercase transition ${
-              currentView === "list"
-                ? "bg-coral/15 text-coral"
-                : "text-foreground-subtle hover:text-off-white"
-            }`}
-          >
-            List
-          </Link>
+        <div className="flex items-center gap-2 flex-wrap">
+          <div className="inline-flex rounded-lg border border-white/10 bg-background-elevated p-1 text-xs">
+            <Link
+              href="/admin/inbox"
+              className="px-3 py-1.5 rounded-md font-heading tracking-wider uppercase bg-coral/15 text-coral"
+            >
+              Contact forms
+            </Link>
+            <Link
+              href="/admin/applications"
+              className="px-3 py-1.5 rounded-md font-heading tracking-wider uppercase text-foreground-subtle hover:text-off-white"
+            >
+              Applications
+            </Link>
+          </div>
+          <div className="inline-flex rounded-lg border border-white/10 bg-background-elevated p-1 text-xs">
+            <Link
+              href={{ pathname: "/admin/inbox", query: { view: "kanban" } }}
+              className={`px-3 py-1.5 rounded-md font-heading tracking-wider uppercase transition ${
+                currentView === "kanban"
+                  ? "bg-coral/15 text-coral"
+                  : "text-foreground-subtle hover:text-off-white"
+              }`}
+            >
+              Kanban
+            </Link>
+            <Link
+              href={{ pathname: "/admin/inbox", query: { view: "list" } }}
+              className={`px-3 py-1.5 rounded-md font-heading tracking-wider uppercase transition ${
+                currentView === "list"
+                  ? "bg-coral/15 text-coral"
+                  : "text-foreground-subtle hover:text-off-white"
+              }`}
+            >
+              List
+            </Link>
+          </div>
         </div>
       </div>
 
