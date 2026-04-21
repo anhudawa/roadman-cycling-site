@@ -5,6 +5,7 @@ import { Header, Footer, Section, Container } from "@/components/layout";
 import { AICitationBlock, Badge, Button } from "@/components/ui";
 import { AnswerCapsule } from "@/components/ui/AnswerCapsule";
 import { JsonLd } from "@/components/seo/JsonLd";
+import { FAQSchema } from "@/components/seo/FAQSchema";
 import { getEpisodeBySlug, getAllEpisodeSlugs } from "@/lib/podcast";
 import { segmentTranscript } from "@/lib/transcript";
 import { PodcastLinks } from "@/components/features/podcast/PodcastLinks";
@@ -242,6 +243,11 @@ export default async function EpisodePage({
         />
       )}
 
+      {/* FAQPage schema for episodes with FAQ sections */}
+      {episode.faq && episode.faq.length > 0 && (
+        <FAQSchema faqs={episode.faq} />
+      )}
+
       <Header />
 
       <main id="main-content">
@@ -454,6 +460,31 @@ export default async function EpisodePage({
                 titles={episode.segmentTitles}
                 className="mt-12"
               />
+            )}
+
+            {/* FAQ section — visible accordion for episodes with FAQ pairs */}
+            {episode.faq && episode.faq.length > 0 && (
+              <section className="mt-16" aria-label="Frequently asked questions">
+                <h2 className="font-heading text-2xl text-off-white mb-6 tracking-wide">
+                  FREQUENTLY ASKED QUESTIONS
+                </h2>
+                <div className="space-y-4">
+                  {episode.faq.map((item, idx) => (
+                    <details
+                      key={idx}
+                      className="group rounded-lg bg-white/5 border border-white/5 hover:border-coral/20 transition-colors"
+                    >
+                      <summary className="flex items-center justify-between cursor-pointer p-4 font-heading text-off-white text-sm tracking-wide select-none list-none [&::-webkit-details-marker]:hidden">
+                        <span>{item.question}</span>
+                        <span className="ml-4 shrink-0 text-coral transition-transform group-open:rotate-45">+</span>
+                      </summary>
+                      <div className="px-4 pb-4 text-sm text-foreground-muted leading-relaxed">
+                        {item.answer}
+                      </div>
+                    </details>
+                  ))}
+                </div>
+              </section>
             )}
 
             {/* Newsletter */}
