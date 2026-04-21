@@ -89,6 +89,14 @@ export default async function BlogPostPage({
   // Reverse-lookup: does any event's blogSlug match this post? If so,
   // we render a WeeksOutSelector widget in the article.
   const planEvent = EVENTS.find((e) => e.blogSlug === slug) ?? null;
+
+  const mentionedEvents = planEvent
+    ? []
+    : EVENTS.filter((e) => {
+        const haystack = `${post.title} ${post.excerpt} ${post.content}`.toLowerCase();
+        return haystack.includes(e.name.toLowerCase()) || haystack.includes(e.shortName.toLowerCase());
+      }).slice(0, 3);
+
   const publishDate = new Date(post.publishDate);
 
   return (
@@ -272,6 +280,25 @@ export default async function BlogPostPage({
                 Routes readers into the programmatic /plan/<event>/<weeks>
                 landing pages. */}
             {planEvent && <WeeksOutSelector event={planEvent} />}
+
+            {mentionedEvents.length > 0 && (
+              <div className="mt-10 rounded-xl border border-white/10 bg-white/[0.03] p-5 md:p-6">
+                <p className="font-heading text-coral text-xs tracking-widest mb-3">
+                  FREE TRAINING PLANS
+                </p>
+                <div className="flex flex-wrap gap-2">
+                  {mentionedEvents.map((e) => (
+                    <Link
+                      key={e.slug}
+                      href={`/plan/${e.slug}`}
+                      className="inline-flex items-center gap-2 rounded-lg border border-white/15 hover:border-coral/40 bg-white/[0.04] hover:bg-white/[0.07] px-4 py-2 text-sm font-heading text-off-white tracking-wider transition-all"
+                    >
+                      {e.shortName.toUpperCase()} →
+                    </Link>
+                  ))}
+                </div>
+              </div>
+            )}
 
             {/* Mid-article inline CTA — injects after 3rd paragraph, pillar-aware.
                 Client-side portal so only JS users see it. */}
