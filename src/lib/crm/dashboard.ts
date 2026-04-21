@@ -88,11 +88,11 @@ export interface MyDayTaskRequestRow {
   dueAt: string | null;
   createdAt: string;
   respondedAt: string | null;
-  requestStatus: string;
+  requestStatus: string; // 'requested' | 'accepted' | 'declined'
   responseMessage: string | null;
-  createdBy: string | null;
+  createdBy: string | null; // slug
   createdByName: string | null;
-  assignedTo: string;
+  assignedTo: string; // slug
   assignedToName: string | null;
   contactId: number | null;
   contactName: string | null;
@@ -109,7 +109,9 @@ export interface MyDayData {
   recentEmails: MyDayEmailRow[];
   todayBookings: BookingRow[];
   upcomingBookings: BookingRow[];
+  /** Incoming task requests awaiting this user's accept/decline/reply. */
   incomingTaskRequests: MyDayTaskRequestRow[];
+  /** Outgoing task requests this user has sent that are still pending. */
   outgoingTaskRequests: MyDayTaskRequestRow[];
 }
 
@@ -437,6 +439,9 @@ export async function getMyDayData(user: TeamUser): Promise<MyDayData> {
     contactEmail: r.contactEmail ?? null,
   });
 
+  const incomingTaskRequests = incomingRaw.map(mapRequest);
+  const outgoingTaskRequests = outgoingRaw.map(mapRequest);
+
   return {
     stats,
     todaysTasks: todaysTasksRaw.map(mapTask),
@@ -447,7 +452,7 @@ export async function getMyDayData(user: TeamUser): Promise<MyDayData> {
     recentEmails,
     todayBookings,
     upcomingBookings,
-    incomingTaskRequests: incomingRaw.map(mapRequest),
-    outgoingTaskRequests: outgoingRaw.map(mapRequest),
+    incomingTaskRequests,
+    outgoingTaskRequests,
   };
 }
