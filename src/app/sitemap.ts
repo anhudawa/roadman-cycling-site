@@ -184,6 +184,14 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       priority: 0.5,
     },
 
+    // Start Here — curated onboarding hub
+    {
+      url: `${BASE_URL}/start-here`,
+      lastModified: new Date(),
+      changeFrequency: "monthly",
+      priority: 0.8,
+    },
+
     // Persona landing pages — high-intent funnel entries
     {
       url: `${BASE_URL}/you/plateau`,
