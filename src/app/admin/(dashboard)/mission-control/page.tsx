@@ -6,6 +6,14 @@ import {
   TARGET_MRR_CENTS,
 } from "@/lib/crm/mission-control";
 import { TimeSeriesChart } from "../components/charts/TimeSeriesChart";
+import {
+  Card,
+  CardBody,
+  PageHeader,
+  Pill,
+  SectionLabel,
+  StatTile,
+} from "@/components/admin/ui";
 
 export const dynamic = "force-dynamic";
 
@@ -21,13 +29,20 @@ export default async function MissionControlPage() {
   if (!summary) {
     return (
       <div className="space-y-6">
-        <h1 className="font-heading text-3xl text-off-white tracking-wider">
-          MISSION CONTROL
-        </h1>
-        <div className="p-6 rounded-xl border border-coral/20 bg-coral/5 text-coral">
-          Stripe isn&apos;t reachable — check STRIPE_SECRET_KEY on Vercel and
-          confirm the /api/cron/stripe-snapshot cron is running.
-        </div>
+        <PageHeader title="Mission Control" />
+        <Card tone="danger">
+          <CardBody>
+            <SectionLabel tone="coral">Stripe unreachable</SectionLabel>
+            <p className="text-foreground-muted text-sm mt-2">
+              Check <code className="bg-black/40 px-1 rounded">STRIPE_SECRET_KEY</code>{" "}
+              on Vercel and confirm the{" "}
+              <code className="bg-black/40 px-1 rounded">/api/cron/stripe-snapshot</code>{" "}
+              cron is running. Once it lands a row in{" "}
+              <code className="bg-black/40 px-1 rounded">stripe_snapshots</code>,
+              this page populates.
+            </p>
+          </CardBody>
+        </Card>
       </div>
     );
   }
@@ -49,87 +64,85 @@ export default async function MissionControlPage() {
     MRR: p.mrrCents / 100,
   }));
 
+  const asOfLabel = new Date(now.asOf).toLocaleDateString("en-GB", {
+    day: "numeric",
+    month: "short",
+    year: "numeric",
+  });
+
   return (
     <div className="space-y-6">
-      <div className="flex items-center justify-between flex-wrap gap-3">
-        <div>
-          <h1 className="font-heading text-3xl text-off-white tracking-wider">
-            MISSION CONTROL
-          </h1>
-          <p className="text-foreground-muted text-sm mt-1">
-            {now.fromSnapshot
-              ? `MRR snapshot ${new Date(now.asOf).toLocaleDateString("en-GB", { day: "numeric", month: "short", year: "numeric" })}. Target ${formatCents(target)} MRR.`
-              : "Live Stripe fetch (no snapshot yet). Target $100,000 MRR."}
-          </p>
-        </div>
-      </div>
+      <PageHeader
+        title="Mission Control"
+        subtitle={
+          now.fromSnapshot
+            ? `MRR snapshot ${asOfLabel} · target ${formatCents(target)} MRR`
+            : "Live Stripe fetch (no snapshot yet) · target $100,000 MRR"
+        }
+      />
 
-      {/* Hero — MRR + glide path */}
+      {/* Hero: MRR + glide path + side tiles */}
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
-        <div className="lg:col-span-2 bg-background-elevated border border-coral/20 rounded-xl p-6 bg-gradient-to-br from-coral/[0.04] to-transparent">
-          <div className="flex items-baseline gap-3 flex-wrap">
-            <p className="text-[10px] uppercase tracking-widest text-foreground-subtle">
-              Current MRR
-            </p>
-            {summary.moMChangePct !== null && (
-              <span
-                className={`text-[10px] px-2 py-0.5 rounded-full border font-medium ${
-                  summary.moMChangePct >= 0
-                    ? "text-green-400 bg-green-400/10 border-green-400/30"
-                    : "text-coral bg-coral/10 border-coral/30"
-                }`}
-              >
-                {summary.moMChangePct >= 0 ? "+" : ""}
-                {summary.moMChangePct.toFixed(1)}% MoM
-              </span>
-            )}
-          </div>
-          <p className="font-heading text-off-white text-5xl mt-2 tracking-wide">
-            {formatCents(now.mrrCents)}
-          </p>
-          <p className="text-foreground-muted text-sm mt-1">
-            {now.activeSubscriptions.toLocaleString()} active ·{" "}
-            {now.trialingCount} trialing ·{" "}
-            {now.pastDueCount > 0 ? (
-              <span className="text-coral">
-                {now.pastDueCount} past due ({formatCents(now.pastDueMrrCents)})
-              </span>
-            ) : (
-              <span>0 past due</span>
-            )}
-          </p>
-
-          {/* Glide path bar */}
-          <div className="mt-6">
-            <div className="flex items-baseline justify-between text-[10px] uppercase tracking-widest text-foreground-subtle mb-1">
-              <span>Glide path to {formatCentsCompact(target)}</span>
-              <span>{pctToTarget.toFixed(1)}%</span>
+        <Card tone="coral" className="lg:col-span-2">
+          <CardBody className="p-6">
+            <div className="flex items-baseline gap-3 flex-wrap">
+              <SectionLabel>Current MRR</SectionLabel>
+              {summary.moMChangePct !== null && (
+                <Pill tone={summary.moMChangePct >= 0 ? "good" : "bad"}>
+                  {summary.moMChangePct >= 0 ? "+" : ""}
+                  {summary.moMChangePct.toFixed(1)}% MoM
+                </Pill>
+              )}
             </div>
-            <div className="h-2 bg-white/5 rounded-full overflow-hidden">
-              <div
-                className="h-full bg-gradient-to-r from-coral to-coral-hover rounded-full"
-                style={{ width: `${pctToTarget}%` }}
-              />
-            </div>
-            <p className="text-foreground-subtle text-xs mt-2">
-              Need {formatCents(Math.max(0, target - now.mrrCents))} more.
-              At {formatCents(summary.monthlyNetAddCents)}/mo net add (30-day
-              avg) that&apos;s{" "}
-              <span className="text-off-white font-semibold">{monthsStr}</span>
-              .
+            <p className="font-heading text-off-white text-5xl mt-2 tracking-wide tabular-nums">
+              {formatCents(now.mrrCents)}
             </p>
-          </div>
-        </div>
+            <p className="text-foreground-muted text-sm mt-1">
+              {now.activeSubscriptions.toLocaleString()} active ·{" "}
+              {now.trialingCount} trialing ·{" "}
+              {now.pastDueCount > 0 ? (
+                <span className="text-coral">
+                  {now.pastDueCount} past due ({formatCents(now.pastDueMrrCents)})
+                </span>
+              ) : (
+                <span>0 past due</span>
+              )}
+            </p>
 
-        {/* Side stack: net add, churn, trial conv */}
+            {/* Glide path bar */}
+            <div className="mt-6">
+              <div className="flex items-baseline justify-between mb-1.5">
+                <SectionLabel>
+                  Glide path to {formatCentsCompact(target)}
+                </SectionLabel>
+                <span className="text-foreground-subtle text-xs tabular-nums">
+                  {pctToTarget.toFixed(1)}%
+                </span>
+              </div>
+              <div className="h-2 bg-white/5 rounded-full overflow-hidden">
+                <div
+                  className="h-full bg-gradient-to-r from-coral to-coral-hover rounded-full transition-all"
+                  style={{ width: `${pctToTarget}%` }}
+                />
+              </div>
+              <p className="text-foreground-subtle text-xs mt-2 leading-relaxed">
+                Need {formatCents(Math.max(0, target - now.mrrCents))} more. At{" "}
+                {formatCents(summary.monthlyNetAddCents)}/mo net add (30-day avg)
+                that&apos;s{" "}
+                <span className="text-off-white font-semibold">{monthsStr}</span>.
+              </p>
+            </div>
+          </CardBody>
+        </Card>
+
         <div className="flex flex-col gap-3">
-          <Tile
+          <StatTile
             label="Monthly net MRR add"
             value={formatCents(summary.monthlyNetAddCents)}
             sub={`${formatCents(summary.avgDailyNetAdd30dCents)}/day avg`}
             tone={summary.monthlyNetAddCents >= 0 ? "good" : "bad"}
           />
-          <Tile
+          <StatTile
             label="Churn (30d)"
             value={
               summary.churnedSubscribers30d === 0
@@ -143,61 +156,60 @@ export default async function MissionControlPage() {
             }
             tone={summary.churnedSubscribers30d > 0 ? "bad" : "good"}
           />
-          <Tile
+          <StatTile
             label="Trial → paid (30d)"
             value={pctFmt(summary.trialConversionRate * 100)}
             sub={`${summary.trialsConverted30d}/${summary.trialsStarted30d} trials`}
-            tone="neutral"
           />
         </div>
       </div>
 
-      {/* MRR trend line */}
-      <div className="bg-background-elevated border border-white/5 rounded-xl p-5">
-        <div className="flex items-center justify-between mb-3">
-          <div>
-            <p className="text-[10px] uppercase tracking-widest text-foreground-subtle font-medium">
-              MRR Trend (90d)
-            </p>
-            <p className="text-foreground-muted text-xs">
-              USD per month, normalised across plans
-            </p>
+      {/* MRR trend chart */}
+      <Card>
+        <CardBody>
+          <div className="flex items-center justify-between mb-3 flex-wrap gap-2">
+            <div>
+              <SectionLabel>MRR Trend (90 days)</SectionLabel>
+              <p className="text-foreground-subtle text-xs mt-1">
+                USD per month, normalised across plans
+              </p>
+            </div>
+            {trend.length < 2 && (
+              <Pill tone="warn">
+                Need ≥2 snapshots — cron runs daily 06:50 UTC
+              </Pill>
+            )}
           </div>
-          {trend.length < 2 && (
-            <p className="text-[10px] text-coral">
-              Need ≥2 snapshots — cron runs daily 06:50 UTC
-            </p>
+          {trend.length >= 2 ? (
+            <TimeSeriesChart
+              data={chartData}
+              dataKeys={[{ key: "MRR", color: "#E8836B", label: "MRR (USD)" }]}
+              height={280}
+            />
+          ) : (
+            <div className="h-72 flex items-center justify-center border border-dashed border-white/10 rounded-lg">
+              <p className="text-foreground-subtle text-sm">
+                Chart populates after the stripe-snapshot cron has run for 2+
+                days
+              </p>
+            </div>
           )}
-        </div>
-        {trend.length >= 2 ? (
-          <TimeSeriesChart
-            data={chartData}
-            dataKeys={[{ key: "MRR", color: "#E8836B", label: "MRR (USD)" }]}
-            height={280}
-          />
-        ) : (
-          <div className="h-72 flex items-center justify-center border border-dashed border-white/10 rounded-lg">
-            <p className="text-foreground-subtle text-sm">
-              Chart populates after the stripe-snapshot cron has run for 2+ days
-            </p>
-          </div>
-        )}
-      </div>
+        </CardBody>
+      </Card>
 
       {/* Unit diagnostics */}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-        <SmallTile
+        <StatTile
           label="ARPU"
           value={
             now.activeSubscriptions > 0
-              ? formatCents(
-                  Math.round(now.mrrCents / now.activeSubscriptions)
-                )
+              ? formatCents(Math.round(now.mrrCents / now.activeSubscriptions))
               : "—"
           }
           sub="MRR / active subs"
+          size="sm"
         />
-        <SmallTile
+        <StatTile
           label="Annual-plan MRR"
           value={formatCents(now.annualMrrCents)}
           sub={
@@ -205,100 +217,44 @@ export default async function MissionControlPage() {
               ? `${((now.annualMrrCents / now.mrrCents) * 100).toFixed(0)}% of MRR`
               : "—"
           }
+          size="sm"
         />
-        <SmallTile
+        <StatTile
           label="At-risk MRR"
           value={formatCents(now.pastDueMrrCents)}
-          sub={`${now.pastDueCount} past-due ${now.pastDueCount === 1 ? "sub" : "subs"}`}
+          sub={`${now.pastDueCount} past-due ${
+            now.pastDueCount === 1 ? "sub" : "subs"
+          }`}
           tone={now.pastDueMrrCents > 0 ? "bad" : "good"}
+          size="sm"
         />
       </div>
 
-      {/* Decision lane */}
-      <div className="bg-background-elevated border border-white/5 rounded-xl p-5">
-        <p className="text-[10px] uppercase tracking-widest text-foreground-subtle font-medium mb-3">
-          Decisions this page unlocks
-        </p>
-        <ul className="text-sm text-foreground-muted space-y-2">
-          <li className="flex gap-2">
-            <span className="text-coral mt-0.5">→</span>
-            Are we on track for {formatCentsCompact(target)} MRR? If net add
-            is less than{" "}
-            {formatCents(Math.round(target / 18 / 100) * 100)}/mo you won&apos;t
-            hit it inside 18 months at current pace.
-          </li>
-          <li className="flex gap-2">
-            <span className="text-coral mt-0.5">→</span>
-            Any past-due MRR? Recover first — churn prevention is the cheapest
-            MRR there is.
-          </li>
-          <li className="flex gap-2">
-            <span className="text-coral mt-0.5">→</span>
-            Trial conversion below ~35%? Tighten the trial experience before
-            pouring more top-of-funnel into it.
-          </li>
-        </ul>
-      </div>
-    </div>
-  );
-}
-
-function Tile({
-  label,
-  value,
-  sub,
-  tone = "neutral",
-}: {
-  label: string;
-  value: string;
-  sub: string;
-  tone?: "good" | "bad" | "neutral";
-}) {
-  const valColor =
-    tone === "good"
-      ? "text-green-400"
-      : tone === "bad"
-        ? "text-coral"
-        : "text-off-white";
-  return (
-    <div className="bg-background-elevated border border-white/5 rounded-xl p-4">
-      <p className="text-[10px] uppercase tracking-widest text-foreground-subtle">
-        {label}
-      </p>
-      <p className={`font-heading text-2xl tracking-wide mt-1 ${valColor}`}>
-        {value}
-      </p>
-      <p className="text-foreground-subtle text-xs mt-1">{sub}</p>
-    </div>
-  );
-}
-
-function SmallTile({
-  label,
-  value,
-  sub,
-  tone = "neutral",
-}: {
-  label: string;
-  value: string;
-  sub: string;
-  tone?: "good" | "bad" | "neutral";
-}) {
-  const valColor =
-    tone === "good"
-      ? "text-green-400"
-      : tone === "bad"
-        ? "text-coral"
-        : "text-off-white";
-  return (
-    <div className="bg-background-elevated border border-white/5 rounded-xl p-4">
-      <p className="text-[10px] uppercase tracking-widest text-foreground-subtle">
-        {label}
-      </p>
-      <p className={`font-heading text-xl tracking-wide mt-1 ${valColor}`}>
-        {value}
-      </p>
-      <p className="text-foreground-subtle text-xs mt-1">{sub}</p>
+      {/* Decisions this page unlocks */}
+      <Card>
+        <CardBody>
+          <SectionLabel>Decisions this page unlocks</SectionLabel>
+          <ul className="text-sm text-foreground-muted space-y-2 mt-3">
+            <li className="flex gap-2">
+              <span className="text-coral mt-0.5">→</span>
+              Are we on track for {formatCentsCompact(target)} MRR? If net add
+              is less than{" "}
+              {formatCents(Math.round(target / 18 / 100) * 100)}/mo you won&apos;t
+              hit it inside 18 months at current pace.
+            </li>
+            <li className="flex gap-2">
+              <span className="text-coral mt-0.5">→</span>
+              Any past-due MRR? Recover first — churn prevention is the cheapest
+              MRR there is.
+            </li>
+            <li className="flex gap-2">
+              <span className="text-coral mt-0.5">→</span>
+              Trial conversion below ~35%? Tighten the trial experience before
+              pouring more top-of-funnel into it.
+            </li>
+          </ul>
+        </CardBody>
+      </Card>
     </div>
   );
 }
