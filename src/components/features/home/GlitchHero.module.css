@@ -78,7 +78,11 @@
   left: 7.5%;
   top: 7.5%;
   transform-origin: center;
-  animation: glowPulse 2.4s ease-in-out infinite;
+  /* 2s pulse — matches the shard beat so the whole block breathes
+     on a single 2s downbeat (shards 2s, slices 4s, portrait 8s
+     are all multiples). Feels like one organism instead of three
+     independent loops. */
+  animation: glowPulse 2s ease-in-out infinite;
 }
 @keyframes glowPulse {
   0%,
@@ -108,7 +112,9 @@
     transparent 95%
   );
   transform-origin: center;
-  animation: portraitBreathe 6s ease-in-out infinite;
+  /* 8s breathe — slowest loop in the block. 2s × 4 keeps it on the
+     shared beat with shards (2s) and slices (4s). */
+  animation: portraitBreathe 8s ease-in-out infinite;
 }
 @keyframes portraitBreathe {
   0%,
@@ -141,11 +147,12 @@
 }
 .shardRed {
   filter: hue-rotate(-20deg) saturate(3) brightness(1.2);
-  animation: glitchRed 2.2s steps(1, end) infinite;
+  /* 2s — the shared downbeat. Slices and breathe are multiples. */
+  animation: glitchRed 2s steps(1, end) infinite;
 }
 .shardCyan {
   filter: hue-rotate(160deg) saturate(3) brightness(1.2);
-  animation: glitchCyan 2.2s steps(1, end) infinite;
+  animation: glitchCyan 2s steps(1, end) infinite;
   animation-delay: 0.1s;
 }
 @keyframes glitchRed {
@@ -220,7 +227,11 @@
     100% calc(20% + 9px),
     0% calc(20% + 9px)
   );
-  animation: sliceA 3s steps(1, end) infinite;
+  /* 4s cycle — 2× the shard beat. sliceA fires on downbeats,
+     sliceB at +1s, sliceC at +2s. All three slices cycle within
+     one slice period but on different sub-beats so the glitch
+     rhythm reads as a coherent pattern, not three random loops. */
+  animation: sliceA 4s steps(1, end) infinite;
 }
 .sliceB {
   clip-path: polygon(
@@ -229,8 +240,8 @@
     100% calc(48% + 9px),
     0% calc(48% + 9px)
   );
-  animation: sliceB 3s steps(1, end) infinite;
-  animation-delay: 0.7s;
+  animation: sliceB 4s steps(1, end) infinite;
+  animation-delay: 1s;
 }
 .sliceC {
   clip-path: polygon(
@@ -239,8 +250,8 @@
     100% calc(72% + 9px),
     0% calc(72% + 9px)
   );
-  animation: sliceC 3s steps(1, end) infinite;
-  animation-delay: 1.4s;
+  animation: sliceC 4s steps(1, end) infinite;
+  animation-delay: 2s;
 }
 @keyframes sliceA {
   0%,
