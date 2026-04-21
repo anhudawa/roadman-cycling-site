@@ -40,7 +40,6 @@ export function TaskRequests({
   teammates,
 }: Props) {
   const router = useRouter();
-  const [composerOpen, setComposerOpen] = useState(false);
   const [replyOpenFor, setReplyOpenFor] = useState<number | null>(null);
   const [busyId, setBusyId] = useState<number | null>(null);
   const [error, setError] = useState<string | null>(null);
@@ -73,18 +72,9 @@ export function TaskRequests({
 
   return (
     <div className="space-y-4">
-      <div className="flex items-center justify-between gap-3 flex-wrap">
-        <h2 className="font-heading text-sm tracking-wider uppercase text-foreground-muted">
-          Team Tasks
-        </h2>
-        <button
-          type="button"
-          onClick={() => setComposerOpen(true)}
-          className="text-xs px-3 py-1.5 rounded-lg bg-coral/15 text-coral border border-coral/30 hover:bg-coral/25 font-heading tracking-wider uppercase"
-        >
-          + Send task
-        </button>
-      </div>
+      <h2 className="font-heading text-sm tracking-wider uppercase text-foreground-muted">
+        Team Tasks
+      </h2>
 
       {error && (
         <p className="text-xs text-coral bg-coral/5 border border-coral/20 rounded px-3 py-2">
@@ -227,23 +217,11 @@ export function TaskRequests({
 
       {incoming.length === 0 && outgoing.length === 0 && (
         <p className="text-xs text-foreground-subtle">
-          No pending team tasks. Click <em className="text-off-white">Send task</em> to ping someone.
+          No pending team tasks. Use <em className="text-off-white">Add task</em> above to send one.
         </p>
       )}
 
-      {composerOpen && (
-        <ComposerModal
-          currentUserSlug={currentUserSlug}
-          teammates={teammates}
-          onClose={() => setComposerOpen(false)}
-          onSent={() => {
-            setComposerOpen(false);
-            router.refresh();
-          }}
-        />
-      )}
-
-      {/* Keep currentUserName referenced to avoid lint removal; used in title text someday. */}
+      {/* Keep currentUserName referenced so lint doesn't strip it — still used by parent. */}
       <span className="hidden" aria-hidden="true">
         {currentUserName}
       </span>

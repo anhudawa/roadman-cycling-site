@@ -5,6 +5,7 @@ import { STAGE_COLORS, STAGE_LABELS, isApplicationStage } from "@/lib/crm/pipeli
 import { TaskCompleteCheckbox } from "./_components/TaskCompleteCheckbox";
 import { SendTestDigestButton } from "./_components/SendTestDigestButton";
 import { TaskRequests } from "./_components/TaskRequests";
+import { FocusBoard } from "./_components/FocusBoard";
 import { listAllTeamUsers } from "@/lib/admin/team-users";
 import {
   Card,
@@ -199,80 +200,22 @@ export default async function MyDayPage() {
         </div>
       )}
 
+      {/* Focus board — pinned main focus + all other open tasks, drag to pin. */}
+      <Card>
+        <CardBody className="p-6">
+          <FocusBoard
+            currentUserSlug={user.slug}
+            currentUserName={user.name}
+            mainFocus={data.mainFocusTasks}
+            otherOpen={data.otherOpenTasks}
+            teammates={teammates}
+          />
+        </CardBody>
+      </Card>
+
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
         {/* ── Left column ─────────────────────────────── */}
         <div className="space-y-6">
-          {/* Today's tasks */}
-          <div className="bg-background-elevated border border-white/5 rounded-xl p-6">
-            <h2 className="font-heading text-sm tracking-wider uppercase text-foreground-muted mb-4">
-              Today&apos;s Tasks
-            </h2>
-            {data.todaysTasks.length === 0 ? (
-              <EmptyState
-                icon="✓"
-                title="No tasks due today"
-                subtitle="Nice. Take a ride."
-              />
-            ) : (
-              <ul className="space-y-2">
-                {data.todaysTasks.map((t) => (
-                  <li
-                    key={t.id}
-                    className="flex items-center gap-3 py-1.5 border-b border-white/5 last:border-0"
-                  >
-                    <TaskCompleteCheckbox taskId={t.id} completed={!!t.completedAt} />
-                    <div className="flex-1 min-w-0">
-                      <p className="text-sm text-off-white truncate">{t.title}</p>
-                      {t.contactId && (
-                        <Link
-                          href={`/admin/contacts/${t.contactId}`}
-                          className="text-xs text-foreground-muted hover:text-coral"
-                        >
-                          {t.contactName ?? t.contactEmail}
-                        </Link>
-                      )}
-                    </div>
-                    <span className="text-xs text-foreground-muted tabular-nums">
-                      {formatTime(t.dueAt)}
-                    </span>
-                  </li>
-                ))}
-              </ul>
-            )}
-          </div>
-
-          {/* Overdue tasks */}
-          {data.overdueTasks.length > 0 && (
-            <div className="bg-background-elevated border border-white/5 rounded-xl p-6">
-              <h2 className="font-heading text-sm tracking-wider uppercase text-foreground-muted mb-4">
-                Overdue
-              </h2>
-              <ul className="space-y-2">
-                {data.overdueTasks.map((t) => (
-                  <li
-                    key={t.id}
-                    className="flex items-center gap-3 py-1.5 border-b border-white/5 last:border-0"
-                  >
-                    <TaskCompleteCheckbox taskId={t.id} completed={!!t.completedAt} />
-                    <div className="flex-1 min-w-0">
-                      <p className="text-sm text-off-white truncate">{t.title}</p>
-                      {t.contactId && (
-                        <Link
-                          href={`/admin/contacts/${t.contactId}`}
-                          className="text-xs text-foreground-muted hover:text-coral"
-                        >
-                          {t.contactName ?? t.contactEmail}
-                        </Link>
-                      )}
-                    </div>
-                    <span className="text-xs text-red-400 tabular-nums">
-                      {formatDate(t.dueAt)}
-                    </span>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          )}
 
           {/* Applications waiting on me */}
           <div className="bg-background-elevated border border-white/5 rounded-xl p-6">
