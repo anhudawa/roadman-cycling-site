@@ -6,6 +6,8 @@ import { JsonLd } from "@/components/seo/JsonLd";
 import { getAllPosts } from "@/lib/blog";
 import { getAllEpisodes } from "@/lib/podcast";
 import { getAllGuests } from "@/lib/guests";
+import { EVENTS, PHASES } from "@/lib/training-plans";
+import { PERSONAS, type PersonaSlug } from "@/lib/personas";
 import { type SearchableItem } from "@/lib/search";
 import { SiteSearch } from "@/components/features/search/SiteSearch";
 
@@ -204,6 +206,37 @@ function buildSearchIndex(): SearchableItem[] {
 
   // Tools
   items.push(...TOOLS);
+
+  // Training plan event hubs
+  for (const event of EVENTS) {
+    items.push({
+      type: "tool",
+      slug: `plan/${event.slug}`,
+      title: `${event.name} Training Plan`,
+      description: event.description,
+      pillar: "coaching",
+      keywords: [
+        event.name.toLowerCase(),
+        event.type,
+        event.region.toLowerCase(),
+        "training plan",
+        `${event.distanceKm}km`,
+      ],
+    });
+  }
+
+  // Persona landing pages
+  for (const key of Object.keys(PERSONAS) as PersonaSlug[]) {
+    const p = PERSONAS[key];
+    items.push({
+      type: "tool",
+      slug: `you/${p.slug}`,
+      title: p.headline,
+      description: p.subheading,
+      pillar: p.pillar,
+      keywords: [p.slug, "coaching", "cycling", p.kicker.toLowerCase()],
+    });
+  }
 
   return items;
 }
