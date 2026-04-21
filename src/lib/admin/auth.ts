@@ -175,6 +175,22 @@ export async function logout(): Promise<void> {
   cookieStore.delete(COOKIE_NAME);
 }
 
+/**
+ * Create a session cookie for a verified team_user id.
+ * Used by the Google OAuth callback after email whitelist + db lookup.
+ */
+export async function createSessionCookieForUser(userId: number): Promise<void> {
+  const token = createSignedTokenForUser(userId);
+  const cookieStore = await cookies();
+  cookieStore.set(COOKIE_NAME, token, {
+    httpOnly: true,
+    secure: process.env.NODE_ENV === "production",
+    sameSite: "lax",
+    path: "/",
+    maxAge: SESSION_DURATION,
+  });
+}
+
 /** Returns the current user from the cookie, or null. */
 export async function getCurrentUser(): Promise<TeamUser | null> {
   const cookieStore = await cookies();

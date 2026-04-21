@@ -9,6 +9,8 @@ interface NavItem {
   href: string;
   label: string;
   icon: string;
+  /** If set, this item only renders for a user whose email matches. */
+  visibleForEmail?: string;
 }
 
 interface NavSection {
@@ -27,6 +29,12 @@ const NAV_SECTIONS: NavSection[] = [
       { href: "/admin/mission-control", label: "Mission Control", icon: "trending" },
       { href: "/admin/my-day", label: "My Day", icon: "sunrise" },
       { href: "/admin/notifications", label: "Notifications", icon: "bell" },
+      {
+        href: "/admin/bookings",
+        label: "Bookings",
+        icon: "calendar",
+        visibleForEmail: "anthony@roadmancycling.com",
+      },
     ],
   },
   {
@@ -318,13 +326,22 @@ export function AdminSidebar({
 
         {/* Nav sections */}
         <nav className="flex-1 p-4 space-y-5 overflow-y-auto">
-          {NAV_SECTIONS.map((section) => (
+          {NAV_SECTIONS.map((section) => {
+            const visibleItems = section.items.filter((item) => {
+              if (!item.visibleForEmail) return true;
+              return (
+                currentUser?.email?.toLowerCase() ===
+                item.visibleForEmail.toLowerCase()
+              );
+            });
+            if (visibleItems.length === 0) return null;
+            return (
             <div key={section.title}>
               <p className="px-3 mb-1.5 text-[10px] uppercase tracking-widest text-foreground-subtle font-medium">
                 {section.title}
               </p>
               <div className="space-y-0.5">
-                {section.items.map((item) => {
+                {visibleItems.map((item) => {
                   const isActive =
                     item.href === "/admin"
                       ? pathname === "/admin"
@@ -369,7 +386,8 @@ export function AdminSidebar({
                 })}
               </div>
             </div>
-          ))}
+            );
+          })}
         </nav>
 
         {/* Help link — visible to all roles */}
