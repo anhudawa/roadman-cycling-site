@@ -365,10 +365,10 @@ export default async function PlanPage({
                   weekly calls, expert masterclasses. 7-day free trial.
                 </p>
                 <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
-                  <Button href="/apply" size="lg">
+                  <Button href="/apply" size="lg" dataTrack="plan_phase_apply">
                     Apply for Not Done Yet
                   </Button>
-                  <Button href="/coaching" variant="ghost" size="lg">
+                  <Button href="/coaching" variant="ghost" size="lg" dataTrack="plan_phase_coaching">
                     How Coaching Works
                   </Button>
                 </div>
