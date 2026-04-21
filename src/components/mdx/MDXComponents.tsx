@@ -41,6 +41,25 @@ function MDXImage({ src, alt, width, height, ...rest }: ImgProps) {
   );
 }
 
+type AnchorProps = ComponentPropsWithoutRef<"a">;
+
+function MDXLink({ href, children, ...rest }: AnchorProps) {
+  const isExternal = href && /^https?:\/\//i.test(href);
+  if (isExternal) {
+    return (
+      <a href={href} target="_blank" rel="noopener noreferrer" {...rest}>
+        {children}
+      </a>
+    );
+  }
+  return (
+    <a href={href} {...rest}>
+      {children}
+    </a>
+  );
+}
+
 export const mdxComponents = {
   img: MDXImage,
+  a: MDXLink,
 };

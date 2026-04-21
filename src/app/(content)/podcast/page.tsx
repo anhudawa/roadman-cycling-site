@@ -50,6 +50,21 @@ export default function PodcastPage() {
       <JsonLd
         data={{
           "@context": "https://schema.org",
+          "@type": "ItemList",
+          name: "Latest Podcast Episodes",
+          itemListOrder: "https://schema.org/ItemListOrderDescending",
+          numberOfItems: Math.min(episodes.length, 20),
+          itemListElement: episodes.slice(0, 20).map((ep, i) => ({
+            "@type": "ListItem",
+            position: i + 1,
+            url: `https://roadmancycling.com/podcast/${ep.slug}`,
+            name: ep.title,
+          })),
+        }}
+      />
+      <JsonLd
+        data={{
+          "@context": "https://schema.org",
           "@type": "BreadcrumbList",
           itemListElement: [
             {
