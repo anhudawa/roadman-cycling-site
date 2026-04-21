@@ -52,6 +52,7 @@ const NAV_SECTIONS: NavSection[] = [
       { href: "/admin/funnel", label: "Funnel", icon: "funnel" },
       { href: "/admin/health", label: "Health", icon: "heart" },
       { href: "/admin/newsletter", label: "Newsletter", icon: "newspaper" },
+      { href: "/admin/diagnostic", label: "Plateau Diagnostic", icon: "trending" },
       { href: "/admin/integrations/skool", label: "Skool Clubhouse", icon: "users" },
       { href: "/admin/reports", label: "Reports", icon: "trending" },
     ],

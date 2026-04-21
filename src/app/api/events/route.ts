@@ -19,6 +19,11 @@ export async function POST(request: Request) {
       "checkout_initiated",
       "checkout_completed",
       "error_report",
+      "diagnostic_start",
+      "diagnostic_progress",
+      "diagnostic_complete",
+      "diagnostic_results_view",
+      "diagnostic_cta_click",
     ];
     if (!validTypes.includes(type)) {
       return Response.json({ error: "Invalid event type" }, { status: 400 });
