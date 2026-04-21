@@ -1,21 +1,22 @@
 /* =========================================================
-   GlitchHero — square animated portrait block.
-   Constrained to a centered square so the glitch effects stay
-   impactful at max quality. Parent (HeroSection) places text
-   and CTAs below this block, never over it.
+   GlitchHero — animated portrait block (Direction 3: "Hero Crop")
+   Hard-edge top, soft mask fade at the bottom so the jersey
+   dissolves into the deep-purple section background. Shard
+   displacements run loud because the portrait sits at a crop
+   size (640px max) well below native 801×801.
    ========================================================= */
 
 .hero {
-  --hero-bg: #1d0838; /* matches the portrait's baked-in background */
+  --hero-bg: #1d0838;
   --glow-red: rgba(255, 61, 90, 0.45);
   --glow-purple: rgba(178, 123, 240, 0.4);
   --portrait: url("/images/hero/glitch-portrait.jpg");
 
-  /* Centred square. Smaller on mobile (72vmin) to leave room
-     for headline + CTAs above the fold on short phones; bumps
-     up to 92vmin past the md breakpoint, capped at 680px so we
-     stay at or below the portrait's native 801×801 and the
-     glitch pixel offsets (±8–16px) stay visually punchy. */
+  /* Hard-capped at 640px — never upscaled past native 801×801.
+     72vmin on small viewports keeps headline + CTAs above the
+     fold on short phones; 88vmin past md, capped at 640px on
+     lg so the glitch shards (±10-18px) stay proportionally
+     punchy. */
   position: relative;
   width: min(72vmin, 520px);
   aspect-ratio: 1 / 1;
@@ -23,17 +24,29 @@
   background: var(--hero-bg);
   overflow: hidden;
   isolation: isolate;
+
+  /* Bottom mask fade — opaque 0-65%, soft dissolve to transparent
+     at 100%. Jersey fades into the section bg instead of ending
+     on a rectangle edge. Combined with the portrait's own radial
+     mask via per-layer masks below. */
+  mask-image: linear-gradient(to bottom, #000 0%, #000 65%, transparent 100%);
+  -webkit-mask-image: linear-gradient(
+    to bottom,
+    #000 0%,
+    #000 65%,
+    transparent 100%
+  );
 }
 
 @media (min-width: 48rem) {
   .hero {
-    width: min(92vmin, 680px);
+    width: min(88vmin, 640px);
   }
 }
 
 /* Shared background image for portrait + shards + slices.
-   `cover` fills the square with the 801x801 portrait 1:1 —
-   max-quality rendering with no interpolation artefacts. */
+   `cover` fills the square with the 801×801 source 1:1 at this
+   render size — max-quality, no interpolation. */
 .portrait,
 .shard,
 .slice {
@@ -45,7 +58,7 @@
   background-repeat: no-repeat;
 }
 
-/* Layer 1 — ambient radial glow (behind portrait) */
+/* Layer 1 — ambient radial glow */
 .glow {
   position: absolute;
   background: radial-gradient(
@@ -74,8 +87,7 @@
   }
 }
 
-/* Layer 2 — portrait w/ radial mask.
-   Ellipse sized to hug the head/shoulders in the square crop. */
+/* Layer 2 — portrait w/ radial mask hugging head + shoulders */
 .portrait {
   z-index: 1;
   mask-image: radial-gradient(
@@ -105,7 +117,7 @@
   }
 }
 
-/* Layer 3 — glitch shards */
+/* Layer 3 — glitch shards (louder offsets: ±10-18px at 640px crop) */
 .shard {
   z-index: 2;
   mask-image: radial-gradient(
@@ -138,20 +150,20 @@
     transform: translate(0, 0);
   }
   88% {
-    opacity: 0.75;
-    transform: translate(-8px, 2px);
+    opacity: 0.8;
+    transform: translate(-12px, 3px);
   }
   91% {
-    opacity: 0.8;
-    transform: translate(10px, -3px);
+    opacity: 0.85;
+    transform: translate(14px, -4px);
   }
   94% {
-    opacity: 0.7;
-    transform: translate(-4px, 0);
+    opacity: 0.75;
+    transform: translate(-6px, 0);
   }
   97% {
-    opacity: 0.8;
-    transform: translate(6px, 4px);
+    opacity: 0.85;
+    transform: translate(10px, 6px);
   }
   100% {
     opacity: 0;
@@ -165,20 +177,20 @@
     transform: translate(0, 0);
   }
   88% {
-    opacity: 0.75;
-    transform: translate(8px, -2px);
+    opacity: 0.8;
+    transform: translate(12px, -3px);
   }
   91% {
-    opacity: 0.8;
-    transform: translate(-10px, 3px);
+    opacity: 0.85;
+    transform: translate(-14px, 4px);
   }
   94% {
-    opacity: 0.7;
-    transform: translate(4px, 0);
+    opacity: 0.75;
+    transform: translate(6px, 0);
   }
   97% {
-    opacity: 0.8;
-    transform: translate(-6px, -4px);
+    opacity: 0.85;
+    transform: translate(-10px, -6px);
   }
   100% {
     opacity: 0;
@@ -186,36 +198,41 @@
   }
 }
 
-/* Layer 4 — horizontal slice strips */
+/* Layer 4 — slice strips.
+   Re-targeted to 20% / 48% / 72% so the bands land on:
+     A  helmet crown
+     B  sunglasses bridge  ← money shot for chromatic aberration
+     C  jersey logo
+   18px tall each, 9px top and bottom of the target Y line. */
 .slice {
   z-index: 3;
   mix-blend-mode: screen;
 }
 .sliceA {
   clip-path: polygon(
-    0% calc(22% - 9px),
-    100% calc(22% - 9px),
-    100% calc(22% + 9px),
-    0% calc(22% + 9px)
+    0% calc(20% - 9px),
+    100% calc(20% - 9px),
+    100% calc(20% + 9px),
+    0% calc(20% + 9px)
   );
   animation: sliceA 3s steps(1, end) infinite;
 }
 .sliceB {
   clip-path: polygon(
-    0% calc(47% - 9px),
-    100% calc(47% - 9px),
-    100% calc(47% + 9px),
-    0% calc(47% + 9px)
+    0% calc(48% - 9px),
+    100% calc(48% - 9px),
+    100% calc(48% + 9px),
+    0% calc(48% + 9px)
   );
   animation: sliceB 3s steps(1, end) infinite;
   animation-delay: 0.7s;
 }
 .sliceC {
   clip-path: polygon(
-    0% calc(68% - 9px),
-    100% calc(68% - 9px),
-    100% calc(68% + 9px),
-    0% calc(68% + 9px)
+    0% calc(72% - 9px),
+    100% calc(72% - 9px),
+    100% calc(72% + 9px),
+    0% calc(72% + 9px)
   );
   animation: sliceC 3s steps(1, end) infinite;
   animation-delay: 1.4s;
@@ -228,16 +245,16 @@
     opacity: 0;
   }
   65% {
-    transform: translateX(-14px);
-    opacity: 0.65;
+    transform: translateX(-18px);
+    opacity: 0.7;
   }
   75% {
-    transform: translateX(16px);
-    opacity: 0.6;
+    transform: translateX(20px);
+    opacity: 0.65;
   }
   85% {
-    transform: translateX(-6px);
-    opacity: 0.55;
+    transform: translateX(-8px);
+    opacity: 0.6;
   }
   95% {
     transform: translateX(0);
@@ -252,16 +269,16 @@
     opacity: 0;
   }
   65% {
-    transform: translateX(16px);
-    opacity: 0.6;
+    transform: translateX(20px);
+    opacity: 0.7;
   }
   75% {
-    transform: translateX(-14px);
-    opacity: 0.65;
+    transform: translateX(-18px);
+    opacity: 0.75;
   }
   85% {
-    transform: translateX(8px);
-    opacity: 0.55;
+    transform: translateX(10px);
+    opacity: 0.6;
   }
   95% {
     transform: translateX(0);
@@ -276,16 +293,16 @@
     opacity: 0;
   }
   65% {
-    transform: translateX(-6px);
-    opacity: 0.6;
+    transform: translateX(-8px);
+    opacity: 0.65;
   }
   75% {
-    transform: translateX(12px);
-    opacity: 0.55;
+    transform: translateX(14px);
+    opacity: 0.6;
   }
   85% {
-    transform: translateX(-10px);
-    opacity: 0.6;
+    transform: translateX(-12px);
+    opacity: 0.65;
   }
   95% {
     transform: translateX(0);
@@ -293,7 +310,7 @@
   }
 }
 
-/* Layer 5 — vignette */
+/* Layer 5 — vignette: subtle deep-purple bias */
 .vignette {
   position: absolute;
   inset: 0;
@@ -305,7 +322,7 @@
   );
 }
 
-/* Accessibility — kill motion when requested */
+/* Accessibility — kill all motion when requested */
 @media (prefers-reduced-motion: reduce) {
   .hero *,
   .hero *::before,
