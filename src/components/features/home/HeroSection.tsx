@@ -210,7 +210,7 @@ export function HeroSection({ latestEpisode }: HeroSectionProps) {
               animate={{ opacity: 1 }}
               transition={{ duration: 0.8, delay: 0.9 }}
             >
-              <span>1M listeners</span>
+              <span>1M monthly listeners</span>
               <span className="mx-2 opacity-50">·</span>
               <span>65K newsletter</span>
               <span className="mx-2 opacity-50">·</span>
