@@ -47,6 +47,17 @@ export interface EpisodeFrontmatter {
    * Populated by scripts/populate-episode-related-posts.ts.
    */
   relatedPosts?: string[];
+  /**
+   * 2-3 notable verbatim quotes extracted from the transcript, attributed
+   * to a named speaker. Rendered as styled blockquotes on the episode page
+   * with schema.org Quotation markup for rich-result eligibility.
+   * Populated by scripts/extract-key-quotes.ts (Claude Sonnet 4.6).
+   */
+  keyQuotes?: Array<{
+    text: string;
+    speaker: string;
+    credential?: string;
+  }>;
 }
 
 export interface EpisodeMeta extends EpisodeFrontmatter {

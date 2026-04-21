@@ -219,6 +219,28 @@ export default async function EpisodePage({
           }}
         />
       )}
+      {/* Quotation schema for key expert quotes extracted from transcript */}
+      {episode.keyQuotes && episode.keyQuotes.length > 0 && (
+        <JsonLd
+          data={{
+            "@context": "https://schema.org",
+            "@graph": episode.keyQuotes.map((quote) => ({
+              "@type": "Quotation",
+              text: quote.text,
+              creator: {
+                "@type": "Person",
+                name: quote.speaker,
+                ...(quote.credential && { description: quote.credential }),
+              },
+              isPartOf: {
+                "@type": "PodcastEpisode",
+                name: episode.title,
+                url: episodeUrl,
+              },
+            })),
+          }}
+        />
+      )}
 
       <Header />
 
@@ -390,6 +412,40 @@ export default async function EpisodePage({
                 components={{ ...mdxComponents, AICitationBlock }}
               />
             </article>
+
+            {/* Key Quotes — verbatim expert quotes from the transcript,
+                rendered as styled blockquotes with speaker attribution.
+                Placed between show notes and transcript for maximum
+                visibility without interrupting the reading flow. */}
+            {episode.keyQuotes && episode.keyQuotes.length > 0 && (
+              <section className="mt-12" aria-label="Key quotes from this episode">
+                <h2 className="font-heading text-xl text-off-white mb-6 tracking-wide">
+                  KEY QUOTES
+                </h2>
+                <div className="space-y-6">
+                  {episode.keyQuotes.map((quote, idx) => (
+                    <blockquote
+                      key={idx}
+                      className="relative pl-5 border-l-2 border-coral/60"
+                    >
+                      <p className="text-foreground-muted text-base italic leading-relaxed">
+                        &ldquo;{quote.text}&rdquo;
+                      </p>
+                      <footer className="mt-2 text-sm text-foreground-subtle">
+                        <span className="text-off-white font-medium not-italic">
+                          {quote.speaker}
+                        </span>
+                        {quote.credential && (
+                          <span className="not-italic">
+                            {" "}&mdash; {quote.credential}
+                          </span>
+                        )}
+                      </footer>
+                    </blockquote>
+                  ))}
+                </div>
+              </section>
+            )}
 
             {/* Transcript */}
             {episode.transcript && (
