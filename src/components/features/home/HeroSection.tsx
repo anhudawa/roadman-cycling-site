@@ -11,7 +11,6 @@ import {
 } from "framer-motion";
 import { Button } from "@/components/ui";
 import { GlitchHero } from "./GlitchHero";
-import { PodcastHero } from "./PodcastHero";
 import type { EpisodeMeta } from "@/lib/podcast";
 
 interface HeroSectionProps {
@@ -19,30 +18,25 @@ interface HeroSectionProps {
 }
 
 /**
- * Homepage hero — Direction 3 "Hero Crop" on desktop.
+ * Homepage hero — Direction 3 "Hero Crop", unified across all viewports.
  *
- * Mobile (`<md`): untouched — `PodcastHero` leads with podcast
- * waveform + latest-episode strip + APPLY as primary.
+ * Mobile (`<md`):    single column. Glitch portrait first (visitor sees
+ *                    the brand face on first paint), then eyebrow,
+ *                    4-line headline, coral hairline, CTAs, proof line.
+ * Tablet (`md`):     single column (same stack as mobile, larger type).
+ * Desktop (`lg+`):   2-column split — text in cols 1-5, portrait in
+ *                    cols 7-12. `order-*` classes flip the DOM-first
+ *                    portrait to the right rail without re-ordering
+ *                    source.
  *
- * Tablet (`md` / 768–1023): single column, 4-line flush-left
- * headline above the glitch portrait block.
+ * Portrait is hard-capped at 640px (via GlitchHero.module.css), safely
+ * below the 801×801 source so no upscaling; a soft bottom mask fade
+ * dissolves it into the section's deep-purple bg.
  *
- * Desktop (`lg+` / ≥1024): 2-column split. 4-line headline and
- * CTAs anchor the LEFT rail; hard-edged glitch portrait sits on
- * the RIGHT rail at ≤640px (well below the 801×801 source so the
- * glitch shards stay proportionally loud). Portrait has a soft
- * bottom mask fade so it dissolves into the section's deep-purple
- * background — no hard rectangle edge.
- *
- * Headline copy is verbatim "CYCLING IS HARD, OUR COACHING WILL
- * HELP." broken across 4 lines as:
- *   CYCLING
- *   IS HARD,
- *   OUR COACHING
- *   WILL HELP.
- * The line breaks are a visual composition choice — if the
- * headline ever changes, the line structure has to be rebalanced
- * by hand. Do not auto-wrap.
+ * Headline copy is verbatim "CYCLING IS HARD, OUR COACHING WILL HELP."
+ * broken across 4 lines as CYCLING / IS HARD, / OUR COACHING / WILL
+ * HELP. Line breaks are hand-tuned — if the copy changes, rebalance
+ * manually. Do not auto-wrap.
  */
 export function HeroSection({ latestEpisode }: HeroSectionProps) {
   const sectionRef = useRef<HTMLElement>(null);
@@ -60,7 +54,6 @@ export function HeroSection({ latestEpisode }: HeroSectionProps) {
   });
 
   // Gentle parallax on the portrait only — text stays put.
-  // Hero does NOT fade out; StatsSection scrolls in over it.
   const portraitY = useTransform(smoothProgress, [0, 1], [0, 80]);
 
   useMotionValueEvent(scrollYProgress, "change", (v) => {
@@ -86,24 +79,27 @@ export function HeroSection({ latestEpisode }: HeroSectionProps) {
         className="absolute top-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-coral/70 to-transparent"
       />
 
-      {/* ─── MOBILE: podcast-first hero (unchanged) ───────── */}
-      <div className="md:hidden relative z-10 flex flex-col items-center px-5 pt-[calc(5rem+var(--cohort-banner-height,0px))] pb-12">
-        <PodcastHero
-          episode={latestEpisode}
-          ctaHref="/apply"
-          ctaLabel="Apply for coaching"
-        />
-      </div>
+      <div className="relative z-10 pt-[calc(5rem+var(--cohort-banner-height,0px))] md:pt-[calc(6rem+var(--cohort-banner-height,0px))] pb-16 md:pb-24">
+        <div className="mx-auto max-w-[1200px] px-5 md:px-8 grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-8 items-start">
+          {/* ── GLITCH PORTRAIT ──────────────────────────────
+              DOM-first so it shows first on mobile (the brand face
+              is the visual anchor). On lg+ it's placed in cols 7-12
+              and explicitly pinned to row 1 so it sits on the right
+              rail with the text on the left. */}
+          <motion.div
+            className="lg:col-start-7 lg:col-span-6 lg:row-start-1 w-full flex justify-center lg:justify-end"
+            style={{ y: portraitY }}
+            initial={{ opacity: 0, scale: 0.96 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.95, ease: [0.16, 1, 0.3, 1] }}
+          >
+            <GlitchHero />
+          </motion.div>
 
-      {/* ─── TABLET + DESKTOP: "Hero Crop" ──────────────────
-          md (768-1023): single column — headline above portrait.
-          lg+ (1024+):  2-col split — text left, portrait right. */}
-      <div className="hidden md:block relative z-10 pt-[calc(6rem+var(--cohort-banner-height,0px))] pb-24">
-        <div className="mx-auto max-w-[1200px] px-8 grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-start">
-          {/* ── LEFT RAIL: eyebrow + headline + CTAs ──────── */}
-          <div className="lg:col-span-5 text-center lg:text-left lg:pt-8">
+          {/* ── TEXT RAIL: eyebrow / headline / hairline / CTAs / proof ── */}
+          <div className="lg:col-start-1 lg:col-span-5 lg:row-start-1 text-center lg:text-left lg:pt-8">
             <motion.p
-              className="font-body text-xs tracking-[0.3em] uppercase mb-8"
+              className="font-body text-[11px] md:text-xs tracking-[0.3em] uppercase mb-6 md:mb-8"
               initial={{ opacity: 0, y: 12 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{
@@ -132,10 +128,10 @@ export function HeroSection({ latestEpisode }: HeroSectionProps) {
             </motion.p>
 
             <h1
-              className="font-heading text-off-white mb-8"
+              className="font-heading text-off-white mb-6 md:mb-8"
               style={{
-                fontSize: "clamp(3.5rem, 8vw, 7rem)",
-                lineHeight: 0.88,
+                fontSize: "clamp(2.75rem, 8vw, 7rem)",
+                lineHeight: 0.9,
                 letterSpacing: "-0.025em",
                 textShadow: "0 4px 30px rgba(0,0,0,0.55)",
               }}
@@ -158,10 +154,9 @@ export function HeroSection({ latestEpisode }: HeroSectionProps) {
               ))}
             </h1>
 
-            {/* 24px coral hairline — the only decorative element */}
             <motion.div
               aria-hidden="true"
-              className="w-6 h-px bg-coral mx-auto lg:mx-0 mb-7"
+              className="w-6 h-px bg-coral mx-auto lg:mx-0 mb-6 md:mb-7"
               initial={{ scaleX: 0, opacity: 0 }}
               animate={{ scaleX: 1, opacity: 1 }}
               transition={{
@@ -173,7 +168,7 @@ export function HeroSection({ latestEpisode }: HeroSectionProps) {
             />
 
             <motion.div
-              className="flex flex-col sm:flex-row items-center lg:items-start justify-center lg:justify-start gap-5"
+              className="flex flex-col sm:flex-row items-center lg:items-start justify-center lg:justify-start gap-4 sm:gap-5"
               initial={{ opacity: 0, y: 16 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{
@@ -185,7 +180,7 @@ export function HeroSection({ latestEpisode }: HeroSectionProps) {
               <Button
                 href="/apply"
                 size="lg"
-                className="shadow-[0_12px_40px_-8px_rgba(241,99,99,0.55)] hover:shadow-[0_16px_50px_-6px_rgba(241,99,99,0.7)] transition-shadow"
+                className="w-full sm:w-auto shadow-[0_12px_40px_-8px_rgba(241,99,99,0.55)] hover:shadow-[0_16px_50px_-6px_rgba(241,99,99,0.7)] transition-shadow"
                 dataTrack="home_hero_apply"
               >
                 Apply →
@@ -201,7 +196,7 @@ export function HeroSection({ latestEpisode }: HeroSectionProps) {
             </motion.div>
 
             <motion.p
-              className="mt-10 text-[11px] tracking-[0.18em] uppercase text-off-white/45"
+              className="mt-8 md:mt-10 text-[10px] md:text-[11px] tracking-[0.18em] uppercase text-off-white/45"
               style={{
                 fontFamily:
                   "var(--font-jetbrains-mono), ui-monospace, monospace",
@@ -217,22 +212,10 @@ export function HeroSection({ latestEpisode }: HeroSectionProps) {
               <span>1300+ episodes</span>
             </motion.p>
           </div>
-
-          {/* ── RIGHT RAIL: glitch portrait ─────────────────
-              lg: cols 7–12 (skip col 6 gutter). md: stacks below. */}
-          <motion.div
-            className="lg:col-start-7 lg:col-span-6 w-full flex justify-center lg:justify-end"
-            style={{ y: portraitY }}
-            initial={{ opacity: 0, scale: 0.96 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.95, ease: [0.16, 1, 0.3, 1] }}
-          >
-            <GlitchHero />
-          </motion.div>
         </div>
       </div>
 
-      {/* Animated scroll indicator — desktop only */}
+      {/* Animated scroll indicator — md+ only */}
       <motion.div
         className="absolute bottom-4 left-1/2 -translate-x-1/2 z-10 hidden md:flex flex-col items-center gap-2"
         initial={{ opacity: 0 }}
