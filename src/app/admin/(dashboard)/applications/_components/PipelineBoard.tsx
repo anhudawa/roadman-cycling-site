@@ -259,9 +259,7 @@ export function PipelineBoard({ initialStages, cohorts, initialCohort }: Props) 
             </option>
           ))}
         </select>
-        <span className="text-foreground-subtle text-xs ml-2">
-          {totalCount} application{totalCount === 1 ? "" : "s"}
-        </span>
+        <span className="sr-only">{totalCount} applications</span>
         {error && (
           <span className="ml-auto text-xs text-red-400 bg-red-500/10 border border-red-500/20 px-3 py-1 rounded-lg">
             {error}
@@ -269,7 +267,7 @@ export function PipelineBoard({ initialStages, cohorts, initialCohort }: Props) 
         )}
       </div>
 
-      <div className="flex gap-3 overflow-x-auto pb-4">
+      <div className="flex gap-3 overflow-x-auto snap-x snap-mandatory pb-4 -mx-2 px-2 scrollbar-thin">
         {APPLICATION_STAGES.map((stage) => {
           const color = STAGE_COLORS[stage];
           const cards = stages[stage] ?? [];
@@ -293,8 +291,12 @@ export function PipelineBoard({ initialStages, cohorts, initialCohort }: Props) 
                 setDragId(null);
                 setDragFrom(null);
               }}
-              className={`shrink-0 w-72 flex flex-col rounded-xl border border-white/5 bg-background-elevated transition ${
-                isHover ? "ring-1 ring-coral" : ""
+              className={`shrink-0 w-[85vw] sm:w-72 snap-start flex flex-col rounded-xl border bg-background-elevated/70 transition ${
+                isHover
+                  ? "border-coral/60 ring-2 ring-coral/30"
+                  : cards.length === 0
+                    ? "border-white/[0.04]"
+                    : "border-white/10"
               }`}
             >
               <div className="flex items-center gap-2 px-4 py-3 border-b border-white/5">
@@ -303,7 +305,11 @@ export function PipelineBoard({ initialStages, cohorts, initialCohort }: Props) 
                   {STAGE_LABELS[stage]}
                 </h3>
                 <span
-                  className={`ml-auto text-[10px] px-2 py-0.5 rounded-full border font-medium ${color.badge}`}
+                  className={`ml-auto min-w-[22px] text-center text-[11px] font-heading tabular-nums px-1.5 py-0.5 rounded-full ${
+                    cards.length === 0
+                      ? "text-foreground-subtle bg-white/[0.04]"
+                      : "text-off-white bg-white/10"
+                  }`}
                 >
                   {cards.length}
                 </span>

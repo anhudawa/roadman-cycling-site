@@ -5,6 +5,7 @@ import { Header, Footer, Section, Container } from "@/components/layout";
 import { AICitationBlock, Badge, Button } from "@/components/ui";
 import { AnswerCapsule } from "@/components/ui/AnswerCapsule";
 import { JsonLd } from "@/components/seo/JsonLd";
+import { FAQSchema } from "@/components/seo/FAQSchema";
 import { getEpisodeBySlug, getAllEpisodeSlugs } from "@/lib/podcast";
 import { segmentTranscript } from "@/lib/transcript";
 import { PodcastLinks } from "@/components/features/podcast/PodcastLinks";
@@ -14,6 +15,7 @@ import { RelatedContent } from "@/components/features/RelatedContent";
 import { RelatedEpisodes } from "@/components/features/podcast/RelatedEpisodes";
 import { EmailCapture } from "@/components/features/conversion/EmailCapture";
 import { getPostBySlug } from "@/lib/blog";
+import { EVENTS } from "@/lib/training-plans";
 import Link from "next/link";
 import { mdxComponents } from "@/components/mdx/MDXComponents";
 
@@ -86,6 +88,11 @@ export default async function EpisodePage({
 
   const publishDate = new Date(episode.publishDate);
   const episodeUrl = `https://roadmancycling.com/podcast/${slug}`;
+
+  const mentionedEvents = EVENTS.filter((e) => {
+    const haystack = `${episode.title} ${episode.description} ${episode.transcript || ""}`.toLowerCase();
+    return haystack.includes(e.name.toLowerCase()) || haystack.includes(e.shortName.toLowerCase());
+  }).slice(0, 3);
 
   // Segment the transcript once on the server so the schema and the
   // TranscriptViewer render from the same segmentation — keeping schema
@@ -212,6 +219,33 @@ export default async function EpisodePage({
             },
           }}
         />
+      )}
+      {/* Quotation schema for key expert quotes extracted from transcript */}
+      {episode.keyQuotes && episode.keyQuotes.length > 0 && (
+        <JsonLd
+          data={{
+            "@context": "https://schema.org",
+            "@graph": episode.keyQuotes.map((quote) => ({
+              "@type": "Quotation",
+              text: quote.text,
+              creator: {
+                "@type": "Person",
+                name: quote.speaker,
+                ...(quote.credential && { description: quote.credential }),
+              },
+              isPartOf: {
+                "@type": "PodcastEpisode",
+                name: episode.title,
+                url: episodeUrl,
+              },
+            })),
+          }}
+        />
+      )}
+
+      {/* FAQPage schema for episodes with FAQ sections */}
+      {episode.faq && episode.faq.length > 0 && (
+        <FAQSchema faqs={episode.faq} />
       )}
 
       <Header />
@@ -385,6 +419,40 @@ export default async function EpisodePage({
               />
             </article>
 
+            {/* Key Quotes — verbatim expert quotes from the transcript,
+                rendered as styled blockquotes with speaker attribution.
+                Placed between show notes and transcript for maximum
+                visibility without interrupting the reading flow. */}
+            {episode.keyQuotes && episode.keyQuotes.length > 0 && (
+              <section className="mt-12" aria-label="Key quotes from this episode">
+                <h2 className="font-heading text-xl text-off-white mb-6 tracking-wide">
+                  KEY QUOTES
+                </h2>
+                <div className="space-y-6">
+                  {episode.keyQuotes.map((quote, idx) => (
+                    <blockquote
+                      key={idx}
+                      className="relative pl-5 border-l-2 border-coral/60"
+                    >
+                      <p className="text-foreground-muted text-base italic leading-relaxed">
+                        &ldquo;{quote.text}&rdquo;
+                      </p>
+                      <footer className="mt-2 text-sm text-foreground-subtle">
+                        <span className="text-off-white font-medium not-italic">
+                          {quote.speaker}
+                        </span>
+                        {quote.credential && (
+                          <span className="not-italic">
+                            {" "}&mdash; {quote.credential}
+                          </span>
+                        )}
+                      </footer>
+                    </blockquote>
+                  ))}
+                </div>
+              </section>
+            )}
+
             {/* Transcript */}
             {episode.transcript && (
               <TranscriptViewer
@@ -392,6 +460,31 @@ export default async function EpisodePage({
                 titles={episode.segmentTitles}
                 className="mt-12"
               />
+            )}
+
+            {/* FAQ section — visible accordion for episodes with FAQ pairs */}
+            {episode.faq && episode.faq.length > 0 && (
+              <section className="mt-16" aria-label="Frequently asked questions">
+                <h2 className="font-heading text-2xl text-off-white mb-6 tracking-wide">
+                  FREQUENTLY ASKED QUESTIONS
+                </h2>
+                <div className="space-y-4">
+                  {episode.faq.map((item, idx) => (
+                    <details
+                      key={idx}
+                      className="group rounded-lg bg-white/5 border border-white/5 hover:border-coral/20 transition-colors"
+                    >
+                      <summary className="flex items-center justify-between cursor-pointer p-4 font-heading text-off-white text-sm tracking-wide select-none list-none [&::-webkit-details-marker]:hidden">
+                        <span>{item.question}</span>
+                        <span className="ml-4 shrink-0 text-coral transition-transform group-open:rotate-45">+</span>
+                      </summary>
+                      <div className="px-4 pb-4 text-sm text-foreground-muted leading-relaxed">
+                        {item.answer}
+                      </div>
+                    </details>
+                  ))}
+                </div>
+              </section>
             )}
 
             {/* Newsletter */}
@@ -439,6 +532,25 @@ export default async function EpisodePage({
                 </section>
               );
             })()}
+
+            {mentionedEvents.length > 0 && (
+              <div className="mt-10 rounded-xl border border-white/10 bg-white/[0.03] p-5 md:p-6">
+                <p className="font-heading text-coral text-xs tracking-widest mb-3">
+                  FREE TRAINING PLANS
+                </p>
+                <div className="flex flex-wrap gap-2">
+                  {mentionedEvents.map((e) => (
+                    <Link
+                      key={e.slug}
+                      href={`/plan/${e.slug}`}
+                      className="inline-flex items-center gap-2 rounded-lg border border-white/15 hover:border-coral/40 bg-white/[0.04] hover:bg-white/[0.07] px-4 py-2 text-sm font-heading text-off-white tracking-wider transition-all"
+                    >
+                      {e.shortName.toUpperCase()} →
+                    </Link>
+                  ))}
+                </div>
+              </div>
+            )}
 
             {/* Related Episodes (podcast-only, server-rendered for SEO) */}
             <RelatedEpisodes

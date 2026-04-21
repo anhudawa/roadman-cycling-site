@@ -5,10 +5,34 @@ import Link from "next/link";
 import Image from "next/image";
 import { Badge } from "@/components/ui";
 import { EmailCapture } from "@/components/features/conversion/EmailCapture";
+import { isGenericImage } from "@/lib/blog-images";
 import { type ContentPillar, CONTENT_PILLARS } from "@/types";
 
 const INITIAL_POSTS_PER_PAGE = 24;
 const FEATURED_POST_COUNT = 4;
+
+/**
+ * Returns the hero image URL for a post card. Posts whose
+ * featuredImage is in the shared-generic pool (GENERIC_BLOG_IMAGES)
+ * render the Satori-generated branded template so the /blog index
+ * never shows the same stock photo on multiple cards; posts with a
+ * unique image keep it.
+ */
+function heroSrcForCard(post: Pick<BlogSearchItem, "slug" | "featuredImage">): {
+  src: string;
+  isSatori: boolean;
+} | null {
+  if (isGenericImage(post.featuredImage)) {
+    return {
+      src: `/api/og/blog-hero?slug=${encodeURIComponent(post.slug)}`,
+      isSatori: true,
+    };
+  }
+  if (post.featuredImage) {
+    return { src: post.featuredImage, isSatori: false };
+  }
+  return null;
+}
 
 interface BlogSearchItem {
   slug: string;
@@ -149,15 +173,20 @@ export function BlogSearch({ posts }: BlogSearchProps) {
                 style={{ transitionDuration: "var(--duration-normal)" }}
               >
                 <div className="aspect-[16/9] relative bg-gradient-to-br from-deep-purple to-charcoal overflow-hidden">
-                  {post.featuredImage && (
-                    <Image
-                      src={post.featuredImage}
-                      alt={post.title}
-                      fill
-                      className="object-cover group-hover:scale-105 transition-transform duration-500"
-                      sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 25vw"
-                    />
-                  )}
+                  {(() => {
+                    const hero = heroSrcForCard(post);
+                    if (!hero) return null;
+                    return (
+                      <Image
+                        src={hero.src}
+                        alt={post.title}
+                        fill
+                        className="object-cover group-hover:scale-105 transition-transform duration-500"
+                        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 25vw"
+                        unoptimized={hero.isSatori}
+                      />
+                    );
+                  })()}
                 </div>
                 <div className="p-4">
                   <div className="flex items-center gap-2 mb-2">
@@ -296,15 +325,20 @@ export function BlogSearch({ posts }: BlogSearchProps) {
                   style={{ transitionDuration: "var(--duration-normal)" }}
                 >
                   <div className="aspect-[16/9] relative bg-gradient-to-br from-deep-purple to-charcoal overflow-hidden">
-                    {post.featuredImage && (
-                      <Image
-                        src={post.featuredImage}
-                        alt={post.title}
-                        fill
-                        className="object-cover group-hover:scale-105 transition-transform duration-500"
-                        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                      />
-                    )}
+                    {(() => {
+                      const hero = heroSrcForCard(post);
+                      if (!hero) return null;
+                      return (
+                        <Image
+                          src={hero.src}
+                          alt={post.title}
+                          fill
+                          className="object-cover group-hover:scale-105 transition-transform duration-500"
+                          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                          unoptimized={hero.isSatori}
+                        />
+                      );
+                    })()}
                   </div>
 
                   <div className="p-6">
@@ -351,7 +385,7 @@ export function BlogSearch({ posts }: BlogSearchProps) {
                           Get the week&apos;s training takeaways in one email.
                         </h3>
                         <p className="text-foreground-muted text-sm">
-                          1,900+ serious cyclists. What worked this week, what
+                          65,000+ serious cyclists. What worked this week, what
                           the pros did differently, and how to apply it.
                         </p>
                       </div>

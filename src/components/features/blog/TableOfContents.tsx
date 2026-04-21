@@ -87,12 +87,12 @@ export function TableOfContents({
 
   return (
     <nav
-      className="hidden xl:block fixed top-32 right-[max(1rem,calc((100vw-1200px)/2-20px))] w-56 z-30"
+      className="hidden xl:block fixed top-32 right-[max(1rem,calc((100vw-1200px)/2-20px))] w-56 z-30 rounded-lg border border-white/10 bg-charcoal/85 backdrop-blur-md shadow-xl shadow-black/30 p-4"
       aria-label="Table of contents"
     >
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className="flex items-center gap-2 mb-3 text-foreground-subtle hover:text-foreground-muted transition-colors cursor-pointer"
+        className="flex items-center gap-2 mb-3 text-foreground-muted hover:text-off-white transition-colors cursor-pointer"
         style={{ transitionDuration: "var(--duration-fast)" }}
       >
         <span className="font-heading text-xs tracking-widest uppercase">

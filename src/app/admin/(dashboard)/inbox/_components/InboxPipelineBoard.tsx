@@ -1,6 +1,12 @@
 "use client";
 
 import { useEffect, useMemo, useState } from "react";
+import {
+  Column,
+  OwnerAvatar,
+  OwnerPopover,
+  SubmissionCard,
+} from "./SubmissionCardShared";
 
 export const INBOX_STAGES = [
   "new",
@@ -86,10 +92,6 @@ function timeAgo(dateStr: string): string {
   return `${Math.floor(hrs / 24)}d ago`;
 }
 
-function truncate(s: string, n: number): string {
-  if (!s) return "";
-  return s.length <= n ? s : s.slice(0, n - 1).trimEnd() + "…";
-}
 
 export function InboxPipelineBoard({ initialStages }: Props) {
   const [stages, setStages] = useState<InboxStageMap>(initialStages);
@@ -257,26 +259,28 @@ export function InboxPipelineBoard({ initialStages }: Props) {
   }
 
   return (
-    <div className="flex flex-col gap-4">
-      <div className="flex items-center gap-3 flex-wrap">
-        <span className="text-foreground-subtle text-xs">
-          {totalCount} message{totalCount === 1 ? "" : "s"} in pipeline
-        </span>
-        {error && (
-          <span className="ml-auto text-xs text-red-400 bg-red-500/10 border border-red-500/20 px-3 py-1 rounded-lg">
-            {error}
-          </span>
-        )}
-      </div>
+    <div className="flex flex-col gap-3">
+      {error && (
+        <div className="self-end text-xs text-red-400 bg-red-500/10 border border-red-500/20 px-3 py-1.5 rounded-lg">
+          {error}
+        </div>
+      )}
 
-      <div className="flex gap-3 overflow-x-auto pb-4">
+      {/* Totals hidden — page header already shows them. Keep totalCount referenced for TS. */}
+      <span className="sr-only">{totalCount} total</span>
+
+      <div className="flex gap-3 overflow-x-auto snap-x snap-mandatory pb-4 -mx-2 px-2 scrollbar-thin">
         {INBOX_STAGES.map((stage) => {
           const color = INBOX_STAGE_COLORS[stage];
           const cards = stages[stage] ?? [];
-          const isHover = hoverStage === stage;
           return (
-            <div
+            <Column
               key={stage}
+              stage={stage}
+              label={INBOX_STAGE_LABELS[stage]}
+              accent={color.dot}
+              count={cards.length}
+              isHoverTarget={hoverStage === stage}
               onDragOver={(e) => {
                 e.preventDefault();
                 if (hoverStage !== stage) setHoverStage(stage);
@@ -293,140 +297,66 @@ export function InboxPipelineBoard({ initialStages }: Props) {
                 setDragId(null);
                 setDragFrom(null);
               }}
-              className={`shrink-0 w-72 flex flex-col rounded-xl border border-white/5 bg-background-elevated transition ${
-                isHover ? "ring-1 ring-coral" : ""
-              }`}
             >
-              <div className="flex items-center gap-2 px-4 py-3 border-b border-white/5">
-                <span className={`w-2 h-2 rounded-full ${color.dot}`} />
-                <h3 className="font-heading tracking-wider uppercase text-off-white text-xs">
-                  {INBOX_STAGE_LABELS[stage]}
-                </h3>
-                <span
-                  className={`ml-auto text-[10px] px-2 py-0.5 rounded-full border font-medium ${color.badge}`}
-                >
-                  {cards.length}
-                </span>
-              </div>
-              <div className="flex-1 p-2 space-y-2 min-h-[120px]">
-                {cards.length === 0 && (
-                  <div className="text-foreground-subtle text-xs text-center py-8 border border-dashed border-white/5 rounded-lg">
-                    Empty
-                  </div>
-                )}
-                {cards.map((sub) => {
-                  const dragging = dragId === sub.id;
-                  return (
-                    <div
-                      key={sub.id}
-                      role="button"
-                      tabIndex={0}
-                      draggable
-                      onDragStart={(e) => {
+              {cards.length === 0 ? (
+                <p className="text-foreground-subtle/60 text-[11px] text-center py-6">
+                  Drop a message here
+                </p>
+              ) : (
+                cards.map((sub) => (
+                  <SubmissionCard
+                    key={sub.id}
+                    headline={sub.name}
+                    subline={
+                      sub.subject &&
+                      sub.subject.toLowerCase() !== "general"
+                        ? sub.subject
+                        : null
+                    }
+                    preview={sub.message}
+                    rightChip={timeAgo(sub.createdAt)}
+                    unread={!sub.readAt}
+                    dragging={dragId === sub.id}
+                    ringAccent={color.ring}
+                    ownerSlug={sub.assignedTo ?? null}
+                    onClick={() => openCard(sub)}
+                    draggableProps={{
+                      draggable: true,
+                      onDragStart: (e) => {
                         setDragId(sub.id);
                         setDragFrom(stage);
                         e.dataTransfer.effectAllowed = "move";
-                        e.dataTransfer.setData("text/plain", String(sub.id));
-                      }}
-                      onDragEnd={() => {
+                        e.dataTransfer.setData(
+                          "text/plain",
+                          String(sub.id)
+                        );
+                      },
+                      onDragEnd: () => {
                         setDragId(null);
                         setDragFrom(null);
                         setHoverStage(null);
-                      }}
-                      onClick={() => openCard(sub)}
-                      onKeyDown={(e) => {
-                        if (e.key === "Enter" || e.key === " ") {
-                          e.preventDefault();
-                          openCard(sub);
+                      },
+                    }}
+                    footerSlot={
+                      <OwnerPopover
+                        options={OWNER_OPTIONS}
+                        selected={sub.assignedTo ?? null}
+                        open={ownerMenuFor === sub.id}
+                        onToggle={() =>
+                          setOwnerMenuFor(
+                            ownerMenuFor === sub.id ? null : sub.id
+                          )
                         }
-                      }}
-                      className={`block w-full text-left p-3 rounded-lg border border-white/5 bg-white/[0.02] hover:border-coral/30 transition cursor-grab active:cursor-grabbing ${
-                        dragging
-                          ? `opacity-40 scale-[0.98] ring-1 ${color.ring}`
-                          : ""
-                      }`}
-                    >
-                      <div className="flex items-start gap-2 mb-1">
-                        <span className="text-off-white text-sm font-semibold truncate">
-                          {sub.name}
-                        </span>
-                        {!sub.readAt && (
-                          <span className="w-1.5 h-1.5 rounded-full bg-coral shrink-0 mt-1.5" />
-                        )}
-                        <span className="ml-auto text-foreground-subtle text-[10px] shrink-0">
-                          {timeAgo(sub.createdAt)}
-                        </span>
-                      </div>
-                      <p className="text-foreground-muted text-xs truncate mb-1">
-                        {truncate(sub.subject, 70)}
-                      </p>
-                      <p className="text-foreground-subtle text-[11px] leading-snug mb-2">
-                        {truncate(sub.message, 80)}
-                      </p>
-                      <div className="flex items-center gap-1.5 flex-wrap">
-                        <span
-                          role="button"
-                          tabIndex={0}
-                          onClick={(e) => {
-                            e.stopPropagation();
-                            setOwnerMenuFor(
-                              ownerMenuFor === sub.id ? null : sub.id
-                            );
-                          }}
-                          onKeyDown={(e) => {
-                            if (e.key === "Enter" || e.key === " ") {
-                              e.preventDefault();
-                              e.stopPropagation();
-                              setOwnerMenuFor(
-                                ownerMenuFor === sub.id ? null : sub.id
-                              );
-                            }
-                          }}
-                          className={`relative ml-auto text-[10px] px-2 py-0.5 rounded-full font-medium border capitalize cursor-pointer ${
-                            sub.assignedTo
-                              ? "bg-coral/15 text-coral border-coral/30"
-                              : "border-dashed border-white/15 text-foreground-subtle"
-                          } ${
-                            assigningId === sub.id ? "opacity-60" : ""
-                          }`}
-                          aria-label="Assign owner"
-                        >
-                          {sub.assignedTo
-                            ? `${sub.assignedTo.charAt(0).toUpperCase()} · ${sub.assignedTo}`
-                            : "unassigned"}
-                          {ownerMenuFor === sub.id && (
-                            <span
-                              onClick={(e) => e.stopPropagation()}
-                              className="absolute right-0 top-full mt-1 z-20 min-w-[140px] rounded-lg border border-white/10 bg-background-elevated shadow-lg p-1 flex flex-col gap-0.5 normal-case"
-                            >
-                              {OWNER_OPTIONS.map((opt) => {
-                                const selected =
-                                  (sub.assignedTo ?? null) === opt.value;
-                                return (
-                                  <button
-                                    key={opt.label}
-                                    type="button"
-                                    onClick={(e) => {
-                                      e.stopPropagation();
-                                      assignOwner(sub, opt.value);
-                                    }}
-                                    className={`text-left text-[11px] px-2 py-1 rounded hover:bg-white/5 ${
-                                      selected ? "text-coral" : "text-off-white"
-                                    }`}
-                                  >
-                                    {opt.label}
-                                  </button>
-                                );
-                              })}
-                            </span>
-                          )}
-                        </span>
-                      </div>
-                    </div>
-                  );
-                })}
-              </div>
-            </div>
+                        onPick={(v) => assignOwner(sub, v)}
+                        busy={assigningId === sub.id}
+                      >
+                        <OwnerAvatar slug={sub.assignedTo ?? null} />
+                      </OwnerPopover>
+                    }
+                  />
+                ))
+              )}
+            </Column>
           );
         })}
       </div>

@@ -20,6 +20,7 @@ import { EmailCapture } from "@/components/features/conversion/EmailCapture";
 import { TableOfContents } from "@/components/features/blog/TableOfContents";
 import { AnswerCapsule } from "@/components/ui/AnswerCapsule";
 import { mdxComponents } from "@/components/mdx/MDXComponents";
+import { isGenericImage } from "@/lib/blog-images";
 
 export async function generateStaticParams() {
   return getAllSlugs().map((slug) => ({ slug }));
@@ -50,24 +51,23 @@ export async function generateMetadata({
       authors: [post.author],
       url: `https://roadmancycling.com/blog/${slug}`,
       tags: post.keywords,
-      ...(post.featuredImage && {
-        images: [
-          {
-            url: post.featuredImage.startsWith('http') ? post.featuredImage : `https://roadmancycling.com${post.featuredImage}`,
-            width: 1200,
-            height: 630,
-            alt: post.title,
-          },
-        ],
-      }),
+      // NB: og:image is injected automatically by Next.js from
+      // src/app/(content)/blog/[slug]/opengraph-image.tsx (a
+      // Satori-backed 1200×630 branded card). Do NOT hardcode
+      // openGraph.images here — the previous implementation
+      // declared width:1200 × height:630 for every post regardless
+      // of the actual featuredImage dimensions, which broke
+      // iMessage/Twitter/LinkedIn previews for posts whose
+      // featured image didn't match those dimensions (e.g. the
+      // Seiler portrait is 1000×667). Letting Next auto-inject the
+      // Satori OG route guarantees dimensions always match.
     },
     twitter: {
       card: "summary_large_image",
       title: post.seoTitle || post.title,
       description: post.seoDescription,
-      ...(post.featuredImage && {
-        images: [post.featuredImage.startsWith('http') ? post.featuredImage : `https://roadmancycling.com${post.featuredImage}`],
-      }),
+      // twitter:image falls back to the auto-injected opengraph-image
+      // when no twitter-image.[ext] exists in the route segment.
     },
   };
 }
@@ -89,6 +89,14 @@ export default async function BlogPostPage({
   // Reverse-lookup: does any event's blogSlug match this post? If so,
   // we render a WeeksOutSelector widget in the article.
   const planEvent = EVENTS.find((e) => e.blogSlug === slug) ?? null;
+
+  const mentionedEvents = planEvent
+    ? []
+    : EVENTS.filter((e) => {
+        const haystack = `${post.title} ${post.excerpt} ${post.content}`.toLowerCase();
+        return haystack.includes(e.name.toLowerCase()) || haystack.includes(e.shortName.toLowerCase());
+      }).slice(0, 3);
+
   const publishDate = new Date(post.publishDate);
 
   return (
@@ -237,19 +245,35 @@ export default async function BlogPostPage({
           </Container>
         </Section>
 
-        {/* Featured Image */}
-        {post.featuredImage && (
-          <div className="w-full max-h-[480px] overflow-hidden relative aspect-[21/9]">
-            <Image
-              src={post.featuredImage}
-              alt={post.title}
-              fill
-              priority
-              sizes="100vw"
-              className="object-cover"
-            />
-          </div>
-        )}
+        {/* Featured Image — either the curated post image or, when
+            the post's image is in the shared "generic" pool (gravel
+            stock photos reused across 100+ posts), the Satori-
+            generated branded hero. */}
+        {(() => {
+          const useSatoriHero = isGenericImage(post.featuredImage);
+          const heroSrc = useSatoriHero
+            ? `/api/og/blog-hero?slug=${encodeURIComponent(slug)}`
+            : post.featuredImage;
+
+          if (!heroSrc) return null;
+
+          return (
+            <div className="w-full max-h-[480px] overflow-hidden relative aspect-[21/9]">
+              <Image
+                src={heroSrc}
+                alt={post.title}
+                fill
+                priority
+                sizes="100vw"
+                className="object-cover"
+                // Satori route returns an already-optimised PNG with
+                // its own long cache. Skip Next's image optimiser for
+                // that path so we don't double-encode.
+                unoptimized={useSatoriHero}
+              />
+            </div>
+          );
+        })()}
 
         {/* Content */}
         <Section background="charcoal" className="!py-12">
@@ -273,6 +297,25 @@ export default async function BlogPostPage({
                 landing pages. */}
             {planEvent && <WeeksOutSelector event={planEvent} />}
 
+            {mentionedEvents.length > 0 && (
+              <div className="mt-10 rounded-xl border border-white/10 bg-white/[0.03] p-5 md:p-6">
+                <p className="font-heading text-coral text-xs tracking-widest mb-3">
+                  FREE TRAINING PLANS
+                </p>
+                <div className="flex flex-wrap gap-2">
+                  {mentionedEvents.map((e) => (
+                    <Link
+                      key={e.slug}
+                      href={`/plan/${e.slug}`}
+                      className="inline-flex items-center gap-2 rounded-lg border border-white/15 hover:border-coral/40 bg-white/[0.04] hover:bg-white/[0.07] px-4 py-2 text-sm font-heading text-off-white tracking-wider transition-all"
+                    >
+                      {e.shortName.toUpperCase()} →
+                    </Link>
+                  ))}
+                </div>
+              </div>
+            )}
+
             {/* Mid-article inline CTA — injects after 3rd paragraph, pillar-aware.
                 Client-side portal so only JS users see it. */}
             <InlineArticleCTA
@@ -286,7 +329,7 @@ export default async function BlogPostPage({
               <EmailCapture
                 variant="inline"
                 heading="KEEP READING — THE SATURDAY SPIN"
-                subheading="The week's training takeaways, pro insights, and what to do about them. 1,900+ serious cyclists open it every Saturday."
+                subheading="The week's training takeaways, pro insights, and what to do about them. 65,000+ serious cyclists open it every Saturday."
                 source={`blog-end-${slug}`}
                 buttonText="SUBSCRIBE"
               />

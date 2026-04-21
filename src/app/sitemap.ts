@@ -4,7 +4,7 @@ import { getAllEpisodes } from "@/lib/podcast";
 import { getAllGuests } from "@/lib/guests";
 import { getAllTopicSlugs } from "@/lib/topics";
 import { fetchNewsletterIssues } from "@/lib/integrations/beehiiv";
-import { getAllPlanCombinations } from "@/lib/training-plans";
+import { getAllPlanCombinations, getAllEventSlugs } from "@/lib/training-plans";
 
 const BASE_URL = "https://roadmancycling.com";
 
@@ -182,6 +182,14 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       lastModified: new Date(),
       changeFrequency: "weekly",
       priority: 0.5,
+    },
+
+    // Start Here — curated onboarding hub
+    {
+      url: `${BASE_URL}/start-here`,
+      lastModified: new Date(),
+      changeFrequency: "monthly",
+      priority: 0.8,
     },
 
     // Persona landing pages — high-intent funnel entries
@@ -372,6 +380,17 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     }),
   );
 
+  // Event hub pages sit above the weeks-out children and match the
+  // natural "{event} training plan" query intent.
+  const planEventHubs: MetadataRoute.Sitemap = getAllEventSlugs().map(
+    (event) => ({
+      url: `${BASE_URL}/plan/${event}`,
+      lastModified: new Date(),
+      changeFrequency: "weekly" as const,
+      priority: 0.8,
+    }),
+  );
+
   // ---------------------------------------------------------------------------
   // Newsletter issues — priority 0.5 (monthly content, indexed for SEO)
   // ---------------------------------------------------------------------------
@@ -397,6 +416,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     ...podcastPages,
     ...guestPages,
     ...topicPages,
+    ...planEventHubs,
     ...planPages,
     ...newsletterPages,
   ];

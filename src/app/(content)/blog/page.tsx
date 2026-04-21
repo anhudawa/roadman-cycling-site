@@ -45,6 +45,21 @@ export default function BlogPage() {
       <JsonLd
         data={{
           "@context": "https://schema.org",
+          "@type": "ItemList",
+          name: "Latest Cycling Articles",
+          itemListOrder: "https://schema.org/ItemListOrderDescending",
+          numberOfItems: Math.min(posts.length, 20),
+          itemListElement: posts.slice(0, 20).map((post, i) => ({
+            "@type": "ListItem",
+            position: i + 1,
+            url: `https://roadmancycling.com/blog/${post.slug}`,
+            name: post.title,
+          })),
+        }}
+      />
+      <JsonLd
+        data={{
+          "@context": "https://schema.org",
           "@type": "BreadcrumbList",
           itemListElement: [
             {

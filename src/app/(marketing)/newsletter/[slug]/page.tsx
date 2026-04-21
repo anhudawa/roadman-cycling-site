@@ -97,7 +97,7 @@ export default async function NewsletterIssuePage({ params }: Props) {
         <EmailCapture
           variant="banner"
           heading="GET THE SATURDAY SPIN EVERY WEEK"
-          subheading="29,000+ cyclists get the week's sharpest training insights every Saturday. Join them."
+          subheading="65,000+ cyclists get the week's sharpest training insights every Saturday. Join them."
           source="newsletter-issue-bottom"
         />
       </main>

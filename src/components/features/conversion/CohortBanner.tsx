@@ -26,11 +26,24 @@ import { getCohortState, type CohortPhase } from "@/lib/cohort";
 
 const HIDE_ON_PATH_PREFIXES = ["/apply", "/admin"];
 
+/**
+ * Paths where the banner cannot be dismissed. The homepage is our
+ * highest-traffic surface and its #1 revenue CTA; allowing a 1-tap
+ * dismiss stored in localStorage permanently kills that surface for
+ * return visitors. On every other page the dismiss UX stays.
+ */
+const NON_DISMISSIBLE_PATH_PREFIXES = ["/"];
+
 function shouldHidePath(pathname: string | null): boolean {
   if (!pathname) return false;
   return HIDE_ON_PATH_PREFIXES.some(
     (prefix) => pathname === prefix || pathname.startsWith(prefix + "/"),
   );
+}
+
+function isNonDismissiblePath(pathname: string | null): boolean {
+  if (!pathname) return false;
+  return NON_DISMISSIBLE_PATH_PREFIXES.includes(pathname);
 }
 
 function dismissKeyFor(phase: CohortPhase, cohort: number): string {
@@ -68,7 +81,8 @@ export function CohortBanner() {
     return () => clearInterval(id);
   }, [state.phase, state.currentCohort]);
 
-  const hidden = dismissed || shouldHidePath(pathname);
+  const nonDismissible = isNonDismissiblePath(pathname);
+  const hidden = (dismissed && !nonDismissible) || shouldHidePath(pathname);
 
   // CSS variable for Header top offset. Kept in sync with visible state.
   useEffect(() => {
@@ -125,23 +139,25 @@ export function CohortBanner() {
           >
             {state.banner.cta} <span aria-hidden="true">→</span>
           </Link>
-          <button
-            type="button"
-            aria-label="Dismiss cohort banner"
-            onClick={handleDismiss}
-            className="w-7 h-7 flex items-center justify-center rounded-md hover:bg-white/10 transition-colors"
-          >
-            <svg
-              className="w-4 h-4"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth={2}
-              aria-hidden="true"
+          {!nonDismissible && (
+            <button
+              type="button"
+              aria-label="Dismiss cohort banner"
+              onClick={handleDismiss}
+              className="w-7 h-7 flex items-center justify-center rounded-md hover:bg-white/10 transition-colors"
             >
-              <path strokeLinecap="round" strokeLinejoin="round" d="M6 6l12 12M6 18L18 6" />
-            </svg>
-          </button>
+              <svg
+                className="w-4 h-4"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth={2}
+                aria-hidden="true"
+              >
+                <path strokeLinecap="round" strokeLinejoin="round" d="M6 6l12 12M6 18L18 6" />
+              </svg>
+            </button>
+          )}
         </div>
       </div>
     </div>

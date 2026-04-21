@@ -128,10 +128,9 @@ export const NAV_ITEMS: NavItem[] = [
     label: "Coaching",
     href: "/coaching",
     children: [
-      { label: "Apply for Not Done Yet", href: "/apply" },
-      { label: "How Coaching Works", href: "/coaching" },
-      { label: "Not Done Yet Coaching", href: "/community/not-done-yet" },
-      { label: "Strength Training Course", href: "/strength-training" },
+      { label: "Apply for Coaching", href: "/apply" },
+      { label: "How It Works", href: "/coaching" },
+      { label: "Strength Training", href: "/strength-training" },
     ],
   },
   {

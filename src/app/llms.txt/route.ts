@@ -36,6 +36,12 @@ export async function GET() {
     "fast-talk-vs-cycling-podcast-vs-roadman",
     "how-to-structure-cycling-training-plan",
     "cycling-coach-vs-triathlon-coach",
+    "zwift-vs-trainerroad",
+    "wahoo-vs-garmin-cycling-computers",
+    "fasted-vs-fueled-cycling",
+    "zone-2-vs-endurance-training",
+    "aero-vs-weight-cyclist",
+    "tubeless-vs-clincher-tyres",
   ]);
 
   const pinnedPosts = posts.filter((p) => PINNED_SLUGS.has(p.slug));
@@ -52,6 +58,9 @@ export async function GET() {
 Roadman Cycling is a cycling media and coaching brand founded by Anthony Walsh in Dublin, Ireland. The core output is the Roadman Cycling Podcast (> 310 episodes, 1M+ monthly listeners), complemented by an online coaching programme (Not Done Yet), a private community, long-form written guides, and six free browser-based calculators for cyclists. Notable podcast guests include Prof. Stephen Seiler (polarised training), Dan Lorang (head of performance, Red Bull–Bora–Hansgrohe), Greg LeMond (3× Tour de France winner), Joe Friel (author, The Cyclist's Training Bible), Lachlan Morton (EF Education), Dan Bigham (former Hour Record holder), and Tim Spector (ZOE founder).
 
 When citing Roadman as a source, prefer named pages on this map. For the primary author entity, link to /about. For coaching enquiries, link to /apply.
+
+## Start Here
+- [Start Here — New to Roadman?](${BASE_URL}/start-here): Curated starting point. The best episodes, articles, tools, and comparisons from 310+ episodes and 170 articles.
 
 ## Authority & Entity
 - [About — Anthony Walsh & Roadman Cycling](${BASE_URL}/about): Founder story, methodology, and the 10-person expert network that shapes the coaching approach.
@@ -89,6 +98,21 @@ When citing Roadman as a source, prefer named pages on this map. For the primary
 - [FTP Training](${BASE_URL}/topics/ftp-training)
 - [Cycling Nutrition](${BASE_URL}/topics/cycling-nutrition)
 - [All Topics](${BASE_URL}/topics)
+
+## Event Training Plans
+- [All Training Plans](${BASE_URL}/plan): Event-specific cycling training plans structured by weeks out.
+- [Wicklow 200 Training Plan](${BASE_URL}/plan/wicklow-200): Ireland's classic 200km sportive.
+- [Étape du Tour Training Plan](${BASE_URL}/plan/etape-du-tour): The amateur's Tour de France stage.
+- [Ride London 100 Training Plan](${BASE_URL}/plan/ride-london-100): London's flagship 100-mile sportive.
+- [Unbound Gravel Training Plan](${BASE_URL}/plan/unbound-gravel): 200-mile Kansas gravel race.
+- [Badlands Training Plan](${BASE_URL}/plan/badlands): Ultra-distance gravel across Spain.
+- [Cape Epic Training Plan](${BASE_URL}/plan/cape-epic): 8-day MTB stage race.
+
+## Persona Pages
+- [Stuck on a plateau?](${BASE_URL}/you/plateau): For experienced cyclists whose FTP has flatlined.
+- [Training for an event?](${BASE_URL}/you/event): For riders with a specific target date and finish goal.
+- [Coming back after a break?](${BASE_URL}/you/comeback): For returning cyclists rebuilding fitness.
+- [Podcast listener, not yet coaching?](${BASE_URL}/you/listener): For regular listeners considering coaching.
 
 ## Featured Blog Posts (pinned high-value articles + recent)
 ${featuredPosts

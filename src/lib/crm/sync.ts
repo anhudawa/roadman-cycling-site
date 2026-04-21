@@ -1,9 +1,12 @@
 import { db } from "@/lib/db";
-import { contacts, syncRuns, type SyncRunResult } from "@/lib/db/schema";
+import { contacts, subscribers, syncRuns, type SyncRunResult } from "@/lib/db/schema";
 import { upsertContact } from "@/lib/crm/contacts";
 import { fetchAllSubscribers } from "@/lib/integrations/beehiiv";
-import { fetchAllCustomers } from "@/lib/integrations/stripe";
-import { eq, desc } from "drizzle-orm";
+import {
+  fetchAllCustomers,
+  fetchAllSubscriptionsForSync,
+} from "@/lib/integrations/stripe";
+import { eq, desc, sql } from "drizzle-orm";
 
 const MAX_UPSERTS_PER_RUN = 2000;
 
@@ -119,6 +122,7 @@ export async function syncStripeCustomers(): Promise<{
   const runId = await startRun("stripe");
   const result = emptyResult();
   try {
+    // ── 1. Sync customers into contacts (existing behaviour) ──────────────
     const customers = await fetchAllCustomers({ limit: MAX_UPSERTS_PER_RUN });
     result.scanned = customers.length;
 
@@ -156,6 +160,108 @@ export async function syncStripeCustomers(): Promise<{
       }
       processed++;
     }
+
+    // ── 2. Sync subscription lifecycle into subscribers table ─────────────
+    // Previously missing: subscribers.paid_at / trial_started_at / churned_at
+    // were never set from Stripe, so /admin/funnel, /admin/health and
+    // trial-conversion metrics all showed 0. Populate them here so everything
+    // downstream (funnel, cohort retention, LTV) actually has numbers.
+    const subs = await fetchAllSubscriptionsForSync({ limit: MAX_UPSERTS_PER_RUN });
+    let linked = 0;
+    let lifecycleErrors = 0;
+
+    // Group subs by email so a customer with multiple subscriptions still
+    // gets one consolidated lifecycle state.
+    const byEmail = new Map<string, typeof subs>();
+    for (const s of subs) {
+      if (!s.email) continue;
+      const key = s.email.toLowerCase();
+      const arr = byEmail.get(key) ?? [];
+      arr.push(s);
+      byEmail.set(key, arr);
+    }
+
+    for (const [email, rows] of byEmail) {
+      try {
+        // Pick the most representative subscription:
+        //   - any active/trialing/past_due wins over canceled
+        //   - most recently created among those
+        const live = rows.filter((r) =>
+          ["active", "trialing", "past_due"].includes(r.status)
+        );
+        const canceled = rows.filter((r) => r.status === "canceled");
+        const pick =
+          (live.length > 0
+            ? live.sort((a, b) => +b.createdAt - +a.createdAt)[0]
+            : null) ??
+          (canceled.length > 0
+            ? canceled.sort((a, b) => +b.createdAt - +a.createdAt)[0]
+            : rows[0]);
+
+        const wasPaid = pick.status === "active" || pick.status === "past_due";
+        const wasTrialing = pick.status === "trialing";
+        const wasChurned = pick.status === "canceled";
+
+        // Derive timestamps from the subscription:
+        //   - trialStartedAt: earliest trial_start across this customer's subs
+        //   - paidAt: earliest createdAt of an active/past_due sub
+        //   - churnedAt: canceled_at of the most recent canceled sub
+        //     (only if no live sub exists — a churn-then-resubscribe is "paid")
+        const trialStart = rows
+          .map((r) => r.trialStart)
+          .filter((d): d is Date => d !== null)
+          .sort((a, b) => +a - +b)[0] ?? null;
+        const paidAt = live
+          .map((r) => r.createdAt)
+          .sort((a, b) => +a - +b)[0] ?? null;
+        const churnedAt =
+          live.length === 0 && canceled.length > 0
+            ? canceled
+                .map((r) => r.canceledAt ?? r.createdAt)
+                .sort((a, b) => +b - +a)[0] ?? null
+            : null;
+
+        await db
+          .insert(subscribers)
+          .values({
+            email,
+            stripeCustomerId: pick.customerId,
+            source: "stripe",
+            trialStartedAt: trialStart ?? null,
+            paidAt: wasPaid ? paidAt : null,
+            churnedAt: wasChurned ? churnedAt : null,
+          })
+          .onConflictDoUpdate({
+            target: subscribers.email,
+            set: {
+              stripeCustomerId: sql`COALESCE(excluded.stripe_customer_id, ${subscribers.stripeCustomerId})`,
+              // Coalesce so we never downgrade (e.g. trial-end resetting a paid_at).
+              trialStartedAt: sql`COALESCE(${subscribers.trialStartedAt}, excluded.trial_started_at)`,
+              paidAt: sql`COALESCE(${subscribers.paidAt}, excluded.paid_at)`,
+              churnedAt: wasChurned
+                ? sql`COALESCE(${subscribers.churnedAt}, excluded.churned_at)`
+                : subscribers.churnedAt,
+              source: sql`COALESCE(${subscribers.source}, excluded.source)`,
+            },
+          });
+
+        // Clear churnedAt if the customer has re-subscribed (live wins).
+        if (live.length > 0 && !wasTrialing) {
+          await db
+            .update(subscribers)
+            .set({ churnedAt: null })
+            .where(eq(subscribers.email, email));
+        }
+
+        linked += 1;
+      } catch (err) {
+        console.error("[sync] subscription lifecycle failed for", email, err);
+        lifecycleErrors += 1;
+      }
+    }
+
+    result.updated += linked;
+    result.errors += lifecycleErrors;
 
     await finishRun(runId, "success", result, null);
     return { runId, result };

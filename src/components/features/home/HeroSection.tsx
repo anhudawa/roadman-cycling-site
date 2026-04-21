@@ -1,6 +1,7 @@
 "use client";
 
-import { useRef } from "react";
+import { useRef, useState } from "react";
+import Link from "next/link";
 import {
   motion,
   useScroll,
@@ -8,19 +9,36 @@ import {
   useSpring,
   useMotionValueEvent,
 } from "framer-motion";
-import Image from "next/image";
 import { Button } from "@/components/ui";
-import { FloatingParticles } from "@/components/ui/FloatingParticles";
-import { useState } from "react";
+import { GlitchHero } from "./GlitchHero";
+import type { EpisodeMeta } from "@/lib/podcast";
+
+interface HeroSectionProps {
+  latestEpisode: EpisodeMeta | null;
+}
 
 /**
- * Cinematic hero with:
- * - Aurora / northern-lights gradient that slowly shifts
- * - Scroll-driven text scaling (shrinks as you scroll)
- * - Parallax depth layers
- * - Clip-path text reveal on load
+ * Homepage hero — Direction 3 "Hero Crop", unified across all viewports.
+ *
+ * Mobile (`<md`):    single column. Glitch portrait first (visitor sees
+ *                    the brand face on first paint), then eyebrow,
+ *                    4-line headline, coral hairline, CTAs, proof line.
+ * Tablet (`md`):     single column (same stack as mobile, larger type).
+ * Desktop (`lg+`):   2-column split — text in cols 1-5, portrait in
+ *                    cols 7-12. `order-*` classes flip the DOM-first
+ *                    portrait to the right rail without re-ordering
+ *                    source.
+ *
+ * Portrait is hard-capped at 640px (via GlitchHero.module.css), safely
+ * below the 801×801 source so no upscaling; a soft bottom mask fade
+ * dissolves it into the section's deep-purple bg.
+ *
+ * Headline copy is verbatim "CYCLING IS HARD, OUR COACHING WILL HELP."
+ * broken across 4 lines as CYCLING / IS HARD, / OUR COACHING / WILL
+ * HELP. Line breaks are hand-tuned — if the copy changes, rebalance
+ * manually. Do not auto-wrap.
  */
-export function HeroSection() {
+export function HeroSection({ latestEpisode }: HeroSectionProps) {
   const sectionRef = useRef<HTMLElement>(null);
   const [scrolled, setScrolled] = useState(false);
 
@@ -29,170 +47,189 @@ export function HeroSection() {
     offset: ["start start", "end start"],
   });
 
-  // Spring-smoothed progress for buttery feel
   const smoothProgress = useSpring(scrollYProgress, {
     stiffness: 100,
     damping: 30,
     mass: 0.5,
   });
 
-  // Scroll-driven transforms
-  const textScale = useTransform(smoothProgress, [0, 0.5], [1, 0.7]);
-  const textY = useTransform(smoothProgress, [0, 0.5], [0, -80]);
-  const textOpacity = useTransform(smoothProgress, [0, 0.6], [1, 0]);
-  const bgY = useTransform(smoothProgress, [0, 1], [0, 200]);
-  const auroraY = useTransform(smoothProgress, [0, 1], [0, 100]);
-  const overlayOpacity = useTransform(smoothProgress, [0, 0.5], [0.2, 0.8]);
+  // Gentle parallax on the portrait only — text stays put.
+  const portraitY = useTransform(smoothProgress, [0, 1], [0, 80]);
 
   useMotionValueEvent(scrollYProgress, "change", (v) => {
     setScrolled(v > 0.05);
   });
 
+  const headlineLines = [
+    { text: "CYCLING", accent: false },
+    { text: "IS HARD,", accent: false },
+    { text: "OUR COACHING", accent: false },
+    { text: "WILL HELP.", accent: true },
+  ];
+
   return (
     <section
       ref={sectionRef}
-      className="relative min-h-screen md:min-h-[120vh] flex items-start justify-center overflow-hidden"
+      className="relative overflow-hidden bg-deep-purple"
     >
-      {/* === LAYER 1: Deep background with parallax === */}
-      <motion.div className="absolute inset-0 bg-charcoal" style={{ y: bgY }}>
-        <Image
-          src="/images/about/anthony-podcast-promo.jpg"
-          alt=""
-          fill
-          className="object-cover opacity-[0.6]"
-          style={{ objectPosition: "center 30%" }}
-          sizes="100vw"
-          priority
-        />
-        <div className="absolute inset-0 bg-gradient-to-b from-charcoal/60 via-transparent to-transparent" />
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,transparent_50%,rgba(37,37,38,0.7)_85%,rgb(37,37,38)_100%)]" />
-        <div className="absolute inset-0 grain-overlay" />
-      </motion.div>
-
-      {/* === LAYER 2: Aurora / northern-lights effect === */}
-      <motion.div
-        className="absolute inset-0 pointer-events-none"
-        style={{ y: auroraY }}
+      {/* Top-edge coral seam */}
+      <div
         aria-hidden="true"
-      >
-        {/* Primary aurora band */}
-        <div className="absolute inset-0 aurora-container">
-          <div className="aurora-band aurora-band-1" />
-          <div className="aurora-band aurora-band-2" />
-          <div className="aurora-band aurora-band-3" />
-        </div>
-      </motion.div>
-
-      {/* === LAYER 3: Gradient overlay (darkens on scroll) === */}
-      <motion.div
-        className="absolute inset-0 bg-gradient-to-b from-deep-purple/30 via-charcoal/50 to-charcoal"
-        style={{ opacity: overlayOpacity }}
+        className="absolute top-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-coral/70 to-transparent"
       />
 
-      {/* === LAYER 4: Floating particles (two layers for depth) === */}
-      <FloatingParticles count={25} color="rgba(241, 99, 99, 0.12)" />
-      <FloatingParticles count={10} color="rgba(76, 18, 115, 0.15)" />
-
-      {/* === LAYER 5: Content with scroll-driven scaling ===
-          Reduced top padding so the H1 lands in the upper third of the
-          viewport on first paint. The old 30-35vh offset pushed the
-          primary value prop below the fold on most laptops. */}
-      <motion.div
-        className="relative z-10 text-center px-5 md:px-8 max-w-[1200px] mx-auto w-full pt-[18vh] md:pt-[20vh]"
-        style={{
-          scale: textScale,
-          y: textY,
-          opacity: textOpacity,
-        }}
-      >
-        {/*
-          Headline — previously had a framer-motion clipPath reveal that
-          competed with the parent motion.div's scroll-driven transforms
-          and got stuck mid-animation on mobile (~62% clipped, H1 invisible).
-          Removed the clip-path; each child span still fades-in-and-up
-          independently for polish.
-        */}
-        <h1
-          className="font-heading text-off-white leading-none mb-6"
-          style={{
-            fontSize: "var(--text-hero)",
-            letterSpacing: "-0.02em",
-            textShadow: "0 4px 30px rgba(0,0,0,0.4)",
-          }}
-        >
-          <motion.span
-            className="block"
-            initial={{ opacity: 0, y: 40 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{
-              duration: 0.9,
-              delay: 0.15,
-              ease: [0.16, 1, 0.3, 1],
-            }}
+      <div className="relative z-10 pt-[calc(5rem+var(--cohort-banner-height,0px))] md:pt-[calc(6rem+var(--cohort-banner-height,0px))] pb-16 md:pb-24">
+        <div className="mx-auto max-w-[1200px] px-5 md:px-8 grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-8 items-start">
+          {/* ── GLITCH PORTRAIT ──────────────────────────────
+              DOM-first so it shows first on mobile (the brand face
+              is the visual anchor). On lg+ it's placed in cols 7-12
+              and explicitly pinned to row 1 so it sits on the right
+              rail with the text on the left. */}
+          <motion.div
+            className="lg:col-start-7 lg:col-span-6 lg:row-start-1 w-full flex justify-center lg:justify-end"
+            style={{ y: portraitY }}
+            initial={{ opacity: 0, scale: 0.96 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.95, ease: [0.16, 1, 0.3, 1] }}
           >
-            CYCLING IS HARD,
-          </motion.span>
-          <motion.span
-            className="text-coral block"
-            style={{ fontSize: "0.88em" }}
-            initial={{ opacity: 0, y: 40 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{
-              duration: 0.9,
-              delay: 0.35,
-              ease: [0.16, 1, 0.3, 1],
-            }}
-          >
-            OUR COACHING WILL HELP.
-          </motion.span>
-        </h1>
+            <GlitchHero />
+          </motion.div>
 
-        <motion.p
-          className="font-body text-off-white/80 max-w-2xl mx-auto mb-10 text-lg md:text-xl leading-relaxed"
-          style={{ textShadow: "0 2px 20px rgba(0,0,0,0.6)" }}
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{
-            duration: 0.8,
-            delay: 0.6,
-            ease: [0.16, 1, 0.3, 1],
-          }}
-        >
-          The podcast trusted by 1 million monthly listeners. The community
-          where serious cyclists stop guessing and start getting faster.
-        </motion.p>
+          {/* ── TEXT RAIL: eyebrow / headline / hairline / CTAs / proof ── */}
+          <div className="lg:col-start-1 lg:col-span-5 lg:row-start-1 text-center lg:text-left lg:pt-8">
+            <motion.p
+              className="font-body text-[11px] md:text-xs tracking-[0.3em] uppercase mb-6 md:mb-8"
+              initial={{ opacity: 0, y: 12 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{
+                duration: 0.7,
+                delay: 0.05,
+                ease: [0.16, 1, 0.3, 1],
+              }}
+            >
+              <Link
+                href="/podcast"
+                className="text-off-white/50 hover:text-off-white transition-colors"
+                style={{ transitionDuration: "var(--duration-fast)" }}
+                data-track="home_hero_eyebrow_podcast"
+              >
+                PODCAST
+              </Link>
+              <span className="inline-block mx-2 text-off-white/30">·</span>
+              <Link
+                href="/coaching"
+                className="text-coral/85 hover:text-coral transition-colors"
+                style={{ transitionDuration: "var(--duration-fast)" }}
+                data-track="home_hero_eyebrow_coaching"
+              >
+                COACHING
+              </Link>
+            </motion.p>
 
-        <motion.div
-          className="flex flex-col sm:flex-row items-center justify-center gap-4"
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{
-            duration: 0.8,
-            delay: 0.8,
-            ease: [0.16, 1, 0.3, 1],
-          }}
-        >
-          <Button href="/podcast" size="lg" className="shadow-lg shadow-coral/25">
-            Listen Now
-          </Button>
-          <Button href="/apply" variant="ghost" size="lg" className="border-white/40 backdrop-blur-sm shadow-lg shadow-black/20">
-            Apply for Coaching
-          </Button>
-        </motion.div>
-      </motion.div>
+            <h1
+              className="font-heading text-off-white mb-6 md:mb-8"
+              style={{
+                fontSize: "clamp(2.75rem, 8vw, 7rem)",
+                lineHeight: 0.9,
+                letterSpacing: "-0.025em",
+                textShadow: "0 4px 30px rgba(0,0,0,0.55)",
+              }}
+            >
+              {headlineLines.map((line, i) => (
+                <motion.span
+                  key={line.text}
+                  className={line.accent ? "text-coral block" : "block"}
+                  style={
+                    line.accent
+                      ? { letterSpacing: "-0.03em" }
+                      : undefined
+                  }
+                  initial={{ opacity: 0, y: 24 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{
+                    duration: 0.85,
+                    delay: 0.15 + i * 0.08,
+                    ease: [0.16, 1, 0.3, 1],
+                  }}
+                >
+                  {line.text}
+                </motion.span>
+              ))}
+            </h1>
 
-      {/* === Animated scroll indicator === */}
+            <motion.div
+              aria-hidden="true"
+              className="w-6 h-px bg-coral mx-auto lg:mx-0 mb-6 md:mb-7"
+              initial={{ scaleX: 0, opacity: 0 }}
+              animate={{ scaleX: 1, opacity: 1 }}
+              transition={{
+                duration: 0.6,
+                delay: 0.55,
+                ease: [0.16, 1, 0.3, 1],
+              }}
+              style={{ transformOrigin: "left" }}
+            />
+
+            <motion.div
+              className="flex flex-col sm:flex-row items-center lg:items-start justify-center lg:justify-start gap-6 sm:gap-5"
+              initial={{ opacity: 0, y: 16 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{
+                duration: 0.8,
+                delay: 0.65,
+                ease: [0.16, 1, 0.3, 1],
+              }}
+            >
+              <Button
+                href="/apply"
+                size="lg"
+                className="w-full sm:w-auto shadow-[0_12px_40px_-8px_rgba(241,99,99,0.55)] hover:shadow-[0_16px_50px_-6px_rgba(241,99,99,0.7)] transition-shadow"
+                dataTrack="home_hero_apply"
+              >
+                Apply →
+              </Button>
+              <Link
+                href={latestEpisode ? `/podcast/${latestEpisode.slug}` : "/podcast"}
+                className="font-heading text-sm tracking-[0.18em] uppercase text-off-white/75 hover:text-coral hover:underline underline-offset-4 transition-colors py-3"
+                style={{ transitionDuration: "var(--duration-fast)" }}
+                data-track="home_hero_listen"
+              >
+                listen <span aria-hidden="true">→</span>
+              </Link>
+            </motion.div>
+
+            <motion.p
+              className="mt-8 md:mt-10 text-[10px] md:text-[11px] tracking-[0.18em] uppercase text-off-white/65"
+              style={{
+                fontFamily:
+                  "var(--font-jetbrains-mono), ui-monospace, monospace",
+              }}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 0.8, delay: 0.9 }}
+            >
+              <span>1M monthly listeners</span>
+              <span className="mx-2 opacity-50">·</span>
+              <span>65K newsletter</span>
+              <span className="mx-2 opacity-50">·</span>
+              <span>1300+ episodes</span>
+            </motion.p>
+          </div>
+        </div>
+      </div>
+
+      {/* Animated scroll indicator — md+ only */}
       <motion.div
-        className="absolute bottom-8 left-1/2 -translate-x-1/2 z-10 hidden md:flex flex-col items-center gap-2"
+        className="absolute bottom-4 left-1/2 -translate-x-1/2 z-10 hidden md:flex flex-col items-center gap-2"
         initial={{ opacity: 0 }}
-        animate={{ opacity: scrolled ? 0 : 0.6 }}
+        animate={{ opacity: scrolled ? 0 : 0.55 }}
         transition={{ duration: 0.6, delay: 1.4 }}
       >
-        <span className="text-xs text-foreground-muted tracking-widest uppercase font-body">
+        <span className="text-[10px] text-foreground-muted tracking-[0.25em] uppercase font-body">
           Scroll
         </span>
         <motion.div
-          className="w-[1px] h-10 bg-gradient-to-b from-coral to-transparent"
+          className="w-[1px] h-8 bg-gradient-to-b from-coral to-transparent"
           animate={{ scaleY: [0.5, 1, 0.5] }}
           transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
         />

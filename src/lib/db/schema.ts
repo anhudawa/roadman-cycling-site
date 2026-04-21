@@ -276,6 +276,14 @@ export const tasks = pgTable(
     assignedTo: text("assigned_to"),
     createdBy: text("created_by"),
     createdAt: timestamp("created_at", { withTimezone: true }).notNull().defaultNow(),
+    // Peer-to-peer "send task" flow. NULL = direct-owned legacy task.
+    requestStatus: text("request_status"), // requested | accepted | declined | null
+    responseMessage: text("response_message"),
+    respondedAt: timestamp("responded_at", { withTimezone: true }),
+    // Main Focus (drizzle/0024_task_focus_order.sql). NULL = lives in "All
+    // other tasks" (sorted by due date); NOT NULL = lives in "My main focus"
+    // (sorted by focus_order ascending).
+    focusOrder: integer("focus_order"),
   },
   (table) => [
     index("tasks_contact_id_idx").on(table.contactId),
@@ -298,6 +306,11 @@ export const teamUsers = pgTable(
     active: boolean("active").notNull().default(true),
     createdAt: timestamp("created_at", { withTimezone: true }).notNull().defaultNow(),
     lastLoginAt: timestamp("last_login_at", { withTimezone: true }),
+    // Google OAuth linkage. Only Anthony currently grants Calendar scope;
+    // for Sarah/Matthew the refresh_token will be null.
+    googleSub: text("google_sub"),
+    googleRefreshToken: text("google_refresh_token"),
+    googleLinkedAt: timestamp("google_linked_at", { withTimezone: true }),
   },
   (table) => [
     index("team_users_email_idx").on(table.email),

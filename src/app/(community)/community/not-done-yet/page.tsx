@@ -10,16 +10,16 @@ import {
 } from "@/lib/testimonials";
 
 export const metadata: Metadata = {
-  title: "Not Done Yet — Premium Cycling Coaching",
+  title: "Not Done Yet Coaching Community — Premium Cycling Coaching",
   description:
-    "Personalised TrainingPeaks training plans, weekly coaching with Anthony Walsh, expert masterclasses, and a private community of serious cyclists. From $15/month (Standard) or $195/month (Premium).",
+    "The Not Done Yet coaching community: personalised TrainingPeaks training plans, weekly coaching with Anthony Walsh, expert masterclasses, and a private community of serious cyclists. From $15/month (Standard) or $195/month (Premium).",
   alternates: {
     canonical: "https://roadmancycling.com/community/not-done-yet",
   },
   openGraph: {
-    title: "Not Done Yet — Premium Cycling Coaching",
+    title: "Not Done Yet Coaching Community — Premium Cycling Coaching",
     description:
-      "Personalised TrainingPeaks training plans, weekly coaching with Anthony Walsh, expert masterclasses, and a private community of serious cyclists. From $15/month (Standard) or $195/month (Premium).",
+      "The Not Done Yet coaching community: personalised TrainingPeaks training plans, weekly coaching with Anthony Walsh, expert masterclasses, and a private community of serious cyclists. From $15/month (Standard) or $195/month (Premium).",
     type: "website",
     url: "https://roadmancycling.com/community/not-done-yet",
   },
@@ -148,9 +148,9 @@ export default function NotDoneYetPage() {
         data={{
           "@context": "https://schema.org",
           "@type": "Product",
-          name: "Not Done Yet — Roadman Cycling Community",
+          name: "Not Done Yet Coaching Community — Roadman Cycling",
           description:
-            "Premium cycling coaching community with personalised training plans, expert masterclasses, and weekly coaching calls.",
+            "The Not Done Yet coaching community: personalised training plans, expert masterclasses, and weekly coaching calls with Anthony Walsh.",
           brand: {
             "@type": "Brand",
             name: "Roadman Cycling",
@@ -178,7 +178,7 @@ export default function NotDoneYetPage() {
             reviewBody: t.quote,
             itemReviewed: {
               "@type": "Product",
-              name: "Not Done Yet — Roadman Cycling Community",
+              name: "Not Done Yet Coaching Community — Roadman Cycling",
             },
           })),
         }}
@@ -198,7 +198,7 @@ export default function NotDoneYetPage() {
           <Container className="text-center">
             <ScrollReveal direction="up">
               <p className="text-coral font-heading text-lg mb-4 tracking-widest">
-                THE COACHING SYSTEM
+                THE COACHING COMMUNITY
               </p>
               <h1
                 className="font-heading text-off-white mb-6 text-gradient-animated"

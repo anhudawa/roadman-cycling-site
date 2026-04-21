@@ -1,179 +1,193 @@
 import Link from "next/link";
 import { requireAuth } from "@/lib/admin/auth";
-import {
-  listBookings,
-  BOOKING_STATUSES,
-  type BookingStatus,
-  type BookingRow as BookingRowType,
-} from "@/lib/crm/bookings";
-import { NewBookingForm } from "./_components/NewBookingForm";
-import { BookingRow } from "./_components/BookingRow";
+import { CALENDAR_SCOPE_EMAIL } from "@/lib/admin/google-oauth";
+import { fetchOwnerCalendarEvents } from "@/lib/integrations/google-calendar";
 
 export const dynamic = "force-dynamic";
 
-const SCOPE_OPTIONS = [
-  { value: "mine", label: "Mine" },
-  { value: "all", label: "All" },
-];
-
-function linkFor(base: Record<string, string>, override: Record<string, string>): string {
-  const merged = { ...base, ...override };
-  const p = new URLSearchParams();
-  for (const [k, v] of Object.entries(merged)) {
-    if (v) p.set(k, v);
-  }
-  const s = p.toString();
-  return s ? `/admin/bookings?${s}` : "/admin/bookings";
+function fmtDate(d: Date): string {
+  return d.toLocaleDateString("en-GB", {
+    weekday: "short",
+    day: "numeric",
+    month: "short",
+  });
 }
 
-function startOfToday(): Date {
-  const d = new Date();
-  d.setHours(0, 0, 0, 0);
-  return d;
-}
-function endOfToday(): Date {
-  const d = new Date();
-  d.setHours(23, 59, 59, 999);
-  return d;
+function fmtTime(d: Date): string {
+  return d.toLocaleTimeString("en-GB", {
+    hour: "2-digit",
+    minute: "2-digit",
+  });
 }
 
-export default async function BookingsPage({
-  searchParams,
-}: {
-  searchParams: Promise<Record<string, string | string[] | undefined>>;
-}) {
+function dayKey(d: Date): string {
+  return d.toISOString().slice(0, 10);
+}
+
+export default async function BookingsPage() {
   const user = await requireAuth();
-  const sp = await searchParams;
 
-  const scope = (typeof sp.scope === "string" ? sp.scope : "mine") === "all" ? "all" : "mine";
-  const statusRaw = typeof sp.status === "string" ? sp.status : "";
-  const status: BookingStatus | undefined =
-    statusRaw && (BOOKING_STATUSES as string[]).includes(statusRaw)
-      ? (statusRaw as BookingStatus)
-      : undefined;
+  // Gate: only Anthony (admin) sees his Google Calendar. Everyone else gets
+  // an explicit "not authorised" screen so Sarah/Matthew don't accidentally
+  // bookmark the URL and see a calendar that isn't theirs.
+  if (user.email.toLowerCase() !== CALENDAR_SCOPE_EMAIL) {
+    return (
+      <div className="max-w-xl mx-auto mt-16 text-center space-y-3">
+        <h1 className="font-heading text-2xl text-off-white tracking-wider uppercase">
+          Bookings
+        </h1>
+        <p className="text-foreground-muted text-sm">
+          This page shows Anthony&apos;s Google Calendar. It&apos;s private to
+          him; ask him to share a specific event if you need one.
+        </p>
+      </div>
+    );
+  }
 
-  const ownerSlug = scope === "mine" ? user.slug : undefined;
-
-  const todayStart = startOfToday();
-  const todayEnd = endOfToday();
-  const sevenDays = new Date(todayEnd.getTime() + 7 * 86_400_000);
-  const fourteenDaysAgo = new Date(todayStart.getTime() - 14 * 86_400_000);
-
-  const [todayBookings, upcomingBookings, pastBookings] = await Promise.all([
-    listBookings({ ownerSlug, status, after: todayStart, before: todayEnd, limit: 100 }),
-    listBookings({ ownerSlug, status, after: todayEnd, before: sevenDays, limit: 100 }),
-    listBookings({ ownerSlug, status, after: fourteenDaysAgo, before: todayStart, limit: 100 }),
-  ]);
-
-  // Past should show most recent first
-  const pastSorted = [...pastBookings].sort(
-    (a, b) => new Date(b.scheduledAt).getTime() - new Date(a.scheduledAt).getTime()
-  );
-
-  const base = { scope, status: status ?? "" };
+  const { events, needsLink, notConfigured, errorMessage } =
+    await fetchOwnerCalendarEvents({});
 
   return (
-    <div>
-      <div className="flex items-start justify-between mb-6 gap-4 flex-wrap">
+    <div className="space-y-6">
+      <div className="flex items-center justify-between gap-4 flex-wrap">
         <div>
-          <h1 className="font-heading text-2xl text-off-white tracking-wider">BOOKINGS</h1>
-          <p className="text-sm text-foreground-muted mt-1">
-            Scheduled calls and meetings
+          <h1 className="font-heading text-2xl text-off-white tracking-wider uppercase">
+            Bookings
+          </h1>
+          <p className="text-foreground-muted text-sm mt-1">
+            Next 30 days from your Google Calendar · cached 60s
           </p>
         </div>
-        <NewBookingForm currentSlug={user.slug} />
-      </div>
-
-      {/* Scope tabs */}
-      <div className="flex gap-1 mb-4 border-b border-white/5">
-        {SCOPE_OPTIONS.map((s) => {
-          const active = scope === s.value;
-          return (
-            <Link
-              key={s.value}
-              href={linkFor(base, { scope: s.value })}
-              className={`px-4 py-2 text-sm font-heading tracking-wider border-b-2 -mb-px transition-colors ${
-                active
-                  ? "border-coral text-off-white"
-                  : "border-transparent text-foreground-muted hover:text-off-white"
-              }`}
-            >
-              {s.label.toUpperCase()}
-            </Link>
-          );
-        })}
-      </div>
-
-      {/* Status chips */}
-      <div className="flex flex-wrap gap-2 mb-6 text-xs">
-        <span className="text-foreground-subtle uppercase tracking-widest self-center">
-          Status:
-        </span>
         <Link
-          href={linkFor(base, { status: "" })}
-          className={`px-2 py-1 rounded border ${
-            !status
-              ? "border-coral/40 bg-coral/10 text-coral"
-              : "border-white/10 text-foreground-muted hover:border-white/20"
-          }`}
+          href="/api/admin/auth/google/start?calendar=1&next=/admin/bookings"
+          className="text-xs px-3 py-1.5 rounded-lg border border-white/10 text-foreground-muted hover:text-off-white hover:border-coral/30 font-heading tracking-wider uppercase"
         >
-          All
+          Re-link Google
         </Link>
-        {BOOKING_STATUSES.map((s) => (
-          <Link
-            key={s}
-            href={linkFor(base, { status: s })}
-            className={`px-2 py-1 rounded border capitalize ${
-              status === s
-                ? "border-coral/40 bg-coral/10 text-coral"
-                : "border-white/10 text-foreground-muted hover:border-white/20"
-            }`}
-          >
-            {s.replace("_", " ")}
-          </Link>
-        ))}
       </div>
 
-      <Section title="Today" rows={todayBookings} empty="Nothing scheduled today." />
-      <Section
-        title="Upcoming (next 7 days)"
-        rows={upcomingBookings}
-        empty="No bookings in the next week."
-      />
-      <Section
-        title="Past (last 14 days)"
-        rows={pastSorted}
-        empty="No bookings in the last 14 days."
-      />
-    </div>
-  );
-}
-
-function Section({
-  title,
-  rows,
-  empty,
-}: {
-  title: string;
-  rows: BookingRowType[];
-  empty: string;
-}) {
-  return (
-    <div className="mb-8">
-      <h2 className="font-heading text-sm tracking-wider uppercase text-foreground-muted mb-3">
-        {title} <span className="text-foreground-subtle">({rows.length})</span>
-      </h2>
-      {rows.length === 0 ? (
-        <div className="text-center py-10 text-foreground-subtle bg-background-elevated rounded-xl border border-white/5 text-sm">
-          {empty}
+      {notConfigured && (
+        <div className="p-4 rounded-xl border border-coral/20 bg-coral/5 text-coral text-sm">
+          Google OAuth isn&apos;t configured on this deployment. Set{" "}
+          <code className="bg-black/40 px-1 rounded">GOOGLE_CLIENT_ID</code>,{" "}
+          <code className="bg-black/40 px-1 rounded">GOOGLE_CLIENT_SECRET</code>{" "}
+          and{" "}
+          <code className="bg-black/40 px-1 rounded">GOOGLE_REDIRECT_URI</code>{" "}
+          on Vercel, then click <em>Re-link Google</em>.
         </div>
-      ) : (
-        <ul className="space-y-2">
-          {rows.map((b) => (
-            <BookingRow key={b.id} booking={b} />
+      )}
+
+      {!notConfigured && needsLink && (
+        <div className="p-4 rounded-xl border border-coral/20 bg-coral/5 text-sm text-off-white">
+          <p className="font-heading tracking-wider uppercase text-coral mb-1">
+            Google Calendar not connected
+          </p>
+          <p className="text-foreground-muted mb-3">
+            Click the button below to grant calendar access. You&apos;ll only
+            need to do this once.
+          </p>
+          <Link
+            href="/api/admin/auth/google/start?calendar=1&next=/admin/bookings"
+            className="inline-block px-4 py-2 bg-coral text-white text-sm font-heading tracking-wider rounded-lg hover:bg-coral/90 transition-colors uppercase"
+          >
+            Connect Google Calendar
+          </Link>
+        </div>
+      )}
+
+      {errorMessage && (
+        <div className="p-3 rounded-lg border border-coral/20 bg-coral/5 text-xs text-coral">
+          {errorMessage}
+        </div>
+      )}
+
+      {events.length === 0 && !needsLink && !notConfigured && !errorMessage && (
+        <div className="p-8 rounded-xl border border-dashed border-white/10 text-center">
+          <p className="text-foreground-subtle text-sm">
+            Nothing on the calendar in the next 30 days.
+          </p>
+        </div>
+      )}
+
+      {events.length > 0 && (
+        <div className="space-y-5">
+          {groupByDay(events).map((group) => (
+            <div key={group.key} className="space-y-2">
+              <div className="flex items-baseline gap-3">
+                <h2 className="font-heading tracking-wider uppercase text-off-white text-sm">
+                  {group.label}
+                </h2>
+                <span className="text-[10px] text-foreground-subtle">
+                  {group.events.length} event
+                  {group.events.length === 1 ? "" : "s"}
+                </span>
+              </div>
+              <div className="space-y-2">
+                {group.events.map((ev) => (
+                  <a
+                    key={ev.id}
+                    href={ev.htmlLink}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="block bg-background-elevated border border-white/5 rounded-lg p-4 hover:border-coral/30 transition"
+                  >
+                    <div className="flex items-start gap-4 flex-wrap">
+                      <div className="font-heading tracking-wider text-coral text-sm min-w-[96px]">
+                        {ev.allDay
+                          ? "ALL DAY"
+                          : `${fmtTime(ev.start)} – ${fmtTime(ev.end)}`}
+                      </div>
+                      <div className="flex-1 min-w-0">
+                        <p className="text-off-white text-sm font-semibold truncate">
+                          {ev.summary}
+                        </p>
+                        {ev.location && (
+                          <p className="text-foreground-muted text-xs truncate">
+                            {ev.location}
+                          </p>
+                        )}
+                        {ev.attendees.length > 0 && (
+                          <p className="text-foreground-subtle text-[11px] mt-1">
+                            {ev.attendees.length} attendee
+                            {ev.attendees.length === 1 ? "" : "s"}
+                            {ev.hangoutLink && " · Meet link available"}
+                          </p>
+                        )}
+                      </div>
+                      <div className="text-foreground-subtle text-[10px] uppercase tracking-widest shrink-0">
+                        {ev.status === "cancelled" ? "cancelled" : ""}
+                      </div>
+                    </div>
+                  </a>
+                ))}
+              </div>
+            </div>
           ))}
-        </ul>
+        </div>
       )}
     </div>
   );
+}
+
+function groupByDay(events: Awaited<
+  ReturnType<typeof fetchOwnerCalendarEvents>
+>["events"]) {
+  const groups = new Map<
+    string,
+    { key: string; label: string; events: typeof events }
+  >();
+  for (const ev of events) {
+    const key = dayKey(ev.start);
+    const existing = groups.get(key);
+    if (existing) {
+      existing.events.push(ev);
+    } else {
+      groups.set(key, {
+        key,
+        label: fmtDate(ev.start),
+        events: [ev],
+      });
+    }
+  }
+  return Array.from(groups.values());
 }

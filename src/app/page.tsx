@@ -3,8 +3,8 @@ import { Button, Card, ScrollReveal, ParallaxImage, GradientText, GuestMarquee }
 import Image from "next/image";
 import { OrganizationJsonLd, WebSiteJsonLd } from "@/components/seo/JsonLd";
 import Link from "next/link";
-import { GlitchHero } from "@/components/features/home/GlitchHero";
 import { HeroSection } from "@/components/features/home/HeroSection";
+import { getLatestEpisode } from "@/lib/podcast";
 import { StatsSection } from "@/components/features/home/StatsSection";
 import { PersonaRouter } from "@/components/features/home/PersonaRouter";
 import { PillarIcon } from "@/components/features/home/PillarIcon";
@@ -66,6 +66,7 @@ const tools = [
 ];
 
 export default function HomePage() {
+  const latestEpisode = getLatestEpisode();
   return (
     <>
       <OrganizationJsonLd />
@@ -73,15 +74,9 @@ export default function HomePage() {
       <Header />
 
       <main id="main-content">
-        {/* GLITCH HERO — pure-CSS animated portrait block.
-            Sits at the very top of the page as the visual lede.
-            Scoped under .hero in GlitchHero.module.css. */}
-        <section className="bg-deep-purple pt-24 pb-10 md:pt-28 md:pb-14">
-          <GlitchHero />
-        </section>
-
-        {/* HERO — Animated entrance, video-ready. Value prop + CTAs. */}
-        <HeroSection />
+        {/* HERO — podcast-first on mobile (waveform + play latest),
+            glitch portrait on desktop. APPLY is the primary CTA. */}
+        <HeroSection latestEpisode={latestEpisode} />
 
         {/* STATS — Animated counters */}
         <StatsSection />
@@ -94,7 +89,7 @@ export default function HomePage() {
         <EmailCapture
           variant="banner"
           heading="THE SATURDAY SPIN"
-          subheading="The weekly training breakdown 1,900+ serious cyclists use to break plateaus. What's working, what the pros do, how to apply it this week. Free."
+          subheading="The weekly training breakdown 65,000+ serious cyclists use to break plateaus. What's working, what the pros do, how to apply it this week. Free."
           source="homepage-top"
         />
 
@@ -106,29 +101,29 @@ export default function HomePage() {
           <Container>
             <ScrollReveal direction="up" className="text-center mb-12">
               <p className="text-coral font-heading text-sm tracking-widest mb-3">
-                <Link href="/community/not-done-yet" className="hover:underline">
-                  NOT DONE YET COACHING
+                <Link href="/apply" className="hover:underline">
+                  NOT DONE YET COACHING COMMUNITY
                 </Link>
               </p>
               <h2
                 className="font-heading mb-4"
                 style={{ fontSize: "var(--text-section)" }}
               >
-                <Link href="/community/not-done-yet" className="hover:opacity-80 transition-opacity">
+                <Link href="/apply" className="hover:opacity-80 transition-opacity">
                   <GradientText as="span">FIVE PILLARS. ONE SYSTEM.</GradientText>
                 </Link>
               </h2>
               <p className="text-foreground-muted max-w-xl mx-auto mb-6">
-                Inside{" "}
-                <Link href="/community/not-done-yet" className="text-coral hover:underline">
-                  Not Done Yet
+                Inside the{" "}
+                <Link href="/apply" className="text-coral hover:underline">
+                  Not Done Yet coaching community
                 </Link>
                 , everything connects. Training, nutrition, strength, recovery,
                 and community — coached together as one system. That&apos;s what
                 makes the difference between guessing and getting faster.
               </p>
-              <Button href="https://www.skool.com/roadmancycling/about" external>
-                Join Not Done Yet
+              <Button href="/apply">
+                Apply to Join
               </Button>
             </ScrollReveal>
 
@@ -276,9 +271,10 @@ export default function HomePage() {
               <p className="text-foreground-muted max-w-2xl mx-auto text-lg">
                 Most cyclists plateau because they train alone, guess at
                 nutrition, and skip the stuff that actually compounds.
-                Inside Not Done Yet, hundreds of cyclists follow one coached system —
-                training, nutrition, strength, recovery, and accountability —
-                and they&apos;re proving every week that faster is still ahead.
+                Inside the Not Done Yet coaching community, hundreds of cyclists
+                follow one coached system — training, nutrition, strength,
+                recovery, and accountability — and they&apos;re proving every
+                week that faster is still ahead.
               </p>
             </ScrollReveal>
 
@@ -338,11 +334,15 @@ export default function HomePage() {
                   <h3 className="font-heading text-3xl text-off-white mb-3">
                     NOT DONE YET
                   </h3>
+                  <p className="text-coral font-heading text-xs tracking-widest mb-4 uppercase">
+                    The coaching community
+                  </p>
                   <p className="text-foreground-muted mb-6 leading-relaxed">
                     You&apos;re not buying a subscription. You&apos;re joining
-                    a group of cyclists who refuse to plateau. Five pillars.
-                    One coached system. The same principles Seiler and Lorang
-                    discussed on the podcast — structured into your week.
+                    the Not Done Yet coaching community — cyclists who refuse
+                    to plateau. Five pillars. One coached system. The same
+                    principles Seiler and Lorang discussed on the podcast,
+                    structured into your week.
                   </p>
                   <ul className="space-y-2 mb-8">
                     {[

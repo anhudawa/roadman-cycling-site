@@ -80,6 +80,32 @@ const CURATED: string[] = [
 
   // Fresh flagship content
   `https://${HOST}/blog/age-group-ftp-benchmarks-2026`,
+
+  // Persona routes (shipped on main)
+  `https://${HOST}/you/plateau`,
+  `https://${HOST}/you/event`,
+  `https://${HOST}/you/comeback`,
+  `https://${HOST}/you/listener`,
+
+  // Curated onboarding hub
+  `https://${HOST}/start-here`,
+
+  // Training plan hub + event hubs (newly shipped)
+  `https://${HOST}/plan`,
+  `https://${HOST}/plan/wicklow-200`,
+  `https://${HOST}/plan/ring-of-beara`,
+  `https://${HOST}/plan/ride-london-100`,
+  `https://${HOST}/plan/fred-whitton-challenge`,
+  `https://${HOST}/plan/etape-du-tour`,
+  `https://${HOST}/plan/maratona-dles-dolomites`,
+  `https://${HOST}/plan/mallorca-312`,
+  `https://${HOST}/plan/badlands`,
+  `https://${HOST}/plan/leadville-100`,
+  `https://${HOST}/plan/gran-fondo-nyc`,
+  `https://${HOST}/plan/dirty-reiver`,
+  `https://${HOST}/plan/unbound-gravel`,
+  `https://${HOST}/plan/cape-epic`,
+  `https://${HOST}/plan/trans-pyrenees`,
 ];
 
 const TRIATHLON_CLUSTER = [
@@ -110,6 +136,19 @@ const COACHING_CLUSTER = [
   "comeback-cyclist-12-week-return-plan",
   "how-to-structure-cycling-training-plan",
   "power-meter-training-plan-week-by-week",
+];
+
+const COMPARISON_CLUSTER = [
+  "zwift-vs-trainerroad",
+  "wahoo-vs-garmin-cycling-computers",
+  "power-meter-vs-smart-trainer",
+  "rouvy-vs-zwift",
+  "tubeless-vs-clincher-tyres",
+  "indoor-trainer-vs-rollers",
+  "zone-2-vs-endurance-training",
+  "aero-vs-weight-cyclist",
+  "steady-state-vs-interval-training-cycling",
+  "fasted-vs-fueled-cycling",
 ];
 
 const PODCAST_AUTHORITY_CLUSTER = [
@@ -205,6 +244,7 @@ async function main() {
   clusterUrls(TRIATHLON_CLUSTER).forEach((u) => urls.add(u));
   clusterUrls(COACHING_CLUSTER).forEach((u) => urls.add(u));
   clusterUrls(PODCAST_AUTHORITY_CLUSTER).forEach((u) => urls.add(u));
+  clusterUrls(COMPARISON_CLUSTER).forEach((u) => urls.add(u));
 
   if (all) {
     allBlogUrls().forEach((u) => urls.add(u));

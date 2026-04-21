@@ -194,6 +194,9 @@ const TOPIC_POST_MAP: Record<string, string[]> = {
     "cycling-cadence-optimal-guide",
     "low-cadence-training-cycling-torque-intervals",
     "heart-rate-high-cycling-fixable-reasons",
+    "zone-2-vs-endurance-training",
+    "steady-state-vs-interval-training-cycling",
+    "power-meter-vs-smart-trainer",
   ],
   "cycling-nutrition": [
     "cycling-in-ride-nutrition-guide",
@@ -204,6 +207,7 @@ const TOPIC_POST_MAP: Record<string, string[]> = {
     "cycling-body-composition-guide",
     "cycling-weight-loss-fuel-for-the-work-required",
     "eating-like-pidcock-60-days",
+    "fasted-vs-fueled-cycling",
   ],
   "cycling-training-plans": [
     "cycling-periodisation-plan-guide",
@@ -224,6 +228,8 @@ const TOPIC_POST_MAP: Record<string, string[]> = {
     "trainerroad-vs-coaching",
     "self-coached-cyclist-mistakes",
     "how-pro-cyclist-trains-60-days",
+    "zwift-vs-trainerroad",
+    "indoor-trainer-vs-rollers",
   ],
   "cycling-recovery": [
     "cycling-recovery-tips",
@@ -253,6 +259,7 @@ const TOPIC_POST_MAP: Record<string, string[]> = {
     "cycling-fasted-riding-myth",
     "cycling-power-to-weight-ratio-guide",
     "eating-like-pidcock-60-days",
+    "fasted-vs-fueled-cycling",
   ],
   "cycling-beginners": [
     "cycling-group-ride-etiquette-guide",
@@ -262,6 +269,10 @@ const TOPIC_POST_MAP: Record<string, string[]> = {
     "cycling-base-training-guide",
     "cycling-indoor-training-tips",
     "best-cycling-podcasts-2026",
+    "wahoo-vs-garmin-cycling-computers",
+    "tubeless-vs-clincher-tyres",
+    "aero-vs-weight-cyclist",
+    "rouvy-vs-zwift",
   ],
   "triathlon-cycling": [
     "triathlon-cycling-training-plan",
@@ -302,6 +313,9 @@ const TOPIC_POST_MAP: Record<string, string[]> = {
     "best-cycling-coach-ireland",
     "best-cycling-coach-uk",
     "best-cycling-coach-usa",
+    "zwift-vs-trainerroad",
+    "power-meter-vs-smart-trainer",
+    "trainerroad-vs-online-cycling-coach",
   ],
   "mountain-biking": [
     "mtb-fork-setup-guide",

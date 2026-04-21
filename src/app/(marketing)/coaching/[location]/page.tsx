@@ -1133,6 +1133,89 @@ export default async function CoachingLocationPage({ params }: Props) {
           </Container>
         </Section>
 
+        {/* Event training plan cross-links — region-specific */}
+        {(() => {
+          const GEO_EVENTS: Record<string, { slug: string; name: string }[]> = {
+            ireland: [
+              { slug: "wicklow-200", name: "Wicklow 200" },
+              { slug: "ring-of-beara", name: "Ring of Beara" },
+            ],
+            dublin: [
+              { slug: "wicklow-200", name: "Wicklow 200" },
+              { slug: "ring-of-beara", name: "Ring of Beara" },
+            ],
+            cork: [
+              { slug: "ring-of-beara", name: "Ring of Beara" },
+              { slug: "wicklow-200", name: "Wicklow 200" },
+            ],
+            galway: [
+              { slug: "wicklow-200", name: "Wicklow 200" },
+              { slug: "ring-of-beara", name: "Ring of Beara" },
+            ],
+            belfast: [
+              { slug: "wicklow-200", name: "Wicklow 200" },
+              { slug: "fred-whitton-challenge", name: "Fred Whitton" },
+            ],
+            uk: [
+              { slug: "ride-london-100", name: "Ride London" },
+              { slug: "fred-whitton-challenge", name: "Fred Whitton" },
+              { slug: "dirty-reiver", name: "Dirty Reiver" },
+            ],
+            london: [
+              { slug: "ride-london-100", name: "Ride London" },
+              { slug: "etape-du-tour", name: "Étape du Tour" },
+            ],
+            manchester: [
+              { slug: "fred-whitton-challenge", name: "Fred Whitton" },
+              { slug: "ride-london-100", name: "Ride London" },
+            ],
+            edinburgh: [
+              { slug: "dirty-reiver", name: "Dirty Reiver" },
+              { slug: "fred-whitton-challenge", name: "Fred Whitton" },
+            ],
+            leeds: [
+              { slug: "fred-whitton-challenge", name: "Fred Whitton" },
+              { slug: "ride-london-100", name: "Ride London" },
+            ],
+            usa: [
+              { slug: "gran-fondo-nyc", name: "Gran Fondo NYC" },
+              { slug: "leadville-100", name: "Leadville 100" },
+              { slug: "unbound-gravel", name: "Unbound Gravel" },
+            ],
+          };
+          const events = GEO_EVENTS[location] || [];
+          if (events.length === 0) return null;
+          return (
+            <Section background="deep-purple" grain>
+              <Container width="narrow">
+                <ScrollReveal direction="up" className="text-center">
+                  <p className="text-coral font-heading text-xs tracking-widest mb-3">
+                    TRAINING FOR AN EVENT?
+                  </p>
+                  <h2
+                    className="font-heading text-off-white mb-6"
+                    style={{ fontSize: "var(--text-section)" }}
+                  >
+                    FREE EVENT PLANS
+                  </h2>
+                  <div className="flex flex-col sm:flex-row gap-3 justify-center">
+                    {events.map((e) => (
+                      <Link
+                        key={e.slug}
+                        href={`/plan/${e.slug}`}
+                        className="inline-flex items-center justify-center gap-2 rounded-lg border border-white/15 hover:border-coral/40 bg-white/[0.04] hover:bg-white/[0.07] px-5 py-3 text-sm font-heading text-off-white tracking-wider transition-all"
+                      >
+                        {e.name.toUpperCase()} PLAN
+                        <span className="text-coral">→</span>
+                      </Link>
+                    ))}
+                  </div>
+                </ScrollReveal>
+              </Container>
+            </Section>
+          );
+        })()}
+
         {/* FAQ */}
         <Section background="deep-purple" grain>
           <Container width="narrow">

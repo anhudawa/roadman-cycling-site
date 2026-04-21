@@ -49,13 +49,35 @@ export function CookieConsent() {
     if (pathname.startsWith("/admin")) return;
 
     const stored = localStorage.getItem(STORAGE_KEY);
-    if (!stored) {
+    if (stored) return;
+
+    // Defer showing the banner until the user has scrolled OR dwelled
+    // for 6s, whichever comes first. This keeps the hero's first paint
+    // clean — nothing covers the H1 or primary CTA while the visitor
+    // is still reading the value prop. We still show the banner before
+    // they can submit a form or convert.
+    let shown = false;
+    function show() {
+      if (shown) return;
+      shown = true;
       setVisible(true);
-      // Trigger animation on next frame
       requestAnimationFrame(() => {
         requestAnimationFrame(() => setAnimateIn(true));
       });
+      window.removeEventListener("scroll", show);
+      window.removeEventListener("pointerdown", show);
+      if (timer) clearTimeout(timer);
     }
+
+    const timer = window.setTimeout(show, 6000);
+    window.addEventListener("scroll", show, { passive: true, once: true });
+    window.addEventListener("pointerdown", show, { passive: true, once: true });
+
+    return () => {
+      if (timer) clearTimeout(timer);
+      window.removeEventListener("scroll", show);
+      window.removeEventListener("pointerdown", show);
+    };
   }, [pathname]);
 
   const handleAcceptAll = useCallback(() => {

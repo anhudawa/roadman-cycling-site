@@ -83,7 +83,7 @@ export default async function NewsletterPage() {
 
             <ScrollReveal direction="up" delay={0.3}>
               <p className="text-foreground-subtle text-sm mt-6">
-                Join 29,000+ cyclists. One email a week. Unsubscribe anytime.
+                Join 65,000+ cyclists. One email a week. Unsubscribe anytime.
               </p>
             </ScrollReveal>
           </Container>
@@ -189,7 +189,7 @@ export default async function NewsletterPage() {
         <EmailCapture
           variant="banner"
           heading="STOP GUESSING. START KNOWING."
-          subheading="29,000+ cyclists get the week's sharpest training insights every Saturday. Join them."
+          subheading="65,000+ cyclists get the week's sharpest training insights every Saturday. Join them."
           source="newsletter-page-bottom"
         />
       </main>

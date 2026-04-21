@@ -4,6 +4,18 @@ import { getMyDayData } from "@/lib/crm/dashboard";
 import { STAGE_COLORS, STAGE_LABELS, isApplicationStage } from "@/lib/crm/pipeline";
 import { TaskCompleteCheckbox } from "./_components/TaskCompleteCheckbox";
 import { SendTestDigestButton } from "./_components/SendTestDigestButton";
+import { TaskRequests } from "./_components/TaskRequests";
+import { FocusBoard } from "./_components/FocusBoard";
+import { listAllTeamUsers } from "@/lib/admin/team-users";
+import {
+  Card,
+  CardBody,
+  EmptyState,
+  PageHeader,
+  Pill,
+  SectionLabel,
+  StatTile,
+} from "@/components/admin/ui";
 
 export const dynamic = "force-dynamic";
 
@@ -31,16 +43,19 @@ function formatDate(dateStr: string | null): string {
   return new Date(dateStr).toLocaleDateString("en-GB", { day: "numeric", month: "short" });
 }
 
-function emailStatusClass(status: string): string {
+function emailStatusTone(status: string): "good" | "bad" | "warn" | "neutral" {
   switch (status) {
     case "sent":
-      return "bg-green-500/10 text-green-400 border-green-500/20";
+    case "delivered":
+      return "good";
     case "failed":
-      return "bg-red-500/10 text-red-400 border-red-500/20";
+    case "bounced":
+    case "complained":
+      return "bad";
     case "queued":
-      return "bg-amber-500/10 text-amber-400 border-amber-500/20";
+      return "warn";
     default:
-      return "bg-white/5 text-foreground-muted border-white/10";
+      return "neutral";
   }
 }
 
@@ -65,35 +80,16 @@ function activityIcon(type: string): string {
   }
 }
 
-interface StatCardProps {
-  label: string;
-  value: number;
-  href: string;
-  accent?: boolean;
-}
-function StatCard({ label, value, href, accent }: StatCardProps) {
-  return (
-    <Link
-      href={href}
-      className="block bg-background-elevated border border-white/5 rounded-xl p-5 hover:border-coral/30 transition-colors"
-    >
-      <p className="text-foreground-subtle text-[10px] uppercase tracking-widest font-medium">
-        {label}
-      </p>
-      <p
-        className={`mt-2 font-heading text-3xl tracking-wider ${
-          accent ? "text-coral" : "text-off-white"
-        }`}
-      >
-        {value}
-      </p>
-    </Link>
-  );
-}
 
 export default async function MyDayPage() {
   const user = await requireAuth();
-  const data = await getMyDayData(user);
+  const [data, allUsers] = await Promise.all([
+    getMyDayData(user),
+    listAllTeamUsers(),
+  ]);
+  const teammates = allUsers
+    .filter((u) => u.active)
+    .map((u) => ({ slug: u.slug, name: u.name, email: u.email }));
 
   const now = new Date();
   const weekday = now.toLocaleDateString("en-GB", { weekday: "long" });
@@ -105,44 +101,50 @@ export default async function MyDayPage() {
 
   return (
     <div className="space-y-6">
-      {/* Header */}
-      <div className="flex items-start justify-between gap-4">
-        <div>
-          <h1 className="font-heading text-3xl text-off-white tracking-wider uppercase">
-            MY DAY — {user.name}
-          </h1>
-          <p className="text-foreground-muted text-sm mt-1">
-            {weekday}, {dateStr}
-          </p>
-        </div>
-        <SendTestDigestButton />
-      </div>
+      <PageHeader
+        title={`My Day — ${user.name}`}
+        subtitle={`${weekday}, ${dateStr}`}
+        actions={<SendTestDigestButton />}
+      />
 
-      {/* Stat cards */}
+      {/* Stat tiles */}
       <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
-        <StatCard
+        <StatTile
           label="Open tasks"
           value={data.stats.openTasks}
           href="/admin/tasks?scope=mine&status=open"
         />
-        <StatCard
+        <StatTile
           label="Overdue"
           value={data.stats.overdueTasks}
           href="/admin/tasks?scope=mine&status=open&due=overdue"
-          accent={data.stats.overdueTasks > 0}
+          tone={data.stats.overdueTasks > 0 ? "coral" : "neutral"}
         />
-        <StatCard
+        <StatTile
           label="Contacts I own"
           value={data.stats.contactsOwned}
           href={`/admin/contacts?owner=${encodeURIComponent(user.slug)}`}
         />
-        <StatCard
+        <StatTile
           label="Stale (7d+)"
           value={data.stats.staleContacts}
           href={`/admin/contacts?owner=${encodeURIComponent(user.slug)}&stale=1`}
-          accent={data.stats.staleContacts > 0}
+          tone={data.stats.staleContacts > 0 ? "coral" : "neutral"}
         />
       </div>
+
+      {/* Peer-to-peer task requests */}
+      <Card>
+        <CardBody className="p-6">
+          <TaskRequests
+            currentUserSlug={user.slug}
+            currentUserName={user.name}
+            incoming={data.incomingTaskRequests}
+            outgoing={data.outgoingTaskRequests}
+            teammates={teammates}
+          />
+        </CardBody>
+      </Card>
 
       {/* Today's bookings */}
       {(data.todayBookings.length > 0 || data.upcomingBookings.length > 0) && (
@@ -198,76 +200,22 @@ export default async function MyDayPage() {
         </div>
       )}
 
+      {/* Focus board — pinned main focus + all other open tasks, drag to pin. */}
+      <Card>
+        <CardBody className="p-6">
+          <FocusBoard
+            currentUserSlug={user.slug}
+            currentUserName={user.name}
+            mainFocus={data.mainFocusTasks ?? []}
+            otherOpen={data.otherOpenTasks ?? []}
+            teammates={teammates}
+          />
+        </CardBody>
+      </Card>
+
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
         {/* ── Left column ─────────────────────────────── */}
         <div className="space-y-6">
-          {/* Today's tasks */}
-          <div className="bg-background-elevated border border-white/5 rounded-xl p-6">
-            <h2 className="font-heading text-sm tracking-wider uppercase text-foreground-muted mb-4">
-              Today&apos;s Tasks
-            </h2>
-            {data.todaysTasks.length === 0 ? (
-              <p className="text-sm text-foreground-subtle">No tasks due today. Nice.</p>
-            ) : (
-              <ul className="space-y-2">
-                {data.todaysTasks.map((t) => (
-                  <li
-                    key={t.id}
-                    className="flex items-center gap-3 py-1.5 border-b border-white/5 last:border-0"
-                  >
-                    <TaskCompleteCheckbox taskId={t.id} completed={!!t.completedAt} />
-                    <div className="flex-1 min-w-0">
-                      <p className="text-sm text-off-white truncate">{t.title}</p>
-                      {t.contactId && (
-                        <Link
-                          href={`/admin/contacts/${t.contactId}`}
-                          className="text-xs text-foreground-muted hover:text-coral"
-                        >
-                          {t.contactName ?? t.contactEmail}
-                        </Link>
-                      )}
-                    </div>
-                    <span className="text-xs text-foreground-muted tabular-nums">
-                      {formatTime(t.dueAt)}
-                    </span>
-                  </li>
-                ))}
-              </ul>
-            )}
-          </div>
-
-          {/* Overdue tasks */}
-          {data.overdueTasks.length > 0 && (
-            <div className="bg-background-elevated border border-white/5 rounded-xl p-6">
-              <h2 className="font-heading text-sm tracking-wider uppercase text-foreground-muted mb-4">
-                Overdue
-              </h2>
-              <ul className="space-y-2">
-                {data.overdueTasks.map((t) => (
-                  <li
-                    key={t.id}
-                    className="flex items-center gap-3 py-1.5 border-b border-white/5 last:border-0"
-                  >
-                    <TaskCompleteCheckbox taskId={t.id} completed={!!t.completedAt} />
-                    <div className="flex-1 min-w-0">
-                      <p className="text-sm text-off-white truncate">{t.title}</p>
-                      {t.contactId && (
-                        <Link
-                          href={`/admin/contacts/${t.contactId}`}
-                          className="text-xs text-foreground-muted hover:text-coral"
-                        >
-                          {t.contactName ?? t.contactEmail}
-                        </Link>
-                      )}
-                    </div>
-                    <span className="text-xs text-red-400 tabular-nums">
-                      {formatDate(t.dueAt)}
-                    </span>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          )}
 
           {/* Applications waiting on me */}
           <div className="bg-background-elevated border border-white/5 rounded-xl p-6">
@@ -283,7 +231,11 @@ export default async function MyDayPage() {
               </Link>
             </div>
             {data.applicationsWaiting.length === 0 ? (
-              <p className="text-sm text-foreground-subtle">Nothing waiting.</p>
+              <EmptyState
+                icon="✓"
+                title="Nothing waiting"
+                subtitle="No cohort applications need your attention."
+              />
             ) : (
               <ul className="space-y-2">
                 {data.applicationsWaiting.map((a) => {
@@ -330,7 +282,7 @@ export default async function MyDayPage() {
               Recent Activity (Mine)
             </h2>
             {data.recentActivity.length === 0 ? (
-              <p className="text-sm text-foreground-subtle">No activity yet.</p>
+              <EmptyState icon="·" title="No activity yet" />
             ) : (
               <ul className="space-y-1.5">
                 {data.recentActivity.map((a) => (
@@ -362,7 +314,7 @@ export default async function MyDayPage() {
               Stale Contacts
             </h2>
             {data.staleContacts.length === 0 ? (
-              <p className="text-sm text-foreground-subtle">All current.</p>
+              <EmptyState icon="✓" title="All current" />
             ) : (
               <ul className="space-y-1.5">
                 {data.staleContacts.map((c) => (
@@ -391,18 +343,14 @@ export default async function MyDayPage() {
               Recent Emails Sent (Mine)
             </h2>
             {data.recentEmails.length === 0 ? (
-              <p className="text-sm text-foreground-subtle">No emails sent yet.</p>
+              <EmptyState icon="✉" title="No emails sent yet" />
             ) : (
               <ul className="space-y-2">
                 {data.recentEmails.map((e) => (
                   <li key={e.id} className="py-1.5 border-b border-white/5 last:border-0">
                     <div className="flex items-center justify-between gap-3">
                       <p className="text-sm text-off-white truncate">{e.subject}</p>
-                      <span
-                        className={`text-[10px] uppercase tracking-wider px-2 py-0.5 rounded border shrink-0 ${emailStatusClass(e.status)}`}
-                      >
-                        {e.status}
-                      </span>
+                      <Pill tone={emailStatusTone(e.status)}>{e.status}</Pill>
                     </div>
                     <div className="flex items-center justify-between gap-3 mt-0.5">
                       <Link
