@@ -351,7 +351,7 @@ export function BlogSearch({ posts }: BlogSearchProps) {
                           Get the week&apos;s training takeaways in one email.
                         </h3>
                         <p className="text-foreground-muted text-sm">
-                          1,900+ serious cyclists. What worked this week, what
+                          65,000+ serious cyclists. What worked this week, what
                           the pros did differently, and how to apply it.
                         </p>
                       </div>

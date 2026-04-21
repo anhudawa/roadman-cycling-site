@@ -286,7 +286,7 @@ export default async function BlogPostPage({
               <EmailCapture
                 variant="inline"
                 heading="KEEP READING — THE SATURDAY SPIN"
-                subheading="The week's training takeaways, pro insights, and what to do about them. 1,900+ serious cyclists open it every Saturday."
+                subheading="The week's training takeaways, pro insights, and what to do about them. 65,000+ serious cyclists open it every Saturday."
                 source={`blog-end-${slug}`}
                 buttonText="SUBSCRIBE"
               />

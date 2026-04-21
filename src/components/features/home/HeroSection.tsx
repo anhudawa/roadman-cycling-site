@@ -212,9 +212,9 @@ export function HeroSection({ latestEpisode }: HeroSectionProps) {
             >
               <span>1M listeners</span>
               <span className="mx-2 opacity-50">·</span>
-              <span>29K newsletter</span>
+              <span>65K newsletter</span>
               <span className="mx-2 opacity-50">·</span>
-              <span>300+ episodes</span>
+              <span>1300+ episodes</span>
             </motion.p>
           </div>
 
