@@ -331,7 +331,6 @@ export function InboxPipelineBoard({ initialStages }: Props) {
                       unread={!sub.readAt}
                       dragging={dragId === sub.id}
                       ringAccent={color.ring}
-                      ownerSlug={sub.assignedTo ?? null}
                       onClick={() => openCard(sub)}
                       draggableProps={{
                         draggable: true,
