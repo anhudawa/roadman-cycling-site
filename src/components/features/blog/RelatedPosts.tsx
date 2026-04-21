@@ -1,6 +1,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import { Badge } from "@/components/ui";
+import { isGenericImage } from "@/lib/blog-images";
 import type { BlogPostMeta } from "@/lib/blog";
 
 interface RelatedPostsProps {
@@ -30,15 +31,23 @@ export function RelatedPosts({ posts, className = "" }: RelatedPostsProps) {
             style={{ transitionDuration: "var(--duration-normal)" }}
           >
             <div className="aspect-[16/9] relative bg-gradient-to-br from-deep-purple to-charcoal overflow-hidden">
-              {post.featuredImage && (
-                <Image
-                  src={post.featuredImage}
-                  alt={post.title}
-                  fill
-                  className="object-cover group-hover:scale-105 transition-transform duration-500"
-                  sizes="(max-width: 768px) 100vw, 33vw"
-                />
-              )}
+              {(() => {
+                const useSatori = isGenericImage(post.featuredImage);
+                const src = useSatori
+                  ? `/api/og/blog-hero?slug=${encodeURIComponent(post.slug)}`
+                  : post.featuredImage;
+                if (!src) return null;
+                return (
+                  <Image
+                    src={src}
+                    alt={post.title}
+                    fill
+                    className="object-cover group-hover:scale-105 transition-transform duration-500"
+                    sizes="(max-width: 768px) 100vw, 33vw"
+                    unoptimized={useSatori}
+                  />
+                );
+              })()}
             </div>
 
             <div className="p-5">

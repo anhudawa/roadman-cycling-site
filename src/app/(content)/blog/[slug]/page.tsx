@@ -20,17 +20,7 @@ import { EmailCapture } from "@/components/features/conversion/EmailCapture";
 import { TableOfContents } from "@/components/features/blog/TableOfContents";
 import { AnswerCapsule } from "@/components/ui/AnswerCapsule";
 import { mdxComponents } from "@/components/mdx/MDXComponents";
-
-/**
- * Slugs that render their hero from the Satori generator at
- * /api/og/blog-hero instead of their (reused, generic) featuredImage.
- * Used for the "show me one real preview" phase — keeping this
- * explicit so rollout is one slug at a time until the template is
- * signed off.
- */
-const SATORI_HERO_PREVIEW_SLUGS: ReadonlySet<string> = new Set([
-  "age-group-ftp-benchmarks-2026",
-]);
+import { isGenericImage } from "@/lib/blog-images";
 
 export async function generateStaticParams() {
   return getAllSlugs().map((slug) => ({ slug }));
@@ -256,10 +246,12 @@ export default async function BlogPostPage({
           </Container>
         </Section>
 
-        {/* Featured Image — either the curated post image or, for
-            preview-enrolled slugs, the Satori-generated hero. */}
+        {/* Featured Image — either the curated post image or, when
+            the post's image is in the shared "generic" pool (gravel
+            stock photos reused across 100+ posts), the Satori-
+            generated branded hero. */}
         {(() => {
-          const useSatoriHero = SATORI_HERO_PREVIEW_SLUGS.has(slug);
+          const useSatoriHero = isGenericImage(post.featuredImage);
           const heroSrc = useSatoriHero
             ? `/api/og/blog-hero?slug=${encodeURIComponent(slug)}`
             : post.featuredImage;

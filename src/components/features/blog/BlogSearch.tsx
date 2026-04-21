@@ -5,25 +5,33 @@ import Link from "next/link";
 import Image from "next/image";
 import { Badge } from "@/components/ui";
 import { EmailCapture } from "@/components/features/conversion/EmailCapture";
+import { isGenericImage } from "@/lib/blog-images";
 import { type ContentPillar, CONTENT_PILLARS } from "@/types";
 
 const INITIAL_POSTS_PER_PAGE = 24;
 const FEATURED_POST_COUNT = 4;
 
 /**
- * Slugs whose index card shows a Satori-generated hero instead of
- * the (often-reused) featuredImage. Keep in sync with the matching
- * set in src/app/(content)/blog/[slug]/page.tsx.
+ * Returns the hero image URL for a post card. Posts whose
+ * featuredImage is in the shared-generic pool (GENERIC_BLOG_IMAGES)
+ * render the Satori-generated branded template so the /blog index
+ * never shows the same stock photo on multiple cards; posts with a
+ * unique image keep it.
  */
-const SATORI_HERO_PREVIEW_SLUGS: ReadonlySet<string> = new Set([
-  "age-group-ftp-benchmarks-2026",
-]);
-
-function heroSrcForCard(post: Pick<BlogSearchItem, "slug" | "featuredImage">): string | undefined {
-  if (SATORI_HERO_PREVIEW_SLUGS.has(post.slug)) {
-    return `/api/og/blog-hero?slug=${encodeURIComponent(post.slug)}`;
+function heroSrcForCard(post: Pick<BlogSearchItem, "slug" | "featuredImage">): {
+  src: string;
+  isSatori: boolean;
+} | null {
+  if (isGenericImage(post.featuredImage)) {
+    return {
+      src: `/api/og/blog-hero?slug=${encodeURIComponent(post.slug)}`,
+      isSatori: true,
+    };
   }
-  return post.featuredImage;
+  if (post.featuredImage) {
+    return { src: post.featuredImage, isSatori: false };
+  }
+  return null;
 }
 
 interface BlogSearchItem {
@@ -166,16 +174,16 @@ export function BlogSearch({ posts }: BlogSearchProps) {
               >
                 <div className="aspect-[16/9] relative bg-gradient-to-br from-deep-purple to-charcoal overflow-hidden">
                   {(() => {
-                    const src = heroSrcForCard(post);
-                    if (!src) return null;
+                    const hero = heroSrcForCard(post);
+                    if (!hero) return null;
                     return (
                       <Image
-                        src={src}
+                        src={hero.src}
                         alt={post.title}
                         fill
                         className="object-cover group-hover:scale-105 transition-transform duration-500"
                         sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 25vw"
-                        unoptimized={SATORI_HERO_PREVIEW_SLUGS.has(post.slug)}
+                        unoptimized={hero.isSatori}
                       />
                     );
                   })()}
@@ -318,16 +326,16 @@ export function BlogSearch({ posts }: BlogSearchProps) {
                 >
                   <div className="aspect-[16/9] relative bg-gradient-to-br from-deep-purple to-charcoal overflow-hidden">
                     {(() => {
-                      const src = heroSrcForCard(post);
-                      if (!src) return null;
+                      const hero = heroSrcForCard(post);
+                      if (!hero) return null;
                       return (
                         <Image
-                          src={src}
+                          src={hero.src}
                           alt={post.title}
                           fill
                           className="object-cover group-hover:scale-105 transition-transform duration-500"
                           sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                          unoptimized={SATORI_HERO_PREVIEW_SLUGS.has(post.slug)}
+                          unoptimized={hero.isSatori}
                         />
                       );
                     })()}
