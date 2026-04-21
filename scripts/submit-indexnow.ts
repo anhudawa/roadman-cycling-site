@@ -135,6 +135,19 @@ const COACHING_CLUSTER = [
   "power-meter-training-plan-week-by-week",
 ];
 
+const COMPARISON_CLUSTER = [
+  "zwift-vs-trainerroad",
+  "wahoo-vs-garmin-cycling-computers",
+  "power-meter-vs-smart-trainer",
+  "rouvy-vs-zwift",
+  "tubeless-vs-clincher-tyres",
+  "indoor-trainer-vs-rollers",
+  "zone-2-vs-endurance-training",
+  "aero-vs-weight-cyclist",
+  "steady-state-vs-interval-training-cycling",
+  "fasted-vs-fueled-cycling",
+];
+
 const PODCAST_AUTHORITY_CLUSTER = [
   "best-cycling-podcasts-for-2026-edition",
   "best-indoor-cycling-podcasts-winter",
@@ -228,6 +241,7 @@ async function main() {
   clusterUrls(TRIATHLON_CLUSTER).forEach((u) => urls.add(u));
   clusterUrls(COACHING_CLUSTER).forEach((u) => urls.add(u));
   clusterUrls(PODCAST_AUTHORITY_CLUSTER).forEach((u) => urls.add(u));
+  clusterUrls(COMPARISON_CLUSTER).forEach((u) => urls.add(u));
 
   if (all) {
     allBlogUrls().forEach((u) => urls.add(u));
