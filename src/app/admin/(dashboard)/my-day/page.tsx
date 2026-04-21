@@ -206,8 +206,8 @@ export default async function MyDayPage() {
           <FocusBoard
             currentUserSlug={user.slug}
             currentUserName={user.name}
-            mainFocus={data.mainFocusTasks ?? []}
-            otherOpen={data.otherOpenTasks ?? []}
+            mainFocus={data.mainFocusTasks}
+            otherOpen={data.otherOpenTasks}
             teammates={teammates}
           />
         </CardBody>

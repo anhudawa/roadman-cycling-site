@@ -103,8 +103,11 @@ export function PersonaRouter() {
                 delay={i * 0.08}
                 eager={i < 2}
               >
-                <Link
-                  href={p.href}
+                {/* Tile body routes to the persona page. Secondary Apply
+                    link below gives high-intent visitors a direct path to
+                    /apply without the detour. Kept as a sibling so nested
+                    <a> inside <a> is avoided. */}
+                <div
                   className={`
                     group relative flex flex-col h-full
                     bg-background-elevated rounded-xl
@@ -114,20 +117,31 @@ export function PersonaRouter() {
                     hover:-translate-y-0.5 hover:shadow-[var(--shadow-elevated)]
                   `}
                 >
-                  <p
-                    className={`font-heading text-lg md:text-xl text-off-white leading-tight mb-3 transition-colors ${styles.opener}`}
+                  <Link
+                    href={p.href}
+                    className="flex flex-col flex-1 focus:outline-none"
                   >
-                    &ldquo;{p.opener}&rdquo;
-                  </p>
-                  <p className="text-sm text-foreground-muted leading-relaxed mb-6 flex-1">
-                    {p.detail}
-                  </p>
-                  <span
-                    className={`text-sm font-body font-medium ${styles.cta}`}
+                    <p
+                      className={`font-heading text-lg md:text-xl text-off-white leading-tight mb-3 transition-colors ${styles.opener}`}
+                    >
+                      &ldquo;{p.opener}&rdquo;
+                    </p>
+                    <p className="text-sm text-foreground-muted leading-relaxed mb-6 flex-1">
+                      {p.detail}
+                    </p>
+                    <span
+                      className={`text-sm font-body font-medium ${styles.cta}`}
+                    >
+                      {p.cta} <span aria-hidden="true">&rarr;</span>
+                    </span>
+                  </Link>
+                  <Link
+                    href="/apply"
+                    className="mt-3 pt-3 border-t border-white/5 text-xs font-body text-coral/80 hover:text-coral transition-colors"
                   >
-                    {p.cta} <span aria-hidden="true">&rarr;</span>
-                  </span>
-                </Link>
+                    Or apply to join &rarr;
+                  </Link>
+                </div>
               </ScrollReveal>
             );
           })}

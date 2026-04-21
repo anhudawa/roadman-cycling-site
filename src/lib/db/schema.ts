@@ -280,9 +280,7 @@ export const tasks = pgTable(
     requestStatus: text("request_status"), // requested | accepted | declined | null
     responseMessage: text("response_message"),
     respondedAt: timestamp("responded_at", { withTimezone: true }),
-    // Main Focus (drizzle/0024_task_focus_order.sql). NULL = lives in "All
-    // other tasks" (sorted by due date); NOT NULL = lives in "My main focus"
-    // (sorted by focus_order ascending).
+    // My Day "main focus" position for the assignee. null = not pinned.
     focusOrder: integer("focus_order"),
   },
   (table) => [

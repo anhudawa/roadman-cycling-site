@@ -184,7 +184,7 @@ export const PERSONAS: Record<PersonaSlug, PersonaContent> = {
     hasDiagnostic: false,
     ctaHeadline: "Listening is enough. Until it isn't.",
     ctaBody:
-      "Most of the audience is here. Most will stay here. The ones who compound the knowledge into results plug into the system — structured plan, weekly coaching, the same principles every episode has been pointing at. 7-day free trial.",
+      "Most of the audience stays here. The ones who compound the knowledge into results join the Not Done Yet coaching community — structured plan, weekly coaching calls, expert masterclasses, the same principles every episode has been pointing at. 7-day free trial.",
     emailHook:
       "One practical takeaway from the week's best conversations. Every Saturday. Free.",
     pillar: "coaching",
