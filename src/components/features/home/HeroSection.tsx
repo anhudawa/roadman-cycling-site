@@ -70,8 +70,7 @@ export function HeroSection({ latestEpisode }: HeroSectionProps) {
   return (
     <section
       ref={sectionRef}
-      className="relative overflow-hidden"
-      style={{ background: "#1d0838" }}
+      className="relative overflow-hidden bg-deep-purple"
     >
       {/* Top-edge coral seam */}
       <div
@@ -140,7 +139,11 @@ export function HeroSection({ latestEpisode }: HeroSectionProps) {
                 <motion.span
                   key={line.text}
                   className={line.accent ? "text-coral block" : "block"}
-                  style={line.accent ? { fontSize: "0.88em" } : undefined}
+                  style={
+                    line.accent
+                      ? { letterSpacing: "-0.03em" }
+                      : undefined
+                  }
                   initial={{ opacity: 0, y: 24 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{
@@ -168,7 +171,7 @@ export function HeroSection({ latestEpisode }: HeroSectionProps) {
             />
 
             <motion.div
-              className="flex flex-col sm:flex-row items-center lg:items-start justify-center lg:justify-start gap-4 sm:gap-5"
+              className="flex flex-col sm:flex-row items-center lg:items-start justify-center lg:justify-start gap-6 sm:gap-5"
               initial={{ opacity: 0, y: 16 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{
@@ -187,7 +190,7 @@ export function HeroSection({ latestEpisode }: HeroSectionProps) {
               </Button>
               <Link
                 href={latestEpisode ? `/podcast/${latestEpisode.slug}` : "/podcast"}
-                className="font-heading text-sm tracking-[0.18em] uppercase text-off-white/75 hover:text-coral transition-colors py-3"
+                className="font-heading text-sm tracking-[0.18em] uppercase text-off-white/75 hover:text-coral hover:underline underline-offset-4 transition-colors py-3"
                 style={{ transitionDuration: "var(--duration-fast)" }}
                 data-track="home_hero_listen"
               >
@@ -196,7 +199,7 @@ export function HeroSection({ latestEpisode }: HeroSectionProps) {
             </motion.div>
 
             <motion.p
-              className="mt-8 md:mt-10 text-[10px] md:text-[11px] tracking-[0.18em] uppercase text-off-white/45"
+              className="mt-8 md:mt-10 text-[10px] md:text-[11px] tracking-[0.18em] uppercase text-off-white/65"
               style={{
                 fontFamily:
                   "var(--font-jetbrains-mono), ui-monospace, monospace",

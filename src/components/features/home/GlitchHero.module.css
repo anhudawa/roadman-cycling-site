@@ -7,7 +7,12 @@
    ========================================================= */
 
 .hero {
-  --hero-bg: #1d0838;
+  /* #210140 matches the site's --color-deep-purple token AND the
+     portrait asset's actual baked-in background (sampled at
+     multiple pixels, within 1 RGB unit). Prior #1d0838 was an
+     outlier and produced a visible tonal step at the portrait
+     edge on calibrated displays. */
+  --hero-bg: #210140;
   --glow-red: rgba(255, 61, 90, 0.45);
   --glow-purple: rgba(178, 123, 240, 0.4);
   --portrait: url("/images/hero/glitch-portrait.jpg");
@@ -25,15 +30,15 @@
   overflow: hidden;
   isolation: isolate;
 
-  /* Bottom mask fade — opaque 0-65%, soft dissolve to transparent
-     at 100%. Jersey fades into the section bg instead of ending
-     on a rectangle edge. Combined with the portrait's own radial
-     mask via per-layer masks below. */
-  mask-image: linear-gradient(to bottom, #000 0%, #000 65%, transparent 100%);
+  /* Bottom mask fade — opaque 0-78%, soft dissolve to transparent
+     at 100%. Starts at 78% (was 65%) so the fade terminates below
+     the typical laptop fold line instead of creating a visible
+     horizontal band across the portrait. */
+  mask-image: linear-gradient(to bottom, #000 0%, #000 78%, transparent 100%);
   -webkit-mask-image: linear-gradient(
     to bottom,
     #000 0%,
-    #000 65%,
+    #000 78%,
     transparent 100%
   );
 }
@@ -318,7 +323,7 @@
   background: radial-gradient(
     ellipse 70% 80% at center 55%,
     transparent 45%,
-    rgba(29, 8, 56, 0.55) 100%
+    rgba(33, 1, 64, 0.55) 100%
   );
 }
 
