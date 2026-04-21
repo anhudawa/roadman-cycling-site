@@ -14,6 +14,7 @@ import { RelatedContent } from "@/components/features/RelatedContent";
 import { RelatedEpisodes } from "@/components/features/podcast/RelatedEpisodes";
 import { EmailCapture } from "@/components/features/conversion/EmailCapture";
 import { getPostBySlug } from "@/lib/blog";
+import { EVENTS } from "@/lib/training-plans";
 import Link from "next/link";
 import { mdxComponents } from "@/components/mdx/MDXComponents";
 
@@ -86,6 +87,11 @@ export default async function EpisodePage({
 
   const publishDate = new Date(episode.publishDate);
   const episodeUrl = `https://roadmancycling.com/podcast/${slug}`;
+
+  const mentionedEvents = EVENTS.filter((e) => {
+    const haystack = `${episode.title} ${episode.description} ${episode.transcript || ""}`.toLowerCase();
+    return haystack.includes(e.name.toLowerCase()) || haystack.includes(e.shortName.toLowerCase());
+  }).slice(0, 3);
 
   // Segment the transcript once on the server so the schema and the
   // TranscriptViewer render from the same segmentation — keeping schema
@@ -439,6 +445,25 @@ export default async function EpisodePage({
                 </section>
               );
             })()}
+
+            {mentionedEvents.length > 0 && (
+              <div className="mt-10 rounded-xl border border-white/10 bg-white/[0.03] p-5 md:p-6">
+                <p className="font-heading text-coral text-xs tracking-widest mb-3">
+                  FREE TRAINING PLANS
+                </p>
+                <div className="flex flex-wrap gap-2">
+                  {mentionedEvents.map((e) => (
+                    <Link
+                      key={e.slug}
+                      href={`/plan/${e.slug}`}
+                      className="inline-flex items-center gap-2 rounded-lg border border-white/15 hover:border-coral/40 bg-white/[0.04] hover:bg-white/[0.07] px-4 py-2 text-sm font-heading text-off-white tracking-wider transition-all"
+                    >
+                      {e.shortName.toUpperCase()} →
+                    </Link>
+                  ))}
+                </div>
+              </div>
+            )}
 
             {/* Related Episodes (podcast-only, server-rendered for SEO) */}
             <RelatedEpisodes
