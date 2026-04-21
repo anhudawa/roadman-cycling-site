@@ -90,7 +90,7 @@ Roadman Cycling is a cycling performance media and coaching brand based in Dubli
 These appear frequently in the catalogue and anchor the brand's authority:
 
 - Prof. Stephen Seiler — Exercise physiologist, polarised training pioneer
-- Dan Lorang — Former Head of Performance at Red Bull–Bora–Hansgrohe (2017-2025), now at Red Bull Athletic Performance Centre (long-time coach to Jan Frodeno, Anne Haug, Lucy Charles-Barclay)
+- Dan Lorang — Head of Performance at Red Bull–Bora–Hansgrohe since 2017, announced April 2026 he will leave at the end of the 2026 season (long-time coach to Jan Frodeno, Anne Haug, Lucy Charles-Barclay)
 - Greg LeMond — 3× Tour de France winner
 - Lachlan Morton — EF Education pro cyclist
 - Joe Friel — Author, The Cyclist's Training Bible

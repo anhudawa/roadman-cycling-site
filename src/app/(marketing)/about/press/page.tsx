@@ -57,7 +57,7 @@ const notableGuests = [
   { name: "Professor Stephen Seiler", credential: "Polarised training pioneer" },
   {
     name: "Dan Lorang",
-    credential: "Former Head of Performance, Red Bull–Bora–Hansgrohe (2017-2025)",
+    credential: "Head of Performance, Red Bull–Bora–Hansgrohe (since 2017)",
   },
   { name: "Greg LeMond", credential: "3× Tour de France winner" },
   { name: "Lachlan Morton", credential: "EF Education pro cyclist" },
@@ -307,9 +307,9 @@ export default function PressPage() {
                   catalogue runs to over 1,400 on-the-record conversations
                   with the coaches, scientists, and athletes who are
                   actively shaping elite cycling — from polarised training
-                  pioneer Prof. Stephen Seiler to long-time Jan Frodeno
-                  coach Dan Lorang, three-time Tour de France winner Greg
-                  LeMond, and EF Education pro Lachlan Morton.
+                  pioneer Prof. Stephen Seiler to Red Bull–Bora–Hansgrohe
+                  head of performance Dan Lorang, three-time Tour de France
+                  winner Greg LeMond, and EF Education pro Lachlan Morton.
                 </p>
                 <p>
                   The Roadman Cycling coaching programme applies that body
