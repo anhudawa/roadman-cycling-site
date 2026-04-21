@@ -62,6 +62,15 @@ export default async function TopicPage({
             name: "Roadman Cycling",
             url: "https://roadmancycling.com",
           },
+          hasPart: topic.posts.slice(0, 20).map((post) => ({
+            "@type": "BlogPosting",
+            headline: post.title,
+            url: `https://roadmancycling.com/blog/${post.slug}`,
+          })),
+          speakable: {
+            "@type": "SpeakableSpecification",
+            cssSelector: ["h1", ".topic-description"],
+          },
         }}
       />
       <JsonLd
