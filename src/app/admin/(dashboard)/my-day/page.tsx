@@ -4,6 +4,8 @@ import { getMyDayData } from "@/lib/crm/dashboard";
 import { STAGE_COLORS, STAGE_LABELS, isApplicationStage } from "@/lib/crm/pipeline";
 import { TaskCompleteCheckbox } from "./_components/TaskCompleteCheckbox";
 import { SendTestDigestButton } from "./_components/SendTestDigestButton";
+import { TaskRequests } from "./_components/TaskRequests";
+import { listAllTeamUsers } from "@/lib/admin/team-users";
 
 export const dynamic = "force-dynamic";
 
@@ -93,7 +95,13 @@ function StatCard({ label, value, href, accent }: StatCardProps) {
 
 export default async function MyDayPage() {
   const user = await requireAuth();
-  const data = await getMyDayData(user);
+  const [data, allUsers] = await Promise.all([
+    getMyDayData(user),
+    listAllTeamUsers(),
+  ]);
+  const teammates = allUsers
+    .filter((u) => u.active)
+    .map((u) => ({ slug: u.slug, name: u.name, email: u.email }));
 
   const now = new Date();
   const weekday = now.toLocaleDateString("en-GB", { weekday: "long" });
@@ -141,6 +149,17 @@ export default async function MyDayPage() {
           value={data.stats.staleContacts}
           href={`/admin/contacts?owner=${encodeURIComponent(user.slug)}&stale=1`}
           accent={data.stats.staleContacts > 0}
+        />
+      </div>
+
+      {/* Peer-to-peer task requests */}
+      <div className="bg-background-elevated border border-white/5 rounded-xl p-6">
+        <TaskRequests
+          currentUserSlug={user.slug}
+          currentUserName={user.name}
+          incoming={data.incomingTaskRequests}
+          outgoing={data.outgoingTaskRequests}
+          teammates={teammates}
         />
       </div>
 

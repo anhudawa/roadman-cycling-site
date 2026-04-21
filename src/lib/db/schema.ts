@@ -276,6 +276,10 @@ export const tasks = pgTable(
     assignedTo: text("assigned_to"),
     createdBy: text("created_by"),
     createdAt: timestamp("created_at", { withTimezone: true }).notNull().defaultNow(),
+    // Peer-to-peer "send task" flow. NULL = direct-owned legacy task.
+    requestStatus: text("request_status"), // requested | accepted | declined | null
+    responseMessage: text("response_message"),
+    respondedAt: timestamp("responded_at", { withTimezone: true }),
   },
   (table) => [
     index("tasks_contact_id_idx").on(table.contactId),

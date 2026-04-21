@@ -5,7 +5,9 @@ import {
   tasks,
   cohortApplications,
   emailMessages,
+  teamUsers,
 } from "@/lib/db/schema";
+import { alias } from "drizzle-orm/pg-core";
 import {
   and,
   asc,
@@ -79,6 +81,24 @@ export interface MyDayEmailRow {
   contactEmail: string | null;
 }
 
+export interface MyDayTaskRequestRow {
+  id: number;
+  title: string;
+  notes: string | null;
+  dueAt: string | null;
+  createdAt: string;
+  respondedAt: string | null;
+  requestStatus: string;
+  responseMessage: string | null;
+  createdBy: string | null;
+  createdByName: string | null;
+  assignedTo: string;
+  assignedToName: string | null;
+  contactId: number | null;
+  contactName: string | null;
+  contactEmail: string | null;
+}
+
 export interface MyDayData {
   stats: MyDayStats;
   todaysTasks: MyDayTaskRow[];
@@ -89,6 +109,8 @@ export interface MyDayData {
   recentEmails: MyDayEmailRow[];
   todayBookings: BookingRow[];
   upcomingBookings: BookingRow[];
+  incomingTaskRequests: MyDayTaskRequestRow[];
+  outgoingTaskRequests: MyDayTaskRequestRow[];
 }
 
 const STALE_DAYS = 7;
@@ -156,6 +178,10 @@ export async function getMyDayData(user: TeamUser): Promise<MyDayData> {
     staleContacts: staleCountRes[0]?.count ?? 0,
   };
 
+  // Tasks in "requested" or "declined" state aren't real tasks yet — they
+  // live in the peer-to-peer task-request inbox and must be accepted first.
+  const notPendingRequest = sql`(${tasks.requestStatus} IS NULL OR ${tasks.requestStatus} = 'accepted')`;
+
   // ── Today's tasks ────────────────────────────────────
   const todaysTasksRaw = await db
     .select({
@@ -175,7 +201,8 @@ export async function getMyDayData(user: TeamUser): Promise<MyDayData> {
         isNull(tasks.completedAt),
         isNotNull(tasks.dueAt),
         lte(tasks.dueAt, todayEnd),
-        gte(tasks.dueAt, todayStart)
+        gte(tasks.dueAt, todayStart),
+        notPendingRequest
       )
     )
     .orderBy(asc(tasks.dueAt))
@@ -199,7 +226,8 @@ export async function getMyDayData(user: TeamUser): Promise<MyDayData> {
         eq(tasks.assignedTo, user.slug),
         isNull(tasks.completedAt),
         isNotNull(tasks.dueAt),
-        lt(tasks.dueAt, todayStart)
+        lt(tasks.dueAt, todayStart),
+        notPendingRequest
       )
     )
     .orderBy(asc(tasks.dueAt))
@@ -338,6 +366,77 @@ export async function getMyDayData(user: TeamUser): Promise<MyDayData> {
     getBookingsUpcoming(user.slug, { hours: 24 }).catch(() => []),
   ]);
 
+  // ── Peer-to-peer task requests ───────────────────────
+  const creatorUsers = alias(teamUsers, "creator_users");
+  const assigneeUsers = alias(teamUsers, "assignee_users");
+
+  const taskRequestColumns = {
+    id: tasks.id,
+    title: tasks.title,
+    notes: tasks.notes,
+    dueAt: tasks.dueAt,
+    createdAt: tasks.createdAt,
+    respondedAt: tasks.respondedAt,
+    requestStatus: tasks.requestStatus,
+    responseMessage: tasks.responseMessage,
+    createdBy: tasks.createdBy,
+    createdByName: creatorUsers.name,
+    assignedTo: tasks.assignedTo,
+    assignedToName: assigneeUsers.name,
+    contactId: tasks.contactId,
+    contactName: contacts.name,
+    contactEmail: contacts.email,
+  };
+
+  const [incomingRaw, outgoingRaw] = await Promise.all([
+    db
+      .select(taskRequestColumns)
+      .from(tasks)
+      .leftJoin(contacts, eq(tasks.contactId, contacts.id))
+      .leftJoin(creatorUsers, eq(creatorUsers.slug, tasks.createdBy))
+      .leftJoin(assigneeUsers, eq(assigneeUsers.slug, tasks.assignedTo))
+      .where(
+        and(
+          eq(tasks.assignedTo, user.slug),
+          eq(tasks.requestStatus, "requested")
+        )
+      )
+      .orderBy(desc(tasks.createdAt))
+      .limit(50),
+    db
+      .select(taskRequestColumns)
+      .from(tasks)
+      .leftJoin(contacts, eq(tasks.contactId, contacts.id))
+      .leftJoin(creatorUsers, eq(creatorUsers.slug, tasks.createdBy))
+      .leftJoin(assigneeUsers, eq(assigneeUsers.slug, tasks.assignedTo))
+      .where(
+        and(
+          eq(tasks.createdBy, user.slug),
+          eq(tasks.requestStatus, "requested")
+        )
+      )
+      .orderBy(desc(tasks.createdAt))
+      .limit(50),
+  ]);
+
+  const mapRequest = (r: typeof incomingRaw[number]): MyDayTaskRequestRow => ({
+    id: r.id,
+    title: r.title,
+    notes: r.notes ?? null,
+    dueAt: r.dueAt ? r.dueAt.toISOString() : null,
+    createdAt: r.createdAt.toISOString(),
+    respondedAt: r.respondedAt ? r.respondedAt.toISOString() : null,
+    requestStatus: r.requestStatus ?? "requested",
+    responseMessage: r.responseMessage ?? null,
+    createdBy: r.createdBy ?? null,
+    createdByName: r.createdByName ?? null,
+    assignedTo: r.assignedTo ?? "",
+    assignedToName: r.assignedToName ?? null,
+    contactId: r.contactId ?? null,
+    contactName: r.contactName ?? null,
+    contactEmail: r.contactEmail ?? null,
+  });
+
   return {
     stats,
     todaysTasks: todaysTasksRaw.map(mapTask),
@@ -348,5 +447,7 @@ export async function getMyDayData(user: TeamUser): Promise<MyDayData> {
     recentEmails,
     todayBookings,
     upcomingBookings,
+    incomingTaskRequests: incomingRaw.map(mapRequest),
+    outgoingTaskRequests: outgoingRaw.map(mapRequest),
   };
 }

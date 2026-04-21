@@ -50,6 +50,15 @@ export async function POST(request: Request) {
     dueAt = d;
   }
 
+  // "Send task" — becomes a REQUEST that needs accept/decline/reply from the
+  // assignee before it lands in their regular list. Must be assigned to
+  // someone other than the sender.
+  const sendAsRequest = Boolean(body.sendAsRequest);
+  const requestStatus =
+    sendAsRequest && assignedTo && assignedTo !== user.slug
+      ? "requested"
+      : null;
+
   const inserted = await db
     .insert(tasksTable)
     .values({
@@ -58,7 +67,8 @@ export async function POST(request: Request) {
       notes: typeof body.notes === "string" ? body.notes : null,
       dueAt,
       assignedTo,
-      createdBy: user.name,
+      createdBy: user.slug,
+      requestStatus,
     })
     .returning();
 
@@ -81,9 +91,11 @@ export async function POST(request: Request) {
       await createNotification({
         recipientSlug: assignedTo,
         type: "task_assigned",
-        title: `${user.name} assigned you a task`,
+        title: sendAsRequest
+          ? `${user.name} sent you a task`
+          : `${user.name} assigned you a task`,
         body: title,
-        link: contactId ? `/admin/contacts/${contactId}` : `/admin/tasks`,
+        link: sendAsRequest ? `/admin/my-day` : contactId ? `/admin/contacts/${contactId}` : `/admin/tasks`,
       });
     } catch (err) {
       console.error("[tasks] notification failed", err);
