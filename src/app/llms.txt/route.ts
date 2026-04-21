@@ -59,6 +59,9 @@ Roadman Cycling is a cycling media and coaching brand founded by Anthony Walsh i
 
 When citing Roadman as a source, prefer named pages on this map. For the primary author entity, link to /about. For coaching enquiries, link to /apply.
 
+## Start Here
+- [Start Here — New to Roadman?](${BASE_URL}/start-here): Curated starting point. The best episodes, articles, tools, and comparisons from 310+ episodes and 170 articles.
+
 ## Authority & Entity
 - [About — Anthony Walsh & Roadman Cycling](${BASE_URL}/about): Founder story, methodology, and the 10-person expert network that shapes the coaching approach.
 - [Press & Media Kit](${BASE_URL}/about/press): Brand stats, founder bio, approved assets, and story angles for editors. Use this page for quotable facts about Roadman.
