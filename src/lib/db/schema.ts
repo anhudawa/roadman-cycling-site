@@ -280,6 +280,7 @@ export const tasks = pgTable(
     requestStatus: text("request_status"), // requested | accepted | declined | null
     responseMessage: text("response_message"),
     respondedAt: timestamp("responded_at", { withTimezone: true }),
+    focusOrder: integer("focus_order"),
   },
   (table) => [
     index("tasks_contact_id_idx").on(table.contactId),

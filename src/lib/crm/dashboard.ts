@@ -40,6 +40,7 @@ export interface MyDayTaskRow {
   contactId: number | null;
   contactName: string | null;
   contactEmail: string | null;
+  focusOrder: number | null;
 }
 
 export interface MyDayApplicationRow {
@@ -113,6 +114,8 @@ export interface MyDayData {
   incomingTaskRequests: MyDayTaskRequestRow[];
   /** Outgoing task requests this user has sent that are still pending. */
   outgoingTaskRequests: MyDayTaskRequestRow[];
+  mainFocusTasks: MyDayTaskRow[];
+  otherOpenTasks: MyDayTaskRow[];
 }
 
 const STALE_DAYS = 7;
@@ -243,6 +246,7 @@ export async function getMyDayData(user: TeamUser): Promise<MyDayData> {
     contactId: r.contactId,
     contactName: r.contactName,
     contactEmail: r.contactEmail,
+    focusOrder: null,
   });
 
   // ── Applications waiting (joined via contacts.owner) ─
@@ -454,5 +458,7 @@ export async function getMyDayData(user: TeamUser): Promise<MyDayData> {
     upcomingBookings,
     incomingTaskRequests,
     outgoingTaskRequests,
+    mainFocusTasks: [],
+    otherOpenTasks: todaysTasksRaw.map(mapTask),
   };
 }
