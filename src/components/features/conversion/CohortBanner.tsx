@@ -122,11 +122,11 @@ export function CohortBanner() {
           <span className="font-heading text-xs sm:text-sm tracking-wider shrink-0">
             {state.banner.eyebrow}
           </span>
-          <span className="text-xs opacity-80 font-body truncate">
-            <span className="hidden sm:inline">{state.banner.detail}</span>
+          <span className="text-[11px] sm:text-xs opacity-80 font-body truncate">
+            {state.banner.detail}
             {countdown && (
               <>
-                <span className="hidden sm:inline"> · </span>
+                <span> · </span>
                 {countdown}
               </>
             )}
