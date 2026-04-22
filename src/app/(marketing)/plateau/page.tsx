@@ -1,11 +1,12 @@
 import type { Metadata } from "next";
 import { Suspense } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { sql } from "drizzle-orm";
 import { db } from "@/lib/db";
 import { diagnosticSubmissions } from "@/lib/db/schema";
 import { Container, Footer, Header, Section } from "@/components/layout";
-import { ScrollReveal } from "@/components/ui";
+import { ParallaxImage, ScrollReveal } from "@/components/ui";
 import { JsonLd, FAQPageJsonLd } from "@/components/seo/JsonLd";
 import { DiagnosticFlow } from "@/components/features/diagnostic/DiagnosticFlow";
 import { HeroAgePicker } from "@/components/features/diagnostic/HeroAgePicker";
@@ -169,22 +170,48 @@ export default async function PlateauPage() {
               2. Present the first question as the primary CTA
               3. Be comprehensible on a 375×667 viewport
 
-            No "Start the diagnostic" button here. The age picker
-            IS the start. ──────────────────────────────────── */}
-        <Section background="charcoal" grain className="pt-24 pb-14">
-          <Container width="narrow" className="text-center">
+            Full-bleed cycling photo behind a dark gradient — the
+            page reads as "serious masters cycling" before any text
+            is processed. The age picker IS the start; no redundant
+            "Start the diagnostic" button. ────────────────────── */}
+        <section className="relative overflow-hidden pt-28 pb-16 min-h-[78svh] flex items-center">
+          {/* Background image. `priority` so it's in the LCP budget;
+              sizes hint tells next/image which resolution to serve. */}
+          <Image
+            src="/images/cycling/gravel-desert-road-epic.jpg"
+            alt=""
+            fill
+            priority
+            sizes="100vw"
+            className="object-cover"
+            style={{ objectPosition: "center 35%" }}
+          />
+          {/* Dark overlay — top-to-bottom gradient gives text strong
+              contrast at the bottom (where the CTA sits) while
+              keeping the landscape visible at the top. */}
+          <div
+            aria-hidden="true"
+            className="absolute inset-0 bg-gradient-to-b from-charcoal/55 via-charcoal/75 to-charcoal"
+          />
+          {/* Coral → purple stripe at the top — picks up the brand
+              system already used on the OG images. */}
+          <div
+            aria-hidden="true"
+            className="absolute top-0 inset-x-0 h-1 bg-gradient-to-r from-coral to-purple z-10"
+          />
+          <Container width="narrow" className="relative z-10 text-center">
             <ScrollReveal direction="up" eager>
               <p className="text-coral font-heading text-xs md:text-sm tracking-widest mb-5">
                 THE MASTERS PLATEAU DIAGNOSTIC
               </p>
               <h1
-                className="font-heading text-off-white mb-5 leading-[0.95]"
+                className="font-heading text-off-white mb-5 leading-[0.95] drop-shadow-lg"
                 style={{ fontSize: "var(--text-hero)" }}
               >
                 FOUR REASONS YOUR FTP IS STUCK.
                 <span className="text-coral block mt-2">WHICH ONE IS YOU?</span>
               </h1>
-              <p className="text-foreground-muted text-lg md:text-xl leading-relaxed max-w-xl mx-auto">
+              <p className="text-off-white/90 text-lg md:text-xl leading-relaxed max-w-xl mx-auto">
                 A 4-minute diagnostic for cyclists 35+. Tap your age and
                 we start.
               </p>
@@ -192,13 +219,13 @@ export default async function PlateauPage() {
               <HeroAgePicker />
 
               {recentCount !== null && (
-                <p className="text-foreground-subtle text-xs mt-6">
+                <p className="text-off-white/70 text-xs mt-6">
                   {recentCount.toLocaleString()} cyclists took it this week
                 </p>
               )}
             </ScrollReveal>
           </Container>
-        </Section>
+        </section>
 
         {/* ═══ Risk reversal ════════════════════════════════
             Pulled out of the FAQ into high-visibility position.
@@ -396,6 +423,20 @@ export default async function PlateauPage() {
             </div>
           </Container>
         </Section>
+
+        {/* ═══ Parallax break ═══════════════════════════════
+            Emotional beat between the cerebral benefits cards
+            and the practical FAQ. "Real riders, real rides" —
+            grounds the page so the diagnostic doesn't feel
+            like just another AI gimmick. ──────────────────── */}
+        <ParallaxImage
+          src="/images/cycling/anthony-podcast-studio.jpg"
+          alt="Two masters cyclists resting against a wall mid-ride"
+          className="h-[35vh] md:h-[50vh]"
+          objectPosition="center 40%"
+          speed={0.25}
+          overlayColor="from-charcoal/60 via-charcoal/30 to-deep-purple/70"
+        />
 
         {/* ═══ FAQ — condensed ═══════════════════════════════
             Three questions, not five. The "is this a sale" and
