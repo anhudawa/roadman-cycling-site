@@ -7,6 +7,7 @@ import { PROFILE_LABELS, CLOSE_TO_BREAKTHROUGH } from "@/lib/diagnostic/profiles
 import { resolveCta } from "@/lib/diagnostic/config";
 import { ResultsAnalytics } from "@/components/features/diagnostic/ResultsAnalytics";
 import { ShareButton } from "@/components/features/diagnostic/ShareButton";
+import { MetaPixel } from "@/components/features/diagnostic/MetaPixel";
 import type { Breakdown } from "@/lib/diagnostic/types";
 
 /**
@@ -73,6 +74,15 @@ export default async function DiagnosticResultsPage({
 
   return (
     <>
+      {/* Fires fbq PageView + Lead when the pixel env is configured —
+          this is the diagnostic funnel's primary conversion signal. */}
+      <MetaPixel
+        event="Lead"
+        eventParams={{
+          content_name: "plateau-diagnostic",
+          content_category: submission.primaryProfile,
+        }}
+      />
       <ResultsAnalytics slug={submission.slug} profile={submission.primaryProfile} />
       <Header />
       <main id="main-content">

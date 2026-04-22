@@ -8,6 +8,7 @@ import { generateBreakdown } from "@/lib/diagnostic/generator";
 import { insertSubmission, attachBeehiivId } from "@/lib/diagnostic/store";
 import { parseAnswers, parseUtm } from "@/lib/diagnostic/parse";
 import { PROFILE_LABELS } from "@/lib/diagnostic/profiles";
+import { sendDiagnosisConfirmation } from "@/lib/diagnostic/email";
 
 /**
  * Masters Plateau Diagnostic — submission endpoint.
@@ -174,6 +175,20 @@ export async function POST(request: Request) {
         }
       })
       .catch((err) => console.error("[Diagnostic] Beehiiv sync failed:", err)),
+
+    // Transactional confirmation via Resend. This is the immediate
+    // "here's your link" email so the funnel works even before the
+    // Beehiiv nurture sequence (§13) is authored. The Beehiiv Email 1
+    // ("Your diagnosis: [Profile]") is a separate, deeper touch.
+    sendDiagnosisConfirmation({
+      email,
+      slug: submission.slug,
+      primary: scoring.primary,
+      closeToBreakthrough: scoring.closeToBreakthrough,
+      breakdown: submission.breakdown,
+    }).catch((err) =>
+      console.error("[Diagnostic] confirmation email failed:", err)
+    ),
   ]);
 
   return NextResponse.json({

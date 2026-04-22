@@ -3,6 +3,7 @@ import { Suspense } from "react";
 import { Container, Footer, Header, Section } from "@/components/layout";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { DiagnosticFlow } from "@/components/features/diagnostic/DiagnosticFlow";
+import { MetaPixel } from "@/components/features/diagnostic/MetaPixel";
 
 /**
  * /plateau — landing page for the Masters Plateau Diagnostic. Copy
@@ -85,6 +86,7 @@ function DiagnosticSkeleton() {
 export default function PlateauPage() {
   return (
     <>
+      <MetaPixel />
       <JsonLd
         data={{
           "@context": "https://schema.org",

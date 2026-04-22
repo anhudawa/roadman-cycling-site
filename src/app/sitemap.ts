@@ -93,6 +93,15 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       changeFrequency: "monthly",
       priority: 0.8,
     },
+    // Lead magnet — the Masters Plateau Diagnostic. Individual
+    // /diagnostic/[slug] results are intentionally excluded: they're
+    // personal, noindex, and served at unguessable URLs.
+    {
+      url: `${BASE_URL}/plateau`,
+      lastModified: new Date("2026-04-22"),
+      changeFrequency: "monthly",
+      priority: 0.9,
+    },
     {
       url: `${BASE_URL}/coaching`,
       lastModified: new Date(),
