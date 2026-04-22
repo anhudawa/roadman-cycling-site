@@ -118,7 +118,7 @@ export default async function MyDayPage() {
           label="Overdue"
           value={data.stats.overdueTasks}
           href="/admin/tasks?scope=mine&status=open&due=overdue"
-          tone={data.stats.overdueTasks > 0 ? "coral" : "neutral"}
+          tone={data.stats.overdueTasks > 0 ? "bad" : "neutral"}
         />
         <StatTile
           label="Contacts I own"
@@ -129,7 +129,7 @@ export default async function MyDayPage() {
           label="Stale (7d+)"
           value={data.stats.staleContacts}
           href={`/admin/contacts?owner=${encodeURIComponent(user.slug)}&stale=1`}
-          tone={data.stats.staleContacts > 0 ? "coral" : "neutral"}
+          tone={data.stats.staleContacts > 0 ? "bad" : "neutral"}
         />
       </div>
 

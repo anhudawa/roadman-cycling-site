@@ -83,7 +83,7 @@ export default async function MissionControlPage() {
 
       {/* Hero: MRR + glide path + side tiles */}
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
-        <Card tone="coral" className="lg:col-span-2">
+        <Card tone="raised" className="lg:col-span-2">
           <CardBody className="p-6">
             <div className="flex items-baseline gap-3 flex-wrap">
               <SectionLabel>Current MRR</SectionLabel>
@@ -207,7 +207,7 @@ export default async function MissionControlPage() {
               : "—"
           }
           sub="MRR / active subs"
-          size="sm"
+
         />
         <StatTile
           label="Annual-plan MRR"
@@ -217,7 +217,7 @@ export default async function MissionControlPage() {
               ? `${((now.annualMrrCents / now.mrrCents) * 100).toFixed(0)}% of MRR`
               : "—"
           }
-          size="sm"
+
         />
         <StatTile
           label="At-risk MRR"
@@ -226,7 +226,7 @@ export default async function MissionControlPage() {
             now.pastDueCount === 1 ? "sub" : "subs"
           }`}
           tone={now.pastDueMrrCents > 0 ? "bad" : "good"}
-          size="sm"
+
         />
       </div>
 

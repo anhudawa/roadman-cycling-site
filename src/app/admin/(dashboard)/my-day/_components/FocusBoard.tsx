@@ -234,7 +234,7 @@ export function FocusBoard({
   return (
     <div className="space-y-4">
       <div className="flex items-center justify-between gap-3 flex-wrap">
-        <SectionLabel tone="off-white">Tasks</SectionLabel>
+        <SectionLabel tone="fg">Tasks</SectionLabel>
         <button
           type="button"
           onClick={() => setComposerOpen(true)}
