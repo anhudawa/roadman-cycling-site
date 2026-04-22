@@ -129,7 +129,7 @@ export default async function AdminDiagnosticPage({
                 key={profile}
                 className="rounded-md bg-white/5 border border-white/10 p-4"
               >
-                <p className="text-xs tracking-widest font-heading text-coral mb-2">
+                <p className="text-xs tracking-widest font-heading text-[var(--color-muted)] mb-2">
                   {PROFILE_LABELS[profile].toUpperCase()}
                 </p>
                 <p className="text-2xl font-semibold text-white">
@@ -157,7 +157,7 @@ export default async function AdminDiagnosticPage({
             {stats.last7d} in the last 7 days &middot;{" "}
             <Link
               href="/api/admin/diagnostic/export"
-              className="hover:text-coral underline underline-offset-4"
+              className="hover:text-[var(--color-fg)] underline underline-offset-4"
             >
               CSV export
             </Link>
@@ -208,7 +208,7 @@ export default async function AdminDiagnosticPage({
                       {maskEmail(r.email)}
                     </td>
                     <td className="py-2 pr-4">
-                      <span className="rounded-full bg-coral/10 text-coral text-xs font-semibold px-2 py-0.5">
+                      <span className="rounded-full bg-[var(--color-bad-tint)] text-[var(--color-bad)] text-xs font-semibold px-2 py-0.5">
                         {PROFILE_LABELS[r.primaryProfile as Profile]}
                       </span>
                       {r.secondaryProfile && (
@@ -251,7 +251,7 @@ export default async function AdminDiagnosticPage({
                       <span className="mx-2 text-foreground-subtle">·</span>
                       <Link
                         href={`/admin/diagnostic/${r.slug}`}
-                        className="text-xs text-coral hover:underline"
+                        className="text-xs text-[var(--color-bad)] hover:underline"
                       >
                         QA →
                       </Link>
@@ -283,7 +283,7 @@ function FilterTabLink({
       href={href}
       className={
         active
-          ? "rounded-full bg-coral/10 border border-coral/40 text-coral px-3 py-1 font-semibold"
+          ? "rounded-full bg-[var(--color-bad-tint)] border border-[var(--color-bad)]/40 text-[var(--color-bad)] px-3 py-1 font-semibold"
           : "rounded-full bg-white/5 border border-white/10 text-foreground-muted hover:text-white hover:bg-white/10 px-3 py-1"
       }
     >
@@ -326,7 +326,7 @@ function Badge({
   const cls = {
     ok: "bg-emerald-500/10 text-emerald-300 border-emerald-500/30",
     warn: "bg-yellow-500/10 text-yellow-300 border-yellow-500/30",
-    alert: "bg-coral/10 text-coral border-coral/30",
+    alert: "bg-[var(--color-bad-tint)] text-[var(--color-bad)] border-[var(--color-bad)]/30",
     info: "bg-sky-500/10 text-sky-300 border-sky-500/30",
   }[variant];
   return (

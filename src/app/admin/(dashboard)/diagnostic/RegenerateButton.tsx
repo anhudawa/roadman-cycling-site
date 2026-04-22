@@ -42,7 +42,7 @@ export function RegenerateButton({ slug }: { slug: string }) {
         type="button"
         onClick={run}
         disabled={status === "loading"}
-        className="text-xs text-foreground-subtle hover:text-coral disabled:opacity-50 cursor-pointer"
+        className="text-xs text-foreground-subtle hover:text-[var(--color-fg)] disabled:opacity-50 cursor-pointer"
       >
         {status === "loading" ? "…" : "Regenerate"}
       </button>

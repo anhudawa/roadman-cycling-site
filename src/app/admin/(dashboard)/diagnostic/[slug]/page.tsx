@@ -118,7 +118,7 @@ export default async function DiagnosticAdminDetailPage({
                   <span
                     className={
                       isPrimary
-                        ? "text-coral font-semibold"
+                        ? "text-[var(--color-bad)] font-semibold"
                         : isSecondary
                           ? "text-white"
                           : "text-foreground-muted"
