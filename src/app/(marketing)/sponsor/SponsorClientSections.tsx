@@ -62,7 +62,7 @@ const SLOT_TYPES: SlotType[] = [
   { id: "pre-roll", name: "Pre-roll", baseRate: 650, description: "First thing listeners hear. Premium position." },
   { id: "mid-roll", name: "Mid-roll", baseRate: 500, description: "Peak attention. Lowest skip rate.", popular: true },
   { id: "end-roll", name: "End-roll", baseRate: 250, description: "Frequency play. Lower cost, consistent presence." },
-  { id: "newsletter", name: "Newsletter", baseRate: 500, description: "60,000 inboxes. 65% open rate. Direct to inbox." },
+  { id: "newsletter", name: "Newsletter", baseRate: 500, description: "65,000 inboxes. 65% open rate. Direct to inbox." },
 ];
 
 const EPISODES_PER_MONTH = 13; // 3/week × 4.33 weeks

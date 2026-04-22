@@ -118,7 +118,7 @@ const KNOWN_CREDENTIALS: Record<string, string> = {
   "Colin O Brady": "Endurance athlete, first solo Antarctic crossing",
   "Courtney Conley": "Foot health specialist, founder of Gait Happens",
   "Cynthia Thurlow": "Intermittent fasting expert, nurse practitioner",
-  "Dan Bigham": "Former Hour Record holder, Ineos Grenadiers performance engineer",
+  "Dan Bigham": "Former Hour Record holder, Head of Engineering at Red Bull-Bora-Hansgrohe",
   "Dan Lorang": "Head of Performance, Red Bull–Bora–Hansgrohe",
   "David Gillick": "European indoor 400m champion",
   "Dr Allen Lim": "Sports physiologist, founder of Skratch Labs",

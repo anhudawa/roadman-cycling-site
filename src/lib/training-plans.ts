@@ -82,11 +82,11 @@ export const EVENTS: TrainingEvent[] = [
     region: "Ireland",
     type: "sportive",
     distanceKm: 200,
-    elevationGainM: 3500,
+    elevationGainM: 3000,
     typicalFinishTime: "8-12 hours",
     defaultMonth: "June",
     description:
-      "The Wicklow 200 is Ireland's classic mass-participation sportive — 200km across the Wicklow Mountains with 3,500m of climbing. Starts and finishes in Greystones or thereabouts, runs in early June.",
+      "The Wicklow 200 is Ireland's classic mass-participation sportive — 200km across the Wicklow Mountains with around 3,000m of climbing. Starts and finishes in Greystones or thereabouts, runs in early June.",
     keyCharacteristics: [
       "Five named climbs including Sally Gap, Slieve Mann, and the Shay Elliott",
       "Weather can shift from baking to cold rain inside an hour",
@@ -178,11 +178,11 @@ export const EVENTS: TrainingEvent[] = [
     region: "United Kingdom",
     type: "sportive",
     distanceKm: 180,
-    elevationGainM: 3950,
+    elevationGainM: 3500,
     typicalFinishTime: "8-12 hours",
     defaultMonth: "May",
     description:
-      "Fred Whitton Challenge is the UK's hardest sportive — 180km through the Lake District with 3,950m of climbing including Hardknott Pass (33% max gradient). A pure climbing test. Finishers consider it a career highlight.",
+      "Fred Whitton Challenge is the UK's hardest sportive — 180km through the Lake District with 3,500m of climbing including Hardknott Pass (33% max gradient). A pure climbing test. Finishers consider it a career highlight.",
     keyCharacteristics: [
       "Hardknott Pass — 33% max gradient, cobbled in places",
       "Four 10%+ climbs stacked on top of each other",

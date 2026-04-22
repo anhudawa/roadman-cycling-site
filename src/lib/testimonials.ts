@@ -113,8 +113,8 @@ export const TESTIMONIALS: Testimonial[] = [
     shortQuote:
       "Nov 2019 I was 315 pounds, about to go on disability. Today I'm under 100kg — my lowest weight in 15 years.",
     personas: ["comeback", "listener"],
-    stat: "-100kg",
-    statLabel: "Weight lost",
+    stat: "Sub-100kg",
+    statLabel: "From 315lbs",
   },
   {
     name: "John Devlin",
