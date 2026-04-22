@@ -3,6 +3,7 @@
 import { useState } from "react";
 import Link from "next/link";
 import { DownloadReportButton } from "./download-report-button";
+import { Card, CardBody } from "@/components/admin/ui";
 
 interface WeeklyPageAnalysis {
   page: string;
@@ -149,20 +150,23 @@ export default function AgentPage() {
           </div>
 
           {/* Summary */}
-          <div className="bg-background-elevated border border-white/5 rounded-xl p-5">
-            <h2 className="font-heading text-sm text-foreground-muted tracking-wider mb-3">
-              SUMMARY
-            </h2>
-            <p className="text-sm text-off-white leading-relaxed">
-              {analysis.report.summary}
-            </p>
-          </div>
+          <Card>
+            <CardBody compact>
+              <h2 className="font-body font-semibold text-[13px] text-[var(--color-fg)] mb-3">
+                Summary
+              </h2>
+              <p className="text-sm text-off-white leading-relaxed">
+                {analysis.report.summary}
+              </p>
+            </CardBody>
+          </Card>
 
           {/* Page Analyses */}
           {analysis.report.pageAnalyses.length > 0 && (
-            <div className="bg-background-elevated border border-white/5 rounded-xl p-5">
-              <h2 className="font-heading text-sm text-foreground-muted tracking-wider mb-4">
-                PAGE PERFORMANCE
+            <Card>
+              <CardBody compact>
+              <h2 className="font-body font-semibold text-[13px] text-[var(--color-fg)] mb-4">
+                Page performance
               </h2>
               <div className="space-y-3">
                 {analysis.report.pageAnalyses.map((pa) => (
@@ -187,14 +191,16 @@ export default function AgentPage() {
                   </div>
                 ))}
               </div>
-            </div>
+              </CardBody>
+            </Card>
           )}
 
           {/* Suggested Experiments */}
           {analysis.report.suggestedExperiments.length > 0 && (
-            <div className="bg-background-elevated border border-white/5 rounded-xl p-5">
-              <h2 className="font-heading text-sm text-foreground-muted tracking-wider mb-4">
-                SUGGESTED EXPERIMENTS
+            <Card>
+              <CardBody compact>
+              <h2 className="font-body font-semibold text-[13px] text-[var(--color-fg)] mb-4">
+                Suggested experiments
               </h2>
               <div className="space-y-3">
                 {analysis.report.suggestedExperiments.map((exp, i) => (
@@ -236,14 +242,16 @@ export default function AgentPage() {
                   </div>
                 ))}
               </div>
-            </div>
+              </CardBody>
+            </Card>
           )}
 
           {/* Priority Actions */}
           {analysis.report.priorityActions.length > 0 && (
-            <div className="bg-background-elevated border border-white/5 rounded-xl p-5">
-              <h2 className="font-heading text-sm text-foreground-muted tracking-wider mb-4">
-                PRIORITY ACTIONS
+            <Card>
+              <CardBody compact>
+              <h2 className="font-body font-semibold text-[13px] text-[var(--color-fg)] mb-4">
+                Priority actions
               </h2>
               <div className="space-y-2">
                 {analysis.report.priorityActions.map((action, i) => (
@@ -260,14 +268,16 @@ export default function AgentPage() {
                   </div>
                 ))}
               </div>
-            </div>
+              </CardBody>
+            </Card>
           )}
         </>
       ) : (
         /* Placeholder when no report has been run */
-        <div className="bg-background-elevated border border-white/5 rounded-xl p-5">
-          <h2 className="font-heading text-sm text-foreground-muted tracking-wider mb-4">
-            LATEST REPORT
+        <Card>
+          <CardBody compact>
+          <h2 className="font-body font-semibold text-[13px] text-[var(--color-fg)] mb-4">
+            Latest report
           </h2>
           <div className="h-48 flex flex-col items-center justify-center border border-dashed border-white/10 rounded-lg gap-3">
             <svg
@@ -288,17 +298,20 @@ export default function AgentPage() {
               scheduled run.
             </p>
           </div>
-        </div>
+          </CardBody>
+        </Card>
       )}
 
       {/* Config note */}
-      <div className="bg-background-elevated border border-white/5 rounded-xl p-4">
-        <p className="text-foreground-subtle text-xs">
-          The AI agent analyzes traffic patterns, conversion data, and content performance to
-          generate weekly reports with actionable recommendations. Configure the agent schedule and
-          data sources in your environment variables.
-        </p>
-      </div>
+      <Card>
+        <CardBody compact>
+          <p className="text-foreground-subtle text-xs">
+            The AI agent analyzes traffic patterns, conversion data, and content performance to
+            generate weekly reports with actionable recommendations. Configure the agent schedule and
+            data sources in your environment variables.
+          </p>
+        </CardBody>
+      </Card>
     </div>
   );
 }
