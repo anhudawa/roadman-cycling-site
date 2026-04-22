@@ -104,6 +104,10 @@ export interface MyDayData {
   stats: MyDayStats;
   todaysTasks: MyDayTaskRow[];
   overdueTasks: MyDayTaskRow[];
+  /** Tasks the user has pinned to "My main focus" (focus_order NOT NULL). */
+  mainFocusTasks: MyDayTaskRow[];
+  /** All other open tasks (focus_order NULL) — sorted by due date then created. */
+  otherOpenTasks: MyDayTaskRow[];
   applicationsWaiting: MyDayApplicationRow[];
   recentActivity: MyDayActivityRow[];
   staleContacts: MyDayStaleContactRow[];
@@ -114,8 +118,6 @@ export interface MyDayData {
   incomingTaskRequests: MyDayTaskRequestRow[];
   /** Outgoing task requests this user has sent that are still pending. */
   outgoingTaskRequests: MyDayTaskRequestRow[];
-  mainFocusTasks: MyDayTaskRow[];
-  otherOpenTasks: MyDayTaskRow[];
 }
 
 const STALE_DAYS = 7;
@@ -197,6 +199,7 @@ export async function getMyDayData(user: TeamUser): Promise<MyDayData> {
       contactId: tasks.contactId,
       contactName: contacts.name,
       contactEmail: contacts.email,
+      focusOrder: tasks.focusOrder,
     })
     .from(tasks)
     .leftJoin(contacts, eq(tasks.contactId, contacts.id))
@@ -223,6 +226,7 @@ export async function getMyDayData(user: TeamUser): Promise<MyDayData> {
       contactId: tasks.contactId,
       contactName: contacts.name,
       contactEmail: contacts.email,
+      focusOrder: tasks.focusOrder,
     })
     .from(tasks)
     .leftJoin(contacts, eq(tasks.contactId, contacts.id))
@@ -246,8 +250,42 @@ export async function getMyDayData(user: TeamUser): Promise<MyDayData> {
     contactId: r.contactId,
     contactName: r.contactName,
     contactEmail: r.contactEmail,
-    focusOrder: null,
+    focusOrder: r.focusOrder ?? null,
   });
+
+  // ── Main focus + other open tasks (the drag-and-drop split) ──
+  // All open tasks assigned to me (regardless of due date), partitioned
+  // into "pinned to main focus" vs "everything else".
+  const allOpenTasksRaw = await db
+    .select({
+      id: tasks.id,
+      title: tasks.title,
+      dueAt: tasks.dueAt,
+      completedAt: tasks.completedAt,
+      contactId: tasks.contactId,
+      contactName: contacts.name,
+      contactEmail: contacts.email,
+      focusOrder: tasks.focusOrder,
+    })
+    .from(tasks)
+    .leftJoin(contacts, eq(tasks.contactId, contacts.id))
+    .where(
+      and(
+        eq(tasks.assignedTo, user.slug),
+        isNull(tasks.completedAt),
+        notPendingRequest
+      )
+    )
+    .orderBy(asc(tasks.dueAt), asc(tasks.createdAt))
+    .limit(200);
+
+  const mainFocusTasks = allOpenTasksRaw
+    .filter((r) => r.focusOrder !== null && r.focusOrder !== undefined)
+    .sort((a, b) => (a.focusOrder ?? 0) - (b.focusOrder ?? 0))
+    .map(mapTask);
+  const otherOpenTasks = allOpenTasksRaw
+    .filter((r) => r.focusOrder === null || r.focusOrder === undefined)
+    .map(mapTask);
 
   // ── Applications waiting (joined via contacts.owner) ─
   const appsRaw = await db
@@ -450,6 +488,8 @@ export async function getMyDayData(user: TeamUser): Promise<MyDayData> {
     stats,
     todaysTasks: todaysTasksRaw.map(mapTask),
     overdueTasks: overdueTasksRaw.map(mapTask),
+    mainFocusTasks,
+    otherOpenTasks,
     applicationsWaiting,
     recentActivity,
     staleContacts,
@@ -458,7 +498,5 @@ export async function getMyDayData(user: TeamUser): Promise<MyDayData> {
     upcomingBookings,
     incomingTaskRequests,
     outgoingTaskRequests,
-    mainFocusTasks: [],
-    otherOpenTasks: todaysTasksRaw.map(mapTask),
   };
 }

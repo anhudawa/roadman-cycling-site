@@ -340,8 +340,8 @@ export const EVENTS: TrainingEvent[] = [
     description:
       "Leadville 100 is the definitive high-altitude MTB race — 160km through the Colorado Rockies starting at 3,100m (10,200ft) with 3,800m of climbing and a topout above 3,800m on Columbine Mine. Lottery entry, hard cut-offs, finisher buckle is a career milestone.",
     keyCharacteristics: [
-      "Altitude 3,100-3,840m — altitude-naive riders lose 20-30% power",
-      "Columbine Mine climb — 9km straight up to 3,840m above sea level",
+      "Altitude 3,100-3,810m — altitude-naive riders lose 20-30% power",
+      "Columbine Mine climb — 9km straight up to 3,810m above sea level",
       "Cut-off at the Columbine turnaround (6:00) is the race",
       "Powerline descent — fast, rocky, tyre-popping territory",
       "Weather varies from freezing dawn to 30°C + thunderstorms",

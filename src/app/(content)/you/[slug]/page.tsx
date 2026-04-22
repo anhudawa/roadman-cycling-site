@@ -339,6 +339,29 @@ export default async function PersonaPage({
           </Section>
         )}
 
+        {/* Mid-page coaching CTA — closes the reading-distance gap between
+            the content bundle and the testimonial wall. Plateau and event
+            get a diagnostic-gated soft CTA higher up; comeback and listener
+            have no /apply touchpoint between hero and end-of-page without
+            this block. One persona-specific line, one coral button. */}
+        <Section background="charcoal" className="!py-12">
+          <Container width="narrow">
+            <ScrollReveal direction="up">
+              <div className="rounded-xl border border-coral/25 bg-gradient-to-br from-coral/10 via-deep-purple/30 to-deep-purple/50 px-6 py-7 md:px-10 md:py-8 text-center">
+                <p className="font-heading text-coral text-xs tracking-widest mb-3">
+                  NOT DONE YET COACHING COMMUNITY
+                </p>
+                <p className="font-heading text-off-white text-xl md:text-2xl leading-tight mb-5">
+                  {persona.ctaHeadline.toUpperCase()}
+                </p>
+                <Button href="/apply" size="md">
+                  Apply &mdash; 7-Day Free Trial
+                </Button>
+              </div>
+            </ScrollReveal>
+          </Container>
+        </Section>
+
         {/* Testimonial wall — 6 more quotes tagged for this persona */}
         {wallTestimonials.length > 0 && (
           <Section background="charcoal" className="section-glow-coral">

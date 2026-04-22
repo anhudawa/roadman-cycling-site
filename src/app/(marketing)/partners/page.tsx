@@ -102,7 +102,7 @@ const platformReach = [
         <polyline points="22,6 12,13 2,6" />
       </svg>
     ),
-    stat: "60K+",
+    stat: "65K+",
     statLabel: "weekly readers",
     description: "65%+ open rate (industry avg: 21%). The Saturday Spin Newsletter every week. Direct click-through.",
     color: "from-emerald-500/20 to-emerald-500/5",
@@ -134,9 +134,9 @@ const partnershipOptions = [
     title: "NEWSLETTER SPONSORSHIP",
     badge: "Highest ROI",
     description:
-      "The Saturday Spin Newsletter lands in 60,000+ inboxes every week with a 65%+ open rate. Dedicated sends or banner placements — your brand in front of cyclists who actually open, read, and click.",
+      "The Saturday Spin Newsletter lands in 65,000+ inboxes every week with a 65%+ open rate. Dedicated sends or banner placements — your brand in front of cyclists who actually open, read, and click.",
     features: [
-      "60,000+ engaged subscribers",
+      "65,000+ engaged subscribers",
       "65%+ open rate — 3x industry average",
       "Dedicated send or banner placement",
       "Direct link to purchase or landing page",
@@ -252,7 +252,7 @@ const testimonials = [
 const notableGuests = [
   "Greg LeMond — 3x Tour de France winner",
   "Professor Stephen Seiler — Polarised training pioneer",
-  "Dan Lorang — Red Bull-Bora-Hansgrohe",
+  "Dan Lorang — Head of Performance, Red Bull-Bora-Hansgrohe",
   "Lachlan Morton — EF Education, alt-racing pioneer",
   "Dan Bigham — Former Hour Record holder",
   "Alistair Brownlee — 2x Olympic triathlon gold",
@@ -317,7 +317,7 @@ export default function PartnersPage() {
             </ScrollReveal>
             <ScrollReveal direction="up" delay={0.2}>
               <p className="text-foreground-muted text-lg md:text-xl max-w-3xl mx-auto leading-relaxed mb-4">
-                1 million monthly listeners. 60,000 newsletter subscribers.
+                1 million monthly listeners. 65,000 newsletter subscribers.
                 A community of serious cyclists who train with power meters,
                 race on weekends, and spend real money on equipment, nutrition, and coaching.
               </p>

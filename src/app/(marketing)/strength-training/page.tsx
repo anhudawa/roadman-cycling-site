@@ -55,8 +55,8 @@ const whatsIncluded = [
 
 const results = [
   { stat: "8–15%", label: "power increase in 12 weeks", source: "Rønnestad et al., 2010" },
-  { stat: "3–5%", label: "improvement in cycling economy", source: "Sunde et al., 2010" },
-  { stat: "17%", label: "longer time to exhaustion", source: "Aagaard et al., 2011" },
+  { stat: "4–5%", label: "improvement in cycling economy", source: "Rønnestad et al., 2010" },
+  { stat: "17%", label: "longer time to exhaustion", source: "Sunde et al., 2010" },
 ];
 
 export default function StrengthTrainingPage() {

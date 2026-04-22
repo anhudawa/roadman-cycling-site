@@ -61,9 +61,7 @@ const NAV_SECTIONS: NavSection[] = [
     items: [
       { href: "/admin/content/repurposed", label: "Pipeline", icon: "pipeline" },
       { href: "/admin/content/exploder", label: "Exploder", icon: "exploder" },
-      { href: "/admin/ted", label: "Ted Agent", icon: "sparkle" },
-      { href: "/admin/ted/approvals", label: "Ted · Approvals", icon: "inbox" },
-      { href: "/admin/ted/welcomes", label: "Ted · Welcomes", icon: "users" },
+      { href: "/admin/ted", label: "Ted", icon: "sparkle" },
     ],
   },
 ];
@@ -244,6 +242,12 @@ export function AdminSidebar({
   const [unreadApps, setUnreadApps] = useState(0);
   const [awaitingApps, setAwaitingApps] = useState(0);
 
+  // Auto-close the mobile drawer whenever the route changes so the user
+  // isn't left staring at the overlay on top of their destination page.
+  useEffect(() => {
+    setMobileOpen(false);
+  }, [pathname]);
+
   useEffect(() => {
     async function fetchCounts() {
       try {
@@ -373,7 +377,7 @@ export function AdminSidebar({
                           {overdueTaskCount}
                         </span>
                       )}
-                      {item.href === "/admin/ted/approvals" && tedPendingCount > 0 && (
+                      {item.href === "/admin/ted" && tedPendingCount > 0 && (
                         <span
                           className="ml-auto flex items-center justify-center min-w-[20px] h-5 px-1.5 text-[10px] font-bold text-white bg-coral rounded-full"
                           title={`${tedPendingCount} Ted post${tedPendingCount === 1 ? "" : "s"} awaiting approval`}

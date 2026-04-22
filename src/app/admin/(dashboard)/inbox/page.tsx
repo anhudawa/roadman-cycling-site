@@ -50,7 +50,6 @@ export default async function InboxPage({ searchParams }: PageProps) {
 
   let initialStages: InboxStageMap = {
     new: [],
-    in_progress: [],
     replied: [],
     follow_up: [],
     closed: [],
@@ -78,46 +77,34 @@ export default async function InboxPage({ searchParams }: PageProps) {
 
   return (
     <div>
-      <div className="flex items-center justify-between mb-6 gap-4 flex-wrap">
-        <div>
-          <h1 className="font-heading text-2xl text-off-white tracking-wider uppercase">
-            Submissions
-          </h1>
-          <p className="text-foreground-muted text-sm mt-1">
-            {currentView === "kanban"
-              ? `${totalCount} contact-form message${totalCount === 1 ? "" : "s"} in pipeline`
-              : "Contact-form messages — list view"}
-          </p>
-        </div>
-        <div className="flex items-center gap-2 flex-wrap">
-          <div className="inline-flex rounded-lg border border-white/10 bg-background-elevated p-1 text-xs">
-            <Link
-              href="/admin/inbox"
-              className="px-3 py-1.5 rounded-md font-heading tracking-wider uppercase bg-coral/15 text-coral"
-            >
-              Contact forms
-            </Link>
-            <Link
-              href="/admin/applications"
-              className="px-3 py-1.5 rounded-md font-heading tracking-wider uppercase text-foreground-subtle hover:text-off-white"
-            >
-              Applications
-            </Link>
+      <div className="mb-5 space-y-3">
+        <div className="flex items-start justify-between gap-3 flex-wrap">
+          <div className="min-w-0">
+            <h1 className="font-heading text-2xl sm:text-3xl text-off-white tracking-wider uppercase leading-none">
+              Submissions
+            </h1>
+            <p className="text-foreground-muted text-sm mt-1.5">
+              {currentView === "kanban"
+                ? `${totalCount} contact-form message${totalCount === 1 ? "" : "s"}`
+                : "Contact-form messages · list view"}
+            </p>
           </div>
-          <div className="inline-flex rounded-lg border border-white/10 bg-background-elevated p-1 text-xs">
+          <div className="inline-flex rounded-lg border border-white/10 bg-background-elevated p-0.5 text-[11px] shrink-0">
             <Link
               href={{ pathname: "/admin/inbox", query: { view: "kanban" } }}
-              className={`px-3 py-1.5 rounded-md font-heading tracking-wider uppercase transition ${
+              aria-current={currentView === "kanban" ? "page" : undefined}
+              className={`px-3 h-8 inline-flex items-center rounded-md font-heading tracking-wider uppercase transition-colors ${
                 currentView === "kanban"
                   ? "bg-coral/15 text-coral"
                   : "text-foreground-subtle hover:text-off-white"
               }`}
             >
-              Kanban
+              Board
             </Link>
             <Link
               href={{ pathname: "/admin/inbox", query: { view: "list" } }}
-              className={`px-3 py-1.5 rounded-md font-heading tracking-wider uppercase transition ${
+              aria-current={currentView === "list" ? "page" : undefined}
+              className={`px-3 h-8 inline-flex items-center rounded-md font-heading tracking-wider uppercase transition-colors ${
                 currentView === "list"
                   ? "bg-coral/15 text-coral"
                   : "text-foreground-subtle hover:text-off-white"
@@ -126,6 +113,22 @@ export default async function InboxPage({ searchParams }: PageProps) {
               List
             </Link>
           </div>
+        </div>
+        {/* Source tabs — full-width row on mobile, inline on desktop */}
+        <div className="inline-flex rounded-lg border border-white/10 bg-background-elevated p-0.5 text-[11px]">
+          <Link
+            href="/admin/inbox"
+            aria-current="page"
+            className="px-4 h-8 inline-flex items-center rounded-md font-heading tracking-wider uppercase bg-coral/15 text-coral"
+          >
+            Contact forms
+          </Link>
+          <Link
+            href="/admin/applications"
+            className="px-4 h-8 inline-flex items-center rounded-md font-heading tracking-wider uppercase text-foreground-subtle hover:text-off-white transition-colors"
+          >
+            Applications
+          </Link>
         </div>
       </div>
 

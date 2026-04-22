@@ -57,7 +57,7 @@ const notableGuests = [
   { name: "Professor Stephen Seiler", credential: "Polarised training pioneer" },
   {
     name: "Dan Lorang",
-    credential: "Head of Performance, Red Bull–Bora–Hansgrohe",
+    credential: "Head of Performance, Red Bull–Bora–Hansgrohe (since 2017)",
   },
   { name: "Greg LeMond", credential: "3× Tour de France winner" },
   { name: "Lachlan Morton", credential: "EF Education pro cyclist" },
@@ -68,7 +68,7 @@ const notableGuests = [
     credential: "15+ year World Tour pro, Grand Tour stage winner",
   },
   { name: "Dan Bigham", credential: "Former Hour Record holder" },
-  { name: "Rosa Kloser", credential: "Gravel World Champion" },
+  { name: "Rosa Kloser", credential: "2024 Unbound Gravel winner" },
   {
     name: "Tim Spector",
     credential: "ZOE founder, epidemiologist, nutrition scientist",

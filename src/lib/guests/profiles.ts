@@ -118,7 +118,7 @@ export const GUEST_PROFILE_OVERRIDES: Record<string, GuestProfileOverride> = {
 
   "lachlan-morton": {
     description:
-      "Australian professional cyclist for EF Education–EasyPost, ultra-distance and alt-racing pioneer. Former Everesting world record holder, Tour Divide FKT holder, 2024 Unbound 200 winner.",
+      "Australian professional cyclist for EF Education–EasyPost, ultra-distance and alt-racing pioneer. Former Everesting world record holder, 2024 Unbound Gravel 200 winner, Great Divide ultra-endurance rider.",
     worksFor: {
       name: "EF Education–EasyPost",
       type: "SportsTeam",
@@ -147,7 +147,7 @@ export const GUEST_PROFILE_OVERRIDES: Record<string, GuestProfileOverride> = {
 
   "ben-healy": {
     description:
-      "Irish professional cyclist for EF Education–EasyPost. Winner of stage 6 of the 2025 Tour de France and wearer of the yellow jersey — the first Irish rider to wear yellow since Stephen Roche in 1987.",
+      "Irish professional cyclist for EF Education–EasyPost. Winner of stage 6 of the 2025 Tour de France, and later wore the yellow jersey after stage 10 — the first Irish rider in yellow since Stephen Roche in 1987.",
     worksFor: {
       name: "EF Education–EasyPost",
       type: "SportsTeam",
@@ -190,10 +190,10 @@ export const GUEST_PROFILE_OVERRIDES: Record<string, GuestProfileOverride> = {
 
   "dan-lorang": {
     description:
-      "German performance coach. Long-time triathlon coach to Jan Frodeno, Anne Haug and Lucy Charles-Barclay; Head of Performance at Red Bull–Bora–Hansgrohe from 2017 through the 2025 season. Now Head of Endurance Sports at Red Bull's Athletic Performance Centre.",
+      "Luxembourgish performance coach. Long-time triathlon coach to Jan Frodeno, Anne Haug and Lucy Charles-Barclay; Head of Performance at Red Bull–Bora–Hansgrohe since 2017, announced in April 2026 that he will leave at the end of the 2026 season.",
     worksFor: {
-      name: "Red Bull — Athletic Performance Centre",
-      type: "Organization",
+      name: "Red Bull–Bora–Hansgrohe",
+      type: "SportsTeam",
     },
     sameAs: ["https://de.linkedin.com/in/dan-lorang-33296319"],
     featuredArticles: [
@@ -232,7 +232,7 @@ export const GUEST_PROFILE_OVERRIDES: Record<string, GuestProfileOverride> = {
 
   "rosa-kloser": {
     description:
-      "German professional gravel and road cyclist, 2024 Unbound Gravel 200 winner and Gravel World Champion. Races both as a gravel privateer and for the CANYON//SRAM zondacrypto road team. PhD researcher in green shipping at Copenhagen Business School.",
+      "German professional gravel and road cyclist, 2024 Unbound Gravel 200 winner and 2025 German gravel national champion. Races both as a gravel privateer and for the CANYON//SRAM zondacrypto road team. PhD researcher in green shipping at Copenhagen Business School.",
     worksFor: {
       name: "CANYON//SRAM zondacrypto",
       type: "SportsTeam",

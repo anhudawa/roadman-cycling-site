@@ -40,7 +40,7 @@ const expertNetwork: { name: string; role: string; category: ExpertCategory; hig
   { name: "John Wakefield", role: "Red Bull–Bora–Hansgrohe coach", category: "coach", highlight: "World Tour performance" },
   { name: "Michael Matthews", role: "15+ year World Tour pro", category: "athlete", highlight: "Grand Tour stage winner" },
   { name: "Dan Bigham", role: "Former Hour Record holder", category: "athlete", highlight: "Aerodynamics specialist" },
-  { name: "Rosa Kloser", role: "Gravel World Champion", category: "athlete", highlight: "Off-road trailblazer" },
+  { name: "Rosa Kloser", role: "2024 Unbound Gravel winner", category: "athlete", highlight: "Off-road trailblazer" },
   { name: "Tim Spector", role: "ZOE founder, epidemiologist", category: "scientist", highlight: "Nutrition science" },
 ];
 

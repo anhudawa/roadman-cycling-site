@@ -19,7 +19,6 @@ link equity from the rest of the site.
 
 - [Rouvy vs Zwift: Which Virtual Cycling Platform in 2026?](/blog/rouvy-vs-zwift)
 - [I Read Every Stephen Seiler Paper I Could Get My Hands On. Here's What I Learned.](/blog/stephen-seiler-research-polarised-training-lessons)
-- [The Tactic That Ended Pogačar's Grand Slam](/blog/tactic-that-ended-pogacar-grand-slam)
 - [Wahoo vs Garmin Cycling Computers: Which One in 2026?](/blog/wahoo-vs-garmin-cycling-computers)
 
 ## Orphan episodes

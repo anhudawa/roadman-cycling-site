@@ -257,7 +257,7 @@ export default function ApplyPage() {
           <Container>
             <ScrollReveal direction="up">
               <p className="text-coral font-heading text-lg text-center mb-3 tracking-widest">
-                COHORT 1 RESULTS
+                PAST COHORT RESULTS
               </p>
               <h2
                 className="font-heading text-off-white text-center mb-12"

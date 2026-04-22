@@ -2,10 +2,74 @@
 
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import type { MyDayTaskRow } from "@/lib/crm/dashboard";
 import { TaskCompleteCheckbox } from "./TaskCompleteCheckbox";
 import { EmptyState, SectionLabel } from "@/components/admin/ui";
+
+/** Small hover-×-then-confirm delete control used on every task row. */
+function TaskDeleteButton({
+  disabled,
+  onConfirm,
+}: {
+  disabled: boolean;
+  onConfirm: () => void;
+}) {
+  const [confirming, setConfirming] = useState(false);
+  useEffect(() => {
+    if (!confirming) return;
+    const t = window.setTimeout(() => setConfirming(false), 4000);
+    return () => window.clearTimeout(t);
+  }, [confirming]);
+
+  if (confirming) {
+    return (
+      <span
+        className="inline-flex gap-1 shrink-0"
+        onMouseDown={(e) => e.stopPropagation()}
+      >
+        <button
+          type="button"
+          disabled={disabled}
+          onClick={(e) => {
+            e.stopPropagation();
+            onConfirm();
+          }}
+          draggable={false}
+          className="text-[10px] px-2 py-0.5 rounded bg-red-500/30 text-red-300 border border-red-400/40 hover:bg-red-500/50 font-heading tracking-wider uppercase disabled:opacity-50"
+        >
+          Confirm
+        </button>
+        <button
+          type="button"
+          onClick={(e) => {
+            e.stopPropagation();
+            setConfirming(false);
+          }}
+          draggable={false}
+          className="text-[10px] px-2 py-0.5 rounded border border-white/10 text-foreground-subtle hover:text-off-white"
+        >
+          Cancel
+        </button>
+      </span>
+    );
+  }
+  return (
+    <button
+      type="button"
+      aria-label="Delete task"
+      draggable={false}
+      onMouseDown={(e) => e.stopPropagation()}
+      onClick={(e) => {
+        e.stopPropagation();
+        setConfirming(true);
+      }}
+      className="w-5 h-5 rounded-full flex items-center justify-center text-foreground-subtle/50 hover:text-red-400 hover:bg-red-500/10 opacity-0 group-hover:opacity-100 transition shrink-0"
+    >
+      ×
+    </button>
+  );
+}
 
 interface Teammate {
   slug: string;
@@ -63,6 +127,39 @@ export function FocusBoard({
   const [composerOpen, setComposerOpen] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [busy, setBusy] = useState(false);
+  const [deletingId, setDeletingId] = useState<number | null>(null);
+
+  /** Insert a freshly-created task into the "All other tasks" column
+   *  immediately (no refresh needed). Self-created tasks land here;
+   *  request-sent tasks never show up on the sender's board. */
+  function addTaskLocally(task: MyDayTaskRow) {
+    setOthers((prev) => [task, ...prev]);
+  }
+
+  async function deleteTask(taskId: number) {
+    setDeletingId(taskId);
+    const prevFocus = focus;
+    const prevOthers = others;
+    // Optimistic remove
+    setFocus((f) => f.filter((t) => t.id !== taskId));
+    setOthers((o) => o.filter((t) => t.id !== taskId));
+    try {
+      const res = await fetch(`/api/admin/crm/tasks/${taskId}`, {
+        method: "DELETE",
+      });
+      if (!res.ok) {
+        const data = await res.json().catch(() => ({}));
+        throw new Error(data.error ?? `HTTP ${res.status}`);
+      }
+    } catch (err) {
+      setFocus(prevFocus);
+      setOthers(prevOthers);
+      setError(err instanceof Error ? err.message : "Failed to delete");
+      window.setTimeout(() => setError(null), 4000);
+    } finally {
+      setDeletingId(null);
+    }
+  }
 
   function findTask(id: number):
     | { task: MyDayTaskRow; zone: "focus" | "other"; index: number }
@@ -210,9 +307,9 @@ export function FocusBoard({
                   setHoverIndex(null);
                   setHoverZone(null);
                 }}
-                className={`flex items-center gap-3 rounded-lg border border-white/5 bg-white/[0.04] px-3 py-2 cursor-grab active:cursor-grabbing ${
+                className={`group flex items-center gap-3 rounded-lg border border-white/5 bg-white/[0.04] px-3 py-2 cursor-grab active:cursor-grabbing ${
                   dragId === t.id ? "opacity-40" : ""
-                } ${busy ? "pointer-events-none" : ""}`}
+                } ${busy || deletingId === t.id ? "pointer-events-none opacity-60" : ""}`}
               >
                 <span className="text-[10px] text-coral font-heading tabular-nums w-4">
                   {idx + 1}
@@ -232,6 +329,10 @@ export function FocusBoard({
                 <span className="text-xs text-foreground-subtle whitespace-nowrap">
                   {t.dueAt && `${formatDate(t.dueAt)} · ${formatTime(t.dueAt)}`}
                 </span>
+                <TaskDeleteButton
+                  disabled={deletingId === t.id}
+                  onConfirm={() => deleteTask(t.id)}
+                />
               </li>
             ))}
           </ul>
@@ -294,9 +395,9 @@ export function FocusBoard({
                     setHoverIndex(null);
                     setHoverZone(null);
                   }}
-                  className={`flex items-center gap-3 rounded-lg border border-white/5 bg-white/[0.02] px-3 py-2 cursor-grab active:cursor-grabbing hover:bg-white/[0.04] ${
+                  className={`group flex items-center gap-3 rounded-lg border border-white/5 bg-white/[0.02] px-3 py-2 cursor-grab active:cursor-grabbing hover:bg-white/[0.04] ${
                     dragId === t.id ? "opacity-40" : ""
-                  } ${busy ? "pointer-events-none" : ""}`}
+                  } ${busy || deletingId === t.id ? "pointer-events-none opacity-60" : ""}`}
                 >
                   <TaskCompleteCheckbox taskId={t.id} completed={!!t.completedAt} />
                   <div className="flex-1 min-w-0">
@@ -315,10 +416,12 @@ export function FocusBoard({
                       isOverdue ? "text-coral" : "text-foreground-subtle"
                     }`}
                   >
-                    {t.dueAt
-                      ? `${formatDate(t.dueAt)}`
-                      : ""}
+                    {t.dueAt ? `${formatDate(t.dueAt)}` : ""}
                   </span>
+                  <TaskDeleteButton
+                    disabled={deletingId === t.id}
+                    onConfirm={() => deleteTask(t.id)}
+                  />
                 </li>
               );
             })}
@@ -332,7 +435,15 @@ export function FocusBoard({
           currentUserName={currentUserName}
           teammates={teammates}
           onClose={() => setComposerOpen(false)}
-          onCreated={() => {
+          onCreatedSelf={(newTask) => {
+            // Self-task lands in "All other tasks" instantly.
+            addTaskLocally(newTask);
+            setComposerOpen(false);
+            // Fire refresh in the background to re-sync with server state.
+            router.refresh();
+          }}
+          onSentToOther={() => {
+            // Request flow — doesn't appear on sender's board, just close.
             setComposerOpen(false);
             router.refresh();
           }}
@@ -347,13 +458,15 @@ function AddTaskComposer({
   currentUserName,
   teammates,
   onClose,
-  onCreated,
+  onCreatedSelf,
+  onSentToOther,
 }: {
   currentUserSlug: string;
   currentUserName: string;
   teammates: Teammate[];
   onClose: () => void;
-  onCreated: () => void;
+  onCreatedSelf: (task: MyDayTaskRow) => void;
+  onSentToOther: () => void;
 }) {
   const [assignedTo, setAssignedTo] = useState<string>(currentUserSlug);
   const [title, setTitle] = useState("");
@@ -385,7 +498,25 @@ function AddTaskComposer({
         const data = await res.json().catch(() => ({}));
         throw new Error(data.error ?? `HTTP ${res.status}`);
       }
-      onCreated();
+      if (isSelf) {
+        const body = await res.json().catch(() => ({}));
+        const t = body?.task;
+        if (t && typeof t === "object" && "id" in t) {
+          const newTask: MyDayTaskRow = {
+            id: Number(t.id),
+            title: String(t.title ?? title.trim()),
+            dueAt: t.dueAt ?? null,
+            completedAt: t.completedAt ?? null,
+            contactId: t.contactId ?? null,
+            contactName: null,
+            contactEmail: null,
+            focusOrder: t.focusOrder ?? null,
+          };
+          onCreatedSelf(newTask);
+          return;
+        }
+      }
+      onSentToOther();
     } catch (err) {
       setError(err instanceof Error ? err.message : "Failed");
     } finally {
