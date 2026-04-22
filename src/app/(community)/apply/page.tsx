@@ -137,7 +137,7 @@ export default function ApplyPage() {
         data={{
           "@context": "https://schema.org",
           "@type": "Service",
-          name: "Not Done Yet — Personalised Cycling Coaching",
+          name: "Not Done Yet Coaching Community — Personalised Cycling Coaching",
           description: "1:1 personalised cycling coaching across five pillars: training, nutrition, strength, recovery, and accountability. $195/month with 7-day free trial.",
           serviceType: "Online Cycling Coaching",
           provider: {
