@@ -92,7 +92,6 @@ export async function GET(request: Request) {
       offered: [],
       accepted: [],
       rejected: [],
-      closed: [],
     };
     for (const r of rows) {
       const stage: ApplicationStage = isApplicationStage(r.status)

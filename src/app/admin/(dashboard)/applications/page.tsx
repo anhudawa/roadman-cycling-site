@@ -64,7 +64,6 @@ export default async function ApplicationsPage({ searchParams }: PageProps) {
     offered: [],
     accepted: [],
     rejected: [],
-    closed: [],
   };
 
   if (currentView === "kanban") {

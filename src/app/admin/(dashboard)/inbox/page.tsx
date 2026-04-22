@@ -50,7 +50,6 @@ export default async function InboxPage({ searchParams }: PageProps) {
 
   let initialStages: InboxStageMap = {
     new: [],
-    in_progress: [],
     replied: [],
     follow_up: [],
     closed: [],

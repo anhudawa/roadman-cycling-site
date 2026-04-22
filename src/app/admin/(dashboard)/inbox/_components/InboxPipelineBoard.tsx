@@ -11,7 +11,6 @@ import {
 
 export const INBOX_STAGES = [
   "new",
-  "in_progress",
   "replied",
   "follow_up",
   "closed",
@@ -20,7 +19,6 @@ export type InboxStage = (typeof INBOX_STAGES)[number];
 
 export const INBOX_STAGE_LABELS: Record<InboxStage, string> = {
   new: "New",
-  in_progress: "In progress",
   replied: "Replied",
   follow_up: "Follow up",
   closed: "Closed",
@@ -34,11 +32,6 @@ const INBOX_STAGE_COLORS: Record<
     dot: "bg-coral",
     badge: "bg-coral/15 text-coral border-coral/30",
     ring: "ring-coral",
-  },
-  in_progress: {
-    dot: "bg-amber-400",
-    badge: "bg-amber-400/15 text-amber-400 border-amber-400/30",
-    ring: "ring-amber-400",
   },
   replied: {
     dot: "bg-blue-400",
