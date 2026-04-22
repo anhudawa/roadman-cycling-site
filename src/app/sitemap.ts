@@ -5,6 +5,8 @@ import { getAllGuests } from "@/lib/guests";
 import { getAllTopicSlugs } from "@/lib/topics";
 import { getAllTermSlugs } from "@/lib/glossary";
 import { getAllComparisonSlugs } from "@/lib/comparisons";
+import { getAllBestForSlugs } from "@/lib/best-for";
+import { getAllProblemSlugs } from "@/lib/problems";
 import { fetchNewsletterIssues } from "@/lib/integrations/beehiiv";
 import { getAllPlanCombinations, getAllEventSlugs } from "@/lib/training-plans";
 
@@ -215,5 +217,19 @@ async function buildTopicAndNewsletterSitemap(): Promise<MetadataRoute.Sitemap> 
     priority: 0.7,
   }));
 
-  return [...topicPages, ...glossaryIndex, ...glossaryTermPages, ...comparisonPages, ...newsletterPages];
+  const bestForPages = getAllBestForSlugs().map((slug) => ({
+    url: `${BASE_URL}/best/${slug}`,
+    lastModified: new Date(),
+    changeFrequency: "monthly" as const,
+    priority: 0.7,
+  }));
+
+  const problemPages = getAllProblemSlugs().map((slug) => ({
+    url: `${BASE_URL}/problem/${slug}`,
+    lastModified: new Date(),
+    changeFrequency: "monthly" as const,
+    priority: 0.7,
+  }));
+
+  return [...topicPages, ...glossaryIndex, ...glossaryTermPages, ...comparisonPages, ...bestForPages, ...problemPages, ...newsletterPages];
 }
