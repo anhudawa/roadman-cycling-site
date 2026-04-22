@@ -241,9 +241,9 @@ export default async function TopicPage({
                     READY FOR A REAL COACH?
                   </h2>
                   <p className="text-foreground-muted max-w-lg mx-auto mb-6">
-                    Not Done Yet is 1:1 personalised cycling coaching — training,
-                    nutrition, strength, recovery, and accountability. $195/month
-                    with a 7-day free trial.
+                    The Not Done Yet coaching community is 1:1 personalised
+                    cycling coaching — training, nutrition, strength, recovery,
+                    and accountability. $195/month with a 7-day free trial.
                   </p>
                   <div className="flex flex-col sm:flex-row gap-3 justify-center mb-6">
                     <Button href="/apply">Apply Now — 7-Day Free Trial</Button>

@@ -16,8 +16,8 @@ export async function generateMetadata(): Promise<Metadata> {
   const state = getCohortState();
   const isWaitlist = state.phase === "waitlist";
   const title = isWaitlist
-    ? `Cohort ${state.targetCohort} Waitlist — Not Done Yet`
-    : `Cohort ${state.currentCohort} — Not Done Yet`;
+    ? `Cohort ${state.targetCohort} Waitlist — Not Done Yet Coaching Community`
+    : `Cohort ${state.currentCohort} — Not Done Yet Coaching Community`;
   const description = isWaitlist
     ? `Cohort ${state.targetCohort} is coming soon. Apply now to join the waitlist and get 24-hour early access. Personalised cycling coaching with Anthony Walsh.`
     : "30 places. 5 pillars. $195/month. Applications open now. Personalised cycling coaching with Anthony Walsh.";

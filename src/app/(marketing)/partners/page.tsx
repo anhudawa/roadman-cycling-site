@@ -170,7 +170,7 @@ const partnershipOptions = [
     title: "EVENT SPONSORSHIP",
     badge: null,
     description:
-      "Put your brand in front of the Roadman community IRL. From Not Done Yet training camps to group rides and live podcast events — direct access to engaged, passionate cyclists.",
+      "Put your brand in front of the Roadman community IRL. From Not Done Yet coaching community training camps to group rides and live podcast events — direct access to engaged, passionate cyclists.",
     features: [
       "Training camp & group ride branding",
       "Live podcast event sponsorship",

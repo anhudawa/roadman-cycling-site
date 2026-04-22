@@ -475,9 +475,9 @@ export default async function BlogPostPage({
                   READY TO APPLY THIS TO YOUR TRAINING?
                 </h3>
                 <p className="text-foreground-muted mb-6 max-w-md mx-auto">
-                  Not Done Yet is 1:1 personalised coaching across training,
-                  nutrition, strength, recovery, and accountability. $195/month
-                  with a 7-day free trial.
+                  The Not Done Yet coaching community is 1:1 personalised
+                  coaching across training, nutrition, strength, recovery, and
+                  accountability. $195/month with a 7-day free trial.
                 </p>
                 <div className="flex flex-col sm:flex-row gap-3 justify-center">
                   <Button href="/apply">Apply Now — 7-Day Free Trial</Button>

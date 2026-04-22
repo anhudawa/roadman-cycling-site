@@ -31,13 +31,13 @@ const weeklyEvents: RecurringEvent[] = [
     hours: 19,
     minutes: 30,
     title: "LIVE COACHING CALL",
-    subtitle: "Not Done Yet Members",
+    subtitle: "Not Done Yet Coaching Community Members",
     description:
       "Weekly live Q&A and coaching session with Anthony Walsh. Bring your questions on training, nutrition, race prep — anything. This is where the five-pillar system comes alive.",
     type: "call",
     color: "purple",
-    cta: "Join Not Done Yet",
-    ctaHref: "https://www.skool.com/roadmancycling/about",
+    cta: "Apply for Coaching",
+    ctaHref: "/apply",
     external: true,
   },
   {

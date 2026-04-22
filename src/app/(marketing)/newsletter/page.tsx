@@ -125,7 +125,7 @@ export default async function NewsletterPage() {
                 {
                   title: "Community highlights and member results",
                   description:
-                    "Real results from Clubhouse and Not Done Yet members. What's working, what's not, and what you can learn from their experience.",
+                    "Real results from Clubhouse and Not Done Yet coaching community members. What's working, what's not, and what you can learn from their experience.",
                 },
               ].map((item, i) => (
                 <ScrollReveal key={item.title} direction="up" delay={i * 0.1}>

@@ -50,7 +50,7 @@ const milestones = [
   { year: "2023", event: "Sarah joins the podcast team", icon: "🤝" },
   { year: "2024", event: "Greg LeMond interview — a career highlight", icon: "🏆" },
   { year: "2025", event: "1 million monthly listeners", icon: "🔊" },
-  { year: "2026", event: "Not Done Yet community launches", icon: "💪" },
+  { year: "2026", event: "Not Done Yet coaching community launches", icon: "💪" },
   { year: "NOW", event: "New site. New era. We're just getting started.", icon: "🚀" },
 ];
 
@@ -327,7 +327,7 @@ export default function AboutPage() {
                 </p>
                 <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
                   <Button href="/apply" size="lg">
-                    Apply for Not Done Yet
+                    Apply for Coaching
                   </Button>
                   <Button href="/coaching" variant="ghost" size="lg">
                     How Coaching Works
@@ -431,7 +431,7 @@ export default function AboutPage() {
                 { name: "Anthony Walsh", role: "Host & Content", image: "/images/team/anthony.avif", bio: "The voice behind 1,400+ episodes" },
                 { name: "Sarah Ann Egan", role: "Co-Host & Operations", image: "/images/team/sarah-solo.jpg", bio: "Keeps the wheels turning" },
                 { name: "Wes Andrade", role: "Production", image: "/images/team/wes.jpg", bio: "Makes it sound this good" },
-                { name: "Matthew Devins", role: "Coaching", image: "/images/team/devins.jpg", bio: "Not Done Yet programme lead" },
+                { name: "Matthew Devins", role: "Coaching", image: "/images/team/devins.jpg", bio: "Not Done Yet coaching community lead" },
               ].map((member, i) => (
                 <ScrollReveal key={member.name} direction="up" delay={i * 0.1}>
                   <div className="group relative h-full">

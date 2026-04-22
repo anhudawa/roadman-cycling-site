@@ -190,7 +190,7 @@ export default function CoachingPage() {
           ],
           offers: {
             "@type": "Offer",
-            name: "Not Done Yet — Personalised Coaching",
+            name: "Not Done Yet Coaching Community — Personalised Coaching",
             price: "195",
             priceCurrency: "USD",
             description:
@@ -218,7 +218,7 @@ export default function CoachingPage() {
         data={{
           "@context": "https://schema.org",
           "@type": "Course",
-          name: "Roadman Cycling — Not Done Yet Coaching Programme",
+          name: "Roadman Cycling — Not Done Yet Coaching Community",
           description:
             "Structured online cycling coaching programme covering training, nutrition, strength, recovery, and accountability. Delivered via TrainingPeaks, weekly coaching calls, and a private community.",
           provider: {
