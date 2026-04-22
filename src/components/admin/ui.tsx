@@ -314,6 +314,40 @@ export function UnreadBadge({ count }: { count: number }) {
   );
 }
 
+// ── Unread dot — the small coral pip used in list rows ──────────
+
+export function UnreadDot({
+  size = "sm",
+  className = "",
+}: {
+  size?: "xs" | "sm" | "md";
+  className?: string;
+}) {
+  const sz =
+    size === "xs" ? "w-1.5 h-1.5" : size === "md" ? "w-2.5 h-2.5" : "w-2 h-2";
+  return (
+    <span
+      aria-label="Unread"
+      className={`inline-block rounded-full bg-[var(--color-coral)] shrink-0 ${sz} ${className}`}
+    />
+  );
+}
+
+// ── Checkbox — styled accent using the info-blue token ──────────
+
+export function Checkbox({
+  className = "",
+  ...props
+}: React.InputHTMLAttributes<HTMLInputElement>) {
+  return (
+    <input
+      type="checkbox"
+      {...props}
+      className={`accent-[var(--color-info)] ${className}`}
+    />
+  );
+}
+
 // ── Avatar ───────────────────────────────────────────────────────
 
 // Fixed team hues per spec — Anthony purple, Matthew blue, Wes amber,

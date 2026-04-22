@@ -178,7 +178,7 @@ export function SubmissionCard({
   rightChip,
   unread,
   dragging,
-  ringAccent = "ring-coral",
+  ringAccent = "ring-[var(--color-border-focus)]",
   onClick,
   draggableProps,
   footerSlot,
@@ -217,7 +217,7 @@ export function SubmissionCard({
       }}
       className={`group relative rounded-lg bg-white/[0.035] hover:bg-white/[0.06] transition cursor-pointer sm:cursor-grab sm:active:cursor-grabbing
         border border-white/[0.08] hover:border-white/20
-        ${unread ? "border-l-2 border-l-coral" : ""}
+        ${unread ? "border-l-2 border-l-[var(--color-fg)]" : ""}
         ${dragging ? `opacity-40 scale-[0.98] ring-2 ${ringAccent}` : ""}
       `}
     >

@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { useRouter } from "next/navigation";
+import { UnreadDot } from "@/components/admin/ui";
 
 interface NotificationItem {
   id: number;
@@ -91,9 +92,7 @@ export function NotificationsList({ initial }: { initial: NotificationItem[] }) 
                   }`}
                 >
                   <div className="flex items-start gap-3">
-                    {isUnread && (
-                      <span className="mt-2 w-1.5 h-1.5 rounded-full bg-[var(--color-coral)] shrink-0" />
-                    )}
+                    {isUnread && <UnreadDot size="xs" className="mt-2" />}
                     <div className="flex-1 min-w-0">
                       <div className="flex items-baseline justify-between gap-2">
                         <p className={`text-sm ${isUnread ? "text-off-white" : "text-foreground-muted"}`}>

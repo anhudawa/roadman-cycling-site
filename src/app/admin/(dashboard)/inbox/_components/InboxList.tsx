@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState, useCallback } from "react";
+import { UnreadDot } from "@/components/admin/ui";
 
 const TEAM_MEMBERS = [
   { value: null, label: "Unassigned" },
@@ -170,17 +171,15 @@ export function InboxList() {
                 onClick={() => markAsRead(s)}
                 className={`w-full text-left p-4 rounded-lg border transition-colors ${
                   selected?.id === s.id
-                    ? "bg-white/[0.04] border-[var(--color-border-strong)] border-l-2 border-l-[var(--color-coral)]"
+                    ? "bg-white/[0.04] border-[var(--color-border-strong)] border-l-2 border-l-[var(--color-fg)]"
                     : s.readAt
                       ? "bg-[var(--color-surface)]/50 border-[var(--color-border)] hover:border-[var(--color-border-strong)]"
-                      : "bg-[var(--color-elevated)] border-[var(--color-border-strong)] border-l-2 border-l-[var(--color-coral)] hover:bg-[var(--color-raised)]"
+                      : "bg-[var(--color-elevated)] border-[var(--color-border-strong)] border-l-2 border-l-[var(--color-border-strong)] hover:bg-[var(--color-raised)]"
                 }`}
               >
                 <div className="flex items-start justify-between gap-2">
                   <div className="flex items-center gap-2 min-w-0">
-                    {!s.readAt && (
-                      <span className="w-2 h-2 rounded-full bg-[var(--color-coral)] shrink-0" />
-                    )}
+                    {!s.readAt && <UnreadDot size="sm" />}
                     <span
                       className={`text-sm truncate ${
                         s.readAt ? "text-foreground-muted" : "text-off-white font-medium"
@@ -241,7 +240,7 @@ export function InboxList() {
                   <div className="flex items-center gap-2 shrink-0">
                     <a
                       href={`mailto:${selected.email}?subject=Re: ${encodeURIComponent(selected.subject)}`}
-                      className="px-4 py-2 bg-[var(--color-coral)] hover:bg-[var(--color-coral-hover)] text-white font-body font-semibold text-[14px] rounded-[var(--radius-admin-md)] transition-colors"
+                      className="px-4 py-2 bg-[var(--color-elevated)] hover:bg-[var(--color-raised)] text-[var(--color-fg)] border border-[var(--color-border-strong)] font-body font-semibold text-[14px] rounded-[var(--radius-admin-md)] transition-colors"
                     >
                       Reply
                     </a>
