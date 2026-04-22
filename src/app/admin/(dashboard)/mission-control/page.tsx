@@ -32,7 +32,7 @@ export default async function MissionControlPage() {
         <PageHeader title="Mission Control" />
         <Card tone="danger">
           <CardBody>
-            <SectionLabel tone="coral">Stripe unreachable</SectionLabel>
+            <SectionLabel tone="fg">Stripe unreachable</SectionLabel>
             <p className="text-foreground-muted text-sm mt-2">
               Check <code className="bg-[var(--color-sunken)] px-1 rounded font-mono">STRIPE_SECRET_KEY</code>{" "}
               on Vercel and confirm the{" "}

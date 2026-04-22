@@ -18,7 +18,7 @@ export function StatCard({
   className = "",
 }: StatCardProps) {
   const isPositive = change !== undefined && change >= 0;
-  const changeColor = isPositive ? "text-green-400" : "text-coral";
+  const changeColor = isPositive ? "text-green-400" : "text-[var(--color-bad)]";
 
   return (
     <div

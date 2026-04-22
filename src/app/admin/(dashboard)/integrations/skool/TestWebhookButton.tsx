@@ -67,7 +67,7 @@ export function TestWebhookButton() {
         type="button"
         onClick={() => sendTest(true)}
         disabled={status === "sending"}
-        className="text-xs px-3 py-1.5 rounded-lg bg-coral/15 text-coral border border-coral/30 hover:bg-coral/25 disabled:opacity-50 font-heading tracking-wider uppercase"
+        className="text-xs px-3 py-1.5 rounded-lg bg-[var(--color-bad-tint)] text-[var(--color-bad)] border border-[var(--color-border-strong)] hover:bg-[var(--color-bad-tint)] disabled:opacity-50 font-heading tracking-wider uppercase"
       >
         {status === "sending" ? "Sending…" : "Send test webhook"}
       </button>
@@ -85,7 +85,7 @@ export function TestWebhookButton() {
             status === "ok"
               ? "text-green-400"
               : status === "err"
-                ? "text-coral"
+                ? "text-[var(--color-bad)]"
                 : "text-foreground-subtle"
           }`}
         >

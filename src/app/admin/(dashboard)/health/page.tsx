@@ -30,7 +30,7 @@ function stageLabel(stage: string): string {
 
 function stageColor(stage: string): string {
   switch (stage) {
-    case "no_skool": return "text-coral bg-coral/10";
+    case "no_skool": return "text-[var(--color-bad)] bg-[var(--color-bad-tint)]";
     case "no_trial": return "text-yellow-400 bg-yellow-400/10";
     case "no_paid": return "text-blue-400 bg-blue-400/10";
     default: return "text-foreground-subtle bg-white/5";
@@ -87,7 +87,7 @@ export default async function HealthPage() {
           <p className="text-foreground-subtle text-xs uppercase tracking-wider mb-1">
             New Signups Trend
           </p>
-          <p className={`text-2xl font-heading ${healthStats.newSignupsTrend >= 0 ? "text-green-400" : "text-coral"}`}>
+          <p className={`text-2xl font-heading ${healthStats.newSignupsTrend >= 0 ? "text-green-400" : "text-[var(--color-bad)]"}`}>
             {healthStats.newSignupsTrend >= 0 ? "+" : ""}{healthStats.newSignupsTrend.toFixed(0)}%
           </p>
           <p className="text-xs text-foreground-subtle mt-1">vs previous week</p>
@@ -96,7 +96,7 @@ export default async function HealthPage() {
           <p className="text-foreground-subtle text-xs uppercase tracking-wider mb-1">
             Community Growth
           </p>
-          <p className={`text-2xl font-heading ${healthStats.communityGrowthRate >= 0 ? "text-green-400" : "text-coral"}`}>
+          <p className={`text-2xl font-heading ${healthStats.communityGrowthRate >= 0 ? "text-green-400" : "text-[var(--color-bad)]"}`}>
             {healthStats.communityGrowthRate >= 0 ? "+" : ""}{healthStats.communityGrowthRate.toFixed(0)}%
           </p>
           <p className="text-xs text-foreground-subtle mt-1">Skool joins vs prev week</p>

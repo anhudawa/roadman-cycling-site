@@ -135,7 +135,7 @@ export function ActivityFilters({
           <button
             type="button"
             onClick={() => startTransition(() => router.push("/admin/activity"))}
-            className="text-xs text-coral hover:underline"
+            className="text-xs text-[var(--color-bad)] hover:underline"
           >
             Clear filters
           </button>
@@ -151,7 +151,7 @@ export function ActivityFilters({
               onClick={() => toggleType(t)}
               className={`px-2 py-1 text-[11px] rounded border transition ${
                 active
-                  ? "bg-coral/15 text-coral border-coral/30"
+                  ? "bg-[var(--color-bad-tint)] text-[var(--color-bad)] border-[var(--color-border-strong)]"
                   : "bg-background-elevated text-foreground-subtle border-white/10 hover:border-[var(--color-border-strong)]"
               }`}
             >

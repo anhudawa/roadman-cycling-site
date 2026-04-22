@@ -100,7 +100,7 @@ export default async function ReportsPage() {
                 >
                   <div className="w-full flex-1 flex items-end">
                     <div
-                      className="w-full bg-coral/70 hover:bg-coral rounded-t transition-colors"
+                      className="w-full bg-[var(--color-info-tint)] hover:bg-[var(--color-info)] rounded-t transition-colors"
                       style={{ height: `${pct}%` }}
                     />
                   </div>
@@ -378,7 +378,7 @@ export default async function ReportsPage() {
                       <span className="text-foreground-subtle uppercase tracking-widest text-[10px]">
                         {DEAL_STAGE_LABELS[d.stage]}
                       </span>
-                      <span className="text-coral font-heading tracking-wider">
+                      <span className="text-[var(--color-bad)] font-heading tracking-wider">
                         {formatCurrency(d.valueCents, d.currency)}
                       </span>
                     </div>

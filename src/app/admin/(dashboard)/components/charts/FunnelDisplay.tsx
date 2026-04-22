@@ -47,7 +47,7 @@ export function FunnelDisplay({ steps }: FunnelDisplayProps) {
             )}
             <div className="flex items-center gap-3">
               <div
-                className="h-10 bg-coral/20 border border-coral/30 rounded-lg flex items-center justify-center transition-all"
+                className="h-10 bg-[var(--color-info-tint)] border border-[var(--color-info)]/30 rounded-lg flex items-center justify-center transition-all"
                 style={{
                   width: `${Math.max(widthPct, 20)}%`,
                 }}

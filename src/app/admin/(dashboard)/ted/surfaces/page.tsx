@@ -15,7 +15,7 @@ const STATUS_PILL: Record<string, { label: string; cls: string }> = {
   edited: { label: "edited", cls: "bg-emerald-500/10 text-emerald-300" },
   posted: { label: "posted", cls: "bg-emerald-500/15 text-emerald-200" },
   rejected: { label: "rejected", cls: "bg-white/10 text-foreground-subtle" },
-  failed: { label: "failed", cls: "bg-coral/10 text-coral" },
+  failed: { label: "failed", cls: "bg-[var(--color-bad-tint)] text-[var(--color-bad)]" },
 };
 
 function statusPill(s: string): { label: string; cls: string } {
@@ -138,7 +138,7 @@ export default async function TedSurfacesPage() {
                       </td>
                       <td className="p-2 text-foreground-subtle max-w-xl">
                         {r.failureReason ? (
-                          <code className="text-coral">{r.failureReason}</code>
+                          <code className="text-[var(--color-bad)]">{r.failureReason}</code>
                         ) : (
                           <pre className="font-sans text-xs whitespace-pre-wrap">{body}</pre>
                         )}

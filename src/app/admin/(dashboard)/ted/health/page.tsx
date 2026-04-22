@@ -260,10 +260,10 @@ export default async function TedHealthPage() {
             {recentErrors.map((e) => (
               <div
                 key={e.id}
-                className="text-xs rounded-md bg-coral/5 border border-coral/20 p-3"
+                className="text-xs rounded-md bg-[var(--color-bad-tint)] border border-[var(--color-border-strong)] p-3"
               >
                 <div className="flex items-center justify-between">
-                  <span className="font-mono text-coral">
+                  <span className="font-mono text-[var(--color-bad)]">
                     {e.job} :: {e.action}
                   </span>
                   <span className="text-foreground-subtle">
@@ -295,7 +295,7 @@ export default async function TedHealthPage() {
                           ? "bg-emerald-500/10 text-emerald-300"
                           : c.status === "warn"
                             ? "bg-yellow-500/10 text-yellow-300"
-                            : "bg-coral/10 text-coral"
+                            : "bg-[var(--color-bad-tint)] text-[var(--color-bad)]"
                       }`}
                     >
                       {c.status}

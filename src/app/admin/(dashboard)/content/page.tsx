@@ -19,7 +19,7 @@ function ConvBadge({ rate }: { rate: number }) {
   let color = "text-foreground-subtle bg-white/5";
   if (rate >= 4) color = "text-green-400 bg-green-400/10";
   else if (rate >= 2.5) color = "text-yellow-400 bg-yellow-400/10";
-  else if (rate > 0) color = "text-coral bg-coral/10";
+  else if (rate > 0) color = "text-[var(--color-bad)] bg-[var(--color-bad-tint)]";
   return (
     <span className={`text-xs font-medium px-2 py-0.5 rounded-full ${color}`}>
       {rate.toFixed(1)}%
@@ -112,8 +112,8 @@ export default async function ContentPage({
 
       {/* Content ROI highlights */}
       {contentROI.length > 0 && (
-        <div className="bg-background-elevated border border-coral/10 rounded-xl p-5">
-          <h2 className="font-heading text-sm text-coral tracking-wider mb-3">
+        <div className="bg-background-elevated border border-[var(--color-border-strong)] rounded-xl p-5">
+          <h2 className="font-heading text-sm text-[var(--color-bad)] tracking-wider mb-3">
             CONTENT ROI
           </h2>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 text-sm">

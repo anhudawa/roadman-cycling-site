@@ -7,7 +7,7 @@ function ConversionBadge({ rate }: { rate: number }) {
   let color = "text-foreground-subtle bg-white/5";
   if (rate >= 5) color = "text-green-400 bg-green-400/10";
   else if (rate >= 2) color = "text-yellow-400 bg-yellow-400/10";
-  else if (rate > 0) color = "text-coral bg-coral/10";
+  else if (rate > 0) color = "text-[var(--color-bad)] bg-[var(--color-bad-tint)]";
   return (
     <span className={`text-xs font-medium px-2 py-0.5 rounded-full ${color}`}>
       {rate.toFixed(1)}%
@@ -35,7 +35,7 @@ function BarInline({ value, max }: { value: number; max: number }) {
     <div className="flex items-center gap-2">
       <div className="h-1.5 bg-white/5 rounded-full overflow-hidden w-20">
         <div
-          className="h-full bg-coral rounded-full"
+          className="h-full bg-[var(--color-info)] rounded-full"
           style={{ width: `${Math.min(pct, 100)}%` }}
         />
       </div>

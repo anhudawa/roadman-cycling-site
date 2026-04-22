@@ -274,11 +274,11 @@ export function CommandPalette() {
                           close();
                         }}
                         className={`w-full text-left flex items-center justify-between gap-3 px-4 py-2 transition-colors ${
-                          isActive ? "bg-coral/10" : "hover:bg-white/5"
+                          isActive ? "bg-[var(--color-raised)]" : "hover:bg-white/5"
                         }`}
                       >
                         <div className="min-w-0 flex-1">
-                          <p className={`text-sm truncate ${isActive ? "text-coral" : "text-off-white"}`}>
+                          <p className={`text-sm truncate ${isActive ? "text-[var(--color-fg)] font-semibold" : "text-[var(--color-fg)]"}`}>
                             {item.label}
                           </p>
                           {item.sublabel && (

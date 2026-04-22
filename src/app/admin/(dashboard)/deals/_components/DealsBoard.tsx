@@ -126,7 +126,7 @@ export function DealsBoard({ initialStages, stats, defaultCurrency }: Props) {
         <button
           type="button"
           onClick={() => setShowNew(true)}
-          className="ml-auto px-3 py-1.5 bg-coral text-white text-xs font-heading tracking-wider rounded-lg hover:bg-coral/90 uppercase"
+          className="ml-auto px-3 py-1.5 bg-[var(--color-coral)] text-white text-xs font-heading tracking-wider rounded-lg hover:bg-[var(--color-bad-tint)] uppercase"
         >
           + New Deal
         </button>
@@ -214,7 +214,7 @@ export function DealsBoard({ initialStages, stats, defaultCurrency }: Props) {
                           {deal.title}
                         </span>
                       </div>
-                      <p className="text-coral text-sm font-heading tracking-wider tabular-nums mb-2">
+                      <p className="text-[var(--color-bad)] text-sm font-heading tracking-wider tabular-nums mb-2">
                         {formatCurrency(deal.valueCents, deal.currency)}
                       </p>
                       {(deal.contactName || deal.contactEmail) && (
@@ -224,7 +224,7 @@ export function DealsBoard({ initialStages, stats, defaultCurrency }: Props) {
                       )}
                       <div className="flex items-center gap-1.5 flex-wrap mt-1">
                         {deal.ownerSlug && (
-                          <span className="text-[10px] px-2 py-0.5 rounded-full font-medium border bg-coral/15 text-coral border-coral/30 capitalize">
+                          <span className="text-[10px] px-2 py-0.5 rounded-full font-medium border bg-[var(--color-bad-tint)] text-[var(--color-bad)] border-[var(--color-border-strong)] capitalize">
                             {deal.ownerSlug}
                           </span>
                         )}
@@ -272,7 +272,7 @@ function StatCard({
       </p>
       <p
         className={`font-heading text-xl tracking-wider mt-1 tabular-nums ${
-          accent ? "text-coral" : "text-off-white"
+          accent ? "text-[var(--color-bad)]" : "text-off-white"
         }`}
       >
         {value}
@@ -475,7 +475,7 @@ function NewDealModal({
             className="w-full px-3 py-2 text-sm bg-background-deep border border-white/10 text-off-white rounded focus-ring focus:border-[var(--color-border-focus)]"
           />
           {contactId && (
-            <p className="text-[10px] text-coral mt-1">Linked: id #{contactId}</p>
+            <p className="text-[10px] text-[var(--color-bad)] mt-1">Linked: id #{contactId}</p>
           )}
           {!contactId && hits.length > 0 && (
             <ul className="mt-1 max-h-36 overflow-y-auto border border-white/10 rounded bg-background-deep">
@@ -533,7 +533,7 @@ function NewDealModal({
           <button
             onClick={submit}
             disabled={submitting}
-            className="px-3 py-1.5 text-xs font-heading tracking-wider uppercase bg-coral text-white rounded hover:bg-coral/90 disabled:opacity-50"
+            className="px-3 py-1.5 text-xs font-heading tracking-wider uppercase bg-[var(--color-coral)] text-white rounded hover:bg-[var(--color-bad-tint)] disabled:opacity-50"
           >
             {submitting ? "Saving…" : "Create"}
           </button>

@@ -12,7 +12,7 @@ function HorizontalBar({ value, max, label }: { value: number; max: number; labe
       </span>
       <div className="flex-1 h-2 bg-white/5 rounded-full overflow-hidden">
         <div
-          className="h-full bg-coral rounded-full transition-all"
+          className="h-full bg-[var(--color-info)] rounded-full transition-all"
           style={{ width: `${Math.min(pct, 100)}%` }}
         />
       </div>
@@ -32,7 +32,7 @@ function DeviceBar({ device, count, percentage }: { device: string; count: numbe
   };
   const colors: Record<string, string> = {
     desktop: "bg-purple",
-    mobile: "bg-coral",
+    mobile: "bg-[var(--color-info)]",
     tablet: "bg-green-400",
     unknown: "bg-white/20",
   };

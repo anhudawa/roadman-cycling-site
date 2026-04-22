@@ -373,7 +373,7 @@ export function RuleBuilder({
           type="button"
           onClick={save}
           disabled={busy || !draft.name.trim()}
-          className="px-4 py-2 bg-coral text-background-deep font-medium rounded text-sm hover:bg-coral/90 disabled:opacity-50"
+          className="px-4 py-2 bg-[var(--color-coral)] text-background-deep font-medium rounded text-sm hover:bg-[var(--color-coral-hover)] disabled:opacity-50"
         >
           {busy ? "Saving..." : mode === "create" ? "Create rule" : "Save changes"}
         </button>

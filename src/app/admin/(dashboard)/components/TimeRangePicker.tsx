@@ -32,7 +32,7 @@ export function TimeRangePicker() {
             onClick={() => handleClick(range.value)}
             className={`px-3 py-1.5 rounded-full text-xs font-medium transition-colors ${
               isActive
-                ? "bg-coral text-white"
+                ? "bg-[var(--color-raised)] text-[var(--color-fg)] shadow-inner"
                 : "bg-white/5 text-foreground-muted hover:bg-white/10 hover:text-off-white"
             }`}
           >

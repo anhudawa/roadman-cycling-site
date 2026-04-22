@@ -58,7 +58,7 @@ export function SettingsPanel({ initial }: { initial: State }) {
             disabled={saving}
             className={`text-sm px-3 py-1.5 rounded-md ${
               state.paused
-                ? "bg-coral/20 text-coral hover:bg-coral/30"
+                ? "bg-[var(--color-bad-tint)] text-[var(--color-bad)] hover:bg-[var(--color-bad-tint)]"
                 : "bg-emerald-500/20 text-emerald-300 hover:bg-emerald-500/30"
             }`}
             onClick={() => save({ paused: !state.paused, reason: state.reason })}

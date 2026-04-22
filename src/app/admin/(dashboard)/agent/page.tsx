@@ -74,9 +74,9 @@ export default function AgentPage() {
 
       {/* Schedule info + Run button */}
       <div className="flex items-center justify-between gap-4">
-        <div className="bg-coral/10 border border-coral/20 rounded-xl p-4 flex items-center gap-3 flex-1">
+        <div className="bg-[var(--color-bad-tint)] border border-[var(--color-border-strong)] rounded-xl p-4 flex items-center gap-3 flex-1">
           <svg
-            className="w-5 h-5 text-coral flex-shrink-0"
+            className="w-5 h-5 text-[var(--color-bad)] flex-shrink-0"
             fill="none"
             viewBox="0 0 24 24"
             stroke="currentColor"
@@ -97,7 +97,7 @@ export default function AgentPage() {
           <button
             onClick={runAnalysis}
             disabled={loading}
-            className="px-4 py-2.5 bg-coral hover:bg-coral/90 disabled:bg-coral/40 disabled:cursor-not-allowed text-white text-sm font-medium rounded-lg transition-colors flex items-center gap-2"
+            className="px-4 py-2.5 bg-[var(--color-coral)] hover:bg-[var(--color-bad-tint)] disabled:bg-[var(--color-bad-tint)] disabled:cursor-not-allowed text-white text-sm font-medium rounded-lg transition-colors flex items-center gap-2"
           >
           {loading ? (
             <>
@@ -183,7 +183,7 @@ export default function AgentPage() {
                     <p className="text-sm text-foreground-muted mb-1">
                       {pa.assessment}
                     </p>
-                    <p className="text-xs text-coral">{pa.recommendation}</p>
+                    <p className="text-xs text-[var(--color-bad)]">{pa.recommendation}</p>
                   </div>
                 ))}
               </div>
@@ -205,7 +205,7 @@ export default function AgentPage() {
                     <div className="flex items-start justify-between gap-4">
                       <div className="flex-1">
                         <div className="flex items-center gap-2 mb-1">
-                          <span className="text-coral text-sm font-heading">
+                          <span className="text-[var(--color-bad)] text-sm font-heading">
                             {i + 1}.
                           </span>
                           <span className="text-sm text-off-white font-medium">
@@ -228,7 +228,7 @@ export default function AgentPage() {
                       </div>
                       <Link
                         href={`/admin/experiments/new?page=${encodeURIComponent(exp.page)}&element=${encodeURIComponent(exp.element)}&content=${encodeURIComponent(exp.currentContent)}`}
-                        className="text-xs text-coral hover:text-[var(--color-fg)]/80 transition-colors px-3 py-1.5 border border-coral/20 rounded-lg flex-shrink-0 hover:bg-coral/5"
+                        className="text-xs text-[var(--color-bad)] hover:text-[var(--color-fg)]/80 transition-colors px-3 py-1.5 border border-[var(--color-border-strong)] rounded-lg flex-shrink-0 hover:bg-[var(--color-bad-tint)]"
                       >
                         Create This Test
                       </Link>
@@ -251,7 +251,7 @@ export default function AgentPage() {
                     key={i}
                     className="flex items-start gap-3 p-3 rounded-lg bg-white/[0.02] border border-white/[0.04]"
                   >
-                    <span className="text-coral text-sm font-heading mt-0.5">
+                    <span className="text-[var(--color-bad)] text-sm font-heading mt-0.5">
                       {i + 1}.
                     </span>
                     <p className="text-sm text-off-white leading-relaxed">

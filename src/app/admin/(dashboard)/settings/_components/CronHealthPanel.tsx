@@ -80,7 +80,7 @@ function Row({ row }: { row: CronKindRow }) {
           <button
             type="button"
             onClick={() => setOpen((v) => !v)}
-            className="text-coral hover:underline"
+            className="text-[var(--color-bad)] hover:underline"
             disabled={row.history.length === 0}
           >
             {open ? "Hide" : `View history (${row.history.length})`}

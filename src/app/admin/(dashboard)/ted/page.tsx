@@ -112,7 +112,7 @@ export default async function TedDashboardPage() {
   };
 
   const statusLabel = kill?.paused
-    ? { text: "Paused", cls: "bg-coral/10 text-coral" }
+    ? { text: "Paused", cls: "bg-[var(--color-bad-tint)] text-[var(--color-bad)]" }
     : kill?.postPromptEnabled ||
         kill?.postWelcomeEnabled ||
         kill?.surfaceThreadsEnabled
@@ -153,12 +153,12 @@ export default async function TedDashboardPage() {
       {migrationsNeeded ? <MigrationBanner /> : null}
 
       {kill?.paused ? (
-        <div className="rounded-md bg-coral/10 border border-coral/30 p-4 text-sm">
-          <div className="font-semibold text-coral mb-1">Ted is paused</div>
+        <div className="rounded-md bg-[var(--color-bad-tint)] border border-[var(--color-border-strong)] p-4 text-sm">
+          <div className="font-semibold text-[var(--color-bad)] mb-1">Ted is paused</div>
           <div className="text-xs text-foreground-subtle">
             Paused by {kill.pausedBySlug ?? "unknown"}
             {kill.reason ? ` — ${kill.reason}` : ""}. Resume from{" "}
-            <Link href="/admin/ted/settings" className="text-coral underline">
+            <Link href="/admin/ted/settings" className="text-[var(--color-bad)] underline">
               Settings
             </Link>
             .

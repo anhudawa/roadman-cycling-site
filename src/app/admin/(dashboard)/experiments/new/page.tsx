@@ -232,7 +232,7 @@ export default function NewExperimentPage() {
         <button
           onClick={handleGenerateVariants}
           disabled={generating}
-          className="px-4 py-2 bg-coral hover:bg-coral/90 disabled:bg-coral/40 disabled:cursor-not-allowed text-white text-sm font-medium rounded-lg transition-colors flex items-center gap-2"
+          className="px-4 py-2 bg-[var(--color-coral)] hover:bg-[var(--color-bad-tint)] disabled:bg-[var(--color-bad-tint)] disabled:cursor-not-allowed text-white text-sm font-medium rounded-lg transition-colors flex items-center gap-2"
         >
           {generating ? (
             <>
@@ -286,7 +286,7 @@ export default function NewExperimentPage() {
           </h2>
           <button
             onClick={addManualVariant}
-            className="text-xs text-coral hover:text-[var(--color-fg)]/80 transition-colors"
+            className="text-xs text-[var(--color-bad)] hover:text-[var(--color-fg)]/80 transition-colors"
           >
             + Add manually
           </button>
@@ -336,7 +336,7 @@ export default function NewExperimentPage() {
         <button
           onClick={handleSubmit}
           disabled={submitting}
-          className="px-6 py-2.5 bg-coral hover:bg-coral/90 disabled:bg-coral/40 disabled:cursor-not-allowed text-white text-sm font-medium rounded-lg transition-colors"
+          className="px-6 py-2.5 bg-[var(--color-coral)] hover:bg-[var(--color-bad-tint)] disabled:bg-[var(--color-bad-tint)] disabled:cursor-not-allowed text-white text-sm font-medium rounded-lg transition-colors"
         >
           {submitting ? "Creating..." : "Create Experiment"}
         </button>

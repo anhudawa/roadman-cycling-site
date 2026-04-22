@@ -41,7 +41,7 @@ export default async function SegmentDetailPage({
               <p className="text-sm text-foreground-muted mt-1">{segment.description}</p>
             )}
             <p className="text-xs text-foreground-subtle mt-2">
-              <span className="font-medium text-coral text-sm">{count}</span> members · created by {segment.createdBySlug ?? "—"}
+              <span className="font-medium text-[var(--color-bad)] text-sm">{count}</span> members · created by {segment.createdBySlug ?? "—"}
             </p>
           </div>
         </div>

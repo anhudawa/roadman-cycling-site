@@ -27,7 +27,7 @@ function StatusBadge({ status }: { status: string }) {
 function PillarBadge({ pillar }: { pillar: string | null }) {
   if (!pillar) return null;
   return (
-    <span className="text-xs font-medium px-2 py-0.5 rounded-full bg-coral/15 text-coral truncate max-w-[120px]">
+    <span className="text-xs font-medium px-2 py-0.5 rounded-full bg-[var(--color-bad-tint)] text-[var(--color-bad)] truncate max-w-[120px]">
       {pillar}
     </span>
   );
@@ -48,7 +48,7 @@ function ContentProgress({
       </p>
       <div className="h-1.5 rounded-full bg-white/5 overflow-hidden">
         <div
-          className="h-full rounded-full bg-coral transition-all"
+          className="h-full rounded-full bg-[var(--color-info)] transition-all"
           style={{ width: `${pct}%` }}
         />
       </div>
@@ -73,7 +73,7 @@ function EpisodeCard({ episode }: { episode: Episode }) {
       <div className="flex items-start justify-between gap-3 mb-3">
         <div className="flex items-center gap-2 min-w-0">
           {episode.episodeNumber != null && (
-            <span className="flex-shrink-0 text-xs font-semibold px-2 py-0.5 rounded-md bg-coral text-white">
+            <span className="flex-shrink-0 text-xs font-semibold px-2 py-0.5 rounded-md bg-[var(--color-raised)] text-[var(--color-fg)]">
               #{episode.episodeNumber}
             </span>
           )}
@@ -135,7 +135,7 @@ export default async function ContentPipelinePage({
             href={f === "all" ? "/admin/content/repurposed" : `/admin/content/repurposed?filter=${f}`}
             className={`px-3.5 py-1.5 text-sm rounded-lg font-medium transition-colors ${
               activeFilter === f
-                ? "bg-coral text-white"
+                ? "bg-[var(--color-raised)] text-[var(--color-fg)]"
                 : "bg-white/5 text-foreground-muted hover:bg-white/10 hover:text-off-white"
             }`}
           >

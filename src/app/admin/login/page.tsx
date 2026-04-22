@@ -113,13 +113,13 @@ export default function AdminLoginPage() {
           </div>
 
           {error && (
-            <p className="text-coral text-sm text-center">{error}</p>
+            <p className="text-[var(--color-bad)] text-sm text-center">{error}</p>
           )}
 
           <button
             type="submit"
             disabled={loading}
-            className="w-full py-3 bg-coral hover:bg-coral-hover disabled:opacity-50 text-off-white font-heading text-lg tracking-wider rounded-lg transition-colors"
+            className="w-full py-3 bg-[var(--color-coral)] hover:bg-[var(--color-coral-hover)] disabled:opacity-50 text-off-white font-heading text-lg tracking-wider rounded-lg transition-colors"
           >
             {loading ? "SIGNING IN..." : "SIGN IN"}
           </button>

@@ -412,7 +412,7 @@ export function OwnerPopover({
                   onPick(opt.value);
                 }}
                 className={`text-left text-[11px] px-2 py-1.5 rounded hover:bg-white/5 ${
-                  isSelected ? "text-coral" : "text-off-white"
+                  isSelected ? "text-[var(--color-bad)]" : "text-off-white"
                 }`}
               >
                 {opt.label}

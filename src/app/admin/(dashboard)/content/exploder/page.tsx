@@ -246,7 +246,7 @@ export default function ExploderPage() {
         <span
           className={
             step === "videos"
-              ? "text-coral font-medium"
+              ? "text-[var(--color-bad)] font-medium"
               : "text-foreground-subtle cursor-pointer hover:text-off-white"
           }
           onClick={() => step !== "videos" && setStep("videos")}
@@ -259,7 +259,7 @@ export default function ExploderPage() {
         <span
           className={
             step === "ideas"
-              ? "text-coral font-medium"
+              ? "text-[var(--color-bad)] font-medium"
               : step === "content"
                 ? "text-foreground-subtle cursor-pointer hover:text-off-white"
                 : "text-foreground-subtle/50"
@@ -274,7 +274,7 @@ export default function ExploderPage() {
         <span
           className={
             step === "content"
-              ? "text-coral font-medium"
+              ? "text-[var(--color-bad)] font-medium"
               : "text-foreground-subtle/50"
           }
         >
@@ -299,7 +299,7 @@ export default function ExploderPage() {
       {loading && (
         <div className="flex items-center justify-center py-16">
           <div className="text-center">
-            <div className="w-8 h-8 border-2 border-coral/30 border-t-coral rounded-full animate-spin mx-auto mb-4" />
+            <div className="w-8 h-8 border-2 border-[var(--color-border-strong)] border-t-coral rounded-full animate-spin mx-auto mb-4" />
             <p className="text-foreground-muted text-sm">{loadingMsg}</p>
           </div>
         </div>
@@ -394,7 +394,7 @@ export default function ExploderPage() {
               className="w-full text-left p-4 bg-background-elevated border border-white/5 rounded-lg hover:border-[var(--color-border-strong)] transition-colors group"
             >
               <div className="flex items-start gap-3">
-                <span className="flex items-center justify-center w-7 h-7 rounded-full bg-coral/10 text-coral text-xs font-bold shrink-0 mt-0.5">
+                <span className="flex items-center justify-center w-7 h-7 rounded-full bg-[var(--color-bad-tint)] text-[var(--color-bad)] text-xs font-bold shrink-0 mt-0.5">
                   {i + 1}
                 </span>
                 <div>
@@ -449,7 +449,7 @@ export default function ExploderPage() {
                 onClick={() => setActiveTab(tab.key)}
                 className={`flex-1 px-4 py-2 rounded-md text-sm font-medium transition-colors ${
                   activeTab === tab.key
-                    ? "bg-coral text-white"
+                    ? "bg-[var(--color-raised)] text-[var(--color-fg)]"
                     : "text-foreground-muted hover:text-off-white hover:bg-white/5"
                 }`}
               >
@@ -512,7 +512,7 @@ export default function ExploderPage() {
                   className={`flex items-center gap-2 px-3 py-1.5 rounded-lg text-xs font-medium transition-colors ${
                     copied === activeTab
                       ? "bg-green-500/10 text-green-400"
-                      : "bg-coral/10 text-coral hover:bg-coral/20"
+                      : "bg-[var(--color-bad-tint)] text-[var(--color-bad)] hover:bg-[var(--color-bad-tint)]"
                   }`}
                 >
                   {copied === activeTab ? (
@@ -553,7 +553,7 @@ export default function ExploderPage() {
                       className="p-3 bg-white/[0.03] rounded-lg border border-white/5"
                     >
                       <div className="flex items-start gap-2">
-                        <span className="text-xs text-coral font-bold shrink-0">
+                        <span className="text-xs text-[var(--color-bad)] font-bold shrink-0">
                           {i + 1}/{content.x_thread.length}
                         </span>
                         <p className="text-sm">{tweet}</p>

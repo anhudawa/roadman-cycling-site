@@ -121,7 +121,7 @@ export default function ExperimentActions({
                       winnerVariantId: selectedWinner,
                     })
                   }
-                  className="px-3 py-1.5 bg-coral/20 text-coral hover:bg-coral/30 text-xs font-medium rounded-lg transition-colors border border-coral/20 disabled:opacity-50"
+                  className="px-3 py-1.5 bg-[var(--color-bad-tint)] text-[var(--color-bad)] hover:bg-[var(--color-bad-tint)] text-xs font-medium rounded-lg transition-colors border border-[var(--color-border-strong)] disabled:opacity-50"
                 >
                   {loading === "declare_winner" ? <Spinner /> : "Confirm"}
                 </button>
@@ -139,7 +139,7 @@ export default function ExperimentActions({
                 type="button"
                 disabled={busy}
                 onClick={() => setConfirming("declare_winner")}
-                className="px-4 py-2 bg-coral/20 text-coral hover:bg-coral/30 text-sm font-medium rounded-lg transition-colors border border-coral/20 disabled:opacity-50"
+                className="px-4 py-2 bg-[var(--color-bad-tint)] text-[var(--color-bad)] hover:bg-[var(--color-bad-tint)] text-sm font-medium rounded-lg transition-colors border border-[var(--color-border-strong)] disabled:opacity-50"
               >
                 Declare Winner
               </button>

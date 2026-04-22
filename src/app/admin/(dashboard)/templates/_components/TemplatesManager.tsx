@@ -153,7 +153,7 @@ export function TemplatesManager({
       <div className="flex justify-end mb-4">
         <button
           onClick={openNew}
-          className="px-4 py-2 bg-coral text-white text-sm font-heading tracking-wider rounded-lg hover:bg-coral/90 transition-colors uppercase"
+          className="px-4 py-2 bg-[var(--color-coral)] text-white text-sm font-heading tracking-wider rounded-lg hover:bg-[var(--color-bad-tint)] transition-colors uppercase"
         >
           New Template
         </button>
@@ -197,7 +197,7 @@ export function TemplatesManager({
                     rowRefs.current.set(t.id, el);
                   }}
                   className={`border-b border-white/5 last:border-b-0 transition-colors ${
-                    highlightId === t.id ? "bg-coral/5" : ""
+                    highlightId === t.id ? "bg-[var(--color-bad-tint)]" : ""
                   }`}
                 >
                   <td className="px-4 py-3 text-off-white">{t.name}</td>
@@ -319,7 +319,7 @@ export function TemplatesManager({
               <button
                 onClick={save}
                 disabled={busy}
-                className="px-3 py-1.5 text-xs font-heading tracking-wider uppercase bg-coral/20 text-coral border border-coral/30 rounded hover:bg-coral/30 disabled:opacity-50"
+                className="px-3 py-1.5 text-xs font-heading tracking-wider uppercase bg-[var(--color-bad-tint)] text-[var(--color-bad)] border border-[var(--color-border-strong)] rounded hover:bg-[var(--color-bad-tint)] disabled:opacity-50"
               >
                 {busy ? "Saving..." : "Save"}
               </button>

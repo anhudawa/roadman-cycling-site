@@ -36,7 +36,7 @@ export function ToggleRule({ id, initial }: { id: number; initial: boolean }) {
       onClick={toggle}
       disabled={busy}
       className={`relative inline-flex h-5 w-9 items-center rounded-full transition-colors ${
-        active ? "bg-coral" : "bg-white/10"
+        active ? "bg-[var(--color-good)]" : "bg-[var(--color-elevated)]"
       }`}
       aria-label={active ? "Deactivate" : "Activate"}
     >

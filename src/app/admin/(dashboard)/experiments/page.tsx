@@ -45,7 +45,7 @@ export default async function ExperimentsPage() {
         </div>
         <Link
           href="/admin/experiments/new"
-          className="px-4 py-2 bg-coral hover:bg-coral/90 text-white text-sm font-medium rounded-lg transition-colors"
+          className="px-4 py-2 bg-[var(--color-coral)] hover:bg-[var(--color-bad-tint)] text-white text-sm font-medium rounded-lg transition-colors"
         >
           Create Experiment
         </Link>
@@ -106,7 +106,7 @@ export default async function ExperimentsPage() {
                       </span>
                     )}
                     {exp.winnerVariantId && (
-                      <span className="text-coral">Winner declared</span>
+                      <span className="text-[var(--color-bad)]">Winner declared</span>
                     )}
                   </div>
                 </div>

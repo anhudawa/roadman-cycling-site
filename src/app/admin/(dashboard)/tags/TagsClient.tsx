@@ -151,7 +151,7 @@ export function TagsClient({ initialTags }: Props) {
       )}
 
       {selected.size > 0 && (
-        <div className="mb-4 flex flex-wrap items-center gap-3 p-3 rounded-lg bg-background-elevated border border-coral/30">
+        <div className="mb-4 flex flex-wrap items-center gap-3 p-3 rounded-lg bg-background-elevated border border-[var(--color-border-strong)]">
           <span className="text-xs uppercase tracking-widest text-foreground-subtle">
             {selected.size} selected
           </span>
@@ -167,7 +167,7 @@ export function TagsClient({ initialTags }: Props) {
             type="button"
             onClick={doMerge}
             disabled={busy || !mergeTarget.trim()}
-            className="px-3 py-1.5 text-xs uppercase tracking-wider rounded bg-coral/20 border border-coral/40 text-coral hover:bg-coral/30 disabled:opacity-50"
+            className="px-3 py-1.5 text-xs uppercase tracking-wider rounded bg-[var(--color-bad-tint)] border border-[var(--color-border-strong)] text-[var(--color-bad)] hover:bg-[var(--color-bad-tint)] disabled:opacity-50"
           >
             Merge
           </button>
@@ -230,7 +230,7 @@ export function TagsClient({ initialTags }: Props) {
                           type="button"
                           onClick={() => doRename(t.tag)}
                           disabled={busy}
-                          className="px-2 py-1 text-[10px] uppercase tracking-wider rounded bg-coral/20 border border-coral/40 text-coral hover:bg-coral/30 disabled:opacity-50"
+                          className="px-2 py-1 text-[10px] uppercase tracking-wider rounded bg-[var(--color-bad-tint)] border border-[var(--color-border-strong)] text-[var(--color-bad)] hover:bg-[var(--color-bad-tint)] disabled:opacity-50"
                         >
                           Save
                         </button>

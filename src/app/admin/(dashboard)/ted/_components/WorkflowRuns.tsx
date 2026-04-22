@@ -34,7 +34,7 @@ function statusPillClass(status: string, conclusion: string | null): string {
   if (status === "in_progress" || status === "queued")
     return "bg-blue-500/10 text-blue-300";
   if (conclusion === "success") return "bg-emerald-500/10 text-emerald-300";
-  if (conclusion === "failure") return "bg-coral/10 text-coral";
+  if (conclusion === "failure") return "bg-[var(--color-bad-tint)] text-[var(--color-bad)]";
   if (conclusion === "cancelled") return "bg-white/10 text-foreground-subtle";
   return "bg-yellow-500/10 text-yellow-300";
 }

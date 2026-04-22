@@ -131,7 +131,7 @@ export default async function SkoolIntegrationPage() {
           configured secret server-side (same path a real Skool / Zapier call
           would take). &quot;Send unauthenticated&quot; proves the secret is
           enforced — it should land in the table below with status
-          <span className="text-coral"> error · unauthorized</span>.
+          <span className="text-[var(--color-bad)]"> error · unauthorized</span>.
         </p>
       </div>
 
@@ -227,7 +227,7 @@ event: member.joined, member.created
                 </summary>
                 <div className="px-4 pb-4 space-y-2">
                   {e.errorMessage && (
-                    <div className="text-xs text-coral bg-coral/5 border border-coral/20 rounded p-2">
+                    <div className="text-xs text-[var(--color-bad)] bg-[var(--color-bad-tint)] border border-[var(--color-border-strong)] rounded p-2">
                       {e.errorMessage}
                     </div>
                   )}
@@ -270,7 +270,7 @@ function HealthCard({
       </p>
       <p
         className={`text-xl font-heading tracking-wide ${
-          ok ? "text-green-400" : "text-coral"
+          ok ? "text-green-400" : "text-[var(--color-bad)]"
         }`}
       >
         {value}
@@ -294,7 +294,7 @@ function Metric({
       : tone === "warn"
         ? "text-yellow-400"
         : tone === "err"
-          ? "text-coral"
+          ? "text-[var(--color-bad)]"
           : "text-off-white";
   return (
     <div className="p-3 rounded-lg bg-white/[0.02] border border-white/5">
@@ -312,7 +312,7 @@ function StatusPill({ status }: { status: string }) {
       ? "bg-green-500/10 text-green-400 border-green-500/20"
       : status === "skipped"
         ? "bg-yellow-500/10 text-yellow-400 border-yellow-500/20"
-        : "bg-coral/10 text-coral border-coral/20";
+        : "bg-[var(--color-bad-tint)] text-[var(--color-bad)] border-[var(--color-border-strong)]";
   return (
     <span
       className={`text-[10px] px-2 py-0.5 rounded-full border font-medium capitalize ${styles}`}

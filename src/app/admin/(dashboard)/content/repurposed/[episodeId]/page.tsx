@@ -129,7 +129,7 @@ export default async function EpisodeDetailPage({
         <div className="space-y-2 min-w-0">
           <div className="flex items-center gap-2 flex-wrap">
             {episode.episodeNumber != null && (
-              <span className="flex-shrink-0 text-xs font-semibold px-2 py-0.5 rounded-md bg-coral text-white">
+              <span className="flex-shrink-0 text-xs font-semibold px-2 py-0.5 rounded-md bg-[var(--color-raised)] text-[var(--color-fg)]">
                 #{episode.episodeNumber}
               </span>
             )}
@@ -141,7 +141,7 @@ export default async function EpisodeDetailPage({
 
           <div className="flex items-center gap-3 flex-wrap">
             {episode.pillar && (
-              <span className="text-xs font-medium px-2 py-0.5 rounded-full bg-coral/15 text-coral">
+              <span className="text-xs font-medium px-2 py-0.5 rounded-full bg-[var(--color-bad-tint)] text-[var(--color-bad)]">
                 {episode.pillar}
               </span>
             )}
@@ -169,7 +169,7 @@ export default async function EpisodeDetailPage({
         <div className="space-y-1">
           <div className="h-1.5 rounded-full bg-white/5 overflow-hidden">
             <div
-              className="h-full rounded-full bg-coral transition-all"
+              className="h-full rounded-full bg-[var(--color-info)] transition-all"
               style={{ width: `${Math.round((approvedCount / totalCount) * 100)}%` }}
             />
           </div>

@@ -14,7 +14,7 @@ export const dynamic = "force-dynamic";
 const PAGE_SIZE = 50;
 
 const TYPE_STYLE: Record<string, string> = {
-  note: "bg-coral/10 text-coral border-coral/20",
+  note: "bg-[var(--color-bad-tint)] text-[var(--color-bad)] border-[var(--color-border-strong)]",
   email_sent: "bg-blue-500/10 text-blue-300 border-blue-500/20",
   email_opened: "bg-blue-500/10 text-blue-300 border-blue-500/20",
   email_clicked: "bg-blue-500/10 text-blue-300 border-blue-500/20",

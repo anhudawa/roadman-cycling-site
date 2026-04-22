@@ -285,7 +285,7 @@ function EpisodeMetaContent({ content }: { content: string }) {
 
 function EpisodeCitationContent({ content }: { content: string }) {
   return (
-    <div className="text-sm text-foreground-muted leading-relaxed border-l-2 border-coral/30 pl-3">
+    <div className="text-sm text-foreground-muted leading-relaxed border-l-2 border-[var(--color-border-strong)] pl-3">
       {content}
     </div>
   );
@@ -306,7 +306,7 @@ function QuoteCardContent({ content }: { content: string }) {
 
   return (
     <div className="space-y-2">
-      <blockquote className="text-sm text-off-white italic leading-relaxed border-l-2 border-coral/40 pl-3">
+      <blockquote className="text-sm text-off-white italic leading-relaxed border-l-2 border-[var(--color-border-strong)] pl-3">
         &ldquo;{quote}&rdquo;
       </blockquote>
       {speaker && (

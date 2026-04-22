@@ -179,7 +179,7 @@ export function InboxList() {
                 <div className="flex items-start justify-between gap-2">
                   <div className="flex items-center gap-2 min-w-0">
                     {!s.readAt && (
-                      <span className="w-2 h-2 rounded-full bg-coral shrink-0" />
+                      <span className="w-2 h-2 rounded-full bg-[var(--color-coral)] shrink-0" />
                     )}
                     <span
                       className={`text-sm truncate ${

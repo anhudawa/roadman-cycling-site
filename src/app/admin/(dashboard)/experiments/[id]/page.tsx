@@ -164,7 +164,7 @@ export default async function ExperimentDetailPage({
               key={variant.id}
               className={`p-4 rounded-lg border transition-colors ${
                 experiment.winnerVariantId === variant.id
-                  ? "border-coral/40 bg-coral/5"
+                  ? "border-[var(--color-border-strong)] bg-[var(--color-bad-tint)]"
                   : "border-white/5 bg-white/[0.02]"
               }`}
             >
@@ -176,7 +176,7 @@ export default async function ExperimentDetailPage({
                   {variant.label}
                 </span>
                 {experiment.winnerVariantId === variant.id && (
-                  <span className="text-xs font-medium px-2 py-0.5 rounded-full bg-coral/20 text-coral">
+                  <span className="text-xs font-medium px-2 py-0.5 rounded-full bg-[var(--color-bad-tint)] text-[var(--color-bad)]">
                     Winner
                   </span>
                 )}
@@ -309,7 +309,7 @@ export default async function ExperimentDetailPage({
                   <div className="h-2 rounded-full bg-white/5 overflow-hidden">
                     <div
                       className={`h-full rounded-full transition-all ${
-                        progress >= 100 ? "bg-green-400" : "bg-coral"
+                        progress >= 100 ? "bg-[var(--color-good)]" : "bg-[var(--color-info)]"
                       }`}
                       style={{ width: `${progress}%` }}
                     />
@@ -328,8 +328,8 @@ export default async function ExperimentDetailPage({
 
       {/* Winner info */}
       {experiment.winnerVariantId && (
-        <div className="bg-coral/10 border border-coral/20 rounded-xl p-5">
-          <h2 className="font-heading text-sm text-coral tracking-wider mb-2">
+        <div className="bg-[var(--color-bad-tint)] border border-[var(--color-border-strong)] rounded-xl p-5">
+          <h2 className="font-heading text-sm text-[var(--color-bad)] tracking-wider mb-2">
             WINNER DECLARED
           </h2>
           <p className="text-sm text-off-white">
