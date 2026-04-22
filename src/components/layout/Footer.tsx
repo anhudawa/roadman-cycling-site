@@ -31,6 +31,7 @@ const footerColumns = {
       { label: "Training Plans", href: "/plan" },
       { label: "Newsletter", href: "/newsletter" },
       { label: "Plateau Diagnostic", href: "/plateau" },
+      { label: "Glossary", href: "/glossary" },
       { label: "All Tools", href: "/tools" },
     ],
   },

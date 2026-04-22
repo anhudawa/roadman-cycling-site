@@ -3,6 +3,7 @@ import { getAllPosts } from "@/lib/blog";
 import { getAllEpisodes } from "@/lib/podcast";
 import { getAllGuests } from "@/lib/guests";
 import { getAllTopicSlugs } from "@/lib/topics";
+import { getAllTermSlugs } from "@/lib/glossary";
 import { fetchNewsletterIssues } from "@/lib/integrations/beehiiv";
 import { getAllPlanCombinations, getAllEventSlugs } from "@/lib/training-plans";
 
@@ -192,5 +193,15 @@ async function buildTopicAndNewsletterSitemap(): Promise<MetadataRoute.Sitemap> 
     // Beehiiv API unavailable
   }
 
-  return [...topicPages, ...newsletterPages];
+  const glossaryIndex: MetadataRoute.Sitemap = [
+    { url: `${BASE_URL}/glossary`, lastModified: new Date(), changeFrequency: "monthly" as const, priority: 0.7 },
+  ];
+  const glossaryTermPages = getAllTermSlugs().map((slug) => ({
+    url: `${BASE_URL}/glossary/${slug}`,
+    lastModified: new Date(),
+    changeFrequency: "monthly" as const,
+    priority: 0.6,
+  }));
+
+  return [...topicPages, ...glossaryIndex, ...glossaryTermPages, ...newsletterPages];
 }
