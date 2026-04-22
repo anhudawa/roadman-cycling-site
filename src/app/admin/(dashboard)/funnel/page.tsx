@@ -135,7 +135,7 @@ export default async function FunnelPage({
                     <span className={`text-xs font-medium px-2 py-0.5 rounded-full ${
                       row.convRate >= 5 ? "text-green-400 bg-green-400/10" :
                       row.convRate >= 2 ? "text-yellow-400 bg-yellow-400/10" :
-                      row.convRate > 0 ? "text-coral bg-coral/10" :
+                      row.convRate > 0 ? "text-[var(--color-bad)] bg-[var(--color-bad-tint)]" :
                       "text-foreground-subtle bg-white/5"
                     }`}>
                       {row.convRate.toFixed(1)}%

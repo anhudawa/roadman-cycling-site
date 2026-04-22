@@ -176,7 +176,7 @@ export default async function NewsletterPage() {
           <TimeSeriesChart
             data={growthChartData}
             dataKeys={[
-              { key: "subscribers", color: "#E8836B", label: "New Subscribers" },
+              { key: "subscribers", color: "#6A9AD9", label: "New Subscribers" },
             ]}
             height={256}
           />
@@ -248,7 +248,7 @@ export default async function NewsletterPage() {
                             ? "text-green-400 bg-green-400/10"
                             : post.stats.openRate >= 0.2
                               ? "text-yellow-400 bg-yellow-400/10"
-                              : "text-coral bg-coral/10"
+                              : "text-[var(--color-bad)] bg-[var(--color-bad-tint)]"
                         }`}
                       >
                         {(post.stats.openRate * 100).toFixed(1)}%
@@ -261,7 +261,7 @@ export default async function NewsletterPage() {
                             ? "text-green-400 bg-green-400/10"
                             : post.stats.clickRate >= 0.02
                               ? "text-yellow-400 bg-yellow-400/10"
-                              : "text-coral bg-coral/10"
+                              : "text-[var(--color-bad)] bg-[var(--color-bad-tint)]"
                         }`}
                       >
                         {(post.stats.clickRate * 100).toFixed(1)}%
