@@ -51,6 +51,31 @@ type Step =
   | { kind: "processing" }
   | { kind: "error"; message: string };
 
+/**
+ * Where to resume the flow given persisted state. Covers both the
+ * "user reloaded mid-flow" case and the "hero age-picker set `age`
+ * before this component mounted" case. We only advance past steps
+ * whose answer is definitively in state — FTP + goal are optional
+ * so we always re-show them if they haven't been touched; the user
+ * can skip with one tap.
+ */
+function resumeStepFor(state: State): Step {
+  if (!state.age) return { kind: "age" };
+  if (!state.hoursPerWeek) return { kind: "hours" };
+  // First un-answered scored question — advance the user past ones
+  // they already completed in a previous session.
+  for (let i = 0; i < 12; i++) {
+    const key = `Q${i + 1}` as keyof State["answers"];
+    if (state.answers[key] === undefined) {
+      // Haven't started the scored questions yet — still in
+      // demographics. Optional FTP + goal come next.
+      if (i === 0) return { kind: "ftp" };
+      return { kind: "question", index: i };
+    }
+  }
+  return { kind: "q13" };
+}
+
 interface State {
   age: string | null;
   hoursPerWeek: string | null;
@@ -138,17 +163,46 @@ export function DiagnosticFlow() {
   const [hydrated, setHydrated] = useState(false);
   const [submitting, setSubmitting] = useState(false);
 
-  // Hydrate sessionStorage on mount. SSR-safe.
+  // Hydrate sessionStorage on mount + resume at the right step. SSR-safe.
   useEffect(() => {
-    setState(loadPersisted());
+    const persisted = loadPersisted();
+    setState(persisted);
     setHydrated(true);
+    // If the hero age-picker persisted an age before we mounted, or
+    // the user's reloading mid-flow, skip past the steps they've
+    // already answered instead of restarting at Q1.
+    const resume = resumeStepFor(persisted);
+    if (resume.kind !== "age") setStep(resume);
   }, []);
 
-  // Fire `diagnostic_start` once the session id is hydrated. Used to
-  // be tied to the intro-screen button click — that step is gone, so
-  // mount IS start.
+  // Hero age-picker → DiagnosticFlow handoff. The picker lives
+  // outside this component on the /plateau page; it fires this event
+  // when tapped. We update state + advance to hours so the user
+  // arrives mid-flow rather than having to re-pick age here.
+  useEffect(() => {
+    function onPrefill(e: Event) {
+      const detail = (e as CustomEvent<{ age: string }>).detail;
+      if (!detail?.age) return;
+      setState((s) => ({ ...s, age: detail.age }));
+      setStep((s) => (s.kind === "age" ? { kind: "hours" } : s));
+    }
+    window.addEventListener("plateau:prefill-age", onPrefill);
+    return () => window.removeEventListener("plateau:prefill-age", onPrefill);
+  }, []);
+
+  // Fire `diagnostic_start` once the session id is hydrated. Skipped
+  // when the hero age-picker already fired it — otherwise we'd
+  // double-count starts for the primary paid-traffic entry path.
   useEffect(() => {
     if (!sessionId) return;
+    let heroFired = false;
+    try {
+      const raw = sessionStorage.getItem(STORAGE_KEY);
+      heroFired = !!(raw && JSON.parse(raw)?.age);
+    } catch {
+      heroFired = false;
+    }
+    if (heroFired) return;
     trackAnalyticsEvent({
       type: "diagnostic_start",
       page: "/plateau",
