@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { Suspense } from "react";
 import { Container, Footer, Header, Section } from "@/components/layout";
 import { ScrollReveal } from "@/components/ui";
-import { JsonLd } from "@/components/seo/JsonLd";
+import { JsonLd, FAQPageJsonLd } from "@/components/seo/JsonLd";
 import { DiagnosticFlow } from "@/components/features/diagnostic/DiagnosticFlow";
 import { MetaPixel } from "@/components/features/diagnostic/MetaPixel";
 
@@ -107,6 +107,12 @@ export default function PlateauPage() {
             url: "https://roadmancycling.com",
           },
         }}
+      />
+      {/* FAQPage schema lets Google render the FAQ as rich snippets
+          on SERPs that index the landing — bonus organic surface on
+          top of the paid traffic. */}
+      <FAQPageJsonLd
+        questions={FAQS.map((f) => ({ question: f.q, answer: f.a }))}
       />
       <Header />
       <main id="main-content">

@@ -305,7 +305,10 @@ export function DiagnosticFlow() {
 
         const data = (await res.json()) as { slug: string };
         clearPersisted();
-        router.push(`/diagnostic/${data.slug}`);
+        // ?fresh=1 flags the first visit so the results page can show
+        // the "Sent. Check your inbox." banner. SuccessBanner strips
+        // it from the address bar after mount.
+        router.push(`/diagnostic/${data.slug}?fresh=1`);
       } catch (err) {
         console.error("[Diagnostic] submit failed", err);
         setStep({
@@ -359,7 +362,7 @@ export function DiagnosticFlow() {
           <NumberStep
             kicker="Step 3 of 4 · Optional"
             heading="Your current FTP, if you've tested recently."
-            hint="In watts. Skip if you don't know or don't want to share."
+            hint="In watts. Sharing it makes the diagnosis far more specific — but skip freely if you don't know or don't want to."
             value={state.ftp}
             onChange={(v) => setState((s) => ({ ...s, ftp: v }))}
             onSkip={() => advanceFromDemographics({ kind: "goal" })}
@@ -373,7 +376,7 @@ export function DiagnosticFlow() {
           <TextStep
             kicker="Step 4 of 4 · Optional"
             heading="What's your main goal this year?"
-            hint="One line. Race name, event, or just the outcome you want."
+            hint="One line — race name, event, or the outcome you want. We use it to tailor the breakdown to what you're actually training for."
             value={state.goal}
             onChange={(v) => setState((s) => ({ ...s, goal: v.slice(0, 500) }))}
             onSkip={() => advanceFromDemographics({ kind: "question", index: 0 })}
@@ -606,7 +609,7 @@ function NumberStep({
         <button
           type="button"
           onClick={onSkip}
-          className="text-sm text-foreground-subtle hover:text-off-white cursor-pointer"
+          className="text-sm text-foreground-subtle hover:text-off-white cursor-pointer py-2 px-2 rounded"
         >
           Skip this
         </button>
@@ -680,7 +683,7 @@ function TextStep({
         <button
           type="button"
           onClick={onSkip}
-          className="text-sm text-foreground-subtle hover:text-off-white cursor-pointer"
+          className="text-sm text-foreground-subtle hover:text-off-white cursor-pointer py-2 px-2 rounded"
         >
           Skip this
         </button>
@@ -875,7 +878,9 @@ function BackLink({ onBack }: { onBack: () => void }) {
     <button
       type="button"
       onClick={onBack}
-      className="text-sm text-foreground-subtle hover:text-off-white cursor-pointer"
+      // py-2 + the text gives a ~40px hit area, comfortable on mobile
+      // without expanding the visible chrome.
+      className="text-sm text-foreground-subtle hover:text-off-white cursor-pointer py-2 -ml-2 pl-2 pr-3 rounded"
     >
       ← Back
     </button>

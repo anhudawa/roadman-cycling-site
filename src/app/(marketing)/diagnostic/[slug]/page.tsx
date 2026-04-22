@@ -1,8 +1,10 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
+import { Suspense } from "react";
 import { Container, Footer, Header, Section } from "@/components/layout";
 import { ScrollReveal } from "@/components/ui";
+import { maskEmail } from "@/lib/admin/events-store";
 import { getSubmissionBySlug } from "@/lib/diagnostic/store";
 import { CLOSE_TO_BREAKTHROUGH, labelFor } from "@/lib/diagnostic/profiles";
 import { resolveBookingUrl, resolveCta } from "@/lib/diagnostic/config";
@@ -11,6 +13,7 @@ import { ShareButton } from "@/components/features/diagnostic/ShareButton";
 import { MetaPixel } from "@/components/features/diagnostic/MetaPixel";
 import { ReadingProgress } from "@/components/features/diagnostic/ReadingProgress";
 import { StickyCta } from "@/components/features/diagnostic/StickyCta";
+import { SuccessBanner } from "@/components/features/diagnostic/SuccessBanner";
 import type { Breakdown } from "@/lib/diagnostic/types";
 
 /**
@@ -78,6 +81,12 @@ export default async function DiagnosticResultsPage({
     <>
       <ReadingProgress />
       <StickyCta href={cta.primaryHref} label={cta.primaryLabel} />
+      {/* SuccessBanner is gated by ?fresh=1 so it only shows on the
+          post-submit redirect; Suspense is required because it reads
+          useSearchParams. */}
+      <Suspense fallback={null}>
+        <SuccessBanner emailHint={maskEmail(submission.email)} />
+      </Suspense>
       {/* Fires fbq PageView + Lead when the pixel env is configured —
           this is the diagnostic funnel's primary conversion signal. */}
       <MetaPixel
