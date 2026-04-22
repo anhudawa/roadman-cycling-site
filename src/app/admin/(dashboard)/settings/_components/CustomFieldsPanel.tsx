@@ -176,7 +176,7 @@ export function CustomFieldsPanel({ initial }: { initial: FieldDef[] }) {
         <button
           type="button"
           onClick={() => setShowNew((v) => !v)}
-          className="px-3 py-1.5 text-xs bg-[var(--color-coral)] text-background-deep font-medium rounded hover:bg-[var(--color-coral-hover)]"
+          className="px-3 py-1.5 text-xs bg-[var(--color-elevated)] hover:bg-[var(--color-raised)] text-[var(--color-fg)] border border-[var(--color-border-strong)] font-medium rounded"
         >
           {showNew ? "Cancel" : "+ Add field"}
         </button>
@@ -265,7 +265,7 @@ export function CustomFieldsPanel({ initial }: { initial: FieldDef[] }) {
               type="button"
               onClick={createField}
               disabled={busyId === "new" || !newDraft.key || !newDraft.label}
-              className="px-3 py-2 bg-[var(--color-coral)] text-background-deep font-medium rounded text-sm hover:bg-[var(--color-coral-hover)] disabled:opacity-50"
+              className="px-3 py-2 bg-[var(--color-elevated)] hover:bg-[var(--color-raised)] text-[var(--color-fg)] border border-[var(--color-border-strong)] font-medium rounded text-sm disabled:opacity-50"
             >
               {busyId === "new" ? "Creating..." : "Create field"}
             </button>
@@ -340,7 +340,7 @@ export function CustomFieldsPanel({ initial }: { initial: FieldDef[] }) {
                             type="button"
                             onClick={() => saveEdit(d.id)}
                             disabled={busyId === d.id}
-                            className="px-2 py-1 text-[11px] bg-[var(--color-coral)] text-background-deep font-medium rounded hover:bg-[var(--color-coral-hover)] disabled:opacity-50"
+                            className="px-2 py-1 text-[11px] bg-[var(--color-elevated)] hover:bg-[var(--color-raised)] text-[var(--color-fg)] border border-[var(--color-border-strong)] font-medium rounded disabled:opacity-50"
                           >
                             Save
                           </button>

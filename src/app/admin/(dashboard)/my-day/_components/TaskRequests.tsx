@@ -84,7 +84,7 @@ export function TaskRequests({
       )}
 
       {incoming.length > 0 && (
-        <div className="bg-[var(--color-elevated)] border border-[var(--color-border-strong)] border-l-2 border-l-[var(--color-coral)] rounded-[var(--radius-admin-lg)] p-4">
+        <div className="bg-[var(--color-elevated)] border border-[var(--color-border-strong)] border-l-2 border-l-[var(--color-fg)] rounded-[var(--radius-admin-lg)] p-4">
           <p className="font-body font-semibold text-[13px] text-[var(--color-fg)] mb-3">
             Requests for you ({incoming.length})
           </p>
@@ -270,7 +270,7 @@ function ReplyBox({
             if (trimmed) onSubmit(trimmed);
           }}
           disabled={disabled || !value.trim()}
-          className="font-body font-semibold text-[13px] px-3 py-1 rounded-[var(--radius-admin-md)] bg-[var(--color-coral)] text-white hover:bg-[var(--color-coral-hover)] disabled:opacity-50"
+          className="font-body font-semibold text-[13px] px-3 py-1 rounded-[var(--radius-admin-md)] bg-[var(--color-elevated)] hover:bg-[var(--color-raised)] text-[var(--color-fg)] border border-[var(--color-border-strong)] disabled:opacity-50"
         >
           Send reply
         </button>
@@ -423,7 +423,7 @@ function ComposerModal({
             type="button"
             onClick={submit}
             disabled={sending || !title.trim() || !assignedTo}
-            className="font-body font-semibold text-[13px] px-4 py-1.5 rounded-[var(--radius-admin-md)] bg-[var(--color-coral)] text-white hover:bg-[var(--color-coral-hover)] disabled:opacity-50"
+            className="font-body font-semibold text-[13px] px-4 py-1.5 rounded-[var(--radius-admin-md)] bg-[var(--color-elevated)] hover:bg-[var(--color-raised)] text-[var(--color-fg)] border border-[var(--color-border-strong)] disabled:opacity-50"
           >
             {sending ? "Sending…" : "Send"}
           </button>

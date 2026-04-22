@@ -154,7 +154,7 @@ export function TemplatesManager({
       <div className="flex justify-end mb-4">
         <button
           onClick={openNew}
-          className="px-4 py-2 bg-[var(--color-coral)] text-white text-sm font-heading tracking-wider rounded-lg hover:bg-[var(--color-bad-tint)] transition-colors uppercase"
+          className="px-4 py-2 bg-[var(--color-elevated)] hover:bg-[var(--color-raised)] text-[var(--color-fg)] border border-[var(--color-border-strong)] text-sm font-heading tracking-wider rounded-lg transition-colors uppercase"
         >
           New Template
         </button>

@@ -85,7 +85,7 @@ export function SegmentActions({
             type="button"
             onClick={() => setShowSend((v) => !v)}
             disabled={busy || memberCount === 0}
-            className="px-3 py-2 bg-[var(--color-coral)] text-background-deep font-medium rounded text-sm hover:bg-[var(--color-coral-hover)] disabled:opacity-50"
+            className="px-3 py-2 bg-[var(--color-elevated)] hover:bg-[var(--color-raised)] text-[var(--color-fg)] border border-[var(--color-border-strong)] font-medium rounded text-sm disabled:opacity-50"
           >
             {showSend ? "Cancel send" : "Send email"}
           </button>
@@ -123,7 +123,7 @@ export function SegmentActions({
             type="button"
             onClick={send}
             disabled={busy || memberCount === 0 || memberCount > 500 || !templateSlug}
-            className="px-3 py-2 bg-[var(--color-coral)] text-background-deep font-medium rounded text-sm hover:bg-[var(--color-coral-hover)] disabled:opacity-50"
+            className="px-3 py-2 bg-[var(--color-elevated)] hover:bg-[var(--color-raised)] text-[var(--color-fg)] border border-[var(--color-border-strong)] font-medium rounded text-sm disabled:opacity-50"
           >
             {busy ? "Sending..." : `Confirm — send to ${memberCount}`}
           </button>

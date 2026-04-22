@@ -300,7 +300,7 @@ export default function ExploderPage() {
       {loading && (
         <div className="flex items-center justify-center py-16">
           <div className="text-center">
-            <div className="w-8 h-8 border-2 border-[var(--color-border-strong)] border-t-coral rounded-full animate-spin mx-auto mb-4" />
+            <div className="w-8 h-8 border-2 border-[var(--color-border-strong)] border-t-[var(--color-info)] rounded-full animate-spin mx-auto mb-4" />
             <p className="text-foreground-muted text-sm">{loadingMsg}</p>
           </div>
         </div>

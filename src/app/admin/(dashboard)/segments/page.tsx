@@ -31,7 +31,7 @@ export default async function SegmentsPage() {
         </div>
         <Link
           href="/admin/segments/new"
-          className="px-4 py-2 bg-[var(--color-coral)] text-background-deep font-medium rounded text-sm hover:bg-[var(--color-coral-hover)]"
+          className="px-4 py-2 bg-[var(--color-elevated)] hover:bg-[var(--color-raised)] text-[var(--color-fg)] border border-[var(--color-border-strong)] font-medium rounded text-sm"
         >
           + New segment
         </Link>

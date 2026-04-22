@@ -103,7 +103,7 @@ export function AddTaskButton({ currentSlug }: { currentSlug: string }) {
       <button
         type="button"
         onClick={() => setOpen(true)}
-        className="px-4 py-2 bg-[var(--color-coral)] hover:bg-[var(--color-coral-hover)] text-white font-body font-semibold text-[14px] rounded-[var(--radius-admin-md)] transition-colors"
+        className="px-4 py-2 bg-[var(--color-elevated)] hover:bg-[var(--color-raised)] text-[var(--color-fg)] border border-[var(--color-border-strong)] font-body font-semibold text-[14px] rounded-[var(--radius-admin-md)] transition-colors"
       >
         Add task
       </button>
@@ -236,7 +236,7 @@ export function AddTaskButton({ currentSlug }: { currentSlug: string }) {
                 <button
                   type="submit"
                   disabled={submitting}
-                  className="px-4 py-2 bg-[var(--color-coral)] hover:bg-[var(--color-coral-hover)] disabled:opacity-50 text-white font-body font-semibold text-[14px] rounded-[var(--radius-admin-md)]"
+                  className="px-4 py-2 bg-[var(--color-elevated)] hover:bg-[var(--color-raised)] disabled:opacity-50 text-[var(--color-fg)] border border-[var(--color-border-strong)] font-body font-semibold text-[14px] rounded-[var(--radius-admin-md)]"
                 >
                   {submitting ? "Creating..." : "Create"}
                 </button>
