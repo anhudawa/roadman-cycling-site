@@ -80,7 +80,7 @@ function SlotCard({ slot, sponsors }: { slot: Slot; sponsors: Sponsor[] }) {
         {slot.status === "available" && (
           <button
             onClick={() => setShowBooking(!showBooking)}
-            className="text-xs px-3 py-1 rounded-md bg-coral/10 text-coral hover:bg-coral/20 transition-colors font-medium"
+            className="text-xs px-3 py-1 rounded-md bg-[var(--color-info-tint)] text-[var(--color-info)] hover:bg-[var(--color-info-tint)]/80 transition-colors font-medium"
           >
             Book
           </button>
@@ -197,7 +197,7 @@ function BookingForm({
         <button
           type="submit"
           disabled={isPending || !sponsorId}
-          className="text-xs px-4 py-1.5 rounded-md bg-coral text-off-white hover:bg-coral-hover transition-colors font-medium disabled:opacity-50"
+          className="text-xs px-4 py-1.5 rounded-md bg-[var(--color-elevated)] hover:bg-[var(--color-raised)] text-[var(--color-fg)] border border-[var(--color-border-strong)] transition-colors font-medium disabled:opacity-50"
         >
           {isPending ? "Saving..." : slot.status === "held" ? "Convert to Sold" : "Book Slot"}
         </button>

@@ -56,7 +56,7 @@ export function SeedSamplesButton() {
       {msg ? (
         <div className="text-xs text-emerald-300 mt-2">{msg}</div>
       ) : null}
-      {err ? <div className="text-xs text-coral mt-2">{err}</div> : null}
+      {err ? <div className="text-xs text-[var(--color-bad)] mt-2">{err}</div> : null}
     </div>
   );
 }

@@ -53,7 +53,7 @@ export function BookingRow({ booking }: { booking: BookingRowType }) {
 
   return (
     <li
-      className={`group flex items-center gap-3 p-3 rounded-lg border border-white/5 bg-background-deep/40 hover:border-coral/30 transition-colors ${
+      className={`group flex items-center gap-3 p-3 rounded-[var(--radius-admin-md)] border border-[var(--color-border)] bg-[var(--color-sunken)] hover:border-[var(--color-border-strong)] hover:bg-white/[0.04] transition-colors ${
         busy || pending ? "opacity-60" : ""
       }`}
     >
@@ -68,7 +68,7 @@ export function BookingRow({ booking }: { booking: BookingRowType }) {
       <div className="flex-1 min-w-0">
         <Link
           href={`/admin/bookings/${booking.id}`}
-          className="text-sm text-off-white hover:text-coral block truncate"
+          className="text-sm text-[var(--color-fg)] hover:underline block truncate"
         >
           {booking.title}
         </Link>
@@ -76,7 +76,7 @@ export function BookingRow({ booking }: { booking: BookingRowType }) {
           {booking.contactId ? (
             <Link
               href={`/admin/contacts/${booking.contactId}`}
-              className="hover:text-coral truncate"
+              className="hover:text-[var(--color-fg)] hover:underline truncate"
             >
               {booking.contactName ?? booking.contactEmail}
             </Link>
@@ -100,7 +100,7 @@ export function BookingRow({ booking }: { booking: BookingRowType }) {
           {booking.status.replace("_", " ")}
         </span>
         <span
-          className="inline-flex items-center justify-center w-6 h-6 rounded-full bg-coral/10 text-coral text-[11px] font-bold capitalize"
+          className="inline-flex items-center justify-center w-6 h-6 rounded-full bg-[var(--color-elevated)] text-[var(--color-fg)] text-[11px] font-bold capitalize border border-[var(--color-border-strong)]"
           title={booking.ownerSlug}
         >
           {booking.ownerSlug.charAt(0).toUpperCase()}
@@ -110,7 +110,7 @@ export function BookingRow({ booking }: { booking: BookingRowType }) {
             type="button"
             onClick={markCompleted}
             disabled={busy}
-            className="text-[10px] uppercase tracking-wider px-2 py-1 rounded border border-coral/30 text-coral hover:bg-coral/10"
+            className="text-[11px] font-body font-semibold px-2 py-1 rounded border border-[var(--color-border-strong)] text-[var(--color-fg)] hover:bg-[var(--color-raised)]"
           >
             Mark done
           </button>

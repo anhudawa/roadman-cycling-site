@@ -85,7 +85,7 @@ export function SavedViewsBar({
 
   return (
     <div className="flex flex-wrap items-center gap-2 mb-3">
-      <span className="text-xs font-heading tracking-wider uppercase text-foreground-muted">
+      <span className="font-body font-semibold text-[13px] text-[var(--color-fg)]">
         Views:
       </span>
       {views.length === 0 && (
@@ -96,7 +96,7 @@ export function SavedViewsBar({
         return (
           <span
             key={v.id}
-            className="inline-flex items-center gap-1 rounded-full border border-white/10 bg-background-elevated text-xs text-off-white hover:border-coral/40 transition-colors"
+            className="inline-flex items-center gap-1 rounded-full border border-[var(--color-border)] bg-[var(--color-elevated)] text-xs text-[var(--color-fg)] hover:border-[var(--color-border-strong)] transition-colors"
           >
             <button
               type="button"
@@ -110,7 +110,7 @@ export function SavedViewsBar({
               <button
                 type="button"
                 onClick={() => handleDelete(v.id)}
-                className="pr-2 pl-1 text-foreground-muted hover:text-coral"
+                className="pr-2 pl-1 text-[var(--color-fg-muted)] hover:text-[var(--color-fg)]"
                 aria-label={`Delete view ${v.name}`}
               >
                 ×
@@ -137,13 +137,13 @@ export function SavedViewsBar({
               placeholder="View name..."
               autoFocus
               disabled={saving}
-              className="px-2 py-1 text-xs bg-background-elevated border border-white/10 text-off-white rounded focus:outline-none focus:border-coral/50 min-w-[160px]"
+              className="px-2 py-1 text-xs bg-[var(--color-sunken)] border border-[var(--color-border-strong)] text-[var(--color-fg)] rounded-[var(--radius-admin-md)] focus-ring focus:border-[var(--color-border-focus)] min-w-[160px]"
             />
             <button
               type="button"
               onClick={handleSave}
               disabled={saving}
-              className="px-2 py-1 text-xs font-heading tracking-wider uppercase bg-coral/20 text-coral border border-coral/40 rounded hover:bg-coral/30 disabled:opacity-50"
+              className="px-2 py-1 font-body font-semibold text-[13px] bg-[var(--color-raised)] text-[var(--color-fg)] border border-[var(--color-border-strong)] rounded-[var(--radius-admin-md)] hover:bg-[var(--color-elevated)] disabled:opacity-50"
             >
               {saving ? "Saving..." : "Save"}
             </button>
@@ -158,13 +158,13 @@ export function SavedViewsBar({
             >
               Cancel
             </button>
-            {error && <span className="text-xs text-coral">{error}</span>}
+            {error && <span className="text-xs text-[var(--color-bad)]">{error}</span>}
           </>
         ) : (
           <button
             type="button"
             onClick={() => setShowInput(true)}
-            className="px-3 py-1 text-xs font-heading tracking-wider uppercase bg-background-elevated border border-white/10 text-off-white rounded hover:border-coral/40 transition-colors"
+            className="px-3 py-1 font-body font-semibold text-[13px] bg-[var(--color-elevated)] border border-[var(--color-border)] text-[var(--color-fg)] rounded-[var(--radius-admin-md)] hover:border-[var(--color-border-strong)] transition-colors"
           >
             + Save current view
           </button>

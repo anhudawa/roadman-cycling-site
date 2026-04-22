@@ -8,6 +8,7 @@ import {
 } from "@/lib/integrations/beehiiv";
 import { TimeSeriesChart } from "../components/charts/TimeSeriesChart";
 import { db } from "@/lib/db";
+import { Card, CardBody } from "@/components/admin/ui";
 import { beehiivSnapshots } from "@/lib/db/schema";
 import { asc, gte } from "drizzle-orm";
 
@@ -119,64 +120,71 @@ export default async function NewsletterPage() {
 
       {/* Summary cards */}
       <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
-        <div className="bg-background-elevated border border-white/5 rounded-xl p-5">
-          <p className="text-foreground-subtle text-xs uppercase tracking-wider mb-1">
-            Total Subscribers
-          </p>
-          <p className="text-2xl font-heading text-off-white tracking-wide">
-            {subscriberStats
-              ? subscriberStats.totalSubscribers.toLocaleString()
-              : "--"}
-          </p>
-          {subscriberStats && (
-            <p className="text-xs text-foreground-subtle mt-1">
-              {subscriberStats.activeSubscribers.toLocaleString()} active
+        <Card>
+          <CardBody compact>
+            <p className="text-foreground-subtle text-xs uppercase tracking-wider mb-1">
+              Total Subscribers
             </p>
-          )}
-          {!subscriberStats && !apiError && (
-            <p className="text-xs text-foreground-subtle mt-1">
-              No data returned from Beehiiv
+            <p className="text-2xl font-heading text-off-white tracking-wide">
+              {subscriberStats
+                ? subscriberStats.totalSubscribers.toLocaleString()
+                : "--"}
             </p>
-          )}
-        </div>
-        <div className="bg-background-elevated border border-white/5 rounded-xl p-5">
-          <p className="text-foreground-subtle text-xs uppercase tracking-wider mb-1">
-            Open Rate (Avg)
-          </p>
-          <p className="text-2xl font-heading text-off-white tracking-wide">
-            {hasData ? `${(avgOpenRate * 100).toFixed(1)}%` : "--%"}
-          </p>
-          <p className="text-xs text-foreground-subtle mt-1">
-            {sentPosts.length > 0
-              ? `Across ${sentPosts.length} recent sends`
-              : "Last 30 days"}
-          </p>
-        </div>
-        <div className="bg-background-elevated border border-white/5 rounded-xl p-5">
-          <p className="text-foreground-subtle text-xs uppercase tracking-wider mb-1">
-            Click Rate (Avg)
-          </p>
-          <p className="text-2xl font-heading text-off-white tracking-wide">
-            {hasData ? `${(avgClickRate * 100).toFixed(1)}%` : "--%"}
-          </p>
-          <p className="text-xs text-foreground-subtle mt-1">
-            {sentPosts.length > 0
-              ? `Across ${sentPosts.length} recent sends`
-              : "Last 30 days"}
-          </p>
-        </div>
+            {subscriberStats && (
+              <p className="text-xs text-foreground-subtle mt-1">
+                {subscriberStats.activeSubscribers.toLocaleString()} active
+              </p>
+            )}
+            {!subscriberStats && !apiError && (
+              <p className="text-xs text-foreground-subtle mt-1">
+                No data returned from Beehiiv
+              </p>
+            )}
+          </CardBody>
+        </Card>
+        <Card>
+          <CardBody compact>
+            <p className="text-foreground-subtle text-xs uppercase tracking-wider mb-1">
+              Open Rate (Avg)
+            </p>
+            <p className="text-2xl font-heading text-off-white tracking-wide">
+              {hasData ? `${(avgOpenRate * 100).toFixed(1)}%` : "--%"}
+            </p>
+            <p className="text-xs text-foreground-subtle mt-1">
+              {sentPosts.length > 0
+                ? `Across ${sentPosts.length} recent sends`
+                : "Last 30 days"}
+            </p>
+          </CardBody>
+        </Card>
+        <Card>
+          <CardBody compact>
+            <p className="text-foreground-subtle text-xs uppercase tracking-wider mb-1">
+              Click Rate (Avg)
+            </p>
+            <p className="text-2xl font-heading text-off-white tracking-wide">
+              {hasData ? `${(avgClickRate * 100).toFixed(1)}%` : "--%"}
+            </p>
+            <p className="text-xs text-foreground-subtle mt-1">
+              {sentPosts.length > 0
+                ? `Across ${sentPosts.length} recent sends`
+                : "Last 30 days"}
+            </p>
+          </CardBody>
+        </Card>
       </div>
 
       {/* Growth trend */}
-      <div className="bg-background-elevated border border-white/5 rounded-xl p-5">
-        <h2 className="font-heading text-sm text-foreground-muted tracking-wider mb-4">
-          SUBSCRIBER GROWTH (30 DAYS)
+      <Card>
+        <CardBody compact>
+        <h2 className="font-body font-semibold text-[13px] text-[var(--color-fg)] mb-4">
+          Subscriber growth (30 days)
         </h2>
         {growthChartData.length > 1 ? (
           <TimeSeriesChart
             data={growthChartData}
             dataKeys={[
-              { key: "subscribers", color: "#E8836B", label: "New Subscribers" },
+              { key: "subscribers", color: "#6A9AD9", label: "New Subscribers" },
             ]}
             height={256}
           />
@@ -189,13 +197,14 @@ export default async function NewsletterPage() {
             </p>
           </div>
         )}
-      </div>
+        </CardBody>
+      </Card>
 
       {/* Recent sends table */}
-      <div className="bg-background-elevated border border-white/5 rounded-xl overflow-hidden">
-        <div className="px-4 py-3 border-b border-white/5">
-          <h2 className="font-heading text-sm text-foreground-muted tracking-wider">
-            RECENT SENDS{sentPosts.length > 0 ? ` (${sentPosts.length})` : ""}
+      <Card className="overflow-hidden">
+        <div className="px-4 py-3 border-b border-[var(--color-border)]">
+          <h2 className="font-body font-semibold text-[13px] text-[var(--color-fg)]">
+            Recent sends{sentPosts.length > 0 ? ` (${sentPosts.length})` : ""}
           </h2>
         </div>
         <div className="overflow-x-auto">
@@ -248,7 +257,7 @@ export default async function NewsletterPage() {
                             ? "text-green-400 bg-green-400/10"
                             : post.stats.openRate >= 0.2
                               ? "text-yellow-400 bg-yellow-400/10"
-                              : "text-coral bg-coral/10"
+                              : "text-[var(--color-bad)] bg-[var(--color-bad-tint)]"
                         }`}
                       >
                         {(post.stats.openRate * 100).toFixed(1)}%
@@ -261,7 +270,7 @@ export default async function NewsletterPage() {
                             ? "text-green-400 bg-green-400/10"
                             : post.stats.clickRate >= 0.02
                               ? "text-yellow-400 bg-yellow-400/10"
-                              : "text-coral bg-coral/10"
+                              : "text-[var(--color-bad)] bg-[var(--color-bad-tint)]"
                         }`}
                       >
                         {(post.stats.clickRate * 100).toFixed(1)}%
@@ -284,7 +293,7 @@ export default async function NewsletterPage() {
             </tbody>
           </table>
         </div>
-      </div>
+      </Card>
     </div>
   );
 }

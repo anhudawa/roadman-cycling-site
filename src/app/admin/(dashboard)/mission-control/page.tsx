@@ -32,13 +32,13 @@ export default async function MissionControlPage() {
         <PageHeader title="Mission Control" />
         <Card tone="danger">
           <CardBody>
-            <SectionLabel tone="coral">Stripe unreachable</SectionLabel>
+            <SectionLabel tone="fg">Stripe unreachable</SectionLabel>
             <p className="text-foreground-muted text-sm mt-2">
-              Check <code className="bg-black/40 px-1 rounded">STRIPE_SECRET_KEY</code>{" "}
+              Check <code className="bg-[var(--color-sunken)] px-1 rounded font-mono">STRIPE_SECRET_KEY</code>{" "}
               on Vercel and confirm the{" "}
-              <code className="bg-black/40 px-1 rounded">/api/cron/stripe-snapshot</code>{" "}
+              <code className="bg-[var(--color-sunken)] px-1 rounded font-mono">/api/cron/stripe-snapshot</code>{" "}
               cron is running. Once it lands a row in{" "}
-              <code className="bg-black/40 px-1 rounded">stripe_snapshots</code>,
+              <code className="bg-[var(--color-sunken)] px-1 rounded font-mono">stripe_snapshots</code>,
               this page populates.
             </p>
           </CardBody>
@@ -83,7 +83,7 @@ export default async function MissionControlPage() {
 
       {/* Hero: MRR + glide path + side tiles */}
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
-        <Card tone="coral" className="lg:col-span-2">
+        <Card tone="raised" className="lg:col-span-2">
           <CardBody className="p-6">
             <div className="flex items-baseline gap-3 flex-wrap">
               <SectionLabel>Current MRR</SectionLabel>
@@ -101,7 +101,7 @@ export default async function MissionControlPage() {
               {now.activeSubscriptions.toLocaleString()} active ·{" "}
               {now.trialingCount} trialing ·{" "}
               {now.pastDueCount > 0 ? (
-                <span className="text-coral">
+                <span className="text-[var(--color-bad)]">
                   {now.pastDueCount} past due ({formatCents(now.pastDueMrrCents)})
                 </span>
               ) : (
@@ -207,7 +207,7 @@ export default async function MissionControlPage() {
               : "—"
           }
           sub="MRR / active subs"
-          size="sm"
+
         />
         <StatTile
           label="Annual-plan MRR"
@@ -217,7 +217,7 @@ export default async function MissionControlPage() {
               ? `${((now.annualMrrCents / now.mrrCents) * 100).toFixed(0)}% of MRR`
               : "—"
           }
-          size="sm"
+
         />
         <StatTile
           label="At-risk MRR"
@@ -226,7 +226,7 @@ export default async function MissionControlPage() {
             now.pastDueCount === 1 ? "sub" : "subs"
           }`}
           tone={now.pastDueMrrCents > 0 ? "bad" : "good"}
-          size="sm"
+
         />
       </div>
 
@@ -236,19 +236,19 @@ export default async function MissionControlPage() {
           <SectionLabel>Decisions this page unlocks</SectionLabel>
           <ul className="text-sm text-foreground-muted space-y-2 mt-3">
             <li className="flex gap-2">
-              <span className="text-coral mt-0.5">→</span>
+              <span className="text-[var(--color-fg-muted)] mt-0.5">→</span>
               Are we on track for {formatCentsCompact(target)} MRR? If net add
               is less than{" "}
               {formatCents(Math.round(target / 18 / 100) * 100)}/mo you won&apos;t
               hit it inside 18 months at current pace.
             </li>
             <li className="flex gap-2">
-              <span className="text-coral mt-0.5">→</span>
+              <span className="text-[var(--color-fg-muted)] mt-0.5">→</span>
               Any past-due MRR? Recover first — churn prevention is the cheapest
               MRR there is.
             </li>
             <li className="flex gap-2">
-              <span className="text-coral mt-0.5">→</span>
+              <span className="text-[var(--color-fg-muted)] mt-0.5">→</span>
               Trial conversion below ~35%? Tighten the trial experience before
               pouring more top-of-funnel into it.
             </li>

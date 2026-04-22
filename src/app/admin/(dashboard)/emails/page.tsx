@@ -2,12 +2,13 @@ import { getPageStats } from "@/lib/admin/events-store";
 import { parseTimeRange } from "@/lib/admin/time-ranges";
 import { Suspense } from "react";
 import { TimeRangePicker } from "../components/TimeRangePicker";
+import { Card, CardBody } from "@/components/admin/ui";
 
 function ConversionBadge({ rate }: { rate: number }) {
   let color = "text-foreground-subtle bg-white/5";
   if (rate >= 5) color = "text-green-400 bg-green-400/10";
   else if (rate >= 2) color = "text-yellow-400 bg-yellow-400/10";
-  else if (rate > 0) color = "text-coral bg-coral/10";
+  else if (rate > 0) color = "text-[var(--color-bad)] bg-[var(--color-bad-tint)]";
   return (
     <span className={`text-xs font-medium px-2 py-0.5 rounded-full ${color}`}>
       {rate.toFixed(1)}%
@@ -35,7 +36,7 @@ function BarInline({ value, max }: { value: number; max: number }) {
     <div className="flex items-center gap-2">
       <div className="h-1.5 bg-white/5 rounded-full overflow-hidden w-20">
         <div
-          className="h-full bg-coral rounded-full"
+          className="h-full bg-[var(--color-info)] rounded-full"
           style={{ width: `${Math.min(pct, 100)}%` }}
         />
       </div>
@@ -98,24 +99,30 @@ export default async function ConversionsPage({
 
       {/* Summary cards */}
       <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
-        <div className="bg-background-elevated border border-white/5 rounded-xl p-4">
-          <p className="text-foreground-subtle text-xs uppercase tracking-wider">Pages Tracked</p>
-          <p className="text-2xl font-heading text-off-white mt-1">{pageStats.length}</p>
-        </div>
-        <div className="bg-background-elevated border border-white/5 rounded-xl p-4">
-          <p className="text-foreground-subtle text-xs uppercase tracking-wider">Total Signups</p>
-          <p className="text-2xl font-heading text-off-white mt-1">{totalSignups}</p>
-        </div>
-        <div className="bg-background-elevated border border-white/5 rounded-xl p-4">
-          <p className="text-foreground-subtle text-xs uppercase tracking-wider">Avg Conversion</p>
-          <p className="text-2xl font-heading text-off-white mt-1">
-            {avgConversion.toFixed(1)}%
-          </p>
-        </div>
+        <Card>
+          <CardBody compact>
+            <p className="text-foreground-subtle text-xs uppercase tracking-wider">Pages Tracked</p>
+            <p className="text-2xl font-heading text-off-white mt-1">{pageStats.length}</p>
+          </CardBody>
+        </Card>
+        <Card>
+          <CardBody compact>
+            <p className="text-foreground-subtle text-xs uppercase tracking-wider">Total Signups</p>
+            <p className="text-2xl font-heading text-off-white mt-1">{totalSignups}</p>
+          </CardBody>
+        </Card>
+        <Card>
+          <CardBody compact>
+            <p className="text-foreground-subtle text-xs uppercase tracking-wider">Avg Conversion</p>
+            <p className="text-2xl font-heading text-off-white mt-1">
+              {avgConversion.toFixed(1)}%
+            </p>
+          </CardBody>
+        </Card>
       </div>
 
       {/* Table */}
-      <div className="bg-background-elevated border border-white/5 rounded-xl overflow-hidden">
+      <Card className="overflow-hidden">
         <div className="overflow-x-auto">
           <table className="w-full">
             <thead>
@@ -172,7 +179,7 @@ export default async function ConversionsPage({
             </tbody>
           </table>
         </div>
-      </div>
+      </Card>
     </div>
   );
 }

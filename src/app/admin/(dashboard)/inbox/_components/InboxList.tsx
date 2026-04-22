@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState, useCallback } from "react";
+import { UnreadDot } from "@/components/admin/ui";
 
 const TEAM_MEMBERS = [
   { value: null, label: "Unassigned" },
@@ -124,7 +125,7 @@ export function InboxList() {
   if (loading) {
     return (
       <div className="flex items-center justify-center h-64">
-        <div className="w-6 h-6 border-2 border-coral/30 border-t-coral rounded-full animate-spin" />
+        <div className="w-6 h-6 border-2 border-[var(--color-border-strong)] border-t-[var(--color-fg)] rounded-full animate-spin" />
       </div>
     );
   }
@@ -170,17 +171,15 @@ export function InboxList() {
                 onClick={() => markAsRead(s)}
                 className={`w-full text-left p-4 rounded-lg border transition-colors ${
                   selected?.id === s.id
-                    ? "bg-coral/10 border-coral/30"
+                    ? "bg-white/[0.04] border-[var(--color-border-strong)] border-l-2 border-l-[var(--color-fg)]"
                     : s.readAt
-                      ? "bg-background-elevated/50 border-white/5 hover:border-white/10"
-                      : "bg-background-elevated border-coral/20 hover:border-coral/40"
+                      ? "bg-[var(--color-surface)]/50 border-[var(--color-border)] hover:border-[var(--color-border-strong)]"
+                      : "bg-[var(--color-elevated)] border-[var(--color-border-strong)] border-l-2 border-l-[var(--color-border-strong)] hover:bg-[var(--color-raised)]"
                 }`}
               >
                 <div className="flex items-start justify-between gap-2">
                   <div className="flex items-center gap-2 min-w-0">
-                    {!s.readAt && (
-                      <span className="w-2 h-2 rounded-full bg-coral shrink-0" />
-                    )}
+                    {!s.readAt && <UnreadDot size="sm" />}
                     <span
                       className={`text-sm truncate ${
                         s.readAt ? "text-foreground-muted" : "text-off-white font-medium"
@@ -241,9 +240,9 @@ export function InboxList() {
                   <div className="flex items-center gap-2 shrink-0">
                     <a
                       href={`mailto:${selected.email}?subject=Re: ${encodeURIComponent(selected.subject)}`}
-                      className="px-4 py-2 bg-coral text-white text-sm font-heading rounded-lg hover:bg-coral/90 transition-colors"
+                      className="px-4 py-2 bg-[var(--color-elevated)] hover:bg-[var(--color-raised)] text-[var(--color-fg)] border border-[var(--color-border-strong)] font-body font-semibold text-[14px] rounded-[var(--radius-admin-md)] transition-colors"
                     >
-                      REPLY
+                      Reply
                     </a>
                   </div>
                 </div>
@@ -260,7 +259,7 @@ export function InboxList() {
                           e.target.value === "" ? null : e.target.value
                         )
                       }
-                      className="text-xs bg-background-elevated border border-white/10 text-off-white rounded px-2 py-1 focus:outline-none focus:border-coral/50"
+                      className="text-xs bg-[var(--color-sunken)] border border-[var(--color-border-strong)] text-[var(--color-fg)] rounded-[var(--radius-admin-md)] px-2 py-1 focus-ring focus:border-[var(--color-border-focus)]"
                     >
                       {TEAM_MEMBERS.map((m) => (
                         <option key={m.label} value={m.value ?? ""}>

@@ -4,6 +4,7 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import type { MyDayTaskRequestRow } from "@/lib/crm/dashboard";
+import { Card, CardBody } from "@/components/admin/ui";
 
 interface Teammate {
   slug: string;
@@ -72,19 +73,19 @@ export function TaskRequests({
 
   return (
     <div className="space-y-4">
-      <h2 className="font-heading text-sm tracking-wider uppercase text-foreground-muted">
-        Team Tasks
+      <h2 className="font-body font-semibold text-[13px] text-[var(--color-fg)]">
+        Team tasks
       </h2>
 
       {error && (
-        <p className="text-xs text-coral bg-coral/5 border border-coral/20 rounded px-3 py-2">
+        <p className="text-xs text-[var(--color-bad)] bg-[var(--color-bad-tint)] border border-[var(--color-bad)]/30 rounded-[var(--radius-admin-md)] px-3 py-2">
           {error}
         </p>
       )}
 
       {incoming.length > 0 && (
-        <div className="bg-background-elevated border border-coral/20 rounded-xl p-4">
-          <p className="text-[10px] uppercase tracking-widest text-coral font-semibold mb-3">
+        <div className="bg-[var(--color-elevated)] border border-[var(--color-border-strong)] border-l-2 border-l-[var(--color-fg)] rounded-[var(--radius-admin-lg)] p-4">
+          <p className="font-body font-semibold text-[13px] text-[var(--color-fg)] mb-3">
             Requests for you ({incoming.length})
           </p>
           <ul className="space-y-3">
@@ -115,13 +116,13 @@ export function TaskRequests({
                     {t.contactId && (
                       <Link
                         href={`/admin/contacts/${t.contactId}`}
-                        className="text-xs text-coral hover:underline mt-1 inline-block"
+                        className="text-xs text-[var(--color-info)] hover:underline mt-1 inline-block"
                       >
                         {t.contactName ?? t.contactEmail}
                       </Link>
                     )}
                     {t.responseMessage && (
-                      <p className="text-[11px] text-foreground-muted mt-2 italic border-l-2 border-coral/40 pl-2">
+                      <p className="text-[11px] text-foreground-muted mt-2 italic border-l-2 border-[var(--color-border-strong)] pl-2">
                         Your last reply: “{t.responseMessage}”
                       </p>
                     )}
@@ -168,7 +169,8 @@ export function TaskRequests({
       )}
 
       {outgoing.length > 0 && (
-        <div className="bg-background-elevated border border-white/5 rounded-xl p-4">
+        <Card>
+          <CardBody compact>
           <p className="text-[10px] uppercase tracking-widest text-foreground-subtle font-semibold mb-3">
             Awaiting their response ({outgoing.length})
           </p>
@@ -193,7 +195,7 @@ export function TaskRequests({
                       {t.dueAt && ` · due ${new Date(t.dueAt).toLocaleDateString("en-GB", { day: "numeric", month: "short" })}`}
                     </p>
                     {t.responseMessage && (
-                      <p className="text-[11px] text-off-white mt-2 border-l-2 border-coral/40 pl-2">
+                      <p className="text-[11px] text-off-white mt-2 border-l-2 border-[var(--color-border-strong)] pl-2">
                         <span className="text-foreground-subtle">Reply:</span>{" "}
                         “{t.responseMessage}”
                       </p>
@@ -212,7 +214,8 @@ export function TaskRequests({
               </li>
             ))}
           </ul>
-        </div>
+          </CardBody>
+        </Card>
       )}
 
       {incoming.length === 0 && outgoing.length === 0 && (
@@ -249,7 +252,7 @@ function ReplyBox({
         placeholder={placeholder}
         rows={2}
         disabled={disabled}
-        className="w-full px-3 py-2 text-sm bg-background-deep border border-white/10 text-off-white rounded focus:outline-none focus:border-coral/50"
+        className="w-full px-3 py-2 text-sm bg-[var(--color-sunken)] border border-[var(--color-border-strong)] text-[var(--color-fg)] rounded-[var(--radius-admin-md)] focus-ring focus:border-[var(--color-border-focus)]"
       />
       <div className="flex gap-2 justify-end">
         <button
@@ -267,7 +270,7 @@ function ReplyBox({
             if (trimmed) onSubmit(trimmed);
           }}
           disabled={disabled || !value.trim()}
-          className="text-xs px-3 py-1 rounded-lg bg-coral text-white hover:bg-coral/90 disabled:opacity-50 font-heading tracking-wider uppercase"
+          className="font-body font-semibold text-[13px] px-3 py-1 rounded-[var(--radius-admin-md)] bg-[var(--color-elevated)] hover:bg-[var(--color-raised)] text-[var(--color-fg)] border border-[var(--color-border-strong)] disabled:opacity-50"
         >
           Send reply
         </button>
@@ -354,7 +357,7 @@ function ComposerModal({
             <select
               value={assignedTo}
               onChange={(e) => setAssignedTo(e.target.value)}
-              className="w-full px-3 py-2 text-sm bg-background-deep border border-white/10 text-off-white rounded focus:outline-none focus:border-coral/50"
+              className="w-full px-3 py-2 text-sm bg-[var(--color-sunken)] border border-[var(--color-border-strong)] text-[var(--color-fg)] rounded-[var(--radius-admin-md)] focus-ring focus:border-[var(--color-border-focus)]"
             >
               {teammates
                 .filter((t) => t.slug !== currentUserSlug)
@@ -375,7 +378,7 @@ function ComposerModal({
               onChange={(e) => setTitle(e.target.value)}
               placeholder="e.g. Write intro for episode 1240"
               autoFocus
-              className="w-full px-3 py-2 text-sm bg-background-deep border border-white/10 text-off-white rounded focus:outline-none focus:border-coral/50"
+              className="w-full px-3 py-2 text-sm bg-[var(--color-sunken)] border border-[var(--color-border-strong)] text-[var(--color-fg)] rounded-[var(--radius-admin-md)] focus-ring focus:border-[var(--color-border-focus)]"
             />
           </div>
           <div>
@@ -387,7 +390,7 @@ function ComposerModal({
               onChange={(e) => setNotes(e.target.value)}
               rows={3}
               placeholder="Why, links, anything useful…"
-              className="w-full px-3 py-2 text-sm bg-background-deep border border-white/10 text-off-white rounded focus:outline-none focus:border-coral/50"
+              className="w-full px-3 py-2 text-sm bg-[var(--color-sunken)] border border-[var(--color-border-strong)] text-[var(--color-fg)] rounded-[var(--radius-admin-md)] focus-ring focus:border-[var(--color-border-focus)]"
             />
           </div>
           <div>
@@ -398,11 +401,11 @@ function ComposerModal({
               type="date"
               value={dueAt}
               onChange={(e) => setDueAt(e.target.value)}
-              className="px-3 py-2 text-sm bg-background-deep border border-white/10 text-off-white rounded focus:outline-none focus:border-coral/50"
+              className="px-3 py-2 text-sm bg-[var(--color-sunken)] border border-[var(--color-border-strong)] text-[var(--color-fg)] rounded-[var(--radius-admin-md)] focus-ring focus:border-[var(--color-border-focus)]"
             />
           </div>
           {error && (
-            <p className="text-xs text-coral bg-coral/5 border border-coral/20 rounded px-3 py-2">
+            <p className="text-xs text-[var(--color-bad)] bg-[var(--color-bad-tint)] border border-[var(--color-bad)]/30 rounded-[var(--radius-admin-md)] px-3 py-2">
               {error}
             </p>
           )}
@@ -420,7 +423,7 @@ function ComposerModal({
             type="button"
             onClick={submit}
             disabled={sending || !title.trim() || !assignedTo}
-            className="text-xs px-4 py-1.5 rounded-lg bg-coral text-white hover:bg-coral/90 disabled:opacity-50 font-heading tracking-wider uppercase"
+            className="font-body font-semibold text-[13px] px-4 py-1.5 rounded-[var(--radius-admin-md)] bg-[var(--color-elevated)] hover:bg-[var(--color-raised)] text-[var(--color-fg)] border border-[var(--color-border-strong)] disabled:opacity-50"
           >
             {sending ? "Sending…" : "Send"}
           </button>

@@ -6,6 +6,7 @@ import {
   type AtRiskTrial,
   type StalledSubscriber,
 } from "@/lib/admin/subscribers-store";
+import { Card, CardBody } from "@/components/admin/ui";
 
 const DEMO_TRIALS: AtRiskTrial[] = [
   { email: "j***n@gmail.com", trialStartedAt: new Date(Date.now() - 5 * 86400000), daysLeft: 2, sourcePage: "/blog/zone-2-training" },
@@ -30,7 +31,7 @@ function stageLabel(stage: string): string {
 
 function stageColor(stage: string): string {
   switch (stage) {
-    case "no_skool": return "text-coral bg-coral/10";
+    case "no_skool": return "text-[var(--color-bad)] bg-[var(--color-bad-tint)]";
     case "no_trial": return "text-yellow-400 bg-yellow-400/10";
     case "no_paid": return "text-blue-400 bg-blue-400/10";
     default: return "text-foreground-subtle bg-white/5";
@@ -72,35 +73,41 @@ export default async function HealthPage() {
 
       {/* Health indicators */}
       <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
-        <div className="bg-background-elevated border border-white/5 rounded-xl p-5">
-          <p className="text-foreground-subtle text-xs uppercase tracking-wider mb-1">
-            Trial → Paid (This Week)
-          </p>
-          <p className="text-2xl font-heading text-off-white">
-            {healthStats.trialToPaidRate.toFixed(0)}%
-          </p>
-          <p className="text-xs text-foreground-subtle mt-1">
-            Avg: {healthStats.trialToPaidRateAvg.toFixed(0)}%
-          </p>
-        </div>
-        <div className="bg-background-elevated border border-white/5 rounded-xl p-5">
-          <p className="text-foreground-subtle text-xs uppercase tracking-wider mb-1">
-            New Signups Trend
-          </p>
-          <p className={`text-2xl font-heading ${healthStats.newSignupsTrend >= 0 ? "text-green-400" : "text-coral"}`}>
-            {healthStats.newSignupsTrend >= 0 ? "+" : ""}{healthStats.newSignupsTrend.toFixed(0)}%
-          </p>
-          <p className="text-xs text-foreground-subtle mt-1">vs previous week</p>
-        </div>
-        <div className="bg-background-elevated border border-white/5 rounded-xl p-5">
-          <p className="text-foreground-subtle text-xs uppercase tracking-wider mb-1">
-            Community Growth
-          </p>
-          <p className={`text-2xl font-heading ${healthStats.communityGrowthRate >= 0 ? "text-green-400" : "text-coral"}`}>
-            {healthStats.communityGrowthRate >= 0 ? "+" : ""}{healthStats.communityGrowthRate.toFixed(0)}%
-          </p>
-          <p className="text-xs text-foreground-subtle mt-1">Skool joins vs prev week</p>
-        </div>
+        <Card>
+          <CardBody compact>
+            <p className="text-foreground-subtle text-xs uppercase tracking-wider mb-1">
+              Trial → Paid (This Week)
+            </p>
+            <p className="text-2xl font-heading text-off-white">
+              {healthStats.trialToPaidRate.toFixed(0)}%
+            </p>
+            <p className="text-xs text-foreground-subtle mt-1">
+              Avg: {healthStats.trialToPaidRateAvg.toFixed(0)}%
+            </p>
+          </CardBody>
+        </Card>
+        <Card>
+          <CardBody compact>
+            <p className="text-foreground-subtle text-xs uppercase tracking-wider mb-1">
+              New Signups Trend
+            </p>
+            <p className={`text-2xl font-heading ${healthStats.newSignupsTrend >= 0 ? "text-green-400" : "text-[var(--color-bad)]"}`}>
+              {healthStats.newSignupsTrend >= 0 ? "+" : ""}{healthStats.newSignupsTrend.toFixed(0)}%
+            </p>
+            <p className="text-xs text-foreground-subtle mt-1">vs previous week</p>
+          </CardBody>
+        </Card>
+        <Card>
+          <CardBody compact>
+            <p className="text-foreground-subtle text-xs uppercase tracking-wider mb-1">
+              Community Growth
+            </p>
+            <p className={`text-2xl font-heading ${healthStats.communityGrowthRate >= 0 ? "text-green-400" : "text-[var(--color-bad)]"}`}>
+              {healthStats.communityGrowthRate >= 0 ? "+" : ""}{healthStats.communityGrowthRate.toFixed(0)}%
+            </p>
+            <p className="text-xs text-foreground-subtle mt-1">Skool joins vs prev week</p>
+          </CardBody>
+        </Card>
       </div>
 
       {/* Trials at risk */}

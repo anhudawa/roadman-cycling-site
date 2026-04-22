@@ -2,33 +2,35 @@ import Link from "next/link";
 import type { ReactNode } from "react";
 
 /**
- * Shared admin-panel UI primitives.
+ * Admin-panel UI primitives — v2, aligned with the design handoff spec.
  *
- * Every admin page was reimplementing the same "dark elevated card with
- * coral accents" pattern by hand, with subtle padding / radius / border
- * drift. These primitives lock the design language so every page looks
- * like part of one system, and reduces the cost of future tweaks to a
- * single file.
+ * Design rules (enforce these):
+ *  • Coral is PRIMARY-CTA only (and unread badge). Never hover, never tab
+ *    active state, never link colour, never border. Use semantic good /
+ *    warn / bad / info tokens for status colouring.
+ *  • Uppercase is reserved for display titles (Bebas) and sidebar section
+ *    labels (PERSONAL, CRM, GROWTH). Everything else is sentence case.
+ *  • One focus ring utility: .focus-ring. Never hand-roll :focus styles.
+ *  • Number typography is font-mono with tabular-nums.
  *
- * Colour references:
- *   bg-background          #252526 (canvas)
- *   bg-background-elevated #2E2E30 (card surfaces)
- *   border-white/5         default card edge
- *   coral                  #F16363 (primary accent)
- *   off-white              #FAFAFA (strong text)
- *   foreground-muted       #B0B0B5 (body text)
- *   foreground-subtle      #9A9A9F (meta / labels)
+ * Tokens come from globals.css @theme — refer via Tailwind var() classes
+ * (eg. bg-[var(--color-surface)]) so the designer's values stay the
+ * source of truth.
  */
 
 // ── Card ─────────────────────────────────────────────────────────
 
-export type CardTone = "default" | "coral" | "danger" | "muted";
+export type CardTone = "default" | "raised" | "sunken" | "danger";
 
 const CARD_TONE_CLASSES: Record<CardTone, string> = {
-  default: "border-white/5 bg-background-elevated",
-  coral: "border-coral/20 bg-gradient-to-br from-coral/[0.04] to-transparent",
-  danger: "border-red-500/20 bg-red-500/[0.04]",
-  muted: "border-white/5 bg-white/[0.02]",
+  default:
+    "bg-[var(--color-surface)] border border-[var(--color-border)]",
+  raised:
+    "bg-[var(--color-elevated)] border border-[var(--color-border-strong)] shadow-[var(--shadow-admin-raised)]",
+  sunken:
+    "bg-[var(--color-sunken)] border border-[var(--color-border)]",
+  danger:
+    "bg-[var(--color-bad-tint)] border border-[var(--color-bad)]/30",
 };
 
 export function Card({
@@ -44,7 +46,7 @@ export function Card({
 }) {
   return (
     <As
-      className={`rounded-xl border ${CARD_TONE_CLASSES[tone]} ${className}`}
+      className={`rounded-[var(--radius-admin-lg)] ${CARD_TONE_CLASSES[tone]} ${className}`}
     >
       {children}
     </As>
@@ -54,11 +56,13 @@ export function Card({
 export function CardBody({
   children,
   className = "",
+  compact = false,
 }: {
   children: ReactNode;
   className?: string;
+  compact?: boolean;
 }) {
-  return <div className={`p-5 ${className}`}>{children}</div>;
+  return <div className={`${compact ? "p-4" : "p-6"} ${className}`}>{children}</div>;
 }
 
 export function CardHeader({
@@ -74,12 +78,16 @@ export function CardHeader({
 }) {
   return (
     <div
-      className={`flex items-start justify-between gap-3 px-5 pt-5 pb-3 ${className}`}
+      className={`flex items-start justify-between gap-3 px-6 pt-6 pb-3 ${className}`}
     >
       <div className="min-w-0">
-        <SectionLabel>{title}</SectionLabel>
+        <h3 className="text-[length:var(--text-h3-admin)] leading-[var(--text-h3-admin--line-height)] font-body font-semibold text-[var(--color-fg)]">
+          {title}
+        </h3>
         {subtitle && (
-          <p className="text-foreground-subtle text-xs mt-1">{subtitle}</p>
+          <p className="text-[length:var(--text-body-sm-admin)] text-[var(--color-fg-muted)] mt-1">
+            {subtitle}
+          </p>
         )}
       </div>
       {action && <div className="flex items-center gap-2">{action}</div>}
@@ -87,7 +95,7 @@ export function CardHeader({
   );
 }
 
-// ── Section label (the tiny uppercase headings everywhere) ───────
+// ── Section label — the small uppercase labels used sparingly ────
 
 export function SectionLabel({
   children,
@@ -95,18 +103,18 @@ export function SectionLabel({
   className = "",
 }: {
   children: ReactNode;
-  tone?: "muted" | "off-white" | "coral";
+  tone?: "muted" | "fg" | "coral";
   className?: string;
 }) {
   const color =
     tone === "coral"
-      ? "text-coral"
-      : tone === "off-white"
-        ? "text-off-white"
-        : "text-foreground-subtle";
+      ? "text-[var(--color-coral)]"
+      : tone === "fg"
+        ? "text-[var(--color-fg)]"
+        : "text-[var(--color-fg-muted)]";
   return (
     <span
-      className={`font-heading text-[10px] uppercase tracking-widest font-semibold ${color} ${className}`}
+      className={`font-body text-[length:var(--text-caption-admin)] uppercase tracking-[0.08em] font-semibold ${color} ${className}`}
     >
       {children}
     </span>
@@ -127,96 +135,151 @@ export function PageHeader({
   return (
     <div className="flex items-start justify-between gap-4 flex-wrap">
       <div className="min-w-0">
-        <h1 className="font-heading text-3xl text-off-white tracking-wider uppercase">
+        <h1
+          className="font-display uppercase text-[length:var(--text-display-md)] leading-[var(--text-display-md--line-height)] text-[var(--color-fg)] tracking-[0.02em]"
+          style={{ fontFamily: "var(--font-display)" }}
+        >
           {title}
         </h1>
         {subtitle && (
-          <p className="text-foreground-muted text-sm mt-1">{subtitle}</p>
+          <p className="text-[length:var(--text-body-sm-admin)] text-[var(--color-fg-muted)] mt-1.5">
+            {subtitle}
+          </p>
         )}
       </div>
-      {actions && <div className="flex items-center gap-2 flex-wrap">{actions}</div>}
+      {actions && (
+        <div className="flex items-center gap-2 flex-wrap">{actions}</div>
+      )}
     </div>
   );
 }
 
-// ── Stat tile ────────────────────────────────────────────────────
+// ── Button ───────────────────────────────────────────────────────
 
-export interface StatTileProps {
-  label: string;
-  value: ReactNode;
-  sub?: ReactNode;
-  tone?: "neutral" | "good" | "bad" | "coral";
-  href?: string;
-  size?: "sm" | "md" | "lg";
-}
+export type ButtonVariant =
+  | "primary"
+  | "secondary"
+  | "outline"
+  | "ghost"
+  | "danger";
 
-export function StatTile({
-  label,
-  value,
-  sub,
-  tone = "neutral",
-  href,
+const BUTTON_VARIANTS: Record<ButtonVariant, string> = {
+  primary:
+    "bg-[var(--color-coral)] hover:bg-[var(--color-coral-hover)] active:bg-[var(--color-coral-pressed)] text-white",
+  secondary:
+    "bg-[var(--color-elevated)] hover:bg-[var(--color-raised)] text-[var(--color-fg)] border border-[var(--color-border-strong)]",
+  outline:
+    "bg-transparent hover:bg-[var(--color-elevated)] text-[var(--color-fg)] border border-[var(--color-border-strong)]",
+  ghost:
+    "bg-transparent hover:bg-[var(--color-elevated)] text-[var(--color-fg-muted)] hover:text-[var(--color-fg)]",
+  danger:
+    "bg-transparent hover:bg-[var(--color-bad-tint)] text-[var(--color-bad)] border border-[var(--color-bad)]/30",
+};
+
+const BUTTON_SIZES: Record<"sm" | "md" | "lg", string> = {
+  sm: "h-7 px-3 text-[length:var(--text-caption-admin)]",
+  md: "h-9 px-4 text-[length:var(--text-body-sm-admin)]",
+  lg: "h-11 px-5 text-[length:var(--text-body-admin)]",
+};
+
+export function Button({
+  children,
+  variant = "primary",
   size = "md",
-}: StatTileProps) {
-  const valueTone =
-    tone === "good"
-      ? "text-green-400"
-      : tone === "bad"
-        ? "text-coral"
-        : tone === "coral"
-          ? "text-coral"
-          : "text-off-white";
-  const valueSize =
-    size === "lg"
-      ? "text-5xl"
-      : size === "sm"
-        ? "text-xl"
-        : "text-3xl";
+  href,
+  onClick,
+  disabled,
+  loading,
+  type = "button",
+  title,
+  className = "",
+  leadingIcon,
+  trailingIcon,
+}: {
+  children: ReactNode;
+  variant?: ButtonVariant;
+  size?: "sm" | "md" | "lg";
+  href?: string;
+  onClick?: () => void;
+  disabled?: boolean;
+  loading?: boolean;
+  type?: "button" | "submit" | "reset";
+  title?: string;
+  className?: string;
+  leadingIcon?: ReactNode;
+  trailingIcon?: ReactNode;
+}) {
+  const base = `inline-flex items-center justify-center gap-2 rounded-[var(--radius-admin-md)] font-body font-medium transition-colors duration-[var(--dur-fast)] focus-ring disabled:opacity-50 disabled:cursor-not-allowed ${BUTTON_VARIANTS[variant]} ${BUTTON_SIZES[size]} ${className}`;
 
-  const body = (
+  const content = (
     <>
-      <SectionLabel>{label}</SectionLabel>
-      <p
-        className={`font-heading tracking-wide mt-1.5 tabular-nums ${valueSize} ${valueTone}`}
-      >
-        {value}
-      </p>
-      {sub && (
-        <p className="text-foreground-subtle text-xs mt-1.5">{sub}</p>
+      {loading && (
+        <span
+          className="inline-block w-3.5 h-3.5 border-2 border-current border-t-transparent rounded-full animate-spin"
+          aria-hidden="true"
+        />
       )}
+      {!loading && leadingIcon}
+      {children}
+      {!loading && trailingIcon}
     </>
   );
 
-  const base =
-    "block rounded-xl border border-white/5 bg-background-elevated p-5 transition";
-
   if (href) {
     return (
-      <Link href={href} className={`${base} hover:border-coral/30`}>
-        {body}
+      <Link href={href} className={base} title={title}>
+        {content}
       </Link>
     );
   }
-  return <div className={base}>{body}</div>;
+  return (
+    <button
+      type={type}
+      onClick={onClick}
+      disabled={disabled || loading}
+      title={title}
+      className={base}
+    >
+      {content}
+    </button>
+  );
 }
 
 // ── Pill ─────────────────────────────────────────────────────────
 
 export type PillTone =
   | "neutral"
-  | "coral"
   | "good"
   | "warn"
   | "bad"
-  | "info";
+  | "info"
+  | "coral"
+  | "stage-new"
+  | "stage-triage"
+  | "stage-active"
+  | "stage-waiting"
+  | "stage-done";
 
 const PILL_TONES: Record<PillTone, string> = {
-  neutral: "bg-white/5 text-foreground-muted border-white/10",
-  coral: "bg-coral/15 text-coral border-coral/30",
-  good: "bg-green-500/10 text-green-400 border-green-500/20",
-  warn: "bg-amber-500/10 text-amber-400 border-amber-500/20",
-  bad: "bg-red-500/10 text-red-400 border-red-500/20",
-  info: "bg-blue-500/10 text-blue-400 border-blue-500/20",
+  neutral:
+    "bg-[var(--color-elevated)] text-[var(--color-fg-muted)] border-[var(--color-border-strong)]",
+  good: "bg-[var(--color-good-tint)] text-[var(--color-good)] border-[var(--color-good)]/30",
+  warn: "bg-[var(--color-warn-tint)] text-[var(--color-warn)] border-[var(--color-warn)]/30",
+  bad: "bg-[var(--color-bad-tint)] text-[var(--color-bad)] border-[var(--color-bad)]/30",
+  info: "bg-[var(--color-info-tint)] text-[var(--color-info)] border-[var(--color-info)]/30",
+  // Coral pill is the single Unread-count indicator — do not repurpose.
+  coral:
+    "bg-[var(--color-coral-tint)] text-[var(--color-coral)] border-[var(--color-coral)]/30",
+  "stage-new":
+    "bg-[var(--color-stage-new-tint)] text-[var(--color-stage-new)] border-[var(--color-stage-new)]/30",
+  "stage-triage":
+    "bg-[var(--color-stage-triage-tint)] text-[var(--color-stage-triage)] border-[var(--color-stage-triage)]/30",
+  "stage-active":
+    "bg-[var(--color-stage-active-tint)] text-[var(--color-stage-active)] border-[var(--color-stage-active)]/30",
+  "stage-waiting":
+    "bg-[var(--color-stage-waiting-tint)] text-[var(--color-stage-waiting)] border-[var(--color-stage-waiting)]/30",
+  "stage-done":
+    "bg-[var(--color-stage-done-tint)] text-[var(--color-stage-done)] border-[var(--color-stage-done)]/30",
 };
 
 export function Pill({
@@ -230,86 +293,196 @@ export function Pill({
 }) {
   return (
     <span
-      className={`inline-flex items-center gap-1 text-[10px] font-medium uppercase tracking-wider px-2 py-0.5 rounded-full border ${PILL_TONES[tone]} ${className}`}
+      className={`inline-flex items-center gap-1 h-[22px] px-2 rounded-[var(--radius-admin-sm)] border text-[length:var(--text-caption-admin)] font-body font-medium ${PILL_TONES[tone]} ${className}`}
     >
       {children}
     </span>
   );
 }
 
-// ── Button (admin variant) ───────────────────────────────────────
+// ── Unread count badge — the ONE place coral lives in nav/lists ──
 
-export type ButtonVariant =
-  | "primary"
-  | "secondary"
-  | "ghost"
-  | "outline"
-  | "danger";
+export function UnreadBadge({ count }: { count: number }) {
+  if (count <= 0) return null;
+  return (
+    <span
+      aria-label={`${count} unread`}
+      className="inline-flex items-center justify-center min-w-[18px] h-[18px] px-1 rounded-full bg-[var(--color-coral)] text-white font-mono tabular-nums text-[10px] font-semibold"
+    >
+      {count > 99 ? "99+" : count}
+    </span>
+  );
+}
 
-const BUTTON_VARIANTS: Record<ButtonVariant, string> = {
-  primary:
-    "bg-coral text-white hover:bg-coral/90 shadow-[0_0_12px_rgba(241,99,99,0.25)]",
-  secondary:
-    "bg-coral/15 text-coral border border-coral/30 hover:bg-coral/25",
-  ghost:
-    "text-foreground-muted hover:text-off-white hover:bg-white/5",
-  outline:
-    "border border-white/10 text-foreground-muted hover:text-off-white hover:border-white/30",
-  danger:
-    "border border-red-400/30 text-red-400 hover:bg-red-500/10",
-};
+// ── Unread dot — the small coral pip used in list rows ──────────
 
-export function Button({
-  children,
-  variant = "primary",
-  size = "md",
-  href,
-  onClick,
-  disabled,
-  type = "button",
-  title,
+export function UnreadDot({
+  size = "sm",
   className = "",
 }: {
-  children: ReactNode;
-  variant?: ButtonVariant;
-  size?: "sm" | "md";
-  href?: string;
-  onClick?: () => void;
-  disabled?: boolean;
-  type?: "button" | "submit" | "reset";
-  title?: string;
+  size?: "xs" | "sm" | "md";
   className?: string;
 }) {
-  const sizeCls =
-    size === "sm"
-      ? "px-3 py-1.5 text-xs"
-      : "px-4 py-2 text-sm";
-  const base = `inline-flex items-center gap-2 rounded-lg font-heading tracking-wider uppercase transition disabled:opacity-50 disabled:cursor-not-allowed ${BUTTON_VARIANTS[variant]} ${sizeCls} ${className}`;
+  const sz =
+    size === "xs" ? "w-1.5 h-1.5" : size === "md" ? "w-2.5 h-2.5" : "w-2 h-2";
+  return (
+    <span
+      aria-label="Unread"
+      className={`inline-block rounded-full bg-[var(--color-coral)] shrink-0 ${sz} ${className}`}
+    />
+  );
+}
+
+// ── Checkbox — styled accent using the info-blue token ──────────
+
+export function Checkbox({
+  className = "",
+  ...props
+}: React.InputHTMLAttributes<HTMLInputElement>) {
+  return (
+    <input
+      type="checkbox"
+      {...props}
+      className={`accent-[var(--color-info)] ${className}`}
+    />
+  );
+}
+
+// ── Avatar ───────────────────────────────────────────────────────
+
+// Fixed team hues per spec — Anthony purple, Matthew blue, Wes amber,
+// Sarah green. External contacts get neutral grey.
+const TEAM_AVATAR_COLORS: Record<string, string> = {
+  anthony: "bg-[var(--color-stage-triage)] text-white",
+  ted: "bg-[var(--color-stage-triage)] text-white",
+  matthew: "bg-[var(--color-info)] text-white",
+  wes: "bg-[var(--color-warn)] text-[var(--color-canvas)]",
+  sarah: "bg-[var(--color-good)] text-white",
+};
+
+export type AvatarSize = 20 | 24 | 28 | 36;
+
+const AVATAR_SIZE_CLASSES: Record<AvatarSize, string> = {
+  20: "w-5 h-5 text-[10px]",
+  24: "w-6 h-6 text-[11px]",
+  28: "w-7 h-7 text-[12px]",
+  36: "w-9 h-9 text-[14px]",
+};
+
+export function Avatar({
+  name,
+  slug,
+  size = 28,
+  className = "",
+}: {
+  /** Human-readable name; first letter becomes the initial. */
+  name?: string | null;
+  /** Team slug — if present + matches a team member, use the fixed hue. */
+  slug?: string | null;
+  size?: AvatarSize;
+  className?: string;
+}) {
+  const initial = (name ?? slug ?? "?").trim()[0]?.toUpperCase() ?? "?";
+  const palette = slug && TEAM_AVATAR_COLORS[slug.toLowerCase()];
+  const fallback = "bg-[var(--color-elevated)] text-[var(--color-fg-muted)] border border-[var(--color-border-strong)]";
+  return (
+    <span
+      className={`inline-flex items-center justify-center rounded-full font-body font-semibold uppercase shrink-0 ${AVATAR_SIZE_CLASSES[size]} ${palette ?? fallback} ${className}`}
+      title={name ?? slug ?? "Unassigned"}
+      aria-label={name ?? slug ?? "Unassigned"}
+    >
+      {initial}
+    </span>
+  );
+}
+
+// ── Stat tile ────────────────────────────────────────────────────
+
+export interface StatTileProps {
+  label: string;
+  value: ReactNode;
+  sub?: ReactNode;
+  /** Optional delta string like "▲ 12.4%" — will be tinted green/red. */
+  delta?: { direction: "up" | "down" | "flat"; value: string };
+  tone?: "neutral" | "good" | "warn" | "bad";
+  href?: string;
+  loading?: boolean;
+}
+
+export function StatTile({
+  label,
+  value,
+  sub,
+  delta,
+  tone = "neutral",
+  href,
+  loading,
+}: StatTileProps) {
+  const valueClass =
+    tone === "good"
+      ? "text-[var(--color-good)]"
+      : tone === "warn"
+        ? "text-[var(--color-warn)]"
+        : tone === "bad"
+          ? "text-[var(--color-bad)]"
+          : "text-[var(--color-fg)]";
+
+  const body = (
+    <>
+      <span className="block text-[length:var(--text-caption-admin)] font-body font-medium text-[var(--color-fg-muted)]">
+        {label}
+      </span>
+      {loading ? (
+        <Skeleton className="h-8 w-24 mt-2" />
+      ) : (
+        <span
+          className={`block mt-2 font-mono tabular-nums text-[length:var(--text-num-lg)] leading-[var(--text-num-lg--line-height)] font-medium ${valueClass}`}
+        >
+          {value}
+        </span>
+      )}
+      {(sub || delta) && (
+        <span className="mt-1.5 flex items-center gap-2 text-[length:var(--text-caption-admin)] text-[var(--color-fg-subtle)]">
+          {delta && (
+            <span
+              className={`font-mono tabular-nums ${
+                delta.direction === "up"
+                  ? "text-[var(--color-good)]"
+                  : delta.direction === "down"
+                    ? "text-[var(--color-bad)]"
+                    : "text-[var(--color-fg-muted)]"
+              }`}
+            >
+              {delta.direction === "up" ? "▲" : delta.direction === "down" ? "▼" : "—"}{" "}
+              {delta.value}
+            </span>
+          )}
+          {sub && <span>{sub}</span>}
+        </span>
+      )}
+    </>
+  );
+
+  const base =
+    "block rounded-[var(--radius-admin-lg)] bg-[var(--color-surface)] border border-[var(--color-border)] p-6 transition-colors duration-[var(--dur-fast)]";
 
   if (href) {
     return (
-      <Link href={href} className={base} title={title}>
-        {children}
+      <Link
+        href={href}
+        className={`${base} hover:border-[var(--color-border-strong)] hover:bg-[var(--color-elevated)] focus-ring`}
+      >
+        {body}
       </Link>
     );
   }
-  return (
-    <button
-      type={type}
-      onClick={onClick}
-      disabled={disabled}
-      title={title}
-      className={base}
-    >
-      {children}
-    </button>
-  );
+  return <div className={base}>{body}</div>;
 }
 
 // ── Empty state ──────────────────────────────────────────────────
 
 export function EmptyState({
-  icon = "·",
+  icon,
   title,
   subtitle,
   action,
@@ -323,12 +496,18 @@ export function EmptyState({
 }) {
   return (
     <div
-      className={`text-center py-10 px-6 rounded-xl border border-dashed border-white/10 ${className}`}
+      className={`flex flex-col items-center text-center py-10 px-6 rounded-[var(--radius-admin-lg)] border border-dashed border-[var(--color-border-strong)] bg-[var(--color-surface)]/50 ${className}`}
     >
-      <div className="text-foreground-subtle/50 text-3xl mb-2">{icon}</div>
-      <p className="text-off-white text-sm font-medium">{title}</p>
+      {icon && (
+        <div className="w-10 h-10 mb-3 flex items-center justify-center rounded-[var(--radius-admin-md)] bg-[var(--color-elevated)] text-[var(--color-fg-muted)]">
+          {icon}
+        </div>
+      )}
+      <p className="text-[length:var(--text-body-lg-admin)] font-body font-semibold text-[var(--color-fg)]">
+        {title}
+      </p>
       {subtitle && (
-        <p className="text-foreground-subtle text-xs mt-1 max-w-sm mx-auto">
+        <p className="mt-1 max-w-sm text-[length:var(--text-body-sm-admin)] text-[var(--color-fg-muted)]">
           {subtitle}
         </p>
       )}
@@ -341,40 +520,121 @@ export function EmptyState({
 
 export function Skeleton({
   className = "",
-  rounded = "rounded",
+  rounded = "rounded-[var(--radius-admin-md)]",
 }: {
   className?: string;
-  rounded?: "rounded" | "rounded-lg" | "rounded-full";
+  rounded?: string;
 }) {
   return (
     <div
-      className={`bg-white/5 animate-pulse ${rounded} ${className}`}
+      className={`bg-[var(--color-elevated)] animate-pulse ${rounded} ${className}`}
       aria-hidden="true"
     />
   );
 }
 
-// ── Toast (floating notification) ───────────────────────────────
+// ── Toast ────────────────────────────────────────────────────────
 
 export function Toast({
   message,
-  tone = "coral",
+  tone = "neutral",
 }: {
   message: ReactNode;
-  tone?: "coral" | "good" | "bad";
+  tone?: "neutral" | "good" | "bad" | "warn";
 }) {
-  const color =
+  const isError = tone === "bad";
+  const toneClass =
     tone === "good"
-      ? "bg-green-500 text-white"
+      ? "border-[var(--color-good)]/30"
       : tone === "bad"
-        ? "bg-red-500 text-white"
-        : "bg-coral text-white";
+        ? "border-[var(--color-bad)]/30"
+        : tone === "warn"
+          ? "border-[var(--color-warn)]/30"
+          : "border-[var(--color-border-strong)]";
   return (
     <div
-      role="status"
-      className={`fixed bottom-6 right-6 z-50 px-4 py-2 rounded-lg shadow-lg text-sm font-heading tracking-wider uppercase ${color}`}
+      role={isError ? "alert" : "status"}
+      aria-live={isError ? "assertive" : "polite"}
+      className={`fixed bottom-6 right-6 z-50 px-4 py-3 rounded-[var(--radius-admin-md)] bg-[var(--color-raised)] text-[var(--color-fg)] font-body text-[length:var(--text-body-sm-admin)] shadow-[var(--shadow-admin-toast)] border ${toneClass}`}
     >
       {message}
+    </div>
+  );
+}
+
+// ── Input / Select / Textarea ────────────────────────────────────
+
+const FIELD_BASE =
+  "w-full h-9 px-3 rounded-[var(--radius-admin-md)] bg-[var(--color-sunken)] border border-[var(--color-border-strong)] text-[var(--color-fg)] text-[length:var(--text-body-sm-admin)] font-body placeholder:text-[var(--color-fg-subtle)] focus-ring focus:border-[var(--color-border-focus)] disabled:opacity-50 disabled:cursor-not-allowed transition-colors duration-[var(--dur-fast)]";
+
+export function Input({
+  className = "",
+  ...props
+}: React.InputHTMLAttributes<HTMLInputElement>) {
+  return <input {...props} className={`${FIELD_BASE} ${className}`} />;
+}
+
+export function Select({
+  className = "",
+  children,
+  ...props
+}: React.SelectHTMLAttributes<HTMLSelectElement>) {
+  return (
+    <select {...props} className={`${FIELD_BASE} ${className}`}>
+      {children}
+    </select>
+  );
+}
+
+export function Textarea({
+  className = "",
+  ...props
+}: React.TextareaHTMLAttributes<HTMLTextAreaElement>) {
+  return (
+    <textarea
+      {...props}
+      className={`${FIELD_BASE} h-auto py-2 leading-[var(--text-body-sm-admin--line-height)] ${className}`}
+    />
+  );
+}
+
+// ── Number display helper ────────────────────────────────────────
+
+export function Num({
+  children,
+  className = "",
+}: {
+  children: ReactNode;
+  className?: string;
+}) {
+  return (
+    <span className={`font-mono tabular-nums ${className}`}>{children}</span>
+  );
+}
+
+// ── Progress bar (used on glide-path + similar) ──────────────────
+
+export function ProgressBar({
+  percent,
+  className = "",
+}: {
+  /** 0..100 */
+  percent: number;
+  className?: string;
+}) {
+  const pct = Math.max(0, Math.min(100, percent));
+  return (
+    <div
+      role="progressbar"
+      aria-valuenow={pct}
+      aria-valuemin={0}
+      aria-valuemax={100}
+      className={`h-1.5 w-full rounded-full bg-[var(--color-sunken)] overflow-hidden ${className}`}
+    >
+      <div
+        className="h-full bg-gradient-to-r from-[var(--color-coral)] to-[var(--color-coral-hover)] transition-[width] duration-[var(--dur-base)] ease-[var(--ease-admin-out)]"
+        style={{ width: `${pct}%` }}
+      />
     </div>
   );
 }

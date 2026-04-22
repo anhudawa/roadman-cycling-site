@@ -85,8 +85,8 @@ export default async function TasksPage({
               href={linkFor(base, { scope: s.value })}
               className={`px-4 py-2 text-sm font-heading tracking-wider border-b-2 -mb-px transition-colors ${
                 active
-                  ? "border-coral text-off-white"
-                  : "border-transparent text-foreground-muted hover:text-off-white"
+                  ? "border-[var(--color-fg)] text-[var(--color-fg)]"
+                  : "border-transparent text-[var(--color-fg-muted)] hover:text-[var(--color-fg)]"
               }`}
             >
               {s.label.toUpperCase()}
@@ -105,8 +105,8 @@ export default async function TasksPage({
               href={linkFor(base, { status: s.value })}
               className={`px-2 py-1 rounded border ${
                 status === s.value
-                  ? "border-coral/40 bg-coral/10 text-coral"
-                  : "border-white/10 text-foreground-muted hover:border-white/20"
+                  ? "border-[var(--color-border-strong)] bg-[var(--color-raised)] text-[var(--color-fg)] shadow-inner"
+                  : "border-[var(--color-border)] text-[var(--color-fg-muted)] hover:border-[var(--color-border-strong)] hover:text-[var(--color-fg)]"
               }`}
             >
               {s.label}
@@ -121,8 +121,8 @@ export default async function TasksPage({
               href={linkFor(base, { due: d.value })}
               className={`px-2 py-1 rounded border ${
                 due === d.value
-                  ? "border-coral/40 bg-coral/10 text-coral"
-                  : "border-white/10 text-foreground-muted hover:border-white/20"
+                  ? "border-[var(--color-border-strong)] bg-[var(--color-raised)] text-[var(--color-fg)] shadow-inner"
+                  : "border-[var(--color-border)] text-[var(--color-fg-muted)] hover:border-[var(--color-border-strong)] hover:text-[var(--color-fg)]"
               }`}
             >
               {d.label}

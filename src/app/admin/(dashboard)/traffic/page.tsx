@@ -2,6 +2,7 @@ import { getStatsForRange } from "@/lib/admin/events-store";
 import { parseTimeRange } from "@/lib/admin/time-ranges";
 import { Suspense } from "react";
 import { TimeRangePicker } from "../components/TimeRangePicker";
+import { Card, CardBody } from "@/components/admin/ui";
 
 function HorizontalBar({ value, max, label }: { value: number; max: number; label: string }) {
   const pct = max > 0 ? (value / max) * 100 : 0;
@@ -12,7 +13,7 @@ function HorizontalBar({ value, max, label }: { value: number; max: number; labe
       </span>
       <div className="flex-1 h-2 bg-white/5 rounded-full overflow-hidden">
         <div
-          className="h-full bg-coral rounded-full transition-all"
+          className="h-full bg-[var(--color-info)] rounded-full transition-all"
           style={{ width: `${Math.min(pct, 100)}%` }}
         />
       </div>
@@ -32,7 +33,7 @@ function DeviceBar({ device, count, percentage }: { device: string; count: numbe
   };
   const colors: Record<string, string> = {
     desktop: "bg-purple",
-    mobile: "bg-coral",
+    mobile: "bg-[var(--color-info)]",
     tablet: "bg-green-400",
     unknown: "bg-white/20",
   };
@@ -117,65 +118,71 @@ export default async function TrafficPage({
 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
         {/* Top Pages */}
-        <div className="bg-background-elevated border border-white/5 rounded-xl p-5">
-          <h2 className="font-heading text-sm text-foreground-muted tracking-wider mb-4">
-            TOP PAGES BY VIEWS
-          </h2>
-          <div className="space-y-2.5">
-            {topPages.slice(0, 12).map((page) => (
-              <HorizontalBar
-                key={page.page}
-                value={page.views}
-                max={maxPageViews}
-                label={page.page}
-              />
-            ))}
-            {topPages.length === 0 && (
-              <p className="text-foreground-subtle text-sm">No pageview data yet.</p>
-            )}
-          </div>
-        </div>
+        <Card>
+          <CardBody compact>
+            <h2 className="font-body font-semibold text-[13px] text-[var(--color-fg)] mb-4">
+              Top pages by views
+            </h2>
+            <div className="space-y-2.5">
+              {topPages.slice(0, 12).map((page) => (
+                <HorizontalBar
+                  key={page.page}
+                  value={page.views}
+                  max={maxPageViews}
+                  label={page.page}
+                />
+              ))}
+              {topPages.length === 0 && (
+                <p className="text-foreground-subtle text-sm">No pageview data yet.</p>
+              )}
+            </div>
+          </CardBody>
+        </Card>
 
         {/* Referrers */}
-        <div className="bg-background-elevated border border-white/5 rounded-xl p-5">
-          <h2 className="font-heading text-sm text-foreground-muted tracking-wider mb-4">
-            REFERRER BREAKDOWN
-          </h2>
-          <div className="space-y-2.5">
-            {referrers.map((ref) => (
-              <HorizontalBar
-                key={ref.referrer}
-                value={ref.count}
-                max={maxRefCount}
-                label={cleanReferrer(ref.referrer)}
-              />
-            ))}
-            {referrers.length === 0 && (
-              <p className="text-foreground-subtle text-sm">No referrer data yet.</p>
-            )}
-          </div>
-        </div>
+        <Card>
+          <CardBody compact>
+            <h2 className="font-body font-semibold text-[13px] text-[var(--color-fg)] mb-4">
+              Referrer breakdown
+            </h2>
+            <div className="space-y-2.5">
+              {referrers.map((ref) => (
+                <HorizontalBar
+                  key={ref.referrer}
+                  value={ref.count}
+                  max={maxRefCount}
+                  label={cleanReferrer(ref.referrer)}
+                />
+              ))}
+              {referrers.length === 0 && (
+                <p className="text-foreground-subtle text-sm">No referrer data yet.</p>
+              )}
+            </div>
+          </CardBody>
+        </Card>
       </div>
 
       {/* Device Breakdown */}
-      <div className="bg-background-elevated border border-white/5 rounded-xl p-5">
-        <h2 className="font-heading text-sm text-foreground-muted tracking-wider mb-4">
-          DEVICE BREAKDOWN
-        </h2>
-        <div className="max-w-xl space-y-3">
-          {devices.map((d) => (
-            <DeviceBar
-              key={d.device}
-              device={d.device}
-              count={d.count}
-              percentage={d.percentage}
-            />
-          ))}
-          {devices.length === 0 && (
-            <p className="text-foreground-subtle text-sm">No device data yet.</p>
-          )}
-        </div>
-      </div>
+      <Card>
+        <CardBody compact>
+          <h2 className="font-body font-semibold text-[13px] text-[var(--color-fg)] mb-4">
+            Device breakdown
+          </h2>
+          <div className="max-w-xl space-y-3">
+            {devices.map((d) => (
+              <DeviceBar
+                key={d.device}
+                device={d.device}
+                count={d.count}
+                percentage={d.percentage}
+              />
+            ))}
+            {devices.length === 0 && (
+              <p className="text-foreground-subtle text-sm">No device data yet.</p>
+            )}
+          </div>
+        </CardBody>
+      </Card>
     </div>
   );
 }

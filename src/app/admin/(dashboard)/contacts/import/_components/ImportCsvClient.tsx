@@ -187,7 +187,7 @@ export function ImportCsvClient() {
             const f = e.currentTarget.files?.[0];
             if (f) handleFile(f);
           }}
-          className="block text-sm text-off-white file:mr-4 file:px-3 file:py-2 file:rounded file:border-0 file:bg-coral/20 file:text-coral file:font-heading file:tracking-wider file:uppercase file:text-xs"
+          className="block text-sm text-[var(--color-fg)] file:mr-4 file:px-3 file:py-2 file:rounded-[var(--radius-admin-md)] file:border-0 file:bg-[var(--color-raised)] file:text-[var(--color-fg)] file:font-body file:font-semibold file:text-[13px]"
         />
         {fileName && (
           <p className="mt-2 text-xs text-foreground-muted">
@@ -213,7 +213,7 @@ export function ImportCsvClient() {
               type="button"
               onClick={runImport}
               disabled={importing}
-              className="px-3 py-2 text-xs font-heading tracking-wider uppercase bg-coral/20 text-coral border border-coral/30 rounded hover:bg-coral/30 disabled:opacity-50"
+              className="px-3 py-2 font-body font-semibold text-[13px] bg-[var(--color-raised)] text-[var(--color-fg)] border border-[var(--color-border-strong)] rounded-[var(--radius-admin-md)] hover:bg-[var(--color-elevated)] disabled:opacity-50"
             >
               {importing ? "Importing..." : `Import ${parsed.rows.length} rows`}
             </button>
@@ -230,7 +230,7 @@ export function ImportCsvClient() {
                         onChange={(e) =>
                           updateMapping(idx, e.target.value as TargetField)
                         }
-                        className="w-full px-2 py-1 text-xs bg-background-deep border border-white/10 text-off-white rounded focus:outline-none focus:border-coral/50"
+                        className="w-full px-2 py-1 text-xs bg-[var(--color-sunken)] border border-[var(--color-border-strong)] text-[var(--color-fg)] rounded-[var(--radius-admin-md)] focus-ring focus:border-[var(--color-border-focus)]"
                       >
                         {TARGET_FIELDS.map((t) => (
                           <option key={t.value} value={t.value}>
@@ -262,7 +262,7 @@ export function ImportCsvClient() {
       )}
 
       {result && (
-        <div className="bg-background-elevated rounded-xl border border-coral/30 p-4">
+        <div className="bg-[var(--color-elevated)] rounded-[var(--radius-admin-lg)] border border-[var(--color-good)]/30 p-4">
           <p className="text-[10px] uppercase tracking-widest text-foreground-subtle font-medium mb-2">
             Import complete
           </p>
@@ -292,7 +292,7 @@ export function ImportCsvClient() {
           <div className="mt-4">
             <Link
               href="/admin/contacts"
-              className="inline-block px-3 py-2 text-xs font-heading tracking-wider uppercase bg-coral/20 text-coral border border-coral/30 rounded hover:bg-coral/30"
+              className="inline-block px-3 py-2 font-body font-semibold text-[13px] bg-[var(--color-raised)] text-[var(--color-fg)] border border-[var(--color-border-strong)] rounded-[var(--radius-admin-md)] hover:bg-[var(--color-elevated)]"
             >
               View contacts
             </Link>

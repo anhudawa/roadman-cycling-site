@@ -3,6 +3,7 @@
 import { useState } from "react";
 import Link from "next/link";
 import { DownloadReportButton } from "./download-report-button";
+import { Card, CardBody } from "@/components/admin/ui";
 
 interface WeeklyPageAnalysis {
   page: string;
@@ -74,9 +75,9 @@ export default function AgentPage() {
 
       {/* Schedule info + Run button */}
       <div className="flex items-center justify-between gap-4">
-        <div className="bg-coral/10 border border-coral/20 rounded-xl p-4 flex items-center gap-3 flex-1">
+        <div className="bg-[var(--color-bad-tint)] border border-[var(--color-border-strong)] rounded-xl p-4 flex items-center gap-3 flex-1">
           <svg
-            className="w-5 h-5 text-coral flex-shrink-0"
+            className="w-5 h-5 text-[var(--color-bad)] flex-shrink-0"
             fill="none"
             viewBox="0 0 24 24"
             stroke="currentColor"
@@ -97,7 +98,7 @@ export default function AgentPage() {
           <button
             onClick={runAnalysis}
             disabled={loading}
-            className="px-4 py-2.5 bg-coral hover:bg-coral/90 disabled:bg-coral/40 disabled:cursor-not-allowed text-white text-sm font-medium rounded-lg transition-colors flex items-center gap-2"
+            className="px-4 py-2.5 bg-[var(--color-elevated)] hover:bg-[var(--color-raised)] disabled:opacity-50 disabled:cursor-not-allowed text-[var(--color-fg)] border border-[var(--color-border-strong)] text-sm font-medium rounded-lg transition-colors flex items-center gap-2"
           >
           {loading ? (
             <>
@@ -149,20 +150,23 @@ export default function AgentPage() {
           </div>
 
           {/* Summary */}
-          <div className="bg-background-elevated border border-white/5 rounded-xl p-5">
-            <h2 className="font-heading text-sm text-foreground-muted tracking-wider mb-3">
-              SUMMARY
-            </h2>
-            <p className="text-sm text-off-white leading-relaxed">
-              {analysis.report.summary}
-            </p>
-          </div>
+          <Card>
+            <CardBody compact>
+              <h2 className="font-body font-semibold text-[13px] text-[var(--color-fg)] mb-3">
+                Summary
+              </h2>
+              <p className="text-sm text-off-white leading-relaxed">
+                {analysis.report.summary}
+              </p>
+            </CardBody>
+          </Card>
 
           {/* Page Analyses */}
           {analysis.report.pageAnalyses.length > 0 && (
-            <div className="bg-background-elevated border border-white/5 rounded-xl p-5">
-              <h2 className="font-heading text-sm text-foreground-muted tracking-wider mb-4">
-                PAGE PERFORMANCE
+            <Card>
+              <CardBody compact>
+              <h2 className="font-body font-semibold text-[13px] text-[var(--color-fg)] mb-4">
+                Page performance
               </h2>
               <div className="space-y-3">
                 {analysis.report.pageAnalyses.map((pa) => (
@@ -183,18 +187,20 @@ export default function AgentPage() {
                     <p className="text-sm text-foreground-muted mb-1">
                       {pa.assessment}
                     </p>
-                    <p className="text-xs text-coral">{pa.recommendation}</p>
+                    <p className="text-xs text-[var(--color-bad)]">{pa.recommendation}</p>
                   </div>
                 ))}
               </div>
-            </div>
+              </CardBody>
+            </Card>
           )}
 
           {/* Suggested Experiments */}
           {analysis.report.suggestedExperiments.length > 0 && (
-            <div className="bg-background-elevated border border-white/5 rounded-xl p-5">
-              <h2 className="font-heading text-sm text-foreground-muted tracking-wider mb-4">
-                SUGGESTED EXPERIMENTS
+            <Card>
+              <CardBody compact>
+              <h2 className="font-body font-semibold text-[13px] text-[var(--color-fg)] mb-4">
+                Suggested experiments
               </h2>
               <div className="space-y-3">
                 {analysis.report.suggestedExperiments.map((exp, i) => (
@@ -205,7 +211,7 @@ export default function AgentPage() {
                     <div className="flex items-start justify-between gap-4">
                       <div className="flex-1">
                         <div className="flex items-center gap-2 mb-1">
-                          <span className="text-coral text-sm font-heading">
+                          <span className="text-[var(--color-bad)] text-sm font-heading">
                             {i + 1}.
                           </span>
                           <span className="text-sm text-off-white font-medium">
@@ -228,7 +234,7 @@ export default function AgentPage() {
                       </div>
                       <Link
                         href={`/admin/experiments/new?page=${encodeURIComponent(exp.page)}&element=${encodeURIComponent(exp.element)}&content=${encodeURIComponent(exp.currentContent)}`}
-                        className="text-xs text-coral hover:text-coral/80 transition-colors px-3 py-1.5 border border-coral/20 rounded-lg flex-shrink-0 hover:bg-coral/5"
+                        className="text-xs text-[var(--color-bad)] hover:text-[var(--color-fg)]/80 transition-colors px-3 py-1.5 border border-[var(--color-border-strong)] rounded-lg flex-shrink-0 hover:bg-[var(--color-bad-tint)]"
                       >
                         Create This Test
                       </Link>
@@ -236,14 +242,16 @@ export default function AgentPage() {
                   </div>
                 ))}
               </div>
-            </div>
+              </CardBody>
+            </Card>
           )}
 
           {/* Priority Actions */}
           {analysis.report.priorityActions.length > 0 && (
-            <div className="bg-background-elevated border border-white/5 rounded-xl p-5">
-              <h2 className="font-heading text-sm text-foreground-muted tracking-wider mb-4">
-                PRIORITY ACTIONS
+            <Card>
+              <CardBody compact>
+              <h2 className="font-body font-semibold text-[13px] text-[var(--color-fg)] mb-4">
+                Priority actions
               </h2>
               <div className="space-y-2">
                 {analysis.report.priorityActions.map((action, i) => (
@@ -251,7 +259,7 @@ export default function AgentPage() {
                     key={i}
                     className="flex items-start gap-3 p-3 rounded-lg bg-white/[0.02] border border-white/[0.04]"
                   >
-                    <span className="text-coral text-sm font-heading mt-0.5">
+                    <span className="text-[var(--color-bad)] text-sm font-heading mt-0.5">
                       {i + 1}.
                     </span>
                     <p className="text-sm text-off-white leading-relaxed">
@@ -260,14 +268,16 @@ export default function AgentPage() {
                   </div>
                 ))}
               </div>
-            </div>
+              </CardBody>
+            </Card>
           )}
         </>
       ) : (
         /* Placeholder when no report has been run */
-        <div className="bg-background-elevated border border-white/5 rounded-xl p-5">
-          <h2 className="font-heading text-sm text-foreground-muted tracking-wider mb-4">
-            LATEST REPORT
+        <Card>
+          <CardBody compact>
+          <h2 className="font-body font-semibold text-[13px] text-[var(--color-fg)] mb-4">
+            Latest report
           </h2>
           <div className="h-48 flex flex-col items-center justify-center border border-dashed border-white/10 rounded-lg gap-3">
             <svg
@@ -288,17 +298,20 @@ export default function AgentPage() {
               scheduled run.
             </p>
           </div>
-        </div>
+          </CardBody>
+        </Card>
       )}
 
       {/* Config note */}
-      <div className="bg-background-elevated border border-white/5 rounded-xl p-4">
-        <p className="text-foreground-subtle text-xs">
-          The AI agent analyzes traffic patterns, conversion data, and content performance to
-          generate weekly reports with actionable recommendations. Configure the agent schedule and
-          data sources in your environment variables.
-        </p>
-      </div>
+      <Card>
+        <CardBody compact>
+          <p className="text-foreground-subtle text-xs">
+            The AI agent analyzes traffic patterns, conversion data, and content performance to
+            generate weekly reports with actionable recommendations. Configure the agent schedule and
+            data sources in your environment variables.
+          </p>
+        </CardBody>
+      </Card>
     </div>
   );
 }

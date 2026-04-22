@@ -13,7 +13,6 @@ import {
   EmptyState,
   PageHeader,
   Pill,
-  SectionLabel,
   StatTile,
 } from "@/components/admin/ui";
 
@@ -33,16 +32,6 @@ function formatRelative(dateStr: string | null): string {
   return d.toLocaleDateString("en-GB", { day: "numeric", month: "short" });
 }
 
-function formatTime(dateStr: string | null): string {
-  if (!dateStr) return "";
-  return new Date(dateStr).toLocaleTimeString("en-GB", { hour: "2-digit", minute: "2-digit" });
-}
-
-function formatDate(dateStr: string | null): string {
-  if (!dateStr) return "—";
-  return new Date(dateStr).toLocaleDateString("en-GB", { day: "numeric", month: "short" });
-}
-
 function emailStatusTone(status: string): "good" | "bad" | "warn" | "neutral" {
   switch (status) {
     case "sent":
@@ -58,6 +47,12 @@ function emailStatusTone(status: string): "good" | "bad" | "warn" | "neutral" {
       return "neutral";
   }
 }
+
+// Subtle link that replaces the old coral "See all" — spec bans coral on links.
+const LINK_MUTED =
+  "text-[11px] font-body text-[var(--color-fg-muted)] hover:text-[var(--color-fg)] transition-colors duration-[var(--dur-fast)]";
+const SECTION_H2 =
+  "font-body font-semibold text-[13px] text-[var(--color-fg)] tracking-normal";
 
 function activityIcon(type: string): string {
   switch (type) {
@@ -118,7 +113,7 @@ export default async function MyDayPage() {
           label="Overdue"
           value={data.stats.overdueTasks}
           href="/admin/tasks?scope=mine&status=open&due=overdue"
-          tone={data.stats.overdueTasks > 0 ? "coral" : "neutral"}
+          tone={data.stats.overdueTasks > 0 ? "bad" : "neutral"}
         />
         <StatTile
           label="Contacts I own"
@@ -129,7 +124,7 @@ export default async function MyDayPage() {
           label="Stale (7d+)"
           value={data.stats.staleContacts}
           href={`/admin/contacts?owner=${encodeURIComponent(user.slug)}&stale=1`}
-          tone={data.stats.staleContacts > 0 ? "coral" : "neutral"}
+          tone={data.stats.staleContacts > 0 ? "bad" : "neutral"}
         />
       </div>
 
@@ -148,56 +143,56 @@ export default async function MyDayPage() {
 
       {/* Today's bookings */}
       {(data.todayBookings.length > 0 || data.upcomingBookings.length > 0) && (
-        <div className="bg-background-elevated border border-white/5 rounded-xl p-6">
-          <div className="flex items-center justify-between mb-4">
-            <h2 className="font-heading text-sm tracking-wider uppercase text-foreground-muted">
-              Today&apos;s Bookings
-            </h2>
-            <Link href="/admin/bookings" className="text-xs text-coral hover:underline">
-              See all
-            </Link>
-          </div>
-          {data.todayBookings.length === 0 ? (
-            <p className="text-sm text-foreground-subtle">
-              Nothing today. Next 24h: {data.upcomingBookings.length}.
-            </p>
-          ) : (
-            <ul className="space-y-2">
-              {data.todayBookings.map((b) => (
-                <li
-                  key={b.id}
-                  className="flex items-center gap-3 py-1.5 border-b border-white/5 last:border-0"
-                >
-                  <span className="text-xs text-coral tabular-nums font-heading tracking-wider w-14 shrink-0">
-                    {new Date(b.scheduledAt).toLocaleTimeString("en-GB", {
-                      hour: "2-digit",
-                      minute: "2-digit",
-                    })}
-                  </span>
-                  <div className="flex-1 min-w-0">
-                    <Link
-                      href={`/admin/bookings/${b.id}`}
-                      className="text-sm text-off-white hover:text-coral truncate block"
-                    >
-                      {b.title}
-                    </Link>
-                    {b.contactId && (
+        <Card>
+          <CardBody>
+            <div className="flex items-center justify-between mb-4">
+              <h2 className={SECTION_H2}>Today&apos;s bookings</h2>
+              <Link href="/admin/bookings" className={LINK_MUTED}>
+                See all
+              </Link>
+            </div>
+            {data.todayBookings.length === 0 ? (
+              <p className="text-sm text-[var(--color-fg-subtle)]">
+                Nothing today. Next 24h: {data.upcomingBookings.length}.
+              </p>
+            ) : (
+              <ul className="space-y-2">
+                {data.todayBookings.map((b) => (
+                  <li
+                    key={b.id}
+                    className="flex items-center gap-3 py-1.5 border-b border-[var(--color-border)] last:border-0"
+                  >
+                    <span className="text-xs font-mono tabular-nums text-[var(--color-fg)] w-14 shrink-0">
+                      {new Date(b.scheduledAt).toLocaleTimeString("en-GB", {
+                        hour: "2-digit",
+                        minute: "2-digit",
+                      })}
+                    </span>
+                    <div className="flex-1 min-w-0">
                       <Link
-                        href={`/admin/contacts/${b.contactId}`}
-                        className="text-xs text-foreground-muted hover:text-coral"
+                        href={`/admin/bookings/${b.id}`}
+                        className="text-sm text-[var(--color-fg)] hover:underline truncate block"
                       >
-                        {b.contactName ?? b.contactEmail}
+                        {b.title}
                       </Link>
-                    )}
-                  </div>
-                  <span className="text-xs text-foreground-subtle shrink-0">
-                    {b.durationMinutes}m
-                  </span>
-                </li>
-              ))}
-            </ul>
-          )}
-        </div>
+                      {b.contactId && (
+                        <Link
+                          href={`/admin/contacts/${b.contactId}`}
+                          className="text-xs text-[var(--color-fg-muted)] hover:text-[var(--color-fg)]"
+                        >
+                          {b.contactName ?? b.contactEmail}
+                        </Link>
+                      )}
+                    </div>
+                    <span className="text-xs font-mono tabular-nums text-[var(--color-fg-subtle)] shrink-0">
+                      {b.durationMinutes}m
+                    </span>
+                  </li>
+                ))}
+              </ul>
+            )}
+          </CardBody>
+        </Card>
       )}
 
       {/* Focus board — pinned main focus + all other open tasks, drag to pin. */}
@@ -218,156 +213,153 @@ export default async function MyDayPage() {
         <div className="space-y-6">
 
           {/* Applications waiting on me */}
-          <div className="bg-background-elevated border border-white/5 rounded-xl p-6">
-            <div className="flex items-center justify-between mb-4">
-              <h2 className="font-heading text-sm tracking-wider uppercase text-foreground-muted">
-                Applications Waiting On Me
-              </h2>
-              <Link
-                href="/admin/applications"
-                className="text-xs text-coral hover:underline"
-              >
-                See all
-              </Link>
-            </div>
-            {data.applicationsWaiting.length === 0 ? (
-              <EmptyState
-                icon="✓"
-                title="Nothing waiting"
-                subtitle="No cohort applications need your attention."
-              />
-            ) : (
-              <ul className="space-y-2">
-                {data.applicationsWaiting.map((a) => {
-                  const stage = isApplicationStage(a.status) ? a.status : "awaiting_response";
-                  const firstGoal = a.goal.split("\n")[0];
-                  return (
-                    <li
-                      key={a.id}
-                      className="py-2 border-b border-white/5 last:border-0"
-                    >
-                      <Link
-                        href={a.contactId ? `/admin/contacts/${a.contactId}` : "/admin/applications"}
-                        className="block"
+          <Card>
+            <CardBody>
+              <div className="flex items-center justify-between mb-4">
+                <h2 className={SECTION_H2}>Applications waiting on me</h2>
+                <Link href="/admin/applications" className={LINK_MUTED}>
+                  See all
+                </Link>
+              </div>
+              {data.applicationsWaiting.length === 0 ? (
+                <EmptyState
+                  icon="✓"
+                  title="Nothing waiting"
+                  subtitle="No cohort applications need your attention."
+                />
+              ) : (
+                <ul className="space-y-2">
+                  {data.applicationsWaiting.map((a) => {
+                    const stage = isApplicationStage(a.status) ? a.status : "awaiting_response";
+                    const firstGoal = a.goal.split("\n")[0];
+                    return (
+                      <li
+                        key={a.id}
+                        className="py-2 border-b border-[var(--color-border)] last:border-0"
                       >
-                        <div className="flex items-center justify-between gap-3">
-                          <span className="text-sm text-off-white font-medium truncate">
-                            {a.name}
-                          </span>
-                          <span
-                            className={`text-[10px] uppercase tracking-wider px-2 py-0.5 rounded border ${STAGE_COLORS[stage].badge}`}
-                          >
-                            {STAGE_LABELS[stage]}
-                          </span>
-                        </div>
-                        <div className="flex items-center gap-2 mt-1 text-xs text-foreground-muted">
-                          <span>{a.hours}</span>
-                          <span className="text-foreground-subtle">·</span>
-                          <span className="truncate">{firstGoal}</span>
-                        </div>
-                      </Link>
-                    </li>
-                  );
-                })}
-              </ul>
-            )}
-          </div>
+                        <Link
+                          href={a.contactId ? `/admin/contacts/${a.contactId}` : "/admin/applications"}
+                          className="block"
+                        >
+                          <div className="flex items-center justify-between gap-3">
+                            <span className="text-sm text-[var(--color-fg)] font-medium truncate">
+                              {a.name}
+                            </span>
+                            <span
+                              className={`text-[10px] uppercase tracking-wider px-2 py-0.5 rounded border ${STAGE_COLORS[stage].badge}`}
+                            >
+                              {STAGE_LABELS[stage]}
+                            </span>
+                          </div>
+                          <div className="flex items-center gap-2 mt-1 text-xs text-[var(--color-fg-muted)]">
+                            <span>{a.hours}</span>
+                            <span className="text-[var(--color-fg-subtle)]">·</span>
+                            <span className="truncate">{firstGoal}</span>
+                          </div>
+                        </Link>
+                      </li>
+                    );
+                  })}
+                </ul>
+              )}
+            </CardBody>
+          </Card>
         </div>
 
         {/* ── Right column ────────────────────────────── */}
         <div className="space-y-6">
           {/* Recent activity */}
-          <div className="bg-background-elevated border border-white/5 rounded-xl p-6">
-            <h2 className="font-heading text-sm tracking-wider uppercase text-foreground-muted mb-4">
-              Recent Activity (Mine)
-            </h2>
-            {data.recentActivity.length === 0 ? (
-              <EmptyState icon="·" title="No activity yet" />
-            ) : (
-              <ul className="space-y-1.5">
-                {data.recentActivity.map((a) => (
-                  <li key={a.id} className="flex items-start gap-3 py-1">
-                    <span className="text-coral text-sm w-4 text-center shrink-0">
-                      {activityIcon(a.type)}
-                    </span>
-                    <div className="flex-1 min-w-0">
-                      <p className="text-sm text-off-white truncate">{a.title}</p>
-                      <Link
-                        href={`/admin/contacts/${a.contactId}`}
-                        className="text-xs text-foreground-muted hover:text-coral"
-                      >
-                        {a.contactName ?? a.contactEmail ?? `#${a.contactId}`}
-                      </Link>
-                    </div>
-                    <span className="text-xs text-foreground-subtle shrink-0">
-                      {formatRelative(a.createdAt)}
-                    </span>
-                  </li>
-                ))}
-              </ul>
-            )}
-          </div>
+          <Card>
+            <CardBody>
+              <h2 className={`${SECTION_H2} mb-4`}>Recent activity (mine)</h2>
+              {data.recentActivity.length === 0 ? (
+                <EmptyState icon="·" title="No activity yet" />
+              ) : (
+                <ul className="space-y-1.5">
+                  {data.recentActivity.map((a) => (
+                    <li key={a.id} className="flex items-start gap-3 py-1">
+                      <span className="text-[var(--color-fg-subtle)] text-sm w-4 text-center shrink-0">
+                        {activityIcon(a.type)}
+                      </span>
+                      <div className="flex-1 min-w-0">
+                        <p className="text-sm text-[var(--color-fg)] truncate">{a.title}</p>
+                        <Link
+                          href={`/admin/contacts/${a.contactId}`}
+                          className="text-xs text-[var(--color-fg-muted)] hover:text-[var(--color-fg)]"
+                        >
+                          {a.contactName ?? a.contactEmail ?? `#${a.contactId}`}
+                        </Link>
+                      </div>
+                      <span className="text-xs font-mono tabular-nums text-[var(--color-fg-subtle)] shrink-0">
+                        {formatRelative(a.createdAt)}
+                      </span>
+                    </li>
+                  ))}
+                </ul>
+              )}
+            </CardBody>
+          </Card>
 
           {/* Stale contacts */}
-          <div className="bg-background-elevated border border-white/5 rounded-xl p-6">
-            <h2 className="font-heading text-sm tracking-wider uppercase text-foreground-muted mb-4">
-              Stale Contacts
-            </h2>
-            {data.staleContacts.length === 0 ? (
-              <EmptyState icon="✓" title="All current" />
-            ) : (
-              <ul className="space-y-1.5">
-                {data.staleContacts.map((c) => (
-                  <li
-                    key={c.id}
-                    className="flex items-center justify-between gap-3 py-1.5 border-b border-white/5 last:border-0"
-                  >
-                    <Link
-                      href={`/admin/contacts/${c.id}`}
-                      className="text-sm text-off-white hover:text-coral truncate"
+          <Card>
+            <CardBody>
+              <h2 className={`${SECTION_H2} mb-4`}>Stale contacts</h2>
+              {data.staleContacts.length === 0 ? (
+                <EmptyState icon="✓" title="All current" />
+              ) : (
+                <ul className="space-y-1.5">
+                  {data.staleContacts.map((c) => (
+                    <li
+                      key={c.id}
+                      className="flex items-center justify-between gap-3 py-1.5 border-b border-[var(--color-border)] last:border-0"
                     >
-                      {c.name ?? c.email}
-                    </Link>
-                    <span className="text-xs text-amber-400 shrink-0">
-                      {formatRelative(c.lastActivityAt)}
-                    </span>
-                  </li>
-                ))}
-              </ul>
-            )}
-          </div>
+                      <Link
+                        href={`/admin/contacts/${c.id}`}
+                        className="text-sm text-[var(--color-fg)] hover:underline truncate"
+                      >
+                        {c.name ?? c.email}
+                      </Link>
+                      <span className="text-xs font-mono tabular-nums text-[var(--color-warn)] shrink-0">
+                        {formatRelative(c.lastActivityAt)}
+                      </span>
+                    </li>
+                  ))}
+                </ul>
+              )}
+            </CardBody>
+          </Card>
 
           {/* Recent emails */}
-          <div className="bg-background-elevated border border-white/5 rounded-xl p-6">
-            <h2 className="font-heading text-sm tracking-wider uppercase text-foreground-muted mb-4">
-              Recent Emails Sent (Mine)
-            </h2>
-            {data.recentEmails.length === 0 ? (
-              <EmptyState icon="✉" title="No emails sent yet" />
-            ) : (
-              <ul className="space-y-2">
-                {data.recentEmails.map((e) => (
-                  <li key={e.id} className="py-1.5 border-b border-white/5 last:border-0">
-                    <div className="flex items-center justify-between gap-3">
-                      <p className="text-sm text-off-white truncate">{e.subject}</p>
-                      <Pill tone={emailStatusTone(e.status)}>{e.status}</Pill>
-                    </div>
-                    <div className="flex items-center justify-between gap-3 mt-0.5">
-                      <Link
-                        href={`/admin/contacts/${e.contactId}`}
-                        className="text-xs text-foreground-muted hover:text-coral truncate"
-                      >
-                        {e.contactName ?? e.contactEmail}
-                      </Link>
-                      <span className="text-xs text-foreground-subtle shrink-0">
-                        {formatRelative(e.sentAt ?? e.createdAt)}
-                      </span>
-                    </div>
-                  </li>
-                ))}
-              </ul>
-            )}
-          </div>
+          <Card>
+            <CardBody>
+              <h2 className={`${SECTION_H2} mb-4`}>Recent emails sent (mine)</h2>
+              {data.recentEmails.length === 0 ? (
+                <EmptyState icon="✉" title="No emails sent yet" />
+              ) : (
+                <ul className="space-y-2">
+                  {data.recentEmails.map((e) => (
+                    <li key={e.id} className="py-1.5 border-b border-[var(--color-border)] last:border-0">
+                      <div className="flex items-center justify-between gap-3">
+                        <p className="text-sm text-[var(--color-fg)] truncate">{e.subject}</p>
+                        <Pill tone={emailStatusTone(e.status)}>{e.status}</Pill>
+                      </div>
+                      <div className="flex items-center justify-between gap-3 mt-0.5">
+                        <Link
+                          href={`/admin/contacts/${e.contactId}`}
+                          className="text-xs text-[var(--color-fg-muted)] hover:text-[var(--color-fg)] truncate"
+                        >
+                          {e.contactName ?? e.contactEmail}
+                        </Link>
+                        <span className="text-xs font-mono tabular-nums text-[var(--color-fg-subtle)] shrink-0">
+                          {formatRelative(e.sentAt ?? e.createdAt)}
+                        </span>
+                      </div>
+                    </li>
+                  ))}
+                </ul>
+              )}
+            </CardBody>
+          </Card>
         </div>
       </div>
     </div>

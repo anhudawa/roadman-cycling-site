@@ -1,6 +1,7 @@
 import Link from "next/link";
 import type { ABTest } from "@/lib/ab/types";
 import { DeleteButton } from "./delete-button";
+import { Card, CardBody } from "@/components/admin/ui";
 
 async function getExperiments(): Promise<ABTest[]> {
   try {
@@ -45,7 +46,7 @@ export default async function ExperimentsPage() {
         </div>
         <Link
           href="/admin/experiments/new"
-          className="px-4 py-2 bg-coral hover:bg-coral/90 text-white text-sm font-medium rounded-lg transition-colors"
+          className="px-4 py-2 bg-[var(--color-elevated)] hover:bg-[var(--color-raised)] text-[var(--color-fg)] border border-[var(--color-border-strong)] text-sm font-medium rounded-lg transition-colors"
         >
           Create Experiment
         </Link>
@@ -54,7 +55,7 @@ export default async function ExperimentsPage() {
       {/* Experiments list */}
       <div className="space-y-3">
         {experiments.length === 0 ? (
-          <div className="bg-background-elevated border border-white/5 rounded-xl p-8 text-center">
+          <div className="rounded-[var(--radius-admin-lg)] bg-[var(--color-raised)] border border-[var(--color-border)] p-8 text-center">
             <svg
               className="w-8 h-8 text-foreground-subtle mx-auto mb-3"
               fill="none"
@@ -77,7 +78,7 @@ export default async function ExperimentsPage() {
             <Link
               key={exp.id}
               href={`/admin/experiments/${exp.id}`}
-              className="block bg-background-elevated border border-white/5 rounded-xl p-5 hover:border-white/10 transition-colors"
+              className="block rounded-[var(--radius-admin-lg)] bg-[var(--color-raised)] border border-[var(--color-border)] p-4 hover:border-[var(--color-border-strong)] transition-colors"
             >
               <div className="flex items-start justify-between gap-4">
                 <div className="min-w-0">
@@ -106,7 +107,7 @@ export default async function ExperimentsPage() {
                       </span>
                     )}
                     {exp.winnerVariantId && (
-                      <span className="text-coral">Winner declared</span>
+                      <span className="text-[var(--color-bad)]">Winner declared</span>
                     )}
                   </div>
                 </div>
@@ -125,12 +126,14 @@ export default async function ExperimentsPage() {
       </div>
 
       {/* Info note */}
-      <div className="bg-background-elevated border border-white/5 rounded-xl p-4">
-        <p className="text-foreground-subtle text-xs">
-          Experiments use the built-in event tracking system. Create an experiment to split traffic
-          between variants and measure conversion differences with statistical significance.
-        </p>
-      </div>
+      <Card>
+        <CardBody compact>
+          <p className="text-foreground-subtle text-xs">
+            Experiments use the built-in event tracking system. Create an experiment to split traffic
+            between variants and measure conversion differences with statistical significance.
+          </p>
+        </CardBody>
+      </Card>
     </div>
   );
 }

@@ -80,13 +80,13 @@ export function MembersUploader() {
       </div>
 
       {error ? (
-        <div className="text-xs text-coral">Upload failed: {error}</div>
+        <div className="text-xs text-[var(--color-bad)]">Upload failed: {error}</div>
       ) : null}
       {result ? (
         <div className="text-xs text-emerald-300">
           Upserted {result.upserted} / {result.total}.
           {result.failed.length > 0 ? (
-            <ul className="mt-1 text-coral">
+            <ul className="mt-1 text-[var(--color-bad)]">
               {result.failed.slice(0, 5).map((f) => (
                 <li key={f.memberId}>
                   {f.memberId}: {f.error}

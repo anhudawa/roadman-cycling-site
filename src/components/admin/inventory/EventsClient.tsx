@@ -32,7 +32,7 @@ const TIER_LABELS: Record<string, string> = {
 };
 
 const TIER_COLORS: Record<string, string> = {
-  "1": "bg-coral/15 text-coral border-coral/20",
+  "1": "bg-[var(--color-stage-triage-tint)] text-[var(--color-stage-triage)] border-[var(--color-stage-triage)]/30",
   "2": "bg-yellow-500/15 text-yellow-400 border-yellow-500/20",
   "3": "bg-white/5 text-foreground-muted border-white/10",
 };
@@ -122,7 +122,7 @@ export function EventsClient({
                 }
                 className={`w-full text-left bg-background-elevated border rounded-xl p-4 transition-colors ${
                   selectedEventId === event.id
-                    ? "border-coral/30 bg-coral/[0.03]"
+                    ? "border-[var(--color-border-strong)] bg-white/[0.04]"
                     : "border-white/5 hover:border-white/10"
                 }`}
               >
@@ -216,7 +216,7 @@ export function EventsClient({
                               key={e.id}
                               className={`text-[9px] px-1.5 py-0.5 rounded truncate border ${
                                 selectedEventId === e.id
-                                  ? "bg-coral/15 text-coral border-coral/20"
+                                  ? "bg-[var(--color-info-tint)] text-[var(--color-info)] border-[var(--color-info)]/30"
                                   : "bg-purple/10 text-purple-300 border-purple/20"
                               }`}
                               title={e.eventName}

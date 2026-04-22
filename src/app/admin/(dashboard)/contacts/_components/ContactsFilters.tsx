@@ -56,12 +56,12 @@ export function ContactsFilters({
         onBlur={(e) => {
           if (e.currentTarget.value !== initialSearch) update("search", e.currentTarget.value);
         }}
-        className="px-3 py-2 text-sm bg-background-elevated border border-white/10 text-off-white rounded focus:outline-none focus:border-coral/50 min-w-[220px]"
+        className="px-3 py-2 text-sm bg-[var(--color-sunken)] border border-[var(--color-border-strong)] text-[var(--color-fg)] rounded-[var(--radius-admin-md)] focus-ring focus:border-[var(--color-border-focus)] min-w-[220px]"
       />
       <select
         value={initialOwner}
         onChange={(e) => update("owner", e.target.value)}
-        className="px-3 py-2 text-sm bg-background-elevated border border-white/10 text-off-white rounded focus:outline-none focus:border-coral/50"
+        className="px-3 py-2 text-sm bg-[var(--color-sunken)] border border-[var(--color-border-strong)] text-[var(--color-fg)] rounded-[var(--radius-admin-md)] focus-ring focus:border-[var(--color-border-focus)]"
       >
         {OWNERS.map((o) => (
           <option key={o.value} value={o.value}>
@@ -72,7 +72,7 @@ export function ContactsFilters({
       <select
         value={initialStage}
         onChange={(e) => update("stage", e.target.value)}
-        className="px-3 py-2 text-sm bg-background-elevated border border-white/10 text-off-white rounded focus:outline-none focus:border-coral/50"
+        className="px-3 py-2 text-sm bg-[var(--color-sunken)] border border-[var(--color-border-strong)] text-[var(--color-fg)] rounded-[var(--radius-admin-md)] focus-ring focus:border-[var(--color-border-focus)]"
       >
         {STAGES.map((s) => (
           <option key={s.value} value={s.value}>
@@ -83,10 +83,10 @@ export function ContactsFilters({
       <button
         type="button"
         onClick={() => update("stale", initialStale ? "" : "1")}
-        className={`px-3 py-2 text-xs font-heading tracking-wider uppercase rounded border transition ${
+        className={`px-3 py-2 font-body font-semibold text-[13px] rounded-[var(--radius-admin-md)] border transition ${
           initialStale
-            ? "bg-coral/15 text-coral border-coral/30"
-            : "bg-background-elevated text-foreground-muted border-white/10 hover:border-coral/30"
+            ? "bg-[var(--color-raised)] text-[var(--color-fg)] border-[var(--color-border-strong)] shadow-inner"
+            : "bg-[var(--color-elevated)] text-[var(--color-fg-muted)] border-[var(--color-border)] hover:border-[var(--color-border-strong)] hover:text-[var(--color-fg)]"
         }`}
         aria-pressed={initialStale ? "true" : "false"}
       >

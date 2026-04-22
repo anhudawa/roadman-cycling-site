@@ -121,7 +121,7 @@ export function DuplicatesClient({ initialGroups }: { initialGroups: DuplicateGr
         <p className="text-sm mt-1">Nice and tidy.</p>
         <Link
           href="/admin/contacts"
-          className="inline-block mt-4 px-3 py-2 text-xs font-heading tracking-wider uppercase border border-white/10 text-foreground-muted rounded hover:border-coral/30"
+          className="inline-block mt-4 px-3 py-2 font-body font-semibold text-[13px] border border-[var(--color-border)] text-[var(--color-fg-muted)] rounded-[var(--radius-admin-md)] hover:border-[var(--color-border-strong)] hover:text-[var(--color-fg)]"
         >
           Back to contacts
         </Link>
@@ -163,8 +163,8 @@ export function DuplicatesClient({ initialGroups }: { initialGroups: DuplicateGr
                   key={c.id}
                   className={`rounded-lg border p-3 text-sm ${
                     isPrimary
-                      ? "border-coral/40 bg-coral/5"
-                      : "border-white/10 bg-background-deep"
+                      ? "border-[var(--color-info)]/40 bg-[var(--color-info-tint)]"
+                      : "border-[var(--color-border)] bg-[var(--color-sunken)]"
                   }`}
                 >
                   <label className="flex items-start gap-2 cursor-pointer">
@@ -174,12 +174,12 @@ export function DuplicatesClient({ initialGroups }: { initialGroups: DuplicateGr
                       checked={isPrimary}
                       onChange={() => setPrimary(g.key, c.id)}
                       disabled={g.busy}
-                      className="mt-1 accent-coral"
+                      className="mt-1 accent-[var(--color-info)]"
                     />
                     <div className="flex-1 min-w-0">
                       <Link
                         href={`/admin/contacts/${c.id}`}
-                        className="text-off-white hover:text-coral truncate block font-medium"
+                        className="text-[var(--color-fg)] hover:underline truncate block font-medium"
                         target="_blank"
                       >
                         {c.name ?? c.email}
@@ -217,13 +217,13 @@ export function DuplicatesClient({ initialGroups }: { initialGroups: DuplicateGr
                     <button
                       onClick={() => mergeGroup(g.key, c.id)}
                       disabled={g.busy}
-                      className="mt-3 w-full px-3 py-1.5 text-xs font-heading tracking-wider uppercase bg-coral text-white rounded hover:bg-coral/90 disabled:opacity-50"
+                      className="mt-3 w-full px-3 py-1.5 font-body font-semibold text-[13px] bg-[var(--color-raised)] text-[var(--color-fg)] border border-[var(--color-border-strong)] rounded-[var(--radius-admin-md)] hover:bg-[var(--color-elevated)] disabled:opacity-50"
                     >
                       {g.busy ? "Merging..." : "Merge into primary"}
                     </button>
                   )}
                   {isPrimary && (
-                    <div className="mt-3 text-[10px] uppercase tracking-widest text-coral font-heading text-center">
+                    <div className="mt-3 font-body font-semibold text-[13px] text-[var(--color-info)] text-center">
                       Primary (kept)
                     </div>
                   )}

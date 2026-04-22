@@ -126,7 +126,7 @@ function MultiCheck({
               onClick={() => toggle(o)}
               className={`px-2 py-1 text-[11px] border rounded transition-colors ${
                 active
-                  ? "bg-coral/15 border-coral/40 text-coral"
+                  ? "bg-[var(--color-bad-tint)] border-[var(--color-border-strong)] text-[var(--color-bad)]"
                   : "bg-white/[0.03] border-white/10 text-foreground-muted hover:text-off-white"
               }`}
             >
@@ -463,7 +463,7 @@ export function SegmentBuilder({
             type="button"
             onClick={save}
             disabled={busy || !draft.name.trim()}
-            className="px-4 py-2 bg-coral text-background-deep font-medium rounded text-sm hover:bg-coral/90 disabled:opacity-50"
+            className="px-4 py-2 bg-[var(--color-elevated)] hover:bg-[var(--color-raised)] text-[var(--color-fg)] border border-[var(--color-border-strong)] font-medium rounded text-sm disabled:opacity-50"
           >
             {busy ? "Saving..." : mode === "create" ? "Create segment" : "Save changes"}
           </button>
@@ -475,7 +475,7 @@ export function SegmentBuilder({
           <h3 className="font-heading text-sm text-off-white tracking-wider uppercase">Preview</h3>
           {previewing && <span className="text-[10px] text-foreground-subtle">updating...</span>}
         </div>
-        <div className="text-3xl font-heading text-coral">{preview?.count ?? "—"}</div>
+        <div className="text-3xl font-heading text-[var(--color-bad)]">{preview?.count ?? "—"}</div>
         <div className="text-[10px] uppercase tracking-widest text-foreground-subtle mb-3">matching contacts</div>
         {preview && preview.preview.length > 0 ? (
           <ul className="space-y-1.5 max-h-[500px] overflow-y-auto">

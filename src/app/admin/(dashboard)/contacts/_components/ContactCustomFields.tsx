@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { Card, CardBody } from "@/components/admin/ui";
 
 type FieldType = "text" | "longtext" | "number" | "date" | "url" | "select" | "boolean";
 
@@ -33,38 +34,42 @@ export function ContactCustomFields({
 
   if (defs.length === 0) {
     return (
-      <div className="bg-background-elevated border border-white/5 rounded-xl p-4">
-        <h3 className="font-heading text-sm text-off-white tracking-wider uppercase mb-2">
-          Custom fields
-        </h3>
-        <p className="text-xs text-foreground-subtle">
-          No custom fields defined yet. Admins can add them in{" "}
-          <a href="/admin/settings" className="text-coral hover:underline">
-            Settings
-          </a>
-          .
-        </p>
-      </div>
+      <Card>
+        <CardBody compact>
+          <h3 className="font-body font-semibold text-[13px] text-[var(--color-fg)] mb-2">
+            Custom fields
+          </h3>
+          <p className="text-xs text-foreground-subtle">
+            No custom fields defined yet. Admins can add them in{" "}
+            <a href="/admin/settings" className="text-[var(--color-info)] hover:underline">
+              Settings
+            </a>
+            .
+          </p>
+        </CardBody>
+      </Card>
     );
   }
 
   return (
-    <div className="bg-background-elevated border border-white/5 rounded-xl p-4">
-      <h3 className="font-heading text-sm text-off-white tracking-wider uppercase mb-3">
-        Custom fields
-      </h3>
-      <div className="flex flex-col gap-3">
-        {defs.map((def) => (
-          <FieldRow
-            key={def.id}
-            contactId={contactId}
-            def={def}
-            value={values[def.key]}
-            onSaved={(newValues) => setValues(newValues)}
-          />
-        ))}
-      </div>
-    </div>
+    <Card>
+      <CardBody compact>
+        <h3 className="font-body font-semibold text-[13px] text-[var(--color-fg)] mb-3">
+          Custom fields
+        </h3>
+        <div className="flex flex-col gap-3">
+          {defs.map((def) => (
+            <FieldRow
+              key={def.id}
+              contactId={contactId}
+              def={def}
+              value={values[def.key]}
+              onSaved={(newValues) => setValues(newValues)}
+            />
+          ))}
+        </div>
+      </CardBody>
+    </Card>
   );
 }
 
@@ -110,7 +115,7 @@ function FieldRow({
   }
 
   function baseInputClass() {
-    return "w-full px-3 py-2 bg-background-deep border border-white/10 rounded text-sm text-off-white focus:outline-none focus:border-coral/50";
+    return "w-full px-3 py-2 bg-[var(--color-sunken)] border border-[var(--color-border-strong)] rounded-[var(--radius-admin-md)] text-sm text-[var(--color-fg)] focus-ring focus:border-[var(--color-border-focus)]";
   }
 
   let input: React.ReactNode = null;
@@ -162,7 +167,7 @@ function FieldRow({
             href={value}
             target="_blank"
             rel="noopener noreferrer"
-            className="text-xs text-coral hover:underline truncate"
+            className="text-xs text-[var(--color-info)] hover:underline truncate"
           >
             {value}
           </a>
@@ -197,7 +202,7 @@ function FieldRow({
             setChecked(e.target.checked);
             save(e.target.checked);
           }}
-          className="w-4 h-4 accent-coral"
+          className="w-4 h-4 accent-[var(--color-info)]"
         />
         <span className="text-xs text-foreground-muted">
           {checked ? "Yes" : "No"}

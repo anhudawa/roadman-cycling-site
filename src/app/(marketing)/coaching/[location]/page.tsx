@@ -877,7 +877,7 @@ export default async function CoachingLocationPage({ params }: Props) {
           },
           offers: {
             "@type": "Offer",
-            name: "Not Done Yet — Personalised Coaching",
+            name: "Not Done Yet Coaching Community — Personalised Coaching",
             price: "195",
             priceCurrency: "USD",
             description:

@@ -252,11 +252,11 @@ export default function PlanIndexPage() {
                   WANT THIS BUILT AROUND YOUR FTP?
                 </h2>
                 <p className="text-foreground-muted text-base md:text-lg mb-8 max-w-xl mx-auto leading-relaxed">
-                  Not Done Yet is the coached five-pillar system. Your plan gets built backwards from your event date using your actual numbers. 7-day free trial.
+                  The Not Done Yet coaching community runs the coached five-pillar system. Your plan gets built backwards from your event date using your actual numbers. 7-day free trial.
                 </p>
                 <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
                   <Button href="/apply" size="lg">
-                    Apply for Not Done Yet
+                    Apply for Coaching
                   </Button>
                   <Button href="/coaching" variant="ghost" size="lg">
                     How Coaching Works

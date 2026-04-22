@@ -137,7 +137,7 @@ export function GenerateDraftPanel() {
         </div>
       ) : null}
       {msg ? <div className="text-xs text-emerald-300">{msg}</div> : null}
-      {err ? <div className="text-xs text-coral">{err}</div> : null}
+      {err ? <div className="text-xs text-[var(--color-bad)]">{err}</div> : null}
     </div>
   );
 }

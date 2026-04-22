@@ -26,7 +26,7 @@ function DiffView({ before, after }: { before: string; after: string }) {
         if (t.kind === "kept") return <span key={i}>{t.token}</span>;
         if (t.kind === "removed")
           return (
-            <span key={i} className="bg-coral/20 text-coral line-through">
+            <span key={i} className="bg-[var(--color-bad-tint)] text-[var(--color-bad)] line-through">
               {t.token}
             </span>
           );
@@ -188,7 +188,7 @@ export function WelcomeReviewTable({ rows }: { rows: Row[] }) {
               <button
                 onClick={() => call(r.memberEmail, "reject")}
                 disabled={busy === r.memberEmail}
-                className="text-sm rounded-md bg-coral/20 text-coral hover:bg-coral/30 px-3 py-1.5 disabled:opacity-50"
+                className="text-sm rounded-md bg-[var(--color-bad-tint)] text-[var(--color-bad)] hover:bg-[var(--color-bad-tint)] px-3 py-1.5 disabled:opacity-50"
               >
                 Reject
               </button>

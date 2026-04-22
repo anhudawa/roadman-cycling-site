@@ -37,7 +37,7 @@ function EditableField({
   }, [localValue, value, sponsorId, field, type]);
 
   const baseClass =
-    "w-full bg-white/[0.03] border border-white/10 rounded-md px-3 py-1.5 text-sm text-off-white focus:border-coral/30 focus:ring-1 focus:ring-coral/20 outline-none transition-colors";
+    "w-full bg-white/[0.03] border border-white/10 rounded-md px-3 py-1.5 text-sm text-off-white focus:border-[var(--color-border-focus)] focus:ring-1 focus:ring-[var(--color-border-focus)]/20 outline-none transition-colors";
 
   return (
     <div>

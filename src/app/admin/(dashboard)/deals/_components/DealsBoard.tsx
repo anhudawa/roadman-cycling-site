@@ -9,6 +9,7 @@ import {
   formatCurrency,
   type DealStage,
 } from "@/lib/crm/deals";
+import { Card, CardBody } from "@/components/admin/ui";
 
 export interface KanbanDeal {
   id: number;
@@ -126,7 +127,7 @@ export function DealsBoard({ initialStages, stats, defaultCurrency }: Props) {
         <button
           type="button"
           onClick={() => setShowNew(true)}
-          className="ml-auto px-3 py-1.5 bg-coral text-white text-xs font-heading tracking-wider rounded-lg hover:bg-coral/90 uppercase"
+          className="ml-auto px-3 py-1.5 bg-[var(--color-elevated)] hover:bg-[var(--color-raised)] text-[var(--color-fg)] border border-[var(--color-border-strong)] text-xs font-heading tracking-wider rounded-lg uppercase"
         >
           + New Deal
         </button>
@@ -164,7 +165,7 @@ export function DealsBoard({ initialStages, stats, defaultCurrency }: Props) {
                 setDragFrom(null);
               }}
               className={`shrink-0 w-72 flex flex-col rounded-xl border border-white/5 bg-background-elevated transition ${
-                isHover ? "ring-1 ring-coral" : ""
+                isHover ? "ring-1 ring-[var(--color-border-focus)]" : ""
               }`}
             >
               <div className="flex items-center gap-2 px-4 py-3 border-b border-white/5">
@@ -205,7 +206,7 @@ export function DealsBoard({ initialStages, stats, defaultCurrency }: Props) {
                         setHoverStage(null);
                       }}
                       onClick={() => router.push(`/admin/deals/${deal.id}`)}
-                      className={`block w-full text-left p-3 rounded-lg border border-white/5 bg-white/[0.02] hover:border-coral/30 transition cursor-grab active:cursor-grabbing ${
+                      className={`block w-full text-left p-3 rounded-lg border border-white/5 bg-white/[0.02] hover:border-[var(--color-border-strong)] transition cursor-grab active:cursor-grabbing ${
                         dragging ? `opacity-40 scale-[0.98] ring-1 ${color.ring}` : ""
                       }`}
                     >
@@ -214,7 +215,7 @@ export function DealsBoard({ initialStages, stats, defaultCurrency }: Props) {
                           {deal.title}
                         </span>
                       </div>
-                      <p className="text-coral text-sm font-heading tracking-wider tabular-nums mb-2">
+                      <p className="text-[var(--color-bad)] text-sm font-heading tracking-wider tabular-nums mb-2">
                         {formatCurrency(deal.valueCents, deal.currency)}
                       </p>
                       {(deal.contactName || deal.contactEmail) && (
@@ -224,7 +225,7 @@ export function DealsBoard({ initialStages, stats, defaultCurrency }: Props) {
                       )}
                       <div className="flex items-center gap-1.5 flex-wrap mt-1">
                         {deal.ownerSlug && (
-                          <span className="text-[10px] px-2 py-0.5 rounded-full font-medium border bg-coral/15 text-coral border-coral/30 capitalize">
+                          <span className="text-[10px] px-2 py-0.5 rounded-full font-medium border bg-[var(--color-bad-tint)] text-[var(--color-bad)] border-[var(--color-border-strong)] capitalize">
                             {deal.ownerSlug}
                           </span>
                         )}
@@ -266,18 +267,20 @@ function StatCard({
   accent?: boolean;
 }) {
   return (
-    <div className="bg-background-elevated border border-white/5 rounded-xl p-4">
-      <p className="text-[10px] uppercase tracking-widest text-foreground-subtle font-medium">
-        {label}
-      </p>
-      <p
-        className={`font-heading text-xl tracking-wider mt-1 tabular-nums ${
-          accent ? "text-coral" : "text-off-white"
-        }`}
-      >
-        {value}
-      </p>
-    </div>
+    <Card>
+      <CardBody compact>
+        <p className="text-[10px] uppercase tracking-widest text-foreground-subtle font-medium">
+          {label}
+        </p>
+        <p
+          className={`font-heading text-xl tracking-wider mt-1 tabular-nums ${
+            accent ? "text-[var(--color-bad)]" : "text-off-white"
+          }`}
+        >
+          {value}
+        </p>
+      </CardBody>
+    </Card>
   );
 }
 
@@ -410,7 +413,7 @@ function NewDealModal({
             type="text"
             value={title}
             onChange={(e) => setTitle(e.target.value)}
-            className="w-full px-3 py-2 text-sm bg-background-deep border border-white/10 text-off-white rounded focus:outline-none focus:border-coral/50"
+            className="w-full px-3 py-2 text-sm bg-background-deep border border-white/10 text-off-white rounded focus-ring focus:border-[var(--color-border-focus)]"
           />
         </Field>
 
@@ -421,14 +424,14 @@ function NewDealModal({
               step="1"
               value={value}
               onChange={(e) => setValue(e.target.value)}
-              className="w-full px-3 py-2 text-sm bg-background-deep border border-white/10 text-off-white rounded focus:outline-none focus:border-coral/50"
+              className="w-full px-3 py-2 text-sm bg-background-deep border border-white/10 text-off-white rounded focus-ring focus:border-[var(--color-border-focus)]"
             />
           </Field>
           <Field label="Currency">
             <select
               value={currency}
               onChange={(e) => setCurrency(e.target.value)}
-              className="w-full px-3 py-2 text-sm bg-background-deep border border-white/10 text-off-white rounded focus:outline-none focus:border-coral/50"
+              className="w-full px-3 py-2 text-sm bg-background-deep border border-white/10 text-off-white rounded focus-ring focus:border-[var(--color-border-focus)]"
             >
               <option value="EUR">EUR</option>
               <option value="GBP">GBP</option>
@@ -442,7 +445,7 @@ function NewDealModal({
             <select
               value={stage}
               onChange={(e) => setStage(e.target.value as DealStage)}
-              className="w-full px-3 py-2 text-sm bg-background-deep border border-white/10 text-off-white rounded focus:outline-none focus:border-coral/50"
+              className="w-full px-3 py-2 text-sm bg-background-deep border border-white/10 text-off-white rounded focus-ring focus:border-[var(--color-border-focus)]"
             >
               {DEAL_STAGES.map((s) => (
                 <option key={s} value={s}>
@@ -455,7 +458,7 @@ function NewDealModal({
             <select
               value={owner}
               onChange={(e) => setOwner(e.target.value)}
-              className="w-full px-3 py-2 text-sm bg-background-deep border border-white/10 text-off-white rounded focus:outline-none focus:border-coral/50"
+              className="w-full px-3 py-2 text-sm bg-background-deep border border-white/10 text-off-white rounded focus-ring focus:border-[var(--color-border-focus)]"
             >
               {OWNERS.map((o) => (
                 <option key={o.value} value={o.value}>
@@ -472,10 +475,10 @@ function NewDealModal({
             placeholder="Search by name or email"
             value={contactQuery}
             onChange={(e) => searchContacts(e.target.value)}
-            className="w-full px-3 py-2 text-sm bg-background-deep border border-white/10 text-off-white rounded focus:outline-none focus:border-coral/50"
+            className="w-full px-3 py-2 text-sm bg-background-deep border border-white/10 text-off-white rounded focus-ring focus:border-[var(--color-border-focus)]"
           />
           {contactId && (
-            <p className="text-[10px] text-coral mt-1">Linked: id #{contactId}</p>
+            <p className="text-[10px] text-[var(--color-bad)] mt-1">Linked: id #{contactId}</p>
           )}
           {!contactId && hits.length > 0 && (
             <ul className="mt-1 max-h-36 overflow-y-auto border border-white/10 rounded bg-background-deep">
@@ -508,7 +511,7 @@ function NewDealModal({
               type="date"
               value={closeDate}
               onChange={(e) => setCloseDate(e.target.value)}
-              className="w-full px-3 py-2 text-sm bg-background-deep border border-white/10 text-off-white rounded focus:outline-none focus:border-coral/50"
+              className="w-full px-3 py-2 text-sm bg-background-deep border border-white/10 text-off-white rounded focus-ring focus:border-[var(--color-border-focus)]"
             />
           </Field>
           <Field label="Source">
@@ -516,7 +519,7 @@ function NewDealModal({
               type="text"
               value={source}
               onChange={(e) => setSource(e.target.value)}
-              className="w-full px-3 py-2 text-sm bg-background-deep border border-white/10 text-off-white rounded focus:outline-none focus:border-coral/50"
+              className="w-full px-3 py-2 text-sm bg-background-deep border border-white/10 text-off-white rounded focus-ring focus:border-[var(--color-border-focus)]"
             />
           </Field>
         </div>
@@ -533,7 +536,7 @@ function NewDealModal({
           <button
             onClick={submit}
             disabled={submitting}
-            className="px-3 py-1.5 text-xs font-heading tracking-wider uppercase bg-coral text-white rounded hover:bg-coral/90 disabled:opacity-50"
+            className="px-3 py-1.5 text-xs font-heading tracking-wider uppercase bg-[var(--color-elevated)] hover:bg-[var(--color-raised)] text-[var(--color-fg)] border border-[var(--color-border-strong)] rounded disabled:opacity-50"
           >
             {submitting ? "Saving…" : "Create"}
           </button>

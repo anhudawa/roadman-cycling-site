@@ -78,7 +78,7 @@ export default async function TedLogPage({
                   <span
                     className={`px-2 py-0.5 rounded-full ${
                       r.level === "error"
-                        ? "bg-coral/10 text-coral"
+                        ? "bg-[var(--color-bad-tint)] text-[var(--color-bad)]"
                         : r.level === "warn"
                           ? "bg-yellow-500/10 text-yellow-300"
                           : "bg-white/5 text-foreground-subtle"
@@ -89,7 +89,7 @@ export default async function TedLogPage({
                 </td>
                 <td className="p-2 text-foreground-subtle">
                   {r.error ? (
-                    <code className="text-coral">{r.error}</code>
+                    <code className="text-[var(--color-bad)]">{r.error}</code>
                   ) : r.payload ? (
                     <code className="font-mono">{JSON.stringify(r.payload)}</code>
                   ) : (

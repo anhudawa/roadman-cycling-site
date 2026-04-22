@@ -250,7 +250,7 @@ export function PipelineBoard({ initialStages, cohorts, initialCohort }: Props) 
           value={cohort}
           onChange={(e) => changeCohort(e.target.value)}
           disabled={loadingCohort}
-          className="bg-background-elevated border border-white/10 text-off-white text-sm rounded-lg px-3 py-1.5 focus:outline-none focus:border-coral/40"
+          className="bg-[var(--color-sunken)] border border-[var(--color-border-strong)] text-[var(--color-fg)] text-sm rounded-[var(--radius-admin-md)] px-3 py-1.5 focus-ring focus:border-[var(--color-border-focus)]"
         >
           <option value="all">All cohorts</option>
           {cohorts.map((c) => (
@@ -293,7 +293,7 @@ export function PipelineBoard({ initialStages, cohorts, initialCohort }: Props) 
               }}
               className={`shrink-0 w-[85vw] sm:w-72 snap-start flex flex-col rounded-xl border bg-background-elevated/70 transition ${
                 isHover
-                  ? "border-coral/60 ring-2 ring-coral/30"
+                  ? "border-dashed border-[var(--color-info)]/60 bg-[var(--color-info-tint)]"
                   : cards.length === 0
                     ? "border-white/[0.04]"
                     : "border-white/10"
@@ -346,7 +346,7 @@ export function PipelineBoard({ initialStages, cohorts, initialCohort }: Props) 
                           openCard(app);
                         }
                       }}
-                      className={`group relative block w-full text-left p-3 rounded-lg border border-white/5 bg-white/[0.02] hover:border-coral/30 transition cursor-grab active:cursor-grabbing ${
+                      className={`group relative block w-full text-left p-3 rounded-lg border border-[var(--color-border)] bg-[var(--color-elevated)] hover:border-[var(--color-border-strong)] hover:bg-white/[0.04] transition cursor-grab active:cursor-grabbing ${
                         dragging ? `opacity-40 scale-[0.98] ring-1 ${color.ring}` : ""
                       } ${deletingId === app.id ? "opacity-40 pointer-events-none" : ""}`}
                     >
@@ -397,8 +397,8 @@ export function PipelineBoard({ initialStages, cohorts, initialCohort }: Props) 
                           }}
                           className={`relative ml-auto text-[10px] px-2 py-0.5 rounded-full font-medium border capitalize cursor-pointer ${
                             app.owner
-                              ? "bg-coral/15 text-coral border-coral/30"
-                              : "border-dashed border-white/15 text-foreground-subtle"
+                              ? "bg-[var(--color-raised)] text-[var(--color-fg)] border-[var(--color-border-strong)]"
+                              : "border-dashed border-[var(--color-border-strong)] text-[var(--color-fg-subtle)]"
                           } ${assigningId === app.id ? "opacity-60" : ""}`}
                           aria-label="Assign owner"
                         >
@@ -421,7 +421,7 @@ export function PipelineBoard({ initialStages, cohorts, initialCohort }: Props) 
                                       assignOwner(app, opt.value);
                                     }}
                                     className={`text-left text-[11px] px-2 py-1 rounded hover:bg-white/5 ${
-                                      selected ? "text-coral" : "text-off-white"
+                                      selected ? "text-[var(--color-fg)] bg-[var(--color-raised)]" : "text-[var(--color-fg)]"
                                     }`}
                                   >
                                     {opt.label}
@@ -535,8 +535,8 @@ function CopyButton({ value, label }: { value: string; label?: string }) {
       }}
       className={`text-[10px] px-2 py-0.5 rounded-full border font-medium transition shrink-0 ${
         copied
-          ? "bg-coral/20 text-coral border-coral/40"
-          : "border-white/10 text-foreground-subtle hover:text-off-white hover:border-white/30"
+          ? "bg-[var(--color-good-tint)] text-[var(--color-good)] border-[var(--color-good)]/40"
+          : "border-[var(--color-border)] text-[var(--color-fg-subtle)] hover:text-[var(--color-fg)] hover:border-[var(--color-border-strong)]"
       }`}
     >
       {copied ? "Copied" : label ?? "Copy"}
@@ -635,8 +635,8 @@ function ApplicationDetailModal({
             onClick={copyAll}
             className={`ml-auto text-xs px-3 py-1.5 rounded-lg border font-medium transition ${
               copiedAll
-                ? "bg-coral/20 text-coral border-coral/40"
-                : "bg-coral/10 text-coral border-coral/30 hover:bg-coral/20"
+                ? "bg-[var(--color-good-tint)] text-[var(--color-good)] border-[var(--color-good)]/40"
+                : "bg-[var(--color-elevated)] text-[var(--color-fg-muted)] border-[var(--color-border-strong)] hover:bg-[var(--color-raised)]"
             }`}
           >
             {copiedAll ? "Copied all" : "Copy all"}
@@ -681,14 +681,14 @@ function ApplicationDetailModal({
         </div>
 
         <div className="p-5 space-y-3">
-          <div className="flex items-center gap-2 p-3 rounded-lg border border-coral/20 bg-coral/[0.04]">
+          <div className="flex items-center gap-2 p-3 rounded-lg border border-[var(--color-info)]/30 bg-[var(--color-info-tint)]">
             <div className="flex-1 min-w-0">
               <div className="text-foreground-subtle text-[10px] tracking-widest uppercase">
                 Email
               </div>
               <a
                 href={`mailto:${app.email}`}
-                className="text-coral text-base font-semibold break-all hover:underline"
+                className="text-[var(--color-info)] text-base font-semibold break-all hover:underline"
               >
                 {app.email}
               </a>

@@ -4,9 +4,11 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
+    "prebuild": "npm run check:coral",
     "build": "next build",
     "start": "next start",
     "lint": "eslint",
+    "check:coral": "node scripts/check-coral.mjs",
     "sync:youtube": "tsx scripts/sync-youtube.ts",
     "sync:youtube:full": "tsx scripts/sync-youtube.ts --full",
     "sync:youtube:dry": "tsx scripts/sync-youtube.ts --full --dry-run",

@@ -42,7 +42,7 @@ export function TedNav({ pendingCount = 0 }: { pendingCount?: number }) {
           >
             {l.label}
             {typeof l.pendingCount === "number" && l.pendingCount > 0 ? (
-              <span className="text-[10px] rounded-full bg-coral/20 text-coral px-1.5 py-0.5">
+              <span className="text-[10px] rounded-full bg-[var(--color-bad-tint)] text-[var(--color-bad)] px-1.5 py-0.5">
                 {l.pendingCount}
               </span>
             ) : null}

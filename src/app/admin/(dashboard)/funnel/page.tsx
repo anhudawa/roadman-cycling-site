@@ -1,5 +1,6 @@
 import { Suspense } from "react";
 import { TimeRangePicker } from "../components/TimeRangePicker";
+import { Card, CardBody } from "@/components/admin/ui";
 import { FunnelDisplay } from "../components/charts/FunnelDisplay";
 import { CohortTable } from "../components/CohortTable";
 import { parseTimeRange } from "@/lib/admin/time-ranges";
@@ -87,26 +88,31 @@ export default async function FunnelPage({
       </div>
 
       {/* Funnel visualization */}
-      <div className="bg-background-elevated border border-white/5 rounded-xl p-5">
-        <h2 className="font-heading text-sm text-foreground-muted tracking-wider mb-4">
-          CONVERSION FUNNEL
-        </h2>
-        <FunnelDisplay steps={funnelSteps} />
-      </div>
+      <Card>
+        <CardBody compact>
+          <h2 className="font-body font-semibold text-[13px] text-[var(--color-fg)] mb-4">
+            Conversion funnel
+          </h2>
+          <FunnelDisplay steps={funnelSteps} />
+        </CardBody>
+      </Card>
 
       {/* Cohort table */}
-      <div className="bg-background-elevated border border-white/5 rounded-xl p-5">
-        <h2 className="font-heading text-sm text-foreground-muted tracking-wider mb-4">
-          WEEKLY COHORTS
-        </h2>
-        <CohortTable rows={cohorts} />
-      </div>
+      <Card>
+        <CardBody compact>
+          <h2 className="font-body font-semibold text-[13px] text-[var(--color-fg)] mb-4">
+            Weekly cohorts
+          </h2>
+          <CohortTable rows={cohorts} />
+        </CardBody>
+      </Card>
 
       {/* Source breakdown */}
-      <div className="bg-background-elevated border border-white/5 rounded-xl p-5">
-        <h2 className="font-heading text-sm text-foreground-muted tracking-wider mb-4">
-          ACQUISITION SOURCE BREAKDOWN
-        </h2>
+      <Card>
+        <CardBody compact>
+          <h2 className="font-body font-semibold text-[13px] text-[var(--color-fg)] mb-4">
+            Acquisition source breakdown
+          </h2>
         <div className="overflow-x-auto">
           <table className="w-full text-sm">
             <thead>
@@ -135,7 +141,7 @@ export default async function FunnelPage({
                     <span className={`text-xs font-medium px-2 py-0.5 rounded-full ${
                       row.convRate >= 5 ? "text-green-400 bg-green-400/10" :
                       row.convRate >= 2 ? "text-yellow-400 bg-yellow-400/10" :
-                      row.convRate > 0 ? "text-coral bg-coral/10" :
+                      row.convRate > 0 ? "text-[var(--color-bad)] bg-[var(--color-bad-tint)]" :
                       "text-foreground-subtle bg-white/5"
                     }`}>
                       {row.convRate.toFixed(1)}%
@@ -146,7 +152,8 @@ export default async function FunnelPage({
             </tbody>
           </table>
         </div>
-      </div>
+        </CardBody>
+      </Card>
     </div>
   );
 }

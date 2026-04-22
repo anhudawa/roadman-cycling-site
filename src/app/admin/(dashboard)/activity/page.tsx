@@ -14,7 +14,7 @@ export const dynamic = "force-dynamic";
 const PAGE_SIZE = 50;
 
 const TYPE_STYLE: Record<string, string> = {
-  note: "bg-coral/10 text-coral border-coral/20",
+  note: "bg-[var(--color-bad-tint)] text-[var(--color-bad)] border-[var(--color-border-strong)]",
   email_sent: "bg-blue-500/10 text-blue-300 border-blue-500/20",
   email_opened: "bg-blue-500/10 text-blue-300 border-blue-500/20",
   email_clicked: "bg-blue-500/10 text-blue-300 border-blue-500/20",
@@ -204,7 +204,7 @@ export default async function ActivityPage({
                               <span className="text-foreground-subtle">·</span>
                               <Link
                                 href={`/admin/contacts/${r.contactId}`}
-                                className="text-off-white hover:text-coral truncate"
+                                className="text-off-white hover:text-[var(--color-fg)] truncate"
                               >
                                 {r.contactName ?? r.contactEmail}
                               </Link>
@@ -240,7 +240,7 @@ export default async function ActivityPage({
           {hasPrev ? (
             <Link
               href={buildPageUrl(Math.max(offset - PAGE_SIZE, 0))}
-              className="px-3 py-1.5 rounded border border-white/10 hover:border-coral/40 hover:text-coral"
+              className="px-3 py-1.5 rounded border border-white/10 hover:border-[var(--color-border-strong)] hover:text-[var(--color-fg)]"
             >
               ← Prev
             </Link>
@@ -252,7 +252,7 @@ export default async function ActivityPage({
           {hasNext ? (
             <Link
               href={buildPageUrl(offset + PAGE_SIZE)}
-              className="px-3 py-1.5 rounded border border-white/10 hover:border-coral/40 hover:text-coral"
+              className="px-3 py-1.5 rounded border border-white/10 hover:border-[var(--color-border-strong)] hover:text-[var(--color-fg)]"
             >
               Next →
             </Link>

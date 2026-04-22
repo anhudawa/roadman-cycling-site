@@ -79,7 +79,7 @@ export function InventoryTypeBadge({
 
 export function PositionBadge({ type }: { type: InventoryType }) {
   const colors: Record<string, string> = {
-    podcast_preroll: "bg-coral/15 text-coral border-coral/20",
+    podcast_preroll: "bg-[var(--color-stage-triage-tint)] text-[var(--color-stage-triage)] border-[var(--color-stage-triage)]/30",
     podcast_midroll: "bg-blue-500/15 text-blue-400 border-blue-500/20",
     podcast_endroll: "bg-green-500/15 text-green-400 border-green-500/20",
     newsletter_dedicated: "bg-purple-500/15 text-purple-300 border-purple-500/20",

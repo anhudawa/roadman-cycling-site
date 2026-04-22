@@ -164,7 +164,7 @@ export const contactSubmissions = pgTable(
     message: text("message").notNull(),
     readAt: timestamp("read_at", { withTimezone: true }),
     assignedTo: text("assigned_to"),
-    // new | replied | follow_up | closed
+    // new | reviewing | awaiting_reply | closed
     status: text("status").notNull().default("new"),
     createdAt: timestamp("created_at", { withTimezone: true }).notNull().defaultNow(),
   },
@@ -177,8 +177,8 @@ export const contactSubmissions = pgTable(
 
 export const INBOX_STAGES = [
   "new",
-  "replied",
-  "follow_up",
+  "reviewing",
+  "awaiting_reply",
   "closed",
 ] as const;
 export type InboxStage = (typeof INBOX_STAGES)[number];

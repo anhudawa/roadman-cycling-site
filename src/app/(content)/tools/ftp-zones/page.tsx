@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
 import { Header, Footer, Section, Container } from "@/components/layout";
 import { Button } from "@/components/ui";
@@ -340,14 +341,14 @@ export default function FTPZonesPage() {
                   <h3 className="font-heading text-lg text-off-white mb-3">LEARN MORE</h3>
                   <ul className="space-y-2">
                     <li>
-                      <a href="/blog/ftp-training-zones-cycling-complete-guide" className="text-coral hover:text-coral/80 text-sm transition-colors">
+                      <Link href="/blog/ftp-training-zones-cycling-complete-guide" className="text-coral hover:text-coral/80 text-sm transition-colors">
                         FTP Training Zones: The Complete Guide
-                      </a>
+                      </Link>
                     </li>
                     <li>
-                      <a href="/blog/how-to-improve-ftp-cycling" className="text-coral hover:text-coral/80 text-sm transition-colors">
+                      <Link href="/blog/how-to-improve-ftp-cycling" className="text-coral hover:text-coral/80 text-sm transition-colors">
                         How to Improve Your FTP
-                      </a>
+                      </Link>
                     </li>
                   </ul>
                 </motion.div>

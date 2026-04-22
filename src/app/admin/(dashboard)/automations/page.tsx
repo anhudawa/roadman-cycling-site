@@ -35,7 +35,7 @@ export default async function AutomationsPage() {
         </div>
         <Link
           href="/admin/automations/new"
-          className="px-4 py-2 bg-coral text-background-deep font-medium rounded text-sm hover:bg-coral/90"
+          className="px-4 py-2 bg-[var(--color-elevated)] hover:bg-[var(--color-raised)] text-[var(--color-fg)] border border-[var(--color-border-strong)] font-medium rounded text-sm"
         >
           + New rule
         </Link>

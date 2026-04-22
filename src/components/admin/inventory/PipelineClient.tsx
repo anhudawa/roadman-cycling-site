@@ -95,7 +95,7 @@ export function PipelineClient({
           <p className="text-[11px] text-foreground-subtle uppercase tracking-wider mb-1">
             Gap (Opportunity)
           </p>
-          <p className="text-2xl font-heading text-coral">
+          <p className="text-2xl font-heading text-[var(--color-warn)]">
             {formatCurrency(metrics.gap)}
           </p>
         </div>

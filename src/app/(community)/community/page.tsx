@@ -216,7 +216,7 @@ export default function CommunityPage() {
                   </p>
                   <ul className="space-y-2 mb-6 flex-1">
                     {[
-                      "Everything in Not Done Yet",
+                      "Everything in the Not Done Yet coaching community",
                       "Direct 1:1 with Anthony",
                       "Race & event strategy",
                       "Custom training camps",

@@ -3,6 +3,7 @@
 import { useState, useEffect } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import type { ABElementType, ABVariant } from "@/lib/ab/types";
+import { Card, CardBody } from "@/components/admin/ui";
 
 const ELEMENT_TYPES: { value: ABElementType; label: string }[] = [
   { value: "headline", label: "Headline" },
@@ -159,9 +160,10 @@ export default function NewExperimentPage() {
       )}
 
       {/* Basic info */}
-      <div className="bg-background-elevated border border-white/5 rounded-xl p-5 space-y-4">
-        <h2 className="font-heading text-sm text-foreground-muted tracking-wider">
-          BASIC INFO
+      <Card>
+        <CardBody compact className="space-y-4">
+        <h2 className="font-body font-semibold text-[13px] text-[var(--color-fg)]">
+          Basic info
         </h2>
 
         <div>
@@ -173,7 +175,7 @@ export default function NewExperimentPage() {
             value={name}
             onChange={(e) => setName(e.target.value)}
             placeholder="e.g. Homepage hero CTA copy"
-            className="w-full bg-white/5 border border-white/10 rounded-lg px-4 py-2.5 text-sm text-off-white placeholder:text-foreground-subtle focus:outline-none focus:border-coral/50 transition-colors"
+            className="w-full bg-white/5 border border-white/10 rounded-lg px-4 py-2.5 text-sm text-off-white placeholder:text-foreground-subtle focus-ring focus:border-[var(--color-border-focus)] transition-colors"
           />
         </div>
 
@@ -188,7 +190,7 @@ export default function NewExperimentPage() {
               value={page}
               onChange={(e) => setPage(e.target.value)}
               placeholder="/"
-              className="w-full bg-white/5 border border-white/10 rounded-lg px-4 py-2.5 text-sm text-off-white placeholder:text-foreground-subtle focus:outline-none focus:border-coral/50 transition-colors"
+              className="w-full bg-white/5 border border-white/10 rounded-lg px-4 py-2.5 text-sm text-off-white placeholder:text-foreground-subtle focus-ring focus:border-[var(--color-border-focus)] transition-colors"
             />
             <datalist id="page-paths">
               {PAGE_PATHS.map((p) => (
@@ -204,7 +206,7 @@ export default function NewExperimentPage() {
             <select
               value={element}
               onChange={(e) => setElement(e.target.value as ABElementType)}
-              className="w-full bg-white/5 border border-white/10 rounded-lg px-4 py-2.5 text-sm text-off-white focus:outline-none focus:border-coral/50 transition-colors appearance-none"
+              className="w-full bg-white/5 border border-white/10 rounded-lg px-4 py-2.5 text-sm text-off-white focus-ring focus:border-[var(--color-border-focus)] transition-colors appearance-none"
             >
               {ELEMENT_TYPES.map((t) => (
                 <option key={t.value} value={t.value} className="bg-charcoal">
@@ -214,25 +216,27 @@ export default function NewExperimentPage() {
             </select>
           </div>
         </div>
-      </div>
+        </CardBody>
+      </Card>
 
       {/* Control variant */}
-      <div className="bg-background-elevated border border-white/5 rounded-xl p-5 space-y-4">
-        <h2 className="font-heading text-sm text-foreground-muted tracking-wider">
-          CONTROL (CURRENT CONTENT)
+      <Card>
+        <CardBody compact className="space-y-4">
+        <h2 className="font-body font-semibold text-[13px] text-[var(--color-fg)]">
+          Control (current content)
         </h2>
         <textarea
           value={controlContent}
           onChange={(e) => setControlContent(e.target.value)}
           placeholder="Enter the current content for this element..."
           rows={3}
-          className="w-full bg-white/5 border border-white/10 rounded-lg px-4 py-2.5 text-sm text-off-white placeholder:text-foreground-subtle focus:outline-none focus:border-coral/50 transition-colors resize-none"
+          className="w-full bg-white/5 border border-white/10 rounded-lg px-4 py-2.5 text-sm text-off-white placeholder:text-foreground-subtle focus-ring focus:border-[var(--color-border-focus)] transition-colors resize-none"
         />
 
         <button
           onClick={handleGenerateVariants}
           disabled={generating}
-          className="px-4 py-2 bg-coral hover:bg-coral/90 disabled:bg-coral/40 disabled:cursor-not-allowed text-white text-sm font-medium rounded-lg transition-colors flex items-center gap-2"
+          className="px-4 py-2 bg-[var(--color-elevated)] hover:bg-[var(--color-raised)] disabled:opacity-50 disabled:cursor-not-allowed text-[var(--color-fg)] border border-[var(--color-border-strong)] text-sm font-medium rounded-lg transition-colors flex items-center gap-2"
         >
           {generating ? (
             <>
@@ -276,17 +280,19 @@ export default function NewExperimentPage() {
             </>
           )}
         </button>
-      </div>
+        </CardBody>
+      </Card>
 
       {/* Generated / manual variants */}
-      <div className="bg-background-elevated border border-white/5 rounded-xl p-5 space-y-4">
+      <Card>
+        <CardBody compact className="space-y-4">
         <div className="flex items-center justify-between">
-          <h2 className="font-heading text-sm text-foreground-muted tracking-wider">
-            TEST VARIANTS
+          <h2 className="font-body font-semibold text-[13px] text-[var(--color-fg)]">
+            Test variants
           </h2>
           <button
             onClick={addManualVariant}
-            className="text-xs text-coral hover:text-coral/80 transition-colors"
+            className="text-xs text-[var(--color-bad)] hover:text-[var(--color-fg)]/80 transition-colors"
           >
             + Add manually
           </button>
@@ -310,7 +316,7 @@ export default function NewExperimentPage() {
                     type="text"
                     value={variant.label}
                     onChange={(e) => updateVariant(idx, "label", e.target.value)}
-                    className="bg-transparent text-sm text-off-white font-medium focus:outline-none border-b border-transparent focus:border-coral/50 transition-colors"
+                    className="bg-transparent text-sm text-off-white font-medium focus:outline-none border-b border-transparent focus:border-[var(--color-border-focus)] transition-colors"
                   />
                   <button
                     onClick={() => removeVariant(idx)}
@@ -323,20 +329,21 @@ export default function NewExperimentPage() {
                   value={variant.content}
                   onChange={(e) => updateVariant(idx, "content", e.target.value)}
                   rows={2}
-                  className="w-full bg-white/5 border border-white/10 rounded-lg px-3 py-2 text-sm text-off-white placeholder:text-foreground-subtle focus:outline-none focus:border-coral/50 transition-colors resize-none"
+                  className="w-full bg-white/5 border border-white/10 rounded-lg px-3 py-2 text-sm text-off-white placeholder:text-foreground-subtle focus-ring focus:border-[var(--color-border-focus)] transition-colors resize-none"
                 />
               </div>
             ))}
           </div>
         )}
-      </div>
+        </CardBody>
+      </Card>
 
       {/* Submit */}
       <div className="flex items-center gap-3">
         <button
           onClick={handleSubmit}
           disabled={submitting}
-          className="px-6 py-2.5 bg-coral hover:bg-coral/90 disabled:bg-coral/40 disabled:cursor-not-allowed text-white text-sm font-medium rounded-lg transition-colors"
+          className="px-6 py-2.5 bg-[var(--color-elevated)] hover:bg-[var(--color-raised)] disabled:opacity-50 disabled:cursor-not-allowed text-[var(--color-fg)] border border-[var(--color-border-strong)] text-sm font-medium rounded-lg transition-colors"
         >
           {submitting ? "Creating..." : "Create Experiment"}
         </button>

@@ -13,7 +13,7 @@ const STATUS_PILL: Record<string, { label: string; cls: string }> = {
   drafted: { label: "drafted", cls: "bg-blue-500/10 text-blue-300" },
   approved: { label: "approved", cls: "bg-emerald-500/10 text-emerald-300" },
   posted: { label: "posted", cls: "bg-emerald-500/15 text-emerald-200" },
-  failed: { label: "failed", cls: "bg-coral/10 text-coral" },
+  failed: { label: "failed", cls: "bg-[var(--color-bad-tint)] text-[var(--color-bad)]" },
   skipped: { label: "skipped", cls: "bg-yellow-500/10 text-yellow-300" },
 };
 
@@ -135,7 +135,7 @@ export default async function TedWelcomesPage() {
                       </td>
                       <td className="p-2 text-foreground-subtle max-w-xl">
                         {r.failureReason ? (
-                          <code className="text-coral">{r.failureReason}</code>
+                          <code className="text-[var(--color-bad)]">{r.failureReason}</code>
                         ) : r.draftBody ? (
                           <pre className="font-sans text-xs whitespace-pre-wrap">
                             {r.draftBody}

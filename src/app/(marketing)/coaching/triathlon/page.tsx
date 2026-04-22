@@ -200,7 +200,7 @@ export default function TriathlonCoachingPage() {
           ],
           offers: {
             "@type": "Offer",
-            name: "Not Done Yet — Triathlon Bike Coaching",
+            name: "Not Done Yet Coaching Community — Triathlon Bike Coaching",
             price: "195",
             priceCurrency: "USD",
             description:

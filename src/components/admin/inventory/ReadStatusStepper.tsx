@@ -61,7 +61,7 @@ export function ReadStatusStepper({
                   isCompleted
                     ? "bg-green-400"
                     : isCurrent
-                      ? "bg-coral"
+                      ? "bg-[var(--color-info)]"
                       : "bg-white/10"
                 }`}
               />
@@ -85,7 +85,7 @@ export function ReadStatusStepper({
         <button
           onClick={handleAdvance}
           disabled={isPending}
-          className="text-xs px-3 py-1 rounded-md bg-coral/10 text-coral hover:bg-coral/20 transition-colors disabled:opacity-50 font-medium"
+          className="text-xs px-3 py-1 rounded-md bg-[var(--color-info-tint)] text-[var(--color-info)] hover:bg-[var(--color-info-tint)]/80 transition-colors disabled:opacity-50 font-medium"
         >
           {isPending ? "Saving..." : nextLabel}
         </button>

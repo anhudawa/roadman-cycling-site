@@ -151,7 +151,7 @@ export function TeamUsersPanel({ initial, currentUserId }: { initial: TeamUserRo
         <button
           type="button"
           onClick={() => setShowNew((v) => !v)}
-          className="px-3 py-1.5 text-xs bg-coral text-background-deep font-medium rounded hover:bg-coral/90"
+          className="px-3 py-1.5 text-xs bg-[var(--color-elevated)] hover:bg-[var(--color-raised)] text-[var(--color-fg)] border border-[var(--color-border-strong)] font-medium rounded"
         >
           {showNew ? "Cancel" : "+ Add team member"}
         </button>
@@ -184,7 +184,7 @@ export function TeamUsersPanel({ initial, currentUserId }: { initial: TeamUserRo
             type="button"
             onClick={createUser}
             disabled={creating || !newDraft.email || !newDraft.name || !newDraft.slug}
-            className="px-3 py-2 bg-coral text-background-deep font-medium rounded text-sm hover:bg-coral/90 disabled:opacity-50"
+            className="px-3 py-2 bg-[var(--color-elevated)] hover:bg-[var(--color-raised)] text-[var(--color-fg)] border border-[var(--color-border-strong)] font-medium rounded text-sm disabled:opacity-50"
           >
             {creating ? "Creating..." : "Create"}
           </button>

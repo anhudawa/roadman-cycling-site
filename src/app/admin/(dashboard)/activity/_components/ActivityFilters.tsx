@@ -94,12 +94,12 @@ export function ActivityFilters({
           placeholder="Search title or body..."
           value={search}
           onChange={(e) => setSearch(e.target.value)}
-          className="px-3 py-2 text-sm bg-background-elevated border border-white/10 text-off-white rounded focus:outline-none focus:border-coral/50 min-w-[240px]"
+          className="px-3 py-2 text-sm bg-background-elevated border border-white/10 text-off-white rounded focus-ring focus:border-[var(--color-border-focus)] min-w-[240px]"
         />
         <select
           value={initialAuthor}
           onChange={(e) => setAuthor(e.target.value)}
-          className="px-3 py-2 text-sm bg-background-elevated border border-white/10 text-off-white rounded focus:outline-none focus:border-coral/50"
+          className="px-3 py-2 text-sm bg-background-elevated border border-white/10 text-off-white rounded focus-ring focus:border-[var(--color-border-focus)]"
         >
           <option value="">All authors</option>
           {currentUserSlug && (
@@ -119,7 +119,7 @@ export function ActivityFilters({
             type="date"
             value={initialAfter}
             onChange={(e) => setDate("after", e.target.value)}
-            className="px-2 py-2 text-sm bg-background-elevated border border-white/10 text-off-white rounded focus:outline-none focus:border-coral/50"
+            className="px-2 py-2 text-sm bg-background-elevated border border-white/10 text-off-white rounded focus-ring focus:border-[var(--color-border-focus)]"
           />
         </label>
         <label className="flex items-center gap-1 text-xs text-foreground-muted">
@@ -128,14 +128,14 @@ export function ActivityFilters({
             type="date"
             value={initialBefore}
             onChange={(e) => setDate("before", e.target.value)}
-            className="px-2 py-2 text-sm bg-background-elevated border border-white/10 text-off-white rounded focus:outline-none focus:border-coral/50"
+            className="px-2 py-2 text-sm bg-background-elevated border border-white/10 text-off-white rounded focus-ring focus:border-[var(--color-border-focus)]"
           />
         </label>
         {hasFilters && (
           <button
             type="button"
             onClick={() => startTransition(() => router.push("/admin/activity"))}
-            className="text-xs text-coral hover:underline"
+            className="text-xs text-[var(--color-bad)] hover:underline"
           >
             Clear filters
           </button>
@@ -151,8 +151,8 @@ export function ActivityFilters({
               onClick={() => toggleType(t)}
               className={`px-2 py-1 text-[11px] rounded border transition ${
                 active
-                  ? "bg-coral/15 text-coral border-coral/30"
-                  : "bg-background-elevated text-foreground-subtle border-white/10 hover:border-coral/30"
+                  ? "bg-[var(--color-bad-tint)] text-[var(--color-bad)] border-[var(--color-border-strong)]"
+                  : "bg-background-elevated text-foreground-subtle border-white/10 hover:border-[var(--color-border-strong)]"
               }`}
             >
               {t}

@@ -105,7 +105,7 @@ export default function ExperimentActions({
                 <select
                   value={selectedWinner}
                   onChange={(e) => setSelectedWinner(e.target.value)}
-                  className="bg-background-elevated border border-white/10 text-off-white text-xs rounded-lg px-2 py-1.5 focus:outline-none focus:border-coral/50"
+                  className="bg-background-elevated border border-white/10 text-off-white text-xs rounded-lg px-2 py-1.5 focus-ring focus:border-[var(--color-border-focus)]"
                 >
                   {variants.map((v) => (
                     <option key={v.id} value={v.id}>
@@ -121,7 +121,7 @@ export default function ExperimentActions({
                       winnerVariantId: selectedWinner,
                     })
                   }
-                  className="px-3 py-1.5 bg-coral/20 text-coral hover:bg-coral/30 text-xs font-medium rounded-lg transition-colors border border-coral/20 disabled:opacity-50"
+                  className="px-3 py-1.5 bg-[var(--color-bad-tint)] text-[var(--color-bad)] hover:bg-[var(--color-bad-tint)] text-xs font-medium rounded-lg transition-colors border border-[var(--color-border-strong)] disabled:opacity-50"
                 >
                   {loading === "declare_winner" ? <Spinner /> : "Confirm"}
                 </button>
@@ -139,7 +139,7 @@ export default function ExperimentActions({
                 type="button"
                 disabled={busy}
                 onClick={() => setConfirming("declare_winner")}
-                className="px-4 py-2 bg-coral/20 text-coral hover:bg-coral/30 text-sm font-medium rounded-lg transition-colors border border-coral/20 disabled:opacity-50"
+                className="px-4 py-2 bg-[var(--color-bad-tint)] text-[var(--color-bad)] hover:bg-[var(--color-bad-tint)] text-sm font-medium rounded-lg transition-colors border border-[var(--color-border-strong)] disabled:opacity-50"
               >
                 Declare Winner
               </button>

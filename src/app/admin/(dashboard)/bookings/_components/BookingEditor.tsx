@@ -4,6 +4,7 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import type { BookingRow as BookingRowType, BookingStatus } from "@/lib/crm/bookings";
+import { Card, CardBody } from "@/components/admin/ui";
 
 const OWNERS = [
   { value: "ted", label: "Ted" },
@@ -114,7 +115,7 @@ export function BookingEditor({
   return (
     <div className="max-w-3xl">
       <div className="flex items-center gap-2 text-xs text-foreground-subtle mb-2">
-        <Link href="/admin/bookings" className="hover:text-coral">
+        <Link href="/admin/bookings" className="hover:text-[var(--color-fg)]">
           ← Bookings
         </Link>
       </div>
@@ -161,14 +162,15 @@ export function BookingEditor({
           </p>
           <Link
             href={`/admin/contacts/${booking.contactId}`}
-            className="text-off-white hover:text-coral"
+            className="text-[var(--color-fg)] hover:underline"
           >
             {booking.contactName ?? booking.contactEmail}
           </Link>
         </div>
       )}
 
-      <div className="bg-background-elevated border border-white/5 rounded-xl p-6 space-y-4">
+      <Card>
+        <CardBody className="space-y-4">
         <div>
           <label className="block text-xs uppercase tracking-widest text-foreground-subtle mb-1">
             Title
@@ -177,7 +179,7 @@ export function BookingEditor({
             type="text"
             value={title}
             onChange={(e) => setTitle(e.target.value)}
-            className="w-full px-3 py-2 bg-charcoal border border-white/10 rounded-lg text-off-white focus:outline-none focus:border-coral"
+            className="w-full px-3 py-2 bg-[var(--color-sunken)] border border-[var(--color-border-strong)] rounded-[var(--radius-admin-md)] text-[var(--color-fg)] focus-ring focus:border-[var(--color-border-focus)]"
           />
         </div>
 
@@ -190,7 +192,7 @@ export function BookingEditor({
               type="datetime-local"
               value={scheduledAt}
               onChange={(e) => setScheduledAt(e.target.value)}
-              className="w-full px-3 py-2 bg-charcoal border border-white/10 rounded-lg text-off-white focus:outline-none focus:border-coral"
+              className="w-full px-3 py-2 bg-[var(--color-sunken)] border border-[var(--color-border-strong)] rounded-[var(--radius-admin-md)] text-[var(--color-fg)] focus-ring focus:border-[var(--color-border-focus)]"
             />
           </div>
           <div>
@@ -200,7 +202,7 @@ export function BookingEditor({
             <select
               value={durationMinutes}
               onChange={(e) => setDurationMinutes(parseInt(e.target.value, 10))}
-              className="w-full px-3 py-2 bg-charcoal border border-white/10 rounded-lg text-off-white focus:outline-none focus:border-coral"
+              className="w-full px-3 py-2 bg-[var(--color-sunken)] border border-[var(--color-border-strong)] rounded-[var(--radius-admin-md)] text-[var(--color-fg)] focus-ring focus:border-[var(--color-border-focus)]"
             >
               {DURATIONS.map((d) => (
                 <option key={d} value={d}>
@@ -219,7 +221,7 @@ export function BookingEditor({
             type="text"
             value={location}
             onChange={(e) => setLocation(e.target.value)}
-            className="w-full px-3 py-2 bg-charcoal border border-white/10 rounded-lg text-off-white focus:outline-none focus:border-coral"
+            className="w-full px-3 py-2 bg-[var(--color-sunken)] border border-[var(--color-border-strong)] rounded-[var(--radius-admin-md)] text-[var(--color-fg)] focus-ring focus:border-[var(--color-border-focus)]"
           />
         </div>
 
@@ -231,7 +233,7 @@ export function BookingEditor({
             value={notes}
             onChange={(e) => setNotes(e.target.value)}
             rows={4}
-            className="w-full px-3 py-2 bg-charcoal border border-white/10 rounded-lg text-off-white focus:outline-none focus:border-coral resize-y"
+            className="w-full px-3 py-2 bg-[var(--color-sunken)] border border-[var(--color-border-strong)] rounded-[var(--radius-admin-md)] text-[var(--color-fg)] focus-ring focus:border-[var(--color-border-focus)] resize-y"
           />
         </div>
 
@@ -243,7 +245,7 @@ export function BookingEditor({
             <select
               value={ownerSlug}
               onChange={(e) => setOwnerSlug(e.target.value)}
-              className="w-full px-3 py-2 bg-charcoal border border-white/10 rounded-lg text-off-white focus:outline-none focus:border-coral"
+              className="w-full px-3 py-2 bg-[var(--color-sunken)] border border-[var(--color-border-strong)] rounded-[var(--radius-admin-md)] text-[var(--color-fg)] focus-ring focus:border-[var(--color-border-focus)]"
             >
               {OWNERS.map((o) => (
                 <option key={o.value} value={o.value}>
@@ -259,7 +261,7 @@ export function BookingEditor({
             <select
               value={status}
               onChange={(e) => setStatus(e.target.value as BookingStatus)}
-              className="w-full px-3 py-2 bg-charcoal border border-white/10 rounded-lg text-off-white focus:outline-none focus:border-coral"
+              className="w-full px-3 py-2 bg-[var(--color-sunken)] border border-[var(--color-border-strong)] rounded-[var(--radius-admin-md)] text-[var(--color-fg)] focus-ring focus:border-[var(--color-border-focus)]"
             >
               <option value="scheduled">Scheduled</option>
               <option value="completed">Completed</option>
@@ -269,7 +271,7 @@ export function BookingEditor({
           </div>
         </div>
 
-        {err && <p className="text-coral text-sm">{err}</p>}
+        {err && <p className="text-[var(--color-bad)] text-sm">{err}</p>}
         {msg && <p className="text-green-400 text-sm">{msg}</p>}
 
         <div className="flex justify-between pt-2">
@@ -278,7 +280,7 @@ export function BookingEditor({
               type="button"
               onClick={remove}
               disabled={busy}
-              className="px-4 py-2 text-sm text-foreground-muted hover:text-coral"
+              className="px-4 py-2 text-sm text-[var(--color-fg-muted)] hover:text-[var(--color-bad)]"
             >
               Delete
             </button>
@@ -289,12 +291,13 @@ export function BookingEditor({
             type="button"
             onClick={save}
             disabled={busy}
-            className="px-4 py-2 bg-coral hover:bg-coral-hover disabled:opacity-50 text-off-white font-heading text-sm tracking-wider rounded-lg"
+            className="px-4 py-2 bg-[var(--color-elevated)] hover:bg-[var(--color-raised)] disabled:opacity-50 text-[var(--color-fg)] border border-[var(--color-border-strong)] font-body font-semibold text-[14px] rounded-[var(--radius-admin-md)]"
           >
-            {busy ? "SAVING..." : "SAVE"}
+            {busy ? "Saving..." : "Save"}
           </button>
         </div>
-      </div>
+        </CardBody>
+      </Card>
     </div>
   );
 }

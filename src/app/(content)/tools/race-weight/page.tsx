@@ -297,7 +297,7 @@ export default function RaceWeightPage() {
                       Race weight is about body composition, not the number on the scale.
                       Anthony lost 7kg in 12 weeks while eating <em>more</em> food — by focusing on food quality,
                       protein timing, and properly fuelling rides. Crash diets destroy power and health.
-                      If you&apos;re unsure about your approach, the Not Done Yet community includes
+                      If you&apos;re unsure about your approach, the Not Done Yet coaching community includes
                       nutrition guidance from the same principles discussed on the podcast.
                     </p>
                   </motion.div>
