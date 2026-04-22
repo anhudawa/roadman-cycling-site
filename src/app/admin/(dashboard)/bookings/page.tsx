@@ -60,14 +60,14 @@ export default async function BookingsPage() {
         </div>
         <Link
           href="/api/admin/auth/google/start?calendar=1&next=/admin/bookings"
-          className="text-xs px-3 py-1.5 rounded-lg border border-white/10 text-foreground-muted hover:text-off-white hover:border-coral/30 font-heading tracking-wider uppercase"
+          className="font-body font-semibold text-[13px] px-3 py-1.5 rounded-[var(--radius-admin-md)] border border-[var(--color-border)] text-[var(--color-fg-muted)] hover:text-[var(--color-fg)] hover:border-[var(--color-border-strong)]"
         >
           Re-link Google
         </Link>
       </div>
 
       {notConfigured && (
-        <div className="p-4 rounded-xl border border-coral/20 bg-coral/5 text-coral text-sm">
+        <div className="p-4 rounded-[var(--radius-admin-lg)] border border-[var(--color-warn)]/30 bg-[var(--color-warn-tint)] text-[var(--color-warn)] text-sm">
           Google OAuth isn&apos;t configured on this deployment. Set{" "}
           <code className="bg-black/40 px-1 rounded">GOOGLE_CLIENT_ID</code>,{" "}
           <code className="bg-black/40 px-1 rounded">GOOGLE_CLIENT_SECRET</code>{" "}
@@ -78,8 +78,8 @@ export default async function BookingsPage() {
       )}
 
       {!notConfigured && needsLink && (
-        <div className="p-4 rounded-xl border border-coral/20 bg-coral/5 text-sm text-off-white">
-          <p className="font-heading tracking-wider uppercase text-coral mb-1">
+        <div className="p-4 rounded-[var(--radius-admin-lg)] border border-[var(--color-warn)]/30 bg-[var(--color-warn-tint)] text-sm text-[var(--color-fg)]">
+          <p className="font-body font-semibold text-[13px] text-[var(--color-warn)] mb-1">
             Google Calendar not connected
           </p>
           <p className="text-foreground-muted mb-3">
@@ -88,7 +88,7 @@ export default async function BookingsPage() {
           </p>
           <Link
             href="/api/admin/auth/google/start?calendar=1&next=/admin/bookings"
-            className="inline-block px-4 py-2 bg-coral text-white text-sm font-heading tracking-wider rounded-lg hover:bg-coral/90 transition-colors uppercase"
+            className="inline-block px-4 py-2 bg-[var(--color-coral)] text-white font-body font-semibold text-[14px] rounded-[var(--radius-admin-md)] hover:bg-[var(--color-coral-hover)] transition-colors"
           >
             Connect Google Calendar
           </Link>
@@ -96,7 +96,7 @@ export default async function BookingsPage() {
       )}
 
       {errorMessage && (
-        <div className="p-3 rounded-lg border border-coral/20 bg-coral/5 text-xs text-coral">
+        <div className="p-3 rounded-[var(--radius-admin-md)] border border-[var(--color-bad)]/30 bg-[var(--color-bad-tint)] text-xs text-[var(--color-bad)]">
           {errorMessage}
         </div>
       )}
@@ -129,10 +129,10 @@ export default async function BookingsPage() {
                     href={ev.htmlLink}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="block bg-background-elevated border border-white/5 rounded-lg p-4 hover:border-coral/30 transition"
+                    className="block bg-[var(--color-elevated)] border border-[var(--color-border)] rounded-[var(--radius-admin-md)] p-4 hover:border-[var(--color-border-strong)] hover:bg-white/[0.04] transition"
                   >
                     <div className="flex items-start gap-4 flex-wrap">
-                      <div className="font-heading tracking-wider text-coral text-sm min-w-[96px]">
+                      <div className="font-mono tabular-nums text-[var(--color-fg)] text-sm min-w-[96px]">
                         {ev.allDay
                           ? "ALL DAY"
                           : `${fmtTime(ev.start)} – ${fmtTime(ev.end)}`}

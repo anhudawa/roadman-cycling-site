@@ -103,8 +103,8 @@ export function TasksTable({ rows }: { rows: TaskRow[] }) {
                     aria-label={completed ? "Mark incomplete" : "Mark complete"}
                     className={`w-5 h-5 rounded border flex items-center justify-center transition-colors ${
                       completed
-                        ? "bg-coral border-coral"
-                        : "border-white/20 hover:border-coral"
+                        ? "bg-[var(--color-good)] border-[var(--color-good)]"
+                        : "border-[var(--color-border-strong)] hover:border-[var(--color-fg)]"
                     }`}
                   >
                     {completed && (
@@ -125,7 +125,7 @@ export function TasksTable({ rows }: { rows: TaskRow[] }) {
                 </td>
                 <td className="px-4 py-3">
                   {t.contactId ? (
-                    <Link href={`/admin/contacts/${t.contactId}`} className="text-xs text-foreground-muted hover:text-coral">
+                    <Link href={`/admin/contacts/${t.contactId}`} className="text-xs text-[var(--color-fg-muted)] hover:text-[var(--color-fg)] hover:underline">
                       {t.contactName ?? t.contactEmail ?? `#${t.contactId}`}
                     </Link>
                   ) : (
@@ -137,7 +137,7 @@ export function TasksTable({ rows }: { rows: TaskRow[] }) {
                 </td>
                 <td className="px-4 py-3 text-right">
                   <span
-                    className="inline-flex items-center justify-center w-6 h-6 rounded-full bg-coral/10 text-coral text-[11px] font-bold capitalize"
+                    className="inline-flex items-center justify-center w-6 h-6 rounded-full bg-[var(--color-elevated)] text-[var(--color-fg)] text-[11px] font-bold capitalize border border-[var(--color-border-strong)]"
                     title={t.assignedTo ?? "unassigned"}
                   >
                     {initial(t.assignedTo)}

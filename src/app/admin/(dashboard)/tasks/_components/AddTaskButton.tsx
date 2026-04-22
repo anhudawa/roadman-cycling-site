@@ -103,9 +103,9 @@ export function AddTaskButton({ currentSlug }: { currentSlug: string }) {
       <button
         type="button"
         onClick={() => setOpen(true)}
-        className="px-4 py-2 bg-coral hover:bg-coral-hover text-off-white font-heading text-sm tracking-wider rounded-lg transition-colors"
+        className="px-4 py-2 bg-[var(--color-coral)] hover:bg-[var(--color-coral-hover)] text-white font-body font-semibold text-[14px] rounded-[var(--radius-admin-md)] transition-colors"
       >
-        ADD TASK
+        Add task
       </button>
 
       {open && (
@@ -129,7 +129,7 @@ export function AddTaskButton({ currentSlug }: { currentSlug: string }) {
                   onChange={(e) => setTitle(e.target.value)}
                   required
                   autoFocus
-                  className="w-full px-3 py-2 bg-charcoal border border-white/10 rounded-lg text-off-white focus:outline-none focus:border-coral"
+                  className="w-full px-3 py-2 bg-[var(--color-sunken)] border border-[var(--color-border-strong)] rounded-[var(--radius-admin-md)] text-[var(--color-fg)] focus-ring focus:border-[var(--color-border-focus)]"
                 />
               </div>
 
@@ -148,7 +148,7 @@ export function AddTaskButton({ currentSlug }: { currentSlug: string }) {
                         setSelectedContact(null);
                         setContactQuery("");
                       }}
-                      className="text-xs text-foreground-subtle hover:text-coral"
+                      className="text-xs text-[var(--color-fg-subtle)] hover:text-[var(--color-fg)]"
                     >
                       Clear
                     </button>
@@ -164,7 +164,7 @@ export function AddTaskButton({ currentSlug }: { currentSlug: string }) {
                       }}
                       onFocus={() => setShowResults(true)}
                       placeholder="Search name or email..."
-                      className="w-full px-3 py-2 bg-charcoal border border-white/10 rounded-lg text-off-white focus:outline-none focus:border-coral"
+                      className="w-full px-3 py-2 bg-[var(--color-sunken)] border border-[var(--color-border-strong)] rounded-[var(--radius-admin-md)] text-[var(--color-fg)] focus-ring focus:border-[var(--color-border-focus)]"
                     />
                     {showResults && contactResults.length > 0 && (
                       <ul className="absolute z-10 left-0 right-0 mt-1 bg-background-deep border border-white/10 rounded-lg max-h-48 overflow-auto">
@@ -198,7 +198,7 @@ export function AddTaskButton({ currentSlug }: { currentSlug: string }) {
                     type="datetime-local"
                     value={dueAt}
                     onChange={(e) => setDueAt(e.target.value)}
-                    className="w-full px-3 py-2 bg-charcoal border border-white/10 rounded-lg text-off-white focus:outline-none focus:border-coral"
+                    className="w-full px-3 py-2 bg-[var(--color-sunken)] border border-[var(--color-border-strong)] rounded-[var(--radius-admin-md)] text-[var(--color-fg)] focus-ring focus:border-[var(--color-border-focus)]"
                   />
                 </div>
                 <div>
@@ -208,7 +208,7 @@ export function AddTaskButton({ currentSlug }: { currentSlug: string }) {
                   <select
                     value={assignedTo}
                     onChange={(e) => setAssignedTo(e.target.value)}
-                    className="w-full px-3 py-2 bg-charcoal border border-white/10 rounded-lg text-off-white focus:outline-none focus:border-coral"
+                    className="w-full px-3 py-2 bg-[var(--color-sunken)] border border-[var(--color-border-strong)] rounded-[var(--radius-admin-md)] text-[var(--color-fg)] focus-ring focus:border-[var(--color-border-focus)]"
                   >
                     {ASSIGNEES.map((a) => (
                       <option key={a.value} value={a.value}>
@@ -219,7 +219,7 @@ export function AddTaskButton({ currentSlug }: { currentSlug: string }) {
                 </div>
               </div>
 
-              {error && <p className="text-coral text-sm">{error}</p>}
+              {error && <p className="text-[var(--color-bad)] text-sm">{error}</p>}
 
               <div className="flex gap-3 justify-end pt-2">
                 <button
@@ -236,9 +236,9 @@ export function AddTaskButton({ currentSlug }: { currentSlug: string }) {
                 <button
                   type="submit"
                   disabled={submitting}
-                  className="px-4 py-2 bg-coral hover:bg-coral-hover disabled:opacity-50 text-off-white font-heading text-sm tracking-wider rounded-lg"
+                  className="px-4 py-2 bg-[var(--color-coral)] hover:bg-[var(--color-coral-hover)] disabled:opacity-50 text-white font-body font-semibold text-[14px] rounded-[var(--radius-admin-md)]"
                 >
-                  {submitting ? "CREATING..." : "CREATE"}
+                  {submitting ? "Creating..." : "Create"}
                 </button>
               </div>
             </form>
