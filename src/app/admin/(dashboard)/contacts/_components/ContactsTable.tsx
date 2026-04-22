@@ -187,14 +187,14 @@ export function ContactsTable({ rows }: { rows: ContactRow[] }) {
   return (
     <>
       {selectionCount > 0 && (
-        <div className="sticky top-0 z-20 mb-3 bg-background-elevated border border-coral/30 rounded-xl p-3 flex items-center gap-3 flex-wrap shadow-lg">
-          <span className="text-sm text-off-white">
-            <span className="text-coral font-medium">{selectionCount}</span> selected
+        <div className="sticky top-0 z-20 mb-3 bg-[var(--color-raised)] border border-[var(--color-border-strong)] rounded-[var(--radius-admin-lg)] p-3 flex items-center gap-3 flex-wrap shadow-[var(--shadow-admin-raised)]">
+          <span className="text-sm text-[var(--color-fg)]">
+            <span className="text-[var(--color-fg)] font-semibold font-mono tabular-nums">{selectionCount}</span> selected
           </span>
           <button
             type="button"
             onClick={clearSelection}
-            className="text-xs text-foreground-muted hover:text-off-white underline-offset-2 hover:underline"
+            className="text-xs text-[var(--color-fg-muted)] hover:text-[var(--color-fg)] underline-offset-2 hover:underline"
           >
             Clear
           </button>
@@ -203,7 +203,7 @@ export function ContactsTable({ rows }: { rows: ContactRow[] }) {
             <button
               type="button"
               onClick={() => setOpenPopover(openPopover === "assign" ? null : "assign")}
-              className="px-3 py-1.5 text-xs font-heading tracking-wider uppercase bg-background-deep border border-white/10 text-off-white rounded hover:border-coral/40"
+              className="px-3 py-1.5 font-body font-semibold text-[13px] bg-[var(--color-elevated)] border border-[var(--color-border-strong)] text-[var(--color-fg)] rounded-[var(--radius-admin-md)] hover:bg-[var(--color-raised)]"
             >
               Assign owner...
             </button>
@@ -215,7 +215,7 @@ export function ContactsTable({ rows }: { rows: ContactRow[] }) {
                 <select
                   value={assignOwner}
                   onChange={(e) => setAssignOwner(e.target.value)}
-                  className="w-full px-2 py-1.5 text-sm bg-background-deep border border-white/10 text-off-white rounded focus:outline-none focus:border-coral/50"
+                  className="w-full px-2 py-1.5 text-sm bg-[var(--color-sunken)] border border-[var(--color-border-strong)] text-[var(--color-fg)] rounded-[var(--radius-admin-md)] focus-ring focus:border-[var(--color-border-focus)]"
                 >
                   {OWNERS.map((o) => (
                     <option key={o.value} value={o.value}>
@@ -235,7 +235,7 @@ export function ContactsTable({ rows }: { rows: ContactRow[] }) {
                     type="button"
                     onClick={applyAssign}
                     disabled={busy}
-                    className="px-3 py-1 text-xs font-heading tracking-wider uppercase bg-coral/20 text-coral border border-coral/30 rounded hover:bg-coral/30 disabled:opacity-50"
+                    className="px-3 py-1 font-body font-semibold text-[13px] bg-[var(--color-raised)] text-[var(--color-fg)] border border-[var(--color-border-strong)] rounded-[var(--radius-admin-md)] hover:bg-[var(--color-elevated)] disabled:opacity-50"
                   >
                     Apply
                   </button>
@@ -247,7 +247,7 @@ export function ContactsTable({ rows }: { rows: ContactRow[] }) {
             <button
               type="button"
               onClick={() => setOpenPopover(openPopover === "tag" ? null : "tag")}
-              className="px-3 py-1.5 text-xs font-heading tracking-wider uppercase bg-background-deep border border-white/10 text-off-white rounded hover:border-coral/40"
+              className="px-3 py-1.5 font-body font-semibold text-[13px] bg-[var(--color-elevated)] border border-[var(--color-border-strong)] text-[var(--color-fg)] rounded-[var(--radius-admin-md)] hover:bg-[var(--color-raised)]"
             >
               Add tag...
             </button>
@@ -262,7 +262,7 @@ export function ContactsTable({ rows }: { rows: ContactRow[] }) {
                   onChange={(e) => setTagValue(e.target.value)}
                   maxLength={40}
                   placeholder="e.g. cohort-2026"
-                  className="w-full px-2 py-1.5 text-sm bg-background-deep border border-white/10 text-off-white rounded focus:outline-none focus:border-coral/50"
+                  className="w-full px-2 py-1.5 text-sm bg-[var(--color-sunken)] border border-[var(--color-border-strong)] text-[var(--color-fg)] rounded-[var(--radius-admin-md)] focus-ring focus:border-[var(--color-border-focus)]"
                   onKeyDown={(e) => {
                     if (e.key === "Enter") applyTag();
                   }}
@@ -279,7 +279,7 @@ export function ContactsTable({ rows }: { rows: ContactRow[] }) {
                     type="button"
                     onClick={applyTag}
                     disabled={busy}
-                    className="px-3 py-1 text-xs font-heading tracking-wider uppercase bg-coral/20 text-coral border border-coral/30 rounded hover:bg-coral/30 disabled:opacity-50"
+                    className="px-3 py-1 font-body font-semibold text-[13px] bg-[var(--color-raised)] text-[var(--color-fg)] border border-[var(--color-border-strong)] rounded-[var(--radius-admin-md)] hover:bg-[var(--color-elevated)] disabled:opacity-50"
                   >
                     Apply
                   </button>
@@ -290,11 +290,11 @@ export function ContactsTable({ rows }: { rows: ContactRow[] }) {
           <button
             type="button"
             onClick={exportCsv}
-            className="px-3 py-1.5 text-xs font-heading tracking-wider uppercase bg-background-deep border border-white/10 text-off-white rounded hover:border-coral/40"
+            className="px-3 py-1.5 font-body font-semibold text-[13px] bg-[var(--color-elevated)] border border-[var(--color-border-strong)] text-[var(--color-fg)] rounded-[var(--radius-admin-md)] hover:bg-[var(--color-raised)]"
           >
             Export CSV
           </button>
-          {msg && <span className="text-xs text-foreground-muted">{msg}</span>}
+          {msg && <span className="text-xs text-[var(--color-fg-muted)]">{msg}</span>}
         </div>
       )}
 
@@ -326,8 +326,8 @@ export function ContactsTable({ rows }: { rows: ContactRow[] }) {
               return (
                 <tr
                   key={c.id}
-                  className={`border-t border-white/5 transition-colors ${
-                    isSel ? "bg-coral/[0.04]" : "hover:bg-white/[0.02]"
+                  className={`border-t border-[var(--color-border)] transition-colors ${
+                    isSel ? "bg-white/[0.04]" : "hover:bg-white/[0.02]"
                   }`}
                 >
                   <td className="px-3 py-3">
@@ -373,7 +373,7 @@ export function ContactsTable({ rows }: { rows: ContactRow[] }) {
                         tags.slice(0, 3).map((t) => (
                           <span
                             key={t}
-                            className="text-[10px] px-1.5 py-0.5 rounded bg-coral/10 text-coral/90 border border-coral/20"
+                            className="text-[10px] px-1.5 py-0.5 rounded bg-[var(--color-elevated)] text-[var(--color-fg-muted)] border border-[var(--color-border-strong)]"
                           >
                             {t}
                           </span>

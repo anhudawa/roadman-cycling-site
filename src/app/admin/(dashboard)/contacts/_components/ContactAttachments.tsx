@@ -41,7 +41,7 @@ function FileIcon({ contentType }: { contentType: string | null }) {
 
   const fill = {
     image: "text-cyan-400",
-    pdf: "text-coral",
+    pdf: "text-[var(--color-bad)]",
     doc: "text-blue-400",
     other: "text-foreground-subtle",
   }[kind];
@@ -156,7 +156,7 @@ export function ContactAttachments({ contactId, initial, currentUser }: Props) {
           type="button"
           onClick={() => inputRef.current?.click()}
           disabled={uploading}
-          className="text-[10px] font-heading tracking-wider uppercase text-coral hover:underline disabled:opacity-40"
+          className="font-body font-semibold text-[13px] text-[var(--color-fg-muted)] hover:text-[var(--color-fg)] hover:underline disabled:opacity-40"
         >
           {uploading ? "Uploading…" : "+ Upload"}
         </button>
@@ -174,13 +174,13 @@ export function ContactAttachments({ contactId, initial, currentUser }: Props) {
           handleFiles(e.dataTransfer.files);
         }}
         className={`border border-dashed rounded p-3 text-center text-xs text-foreground-subtle mb-3 transition ${
-          dragOver ? "border-coral/60 bg-coral/5 text-off-white" : "border-white/10"
+          dragOver ? "border-[var(--color-info)]/60 bg-[var(--color-info-tint)] text-[var(--color-fg)]" : "border-[var(--color-border-strong)]"
         }`}
       >
         Drop files here or{" "}
         <button
           type="button"
-          className="text-coral hover:underline"
+          className="text-[var(--color-info)] hover:underline"
           onClick={() => inputRef.current?.click()}
         >
           browse
@@ -224,7 +224,7 @@ export function ContactAttachments({ contactId, initial, currentUser }: Props) {
                       href={a.blobUrl}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="text-sm text-off-white truncate hover:text-coral block"
+                      className="text-sm text-[var(--color-fg)] truncate hover:underline block"
                     >
                       {a.filename}
                     </a>

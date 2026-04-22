@@ -98,7 +98,7 @@ export default async function ContactsPage({
         <div className="flex items-center gap-3 flex-wrap">
           <Link
             href="/admin/contacts/import"
-            className="px-3 py-2 text-xs font-heading tracking-wider uppercase bg-background-elevated border border-white/10 text-off-white rounded hover:border-coral/40 transition-colors"
+            className="px-3 py-2 font-body font-semibold text-[13px] bg-[var(--color-elevated)] border border-[var(--color-border)] text-[var(--color-fg)] rounded-[var(--radius-admin-md)] hover:border-[var(--color-border-strong)] transition-colors"
           >
             Import CSV
           </Link>
@@ -190,7 +190,7 @@ export default async function ContactsPage({
             {pageNum > 1 && (
               <Link
                 href={pageHref(pageNum - 1)}
-                className="px-3 py-1 rounded border border-white/10 hover:border-coral/30"
+                className="px-3 py-1 rounded-[var(--radius-admin-md)] border border-[var(--color-border)] hover:border-[var(--color-border-strong)] hover:text-[var(--color-fg)]"
               >
                 Previous
               </Link>
@@ -198,7 +198,7 @@ export default async function ContactsPage({
             {pageNum < totalPages && (
               <Link
                 href={pageHref(pageNum + 1)}
-                className="px-3 py-1 rounded border border-white/10 hover:border-coral/30"
+                className="px-3 py-1 rounded-[var(--radius-admin-md)] border border-[var(--color-border)] hover:border-[var(--color-border-strong)] hover:text-[var(--color-fg)]"
               >
                 Next
               </Link>
