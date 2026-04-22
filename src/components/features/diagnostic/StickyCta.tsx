@@ -3,34 +3,41 @@
 import { useEffect, useState } from "react";
 
 /**
- * Mobile-first sticky bottom CTA on the results page. Slides in once
- * the user has scrolled past the hero so it doesn't double up on the
- * hero CTA, and only on screens where the inline CTA falls below the
- * fold (sm and down).
+ * Mobile-first sticky bottom CTA. Slides in once the user has
+ * scrolled past the hero so it doesn't double up on the hero CTA,
+ * and only on screens where the inline CTA falls below the fold
+ * (sm and down).
  *
- * Conversion bet: every sub-second of friction matters for paid
- * traffic. A persistent CTA means an impatient reader can convert
- * without scrolling to the bottom.
+ * Two modes:
+ *  - On the results page, the CTA lives at the bottom of a long
+ *    read. This sticky keeps it persistent so an impatient reader
+ *    can convert without scrolling to the footer.
+ *  - On the landing page, it's the "jump back to Q1" shortcut.
+ *    Pass `hideWhenInView` with a selector for the diagnostic
+ *    section itself — the sticky hides while the user is looking
+ *    at the form so it doesn't compete with the live question.
  */
 export function StickyCta({
   href,
   label,
   ctaTag = "sticky",
+  hideWhenInView,
 }: {
   href: string;
   label: string;
   ctaTag?: string;
+  hideWhenInView?: string;
 }) {
-  const [visible, setVisible] = useState(false);
+  const [pastHero, setPastHero] = useState(false);
+  const [targetInView, setTargetInView] = useState(false);
 
   useEffect(() => {
     let raf = 0;
     const onScroll = () => {
       cancelAnimationFrame(raf);
       raf = requestAnimationFrame(() => {
-        // Show after the user has moved past the first viewport.
         const threshold = window.innerHeight * 0.6;
-        setVisible((prev) => {
+        setPastHero((prev) => {
           const next = window.scrollY > threshold;
           return next === prev ? prev : next;
         });
@@ -43,6 +50,20 @@ export function StickyCta({
       window.removeEventListener("scroll", onScroll);
     };
   }, []);
+
+  useEffect(() => {
+    if (!hideWhenInView) return;
+    const target = document.querySelector(hideWhenInView);
+    if (!target) return;
+    const io = new IntersectionObserver(
+      ([entry]) => setTargetInView(entry.isIntersecting),
+      { threshold: 0.15 }
+    );
+    io.observe(target);
+    return () => io.disconnect();
+  }, [hideWhenInView]);
+
+  const visible = pastHero && !targetInView;
 
   return (
     <div

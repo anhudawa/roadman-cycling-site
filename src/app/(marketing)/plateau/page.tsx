@@ -6,12 +6,20 @@ import { sql } from "drizzle-orm";
 import { db } from "@/lib/db";
 import { diagnosticSubmissions } from "@/lib/db/schema";
 import { Container, Footer, Header, Section } from "@/components/layout";
-import { ParallaxImage, ScrollReveal } from "@/components/ui";
+import {
+  AnimatedCounter,
+  GradientText,
+  GuestMarquee,
+  ParallaxImage,
+  ScrollReveal,
+} from "@/components/ui";
 import { JsonLd, FAQPageJsonLd } from "@/components/seo/JsonLd";
 import { DiagnosticFlow } from "@/components/features/diagnostic/DiagnosticFlow";
 import { HeroAgePicker } from "@/components/features/diagnostic/HeroAgePicker";
 import { MetaPixel } from "@/components/features/diagnostic/MetaPixel";
+import { StickyCta } from "@/components/features/diagnostic/StickyCta";
 import { PROFILE_LABELS } from "@/lib/diagnostic/profiles";
+import { MARQUEE_GUESTS } from "@/lib/guests-marquee";
 import type { Profile } from "@/lib/diagnostic/types";
 
 /**
@@ -139,6 +147,14 @@ export default async function PlateauPage() {
   return (
     <>
       <MetaPixel />
+      {/* Sticky mobile CTA. Hides when the diagnostic is in view
+          so it doesn't overlap the active form. */}
+      <StickyCta
+        href="#start"
+        label="Start the diagnostic"
+        ctaTag="plateau-sticky"
+        hideWhenInView="#start"
+      />
       <JsonLd
         data={{
           "@context": "https://schema.org",
@@ -201,7 +217,17 @@ export default async function PlateauPage() {
           />
           <Container width="narrow" className="relative z-10 text-center">
             <ScrollReveal direction="up" eager>
-              <p className="text-coral font-heading text-xs md:text-sm tracking-widest mb-5">
+              {/* Kicker with a live-pulse dot. The pulse signals
+                  "this is an active, running thing" — lifts the
+                  static kicker into something that feels alive. */}
+              <p className="text-coral font-heading text-xs md:text-sm tracking-widest mb-5 flex items-center justify-center gap-2">
+                <span
+                  aria-hidden="true"
+                  className="relative flex h-2 w-2"
+                >
+                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-coral opacity-75" />
+                  <span className="relative inline-flex rounded-full h-2 w-2 bg-coral" />
+                </span>
                 THE MASTERS PLATEAU DIAGNOSTIC
               </p>
               <h1
@@ -209,7 +235,9 @@ export default async function PlateauPage() {
                 style={{ fontSize: "var(--text-hero)" }}
               >
                 FOUR REASONS YOUR FTP IS STUCK.
-                <span className="text-coral block mt-2">WHICH ONE IS YOU?</span>
+                <GradientText as="span" className="block mt-2">
+                  WHICH ONE IS YOU?
+                </GradientText>
               </h1>
               <p className="text-off-white/90 text-lg md:text-xl leading-relaxed max-w-xl mx-auto">
                 A 4-minute diagnostic for cyclists 35+. Tap your age and
@@ -220,7 +248,11 @@ export default async function PlateauPage() {
 
               {recentCount !== null && (
                 <p className="text-off-white/70 text-xs mt-6">
-                  {recentCount.toLocaleString()} cyclists took it this week
+                  <span className="text-coral">●</span>{" "}
+                  <strong className="text-off-white">
+                    {recentCount.toLocaleString()}
+                  </strong>{" "}
+                  cyclists took it this week
                 </p>
               )}
             </ScrollReveal>
@@ -249,48 +281,78 @@ export default async function PlateauPage() {
         </Section>
 
         {/* ═══ Authority strip ══════════════════════════════
-            Three specific proof points. One line each, bold
-            verb, no corporate fluff. ───────────────────────── */}
-        <Section background="charcoal" className="py-10 border-y border-white/5">
+            Three big stats that count up on scroll. Proof points
+            that read as specific, not marketing. The scroll-in
+            counters give the section kinetic energy so it doesn't
+            feel like a static bullet list. ─────────────────── */}
+        <Section background="charcoal" className="py-14 border-y border-white/5">
           <Container width="wide">
-            <ul className="grid md:grid-cols-3 gap-5 text-foreground-muted text-sm md:text-base">
-              <li className="flex items-start gap-3">
-                <span className="text-coral font-heading text-lg leading-none shrink-0">
-                  ▸
-                </span>
-                <span>
-                  Built from{" "}
-                  <strong className="text-off-white">
-                    1,400+ podcast conversations
-                  </strong>{" "}
-                  with World Tour coaches, sports scientists and pro riders.
-                </span>
+            <ul className="grid md:grid-cols-3 gap-8 md:gap-6 text-center md:text-left">
+              <li>
+                <ScrollReveal direction="up">
+                  <p className="font-heading text-coral leading-none mb-2" style={{ fontSize: "clamp(2.5rem, 5vw, 3.5rem)" }}>
+                    <AnimatedCounter value="1,400+" />
+                  </p>
+                  <p className="text-off-white font-heading text-sm md:text-base tracking-wide mb-1">
+                    PODCAST CONVERSATIONS
+                  </p>
+                  <p className="text-foreground-muted text-sm">
+                    With World Tour coaches, sports scientists, and pro
+                    riders — the source material for every profile.
+                  </p>
+                </ScrollReveal>
               </li>
-              <li className="flex items-start gap-3">
-                <span className="text-coral font-heading text-lg leading-none shrink-0">
-                  ▸
-                </span>
-                <span>
-                  Based on methods used by the coaches behind{" "}
-                  <strong className="text-off-white">
-                    Pogačar, Froome and Bernal.
-                  </strong>
-                </span>
+              <li>
+                <ScrollReveal direction="up" delay={0.1}>
+                  <p className="font-heading text-coral leading-none mb-2" style={{ fontSize: "clamp(2.5rem, 5vw, 3.5rem)" }}>
+                    <AnimatedCounter value="3" />
+                  </p>
+                  <p className="text-off-white font-heading text-sm md:text-base tracking-wide mb-1">
+                    TOUR DE FRANCE WINNERS
+                  </p>
+                  <p className="text-foreground-muted text-sm">
+                    Methods used by the coaches behind Pogačar, Froome,
+                    and Bernal, translated for riders with a life.
+                  </p>
+                </ScrollReveal>
               </li>
-              <li className="flex items-start gap-3">
-                <span className="text-coral font-heading text-lg leading-none shrink-0">
-                  ▸
-                </span>
-                <span>
-                  Trusted by{" "}
-                  <strong className="text-off-white">
-                    1 million+ monthly listeners
-                  </strong>{" "}
-                  of the Roadman Cycling Podcast.
-                </span>
+              <li>
+                <ScrollReveal direction="up" delay={0.2}>
+                  <p className="font-heading text-coral leading-none mb-2" style={{ fontSize: "clamp(2.5rem, 5vw, 3.5rem)" }}>
+                    <AnimatedCounter value="1M+" />
+                  </p>
+                  <p className="text-off-white font-heading text-sm md:text-base tracking-wide mb-1">
+                    MONTHLY LISTENERS
+                  </p>
+                  <p className="text-foreground-muted text-sm">
+                    The largest cycling performance podcast on the
+                    planet. If the answer exists, we&rsquo;ve aired it.
+                  </p>
+                </ScrollReveal>
               </li>
             </ul>
           </Container>
+        </Section>
+
+        {/* ═══ Guest marquee ════════════════════════════════
+            Names do the heavy lifting here — each one is a
+            category-defining expert. Two rows scrolling in
+            opposite directions (existing GuestMarquee uses
+            CSS animation for 60fps on low-end phones). ────── */}
+        <Section background="deep-purple" grain className="py-12 overflow-hidden">
+          <Container>
+            <ScrollReveal direction="up">
+              <p className="text-coral font-heading text-xs tracking-widest text-center mb-2">
+                WHO WE&rsquo;VE LEARNED FROM
+              </p>
+              <p className="text-off-white font-heading text-center mb-8" style={{ fontSize: "var(--text-section)" }}>
+                EVERY PROFILE IS BUILT ON THESE CONVERSATIONS.
+              </p>
+            </ScrollReveal>
+          </Container>
+          {/* Full-bleed marquee — breaks out of Container for
+              edge-to-edge scroll (homepage does the same pattern). */}
+          <GuestMarquee guests={MARQUEE_GUESTS} fadeColor="deep-purple" />
         </Section>
 
         {/* ═══ The four profiles ════════════════════════════
