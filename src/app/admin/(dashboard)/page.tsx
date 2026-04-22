@@ -9,6 +9,14 @@ import { TimeRangePicker } from "./components/TimeRangePicker";
 import { TimeSeriesChart } from "./components/charts/TimeSeriesChart";
 import { DonutChart } from "./components/charts/DonutChart";
 import { FunnelDisplay } from "./components/charts/FunnelDisplay";
+import { Card, CardBody, PageHeader } from "@/components/admin/ui";
+
+const SECTION_H2 =
+  "font-body font-semibold text-[13px] text-[var(--color-fg)] mb-4";
+const STAT_LABEL =
+  "text-[10px] uppercase tracking-wider text-[var(--color-fg-subtle)]";
+const STAT_VALUE =
+  "text-xl font-mono tabular-nums text-[var(--color-fg)] mt-1";
 
 const PLACEHOLDER_TOP_PAGES = [
   { page: "/", views: 842, signups: 34, convRate: 4.0 },
@@ -163,20 +171,15 @@ export default async function AdminDashboardPage({
 
   return (
     <div className="space-y-8">
-      {/* Header */}
-      <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
-        <div>
-          <h1 className="font-heading text-3xl text-off-white tracking-wider">
-            DASHBOARD
-          </h1>
-          <p className="text-foreground-muted text-sm mt-1">
-            Overview of site performance
-          </p>
-        </div>
-        <Suspense fallback={null}>
-          <TimeRangePicker />
-        </Suspense>
-      </div>
+      <PageHeader
+        title="Dashboard"
+        subtitle="Overview of site performance"
+        actions={
+          <Suspense fallback={null}>
+            <TimeRangePicker />
+          </Suspense>
+        }
+      />
 
       {/* Stat cards — reflect selected range */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 xl:grid-cols-5 gap-4">
@@ -217,134 +220,134 @@ export default async function AdminDashboardPage({
 
       {/* Period vs Previous comparison — contextual to selected range */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
-        <div className="bg-background-elevated border border-white/5 rounded-xl p-5">
-          <h2 className="font-heading text-sm text-foreground-muted tracking-wider mb-3">
-            CURRENT PERIOD ({rangeLabel.toUpperCase()})
-          </h2>
-          <div className="grid grid-cols-2 gap-3">
-            <div>
-              <p className="text-foreground-subtle text-xs uppercase tracking-wider">Visitors</p>
-              <p className="text-xl font-heading text-off-white">{currentStats.visitors.toLocaleString()}</p>
-            </div>
-            <div>
-              <p className="text-foreground-subtle text-xs uppercase tracking-wider">Signups</p>
-              <p className="text-xl font-heading text-off-white">{currentStats.signups}</p>
-            </div>
-            <div>
-              <p className="text-foreground-subtle text-xs uppercase tracking-wider">Conv. Rate</p>
-              <p className="text-xl font-heading text-off-white">{currentStats.conversionRate.toFixed(1)}%</p>
-            </div>
-            <div>
-              <p className="text-foreground-subtle text-xs uppercase tracking-wider">Skool Trials</p>
-              <p className="text-xl font-heading text-off-white">{currentStats.skoolTrials}</p>
-            </div>
-          </div>
-        </div>
-        {compLabel && (
-          <div className="bg-background-elevated border border-white/5 rounded-xl p-5">
-            <h2 className="font-heading text-sm text-foreground-muted tracking-wider mb-3">
-              PREVIOUS PERIOD ({compLabel.toUpperCase()})
-            </h2>
+        <Card>
+          <CardBody compact>
+            <h2 className={SECTION_H2}>Current period · {rangeLabel}</h2>
             <div className="grid grid-cols-2 gap-3">
               <div>
-                <p className="text-foreground-subtle text-xs uppercase tracking-wider">Visitors</p>
-                <p className="text-xl font-heading text-off-white">{previousStats.visitors.toLocaleString()}</p>
+                <p className={STAT_LABEL}>Visitors</p>
+                <p className={STAT_VALUE}>{currentStats.visitors.toLocaleString()}</p>
               </div>
               <div>
-                <p className="text-foreground-subtle text-xs uppercase tracking-wider">Signups</p>
-                <p className="text-xl font-heading text-off-white">{previousStats.signups}</p>
+                <p className={STAT_LABEL}>Signups</p>
+                <p className={STAT_VALUE}>{currentStats.signups}</p>
               </div>
               <div>
-                <p className="text-foreground-subtle text-xs uppercase tracking-wider">Conv. Rate</p>
-                <p className="text-xl font-heading text-off-white">{previousStats.conversionRate.toFixed(1)}%</p>
+                <p className={STAT_LABEL}>Conv. rate</p>
+                <p className={STAT_VALUE}>{currentStats.conversionRate.toFixed(1)}%</p>
               </div>
               <div>
-                <p className="text-foreground-subtle text-xs uppercase tracking-wider">Skool Trials</p>
-                <p className="text-xl font-heading text-off-white">{previousStats.skoolTrials}</p>
+                <p className={STAT_LABEL}>Skool trials</p>
+                <p className={STAT_VALUE}>{currentStats.skoolTrials}</p>
               </div>
             </div>
-          </div>
+          </CardBody>
+        </Card>
+        {compLabel && (
+          <Card>
+            <CardBody compact>
+              <h2 className={SECTION_H2}>Previous period · {compLabel}</h2>
+              <div className="grid grid-cols-2 gap-3">
+                <div>
+                  <p className={STAT_LABEL}>Visitors</p>
+                  <p className={STAT_VALUE}>{previousStats.visitors.toLocaleString()}</p>
+                </div>
+                <div>
+                  <p className={STAT_LABEL}>Signups</p>
+                  <p className={STAT_VALUE}>{previousStats.signups}</p>
+                </div>
+                <div>
+                  <p className={STAT_LABEL}>Conv. rate</p>
+                  <p className={STAT_VALUE}>{previousStats.conversionRate.toFixed(1)}%</p>
+                </div>
+                <div>
+                  <p className={STAT_LABEL}>Skool trials</p>
+                  <p className={STAT_VALUE}>{previousStats.skoolTrials}</p>
+                </div>
+              </div>
+            </CardBody>
+          </Card>
         )}
       </div>
 
       {/* Visitors Over Time chart */}
-      <div className="bg-background-elevated border border-white/5 rounded-xl p-5">
-        <h2 className="font-heading text-sm text-foreground-muted tracking-wider mb-4">
-          VISITORS OVER TIME
-        </h2>
-        <TimeSeriesChart
-          data={timeSeries}
-          dataKeys={[
-            { key: "visitors", color: "#E8836B", label: "Visitors" },
-            { key: "signups", color: "#4ADE80", label: "Signups" },
-          ]}
-          height={256}
-        />
-      </div>
+      <Card>
+        <CardBody compact>
+          <h2 className={SECTION_H2}>Visitors over time</h2>
+          <TimeSeriesChart
+            data={timeSeries}
+            dataKeys={[
+              { key: "visitors", color: "#6A9AD9", label: "Visitors" },
+              { key: "signups", color: "#4AAE8C", label: "Signups" },
+            ]}
+            height={256}
+          />
+        </CardBody>
+      </Card>
 
       {/* Conversion Funnel */}
-      <div className="bg-background-elevated border border-white/5 rounded-xl p-5">
-        <h2 className="font-heading text-sm text-foreground-muted tracking-wider mb-4">
-          CONVERSION FUNNEL ({rangeLabel.toUpperCase()})
-        </h2>
-        <FunnelDisplay steps={funnelSteps} />
-      </div>
+      <Card>
+        <CardBody compact>
+          <h2 className={SECTION_H2}>Conversion funnel · {rangeLabel}</h2>
+          <FunnelDisplay steps={funnelSteps} />
+        </CardBody>
+      </Card>
 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
         {/* Top Converting Pages */}
-        <div className="bg-background-elevated border border-white/5 rounded-xl p-5">
-          <h2 className="font-heading text-sm text-foreground-muted tracking-wider mb-4">
-            TOP CONVERTING PAGES
-          </h2>
-          <div className="overflow-x-auto">
-            <table className="w-full">
-              <thead>
-                <tr className="border-b border-white/5">
-                  <th className="text-left pb-2 text-xs uppercase tracking-wider text-foreground-subtle font-medium">
-                    Page
-                  </th>
-                  <th className="text-right pb-2 text-xs uppercase tracking-wider text-foreground-subtle font-medium">
-                    Views
-                  </th>
-                  <th className="text-right pb-2 text-xs uppercase tracking-wider text-foreground-subtle font-medium">
-                    Conv %
-                  </th>
-                </tr>
-              </thead>
-              <tbody>
-                {topPages.map((row) => (
-                  <tr key={row.page} className="border-b border-white/[0.03]">
-                    <td className="py-2.5 text-sm text-off-white">{row.page}</td>
-                    <td className="py-2.5 text-sm text-foreground-muted text-right tabular-nums">
-                      {row.views}
-                    </td>
-                    <td className="py-2.5 text-right">
-                      <span
-                        className={`text-xs font-medium px-2 py-0.5 rounded-full ${
-                          row.convRate >= 4
-                            ? "text-green-400 bg-green-400/10"
-                            : row.convRate >= 2.5
-                              ? "text-yellow-400 bg-yellow-400/10"
-                              : "text-coral bg-coral/10"
-                        }`}
-                      >
-                        {row.convRate.toFixed(1)}%
-                      </span>
-                    </td>
+        <Card>
+          <CardBody compact>
+            <h2 className={SECTION_H2}>Top converting pages</h2>
+            <div className="overflow-x-auto">
+              <table className="w-full">
+                <thead>
+                  <tr className="border-b border-[var(--color-border)]">
+                    <th className="text-left pb-2 text-[10px] uppercase tracking-wider text-[var(--color-fg-subtle)] font-medium">
+                      Page
+                    </th>
+                    <th className="text-right pb-2 text-[10px] uppercase tracking-wider text-[var(--color-fg-subtle)] font-medium">
+                      Views
+                    </th>
+                    <th className="text-right pb-2 text-[10px] uppercase tracking-wider text-[var(--color-fg-subtle)] font-medium">
+                      Conv %
+                    </th>
                   </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
-        </div>
+                </thead>
+                <tbody>
+                  {topPages.map((row) => (
+                    <tr key={row.page} className="border-b border-white/[0.03]">
+                      <td className="py-2.5 text-sm text-[var(--color-fg)]">{row.page}</td>
+                      <td className="py-2.5 text-sm text-[var(--color-fg-muted)] text-right font-mono tabular-nums">
+                        {row.views}
+                      </td>
+                      <td className="py-2.5 text-right">
+                        <span
+                          className={`text-xs font-mono tabular-nums px-2 py-0.5 rounded-full ${
+                            row.convRate >= 4
+                              ? "text-[var(--color-good)] bg-[var(--color-good-tint)]"
+                              : row.convRate >= 2.5
+                                ? "text-[var(--color-warn)] bg-[var(--color-warn-tint)]"
+                                : "text-[var(--color-bad)] bg-[var(--color-bad-tint)]"
+                          }`}
+                        >
+                          {row.convRate.toFixed(1)}%
+                        </span>
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          </CardBody>
+        </Card>
 
         {/* Traffic Sources — now with DonutChart */}
-        <div className="bg-background-elevated border border-white/5 rounded-xl p-5">
-          <h2 className="font-heading text-sm text-foreground-muted tracking-wider mb-4">
-            TRAFFIC SOURCES
-          </h2>
-          <DonutChart data={trafficSources} />
-        </div>
+        <Card>
+          <CardBody compact>
+            <h2 className={SECTION_H2}>Traffic sources</h2>
+            <DonutChart data={trafficSources} />
+          </CardBody>
+        </Card>
       </div>
     </div>
   );
