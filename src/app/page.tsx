@@ -281,8 +281,8 @@ export default function HomePage() {
               <p className="text-foreground-muted max-w-2xl mx-auto text-lg">
                 Most cyclists plateau because they train alone, guess at
                 nutrition, and skip the stuff that actually compounds.
-                Inside the Not Done Yet coaching community, hundreds of cyclists
-                follow one coached system — training, nutrition, strength,
+                Inside the Not Done Yet coaching community, riders follow
+                one coached system — training, nutrition, strength,
                 recovery, and accountability — and they&apos;re proving every
                 week that faster is still ahead.
               </p>

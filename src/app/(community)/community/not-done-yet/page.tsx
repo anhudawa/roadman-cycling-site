@@ -204,7 +204,7 @@ export default function NotDoneYetPage() {
                 week by the coach who had every single one of them on his show.
               </p>
               <p className="text-foreground-subtle text-sm">
-                100+ cyclists who refuse to plateau &middot; 7-day free trial &middot; 30-day money-back guarantee
+                For cyclists who refuse to plateau &middot; 7-day free trial &middot; 30-day money-back guarantee
               </p>
             </ScrollReveal>
           </Container>
@@ -494,9 +494,10 @@ export default function NotDoneYetPage() {
                   YOU&apos;RE NOT DONE YET.
                 </h2>
                 <p className="text-foreground-muted mb-8 max-w-md mx-auto">
-                  100+ cyclists chose to stop guessing and start progressing.
-                  They&apos;re not more talented than you — they just have
-                  a system. Same knowledge. Same coaching. Your turn.
+                  Cyclists across Ireland, the UK and the US have chosen
+                  to stop guessing and start progressing. They&apos;re not
+                  more talented than you — they just have a system. Same
+                  knowledge. Same coaching. Your turn.
                 </p>
                 <Button
                   href="https://www.skool.com/roadmancycling/about"

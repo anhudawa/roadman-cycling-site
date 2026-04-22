@@ -166,7 +166,7 @@ export default function CommunityPage() {
                     The coaching community
                   </p>
                   <p className="text-xs text-foreground-subtle uppercase tracking-widest font-body mb-4">
-                    113 members · 7-day free trial
+                    7-day free trial
                   </p>
                   <p className="text-foreground-muted text-sm mb-5 leading-relaxed">
                     The coached system. Personalised plans, weekly calls,
