@@ -539,6 +539,10 @@ export function getAllTopicSlugs(): string[] {
   return TOPIC_DEFINITIONS.map((t) => t.slug);
 }
 
+export function getTopicTitleBySlug(slug: string): string | null {
+  return TOPIC_DEFINITIONS.find((t) => t.slug === slug)?.title ?? null;
+}
+
 /**
  * Reverse index: post slug → list of topic hubs that include it.
  *
