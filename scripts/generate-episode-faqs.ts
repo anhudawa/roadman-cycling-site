@@ -328,11 +328,21 @@ async function main() {
     try {
       const prompt = buildPrompt(ep);
 
-      const response = await client.messages.create({
-        model: MODEL,
-        max_tokens: 2000,
-        messages: [{ role: "user", content: prompt }],
-      });
+      const controller = new AbortController();
+      const timer = setTimeout(() => controller.abort(), 120_000);
+      let response;
+      try {
+        response = await client.messages.create(
+          {
+            model: MODEL,
+            max_tokens: 2000,
+            messages: [{ role: "user", content: prompt }],
+          },
+          { signal: controller.signal },
+        );
+      } finally {
+        clearTimeout(timer);
+      }
 
       const textBlock = response.content.find((b) => b.type === "text");
       if (!textBlock || textBlock.type !== "text") {
