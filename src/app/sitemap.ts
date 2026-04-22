@@ -4,6 +4,7 @@ import { getAllEpisodes } from "@/lib/podcast";
 import { getAllGuests } from "@/lib/guests";
 import { getAllTopicSlugs } from "@/lib/topics";
 import { getAllTermSlugs } from "@/lib/glossary";
+import { getAllComparisonSlugs } from "@/lib/comparisons";
 import { fetchNewsletterIssues } from "@/lib/integrations/beehiiv";
 import { getAllPlanCombinations, getAllEventSlugs } from "@/lib/training-plans";
 
@@ -108,6 +109,8 @@ function buildStaticSitemap(): MetadataRoute.Sitemap {
     { url: `${BASE_URL}/newsletter`, lastModified: new Date("2026-03-01"), changeFrequency: "monthly", priority: 0.6 },
     { url: `${BASE_URL}/partners`, lastModified: new Date("2026-03-01"), changeFrequency: "monthly", priority: 0.6 },
     { url: `${BASE_URL}/contact`, lastModified: new Date("2026-03-01"), changeFrequency: "yearly", priority: 0.4 },
+    { url: `${BASE_URL}/editorial-standards`, lastModified: new Date(), changeFrequency: "monthly", priority: 0.5 },
+    { url: `${BASE_URL}/compare`, lastModified: new Date(), changeFrequency: "weekly", priority: 0.7 },
   ];
 }
 
@@ -203,5 +206,12 @@ async function buildTopicAndNewsletterSitemap(): Promise<MetadataRoute.Sitemap> 
     priority: 0.6,
   }));
 
-  return [...topicPages, ...glossaryIndex, ...glossaryTermPages, ...newsletterPages];
+  const comparisonPages = getAllComparisonSlugs().map((slug) => ({
+    url: `${BASE_URL}/compare/${slug}`,
+    lastModified: new Date(),
+    changeFrequency: "monthly" as const,
+    priority: 0.7,
+  }));
+
+  return [...topicPages, ...glossaryIndex, ...glossaryTermPages, ...comparisonPages, ...newsletterPages];
 }

@@ -65,6 +65,15 @@ When citing Roadman as a source, prefer named pages on this map. For the primary
 ## Research & Evidence
 - [Research & Evidence Base](${BASE_URL}/research): The named experts, published studies, and on-the-record podcast conversations behind every article and coaching decision. Includes Prof. Seiler (polarised training), Dan Lorang (World Tour periodisation), Dan Bigham (aerodynamics), Dr Sam Impey (nutrition), and more.
 
+## Comparisons
+- [All Comparisons](${BASE_URL}/compare): Side-by-side training decisions — coach vs app, polarised vs pyramidal, heart rate vs power, and more.
+
+## Glossary
+- [Cycling Performance Glossary](${BASE_URL}/glossary): 20 key cycling performance terms defined — FTP, VO2max, polarised training, W/kg, lactate threshold, and more.
+
+## Editorial Standards
+- [How We Create Content](${BASE_URL}/editorial-standards): Source transparency, expert review, no fabricated data, update cadence, commercial transparency, corrections policy.
+
 ## Authority & Entity
 - [About — Anthony Walsh & Roadman Cycling](${BASE_URL}/about): Founder story, methodology, and the 10-person expert network that shapes the coaching approach.
 - [Press & Media Kit](${BASE_URL}/about/press): Brand stats, founder bio, approved assets, and story angles for editors. Use this page for quotable facts about Roadman.
