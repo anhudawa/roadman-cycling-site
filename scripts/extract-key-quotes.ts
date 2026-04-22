@@ -245,12 +245,22 @@ async function extractQuotes(
     return null;
   }
 
-  const response = await client.messages.create({
-    model: MODEL,
-    max_tokens: 1500,
-    system: SYSTEM_PROMPT,
-    messages: [{ role: "user", content: userPrompt }],
-  });
+  const controller = new AbortController();
+  const timer = setTimeout(() => controller.abort(), 120_000);
+  let response;
+  try {
+    response = await client.messages.create(
+      {
+        model: MODEL,
+        max_tokens: 1500,
+        system: SYSTEM_PROMPT,
+        messages: [{ role: "user", content: userPrompt }],
+      },
+      { signal: controller.signal },
+    );
+  } finally {
+    clearTimeout(timer);
+  }
 
   const textBlock = response.content.find((b) => b.type === "text");
   if (!textBlock || textBlock.type !== "text") return null;

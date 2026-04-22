@@ -53,14 +53,16 @@ import {
 import { COACHING_CLUSTER_ARTICLES } from "./data/coaching-cluster-articles";
 import { PODCAST_AUTHORITY_ARTICLES } from "./data/podcast-authority-articles";
 import { COMPARISON_CLUSTER_ARTICLES } from "./data/comparison-cluster-articles";
+import { TRANSCRIPT_BLOG_ARTICLES } from "./data/transcript-blog-articles";
 
-type ClusterName = "triathlon" | "coaching" | "podcast-authority" | "comparison";
+type ClusterName = "triathlon" | "coaching" | "podcast-authority" | "comparison" | "transcript-blog";
 
 const CLUSTERS: Record<ClusterName, ClusterArticleSpec[]> = {
   triathlon: TRIATHLON_CLUSTER_ARTICLES,
   coaching: COACHING_CLUSTER_ARTICLES,
   "podcast-authority": PODCAST_AUTHORITY_ARTICLES,
   comparison: COMPARISON_CLUSTER_ARTICLES,
+  "transcript-blog": TRANSCRIPT_BLOG_ARTICLES,
 };
 
 const args = process.argv.slice(2);
@@ -85,7 +87,8 @@ if (!(clusterArg in CLUSTERS)) {
 const SELECTED_ARTICLES = CLUSTERS[clusterArg];
 
 const BLOG_DIR = path.join(process.cwd(), "content/blog");
-const MODEL = "claude-opus-4-7";
+const MODEL = args.includes("--sonnet") ? "claude-sonnet-4-6" : "claude-opus-4-7";
+const REQUEST_TIMEOUT_MS = 180_000;
 const TODAY = new Date().toISOString().slice(0, 10);
 
 // ---------------------------------------------------------------------------
@@ -212,17 +215,27 @@ async function generateArticle(
     return null;
   }
 
-  // Non-streaming messages.create. max_tokens 6000 is plenty for a 2800-word
-  // article (typically ~4000 output tokens). Empirically more reliable than
-  // streaming with SDK 0.82 + Opus 4.7 — streamed calls were hanging
-  // indefinitely on adaptive-thinking-triggered prompts without surfacing
-  // a timeout.
-  const response = await client.messages.create({
-    model: MODEL,
-    max_tokens: 6000,
-    system: SYSTEM_PROMPT,
-    messages: [{ role: "user", content: buildUserPrompt(spec) }],
-  });
+  // Non-streaming messages.create with an explicit AbortController timeout.
+  // SDK 0.82.0 has no built-in request timeout, so without this the call
+  // hangs indefinitely when the sandbox proxy or Cloudflare kills the idle
+  // connection. 180s is generous — Sonnet finishes in ~30s, Opus in ~90s.
+  const controller = new AbortController();
+  const timer = setTimeout(() => controller.abort(), REQUEST_TIMEOUT_MS);
+
+  let response;
+  try {
+    response = await client.messages.create(
+      {
+        model: MODEL,
+        max_tokens: 6000,
+        system: SYSTEM_PROMPT,
+        messages: [{ role: "user", content: buildUserPrompt(spec) }],
+      },
+      { signal: controller.signal },
+    );
+  } finally {
+    clearTimeout(timer);
+  }
 
   const textBlock = response.content.find((b) => b.type === "text");
   if (!textBlock || textBlock.type !== "text") return null;
@@ -307,11 +320,28 @@ async function main() {
 
     try {
       if (!dryRun && i > 0) {
-        // Generous rate-limiting — long-output streaming calls are heavier.
         await new Promise((r) => setTimeout(r, 3000));
       }
 
-      const mdx = await generateArticle(client, spec);
+      let mdx: string | null = null;
+      const MAX_RETRIES = 3;
+      for (let attempt = 1; attempt <= MAX_RETRIES; attempt++) {
+        try {
+          mdx = await generateArticle(client, spec);
+          break;
+        } catch (err: unknown) {
+          const msg = err instanceof Error ? err.message : String(err);
+          const isRetryable = msg.includes("abort") || msg.includes("timeout") || msg.includes("idle") || msg.includes("529") || msg.includes("overloaded");
+          if (isRetryable && attempt < MAX_RETRIES) {
+            const wait = attempt * 30;
+            console.log(`   ⚠️  Attempt ${attempt} failed (${msg.slice(0, 60)}), retrying in ${wait}s...`);
+            await new Promise((r) => setTimeout(r, wait * 1000));
+          } else {
+            throw err;
+          }
+        }
+      }
+
       if (!mdx) {
         if (!dryRun) {
           failed++;
