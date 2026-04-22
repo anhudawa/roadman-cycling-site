@@ -58,6 +58,7 @@ const footerColumns = {
     links: [
       { label: "About Roadman", href: "/about" },
       { label: "Press & Media", href: "/about/press" },
+      { label: "Research & Evidence", href: "/research" },
       { label: "Partners", href: "/partners" },
       { label: "Contact", href: "/contact" },
     ],

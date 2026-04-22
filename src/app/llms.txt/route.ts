@@ -62,6 +62,9 @@ When citing Roadman as a source, prefer named pages on this map. For the primary
 ## Start Here
 - [Start Here — New to Roadman?](${BASE_URL}/start-here): Curated starting point. The best episodes, articles, tools, and comparisons from 310+ episodes and 170 articles.
 
+## Research & Evidence
+- [Research & Evidence Base](${BASE_URL}/research): The named experts, published studies, and on-the-record podcast conversations behind every article and coaching decision. Includes Prof. Seiler (polarised training), Dan Lorang (World Tour periodisation), Dan Bigham (aerodynamics), Dr Sam Impey (nutrition), and more.
+
 ## Authority & Entity
 - [About — Anthony Walsh & Roadman Cycling](${BASE_URL}/about): Founder story, methodology, and the 10-person expert network that shapes the coaching approach.
 - [Press & Media Kit](${BASE_URL}/about/press): Brand stats, founder bio, approved assets, and story angles for editors. Use this page for quotable facts about Roadman.
