@@ -53,14 +53,16 @@ import {
 import { COACHING_CLUSTER_ARTICLES } from "./data/coaching-cluster-articles";
 import { PODCAST_AUTHORITY_ARTICLES } from "./data/podcast-authority-articles";
 import { COMPARISON_CLUSTER_ARTICLES } from "./data/comparison-cluster-articles";
+import { TRANSCRIPT_BLOG_ARTICLES } from "./data/transcript-blog-articles";
 
-type ClusterName = "triathlon" | "coaching" | "podcast-authority" | "comparison";
+type ClusterName = "triathlon" | "coaching" | "podcast-authority" | "comparison" | "transcript-blog";
 
 const CLUSTERS: Record<ClusterName, ClusterArticleSpec[]> = {
   triathlon: TRIATHLON_CLUSTER_ARTICLES,
   coaching: COACHING_CLUSTER_ARTICLES,
   "podcast-authority": PODCAST_AUTHORITY_ARTICLES,
   comparison: COMPARISON_CLUSTER_ARTICLES,
+  "transcript-blog": TRANSCRIPT_BLOG_ARTICLES,
 };
 
 const args = process.argv.slice(2);
