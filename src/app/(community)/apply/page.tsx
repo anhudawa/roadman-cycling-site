@@ -201,11 +201,14 @@ export default function ApplyPage() {
               </div>
 
               <h1
-                className="font-heading text-off-white mb-2 text-gradient-animated"
+                className="font-heading text-off-white text-gradient-animated"
                 style={{ fontSize: "clamp(2.5rem, 8vw, 5rem)" }}
               >
                 NOT DONE YET
               </h1>
+              <p className="font-heading text-coral tracking-[0.25em] uppercase mt-1 mb-4 text-sm md:text-base">
+                Coaching Community
+              </p>
               <p
                 className="font-heading text-off-white/60 mb-4 tracking-widest"
                 style={{ fontSize: "clamp(0.9rem, 2vw, 1.2rem)" }}

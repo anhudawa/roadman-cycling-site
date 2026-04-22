@@ -344,8 +344,11 @@ export default async function BlogPostPage({
                 <p className="font-heading text-coral text-xs tracking-widest mb-3">
                   WANT THIS APPLIED TO YOUR TRAINING?
                 </p>
-                <p className="font-heading text-off-white text-xl md:text-2xl mb-3 leading-tight">
-                  NOT DONE YET — PERSONALISED COACHING.
+                <p className="font-heading text-off-white text-xl md:text-2xl leading-tight">
+                  NOT DONE YET
+                </p>
+                <p className="font-heading text-coral tracking-[0.25em] uppercase mt-1 mb-3 text-[11px] md:text-xs">
+                  Coaching Community
                 </p>
                 <p className="text-foreground-muted text-sm mb-5 max-w-xl mx-auto">
                   Your power numbers, your events, your calendar. 7-day free

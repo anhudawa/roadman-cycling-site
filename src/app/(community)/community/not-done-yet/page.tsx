@@ -201,11 +201,14 @@ export default function NotDoneYetPage() {
                 THE COACHING COMMUNITY
               </p>
               <h1
-                className="font-heading text-off-white mb-6 text-gradient-animated"
+                className="font-heading text-off-white text-gradient-animated"
                 style={{ fontSize: "var(--text-hero)" }}
               >
                 NOT DONE YET
               </h1>
+              <p className="font-heading text-coral tracking-[0.25em] uppercase mt-2 mb-6 text-sm md:text-base">
+                Coaching Community
+              </p>
               <p className="text-foreground-muted text-xl max-w-2xl mx-auto mb-6">
                 TrainerRoad sells software. Zwift sells a game.
                 We sell who you become.
