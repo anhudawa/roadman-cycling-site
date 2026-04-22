@@ -15,6 +15,10 @@ export const metadata: Metadata = {
   title: "Search — Find Episodes, Articles, Guests & Tools",
   description:
     "Search across the entire Roadman Cycling catalogue. Find podcast episodes, blog articles, guest profiles, and free cycling tools in one place.",
+  robots: {
+    index: false,
+    follow: true,
+  },
   alternates: {
     canonical: "https://roadmancycling.com/search",
   },

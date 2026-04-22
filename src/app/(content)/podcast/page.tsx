@@ -125,7 +125,18 @@ export default function PodcastPage() {
         {/* Search + Episodes (Client Component) */}
         <Section background="charcoal">
           <Container>
-            <PodcastSearch episodes={episodes} />
+            <PodcastSearch episodes={episodes.map((ep) => ({
+              slug: ep.slug,
+              title: ep.title,
+              episodeNumber: ep.episodeNumber,
+              guest: ep.guest,
+              guestCredential: ep.guestCredential,
+              description: ep.description,
+              publishDate: ep.publishDate,
+              duration: ep.duration,
+              pillar: ep.pillar,
+              type: ep.type,
+            }))} />
           </Container>
         </Section>
 
