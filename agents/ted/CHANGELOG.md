@@ -27,7 +27,7 @@ First end-to-end build of the transparent AI community agent for the free Roadma
 
 Three jobs, each tied to a per-job enable flag in `ted_kill_switch`:
 
-- **Daily prompt** — one post per day rotating through 7 pillar prompts (coaching, nutrition, S&C, recovery, Le Metier, podcast-episode, weekend ride). Drafts land in the review queue; Anthony batch-approves; GitHub Actions posts.
+- **Daily prompt** — one post per day rotating through 7 pillar prompts (coaching, nutrition, S&C, recovery, Community, podcast-episode, weekend ride). Drafts land in the review queue; Anthony batch-approves; GitHub Actions posts.
 - **New-member welcomes** — drafted hourly, posted twice daily. First-name, non-identical copy, persona-aware when the Skool webhook provided classification. Skipped if fewer than 3 members are pending (per spec: "daily welcomes for one person feels weird").
 - **Thread surfacing** — daily scan of the last 48h. Generator cascades tag → link → summary, picks the first variant that clears voice-check. Up to 2 surfaces per run.
 

@@ -7,7 +7,7 @@ export type ContentPillar =
   | "nutrition"
   | "strength"
   | "recovery"
-  | "le-metier";
+  | "community";
 
 export type EpisodeType = "interview" | "solo" | "panel" | "sarah-anthony";
 
@@ -99,11 +99,11 @@ export const CONTENT_PILLARS: Record<
     description:
       "Sleep, stress management, adaptation, longevity in the sport",
   },
-  "le-metier": {
-    label: "Le Metier",
-    color: "var(--color-pillar-le-metier)",
+  community: {
+    label: "Community",
+    color: "var(--color-pillar-community)",
     description:
-      "The culture of cycling: rides, skills, customs, traditions, the unwritten rules",
+      "The culture of cycling: rides, skills, customs, traditions, the unwritten rules — and the community you do them with",
   },
 };
 

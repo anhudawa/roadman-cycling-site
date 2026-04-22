@@ -8,7 +8,7 @@ const PILLARS: Array<{ value: string; label: string }> = [
   { value: "tuesday", label: "Tuesday — Nutrition" },
   { value: "wednesday", label: "Wednesday — S&C" },
   { value: "thursday", label: "Thursday — Recovery" },
-  { value: "friday", label: "Friday — Le Metier" },
+  { value: "friday", label: "Friday — Community" },
   { value: "saturday", label: "Saturday — Podcast" },
   { value: "sunday", label: "Sunday — Weekend ride" },
 ];

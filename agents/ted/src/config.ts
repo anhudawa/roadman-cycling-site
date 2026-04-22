@@ -86,7 +86,7 @@ export const PILLAR_LABELS: Record<Pillar, string> = {
   tuesday: "nutrition",
   wednesday: "strength-and-conditioning",
   thursday: "recovery",
-  friday: "le-metier",
+  friday: "community",
   saturday: "podcast-episode",
   sunday: "weekend-ride",
 };

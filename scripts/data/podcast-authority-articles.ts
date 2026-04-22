@@ -341,7 +341,7 @@ export const PODCAST_AUTHORITY_ARTICLES: ClusterArticleSpec[] = [
     ],
     angle:
       "Brand-transparency piece. Teaches process while humanising Anthony and the team. Useful for the 'aspiring podcaster who's a cyclist' audience.",
-    pillar: "le-metier",
+    pillar: "community",
     requiredSections: [
       "The gear in the studio",
       "The guest-booking workflow",

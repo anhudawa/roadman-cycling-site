@@ -48,7 +48,7 @@ export function pillarColor(pillar: ContentPillar | undefined): string {
       return "#FF9800";
     case "recovery":
       return "#2196F3";
-    case "le-metier":
+    case "community":
       return "#9C27B0";
     default:
       return "#F16363"; // coral fallback

@@ -62,7 +62,7 @@ export function PillarIcon({ pillar, color, className = "" }: PillarIconProps) {
         <motion.circle cx="32" cy="16" r="1" fill={color} initial={{ scale: 0 }} whileInView={{ scale: 1 }} viewport={{ once: true }} transition={{ delay: 0.8, type: "spring" }} />
       </svg>
     ),
-    "le-metier": (
+    community: (
       // Road / path
       <svg viewBox="0 0 40 40" className={className}>
         <motion.path d="M 12 36 Q 14 28 16 22 Q 18 16 20 12 Q 22 8 24 4" {...strokeProps} initial={{ pathLength: 0 }} whileInView={{ pathLength: 1 }} viewport={{ once: true }} transition={drawTransition} />

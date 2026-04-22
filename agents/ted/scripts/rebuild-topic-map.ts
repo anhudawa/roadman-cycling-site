@@ -23,7 +23,7 @@ const PILLAR_TO_TOPIC: Record<string, string> = {
   nutrition: "nutrition",
   strength: "strength",
   recovery: "recovery",
-  "le-metier": "culture",
+  community: "culture",
 };
 
 interface EpisodeEntry {

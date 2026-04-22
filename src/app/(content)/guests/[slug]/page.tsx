@@ -100,7 +100,7 @@ export default async function GuestPage({
                   ? "cycling recovery"
                   : p === "strength"
                     ? "strength training for cyclists"
-                    : p === "le-metier"
+                    : p === "community"
                       ? "cycling culture"
                       : p
           ),

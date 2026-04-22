@@ -13,7 +13,7 @@ const pillarColors: Record<string, string> = {
   nutrition: "#4CAF50",
   strength: "#FF9800",
   recovery: "#2196F3",
-  "le-metier": "#9C27B0",
+  community: "#9C27B0",
 };
 
 const pillarLabels: Record<string, string> = {
@@ -21,7 +21,7 @@ const pillarLabels: Record<string, string> = {
   nutrition: "NUTRITION",
   strength: "STRENGTH",
   recovery: "RECOVERY",
-  "le-metier": "LE METIER",
+  community: "COMMUNITY",
 };
 
 export default async function Image({

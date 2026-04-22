@@ -178,7 +178,7 @@ export default async function TopicPage({
                     nutrition: "EAT SMARTER, RIDE STRONGER",
                     strength: "BUILD THE ENGINE OFF THE BIKE",
                     recovery: "RECOVER LIKE A PRO",
-                    "le-metier": "THE CRAFT, DELIVERED WEEKLY",
+                    community: "THE CRAFT, DELIVERED WEEKLY",
                   }[topic.pillar] || "GET THE INSIGHTS"
                 }
                 subheading={`The best of ${topic.title.toLowerCase()} — evidence-based, once a week. No fluff.`}

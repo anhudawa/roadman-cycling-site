@@ -62,7 +62,7 @@ export const COMPARISON_CLUSTER_ARTICLES: ClusterArticleSpec[] = [
     ],
     angle:
       "Use-case-driven comparison rather than spec sheet. Focuses on what actually matters day-to-day: workout execution, navigation, ecosystem, and reliability.",
-    pillar: "le-metier",
+    pillar: "community",
     requiredSections: [
       "What each brand has historically been better at",
       "Mapping and navigation",
@@ -132,7 +132,7 @@ export const COMPARISON_CLUSTER_ARTICLES: ClusterArticleSpec[] = [
     ],
     angle:
       "Mission-differentiated comparison — Rouvy's real-world augmentation vs Zwift's social game-world — with a recommendation framework based on what you miss about outdoor riding.",
-    pillar: "le-metier",
+    pillar: "community",
     requiredSections: [
       "Two very different bets on virtual cycling",
       "The riding experience compared",
@@ -167,7 +167,7 @@ export const COMPARISON_CLUSTER_ARTICLES: ClusterArticleSpec[] = [
     ],
     angle:
       "Data-first comparison using real rolling-resistance numbers, puncture scenarios, and the practical ownership friction both technologies introduce.",
-    pillar: "le-metier",
+    pillar: "community",
     requiredSections: [
       "The performance difference in numbers",
       "Puncture protection: the honest reality",
@@ -272,7 +272,7 @@ export const COMPARISON_CLUSTER_ARTICLES: ClusterArticleSpec[] = [
     ],
     angle:
       "Course-profile and speed-specific framework — aero wins above 25 km/h on rolling courses, weight wins on steep climbs, both are second-order to the engine.",
-    pillar: "le-metier",
+    pillar: "community",
     requiredSections: [
       "The physics in one paragraph",
       "Where aero wins",

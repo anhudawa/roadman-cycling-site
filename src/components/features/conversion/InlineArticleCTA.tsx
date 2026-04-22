@@ -29,7 +29,7 @@ const PILLAR_CTA: Record<ContentPillar, { heading: string; subheading: string }>
     heading: "RECOVER SMARTER, RIDE STRONGER",
     subheading: "Sleep, stress, and recovery protocols from the world's best coaches. Every Saturday.",
   },
-  "le-metier": {
+  community: {
     heading: "MORE FROM THE WORLD OF CYCLING",
     subheading: "The culture, the craft, and the unwritten rules. The Saturday Spin Newsletter, every week.",
   },

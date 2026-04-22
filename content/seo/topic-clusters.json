@@ -127,10 +127,10 @@
       ],
       "related_clusters": ["nutrition", "coaching"]
     },
-    "le-metier": {
-      "id": "le-metier",
-      "label": "Le Metier — The Craft of Cycling",
-      "pillar": "le-metier",
+    "community": {
+      "id": "community",
+      "label": "Community — The Culture of Cycling",
+      "pillar": "community",
       "description": "The culture of cycling: rides, skills, customs, traditions, the unwritten rules. Pro stories, cycling history, the rise and fall of brands, doping stories, community.",
       "keywords": [
         "cycling culture",

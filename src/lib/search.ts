@@ -181,7 +181,7 @@ export const PILLAR_KEYWORDS: Record<ContentPillar, string[]> = {
     "massage",
     "compression",
   ],
-  "le-metier": [
+  community: [
     "culture",
     "peloton",
     "pro cycling",
@@ -221,7 +221,7 @@ export function classifyPillar(text: string): ContentPillar {
     nutrition: 0,
     strength: 0,
     recovery: 0,
-    "le-metier": 0,
+    community: 0,
   };
 
   for (const [pillar, keywords] of Object.entries(PILLAR_KEYWORDS)) {
@@ -232,7 +232,7 @@ export function classifyPillar(text: string): ContentPillar {
     }
   }
 
-  let maxPillar: ContentPillar = "le-metier";
+  let maxPillar: ContentPillar = "community";
   let maxScore = 0;
 
   for (const [pillar, score] of Object.entries(scores)) {

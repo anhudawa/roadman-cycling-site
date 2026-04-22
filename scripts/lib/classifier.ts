@@ -1,4 +1,4 @@
-type ContentPillar = "coaching" | "nutrition" | "strength" | "recovery" | "le-metier";
+type ContentPillar = "coaching" | "nutrition" | "strength" | "recovery" | "community";
 type EpisodeType = "interview" | "solo" | "panel" | "sarah-anthony";
 
 const PILLAR_KEYWORDS: Record<ContentPillar, string[]> = {
@@ -29,7 +29,7 @@ const PILLAR_KEYWORDS: Record<ContentPillar, string[]> = {
     "wellness", "ageing", "aging", "injury", "comeback", "return",
     "heart rate", "hrv", "cardiac",
   ],
-  "le-metier": [
+  community: [
     "culture", "peloton", "pro cycling", "tour de france", "giro",
     "vuelta", "classics", "gravel", "adventure", "career", "cycling culture",
     "equipment", "bike fit", "descending", "group ride", "etiquette",
@@ -109,7 +109,7 @@ export function classifyPillar(
     nutrition: 0,
     strength: 0,
     recovery: 0,
-    "le-metier": 0,
+    community: 0,
   };
 
   for (const [pillar, keywords] of Object.entries(PILLAR_KEYWORDS)) {
@@ -129,7 +129,7 @@ export function classifyPillar(
   }
 
   // Find highest scoring pillar
-  let maxPillar: ContentPillar = "le-metier"; // default fallback
+  let maxPillar: ContentPillar = "community"; // default fallback
   let maxScore = 0;
 
   for (const [pillar, score] of Object.entries(scores)) {

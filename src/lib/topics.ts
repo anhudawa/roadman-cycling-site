@@ -117,7 +117,7 @@ const TOPIC_DEFINITIONS: Omit<TopicHub, "posts" | "episodes">[] = [
     headline: "START HERE",
     description:
       "Everything a new cyclist needs to know. Group ride etiquette, bike fit, gravel cycling, tyre pressure, and the culture of the sport.",
-    pillar: "le-metier",
+    pillar: "community",
     keywords: [
       "beginner cycling",
       "start cycling",
@@ -149,7 +149,7 @@ const TOPIC_DEFINITIONS: Omit<TopicHub, "posts" | "episodes">[] = [
     headline: "DIAL IN YOUR MTB",
     description:
       "Everything you need to set up, ride, and maintain your mountain bike. Suspension setup, tyre pressure, fork tuning, trail guides, and the best MTB routes in Ireland.",
-    pillar: "le-metier",
+    pillar: "community",
     keywords: [
       "mountain bike setup",
       "mtb tyre pressure",
@@ -166,7 +166,7 @@ const TOPIC_DEFINITIONS: Omit<TopicHub, "posts" | "episodes">[] = [
     title: "Cycling Coaching — Online & In-Person",
     headline: "THE COMPLETE GUIDE TO CYCLING COACHING",
     description:
-      "Everything you need to know about cycling coaching. When to get a coach, what to look for, how online coaching works, and why most cyclists plateau without structured guidance. Built from 1,400+ podcast conversations with the coaches behind World Tour teams.",
+      "Everything you need to know about cycling coaching. When to get a coach, what to look for, how online coaching works, and why most cyclists plateau without structured guidance. Built from 1,300+ podcast conversations with the coaches behind World Tour teams.",
     pillar: "coaching",
     keywords: [
       "cycling coach",

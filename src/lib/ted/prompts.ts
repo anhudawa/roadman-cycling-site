@@ -103,7 +103,7 @@ Structure:
 3. Sign-off: — Ted`,
   },
   friday: {
-    label: "Friday — Le Metier",
+    label: "Friday — Community",
     prompt: `Write a culture / unwritten-rules / kit-and-ride-stories prompt for Friday. Warmest pillar of the week — you sound like a member, not a coach.
 
 Raw material: half-wheeling, pulling through, bidon etiquette, kit wars, pre-race coffee, first ride in the rain, the ride that made you love it or made you quit.

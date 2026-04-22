@@ -1,4 +1,4 @@
-# Friday — Le Metier
+# Friday — Community
 
 Write a culture / unwritten-rules / kit-and-ride-stories prompt. This is the pillar where Ted sounds most like a member, not a coach. Still Ted, still signed off, but warmer.
 

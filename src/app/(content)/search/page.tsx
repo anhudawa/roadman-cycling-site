@@ -68,7 +68,7 @@ const TOOLS: SearchableItem[] = [
     title: "Tyre Pressure Calculator",
     description:
       "SILCA-grade front and rear PSI based on weight, tyre width, rim width, tube type, and road surface.",
-    pillar: "le-metier",
+    pillar: "community",
     keywords: [
       "tyre",
       "tire",
@@ -132,7 +132,7 @@ const TOOLS: SearchableItem[] = [
     title: "MTB Setup Calculator",
     description:
       "Suspension pressure, sag targets, and tyre pressure for your mountain bike. One form, complete setup.",
-    pillar: "le-metier",
+    pillar: "community",
     keywords: [
       "mtb",
       "mountain bike",
@@ -208,7 +208,7 @@ function buildSearchIndex(): SearchableItem[] {
       slug: guest.slug,
       title: guest.name,
       description: guest.credential || "",
-      pillar: guest.pillars[0] || "le-metier",
+      pillar: guest.pillars[0] || "community",
       keywords: [
         ...guest.tags,
         ...guest.pillars,

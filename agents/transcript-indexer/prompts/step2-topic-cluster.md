@@ -17,16 +17,16 @@ You will receive:
 ### Cluster Assignment
 
 Assign the episode to:
-1. **primary_cluster**: Exactly one cluster ID from: coaching, nutrition, strength, recovery, le-metier
+1. **primary_cluster**: Exactly one cluster ID from: coaching, nutrition, strength, recovery, community
 2. **secondary_clusters**: 0-2 additional cluster IDs (only if the episode genuinely covers multiple pillars)
 
 Rules:
-- Pro cycling stories, doping stories, brand stories, culture pieces → le-metier
+- Pro cycling stories, doping stories, brand stories, culture pieces → community
 - Training methodology, periodisation, intervals, zones → coaching
 - Weight loss, fuelling, diet, supplements → nutrition
 - Gym work, S&C, flexibility, activation, injury prevention → strength
 - Sleep, HRV, mental health, ageing, longevity, comeback → recovery
-- If an interview covers a pro's training methodology, primary = coaching, secondary = le-metier
+- If an interview covers a pro's training methodology, primary = coaching, secondary = community
 - If a nutrition episode also covers training, primary = nutrition, secondary = coaching
 
 ### Persona Assignment

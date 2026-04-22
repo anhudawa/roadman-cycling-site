@@ -23,7 +23,7 @@ export interface ClusterArticleSpec {
   /** One-sentence editorial angle — what makes this article different. */
   angle: string;
   /** Content pillar (matches src/types/index.ts ContentPillar). */
-  pillar: "coaching" | "nutrition" | "strength" | "recovery" | "le-metier";
+  pillar: "coaching" | "nutrition" | "strength" | "recovery" | "community";
   /** Required H2 section headings, in order. */
   requiredSections: string[];
   /** Internal links the article must weave in naturally. */

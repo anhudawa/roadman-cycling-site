@@ -23,14 +23,14 @@ const FILTERS: { key: FilterKey; label: string }[] = [
   { key: "nutrition", label: "Nutrition" },
   { key: "strength", label: "S&C" },
   { key: "recovery", label: "Recovery" },
-  { key: "le-metier", label: "Le Metier" },
+  { key: "community", label: "Community" },
   { key: "triathlon", label: "Triathlon" },
   { key: "pro-rider", label: "Pro Riders" },
   { key: "ultra-endurance", label: "Ultra" },
   { key: "science", label: "Science" },
 ];
 
-const PILLAR_KEYS = new Set(["coaching", "nutrition", "strength", "recovery", "le-metier"]);
+const PILLAR_KEYS = new Set(["coaching", "nutrition", "strength", "recovery", "community"]);
 
 export function GuestGrid({ guests }: { guests: GuestCardData[] }) {
   const [activeFilter, setActiveFilter] = useState<FilterKey>("all");
