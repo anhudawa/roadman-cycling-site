@@ -9,11 +9,24 @@ import { getAllPlanCombinations, getAllEventSlugs } from "@/lib/training-plans";
 const BASE_URL = "https://roadmancycling.com";
 
 /**
- * How recently was content updated? Returns an appropriate changeFrequency.
- * - Under 30 days  → "weekly"
- * - Under 180 days → "monthly"
- * - Older          → "yearly"
+ * Split sitemaps by page type for easier monitoring and debugging.
+ *
+ * Generates a sitemap index at /sitemap.xml with child sitemaps:
+ *   /sitemap/0.xml — static/core pages + coaching + tools + community
+ *   /sitemap/1.xml — blog articles
+ *   /sitemap/2.xml — podcast episodes
+ *   /sitemap/3.xml — guest pages
+ *   /sitemap/4.xml — plan pages (event hubs + phase pages)
+ *   /sitemap/5.xml — topics + newsletter
  */
+
+const SITEMAP_IDS = [0, 1, 2, 3, 4, 5] as const;
+type SitemapId = (typeof SITEMAP_IDS)[number];
+
+export async function generateSitemaps() {
+  return SITEMAP_IDS.map((id) => ({ id }));
+}
+
 function changeFreqByAge(
   date: Date,
 ): "weekly" | "monthly" | "yearly" {
@@ -24,314 +37,81 @@ function changeFreqByAge(
   return "yearly";
 }
 
-export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-  // ---------------------------------------------------------------------------
-  // Static pages — grouped by priority tier
-  // ---------------------------------------------------------------------------
+export default async function sitemap({
+  id,
+}: {
+  id: number;
+}): Promise<MetadataRoute.Sitemap> {
+  switch (id as SitemapId) {
+    case 0:
+      return buildStaticSitemap();
+    case 1:
+      return buildBlogSitemap();
+    case 2:
+      return buildPodcastSitemap();
+    case 3:
+      return buildGuestSitemap();
+    case 4:
+      return buildPlanSitemap();
+    case 5:
+      return buildTopicAndNewsletterSitemap();
+    default:
+      return [];
+  }
+}
 
-  const staticPages: MetadataRoute.Sitemap = [
-    // Homepage — priority 1.0
-    {
-      url: BASE_URL,
-      lastModified: new Date(),
-      changeFrequency: "daily",
-      priority: 1.0,
-    },
-
-    // Main section indexes — priority 0.8
-    {
-      url: `${BASE_URL}/podcast`,
-      lastModified: new Date(),
-      changeFrequency: "weekly",
-      priority: 0.8,
-    },
-    {
-      url: `${BASE_URL}/blog`,
-      lastModified: new Date(),
-      changeFrequency: "weekly",
-      priority: 0.8,
-    },
-    {
-      url: `${BASE_URL}/tools`,
-      lastModified: new Date(),
-      changeFrequency: "monthly",
-      priority: 0.8,
-    },
-    {
-      url: `${BASE_URL}/guests`,
-      lastModified: new Date(),
-      changeFrequency: "weekly",
-      priority: 0.8,
-    },
-    {
-      url: `${BASE_URL}/topics`,
-      lastModified: new Date(),
-      changeFrequency: "weekly",
-      priority: 0.8,
-    },
-    {
-      url: `${BASE_URL}/about`,
-      lastModified: new Date("2026-03-01"),
-      changeFrequency: "monthly",
-      priority: 0.8,
-    },
-    {
-      url: `${BASE_URL}/about/press`,
-      lastModified: new Date(),
-      changeFrequency: "monthly",
-      priority: 0.6,
-    },
-    {
-      url: `${BASE_URL}/community`,
-      lastModified: new Date(),
-      changeFrequency: "weekly",
-      priority: 0.8,
-    },
-    {
-      url: `${BASE_URL}/strength-training`,
-      lastModified: new Date("2026-03-01"),
-      changeFrequency: "monthly",
-      priority: 0.8,
-    },
-    // Lead magnet — the Masters Plateau Diagnostic. Individual
-    // /diagnostic/[slug] results are intentionally excluded: they're
-    // personal, noindex, and served at unguessable URLs.
-    {
-      url: `${BASE_URL}/plateau`,
-      lastModified: new Date("2026-04-22"),
-      changeFrequency: "monthly",
-      priority: 0.9,
-    },
-    {
-      url: `${BASE_URL}/coaching`,
-      lastModified: new Date(),
-      changeFrequency: "weekly",
-      priority: 0.8,
-    },
-    {
-      url: `${BASE_URL}/coaching/triathlon`,
-      lastModified: new Date(),
-      changeFrequency: "weekly",
-      priority: 0.8,
-    },
-    {
-      url: `${BASE_URL}/coaching/ireland`,
-      lastModified: new Date(),
-      changeFrequency: "monthly",
-      priority: 0.7,
-    },
-    {
-      url: `${BASE_URL}/coaching/uk`,
-      lastModified: new Date(),
-      changeFrequency: "monthly",
-      priority: 0.7,
-    },
-    {
-      url: `${BASE_URL}/coaching/usa`,
-      lastModified: new Date(),
-      changeFrequency: "monthly",
-      priority: 0.7,
-    },
-    {
-      url: `${BASE_URL}/coaching/dublin`,
-      lastModified: new Date(),
-      changeFrequency: "monthly",
-      priority: 0.7,
-    },
-    {
-      url: `${BASE_URL}/coaching/cork`,
-      lastModified: new Date(),
-      changeFrequency: "monthly",
-      priority: 0.6,
-    },
-    {
-      url: `${BASE_URL}/coaching/galway`,
-      lastModified: new Date(),
-      changeFrequency: "monthly",
-      priority: 0.6,
-    },
-    {
-      url: `${BASE_URL}/coaching/london`,
-      lastModified: new Date(),
-      changeFrequency: "monthly",
-      priority: 0.7,
-    },
-    {
-      url: `${BASE_URL}/coaching/manchester`,
-      lastModified: new Date(),
-      changeFrequency: "monthly",
-      priority: 0.6,
-    },
-    {
-      url: `${BASE_URL}/coaching/belfast`,
-      lastModified: new Date(),
-      changeFrequency: "monthly",
-      priority: 0.6,
-    },
-    {
-      url: `${BASE_URL}/coaching/edinburgh`,
-      lastModified: new Date(),
-      changeFrequency: "monthly",
-      priority: 0.6,
-    },
-    {
-      url: `${BASE_URL}/coaching/leeds`,
-      lastModified: new Date(),
-      changeFrequency: "monthly",
-      priority: 0.6,
-    },
-    {
-      url: `${BASE_URL}/events`,
-      lastModified: new Date(),
-      changeFrequency: "weekly",
-      priority: 0.8,
-    },
-    // /search intentionally excluded — noindex,follow
-
-    // Start Here — curated onboarding hub
-    {
-      url: `${BASE_URL}/start-here`,
-      lastModified: new Date(),
-      changeFrequency: "monthly",
-      priority: 0.8,
-    },
-
-    // Coaching assessment — lead gen quiz
-    {
-      url: `${BASE_URL}/assessment`,
-      lastModified: new Date(),
-      changeFrequency: "monthly",
-      priority: 0.7,
-    },
-
-    // Research — evidence base hub
-    {
-      url: `${BASE_URL}/research`,
-      lastModified: new Date(),
-      changeFrequency: "monthly",
-      priority: 0.7,
-    },
-
-    // Persona landing pages — high-intent funnel entries
-    {
-      url: `${BASE_URL}/you/plateau`,
-      lastModified: new Date(),
-      changeFrequency: "weekly",
-      priority: 0.8,
-    },
-    {
-      url: `${BASE_URL}/you/event`,
-      lastModified: new Date(),
-      changeFrequency: "weekly",
-      priority: 0.8,
-    },
-    {
-      url: `${BASE_URL}/you/comeback`,
-      lastModified: new Date(),
-      changeFrequency: "weekly",
-      priority: 0.8,
-    },
-    {
-      url: `${BASE_URL}/you/listener`,
-      lastModified: new Date(),
-      changeFrequency: "weekly",
-      priority: 0.8,
-    },
-
-    // Training plan index
-    {
-      url: `${BASE_URL}/plan`,
-      lastModified: new Date(),
-      changeFrequency: "weekly",
-      priority: 0.8,
-    },
-
-    // Community sub-pages — priority 0.7
-    {
-      url: `${BASE_URL}/community/clubhouse`,
-      lastModified: new Date(),
-      changeFrequency: "weekly",
-      priority: 0.7,
-    },
-    {
-      url: `${BASE_URL}/community/not-done-yet`,
-      lastModified: new Date(),
-      changeFrequency: "weekly",
-      priority: 0.7,
-    },
-    {
-      url: `${BASE_URL}/community/club`,
-      lastModified: new Date(),
-      changeFrequency: "monthly",
-      priority: 0.7,
-    },
-
-    // Tools — priority 0.7
-    {
-      url: `${BASE_URL}/tools/ftp-zones`,
-      lastModified: new Date("2026-03-01"),
-      changeFrequency: "monthly",
-      priority: 0.7,
-    },
-    {
-      url: `${BASE_URL}/tools/tyre-pressure`,
-      lastModified: new Date("2026-03-01"),
-      changeFrequency: "monthly",
-      priority: 0.7,
-    },
-    {
-      url: `${BASE_URL}/tools/race-weight`,
-      lastModified: new Date("2026-03-01"),
-      changeFrequency: "monthly",
-      priority: 0.7,
-    },
-    {
-      url: `${BASE_URL}/tools/fuelling`,
-      lastModified: new Date("2026-03-01"),
-      changeFrequency: "monthly",
-      priority: 0.7,
-    },
-    {
-      url: `${BASE_URL}/tools/energy-availability`,
-      lastModified: new Date("2026-03-01"),
-      changeFrequency: "monthly",
-      priority: 0.7,
-    },
-    {
-      url: `${BASE_URL}/tools/shock-pressure`,
-      lastModified: new Date("2026-03-01"),
-      changeFrequency: "monthly",
-      priority: 0.7,
-    },
-
-    // Lower priority static pages
-    {
-      url: `${BASE_URL}/newsletter`,
-      lastModified: new Date("2026-03-01"),
-      changeFrequency: "monthly",
-      priority: 0.6,
-    },
-    {
-      url: `${BASE_URL}/partners`,
-      lastModified: new Date("2026-03-01"),
-      changeFrequency: "monthly",
-      priority: 0.6,
-    },
-    {
-      url: `${BASE_URL}/contact`,
-      lastModified: new Date("2026-03-01"),
-      changeFrequency: "yearly",
-      priority: 0.4,
-    },
+function buildStaticSitemap(): MetadataRoute.Sitemap {
+  return [
+    { url: BASE_URL, lastModified: new Date(), changeFrequency: "daily", priority: 1.0 },
+    { url: `${BASE_URL}/podcast`, lastModified: new Date(), changeFrequency: "weekly", priority: 0.8 },
+    { url: `${BASE_URL}/blog`, lastModified: new Date(), changeFrequency: "weekly", priority: 0.8 },
+    { url: `${BASE_URL}/tools`, lastModified: new Date(), changeFrequency: "monthly", priority: 0.8 },
+    { url: `${BASE_URL}/guests`, lastModified: new Date(), changeFrequency: "weekly", priority: 0.8 },
+    { url: `${BASE_URL}/topics`, lastModified: new Date(), changeFrequency: "weekly", priority: 0.8 },
+    { url: `${BASE_URL}/about`, lastModified: new Date("2026-03-01"), changeFrequency: "monthly", priority: 0.8 },
+    { url: `${BASE_URL}/about/press`, lastModified: new Date(), changeFrequency: "monthly", priority: 0.6 },
+    { url: `${BASE_URL}/community`, lastModified: new Date(), changeFrequency: "weekly", priority: 0.8 },
+    { url: `${BASE_URL}/strength-training`, lastModified: new Date("2026-03-01"), changeFrequency: "monthly", priority: 0.8 },
+    { url: `${BASE_URL}/plateau`, lastModified: new Date("2026-04-22"), changeFrequency: "monthly", priority: 0.9 },
+    { url: `${BASE_URL}/coaching`, lastModified: new Date(), changeFrequency: "weekly", priority: 0.8 },
+    { url: `${BASE_URL}/coaching/triathlon`, lastModified: new Date(), changeFrequency: "weekly", priority: 0.8 },
+    { url: `${BASE_URL}/coaching/ireland`, lastModified: new Date(), changeFrequency: "monthly", priority: 0.7 },
+    { url: `${BASE_URL}/coaching/uk`, lastModified: new Date(), changeFrequency: "monthly", priority: 0.7 },
+    { url: `${BASE_URL}/coaching/usa`, lastModified: new Date(), changeFrequency: "monthly", priority: 0.7 },
+    { url: `${BASE_URL}/coaching/dublin`, lastModified: new Date(), changeFrequency: "monthly", priority: 0.7 },
+    { url: `${BASE_URL}/coaching/cork`, lastModified: new Date(), changeFrequency: "monthly", priority: 0.6 },
+    { url: `${BASE_URL}/coaching/galway`, lastModified: new Date(), changeFrequency: "monthly", priority: 0.6 },
+    { url: `${BASE_URL}/coaching/london`, lastModified: new Date(), changeFrequency: "monthly", priority: 0.7 },
+    { url: `${BASE_URL}/coaching/manchester`, lastModified: new Date(), changeFrequency: "monthly", priority: 0.6 },
+    { url: `${BASE_URL}/coaching/belfast`, lastModified: new Date(), changeFrequency: "monthly", priority: 0.6 },
+    { url: `${BASE_URL}/coaching/edinburgh`, lastModified: new Date(), changeFrequency: "monthly", priority: 0.6 },
+    { url: `${BASE_URL}/coaching/leeds`, lastModified: new Date(), changeFrequency: "monthly", priority: 0.6 },
+    { url: `${BASE_URL}/events`, lastModified: new Date(), changeFrequency: "weekly", priority: 0.8 },
+    { url: `${BASE_URL}/start-here`, lastModified: new Date(), changeFrequency: "monthly", priority: 0.8 },
+    { url: `${BASE_URL}/assessment`, lastModified: new Date(), changeFrequency: "monthly", priority: 0.7 },
+    { url: `${BASE_URL}/research`, lastModified: new Date(), changeFrequency: "monthly", priority: 0.7 },
+    { url: `${BASE_URL}/you/plateau`, lastModified: new Date(), changeFrequency: "weekly", priority: 0.8 },
+    { url: `${BASE_URL}/you/event`, lastModified: new Date(), changeFrequency: "weekly", priority: 0.8 },
+    { url: `${BASE_URL}/you/comeback`, lastModified: new Date(), changeFrequency: "weekly", priority: 0.8 },
+    { url: `${BASE_URL}/you/listener`, lastModified: new Date(), changeFrequency: "weekly", priority: 0.8 },
+    { url: `${BASE_URL}/plan`, lastModified: new Date(), changeFrequency: "weekly", priority: 0.8 },
+    { url: `${BASE_URL}/community/clubhouse`, lastModified: new Date(), changeFrequency: "weekly", priority: 0.7 },
+    { url: `${BASE_URL}/community/not-done-yet`, lastModified: new Date(), changeFrequency: "weekly", priority: 0.7 },
+    { url: `${BASE_URL}/community/club`, lastModified: new Date(), changeFrequency: "monthly", priority: 0.7 },
+    { url: `${BASE_URL}/tools/ftp-zones`, lastModified: new Date("2026-03-01"), changeFrequency: "monthly", priority: 0.7 },
+    { url: `${BASE_URL}/tools/tyre-pressure`, lastModified: new Date("2026-03-01"), changeFrequency: "monthly", priority: 0.7 },
+    { url: `${BASE_URL}/tools/race-weight`, lastModified: new Date("2026-03-01"), changeFrequency: "monthly", priority: 0.7 },
+    { url: `${BASE_URL}/tools/fuelling`, lastModified: new Date("2026-03-01"), changeFrequency: "monthly", priority: 0.7 },
+    { url: `${BASE_URL}/tools/energy-availability`, lastModified: new Date("2026-03-01"), changeFrequency: "monthly", priority: 0.7 },
+    { url: `${BASE_URL}/tools/shock-pressure`, lastModified: new Date("2026-03-01"), changeFrequency: "monthly", priority: 0.7 },
+    { url: `${BASE_URL}/newsletter`, lastModified: new Date("2026-03-01"), changeFrequency: "monthly", priority: 0.6 },
+    { url: `${BASE_URL}/partners`, lastModified: new Date("2026-03-01"), changeFrequency: "monthly", priority: 0.6 },
+    { url: `${BASE_URL}/contact`, lastModified: new Date("2026-03-01"), changeFrequency: "yearly", priority: 0.4 },
   ];
+}
 
-  // ---------------------------------------------------------------------------
-  // Blog posts — priority 0.6, use frontmatter dates for lastModified
-  // changeFrequency adapts based on age: recent posts update more often
-  // ---------------------------------------------------------------------------
-
-  const posts = getAllPosts();
-  const blogPages: MetadataRoute.Sitemap = posts.map((post) => {
+function buildBlogSitemap(): MetadataRoute.Sitemap {
+  return getAllPosts().map((post) => {
     const lastMod = post.updatedDate
       ? new Date(post.updatedDate)
       : new Date(post.publishDate);
@@ -342,14 +122,10 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       priority: 0.6,
     };
   });
+}
 
-  // ---------------------------------------------------------------------------
-  // Podcast episodes — priority 0.6, use publishDate for lastModified
-  // changeFrequency adapts based on age: recent episodes may get show-notes edits
-  // ---------------------------------------------------------------------------
-
-  const episodes = getAllEpisodes();
-  const podcastPages: MetadataRoute.Sitemap = episodes.map((ep) => {
+function buildPodcastSitemap(): MetadataRoute.Sitemap {
+  return getAllEpisodes().map((ep) => {
     const lastMod = new Date(ep.publishDate);
     return {
       url: `${BASE_URL}/podcast/${ep.slug}`,
@@ -358,13 +134,10 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       priority: 0.6,
     };
   });
+}
 
-  // ---------------------------------------------------------------------------
-  // Guest pages — priority 0.6, use latestAppearance date for lastModified
-  // ---------------------------------------------------------------------------
-
-  const guests = getAllGuests();
-  const guestPages: MetadataRoute.Sitemap = guests.map((guest) => {
+function buildGuestSitemap(): MetadataRoute.Sitemap {
+  return getAllGuests().map((guest) => {
     const lastMod = new Date(guest.latestAppearance);
     return {
       url: `${BASE_URL}/guests/${guest.slug}`,
@@ -373,53 +146,42 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       priority: 0.6,
     };
   });
+}
 
-  // ---------------------------------------------------------------------------
-  // Topic hub pages — priority 0.7 (high-value SEO landing pages)
-  // ---------------------------------------------------------------------------
-
-  const topicSlugs = getAllTopicSlugs();
-  const topicPages: MetadataRoute.Sitemap = topicSlugs.map((slug) => ({
-    url: `${BASE_URL}/topics/${slug}`,
+function buildPlanSitemap(): MetadataRoute.Sitemap {
+  const eventHubs = getAllEventSlugs().map((event) => ({
+    url: `${BASE_URL}/plan/${event}`,
     lastModified: new Date(),
-    changeFrequency: "weekly",
-    priority: 0.7,
+    changeFrequency: "weekly" as const,
+    priority: 0.8,
   }));
 
-  // ---------------------------------------------------------------------------
-  // Programmatic training plan pages — event × weeks-out combinations
-  // Each is a unique, SEO-targeted long-tail landing page.
-  // ---------------------------------------------------------------------------
+  const phasePlanPages = getAllPlanCombinations().map(({ event, weeksOut }) => ({
+    url: `${BASE_URL}/plan/${event}/${weeksOut}`,
+    lastModified: new Date(),
+    changeFrequency: "weekly" as const,
+    priority: 0.75,
+  }));
 
-  const planPages: MetadataRoute.Sitemap = getAllPlanCombinations().map(
-    ({ event, weeksOut }) => ({
-      url: `${BASE_URL}/plan/${event}/${weeksOut}`,
-      lastModified: new Date(),
-      changeFrequency: "weekly" as const,
-      priority: 0.75,
-    }),
-  );
+  return [...eventHubs, ...phasePlanPages];
+}
 
-  // Event hub pages sit above the weeks-out children and match the
-  // natural "{event} training plan" query intent.
-  const planEventHubs: MetadataRoute.Sitemap = getAllEventSlugs().map(
-    (event) => ({
-      url: `${BASE_URL}/plan/${event}`,
-      lastModified: new Date(),
-      changeFrequency: "weekly" as const,
-      priority: 0.8,
-    }),
-  );
-
-  // ---------------------------------------------------------------------------
-  // Newsletter issues — priority 0.5 (monthly content, indexed for SEO)
-  // ---------------------------------------------------------------------------
+async function buildTopicAndNewsletterSitemap(): Promise<MetadataRoute.Sitemap> {
+  const topicPages = getAllTopicSlugs().map((slug) => ({
+    url: `${BASE_URL}/topics/${slug}`,
+    lastModified: new Date(),
+    changeFrequency: "weekly" as const,
+    priority: 0.7,
+  }));
 
   let newsletterPages: MetadataRoute.Sitemap = [];
   try {
     const issues = await fetchNewsletterIssues(100);
     newsletterPages = issues
-      .filter((issue): issue is typeof issue & { publishDate: string } => Boolean(issue.publishDate))
+      .filter(
+        (issue): issue is typeof issue & { publishDate: string } =>
+          Boolean(issue.publishDate),
+      )
       .map((issue) => ({
         url: `${BASE_URL}/newsletter/${issue.slug}`,
         lastModified: new Date(issue.publishDate),
@@ -427,17 +189,8 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
         priority: 0.5,
       }));
   } catch {
-    // Beehiiv API unavailable — skip newsletter pages in sitemap
+    // Beehiiv API unavailable
   }
 
-  return [
-    ...staticPages,
-    ...blogPages,
-    ...podcastPages,
-    ...guestPages,
-    ...topicPages,
-    ...planEventHubs,
-    ...planPages,
-    ...newsletterPages,
-  ];
+  return [...topicPages, ...newsletterPages];
 }
