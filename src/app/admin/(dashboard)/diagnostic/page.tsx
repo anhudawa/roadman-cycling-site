@@ -7,6 +7,7 @@ import { getDiagnosticStats } from "@/lib/diagnostic/store";
 import { PROFILE_LABELS, PROFILE_BREAKDOWNS } from "@/lib/diagnostic/profiles";
 import { maskEmail } from "@/lib/admin/events-store";
 import type { Profile } from "@/lib/diagnostic/types";
+import { RegenerateButton } from "./RegenerateButton";
 
 /**
  * Admin stats page for the Masters Plateau Diagnostic (§15).
@@ -193,7 +194,9 @@ export default async function AdminDiagnosticPage() {
                     <td className="py-2 pr-4 text-xs text-foreground-subtle">
                       {r.utmContent ?? "—"}
                     </td>
-                    <td className="py-2 pr-4 text-right">
+                    <td className="py-2 pr-4 text-right whitespace-nowrap">
+                      <RegenerateButton slug={r.slug} />
+                      <span className="mx-2 text-foreground-subtle">·</span>
                       <Link
                         href={`/diagnostic/${r.slug}`}
                         target="_blank"
