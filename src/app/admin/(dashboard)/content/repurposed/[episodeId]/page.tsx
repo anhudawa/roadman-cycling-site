@@ -74,7 +74,7 @@ export default async function EpisodeDetailPage({
         >
           &larr; Content Pipeline
         </Link>
-        <div className="bg-background-elevated border border-white/5 rounded-xl p-10 text-center">
+        <div className="rounded-[var(--radius-admin-lg)] bg-[var(--color-raised)] border border-[var(--color-border)] p-10 text-center">
           <p className="text-foreground-subtle text-sm">Invalid episode ID.</p>
         </div>
       </div>
@@ -97,7 +97,7 @@ export default async function EpisodeDetailPage({
         >
           &larr; Content Pipeline
         </Link>
-        <div className="bg-background-elevated border border-white/5 rounded-xl p-10 text-center">
+        <div className="rounded-[var(--radius-admin-lg)] bg-[var(--color-raised)] border border-[var(--color-border)] p-10 text-center">
           <p className="text-foreground-subtle text-sm">Episode not found.</p>
           <p className="text-foreground-subtle/60 text-xs mt-1 font-mono">
             ID: {episodeId}
@@ -178,7 +178,7 @@ export default async function EpisodeDetailPage({
 
       {/* Content grid */}
       {contentPieces.length === 0 ? (
-        <div className="bg-background-elevated border border-white/5 rounded-xl p-10 text-center">
+        <div className="rounded-[var(--radius-admin-lg)] bg-[var(--color-raised)] border border-[var(--color-border)] p-10 text-center">
           <p className="text-foreground-subtle text-sm">
             No content pieces found for this episode.
           </p>

@@ -68,7 +68,7 @@ function EpisodeCard({ episode }: { episode: Episode }) {
   return (
     <Link
       href={`/admin/content/repurposed/${episode.id}`}
-      className="block bg-background-elevated border border-white/5 rounded-xl p-5 hover:border-white/10 transition-colors group"
+      className="block rounded-[var(--radius-admin-lg)] bg-[var(--color-raised)] border border-[var(--color-border)] p-4 hover:border-[var(--color-border-strong)] transition-colors group"
     >
       <div className="flex items-start justify-between gap-3 mb-3">
         <div className="flex items-center gap-2 min-w-0">
@@ -146,7 +146,7 @@ export default async function ContentPipelinePage({
 
       {/* Episode grid */}
       {episodes.length === 0 ? (
-        <div className="bg-background-elevated border border-white/5 rounded-xl p-10 text-center">
+        <div className="rounded-[var(--radius-admin-lg)] bg-[var(--color-raised)] border border-[var(--color-border)] p-10 text-center">
           <svg
             className="w-8 h-8 text-foreground-subtle mx-auto mb-3"
             fill="none"

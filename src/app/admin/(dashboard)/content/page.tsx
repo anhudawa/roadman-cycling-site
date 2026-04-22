@@ -3,6 +3,7 @@ import { getContentROI, type ContentROI } from "@/lib/admin/subscribers-store";
 import { parseTimeRange } from "@/lib/admin/time-ranges";
 import { Suspense } from "react";
 import { TimeRangePicker } from "../components/TimeRangePicker";
+import { Card, CardBody } from "@/components/admin/ui";
 
 const PLACEHOLDER_DATA: PageStats[] = [
   { page: "/", views: 2103, signups: 84, conversionRate: 4.0 },
@@ -84,39 +85,46 @@ export default async function ContentPage({
 
       {/* Summary */}
       <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
-        <div className="bg-background-elevated border border-white/5 rounded-xl p-5">
-          <p className="text-foreground-subtle text-xs uppercase tracking-wider mb-1">
-            Pages Tracked
-          </p>
-          <p className="text-2xl font-heading text-off-white tracking-wide">
-            {pages.length}
-          </p>
-        </div>
-        <div className="bg-background-elevated border border-white/5 rounded-xl p-5">
-          <p className="text-foreground-subtle text-xs uppercase tracking-wider mb-1">
-            Total Views
-          </p>
-          <p className="text-2xl font-heading text-off-white tracking-wide">
-            {totalViews.toLocaleString()}
-          </p>
-        </div>
-        <div className="bg-background-elevated border border-white/5 rounded-xl p-5">
-          <p className="text-foreground-subtle text-xs uppercase tracking-wider mb-1">
-            Avg Conv. Rate
-          </p>
-          <p className="text-2xl font-heading text-off-white tracking-wide">
-            {avgConvRate.toFixed(1)}%
-          </p>
-        </div>
+        <Card>
+          <CardBody compact>
+            <p className="text-foreground-subtle text-xs uppercase tracking-wider mb-1">
+              Pages Tracked
+            </p>
+            <p className="text-2xl font-heading text-off-white tracking-wide">
+              {pages.length}
+            </p>
+          </CardBody>
+        </Card>
+        <Card>
+          <CardBody compact>
+            <p className="text-foreground-subtle text-xs uppercase tracking-wider mb-1">
+              Total Views
+            </p>
+            <p className="text-2xl font-heading text-off-white tracking-wide">
+              {totalViews.toLocaleString()}
+            </p>
+          </CardBody>
+        </Card>
+        <Card>
+          <CardBody compact>
+            <p className="text-foreground-subtle text-xs uppercase tracking-wider mb-1">
+              Avg Conv. Rate
+            </p>
+            <p className="text-2xl font-heading text-off-white tracking-wide">
+              {avgConvRate.toFixed(1)}%
+            </p>
+          </CardBody>
+        </Card>
       </div>
 
       {/* Content ROI highlights */}
       {contentROI.length > 0 && (
-        <div className="bg-background-elevated border border-[var(--color-border-strong)] rounded-xl p-5">
-          <h2 className="font-heading text-sm text-[var(--color-bad)] tracking-wider mb-3">
-            CONTENT ROI
-          </h2>
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 text-sm">
+        <Card>
+          <CardBody compact>
+            <h2 className="font-body font-semibold text-[13px] text-[var(--color-fg)] mb-3">
+              Content ROI
+            </h2>
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 text-sm">
             {contentROI[0] && (
               <div>
                 <p className="text-foreground-subtle text-xs uppercase tracking-wider mb-1">Best Converter</p>
@@ -135,11 +143,12 @@ export default async function ContentPage({
               ) : null;
             })()}
           </div>
-        </div>
+          </CardBody>
+        </Card>
       )}
 
       {/* Content table */}
-      <div className="bg-background-elevated border border-white/5 rounded-xl overflow-hidden">
+      <Card className="overflow-hidden">
         <div className="overflow-x-auto">
           <table className="w-full">
             <thead>
@@ -197,7 +206,7 @@ export default async function ContentPage({
             </tbody>
           </table>
         </div>
-      </div>
+      </Card>
     </div>
   );
 }

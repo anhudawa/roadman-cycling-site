@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { Card, CardBody } from "@/components/admin/ui";
 
 interface Video {
   id: string;
@@ -459,14 +460,15 @@ export default function ExploderPage() {
           </div>
 
           {/* Content display */}
-          <div className="bg-background-elevated border border-white/5 rounded-xl p-6">
+          <Card>
+            <CardBody>
             <div className="flex items-center justify-between mb-4">
-              <h3 className="font-heading text-sm text-foreground-muted tracking-wider uppercase">
+              <h3 className="font-body font-semibold text-[13px] text-[var(--color-fg)]">
                 {activeTab === "x_thread"
-                  ? "X THREAD"
+                  ? "X thread"
                   : activeTab === "blog"
-                    ? content.blog.title.toUpperCase()
-                    : activeTab.toUpperCase() + " POST"}
+                    ? content.blog.title
+                    : activeTab.charAt(0).toUpperCase() + activeTab.slice(1) + " post"}
               </h3>
               <div className="flex items-center gap-2">
                 <button
@@ -574,7 +576,8 @@ export default function ExploderPage() {
                 </div>
               )}
             </div>
-          </div>
+            </CardBody>
+          </Card>
 
           {/* Fact check results */}
           {factCheck[activeTab] && (
