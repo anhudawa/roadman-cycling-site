@@ -3,6 +3,7 @@
 import { useState, useEffect } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import type { ABElementType, ABVariant } from "@/lib/ab/types";
+import { Card, CardBody } from "@/components/admin/ui";
 
 const ELEMENT_TYPES: { value: ABElementType; label: string }[] = [
   { value: "headline", label: "Headline" },
@@ -159,9 +160,10 @@ export default function NewExperimentPage() {
       )}
 
       {/* Basic info */}
-      <div className="bg-background-elevated border border-white/5 rounded-xl p-5 space-y-4">
-        <h2 className="font-heading text-sm text-foreground-muted tracking-wider">
-          BASIC INFO
+      <Card>
+        <CardBody compact className="space-y-4">
+        <h2 className="font-body font-semibold text-[13px] text-[var(--color-fg)]">
+          Basic info
         </h2>
 
         <div>
@@ -214,12 +216,14 @@ export default function NewExperimentPage() {
             </select>
           </div>
         </div>
-      </div>
+        </CardBody>
+      </Card>
 
       {/* Control variant */}
-      <div className="bg-background-elevated border border-white/5 rounded-xl p-5 space-y-4">
-        <h2 className="font-heading text-sm text-foreground-muted tracking-wider">
-          CONTROL (CURRENT CONTENT)
+      <Card>
+        <CardBody compact className="space-y-4">
+        <h2 className="font-body font-semibold text-[13px] text-[var(--color-fg)]">
+          Control (current content)
         </h2>
         <textarea
           value={controlContent}
@@ -276,13 +280,15 @@ export default function NewExperimentPage() {
             </>
           )}
         </button>
-      </div>
+        </CardBody>
+      </Card>
 
       {/* Generated / manual variants */}
-      <div className="bg-background-elevated border border-white/5 rounded-xl p-5 space-y-4">
+      <Card>
+        <CardBody compact className="space-y-4">
         <div className="flex items-center justify-between">
-          <h2 className="font-heading text-sm text-foreground-muted tracking-wider">
-            TEST VARIANTS
+          <h2 className="font-body font-semibold text-[13px] text-[var(--color-fg)]">
+            Test variants
           </h2>
           <button
             onClick={addManualVariant}
@@ -329,7 +335,8 @@ export default function NewExperimentPage() {
             ))}
           </div>
         )}
-      </div>
+        </CardBody>
+      </Card>
 
       {/* Submit */}
       <div className="flex items-center gap-3">

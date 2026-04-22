@@ -4,6 +4,7 @@ import type { ABTest, ABResult } from "@/lib/ab/types";
 import { estimateSampleSize } from "@/lib/ab/statistics";
 import { getExperimentResults } from "@/lib/admin/events-store";
 import ExperimentActions from "./experiment-actions";
+import { Card, CardBody } from "@/components/admin/ui";
 
 // ── Data fetching ────────────────────────────────────────
 
@@ -154,9 +155,10 @@ export default async function ExperimentDetailPage({
       </div>
 
       {/* Variants */}
-      <div className="bg-background-elevated border border-white/5 rounded-xl p-5">
-        <h2 className="font-heading text-sm text-foreground-muted tracking-wider mb-4">
-          VARIANTS
+      <Card>
+        <CardBody compact>
+        <h2 className="font-body font-semibold text-[13px] text-[var(--color-fg)] mb-4">
+          Variants
         </h2>
         <div className="grid gap-3">
           {experiment.variants.map((variant, i) => (
@@ -187,12 +189,14 @@ export default async function ExperimentDetailPage({
             </div>
           ))}
         </div>
-      </div>
+        </CardBody>
+      </Card>
 
       {/* Results table */}
-      <div className="bg-background-elevated border border-white/5 rounded-xl p-5">
-        <h2 className="font-heading text-sm text-foreground-muted tracking-wider mb-4">
-          RESULTS
+      <Card>
+        <CardBody compact>
+        <h2 className="font-body font-semibold text-[13px] text-[var(--color-fg)] mb-4">
+          Results
         </h2>
         {experiment.status === "draft" ? (
           <div className="h-32 flex items-center justify-center border border-dashed border-white/10 rounded-lg">
@@ -277,13 +281,15 @@ export default async function ExperimentDetailPage({
             </table>
           </div>
         )}
-      </div>
+        </CardBody>
+      </Card>
 
       {/* Progress toward significance */}
       {experiment.status === "running" && (
-        <div className="bg-background-elevated border border-white/5 rounded-xl p-5">
-          <h2 className="font-heading text-sm text-foreground-muted tracking-wider mb-4">
-            PROGRESS TOWARD SIGNIFICANCE
+        <Card>
+          <CardBody compact>
+          <h2 className="font-body font-semibold text-[13px] text-[var(--color-fg)] mb-4">
+            Progress toward significance
           </h2>
           <div className="space-y-3">
             {results.map((result, i) => {
@@ -323,7 +329,8 @@ export default async function ExperimentDetailPage({
               impressions for 95% confidence.
             </p>
           </div>
-        </div>
+          </CardBody>
+        </Card>
       )}
 
       {/* Winner info */}
