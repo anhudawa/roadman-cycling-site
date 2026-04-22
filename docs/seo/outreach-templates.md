@@ -14,7 +14,7 @@ These are intentionally short. Long outreach emails are where replies go to die.
 
 Hi [first name],
 
-Anthony Walsh here, host of The Roadman Cycling Podcast. We're ~1M monthly listeners and I've spent 1,400+ episodes interviewing coaches, scientists and pro riders — Prof. Stephen Seiler, Dan Lorang, Greg LeMond, Joe Friel, Tim Spector among them.
+Anthony Walsh here, host of The Roadman Cycling Podcast. We're ~1M monthly listeners and I've spent 1,300+ episodes interviewing coaches, scientists and pro riders — Prof. Stephen Seiler, Dan Lorang, Greg LeMond, Joe Friel, Tim Spector among them.
 
 I'd love to come on [show name] to talk about one of:
 

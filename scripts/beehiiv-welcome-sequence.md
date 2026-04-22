@@ -24,7 +24,7 @@ Quick version of what you just signed up for:
 
 Every week you'll get one email from me. No filler. No "Top 10 Cycling Hacks" nonsense. Just the most useful thing I've learned that week from coaching, podcast conversations, or working with real cyclists who are getting real results.
 
-I've done 1,400+ podcast episodes with the best coaches, sport scientists, and riders in the world — Stephen Seiler, Dan Lorang, Greg LeMond, Joe Friel, and hundreds more. The newsletter is where I distil that into things you can actually use on your next ride.
+I've done 1,300+ podcast episodes with the best coaches, sport scientists, and riders in the world — Stephen Seiler, Dan Lorang, Greg LeMond, Joe Friel, and hundreds more. The newsletter is where I distil that into things you can actually use on your next ride.
 
 Here's what to expect from me:
 
@@ -47,7 +47,7 @@ Anthony
 ## Email 2 — Day 1: Anthony's Story
 
 **Subject Line A:** Why I started talking to strangers about cycling
-**Subject Line B:** 1,400 conversations later — here's what I've learned
+**Subject Line B:** 1,300 conversations later — here's what I've learned
 
 **Preview text:** I wasn't a pro. I wasn't a coach. I was just a cyclist who asked the right questions.
 
@@ -63,7 +63,7 @@ So I started asking people directly.
 
 First it was coaches I'd found online. Then sport scientists. Then the conversations got bigger — World Tour coaches, exercise physiologists, riders with Grand Tour wins. I'd get them on a podcast and ask the questions nobody else was asking. Not "what's your favourite bike?" but "show me exactly how you'd structure a 12-week block for a 42-year-old with 8 hours a week."
 
-1,400+ episodes later, over 1 million people a month listen to those conversations. The Roadman Cycling Podcast became one of the biggest cycling podcasts in the world. Not because of me — because of the guests, and because the information is genuinely useful.
+1,300+ episodes later, over 1 million people a month listen to those conversations. The Roadman Cycling Podcast became one of the biggest cycling podcasts in the world. Not because of me — because of the guests, and because the information is genuinely useful.
 
 But here's what I noticed: most listeners were consuming incredible information and doing absolutely nothing with it.
 
@@ -73,7 +73,7 @@ That gap — between knowing and doing — is what the entire Roadman ecosystem 
 
 The podcast gives you the knowledge. The newsletter keeps it practical. And when you're ready for the full system, that exists too. But we'll get to that.
 
-For now, just know that everything I send you comes from those 1,400+ conversations. Not theory. Not my opinion. What the best in the world actually do.
+For now, just know that everything I send you comes from those 1,300+ conversations. Not theory. Not my opinion. What the best in the world actually do.
 
 Anthony
 
@@ -135,7 +135,7 @@ Anthony
 
 Hey,
 
-After 1,400+ podcast conversations and coaching hundreds of cyclists, I can tell you exactly why most riders plateau. And it's not what you think.
+After 1,300+ podcast conversations and coaching hundreds of cyclists, I can tell you exactly why most riders plateau. And it's not what you think.
 
 It's not that you need to train more. It's not that you need a better bike. It's not that you're too old, too heavy, or don't have enough time.
 
@@ -271,7 +271,7 @@ Anthony
 
 ## Email 7 — Day 10: Common Mistake Email
 
-**Subject Line A:** The #1 mistake I see cyclists make (after 1,400 episodes)
+**Subject Line A:** The #1 mistake I see cyclists make (after 1,300 episodes)
 **Subject Line B:** You're probably making this mistake right now
 
 **Preview text:** It's not overtraining. It's not under-fuelling. It's something you won't expect.
@@ -280,7 +280,7 @@ Anthony
 
 Hey,
 
-After 1,400+ podcast conversations with the best coaches, scientists, and riders in the world, I can tell you the single biggest mistake I see cyclists make.
+After 1,300+ podcast conversations with the best coaches, scientists, and riders in the world, I can tell you the single biggest mistake I see cyclists make.
 
 It's not overtraining. It's not skipping the gym. It's not even bad nutrition — although that's up there.
 
@@ -397,7 +397,7 @@ Over the past two weeks I've shared:
 - The 5-pillar framework that every serious cycling programme is built on
 - Real transformations from riders like Chris (84kg to 68kg), Damien (FTP 200 to 295), and Brian (4 w/kg at 46)
 - Free tools to dial in your zones, tyre pressure, and race weight
-- The #1 training mistake I see after 1,400+ podcast episodes
+- The #1 training mistake I see after 1,300+ podcast episodes
 - An honest look at the Not Done Yet coaching community
 
 Now here's my straight question: **which camp are you in?**

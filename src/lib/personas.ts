@@ -165,7 +165,7 @@ export const PERSONAS: Record<PersonaSlug, PersonaContent> = {
     metaTitle:
       "Train Like the Pros: The Essentials Playlist from the Roadman Podcast",
     metaDescription:
-      "The core cycling concepts from 1,400+ Roadman Podcast episodes — polarised training, periodisation, nutrition, recovery — curated into one starting point. Plus what to do next.",
+      "The core cycling concepts from 1,300+ Roadman Podcast episodes — polarised training, periodisation, nutrition, recovery — curated into one starting point. Plus what to do next.",
     blogSlugs: [
       "is-a-cycling-coach-worth-it",
       "what-does-a-cycling-coach-do",

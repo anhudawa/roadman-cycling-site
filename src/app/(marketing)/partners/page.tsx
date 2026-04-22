@@ -114,7 +114,7 @@ const partnershipOptions = [
     title: "PODCAST SPONSORSHIP",
     badge: "Most Popular",
     description:
-      "Host-read ads that land. Pre-roll, mid-roll, or post-roll placements across 1,400+ episodes. Anthony delivers every read personally — no generic scripts, no phoned-in endorsements.",
+      "Host-read ads that land. Pre-roll, mid-roll, or post-roll placements across 1,300+ episodes. Anthony delivers every read personally — no generic scripts, no phoned-in endorsements.",
     features: [
       "Host-read ad placements (pre-roll, mid-roll, post-roll)",
       "1M+ monthly listeners across all platforms",
@@ -498,7 +498,7 @@ export default function PartnersPage() {
                   {
                     title: "DEEP TRUST",
                     description:
-                      "1,400+ episodes of honest, expert-led content has built a community that trusts our recommendations. When Anthony endorses a product, people listen — and act.",
+                      "1,300+ episodes of honest, expert-led content has built a community that trusts our recommendations. When Anthony endorses a product, people listen — and act.",
                   },
                   {
                     title: "GEAR OBSESSED",
@@ -816,7 +816,7 @@ export default function PartnersPage() {
 
             <ScrollReveal direction="up" delay={0.5}>
               <p className="text-center text-foreground-muted text-sm mt-8">
-                Plus 1,400+ more conversations in{" "}
+                Plus 1,300+ more conversations in{" "}
                 <Link href="/guests" className="text-coral hover:underline">
                   the full guest archive
                 </Link>

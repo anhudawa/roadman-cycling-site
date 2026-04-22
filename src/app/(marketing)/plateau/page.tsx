@@ -40,7 +40,7 @@ export const metadata: Metadata = {
 export const revalidate = 3600;
 
 const SOCIAL_PROOF = [
-  "Built from 1,400+ podcast conversations with World Tour coaches, sports scientists and pro riders.",
+  "Built from 1,300+ podcast conversations with World Tour coaches, sports scientists and pro riders.",
   "Based on methods used by the coaches behind Tadej Pogačar, Chris Froome and Egan Bernal.",
   "Trusted by over 1 million monthly listeners of the Roadman Cycling Podcast.",
 ];

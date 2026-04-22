@@ -24,7 +24,7 @@ Here's where to start:
 
 This is the bridge between consuming information and actually following a system. Pick the plan that matches your goals. 2 minutes.
 
-Over the next couple of weeks, I'll share some of the most useful things I've learned from 1,400+ podcast conversations — and more importantly, how to actually apply them.
+Over the next couple of weeks, I'll share some of the most useful things I've learned from 1,300+ podcast conversations — and more importantly, how to actually apply them.
 
 Talk soon,
 Anthony
@@ -39,7 +39,7 @@ Anthony
 
 Hey,
 
-Here's something I've noticed after 1,400+ podcast episodes: the people who know the most about cycling training are often the ones getting the least results from it.
+Here's something I've noticed after 1,300+ podcast episodes: the people who know the most about cycling training are often the ones getting the least results from it.
 
 That's not a dig. I've been there myself. You can explain polarised training to anyone. You understand Zone 2. You know what W/kg means and why it matters. But your actual training week looks pretty much the same as it did a year ago.
 
@@ -228,7 +228,7 @@ You've got an event on the horizon — and you're in the right place. Here's whe
 
 Pick the plan that fits where you are right now — not where you used to be. Start there.
 
-Over the next 7 days, I'll share some of the most useful things I've learned from 1,400+ conversations with coaches and sport scientists — specifically around event preparation and fuelling.
+Over the next 7 days, I'll share some of the most useful things I've learned from 1,300+ conversations with coaches and sport scientists — specifically around event preparation and fuelling.
 
 Talk soon,
 Anthony
@@ -416,7 +416,7 @@ Here's where to start:
 
 Pick the plan that fits where you are right now — not where you used to be. Start there.
 
-Over the next couple of weeks, I'll share some of the most useful things I've learned from 1,400+ conversations with coaches and sport scientists, specifically around coming back safely, rebuilding fitness, and managing the mental side of a comeback.
+Over the next couple of weeks, I'll share some of the most useful things I've learned from 1,300+ conversations with coaches and sport scientists, specifically around coming back safely, rebuilding fitness, and managing the mental side of a comeback.
 
 Talk soon,
 Anthony
@@ -616,7 +616,7 @@ Here's where to start:
 
 Pick the plan that matches your goals (gravel, road, or sportive). It takes 2 minutes.
 
-Over the next couple of weeks, I'll share some of the most useful things I've learned from 1,400+ conversations with World Tour coaches and sport scientists — specifically around breaking through plateaus. No fluff. Just what actually works.
+Over the next couple of weeks, I'll share some of the most useful things I've learned from 1,300+ conversations with World Tour coaches and sport scientists — specifically around breaking through plateaus. No fluff. Just what actually works.
 
 Talk soon,
 Anthony
@@ -631,7 +631,7 @@ Anthony
 
 Hey
 
-After 1,400+ podcast conversations, the single biggest insight I've had about plateau-stuck cyclists is this: most are training too hard on easy days and too easy on hard days.
+After 1,300+ podcast conversations, the single biggest insight I've had about plateau-stuck cyclists is this: most are training too hard on easy days and too easy on hard days.
 
 Professor Stephen Seiler calls it the "black hole" of working hard enough to build fatigue but not hard enough — a common trap in amateur cycling.
 

@@ -39,7 +39,7 @@ export function AuthorBio() {
             Cycling coach & founder of Roadman Cycling
           </p>
           <p className="text-sm text-foreground-muted leading-relaxed mb-4">
-            Host of the Roadman Cycling Podcast, with over 1,400 on-the-record
+            Host of the Roadman Cycling Podcast, with over 1,300 on-the-record
             conversations with World Tour coaches, sports scientists, and pro
             riders — including Prof. Stephen Seiler, Dan Lorang, Greg LeMond
             and Joe Friel. Based in Dublin, Ireland. Coaches cyclists and

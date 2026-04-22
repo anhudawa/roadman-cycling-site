@@ -118,7 +118,7 @@ Most riders who do the diagnostic close the tab and think the same thing.
 
 Maybe you can. Some do.
 
-Here's what I've learned after 1,400 podcast episodes and five years of coaching. The riders who actually break plateaus aren't the ones with the best information. They're the ones with the shortest feedback loop.
+Here's what I've learned after 1,300 podcast episodes and five years of coaching. The riders who actually break plateaus aren't the ones with the best information. They're the ones with the shortest feedback loop.
 
 A plan on a screen can't tell you to skip the session because your HRV dropped. A YouTube video can't catch the pattern in your last four weeks before it compounds into another eight weeks of the same plateau. Another cycling forum thread can't call you on a Tuesday and tell you to eat more.
 

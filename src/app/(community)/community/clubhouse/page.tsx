@@ -89,7 +89,7 @@ export default function ClubhousePage() {
                 {
                   title: "Weekly Live Q&A with Anthony",
                   description:
-                    "Every week, Anthony goes live to answer your training, nutrition, and cycling questions. No gatekeeping. No upsell. Just direct access to someone who's recorded 1,400+ episodes with the world's best coaches, scientists, and riders.",
+                    "Every week, Anthony goes live to answer your training, nutrition, and cycling questions. No gatekeeping. No upsell. Just direct access to someone who's recorded 1,300+ episodes with the world's best coaches, scientists, and riders.",
                 },
                 {
                   title: "Free 16-Week Training Plans",

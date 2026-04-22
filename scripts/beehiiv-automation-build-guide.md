@@ -189,7 +189,7 @@ You've got an event on the horizon — and you're in the right place. Here's whe
 
 Pick the plan that fits where you are right now — not where you used to be. Start there.
 
-Over the next 7 days, I'll share some of the most useful things I've learned from 1,400+ conversations with coaches and sport scientists — specifically around event preparation and fuelling.
+Over the next 7 days, I'll share some of the most useful things I've learned from 1,300+ conversations with coaches and sport scientists — specifically around event preparation and fuelling.
 
 Talk soon,
 Anthony
@@ -420,7 +420,7 @@ Here's where to start:
 
 Pick the plan that fits where you are right now — not where you used to be. Start there.
 
-Over the next couple of weeks, I'll share some of the most useful things I've learned from 1,400+ conversations with coaches and sport scientists, specifically around coming back safely, rebuilding fitness, and managing the mental side of a comeback.
+Over the next couple of weeks, I'll share some of the most useful things I've learned from 1,300+ conversations with coaches and sport scientists, specifically around coming back safely, rebuilding fitness, and managing the mental side of a comeback.
 
 Talk soon,
 Anthony
@@ -663,7 +663,7 @@ Here's where to start:
 
 Pick the plan that matches your goals (gravel, road, or sportive). It takes 2 minutes.
 
-Over the next couple of weeks, I'll share some of the most useful things I've learned from 1,400+ conversations with World Tour coaches and sport scientists — specifically around breaking through plateaus. No fluff. Just what actually works.
+Over the next couple of weeks, I'll share some of the most useful things I've learned from 1,300+ conversations with World Tour coaches and sport scientists — specifically around breaking through plateaus. No fluff. Just what actually works.
 
 Talk soon,
 Anthony
@@ -681,7 +681,7 @@ Anthony
 ```
 Hey,
 
-After 1,400+ podcast conversations, the single biggest insight I've had about plateau-stuck cyclists is this: most are training too hard on easy days and too easy on hard days.
+After 1,300+ podcast conversations, the single biggest insight I've had about plateau-stuck cyclists is this: most are training too hard on easy days and too easy on hard days.
 
 Professor Stephen Seiler calls it the "black hole" of training — that grey zone where you're working hard enough to build fatigue but not hard enough to trigger adaptation. It's the most common trap in amateur cycling.
 

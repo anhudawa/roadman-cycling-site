@@ -53,7 +53,7 @@ export async function GET() {
 
   const body = `# Roadman Cycling
 
-> The cycling performance podcast trusted by 1M+ monthly listeners. Evidence-based coaching, nutrition, strength, and recovery for serious amateur cyclists — built on 1,400+ on-the-record conversations with World Tour coaches, sports scientists, and pro riders.
+> The cycling performance podcast trusted by 1M+ monthly listeners. Evidence-based coaching, nutrition, strength, and recovery for serious amateur cyclists — built on 1,300+ on-the-record conversations with World Tour coaches, sports scientists, and pro riders.
 
 Roadman Cycling is a cycling media and coaching brand founded by Anthony Walsh in Dublin, Ireland. The core output is the Roadman Cycling Podcast (1,300+ episodes, 1M+ monthly listeners), complemented by the Not Done Yet coaching community (premium online 1:1 coaching), a free private community tier, long-form written guides, and six free browser-based calculators for cyclists. Notable podcast guests include Prof. Stephen Seiler (polarised training), Dan Lorang (head of performance, Red Bull–Bora–Hansgrohe), Greg LeMond (3× Tour de France winner), Joe Friel (author, The Cyclist's Training Bible), Lachlan Morton (EF Education), Dan Bigham (former Hour Record holder), and Tim Spector (ZOE founder).
 

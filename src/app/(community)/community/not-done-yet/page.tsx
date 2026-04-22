@@ -198,7 +198,7 @@ export default function NotDoneYetPage() {
               </p>
               <p className="text-foreground-muted text-xl max-w-2xl mx-auto mb-6">
                 Training. Nutrition. Strength. Recovery. Accountability.
-                Five pillars, one system — built from 1,400+ conversations
+                Five pillars, one system — built from 1,300+ conversations
                 with the coaches, scientists, and riders at the top of the
                 sport. Not summarised. Not repackaged. Structured into your
                 week by the coach who had every single one of them on his show.

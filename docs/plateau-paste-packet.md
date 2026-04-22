@@ -141,7 +141,7 @@ Primary text:
 >
 > Twelve questions. Four minutes. A specific answer for why you're stuck — and the exact fix, written for riders who train 6 to 12 hours a week around a real life.
 >
-> Built from 1,400+ podcast conversations with the coaches behind Pogačar, Froome and Bernal.
+> Built from 1,300+ podcast conversations with the coaches behind Pogačar, Froome and Bernal.
 >
 > Start the diagnostic →
 
