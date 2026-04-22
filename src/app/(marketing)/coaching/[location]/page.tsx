@@ -179,7 +179,7 @@ const LOCATIONS: Record<string, LocationData> = {
       {
         title: "Fred Whitton Challenge Training Plan",
         href: "/blog/fred-whitton-challenge-training-plan",
-        description: "The UK's hardest sportive — 112 miles and 3,950m of climbing through the Lake District. Here's how to train for it.",
+        description: "The UK's hardest sportive — 112 miles and 3,500m of climbing through the Lake District. Here's how to train for it.",
       },
       {
         title: "Best Cycling Coach UK — Honest Guide",
