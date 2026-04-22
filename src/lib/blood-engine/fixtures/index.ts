@@ -51,6 +51,8 @@ const masters45MaleBuild: ReportContext = {
   trainingHoursPerWeek: 12,
   trainingPhase: "build",
   symptoms: [],
+  recentWeightChange: "stable",
+  recentIllness: "none",
   drawDate: "2026-04-01",
 };
 
@@ -60,6 +62,8 @@ const masters50MaleBase: ReportContext = {
   trainingHoursPerWeek: 10,
   trainingPhase: "base",
   symptoms: ["fatigue"],
+  recentWeightChange: "stable",
+  recentIllness: "none",
   drawDate: "2026-04-01",
 };
 
@@ -67,9 +71,13 @@ const masters42FemaleBuild: ReportContext = {
   age: 42,
   sex: "f",
   trainingHoursPerWeek: 11,
+  recentWeightChange: "stable",
+  recentIllness: "none",
   trainingPhase: "build",
   symptoms: ["fatigue", "stalled_ftp"],
   drawDate: "2026-04-01",
+      recentWeightChange: "stable",
+      recentIllness: "none",
 };
 
 export const FIXTURES: BloodEngineFixture[] = [
@@ -168,6 +176,8 @@ export const FIXTURES: BloodEngineFixture[] = [
       trainingPhase: "build",
       symptoms: ["fatigue", "stalled_ftp", "low_motivation", "poor_recovery"],
       drawDate: "2026-04-01",
+      recentWeightChange: "stable",
+      recentIllness: "none",
     },
     results: [
       { markerId: "tsh", value: 0.9, unit: "mIU/L" },
@@ -207,6 +217,8 @@ export const FIXTURES: BloodEngineFixture[] = [
         "sleep_issues",
       ],
       drawDate: "2026-04-01",
+      recentWeightChange: "stable",
+      recentIllness: "none",
     },
     results: [
       { markerId: "testosterone_total", value: 280, unit: "ng/dL" },
@@ -245,6 +257,8 @@ export const FIXTURES: BloodEngineFixture[] = [
       trainingPhase: "build",
       symptoms: ["none"],
       drawDate: "2026-04-01",
+      recentWeightChange: "stable",
+      recentIllness: "none",
     },
     results: [
       { markerId: "creatine_kinase", value: 520, unit: "U/L" },

@@ -28,6 +28,8 @@ export type Symptom =
   | "low_motivation"
   | "stalled_ftp"
   | "weight_gain"
+  | "weight_loss"
+  | "low_libido"
   | "sleep_issues"
   | "none";
 
@@ -39,9 +41,14 @@ export const SYMPTOMS: { id: Symptom; label: string }[] = [
   { id: "low_motivation", label: "Low motivation" },
   { id: "stalled_ftp", label: "Stalled FTP" },
   { id: "weight_gain", label: "Unexplained weight gain" },
+  { id: "weight_loss", label: "Recent intentional weight loss / cutting" },
+  { id: "low_libido", label: "Low libido" },
   { id: "sleep_issues", label: "Sleep issues" },
   { id: "none", label: "None of the above" },
 ];
+
+export type RecentWeightChange = "stable" | "losing" | "gaining";
+export type RecentIllness = "none" | "minor_recent" | "significant_recent";
 
 export interface ReportContext {
   age: number;
@@ -49,6 +56,8 @@ export interface ReportContext {
   trainingHoursPerWeek: number;
   trainingPhase: TrainingPhase;
   symptoms: Symptom[];
+  recentWeightChange: RecentWeightChange;
+  recentIllness: RecentIllness;
   drawDate: string; // ISO yyyy-mm-dd
 }
 
@@ -81,12 +90,24 @@ export function validateContext(raw: unknown): ReportContext {
   if (typeof c.drawDate !== "string" || !/^\d{4}-\d{2}-\d{2}$/.test(c.drawDate)) {
     throw new Error("context.drawDate must be ISO yyyy-mm-dd");
   }
+  const validWeightChanges: RecentWeightChange[] = ["stable", "losing", "gaining"];
+  const recentWeightChange: RecentWeightChange =
+    typeof c.recentWeightChange === "string" && validWeightChanges.includes(c.recentWeightChange as RecentWeightChange)
+      ? (c.recentWeightChange as RecentWeightChange)
+      : "stable";
+  const validIllness: RecentIllness[] = ["none", "minor_recent", "significant_recent"];
+  const recentIllness: RecentIllness =
+    typeof c.recentIllness === "string" && validIllness.includes(c.recentIllness as RecentIllness)
+      ? (c.recentIllness as RecentIllness)
+      : "none";
   return {
     age,
     sex: c.sex,
     trainingHoursPerWeek: hours,
     trainingPhase: c.trainingPhase as TrainingPhase,
     symptoms: c.symptoms as Symptom[],
+    recentWeightChange,
+    recentIllness,
     drawDate: c.drawDate,
   };
 }
