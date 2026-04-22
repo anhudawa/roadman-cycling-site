@@ -58,6 +58,7 @@ export async function GET() {
           : null,
         `Published: ${ep.publishDate}`,
         `Duration: ${ep.duration}`,
+        ep.answerCapsule ? `\nAnswer:\n${ep.answerCapsule}` : "",
         `\nSummary:\n${ep.seoDescription}`,
         "",
       ]
@@ -83,7 +84,7 @@ Roadman Cycling is a cycling performance media and coaching brand based in Dubli
 - Triathlon Bike Coaching — specialist bike-leg coaching inside the Not Done Yet coaching community for age-group 70.3 and Ironman triathletes.
 - Free calculator tools — FTP zones, tyre pressure, race weight, in-ride fuelling, energy availability, MTB shock pressure.
 - Private community (the paid Not Done Yet coaching community + free Clubhouse tier).
-- 112 long-form blog guides on cycling coaching, nutrition, strength, and recovery.
+- 182 long-form blog guides on cycling coaching, nutrition, strength, and recovery.
 
 ## Notable Podcast Guests
 
