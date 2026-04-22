@@ -167,10 +167,14 @@ export function DiagnosticFlow() {
     setHydrated(true);
   }, []);
 
-  // Persist on any state change, but skip the initial empty value.
+  // Persist on state change. Debounced so text inputs (goal, q13)
+  // don't hammer sessionStorage on every keystroke — radio clicks
+  // still feel instant because they advance the step and settle long
+  // before the 200ms window expires.
   useEffect(() => {
     if (!hydrated) return;
-    persist(state);
+    const t = setTimeout(() => persist(state), 200);
+    return () => clearTimeout(t);
   }, [state, hydrated]);
 
   const utm = useMemo(() => {

@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { desc, gte, sql } from "drizzle-orm";
+import { desc } from "drizzle-orm";
 import { requireAuth } from "@/lib/admin/auth";
 import { db } from "@/lib/db";
 import { diagnosticSubmissions } from "@/lib/db/schema";
@@ -30,8 +30,6 @@ export default async function AdminDiagnosticPage() {
   await requireAuth();
   const stats = await getDiagnosticStats();
 
-  const since7d = new Date(Date.now() - 7 * 24 * 60 * 60 * 1000);
-
   const recent = await db
     .select({
       id: diagnosticSubmissions.id,
@@ -50,12 +48,6 @@ export default async function AdminDiagnosticPage() {
     .from(diagnosticSubmissions)
     .orderBy(desc(diagnosticSubmissions.createdAt))
     .limit(50);
-
-  const [fallbackRow] = await db
-    .select({ cnt: sql<number>`count(*)` })
-    .from(diagnosticSubmissions)
-    .where(gte(diagnosticSubmissions.createdAt, since7d));
-  const recentTotal = Number(fallbackRow?.cnt ?? 0);
 
   return (
     <div className="space-y-8">
@@ -129,7 +121,7 @@ export default async function AdminDiagnosticPage() {
             Recent submissions
           </h2>
           <span className="text-xs text-foreground-subtle">
-            {recentTotal} in the last 7 days
+            {stats.last7d} in the last 7 days
           </span>
         </div>
         {recent.length === 0 ? (

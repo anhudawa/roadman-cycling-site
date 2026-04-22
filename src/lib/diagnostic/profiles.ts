@@ -237,3 +237,21 @@ export const PROFILE_LABELS: Record<Profile, string> = {
   strengthGap: "Strength Gap",
   fuelingDeficit: "Fueling Deficit",
 };
+
+export const CLOSE_TO_BREAKTHROUGH_LABEL =
+  "Closer to breakthrough than you think";
+
+/**
+ * One-shot resolver for "what label do we show this user?" — collapses
+ * the close-to-breakthrough edge case into the same call site as the
+ * regular profile lookup so the results page + metadata + OG image
+ * don't each reimplement the branch.
+ */
+export function labelFor(
+  primary: Profile,
+  closeToBreakthrough: boolean
+): string {
+  return closeToBreakthrough
+    ? CLOSE_TO_BREAKTHROUGH_LABEL
+    : PROFILE_LABELS[primary];
+}

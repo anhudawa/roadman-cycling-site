@@ -13,6 +13,7 @@ import {
 import { parseAnswers, parseUtm } from "@/lib/diagnostic/parse";
 import { PROFILE_LABELS } from "@/lib/diagnostic/profiles";
 import { sendDiagnosisConfirmation } from "@/lib/diagnostic/email";
+import { checkRateLimit } from "@/lib/diagnostic/rate-limit";
 
 /**
  * Masters Plateau Diagnostic — submission endpoint.
@@ -81,6 +82,25 @@ export async function POST(request: Request) {
     );
   }
 
+  // Abuse + cost protection. Runs before the Claude call so a spam
+  // attacker can't burn through the API budget. See
+  // src/lib/diagnostic/rate-limit.ts for the layered strategy.
+  const verdict = await checkRateLimit(request, email);
+  if (!verdict.ok) {
+    return NextResponse.json(
+      {
+        error:
+          verdict.reason === "email"
+            ? "Too many submissions from this email. Try again later."
+            : "Too many requests. Slow down and try again.",
+      },
+      {
+        status: 429,
+        headers: { "Retry-After": String(verdict.retryAfterSeconds) },
+      }
+    );
+  }
+
   const utm = parseUtm(body.utm);
   const sessionId = clampString(body.sessionId, LIMITS.shortText) ?? "diagnostic";
   const referrer = clampString(body.referrer, LIMITS.shortText);
@@ -88,23 +108,14 @@ export async function POST(request: Request) {
 
   const scoring = scoreDiagnostic(answers);
 
-  let generation;
-  try {
-    generation = await generateBreakdown(
-      scoring.primary,
-      scoring.secondary,
-      answers
-    );
-  } catch (err) {
-    // generateBreakdown already catches its own errors — this is just
-    // belt-and-braces. Fall through to the fallback so we never block.
-    console.error("[Diagnostic] generateBreakdown threw:", err);
-    generation = await generateBreakdown(
-      scoring.primary,
-      scoring.secondary,
-      answers
-    );
-  }
+  // generateBreakdown never throws — it catches its own errors and
+  // returns the static §9 fallback when Claude is unavailable or the
+  // output fails validation twice in a row.
+  const generation = await generateBreakdown(
+    scoring.primary,
+    scoring.secondary,
+    answers
+  );
 
   // Retake detection per §17. First submission for this email is
   // retake_number = 1, second is 2, etc. Counted before insert so we

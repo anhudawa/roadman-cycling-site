@@ -1,7 +1,7 @@
 import Anthropic from "@anthropic-ai/sdk";
 import { PROFILE_BREAKDOWNS, PROFILE_LABELS } from "./profiles";
 import { buildUserMessage, SYSTEM_PROMPT } from "./prompt";
-import type { Answers, Breakdown, Profile } from "./types";
+import type { Answers, Breakdown, GenerationSource, Profile } from "./types";
 import { validateBreakdown, type ValidationResult } from "./validator";
 
 /**
@@ -15,7 +15,7 @@ const MODEL = "claude-sonnet-4-6";
 const MAX_TOKENS = 2000;
 const TEMPERATURE = 0.7;
 
-export type GenerationSource = "llm" | "fallback";
+export type { GenerationSource } from "./types";
 
 export interface GenerationResult {
   breakdown: Breakdown;

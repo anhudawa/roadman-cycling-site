@@ -1,6 +1,6 @@
 import { Resend } from "resend";
 import { escapeHtml } from "@/lib/validation";
-import { PROFILE_LABELS } from "./profiles";
+import { labelFor } from "./profiles";
 import type { Breakdown, Profile } from "./types";
 
 /**
@@ -48,9 +48,7 @@ export async function sendDiagnosisConfirmation(
     return { sent: false, error: "resend_not_configured" };
   }
 
-  const profileLabel = input.closeToBreakthrough
-    ? "Closer to breakthrough than you think"
-    : PROFILE_LABELS[input.primary];
+  const profileLabel = labelFor(input.primary, input.closeToBreakthrough);
   const url = resultsUrl(input.slug);
 
   const subject = `Your diagnosis: ${profileLabel}`;

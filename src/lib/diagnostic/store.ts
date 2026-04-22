@@ -2,9 +2,15 @@ import crypto from "crypto";
 import { eq, sql } from "drizzle-orm";
 import { db } from "@/lib/db";
 import { diagnosticSubmissions } from "@/lib/db/schema";
-import type { Breakdown, Profile, ScoringResult } from "./types";
+import {
+  isGenerationSource,
+  type Answers,
+  type Breakdown,
+  type GenerationSource,
+  type Profile,
+  type ScoringResult,
+} from "./types";
 import type { GenerationResult } from "./generator";
-import type { Answers } from "./types";
 
 /**
  * DB helpers for diagnostic submissions. Keeps Drizzle details out of
@@ -14,6 +20,14 @@ import type { Answers } from "./types";
 
 const SLUG_ALPHABET = "abcdefghijklmnopqrstuvwxyz0123456789";
 const SLUG_LEN = 10;
+
+/**
+ * Collisions at 36^10 ≈ 3.6e15 are astronomically unlikely, but a
+ * unique-constraint retry is cheap insurance against pathological
+ * RNG. Three attempts is plenty — if it fails three times in a row
+ * the crypto source is broken.
+ */
+const SLUG_RETRY_ATTEMPTS = 3;
 
 /**
  * URL-friendly short id. Collisions are astronomically unlikely at
@@ -58,7 +72,7 @@ export interface StoredSubmission {
   severeMultiSystem: boolean;
   closeToBreakthrough: boolean;
   breakdown: Breakdown;
-  generationSource: "llm" | "fallback";
+  generationSource: GenerationSource;
   createdAt: Date;
   answers: Answers;
   retakeNumber: number;
@@ -76,7 +90,12 @@ function rowToSubmission(
     severeMultiSystem: row.severeMultiSystem,
     closeToBreakthrough: row.closeToBreakthrough,
     breakdown: row.breakdown as unknown as Breakdown,
-    generationSource: row.generationSource as "llm" | "fallback",
+    // DB stores the source as plain text; coerce back to the union
+    // type with a guard. Any unexpected value is treated as a
+    // fallback so downstream rendering stays safe.
+    generationSource: isGenerationSource(row.generationSource)
+      ? row.generationSource
+      : "fallback",
     createdAt: row.createdAt,
     answers: row.answers as unknown as Answers,
     retakeNumber: row.retakeNumber,
@@ -107,10 +126,7 @@ export async function insertSubmission(
     validation: input.generation.validation,
   };
 
-  // Up to 3 slug retries if the 10-char random collides. We can go
-  // bigger if we ever actually see collisions, but at 36^10 the
-  // expected waiting time is measured in universes.
-  for (let i = 0; i < 3; i++) {
+  for (let i = 0; i < SLUG_RETRY_ATTEMPTS; i++) {
     const slug = generateSlug();
     try {
       const [row] = await db
@@ -145,11 +161,13 @@ export async function insertSubmission(
       return rowToSubmission(row);
     } catch (err) {
       const msg = err instanceof Error ? err.message : String(err);
-      if (i < 2 && /unique|duplicate/i.test(msg)) continue;
+      if (i < SLUG_RETRY_ATTEMPTS - 1 && /unique|duplicate/i.test(msg)) continue;
       throw err;
     }
   }
-  throw new Error("Failed to allocate a unique diagnostic slug after 3 attempts");
+  throw new Error(
+    `Failed to allocate a unique diagnostic slug after ${SLUG_RETRY_ATTEMPTS} attempts`
+  );
 }
 
 export async function getSubmissionBySlug(

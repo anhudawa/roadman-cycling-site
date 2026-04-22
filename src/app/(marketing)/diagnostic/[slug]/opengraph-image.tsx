@@ -1,6 +1,6 @@
 import { ImageResponse } from "next/og";
 import { getSubmissionBySlug } from "@/lib/diagnostic/store";
-import { PROFILE_LABELS } from "@/lib/diagnostic/profiles";
+import { labelFor } from "@/lib/diagnostic/profiles";
 
 export const alt = "Your Masters Plateau Diagnosis";
 export const size = { width: 1200, height: 630 };
@@ -23,9 +23,7 @@ export default async function Image({
   const submission = slug ? await getSubmissionBySlug(slug) : null;
 
   const profileLabel = submission
-    ? submission.closeToBreakthrough
-      ? "Closer to breakthrough than you think"
-      : PROFILE_LABELS[submission.primaryProfile]
+    ? labelFor(submission.primaryProfile, submission.closeToBreakthrough)
     : "Twelve questions. Four minutes.";
 
   const headline = submission

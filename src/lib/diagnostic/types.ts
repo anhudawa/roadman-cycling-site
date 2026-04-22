@@ -106,3 +106,10 @@ export interface CtaConfig {
   secondaryLabel: string;
   secondaryHref: string;
 }
+
+export const GENERATION_SOURCES = ["llm", "fallback"] as const;
+export type GenerationSource = (typeof GENERATION_SOURCES)[number];
+
+export function isGenerationSource(x: unknown): x is GenerationSource {
+  return typeof x === "string" && (GENERATION_SOURCES as readonly string[]).includes(x);
+}

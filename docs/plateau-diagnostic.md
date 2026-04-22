@@ -2,23 +2,27 @@
 
 Everything that needs to happen after the code is merged before the funnel is actually live on production. Work through top to bottom.
 
-## 1. Run the migration
+## 1. Run the migrations
 
-The new `diagnostic_submissions` table needs to exist in prod Postgres.
+Two migration files need to be applied to prod Postgres. Both are
+idempotent, so it's safe to re-run either one.
 
 ```bash
-# Option A: drizzle-kit push (matches how the schema-only tables work)
+# Option A: drizzle-kit push (applies the schema to match)
 npm run db:push
 
-# Option B: apply the SQL file directly
+# Option B: apply each SQL file directly, in order
 psql "$POSTGRES_URL" -f drizzle/0025_diagnostic_submissions.sql
+psql "$POSTGRES_URL" -f drizzle/0026_diagnostic_retake_number.sql
 ```
 
-Verify:
+Verify both columns exist:
 
 ```sql
-SELECT count(*) FROM diagnostic_submissions;
--- Should return 0
+SELECT count(*), retake_number FROM diagnostic_submissions
+GROUP BY retake_number;
+-- Should return no rows (table is empty on first install)
+-- Once you have data, this gives you repeat-submitter counts.
 ```
 
 ## 2. Environment variables
@@ -84,7 +88,26 @@ If a specific output is off, POST to `/api/diagnostic/[slug]/regenerate` (admin-
 
 Out of scope for the code build. See spec §14 for the three ad variants, targeting, and the €20 → €300/day ramp plan.
 
-## 8. Smoke test
+## 8. Rate limiting
+
+The submit endpoint has two layers of abuse protection baked in; no
+configuration required:
+
+1. **Per-IP in-memory bucket** — max 5 submissions per minute per IP.
+   Stops casual flooding from a single client. Reset on every warm
+   instance, so a determined attacker hitting different Vercel
+   regions will bypass this layer.
+2. **Per-email DB throttle** — max 3 submissions per email per 10
+   minutes, counted against `diagnostic_submissions`. Shared across
+   all serverless instances, so a distributed attacker still gets
+   throttled by the email they're trying to spam.
+
+Both limits fail *open* — if the DB query errors, real users still
+get through. Logs at `[Diagnostic/rate-limit]` show throttle activity.
+Adjust the constants in `src/lib/diagnostic/rate-limit.ts` if live
+traffic patterns justify it.
+
+## 9. Smoke test
 
 After deploy, walk through the flow manually once:
 
@@ -99,7 +122,7 @@ After deploy, walk through the flow manually once:
    - Submission shows up in Beehiiv with the right tags
    - In Meta Events Manager, a `Lead` event fires when the results page loads
 
-## Rollback
+## 10. Rollback
 
 The diagnostic is isolated — removing it means:
 - Remove `/plateau` link from `src/components/layout/Footer.tsx`

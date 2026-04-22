@@ -4,8 +4,8 @@ import { notFound } from "next/navigation";
 import { Container, Footer, Header, Section } from "@/components/layout";
 import { ScrollReveal } from "@/components/ui";
 import { getSubmissionBySlug } from "@/lib/diagnostic/store";
-import { PROFILE_LABELS, CLOSE_TO_BREAKTHROUGH } from "@/lib/diagnostic/profiles";
-import { resolveCta } from "@/lib/diagnostic/config";
+import { CLOSE_TO_BREAKTHROUGH, labelFor } from "@/lib/diagnostic/profiles";
+import { resolveBookingUrl, resolveCta } from "@/lib/diagnostic/config";
 import { ResultsAnalytics } from "@/components/features/diagnostic/ResultsAnalytics";
 import { ShareButton } from "@/components/features/diagnostic/ShareButton";
 import { MetaPixel } from "@/components/features/diagnostic/MetaPixel";
@@ -29,9 +29,10 @@ export async function generateMetadata({
   const submission = await getSubmissionBySlug(slug);
   if (!submission) return { title: "Your diagnosis — Roadman Cycling" };
 
-  const label = submission.closeToBreakthrough
-    ? "Closer to breakthrough than you think"
-    : PROFILE_LABELS[submission.primaryProfile];
+  const label = labelFor(
+    submission.primaryProfile,
+    submission.closeToBreakthrough
+  );
 
   return {
     title: `Your diagnosis: ${label} — Roadman Cycling`,
@@ -51,27 +52,25 @@ export default async function DiagnosticResultsPage({
   const submission = await getSubmissionBySlug(slug);
   if (!submission) notFound();
 
-  const breakdown: Breakdown = submission.closeToBreakthrough
+  const isCloseToBreakthrough = submission.closeToBreakthrough;
+  const breakdown: Breakdown = isCloseToBreakthrough
     ? CLOSE_TO_BREAKTHROUGH
     : submission.breakdown;
-
-  const profileLabel = submission.closeToBreakthrough
-    ? "Closer to breakthrough than you think"
-    : PROFILE_LABELS[submission.primaryProfile];
-
-  const cta = resolveCta(
+  const profileLabel = labelFor(
     submission.primaryProfile,
-    submission.severeMultiSystem
+    isCloseToBreakthrough
   );
 
-  // The static CLOSE_TO_BREAKTHROUGH hardcodes a direct-call CTA; mirror
-  // that here when we've flipped to the template.
-  const resolvedPrimaryHref = breakdown === CLOSE_TO_BREAKTHROUGH
-    ? resolveCta("underRecovered", true).primaryHref
-    : cta.primaryHref;
-  const resolvedPrimaryLabel = breakdown === CLOSE_TO_BREAKTHROUGH
-    ? "Book a 15-minute call with Anthony"
-    : cta.primaryLabel;
+  // Close-to-breakthrough always routes to a direct call. Otherwise
+  // use the per-profile matrix from §12.
+  const cta = isCloseToBreakthrough
+    ? {
+        primaryLabel: "Book a 15-minute call with Anthony",
+        primaryHref: resolveBookingUrl(),
+        secondaryLabel: "",
+        secondaryHref: "",
+      }
+    : resolveCta(submission.primaryProfile, submission.severeMultiSystem);
 
   return (
     <>
@@ -204,14 +203,14 @@ export default async function DiagnosticResultsPage({
             </p>
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4 pt-4">
               <Link
-                href={resolvedPrimaryHref}
+                href={cta.primaryHref}
                 data-cta="primary"
                 data-profile={submission.primaryProfile}
                 className="font-heading tracking-wider bg-coral hover:bg-coral-hover text-off-white px-8 py-4 rounded-md transition-colors cursor-pointer text-lg"
               >
-                {resolvedPrimaryLabel.toUpperCase()}
+                {cta.primaryLabel.toUpperCase()}
               </Link>
-              {breakdown !== CLOSE_TO_BREAKTHROUGH && (
+              {cta.secondaryHref && (
                 <Link
                   href={cta.secondaryHref}
                   data-cta="secondary"
