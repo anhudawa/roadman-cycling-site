@@ -79,7 +79,7 @@ export async function runInterpretation(
 
   const message = await client.messages.create({
     model: options.model ?? "claude-sonnet-4-6",
-    max_tokens: options.maxTokens ?? 4096,
+    max_tokens: options.maxTokens ?? 8192,
     system: INTERPRETATION_SYSTEM_PROMPT,
     messages: [
       {
