@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect } from "react";
+import { trackAnalyticsEvent } from "@/lib/analytics/client";
 
 /**
  * Client-side analytics shim for the results page. Fires a single
@@ -16,16 +17,11 @@ export function ResultsAnalytics({
   profile: string;
 }) {
   useEffect(() => {
-    fetch("/api/events", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        type: "diagnostic_results_view",
-        page: `/diagnostic/${slug}`,
-        meta: { profile, slug },
-      }),
-      keepalive: true,
-    }).catch(() => undefined);
+    trackAnalyticsEvent({
+      type: "diagnostic_results_view",
+      page: `/diagnostic/${slug}`,
+      meta: { profile, slug },
+    });
   }, [slug, profile]);
 
   useEffect(() => {
@@ -33,17 +29,11 @@ export function ResultsAnalytics({
       const target = e.target as HTMLElement | null;
       const el = target?.closest<HTMLElement>("[data-cta]");
       if (!el) return;
-      const cta = el.dataset.cta ?? "unknown";
-      fetch("/api/events", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          type: "diagnostic_cta_click",
-          page: `/diagnostic/${slug}`,
-          meta: { profile, slug, cta },
-        }),
-        keepalive: true,
-      }).catch(() => undefined);
+      trackAnalyticsEvent({
+        type: "diagnostic_cta_click",
+        page: `/diagnostic/${slug}`,
+        meta: { profile, slug, cta: el.dataset.cta ?? "unknown" },
+      });
     };
     document.addEventListener("click", handler);
     return () => document.removeEventListener("click", handler);

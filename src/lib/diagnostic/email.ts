@@ -1,5 +1,6 @@
-import { Resend } from "resend";
 import { escapeHtml } from "@/lib/validation";
+import { getResendClient } from "@/lib/integrations/resend";
+import { absoluteUrl } from "@/lib/site";
 import { labelFor } from "./profiles";
 import type { Breakdown, Profile } from "./types";
 
@@ -16,19 +17,6 @@ import type { Breakdown, Profile } from "./types";
 
 const FROM = "Roadman Cycling <noreply@roadmancycling.com>";
 
-function getResend(): Resend | null {
-  const key = process.env.RESEND_API_KEY;
-  if (!key) return null;
-  return new Resend(key);
-}
-
-function resultsUrl(slug: string): string {
-  const origin =
-    process.env.NEXT_PUBLIC_SITE_URL?.trim() ||
-    "https://roadmancycling.com";
-  return `${origin.replace(/\/$/, "")}/diagnostic/${slug}`;
-}
-
 export interface ConfirmationEmailInput {
   email: string;
   slug: string;
@@ -40,7 +28,7 @@ export interface ConfirmationEmailInput {
 export async function sendDiagnosisConfirmation(
   input: ConfirmationEmailInput
 ): Promise<{ sent: boolean; messageId?: string; error?: string }> {
-  const resend = getResend();
+  const resend = getResendClient();
   if (!resend) {
     console.warn(
       "[Diagnostic] RESEND_API_KEY not configured — confirmation email skipped"
@@ -49,7 +37,7 @@ export async function sendDiagnosisConfirmation(
   }
 
   const profileLabel = labelFor(input.primary, input.closeToBreakthrough);
-  const url = resultsUrl(input.slug);
+  const url = absoluteUrl(`/diagnostic/${input.slug}`);
 
   const subject = `Your diagnosis: ${profileLabel}`;
   const { html, text } = renderTemplate({

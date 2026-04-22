@@ -8,6 +8,7 @@ import {
   type FormEvent,
 } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
+import { trackAnalyticsEvent } from "@/lib/analytics/client";
 import { AGE_BRACKETS, HOURS_BRACKETS } from "@/lib/diagnostic/types";
 import { QUESTIONS } from "@/lib/diagnostic/questions";
 
@@ -95,32 +96,6 @@ function clearPersisted(): void {
   if (typeof window === "undefined") return;
   try {
     sessionStorage.removeItem(STORAGE_KEY);
-  } catch {
-    // ignore
-  }
-}
-
-/**
- * Fire an analytics event to the existing /api/events endpoint. Never
- * throws — analytics should never break the flow.
- */
-function trackEvent(
-  type: string,
-  meta?: Record<string, string>,
-  sessionId?: string
-): void {
-  try {
-    fetch("/api/events", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        type,
-        page: "/plateau",
-        meta,
-        session_id: sessionId,
-      }),
-      keepalive: true,
-    }).catch(() => undefined);
   } catch {
     // ignore
   }
@@ -219,14 +194,15 @@ export function DiagnosticFlow() {
 
   // ── Navigation helpers ─────────────────────────────────
   const startDiagnostic = useCallback(() => {
-    trackEvent(
-      "diagnostic_start",
-      {
+    trackAnalyticsEvent({
+      type: "diagnostic_start",
+      page: "/plateau",
+      sessionId,
+      meta: {
         utm_source: utm.source ?? "",
         utm_campaign: utm.campaign ?? "",
       },
-      sessionId
-    );
+    });
     setStep({ kind: "age" });
   }, [sessionId, utm.source, utm.campaign]);
 
@@ -268,11 +244,12 @@ export function DiagnosticFlow() {
         ...s,
         answers: { ...s.answers, [q.key]: value },
       }));
-      trackEvent(
-        "diagnostic_progress",
-        { question: q.key, value: String(value) },
-        sessionId
-      );
+      trackAnalyticsEvent({
+        type: "diagnostic_progress",
+        page: "/plateau",
+        sessionId,
+        meta: { question: q.key, value: String(value) },
+      });
       if (index < 11) {
         setStep({ kind: "question", index: index + 1 });
       } else {
@@ -440,7 +417,7 @@ export function DiagnosticFlow() {
         {step.kind === "processing" && <ProcessingStep />}
 
         {step.kind === "error" && (
-          <div className="text-center space-y-6 py-8">
+          <div className="text-center space-y-6 py-8" role="alert">
             <h2 className="font-heading text-2xl text-off-white">
               That didn&rsquo;t work.
             </h2>
@@ -471,7 +448,14 @@ function ProgressBar({
   total: number;
 }) {
   return (
-    <div aria-label="Diagnostic progress" role="progressbar" aria-valuenow={percent}>
+    <div
+      aria-label="Diagnostic progress"
+      role="progressbar"
+      aria-valuenow={percent}
+      aria-valuemin={0}
+      aria-valuemax={100}
+      aria-valuetext={`Step ${Math.min(stepNumber, total)} of ${total}`}
+    >
       <div className="flex justify-between items-baseline mb-2 text-xs font-heading tracking-widest text-foreground-subtle">
         <span>
           STEP {Math.min(stepNumber, total)} OF {total}
@@ -537,11 +521,13 @@ function ChoiceStep({
   return (
     <div className="space-y-6">
       <StepHeader kicker={kicker} heading={heading} hint={hint} />
-      <div className="space-y-3">
+      <div className="space-y-3" role="radiogroup" aria-label={heading}>
         {options.map((opt) => (
           <button
             key={opt.id}
             type="button"
+            role="radio"
+            aria-checked={selectedId === opt.id}
             onClick={() => onSelect(opt.id)}
             className={`
               block w-full text-left rounded-lg border px-5 py-4 cursor-pointer
@@ -577,11 +563,13 @@ function QuestionStep({
   return (
     <div className="space-y-6">
       <StepHeader kicker={`Question ${index + 1} of 12`} heading={q.prompt} />
-      <div className="space-y-3">
+      <div className="space-y-3" role="radiogroup" aria-label={q.prompt}>
         {q.options.map((opt) => (
           <button
             key={opt.id}
             type="button"
+            role="radio"
+            aria-checked={selectedValue === opt.value}
             onClick={() => onAnswer(opt.value)}
             className={`
               block w-full text-left rounded-lg border px-5 py-4 cursor-pointer
@@ -845,9 +833,17 @@ function ProcessingStep() {
   }, [phaseIndex, phases.length]);
 
   return (
-    <div className="text-center space-y-6 py-8">
+    <div
+      className="text-center space-y-6 py-8"
+      role="status"
+      aria-live="polite"
+      aria-busy="true"
+    >
       <div className="flex justify-center">
-        <div className="h-12 w-12 rounded-full border-2 border-white/10 border-t-coral animate-spin" />
+        <div
+          className="h-12 w-12 rounded-full border-2 border-white/10 border-t-coral animate-spin"
+          aria-hidden="true"
+        />
       </div>
       <p className="font-heading text-xl text-off-white">ANALYSING</p>
       <p className="text-foreground-muted min-h-[1.5em]">
