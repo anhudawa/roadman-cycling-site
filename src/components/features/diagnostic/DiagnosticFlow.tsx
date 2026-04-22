@@ -13,7 +13,7 @@ import { AGE_BRACKETS, HOURS_BRACKETS } from "@/lib/diagnostic/types";
 import { QUESTIONS } from "@/lib/diagnostic/questions";
 
 /**
- * The full diagnostic experience — intro → demographics → 12 scored
+ * The full diagnostic experience — demographics → 12 scored
  * questions → optional Q13 → email gate → processing → route to
  * /diagnostic/[slug]. One component so the state machine stays in one
  * place and session persistence doesn't have to thread through a
@@ -41,7 +41,6 @@ const HOURS_LABELS: Record<string, string> = {
 };
 
 type Step =
-  | { kind: "intro" }
   | { kind: "age" }
   | { kind: "hours" }
   | { kind: "ftp" }
@@ -132,7 +131,10 @@ export function DiagnosticFlow() {
   const sessionId = useSessionId();
 
   const [state, setState] = useState<State>(EMPTY_STATE);
-  const [step, setStep] = useState<Step>({ kind: "intro" });
+  // Land paid traffic on the first question rather than a redundant
+  // "Start" button. The CTA on the landing page already counts as
+  // start-intent; making them click again loses 5–10% of clicks.
+  const [step, setStep] = useState<Step>({ kind: "age" });
   const [hydrated, setHydrated] = useState(false);
   const [submitting, setSubmitting] = useState(false);
 
@@ -141,6 +143,23 @@ export function DiagnosticFlow() {
     setState(loadPersisted());
     setHydrated(true);
   }, []);
+
+  // Fire `diagnostic_start` once the session id is hydrated. Used to
+  // be tied to the intro-screen button click — that step is gone, so
+  // mount IS start.
+  useEffect(() => {
+    if (!sessionId) return;
+    trackAnalyticsEvent({
+      type: "diagnostic_start",
+      page: "/plateau",
+      sessionId,
+      meta: {
+        utm_source: searchParams.get("utm_source") ?? "",
+        utm_campaign: searchParams.get("utm_campaign") ?? "",
+      },
+    });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [sessionId]);
 
   // Persist on state change. Debounced so text inputs (goal, q13)
   // don't hammer sessionStorage on every keystroke — radio clicks
@@ -169,8 +188,6 @@ export function DiagnosticFlow() {
   const totalSteps = 4 + 12 + 1 + 1; // 18
   const stepNumber = (() => {
     switch (step.kind) {
-      case "intro":
-        return 0;
       case "age":
         return 1;
       case "hours":
@@ -193,24 +210,13 @@ export function DiagnosticFlow() {
   const progress = Math.min(100, Math.round((stepNumber / totalSteps) * 100));
 
   // ── Navigation helpers ─────────────────────────────────
-  const startDiagnostic = useCallback(() => {
-    trackAnalyticsEvent({
-      type: "diagnostic_start",
-      page: "/plateau",
-      sessionId,
-      meta: {
-        utm_source: utm.source ?? "",
-        utm_campaign: utm.campaign ?? "",
-      },
-    });
-    setStep({ kind: "age" });
-  }, [sessionId, utm.source, utm.campaign]);
-
   const goBack = useCallback(() => {
     setStep((prev) => {
       switch (prev.kind) {
         case "age":
-          return { kind: "intro" };
+          // Already at the first step — back is a no-op rather than
+          // resurrecting the dead intro screen.
+          return prev;
         case "hours":
           return { kind: "age" };
         case "ftp":
@@ -315,12 +321,9 @@ export function DiagnosticFlow() {
   // ── Render ─────────────────────────────────────────────
   return (
     <div className="mx-auto w-full max-w-[640px]">
-      {step.kind !== "intro" && (
-        <ProgressBar percent={progress} stepNumber={stepNumber} total={totalSteps} />
-      )}
+      <ProgressBar percent={progress} stepNumber={stepNumber} total={totalSteps} />
 
       <div className="mt-8 rounded-2xl bg-white/5 border border-white/10 p-6 md:p-10">
-        {step.kind === "intro" && <IntroStep onStart={startDiagnostic} />}
 
         {step.kind === "age" && (
           <ChoiceStep
@@ -468,33 +471,6 @@ function ProgressBar({
           style={{ width: `${percent}%` }}
         />
       </div>
-    </div>
-  );
-}
-
-function IntroStep({ onStart }: { onStart: () => void }) {
-  return (
-    <div className="text-center space-y-6">
-      <p className="text-coral font-heading text-xs tracking-widest">
-        THE MASTERS PLATEAU DIAGNOSTIC
-      </p>
-      <h2
-        className="font-heading text-off-white"
-        style={{ fontSize: "var(--text-section)" }}
-      >
-        TWELVE QUESTIONS. FOUR MINUTES. ONE SPECIFIC ANSWER.
-      </h2>
-      <p className="text-foreground-muted max-w-md mx-auto">
-        Hit start when you&rsquo;re ready. You can come back to this tab if
-        you get pulled away &mdash; we save your progress as you go.
-      </p>
-      <button
-        type="button"
-        onClick={onStart}
-        className="font-heading tracking-wider bg-coral hover:bg-coral-hover text-off-white px-10 py-4 rounded-md transition-colors cursor-pointer text-lg"
-      >
-        START THE DIAGNOSTIC
-      </button>
     </div>
   );
 }
@@ -749,16 +725,18 @@ function EmailStep({
   };
 
   return (
-    <form onSubmit={handleSubmit} className="space-y-6">
+    <form onSubmit={handleSubmit} className="space-y-5">
       <StepHeader
-        kicker="Nearly done"
+        kicker="Last step"
         heading="Where should we send your diagnosis?"
-        hint="So you can come back to it, and so we can include the profile breakdown in the follow-up."
+        hint="So you can come back to it, and so the breakdown lands in your inbox in case you close the tab."
       />
       <input
         type="email"
         required
         autoComplete="email"
+        autoFocus
+        inputMode="email"
         value={email}
         onChange={(e) => {
           setEmail(e.target.value);
@@ -783,14 +761,31 @@ function EmailStep({
           className="accent-coral mt-0.5 w-4 h-4 shrink-0 cursor-pointer"
         />
         <span className="text-sm text-foreground-muted">
-          Send me my diagnosis and the Saturday Spin newsletter. I can
-          unsubscribe anytime. See our{" "}
+          Send me my diagnosis and the Saturday Spin newsletter. I agree
+          to the{" "}
           <a href="/privacy" className="text-coral hover:underline">
             Privacy Policy
           </a>
           .
         </span>
       </label>
+      {/* Trust micro-copy. Three short reassurances right at the
+          gate — this is the highest-friction moment of the flow and
+          the hardest to recover from if the user bails. */}
+      <ul className="text-xs text-foreground-subtle space-y-1.5">
+        <li className="flex items-baseline gap-2">
+          <span className="text-coral" aria-hidden="true">✓</span>
+          One email with your diagnosis. No daily spam.
+        </li>
+        <li className="flex items-baseline gap-2">
+          <span className="text-coral" aria-hidden="true">✓</span>
+          Unsubscribe in one click. We honour it within the hour.
+        </li>
+        <li className="flex items-baseline gap-2">
+          <span className="text-coral" aria-hidden="true">✓</span>
+          We never sell your email. Ever.
+        </li>
+      </ul>
       {error && (
         <p className="text-red-400 text-sm" role="alert">
           {error}

@@ -9,6 +9,8 @@ import { resolveBookingUrl, resolveCta } from "@/lib/diagnostic/config";
 import { ResultsAnalytics } from "@/components/features/diagnostic/ResultsAnalytics";
 import { ShareButton } from "@/components/features/diagnostic/ShareButton";
 import { MetaPixel } from "@/components/features/diagnostic/MetaPixel";
+import { ReadingProgress } from "@/components/features/diagnostic/ReadingProgress";
+import { StickyCta } from "@/components/features/diagnostic/StickyCta";
 import type { Breakdown } from "@/lib/diagnostic/types";
 
 /**
@@ -74,6 +76,8 @@ export default async function DiagnosticResultsPage({
 
   return (
     <>
+      <ReadingProgress />
+      <StickyCta href={cta.primaryHref} label={cta.primaryLabel} />
       {/* Fires fbq PageView + Lead when the pixel env is configured —
           this is the diagnostic funnel's primary conversion signal. */}
       <MetaPixel
@@ -140,6 +144,25 @@ export default async function DiagnosticResultsPage({
               <p className="text-off-white/90 leading-relaxed">
                 {breakdown.whatItsCosting}
               </p>
+            </ScrollReveal>
+
+            {/* Mid-content escape hatch for impatient readers. The
+                full fix + handoff is below, but converting here is
+                better than a scroll-bounce. */}
+            <ScrollReveal direction="up" delay={0.3}>
+              <div className="mt-10 rounded-lg border border-coral/30 bg-coral/5 p-5 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3">
+                <p className="text-foreground-muted text-sm">
+                  Already know you want to fix this with help, not more
+                  reading?
+                </p>
+                <a
+                  href={cta.primaryHref}
+                  data-cta="mid-content"
+                  className="shrink-0 font-heading tracking-wider bg-coral hover:bg-coral-hover text-off-white px-5 py-2 rounded-md transition-colors cursor-pointer text-sm whitespace-nowrap"
+                >
+                  {cta.primaryLabel.toUpperCase()}
+                </a>
+              </div>
             </ScrollReveal>
           </Container>
         </Section>

@@ -15,6 +15,11 @@ const MODEL = "claude-sonnet-4-6";
 const MAX_TOKENS = 2000;
 const TEMPERATURE = 0.7;
 
+// Hard ceiling per Claude attempt. Paid traffic won't tolerate a
+// 15-second spinner — at 6s we abandon the attempt and either retry
+// (if attempts remain) or fall back to the static §9 template.
+const ATTEMPT_TIMEOUT_MS = 6_000;
+
 export type { GenerationSource } from "./types";
 
 export interface GenerationResult {
@@ -106,21 +111,33 @@ function toBreakdown(candidate: unknown): Breakdown {
 
 async function callClaude(userMessage: string): Promise<string> {
   const client = new Anthropic();
-  const response = await client.messages.create({
-    model: MODEL,
-    max_tokens: MAX_TOKENS,
-    temperature: TEMPERATURE,
-    system: SYSTEM_PROMPT,
-    messages: [{ role: "user", content: userMessage }],
-  });
+  // Race the API against a hard timeout. The Anthropic SDK supports
+  // an AbortSignal so we can cancel the underlying fetch on timeout
+  // rather than just leaving it dangling.
+  const controller = new AbortController();
+  const timer = setTimeout(() => controller.abort(), ATTEMPT_TIMEOUT_MS);
+  try {
+    const response = await client.messages.create(
+      {
+        model: MODEL,
+        max_tokens: MAX_TOKENS,
+        temperature: TEMPERATURE,
+        system: SYSTEM_PROMPT,
+        messages: [{ role: "user", content: userMessage }],
+      },
+      { signal: controller.signal }
+    );
 
-  const text = response.content
-    .filter((block): block is Anthropic.TextBlock => block.type === "text")
-    .map((block) => block.text)
-    .join("\n");
+    const text = response.content
+      .filter((block): block is Anthropic.TextBlock => block.type === "text")
+      .map((block) => block.text)
+      .join("\n");
 
-  if (!text.trim()) throw new Error("Model returned no text content");
-  return text;
+    if (!text.trim()) throw new Error("Model returned no text content");
+    return text;
+  } finally {
+    clearTimeout(timer);
+  }
 }
 
 function fallbackFor(primary: Profile, secondary: Profile | null): Breakdown {
@@ -187,8 +204,11 @@ export async function generateBreakdown(
     } catch (err) {
       const msg = err instanceof Error ? err.message : String(err);
       errors.push(`attempt ${attempt} threw: ${msg}`);
-      // Back off briefly before retrying a hard failure.
-      if (attempt === 1) await new Promise((r) => setTimeout(r, 2000));
+      // Tight inter-attempt pause. The 6-second per-attempt timeout
+      // is the real back-pressure; a 500ms gap is enough to dodge a
+      // transient blip without making paid traffic stare at a
+      // spinner for 14 seconds in the worst case.
+      if (attempt === 1) await new Promise((r) => setTimeout(r, 500));
     }
   }
 

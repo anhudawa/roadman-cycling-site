@@ -110,37 +110,41 @@ export default function PlateauPage() {
       />
       <Header />
       <main id="main-content">
-        {/* ── Hero ─────────────────────────────────────── */}
-        <Section background="charcoal" grain className="pt-32 pb-12">
+        {/* ── Hero — built for paid traffic, sub-2-second comprehension ── */}
+        <Section background="charcoal" grain className="pt-28 pb-8">
           <Container width="narrow" className="text-center">
             <ScrollReveal direction="up" eager>
               <p className="text-coral font-heading text-sm tracking-widest mb-4">
                 THE MASTERS PLATEAU DIAGNOSTIC
               </p>
               <h1
-                className="font-heading text-off-white mb-6"
+                className="font-heading text-off-white mb-5"
                 style={{ fontSize: "var(--text-hero)" }}
               >
-                IF YOU&rsquo;RE OVER 40 AND YOUR FTP HASN&rsquo;T MOVED IN 18
-                MONTHS, IT&rsquo;S ALMOST ALWAYS ONE OF FOUR THINGS.
+                FTP STUCK FOR A YEAR? IT&rsquo;S ALMOST ALWAYS ONE OF FOUR
+                THINGS.
               </h1>
-              <p className="text-foreground-muted text-xl leading-relaxed mb-8">
+              <p className="text-foreground-muted text-lg md:text-xl leading-relaxed mb-7 max-w-xl mx-auto">
                 Twelve questions. Four minutes. A specific answer for why your
-                progress has stalled &mdash; and the exact fix, written for
-                riders who train 6 to 12 hours a week around a real life.
+                progress has stalled &mdash; and the exact fix.
               </p>
               <a
                 href="#start"
-                className="inline-block font-heading tracking-wider bg-coral hover:bg-coral-hover text-off-white px-10 py-4 rounded-md transition-colors cursor-pointer text-lg"
+                className="inline-block font-heading tracking-wider bg-coral hover:bg-coral-hover text-off-white px-10 py-4 rounded-md transition-colors cursor-pointer text-lg shadow-lg shadow-coral/20"
               >
                 START THE DIAGNOSTIC
               </a>
+              <p className="text-foreground-subtle text-xs mt-4">
+                No email needed to start &middot; 4 minutes &middot; Free
+              </p>
             </ScrollReveal>
           </Container>
         </Section>
 
         {/* ── Social proof strip ──────────────────────── */}
-        <Section background="deep-purple" className="py-10">
+        {/* Below the hero so it pre-qualifies the diagnostic without
+            adding to first-paint reading load. */}
+        <Section background="deep-purple" className="py-8">
           <Container width="wide">
             <ul className="grid md:grid-cols-3 gap-6 text-foreground-muted text-sm">
               {SOCIAL_PROOF.map((line, i) => (
@@ -153,6 +157,21 @@ export default function PlateauPage() {
                 </li>
               ))}
             </ul>
+          </Container>
+        </Section>
+
+        {/* ── The diagnostic itself ───────────────────── */}
+        {/* Moved up the page (was below "What you'll get"). For paid
+            traffic the diagnostic IS the page — every section between
+            the hero and Q1 sheds clicks. The cards are still below
+            for users scrolling to research before committing.
+            Suspense wraps the flow because useSearchParams() forces a
+            CSR bailout during static generation otherwise. */}
+        <Section background="deep-purple" grain id="start">
+          <Container width="narrow">
+            <Suspense fallback={<DiagnosticSkeleton />}>
+              <DiagnosticFlow />
+            </Suspense>
           </Container>
         </Section>
 
@@ -181,17 +200,6 @@ export default function PlateauPage() {
                 </ScrollReveal>
               ))}
             </div>
-          </Container>
-        </Section>
-
-        {/* ── The diagnostic itself ───────────────────── */}
-        {/* Suspense wraps the flow because useSearchParams() forces a
-            CSR bailout during static generation otherwise. */}
-        <Section background="deep-purple" grain id="start">
-          <Container width="narrow">
-            <Suspense fallback={<DiagnosticSkeleton />}>
-              <DiagnosticFlow />
-            </Suspense>
           </Container>
         </Section>
 
