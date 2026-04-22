@@ -73,7 +73,7 @@ export function ContactBookingsSection({
           currentSlug={currentUserSlug}
           prefilledContact={{ id: contactId, name: contactName, email: contactEmail }}
           triggerLabel="+ Schedule Call"
-          triggerClassName="text-[10px] font-heading tracking-wider uppercase text-coral hover:underline"
+          triggerClassName="font-body font-semibold text-[13px] text-[var(--color-fg-muted)] hover:text-[var(--color-fg)] hover:underline"
           onCreated={load}
         />
       </div>
@@ -119,7 +119,7 @@ function BookingLine({ b }: { b: BookingRow }) {
     <li>
       <Link
         href={`/admin/bookings/${b.id}`}
-        className="flex items-center justify-between gap-3 p-2 rounded border border-white/5 bg-background-deep hover:border-coral/30 transition"
+        className="flex items-center justify-between gap-3 p-2 rounded-[var(--radius-admin-md)] border border-[var(--color-border)] bg-[var(--color-sunken)] hover:border-[var(--color-border-strong)] hover:bg-white/[0.04] transition"
       >
         <div className="min-w-0">
           <p className="text-sm text-off-white truncate">{b.title}</p>

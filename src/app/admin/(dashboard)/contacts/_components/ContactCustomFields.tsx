@@ -39,7 +39,7 @@ export function ContactCustomFields({
         </h3>
         <p className="text-xs text-foreground-subtle">
           No custom fields defined yet. Admins can add them in{" "}
-          <a href="/admin/settings" className="text-coral hover:underline">
+          <a href="/admin/settings" className="text-[var(--color-info)] hover:underline">
             Settings
           </a>
           .
@@ -110,7 +110,7 @@ function FieldRow({
   }
 
   function baseInputClass() {
-    return "w-full px-3 py-2 bg-background-deep border border-white/10 rounded text-sm text-off-white focus:outline-none focus:border-coral/50";
+    return "w-full px-3 py-2 bg-[var(--color-sunken)] border border-[var(--color-border-strong)] rounded-[var(--radius-admin-md)] text-sm text-[var(--color-fg)] focus-ring focus:border-[var(--color-border-focus)]";
   }
 
   let input: React.ReactNode = null;
@@ -162,7 +162,7 @@ function FieldRow({
             href={value}
             target="_blank"
             rel="noopener noreferrer"
-            className="text-xs text-coral hover:underline truncate"
+            className="text-xs text-[var(--color-info)] hover:underline truncate"
           >
             {value}
           </a>

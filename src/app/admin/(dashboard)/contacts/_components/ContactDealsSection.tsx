@@ -45,9 +45,9 @@ export function ContactDealsSection({ contactId }: { contactId: number }) {
         </p>
         <Link
           href={`/admin/deals?new=1&contactId=${contactId}`}
-          className="text-[10px] font-heading tracking-wider uppercase text-coral hover:underline"
+          className="font-body font-semibold text-[13px] text-[var(--color-fg-muted)] hover:text-[var(--color-fg)] hover:underline"
         >
-          + Add Deal
+          + Add deal
         </Link>
       </div>
       {loading ? (
@@ -60,7 +60,7 @@ export function ContactDealsSection({ contactId }: { contactId: number }) {
             <li key={d.id}>
               <Link
                 href={`/admin/deals/${d.id}`}
-                className="flex items-center justify-between gap-3 p-3 rounded border border-white/5 bg-background-deep hover:border-coral/30 transition"
+                className="flex items-center justify-between gap-3 p-3 rounded-[var(--radius-admin-md)] border border-[var(--color-border)] bg-[var(--color-sunken)] hover:border-[var(--color-border-strong)] hover:bg-white/[0.04] transition"
               >
                 <div className="min-w-0">
                   <p className="text-sm text-off-white truncate">{d.title}</p>
@@ -72,7 +72,7 @@ export function ContactDealsSection({ contactId }: { contactId: number }) {
                       : ""}
                   </p>
                 </div>
-                <span className="text-coral text-sm font-heading tracking-wider tabular-nums shrink-0">
+                <span className="text-[var(--color-fg)] text-sm font-mono tabular-nums shrink-0">
                   {formatCurrency(d.valueCents, d.currency)}
                 </span>
               </Link>

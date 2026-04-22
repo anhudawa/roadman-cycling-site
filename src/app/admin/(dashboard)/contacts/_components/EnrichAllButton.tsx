@@ -32,11 +32,11 @@ export function EnrichAllButton() {
       <button
         onClick={run}
         disabled={running}
-        className="px-3 py-2 text-xs font-heading tracking-wider uppercase bg-background-elevated border border-white/10 text-off-white rounded hover:border-coral/40 transition-colors disabled:opacity-50"
+        className="px-3 py-2 font-body font-semibold text-[13px] bg-[var(--color-elevated)] border border-[var(--color-border)] text-[var(--color-fg)] rounded-[var(--radius-admin-md)] hover:border-[var(--color-border-strong)] transition-colors disabled:opacity-50"
       >
-        {running ? "Enriching..." : "Enrich All"}
+        {running ? "Enriching..." : "Enrich all"}
       </button>
-      {msg && <span className="text-xs text-foreground-muted">{msg}</span>}
+      {msg && <span className="text-xs text-[var(--color-fg-muted)]">{msg}</span>}
     </div>
   );
 }
