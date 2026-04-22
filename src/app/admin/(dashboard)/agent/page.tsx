@@ -228,7 +228,7 @@ export default function AgentPage() {
                       </div>
                       <Link
                         href={`/admin/experiments/new?page=${encodeURIComponent(exp.page)}&element=${encodeURIComponent(exp.element)}&content=${encodeURIComponent(exp.currentContent)}`}
-                        className="text-xs text-coral hover:text-coral/80 transition-colors px-3 py-1.5 border border-coral/20 rounded-lg flex-shrink-0 hover:bg-coral/5"
+                        className="text-xs text-coral hover:text-[var(--color-fg)]/80 transition-colors px-3 py-1.5 border border-coral/20 rounded-lg flex-shrink-0 hover:bg-coral/5"
                       >
                         Create This Test
                       </Link>

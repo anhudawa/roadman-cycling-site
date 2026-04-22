@@ -328,7 +328,7 @@ export default function ExploderPage() {
               value={search}
               onChange={(e) => handleSearch(e.target.value)}
               placeholder="Search videos..."
-              className="w-full pl-10 pr-4 py-3 bg-background-elevated border border-white/10 rounded-lg text-sm text-off-white placeholder:text-foreground-subtle focus:outline-none focus:border-coral/50"
+              className="w-full pl-10 pr-4 py-3 bg-background-elevated border border-white/10 rounded-lg text-sm text-off-white placeholder:text-foreground-subtle focus-ring focus:border-[var(--color-border-focus)]"
             />
           </div>
 
@@ -338,7 +338,7 @@ export default function ExploderPage() {
               <button
                 key={video.id}
                 onClick={() => selectVideo(video)}
-                className="flex gap-3 p-3 bg-background-elevated border border-white/5 rounded-lg hover:border-coral/30 transition-colors text-left group"
+                className="flex gap-3 p-3 bg-background-elevated border border-white/5 rounded-lg hover:border-[var(--color-border-strong)] transition-colors text-left group"
               >
                 {video.thumbnail && (
                   <img
@@ -348,7 +348,7 @@ export default function ExploderPage() {
                   />
                 )}
                 <div className="min-w-0 flex-1">
-                  <p className="text-sm text-off-white font-medium line-clamp-2 group-hover:text-coral transition-colors">
+                  <p className="text-sm text-off-white font-medium line-clamp-2 group-hover:text-[var(--color-fg)] transition-colors">
                     {video.title}
                   </p>
                   <p className="text-xs text-foreground-subtle mt-1">
@@ -360,7 +360,7 @@ export default function ExploderPage() {
                   </p>
                 </div>
                 <svg
-                  className="w-5 h-5 text-foreground-subtle group-hover:text-coral shrink-0 mt-1 transition-colors"
+                  className="w-5 h-5 text-foreground-subtle group-hover:text-[var(--color-fg)] shrink-0 mt-1 transition-colors"
                   fill="none"
                   viewBox="0 0 24 24"
                   stroke="currentColor"
@@ -391,7 +391,7 @@ export default function ExploderPage() {
             <button
               key={i}
               onClick={() => selectIdea(idea)}
-              className="w-full text-left p-4 bg-background-elevated border border-white/5 rounded-lg hover:border-coral/30 transition-colors group"
+              className="w-full text-left p-4 bg-background-elevated border border-white/5 rounded-lg hover:border-[var(--color-border-strong)] transition-colors group"
             >
               <div className="flex items-start gap-3">
                 <span className="flex items-center justify-center w-7 h-7 rounded-full bg-coral/10 text-coral text-xs font-bold shrink-0 mt-0.5">
@@ -399,7 +399,7 @@ export default function ExploderPage() {
                 </span>
                 <div>
                   <div className="flex items-center gap-2">
-                    <p className="text-sm text-off-white font-medium group-hover:text-coral transition-colors">
+                    <p className="text-sm text-off-white font-medium group-hover:text-[var(--color-fg)] transition-colors">
                       {idea.title}
                     </p>
                     {idea.framework && (
@@ -413,7 +413,7 @@ export default function ExploderPage() {
                   </p>
                 </div>
                 <svg
-                  className="w-5 h-5 text-foreground-subtle group-hover:text-coral shrink-0 ml-auto mt-1 transition-colors"
+                  className="w-5 h-5 text-foreground-subtle group-hover:text-[var(--color-fg)] shrink-0 ml-auto mt-1 transition-colors"
                   fill="none"
                   viewBox="0 0 24 24"
                   stroke="currentColor"

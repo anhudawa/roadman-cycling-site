@@ -105,7 +105,7 @@ export default function ExperimentActions({
                 <select
                   value={selectedWinner}
                   onChange={(e) => setSelectedWinner(e.target.value)}
-                  className="bg-background-elevated border border-white/10 text-off-white text-xs rounded-lg px-2 py-1.5 focus:outline-none focus:border-coral/50"
+                  className="bg-background-elevated border border-white/10 text-off-white text-xs rounded-lg px-2 py-1.5 focus-ring focus:border-[var(--color-border-focus)]"
                 >
                   {variants.map((v) => (
                     <option key={v.id} value={v.id}>

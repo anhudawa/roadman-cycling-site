@@ -161,7 +161,7 @@ export function TagsClient({ initialTags }: Props) {
             value={mergeTarget}
             onChange={(e) => setMergeTarget(e.target.value)}
             placeholder="target tag name"
-            className="flex-1 min-w-[180px] px-3 py-1.5 text-sm bg-background-deep border border-white/10 rounded text-off-white placeholder:text-foreground-subtle focus:outline-none focus:border-coral/60"
+            className="flex-1 min-w-[180px] px-3 py-1.5 text-sm bg-background-deep border border-white/10 rounded text-off-white placeholder:text-foreground-subtle focus-ring focus:border-[var(--color-border-focus)]/60"
           />
           <button
             type="button"
@@ -224,7 +224,7 @@ export function TagsClient({ initialTags }: Props) {
                             if (e.key === "Enter") doRename(t.tag);
                             if (e.key === "Escape") setRenaming(null);
                           }}
-                          className="px-2 py-1 text-sm bg-background-deep border border-white/10 rounded text-off-white focus:outline-none focus:border-coral/60"
+                          className="px-2 py-1 text-sm bg-background-deep border border-white/10 rounded text-off-white focus-ring focus:border-[var(--color-border-focus)]/60"
                         />
                         <button
                           type="button"
@@ -245,7 +245,7 @@ export function TagsClient({ initialTags }: Props) {
                     ) : (
                       <Link
                         href={`/admin/contacts?tag=${encodeURIComponent(t.tag)}`}
-                        className="inline-flex items-center px-2 py-0.5 rounded bg-white/5 border border-white/10 text-off-white hover:border-coral/40 hover:text-coral transition-colors"
+                        className="inline-flex items-center px-2 py-0.5 rounded bg-white/5 border border-white/10 text-off-white hover:border-[var(--color-border-strong)] hover:text-[var(--color-fg)] transition-colors"
                       >
                         {t.tag}
                       </Link>

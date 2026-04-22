@@ -173,7 +173,7 @@ export default function NewExperimentPage() {
             value={name}
             onChange={(e) => setName(e.target.value)}
             placeholder="e.g. Homepage hero CTA copy"
-            className="w-full bg-white/5 border border-white/10 rounded-lg px-4 py-2.5 text-sm text-off-white placeholder:text-foreground-subtle focus:outline-none focus:border-coral/50 transition-colors"
+            className="w-full bg-white/5 border border-white/10 rounded-lg px-4 py-2.5 text-sm text-off-white placeholder:text-foreground-subtle focus-ring focus:border-[var(--color-border-focus)] transition-colors"
           />
         </div>
 
@@ -188,7 +188,7 @@ export default function NewExperimentPage() {
               value={page}
               onChange={(e) => setPage(e.target.value)}
               placeholder="/"
-              className="w-full bg-white/5 border border-white/10 rounded-lg px-4 py-2.5 text-sm text-off-white placeholder:text-foreground-subtle focus:outline-none focus:border-coral/50 transition-colors"
+              className="w-full bg-white/5 border border-white/10 rounded-lg px-4 py-2.5 text-sm text-off-white placeholder:text-foreground-subtle focus-ring focus:border-[var(--color-border-focus)] transition-colors"
             />
             <datalist id="page-paths">
               {PAGE_PATHS.map((p) => (
@@ -204,7 +204,7 @@ export default function NewExperimentPage() {
             <select
               value={element}
               onChange={(e) => setElement(e.target.value as ABElementType)}
-              className="w-full bg-white/5 border border-white/10 rounded-lg px-4 py-2.5 text-sm text-off-white focus:outline-none focus:border-coral/50 transition-colors appearance-none"
+              className="w-full bg-white/5 border border-white/10 rounded-lg px-4 py-2.5 text-sm text-off-white focus-ring focus:border-[var(--color-border-focus)] transition-colors appearance-none"
             >
               {ELEMENT_TYPES.map((t) => (
                 <option key={t.value} value={t.value} className="bg-charcoal">
@@ -226,7 +226,7 @@ export default function NewExperimentPage() {
           onChange={(e) => setControlContent(e.target.value)}
           placeholder="Enter the current content for this element..."
           rows={3}
-          className="w-full bg-white/5 border border-white/10 rounded-lg px-4 py-2.5 text-sm text-off-white placeholder:text-foreground-subtle focus:outline-none focus:border-coral/50 transition-colors resize-none"
+          className="w-full bg-white/5 border border-white/10 rounded-lg px-4 py-2.5 text-sm text-off-white placeholder:text-foreground-subtle focus-ring focus:border-[var(--color-border-focus)] transition-colors resize-none"
         />
 
         <button
@@ -286,7 +286,7 @@ export default function NewExperimentPage() {
           </h2>
           <button
             onClick={addManualVariant}
-            className="text-xs text-coral hover:text-coral/80 transition-colors"
+            className="text-xs text-coral hover:text-[var(--color-fg)]/80 transition-colors"
           >
             + Add manually
           </button>
@@ -310,7 +310,7 @@ export default function NewExperimentPage() {
                     type="text"
                     value={variant.label}
                     onChange={(e) => updateVariant(idx, "label", e.target.value)}
-                    className="bg-transparent text-sm text-off-white font-medium focus:outline-none border-b border-transparent focus:border-coral/50 transition-colors"
+                    className="bg-transparent text-sm text-off-white font-medium focus:outline-none border-b border-transparent focus:border-[var(--color-border-focus)] transition-colors"
                   />
                   <button
                     onClick={() => removeVariant(idx)}
@@ -323,7 +323,7 @@ export default function NewExperimentPage() {
                   value={variant.content}
                   onChange={(e) => updateVariant(idx, "content", e.target.value)}
                   rows={2}
-                  className="w-full bg-white/5 border border-white/10 rounded-lg px-3 py-2 text-sm text-off-white placeholder:text-foreground-subtle focus:outline-none focus:border-coral/50 transition-colors resize-none"
+                  className="w-full bg-white/5 border border-white/10 rounded-lg px-3 py-2 text-sm text-off-white placeholder:text-foreground-subtle focus-ring focus:border-[var(--color-border-focus)] transition-colors resize-none"
                 />
               </div>
             ))}

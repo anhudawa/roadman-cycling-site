@@ -211,7 +211,7 @@ export function TemplatesManager({
                   <td className="px-4 py-3 text-right whitespace-nowrap">
                     <button
                       onClick={() => openEdit(t)}
-                      className="px-2 py-1 text-xs border border-white/10 text-foreground-muted rounded hover:border-coral/30 hover:text-coral mr-2"
+                      className="px-2 py-1 text-xs border border-white/10 text-foreground-muted rounded hover:border-[var(--color-border-strong)] hover:text-[var(--color-fg)] mr-2"
                     >
                       Edit
                     </button>
@@ -266,7 +266,7 @@ export function TemplatesManager({
                   type="text"
                   value={draft.name}
                   onChange={(e) => setDraft({ ...draft, name: e.target.value })}
-                  className="w-full px-3 py-2 text-sm bg-background-deep border border-white/10 text-off-white rounded focus:outline-none focus:border-coral/50"
+                  className="w-full px-3 py-2 text-sm bg-background-deep border border-white/10 text-off-white rounded focus-ring focus:border-[var(--color-border-focus)]"
                 />
               </div>
               <div>
@@ -278,7 +278,7 @@ export function TemplatesManager({
                   value={draft.slug}
                   placeholder="auto-generated from name if blank"
                   onChange={(e) => setDraft({ ...draft, slug: e.target.value })}
-                  className="w-full px-3 py-2 text-sm bg-background-deep border border-white/10 text-off-white rounded focus:outline-none focus:border-coral/50 font-mono"
+                  className="w-full px-3 py-2 text-sm bg-background-deep border border-white/10 text-off-white rounded focus-ring focus:border-[var(--color-border-focus)] font-mono"
                 />
               </div>
               <div>
@@ -289,7 +289,7 @@ export function TemplatesManager({
                   type="text"
                   value={draft.subject}
                   onChange={(e) => setDraft({ ...draft, subject: e.target.value })}
-                  className="w-full px-3 py-2 text-sm bg-background-deep border border-white/10 text-off-white rounded focus:outline-none focus:border-coral/50"
+                  className="w-full px-3 py-2 text-sm bg-background-deep border border-white/10 text-off-white rounded focus-ring focus:border-[var(--color-border-focus)]"
                 />
               </div>
               <div>
@@ -300,7 +300,7 @@ export function TemplatesManager({
                   value={draft.body}
                   onChange={(e) => setDraft({ ...draft, body: e.target.value })}
                   rows={14}
-                  className="w-full px-3 py-2 text-sm bg-background-deep border border-white/10 text-off-white rounded focus:outline-none focus:border-coral/50 font-mono resize-vertical"
+                  className="w-full px-3 py-2 text-sm bg-background-deep border border-white/10 text-off-white rounded focus-ring focus:border-[var(--color-border-focus)] font-mono resize-vertical"
                 />
                 <p className="text-[11px] text-foreground-subtle mt-1">
                   Placeholders: {"{{first_name}}"}, {"{{name}}"}, {"{{email}}"}, {"{{agent_name}}"}

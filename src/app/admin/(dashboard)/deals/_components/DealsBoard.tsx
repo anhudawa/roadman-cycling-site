@@ -205,7 +205,7 @@ export function DealsBoard({ initialStages, stats, defaultCurrency }: Props) {
                         setHoverStage(null);
                       }}
                       onClick={() => router.push(`/admin/deals/${deal.id}`)}
-                      className={`block w-full text-left p-3 rounded-lg border border-white/5 bg-white/[0.02] hover:border-coral/30 transition cursor-grab active:cursor-grabbing ${
+                      className={`block w-full text-left p-3 rounded-lg border border-white/5 bg-white/[0.02] hover:border-[var(--color-border-strong)] transition cursor-grab active:cursor-grabbing ${
                         dragging ? `opacity-40 scale-[0.98] ring-1 ${color.ring}` : ""
                       }`}
                     >
@@ -410,7 +410,7 @@ function NewDealModal({
             type="text"
             value={title}
             onChange={(e) => setTitle(e.target.value)}
-            className="w-full px-3 py-2 text-sm bg-background-deep border border-white/10 text-off-white rounded focus:outline-none focus:border-coral/50"
+            className="w-full px-3 py-2 text-sm bg-background-deep border border-white/10 text-off-white rounded focus-ring focus:border-[var(--color-border-focus)]"
           />
         </Field>
 
@@ -421,14 +421,14 @@ function NewDealModal({
               step="1"
               value={value}
               onChange={(e) => setValue(e.target.value)}
-              className="w-full px-3 py-2 text-sm bg-background-deep border border-white/10 text-off-white rounded focus:outline-none focus:border-coral/50"
+              className="w-full px-3 py-2 text-sm bg-background-deep border border-white/10 text-off-white rounded focus-ring focus:border-[var(--color-border-focus)]"
             />
           </Field>
           <Field label="Currency">
             <select
               value={currency}
               onChange={(e) => setCurrency(e.target.value)}
-              className="w-full px-3 py-2 text-sm bg-background-deep border border-white/10 text-off-white rounded focus:outline-none focus:border-coral/50"
+              className="w-full px-3 py-2 text-sm bg-background-deep border border-white/10 text-off-white rounded focus-ring focus:border-[var(--color-border-focus)]"
             >
               <option value="EUR">EUR</option>
               <option value="GBP">GBP</option>
@@ -442,7 +442,7 @@ function NewDealModal({
             <select
               value={stage}
               onChange={(e) => setStage(e.target.value as DealStage)}
-              className="w-full px-3 py-2 text-sm bg-background-deep border border-white/10 text-off-white rounded focus:outline-none focus:border-coral/50"
+              className="w-full px-3 py-2 text-sm bg-background-deep border border-white/10 text-off-white rounded focus-ring focus:border-[var(--color-border-focus)]"
             >
               {DEAL_STAGES.map((s) => (
                 <option key={s} value={s}>
@@ -455,7 +455,7 @@ function NewDealModal({
             <select
               value={owner}
               onChange={(e) => setOwner(e.target.value)}
-              className="w-full px-3 py-2 text-sm bg-background-deep border border-white/10 text-off-white rounded focus:outline-none focus:border-coral/50"
+              className="w-full px-3 py-2 text-sm bg-background-deep border border-white/10 text-off-white rounded focus-ring focus:border-[var(--color-border-focus)]"
             >
               {OWNERS.map((o) => (
                 <option key={o.value} value={o.value}>
@@ -472,7 +472,7 @@ function NewDealModal({
             placeholder="Search by name or email"
             value={contactQuery}
             onChange={(e) => searchContacts(e.target.value)}
-            className="w-full px-3 py-2 text-sm bg-background-deep border border-white/10 text-off-white rounded focus:outline-none focus:border-coral/50"
+            className="w-full px-3 py-2 text-sm bg-background-deep border border-white/10 text-off-white rounded focus-ring focus:border-[var(--color-border-focus)]"
           />
           {contactId && (
             <p className="text-[10px] text-coral mt-1">Linked: id #{contactId}</p>
@@ -508,7 +508,7 @@ function NewDealModal({
               type="date"
               value={closeDate}
               onChange={(e) => setCloseDate(e.target.value)}
-              className="w-full px-3 py-2 text-sm bg-background-deep border border-white/10 text-off-white rounded focus:outline-none focus:border-coral/50"
+              className="w-full px-3 py-2 text-sm bg-background-deep border border-white/10 text-off-white rounded focus-ring focus:border-[var(--color-border-focus)]"
             />
           </Field>
           <Field label="Source">
@@ -516,7 +516,7 @@ function NewDealModal({
               type="text"
               value={source}
               onChange={(e) => setSource(e.target.value)}
-              className="w-full px-3 py-2 text-sm bg-background-deep border border-white/10 text-off-white rounded focus:outline-none focus:border-coral/50"
+              className="w-full px-3 py-2 text-sm bg-background-deep border border-white/10 text-off-white rounded focus-ring focus:border-[var(--color-border-focus)]"
             />
           </Field>
         </div>

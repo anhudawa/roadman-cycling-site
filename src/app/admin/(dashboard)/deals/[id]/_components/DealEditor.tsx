@@ -160,7 +160,7 @@ export function DealEditor({ deal: initial }: { deal: DealData }) {
                 type="text"
                 value={title}
                 onChange={(e) => setTitle(e.target.value)}
-                className="w-full px-3 py-2 text-sm bg-background-deep border border-white/10 text-off-white rounded focus:outline-none focus:border-coral/50"
+                className="w-full px-3 py-2 text-sm bg-background-deep border border-white/10 text-off-white rounded focus-ring focus:border-[var(--color-border-focus)]"
               />
             </Field>
             <div className="grid grid-cols-3 gap-2 mt-3">
@@ -170,14 +170,14 @@ export function DealEditor({ deal: initial }: { deal: DealData }) {
                   step="1"
                   value={value}
                   onChange={(e) => setValue(e.target.value)}
-                  className="w-full px-3 py-2 text-sm bg-background-deep border border-white/10 text-off-white rounded focus:outline-none focus:border-coral/50"
+                  className="w-full px-3 py-2 text-sm bg-background-deep border border-white/10 text-off-white rounded focus-ring focus:border-[var(--color-border-focus)]"
                 />
               </Field>
               <Field label="Currency">
                 <select
                   value={currency}
                   onChange={(e) => setCurrency(e.target.value)}
-                  className="w-full px-3 py-2 text-sm bg-background-deep border border-white/10 text-off-white rounded focus:outline-none focus:border-coral/50"
+                  className="w-full px-3 py-2 text-sm bg-background-deep border border-white/10 text-off-white rounded focus-ring focus:border-[var(--color-border-focus)]"
                 >
                   <option value="EUR">EUR</option>
                   <option value="GBP">GBP</option>
@@ -190,7 +190,7 @@ export function DealEditor({ deal: initial }: { deal: DealData }) {
                 <select
                   value={stage}
                   onChange={(e) => setStage(e.target.value as DealStage)}
-                  className="w-full px-3 py-2 text-sm bg-background-deep border border-white/10 text-off-white rounded focus:outline-none focus:border-coral/50"
+                  className="w-full px-3 py-2 text-sm bg-background-deep border border-white/10 text-off-white rounded focus-ring focus:border-[var(--color-border-focus)]"
                 >
                   {DEAL_STAGES.map((s) => (
                     <option key={s} value={s}>
@@ -203,7 +203,7 @@ export function DealEditor({ deal: initial }: { deal: DealData }) {
                 <select
                   value={owner}
                   onChange={(e) => setOwner(e.target.value)}
-                  className="w-full px-3 py-2 text-sm bg-background-deep border border-white/10 text-off-white rounded focus:outline-none focus:border-coral/50"
+                  className="w-full px-3 py-2 text-sm bg-background-deep border border-white/10 text-off-white rounded focus-ring focus:border-[var(--color-border-focus)]"
                 >
                   {OWNERS.map((o) => (
                     <option key={o.value} value={o.value}>
@@ -219,7 +219,7 @@ export function DealEditor({ deal: initial }: { deal: DealData }) {
                   type="date"
                   value={closeDate}
                   onChange={(e) => setCloseDate(e.target.value)}
-                  className="w-full px-3 py-2 text-sm bg-background-deep border border-white/10 text-off-white rounded focus:outline-none focus:border-coral/50"
+                  className="w-full px-3 py-2 text-sm bg-background-deep border border-white/10 text-off-white rounded focus-ring focus:border-[var(--color-border-focus)]"
                 />
               </Field>
               <Field label="Source">
@@ -227,7 +227,7 @@ export function DealEditor({ deal: initial }: { deal: DealData }) {
                   type="text"
                   value={source}
                   onChange={(e) => setSource(e.target.value)}
-                  className="w-full px-3 py-2 text-sm bg-background-deep border border-white/10 text-off-white rounded focus:outline-none focus:border-coral/50"
+                  className="w-full px-3 py-2 text-sm bg-background-deep border border-white/10 text-off-white rounded focus-ring focus:border-[var(--color-border-focus)]"
                 />
               </Field>
             </div>
@@ -236,7 +236,7 @@ export function DealEditor({ deal: initial }: { deal: DealData }) {
                 value={notes}
                 onChange={(e) => setNotes(e.target.value)}
                 rows={6}
-                className="w-full px-3 py-2 text-sm bg-background-deep border border-white/10 text-off-white rounded focus:outline-none focus:border-coral/50 resize-none"
+                className="w-full px-3 py-2 text-sm bg-background-deep border border-white/10 text-off-white rounded focus-ring focus:border-[var(--color-border-focus)] resize-none"
               />
             </Field>
             {err && <p className="text-xs text-red-400 mt-2">{err}</p>}

@@ -94,7 +94,7 @@ export default function AdminLoginPage() {
               placeholder="Email"
               autoComplete="username"
               autoFocus
-              className="w-full px-4 py-3 bg-background-elevated border border-white/10 rounded-lg text-off-white placeholder:text-foreground-subtle focus:outline-none focus:border-coral focus:ring-1 focus:ring-coral/30 transition-colors"
+              className="w-full px-4 py-3 bg-background-elevated border border-white/10 rounded-lg text-off-white placeholder:text-foreground-subtle focus-ring focus:border-[var(--color-border-focus)] focus:ring-1 focus:ring-coral/30 transition-colors"
             />
           </div>
           <div>
@@ -108,7 +108,7 @@ export default function AdminLoginPage() {
               placeholder="Password"
               autoComplete="current-password"
               required
-              className="w-full px-4 py-3 bg-background-elevated border border-white/10 rounded-lg text-off-white placeholder:text-foreground-subtle focus:outline-none focus:border-coral focus:ring-1 focus:ring-coral/30 transition-colors"
+              className="w-full px-4 py-3 bg-background-elevated border border-white/10 rounded-lg text-off-white placeholder:text-foreground-subtle focus-ring focus:border-[var(--color-border-focus)] focus:ring-1 focus:ring-coral/30 transition-colors"
             />
           </div>
 

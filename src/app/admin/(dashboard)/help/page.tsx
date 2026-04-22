@@ -68,7 +68,7 @@ export default async function HelpPage() {
               <a
                 key={s.id}
                 href={`#${s.id}`}
-                className="block text-xs text-foreground-muted hover:text-coral transition-colors py-1"
+                className="block text-xs text-foreground-muted hover:text-[var(--color-fg)] transition-colors py-1"
               >
                 {s.title}
               </a>

@@ -370,7 +370,7 @@ export default async function ReportsPage() {
                   >
                     <Link
                       href={`/admin/deals/${d.id}`}
-                      className="text-sm text-off-white hover:text-coral truncate"
+                      className="text-sm text-off-white hover:text-[var(--color-fg)] truncate"
                     >
                       {d.title}
                     </Link>

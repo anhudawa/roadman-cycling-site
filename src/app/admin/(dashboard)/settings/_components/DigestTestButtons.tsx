@@ -53,7 +53,7 @@ function TestButton({
         type="button"
         onClick={send}
         disabled={status === "sending"}
-        className="text-xs uppercase tracking-wider px-3 py-1.5 rounded border border-white/10 text-foreground-muted hover:text-coral hover:border-coral/40 transition-colors disabled:opacity-50"
+        className="text-xs uppercase tracking-wider px-3 py-1.5 rounded border border-white/10 text-foreground-muted hover:text-[var(--color-fg)] hover:border-[var(--color-border-strong)] transition-colors disabled:opacity-50"
       >
         {btnLabel}
       </button>

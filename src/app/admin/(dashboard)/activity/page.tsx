@@ -204,7 +204,7 @@ export default async function ActivityPage({
                               <span className="text-foreground-subtle">·</span>
                               <Link
                                 href={`/admin/contacts/${r.contactId}`}
-                                className="text-off-white hover:text-coral truncate"
+                                className="text-off-white hover:text-[var(--color-fg)] truncate"
                               >
                                 {r.contactName ?? r.contactEmail}
                               </Link>
@@ -240,7 +240,7 @@ export default async function ActivityPage({
           {hasPrev ? (
             <Link
               href={buildPageUrl(Math.max(offset - PAGE_SIZE, 0))}
-              className="px-3 py-1.5 rounded border border-white/10 hover:border-coral/40 hover:text-coral"
+              className="px-3 py-1.5 rounded border border-white/10 hover:border-[var(--color-border-strong)] hover:text-[var(--color-fg)]"
             >
               ← Prev
             </Link>
@@ -252,7 +252,7 @@ export default async function ActivityPage({
           {hasNext ? (
             <Link
               href={buildPageUrl(offset + PAGE_SIZE)}
-              className="px-3 py-1.5 rounded border border-white/10 hover:border-coral/40 hover:text-coral"
+              className="px-3 py-1.5 rounded border border-white/10 hover:border-[var(--color-border-strong)] hover:text-[var(--color-fg)]"
             >
               Next →
             </Link>
