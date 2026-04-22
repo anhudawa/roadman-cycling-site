@@ -48,6 +48,8 @@ if (positional.length === 0) {
   process.exit(1);
 }
 
+async function main() {
+
 const pdfPath = resolve(positional[0]);
 if (!existsSync(pdfPath)) {
   console.error(`✗ File not found: ${pdfPath}`);
@@ -221,6 +223,8 @@ if (flags.has("--interpret")) {
     console.log(`Interpretation saved to ${interpPath}`);
   }
 }
+
+main();
 
 function pad(s: string, n: number): string {
   if (s.length >= n) return s.slice(0, n - 1) + " ";

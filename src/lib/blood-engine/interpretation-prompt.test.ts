@@ -13,7 +13,7 @@ import {
  * ranges table DO.
  */
 describe("blood-engine/interpretation-prompt", () => {
-  it("has a semver-ish version string", () => {
+  it("has a versioned date string", () => {
     expect(PROMPT_VERSION).toMatch(/^v\d+-\d{4}-\d{2}-\d{2}$/);
   });
 

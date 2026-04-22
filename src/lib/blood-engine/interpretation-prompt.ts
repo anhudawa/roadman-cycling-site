@@ -13,7 +13,7 @@
 import { BLOOD_ENGINE_DISCLAIMER } from "../../../content/blood-engine/disclaimer";
 import { MARKERS } from "./markers";
 
-export const PROMPT_VERSION = "v1-2026-04-14";
+export const PROMPT_VERSION = "v2-2026-04-22";
 
 const RANGES_TABLE = MARKERS.map((m) => {
   const mr = m.optimal.m;
@@ -37,7 +37,7 @@ ${RANGES_TABLE}
 
 ## INTERPRETATION RULES (these encode expert knowledge — apply rigorously)
 
-1. Ferritin must always be paired with hs-CRP. Inflammation elevates ferritin — a "normal" ferritin with elevated CRP can mask true iron deficiency. Flag this pattern as "Iron deficiency masked by inflammation" if ferritin is mid-range and CRP is >1.0.
+1. Ferritin must always be paired with hs-CRP. Inflammation elevates ferritin — a "normal" ferritin with elevated CRP can mask true iron deficiency. Flag as "Iron deficiency masked by inflammation" ONLY if ferritin is below 80 ng/mL OR ferritin is 80–100 ng/mL AND CRP is >2.0 mg/L. If ferritin is >100 ng/mL, do NOT flag iron masking regardless of CRP — the iron stores are genuinely adequate even after accounting for inflammatory elevation. Elevated CRP with ferritin >100 means the inflammation is real but the iron is fine.
 
 2. Low TSH + low Free T3 + low testosterone = probable under-fuelling / RED-S signature. Flag as "Under-fuelling signature" — masters athletes eating like office workers while training 10+ hours/week.
 

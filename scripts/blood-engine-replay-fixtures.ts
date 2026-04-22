@@ -38,89 +38,92 @@ if (mdPath) {
   mkdirSync(dirname(mdPath), { recursive: true });
 }
 
-const mdSections: string[] = [];
-
-if (!process.env.ANTHROPIC_API_KEY) {
-  console.error("ANTHROPIC_API_KEY is required");
-  process.exit(1);
-}
-
-const fixtures = onlyId ? FIXTURES.filter((f) => f.id === onlyId) : FIXTURES;
-if (fixtures.length === 0) {
-  console.error(`No fixtures matched --only=${onlyId}`);
-  process.exit(1);
-}
-
-console.log(`\nReplaying ${fixtures.length} fixture(s) against prompt ${PROMPT_VERSION}\n`);
-
-let passed = 0;
-let failed = 0;
-
-for (const fixture of fixtures) {
-  process.stdout.write(`▸ ${fixture.id} — ${fixture.label}\n`);
-  process.stdout.write(`  ${fixture.scenario}\n`);
-
-  let result;
-  try {
-    result = await runInterpretation(fixture.context, fixture.results);
-  } catch (err) {
-    failed++;
-    console.error(`  ✗ THROWN: ${err instanceof Error ? err.message : err}\n`);
-    continue;
+async function main(): Promise<number> {
+  if (!process.env.ANTHROPIC_API_KEY) {
+    console.error("ANTHROPIC_API_KEY is required");
+    return 1;
   }
 
-  const check = checkFixture(fixture, result.interpretation);
-
-  if (saveDir) {
-    writeFileSync(
-      join(saveDir, `${fixture.id}.json`),
-      JSON.stringify(
-        {
-          fixture: { id: fixture.id, label: fixture.label, scenario: fixture.scenario },
-          input: { context: fixture.context, results: fixture.results },
-          interpretation: result.interpretation,
-          check,
-        },
-        null,
-        2
-      )
-    );
+  const fixtures = onlyId ? FIXTURES.filter((f) => f.id === onlyId) : FIXTURES;
+  if (fixtures.length === 0) {
+    console.error(`No fixtures matched --only=${onlyId}`);
+    return 1;
   }
 
-  if (check.passed) {
-    passed++;
-    console.log(`  ✓ PASS — overall: ${result.interpretation.overall_status}`);
-  } else {
-    failed++;
-    console.log(`  ✗ FAIL — overall: ${result.interpretation.overall_status}`);
-    for (const f of check.failures) console.log(`     • ${f}`);
+  console.log(`\nReplaying ${fixtures.length} fixture(s) against prompt ${PROMPT_VERSION}\n`);
+
+  const mdSections: string[] = [];
+  let passed = 0;
+  let failed = 0;
+
+  for (const fixture of fixtures) {
+    process.stdout.write(`▸ ${fixture.id} — ${fixture.label}\n`);
+    process.stdout.write(`  ${fixture.scenario}\n`);
+
+    let result;
+    try {
+      result = await runInterpretation(fixture.context, fixture.results);
+    } catch (err) {
+      failed++;
+      console.error(`  ✗ THROWN: ${err instanceof Error ? err.message : err}\n`);
+      continue;
+    }
+
+    const check = checkFixture(fixture, result.interpretation);
+
+    if (saveDir) {
+      writeFileSync(
+        join(saveDir, `${fixture.id}.json`),
+        JSON.stringify(
+          {
+            fixture: { id: fixture.id, label: fixture.label, scenario: fixture.scenario },
+            input: { context: fixture.context, results: fixture.results },
+            interpretation: result.interpretation,
+            check,
+          },
+          null,
+          2
+        )
+      );
+    }
+
+    if (check.passed) {
+      passed++;
+      console.log(`  ✓ PASS — overall: ${result.interpretation.overall_status}`);
+    } else {
+      failed++;
+      console.log(`  ✗ FAIL — overall: ${result.interpretation.overall_status}`);
+      for (const f of check.failures) console.log(`     • ${f}`);
+    }
+    for (const w of check.warnings) console.log(`     ! ${w}`);
+    console.log();
+
+    if (mdPath) {
+      mdSections.push(renderFixtureMd(fixture, result.interpretation, check));
+    }
   }
-  for (const w of check.warnings) console.log(`     ! ${w}`);
-  console.log();
 
   if (mdPath) {
-    mdSections.push(renderFixtureMd(fixture, result.interpretation, check));
+    const header = [
+      `# Blood Engine prompt review`,
+      ``,
+      `Prompt version: **${PROMPT_VERSION}**  `,
+      `Generated: ${new Date().toISOString()}  `,
+      `Fixtures run: ${fixtures.length}`,
+      ``,
+      `---`,
+      ``,
+    ].join("\n");
+    writeFileSync(mdPath, header + mdSections.join("\n\n---\n\n") + "\n");
+    console.log(`Markdown review pack written to ${mdPath}`);
   }
+
+  console.log(`\nResult: ${passed} passed, ${failed} failed (${fixtures.length} total)`);
+  if (saveDir) console.log(`Outputs saved to ${saveDir}/`);
+  return failed === 0 ? 0 : 1;
 }
 
-if (mdPath) {
-  const header = [
-    `# Blood Engine prompt review`,
-    ``,
-    `Prompt version: **${PROMPT_VERSION}**  `,
-    `Generated: ${new Date().toISOString()}  `,
-    `Fixtures run: ${fixtures.length}`,
-    ``,
-    `---`,
-    ``,
-  ].join("\n");
-  writeFileSync(mdPath, header + mdSections.join("\n\n---\n\n") + "\n");
-  console.log(`Markdown review pack written to ${mdPath}`);
-}
-
-console.log(`\nResult: ${passed} passed, ${failed} failed (${fixtures.length} total)`);
-if (saveDir) console.log(`Outputs saved to ${saveDir}/`);
-process.exit(failed === 0 ? 0 : 1);
+main().then((code) => process.exit(code));
 
 // ── Markdown rendering ────────────────────────────────────────────────────
 
