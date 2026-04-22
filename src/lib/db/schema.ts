@@ -922,6 +922,8 @@ export const diagnosticSubmissions = pgTable(
     userAgent: text("user_agent"),
     referrer: text("referrer"),
     beehiivSubscriberId: text("beehiiv_subscriber_id"),
+    /** 1 on first submission for an email, 2 on second, etc. See §17. */
+    retakeNumber: integer("retake_number").notNull().default(1),
     createdAt: timestamp("created_at", { withTimezone: true }).notNull().defaultNow(),
     updatedAt: timestamp("updated_at", { withTimezone: true }).notNull().defaultNow(),
   },

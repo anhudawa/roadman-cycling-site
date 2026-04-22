@@ -45,6 +45,8 @@ export interface InsertSubmissionInput {
   utm?: UtmFields;
   userAgent?: string | null;
   referrer?: string | null;
+  /** 1 on first submission for this email, 2 on second, etc. */
+  retakeNumber: number;
 }
 
 export interface StoredSubmission {
@@ -59,6 +61,7 @@ export interface StoredSubmission {
   generationSource: "llm" | "fallback";
   createdAt: Date;
   answers: Answers;
+  retakeNumber: number;
 }
 
 function rowToSubmission(
@@ -76,7 +79,23 @@ function rowToSubmission(
     generationSource: row.generationSource as "llm" | "fallback",
     createdAt: row.createdAt,
     answers: row.answers as unknown as Answers,
+    retakeNumber: row.retakeNumber,
   };
+}
+
+/**
+ * Counts prior submissions for the given email so the caller can
+ * stamp the retake_number. Normalises the email the same way
+ * normaliseEmail does (lowercase + trim) so a mix of "Anthony@..." and
+ * "anthony@..." submissions are recognised as the same person.
+ */
+export async function countPriorSubmissions(email: string): Promise<number> {
+  const normalised = email.trim().toLowerCase();
+  const [row] = await db
+    .select({ cnt: sql<number>`count(*)` })
+    .from(diagnosticSubmissions)
+    .where(eq(diagnosticSubmissions.email, normalised));
+  return Number(row?.cnt ?? 0);
 }
 
 export async function insertSubmission(
@@ -120,6 +139,7 @@ export async function insertSubmission(
           utmTerm: input.utm?.utmTerm ?? null,
           userAgent: input.userAgent ?? null,
           referrer: input.referrer ?? null,
+          retakeNumber: input.retakeNumber,
         })
         .returning();
       return rowToSubmission(row);

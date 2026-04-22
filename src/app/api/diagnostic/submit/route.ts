@@ -5,7 +5,11 @@ import { subscribeToBeehiiv } from "@/lib/integrations/beehiiv";
 import { normaliseEmail, clampString, LIMITS } from "@/lib/validation";
 import { scoreDiagnostic } from "@/lib/diagnostic/scoring";
 import { generateBreakdown } from "@/lib/diagnostic/generator";
-import { insertSubmission, attachBeehiivId } from "@/lib/diagnostic/store";
+import {
+  attachBeehiivId,
+  countPriorSubmissions,
+  insertSubmission,
+} from "@/lib/diagnostic/store";
 import { parseAnswers, parseUtm } from "@/lib/diagnostic/parse";
 import { PROFILE_LABELS } from "@/lib/diagnostic/profiles";
 import { sendDiagnosisConfirmation } from "@/lib/diagnostic/email";
@@ -102,6 +106,16 @@ export async function POST(request: Request) {
     );
   }
 
+  // Retake detection per §17. First submission for this email is
+  // retake_number = 1, second is 2, etc. Counted before insert so we
+  // have the right number to store + tag Beehiiv with.
+  let retakeNumber = 1;
+  try {
+    retakeNumber = (await countPriorSubmissions(email)) + 1;
+  } catch (err) {
+    console.error("[Diagnostic] countPriorSubmissions failed:", err);
+  }
+
   let submission;
   try {
     submission = await insertSubmission({
@@ -112,6 +126,7 @@ export async function POST(request: Request) {
       utm,
       userAgent,
       referrer,
+      retakeNumber,
     });
   } catch (err) {
     console.error("[Diagnostic] insertSubmission failed:", err);
@@ -157,6 +172,7 @@ export async function POST(request: Request) {
         "plateau-diagnostic",
         `profile-${scoring.primary}`,
         ...(scoring.severeMultiSystem ? ["multi-system"] : []),
+        ...(retakeNumber > 1 ? ["retake", `retake-${retakeNumber}`] : []),
       ],
       sendWelcomeEmail: false,
       customFields: {

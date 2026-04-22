@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { Container, Footer, Header, Section } from "@/components/layout";
+import { ScrollReveal } from "@/components/ui";
 import { getSubmissionBySlug } from "@/lib/diagnostic/store";
 import { PROFILE_LABELS, CLOSE_TO_BREAKTHROUGH } from "@/lib/diagnostic/profiles";
 import { resolveCta } from "@/lib/diagnostic/config";
@@ -89,78 +90,89 @@ export default async function DiagnosticResultsPage({
         {/* ── Hero diagnosis ─────────────────────────── */}
         <Section background="charcoal" grain className="pt-32 pb-12">
           <Container width="narrow">
-            <p className="text-coral font-heading text-xs tracking-widest mb-4">
-              YOUR DIAGNOSIS · {profileLabel.toUpperCase()}
-            </p>
-            <h1
-              className="font-heading text-off-white mb-6"
-              style={{ fontSize: "var(--text-hero)" }}
-            >
-              {breakdown.headline}
-            </h1>
-            <p className="text-off-white/90 text-xl leading-relaxed">
-              {breakdown.diagnosis}
-            </p>
-            {submission.severeMultiSystem && (
-              <div className="mt-8 rounded-md bg-coral/10 border border-coral/30 p-4 text-sm text-coral">
-                <strong className="font-semibold">
-                  One note before you read on.
-                </strong>{" "}
-                Your answers lit up more than one profile meaningfully.
-                That&rsquo;s rare, and it means I&rsquo;d rather talk than
-                have you self-diagnose off a sales page. Book the call at the
-                bottom.
-              </div>
-            )}
+            <ScrollReveal direction="up" eager>
+              <p className="text-coral font-heading text-xs tracking-widest mb-4">
+                YOUR DIAGNOSIS · {profileLabel.toUpperCase()}
+              </p>
+              <h1
+                className="font-heading text-off-white mb-6"
+                style={{ fontSize: "var(--text-hero)" }}
+              >
+                {breakdown.headline}
+              </h1>
+              <p className="text-off-white/90 text-xl leading-relaxed">
+                {breakdown.diagnosis}
+              </p>
+              {submission.severeMultiSystem && (
+                <div className="mt-8 rounded-md bg-coral/10 border border-coral/30 p-4 text-sm text-coral">
+                  <strong className="font-semibold">
+                    One note before you read on.
+                  </strong>{" "}
+                  Your answers lit up more than one profile meaningfully.
+                  That&rsquo;s rare, and it means I&rsquo;d rather talk than
+                  have you self-diagnose off a sales page. Book the call at
+                  the bottom.
+                </div>
+              )}
+            </ScrollReveal>
           </Container>
         </Section>
 
         {/* ── Why this is happening ──────────────────── */}
         <Section background="deep-purple" grain>
           <Container width="narrow">
-            <h2 className="font-heading text-off-white text-2xl md:text-3xl mb-6">
-              WHY THIS IS HAPPENING
-            </h2>
-            <div className="prose-roadman text-off-white/90 space-y-4">
-              {breakdown.whyThisIsHappening.split("\n\n").map((p, i) => (
-                <p key={i} className="leading-relaxed">
-                  {p}
-                </p>
-              ))}
-            </div>
+            <ScrollReveal direction="up">
+              <h2 className="font-heading text-off-white text-2xl md:text-3xl mb-6">
+                WHY THIS IS HAPPENING
+              </h2>
+              <div className="prose-roadman text-off-white/90 space-y-4">
+                {breakdown.whyThisIsHappening.split("\n\n").map((p, i) => (
+                  <p key={i} className="leading-relaxed">
+                    {p}
+                  </p>
+                ))}
+              </div>
+            </ScrollReveal>
 
-            <h3 className="font-heading text-off-white text-xl md:text-2xl mt-12 mb-4">
-              WHAT IT&rsquo;S ACTUALLY COSTING YOU
-            </h3>
-            <p className="text-off-white/90 leading-relaxed">
-              {breakdown.whatItsCosting}
-            </p>
+            <ScrollReveal direction="up" delay={0.15}>
+              <h3 className="font-heading text-off-white text-xl md:text-2xl mt-12 mb-4">
+                WHAT IT&rsquo;S ACTUALLY COSTING YOU
+              </h3>
+              <p className="text-off-white/90 leading-relaxed">
+                {breakdown.whatItsCosting}
+              </p>
+            </ScrollReveal>
           </Container>
         </Section>
 
         {/* ── The fix ────────────────────────────────── */}
         <Section background="charcoal">
           <Container width="narrow">
-            <h2 className="font-heading text-off-white text-2xl md:text-3xl mb-8 text-center">
-              THE FIX
-            </h2>
-            <ol className="space-y-6">
-              {breakdown.fix.map((step) => (
-                <li
-                  key={step.step}
-                  className="bg-background-elevated rounded-xl border border-white/5 p-6 flex gap-4"
-                >
-                  <div className="font-heading text-3xl text-coral shrink-0 w-10">
-                    {step.step}
-                  </div>
-                  <div>
-                    <p className="font-heading text-lg text-off-white mb-2">
-                      {step.title}
-                    </p>
-                    <p className="text-foreground-muted leading-relaxed">
-                      {step.detail}
-                    </p>
-                  </div>
+            <ScrollReveal direction="up">
+              <h2 className="font-heading text-off-white text-2xl md:text-3xl mb-8 text-center">
+                THE FIX
+              </h2>
+            </ScrollReveal>
+            {/* Semantic ol for AT users; each list item animates in
+                staggered so the three-step structure reads visually. */}
+            <ol className="space-y-6 list-none p-0">
+              {breakdown.fix.map((step, i) => (
+                <li key={step.step}>
+                  <ScrollReveal direction="up" delay={i * 0.1}>
+                    <div className="bg-background-elevated rounded-xl border border-white/5 p-6 flex gap-4">
+                      <div className="font-heading text-3xl text-coral shrink-0 w-10">
+                        {step.step}
+                      </div>
+                      <div>
+                        <p className="font-heading text-lg text-off-white mb-2">
+                          {step.title}
+                        </p>
+                        <p className="text-foreground-muted leading-relaxed">
+                          {step.detail}
+                        </p>
+                      </div>
+                    </div>
+                  </ScrollReveal>
                 </li>
               ))}
             </ol>
@@ -170,12 +182,14 @@ export default async function DiagnosticResultsPage({
         {/* ── Why alone ──────────────────────────────── */}
         <Section background="deep-purple" grain>
           <Container width="narrow">
-            <h2 className="font-heading text-off-white text-2xl md:text-3xl mb-6">
-              WHY MOST RIDERS CAN&rsquo;T DO THIS ALONE
-            </h2>
-            <p className="text-off-white/90 leading-relaxed">
-              {breakdown.whyAlone}
-            </p>
+            <ScrollReveal direction="up">
+              <h2 className="font-heading text-off-white text-2xl md:text-3xl mb-6">
+                WHY MOST RIDERS CAN&rsquo;T DO THIS ALONE
+              </h2>
+              <p className="text-off-white/90 leading-relaxed">
+                {breakdown.whyAlone}
+              </p>
+            </ScrollReveal>
           </Container>
         </Section>
 

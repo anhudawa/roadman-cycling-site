@@ -42,6 +42,7 @@ export default async function AdminDiagnosticPage() {
       generationSource: diagnosticSubmissions.generationSource,
       severeMultiSystem: diagnosticSubmissions.severeMultiSystem,
       closeToBreakthrough: diagnosticSubmissions.closeToBreakthrough,
+      retakeNumber: diagnosticSubmissions.retakeNumber,
       utmCampaign: diagnosticSubmissions.utmCampaign,
       utmContent: diagnosticSubmissions.utmContent,
       createdAt: diagnosticSubmissions.createdAt,
@@ -185,6 +186,9 @@ export default async function AdminDiagnosticPage() {
                         )}
                         {r.closeToBreakthrough && (
                           <Badge variant="info">close</Badge>
+                        )}
+                        {r.retakeNumber > 1 && (
+                          <Badge variant="info">retake #{r.retakeNumber}</Badge>
                         )}
                       </div>
                     </td>

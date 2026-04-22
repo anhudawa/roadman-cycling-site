@@ -33,6 +33,16 @@ const marqueeGuests = [
 ];
 
 const tools = [
+  // The Masters Plateau Diagnostic sits in the feature slot (2-col
+  // span on sm+). It's the highest-intent action on the site for
+  // 40+ riders — higher conversion to NDY than any of the other
+  // calculators, so it earns the prime position.
+  {
+    title: "Plateau Diagnostic",
+    description:
+      "Stuck on the same FTP for a year? Twelve questions. Four minutes. One specific answer.",
+    href: "/plateau",
+  },
   {
     title: "FTP Zone Calculator",
     description: "Know your zones. Train with precision.",

@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Suspense } from "react";
 import { Container, Footer, Header, Section } from "@/components/layout";
+import { ScrollReveal } from "@/components/ui";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { DiagnosticFlow } from "@/components/features/diagnostic/DiagnosticFlow";
 import { MetaPixel } from "@/components/features/diagnostic/MetaPixel";
@@ -112,27 +113,29 @@ export default function PlateauPage() {
         {/* ── Hero ─────────────────────────────────────── */}
         <Section background="charcoal" grain className="pt-32 pb-12">
           <Container width="narrow" className="text-center">
-            <p className="text-coral font-heading text-sm tracking-widest mb-4">
-              THE MASTERS PLATEAU DIAGNOSTIC
-            </p>
-            <h1
-              className="font-heading text-off-white mb-6"
-              style={{ fontSize: "var(--text-hero)" }}
-            >
-              IF YOU&rsquo;RE OVER 40 AND YOUR FTP HASN&rsquo;T MOVED IN 18
-              MONTHS, IT&rsquo;S ALMOST ALWAYS ONE OF FOUR THINGS.
-            </h1>
-            <p className="text-foreground-muted text-xl leading-relaxed mb-8">
-              Twelve questions. Four minutes. A specific answer for why your
-              progress has stalled &mdash; and the exact fix, written for
-              riders who train 6 to 12 hours a week around a real life.
-            </p>
-            <a
-              href="#start"
-              className="inline-block font-heading tracking-wider bg-coral hover:bg-coral-hover text-off-white px-10 py-4 rounded-md transition-colors cursor-pointer text-lg"
-            >
-              START THE DIAGNOSTIC
-            </a>
+            <ScrollReveal direction="up" eager>
+              <p className="text-coral font-heading text-sm tracking-widest mb-4">
+                THE MASTERS PLATEAU DIAGNOSTIC
+              </p>
+              <h1
+                className="font-heading text-off-white mb-6"
+                style={{ fontSize: "var(--text-hero)" }}
+              >
+                IF YOU&rsquo;RE OVER 40 AND YOUR FTP HASN&rsquo;T MOVED IN 18
+                MONTHS, IT&rsquo;S ALMOST ALWAYS ONE OF FOUR THINGS.
+              </h1>
+              <p className="text-foreground-muted text-xl leading-relaxed mb-8">
+                Twelve questions. Four minutes. A specific answer for why your
+                progress has stalled &mdash; and the exact fix, written for
+                riders who train 6 to 12 hours a week around a real life.
+              </p>
+              <a
+                href="#start"
+                className="inline-block font-heading tracking-wider bg-coral hover:bg-coral-hover text-off-white px-10 py-4 rounded-md transition-colors cursor-pointer text-lg"
+              >
+                START THE DIAGNOSTIC
+              </a>
+            </ScrollReveal>
           </Container>
         </Section>
 
@@ -140,12 +143,13 @@ export default function PlateauPage() {
         <Section background="deep-purple" className="py-10">
           <Container width="wide">
             <ul className="grid md:grid-cols-3 gap-6 text-foreground-muted text-sm">
-              {SOCIAL_PROOF.map((line) => (
-                <li
-                  key={line}
-                  className="border-l-2 border-coral/40 pl-4 leading-relaxed"
-                >
-                  {line}
+              {SOCIAL_PROOF.map((line, i) => (
+                <li key={line}>
+                  <ScrollReveal direction="up" delay={i * 0.1}>
+                    <div className="border-l-2 border-coral/40 pl-4 leading-relaxed">
+                      {line}
+                    </div>
+                  </ScrollReveal>
                 </li>
               ))}
             </ul>
@@ -155,25 +159,26 @@ export default function PlateauPage() {
         {/* ── What you'll get ─────────────────────────── */}
         <Section background="charcoal">
           <Container width="narrow">
-            <h2
-              className="font-heading text-off-white text-center mb-12"
-              style={{ fontSize: "var(--text-section)" }}
-            >
-              WHAT YOU&rsquo;LL GET
-            </h2>
+            <ScrollReveal direction="up">
+              <h2
+                className="font-heading text-off-white text-center mb-12"
+                style={{ fontSize: "var(--text-section)" }}
+              >
+                WHAT YOU&rsquo;LL GET
+              </h2>
+            </ScrollReveal>
             <div className="grid md:grid-cols-3 gap-6">
-              {CARDS.map((card) => (
-                <div
-                  key={card.title}
-                  className="bg-background-elevated rounded-xl border border-white/5 p-6"
-                >
-                  <h3 className="font-heading text-xl text-off-white mb-3">
-                    {card.title.toUpperCase()}
-                  </h3>
-                  <p className="text-foreground-muted text-sm leading-relaxed">
-                    {card.body}
-                  </p>
-                </div>
+              {CARDS.map((card, i) => (
+                <ScrollReveal key={card.title} direction="up" delay={i * 0.1}>
+                  <div className="bg-background-elevated rounded-xl border border-white/5 p-6 h-full">
+                    <h3 className="font-heading text-xl text-off-white mb-3">
+                      {card.title.toUpperCase()}
+                    </h3>
+                    <p className="text-foreground-muted text-sm leading-relaxed">
+                      {card.body}
+                    </p>
+                  </div>
+                </ScrollReveal>
               ))}
             </div>
           </Container>
