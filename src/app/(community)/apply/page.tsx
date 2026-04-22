@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Header, Footer, Section, Container } from "@/components/layout";
 import { Card, ScrollReveal } from "@/components/ui";
+import { JsonLd } from "@/components/seo/JsonLd";
 import { CohortApplicationForm } from "./CohortApplicationForm";
 import { CountdownTimer } from "./CountdownTimer";
 import {
@@ -132,6 +133,54 @@ export default function ApplyPage() {
   const isWaitlist = cohortState.phase === "waitlist";
   return (
     <>
+      <JsonLd
+        data={{
+          "@context": "https://schema.org",
+          "@type": "Service",
+          name: "Not Done Yet — Personalised Cycling Coaching",
+          description: "1:1 personalised cycling coaching across five pillars: training, nutrition, strength, recovery, and accountability. $195/month with 7-day free trial.",
+          serviceType: "Online Cycling Coaching",
+          provider: {
+            "@type": "Person",
+            name: "Anthony Walsh",
+            url: "https://roadmancycling.com/about",
+          },
+          offers: {
+            "@type": "Offer",
+            price: "195",
+            priceCurrency: "USD",
+            availability: "https://schema.org/InStock",
+          },
+          url: "https://roadmancycling.com/apply",
+          review: [
+            {
+              "@type": "Review",
+              author: { "@type": "Person", name: "Damien Maloney" },
+              reviewBody: "I was an average sportive rider who had plateaued. Roadman custom built a plan to achieve my goals. FTP went from 205w to 295w.",
+            },
+            {
+              "@type": "Review",
+              author: { "@type": "Person", name: "Daniel Stone" },
+              reviewBody: "The system took me from Cat 3 to Cat 1. The structured approach changed everything about how I train and race.",
+            },
+            {
+              "@type": "Review",
+              author: { "@type": "Person", name: "Chris O'Connor" },
+              reviewBody: "From 113kg to 97kg. The structured approach to training and nutrition changed everything.",
+            },
+          ],
+        }}
+      />
+      <JsonLd
+        data={{
+          "@context": "https://schema.org",
+          "@type": "BreadcrumbList",
+          itemListElement: [
+            { "@type": "ListItem", position: 1, name: "Home", item: "https://roadmancycling.com" },
+            { "@type": "ListItem", position: 2, name: "Apply", item: "https://roadmancycling.com/apply" },
+          ],
+        }}
+      />
       <Header />
 
       <main id="main-content">
