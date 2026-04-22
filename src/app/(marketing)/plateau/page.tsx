@@ -2,6 +2,9 @@ import type { Metadata } from "next";
 import { Suspense } from "react";
 import { Container, Footer, Header, Section } from "@/components/layout";
 import { ScrollReveal } from "@/components/ui";
+import { sql } from "drizzle-orm";
+import { db } from "@/lib/db";
+import { diagnosticSubmissions } from "@/lib/db/schema";
 import { JsonLd, FAQPageJsonLd } from "@/components/seo/JsonLd";
 import { DiagnosticFlow } from "@/components/features/diagnostic/DiagnosticFlow";
 import { MetaPixel } from "@/components/features/diagnostic/MetaPixel";
@@ -107,7 +110,32 @@ function DiagnosticSkeleton() {
   );
 }
 
-export default function PlateauPage() {
+/**
+ * Soft social-proof: how many riders have completed the diagnostic
+ * in the past week. Pulled live from Postgres on every revalidation
+ * (page is cached for 1h, see `revalidate` above) so it stays
+ * truthful but doesn't add a per-request DB hit.
+ *
+ * Returns null on a clean install (or any DB hiccup) so callers can
+ * render a static fallback line — never empty, never broken.
+ */
+async function recentSubmissionCount(): Promise<number | null> {
+  try {
+    const since = new Date(Date.now() - 7 * 24 * 60 * 60 * 1000);
+    const [row] = await db
+      .select({ cnt: sql<number>`count(*)` })
+      .from(diagnosticSubmissions)
+      .where(sql`${diagnosticSubmissions.createdAt} >= ${since}`);
+    const count = Number(row?.cnt ?? 0);
+    return count > 0 ? count : null;
+  } catch (err) {
+    console.error("[Plateau] recentSubmissionCount failed:", err);
+    return null;
+  }
+}
+
+export default async function PlateauPage() {
+  const recentCount = await recentSubmissionCount();
   return (
     <>
       <MetaPixel />
@@ -166,8 +194,10 @@ export default function PlateauPage() {
                 START THE DIAGNOSTIC
               </a>
               <p className="text-foreground-subtle text-xs mt-4">
-                No email needed to start &middot; 4 minutes &middot; Free &middot;
-                Built from 1M+ monthly podcast listeners
+                No email needed to start &middot; 4 minutes &middot; Free
+                {recentCount !== null && (
+                  <> &middot; {recentCount.toLocaleString()} cyclist{recentCount === 1 ? "" : "s"} took it this week</>
+                )}
               </p>
             </ScrollReveal>
           </Container>
@@ -322,6 +352,37 @@ export default function PlateauPage() {
                 </div>
               ))}
             </dl>
+          </Container>
+        </Section>
+
+        {/* ── Final CTA ───────────────────────────────── */}
+        {/* Anyone who scrolled this far is high-intent — give them
+            one more chance to start without a scroll-back to the
+            hero or the embedded form. */}
+        <Section background="deep-purple" grain className="py-16">
+          <Container width="narrow" className="text-center">
+            <ScrollReveal direction="up">
+              <h2
+                className="font-heading text-off-white mb-4"
+                style={{ fontSize: "var(--text-section)" }}
+              >
+                STILL HERE? ANSWER YOUR FIRST QUESTION.
+              </h2>
+              <p className="text-foreground-muted mb-8 max-w-md mx-auto">
+                Four minutes from now you&rsquo;ll have a specific answer
+                for why your FTP has stalled.
+              </p>
+              <a
+                href="#start"
+                data-cta="bottom"
+                className="inline-block font-heading tracking-wider bg-coral hover:bg-coral-hover text-off-white px-10 py-4 rounded-md transition-colors cursor-pointer text-lg shadow-lg shadow-coral/20"
+              >
+                START THE DIAGNOSTIC
+              </a>
+              <p className="text-foreground-subtle text-xs mt-4">
+                No email needed to start &middot; 4 minutes &middot; Free
+              </p>
+            </ScrollReveal>
           </Container>
         </Section>
       </main>
