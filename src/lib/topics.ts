@@ -11,13 +11,23 @@ export interface TopicHub {
   keywords: string[];
   posts: BlogPostMeta[];
   episodes: EpisodeMeta[];
+  tools: TopicTool[];
+  commercialPath: string;
+  relatedTopics: string[];
+  featuredPostSlugs: string[];
+}
+
+export interface TopicTool {
+  slug: string;
+  title: string;
+  href: string;
 }
 
 /**
  * Topic hubs — curated landing pages that group related content.
  * Each one targets a high-value keyword cluster.
  */
-const TOPIC_DEFINITIONS: Omit<TopicHub, "posts" | "episodes">[] = [
+const TOPIC_DEFINITIONS: Omit<TopicHub, "posts" | "episodes" | "tools" | "commercialPath" | "relatedTopics" | "featuredPostSlugs">[] = [
   {
     slug: "ftp-training",
     title: "FTP Training for Cyclists",
@@ -337,6 +347,135 @@ const TOPIC_POST_MAP: Record<string, string[]> = {
   ],
 };
 
+/** Cluster enrichment: tools, commercial path, related topics, featured posts */
+const TOPIC_ENRICHMENT: Record<string, {
+  tools: TopicTool[];
+  commercialPath: string;
+  relatedTopics: string[];
+  featuredPostSlugs: string[];
+}> = {
+  "ftp-training": {
+    tools: [
+      { slug: "ftp-zones", title: "FTP Zone Calculator", href: "/tools/ftp-zones" },
+    ],
+    commercialPath: "/coaching",
+    relatedTopics: ["cycling-training-plans", "cycling-coaching"],
+    featuredPostSlugs: [
+      "ftp-training-zones-cycling-complete-guide",
+      "how-to-improve-ftp-cycling",
+      "ftp-plateau-breakthrough",
+    ],
+  },
+  "cycling-nutrition": {
+    tools: [
+      { slug: "fuelling", title: "In-Ride Fuelling Calculator", href: "/tools/fuelling" },
+      { slug: "energy-availability", title: "Energy Availability Calculator", href: "/tools/energy-availability" },
+      { slug: "race-weight", title: "Race Weight Calculator", href: "/tools/race-weight" },
+    ],
+    commercialPath: "/coaching",
+    relatedTopics: ["cycling-weight-loss", "ftp-training"],
+    featuredPostSlugs: [
+      "cycling-weight-loss-fuel-for-the-work-required",
+      "cycling-in-ride-nutrition-guide",
+      "fasted-vs-fueled-cycling",
+    ],
+  },
+  "cycling-training-plans": {
+    tools: [
+      { slug: "ftp-zones", title: "FTP Zone Calculator", href: "/tools/ftp-zones" },
+    ],
+    commercialPath: "/plan",
+    relatedTopics: ["ftp-training", "cycling-coaching"],
+    featuredPostSlugs: [
+      "polarised-training-cycling-guide",
+      "how-to-structure-cycling-training-plan",
+      "zone-2-training-complete-guide",
+    ],
+  },
+  "cycling-recovery": {
+    tools: [],
+    commercialPath: "/coaching",
+    relatedTopics: ["cycling-strength-conditioning", "cycling-training-plans"],
+    featuredPostSlugs: [
+      "cycling-recovery-tips",
+      "cycling-sleep-performance-guide",
+      "cycling-overtraining-signs-guide",
+    ],
+  },
+  "cycling-strength-conditioning": {
+    tools: [],
+    commercialPath: "/strength-training",
+    relatedTopics: ["cycling-recovery", "ftp-training"],
+    featuredPostSlugs: [
+      "cycling-strength-training-guide",
+      "derek-teel-best-exercises-cyclists",
+      "new-study-confirms-heavy-strength-training-beats-more-miles-after-40",
+    ],
+  },
+  "cycling-weight-loss": {
+    tools: [
+      { slug: "race-weight", title: "Race Weight Calculator", href: "/tools/race-weight" },
+      { slug: "energy-availability", title: "Energy Availability Calculator", href: "/tools/energy-availability" },
+    ],
+    commercialPath: "/coaching",
+    relatedTopics: ["cycling-nutrition", "ftp-training"],
+    featuredPostSlugs: [
+      "cycling-weight-loss-fuel-for-the-work-required",
+      "alex-larson-body-composition-cyclists",
+      "cycling-power-to-weight-ratio-guide",
+    ],
+  },
+  "cycling-beginners": {
+    tools: [
+      { slug: "ftp-zones", title: "FTP Zone Calculator", href: "/tools/ftp-zones" },
+      { slug: "tyre-pressure", title: "Tyre Pressure Calculator", href: "/tools/tyre-pressure" },
+    ],
+    commercialPath: "/start-here",
+    relatedTopics: ["ftp-training", "cycling-training-plans"],
+    featuredPostSlugs: [
+      "how-to-get-faster-cycling",
+      "cycling-indoor-training-tips",
+      "wahoo-vs-garmin-cycling-computers",
+    ],
+  },
+  "triathlon-cycling": {
+    tools: [
+      { slug: "ftp-zones", title: "FTP Zone Calculator", href: "/tools/ftp-zones" },
+      { slug: "fuelling", title: "In-Ride Fuelling Calculator", href: "/tools/fuelling" },
+    ],
+    commercialPath: "/coaching/triathlon",
+    relatedTopics: ["cycling-nutrition", "cycling-training-plans"],
+    featuredPostSlugs: [
+      "bike-leg-of-triathlon-why-age-groupers-get-it-wrong",
+      "ironman-bike-training-plan-16-weeks",
+      "ftp-training-for-triathletes",
+    ],
+  },
+  "mountain-biking": {
+    tools: [
+      { slug: "shock-pressure", title: "MTB Setup Calculator", href: "/tools/shock-pressure" },
+      { slug: "tyre-pressure", title: "Tyre Pressure Calculator", href: "/tools/tyre-pressure" },
+    ],
+    commercialPath: "/coaching",
+    relatedTopics: ["cycling-beginners", "cycling-strength-conditioning"],
+    featuredPostSlugs: [
+      "mtb-suspension-setup-complete-guide",
+      "mtb-fork-setup-guide",
+      "best-mtb-trails-ireland",
+    ],
+  },
+  "cycling-coaching": {
+    tools: [],
+    commercialPath: "/apply",
+    relatedTopics: ["ftp-training", "cycling-training-plans"],
+    featuredPostSlugs: [
+      "is-a-cycling-coach-worth-it",
+      "cycling-coaching-results-before-and-after",
+      "not-done-yet-coaching-review",
+    ],
+  },
+};
+
 /** Keyword patterns for matching episodes to topics */
 const TOPIC_EPISODE_KEYWORDS: Record<string, RegExp> = {
   "ftp-training": /ftp|threshold|power|zones?|watts|watt\/kg/i,
@@ -373,7 +512,22 @@ export function getAllTopics(): TopicHub[] {
           .slice(0, 12)
       : [];
 
-    return { ...topic, posts, episodes };
+    const enrichment = TOPIC_ENRICHMENT[topic.slug] || {
+      tools: [],
+      commercialPath: "/coaching",
+      relatedTopics: [],
+      featuredPostSlugs: [],
+    };
+
+    return {
+      ...topic,
+      posts,
+      episodes,
+      tools: enrichment.tools,
+      commercialPath: enrichment.commercialPath,
+      relatedTopics: enrichment.relatedTopics,
+      featuredPostSlugs: enrichment.featuredPostSlugs,
+    };
   });
 }
 
