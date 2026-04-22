@@ -8,10 +8,11 @@ import {
   STAGE_COLORS as DEAL_STAGE_COLORS,
   formatCurrency,
 } from "@/lib/crm/deals";
+import { Card, CardBody } from "@/components/admin/ui";
 
 export const dynamic = "force-dynamic";
 
-function Card({
+function ReportCard({
   title,
   children,
 }: {
@@ -19,12 +20,14 @@ function Card({
   children: React.ReactNode;
 }) {
   return (
-    <div className="bg-background-elevated border border-white/5 rounded-xl p-6">
-      <h2 className="font-heading text-sm tracking-wider uppercase text-foreground-muted mb-4">
-        {title}
-      </h2>
-      {children}
-    </div>
+    <Card>
+      <CardBody>
+        <h2 className="font-body font-semibold text-[13px] text-[var(--color-fg)] mb-4">
+          {title}
+        </h2>
+        {children}
+      </CardBody>
+    </Card>
   );
 }
 
@@ -55,7 +58,7 @@ export default async function ReportsPage() {
 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
         {/* Pipeline funnel */}
-        <Card title="Pipeline Funnel">
+        <ReportCard title="Pipeline Funnel">
           <ul className="space-y-3">
             {funnel.map((row) => {
               const pct = Math.round((row.count / funnelMax) * 100);
@@ -85,10 +88,10 @@ export default async function ReportsPage() {
               );
             })}
           </ul>
-        </Card>
+        </ReportCard>
 
         {/* Applications per week */}
-        <Card title="Applications — Last 12 Weeks">
+        <ReportCard title="Applications — Last 12 Weeks">
           <div className="flex items-end gap-1.5 h-40">
             {weekly.map((w) => {
               const pct = Math.round((w.count / weeklyMax) * 100);
@@ -115,11 +118,11 @@ export default async function ReportsPage() {
             <span>{weekly[0]?.label}</span>
             <span>{weekly[weekly.length - 1]?.label}</span>
           </div>
-        </Card>
+        </ReportCard>
       </div>
 
       {/* Lead score distribution */}
-      <Card title="Lead Score Distribution">
+      <ReportCard title="Lead Score Distribution">
         {scoreTotal === 0 ? (
           <p className="text-sm text-foreground-subtle">
             No scores yet. Run the score-all cron or use Recompute on a contact.
@@ -146,10 +149,10 @@ export default async function ReportsPage() {
             })}
           </div>
         )}
-      </Card>
+      </ReportCard>
 
       {/* Owner breakdown */}
-      <Card title="Owner Breakdown">
+      <ReportCard title="Owner Breakdown">
         {owners.length === 0 ? (
           <p className="text-sm text-foreground-subtle">No data yet.</p>
         ) : (
@@ -206,11 +209,11 @@ export default async function ReportsPage() {
             </table>
           </div>
         )}
-      </Card>
+      </ReportCard>
 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
         {/* Email engagement */}
-        <Card title="Email Engagement (Last 30d)">
+        <ReportCard title="Email Engagement (Last 30d)">
           <div className="grid grid-cols-4 gap-3">
             {[
               { label: "Sent", value: email.sent, rate: null },
@@ -244,10 +247,10 @@ export default async function ReportsPage() {
               </div>
             ))}
           </div>
-        </Card>
+        </ReportCard>
 
         {/* Task throughput */}
-        <Card title="Task Throughput">
+        <ReportCard title="Task Throughput">
           {throughput.length === 0 ? (
             <p className="text-sm text-foreground-subtle">No tasks yet.</p>
           ) : (
@@ -272,7 +275,7 @@ export default async function ReportsPage() {
               ))}
             </ul>
           )}
-        </Card>
+        </ReportCard>
       </div>
 
       {/* Revenue */}
@@ -281,7 +284,7 @@ export default async function ReportsPage() {
           Revenue
         </h2>
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-          <Card title="Pipeline by Stage">
+          <ReportCard title="Pipeline by Stage">
             {deals.pipelineByStage.every((p) => p.count === 0) ? (
               <p className="text-sm text-foreground-subtle">No deals yet.</p>
             ) : (
@@ -307,9 +310,9 @@ export default async function ReportsPage() {
                 })}
               </ul>
             )}
-          </Card>
+          </ReportCard>
 
-          <Card title="Won Revenue — Last 90 Days">
+          <ReportCard title="Won Revenue — Last 90 Days">
             {(() => {
               const max = Math.max(
                 1,
@@ -345,20 +348,20 @@ export default async function ReportsPage() {
                 </div>
               );
             })()}
-          </Card>
+          </ReportCard>
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mt-6">
-          <Card title="Win Rate (Last 90d)">
+          <ReportCard title="Win Rate (Last 90d)">
             <p className="font-heading text-5xl text-off-white tracking-wider tabular-nums">
               {deals.winRate90d}%
             </p>
             <p className="text-xs text-foreground-subtle mt-2 uppercase tracking-widest">
               Won ÷ (Won + Lost) among deals closed in last 90d
             </p>
-          </Card>
+          </ReportCard>
 
-          <Card title="Top 5 Open Deals">
+          <ReportCard title="Top 5 Open Deals">
             {deals.topOpenDeals.length === 0 ? (
               <p className="text-sm text-foreground-subtle">No open deals.</p>
             ) : (
@@ -386,7 +389,7 @@ export default async function ReportsPage() {
                 ))}
               </ul>
             )}
-          </Card>
+          </ReportCard>
         </div>
       </div>
     </div>

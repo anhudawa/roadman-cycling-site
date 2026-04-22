@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import { useRouter } from "next/navigation";
+import { Card } from "@/components/admin/ui";
 
 interface Template {
   id: number;
@@ -165,7 +166,7 @@ export function TemplatesManager({
         </div>
       )}
 
-      <div className="bg-background-elevated border border-white/5 rounded-xl overflow-hidden">
+      <Card className="overflow-hidden">
         {templates.length === 0 ? (
           <div className="p-8 text-center text-sm text-foreground-subtle">
             No templates yet.
@@ -228,7 +229,7 @@ export function TemplatesManager({
             </tbody>
           </table>
         )}
-      </div>
+      </Card>
 
       {draft && (
         <div
