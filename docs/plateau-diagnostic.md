@@ -107,7 +107,23 @@ get through. Logs at `[Diagnostic/rate-limit]` show throttle activity.
 Adjust the constants in `src/lib/diagnostic/rate-limit.ts` if live
 traffic patterns justify it.
 
-## 9. Smoke test
+## 9. Health check + daily digest
+
+Two operational endpoints land alongside the funnel:
+
+- **`GET /api/diagnostic/health`** — public, returns `{ ok, checks }`
+  with per-dependency status (DB, Anthropic key, Resend key, Beehiiv,
+  Cal.com URL, Meta Pixel). 200 when the DB is reachable, 503 when
+  it isn't. Wire to your uptime monitor (Better Uptime / UptimeRobot)
+  with a `200` expectation.
+- **`GET /api/cron/diagnostic-digest`** — Vercel cron runs at 08:00
+  UTC daily. Sends a digest of the past 24h to
+  `anthony@roadmancycling.com`: total submissions, profile breakdown,
+  LLM vs fallback rate, top UTM sources, recent rows with admin
+  links. Skips silently on quiet days. Requires `CRON_SECRET` and
+  `RESEND_API_KEY`.
+
+## 10. Smoke test
 
 After deploy, walk through the flow manually once:
 
@@ -122,7 +138,7 @@ After deploy, walk through the flow manually once:
    - Submission shows up in Beehiiv with the right tags
    - In Meta Events Manager, a `Lead` event fires when the results page loads
 
-## 10. Rollback
+## 11. Rollback
 
 The diagnostic is isolated — removing it means:
 - Remove `/plateau` link from `src/components/layout/Footer.tsx`
