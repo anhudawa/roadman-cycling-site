@@ -16,6 +16,7 @@ import { RelatedPosts } from "@/components/features/blog/RelatedPosts";
 import { AuthorBio } from "@/components/features/blog/AuthorBio";
 import { RelatedContent } from "@/components/features/RelatedContent";
 import { InlineArticleCTA } from "@/components/features/conversion/InlineArticleCTA";
+import { StickyCoachingBar } from "@/components/features/conversion/StickyCoachingBar";
 import { EmailCapture } from "@/components/features/conversion/EmailCapture";
 import { TableOfContents } from "@/components/features/blog/TableOfContents";
 import { AnswerCapsule } from "@/components/ui/AnswerCapsule";
@@ -500,6 +501,10 @@ export default async function BlogPostPage({
           </Container>
         </Section>
       </main>
+
+      {(post.pillar === "coaching" || post.pillar === "nutrition") && (
+        <StickyCoachingBar source={slug} />
+      )}
 
       <Footer />
     </>

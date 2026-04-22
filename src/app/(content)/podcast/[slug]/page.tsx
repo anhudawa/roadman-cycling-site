@@ -453,6 +453,28 @@ export default async function EpisodePage({
               </section>
             )}
 
+            {/* Coaching CTA — high-intent position after content, before transcript */}
+            {(episode.pillar === "coaching" || episode.pillar === "nutrition") && (
+              <div className="mt-12 rounded-2xl border border-coral/30 bg-gradient-to-br from-coral/10 via-deep-purple/40 to-charcoal p-6 md:p-8 text-center">
+                <p className="font-heading text-coral text-xs tracking-widest mb-2">
+                  WANT THIS APPLIED TO YOUR TRAINING?
+                </p>
+                <p className="text-off-white font-heading text-lg md:text-xl mb-2">
+                  Not Done Yet coaching builds your plan around these principles.
+                </p>
+                <p className="text-foreground-muted text-sm mb-5 max-w-md mx-auto">
+                  5 pillars. Personalised TrainingPeaks plan. Weekly calls. $195/month, 7-day free trial.
+                </p>
+                <Link
+                  href="/apply"
+                  className="inline-flex items-center justify-center gap-2 font-heading tracking-wider uppercase rounded-md bg-coral text-off-white hover:bg-coral/90 px-6 py-3 text-sm transition-all"
+                  data-track="podcast_coaching_cta"
+                >
+                  Apply for Coaching →
+                </Link>
+              </div>
+            )}
+
             {/* Transcript */}
             {episode.transcript && (
               <TranscriptViewer
