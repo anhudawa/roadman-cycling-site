@@ -18,7 +18,7 @@ export default async function ImportContactsPage() {
         </div>
         <Link
           href="/admin/contacts"
-          className="px-3 py-2 text-xs font-heading tracking-wider uppercase bg-background-elevated border border-white/10 text-off-white rounded hover:border-coral/40 transition-colors"
+          className="px-3 py-2 font-body font-semibold text-[13px] bg-[var(--color-elevated)] border border-[var(--color-border)] text-[var(--color-fg)] rounded-[var(--radius-admin-md)] hover:border-[var(--color-border-strong)] transition-colors"
         >
           Back to Contacts
         </Link>

@@ -6,6 +6,7 @@ import { ContactDealsSection } from "./ContactDealsSection";
 import { ContactBookingsSection } from "./ContactBookingsSection";
 import { ContactAttachments, type AttachmentRow } from "./ContactAttachments";
 import { ContactCustomFields } from "./ContactCustomFields";
+import { Button } from "@/components/admin/ui";
 
 type CustomFieldType = "text" | "longtext" | "number" | "date" | "url" | "select" | "boolean";
 
@@ -184,13 +185,13 @@ function renderNoteBody(body: string): React.ReactNode[] {
 function activityDotColor(type: string): string {
   switch (type) {
     case "contact_submission":
-      return "bg-coral";
+      return "bg-[var(--color-info)]";
     case "cohort_application":
       return "bg-amber-400";
     case "note":
       return "bg-blue-400";
     case "email_sent":
-      return "bg-coral";
+      return "bg-[var(--color-info)]";
     case "stage_change":
       return "bg-green-400";
     case "assigned":
@@ -771,7 +772,7 @@ export function ContactDetail({
                 type="button"
                 onClick={recomputeScore}
                 disabled={rescoring}
-                className="text-[10px] px-2 py-0.5 rounded border border-white/10 text-foreground-muted hover:border-coral/40 hover:text-coral uppercase tracking-widest disabled:opacity-50"
+                className="text-[10px] px-2 py-0.5 rounded border border-[var(--color-border)] text-[var(--color-fg-muted)] hover:border-[var(--color-border-strong)] hover:text-[var(--color-fg)] uppercase tracking-widest disabled:opacity-50"
               >
                 {rescoring ? "Scoring..." : leadScore === null ? "Score" : "Recompute"}
               </button>
@@ -783,15 +784,12 @@ export function ContactDetail({
           )}
         </div>
         <div className="flex gap-2 flex-wrap">
-          <button
-            onClick={() => openEmailDrawer(null)}
-            className="px-4 py-2 bg-coral text-white text-sm font-heading tracking-wider rounded-lg hover:bg-coral/90 transition-colors uppercase"
-          >
-            Send Email
-          </button>
+          <Button variant="primary" onClick={() => openEmailDrawer(null)}>
+            Send email
+          </Button>
           <a
             href={`mailto:${contact.email}`}
-            className="px-4 py-2 border border-white/10 text-foreground-muted text-sm font-heading tracking-wider rounded-lg hover:border-coral/30 hover:text-coral transition-colors uppercase"
+            className="px-4 py-2 border border-[var(--color-border-strong)] text-[var(--color-fg)] font-body font-semibold text-[14px] rounded-[var(--radius-admin-md)] bg-[var(--color-elevated)] hover:bg-[var(--color-raised)] transition-colors"
           >
             Mailto
           </a>
@@ -831,7 +829,7 @@ export function ContactDetail({
         </div>
       </div>
       {emailToast && (
-        <div className="fixed bottom-6 right-6 z-50 bg-coral text-white px-4 py-2 rounded-lg shadow-lg text-sm font-heading tracking-wider uppercase">
+        <div className="fixed bottom-6 right-6 z-50 bg-[var(--color-raised)] text-[var(--color-fg)] border border-[var(--color-border-strong)] px-4 py-2 rounded-[var(--radius-admin-md)] shadow-[var(--shadow-admin-toast)] text-sm font-body font-medium">
           {emailToast}
         </div>
       )}
@@ -881,14 +879,14 @@ export function ContactDetail({
                 </div>
                 <button
                   onClick={() => router.push(`/admin/contacts/${d.id}`)}
-                  className="px-2 py-1 text-xs border border-white/10 text-foreground-muted rounded hover:border-coral/30"
+                  className="px-2 py-1 text-xs border border-[var(--color-border)] text-[var(--color-fg-muted)] rounded hover:border-[var(--color-border-strong)] hover:text-[var(--color-fg)]"
                 >
                   View
                 </button>
                 <button
                   onClick={() => mergeDuplicateIntoHere(d.id, d.email)}
                   disabled={mergeBusyId === d.id}
-                  className="px-2 py-1 text-xs font-heading tracking-wider uppercase bg-coral text-white rounded hover:bg-coral/90 disabled:opacity-50"
+                  className="px-2 py-1 font-body font-semibold text-[13px] bg-[var(--color-raised)] text-[var(--color-fg)] border border-[var(--color-border-strong)] rounded-[var(--radius-admin-md)] hover:bg-[var(--color-elevated)] disabled:opacity-50"
                 >
                   {mergeBusyId === d.id ? "Merging..." : "Merge into this one"}
                 </button>
@@ -917,10 +915,10 @@ export function ContactDetail({
               tabIndex={isActive ? 0 : -1}
               onClick={() => selectTab(t)}
               onKeyDown={(e) => onTabKey(e, idx)}
-              className={`px-4 py-2.5 text-xs font-heading uppercase tracking-widest border-b-2 -mb-px transition-colors ${
+              className={`px-4 py-2.5 font-body font-semibold text-[13px] border-b-2 -mb-px transition-colors ${
                 isActive
-                  ? "text-coral border-coral"
-                  : "text-foreground-muted border-transparent hover:text-off-white"
+                  ? "text-[var(--color-fg)] border-[var(--color-fg)]"
+                  : "text-[var(--color-fg-muted)] border-transparent hover:text-[var(--color-fg)]"
               }`}
             >
               {TAB_LABELS[t]}
@@ -959,18 +957,18 @@ export function ContactDetail({
                   placeholder="Task title"
                   value={taskTitle}
                   onChange={(e) => setTaskTitle(e.target.value)}
-                  className="flex-1 min-w-[180px] px-3 py-2 text-sm bg-background-deep border border-white/10 text-off-white rounded focus:outline-none focus:border-coral/50"
+                  className="flex-1 min-w-[180px] px-3 py-2 text-sm bg-[var(--color-sunken)] border border-[var(--color-border-strong)] text-[var(--color-fg)] rounded-[var(--radius-admin-md)] focus-ring focus:border-[var(--color-border-focus)]"
                 />
                 <input
                   type="date"
                   value={taskDue}
                   onChange={(e) => setTaskDue(e.target.value)}
-                  className="px-3 py-2 text-sm bg-background-deep border border-white/10 text-off-white rounded focus:outline-none focus:border-coral/50"
+                  className="px-3 py-2 text-sm bg-[var(--color-sunken)] border border-[var(--color-border-strong)] text-[var(--color-fg)] rounded-[var(--radius-admin-md)] focus-ring focus:border-[var(--color-border-focus)]"
                 />
                 <select
                   value={taskAssigned}
                   onChange={(e) => setTaskAssigned(e.target.value)}
-                  className="px-3 py-2 text-sm bg-background-deep border border-white/10 text-off-white rounded focus:outline-none focus:border-coral/50"
+                  className="px-3 py-2 text-sm bg-[var(--color-sunken)] border border-[var(--color-border-strong)] text-[var(--color-fg)] rounded-[var(--radius-admin-md)] focus-ring focus:border-[var(--color-border-focus)]"
                 >
                   <option value="">Unassigned</option>
                   {OWNERS.filter((o) => o.value).map((o) => (
@@ -982,7 +980,7 @@ export function ContactDetail({
                 <button
                   onClick={addTask}
                   disabled={busy}
-                  className="px-3 py-1.5 text-xs font-heading tracking-wider uppercase bg-coral/20 text-coral border border-coral/30 rounded hover:bg-coral/30 disabled:opacity-50"
+                  className="px-3 py-1.5 font-body font-semibold text-[13px] bg-[var(--color-raised)] text-[var(--color-fg)] border border-[var(--color-border-strong)] rounded-[var(--radius-admin-md)] hover:bg-[var(--color-elevated)] disabled:opacity-50"
                 >
                   Add
                 </button>
@@ -1032,7 +1030,7 @@ export function ContactDetail({
                     patchContact({ owner: e.target.value === "" ? null : e.target.value })
                   }
                   disabled={busy}
-                  className="w-full px-3 py-2 text-sm bg-background-deep border border-white/10 text-off-white rounded focus:outline-none focus:border-coral/50"
+                  className="w-full px-3 py-2 text-sm bg-[var(--color-sunken)] border border-[var(--color-border-strong)] text-[var(--color-fg)] rounded-[var(--radius-admin-md)] focus-ring focus:border-[var(--color-border-focus)]"
                 >
                   {OWNERS.map((o) => (
                     <option key={o.value} value={o.value}>
@@ -1050,7 +1048,7 @@ export function ContactDetail({
                   value={contact.lifecycleStage}
                   onChange={(e) => patchContact({ lifecycleStage: e.target.value })}
                   disabled={busy}
-                  className="w-full px-3 py-2 text-sm bg-background-deep border border-white/10 text-off-white rounded focus:outline-none focus:border-coral/50"
+                  className="w-full px-3 py-2 text-sm bg-[var(--color-sunken)] border border-[var(--color-border-strong)] text-[var(--color-fg)] rounded-[var(--radius-admin-md)] focus-ring focus:border-[var(--color-border-focus)]"
                 >
                   {STAGES.map((s) => (
                     <option key={s.value} value={s.value}>
@@ -1071,13 +1069,13 @@ export function ContactDetail({
                     contact.tags.map((t) => (
                       <span
                         key={t}
-                        className="text-xs px-2 py-0.5 rounded bg-coral/10 text-coral/90 border border-coral/20 flex items-center gap-1"
+                        className="text-xs px-2 py-0.5 rounded bg-[var(--color-elevated)] text-[var(--color-fg-muted)] border border-[var(--color-border-strong)] flex items-center gap-1"
                       >
                         {t}
                         <button
                           onClick={() => removeTag(t)}
                           disabled={busy}
-                          className="text-coral/70 hover:text-coral"
+                          className="text-[var(--color-fg-subtle)] hover:text-[var(--color-fg)]"
                           aria-label={`Remove tag ${t}`}
                         >
                           &times;
@@ -1095,12 +1093,12 @@ export function ContactDetail({
                     onKeyDown={(e) => {
                       if (e.key === "Enter") addTag();
                     }}
-                    className="flex-1 px-2 py-1 text-xs bg-background-deep border border-white/10 text-off-white rounded focus:outline-none focus:border-coral/50"
+                    className="flex-1 px-2 py-1 text-xs bg-[var(--color-sunken)] border border-[var(--color-border-strong)] text-[var(--color-fg)] rounded-[var(--radius-admin-md)] focus-ring focus:border-[var(--color-border-focus)]"
                   />
                   <button
                     onClick={addTag}
                     disabled={busy}
-                    className="px-2 py-1 text-xs border border-white/10 text-foreground-muted rounded hover:border-coral/30"
+                    className="px-2 py-1 text-xs border border-[var(--color-border)] text-[var(--color-fg-muted)] rounded hover:border-[var(--color-border-strong)] hover:text-[var(--color-fg)]"
                   >
                     Add
                   </button>
@@ -1184,7 +1182,7 @@ export function ContactDetail({
                             {enrichment.beehiiv.status}
                           </span>
                           {enrichment.beehiiv.tier && (
-                            <span className="px-2 py-0.5 rounded bg-coral/10 text-coral/90 border border-coral/20">
+                            <span className="px-2 py-0.5 rounded bg-[var(--color-elevated)] text-[var(--color-fg-muted)] border border-[var(--color-border-strong)]">
                               {enrichment.beehiiv.tier}
                             </span>
                           )}
@@ -1271,7 +1269,7 @@ export function ContactDetail({
               <button
                 onClick={refreshEnrichment}
                 disabled={busy}
-                className="w-full px-3 py-2 text-xs font-heading tracking-wider uppercase bg-coral/20 text-coral border border-coral/30 rounded hover:bg-coral/30 disabled:opacity-50"
+                className="w-full px-3 py-2 font-body font-semibold text-[13px] bg-[var(--color-raised)] text-[var(--color-fg)] border border-[var(--color-border-strong)] rounded-[var(--radius-admin-md)] hover:bg-[var(--color-elevated)] disabled:opacity-50"
               >
                 Refresh from Beehiiv + Stripe
               </button>
@@ -1297,19 +1295,19 @@ export function ContactDetail({
               placeholder="Title"
               value={noteTitle}
               onChange={(e) => setNoteTitle(e.target.value)}
-              className="w-full mb-2 px-3 py-2 text-sm bg-background-deep border border-white/10 text-off-white rounded focus:outline-none focus:border-coral/50"
+              className="w-full mb-2 px-3 py-2 text-sm bg-[var(--color-sunken)] border border-[var(--color-border-strong)] text-[var(--color-fg)] rounded-[var(--radius-admin-md)] focus-ring focus:border-[var(--color-border-focus)]"
             />
             <textarea
               placeholder="Body (optional) — mention teammates with @ted, @sarah, @wes, @matthew"
               value={noteBody}
               onChange={(e) => setNoteBody(e.target.value)}
               rows={3}
-              className="w-full mb-2 px-3 py-2 text-sm bg-background-deep border border-white/10 text-off-white rounded focus:outline-none focus:border-coral/50 resize-none"
+              className="w-full mb-2 px-3 py-2 text-sm bg-[var(--color-sunken)] border border-[var(--color-border-strong)] text-[var(--color-fg)] rounded-[var(--radius-admin-md)] focus-ring focus:border-[var(--color-border-focus)] resize-none"
             />
             <button
               onClick={addNote}
               disabled={busy}
-              className="px-3 py-1.5 text-xs font-heading tracking-wider uppercase bg-coral/20 text-coral border border-coral/30 rounded hover:bg-coral/30 disabled:opacity-50"
+              className="px-3 py-1.5 font-body font-semibold text-[13px] bg-[var(--color-raised)] text-[var(--color-fg)] border border-[var(--color-border-strong)] rounded-[var(--radius-admin-md)] hover:bg-[var(--color-elevated)] disabled:opacity-50"
             >
               Add Note
             </button>
@@ -1342,7 +1340,7 @@ export function ContactDetail({
                     <li key={a.id} className={`flex gap-3 ${isLowSignal ? "opacity-60" : ""}`}>
                       <div className="flex flex-col items-center">
                         {isEmail ? (
-                          <span className="mt-1 w-4 h-4 rounded-full bg-coral/20 border border-coral/40 flex items-center justify-center text-coral">
+                          <span className="mt-1 w-4 h-4 rounded-full bg-[var(--color-info-tint)] border border-[var(--color-info)]/40 flex items-center justify-center text-[var(--color-info)]">
                             <svg className="w-2.5 h-2.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                               <path strokeLinecap="round" strokeLinejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 0 1-2.25 2.25h-15a2.25 2.25 0 0 1-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0 0 19.5 4.5h-15a2.25 2.25 0 0 0-2.25 2.25m19.5 0v.243a2.25 2.25 0 0 1-1.07 1.916l-7.5 4.615a2.25 2.25 0 0 1-2.36 0L3.32 8.91a2.25 2.25 0 0 1-1.07-1.916V6.75" />
                             </svg>
@@ -1369,14 +1367,14 @@ export function ContactDetail({
                       <div
                         className={`flex-1 pb-2 ${
                           isEmail
-                            ? "border-l-2 border-coral/30 pl-3 -ml-1 bg-coral/[0.03] rounded-r"
+                            ? "border-l-2 border-[var(--color-info)]/30 pl-3 -ml-1 bg-[var(--color-info-tint)] rounded-r"
                             : isNote
                             ? "border-l-2 border-blue-400/40 pl-3 -ml-1 bg-blue-400/[0.03] rounded-r"
                             : ""
                         }`}
                       >
                         <div className="flex items-baseline justify-between gap-2">
-                          <p className={`text-sm ${isEmail ? "text-coral" : "text-off-white"}`}>
+                          <p className={`text-sm ${isEmail ? "text-[var(--color-info)]" : "text-[var(--color-fg)]"}`}>
                             {a.title}
                           </p>
                           <span className="text-xs text-foreground-subtle shrink-0">
@@ -1423,12 +1421,9 @@ export function ContactDetail({
           <p className="text-[10px] uppercase tracking-widest text-foreground-subtle font-heading">
             Recent emails ({emails.length})
           </p>
-          <button
-            onClick={() => openEmailDrawer(null)}
-            className="px-3 py-1.5 text-xs font-heading tracking-wider uppercase bg-coral text-white rounded hover:bg-coral/90"
-          >
-            Send Email
-          </button>
+          <Button variant="primary" size="sm" onClick={() => openEmailDrawer(null)}>
+            Send email
+          </Button>
         </div>
         {emails.length === 0 ? (
           <div className="bg-background-elevated rounded-xl border border-white/5 p-8 text-center text-sm text-foreground-subtle">
@@ -1587,7 +1582,7 @@ export function ContactDetail({
                   onChange={(e) =>
                     applyTemplate(e.target.value === "" ? "" : parseInt(e.target.value, 10))
                   }
-                  className="w-full px-3 py-2 text-sm bg-background-deep border border-white/10 text-off-white rounded focus:outline-none focus:border-coral/50"
+                  className="w-full px-3 py-2 text-sm bg-[var(--color-sunken)] border border-[var(--color-border-strong)] text-[var(--color-fg)] rounded-[var(--radius-admin-md)] focus-ring focus:border-[var(--color-border-focus)]"
                 >
                   <option value="">— Ad-hoc (no template) —</option>
                   {templates.map((t) => (
@@ -1605,7 +1600,7 @@ export function ContactDetail({
                   type="text"
                   value={emailSubject}
                   onChange={(e) => setEmailSubject(e.target.value)}
-                  className="w-full px-3 py-2 text-sm bg-background-deep border border-white/10 text-off-white rounded focus:outline-none focus:border-coral/50"
+                  className="w-full px-3 py-2 text-sm bg-[var(--color-sunken)] border border-[var(--color-border-strong)] text-[var(--color-fg)] rounded-[var(--radius-admin-md)] focus-ring focus:border-[var(--color-border-focus)]"
                 />
               </div>
               <div>
@@ -1616,7 +1611,7 @@ export function ContactDetail({
                   value={emailBody}
                   onChange={(e) => setEmailBody(e.target.value)}
                   rows={14}
-                  className="w-full px-3 py-2 text-sm bg-background-deep border border-white/10 text-off-white rounded focus:outline-none focus:border-coral/50 font-mono resize-vertical"
+                  className="w-full px-3 py-2 text-sm bg-[var(--color-sunken)] border border-[var(--color-border-strong)] text-[var(--color-fg)] rounded-[var(--radius-admin-md)] focus-ring focus:border-[var(--color-border-focus)] font-mono resize-vertical"
                 />
                 <p className="text-[11px] text-foreground-subtle mt-1">
                   Placeholders already rendered with this contact&apos;s details.
@@ -1632,13 +1627,9 @@ export function ContactDetail({
               >
                 Cancel
               </button>
-              <button
-                onClick={sendEmail}
-                disabled={emailSending}
-                className="px-4 py-1.5 text-xs font-heading tracking-wider uppercase bg-coral text-white rounded hover:bg-coral/90 disabled:opacity-50"
-              >
+              <Button variant="primary" size="sm" onClick={sendEmail} loading={emailSending} disabled={emailSending}>
                 {emailSending ? "Sending..." : "Send"}
-              </button>
+              </Button>
             </div>
           </div>
         </div>
@@ -1649,10 +1640,10 @@ export function ContactDetail({
 
 function ApplicationsSection({ applications }: { applications: ApplicationRow[] }) {
   return (
-    <div className="bg-background-elevated rounded-xl border border-coral/20 overflow-hidden">
-      <div className="px-4 py-3 border-b border-coral/20 bg-coral/[0.04] flex items-center gap-2">
-        <span className="w-2 h-2 rounded-full bg-coral" />
-        <p className="text-[10px] uppercase tracking-widest text-coral font-semibold">
+    <div className="bg-[var(--color-elevated)] rounded-[var(--radius-admin-lg)] border border-[var(--color-info)]/30 overflow-hidden">
+      <div className="px-4 py-3 border-b border-[var(--color-info)]/30 bg-[var(--color-info-tint)] flex items-center gap-2">
+        <span className="w-2 h-2 rounded-full bg-[var(--color-info)]" />
+        <p className="font-body font-semibold text-[13px] text-[var(--color-fg)]">
           Application{applications.length === 1 ? "" : "s"} from /apply
         </p>
         <span className="ml-auto text-[10px] text-foreground-subtle">
@@ -1730,8 +1721,8 @@ function ApplicationCard({ app }: { app: ApplicationRow }) {
           onClick={handleCopyAll}
           className={`ml-auto text-[10px] px-2 py-1 rounded border font-medium transition ${
             copiedAll
-              ? "bg-coral/20 text-coral border-coral/40"
-              : "bg-coral/10 text-coral border-coral/30 hover:bg-coral/20"
+              ? "bg-[var(--color-good-tint)] text-[var(--color-good)] border-[var(--color-good)]/40"
+              : "bg-[var(--color-elevated)] text-[var(--color-fg-muted)] border-[var(--color-border-strong)] hover:bg-[var(--color-raised)]"
           }`}
         >
           {copiedAll ? "Copied all" : "Copy all"}
@@ -1774,7 +1765,7 @@ function AppField({
     <div
       className={`flex flex-col gap-1.5 p-3 rounded-lg border ${
         highlight
-          ? "border-coral/20 bg-coral/[0.03]"
+          ? "border-[var(--color-warn)]/30 bg-[var(--color-warn-tint)]"
           : "border-white/5 bg-white/[0.02]"
       }`}
     >
@@ -1788,8 +1779,8 @@ function AppField({
             onClick={copy}
             className={`ml-auto text-[10px] px-2 py-0.5 rounded-full border font-medium transition ${
               copied
-                ? "bg-coral/20 text-coral border-coral/40"
-                : "border-white/10 text-foreground-subtle hover:text-off-white hover:border-white/30"
+                ? "bg-[var(--color-good-tint)] text-[var(--color-good)] border-[var(--color-good)]/40"
+                : "border-[var(--color-border)] text-[var(--color-fg-subtle)] hover:text-[var(--color-fg)] hover:border-[var(--color-border-strong)]"
             }`}
           >
             {copied ? "Copied" : "Copy"}
