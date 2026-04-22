@@ -291,7 +291,7 @@ export function BookingEditor({
             type="button"
             onClick={save}
             disabled={busy}
-            className="px-4 py-2 bg-[var(--color-coral)] hover:bg-[var(--color-coral-hover)] disabled:opacity-50 text-white font-body font-semibold text-[14px] rounded-[var(--radius-admin-md)]"
+            className="px-4 py-2 bg-[var(--color-elevated)] hover:bg-[var(--color-raised)] disabled:opacity-50 text-[var(--color-fg)] border border-[var(--color-border-strong)] font-body font-semibold text-[14px] rounded-[var(--radius-admin-md)]"
           >
             {busy ? "Saving..." : "Save"}
           </button>

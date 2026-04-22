@@ -88,7 +88,7 @@ export default async function BookingsPage() {
           </p>
           <Link
             href="/api/admin/auth/google/start?calendar=1&next=/admin/bookings"
-            className="inline-block px-4 py-2 bg-[var(--color-coral)] text-white font-body font-semibold text-[14px] rounded-[var(--radius-admin-md)] hover:bg-[var(--color-coral-hover)] transition-colors"
+            className="inline-block px-4 py-2 bg-[var(--color-elevated)] hover:bg-[var(--color-raised)] text-[var(--color-fg)] border border-[var(--color-border-strong)] font-body font-semibold text-[14px] rounded-[var(--radius-admin-md)] transition-colors"
           >
             Connect Google Calendar
           </Link>

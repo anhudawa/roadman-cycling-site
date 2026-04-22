@@ -128,7 +128,7 @@ export function NewBookingForm({
   }
 
   const defaultTrigger =
-    "px-4 py-2 bg-[var(--color-coral)] hover:bg-[var(--color-coral-hover)] text-white font-body font-semibold text-[14px] rounded-[var(--radius-admin-md)] transition-colors";
+    "px-4 py-2 bg-[var(--color-elevated)] hover:bg-[var(--color-raised)] text-[var(--color-fg)] border border-[var(--color-border-strong)] font-body font-semibold text-[14px] rounded-[var(--radius-admin-md)] transition-colors";
 
   return (
     <>
@@ -318,7 +318,7 @@ export function NewBookingForm({
                 <button
                   type="submit"
                   disabled={submitting}
-                  className="px-4 py-2 bg-[var(--color-coral)] hover:bg-[var(--color-coral-hover)] disabled:opacity-50 text-white font-body font-semibold text-[14px] rounded-[var(--radius-admin-md)]"
+                  className="px-4 py-2 bg-[var(--color-elevated)] hover:bg-[var(--color-raised)] disabled:opacity-50 text-[var(--color-fg)] border border-[var(--color-border-strong)] font-body font-semibold text-[14px] rounded-[var(--radius-admin-md)]"
                 >
                   {submitting ? "Creating..." : "Create"}
                 </button>

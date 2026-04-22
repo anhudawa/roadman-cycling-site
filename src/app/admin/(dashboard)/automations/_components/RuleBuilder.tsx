@@ -182,7 +182,7 @@ export function RuleBuilder({
             type="checkbox"
             checked={draft.active}
             onChange={(e) => setField("active", e.target.checked)}
-            className="accent-coral"
+            className="accent-[var(--color-info)]"
           />
           <label htmlFor="active" className="text-sm text-foreground-muted">Active</label>
         </div>
@@ -373,7 +373,7 @@ export function RuleBuilder({
           type="button"
           onClick={save}
           disabled={busy || !draft.name.trim()}
-          className="px-4 py-2 bg-[var(--color-coral)] text-background-deep font-medium rounded text-sm hover:bg-[var(--color-coral-hover)] disabled:opacity-50"
+          className="px-4 py-2 bg-[var(--color-elevated)] hover:bg-[var(--color-raised)] text-[var(--color-fg)] border border-[var(--color-border-strong)] font-medium rounded text-sm disabled:opacity-50"
         >
           {busy ? "Saving..." : mode === "create" ? "Create rule" : "Save changes"}
         </button>
