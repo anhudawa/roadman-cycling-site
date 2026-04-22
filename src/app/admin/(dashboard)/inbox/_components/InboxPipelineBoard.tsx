@@ -11,16 +11,16 @@ import {
 
 export const INBOX_STAGES = [
   "new",
-  "replied",
-  "follow_up",
+  "reviewing",
+  "awaiting_reply",
   "closed",
 ] as const;
 export type InboxStage = (typeof INBOX_STAGES)[number];
 
 export const INBOX_STAGE_LABELS: Record<InboxStage, string> = {
   new: "New",
-  replied: "Replied",
-  follow_up: "Follow up",
+  reviewing: "Reviewing",
+  awaiting_reply: "Awaiting reply",
   closed: "Closed",
 };
 
@@ -28,25 +28,32 @@ const INBOX_STAGE_COLORS: Record<
   InboxStage,
   { dot: string; badge: string; ring: string }
 > = {
+  // Stage accents match the spec's per-stage token palette (slate / muted
+  // purple / ochre / sage). Coral is reserved for primary CTA + unread
+  // badge only, so stage "new" does NOT use coral.
   new: {
-    dot: "bg-coral",
-    badge: "bg-coral/15 text-coral border-coral/30",
-    ring: "ring-coral",
+    dot: "bg-[var(--color-stage-new)]",
+    badge:
+      "bg-[var(--color-stage-new-tint)] text-[var(--color-stage-new)] border-[var(--color-stage-new)]/30",
+    ring: "ring-[var(--color-stage-new)]",
   },
-  replied: {
-    dot: "bg-blue-400",
-    badge: "bg-blue-400/15 text-blue-400 border-blue-400/30",
-    ring: "ring-blue-400",
+  reviewing: {
+    dot: "bg-[var(--color-stage-triage)]",
+    badge:
+      "bg-[var(--color-stage-triage-tint)] text-[var(--color-stage-triage)] border-[var(--color-stage-triage)]/30",
+    ring: "ring-[var(--color-stage-triage)]",
   },
-  follow_up: {
-    dot: "bg-purple-400",
-    badge: "bg-purple-400/15 text-purple-400 border-purple-400/30",
-    ring: "ring-purple-400",
+  awaiting_reply: {
+    dot: "bg-[var(--color-stage-waiting)]",
+    badge:
+      "bg-[var(--color-stage-waiting-tint)] text-[var(--color-stage-waiting)] border-[var(--color-stage-waiting)]/30",
+    ring: "ring-[var(--color-stage-waiting)]",
   },
   closed: {
-    dot: "bg-green-400",
-    badge: "bg-green-400/15 text-green-400 border-green-400/30",
-    ring: "ring-green-400",
+    dot: "bg-[var(--color-stage-done)]",
+    badge:
+      "bg-[var(--color-stage-done-tint)] text-[var(--color-stage-done)] border-[var(--color-stage-done)]/30",
+    ring: "ring-[var(--color-stage-done)]",
   },
 };
 
