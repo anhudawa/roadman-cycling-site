@@ -1,0 +1,5 @@
+file,type,field,severity,detail
+triathlon-aero-position-guide.mdx,blog,seoTitle,warning,"seoTitle 82 chars (max 60)"
+triathlon-ftp-pacing-strategy.mdx,blog,seoTitle,warning,"seoTitle 84 chars (max 60)"
+what-cycling-podcasts-got-wrong-about-polarised-training.mdx,blog,seoTitle,warning,"seoTitle 88 chars (max 60)"
+ep-2215-how-princeton-professor-would-stop-cheating-roadman-podcast.mdx,podcast,answerCapsule,warning,"Missing answerCapsule"
