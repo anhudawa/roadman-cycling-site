@@ -4,6 +4,7 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import type { BookingRow as BookingRowType, BookingStatus } from "@/lib/crm/bookings";
+import { Card, CardBody } from "@/components/admin/ui";
 
 const OWNERS = [
   { value: "ted", label: "Ted" },
@@ -168,7 +169,8 @@ export function BookingEditor({
         </div>
       )}
 
-      <div className="bg-background-elevated border border-white/5 rounded-xl p-6 space-y-4">
+      <Card>
+        <CardBody className="space-y-4">
         <div>
           <label className="block text-xs uppercase tracking-widest text-foreground-subtle mb-1">
             Title
@@ -294,7 +296,8 @@ export function BookingEditor({
             {busy ? "Saving..." : "Save"}
           </button>
         </div>
-      </div>
+        </CardBody>
+      </Card>
     </div>
   );
 }

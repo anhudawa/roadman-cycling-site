@@ -4,6 +4,7 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import type { MyDayTaskRequestRow } from "@/lib/crm/dashboard";
+import { Card, CardBody } from "@/components/admin/ui";
 
 interface Teammate {
   slug: string;
@@ -72,8 +73,8 @@ export function TaskRequests({
 
   return (
     <div className="space-y-4">
-      <h2 className="font-heading text-sm tracking-wider uppercase text-foreground-muted">
-        Team Tasks
+      <h2 className="font-body font-semibold text-[13px] text-[var(--color-fg)]">
+        Team tasks
       </h2>
 
       {error && (
@@ -168,7 +169,8 @@ export function TaskRequests({
       )}
 
       {outgoing.length > 0 && (
-        <div className="bg-background-elevated border border-white/5 rounded-xl p-4">
+        <Card>
+          <CardBody compact>
           <p className="text-[10px] uppercase tracking-widest text-foreground-subtle font-semibold mb-3">
             Awaiting their response ({outgoing.length})
           </p>
@@ -212,7 +214,8 @@ export function TaskRequests({
               </li>
             ))}
           </ul>
-        </div>
+          </CardBody>
+        </Card>
       )}
 
       {incoming.length === 0 && outgoing.length === 0 && (

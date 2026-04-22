@@ -3,6 +3,7 @@ import { db } from "@/lib/db";
 import { skoolEvents } from "@/lib/db/schema";
 import { desc, sql } from "drizzle-orm";
 import { TestWebhookButton } from "./TestWebhookButton";
+import { Card, CardBody } from "@/components/admin/ui";
 
 export const dynamic = "force-dynamic";
 
@@ -264,18 +265,20 @@ function HealthCard({
   ok: boolean;
 }) {
   return (
-    <div className="bg-background-elevated border border-white/5 rounded-xl p-4">
-      <p className="text-foreground-subtle text-xs uppercase tracking-wider mb-1">
-        {label}
-      </p>
-      <p
-        className={`text-xl font-heading tracking-wide ${
-          ok ? "text-green-400" : "text-[var(--color-bad)]"
-        }`}
-      >
-        {value}
-      </p>
-    </div>
+    <Card>
+      <CardBody compact>
+        <p className="text-foreground-subtle text-xs uppercase tracking-wider mb-1">
+          {label}
+        </p>
+        <p
+          className={`text-xl font-heading tracking-wide ${
+            ok ? "text-green-400" : "text-[var(--color-bad)]"
+          }`}
+        >
+          {value}
+        </p>
+      </CardBody>
+    </Card>
   );
 }
 

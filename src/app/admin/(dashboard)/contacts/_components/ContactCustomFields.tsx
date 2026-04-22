@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { Card, CardBody } from "@/components/admin/ui";
 
 type FieldType = "text" | "longtext" | "number" | "date" | "url" | "select" | "boolean";
 
@@ -33,38 +34,42 @@ export function ContactCustomFields({
 
   if (defs.length === 0) {
     return (
-      <div className="bg-background-elevated border border-white/5 rounded-xl p-4">
-        <h3 className="font-heading text-sm text-off-white tracking-wider uppercase mb-2">
-          Custom fields
-        </h3>
-        <p className="text-xs text-foreground-subtle">
-          No custom fields defined yet. Admins can add them in{" "}
-          <a href="/admin/settings" className="text-[var(--color-info)] hover:underline">
-            Settings
-          </a>
-          .
-        </p>
-      </div>
+      <Card>
+        <CardBody compact>
+          <h3 className="font-body font-semibold text-[13px] text-[var(--color-fg)] mb-2">
+            Custom fields
+          </h3>
+          <p className="text-xs text-foreground-subtle">
+            No custom fields defined yet. Admins can add them in{" "}
+            <a href="/admin/settings" className="text-[var(--color-info)] hover:underline">
+              Settings
+            </a>
+            .
+          </p>
+        </CardBody>
+      </Card>
     );
   }
 
   return (
-    <div className="bg-background-elevated border border-white/5 rounded-xl p-4">
-      <h3 className="font-heading text-sm text-off-white tracking-wider uppercase mb-3">
-        Custom fields
-      </h3>
-      <div className="flex flex-col gap-3">
-        {defs.map((def) => (
-          <FieldRow
-            key={def.id}
-            contactId={contactId}
-            def={def}
-            value={values[def.key]}
-            onSaved={(newValues) => setValues(newValues)}
-          />
-        ))}
-      </div>
-    </div>
+    <Card>
+      <CardBody compact>
+        <h3 className="font-body font-semibold text-[13px] text-[var(--color-fg)] mb-3">
+          Custom fields
+        </h3>
+        <div className="flex flex-col gap-3">
+          {defs.map((def) => (
+            <FieldRow
+              key={def.id}
+              contactId={contactId}
+              def={def}
+              value={values[def.key]}
+              onSaved={(newValues) => setValues(newValues)}
+            />
+          ))}
+        </div>
+      </CardBody>
+    </Card>
   );
 }
 

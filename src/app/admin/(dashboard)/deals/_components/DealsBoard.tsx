@@ -9,6 +9,7 @@ import {
   formatCurrency,
   type DealStage,
 } from "@/lib/crm/deals";
+import { Card, CardBody } from "@/components/admin/ui";
 
 export interface KanbanDeal {
   id: number;
@@ -266,18 +267,20 @@ function StatCard({
   accent?: boolean;
 }) {
   return (
-    <div className="bg-background-elevated border border-white/5 rounded-xl p-4">
-      <p className="text-[10px] uppercase tracking-widest text-foreground-subtle font-medium">
-        {label}
-      </p>
-      <p
-        className={`font-heading text-xl tracking-wider mt-1 tabular-nums ${
-          accent ? "text-[var(--color-bad)]" : "text-off-white"
-        }`}
-      >
-        {value}
-      </p>
-    </div>
+    <Card>
+      <CardBody compact>
+        <p className="text-[10px] uppercase tracking-widest text-foreground-subtle font-medium">
+          {label}
+        </p>
+        <p
+          className={`font-heading text-xl tracking-wider mt-1 tabular-nums ${
+            accent ? "text-[var(--color-bad)]" : "text-off-white"
+          }`}
+        >
+          {value}
+        </p>
+      </CardBody>
+    </Card>
   );
 }
 

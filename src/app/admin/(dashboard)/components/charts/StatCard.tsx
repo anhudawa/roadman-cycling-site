@@ -1,4 +1,5 @@
 import { SparkLine } from "./SparkLine";
+import { Card, CardBody } from "@/components/admin/ui";
 
 interface StatCardProps {
   value: string | number;
@@ -21,9 +22,8 @@ export function StatCard({
   const changeColor = isPositive ? "text-green-400" : "text-[var(--color-bad)]";
 
   return (
-    <div
-      className={`bg-background-elevated border border-white/5 rounded-xl p-5 hover:border-white/10 transition-colors ${className}`}
-    >
+    <Card className={`hover:border-[var(--color-border-strong)] transition-colors ${className}`}>
+      <CardBody compact>
       <p className="text-foreground-subtle text-xs uppercase tracking-wider mb-1">
         {label}
       </p>
@@ -66,7 +66,8 @@ export function StatCard({
           <SparkLine data={sparkData} color={isPositive ? "#4ADE80" : "#E8836B"} />
         )}
       </div>
-    </div>
+      </CardBody>
+    </Card>
   );
 }
 
