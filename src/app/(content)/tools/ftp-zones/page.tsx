@@ -351,6 +351,32 @@ export default function FTPZonesPage() {
                     </li>
                   </ul>
                 </motion.div>
+
+                {/* Coaching CTA — post-calculation, highest intent */}
+                <motion.div
+                  className="mt-8 rounded-2xl border border-coral/30 bg-gradient-to-br from-coral/10 via-deep-purple/40 to-charcoal p-6 md:p-8 text-center"
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.35, delay: 0.7 }}
+                >
+                  <p className="font-heading text-coral text-xs tracking-widest mb-2">
+                    WANT THESE ZONES IN A REAL PLAN?
+                  </p>
+                  <p className="text-off-white font-heading text-lg md:text-xl mb-2">
+                    Roadman coaching builds your week around these exact numbers.
+                  </p>
+                  <p className="text-foreground-muted text-sm mb-5 max-w-md mx-auto">
+                    Personalised TrainingPeaks plan, weekly calls, five pillars.
+                    7-day free trial. $195/month.
+                  </p>
+                  <a
+                    href="/apply"
+                    className="inline-flex items-center justify-center gap-2 font-heading tracking-wider uppercase rounded-md bg-coral text-off-white hover:bg-coral/90 px-6 py-3 text-sm transition-all"
+                    data-track="tool_ftp_apply"
+                  >
+                    Apply for Coaching →
+                  </a>
+                </motion.div>
               </motion.div>
             )}
             </AnimatePresence>

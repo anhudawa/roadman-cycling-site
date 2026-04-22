@@ -352,9 +352,14 @@ export default async function PlanEventHubPage({
                   Roadman coaching builds it around your FTP, your life, and
                   your weeks remaining.
                 </p>
-                <Button href="/apply" size="lg">
+                <Button href="/apply" size="lg" dataTrack="plan_hub_apply">
                   Apply for Coaching
                 </Button>
+                <div className="mt-4">
+                  <Button href="/coaching" variant="ghost" size="lg" dataTrack="plan_hub_coaching">
+                    How Coaching Works
+                  </Button>
+                </div>
               </div>
             </ScrollReveal>
           </Container>
