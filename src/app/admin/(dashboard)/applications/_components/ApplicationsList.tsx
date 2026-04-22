@@ -114,13 +114,13 @@ export function ApplicationsList() {
                 onClick={() => markRead(app)}
                 className={`w-full text-left p-4 rounded-lg border transition-colors ${
                   selected?.id === app.id
-                    ? "border-coral/30 bg-coral/5"
-                    : "border-white/5 bg-white/[0.02] hover:bg-white/[0.04]"
+                    ? "border-l-2 border-l-[var(--color-coral)] border-[var(--color-border-strong)] bg-white/[0.04]"
+                    : "border-[var(--color-border)] bg-white/[0.02] hover:bg-white/[0.04]"
                 }`}
               >
                 <div className="flex items-center gap-2 mb-1">
                   {!app.readAt && (
-                    <span className="w-2 h-2 rounded-full bg-coral shrink-0" />
+                    <span className="w-2 h-2 rounded-full bg-[var(--color-coral)] shrink-0" aria-label="Unread" />
                   )}
                   <span className="text-off-white text-sm font-medium truncate">
                     {app.name}
@@ -185,7 +185,7 @@ export function ApplicationsList() {
                       // sees e.g. "Your NDY Cohort 3 Application".
                       `Your NDY ${selected.cohort.replace(/^cohort-/, "Cohort ")} Application`,
                     )}`}
-                    className="inline-flex items-center gap-1.5 px-4 py-2 rounded-lg bg-coral text-off-white text-sm font-medium hover:bg-coral/90 transition-colors"
+                    className="inline-flex items-center gap-1.5 px-4 py-2 rounded-[var(--radius-admin-md)] bg-[var(--color-coral)] text-white font-body font-semibold text-[14px] hover:bg-[var(--color-coral-hover)] transition-colors"
                   >
                     Reply
                   </a>

@@ -142,8 +142,8 @@ export default async function ApplicationsPage({ searchParams }: PageProps) {
               aria-current={currentView === "kanban" ? "page" : undefined}
               className={`px-3 h-8 inline-flex items-center rounded-md font-heading tracking-wider uppercase transition-colors ${
                 currentView === "kanban"
-                  ? "bg-coral/15 text-coral"
-                  : "text-foreground-subtle hover:text-off-white"
+                  ? "bg-[var(--color-raised)] text-[var(--color-fg)] shadow-inner"
+                  : "text-[var(--color-fg-muted)] hover:text-[var(--color-fg)]"
               }`}
             >
               Board
@@ -153,8 +153,8 @@ export default async function ApplicationsPage({ searchParams }: PageProps) {
               aria-current={currentView === "list" ? "page" : undefined}
               className={`px-3 h-8 inline-flex items-center rounded-md font-heading tracking-wider uppercase transition-colors ${
                 currentView === "list"
-                  ? "bg-coral/15 text-coral"
-                  : "text-foreground-subtle hover:text-off-white"
+                  ? "bg-[var(--color-raised)] text-[var(--color-fg)] shadow-inner"
+                  : "text-[var(--color-fg-muted)] hover:text-[var(--color-fg)]"
               }`}
             >
               List
@@ -171,7 +171,7 @@ export default async function ApplicationsPage({ searchParams }: PageProps) {
           <Link
             href="/admin/applications"
             aria-current="page"
-            className="px-4 h-8 inline-flex items-center rounded-md font-heading tracking-wider uppercase bg-coral/15 text-coral"
+            className="px-4 h-8 inline-flex items-center rounded-md font-body font-semibold text-[13px] bg-[var(--color-raised)] text-[var(--color-fg)] shadow-inner"
           >
             Applications
           </Link>
