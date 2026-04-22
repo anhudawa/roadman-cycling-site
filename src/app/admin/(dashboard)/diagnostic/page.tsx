@@ -1,12 +1,12 @@
 import Link from "next/link";
-import { desc } from "drizzle-orm";
+import { and, desc, eq } from "drizzle-orm";
 import { requireAuth } from "@/lib/admin/auth";
 import { db } from "@/lib/db";
 import { diagnosticSubmissions } from "@/lib/db/schema";
 import { getDiagnosticStats } from "@/lib/diagnostic/store";
 import { PROFILE_LABELS, PROFILE_BREAKDOWNS } from "@/lib/diagnostic/profiles";
 import { maskEmail } from "@/lib/admin/events-store";
-import type { Profile } from "@/lib/diagnostic/types";
+import { isProfile, type Profile } from "@/lib/diagnostic/types";
 import { RegenerateButton } from "./RegenerateButton";
 
 /**
@@ -26,9 +26,41 @@ const ALL_PROFILES: Profile[] = [
   "fuelingDeficit",
 ];
 
-export default async function AdminDiagnosticPage() {
+type FilterTab = "all" | "llm" | "fallback" | "multi" | Profile;
+
+export default async function AdminDiagnosticPage({
+  searchParams,
+}: {
+  searchParams: Promise<{ filter?: string }>;
+}) {
   await requireAuth();
   const stats = await getDiagnosticStats();
+  const { filter: rawFilter } = await searchParams;
+  const filter: FilterTab =
+    rawFilter === "llm" ||
+    rawFilter === "fallback" ||
+    rawFilter === "multi" ||
+    (typeof rawFilter === "string" && isProfile(rawFilter))
+      ? (rawFilter as FilterTab)
+      : "all";
+
+  // Translate the filter tab into a Drizzle WHERE clause. Kept inline
+  // because the table is small enough that a join-style filter helper
+  // is over-engineering for four predicates.
+  const filterCondition = (() => {
+    switch (filter) {
+      case "llm":
+        return eq(diagnosticSubmissions.generationSource, "llm");
+      case "fallback":
+        return eq(diagnosticSubmissions.generationSource, "fallback");
+      case "multi":
+        return eq(diagnosticSubmissions.severeMultiSystem, true);
+      case "all":
+        return undefined;
+      default:
+        return eq(diagnosticSubmissions.primaryProfile, filter);
+    }
+  })();
 
   const recent = await db
     .select({
@@ -46,6 +78,7 @@ export default async function AdminDiagnosticPage() {
       createdAt: diagnosticSubmissions.createdAt,
     })
     .from(diagnosticSubmissions)
+    .where(filterCondition ? and(filterCondition) : undefined)
     .orderBy(desc(diagnosticSubmissions.createdAt))
     .limit(50);
 
@@ -116,17 +149,40 @@ export default async function AdminDiagnosticPage() {
 
       {/* ── Recent submissions ─────────────────────── */}
       <section className="rounded-md bg-white/5 border border-white/10 p-5">
-        <div className="flex items-baseline justify-between mb-4">
+        <div className="flex items-baseline justify-between mb-4 flex-wrap gap-3">
           <h2 className="text-lg font-semibold text-white">
             Recent submissions
           </h2>
           <span className="text-xs text-foreground-subtle">
-            {stats.last7d} in the last 7 days
+            {stats.last7d} in the last 7 days &middot;{" "}
+            <Link
+              href="/api/admin/diagnostic/export"
+              className="hover:text-coral underline underline-offset-4"
+            >
+              CSV export
+            </Link>
           </span>
         </div>
+        {/* Filter tabs. URL-driven so the QA workflow is bookmarkable
+            and the back-button works as expected. */}
+        <nav className="flex flex-wrap items-center gap-1 mb-4 text-xs">
+          <FilterTabLink current={filter} value="all" label="All" />
+          <FilterTabLink current={filter} value="llm" label="LLM" />
+          <FilterTabLink current={filter} value="fallback" label="Fallback" />
+          <FilterTabLink current={filter} value="multi" label="Multi-system" />
+          <span className="mx-1 text-foreground-subtle">·</span>
+          {ALL_PROFILES.map((p) => (
+            <FilterTabLink
+              key={p}
+              current={filter}
+              value={p}
+              label={PROFILE_LABELS[p]}
+            />
+          ))}
+        </nav>
         {recent.length === 0 ? (
           <p className="text-sm text-foreground-subtle">
-            No submissions yet. Share /plateau to start collecting.
+            No submissions match this filter yet.
           </p>
         ) : (
           <div className="overflow-x-auto">
@@ -194,11 +250,10 @@ export default async function AdminDiagnosticPage() {
                       <RegenerateButton slug={r.slug} />
                       <span className="mx-2 text-foreground-subtle">·</span>
                       <Link
-                        href={`/diagnostic/${r.slug}`}
-                        target="_blank"
+                        href={`/admin/diagnostic/${r.slug}`}
                         className="text-xs text-coral hover:underline"
                       >
-                        Open →
+                        QA →
                       </Link>
                     </td>
                   </tr>
@@ -209,6 +264,31 @@ export default async function AdminDiagnosticPage() {
         )}
       </section>
     </div>
+  );
+}
+
+function FilterTabLink({
+  current,
+  value,
+  label,
+}: {
+  current: FilterTab;
+  value: FilterTab;
+  label: string;
+}) {
+  const active = current === value;
+  const href = value === "all" ? "/admin/diagnostic" : `/admin/diagnostic?filter=${value}`;
+  return (
+    <Link
+      href={href}
+      className={
+        active
+          ? "rounded-full bg-coral/10 border border-coral/40 text-coral px-3 py-1 font-semibold"
+          : "rounded-full bg-white/5 border border-white/10 text-foreground-muted hover:text-white hover:bg-white/10 px-3 py-1"
+      }
+    >
+      {label}
+    </Link>
   );
 }
 

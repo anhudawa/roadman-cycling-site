@@ -182,6 +182,62 @@ export async function getSubmissionBySlug(
   return row ? rowToSubmission(row) : null;
 }
 
+/**
+ * Admin-side detail for the QA dashboard. Returns the full row,
+ * including raw model output and generation_meta — never returned
+ * over the public read endpoint. Caller must already be auth-gated.
+ */
+export interface SubmissionDetail extends StoredSubmission {
+  scores: { underRecovered: number; polarisation: number; strengthGap: number; fuelingDeficit: number };
+  rawModelOutput: string | null;
+  generationMeta: Record<string, unknown> | null;
+  utm: {
+    source: string | null;
+    medium: string | null;
+    campaign: string | null;
+    content: string | null;
+    term: string | null;
+  };
+  ftp: number | null;
+  goal: string | null;
+  beehiivSubscriberId: string | null;
+  userAgent: string | null;
+  referrer: string | null;
+  updatedAt: Date;
+}
+
+export async function getSubmissionDetail(
+  slug: string
+): Promise<SubmissionDetail | null> {
+  const rows = await db
+    .select()
+    .from(diagnosticSubmissions)
+    .where(eq(diagnosticSubmissions.slug, slug))
+    .limit(1);
+  const row = rows[0];
+  if (!row) return null;
+  const base = rowToSubmission(row);
+  return {
+    ...base,
+    scores: row.scores as SubmissionDetail["scores"],
+    rawModelOutput: row.rawModelOutput,
+    generationMeta: row.generationMeta as Record<string, unknown> | null,
+    utm: {
+      source: row.utmSource,
+      medium: row.utmMedium,
+      campaign: row.utmCampaign,
+      content: row.utmContent,
+      term: row.utmTerm,
+    },
+    ftp: row.ftp,
+    goal: row.goal,
+    beehiivSubscriberId: row.beehiivSubscriberId,
+    userAgent: row.userAgent,
+    referrer: row.referrer,
+    updatedAt: row.updatedAt,
+  };
+}
+
 export async function attachBeehiivId(slug: string, subscriberId: string): Promise<void> {
   await db
     .update(diagnosticSubmissions)
