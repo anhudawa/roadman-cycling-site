@@ -22,12 +22,18 @@ import { useEffect, useRef, useState, type KeyboardEvent, type ReactNode } from 
 
 // ── Owner avatar ─────────────────────────────────────────────────
 
+// Per design spec: avatars use the per-stage accent palette, NOT coral.
+// Anthony = triage-purple, Matthew = info-blue, Wes = warn-amber, Sarah = good-green.
 const OWNER_COLORS: Record<string, string> = {
-  anthony: "bg-coral/20 text-coral border-coral/40",
-  ted: "bg-coral/20 text-coral border-coral/40",
-  sarah: "bg-purple-500/20 text-purple-300 border-purple-500/40",
-  wes: "bg-blue-500/20 text-blue-300 border-blue-500/40",
-  matthew: "bg-amber-500/20 text-amber-300 border-amber-500/40",
+  anthony:
+    "bg-[var(--color-stage-triage-tint)] text-[var(--color-stage-triage)] border-[var(--color-stage-triage)]/40",
+  ted: "bg-[var(--color-stage-triage-tint)] text-[var(--color-stage-triage)] border-[var(--color-stage-triage)]/40",
+  matthew:
+    "bg-[var(--color-info)]/15 text-[var(--color-info)] border-[var(--color-info)]/40",
+  wes:
+    "bg-[var(--color-warn)]/15 text-[var(--color-warn)] border-[var(--color-warn)]/40",
+  sarah:
+    "bg-[var(--color-good)]/15 text-[var(--color-good)] border-[var(--color-good)]/40",
 };
 
 export function OwnerAvatar({
@@ -73,12 +79,14 @@ export function NameAvatar({
 }) {
   const initial = (name.trim()[0] ?? "?").toUpperCase();
   // Stable but non-specific tint per name — just use name length mod to pick.
+  // No coral here — contacts get neutral / stage-accent tints only. Coral
+  // is reserved for primary CTA + unread badge per the design spec.
   const palette = [
-    "bg-coral/15 text-coral",
-    "bg-purple-500/15 text-purple-300",
-    "bg-blue-500/15 text-blue-300",
-    "bg-green-500/15 text-green-400",
-    "bg-amber-500/15 text-amber-400",
+    "bg-[var(--color-stage-triage-tint)] text-[var(--color-stage-triage)]",
+    "bg-[var(--color-info)]/15 text-[var(--color-info)]",
+    "bg-[var(--color-good)]/15 text-[var(--color-good)]",
+    "bg-[var(--color-warn)]/15 text-[var(--color-warn)]",
+    "bg-white/[0.08] text-off-white",
   ];
   const tint = palette[(name.length + initial.charCodeAt(0)) % palette.length];
   const dim = size === "sm" ? "w-7 h-7 text-xs" : "w-9 h-9 text-sm";
@@ -97,6 +105,7 @@ export function Column({
   stage,
   label,
   accent,
+  stripeColor,
   count,
   isHoverTarget,
   children,
@@ -106,8 +115,10 @@ export function Column({
 }: {
   stage: string;
   label: string;
-  /** CSS classes for the dot (eg "bg-coral"). */
+  /** CSS classes for the dot (eg "bg-[var(--color-stage-waiting)]"). */
   accent: string;
+  /** Background colour class used for the 2px stage stripe. */
+  stripeColor?: string;
   count: number;
   isHoverTarget: boolean;
   children: ReactNode;
@@ -121,23 +132,30 @@ export function Column({
       onDragOver={onDragOver}
       onDragLeave={onDragLeave}
       onDrop={onDrop}
-      className={`shrink-0 w-[72vw] sm:w-72 snap-start flex flex-col transition ${
-        isHoverTarget ? "bg-coral/[0.04] rounded-xl ring-1 ring-coral/30" : ""
+      className={`shrink-0 w-[72vw] sm:w-72 snap-start flex flex-col rounded-[var(--radius-md)] transition ${
+        isHoverTarget
+          ? "bg-white/[0.04] ring-1 ring-white/15"
+          : ""
       }`}
     >
-      {/* Flat column header — stage-coloured underline carries the accent;
-          no surrounding card wrapper so content gets all the visual weight. */}
+      {/* 2px stage stripe per spec — carries the per-stage accent without coral. */}
+      <span
+        aria-hidden="true"
+        className={`h-[2px] rounded-t-[var(--radius-md)] ${
+          stripeColor ?? accent
+        }`}
+      />
+      {/* Flat column header — no double card nesting. */}
       <div
-        className={`flex items-center gap-2 px-1 pb-2 border-b ${
+        className={`flex items-center gap-2 px-2 pt-2 pb-2 border-b ${
           count === 0 ? "border-white/[0.04]" : "border-white/10"
         }`}
       >
-        <span className={`w-1.5 h-1.5 rounded-full ${accent}`} />
-        <h3 className="font-heading tracking-wide text-off-white text-[13px]">
+        <h3 className="font-body font-semibold text-off-white text-[13px] tracking-normal">
           {label}
         </h3>
         <span
-          className={`ml-auto min-w-[20px] text-center text-[11px] font-heading tabular-nums px-1.5 py-0.5 rounded-full ${
+          className={`ml-auto min-w-[20px] text-center text-[11px] font-mono tabular-nums px-1.5 py-0.5 rounded-full ${
             count === 0
               ? "text-foreground-subtle"
               : "text-off-white bg-white/[0.06]"
@@ -146,7 +164,7 @@ export function Column({
           {count}
         </span>
       </div>
-      <div className="flex-1 pt-2 space-y-2 min-h-[60px]">{children}</div>
+      <div className="flex-1 pt-2 px-1 pb-2 space-y-2 min-h-[60px]">{children}</div>
     </div>
   );
 }

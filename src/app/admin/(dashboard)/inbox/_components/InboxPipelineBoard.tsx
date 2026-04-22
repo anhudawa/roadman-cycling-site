@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useMemo, useState } from "react";
+import { Button } from "@/components/admin/ui";
 import {
   Column,
   MoveMenu,
@@ -26,31 +27,35 @@ export const INBOX_STAGE_LABELS: Record<InboxStage, string> = {
 
 const INBOX_STAGE_COLORS: Record<
   InboxStage,
-  { dot: string; badge: string; ring: string }
+  { dot: string; stripe: string; badge: string; ring: string }
 > = {
   // Stage accents match the spec's per-stage token palette (slate / muted
   // purple / ochre / sage). Coral is reserved for primary CTA + unread
   // badge only, so stage "new" does NOT use coral.
   new: {
     dot: "bg-[var(--color-stage-new)]",
+    stripe: "bg-[var(--color-stage-new)]",
     badge:
       "bg-[var(--color-stage-new-tint)] text-[var(--color-stage-new)] border-[var(--color-stage-new)]/30",
     ring: "ring-[var(--color-stage-new)]",
   },
   reviewing: {
     dot: "bg-[var(--color-stage-triage)]",
+    stripe: "bg-[var(--color-stage-triage)]",
     badge:
       "bg-[var(--color-stage-triage-tint)] text-[var(--color-stage-triage)] border-[var(--color-stage-triage)]/30",
     ring: "ring-[var(--color-stage-triage)]",
   },
   awaiting_reply: {
     dot: "bg-[var(--color-stage-waiting)]",
+    stripe: "bg-[var(--color-stage-waiting)]",
     badge:
       "bg-[var(--color-stage-waiting-tint)] text-[var(--color-stage-waiting)] border-[var(--color-stage-waiting)]/30",
     ring: "ring-[var(--color-stage-waiting)]",
   },
   closed: {
     dot: "bg-[var(--color-stage-done)]",
+    stripe: "bg-[var(--color-stage-done)]",
     badge:
       "bg-[var(--color-stage-done-tint)] text-[var(--color-stage-done)] border-[var(--color-stage-done)]/30",
     ring: "ring-[var(--color-stage-done)]",
@@ -292,6 +297,7 @@ export function InboxPipelineBoard({ initialStages }: Props) {
                 stage={stage}
                 label={INBOX_STAGE_LABELS[stage]}
                 accent={color.dot}
+                stripeColor={color.stripe}
                 count={cards.length}
                 isHoverTarget={hoverStage === stage}
                 onDragOver={(e) => {
@@ -432,59 +438,63 @@ function InboxDetailModal({
         className="w-full max-w-2xl my-8 rounded-xl border border-white/10 bg-background-elevated shadow-2xl"
       >
         <div className="flex items-center gap-3 px-5 py-4 border-b border-white/10">
-          <h2 className="font-heading tracking-wider uppercase text-off-white text-sm">
+          <h2 className="font-body font-semibold text-off-white text-[15px] leading-tight truncate">
             {sub.subject || "Inbox message"}
           </h2>
-          <span className="text-foreground-subtle text-[10px]">
+          <span className="text-foreground-subtle text-[11px] font-mono tabular-nums shrink-0">
             #{sub.id} · {submitted}
           </span>
-          <a
-            href={`mailto:${sub.email}?subject=Re: ${encodeURIComponent(
-              sub.subject
-            )}`}
-            className="ml-auto text-xs px-3 py-1.5 rounded-lg bg-coral/15 text-coral border border-coral/30 hover:bg-coral/25 font-heading tracking-wider uppercase"
-          >
-            Reply
-          </a>
-          {confirming ? (
-            <>
-              <button
-                type="button"
-                onClick={onDelete}
-                disabled={deleting}
-                className="text-xs px-3 py-1.5 rounded-lg bg-red-500/20 text-red-400 border border-red-500/30 hover:bg-red-500/30 disabled:opacity-50 font-heading tracking-wider uppercase"
+          <div className="ml-auto flex items-center gap-2 shrink-0">
+            <Button
+              href={`mailto:${sub.email}?subject=Re: ${encodeURIComponent(
+                sub.subject
+              )}`}
+              variant="primary"
+              size="sm"
+            >
+              Reply
+            </Button>
+            {confirming ? (
+              <>
+                <Button
+                  variant="danger"
+                  size="sm"
+                  onClick={onDelete}
+                  disabled={deleting}
+                  loading={deleting}
+                >
+                  Confirm
+                </Button>
+                <Button
+                  variant="ghost"
+                  size="sm"
+                  onClick={() => setConfirming(false)}
+                  disabled={deleting}
+                >
+                  Cancel
+                </Button>
+              </>
+            ) : (
+              <Button
+                variant="ghost"
+                size="sm"
+                onClick={() => setConfirming(true)}
               >
-                {deleting ? "Deleting…" : "Confirm"}
-              </button>
-              <button
-                type="button"
-                onClick={() => setConfirming(false)}
-                disabled={deleting}
-                className="text-xs px-2 py-1.5 text-foreground-subtle hover:text-off-white"
-              >
-                Cancel
-              </button>
-            </>
-          ) : (
+                Delete
+              </Button>
+            )}
             <button
               type="button"
-              onClick={() => setConfirming(true)}
-              className="text-xs px-3 py-1.5 rounded-lg border border-white/10 text-foreground-subtle hover:text-red-400 hover:border-red-400/30 font-heading tracking-wider uppercase"
+              onClick={onClose}
+              className="text-foreground-subtle hover:text-off-white text-lg leading-none px-2 focus-ring rounded"
+              aria-label="Close"
             >
-              Delete
+              ×
             </button>
-          )}
-          <button
-            type="button"
-            onClick={onClose}
-            className="text-foreground-subtle hover:text-off-white text-lg leading-none px-2"
-            aria-label="Close"
-          >
-            ×
-          </button>
+          </div>
         </div>
         <div className="p-5 space-y-3">
-          <div className="flex items-center gap-2 p-3 rounded-lg border border-coral/20 bg-coral/[0.04]">
+          <div className="flex items-center gap-2 p-3 rounded-[var(--radius-md)] border border-white/10 bg-white/[0.03]">
             <div className="flex-1 min-w-0">
               <div className="text-foreground-subtle text-[10px] tracking-widest uppercase">
                 From
@@ -494,7 +504,7 @@ function InboxDetailModal({
               </p>
               <a
                 href={`mailto:${sub.email}`}
-                className="text-coral text-sm break-all hover:underline"
+                className="text-[var(--color-info)] text-sm break-all hover:underline"
               >
                 {sub.email}
               </a>
