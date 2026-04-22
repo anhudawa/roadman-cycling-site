@@ -5,6 +5,7 @@ import { ScrollReveal } from "@/components/ui";
 import { JsonLd, FAQPageJsonLd } from "@/components/seo/JsonLd";
 import { DiagnosticFlow } from "@/components/features/diagnostic/DiagnosticFlow";
 import { MetaPixel } from "@/components/features/diagnostic/MetaPixel";
+import { PROFILE_LABELS } from "@/lib/diagnostic/profiles";
 
 /**
  * /plateau — landing page for the Masters Plateau Diagnostic. Copy
@@ -38,7 +39,25 @@ export const revalidate = 3600;
 const SOCIAL_PROOF = [
   "Built from 1,400+ podcast conversations with World Tour coaches, sports scientists and pro riders.",
   "Based on methods used by the coaches behind Tadej Pogačar, Chris Froome and Egan Bernal.",
-  "Trusted by 113 members inside Not Done Yet.",
+  "Trusted by over 1 million monthly listeners of the Roadman Cycling Podcast.",
+];
+
+const HOW_IT_WORKS = [
+  {
+    n: "1",
+    title: "Tell us about your training",
+    body: "Age, weekly hours, and (optionally) your FTP and goal. Two taps each.",
+  },
+  {
+    n: "2",
+    title: "Twelve quick questions",
+    body: "Sleep, intensity distribution, strength, fuelling. One screen at a time.",
+  },
+  {
+    n: "3",
+    title: "Get your specific profile",
+    body: "One of four profiles, named and explained — and the exact three steps to fix it.",
+  },
 ];
 
 const CARDS = [
@@ -72,6 +91,10 @@ const FAQS = [
   {
     q: "Is this just going to sell me something?",
     a: "At the end you'll see whether Not Done Yet is the right fit. If it's not, the diagnosis is yours to keep — we don't run a hard-sell sequence.",
+  },
+  {
+    q: "What if my diagnosis doesn't sound like me?",
+    a: "Reply to the email it lands in and tell me. I'll personally re-run it and we'll work out what's missing. The diagnostic is only useful if it's right.",
   },
 ];
 
@@ -117,7 +140,9 @@ export default function PlateauPage() {
       <Header />
       <main id="main-content">
         {/* ── Hero — built for paid traffic, sub-2-second comprehension ── */}
-        <Section background="charcoal" grain className="pt-28 pb-8">
+        {/* pt-24 puts the CTA above the fold on iPhone SE (375×667)
+            once the global header is accounted for. */}
+        <Section background="charcoal" grain className="pt-24 pb-8">
           <Container width="narrow" className="text-center">
             <ScrollReveal direction="up" eager>
               <p className="text-coral font-heading text-sm tracking-widest mb-4">
@@ -141,7 +166,8 @@ export default function PlateauPage() {
                 START THE DIAGNOSTIC
               </a>
               <p className="text-foreground-subtle text-xs mt-4">
-                No email needed to start &middot; 4 minutes &middot; Free
+                No email needed to start &middot; 4 minutes &middot; Free &middot;
+                Built from 1M+ monthly podcast listeners
               </p>
             </ScrollReveal>
           </Container>
@@ -163,6 +189,69 @@ export default function PlateauPage() {
                 </li>
               ))}
             </ul>
+          </Container>
+        </Section>
+
+        {/* ── Profile-preview teaser strip ─────────────── */}
+        {/* Curiosity-driver: shows the four profile names so the user
+            commits to the diagnostic to find out which one they are.
+            Lifts completion rate with negligible page weight. */}
+        <Section background="charcoal" className="py-8 border-t border-white/5">
+          <Container width="wide">
+            <ScrollReveal direction="up">
+              <p className="text-center text-foreground-subtle text-sm mb-4">
+                You&rsquo;ll be one of these four.
+              </p>
+              <ul className="flex flex-wrap items-center justify-center gap-2 md:gap-3">
+                {(Object.values(PROFILE_LABELS) as string[]).map((label) => (
+                  <li
+                    key={label}
+                    className="rounded-full border border-coral/30 bg-coral/5 px-4 py-1.5 text-sm font-heading tracking-wide text-off-white"
+                  >
+                    {label}
+                  </li>
+                ))}
+              </ul>
+            </ScrollReveal>
+          </Container>
+        </Section>
+
+        {/* ── How it works (3-step primer) ─────────────── */}
+        {/* Sits between social proof and the diagnostic so users
+            who need a "how" before they commit get it without
+            scrolling past the diagnostic and back. */}
+        <Section background="charcoal" className="py-12">
+          <Container width="narrow">
+            <ScrollReveal direction="up">
+              <p className="text-coral font-heading text-xs tracking-widest text-center mb-3">
+                HOW IT WORKS
+              </p>
+              <h2
+                className="font-heading text-off-white text-center mb-10"
+                style={{ fontSize: "var(--text-section)" }}
+              >
+                FOUR MINUTES TO YOUR ANSWER
+              </h2>
+            </ScrollReveal>
+            <ol className="grid sm:grid-cols-3 gap-4 list-none p-0">
+              {HOW_IT_WORKS.map((step, i) => (
+                <li key={step.n}>
+                  <ScrollReveal direction="up" delay={i * 0.1}>
+                    <div className="rounded-xl border border-white/5 bg-background-elevated p-5 h-full">
+                      <p className="font-heading text-3xl text-coral mb-2">
+                        {step.n}
+                      </p>
+                      <p className="font-heading text-base text-off-white mb-2">
+                        {step.title.toUpperCase()}
+                      </p>
+                      <p className="text-foreground-muted text-sm leading-relaxed">
+                        {step.body}
+                      </p>
+                    </div>
+                  </ScrollReveal>
+                </li>
+              ))}
+            </ol>
           </Container>
         </Section>
 
