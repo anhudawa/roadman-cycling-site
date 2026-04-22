@@ -35,6 +35,9 @@ export async function GET() {
         `Published: ${post.publishDate}${post.updatedDate ? ` (updated ${post.updatedDate})` : ""}`,
         post.answerCapsule ? `\nAnswer:\n${post.answerCapsule}` : "",
         `\nSummary:\n${post.seoDescription}`,
+        post.faq && post.faq.length > 0
+          ? `\nFAQ:\n${post.faq.map((f: { question: string; answer: string }) => `Q: ${f.question}\nA: ${f.answer}`).join("\n\n")}`
+          : "",
         "",
       ]
         .filter(Boolean)
@@ -60,6 +63,9 @@ export async function GET() {
         `Duration: ${ep.duration}`,
         ep.answerCapsule ? `\nAnswer:\n${ep.answerCapsule}` : "",
         `\nSummary:\n${ep.seoDescription}`,
+        ep.faq && ep.faq.length > 0
+          ? `\nFAQ:\n${ep.faq.map((f: { question: string; answer: string }) => `Q: ${f.question}\nA: ${f.answer}`).join("\n\n")}`
+          : "",
         "",
       ]
         .filter(Boolean)

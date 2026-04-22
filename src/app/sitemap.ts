@@ -192,6 +192,14 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       priority: 0.8,
     },
 
+    // Research — evidence base hub
+    {
+      url: `${BASE_URL}/research`,
+      lastModified: new Date(),
+      changeFrequency: "monthly",
+      priority: 0.7,
+    },
+
     // Persona landing pages — high-intent funnel entries
     {
       url: `${BASE_URL}/you/plateau`,
