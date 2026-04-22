@@ -34,7 +34,7 @@ export function ScriptEditor({
         onBlur={handleBlur}
         placeholder="Write the ad read script here..."
         rows={3}
-        className="w-full bg-white/[0.03] border border-white/10 rounded-lg px-3 py-2 text-sm text-off-white placeholder-foreground-subtle focus:border-coral/30 focus:ring-1 focus:ring-coral/20 outline-none resize-y transition-colors"
+        className="w-full bg-white/[0.03] border border-white/10 rounded-lg px-3 py-2 text-sm text-off-white placeholder-foreground-subtle focus:border-[var(--color-border-focus)] focus:ring-1 focus:ring-[var(--color-border-focus)]/20 outline-none resize-y transition-colors"
       />
       <div className="absolute top-2 right-2 flex items-center gap-1">
         {isPending && (

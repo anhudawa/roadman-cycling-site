@@ -97,7 +97,7 @@ export function ThisWeekClient({
               onClick={() => setWindowDays(w)}
               className={`px-3 py-1 text-xs font-medium rounded-md transition-colors ${
                 windowDays === w
-                  ? "bg-coral/15 text-coral"
+                  ? "bg-[var(--color-raised)] text-[var(--color-fg)] shadow-inner"
                   : "text-foreground-muted hover:text-off-white"
               }`}
             >
@@ -118,7 +118,7 @@ export function ThisWeekClient({
               onClick={() => setFilter(f.key)}
               className={`px-3 py-1 text-xs font-medium rounded-md transition-colors ${
                 filter === f.key
-                  ? "bg-coral/15 text-coral"
+                  ? "bg-[var(--color-raised)] text-[var(--color-fg)] shadow-inner"
                   : "text-foreground-muted hover:text-off-white"
               }`}
             >
@@ -198,7 +198,7 @@ export function ThisWeekClient({
                           href={slot.briefUrl}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="text-xs text-coral hover:text-coral-hover underline underline-offset-2"
+                          className="text-xs text-[var(--color-info)] hover:text-[var(--color-fg)] underline underline-offset-2"
                         >
                           View Brief
                         </a>

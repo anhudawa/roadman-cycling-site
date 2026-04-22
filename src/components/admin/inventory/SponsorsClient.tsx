@@ -27,7 +27,7 @@ const TIER_COLORS: Record<string, string> = {
   quarter_starter: "bg-blue-500/15 text-blue-400",
   quarter_standard: "bg-blue-500/15 text-blue-400",
   quarter_premium: "bg-purple-500/15 text-purple-300",
-  annual: "bg-coral/15 text-coral",
+  annual: "bg-[var(--color-stage-triage-tint)] text-[var(--color-stage-triage)]",
 };
 
 function StalenessDot({ days }: { days: number | null }) {
@@ -136,7 +136,7 @@ export function SponsorsClient({
             onClick={() => setSortKey(s.key)}
             className={`text-xs px-3 py-1 rounded-md transition-colors ${
               sortKey === s.key
-                ? "bg-coral/15 text-coral"
+                ? "bg-[var(--color-raised)] text-[var(--color-fg)] shadow-inner"
                 : "bg-white/5 text-foreground-muted hover:text-off-white"
             }`}
           >
@@ -203,7 +203,7 @@ export function SponsorsClient({
                           {sponsor.brandName}
                         </span>
                         {attention && (
-                          <span className="w-2 h-2 rounded-full bg-coral animate-pulse" />
+                          <span className="w-2 h-2 rounded-full bg-[var(--color-warn)] animate-pulse" />
                         )}
                       </div>
                     </td>
