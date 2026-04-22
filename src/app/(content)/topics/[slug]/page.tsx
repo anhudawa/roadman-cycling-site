@@ -5,7 +5,7 @@ import { Header, Footer, Section, Container } from "@/components/layout";
 import { ScrollReveal, Card, Badge, Button } from "@/components/ui";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { EmailCapture } from "@/components/features/conversion/EmailCapture";
-import { getTopicBySlug, getAllTopicSlugs } from "@/lib/topics";
+import { getTopicBySlug, getAllTopicSlugs, getTopicTitleBySlug } from "@/lib/topics";
 
 export async function generateStaticParams() {
   return getAllTopicSlugs().map((slug) => ({ slug }));
@@ -162,6 +162,95 @@ export default async function TopicPage({
                     </Link>
                   </ScrollReveal>
                 ))}
+              </div>
+            </Container>
+          </Section>
+        )}
+
+        {/* Featured Tools */}
+        {topic.tools.length > 0 && (
+          <Section background="deep-purple" grain>
+            <Container>
+              <ScrollReveal direction="up" className="text-center mb-8">
+                <p className="font-heading text-coral text-xs tracking-widest mb-3">
+                  FREE TOOLS
+                </p>
+                <h2
+                  className="font-heading text-off-white"
+                  style={{ fontSize: "var(--text-section)" }}
+                >
+                  CALCULATORS FOR THIS TOPIC
+                </h2>
+              </ScrollReveal>
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 max-w-4xl mx-auto">
+                {topic.tools.map((tool, i) => (
+                  <ScrollReveal key={tool.slug} direction="up" delay={i * 0.05}>
+                    <Link href={tool.href} className="block h-full">
+                      <Card hoverable className="h-full p-5 text-center">
+                        <h3 className="font-heading text-off-white text-base mb-1">
+                          {tool.title}
+                        </h3>
+                        <span className="text-coral text-sm">Try it free →</span>
+                      </Card>
+                    </Link>
+                  </ScrollReveal>
+                ))}
+              </div>
+            </Container>
+          </Section>
+        )}
+
+        {/* Commercial CTA */}
+        <Section background="charcoal" className="section-glow-coral !py-14">
+          <Container width="narrow">
+            <ScrollReveal direction="up">
+              <div className="rounded-2xl border border-coral/30 bg-gradient-to-br from-coral/10 via-deep-purple/40 to-charcoal p-8 md:p-10 text-center">
+                <p className="font-heading text-coral text-xs tracking-widest mb-3">
+                  READY FOR STRUCTURE?
+                </p>
+                <h2
+                  className="font-heading text-off-white mb-3"
+                  style={{ fontSize: "var(--text-section)" }}
+                >
+                  GET COACHED ON {topic.headline.split(" ").slice(0, 3).join(" ")}
+                </h2>
+                <p className="text-foreground-muted text-sm mb-6 max-w-md mx-auto">
+                  Not Done Yet coaching builds your plan around these principles.
+                  5 pillars. $195/month. 7-day free trial.
+                </p>
+                <Link
+                  href={topic.commercialPath}
+                  className="inline-flex items-center justify-center gap-2 font-heading tracking-wider uppercase rounded-md bg-coral text-off-white hover:bg-coral/90 px-6 py-3 text-sm transition-all"
+                  data-track={`topic_${topic.slug}_cta`}
+                >
+                  {topic.commercialPath === "/apply" ? "Apply Now" : "Learn More"} →
+                </Link>
+              </div>
+            </ScrollReveal>
+          </Container>
+        </Section>
+
+        {/* Related Topics */}
+        {topic.relatedTopics.length > 0 && (
+          <Section background="charcoal" className="!pt-0 !pb-14">
+            <Container width="narrow" className="text-center">
+              <p className="font-heading text-coral text-xs tracking-widest mb-4">
+                RELATED TOPICS
+              </p>
+              <div className="flex flex-wrap gap-3 justify-center">
+                {topic.relatedTopics.map((relSlug) => {
+                  const title = getTopicTitleBySlug(relSlug);
+                  if (!title) return null;
+                  return (
+                    <Link
+                      key={relSlug}
+                      href={`/topics/${relSlug}`}
+                      className="inline-flex items-center gap-1 rounded-lg border border-white/15 hover:border-coral/40 bg-white/[0.04] hover:bg-white/[0.07] px-4 py-2 text-sm font-heading text-off-white tracking-wider transition-all"
+                    >
+                      {title} →
+                    </Link>
+                  );
+                })}
               </div>
             </Container>
           </Section>
