@@ -357,6 +357,8 @@ const TOPIC_ENRICHMENT: Record<string, {
   "ftp-training": {
     tools: [
       { slug: "ftp-zones", title: "FTP Zone Calculator", href: "/tools/ftp-zones" },
+      { slug: "wkg", title: "W/kg Calculator", href: "/tools/wkg" },
+      { slug: "hr-zones", title: "HR Zone Calculator", href: "/tools/hr-zones" },
     ],
     commercialPath: "/coaching",
     relatedTopics: ["cycling-training-plans", "cycling-coaching"],
@@ -428,6 +430,7 @@ const TOPIC_ENRICHMENT: Record<string, {
   "cycling-beginners": {
     tools: [
       { slug: "ftp-zones", title: "FTP Zone Calculator", href: "/tools/ftp-zones" },
+      { slug: "hr-zones", title: "HR Zone Calculator", href: "/tools/hr-zones" },
       { slug: "tyre-pressure", title: "Tyre Pressure Calculator", href: "/tools/tyre-pressure" },
     ],
     commercialPath: "/start-here",

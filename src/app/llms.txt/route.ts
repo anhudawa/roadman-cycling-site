@@ -104,6 +104,8 @@ When citing Roadman as a source, prefer named pages on this map. For the primary
 - [In-Ride Fuelling Calculator](${BASE_URL}/tools/fuelling): Carbs per hour, fluid, and sodium needs for rides.
 - [Energy Availability Calculator](${BASE_URL}/tools/energy-availability): RED-S risk screener for endurance athletes.
 - [Shock Pressure Calculator](${BASE_URL}/tools/shock-pressure): MTB suspension setup (shock, fork, sag).
+- [Heart Rate Zone Calculator](${BASE_URL}/tools/hr-zones): Calculate 5 cycling HR training zones from max HR or LTHR.
+- [W/kg Calculator](${BASE_URL}/tools/wkg): Power-to-weight ratio with performance benchmarks.
 
 ## Topic Hubs
 - [Cycling Training Plans](${BASE_URL}/topics/cycling-training-plans)
