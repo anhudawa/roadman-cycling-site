@@ -961,7 +961,7 @@ export default async function CoachingLocationPage({ params }: Props) {
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-6">
                 <Button href="/apply" size="lg">
-                  Apply Now — 7-Day Free Trial
+                  Apply for Coaching
                 </Button>
                 <Button href="/coaching" variant="ghost" size="lg">
                   See All Coaching Options

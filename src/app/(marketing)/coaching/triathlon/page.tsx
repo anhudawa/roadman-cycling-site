@@ -314,7 +314,7 @@ export default function TriathlonCoachingPage() {
                   size="lg"
                   dataTrack="triathlon_pillar_hero_apply"
                 >
-                  Apply Now — 7-Day Free Trial
+                  Apply for Coaching
                 </Button>
                 <Button href="#how-it-works" variant="ghost" size="lg">
                   How the Bike Block Works

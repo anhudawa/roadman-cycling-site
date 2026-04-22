@@ -91,7 +91,7 @@ function cohort2Open(): CohortState {
     submissionTag: "cohort-2-applicant",
     banner: {
       eyebrow: "COHORT 2 IS OPEN",
-      detail: "Not Done Yet coaching community · 30 places · 7-day free trial",
+      detail: "Not Done Yet coaching · 30 places · 7-day free trial",
       cta: "APPLY",
       ctaHref: "/apply",
     },
@@ -112,7 +112,7 @@ function cohort2ClosingToday(): CohortState {
     phase: "closing-today",
     banner: {
       eyebrow: "FINAL HOURS",
-      detail: "Not Done Yet coaching community · Cohort 2 closes at midnight · last chance",
+      detail: "Not Done Yet coaching · Cohort 2 closes at midnight · last chance",
       cta: "APPLY",
       ctaHref: "/apply",
     },
@@ -130,7 +130,7 @@ function cohort3Waitlist(): CohortState {
     submissionTag: "cohort-3-waitlist",
     banner: {
       eyebrow: "COHORT 3 COMING SOON",
-      detail: "Not Done Yet coaching community · Apply for 24-hour early access",
+      detail: "Not Done Yet coaching · Apply for 24-hour early access",
       cta: "APPLY NOW",
       ctaHref: "/apply",
     },

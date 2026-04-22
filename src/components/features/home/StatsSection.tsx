@@ -4,7 +4,7 @@ import { ScrollReveal, AnimatedCounter } from "@/components/ui";
 
 const stats = [
   { value: "1M+", label: "Monthly Listeners" },
-  { value: "1,965+", label: "Community Members" },
+  { value: "2,100+", label: "Community Members" },
   { value: "61K+", label: "YouTube Subscribers" },
   { value: "49K+", label: "Instagram Followers" },
 ];

@@ -7,7 +7,7 @@ import { JsonLd } from "@/components/seo/JsonLd";
 export const metadata: Metadata = {
   title: "Start Here — New to Roadman Cycling?",
   description:
-    "New to Roadman? Start here. The best episodes, articles, tools, and resources to get you faster on the bike — curated from 310+ episodes and 170 articles.",
+    "New to Roadman? Start here. The best episodes, articles, tools, and resources to get you faster on the bike — curated from 1,300+ episodes and 170 articles.",
   alternates: {
     canonical: "https://roadmancycling.com/start-here",
   },
@@ -107,7 +107,7 @@ export default function StartHerePage() {
           "@type": "CollectionPage",
           name: "Start Here — New to Roadman Cycling?",
           description:
-            "Curated starting point for new visitors. Best episodes, articles, tools, and resources from 310+ episodes and 170 articles.",
+            "Curated starting point for new visitors. Best episodes, articles, tools, and resources from 1,300+ episodes and 170 articles.",
           url: "https://roadmancycling.com/start-here",
           isPartOf: {
             "@type": "WebSite",
@@ -140,7 +140,7 @@ export default function StartHerePage() {
                 <span style={{ fontSize: "var(--text-hero)" }}>START HERE.</span>
               </GradientText>
               <p className="text-foreground-muted text-lg md:text-xl max-w-2xl mx-auto leading-relaxed">
-                310+ episodes. 170 articles. 6 free tools. This page cuts through it all — the
+                1,300+ episodes. 170 articles. 6 free tools. This page cuts through it all — the
                 essential starting points to get faster on the bike.
               </p>
             </ScrollReveal>

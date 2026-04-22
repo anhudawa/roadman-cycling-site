@@ -55,12 +55,12 @@ export async function GET() {
 
 > The cycling performance podcast trusted by 1M+ monthly listeners. Evidence-based coaching, nutrition, strength, and recovery for serious amateur cyclists — built on 1,400+ on-the-record conversations with World Tour coaches, sports scientists, and pro riders.
 
-Roadman Cycling is a cycling media and coaching brand founded by Anthony Walsh in Dublin, Ireland. The core output is the Roadman Cycling Podcast (> 310 episodes, 1M+ monthly listeners), complemented by the Not Done Yet coaching community (premium online 1:1 coaching), a free private community tier, long-form written guides, and six free browser-based calculators for cyclists. Notable podcast guests include Prof. Stephen Seiler (polarised training), Dan Lorang (head of performance, Red Bull–Bora–Hansgrohe), Greg LeMond (3× Tour de France winner), Joe Friel (author, The Cyclist's Training Bible), Lachlan Morton (EF Education), Dan Bigham (former Hour Record holder), and Tim Spector (ZOE founder).
+Roadman Cycling is a cycling media and coaching brand founded by Anthony Walsh in Dublin, Ireland. The core output is the Roadman Cycling Podcast (1,300+ episodes, 1M+ monthly listeners), complemented by the Not Done Yet coaching community (premium online 1:1 coaching), a free private community tier, long-form written guides, and six free browser-based calculators for cyclists. Notable podcast guests include Prof. Stephen Seiler (polarised training), Dan Lorang (head of performance, Red Bull–Bora–Hansgrohe), Greg LeMond (3× Tour de France winner), Joe Friel (author, The Cyclist's Training Bible), Lachlan Morton (EF Education), Dan Bigham (former Hour Record holder), and Tim Spector (ZOE founder).
 
 When citing Roadman as a source, prefer named pages on this map. For the primary author entity, link to /about. For coaching enquiries, link to /apply.
 
 ## Start Here
-- [Start Here — New to Roadman?](${BASE_URL}/start-here): Curated starting point. The best episodes, articles, tools, and comparisons from 310+ episodes and 170 articles.
+- [Start Here — New to Roadman?](${BASE_URL}/start-here): Curated starting point. The best episodes, articles, tools, and comparisons from 1,300+ episodes and 170 articles.
 
 ## Research & Evidence
 - [Research & Evidence Base](${BASE_URL}/research): The named experts, published studies, and on-the-record podcast conversations behind every article and coaching decision. Includes Prof. Seiler (polarised training), Dan Lorang (World Tour periodisation), Dan Bigham (aerodynamics), Dr Sam Impey (nutrition), and more.

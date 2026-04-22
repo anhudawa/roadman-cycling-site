@@ -37,7 +37,7 @@ const brandStats = [
       "In-depth interviews with World Tour coaches, sports scientists and pro riders",
   },
   {
-    stat: "310+",
+    stat: "1,300+",
     label: "Episodes published",
     detail:
       "The Roadman Cycling Podcast — weekly since 2021, available everywhere podcasts are",

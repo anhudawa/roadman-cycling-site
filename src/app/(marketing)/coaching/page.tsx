@@ -327,7 +327,7 @@ export default function CoachingPage() {
                   size="lg"
                   dataTrack="coaching_hub_hero_apply"
                 >
-                  Apply Now — 7-Day Free Trial
+                  Apply for Coaching
                 </Button>
                 <Button href="#how-it-works" variant="ghost" size="lg">
                   See How It Works

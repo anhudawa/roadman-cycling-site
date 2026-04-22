@@ -112,7 +112,7 @@ export default function CommunityPage() {
                     THE CLUBHOUSE
                   </h2>
                   <p className="text-xs text-foreground-subtle uppercase tracking-widest font-body mb-4">
-                    1,852 members
+                    2,100+ members
                   </p>
                   <p className="text-foreground-muted text-sm mb-5 leading-relaxed">
                     Your entry point. Free plans, weekly live Q&amp;A, a
@@ -191,7 +191,7 @@ export default function CommunityPage() {
                     ))}
                   </ul>
                   <Button href="/apply" size="lg" className="w-full">
-                    Apply — 7-Day Free Trial
+                    Apply for Coaching
                   </Button>
                 </Card>
 

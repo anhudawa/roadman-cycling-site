@@ -137,6 +137,7 @@ export const NAV_ITEMS: NavItem[] = [
     label: "Community",
     href: "/community",
     children: [
+      { label: "Not Done Yet Coaching Community", href: "/community/not-done-yet" },
       { label: "Clubhouse (Free)", href: "/community/clubhouse" },
       { label: "Roadman CC (Dublin club rides)", href: "/community/club" },
       { label: "Events", href: "/events" },
