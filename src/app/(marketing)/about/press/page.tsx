@@ -459,7 +459,7 @@ export default function PressPage() {
             <Button
               href="mailto:anthony@roadmancycling.com?subject=Press%20enquiry"
               size="lg"
-              className="bg-off-white text-coral hover:bg-off-white/90"
+              className="!bg-off-white !text-coral !shadow-none hover:!bg-off-white/90"
             >
               anthony@roadmancycling.com
             </Button>

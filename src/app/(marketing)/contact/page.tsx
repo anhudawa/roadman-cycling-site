@@ -44,9 +44,18 @@ export default function ContactPage() {
             >
               GET IN TOUCH
             </h1>
-            <p className="text-foreground-muted text-lg">
+            <p className="text-foreground-muted text-lg mb-6">
               Sponsorship enquiries, press, partnerships, or just want to say
               hello.
+            </p>
+            <p className="text-sm text-foreground-muted">
+              Or email directly:{" "}
+              <a
+                href="mailto:anthony@roadmancycling.com"
+                className="text-coral hover:text-coral-hover underline underline-offset-4 font-medium"
+              >
+                anthony@roadmancycling.com
+              </a>
             </p>
           </Container>
         </Section>
