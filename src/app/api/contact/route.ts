@@ -1,9 +1,9 @@
 import { NextResponse } from "next/server";
-import { Resend } from "resend";
 import { db } from "@/lib/db";
 import { contactSubmissions } from "@/lib/db/schema";
 import { upsertContact, addActivity } from "@/lib/crm/contacts";
 import { subscribeToBeehiiv } from "@/lib/integrations/beehiiv";
+import { getResendClient } from "@/lib/integrations/resend";
 import {
   clampString,
   escapeHtml,
@@ -12,12 +12,6 @@ import {
 } from "@/lib/validation";
 
 const NOTIFICATION_EMAIL = "anthony@roadmancycling.com";
-
-function getResend() {
-  const key = process.env.RESEND_API_KEY;
-  if (!key) return null;
-  return new Resend(key);
-}
 
 export async function POST(request: Request) {
   try {
@@ -90,7 +84,7 @@ export async function POST(request: Request) {
     // Send notification email to Anthony (Resend). Escape user input
     // to prevent HTML injection via contact form — even though only
     // Anthony sees it, this is the correct posture.
-    const resend = getResend();
+    const resend = getResendClient();
     if (resend) {
       try {
         const emailResult = await resend.emails.send({

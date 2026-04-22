@@ -67,6 +67,7 @@ const COMPARISON_PICKS = [
 ];
 
 const TOOLS = [
+  { title: "Plateau Diagnostic", href: "/plateau", desc: "For 35+ riders stuck on the same FTP. Four minutes, one answer." },
   { title: "FTP Zone Calculator", href: "/tools/ftp-zones", desc: "Your 7 power zones in seconds." },
   { title: "Tyre Pressure Calculator", href: "/tools/tyre-pressure", desc: "Optimal PSI for your setup." },
   { title: "Race Weight Calculator", href: "/tools/race-weight", desc: "Your target performance weight." },

@@ -877,3 +877,58 @@ export const skoolEvents = pgTable(
     index("skool_events_status_idx").on(table.status),
   ]
 );
+
+// ── Masters Plateau Diagnostic ────────────────────────────
+// Lead magnet: a 12-question assessment that returns a personalised
+// diagnosis across four profiles. Each submission stores the raw
+// answers, computed profile scores, assigned profile, optional LLM
+// output, and whatever UTM data came in off the ad click so we can
+// attribute conversions back to ad variant. See docs/spec for the
+// full build brief.
+export const diagnosticSubmissions = pgTable(
+  "diagnostic_submissions",
+  {
+    id: serial("id").primaryKey(),
+    /** URL-friendly public identifier used in /diagnostic/:slug links. */
+    slug: text("slug").notNull().unique(),
+    email: text("email").notNull(),
+    age: text("age").notNull(),                     // 35-44 | 45-54 | 55-64 | 65+
+    hoursPerWeek: text("hours_per_week").notNull(), // under-5 | 5-8 | 9-12 | 13+
+    ftp: integer("ftp"),
+    goal: text("goal"),
+    /** { Q1: 0..3, ..., Q12: 0..3, Q13?: string } */
+    answers: jsonb("answers").notNull().$type<Record<string, unknown>>(),
+    /** { underRecovered, polarisation, strengthGap, fuelingDeficit } numbers. */
+    scores: jsonb("scores").notNull().$type<Record<string, number>>(),
+    primaryProfile: text("primary_profile").notNull(),
+    secondaryProfile: text("secondary_profile"),
+    severeMultiSystem: boolean("severe_multi_system").notNull().default(false),
+    closeToBreakthrough: boolean("close_to_breakthrough").notNull().default(false),
+    /** Generated breakdown (LLM or static fallback) — render-ready. */
+    breakdown: jsonb("breakdown").notNull().$type<Record<string, unknown>>(),
+    /** 'llm' | 'fallback' — distinguishes Claude-generated from static. */
+    generationSource: text("generation_source").notNull().default("fallback"),
+    /** Raw model text for QA + prompt-refinement diffs. Can be null. */
+    rawModelOutput: text("raw_model_output"),
+    /** Validator output snapshot for the admin QA view. */
+    generationMeta: jsonb("generation_meta").$type<Record<string, unknown>>(),
+    utmSource: text("utm_source"),
+    utmMedium: text("utm_medium"),
+    utmCampaign: text("utm_campaign"),
+    utmContent: text("utm_content"),
+    utmTerm: text("utm_term"),
+    userAgent: text("user_agent"),
+    referrer: text("referrer"),
+    beehiivSubscriberId: text("beehiiv_subscriber_id"),
+    /** 1 on first submission for an email, 2 on second, etc. See §17. */
+    retakeNumber: integer("retake_number").notNull().default(1),
+    createdAt: timestamp("created_at", { withTimezone: true }).notNull().defaultNow(),
+    updatedAt: timestamp("updated_at", { withTimezone: true }).notNull().defaultNow(),
+  },
+  (table) => [
+    index("diagnostic_submissions_email_idx").on(table.email),
+    index("diagnostic_submissions_created_at_idx").on(table.createdAt),
+    index("diagnostic_submissions_primary_profile_idx").on(table.primaryProfile),
+    index("diagnostic_submissions_utm_campaign_idx").on(table.utmCampaign),
+  ]
+);

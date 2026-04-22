@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-import { Resend } from "resend";
+import { getResendClient } from "@/lib/integrations/resend";
 
 const WEBHOOK_SECRET = process.env.STRIPE_WEBHOOK_SECRET;
 const NOTIFICATION_EMAIL = "admin@roadmancycling.com";
@@ -10,12 +10,6 @@ function getStripe() {
   const StripeModule = require("stripe");
   const Stripe = StripeModule.default || StripeModule;
   return new Stripe(key);
-}
-
-function getResend() {
-  const key = process.env.RESEND_API_KEY;
-  if (!key) return null;
-  return new Resend(key);
 }
 
 export async function POST(request: Request) {
@@ -54,7 +48,7 @@ export async function POST(request: Request) {
     );
 
     // Send notification email
-    const resend = getResend();
+    const resend = getResendClient();
     if (resend) {
       try {
         await resend.emails.send({

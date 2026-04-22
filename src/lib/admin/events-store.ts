@@ -13,7 +13,13 @@ export type EventType =
   | "skool_trial"
   | "checkout_initiated"
   | "checkout_completed"
-  | "error_report";
+  | "error_report"
+  // ── Plateau Diagnostic funnel ──────────────────────────
+  | "diagnostic_start"
+  | "diagnostic_progress"
+  | "diagnostic_complete"
+  | "diagnostic_results_view"
+  | "diagnostic_cta_click";
 
 export interface TrackingEvent {
   id: string;

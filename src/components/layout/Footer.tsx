@@ -30,6 +30,7 @@ const footerColumns = {
       { label: "Topic Hubs", href: "/topics" },
       { label: "Training Plans", href: "/plan" },
       { label: "Newsletter", href: "/newsletter" },
+      { label: "Plateau Diagnostic", href: "/plateau" },
       { label: "All Tools", href: "/tools" },
     ],
   },
