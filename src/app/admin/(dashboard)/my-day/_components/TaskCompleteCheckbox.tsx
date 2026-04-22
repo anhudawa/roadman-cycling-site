@@ -42,7 +42,7 @@ export function TaskCompleteCheckbox({ taskId, completed }: Props) {
       disabled={busy || pending}
       aria-label={optimistic ? "Mark incomplete" : "Mark complete"}
       className={`w-5 h-5 rounded border flex items-center justify-center transition-colors shrink-0 ${
-        optimistic ? "bg-coral border-coral" : "border-white/20 hover:border-coral"
+        optimistic ? "bg-[var(--color-good)] border-[var(--color-good)]" : "border-[var(--color-border-strong)] hover:border-[var(--color-fg)]"
       } ${busy ? "opacity-60" : ""}`}
     >
       {optimistic && (
