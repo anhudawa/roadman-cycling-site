@@ -274,6 +274,89 @@ export default async function GuestPage({
               );
             })()}
 
+            {/* Key quotes from this guest's episodes */}
+            {(() => {
+              const allQuotes = sortedEpisodes
+                .flatMap((ep) =>
+                  (ep.keyQuotes || [])
+                    .filter((q) => q.speaker === guest.name)
+                    .map((q) => ({ ...q, episodeSlug: ep.slug }))
+                )
+                .slice(0, 3);
+              if (allQuotes.length === 0) return null;
+              return (
+                <div className="mt-16">
+                  <h2 className="font-heading text-2xl text-off-white mb-6 tracking-wide">
+                    IN THEIR OWN WORDS
+                  </h2>
+                  <div className="space-y-4">
+                    {allQuotes.map((q, i) => (
+                      <blockquote
+                        key={i}
+                        className="rounded-xl border-l-4 border-l-coral bg-white/[0.03] p-5"
+                      >
+                        <p className="text-foreground-muted text-sm leading-relaxed italic">
+                          &ldquo;{q.text}&rdquo;
+                        </p>
+                        <footer className="mt-2 text-xs text-foreground-subtle">
+                          — {q.speaker}
+                          {q.credential && `, ${q.credential}`}
+                        </footer>
+                      </blockquote>
+                    ))}
+                  </div>
+                </div>
+              );
+            })()}
+
+            {/* Related topics */}
+            {guest.pillars.length > 0 && (
+              <div className="mt-12 text-center">
+                <p className="font-heading text-coral text-xs tracking-widest mb-4">
+                  EXPLORE RELATED TOPICS
+                </p>
+                <div className="flex flex-wrap gap-3 justify-center">
+                  {guest.pillars.map((pillar) => {
+                    const topicMap: Record<string, { slug: string; title: string }> = {
+                      coaching: { slug: "cycling-coaching", title: "Cycling Coaching" },
+                      nutrition: { slug: "cycling-nutrition", title: "Cycling Nutrition" },
+                      strength: { slug: "cycling-strength-conditioning", title: "Strength & Conditioning" },
+                      recovery: { slug: "cycling-recovery", title: "Recovery" },
+                      community: { slug: "cycling-beginners", title: "Getting Into Cycling" },
+                    };
+                    const topic = topicMap[pillar];
+                    if (!topic) return null;
+                    return (
+                      <Link
+                        key={pillar}
+                        href={`/topics/${topic.slug}`}
+                        className="inline-flex items-center gap-1 rounded-lg border border-white/15 hover:border-coral/40 bg-white/[0.04] hover:bg-white/[0.07] px-4 py-2 text-sm font-heading text-off-white tracking-wider transition-all"
+                      >
+                        {topic.title} →
+                      </Link>
+                    );
+                  })}
+                </div>
+              </div>
+            )}
+
+            {/* Coaching CTA */}
+            <div className="mt-12 rounded-2xl border border-coral/30 bg-gradient-to-br from-coral/10 via-deep-purple/40 to-charcoal p-6 md:p-8 text-center">
+              <p className="font-heading text-coral text-xs tracking-widest mb-2">
+                TRAIN WITH THE KNOWLEDGE
+              </p>
+              <p className="text-off-white font-heading text-lg mb-4">
+                Apply the insights from {guest.name}&rsquo;s episodes to your own training.
+              </p>
+              <Link
+                href="/apply"
+                className="inline-flex items-center justify-center gap-2 font-heading tracking-wider uppercase rounded-md bg-coral text-off-white hover:bg-coral/90 px-6 py-3 text-sm transition-all"
+                data-track={`guest_${slug}_apply`}
+              >
+                Apply for Coaching →
+              </Link>
+            </div>
+
             {/* Back + CTA */}
             <div className="mt-12 flex flex-col sm:flex-row gap-4 justify-center">
               <Button href="/guests" variant="ghost">
