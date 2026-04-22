@@ -46,7 +46,7 @@ export default async function ExperimentsPage() {
         </div>
         <Link
           href="/admin/experiments/new"
-          className="px-4 py-2 bg-[var(--color-coral)] hover:bg-[var(--color-bad-tint)] text-white text-sm font-medium rounded-lg transition-colors"
+          className="px-4 py-2 bg-[var(--color-elevated)] hover:bg-[var(--color-raised)] text-[var(--color-fg)] border border-[var(--color-border-strong)] text-sm font-medium rounded-lg transition-colors"
         >
           Create Experiment
         </Link>

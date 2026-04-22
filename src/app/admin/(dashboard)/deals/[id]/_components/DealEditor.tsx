@@ -140,14 +140,14 @@ export function DealEditor({ deal: initial }: { deal: DealData }) {
           <button
             onClick={save}
             disabled={busy}
-            className="px-4 py-2 bg-[var(--color-coral)] text-white text-sm font-heading tracking-wider rounded-lg hover:bg-[var(--color-bad-tint)] uppercase disabled:opacity-50"
+            className="px-4 py-2 bg-[var(--color-elevated)] hover:bg-[var(--color-raised)] text-[var(--color-fg)] border border-[var(--color-border-strong)] text-sm font-heading tracking-wider rounded-lg uppercase disabled:opacity-50"
           >
             {busy ? "Saving…" : "Save"}
           </button>
         </div>
       </div>
       {msg && (
-        <div className="fixed bottom-6 right-6 z-50 bg-[var(--color-coral)] text-white px-4 py-2 rounded-lg shadow-lg text-sm font-heading tracking-wider uppercase">
+        <div className="fixed bottom-6 right-6 z-50 bg-[var(--color-raised)] text-[var(--color-fg)] border border-[var(--color-border-strong)] px-4 py-2 rounded-lg shadow-lg text-sm font-heading tracking-wider uppercase">
           {msg}
         </div>
       )}

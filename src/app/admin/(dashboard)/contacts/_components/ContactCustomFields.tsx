@@ -202,7 +202,7 @@ function FieldRow({
             setChecked(e.target.checked);
             save(e.target.checked);
           }}
-          className="w-4 h-4 accent-coral"
+          className="w-4 h-4 accent-[var(--color-info)]"
         />
         <span className="text-xs text-foreground-muted">
           {checked ? "Yes" : "No"}

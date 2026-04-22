@@ -127,7 +127,7 @@ export function DealsBoard({ initialStages, stats, defaultCurrency }: Props) {
         <button
           type="button"
           onClick={() => setShowNew(true)}
-          className="ml-auto px-3 py-1.5 bg-[var(--color-coral)] text-white text-xs font-heading tracking-wider rounded-lg hover:bg-[var(--color-bad-tint)] uppercase"
+          className="ml-auto px-3 py-1.5 bg-[var(--color-elevated)] hover:bg-[var(--color-raised)] text-[var(--color-fg)] border border-[var(--color-border-strong)] text-xs font-heading tracking-wider rounded-lg uppercase"
         >
           + New Deal
         </button>
@@ -165,7 +165,7 @@ export function DealsBoard({ initialStages, stats, defaultCurrency }: Props) {
                 setDragFrom(null);
               }}
               className={`shrink-0 w-72 flex flex-col rounded-xl border border-white/5 bg-background-elevated transition ${
-                isHover ? "ring-1 ring-coral" : ""
+                isHover ? "ring-1 ring-[var(--color-border-focus)]" : ""
               }`}
             >
               <div className="flex items-center gap-2 px-4 py-3 border-b border-white/5">
@@ -536,7 +536,7 @@ function NewDealModal({
           <button
             onClick={submit}
             disabled={submitting}
-            className="px-3 py-1.5 text-xs font-heading tracking-wider uppercase bg-[var(--color-coral)] text-white rounded hover:bg-[var(--color-bad-tint)] disabled:opacity-50"
+            className="px-3 py-1.5 text-xs font-heading tracking-wider uppercase bg-[var(--color-elevated)] hover:bg-[var(--color-raised)] text-[var(--color-fg)] border border-[var(--color-border-strong)] rounded disabled:opacity-50"
           >
             {submitting ? "Saving…" : "Create"}
           </button>

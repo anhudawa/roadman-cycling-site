@@ -174,7 +174,7 @@ export function DuplicatesClient({ initialGroups }: { initialGroups: DuplicateGr
                       checked={isPrimary}
                       onChange={() => setPrimary(g.key, c.id)}
                       disabled={g.busy}
-                      className="mt-1 accent-coral"
+                      className="mt-1 accent-[var(--color-info)]"
                     />
                     <div className="flex-1 min-w-0">
                       <Link

@@ -98,7 +98,7 @@ export default function AgentPage() {
           <button
             onClick={runAnalysis}
             disabled={loading}
-            className="px-4 py-2.5 bg-[var(--color-coral)] hover:bg-[var(--color-bad-tint)] disabled:bg-[var(--color-bad-tint)] disabled:cursor-not-allowed text-white text-sm font-medium rounded-lg transition-colors flex items-center gap-2"
+            className="px-4 py-2.5 bg-[var(--color-elevated)] hover:bg-[var(--color-raised)] disabled:opacity-50 disabled:cursor-not-allowed text-[var(--color-fg)] border border-[var(--color-border-strong)] text-sm font-medium rounded-lg transition-colors flex items-center gap-2"
           >
           {loading ? (
             <>

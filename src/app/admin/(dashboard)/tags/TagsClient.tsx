@@ -209,7 +209,7 @@ export function TagsClient({ initialTags }: Props) {
                       type="checkbox"
                       checked={isChecked}
                       onChange={() => toggle(t.tag)}
-                      className="accent-coral"
+                      className="accent-[var(--color-info)]"
                     />
                   </td>
                   <td className="px-3 py-2">

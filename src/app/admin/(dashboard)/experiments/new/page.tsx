@@ -236,7 +236,7 @@ export default function NewExperimentPage() {
         <button
           onClick={handleGenerateVariants}
           disabled={generating}
-          className="px-4 py-2 bg-[var(--color-coral)] hover:bg-[var(--color-bad-tint)] disabled:bg-[var(--color-bad-tint)] disabled:cursor-not-allowed text-white text-sm font-medium rounded-lg transition-colors flex items-center gap-2"
+          className="px-4 py-2 bg-[var(--color-elevated)] hover:bg-[var(--color-raised)] disabled:opacity-50 disabled:cursor-not-allowed text-[var(--color-fg)] border border-[var(--color-border-strong)] text-sm font-medium rounded-lg transition-colors flex items-center gap-2"
         >
           {generating ? (
             <>
@@ -343,7 +343,7 @@ export default function NewExperimentPage() {
         <button
           onClick={handleSubmit}
           disabled={submitting}
-          className="px-6 py-2.5 bg-[var(--color-coral)] hover:bg-[var(--color-bad-tint)] disabled:bg-[var(--color-bad-tint)] disabled:cursor-not-allowed text-white text-sm font-medium rounded-lg transition-colors"
+          className="px-6 py-2.5 bg-[var(--color-elevated)] hover:bg-[var(--color-raised)] disabled:opacity-50 disabled:cursor-not-allowed text-[var(--color-fg)] border border-[var(--color-border-strong)] text-sm font-medium rounded-lg transition-colors"
         >
           {submitting ? "Creating..." : "Create Experiment"}
         </button>

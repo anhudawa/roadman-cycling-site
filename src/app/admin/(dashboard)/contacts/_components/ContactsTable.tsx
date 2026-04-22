@@ -308,7 +308,7 @@ export function ContactsTable({ rows }: { rows: ContactRow[] }) {
                   checked={allOnPageSelected}
                   onChange={toggleAllOnPage}
                   aria-label="Select all on page"
-                  className="accent-coral cursor-pointer"
+                  className="accent-[var(--color-info)] cursor-pointer"
                 />
               </th>
               <th className="px-4 py-3 font-medium">Name / Email</th>
@@ -336,7 +336,7 @@ export function ContactsTable({ rows }: { rows: ContactRow[] }) {
                       checked={isSel}
                       onChange={() => toggleOne(c.id)}
                       aria-label={`Select ${c.email}`}
-                      className="accent-coral cursor-pointer"
+                      className="accent-[var(--color-info)] cursor-pointer"
                     />
                   </td>
                   <td className="px-4 py-3">
