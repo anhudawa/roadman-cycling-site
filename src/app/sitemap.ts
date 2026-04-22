@@ -192,6 +192,14 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       priority: 0.8,
     },
 
+    // Coaching assessment — lead gen quiz
+    {
+      url: `${BASE_URL}/assessment`,
+      lastModified: new Date(),
+      changeFrequency: "monthly",
+      priority: 0.7,
+    },
+
     // Research — evidence base hub
     {
       url: `${BASE_URL}/research`,

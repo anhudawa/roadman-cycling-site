@@ -527,7 +527,21 @@ export default function ApplyPage() {
           </Container>
         </Section>
 
-        {/* ── FAQ ─────────────────────────────────────────── */}
+        {/* ── FAQ with schema ───────────────────────────── */}
+        <JsonLd
+          data={{
+            "@context": "https://schema.org",
+            "@type": "FAQPage",
+            mainEntity: objections.map((obj) => ({
+              "@type": "Question",
+              name: obj.q,
+              acceptedAnswer: {
+                "@type": "Answer",
+                text: obj.a,
+              },
+            })),
+          }}
+        />
         <Section background="charcoal">
           <Container width="narrow">
             <ScrollReveal direction="up">
