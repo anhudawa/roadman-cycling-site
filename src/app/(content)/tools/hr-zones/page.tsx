@@ -24,10 +24,10 @@ const ZONES_MAX_HR: HRZone[] = [
 
 const ZONES_LTHR: HRZone[] = [
   { name: "Zone 1 — Recovery", description: "Easy spinning. Active recovery.", minPercent: 0, maxPercent: 81, color: "#94A3B8" },
-  { name: "Zone 2 — Endurance", description: "Conversational pace. Aerobic base.", minPercent: 81, maxPercent: 89, color: "#3B82F6" },
-  { name: "Zone 3 — Tempo", description: "Comfortably hard. Moderate effort.", minPercent: 89, maxPercent: 93, color: "#22C55E" },
-  { name: "Zone 4 — Threshold", description: "Hard. Race pace for 1 hour.", minPercent: 93, maxPercent: 99, color: "#EAB308" },
-  { name: "Zone 5 — VO2max", description: "Very hard. Short intervals.", minPercent: 99, maxPercent: 106, color: "#EF4444" },
+  { name: "Zone 2 — Endurance", description: "Conversational pace. Aerobic base.", minPercent: 81, maxPercent: 90, color: "#3B82F6" },
+  { name: "Zone 3 — Tempo", description: "Comfortably hard. Moderate effort.", minPercent: 90, maxPercent: 94, color: "#22C55E" },
+  { name: "Zone 4 — Threshold", description: "Hard. Race pace for 1 hour.", minPercent: 94, maxPercent: 100, color: "#EAB308" },
+  { name: "Zone 5 — VO2max", description: "Very hard. Short intervals.", minPercent: 100, maxPercent: 106, color: "#EF4444" },
 ];
 
 export default function HRZonesPage() {
