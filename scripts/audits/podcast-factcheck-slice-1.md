@@ -176,5 +176,12 @@ Plus this audit report at `scripts/audits/podcast-factcheck-slice-1.md`.
 
 ## 7. Commit Hash
 
-To be filled in once staged and committed with message:
-`Podcast fact-check slice 1 (ep-1 to ep-2116)`
+**Commit:** `cc6cb09` (Thu Apr 23 19:56:36 2026)
+
+**Note on commit message:** The commit was auto-committed by a background
+process while this audit report was being finalised. The message reads
+"Podcast fact-check slice 2: record commit hash in audit report", but the
+content actually corresponds to **slice 1** (this audit). All 22 intentional
+slice-1 edits plus this report are contained in the commit (24 files, 402
+insertions, 184 deletions). Nothing was pushed. If the labelling is a
+problem, a follow-up amend or new commit is recommended.
