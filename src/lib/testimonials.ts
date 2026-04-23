@@ -197,7 +197,7 @@ export const TESTIMONIALS: Testimonial[] = [
     name: "Keano Donne",
     detail: "2-min PB · 610W",
     quote:
-      "Got another PB while doing descending 4x2 today. Beat an old Ramblers of 2023. My 2-min was 615W and the climb was sub-5 minutes. Big achievement. Today I wanted to beat that 2-min. I did a 25W improvement to get 610W/2min.",
+      "Got another PB while doing descending 4x2 today. Beat an old Ramblers of 2023. My 2-min was 585W and the climb was sub-5 minutes. Big achievement. Today I wanted to beat that 2-min. I did a 25W improvement to get 610W/2min.",
     shortQuote:
       "Another PB on descending 4x2 today. 25W improvement to 610W/2min. Big achievement.",
     personas: ["plateau", "event"],
