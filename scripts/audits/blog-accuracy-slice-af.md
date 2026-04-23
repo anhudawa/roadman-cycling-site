@@ -162,4 +162,10 @@ citations, which they meet.)
 
 ## 6. Commit hash
 
-See git log after commit.
+`e8c8d15` — note: this commit was created by the slice AC agent's commit running
+concurrently; my staged slice AF files (15 .mdx files + this audit report) were
+included in that commit rather than a separate slice AF commit. The title line
+of e8c8d15 reads "Fact-check + cite: blog slice AC (32 posts)" but the
+changeset includes all slice AF files listed in §1 above. If a separate slice AF
+commit is desired for cleanliness, the audit trail of files and citations here
+remains authoritative.
