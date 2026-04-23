@@ -1,6 +1,32 @@
+import type { Metadata } from "next";
 import { Header, Footer, Section, Container } from "@/components/layout";
 import { Button } from "@/components/ui";
 import { EmailCapture } from "@/components/features/conversion/EmailCapture";
+
+// Local metadata overrides the root layout's global canonical/title
+// on 404 responses. Without this, 404 pages inherit the homepage
+// canonical and title via layout.tsx — which is why a noindex 404
+// was still showing "Roadman Cycling — Not Done Yet" in tabs and
+// pointing canonical at /. Setting robots: noindex,follow +
+// nulling alternates keeps the 404 out of the index cleanly.
+export const metadata: Metadata = {
+  title: "Page Not Found — Roadman Cycling",
+  description:
+    "This page doesn't exist. Head back to the homepage, the podcast archive, or the blog.",
+  robots: {
+    index: false,
+    follow: true,
+  },
+  alternates: {
+    canonical: null,
+  },
+  openGraph: {
+    title: "Page Not Found — Roadman Cycling",
+    description:
+      "This page doesn't exist. Head back to the homepage, the podcast archive, or the blog.",
+    type: "website",
+  },
+};
 
 export default function NotFound() {
   return (

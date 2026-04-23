@@ -1,7 +1,9 @@
 import { Header, Footer, Section, Container } from "@/components/layout";
 import { Button, Card, ScrollReveal, ParallaxImage, GradientText, GuestMarquee } from "@/components/ui";
 import Image from "next/image";
-import { OrganizationJsonLd, WebSiteJsonLd } from "@/components/seo/JsonLd";
+// NOTE: OrganizationJsonLd + WebSiteJsonLd are emitted globally in
+// src/app/layout.tsx — do not re-emit them here or the homepage ships
+// two copies of the same schema graph.
 import Link from "next/link";
 import { HeroSection } from "@/components/features/home/HeroSection";
 import { getLatestEpisode } from "@/lib/podcast";
@@ -79,8 +81,6 @@ export default function HomePage() {
   const latestEpisode = getLatestEpisode();
   return (
     <>
-      <OrganizationJsonLd />
-      <WebSiteJsonLd />
       <Header />
 
       <main id="main-content">

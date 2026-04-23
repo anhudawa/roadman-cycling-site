@@ -24,13 +24,19 @@ const workSans = Work_Sans({
   display: "swap",
 });
 
-// Fonts used by the GlitchHero on the homepage — loaded here so they
-// preload alongside the primary site fonts rather than blocking first paint.
+// Fonts used ONLY by the GlitchHero on the homepage. We still declare
+// their CSS variables at the html level so any page that opts-in can
+// reference them, but `preload: false` stops next/font from adding a
+// <link rel="preload"> per route. On non-homepage routes they stay
+// inert — no network request — and the homepage swaps them in via
+// display: swap with a subtle FOUT that's invisible behind the
+// coral/purple gradient hero.
 const spaceGrotesk = Space_Grotesk({
   weight: ["400", "500", "600", "700"],
   variable: "--font-space-grotesk",
   subsets: ["latin"],
   display: "swap",
+  preload: false,
 });
 
 const jetbrainsMono = JetBrains_Mono({
@@ -38,6 +44,7 @@ const jetbrainsMono = JetBrains_Mono({
   variable: "--font-jetbrains-mono",
   subsets: ["latin"],
   display: "swap",
+  preload: false,
 });
 
 export const metadata: Metadata = {
