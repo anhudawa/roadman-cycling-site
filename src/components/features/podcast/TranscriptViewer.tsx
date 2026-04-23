@@ -128,21 +128,23 @@ export function TranscriptViewer({
             and gives real users a fast way to skim. */}
         <nav
           aria-label="Transcript sections"
-          className="px-6 py-3 border-b border-white/5 bg-white/[0.01]"
+          className="px-6 py-4 border-b border-white/5 bg-white/[0.01]"
         >
-          <p className="text-xs text-foreground-subtle uppercase tracking-widest font-heading mb-2">
+          <p className="text-xs text-foreground-subtle uppercase tracking-widest font-heading mb-3">
             Jump to section
           </p>
-          <ol className="flex flex-wrap gap-2">
+          <ol className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-x-6 gap-y-0.5">
             {segments.map((segment) => (
               <li key={segment.id}>
                 <a
                   href={`#${segment.id}`}
-                  className="inline-block px-3 py-1.5 text-xs rounded-md bg-white/5 text-foreground-muted hover:bg-coral/20 hover:text-off-white transition-colors"
+                  className="group/jump flex items-baseline gap-3 py-1.5 px-2 -mx-2 rounded-md text-sm text-foreground-muted hover:bg-coral/10 hover:text-off-white transition-colors"
                   style={{ transitionDuration: "var(--duration-fast)" }}
                 >
-                  <span className="text-coral mr-1">{segment.index}.</span>
-                  {segment.title}
+                  <span className="text-coral font-heading text-xs tabular-nums shrink-0 w-6">
+                    {String(segment.index).padStart(2, "0")}
+                  </span>
+                  <span className="leading-snug">{segment.title}</span>
                 </a>
               </li>
             ))}
