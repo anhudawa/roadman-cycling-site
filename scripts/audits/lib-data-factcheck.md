@@ -129,16 +129,15 @@ Verified other canonical facts:
 
 ## 9. Commit hash
 
-Repository at `~/Desktop/roadman-cycling-site` is not a git repo (no `.git`
-directory, per environment banner `Is directory a git repo: No`). No
-commit was produced. If/when the working tree is moved under git control,
-suggested commit message:
+`c1e074d` — "Fact-check lib data + llms.txt feeds" on `main`.
+Not pushed (per brief: **Do NOT push**).
 
-```
-Fact-check lib data + llms.txt feeds
+Staged files only (no `git add -A`):
 
-- training-plans.ts: Leadville 100 elevation 3,800 → 3,810m
-- llms.txt: six → eight free calculators in intro
-- llms-full.txt: add HR Zones + W/kg calculators; de-hardcode blog count;
-  correct Rosa Klöser name + palmarès
-```
+- `src/lib/training-plans.ts`
+- `src/app/llms.txt/route.ts`
+- `src/app/llms-full.txt/route.ts`
+- `scripts/audits/lib-data-factcheck.md`
+
+Unrelated in-flight edits to `content/`, `src/app/(community)`, etc. from
+other ongoing work were intentionally left unstaged.
