@@ -149,4 +149,4 @@ Every expert-attribution trigger name in the guardrail list was scanned across t
 
 ## 8. Commit hash
 
-_(To be filled in after commit.)_
+`6e96df6`
