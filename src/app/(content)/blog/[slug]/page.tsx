@@ -14,6 +14,7 @@ import { WeeksOutSelector } from "@/components/features/plan/WeeksOutSelector";
 import { ShareButtons } from "@/components/features/blog/ShareButtons";
 import { RelatedPosts } from "@/components/features/blog/RelatedPosts";
 import { AuthorBio } from "@/components/features/blog/AuthorBio";
+import { EvidenceBlock } from "@/components/seo/EvidenceBlock";
 import { RelatedContent } from "@/components/features/RelatedContent";
 import { InlineArticleCTA } from "@/components/features/conversion/InlineArticleCTA";
 import { StickyCoachingBar } from "@/components/features/conversion/StickyCoachingBar";
@@ -415,6 +416,26 @@ export default async function BlogPostPage({
             {/* Author bio — E-E-A-T signal + entity-link chain from every
                 blog post to /about + verified social sameAs URLs. */}
             <AuthorBio />
+
+            {/* Evidence block — sources, related episodes, review date */}
+            <EvidenceBlock
+              experts={[
+                { name: "Anthony Walsh", role: "Cycling Coach & Podcast Host", href: "/about" },
+              ]}
+              episodes={
+                post.relatedEpisodes
+                  ? post.relatedEpisodes
+                      .map((s) => {
+                        const ep = getEpisodeBySlug(s);
+                        return ep ? { title: ep.title, href: `/podcast/${ep.slug}` } : null;
+                      })
+                      .filter((e): e is { title: string; href: string } => e !== null)
+                      .slice(0, 3)
+                  : undefined
+              }
+              lastReviewed={post.updatedDate || post.publishDate}
+              reviewedBy="Anthony Walsh"
+            />
 
             {/* Related Posts (blog-only) */}
             {relatedPosts.length > 0 && (

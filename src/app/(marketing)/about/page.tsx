@@ -64,9 +64,13 @@ export default function AboutPage() {
       <JsonLd
         data={{
           "@context": "https://schema.org",
-          "@type": "Person",
+          "@type": ["Person", "ProfilePage"],
           name: "Anthony Walsh",
           alternateName: "Anthony Walsh (Roadman Cycling)",
+          mainEntity: {
+            "@type": "Person",
+            name: "Anthony Walsh",
+          },
           description:
             "Cycling coach and founder of Roadman Cycling. Host of the Roadman Cycling Podcast, with over 1,300 conversations with World Tour coaches, sports scientists, and professional riders — including Prof. Stephen Seiler, Dan Lorang, Greg LeMond, and Lachlan Morton.",
           image: "https://roadmancycling.com/images/about/anthony-walsh-podcast.jpg",

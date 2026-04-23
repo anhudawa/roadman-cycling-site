@@ -69,8 +69,12 @@ export default async function GuestPage({
       <JsonLd
         data={{
           "@context": "https://schema.org",
-          "@type": "Person",
+          "@type": ["Person", "ProfilePage"],
           name: guest.name,
+          mainEntity: {
+            "@type": "Person",
+            name: guest.name,
+          },
           ...(guest.credential && { jobTitle: guest.credential }),
           description:
             override?.description ??
