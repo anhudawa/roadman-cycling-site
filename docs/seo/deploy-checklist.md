@@ -84,7 +84,7 @@ What this branch contains and the exact sequence for shipping it.
 
 5. **GA4 baseline snapshot**: export Acquisition → Traffic acquisition, last 28 days. This is your organic-sessions baseline.
 
-6. **Custom dimension for AI referrers** (optional but high-value). In GA4 Admin → Custom definitions, add a dimension that captures referrer hostname matching `chat.openai.com|perplexity.ai|claude.ai|gemini.google.com`. This makes AI-citation traffic visible in your reports.
+6. **AI-referrer tracking** — ✅ **shipped in-repo, no GA4 config required** (AEO-003). Answer-engine traffic (ChatGPT, Perplexity, Claude, Gemini, Copilot, Bing, you.com, phind.com, meta.ai) is detected client-side in `src/lib/analytics/ai-referrer.ts`, persisted session-first-touch, and attached to every first-party event. View the breakdown at **/admin/traffic → AI referrers card**. Aggregation lives in `getAIReferrerStats()` in `src/lib/admin/events-store.ts` if you need to query it from a script or report.
 
 ---
 
@@ -110,7 +110,8 @@ Track in a single spreadsheet, exported from GSC + GA4 monthly:
 | Organic impressions | ___ | | | |
 | Indexed pages | ___ | | | |
 | Organic sessions (GA4 last-28-day) | ___ | | | |
-| AI-referrer sessions (GA4 custom dim) | ___ | | | |
+| AI-referrer pageviews (/admin/traffic) | ___ | | | |
+| AI-referrer signups (/admin/traffic) | ___ | | | |
 | `/coaching/triathlon` position for "triathlon bike coach" | ___ | | | |
 | `/coaching` position for "online cycling coach" | ___ | | | |
 | Coaching applications from organic | ___ | | | |

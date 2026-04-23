@@ -2,6 +2,10 @@
 
 import { useEffect, useRef, useState } from "react";
 import { usePathname } from "next/navigation";
+import {
+  ensureAIReferrerPersisted,
+  getStoredAIReferrer,
+} from "@/lib/analytics/ai-referrer";
 
 const STORAGE_KEY = "roadman_cookie_consent";
 
@@ -34,13 +38,22 @@ function sendEvent(type: string, data: Record<string, string> = {}) {
   // Always check consent before sending
   if (!hasAnalyticsConsent()) return;
 
-  const payload = {
+  // Attach AI-referrer attribution if this session started from an AI
+  // assistant (ChatGPT, Perplexity, Claude, Gemini, Copilot, etc.). First-
+  // touch persists in sessionStorage so every event in the session — not
+  // just the landing pageview — inherits the attribution.
+  const aiReferrer = getStoredAIReferrer();
+
+  const payload: Record<string, unknown> = {
     type,
     page: window.location.pathname,
     referrer: document.referrer || undefined,
     session_id: getSessionId(),
     ...data,
   };
+  if (aiReferrer) {
+    payload.ai_referrer = aiReferrer;
+  }
 
   const body = JSON.stringify(payload);
   if (navigator.sendBeacon) {
@@ -134,6 +147,14 @@ export function Tracker() {
   // Scroll depth and time-on-page tracking
   useScrollDepth(consented);
   useTimeOnPage(consented);
+
+  // Capture first-touch AI referrer (ChatGPT, Perplexity, Claude, Gemini,
+  // Copilot, etc.) as soon as consent is available. Runs once per session —
+  // ensureAIReferrerPersisted is idempotent against sessionStorage.
+  useEffect(() => {
+    if (!consented) return;
+    ensureAIReferrerPersisted();
+  }, [consented]);
 
   // Fire pageview when consent is given (or on navigation if already consented)
   const hasFiredRef = useRef<string | null>(null);

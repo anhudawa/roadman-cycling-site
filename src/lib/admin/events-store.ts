@@ -157,6 +157,15 @@ export interface ReferrerStats {
   count: number;
 }
 
+export interface AIReferrerStats {
+  /** Canonical AI-assistant host slug (e.g. "chatgpt.com", "perplexity.ai"). */
+  host: string;
+  /** Pageview events attributed to this AI host in the period. */
+  pageviews: number;
+  /** Signup events attributed to this AI host in the period. */
+  signups: number;
+}
+
 export interface DeviceStats {
   device: string;
   count: number;
@@ -406,6 +415,7 @@ export async function getStatsForRange(
     topPages: { page: string; views: number }[];
     referrers: ReferrerStats[];
     devices: DeviceStats[];
+    aiReferrers: AIReferrerStats[];
   };
   leads: LeadEntry[];
 }> {
@@ -413,7 +423,7 @@ export async function getStatsForRange(
   const pageviewInRange = and(eq(events.type, "pageview"), rangeCondition);
 
   // Run all queries in parallel
-  const [periodRows, pageRows, topPageRows, refRows, devRows, leadRows] =
+  const [periodRows, pageRows, topPageRows, refRows, devRows, leadRows, aiRefRows] =
     await Promise.all([
       // Period stats by type
       db
@@ -469,6 +479,24 @@ export async function getStatsForRange(
         .where(and(eq(events.type, "signup"), rangeCondition))
         .orderBy(desc(events.timestamp))
         .limit(50),
+
+      // AI referrers (AEO-003): group by meta->>'ai_referrer' for any event
+      // that carries an AI-referrer tag, splitting pageviews from signups so
+      // the admin UI can show both funnel stages per assistant host.
+      db
+        .select({
+          host: sql<string>`${events.meta}->>'ai_referrer'`,
+          type: events.type,
+          cnt: count(),
+        })
+        .from(events)
+        .where(
+          and(
+            rangeCondition,
+            sql`${events.meta}->>'ai_referrer' IS NOT NULL`
+          )
+        )
+        .groupBy(sql`${events.meta}->>'ai_referrer'`, events.type),
     ]);
 
   // Assemble period stats
@@ -527,7 +555,68 @@ export async function getStatsForRange(
     source: r.page,
   }));
 
-  return { period, pages, traffic: { topPages, referrers, devices }, leads };
+  // Assemble AI referrers — collapse pageview + signup rows for the same
+  // host into a single { host, pageviews, signups } entry, ordered by volume.
+  const aiMap = new Map<string, { pageviews: number; signups: number }>();
+  for (const row of aiRefRows) {
+    if (!row.host) continue;
+    if (!aiMap.has(row.host)) aiMap.set(row.host, { pageviews: 0, signups: 0 });
+    const entry = aiMap.get(row.host)!;
+    if (row.type === "pageview") entry.pageviews += Number(row.cnt);
+    if (row.type === "signup") entry.signups += Number(row.cnt);
+  }
+  const aiReferrers: AIReferrerStats[] = Array.from(aiMap.entries())
+    .map(([host, { pageviews, signups: s }]) => ({ host, pageviews, signups: s }))
+    .sort((a, b) => b.pageviews - a.pageviews);
+
+  return {
+    period,
+    pages,
+    traffic: { topPages, referrers, devices, aiReferrers },
+    leads,
+  };
+}
+
+/**
+ * Dedicated AI-referrer aggregation for AEO-003 reporting. Groups pageviews
+ * and signups by the canonical answer-engine host stored in
+ * events.meta->>'ai_referrer'. Defaults to the last 30 days if no range is
+ * provided, matching the deploy-checklist spec (30/60/90-day tracking).
+ */
+export async function getAIReferrerStats(
+  from?: Date,
+  to?: Date
+): Promise<AIReferrerStats[]> {
+  const until = to ?? new Date();
+  const since = from ?? subDays(until, 30);
+
+  const rows = await db
+    .select({
+      host: sql<string>`${events.meta}->>'ai_referrer'`,
+      type: events.type,
+      cnt: count(),
+    })
+    .from(events)
+    .where(
+      and(
+        gte(events.timestamp, since),
+        lte(events.timestamp, until),
+        sql`${events.meta}->>'ai_referrer' IS NOT NULL`
+      )
+    )
+    .groupBy(sql`${events.meta}->>'ai_referrer'`, events.type);
+
+  const map = new Map<string, { pageviews: number; signups: number }>();
+  for (const row of rows) {
+    if (!row.host) continue;
+    if (!map.has(row.host)) map.set(row.host, { pageviews: 0, signups: 0 });
+    const entry = map.get(row.host)!;
+    if (row.type === "pageview") entry.pageviews += Number(row.cnt);
+    if (row.type === "signup") entry.signups += Number(row.cnt);
+  }
+  return Array.from(map.entries())
+    .map(([host, { pageviews, signups }]) => ({ host, pageviews, signups }))
+    .sort((a, b) => b.pageviews - a.pageviews);
 }
 
 // ── Experiment results aggregation ────────────────────────

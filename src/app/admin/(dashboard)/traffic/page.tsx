@@ -1,4 +1,5 @@
 import { getStatsForRange } from "@/lib/admin/events-store";
+import type { AIReferrerStats } from "@/lib/admin/events-store";
 import { parseTimeRange } from "@/lib/admin/time-ranges";
 import { Suspense } from "react";
 import { TimeRangePicker } from "../components/TimeRangePicker";
@@ -77,11 +78,13 @@ export default async function TrafficPage({
   const { from, to } = parseTimeRange(rangeParam);
 
   let topPages, referrers, devices;
+  let aiReferrers: AIReferrerStats[];
   try {
     const rangedStats = await getStatsForRange(from, to);
     topPages = rangedStats.traffic.topPages;
     referrers = rangedStats.traffic.referrers;
     devices = rangedStats.traffic.devices;
+    aiReferrers = rangedStats.traffic.aiReferrers;
   } catch {
     topPages = [
       { page: "/", views: 842 }, { page: "/blog/zone-2-training", views: 621 },
@@ -98,9 +101,11 @@ export default async function TrafficPage({
       { device: "desktop", count: 2100, percentage: 39 },
       { device: "tablet", count: 500, percentage: 9 },
     ];
+    aiReferrers = [];
   }
   const maxPageViews = topPages.length > 0 ? topPages[0].views : 1;
   const maxRefCount = referrers.length > 0 ? referrers[0].count : 1;
+  const maxAiPageviews = aiReferrers.length > 0 ? aiReferrers[0].pageviews : 1;
 
   return (
     <div className="space-y-6">
@@ -161,6 +166,54 @@ export default async function TrafficPage({
           </CardBody>
         </Card>
       </div>
+
+      {/* AI Referrers (AEO-003) — traffic attributed to answer engines
+          like ChatGPT, Perplexity, Claude, Gemini, Copilot. */}
+      <Card>
+        <CardBody compact>
+          <div className="flex items-baseline justify-between mb-4">
+            <h2 className="font-body font-semibold text-[13px] text-[var(--color-fg)]">
+              AI referrers
+            </h2>
+            <span className="text-[11px] text-foreground-subtle uppercase tracking-wider">
+              Answer-engine traffic
+            </span>
+          </div>
+          <div className="space-y-2.5">
+            {aiReferrers.map((r) => (
+              <div key={r.host} className="flex items-center gap-3">
+                <span className="text-sm text-foreground-muted truncate min-w-0 flex-shrink w-48">
+                  {r.host}
+                </span>
+                <div className="flex-1 h-2 bg-white/5 rounded-full overflow-hidden">
+                  <div
+                    className="h-full bg-[var(--color-info)] rounded-full transition-all"
+                    style={{
+                      width: `${Math.min((r.pageviews / maxAiPageviews) * 100, 100)}%`,
+                    }}
+                  />
+                </div>
+                <span className="text-sm text-off-white font-medium tabular-nums w-12 text-right flex-shrink-0">
+                  {r.pageviews}
+                </span>
+                <span
+                  className="text-xs text-foreground-subtle tabular-nums w-16 text-right flex-shrink-0"
+                  title="Signups attributed to this AI referrer in range"
+                >
+                  {r.signups} signup{r.signups === 1 ? "" : "s"}
+                </span>
+              </div>
+            ))}
+            {aiReferrers.length === 0 && (
+              <p className="text-foreground-subtle text-sm">
+                No AI-referrer traffic detected yet. Visits from ChatGPT,
+                Perplexity, Claude, Gemini, or Copilot will appear here once
+                they start citing the site.
+              </p>
+            )}
+          </div>
+        </CardBody>
+      </Card>
 
       {/* Device Breakdown */}
       <Card>
