@@ -15,6 +15,7 @@ import { ShareButtons } from "@/components/features/blog/ShareButtons";
 import { RelatedPosts } from "@/components/features/blog/RelatedPosts";
 import { AuthorBio } from "@/components/features/blog/AuthorBio";
 import { EvidenceBlock } from "@/components/seo/EvidenceBlock";
+import { queryContentGraph } from "@/lib/content-graph";
 import { RelatedContent } from "@/components/features/RelatedContent";
 import { InlineArticleCTA } from "@/components/features/conversion/InlineArticleCTA";
 import { StickyCoachingBar } from "@/components/features/conversion/StickyCoachingBar";
@@ -99,6 +100,7 @@ export default async function BlogPostPage({
         return haystack.includes(e.name.toLowerCase()) || haystack.includes(e.shortName.toLowerCase());
       }).slice(0, 3);
 
+  const graph = queryContentGraph({ pillar: post.pillar, limit: 3 });
   const publishDate = new Date(post.publishDate);
 
   return (
@@ -436,6 +438,24 @@ export default async function BlogPostPage({
               lastReviewed={String(post.updatedDate || post.publishDate)}
               reviewedBy="Anthony Walsh"
             />
+
+            {/* Graph-powered: related glossary terms */}
+            {graph.glossaryTerms.length > 0 && (
+              <div className="mt-10">
+                <p className="font-heading text-coral text-xs tracking-widest mb-3">KEY TERMS</p>
+                <div className="flex flex-wrap gap-2">
+                  {graph.glossaryTerms.map((t) => (
+                    <Link
+                      key={t.slug}
+                      href={`/glossary/${t.slug}`}
+                      className="inline-flex items-center gap-1 rounded-lg border border-white/15 hover:border-coral/40 bg-white/[0.04] hover:bg-white/[0.07] px-3 py-1.5 text-xs font-heading text-off-white tracking-wider transition-all"
+                    >
+                      {t.term}
+                    </Link>
+                  ))}
+                </div>
+              </div>
+            )}
 
             {/* Related Posts (blog-only) */}
             {relatedPosts.length > 0 && (
