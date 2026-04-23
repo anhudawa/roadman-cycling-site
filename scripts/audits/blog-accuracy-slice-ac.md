@@ -184,13 +184,14 @@ documented. Source: https://hexis.live/blog/meet-the-team-dr-sam-impey
 
 ## 6. Commit hash
 
-Due to concurrent staging by parallel fact-check agents, my slice AC blog
-edits and this audit report were ultimately included in commit `fec3586`
-(the commit bearing the "slice AB" message). An earlier commit `e8c8d15`
-carries the slice AC message but actually contains a different agent's files.
+Slice AC blog edits + this audit report are in commit `a51cdaa`
+("Fact-check + cite: blog slice AC (18 touched of 32 posts)").
 
-Human reviewer: trust commit `fec3586` for the actual slice AC contents
-listed in sections 1 and 3 of this report.
+Note on parallel-agent chaos: two earlier commits on the same branch
+carry slice-labelled messages but actually contain other agents' files,
+caused by concurrent staging between parallel fact-check runs.
+Commit `a51cdaa` is the definitive slice AC commit — it contains only the
+18 blog posts and the single audit report listed in sections 1–3 above.
 
 ---
 
