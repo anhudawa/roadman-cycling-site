@@ -16,8 +16,13 @@ const BASE_URL = "https://roadmancycling.com";
  * Split sitemaps by page type for GSC monitoring.
  *
  * Generates child sitemaps at /sitemap/0.xml through /sitemap/5.xml.
- * The sitemap INDEX at /sitemap.xml is served by the companion
- * route handler at src/app/sitemap.xml/route.ts.
+ * Next.js 16 does not auto-emit a /sitemap.xml index when using
+ * generateSitemaps(); adding a route handler at /sitemap.xml collides
+ * with the metadata-file convention and breaks the build. Crawler
+ * discovery is handled through robots.ts which lists every child
+ * sitemap explicitly — Google, Bing, and the AI crawlers all support
+ * multiple `Sitemap:` entries in robots.txt, so an index file is not
+ * required. Visiting /sitemap.xml directly will 404; this is cosmetic.
  *
  *   /sitemap/0.xml — static/core pages + coaching + tools + community
  *   /sitemap/1.xml — blog articles
