@@ -71,14 +71,20 @@ export default function HRZonesPage() {
         <Section background="charcoal" className="!py-12">
           <Container width="narrow">
             <div className="bg-background-elevated rounded-xl border border-white/5 p-8 mb-8">
-              <div className="flex gap-3 mb-6">
+              <div className="flex gap-3 mb-6" role="tablist" aria-label="Calculation method">
                 <button
+                  role="tab"
+                  aria-selected={method === "maxhr"}
+                  aria-label="Calculate from maximum heart rate"
                   onClick={() => { setMethod("maxhr"); setCalculated(false); }}
                   className={`flex-1 py-2 rounded-lg font-heading text-sm tracking-wider transition-all cursor-pointer ${method === "maxhr" ? "bg-coral text-off-white" : "bg-white/5 text-foreground-muted hover:bg-white/10"}`}
                 >
                   MAX HR
                 </button>
                 <button
+                  role="tab"
+                  aria-selected={method === "lthr"}
+                  aria-label="Calculate from lactate threshold heart rate"
                   onClick={() => { setMethod("lthr"); setCalculated(false); }}
                   className={`flex-1 py-2 rounded-lg font-heading text-sm tracking-wider transition-all cursor-pointer ${method === "lthr" ? "bg-coral text-off-white" : "bg-white/5 text-foreground-muted hover:bg-white/10"}`}
                 >
@@ -179,6 +185,35 @@ export default function HRZonesPage() {
                 </motion.div>
               )}
             </AnimatePresence>
+          </Container>
+        </Section>
+
+        {/* Methodology */}
+        <Section background="deep-purple" grain>
+          <Container width="narrow">
+            <h2 className="font-heading text-off-white mb-4" style={{ fontSize: "var(--text-section)" }}>
+              METHODOLOGY
+            </h2>
+            <div className="text-foreground-muted text-sm leading-relaxed space-y-3">
+              <p>
+                <strong className="text-off-white">Max HR method:</strong> Zones are calculated as percentages
+                of maximum heart rate using the 5-zone model widely adopted in cycling coaching. Zone boundaries
+                at 60%, 70%, 80%, and 90% of max HR.
+              </p>
+              <p>
+                <strong className="text-off-white">LTHR method:</strong> Zones are calculated from lactate
+                threshold heart rate using Joe Friel's methodology from <em>The Cyclist's Training Bible</em>.
+                LTHR-based zones are more accurate because they reflect fitness, not just genetics.
+              </p>
+              <p>
+                <strong className="text-off-white">Limitations:</strong> Heart rate varies with fatigue, heat,
+                caffeine, sleep, and stress. Power-based training zones (from FTP) are more consistent for
+                interval targeting. Heart rate remains useful for pacing easy rides and monitoring recovery.
+              </p>
+              <p className="text-xs text-foreground-subtle">
+                Last updated: April 2026 · Tool version 1.0
+              </p>
+            </div>
           </Container>
         </Section>
       </main>
