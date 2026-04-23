@@ -20,12 +20,18 @@ export type AIReferrerHost =
   | "bing.com"
   | "you.com"
   | "phind.com"
-  | "meta.ai";
+  | "meta.ai"
+  | "llms-txt";
 
 /**
  * Canonicalised AI host slugs keyed by any hostname variant we might see in
  * the wild. Keys are matched via endsWith() against the inbound hostname so
  * www., chat., m. etc. subdomain prefixes all fold onto the same slug.
+ *
+ * `llms-txt` is a synthetic slug we stamp onto outbound URLs inside
+ * /llms.txt and /llms-full.txt via `utm_source=llms-txt`. AI assistants
+ * that strip referrer headers still preserve query strings, so this
+ * survives where document.referrer doesn't.
  */
 const HOST_MAP: Record<string, AIReferrerHost> = {
   "chatgpt.com": "chatgpt.com",
@@ -39,6 +45,11 @@ const HOST_MAP: Record<string, AIReferrerHost> = {
   "you.com": "you.com",
   "phind.com": "phind.com",
   "meta.ai": "meta.ai",
+  // Synthetic UTM-only slugs (never appear as hostnames — utm_source only).
+  "llms-txt": "llms-txt",
+  "llms.txt": "llms-txt",
+  "llms-full-txt": "llms-txt",
+  "llms-full.txt": "llms-txt",
 };
 
 const STORAGE_KEY = "roadman_ai_referrer";
@@ -153,4 +164,28 @@ export const AI_REFERRER_HOSTS: readonly AIReferrerHost[] = [
   "you.com",
   "phind.com",
   "meta.ai",
+  "llms-txt",
 ] as const;
+
+/**
+ * Append `?utm_source=<slug>&utm_medium=ai-crawler` to an absolute Roadman URL.
+ * Used by /llms.txt and /llms-full.txt route handlers so outbound links carry
+ * a durable attribution signal even when the AI assistant strips the
+ * Referer header (which most do, because of strict referrer-policy).
+ *
+ * Idempotent: if the URL already has a utm_source it's left alone.
+ */
+export function tagUrlForAICrawler(
+  url: string,
+  slug: AIReferrerHost = "llms-txt",
+): string {
+  try {
+    const parsed = new URL(url);
+    if (parsed.searchParams.has("utm_source")) return url;
+    parsed.searchParams.set("utm_source", slug);
+    parsed.searchParams.set("utm_medium", "ai-crawler");
+    return parsed.toString();
+  } catch {
+    return url;
+  }
+}
