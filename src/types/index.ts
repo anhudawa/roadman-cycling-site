@@ -108,12 +108,11 @@ export const CONTENT_PILLARS: Record<
 };
 
 /**
- * Top-level nav: 6 items with purpose-built dropdowns.
+ * Top-level nav: intent-led navigation per blueprint.
  *
- * Coaching is the revenue channel so its dropdown leads with APPLY.
- * Community groups all the "where you ride with us" options (paid +
- * free community, Dublin club rides, events). Topics and Guests live
- * in the footer.
+ * Guide by user problem, not by content type. Podcast stays
+ * (brand anchor), Learn groups educational surfaces, Tools is
+ * the utility engine, Coaching is the revenue channel.
  */
 export const NAV_ITEMS: NavItem[] = [
   {
@@ -121,26 +120,16 @@ export const NAV_ITEMS: NavItem[] = [
     href: "/podcast",
   },
   {
-    label: "Blog",
-    href: "/blog",
-  },
-  {
-    label: "Coaching",
-    href: "/coaching",
+    label: "Learn",
+    href: "/start-here",
     children: [
-      { label: "Apply for Coaching", href: "/apply" },
-      { label: "How It Works", href: "/coaching" },
-      { label: "Strength Training", href: "/strength-training" },
-    ],
-  },
-  {
-    label: "Community",
-    href: "/community",
-    children: [
-      { label: "Not Done Yet Coaching Community", href: "/community/not-done-yet" },
-      { label: "Clubhouse (Free)", href: "/community/clubhouse" },
-      { label: "Roadman CC (Dublin club rides)", href: "/community/club" },
-      { label: "Events", href: "/events" },
+      { label: "Start Here", href: "/start-here" },
+      { label: "Blog", href: "/blog" },
+      { label: "Topic Hubs", href: "/topics" },
+      { label: "Glossary", href: "/glossary" },
+      { label: "Comparisons", href: "/compare" },
+      { label: "Training Plans", href: "/plan" },
+      { label: "Research & Evidence", href: "/research" },
     ],
   },
   {
@@ -148,11 +137,27 @@ export const NAV_ITEMS: NavItem[] = [
     href: "/tools",
     children: [
       { label: "FTP Zones", href: "/tools/ftp-zones" },
+      { label: "HR Zones", href: "/tools/hr-zones" },
+      { label: "W/kg Calculator", href: "/tools/wkg" },
       { label: "Tyre Pressure", href: "/tools/tyre-pressure" },
       { label: "Race Weight", href: "/tools/race-weight" },
-      { label: "Energy Availability", href: "/tools/energy-availability" },
       { label: "In-Ride Fuelling", href: "/tools/fuelling" },
+      { label: "Energy Availability", href: "/tools/energy-availability" },
       { label: "MTB Setup", href: "/tools/shock-pressure" },
+      { label: "Plateau Diagnostic", href: "/plateau" },
+      { label: "Coaching Assessment", href: "/assessment" },
+    ],
+  },
+  {
+    label: "Coaching",
+    href: "/coaching",
+    children: [
+      { label: "Apply for Coaching", href: "/apply" },
+      { label: "How It Works", href: "/coaching" },
+      { label: "Triathlon Coaching", href: "/coaching/triathlon" },
+      { label: "Strength Training", href: "/strength-training" },
+      { label: "Not Done Yet Community", href: "/community/not-done-yet" },
+      { label: "Clubhouse (Free)", href: "/community/clubhouse" },
     ],
   },
   {
