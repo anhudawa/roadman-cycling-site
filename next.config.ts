@@ -23,7 +23,70 @@ const nextConfig: NextConfig = {
     optimizePackageImports: ["framer-motion", "shiki", "rehype-pretty-code"],
   },
   async redirects() {
+    const COACHING_SUBDOMAIN = [
+      { type: "host" as const, value: "coaching.roadmancycling.com" },
+    ];
     return [
+      // ==========================================================
+      // coaching.roadmancycling.com subdomain retirement
+      // ----------------------------------------------------------
+      // Legacy ClickFunnels subdomain. DNS already points at Vercel
+      // but the subdomain is not currently attached to this project,
+      // so every path returns a Vercel DEPLOYMENT_NOT_FOUND 404.
+      // Once the subdomain is added as a domain on this project,
+      // these host-aware rules consolidate all legacy traffic onto
+      // the apex. Must come BEFORE the generic apex redirects below.
+      // ==========================================================
+      // Blog URLs: preserve path (apex has the canonical versions)
+      {
+        source: "/blog/:slug*",
+        has: COACHING_SUBDOMAIN,
+        destination: "https://roadmancycling.com/blog/:slug*",
+        permanent: true,
+      },
+      // 14-Day Kickstart Challenge — retired product; closest match is /apply
+      {
+        source: "/14day",
+        has: COACHING_SUBDOMAIN,
+        destination: "https://roadmancycling.com/apply",
+        permanent: true,
+      },
+      // "It works" testimonials page → coaching landing (has testimonials inline)
+      {
+        source: "/itworks",
+        has: COACHING_SUBDOMAIN,
+        destination: "https://roadmancycling.com/coaching",
+        permanent: true,
+      },
+      // ClickFunnels opt-in pages (pattern: /optin-<numeric-id>)
+      {
+        source: "/optin-:rest*",
+        has: COACHING_SUBDOMAIN,
+        destination: "https://roadmancycling.com/apply",
+        permanent: true,
+      },
+      // ClickFunnels raw template slugs (pattern: /roadmancc<numeric-id>)
+      {
+        source: "/roadmancc:rest*",
+        has: COACHING_SUBDOMAIN,
+        destination: "https://roadmancycling.com/coaching",
+        permanent: true,
+      },
+      // Subdomain root
+      {
+        source: "/",
+        has: COACHING_SUBDOMAIN,
+        destination: "https://roadmancycling.com/coaching",
+        permanent: true,
+      },
+      // ==========================================================
+      // Existing apex-domain redirects begin here.
+      // These have no host filter and will ALSO fire for subdomain
+      // traffic when the path matches — which is the desired
+      // fall-through behaviour for slugs like /members, /strong,
+      // /self-coaching-system etc. that may have been used on
+      // both hosts historically.
+      // ==========================================================
       // Redirect old ClickFunnels paths to new site equivalents
       {
         source: "/members",
@@ -120,6 +183,21 @@ const nextConfig: NextConfig = {
       { source: "/optin-page", destination: "/apply", permanent: true },
       { source: "/application-page", destination: "/apply", permanent: true },
       { source: "/copy-of-the-perfect-squeeze-page-d3318--8234c", destination: "/tools", permanent: true },
+
+      // ==========================================================
+      // coaching.roadmancycling.com subdomain catch-all
+      // ----------------------------------------------------------
+      // This fires only when the host is coaching.roadmancycling.com
+      // AND no earlier rule matched. Any orphan ClickFunnels URL that
+      // we haven't explicitly listed above goes to /coaching rather
+      // than a broken Vercel 404.
+      // ==========================================================
+      {
+        source: "/:path*",
+        has: COACHING_SUBDOMAIN,
+        destination: "https://roadmancycling.com/coaching",
+        permanent: true,
+      },
     ];
   },
   async rewrites() {
