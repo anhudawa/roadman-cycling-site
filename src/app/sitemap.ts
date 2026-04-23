@@ -12,6 +12,28 @@ import { getAllPlanCombinations, getAllEventSlugs } from "@/lib/training-plans";
 
 const BASE_URL = "https://roadmancycling.com";
 
+/**
+ * Split sitemaps by page type for GSC monitoring.
+ *
+ * Generates child sitemaps at /sitemap/0.xml through /sitemap/5.xml.
+ * The sitemap INDEX at /sitemap.xml is served by the companion
+ * route handler at src/app/sitemap.xml/route.ts.
+ *
+ *   /sitemap/0.xml — static/core pages + coaching + tools + community
+ *   /sitemap/1.xml — blog articles
+ *   /sitemap/2.xml — podcast episodes
+ *   /sitemap/3.xml — guest pages
+ *   /sitemap/4.xml — plan pages (event hubs + phase pages)
+ *   /sitemap/5.xml — topics + glossary + comparisons + best-for + problems + newsletter
+ */
+
+const SITEMAP_IDS = [0, 1, 2, 3, 4, 5] as const;
+type SitemapId = (typeof SITEMAP_IDS)[number];
+
+export async function generateSitemaps() {
+  return SITEMAP_IDS.map((id) => ({ id }));
+}
+
 function changeFreqByAge(
   date: Date,
 ): "weekly" | "monthly" | "yearly" {
@@ -22,20 +44,21 @@ function changeFreqByAge(
   return "yearly";
 }
 
-/**
- * Single flat sitemap at /sitemap.xml.
- *
- * Previously split via generateSitemaps() into 6 child sitemaps,
- * but Next.js 16 doesn't auto-generate the sitemap index at
- * /sitemap.xml, causing a 404 that breaks crawl discovery.
- *
- * All URLs grouped logically by type with inline comments.
- */
-export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-  const entries: MetadataRoute.Sitemap = [];
+export default async function sitemap(props: {
+  id: Promise<string>;
+}): Promise<MetadataRoute.Sitemap> {
+  const numId = Number(await props.id);
+  if (numId === 0) return buildStaticSitemap();
+  if (numId === 1) return buildBlogSitemap();
+  if (numId === 2) return buildPodcastSitemap();
+  if (numId === 3) return buildGuestSitemap();
+  if (numId === 4) return buildPlanSitemap();
+  if (numId === 5) return buildTopicAndMoreSitemap();
+  return [];
+}
 
-  // ── Static / core pages ──────────────────────────────────
-  entries.push(
+function buildStaticSitemap(): MetadataRoute.Sitemap {
+  return [
     { url: BASE_URL, lastModified: new Date(), changeFrequency: "daily", priority: 1.0 },
     { url: `${BASE_URL}/podcast`, lastModified: new Date(), changeFrequency: "weekly", priority: 0.8 },
     { url: `${BASE_URL}/blog`, lastModified: new Date(), changeFrequency: "weekly", priority: 0.8 },
@@ -86,93 +109,118 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     { url: `${BASE_URL}/newsletter`, lastModified: new Date("2026-03-01"), changeFrequency: "monthly", priority: 0.6 },
     { url: `${BASE_URL}/partners`, lastModified: new Date("2026-03-01"), changeFrequency: "monthly", priority: 0.6 },
     { url: `${BASE_URL}/contact`, lastModified: new Date("2026-03-01"), changeFrequency: "yearly", priority: 0.4 },
-  );
+  ];
+}
 
-  // ── Blog articles ────────────────────────────────────────
-  for (const post of getAllPosts()) {
+function buildBlogSitemap(): MetadataRoute.Sitemap {
+  return getAllPosts().map((post) => {
     const lastMod = post.updatedDate
       ? new Date(post.updatedDate)
       : new Date(post.publishDate);
-    entries.push({
+    return {
       url: `${BASE_URL}/blog/${post.slug}`,
       lastModified: lastMod,
       changeFrequency: changeFreqByAge(lastMod),
       priority: 0.6,
-    });
-  }
+    };
+  });
+}
 
-  // ── Podcast episodes ─────────────────────────────────────
-  for (const ep of getAllEpisodes()) {
+function buildPodcastSitemap(): MetadataRoute.Sitemap {
+  return getAllEpisodes().map((ep) => {
     const lastMod = new Date(ep.publishDate);
-    entries.push({
+    return {
       url: `${BASE_URL}/podcast/${ep.slug}`,
       lastModified: lastMod,
       changeFrequency: changeFreqByAge(lastMod),
       priority: 0.6,
-    });
-  }
+    };
+  });
+}
 
-  // ── Guest pages ──────────────────────────────────────────
-  for (const guest of getAllGuests()) {
-    entries.push({
+function buildGuestSitemap(): MetadataRoute.Sitemap {
+  return getAllGuests().map((guest) => {
+    const lastMod = new Date(guest.latestAppearance);
+    return {
       url: `${BASE_URL}/guests/${guest.slug}`,
-      lastModified: new Date(guest.latestAppearance),
-      changeFrequency: changeFreqByAge(new Date(guest.latestAppearance)),
+      lastModified: lastMod,
+      changeFrequency: changeFreqByAge(lastMod),
       priority: 0.6,
-    });
-  }
+    };
+  });
+}
 
-  // ── Topic hubs ───────────────────────────────────────────
-  for (const slug of getAllTopicSlugs()) {
-    entries.push({ url: `${BASE_URL}/topics/${slug}`, lastModified: new Date(), changeFrequency: "weekly", priority: 0.7 });
-  }
+function buildPlanSitemap(): MetadataRoute.Sitemap {
+  const eventHubs = getAllEventSlugs().map((event) => ({
+    url: `${BASE_URL}/plan/${event}`,
+    lastModified: new Date(),
+    changeFrequency: "weekly" as const,
+    priority: 0.8,
+  }));
 
-  // ── Glossary terms ───────────────────────────────────────
-  for (const slug of getAllTermSlugs()) {
-    entries.push({ url: `${BASE_URL}/glossary/${slug}`, lastModified: new Date(), changeFrequency: "monthly", priority: 0.6 });
-  }
+  const phasePlanPages = getAllPlanCombinations().map(({ event, weeksOut }) => ({
+    url: `${BASE_URL}/plan/${event}/${weeksOut}`,
+    lastModified: new Date(),
+    changeFrequency: "weekly" as const,
+    priority: 0.75,
+  }));
 
-  // ── Comparison pages ─────────────────────────────────────
-  for (const slug of getAllComparisonSlugs()) {
-    entries.push({ url: `${BASE_URL}/compare/${slug}`, lastModified: new Date(), changeFrequency: "monthly", priority: 0.7 });
-  }
+  return [...eventHubs, ...phasePlanPages];
+}
 
-  // ── Best-for pages ───────────────────────────────────────
-  for (const slug of getAllBestForSlugs()) {
-    entries.push({ url: `${BASE_URL}/best/${slug}`, lastModified: new Date(), changeFrequency: "monthly", priority: 0.7 });
-  }
+async function buildTopicAndMoreSitemap(): Promise<MetadataRoute.Sitemap> {
+  const topicPages = getAllTopicSlugs().map((slug) => ({
+    url: `${BASE_URL}/topics/${slug}`,
+    lastModified: new Date(),
+    changeFrequency: "weekly" as const,
+    priority: 0.7,
+  }));
 
-  // ── Problem pages ────────────────────────────────────────
-  for (const slug of getAllProblemSlugs()) {
-    entries.push({ url: `${BASE_URL}/problem/${slug}`, lastModified: new Date(), changeFrequency: "monthly", priority: 0.7 });
-  }
+  const glossaryPages = getAllTermSlugs().map((slug) => ({
+    url: `${BASE_URL}/glossary/${slug}`,
+    lastModified: new Date(),
+    changeFrequency: "monthly" as const,
+    priority: 0.6,
+  }));
 
-  // ── Plan event hubs ──────────────────────────────────────
-  for (const event of getAllEventSlugs()) {
-    entries.push({ url: `${BASE_URL}/plan/${event}`, lastModified: new Date(), changeFrequency: "weekly", priority: 0.8 });
-  }
+  const comparisonPages = getAllComparisonSlugs().map((slug) => ({
+    url: `${BASE_URL}/compare/${slug}`,
+    lastModified: new Date(),
+    changeFrequency: "monthly" as const,
+    priority: 0.7,
+  }));
 
-  // ── Plan phase pages ─────────────────────────────────────
-  for (const { event, weeksOut } of getAllPlanCombinations()) {
-    entries.push({ url: `${BASE_URL}/plan/${event}/${weeksOut}`, lastModified: new Date(), changeFrequency: "weekly", priority: 0.75 });
-  }
+  const bestForPages = getAllBestForSlugs().map((slug) => ({
+    url: `${BASE_URL}/best/${slug}`,
+    lastModified: new Date(),
+    changeFrequency: "monthly" as const,
+    priority: 0.7,
+  }));
 
-  // ── Newsletter issues ────────────────────────────────────
+  const problemPages = getAllProblemSlugs().map((slug) => ({
+    url: `${BASE_URL}/problem/${slug}`,
+    lastModified: new Date(),
+    changeFrequency: "monthly" as const,
+    priority: 0.7,
+  }));
+
+  let newsletterPages: MetadataRoute.Sitemap = [];
   try {
     const issues = await fetchNewsletterIssues(100);
-    for (const issue of issues) {
-      if (issue.publishDate) {
-        entries.push({
-          url: `${BASE_URL}/newsletter/${issue.slug}`,
-          lastModified: new Date(issue.publishDate),
-          changeFrequency: "monthly",
-          priority: 0.5,
-        });
-      }
-    }
+    newsletterPages = issues
+      .filter(
+        (issue): issue is typeof issue & { publishDate: string } =>
+          Boolean(issue.publishDate),
+      )
+      .map((issue) => ({
+        url: `${BASE_URL}/newsletter/${issue.slug}`,
+        lastModified: new Date(issue.publishDate),
+        changeFrequency: "monthly" as const,
+        priority: 0.5,
+      }));
   } catch {
     // Beehiiv API unavailable
   }
 
-  return entries;
+  return [...topicPages, ...glossaryPages, ...comparisonPages, ...bestForPages, ...problemPages, ...newsletterPages];
 }
