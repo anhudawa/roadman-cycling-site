@@ -433,7 +433,7 @@ export default async function BlogPostPage({
                       .slice(0, 3)
                   : undefined
               }
-              lastReviewed={post.updatedDate || post.publishDate}
+              lastReviewed={String(post.updatedDate || post.publishDate)}
               reviewedBy="Anthony Walsh"
             />
 

@@ -22,6 +22,13 @@ export default function robots(): MetadataRoute.Robots {
       { userAgent: "Meta-ExternalAgent", allow: "/" },
       { userAgent: "cohere-ai", allow: "/" },
     ],
-    sitemap: "https://roadmancycling.com/sitemap.xml",
+    sitemap: [
+      "https://roadmancycling.com/sitemap/0.xml",
+      "https://roadmancycling.com/sitemap/1.xml",
+      "https://roadmancycling.com/sitemap/2.xml",
+      "https://roadmancycling.com/sitemap/3.xml",
+      "https://roadmancycling.com/sitemap/4.xml",
+      "https://roadmancycling.com/sitemap/5.xml",
+    ],
   };
 }
