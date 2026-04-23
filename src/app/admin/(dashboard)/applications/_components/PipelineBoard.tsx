@@ -267,11 +267,15 @@ export function PipelineBoard({ initialStages, cohorts, initialCohort }: Props) 
         )}
       </div>
 
-      <div className="flex gap-3 overflow-x-auto snap-x snap-mandatory pb-4 -mx-2 px-2 scrollbar-thin">
+      <div className="flex gap-3 overflow-x-auto snap-x snap-mandatory xl:overflow-x-visible xl:snap-none pb-4 -mx-2 px-2 scrollbar-thin">
         {APPLICATION_STAGES.map((stage) => {
           const color = STAGE_COLORS[stage];
           const cards = stages[stage] ?? [];
           const isHover = hoverStage === stage;
+          // "Rejected" gets a low-saturation red tint even when empty so the
+          // column is obviously a drop target. All other empty columns keep
+          // a neutral dashed border.
+          const isRejected = stage === "rejected";
           return (
             <div
               key={stage}
@@ -291,12 +295,14 @@ export function PipelineBoard({ initialStages, cohorts, initialCohort }: Props) 
                 setDragId(null);
                 setDragFrom(null);
               }}
-              className={`shrink-0 w-[85vw] sm:w-72 snap-start flex flex-col rounded-xl border bg-background-elevated/70 transition ${
+              className={`shrink-0 w-[85vw] sm:w-64 lg:w-60 xl:flex-1 xl:shrink xl:min-w-0 snap-start flex flex-col rounded-xl border bg-background-elevated/70 transition ${
                 isHover
                   ? "border-dashed border-[var(--color-info)]/60 bg-[var(--color-info-tint)]"
-                  : cards.length === 0
-                    ? "border-white/[0.04]"
-                    : "border-white/10"
+                  : isRejected && cards.length === 0
+                    ? "border-[var(--color-bad)]/25 bg-[var(--color-bad-tint)]/40"
+                    : cards.length === 0
+                      ? "border-white/[0.04]"
+                      : "border-white/10"
               }`}
             >
               <div className="flex items-center gap-2 px-4 py-3 border-b border-white/5">
@@ -316,8 +322,14 @@ export function PipelineBoard({ initialStages, cohorts, initialCohort }: Props) 
               </div>
               <div className="flex-1 p-2 space-y-2 min-h-[120px]">
                 {cards.length === 0 && (
-                  <div className="text-foreground-subtle text-xs text-center py-8 border border-dashed border-white/5 rounded-lg">
-                    No applications
+                  <div
+                    className={`text-xs text-center py-8 border border-dashed rounded-lg ${
+                      isRejected
+                        ? "text-[var(--color-bad)]/70 border-[var(--color-bad)]/20"
+                        : "text-foreground-subtle border-white/5"
+                    }`}
+                  >
+                    {isRejected ? "Drop rejected apps here" : "No applications"}
                   </div>
                 )}
                 {cards.map((app) => {
