@@ -57,6 +57,7 @@ export default function WkgPage() {
                     id="ftp-input"
                     type="number"
                     min="50"
+                    aria-label="Your Functional Threshold Power in watts"
                     max="600"
                     placeholder="e.g. 250"
                     value={ftp}
@@ -72,6 +73,7 @@ export default function WkgPage() {
                     min="40"
                     max="150"
                     step="0.1"
+                    aria-label="Your body weight in kilograms"
                     placeholder="e.g. 75"
                     value={weight}
                     onChange={(e) => { setWeight(e.target.value); setCalculated(false); }}
@@ -138,6 +140,33 @@ export default function WkgPage() {
                 </motion.div>
               )}
             </AnimatePresence>
+          </Container>
+        </Section>
+
+        <Section background="deep-purple" grain>
+          <Container width="narrow">
+            <h2 className="font-heading text-off-white mb-4" style={{ fontSize: "var(--text-section)" }}>
+              METHODOLOGY
+            </h2>
+            <div className="text-foreground-muted text-sm leading-relaxed space-y-3">
+              <p>
+                <strong className="text-off-white">Formula:</strong> W/kg = FTP (watts) ÷ Body weight (kg).
+                FTP should be determined from a 20-minute all-out test (×0.95) or ramp test.
+              </p>
+              <p>
+                <strong className="text-off-white">Benchmarks:</strong> Based on published data from Coggan's
+                power profiling, adjusted for real-world amateur and masters populations. Professional benchmarks
+                from World Tour race data.
+              </p>
+              <p>
+                <strong className="text-off-white">Limitations:</strong> W/kg predicts climbing speed but not
+                flat performance (where absolute watts matter more). Body weight should be measured consistently
+                (morning, before eating). W/kg varies with hydration and time of day.
+              </p>
+              <p className="text-xs text-foreground-subtle">
+                Last updated: April 2026 · Tool version 1.0
+              </p>
+            </div>
           </Container>
         </Section>
       </main>
