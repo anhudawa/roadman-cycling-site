@@ -23,6 +23,9 @@ export async function generateStaticParams() {
   return getAllEpisodeSlugs().map((slug) => ({ slug }));
 }
 
+const stripBrandSuffix = (t: string) =>
+  t.replace(/\s*\|\s*Roadman\b.*$/i, "").trim();
+
 export async function generateMetadata({
   params,
 }: {
@@ -32,15 +35,17 @@ export async function generateMetadata({
   const episode = getEpisodeBySlug(slug);
   if (!episode) return { title: "Episode Not Found" };
 
+  const cleanTitle = stripBrandSuffix(episode.seoTitle || episode.title);
+
   return {
-    title: episode.seoTitle || episode.title,
+    title: cleanTitle,
     description: episode.seoDescription,
     keywords: episode.keywords,
     alternates: {
       canonical: `https://roadmancycling.com/podcast/${slug}`,
     },
     openGraph: {
-      title: episode.seoTitle || episode.title,
+      title: cleanTitle,
       description: episode.seoDescription,
       type: "article",
       publishedTime: episode.publishDate,
@@ -65,7 +70,7 @@ export async function generateMetadata({
     },
     twitter: {
       card: "summary_large_image",
-      title: episode.seoTitle || episode.title,
+      title: cleanTitle,
       description: episode.seoDescription,
       images: episode.youtubeId
         ? [`https://img.youtube.com/vi/${episode.youtubeId}/maxresdefault.jpg`]

@@ -30,6 +30,9 @@ export async function generateStaticParams() {
   return getAllSlugs().map((slug) => ({ slug }));
 }
 
+const stripBrandSuffix = (t: string) =>
+  t.replace(/\s*\|\s*Roadman\b.*$/i, "").trim();
+
 export async function generateMetadata({
   params,
 }: {
@@ -39,15 +42,17 @@ export async function generateMetadata({
   const post = getPostBySlug(slug);
   if (!post) return { title: "Post Not Found" };
 
+  const cleanTitle = stripBrandSuffix(post.seoTitle || post.title);
+
   return {
-    title: post.seoTitle || post.title,
+    title: cleanTitle,
     description: post.seoDescription,
     keywords: post.keywords,
     alternates: {
       canonical: `https://roadmancycling.com/blog/${slug}`,
     },
     openGraph: {
-      title: post.seoTitle || post.title,
+      title: cleanTitle,
       description: post.seoDescription,
       type: "article",
       publishedTime: post.publishDate,
@@ -68,7 +73,7 @@ export async function generateMetadata({
     },
     twitter: {
       card: "summary_large_image",
-      title: post.seoTitle || post.title,
+      title: cleanTitle,
       description: post.seoDescription,
       // twitter:image falls back to the auto-injected opengraph-image
       // when no twitter-image.[ext] exists in the route segment.

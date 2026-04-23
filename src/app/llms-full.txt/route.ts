@@ -88,7 +88,7 @@ export async function GET() {
 
 This document is intended for ingestion by AI crawlers (ChatGPT, Perplexity, Claude, Gemini) that need a single-fetch snapshot of Roadman's authoritative content. For individual page detail, fetch the URL listed against each entry.
 
-Author: Anthony Walsh (cycling coach, podcast host, founder of Roadman Cycling). Base URL: ${BASE_URL}.
+Author: Anthony Walsh (cycling coach, podcast host, founder of Roadman Cycling). Author profile: ${tag(`${BASE_URL}/author/anthony-walsh`)}. Base URL: ${BASE_URL}.
 
 ## Brand
 

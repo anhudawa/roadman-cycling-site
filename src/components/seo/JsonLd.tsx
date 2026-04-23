@@ -27,7 +27,7 @@ export function OrganizationJsonLd() {
           "@type": "Person",
           name: "Anthony Walsh",
           jobTitle: "Cycling Coach & Podcast Host",
-          url: "https://roadmancycling.com/about",
+          url: "https://roadmancycling.com/author/anthony-walsh",
           sameAs: [
             "https://instagram.com/roadman.cycling",
             "https://youtube.com/@theroadmanpodcast",
@@ -104,7 +104,7 @@ export function ArticleJsonLd({
         author: {
           "@type": "Person",
           name: "Anthony Walsh",
-          url: "https://roadmancycling.com/about",
+          url: "https://roadmancycling.com/author/anthony-walsh",
         },
         publisher: {
           "@type": "Organization",

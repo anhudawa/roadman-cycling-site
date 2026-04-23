@@ -54,7 +54,7 @@ export function AuthorBio() {
           </p>
           <div className="flex flex-wrap gap-3 text-xs font-heading tracking-wider">
             <Link
-              href="/about"
+              href="/author/anthony-walsh"
               className="text-foreground-muted hover:text-coral transition-colors"
             >
               ABOUT →
