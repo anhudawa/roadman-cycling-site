@@ -53,6 +53,19 @@ export default async function BestForPage({
           })),
         }}
       />
+      <JsonLd
+        data={{
+          "@context": "https://schema.org",
+          "@type": "WebPage",
+          name: page.title,
+          description: page.seoDescription,
+          url: `https://roadmancycling.com/best/${slug}`,
+          speakable: {
+            "@type": "SpeakableSpecification",
+            cssSelector: ["h1", ".best-intro"],
+          },
+        }}
+      />
       {page.faq.length > 0 && (
         <JsonLd
           data={{
@@ -91,7 +104,7 @@ export default async function BestForPage({
               >
                 {page.title.toUpperCase()}
               </h1>
-              <p className="text-foreground-muted text-lg leading-relaxed max-w-2xl">
+              <p className="best-intro text-foreground-muted text-lg leading-relaxed max-w-2xl">
                 {page.intro}
               </p>
             </ScrollReveal>

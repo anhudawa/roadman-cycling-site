@@ -46,6 +46,10 @@ export default async function ComparePage({
           name: comp.title,
           description: comp.seoDescription,
           url: `https://roadmancycling.com/compare/${slug}`,
+          speakable: {
+            "@type": "SpeakableSpecification",
+            cssSelector: ["h1", ".verdict-block"],
+          },
         }}
       />
       <JsonLd
@@ -92,7 +96,7 @@ export default async function ComparePage({
                 <br />
                 <span className="text-coral">VS {comp.optionB.toUpperCase()}</span>
               </h1>
-              <div className="rounded-xl border border-coral/30 bg-coral/10 p-5 md:p-6">
+              <div className="verdict-block rounded-xl border border-coral/30 bg-coral/10 p-5 md:p-6">
                 <p className="font-heading text-coral text-xs tracking-widest mb-2">
                   QUICK VERDICT
                 </p>

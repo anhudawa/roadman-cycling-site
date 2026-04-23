@@ -60,6 +60,19 @@ export default async function GlossaryTermPage({
       <JsonLd
         data={{
           "@context": "https://schema.org",
+          "@type": "WebPage",
+          name: term.term,
+          description: term.definition,
+          url: `https://roadmancycling.com/glossary/${slug}`,
+          speakable: {
+            "@type": "SpeakableSpecification",
+            cssSelector: ["h1", ".answer-capsule"],
+          },
+        }}
+      />
+      <JsonLd
+        data={{
+          "@context": "https://schema.org",
           "@type": "BreadcrumbList",
           itemListElement: [
             { "@type": "ListItem", position: 1, name: "Home", item: "https://roadmancycling.com" },
