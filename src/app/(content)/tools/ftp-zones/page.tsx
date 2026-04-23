@@ -153,6 +153,7 @@ export default function FTPZonesPage() {
                   type="number"
                   min="50"
                   max="600"
+                  aria-label="Your Functional Threshold Power in watts"
                   placeholder="e.g. 250"
                   value={ftp}
                   onChange={(e) => {
@@ -172,7 +173,7 @@ export default function FTPZonesPage() {
                   `}
                   style={{ transitionDuration: "var(--duration-fast)" }}
                 />
-                <Button onClick={handleCalculate} size="lg">
+                <Button onClick={handleCalculate} size="lg" aria-label="Calculate your FTP power zones">
                   Calculate
                 </Button>
               </div>
