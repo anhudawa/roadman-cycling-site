@@ -56,8 +56,10 @@ import { COMPARISON_CLUSTER_ARTICLES } from "./data/comparison-cluster-articles"
 import { TRANSCRIPT_BLOG_ARTICLES } from "./data/transcript-blog-articles";
 import { BOTTOM_FUNNEL_ARTICLES } from "./data/bottom-funnel-articles";
 import { DIGITAL_PR_ARTICLES } from "./data/digital-pr-articles";
+import { EXPERT_SYNTHESIS_ARTICLES } from "./data/expert-synthesis-articles";
+import { BENCHMARK_ARTICLES } from "./data/benchmark-articles";
 
-type ClusterName = "triathlon" | "coaching" | "podcast-authority" | "comparison" | "transcript-blog" | "bottom-funnel" | "digital-pr";
+type ClusterName = "triathlon" | "coaching" | "podcast-authority" | "comparison" | "transcript-blog" | "bottom-funnel" | "digital-pr" | "expert-synthesis" | "benchmarks";
 
 const CLUSTERS: Record<ClusterName, ClusterArticleSpec[]> = {
   triathlon: TRIATHLON_CLUSTER_ARTICLES,
@@ -67,6 +69,8 @@ const CLUSTERS: Record<ClusterName, ClusterArticleSpec[]> = {
   "transcript-blog": TRANSCRIPT_BLOG_ARTICLES,
   "bottom-funnel": BOTTOM_FUNNEL_ARTICLES,
   "digital-pr": DIGITAL_PR_ARTICLES,
+  "expert-synthesis": EXPERT_SYNTHESIS_ARTICLES,
+  "benchmarks": BENCHMARK_ARTICLES,
 };
 
 const args = process.argv.slice(2);
