@@ -67,8 +67,8 @@ const notableGuests = [
     name: "Michael Matthews",
     credential: "15+ year World Tour pro, Grand Tour stage winner",
   },
-  { name: "Dan Bigham", credential: "Former Hour Record holder" },
-  { name: "Rosa Kloser", credential: "2024 Unbound Gravel winner" },
+  { name: "Dan Bigham", credential: "Head of Engineering, Red Bull–Bora–Hansgrohe · Former UCI Hour Record holder" },
+  { name: "Rosa Kloser", credential: "2024 Unbound Gravel 200 winner" },
   {
     name: "Tim Spector",
     credential: "ZOE founder, epidemiologist, nutrition scientist",

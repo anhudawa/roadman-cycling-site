@@ -7,14 +7,14 @@ import { JsonLd } from "@/components/seo/JsonLd";
 export const metadata: Metadata = {
   title: "Community — Serious Cyclists Who Refuse to Settle",
   description:
-    "Two communities. One mission. Join the free Clubhouse or go premium with the Not Done Yet coaching community — personalised coaching, training plans, and accountability.",
+    "Two communities. One mission. Join the free Clubhouse or go premium with the Not Done Yet coaching community — personalised coaching, training plans, and the five-pillar system (training, nutrition, strength, recovery, community).",
   alternates: {
     canonical: "https://roadmancycling.com/community",
   },
   openGraph: {
     title: "Community — Serious Cyclists Who Refuse to Settle",
     description:
-      "Two communities. One mission. Join the free Clubhouse or go premium with the Not Done Yet coaching community — personalised coaching, training plans, and accountability.",
+      "Two communities. One mission. Join the free Clubhouse or go premium with the Not Done Yet coaching community — personalised coaching, training plans, and the five-pillar system (training, nutrition, strength, recovery, community).",
     type: "website",
     url: "https://roadmancycling.com/community",
   },

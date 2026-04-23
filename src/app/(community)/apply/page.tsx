@@ -104,8 +104,8 @@ const pillars = [
   },
   {
     icon: "🤝",
-    name: "Accountability",
-    description: "Weekly coaching calls, community support, and 1:1 plan reviews",
+    name: "Community",
+    description: "Weekly coaching calls, a private group of serious cyclists, and 1:1 plan reviews",
   },
 ];
 
@@ -138,7 +138,7 @@ export default function ApplyPage() {
           "@context": "https://schema.org",
           "@type": "Service",
           name: "Not Done Yet Coaching Community — Personalised Cycling Coaching",
-          description: "1:1 personalised cycling coaching across five pillars: training, nutrition, strength, recovery, and accountability. $195/month with 7-day free trial.",
+          description: "1:1 personalised cycling coaching across five pillars: training, nutrition, strength, recovery, and community. $195/month with 7-day free trial.",
           serviceType: "Online Cycling Coaching",
           provider: {
             "@type": "Person",
@@ -166,7 +166,7 @@ export default function ApplyPage() {
             {
               "@type": "Review",
               author: { "@type": "Person", name: "Chris O'Connor" },
-              reviewBody: "From 113kg to 97kg. The structured approach to training and nutrition changed everything.",
+              reviewBody: "Anthony is a visionary, an educator, a mentor, a coach. He set me on a dietary, mental and physical journey of true discovery. Average wattage doubled and weekly 100km+ rides are now the norm.",
             },
           ],
         }}

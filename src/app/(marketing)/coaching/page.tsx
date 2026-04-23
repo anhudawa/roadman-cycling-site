@@ -9,7 +9,7 @@ import { getTestimonialsByName } from "@/lib/testimonials";
 export const metadata: Metadata = {
   title: "Online Cycling Coach — Personalised Coaching | $195/month",
   description:
-    "Personalised cycling coaching built on 1,300+ expert podcast conversations. Training plans, nutrition, strength, recovery, and accountability. Trusted by cyclists in Ireland, UK, and USA.",
+    "Personalised cycling coaching built on 1,300+ expert podcast conversations. Training plans, nutrition, strength, recovery, and community. Trusted by cyclists in Ireland, UK, and USA.",
   keywords: [
     "cycling coach",
     "cycling coaching",
@@ -26,7 +26,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Online Cycling Coach — Personalised Coaching | $195/month",
     description:
-      "Personalised cycling coaching built on 1,300+ expert podcast conversations. Training, nutrition, strength, recovery, and accountability.",
+      "Personalised cycling coaching built on 1,300+ expert podcast conversations. Training, nutrition, strength, recovery, and community.",
     type: "website",
     url: "https://roadmancycling.com/coaching",
   },
@@ -89,9 +89,9 @@ const pillars = [
   },
   {
     number: "05",
-    title: "Accountability",
+    title: "Community",
     description:
-      "Weekly coaching calls, community support, and 1:1 plan reviews. The reason this works when apps and solo plans don't — someone who knows your situation is watching.",
+      "Weekly coaching calls, a private group of serious cyclists, and 1:1 plan reviews. The reason this works when apps and solo plans don't — you're surrounded by people who know your situation and are watching.",
   },
 ];
 
@@ -109,7 +109,7 @@ const faqItems = [
   {
     question: "How much does a cycling coach cost?",
     answer:
-      "Coaching is $195 per month and includes 1:1 personalised coaching with Anthony Walsh across all five pillars — training, nutrition, strength, recovery, and accountability. You get a personalised TrainingPeaks plan, weekly coaching calls, and a private community of serious cyclists. Includes a 7-day free trial.",
+      "Coaching is $195 per month and includes 1:1 personalised coaching with Anthony Walsh across all five pillars — training, nutrition, strength, recovery, and community. You get a personalised TrainingPeaks plan, weekly coaching calls, and a private community of serious cyclists. Includes a 7-day free trial.",
   },
   {
     question:
@@ -170,7 +170,7 @@ export default function CoachingPage() {
           "@type": "Service",
           name: "Roadman Cycling Coaching",
           description:
-            "Personalised online cycling coaching across five pillars: training, nutrition, strength, recovery, and accountability. Built on 1,300+ expert podcast conversations.",
+            "Personalised online cycling coaching across five pillars: training, nutrition, strength, recovery, and community. Built on 1,300+ expert podcast conversations.",
           serviceType: "Online Cycling Coaching",
           provider: {
             "@type": "Person",
@@ -194,7 +194,7 @@ export default function CoachingPage() {
             price: "195",
             priceCurrency: "USD",
             description:
-              "1:1 personalised coaching across training, nutrition, strength, recovery, and accountability",
+              "1:1 personalised coaching across training, nutrition, strength, recovery, and community",
           },
           // Review schema mirrors the real on-page testimonials below.
           // No reviewRating — we collect narrative testimonials, not star ratings,
@@ -220,7 +220,7 @@ export default function CoachingPage() {
           "@type": "Course",
           name: "Roadman Cycling — Not Done Yet Coaching Community",
           description:
-            "Structured online cycling coaching programme covering training, nutrition, strength, recovery, and accountability. Delivered via TrainingPeaks, weekly coaching calls, and a private community.",
+            "Structured online cycling coaching programme covering training, nutrition, strength, recovery, and community. Delivered via TrainingPeaks, weekly coaching calls, and a private community of serious cyclists.",
           provider: {
             "@type": "Organization",
             name: "Roadman Cycling",
@@ -286,7 +286,7 @@ export default function CoachingPage() {
               <p className="text-foreground-muted text-xl max-w-2xl mx-auto mb-8 leading-relaxed">
                 Personalised cycling coaching built on 1,300+ conversations with
                 the world&apos;s best coaches and scientists. Training,
-                nutrition, strength, recovery, and accountability — structured
+                nutrition, strength, recovery, and community — structured
                 into your week so every session counts.
               </p>
 
@@ -464,7 +464,7 @@ export default function CoachingPage() {
                       "Nutrition guidance that targets your power-to-weight ratio",
                       "Strength programming periodised with your riding",
                       "Recovery protocols that let training actually stick",
-                      "Accountability that keeps you consistent through bad weeks",
+                      "A private community of serious cyclists that keeps you consistent through bad weeks",
                       "Expert knowledge from 1,300+ podcast conversations distilled into your plan",
                     ].map((item) => (
                       <li

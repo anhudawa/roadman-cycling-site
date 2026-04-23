@@ -12,14 +12,14 @@ import {
 export const metadata: Metadata = {
   title: "Not Done Yet Coaching Community — Premium Cycling Coaching",
   description:
-    "The Not Done Yet coaching community: personalised TrainingPeaks training plans, weekly coaching with Anthony Walsh, expert masterclasses, and a private community of serious cyclists. From $15/month (Standard) or $195/month (Premium).",
+    "The Not Done Yet coaching community: personalised TrainingPeaks training plans, weekly coaching with Anthony Walsh, expert masterclasses, and a private community of serious cyclists. $195/month with a 7-day free trial. VIP tier available.",
   alternates: {
     canonical: "https://roadmancycling.com/community/not-done-yet",
   },
   openGraph: {
     title: "Not Done Yet Coaching Community — Premium Cycling Coaching",
     description:
-      "The Not Done Yet coaching community: personalised TrainingPeaks training plans, weekly coaching with Anthony Walsh, expert masterclasses, and a private community of serious cyclists. From $15/month (Standard) or $195/month (Premium).",
+      "The Not Done Yet coaching community: personalised TrainingPeaks training plans, weekly coaching with Anthony Walsh, expert masterclasses, and a private community of serious cyclists. $195/month with a 7-day free trial. VIP tier available.",
     type: "website",
     url: "https://roadmancycling.com/community/not-done-yet",
   },
@@ -110,7 +110,7 @@ const objections = [
   {
     question: "I can't afford it.",
     answer:
-      "$15/month is less than one cafe stop a week. The Premium tier is personalised coaching at a fraction of what 1:1 coaching costs ($200-500/month).",
+      "$195/month is less than most 1:1 private coaching, which typically runs $300–$500/month. There's a 7-day free trial so you can test the system before paying anything, and the free Clubhouse is always there as a starting point.",
   },
   {
     question: "I don't have time.",
@@ -197,7 +197,7 @@ export default function NotDoneYetPage() {
                 We sell who you become.
               </p>
               <p className="text-foreground-muted text-xl max-w-2xl mx-auto mb-6">
-                Training. Nutrition. Strength. Recovery. Accountability.
+                Training. Nutrition. Strength. Recovery. Community.
                 Five pillars, one system — built from 1,300+ conversations
                 with the coaches, scientists, and riders at the top of the
                 sport. Not summarised. Not repackaged. Structured into your

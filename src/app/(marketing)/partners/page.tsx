@@ -254,7 +254,7 @@ const notableGuests = [
   "Professor Stephen Seiler — Polarised training pioneer",
   "Dan Lorang — Head of Performance, Red Bull-Bora-Hansgrohe",
   "Lachlan Morton — EF Education, alt-racing pioneer",
-  "Dan Bigham — Former Hour Record holder",
+  "Dan Bigham — Head of Engineering, Red Bull–Bora–Hansgrohe · Former UCI Hour Record holder",
   "Alistair Brownlee — 2x Olympic triathlon gold",
   "Valtteri Bottas — F1 driver & cyclist",
   "Joe Friel — Author, Cyclist's Training Bible",

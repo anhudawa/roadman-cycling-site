@@ -39,8 +39,8 @@ const expertNetwork: { name: string; role: string; category: ExpertCategory; hig
   { name: "Ben Healy", role: "Pro cyclist, Tour de France", category: "athlete", highlight: "Irish cycling star" },
   { name: "John Wakefield", role: "Red Bull–Bora–Hansgrohe coach", category: "coach", highlight: "World Tour performance" },
   { name: "Michael Matthews", role: "15+ year World Tour pro", category: "athlete", highlight: "Grand Tour stage winner" },
-  { name: "Dan Bigham", role: "Former Hour Record holder", category: "athlete", highlight: "Aerodynamics specialist" },
-  { name: "Rosa Kloser", role: "2024 Unbound Gravel winner", category: "athlete", highlight: "Off-road trailblazer" },
+  { name: "Dan Bigham", role: "Head of Engineering, Red Bull–Bora–Hansgrohe", category: "athlete", highlight: "Former UCI Hour Record holder" },
+  { name: "Rosa Kloser", role: "2024 Unbound Gravel 200 winner", category: "athlete", highlight: "Off-road trailblazer" },
   { name: "Tim Spector", role: "ZOE founder, epidemiologist", category: "scientist", highlight: "Nutrition science" },
 ];
 

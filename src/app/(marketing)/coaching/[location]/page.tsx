@@ -39,7 +39,7 @@ const LOCATIONS: Record<string, LocationData> = {
     title: "Cycling Coach Ireland",
     seoTitle: "Cycling Coach Ireland — Online Coaching from Dublin",
     seoDescription:
-      "Online cycling coaching from Dublin, Ireland. Personalised training plans, nutrition, strength, and accountability from Anthony Walsh and the Roadman Cycling team. Trusted by Irish cyclists from club racers to national-level competitors.",
+      "Online cycling coaching from Dublin, Ireland. Personalised training plans, nutrition, strength, and community from Anthony Walsh and the Roadman Cycling team. Trusted by Irish cyclists from club racers to national-level competitors.",
     localBusiness: {
       locality: "Dublin",
       countryCode: "IE",
@@ -62,13 +62,13 @@ const LOCATIONS: Record<string, LocationData> = {
       },
       {
         quote:
-          "From 113kg to 97kg. The structured approach to training and nutrition changed everything. I'm faster, lighter, and actually enjoying the process.",
+          "Anthony set me on a dietary, mental and physical journey. Average wattage doubled and weekly 100km+ rides are now the norm.",
         name: "Chris O'Connor",
-        detail: "Ireland — Lost 16kg",
+        detail: "Ireland — 84kg → 68kg · 20% body fat → 7%",
       },
       {
         quote:
-          "The accountability and structure is what makes the difference. Having someone who understands Irish racing and the conditions we train in — it just works.",
+          "The structure and weekly rhythm is what makes the difference. Having a coach who understands Irish racing and the conditions we train in — it just works.",
         name: "John Devlin",
         detail: "Ireland — Club racer",
       },
@@ -119,7 +119,7 @@ const LOCATIONS: Record<string, LocationData> = {
     title: "Cycling Coach UK",
     seoTitle: "Cycling Coach UK — Online Cycling Coaching",
     seoDescription:
-      "Online cycling coaching for UK riders. Personalised training plans, nutrition, strength, and accountability. From sportive riders to British Cycling licence holders. Trusted by cyclists across England, Scotland, Wales, and Northern Ireland.",
+      "Online cycling coaching for UK riders. Personalised training plans, nutrition, strength, and community. From sportive riders to British Cycling licence holders. Trusted by cyclists across England, Scotland, Wales, and Northern Ireland.",
     heroSubtitle: "TRUSTED BY UK CYCLISTS FROM CLUBBERS TO CAT 1",
     heroBody:
       "Roadman Cycling coaches riders across England, Scotland, Wales, and Northern Ireland. Whether you are training for a sportive like Ride London, racing in your local league, or chasing a British Cycling category upgrade, your plan is built around your goals, your hours, and your life.",
@@ -192,7 +192,7 @@ const LOCATIONS: Record<string, LocationData> = {
     title: "Cycling Coach USA",
     seoTitle: "Cycling Coach USA — Online Cycling Coaching Program",
     seoDescription:
-      "Online cycling coaching for American riders. Personalised training plans, nutrition, strength, and accountability. From gran fondos to USAC racing. Coaching cyclists across all 50 states with flexible scheduling across time zones.",
+      "Online cycling coaching for American riders. Personalised training plans, nutrition, strength, and community. From gran fondos to USAC racing. Coaching cyclists across all 50 states with flexible scheduling across time zones.",
     heroSubtitle: "THE COACHING SYSTEM TRUSTED BY CYCLISTS ACROSS AMERICA",
     heroBody:
       "Roadman Cycling coaches riders across the United States — from New York to California, Texas to Colorado. Whether you are training for a USAC crit, a gran fondo, or your first century ride, your plan is built around your goals, your time zone, and your life.",
@@ -271,15 +271,15 @@ const LOCATIONS: Record<string, LocationData> = {
       },
       {
         quote:
-          "The accountability and structure is what makes the difference. Having someone who understands Irish racing and the conditions we train in — it just works.",
+          "The structure and weekly rhythm is what makes the difference. Having a coach who understands Irish racing and the conditions we train in — it just works.",
         name: "John Devlin",
         detail: "Dublin — Club racer",
       },
       {
         quote:
-          "From 113kg to 97kg. The structured approach to training and nutrition changed everything. I'm faster, lighter, and actually enjoying the process.",
+          "Anthony set me on a dietary, mental and physical journey. Average wattage doubled and weekly 100km+ rides are now the norm.",
         name: "Chris O'Connor",
-        detail: "Ireland — Lost 16kg",
+        detail: "Ireland — 84kg → 68kg · 20% body fat → 7%",
       },
     ],
     faqs: [
@@ -333,15 +333,15 @@ const LOCATIONS: Record<string, LocationData> = {
       },
       {
         quote:
-          "The accountability and structure is what makes the difference. Having someone who understands Irish racing and the conditions we train in — it just works.",
+          "The structure and weekly rhythm is what makes the difference. Having a coach who understands Irish racing and the conditions we train in — it just works.",
         name: "John Devlin",
         detail: "Ireland — Club racer",
       },
       {
         quote:
-          "From 113kg to 97kg. The structured approach to training and nutrition changed everything.",
+          "Anthony set me on a dietary, mental and physical journey. Average wattage doubled and weekly 100km+ rides are now the norm.",
         name: "Chris O'Connor",
-        detail: "Ireland — Lost 16kg",
+        detail: "Ireland — 84kg → 68kg · 20% body fat → 7%",
       },
     ],
     faqs: [
@@ -407,15 +407,15 @@ const LOCATIONS: Record<string, LocationData> = {
       },
       {
         quote:
-          "The accountability and structure is what makes the difference. Having someone who understands Irish racing and the conditions we train in — it just works.",
+          "The structure and weekly rhythm is what makes the difference. Having a coach who understands Irish racing and the conditions we train in — it just works.",
         name: "John Devlin",
         detail: "Ireland — Club racer",
       },
       {
         quote:
-          "From 113kg to 97kg. The structured approach to training and nutrition changed everything.",
+          "Anthony set me on a dietary, mental and physical journey. Average wattage doubled and weekly 100km+ rides are now the norm.",
         name: "Chris O'Connor",
-        detail: "Ireland — Lost 16kg",
+        detail: "Ireland — 84kg → 68kg · 20% body fat → 7%",
       },
     ],
     faqs: [
@@ -623,7 +623,7 @@ const LOCATIONS: Record<string, LocationData> = {
       },
       {
         quote:
-          "The accountability and structure is what makes the difference. Having someone who understands Irish racing and the conditions we train in — it just works.",
+          "The structure and weekly rhythm is what makes the difference. Having a coach who understands Irish racing and the conditions we train in — it just works.",
         name: "John Devlin",
         detail: "Ireland — Club racer",
       },
@@ -881,7 +881,7 @@ export default async function CoachingLocationPage({ params }: Props) {
             price: "195",
             priceCurrency: "USD",
             description:
-              "1:1 personalised coaching across training, nutrition, strength, recovery, and accountability",
+              "1:1 personalised coaching across training, nutrition, strength, recovery, and community",
           },
         }}
       />
@@ -1038,13 +1038,13 @@ export default async function CoachingLocationPage({ params }: Props) {
               </h2>
               <p className="text-foreground-muted max-w-xl mx-auto leading-relaxed">
                 Every coaching programme covers training, nutrition, strength,
-                recovery, and accountability. Not just workouts — a complete
+                recovery, and community. Not just workouts — a complete
                 system built around your life.
               </p>
             </ScrollReveal>
 
             <div className="grid grid-cols-2 md:grid-cols-5 gap-4">
-              {["Training", "Nutrition", "Strength", "Recovery", "Accountability"].map(
+              {["Training", "Nutrition", "Strength", "Recovery", "Community"].map(
                 (pillar, i) => (
                   <ScrollReveal key={pillar} direction="up" delay={i * 0.06}>
                     <Card className="p-4 text-center" glass hoverable={false}>
