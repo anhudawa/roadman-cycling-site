@@ -132,11 +132,15 @@ export default async function Image({
             style={{
               color: "#FAFAFA",
               fontSize:
-                title.length > 60
-                  ? "48px"
-                  : title.length > 40
-                    ? "58px"
-                    : "68px",
+                title.length > 90
+                  ? "38px"
+                  : title.length > 75
+                    ? "42px"
+                    : title.length > 60
+                      ? "48px"
+                      : title.length > 40
+                        ? "58px"
+                        : "68px",
               fontWeight: 700,
               lineHeight: 1.1,
               margin: 0,

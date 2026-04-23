@@ -302,6 +302,13 @@ h1, h2, h3, h4, h5, h6 {
   text-transform: uppercase;
   line-height: 1.05;
   letter-spacing: 0.02em;
+  /* Guard against long uppercase compound words (e.g. TRAINERROAD,
+     PERIODISATION, MARATONA-DLES-DOLOMITES) overflowing narrow
+     mobile containers. break-word keeps short words intact but lets
+     extra-long words break at the container edge rather than forcing
+     horizontal scroll on the whole page. */
+  overflow-wrap: break-word;
+  word-wrap: break-word;
 }
 
 /* ============================================

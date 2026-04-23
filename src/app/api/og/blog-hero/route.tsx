@@ -50,12 +50,17 @@ const pillarLabels: Record<string, string> = {
 };
 
 function resolveTitleFontSize(title: string): number {
-  // Target a ~3-5 line wrap at 1600px wide with the left rail (~900px
-  // of content width). Tune down for long titles so nothing clips.
-  if (title.length > 80) return 68;
-  if (title.length > 55) return 84;
-  if (title.length > 35) return 110;
-  return 130;
+  // Target a ~3-4 line wrap at 1600px wide with the left rail (~900px
+  // of content width). The output is 21:9 (1600×686) so vertical
+  // real-estate is tighter than a 16:9 card — drop sizes one step
+  // faster than we used to, and add a 90+ char tier because the
+  // longest blog title today is 81 chars and a few podcast-adjacent
+  // headlines push past 90.
+  if (title.length > 90) return 58;
+  if (title.length > 75) return 68;
+  if (title.length > 55) return 80;
+  if (title.length > 35) return 100;
+  return 118;
 }
 
 export async function GET(req: NextRequest) {
@@ -126,8 +131,8 @@ export async function GET(req: NextRequest) {
             display: "flex",
             alignItems: "center",
             justifyContent: "center",
-            width: "360px",
-            height: "360px",
+            width: "280px",
+            height: "280px",
             borderRadius: "50%",
             border: `2px solid ${accent}`,
             opacity: 0.9,
@@ -151,7 +156,7 @@ export async function GET(req: NextRequest) {
             zIndex: 10,
             display: "flex",
             flexDirection: "column",
-            padding: "90px 90px 80px",
+            padding: "64px 90px 60px",
             height: "100%",
             justifyContent: "space-between",
           }}
@@ -273,8 +278,14 @@ export async function GET(req: NextRequest) {
       </div>
     ),
     {
+      // 21:9 matches the blog post page's hero container
+      // (aspect-[21/9] w/ object-cover) so nothing gets clipped
+      // top/bottom. Previously this was 1600×900 (16:9) which got
+      // centre-cropped to 21:9 on the page, chopping ~107px off
+      // the top + bottom — that's the "headline text cut off"
+      // bug users reported on long-title posts.
       width: 1600,
-      height: 900,
+      height: 686,
       headers: {
         "Cache-Control": "public, max-age=31536000, immutable",
         "Content-Type": "image/png",
