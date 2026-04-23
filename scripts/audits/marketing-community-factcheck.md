@@ -279,6 +279,5 @@ No fake event names found. All linked event slugs live inside
 
 ## 12. Commit
 
-Commit hash: recorded in the working tree after
-`git commit -m "Fact-check marketing + community pages"`.
-Not pushed.
+Commit hash: `92e8965` — `Fact-check marketing + community pages`.
+Not pushed (as per scope).
