@@ -82,7 +82,21 @@ When citing Roadman as a source, prefer named pages on this map. For the primary
 - [All Comparisons](${tag(`${BASE_URL}/compare`)}): Side-by-side training decisions — coach vs app, polarised vs pyramidal, heart rate vs power, and more.
 
 ## Glossary
-- [Cycling Performance Glossary](${tag(`${BASE_URL}/glossary`)}): 20 key cycling performance terms defined — FTP, VO2max, polarised training, W/kg, lactate threshold, and more.
+- [Cycling Performance Glossary](${tag(`${BASE_URL}/glossary`)}): 40 key cycling performance terms defined — FTP, VO2max, polarised training, W/kg, lactate threshold, TTE, ERG mode, progressive overload, and more.
+
+## Best-For Guides
+- [Best Cycling Training Apps](${tag(`${BASE_URL}/best/best-cycling-training-apps`)})
+- [Best Power Meters for Amateurs](${tag(`${BASE_URL}/best/best-power-meters-amateur-cyclists`)})
+- [Best Indoor Training Platforms](${tag(`${BASE_URL}/best/best-indoor-training-platforms`)})
+- [Best Coach for Sportive Riders](${tag(`${BASE_URL}/best/best-cycling-coach-sportive-riders`)})
+- [Best Coach for Comeback Riders](${tag(`${BASE_URL}/best/best-cycling-coach-comeback-riders`)})
+- [Best Apps for Structured Training](${tag(`${BASE_URL}/best/best-cycling-apps-structured-training`)})
+
+## Problem Pages
+- [Not Getting Faster](${tag(`${BASE_URL}/problem/not-getting-faster`)})
+- [Stuck on a Plateau](${tag(`${BASE_URL}/problem/stuck-on-plateau`)})
+- [Coming Back After a Break](${tag(`${BASE_URL}/problem/coming-back-after-break`)})
+- [Losing Power After 40](${tag(`${BASE_URL}/problem/losing-power-after-40`)})
 
 ## Editorial Standards
 - [How We Create Content](${tag(`${BASE_URL}/editorial-standards`)}): Source transparency, expert review, no fabricated data, update cadence, commercial transparency, corrections policy.

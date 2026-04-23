@@ -71,6 +71,58 @@ export const BEST_FOR_PAGES: BestForPage[] = [
       { question: "Do I need a smart trainer for these platforms?", answer: "Strongly recommended. A smart trainer provides accurate power data and ERG mode (automatic resistance adjustment). Without one, you're guessing at intensity." },
     ],
   },
+  {
+    slug: "best-cycling-coach-sportive-riders",
+    title: "Best Cycling Coach for Sportive Riders",
+    seoTitle: "Best Cycling Coach for Sportive Riders",
+    seoDescription: "How to choose the best cycling coach if you're training for a sportive or gran fondo. What to look for, what to avoid, and when coaching pays off.",
+    pillar: "coaching",
+    intro: "Training for a sportive is where coaching earns its keep. Generic plans don't account for the specific climbs, your pacing needs, or your fuelling strategy. Here's what to look for.",
+    picks: [
+      { name: "Roadman Cycling (Not Done Yet)", verdict: "Best for event-specific periodised plans", bestFor: "Riders targeting Wicklow 200, Ride London, Étape, or any specific sportive", href: "/coaching" },
+      { name: "TrainerRoad", verdict: "Best self-coached option with event targeting", bestFor: "Budget riders who can set their own event date and follow a plan", href: "/compare/coach-vs-app" },
+      { name: "FasCat Coaching", verdict: "Strong event-plan focus", bestFor: "Riders who want a structured calendar with racing periodisation", href: "/compare/self-coached-vs-coached" },
+    ],
+    faq: [
+      { question: "When should I start coaching before a sportive?", answer: "12-16 weeks before the event is ideal. This gives enough time for a base phase, a build phase, and a taper. Under 8 weeks and coaching is damage limitation — still useful, but you're working with the fitness you have." },
+      { question: "Do I need a coach for every sportive?", answer: "No. If you've done the event before and know your body well, self-coaching with a structured app can work. Coaching adds most value for first-time events, events with significant climbing, or events where you have a specific time goal." },
+    ],
+  },
+  {
+    slug: "best-cycling-coach-comeback-riders",
+    title: "Best Cycling Coach for Comeback Riders",
+    seoTitle: "Best Cycling Coach for Comeback Riders",
+    seoDescription: "Returning to cycling after time off? The best coaching options for comeback riders — rebuilding safely without overtraining or injury.",
+    pillar: "coaching",
+    intro: "Coming back to cycling after illness, injury, or life is where coaching prevents the most damage. The instinct is to rush; a coach manages the rebuild.",
+    picks: [
+      { name: "Roadman Cycling (Not Done Yet)", verdict: "Best for structured rebuild with accountability", bestFor: "Riders returning after 3+ months off who need pacing discipline", href: "/you/comeback" },
+      { name: "TrainerRoad (Adaptive Training)", verdict: "Best self-paced option", bestFor: "Self-motivated riders who need the plan to ramp gradually", href: "/compare/coach-vs-app" },
+      { name: "Local cycling club", verdict: "Best for social motivation", bestFor: "Riders who need group energy to stay consistent", href: "/compare/online-coach-vs-local-club" },
+    ],
+    faq: [
+      { question: "How long does it take to get back to previous fitness?", answer: "Typically 50-80% of the time you were off. If you were off 6 months, expect 3-5 months to return to previous levels. Muscle memory helps but cardiovascular fitness has to be rebuilt." },
+      { question: "Should I test my FTP when coming back?", answer: "Yes, but don't compare it to your old numbers. Test after 2-3 weeks of easy riding to establish a current baseline, then retest every 6-8 weeks." },
+    ],
+  },
+  {
+    slug: "best-cycling-apps-structured-training",
+    title: "Best Cycling Apps for Structured Training",
+    seoTitle: "Best Cycling Apps for Structured Training",
+    seoDescription: "The best cycling apps for structured training in 2026. TrainerRoad, Zwift, TrainingPeaks, Intervals.icu — compared for real training, not just features.",
+    pillar: "coaching",
+    intro: "Structured training apps have made quality coaching methodology accessible to everyone. But they're not all the same — and the best one depends on how you ride.",
+    picks: [
+      { name: "TrainerRoad", verdict: "Best adaptive structured training", bestFor: "Self-coached riders who want AI-adjusted plans that evolve with them", href: "/blog/zwift-vs-trainerroad" },
+      { name: "Intervals.icu", verdict: "Best free analytics platform", bestFor: "Data-focused riders who want deep analytics without paying monthly", href: "/compare/heart-rate-vs-power" },
+      { name: "TrainingPeaks", verdict: "Best coach-athlete platform", bestFor: "Riders working with a human coach", href: "/compare/trainerroad-vs-trainingpeaks" },
+      { name: "Zwift", verdict: "Best for social indoor training", bestFor: "Riders who need gamification and community to stay on the trainer", href: "/blog/zwift-vs-trainerroad" },
+    ],
+    faq: [
+      { question: "Can I use multiple training apps?", answer: "Yes — many riders use TrainingPeaks for planning + Zwift or TrainerRoad for execution + Intervals.icu for free analytics. The key is having one source of truth for your training plan." },
+      { question: "Do training apps replace a coach?", answer: "For beginners and intermediate riders, often yes. For plateaued riders, time-crunched professionals, or anyone who needs accountability, a human coach fills gaps no app can." },
+    ],
+  },
 ];
 
 export function getBestForBySlug(slug: string): BestForPage | null {
