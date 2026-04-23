@@ -201,4 +201,4 @@ content/podcast/ep-24-i-asked-a-40-year-old-amateur-how-he-beat-pogacar.mdx
 scripts/audits/podcast-factcheck-slice-2.md
 ```
 
-Commit hash: `<pending>` (to be filled after commit).
+Commit hash: `53f7b34f80f36c8437b3dbfbebebfb67166f364f`
