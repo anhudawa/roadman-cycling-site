@@ -110,6 +110,11 @@ export function Header() {
                 alt="Roadman Cycling"
                 width={763}
                 height={345}
+                // Logo renders at ~88px (mobile) to ~124px (desktop) wide.
+                // Without `sizes`, next/image ships the 1920w source on every
+                // pageview — ~80-200KB of wasted bytes per load. See
+                // docs/seo/cwv-audit-2026-04-23.md.
+                sizes="200px"
                 className="max-w-none h-10 md:h-14 w-auto"
                 priority
               />
