@@ -6,6 +6,7 @@ import { ScrollReveal, Card, Badge, Button } from "@/components/ui";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { EmailCapture } from "@/components/features/conversion/EmailCapture";
 import { getTopicBySlug, getAllTopicSlugs, getTopicTitleBySlug } from "@/lib/topics";
+import { queryContentGraph } from "@/lib/content-graph";
 
 export async function generateStaticParams() {
   return getAllTopicSlugs().map((slug) => ({ slug }));
@@ -47,6 +48,8 @@ export default async function TopicPage({
   if (!topic) {
     notFound();
   }
+
+  const graph = queryContentGraph({ topicSlug: slug, limit: 5 });
 
   return (
     <>
@@ -229,6 +232,74 @@ export default async function TopicPage({
             </ScrollReveal>
           </Container>
         </Section>
+
+        {/* Graph-powered: Comparisons for this topic */}
+        {graph.comparisons.length > 0 && (
+          <Section background="charcoal">
+            <Container width="narrow">
+              <ScrollReveal direction="up" className="mb-6">
+                <p className="font-heading text-coral text-xs tracking-widest mb-3">MAKING A DECISION?</p>
+                <h2 className="font-heading text-off-white" style={{ fontSize: "var(--text-section)" }}>COMPARISONS</h2>
+              </ScrollReveal>
+              <div className="space-y-3">
+                {graph.comparisons.map((c) => (
+                  <Link key={c.slug} href={`/compare/${c.slug}`} className="block group">
+                    <Card className="p-5 transition-all group-hover:border-coral/30">
+                      <h3 className="font-heading text-off-white text-base group-hover:text-coral transition-colors">
+                        {c.optionA} vs {c.optionB}
+                      </h3>
+                      <p className="text-foreground-muted text-sm mt-1 line-clamp-1">{c.verdict}</p>
+                    </Card>
+                  </Link>
+                ))}
+              </div>
+            </Container>
+          </Section>
+        )}
+
+        {/* Graph-powered: Glossary terms for this topic */}
+        {graph.glossaryTerms.length > 0 && (
+          <Section background="deep-purple" grain>
+            <Container width="narrow">
+              <ScrollReveal direction="up" className="mb-6">
+                <p className="font-heading text-coral text-xs tracking-widest mb-3">KEY TERMS</p>
+                <h2 className="font-heading text-off-white" style={{ fontSize: "var(--text-section)" }}>GLOSSARY</h2>
+              </ScrollReveal>
+              <div className="flex flex-wrap gap-2">
+                {graph.glossaryTerms.map((t) => (
+                  <Link
+                    key={t.slug}
+                    href={`/glossary/${t.slug}`}
+                    className="inline-flex items-center gap-1 rounded-lg border border-white/15 hover:border-coral/40 bg-white/[0.04] hover:bg-white/[0.07] px-4 py-2 text-sm font-heading text-off-white tracking-wider transition-all"
+                  >
+                    {t.term}
+                  </Link>
+                ))}
+              </div>
+            </Container>
+          </Section>
+        )}
+
+        {/* Graph-powered: Problem pages for this topic */}
+        {graph.problemPages.length > 0 && (
+          <Section background="charcoal">
+            <Container width="narrow">
+              <ScrollReveal direction="up" className="mb-6">
+                <p className="font-heading text-coral text-xs tracking-widest mb-3">STUCK?</p>
+                <h2 className="font-heading text-off-white" style={{ fontSize: "var(--text-section)" }}>COMMON PROBLEMS</h2>
+              </ScrollReveal>
+              <div className="space-y-3">
+                {graph.problemPages.map((p) => (
+                  <Link key={p.slug} href={`/problem/${p.slug}`} className="block group">
+                    <Card className="p-5 transition-all group-hover:border-coral/30">
+                      <h3 className="font-heading text-off-white text-base group-hover:text-coral transition-colors">{p.title}</h3>
+                    </Card>
+                  </Link>
+                ))}
+              </div>
+            </Container>
+          </Section>
+        )}
 
         {/* Related Topics */}
         {topic.relatedTopics.length > 0 && (
