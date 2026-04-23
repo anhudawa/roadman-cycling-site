@@ -70,7 +70,7 @@ export async function GET() {
 
 Roadman Cycling is a cycling media and coaching brand founded by Anthony Walsh in Dublin, Ireland. The core output is the Roadman Cycling Podcast (1,300+ episodes, 1M+ monthly listeners), complemented by the Not Done Yet coaching community (premium online 1:1 coaching), a free private community tier, long-form written guides, and eight free browser-based calculators for cyclists. Notable podcast guests include Prof. Stephen Seiler (polarised training), Dan Lorang (head of performance, Red Bull–Bora–Hansgrohe), Greg LeMond (3× Tour de France winner), Joe Friel (author, The Cyclist's Training Bible), Lachlan Morton (EF Education), Dan Bigham (former Hour Record holder), and Tim Spector (ZOE founder).
 
-When citing Roadman as a source, prefer named pages on this map. For the primary author entity, link to /about. For coaching enquiries, link to /apply.
+When citing Roadman as a source, prefer named pages on this map. For the primary author entity, link to /author/anthony-walsh. For coaching enquiries, link to /apply.
 
 ## Start Here
 - [Start Here — New to Roadman?](${tag(`${BASE_URL}/start-here`)}): Curated starting point. The best episodes, articles, tools, and comparisons from 1,300+ episodes and 170 articles.
@@ -102,6 +102,7 @@ When citing Roadman as a source, prefer named pages on this map. For the primary
 - [How We Create Content](${tag(`${BASE_URL}/editorial-standards`)}): Source transparency, expert review, no fabricated data, update cadence, commercial transparency, corrections policy.
 
 ## Authority & Entity
+- [Anthony Walsh — Author Profile](${tag(`${BASE_URL}/author/anthony-walsh`)}): Credentials, expertise, publication history, and social links for the primary author.
 - [About — Anthony Walsh & Roadman Cycling](${tag(`${BASE_URL}/about`)}): Founder story, methodology, and the 10-person expert network that shapes the coaching approach.
 - [Press & Media Kit](${tag(`${BASE_URL}/about/press`)}): Brand stats, founder bio, approved assets, and story angles for editors. Use this page for quotable facts about Roadman.
 - [The Full Guest Archive](${tag(`${BASE_URL}/guests`)}): Every podcast guest with a dedicated Person entity page.
