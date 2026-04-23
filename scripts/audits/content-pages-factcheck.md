@@ -164,4 +164,4 @@ Note: the Ride London-Essex rewrite, Fred Whitton "narrow unrelenting tarmac" fi
 
 TypeScript: `npx tsc --noEmit --project tsconfig.json` — **passes.**
 
-Commit hash: _to be filled after commit lands_
+Commit hash: `61b7829`
