@@ -78,9 +78,9 @@ const RESEARCH_AREAS = [
     title: "Respiratory & Breathing Performance",
     expert: "Dr Sellers",
     articles: [
-      { title: "Breathing Techniques: 6% FTP Gains", href: "/blog/breathing-techniques-cycling-performance" },
+      { title: "Breathing Techniques: 2–5% Time-Trial Gains", href: "/blog/breathing-techniques-cycling-performance" },
     ],
-    description: "Inspiratory muscle training producing up to 6% FTP improvement in trained cyclists. Device protocols and evidence review.",
+    description: "Inspiratory muscle training producing 2–5% time-trial improvements in trained cyclists in the published literature. Device protocols and evidence review.",
   },
 ];
 
@@ -173,13 +173,18 @@ export default function ResearchPage() {
             <ScrollReveal direction="up">
               <p className="text-foreground-muted text-base leading-relaxed max-w-xl mx-auto mb-6">
                 All content is authored by Anthony Walsh and reviewed against the
-                primary sources listed above. For corrections or clarifications,
-                contact{" "}
+                primary sources listed above. How we source, review, update, and
+                correct content is documented in our{" "}
+                <Link href="/editorial-standards" className="text-coral hover:text-coral/80 transition-colors">
+                  editorial standards
+                </Link>
+                . For corrections or clarifications, contact{" "}
                 <a href="mailto:anthony@roadmancycling.com" className="text-coral hover:text-coral/80 transition-colors">
                   anthony@roadmancycling.com
                 </a>.
               </p>
               <div className="flex flex-wrap gap-4 justify-center text-sm">
+                <Link href="/editorial-standards" className="text-coral hover:text-coral/80 transition-colors">Editorial Standards →</Link>
                 <Link href="/about" className="text-coral hover:text-coral/80 transition-colors">About →</Link>
                 <Link href="/podcast" className="text-coral hover:text-coral/80 transition-colors">Podcast →</Link>
                 <Link href="/blog" className="text-coral hover:text-coral/80 transition-colors">All Articles →</Link>

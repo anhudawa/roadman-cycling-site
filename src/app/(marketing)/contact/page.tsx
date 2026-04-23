@@ -60,6 +60,61 @@ export default function ContactPage() {
           </Container>
         </Section>
 
+        {/* Response expectations + team transparency — moves the contact
+            experience from "founder-only" to "real organisation that
+            replies to emails". */}
+        <Section background="charcoal" className="!pt-8 !pb-2">
+          <Container width="narrow">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+              <div className="rounded-xl border border-white/10 bg-white/[0.02] p-5">
+                <p className="font-heading text-coral text-xs tracking-[0.3em] mb-2">
+                  RESPONSE TIME
+                </p>
+                <p className="font-heading text-off-white text-lg leading-tight mb-2">
+                  Within 2 business days
+                </p>
+                <p className="text-foreground-muted text-sm leading-relaxed">
+                  Every message is read by a human on the team. Coaching
+                  applications are reviewed personally by Anthony within 24
+                  hours.
+                </p>
+              </div>
+              <div className="rounded-xl border border-white/10 bg-white/[0.02] p-5">
+                <p className="font-heading text-coral text-xs tracking-[0.3em] mb-2">
+                  BASED IN
+                </p>
+                <p className="font-heading text-off-white text-lg leading-tight mb-2">
+                  Dublin, Ireland
+                </p>
+                <p className="text-foreground-muted text-sm leading-relaxed">
+                  Founded and operated from Dublin. Coaching is delivered online
+                  to cyclists across Ireland, the UK, and the USA.
+                </p>
+              </div>
+              <div className="rounded-xl border border-white/10 bg-white/[0.02] p-5">
+                <p className="font-heading text-coral text-xs tracking-[0.3em] mb-2">
+                  THE TEAM
+                </p>
+                <p className="font-heading text-off-white text-lg leading-tight mb-2">
+                  Small team, real people
+                </p>
+                <p className="text-foreground-muted text-sm leading-relaxed">
+                  Anthony Walsh (host &amp; coaching), Sarah Ann Egan (co-host
+                  &amp; operations), Wes Andrade (production), Matthew Devins
+                  (coaching). See{" "}
+                  <a
+                    href="/about"
+                    className="text-coral hover:text-coral/80 transition-colors"
+                  >
+                    the about page
+                  </a>
+                  .
+                </p>
+              </div>
+            </div>
+          </Container>
+        </Section>
+
         <Section background="charcoal">
           <Container width="narrow">
             {status === "success" ? (

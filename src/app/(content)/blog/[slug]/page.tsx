@@ -18,6 +18,7 @@ import { EvidenceBlock } from "@/components/seo/EvidenceBlock";
 import { queryContentGraph } from "@/lib/content-graph";
 import { RelatedContent } from "@/components/features/RelatedContent";
 import { InlineArticleCTA } from "@/components/features/conversion/InlineArticleCTA";
+import { NextStepBlock } from "@/components/features/conversion/NextStepBlock";
 import { StickyCoachingBar } from "@/components/features/conversion/StickyCoachingBar";
 import { EmailCapture } from "@/components/features/conversion/EmailCapture";
 import { TableOfContents } from "@/components/features/blog/TableOfContents";
@@ -325,6 +326,74 @@ export default async function BlogPostPage({
             <InlineArticleCTA
               pillar={post.pillar}
               source={`blog-inline-${slug}`}
+            />
+
+            {/* Visible FAQ — rendered from frontmatter faq[] array so the
+                structured data we already emit as FAQPage JSON-LD also
+                reads as actual on-page content. details/summary gives
+                native accordion behaviour without JS and stays accessible
+                to screen readers + Googlebot's on-page parser. */}
+            {post.faq && post.faq.length > 0 && (
+              <section
+                aria-labelledby={`faq-heading-${slug}`}
+                className="mt-16 not-prose"
+              >
+                <p className="font-heading text-coral text-xs tracking-[0.3em] mb-3">
+                  FAQ
+                </p>
+                <h2
+                  id={`faq-heading-${slug}`}
+                  className="font-heading text-off-white text-2xl md:text-3xl mb-6"
+                >
+                  FREQUENTLY ASKED QUESTIONS
+                </h2>
+                <div className="space-y-3">
+                  {post.faq.map((item, i) => (
+                    <details
+                      key={i}
+                      className="group rounded-xl border border-white/10 bg-white/[0.02] hover:border-coral/30 open:border-coral/30 transition-colors"
+                    >
+                      <summary
+                        className="
+                          cursor-pointer select-none list-none
+                          [&::-webkit-details-marker]:hidden
+                          flex items-center justify-between gap-4
+                          px-5 py-4 font-heading text-off-white text-base md:text-lg leading-snug
+                        "
+                      >
+                        <span>{item.question}</span>
+                        <span
+                          aria-hidden="true"
+                          className="shrink-0 text-coral text-xl font-heading transition-transform group-open:rotate-45"
+                        >
+                          +
+                        </span>
+                      </summary>
+                      <div className="px-5 pb-5 text-foreground-muted text-sm md:text-base leading-relaxed">
+                        {item.answer}
+                      </div>
+                    </details>
+                  ))}
+                </div>
+              </section>
+            )}
+
+            {/* Persistent "next step" block — SSR-rendered, pillar-aware,
+                three-option conversion surface. Placed immediately after
+                the FAQ because that's the natural scroll-stop where the
+                reader has just finished the "am I a fit?" decision loop
+                and is most likely to take action. */}
+            <NextStepBlock
+              pillar={post.pillar}
+              source={`blog-next-${slug}`}
+              relatedReading={
+                relatedPosts[0]
+                  ? {
+                      label: relatedPosts[0].title,
+                      href: `/blog/${relatedPosts[0].slug}`,
+                    }
+                  : undefined
+              }
             />
 
             {/* End-of-article email capture — SSR-rendered so Googlebot,

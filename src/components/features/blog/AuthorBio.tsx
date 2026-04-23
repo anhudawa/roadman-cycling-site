@@ -59,6 +59,12 @@ export function AuthorBio() {
             >
               ABOUT →
             </Link>
+            <Link
+              href="/editorial-standards"
+              className="text-foreground-muted hover:text-coral transition-colors"
+            >
+              EDITORIAL STANDARDS →
+            </Link>
             <a
               href="https://x.com/Roadman_Podcast"
               target="_blank"

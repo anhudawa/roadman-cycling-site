@@ -61,6 +61,7 @@ const footerColumns = {
       { label: "About Roadman", href: "/about" },
       { label: "Press & Media", href: "/about/press" },
       { label: "Research & Evidence", href: "/research" },
+      { label: "Editorial Standards", href: "/editorial-standards" },
       { label: "Partners", href: "/partners" },
       { label: "Contact", href: "/contact" },
     ],
@@ -240,9 +241,22 @@ export function Footer() {
 
           {/* Bottom Bar */}
           <div className="flex flex-col md:flex-row items-center justify-between gap-4 text-xs text-foreground-subtle">
-            <p>
-              &copy; {new Date().getFullYear()} Roadman Cycling. All rights
-              reserved.
+            <p className="flex flex-wrap items-center justify-center md:justify-start gap-x-3 gap-y-1">
+              <span>
+                &copy; {new Date().getFullYear()} Roadman Cycling. All rights
+                reserved.
+              </span>
+              <span aria-hidden="true" className="hidden md:inline">·</span>
+              <span>
+                Based in Dublin, Ireland
+              </span>
+              <span aria-hidden="true" className="hidden md:inline">·</span>
+              <a
+                href="mailto:anthony@roadmancycling.com"
+                className="hover:text-coral transition-colors"
+              >
+                anthony@roadmancycling.com
+              </a>
             </p>
             <p className="italic">
               Built for cyclists who are &apos;not done yet&apos;.
