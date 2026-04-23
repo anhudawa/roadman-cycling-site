@@ -4,13 +4,13 @@ import { JsonLd } from "@/components/seo/JsonLd";
 import { SoftwareApplicationSchema } from "@/components/seo/SoftwareApplicationSchema";
 
 export const metadata: Metadata = {
-  title: "Tyre Pressure Calculator — Optimal PSI for Cycling",
+  title: "Road Bike Tyre Pressure Calculator — 15% Drop (2026)",
   description:
     "Calculate optimal front and rear tyre pressure based on rider weight, tyre width, road surface, and conditions. Free cycling tool from Roadman Cycling.",
   keywords: ["tyre pressure calculator cycling", "bike tyre pressure", "cycling PSI calculator", "optimal tyre pressure"],
   alternates: { canonical: "https://roadmancycling.com/tools/tyre-pressure" },
   openGraph: {
-    title: "Tyre Pressure Calculator — Optimal PSI for Cycling",
+    title: "Road Bike Tyre Pressure Calculator — 15% Drop (2026)",
     description:
       "Calculate optimal front and rear tyre pressure based on rider weight, tyre width, road surface, and conditions. Free cycling tool from Roadman Cycling.",
     type: "website",
