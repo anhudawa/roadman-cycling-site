@@ -127,4 +127,15 @@ The `cycling-gym-exercises-best.mdx` FAQ item mentioning Lauersen's BJSM strengt
 
 ## 6. Commit hash
 
-Pending — commit will be created after this report is written. See commit message body for a summary of the top-5 most impactful changes.
+`ddd9472` — Fact-check + cite: blog slice AB (32 posts)
+
+Note on commit contents: due to a race condition with a parallel slice-AE
+fact-check agent running concurrently on the same working tree, the commit
+at `ddd9472` also absorbed slice-AE's staged work (additional blog files
+plus `scripts/audits/blog-accuracy-slice-ae.md`). All 15 slice-AB
+intentional files plus this audit report are present and correct inside
+`ddd9472`; the extra slice-AE files are legitimate work from the other
+agent that ended up merged into the same commit. The separation between
+the two slices' edits can be recovered from the individual audit reports
+rather than from git history. Commit message body still describes only
+the slice-AB changes.
