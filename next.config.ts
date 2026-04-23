@@ -97,7 +97,58 @@ const nextConfig: NextConfig = {
       { source: "/training-plan", destination: "/plan", permanent: true },
       { source: "/community/skool", destination: "/community/clubhouse", permanent: true },
       { source: "/skool", destination: "/community/clubhouse", permanent: true },
+      // ClickFunnels funnel pages — P0 redirects (revenue + backlinks)
+      { source: "/2026-optin", destination: "/apply", permanent: true },
+      { source: "/application", destination: "/apply", permanent: true },
+      { source: "/strength", destination: "/strength-training", permanent: true },
+      { source: "/work-with-anthony", destination: "/coaching", permanent: true },
+      { source: "/one-on-one-coaching", destination: "/coaching", permanent: true },
+      { source: "/one-on-one-call", destination: "/coaching", permanent: true },
+      { source: "/roadman-club-membership", destination: "/community/club", permanent: true },
+      { source: "/roadman-cookbook-bundle", destination: "/tools", permanent: true },
+
+      // ClickFunnels funnel pages — P1 redirects
+      { source: "/tyre-pressure-2", destination: "/tools/tyre-pressure", permanent: true },
+      { source: "/tyre-pressure-2-copy", destination: "/tools/tyre-pressure", permanent: true },
+      { source: "/optin", destination: "/apply", permanent: true },
+      { source: "/getstrong", destination: "/strength-training", permanent: true },
+      { source: "/s-c-plan", destination: "/strength-training", permanent: true },
+
+      // ClickFunnels orphan landing pages — P2 redirects
+      { source: "/tyre-pressure-2-page--64de3", destination: "/tools/tyre-pressure", permanent: true },
+      { source: "/toolkit2-page", destination: "/tools", permanent: true },
+      { source: "/optin-page", destination: "/apply", permanent: true },
+      { source: "/application-page", destination: "/apply", permanent: true },
+      { source: "/copy-of-the-perfect-squeeze-page-d3318--8234c", destination: "/tools", permanent: true },
     ];
+  },
+  async rewrites() {
+    return {
+      beforeFiles: [
+        // ClickFunnels dead URLs → 410 Gone (thank-you pages, checkout forms,
+        // template demos, archived funnels). Rewrite to /api/gone which returns 410.
+        { source: "/thank-you-1", destination: "/api/gone" },
+        { source: "/thank-you", destination: "/api/gone" },
+        { source: "/thank-you-minimal", destination: "/api/gone" },
+        { source: "/thank-you--1dbf8", destination: "/api/gone" },
+        { source: "/thank-you-page--7d9f9", destination: "/api/gone" },
+        { source: "/thank-you-page--87843", destination: "/api/gone" },
+        { source: "/application-thank-you", destination: "/api/gone" },
+        { source: "/s-c-order-form", destination: "/api/gone" },
+        { source: "/s-c-order-confirmed", destination: "/api/gone" },
+        { source: "/confirmation--5562c", destination: "/api/gone" },
+        { source: "/anthony-walsh", destination: "/api/gone" },
+        { source: "/grow-with-the-flow-order-form", destination: "/api/gone" },
+        { source: "/gwtf-strategy-session-optin", destination: "/api/gone" },
+        { source: "/creator-theme---product", destination: "/api/gone" },
+        { source: "/my-example-page", destination: "/api/gone" },
+        { source: "/course-theme---product", destination: "/api/gone" },
+        { source: "/oto-page--958bb--25bd3", destination: "/api/gone" },
+        { source: "/2-step-book-page-page", destination: "/api/gone" },
+      ],
+      afterFiles: [],
+      fallback: [],
+    };
   },
   async headers() {
     return [
