@@ -371,7 +371,7 @@ export default async function SponsorPage() {
               <ScrollReveal delay={0.1}>
                 <div className="text-center stat-card-pulse rounded-xl p-6">
                   <p className="font-heading text-[clamp(2.5rem,5vw,4rem)] text-coral stat-glow">
-                    <AnimatedCounter value="€95K" />
+                    <AnimatedCounter value="£65K+" />
                   </p>
                   <p className="text-foreground-muted text-sm mt-2">
                     Avg. household income
@@ -393,7 +393,7 @@ export default async function SponsorPage() {
               <ScrollReveal delay={0.3}>
                 <div className="text-center stat-card-pulse rounded-xl p-6">
                   <p className="font-heading text-[clamp(2.5rem,5vw,4rem)] text-coral stat-glow">
-                    <AnimatedCounter value="€5,000" />
+                    <AnimatedCounter value="£3,500+" />
                   </p>
                   <p className="text-foreground-muted text-sm mt-2">
                     Avg. annual cycling spend

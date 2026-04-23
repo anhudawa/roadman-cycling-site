@@ -55,7 +55,7 @@ const platformReach = [
     ),
     stat: "800K+",
     statLabel: "monthly views",
-    description: "75K subscribers across our YouTube channels. 8–10 new videos per month. Long-form content with high watch time.",
+    description: "74K+ subscribers combined across two YouTube channels (main + clips). 8–10 new videos per month. Long-form content with high watch time.",
     color: "from-red-500/20 to-red-500/5",
   },
   {
@@ -213,7 +213,7 @@ const audienceProfile = [
   },
   {
     label: "Purchase Intent",
-    value: "87%",
+    value: "73%",
     detail: "Have bought from a sponsor",
     icon: (
       <svg className="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">

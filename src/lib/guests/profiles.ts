@@ -205,7 +205,7 @@ export const GUEST_PROFILE_OVERRIDES: Record<string, GuestProfileOverride> = {
 
   "john-wakefield": {
     description:
-      "Cycling coach, bike fitter and Director of Development at Red Bull–Bora–Hansgrohe. Runs the Science to Sport Performance Laboratory in Girona, Spain. Previously Performance Co-ordinator and Coach at UAE Team Emirates over four seasons.",
+      "Cycling coach, bike fitter and Director of Coaching & Sports Science at Red Bull–Bora–Hansgrohe. Runs the Science to Sport Performance Laboratory in Girona, Spain. Previously Performance Co-ordinator and Coach at UAE Team Emirates over four seasons.",
     worksFor: {
       name: "Red Bull–Bora–Hansgrohe",
       type: "SportsTeam",
