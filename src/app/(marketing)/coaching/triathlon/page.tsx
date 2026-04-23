@@ -755,7 +755,7 @@ export default function TriathlonCoachingPage() {
             <Button
               href="/apply"
               size="lg"
-              className="bg-off-white text-coral hover:bg-off-white/90"
+              className="!bg-off-white !text-coral !shadow-none hover:!bg-off-white/90"
               dataTrack="triathlon_pillar_footer_apply"
             >
               Apply Now
