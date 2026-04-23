@@ -83,9 +83,9 @@ const MUST_LISTEN = [
     desc: "The man who coined 80/20 training explains what it actually means.",
   },
   {
-    title: "Dan Lorang on Building Endurance",
-    href: "/podcast/ep-2132-how-do-team-bora-approach-building-endurance-we-find-out-joh",
-    desc: "How Bora-Hansgrohe builds Grand Tour engines.",
+    title: "Dan Lorang: How Roglič's Coach Trains Amateurs",
+    href: "/podcast/ep-2134-roglics-coach-builds-a-training-plan-for-amateur-riders-dan",
+    desc: "The head of performance at Red Bull–Bora–Hansgrohe builds a plan for time-crunched age-groupers.",
   },
   {
     title: "Joe Friel on Structuring Training",
@@ -93,9 +93,9 @@ const MUST_LISTEN = [
     desc: "The Training Bible author on weekly structure.",
   },
   {
-    title: "Greg LeMond: The Untold Story",
-    href: "/podcast/ep-33-the-untold-story-of-how-trek-silenced-greg-lemond",
-    desc: "3x Tour de France winner opens up.",
+    title: "Greg LeMond: My Untold Story of EPO",
+    href: "/podcast/ep-2210-my-untold-story-of-epo-greg-lemond",
+    desc: "3× Tour de France winner opens up. Our most-watched episode on YouTube.",
   },
 ];
 
