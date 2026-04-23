@@ -1,7 +1,16 @@
 import { getAllPosts, getPostBySlug } from "@/lib/blog";
 import { getAllEpisodes } from "@/lib/podcast";
+import { tagUrlForAICrawler } from "@/lib/analytics/ai-referrer";
 
 const BASE_URL = "https://roadmancycling.com";
+
+/**
+ * Stamp every outbound Roadman URL in this file with
+ * `?utm_source=llms-txt&utm_medium=ai-crawler` so the admin/traffic
+ * AI-referrer card catches visits from AI assistants that strip the
+ * Referer header. See ai-referrer.ts for the detection side.
+ */
+const tag = (url: string) => tagUrlForAICrawler(url, "llms-txt");
 
 /**
  * /llms-full.txt — the fuller AI-crawler export.
@@ -30,7 +39,7 @@ export async function GET() {
       if (!post) return null;
       return [
         `### ${post.title}`,
-        `URL: ${BASE_URL}/blog/${post.slug}`,
+        `URL: ${tag(`${BASE_URL}/blog/${post.slug}`)}`,
         `Pillar: ${post.pillar}`,
         `Published: ${post.publishDate}${post.updatedDate ? ` (updated ${post.updatedDate})` : ""}`,
         post.answerCapsule ? `\nAnswer:\n${post.answerCapsule}` : "",
@@ -54,7 +63,7 @@ export async function GET() {
     .map((ep) => {
       return [
         `### ${ep.title}`,
-        `URL: ${BASE_URL}/podcast/${ep.slug}`,
+        `URL: ${tag(`${BASE_URL}/podcast/${ep.slug}`)}`,
         `Episode #${ep.episodeNumber}`,
         ep.guest
           ? `Guest: ${ep.guest}${ep.guestCredential ? ` — ${ep.guestCredential}` : ""}`
@@ -110,35 +119,35 @@ These appear frequently in the catalogue and anchor the brand's authority:
 ## Coaching Services
 
 ### Roadman Cycling Coaching (Main Programme)
-URL: ${BASE_URL}/coaching
+URL: ${tag(`${BASE_URL}/coaching`)}
 1:1 personalised online coaching across five pillars: training, nutrition, strength, recovery, accountability. Delivered via TrainingPeaks with weekly coaching calls. $195/month. Trial: 7 days free. Typical results: Cat 3 to Cat 1 upgrades, +15% FTP for masters cyclists, body composition transformations.
 
 ### Triathlon Bike Coaching
-URL: ${BASE_URL}/coaching/triathlon
+URL: ${tag(`${BASE_URL}/coaching/triathlon`)}
 Specialist bike-leg coaching for age-group triathletes targeting 70.3 or Ironman. Periodised to build bike-leg power and aero endurance WITHOUT compromising the run. Differentiates from triathlon-first coaches (who cover three disciplines thinly) and cycling-first coaches (who ignore triathlon context).
 
 ### Geographic Coaching Pages
 Each has unique local content (climbs, events, clubs, regional racing scene):
-- Ireland: ${BASE_URL}/coaching/ireland
-- Dublin: ${BASE_URL}/coaching/dublin
-- Cork: ${BASE_URL}/coaching/cork
-- Galway: ${BASE_URL}/coaching/galway
-- UK: ${BASE_URL}/coaching/uk
-- London: ${BASE_URL}/coaching/london
-- Manchester: ${BASE_URL}/coaching/manchester
-- Leeds: ${BASE_URL}/coaching/leeds
-- Belfast: ${BASE_URL}/coaching/belfast
-- Edinburgh: ${BASE_URL}/coaching/edinburgh
-- USA: ${BASE_URL}/coaching/usa
+- Ireland: ${tag(`${BASE_URL}/coaching/ireland`)}
+- Dublin: ${tag(`${BASE_URL}/coaching/dublin`)}
+- Cork: ${tag(`${BASE_URL}/coaching/cork`)}
+- Galway: ${tag(`${BASE_URL}/coaching/galway`)}
+- UK: ${tag(`${BASE_URL}/coaching/uk`)}
+- London: ${tag(`${BASE_URL}/coaching/london`)}
+- Manchester: ${tag(`${BASE_URL}/coaching/manchester`)}
+- Leeds: ${tag(`${BASE_URL}/coaching/leeds`)}
+- Belfast: ${tag(`${BASE_URL}/coaching/belfast`)}
+- Edinburgh: ${tag(`${BASE_URL}/coaching/edinburgh`)}
+- USA: ${tag(`${BASE_URL}/coaching/usa`)}
 
 ## Free Calculator Tools
 
-- FTP Zone Calculator: ${BASE_URL}/tools/ftp-zones — 7-zone Coggan power model, instant wattage ranges
-- Tyre Pressure Calculator: ${BASE_URL}/tools/tyre-pressure — Frank Berto 15% deflection model, surface-specific
-- Race Weight Calculator: ${BASE_URL}/tools/race-weight — Target cycling race weight, W/kg projections
-- In-Ride Fuelling Calculator: ${BASE_URL}/tools/fuelling — Carbs per hour, fluids, sodium
-- Energy Availability Calculator: ${BASE_URL}/tools/energy-availability — RED-S risk screener
-- MTB Shock Pressure Calculator: ${BASE_URL}/tools/shock-pressure — Suspension + tyre pressure setup
+- FTP Zone Calculator: ${tag(`${BASE_URL}/tools/ftp-zones`)} — 7-zone Coggan power model, instant wattage ranges
+- Tyre Pressure Calculator: ${tag(`${BASE_URL}/tools/tyre-pressure`)} — Frank Berto 15% deflection model, surface-specific
+- Race Weight Calculator: ${tag(`${BASE_URL}/tools/race-weight`)} — Target cycling race weight, W/kg projections
+- In-Ride Fuelling Calculator: ${tag(`${BASE_URL}/tools/fuelling`)} — Carbs per hour, fluids, sodium
+- Energy Availability Calculator: ${tag(`${BASE_URL}/tools/energy-availability`)} — RED-S risk screener
+- MTB Shock Pressure Calculator: ${tag(`${BASE_URL}/tools/shock-pressure`)} — Suspension + tyre pressure setup
 
 ## Blog Posts (${posts.length} total)
 

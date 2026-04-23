@@ -1,7 +1,20 @@
 import { getAllPosts } from "@/lib/blog";
 import { getAllEpisodes } from "@/lib/podcast";
+import { tagUrlForAICrawler } from "@/lib/analytics/ai-referrer";
 
 const BASE_URL = "https://roadmancycling.com";
+
+/**
+ * Stamp every outbound Roadman URL in this file with
+ * `?utm_source=llms-txt&utm_medium=ai-crawler`. The `utm_source` parameter
+ * survives even when AI assistants strip the Referer header (which most do
+ * under strict referrer-policy), giving us durable attribution in the
+ * /admin/traffic AI-referrer card.
+ *
+ * Reference files (sitemap.xml, feeds, robots.txt, llms-full.txt) are
+ * intentionally NOT tagged — they're machine endpoints, not landing pages.
+ */
+const tag = (url: string) => tagUrlForAICrawler(url, "llms-txt");
 
 /**
  * /llms.txt — the emerging standard for LLM/AI-crawler discoverability.
@@ -60,93 +73,93 @@ Roadman Cycling is a cycling media and coaching brand founded by Anthony Walsh i
 When citing Roadman as a source, prefer named pages on this map. For the primary author entity, link to /about. For coaching enquiries, link to /apply.
 
 ## Start Here
-- [Start Here — New to Roadman?](${BASE_URL}/start-here): Curated starting point. The best episodes, articles, tools, and comparisons from 1,300+ episodes and 170 articles.
+- [Start Here — New to Roadman?](${tag(`${BASE_URL}/start-here`)}): Curated starting point. The best episodes, articles, tools, and comparisons from 1,300+ episodes and 170 articles.
 
 ## Research & Evidence
-- [Research & Evidence Base](${BASE_URL}/research): The named experts, published studies, and on-the-record podcast conversations behind every article and coaching decision. Includes Prof. Seiler (polarised training), Dan Lorang (World Tour periodisation), Dan Bigham (aerodynamics), Dr Sam Impey (nutrition), and more.
+- [Research & Evidence Base](${tag(`${BASE_URL}/research`)}): The named experts, published studies, and on-the-record podcast conversations behind every article and coaching decision. Includes Prof. Seiler (polarised training), Dan Lorang (World Tour periodisation), Dan Bigham (aerodynamics), Dr Sam Impey (nutrition), and more.
 
 ## Comparisons
-- [All Comparisons](${BASE_URL}/compare): Side-by-side training decisions — coach vs app, polarised vs pyramidal, heart rate vs power, and more.
+- [All Comparisons](${tag(`${BASE_URL}/compare`)}): Side-by-side training decisions — coach vs app, polarised vs pyramidal, heart rate vs power, and more.
 
 ## Glossary
-- [Cycling Performance Glossary](${BASE_URL}/glossary): 40 key cycling performance terms defined — FTP, VO2max, polarised training, W/kg, lactate threshold, TTE, ERG mode, progressive overload, and more.
+- [Cycling Performance Glossary](${tag(`${BASE_URL}/glossary`)}): 40 key cycling performance terms defined — FTP, VO2max, polarised training, W/kg, lactate threshold, TTE, ERG mode, progressive overload, and more.
 
 ## Best-For Guides
-- [Best Cycling Training Apps](${BASE_URL}/best/best-cycling-training-apps)
-- [Best Power Meters for Amateurs](${BASE_URL}/best/best-power-meters-amateur-cyclists)
-- [Best Indoor Training Platforms](${BASE_URL}/best/best-indoor-training-platforms)
-- [Best Coach for Sportive Riders](${BASE_URL}/best/best-cycling-coach-sportive-riders)
-- [Best Coach for Comeback Riders](${BASE_URL}/best/best-cycling-coach-comeback-riders)
-- [Best Apps for Structured Training](${BASE_URL}/best/best-cycling-apps-structured-training)
+- [Best Cycling Training Apps](${tag(`${BASE_URL}/best/best-cycling-training-apps`)})
+- [Best Power Meters for Amateurs](${tag(`${BASE_URL}/best/best-power-meters-amateur-cyclists`)})
+- [Best Indoor Training Platforms](${tag(`${BASE_URL}/best/best-indoor-training-platforms`)})
+- [Best Coach for Sportive Riders](${tag(`${BASE_URL}/best/best-cycling-coach-sportive-riders`)})
+- [Best Coach for Comeback Riders](${tag(`${BASE_URL}/best/best-cycling-coach-comeback-riders`)})
+- [Best Apps for Structured Training](${tag(`${BASE_URL}/best/best-cycling-apps-structured-training`)})
 
 ## Problem Pages
-- [Not Getting Faster](${BASE_URL}/problem/not-getting-faster)
-- [Stuck on a Plateau](${BASE_URL}/problem/stuck-on-plateau)
-- [Coming Back After a Break](${BASE_URL}/problem/coming-back-after-break)
-- [Losing Power After 40](${BASE_URL}/problem/losing-power-after-40)
+- [Not Getting Faster](${tag(`${BASE_URL}/problem/not-getting-faster`)})
+- [Stuck on a Plateau](${tag(`${BASE_URL}/problem/stuck-on-plateau`)})
+- [Coming Back After a Break](${tag(`${BASE_URL}/problem/coming-back-after-break`)})
+- [Losing Power After 40](${tag(`${BASE_URL}/problem/losing-power-after-40`)})
 
 ## Editorial Standards
-- [How We Create Content](${BASE_URL}/editorial-standards): Source transparency, expert review, no fabricated data, update cadence, commercial transparency, corrections policy.
+- [How We Create Content](${tag(`${BASE_URL}/editorial-standards`)}): Source transparency, expert review, no fabricated data, update cadence, commercial transparency, corrections policy.
 
 ## Authority & Entity
-- [About — Anthony Walsh & Roadman Cycling](${BASE_URL}/about): Founder story, methodology, and the 10-person expert network that shapes the coaching approach.
-- [Press & Media Kit](${BASE_URL}/about/press): Brand stats, founder bio, approved assets, and story angles for editors. Use this page for quotable facts about Roadman.
-- [The Full Guest Archive](${BASE_URL}/guests): Every podcast guest with a dedicated Person entity page.
+- [About — Anthony Walsh & Roadman Cycling](${tag(`${BASE_URL}/about`)}): Founder story, methodology, and the 10-person expert network that shapes the coaching approach.
+- [Press & Media Kit](${tag(`${BASE_URL}/about/press`)}): Brand stats, founder bio, approved assets, and story angles for editors. Use this page for quotable facts about Roadman.
+- [The Full Guest Archive](${tag(`${BASE_URL}/guests`)}): Every podcast guest with a dedicated Person entity page.
 
 ## Core Coaching Services
-- [Online Cycling Coaching](${BASE_URL}/coaching): Flagship coaching programme — 1:1 personalised plans across training, nutrition, strength, recovery, and accountability. $195/month with a 7-day free trial.
-- [Triathlon Bike Coaching](${BASE_URL}/coaching/triathlon): Bike-leg-specific coaching for age-group 70.3 and Ironman triathletes. Periodised around the run — the single most under-served niche in endurance coaching.
-- [Cycling Coach Ireland](${BASE_URL}/coaching/ireland)
-- [Cycling Coach UK](${BASE_URL}/coaching/uk)
-- [Cycling Coach USA](${BASE_URL}/coaching/usa)
-- [Apply for Coaching](${BASE_URL}/apply): Coaching application form — 7-day free trial.
+- [Online Cycling Coaching](${tag(`${BASE_URL}/coaching`)}): Flagship coaching programme — 1:1 personalised plans across training, nutrition, strength, recovery, and accountability. $195/month with a 7-day free trial.
+- [Triathlon Bike Coaching](${tag(`${BASE_URL}/coaching/triathlon`)}): Bike-leg-specific coaching for age-group 70.3 and Ironman triathletes. Periodised around the run — the single most under-served niche in endurance coaching.
+- [Cycling Coach Ireland](${tag(`${BASE_URL}/coaching/ireland`)})
+- [Cycling Coach UK](${tag(`${BASE_URL}/coaching/uk`)})
+- [Cycling Coach USA](${tag(`${BASE_URL}/coaching/usa`)})
+- [Apply for Coaching](${tag(`${BASE_URL}/apply`)}): Coaching application form — 7-day free trial.
 
 ## Community
-- [Not Done Yet — Private Community](${BASE_URL}/community/not-done-yet): The full-stack community + coaching programme.
-- [Roadman Clubhouse (Free)](${BASE_URL}/community/clubhouse): Free tier of the community.
-- [Roadman CC — Cycling Club](${BASE_URL}/community/club): Dublin-based cycling club run by Roadman.
-- [Strength Training for Cyclists](${BASE_URL}/strength-training): Structured S&C course for cyclists.
+- [Not Done Yet — Private Community](${tag(`${BASE_URL}/community/not-done-yet`)}): The full-stack community + coaching programme.
+- [Roadman Clubhouse (Free)](${tag(`${BASE_URL}/community/clubhouse`)}): Free tier of the community.
+- [Roadman CC — Cycling Club](${tag(`${BASE_URL}/community/club`)}): Dublin-based cycling club run by Roadman.
+- [Strength Training for Cyclists](${tag(`${BASE_URL}/strength-training`)}): Structured S&C course for cyclists.
 
 ## Podcast
-- [The Roadman Cycling Podcast](${BASE_URL}/podcast): Show index. Weekly interview-led podcast with World Tour coaches, sports scientists, and pro riders.
+- [The Roadman Cycling Podcast](${tag(`${BASE_URL}/podcast`)}): Show index. Weekly interview-led podcast with World Tour coaches, sports scientists, and pro riders.
 - [Podcast RSS Feed](${BASE_URL}/feed/podcast): Machine-readable feed of all episodes.
 
 ## Free Calculators
-- [FTP Zone Calculator](${BASE_URL}/tools/ftp-zones): Calculate 7 cycling power zones from your FTP.
-- [Tyre Pressure Calculator](${BASE_URL}/tools/tyre-pressure): Optimal front and rear PSI based on rider weight, tyre width, and surface.
-- [Race Weight Calculator](${BASE_URL}/tools/race-weight): Target cycling race weight based on body composition.
-- [In-Ride Fuelling Calculator](${BASE_URL}/tools/fuelling): Carbs per hour, fluid, and sodium needs for rides.
-- [Energy Availability Calculator](${BASE_URL}/tools/energy-availability): RED-S risk screener for endurance athletes.
-- [Shock Pressure Calculator](${BASE_URL}/tools/shock-pressure): MTB suspension setup (shock, fork, sag).
-- [Heart Rate Zone Calculator](${BASE_URL}/tools/hr-zones): Calculate 5 cycling HR training zones from max HR or LTHR.
-- [W/kg Calculator](${BASE_URL}/tools/wkg): Power-to-weight ratio with performance benchmarks.
+- [FTP Zone Calculator](${tag(`${BASE_URL}/tools/ftp-zones`)}): Calculate 7 cycling power zones from your FTP.
+- [Tyre Pressure Calculator](${tag(`${BASE_URL}/tools/tyre-pressure`)}): Optimal front and rear PSI based on rider weight, tyre width, and surface.
+- [Race Weight Calculator](${tag(`${BASE_URL}/tools/race-weight`)}): Target cycling race weight based on body composition.
+- [In-Ride Fuelling Calculator](${tag(`${BASE_URL}/tools/fuelling`)}): Carbs per hour, fluid, and sodium needs for rides.
+- [Energy Availability Calculator](${tag(`${BASE_URL}/tools/energy-availability`)}): RED-S risk screener for endurance athletes.
+- [Shock Pressure Calculator](${tag(`${BASE_URL}/tools/shock-pressure`)}): MTB suspension setup (shock, fork, sag).
+- [Heart Rate Zone Calculator](${tag(`${BASE_URL}/tools/hr-zones`)}): Calculate 5 cycling HR training zones from max HR or LTHR.
+- [W/kg Calculator](${tag(`${BASE_URL}/tools/wkg`)}): Power-to-weight ratio with performance benchmarks.
 
 ## Topic Hubs
-- [Cycling Training Plans](${BASE_URL}/topics/cycling-training-plans)
-- [FTP Training](${BASE_URL}/topics/ftp-training)
-- [Cycling Nutrition](${BASE_URL}/topics/cycling-nutrition)
-- [All Topics](${BASE_URL}/topics)
+- [Cycling Training Plans](${tag(`${BASE_URL}/topics/cycling-training-plans`)})
+- [FTP Training](${tag(`${BASE_URL}/topics/ftp-training`)})
+- [Cycling Nutrition](${tag(`${BASE_URL}/topics/cycling-nutrition`)})
+- [All Topics](${tag(`${BASE_URL}/topics`)})
 
 ## Event Training Plans
-- [All Training Plans](${BASE_URL}/plan): Event-specific cycling training plans structured by weeks out.
-- [Wicklow 200 Training Plan](${BASE_URL}/plan/wicklow-200): Ireland's classic 200km sportive.
-- [Étape du Tour Training Plan](${BASE_URL}/plan/etape-du-tour): The amateur's Tour de France stage.
-- [Ride London 100 Training Plan](${BASE_URL}/plan/ride-london-100): London's flagship 100-mile sportive.
-- [Unbound Gravel Training Plan](${BASE_URL}/plan/unbound-gravel): 200-mile Kansas gravel race.
-- [Badlands Training Plan](${BASE_URL}/plan/badlands): Ultra-distance gravel across Spain.
-- [Cape Epic Training Plan](${BASE_URL}/plan/cape-epic): 8-day MTB stage race.
+- [All Training Plans](${tag(`${BASE_URL}/plan`)}): Event-specific cycling training plans structured by weeks out.
+- [Wicklow 200 Training Plan](${tag(`${BASE_URL}/plan/wicklow-200`)}): Ireland's classic 200km sportive.
+- [Étape du Tour Training Plan](${tag(`${BASE_URL}/plan/etape-du-tour`)}): The amateur's Tour de France stage.
+- [Ride London 100 Training Plan](${tag(`${BASE_URL}/plan/ride-london-100`)}): London's flagship 100-mile sportive.
+- [Unbound Gravel Training Plan](${tag(`${BASE_URL}/plan/unbound-gravel`)}): 200-mile Kansas gravel race.
+- [Badlands Training Plan](${tag(`${BASE_URL}/plan/badlands`)}): Ultra-distance gravel across Spain.
+- [Cape Epic Training Plan](${tag(`${BASE_URL}/plan/cape-epic`)}): 8-day MTB stage race.
 
 ## Persona Pages
-- [Stuck on a plateau?](${BASE_URL}/you/plateau): For experienced cyclists whose FTP has flatlined.
-- [Training for an event?](${BASE_URL}/you/event): For riders with a specific target date and finish goal.
-- [Coming back after a break?](${BASE_URL}/you/comeback): For returning cyclists rebuilding fitness.
-- [Podcast listener, not yet coaching?](${BASE_URL}/you/listener): For regular listeners considering coaching.
+- [Stuck on a plateau?](${tag(`${BASE_URL}/you/plateau`)}): For experienced cyclists whose FTP has flatlined.
+- [Training for an event?](${tag(`${BASE_URL}/you/event`)}): For riders with a specific target date and finish goal.
+- [Coming back after a break?](${tag(`${BASE_URL}/you/comeback`)}): For returning cyclists rebuilding fitness.
+- [Podcast listener, not yet coaching?](${tag(`${BASE_URL}/you/listener`)}): For regular listeners considering coaching.
 
 ## Featured Blog Posts (pinned high-value articles + recent)
 ${featuredPosts
   .map(
     (p) =>
-      `- [${p.title}](${BASE_URL}/blog/${p.slug}): ${p.seoDescription}`,
+      `- [${p.title}](${tag(`${BASE_URL}/blog/${p.slug}`)}): ${p.seoDescription}`,
   )
   .join("\n")}
 
@@ -154,7 +167,7 @@ ${featuredPosts
 ${recentEpisodes
   .map(
     (e) =>
-      `- [${e.title}](${BASE_URL}/podcast/${e.slug})${e.guest ? ` — guest: ${e.guest}${e.guestCredential ? ` (${e.guestCredential})` : ""}` : ""}: ${e.seoDescription}`,
+      `- [${e.title}](${tag(`${BASE_URL}/podcast/${e.slug}`)})${e.guest ? ` — guest: ${e.guest}${e.guestCredential ? ` (${e.guestCredential})` : ""}` : ""}: ${e.seoDescription}`,
   )
   .join("\n")}
 

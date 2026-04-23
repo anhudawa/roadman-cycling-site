@@ -92,7 +92,7 @@ Blog, podcast, guest, topic hub, plan hub, plan phase, persona
 |---|---|
 | AEO-001 Fix sitemap | Done — was 404, now working |
 | AEO-002 Submit discovery | Ready — handoff doc written |
-| AEO-003 Measurement | Needs GA4 config |
+| AEO-003 Measurement | Done — first-party AI-referrer tracking + /admin/traffic card |
 | AEO-004 Bot access | Done — robots.txt |
 | AEO-005 Schema renderer | Done — reusable components |
 | AEO-006 ProfilePage | Done — about + guest pages |
@@ -145,10 +145,13 @@ https://roadmancycling.com/editorial-standards
 cd ~/Desktop/roadman-cycling-site && git pull origin main && npm run seo:indexnow -- --all
 ```
 
-### 4. GA4 Answer Engine Measurement
-- Create channel grouping for `utm_source=chatgpt.com`
-- Add referral segments for Perplexity, Bing/Copilot
-- Create page-group reporting by template type
+### 4. Answer Engine Measurement — ✅ DONE (AEO-003)
+Shipped as first-party tracking (no GA4 config needed):
+- **Detection:** `src/lib/analytics/ai-referrer.ts` — matches `utm_source` + `document.referrer` against a whitelist of AI hosts (ChatGPT, Perplexity, Claude, Gemini, Copilot, Bing, you.com, phind.com, meta.ai)
+- **Attribution:** first-touch persisted in sessionStorage; every event in the session inherits the AI-referrer tag via `meta.ai_referrer`
+- **Reporting:** new "AI referrers" card at `/admin/traffic` — shows pageviews + signups per AI host, time-range aware
+- **Query helper:** `getAIReferrerStats(from?, to?)` in `src/lib/admin/events-store.ts` for custom reports
+- Consent-gated by the existing `roadman_cookie_consent` system
 
 ### 5. Digital PR Outreach
 - Templates at `docs/seo/outreach-templates.md`

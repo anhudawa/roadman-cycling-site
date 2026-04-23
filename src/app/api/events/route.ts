@@ -5,11 +5,28 @@ import { upsertOnSignup } from "@/lib/admin/subscribers-store";
 export async function POST(request: Request) {
   try {
     const body = await request.json();
-    const { type, page, referrer, email, source, meta, session_id, variant_id } = body;
+    const {
+      type,
+      page,
+      referrer,
+      email,
+      source,
+      meta,
+      session_id,
+      variant_id,
+      ai_referrer,
+    } = body;
 
     if (!type || !page) {
       return Response.json({ error: "type and page are required" }, { status: 400 });
     }
+
+    // Merge AI-referrer attribution (AEO-003) into the meta jsonb column so
+    // answer-engine traffic is queryable without a dedicated schema column.
+    const mergedMeta: Record<string, string> | undefined =
+      ai_referrer || meta
+        ? { ...(meta ?? {}), ...(ai_referrer ? { ai_referrer: String(ai_referrer) } : {}) }
+        : undefined;
 
     const validTypes: EventType[] = [
       "pageview",
@@ -36,7 +53,7 @@ export async function POST(request: Request) {
       userAgent,
       email,
       source,
-      meta,
+      meta: mergedMeta,
       sessionId: session_id,
       variantId: variant_id,
     });
