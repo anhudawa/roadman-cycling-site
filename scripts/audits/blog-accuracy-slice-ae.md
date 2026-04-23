@@ -153,4 +153,4 @@ EXIT=0
 
 ## Commit hash
 
-_To be filled after commit._
+`ddd9472` — Slice AE changes were committed alongside Slice AB's files due to a parallel-agent race condition on the git index. The commit message on record reads "Fact-check + cite: blog slice AB (32 posts)" but the commit contains both AB and AE slice changes (34 files total, including `scripts/audits/blog-accuracy-slice-ae.md` and `scripts/audits/blog-accuracy-slice-ab.md`).
