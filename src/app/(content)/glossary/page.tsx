@@ -85,6 +85,26 @@ export default function GlossaryPage() {
             </div>
           </Container>
         </Section>
+
+        <Section background="deep-purple" grain className="!py-14">
+          <Container width="narrow" className="text-center">
+            <ScrollReveal direction="up">
+              <p className="font-heading text-coral text-xs tracking-widest mb-3">
+                KNOW THE TERMS. WANT THE PLAN?
+              </p>
+              <p className="text-off-white font-heading text-xl mb-4">
+                Coaching turns this knowledge into structured weekly training.
+              </p>
+              <Link
+                href="/apply"
+                className="inline-flex items-center justify-center gap-2 font-heading tracking-wider uppercase rounded-md bg-coral text-off-white hover:bg-coral/90 px-6 py-3 text-sm transition-all"
+                data-track="glossary_index_apply"
+              >
+                Apply for Coaching →
+              </Link>
+            </ScrollReveal>
+          </Container>
+        </Section>
       </main>
 
       <Footer />
