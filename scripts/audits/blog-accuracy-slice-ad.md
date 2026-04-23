@@ -96,4 +96,4 @@ The remaining 21 posts were read in full and verified; no edits required.
 
 ## 7. Commit hash
 
-_Set after commit._
+`fc52eb18a083eae4d4b2c7071e811fec0b1b0493`
