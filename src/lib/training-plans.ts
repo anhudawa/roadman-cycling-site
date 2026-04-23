@@ -120,14 +120,14 @@ export const EVENTS: TrainingEvent[] = [
     description:
       "Ring of Beara is the coastal Kerry sportive — 140km around the wildest peninsula in Ireland, with the Caha Mountains and Healy Pass as the defining climbs. Smaller field than Wicklow 200, steeper climbs.",
     keyCharacteristics: [
-      "Healy Pass — the signature climb, 8% average, switchbacks",
+      "Healy Pass — the signature climb, long switchbacks, sustained 6-8% on the hard side",
       "Exposed coastal sections with unpredictable crosswinds",
       "140km is shorter than Wicklow but the terrain is punchier",
       "Early May means the road is often wet",
       "Small villages for feed zones — plan your stops carefully",
     ],
     commonMistakes: [
-      "Treating Healy Pass like an easy climb because it's 'only' 9km",
+      "Treating Healy Pass like an easy climb because it's 'only' a few km",
       "Packing like it's July when it's May on the Atlantic",
       "Cranking the gearing too hard — long compact gearing saves the day",
     ],
@@ -146,25 +146,25 @@ export const EVENTS: TrainingEvent[] = [
     region: "United Kingdom",
     type: "sportive",
     distanceKm: 160,
-    elevationGainM: 1200,
+    elevationGainM: 900,
     typicalFinishTime: "5-9 hours",
     defaultMonth: "May",
     description:
-      "Ride London 100 is the UK's largest mass-participation sportive — 160km (100 miles) from Surrey into central London on closed roads. Rolling with two named climbs (Leith Hill, Box Hill). First-time 100-mile riders dominate the field.",
+      "Ride London-Essex 100 is the UK's largest mass-participation sportive — 160km (100 miles) from east London out through the Essex countryside and back on closed roads. Since 2022 the route has run through Essex rather than the Surrey Hills, making it flatter, faster, and pack-dominated. First-time 100-mile riders dominate the field.",
     keyCharacteristics: [
-      "Closed roads on the outbound and return legs",
-      "Leith Hill — the psychological midpoint; Box Hill — the fun one",
+      "Closed roads from central London out through Essex and back",
+      "Rolling Essex countryside — few sustained climbs, lots of short rises",
       "Pack riding dominates — drafting saves 20-30% of your work",
-      "Central London finish with huge crowds",
+      "Central London finish on The Mall with huge crowds",
       "Early start (often 06:30) — means late nights the week before ruin you",
     ],
     commonMistakes: [
       "Surfing from group to group in the first 40km and burning matches",
       "Underhydrating because it 'doesn't feel hot' on closed roads",
-      "Descending Leith Hill too cautiously and losing the pack behind you",
+      "Treating it like a climbing sportive — it's a pack-speed event, pick the right wheels",
     ],
     pacingStrategy:
-      "Sit in a pack at your sportive pace. Don't chase a faster pack if you can't comfortably hold a wheel for 10 minutes. Leith Hill is at 77km — keep your power 10% below threshold. Box Hill is a 3-minute effort, go for a Strava time if you have legs, otherwise spin.",
+      "Sit in a pack at your sportive pace. Don't chase a faster pack if you can't comfortably hold a wheel for 10 minutes. The Essex route is rolling rather than climber's terrain — your target power should be close to tempo for long stretches, with brief spikes over the short rises. Save matches for the last 30km back into London, where gaps open up.",
     nutritionAngle:
       "Gels every 30-45 min + bar every 90. Closed-road feed zones are plentiful but often packed — carry enough that you can skip one. Caffeine gel at 100km keeps the focus through the urban section.",
     kitAngle:
@@ -184,7 +184,7 @@ export const EVENTS: TrainingEvent[] = [
     description:
       "Fred Whitton Challenge is the UK's hardest sportive — 180km through the Lake District with 3,500m of climbing including Hardknott Pass (33% max gradient). A pure climbing test. Finishers consider it a career highlight.",
     keyCharacteristics: [
-      "Hardknott Pass — 33% max gradient, cobbled in places",
+      "Hardknott Pass — 33% max gradient, narrow unrelenting tarmac",
       "Four 10%+ climbs stacked on top of each other",
       "Weather can put visibility at 50m on the summits",
       "Cut-off times at checkpoints tight for slower riders",
@@ -276,10 +276,10 @@ export const EVENTS: TrainingEvent[] = [
     typicalFinishTime: "10-14 hours",
     defaultMonth: "April",
     description:
-      "The Mallorca 312 is spring's most talked-about sportive — 312km around Mallorca with 5,000m+ of climbing, including Sa Calobra, the iconic hairpin-laced descent-then-climb that defines the day. Runs in late April. Open-road format, closed to traffic in parts.",
+      "The Mallorca 312 is spring's most talked-about sportive — 312km around Mallorca with 5,000m+ of climbing, including the classic Tramuntana climbs that define road cycling on the island. Runs in late April. Open-road format, closed to traffic in parts. Route varies year to year; some editions include Sa Calobra, others do not.",
     keyCharacteristics: [
-      "Sa Calobra — 10km descent into the sea then 10km climb back out, 7% average",
-      "Coll de Sóller tunnel + classic north-coast climbs stacked early",
+      "Tramuntana range — Puig Major, Coll de Sóller, Coll dels Reis stacked early",
+      "Sa Calobra features in some editions: ~10km descent to the sea then ~10km climb back out at 7% average",
       "312km distance means fuelling strategy determines who finishes",
       "Three distance options: 312km, 225km, 167km — pick realistically",
       "Weather shift from cold morning climbs to afternoon Mediterranean heat",
@@ -287,10 +287,10 @@ export const EVENTS: TrainingEvent[] = [
     commonMistakes: [
       "Choosing the 312 because you've done other long sportives — Mallorca's combination of distance + heat is different",
       "Underfuelling the first 80km because the climbing starts easy",
-      "Forgetting the Sa Calobra climb is a 9% average, not a gentle return — many riders bonk here",
+      "Forgetting Sa Calobra is a ~7% sustained climb, not a gentle return — many riders bonk here when it's on the route",
     ],
     pacingStrategy:
-      "The 312 is a fueling problem more than a fitness one. Pace the opening 100km at 60-65% FTP maximum. Ride the middle 100km conservatively with strict carb/fluid discipline. The last 100km is where preparation shows — those who fuelled correctly can even push. The Sa Calobra climb is at 220km — arrive with reserves, not red-lined.",
+      "The 312 is a fueling problem more than a fitness one. Pace the opening 100km at 60-65% FTP maximum. Ride the middle 100km conservatively with strict carb/fluid discipline. The last 100km is where preparation shows — those who fuelled correctly can even push. Arrive at the final named climb with reserves, not red-lined.",
     nutritionAngle:
       "10+ hours means 80g carbs/hour minimum, 100g if gut-trained. 500-750ml fluid/hour once the heat kicks in. Food at every aid station on the route — don't skip any. Electrolytes become dominant after hour 6. A 'second breakfast' at the Pollença aid stop (km 80) is a classic move.",
     kitAngle:
@@ -307,7 +307,7 @@ export const EVENTS: TrainingEvent[] = [
     typicalFinishTime: "60-120 hours",
     defaultMonth: "September",
     description:
-      "Badlands is one of the hardest self-supported ultras in the world — 800km across Andalusia and the Tabernas Desert (Europe's only true desert) with 16,000m of climbing. Mixed gravel/road, 40°C+ daytime heat, freezing desert nights. The race that made Lachlan Morton famous on the Roadman Podcast.",
+      "Badlands is one of the hardest self-supported ultras in the world — 800km across Andalusia and the Tabernas Desert (Europe's only true desert) with 16,000m of climbing. Mixed gravel/road, 40°C+ daytime heat, freezing desert nights. A bucket-list race for the ultra-endurance community and a recurring topic on the Roadman Podcast.",
     keyCharacteristics: [
       "Self-supported format — resupply only at open shops + fountains",
       "Tabernas Desert crossing: 40°C+ daytime, freezing at night",
@@ -334,7 +334,7 @@ export const EVENTS: TrainingEvent[] = [
     region: "USA",
     type: "mtb",
     distanceKm: 160,
-    elevationGainM: 3800,
+    elevationGainM: 3810,
     typicalFinishTime: "8-12 hours",
     defaultMonth: "August",
     description:
@@ -489,14 +489,14 @@ export const EVENTS: TrainingEvent[] = [
     region: "France / Spain",
     type: "ultra",
     distanceKm: 1500,
-    elevationGainM: 35000,
+    elevationGainM: 28000,
     typicalFinishTime: "6-9 days",
     defaultMonth: "October",
     description:
-      "Trans Pyrenees is one of the hardest self-supported ultras in Europe — 1,500km from Biarritz to Barcelona (or reverse) across every major pass in the Pyrenees, with 35,000m of climbing. 6-9 day finishes. October weather unpredictable.",
+      "Trans Pyrenees is one of the hardest self-supported ultras in Europe — roughly 1,500km across the Pyrenees between the Atlantic and Mediterranean coasts, with around 28,000m of climbing depending on the year's parcours. 6-9 day finishes. October weather unpredictable.",
     keyCharacteristics: [
-      "35,000m climbing — that's 4× Everest across the event",
-      "Every HC and Cat 1 Pyrenean pass featured — Tourmalet, Aubisque, Aspin, Peyresourde, Porto",
+      "~28,000m climbing — more than three times the height of Everest across the event",
+      "Every HC and Cat 1 Pyrenean pass featured — Tourmalet, Aubisque, Aspin, Peyresourde, Portet",
       "October weather: snow on passes, freezing rain, wind",
       "Self-supported — you carry, you sleep where you can",
       "Mandatory tracker, daily check-in times",

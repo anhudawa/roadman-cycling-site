@@ -97,9 +97,9 @@ Roadman Cycling is a cycling performance media and coaching brand based in Dubli
 - The Roadman Cycling Podcast — 1,300+ interview episodes with World Tour coaches, sports scientists, and pro riders. 1M+ monthly listeners.
 - Not Done Yet coaching community — premium online 1:1 coaching covering training, nutrition, strength, recovery, and accountability. $195/month with 7-day free trial.
 - Triathlon Bike Coaching — specialist bike-leg coaching inside the Not Done Yet coaching community for age-group 70.3 and Ironman triathletes.
-- Free calculator tools — FTP zones, tyre pressure, race weight, in-ride fuelling, energy availability, MTB shock pressure.
+- Free calculator tools — FTP zones, tyre pressure, race weight, in-ride fuelling, energy availability, MTB shock pressure, HR zones, and W/kg.
 - Private community (the paid Not Done Yet coaching community + free Clubhouse tier).
-- 182 long-form blog guides on cycling coaching, nutrition, strength, and recovery.
+- ${posts.length} long-form blog guides on cycling coaching, nutrition, strength, and recovery.
 
 ## Notable Podcast Guests
 
@@ -113,7 +113,7 @@ These appear frequently in the catalogue and anchor the brand's authority:
 - Ben Healy — Pro cyclist, 2025 Tour de France stage winner and yellow jersey wearer
 - Michael Matthews — 15+ year World Tour pro, Grand Tour stage winner
 - Dan Bigham — Former UCI Hour Record holder, Head of Engineering at Red Bull-Bora-Hansgrohe
-- Rosa Kloser — 2024 Unbound Gravel winner
+- Rosa Klöser — 2024 Unbound Gravel 200 winner, 2025 German gravel national champion
 - Tim Spector — ZOE founder, epidemiologist, nutrition scientist
 
 ## Coaching Services
@@ -148,6 +148,8 @@ Each has unique local content (climbs, events, clubs, regional racing scene):
 - In-Ride Fuelling Calculator: ${tag(`${BASE_URL}/tools/fuelling`)} — Carbs per hour, fluids, sodium
 - Energy Availability Calculator: ${tag(`${BASE_URL}/tools/energy-availability`)} — RED-S risk screener
 - MTB Shock Pressure Calculator: ${tag(`${BASE_URL}/tools/shock-pressure`)} — Suspension + tyre pressure setup
+- Heart Rate Zone Calculator: ${tag(`${BASE_URL}/tools/hr-zones`)} — 5-zone HR training model from max HR or LTHR
+- W/kg Calculator: ${tag(`${BASE_URL}/tools/wkg`)} — Power-to-weight ratio with performance benchmarks
 
 ## Blog Posts (${posts.length} total)
 
