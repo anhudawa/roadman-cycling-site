@@ -218,6 +218,8 @@ const TOPIC_POST_MAP: Record<string, string[]> = {
     "cycling-weight-loss-fuel-for-the-work-required",
     "eating-like-pidcock-60-days",
     "fasted-vs-fueled-cycling",
+    "cycling-body-recomposition",
+    "cycling-protein-timing-guide",
   ],
   "cycling-training-plans": [
     "cycling-periodisation-plan-guide",
@@ -244,6 +246,8 @@ const TOPIC_POST_MAP: Record<string, string[]> = {
   "cycling-recovery": [
     "cycling-recovery-tips",
     "cycling-sleep-performance-guide",
+    "cycling-sleep-optimisation",
+    "cycling-active-recovery-explained",
     "cycling-knee-pain-causes-fixes",
     "cycling-returning-after-break",
     "cycling-stretching-routine",
@@ -261,6 +265,8 @@ const TOPIC_POST_MAP: Record<string, string[]> = {
     "cycling-leg-day-should-cyclists",
     "yoga-for-cyclists-guide",
     "new-study-confirms-heavy-strength-training-beats-more-miles-after-40",
+    "cycling-deadlift-guide",
+    "cycling-mobility-routine",
   ],
   "cycling-weight-loss": [
     "cycling-weight-loss-fuel-for-the-work-required",
@@ -270,6 +276,8 @@ const TOPIC_POST_MAP: Record<string, string[]> = {
     "cycling-power-to-weight-ratio-guide",
     "eating-like-pidcock-60-days",
     "fasted-vs-fueled-cycling",
+    "cycling-body-recomposition",
+    "cycling-protein-timing-guide",
   ],
   "cycling-beginners": [
     "cycling-group-ride-etiquette-guide",
