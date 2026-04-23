@@ -133,7 +133,7 @@ Glenn **McConell** (exercise physiology podcast host) — correctly spelled and 
 
 ## Commit
 
-Commit hash: _[to be filled after commit]_
+Commit hash: `aca6a16`
 
 Commit message: `Blog second-pass: verify citations resolve to real papers`
 
