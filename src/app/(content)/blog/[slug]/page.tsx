@@ -148,6 +148,20 @@ export default async function BlogPostPage({
               height: 630,
             },
           }),
+          // E-E-A-T: schema.org `mentions` lets Google connect the article
+          // to the cited experts as entities. Each mention points at the
+          // expert's /guests/[slug] page, which already emits full Person +
+          // sameAs schema (Wikipedia/Wikidata/etc.) — no need to duplicate
+          // here.
+          ...(post.experts && post.experts.length > 0 && {
+            mentions: post.experts
+              .filter((e) => e.href && e.href.startsWith("/guests/"))
+              .map((e) => ({
+                "@type": "Person",
+                name: e.name,
+                url: `https://roadmancycling.com${e.href}`,
+              })),
+          }),
         }}
       />
       {/* Person schema for E-E-A-T */}
@@ -239,9 +253,9 @@ export default async function BlogPostPage({
               {post.title.toUpperCase()}
             </h1>
 
-            <div className="flex items-center justify-center gap-4 text-sm text-foreground-muted mb-6">
+            <div className="flex flex-wrap items-center justify-center gap-x-4 gap-y-1 text-sm text-foreground-muted mb-6">
               <span>By {post.author}</span>
-              <span>&middot;</span>
+              <span aria-hidden="true">&middot;</span>
               <time dateTime={post.publishDate}>
                 {publishDate.toLocaleDateString("en-GB", {
                   day: "numeric",
@@ -249,6 +263,21 @@ export default async function BlogPostPage({
                   year: "numeric",
                 })}
               </time>
+              {post.updatedDate && post.updatedDate !== post.publishDate && (
+                <>
+                  <span aria-hidden="true">&middot;</span>
+                  <span className="text-foreground-subtle">
+                    Updated{" "}
+                    <time dateTime={post.updatedDate}>
+                      {new Date(post.updatedDate).toLocaleDateString("en-GB", {
+                        day: "numeric",
+                        month: "long",
+                        year: "numeric",
+                      })}
+                    </time>
+                  </span>
+                </>
+              )}
             </div>
 
             <ShareButtons title={post.title} slug={slug} className="justify-center" />
