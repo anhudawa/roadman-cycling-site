@@ -42,6 +42,9 @@ export async function saveToolResult(
   for (let attempt = 0; attempt < SLUG_RETRY_ATTEMPTS; attempt++) {
     const slug = generateToolResultSlug();
     try {
+      const utm = input.utm
+        ? (input.utm as unknown as Record<string, string | null>)
+        : null;
       const [row] = await db
         .insert(toolResults)
         .values({
@@ -54,7 +57,7 @@ export async function saveToolResult(
           summary: input.summary,
           primaryResult: input.primaryResult,
           tags: input.tags,
-          utm: input.utm ?? null,
+          utm,
           sourcePage: input.sourcePage ?? null,
         })
         .returning();

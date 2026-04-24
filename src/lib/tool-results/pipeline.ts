@@ -18,7 +18,7 @@ import type { SaveToolResultInput, ToolResult } from "./types";
  * straight to /results/<tool>/<slug>.
  */
 
-export interface CompleteToolResultInput extends SaveToolResultInput {
+export interface CompleteToolResultInput extends Omit<SaveToolResultInput, "riderProfileId"> {
   /** Fields to merge into the rider profile (all optional). */
   profilePatch?: {
     firstName?: string | null;
