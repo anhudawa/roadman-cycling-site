@@ -6,10 +6,13 @@ import {
   date,
   integer,
   real,
+  numeric,
+  uuid,
   jsonb,
   boolean,
   index,
   uniqueIndex,
+  customType,
 } from "drizzle-orm/pg-core";
 
 // ── Events ────────────────────────────────────────────────
@@ -922,6 +925,10 @@ export const diagnosticSubmissions = pgTable(
     beehiivSubscriberId: text("beehiiv_subscriber_id"),
     /** 1 on first submission for an email, 2 on second, etc. See §17. */
     retakeNumber: integer("retake_number").notNull().default(1),
+    /** Phase 2: link this submission to the shared rider profile so the
+     *  admin dashboard and /results history surfaces group all tools by
+     *  rider. Set async after insert so the request path stays fast. */
+    riderProfileId: integer("rider_profile_id"),
     createdAt: timestamp("created_at", { withTimezone: true }).notNull().defaultNow(),
     updatedAt: timestamp("updated_at", { withTimezone: true }).notNull().defaultNow(),
   },
@@ -930,5 +937,320 @@ export const diagnosticSubmissions = pgTable(
     index("diagnostic_submissions_created_at_idx").on(table.createdAt),
     index("diagnostic_submissions_primary_profile_idx").on(table.primaryProfile),
     index("diagnostic_submissions_utm_campaign_idx").on(table.utmCampaign),
+    index("diagnostic_submissions_rider_profile_id_idx").on(table.riderProfileId),
+  ]
+);
+
+// ═══════════════════════════════════════════════════════════
+// MCP Server Tables
+// ═══════════════════════════════════════════════════════════
+
+// pgvector column — 1024 dims for Voyage voyage-3-large / OpenAI text-embedding-3-large
+const vector1024 = customType<{ data: number[] }>({
+  dataType() { return "vector(1024)"; },
+  fromDriver(value: unknown): number[] {
+    if (typeof value === "string") {
+      return value.slice(1, -1).split(",").map(Number);
+    }
+    return value as number[];
+  },
+  toDriver(value: number[]): string {
+    return `[${value.join(",")}]`;
+  },
+});
+
+// ── MCP: Episodes ─────────────────────────────────────────
+export const mcpEpisodes = pgTable(
+  "mcp_episodes",
+  {
+    id: serial("id").primaryKey(),
+    slug: text("slug").notNull().unique(),
+    title: text("title").notNull(),
+    guestName: text("guest_name"),
+    publishedAt: timestamp("published_at", { withTimezone: true }),
+    durationSec: integer("duration_sec"),
+    summary: text("summary"),
+    audioUrl: text("audio_url"),
+    youtubeUrl: text("youtube_url"),
+    transcriptText: text("transcript_text"),
+    keyInsights: jsonb("key_insights").$type<string[]>(),
+    topicTags: text("topic_tags").array(),
+    url: text("url"),
+    createdAt: timestamp("created_at", { withTimezone: true }).notNull().defaultNow(),
+    updatedAt: timestamp("updated_at", { withTimezone: true }).notNull().defaultNow(),
+  },
+  (t) => [
+    index("mcp_episodes_slug_idx").on(t.slug),
+    index("mcp_episodes_published_at_idx").on(t.publishedAt),
+  ]
+);
+
+// ── MCP: Episode Embeddings ───────────────────────────────
+export const mcpEpisodeEmbeddings = pgTable(
+  "mcp_episode_embeddings",
+  {
+    id: serial("id").primaryKey(),
+    episodeId: integer("episode_id").notNull().references(() => mcpEpisodes.id, { onDelete: "cascade" }),
+    chunkIndex: integer("chunk_index").notNull(),
+    chunkText: text("chunk_text").notNull(),
+    embedding: vector1024("embedding"),
+  },
+  (t) => [index("mcp_episode_embeddings_episode_id_idx").on(t.episodeId)]
+);
+
+// ── MCP: Experts ──────────────────────────────────────────
+export const mcpExperts = pgTable("mcp_experts", {
+  id: serial("id").primaryKey(),
+  name: text("name").notNull().unique(),
+  credentials: text("credentials"),
+  specialty: text("specialty"),
+  bio: text("bio"),
+  appearanceCount: integer("appearance_count").notNull().default(0),
+  latestAppearance: timestamp("latest_appearance", { withTimezone: true }),
+});
+
+// ── MCP: Expert Quotes ────────────────────────────────────
+export const mcpExpertQuotes = pgTable(
+  "mcp_expert_quotes",
+  {
+    id: serial("id").primaryKey(),
+    expertId: integer("expert_id").notNull().references(() => mcpExperts.id, { onDelete: "cascade" }),
+    episodeId: integer("episode_id").references(() => mcpEpisodes.id, { onDelete: "set null" }),
+    quote: text("quote").notNull(),
+    context: text("context"),
+    topicTags: text("topic_tags").array(),
+  },
+  (t) => [index("mcp_expert_quotes_expert_id_idx").on(t.expertId)]
+);
+
+// ── MCP: Methodology Principles ───────────────────────────
+export const mcpMethodologyPrinciples = pgTable("mcp_methodology_principles", {
+  id: serial("id").primaryKey(),
+  principle: text("principle").notNull(),
+  explanation: text("explanation").notNull(),
+  topicTags: text("topic_tags").array(),
+  supportingExpertNames: text("supporting_expert_names").array(),
+  supportingEpisodeIds: integer("supporting_episode_ids").array(),
+});
+
+// ── MCP: Methodology Embeddings ───────────────────────────
+export const mcpMethodologyEmbeddings = pgTable("mcp_methodology_embeddings", {
+  id: serial("id").primaryKey(),
+  principleId: integer("principle_id").notNull().references(() => mcpMethodologyPrinciples.id, { onDelete: "cascade" }),
+  embedding: vector1024("embedding"),
+});
+
+// ── MCP: Products ─────────────────────────────────────────
+export const mcpProducts = pgTable("mcp_products", {
+  id: serial("id").primaryKey(),
+  productKey: text("product_key").notNull().unique(),
+  name: text("name").notNull(),
+  priceCents: integer("price_cents").notNull(),
+  currency: text("currency").notNull().default("USD"),
+  billingPeriod: text("billing_period"),
+  description: text("description").notNull(),
+  whoItsFor: text("who_its_for").notNull(),
+  url: text("url").notNull(),
+  isActive: boolean("is_active").notNull().default(true),
+});
+
+// ── Roadman Events (calendar, NOT analytics) ──────────────
+// Named roadman_events to avoid collision with the analytics events table.
+export const roadmanEvents = pgTable(
+  "roadman_events",
+  {
+    id: serial("id").primaryKey(),
+    name: text("name").notNull(),
+    type: text("type").notNull(),
+    startsAt: timestamp("starts_at", { withTimezone: true }).notNull(),
+    location: text("location"),
+    description: text("description"),
+    isMembersOnly: boolean("is_members_only").notNull().default(false),
+    url: text("url"),
+    isActive: boolean("is_active").notNull().default(true),
+  },
+  (t) => [index("roadman_events_starts_at_idx").on(t.startsAt)]
+);
+
+// ── MCP: Community Stats (singleton) ─────────────────────
+export const mcpCommunityStats = pgTable("mcp_community_stats", {
+  id: serial("id").primaryKey(),
+  podcastDownloadsTotal: integer("podcast_downloads_total").notNull().default(0),
+  youtubeSubscribersMain: integer("youtube_subscribers_main").notNull().default(0),
+  youtubeSubscribersClips: integer("youtube_subscribers_clips").notNull().default(0),
+  freeCommunityMembers: integer("free_community_members").notNull().default(0),
+  paidCommunityMembers: integer("paid_community_members").notNull().default(0),
+  featuredTransformations: jsonb("featured_transformations").$type<
+    { member_name: string; headline_result: string; duration: string }[]
+  >(),
+  updatedAt: timestamp("updated_at", { withTimezone: true }).notNull().defaultNow(),
+});
+
+// ── MCP: Call Logs ────────────────────────────────────────
+export const mcpCallLogs = pgTable(
+  "mcp_call_logs",
+  {
+    id: serial("id").primaryKey(),
+    toolName: text("tool_name").notNull(),
+    inputTruncated: text("input_truncated"),
+    durationMs: integer("duration_ms"),
+    success: boolean("success").notNull(),
+    error: text("error"),
+    ipHash: text("ip_hash"),
+    createdAt: timestamp("created_at", { withTimezone: true }).notNull().defaultNow(),
+  },
+  (t) => [
+    index("mcp_call_logs_tool_name_idx").on(t.toolName),
+    index("mcp_call_logs_created_at_idx").on(t.createdAt),
+  ]
+);
+
+// ═══════════════════════════════════════════════════════════
+// Ask Roadman + Rider Profiles
+// ═══════════════════════════════════════════════════════════
+
+export const riderProfiles = pgTable(
+  "rider_profiles",
+  {
+    id: serial("id").primaryKey(),
+    contactId: integer("contact_id").references(() => contacts.id, { onDelete: "cascade" }),
+    email: text("email").notNull().unique(),
+    firstName: text("first_name"),
+    ageRange: text("age_range"),
+    discipline: text("discipline"),
+    weeklyTrainingHours: integer("weekly_training_hours"),
+    currentFtp: integer("current_ftp"),
+    weightKg: numeric("weight_kg", { precision: 5, scale: 2 }),
+    mainGoal: text("main_goal"),
+    targetEvent: text("target_event"),
+    targetEventDate: date("target_event_date"),
+    biggestLimiter: text("biggest_limiter"),
+    usesPowerMeter: boolean("uses_power_meter"),
+    currentTrainingTool: text("current_training_tool"),
+    coachingInterest: text("coaching_interest"),
+    // 'self' | 'coached' — captured during tool completion flows.
+    selfCoachedOrCoached: text("self_coached_or_coached"),
+    accessTier: text("access_tier").notNull().default("free"),
+    consentSaveProfile: boolean("consent_save_profile").notNull().default(false),
+    consentEmailFollowup: boolean("consent_email_followup").notNull().default(false),
+    consentRecordedAt: timestamp("consent_recorded_at", { withTimezone: true }),
+    createdAt: timestamp("created_at", { withTimezone: true }).notNull().defaultNow(),
+    updatedAt: timestamp("updated_at", { withTimezone: true }).notNull().defaultNow(),
+  },
+  (table) => [
+    index("rider_profiles_email_idx").on(table.email),
+    index("rider_profiles_contact_id_idx").on(table.contactId),
+  ]
+);
+
+export const askSessions = pgTable(
+  "ask_sessions",
+  {
+    id: uuid("id").primaryKey().defaultRandom(),
+    riderProfileId: integer("rider_profile_id").references(() => riderProfiles.id, { onDelete: "set null" }),
+    anonSessionKey: text("anon_session_key"),
+    startedAt: timestamp("started_at", { withTimezone: true }).notNull().defaultNow(),
+    lastActivityAt: timestamp("last_activity_at", { withTimezone: true }).notNull().defaultNow(),
+    messageCount: integer("message_count").notNull().default(0),
+    ipHash: text("ip_hash"),
+    userAgent: text("user_agent"),
+    utmSource: text("utm_source"),
+    utmCampaign: text("utm_campaign"),
+  },
+  (table) => [
+    index("ask_sessions_rider_profile_id_idx").on(table.riderProfileId),
+    index("ask_sessions_anon_session_key_idx").on(table.anonSessionKey),
+    index("ask_sessions_last_activity_at_idx").on(table.lastActivityAt),
+  ]
+);
+
+export const askMessages = pgTable(
+  "ask_messages",
+  {
+    id: uuid("id").primaryKey().defaultRandom(),
+    sessionId: uuid("session_id").notNull().references(() => askSessions.id, { onDelete: "cascade" }),
+    role: text("role").notNull(),
+    content: text("content").notNull(),
+    citations: jsonb("citations").$type<Array<{
+      type: "episode" | "methodology" | "content_chunk" | "expert_quote";
+      source_id: string;
+      title: string;
+      url?: string;
+      excerpt?: string;
+    }>>(),
+    ctaRecommended: text("cta_recommended"),
+    safetyFlags: text("safety_flags").array(),
+    confidence: text("confidence"),
+    model: text("model"),
+    inputTokens: integer("input_tokens"),
+    outputTokens: integer("output_tokens"),
+    latencyMs: integer("latency_ms"),
+    flaggedForReview: boolean("flagged_for_review").notNull().default(false),
+    adminNote: text("admin_note"),
+    adminPreferredAnswer: text("admin_preferred_answer"),
+    createdAt: timestamp("created_at", { withTimezone: true }).notNull().defaultNow(),
+  },
+  (table) => [
+    index("ask_messages_session_id_idx").on(table.sessionId),
+    index("ask_messages_created_at_idx").on(table.createdAt),
+  ]
+);
+
+export const askRetrievals = pgTable(
+  "ask_retrievals",
+  {
+    id: uuid("id").primaryKey().defaultRandom(),
+    messageId: uuid("message_id").notNull().references(() => askMessages.id, { onDelete: "cascade" }),
+    sourceType: text("source_type").notNull(),
+    sourceId: text("source_id").notNull(),
+    chunkText: text("chunk_text"),
+    score: numeric("score", { precision: 6, scale: 4 }),
+    usedInAnswer: boolean("used_in_answer").notNull().default(false),
+    createdAt: timestamp("created_at", { withTimezone: true }).notNull().defaultNow(),
+  },
+  (table) => [
+    index("ask_retrievals_message_id_idx").on(table.messageId),
+  ]
+);
+
+// ═══════════════════════════════════════════════════════════
+// Phase 2: Saved Diagnostics — tool_results
+// ═══════════════════════════════════════════════════════════
+// Generic store for completed tool runs (plateau, fuelling, ftp_zones).
+// Plateau also keeps its richer `diagnostic_submissions` row; this table
+// is the unified history/analytics surface that the /results page and
+// /admin/insights dashboard read from.
+export const toolResults = pgTable(
+  "tool_results",
+  {
+    id: serial("id").primaryKey(),
+    /** 10-char public slug used in /results/<tool>/<slug> URLs. */
+    slug: text("slug").notNull().unique(),
+    /** Nullable — anonymous completions still save so we can email them,
+     *  but only get linked to a rider profile when consent is given. */
+    riderProfileId: integer("rider_profile_id").references(() => riderProfiles.id, { onDelete: "set null" }),
+    email: text("email").notNull(),
+    /** 'plateau' | 'fuelling' | 'ftp_zones' — extend the union, not this column. */
+    toolSlug: text("tool_slug").notNull(),
+    inputs: jsonb("inputs").notNull().$type<Record<string, unknown>>(),
+    outputs: jsonb("outputs").notNull().$type<Record<string, unknown>>(),
+    /** One-line summary for the history list — e.g. "Under-Recovered (68g/hr)". */
+    summary: text("summary").notNull(),
+    /** Primary result token for analytics grouping (plateau profile, carb bucket, etc). */
+    primaryResult: text("primary_result"),
+    /** CRM tags applied on completion — mirrors what was upserted to Beehiiv / contacts. */
+    tags: jsonb("tags").$type<string[]>().notNull().default([]),
+    utm: jsonb("utm").$type<Record<string, string | null>>(),
+    sourcePage: text("source_page"),
+    emailSentAt: timestamp("email_sent_at", { withTimezone: true }),
+    /** First time the user clicked "Ask Roadman what this means" on this result. */
+    askHandoffAt: timestamp("ask_handoff_at", { withTimezone: true }),
+    createdAt: timestamp("created_at", { withTimezone: true }).notNull().defaultNow(),
+  },
+  (table) => [
+    index("tool_results_email_idx").on(table.email),
+    index("tool_results_tool_slug_idx").on(table.toolSlug),
+    index("tool_results_rider_profile_id_idx").on(table.riderProfileId),
+    index("tool_results_created_at_idx").on(table.createdAt),
   ]
 );

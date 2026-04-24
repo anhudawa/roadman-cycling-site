@@ -66,15 +66,22 @@
     "seo:related-episodes:dry": "tsx scripts/populate-related-episodes.ts --dry-run",
     "seo:episode-related-posts": "tsx scripts/populate-episode-related-posts.ts",
     "seo:episode-related-posts:dry": "tsx scripts/populate-episode-related-posts.ts --dry-run",
-    "seo:audit-orphans": "tsx scripts/audit-orphans.ts"
+    "seo:audit-orphans": "tsx scripts/audit-orphans.ts",
+    "seed:mcp:community-stats": "tsx scripts/seed-mcp-community-stats.ts",
+    "seed:mcp:content": "tsx scripts/seed-mcp-content.ts",
+    "seed:mcp:products": "tsx scripts/seed-mcp-products.ts",
+    "seed:mcp:events": "tsx scripts/seed-mcp-events.ts"
   },
   "dependencies": {
     "@anthropic-ai/sdk": "^0.82.0",
     "@auth/core": "^0.41.0",
     "@google-analytics/data": "^5.2.1",
+    "@modelcontextprotocol/sdk": "^1.29.0",
     "@react-pdf/renderer": "^4.4.1",
     "@resvg/resvg-js": "^2.6.2",
     "@stripe/stripe-js": "^9.0.1",
+    "@upstash/ratelimit": "^2.0.8",
+    "@upstash/redis": "^1.37.0",
     "@vercel/blob": "^2.3.3",
     "@vercel/postgres": "^0.10.0",
     "date-fns": "^4.1.0",
@@ -96,7 +103,8 @@
     "satori": "^0.26.0",
     "sharp": "^0.34.5",
     "shiki": "^4.0.2",
-    "stripe": "^22.0.0"
+    "stripe": "^22.0.0",
+    "zod": "^4.3.6"
   },
   "devDependencies": {
     "@tailwindcss/postcss": "^4",

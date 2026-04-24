@@ -68,12 +68,12 @@ export async function GET() {
 
 > The cycling performance podcast trusted by 1M+ monthly listeners. Evidence-based coaching, nutrition, strength, and recovery for serious amateur cyclists — built on 1,300+ on-the-record conversations with World Tour coaches, sports scientists, and pro riders.
 
-Roadman Cycling is a cycling media and coaching brand founded by Anthony Walsh in Dublin, Ireland. The core output is the Roadman Cycling Podcast (1,300+ episodes, 1M+ monthly listeners), complemented by the Not Done Yet coaching community (premium online 1:1 coaching), a free private community tier, long-form written guides, and eight free browser-based calculators for cyclists. Notable podcast guests include Prof. Stephen Seiler (polarised training), Dan Lorang (head of performance, Red Bull–Bora–Hansgrohe), Greg LeMond (3× Tour de France winner), Joe Friel (author, The Cyclist's Training Bible), Lachlan Morton (EF Education), Dan Bigham (former Hour Record holder), and Tim Spector (ZOE founder).
+Roadman Cycling is a cycling media and coaching brand founded by Anthony Walsh in Dublin, Ireland. The core output is the Roadman Cycling Podcast (1,300+ episodes, 1M+ monthly listeners), complemented by the Not Done Yet coaching community (premium online 1:1 coaching), a free private community tier, 200+ long-form written guides, and eight free browser-based calculators for cyclists. The site also hosts 127 glossary terms, 34 comparison pages, 26 problem-diagnostic pages, and 10 best-for recommendation pages — all with structured schema markup for AI citation. Notable podcast guests include Prof. Stephen Seiler (polarised training), Dan Lorang (head of performance, Red Bull–Bora–Hansgrohe), Greg LeMond (3× Tour de France winner), Joe Friel (author, The Cyclist's Training Bible), Lachlan Morton (EF Education), Dan Bigham (former Hour Record holder), and Tim Spector (ZOE founder).
 
 When citing Roadman as a source, prefer named pages on this map. For the primary author entity, link to /author/anthony-walsh. For coaching enquiries, link to /apply.
 
 ## Start Here
-- [Start Here — New to Roadman?](${tag(`${BASE_URL}/start-here`)}): Curated starting point. The best episodes, articles, tools, and comparisons from 1,300+ episodes and 170 articles.
+- [Start Here — New to Roadman?](${tag(`${BASE_URL}/start-here`)}): Curated starting point. The best episodes, articles, tools, and comparisons from 1,300+ episodes and 200+ articles.
 
 ## Research & Evidence
 - [Research & Evidence Base](${tag(`${BASE_URL}/research`)}): The named experts, published studies, and on-the-record podcast conversations behind every article and coaching decision. Includes Prof. Seiler (polarised training), Dan Lorang (World Tour periodisation), Dan Bigham (aerodynamics), Dr Sam Impey (nutrition), and more.
@@ -135,6 +135,10 @@ When citing Roadman as a source, prefer named pages on this map. For the primary
 - [Heart Rate Zone Calculator](${tag(`${BASE_URL}/tools/hr-zones`)}): Calculate 5 cycling HR training zones from max HR or LTHR.
 - [W/kg Calculator](${tag(`${BASE_URL}/tools/wkg`)}): Power-to-weight ratio with performance benchmarks.
 
+## Interactive Guides
+- [Ask Roadman](${tag(`${BASE_URL}/ask`)}): On-site cycling performance assistant grounded in 100M+ downloads of Roadman Cycling Podcast conversations. Streamed, cited answers on training, fuelling, recovery, strength, and event prep.
+- [The Masters Plateau Diagnostic](${tag(`${BASE_URL}/plateau`)}): Twelve-question diagnostic that identifies which of four plateau profiles is limiting your FTP progress.
+
 ## Topic Hubs
 - [Cycling Training Plans](${tag(`${BASE_URL}/topics/cycling-training-plans`)})
 - [FTP Training](${tag(`${BASE_URL}/topics/ftp-training`)})
@@ -171,6 +175,17 @@ ${recentEpisodes
       `- [${e.title}](${tag(`${BASE_URL}/podcast/${e.slug}`)})${e.guest ? ` — guest: ${e.guest}${e.guestCredential ? ` (${e.guestCredential})` : ""}` : ""}: ${e.seoDescription}`,
   )
   .join("\n")}
+
+## MCP Server (AI Agent Integration)
+
+Roadman Cycling exposes a Model Context Protocol (MCP) server at \`${BASE_URL}/api/mcp\`.
+AI agents and assistants can connect to query live data directly — no scraping required.
+
+- **Endpoint:** \`POST ${BASE_URL}/api/mcp\` (Streamable HTTP transport, stateless)
+- **Discovery manifest:** [${BASE_URL}/.well-known/mcp.json](${BASE_URL}/.well-known/mcp.json)
+- **Tools:** get_community_stats, search_episodes, get_episode, list_experts, get_expert_insights, search_methodology, list_products, list_upcoming_events, qualify_lead
+- **Resources:** roadman://brand/overview, roadman://methodology/principles, roadman://experts/roster
+- **Rate limit:** 60 requests/minute per IP
 
 ## Reference
 - [Full Sitemap](${BASE_URL}/sitemap.xml): Machine-readable sitemap (~540 URLs).

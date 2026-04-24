@@ -245,6 +245,22 @@ export async function attachBeehiivId(slug: string, subscriberId: string): Promi
     .where(eq(diagnosticSubmissions.slug, slug));
 }
 
+/**
+ * Phase 2: link a submission to the rider profile after the insert so
+ * the request path stays fast. Best-effort — the submission row is
+ * already persisted, this is purely a denormalised join for dashboards
+ * and /results history.
+ */
+export async function attachRiderProfileId(
+  slug: string,
+  riderProfileId: number
+): Promise<void> {
+  await db
+    .update(diagnosticSubmissions)
+    .set({ riderProfileId, updatedAt: new Date() })
+    .where(eq(diagnosticSubmissions.slug, slug));
+}
+
 export async function replaceBreakdown(
   slug: string,
   generation: GenerationResult

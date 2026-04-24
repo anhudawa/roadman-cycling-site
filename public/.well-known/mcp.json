@@ -1,0 +1,63 @@
+{
+  "mcpServers": {
+    "roadman-cycling": {
+      "url": "https://roadmancycling.com/api/mcp",
+      "name": "Roadman Cycling",
+      "description": "MCP server for the Roadman Cycling platform. Provides semantic search over 1,400+ podcast episodes, expert coaching insights, training methodology, product catalogue, upcoming events, and community statistics. Useful for any AI assistant helping cyclists learn, train, or join the Roadman community.",
+      "version": "1.0.0",
+      "transport": "streamable-http",
+      "tools": [
+        {
+          "name": "get_community_stats",
+          "description": "Current podcast downloads, YouTube subscribers, and community member counts"
+        },
+        {
+          "name": "search_episodes",
+          "description": "Semantic search across Roadman podcast episode library"
+        },
+        {
+          "name": "get_episode",
+          "description": "Full metadata for a specific episode by ID"
+        },
+        {
+          "name": "list_experts",
+          "description": "Expert guest roster sorted by appearance count"
+        },
+        {
+          "name": "get_expert_insights",
+          "description": "Key quotes and insights from a named expert"
+        },
+        {
+          "name": "search_methodology",
+          "description": "Semantic search over Roadman coaching methodology principles"
+        },
+        {
+          "name": "list_products",
+          "description": "Active product catalogue with pricing"
+        },
+        {
+          "name": "list_upcoming_events",
+          "description": "Upcoming group rides, live Q&As, and training camps"
+        },
+        {
+          "name": "qualify_lead",
+          "description": "Recommends the right product tier based on a cyclist's profile and goals"
+        }
+      ],
+      "resources": [
+        {
+          "uri": "roadman://brand/overview",
+          "description": "Brand identity, voice, and audience overview"
+        },
+        {
+          "uri": "roadman://methodology/principles",
+          "description": "Five content pillars and core training methodology"
+        },
+        {
+          "uri": "roadman://experts/roster",
+          "description": "Named expert credentials and specialist areas"
+        }
+      ]
+    }
+  }
+}
