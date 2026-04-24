@@ -80,7 +80,7 @@ function diagnose(
   if (volume === "high" && distribution === "mostly-easy") {
     return {
       summary:
-        "High volume, mostly easy — you have the base, but you're missing the ceiling work. Adding a small, precise dose of genuinely hard intensity will unlock the next step.",
+        "High volume, mostly easy — you have the base, but you're missing the ceiling work. Adding a small, precise dose of genuinely hard intensity is the next step.",
       prescription:
         "Keep the volume. Add one weekly VO2 max session. That's it. Don't overthink the rest.",
       sessionName: "4x4 VO2 max",

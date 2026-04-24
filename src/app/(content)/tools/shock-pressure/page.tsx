@@ -1547,7 +1547,7 @@ export default function MtbSetupPage() {
                         <p className="text-foreground-muted text-sm leading-relaxed">
                           {tubeType === "tubeless"
                             ? "Tubeless setup allows lower pressures without pinch flat risk. If you're getting tyre burps on hard hits, add 1-2 PSI or consider a tyre insert (CushCore, Tannus, Vittoria Air-Liner)."
-                            : "Running tubes means higher minimum pressure to avoid pinch flats. Consider going tubeless to unlock lower pressures and better grip."}
+                            : "Running tubes means higher minimum pressure to avoid pinch flats. Going tubeless lets you run lower pressures with better grip."}
                         </p>
                         {tyreCasing === "enduro_dh" && (
                           <p className="text-foreground-muted text-sm leading-relaxed mt-2">

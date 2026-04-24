@@ -62,7 +62,7 @@ const LOCATIONS: Record<string, LocationData> = {
       },
       {
         quote:
-          "Anthony set me on a dietary, mental and physical journey. Average wattage doubled and weekly 100km+ rides are now the norm.",
+          "Anthony rebuilt my training, nutrition, and recovery from the ground up. Average wattage doubled and weekly 100km+ rides are now the norm.",
         name: "Chris O'Connor",
         detail: "Ireland — 84kg → 68kg · 20% body fat → 7%",
       },
@@ -277,7 +277,7 @@ const LOCATIONS: Record<string, LocationData> = {
       },
       {
         quote:
-          "Anthony set me on a dietary, mental and physical journey. Average wattage doubled and weekly 100km+ rides are now the norm.",
+          "Anthony rebuilt my training, nutrition, and recovery from the ground up. Average wattage doubled and weekly 100km+ rides are now the norm.",
         name: "Chris O'Connor",
         detail: "Ireland — 84kg → 68kg · 20% body fat → 7%",
       },
@@ -339,7 +339,7 @@ const LOCATIONS: Record<string, LocationData> = {
       },
       {
         quote:
-          "Anthony set me on a dietary, mental and physical journey. Average wattage doubled and weekly 100km+ rides are now the norm.",
+          "Anthony rebuilt my training, nutrition, and recovery from the ground up. Average wattage doubled and weekly 100km+ rides are now the norm.",
         name: "Chris O'Connor",
         detail: "Ireland — 84kg → 68kg · 20% body fat → 7%",
       },
@@ -413,7 +413,7 @@ const LOCATIONS: Record<string, LocationData> = {
       },
       {
         quote:
-          "Anthony set me on a dietary, mental and physical journey. Average wattage doubled and weekly 100km+ rides are now the norm.",
+          "Anthony rebuilt my training, nutrition, and recovery from the ground up. Average wattage doubled and weekly 100km+ rides are now the norm.",
         name: "Chris O'Connor",
         detail: "Ireland — 84kg → 68kg · 20% body fat → 7%",
       },

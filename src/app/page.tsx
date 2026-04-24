@@ -374,7 +374,7 @@ export default function HomePage() {
                     size="lg"
                     className="w-full"
                   >
-                    Learn More
+                    Inside Not Done Yet
                   </Button>
                 </Card>
               </ScrollReveal>

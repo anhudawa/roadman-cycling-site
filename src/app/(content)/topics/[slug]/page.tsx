@@ -68,9 +68,13 @@ export default async function TopicPage({
             name: "Roadman Cycling",
             url: "https://roadmancycling.com",
           },
+          // hasPart uses WebPage stubs rather than full BlogPosting nodes —
+          // shallow BlogPosting references without image/datePublished/author/
+          // publisher fail schema validation. The full BlogPosting schema is
+          // emitted on each individual /blog/<slug> page.
           hasPart: topic.posts.slice(0, 20).map((post) => ({
-            "@type": "BlogPosting",
-            headline: post.title,
+            "@type": "WebPage",
+            name: post.title,
             url: `https://roadmancycling.com/blog/${post.slug}`,
           })),
           speakable: {
@@ -256,7 +260,24 @@ export default async function TopicPage({
                   className="inline-flex items-center justify-center gap-2 font-heading tracking-wider uppercase rounded-md bg-coral text-off-white hover:bg-coral/90 px-6 py-3 text-sm transition-all"
                   data-track={`topic_${topic.slug}_cta`}
                 >
-                  {topic.commercialPath === "/apply" ? "Apply Now" : "Learn More"} →
+                  {(() => {
+                    switch (topic.commercialPath) {
+                      case "/apply":
+                        return "Apply Now";
+                      case "/coaching":
+                        return "See How Coaching Works";
+                      case "/coaching/triathlon":
+                        return "See Triathlon Coaching";
+                      case "/strength-training":
+                        return "Get the Strength Plan";
+                      case "/plan":
+                        return "Browse Training Plans";
+                      case "/start-here":
+                        return "Start Here";
+                      default:
+                        return "See More";
+                    }
+                  })()}{" "}→
                 </Link>
               </div>
             </ScrollReveal>

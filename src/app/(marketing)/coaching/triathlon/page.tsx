@@ -164,7 +164,7 @@ const testimonials = [
   },
   {
     quote:
-      "The expertise and personalised plan allowed me to utilise my past racing experience and gave me the adaptations needed for the changeover. If you're looking to unlock new potential, I couldn't recommend Anthony enough.",
+      "The expertise and personalised plan allowed me to utilise my past racing experience and gave me the adaptations needed for the changeover. Couldn't recommend Anthony enough.",
     name: "Aaron Kearney",
     detail: "Roadman member — endurance crossover",
   },

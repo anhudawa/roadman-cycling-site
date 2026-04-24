@@ -271,7 +271,7 @@ export default function AuthorPage() {
               <div className="flex flex-col sm:flex-row gap-3">
                 <Button href="/apply">Apply for Coaching</Button>
                 <Button href="/coaching" variant="ghost">
-                  Learn More
+                  How Coaching Works
                 </Button>
               </div>
             </div>

@@ -327,7 +327,7 @@ export default function FTPZonesPage() {
                       "Tuesday threshold session at your exact wattage",
                       "Thursday VO2 max 4×4 with your target numbers",
                       "Long Saturday Zone 2 with your ceiling",
-                      "The three rules that unlock the week",
+                      "The three rules every Zone 2 week follows",
                     ]}
                   />
                 </motion.div>
@@ -342,13 +342,18 @@ export default function FTPZonesPage() {
                   <h3 className="font-heading text-lg text-off-white mb-3">LEARN MORE</h3>
                   <ul className="space-y-2">
                     <li>
+                      <Link href="/blog/how-to-improve-ftp-cycling" className="text-coral hover:text-coral/80 text-sm transition-colors">
+                        How to Improve Your FTP
+                      </Link>
+                    </li>
+                    <li>
                       <Link href="/blog/ftp-training-zones-cycling-complete-guide" className="text-coral hover:text-coral/80 text-sm transition-colors">
                         FTP Training Zones: The Complete Guide
                       </Link>
                     </li>
                     <li>
-                      <Link href="/blog/how-to-improve-ftp-cycling" className="text-coral hover:text-coral/80 text-sm transition-colors">
-                        How to Improve Your FTP
+                      <Link href="/topics/ftp-training" className="text-coral hover:text-coral/80 text-sm transition-colors">
+                        FTP Training topic hub →
                       </Link>
                     </li>
                   </ul>

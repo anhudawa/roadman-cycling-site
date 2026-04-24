@@ -166,7 +166,7 @@ export default function ApplyPage() {
             {
               "@type": "Review",
               author: { "@type": "Person", name: "Chris O'Connor" },
-              reviewBody: "Anthony is a visionary, an educator, a mentor, a coach. He set me on a dietary, mental and physical journey of true discovery. Average wattage doubled and weekly 100km+ rides are now the norm.",
+              reviewBody: "Anthony is an educator, a mentor, and a coach. He rebuilt my diet, my head, and my riding. Average wattage doubled and weekly 100km+ rides are now the norm.",
             },
           ],
         }}
@@ -482,8 +482,8 @@ export default function ApplyPage() {
                   : [
                       {
                         n: "01",
-                        t: "Submit your application",
-                        d: "Takes under 2 minutes. Four questions, no credit card.",
+                        t: "Answer four questions",
+                        d: "Takes under 2 minutes. No credit card.",
                       },
                       {
                         n: "02",

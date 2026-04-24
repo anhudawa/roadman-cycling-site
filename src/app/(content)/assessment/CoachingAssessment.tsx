@@ -67,7 +67,7 @@ function getResult(score: number): Result {
 const RESULTS: Record<Result, { headline: string; body: string; cta: string; ctaHref: string }> = {
   ready: {
     headline: "YOU'RE READY FOR COACHING.",
-    body: "Your training history, goals, and current plateau make you an ideal candidate for structured coaching. You've outgrown what apps and self-coaching can deliver. A coach will unlock the next level.",
+    body: "Your training history, goals, and current plateau make you an ideal candidate for structured coaching. You've outgrown what apps and self-coaching can deliver. A coach is the next step — not another app.",
     cta: "Apply for Not Done Yet",
     ctaHref: "/apply",
   },

@@ -37,7 +37,7 @@ const whatsIncluded = [
     number: "03",
     title: "Stretching Guide for Cyclists",
     description:
-      "Targets the key muscle groups used in pedalling — unlock greater mobility, reduce soreness, and prevent the tightness that leads to injury.",
+      "Targets the key muscle groups used in pedalling — more mobility, less soreness, and the tightness that leads to injury stopped before it starts.",
   },
   {
     number: "04",

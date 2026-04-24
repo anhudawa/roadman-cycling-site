@@ -856,7 +856,7 @@ export default function PartnersPage() {
                   See Rates &amp; Availability
                 </Button>
                 <Button href="/sponsor#quiz" variant="ghost" size="lg">
-                  Find Your Fit
+                  Take the Sponsorship Quiz
                 </Button>
               </div>
               <div className="flex items-center justify-center gap-2 text-foreground-muted">
