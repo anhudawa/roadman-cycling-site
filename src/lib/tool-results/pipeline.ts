@@ -26,12 +26,28 @@ export interface CompleteToolResultInput extends SaveToolResultInput {
     discipline?: string | null;
     weeklyTrainingHours?: number | null;
     currentFtp?: number | null;
+    currentWeight?: number | null;
+    weightUnit?: "kg" | "lb" | null;
+    trainingTool?:
+      | "zwift"
+      | "trainerroad"
+      | "outside"
+      | "garmin"
+      | "wahoo"
+      | "other"
+      | null;
+    targetEvent?: string | null;
+    coachingStatus?: "self_coached" | "coached" | "unsure" | null;
+    coachingInterestLevel?: number | null;
     mainGoal?: string | null;
     biggestLimiter?: string | null;
     coachingInterest?: string | null;
     selfCoachedOrCoached?: string | null;
     consentSaveProfile?: boolean;
     consentEmailFollowup?: boolean;
+    marketingConsent?: boolean;
+    dataStorageConsent?: boolean;
+    researchConsent?: boolean;
   };
   /** Base URL for the result permalink in the email — request origin. */
   baseUrl: string;
@@ -62,12 +78,21 @@ export async function completeToolResult(
     discipline: patch.discipline,
     weeklyTrainingHours: patch.weeklyTrainingHours,
     currentFtp: patch.currentFtp,
+    currentWeight: patch.currentWeight,
+    weightUnit: patch.weightUnit,
+    trainingTool: patch.trainingTool,
+    targetEvent: patch.targetEvent,
+    coachingStatus: patch.coachingStatus,
+    coachingInterestLevel: patch.coachingInterestLevel,
     mainGoal: patch.mainGoal,
     biggestLimiter: patch.biggestLimiter,
     coachingInterest: patch.coachingInterest,
     selfCoachedOrCoached: patch.selfCoachedOrCoached,
     consentSaveProfile: patch.consentSaveProfile,
     consentEmailFollowup: patch.consentEmailFollowup,
+    marketingConsent: patch.marketingConsent,
+    dataStorageConsent: patch.dataStorageConsent,
+    researchConsent: patch.researchConsent,
   });
 
   // 2 — tool_result row
