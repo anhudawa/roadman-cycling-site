@@ -70,7 +70,11 @@
     "seed:mcp:community-stats": "tsx scripts/seed-mcp-community-stats.ts",
     "seed:mcp:content": "tsx scripts/seed-mcp-content.ts",
     "seed:mcp:products": "tsx scripts/seed-mcp-products.ts",
-    "seed:mcp:events": "tsx scripts/seed-mcp-events.ts"
+    "seed:mcp:events": "tsx scripts/seed-mcp-events.ts",
+    "seed:mcp:embeddings": "tsx scripts/generate-mcp-embeddings.ts",
+    "seed:mcp:embeddings:dry": "tsx scripts/generate-mcp-embeddings.ts --dry-run",
+    "seed:mcp:all": "npm run seed:mcp:content && npm run seed:mcp:products && npm run seed:mcp:events && npm run seed:mcp:community-stats && npm run seed:mcp:embeddings",
+    "validate:mcp:manifest": "tsx scripts/validate-mcp-manifest.ts"
   },
   "dependencies": {
     "@anthropic-ai/sdk": "^0.82.0",
