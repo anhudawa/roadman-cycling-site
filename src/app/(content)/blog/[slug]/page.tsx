@@ -493,6 +493,30 @@ export default async function BlogPostPage({
               reviewedBy="Anthony Walsh"
             />
 
+            {/* Graph-powered: related calculator tools — surfaces at least
+                one pillar-matched tool per article so every long-form piece
+                has a "try it yourself" action, and satisfies the article
+                internal-linking rule (1 hub + articles + tool + episode). */}
+            {graph.tools.length > 0 && (
+              <div className="mt-10">
+                <p className="font-heading text-coral text-xs tracking-widest mb-3">
+                  TRY THE CALCULATORS
+                </p>
+                <div className="flex flex-wrap gap-2">
+                  {graph.tools.slice(0, 2).map((t) => (
+                    <Link
+                      key={t.slug}
+                      href={t.href}
+                      className="inline-flex items-center gap-1 rounded-lg border border-white/15 hover:border-coral/40 bg-white/[0.04] hover:bg-white/[0.07] px-3 py-1.5 text-xs font-heading text-off-white tracking-wider transition-all"
+                    >
+                      {t.title}
+                      <span aria-hidden="true" className="ml-1">&rarr;</span>
+                    </Link>
+                  ))}
+                </div>
+              </div>
+            )}
+
             {/* Graph-powered: related glossary terms */}
             {graph.glossaryTerms.length > 0 && (
               <div className="mt-10">
