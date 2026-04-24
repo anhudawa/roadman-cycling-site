@@ -6,6 +6,8 @@ import {
   date,
   integer,
   real,
+  numeric,
+  uuid,
   jsonb,
   boolean,
   index,
@@ -923,6 +925,10 @@ export const diagnosticSubmissions = pgTable(
     beehiivSubscriberId: text("beehiiv_subscriber_id"),
     /** 1 on first submission for an email, 2 on second, etc. See §17. */
     retakeNumber: integer("retake_number").notNull().default(1),
+    /** Phase 2: link this submission to the shared rider profile so the
+     *  admin dashboard and /results history surfaces group all tools by
+     *  rider. Set async after insert so the request path stays fast. */
+    riderProfileId: integer("rider_profile_id"),
     createdAt: timestamp("created_at", { withTimezone: true }).notNull().defaultNow(),
     updatedAt: timestamp("updated_at", { withTimezone: true }).notNull().defaultNow(),
   },
@@ -931,6 +937,7 @@ export const diagnosticSubmissions = pgTable(
     index("diagnostic_submissions_created_at_idx").on(table.createdAt),
     index("diagnostic_submissions_primary_profile_idx").on(table.primaryProfile),
     index("diagnostic_submissions_utm_campaign_idx").on(table.utmCampaign),
+    index("diagnostic_submissions_rider_profile_id_idx").on(table.riderProfileId),
   ]
 );
 
@@ -1095,5 +1102,155 @@ export const mcpCallLogs = pgTable(
   (t) => [
     index("mcp_call_logs_tool_name_idx").on(t.toolName),
     index("mcp_call_logs_created_at_idx").on(t.createdAt),
+  ]
+);
+
+// ═══════════════════════════════════════════════════════════
+// Ask Roadman + Rider Profiles
+// ═══════════════════════════════════════════════════════════
+
+export const riderProfiles = pgTable(
+  "rider_profiles",
+  {
+    id: serial("id").primaryKey(),
+    contactId: integer("contact_id").references(() => contacts.id, { onDelete: "cascade" }),
+    email: text("email").notNull().unique(),
+    firstName: text("first_name"),
+    ageRange: text("age_range"),
+    discipline: text("discipline"),
+    weeklyTrainingHours: integer("weekly_training_hours"),
+    currentFtp: integer("current_ftp"),
+    weightKg: numeric("weight_kg", { precision: 5, scale: 2 }),
+    mainGoal: text("main_goal"),
+    targetEvent: text("target_event"),
+    targetEventDate: date("target_event_date"),
+    biggestLimiter: text("biggest_limiter"),
+    usesPowerMeter: boolean("uses_power_meter"),
+    currentTrainingTool: text("current_training_tool"),
+    coachingInterest: text("coaching_interest"),
+    // 'self' | 'coached' — captured during tool completion flows.
+    selfCoachedOrCoached: text("self_coached_or_coached"),
+    accessTier: text("access_tier").notNull().default("free"),
+    consentSaveProfile: boolean("consent_save_profile").notNull().default(false),
+    consentEmailFollowup: boolean("consent_email_followup").notNull().default(false),
+    consentRecordedAt: timestamp("consent_recorded_at", { withTimezone: true }),
+    createdAt: timestamp("created_at", { withTimezone: true }).notNull().defaultNow(),
+    updatedAt: timestamp("updated_at", { withTimezone: true }).notNull().defaultNow(),
+  },
+  (table) => [
+    index("rider_profiles_email_idx").on(table.email),
+    index("rider_profiles_contact_id_idx").on(table.contactId),
+  ]
+);
+
+export const askSessions = pgTable(
+  "ask_sessions",
+  {
+    id: uuid("id").primaryKey().defaultRandom(),
+    riderProfileId: integer("rider_profile_id").references(() => riderProfiles.id, { onDelete: "set null" }),
+    anonSessionKey: text("anon_session_key"),
+    startedAt: timestamp("started_at", { withTimezone: true }).notNull().defaultNow(),
+    lastActivityAt: timestamp("last_activity_at", { withTimezone: true }).notNull().defaultNow(),
+    messageCount: integer("message_count").notNull().default(0),
+    ipHash: text("ip_hash"),
+    userAgent: text("user_agent"),
+    utmSource: text("utm_source"),
+    utmCampaign: text("utm_campaign"),
+  },
+  (table) => [
+    index("ask_sessions_rider_profile_id_idx").on(table.riderProfileId),
+    index("ask_sessions_anon_session_key_idx").on(table.anonSessionKey),
+    index("ask_sessions_last_activity_at_idx").on(table.lastActivityAt),
+  ]
+);
+
+export const askMessages = pgTable(
+  "ask_messages",
+  {
+    id: uuid("id").primaryKey().defaultRandom(),
+    sessionId: uuid("session_id").notNull().references(() => askSessions.id, { onDelete: "cascade" }),
+    role: text("role").notNull(),
+    content: text("content").notNull(),
+    citations: jsonb("citations").$type<Array<{
+      type: "episode" | "methodology" | "content_chunk" | "expert_quote";
+      source_id: string;
+      title: string;
+      url?: string;
+      excerpt?: string;
+    }>>(),
+    ctaRecommended: text("cta_recommended"),
+    safetyFlags: text("safety_flags").array(),
+    confidence: text("confidence"),
+    model: text("model"),
+    inputTokens: integer("input_tokens"),
+    outputTokens: integer("output_tokens"),
+    latencyMs: integer("latency_ms"),
+    flaggedForReview: boolean("flagged_for_review").notNull().default(false),
+    adminNote: text("admin_note"),
+    adminPreferredAnswer: text("admin_preferred_answer"),
+    createdAt: timestamp("created_at", { withTimezone: true }).notNull().defaultNow(),
+  },
+  (table) => [
+    index("ask_messages_session_id_idx").on(table.sessionId),
+    index("ask_messages_created_at_idx").on(table.createdAt),
+  ]
+);
+
+export const askRetrievals = pgTable(
+  "ask_retrievals",
+  {
+    id: uuid("id").primaryKey().defaultRandom(),
+    messageId: uuid("message_id").notNull().references(() => askMessages.id, { onDelete: "cascade" }),
+    sourceType: text("source_type").notNull(),
+    sourceId: text("source_id").notNull(),
+    chunkText: text("chunk_text"),
+    score: numeric("score", { precision: 6, scale: 4 }),
+    usedInAnswer: boolean("used_in_answer").notNull().default(false),
+    createdAt: timestamp("created_at", { withTimezone: true }).notNull().defaultNow(),
+  },
+  (table) => [
+    index("ask_retrievals_message_id_idx").on(table.messageId),
+  ]
+);
+
+// ═══════════════════════════════════════════════════════════
+// Phase 2: Saved Diagnostics — tool_results
+// ═══════════════════════════════════════════════════════════
+// Generic store for completed tool runs (plateau, fuelling, ftp_zones).
+// Plateau also keeps its richer `diagnostic_submissions` row; this table
+// is the unified history/analytics surface that the /results page and
+// /admin/insights dashboard read from.
+export const toolResults = pgTable(
+  "tool_results",
+  {
+    id: serial("id").primaryKey(),
+    /** 10-char public slug used in /results/<tool>/<slug> URLs. */
+    slug: text("slug").notNull().unique(),
+    /** Nullable — anonymous completions still save so we can email them,
+     *  but only get linked to a rider profile when consent is given. */
+    riderProfileId: integer("rider_profile_id").references(() => riderProfiles.id, { onDelete: "set null" }),
+    email: text("email").notNull(),
+    /** 'plateau' | 'fuelling' | 'ftp_zones' — extend the union, not this column. */
+    toolSlug: text("tool_slug").notNull(),
+    inputs: jsonb("inputs").notNull().$type<Record<string, unknown>>(),
+    outputs: jsonb("outputs").notNull().$type<Record<string, unknown>>(),
+    /** One-line summary for the history list — e.g. "Under-Recovered (68g/hr)". */
+    summary: text("summary").notNull(),
+    /** Primary result token for analytics grouping (plateau profile, carb bucket, etc). */
+    primaryResult: text("primary_result"),
+    /** CRM tags applied on completion — mirrors what was upserted to Beehiiv / contacts. */
+    tags: jsonb("tags").$type<string[]>().notNull().default([]),
+    utm: jsonb("utm").$type<Record<string, string | null>>(),
+    sourcePage: text("source_page"),
+    emailSentAt: timestamp("email_sent_at", { withTimezone: true }),
+    /** First time the user clicked "Ask Roadman what this means" on this result. */
+    askHandoffAt: timestamp("ask_handoff_at", { withTimezone: true }),
+    createdAt: timestamp("created_at", { withTimezone: true }).notNull().defaultNow(),
+  },
+  (table) => [
+    index("tool_results_email_idx").on(table.email),
+    index("tool_results_tool_slug_idx").on(table.toolSlug),
+    index("tool_results_rider_profile_id_idx").on(table.riderProfileId),
+    index("tool_results_created_at_idx").on(table.createdAt),
   ]
 );

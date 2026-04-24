@@ -19,7 +19,23 @@ export type EventType =
   | "diagnostic_progress"
   | "diagnostic_complete"
   | "diagnostic_results_view"
-  | "diagnostic_cta_click";
+  | "diagnostic_cta_click"
+  // ── Ask Roadman ────────────────────────────────────────
+  | "ask_session_started"
+  | "ask_question_submitted"
+  | "ask_intent_classified"
+  | "ask_retrieval_completed"
+  | "ask_answer_streamed"
+  | "ask_citation_shown"
+  | "ask_cta_shown"
+  | "ask_cta_clicked"
+  | "ask_safety_triggered"
+  | "ask_message_flagged"
+  | "ask_feedback_submitted"
+  | "ask_profile_saved"
+  | "ask_starter_prompt_clicked"
+  | "ask_rate_limited"
+  | "ask_error_shown";
 
 export interface TrackingEvent {
   id: string;
