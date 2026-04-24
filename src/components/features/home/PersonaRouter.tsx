@@ -45,7 +45,7 @@ const personas = [
   {
     opener: "I want to train like the pros.",
     detail:
-      "You listen. You've absorbed the principles. Here's the short path: the best conversations, the core concepts, what to do next.",
+      "You listen. You've absorbed the principles. The short path from here: the best conversations, the core concepts, what to do next.",
     cta: "Start here",
     href: "/you/listener",
     accent: "purple",

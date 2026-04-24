@@ -310,7 +310,7 @@ export default function EnergyAvailabilityPage() {
                         `Personalised calorie target based on your FFM`,
                         "Risk assessment + what each category actually means",
                         "Signs of chronic low EA (not just missed periods)",
-                        "Fueling around training vs deficit on rest days",
+                        "Fuelling around training vs deficit on rest days",
                         "When to see a sports physician",
                       ]}
                     />

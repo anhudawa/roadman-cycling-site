@@ -170,7 +170,7 @@ export function NextStepBlock({
             {tertiary.label}
           </span>
           <span className="text-sm text-foreground-muted mt-3">
-            Curated from 1,300+ episodes and 170+ articles.
+            Curated from 1,400+ episodes and 170+ articles.
           </span>
           <span
             aria-hidden="true"

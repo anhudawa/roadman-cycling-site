@@ -94,7 +94,7 @@ Author: Anthony Walsh (cycling coach, podcast host, founder of Roadman Cycling).
 
 Roadman Cycling is a cycling performance media and coaching brand based in Dublin, Ireland. Core offerings:
 
-- The Roadman Cycling Podcast — 1,300+ interview episodes with World Tour coaches, sports scientists, and pro riders. 1M+ monthly listeners.
+- The Roadman Cycling Podcast — 1,400+ interview episodes with World Tour coaches, sports scientists, and pro riders. 1M+ monthly listeners.
 - Not Done Yet coaching community — premium online 1:1 coaching covering training, nutrition, strength, recovery, and accountability. $195/month with 7-day free trial.
 - Triathlon Bike Coaching — specialist bike-leg coaching inside the Not Done Yet coaching community for age-group 70.3 and Ironman triathletes.
 - Free calculator tools — FTP zones, tyre pressure, race weight, in-ride fuelling, energy availability, MTB shock pressure, HR zones, and W/kg.

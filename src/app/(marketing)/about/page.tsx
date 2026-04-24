@@ -45,7 +45,7 @@ const expertNetwork: { name: string; role: string; category: ExpertCategory; hig
 ];
 
 const milestones = [
-  { year: "2019", event: "Roadman Cycling Podcast launches", icon: "🎙️" },
+  { year: "2021", event: "Roadman Cycling Podcast launches", icon: "🎙️" },
   { year: "2022", event: "1 million downloads", icon: "📈" },
   { year: "2023", event: "Sarah joins the podcast team", icon: "🤝" },
   { year: "2024", event: "Greg LeMond interview — a career highlight", icon: "🏆" },
@@ -72,7 +72,7 @@ export default function AboutPage() {
             name: "Anthony Walsh",
           },
           description:
-            "Cycling coach and founder of Roadman Cycling. Host of the Roadman Cycling Podcast, with over 1,300 conversations with World Tour coaches, sports scientists, and professional riders — including Prof. Stephen Seiler, Dan Lorang, Greg LeMond, and Lachlan Morton.",
+            "Cycling coach and founder of Roadman Cycling. Host of the Roadman Cycling Podcast, with over 1,400 conversations with World Tour coaches, sports scientists, and professional riders — including Prof. Stephen Seiler, Dan Lorang, Greg LeMond, and Lachlan Morton.",
           image: "https://roadmancycling.com/images/about/anthony-walsh-podcast.jpg",
           jobTitle: "Cycling Coach & Podcast Host",
           url: "https://roadmancycling.com/about",
@@ -125,12 +125,11 @@ export default function AboutPage() {
               <p className="text-foreground-muted text-xl max-w-3xl mx-auto leading-relaxed">
                 The best information in sport — the stuff that actually moves
                 the needle — reaches elite athletes first, then the mega-rich,
-                and sometimes takes decades to trickle down to the rest of us.
-                I set out to short-circuit that process. To connect you directly
-                with the best minds in the game — the coaches, scientists, and
-                riders at the tip of the spear — so you get the same edge
-                without the wait. Performance, longevity, and a better life on
-                and off the bike. That&apos;s why Roadman exists.
+                and takes years to filter down to the rest of us. I set out to
+                short-circuit that. To connect you directly with the coaches,
+                scientists, and riders at the tip of the spear — so you get
+                the same edge without the wait. Performance, longevity, and a
+                better life on and off the bike. That&apos;s why Roadman exists.
               </p>
             </ScrollReveal>
           </Container>
@@ -201,10 +200,10 @@ export default function AboutPage() {
               <ScrollReveal direction="up" delay={0.2}>
                 <p>
                   Professor Stephen Seiler broke down polarised training.
-                  Dan Lorang explained World Tour training methodology.
+                  Dan Lorang explained how he builds World Tour training plans.
                   Greg LeMond shared what it took to win three Tours de France.
                   Lachlan Morton talked about why the World Tour wasn&apos;t
-                  enough. Over 1,300 conversations later, the access hasn&apos;t
+                  enough. Over 1,400 conversations later, the access hasn&apos;t
                   slowed down.
                 </p>
               </ScrollReveal>
@@ -325,7 +324,7 @@ export default function AboutPage() {
                   EVERYTHING I&apos;VE LEARNED, APPLIED TO YOUR TRAINING.
                 </h3>
                 <p className="text-foreground-muted text-lg mb-8 max-w-xl mx-auto leading-relaxed">
-                  1,300+ conversations with the best coaches, scientists and
+                  1,400+ conversations with the best coaches, scientists and
                   riders in the sport — distilled into a plan built around
                   your power numbers, your events, your calendar, your life.
                 </p>
@@ -405,7 +404,7 @@ export default function AboutPage() {
 
             <ScrollReveal direction="up" delay={0.5}>
               <p className="text-center text-foreground-muted text-sm mt-8">
-                Plus 1,300+ more conversations in{" "}
+                Plus 1,400+ more conversations in{" "}
                 <Link href="/guests" className="text-coral hover:underline">
                   the full guest archive
                 </Link>
@@ -432,7 +431,7 @@ export default function AboutPage() {
 
             <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6">
               {[
-                { name: "Anthony Walsh", role: "Host & Content", image: "/images/team/anthony.avif", bio: "The voice behind 1,300+ episodes" },
+                { name: "Anthony Walsh", role: "Host & Content", image: "/images/team/anthony.avif", bio: "The voice behind 1,400+ episodes" },
                 { name: "Sarah Ann Egan", role: "Co-Host & Operations", image: "/images/team/sarah-solo.jpg", bio: "Keeps the wheels turning" },
                 { name: "Wes Andrade", role: "Production", image: "/images/team/wes.jpg", bio: "Makes it sound this good" },
                 { name: "Matthew Devins", role: "Coaching", image: "/images/team/devins.jpg", bio: "Not Done Yet coaching community lead" },

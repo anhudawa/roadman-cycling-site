@@ -112,7 +112,7 @@ const pillars = [
 const objections = [
   {
     q: "Is this just another online coaching programme?",
-    a: "No. It's a system built from 1,300+ conversations with the coaches, nutritionists, and scientists at the top of the sport. Not recycled content — structured, applied knowledge with accountability.",
+    a: "No. It's a system built from 1,400+ conversations with the coaches, nutritionists, and scientists at the top of the sport. Not recycled content — structured, applied knowledge with accountability.",
   },
   {
     q: "Can I cancel anytime?",
