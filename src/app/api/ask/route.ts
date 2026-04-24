@@ -19,6 +19,13 @@ const BodySchema = z.object({
   query: z.string().min(2).max(2000),
   sessionId: z.string().uuid().optional(),
   riderProfileId: z.number().int().positive().optional(),
+  seed: z
+    .object({
+      tool: z.string().min(1).max(32),
+      slug: z.string().min(1).max(64),
+    })
+    .optional()
+    .nullable(),
 });
 
 function ipFromRequest(req: Request): string {
@@ -52,7 +59,7 @@ export async function POST(request: Request): Promise<Response> {
   if (!parsed.success) {
     return jsonError(400, "bad_request", parsed.error.issues[0]?.message ?? "Invalid payload");
   }
-  const { query, sessionId: incomingSessionId, riderProfileId } = parsed.data;
+  const { query, sessionId: incomingSessionId, riderProfileId, seed } = parsed.data;
 
   const ip = ipFromRequest(request);
   const ipHash = hashIp(ip);
@@ -110,6 +117,7 @@ export async function POST(request: Request): Promise<Response> {
       sessionId: session.id,
       riderProfileId: session.riderProfileId,
       ip: ipHash,
+      seed: seed ?? null,
     },
     ctrl,
   ).catch((err) => {

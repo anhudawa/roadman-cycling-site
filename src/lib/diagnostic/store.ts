@@ -1,5 +1,5 @@
 import crypto from "crypto";
-import { eq, sql } from "drizzle-orm";
+import { desc, eq, sql } from "drizzle-orm";
 import { db } from "@/lib/db";
 import { diagnosticSubmissions } from "@/lib/db/schema";
 import {
@@ -168,6 +168,52 @@ export async function insertSubmission(
   throw new Error(
     `Failed to allocate a unique diagnostic slug after ${SLUG_RETRY_ATTEMPTS} attempts`
   );
+}
+
+/**
+ * History-page view: compact summary rows for a given email, newest
+ * first. Used by /results to render a unified timeline alongside
+ * tool_result rows.
+ */
+export interface DiagnosticHistoryItem {
+  slug: string;
+  primaryProfile: Profile;
+  secondaryProfile: Profile | null;
+  severeMultiSystem: boolean;
+  closeToBreakthrough: boolean;
+  createdAt: Date;
+  retakeNumber: number;
+}
+
+export async function listSubmissionsByEmail(
+  email: string,
+  limit = 50,
+): Promise<DiagnosticHistoryItem[]> {
+  const normalised = email.trim().toLowerCase();
+  const rows = await db
+    .select({
+      slug: diagnosticSubmissions.slug,
+      primaryProfile: diagnosticSubmissions.primaryProfile,
+      secondaryProfile: diagnosticSubmissions.secondaryProfile,
+      severeMultiSystem: diagnosticSubmissions.severeMultiSystem,
+      closeToBreakthrough: diagnosticSubmissions.closeToBreakthrough,
+      createdAt: diagnosticSubmissions.createdAt,
+      retakeNumber: diagnosticSubmissions.retakeNumber,
+    })
+    .from(diagnosticSubmissions)
+    .where(eq(diagnosticSubmissions.email, normalised))
+    .orderBy(desc(diagnosticSubmissions.createdAt))
+    .limit(limit);
+
+  return rows.map((r) => ({
+    slug: r.slug,
+    primaryProfile: r.primaryProfile as Profile,
+    secondaryProfile: r.secondaryProfile as Profile | null,
+    severeMultiSystem: r.severeMultiSystem,
+    closeToBreakthrough: r.closeToBreakthrough,
+    createdAt: r.createdAt,
+    retakeNumber: r.retakeNumber,
+  }));
 }
 
 export async function getSubmissionBySlug(

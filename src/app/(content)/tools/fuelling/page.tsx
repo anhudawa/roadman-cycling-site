@@ -4,7 +4,8 @@ import { useState, useEffect, useCallback } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Header, Footer, Section, Container } from "@/components/layout";
 import { Button } from "@/components/ui";
-import { ReportRequestForm } from "@/components/features/tools/ReportRequestForm";
+import { SaveToolResultForm } from "@/components/features/tools/SaveToolResultForm";
+import { TOOL_EVENTS, trackTool } from "@/lib/analytics/tool-events";
 
 type GutTraining = "none" | "some" | "trained";
 type SessionType = "recovery" | "endurance" | "tempo" | "sweetspot" | "threshold" | "vo2" | "race" | "intervals";
@@ -381,7 +382,17 @@ export default function FuellingPage() {
     const w = parseInt(watts);
     const wt = parseFloat(weight);
     if (d > 0 && w > 0 && wt > 0) {
-      setResult(calculateFuelling(d, sessionType, w, wt, gutTraining, weather));
+      const next = calculateFuelling(d, sessionType, w, wt, gutTraining, weather);
+      setResult(next);
+      trackTool({
+        name: TOOL_EVENTS.COMPLETED,
+        tool: "fuelling",
+        meta: {
+          sessionType,
+          carbsPerHour: next.carbsPerHour,
+          heatCategory: next.heatCategory,
+        },
+      });
     }
   };
 
@@ -730,14 +741,17 @@ export default function FuellingPage() {
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.35, delay: 0.48 }}
                   >
-                    <ReportRequestForm
+                    <SaveToolResultForm
                       tool="fuelling"
+                      resultsPathTool="fuelling"
                       inputs={{
-                        duration: parseFloat(duration),
+                        durationMinutes: parseInt(duration),
                         sessionType,
-                        watts: parseFloat(watts),
-                        weight: parseFloat(weight),
+                        watts: parseInt(watts),
+                        weightKg: parseFloat(weight),
                         gutTraining,
+                      }}
+                      outputs={{
                         carbsPerHour: result.carbsPerHour,
                         totalCarbs: result.totalCarbs,
                         fluidPerHour: result.fluidPerHour,
@@ -745,20 +759,22 @@ export default function FuellingPage() {
                         sodiumPerHour: result.sodiumPerHour,
                         glucosePerHour: result.glucosePerHour,
                         fructosePerHour: result.fructosePerHour,
-                        strategy: result.strategy,
                         feedingInterval: result.feedingInterval,
                         startFuellingAt: result.startFuellingAt,
+                        dualSource: result.dualSource,
                         heatCategory: result.heatCategory,
+                        weatherNote: result.weatherNote,
                         intensityLabel: result.intensityLabel,
+                        strategy: result.strategy,
                       }}
-                      heading={`Your hour-by-hour fuelling plan`}
-                      subheading="We'll email your full plan — exactly what to eat, when to eat it, how much fluid, how much sodium. Save it to your phone before the ride."
+                      heading="Your hour-by-hour fuelling plan"
+                      subheading="Save your plan — you'll get a shareable permalink plus a copy emailed to you. Open the permalink on your phone before the ride."
                       bullets={[
                         `${result.carbsPerHour}g carbs/hr · ${result.fluidPerHour}ml fluid/hr`,
-                        `Complete hour-by-hour schedule with feeding intervals`,
+                        "Complete hour-by-hour schedule with feeding intervals",
                         "Glucose + fructose ratio explained",
                         "Heat-adjusted sodium targets",
-                        "Gut training progression if you're not there yet",
+                        "Ask Roadman can unpack this one-click after you save",
                       ]}
                     />
                   </motion.div>

@@ -24,6 +24,7 @@ export const ASK_EVENTS = {
   STARTER_PROMPT_CLICKED: "ask_starter_prompt_clicked",
   RATE_LIMITED: "ask_rate_limited",
   ERROR_SHOWN: "ask_error_shown",
+  SEED_LOADED: "ask_seed_loaded",
 } as const;
 
 export type AskEventName = (typeof ASK_EVENTS)[keyof typeof ASK_EVENTS];

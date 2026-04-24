@@ -10,6 +10,8 @@
 
 import type { CtaDescriptor, RetrievedChunk } from "./types";
 import type { RiderProfile } from "@/lib/rider-profile/types";
+import type { SeedContext } from "./seed";
+import { seedToPromptSection } from "./seed";
 
 const CORE_PERSONA = `You are Ask Roadman — the on-site cycling performance assistant for RoadmanCycling.com, hosted by Anthony Walsh.
 
@@ -86,9 +88,13 @@ export interface BuildPromptInput {
   profile: RiderProfile | null;
   cta: CtaDescriptor;
   chunks: RetrievedChunk[];
+  seed?: SeedContext | null;
 }
 
 export function buildSystemPrompt(input: BuildPromptInput): string {
+  const seedBlock = input.seed
+    ? [`---`, `SEED CONTEXT (handed off from the rider's saved result)`, seedToPromptSection(input.seed)]
+    : [];
   return [
     CORE_PERSONA,
     VOICE_RULES,
@@ -98,6 +104,7 @@ export function buildSystemPrompt(input: BuildPromptInput): string {
     `---`,
     `RIDER PROFILE`,
     formatProfile(input.profile),
+    ...seedBlock,
     `---`,
     `CTA FOR THIS RESPONSE`,
     formatCta(input.cta),

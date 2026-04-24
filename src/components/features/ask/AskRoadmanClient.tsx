@@ -6,6 +6,8 @@ import { MessageList } from "./MessageList";
 import { StarterPrompts } from "./StarterPrompts";
 
 export interface AskSeed {
+  /** Canonical tool slug (e.g. "ftp_zones") — forwarded to the orchestrator. */
+  toolSlug: string;
   toolTitle: string;
   summary: string;
   primaryCategoryLabel: string | null;
@@ -24,6 +26,7 @@ export function AskRoadmanClient({ seed = null }: { seed?: AskSeed | null }) {
   const [input, setInput] = useState(() => initialPromptFromSeed(seed));
   const textareaRef = useRef<HTMLTextAreaElement>(null);
   const hasMessages = messages.length > 0;
+  const seedConsumedRef = useRef(false);
 
   // Rehydrate any prior session so a returning user sees their history.
   useEffect(() => {
@@ -76,18 +79,32 @@ export function AskRoadmanClient({ seed = null }: { seed?: AskSeed | null }) {
     autoGrow();
   }, [input, autoGrow]);
 
+  // Attach seed to the first message only — subsequent turns rely on
+  // session-persisted context, and resending would just grow the prompt.
+  const sendWithSeed = useCallback(
+    async (query: string, starter?: string) => {
+      const shouldAttachSeed = seed !== null && !seedConsumedRef.current;
+      const seedSignal = shouldAttachSeed && seed
+        ? { tool: seed.toolSlug, slug: seed.resultSlug }
+        : null;
+      if (shouldAttachSeed) seedConsumedRef.current = true;
+      await submit(query, { starter, seed: seedSignal });
+    },
+    [seed, submit],
+  );
+
   const onSubmit = async (e?: React.FormEvent) => {
     if (e) e.preventDefault();
     const trimmed = input.trim();
     if (!trimmed || isStreaming) return;
     setInput("");
-    await submit(trimmed);
+    await sendWithSeed(trimmed);
   };
 
   const onStarter = async (prompt: string, starter: string) => {
     if (isStreaming) return;
     setInput("");
-    await submit(prompt, { starter });
+    await sendWithSeed(prompt, starter);
   };
 
   return (

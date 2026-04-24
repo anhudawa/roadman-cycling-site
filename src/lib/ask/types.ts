@@ -104,6 +104,8 @@ export interface OrchestratorInput {
   sessionId: string;
   riderProfileId: number | null;
   ip: string;
+  /** Optional seed handoff from a saved tool result. */
+  seed?: { tool: string; slug: string } | null;
 }
 
 export type OrchestratorEmitType =

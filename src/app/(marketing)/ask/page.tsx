@@ -144,6 +144,7 @@ export default async function AskPage({
               seed={
                 seed
                   ? {
+                      toolSlug: seed.toolSlug,
                       toolTitle: seed.toolTitle,
                       summary: seed.summary,
                       primaryCategoryLabel: seed.primaryCategoryLabel,
