@@ -108,7 +108,15 @@ export default async function BlogPostPage({
         return haystack.includes(e.name.toLowerCase()) || haystack.includes(e.shortName.toLowerCase());
       }).slice(0, 3);
 
-  const graph = queryContentGraph({ pillar: post.pillar, limit: 3 });
+  // Prefer the article's primary topic hub for graph lookups so posts that
+  // belong to a topic inherit that topic's tool roster (content-graph only
+  // returns tools when a topicSlug resolves a TopicHub). Falls back to
+  // pillar-only matching for posts outside any topic hub.
+  const graph = queryContentGraph({
+    topicSlug: parentTopics[0]?.slug,
+    pillar: post.pillar,
+    limit: 3,
+  });
   const publishDate = new Date(post.publishDate);
 
   return (
