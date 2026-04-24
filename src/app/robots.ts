@@ -23,6 +23,7 @@ export default function robots(): MetadataRoute.Robots {
       { userAgent: "cohere-ai", allow: "/" },
     ],
     sitemap: [
+      "https://roadmancycling.com/sitemap-index.xml",
       "https://roadmancycling.com/sitemap/0.xml",
       "https://roadmancycling.com/sitemap/1.xml",
       "https://roadmancycling.com/sitemap/2.xml",
