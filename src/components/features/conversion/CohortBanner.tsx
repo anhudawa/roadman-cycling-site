@@ -90,7 +90,7 @@ export function CohortBanner() {
     if (hidden) {
       root.style.setProperty("--cohort-banner-height", "0px");
     } else {
-      root.style.setProperty("--cohort-banner-height", "40px");
+      root.style.setProperty("--cohort-banner-height", "44px");
     }
     return () => {
       root.style.setProperty("--cohort-banner-height", "0px");
@@ -114,7 +114,7 @@ export function CohortBanner() {
 
   return (
     <div
-      className="fixed top-0 left-0 right-0 bg-coral text-off-white h-10 flex items-center"
+      className="fixed top-0 left-0 right-0 bg-coral text-off-white h-11 flex items-center"
       style={{ zIndex: 60 }}
     >
       <div className="mx-auto max-w-[1400px] px-4 w-full flex items-center justify-between gap-3">
@@ -135,7 +135,7 @@ export function CohortBanner() {
         <div className="flex items-center gap-2 shrink-0">
           <Link
             href={state.banner.ctaHref}
-            className="font-heading text-xs sm:text-sm tracking-wider bg-off-white text-coral px-3 sm:px-4 py-1.5 rounded-md hover:bg-off-white/90 transition-colors whitespace-nowrap"
+            className="font-heading text-xs sm:text-sm tracking-wider bg-off-white text-coral px-3 sm:px-4 min-h-[40px] flex items-center rounded-md hover:bg-off-white/90 transition-colors whitespace-nowrap"
           >
             {state.banner.cta} <span aria-hidden="true">→</span>
           </Link>
@@ -144,7 +144,7 @@ export function CohortBanner() {
               type="button"
               aria-label="Dismiss cohort banner"
               onClick={handleDismiss}
-              className="w-7 h-7 flex items-center justify-center rounded-md hover:bg-white/10 transition-colors"
+              className="w-10 h-10 flex items-center justify-center rounded-md hover:bg-white/10 transition-colors"
             >
               <svg
                 className="w-4 h-4"

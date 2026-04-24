@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import Link from "next/link";
-import { Card, Badge, ScrollReveal } from "@/components/ui";
+import { Card, Badge } from "@/components/ui";
 import { type ContentPillar, CONTENT_PILLARS } from "@/types";
 import type { GuestTag } from "@/lib/guests";
 
@@ -84,40 +84,40 @@ export function GuestGrid({ guests }: { guests: GuestCardData[] }) {
         })}
       </div>
 
-      {/* Grid */}
+      {/* Grid — cards render statically; the earlier per-card ScrollReveal
+          wrapper pushed 57 guest cards to opacity:0 in SSR HTML which hid
+          them from crawlers and no-JS users. */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-        {filtered.map((guest, i) => (
-          <ScrollReveal
+        {filtered.map((guest) => (
+          <Link
             key={guest.slug}
-            direction="up"
-            delay={Math.min(i * 0.03, 0.3)}
+            href={`/guests/${guest.slug}`}
+            className="block group"
           >
-            <Link href={`/guests/${guest.slug}`} className="block group">
-              <Card className="p-6 h-full transition-all group-hover:border-coral/30">
-                <div className="flex items-start justify-between mb-3">
-                  <h2 className="font-heading text-xl text-off-white group-hover:text-coral transition-colors">
-                    {guest.name.toUpperCase()}
-                  </h2>
-                  <span className="text-xs text-foreground-subtle font-heading whitespace-nowrap ml-3">
-                    {guest.episodeCount}{" "}
-                    {guest.episodeCount === 1 ? "EP" : "EPS"}
-                  </span>
-                </div>
+            <Card className="p-6 h-full transition-all group-hover:border-coral/30">
+              <div className="flex items-start justify-between mb-3">
+                <h2 className="font-heading text-xl text-off-white group-hover:text-coral transition-colors">
+                  {guest.name.toUpperCase()}
+                </h2>
+                <span className="text-xs text-foreground-subtle font-heading whitespace-nowrap ml-3">
+                  {guest.episodeCount}{" "}
+                  {guest.episodeCount === 1 ? "EP" : "EPS"}
+                </span>
+              </div>
 
-                {guest.credential && (
-                  <p className="text-sm text-foreground-muted mb-3 leading-relaxed">
-                    {guest.credential}
-                  </p>
-                )}
+              {guest.credential && (
+                <p className="text-sm text-foreground-muted mb-3 leading-relaxed">
+                  {guest.credential}
+                </p>
+              )}
 
-                <div className="flex flex-wrap gap-2">
-                  {guest.pillars.map((pillar) => (
-                    <Badge key={pillar} pillar={pillar} size="sm" />
-                  ))}
-                </div>
-              </Card>
-            </Link>
-          </ScrollReveal>
+              <div className="flex flex-wrap gap-2">
+                {guest.pillars.map((pillar) => (
+                  <Badge key={pillar} pillar={pillar} size="sm" />
+                ))}
+              </div>
+            </Card>
+          </Link>
         ))}
       </div>
 

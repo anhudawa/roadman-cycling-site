@@ -137,7 +137,7 @@ export function PersonaRouter() {
                   </Link>
                   <Link
                     href="/apply"
-                    className="mt-3 pt-3 border-t border-white/5 text-xs font-body text-coral/80 hover:text-coral transition-colors"
+                    className="mt-3 pt-3 border-t border-white/5 text-xs font-body text-coral/80 hover:text-coral transition-colors flex items-center min-h-[40px]"
                   >
                     Or apply to join &rarr;
                   </Link>
