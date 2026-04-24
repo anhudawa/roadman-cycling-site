@@ -10,6 +10,7 @@ import type { RetrievedChunk } from "../types";
 
 export async function searchContentChunks(
   _query: string,
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   _limit = 4,
 ): Promise<RetrievedChunk[]> {
   // Placeholder — Phase 4 adds the real implementation.

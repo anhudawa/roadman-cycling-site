@@ -56,7 +56,7 @@ export async function streamAnswer(
       role: "user",
       content: input.query,
     });
-  } catch (err) {
+  } catch {
     sse.enqueue({ type: "error", data: { message: "Couldn't persist the question — try again." } });
     sse.close();
     return;
@@ -174,7 +174,7 @@ export async function streamAnswer(
     }
 
     sse.enqueue({ type: "done", data: { messageId: assistant.id, flaggedForReview: flagged } });
-  } catch (err) {
+  } catch {
     sse.enqueue({
       type: "error",
       data: { message: "Something went sideways generating the answer. Try again in a moment." },
