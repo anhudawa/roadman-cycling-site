@@ -24,7 +24,7 @@ The following posts received factual corrections, citations, softened claims, or
 
 The remaining 17 posts were reviewed and left unchanged because their claims are either (a) widely-accepted cycling-training principles that do not need citations, (b) editorial/opinion content with no hard numeric claims, or (c) geo/logistical content outside the scientific scope.
 
-Posts reviewed and left unchanged: cycling-bike-upgrade-worth-it, cycling-body-composition-guide, cycling-breathing-techniques, cycling-cadence-optimal-guide, cycling-chain-lube-guide, cycling-climbing-tips-stop-getting-dropped, cycling-coach-near-me-why-location-doesnt-matter-2026, cycling-coach-near-me-why-location-doesnt-matter, cycling-coaching-cost-guide, cycling-coaching-for-beginners-when-ready, cycling-group-ride-etiquette-guide, cycling-headwind-strategies, cycling-hill-repeats-training, cycling-hrv-training-guide, cycling-in-rain-guide, cycling-indoor-training-tips, cycling-interval-training-beginners.
+Posts reviewed and left unchanged: cycling-bike-upgrade-worth-it, cycling-body-composition-guide, cycling-breathing-techniques, cycling-cadence-optimal-guide, cycling-chain-lube-guide, cycling-climbing-tips-stop-getting-dropped, cycling-coach-near-me-why-location-doesnt-matter-2026, cycling-coach-near-me-why-location-doesnt-matter-2026, how-much-does-online-cycling-coach-cost-2026, cycling-coaching-for-beginners-when-ready, cycling-group-ride-etiquette-guide, cycling-headwind-strategies, cycling-hill-repeats-training, cycling-hrv-training-guide, cycling-in-rain-guide, cycling-indoor-training-tips, cycling-interval-training-beginners.
 
 ## 2. Factual corrections made
 

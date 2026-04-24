@@ -152,7 +152,7 @@ const COMPARISON_CLUSTER = [
 ];
 
 const PODCAST_AUTHORITY_CLUSTER = [
-  "best-cycling-podcasts-for-2026-edition",
+  "best-cycling-podcasts-2026",
   "best-indoor-cycling-podcasts-winter",
   "best-cycling-training-podcasts-age-groupers",
   "best-cycling-podcast-for-triathletes",

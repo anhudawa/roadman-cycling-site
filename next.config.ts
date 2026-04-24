@@ -180,6 +180,33 @@ const nextConfig: NextConfig = {
       { source: "/getstrong", destination: "/strength-training", permanent: true },
       { source: "/s-c-plan", destination: "/strength-training", permanent: true },
 
+      // Consolidated duplicate blog posts — keep canonical, 301 the dupes
+      {
+        source: "/blog/best-cycling-podcasts-for-2026-edition",
+        destination: "/blog/best-cycling-podcasts-2026",
+        permanent: true,
+      },
+      {
+        source: "/blog/cycling-coach-near-me-why-location-doesnt-matter",
+        destination: "/blog/cycling-coach-near-me-why-location-doesnt-matter-2026",
+        permanent: true,
+      },
+      {
+        source: "/blog/online-cycling-coach-cost",
+        destination: "/blog/how-much-does-online-cycling-coach-cost-2026",
+        permanent: true,
+      },
+      {
+        source: "/blog/cycling-coaching-cost-guide",
+        destination: "/blog/how-much-does-online-cycling-coach-cost-2026",
+        permanent: true,
+      },
+      {
+        source: "/blog/trainerroad-vs-coaching",
+        destination: "/blog/trainerroad-vs-online-cycling-coach",
+        permanent: true,
+      },
+
       // ClickFunnels orphan landing pages — P2 redirects
       { source: "/tyre-pressure-2-page--64de3", destination: "/tools/tyre-pressure", permanent: true },
       { source: "/toolkit2-page", destination: "/tools", permanent: true },

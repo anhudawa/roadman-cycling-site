@@ -39,7 +39,7 @@ export const COMPARISON_CLUSTER_ARTICLES: ClusterArticleSpec[] = [
     internalLinks: [
       { href: "/coaching", anchor: "1:1 cycling coaching" },
       { href: "/tools/ftp-zones", anchor: "your FTP zones" },
-      { href: "/blog/trainerroad-vs-coaching", anchor: "TrainerRoad vs a human coach" },
+      { href: "/blog/trainerroad-vs-online-cycling-coach", anchor: "TrainerRoad vs a human coach" },
     ],
     wordTarget: 2500,
     featuredImage: "/images/cycling/gravel-road-climb.jpg",
@@ -109,7 +109,7 @@ export const COMPARISON_CLUSTER_ARTICLES: ClusterArticleSpec[] = [
     internalLinks: [
       { href: "/coaching", anchor: "coaching that uses your power data" },
       { href: "/tools/ftp-zones", anchor: "set your power zones" },
-      { href: "/blog/trainerroad-vs-coaching", anchor: "structured training compared" },
+      { href: "/blog/trainerroad-vs-online-cycling-coach", anchor: "structured training compared" },
     ],
     wordTarget: 2200,
     featuredImage: "/images/cycling/gravel-canyon-wide.jpg",
@@ -214,7 +214,7 @@ export const COMPARISON_CLUSTER_ARTICLES: ClusterArticleSpec[] = [
     internalLinks: [
       { href: "/coaching", anchor: "indoor training coaching" },
       { href: "/tools/ftp-zones", anchor: "FTP zones" },
-      { href: "/blog/trainerroad-vs-coaching", anchor: "structured training compared" },
+      { href: "/blog/trainerroad-vs-online-cycling-coach", anchor: "structured training compared" },
     ],
     wordTarget: 2100,
     featuredImage: "/images/cycling/post-ride-rest-wall.jpg",

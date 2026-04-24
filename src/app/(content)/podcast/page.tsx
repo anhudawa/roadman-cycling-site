@@ -159,7 +159,7 @@ export default function PodcastPage() {
             <div className="grid md:grid-cols-2 gap-4">
               {[
                 {
-                  href: "/blog/best-cycling-podcasts-for-2026-edition",
+                  href: "/blog/best-cycling-podcasts-2026",
                   title: "The 20 Best Cycling Podcasts for 2026",
                 },
                 {

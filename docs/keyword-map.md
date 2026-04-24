@@ -70,9 +70,9 @@ Owned by `/coaching`, `/coaching/[country]`, `/coaching/[city]`, `/apply`, and t
 | how to find a cycling coach | /blog/how-to-choose-cycling-coach | |
 | hire a cycling coach | /blog/is-a-cycling-coach-worth-it | Informational → commercial |
 | affordable cycling coach | /coaching | |
-| cycling coach cost | /blog/cycling-coaching-cost-guide | |
-| cycling coach price | /blog/cycling-coaching-cost-guide | |
-| how much does a cycling coach cost | /blog/cycling-coaching-cost-guide | |
+| cycling coach cost | /blog/how-much-does-online-cycling-coach-cost-2026 | |
+| cycling coach price | /blog/how-much-does-online-cycling-coach-cost-2026 | |
+| how much does a cycling coach cost | /blog/how-much-does-online-cycling-coach-cost-2026 | |
 | cycling coach vs trainingpeaks | /blog/cycling-coach-vs-software | (content-gap — to write) |
 | cycling coach for beginners | /coaching | |
 | cycling coach for cat 1 racing | /coaching | |
@@ -296,7 +296,7 @@ Content gaps identified by this map that are NOT yet written or under-served:
 3. **Wicklow 200 + Ring of Beara training guides** — /blog/wicklow-200-training-plan, /blog/ring-of-beara-training-plan (currently only referenced in coaching pages)
 4. **Ride London / Fred Whitton training guides** — /blog/ride-london-training-plan, /blog/fred-whitton-training-plan
 5. **S&C content expansion** — 4+ posts on gym program, core, leg day, yoga (in the Phase 2 roadmap)
-6. **Cycling coach cost guide** — /blog/cycling-coaching-cost-guide (commercial-intent informational)
+6. **Cycling coach cost guide** — /blog/how-much-does-online-cycling-coach-cost-2026 (commercial-intent informational)
 7. **TrainerRoad vs coach / Zwift vs coach** — comparison content
 8. **Cycling over 40 / over 50** — masters-specific guide (big untapped audience)
 9. **Tri bike-leg landing page** — small, clearly-scoped page reinforcing the "bike leg only" positioning

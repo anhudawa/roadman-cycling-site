@@ -16,7 +16,7 @@ import type { ClusterArticleSpec } from "./triathlon-cluster-articles";
 
 export const PODCAST_AUTHORITY_ARTICLES: ClusterArticleSpec[] = [
   {
-    slug: "best-cycling-podcasts-for-2026-edition",
+    slug: "best-cycling-podcasts-2026",
     title: "The 20 Best Cycling Podcasts for 2026",
     seoTitle: "The 20 Best Cycling Podcasts for 2026 (Ranked & Reviewed)",
     seoDescription:

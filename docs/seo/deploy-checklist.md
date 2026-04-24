@@ -71,7 +71,7 @@ What this branch contains and the exact sequence for shipping it.
         4. `/blog/bike-leg-of-triathlon-why-age-groupers-get-it-wrong`
         5. `/blog/polarised-vs-sweet-spot-training`
         6. `/blog/is-a-cycling-coach-worth-it-case-study`
-        7. `/blog/best-cycling-podcasts-for-2026-edition`
+        7. `/blog/best-cycling-podcasts-2026`
         8. `/blog/what-cycling-podcasts-got-wrong-about-polarised-training`
     - **Baseline snapshot**: export last-28-day Performance report (Queries + Pages tabs), plus the Coverage / Pages report. Store the CSVs — this is what you'll measure the 3-month lift against.
 

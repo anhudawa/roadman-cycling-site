@@ -209,7 +209,7 @@ link equity from the rest of the site.
 - [Aero vs Weight: Which Matters More for Your Cycling?](/blog/aero-vs-weight-cyclist) — linked only from `/blog/cycling-power-to-weight-ratio-guide`
 - [Best Cycling Coach in Ireland: How to Choose (No Rankings)](/blog/best-cycling-coach-ireland) — linked only from `/blog/best-cycling-coach-guide`
 - [Best Cycling Coach in the USA: How to Choose (No Rankings)](/blog/best-cycling-coach-usa) — linked only from `/blog/best-cycling-coach-guide`
-- [Cycling Coach Cost: What You Actually Pay in 2026 (Honest Breakdown)](/blog/cycling-coaching-cost-guide) — linked only from `/blog/zwift-vs-cycling-coach`
+- [Cycling Coach Cost: What You Actually Pay in 2026 (Honest Breakdown)](/blog/how-much-does-online-cycling-coach-cost-2026) — linked only from `/blog/zwift-vs-cycling-coach`
 - [How to Structure a Cycling Rest Week](/blog/cycling-rest-week-guide) — linked only from `/blog/cycling-overtraining-signs-guide`
 - [Saddle Sore Prevention: Chamois Cream, Bike Fit, and What Actually Works](/blog/cycling-saddle-sore-prevention) — linked only from `/blog/cycling-bike-upgrade-worth-it`
 - [Fasted vs Fuelled Training: Does Training Low Actually Work?](/blog/fasted-vs-fueled-cycling) — linked only from `/blog/cycling-weight-loss-fuel-for-the-work-required`

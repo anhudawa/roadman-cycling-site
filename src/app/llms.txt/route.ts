@@ -45,7 +45,7 @@ export async function GET() {
     "polarised-vs-sweet-spot-training",
     "best-online-cycling-coach-how-to-choose",
     "is-a-cycling-coach-worth-it-case-study",
-    "best-cycling-podcasts-for-2026-edition",
+    "best-cycling-podcasts-2026",
     "fast-talk-vs-cycling-podcast-vs-roadman",
     "how-to-structure-cycling-training-plan",
     "cycling-coach-vs-triathlon-coach",

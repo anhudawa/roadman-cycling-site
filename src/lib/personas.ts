@@ -169,7 +169,7 @@ export const PERSONAS: Record<PersonaSlug, PersonaContent> = {
     blogSlugs: [
       "is-a-cycling-coach-worth-it",
       "what-does-a-cycling-coach-do",
-      "cycling-coaching-cost-guide",
+      "how-much-does-online-cycling-coach-cost-2026",
     ],
     podcastSlugs: [
       "ep-2148-80-20-training-to-ride-faster-dr-stephen-seiler",
