@@ -4,6 +4,7 @@ import { notFound } from "next/navigation";
 import { Header, Footer, Section, Container } from "@/components/layout";
 import { ScrollReveal, Card, Badge, Button } from "@/components/ui";
 import { JsonLd } from "@/components/seo/JsonLd";
+import { Breadcrumbs } from "@/components/seo/Breadcrumbs";
 import { getGuestBySlug, getAllGuestSlugs } from "@/lib/guests";
 import { getGuestProfileOverride } from "@/lib/guests/profiles";
 import { getPostBySlug } from "@/lib/blog";
@@ -147,6 +148,9 @@ export default async function GuestPage({
       <main id="main-content">
         {/* Hero */}
         <Section background="deep-purple" grain className="pt-32 pb-12">
+          <Container width="narrow">
+            <Breadcrumbs items={[{ label: "Guests", href: "/guests" }, { label: guest.name }]} />
+          </Container>
           <Container width="narrow" className="text-center">
             <ScrollReveal direction="up">
               <p className="text-coral font-heading text-lg mb-4 tracking-widest">

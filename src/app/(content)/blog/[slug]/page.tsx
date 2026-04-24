@@ -6,6 +6,7 @@ import { MDXRemote } from "next-mdx-remote/rsc";
 import { Header, Footer, Section, Container } from "@/components/layout";
 import { Badge, Button } from "@/components/ui";
 import { JsonLd } from "@/components/seo/JsonLd";
+import { ENTITY_IDS, SITE_ORIGIN } from "@/lib/brand-facts";
 import { getPostBySlug, getAllSlugs, getRelatedPosts } from "@/lib/blog";
 import { getEpisodeBySlug } from "@/lib/podcast";
 import { getTopicsForPost } from "@/lib/topics";
@@ -112,29 +113,26 @@ export default async function BlogPostPage({
 
   return (
     <>
+      {/* BlogPosting references the canonical Person + Organization @ids
+          emitted by OrganizationJsonLd in the root layout, so crawlers see
+          a single connected knowledge graph rather than duplicate entities. */}
       <JsonLd
         data={{
           "@context": "https://schema.org",
           "@type": "BlogPosting",
+          "@id": `${SITE_ORIGIN}/blog/${slug}#article`,
           headline: post.title,
           description: post.seoDescription,
-          author: {
-            "@type": "Person",
-            name: post.author,
-            url: "https://roadmancycling.com/about",
-          },
-          publisher: {
-            "@type": "Organization",
-            name: "Roadman Cycling",
-            url: "https://roadmancycling.com",
-          },
+          author: { "@id": ENTITY_IDS.person },
+          publisher: { "@id": ENTITY_IDS.organization },
           datePublished: post.publishDate,
           dateModified: post.updatedDate || post.publishDate,
           mainEntityOfPage: {
             "@type": "WebPage",
-            "@id": `https://roadmancycling.com/blog/${slug}`,
+            "@id": `${SITE_ORIGIN}/blog/${slug}`,
           },
           keywords: post.keywords.join(", "),
+          isPartOf: { "@id": ENTITY_IDS.website },
           speakable: {
             "@type": "SpeakableSpecification",
             cssSelector: post.answerCapsule
@@ -144,37 +142,11 @@ export default async function BlogPostPage({
           ...(post.featuredImage && {
             image: {
               "@type": "ImageObject",
-              url: post.featuredImage.startsWith('http') ? post.featuredImage : `https://roadmancycling.com${post.featuredImage}`,
+              url: post.featuredImage.startsWith('http') ? post.featuredImage : `${SITE_ORIGIN}${post.featuredImage}`,
               width: 1200,
               height: 630,
             },
           }),
-        }}
-      />
-      {/* Person schema for E-E-A-T */}
-      <JsonLd
-        data={{
-          "@context": "https://schema.org",
-          "@type": "Person",
-          name: "Anthony Walsh",
-          url: "https://roadmancycling.com/author/anthony-walsh",
-          jobTitle: "Founder & Host, Roadman Cycling Podcast",
-          worksFor: {
-            "@type": "Organization",
-            name: "Roadman Cycling",
-            url: "https://roadmancycling.com",
-          },
-          knowsAbout: [
-            "cycling training",
-            "cycling nutrition",
-            "endurance coaching",
-            "cycling performance",
-          ],
-          sameAs: [
-            "https://youtube.com/@theroadmanpodcast",
-            "https://instagram.com/roadman.cycling",
-            "https://x.com/Roadman_Podcast",
-          ],
         }}
       />
       <JsonLd
