@@ -12,6 +12,8 @@ const eslintConfig = defineConfig([
     "out/**",
     "build/**",
     "next-env.d.ts",
+    // Worktrees share the project root but have their own source copies.
+    ".claude/worktrees/**",
   ]),
 ]);
 
