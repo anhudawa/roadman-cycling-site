@@ -192,7 +192,7 @@ export default async function TopicPage({
                         <h3 className="font-heading text-lg text-off-white group-hover:text-coral transition-colors leading-snug mb-2">
                           {post.title}
                         </h3>
-                        <p className="text-sm text-foreground-muted line-clamp-2">
+                        <p className="text-sm text-foreground-muted line-clamp-4">
                           {post.excerpt}
                         </p>
                       </Card>

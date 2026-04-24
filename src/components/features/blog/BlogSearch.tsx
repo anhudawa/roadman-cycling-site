@@ -353,7 +353,7 @@ export function BlogSearch({ posts }: BlogSearchProps) {
                       {post.title.toUpperCase()}
                     </h3>
 
-                    <p className="text-sm text-foreground-muted leading-relaxed line-clamp-3">
+                    <p className="text-sm text-foreground-muted leading-relaxed line-clamp-5">
                       {post.excerpt}
                     </p>
 

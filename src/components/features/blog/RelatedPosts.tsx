@@ -62,7 +62,7 @@ export function RelatedPosts({ posts, className = "" }: RelatedPostsProps) {
                 {post.title.toUpperCase()}
               </h4>
 
-              <p className="text-sm text-foreground-muted leading-relaxed line-clamp-2">
+              <p className="text-sm text-foreground-muted leading-relaxed line-clamp-3">
                 {post.excerpt}
               </p>
             </div>
