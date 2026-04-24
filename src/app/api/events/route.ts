@@ -56,6 +56,16 @@ export async function POST(request: Request) {
       "ask_starter_prompt_clicked",
       "ask_rate_limited",
       "ask_error_shown",
+      "paid_report_checkout_start",
+      "paid_report_checkout_success",
+      "paid_report_generated",
+      "paid_report_delivered",
+      "paid_report_failed",
+      "paid_report_downloaded",
+      "paid_report_viewed",
+      "paid_report_ask_handoff",
+      "tool_result_upsell_view",
+      "tool_result_ask_handoff",
     ];
     if (!validTypes.includes(type)) {
       return Response.json({ error: "Invalid event type" }, { status: 400 });

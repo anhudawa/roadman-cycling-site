@@ -19,6 +19,10 @@ import { buildReportContent } from "./pdf/content";
 import { renderDeliveryEmailHtml, renderReportHtml } from "./pdf/report-html";
 import { logCrmSync } from "./crm-sync-log";
 import { sendReportEmail } from "./delivery";
+import {
+  PAID_REPORT_EVENTS,
+  recordPaidReportServerEvent,
+} from "@/lib/analytics/paid-report-events";
 
 /**
  * End-to-end paid-report generation + delivery.
@@ -146,6 +150,14 @@ export async function generateAndDeliverPaidReport(
       pageCount: product.pageCountTarget ?? null,
       tokenHash: hash,
     });
+    await recordPaidReportServerEvent({
+      name: PAID_REPORT_EVENTS.GENERATED,
+      page: `/reports/${product.slug}`,
+      email: report.email,
+      productSlug: product.slug,
+      reportId: paidReportId,
+      orderId: report.orderId,
+    });
 
     // 7. Delivery email
     const viewHref = `${BASE_URL}/reports/${product.slug}/view/${token}`;
@@ -166,6 +178,14 @@ export async function generateAndDeliverPaidReport(
     });
 
     await markDelivered(paidReportId);
+    await recordPaidReportServerEvent({
+      name: PAID_REPORT_EVENTS.DELIVERED,
+      page: `/reports/${product.slug}`,
+      email: report.email,
+      productSlug: product.slug,
+      reportId: paidReportId,
+      orderId: report.orderId,
+    });
 
     await logCrmSync({
       email: report.email,
@@ -188,6 +208,12 @@ export async function generateAndDeliverPaidReport(
       message,
     );
     await markFailed(paidReportId, message.slice(0, 255));
+    await recordPaidReportServerEvent({
+      name: PAID_REPORT_EVENTS.FAILED,
+      page: `/reports/`,
+      reportId: paidReportId,
+      meta: { message: message.slice(0, 200) },
+    });
     await logCrmSync({
       email: "",
       target: "resend",

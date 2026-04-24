@@ -35,7 +35,18 @@ export type EventType =
   | "ask_profile_saved"
   | "ask_starter_prompt_clicked"
   | "ask_rate_limited"
-  | "ask_error_shown";
+  | "ask_error_shown"
+  // ── Paid Reports funnel ────────────────────────────────
+  | "paid_report_checkout_start"
+  | "paid_report_checkout_success"
+  | "paid_report_generated"
+  | "paid_report_delivered"
+  | "paid_report_failed"
+  | "paid_report_downloaded"
+  | "paid_report_viewed"
+  | "paid_report_ask_handoff"
+  | "tool_result_upsell_view"
+  | "tool_result_ask_handoff";
 
 export interface TrackingEvent {
   id: string;

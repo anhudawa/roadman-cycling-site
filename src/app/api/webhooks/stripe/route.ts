@@ -12,6 +12,10 @@ import {
 import { logCrmSync } from "@/lib/paid-reports/crm-sync-log";
 import { refreshLeadScore } from "@/lib/paid-reports/lead-score";
 import { generateAndDeliverPaidReport } from "@/lib/paid-reports/generator";
+import {
+  PAID_REPORT_EVENTS,
+  recordPaidReportServerEvent,
+} from "@/lib/analytics/paid-report-events";
 
 /**
  * POST /api/webhooks/stripe
@@ -267,6 +271,16 @@ async function handlePaidReportCheckoutCompleted(
     status: "success",
     relatedTable: "orders",
     relatedId: orderId,
+  });
+  await recordPaidReportServerEvent({
+    name: PAID_REPORT_EVENTS.CHECKOUT_SUCCESS,
+    page: "/api/webhooks/stripe",
+    email,
+    productSlug: typeof metadata.product_slug === "string"
+      ? metadata.product_slug
+      : undefined,
+    reportId: paidReportId,
+    orderId,
   });
 
   // Lead score refresh — non-fatal.

@@ -5,9 +5,23 @@ import { useAskStream, type AskCitation } from "@/app/(marketing)/ask/use-ask-st
 import { MessageList } from "./MessageList";
 import { StarterPrompts } from "./StarterPrompts";
 
-export function AskRoadmanClient() {
+export interface AskSeed {
+  toolTitle: string;
+  summary: string;
+  primaryCategoryLabel: string | null;
+  resultSlug: string;
+}
+
+function initialPromptFromSeed(seed: AskSeed | null): string {
+  if (!seed) return "";
+  return seed.primaryCategoryLabel
+    ? `Based on my "${seed.primaryCategoryLabel}" result from the ${seed.toolTitle.toLowerCase()}, what should I do first?`
+    : `Based on my ${seed.toolTitle.toLowerCase()} result, what should I do first?`;
+}
+
+export function AskRoadmanClient({ seed = null }: { seed?: AskSeed | null }) {
   const { messages, sessionId, isStreaming, error, submit, hydrate } = useAskStream();
-  const [input, setInput] = useState("");
+  const [input, setInput] = useState(() => initialPromptFromSeed(seed));
   const textareaRef = useRef<HTMLTextAreaElement>(null);
   const hasMessages = messages.length > 0;
 

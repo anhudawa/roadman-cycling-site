@@ -1,6 +1,10 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import {
+  PAID_REPORT_EVENTS,
+  trackPaidReport,
+} from "@/lib/analytics/paid-report-events";
 
 /**
  * Paid-report upsell card used on /results/[tool]/[slug] and tool
@@ -51,11 +55,26 @@ export function UpsellCard({
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
+  // Impression beacon — fires once when the card first mounts so the
+  // upsell-view vs checkout-start ratio is measurable.
+  useEffect(() => {
+    trackPaidReport({
+      name: PAID_REPORT_EVENTS.UPSELL_VIEW,
+      productSlug,
+      toolResultSlug: toolResultSlug ?? undefined,
+    });
+  }, [productSlug, toolResultSlug]);
+
   async function handleCheckout() {
     if (!email) {
       setError("Enter the email you want the report sent to.");
       return;
     }
+    trackPaidReport({
+      name: PAID_REPORT_EVENTS.CHECKOUT_START,
+      productSlug,
+      toolResultSlug: toolResultSlug ?? undefined,
+    });
     setLoading(true);
     setError(null);
     try {

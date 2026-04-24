@@ -2,6 +2,9 @@ import type { Metadata } from "next";
 import { Footer, Header } from "@/components/layout";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { AskRoadmanClient } from "@/components/features/ask/AskRoadmanClient";
+import { getToolResultBySlug } from "@/lib/tool-results/store";
+import { isToolSlug } from "@/lib/tool-results/types";
+import { getDefinition } from "@/lib/diagnostics/framework/registry";
 
 export const metadata: Metadata = {
   title: "Ask Roadman — the cycling performance assistant",
@@ -20,7 +23,49 @@ export const metadata: Metadata = {
 
 export const dynamic = "force-dynamic";
 
-export default function AskPage() {
+interface SeedContext {
+  toolSlug: string;
+  toolTitle: string;
+  summary: string;
+  primaryCategoryLabel: string | null;
+  resultSlug: string;
+}
+
+/**
+ * Resolve the `?seed_tool=&seed_result=` pair into a banner-ready
+ * context object. Silently bails if either param is missing, the tool
+ * slug isn't a known one, or the result doesn't exist / doesn't match
+ * the requested tool — we never surface an error on the free Ask page.
+ */
+async function loadSeedContext(
+  seedTool: string | undefined,
+  seedResult: string | undefined,
+): Promise<SeedContext | null> {
+  if (!seedTool || !seedResult) return null;
+  const normalised = seedTool === "ftp-zones" ? "ftp_zones" : seedTool;
+  if (!isToolSlug(normalised)) return null;
+  const row = await getToolResultBySlug(seedResult);
+  if (!row || row.toolSlug !== normalised) return null;
+  const def = getDefinition(normalised);
+  const primary = row.primaryResult
+    ? def.categories.find((c) => c.key === row.primaryResult)?.label ?? null
+    : null;
+  return {
+    toolSlug: normalised,
+    toolTitle: def.title,
+    summary: row.summary,
+    primaryCategoryLabel: primary,
+    resultSlug: row.slug,
+  };
+}
+
+export default async function AskPage({
+  searchParams,
+}: {
+  searchParams: Promise<{ seed_tool?: string; seed_result?: string }>;
+}) {
+  const { seed_tool: seedTool, seed_result: seedResult } = await searchParams;
+  const seed = await loadSeedContext(seedTool, seedResult);
   return (
     <>
       <JsonLd
@@ -68,10 +113,45 @@ export default function AskPage() {
           </div>
         </div>
 
+        {seed ? (
+          <div className="max-w-5xl mx-auto px-4 md:px-6 pt-6">
+            <div className="rounded-lg border border-coral/30 bg-coral/[0.06] px-4 py-3 text-sm">
+              <p className="font-heading text-coral tracking-widest text-[10px] uppercase mb-1">
+                Asked with context
+              </p>
+              <p className="text-off-white">
+                {seed.toolTitle}
+                {seed.primaryCategoryLabel ? (
+                  <>
+                    {" — "}
+                    <span className="text-coral">
+                      {seed.primaryCategoryLabel}
+                    </span>
+                  </>
+                ) : null}
+              </p>
+              <p className="text-foreground-muted text-xs mt-1 leading-relaxed">
+                {seed.summary}
+              </p>
+            </div>
+          </div>
+        ) : null}
+
         {/* Chat */}
         <div className="max-w-5xl mx-auto px-0 md:px-6">
           <div className="bg-charcoal md:bg-white/[0.01] md:rounded-xl md:my-6 md:border md:border-white/10 h-[calc(100vh-220px)] md:h-[72vh] flex flex-col overflow-hidden">
-            <AskRoadmanClient />
+            <AskRoadmanClient
+              seed={
+                seed
+                  ? {
+                      toolTitle: seed.toolTitle,
+                      summary: seed.summary,
+                      primaryCategoryLabel: seed.primaryCategoryLabel,
+                      resultSlug: seed.resultSlug,
+                    }
+                  : null
+              }
+            />
           </div>
         </div>
       </main>

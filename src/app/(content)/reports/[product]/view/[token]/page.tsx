@@ -4,6 +4,10 @@ import {
   getPaidReportByToken,
   incrementDownloadCount,
 } from "@/lib/paid-reports/reports";
+import {
+  PAID_REPORT_EVENTS,
+  recordPaidReportServerEvent,
+} from "@/lib/analytics/paid-report-events";
 import { getProductBySlug } from "@/lib/paid-reports/products";
 import { Container, Footer, Header, Section } from "@/components/layout";
 import Link from "next/link";
@@ -56,6 +60,14 @@ export default async function PaidReportView({
 
   // Count the view as a download — same permission bar, same abuse signal.
   void incrementDownloadCount(report.id).catch(() => {});
+  void recordPaidReportServerEvent({
+    name: PAID_REPORT_EVENTS.VIEWED,
+    page: `/reports/${productRow.slug}/view`,
+    email: report.email,
+    productSlug: productRow.slug,
+    reportId: report.id,
+    orderId: report.orderId,
+  });
 
   const downloadHref = report.pdfUrl
     ? `/api/reports/download/${token}`

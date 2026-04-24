@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { Container, Footer, Header, Section } from "@/components/layout";
 import { getProductBySlug } from "@/lib/paid-reports/products";
+import { CheckoutSuccessBeacon } from "@/components/paid-reports/CheckoutSuccessBeacon";
 
 /**
  * Post-checkout confirmation page.
@@ -44,6 +45,10 @@ export default async function PaidReportSuccess({
   return (
     <>
       <Header />
+      <CheckoutSuccessBeacon
+        productSlug={productRow?.slug ?? product}
+        sessionId={sessionId ?? null}
+      />
       <main id="main-content">
         <Section background="deep-purple" grain className="pt-32 pb-16">
           <Container width="narrow">

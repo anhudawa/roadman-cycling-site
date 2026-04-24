@@ -3,6 +3,10 @@ import {
   getPaidReportByToken,
   incrementDownloadCount,
 } from "@/lib/paid-reports/reports";
+import {
+  PAID_REPORT_EVENTS,
+  recordPaidReportServerEvent,
+} from "@/lib/analytics/paid-report-events";
 
 /**
  * GET /api/reports/download/[token]
@@ -76,6 +80,14 @@ export async function GET(
   void incrementDownloadCount(report.id).catch((err) =>
     console.error("[reports/download] incrementDownloadCount failed:", err),
   );
+  void recordPaidReportServerEvent({
+    name: PAID_REPORT_EVENTS.DOWNLOADED,
+    page: `/reports/${report.productSlug}/download`,
+    email: report.email,
+    productSlug: report.productSlug,
+    reportId: report.id,
+    orderId: report.orderId,
+  });
 
   return new NextResponse(upstream.body, {
     status: 200,

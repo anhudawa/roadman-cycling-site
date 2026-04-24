@@ -8,6 +8,7 @@ import type { ToolSlug } from "@/lib/tool-results/types";
 import type { ResultCategory } from "@/lib/diagnostics/framework/types";
 import { getProductForTool } from "@/lib/paid-reports/products";
 import { UpsellCard } from "@/components/paid-reports/UpsellCard";
+import { ToolAskHandoffLink } from "@/components/paid-reports/ToolAskHandoffLink";
 
 /**
  * Saved tool-result permalink.
@@ -144,13 +145,14 @@ export default async function ToolResultPermalink({
                 numbers, the training methodology, and the podcast archive at
                 hand.
               </p>
-              <Link
+              <ToolAskHandoffLink
                 href={askHref}
+                toolSlug={result.toolSlug}
+                resultSlug={result.slug}
                 className="inline-flex items-center justify-center gap-2 font-heading tracking-wider uppercase rounded-md bg-coral text-off-white hover:bg-coral/90 px-6 py-3 text-sm transition-all"
-                data-track="tool_result_ask_handoff"
               >
                 Open this in Ask Roadman →
-              </Link>
+              </ToolAskHandoffLink>
             </div>
 
             {/* Paid report upsell — live checkout when the product is active. */}
