@@ -14,6 +14,7 @@ import { MetaPixel } from "@/components/features/diagnostic/MetaPixel";
 import { ReadingProgress } from "@/components/features/diagnostic/ReadingProgress";
 import { StickyCta } from "@/components/features/diagnostic/StickyCta";
 import { SuccessBanner } from "@/components/features/diagnostic/SuccessBanner";
+import { AskRoadmanHandoff } from "@/components/features/diagnostic/AskRoadmanHandoff";
 import type { Breakdown } from "@/lib/diagnostic/types";
 
 /**
@@ -251,6 +252,15 @@ export default async function DiagnosticResultsPage({
                   {cta.secondaryLabel}
                 </Link>
               )}
+            </div>
+            {/* Phase 2 handoff — rider can dig into the result with the
+                on-site assistant. Appears below the primary CTA so it
+                never competes with a booking/coaching conversion. */}
+            <div className="pt-8 mx-auto max-w-xl text-left">
+              <AskRoadmanHandoff
+                slug={submission.slug}
+                profile={submission.primaryProfile}
+              />
             </div>
           </Container>
         </Section>

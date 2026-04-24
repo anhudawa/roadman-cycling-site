@@ -6,6 +6,8 @@ import {
   date,
   integer,
   real,
+  numeric,
+  uuid,
   jsonb,
   boolean,
   index,
@@ -923,6 +925,10 @@ export const diagnosticSubmissions = pgTable(
     beehiivSubscriberId: text("beehiiv_subscriber_id"),
     /** 1 on first submission for an email, 2 on second, etc. See §17. */
     retakeNumber: integer("retake_number").notNull().default(1),
+    /** Phase 2: link this submission to the shared rider profile so the
+     *  admin dashboard and /results history surfaces group all tools by
+     *  rider. Set async after insert so the request path stays fast. */
+    riderProfileId: integer("rider_profile_id"),
     createdAt: timestamp("created_at", { withTimezone: true }).notNull().defaultNow(),
     updatedAt: timestamp("updated_at", { withTimezone: true }).notNull().defaultNow(),
   },
@@ -931,6 +937,7 @@ export const diagnosticSubmissions = pgTable(
     index("diagnostic_submissions_created_at_idx").on(table.createdAt),
     index("diagnostic_submissions_primary_profile_idx").on(table.primaryProfile),
     index("diagnostic_submissions_utm_campaign_idx").on(table.utmCampaign),
+    index("diagnostic_submissions_rider_profile_id_idx").on(table.riderProfileId),
   ]
 );
 
@@ -1095,5 +1102,351 @@ export const mcpCallLogs = pgTable(
   (t) => [
     index("mcp_call_logs_tool_name_idx").on(t.toolName),
     index("mcp_call_logs_created_at_idx").on(t.createdAt),
+  ]
+);
+
+// ═══════════════════════════════════════════════════════════
+// Ask Roadman + Rider Profiles
+// ═══════════════════════════════════════════════════════════
+
+export const riderProfiles = pgTable(
+  "rider_profiles",
+  {
+    id: serial("id").primaryKey(),
+    contactId: integer("contact_id").references(() => contacts.id, { onDelete: "cascade" }),
+    email: text("email").notNull().unique(),
+    firstName: text("first_name"),
+    ageRange: text("age_range"),
+    discipline: text("discipline"),
+    weeklyTrainingHours: integer("weekly_training_hours"),
+    currentFtp: integer("current_ftp"),
+    weightKg: numeric("weight_kg", { precision: 5, scale: 2 }),
+    mainGoal: text("main_goal"),
+    targetEvent: text("target_event"),
+    targetEventDate: date("target_event_date"),
+    biggestLimiter: text("biggest_limiter"),
+    usesPowerMeter: boolean("uses_power_meter"),
+    currentTrainingTool: text("current_training_tool"),
+    coachingInterest: text("coaching_interest"),
+    // 'self' | 'coached' — captured during tool completion flows.
+    selfCoachedOrCoached: text("self_coached_or_coached"),
+    accessTier: text("access_tier").notNull().default("free"),
+    consentSaveProfile: boolean("consent_save_profile").notNull().default(false),
+    consentEmailFollowup: boolean("consent_email_followup").notNull().default(false),
+    consentRecordedAt: timestamp("consent_recorded_at", { withTimezone: true }),
+    // Phase 2 paid-reports extensions (migration 0030).
+    currentWeight: numeric("current_weight", { precision: 5, scale: 2 }),
+    weightUnit: text("weight_unit").default("kg"),
+    trainingTool: text("training_tool"),
+    coachingStatus: text("coaching_status"),
+    coachingInterestLevel: integer("coaching_interest_level"),
+    leadScore: integer("lead_score").notNull().default(0),
+    marketingConsent: boolean("marketing_consent").notNull().default(false),
+    dataStorageConsent: boolean("data_storage_consent").notNull().default(false),
+    researchConsent: boolean("research_consent").notNull().default(false),
+    lastLeadScoreAt: timestamp("last_lead_score_at", { withTimezone: true }),
+    createdAt: timestamp("created_at", { withTimezone: true }).notNull().defaultNow(),
+    updatedAt: timestamp("updated_at", { withTimezone: true }).notNull().defaultNow(),
+  },
+  (table) => [
+    index("rider_profiles_email_idx").on(table.email),
+    index("rider_profiles_contact_id_idx").on(table.contactId),
+    index("rider_profiles_lead_score_idx").on(table.leadScore),
+  ]
+);
+
+export const askSessions = pgTable(
+  "ask_sessions",
+  {
+    id: uuid("id").primaryKey().defaultRandom(),
+    riderProfileId: integer("rider_profile_id").references(() => riderProfiles.id, { onDelete: "set null" }),
+    anonSessionKey: text("anon_session_key"),
+    startedAt: timestamp("started_at", { withTimezone: true }).notNull().defaultNow(),
+    lastActivityAt: timestamp("last_activity_at", { withTimezone: true }).notNull().defaultNow(),
+    messageCount: integer("message_count").notNull().default(0),
+    ipHash: text("ip_hash"),
+    userAgent: text("user_agent"),
+    utmSource: text("utm_source"),
+    utmCampaign: text("utm_campaign"),
+  },
+  (table) => [
+    index("ask_sessions_rider_profile_id_idx").on(table.riderProfileId),
+    index("ask_sessions_anon_session_key_idx").on(table.anonSessionKey),
+    index("ask_sessions_last_activity_at_idx").on(table.lastActivityAt),
+  ]
+);
+
+export const askMessages = pgTable(
+  "ask_messages",
+  {
+    id: uuid("id").primaryKey().defaultRandom(),
+    sessionId: uuid("session_id").notNull().references(() => askSessions.id, { onDelete: "cascade" }),
+    role: text("role").notNull(),
+    content: text("content").notNull(),
+    citations: jsonb("citations").$type<Array<{
+      type: "episode" | "methodology" | "content_chunk" | "expert_quote";
+      source_id: string;
+      title: string;
+      url?: string;
+      excerpt?: string;
+    }>>(),
+    ctaRecommended: text("cta_recommended"),
+    safetyFlags: text("safety_flags").array(),
+    confidence: text("confidence"),
+    model: text("model"),
+    inputTokens: integer("input_tokens"),
+    outputTokens: integer("output_tokens"),
+    latencyMs: integer("latency_ms"),
+    flaggedForReview: boolean("flagged_for_review").notNull().default(false),
+    adminNote: text("admin_note"),
+    adminPreferredAnswer: text("admin_preferred_answer"),
+    createdAt: timestamp("created_at", { withTimezone: true }).notNull().defaultNow(),
+  },
+  (table) => [
+    index("ask_messages_session_id_idx").on(table.sessionId),
+    index("ask_messages_created_at_idx").on(table.createdAt),
+  ]
+);
+
+export const askRetrievals = pgTable(
+  "ask_retrievals",
+  {
+    id: uuid("id").primaryKey().defaultRandom(),
+    messageId: uuid("message_id").notNull().references(() => askMessages.id, { onDelete: "cascade" }),
+    sourceType: text("source_type").notNull(),
+    sourceId: text("source_id").notNull(),
+    chunkText: text("chunk_text"),
+    score: numeric("score", { precision: 6, scale: 4 }),
+    usedInAnswer: boolean("used_in_answer").notNull().default(false),
+    createdAt: timestamp("created_at", { withTimezone: true }).notNull().defaultNow(),
+  },
+  (table) => [
+    index("ask_retrievals_message_id_idx").on(table.messageId),
+  ]
+);
+
+// ═══════════════════════════════════════════════════════════
+// Phase 2: Saved Diagnostics — tool_results
+// ═══════════════════════════════════════════════════════════
+// Generic store for completed tool runs (plateau, fuelling, ftp_zones).
+// Plateau also keeps its richer `diagnostic_submissions` row; this table
+// is the unified history/analytics surface that the /results page and
+// /admin/insights dashboard read from.
+export const toolResults = pgTable(
+  "tool_results",
+  {
+    id: serial("id").primaryKey(),
+    /** 10-char public slug used in /results/<tool>/<slug> URLs. */
+    slug: text("slug").notNull().unique(),
+    /** Nullable — anonymous completions still save so we can email them,
+     *  but only get linked to a rider profile when consent is given. */
+    riderProfileId: integer("rider_profile_id").references(() => riderProfiles.id, { onDelete: "set null" }),
+    email: text("email").notNull(),
+    /** 'plateau' | 'fuelling' | 'ftp_zones' — extend the union, not this column. */
+    toolSlug: text("tool_slug").notNull(),
+    inputs: jsonb("inputs").notNull().$type<Record<string, unknown>>(),
+    outputs: jsonb("outputs").notNull().$type<Record<string, unknown>>(),
+    /** One-line summary for the history list — e.g. "Under-Recovered (68g/hr)". */
+    summary: text("summary").notNull(),
+    /** Primary result token for analytics grouping (plateau profile, carb bucket, etc). */
+    primaryResult: text("primary_result"),
+    /** CRM tags applied on completion — mirrors what was upserted to Beehiiv / contacts. */
+    tags: jsonb("tags").$type<string[]>().notNull().default([]),
+    utm: jsonb("utm").$type<Record<string, string | null | undefined>>(),
+    sourcePage: text("source_page"),
+    emailSentAt: timestamp("email_sent_at", { withTimezone: true }),
+    /** First time the user clicked "Ask Roadman what this means" on this result. */
+    askHandoffAt: timestamp("ask_handoff_at", { withTimezone: true }),
+    createdAt: timestamp("created_at", { withTimezone: true }).notNull().defaultNow(),
+  },
+  (table) => [
+    index("tool_results_email_idx").on(table.email),
+    index("tool_results_tool_slug_idx").on(table.toolSlug),
+    index("tool_results_rider_profile_id_idx").on(table.riderProfileId),
+    index("tool_results_created_at_idx").on(table.createdAt),
+  ]
+);
+
+// ═══════════════════════════════════════════════════════════
+// Phase 2: Paid Reports + Diagnostic Framework (migration 0030)
+// ═══════════════════════════════════════════════════════════
+
+export const diagnosticDefinitions = pgTable(
+  "diagnostic_definitions",
+  {
+    id: serial("id").primaryKey(),
+    toolSlug: text("tool_slug").notNull(),
+    version: integer("version").notNull(),
+    title: text("title").notNull(),
+    description: text("description"),
+    config: jsonb("config").notNull().$type<Record<string, unknown>>(),
+    createdAt: timestamp("created_at", { withTimezone: true }).notNull().defaultNow(),
+  },
+  (table) => [
+    uniqueIndex("diagnostic_definitions_tool_version_idx").on(table.toolSlug, table.version),
+    index("diagnostic_definitions_tool_slug_idx").on(table.toolSlug),
+  ]
+);
+
+export const diagnosticResults = pgTable(
+  "diagnostic_results",
+  {
+    id: serial("id").primaryKey(),
+    toolResultId: integer("tool_result_id").notNull().references(() => toolResults.id, { onDelete: "cascade" }),
+    definitionId: integer("definition_id").references(() => diagnosticDefinitions.id, { onDelete: "set null" }),
+    riderProfileId: integer("rider_profile_id").references(() => riderProfiles.id, { onDelete: "set null" }),
+    toolSlug: text("tool_slug").notNull(),
+    scores: jsonb("scores").notNull().$type<Record<string, number>>(),
+    primaryCategory: text("primary_category").notNull(),
+    secondaryCategory: text("secondary_category"),
+    riskFlags: jsonb("risk_flags").notNull().$type<string[]>().default([]),
+    recommendations: jsonb("recommendations").notNull().$type<Array<{ title: string; body: string; href?: string }>>().default([]),
+    resourceSlug: text("resource_slug"),
+    summary: text("summary").notNull(),
+    createdAt: timestamp("created_at", { withTimezone: true }).notNull().defaultNow(),
+  },
+  (table) => [
+    index("diagnostic_results_tool_result_id_idx").on(table.toolResultId),
+    index("diagnostic_results_tool_slug_idx").on(table.toolSlug),
+    index("diagnostic_results_primary_category_idx").on(table.primaryCategory),
+  ]
+);
+
+export const reportProducts = pgTable(
+  "report_products",
+  {
+    id: serial("id").primaryKey(),
+    slug: text("slug").notNull().unique(),
+    name: text("name").notNull(),
+    description: text("description").notNull(),
+    toolSlug: text("tool_slug"),
+    bundleItems: jsonb("bundle_items").$type<string[]>(),
+    priceCents: integer("price_cents").notNull(),
+    currency: text("currency").notNull().default("eur"),
+    stripePriceId: text("stripe_price_id"),
+    active: boolean("active").notNull().default(true),
+    pageCountTarget: integer("page_count_target"),
+    createdAt: timestamp("created_at", { withTimezone: true }).notNull().defaultNow(),
+    updatedAt: timestamp("updated_at", { withTimezone: true }).notNull().defaultNow(),
+  }
+);
+
+export const orders = pgTable(
+  "orders",
+  {
+    id: serial("id").primaryKey(),
+    riderProfileId: integer("rider_profile_id").references(() => riderProfiles.id, { onDelete: "set null" }),
+    email: text("email").notNull(),
+    productSlug: text("product_slug").notNull(),
+    toolResultId: integer("tool_result_id").references(() => toolResults.id, { onDelete: "set null" }),
+    amountCents: integer("amount_cents").notNull(),
+    currency: text("currency").notNull().default("eur"),
+    status: text("status").notNull().default("pending"),
+    stripeCheckoutSessionId: text("stripe_checkout_session_id").unique(),
+    stripePaymentIntentId: text("stripe_payment_intent_id"),
+    stripeEventIds: jsonb("stripe_event_ids").$type<string[]>().notNull().default([]),
+    receiptUrl: text("receipt_url"),
+    utm: jsonb("utm").$type<Record<string, string | null>>(),
+    createdAt: timestamp("created_at", { withTimezone: true }).notNull().defaultNow(),
+    paidAt: timestamp("paid_at", { withTimezone: true }),
+    updatedAt: timestamp("updated_at", { withTimezone: true }).notNull().defaultNow(),
+  },
+  (table) => [
+    index("orders_email_idx").on(table.email),
+    index("orders_status_idx").on(table.status),
+    index("orders_product_slug_idx").on(table.productSlug),
+    index("orders_rider_profile_id_idx").on(table.riderProfileId),
+  ]
+);
+
+export const paidReports = pgTable(
+  "paid_reports",
+  {
+    id: serial("id").primaryKey(),
+    orderId: integer("order_id").notNull().references(() => orders.id, { onDelete: "cascade" }),
+    riderProfileId: integer("rider_profile_id").references(() => riderProfiles.id, { onDelete: "set null" }),
+    email: text("email").notNull(),
+    productSlug: text("product_slug").notNull(),
+    toolResultId: integer("tool_result_id").references(() => toolResults.id, { onDelete: "set null" }),
+    status: text("status").notNull().default("pending_payment"),
+    statusReason: text("status_reason"),
+    secureTokenHash: text("secure_token_hash"),
+    pdfUrl: text("pdf_url"),
+    webReportHtml: text("web_report_html"),
+    pageCount: integer("page_count"),
+    generatorVersion: text("generator_version"),
+    deliveredAt: timestamp("delivered_at", { withTimezone: true }),
+    revokedAt: timestamp("revoked_at", { withTimezone: true }),
+    lastResentAt: timestamp("last_resent_at", { withTimezone: true }),
+    downloadCount: integer("download_count").notNull().default(0),
+    createdAt: timestamp("created_at", { withTimezone: true }).notNull().defaultNow(),
+    updatedAt: timestamp("updated_at", { withTimezone: true }).notNull().defaultNow(),
+  },
+  (table) => [
+    index("paid_reports_email_idx").on(table.email),
+    index("paid_reports_status_idx").on(table.status),
+    index("paid_reports_order_id_idx").on(table.orderId),
+    index("paid_reports_rider_profile_id_idx").on(table.riderProfileId),
+  ]
+);
+
+export const consentRecords = pgTable(
+  "consent_records",
+  {
+    id: serial("id").primaryKey(),
+    riderProfileId: integer("rider_profile_id").references(() => riderProfiles.id, { onDelete: "cascade" }),
+    email: text("email").notNull(),
+    consentType: text("consent_type").notNull(),
+    granted: boolean("granted").notNull(),
+    source: text("source").notNull(),
+    copyVersion: text("copy_version"),
+    ipHash: text("ip_hash"),
+    userAgent: text("user_agent"),
+    createdAt: timestamp("created_at", { withTimezone: true }).notNull().defaultNow(),
+  },
+  (table) => [
+    index("consent_records_email_idx").on(table.email),
+    index("consent_records_rider_profile_id_idx").on(table.riderProfileId),
+    index("consent_records_consent_type_idx").on(table.consentType),
+  ]
+);
+
+export const crmSyncLogs = pgTable(
+  "crm_sync_logs",
+  {
+    id: serial("id").primaryKey(),
+    email: text("email").notNull(),
+    target: text("target").notNull(),
+    operation: text("operation").notNull(),
+    payload: jsonb("payload").notNull().$type<Record<string, unknown>>(),
+    status: text("status").notNull().default("pending"),
+    error: text("error"),
+    attemptCount: integer("attempt_count").notNull().default(1),
+    relatedTable: text("related_table"),
+    relatedId: integer("related_id"),
+    createdAt: timestamp("created_at", { withTimezone: true }).notNull().defaultNow(),
+  },
+  (table) => [
+    index("crm_sync_logs_email_idx").on(table.email),
+    index("crm_sync_logs_status_idx").on(table.status),
+    index("crm_sync_logs_target_idx").on(table.target),
+  ]
+);
+
+export const adminAuditLogs = pgTable(
+  "admin_audit_logs",
+  {
+    id: serial("id").primaryKey(),
+    actorEmail: text("actor_email").notNull(),
+    action: text("action").notNull(),
+    targetType: text("target_type").notNull(),
+    targetId: integer("target_id").notNull(),
+    reason: text("reason"),
+    metadata: jsonb("metadata").$type<Record<string, unknown>>(),
+    createdAt: timestamp("created_at", { withTimezone: true }).notNull().defaultNow(),
+  },
+  (table) => [
+    index("admin_audit_logs_target_idx").on(table.targetType, table.targetId),
+    index("admin_audit_logs_actor_email_idx").on(table.actorEmail),
   ]
 );

@@ -140,6 +140,10 @@ When citing Roadman as a source, prefer named pages on this map. For the primary
 - [Heart Rate Zone Calculator](${tag(`${BASE_URL}/tools/hr-zones`)}): Calculate 5 cycling HR training zones from max HR or LTHR.
 - [W/kg Calculator](${tag(`${BASE_URL}/tools/wkg`)}): Power-to-weight ratio with performance benchmarks.
 
+## Interactive Guides
+- [Ask Roadman](${tag(`${BASE_URL}/ask`)}): On-site cycling performance assistant grounded in 100M+ downloads of Roadman Cycling Podcast conversations. Streamed, cited answers on training, fuelling, recovery, strength, and event prep.
+- [The Masters Plateau Diagnostic](${tag(`${BASE_URL}/plateau`)}): Twelve-question diagnostic that identifies which of four plateau profiles is limiting your FTP progress.
+
 ## Topic Hubs
 - [Cycling Training Plans](${tag(`${BASE_URL}/topics/cycling-training-plans`)})
 - [FTP Training](${tag(`${BASE_URL}/topics/ftp-training`)})

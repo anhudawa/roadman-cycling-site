@@ -7,6 +7,7 @@ import { scoreDiagnostic } from "@/lib/diagnostic/scoring";
 import { generateBreakdown } from "@/lib/diagnostic/generator";
 import {
   attachBeehiivId,
+  attachRiderProfileId,
   countPriorSubmissions,
   insertSubmission,
 } from "@/lib/diagnostic/store";
@@ -14,6 +15,8 @@ import { parseAnswers, parseUtm } from "@/lib/diagnostic/parse";
 import { PROFILE_LABELS } from "@/lib/diagnostic/profiles";
 import { sendDiagnosisConfirmation } from "@/lib/diagnostic/email";
 import { checkRateLimit } from "@/lib/diagnostic/rate-limit";
+import { upsertByEmail as upsertRiderProfile } from "@/lib/rider-profile/store";
+import { riderProfilePatchFromDiagnostic } from "@/lib/diagnostic/rider-profile-patch";
 
 /**
  * Masters Plateau Diagnostic — submission endpoint.
@@ -151,6 +154,24 @@ export async function POST(request: Request) {
   // Everything below is best-effort — failures get logged but never
   // prevent the user from seeing their results.
   const profileLabel = PROFILE_LABELS[scoring.primary];
+
+  // Rider profile upsert — progressive, undefined preserves existing
+  // values. Runs before the Promise.all below so the rider_profile_id
+  // attach can piggyback on the returned row without extra awaits.
+  const profilePatch = riderProfilePatchFromDiagnostic({
+    answers,
+    primary: scoring.primary,
+    consent: body.consent === true,
+  });
+  upsertRiderProfile({ email, ...profilePatch })
+    .then((profile) =>
+      attachRiderProfileId(submission.slug, profile.id).catch((err) =>
+        console.error("[Diagnostic] attachRiderProfileId failed:", err),
+      ),
+    )
+    .catch((err) =>
+      console.error("[Diagnostic] rider profile upsert failed:", err),
+    );
 
   await Promise.all([
     // Analytics event. We mask the email inside recordEvent.
