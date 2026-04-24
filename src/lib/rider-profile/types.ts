@@ -10,6 +10,7 @@ export interface RiderProfile {
   mainGoal: string | null;
   biggestLimiter: string | null;
   coachingInterest: string | null;
+  selfCoachedOrCoached: string | null;
   accessTier: "free" | "plus" | "vip";
   consentSaveProfile: boolean;
   consentEmailFollowup: boolean;
@@ -28,6 +29,7 @@ export interface UpsertRiderProfileInput {
   mainGoal?: string | null;
   biggestLimiter?: string | null;
   coachingInterest?: string | null;
+  selfCoachedOrCoached?: string | null;
   consentSaveProfile?: boolean;
   consentEmailFollowup?: boolean;
 }

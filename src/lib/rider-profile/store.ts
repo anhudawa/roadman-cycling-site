@@ -18,6 +18,7 @@ function toDomain(row: RiderProfileRow): RiderProfile {
     mainGoal: row.mainGoal,
     biggestLimiter: row.biggestLimiter,
     coachingInterest: row.coachingInterest,
+    selfCoachedOrCoached: row.selfCoachedOrCoached,
     accessTier: ((row.accessTier as RiderProfile["accessTier"]) ?? "free"),
     consentSaveProfile: row.consentSaveProfile,
     consentEmailFollowup: row.consentEmailFollowup,
@@ -72,6 +73,7 @@ export async function upsertByEmail(
   if (input.mainGoal !== undefined) patch.mainGoal = input.mainGoal;
   if (input.biggestLimiter !== undefined) patch.biggestLimiter = input.biggestLimiter;
   if (input.coachingInterest !== undefined) patch.coachingInterest = input.coachingInterest;
+  if (input.selfCoachedOrCoached !== undefined) patch.selfCoachedOrCoached = input.selfCoachedOrCoached;
   if (input.consentSaveProfile !== undefined) patch.consentSaveProfile = input.consentSaveProfile;
   if (input.consentEmailFollowup !== undefined) patch.consentEmailFollowup = input.consentEmailFollowup;
   if (consentBeingSet) patch.consentRecordedAt = now;
@@ -89,6 +91,7 @@ export async function upsertByEmail(
       mainGoal: input.mainGoal ?? null,
       biggestLimiter: input.biggestLimiter ?? null,
       coachingInterest: input.coachingInterest ?? null,
+      selfCoachedOrCoached: input.selfCoachedOrCoached ?? null,
       consentSaveProfile: input.consentSaveProfile ?? false,
       consentEmailFollowup: input.consentEmailFollowup ?? false,
       consentRecordedAt: consentBeingSet ? now : null,
