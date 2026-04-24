@@ -1,3 +1,5 @@
+import fs from "node:fs";
+import path from "node:path";
 import { getAllPosts, type BlogPostMeta } from "./blog";
 import { getAllEpisodes, type EpisodeMeta } from "./podcast";
 import { type ContentPillar } from "@/types";
@@ -9,12 +11,28 @@ export interface TopicHub {
   description: string;
   pillar: ContentPillar;
   keywords: string[];
+  /**
+   * Short noun phrase used in the commercial CTA headline
+   * ("GET COACHED ON {ctaHeadline}"). Hand-written per topic because
+   * slicing the topic headline programmatically produces broken
+   * phrases like "GET COACHED ON FUEL SMARTER, RIDE".
+   */
+  ctaHeadline: string;
   posts: BlogPostMeta[];
   episodes: EpisodeMeta[];
   tools: TopicTool[];
   commercialPath: string;
   relatedTopics: string[];
   featuredPostSlugs: string[];
+  /**
+   * Long-form pillar content (MDX). Rendered between the hero and the
+   * article grid on /topics/[slug] when present. Source files live at
+   * `content/topics/<slug>.mdx`. Lets thin hub pages (previously just a
+   * one-paragraph description + link list) carry the 2,000-3,000 words
+   * of pillar prose that Google and AI search models reward with
+   * ranking/citation for "cycling X" head-term queries.
+   */
+  pillarContent: string | null;
 }
 
 export interface TopicTool {
@@ -27,13 +45,14 @@ export interface TopicTool {
  * Topic hubs — curated landing pages that group related content.
  * Each one targets a high-value keyword cluster.
  */
-const TOPIC_DEFINITIONS: Omit<TopicHub, "posts" | "episodes" | "tools" | "commercialPath" | "relatedTopics" | "featuredPostSlugs">[] = [
+const TOPIC_DEFINITIONS: Omit<TopicHub, "posts" | "episodes" | "tools" | "commercialPath" | "relatedTopics" | "featuredPostSlugs" | "pillarContent">[] = [
   {
     slug: "ftp-training",
-    title: "FTP Training for Cyclists",
+    title: "FTP Training for Cyclists — The Complete Evidence-Based Guide",
     headline: "EVERYTHING YOU NEED TO KNOW ABOUT FTP",
+    ctaHeadline: "FTP TRAINING BUILT AROUND YOUR NUMBERS.",
     description:
-      "The complete guide to FTP training for cyclists. How to test, train, and improve your Functional Threshold Power with evidence-based methods.",
+      "Everything you need to know about FTP training. How to test, train, and improve your Functional Threshold Power — grounded in conversations with Professor Seiler, Dan Lorang, and 1,300+ podcast episodes.",
     pillar: "coaching",
     keywords: [
       "ftp training",
@@ -47,10 +66,11 @@ const TOPIC_DEFINITIONS: Omit<TopicHub, "posts" | "episodes" | "tools" | "commer
   },
   {
     slug: "cycling-nutrition",
-    title: "Cycling Nutrition Guide",
+    title: "Cycling Nutrition — The Complete Evidence-Based Guide",
     headline: "FUEL SMARTER, RIDE FASTER",
+    ctaHeadline: "FUELLING BUILT INTO YOUR TRAINING WEEK.",
     description:
-      "Evidence-based cycling nutrition. What to eat before, during, and after rides. Weight management, race-day fuelling, and the science of performance nutrition.",
+      "Everything you need to know about fuelling for cycling performance. In-ride nutrition, race weight, body composition, protein, hydration, and the science of eating to ride faster — from the Roadman Cycling Podcast.",
     pillar: "nutrition",
     keywords: [
       "cycling nutrition",
@@ -63,10 +83,11 @@ const TOPIC_DEFINITIONS: Omit<TopicHub, "posts" | "episodes" | "tools" | "commer
   },
   {
     slug: "cycling-training-plans",
-    title: "Cycling Training Plans & Methodology",
+    title: "Cycling Training Plans — How to Structure Your Training Year",
     headline: "TRAIN WITH PURPOSE",
+    ctaHeadline: "A PLAN BUILT AROUND YOUR LIFE.",
     description:
-      "Structured cycling training plans and methodology. Periodisation, polarised training, sweet spot, base building, and how to get faster with limited time.",
+      "How to build a cycling training plan that actually works. Periodisation, weekly structure, time-crunched plans, event preparation, and the framework used by World Tour coaches — adapted for amateurs.",
     pillar: "coaching",
     keywords: [
       "cycling training plan",
@@ -78,10 +99,11 @@ const TOPIC_DEFINITIONS: Omit<TopicHub, "posts" | "episodes" | "tools" | "commer
   },
   {
     slug: "cycling-recovery",
-    title: "Cycling Recovery & Injury Prevention",
+    title: "Cycling Recovery — The Complete Evidence-Based Guide",
     headline: "RECOVER HARDER",
+    ctaHeadline: "RECOVERY, PLANNED — NOT ASSUMED.",
     description:
-      "Recovery strategies that actually work for cyclists. Sleep, injury prevention, comeback protocols, and the science of adaptation.",
+      "Recovery is where adaptation happens — not on the bike. Sleep, nutrition, active recovery, and stress management for cyclists who want to get faster without breaking down.",
     pillar: "recovery",
     keywords: [
       "cycling recovery",
@@ -93,10 +115,11 @@ const TOPIC_DEFINITIONS: Omit<TopicHub, "posts" | "episodes" | "tools" | "commer
   },
   {
     slug: "cycling-strength-conditioning",
-    title: "Strength & Conditioning for Cyclists",
+    title: "Strength Training for Cyclists — The Complete Guide",
     headline: "STRONGER OFF THE BIKE, FASTER ON IT",
+    ctaHeadline: "STRENGTH WORK, PERIODISED WITH YOUR RIDING.",
     description:
-      "The complete guide to strength training for cyclists. Heavy lifting for masters cyclists, in-season programming, the best gym exercises for cycling, and why most endurance-athlete gym programmes get it wrong. Built on the 2025 research that ended the 'light weights, high reps' advice for riders over 40.",
+      "Cycling-specific strength training: what exercises to do, how heavy, how often, and how to periodise gym work alongside your bike training. Evidence-based, coach-approved.",
     pillar: "strength",
     keywords: [
       "strength training for cyclists",
@@ -119,6 +142,7 @@ const TOPIC_DEFINITIONS: Omit<TopicHub, "posts" | "episodes" | "tools" | "commer
     slug: "cycling-weight-loss",
     title: "Cycling & Weight Loss",
     headline: "LOSE WEIGHT WITHOUT LOSING POWER",
+    ctaHeadline: "LOSE WEIGHT WITHOUT LOSING WATTS.",
     description:
       "How to lose weight while cycling without sacrificing performance. Body composition, fuel for the work required, and the mistakes that keep cyclists heavy.",
     pillar: "nutrition",
@@ -134,6 +158,7 @@ const TOPIC_DEFINITIONS: Omit<TopicHub, "posts" | "episodes" | "tools" | "commer
     slug: "cycling-beginners",
     title: "Getting Into Cycling",
     headline: "START HERE",
+    ctaHeadline: "A COACHED START — WHEN YOU'RE READY.",
     description:
       "Everything a new cyclist needs to know. Group ride etiquette, bike fit, gravel cycling, tyre pressure, and the culture of the sport.",
     pillar: "community",
@@ -149,6 +174,7 @@ const TOPIC_DEFINITIONS: Omit<TopicHub, "posts" | "episodes" | "tools" | "commer
     slug: "triathlon-cycling",
     title: "Cycling for Triathletes — The Bike Leg Specialist",
     headline: "OWN THE BIKE LEG",
+    ctaHeadline: "BIKE COACHING THAT PROTECTS YOUR RUN.",
     description:
       "Everything a triathlete needs to get faster on the bike. FTP pacing, bike nutrition, aero position, power-to-weight, and off-season bike training — from the podcast trusted by Alistair Brownlee and Olav Bu.",
     pillar: "coaching",
@@ -166,6 +192,7 @@ const TOPIC_DEFINITIONS: Omit<TopicHub, "posts" | "episodes" | "tools" | "commer
     slug: "mountain-biking",
     title: "Mountain Biking — Setup, Skills & Routes",
     headline: "DIAL IN YOUR MTB",
+    ctaHeadline: "GET FITTER ON THE BIKE — ROAD OR DIRT.",
     description:
       "Everything you need to set up, ride, and maintain your mountain bike. Suspension setup, tyre pressure, fork tuning, trail guides, and the best MTB routes in Ireland.",
     pillar: "community",
@@ -184,6 +211,7 @@ const TOPIC_DEFINITIONS: Omit<TopicHub, "posts" | "episodes" | "tools" | "commer
     slug: "cycling-coaching",
     title: "Cycling Coaching — Online & In-Person",
     headline: "THE COMPLETE GUIDE TO CYCLING COACHING",
+    ctaHeadline: "STOP GUESSING. START PROGRESSING.",
     description:
       "Everything you need to know about cycling coaching. When to get a coach, what to look for, how online coaching works, and why most cyclists plateau without structured guidance. Built from 1,300+ podcast conversations with the coaches behind World Tour teams.",
     pillar: "coaching",
@@ -511,6 +539,19 @@ const TOPIC_EPISODE_KEYWORDS: Record<string, RegExp> = {
   "mountain-biking": /mountain.?bik|mtb|enduro|downhill|trail.?rid|suspension|fork.?setup|sag|shock.?pressur|dropper|trail.?centre/i,
 };
 
+/**
+ * Reads the long-form pillar MDX for a topic, if one exists.
+ * Returns null if no file — so topic hubs without pillar content fall
+ * back to the original hero-only layout (no change in behaviour).
+ */
+const PILLAR_DIR = path.join(process.cwd(), "content/topics");
+
+function loadPillarContent(slug: string): string | null {
+  const mdxPath = path.join(PILLAR_DIR, `${slug}.mdx`);
+  if (!fs.existsSync(mdxPath)) return null;
+  return fs.readFileSync(mdxPath, "utf-8");
+}
+
 export function getAllTopics(): TopicHub[] {
   const allPosts = getAllPosts();
   const allEpisodes = getAllEpisodes();
@@ -547,6 +588,7 @@ export function getAllTopics(): TopicHub[] {
       commercialPath: enrichment.commercialPath,
       relatedTopics: enrichment.relatedTopics,
       featuredPostSlugs: enrichment.featuredPostSlugs,
+      pillarContent: loadPillarContent(topic.slug),
     };
   });
 }

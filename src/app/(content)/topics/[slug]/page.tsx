@@ -1,12 +1,15 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
+import { MDXRemote } from "next-mdx-remote/rsc";
+import remarkGfm from "remark-gfm";
 import { Header, Footer, Section, Container } from "@/components/layout";
 import { ScrollReveal, Card, Badge, Button } from "@/components/ui";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { EmailCapture } from "@/components/features/conversion/EmailCapture";
 import { getTopicBySlug, getAllTopicSlugs, getTopicTitleBySlug } from "@/lib/topics";
 import { queryContentGraph } from "@/lib/content-graph";
+import { mdxComponents } from "@/components/mdx/MDXComponents";
 
 export async function generateStaticParams() {
   return getAllTopicSlugs().map((slug) => ({ slug }));
@@ -117,7 +120,7 @@ export default async function TopicPage({
               >
                 {topic.headline}
               </h1>
-              <p className="text-foreground-muted max-w-2xl mx-auto text-lg">
+              <p className="topic-description text-foreground-muted max-w-2xl mx-auto text-lg">
                 {topic.description}
               </p>
               <p className="text-foreground-subtle text-sm mt-4">
@@ -127,6 +130,33 @@ export default async function TopicPage({
             </ScrollReveal>
           </Container>
         </Section>
+
+        {/* Pillar content (long-form evidence-based guide) — present on
+            hubs with content/topics/<slug>.mdx, absent elsewhere so thin
+            hubs don't gain an empty section. The duplicate "Free Tools",
+            "Podcast Episodes", and "Related Topics" sections were pre-
+            stripped from the MDX because the page renders them natively
+            below. */}
+        {topic.pillarContent && (
+          <Section background="charcoal" className="!pt-14 !pb-14">
+            <Container width="narrow">
+              <article className="prose-roadman prose-roadman--pillar">
+                <MDXRemote
+                  source={topic.pillarContent}
+                  components={mdxComponents}
+                  options={{
+                    mdxOptions: {
+                      // GFM gives us tables, strikethrough, and task lists —
+                      // the pillar content uses markdown tables heavily for
+                      // zone charts, weekly structures, and comparison grids.
+                      remarkPlugins: [remarkGfm],
+                    },
+                  }}
+                />
+              </article>
+            </Container>
+          </Section>
+        )}
 
         {/* Blog Posts */}
         {topic.posts.length > 0 && (
@@ -215,7 +245,7 @@ export default async function TopicPage({
                   className="font-heading text-off-white mb-3"
                   style={{ fontSize: "var(--text-section)" }}
                 >
-                  GET COACHED ON {topic.headline.split(" ").slice(0, 3).join(" ")}
+                  {topic.ctaHeadline}
                 </h2>
                 <p className="text-foreground-muted text-sm mb-6 max-w-md mx-auto">
                   Not Done Yet coaching builds your plan around these principles.
