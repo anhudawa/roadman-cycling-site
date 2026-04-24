@@ -6,6 +6,8 @@ import { AICitationBlock, Badge, Button } from "@/components/ui";
 import { AnswerCapsule } from "@/components/ui/AnswerCapsule";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { FAQSchema } from "@/components/seo/FAQSchema";
+import { Breadcrumbs } from "@/components/seo/Breadcrumbs";
+import { EvidenceBlock } from "@/components/seo/EvidenceBlock";
 import { getEpisodeBySlug, getAllEpisodeSlugs } from "@/lib/podcast";
 import { segmentTranscript } from "@/lib/transcript";
 import { PodcastLinks } from "@/components/features/podcast/PodcastLinks";
@@ -404,6 +406,12 @@ export default async function EpisodePage({
         {/* Content / Show Notes */}
         <Section background="charcoal" className="!py-12">
           <Container width="narrow">
+            <Breadcrumbs
+              items={[
+                { label: "Podcast", href: "/podcast" },
+                { label: episode.title },
+              ]}
+            />
             {/* Answer capsule — AI-citation-optimised TL;DR of the episode.
                 Prefers the curated `answerCapsule` (60–100 words, generated
                 from the full transcript) over `seoDescription` (150-char
@@ -513,6 +521,27 @@ export default async function EpisodePage({
                 </div>
               </section>
             )}
+
+            {/* E-E-A-T trust block — named host, editorial standards,
+                corrections link + named on-episode guest as an expert
+                source when present. Renders on every episode page. */}
+            <EvidenceBlock
+              experts={
+                episode.guest
+                  ? [
+                      {
+                        name: episode.guest,
+                        role: episode.guestCredential,
+                        href: `/guests/${episode.guest
+                          .toLowerCase()
+                          .replace(/[^a-z0-9]+/g, "-")
+                          .replace(/(^-|-$)/g, "")}`,
+                      },
+                    ]
+                  : undefined
+              }
+              lastReviewed={episode.publishDate}
+            />
 
             {/* Newsletter */}
             <EmailCapture

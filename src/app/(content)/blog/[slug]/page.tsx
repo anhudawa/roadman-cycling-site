@@ -15,6 +15,7 @@ import { ShareButtons } from "@/components/features/blog/ShareButtons";
 import { RelatedPosts } from "@/components/features/blog/RelatedPosts";
 import { AuthorBio } from "@/components/features/blog/AuthorBio";
 import { EvidenceBlock } from "@/components/seo/EvidenceBlock";
+import { Breadcrumbs } from "@/components/seo/Breadcrumbs";
 import { queryContentGraph } from "@/lib/content-graph";
 import { RelatedContent } from "@/components/features/RelatedContent";
 import { InlineArticleCTA } from "@/components/features/conversion/InlineArticleCTA";
@@ -292,6 +293,12 @@ export default async function BlogPostPage({
           <TableOfContents containerSelector=".prose-roadman" />
 
           <Container width="narrow">
+            <Breadcrumbs
+              items={[
+                { label: "Blog", href: "/blog" },
+                { label: post.title },
+              ]}
+            />
             {post.answerCapsule && (
               <div className="answer-capsule mb-8">
                 <AnswerCapsule text={post.answerCapsule} pillar={post.pillar} />
