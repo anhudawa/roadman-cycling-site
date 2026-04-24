@@ -58,21 +58,23 @@ describe('buildContext', () => {
 
 describe('renderResponse', () => {
   it('renders Standard template for standard routing', () => {
+    // budget keyword triggers the standard route (premium is the default for all others)
     const answers = prospect({
       q1TrainingFor: 'general_fitness',
       q2HoursPerWeek: '4_to_6',
       q5Frustration: 'lost_motivation',
       q7CoachingHistory: 'never',
+      q8Freetext: 'budget is a concern right now',
     });
     const result = routeProspect(answers);
     const response = renderResponse(answers, result);
 
     expect(response.decision).toBe('standard');
-    expect(response.headline).toContain('Standard');
+    expect(response.headline).toContain('way to start');
     expect(response.body).toContain('4 to 6 hours a week');
     expect(response.body).toContain('struggling with motivation');
     expect(response.body).toContain('never had coaching');
-    expect(response.primaryCta.label).toContain('free trial');
+    expect(response.primaryCta.label).toContain('community');
     expect(response.primaryCta.url).toContain('skool.com');
   });
 

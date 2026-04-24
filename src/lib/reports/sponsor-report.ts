@@ -11,7 +11,7 @@ import { getSocialStats } from './social-stats';
 import { getMonthlyWebSessions } from '@/lib/analytics/ga4';
 import type { ReportPayload, EpisodeMentionGroup, PlatformStat } from './types';
 
-const PODCAST_DIR = path.join(process.cwd(), 'content/podcast');
+const PODCAST_DIR = process.env.TEST_PODCAST_DIR ?? path.join(process.cwd(), 'content/podcast');
 
 function aliasesFor(brandName: string, raw?: string): string[] {
   const fromField = (raw ?? '')

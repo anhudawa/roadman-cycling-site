@@ -1,22 +1,45 @@
 import { describe, it, expect, vi, beforeAll, afterAll } from 'vitest';
 import fs from 'fs';
+import os from 'os';
 import path from 'path';
 
-// Point podcast loader at our fixture dir by symlinking before tests
+// Isolated temp dir per process — prevents race conditions when multiple
+// worktree test runs write to the shared content/podcast/ directory.
 const FIXTURE_DIR = path.join(__dirname, '__fixtures__');
-const PODCAST_DIR = path.join(process.cwd(), 'content/podcast');
+const TEMP_PODCAST_DIR = fs.mkdtempSync(path.join(os.tmpdir(), 'roadman-sponsor-test-'));
+
+// Override the podcast dir used by sponsor-report.ts before any imports.
+process.env.TEST_PODCAST_DIR = TEMP_PODCAST_DIR;
+
+// Also mock getAllEpisodes so the episode list comes from TEMP_PODCAST_DIR,
+// not the real content/podcast directory.
+vi.mock('@/lib/podcast', () => {
+  const matter = require('gray-matter');
+  const path = require('path');
+  const fs = require('fs');
+  const dir = process.env.TEST_PODCAST_DIR!;
+  return {
+    getAllEpisodes: () => {
+      const files = fs.readdirSync(dir).filter((f: string) => f.endsWith('.mdx'));
+      return files.map((filename: string) => {
+        const slug = filename.replace(/\.mdx$/, '');
+        const { data } = matter(fs.readFileSync(path.join(dir, filename), 'utf-8'));
+        return { ...data, slug };
+      });
+    },
+  };
+});
 
 describe('buildSponsorReport (integration)', () => {
   beforeAll(() => {
     for (const f of fs.readdirSync(FIXTURE_DIR)) {
-      fs.copyFileSync(path.join(FIXTURE_DIR, f), path.join(PODCAST_DIR, f));
+      fs.copyFileSync(path.join(FIXTURE_DIR, f), path.join(TEMP_PODCAST_DIR, f));
     }
   });
 
   afterAll(() => {
-    for (const f of fs.readdirSync(FIXTURE_DIR)) {
-      fs.unlinkSync(path.join(PODCAST_DIR, f));
-    }
+    fs.rmSync(TEMP_PODCAST_DIR, { recursive: true, force: true });
+    delete process.env.TEST_PODCAST_DIR;
   });
 
   it('finds mentions of a sponsor in an April episode', async () => {
