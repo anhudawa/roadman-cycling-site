@@ -156,11 +156,12 @@ export default async function BlogPostPage({
           "@context": "https://schema.org",
           "@type": "Person",
           name: "Anthony Walsh",
-          url: "https://roadmancycling.com/about",
+          url: "https://roadmancycling.com/author/anthony-walsh",
           jobTitle: "Founder & Host, Roadman Cycling Podcast",
           worksFor: {
             "@type": "Organization",
             name: "Roadman Cycling",
+            url: "https://roadmancycling.com",
           },
           knowsAbout: [
             "cycling training",

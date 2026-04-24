@@ -112,7 +112,18 @@ export default async function PlanEventHubPage({
             "@type": "SportsEvent",
             name: event.name,
             sport: "Cycling",
-            location: event.region,
+            startDate: (() => {
+              const months = ["January","February","March","April","May","June","July","August","September","October","November","December"];
+              const mi = months.indexOf(event.defaultMonth);
+              if (mi < 0) return undefined;
+              const now = new Date();
+              const year = mi >= now.getMonth() ? now.getFullYear() : now.getFullYear() + 1;
+              return `${year}-${String(mi + 1).padStart(2, "0")}`;
+            })(),
+            location: {
+              "@type": "Place",
+              name: event.region,
+            },
           },
           speakable: {
             "@type": "SpeakableSpecification",

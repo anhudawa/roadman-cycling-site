@@ -135,6 +135,7 @@ export function Footer() {
                   alt="Roadman Cycling"
                   width={763}
                   height={345}
+                  sizes="200px"
                   className="max-w-none h-10 md:h-14 w-auto"
                 />
               </Link>

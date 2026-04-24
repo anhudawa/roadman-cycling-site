@@ -196,21 +196,11 @@ export default function CoachingPage() {
             description:
               "1:1 personalised coaching across training, nutrition, strength, recovery, and community",
           },
-          // Review schema mirrors the real on-page testimonials below.
-          // No reviewRating — we collect narrative testimonials, not star ratings,
-          // so emitting a made-up numeric rating would violate Google's guidelines.
-          review: testimonials.map((t) => ({
-            "@type": "Review",
-            author: {
-              "@type": "Person",
-              name: t.name,
-            },
-            reviewBody: t.quote,
-            itemReviewed: {
-              "@type": "Service",
-              name: "Roadman Cycling Coaching",
-            },
-          })),
+          // Testimonials render on the page but are NOT marked up as
+          // schema.org/Review — Google requires reviewRating on every
+          // Review, and we collect narrative testimonials not star ratings.
+          // Emitting Review without reviewRating triggers the structured-
+          // data spam policy. Re-add with real ratings if we ever collect them.
         }}
       />
       {/* Course schema — structured coaching programme with instructor + delivery mode */}
@@ -224,6 +214,7 @@ export default function CoachingPage() {
           provider: {
             "@type": "Organization",
             name: "Roadman Cycling",
+            url: "https://roadmancycling.com",
             sameAs: "https://roadmancycling.com",
           },
           hasCourseInstance: {
