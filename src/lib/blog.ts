@@ -11,6 +11,12 @@ export interface FaqItem {
   answer: string;
 }
 
+export interface ExpertSource {
+  name: string;
+  role?: string;
+  href?: string;
+}
+
 export interface BlogFrontmatter {
   title: string;
   seoTitle?: string;
@@ -25,6 +31,15 @@ export interface BlogFrontmatter {
   relatedEpisodes?: string[];
   faq?: FaqItem[];
   answerCapsule?: string;
+  // E-E-A-T: experts cited or interviewed in the article. When present,
+  // overrides the default Anthony-only experts entry on the EvidenceBlock
+  // and shows readers (and search engines) which named authorities the
+  // article's claims are grounded in.
+  experts?: ExpertSource[];
+  // E-E-A-T: explicit human review trail. Falls back to updatedDate /
+  // publishDate when omitted.
+  reviewedBy?: string;
+  lastReviewed?: string;
 }
 
 export interface BlogPostMeta extends BlogFrontmatter {

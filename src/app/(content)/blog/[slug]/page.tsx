@@ -494,11 +494,22 @@ export default async function BlogPostPage({
                 blog post to /about + verified social sameAs URLs. */}
             <AuthorBio />
 
-            {/* Evidence block — sources, related episodes, review date */}
+            {/* Evidence block — sources, related episodes, review date.
+                Experts default to Anthony alone but can be overridden per
+                post via the `experts` frontmatter array, which is how
+                articles credit named coaches and scientists they cite. */}
             <EvidenceBlock
-              experts={[
-                { name: "Anthony Walsh", role: "Cycling Coach & Podcast Host", href: "/about" },
-              ]}
+              experts={
+                post.experts && post.experts.length > 0
+                  ? post.experts
+                  : [
+                      {
+                        name: "Anthony Walsh",
+                        role: "Cycling Coach & Podcast Host",
+                        href: "/about",
+                      },
+                    ]
+              }
               episodes={
                 post.relatedEpisodes
                   ? post.relatedEpisodes
@@ -510,8 +521,10 @@ export default async function BlogPostPage({
                       .slice(0, 3)
                   : undefined
               }
-              lastReviewed={String(post.updatedDate || post.publishDate)}
-              reviewedBy="Anthony Walsh"
+              lastReviewed={String(
+                post.lastReviewed || post.updatedDate || post.publishDate
+              )}
+              reviewedBy={post.reviewedBy || "Anthony Walsh"}
             />
 
             {/* Graph-powered: related glossary terms */}
