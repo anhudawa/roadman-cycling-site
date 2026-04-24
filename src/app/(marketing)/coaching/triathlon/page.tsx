@@ -38,7 +38,7 @@ const bikePillars = [
     number: "01",
     title: "Bike-Specific Power",
     description:
-      "Age-group bike splits are won in Zone 2 and Zone 3, not at threshold. We build the sustainable aerobic power that lets you push watts over 90km or 180km — not just 20 minutes — so your race-pace feels easy.",
+      "Age-group bike splits are won in Zone 2 and Zone 3, not at threshold. We build the sustainable aerobic power that lets you push watts over 90km or 180km — not just 20 minutes — so your race-pace feels manageable.",
   },
   {
     number: "02",
@@ -50,7 +50,7 @@ const bikePillars = [
     number: "03",
     title: "Brick & Transition Craft",
     description:
-      "The real bike session ends with the first 5km of the run. Brick workouts are periodised into every block so you arrive at T2 with legs that remember how to run — not legs that are ruined.",
+      "The real bike session ends with the first 5km of the run. Brick workouts are periodised into every block so you arrive at T2 with legs that remember how to run — not legs that are wrecked.",
   },
   {
     number: "04",
@@ -300,12 +300,12 @@ export default function TriathlonCoachingPage() {
               >
                 GET FASTER ON THE BIKE.
                 <br />
-                <span className="text-coral">WITHOUT RUINING YOUR RUN.</span>
+                <span className="text-coral">WITHOUT COSTING YOU THE RUN.</span>
               </h1>
               <p className="text-foreground-muted text-xl max-w-2xl mx-auto mb-8 leading-relaxed">
                 Specialist bike coaching for age-group triathletes. Bike-leg
                 power, aero endurance, brick sessions, pacing, and fuelling —
-                periodised around your run. Built on 1,300+ conversations with
+                periodised around your run. Built on 1,400+ conversations with
                 Dan Lorang, Prof. Stephen Seiler, and World Tour coaches.
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-6">
@@ -339,20 +339,20 @@ export default function TriathlonCoachingPage() {
                   style={{ fontSize: "var(--text-section)" }}
                 >
                   <GradientText as="span">
-                    THE BIKE LEG IS WHERE AGE-GROUPERS LOSE TIME — AND RUINS THEIR RUN.
+                    THE BIKE LEG IS WHERE AGE-GROUPERS LOSE TIME — AND IT COSTS YOU THE RUN.
                   </GradientText>
                 </h2>
                 <div className="space-y-4 text-foreground-muted leading-relaxed">
                   <p>
-                    You are spending 50–60% of your race-day on the bike.
+                    You spend 50–60% of your race-day on the bike.
                     It is the single biggest time saving in your triathlon — and
                     the single biggest threat to your run. Yet most triathlon
-                    plans give the bike a third of the love, a generic
+                    plans give the bike a third of the attention, a generic
                     threshold workout, and a long Sunday grind.
                   </p>
                   <p>
-                    That is how age-groupers end up with a respectable bike
-                    split and a run that falls apart at 15km. You did not lose
+                    That&rsquo;s how age-groupers end up with a respectable bike
+                    split and a run that falls apart at 15km. You didn&rsquo;t lose
                     the race on the run — you lost it in the last 30 minutes
                     of the bike, burning matches you needed later.
                   </p>
@@ -654,8 +654,8 @@ export default function TriathlonCoachingPage() {
                 FROM THE BLOG
               </h2>
               <p className="text-foreground-muted max-w-xl mx-auto">
-                Deep dives into bike-leg training, pacing, and race
-                preparation for triathletes.
+                Bike-leg training, pacing, and race preparation — written for
+                triathletes, not pure cyclists.
               </p>
             </ScrollReveal>
 

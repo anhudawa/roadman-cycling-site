@@ -6,6 +6,7 @@ import { MDXRemote } from "next-mdx-remote/rsc";
 import { Header, Footer, Section, Container } from "@/components/layout";
 import { Badge, Button } from "@/components/ui";
 import { JsonLd } from "@/components/seo/JsonLd";
+import { ENTITY_IDS, SITE_ORIGIN } from "@/lib/brand-facts";
 import { getPostBySlug, getAllSlugs, getRelatedPosts } from "@/lib/blog";
 import { getEpisodeBySlug } from "@/lib/podcast";
 import { getTopicsForPost } from "@/lib/topics";
@@ -15,6 +16,7 @@ import { ShareButtons } from "@/components/features/blog/ShareButtons";
 import { RelatedPosts } from "@/components/features/blog/RelatedPosts";
 import { AuthorBio } from "@/components/features/blog/AuthorBio";
 import { EvidenceBlock } from "@/components/seo/EvidenceBlock";
+import { Breadcrumbs } from "@/components/seo/Breadcrumbs";
 import { queryContentGraph } from "@/lib/content-graph";
 import { RelatedContent } from "@/components/features/RelatedContent";
 import { InlineArticleCTA } from "@/components/features/conversion/InlineArticleCTA";
@@ -106,34 +108,39 @@ export default async function BlogPostPage({
         return haystack.includes(e.name.toLowerCase()) || haystack.includes(e.shortName.toLowerCase());
       }).slice(0, 3);
 
-  const graph = queryContentGraph({ pillar: post.pillar, limit: 3 });
+  // Prefer the article's primary topic hub for graph lookups so posts that
+  // belong to a topic inherit that topic's tool roster (content-graph only
+  // returns tools when a topicSlug resolves a TopicHub). Falls back to
+  // pillar-only matching for posts outside any topic hub.
+  const graph = queryContentGraph({
+    topicSlug: parentTopics[0]?.slug,
+    pillar: post.pillar,
+    limit: 3,
+  });
   const publishDate = new Date(post.publishDate);
 
   return (
     <>
+      {/* BlogPosting references the canonical Person + Organization @ids
+          emitted by OrganizationJsonLd in the root layout, so crawlers see
+          a single connected knowledge graph rather than duplicate entities. */}
       <JsonLd
         data={{
           "@context": "https://schema.org",
           "@type": "BlogPosting",
+          "@id": `${SITE_ORIGIN}/blog/${slug}#article`,
           headline: post.title,
           description: post.seoDescription,
-          author: {
-            "@type": "Person",
-            name: post.author,
-            url: "https://roadmancycling.com/about",
-          },
-          publisher: {
-            "@type": "Organization",
-            name: "Roadman Cycling",
-            url: "https://roadmancycling.com",
-          },
+          author: { "@id": ENTITY_IDS.person },
+          publisher: { "@id": ENTITY_IDS.organization },
           datePublished: post.publishDate,
           dateModified: post.updatedDate || post.publishDate,
           mainEntityOfPage: {
             "@type": "WebPage",
-            "@id": `https://roadmancycling.com/blog/${slug}`,
+            "@id": `${SITE_ORIGIN}/blog/${slug}`,
           },
           keywords: post.keywords.join(", "),
+          isPartOf: { "@id": ENTITY_IDS.website },
           speakable: {
             "@type": "SpeakableSpecification",
             cssSelector: post.answerCapsule
@@ -143,7 +150,7 @@ export default async function BlogPostPage({
           ...(post.featuredImage && {
             image: {
               "@type": "ImageObject",
-              url: post.featuredImage.startsWith('http') ? post.featuredImage : `https://roadmancycling.com${post.featuredImage}`,
+              url: post.featuredImage.startsWith('http') ? post.featuredImage : `${SITE_ORIGIN}${post.featuredImage}`,
               width: 1200,
               height: 630,
             },
@@ -162,32 +169,6 @@ export default async function BlogPostPage({
                 url: `https://roadmancycling.com${e.href}`,
               })),
           }),
-        }}
-      />
-      {/* Person schema for E-E-A-T */}
-      <JsonLd
-        data={{
-          "@context": "https://schema.org",
-          "@type": "Person",
-          name: "Anthony Walsh",
-          url: "https://roadmancycling.com/author/anthony-walsh",
-          jobTitle: "Founder & Host, Roadman Cycling Podcast",
-          worksFor: {
-            "@type": "Organization",
-            name: "Roadman Cycling",
-            url: "https://roadmancycling.com",
-          },
-          knowsAbout: [
-            "cycling training",
-            "cycling nutrition",
-            "endurance coaching",
-            "cycling performance",
-          ],
-          sameAs: [
-            "https://youtube.com/@theroadmanpodcast",
-            "https://instagram.com/roadman.cycling",
-            "https://x.com/Roadman_Podcast",
-          ],
         }}
       />
       <JsonLd
@@ -321,6 +302,12 @@ export default async function BlogPostPage({
           <TableOfContents containerSelector=".prose-roadman" />
 
           <Container width="narrow">
+            <Breadcrumbs
+              items={[
+                { label: "Blog", href: "/blog" },
+                { label: post.title },
+              ]}
+            />
             {post.answerCapsule && (
               <div className="answer-capsule mb-8">
                 <AnswerCapsule text={post.answerCapsule} pillar={post.pillar} />
@@ -555,6 +542,30 @@ export default async function BlogPostPage({
               )}
               reviewedBy={post.reviewedBy || "Anthony Walsh"}
             />
+
+            {/* Graph-powered: related calculator tools — surfaces at least
+                one pillar-matched tool per article so every long-form piece
+                has a "try it yourself" action, and satisfies the article
+                internal-linking rule (1 hub + articles + tool + episode). */}
+            {graph.tools.length > 0 && (
+              <div className="mt-10">
+                <p className="font-heading text-coral text-xs tracking-widest mb-3">
+                  TRY THE CALCULATORS
+                </p>
+                <div className="flex flex-wrap gap-2">
+                  {graph.tools.slice(0, 2).map((t) => (
+                    <Link
+                      key={t.slug}
+                      href={t.href}
+                      className="inline-flex items-center gap-1 rounded-lg border border-white/15 hover:border-coral/40 bg-white/[0.04] hover:bg-white/[0.07] px-3 py-1.5 text-xs font-heading text-off-white tracking-wider transition-all"
+                    >
+                      {t.title}
+                      <span aria-hidden="true" className="ml-1">&rarr;</span>
+                    </Link>
+                  ))}
+                </div>
+              </div>
+            )}
 
             {/* Graph-powered: related glossary terms */}
             {graph.glossaryTerms.length > 0 && (

@@ -85,7 +85,7 @@ export const CONTENT_PILLARS: Record<
     label: "Nutrition",
     color: "var(--color-pillar-nutrition)",
     description:
-      "Fueling for performance, race weight, body composition, in-ride nutrition",
+      "Fuelling for performance, race weight, body composition, in-ride nutrition",
   },
   strength: {
     label: "Strength & Conditioning",
@@ -146,6 +146,7 @@ export const NAV_ITEMS: NavItem[] = [
       { label: "MTB Setup", href: "/tools/shock-pressure" },
       { label: "Plateau Diagnostic", href: "/plateau" },
       { label: "Coaching Assessment", href: "/assessment" },
+      { label: "Ask Roadman", href: "/ask" },
     ],
   },
   {

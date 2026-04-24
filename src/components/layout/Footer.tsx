@@ -142,7 +142,7 @@ export function Footer() {
               <p className="text-foreground-muted leading-relaxed mb-2">
                 The world&apos;s largest cycling performance podcast. Translating
                 conversations with Greg LeMond, Professor Seiler, Dan Lorang, and
-                1,300+ episodes of world-class expertise into content that makes you
+                1,400+ episodes of world-class expertise into content that makes you
                 faster.
               </p>
               <p className="text-sm text-foreground-subtle italic">
@@ -172,7 +172,7 @@ export function Footer() {
                 <h4 className="font-heading text-lg text-off-white mb-4 tracking-wider">
                   {section.title.toUpperCase()}
                 </h4>
-                <ul className="space-y-2.5">
+                <ul>
                   {section.links.map((link) => {
                     const isExternal = "external" in link && link.external;
                     return (
@@ -182,7 +182,7 @@ export function Footer() {
                             href={link.href}
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="text-sm text-foreground-muted hover:text-coral transition-colors inline-flex items-center gap-1"
+                            className="flex items-center gap-1 py-2.5 text-sm text-foreground-muted hover:text-coral transition-colors"
                             style={{
                               transitionDuration: "var(--duration-fast)",
                             }}
@@ -202,7 +202,7 @@ export function Footer() {
                         ) : (
                           <Link
                             href={link.href}
-                            className="text-sm text-foreground-muted hover:text-coral transition-colors"
+                            className="block py-2.5 text-sm text-foreground-muted hover:text-coral transition-colors"
                             style={{
                               transitionDuration: "var(--duration-fast)",
                             }}

@@ -5,6 +5,7 @@ import { Header, Footer, Section, Container } from "@/components/layout";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { getAllEpisodes } from "@/lib/podcast";
 import { PodcastSearch } from "@/components/features/podcast/PodcastSearch";
+import { ENTITY_IDS, SITE_ORIGIN } from "@/lib/brand-facts";
 
 export const metadata: Metadata = {
   title: "Podcast Archive — Every Episode",
@@ -27,25 +28,17 @@ export default function PodcastPage() {
 
   return (
     <>
+      {/* Augment the canonical PodcastSeries declared in OrganizationJsonLd
+          with hub-page specifics (numberOfEpisodes, web feed, cross-platform
+          same-as links). Same @id so crawlers merge this into one entity. */}
       <JsonLd
         data={{
           "@context": "https://schema.org",
           "@type": "PodcastSeries",
-          name: "The Roadman Cycling Podcast",
-          description:
-            "The podcast trusted by 1M+ monthly listeners. Expert cycling interviews with world-class coaches, scientists, and pro riders.",
-          url: "https://roadmancycling.com/podcast",
-          webFeed: "https://roadmancycling.com/feed/podcast",
-          author: {
-            "@type": "Person",
-            name: "Anthony Walsh",
-            url: "https://roadmancycling.com/about",
-          },
-          publisher: {
-            "@type": "Organization",
-            name: "Roadman Cycling",
-            url: "https://roadmancycling.com",
-          },
+          "@id": ENTITY_IDS.podcast,
+          webFeed: `${SITE_ORIGIN}/feed/podcast`,
+          author: { "@id": ENTITY_IDS.person },
+          publisher: { "@id": ENTITY_IDS.organization },
           inLanguage: "en",
           genre: "Sports",
           numberOfEpisodes: episodes.length,

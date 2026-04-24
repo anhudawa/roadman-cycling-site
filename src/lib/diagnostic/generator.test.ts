@@ -193,6 +193,6 @@ describe("generateBreakdown", () => {
     );
     expect(result.source).toBe("fallback");
     expect(result.breakdown.secondaryNote).not.toBeNull();
-    expect(result.breakdown.secondaryNote).toContain("Fueling Deficit");
+    expect(result.breakdown.secondaryNote).toContain("Fuelling Deficit");
   }, 10_000);
 });

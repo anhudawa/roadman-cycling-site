@@ -1,37 +1,52 @@
 import { NextResponse } from "next/server";
 import { subscribeToBeehiiv } from "@/lib/integrations/beehiiv";
-import { generateToolReport, type ToolSlug } from "@/lib/tools/reports";
+import { generateToolReport, type ToolSlug as LegacyToolSlug } from "@/lib/tools/reports";
 import { upsertContact, addActivity } from "@/lib/crm/contacts";
 import { clampString, LIMITS, normaliseEmail } from "@/lib/validation";
+import { completeToolResult } from "@/lib/tool-results/pipeline";
+import { fuellingTags, ftpZonesTags } from "@/lib/tool-results/tags";
+import { getDefinition } from "@/lib/diagnostics/framework/registry";
+import type { ToolSlug as SaveableToolSlug } from "@/lib/tool-results/types";
 
 /**
  * Unified tool-report endpoint.
  *
- * Every calculator on /tools/* can request a personalised HTML email
- * report via this single route. Flow:
- *   1. Validate email + tool slug + inputs
- *   2. Generate report HTML + subject + Beehiiv tag via the
- *      report generator lib
- *   3. Send email via Resend (from noreply@roadmancycling.com)
- *   4. Upsert Beehiiv subscriber with tool-specific tag
- *   5. Upsert in CRM as a "tool_report" activity
+ * Two branches:
  *
- * All three side-effects are non-fatal — if Resend fails the user
- * still gets added to Beehiiv, etc. The HTTP response is the client's
- * confirmation, which we try very hard to return 200 unless validation
- * fails or the report itself couldn't be generated.
+ *   a) Saveable tools ("fuelling", "ftp-zones") — route through the
+ *      completeToolResult pipeline which persists a `tool_results`
+ *      row, upserts the rider profile, fires CRM tags, syncs Beehiiv,
+ *      and emails the personalised report. Client gets back a permalink
+ *      slug so it can redirect to /results/<tool>/<slug>.
+ *
+ *   b) Legacy tools (tyre-pressure, race-weight, energy-availability,
+ *      shock-pressure) — use the original email-only path. No save.
  */
 
-const VALID_TOOLS: ToolSlug[] = [
-  "ftp-zones",
+const LEGACY_TOOLS: LegacyToolSlug[] = [
   "tyre-pressure",
   "race-weight",
   "energy-availability",
-  "fuelling",
   "shock-pressure",
 ];
 
+const SAVEABLE_CLIENT_TOOLS = ["fuelling", "ftp-zones"] as const;
+type SaveableClientTool = (typeof SAVEABLE_CLIENT_TOOLS)[number];
+
+const SAVEABLE_SLUG_MAP: Record<SaveableClientTool, SaveableToolSlug> = {
+  fuelling: "fuelling",
+  "ftp-zones": "ftp_zones",
+};
+
 const FROM_ADDRESS = "Roadman Cycling <noreply@roadmancycling.com>";
+
+function isSaveableClientTool(x: unknown): x is SaveableClientTool {
+  return typeof x === "string" && (SAVEABLE_CLIENT_TOOLS as readonly string[]).includes(x);
+}
+
+function isLegacyTool(x: unknown): x is LegacyToolSlug {
+  return typeof x === "string" && (LEGACY_TOOLS as readonly string[]).includes(x);
+}
 
 async function sendReportEmail(
   to: string,
@@ -70,6 +85,193 @@ async function sendReportEmail(
   }
 }
 
+/* ============================================================ */
+/* Saveable path — fuelling + ftp-zones                          */
+/* ============================================================ */
+
+function buildSaveableSavePayload(
+  clientTool: SaveableClientTool,
+  inputs: Record<string, unknown>,
+  name: string | undefined,
+) {
+  const slug = SAVEABLE_SLUG_MAP[clientTool];
+  const def = getDefinition(slug);
+
+  if (clientTool === "fuelling") {
+    const carbsPerHour = Number(inputs.carbsPerHour ?? 0);
+    const fluidPerHour = Number(inputs.fluidPerHour ?? 0);
+    const sodiumPerHour = Number(inputs.sodiumPerHour ?? 0);
+    const weight = Number(inputs.weight ?? 0);
+    const gutTraining = (inputs.gutTraining as "none" | "some" | "trained") ?? "some";
+    const heatCategory =
+      (inputs.heatCategory as "cool" | "mild" | "warm" | "hot") ?? "mild";
+    const intensity = String(inputs.sessionType ?? "endurance");
+
+    const primary = def.pickPrimary({}, { carbsPerHour }).primary;
+    const answersForSummary = { carbsPerHour, fluidPerHour, sodiumPerHour };
+    const summary = def.buildSummary(primary, {}, answersForSummary);
+
+    return {
+      riderProfilePatch: {
+        firstName: name ?? null,
+        currentWeight: weight > 0 ? weight : null,
+      },
+      save: {
+        toolSlug: slug,
+        inputs,
+        outputs: {
+          carbsPerHour,
+          fluidPerHour,
+          sodiumPerHour,
+          totalCarbs: Number(inputs.totalCarbs ?? 0),
+          totalFluid: Number(inputs.totalFluid ?? 0),
+          glucosePerHour: Number(inputs.glucosePerHour ?? 0),
+          fructosePerHour: Number(inputs.fructosePerHour ?? 0),
+          strategy: String(inputs.strategy ?? ""),
+          feedingInterval: String(inputs.feedingInterval ?? ""),
+          startFuellingAt: String(inputs.startFuellingAt ?? ""),
+          intensityLabel: String(inputs.intensityLabel ?? ""),
+          heatCategory,
+          primary,
+        },
+        summary,
+        primaryResult: primary,
+        tags: fuellingTags({ intensity, carbsPerHour, gutTraining, heatCategory }),
+      },
+    };
+  }
+
+  // ftp-zones
+  const ftp = Number(inputs.ftp ?? 0);
+  const weight = Number(inputs.weight ?? 0);
+  const wkg = weight > 0 ? Number((ftp / weight).toFixed(2)) : null;
+  const primary = def.pickPrimary({}, { wkg: wkg ?? 0 }).primary;
+  const summary = def.buildSummary(primary, {}, { ftp, wkg: wkg ?? 0 });
+
+  return {
+    riderProfilePatch: {
+      firstName: name ?? null,
+      currentFtp: ftp > 0 ? ftp : null,
+      currentWeight: weight > 0 ? weight : null,
+    },
+    save: {
+      toolSlug: slug,
+      inputs,
+      outputs: { ftp, wkg, primary },
+      summary,
+      primaryResult: primary,
+      tags: ftpZonesTags({ ftp, wkg }),
+    },
+  };
+}
+
+async function handleSaveable(
+  clientTool: SaveableClientTool,
+  email: string,
+  name: string | undefined,
+  inputs: Record<string, unknown>,
+  baseUrl: string,
+  sourcePage: string | null,
+) {
+  const payload = buildSaveableSavePayload(clientTool, inputs, name);
+
+  const outcome = await completeToolResult({
+    email,
+    riderProfileId: null,
+    baseUrl,
+    sourcePage,
+    profilePatch: payload.riderProfilePatch,
+    ...payload.save,
+  });
+
+  return NextResponse.json({
+    success: true,
+    emailSent: outcome.emailSent,
+    slug: outcome.result.slug,
+    permalink: `/results/${outcome.result.toolSlug.replace("_", "-")}/${outcome.result.slug}`,
+    primaryResult: outcome.result.primaryResult,
+  });
+}
+
+/* ============================================================ */
+/* Legacy path — email-only tools                                */
+/* ============================================================ */
+
+async function handleLegacy(
+  tool: LegacyToolSlug,
+  email: string,
+  name: string | undefined,
+  inputs: Record<string, unknown>,
+) {
+  const report = generateToolReport(tool, { ...inputs, name });
+  if (!report) {
+    return NextResponse.json(
+      { error: "Could not generate report from these inputs." },
+      { status: 422 },
+    );
+  }
+
+  const [emailResult] = await Promise.all([
+    sendReportEmail(email, report.subject, report.html),
+    subscribeToBeehiiv({
+      email,
+      name,
+      tags: [report.beehiivTag, `tool-${tool}`],
+      customFields: {
+        ...report.beehiivFields,
+        last_tool: tool,
+      },
+      utm: {
+        source: "site",
+        medium: "tool",
+        campaign: report.beehiivTag,
+      },
+    }).catch((err) =>
+      console.error("[tools/report] Beehiiv sync failed:", err),
+    ),
+    (async () => {
+      try {
+        const contact = await upsertContact({
+          email,
+          name,
+          source: "subscribers",
+          customFields: {
+            ...report.beehiivFields,
+            last_tool: tool,
+          },
+        });
+        await addActivity(contact.id, {
+          type: "tag_added",
+          title: `Requested ${tool} report`,
+          body: `Inputs: ${JSON.stringify(inputs)}`,
+          meta: { tool, inputs },
+          authorName: "system",
+        });
+      } catch (err) {
+        console.error("[tools/report] CRM sync failed:", err);
+      }
+    })(),
+  ]);
+
+  if (!emailResult.success) {
+    return NextResponse.json(
+      {
+        success: true,
+        emailSent: false,
+        message:
+          "We saved your results — but the email send failed. We'll look into it.",
+      },
+      { status: 200 },
+    );
+  }
+
+  return NextResponse.json({ success: true, emailSent: true });
+}
+
+/* ============================================================ */
+/* Route handler                                                 */
+/* ============================================================ */
+
 export async function POST(request: Request) {
   try {
     const body = (await request.json()) as {
@@ -77,17 +279,11 @@ export async function POST(request: Request) {
       email?: string;
       name?: string;
       inputs?: Record<string, unknown>;
+      sourcePage?: string;
     };
 
-    const { tool, email, name, inputs } = body;
+    const { tool, email, name, inputs, sourcePage } = body;
 
-    // Validate
-    if (!tool || typeof tool !== "string" || !VALID_TOOLS.includes(tool as ToolSlug)) {
-      return NextResponse.json(
-        { error: "Invalid tool identifier." },
-        { status: 400 },
-      );
-    }
     const normalisedEmail = normaliseEmail(email);
     if (!normalisedEmail) {
       return NextResponse.json(
@@ -103,80 +299,29 @@ export async function POST(request: Request) {
     }
 
     const normalisedName = clampString(name, LIMITS.name) ?? undefined;
+    const baseUrl = new URL(request.url).origin;
+    const safeSourcePage =
+      typeof sourcePage === "string" ? clampString(sourcePage, 200) : null;
 
-    // Generate the report — tool-specific logic lives in
-    // src/lib/tools/reports.ts.
-    const report = generateToolReport(tool as ToolSlug, {
-      ...inputs,
-      name: normalisedName,
-    });
-    if (!report) {
-      return NextResponse.json(
-        { error: "Could not generate report from these inputs." },
-        { status: 422 },
+    if (isSaveableClientTool(tool)) {
+      return await handleSaveable(
+        tool,
+        normalisedEmail,
+        normalisedName,
+        inputs,
+        baseUrl,
+        safeSourcePage,
       );
     }
 
-    // Fire all three side-effects in parallel. All are non-fatal
-    // w/r/t the HTTP response — we return success if the user's
-    // email is at least accepted by our infra.
-    const [emailResult] = await Promise.all([
-      sendReportEmail(normalisedEmail, report.subject, report.html),
-      subscribeToBeehiiv({
-        email: normalisedEmail,
-        name: normalisedName,
-        tags: [report.beehiivTag, `tool-${tool}`],
-        customFields: {
-          ...report.beehiivFields,
-          last_tool: tool,
-        },
-        utm: {
-          source: "site",
-          medium: "tool",
-          campaign: report.beehiivTag,
-        },
-      }).catch((err) =>
-        console.error("[tools/report] Beehiiv sync failed:", err),
-      ),
-      (async () => {
-        try {
-          const contact = await upsertContact({
-            email: normalisedEmail,
-            name: normalisedName,
-            source: "subscribers",
-            customFields: {
-              ...report.beehiivFields,
-              last_tool: tool,
-            },
-          });
-          await addActivity(contact.id, {
-            type: "tag_added",
-            title: `Requested ${tool} report`,
-            body: `Inputs: ${JSON.stringify(inputs)}`,
-            meta: { tool, inputs },
-            authorName: "system",
-          });
-        } catch (err) {
-          console.error("[tools/report] CRM sync failed:", err);
-        }
-      })(),
-    ]);
-
-    if (!emailResult.success) {
-      // Don't error the whole flow — user is still in Beehiiv + CRM.
-      // Tell them to check spam; log for our side to investigate.
-      return NextResponse.json(
-        {
-          success: true,
-          emailSent: false,
-          message:
-            "We saved your results — but the email send failed. We'll look into it.",
-        },
-        { status: 200 },
-      );
+    if (isLegacyTool(tool)) {
+      return await handleLegacy(tool, normalisedEmail, normalisedName, inputs);
     }
 
-    return NextResponse.json({ success: true, emailSent: true });
+    return NextResponse.json(
+      { error: "Invalid tool identifier." },
+      { status: 400 },
+    );
   } catch (err) {
     console.error("[tools/report] Error:", err);
     return NextResponse.json({ error: "Something went wrong" }, { status: 500 });

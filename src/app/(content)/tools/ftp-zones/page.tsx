@@ -6,7 +6,8 @@ import { motion, AnimatePresence } from "framer-motion";
 import { Header, Footer, Section, Container } from "@/components/layout";
 import { Button } from "@/components/ui";
 import { ZoneChart } from "@/components/features/tools/ZoneChart";
-import { ReportRequestForm } from "@/components/features/tools/ReportRequestForm";
+import { SaveToolResultForm } from "@/components/features/tools/SaveToolResultForm";
+import { TOOL_EVENTS, trackTool } from "@/lib/analytics/tool-events";
 
 interface Zone {
   name: string;
@@ -93,6 +94,11 @@ export default function FTPZonesPage() {
   const handleCalculate = () => {
     if (ftpValue > 0 && !ftpError) {
       setCalculated(true);
+      trackTool({
+        name: TOOL_EVENTS.COMPLETED,
+        tool: "ftp_zones",
+        meta: { ftp: ftpValue },
+      });
     }
   };
 
@@ -317,17 +323,32 @@ export default function FTPZonesPage() {
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.35, delay: 0.5 }}
                 >
-                  <ReportRequestForm
-                    tool="ftp-zones"
-                    inputs={{ ftp: ftpValue }}
-                    heading={`Your personalised ${ftpValue}w training week`}
-                    subheading="We'll email you a polarised 7-day template built around the zones above — with specific wattage targets for each session. The same distribution the Norwegian lab's proven works for twenty years."
+                  <SaveToolResultForm
+                    tool="ftp_zones"
+                    resultsPathTool="ftp-zones"
+                    inputs={{ ftp: ftpValue, weightKg: null, maxHr: null }}
+                    outputs={{
+                      wkg: null,
+                      zones: ZONES.map((z) => ({
+                        zone: z.name.split("—")[0].trim(),
+                        label: z.name,
+                        lower:
+                          z.minPercent === 0
+                            ? 0
+                            : Math.round((z.minPercent / 100) * ftpValue),
+                        upper:
+                          z.maxPercent === 999
+                            ? ftpValue * 3
+                            : Math.round((z.maxPercent / 100) * ftpValue),
+                      })),
+                    }}
+                    heading={`Save your ${ftpValue}w power zones`}
+                    subheading="We'll email your personalised zone table and save the permalink to your rider profile, so you can pull it up from your phone mid-session — or hand it to Ask Roadman to plan a session around it."
                     bullets={[
-                      "Full 7-zone cheat sheet you can screenshot",
-                      "Tuesday threshold session at your exact wattage",
-                      "Thursday VO2 max 4×4 with your target numbers",
-                      "Long Saturday Zone 2 with your ceiling",
-                      "The three rules every Zone 2 week follows",
+                      "Permalink you can screenshot or share",
+                      "Emailed copy with every zone range in watts",
+                      "Saved to your rider profile for future tool results",
+                      "One-click handoff to Ask Roadman for a custom week",
                     ]}
                   />
                 </motion.div>
@@ -354,6 +375,11 @@ export default function FTPZonesPage() {
                     <li>
                       <Link href="/topics/ftp-training" className="text-coral hover:text-coral/80 text-sm transition-colors">
                         FTP Training topic hub →
+                      </Link>
+                    </li>
+                    <li>
+                      <Link href="/podcast/ep-2026-ftp-jumped-30-watts-after-this-workout" className="text-coral hover:text-coral/80 text-sm transition-colors">
+                        Podcast: FTP jumped 30 watts after this workout
                       </Link>
                     </li>
                   </ul>

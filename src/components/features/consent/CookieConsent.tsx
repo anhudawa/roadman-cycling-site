@@ -147,7 +147,7 @@ export function CookieConsent() {
                 className="
                   font-heading text-sm tracking-wider
                   bg-coral hover:bg-coral-hover text-off-white
-                  px-5 py-2 rounded-md transition-colors cursor-pointer
+                  px-5 py-2.5 min-h-[40px] rounded-md transition-colors cursor-pointer
                 "
                 style={{ transitionDuration: "var(--duration-fast, 150ms)" }}
               >
@@ -158,7 +158,7 @@ export function CookieConsent() {
                 className="
                   font-heading text-sm tracking-wider
                   border border-white/20 hover:border-white/40 text-off-white
-                  px-5 py-2 rounded-md transition-colors cursor-pointer
+                  px-5 py-2.5 min-h-[40px] rounded-md transition-colors cursor-pointer
                 "
                 style={{ transitionDuration: "var(--duration-fast, 150ms)" }}
               >
@@ -169,7 +169,7 @@ export function CookieConsent() {
                 className="
                   font-heading text-sm tracking-wider
                   border border-white/20 hover:border-white/40 text-off-white/70
-                  px-5 py-2 rounded-md transition-colors cursor-pointer
+                  px-5 py-2.5 min-h-[40px] rounded-md transition-colors cursor-pointer
                 "
                 style={{ transitionDuration: "var(--duration-fast, 150ms)" }}
               >
@@ -222,7 +222,7 @@ export function CookieConsent() {
                 className="
                   mt-3 font-heading text-sm tracking-wider
                   bg-coral hover:bg-coral-hover text-off-white
-                  px-5 py-2 rounded-md transition-colors cursor-pointer
+                  px-5 py-2.5 min-h-[40px] rounded-md transition-colors cursor-pointer
                 "
                 style={{ transitionDuration: "var(--duration-fast, 150ms)" }}
               >

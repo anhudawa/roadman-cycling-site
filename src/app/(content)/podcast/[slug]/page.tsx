@@ -6,6 +6,9 @@ import { AICitationBlock, Badge, Button } from "@/components/ui";
 import { AnswerCapsule } from "@/components/ui/AnswerCapsule";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { FAQSchema } from "@/components/seo/FAQSchema";
+import { Breadcrumbs } from "@/components/seo/Breadcrumbs";
+import { EvidenceBlock } from "@/components/seo/EvidenceBlock";
+import { ENTITY_IDS, SITE_ORIGIN } from "@/lib/brand-facts";
 import { getEpisodeBySlug, getAllEpisodeSlugs } from "@/lib/podcast";
 import { segmentTranscript } from "@/lib/transcript";
 import { PodcastLinks } from "@/components/features/podcast/PodcastLinks";
@@ -108,10 +111,14 @@ export default async function EpisodePage({
 
   return (
     <>
+      {/* PodcastEpisode connected via @id to the PodcastSeries, Person, and
+          Organization entities declared in OrganizationJsonLd, so crawlers
+          ingest the whole show/host/publisher graph in one pass. */}
       <JsonLd
         data={{
           "@context": "https://schema.org",
           "@type": "PodcastEpisode",
+          "@id": `${episodeUrl}#episode`,
           name: episode.title,
           url: episodeUrl,
           description: episode.seoDescription,
@@ -125,12 +132,10 @@ export default async function EpisodePage({
           })(),
           image: episode.youtubeId
             ? `https://img.youtube.com/vi/${episode.youtubeId}/maxresdefault.jpg`
-            : "https://roadmancycling.com/images/podcast-cover.jpg",
-          partOfSeries: {
-            "@type": "PodcastSeries",
-            name: "The Roadman Cycling Podcast",
-            url: "https://roadmancycling.com/podcast",
-          },
+            : `${SITE_ORIGIN}/images/podcast-cover.jpg`,
+          partOfSeries: { "@id": ENTITY_IDS.podcast },
+          author: { "@id": ENTITY_IDS.person },
+          publisher: { "@id": ENTITY_IDS.organization },
           associatedMedia: episode.spotifyId
             ? {
                 "@type": "MediaObject",
@@ -217,11 +222,7 @@ export default async function EpisodePage({
               if (parts.length === 2) return `PT${parts[0]}M${parts[1]}S`;
               return `PT${parts[0]}M`;
             })(),
-            publisher: {
-              "@type": "Organization",
-              name: "Roadman Cycling",
-              url: "https://roadmancycling.com",
-            },
+            publisher: { "@id": ENTITY_IDS.organization },
           }}
         />
       )}
@@ -404,6 +405,12 @@ export default async function EpisodePage({
         {/* Content / Show Notes */}
         <Section background="charcoal" className="!py-12">
           <Container width="narrow">
+            <Breadcrumbs
+              items={[
+                { label: "Podcast", href: "/podcast" },
+                { label: episode.title },
+              ]}
+            />
             {/* Answer capsule — AI-citation-optimised TL;DR of the episode.
                 Prefers the curated `answerCapsule` (60–100 words, generated
                 from the full transcript) over `seoDescription` (150-char
@@ -513,6 +520,27 @@ export default async function EpisodePage({
                 </div>
               </section>
             )}
+
+            {/* E-E-A-T trust block — named host, editorial standards,
+                corrections link + named on-episode guest as an expert
+                source when present. Renders on every episode page. */}
+            <EvidenceBlock
+              experts={
+                episode.guest
+                  ? [
+                      {
+                        name: episode.guest,
+                        role: episode.guestCredential,
+                        href: `/guests/${episode.guest
+                          .toLowerCase()
+                          .replace(/[^a-z0-9]+/g, "-")
+                          .replace(/(^-|-$)/g, "")}`,
+                      },
+                    ]
+                  : undefined
+              }
+              lastReviewed={episode.publishDate}
+            />
 
             {/* Newsletter */}
             <EmailCapture

@@ -281,6 +281,16 @@ export default function EnergyAvailabilityPage() {
                           Fuel for the Work Required: Weight Loss in Cycling
                         </a>
                       </li>
+                      <li>
+                        <a href="/topics/cycling-nutrition" className="text-coral hover:text-coral/80 text-sm transition-colors">
+                          Cycling Nutrition topic hub →
+                        </a>
+                      </li>
+                      <li>
+                        <a href="/podcast/ep-36-i-tried-under-over-optimal-fuelling-heres-what-no-one-tells" className="text-coral hover:text-coral/80 text-sm transition-colors">
+                          Podcast: Under-, over-, and optimal fuelling
+                        </a>
+                      </li>
                     </ul>
                   </motion.div>
 
@@ -310,7 +320,7 @@ export default function EnergyAvailabilityPage() {
                         `Personalised calorie target based on your FFM`,
                         "Risk assessment + what each category actually means",
                         "Signs of chronic low EA (not just missed periods)",
-                        "Fueling around training vs deficit on rest days",
+                        "Fuelling around training vs deficit on rest days",
                         "When to see a sports physician",
                       ]}
                     />

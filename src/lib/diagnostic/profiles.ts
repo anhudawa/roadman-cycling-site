@@ -114,9 +114,9 @@ export const PROFILE_BREAKDOWNS: Record<Profile, Breakdown> = {
   fuelingDeficit: {
     headline: "You're training hungry.",
     diagnosis:
-      "Your diagnosis is Fueling Deficit. The body can't build power when it's managing a shortage — every session is being paid for with tomorrow's adaptation.",
+      "Your diagnosis is Fuelling Deficit. The body can't build power when it's managing a shortage — every session is being paid for with tomorrow's adaptation.",
     whyThisIsHappening:
-      "Chronic low energy availability. Either you're under-fueling on the bike, eating too little around training, or chasing a race weight that's driving the whole system into conservation mode. The body can't build power when it's managing a shortage. Every session is being paid for with tomorrow's adaptation.\n\nFemale cyclists hit this harder and earlier, but it's widespread in masters men too — and almost never diagnosed.",
+      "Chronic low energy availability. Either you're under-fuelling on the bike, eating too little around training, or chasing a race weight that's driving the whole system into conservation mode. The body can't build power when it's managing a shortage. Every session is being paid for with tomorrow's adaptation.\n\nFemale cyclists hit this harder and earlier, but it's widespread in masters men too — and almost never diagnosed.",
     whatItsCosting:
       "Low-grade fatigue. Dropped immune function. A plateau that looks like a training problem but is actually a fuel problem.",
     fix: [
@@ -141,7 +141,7 @@ export const PROFILE_BREAKDOWNS: Record<Profile, Breakdown> = {
     whyAlone:
       "Because the cycling internet has spent 20 years telling you lighter is faster. That advice is outdated. The coaches who work with pros now fuel them aggressively. You need someone in your corner who'll tell you to eat the second breakfast.",
     nextMove:
-      "For Fueling Deficit profiles I'd rather jump on a 15-minute call than send you to a sales page. Book a slot — I'll tell you what I'd do if it were your training.",
+      "For Fuelling Deficit profiles I'd rather jump on a 15-minute call than send you to a sales page. Book a slot — I'll tell you what I'd do if it were your training.",
     secondaryNote: null,
   },
 };
@@ -235,7 +235,7 @@ export const PROFILE_LABELS: Record<Profile, string> = {
   underRecovered: "Under-recovered",
   polarisation: "Polarisation Failure",
   strengthGap: "Strength Gap",
-  fuelingDeficit: "Fueling Deficit",
+  fuelingDeficit: "Fuelling Deficit",
 };
 
 export const CLOSE_TO_BREAKTHROUGH_LABEL =

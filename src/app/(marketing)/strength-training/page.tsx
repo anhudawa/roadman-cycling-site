@@ -49,7 +49,7 @@ const whatsIncluded = [
     number: "05",
     title: "Goal Setting Audio Guide",
     description:
-      "A bonus audio resource to sharpen your mindset, set powerful goals, trigger the small habits that drive big changes, and stay consistent even when life gets busy.",
+      "A 20-minute walkthrough of the goal-setting framework I use with coached athletes. What to target, how to structure a 12-week block, and what to do in week four when the initial motivation wears off and you need a system instead.",
   },
 ];
 
@@ -206,12 +206,11 @@ export default function StrengthTrainingPage() {
                   </h3>
                   <ul className="space-y-3">
                     {[
-                      "Increased power output — develop the muscles critical for powerful pedalling",
-                      "Injury prevention — address muscle imbalances and strengthen connective tissues",
-                      "Enhanced endurance — ride longer with less fatigue",
-                      "Better efficiency — optimise movement patterns for less energy waste",
-                      "Improved explosive power — handle accelerations and surges",
-                      "Halts muscle loss — combats the decline that starts in your 30s",
+                      "More watts per pedal stroke — Rønnestad's research showed 8–15% power increases in 12 weeks of cycling-specific strength work. Not gym power. Bike power.",
+                      "Your position stops collapsing at hour three — a stronger posterior chain and core means you hold your aero position when everyone else is sitting up",
+                      "Knees and lower back stop complaining — most cycling pain comes from muscle imbalances that strength work fixes in weeks, not months",
+                      "Faster on climbs without more saddle time — force production per pedal stroke goes up, so the same effort produces more speed",
+                      "After 30, you lose 3–8% of muscle mass per decade. Strength training is the only thing that reverses it. Not more riding. Not stretching. Lifting.",
                     ].map((item) => (
                       <li
                         key={item}
@@ -294,8 +293,8 @@ export default function StrengthTrainingPage() {
               </h2>
               <p className="text-foreground-muted max-w-lg mx-auto">
                 Designed specifically for cyclists over 30 who want to rebuild
-                strength, boost endurance, eliminate pain, and reignite
-                performance.
+                strength, boost endurance, eliminate pain, and get faster on
+                the bike.
               </p>
             </ScrollReveal>
 
@@ -310,7 +309,7 @@ export default function StrengthTrainingPage() {
                       "Get lower back or knee pain after 3+ hours",
                       "Want to be faster without adding more saddle time",
                       "Have tried gym plans that didn't stick or didn't transfer",
-                      "Are over 30 and feel the muscle loss creeping in",
+                      "Are over 30 and notice the power isn't where it was",
                     ].map((item) => (
                       <li key={item} className="flex items-start gap-2 text-sm text-foreground-muted">
                         <span className="text-coral mt-0.5 shrink-0">&#10003;</span>
@@ -367,16 +366,6 @@ export default function StrengthTrainingPage() {
                     "I love how targeted it is to cycling — not just general gym stuff. Every session feels like it's actually helping my performance on the bike. Core's stronger, legs feel more connected, and even my position on the bike feels better.",
                   name: "Mary K",
                   detail: "Age 56",
-                },
-                {
-                  quote:
-                    "I'm climbing better, I've stopped getting that nagging knee pain. I always thought more riding was the answer — but this strength plan changed everything.",
-                  name: "Community member",
-                },
-                {
-                  quote:
-                    "I used to skip strength work because I didn't know what to do. This plan made it simple. The videos are clear, the structure makes sense, and I can feel myself getting stronger on the bike.",
-                  name: "Community member",
                 },
               ].map((t, i) => (
                 <ScrollReveal key={t.name + i} direction={i % 2 === 0 ? "left" : "right"}>

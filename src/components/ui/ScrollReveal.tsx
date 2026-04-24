@@ -14,10 +14,10 @@ interface ScrollRevealProps {
   className?: string;
   once?: boolean;
   /**
-   * When true, render children fully visible during SSR + pre-hydration
-   * instead of opacity-0. Use for above-fold content where the reveal
-   * animation would otherwise hide content from Googlebot / no-JS users.
-   * The reveal animation still plays once on hydration for users with JS.
+   * Skip the reveal animation entirely. The default SSR-safe behaviour
+   * already keeps above-the-fold content visible on first paint, so pass
+   * `eager` only when you want to permanently opt out of the reveal —
+   * e.g. static brand/hero content that should never animate.
    */
   eager?: boolean;
 }
@@ -30,6 +30,15 @@ const directionOffsets: Record<RevealDirection, { x: number; y: number }> = {
   none: { x: 0, y: 0 },
 };
 
+/**
+ * SSR renders a plain visible `<div>` (so Googlebot and no-JS users see
+ * fully rendered HTML). After hydration we measure the element's position —
+ * anything already in the viewport stays as a plain div, anything below the
+ * fold swaps to a motion.div that reveals on scroll.
+ *
+ * The earlier implementation emitted `opacity:0` in SSR HTML for every
+ * ScrollReveal instance, which hid below-the-fold content from crawlers.
+ */
 export function ScrollReveal({
   children,
   direction = "up",
@@ -41,30 +50,45 @@ export function ScrollReveal({
 }: ScrollRevealProps) {
   const ref = useRef<HTMLDivElement>(null);
   const isInView = useInView(ref, { once, margin: "-50px" });
-  const [prefersReducedMotion, setPrefersReducedMotion] = useState(false);
+  const [phase, setPhase] = useState<"ssr" | "animate" | "static">("ssr");
 
   useEffect(() => {
+    if (eager) {
+      setPhase("static");
+      return;
+    }
     const mq = window.matchMedia("(prefers-reduced-motion: reduce)");
-    setPrefersReducedMotion(mq.matches);
-    const handler = (e: MediaQueryListEvent) => setPrefersReducedMotion(e.matches);
+    const setup = () => {
+      if (mq.matches) {
+        setPhase("static");
+        return;
+      }
+      // If the element is already in (or near) the viewport at hydration time
+      // the user already saw it rendered by SSR — don't flash opacity:0 at
+      // them. Only animate the reveal for content still below the fold when
+      // JS boots.
+      const rect = ref.current?.getBoundingClientRect();
+      const alreadyInView =
+        !rect || (rect.top < window.innerHeight - 50 && rect.bottom > 50);
+      setPhase(alreadyInView ? "static" : "animate");
+    };
+    setup();
+    const handler = () => setup();
     mq.addEventListener("change", handler);
     return () => mq.removeEventListener("change", handler);
-  }, []);
+  }, [eager]);
+
+  // SSR + the first client render before useEffect runs must produce identical
+  // HTML to avoid hydration mismatch. Keep it a plain visible div.
+  if (phase !== "animate") {
+    return (
+      <div ref={ref} className={className}>
+        {children}
+      </div>
+    );
+  }
 
   const offset = directionOffsets[direction];
-
-  // Respect prefers-reduced-motion: no animation, just show content
-  if (prefersReducedMotion) {
-    return <div className={className}>{children}</div>;
-  }
-
-  // Eager = render fully visible at SSR and on initial hydration. Skips the
-  // animation entirely. Use for above-fold content that Googlebot / no-JS
-  // users would otherwise see as opacity-0 invisible blocks.
-  if (eager) {
-    return <div className={className}>{children}</div>;
-  }
-
   return (
     <motion.div
       ref={ref}

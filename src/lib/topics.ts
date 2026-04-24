@@ -49,10 +49,10 @@ const TOPIC_DEFINITIONS: Omit<TopicHub, "posts" | "episodes" | "tools" | "commer
   {
     slug: "ftp-training",
     title: "FTP Training for Cyclists — The Complete Evidence-Based Guide",
-    headline: "EVERYTHING YOU NEED TO KNOW ABOUT FTP",
+    headline: "FTP TRAINING — THE COMPLETE GUIDE",
     ctaHeadline: "FTP TRAINING BUILT AROUND YOUR NUMBERS.",
     description:
-      "Everything you need to know about FTP training. How to test, train, and improve your Functional Threshold Power — grounded in conversations with Professor Seiler, Dan Lorang, and 1,300+ podcast episodes.",
+      "The complete guide to FTP training. How to test, train, and improve your Functional Threshold Power — grounded in conversations with Professor Seiler, Dan Lorang, and 1,400+ podcast episodes.",
     pillar: "coaching",
     keywords: [
       "ftp training",
@@ -70,7 +70,7 @@ const TOPIC_DEFINITIONS: Omit<TopicHub, "posts" | "episodes" | "tools" | "commer
     headline: "FUEL SMARTER, RIDE FASTER",
     ctaHeadline: "FUELLING BUILT INTO YOUR TRAINING WEEK.",
     description:
-      "Everything you need to know about fuelling for cycling performance. In-ride nutrition, race weight, body composition, protein, hydration, and the science of eating to ride faster — from the Roadman Cycling Podcast.",
+      "The complete guide to fuelling for cycling performance. In-ride nutrition, race weight, body composition, protein, hydration, and the science of eating to ride faster — from the Roadman Cycling Podcast.",
     pillar: "nutrition",
     keywords: [
       "cycling nutrition",
@@ -213,7 +213,7 @@ const TOPIC_DEFINITIONS: Omit<TopicHub, "posts" | "episodes" | "tools" | "commer
     headline: "THE COMPLETE GUIDE TO CYCLING COACHING",
     ctaHeadline: "STOP GUESSING. START PROGRESSING.",
     description:
-      "Everything you need to know about cycling coaching. When to get a coach, what to look for, how online coaching works, and why most cyclists plateau without structured guidance. Built from 1,300+ podcast conversations with the coaches behind World Tour teams.",
+      "The complete guide to cycling coaching. When to get a coach, what to look for, how online coaching works, and why most cyclists plateau without structured guidance. Built from 1,400+ podcast conversations with the coaches behind World Tour teams.",
     pillar: "coaching",
     keywords: [
       "cycling coach",
