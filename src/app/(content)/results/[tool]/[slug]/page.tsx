@@ -6,6 +6,8 @@ import { getToolResultBySlug } from "@/lib/tool-results/store";
 import { getDefinition } from "@/lib/diagnostics/framework/registry";
 import type { ToolSlug } from "@/lib/tool-results/types";
 import type { ResultCategory } from "@/lib/diagnostics/framework/types";
+import { getProductForTool } from "@/lib/paid-reports/products";
+import { UpsellCard } from "@/components/paid-reports/UpsellCard";
 
 /**
  * Saved tool-result permalink.
@@ -65,6 +67,8 @@ export default async function ToolResultPermalink({
   const askHref = result.primaryResult
     ? `/ask?seed_tool=${result.toolSlug}&seed_result=${result.slug}`
     : "/ask";
+
+  const paidProduct = await getProductForTool(result.toolSlug);
 
   return (
     <>
@@ -149,24 +153,18 @@ export default async function ToolResultPermalink({
               </Link>
             </div>
 
-            {/* Paid report upsell — placeholder until Phase 2 checkout lands */}
-            {def.paidReportProductSlug ? (
-              <div className="rounded-2xl border border-white/10 bg-background-elevated p-6 md:p-8">
-                <p className="font-heading text-coral text-xs tracking-widest mb-2">
-                  GET THE FULL ROADMAN REPORT
-                </p>
-                <h3 className="font-heading text-off-white text-xl md:text-2xl mb-3 leading-tight">
-                  THE COMPLETE {def.title.toUpperCase()} — AS A PDF YOU KEEP
-                </h3>
-                <p className="text-foreground-muted text-sm mb-5 leading-relaxed">
-                  Full 12-week plan, week-by-week structure, the exact
-                  sessions to run, and a printable coach-style report built on
-                  your numbers. Delivered to your inbox within minutes.
-                </p>
-                <p className="text-foreground-subtle text-xs italic">
-                  Checkout launching soon — your free plan is already emailed.
-                </p>
-              </div>
+            {/* Paid report upsell — live checkout when the product is active. */}
+            {paidProduct ? (
+              <UpsellCard
+                productSlug={paidProduct.slug}
+                productName={paidProduct.name}
+                priceCents={paidProduct.priceCents}
+                currency={paidProduct.currency}
+                description={paidProduct.description}
+                toolResultSlug={result.slug}
+                defaultEmail={result.email}
+                utm={result.utm as Record<string, string | null> | null}
+              />
             ) : null}
           </Container>
         </Section>
