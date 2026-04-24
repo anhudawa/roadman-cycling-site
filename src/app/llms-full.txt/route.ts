@@ -100,6 +100,7 @@ Roadman Cycling is a cycling performance media and coaching brand based in Dubli
 - Free calculator tools — FTP zones, tyre pressure, race weight, in-ride fuelling, energy availability, MTB shock pressure, HR zones, and W/kg.
 - Private community (the paid Not Done Yet coaching community + free Clubhouse tier).
 - ${posts.length} long-form blog guides on cycling coaching, nutrition, strength, and recovery.
+- 127 glossary terms with DefinedTerm schema, 34 comparison pages, 26 problem-diagnostic pages, 10 best-for recommendation pages.
 
 ## Notable Podcast Guests
 
