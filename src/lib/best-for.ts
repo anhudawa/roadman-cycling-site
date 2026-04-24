@@ -123,6 +123,75 @@ export const BEST_FOR_PAGES: BestForPage[] = [
       { question: "Do training apps replace a coach?", answer: "For beginners and intermediate riders, often yes. For plateaued riders, time-crunched professionals, or anyone who needs accountability, a human coach fills gaps no app can." },
     ],
   },
+  {
+    slug: "best-cycling-coach-masters-riders",
+    title: "Best Cycling Coach for Masters Riders (40+)",
+    seoTitle: "Best Cycling Coach for Masters Riders (Over 40)",
+    seoDescription: "Best coaching options for cyclists over 40. Masters training, recovery, strength — who does it best.",
+    pillar: "coaching",
+    intro: "Masters cycling is a different sport. Recovery takes longer, muscle mass declines without intervention, and the training that worked at 30 doesn't work at 45.",
+    picks: [
+      { name: "Roadman Cycling (Not Done Yet)", verdict: "Best for integrated masters coaching", bestFor: "40+ riders needing training + strength + nutrition + recovery managed together", href: "/coaching" },
+      { name: "FasCat Coaching", verdict: "Best for self-directed masters athletes", bestFor: "Masters riders wanting a plan library with age-adjusted periodisation", href: "/compare/coach-vs-app" },
+      { name: "TrainerRoad (Adaptive Training)", verdict: "Best app-based option for masters", bestFor: "Self-coached masters riders needing adaptive intensity management", href: "/blog/zwift-vs-trainerroad" },
+    ],
+    faq: [
+      { question: "Do masters cyclists need a different coaching approach?", answer: "Yes. Recovery capacity declines after 40. Muscle mass drops ~8% per decade without resistance training. A masters coach adjusts training density, adds mandatory strength work, and manages nutrition for body composition." },
+      { question: "Is strength training essential for cyclists over 40?", answer: "Non-negotiable. Heavy resistance training 2x/week preserves muscle mass, maintains bone density, and counteracts age-related power decline that aerobic training alone cannot prevent." },
+    ],
+  },
+  {
+    slug: "best-cycling-coach-triathlon",
+    title: "Best Cycling Coach for Triathletes",
+    seoTitle: "Best Cycling Coach for Triathletes (Bike Leg)",
+    seoDescription: "Best bike-leg coaching for age-group triathletes. Cycling-deep, triathlon-aware coaching compared.",
+    pillar: "coaching",
+    intro: "Most triathlon coaches cover three disciplines thinly. Most cycling coaches ignore triathlon context. The best bike-leg coaching is cycling-deep but triathlon-aware, periodised around the run.",
+    picks: [
+      { name: "Roadman Cycling (Triathlon Bike Coaching)", verdict: "Best specialist bike-leg coaching", bestFor: "Age-group 70.3 and Ironman athletes wanting a dedicated bike-leg coach", href: "/coaching/triathlon" },
+      { name: "Purple Patch Fitness", verdict: "Best full-triathlon coaching with strong bike focus", bestFor: "Triathletes wanting one coach across all three disciplines", href: "/compare/coach-vs-app" },
+      { name: "TrainerRoad + triathlon plan", verdict: "Best self-coached bike-leg training", bestFor: "Budget triathletes wanting structured bike workouts", href: "/blog/zwift-vs-trainerroad" },
+    ],
+    faq: [
+      { question: "Should I use a cycling coach or triathlon coach?", answer: "Cycling coach if the bike is your limiter. Triathlon coach if you need all three disciplines. The ideal: a cycling coach who understands triathlon context and doesn't build bike fitness at the expense of your run." },
+      { question: "How is triathlon bike coaching different?", answer: "Three differences: aero position management (power in TT bars), pacing for a run off the bike (negative split), and brick-specific training." },
+    ],
+  },
+  {
+    slug: "best-cycling-nutrition-apps",
+    title: "Best Cycling Nutrition Apps",
+    seoTitle: "Best Cycling Nutrition Apps for Performance",
+    seoDescription: "Best nutrition apps for cyclists. Fuelling, macro tracking, race-day planning compared.",
+    pillar: "nutrition",
+    intro: "Generic calorie apps don't understand periodised nutrition. The best cycling nutrition tools match fuel to training load, plan in-ride carbs, and prevent chronic under-fuelling.",
+    picks: [
+      { name: "Fuelin", verdict: "Best for periodised cycling nutrition", bestFor: "Serious cyclists wanting daily fuel targets matched to training", href: "/blog/cycling-weight-loss-fuel-for-the-work-required" },
+      { name: "MyFitnessPal", verdict: "Best for macro tracking on a budget", bestFor: "Riders wanting a free food diary with a large database", href: "/blog/cycling-weight-loss-fuel-for-the-work-required" },
+      { name: "Roadman Fuelling Calculator", verdict: "Best free in-ride fuelling planner", bestFor: "Riders wanting exact carbs/hour and sodium targets", href: "/tools/fuelling" },
+    ],
+    faq: [
+      { question: "Do I need a nutrition app for cycling?", answer: "Not strictly — but tracking carbs per hour during rides is one of the highest-leverage changes most amateurs can make. A free calculator gives targets. An app like Fuelin automates daily nutrition." },
+      { question: "Is MyFitnessPal good enough?", answer: "For basic macros, yes. But it doesn't understand periodisation — same targets on rest day and 5-hour ride day. For fuel-for-the-work-required, you need something that reads your training calendar." },
+    ],
+  },
+  {
+    slug: "best-turbo-trainers-2026",
+    title: "Best Smart Turbo Trainers in 2026",
+    seoTitle: "Best Smart Turbo Trainers 2026",
+    seoDescription: "Best smart turbo trainers for 2026. Direct drive, budget, premium — compared by accuracy, noise, and ride feel.",
+    pillar: "community",
+    intro: "A smart trainer is the single best indoor training investment. ERG mode, accurate power, and platform compatibility transform winter training from junk miles to structured gains.",
+    picks: [
+      { name: "Wahoo KICKR v6", verdict: "Best overall smart trainer", bestFor: "Riders wanting the best ride feel, accuracy, and ecosystem integration", href: "/blog/zwift-vs-trainerroad" },
+      { name: "Tacx NEO 3M", verdict: "Best for road feel and silence", bestFor: "Apartment riders needing near-silent operation", href: "/compare/indoor-vs-outdoor-training" },
+      { name: "Elite Suito-T", verdict: "Best value direct-drive trainer", bestFor: "Budget riders wanting direct-drive accuracy", href: "/compare/indoor-vs-outdoor-training" },
+      { name: "Wahoo KICKR CORE", verdict: "Best mid-range direct drive", bestFor: "Riders wanting Wahoo quality at a lower price", href: "/blog/zwift-vs-trainerroad" },
+    ],
+    faq: [
+      { question: "Direct-drive or wheel-on?", answer: "Direct-drive recommended for serious training. Wheel-on trainers slip at high power, wear tyres, and are less accurate. A budget direct-drive (Elite Suito-T) beats a premium wheel-on." },
+      { question: "Smart trainer or power meter first?", answer: "Mostly indoors: smart trainer. Mostly outdoors: power meter. 50/50: power meter — it works in both environments." },
+    ],
+  },
 ];
 
 export function getBestForBySlug(slug: string): BestForPage | null {
