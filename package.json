@@ -66,7 +66,11 @@
     "seo:related-episodes:dry": "tsx scripts/populate-related-episodes.ts --dry-run",
     "seo:episode-related-posts": "tsx scripts/populate-episode-related-posts.ts",
     "seo:episode-related-posts:dry": "tsx scripts/populate-episode-related-posts.ts --dry-run",
-    "seo:audit-orphans": "tsx scripts/audit-orphans.ts"
+    "seo:audit-orphans": "tsx scripts/audit-orphans.ts",
+    "seed:mcp:community-stats": "tsx scripts/seed-mcp-community-stats.ts",
+    "seed:mcp:content": "tsx scripts/seed-mcp-content.ts",
+    "seed:mcp:products": "tsx scripts/seed-mcp-products.ts",
+    "seed:mcp:events": "tsx scripts/seed-mcp-events.ts"
   },
   "dependencies": {
     "@anthropic-ai/sdk": "^0.82.0",
