@@ -85,7 +85,7 @@ export const CONTENT_PILLARS: Record<
     label: "Nutrition",
     color: "var(--color-pillar-nutrition)",
     description:
-      "Fueling for performance, race weight, body composition, in-ride nutrition",
+      "Fuelling for performance, race weight, body composition, in-ride nutrition",
   },
   strength: {
     label: "Strength & Conditioning",

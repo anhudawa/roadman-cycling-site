@@ -11,14 +11,14 @@ import { EmailCapture } from "@/components/features/conversion/EmailCapture";
 export const metadata: Metadata = {
   title: "Anthony Walsh — Cycling Coach & Podcast Host",
   description:
-    "Anthony Walsh is a cycling coach and founder of Roadman Cycling. Host of 1,300+ podcast episodes with World Tour coaches, scientists, and pro riders. Based in Dublin, Ireland.",
+    "Anthony Walsh is a cycling coach and founder of Roadman Cycling. Host of 1,400+ podcast episodes with World Tour coaches, scientists, and pro riders. Based in Dublin, Ireland.",
   alternates: {
     canonical: "https://roadmancycling.com/author/anthony-walsh",
   },
   openGraph: {
     title: "Anthony Walsh — Cycling Coach & Podcast Host",
     description:
-      "Cycling coach and founder of Roadman Cycling. 1,300+ podcast interviews with the best minds in cycling performance.",
+      "Cycling coach and founder of Roadman Cycling. 1,400+ podcast interviews with the best minds in cycling performance.",
     type: "profile",
     url: "https://roadmancycling.com/author/anthony-walsh",
     images: [
@@ -35,7 +35,7 @@ export const metadata: Metadata = {
 const credentials = [
   "Cycling coach — Not Done Yet coaching community",
   "Host of the Roadman Cycling Podcast (1M+ monthly listeners)",
-  "1,300+ on-the-record interviews with World Tour coaches, sports scientists, and professional riders",
+  "1,400+ on-the-record interviews with World Tour coaches, sports scientists, and professional riders",
   "Guests include Prof. Stephen Seiler, Dan Lorang, Greg LeMond, Joe Friel, Tim Spector, and Ben Healy",
   "Based in Dublin, Ireland",
   "Coaches cyclists and triathletes across Ireland, the UK, and the US",
@@ -68,7 +68,7 @@ export default function AuthorPage() {
             name: "Anthony Walsh",
             alternateName: "Anthony Walsh (Roadman Cycling)",
             description:
-              "Cycling coach and founder of Roadman Cycling. Host of the Roadman Cycling Podcast, with over 1,300 conversations with World Tour coaches, sports scientists, and professional riders.",
+              "Cycling coach and founder of Roadman Cycling. Host of the Roadman Cycling Podcast, with over 1,400 conversations with World Tour coaches, sports scientists, and professional riders.",
             image:
               "https://roadmancycling.com/images/about/anthony-walsh-podcast.jpg",
             jobTitle: "Cycling Coach & Podcast Host",
@@ -154,7 +154,7 @@ export default function AuthorPage() {
                   </p>
                   <p className="text-foreground-muted text-lg leading-relaxed max-w-xl">
                     Founder of Roadman Cycling. Host of the Roadman Cycling
-                    Podcast, with over 1,300 on-the-record conversations with
+                    Podcast, with over 1,400 on-the-record conversations with
                     World Tour coaches, sports scientists, and professional
                     riders. Based in Dublin, Ireland.
                   </p>

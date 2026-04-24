@@ -163,6 +163,8 @@ const nextConfig: NextConfig = {
       { source: "/training-plan", destination: "/plan", permanent: true },
       { source: "/community/skool", destination: "/community/clubhouse", permanent: true },
       { source: "/skool", destination: "/community/clubhouse", permanent: true },
+      { source: "/blog/i-lost-7kg-eating-more-cycling", destination: "/blog/cycling-weight-loss-fuel-for-the-work-required", permanent: true },
+      { source: "/blog/cycling-periodisation-training", destination: "/blog/cycling-periodisation-plan-guide", permanent: true },
       // ClickFunnels funnel pages — P0 redirects (revenue + backlinks)
       { source: "/2026-optin", destination: "/apply", permanent: true },
       { source: "/application", destination: "/apply", permanent: true },

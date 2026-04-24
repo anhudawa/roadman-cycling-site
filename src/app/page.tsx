@@ -182,7 +182,7 @@ export default function HomePage() {
                 className="font-heading text-off-white mb-3"
                 style={{ fontSize: "var(--text-section)" }}
               >
-                <span className="block">1,300+ EPISODES.</span>
+                <span className="block">1,400+ EPISODES.</span>
                 <span className="block text-coral">ONE GUEST LIST.</span>
               </h2>
               <p className="text-foreground-muted max-w-lg mx-auto">
