@@ -54,7 +54,7 @@ export async function saveToolResult(
           summary: input.summary,
           primaryResult: input.primaryResult,
           tags: input.tags,
-          utm: input.utm ?? null,
+          utm: (input.utm ?? null) as Record<string, string | null | undefined> | null,
           sourcePage: input.sourcePage ?? null,
         })
         .returning();
