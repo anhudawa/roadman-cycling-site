@@ -172,6 +172,17 @@ ${recentEpisodes
   )
   .join("\n")}
 
+## MCP Server (AI Agent Integration)
+
+Roadman Cycling exposes a Model Context Protocol (MCP) server at \`${BASE_URL}/api/mcp\`.
+AI agents and assistants can connect to query live data directly — no scraping required.
+
+- **Endpoint:** \`POST ${BASE_URL}/api/mcp\` (Streamable HTTP transport, stateless)
+- **Discovery manifest:** [${BASE_URL}/.well-known/mcp.json](${BASE_URL}/.well-known/mcp.json)
+- **Tools:** get_community_stats, search_episodes, get_episode, list_experts, get_expert_insights, search_methodology, list_products, list_upcoming_events, qualify_lead
+- **Resources:** roadman://brand/overview, roadman://methodology/principles, roadman://experts/roster
+- **Rate limit:** 60 requests/minute per IP
+
 ## Reference
 - [Full Sitemap](${BASE_URL}/sitemap.xml): Machine-readable sitemap (~540 URLs).
 - [Full Content for LLMs](${BASE_URL}/llms-full.txt): Curated full-text export of canonical pages, blog posts, and episode summaries.
