@@ -53,7 +53,7 @@ export default function CommunityPage() {
               </h1>
               <p className="text-foreground-muted text-lg max-w-2xl mx-auto">
                 Two communities for serious cyclists who believe they have more
-                in them. Start free. Go premium when you&apos;re ready for the
+                in them. Start free. Go further when you&apos;re ready for the
                 system.
               </p>
             </div>
@@ -115,9 +115,9 @@ export default function CommunityPage() {
                     2,100+ members
                   </p>
                   <p className="text-foreground-muted text-sm mb-5 leading-relaxed">
-                    Your entry point. Free plans, weekly live Q&amp;A, a
-                    community of serious cyclists. For when you&apos;re
-                    starting to take it seriously.
+                    Your entry point. Free plans, weekly live Q&amp;A, and
+                    2,100 cyclists who get it. For serious cyclists who want
+                    a starting point before committing to the full system.
                   </p>
                   <ul className="space-y-2 mb-6 flex-1">
                     {[
@@ -170,8 +170,8 @@ export default function CommunityPage() {
                   </p>
                   <p className="text-foreground-muted text-sm mb-5 leading-relaxed">
                     The coached system. Personalised plans, weekly calls,
-                    expert masterclasses. For when guessing isn&apos;t working
-                    anymore.
+                    expert masterclasses. For cyclists who&apos;ve been
+                    guessing long enough.
                   </p>
                   <ul className="space-y-2 mb-6 flex-1">
                     {[
