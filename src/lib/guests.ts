@@ -370,7 +370,12 @@ const GUEST_TAGS: Record<string, GuestTag[]> = {
 function slugify(name: string): string {
   return name
     .toLowerCase()
-    .replace(/['']/g, "")
+    .replace(/['’‘]/g, "")
+    // Normalise diacritics so "Rosa Klöser" → "rosa-kloser", matching the
+    // override key. Without NFD stripping, the slug becomes "rosa-kl-ser"
+    // and never finds the curated profile data.
+    .normalize("NFD")
+    .replace(/[\u0300-\u036f]/g, "")
     .replace(/[^a-z0-9]+/g, "-")
     .replace(/^-|-$/g, "");
 }

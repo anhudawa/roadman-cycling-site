@@ -77,6 +77,7 @@ export default async function GuestPage({
           },
           ...(guest.credential && { jobTitle: guest.credential }),
           description:
+            override?.whyMatters ??
             override?.description ??
             (guest.credential
               ? `${guest.name} — ${guest.credential}. Expert guest on The Roadman Cycling Podcast.`
@@ -182,16 +183,76 @@ export default async function GuestPage({
           </Container>
         </Section>
 
+        {/* Why this guest matters — visible entity context for AEO/SGE.
+            Renders the literal answer to "who is X?" and "why is X
+            famous?" on the page so Google and LLMs can quote it. */}
+        {(override?.whyMatters || override?.description) && (
+          <Section background="charcoal" className="!pt-12 !pb-6">
+            <Container width="narrow">
+              <ScrollReveal direction="up">
+                <h2
+                  className="font-heading text-off-white mb-4 tracking-wide"
+                  style={{ fontSize: "var(--text-section)" }}
+                >
+                  WHO IS {guest.name.toUpperCase()}?
+                </h2>
+                <p className="text-foreground-muted text-base leading-relaxed">
+                  {override?.whyMatters ?? override?.description}
+                </p>
+              </ScrollReveal>
+            </Container>
+          </Section>
+        )}
+
+        {/* Key ideas — short, citable claims this expert is known for.
+            Bullet structure is what AI search engines pull cleanly. */}
+        {override?.keyIdeas && override.keyIdeas.length > 0 && (
+          <Section background="charcoal" className="!pt-6 !pb-12">
+            <Container width="narrow">
+              <ScrollReveal direction="up">
+                <h2 className="font-heading text-off-white mb-4 text-2xl tracking-wide">
+                  KEY IDEAS
+                </h2>
+                <p className="text-sm text-foreground-muted mb-6">
+                  The major positions {guest.name.split(" ").slice(-1)[0]} is
+                  known for in cycling and endurance sport.
+                </p>
+                <ul className="space-y-3">
+                  {override.keyIdeas.map((idea, i) => (
+                    <li
+                      key={i}
+                      className="flex gap-3 text-foreground-muted text-base leading-relaxed"
+                    >
+                      <span
+                        aria-hidden="true"
+                        className="text-coral font-heading shrink-0"
+                      >
+                        →
+                      </span>
+                      <span>{idea}</span>
+                    </li>
+                  ))}
+                </ul>
+              </ScrollReveal>
+            </Container>
+          </Section>
+        )}
+
         {/* Episodes */}
         <Section background="charcoal">
           <Container width="narrow">
             <ScrollReveal direction="up">
               <h2
-                className="font-heading text-off-white mb-8"
+                className="font-heading text-off-white mb-4 tracking-wide"
                 style={{ fontSize: "var(--text-section)" }}
               >
-                EPISODES WITH {guest.name.toUpperCase()}
+                ON THE ROADMAN PODCAST
               </h2>
+              <p className="text-sm text-foreground-muted mb-8">
+                Every appearance by {guest.name} on The Roadman Cycling
+                Podcast — {guest.episodeCount} episode
+                {guest.episodeCount > 1 ? "s" : ""} in total.
+              </p>
             </ScrollReveal>
 
             <div className="space-y-4">
@@ -313,36 +374,62 @@ export default async function GuestPage({
               );
             })()}
 
-            {/* Related topics */}
-            {guest.pillars.length > 0 && (
-              <div className="mt-12 text-center">
-                <p className="font-heading text-coral text-xs tracking-widest mb-4">
-                  EXPLORE RELATED TOPICS
-                </p>
-                <div className="flex flex-wrap gap-3 justify-center">
-                  {guest.pillars.map((pillar) => {
-                    const topicMap: Record<string, { slug: string; title: string }> = {
-                      coaching: { slug: "cycling-coaching", title: "Cycling Coaching" },
-                      nutrition: { slug: "cycling-nutrition", title: "Cycling Nutrition" },
-                      strength: { slug: "cycling-strength-conditioning", title: "Strength & Conditioning" },
-                      recovery: { slug: "cycling-recovery", title: "Recovery" },
-                      community: { slug: "cycling-beginners", title: "Getting Into Cycling" },
-                    };
-                    const topic = topicMap[pillar];
-                    if (!topic) return null;
-                    return (
-                      <Link
-                        key={pillar}
-                        href={`/topics/${topic.slug}`}
-                        className="inline-flex items-center gap-1 rounded-lg border border-white/15 hover:border-coral/40 bg-white/[0.04] hover:bg-white/[0.07] px-4 py-2 text-sm font-heading text-off-white tracking-wider transition-all"
-                      >
-                        {topic.title} →
-                      </Link>
-                    );
-                  })}
+            {/* Related topics — prefers curated relatedHubs override
+                (specific to the guest's actual subject-matter focus),
+                falls back to the auto-derived pillar→topic mapping. */}
+            {(() => {
+              const TOPIC_TITLES: Record<string, string> = {
+                "ftp-training": "FTP Training",
+                "cycling-nutrition": "Cycling Nutrition",
+                "cycling-training-plans": "Training Plans",
+                "cycling-recovery": "Recovery",
+                "cycling-strength-conditioning": "Strength & Conditioning",
+                "cycling-weight-loss": "Cycling & Weight Loss",
+                "cycling-beginners": "Getting Into Cycling",
+                "triathlon-cycling": "Triathlon Cycling",
+                "mountain-biking": "Mountain Biking",
+                "cycling-coaching": "Cycling Coaching",
+              };
+              const pillarFallback: string[] = guest.pillars
+                .map((pillar) => {
+                  const map: Record<string, string> = {
+                    coaching: "cycling-coaching",
+                    nutrition: "cycling-nutrition",
+                    strength: "cycling-strength-conditioning",
+                    recovery: "cycling-recovery",
+                    community: "cycling-beginners",
+                  };
+                  return map[pillar];
+                })
+                .filter(Boolean);
+              const hubs =
+                override?.relatedHubs && override.relatedHubs.length > 0
+                  ? override.relatedHubs
+                  : pillarFallback;
+              if (hubs.length === 0) return null;
+              return (
+                <div className="mt-12 text-center">
+                  <p className="font-heading text-coral text-xs tracking-widest mb-4">
+                    EXPLORE RELATED TOPICS
+                  </p>
+                  <div className="flex flex-wrap gap-3 justify-center">
+                    {hubs.map((slug) => {
+                      const title = TOPIC_TITLES[slug];
+                      if (!title) return null;
+                      return (
+                        <Link
+                          key={slug}
+                          href={`/topics/${slug}`}
+                          className="inline-flex items-center gap-1 rounded-lg border border-white/15 hover:border-coral/40 bg-white/[0.04] hover:bg-white/[0.07] px-4 py-2 text-sm font-heading text-off-white tracking-wider transition-all"
+                        >
+                          {title} →
+                        </Link>
+                      );
+                    })}
+                  </div>
                 </div>
-              </div>
-            )}
+              );
+            })()}
 
             {/* Coaching CTA */}
             <div className="mt-12 rounded-2xl border border-coral/30 bg-gradient-to-br from-coral/10 via-deep-purple/40 to-charcoal p-6 md:p-8 text-center">
