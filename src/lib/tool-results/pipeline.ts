@@ -1,6 +1,7 @@
 import { addActivity, upsertContact } from "@/lib/crm/contacts";
 import { upsertByEmail as upsertRiderProfile } from "@/lib/rider-profile/store";
 import { subscribeToBeehiiv } from "@/lib/integrations/beehiiv";
+import { refreshLeadScore } from "@/lib/paid-reports/lead-score";
 import { emailToolResult } from "./email";
 import { markEmailSent, saveToolResult } from "./store";
 import type { SaveToolResultInput, ToolResult } from "./types";
@@ -154,6 +155,11 @@ export async function completeToolResult(
       console.error("[tool-results/pipeline] Beehiiv sync failed:", err),
     );
   }
+
+  // 4c — lead score refresh (non-fatal — admin-only signal)
+  void refreshLeadScore(profile.id).catch((err) =>
+    console.error("[tool-results/pipeline] refreshLeadScore failed:", err),
+  );
 
   // 4b — transactional email
   let emailSent = false;
