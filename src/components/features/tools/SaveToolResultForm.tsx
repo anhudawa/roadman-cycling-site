@@ -254,6 +254,16 @@ export function SaveToolResultForm({
                 </Link>
               )}
             </div>
+            <p className="text-foreground-subtle text-[11px] mt-4">
+              Done a few tools? Your full history lives at{" "}
+              <Link
+                href="/results"
+                className="text-coral hover:text-coral/80 underline underline-offset-2"
+              >
+                /results
+              </Link>{" "}
+              — request a signed link there.
+            </p>
           </motion.div>
         )}
       </AnimatePresence>
