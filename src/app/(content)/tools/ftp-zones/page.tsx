@@ -356,6 +356,11 @@ export default function FTPZonesPage() {
                         FTP Training topic hub →
                       </Link>
                     </li>
+                    <li>
+                      <Link href="/podcast/ep-2026-ftp-jumped-30-watts-after-this-workout" className="text-coral hover:text-coral/80 text-sm transition-colors">
+                        Podcast: FTP jumped 30 watts after this workout
+                      </Link>
+                    </li>
                   </ul>
                 </motion.div>
 

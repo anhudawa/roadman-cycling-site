@@ -127,6 +127,8 @@ export default function WkgPage() {
                       <li><Link href="/tools/ftp-zones" className="text-coral hover:text-coral/80 text-sm transition-colors">Calculate Your Power Zones</Link></li>
                       <li><Link href="/tools/race-weight" className="text-coral hover:text-coral/80 text-sm transition-colors">Find Your Target Race Weight</Link></li>
                       <li><Link href="/glossary/w-kg" className="text-coral hover:text-coral/80 text-sm transition-colors">What Is W/kg?</Link></li>
+                      <li><Link href="/topics/ftp-training" className="text-coral hover:text-coral/80 text-sm transition-colors">FTP Training topic hub →</Link></li>
+                      <li><Link href="/podcast/ep-2026-ftp-jumped-30-watts-after-this-workout" className="text-coral hover:text-coral/80 text-sm transition-colors">Podcast: FTP jumped 30 watts after this workout</Link></li>
                     </ul>
                   </div>
 

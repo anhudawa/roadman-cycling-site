@@ -166,6 +166,8 @@ export default function HRZonesPage() {
                       <li><Link href="/blog/heart-rate-high-cycling-fixable-reasons" className="text-coral hover:text-coral/80 text-sm transition-colors">Why Is My Heart Rate So High on the Bike?</Link></li>
                       <li><Link href="/tools/ftp-zones" className="text-coral hover:text-coral/80 text-sm transition-colors">FTP Zone Calculator (power-based zones)</Link></li>
                       <li><Link href="/compare/heart-rate-vs-power" className="text-coral hover:text-coral/80 text-sm transition-colors">Heart Rate vs Power: Which Should You Use?</Link></li>
+                      <li><Link href="/topics/ftp-training" className="text-coral hover:text-coral/80 text-sm transition-colors">FTP Training topic hub →</Link></li>
+                      <li><Link href="/podcast/ep-2095-secret-to-cycling-fast-at-a-low-heart-rate-prof-seiler" className="text-coral hover:text-coral/80 text-sm transition-colors">Podcast: Prof. Seiler on cycling fast at a low heart rate</Link></li>
                     </ul>
                   </motion.div>
 

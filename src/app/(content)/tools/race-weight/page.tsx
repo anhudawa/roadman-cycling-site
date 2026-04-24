@@ -321,6 +321,16 @@ export default function RaceWeightPage() {
                           Fuel for the Work Required: Weight Loss in Cycling
                         </a>
                       </li>
+                      <li>
+                        <a href="/topics/cycling-weight-loss" className="text-coral hover:text-coral/80 text-sm transition-colors">
+                          Cycling Weight Loss topic hub →
+                        </a>
+                      </li>
+                      <li>
+                        <a href="/podcast/ep-2044-world-tour-nutritionist-we-got-weight-loss-wrong" className="text-coral hover:text-coral/80 text-sm transition-colors">
+                          Podcast: World Tour nutritionist — &quot;we got weight loss wrong&quot;
+                        </a>
+                      </li>
                     </ul>
                   </motion.div>
 
