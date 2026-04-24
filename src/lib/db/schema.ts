@@ -925,6 +925,10 @@ export const diagnosticSubmissions = pgTable(
     beehiivSubscriberId: text("beehiiv_subscriber_id"),
     /** 1 on first submission for an email, 2 on second, etc. See §17. */
     retakeNumber: integer("retake_number").notNull().default(1),
+    /** Phase 2: link this submission to the shared rider profile so the
+     *  admin dashboard and /results history surfaces group all tools by
+     *  rider. Set async after insert so the request path stays fast. */
+    riderProfileId: integer("rider_profile_id"),
     createdAt: timestamp("created_at", { withTimezone: true }).notNull().defaultNow(),
     updatedAt: timestamp("updated_at", { withTimezone: true }).notNull().defaultNow(),
   },
@@ -933,6 +937,7 @@ export const diagnosticSubmissions = pgTable(
     index("diagnostic_submissions_created_at_idx").on(table.createdAt),
     index("diagnostic_submissions_primary_profile_idx").on(table.primaryProfile),
     index("diagnostic_submissions_utm_campaign_idx").on(table.utmCampaign),
+    index("diagnostic_submissions_rider_profile_id_idx").on(table.riderProfileId),
   ]
 );
 
@@ -1123,6 +1128,8 @@ export const riderProfiles = pgTable(
     usesPowerMeter: boolean("uses_power_meter"),
     currentTrainingTool: text("current_training_tool"),
     coachingInterest: text("coaching_interest"),
+    // 'self' | 'coached' — captured during tool completion flows.
+    selfCoachedOrCoached: text("self_coached_or_coached"),
     accessTier: text("access_tier").notNull().default("free"),
     consentSaveProfile: boolean("consent_save_profile").notNull().default(false),
     consentEmailFollowup: boolean("consent_email_followup").notNull().default(false),
@@ -1203,5 +1210,47 @@ export const askRetrievals = pgTable(
   },
   (table) => [
     index("ask_retrievals_message_id_idx").on(table.messageId),
+  ]
+);
+
+// ═══════════════════════════════════════════════════════════
+// Phase 2: Saved Diagnostics — tool_results
+// ═══════════════════════════════════════════════════════════
+// Generic store for completed tool runs (plateau, fuelling, ftp_zones).
+// Plateau also keeps its richer `diagnostic_submissions` row; this table
+// is the unified history/analytics surface that the /results page and
+// /admin/insights dashboard read from.
+export const toolResults = pgTable(
+  "tool_results",
+  {
+    id: serial("id").primaryKey(),
+    /** 10-char public slug used in /results/<tool>/<slug> URLs. */
+    slug: text("slug").notNull().unique(),
+    /** Nullable — anonymous completions still save so we can email them,
+     *  but only get linked to a rider profile when consent is given. */
+    riderProfileId: integer("rider_profile_id").references(() => riderProfiles.id, { onDelete: "set null" }),
+    email: text("email").notNull(),
+    /** 'plateau' | 'fuelling' | 'ftp_zones' — extend the union, not this column. */
+    toolSlug: text("tool_slug").notNull(),
+    inputs: jsonb("inputs").notNull().$type<Record<string, unknown>>(),
+    outputs: jsonb("outputs").notNull().$type<Record<string, unknown>>(),
+    /** One-line summary for the history list — e.g. "Under-Recovered (68g/hr)". */
+    summary: text("summary").notNull(),
+    /** Primary result token for analytics grouping (plateau profile, carb bucket, etc). */
+    primaryResult: text("primary_result"),
+    /** CRM tags applied on completion — mirrors what was upserted to Beehiiv / contacts. */
+    tags: jsonb("tags").$type<string[]>().notNull().default([]),
+    utm: jsonb("utm").$type<Record<string, string | null>>(),
+    sourcePage: text("source_page"),
+    emailSentAt: timestamp("email_sent_at", { withTimezone: true }),
+    /** First time the user clicked "Ask Roadman what this means" on this result. */
+    askHandoffAt: timestamp("ask_handoff_at", { withTimezone: true }),
+    createdAt: timestamp("created_at", { withTimezone: true }).notNull().defaultNow(),
+  },
+  (table) => [
+    index("tool_results_email_idx").on(table.email),
+    index("tool_results_tool_slug_idx").on(table.toolSlug),
+    index("tool_results_rider_profile_id_idx").on(table.riderProfileId),
+    index("tool_results_created_at_idx").on(table.createdAt),
   ]
 );
