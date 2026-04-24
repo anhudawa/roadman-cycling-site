@@ -24,6 +24,7 @@ import { classifyIntent } from "./intent";
 import { retrieve } from "./retrieval";
 import { pickCta } from "./cta";
 import { buildSystemPrompt } from "./system-prompt";
+import { loadSeedContext, type SeedContext } from "./seed";
 import {
   appendMessage,
   appendRetrievals,
@@ -75,16 +76,20 @@ export async function streamAnswer(
     return;
   }
 
-  // 3-4 — intent + profile in parallel
-  const [classification, profile] = await Promise.all([
+  // 3-4 — intent + profile + seed in parallel
+  const [classification, profile, seed] = await Promise.all([
     classifyIntent(input.query),
     input.riderProfileId != null ? loadProfileById(input.riderProfileId) : Promise.resolve(null),
+    input.seed ? loadSeedContext(input.seed.tool, input.seed.slug).catch(() => null) : Promise.resolve(null),
   ]);
 
-  // 5 — retrieval
+  // 5 — retrieval. If the rider arrived with a seed context, broaden the
+  //     query with the seed headline so retrieval leans toward material
+  //     that explains their saved result.
+  const retrievalQuery = seed ? `${input.query} ${seed.headline}` : input.query;
   let retrieval: Awaited<ReturnType<typeof retrieve>>;
   try {
-    retrieval = await retrieve({ query: input.query, intent: classification.intent });
+    retrieval = await retrieve({ query: retrievalQuery, intent: classification.intent });
   } catch {
     retrieval = { chunks: [], totalCandidates: 0 };
   }
@@ -105,6 +110,9 @@ export async function streamAnswer(
       confidence: classification.confidence,
       chunksRetrieved: retrieval.chunks.length,
       model: classification.deep ? MODEL_DEEP : MODEL_FAST,
+      seed: seed
+        ? { kind: seed.kind, slug: seed.slug, headline: seed.headline }
+        : null,
     },
   });
 
@@ -134,6 +142,7 @@ export async function streamAnswer(
       profile,
       cta,
       chunks: retrieval.chunks,
+      seed,
       sse,
     });
 
@@ -232,6 +241,7 @@ interface StreamArgs {
   profile: RiderProfile | null;
   cta: CtaDescriptor;
   chunks: RetrievedChunk[];
+  seed: SeedContext | null;
   sse: SseController;
 }
 
@@ -240,7 +250,7 @@ async function streamFromAnthropic(args: StreamArgs): Promise<{
   inputTokens?: number;
   outputTokens?: number;
 }> {
-  const { query, intent, deep, profile, cta, chunks, sse } = args;
+  const { query, intent, deep, profile, cta, chunks, seed, sse } = args;
 
   if (!process.env.ANTHROPIC_API_KEY) {
     const fallback = buildFallbackNoKey(intent, chunks);
@@ -249,7 +259,7 @@ async function streamFromAnthropic(args: StreamArgs): Promise<{
   }
 
   const client = new Anthropic();
-  const system = buildSystemPrompt({ profile, cta, chunks });
+  const system = buildSystemPrompt({ profile, cta, chunks, seed });
   const model = deep ? MODEL_DEEP : MODEL_FAST;
 
   const stream = client.messages.stream({

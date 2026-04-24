@@ -39,12 +39,20 @@ export interface AskStreamMessage {
   flaggedForReview?: boolean;
 }
 
+export interface AskSeedSignal {
+  tool: string;
+  slug: string;
+}
+
 export interface UseAskStreamResult {
   messages: AskStreamMessage[];
   sessionId: string | null;
   isStreaming: boolean;
   error: string | null;
-  submit: (query: string, opts?: { starter?: string }) => Promise<void>;
+  submit: (
+    query: string,
+    opts?: { starter?: string; seed?: AskSeedSignal | null },
+  ) => Promise<void>;
   reset: () => void;
   hydrate: (args: {
     sessionId: string;
@@ -91,7 +99,10 @@ export function useAskStream(): UseAskStreamResult {
   );
 
   const submit = useCallback(
-    async (query: string, opts?: { starter?: string }) => {
+    async (
+      query: string,
+      opts?: { starter?: string; seed?: AskSeedSignal | null },
+    ) => {
       const trimmed = query.trim();
       if (trimmed.length < 2) return;
       if (isStreaming) return;
@@ -129,7 +140,11 @@ export function useAskStream(): UseAskStreamResult {
         const res = await fetch("/api/ask", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ query: trimmed, sessionId: sessionId ?? undefined }),
+          body: JSON.stringify({
+            query: trimmed,
+            sessionId: sessionId ?? undefined,
+            seed: opts?.seed ?? undefined,
+          }),
           signal: controller.signal,
         });
 
