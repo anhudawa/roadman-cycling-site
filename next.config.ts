@@ -58,16 +58,19 @@ const nextConfig: NextConfig = {
         destination: "https://roadmancycling.com/coaching",
         permanent: true,
       },
-      // ClickFunnels opt-in pages (pattern: /optin-<numeric-id>)
+      // ClickFunnels opt-in pages (pattern: /optin-<anything>).
+      // Path-to-regexp v8 (Next.js 16+) rejects `:rest*` without a
+      // slash prefix — the `-` separator doesn't count. Using an
+      // inline regex `(.*)` to match any suffix instead.
       {
-        source: "/optin-:rest*",
+        source: "/optin-:rest(.*)",
         has: COACHING_SUBDOMAIN,
         destination: "https://roadmancycling.com/apply",
         permanent: true,
       },
-      // ClickFunnels raw template slugs (pattern: /roadmancc<numeric-id>)
+      // ClickFunnels raw template slugs (pattern: /roadmancc<anything>)
       {
-        source: "/roadmancc:rest*",
+        source: "/roadmancc:rest(.*)",
         has: COACHING_SUBDOMAIN,
         destination: "https://roadmancycling.com/coaching",
         permanent: true,
