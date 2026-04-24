@@ -1587,6 +1587,16 @@ export default function MtbSetupPage() {
                           MTB Fork Setup Guide
                         </a>
                       </li>
+                      <li>
+                        <a href="/topics/mountain-biking" className="text-coral hover:text-coral/80 text-sm transition-colors">
+                          Mountain Biking topic hub →
+                        </a>
+                      </li>
+                      <li>
+                        <a href="/podcast/ep-2057-your-tyres-are-slowing-you-down-here-s-why" className="text-coral hover:text-coral/80 text-sm transition-colors">
+                          Podcast: Your tyres are slowing you down — here&apos;s why
+                        </a>
+                      </li>
                     </ul>
                   </motion.div>
 

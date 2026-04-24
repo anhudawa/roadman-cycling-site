@@ -1,3 +1,14 @@
+import {
+  BRAND,
+  BRAND_STATS,
+  CONTACT,
+  ENTITY_IDS,
+  FOUNDER,
+  PODCAST,
+  SAME_AS,
+  SITE_ORIGIN,
+} from "@/lib/brand-facts";
+
 interface JsonLdProps {
   data: Record<string, unknown>;
 }
@@ -11,67 +22,116 @@ export function JsonLd({ data }: JsonLdProps) {
   );
 }
 
+/**
+ * Site-wide connected knowledge graph. Renders Organization, WebSite,
+ * Person (Anthony), and PodcastSeries as one @graph so every page
+ * that references the org/author by `@id` pulls from a single,
+ * resolved entity. Inject once, site-wide (root layout).
+ */
 export function OrganizationJsonLd() {
   return (
     <JsonLd
       data={{
         "@context": "https://schema.org",
-        "@type": "Organization",
-        name: "Roadman Cycling",
-        alternateName: "The Roadman Cycling Podcast",
-        url: "https://roadmancycling.com",
-        logo: "https://roadmancycling.com/images/logo-white.png",
-        description:
-          "The world's largest cycling performance podcast. Evidence-based coaching, nutrition, strength, recovery, and community for serious amateur cyclists. Trusted by 1 million monthly listeners.",
-        founder: {
-          "@type": "Person",
-          name: "Anthony Walsh",
-          jobTitle: "Cycling Coach & Podcast Host",
-          url: "https://roadmancycling.com/author/anthony-walsh",
-          sameAs: [
-            "https://instagram.com/roadman.cycling",
-            "https://youtube.com/@theroadmanpodcast",
-          ],
-        },
-        sameAs: [
-          "https://youtube.com/@theroadmanpodcast",
-          "https://instagram.com/roadman.cycling",
-          "https://facebook.com/roadmancycling",
-          "https://x.com/Roadman_Podcast",
-          "https://tiktok.com/@roadmancyclingpodcast",
-          "https://open.spotify.com/show/2oCs3N4ahypwzzUrFqgUmC",
-          "https://podcasts.apple.com/us/podcast/the-roadman-cycling-podcast/id1224143549",
+        "@graph": [
+          {
+            "@type": "Organization",
+            "@id": ENTITY_IDS.organization,
+            name: BRAND.name,
+            legalName: BRAND.legalName,
+            alternateName: BRAND.alternateName,
+            url: BRAND.url,
+            logo: {
+              "@type": "ImageObject",
+              url: BRAND.logo,
+            },
+            image: BRAND.ogImage,
+            description: BRAND.description,
+            slogan: BRAND.tagline,
+            foundingDate: String(BRAND.foundedYear),
+            foundingLocation: {
+              "@type": "Place",
+              name: BRAND.locationName,
+            },
+            founder: { "@id": ENTITY_IDS.person },
+            sameAs: [...SAME_AS.organization],
+            contactPoint: {
+              "@type": "ContactPoint",
+              email: CONTACT.email,
+              contactType: "customer service",
+            },
+            knowsAbout: [
+              "cycling training",
+              "cycling coaching",
+              "cycling nutrition",
+              "strength and conditioning for cyclists",
+              "endurance recovery",
+              "FTP training",
+              "polarised training",
+              "triathlon bike coaching",
+            ],
+          },
+          {
+            "@type": "WebSite",
+            "@id": ENTITY_IDS.website,
+            url: SITE_ORIGIN,
+            name: BRAND.name,
+            publisher: { "@id": ENTITY_IDS.organization },
+            inLanguage: "en",
+            potentialAction: {
+              "@type": "SearchAction",
+              target: {
+                "@type": "EntryPoint",
+                urlTemplate: `${SITE_ORIGIN}/search?q={search_term_string}`,
+              },
+              "query-input": "required name=search_term_string",
+            },
+          },
+          {
+            "@type": "Person",
+            "@id": ENTITY_IDS.person,
+            name: FOUNDER.name,
+            jobTitle: FOUNDER.jobTitle,
+            url: FOUNDER.url,
+            image: `${SITE_ORIGIN}/images/team/anthony.avif`,
+            email: FOUNDER.email,
+            worksFor: { "@id": ENTITY_IDS.organization },
+            sameAs: [...SAME_AS.person],
+            knowsAbout: [
+              "cycling training methodology",
+              "periodisation",
+              "polarised training",
+              "cycling nutrition",
+              "masters cycling performance",
+            ],
+          },
+          {
+            "@type": "PodcastSeries",
+            "@id": ENTITY_IDS.podcast,
+            name: PODCAST.name,
+            url: PODCAST.url,
+            description: `${PODCAST.name} — ${BRAND_STATS.episodeCountLabel} episodes, ${BRAND_STATS.monthlyListenersLabel} monthly listeners across ${BRAND_STATS.countriesReachedLabel} countries.`,
+            webFeed: PODCAST.rssFeed,
+            image: BRAND.ogImage,
+            author: { "@id": ENTITY_IDS.person },
+            publisher: { "@id": ENTITY_IDS.organization },
+            inLanguage: "en",
+            sameAs: [PODCAST.appleUrl, PODCAST.spotifyUrl, PODCAST.youtubeUrl],
+          },
         ],
-        contactPoint: {
-          "@type": "ContactPoint",
-          email: "anthony@roadmancycling.com",
-          contactType: "customer service",
-        },
       }}
     />
   );
 }
 
+/**
+ * Backwards-compat shim — the root layout used to render
+ * `<OrganizationJsonLd />` and `<WebSiteJsonLd />` as two separate
+ * blocks. We now emit both (plus Person + PodcastSeries) from the
+ * unified @graph above, so WebSiteJsonLd becomes a no-op.
+ */
 export function WebSiteJsonLd() {
-  return (
-    <JsonLd
-      data={{
-        "@context": "https://schema.org",
-        "@type": "WebSite",
-        name: "Roadman Cycling",
-        url: "https://roadmancycling.com",
-        potentialAction: {
-          "@type": "SearchAction",
-          target: {
-            "@type": "EntryPoint",
-            urlTemplate:
-              "https://roadmancycling.com/search?q={search_term_string}",
-          },
-          "query-input": "required name=search_term_string",
-        },
-      }}
-    />
-  );
+  return null;
 }
 
 // Article schema for blog posts
@@ -101,19 +161,9 @@ export function ArticleJsonLd({
         description,
         url,
         ...(image && { image }),
-        author: {
-          "@type": "Person",
-          name: "Anthony Walsh",
-          url: "https://roadmancycling.com/author/anthony-walsh",
-        },
-        publisher: {
-          "@type": "Organization",
-          name: "Roadman Cycling",
-          logo: {
-            "@type": "ImageObject",
-            url: "https://roadmancycling.com/images/logo-white.png",
-          },
-        },
+        author: { "@id": ENTITY_IDS.person },
+        publisher: { "@id": ENTITY_IDS.organization },
+        isPartOf: { "@id": ENTITY_IDS.website },
         datePublished,
         ...(dateModified && { dateModified }),
         mainEntityOfPage: url,
@@ -203,11 +253,9 @@ export function PodcastEpisodeJsonLd({
         datePublished,
         ...(duration && { timeRequired: duration }),
         ...(episodeNumber && { episodeNumber }),
-        partOfSeries: {
-          "@type": "PodcastSeries",
-          name: "The Roadman Cycling Podcast",
-          url: "https://roadmancycling.com/podcast",
-        },
+        partOfSeries: { "@id": ENTITY_IDS.podcast },
+        author: { "@id": ENTITY_IDS.person },
+        publisher: { "@id": ENTITY_IDS.organization },
       }}
     />
   );

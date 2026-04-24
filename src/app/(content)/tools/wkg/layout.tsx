@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { HowToSchema } from "@/components/seo/HowToSchema";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { SoftwareApplicationSchema } from "@/components/seo/SoftwareApplicationSchema";
 
@@ -18,6 +19,17 @@ export default function Layout({ children }: { children: React.ReactNode }) {
         description="Calculate your cycling power-to-weight ratio and compare against performance benchmarks."
         url="https://roadmancycling.com/tools/wkg"
         features={["Instant W/kg calculation", "Performance level benchmarks", "Improvement recommendations"]}
+      />
+      <HowToSchema
+        name="How to Calculate Cycling Power-to-Weight Ratio (W/kg)"
+        description="Calculate your cycling power-to-weight ratio by dividing your FTP in watts by your body weight in kilograms, and benchmark the result against amateur, competitive, and professional reference ranges."
+        totalTime="PT1M"
+        steps={[
+          { name: "Determine your FTP", text: "Complete a 20-minute all-out test on a power meter or smart trainer, then multiply your average power by 0.95. A ramp test on Zwift or TrainerRoad is an acceptable alternative." },
+          { name: "Weigh yourself consistently", text: "Record body weight first thing in the morning, after the bathroom, before eating or drinking. Do this on 3-4 consecutive days and average the result to eliminate day-to-day noise." },
+          { name: "Divide watts by kilograms", text: "Divide your FTP in watts by your body weight in kilograms. For example, 260W / 72kg = 3.61 W/kg. This is the single best predictor of climbing and overall road cycling performance." },
+          { name: "Compare against benchmarks", text: "Recreational riders sit around 1.5-2.5 W/kg, competitive amateurs 3.0-3.5, strong amateurs 3.5-4.0, elite amateurs 4.0-4.5, and professionals 5.0+. Grand Tour climbers exceed 6.0 W/kg on a 20-minute climb." },
+        ]}
       />
       <JsonLd
         data={{

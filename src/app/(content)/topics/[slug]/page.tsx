@@ -6,6 +6,7 @@ import remarkGfm from "remark-gfm";
 import { Header, Footer, Section, Container } from "@/components/layout";
 import { ScrollReveal, Card, Badge, Button } from "@/components/ui";
 import { JsonLd } from "@/components/seo/JsonLd";
+import { Breadcrumbs } from "@/components/seo/Breadcrumbs";
 import { EmailCapture } from "@/components/features/conversion/EmailCapture";
 import { getTopicBySlug, getAllTopicSlugs, getTopicTitleBySlug } from "@/lib/topics";
 import { queryContentGraph } from "@/lib/content-graph";
@@ -115,6 +116,9 @@ export default async function TopicPage({
       <main id="main-content">
         {/* Hero */}
         <Section background="deep-purple" grain className="pt-32 pb-12">
+          <Container>
+            <Breadcrumbs items={[{ label: "Topics", href: "/topics" }, { label: topic.title }]} />
+          </Container>
           <Container className="text-center">
             <ScrollReveal direction="up">
               <Badge pillar={topic.pillar} size="md" />

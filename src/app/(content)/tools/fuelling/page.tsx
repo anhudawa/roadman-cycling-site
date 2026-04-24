@@ -711,6 +711,16 @@ export default function FuellingPage() {
                           Cycling Energy Gels Guide →
                         </a>
                       </li>
+                      <li>
+                        <a href="/topics/cycling-nutrition" className="text-coral hover:text-coral/80 text-sm transition-colors">
+                          Cycling Nutrition topic hub →
+                        </a>
+                      </li>
+                      <li>
+                        <a href="/podcast/ep-2035-world-tour-nutritionist-we-got-fuelling-wrong" className="text-coral hover:text-coral/80 text-sm transition-colors">
+                          Podcast: World Tour nutritionist — &quot;we got fuelling wrong&quot;
+                        </a>
+                      </li>
                     </ul>
                   </motion.div>
 
