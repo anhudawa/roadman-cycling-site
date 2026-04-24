@@ -305,7 +305,7 @@ export default function TriathlonCoachingPage() {
               <p className="text-foreground-muted text-xl max-w-2xl mx-auto mb-8 leading-relaxed">
                 Specialist bike coaching for age-group triathletes. Bike-leg
                 power, aero endurance, brick sessions, pacing, and fuelling —
-                periodised around your run. Built on 1,300+ conversations with
+                periodised around your run. Built on 1,400+ conversations with
                 Dan Lorang, Prof. Stephen Seiler, and World Tour coaches.
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-6">

@@ -72,7 +72,7 @@ export default function AboutPage() {
             name: "Anthony Walsh",
           },
           description:
-            "Cycling coach and founder of Roadman Cycling. Host of the Roadman Cycling Podcast, with over 1,300 conversations with World Tour coaches, sports scientists, and professional riders — including Prof. Stephen Seiler, Dan Lorang, Greg LeMond, and Lachlan Morton.",
+            "Cycling coach and founder of Roadman Cycling. Host of the Roadman Cycling Podcast, with over 1,400 conversations with World Tour coaches, sports scientists, and professional riders — including Prof. Stephen Seiler, Dan Lorang, Greg LeMond, and Lachlan Morton.",
           image: "https://roadmancycling.com/images/about/anthony-walsh-podcast.jpg",
           jobTitle: "Cycling Coach & Podcast Host",
           url: "https://roadmancycling.com/about",
@@ -204,7 +204,7 @@ export default function AboutPage() {
                   Dan Lorang explained World Tour training methodology.
                   Greg LeMond shared what it took to win three Tours de France.
                   Lachlan Morton talked about why the World Tour wasn&apos;t
-                  enough. Over 1,300 conversations later, the access hasn&apos;t
+                  enough. Over 1,400 conversations later, the access hasn&apos;t
                   slowed down.
                 </p>
               </ScrollReveal>
@@ -325,7 +325,7 @@ export default function AboutPage() {
                   EVERYTHING I&apos;VE LEARNED, APPLIED TO YOUR TRAINING.
                 </h3>
                 <p className="text-foreground-muted text-lg mb-8 max-w-xl mx-auto leading-relaxed">
-                  1,300+ conversations with the best coaches, scientists and
+                  1,400+ conversations with the best coaches, scientists and
                   riders in the sport — distilled into a plan built around
                   your power numbers, your events, your calendar, your life.
                 </p>
@@ -405,7 +405,7 @@ export default function AboutPage() {
 
             <ScrollReveal direction="up" delay={0.5}>
               <p className="text-center text-foreground-muted text-sm mt-8">
-                Plus 1,300+ more conversations in{" "}
+                Plus 1,400+ more conversations in{" "}
                 <Link href="/guests" className="text-coral hover:underline">
                   the full guest archive
                 </Link>
@@ -432,7 +432,7 @@ export default function AboutPage() {
 
             <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6">
               {[
-                { name: "Anthony Walsh", role: "Host & Content", image: "/images/team/anthony.avif", bio: "The voice behind 1,300+ episodes" },
+                { name: "Anthony Walsh", role: "Host & Content", image: "/images/team/anthony.avif", bio: "The voice behind 1,400+ episodes" },
                 { name: "Sarah Ann Egan", role: "Co-Host & Operations", image: "/images/team/sarah-solo.jpg", bio: "Keeps the wheels turning" },
                 { name: "Wes Andrade", role: "Production", image: "/images/team/wes.jpg", bio: "Makes it sound this good" },
                 { name: "Matthew Devins", role: "Coaching", image: "/images/team/devins.jpg", bio: "Not Done Yet coaching community lead" },

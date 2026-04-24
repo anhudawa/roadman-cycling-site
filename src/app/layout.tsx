@@ -8,7 +8,8 @@ import { MobileStickyApply } from "@/components/features/conversion/MobileSticky
 import { LazyCookieConsent } from "@/components/features/consent/LazyCookieConsent";
 import { Tracker } from "@/components/analytics/Tracker";
 import { ConsentAwarePixel } from "@/components/analytics/ConsentAwarePixel";
-import { OrganizationJsonLd, WebSiteJsonLd } from "@/components/seo/JsonLd";
+import { OrganizationJsonLd } from "@/components/seo/JsonLd";
+import { BRAND_STATS } from "@/lib/brand-facts";
 import "./globals.css";
 
 const bebasNeue = Bebas_Neue({
@@ -52,8 +53,7 @@ export const metadata: Metadata = {
     default: "Roadman Cycling — Cycling Coaching, Training & Performance Podcast",
     template: "%s | Roadman Cycling",
   },
-  description:
-    "The cycling podcast trusted by 1M+ monthly listeners. Expert coaching, training plans, nutrition, and a community that refuses to settle.",
+  description: `The cycling podcast trusted by ${BRAND_STATS.monthlyListenersLabel} monthly listeners across ${BRAND_STATS.countriesReachedLabel} countries. Expert coaching, training plans, nutrition, and a community that refuses to settle. ${BRAND_STATS.episodeCountLabel} episodes. ${BRAND_STATS.newsletterSubscribersLabel} newsletter readers.`,
   keywords: [
     "cycling podcast",
     "cycling training",
@@ -79,8 +79,7 @@ export const metadata: Metadata = {
     url: "https://roadmancycling.com",
     siteName: "Roadman Cycling",
     title: "Roadman Cycling — Cycling Coaching, Training & Performance Podcast",
-    description:
-      "The podcast trusted by 1 million monthly listeners. Expert cycling coaching, training, nutrition, and community.",
+    description: `The podcast trusted by ${BRAND_STATS.monthlyListenersLabel} monthly listeners. Expert cycling coaching, training, nutrition, and community. ${BRAND_STATS.episodeCountLabel} episodes.`,
     images: [
       {
         url: "/og-image.jpg",
@@ -142,7 +141,6 @@ export default function RootLayout({
       </head>
       <body className="min-h-screen bg-charcoal text-off-white font-body antialiased">
         <OrganizationJsonLd />
-        <WebSiteJsonLd />
         <a
           href="#main-content"
           className="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[9999] focus:bg-coral focus:text-off-white focus:px-4 focus:py-2 focus:rounded-md focus:font-heading focus:text-sm focus:tracking-wider"

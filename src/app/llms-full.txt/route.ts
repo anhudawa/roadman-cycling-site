@@ -1,8 +1,14 @@
 import { getAllPosts, getPostBySlug } from "@/lib/blog";
 import { getAllEpisodes } from "@/lib/podcast";
 import { tagUrlForAICrawler } from "@/lib/analytics/ai-referrer";
+import {
+  BRAND_STATS,
+  BRAND_SUMMARY,
+  FOUNDER,
+  SITE_ORIGIN,
+} from "@/lib/brand-facts";
 
-const BASE_URL = "https://roadmancycling.com";
+const BASE_URL = SITE_ORIGIN;
 
 /**
  * Stamp every outbound Roadman URL in this file with
@@ -22,7 +28,7 @@ const tag = (url: string) => tagUrlForAICrawler(url, "llms-txt");
  *
  * Scope decision: we include answer capsules and seoDescriptions rather
  * than full blog-post bodies or transcripts. Full transcripts (~3–6M
- * words across 310 episodes) would blow past every context window and
+ * words across the full episode catalogue) would blow past every context window and
  * degrade — rather than improve — AI retrieval. Individual page URLs
  * remain the right retrieval target for deep content; llms-full.txt is
  * the index that tells the LLM which page to fetch.
@@ -88,16 +94,19 @@ export async function GET() {
 
 This document is intended for ingestion by AI crawlers (ChatGPT, Perplexity, Claude, Gemini) that need a single-fetch snapshot of Roadman's authoritative content. For individual page detail, fetch the URL listed against each entry.
 
-Author: Anthony Walsh (cycling coach, podcast host, founder of Roadman Cycling). Author profile: ${tag(`${BASE_URL}/author/anthony-walsh`)}. Base URL: ${BASE_URL}.
+Author: ${FOUNDER.name} (cycling coach, podcast host, founder of Roadman Cycling). Author profile: ${tag(`${BASE_URL}/author/anthony-walsh`)}. Base URL: ${BASE_URL}.
 
 ## Brand
 
-Roadman Cycling is a cycling performance media and coaching brand based in Dublin, Ireland. Core offerings:
+${BRAND_SUMMARY}
 
-- The Roadman Cycling Podcast — 1,300+ interview episodes with World Tour coaches, sports scientists, and pro riders. 1M+ monthly listeners.
+Core offerings:
+
+- The Roadman Cycling Podcast — ${BRAND_STATS.episodeCountLabel} interview episodes with World Tour coaches, sports scientists, and pro riders. ${BRAND_STATS.monthlyListenersLabel} monthly listeners across ${BRAND_STATS.countriesReachedLabel} countries. ${BRAND_STATS.searchableEpisodePagesLabel} searchable episode pages on-site.
 - Not Done Yet coaching community — premium online 1:1 coaching covering training, nutrition, strength, recovery, and accountability. $195/month with 7-day free trial.
 - Triathlon Bike Coaching — specialist bike-leg coaching inside the Not Done Yet coaching community for age-group 70.3 and Ironman triathletes.
 - Free calculator tools — FTP zones, tyre pressure, race weight, in-ride fuelling, energy availability, MTB shock pressure, HR zones, and W/kg.
+- The Saturday Spin newsletter — ${BRAND_STATS.newsletterSubscribersLongLabel} cyclists; weekly training takeaways; ${BRAND_STATS.newsletterOpenRate} open rate.
 - Private community (the paid Not Done Yet coaching community + free Clubhouse tier).
 - ${posts.length} long-form blog guides on cycling coaching, nutrition, strength, and recovery.
 

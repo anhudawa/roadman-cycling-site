@@ -9,7 +9,7 @@ import { getTestimonialsByName } from "@/lib/testimonials";
 export const metadata: Metadata = {
   title: "Online Cycling Coach — Personalised Coaching | $195/month",
   description:
-    "Personalised cycling coaching built on 1,300+ expert podcast conversations. Training plans, nutrition, strength, recovery, and community. Trusted by cyclists in Ireland, UK, and USA.",
+    "Personalised cycling coaching built on 1,400+ expert podcast conversations. Training plans, nutrition, strength, recovery, and community. Trusted by cyclists in Ireland, UK, and USA.",
   keywords: [
     "cycling coach",
     "cycling coaching",
@@ -26,7 +26,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Online Cycling Coach — Personalised Coaching | $195/month",
     description:
-      "Personalised cycling coaching built on 1,300+ expert podcast conversations. Training, nutrition, strength, recovery, and community.",
+      "Personalised cycling coaching built on 1,400+ expert podcast conversations. Training, nutrition, strength, recovery, and community.",
     type: "website",
     url: "https://roadmancycling.com/coaching",
   },
@@ -170,7 +170,7 @@ export default function CoachingPage() {
           "@type": "Service",
           name: "Roadman Cycling Coaching",
           description:
-            "Personalised online cycling coaching across five pillars: training, nutrition, strength, recovery, and community. Built on 1,300+ expert podcast conversations.",
+            "Personalised online cycling coaching across five pillars: training, nutrition, strength, recovery, and community. Built on 1,400+ expert podcast conversations.",
           serviceType: "Online Cycling Coaching",
           provider: {
             "@type": "Person",
@@ -275,7 +275,7 @@ export default function CoachingPage() {
                 <span className="text-coral">START PROGRESSING.</span>
               </h1>
               <p className="text-foreground-muted text-xl max-w-2xl mx-auto mb-8 leading-relaxed">
-                Personalised cycling coaching built on 1,300+ conversations with
+                Personalised cycling coaching built on 1,400+ conversations with
                 the world&apos;s best coaches and scientists. Training,
                 nutrition, strength, recovery, and community — structured
                 into your week so every session counts.
@@ -456,7 +456,7 @@ export default function CoachingPage() {
                       "Strength programming periodised with your riding",
                       "Recovery protocols that let training actually stick",
                       "A private community of serious cyclists that keeps you consistent through bad weeks",
-                      "Expert knowledge from 1,300+ podcast conversations distilled into your plan",
+                      "Expert knowledge from 1,400+ podcast conversations distilled into your plan",
                     ].map((item) => (
                       <li
                         key={item}
