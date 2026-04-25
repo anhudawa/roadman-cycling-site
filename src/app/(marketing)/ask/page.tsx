@@ -7,9 +7,9 @@ import { isToolSlug } from "@/lib/tool-results/types";
 import { getDefinition } from "@/lib/diagnostics/framework/registry";
 
 export const metadata: Metadata = {
-  title: "Ask Roadman — the cycling performance assistant",
+  title: "Ask Roadman — The Cycling Performance Assistant",
   description:
-    "Ask Roadman: the on-site cycling performance assistant. Grounded in 100M+ downloads of conversations with Dan Lorang, Professor Seiler, Dr David Dunne and the Roadman guest roster. Honest, cited, on-brand answers for serious amateur cyclists.",
+    "Ask Roadman is the on-site cycling performance assistant from Roadman Cycling. Grounded in 1,400+ podcast conversations with Dan Lorang, Professor Seiler, Dr David Dunne, and the rest of the Roadman guest roster. Honest, cited, on-brand answers for serious amateur cyclists.",
   alternates: { canonical: "https://roadmancycling.com/ask" },
   openGraph: {
     title: "Ask Roadman",
@@ -107,9 +107,9 @@ export default async function AskPage({
               THIS WILL HELP.
             </h1>
             <p className="text-foreground-muted max-w-2xl text-base md:text-lg leading-relaxed">
-              Trained on 100M+ downloads of Roadman Cycling Podcast conversations
-              with World Tour coaches, sports scientists and pro cyclists. Straight
-              answers, cited to the source.
+              Built on 1,400+ on-the-record Roadman Cycling Podcast conversations
+              with World Tour coaches, sports scientists, and pro cyclists.
+              Straight answers, cited to the source.
             </p>
           </div>
         </div>

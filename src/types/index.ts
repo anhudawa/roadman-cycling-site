@@ -146,8 +146,11 @@ export const NAV_ITEMS: NavItem[] = [
       { label: "MTB Setup", href: "/tools/shock-pressure" },
       { label: "Plateau Diagnostic", href: "/plateau" },
       { label: "Coaching Assessment", href: "/assessment" },
-      { label: "Ask Roadman", href: "/ask" },
     ],
+  },
+  {
+    label: "Ask Roadman",
+    href: "/ask",
   },
   {
     label: "Coaching",

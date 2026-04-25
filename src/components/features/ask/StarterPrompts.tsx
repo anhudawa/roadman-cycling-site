@@ -12,7 +12,7 @@ export const STARTER_PROMPTS: Array<{ key: string; label: string; prompt: string
     key: "plateau",
     label: "Why has my FTP stalled?",
     prompt:
-      "My FTP has been stuck for about 18 months. I train 8–10 hours a week, mostly zone 2 with a couple of threshold sessions. What's actually going on and what should I do?",
+      "My FTP has been stuck for about 18 months. I train 8–10 hours a week, mostly zone 2 with a couple of threshold sessions. What's actually going on, and what should I do?",
   },
   {
     key: "fuelling",
@@ -24,19 +24,19 @@ export const STARTER_PROMPTS: Array<{ key: string; label: string; prompt: string
     key: "masters",
     label: "Masters recovery — what actually matters?",
     prompt:
-      "I'm 47 and recovery is obviously slower than it was at 35. What are the 2–3 things that actually move the needle for masters riders, and what's overrated?",
+      "I'm 47, and recovery is obviously slower than it was at 35. What are the 2–3 things that actually move the needle for masters riders, and what's overrated?",
   },
   {
     key: "event",
     label: "Etape du Tour prep — 16 weeks out",
     prompt:
-      "I'm riding the Etape du Tour in 16 weeks. It's 170km with 4,000m of climbing. I can ride 10 hours a week. What does the last 16 weeks actually look like?",
+      "I'm riding the Etape du Tour in 16 weeks. It's 170km with 4,000m of climbing, and I can ride 10 hours a week. What do the next 16 weeks actually look like?",
   },
   {
     key: "zone2",
     label: "How do I know if I'm actually in zone 2?",
     prompt:
-      "Everyone says to ride zone 2 but my HR and power feel like they tell different stories. How do I actually know I'm in the right zone?",
+      "Everyone says to ride zone 2, but my HR and power feel like they tell different stories. How do I actually know I'm in the right zone?",
   },
   {
     key: "strength",

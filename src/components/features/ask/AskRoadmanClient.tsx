@@ -115,8 +115,8 @@ export function AskRoadmanClient({ seed = null }: { seed?: AskSeed | null }) {
             Ask anything — training, fuelling, recovery, strength, masters-specific
             questions, or how to prep for an event. Roadman answers with the same
             positions you&rsquo;d hear on the podcast, grounded in Anthony&rsquo;s
-            conversations with Dan Lorang, Professor Seiler, Dr David Dunne and the
-            rest of the guest roster.
+            conversations with Dan Lorang, Professor Seiler, Dr David Dunne, and
+            the rest of the guest roster.
           </p>
           <p className="font-heading text-xs tracking-widest text-coral uppercase mb-3">
             Try one of these
@@ -163,7 +163,7 @@ export function AskRoadmanClient({ seed = null }: { seed?: AskSeed | null }) {
           </button>
         </div>
         <p className="text-foreground-subtle text-[11px] mt-1.5">
-          Roadman can be wrong. For medical, injury or extreme-weight questions,
+          Roadman can be wrong. For medical, injury, or extreme-weight questions,
           see a professional first.
         </p>
       </form>
