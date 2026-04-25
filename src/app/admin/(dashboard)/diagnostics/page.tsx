@@ -214,7 +214,7 @@ export default async function AdminDiagnosticsPage() {
                         <Link
                           href={`/results/${toolUrl}/${r.slug}`}
                           target="_blank"
-                          className="text-xs text-coral hover:underline"
+                          className="text-xs text-foreground-muted hover:text-off-white hover:underline"
                         >
                           open →
                         </Link>

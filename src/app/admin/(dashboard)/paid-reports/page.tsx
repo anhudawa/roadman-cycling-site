@@ -125,7 +125,7 @@ export default async function AdminPaidReportsPage({
                   href={href}
                   className={
                     active
-                      ? "rounded-full bg-coral/15 border border-coral/40 text-coral px-3 py-1 font-semibold"
+                      ? "rounded-full bg-white/10 border border-white/30 text-off-white px-3 py-1 font-semibold"
                       : "rounded-full bg-white/5 border border-white/10 text-foreground-muted hover:text-white hover:bg-white/10 px-3 py-1"
                   }
                 >

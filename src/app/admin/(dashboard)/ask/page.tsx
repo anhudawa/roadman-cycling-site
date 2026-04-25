@@ -178,7 +178,7 @@ function StatCard({
     tone === "warning"
       ? "text-amber-300"
       : tone === "info"
-        ? "text-coral"
+        ? "text-blue-400"
         : "text-off-white";
   return (
     <div className="rounded-lg border border-white/10 bg-white/[0.03] p-4">
@@ -204,7 +204,7 @@ function TabLink({
   return (
     <a
       href={href}
-      className={`px-3 py-1.5 rounded-md border transition-colors ${active ? "border-coral/50 bg-coral/10 text-off-white" : "border-white/10 text-foreground-muted hover:border-white/25 hover:text-off-white"}`}
+      className={`px-3 py-1.5 rounded-md border transition-colors ${active ? "border-white/30 bg-white/10 text-off-white" : "border-white/10 text-foreground-muted hover:border-white/25 hover:text-off-white"}`}
     >
       {children}
     </a>
