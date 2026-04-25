@@ -1,21 +1,36 @@
 import type { Metadata } from "next";
+import Image from "next/image";
+import Link from "next/link";
 import { Suspense } from "react";
+import { sql } from "drizzle-orm";
 import { Container, Footer, Header, Section } from "@/components/layout";
 import { ScrollReveal } from "@/components/ui";
-import { sql } from "drizzle-orm";
 import { db } from "@/lib/db";
 import { diagnosticSubmissions } from "@/lib/db/schema";
 import { JsonLd, FAQPageJsonLd } from "@/components/seo/JsonLd";
 import { DiagnosticFlow } from "@/components/features/diagnostic/DiagnosticFlow";
 import { MetaPixel } from "@/components/features/diagnostic/MetaPixel";
-import { PROFILE_LABELS } from "@/lib/diagnostic/profiles";
+import { BRAND_STATS, FOUNDER } from "@/lib/brand-facts";
+import { getTestimonialsByName } from "@/lib/testimonials";
+import { FaqAccordion } from "./_components/FaqAccordion";
+import { StickyMobileCta } from "./_components/StickyMobileCta";
 
 /**
- * /plateau — landing page for the Masters Plateau Diagnostic. Copy
- * and design follow §6 of the spec. The diagnostic component is
- * embedded below the fold so the user can scroll straight into the
- * flow without a route change — keeps session state intact and removes
- * a click from the ad → start funnel.
+ * /plateau — landing page for the Masters Plateau Diagnostic.
+ *
+ * Designed for cold paid traffic. The page is built around three
+ * conversion principles:
+ *  1. Earn trust before asking for a click — Anthony's name and the
+ *     four named experts surface in the first viewport, not the FAQ.
+ *  2. Promote the no-hard-sell promise above the diagnostic itself —
+ *     it is the single most disarming sentence on the page.
+ *  3. Three commit moments (hero CTA, mid-page CTA, final CTA) plus a
+ *     sticky mobile button so a thumb is never more than one tap from
+ *     starting the quiz.
+ *
+ * The diagnostic component is embedded below the fold so the user can
+ * scroll straight into the flow without a route change — keeps session
+ * state intact and removes a click from the ad → start funnel.
  */
 
 export const metadata: Metadata = {
@@ -28,7 +43,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "The Masters Plateau Diagnostic",
     description:
-      "If you're over 40 and your FTP hasn't moved in 18 months, it's almost always one of four things. Find out which one in four minutes.",
+      "If you're over 40 and your FTP hasn't moved in 18 months, it's one of four things. Find out which one in four minutes.",
     type: "website",
     url: "https://roadmancycling.com/plateau",
   },
@@ -39,31 +54,77 @@ export const metadata: Metadata = {
 
 export const revalidate = 3600;
 
-const SOCIAL_PROOF = [
-  "Built from 1,400+ podcast conversations with World Tour coaches, sports scientists and pro riders.",
-  "Based on methods used by the coaches behind Tadej Pogačar, Chris Froome and Egan Bernal.",
-  "Trusted by over 1 million monthly listeners of the Roadman Cycling Podcast.",
-];
-
 const HOW_IT_WORKS = [
   {
-    n: "1",
+    n: "01",
     title: "Tell us about your training",
-    body: "Age, weekly hours, and (optionally) your FTP and goal. Two taps each.",
+    body: "Age, weekly hours, optionally your FTP and goal. Two taps each.",
+    time: "30 seconds",
   },
   {
-    n: "2",
+    n: "02",
     title: "Twelve quick questions",
-    body: "Sleep, intensity distribution, strength, fuelling. One screen at a time.",
+    body: "Sleep, intensity distribution, strength, fuelling. One screen at a time, with a back button.",
+    time: "3 minutes",
   },
   {
-    n: "3",
+    n: "03",
     title: "Get your specific profile",
-    body: "One of four profiles, named and explained — and the exact three steps to fix it.",
+    body: "One of four profiles, named and explained — and the exact three steps to fix it. Sent to your inbox.",
+    time: "30 seconds",
   },
 ];
 
-const CARDS = [
+/**
+ * The four profiles surfaced as a teaser grid.
+ *
+ * `Polarisation Failure` was renamed to `Grey-zone trap` for cold
+ * traffic — the clinical name stays inside the diagnosis itself and
+ * is preserved in `PROFILE_LABELS`/`profiles.ts` so analytics, OG
+ * images and the result pages keep their existing taxonomy. This is
+ * a pure presentation rename, not a model change.
+ *
+ * Pillar colours are the canonical content-pillar palette from the
+ * design tokens — Recovery (blue), Coaching (coral), Strength
+ * (orange), Nutrition (green) — so the diagnostic visually maps to
+ * the rest of the brand surface.
+ */
+const PROFILE_PREVIEWS = [
+  {
+    n: "01",
+    title: "Under-recovered",
+    line: "Doing the training. Not getting the adaptation. Sleep, life stress and back-to-back hard sessions are eating the gains.",
+    accent: "var(--color-pillar-recovery)",
+    accentBg: "rgba(33, 150, 243, 0.10)",
+    accentRing: "rgba(33, 150, 243, 0.35)",
+  },
+  {
+    n: "02",
+    title: "Grey-zone trap",
+    line: "Most of your riding is neither easy enough to recover from nor hard enough to drive change. The middle is where progress dies.",
+    accent: "var(--color-pillar-coaching)",
+    accentBg: "rgba(241, 99, 99, 0.10)",
+    accentRing: "rgba(241, 99, 99, 0.40)",
+  },
+  {
+    n: "03",
+    title: "Strength gap",
+    line: "Your aerobic engine still works. The neuromuscular power that drives it is leaking quietly — about 1% per year after 40 if you're not lifting.",
+    accent: "var(--color-pillar-strength)",
+    accentBg: "rgba(255, 152, 0, 0.10)",
+    accentRing: "rgba(255, 152, 0, 0.40)",
+  },
+  {
+    n: "04",
+    title: "Fuelling deficit",
+    line: "Training hungry. Chasing race weight. Every session is paid for with tomorrow's adaptation.",
+    accent: "var(--color-pillar-nutrition)",
+    accentBg: "rgba(76, 175, 80, 0.10)",
+    accentRing: "rgba(76, 175, 80, 0.40)",
+  },
+];
+
+const WHAT_YOU_GET = [
   {
     title: "Your specific profile",
     body: "One of four reasons your FTP has stalled, named and explained in plain language.",
@@ -78,10 +139,16 @@ const CARDS = [
   },
 ];
 
+// FAQ order: the no-hard-sell answer goes first because it is the
+// single most cold-traffic-disarming sentence on the page (see audit).
 const FAQS = [
   {
+    q: "Is this just going to sell me something?",
+    a: "At the end you'll see whether Not Done Yet is the right fit. If it's not, the diagnosis is yours to keep — we don't run a hard-sell sequence. The follow-up email comes from Anthony, written like an email from a friend, and one click takes you off the list.",
+  },
+  {
     q: "How long does it take?",
-    a: "Four minutes, give or take.",
+    a: "Four minutes, give or take. Twelve questions, one screen at a time, back button always available.",
   },
   {
     q: "Is it free?",
@@ -89,17 +156,15 @@ const FAQS = [
   },
   {
     q: "Will I be added to a list?",
-    a: "Yes, so we can send your diagnosis. You can unsubscribe any time with one click.",
-  },
-  {
-    q: "Is this just going to sell me something?",
-    a: "At the end you'll see whether Not Done Yet is the right fit. If it's not, the diagnosis is yours to keep — we don't run a hard-sell sequence.",
+    a: "Yes — your email is how we send the diagnosis. After that you'll get the Saturday Spin newsletter, which currently goes to over 65,000 cyclists and runs a 65%+ open rate. One click and you're off it.",
   },
   {
     q: "What if my diagnosis doesn't sound like me?",
     a: "Reply to the email it lands in and tell me. I'll personally re-run it and we'll work out what's missing. The diagnostic is only useful if it's right.",
   },
 ];
+
+const TESTIMONIAL_NAMES = ["Damien Maloney", "Daniel Stone", "Brian Morrissey"];
 
 function DiagnosticSkeleton() {
   return (
@@ -134,8 +199,37 @@ async function recentSubmissionCount(): Promise<number | null> {
   }
 }
 
+const ctaButtonClass = `
+  inline-flex items-center justify-center gap-2
+  font-heading tracking-wider text-lg
+  bg-coral hover:bg-coral-hover active:bg-coral-hover
+  text-off-white px-10 py-4 rounded-md
+  transition-all
+  shadow-[0_10px_30px_rgba(241,99,99,0.35)]
+  hover:shadow-[0_14px_40px_rgba(241,99,99,0.55)]
+  hover:-translate-y-0.5
+`;
+
+const ctaArrow = (
+  <svg
+    width="18"
+    height="18"
+    viewBox="0 0 18 18"
+    fill="none"
+    stroke="currentColor"
+    strokeWidth="2"
+    strokeLinecap="round"
+    strokeLinejoin="round"
+    aria-hidden="true"
+  >
+    <path d="M3 9h12M10 4l5 5-5 5" />
+  </svg>
+);
+
 export default async function PlateauPage() {
   const recentCount = await recentSubmissionCount();
+  const testimonials = getTestimonialsByName(TESTIMONIAL_NAMES);
+
   return (
     <>
       <MetaPixel />
@@ -159,117 +253,344 @@ export default async function PlateauPage() {
           },
         }}
       />
-      {/* FAQPage schema lets Google render the FAQ as rich snippets
-          on SERPs that index the landing — bonus organic surface on
-          top of the paid traffic. */}
       <FAQPageJsonLd
         questions={FAQS.map((f) => ({ question: f.q, answer: f.a }))}
       />
       <Header />
       <main id="main-content">
-        {/* ── Hero — built for paid traffic, sub-2-second comprehension ── */}
-        <Section background="charcoal" grain className="pt-32 pb-16">
-          <Container width="narrow" className="text-center">
+        {/* ── Hero ─ cinematic, charcoal → deep-purple, two-line headline ── */}
+        <section
+          id="plateau-hero"
+          className="
+            relative overflow-hidden
+            min-h-[88vh] flex items-center
+            pt-32 pb-16 md:pt-40 md:pb-24
+            bg-charcoal grain-overlay
+          "
+        >
+          {/* Layered gradient wash */}
+          <div
+            aria-hidden="true"
+            className="absolute inset-0 pointer-events-none"
+            style={{
+              background:
+                "radial-gradient(ellipse at 20% 0%, rgba(76, 18, 115, 0.55), transparent 60%), radial-gradient(ellipse at 80% 100%, rgba(33, 1, 64, 0.7), transparent 55%)",
+            }}
+          />
+          {/* Subtle coral accent at top */}
+          <div
+            aria-hidden="true"
+            className="absolute top-0 inset-x-0 h-[1px]"
+            style={{
+              background:
+                "linear-gradient(90deg, transparent, rgba(241,99,99,0.6), transparent)",
+            }}
+          />
+          <Container width="narrow" className="relative text-center">
             <ScrollReveal direction="up" eager>
-              <p className="text-coral font-heading text-sm tracking-widest mb-6">
+              <p className="text-coral font-heading text-xs md:text-sm tracking-[0.3em] mb-6">
                 THE MASTERS PLATEAU DIAGNOSTIC
               </p>
-              <h1
-                className="font-heading text-off-white mb-6"
-                style={{ fontSize: "var(--text-hero)" }}
-              >
-                FTP STUCK FOR A YEAR? IT&rsquo;S ALMOST ALWAYS ONE OF FOUR
-                THINGS.
+              <h1 className="font-heading text-off-white mb-6 leading-[0.95]">
+                <span
+                  className="block"
+                  style={{ fontSize: "clamp(2.75rem, 7vw, 6rem)" }}
+                >
+                  FTP STUCK FOR A YEAR?
+                </span>
+                <span
+                  className="block mt-2 text-coral"
+                  style={{ fontSize: "clamp(2rem, 5.2vw, 4.5rem)" }}
+                >
+                  THERE ARE ONLY FOUR REASONS.
+                </span>
               </h1>
-              <p className="text-foreground-muted text-lg md:text-xl leading-relaxed mb-8">
+              <p className="text-foreground-muted text-lg md:text-xl leading-relaxed mb-8 max-w-xl mx-auto">
                 Twelve questions. Four minutes. A specific answer for why your
                 progress has stalled &mdash; and the exact fix.
               </p>
-              <a
-                href="#start"
-                className="inline-block font-heading tracking-wider bg-coral hover:bg-coral-hover text-off-white px-10 py-4 rounded-md transition-colors cursor-pointer text-lg shadow-lg shadow-coral/20"
-              >
-                START THE DIAGNOSTIC
+              <a href="#start" data-cta="hero" className={ctaButtonClass}>
+                FIND MY PROFILE {ctaArrow}
               </a>
-              <p className="text-foreground-subtle text-xs mt-4">
-                No email needed to start &middot; 4 minutes &middot; Free
+              <p className="text-foreground-subtle text-xs md:text-sm mt-5 px-4">
+                <span className="whitespace-nowrap">No card</span>
+                {" · "}
+                <span className="whitespace-nowrap">4 minutes</span>
+                {" · "}
+                <span className="whitespace-nowrap">
+                  Email only when you want the result
+                </span>
                 {recentCount !== null && (
-                  <> &middot; {recentCount.toLocaleString()} cyclist{recentCount === 1 ? "" : "s"} took it this week</>
+                  <>
+                    {" · "}
+                    <span className="whitespace-nowrap">
+                      {recentCount.toLocaleString()} took it this week
+                    </span>
+                  </>
                 )}
               </p>
+
+              {/* Built-by strip — Anthony presence above the fold */}
+              <div className="mt-12 inline-flex items-center gap-3 rounded-full border border-white/10 bg-white/[0.03] py-2 pl-2 pr-5">
+                <span className="relative w-9 h-9 rounded-full overflow-hidden shrink-0 border border-white/15">
+                  <Image
+                    src="/images/about/anthony-profile-closeup.jpg"
+                    alt="Anthony Walsh"
+                    fill
+                    sizes="36px"
+                    className="object-cover"
+                  />
+                </span>
+                <span className="text-left text-foreground-muted text-xs md:text-sm leading-snug">
+                  Built by{" "}
+                  <span className="text-off-white">Anthony Walsh</span> from{" "}
+                  <span className="text-off-white">
+                    {BRAND_STATS.episodeCountLabel}
+                  </span>{" "}
+                  on-the-record conversations with World Tour coaches and sports
+                  scientists.
+                </span>
+              </div>
             </ScrollReveal>
+          </Container>
+        </section>
+
+        {/* ── Promoted no-hard-sell strip ────────────────────────────── */}
+        <section className="bg-deep-purple/60 border-y border-white/5">
+          <Container width="default" className="py-6 md:py-8">
+            <ScrollReveal direction="up">
+              <p className="text-center text-foreground-muted text-sm md:text-base leading-relaxed">
+                <span className="text-coral font-heading tracking-wider mr-2">
+                  NO HARD SELL.
+                </span>
+                If Not Done Yet isn&rsquo;t right for you, the diagnosis is
+                yours to keep. The follow-up comes from Anthony &mdash; one
+                click and you&rsquo;re off the list.
+              </p>
+            </ScrollReveal>
+          </Container>
+        </section>
+
+        {/* ── Anthony intro ─ who built it, why it works ─────────────── */}
+        <Section background="charcoal">
+          <Container width="default">
+            <div className="grid md:grid-cols-[280px_1fr] gap-10 md:gap-14 items-center">
+              <ScrollReveal direction="up">
+                <div className="relative aspect-square rounded-2xl overflow-hidden border border-white/10 max-w-[280px] mx-auto md:mx-0">
+                  <Image
+                    src="/images/about/anthony-profile-closeup.jpg"
+                    alt="Anthony Walsh — founder, Roadman Cycling"
+                    fill
+                    sizes="(min-width: 768px) 280px, 220px"
+                    className="object-cover"
+                  />
+                  <div
+                    aria-hidden="true"
+                    className="absolute inset-0 ring-1 ring-inset ring-white/10 rounded-2xl"
+                  />
+                </div>
+              </ScrollReveal>
+
+              <ScrollReveal direction="up" delay={0.1}>
+                <p className="text-coral font-heading text-xs tracking-[0.3em] mb-3">
+                  BUILT BY
+                </p>
+                <h2
+                  className="font-heading text-off-white mb-4 leading-tight"
+                  style={{ fontSize: "clamp(2rem, 4vw, 3rem)" }}
+                >
+                  ANTHONY WALSH
+                </h2>
+                <p className="text-foreground-muted text-base md:text-lg leading-relaxed mb-6">
+                  Over four years and{" "}
+                  <span className="text-off-white">
+                    {BRAND_STATS.episodeCountLabel} on-the-record conversations
+                  </span>{" "}
+                  with World Tour coaches, sports scientists and pro riders
+                  &mdash; including{" "}
+                  <span className="text-off-white">Prof. Stephen Seiler</span>,{" "}
+                  <span className="text-off-white">Dan Lorang</span>,{" "}
+                  <span className="text-off-white">Greg LeMond</span> and{" "}
+                  <span className="text-off-white">Joe Friel</span> &mdash;
+                  Anthony kept seeing the same four patterns explain why
+                  otherwise serious masters cyclists stop improving. The
+                  diagnostic is that pattern recognition, distilled.
+                </p>
+
+                <dl className="grid grid-cols-3 gap-3 md:gap-6 max-w-md">
+                  <div>
+                    <dt className="font-heading text-2xl md:text-3xl text-coral">
+                      {BRAND_STATS.episodeCountLabel}
+                    </dt>
+                    <dd className="text-foreground-subtle text-xs md:text-sm mt-1">
+                      Conversations
+                    </dd>
+                  </div>
+                  <div>
+                    <dt className="font-heading text-2xl md:text-3xl text-coral">
+                      {BRAND_STATS.monthlyListenersLabel}
+                    </dt>
+                    <dd className="text-foreground-subtle text-xs md:text-sm mt-1">
+                      Monthly listeners
+                    </dd>
+                  </div>
+                  <div>
+                    <dt className="font-heading text-2xl md:text-3xl text-coral">
+                      {BRAND_STATS.countriesReachedLabel}
+                    </dt>
+                    <dd className="text-foreground-subtle text-xs md:text-sm mt-1">
+                      Countries
+                    </dd>
+                  </div>
+                </dl>
+
+                <p className="text-foreground-subtle text-xs mt-6">
+                  Founded in {FOUNDER.location} in {FOUNDER.foundedYear}.
+                </p>
+              </ScrollReveal>
+            </div>
           </Container>
         </Section>
 
         <div className="gradient-divider" />
 
-        {/* ── Social proof strip ──────────────────────── */}
-        <Section background="deep-purple" className="py-12">
-          <Container width="wide">
-            <ul className="grid md:grid-cols-3 gap-8 text-foreground-muted text-sm">
-              {SOCIAL_PROOF.map((line, i) => (
-                <li key={line}>
-                  <ScrollReveal direction="up" delay={i * 0.1}>
-                    <div className="border-l-2 border-coral/40 pl-4 leading-relaxed">
-                      {line}
+        {/* ── Profiles grid — four named profiles, pillar colours ────── */}
+        <Section background="charcoal">
+          <Container width="default">
+            <ScrollReveal direction="up">
+              <p className="text-coral font-heading text-xs tracking-[0.3em] text-center mb-3">
+                THE FOUR
+              </p>
+              <h2
+                className="font-heading text-off-white text-center mb-4"
+                style={{ fontSize: "var(--text-section)" }}
+              >
+                YOU&rsquo;LL BE ONE OF THESE FOUR.
+              </h2>
+              <p className="text-foreground-muted text-center max-w-xl mx-auto mb-12 leading-relaxed">
+                Each one has a specific cause and a specific fix. Twelve
+                questions tells us which is yours.
+              </p>
+            </ScrollReveal>
+
+            <ul className="grid sm:grid-cols-2 lg:grid-cols-4 gap-5 list-none p-0">
+              {PROFILE_PREVIEWS.map((p, i) => (
+                <li key={p.title}>
+                  <ScrollReveal direction="up" delay={i * 0.08}>
+                    <div
+                      className="
+                        group relative h-full rounded-2xl
+                        bg-background-elevated border border-white/10
+                        p-6 md:p-7
+                        transition-all duration-300 ease-[cubic-bezier(0.16,1,0.3,1)]
+                        hover:-translate-y-1 hover:border-white/20
+                      "
+                      style={{
+                        boxShadow: "0 6px 20px rgba(0,0,0,0.25)",
+                      }}
+                    >
+                      <span
+                        aria-hidden="true"
+                        className="absolute left-0 top-6 bottom-6 w-[3px] rounded-r"
+                        style={{ background: p.accent }}
+                      />
+                      <span
+                        aria-hidden="true"
+                        className="
+                          absolute inset-0 rounded-2xl pointer-events-none
+                          opacity-0 group-hover:opacity-100
+                          transition-opacity duration-300
+                        "
+                        style={{
+                          boxShadow: `0 14px 40px ${p.accentBg}, inset 0 0 0 1px ${p.accentRing}`,
+                        }}
+                      />
+                      <p
+                        className="font-heading text-3xl mb-2"
+                        style={{ color: p.accent }}
+                      >
+                        {p.n}
+                      </p>
+                      <h3 className="font-heading text-xl text-off-white tracking-wide mb-3">
+                        {p.title.toUpperCase()}
+                      </h3>
+                      <p className="text-foreground-muted text-sm leading-relaxed">
+                        {p.line}
+                      </p>
                     </div>
                   </ScrollReveal>
                 </li>
               ))}
             </ul>
+
+            {/* Mid-page CTA */}
+            <div className="mt-12 text-center">
+              <ScrollReveal direction="up">
+                <a href="#start" data-cta="mid" className={ctaButtonClass}>
+                  FIND MY PROFILE {ctaArrow}
+                </a>
+                <p className="text-foreground-subtle text-xs mt-4">
+                  4 minutes &middot; No card
+                </p>
+              </ScrollReveal>
+            </div>
           </Container>
         </Section>
 
         <div className="gradient-divider" />
 
-        {/* ── Profile-preview teaser strip ─────────────── */}
-        <Section background="charcoal" className="py-12">
-          <Container width="wide">
+        {/* ── How it works timeline ─────────────────────────────────── */}
+        <Section background="deep-purple">
+          <Container width="default">
             <ScrollReveal direction="up">
-              <p className="text-center text-foreground-subtle text-sm mb-5">
-                You&rsquo;ll be one of these four.
-              </p>
-              <ul className="flex flex-wrap items-center justify-center gap-3">
-                {(Object.values(PROFILE_LABELS) as string[]).map((label) => (
-                  <li
-                    key={label}
-                    className="rounded-full border border-coral/30 bg-coral/5 px-5 py-2 text-sm font-heading tracking-wide text-off-white"
-                  >
-                    {label}
-                  </li>
-                ))}
-              </ul>
-            </ScrollReveal>
-          </Container>
-        </Section>
-
-        <div className="gradient-divider" />
-
-        {/* ── How it works (3-step primer) ─────────────── */}
-        <Section background="charcoal">
-          <Container width="narrow">
-            <ScrollReveal direction="up">
-              <p className="text-coral font-heading text-xs tracking-widest text-center mb-3">
+              <p className="text-coral font-heading text-xs tracking-[0.3em] text-center mb-3">
                 HOW IT WORKS
               </p>
               <h2
-                className="font-heading text-off-white text-center mb-12"
+                className="font-heading text-off-white text-center mb-14"
                 style={{ fontSize: "var(--text-section)" }}
               >
                 FOUR MINUTES TO YOUR ANSWER
               </h2>
             </ScrollReveal>
-            <ol className="grid sm:grid-cols-3 gap-6 list-none p-0">
+
+            <ol className="relative grid md:grid-cols-3 gap-8 md:gap-6 list-none p-0">
+              {/* Connecting line — desktop horizontal, mobile vertical */}
+              <span
+                aria-hidden="true"
+                className="hidden md:block absolute left-[12%] right-[12%] top-[36px] h-[2px]"
+                style={{
+                  background:
+                    "linear-gradient(90deg, transparent, rgba(241,99,99,0.5), rgba(241,99,99,0.5), transparent)",
+                }}
+              />
               {HOW_IT_WORKS.map((step, i) => (
-                <li key={step.n}>
+                <li key={step.n} className="relative">
                   <ScrollReveal direction="up" delay={i * 0.1}>
-                    <div className="rounded-xl border border-white/10 bg-background-elevated p-6 h-full">
-                      <p className="font-heading text-4xl text-coral mb-3">
-                        {step.n}
+                    <div className="relative text-center md:text-left">
+                      <div className="flex md:block items-center gap-4 md:gap-0 mb-4">
+                        <span
+                          className="
+                            relative inline-flex items-center justify-center
+                            w-[72px] h-[72px] rounded-full
+                            bg-charcoal border-2 border-coral/60
+                            font-heading text-2xl text-coral
+                            shadow-[0_0_24px_rgba(241,99,99,0.25)]
+                            mx-auto md:mx-0
+                          "
+                        >
+                          {step.n}
+                        </span>
+                        <span className="md:hidden font-heading text-base text-foreground-subtle tracking-wider">
+                          {step.time.toUpperCase()}
+                        </span>
+                      </div>
+                      <p className="hidden md:block font-heading text-xs text-foreground-subtle tracking-widest mb-2">
+                        {step.time.toUpperCase()}
                       </p>
-                      <p className="font-heading text-base tracking-wide text-off-white mb-2">
+                      <h3 className="font-heading text-xl text-off-white tracking-wide mb-2">
                         {step.title.toUpperCase()}
-                      </p>
+                      </h3>
                       <p className="text-foreground-muted text-sm leading-relaxed">
                         {step.body}
                       </p>
@@ -283,7 +604,7 @@ export default async function PlateauPage() {
 
         <div className="gradient-divider" />
 
-        {/* ── The diagnostic itself ───────────────────── */}
+        {/* ── The diagnostic itself ─────────────────────────────────── */}
         <Section background="deep-purple" grain id="start">
           <Container width="narrow">
             <Suspense fallback={<DiagnosticSkeleton />}>
@@ -294,22 +615,93 @@ export default async function PlateauPage() {
 
         <div className="gradient-divider" />
 
-        {/* ── What you'll get ─────────────────────────── */}
+        {/* ── Member testimonials — real numbers, real names ────────── */}
         <Section background="charcoal">
-          <Container width="narrow">
+          <Container width="default">
             <ScrollReveal direction="up">
+              <p className="text-coral font-heading text-xs tracking-[0.3em] text-center mb-3">
+                IN THEIR WORDS
+              </p>
+              <h2
+                className="font-heading text-off-white text-center mb-3"
+                style={{ fontSize: "var(--text-section)" }}
+              >
+                WHAT BREAKING THE PLATEAU LOOKS LIKE
+              </h2>
+              <p className="text-foreground-muted text-center max-w-lg mx-auto mb-12 leading-relaxed">
+                Real members. Real numbers. None of these are paid.
+              </p>
+            </ScrollReveal>
+
+            <ul className="grid md:grid-cols-3 gap-5 list-none p-0">
+              {testimonials.map((t, i) => (
+                <li key={t.name}>
+                  <ScrollReveal direction="up" delay={i * 0.08}>
+                    <figure
+                      className="
+                        h-full rounded-2xl bg-background-elevated
+                        border border-white/10 p-6 md:p-7
+                        flex flex-col
+                        transition-colors hover:border-coral/30
+                      "
+                    >
+                      {t.stat && (
+                        <div className="mb-5 inline-flex items-center self-start gap-2 rounded-full bg-coral/10 border border-coral/30 px-3 py-1">
+                          <span className="font-heading text-coral text-base tracking-wide">
+                            {t.stat}
+                          </span>
+                          {t.statLabel && (
+                            <span className="text-foreground-muted text-xs">
+                              {t.statLabel}
+                            </span>
+                          )}
+                        </div>
+                      )}
+                      <blockquote className="text-off-white text-base leading-relaxed flex-1">
+                        &ldquo;{t.shortQuote ?? t.quote}&rdquo;
+                      </blockquote>
+                      <figcaption className="mt-5 pt-5 border-t border-white/10">
+                        <p className="font-heading text-off-white tracking-wide">
+                          {t.name.toUpperCase()}
+                        </p>
+                        <p className="text-foreground-subtle text-xs mt-1">
+                          {t.detail}
+                        </p>
+                      </figcaption>
+                    </figure>
+                  </ScrollReveal>
+                </li>
+              ))}
+            </ul>
+          </Container>
+        </Section>
+
+        <div className="gradient-divider" />
+
+        {/* ── What you'll get ───────────────────────────────────────── */}
+        <Section background="deep-purple">
+          <Container width="default">
+            <ScrollReveal direction="up">
+              <p className="text-coral font-heading text-xs tracking-[0.3em] text-center mb-3">
+                WHAT YOU GET
+              </p>
               <h2
                 className="font-heading text-off-white text-center mb-12"
                 style={{ fontSize: "var(--text-section)" }}
               >
-                WHAT YOU&rsquo;LL GET
+                WHAT LANDS IN YOUR INBOX
               </h2>
             </ScrollReveal>
-            <div className="grid md:grid-cols-3 gap-6">
-              {CARDS.map((card, i) => (
+            <div className="grid md:grid-cols-3 gap-5">
+              {WHAT_YOU_GET.map((card, i) => (
                 <ScrollReveal key={card.title} direction="up" delay={i * 0.1}>
-                  <div className="bg-background-elevated rounded-xl border border-white/10 p-6 h-full">
-                    <h3 className="font-heading text-xl text-off-white mb-3">
+                  <div
+                    className="
+                      bg-charcoal rounded-2xl border border-white/10 p-6 md:p-7 h-full
+                      transition-colors hover:border-coral/30
+                    "
+                  >
+                    <h3 className="font-heading text-xl text-off-white tracking-wide mb-3">
                       {card.title.toUpperCase()}
                     </h3>
                     <p className="text-foreground-muted text-sm leading-relaxed">
@@ -324,62 +716,73 @@ export default async function PlateauPage() {
 
         <div className="gradient-divider" />
 
-        {/* ── FAQ ─────────────────────────────────────── */}
+        {/* ── FAQ accordion ─────────────────────────────────────────── */}
         <Section background="charcoal">
           <Container width="narrow">
-            <h2
-              className="font-heading text-off-white text-center mb-12"
-              style={{ fontSize: "var(--text-section)" }}
-            >
-              COMMON QUESTIONS
-            </h2>
-            <dl className="space-y-4">
-              {FAQS.map((faq) => (
-                <div
-                  key={faq.q}
-                  className="bg-background-elevated rounded-xl border border-white/10 p-6"
-                >
-                  <dt className="font-heading text-xl text-off-white mb-2">
-                    {faq.q}
-                  </dt>
-                  <dd className="text-foreground-muted leading-relaxed text-sm">
-                    {faq.a}
-                  </dd>
-                </div>
-              ))}
-            </dl>
+            <ScrollReveal direction="up">
+              <p className="text-coral font-heading text-xs tracking-[0.3em] text-center mb-3">
+                COMMON QUESTIONS
+              </p>
+              <h2
+                className="font-heading text-off-white text-center mb-12"
+                style={{ fontSize: "var(--text-section)" }}
+              >
+                BEFORE YOU START
+              </h2>
+            </ScrollReveal>
+            <FaqAccordion items={FAQS} defaultOpenIndex={0} />
+            <p className="text-center text-foreground-subtle text-xs mt-8">
+              Still on the fence? Drop a note to{" "}
+              <Link
+                href={`mailto:${FOUNDER.email}`}
+                className="text-coral hover:text-coral-hover transition-colors"
+              >
+                {FOUNDER.email}
+              </Link>
+              .
+            </p>
           </Container>
         </Section>
 
-        {/* ── Final CTA ───────────────────────────────── */}
-        <Section background="deep-purple" grain>
-          <Container width="narrow" className="text-center">
+        {/* ── Final CTA ─────────────────────────────────────────────── */}
+        <section
+          id="plateau-final-cta"
+          className="relative overflow-hidden bg-deep-purple grain-overlay py-20 md:py-28"
+        >
+          <div
+            aria-hidden="true"
+            className="absolute inset-0 pointer-events-none"
+            style={{
+              background:
+                "radial-gradient(ellipse at center, rgba(76, 18, 115, 0.45), transparent 65%)",
+            }}
+          />
+          <Container width="narrow" className="relative text-center">
             <ScrollReveal direction="up">
               <h2
-                className="font-heading text-off-white mb-6"
+                className="font-heading text-off-white mb-6 leading-tight"
                 style={{ fontSize: "var(--text-section)" }}
               >
-                STILL HERE? ANSWER YOUR FIRST QUESTION.
+                STILL HERE?{" "}
+                <span className="text-coral">ANSWER YOUR FIRST QUESTION.</span>
               </h2>
-              <p className="text-foreground-muted mb-8 max-w-md mx-auto leading-relaxed">
-                Four minutes from now you&rsquo;ll have a specific answer
-                for why your FTP has stalled.
+              <p className="text-foreground-muted mb-10 max-w-md mx-auto leading-relaxed">
+                Four minutes from now you&rsquo;ll have a specific answer for
+                why your FTP has stalled.
               </p>
-              <a
-                href="#start"
-                data-cta="bottom"
-                className="inline-block font-heading tracking-wider bg-coral hover:bg-coral-hover text-off-white px-10 py-4 rounded-md transition-colors cursor-pointer text-lg shadow-lg shadow-coral/20"
-              >
-                START THE DIAGNOSTIC
+              <a href="#start" data-cta="bottom" className={ctaButtonClass}>
+                FIND MY PROFILE {ctaArrow}
               </a>
-              <p className="text-foreground-subtle text-xs mt-4">
-                No email needed to start &middot; 4 minutes &middot; Free
+              <p className="text-foreground-subtle text-xs mt-5">
+                No card &middot; 4 minutes &middot; Email only when you want
+                the result
               </p>
             </ScrollReveal>
           </Container>
-        </Section>
+        </section>
       </main>
       <Footer />
+      <StickyMobileCta />
     </>
   );
 }
