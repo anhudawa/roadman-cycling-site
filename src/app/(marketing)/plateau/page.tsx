@@ -522,7 +522,7 @@ export default async function PlateauPage() {
               <div className="mt-12 inline-flex items-center gap-3 rounded-full border border-white/10 bg-white/[0.03] backdrop-blur-sm py-2 pl-2 pr-5">
                 <span className="relative w-9 h-9 rounded-full overflow-hidden shrink-0 border border-white/15">
                   <Image
-                    src="/images/about/anthony-profile-closeup.jpg"
+                    src="/images/about/anthony-profile-closeup-v2.jpg"
                     alt="Anthony Walsh"
                     fill
                     sizes="36px"
@@ -601,7 +601,7 @@ export default async function PlateauPage() {
               <ScrollReveal direction="up" eager>
                 <div className="relative aspect-square rounded-2xl overflow-hidden border border-white/10 max-w-[280px] mx-auto md:mx-0">
                   <Image
-                    src="/images/about/anthony-profile-closeup.jpg"
+                    src="/images/about/anthony-profile-closeup-v2.jpg"
                     alt="Anthony Walsh — founder, Roadman Cycling"
                     fill
                     sizes="(min-width: 768px) 280px, 220px"

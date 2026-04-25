@@ -24,7 +24,7 @@ export function AuthorBio() {
       <div className="flex flex-col sm:flex-row gap-6 items-start">
         <div className="relative w-20 h-20 sm:w-24 sm:h-24 rounded-full overflow-hidden shrink-0 border border-white/10">
           <Image
-            src="/images/about/anthony-profile-closeup.jpg"
+            src="/images/about/anthony-profile-closeup-v2.jpg"
             alt="Anthony Walsh — founder, Roadman Cycling"
             fill
             className="object-cover"

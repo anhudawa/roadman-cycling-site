@@ -154,7 +154,7 @@ export default function AboutPage() {
                 </div>
                 <div className="relative aspect-[4/3] md:aspect-[9/16] rounded-xl overflow-hidden">
                   <Image
-                    src="/images/about/anthony-profile-closeup.jpg"
+                    src="/images/about/anthony-profile-closeup-v2.jpg"
                     alt="Anthony Walsh — close-up profile after a ride"
                     fill
                     className="object-cover object-center"

@@ -182,6 +182,12 @@ const nextConfig: NextConfig = {
       { source: "/getstrong", destination: "/strength-training", permanent: true },
       { source: "/s-c-plan", destination: "/strength-training", permanent: true },
 
+      // Episode count slug update — old URL had 1300, corrected to 1400
+      {
+        source: "/blog/common-training-mistakes-from-1300-podcast-episodes",
+        destination: "/blog/common-training-mistakes-from-1400-podcast-episodes",
+        permanent: true,
+      },
       // Consolidated duplicate blog posts — keep canonical, 301 the dupes
       {
         source: "/blog/best-cycling-podcasts-for-2026-edition",

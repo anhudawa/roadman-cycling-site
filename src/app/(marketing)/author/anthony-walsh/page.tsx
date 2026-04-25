@@ -137,7 +137,7 @@ export default function AuthorPage() {
               <div className="flex flex-col sm:flex-row items-center sm:items-start gap-8">
                 <div className="relative w-32 h-32 sm:w-40 sm:h-40 rounded-full overflow-hidden shrink-0 border-2 border-coral/30">
                   <Image
-                    src="/images/about/anthony-profile-closeup.jpg"
+                    src="/images/about/anthony-profile-closeup-v2.jpg"
                     alt="Anthony Walsh — cycling coach and host of the Roadman Cycling Podcast"
                     fill
                     className="object-cover"

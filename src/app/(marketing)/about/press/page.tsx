@@ -112,7 +112,7 @@ const brandAssets = [
   },
   {
     label: "Anthony Walsh — profile",
-    href: "/images/about/anthony-profile-closeup.jpg",
+    href: "/images/about/anthony-profile-closeup-v2.jpg",
     type: "JPG",
   },
 ];
