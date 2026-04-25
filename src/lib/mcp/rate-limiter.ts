@@ -23,7 +23,7 @@ export async function checkRateLimit(
   ip: string
 ): Promise<{ success: boolean; remaining?: number }> {
   if (!process.env.UPSTASH_REDIS_REST_URL) {
-    // No Redis configured $€” allow all (dev mode)
+    // No Redis configured $â€” allow all (dev mode)
     return { success: true };
   }
   const result = await getRatelimit().limit(ip);

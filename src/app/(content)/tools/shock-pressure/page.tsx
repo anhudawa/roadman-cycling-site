@@ -40,8 +40,8 @@ interface ForkBrand {
 }
 
 /**
- * Fox fork pressure tables $€” directly from tech.ridefox.com 2025 manuals.
- * Weight values use midpoint of each 10lb band (e.g., 120-130 $†’ 125).
+ * Fox fork pressure tables â€” directly from tech.ridefox.com 2025 manuals.
+ * Weight values use midpoint of each 10lb band (e.g., 120-130 â†’ 125).
  * Sag target: 15-20% of total fork travel (Fox recommendation).
  */
 const FORK_BRANDS: ForkBrand[] = [
@@ -171,7 +171,7 @@ const FORK_BRANDS: ForkBrand[] = [
         ],
         maxPSI: 150,
         travelRange: "100-120mm",
-        setupNotes: "XC race fork with DebonAir+ air spring. Very low pressures $€” this is normal for DebonAir+. Cycle through full travel 20 times after setting pressure to equalise chambers.",
+        setupNotes: "XC race fork with DebonAir+ air spring. Very low pressures â€” this is normal for DebonAir+. Cycle through full travel 20 times after setting pressure to equalise chambers.",
       },
       {
         name: "SID SL (DebonAir)",
@@ -241,7 +241,7 @@ const FORK_BRANDS: ForkBrand[] = [
         ],
         maxPSI: 148,
         travelRange: "150-160mm",
-        setupNotes: "Heavy-duty enduro fork. 38mm stanchions. DebonAir+ runs very low pressures $€” this is normal. Cycle through full travel 20 times after setting pressure.",
+        setupNotes: "Heavy-duty enduro fork. 38mm stanchions. DebonAir+ runs very low pressures â€” this is normal. Cycle through full travel 20 times after setting pressure.",
       },
       {
         name: "Zeb (DebonAir+, 170-180mm)",
@@ -261,7 +261,7 @@ const FORK_BRANDS: ForkBrand[] = [
         ],
         maxPSI: 148,
         travelRange: "190mm",
-        setupNotes: "Maximum travel Zeb. Extremely low pressures $€” this is normal for 190mm DebonAir+. Do not be alarmed.",
+        setupNotes: "Maximum travel Zeb. Extremely low pressures â€” this is normal for 190mm DebonAir+. Do not be alarmed.",
       },
       {
         name: "Boxxer (DebonAir+, 180mm)",
@@ -310,7 +310,7 @@ const FORK_BRANDS: ForkBrand[] = [
     models: [
       {
         name: "Bomber Z2 (Fox 34 Rhythm)",
-        // Marzocchi is Fox subsidiary $€” Bomber Z2 uses Fox 34 Rhythm internals
+        // Marzocchi is Fox subsidiary â€” Bomber Z2 uses Fox 34 Rhythm internals
         pressureTable: [
           [125, 58], [135, 63], [145, 68], [155, 72], [165, 77],
           [175, 82], [185, 86], [195, 91], [205, 96], [215, 100],
@@ -361,13 +361,13 @@ const SHOCK_BRANDS: ShockBrand[] = [
       {
         name: "Float DPS",
         type: "air",
-        // Smaller air can $€” runs slightly lower than rider weight in lbs
+        // Smaller air can â€” runs slightly lower than rider weight in lbs
         pressureTable: [
           [100, 130], [120, 150], [140, 170], [160, 190],
           [180, 210], [200, 230], [220, 250],
         ],
         maxPSI: 300,
-        setupNotes: "Equalise air chambers by cycling through 25% travel 10 times with pump attached. Use volume spacers to tune end-stroke progression $€” add spacers if you bottom out frequently.",
+        setupNotes: "Equalise air chambers by cycling through 25% travel 10 times with pump attached. Use volume spacers to tune end-stroke progression â€” add spacers if you bottom out frequently.",
       },
       {
         name: "Float X / DPX2",
@@ -384,18 +384,18 @@ const SHOCK_BRANDS: ShockBrand[] = [
       {
         name: "Float X2",
         type: "air",
-        // Larger air can $€” runs similar to Float X but with more damping adjustment
+        // Larger air can â€” runs similar to Float X but with more damping adjustment
         pressureTable: [
           [100, 140], [120, 160], [140, 180], [160, 200],
           [180, 220], [200, 240], [220, 260],
         ],
         maxPSI: 350,
-        setupNotes: "High-end air shock with independent high/low speed compression and rebound. Equalise air chambers by cycling through 25% travel 10 times. Extremely tuneable $€” start with all dials in the middle.",
+        setupNotes: "High-end air shock with independent high/low speed compression and rebound. Equalise air chambers by cycling through 25% travel 10 times. Extremely tuneable â€” start with all dials in the middle.",
       },
       {
         name: "DHX Air",
         type: "air",
-        // Larger negative spring volume $€” runs higher pressures
+        // Larger negative spring volume â€” runs higher pressures
         pressureTable: [
           [100, 150], [120, 175], [140, 195], [160, 215],
           [180, 240], [200, 260], [220, 280],
@@ -432,13 +432,13 @@ const SHOCK_BRANDS: ShockBrand[] = [
       {
         name: "Deluxe",
         type: "air",
-        // Smaller air can $€” runs ~10-15 PSI higher
+        // Smaller air can â€” runs ~10-15 PSI higher
         pressureTable: [
           [100, 125], [120, 145], [140, 165], [160, 185],
           [180, 205], [200, 225], [220, 245],
         ],
         maxPSI: 300,
-        setupNotes: "Smaller air can than Super Deluxe $€” expect higher pressures for equivalent sag. Cycle through full travel 20 times to equalise. Consider DebonAir+ air spring upgrade.",
+        setupNotes: "Smaller air can than Super Deluxe â€” expect higher pressures for equivalent sag. Cycle through full travel 20 times to equalise. Consider DebonAir+ air spring upgrade.",
       },
       {
         name: "Vivid",
@@ -454,7 +454,7 @@ const SHOCK_BRANDS: ShockBrand[] = [
       {
         name: "SID Luxe",
         type: "air",
-        // XC shock $€” smaller and lighter, runs higher pressures
+        // XC shock â€” smaller and lighter, runs higher pressures
         pressureTable: [
           [100, 130], [120, 150], [140, 170], [160, 190],
           [180, 210], [200, 230], [220, 250],
@@ -475,14 +475,14 @@ const SHOCK_BRANDS: ShockBrand[] = [
           [180, 240], [200, 260], [220, 280],
         ],
         maxPSI: 350,
-        setupNotes: "Use the Cane Creek Dialed app for fine-tuning. Independent high/low speed compression and rebound $€” start with all dials in the middle. Adjust air pressure first, then damping.",
+        setupNotes: "Use the Cane Creek Dialed app for fine-tuning. Independent high/low speed compression and rebound â€” start with all dials in the middle. Adjust air pressure first, then damping.",
       },
       {
         name: "DBcoil / Coil IL",
         type: "coil",
         pressureTable: [],
         maxPSI: 0,
-        setupNotes: "Coil shock $€” no air pressure needed. Choose spring rate based on rider weight: multiply your weight in lbs by the leverage ratio midpoint. Contact Cane Creek or use their Dialed app for spring rate recommendations.",
+        setupNotes: "Coil shock â€” no air pressure needed. Choose spring rate based on rider weight: multiply your weight in lbs by the leverage ratio midpoint. Contact Cane Creek or use their Dialed app for spring rate recommendations.",
       },
     ],
   },
@@ -492,20 +492,20 @@ const SHOCK_BRANDS: ShockBrand[] = [
       {
         name: "Topaz T3 Air",
         type: "air",
-        // DVO runs much lower pressures $€” large air can
+        // DVO runs much lower pressures â€” large air can
         pressureTable: [
           [100, 45], [120, 58], [140, 68], [160, 77],
           [180, 86], [200, 95], [220, 105],
         ],
         maxPSI: 200,
-        setupNotes: "DVO Topaz runs much lower pressures than Fox or RockShox $€” this is normal. Inflate to 50 PSI first and cycle several times, then set to target. Bladder pressure should be 170-200 PSI (lighter riders lower, heavier riders higher). Use OTT dial to adjust off-the-top sensitivity.",
+        setupNotes: "DVO Topaz runs much lower pressures than Fox or RockShox â€” this is normal. Inflate to 50 PSI first and cycle several times, then set to target. Bladder pressure should be 170-200 PSI (lighter riders lower, heavier riders higher). Use OTT dial to adjust off-the-top sensitivity.",
       },
       {
         name: "Jade X Coil",
         type: "coil",
         pressureTable: [],
         maxPSI: 0,
-        setupNotes: "Coil shock $€” no air pressure setting. Select coil spring rate based on rider weight and leverage ratio. DVO recommends contacting their support for spring rate advice specific to your frame.",
+        setupNotes: "Coil shock â€” no air pressure setting. Select coil spring rate based on rider weight and leverage ratio. DVO recommends contacting their support for spring rate advice specific to your frame.",
       },
     ],
   },
@@ -521,7 +521,7 @@ const SHOCK_BRANDS: ShockBrand[] = [
           [180, 209], [200, 228], [220, 247],
         ],
         maxPSI: 300,
-        setupNotes: "EXT shocks are custom-valved to your order specification. These pressures are starting points $€” your shock may have been tuned for different sag targets. Refer to the setup card shipped with your shock.",
+        setupNotes: "EXT shocks are custom-valved to your order specification. These pressures are starting points â€” your shock may have been tuned for different sag targets. Refer to the setup card shipped with your shock.",
       },
     ],
   },
@@ -531,20 +531,20 @@ const SHOCK_BRANDS: ShockBrand[] = [
       {
         name: "Bomber Air",
         type: "air",
-        // Fox subsidiary $€” similar internals to Fox Float DPS
+        // Fox subsidiary â€” similar internals to Fox Float DPS
         pressureTable: [
           [100, 130], [120, 150], [140, 170], [160, 190],
           [180, 210], [200, 230], [220, 250],
         ],
         maxPSI: 300,
-        setupNotes: "Marzocchi is a Fox subsidiary $€” Bomber Air uses similar internals to Fox Float. Setup procedure is identical to Fox Float shocks.",
+        setupNotes: "Marzocchi is a Fox subsidiary â€” Bomber Air uses similar internals to Fox Float. Setup procedure is identical to Fox Float shocks.",
       },
       {
         name: "Bomber CR (Coil)",
         type: "coil",
         pressureTable: [],
         maxPSI: 0,
-        setupNotes: "Coil shock $€” no air pressure needed. Use a spring rate calculator: rider weight in lbs multiplied by your frame's leverage ratio midpoint gives approximate spring rate in lb/in.",
+        setupNotes: "Coil shock â€” no air pressure needed. Use a spring rate calculator: rider weight in lbs multiplied by your frame's leverage ratio midpoint gives approximate spring rate in lb/in.",
       },
     ],
   },
@@ -560,7 +560,7 @@ const SHOCK_BRANDS: ShockBrand[] = [
           [180, 105], [200, 117], [220, 128],
         ],
         maxPSI: 200,
-        setupNotes: "Ohlins TTX Air runs significantly lower pressures than Fox or RockShox $€” this is normal due to the large air can volume. Start at 170 PSI when first filling, then release to target.",
+        setupNotes: "Ohlins TTX Air runs significantly lower pressures than Fox or RockShox â€” this is normal due to the large air can volume. Start at 170 PSI when first filling, then release to target.",
       },
     ],
   },
@@ -570,7 +570,7 @@ const SHOCK_BRANDS: ShockBrand[] = [
       {
         name: "Edge / Triair",
         type: "air",
-        // Budget shock $€” smaller air can $€” runs ~15% higher than Fox
+        // Budget shock â€” smaller air can â€” runs ~15% higher than Fox
         pressureTable: [
           [100, 150], [120, 175], [140, 198], [160, 220],
           [180, 242], [200, 265], [220, 285],
@@ -675,7 +675,7 @@ function calculateSuspension(
   // The manufacturer tables are calibrated for ~20% sag (trail baseline)
   let forkPSI = interpolateTable(forkModel.pressureTable, riderWeightLbs);
   forkPSI *= config.forkMult;
-  // Volume spacers increase progression $€” need ~1-2% more pressure per spacer
+  // Volume spacers increase progression â€” need ~1-2% more pressure per spacer
   // to maintain the same sag point (spacers reduce air volume, making spring more progressive)
   forkPSI *= (1 + volumeSpacers * 0.015);
   forkPSI = Math.round(forkPSI);
@@ -702,7 +702,7 @@ function calculateSuspension(
 
   let volumeSpacerNote = "";
   if (volumeSpacers > 0) {
-    volumeSpacerNote = `Running ${volumeSpacers} volume spacer${volumeSpacers > 1 ? "s" : ""}/token${volumeSpacers > 1 ? "s" : ""}. This increases end-stroke progression $€” you may need slightly higher pressure to maintain the same sag. If you're bottoming out easily, add more spacers rather than just adding pressure.`;
+    volumeSpacerNote = `Running ${volumeSpacers} volume spacer${volumeSpacers > 1 ? "s" : ""}/token${volumeSpacers > 1 ? "s" : ""}. This increases end-stroke progression â€” you may need slightly higher pressure to maintain the same sag. If you're bottoming out easily, add more spacers rather than just adding pressure.`;
   }
 
   return {
@@ -718,9 +718,9 @@ function calculateSuspension(
     shockMaxPSI: shockModel.maxPSI,
     shockSetupNotes: shockModel.setupNotes,
     isCoil,
-    sagTarget: `${config.rearSag[0]}$€“${config.rearSag[1]}%`,
+    sagTarget: `${config.rearSag[0]}â€“${config.rearSag[1]}%`,
     sagDescription: descriptions[ridingStyle],
-    forkSagTarget: `${config.forkSag[0]}$€“${config.forkSag[1]}%`,
+    forkSagTarget: `${config.forkSag[0]}â€“${config.forkSag[1]}%`,
     volumeSpacerNote,
   };
 }
@@ -845,11 +845,11 @@ function calculateMtbTyrePressure(
 
   // 4. Terrain adjustment
   const terrainMod: Record<MtbTerrain, number> = {
-    hardpack: 1.0,     // firm surface $€” standard pressure
-    loam: 0.95,        // soft soil $€” slightly lower for grip
-    loose_rocky: 1.05, // loose rocks $€” slightly higher to prevent rim strikes
-    mud: 0.92,         // mud $€” lower pressure for maximum contact patch
-    mixed: 1.0,        // mixed conditions $€” no change
+    hardpack: 1.0,     // firm surface â€” standard pressure
+    loam: 0.95,        // soft soil â€” slightly lower for grip
+    loose_rocky: 1.05, // loose rocks â€” slightly higher to prevent rim strikes
+    mud: 0.92,         // mud â€” lower pressure for maximum contact patch
+    mixed: 1.0,        // mixed conditions â€” no change
   };
   front *= terrainMod[terrain];
   rear *= terrainMod[terrain];
@@ -858,9 +858,9 @@ function calculateMtbTyrePressure(
   // Heavier casings have more puncture protection and sidewall support,
   // allowing lower pressures. Lightweight casings need higher pressure.
   const casingMod: Record<TyreCasing, number> = {
-    lightweight: 1.08,   // +8% $€” less sidewall support, need more air
+    lightweight: 1.08,   // +8% â€” less sidewall support, need more air
     trail_casing: 1.0,   // baseline
-    enduro_dh: 0.93,     // -7% $€” heavy casing allows lower pressure
+    enduro_dh: 0.93,     // -7% â€” heavy casing allows lower pressure
   };
   front *= casingMod[casing];
   rear *= casingMod[casing];
@@ -975,17 +975,17 @@ export default function MtbSetupPage() {
     const displayWeight = weightUnit === "lbs" ? `${weight}lbs` : `${weight}kg`;
     let text = `MTB Setup (${displayWeight}, ${styleLabels[style]})`;
     if (suspensionResult) {
-      text += `\nFork: ${suspensionResult.forkBrand} ${suspensionResult.forkModel} $€” ${suspensionResult.forkPSI} PSI (target sag ${suspensionResult.forkSagTarget})`;
+      text += `\nFork: ${suspensionResult.forkBrand} ${suspensionResult.forkModel} â€” ${suspensionResult.forkPSI} PSI (target sag ${suspensionResult.forkSagTarget})`;
       if (suspensionResult.isCoil) {
-        text += `\nShock: ${suspensionResult.shockBrand} ${suspensionResult.shockModel} (coil $€” see spring rate guide)`;
+        text += `\nShock: ${suspensionResult.shockBrand} ${suspensionResult.shockModel} (coil â€” see spring rate guide)`;
       } else {
-        text += `\nShock: ${suspensionResult.shockBrand} ${suspensionResult.shockModel} $€” ${suspensionResult.rearPSI} PSI (target sag ${suspensionResult.sagTarget})`;
+        text += `\nShock: ${suspensionResult.shockBrand} ${suspensionResult.shockModel} â€” ${suspensionResult.rearPSI} PSI (target sag ${suspensionResult.sagTarget})`;
       }
     }
     if (tyreResult) {
       text += `\nTyres: Front ${tyreResult.front} PSI / Rear ${tyreResult.rear} PSI (${tyreWidth}", ${tubeType})`;
     }
-    text += `\n$€” roadmancycling.com/tools/shock-pressure`;
+    text += `\nâ€” roadmancycling.com/tools/shock-pressure`;
     await navigator.clipboard.writeText(text);
     setCopied(true);
     setTimeout(() => setCopied(false), 2000);
@@ -1195,7 +1195,7 @@ export default function MtbSetupPage() {
                 </select>
                 {selectedShockBrand.models[shockModelIdx]?.type === "coil" && (
                   <p className="text-amber-400 text-xs mt-2">
-                    This is a coil shock $€” no air pressure setting. We&apos;ll show spring rate guidance instead.
+                    This is a coil shock â€” no air pressure setting. We&apos;ll show spring rate guidance instead.
                   </p>
                 )}
               </div>
@@ -1489,9 +1489,9 @@ export default function MtbSetupPage() {
                               <ol className="text-foreground-muted text-sm leading-relaxed space-y-1 list-decimal list-inside">
                                 <li>Set your shock to the recommended pressure above.</li>
                                 <li>Push the sag indicator o-ring down against the shock body.</li>
-                                <li>Sit on the bike in riding position $€” have a mate hold you steady.</li>
+                                <li>Sit on the bike in riding position â€” have a mate hold you steady.</li>
                                 <li>Carefully dismount without bouncing.</li>
-                                <li>Measure the gap between the o-ring and the seal $€” this is your sag.</li>
+                                <li>Measure the gap between the o-ring and the seal â€” this is your sag.</li>
                                 <li>Compare to your target sag ({suspensionResult.sagTarget} of total stroke).</li>
                                 <li>Add or remove 5 PSI at a time until sag is dialled.</li>
                               </ol>
@@ -1556,7 +1556,7 @@ export default function MtbSetupPage() {
                         )}
                         {tyreCasing === "lightweight" && (
                           <p className="text-foreground-muted text-sm leading-relaxed mt-2">
-                            Lightweight casings (EXO, SpeedGrip) have less sidewall support $€” the slightly higher pressures above help prevent rim strikes and tyre squirm.
+                            Lightweight casings (EXO, SpeedGrip) have less sidewall support â€” the slightly higher pressures above help prevent rim strikes and tyre squirm.
                           </p>
                         )}
                       </motion.div>
@@ -1589,12 +1589,12 @@ export default function MtbSetupPage() {
                       </li>
                       <li>
                         <a href="/topics/mountain-biking" className="text-coral hover:text-coral/80 text-sm transition-colors">
-                          Mountain Biking topic hub $†’
+                          Mountain Biking topic hub â†’
                         </a>
                       </li>
                       <li>
                         <a href="/podcast/ep-2057-your-tyres-are-slowing-you-down-here-s-why" className="text-coral hover:text-coral/80 text-sm transition-colors">
-                          Podcast: Your tyres are slowing you down $€” here&apos;s why
+                          Podcast: Your tyres are slowing you down â€” here&apos;s why
                         </a>
                       </li>
                     </ul>
@@ -1665,7 +1665,7 @@ export default function MtbSetupPage() {
                 className="inline-flex items-center justify-center gap-2 font-heading tracking-wider uppercase rounded-md bg-coral text-off-white hover:bg-coral/90 px-6 py-3 text-sm transition-all"
                 data-track="tool_shock_apply"
               >
-                Apply for Coaching $†’
+                Apply for Coaching â†’
               </a>
             </motion.div>
           </Container>

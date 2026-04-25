@@ -45,7 +45,7 @@ const HOST_MAP: Record<string, AIReferrerHost> = {
   "you.com": "you.com",
   "phind.com": "phind.com",
   "meta.ai": "meta.ai",
-  // Synthetic UTM-only slugs (never appear as hostnames $€” utm_source only).
+  // Synthetic UTM-only slugs (never appear as hostnames â€” utm_source only).
   "llms-txt": "llms-txt",
   "llms.txt": "llms-txt",
   "llms-full-txt": "llms-txt",
@@ -66,7 +66,7 @@ export function matchAIHost(input: string | null | undefined): AIReferrerHost | 
   // Direct hit (utm_source=chatgpt.com).
   if (HOST_MAP[lowered]) return HOST_MAP[lowered];
 
-  // Subdomain fold (www.perplexity.ai $†’ perplexity.ai).
+  // Subdomain fold (www.perplexity.ai â†’ perplexity.ai).
   for (const candidate of Object.keys(HOST_MAP)) {
     if (lowered === candidate || lowered.endsWith(`.${candidate}`)) {
       return HOST_MAP[candidate];
@@ -83,14 +83,14 @@ export function matchAIHost(input: string | null | undefined): AIReferrerHost | 
 export function detectAIReferrerFromBrowser(): AIReferrerHost | undefined {
   if (typeof window === "undefined") return undefined;
 
-  // 1. utm_source $€” strongest signal, survives cross-origin referrer loss.
+  // 1. utm_source â€” strongest signal, survives cross-origin referrer loss.
   try {
     const params = new URLSearchParams(window.location.search);
     const utmSource = params.get("utm_source");
     const fromUtm = matchAIHost(utmSource);
     if (fromUtm) return fromUtm;
   } catch {
-    // Ignore $€” malformed query string, keep going.
+    // Ignore â€” malformed query string, keep going.
   }
 
   // 2. document.referrer hostname.
@@ -120,7 +120,7 @@ export function getStoredAIReferrer(): AIReferrerHost | undefined {
 }
 
 /**
- * Persist the first-touch AI referrer for the current session. Idempotent $€”
+ * Persist the first-touch AI referrer for the current session. Idempotent â€”
  * if a value is already stored we don't overwrite it, preserving first-touch
  * attribution across the session.
  */
@@ -131,7 +131,7 @@ export function persistAIReferrer(host: AIReferrerHost): void {
     if (existing) return; // first-touch wins
     window.sessionStorage.setItem(STORAGE_KEY, host);
   } catch {
-    // sessionStorage can throw in privacy modes $€” fail silent.
+    // sessionStorage can throw in privacy modes â€” fail silent.
   }
 }
 

@@ -1,7 +1,7 @@
 /**
  * Typed tool analytics wrapper.
  *
- * Mirrors ask-events.ts $€” every tool-related event funnels through
+ * Mirrors ask-events.ts $â€” every tool-related event funnels through
  * here so names stay consistent across plateau / fuelling / ftp-zones
  * and the `meta` payloads are documented in one place. Fire-and-forget.
  */

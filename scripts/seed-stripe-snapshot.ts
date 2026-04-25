@@ -8,7 +8,7 @@ async function main() {
   if (!key) throw new Error("STRIPE_SECRET_KEY not set");
   if (!process.env.POSTGRES_URL) throw new Error("POSTGRES_URL not set");
 
-  // $”€$”€ MRR fetch (inlined $€” we can't import the app module from a script
+  // â”€â”€ MRR fetch (inlined â€” we can't import the app module from a script
   //    because Next path aliases aren't resolved here without extra tooling).
   const STRIPE_API = "https://api.stripe.com/v1";
   let mrr = 0;
@@ -79,7 +79,7 @@ async function main() {
     await new Promise((r) => setTimeout(r, 150));
   }
 
-  // $”€$”€ Trailing 24h charges
+  // â”€â”€ Trailing 24h charges
   const now = new Date();
   const since = new Date(now.getTime() - 86400000);
   const chargeParams = new URLSearchParams();
@@ -156,13 +156,13 @@ async function main() {
     ]
   );
 
-  console.log("$œ“ seeded snapshot for", today);
+  console.log("âœ“ seeded snapshot for", today);
   console.log("  MRR:        $" + (mrr / 100).toFixed(2));
   console.log("  Active:    ", active);
   console.log("  Trialing:  ", trialing);
   console.log("  Past due:  ", pastDue, `($${(pastDueMrr / 100).toFixed(2)})`);
   console.log("  Annual MRR:", `$${(annualMrr / 100).toFixed(2)}`);
-  console.log("  Net add:   ", `$${(netNewMrrCents / 100).toFixed(2)} $· ${netNewSubs} subs`);
+  console.log("  Net add:   ", `$${(netNewMrrCents / 100).toFixed(2)} Â· ${netNewSubs} subs`);
   console.log("  Day revenue:", `$${(totalRevenueCents / 100).toFixed(2)} over ${transactionCount} txns`);
 }
 

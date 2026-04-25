@@ -22,7 +22,7 @@ type SessionType = "recovery" | "endurance" | "tempo" | "sweetspot" | "threshold
  */
 
 interface WeatherData {
-  temperature: number; // $°C
+  temperature: number; // Â°C
   humidity: number; // %
   location: string;
 }
@@ -45,10 +45,10 @@ interface FuellingResult {
   intensityPercent: number;
 }
 
-// Session type $†’ physiological profile
+// Session type â†’ physiological profile
 // carbFraction = fraction of total energy from carbohydrate oxidation
 // Based on respiratory exchange ratio (RER) data from Romijn et al. (1993)
-// and Jeukendrup (2014). Higher intensity $†’ higher carb dependency.
+// and Jeukendrup (2014). Higher intensity â†’ higher carb dependency.
 // sweatMultiplier scales fluid/sodium estimates relative to baseline.
 const SESSION_PROFILES: Record<SessionType, {
   label: string;
@@ -129,9 +129,9 @@ function calculateFuelling(
   const intensityLabel = profile.label;
 
   // --- CARBOHYDRATE CALCULATION ---
-  // Physics-based: watts $†’ metabolic rate $†’ carb oxidation
+  // Physics-based: watts â†’ metabolic rate â†’ carb oxidation
   //
-  // 1. Mechanical power (W) $†’ metabolic power via gross efficiency
+  // 1. Mechanical power (W) â†’ metabolic power via gross efficiency
   //    Gross efficiency ~22-25% for trained cyclists (Coyle, 1992)
   //    Metabolic rate (kJ/hr) = watts Ã— 3.6 / efficiency
   //
@@ -141,7 +141,7 @@ function calculateFuelling(
   // 3. Convert to grams: 1g carbohydrate = 16.7 kJ
   //
   // Example: 100W Z2 = (100 Ã— 3.6 / 0.23) Ã— 0.50 / 16.7 = 47g/hr
-  //          300W Z2 = (300 Ã— 3.6 / 0.23) Ã— 0.50 / 16.7 = 141g/hr $†’ capped by gut
+  //          300W Z2 = (300 Ã— 3.6 / 0.23) Ã— 0.50 / 16.7 = 141g/hr â†’ capped by gut
 
   const grossEfficiency = 0.23;
   const metabolicRateKJhr = (targetWatts * 3.6) / grossEfficiency;
@@ -192,19 +192,19 @@ function calculateFuelling(
     if (heatIndex < 12) {
       heatCategory = "cool";
       heatMultiplier = 0.8;
-      weatherNote = `${weather.location}: ${weather.temperature}$°C, ${weather.humidity}% humidity $€” cool conditions.`;
+      weatherNote = `${weather.location}: ${weather.temperature}Â°C, ${weather.humidity}% humidity â€” cool conditions.`;
     } else if (heatIndex < 22) {
       heatCategory = "mild";
       heatMultiplier = 1.0;
-      weatherNote = `${weather.location}: ${weather.temperature}$°C, ${weather.humidity}% humidity $€” standard conditions.`;
+      weatherNote = `${weather.location}: ${weather.temperature}Â°C, ${weather.humidity}% humidity â€” standard conditions.`;
     } else if (heatIndex < 30) {
       heatCategory = "warm";
       heatMultiplier = 1.25;
-      weatherNote = `${weather.location}: ${weather.temperature}$°C, ${weather.humidity}% humidity $€” warm. Increase fluid and sodium.`;
+      weatherNote = `${weather.location}: ${weather.temperature}Â°C, ${weather.humidity}% humidity â€” warm. Increase fluid and sodium.`;
     } else {
       heatCategory = "hot";
       heatMultiplier = 1.5;
-      weatherNote = `${weather.location}: ${weather.temperature}$°C, ${weather.humidity}% humidity $€” hot. Significantly increase fluid and sodium. Pre-cool if possible.`;
+      weatherNote = `${weather.location}: ${weather.temperature}Â°C, ${weather.humidity}% humidity â€” hot. Significantly increase fluid and sodium. Pre-cool if possible.`;
     }
   } else {
     heatCategory = "mild";
@@ -221,9 +221,9 @@ function calculateFuelling(
   // --- SODIUM ---
   // Baker et al. (2016): sweat [Na+] averages ~900mg/L (range 200-2000mg/L)
   // Sweat rate estimated from fluid intake (drinking replaces ~70% of sweat)
-  // Heat is already factored in via heatMultiplier $†’ higher fluid $†’ higher sweat rate $†’ higher sodium
+  // Heat is already factored in via heatMultiplier â†’ higher fluid â†’ higher sweat rate â†’ higher sodium
   const sweatRateLHr = (fluidPerHour / 1000) * 1.4;
-  const sweatSodiumConc = 800; // mg/L $€” moderate population estimate
+  const sweatSodiumConc = 800; // mg/L â€” moderate population estimate
   const sodiumPerHour = Math.round(sweatRateLHr * sweatSodiumConc);
 
   // --- TIMING ---
@@ -243,16 +243,16 @@ function calculateFuelling(
     );
   } else if (durationMin <= 150) {
     strategy.push(
-      `A ${durationMin}-minute ${profile.label.toLowerCase()} session has a carb oxidation rate of ~${carbsPerHour}g/hr. Start within the first ${startFuellingAt} minutes $€” set a timer every ${feedingInterval} minutes.`
+      `A ${durationMin}-minute ${profile.label.toLowerCase()} session has a carb oxidation rate of ~${carbsPerHour}g/hr. Start within the first ${startFuellingAt} minutes â€” set a timer every ${feedingInterval} minutes.`
     );
     if (dualSource) {
       strategy.push(
-        `At ${carbsPerHour}g/hr you need dual-source products (glucose + fructose at 1:0.8). Single-source glucose saturates at ~60g/hr $€” fructose uses the GLUT5 transporter independently.`
+        `At ${carbsPerHour}g/hr you need dual-source products (glucose + fructose at 1:0.8). Single-source glucose saturates at ~60g/hr â€” fructose uses the GLUT5 transporter independently.`
       );
     }
   } else {
     strategy.push(
-      `${durationMin} minutes of ${profile.label.toLowerCase()} requires ${carbsPerHour}g carbs/hr $€” that's ~${Math.round(carbsPerHour / (60 / feedingInterval))}g every ${feedingInterval} minutes. Front-load your intake. It's far easier to maintain glycogen than recover from depletion.`
+      `${durationMin} minutes of ${profile.label.toLowerCase()} requires ${carbsPerHour}g carbs/hr â€” that's ~${Math.round(carbsPerHour / (60 / feedingInterval))}g every ${feedingInterval} minutes. Front-load your intake. It's far easier to maintain glycogen than recover from depletion.`
     );
     if (dualSource) {
       strategy.push(
@@ -263,19 +263,19 @@ function calculateFuelling(
 
   if (sessionType === "intervals" || sessionType === "vo2") {
     strategy.push(
-      "Interval sessions have high peak glycolytic demand during efforts, even if average power is moderate. Fuel for the efforts, not the recovery valleys $€” your muscles are burning through glycogen during those hard reps."
+      "Interval sessions have high peak glycolytic demand during efforts, even if average power is moderate. Fuel for the efforts, not the recovery valleys â€” your muscles are burning through glycogen during those hard reps."
     );
   }
 
   if (gutTraining === "none" && carbsPerHour > 50) {
     strategy.push(
-      `Your target is ${carbsPerHour}g/hr but without gut training, start at 40-50g/hr and build by 5-10g per week over 4-6 weeks (Jeukendrup & McLaughlin, 2011). The gut adapts $€” trained athletes absorb double what beginners tolerate.`
+      `Your target is ${carbsPerHour}g/hr but without gut training, start at 40-50g/hr and build by 5-10g per week over 4-6 weeks (Jeukendrup & McLaughlin, 2011). The gut adapts â€” trained athletes absorb double what beginners tolerate.`
     );
   }
 
   if (heatCategory === "warm" || heatCategory === "hot") {
     strategy.push(
-      `${heatCategory === "hot" ? "Hot" : "Warm"} conditions detected. Sweat rate increases 20-30% per 5$°C above 20$°C (Sawka et al.). Prioritise fluid and sodium $€” dehydration above 2% bodyweight meaningfully impairs performance.`
+      `${heatCategory === "hot" ? "Hot" : "Warm"} conditions detected. Sweat rate increases 20-30% per 5Â°C above 20Â°C (Sawka et al.). Prioritise fluid and sodium â€” dehydration above 2% bodyweight meaningfully impairs performance.`
     );
   }
 
@@ -359,7 +359,7 @@ export default function FuellingPage() {
         location,
       });
     } catch {
-      setWeatherError("Location unavailable $€” using standard estimates for sodium and fluid.");
+      setWeatherError("Location unavailable â€” using standard estimates for sodium and fluid.");
     } finally {
       setWeatherLoading(false);
     }
@@ -399,7 +399,7 @@ export default function FuellingPage() {
   const handleCopyResults = async () => {
     if (!result) return;
     const profile = SESSION_PROFILES[sessionType];
-    const text = `Fuelling Plan: ${result.carbsPerHour}g carbs/hr (${result.dualSource ? `${result.glucosePerHour}g glucose + ${result.fructosePerHour}g fructose` : "single source"}), ${result.fluidPerHour}ml fluid/hr, ${result.sodiumPerHour}mg sodium/hr (${duration}min ${profile.label} at ${watts}W, ${weight}kg${weather ? `, ${weather.temperature}$°C` : ""}) $€” roadmancycling.com/tools/fuelling`;
+    const text = `Fuelling Plan: ${result.carbsPerHour}g carbs/hr (${result.dualSource ? `${result.glucosePerHour}g glucose + ${result.fructosePerHour}g fructose` : "single source"}), ${result.fluidPerHour}ml fluid/hr, ${result.sodiumPerHour}mg sodium/hr (${duration}min ${profile.label} at ${watts}W, ${weight}kg${weather ? `, ${weather.temperature}Â°C` : ""}) â€” roadmancycling.com/tools/fuelling`;
     await navigator.clipboard.writeText(text);
     setCopied(true);
     setTimeout(() => setCopied(false), 2000);
@@ -435,10 +435,10 @@ export default function FuellingPage() {
               >
                 <div className="flex items-center gap-2">
                   <span className="text-lg">
-                    {weather.temperature <= 10 ? "ðŸ¥¶" : weather.temperature <= 20 ? "ðŸŒ¤" : weather.temperature <= 28 ? "$˜€ï¸" : "ðŸ”¥"}
+                    {weather.temperature <= 10 ? "ðŸ¥¶" : weather.temperature <= 20 ? "ðŸŒ¤" : weather.temperature <= 28 ? "â˜€ï¸" : "ðŸ”¥"}
                   </span>
                   <span className="text-sm text-foreground-muted">
-                    {weather.location}: <span className={heatColors[weather.temperature <= 10 ? "cool" : weather.temperature <= 20 ? "mild" : weather.temperature <= 28 ? "warm" : "hot"]}>{weather.temperature}$°C</span>, {weather.humidity}% humidity
+                    {weather.location}: <span className={heatColors[weather.temperature <= 10 ? "cool" : weather.temperature <= 20 ? "mild" : weather.temperature <= 28 ? "warm" : "hot"]}>{weather.temperature}Â°C</span>, {weather.humidity}% humidity
                   </span>
                 </div>
                 <span className="text-[10px] text-foreground-subtle">LIVE WEATHER</span>
@@ -601,7 +601,7 @@ export default function FuellingPage() {
                     >
                       <p className="text-[10px] text-foreground-subtle mb-1 tracking-wider">SODIUM/HOUR</p>
                       <p className={`font-heading text-3xl ${heatColors[result.heatCategory]}`}>{result.sodiumPerHour}mg</p>
-                      <p className="text-[10px] text-foreground-subtle mt-1">{weather ? `based on ${weather.temperature}$°C` : "standard estimate"}</p>
+                      <p className="text-[10px] text-foreground-subtle mt-1">{weather ? `based on ${weather.temperature}Â°C` : "standard estimate"}</p>
                     </motion.div>
                     <motion.div
                       className="bg-background-elevated rounded-xl border border-white/5 p-5 text-center"
@@ -714,22 +714,22 @@ export default function FuellingPage() {
                     <ul className="space-y-2">
                       <li>
                         <a href="/blog/cycling-in-ride-nutrition-guide" className="text-coral hover:text-coral/80 text-sm transition-colors">
-                          Cycling In-Ride Nutrition Guide $†’
+                          Cycling In-Ride Nutrition Guide â†’
                         </a>
                       </li>
                       <li>
                         <a href="/blog/cycling-energy-gels-guide" className="text-coral hover:text-coral/80 text-sm transition-colors">
-                          Cycling Energy Gels Guide $†’
+                          Cycling Energy Gels Guide â†’
                         </a>
                       </li>
                       <li>
                         <a href="/topics/cycling-nutrition" className="text-coral hover:text-coral/80 text-sm transition-colors">
-                          Cycling Nutrition topic hub $†’
+                          Cycling Nutrition topic hub â†’
                         </a>
                       </li>
                       <li>
                         <a href="/podcast/ep-2035-world-tour-nutritionist-we-got-fuelling-wrong" className="text-coral hover:text-coral/80 text-sm transition-colors">
-                          Podcast: World Tour nutritionist $€” &quot;we got fuelling wrong&quot;
+                          Podcast: World Tour nutritionist â€” &quot;we got fuelling wrong&quot;
                         </a>
                       </li>
                     </ul>
@@ -768,9 +768,9 @@ export default function FuellingPage() {
                         strategy: result.strategy,
                       }}
                       heading="Your hour-by-hour fuelling plan"
-                      subheading="Save your plan $€” you'll get a shareable permalink plus a copy emailed to you. Open the permalink on your phone before the ride."
+                      subheading="Save your plan â€” you'll get a shareable permalink plus a copy emailed to you. Open the permalink on your phone before the ride."
                       bullets={[
-                        `${result.carbsPerHour}g carbs/hr $· ${result.fluidPerHour}ml fluid/hr`,
+                        `${result.carbsPerHour}g carbs/hr Â· ${result.fluidPerHour}ml fluid/hr`,
                         "Complete hour-by-hour schedule with feeding intervals",
                         "Glucose + fructose ratio explained",
                         "Heat-adjusted sodium targets",
@@ -798,7 +798,7 @@ export default function FuellingPage() {
                 GOT YOUR FUELLING NUMBERS?
               </p>
               <p className="text-off-white font-heading text-lg md:text-xl mb-2">
-                Coaching periodises your nutrition around every session $€” not just race day.
+                Coaching periodises your nutrition around every session â€” not just race day.
               </p>
               <p className="text-foreground-muted text-sm mb-5 max-w-md mx-auto">
                 Personalised TrainingPeaks plan, weekly calls, five pillars.
@@ -809,7 +809,7 @@ export default function FuellingPage() {
                 className="inline-flex items-center justify-center gap-2 font-heading tracking-wider uppercase rounded-md bg-coral text-off-white hover:bg-coral/90 px-6 py-3 text-sm transition-all"
                 data-track="tool_fuelling_apply"
               >
-                Apply for Coaching $†’
+                Apply for Coaching â†’
               </a>
             </motion.div>
           </Container>

@@ -35,9 +35,9 @@ export const HOURS_BRACKETS = ["under-5", "5-8", "9-12", "13+"] as const;
 export type HoursBracket = (typeof HOURS_BRACKETS)[number];
 
 /**
- * A submission's raw answers. Q1$€“Q12 are integer scores 0$€“3 from the
+ * A submission's raw answers. Q1â€“Q12 are integer scores 0â€“3 from the
  * option the user chose; Q13 is the optional free-text "anything else?"
- * note. Demographics aren't scored directly $€” they feed the LLM's
+ * note. Demographics aren't scored directly â€” they feed the LLM's
  * personalisation.
  */
 export interface Answers {
@@ -69,7 +69,7 @@ export interface ProfileScores {
 
 /**
  * Result of scoring. `secondary` is only populated when the runner-up
- * sits within one point of the primary $€” per spec $§8 we never output
+ * sits within one point of the primary â€” per spec Â§8 we never output
  * two full profiles, we just surface a contributing-factor note.
  *
  * `severeMultiSystem` flags the edge case where all four profiles

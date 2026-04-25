@@ -138,7 +138,7 @@ export async function notifySpotlightPurchase(
 
   return sendEmail({
     to: [RECIPIENTS.anthony, RECIPIENTS.sarah],
-    subject: `Spotlight Purchase: ${sponsorName} $€” ${slotLabels[slotType] ?? slotType}`,
+    subject: `Spotlight Purchase: ${sponsorName} â€” ${slotLabels[slotType] ?? slotType}`,
     html,
   });
 }
@@ -153,7 +153,7 @@ export async function notifyQuarterEnquiry(
   launchMonth: string,
 ) {
   const budgetLabels: Record<string, string> = {
-    "6k_12k": "$6k $€“ $12k/quarter",
+    "6k_12k": "$6k â€“ $12k/quarter",
     "12k_plus": "$12k+/quarter",
   };
 
@@ -196,7 +196,7 @@ export interface AnnualApplicationData {
 
 const BUDGET_LABELS: Record<string, string> = {
   "96k": "$96k/yr ($8k/mo)",
-  "120k_180k": "$120k $€“ $180k/yr",
+  "120k_180k": "$120k â€“ $180k/yr",
   "180k_plus": "$180k+/yr",
   discuss: "Let's discuss",
 };
@@ -305,7 +305,7 @@ export async function notifyStaleSponsor(
 
   return sendEmail({
     to: RECIPIENTS.sarah,
-    subject: `Stale sponsor: ${sponsorName} $€” ${daysSince} days since contact`,
+    subject: `Stale sponsor: ${sponsorName} $ï¿½ï¿½ ${daysSince} days since contact`,
     html,
   });
 }
@@ -353,7 +353,7 @@ export async function notifyCohortApplication(data: {
     ) +
     `<p style="margin-top: 16px;">
       <a href="https://roadmancycling.com/admin/applications" style="color: #F16363; text-decoration: underline;">
-        View in admin panel $†’
+        View in admin panel $ï¿½ï¿½
       </a>
     </p>`,
   );

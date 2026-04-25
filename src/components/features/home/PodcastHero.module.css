@@ -1,9 +1,9 @@
 /* =========================================================
-   PodcastHero $€” mobile-primary hero surface.
+   PodcastHero â€” mobile-primary hero surface.
 
    The waveform is pure CSS: a row of 32 vertical bars each
    with its own staggered scaleY animation. No JS, no canvas
-   $€” serves SSR, respects prefers-reduced-motion, paints on
+   â€” serves SSR, respects prefers-reduced-motion, paints on
    first frame. Coral-to-deep-purple gradient matches brand
    tokens in globals.css.
    ========================================================= */

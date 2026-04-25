@@ -26,7 +26,7 @@ export default async function SegmentsPage() {
         <div>
           <h1 className="font-heading text-2xl text-off-white tracking-wider uppercase">Segments</h1>
           <p className="text-sm text-foreground-muted mt-1">
-            Dynamic contact groups. Re-evaluated each time $€” send template email to all members.
+            Dynamic contact groups. Re-evaluated each time â€” send template email to all members.
           </p>
         </div>
         <Link
@@ -41,7 +41,7 @@ export default async function SegmentsPage() {
         <div className="bg-background-elevated border border-white/5 rounded-lg p-8 text-center">
           <p className="text-foreground-muted text-sm">No segments yet.</p>
           <Link href="/admin/segments/new" className="inline-block mt-3 text-accent text-sm hover:underline">
-            Create your first segment $†’
+            Create your first segment â†’
           </Link>
         </div>
       ) : (
@@ -65,10 +65,10 @@ export default async function SegmentsPage() {
                     </Link>
                   </td>
                   <td className="px-4 py-3 text-foreground-muted truncate max-w-xs">
-                    {s.description ?? "$€”"}
+                    {s.description ?? "â€”"}
                   </td>
                   <td className="px-4 py-3 text-off-white font-medium">{s.memberCount}</td>
-                  <td className="px-4 py-3 text-foreground-muted">{s.createdBySlug ?? "$€”"}</td>
+                  <td className="px-4 py-3 text-foreground-muted">{s.createdBySlug ?? "â€”"}</td>
                   <td className="px-4 py-3 text-foreground-subtle">{formatWhen(s.updatedAt)}</td>
                 </tr>
               ))}

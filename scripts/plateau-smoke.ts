@@ -6,13 +6,13 @@
  *   npm run smoke:plateau -- --url=https://roadmancycling.com
  *
  * What it does:
- *   1. GET /api/diagnostic/health $€” verifies DB + per-integration env.
+ *   1. GET /api/diagnostic/health â€” verifies DB + per-integration env.
  *      Prints a summary; exits non-zero if the response isn't 200.
- *   2. GET /plateau $€” ensures the landing page renders (not 404'd).
+ *   2. GET /plateau â€” ensures the landing page renders (not 404'd).
  *   3. With --submit, POSTs a full test submission to
  *      /api/diagnostic/submit, follows the returned slug, and confirms
  *      /diagnostic/[slug] renders. Skip submit unless you want a real
- *      Beehiiv subscribe + Resend confirmation to fire $€” use a
+ *      Beehiiv subscribe + Resend confirmation to fire â€” use a
  *      dedicated test inbox.
  *
  * Exits 0 on success, 1 on the first failure.
@@ -40,17 +40,17 @@ function parseArgs(): Args {
   }
   if (submit && !email) {
     throw new Error(
-      "--submit requires --email=you+smoke@example.com $€” use a dedicated inbox, a real confirmation email will fire."
+      "--submit requires --email=you+smoke@example.com â€” use a dedicated inbox, a real confirmation email will fire."
     );
   }
   return { url: url.replace(/\/$/, ""), submit, email };
 }
 
 function ok(msg: string) {
-  console.log(`  $œ“ ${msg}`);
+  console.log(`  âœ“ ${msg}`);
 }
 function info(msg: string) {
-  console.log(`  $· ${msg}`);
+  console.log(`  Â· ${msg}`);
 }
 
 async function checkHealth(baseUrl: string): Promise<void> {
@@ -66,18 +66,18 @@ async function checkHealth(baseUrl: string): Promise<void> {
   }
   ok(`health: 200 ok`);
   for (const [name, status] of Object.entries(body.checks)) {
-    const marker = status === "ok" || status === "set" ? "$œ“" : "$·";
+    const marker = status === "ok" || status === "set" ? "âœ“" : "Â·";
     console.log(`    ${marker} ${name}: ${status}`);
   }
   // Flag the integrations that are likely needed for prod but not
-  // fatal $€” Anthony can see the same info on the admin stats page.
+  // fatal â€” Anthony can see the same info on the admin stats page.
   const missing: string[] = [];
   for (const k of ["anthropicKey", "resendKey", "beehiivKey"]) {
     if (body.checks[k] === "missing") missing.push(k);
   }
   if (missing.length > 0) {
     console.log(
-      `    $š  missing (funnel works, but features degraded): ${missing.join(", ")}`
+      `    âš  missing (funnel works, but features degraded): ${missing.join(", ")}`
     );
   }
 }
@@ -98,7 +98,7 @@ async function checkLanding(baseUrl: string): Promise<void> {
 }
 
 async function submitTest(baseUrl: string, email: string): Promise<void> {
-  // Fixture 1 from Appendix A $€” deterministic Under-recovered result.
+  // Fixture 1 from Appendix A â€” deterministic Under-recovered result.
   const payload = {
     email,
     consent: true,
@@ -110,7 +110,7 @@ async function submitTest(baseUrl: string, email: string): Promise<void> {
     Q4: 1, Q5: 1, Q6: 1,
     Q7: 1, Q8: 3, Q9: 1,
     Q10: 1, Q11: 1, Q12: 3,
-    Q13: "Smoke test $€” safe to delete.",
+    Q13: "Smoke test â€” safe to delete.",
     utm: { source: "smoke", medium: "cli", campaign: "plateau-smoke" },
   };
 
@@ -126,7 +126,7 @@ async function submitTest(baseUrl: string, email: string): Promise<void> {
     );
   }
   ok(`submit: 200 ok, slug = ${body.slug}`);
-  info(`  $†’ recorded in admin: ${baseUrl}/admin/diagnostic/${body.slug}`);
+  info(`  â†’ recorded in admin: ${baseUrl}/admin/diagnostic/${body.slug}`);
 
   const resultsRes = await fetch(`${baseUrl}/diagnostic/${body.slug}`, {
     headers: { "User-Agent": "roadman-smoke/1.0" },
@@ -153,16 +153,16 @@ async function main() {
 
   if (args.submit) {
     console.log("\n[3/3] End-to-end submission");
-    console.log(`  $· seed email: ${args.email}`);
-    console.log(`  $· this will fire a real Resend confirmation + Beehiiv subscribe`);
+    console.log(`  Â· seed email: ${args.email}`);
+    console.log(`  Â· this will fire a real Resend confirmation + Beehiiv subscribe`);
     await submitTest(args.url, args.email);
   }
 
-  console.log("\n$œ“ All checks passed.");
+  console.log("\nâœ“ All checks passed.");
 }
 
 main().catch((err) => {
-  console.error("\n$œ— Smoke failed:");
+  console.error("\nâœ— Smoke failed:");
   console.error(err instanceof Error ? err.message : err);
   process.exit(1);
 });

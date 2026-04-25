@@ -3,7 +3,7 @@ import Link from "next/link";
 import { Header, Footer, Section, Container } from "@/components/layout";
 
 export const metadata: Metadata = {
-  title: "Cookie Policy $€” Roadman Cycling",
+  title: "Cookie Policy $â€” Roadman Cycling",
   description:
     "How Roadman Cycling uses cookies, analytics tracking, A/B testing, and third-party marketing cookies. Learn how to manage your cookie preferences.",
   alternates: {
@@ -149,12 +149,12 @@ export default function CookiePolicyPage() {
                 </p>
                 <ul className="list-disc pl-6 space-y-3 mt-4">
                   <li>
-                    <code className="text-coral text-sm">ab_variant</code> $€” a
+                    <code className="text-coral text-sm">ab_variant</code> $â€” a
                     general A/B test cookie that stores your assigned variant.
                     Expires after 30 days.
                   </li>
                   <li>
-                    <code className="text-coral text-sm">roadman_ab_*</code> $€”
+                    <code className="text-coral text-sm">roadman_ab_*</code> $â€”
                     per-experiment cookies (where * is the experiment name) that
                     track your variant assignment for specific tests. Each
                     expires after 90 days.
@@ -175,12 +175,12 @@ export default function CookiePolicyPage() {
                 <p className="mt-3">The Meta Pixel sets the following cookies:</p>
                 <ul className="list-disc pl-6 space-y-3 mt-4">
                   <li>
-                    <code className="text-coral text-sm">_fbp</code> $€” used by
+                    <code className="text-coral text-sm">_fbp</code> $â€” used by
                     Meta to identify your browser across visits for advertising
                     attribution. Expires after 90 days.
                   </li>
                   <li>
-                    <code className="text-coral text-sm">_fbc</code> $€” stores
+                    <code className="text-coral text-sm">_fbc</code> $â€” stores
                     the click identifier when you arrive at our site from a
                     Facebook ad, enabling conversion tracking. Expires after 90
                     days.
@@ -263,7 +263,7 @@ export default function CookiePolicyPage() {
                     <span className="text-off-white font-medium">
                       Cookie consent banner
                     </span>{" "}
-                    $€” when you first visit our site, you can choose which
+                    $â€” when you first visit our site, you can choose which
                     categories of cookies to accept or decline through our cookie
                     consent banner.
                   </li>
@@ -271,7 +271,7 @@ export default function CookiePolicyPage() {
                     <span className="text-off-white font-medium">
                       Browser settings
                     </span>{" "}
-                    $€” most browsers allow you to block or delete cookies through
+                    $â€” most browsers allow you to block or delete cookies through
                     their settings. Note that blocking all cookies may affect the
                     functionality of our site and other websites you visit.
                   </li>
@@ -279,7 +279,7 @@ export default function CookiePolicyPage() {
                     <span className="text-off-white font-medium">
                       Third-party opt-outs
                     </span>{" "}
-                    $€” you can opt out of Meta advertising tracking through your{" "}
+                    $â€” you can opt out of Meta advertising tracking through your{" "}
                     <a
                       href="https://www.facebook.com/settings/?tab=ads"
                       target="_blank"

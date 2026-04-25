@@ -10,7 +10,7 @@ import {
 } from "@/lib/ted/prompts";
 
 export const dynamic = "force-dynamic";
-// Claude calls can take 10$€“20s; bump Vercel serverless timeout.
+// Claude calls can take 10â€“20s; bump Vercel serverless timeout.
 export const maxDuration = 60;
 
 interface Body {
@@ -40,7 +40,7 @@ function nextOccurrence(pillar: keyof typeof PILLAR_INSTRUCTIONS): string {
   return d.toISOString().slice(0, 10);
 }
 
-// Cheap banned-word sweep before we persist $€” same list as the agent's
+// Cheap banned-word sweep before we persist â€” same list as the agent's
 // quickBannedWordScan. Flags drafts rather than blocking them.
 function bannedWordHits(text: string): string[] {
   const needles = [
@@ -80,7 +80,7 @@ export async function POST(request: Request) {
     return NextResponse.json(
       {
         error:
-          "ANTHROPIC_API_KEY not set on this Vercel project. Add it in Vercel $†’ Settings $†’ Environment Variables and redeploy.",
+          "ANTHROPIC_API_KEY not set on this Vercel project. Add it in Vercel â†’ Settings â†’ Environment Variables and redeploy.",
       },
       { status: 503 }
     );
@@ -102,7 +102,7 @@ export async function POST(request: Request) {
     `Date: ${targetDate}`,
     `Pillar: ${pillar}`,
     ``,
-    `Return only the post body (including the "$€” Ted" sign-off on its own line). No preamble, no JSON, no commentary.`,
+    `Return only the post body (including the "â€” Ted" sign-off on its own line). No preamble, no JSON, no commentary.`,
   ].join("\n");
 
   const client = new Anthropic();

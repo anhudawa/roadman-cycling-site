@@ -12,7 +12,7 @@ function reconstruct(tokens: ReturnType<typeof wordDiff>): { before: string; aft
   return { before, after };
 }
 
-describe("wordDiff $€” round-trip invariant", () => {
+describe("wordDiff â€” round-trip invariant", () => {
   const cases: Array<[string, string]> = [
     ["hello world", "hello world"],
     ["hello world", "hello mate"],
@@ -21,11 +21,11 @@ describe("wordDiff $€” round-trip invariant", () => {
     ["", "new text"],
     ["old text", ""],
     ["a\n\nb", "a\nc\n\nb"],
-    ["Question for the group.\n\n$€” Ted", "Quick question for the crew.\n\n$€” Ted"],
+    ["Question for the group.\n\nâ€” Ted", "Quick question for the crew.\n\nâ€” Ted"],
   ];
 
   for (const [before, after] of cases) {
-    it(`round-trips "${before.slice(0, 20)}" $†’ "${after.slice(0, 20)}"`, () => {
+    it(`round-trips "${before.slice(0, 20)}" â†’ "${after.slice(0, 20)}"`, () => {
       const tokens = wordDiff(before, after);
       const rebuilt = reconstruct(tokens);
       expect(rebuilt.before).toBe(before);
@@ -34,7 +34,7 @@ describe("wordDiff $€” round-trip invariant", () => {
   }
 });
 
-describe("wordDiff $€” structural properties", () => {
+describe("wordDiff â€” structural properties", () => {
   it("marks unchanged strings as all kept", () => {
     const tokens = wordDiff("hello world", "hello world");
     expect(tokens.every((t) => t.kind === "kept")).toBe(true);

@@ -22,14 +22,14 @@ interface PostCardVisualProps {
  * The fallback:
  *  - pillar-coloured gradient bg
  *  - oversized pillar glyph hint (a "Ã˜" dot on a subtle grain)
- *  - headline echo $€” smaller than the card's main title so it doesn't
+ *  - headline echo $â€” smaller than the card's main title so it doesn't
  *    feel like duplicate copy, just a visual anchor
  *
  * Parent components size the card via a 16:9 wrapper; this component
  * fills it with `absolute inset-0`.
  *
  * Aspect ratio, hover effects, and rounded corners are the parent's
- * responsibility $€” keeps the visual agnostic to where it's dropped in.
+ * responsibility $â€” keeps the visual agnostic to where it's dropped in.
  */
 export function PostCardVisual({
   featuredImage,
@@ -51,7 +51,7 @@ export function PostCardVisual({
         }}
         aria-hidden="true"
       >
-        {/* Subtle grain overlay $€” scoped to this card so it
+        {/* Subtle grain overlay $â€” scoped to this card so it
             doesn't rely on the global grain-overlay class. */}
         <div
           className="absolute inset-0 opacity-[0.035] pointer-events-none mix-blend-overlay"
@@ -61,7 +61,7 @@ export function PostCardVisual({
           }}
         />
 
-        {/* Big watermark dot in the top-right $€” minimal visual
+        {/* Big watermark dot in the top-right $â€” minimal visual
             anchor, coral-tinted on a typography-heavy card. */}
         <div
           aria-hidden="true"
@@ -85,7 +85,7 @@ export function PostCardVisual({
     );
   }
 
-  // Real image path $€” unchanged from prior behaviour.
+  // Real image path $â€” unchanged from prior behaviour.
   return (
     <Image
       src={featuredImage as string}

@@ -6,16 +6,16 @@ import { usePathname } from "next/navigation";
 import { getCohortState, type CohortPhase } from "@/lib/cohort";
 
 /**
- * Site-wide cohort banner. Driven entirely by src/lib/cohort.ts $€” to
- * change copy, deadlines, or flip from "open" $†’ "waitlist", edit the
+ * Site-wide cohort banner. Driven entirely by src/lib/cohort.ts â€” to
+ * change copy, deadlines, or flip from "open" â†’ "waitlist", edit the
  * state lib, not this component.
  *
  * Renders differently per phase:
- *   open           $€” "COHORT N IS OPEN" $· countdown $· APPLY
- *   closing-today  $€” "FINAL HOURS" $· urgent copy $· APPLY
- *   waitlist       $€” "COHORT N+1 COMING SOON" $· 24h early access $· APPLY NOW
+ *   open           â€” "COHORT N IS OPEN" Â· countdown Â· APPLY
+ *   closing-today  â€” "FINAL HOURS" Â· urgent copy Â· APPLY
+ *   waitlist       â€” "COHORT N+1 COMING SOON" Â· 24h early access Â· APPLY NOW
  *
- * Dismissible $€” dismissal persists in localStorage per-phase, so
+ * Dismissible â€” dismissal persists in localStorage per-phase, so
  * dismissing an "open" banner doesn't hide the subsequent "waitlist"
  * banner when the site flips between phases.
  *
@@ -63,7 +63,7 @@ function formatCountdown(ms: number): string {
 export function CohortBanner() {
   const pathname = usePathname();
   const [dismissed, setDismissed] = useState(false);
-  /** Minute-resolution tick $€” triggers state re-evaluation + countdown refresh. */
+  /** Minute-resolution tick â€” triggers state re-evaluation + countdown refresh. */
   const [tick, setTick] = useState(0);
 
   const state = getCohortState(new Date(Date.now() + tick * 0)); // tick just forces re-render
@@ -126,7 +126,7 @@ export function CohortBanner() {
             {state.banner.detail}
             {countdown && (
               <>
-                <span> $· </span>
+                <span> Â· </span>
                 {countdown}
               </>
             )}
@@ -137,7 +137,7 @@ export function CohortBanner() {
             href={state.banner.ctaHref}
             className="font-heading text-xs sm:text-sm tracking-wider bg-off-white text-coral px-3 sm:px-4 min-h-[40px] flex items-center rounded-md hover:bg-off-white/90 transition-colors whitespace-nowrap"
           >
-            {state.banner.cta} <span aria-hidden="true">$†’</span>
+            {state.banner.cta} <span aria-hidden="true">â†’</span>
           </Link>
           {!nonDismissible && (
             <button

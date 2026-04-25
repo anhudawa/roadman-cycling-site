@@ -106,7 +106,7 @@ export async function POST(request: Request) {
     const routing = routeProspect(answers);
     const response = renderResponse(answers, routing);
 
-    // Write to Airtable (non-blocking $€” don't fail the response if Airtable is down)
+    // Write to Airtable (non-blocking $â€” don't fail the response if Airtable is down)
     const airtablePromise = createProspect({
       timestamp: new Date().toISOString(),
       ...answers,
@@ -123,7 +123,7 @@ export async function POST(request: Request) {
       console.error('Airtable write failed:', err);
     });
 
-    // Don't await Airtable $€” return the routing decision immediately
+    // Don't await Airtable $â€” return the routing decision immediately
     void airtablePromise;
 
     return NextResponse.json({

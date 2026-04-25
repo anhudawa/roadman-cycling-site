@@ -158,7 +158,7 @@ export async function createDeal(params: CreateDealParams): Promise<Deal> {
       contactId: params.contactId ?? null,
       title: params.title.trim(),
       valueCents: params.valueCents,
-      currency: params.currency ?? "EUR",
+      currency: params.currency ?? "USD",
       stage,
       ownerSlug: params.ownerSlug ?? null,
       source: params.source ?? null,
@@ -345,7 +345,7 @@ export async function getDealStats(): Promise<DealStats> {
 
 export function formatCurrency(cents: number, currency: string): string {
   try {
-    return new Intl.NumberFormat("en-IE", {
+    return new Intl.NumberFormat("en-US", {
       style: "currency",
       currency,
       maximumFractionDigits: 0,

@@ -4,7 +4,7 @@
  * the history page, so the email is the only surface that learns which
  * address owns which token.
  *
- * The email is intentionally minimal $€” one paragraph, one button, one
+ * The email is intentionally minimal â€” one paragraph, one button, one
  * expiry line. This is a utility email, not a marketing send.
  */
 
@@ -54,7 +54,7 @@ export async function sendHistoryLinkEmail(
       <p style="margin:0 0 24px;">
         <a href="${safeLink}"
            style="display:inline-block;background:#F16363;color:#fff;text-decoration:none;padding:14px 22px;border-radius:8px;font-weight:600;font-size:15px;letter-spacing:0.02em;">
-          Open my results $†’
+          Open my results â†’
         </a>
       </p>
       <p style="color:#8A8A8A;font-size:12px;line-height:1.5;margin:0 0 8px;">

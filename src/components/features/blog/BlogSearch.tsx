@@ -49,7 +49,7 @@ interface BlogSearchProps {
   posts: BlogSearchItem[];
 }
 
-/** Topic filters $€” keyword-based filters that cut across pillars */
+/** Topic filters $â€” keyword-based filters that cut across pillars */
 const TOPIC_FILTERS: Array<{
   id: string;
   label: string;
@@ -148,12 +148,12 @@ export function BlogSearch({ posts }: BlogSearchProps) {
 
   return (
     <div>
-      {/* Featured row $€” only shown when browsing the unfiltered catalogue */}
+      {/* Featured row $â€” only shown when browsing the unfiltered catalogue */}
       {isBrowsingAll && featured.length > 0 && (
         <div className="mb-12">
           <div className="flex items-baseline justify-between mb-6 border-b border-white/10 pb-3">
             <h2 className="font-heading text-coral text-sm tracking-widest">
-              FEATURED $€” LATEST EDITORIAL
+              FEATURED $â€” LATEST EDITORIAL
             </h2>
             <span className="text-xs text-foreground-subtle">
               Pinned by the team
@@ -372,7 +372,7 @@ export function BlogSearch({ posts }: BlogSearchProps) {
                   </div>
                 </Link>
                 {/* Inline Saturday Spin capture after the 9th card. Spans
-                    the full row on desktop (3-col grid) $€” invites attention
+                    the full row on desktop (3-col grid) $â€” invites attention
                     without feeling like a modal. */}
                 {isBrowsingAll && i === 8 && (
                   <div className="md:col-span-2 lg:col-span-3 rounded-xl border border-coral/20 bg-gradient-to-br from-coral/10 via-deep-purple/40 to-charcoal p-6 md:p-8">

@@ -6,8 +6,8 @@
  * top 3, and writes the slugs back to each episode's MDX frontmatter
  * as `relatedPosts`.
  *
- * Rendered on /podcast/[slug] as a "Read the Guide" section $†’
- * explicit episode$†’blog crawl paths to complement the blog$†’episode
+ * Rendered on /podcast/[slug] as a "Read the Guide" section â†’
+ * explicit episodeâ†’blog crawl paths to complement the blogâ†’episode
  * paths already populated.
  *
  * Idempotent. --force overwrites.
@@ -88,7 +88,7 @@ function scorePost(
     if (postTitleWords.includes(w)) score += 1;
   }
 
-  // Small freshness boost $€” we'd rather link at newer blog content
+  // Small freshness boost â€” we'd rather link at newer blog content
   // than articles from 2021.
   if (post.publishDate) {
     const age = Date.now() - new Date(post.publishDate).getTime();
@@ -161,7 +161,7 @@ function main() {
 
     if (dryRun) {
       console.log(`   [DRY] ${slug}`);
-      related.forEach((r) => console.log(`      $†’ ${r}`));
+      related.forEach((r) => console.log(`      â†’ ${r}`));
       continue;
     }
 
@@ -174,7 +174,7 @@ function main() {
   }
 
   console.log("");
-  console.log(`$œ“ Complete.`);
+  console.log(`âœ“ Complete.`);
   console.log(`  Updated:           ${updated}`);
   console.log(`  Skipped (already): ${skipped}`);
   console.log(`  No match found:    ${noMatch}`);

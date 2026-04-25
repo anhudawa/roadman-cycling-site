@@ -1,4 +1,4 @@
-// Ask Roadman shared types. Server-only module $€” no React imports.
+// Ask Roadman shared types. Server-only module â€” no React imports.
 
 export type Intent =
   | "plateau"
@@ -17,8 +17,8 @@ export type Intent =
 export interface IntentClassification {
   intent: Intent;
   confidence: "high" | "medium" | "low";
-  deep: boolean;           // true $†’ route to Opus; false $†’ Haiku
-  needsProfile: boolean;   // true $†’ inject profile into context
+  deep: boolean;           // true â†’ route to Opus; false â†’ Haiku
+  needsProfile: boolean;   // true â†’ inject profile into context
 }
 
 export type SafetyFlag =
@@ -30,7 +30,7 @@ export type SafetyFlag =
 
 export interface SafetyDecision {
   flags: SafetyFlag[];
-  block: boolean;          // true $†’ bypass RAG, return fixed template
+  block: boolean;          // true â†’ bypass RAG, return fixed template
   templateKey?: "medical" | "injury" | "weight" | "dangerous";
 }
 

@@ -13,13 +13,13 @@ import { AGE_BRACKETS, HOURS_BRACKETS } from "@/lib/diagnostic/types";
 import { QUESTIONS } from "@/lib/diagnostic/questions";
 
 /**
- * The full diagnostic experience $€” demographics $†’ 12 scored
- * questions $†’ optional Q13 $†’ email gate $†’ processing $†’ route to
+ * The full diagnostic experience â€” demographics â†’ 12 scored
+ * questions â†’ optional Q13 â†’ email gate â†’ processing â†’ route to
  * /diagnostic/[slug]. One component so the state machine stays in one
  * place and session persistence doesn't have to thread through a
  * dozen pages.
  *
- * Key UX rules from the spec ($§5):
+ * Key UX rules from the spec (Â§5):
  *  - One question per screen, no long scrolling forms
  *  - Progress bar always visible
  *  - Back button always available
@@ -45,7 +45,7 @@ type Step =
   | { kind: "hours" }
   | { kind: "ftp" }
   | { kind: "goal" }
-  | { kind: "question"; index: number } // 0..11 $†’ Q1..Q12
+  | { kind: "question"; index: number } // 0..11 â†’ Q1..Q12
   | { kind: "q13" }
   | { kind: "email" }
   | { kind: "processing" }
@@ -86,7 +86,7 @@ function persist(state: State): void {
   try {
     sessionStorage.setItem(STORAGE_KEY, JSON.stringify(state));
   } catch {
-    // sessionStorage full / disabled $€” non-fatal, we just lose the
+    // sessionStorage full / disabled â€” non-fatal, we just lose the
     // save-as-you-go benefit.
   }
 }
@@ -133,7 +133,7 @@ export function DiagnosticFlow() {
   const [state, setState] = useState<State>(EMPTY_STATE);
   // Land paid traffic on the first question rather than a redundant
   // "Start" button. The CTA on the landing page already counts as
-  // start-intent; making them click again loses 5$€“10% of clicks.
+  // start-intent; making them click again loses 5â€“10% of clicks.
   const [step, setStep] = useState<Step>({ kind: "age" });
   const [hydrated, setHydrated] = useState(false);
   const [submitting, setSubmitting] = useState(false);
@@ -145,7 +145,7 @@ export function DiagnosticFlow() {
   }, []);
 
   // Fire `diagnostic_start` once the session id is hydrated. Used to
-  // be tied to the intro-screen button click $€” that step is gone, so
+  // be tied to the intro-screen button click â€” that step is gone, so
   // mount IS start.
   useEffect(() => {
     if (!sessionId) return;
@@ -162,7 +162,7 @@ export function DiagnosticFlow() {
   }, [sessionId]);
 
   // Persist on state change. Debounced so text inputs (goal, q13)
-  // don't hammer sessionStorage on every keystroke $€” radio clicks
+  // don't hammer sessionStorage on every keystroke â€” radio clicks
   // still feel instant because they advance the step and settle long
   // before the 200ms window expires.
   useEffect(() => {
@@ -181,7 +181,7 @@ export function DiagnosticFlow() {
     };
   }, [searchParams]);
 
-  // $”€$”€ Step math $”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€
+  // â”€â”€ Step math â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
   // Demographics is 4 pre-questions (age, hours, ftp, goal). The 12
   // scored questions are the weight. Q13 is optional. Email gate is
   // the final step. We use this to drive the progress bar.
@@ -209,12 +209,12 @@ export function DiagnosticFlow() {
   })();
   const progress = Math.min(100, Math.round((stepNumber / totalSteps) * 100));
 
-  // $”€$”€ Navigation helpers $”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€
+  // â”€â”€ Navigation helpers â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
   const goBack = useCallback(() => {
     setStep((prev) => {
       switch (prev.kind) {
         case "age":
-          // Already at the first step $€” back is a no-op rather than
+          // Already at the first step â€” back is a no-op rather than
           // resurrecting the dead intro screen.
           return prev;
         case "hours":
@@ -321,7 +321,7 @@ export function DiagnosticFlow() {
     [router, sessionId, state, submitting, utm]
   );
 
-  // $”€$”€ Render $”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€
+  // â”€â”€ Render â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
   return (
     <div className="mx-auto w-full max-w-[640px]">
       <ProgressBar percent={progress} stepNumber={stepNumber} total={totalSteps} />
@@ -331,7 +331,7 @@ export function DiagnosticFlow() {
         {step.kind === "age" && (
           <ChoiceStep
             kicker="Step 1 of 4"
-            heading="First $€” which age bracket are you in?"
+            heading="First â€” which age bracket are you in?"
             hint="Training recommendations shift meaningfully over 40, and again over 50."
             options={AGE_BRACKETS.map((b) => ({ id: b, label: AGE_LABELS[b] }))}
             selectedId={state.age}
@@ -360,9 +360,9 @@ export function DiagnosticFlow() {
 
         {step.kind === "ftp" && (
           <NumberStep
-            kicker="Step 3 of 4 $· Optional"
+            kicker="Step 3 of 4 Â· Optional"
             heading="Your current FTP, if you've tested recently."
-            hint="In watts. Sharing it makes the diagnosis far more specific $€” but skip freely if you don't know or don't want to."
+            hint="In watts. Sharing it makes the diagnosis far more specific â€” but skip freely if you don't know or don't want to."
             value={state.ftp}
             onChange={(v) => setState((s) => ({ ...s, ftp: v }))}
             onSkip={() => advanceFromDemographics({ kind: "goal" })}
@@ -374,9 +374,9 @@ export function DiagnosticFlow() {
 
         {step.kind === "goal" && (
           <TextStep
-            kicker="Step 4 of 4 $· Optional"
+            kicker="Step 4 of 4 Â· Optional"
             heading="What's your main goal this year?"
-            hint="One line $€” race name, event, or the outcome you want. We use it to tailor the breakdown to what you're actually training for."
+            hint="One line â€” race name, event, or the outcome you want. We use it to tailor the breakdown to what you're actually training for."
             value={state.goal}
             onChange={(v) => setState((s) => ({ ...s, goal: v.slice(0, 500) }))}
             onSkip={() => advanceFromDemographics({ kind: "question", index: 0 })}
@@ -399,7 +399,7 @@ export function DiagnosticFlow() {
 
         {step.kind === "q13" && (
           <TextStep
-            kicker="Last question $· Optional"
+            kicker="Last question Â· Optional"
             heading="Anything else you want us to know?"
             hint="What's your best guess at why you're stuck? Takes the diagnosis from good to precise."
             value={state.q13}
@@ -442,7 +442,7 @@ export function DiagnosticFlow() {
   );
 }
 
-// $”€$”€ Step components $”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€
+// â”€â”€ Step components â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 
 function ProgressBar({
   percent,
@@ -773,19 +773,19 @@ function EmailStep({
         </span>
       </label>
       {/* Trust micro-copy. Three short reassurances right at the
-          gate $€” this is the highest-friction moment of the flow and
+          gate â€” this is the highest-friction moment of the flow and
           the hardest to recover from if the user bails. */}
       <ul className="text-xs text-foreground-subtle space-y-1.5">
         <li className="flex items-baseline gap-2">
-          <span className="text-coral" aria-hidden="true">$œ“</span>
+          <span className="text-coral" aria-hidden="true">âœ“</span>
           One email with your diagnosis. No daily spam.
         </li>
         <li className="flex items-baseline gap-2">
-          <span className="text-coral" aria-hidden="true">$œ“</span>
+          <span className="text-coral" aria-hidden="true">âœ“</span>
           Unsubscribe in one click. We honour it within the hour.
         </li>
         <li className="flex items-baseline gap-2">
-          <span className="text-coral" aria-hidden="true">$œ“</span>
+          <span className="text-coral" aria-hidden="true">âœ“</span>
           We never sell your email. Ever.
         </li>
       </ul>
@@ -803,7 +803,7 @@ function EmailStep({
           transition-colors cursor-pointer text-lg
         "
       >
-        {submitting ? "ANALYSING$€¦" : "SEE MY DIAGNOSIS"}
+        {submitting ? "ANALYSINGâ€¦" : "SEE MY DIAGNOSIS"}
       </button>
       <BackLink onBack={onBack} />
     </form>
@@ -812,14 +812,14 @@ function EmailStep({
 
 function ProcessingStep() {
   // Matches the spec's "3-4 second loader with real-time 'Analysing
-  // your answers$€¦' messaging". We rotate phases on a timer so the
+  // your answersâ€¦' messaging". We rotate phases on a timer so the
   // wait feels deliberate rather than broken.
   const phases = useMemo(
     () => [
-      "Scoring your answers across four profiles$€¦",
-      "Applying the cross-score bumps$€¦",
-      "Checking for multi-system patterns$€¦",
-      "Writing your personalised breakdown$€¦",
+      "Scoring your answers across four profilesâ€¦",
+      "Applying the cross-score bumpsâ€¦",
+      "Checking for multi-system patternsâ€¦",
+      "Writing your personalised breakdownâ€¦",
     ],
     []
   );
@@ -882,7 +882,7 @@ function BackLink({ onBack }: { onBack: () => void }) {
       // without expanding the visible chrome.
       className="text-sm text-foreground-subtle hover:text-off-white cursor-pointer py-2 -ml-2 pl-2 pr-3 rounded"
     >
-      $† Back
+      â† Back
     </button>
   );
 }

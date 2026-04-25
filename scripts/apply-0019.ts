@@ -6,15 +6,15 @@ async function main() {
   const body = readFileSync("drizzle/0019_skool_events.sql", "utf8");
   // Run as one batch so CREATE TABLE + CREATE INDEX land in the same session
   // (Neon pooled driver runs each sql.query on a fresh connection otherwise).
-  console.log("Applying drizzle/0019_skool_events.sql as a single batch $€¦");
+  console.log("Applying drizzle/0019_skool_events.sql as a single batch â€¦");
   await sql.query(body);
   const r = await sql.query(
     `SELECT column_name, data_type FROM information_schema.columns
      WHERE table_name = 'skool_events' ORDER BY ordinal_position`
   );
-  console.log(`$œ“ skool_events has ${r.rowCount} columns:`);
+  console.log(`âœ“ skool_events has ${r.rowCount} columns:`);
   for (const row of r.rows) {
-    console.log(`  $· ${row.column_name} (${row.data_type})`);
+    console.log(`  Â· ${row.column_name} (${row.data_type})`);
   }
 }
 

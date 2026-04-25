@@ -31,7 +31,7 @@ describe("nextRunAt", () => {
   it("respects weekly day-of-week for the digest", () => {
     // weekly-digest runs Mondays 09:00 UTC (dayOfWeek=1)
     const digest = SLOTS.find((s) => s.job === "weekly-digest")!;
-    // Thursday 2026-04-16 $€” next Monday is 2026-04-20
+    // Thursday 2026-04-16 $â€” next Monday is 2026-04-20
     const now = new Date("2026-04-16T12:00:00Z");
     const next = nextRunAt(digest, now);
     expect(next.toISOString()).toBe("2026-04-20T09:00:00.000Z");

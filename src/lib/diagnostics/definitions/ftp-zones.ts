@@ -3,7 +3,7 @@ import type { DiagnosticDefinition } from "../framework/types";
 /**
  * FTP Zones definition.
  *
- * The /tools/ftp-zones calculator is essentially a lookup $€” FTP in,
+ * The /tools/ftp-zones calculator is essentially a lookup â€” FTP in,
  * seven-zone table out. Its "diagnostic" value is the W/kg bucket,
  * which is what the paid report + coaching upsell key off.
  */
@@ -13,22 +13,22 @@ export const ftpZonesDefinition: DiagnosticDefinition = {
   title: "FTP Zone Diagnostic",
   subtitle: "Know exactly where to train for every session",
   description:
-    "Your FTP and body weight, converted into the 7-zone power table and a W/kg bucket $€” paired with a polarised week built around your numbers.",
+    "Your FTP and body weight, converted into the 7-zone power table and a W/kg bucket â€” paired with a polarised week built around your numbers.",
   disclaimer:
-    "Zone boundaries are the standard Coggan 7-zone model. A recent FTP test gives the most accurate zones $€” re-test every 8$€“12 weeks or after a block shift.",
+    "Zone boundaries are the standard Coggan 7-zone model. A recent FTP test gives the most accurate zones â€” re-test every 8â€“12 weeks or after a block shift.",
   questions: [],
   rules: [],
   categories: [
     {
       key: "cat_4plus",
-      label: "Cat 1/2 Power $€” 4.0 W/kg+",
+      label: "Cat 1/2 Power â€” 4.0 W/kg+",
       shortLabel: "4.0+ W/kg",
       explanation:
-        "You're in the top band for amateur cycling. Gains from here are specificity $€” sharpening the edges $€” not raw volume.",
+        "You're in the top band for amateur cycling. Gains from here are specificity â€” sharpening the edges â€” not raw volume.",
       nextSteps: [
         "Race-specific work: over-unders, race-duration efforts, tactical intervals.",
-        "Polish your weakness $€” anaerobic capacity, repeat punches, or TT economy.",
-        "Keep Z2 honest $€” grey-zone drift at this level eats freshness.",
+        "Polish your weakness â€” anaerobic capacity, repeat punches, or TT economy.",
+        "Keep Z2 honest â€” grey-zone drift at this level eats freshness.",
       ],
       recommendedResource: {
         href: "/blog/how-to-improve-ftp-cycling",
@@ -39,14 +39,14 @@ export const ftpZonesDefinition: DiagnosticDefinition = {
     },
     {
       key: "cat_3",
-      label: "Cat 3 Power $€” 3.5$€“4.0 W/kg",
-      shortLabel: "3.5$€“4.0 W/kg",
+      label: "Cat 3 Power â€” 3.5â€“4.0 W/kg",
+      shortLabel: "3.5â€“4.0 W/kg",
       explanation:
-        "Strong amateur level. Biggest returns here come from a proper polarised plan $€” 80% Z2, two real hard sessions, and strength work.",
+        "Strong amateur level. Biggest returns here come from a proper polarised plan â€” 80% Z2, two real hard sessions, and strength work.",
       nextSteps: [
-        "Two quality days per week $€” one threshold, one VO2.",
+        "Two quality days per week â€” one threshold, one VO2.",
         "Long Saturday Z2, non-negotiable.",
-        "Strength twice a week $€” cyclists at this level usually leave watts on the table here.",
+        "Strength twice a week â€” cyclists at this level usually leave watts on the table here.",
       ],
       recommendedResource: {
         href: "/blog/ftp-training-zones-cycling-complete-guide",
@@ -56,35 +56,35 @@ export const ftpZonesDefinition: DiagnosticDefinition = {
     },
     {
       key: "cat_4",
-      label: "Cat 4 Power $€” 3.0$€“3.5 W/kg",
-      shortLabel: "3.0$€“3.5 W/kg",
+      label: "Cat 4 Power â€” 3.0â€“3.5 W/kg",
+      shortLabel: "3.0â€“3.5 W/kg",
       explanation:
-        "Solid base. The quickest gain from here is more Z2 volume plus disciplined threshold work $€” no grey-zone grinding.",
+        "Solid base. The quickest gain from here is more Z2 volume plus disciplined threshold work â€” no grey-zone grinding.",
       nextSteps: [
-        "Hit 6$€“8 hours a week with 80% in Z2.",
+        "Hit 6â€“8 hours a week with 80% in Z2.",
         "2Ã—20 at threshold once a week.",
-        "Fuel every ride over 60 minutes $€” under-fuelling is common at this level.",
+        "Fuel every ride over 60 minutes â€” under-fuelling is common at this level.",
       ],
       recommendedResource: {
         href: "/blog/zone-2-training-cycling-guide",
-        label: "Zone 2 Training $€” the base you're missing",
+        label: "Zone 2 Training â€” the base you're missing",
       },
       crmTags: ["wkg-bucket-3-3-5"],
     },
     {
       key: "beginner",
-      label: "Building $€” below 3.0 W/kg",
+      label: "Building â€” below 3.0 W/kg",
       shortLabel: "Under 3.0 W/kg",
       explanation:
-        "Early-stage endurance. The wins are easy here $€” consistent weekly volume and honest zones. Don't skip the strength work.",
+        "Early-stage endurance. The wins are easy here â€” consistent weekly volume and honest zones. Don't skip the strength work.",
       nextSteps: [
-        "4$€“6 hours a week, same days every week.",
+        "4â€“6 hours a week, same days every week.",
         "One threshold session (2Ã—20 or 3Ã—15) per week.",
-        "Two short strength sessions $€” 20 minutes each is enough.",
+        "Two short strength sessions â€” 20 minutes each is enough.",
       ],
       recommendedResource: {
         href: "/blog/how-to-improve-ftp-cycling",
-        label: "How to Improve Your FTP $€” the beginner's path",
+        label: "How to Improve Your FTP â€” the beginner's path",
       },
       crmTags: ["wkg-bucket-under-3"],
     },
@@ -121,7 +121,7 @@ export const ftpZonesDefinition: DiagnosticDefinition = {
   buildSummary: (_primary, _scores, answers) => {
     const ftp = Number(answers.ftp ?? 0);
     const wkg = Number(answers.wkg ?? 0);
-    if (wkg > 0) return `FTP ${ftp}W $· ${wkg.toFixed(2)} W/kg.`;
-    return `FTP ${ftp}W $· 7-zone power table.`;
+    if (wkg > 0) return `FTP ${ftp}W Â· ${wkg.toFixed(2)} W/kg.`;
+    return `FTP ${ftp}W Â· 7-zone power table.`;
   },
 };

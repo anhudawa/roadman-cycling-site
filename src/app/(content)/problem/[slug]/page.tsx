@@ -142,7 +142,7 @@ export default async function ProblemPageRoute({
                 </Button>
                 <div className="mt-4">
                   <Link href="/apply" className="text-coral hover:text-coral/80 text-sm font-heading tracking-wider transition-colors" data-track={`problem_${slug}_apply`}>
-                    Or apply for coaching $†’
+                    Or apply for coaching â†’
                   </Link>
                 </div>
               </ScrollReveal>

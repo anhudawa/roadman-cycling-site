@@ -7,7 +7,7 @@ import type { Instrumentation } from "next";
  * Server Actions) and records them into the events table with
  * type="error_report" so we have a single queryable history.
  *
- * Intentionally zero external deps $€” all data stays in our own
+ * Intentionally zero external deps $â€” all data stays in our own
  * Vercel Postgres. Sentry would be a useful add for source maps
  * and frontend session replay, but this gives us a baseline right
  * now: every prod 500 is durably logged and can be counted/filtered
@@ -28,7 +28,7 @@ export const onRequestError: Instrumentation.onRequestError = async (
   const digest = error?.digest ?? "";
   const stack = (error?.stack ?? "").slice(0, 2000);
 
-  // Always surface to stderr $€” Vercel logs catch this even if the
+  // Always surface to stderr $â€” Vercel logs catch this even if the
   // DB insert below fails.
   console.error(
     "[instrumentation] server error",
@@ -42,7 +42,7 @@ export const onRequestError: Instrumentation.onRequestError = async (
     }),
   );
 
-  // Edge runtime: don't attempt DB insert $€” pg drivers aren't
+  // Edge runtime: don't attempt DB insert $â€” pg drivers aren't
   // available. The console.error above is the durable record.
   if (process.env.NEXT_RUNTIME === "edge") return;
 
@@ -62,7 +62,7 @@ export const onRequestError: Instrumentation.onRequestError = async (
     });
   } catch (reportErr) {
     // If the DB itself is the cause of the error we're reporting,
-    // don't recurse $€” just log and move on.
+    // don't recurse $â€” just log and move on.
     console.error("[instrumentation] error-report insert failed:", reportErr);
   }
 };

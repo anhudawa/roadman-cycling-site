@@ -1,4 +1,4 @@
-# Step 2 $€” Topic Cluster Assignment
+# Step 2 â€” Topic Cluster Assignment
 
 Model: claude-haiku-4-5
 
@@ -21,11 +21,11 @@ Assign the episode to:
 2. **secondary_clusters**: 0-2 additional cluster IDs (only if the episode genuinely covers multiple pillars)
 
 Rules:
-- Pro cycling stories, doping stories, brand stories, culture pieces $†’ community
-- Training methodology, periodisation, intervals, zones $†’ coaching
-- Weight loss, fuelling, diet, supplements $†’ nutrition
-- Gym work, S&C, flexibility, activation, injury prevention $†’ strength
-- Sleep, HRV, mental health, ageing, longevity, comeback $†’ recovery
+- Pro cycling stories, doping stories, brand stories, culture pieces â†’ community
+- Training methodology, periodisation, intervals, zones â†’ coaching
+- Weight loss, fuelling, diet, supplements â†’ nutrition
+- Gym work, S&C, flexibility, activation, injury prevention â†’ strength
+- Sleep, HRV, mental health, ageing, longevity, comeback â†’ recovery
 - If an interview covers a pro's training methodology, primary = coaching, secondary = community
 - If a nutrition episode also covers training, primary = nutrition, secondary = coaching
 
@@ -34,10 +34,10 @@ Rules:
 Assign the episode to exactly one primary persona from: tom, mark, james, dave
 
 Rules:
-- Racing-focused, FTP, structured training, metrics $†’ tom
-- Event preparation, gran fondo, sportive, climbing for an event $†’ mark
-- Comeback, getting back in shape, after 40, motivation, weight $†’ james
-- General interest, culture, pro stories, entertainment $†’ dave
+- Racing-focused, FTP, structured training, metrics â†’ tom
+- Event preparation, gran fondo, sportive, climbing for an event â†’ mark
+- Comeback, getting back in shape, after 40, motivation, weight â†’ james
+- General interest, culture, pro stories, entertainment â†’ dave
 - When in doubt, default to dave (broadest audience)
 
 ## Output Format

@@ -94,7 +94,7 @@ export function QueueTable({ rows }: { rows: Row[] }) {
           >
             <div className="flex items-center justify-between text-xs text-foreground-subtle mb-2">
               <span>
-                {r.pillar} $· scheduled {r.scheduledFor} $· status {r.status} $· attempts {r.generationAttempts}
+                {r.pillar} Â· scheduled {r.scheduledFor} Â· status {r.status} Â· attempts {r.generationAttempts}
               </span>
               <span>#{r.id}</span>
             </div>

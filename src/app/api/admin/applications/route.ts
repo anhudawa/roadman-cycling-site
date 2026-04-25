@@ -12,7 +12,7 @@ import { getOrCreateContactForApplication } from "@/lib/crm/contacts";
 
 type ApplicationRow = typeof cohortApplications.$inferSelect;
 
-// GET /api/admin/applications $€” list applications + unread count
+// GET /api/admin/applications $â€” list applications + unread count
 export async function GET(request: Request) {
   try {
     await requireAuth();
@@ -126,7 +126,7 @@ export async function GET(request: Request) {
   return NextResponse.json({ applications });
 }
 
-// PATCH /api/admin/applications $€” mark as read and/or update status
+// PATCH /api/admin/applications $â€” mark as read and/or update status
 export async function PATCH(request: Request) {
   try {
     await requireAuth();
@@ -162,8 +162,8 @@ export async function PATCH(request: Request) {
   return NextResponse.json({ success: true });
 }
 
-// DELETE /api/admin/applications $€” permanently remove an application row.
-// Does NOT touch the linked contact, deals, timeline, or notes $€” deleting the
+// DELETE /api/admin/applications $â€” permanently remove an application row.
+// Does NOT touch the linked contact, deals, timeline, or notes $â€” deleting the
 // application is treated as "we reject this submission" rather than "nuke
 // this person from the CRM". Use /admin/contacts if you need to remove the
 // human record entirely.

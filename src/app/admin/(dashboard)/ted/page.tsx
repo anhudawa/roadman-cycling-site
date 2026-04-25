@@ -157,7 +157,7 @@ export default async function TedDashboardPage() {
           <div className="font-semibold text-[var(--color-bad)] mb-1">Ted is paused</div>
           <div className="text-xs text-foreground-subtle">
             Paused by {kill.pausedBySlug ?? "unknown"}
-            {kill.reason ? ` $€” ${kill.reason}` : ""}. Resume from{" "}
+            {kill.reason ? ` â€” ${kill.reason}` : ""}. Resume from{" "}
             <Link href="/admin/ted/settings" className="text-[var(--color-bad)] underline">
               Settings
             </Link>
@@ -172,9 +172,9 @@ export default async function TedDashboardPage() {
             Waiting on you
             {counts.total > 0 ? (
               <span className="ml-2 text-xs font-normal text-foreground-subtle">
-                {counts.total} item{counts.total === 1 ? "" : "s"} $· {counts.prompts}{" "}
-                prompt{counts.prompts === 1 ? "" : "s"} $· {counts.welcomes}{" "}
-                welcome{counts.welcomes === 1 ? "" : "s"} $· {counts.surfaces}{" "}
+                {counts.total} item{counts.total === 1 ? "" : "s"} Â· {counts.prompts}{" "}
+                prompt{counts.prompts === 1 ? "" : "s"} Â· {counts.welcomes}{" "}
+                welcome{counts.welcomes === 1 ? "" : "s"} Â· {counts.surfaces}{" "}
                 surface{counts.surfaces === 1 ? "" : "s"}
               </span>
             ) : null}
@@ -183,7 +183,7 @@ export default async function TedDashboardPage() {
             href="/admin/ted/approvals"
             className="text-xs text-foreground-subtle hover:text-white underline"
           >
-            Open full inbox $†’
+            Open full inbox â†’
           </Link>
         </div>
 

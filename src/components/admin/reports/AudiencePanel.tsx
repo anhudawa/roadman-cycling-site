@@ -21,13 +21,13 @@ export function AudiencePanel({ platforms }: Props) {
           <div key={p.platform} className="rounded-xl border border-white/5 bg-white/5 p-6">
             <div className="text-xs uppercase tracking-widest text-white/50">{LABELS[p.platform]}</div>
             <div className="mt-2 font-[var(--font-bebas-neue)] text-5xl text-white">
-              {p.views === null ? '$€”' : <CounterAnimated value={p.views} />}
+              {p.views === null ? 'â€”' : <CounterAnimated value={p.views} />}
             </div>
             {p.deltaPct !== null && (
               <div
                 className={`mt-1 text-sm ${p.deltaPct >= 0 ? 'text-[#F16363]' : 'text-white/50'}`}
               >
-                {p.deltaPct >= 0 ? '$†‘' : '$†“'} {Math.abs(p.deltaPct)}% vs last month
+                {p.deltaPct >= 0 ? 'â†‘' : 'â†“'} {Math.abs(p.deltaPct)}% vs last month
               </div>
             )}
           </div>

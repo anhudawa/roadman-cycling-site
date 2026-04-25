@@ -7,7 +7,7 @@
  * link equity and topical depth `/coaching` needs to rank for
  * "online cycling coach", "cycling coaching", and supporting terms.
  *
- * Source: SEO Domination Playbook $§6.2 $†’ "Coaching Cluster (12)"
+ * Source: SEO Domination Playbook Â§6.2 â†’ "Coaching Cluster (12)"
  */
 
 import type { ClusterArticleSpec } from "./triathlon-cluster-articles";
@@ -19,7 +19,7 @@ export const COACHING_CLUSTER_ARTICLES: ClusterArticleSpec[] = [
     seoTitle:
       "How Much Does an Online Cycling Coach Cost in 2026? (Real Numbers)",
     seoDescription:
-      "Real pricing for online cycling coaching in 2026 $€” from app-based plans to bespoke 1:1. What you pay for at each tier and where the value actually sits.",
+      "Real pricing for online cycling coaching in 2026 â€” from app-based plans to bespoke 1:1. What you pay for at each tier and where the value actually sits.",
     excerpt:
       "Online cycling coaching ranges from $30 to $600+ per month. Here's what each tier actually delivers, where the value inflection points are, and how to pick the right level for your goals.",
     targetKeyword: "online cycling coach cost",
@@ -56,9 +56,9 @@ export const COACHING_CLUSTER_ARTICLES: ClusterArticleSpec[] = [
     seoTitle:
       "Is a Cycling Coach Worth It? A Cat-3 to Cat-1 Case Study (2026)",
     seoDescription:
-      "Is a cycling coach worth the money? A full case study of one rider's Cat-3 to Cat-1 progression with coaching $€” what changed, what it cost, and when coaching pays off.",
+      "Is a cycling coach worth the money? A full case study of one rider's Cat-3 to Cat-1 progression with coaching â€” what changed, what it cost, and when coaching pays off.",
     excerpt:
-      "One rider. One season. Cat-3 to Cat-1. Here's the full picture of what coaching added $€” training structure, accountability, and specific adaptations $€” and when the investment pays back.",
+      "One rider. One season. Cat-3 to Cat-1. Here's the full picture of what coaching added â€” training structure, accountability, and specific adaptations â€” and when the investment pays back.",
     targetKeyword: "is a cycling coach worth it",
     supportingKeywords: [
       "cycling coach worth it",
@@ -98,7 +98,7 @@ export const COACHING_CLUSTER_ARTICLES: ClusterArticleSpec[] = [
     seoDescription:
       "Polarised or sweet spot? The actual research, what each method does to your physiology, and which one fits your schedule, fitness level, and goals.",
     excerpt:
-      "Two methods. Two camps. Endless forum arguments. Here's what the research actually shows $€” and how to pick the one that fits your life, your volume, and your goals.",
+      "Two methods. Two camps. Endless forum arguments. Here's what the research actually shows â€” and how to pick the one that fits your life, your volume, and your goals.",
     targetKeyword: "polarised vs sweet spot training",
     supportingKeywords: [
       "polarised training cycling",
@@ -131,7 +131,7 @@ export const COACHING_CLUSTER_ARTICLES: ClusterArticleSpec[] = [
     title: "TrainerRoad vs Online Cycling Coach: Which Is Right for You?",
     seoTitle: "TrainerRoad vs Online Cycling Coach: Which Is Right for You?",
     seoDescription:
-      "TrainerRoad or a real coach? What the app does well, what it can't do, and when paying for 1:1 coaching is worth it $€” from someone who respects both.",
+      "TrainerRoad or a real coach? What the app does well, what it can't do, and when paying for 1:1 coaching is worth it â€” from someone who respects both.",
     excerpt:
       "TrainerRoad is a great product. An online coach is a different product. Here's when the $20/month app is enough, and when the $200/month human becomes essential.",
     targetKeyword: "trainerroad vs cycling coach",
@@ -166,9 +166,9 @@ export const COACHING_CLUSTER_ARTICLES: ClusterArticleSpec[] = [
     title: "The Time-Crunched Cyclist: How to Train on 8 Hours a Week",
     seoTitle: "The Time-Crunched Cyclist: How to Train on 8 Hours a Week",
     seoDescription:
-      "Eight hours a week is enough for serious cycling progress $€” if you structure it right. Here's the weekly template, the intensity distribution, and the sessions that actually move the needle.",
+      "Eight hours a week is enough for serious cycling progress â€” if you structure it right. Here's the weekly template, the intensity distribution, and the sessions that actually move the needle.",
     excerpt:
-      "Eight hours a week. Full-time job. Family. Real life. Here's how to structure those hours so you keep improving $€” and where the time-crunched cyclist usually wastes them.",
+      "Eight hours a week. Full-time job. Family. Real life. Here's how to structure those hours so you keep improving â€” and where the time-crunched cyclist usually wastes them.",
     targetKeyword: "time crunched cyclist training",
     supportingKeywords: [
       "8 hours a week cycling",
@@ -236,9 +236,9 @@ export const COACHING_CLUSTER_ARTICLES: ClusterArticleSpec[] = [
     title: "How to Periodise a Cycling Season (Pro Template Inside)",
     seoTitle: "How to Periodise a Cycling Season (Pro Template Inside)",
     seoDescription:
-      "The real structure behind a periodised cycling season $€” base, build, peak, taper $€” with a pro-grade annual template you can adapt to your calendar.",
+      "The real structure behind a periodised cycling season â€” base, build, peak, taper â€” with a pro-grade annual template you can adapt to your calendar.",
     excerpt:
-      "Periodisation isn't arbitrary. Here's the annual structure pro teams use, why each phase exists, and how to build a year around your priority events $€” without overcomplicating it.",
+      "Periodisation isn't arbitrary. Here's the annual structure pro teams use, why each phase exists, and how to build a year around your priority events â€” without overcomplicating it.",
     targetKeyword: "cycling periodisation",
     supportingKeywords: [
       "cycling training periodisation",
@@ -274,7 +274,7 @@ export const COACHING_CLUSTER_ARTICLES: ClusterArticleSpec[] = [
     title: "Cycling Coach Near Me: Why Location Doesn't Matter Anymore",
     seoTitle: "Cycling Coach Near Me: Why Location Doesn't Matter Anymore",
     seoDescription:
-      "Why the 'cycling coach near me' search is the wrong question in 2026 $€” and what actually matters when picking a coach who can help you improve.",
+      "Why the 'cycling coach near me' search is the wrong question in 2026 â€” and what actually matters when picking a coach who can help you improve.",
     excerpt:
       "In 2026, the best cycling coach for you probably isn't in your city. Here's why the 'near me' search is the wrong frame, and what you should optimise for instead.",
     targetKeyword: "cycling coach near me",
@@ -315,7 +315,7 @@ export const COACHING_CLUSTER_ARTICLES: ClusterArticleSpec[] = [
     seoDescription:
       "What actually changes physiologically after 40, how to train smarter to still improve, and the three mistakes masters cyclists make that kill their progress.",
     excerpt:
-      "You can still get faster after 40. The evidence is clear. But the training that worked when you were 30 will break you now $€” here's what changes and what to do instead.",
+      "You can still get faster after 40. The evidence is clear. But the training that worked when you were 30 will break you now â€” here's what changes and what to do instead.",
     targetKeyword: "masters cyclist training",
     supportingKeywords: [
       "cycling over 40",
@@ -351,7 +351,7 @@ export const COACHING_CLUSTER_ARTICLES: ClusterArticleSpec[] = [
     seoDescription:
       "Returning to cycling after a break? A 12-week structured comeback plan that rebuilds fitness without the injury and motivation crashes most comeback riders hit.",
     excerpt:
-      "Six months off. A year off. Longer. Here's the 12-week structure that rebuilds cycling fitness from a realistic starting point $€” without the blown ITB and lost motivation most comeback riders hit at week four.",
+      "Six months off. A year off. Longer. Here's the 12-week structure that rebuilds cycling fitness from a realistic starting point â€” without the blown ITB and lost motivation most comeback riders hit at week four.",
     targetKeyword: "comeback cycling training plan",
     supportingKeywords: [
       "return to cycling training",
@@ -384,7 +384,7 @@ export const COACHING_CLUSTER_ARTICLES: ClusterArticleSpec[] = [
     seoTitle:
       "How to Structure a Cycling Training Plan (Coach's Framework, 2026)",
     seoDescription:
-      "The coach's framework for structuring any cycling training plan $€” from beginner to masters to racing. Principles first, then the template.",
+      "The coach's framework for structuring any cycling training plan â€” from beginner to masters to racing. Principles first, then the template.",
     excerpt:
       "Every good cycling training plan follows the same five principles. Miss any of them and the plan breaks. Here's the framework coaches use, with the template you can adapt to any rider.",
     targetKeyword: "how to structure cycling training plan",
@@ -424,9 +424,9 @@ export const COACHING_CLUSTER_ARTICLES: ClusterArticleSpec[] = [
     seoTitle:
       "Power Meter Training Plan: A Week-by-Week Guide for Cyclists (2026)",
     seoDescription:
-      "A week-by-week power meter training plan that teaches you how to actually use watts for training decisions $€” zones, targets, TSS, and recovery.",
+      "A week-by-week power meter training plan that teaches you how to actually use watts for training decisions â€” zones, targets, TSS, and recovery.",
     excerpt:
-      "You have a power meter. Great. Now what? Here's the week-by-week plan that teaches you to train by watts $€” zones, session targets, TSS management, and the mistakes new power-meter owners always make.",
+      "You have a power meter. Great. Now what? Here's the week-by-week plan that teaches you to train by watts â€” zones, session targets, TSS management, and the mistakes new power-meter owners always make.",
     targetKeyword: "power meter training plan",
     supportingKeywords: [
       "cycling power meter training",

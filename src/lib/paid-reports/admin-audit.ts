@@ -2,7 +2,7 @@ import { db } from "@/lib/db";
 import { adminAuditLogs } from "@/lib/db/schema";
 
 /**
- * Admin audit log $€” every mutating action an admin performs on a
+ * Admin audit log $â€” every mutating action an admin performs on a
  * sensitive row (paid report resend / revoke / regenerate, consent
  * purge, etc.) writes one row. Combined with the admin email allowlist
  * this gives us a full accountability trail.

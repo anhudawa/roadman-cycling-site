@@ -31,7 +31,7 @@ const dryRun = args.includes("--dry-run");
 const hubFilter = args.find((a) => a.startsWith("--hub="))?.split("=")[1];
 
 // ---------------------------------------------------------------------------
-// Topic definitions (mirror of src/lib/topics.ts $Äî kept here to avoid
+// Topic definitions (mirror of src/lib/topics.ts ‚Äî kept here to avoid
 // importing from the Next.js app which has path aliases)
 // ---------------------------------------------------------------------------
 interface TopicDef {
@@ -51,11 +51,11 @@ const TOPICS: TopicDef[] = [
   { slug: "cycling-strength-conditioning", title: "Strength & Conditioning for Cyclists", headline: "STRONGER OFF THE BIKE, FASTER ON IT", description: "The complete guide to S&C for cyclists. Exercises, programming, in-season maintenance, and why most gym programs get it wrong for endurance athletes.", pillar: "strength", keywords: ["strength training cycling", "s&c cycling", "gym for cyclists", "cycling exercises"] },
   { slug: "cycling-weight-loss", title: "Cycling & Weight Loss", headline: "LOSE WEIGHT WITHOUT LOSING POWER", description: "How to lose weight while cycling without sacrificing performance. Body composition, fuel for the work required, and the mistakes that keep cyclists heavy.", pillar: "nutrition", keywords: ["cycling weight loss", "lose weight cycling", "cycling body composition", "power to weight ratio"] },
   { slug: "cycling-beginners", title: "Getting Into Cycling", headline: "START HERE", description: "Everything a new cyclist needs to know. Group ride etiquette, bike fit, gravel cycling, tyre pressure, and the culture of the sport.", pillar: "community", keywords: ["beginner cycling", "start cycling", "cycling tips beginners", "group ride etiquette"] },
-  { slug: "triathlon-cycling", title: "Cycling for Triathletes $Äî The Bike Leg Specialist", headline: "OWN THE BIKE LEG", description: "Everything a triathlete needs to get faster on the bike. FTP pacing, bike nutrition, aero position, power-to-weight, and off-season bike training.", pillar: "coaching", keywords: ["triathlon cycling", "triathlon bike training", "ironman bike pacing", "triathlon cycling plan"] },
-  { slug: "mountain-biking", title: "Mountain Biking $Äî Setup, Skills & Routes", headline: "DIAL IN YOUR MTB", description: "Everything you need to set up, ride, and maintain your mountain bike. Suspension setup, tyre pressure, fork tuning, trail guides.", pillar: "community", keywords: ["mountain bike setup", "mtb tyre pressure", "fork setup mtb", "mountain bike suspension"] },
+  { slug: "triathlon-cycling", title: "Cycling for Triathletes ‚Äî The Bike Leg Specialist", headline: "OWN THE BIKE LEG", description: "Everything a triathlete needs to get faster on the bike. FTP pacing, bike nutrition, aero position, power-to-weight, and off-season bike training.", pillar: "coaching", keywords: ["triathlon cycling", "triathlon bike training", "ironman bike pacing", "triathlon cycling plan"] },
+  { slug: "mountain-biking", title: "Mountain Biking ‚Äî Setup, Skills & Routes", headline: "DIAL IN YOUR MTB", description: "Everything you need to set up, ride, and maintain your mountain bike. Suspension setup, tyre pressure, fork tuning, trail guides.", pillar: "community", keywords: ["mountain bike setup", "mtb tyre pressure", "fork setup mtb", "mountain bike suspension"] },
 ];
 
-// Topic $Üí blog post slugs mapping
+// Topic ‚Üí blog post slugs mapping
 const TOPIC_POST_MAP: Record<string, string[]> = {
   "ftp-training": ["ftp-training-zones-cycling-complete-guide", "how-to-improve-ftp-cycling", "ftp-plateau-breakthrough", "sweet-spot-training-cycling", "cycling-vo2max-intervals"],
   "cycling-nutrition": ["cycling-in-ride-nutrition-guide", "cycling-nutrition-race-day-guide", "cycling-energy-gels-guide", "cycling-hydration-guide", "cycling-fasted-riding-myth"],
@@ -80,7 +80,7 @@ function loadBlogContext(postSlugs: string[]): string {
     if (!fs.existsSync(filePath)) continue;
     const raw = fs.readFileSync(filePath, "utf-8");
     const { data } = matter(raw);
-    results.push(`- "${data.title}" $Äî ${data.excerpt || data.seoDescription || ""}`);
+    results.push(`- "${data.title}" ‚Äî ${data.excerpt || data.seoDescription || ""}`);
   }
 
   return results.join("\n");
@@ -119,9 +119,9 @@ async function main() {
     const postSlugs = TOPIC_POST_MAP[topic.slug] || [];
     const blogContext = loadBlogContext(postSlugs);
 
-    const system = `You are Anthony Walsh, host of the Roadman Cycling Podcast $Äî trusted by 1 million monthly listeners. You're writing a comprehensive topic guide for roadmancycling.com. Write in your natural voice: direct, second-person, confident. Reference your podcast and guests naturally. Be evidence-based but accessible. Use short, punchy paragraphs. No academic tone.`;
+    const system = `You are Anthony Walsh, host of the Roadman Cycling Podcast ‚Äî trusted by 1 million monthly listeners. You're writing a comprehensive topic guide for roadmancycling.com. Write in your natural voice: direct, second-person, confident. Reference your podcast and guests naturally. Be evidence-based but accessible. Use short, punchy paragraphs. No academic tone.`;
 
-    const prompt = `Here are examples of how you speak on the podcast $Äî match this voice:
+    const prompt = `Here are examples of how you speak on the podcast ‚Äî match this voice:
 
 ${voiceContext}
 
@@ -137,20 +137,20 @@ ${blogContext || "(none yet)"}
 
 Follow this structure EXACTLY:
 
-## What Is ${topic.title.replace(/$Äî.*$/, "").trim()}?
-(100-150 words $Äî define the concept, explain why it matters for cyclists)
+## What Is ${topic.title.replace(/‚Äî.*$/, "").trim()}?
+(100-150 words ‚Äî define the concept, explain why it matters for cyclists)
 
 ## The Roadman Approach
-(200-300 words $Äî your philosophy on this topic, what makes your advice different from the generic stuff online, reference specific podcast episodes or guests)
+(200-300 words ‚Äî your philosophy on this topic, what makes your advice different from the generic stuff online, reference specific podcast episodes or guests)
 
 ## Key Concepts
-(Write 3-5 subsections with ## headers, 200-400 words each $Äî the core knowledge every cyclist needs)
+(Write 3-5 subsections with ## headers, 200-400 words each ‚Äî the core knowledge every cyclist needs)
 
 ## Common Mistakes
-(200-300 words $Äî what most cyclists get wrong, be specific and contrarian)
+(200-300 words ‚Äî what most cyclists get wrong, be specific and contrarian)
 
 ## How to Get Started
-(150-200 words $Äî actionable first steps for someone new to this topic)
+(150-200 words ‚Äî actionable first steps for someone new to this topic)
 
 ## Frequently Asked Questions
 
@@ -160,7 +160,7 @@ Format as a Q: / A: pair, like:
 **Q: How often should I do zone 2 training?**
 A: Three to four sessions per week...
 
-Target 2000-3000 words total. Write in markdown. Do NOT include a title H1 $Äî the page already has one.`;
+Target 2000-3000 words total. Write in markdown. Do NOT include a title H1 ‚Äî the page already has one.`;
 
     try {
       const result = await aiCall({
@@ -186,17 +186,17 @@ Target 2000-3000 words total. Write in markdown. Do NOT include a title H1 $Äî t
 
         const mdxContent = matter.stringify(result.text, frontmatter);
         writeDraft("hubs", `${topic.slug}.mdx`, mdxContent, false);
-        console.log(`  $úÖ Generated (${wordCount} words)`);
+        console.log(`  ‚úÖ Generated (${wordCount} words)`);
       }
 
       processed++;
     } catch (error) {
       const msg = error instanceof Error ? error.message : String(error);
-      console.log(`  $ùå Failed: ${msg}`);
+      console.log(`  ‚ùå Failed: ${msg}`);
     }
   }
 
-  console.log(`\n$úÖ Done: ${processed} hubs generated`);
+  console.log(`\n‚úÖ Done: ${processed} hubs generated`);
   printCostSummary();
 }
 

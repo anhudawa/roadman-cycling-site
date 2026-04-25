@@ -152,7 +152,7 @@ export function useAskStream(): UseAskStreamResult {
           const body = (await res.json().catch(() => ({}))) as {
             error?: { message?: string; retryAfterSeconds?: number };
           };
-          const msg = body?.error?.message ?? "Hold up $€” too many questions. Try again in a minute.";
+          const msg = body?.error?.message ?? "Hold up $â€” too many questions. Try again in a minute.";
           setError(msg);
           setMessages((prev) =>
             prev.map((m) => (m.id === assistantId ? { ...m, streaming: false, content: msg } : m)),
@@ -214,7 +214,7 @@ export function useAskStream(): UseAskStreamResult {
                 });
               }
             } else if (frame.event === "delta") {
-              // data is raw text (may contain newlines $€” sse.enqueue for string data)
+              // data is raw text (may contain newlines $â€” sse.enqueue for string data)
               const text = frame.data;
               setMessages((prev) =>
                 prev.map((m) =>

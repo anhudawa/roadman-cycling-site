@@ -14,7 +14,7 @@ export function MentionsTimeline({ groups }: Props) {
   if (groups.length === 0) {
     return (
       <section className="py-12 text-center text-white/60">
-        <p className="text-xl">No mentions this month $€” here&apos;s your audience growth instead.</p>
+        <p className="text-xl">No mentions this month â€” here&apos;s your audience growth instead.</p>
       </section>
     );
   }
@@ -26,7 +26,7 @@ export function MentionsTimeline({ groups }: Props) {
           <header className="flex flex-wrap items-center justify-between gap-4">
             <div>
               <div className="text-xs uppercase tracking-widest text-white/50">
-                Episode {g.episodeNumber} $· {g.publishDate}
+                Episode {g.episodeNumber} Â· {g.publishDate}
               </div>
               <h3 className="text-xl font-semibold text-white">{g.episodeTitle}</h3>
             </div>
@@ -58,7 +58,7 @@ export function MentionsTimeline({ groups }: Props) {
                       rel="noopener noreferrer"
                       className="shrink-0 rounded-md bg-[#F16363] px-3 py-1 text-sm font-semibold text-white hover:bg-[#e14d4d]"
                     >
-                      Listen $†’
+                      Listen â†’
                     </a>
                   )}
                 </li>

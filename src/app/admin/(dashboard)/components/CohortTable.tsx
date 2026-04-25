@@ -11,7 +11,7 @@ function formatWeek(iso: string): string {
   const end = new Date(d.getTime() + 6 * 24 * 60 * 60 * 1000);
   const fmt = (date: Date) =>
     date.toLocaleDateString("en-GB", { day: "numeric", month: "short" });
-  return `${fmt(d)} $€“ ${fmt(end)}`;
+  return `${fmt(d)} â€“ ${fmt(end)}`;
 }
 
 export function CohortTable({ rows }: { rows: CohortRow[] }) {
@@ -37,13 +37,13 @@ export function CohortTable({ rows }: { rows: CohortRow[] }) {
               Signups
             </th>
             <th className="text-right py-3 px-3 text-xs uppercase tracking-wider text-foreground-subtle font-medium">
-              $†’ Skool
+              â†’ Skool
             </th>
             <th className="text-right py-3 px-3 text-xs uppercase tracking-wider text-foreground-subtle font-medium">
-              $†’ Trial
+              â†’ Trial
             </th>
             <th className="text-right py-3 px-3 text-xs uppercase tracking-wider text-foreground-subtle font-medium">
-              $†’ Paid
+              â†’ Paid
             </th>
             <th className="text-right py-3 pl-3 text-xs uppercase tracking-wider text-foreground-subtle font-medium">
               30d Active

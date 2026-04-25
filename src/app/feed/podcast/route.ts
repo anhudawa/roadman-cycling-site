@@ -4,7 +4,7 @@ const SITE_URL = "https://roadmancycling.com";
 const PODCAST_TITLE = "The Roadman Cycling Podcast";
 const PODCAST_AUTHOR = "Anthony Walsh";
 const PODCAST_DESCRIPTION =
-  "The podcast trusted by 1 million monthly listeners. Expert cycling coaching, training insights, nutrition advice, and interviews with world-class coaches, scientists, and pro riders. Cycling is hard $€” we make it less hard.";
+  "The podcast trusted by 1 million monthly listeners. Expert cycling coaching, training insights, nutrition advice, and interviews with world-class coaches, scientists, and pro riders. Cycling is hard $â€” we make it less hard.";
 const PODCAST_IMAGE = `${SITE_URL}/og-image.jpg`;
 const PODCAST_LANGUAGE = "en";
 const PODCAST_EMAIL = "podcast@roadmancycling.com";

@@ -51,7 +51,7 @@ export function ContactDealsSection({ contactId }: { contactId: number }) {
         </Link>
       </div>
       {loading ? (
-        <p className="text-sm text-foreground-subtle">Loading$€¦</p>
+        <p className="text-sm text-foreground-subtle">Loadingâ€¦</p>
       ) : deals.length === 0 ? (
         <p className="text-sm text-foreground-subtle">No deals linked.</p>
       ) : (
@@ -66,9 +66,9 @@ export function ContactDealsSection({ contactId }: { contactId: number }) {
                   <p className="text-sm text-off-white truncate">{d.title}</p>
                   <p className="text-[11px] text-foreground-subtle">
                     {STAGE_LABELS[d.stage]}
-                    {d.ownerSlug ? ` $· ${d.ownerSlug}` : ""}
+                    {d.ownerSlug ? ` Â· ${d.ownerSlug}` : ""}
                     {d.expectedCloseDate
-                      ? ` $· close ${new Date(d.expectedCloseDate).toLocaleDateString("en-GB", { day: "numeric", month: "short" })}`
+                      ? ` Â· close ${new Date(d.expectedCloseDate).toLocaleDateString("en-GB", { day: "numeric", month: "short" })}`
                       : ""}
                   </p>
                 </div>

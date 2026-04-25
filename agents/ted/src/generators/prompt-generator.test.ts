@@ -58,7 +58,7 @@ beforeEach(() => {
 
 describe("generateDailyPrompt", () => {
   it("returns the first body on a clean voice-check pass", async () => {
-    mockLLMBodies(["Question for the group.\n\n$€” Ted"]);
+    mockLLMBodies(["Question for the group.\n\nâ€” Ted"]);
     vi.mocked(runVoiceCheck).mockResolvedValue({
       result: PASS,
       usage: { inputTokens: 100, outputTokens: 50, cost: 0.005, runtimeMs: 300 },
@@ -79,12 +79,12 @@ describe("generateDailyPrompt", () => {
   });
 
   it("retries with regeneration notes when voice-check fails, succeeds on second attempt", async () => {
-    // Bodies must not trip the cheap banned-word scanner $€” voice-check is the
+    // Bodies must not trip the cheap banned-word scanner â€” voice-check is the
     // gate under test here. Polished aphoristic phrasing fails the LLM gate
     // but passes the cheap scan.
     mockLLMBodies([
-      "A perfect sentence that sounds like an Instagram caption.\n\n$€” Ted",
-      "A cleaner rewrite about Z2 that sounds natural.\n\n$€” Ted",
+      "A perfect sentence that sounds like an Instagram caption.\n\nâ€” Ted",
+      "A cleaner rewrite about Z2 that sounds natural.\n\nâ€” Ted",
     ]);
     vi.mocked(runVoiceCheck)
       .mockResolvedValueOnce({
@@ -117,11 +117,11 @@ describe("generateDailyPrompt", () => {
   });
 
   it("stops retrying after MAX_VOICE_RETRIES and returns the last attempt flagged", async () => {
-    // Polished-but-clean bodies $€” voice-check fails all three, cheap scan passes.
+    // Polished-but-clean bodies â€” voice-check fails all three, cheap scan passes.
     mockLLMBodies([
-      "Polished aphorism number one.\n\n$€” Ted",
-      "Polished aphorism number two.\n\n$€” Ted",
-      "Polished aphorism number three.\n\n$€” Ted",
+      "Polished aphorism number one.\n\nâ€” Ted",
+      "Polished aphorism number two.\n\nâ€” Ted",
+      "Polished aphorism number three.\n\nâ€” Ted",
     ]);
     vi.mocked(runVoiceCheck).mockResolvedValue({
       result: FAIL,
@@ -145,8 +145,8 @@ describe("generateDailyPrompt", () => {
     // "delve" is in the cheap scanner; voice-check should never be called
     // for that attempt, but the retry still happens.
     mockLLMBodies([
-      "Let's delve into Z2 training.\n\n$€” Ted",
-      "Z2 question: what's your FTP protocol?\n\n$€” Ted",
+      "Let's delve into Z2 training.\n\nâ€” Ted",
+      "Z2 question: what's your FTP protocol?\n\nâ€” Ted",
     ]);
     vi.mocked(runVoiceCheck).mockResolvedValue({
       result: PASS,
@@ -168,9 +168,9 @@ describe("generateDailyPrompt", () => {
   });
 
   it("falls back from Saturday to Sunday pillar when no episode is available", async () => {
-    // Empty podcast dir $†’ no episode context $†’ effectivePillar becomes Sunday
+    // Empty podcast dir â†’ no episode context â†’ effectivePillar becomes Sunday
     mockLLMBodies([
-      "What did you ride this weekend? What did you learn?\n\n$€” Ted",
+      "What did you ride this weekend? What did you learn?\n\nâ€” Ted",
     ]);
     vi.mocked(runVoiceCheck).mockResolvedValue({
       result: PASS,
@@ -191,9 +191,9 @@ describe("generateDailyPrompt", () => {
   });
 
   it("honours the [SKIP] marker if a pillar prompt returns it", async () => {
-    // Force a SKIP via the response even when context exists $€” proves the
+    // Force a SKIP via the response even when context exists â€” proves the
     // short-circuit still works if the model declines.
-    mockLLMBodies(["[SKIP $€” generator declined]"]);
+    mockLLMBodies(["[SKIP â€” generator declined]"]);
 
     const result = await generateDailyPrompt({
       promptsDir: "/ignored",

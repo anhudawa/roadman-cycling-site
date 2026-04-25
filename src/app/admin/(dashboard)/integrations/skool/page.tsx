@@ -8,7 +8,7 @@ import { Card, CardBody } from "@/components/admin/ui";
 export const dynamic = "force-dynamic";
 
 function fmt(ts: Date | string | null): string {
-  if (!ts) return "$€”";
+  if (!ts) return "â€”";
   const d = typeof ts === "string" ? new Date(ts) : ts;
   return d.toLocaleString("en-GB", {
     day: "numeric",
@@ -78,7 +78,7 @@ export default async function SkoolIntegrationPage() {
         </h1>
         <p className="text-foreground-muted text-sm mt-1">
           Every webhook payload is logged here so you can prove signups are
-          landing $€” even if Zapier / Skool sends a malformed body.
+          landing â€” even if Zapier / Skool sends a malformed body.
         </p>
       </div>
 
@@ -131,20 +131,20 @@ export default async function SkoolIntegrationPage() {
           &quot;Send test webhook&quot; uses your admin session to attach the
           configured secret server-side (same path a real Skool / Zapier call
           would take). &quot;Send unauthenticated&quot; proves the secret is
-          enforced $€” it should land in the table below with status
-          <span className="text-[var(--color-bad)]"> error $· unauthorized</span>.
+          enforced â€” it should land in the table below with status
+          <span className="text-[var(--color-bad)]"> error Â· unauthorized</span>.
         </p>
       </div>
 
       {/* Setup instructions */}
       <details className="bg-background-elevated rounded-xl border border-white/5 p-4">
         <summary className="cursor-pointer text-off-white text-sm font-heading tracking-wider uppercase">
-          How to connect Skool $†’
+          How to connect Skool â†’
         </summary>
         <div className="mt-4 text-sm text-foreground-muted space-y-3">
           <p>
             Skool&apos;s native webhooks live at
-            <span className="text-off-white"> Community $†’ Settings $†’ Webhooks</span>.
+            <span className="text-off-white"> Community â†’ Settings â†’ Webhooks</span>.
             Add:
           </p>
           <pre className="bg-background-deep border border-white/10 rounded p-3 text-xs text-off-white overflow-x-auto">
@@ -153,7 +153,7 @@ event: member.joined, member.created
           </pre>
           <p>
             If you&apos;re piping via Zapier, use the
-            <span className="text-off-white"> &quot;Webhooks by Zapier&quot; $†’ POST</span>
+            <span className="text-off-white"> &quot;Webhooks by Zapier&quot; â†’ POST</span>
             action. Body must contain at least <code>email</code>. Auth can be:
           </p>
           <ul className="list-disc list-inside space-y-1">
@@ -170,7 +170,7 @@ event: member.joined, member.created
           <p>
             To smoke-test:{" "}
             <code className="text-off-white text-xs">
-              curl -X POST {'https://roadmancycling.com/api/skool-webhook?secret=$€¦'} -H
+              curl -X POST {'https://roadmancycling.com/api/skool-webhook?secret=â€¦'} -H
               &apos;Content-Type: application/json&apos; -d &apos;{`{"email":"you@roadman.com","name":"Test"}`}&apos;
             </code>{" "}
             then refresh this page.
@@ -217,13 +217,13 @@ event: member.joined, member.created
                     {e.source}
                   </span>
                   <span className="col-span-3 text-off-white whitespace-nowrap truncate">
-                    {e.email ?? "$€”"}
+                    {e.email ?? "â€”"}
                   </span>
                   <span className="col-span-1 text-foreground-muted whitespace-nowrap truncate">
-                    {e.persona ?? "$€”"}
+                    {e.persona ?? "â€”"}
                   </span>
                   <span className="col-span-1 text-foreground-subtle text-[10px] text-right group-open:rotate-90 transition-transform">
-                    $–¸
+                    â–¸
                   </span>
                 </summary>
                 <div className="px-4 pb-4 space-y-2">

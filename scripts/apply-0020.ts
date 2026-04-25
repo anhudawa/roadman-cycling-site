@@ -4,13 +4,13 @@ import { sql } from "@vercel/postgres";
 async function main() {
   if (!process.env.POSTGRES_URL) throw new Error("POSTGRES_URL not set");
   const body = readFileSync("drizzle/0020_inbox_status.sql", "utf8");
-  console.log("Applying drizzle/0020_inbox_status.sql as a single batch $€¦");
+  console.log("Applying drizzle/0020_inbox_status.sql as a single batch â€¦");
   await sql.query(body);
   const r = await sql.query(
     `SELECT status, count(*)::int AS n FROM contact_submissions GROUP BY status`
   );
-  console.log(`$œ“ contact_submissions rows by status:`);
-  for (const row of r.rows) console.log(`  $· ${row.status}: ${row.n}`);
+  console.log(`âœ“ contact_submissions rows by status:`);
+  for (const row of r.rows) console.log(`  Â· ${row.status}: ${row.n}`);
 }
 
 main().catch((err) => {

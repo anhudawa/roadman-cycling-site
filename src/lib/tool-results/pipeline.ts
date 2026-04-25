@@ -9,7 +9,7 @@ import type { SaveToolResultInput, ToolResult } from "./types";
 /**
  * Single entry point every tool completion routes through.
  *
- *   1. Upsert the rider profile (progressive $€” only the fields the
+ *   1. Upsert the rider profile (progressive $â€” only the fields the
  *      caller supplies are patched, `undefined` preserves existing values).
  *   2. Save the tool_result row linked to the profile.
  *   3. Fire CRM tag + activity so the contact shows up in sales.
@@ -50,7 +50,7 @@ export interface CompleteToolResultInput extends SaveToolResultInput {
     dataStorageConsent?: boolean;
     researchConsent?: boolean;
   };
-  /** Base URL for the result permalink in the email $€” request origin. */
+  /** Base URL for the result permalink in the email $â€” request origin. */
   baseUrl: string;
   /** When false, skip the transactional result email (plateau has its own). */
   sendEmail?: boolean;
@@ -71,7 +71,7 @@ export async function completeToolResult(
   const email = input.email.trim().toLowerCase();
   const patch = input.profilePatch ?? {};
 
-  // 1 $€” rider profile (also materialises a contacts row as FK target)
+  // 1 $â€” rider profile (also materialises a contacts row as FK target)
   const profile = await upsertRiderProfile({
     email,
     firstName: patch.firstName,
@@ -96,14 +96,14 @@ export async function completeToolResult(
     researchConsent: patch.researchConsent,
   });
 
-  // 2 $€” tool_result row
+  // 2 $â€” tool_result row
   const result = await saveToolResult({
     ...input,
     email,
     riderProfileId: profile.id,
   });
 
-  // 3 $€” CRM tag + activity. Errors are swallowed so the user always
+  // 3 $â€” CRM tag + activity. Errors are swallowed so the user always
   //     sees their result even if sales integrations hiccup.
   void (async () => {
     try {
@@ -136,7 +136,7 @@ export async function completeToolResult(
     }
   })();
 
-  // 4a $€” Beehiiv (non-fatal)
+  // 4a $â€” Beehiiv (non-fatal)
   if (input.syncBeehiiv !== false) {
     void subscribeToBeehiiv({
       email,
@@ -156,12 +156,12 @@ export async function completeToolResult(
     );
   }
 
-  // 4c $€” lead score refresh (non-fatal $€” admin-only signal)
+  // 4c $â€” lead score refresh (non-fatal $â€” admin-only signal)
   void refreshLeadScore(profile.id).catch((err) =>
     console.error("[tool-results/pipeline] refreshLeadScore failed:", err),
   );
 
-  // 4b $€” transactional email
+  // 4b $â€” transactional email
   let emailSent = false;
   let emailError: string | undefined;
   if (input.sendEmail !== false) {

@@ -1,9 +1,9 @@
 /**
  * scripts/fix-meta-lengths.ts
  *
- * Truncates seoTitle to $‰¤60 chars and seoDescription to $‰¤155 chars
+ * Truncates seoTitle to â‰¤60 chars and seoDescription to â‰¤155 chars
  * across all blog MDX files. Uses simple heuristic truncation:
- * - Titles: remove "(2026)" suffix, remove "$€”" clause if still too long
+ * - Titles: remove "(2026)" suffix, remove "â€”" clause if still too long
  * - Descriptions: truncate at last sentence boundary under 155 chars
  *
  * CLI:
@@ -27,8 +27,8 @@ function truncateTitle(title: string): string {
   let t = title.replace(/\s*\(2026\)\s*$/, "");
   if (t.length <= MAX_TITLE) return t;
 
-  // Remove " $€” Subtitle" clause
-  const dashIdx = t.lastIndexOf(" $€” ");
+  // Remove " â€” Subtitle" clause
+  const dashIdx = t.lastIndexOf(" â€” ");
   if (dashIdx > 20) {
     t = t.slice(0, dashIdx);
     if (t.length <= MAX_TITLE) return t;
@@ -93,7 +93,7 @@ for (const file of files) {
       titleFixes++;
       if (dryRun) {
         console.log(`TITLE ${file}:`);
-        console.log(`  ${original.length}$†’${fixed.length}: ${fixed}`);
+        console.log(`  ${original.length}â†’${fixed.length}: ${fixed}`);
       }
     }
   }
@@ -133,7 +133,7 @@ for (const file of files) {
         descFixes++;
         if (dryRun) {
           console.log(`DESC ${file}:`);
-          console.log(`  ${original.length}$†’${fixed.length}`);
+          console.log(`  ${original.length}â†’${fixed.length}`);
         }
       }
     }

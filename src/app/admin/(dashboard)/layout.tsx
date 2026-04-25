@@ -48,7 +48,7 @@ export default async function DashboardLayout({
   try {
     overdueTasks = await countOverdueTasksFor(user.slug);
   } catch {
-    // table may not exist yet in some envs $€” swallow
+    // table may not exist yet in some envs $â€” swallow
   }
 
   const tedPending = await countTedPending();

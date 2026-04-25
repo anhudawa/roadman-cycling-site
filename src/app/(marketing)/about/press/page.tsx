@@ -6,14 +6,14 @@ import { Button, Card, ScrollReveal } from "@/components/ui";
 import { JsonLd } from "@/components/seo/JsonLd";
 
 export const metadata: Metadata = {
-  title: "Press & Media Kit $€” Anthony Walsh & Roadman Cycling",
+  title: "Press & Media Kit â€” Anthony Walsh & Roadman Cycling",
   description:
     "Press kit and media enquiries for Roadman Cycling and Anthony Walsh. Brand stats, founder bio, guest credentials, approved assets, and podcast-guesting availability.",
   alternates: {
     canonical: "https://roadmancycling.com/about/press",
   },
   openGraph: {
-    title: "Press & Media Kit $€” Anthony Walsh & Roadman Cycling",
+    title: "Press & Media Kit â€” Anthony Walsh & Roadman Cycling",
     description:
       "Press kit and media enquiries for Roadman Cycling and Anthony Walsh. Brand stats, founder bio, guest credentials, approved assets.",
     type: "profile",
@@ -34,7 +34,7 @@ const brandStats = [
     stat: "1,400+",
     label: "Episodes published",
     detail:
-      "In-depth interviews with World Tour coaches, sports scientists and pro riders $€” weekly since 2021, available everywhere podcasts are",
+      "In-depth interviews with World Tour coaches, sports scientists and pro riders â€” weekly since 2021, available everywhere podcasts are",
   },
   {
     stat: "65K",
@@ -51,13 +51,13 @@ const brandStats = [
 ];
 
 // Names here are cross-verified against /guests slugs and the /about expert
-// network list $€” all on-the-record podcast guests with episodes published
+// network list â€” all on-the-record podcast guests with episodes published
 // on roadmancycling.com.
 const notableGuests = [
   { name: "Professor Stephen Seiler", credential: "Polarised training pioneer" },
   {
     name: "Dan Lorang",
-    credential: "Head of Performance, Red Bull$€“Bora$€“Hansgrohe (since 2017)",
+    credential: "Head of Performance, Red Bullâ€“Boraâ€“Hansgrohe (since 2017)",
   },
   { name: "Greg LeMond", credential: "3Ã— Tour de France winner" },
   { name: "Lachlan Morton", credential: "EF Education pro cyclist" },
@@ -67,7 +67,7 @@ const notableGuests = [
     name: "Michael Matthews",
     credential: "15+ year World Tour pro, Grand Tour stage winner",
   },
-  { name: "Dan Bigham", credential: "Head of Engineering, Red Bull$€“Bora$€“Hansgrohe $· Former UCI Hour Record holder" },
+  { name: "Dan Bigham", credential: "Head of Engineering, Red Bullâ€“Boraâ€“Hansgrohe Â· Former UCI Hour Record holder" },
   { name: "Rosa Kloser", credential: "2024 Unbound Gravel 200 winner" },
   {
     name: "Tim Spector",
@@ -78,19 +78,19 @@ const notableGuests = [
 const pitchAngles = [
   {
     title: "The cycling podcast built on access, not algorithms",
-    body: "How one host's 1,400+ on-the-record interviews with the world's best coaches and scientists built a million-listener audience $€” and changed how amateur cyclists train.",
+    body: "How one host's 1,400+ on-the-record interviews with the world's best coaches and scientists built a million-listener audience â€” and changed how amateur cyclists train.",
   },
   {
-    title: "What the World Tour knows that age-groupers don't $€” yet",
+    title: "What the World Tour knows that age-groupers don't â€” yet",
     body: "Polarised training, periodisation, race-day fuelling: the methodology gap between pros and amateurs is closing, and most of it is coming through long-form podcasting.",
   },
   {
     title: "The triathlon bike-leg problem nobody is solving",
-    body: "The bike is 50$€“60% of race-day in long-course triathlon, yet most triathlon coaches treat it as a third of the plan. Why bike-specific coaching is the biggest unserved niche in endurance sport.",
+    body: "The bike is 50â€“60% of race-day in long-course triathlon, yet most triathlon coaches treat it as a third of the plan. Why bike-specific coaching is the biggest unserved niche in endurance sport.",
   },
   {
     title: "Longevity in endurance sport: cyclists over 40",
-    body: "Masters cyclists are the fastest-growing segment in the sport. What the science says about getting faster $€” not slower $€” after 40, 50, and beyond.",
+    body: "Masters cyclists are the fastest-growing segment in the sport. What the science says about getting faster â€” not slower â€” after 40, 50, and beyond.",
   },
 ];
 
@@ -106,12 +106,12 @@ const brandAssets = [
     type: "PNG",
   },
   {
-    label: "Anthony Walsh $€” studio",
+    label: "Anthony Walsh â€” studio",
     href: "/images/about/anthony-walsh-podcast.jpg",
     type: "JPG",
   },
   {
-    label: "Anthony Walsh $€” profile",
+    label: "Anthony Walsh â€” profile",
     href: "/images/about/anthony-profile-closeup.jpg",
     type: "JPG",
   },
@@ -120,7 +120,7 @@ const brandAssets = [
 export default function PressPage() {
   return (
     <>
-      {/* Person schema $€” aligned with /about Person entity for Knowledge Panel
+      {/* Person schema â€” aligned with /about Person entity for Knowledge Panel
           consistency. Any updates here should mirror /about/page.tsx. */}
       <JsonLd
         data={{
@@ -212,7 +212,7 @@ export default function PressPage() {
               </h1>
               <p className="text-foreground-muted text-xl max-w-2xl mx-auto leading-relaxed">
                 For interviews, features, podcast guesting, and media enquiries
-                $€” everything journalists and producers need in one place.
+                â€” everything journalists and producers need in one place.
                 Brand stats, bio, approved assets, and direct contact below.
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mt-8">
@@ -283,7 +283,7 @@ export default function PressPage() {
                 <div className="relative aspect-[3/4] rounded-xl overflow-hidden">
                   <Image
                     src="/images/about/anthony-walsh-podcast.jpg"
-                    alt="Anthony Walsh $€” founder and host, Roadman Cycling Podcast"
+                    alt="Anthony Walsh â€” founder and host, Roadman Cycling Podcast"
                     fill
                     className="object-cover"
                     sizes="(max-width: 768px) 100vw, 400px"
@@ -297,7 +297,7 @@ export default function PressPage() {
               >
                 <p className="text-off-white font-medium">
                   Anthony Walsh is the founder of Roadman Cycling and host of
-                  The Roadman Cycling Podcast $€” one of the most-listened-to
+                  The Roadman Cycling Podcast â€” one of the most-listened-to
                   cycling performance podcasts in the world.
                 </p>
                 <p>
@@ -306,14 +306,14 @@ export default function PressPage() {
                   across 18 countries. His interview catalogue runs to over
                   1,400 on-the-record conversations with the coaches,
                   scientists, and athletes who are actively shaping elite
-                  cycling $€” from polarised training pioneer Prof. Stephen
-                  Seiler to Red Bull$€“Bora$€“Hansgrohe head of performance Dan
+                  cycling â€” from polarised training pioneer Prof. Stephen
+                  Seiler to Red Bullâ€“Boraâ€“Hansgrohe head of performance Dan
                   Lorang, three-time Tour de France winner Greg LeMond, and
                   EF Education pro Lachlan Morton.
                 </p>
                 <p>
                   The Roadman Cycling coaching programme applies that body
-                  of work to serious amateur cyclists $€” time-crunched
+                  of work to serious amateur cyclists â€” time-crunched
                   professionals, comeback riders, and age-group racers who
                   refuse to accept that their best days are behind them.
                 </p>
@@ -453,7 +453,7 @@ export default function PressPage() {
             </h2>
             <p className="text-off-white/80 max-w-lg mx-auto mb-8">
               For interviews, features, podcast guesting, and partnership
-              enquiries $€” email directly. Most requests answered within 48
+              enquiries â€” email directly. Most requests answered within 48
               hours.
             </p>
             <Button

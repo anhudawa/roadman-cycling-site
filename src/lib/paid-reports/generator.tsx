@@ -28,10 +28,10 @@ import {
  * End-to-end paid-report generation + delivery.
  *
  *   1. Load the paid_report, its order, the underlying tool_result, and
- *      the DiagnosticDefinition. Anything missing $†’ mark failed.
+ *      the DiagnosticDefinition. Anything missing â†’ mark failed.
  *   2. Flip status to `generating` so admin sees real-time progress.
- *   3. Render the PDF via @react-pdf/renderer (dynamic import $€” heavy).
- *   4. If @vercel/blob is configured, upload PDF $†’ capture URL.
+ *   3. Render the PDF via @react-pdf/renderer (dynamic import â€” heavy).
+ *   4. If @vercel/blob is configured, upload PDF â†’ capture URL.
  *   5. Render the matching HTML web view; cache on the paid_report row.
  *   6. Mint a secure token (raw emailed, hash stored).
  *   7. Resend the delivery email with inline CTAs + PDF attachment.
@@ -61,7 +61,7 @@ export async function generateAndDeliverPaidReport(
 
     if (report.status === "delivered" || report.status === "generated") {
       console.log(
-        `[paid-reports/generator] report ${paidReportId} already ${report.status} $€” skipping`,
+        `[paid-reports/generator] report ${paidReportId} already ${report.status} â€” skipping`,
       );
       return;
     }
@@ -82,7 +82,7 @@ export async function generateAndDeliverPaidReport(
       return;
     }
 
-    // Tool result $€” we need the scored output to render. Look up by
+    // Tool result â€” we need the scored output to render. Look up by
     // linked id if present; otherwise bail.
     if (!report.toolResultId) {
       await markFailed(paidReportId, "no_tool_result");
@@ -111,11 +111,11 @@ export async function generateAndDeliverPaidReport(
 
     await markGenerating(paidReportId, GENERATOR_VERSION);
 
-    // 3. PDF $€” dynamic import keeps @react-pdf/renderer out of cold-start
+    // 3. PDF â€” dynamic import keeps @react-pdf/renderer out of cold-start
     //    for any request that doesn't hit this path.
     const pdfBuffer = await renderPdfBuffer(content);
 
-    // 4. Blob upload (optional $€” dev can skip, web view still works).
+    // 4. Blob upload (optional â€” dev can skip, web view still works).
     let pdfUrl: string | null = null;
     if (process.env.BLOB_READ_WRITE_TOKEN) {
       try {
@@ -130,7 +130,7 @@ export async function generateAndDeliverPaidReport(
         pdfUrl = uploaded.url;
       } catch (err) {
         console.error("[paid-reports/generator] blob upload failed:", err);
-        // Fall through $€” web view + email attachment still work.
+        // Fall through â€” web view + email attachment still work.
       }
     }
 

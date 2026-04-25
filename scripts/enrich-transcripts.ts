@@ -98,7 +98,7 @@ async function main() {
       const transcript = await fetchTranscript(ep.youtubeId);
 
       if (!transcript || transcript.length < 100) {
-        console.log("$š  no captions available");
+        console.log("âš  no captions available");
         noCaption++;
         continue;
       }
@@ -106,7 +106,7 @@ async function main() {
       const wordCount = transcript.split(/\s+/).length;
 
       if (dryRun) {
-        console.log(`$œ“ ${wordCount} words (dry-run, not writing)`);
+        console.log(`âœ“ ${wordCount} words (dry-run, not writing)`);
         enriched++;
         continue;
       }
@@ -122,14 +122,14 @@ async function main() {
       fs.writeFileSync(tmpPath, updated, "utf-8");
       fs.renameSync(tmpPath, ep.filePath);
 
-      console.log(`$œ“ ${wordCount} words written`);
+      console.log(`âœ“ ${wordCount} words written`);
       enriched++;
 
       // Small delay to avoid rate limits on YouTube
       await new Promise((r) => setTimeout(r, 1000));
     } catch (error) {
       const msg = error instanceof Error ? error.message : String(error);
-      console.log(`$œ— ${msg}`);
+      console.log(`âœ— ${msg}`);
       failed++;
     }
   }

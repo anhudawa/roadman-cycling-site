@@ -13,7 +13,7 @@ import { ToolAskHandoffLink } from "@/components/paid-reports/ToolAskHandoffLink
 /**
  * Saved tool-result permalink.
  *
- * Unguessable slug acts as the shareable token $€” no login required.
+ * Unguessable slug acts as the shareable token â€” no login required.
  * The free view renders summary + category explanation + next steps,
  * with a paid-report upsell below. The definition drives what copy
  * we show so plateau / fuelling / ftp all funnel through one template.
@@ -42,9 +42,9 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const { tool, slug } = await params;
   const result = await loadResult(tool, slug);
-  if (!result) return { title: "Your result $€” Roadman Cycling", robots: { index: false, follow: false } };
+  if (!result) return { title: "Your result â€” Roadman Cycling", robots: { index: false, follow: false } };
   return {
-    title: `Your result $€” Roadman Cycling`,
+    title: `Your result â€” Roadman Cycling`,
     description: result.summary,
     robots: { index: false, follow: false },
   };
@@ -127,7 +127,7 @@ export default async function ToolResultPermalink({
                   href={primaryCategory.recommendedResource.href}
                   className="inline-flex items-center text-coral hover:text-coral/80 text-sm font-heading tracking-wider transition-colors"
                 >
-                  {primaryCategory.recommendedResource.label} $†’
+                  {primaryCategory.recommendedResource.label} â†’
                 </Link>
               </article>
             ) : null}
@@ -141,7 +141,7 @@ export default async function ToolResultPermalink({
                 ASK ROADMAN TO WALK YOU THROUGH IT
               </h3>
               <p className="text-foreground-muted text-sm mb-5 leading-relaxed">
-                Chat with the Roadman AI about this exact result $€” it has your
+                Chat with the Roadman AI about this exact result â€” it has your
                 numbers, the training methodology, and the podcast archive at
                 hand.
               </p>
@@ -151,11 +151,11 @@ export default async function ToolResultPermalink({
                 resultSlug={result.slug}
                 className="inline-flex items-center justify-center gap-2 font-heading tracking-wider uppercase rounded-md bg-coral text-off-white hover:bg-coral/90 px-6 py-3 text-sm transition-all"
               >
-                Open this in Ask Roadman $†’
+                Open this in Ask Roadman â†’
               </ToolAskHandoffLink>
             </div>
 
-            {/* Paid report upsell $€” live checkout when the product is active. */}
+            {/* Paid report upsell â€” live checkout when the product is active. */}
             {paidProduct ? (
               <UpsellCard
                 productSlug={paidProduct.slug}

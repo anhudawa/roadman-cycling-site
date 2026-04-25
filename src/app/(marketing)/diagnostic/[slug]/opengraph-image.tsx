@@ -9,7 +9,7 @@ export const contentType = "image/png";
 /**
  * Dynamic OG card for shared results pages. Pulls the assigned
  * profile so a "look at my diagnosis" tweet renders a rich card
- * with the profile name $€” more compelling than a generic share.
+ * with the profile name â€” more compelling than a generic share.
  *
  * Handled gracefully when the slug is invalid / expired: falls back
  * to the same card /plateau uses, with no PII leak.
@@ -85,7 +85,7 @@ export default async function Image({
             }}
           >
             {submission
-              ? `YOUR DIAGNOSIS $· ${profileLabel.toUpperCase()}`
+              ? `YOUR DIAGNOSIS Â· ${profileLabel.toUpperCase()}`
               : "THE MASTERS PLATEAU DIAGNOSTIC"}
           </span>
           <div
@@ -98,7 +98,7 @@ export default async function Image({
               maxWidth: "1000px",
             }}
           >
-            {headline.length > 100 ? headline.slice(0, 100) + "$€¦" : headline}
+            {headline.length > 100 ? headline.slice(0, 100) + "â€¦" : headline}
           </div>
           <div
             style={{
@@ -108,7 +108,7 @@ export default async function Image({
               maxWidth: "900px",
             }}
           >
-            Find out which of four plateau profiles fits you $€” and the
+            Find out which of four plateau profiles fits you â€” and the
             exact fix. Four minutes at roadmancycling.com/plateau.
           </div>
           <div

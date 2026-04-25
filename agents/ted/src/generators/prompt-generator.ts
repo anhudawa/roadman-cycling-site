@@ -25,7 +25,7 @@ export async function generateDailyPrompt(opts: {
   const systemBase = loadPrompt(opts.promptsDir, "system-ted.md");
 
   // Saturday is meant to prompt on a recent episode. If none is found in the
-  // local catalogue, fall back to the Sunday weekend-ride pillar $€” Ted still
+  // local catalogue, fall back to the Sunday weekend-ride pillar â€” Ted still
   // posts a sensible prompt instead of parking a [SKIP] draft that blocks
   // the queue until a human intervenes.
   let effectivePillar: Pillar = opts.pillar;
@@ -72,7 +72,7 @@ export async function generateDailyPrompt(opts: {
         pass: false,
         redFlags: ["generator returned SKIP marker"],
         notes: lastBody,
-        regenerationNotes: "Needs human input $€” generator could not proceed.",
+        regenerationNotes: "Needs human input â€” generator could not proceed.",
       };
       break;
     }
@@ -133,11 +133,11 @@ function buildUserMessage(
       if (episode.summary) parts.push(`\nSummary:\n${episode.summary}`);
       if (episode.excerpt) parts.push(`\nExcerpt:\n${episode.excerpt}`);
     } else {
-      parts.push(`\nNo recent episode context available $€” return [SKIP $€” no recent episode found].`);
+      parts.push(`\nNo recent episode context available â€” return [SKIP â€” no recent episode found].`);
     }
   }
   parts.push(
-    `\nReturn only the post body (including the \`$€” Ted\` sign-off on its own line). No preamble, no JSON, no commentary.`
+    `\nReturn only the post body (including the \`â€” Ted\` sign-off on its own line). No preamble, no JSON, no commentary.`
   );
   return parts.join("\n");
 }
@@ -160,7 +160,7 @@ function addUsage(a: LLMUsage, b: LLMUsage): LLMUsage {
   };
 }
 
-// $”€$”€ Episode lookup $€” cheap, bounded, best-effort $”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€
+// â”€â”€ Episode lookup â€” cheap, bounded, best-effort â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 
 function loadMostRecentEpisode(podcastDir: string): EpisodeContext | null {
   if (!fs.existsSync(podcastDir)) return null;

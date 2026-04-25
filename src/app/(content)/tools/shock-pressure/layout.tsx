@@ -4,15 +4,15 @@ import { JsonLd } from "@/components/seo/JsonLd";
 import { SoftwareApplicationSchema } from "@/components/seo/SoftwareApplicationSchema";
 
 export const metadata: Metadata = {
-  title: "Shock Pressure Calculator $€” Suspension Setup",
+  title: "Shock Pressure Calculator $â€” Suspension Setup",
   description:
-    "Free MTB suspension calculator. Get recommended shock pressure, fork PSI, and sag percentage for your weight and riding style $€” XC, trail, enduro, or DH.",
+    "Free MTB suspension calculator. Get recommended shock pressure, fork PSI, and sag percentage for your weight and riding style $â€” XC, trail, enduro, or DH.",
   keywords: ["shock pressure calculator", "suspension setup calculator", "mountain bike sag calculator", "fork pressure calculator"],
   alternates: { canonical: "https://roadmancycling.com/tools/shock-pressure" },
   openGraph: {
-    title: "MTB Setup Calculator $€” Fork, Shock & Tyre Pressure",
+    title: "MTB Setup Calculator $â€” Fork, Shock & Tyre Pressure",
     description:
-      "Free MTB suspension calculator. Get recommended shock pressure, fork PSI, and sag percentage for your weight and riding style $€” XC, trail, enduro, or DH.",
+      "Free MTB suspension calculator. Get recommended shock pressure, fork PSI, and sag percentage for your weight and riding style $â€” XC, trail, enduro, or DH.",
     type: "website",
     url: "https://roadmancycling.com/tools/shock-pressure",
   },
@@ -38,7 +38,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
         totalTime="PT5M"
         steps={[
           { name: "Enter rider and bike weight", text: "Input your rider weight in kilograms (including riding gear, add 3-5kg to body weight) and your bike weight. These are the primary variables for both suspension and tyre pressure." },
-          { name: "Select your riding style", text: "Choose between cross-country, trail, enduro, or downhill. Each style uses different sag targets and pressure ranges $€” XC runs firmer for pedalling efficiency, while DH runs softer for maximum plushness." },
+          { name: "Select your riding style", text: "Choose between cross-country, trail, enduro, or downhill. Each style uses different sag targets and pressure ranges $â€” XC runs firmer for pedalling efficiency, while DH runs softer for maximum plushness." },
           { name: "Configure tyre settings", text: "Select your tyre width in inches and tyre setup (tubeless or tubed). Tubeless allows lower pressures without pinch flat risk. The calculator uses lookup tables calibrated against Bike Faff, CushCore, and Enve reference data." },
           { name: "Set up and verify sag", text: "Use the recommended pressures as starting points. Set your shock and fork pressure, then measure sag with a friend holding you upright in riding position. Adjust in 5 PSI increments until you hit the target sag percentage." },
         ]}
@@ -88,7 +88,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
               name: "What PSI should my mountain bike fork be?",
               acceptedAnswer: {
                 "@type": "Answer",
-                text: "Fork pressure is typically lower than rear shock pressure because the fork carries less of your body weight $€” roughly 40% versus 60% on the rear. A 75kg rider on a Fox 36 might run 70-80 PSI in the fork compared to 195-215 PSI in the rear shock. Start with the manufacturer's recommended pressure for your weight, set the sag to 20-25% for XC or 25-30% for trail and enduro, then fine-tune rebound and compression from there.",
+                text: "Fork pressure is typically lower than rear shock pressure because the fork carries less of your body weight $â€” roughly 40% versus 60% on the rear. A 75kg rider on a Fox 36 might run 70-80 PSI in the fork compared to 195-215 PSI in the rear shock. Start with the manufacturer's recommended pressure for your weight, set the sag to 20-25% for XC or 25-30% for trail and enduro, then fine-tune rebound and compression from there.",
               },
             },
             {

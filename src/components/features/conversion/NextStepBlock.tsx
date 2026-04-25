@@ -2,16 +2,16 @@ import Link from "next/link";
 import type { ContentPillar } from "@/types";
 
 /**
- * NextStepBlock $€” a persistent, SSR-rendered conversion block designed
+ * NextStepBlock â€” a persistent, SSR-rendered conversion block designed
  * to sit after the FAQ section (or wherever a natural scroll breakpoint
  * ends in the article). Offers three contextual next steps rather than
  * relying on nav/footer CTAs to do the work.
  *
  * The three options are deliberately weighted:
- *   1. Coaching $€” the revenue action for problem-aware readers
- *   2. Community $€” the lower-friction commit for readers who aren't
+ *   1. Coaching â€” the revenue action for problem-aware readers
+ *   2. Community â€” the lower-friction commit for readers who aren't
  *      ready to apply but want to stay in orbit
- *   3. Related deep-dive $€” the content action for readers who just
+ *   3. Related deep-dive â€” the content action for readers who just
  *      want the next thing to read
  *
  * Pillar-aware: the eyebrow and messaging shift slightly by pillar so
@@ -44,7 +44,7 @@ const PILLAR_COPY: Record<
     eyebrow: "NEXT STEP",
     headline: "MAKE RECOVERY NON-NEGOTIABLE.",
     subheadline:
-      "Knowing you need recovery is easy. Structuring a week that actually delivers it $€” around work, family and fatigue $€” is where coaching lives.",
+      "Knowing you need recovery is easy. Structuring a week that actually delivers it â€” around work, family and fatigue â€” is where coaching lives.",
   },
   community: {
     eyebrow: "NEXT STEP",
@@ -59,7 +59,7 @@ export interface NextStepBlockProps {
   /** Source string for analytics tracking on the CTAs */
   source: string;
   /**
-   * Optional relatedReading $€” a third "read next" option. Pass an
+   * Optional relatedReading â€” a third "read next" option. Pass an
    * object with label + href and it becomes the tertiary link. If
    * absent the block falls back to linking the /start-here hub.
    */
@@ -73,7 +73,7 @@ export function NextStepBlock({
 }: NextStepBlockProps) {
   const copy = PILLAR_COPY[pillar] ?? PILLAR_COPY.coaching;
   const tertiary = relatedReading ?? {
-    label: "Start Here $€” Best of Roadman",
+    label: "Start Here â€” Best of Roadman",
     href: "/start-here",
   };
 
@@ -96,7 +96,7 @@ export function NextStepBlock({
       </p>
 
       <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
-        {/* Primary $€” coaching */}
+        {/* Primary â€” coaching */}
         <Link
           href="/apply"
           data-track={`${source}-apply`}
@@ -111,20 +111,20 @@ export function NextStepBlock({
             APPLY FOR COACHING
           </span>
           <span className="font-heading text-lg leading-snug mt-1 mb-auto">
-            Not Done Yet $€” coaching community
+            Not Done Yet â€” coaching community
           </span>
           <span className="text-sm opacity-90 mt-3">
-            7-day free trial $· $195/mo
+            7-day free trial Â· $195/mo
           </span>
           <span
             aria-hidden="true"
             className="mt-3 text-sm font-heading tracking-wider group-hover:translate-x-0.5 transition-transform"
           >
-            APPLY $†’
+            APPLY â†’
           </span>
         </Link>
 
-        {/* Secondary $€” free community */}
+        {/* Secondary â€” free community */}
         <Link
           href="/community/clubhouse"
           data-track={`${source}-clubhouse`}
@@ -142,17 +142,17 @@ export function NextStepBlock({
             Roadman Clubhouse community
           </span>
           <span className="text-sm text-foreground-muted mt-3">
-            Q&amp;A with Anthony $· training plans $· 2,100+ riders
+            Q&amp;A with Anthony Â· training plans Â· 2,100+ riders
           </span>
           <span
             aria-hidden="true"
             className="mt-3 text-sm font-heading tracking-wider text-coral group-hover:translate-x-0.5 transition-transform"
           >
-            JOIN $†’
+            JOIN â†’
           </span>
         </Link>
 
-        {/* Tertiary $€” keep reading */}
+        {/* Tertiary â€” keep reading */}
         <Link
           href={tertiary.href}
           data-track={`${source}-read-next`}
@@ -176,7 +176,7 @@ export function NextStepBlock({
             aria-hidden="true"
             className="mt-3 text-sm font-heading tracking-wider text-coral group-hover:translate-x-0.5 transition-transform"
           >
-            OPEN $†’
+            OPEN â†’
           </span>
         </Link>
       </div>

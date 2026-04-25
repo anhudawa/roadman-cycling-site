@@ -7,7 +7,7 @@ import type { ConsentRecord, ConsentType } from "./types";
  * Consent audit log. Every explicit consent UI interaction writes here
  * with a copy-version hash and a one-way IP hash. The boolean flags on
  * `rider_profiles` remain the fast-read state; this table is the GDPR
- * audit trail $€” if a rider asks "what exactly did I agree to and when?"
+ * audit trail $â€” if a rider asks "what exactly did I agree to and when?"
  * we can replay it precisely.
  */
 
@@ -20,7 +20,7 @@ export interface LogConsentInput {
   source: string;
   /** Verbatim consent copy the rider saw (hashed for space + privacy). */
   copyText?: string | null;
-  /** Raw client IP $€” hashed on the way in, never stored plain. */
+  /** Raw client IP $â€” hashed on the way in, never stored plain. */
   ipAddress?: string | null;
   userAgent?: string | null;
 }

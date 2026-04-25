@@ -120,7 +120,7 @@ A: [2-3 sentence answer]`;
 
       const faqs = parseFaqResponse(result.text);
       if (faqs.length < 2) {
-        console.log(`   $š  Only parsed ${faqs.length} FAQs, skipping`);
+        console.log(`   âš  Only parsed ${faqs.length} FAQs, skipping`);
         console.log(`   Raw: ${result.text.slice(0, 200)}`);
         failed++;
         continue;
@@ -131,13 +131,13 @@ A: [2-3 sentence answer]`;
       const updated = matter.stringify(content, data);
       fs.writeFileSync(filePath, updated, "utf-8");
 
-      console.log(`   $œ… Added ${faqs.length} FAQs`);
+      console.log(`   âœ… Added ${faqs.length} FAQs`);
       for (const faq of faqs) {
         console.log(`      Q: ${faq.question.slice(0, 80)}`);
       }
       processed++;
     } catch (error) {
-      console.error(`   $Œ Failed: ${error instanceof Error ? error.message : error}`);
+      console.error(`   âŒ Failed: ${error instanceof Error ? error.message : error}`);
       failed++;
     }
   }

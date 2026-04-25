@@ -1,12 +1,12 @@
 import { ImageResponse } from "next/og";
 
-export const alt = "The Masters Plateau Diagnostic $€” Roadman Cycling";
+export const alt = "The Masters Plateau Diagnostic â€” Roadman Cycling";
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 
 /**
  * Social share card for /plateau. Matches the visual language of the
- * /you/[slug] cards $€” charcoal + deep-purple gradient, coral accents,
+ * /you/[slug] cards â€” charcoal + deep-purple gradient, coral accents,
  * the condensed heading style. Rendered by Satori at build / request
  * time.
  */
@@ -26,7 +26,7 @@ export default function Image() {
           position: "relative",
         }}
       >
-        {/* Top coral $†’ purple stripe for brand recognition */}
+        {/* Top coral â†’ purple stripe for brand recognition */}
         <div
           style={{
             position: "absolute",
@@ -90,7 +90,7 @@ export default function Image() {
             }}
           >
             For cyclists over 35 whose FTP has stalled. Find out which of
-            four profiles you fit $€” and the exact fix.
+            four profiles you fit â€” and the exact fix.
           </div>
           <div
             style={{

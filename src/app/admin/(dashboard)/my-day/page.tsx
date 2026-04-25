@@ -48,7 +48,7 @@ function emailStatusTone(status: string): "good" | "bad" | "warn" | "neutral" {
   }
 }
 
-// Subtle link that replaces the old coral "See all" $€” spec bans coral on links.
+// Subtle link that replaces the old coral "See all" â€” spec bans coral on links.
 const LINK_MUTED =
   "text-[11px] font-body text-[var(--color-fg-muted)] hover:text-[var(--color-fg)] transition-colors duration-[var(--dur-fast)]";
 const SECTION_H2 =
@@ -57,21 +57,21 @@ const SECTION_H2 =
 function activityIcon(type: string): string {
   switch (type) {
     case "email_sent":
-      return "$œ‰";
+      return "âœ‰";
     case "note":
-      return "$—‰";
+      return "â—‰";
     case "call_logged":
-      return "$˜Ž";
+      return "â˜Ž";
     case "task_completed":
-      return "$œ“";
+      return "âœ“";
     case "task_created":
       return "+";
     case "stage_change":
-      return "$†’";
+      return "â†’";
     case "assigned":
       return "@";
     default:
-      return "$·";
+      return "Â·";
   }
 }
 
@@ -97,7 +97,7 @@ export default async function MyDayPage() {
   return (
     <div className="space-y-6">
       <PageHeader
-        title={`My Day $€” ${user.name}`}
+        title={`My Day â€” ${user.name}`}
         subtitle={`${weekday}, ${dateStr}`}
         actions={<SendTestDigestButton />}
       />
@@ -195,7 +195,7 @@ export default async function MyDayPage() {
         </Card>
       )}
 
-      {/* Focus board $€” pinned main focus + all other open tasks, drag to pin. */}
+      {/* Focus board â€” pinned main focus + all other open tasks, drag to pin. */}
       <Card>
         <CardBody className="p-6">
           <FocusBoard
@@ -209,7 +209,7 @@ export default async function MyDayPage() {
       </Card>
 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-        {/* $”€$”€ Left column $”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€ */}
+        {/* â”€â”€ Left column â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */}
         <div className="space-y-6">
 
           {/* Applications waiting on me */}
@@ -223,7 +223,7 @@ export default async function MyDayPage() {
               </div>
               {data.applicationsWaiting.length === 0 ? (
                 <EmptyState
-                  icon="$œ“"
+                  icon="âœ“"
                   title="Nothing waiting"
                   subtitle="No cohort applications need your attention."
                 />
@@ -253,7 +253,7 @@ export default async function MyDayPage() {
                           </div>
                           <div className="flex items-center gap-2 mt-1 text-xs text-[var(--color-fg-muted)]">
                             <span>{a.hours}</span>
-                            <span className="text-[var(--color-fg-subtle)]">$·</span>
+                            <span className="text-[var(--color-fg-subtle)]">Â·</span>
                             <span className="truncate">{firstGoal}</span>
                           </div>
                         </Link>
@@ -266,14 +266,14 @@ export default async function MyDayPage() {
           </Card>
         </div>
 
-        {/* $”€$”€ Right column $”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€ */}
+        {/* â”€â”€ Right column â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */}
         <div className="space-y-6">
           {/* Recent activity */}
           <Card>
             <CardBody>
               <h2 className={`${SECTION_H2} mb-4`}>Recent activity (mine)</h2>
               {data.recentActivity.length === 0 ? (
-                <EmptyState icon="$·" title="No activity yet" />
+                <EmptyState icon="Â·" title="No activity yet" />
               ) : (
                 <ul className="space-y-1.5">
                   {data.recentActivity.map((a) => (
@@ -305,7 +305,7 @@ export default async function MyDayPage() {
             <CardBody>
               <h2 className={`${SECTION_H2} mb-4`}>Stale contacts</h2>
               {data.staleContacts.length === 0 ? (
-                <EmptyState icon="$œ“" title="All current" />
+                <EmptyState icon="âœ“" title="All current" />
               ) : (
                 <ul className="space-y-1.5">
                   {data.staleContacts.map((c) => (
@@ -334,7 +334,7 @@ export default async function MyDayPage() {
             <CardBody>
               <h2 className={`${SECTION_H2} mb-4`}>Recent emails sent (mine)</h2>
               {data.recentEmails.length === 0 ? (
-                <EmptyState icon="$œ‰" title="No emails sent yet" />
+                <EmptyState icon="âœ‰" title="No emails sent yet" />
               ) : (
                 <ul className="space-y-2">
                   {data.recentEmails.map((e) => (

@@ -49,20 +49,20 @@ export async function POST(request: NextRequest) {
 
     const stripe = new Stripe(STRIPE_SECRET_KEY);
 
-    // Price in pence (GBP)
+    // Price in cents (USD)
     const unitAmount = BASE_RATES[slotConfig.inventoryType] * 100;
 
     const session = await stripe.checkout.sessions.create({
       mode: "payment",
-      currency: "gbp",
+      currency: "usd",
       line_items: [
         {
           price_data: {
-            currency: "gbp",
+            currency: "usd",
             unit_amount: unitAmount,
             product_data: {
               name: slotConfig.label,
-              description: `Roadman Cycling ${slotConfig.label} $€” single placement, scripted by Anthony.`,
+              description: `Roadman Cycling ${slotConfig.label} â€”â€” single placement, scripted by Anthony.`,
             },
           },
           quantity: 1,

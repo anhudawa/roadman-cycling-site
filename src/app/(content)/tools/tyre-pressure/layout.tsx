@@ -4,13 +4,13 @@ import { JsonLd } from "@/components/seo/JsonLd";
 import { SoftwareApplicationSchema } from "@/components/seo/SoftwareApplicationSchema";
 
 export const metadata: Metadata = {
-  title: "Road Bike Tyre Pressure Calculator $€” 15% Drop (2026)",
+  title: "Road Bike Tyre Pressure Calculator $â€” 15% Drop (2026)",
   description:
     "Calculate optimal front and rear tyre pressure based on rider weight, tyre width, road surface, and conditions. Free cycling tool from Roadman Cycling.",
   keywords: ["tyre pressure calculator cycling", "bike tyre pressure", "cycling PSI calculator", "optimal tyre pressure"],
   alternates: { canonical: "https://roadmancycling.com/tools/tyre-pressure" },
   openGraph: {
-    title: "Road Bike Tyre Pressure Calculator $€” 15% Drop (2026)",
+    title: "Road Bike Tyre Pressure Calculator $â€” 15% Drop (2026)",
     description:
       "Calculate optimal front and rear tyre pressure based on rider weight, tyre width, road surface, and conditions. Free cycling tool from Roadman Cycling.",
     type: "website",
@@ -64,7 +64,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
               name: "What tyre pressure should I run on my road bike?",
               acceptedAnswer: {
                 "@type": "Answer",
-                text: "Optimal road bike tyre pressure depends on rider weight, tyre width, rim width, and road surface. A 75kg rider on 25mm clinchers typically runs 85-90 PSI rear and 80-85 PSI front. Wider tyres run lower $€” 28mm around 70-75 PSI, 32mm around 55-60 PSI. The days of pumping tyres to 120 PSI are over. Research by Frank Berto and SILCA shows that lower pressures within the correct range reduce rolling resistance on real roads by absorbing vibration rather than bouncing over imperfections.",
+                text: "Optimal road bike tyre pressure depends on rider weight, tyre width, rim width, and road surface. A 75kg rider on 25mm clinchers typically runs 85-90 PSI rear and 80-85 PSI front. Wider tyres run lower $â€” 28mm around 70-75 PSI, 32mm around 55-60 PSI. The days of pumping tyres to 120 PSI are over. Research by Frank Berto and SILCA shows that lower pressures within the correct range reduce rolling resistance on real roads by absorbing vibration rather than bouncing over imperfections.",
               },
             },
             {
@@ -72,7 +72,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
               name: "Should front and rear tyre pressure be different?",
               acceptedAnswer: {
                 "@type": "Answer",
-                text: "Yes. Your rear tyre carries more weight than the front $€” roughly 55% of total system weight versus 45% on a road bike. The rear should run 5-10 PSI higher than the front. Running equal pressure front and rear means your front tyre is over-inflated, reducing grip and comfort. This front/rear split is one of the simplest free speed gains you can make.",
+                text: "Yes. Your rear tyre carries more weight than the front $â€” roughly 55% of total system weight versus 45% on a road bike. The rear should run 5-10 PSI higher than the front. Running equal pressure front and rear means your front tyre is over-inflated, reducing grip and comfort. This front/rear split is one of the simplest free speed gains you can make.",
               },
             },
             {

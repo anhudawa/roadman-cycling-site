@@ -39,11 +39,11 @@ async function main() {
         .replace(/\s+/g, " ")
         .trim();
       writeFileSync(`/tmp/transcript-${v.id}.txt`, text);
-      console.log(`OK: ${v.id} (${v.title}) $€” ${text.split(" ").length} words`);
+      console.log(`OK: ${v.id} (${v.title}) $â€” ${text.split(" ").length} words`);
       success++;
     } catch (e: unknown) {
       const msg = e instanceof Error ? e.message : String(e);
-      console.log(`FAIL: ${v.id} (${v.title}) $€” ${msg}`);
+      console.log(`FAIL: ${v.id} (${v.title}) $â€” ${msg}`);
       failed++;
     }
     // Small delay

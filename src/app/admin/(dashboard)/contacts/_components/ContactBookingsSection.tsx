@@ -79,7 +79,7 @@ export function ContactBookingsSection({
       </div>
 
       {loading ? (
-        <p className="text-sm text-foreground-subtle">Loading$€¦</p>
+        <p className="text-sm text-foreground-subtle">Loadingâ€¦</p>
       ) : upcoming.length === 0 && past.length === 0 ? (
         <p className="text-sm text-foreground-subtle">No bookings.</p>
       ) : (
@@ -124,7 +124,7 @@ function BookingLine({ b }: { b: BookingRow }) {
         <div className="min-w-0">
           <p className="text-sm text-off-white truncate">{b.title}</p>
           <p className="text-[11px] text-foreground-subtle">
-            {formatWhen(b.scheduledAt)} $· {b.durationMinutes}m $· {b.ownerSlug}
+            {formatWhen(b.scheduledAt)} Â· {b.durationMinutes}m Â· {b.ownerSlug}
           </p>
         </div>
         <span

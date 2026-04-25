@@ -12,7 +12,7 @@ import { type SearchableItem } from "@/lib/search";
 import { SiteSearch } from "@/components/features/search/SiteSearch";
 
 export const metadata: Metadata = {
-  title: "Search $€” Find Episodes, Articles, Guests & Tools",
+  title: "Search â€” Find Episodes, Articles, Guests & Tools",
   description:
     "Search across the entire Roadman Cycling catalogue. Find podcast episodes, blog articles, guest profiles, and free cycling tools in one place.",
   robots: {
@@ -23,7 +23,7 @@ export const metadata: Metadata = {
     canonical: "https://roadmancycling.com/search",
   },
   openGraph: {
-    title: "Search $€” Find Episodes, Articles, Guests & Tools",
+    title: "Search â€” Find Episodes, Articles, Guests & Tools",
     description:
       "Search across the entire Roadman Cycling catalogue. Find podcast episodes, blog articles, guest profiles, and free cycling tools in one place.",
     type: "website",
@@ -31,12 +31,12 @@ export const metadata: Metadata = {
   },
 };
 
-/** Hardcoded pages $€” these don't come from MDX files */
+/** Hardcoded pages â€” these don't come from MDX files */
 const TOOLS: SearchableItem[] = [
   {
     type: "tool",
     slug: "start-here",
-    title: "Start Here $€” New to Roadman Cycling?",
+    title: "Start Here â€” New to Roadman Cycling?",
     description:
       "The best episodes, articles, tools, and resources to get you faster on the bike. Curated starting point.",
     pillar: "coaching",
@@ -160,7 +160,7 @@ function buildSearchIndex(): SearchableItem[] {
     // search access to the substantive content we've LLM-polished
     // without shipping full transcripts.
     const deepText = [
-      (ep.segmentTitles || []).join(" $· "),
+      (ep.segmentTitles || []).join(" Â· "),
       ep.answerCapsule || "",
       ep.seoDescription || "",
     ]

@@ -9,7 +9,7 @@ interface HorizontalScrollProps {
 }
 
 /**
- * Horizontal scroll section $€” content moves horizontally as you scroll vertically.
+ * Horizontal scroll section $â€” content moves horizontally as you scroll vertically.
  * A signature pattern from award-winning sites (Immersive Garden, Locomotive, etc.)
  */
 export function HorizontalScroll({

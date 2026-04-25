@@ -15,18 +15,18 @@ type TubeType = "clincher" | "tubeless" | "tubular";
  *
  * Model overview:
  *   1. Look up base rear pressure from a table interpolated by tyre width
- *      (table values calibrated for an 83.5kg system weight $€” 75kg + 8.5kg)
+ *      (table values calibrated for an 83.5kg system weight â€” 75kg + 8.5kg)
  *   2. Scale linearly by actual total weight vs reference weight
  *   3. Derive front pressure as ~93% of rear (matching the ~5-7% front/rear
  *      split seen in SILCA and Berto's 45/55 weight distribution research)
  *   4. Adjust for rim width, tube type, and surface condition
  *
  * Calibration targets (75kg rider + 8.5kg bike, clincher, smooth, standard rim):
- *   25mm $†’ front ~85, rear ~90
- *   28mm $†’ front ~70, rear ~75
- *   32mm $†’ front ~55, rear ~60
- *   40mm $†’ front ~35, rear ~38
- *   45mm $†’ front ~28, rear ~31
+ *   25mm â†’ front ~85, rear ~90
+ *   28mm â†’ front ~70, rear ~75
+ *   32mm â†’ front ~55, rear ~60
+ *   40mm â†’ front ~35, rear ~38
+ *   45mm â†’ front ~28, rear ~31
  */
 
 // Reference REAR pressures (PSI) at 83.5kg system weight (75kg rider + 8.5kg bike).
@@ -86,7 +86,7 @@ function calculatePressure(
   let frontPSI = rearPSI * 0.93;
 
   // Rim width correction: wider rims spread the tyre casing, increasing
-  // effective air volume $†’ lower pressure needed for the same deflection.
+  // effective air volume â†’ lower pressure needed for the same deflection.
   // Baseline internal rim widths per tyre size (modern standard pairings).
   const baselineRims: Record<number, number> = {
     23: 15, 25: 17, 28: 19, 30: 19, 32: 21,
@@ -106,9 +106,9 @@ function calculatePressure(
   frontPSI *= rimFactor;
 
   // Tube type adjustment (SILCA / BRR data):
-  //   Tubeless: 8-10% lower $€” eliminates pinch-flat risk so lower pressure
+  //   Tubeless: 8-10% lower â€” eliminates pinch-flat risk so lower pressure
   //   is safe, and reduces hysteresis from inner tube friction.
-  //   Tubular: ~3% lower $€” supple casing, lower hysteresis.
+  //   Tubular: ~3% lower â€” supple casing, lower hysteresis.
   const tubeModifier: Record<TubeType, number> = {
     clincher: 1.0,
     tubeless: 0.91,
@@ -118,9 +118,9 @@ function calculatePressure(
   frontPSI *= tubeModifier[tubeType];
 
   // Surface condition (SILCA K-factor approach simplified):
-  //   Rough roads: ~10% lower $€” tyre needs to absorb vibration, lower
+  //   Rough roads: ~10% lower â€” tyre needs to absorb vibration, lower
   //   pressure reduces impedance losses from surface roughness.
-  //   Gravel: ~20% lower $€” maximise contact patch and comfort,
+  //   Gravel: ~20% lower â€” maximise contact patch and comfort,
   //   prevent bouncing over loose surfaces.
   const surfaceModifier: Record<Surface, number> = {
     smooth: 1.0,
@@ -184,7 +184,7 @@ export default function TyrePressurePage() {
   const handleCopyResults = async () => {
     if (!result) return;
     const tubeLabels: Record<TubeType, string> = { clincher: "clincher", tubeless: "tubeless", tubular: "tubular" };
-    const text = `Tyre Pressure: Front ${result.front} PSI / Rear ${result.rear} PSI (${riderWeight}kg rider, ${tyreWidth}mm tyres, ${tubeLabels[tubeType]}) $€” roadmancycling.com/tools/tyre-pressure`;
+    const text = `Tyre Pressure: Front ${result.front} PSI / Rear ${result.rear} PSI (${riderWeight}kg rider, ${tyreWidth}mm tyres, ${tubeLabels[tubeType]}) â€” roadmancycling.com/tools/tyre-pressure`;
     await navigator.clipboard.writeText(text);
     setCopied(true);
     setTimeout(() => setCopied(false), 2000);
@@ -421,12 +421,12 @@ export default function TyrePressurePage() {
                       </li>
                       <li>
                         <a href="/topics/mountain-biking" className="text-coral hover:text-coral/80 text-sm transition-colors">
-                          Mountain Biking topic hub $†’
+                          Mountain Biking topic hub â†’
                         </a>
                       </li>
                       <li>
                         <a href="/podcast/ep-2057-your-tyres-are-slowing-you-down-here-s-why" className="text-coral hover:text-coral/80 text-sm transition-colors">
-                          Podcast: Your tyres are slowing you down $€” here&apos;s why
+                          Podcast: Your tyres are slowing you down â€” here&apos;s why
                         </a>
                       </li>
                     </ul>
@@ -451,7 +451,7 @@ export default function TyrePressurePage() {
                         rear: result.rear,
                       }}
                       heading={`Your ${tyreWidth}mm tyre setup for every condition`}
-                      subheading="A setup table covering dry, wet, gravel, and winter $€” plus how to tune by feel on real rides. One email, save it in the bookmarks."
+                      subheading="A setup table covering dry, wet, gravel, and winter â€” plus how to tune by feel on real rides. One email, save it in the bookmarks."
                       bullets={[
                         `Front ${result.front} / rear ${result.rear} psi baseline`,
                         "Adjustments for wet, gravel, and winter conditions",
@@ -492,7 +492,7 @@ export default function TyrePressurePage() {
                 className="inline-flex items-center justify-center gap-2 font-heading tracking-wider uppercase rounded-md bg-coral text-off-white hover:bg-coral/90 px-6 py-3 text-sm transition-all"
                 data-track="tool_tyre_apply"
               >
-                Apply for Coaching $†’
+                Apply for Coaching â†’
               </a>
             </motion.div>
           </Container>

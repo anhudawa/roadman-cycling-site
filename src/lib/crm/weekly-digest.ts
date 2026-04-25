@@ -111,7 +111,7 @@ export async function buildWeeklyDigestData(): Promise<WeeklyDigestData> {
     .from(tasks)
     .where(and(isNotNull(tasks.completedAt), gte(tasks.completedAt, rangeStart)));
 
-  // Top 5 scored contacts created in last 7d (fallback $€” no score delta tracked)
+  // Top 5 scored contacts created in last 7d (fallback $ï¿½ï¿½ no score delta tracked)
   const topScoredRows = await db
     .select({
       id: contacts.id,
@@ -165,10 +165,10 @@ function fmtShort(d: Date): string {
   return d.toLocaleDateString("en-GB", { day: "numeric", month: "short" });
 }
 
-function fmtMoney(cents: number, currency = "EUR"): string {
+function fmtMoney(cents: number, currency = "USD"): string {
   const amount = cents / 100;
   try {
-    return new Intl.NumberFormat("en-IE", {
+    return new Intl.NumberFormat("en-US", {
       style: "currency",
       currency,
       maximumFractionDigits: 0,
@@ -187,7 +187,7 @@ export interface RenderedWeekly {
 export function renderWeeklyDigest(data: WeeklyDigestData): RenderedWeekly {
   const start = fmtShort(data.rangeStart);
   const end = fmtShort(data.rangeEnd);
-  const subject = `Weekly CRM rollup $€” ${start}$€“${end}`;
+  const subject = `Weekly CRM rollup $ï¿½ï¿½ ${start}$ï¿½ï¿½${end}`;
 
   const contactsUrl = `${BASE_URL}/admin/contacts`;
   const appsUrl = `${BASE_URL}/admin/applications`;
@@ -232,7 +232,7 @@ export function renderWeeklyDigest(data: WeeklyDigestData): RenderedWeekly {
 <table role="presentation" width="600" cellpadding="0" cellspacing="0" style="max-width:600px;width:100%;background:#ffffff;border:1px solid #eee;border-radius:8px;padding:32px;">
 <tr><td>
   <h1 style="margin:0;font-size:22px;color:#222;">Weekly CRM rollup</h1>
-  <p style="margin:4px 0 0 0;color:#888;font-size:13px;">${esc(start)} $€“ ${esc(end)}</p>
+  <p style="margin:4px 0 0 0;color:#888;font-size:13px;">${esc(start)} $ï¿½ï¿½ ${esc(end)}</p>
 
   <table role="presentation" width="100%" cellpadding="0" cellspacing="4" style="margin-top:24px;border-collapse:separate;">
     <tr>
@@ -252,7 +252,7 @@ export function renderWeeklyDigest(data: WeeklyDigestData): RenderedWeekly {
   <div style="margin-top:28px;">
     <div style="display:flex;justify-content:space-between;align-items:baseline;">
       <h2 style="margin:0;font-size:13px;letter-spacing:0.12em;text-transform:uppercase;color:#222;">Top contact sources</h2>
-      <a href="${contactsUrl}" style="font-size:12px;color:${ACCENT};text-decoration:none;">View $†’</a>
+      <a href="${contactsUrl}" style="font-size:12px;color:${ACCENT};text-decoration:none;">View $ï¿½ï¿½</a>
     </div>
     <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="margin-top:8px;border-collapse:collapse;">
       ${sourceRows}
@@ -262,7 +262,7 @@ export function renderWeeklyDigest(data: WeeklyDigestData): RenderedWeekly {
   <div style="margin-top:24px;">
     <div style="display:flex;justify-content:space-between;align-items:baseline;">
       <h2 style="margin:0;font-size:13px;letter-spacing:0.12em;text-transform:uppercase;color:#222;">New applications by status</h2>
-      <a href="${appsUrl}" style="font-size:12px;color:${ACCENT};text-decoration:none;">View $†’</a>
+      <a href="${appsUrl}" style="font-size:12px;color:${ACCENT};text-decoration:none;">View $ï¿½ï¿½</a>
     </div>
     <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="margin-top:8px;border-collapse:collapse;">
       ${appStatusRows}
@@ -272,17 +272,17 @@ export function renderWeeklyDigest(data: WeeklyDigestData): RenderedWeekly {
   <div style="margin-top:24px;">
     <div style="display:flex;justify-content:space-between;align-items:baseline;">
       <h2 style="margin:0;font-size:13px;letter-spacing:0.12em;text-transform:uppercase;color:#222;">Email engagement</h2>
-      <a href="${reportsUrl}" style="font-size:12px;color:${ACCENT};text-decoration:none;">View $†’</a>
+      <a href="${reportsUrl}" style="font-size:12px;color:${ACCENT};text-decoration:none;">View $ï¿½ï¿½</a>
     </div>
     <p style="margin:8px 0 0 0;color:#333;font-size:13px;">
-      ${data.email.sent} sent $· ${data.email.opened} opened $· ${data.email.clicked} clicked
+      ${data.email.sent} sent $ï¿½ ${data.email.opened} opened $ï¿½ ${data.email.clicked} clicked
     </p>
   </div>
 
   <div style="margin-top:24px;">
     <div style="display:flex;justify-content:space-between;align-items:baseline;">
       <h2 style="margin:0;font-size:13px;letter-spacing:0.12em;text-transform:uppercase;color:#222;">Top 5 new scored contacts</h2>
-      <a href="${contactsUrl}" style="font-size:12px;color:${ACCENT};text-decoration:none;">View $†’</a>
+      <a href="${contactsUrl}" style="font-size:12px;color:${ACCENT};text-decoration:none;">View $ï¿½ï¿½</a>
     </div>
     <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="margin-top:8px;border-collapse:collapse;">
       ${scoredRows}
@@ -290,9 +290,9 @@ export function renderWeeklyDigest(data: WeeklyDigestData): RenderedWeekly {
   </div>
 
   <div style="margin-top:36px;padding-top:20px;border-top:1px solid #eee;text-align:center;">
-    <a href="${reportsUrl}" style="color:${ACCENT};text-decoration:none;font-size:14px;font-weight:600;">Open reports $†’</a>
-    <span style="color:#ccc;"> $· </span>
-    <a href="${dealsUrl}" style="color:${ACCENT};text-decoration:none;font-size:14px;font-weight:600;">Deals board $†’</a>
+    <a href="${reportsUrl}" style="color:${ACCENT};text-decoration:none;font-size:14px;font-weight:600;">Open reports $ï¿½ï¿½</a>
+    <span style="color:#ccc;"> $ï¿½ </span>
+    <a href="${dealsUrl}" style="color:${ACCENT};text-decoration:none;font-size:14px;font-weight:600;">Deals board $ï¿½ï¿½</a>
   </div>
 </td></tr>
 </table>
@@ -301,7 +301,7 @@ export function renderWeeklyDigest(data: WeeklyDigestData): RenderedWeekly {
 </body></html>`;
 
   const lines: string[] = [];
-  lines.push(`Weekly CRM rollup $€” ${start}$€“${end}`);
+  lines.push(`Weekly CRM rollup $ï¿½ï¿½ ${start}$ï¿½ï¿½${end}`);
   lines.push("");
   lines.push(`New contacts: ${data.newContacts.total}`);
   for (const s of data.newContacts.topSources) lines.push(`  - ${s.source}: ${s.count}`);
@@ -310,10 +310,10 @@ export function renderWeeklyDigest(data: WeeklyDigestData): RenderedWeekly {
   for (const s of data.newApplications.byStatus) lines.push(`  - ${s.status}: ${s.count}`);
   lines.push("");
   lines.push(
-    `Deals: created ${data.deals.created} $· won ${data.deals.won} (${fmtMoney(data.deals.wonValueCents)}) $· lost ${data.deals.lost}`
+    `Deals: created ${data.deals.created} $ï¿½ won ${data.deals.won} (${fmtMoney(data.deals.wonValueCents)}) $ï¿½ lost ${data.deals.lost}`
   );
   lines.push(
-    `Email: ${data.email.sent} sent $· ${data.email.opened} opened $· ${data.email.clicked} clicked`
+    `Email: ${data.email.sent} sent $ï¿½ ${data.email.opened} opened $ï¿½ ${data.email.clicked} clicked`
   );
   lines.push(`Tasks completed: ${data.tasksCompleted}`);
   lines.push("");

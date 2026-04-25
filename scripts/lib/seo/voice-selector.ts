@@ -59,7 +59,7 @@ export function selectVoiceExamples(
   count: number = 2,
   wordsPerExcerpt: number = 250
 ): { slug: string; title: string; excerpt: string }[] {
-  // Get candidates $€” pillar match first, then keyword matches
+  // Get candidates $â€” pillar match first, then keyword matches
   let candidates = getTranscriptsByPillar(pillar);
 
   // If not enough pillar matches, supplement with keyword matches

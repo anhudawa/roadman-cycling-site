@@ -4,14 +4,14 @@ import { sql } from "@vercel/postgres";
 config({ path: ".env.local" });
 
 const QUERIES: Array<{ label: string; sql: string }> = [
-  // $”€$”€ Contacts ops
+  // â”€â”€ Contacts ops
   { label: "contacts (total)", sql: "SELECT count(*)::int AS n FROM contacts" },
   {
     label: "contacts (active last 30d)",
     sql: "SELECT count(*)::int AS n FROM contacts WHERE last_activity_at > now() - interval '30 days'",
   },
 
-  // $”€$”€ CRM submissions / inbox
+  // â”€â”€ CRM submissions / inbox
   {
     label: "contact_submissions",
     sql: "SELECT count(*)::int AS n, count(*) FILTER (WHERE read_at IS NULL)::int AS unread FROM contact_submissions",
@@ -21,7 +21,7 @@ const QUERIES: Array<{ label: string; sql: string }> = [
     sql: "SELECT count(*)::int AS n, count(*) FILTER (WHERE created_at > now() - interval '30 days')::int AS recent FROM cohort_applications",
   },
 
-  // $”€$”€ Deals
+  // â”€â”€ Deals
   {
     label: "deals",
     sql: "SELECT count(*)::int AS n, coalesce(sum(value_cents)/100,0)::int AS total_value_usd FROM deals",
@@ -31,31 +31,31 @@ const QUERIES: Array<{ label: string; sql: string }> = [
     sql: "SELECT stage, count(*)::int AS n FROM deals GROUP BY stage ORDER BY stage",
   },
 
-  // $”€$”€ Tasks
+  // â”€â”€ Tasks
   {
     label: "tasks",
     sql: "SELECT count(*)::int AS n, count(*) FILTER (WHERE completed_at IS NULL)::int AS open FROM tasks",
   },
 
-  // $”€$”€ Bookings
+  // â”€â”€ Bookings
   {
     label: "bookings",
     sql: "SELECT count(*)::int AS n, count(*) FILTER (WHERE scheduled_at > now())::int AS upcoming FROM bookings",
   },
 
-  // $”€$”€ Segments
+  // â”€â”€ Segments
   {
     label: "segments",
     sql: "SELECT count(*)::int AS n FROM segments",
   },
 
-  // $”€$”€ Saved views
+  // â”€â”€ Saved views
   {
     label: "saved_views",
     sql: "SELECT count(*)::int AS n FROM saved_views",
   },
 
-  // $”€$”€ Automations
+  // â”€â”€ Automations
   {
     label: "automation_rules",
     sql: "SELECT count(*)::int AS n, count(*) FILTER (WHERE active)::int AS active FROM automation_rules",
@@ -65,7 +65,7 @@ const QUERIES: Array<{ label: string; sql: string }> = [
     sql: "SELECT count(*)::int AS n FROM automation_runs WHERE started_at > now() - interval '30 days'",
   },
 
-  // $”€$”€ Email engagement
+  // â”€â”€ Email engagement
   {
     label: "email_messages (last 30d)",
     sql: "SELECT count(*)::int AS n, count(*) FILTER (WHERE sent_at IS NOT NULL)::int AS sent, count(*) FILTER (WHERE opened_at IS NOT NULL)::int AS opened, count(*) FILTER (WHERE clicked_at IS NOT NULL)::int AS clicked FROM email_messages WHERE created_at > now() - interval '30 days'",
@@ -75,7 +75,7 @@ const QUERIES: Array<{ label: string; sql: string }> = [
     sql: "SELECT count(*)::int AS n FROM email_templates",
   },
 
-  // $”€$”€ Skool
+  // â”€â”€ Skool
   {
     label: "skool_events (last 7d)",
     sql: "SELECT count(*)::int AS n, count(*) FILTER (WHERE status = 'accepted')::int AS accepted FROM skool_events WHERE created_at > now() - interval '7 days'",
@@ -85,7 +85,7 @@ const QUERIES: Array<{ label: string; sql: string }> = [
     sql: "SELECT count(*)::int AS n, count(*) FILTER (WHERE skool_joined_at > now() - interval '30 days')::int AS last30d FROM subscribers WHERE skool_joined_at IS NOT NULL",
   },
 
-  // $”€$”€ Snapshots
+  // â”€â”€ Snapshots
   {
     label: "stripe_snapshots",
     sql: "SELECT count(*)::int AS n, max(snapshot_date)::text AS latest FROM stripe_snapshots",
@@ -95,43 +95,43 @@ const QUERIES: Array<{ label: string; sql: string }> = [
     sql: "SELECT count(*)::int AS n, max(snapshot_date)::text AS latest FROM beehiiv_snapshots",
   },
 
-  // $”€$”€ Experiments
+  // â”€â”€ Experiments
   {
     label: "ab_tests",
     sql: "SELECT count(*)::int AS n, count(*) FILTER (WHERE status = 'running')::int AS running FROM ab_tests",
   },
 
-  // $”€$”€ Content / TED
+  // â”€â”€ Content / TED
   {
     label: "repurposed_content",
     sql: "SELECT count(*)::int AS n, count(*) FILTER (WHERE status = 'pending')::int AS pending FROM repurposed_content",
   },
 
-  // $”€$”€ Newsletter (subscribers)
+  // â”€â”€ Newsletter (subscribers)
   {
     label: "subscribers (total)",
     sql: "SELECT count(*)::int AS n, count(*) FILTER (WHERE paid_at IS NOT NULL)::int AS paid, count(*) FILTER (WHERE trial_started_at IS NOT NULL AND paid_at IS NULL)::int AS trialing FROM subscribers",
   },
 
-  // $”€$”€ Tags
+  // â”€â”€ Tags
   {
     label: "contacts with tags",
     sql: "SELECT count(*)::int AS n FROM contacts WHERE tags IS NOT NULL AND array_length(tags, 1) > 0",
   },
 
-  // $”€$”€ Notes / activities
+  // â”€â”€ Notes / activities
   {
     label: "activities (last 30d)",
     sql: "SELECT count(*)::int AS n FROM activities WHERE created_at > now() - interval '30 days'",
   },
 
-  // $”€$”€ Notifications
+  // â”€â”€ Notifications
   {
     label: "notifications",
     sql: "SELECT count(*)::int AS n, count(*) FILTER (WHERE read_at IS NULL)::int AS unread FROM notifications",
   },
 
-  // $”€$”€ Team users
+  // â”€â”€ Team users
   {
     label: "team_users (active)",
     sql: "SELECT count(*)::int AS n FROM team_users WHERE active",

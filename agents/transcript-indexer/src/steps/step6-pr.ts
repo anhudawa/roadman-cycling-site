@@ -12,7 +12,7 @@ export function createEpisodePR(
   dryRun: boolean
 ): string | null {
   const branch = `episode/${result.episodeNumber}-${result.slug.slice(0, 40)}`;
-  const title = `Episode ${result.episodeNumber}: ${result.title} $€” auto-indexed`;
+  const title = `Episode ${result.episodeNumber}: ${result.title} â€” auto-indexed`;
   const sc = result.voiceCheck.sacred_cow_results;
 
   const check = (pass: boolean) => (pass ? "x" : " ");
@@ -37,7 +37,7 @@ export function createEpisodePR(
 **Score:** ${result.voiceCheck.sacred_cow_score}/7
 
 ## Internal Links Added
-${result.reciprocalEdits.map((e) => `- Added link from \`${e.targetSlug}\` $†’ new episode`).join("\n") || "None"}
+${result.reciprocalEdits.map((e) => `- Added link from \`${e.targetSlug}\` â†’ new episode`).join("\n") || "None"}
 
 ## Files Changed
 - \`content/podcast/${result.slug}.mdx\` (new/updated episode page)
@@ -79,16 +79,16 @@ ${result.reciprocalEdits.map((e) => `- \`content/podcast/${e.targetSlug}.mdx\` (
       }
     }
 
-    // Commit $€” use a temp file to avoid shell escaping issues
+    // Commit â€” use a temp file to avoid shell escaping issues
     const commitMsgFile = path.join(repoRoot, ".git", "AGENT_COMMIT_MSG");
-    fs.writeFileSync(commitMsgFile, `feat: auto-index episode ${result.episodeNumber} $€” ${result.title}`);
+    fs.writeFileSync(commitMsgFile, `feat: auto-index episode ${result.episodeNumber} â€” ${result.title}`);
     execSync(`git commit -F "${commitMsgFile}"`, { cwd: repoRoot, stdio: "pipe" });
     fs.unlinkSync(commitMsgFile);
 
     // Push
     execSync(`git push -u origin ${branch}`, { cwd: repoRoot, stdio: "pipe" });
 
-    // Create PR $€” use --body-file to avoid shell escaping
+    // Create PR â€” use --body-file to avoid shell escaping
     const bodyFile = path.join(repoRoot, ".git", "AGENT_PR_BODY");
     fs.writeFileSync(bodyFile, body);
     const safeTitle = title.replace(/"/g, '\\"');
@@ -102,7 +102,7 @@ ${result.reciprocalEdits.map((e) => `- \`content/podcast/${e.targetSlug}.mdx\` (
         { cwd: repoRoot, encoding: "utf-8" }
       ).trim();
     } catch {
-      // Labels may not exist $€” create PR without labels
+      // Labels may not exist â€” create PR without labels
       prUrl = execSync(
         `gh pr create --title "${safeTitle}" --body-file "${bodyFile}"`,
         { cwd: repoRoot, encoding: "utf-8" }
@@ -140,7 +140,7 @@ export function createBackfillPR(
   const startEp = results[0].episodeNumber;
   const endEp = results[results.length - 1].episodeNumber;
   const branch = `backfill/${startEp}-${endEp}`;
-  const title = `Backfill: Episodes ${startEp}-${endEp} $€” auto-indexed (${results.length} episodes)`;
+  const title = `Backfill: Episodes ${startEp}-${endEp} â€” auto-indexed (${results.length} episodes)`;
 
   const summaryRows = results.map((r) => {
     const status = r.voiceCheck.overall_pass ? "PASS" : "FAIL";

@@ -9,7 +9,7 @@ import { generateBreakdown } from "@/lib/diagnostic/generator";
  * QA flags a specific output.
  *
  * Gated by the standard admin cookie (requireAuth redirects on
- * unauthenticated $€” for an API route that yields a 307 to /admin/login
+ * unauthenticated $â€” for an API route that yields a 307 to /admin/login
  * which is fine from the admin UI).
  */
 export async function POST(

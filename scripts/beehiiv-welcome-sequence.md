@@ -1,4 +1,4 @@
-# Beehiiv Welcome Email Sequence $€” Roadman Cycling
+# Beehiiv Welcome Email Sequence â€” Roadman Cycling
 
 **Trigger:** New newsletter subscriber
 **Sequence length:** 9 emails over 14 days
@@ -7,10 +7,10 @@
 
 ---
 
-## Email 1 $€” Day 0: Welcome + What to Expect
+## Email 1 â€” Day 0: Welcome + What to Expect
 
-**Subject Line A:** You're in $€” here's what happens next
-**Subject Line B:** Welcome to Roadman $€” read this first
+**Subject Line A:** You're in â€” here's what happens next
+**Subject Line B:** Welcome to Roadman â€” read this first
 
 **Preview text:** What you'll get from me, how often, and one thing to do right now.
 
@@ -24,30 +24,30 @@ Quick version of what you just signed up for:
 
 Every week you'll get one email from me. No filler. No "Top 10 Cycling Hacks" nonsense. Just the most useful thing I've learned that week from coaching, podcast conversations, or working with real cyclists who are getting real results.
 
-I've done 1,300+ podcast episodes with the best coaches, sport scientists, and riders in the world $€” Stephen Seiler, Dan Lorang, Greg LeMond, Joe Friel, and hundreds more. The newsletter is where I distil that into things you can actually use on your next ride.
+I've done 1,300+ podcast episodes with the best coaches, sport scientists, and riders in the world â€” Stephen Seiler, Dan Lorang, Greg LeMond, Joe Friel, and hundreds more. The newsletter is where I distil that into things you can actually use on your next ride.
 
 Here's what to expect from me:
 
-- **One email per week** $€” training, nutrition, recovery, or mindset. Always actionable.
+- **One email per week** â€” training, nutrition, recovery, or mindset. Always actionable.
 - **No spam.** I won't sell your email to supplement companies or flood your inbox with affiliate rubbish.
-- **Occasional extras** when I've got something genuinely worth sharing $€” a new podcast episode, a free tool, or a deep dive on something that's working for the riders I coach.
+- **Occasional extras** when I've got something genuinely worth sharing â€” a new podcast episode, a free tool, or a deep dive on something that's working for the riders I coach.
 
 **One thing to do right now:**
 
-Reply to this email and tell me one thing $€” what's your biggest challenge on the bike right now? I read every reply. Seriously. It helps me write stuff that actually matters to you.
+Reply to this email and tell me one thing â€” what's your biggest challenge on the bike right now? I read every reply. Seriously. It helps me write stuff that actually matters to you.
 
 Talk soon,
 Anthony
 
 **CTA Button:** Reply With Your #1 Challenge
-**Destination:** mailto reply (no link needed $€” encourage reply for deliverability)
+**Destination:** mailto reply (no link needed â€” encourage reply for deliverability)
 
 ---
 
-## Email 2 $€” Day 1: Anthony's Story
+## Email 2 â€” Day 1: Anthony's Story
 
 **Subject Line A:** Why I started talking to strangers about cycling
-**Subject Line B:** 1,300 conversations later $€” here's what I've learned
+**Subject Line B:** 1,300 conversations later â€” here's what I've learned
 
 **Preview text:** I wasn't a pro. I wasn't a coach. I was just a cyclist who asked the right questions.
 
@@ -61,15 +61,15 @@ I'm Anthony Walsh. I'm not a former pro cyclist. I didn't race the Tour. I'm an 
 
 So I started asking people directly.
 
-First it was coaches I'd found online. Then sport scientists. Then the conversations got bigger $€” World Tour coaches, exercise physiologists, riders with Grand Tour wins. I'd get them on a podcast and ask the questions nobody else was asking. Not "what's your favourite bike?" but "show me exactly how you'd structure a 12-week block for a 42-year-old with 8 hours a week."
+First it was coaches I'd found online. Then sport scientists. Then the conversations got bigger â€” World Tour coaches, exercise physiologists, riders with Grand Tour wins. I'd get them on a podcast and ask the questions nobody else was asking. Not "what's your favourite bike?" but "show me exactly how you'd structure a 12-week block for a 42-year-old with 8 hours a week."
 
-1,300+ episodes later, over 1 million people a month listen to those conversations. The Roadman Cycling Podcast became one of the biggest cycling podcasts in the world. Not because of me $€” because of the guests, and because the information is genuinely useful.
+1,300+ episodes later, over 1 million people a month listen to those conversations. The Roadman Cycling Podcast became one of the biggest cycling podcasts in the world. Not because of me â€” because of the guests, and because the information is genuinely useful.
 
 But here's what I noticed: most listeners were consuming incredible information and doing absolutely nothing with it.
 
 They could explain polarised training to anyone. They understood Zone 2. They knew what W/kg meant. But their actual training hadn't changed in 12 months.
 
-That gap $€” between knowing and doing $€” is what the entire Roadman ecosystem is built to close.
+That gap â€” between knowing and doing â€” is what the entire Roadman ecosystem is built to close.
 
 The podcast gives you the knowledge. The newsletter keeps it practical. And when you're ready for the full system, that exists too. But we'll get to that.
 
@@ -82,10 +82,10 @@ Anthony
 
 ---
 
-## Email 3 $€” Day 3: Best Content Roundup
+## Email 3 â€” Day 3: Best Content Roundup
 
 **Subject Line A:** The 4 things I'd read if I were you
-**Subject Line B:** Start here $€” my best stuff, no fluff
+**Subject Line B:** Start here â€” my best stuff, no fluff
 
 **Preview text:** These are the posts and episodes that have changed the most riders' training.
 
@@ -98,15 +98,15 @@ You're a few days in now. Rather than guess what you need, I've pulled together 
 If you read or listen to nothing else from me, make it these:
 
 **1. The Zone 2 Training Guide**
-The most misunderstood concept in cycling. Most riders think they're doing Zone 2. They're not. This breaks down what it actually is, why it matters, and how to do it properly $€” not the podcast-listener version, the real version.
+The most misunderstood concept in cycling. Most riders think they're doing Zone 2. They're not. This breaks down what it actually is, why it matters, and how to do it properly â€” not the podcast-listener version, the real version.
 [Read it here](https://roadmancycling.com/blog/zone-2-training-complete-guide)
 
 **2. How to Improve Your FTP**
-Not "ride more." Not "do sweet spot." The actual levers you can pull to move your FTP $€” structured by what's most likely to work based on where you are right now.
+Not "ride more." Not "do sweet spot." The actual levers you can pull to move your FTP â€” structured by what's most likely to work based on where you are right now.
 [Read it here](https://roadmancycling.com/blog/how-to-improve-ftp-cycling)
 
 **3. The Polarised Training Guide**
-Professor Stephen Seiler's framework, explained properly. This is the training model that most World Tour teams use and most amateur cyclists get wrong. The mistake isn't the concept $€” it's the execution.
+Professor Stephen Seiler's framework, explained properly. This is the training model that most World Tour teams use and most amateur cyclists get wrong. The mistake isn't the concept â€” it's the execution.
 [Read it here](https://roadmancycling.com/blog/polarised-training-cycling-guide)
 
 **4. The Cycling Body Composition Guide**
@@ -115,7 +115,7 @@ The intersection of nutrition and performance that nobody talks about honestly. 
 
 Pick one. Read it this week. Apply one thing from it on your next ride.
 
-That's the difference between this newsletter and the 47 other cycling emails in your inbox $€” I'm going to keep asking you to do something with the information, not just consume more of it.
+That's the difference between this newsletter and the 47 other cycling emails in your inbox â€” I'm going to keep asking you to do something with the information, not just consume more of it.
 
 Anthony
 
@@ -124,7 +124,7 @@ Anthony
 
 ---
 
-## Email 4 $€” Day 5: The 5-Pillar Framework
+## Email 4 â€” Day 5: The 5-Pillar Framework
 
 **Subject Line A:** The 5 things every fast cyclist has dialled in
 **Subject Line B:** Why you're training hard and going nowhere
@@ -141,26 +141,26 @@ It's not that you need to train more. It's not that you need a better bike. It's
 
 It's that you're running on one pillar when you need five.
 
-Here's the framework that every serious cycling programme is built on. Score yourself honestly $€” 1 point for "not doing it", 2 for "doing it but guessing", 3 for "dialled in":
+Here's the framework that every serious cycling programme is built on. Score yourself honestly â€” 1 point for "not doing it", 2 for "doing it but guessing", 3 for "dialled in":
 
 **1. TRAINING**
 Are you following a periodised plan that matches your goals, your schedule, and your current fitness? Or are you just riding when you feel like it and throwing in intervals because a podcast said so?
 
 **2. NUTRITION**
-Do you know what to eat before a threshold session versus a Zone 2 day $€” specific amounts, changing by the meal? Or do you eat the same thing every day regardless of what's on the plan?
+Do you know what to eat before a threshold session versus a Zone 2 day â€” specific amounts, changing by the meal? Or do you eat the same thing every day regardless of what's on the plan?
 
 **3. STRENGTH & CONDITIONING**
 Are you doing gym sessions designed to complement your cycling? Sessions that build power and prevent injury without wrecking your legs for tomorrow's ride? Or are you skipping the gym entirely?
 
 **4. RECOVERY**
-Do you have prescribed protocols $€” sleep targets, recovery nutrition, deload weeks planned in advance? Or is "recovery" just the day you don't ride?
+Do you have prescribed protocols â€” sleep targets, recovery nutrition, deload weeks planned in advance? Or is "recovery" just the day you don't ride?
 
 **5. ACCOUNTABILITY**
 Is anyone looking at your training? Does anyone care if you followed through this week? Or are you uploading to Strava and coaching yourself?
 
 Add up your score.
 
-**Under 8:** You've found the bottleneck. Your fitness isn't the problem $€” it's everything around it.
+**Under 8:** You've found the bottleneck. Your fitness isn't the problem â€” it's everything around it.
 
 **8-12:** You've got some bases covered but you're guessing on the rest. This is where most serious amateurs live. And it's exactly where the biggest gains are hiding.
 
@@ -177,10 +177,10 @@ Anthony
 
 ---
 
-## Email 5 $€” Day 7: Social Proof
+## Email 5 â€” Day 7: Social Proof
 
 **Subject Line A:** 84kg to 68kg. FTP 200 to 295. 4 w/kg at 46.
-**Subject Line B:** These aren't pros $€” they're riders like you
+**Subject Line B:** These aren't pros â€” they're riders like you
 
 **Preview text:** Three real transformations from ordinary cyclists who stopped guessing.
 
@@ -190,7 +190,7 @@ Hey,
 
 I could talk about training theory all day. But you don't need more theory. You need to see what happens when someone actually applies all five pillars.
 
-So here are three real people. Not pros. Not genetic freaks. Cyclists with jobs, families, and limited time $€” who decided to stop guessing.
+So here are three real people. Not pros. Not genetic freaks. Cyclists with jobs, families, and limited time â€” who decided to stop guessing.
 
 ---
 
@@ -208,7 +208,7 @@ He didn't do anything extreme. He followed a system.
 Started: Average sportive rider. Plateaued. No clear objective or plan.
 Result: FTP from the low 200s to 295.
 
-Damien had all the information before he joined. The podcasts, the YouTube videos, the training articles. What changed was he stopped consuming and started committing. He said joining was one of the smartest things he'd done $€” not because of the plan, but because he finally had a coach who could see the truth in his numbers and a team behind him.
+Damien had all the information before he joined. The podcasts, the YouTube videos, the training articles. What changed was he stopped consuming and started committing. He said joining was one of the smartest things he'd done â€” not because of the plan, but because he finally had a coach who could see the truth in his numbers and a team behind him.
 
 ---
 
@@ -222,7 +222,7 @@ Brian didn't need more hours. He needed all five pillars working together for th
 
 Three different starting points. Three different goals. Same outcome: they stopped self-coaching and plugged into a system.
 
-I'm not asking you to do anything right now. Just sit with that for a minute. These are riders like you who were consuming the same content, riding the same hours, and getting nowhere $€” until something changed.
+I'm not asking you to do anything right now. Just sit with that for a minute. These are riders like you who were consuming the same content, riding the same hours, and getting nowhere â€” until something changed.
 
 Anthony
 
@@ -231,7 +231,7 @@ Anthony
 
 ---
 
-## Email 6 $€” Day 8: Free Tools Highlight
+## Email 6 â€” Day 8: Free Tools Highlight
 
 **Subject Line A:** 3 free tools that'll take you 5 minutes
 **Subject Line B:** Stop guessing your zones, tyre pressure, and race weight
@@ -247,7 +247,7 @@ One of the things I'm most proud of on the Roadman site is the free tools sectio
 Here are three I'd use this week if I were you:
 
 **1. FTP Zones Calculator**
-Plug in your FTP and get your exact training zones $€” power and heart rate. If you're training by zones (and you should be), this is the baseline for everything. Takes 10 seconds.
+Plug in your FTP and get your exact training zones â€” power and heart rate. If you're training by zones (and you should be), this is the baseline for everything. Takes 10 seconds.
 [Use the FTP Zones Calculator](https://roadmancycling.com/tools/ftp-zones-calculator)
 
 **2. Tyre Pressure Calculator**
@@ -255,7 +255,7 @@ Your tyre pressure should change based on your weight, tyre width, and road surf
 [Use the Tyre Pressure Calculator](https://roadmancycling.com/tools/tyre-pressure-calculator)
 
 **3. Race Weight Calculator**
-Knowing your ideal performance weight isn't about being skinny $€” it's about understanding the relationship between power and weight. This gives you a realistic, healthy target based on your current body composition.
+Knowing your ideal performance weight isn't about being skinny â€” it's about understanding the relationship between power and weight. This gives you a realistic, healthy target based on your current body composition.
 [Use the Race Weight Calculator](https://roadmancycling.com/tools/race-weight-calculator)
 
 These tools exist because I got tired of seeing riders guess at things that should be precise. Precision is free. Guessing costs you watts.
@@ -269,7 +269,7 @@ Anthony
 
 ---
 
-## Email 7 $€” Day 10: Common Mistake Email
+## Email 7 â€” Day 10: Common Mistake Email
 
 **Subject Line A:** The #1 mistake I see cyclists make (after 1,300 episodes)
 **Subject Line B:** You're probably making this mistake right now
@@ -282,7 +282,7 @@ Hey,
 
 After 1,300+ podcast conversations with the best coaches, scientists, and riders in the world, I can tell you the single biggest mistake I see cyclists make.
 
-It's not overtraining. It's not skipping the gym. It's not even bad nutrition $€” although that's up there.
+It's not overtraining. It's not skipping the gym. It's not even bad nutrition â€” although that's up there.
 
 **The #1 mistake is training in the grey zone.**
 
@@ -301,9 +301,9 @@ Here's what it looks like in practice:
 
 Your Zone 2 should feel embarrassingly easy. If you're not getting passed by people on city bikes, you're probably going too hard. I'm not joking.
 
-And your hard days $€” the intervals, the threshold work, the VO2max efforts $€” should be genuinely painful. Not "a bit uncomfortable." The kind of hard where you're questioning your life choices in the last interval.
+And your hard days â€” the intervals, the threshold work, the VO2max efforts â€” should be genuinely painful. Not "a bit uncomfortable." The kind of hard where you're questioning your life choices in the last interval.
 
-That polarisation $€” truly easy and truly hard, with very little in between $€” is what separates riders who improve from riders who plateau.
+That polarisation â€” truly easy and truly hard, with very little in between â€” is what separates riders who improve from riders who plateau.
 
 One thing to try this week: on your next easy ride, drop your power by 10-15% from what feels comfortable. Make it boring. Make it feel pointless. That's probably where it should have been all along.
 
@@ -316,7 +316,7 @@ P.S. If you want the full breakdown, read the [Polarised Training Guide](https:/
 
 ---
 
-## Email 8 $€” Day 12: Soft CTA for Not Done Yet
+## Email 8 â€” Day 12: Soft CTA for Not Done Yet
 
 **Subject Line A:** I built the thing I couldn't find
 **Subject Line B:** What coaching actually looks like (not what you think)
@@ -337,16 +337,16 @@ So I built the thing I couldn't find anywhere else: a coaching community called 
 
 Here's what it actually is:
 
-**Standard tier $€” $15/month:**
+**Standard tier â€” $15/month:**
 - Weekly training plans adaptable to your available hours
 - Weekly group coaching calls with me
 - Cycling-specific strength programme
 - Race weight and nutrition guidance
-- A community of serious cyclists $€” not beginners posting their first 10km ride, but riders chasing real goals
+- A community of serious cyclists â€” not beginners posting their first 10km ride, but riders chasing real goals
 
-**Premium tier $€” $195/month:**
+**Premium tier â€” $195/month:**
 - Everything above, plus personalised TrainingPeaks plans
-- 1:1 plan reviews $€” a real human looking at your actual power files
+- 1:1 plan reviews â€” a real human looking at your actual power files
 - Priority Q&A access
 - Advanced masterclass library
 - Nutrition guidance tailored to you
@@ -355,7 +355,7 @@ The name "Not Done Yet" isn't marketing. It's a statement. Every rider inside ha
 
 Here's who it's **not** for:
 
-- Riders who just want to ride casually and enjoy the scenery. Nothing wrong with that $€” but you don't need coaching.
+- Riders who just want to ride casually and enjoy the scenery. Nothing wrong with that â€” but you don't need coaching.
 - Riders who want a magic shortcut. There isn't one. It's still hard work. The coaching just makes sure the hard work actually counts.
 - Riders who aren't willing to be honest about where they are right now.
 
@@ -377,7 +377,7 @@ Anthony
 
 ---
 
-## Email 9 $€” Day 14: Direct CTA
+## Email 9 â€” Day 14: Direct CTA
 
 **Subject Line A:** Last thing from me (for now)
 **Subject Line B:** Here's where the newsletter ends and the coaching begins
@@ -388,7 +388,7 @@ Anthony
 
 Hey,
 
-This is the last email in my welcome sequence. From here, you'll get the weekly newsletter $€” one email, one useful thing, no filler.
+This is the last email in my welcome sequence. From here, you'll get the weekly newsletter â€” one email, one useful thing, no filler.
 
 But before I go back to our regular programming, I want to be direct with you.
 
@@ -408,16 +408,16 @@ Now here's my straight question: **which camp are you in?**
 
 If you're Camp B, here's the offer:
 
-**Not Done Yet $€” Standard: $15/month**
+**Not Done Yet â€” Standard: $15/month**
 Weekly training plans, group coaching calls, strength programme, nutrition guidance, community of serious cyclists.
 
-**Not Done Yet $€” Premium: $195/month**
+**Not Done Yet â€” Premium: $195/month**
 Everything above plus personalised TrainingPeaks plans, 1:1 plan reviews, priority access, advanced masterclasses.
 
 **Both come with:**
-- 7-day free trial $€” full access, no restrictions
-- 30-day money-back guarantee $€” if you're not seeing value, you get your money back. No questions, no awkwardness.
-- Cancel anytime $€” no contracts, no lock-in
+- 7-day free trial â€” full access, no restrictions
+- 30-day money-back guarantee â€” if you're not seeing value, you get your money back. No questions, no awkwardness.
+- Cancel anytime â€” no contracts, no lock-in
 
 The trial is free. One week inside the system is enough to know whether it's for you.
 
@@ -469,12 +469,12 @@ P.S. If you have questions before joining, reply to this email. I answer every o
 
 ### Key URLs Referenced
 - Podcast: https://roadmancycling.com/podcast
-- Blog $€” Zone 2 Guide: https://roadmancycling.com/blog/zone-2-training-complete-guide
-- Blog $€” FTP Guide: https://roadmancycling.com/blog/how-to-improve-ftp-cycling
-- Blog $€” Polarised Training: https://roadmancycling.com/blog/polarised-training-cycling-guide
-- Blog $€” Body Composition: https://roadmancycling.com/blog/cycling-body-composition-guide
-- Tool $€” FTP Zones Calculator: https://roadmancycling.com/tools/ftp-zones-calculator
-- Tool $€” Tyre Pressure Calculator: https://roadmancycling.com/tools/tyre-pressure-calculator
-- Tool $€” Race Weight Calculator: https://roadmancycling.com/tools/race-weight-calculator
+- Blog â€” Zone 2 Guide: https://roadmancycling.com/blog/zone-2-training-complete-guide
+- Blog â€” FTP Guide: https://roadmancycling.com/blog/how-to-improve-ftp-cycling
+- Blog â€” Polarised Training: https://roadmancycling.com/blog/polarised-training-cycling-guide
+- Blog â€” Body Composition: https://roadmancycling.com/blog/cycling-body-composition-guide
+- Tool â€” FTP Zones Calculator: https://roadmancycling.com/tools/ftp-zones-calculator
+- Tool â€” Tyre Pressure Calculator: https://roadmancycling.com/tools/tyre-pressure-calculator
+- Tool â€” Race Weight Calculator: https://roadmancycling.com/tools/race-weight-calculator
 - Tools Hub: https://roadmancycling.com/tools
 - Not Done Yet: https://roadmancycling.com/community/not-done-yet

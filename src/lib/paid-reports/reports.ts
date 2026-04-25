@@ -11,14 +11,14 @@ import {
 /**
  * Paid-report lifecycle store.
  *
- * Lifecycle: pending_payment $†’ payment_confirmed $†’ generating $†’
- * generated $†’ delivered. Terminal states are refunded / revoked /
- * failed. Each transition is idempotent $€” callers can retry without
+ * Lifecycle: pending_payment â†’ payment_confirmed â†’ generating â†’
+ * generated â†’ delivered. Terminal states are refunded / revoked /
+ * failed. Each transition is idempotent â€” callers can retry without
  * clobbering a later state.
  *
  * Tokens: the raw token is returned once on create so the email link
  * can include it. Only the sha256 of the token is stored. Tokens are
- * long enough (32 random bytes $†’ 43 base64url chars) that brute force
+ * long enough (32 random bytes â†’ 43 base64url chars) that brute force
  * is impractical; combined with a strict content-type check on the
  * download route they give us secure-by-default delivery without
  * requiring auth.
@@ -116,7 +116,7 @@ export async function listPaidReportsByEmail(
 
 /**
  * Generate a URL-safe random token + its sha256 hash. The raw token
- * MUST only be returned to the caller and emailed to the rider $€” the
+ * MUST only be returned to the caller and emailed to the rider â€” the
  * hash is all that persists.
  */
 export function generateSecureToken(): { token: string; hash: string } {
@@ -142,7 +142,7 @@ export async function getPaidReportByToken(
 }
 
 /* ============================================================ */
-/* State transitions $€” idempotent                                */
+/* State transitions â€” idempotent                                */
 /* ============================================================ */
 
 export async function markPaymentConfirmed(

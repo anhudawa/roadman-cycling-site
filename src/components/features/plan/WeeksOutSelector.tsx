@@ -8,7 +8,7 @@ interface Props {
 }
 
 /**
- * WeeksOutSelector $€” inline widget routing visitors from an event-specific
+ * WeeksOutSelector â€” inline widget routing visitors from an event-specific
  * blog post (e.g. /blog/wicklow-200-training-plan) into the programmatic
  * /plan/[event]/[weeks-out] landing pages. Presents all 6 phases as cards
  * so a rider self-selects their current window.
@@ -22,7 +22,7 @@ export function WeeksOutSelector({
   return (
     <div className="not-prose my-10 rounded-2xl border border-coral/20 bg-gradient-to-br from-coral/5 via-deep-purple/30 to-charcoal p-6 md:p-8">
       <p className="font-heading text-coral text-xs tracking-widest mb-2">
-        {event.name.toUpperCase()} $· BUILD MY PLAN
+        {event.name.toUpperCase()} Â· BUILD MY PLAN
       </p>
       <h3 className="font-heading text-off-white text-xl md:text-2xl mb-5 leading-tight">
         {heading}

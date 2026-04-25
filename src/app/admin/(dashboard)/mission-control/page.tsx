@@ -54,7 +54,7 @@ export default async function MissionControlPage() {
   const monthsRemaining = summary.monthsToTargetAtCurrentPace;
   const monthsStr =
     monthsRemaining === null
-      ? "$€”"
+      ? "â€”"
       : monthsRemaining >= 120
         ? ">10 yrs"
         : `${monthsRemaining.toFixed(1)} mo`;
@@ -76,8 +76,8 @@ export default async function MissionControlPage() {
         title="Mission Control"
         subtitle={
           now.fromSnapshot
-            ? `MRR snapshot ${asOfLabel} $· target ${formatCents(target)} MRR`
-            : "Live Stripe fetch (no snapshot yet) $· target $100,000 MRR"
+            ? `MRR snapshot ${asOfLabel} Â· target ${formatCents(target)} MRR`
+            : "Live Stripe fetch (no snapshot yet) Â· target $100,000 MRR"
         }
       />
 
@@ -98,8 +98,8 @@ export default async function MissionControlPage() {
               {formatCents(now.mrrCents)}
             </p>
             <p className="text-foreground-muted text-sm mt-1">
-              {now.activeSubscriptions.toLocaleString()} active $·{" "}
-              {now.trialingCount} trialing $·{" "}
+              {now.activeSubscriptions.toLocaleString()} active Â·{" "}
+              {now.trialingCount} trialing Â·{" "}
               {now.pastDueCount > 0 ? (
                 <span className="text-[var(--color-bad)]">
                   {now.pastDueCount} past due ({formatCents(now.pastDueMrrCents)})
@@ -151,13 +151,13 @@ export default async function MissionControlPage() {
             }
             sub={
               summary.approxChurnedMrrCents > 0
-                ? `$‰ˆ ${formatCents(summary.approxChurnedMrrCents)} MRR`
+                ? `â‰ˆ ${formatCents(summary.approxChurnedMrrCents)} MRR`
                 : "No churn recorded"
             }
             tone={summary.churnedSubscribers30d > 0 ? "bad" : "good"}
           />
           <StatTile
-            label="Trial $†’ paid (30d)"
+            label="Trial â†’ paid (30d)"
             value={pctFmt(summary.trialConversionRate * 100)}
             sub={`${summary.trialsConverted30d}/${summary.trialsStarted30d} trials`}
           />
@@ -176,7 +176,7 @@ export default async function MissionControlPage() {
             </div>
             {trend.length < 2 && (
               <Pill tone="warn">
-                Need $‰¥2 snapshots $€” cron runs daily 06:50 UTC
+                Need â‰¥2 snapshots â€” cron runs daily 06:50 UTC
               </Pill>
             )}
           </div>
@@ -204,7 +204,7 @@ export default async function MissionControlPage() {
           value={
             now.activeSubscriptions > 0
               ? formatCents(Math.round(now.mrrCents / now.activeSubscriptions))
-              : "$€”"
+              : "â€”"
           }
           sub="MRR / active subs"
 
@@ -215,7 +215,7 @@ export default async function MissionControlPage() {
           sub={
             now.mrrCents > 0
               ? `${((now.annualMrrCents / now.mrrCents) * 100).toFixed(0)}% of MRR`
-              : "$€”"
+              : "â€”"
           }
 
         />
@@ -236,19 +236,19 @@ export default async function MissionControlPage() {
           <SectionLabel>Decisions this page unlocks</SectionLabel>
           <ul className="text-sm text-foreground-muted space-y-2 mt-3">
             <li className="flex gap-2">
-              <span className="text-[var(--color-fg-muted)] mt-0.5">$†’</span>
+              <span className="text-[var(--color-fg-muted)] mt-0.5">â†’</span>
               Are we on track for {formatCentsCompact(target)} MRR? If net add
               is less than{" "}
               {formatCents(Math.round(target / 18 / 100) * 100)}/mo you won&apos;t
               hit it inside 18 months at current pace.
             </li>
             <li className="flex gap-2">
-              <span className="text-[var(--color-fg-muted)] mt-0.5">$†’</span>
-              Any past-due MRR? Recover first $€” churn prevention is the cheapest
+              <span className="text-[var(--color-fg-muted)] mt-0.5">â†’</span>
+              Any past-due MRR? Recover first â€” churn prevention is the cheapest
               MRR there is.
             </li>
             <li className="flex gap-2">
-              <span className="text-[var(--color-fg-muted)] mt-0.5">$†’</span>
+              <span className="text-[var(--color-fg-muted)] mt-0.5">â†’</span>
               Trial conversion below ~35%? Tighten the trial experience before
               pouring more top-of-funnel into it.
             </li>

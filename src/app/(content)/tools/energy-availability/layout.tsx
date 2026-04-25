@@ -4,13 +4,13 @@ import { JsonLd } from "@/components/seo/JsonLd";
 import { SoftwareApplicationSchema } from "@/components/seo/SoftwareApplicationSchema";
 
 export const metadata: Metadata = {
-  title: "Energy Availability Calculator $€” RED-S Risk",
+  title: "Energy Availability Calculator $â€” RED-S Risk",
   description:
     "Free energy availability calculator for cyclists. Find out if you're eating enough to train, recover, and avoid RED-S. Based on fat-free mass and training load.",
   keywords: ["energy availability calculator", "RED-S cycling", "cyclist energy availability", "relative energy deficiency"],
   alternates: { canonical: "https://roadmancycling.com/tools/energy-availability" },
   openGraph: {
-    title: "Energy Availability Calculator $€” RED-S Risk",
+    title: "Energy Availability Calculator $â€” RED-S Risk",
     description:
       "Free energy availability calculator for cyclists. Find out if you're eating enough to train, recover, and avoid RED-S. Based on fat-free mass and training load.",
     type: "website",

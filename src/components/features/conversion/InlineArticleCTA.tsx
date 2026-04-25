@@ -15,7 +15,7 @@ import type { ContentPillar } from "@/types";
 const PILLAR_CTA: Record<ContentPillar, { heading: string; subheading: string }> = {
   coaching: {
     heading: "GET TRAINING TIPS THAT ACTUALLY WORK",
-    subheading: "Evidence-based training insights from the podcast $€” delivered every Saturday morning.",
+    subheading: "Evidence-based training insights from the podcast $â€” delivered every Saturday morning.",
   },
   nutrition: {
     heading: "GET SMARTER ABOUT FUELLING",

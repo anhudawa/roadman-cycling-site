@@ -38,7 +38,7 @@ export default function AdminLoginPage() {
         return;
       }
 
-      // Cookie is set by the API response $€” navigate to dashboard
+      // Cookie is set by the API response $â€” navigate to dashboard
       window.location.href = "/admin";
     } catch {
       setError("Something went wrong");

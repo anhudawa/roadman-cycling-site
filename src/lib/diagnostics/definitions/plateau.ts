@@ -1,14 +1,14 @@
 import type { DiagnosticDefinition } from "../framework/types";
 
 /**
- * Plateau Diagnostic $€” framework adapter.
+ * Plateau Diagnostic $â€” framework adapter.
  *
  * The Plateau scoring logic already lives in src/lib/diagnostic/ and is
  * hit directly by /api/diagnostic/submit. This definition is a thin
  * mirror so admin tooling + the paid-report generator can reason about
  * Plateau the same way they reason about Fuelling and FTP.
  *
- * We keep the existing flow intact $€” `rules`/`pickPrimary` here delegate
+ * We keep the existing flow intact $â€” `rules`/`pickPrimary` here delegate
  * to the legacy scorer via a single rule that imports it lazily.
  */
 export const plateauDefinition: DiagnosticDefinition = {
@@ -28,18 +28,18 @@ export const plateauDefinition: DiagnosticDefinition = {
       label: "Under-Recovered",
       shortLabel: "Recovery Debt",
       explanation:
-        "Your inputs point at accumulated training stress you aren't absorbing. Fatigue is outrunning adaptation $€” more training won't fix this. Recovery will.",
+        "Your inputs point at accumulated training stress you aren't absorbing. Fatigue is outrunning adaptation $â€” more training won't fix this. Recovery will.",
       nextSteps: [
-        "Take 5$€“7 easy days. Zone 1, nothing over 75% of FTP.",
+        "Take 5$â€“7 easy days. Zone 1, nothing over 75% of FTP.",
         "Protect sleep: 8+ hours, same bedtime, dark room.",
         "Re-test FTP once RPE drops two points at the same wattage.",
       ],
       recommendedResource: {
         href: "/blog/overtraining-vs-overreaching-cyclists",
-        label: "Overtraining vs Overreaching $€” the 10 warning signs",
+        label: "Overtraining vs Overreaching $â€” the 10 warning signs",
       },
       riskAdvice: {
-        hr_suppressed: "HR suppressed at effort $€” treat as functional overreach until proven otherwise. Pull back a week.",
+        hr_suppressed: "HR suppressed at effort $â€” treat as functional overreach until proven otherwise. Pull back a week.",
         sleep_broken: "Sleep is broken. Nothing else moves until this does.",
       },
       crmTags: ["limiter_recovery_debt"],
@@ -50,7 +50,7 @@ export const plateauDefinition: DiagnosticDefinition = {
       label: "Intensity Distribution Off",
       shortLabel: "Polarisation",
       explanation:
-        "Too many sessions in the 75$€“85% grey zone. Seiler's work is clear: most endurance athletes need more Z2 and more hard days, not more moderate days.",
+        "Too many sessions in the 75$â€“85% grey zone. Seiler's work is clear: most endurance athletes need more Z2 and more hard days, not more moderate days.",
       nextSteps: [
         "Cap 80% of volume at Z1/Z2 (under 75% FTP).",
         "Two genuinely hard sessions: one threshold, one VO2.",
@@ -68,7 +68,7 @@ export const plateauDefinition: DiagnosticDefinition = {
       label: "Strength / Durability Gap",
       shortLabel: "Strength Gap",
       explanation:
-        "The bike work looks fine $€” the legs aren't strong enough to express it late in rides. Durability and power come from off-the-bike work.",
+        "The bike work looks fine $â€” the legs aren't strong enough to express it late in rides. Durability and power come from off-the-bike work.",
       nextSteps: [
         "Two 30-min strength sessions a week: squat / deadlift / single-leg.",
         "Prioritise late-ride quality: one long ride with a quality block at the end.",
@@ -76,7 +76,7 @@ export const plateauDefinition: DiagnosticDefinition = {
       ],
       recommendedResource: {
         href: "/blog/strength-training-for-cyclists-complete-guide",
-        label: "Strength Training for Cyclists $€” the full guide",
+        label: "Strength Training for Cyclists $â€” the full guide",
       },
       crmTags: ["limiter_strength_gap"],
       askSeedPrompt: "My plateau diagnostic flags a strength gap. What do I add, and what do I cut?",
@@ -86,18 +86,18 @@ export const plateauDefinition: DiagnosticDefinition = {
       label: "Fuelling Deficit",
       shortLabel: "Fuel Gap",
       explanation:
-        "You're under-eating for the work you're asking the body to do. This is the most-missed lever in masters cycling $€” nothing else works on an empty tank.",
+        "You're under-eating for the work you're asking the body to do. This is the most-missed lever in masters cycling $â€” nothing else works on an empty tank.",
       nextSteps: [
-        "Hit 60$€“90g carbs/hour on any ride over 90 minutes.",
+        "Hit 60$â€“90g carbs/hour on any ride over 90 minutes.",
         "Add a carb snack within 30 minutes of finishing.",
-        "Check body composition trend $€” if losing weight and losing performance, eat more.",
+        "Check body composition trend $â€” if losing weight and losing performance, eat more.",
       ],
       recommendedResource: {
         href: "/blog/cycling-in-ride-nutrition-guide",
-        label: "In-Ride Nutrition $€” the 60/90/120 rule",
+        label: "In-Ride Nutrition $â€” the 60/90/120 rule",
       },
       riskAdvice: {
-        low_energy_availability: "Low energy availability is a red flag. See a sports dietitian $€” this is not a DIY fix.",
+        low_energy_availability: "Low energy availability is a red flag. See a sports dietitian $â€” this is not a DIY fix.",
       },
       crmTags: ["limiter_fuelling_deficit"],
       askSeedPrompt: "My plateau diagnostic flags a fuelling deficit. Give me a one-week fuelling fix.",
@@ -127,7 +127,7 @@ export const plateauDefinition: DiagnosticDefinition = {
         cta: {
           label: "Apply for Coaching",
           href: "/apply",
-          copy: "Coaching sets the intensity distribution for you $€” no more grey-zone weeks.",
+          copy: "Coaching sets the intensity distribution for you $â€” no more grey-zone weeks.",
         },
       },
     ],

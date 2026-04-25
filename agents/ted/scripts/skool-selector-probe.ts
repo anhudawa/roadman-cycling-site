@@ -39,7 +39,7 @@ async function probe(page: Page, label: string, sels: string[]) {
           ? (await page.locator(s).first().innerText({ timeout: 500 }).catch(() => "")).trim().slice(0, 80)
           : "";
       console.log(
-        `  ${n > 0 ? "OK" : "$€” "} (${n}) ${s}${sample ? "  :: " + sample.replace(/\n/g, " ") : ""}`
+        `  ${n > 0 ? "OK" : "â€” "} (${n}) ${s}${sample ? "  :: " + sample.replace(/\n/g, " ") : ""}`
       );
     } catch {
       console.log(`  ER (0) ${s}`);
@@ -81,10 +81,10 @@ async function main() {
   await page.click('button[type="submit"]');
   try {
     await page.waitForURL((u) => !u.toString().includes("/login"), { timeout: 25000 });
-    console.log(`  logged in $†’ ${page.url()}`);
+    console.log(`  logged in â†’ ${page.url()}`);
   } catch {
     await shot(page, "login-stuck");
-    console.error("  still on /login after 25s $€” check screenshot");
+    console.error("  still on /login after 25s â€” check screenshot");
     await browser.close();
     process.exit(2);
   }

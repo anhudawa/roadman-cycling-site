@@ -28,7 +28,7 @@ function dueClass(dueAt: string | null, completed: boolean): string {
 }
 
 function formatDue(dueAt: string | null): string {
-  if (!dueAt) return "$€”";
+  if (!dueAt) return "$â€”";
   const d = new Date(dueAt);
   const today = new Date();
   today.setHours(0, 0, 0, 0);
@@ -85,7 +85,7 @@ export function TasksTable({ rows }: { rows: TaskRow[] }) {
         [id]: currentlyCompleted ? new Date().toISOString() : null,
       }));
       setError(
-        e instanceof Error ? e.message : "Failed to update task $€” try again",
+        e instanceof Error ? e.message : "Failed to update task $â€” try again",
       );
       window.setTimeout(() => setError(null), 4000);
     } finally {
@@ -206,7 +206,7 @@ export function TasksTable({ rows }: { rows: TaskRow[] }) {
                         {t.contactName ?? t.contactEmail ?? `#${t.contactId}`}
                       </Link>
                     ) : (
-                      <span className="text-xs text-foreground-subtle">$€”</span>
+                      <span className="text-xs text-foreground-subtle">$â€”</span>
                     )}
                   </td>
                   <td className={`px-4 py-3 text-xs ${dueClass(t.dueAt, completed)}`}>

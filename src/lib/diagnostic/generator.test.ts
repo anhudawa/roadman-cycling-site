@@ -4,10 +4,10 @@ import type { Answers, Breakdown } from "./types";
 /**
  * Generator tests. The Anthropic SDK is mocked so we can drive each
  * branch: happy path, malformed JSON, banned-phrase validation miss
- * that succeeds on retry, two failures dropping to the static $§9
+ * that succeeds on retry, two failures dropping to the static Â§9
  * fallback, and the "API key missing" short-circuit.
  *
- * Keep these deterministic $€” no real network, no timers.
+ * Keep these deterministic â€” no real network, no timers.
  */
 
 // Hoisted so the vi.mock factory (which itself is hoisted above
@@ -17,7 +17,7 @@ import type { Answers, Breakdown } from "./types";
 const { mockCreate } = vi.hoisted(() => ({ mockCreate: vi.fn() }));
 
 vi.mock("@anthropic-ai/sdk", () => {
-  // Regular function, not arrow $€” `new` requires a real constructor.
+  // Regular function, not arrow â€” `new` requires a real constructor.
   function MockAnthropic(this: unknown) {
     return { messages: { create: mockCreate } };
   }
@@ -42,9 +42,9 @@ const BASE_ANSWERS: Answers = {
   Q13: "Legs feel heavy.",
 };
 
-// Build a breakdown that sits inside the 500$€“900 word window and
+// Build a breakdown that sits inside the 500â€“900 word window and
 // doesn't trip any banned-phrase regex. 60 repetitions of a filler
-// sentence gets us to ~550 words total $€” enough to clear the floor
+// sentence gets us to ~550 words total â€” enough to clear the floor
 // with headroom for overrides.
 function wellFormed(overrides: Partial<Breakdown> = {}): string {
   const body: Breakdown = {
@@ -128,7 +128,7 @@ describe("generateBreakdown", () => {
 
   it("retries once and returns the second attempt when the first fails validation", async () => {
     const banned = wellFormed({
-      nextMove: "Time to crush it $€” unlock your potential.",
+      nextMove: "Time to crush it â€” unlock your potential.",
     });
     mockCreate
       .mockResolvedValueOnce(textResponse(banned))
@@ -143,7 +143,7 @@ describe("generateBreakdown", () => {
     expect(result.errors[0]).toMatch(/banned_phrase/);
   });
 
-  it("falls back to the static $§9 template after two validation failures", async () => {
+  it("falls back to the static Â§9 template after two validation failures", async () => {
     const banned = wellFormed({
       nextMove: "Crush it and unlock your potential.",
     });

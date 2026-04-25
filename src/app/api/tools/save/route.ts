@@ -15,11 +15,11 @@ import { clampString, LIMITS, normaliseEmail } from "@/lib/validation";
  * Flow:
  *   1. Validate email + tool + payload
  *   2. Build tool-specific summary/primaryResult/tags
- *   3. Hand off to completeToolResult $€” one pipeline handles rider
+ *   3. Hand off to completeToolResult â€” one pipeline handles rider
  *      profile upsert, tool_result row, CRM activity, Beehiiv sync,
  *      transactional email with permalink + Ask Roadman handoff link.
  *
- * The route is thin on purpose $€” all orchestration is in the pipeline
+ * The route is thin on purpose â€” all orchestration is in the pipeline
  * so the plateau flow and future tools can share it.
  *
  * Body shape:
@@ -162,7 +162,7 @@ export async function POST(request: Request) {
         heatCategory: data.outputs.heatCategory,
       };
       const tags = fuellingTags(tagInput);
-      const summary = `${data.outputs.carbsPerHour}g carbs/hr $· ${data.outputs.fluidPerHour}ml fluid/hr $· ${data.outputs.sodiumPerHour}mg sodium/hr for a ${data.inputs.durationMinutes}-min ${data.outputs.intensityLabel} session at ${data.inputs.watts}W.`;
+      const summary = `${data.outputs.carbsPerHour}g carbs/hr Â· ${data.outputs.fluidPerHour}ml fluid/hr Â· ${data.outputs.sodiumPerHour}mg sodium/hr for a ${data.inputs.durationMinutes}-min ${data.outputs.intensityLabel} session at ${data.inputs.watts}W.`;
 
       const outcome = await completeToolResult({
         email,
@@ -198,8 +198,8 @@ export async function POST(request: Request) {
     };
     const tags = ftpZonesTags(tagInput);
     const summary = data.outputs.wkg
-      ? `FTP ${data.inputs.ftp}W (${data.outputs.wkg.toFixed(2)} W/kg) $€” personalised power zones.`
-      : `FTP ${data.inputs.ftp}W $€” personalised power zones.`;
+      ? `FTP ${data.inputs.ftp}W (${data.outputs.wkg.toFixed(2)} W/kg) â€” personalised power zones.`
+      : `FTP ${data.inputs.ftp}W â€” personalised power zones.`;
 
     const outcome = await completeToolResult({
       email,

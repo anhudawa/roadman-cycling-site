@@ -61,7 +61,7 @@ async function loadFont(): Promise<ArrayBuffer> {
     return fontCache;
   } catch (err) {
     throw new Error(
-      `quote-card-renderer: Failed to load font $€” ${err instanceof Error ? err.message : String(err)}`
+      `quote-card-renderer: Failed to load font â€” ${err instanceof Error ? err.message : String(err)}`
     );
   }
 }
@@ -98,7 +98,7 @@ const LANDSCAPE: CardDims = {
 };
 
 // ---------------------------------------------------------------------------
-// Element builder (plain JS objects $€” satori-compatible, NOT JSX)
+// Element builder (plain JS objects â€” satori-compatible, NOT JSX)
 // ---------------------------------------------------------------------------
 
 function buildCardElement(
@@ -125,7 +125,7 @@ function buildCardElement(
         alignItems: "flex-start",
       },
       children: [
-        // Episode badge $€” top-left
+        // Episode badge â€” top-left
         {
           type: "div",
           props: {
@@ -149,7 +149,7 @@ function buildCardElement(
           },
         },
 
-        // Wordmark $€” bottom-right
+        // Wordmark â€” bottom-right
         {
           type: "div",
           props: {
@@ -197,7 +197,7 @@ function buildCardElement(
               marginBottom: "8px",
               maxWidth: `${innerWidth}px`,
             },
-            children: `$€” ${quote.speaker}`,
+            children: `â€” ${quote.speaker}`,
           },
         },
 
@@ -222,7 +222,7 @@ function buildCardElement(
 }
 
 // ---------------------------------------------------------------------------
-// Satori render $†’ PNG buffer
+// Satori render â†’ PNG buffer
 // ---------------------------------------------------------------------------
 
 async function renderCard(
@@ -250,11 +250,11 @@ async function renderCard(
   const textPng = rendered.asPng();
 
   if (!backgroundImage || !fs.existsSync(backgroundImage)) {
-    // No background $€” return the text layer directly
+    // No background â€” return the text layer directly
     return Buffer.from(textPng);
   }
 
-  // Compose: bg image $†’ dark gradient overlay $†’ coral tint $†’ text layer
+  // Compose: bg image â†’ dark gradient overlay â†’ coral tint â†’ text layer
   const bg = await sharp(backgroundImage)
     .resize(width, height, { fit: "cover" })
     .toBuffer();

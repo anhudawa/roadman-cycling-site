@@ -39,7 +39,7 @@ function loadEnvFile(filePath: string) {
 loadEnvFile(path.join(process.cwd(), ".env.local"));
 loadEnvFile(path.join(process.cwd(), ".env"));
 
-// Worktrees may not have their own .env.local $€” walk up the directory
+// Worktrees may not have their own .env.local â€” walk up the directory
 // tree to find the main repo root that contains .env.local.
 let parentDir = path.resolve(process.cwd(), "..");
 for (let i = 0; i < 5; i++) {
@@ -137,7 +137,7 @@ function buildPrompt(ep: EpisodeInfo): string {
   parts.push("");
   parts.push(`EPISODE DETAILS:`);
   parts.push(`Title: ${ep.title}`);
-  if (ep.guest) parts.push(`Guest: ${ep.guest}${ep.guestCredential ? ` $€” ${ep.guestCredential}` : ""}`);
+  if (ep.guest) parts.push(`Guest: ${ep.guest}${ep.guestCredential ? ` â€” ${ep.guestCredential}` : ""}`);
   parts.push(`Description: ${ep.description || ep.seoDescription || "(none)"}`);
   parts.push(`Keywords: ${ep.keywords.join(", ") || "(none)"}`);
   if (ep.answerCapsule) parts.push(`Answer capsule (TL;DR): ${ep.answerCapsule}`);
@@ -155,7 +155,7 @@ function buildPrompt(ep: EpisodeInfo): string {
   parts.push(`- No "unlock", "discover", "journey", "game-changing", "elevate", "level up".`);
   parts.push(`- No em-dashes.`);
   parts.push("");
-  parts.push(`OUTPUT FORMAT $€” return ONLY valid YAML (no code fences, no explanation). Example:`);
+  parts.push(`OUTPUT FORMAT â€” return ONLY valid YAML (no code fences, no explanation). Example:`);
   parts.push(`- question: What is Zone 2 training?`);
   parts.push(`  answer: >-`);
   parts.push(`    Zone 2 training is riding at 55-75% of FTP. It builds mitochondrial`);
@@ -210,7 +210,7 @@ function parseFaqYaml(raw: string): FaqPair[] {
       // Inline answer
       answer = inlineAnswerMatch[1];
     } else {
-      // Block scalar $€” collect indented lines after the answer: >- line
+      // Block scalar â€” collect indented lines after the answer: >- line
       const answerParts: string[] = [];
       for (let i = answerLineIdx + 1; i < lines.length; i++) {
         const line = lines[i];
@@ -297,7 +297,7 @@ async function main() {
   const episodes = getEpisodesToProcess();
 
   console.log(`\nðŸ“‹ Found ${episodes.length} episode(s) to process`);
-  if (dryRun) console.log("   (dry run $€” no files will be written)\n");
+  if (dryRun) console.log("   (dry run â€” no files will be written)\n");
   else console.log("");
 
   if (episodes.length === 0) {
@@ -355,7 +355,7 @@ async function main() {
 
       if (faqs.length < 2) {
         console.error(
-          `   Only parsed ${faqs.length} FAQ(s) $€” expected 3-5. Raw response:\n${textBlock.text.slice(0, 400)}`,
+          `   Only parsed ${faqs.length} FAQ(s) â€” expected 3-5. Raw response:\n${textBlock.text.slice(0, 400)}`,
         );
         errorCount++;
         continue;
@@ -363,7 +363,7 @@ async function main() {
 
       writeFaqToFile(ep, faqs);
 
-      console.log(`   $œ… Wrote ${faqs.length} FAQs`);
+      console.log(`   âœ… Wrote ${faqs.length} FAQs`);
       for (const faq of faqs) {
         console.log(`      Q: ${faq.question.slice(0, 70)}...`);
       }
@@ -372,7 +372,7 @@ async function main() {
       successCount++;
     } catch (err: unknown) {
       const message = err instanceof Error ? err.message : String(err);
-      console.error(`   $Œ Error: ${message}`);
+      console.error(`   âŒ Error: ${message}`);
       errorCount++;
 
       // Rate-limit backoff on 429
@@ -383,7 +383,7 @@ async function main() {
     }
   }
 
-  console.log(`\n$œ… Done: ${successCount} succeeded, ${errorCount} failed\n`);
+  console.log(`\nâœ… Done: ${successCount} succeeded, ${errorCount} failed\n`);
 }
 
 main().catch((err) => {

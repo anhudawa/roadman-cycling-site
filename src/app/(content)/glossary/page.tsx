@@ -6,9 +6,9 @@ import { JsonLd } from "@/components/seo/JsonLd";
 import { GLOSSARY_TERMS } from "@/lib/glossary";
 
 export const metadata: Metadata = {
-  title: "Cycling Performance Glossary $€” Key Terms Explained",
+  title: "Cycling Performance Glossary â€” Key Terms Explained",
   description:
-    "Cycling performance glossary. FTP, VO2max, polarised training, sweet spot, W/kg, lactate threshold, periodisation, and more $€” defined by a cycling coach, not a textbook.",
+    "Cycling performance glossary. FTP, VO2max, polarised training, sweet spot, W/kg, lactate threshold, periodisation, and more â€” defined by a cycling coach, not a textbook.",
   alternates: {
     canonical: "https://roadmancycling.com/glossary",
   },
@@ -76,7 +76,7 @@ export default function GlossaryPage() {
                             {term.definition}
                           </p>
                         </div>
-                        <span className="text-coral shrink-0 mt-1">$†’</span>
+                        <span className="text-coral shrink-0 mt-1">â†’</span>
                       </div>
                     </Card>
                   </Link>
@@ -100,7 +100,7 @@ export default function GlossaryPage() {
                 className="inline-flex items-center justify-center gap-2 font-heading tracking-wider uppercase rounded-md bg-coral text-off-white hover:bg-coral/90 px-6 py-3 text-sm transition-all"
                 data-track="glossary_index_apply"
               >
-                Apply for Coaching $†’
+                Apply for Coaching â†’
               </Link>
             </ScrollReveal>
           </Container>

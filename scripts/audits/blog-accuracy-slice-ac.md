@@ -1,4 +1,4 @@
-# Blog Fact-Check Slice AC $Äî Audit Report
+# Blog Fact-Check Slice AC ‚Äî Audit Report
 
 Date: 2026-04-23
 Author: Claude (fact-check agent AC)
@@ -32,7 +32,7 @@ weight-loss-mistakes, winter clothing, Zwift, cycling-leg-day).
 
 ## 2. Factual corrections (with verifying sources)
 
-### dan-lorang-amateur-training-plan.mdx $Äî MAJOR
+### dan-lorang-amateur-training-plan.mdx ‚Äî MAJOR
 
 **Before:** "Roglic's Coach Builds a Training Plan for Amateur Riders" (title) and
 "the coach who guided Primo≈æ Rogliƒç to Grand Tour victories".
@@ -45,7 +45,7 @@ Lucy Charles-Barclay".
 **Why:** Primo≈æ Rogliƒç's four Vuelta wins (2019, 2020, 2021, 2024) and 2023 Giro
 were all with Jumbo-Visma. He only joined Red Bull-Bora-Hansgrohe for the 2024
 season and his only Grand Tour victory since joining (2024 Vuelta) was won under
-the team's overall performance structure $Äî he was not personally coached by
+the team's overall performance structure ‚Äî he was not personally coached by
 Lorang. Per Cyclingnews and Red Bull-BORA-Hansgrohe official sources, Lorang's
 personal cycling athlete is Remco Evenepoel. His marquee coaching relationships
 are in triathlon: Frodeno (2008 Olympic champion, 3x Ironman world champion),
@@ -62,7 +62,7 @@ Source:
 most extensively."
 
 **After:** "This is the protocol originally developed by Jan Helgerud and
-colleagues at the Norwegian University of Science and Technology $Äî their 2007
+colleagues at the Norwegian University of Science and Technology ‚Äî their 2007
 Medicine & Science in Sports & Exercise study showed VO2max gains of around 7%
 in 8 weeks with three sessions per week. Prof. Stephen Seiler's polarised
 training research has since shown it pairs best with a foundation of Zone 2
@@ -75,10 +75,10 @@ the research. Source: https://pubmed.ncbi.nlm.nih.gov/17414804/
 ### cycling-mental-toughness.mdx
 
 **Before:** "Professor Seiler has talked about this on the podcast: the brain
-acts as a governor$Ä¶"
+acts as a governor‚Ä¶"
 
-**After:** "Exercise physiologists $Äî from Tim Noakes' central governor model to
-Marcora's psychobiological framework $Äî agree that the brain regulates output
+**After:** "Exercise physiologists ‚Äî from Tim Noakes' central governor model to
+Marcora's psychobiological framework ‚Äî agree that the brain regulates output
 before the body is genuinely at its physiological limit."
 
 **Why:** The "governor" concept is Noakes' central governor theory (not Seiler's
@@ -90,7 +90,7 @@ published work). Keeping it attributed correctly avoids misquoting Seiler.
 economy by 3-5% in trained cyclists."
 
 **After:** "Heavy strength training at appropriate volumes improves cycling
-performance and pedalling efficiency in trained cyclists $Äî not by adding watts
+performance and pedalling efficiency in trained cyclists ‚Äî not by adding watts
 at threshold directly, but by improving long-duration efficiency and late-stage
 power."
 
@@ -120,64 +120,64 @@ documented. Source: https://hexis.live/blog/meet-the-team-dr-sam-impey
 
 | Article | Claim | Citation |
 |---|---|---|
-| cycling-nutrition-race-day-guide.mdx | 60g glucose/hr SGLT1 cap; 90g/hr with fructose | Jeukendrup "Superior endurance performance with ingestion of multiple transportable carbohydrates" $Äî https://pubmed.ncbi.nlm.nih.gov/18202575/ |
-| cycling-nutrition-race-day-guide.mdx | Caffeine 3-6 mg/kg ergogenic | ISSN position stand on caffeine $Äî https://pubmed.ncbi.nlm.nih.gov/33388079/ |
-| cycling-mental-toughness.mdx | Self-talk ~18% TTE improvement | Blanchfield/Marcora 2014 MSSE $Äî https://pubmed.ncbi.nlm.nih.gov/24121242/ |
-| cycling-sleep-performance-guide.mdx | ~70% of GH pulses in slow-wave sleep | Van Cauter 1998 $Äî https://pubmed.ncbi.nlm.nih.gov/9779515/ |
-| cycling-sleep-performance-guide.mdx | 10-15% testosterone drop with sleep restriction | Leproult & Van Cauter 2011 JAMA $Äî https://pubmed.ncbi.nlm.nih.gov/21632481/ |
-| cycling-sleep-performance-guide.mdx | Stanford sleep-extension study | Mah 2011 Sleep $Äî https://pubmed.ncbi.nlm.nih.gov/21731144/ |
-| cycling-protein-requirements.mdx | 1.4-1.8 g/kg protein endurance targets | ISSN position stand on protein $Äî https://pubmed.ncbi.nlm.nih.gov/28642676/ |
-| cycling-tapering-guide.mdx | 2-3% performance gain from taper | Bosquet et al. 2007 MSSE $Äî https://pubmed.ncbi.nlm.nih.gov/17762369/ |
-| cycling-vo2max-intervals.mdx | Norwegian 4x4 protocol | Helgerud et al. 2007 MSSE $Äî https://pubmed.ncbi.nlm.nih.gov/17414804/ |
-| cycling-vo2max-intervals.mdx | Polarised 80/20 framework | Seiler 2010 IJSPP $Äî https://pubmed.ncbi.nlm.nih.gov/20861519/ |
-| cycling-leg-day-should-cyclists.mdx | Strength training transfers to cycling | R√∏nnestad 2015 Scand J Med Sci Sports $Äî https://pubmed.ncbi.nlm.nih.gov/24862305/ |
-| cycling-strength-training-guide.mdx | Strength training improves efficiency/late-stage power | Same R√∏nnestad paper $Äî https://pubmed.ncbi.nlm.nih.gov/24862305/ |
-| cycling-recovery-tips.mdx | Cold water immersion blunts strength adaptation | Roberts et al. 2015 J Physiol $Äî https://pubmed.ncbi.nlm.nih.gov/26174323/ |
-| cycling-sportive-preparation.mdx | 60-80 g/hr carbs during events | Jeukendrup $Äî https://pubmed.ncbi.nlm.nih.gov/18202575/ |
-| cycling-rest-week-guide.mdx | Loading-deload structure in elites | Seiler 2010 $Äî https://pubmed.ncbi.nlm.nih.gov/20861519/ |
-| cycling-overtraining-signs-guide.mdx | Seiler's TID research | Seiler 2010 $Äî https://pubmed.ncbi.nlm.nih.gov/20861519/ |
-| cycling-knee-pain-causes-fixes.mdx | Knee as most common overuse site in cyclists | Clarsen et al. 2010 $Äî https://pubmed.ncbi.nlm.nih.gov/20847225/ |
-| cycling-weight-loss-fuel-for-the-work-required.mdx | Impey "Fuel for the Work Required" | Impey et al. 2018 Sports Medicine $Äî https://pubmed.ncbi.nlm.nih.gov/29453741/ |
-| dan-lorang-amateur-training-plan.mdx | Seiler 80/20 distribution | Seiler 2010 $Äî https://pubmed.ncbi.nlm.nih.gov/20861519/ |
-| dan-lorang-amateur-training-plan.mdx | Multiple transportable carbs | Jeukendrup $Äî https://pubmed.ncbi.nlm.nih.gov/18202575/ |
+| cycling-nutrition-race-day-guide.mdx | 60g glucose/hr SGLT1 cap; 90g/hr with fructose | Jeukendrup "Superior endurance performance with ingestion of multiple transportable carbohydrates" ‚Äî https://pubmed.ncbi.nlm.nih.gov/18202575/ |
+| cycling-nutrition-race-day-guide.mdx | Caffeine 3-6 mg/kg ergogenic | ISSN position stand on caffeine ‚Äî https://pubmed.ncbi.nlm.nih.gov/33388079/ |
+| cycling-mental-toughness.mdx | Self-talk ~18% TTE improvement | Blanchfield/Marcora 2014 MSSE ‚Äî https://pubmed.ncbi.nlm.nih.gov/24121242/ |
+| cycling-sleep-performance-guide.mdx | ~70% of GH pulses in slow-wave sleep | Van Cauter 1998 ‚Äî https://pubmed.ncbi.nlm.nih.gov/9779515/ |
+| cycling-sleep-performance-guide.mdx | 10-15% testosterone drop with sleep restriction | Leproult & Van Cauter 2011 JAMA ‚Äî https://pubmed.ncbi.nlm.nih.gov/21632481/ |
+| cycling-sleep-performance-guide.mdx | Stanford sleep-extension study | Mah 2011 Sleep ‚Äî https://pubmed.ncbi.nlm.nih.gov/21731144/ |
+| cycling-protein-requirements.mdx | 1.4-1.8 g/kg protein endurance targets | ISSN position stand on protein ‚Äî https://pubmed.ncbi.nlm.nih.gov/28642676/ |
+| cycling-tapering-guide.mdx | 2-3% performance gain from taper | Bosquet et al. 2007 MSSE ‚Äî https://pubmed.ncbi.nlm.nih.gov/17762369/ |
+| cycling-vo2max-intervals.mdx | Norwegian 4x4 protocol | Helgerud et al. 2007 MSSE ‚Äî https://pubmed.ncbi.nlm.nih.gov/17414804/ |
+| cycling-vo2max-intervals.mdx | Polarised 80/20 framework | Seiler 2010 IJSPP ‚Äî https://pubmed.ncbi.nlm.nih.gov/20861519/ |
+| cycling-leg-day-should-cyclists.mdx | Strength training transfers to cycling | R√∏nnestad 2015 Scand J Med Sci Sports ‚Äî https://pubmed.ncbi.nlm.nih.gov/24862305/ |
+| cycling-strength-training-guide.mdx | Strength training improves efficiency/late-stage power | Same R√∏nnestad paper ‚Äî https://pubmed.ncbi.nlm.nih.gov/24862305/ |
+| cycling-recovery-tips.mdx | Cold water immersion blunts strength adaptation | Roberts et al. 2015 J Physiol ‚Äî https://pubmed.ncbi.nlm.nih.gov/26174323/ |
+| cycling-sportive-preparation.mdx | 60-80 g/hr carbs during events | Jeukendrup ‚Äî https://pubmed.ncbi.nlm.nih.gov/18202575/ |
+| cycling-rest-week-guide.mdx | Loading-deload structure in elites | Seiler 2010 ‚Äî https://pubmed.ncbi.nlm.nih.gov/20861519/ |
+| cycling-overtraining-signs-guide.mdx | Seiler's TID research | Seiler 2010 ‚Äî https://pubmed.ncbi.nlm.nih.gov/20861519/ |
+| cycling-knee-pain-causes-fixes.mdx | Knee as most common overuse site in cyclists | Clarsen et al. 2010 ‚Äî https://pubmed.ncbi.nlm.nih.gov/20847225/ |
+| cycling-weight-loss-fuel-for-the-work-required.mdx | Impey "Fuel for the Work Required" | Impey et al. 2018 Sports Medicine ‚Äî https://pubmed.ncbi.nlm.nih.gov/29453741/ |
+| dan-lorang-amateur-training-plan.mdx | Seiler 80/20 distribution | Seiler 2010 ‚Äî https://pubmed.ncbi.nlm.nih.gov/20861519/ |
+| dan-lorang-amateur-training-plan.mdx | Multiple transportable carbs | Jeukendrup ‚Äî https://pubmed.ncbi.nlm.nih.gov/18202575/ |
 | dan-lorang-amateur-training-plan.mdx | Red Bull BORA-Hansgrohe official Lorang news | https://www.redbullborahansgrohe.com/en/news/dan-lorang-to-leave-red-bull-bora-hansgrohe |
 
 ## 4. Softened claims (unverifiable or imprecise specifics)
 
-- "Roglic's Coach" title $Üí "A World Tour Coach's" (major attribution fix, see $ß2)
-- "guided Primo≈æ Rogliƒç to Grand Tour victories" $Üí removed; replaced with verifiable athlete relationships
-- "improves cycling economy by 3-5%" $Üí "improves cycling performance and pedalling efficiency$Ä¶ late-stage power"
-- "Professor Seiler's research has validated most extensively" (re 4x4) $Üí attribution corrected to Helgerud with Seiler properly credited for 80/20 framing
-- "Several World Tour teams including [named list]" (fuel for work required) $Üí "variants of this approach are now standard at World Tour level"
-- "40-60% of all cycling-related complaints" (knee pain) $Üí described as "most frequently affected joint" with epidemiology citation
+- "Roglic's Coach" title ‚Üí "A World Tour Coach's" (major attribution fix, see ¬ß2)
+- "guided Primo≈æ Rogliƒç to Grand Tour victories" ‚Üí removed; replaced with verifiable athlete relationships
+- "improves cycling economy by 3-5%" ‚Üí "improves cycling performance and pedalling efficiency‚Ä¶ late-stage power"
+- "Professor Seiler's research has validated most extensively" (re 4x4) ‚Üí attribution corrected to Helgerud with Seiler properly credited for 80/20 framing
+- "Several World Tour teams including [named list]" (fuel for work required) ‚Üí "variants of this approach are now standard at World Tour level"
+- "40-60% of all cycling-related complaints" (knee pain) ‚Üí described as "most frequently affected joint" with epidemiology citation
 - Marcora "psychobiological model" reference corrected to cite Blanchfield 2014 (lead author; Marcora was senior)
-- "Van Cauter's endocrine literature" (~60% GH) $Üí now cites a specific Van Cauter paper with the more defensible "~70% of GH pulses during sleep coincide with SWS" phrasing
+- "Van Cauter's endocrine literature" (~60% GH) ‚Üí now cites a specific Van Cauter paper with the more defensible "~70% of GH pulses during sleep coincide with SWS" phrasing
 
 ## 5. Flagged for human review
 
 1. **`cycling-podcasts-for-indoor-training.mdx`** claims "Controlled tests on
-   cognitive load during threshold work have shown power output drops of 2$Äì4%
+   cognitive load during threshold work have shown power output drops of 2‚Äì4%
    when athletes listen to verbal content versus music." I could not identify
    a specific peer-reviewed paper producing this exact result. Keeping the claim
    but Anthony should consider softening to "audio with verbal content can
    modestly reduce output at high intensity" unless there's a specific citation
    he has in mind.
-2. **`cycling-time-trial-tips.mdx`** $Äî aerodynamic savings estimates ("aero
+2. **`cycling-time-trial-tips.mdx`** ‚Äî aerodynamic savings estimates ("aero
    helmet 30-60s over 25 miles; skinsuit 30-45s") are ballpark industry numbers
    that vary wildly by wind tunnel, speed, and rider. Fine as written but caveat
    them in future revisions.
-3. **`cycling-winter-clothing-guide.mdx`** $Äî "Damp skin loses heat 25 times
+3. **`cycling-winter-clothing-guide.mdx`** ‚Äî "Damp skin loses heat 25 times
    faster than dry skin" is a widely repeated figure whose precise origin is
    uncertain (likely derived from water's higher thermal conductivity vs air;
    actual in-vivo figure depends on wind/humidity). Did not change but worth a
    future source-check.
 4. **Dan Lorang** is still listed as "Head of Performance at Red
-   Bull-Bora-Hansgrohe" across multiple articles $Äî correct as of April 2026,
+   Bull-Bora-Hansgrohe" across multiple articles ‚Äî correct as of April 2026,
    but per guardrails Lorang announced April 2026 he leaves the team end of
    2026 season. Once the July 2026 departure happens these should shift to
    "former head of performance". Consider building that into the site's
    scheduled-update plan.
-5. **`cycling-over-40-getting-faster.mdx` + `cycling-over-50-training.mdx`** $Äî
+5. **`cycling-over-40-getting-faster.mdx` + `cycling-over-50-training.mdx`** ‚Äî
    "5% VO2max decline per decade for trained athletes" is approximately right
    but varies widely by study (Trappe's masters-athlete work). Kept as-is, no
    change needed.
@@ -190,8 +190,8 @@ Slice AC blog edits + this audit report are in commit `a51cdaa`
 Note on parallel-agent chaos: two earlier commits on the same branch
 carry slice-labelled messages but actually contain other agents' files,
 caused by concurrent staging between parallel fact-check runs.
-Commit `a51cdaa` is the definitive slice AC commit $Äî it contains only the
-18 blog posts and the single audit report listed in sections 1$Äì3 above.
+Commit `a51cdaa` is the definitive slice AC commit ‚Äî it contains only the
+18 blog posts and the single audit report listed in sections 1‚Äì3 above.
 
 ---
 

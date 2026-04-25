@@ -83,7 +83,7 @@ export function ZoneChart({ zones, ftp }: ZoneChartProps) {
                   </span>
                   <span className="text-xs text-off-white/80 font-heading z-10 drop-shadow-sm">
                     {zone.maxWatts
-                      ? `${min}$€“${max}W`
+                      ? `${min}$â€“${max}W`
                       : `${min}W+`}
                   </span>
                 </div>

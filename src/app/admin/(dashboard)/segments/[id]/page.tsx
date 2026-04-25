@@ -32,7 +32,7 @@ export default async function SegmentDetailPage({
     <div>
       <div className="mb-6">
         <Link href="/admin/segments" className="text-xs text-foreground-subtle hover:text-accent">
-          $† Segments
+          â† Segments
         </Link>
         <div className="flex items-start justify-between mt-2 gap-4">
           <div>
@@ -41,7 +41,7 @@ export default async function SegmentDetailPage({
               <p className="text-sm text-foreground-muted mt-1">{segment.description}</p>
             )}
             <p className="text-xs text-foreground-subtle mt-2">
-              <span className="font-medium text-[var(--color-bad)] text-sm">{count}</span> members $· created by {segment.createdBySlug ?? "$€”"}
+              <span className="font-medium text-[var(--color-bad)] text-sm">{count}</span> members Â· created by {segment.createdBySlug ?? "â€”"}
             </p>
           </div>
         </div>
@@ -81,12 +81,12 @@ export default async function SegmentDetailPage({
                   <tr key={c.id} className="border-b border-white/5 hover:bg-white/[0.02]">
                     <td className="px-4 py-2">
                       <Link href={`/admin/contacts/${c.id}`} className="text-off-white hover:text-accent">
-                        {c.name ?? "$€”"}
+                        {c.name ?? "â€”"}
                       </Link>
                     </td>
                     <td className="px-4 py-2 text-foreground-muted">{c.email}</td>
                     <td className="px-4 py-2 text-foreground-muted">{c.lifecycleStage}</td>
-                    <td className="px-4 py-2 text-foreground-muted">{c.owner ?? "$€”"}</td>
+                    <td className="px-4 py-2 text-foreground-muted">{c.owner ?? "â€”"}</td>
                   </tr>
                 ))}
               </tbody>

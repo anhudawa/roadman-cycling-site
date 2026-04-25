@@ -1,4 +1,4 @@
-# Thread surface $€” link to a podcast episode
+# Thread surface â€” link to a podcast episode
 
 You will be given:
 - The thread's opening post (body, author).
@@ -8,10 +8,10 @@ Pick ONE episode and write a short reply that links to it naturally.
 
 Rules:
 
-- 25$€“55 words.
-- Name the guest and the specific claim or moment that's relevant. Not "you might like this episode" $€” "Episode 847 with Dan Lorang covers exactly this around minute 12."
-- Use the URL format: `https://roadmancycling.com/podcast/{slug}` $€” the browser module posts plain text, Skool auto-previews.
+- 25â€“55 words.
+- Name the guest and the specific claim or moment that's relevant. Not "you might like this episode" â€” "Episode 847 with Dan Lorang covers exactly this around minute 12."
+- Use the URL format: `https://roadmancycling.com/podcast/{slug}` â€” the browser module posts plain text, Skool auto-previews.
 - Do not summarise the entire episode. One claim, one reason it matters for this thread.
-- Sign-off: `$€” Ted`
+- Sign-off: `â€” Ted`
 
-If no candidate episode is strongly relevant, return `[SKIP $€” no match]`.
+If no candidate episode is strongly relevant, return `[SKIP â€” no match]`.

@@ -67,18 +67,18 @@ function getResult(score: number): Result {
 const RESULTS: Record<Result, { headline: string; body: string; cta: string; ctaHref: string }> = {
   ready: {
     headline: "YOU'RE READY FOR COACHING.",
-    body: "Your training history, goals, and current plateau make you an ideal candidate for structured coaching. You've outgrown what apps and self-coaching can deliver. A coach is the next step $€” not another app.",
+    body: "Your training history, goals, and current plateau make you an ideal candidate for structured coaching. You've outgrown what apps and self-coaching can deliver. A coach is the next step â€” not another app.",
     cta: "Apply for Not Done Yet",
     ctaHref: "/apply",
   },
   almost: {
-    headline: "COACHING WOULD HELP $€” BUT TIMING MATTERS.",
+    headline: "COACHING WOULD HELP â€” BUT TIMING MATTERS.",
     body: "You're in the zone where coaching starts to earn its keep. Consider whether you have a specific 12-month goal and the consistency to follow a plan. If yes, it's time. If not, start with our free tools and revisit when you're ready.",
     cta: "Explore Coaching",
     ctaHref: "/coaching",
   },
   wait: {
-    headline: "NOT YET $€” AND THAT'S FINE.",
+    headline: "NOT YET â€” AND THAT'S FINE.",
     body: "You're still in the early gains phase where structured apps and free content will deliver most of what you need. Build consistency first, learn your zones, and come back when you've hit a genuine plateau.",
     cta: "Free Training Tools",
     ctaHref: "/tools",
@@ -158,7 +158,7 @@ export function CoachingAssessment() {
             className="inline-flex items-center justify-center gap-2 font-heading tracking-wider uppercase rounded-md bg-coral text-off-white hover:bg-coral/90 px-8 py-4 text-base transition-all"
             data-track={`assessment_result_${result}`}
           >
-            {RESULTS[result].cta} $†’
+            {RESULTS[result].cta} â†’
           </Link>
         </div>
       )}

@@ -53,7 +53,7 @@ export function EvidenceBlock({
           >
             {authorName}
           </Link>
-          {" $€” "}
+          {" â€” "}
           {FOUNDER.jobTitle}
         </p>
       </div>
@@ -67,7 +67,7 @@ export function EvidenceBlock({
             {experts.map((e) => (
               <li key={e.name} className="text-sm text-foreground-muted">
                 <span className="text-off-white">{e.name}</span>
-                {e.role && ` $€” ${e.role}`}
+                {e.role && ` â€” ${e.role}`}
                 {e.href && (
                   <>
                     {" "}
@@ -75,7 +75,7 @@ export function EvidenceBlock({
                       href={e.href}
                       className="text-coral hover:text-coral/80 transition-colors"
                     >
-                      $†’
+                      â†’
                     </Link>
                   </>
                 )}
@@ -109,7 +109,7 @@ export function EvidenceBlock({
         {(reviewedBy || lastReviewed) && (
           <p>
             {reviewedBy && <span>Reviewed by {reviewedBy}</span>}
-            {reviewedBy && lastReviewed && <span> $· </span>}
+            {reviewedBy && lastReviewed && <span> Â· </span>}
             {lastReviewed && <span>Last reviewed {lastReviewed}</span>}
           </p>
         )}
@@ -123,7 +123,7 @@ export function EvidenceBlock({
           >
             Editorial standards
           </Link>
-          {" $· "}
+          {" Â· "}
           <a
             href={`mailto:${CONTACT.correctionsEmail}?subject=Correction%20request`}
             className="text-foreground-subtle hover:text-coral transition-colors underline decoration-white/10 underline-offset-2"

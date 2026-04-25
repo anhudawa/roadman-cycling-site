@@ -1,11 +1,11 @@
 /**
  * Seeds the MCP content tables from real Roadman sources:
  *
- *   mcp_episodes              $† content/podcast/*.mdx (all 310 episodes)
- *   mcp_experts               $† lib/guests.ts (derived from episode frontmatter)
- *   mcp_methodology_principles $† curated principles + real supporting episode IDs
+ *   mcp_episodes              â† content/podcast/*.mdx (all 310 episodes)
+ *   mcp_experts               â† lib/guests.ts (derived from episode frontmatter)
+ *   mcp_methodology_principles â† curated principles + real supporting episode IDs
  *
- * Idempotent. Safe to re-run $€” episodes are upserted by slug, experts by name,
+ * Idempotent. Safe to re-run â€” episodes are upserted by slug, experts by name,
  * methodology principles are wiped and re-inserted (only ~10 rows).
  *
  * After running this, run `npm run seed:mcp:embeddings` to populate the
@@ -26,7 +26,7 @@ import { getAllEpisodes, type EpisodeMeta } from "../src/lib/podcast";
 import { getAllGuests, type GuestProfile } from "../src/lib/guests";
 import { SITE_ORIGIN } from "../src/lib/brand-facts";
 
-// $”€$”€$”€ Helpers $”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€
+// â”€â”€â”€ Helpers â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 
 /** Parse "H:MM:SS", "MM:SS", or "M:SS" into total seconds. */
 function durationToSeconds(duration: string | undefined): number | null {
@@ -59,10 +59,10 @@ function keyInsightsFor(ep: EpisodeMeta): string[] {
   return [];
 }
 
-// $”€$”€$”€ Episode seeding $”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€
+// â”€â”€â”€ Episode seeding â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 
 async function seedEpisodes(): Promise<Map<string, number>> {
-  console.log("$†’ Seeding mcp_episodes from content/podcast/*.mdx");
+  console.log("â†’ Seeding mcp_episodes from content/podcast/*.mdx");
   const episodes = getAllEpisodes();
   const slugToId = new Map<string, number>();
 
@@ -114,11 +114,11 @@ async function seedEpisodes(): Promise<Map<string, number>> {
     if (justCreated) inserted++;
     else updated++;
   }
-  console.log(`  $œ“ ${episodes.length} episodes (${inserted} inserted, ${updated} updated)`);
+  console.log(`  âœ“ ${episodes.length} episodes (${inserted} inserted, ${updated} updated)`);
   return slugToId;
 }
 
-// $”€$”€$”€ Expert seeding $”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€
+// â”€â”€â”€ Expert seeding â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 
 /**
  * Specialty derivation from guest pillar + tags. Keeps specialty text short
@@ -183,7 +183,7 @@ const FEATURED_EXPERTS = new Set<string>([
 ]);
 
 async function seedExperts(): Promise<Map<string, number>> {
-  console.log("$†’ Seeding mcp_experts from lib/guests");
+  console.log("â†’ Seeding mcp_experts from lib/guests");
   const guests = getAllGuests();
   const eligible = guests.filter(
     (g) => FEATURED_EXPERTS.has(g.name) || g.episodeCount >= 2
@@ -229,15 +229,15 @@ async function seedExperts(): Promise<Map<string, number>> {
     nameToId.set(g.name, result[0].id);
     if (result.length > 0) {
       // Can't cleanly distinguish insert vs update with ON CONFLICT on
-      // tables without createdAt $€” count them all as upserts.
+      // tables without createdAt â€” count them all as upserts.
       inserted++;
     }
   }
-  console.log(`  $œ“ ${eligible.length} experts upserted`);
+  console.log(`  âœ“ ${eligible.length} experts upserted`);
   return nameToId;
 }
 
-// $”€$”€$”€ Expert quotes $”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€
+// â”€â”€â”€ Expert quotes â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 
 /**
  * Surface keyQuotes from each episode attributed to the guest, so
@@ -247,7 +247,7 @@ async function seedExpertQuotes(
   expertNameToId: Map<string, number>,
   episodeSlugToId: Map<string, number>
 ): Promise<void> {
-  console.log("$†’ Seeding mcp_expert_quotes from episode keyQuotes");
+  console.log("â†’ Seeding mcp_expert_quotes from episode keyQuotes");
   const episodes = getAllEpisodes();
   type QuoteRow = typeof mcpExpertQuotes.$inferInsert;
   const rows: QuoteRow[] = [];
@@ -296,10 +296,10 @@ async function seedExpertQuotes(
       await db.insert(mcpExpertQuotes).values(rows.slice(i, i + CHUNK));
     }
   }
-  console.log(`  $œ“ ${rows.length} expert quotes seeded`);
+  console.log(`  âœ“ ${rows.length} expert quotes seeded`);
 }
 
-// $”€$”€$”€ Methodology principles $”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€
+// â”€â”€â”€ Methodology principles â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 
 interface MethodologyDef {
   principle: string;
@@ -319,7 +319,7 @@ const METHODOLOGY: MethodologyDef[] = [
   {
     principle: "Polarised Training Distribution (80/20)",
     explanation:
-      "Approximately 80% of training volume should sit below VT1 (conversational pace), with 20% at high intensity above VT2. The moderate 'sweetspot' zone between them causes chronic fatigue without corresponding adaptation gains. Prof. Stephen Seiler's research across elite endurance athletes shows this distribution is near-universal at the top level. Amateurs get slower by training in the moderate-intensity 'black hole' $€” not because high intensity is bad, but because they do too much of it.",
+      "Approximately 80% of training volume should sit below VT1 (conversational pace), with 20% at high intensity above VT2. The moderate 'sweetspot' zone between them causes chronic fatigue without corresponding adaptation gains. Prof. Stephen Seiler's research across elite endurance athletes shows this distribution is near-universal at the top level. Amateurs get slower by training in the moderate-intensity 'black hole' â€” not because high intensity is bad, but because they do too much of it.",
     topicTags: ["polarised training", "80/20", "training distribution", "zone 2"],
     supportingExpertNames: ["Stephen Seiler", "Dan Lorang"],
     supportingGuestNames: ["Stephen Seiler", "Dan Lorang"],
@@ -327,7 +327,7 @@ const METHODOLOGY: MethodologyDef[] = [
   {
     principle: "Zone 2 Base Is Non-Negotiable",
     explanation:
-      "Zone 2 (60-75% max HR, below the first ventilatory threshold) builds mitochondrial density, capillary network, and fat-oxidation capacity $€” the aerobic foundation that every higher-intensity adaptation sits on. Pros train here for a disproportionate share of their week not because it's fashionable, but because cutting this volume caps the ceiling of every other adaptation. The discipline is to ride easier than your ego wants.",
+      "Zone 2 (60-75% max HR, below the first ventilatory threshold) builds mitochondrial density, capillary network, and fat-oxidation capacity â€” the aerobic foundation that every higher-intensity adaptation sits on. Pros train here for a disproportionate share of their week not because it's fashionable, but because cutting this volume caps the ceiling of every other adaptation. The discipline is to ride easier than your ego wants.",
     topicTags: ["zone 2", "aerobic base", "endurance", "polarised training"],
     supportingExpertNames: ["Stephen Seiler", "Dan Lorang", "Dr Allen Lim"],
     supportingGuestNames: ["Stephen Seiler", "Dan Lorang"],
@@ -341,9 +341,9 @@ const METHODOLOGY: MethodologyDef[] = [
     supportingGuestNames: ["Joe Friel", "Dan Lorang"],
   },
   {
-    principle: "Fuel the Work Required $€” Carbohydrate Periodisation",
+    principle: "Fuel the Work Required â€” Carbohydrate Periodisation",
     explanation:
-      "Not all training sessions should be fuelled equally. High-intensity and quality sessions require adequate carbohydrate availability ($‰¥60g/hr, often 90$€“120g/hr for racing). Selective fasted low-intensity sessions can improve metabolic flexibility, but should never compromise quality work. Ben Healy's stage-winning ride at the 2025 Tour de France was fuelled at 140g/hr. The rule: fuel the intensity, not the clock.",
+      "Not all training sessions should be fuelled equally. High-intensity and quality sessions require adequate carbohydrate availability (â‰¥60g/hr, often 90â€“120g/hr for racing). Selective fasted low-intensity sessions can improve metabolic flexibility, but should never compromise quality work. Ben Healy's stage-winning ride at the 2025 Tour de France was fuelled at 140g/hr. The rule: fuel the intensity, not the clock.",
     topicTags: ["nutrition", "fuelling", "carbohydrate periodisation", "race day"],
     supportingExpertNames: ["Dr David Dunne", "Sam Impey", "Tim Podlogar"],
     supportingGuestNames: ["Dr David Dunne", "David Dunne", "Sam Impey", "Tim Podlogar"],
@@ -351,7 +351,7 @@ const METHODOLOGY: MethodologyDef[] = [
   {
     principle: "Strength Training Beats More Miles After 40",
     explanation:
-      "For cyclists over 40, heavy strength training (not endurance-style gym circuits) produces measurable cycling performance gains $€” preserving type II muscle fibres, bone density, and neuromuscular power. S&C work must address the hip hinge pattern, single-leg stability, and posterior chain strength. Gym work should be periodised into the cycling calendar: heavy strength in base phase, maintenance during build, minimal S&C near key events.",
+      "For cyclists over 40, heavy strength training (not endurance-style gym circuits) produces measurable cycling performance gains â€” preserving type II muscle fibres, bone density, and neuromuscular power. S&C work must address the hip hinge pattern, single-leg stability, and posterior chain strength. Gym work should be periodised into the cycling calendar: heavy strength in base phase, maintenance during build, minimal S&C near key events.",
     topicTags: ["strength and conditioning", "S&C", "masters cycling", "injury prevention"],
     supportingExpertNames: ["Derek Teel", "Joe Friel", "Dr Andy Pruitt"],
     supportingGuestNames: ["Derek Teel", "Joe Friel", "Dr Andy Pruitt"],
@@ -359,7 +359,7 @@ const METHODOLOGY: MethodologyDef[] = [
   {
     principle: "Recovery Is a Training Variable, Not a Bonus",
     explanation:
-      "Recovery is where adaptation from training stress occurs $€” not passive downtime. For masters cyclists, recovery demand is higher and takes longer than for younger athletes. Key levers: 7-9 hours sleep, HRV-informed adjustments, post-session carbohydrate + protein timing, deliberate deload weeks (one in every 4 training weeks minimum), and honest tracking of life stress alongside training load. Under-recovering is the commonest cause of stagnation.",
+      "Recovery is where adaptation from training stress occurs â€” not passive downtime. For masters cyclists, recovery demand is higher and takes longer than for younger athletes. Key levers: 7-9 hours sleep, HRV-informed adjustments, post-session carbohydrate + protein timing, deliberate deload weeks (one in every 4 training weeks minimum), and honest tracking of life stress alongside training load. Under-recovering is the commonest cause of stagnation.",
     topicTags: ["recovery", "sleep", "HRV", "adaptation", "deload"],
     supportingExpertNames: ["Dan Lorang", "Dr Michael Gervais"],
     supportingGuestNames: ["Dan Lorang", "Dr Michael Gervais"],
@@ -375,7 +375,7 @@ const METHODOLOGY: MethodologyDef[] = [
   {
     principle: "VO2max Intervals Raise the Ceiling",
     explanation:
-      "VO2max-targeted intervals (3$€“8 min efforts at 106$€“120% FTP, or 90%+ max HR) are the most effective stimulus for raising the aerobic ceiling. Two to three sessions per week for a 4$€“6 week block produces measurable VO2max gains in most amateurs. The catch: volume tolerance at this intensity is finite, and stacking VO2max on top of poor aerobic base or chronic under-recovery backfires.",
+      "VO2max-targeted intervals (3â€“8 min efforts at 106â€“120% FTP, or 90%+ max HR) are the most effective stimulus for raising the aerobic ceiling. Two to three sessions per week for a 4â€“6 week block produces measurable VO2max gains in most amateurs. The catch: volume tolerance at this intensity is finite, and stacking VO2max on top of poor aerobic base or chronic under-recovery backfires.",
     topicTags: ["VO2max", "intervals", "high intensity", "training blocks"],
     supportingExpertNames: ["Stephen Seiler", "Olav Bu", "Dan Lorang"],
     supportingGuestNames: ["Stephen Seiler", "Olav Bu", "Dan Lorang"],
@@ -391,7 +391,7 @@ const METHODOLOGY: MethodologyDef[] = [
   {
     principle: "Consistency Beats Perfection",
     explanation:
-      "The worst week of your training plan matters more than the best. Consistency $€” showing up for 80% of sessions, month after month $€” outperforms sporadic hero weeks followed by injury or burnout. Real-world masters cyclists with 6$€“8 structured hours per week, executed consistently across a full season, routinely outperform weekend-warrior cyclists logging twice the volume with monthly interruptions.",
+      "The worst week of your training plan matters more than the best. Consistency â€” showing up for 80% of sessions, month after month â€” outperforms sporadic hero weeks followed by injury or burnout. Real-world masters cyclists with 6â€“8 structured hours per week, executed consistently across a full season, routinely outperform weekend-warrior cyclists logging twice the volume with monthly interruptions.",
     topicTags: ["consistency", "habit", "masters cycling", "training plan"],
     supportingExpertNames: ["Joe Friel", "Dan Lorang", "Stephen Seiler"],
     supportingGuestNames: ["Joe Friel", "Dan Lorang", "Stephen Seiler"],
@@ -402,8 +402,8 @@ async function seedMethodology(
   expertNameToId: Map<string, number>,
   slugToId: Map<string, number>
 ): Promise<void> {
-  console.log("$†’ Seeding mcp_methodology_principles");
-  // Methodology embeddings CASCADE on delete $€” the embedding script
+  console.log("â†’ Seeding mcp_methodology_principles");
+  // Methodology embeddings CASCADE on delete â€” the embedding script
   // repopulates after this.
   await db.delete(mcpMethodologyPrinciples);
 
@@ -435,10 +435,10 @@ async function seedMethodology(
   }));
 
   await db.insert(mcpMethodologyPrinciples).values(rows);
-  console.log(`  $œ“ ${rows.length} methodology principles seeded`);
+  console.log(`  âœ“ ${rows.length} methodology principles seeded`);
 }
 
-// $”€$”€$”€ Main $”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€
+// â”€â”€â”€ Main â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 
 async function main() {
   console.log("Seeding MCP content tables from real sources...\n");
@@ -446,7 +446,7 @@ async function main() {
   const expertNameToId = await seedExperts();
   await seedExpertQuotes(expertNameToId, slugToId);
   await seedMethodology(expertNameToId, slugToId);
-  console.log("\n$œ“ All MCP content tables seeded");
+  console.log("\nâœ“ All MCP content tables seeded");
   console.log("  Next: `npm run seed:mcp:embeddings` to populate pgvector");
   process.exit(0);
 }

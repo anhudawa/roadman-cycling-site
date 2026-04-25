@@ -8,7 +8,7 @@ import {
 import { desc, isNull, eq } from "drizzle-orm";
 import { requireAuth } from "@/lib/admin/auth";
 
-// GET /api/admin/inbox $€” list submissions + unread count
+// GET /api/admin/inbox $â€” list submissions + unread count
 export async function GET(request: Request) {
   try {
     await requireAuth();
@@ -36,7 +36,7 @@ export async function GET(request: Request) {
   return NextResponse.json({ submissions });
 }
 
-// PATCH /api/admin/inbox $€” mark as read and/or assign to team member
+// PATCH /api/admin/inbox $â€” mark as read and/or assign to team member
 export async function PATCH(request: Request) {
   try {
     await requireAuth();
@@ -70,7 +70,7 @@ export async function PATCH(request: Request) {
       );
     }
     updates.status = status;
-    // Moving off "new" implies it's been seen $€” mirror readAt.
+    // Moving off "new" implies it's been seen $â€” mirror readAt.
     if (status !== "new") updates.readAt = new Date();
   }
 
@@ -88,7 +88,7 @@ export async function PATCH(request: Request) {
   return NextResponse.json({ success: true });
 }
 
-// DELETE /api/admin/inbox $€” delete a submission
+// DELETE /api/admin/inbox $â€” delete a submission
 export async function DELETE(request: Request) {
   try {
     await requireAuth();

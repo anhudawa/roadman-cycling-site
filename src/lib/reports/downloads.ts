@@ -6,7 +6,7 @@ import { eq } from 'drizzle-orm';
 const MIN = 70_000;
 const MAX = 150_000;
 
-// FNV-1a 32-bit $€” deterministic, fast, no dependencies
+// FNV-1a 32-bit $â€” deterministic, fast, no dependencies
 function fnv1a(str: string): number {
   let hash = 0x811c9dc5;
   for (let i = 0; i < str.length; i++) {

@@ -13,7 +13,7 @@ interface LocationData {
   heroSubtitle: string;
   heroBody: string;
   areaServed: string;
-  /** Short label used in H2 headings $€” e.g. "Belfast" instead of "Belfast, Northern Ireland" */
+  /** Short label used in H2 headings â€” e.g. "Belfast" instead of "Belfast, Northern Ireland" */
   headingLabel: string;
   countryCode: string;
   localContext: string;
@@ -37,7 +37,7 @@ interface LocationData {
 const LOCATIONS: Record<string, LocationData> = {
   ireland: {
     title: "Cycling Coach Ireland",
-    seoTitle: "Cycling Coach Ireland $€” Online Coaching from Dublin",
+    seoTitle: "Cycling Coach Ireland â€” Online Coaching from Dublin",
     seoDescription:
       "Online cycling coaching from Dublin, Ireland. Personalised training plans, nutrition, strength, and community from Anthony Walsh and the Roadman Cycling team. Trusted by Irish cyclists from club racers to national-level competitors.",
     localBusiness: {
@@ -58,19 +58,19 @@ const LOCATIONS: Record<string, LocationData> = {
         quote:
           "I was an average sportive rider who had plateaued. Roadman custom built a plan to achieve my goals. I've gotten much more out of Roadman than I ever imagined.",
         name: "Damien Maloney",
-        detail: "Ireland $€” FTP: 205w $†’ 295w",
+        detail: "Ireland â€” FTP: 205w â†’ 295w",
       },
       {
         quote:
           "Anthony rebuilt my training, nutrition, and recovery from the ground up. Average wattage doubled and weekly 100km+ rides are now the norm.",
         name: "Chris O'Connor",
-        detail: "Ireland $€” 84kg $†’ 68kg $· 20% body fat $†’ 7%",
+        detail: "Ireland â€” 84kg â†’ 68kg Â· 20% body fat â†’ 7%",
       },
       {
         quote:
-          "The structure and weekly rhythm is what makes the difference. Having a coach who understands Irish racing and the conditions we train in $€” it just works.",
+          "The structure and weekly rhythm is what makes the difference. Having a coach who understands Irish racing and the conditions we train in â€” it just works.",
         name: "John Devlin",
-        detail: "Ireland $€” Club racer",
+        detail: "Ireland â€” Club racer",
       },
     ],
     faqs: [
@@ -82,7 +82,7 @@ const LOCATIONS: Record<string, LocationData> = {
       {
         question: "Does Roadman coach for the Wicklow 200, Ring of Beara and other Irish sportives?",
         answer:
-          "Yes $€” these are two of the events we coach most often. The Wicklow 200 (200km with ~3,000m of climbing through Sally Gap, Wicklow Gap and the Glen of Imaal) and the Ring of Beara (140km around the Beara Peninsula in Cork/Kerry) are on a huge number of Irish cyclists' bucket lists. We periodise the full build $€” endurance base, climbing-specific work on Wicklow-grade gradients, a proper taper, and a race-day fuelling and pacing plan. Same approach for the Ring of Kerry, Tour de Burren, Ras Tailteann and local league racing.",
+          "Yes â€” these are two of the events we coach most often. The Wicklow 200 (200km with ~3,000m of climbing through Sally Gap, Wicklow Gap and the Glen of Imaal) and the Ring of Beara (140km around the Beara Peninsula in Cork/Kerry) are on a huge number of Irish cyclists' bucket lists. We periodise the full build â€” endurance base, climbing-specific work on Wicklow-grade gradients, a proper taper, and a race-day fuelling and pacing plan. Same approach for the Ring of Kerry, Tour de Burren, Ras Tailteann and local league racing.",
       },
       {
         question: "Is this suitable for Cycling Ireland licence holders?",
@@ -92,9 +92,9 @@ const LOCATIONS: Record<string, LocationData> = {
     ],
     localContent: [
       "Based in Dublin with deep roots in Irish cycling",
-      "Wicklow 200 & Ring of Beara specialists $€” full periodised builds, climbing-specific blocks, race-day pacing plans",
+      "Wicklow 200 & Ring of Beara specialists â€” full periodised builds, climbing-specific blocks, race-day pacing plans",
       "Also coaching for Ring of Kerry, Tour de Burren, Ras Tailteann and local league racing",
-      "Home of Roadman CC $€” Dublin's fastest-growing cycling club",
+      "Home of Roadman CC â€” Dublin's fastest-growing cycling club",
       "Plans built for Irish weather, Irish roads, and Irish racing",
     ],
     relatedGuides: [
@@ -106,18 +106,18 @@ const LOCATIONS: Record<string, LocationData> = {
       {
         title: "Ring of Beara Training Plan",
         href: "/blog/ring-of-beara-training-plan",
-        description: "How to train for 140km around the Beara Peninsula $€” the climbs, the weather, and the race-day plan.",
+        description: "How to train for 140km around the Beara Peninsula â€” the climbs, the weather, and the race-day plan.",
       },
       {
         title: "Is a Cycling Coach Worth It?",
         href: "/blog/is-a-cycling-coach-worth-it",
-        description: "Honest look at what coaching does and doesn't do $€” and when it's the best investment a cyclist can make.",
+        description: "Honest look at what coaching does and doesn't do â€” and when it's the best investment a cyclist can make.",
       },
     ],
   },
   uk: {
     title: "Cycling Coach UK",
-    seoTitle: "Cycling Coach UK $€” Online Cycling Coaching",
+    seoTitle: "Cycling Coach UK â€” Online Cycling Coaching",
     seoDescription:
       "Online cycling coaching for UK riders. Personalised training plans, nutrition, strength, and community. From sportive riders to British Cycling licence holders. Trusted by cyclists across England, Scotland, Wales, and Northern Ireland.",
     heroSubtitle: "TRUSTED BY UK CYCLISTS FROM CLUBBERS TO CAT 1",
@@ -132,19 +132,19 @@ const LOCATIONS: Record<string, LocationData> = {
         quote:
           "The system took me from Cat 3 to Cat 1. The structured approach changed everything about how I train and race.",
         name: "Daniel Stone",
-        detail: "UK $€” Cat 3 $†’ Cat 1",
+        detail: "UK â€” Cat 3 â†’ Cat 1",
       },
       {
         quote:
           "This really works. I'm training so much less than last year, at lower intensities and not getting sick. FTHR up from 175 to 180, peak HR up to 193.",
         name: "Brian Morrissey",
-        detail: "UK $€” Age 52, shift worker",
+        detail: "UK â€” Age 52, shift worker",
       },
       {
         quote:
-          "I tried TrainerRoad, Zwift plans, self-coaching $€” nothing stuck. Having a real coach who adjusts my plan weekly based on how I actually feel is a completely different experience.",
+          "I tried TrainerRoad, Zwift plans, self-coaching â€” nothing stuck. Having a real coach who adjusts my plan weekly based on how I actually feel is a completely different experience.",
         name: "Aaron Kearney",
-        detail: "UK $€” Time-crunched rider",
+        detail: "UK â€” Time-crunched rider",
       },
     ],
     faqs: [
@@ -161,11 +161,11 @@ const LOCATIONS: Record<string, LocationData> = {
       {
         question: "What time zone are coaching calls for UK riders?",
         answer:
-          "Coaching calls are scheduled flexibly to suit your availability. We are based in Dublin which is on GMT/BST $€” the same time zone as the UK. Group coaching calls, 1:1 sessions, and community events are all at UK-friendly times.",
+          "Coaching calls are scheduled flexibly to suit your availability. We are based in Dublin which is on GMT/BST â€” the same time zone as the UK. Group coaching calls, 1:1 sessions, and community events are all at UK-friendly times.",
       },
     ],
     localContent: [
-      "Same time zone $€” Dublin operates on GMT/BST like the UK",
+      "Same time zone â€” Dublin operates on GMT/BST like the UK",
       "Coaching for British Cycling racing, sportives, and time trials",
       "Members across England, Scotland, Wales, and Northern Ireland",
       "Plans built for UK roads, weather, and the British racing calendar",
@@ -174,15 +174,15 @@ const LOCATIONS: Record<string, LocationData> = {
       {
         title: "Ride London Training Plan",
         href: "/blog/ride-london-training-plan",
-        description: "How to build to 100 miles of closed roads through London and Surrey $€” periodisation, pacing, fuelling.",
+        description: "How to build to 100 miles of closed roads through London and Surrey â€” periodisation, pacing, fuelling.",
       },
       {
         title: "Fred Whitton Challenge Training Plan",
         href: "/blog/fred-whitton-challenge-training-plan",
-        description: "The UK's hardest sportive $€” 112 miles and 3,500m of climbing through the Lake District. Here's how to train for it.",
+        description: "The UK's hardest sportive â€” 112 miles and 3,500m of climbing through the Lake District. Here's how to train for it.",
       },
       {
-        title: "Best Cycling Coach UK $€” Honest Guide",
+        title: "Best Cycling Coach UK â€” Honest Guide",
         href: "/blog/best-cycling-coach-uk",
         description: "How to choose an online cycling coach in the UK, what to look for, and the questions to ask before you sign up.",
       },
@@ -190,12 +190,12 @@ const LOCATIONS: Record<string, LocationData> = {
   },
   usa: {
     title: "Cycling Coach USA",
-    seoTitle: "Cycling Coach USA $€” Online Cycling Coaching Program",
+    seoTitle: "Cycling Coach USA â€” Online Cycling Coaching Program",
     seoDescription:
       "Online cycling coaching for American riders. Personalised training plans, nutrition, strength, and community. From gran fondos to USAC racing. Coaching cyclists across all 50 states with flexible scheduling across time zones.",
     heroSubtitle: "THE COACHING SYSTEM TRUSTED BY CYCLISTS ACROSS AMERICA",
     heroBody:
-      "Roadman Cycling coaches riders across the United States $€” from New York to California, Texas to Colorado. Whether you are training for a USAC crit, a gran fondo, or your first century ride, your plan is built around your goals, your time zone, and your life.",
+      "Roadman Cycling coaches riders across the United States â€” from New York to California, Texas to Colorado. Whether you are training for a USAC crit, a gran fondo, or your first century ride, your plan is built around your goals, your time zone, and your life.",
     areaServed: "United States",
     headingLabel: "USA",
     countryCode: "US",
@@ -203,28 +203,28 @@ const LOCATIONS: Record<string, LocationData> = {
     testimonials: [
       {
         quote:
-          "From 315lbs to sub-100kg, and I'm still going. The accountability and structure changed my life $€” not just my cycling.",
+          "From 315lbs to sub-100kg, and I'm still going. The accountability and structure changed my life â€” not just my cycling.",
         name: "Gregory Gross",
-        detail: "USA $€” Weight loss transformation",
+        detail: "USA â€” Weight loss transformation",
       },
       {
         quote:
           "I was an average sportive rider who had plateaued. Roadman custom built a plan to achieve my goals. I've gotten much more out of Roadman than I ever imagined.",
         name: "Damien Maloney",
-        detail: "FTP: 205w $†’ 295w",
+        detail: "FTP: 205w â†’ 295w",
       },
       {
         quote:
           "The system took me from Cat 3 to Cat 1. The structured approach changed everything about how I train and race.",
         name: "Daniel Stone",
-        detail: "Cat 3 $†’ Cat 1",
+        detail: "Cat 3 â†’ Cat 1",
       },
     ],
     faqs: [
       {
         question: "What time zone are coaching calls for US riders?",
         answer:
-          "All coaching communication is asynchronous-first $€” you update your training log and your coach reviews and adjusts your plan on their schedule. For live coaching calls, we offer flexible scheduling that works across US time zones. Many of our American members prefer evening calls EST which align with morning time in Dublin.",
+          "All coaching communication is asynchronous-first â€” you update your training log and your coach reviews and adjusts your plan on their schedule. For live coaching calls, we offer flexible scheduling that works across US time zones. Many of our American members prefer evening calls EST which align with morning time in Dublin.",
       },
       {
         question: "Do you coach for USAC races and American events?",
@@ -234,7 +234,7 @@ const LOCATIONS: Record<string, LocationData> = {
       {
         question: "Is online coaching as effective as having a local coach?",
         answer:
-          "Online coaching is often more effective because your coach has access to all your training data $€” power files, heart rate trends, sleep metrics, and subjective feedback $€” which gives a more complete picture than a local coach who sees you once a week. The key is communication, and our system is built around regular asynchronous check-ins plus live calls when needed.",
+          "Online coaching is often more effective because your coach has access to all your training data â€” power files, heart rate trends, sleep metrics, and subjective feedback â€” which gives a more complete picture than a local coach who sees you once a week. The key is communication, and our system is built around regular asynchronous check-ins plus live calls when needed.",
       },
     ],
     localContent: [
@@ -246,7 +246,7 @@ const LOCATIONS: Record<string, LocationData> = {
   },
   dublin: {
     title: "Cycling Coach Dublin",
-    seoTitle: "Cycling Coach Dublin $€” Online Coaching from Roadman",
+    seoTitle: "Cycling Coach Dublin â€” Online Coaching from Roadman",
     seoDescription:
       "Cycling coach in Dublin. Personalised online coaching from Anthony Walsh and the Roadman Cycling team. Based in Dublin, home of Roadman CC. Training plans built for Wicklow climbs, Dublin Mountains, and Irish racing.",
     localBusiness: {
@@ -257,7 +257,7 @@ const LOCATIONS: Record<string, LocationData> = {
     },
     heroSubtitle: "DUBLIN'S MOST LISTENED-TO CYCLING COACH",
     heroBody:
-      "Roadman Cycling is based in Dublin and coaches riders across the capital and Greater Dublin area. Whether you ride the Dublin Mountains on a Saturday, race with the Orwell or Sundrive, or commute through the city $€” your plan is built around Dublin roads, Irish weather, and your schedule.",
+      "Roadman Cycling is based in Dublin and coaches riders across the capital and Greater Dublin area. Whether you ride the Dublin Mountains on a Saturday, race with the Orwell or Sundrive, or commute through the city â€” your plan is built around Dublin roads, Irish weather, and your schedule.",
     areaServed: "Dublin, Ireland",
     headingLabel: "Dublin",
     countryCode: "IE",
@@ -267,31 +267,31 @@ const LOCATIONS: Record<string, LocationData> = {
         quote:
           "I was an average sportive rider who had plateaued. Roadman custom built a plan to achieve my goals. I've gotten much more out of Roadman than I ever imagined.",
         name: "Damien Maloney",
-        detail: "Dublin $€” FTP: 205w $†’ 295w",
+        detail: "Dublin â€” FTP: 205w â†’ 295w",
       },
       {
         quote:
-          "The structure and weekly rhythm is what makes the difference. Having a coach who understands Irish racing and the conditions we train in $€” it just works.",
+          "The structure and weekly rhythm is what makes the difference. Having a coach who understands Irish racing and the conditions we train in â€” it just works.",
         name: "John Devlin",
-        detail: "Dublin $€” Club racer",
+        detail: "Dublin â€” Club racer",
       },
       {
         quote:
           "Anthony rebuilt my training, nutrition, and recovery from the ground up. Average wattage doubled and weekly 100km+ rides are now the norm.",
         name: "Chris O'Connor",
-        detail: "Ireland $€” 84kg $†’ 68kg $· 20% body fat $†’ 7%",
+        detail: "Ireland â€” 84kg â†’ 68kg Â· 20% body fat â†’ 7%",
       },
     ],
     faqs: [
       {
         question: "Is Roadman Cycling actually based in Dublin?",
         answer:
-          "Yes. Anthony Walsh and Roadman Cycling are based in Dublin and have been since the podcast launched. Coaching is delivered online through TrainingPeaks and Zoom so your coach's location does not affect plan quality $€” but being local means we understand Dublin-specific context like Wicklow climbs, club racing, and Irish weather.",
+          "Yes. Anthony Walsh and Roadman Cycling are based in Dublin and have been since the podcast launched. Coaching is delivered online through TrainingPeaks and Zoom so your coach's location does not affect plan quality â€” but being local means we understand Dublin-specific context like Wicklow climbs, club racing, and Irish weather.",
       },
       {
         question: "Can I join Roadman CC club rides in Dublin?",
         answer:
-          "Yes. Roadman CC runs weekly rides from Dublin and Premium coaching members are welcome to join. Club rides are one way we build community $€” coaching is the 1:1 plan, the club is the shared ride. Both operate out of Dublin.",
+          "Yes. Roadman CC runs weekly rides from Dublin and Premium coaching members are welcome to join. Club rides are one way we build community â€” coaching is the 1:1 plan, the club is the shared ride. Both operate out of Dublin.",
       },
       {
         question: "Do you coach Dublin-based riders for Wicklow 200 and local leagues?",
@@ -300,7 +300,7 @@ const LOCATIONS: Record<string, LocationData> = {
       },
     ],
     localContent: [
-      "Based in Dublin $€” home of Anthony Walsh and Roadman CC",
+      "Based in Dublin â€” home of Anthony Walsh and Roadman CC",
       "Plans built for the Dublin Mountains and Wicklow climbs",
       "Coaching riders in Orwell, Sundrive, and Dublin clubs",
       "Local coach for Dublin-based racing, sportives, and gran fondos",
@@ -308,7 +308,7 @@ const LOCATIONS: Record<string, LocationData> = {
   },
   cork: {
     title: "Cycling Coach Cork",
-    seoTitle: "Cycling Coach Cork $€” Online Coaching from Roadman",
+    seoTitle: "Cycling Coach Cork â€” Online Coaching from Roadman",
     seoDescription:
       "Cycling coach for Cork riders. Online coaching from Roadman Cycling with training plans built for West Cork climbs, Nire Valley, and Munster racing. Trusted by Cork cyclists from sportive riders to league racers.",
     localBusiness: {
@@ -319,7 +319,7 @@ const LOCATIONS: Record<string, LocationData> = {
     },
     heroSubtitle: "COACHING CORK CYCLISTS ACROSS MUNSTER",
     heroBody:
-      "Roadman Cycling coaches riders across Cork and Munster. Whether you ride the Healy Pass, race with Cork Ridgerunners or Blarney CC, or are training for the Sean Kelly Tour $€” your plan is built around Munster roads, West Cork climbs, and your schedule.",
+      "Roadman Cycling coaches riders across Cork and Munster. Whether you ride the Healy Pass, race with Cork Ridgerunners or Blarney CC, or are training for the Sean Kelly Tour â€” your plan is built around Munster roads, West Cork climbs, and your schedule.",
     areaServed: "Cork, Ireland",
     headingLabel: "Cork",
     countryCode: "IE",
@@ -329,26 +329,26 @@ const LOCATIONS: Record<string, LocationData> = {
         quote:
           "I was an average sportive rider who had plateaued. Roadman custom built a plan to achieve my goals. I've gotten much more out of Roadman than I ever imagined.",
         name: "Damien Maloney",
-        detail: "Ireland $€” FTP: 205w $†’ 295w",
+        detail: "Ireland â€” FTP: 205w â†’ 295w",
       },
       {
         quote:
-          "The structure and weekly rhythm is what makes the difference. Having a coach who understands Irish racing and the conditions we train in $€” it just works.",
+          "The structure and weekly rhythm is what makes the difference. Having a coach who understands Irish racing and the conditions we train in â€” it just works.",
         name: "John Devlin",
-        detail: "Ireland $€” Club racer",
+        detail: "Ireland â€” Club racer",
       },
       {
         quote:
           "Anthony rebuilt my training, nutrition, and recovery from the ground up. Average wattage doubled and weekly 100km+ rides are now the norm.",
         name: "Chris O'Connor",
-        detail: "Ireland $€” 84kg $†’ 68kg $· 20% body fat $†’ 7%",
+        detail: "Ireland â€” 84kg â†’ 68kg Â· 20% body fat â†’ 7%",
       },
     ],
     faqs: [
       {
         question: "Can you coach me from Cork if Roadman is based in Dublin?",
         answer:
-          "Yes. All coaching is delivered online through TrainingPeaks and Zoom $€” your coach's physical location has no effect on plan quality or communication. Many of our Irish members are based in Cork and Munster. The advantage over an international coach is we understand Irish context: West Cork climbs, Munster weather, the Sean Kelly Tour, and the Munster racing calendar.",
+          "Yes. All coaching is delivered online through TrainingPeaks and Zoom â€” your coach's physical location has no effect on plan quality or communication. Many of our Irish members are based in Cork and Munster. The advantage over an international coach is we understand Irish context: West Cork climbs, Munster weather, the Sean Kelly Tour, and the Munster racing calendar.",
       },
       {
         question: "Do you coach Cork riders for the Sean Kelly Tour and Munster events?",
@@ -358,7 +358,7 @@ const LOCATIONS: Record<string, LocationData> = {
       {
         question: "Is there a minimum FTP or racing level to be coached?",
         answer:
-          "No. We coach complete beginners through to A1 racers. What matters is your commitment to the process $€” the plan is built around your current fitness, goals, and available hours. Many of our transformation stories start with riders who thought they were too slow or too new to be coached.",
+          "No. We coach complete beginners through to A1 racers. What matters is your commitment to the process â€” the plan is built around your current fitness, goals, and available hours. Many of our transformation stories start with riders who thought they were too slow or too new to be coached.",
       },
     ],
     localContent: [
@@ -371,18 +371,18 @@ const LOCATIONS: Record<string, LocationData> = {
       {
         title: "Ring of Beara Training Plan",
         href: "/blog/ring-of-beara-training-plan",
-        description: "Cork's biggest sportive $€” 140km around the Beara Peninsula. How to train for the climbs, the wind, and the finish.",
+        description: "Cork's biggest sportive â€” 140km around the Beara Peninsula. How to train for the climbs, the wind, and the finish.",
       },
       {
         title: "Wicklow 200 Training Plan",
         href: "/blog/wicklow-200-training-plan",
-        description: "12 weeks to the Wicklow 200 $€” the climbing-specific work, pacing, and fuelling plan.",
+        description: "12 weeks to the Wicklow 200 â€” the climbing-specific work, pacing, and fuelling plan.",
       },
     ],
   },
   galway: {
     title: "Cycling Coach Galway",
-    seoTitle: "Cycling Coach Galway $€” Online Coaching from Roadman",
+    seoTitle: "Cycling Coach Galway â€” Online Coaching from Roadman",
     seoDescription:
       "Cycling coach for Galway and Connacht riders. Online coaching from Roadman Cycling with training plans built for Connemara climbs, Burren roads, and Western racing. Trusted by Galway cyclists across all levels.",
     localBusiness: {
@@ -393,7 +393,7 @@ const LOCATIONS: Record<string, LocationData> = {
     },
     heroSubtitle: "COACHING GALWAY AND CONNACHT CYCLISTS",
     heroBody:
-      "Roadman Cycling coaches riders across Galway and the West of Ireland. Whether you ride the Sky Road, train in the Burren, race with Western Lakes CC, or are targeting the Connemara 100 $€” your plan is built around Western roads, Atlantic weather, and your schedule.",
+      "Roadman Cycling coaches riders across Galway and the West of Ireland. Whether you ride the Sky Road, train in the Burren, race with Western Lakes CC, or are targeting the Connemara 100 â€” your plan is built around Western roads, Atlantic weather, and your schedule.",
     areaServed: "Galway, Ireland",
     headingLabel: "Galway",
     countryCode: "IE",
@@ -403,19 +403,19 @@ const LOCATIONS: Record<string, LocationData> = {
         quote:
           "I was an average sportive rider who had plateaued. Roadman custom built a plan to achieve my goals. I've gotten much more out of Roadman than I ever imagined.",
         name: "Damien Maloney",
-        detail: "Ireland $€” FTP: 205w $†’ 295w",
+        detail: "Ireland â€” FTP: 205w â†’ 295w",
       },
       {
         quote:
-          "The structure and weekly rhythm is what makes the difference. Having a coach who understands Irish racing and the conditions we train in $€” it just works.",
+          "The structure and weekly rhythm is what makes the difference. Having a coach who understands Irish racing and the conditions we train in â€” it just works.",
         name: "John Devlin",
-        detail: "Ireland $€” Club racer",
+        detail: "Ireland â€” Club racer",
       },
       {
         quote:
           "Anthony rebuilt my training, nutrition, and recovery from the ground up. Average wattage doubled and weekly 100km+ rides are now the norm.",
         name: "Chris O'Connor",
-        detail: "Ireland $€” 84kg $†’ 68kg $· 20% body fat $†’ 7%",
+        detail: "Ireland â€” 84kg â†’ 68kg Â· 20% body fat â†’ 7%",
       },
     ],
     faqs: [
@@ -432,7 +432,7 @@ const LOCATIONS: Record<string, LocationData> = {
       {
         question: "How does online coaching work for rural Galway riders?",
         answer:
-          "Most of our Galway members train on their own roads $€” the quiet lanes around Connemara, the Burren, or the Galway hinterland are ideal for structured sessions. Online coaching means you get a personalised plan without driving to a gym or coach's office. You train on your roads, sync your data to TrainingPeaks, and your coach adjusts the plan based on what you actually did.",
+          "Most of our Galway members train on their own roads â€” the quiet lanes around Connemara, the Burren, or the Galway hinterland are ideal for structured sessions. Online coaching means you get a personalised plan without driving to a gym or coach's office. You train on your roads, sync your data to TrainingPeaks, and your coach adjusts the plan based on what you actually did.",
       },
     ],
     localContent: [
@@ -444,7 +444,7 @@ const LOCATIONS: Record<string, LocationData> = {
   },
   london: {
     title: "Cycling Coach London",
-    seoTitle: "Cycling Coach London $€” Online Coaching from Roadman",
+    seoTitle: "Cycling Coach London â€” Online Coaching from Roadman",
     seoDescription:
       "Cycling coach for London riders. Online coaching from Roadman Cycling with training plans built for Surrey Hills, Ride London, and British Cycling racing. Trusted by London cyclists from commuters to Cat 1 racers.",
     localBusiness: {
@@ -455,7 +455,7 @@ const LOCATIONS: Record<string, LocationData> = {
     },
     heroSubtitle: "COACHING LONDON CYCLISTS FROM COMMUTERS TO CAT 1",
     heroBody:
-      "Roadman Cycling coaches riders across Greater London. Whether you chain Surrey Hills loops on a Saturday, race with Rapha CC or Dulwich Paragon, or are training for Ride London $€” your plan is built around London traffic, Surrey climbs, and the hours you actually have.",
+      "Roadman Cycling coaches riders across Greater London. Whether you chain Surrey Hills loops on a Saturday, race with Rapha CC or Dulwich Paragon, or are training for Ride London â€” your plan is built around London traffic, Surrey climbs, and the hours you actually have.",
     areaServed: "London, United Kingdom",
     headingLabel: "London",
     countryCode: "GB",
@@ -465,19 +465,19 @@ const LOCATIONS: Record<string, LocationData> = {
         quote:
           "The system took me from Cat 3 to Cat 1. The structured approach changed everything about how I train and race.",
         name: "Daniel Stone",
-        detail: "UK $€” Cat 3 $†’ Cat 1",
+        detail: "UK â€” Cat 3 â†’ Cat 1",
       },
       {
         quote:
-          "I tried TrainerRoad, Zwift plans, self-coaching $€” nothing stuck. Having a real coach who adjusts my plan weekly based on how I actually feel is a completely different experience.",
+          "I tried TrainerRoad, Zwift plans, self-coaching â€” nothing stuck. Having a real coach who adjusts my plan weekly based on how I actually feel is a completely different experience.",
         name: "Aaron Kearney",
-        detail: "UK $€” Time-crunched rider",
+        detail: "UK â€” Time-crunched rider",
       },
       {
         quote:
           "This really works. I'm training so much less than last year, at lower intensities and not getting sick. FTHR up from 175 to 180.",
         name: "Brian Morrissey",
-        detail: "UK $€” Age 52",
+        detail: "UK â€” Age 52",
       },
     ],
     faqs: [
@@ -494,31 +494,31 @@ const LOCATIONS: Record<string, LocationData> = {
       {
         question: "What time zone are coaching calls for London riders?",
         answer:
-          "We are based in Dublin which is GMT/BST $€” the same time zone as London. Live coaching calls, group sessions, and community events are all at times that work for UK riders. No awkward cross-timezone scheduling.",
+          "We are based in Dublin which is GMT/BST â€” the same time zone as London. Live coaching calls, group sessions, and community events are all at times that work for UK riders. No awkward cross-timezone scheduling.",
       },
     ],
     localContent: [
       "Coaching for Ride London, Surrey League, and London crits",
       "Plans built around London commuting and Surrey Hills riding",
-      "Same time zone $€” Dublin operates on GMT/BST like London",
+      "Same time zone â€” Dublin operates on GMT/BST like London",
       "Members in Rapha CC, Dulwich Paragon, and London clubs",
     ],
     relatedGuides: [
       {
         title: "Ride London Training Plan",
         href: "/blog/ride-london-training-plan",
-        description: "12 weeks to Ride London 100 $€” how to train around London commutes and Saturday Surrey loops.",
+        description: "12 weeks to Ride London 100 â€” how to train around London commutes and Saturday Surrey loops.",
       },
       {
         title: "Fred Whitton Challenge Training Plan",
         href: "/blog/fred-whitton-challenge-training-plan",
-        description: "For London riders stepping up to the Lake District $€” the climbing-specific block that gets you over Hardknott.",
+        description: "For London riders stepping up to the Lake District â€” the climbing-specific block that gets you over Hardknott.",
       },
     ],
   },
   manchester: {
     title: "Cycling Coach Manchester",
-    seoTitle: "Cycling Coach Manchester $€” Online Coaching from Roadman",
+    seoTitle: "Cycling Coach Manchester â€” Online Coaching from Roadman",
     seoDescription:
       "Cycling coach for Manchester riders. Online coaching from Roadman Cycling with training plans built for the Peak District, North West racing, and National Cycling Centre track. Trusted by Manchester cyclists at every level.",
     localBusiness: {
@@ -529,7 +529,7 @@ const LOCATIONS: Record<string, LocationData> = {
     },
     heroSubtitle: "COACHING MANCHESTER AND NORTH WEST CYCLISTS",
     heroBody:
-      "Roadman Cycling coaches riders across Manchester and the North West. Whether you train in the Peak District, race at the National Cycling Centre velodrome, or are targeting the Fred Whitton Challenge $€” your plan is built around Peak District roads, North West weather, and your schedule.",
+      "Roadman Cycling coaches riders across Manchester and the North West. Whether you train in the Peak District, race at the National Cycling Centre velodrome, or are targeting the Fred Whitton Challenge â€” your plan is built around Peak District roads, North West weather, and your schedule.",
     areaServed: "Manchester, United Kingdom",
     headingLabel: "Manchester",
     countryCode: "GB",
@@ -539,19 +539,19 @@ const LOCATIONS: Record<string, LocationData> = {
         quote:
           "The system took me from Cat 3 to Cat 1. The structured approach changed everything about how I train and race.",
         name: "Daniel Stone",
-        detail: "UK $€” Cat 3 $†’ Cat 1",
+        detail: "UK â€” Cat 3 â†’ Cat 1",
       },
       {
         quote:
-          "I tried TrainerRoad, Zwift plans, self-coaching $€” nothing stuck. Having a real coach who adjusts my plan weekly based on how I actually feel is a completely different experience.",
+          "I tried TrainerRoad, Zwift plans, self-coaching â€” nothing stuck. Having a real coach who adjusts my plan weekly based on how I actually feel is a completely different experience.",
         name: "Aaron Kearney",
-        detail: "UK $€” Time-crunched rider",
+        detail: "UK â€” Time-crunched rider",
       },
       {
         quote:
           "This really works. I'm training so much less than last year, at lower intensities and not getting sick.",
         name: "Brian Morrissey",
-        detail: "UK $€” Age 52",
+        detail: "UK â€” Age 52",
       },
     ],
     faqs: [
@@ -563,18 +563,18 @@ const LOCATIONS: Record<string, LocationData> = {
       {
         question: "Can you coach track cyclists at the National Cycling Centre?",
         answer:
-          "We coach road, time trial, and endurance cyclists. For pure track sprint specialists a track-specific coach is the better fit. For endurance track riders (Madison, Points, Scratch) our methodology adapts well $€” we have coached riders combining track and road racing across the UK calendar.",
+          "We coach road, time trial, and endurance cyclists. For pure track sprint specialists a track-specific coach is the better fit. For endurance track riders (Madison, Points, Scratch) our methodology adapts well â€” we have coached riders combining track and road racing across the UK calendar.",
       },
       {
         question: "How does online coaching handle Manchester weather?",
         answer:
-          "Planning around North West weather is part of the craft. Your plan has indoor backup sessions for the genuine washout weeks and outdoor sessions scheduled when conditions typically allow. TrainerRoad, Zwift, and structured turbo sessions are fully integrated into the programme $€” not an afterthought.",
+          "Planning around North West weather is part of the craft. Your plan has indoor backup sessions for the genuine washout weeks and outdoor sessions scheduled when conditions typically allow. TrainerRoad, Zwift, and structured turbo sessions are fully integrated into the programme â€” not an afterthought.",
       },
     ],
     localContent: [
       "Coaching for Fred Whitton, Peak District sportives, and UK racing",
       "Plans built around Peak District roads and North West climbs",
-      "Same time zone $€” Dublin operates on GMT/BST like Manchester",
+      "Same time zone â€” Dublin operates on GMT/BST like Manchester",
       "Members in Manchester Wheelers, Rapha CC, and NW clubs",
     ],
     relatedGuides: [
@@ -592,7 +592,7 @@ const LOCATIONS: Record<string, LocationData> = {
   },
   belfast: {
     title: "Cycling Coach Belfast",
-    seoTitle: "Cycling Coach Belfast $€” Online Coaching from Roadman",
+    seoTitle: "Cycling Coach Belfast â€” Online Coaching from Roadman",
     seoDescription:
       "Cycling coach for Belfast and Northern Ireland riders. Online coaching from Roadman Cycling with training plans built for the Mournes, Antrim Coast, and NI racing calendar. Based in Dublin, coaching across the island of Ireland.",
     localBusiness: {
@@ -603,7 +603,7 @@ const LOCATIONS: Record<string, LocationData> = {
     },
     heroSubtitle: "COACHING BELFAST AND NORTHERN IRELAND CYCLISTS",
     heroBody:
-      "Roadman Cycling coaches riders across Belfast and Northern Ireland. Whether you climb the Mournes, train the Antrim Coast Road, race with Phoenix CC or North Down, or are targeting the Giant's Causeway Coast Sportive $€” your plan is built around NI roads, Irish Sea weather, and your schedule.",
+      "Roadman Cycling coaches riders across Belfast and Northern Ireland. Whether you climb the Mournes, train the Antrim Coast Road, race with Phoenix CC or North Down, or are targeting the Giant's Causeway Coast Sportive â€” your plan is built around NI roads, Irish Sea weather, and your schedule.",
     areaServed: "Belfast, Northern Ireland",
     headingLabel: "Belfast",
     countryCode: "GB",
@@ -613,19 +613,19 @@ const LOCATIONS: Record<string, LocationData> = {
         quote:
           "I was an average sportive rider who had plateaued. Roadman custom built a plan to achieve my goals. I've gotten much more out of Roadman than I ever imagined.",
         name: "Damien Maloney",
-        detail: "Ireland $€” FTP: 205w $†’ 295w",
+        detail: "Ireland â€” FTP: 205w â†’ 295w",
       },
       {
         quote:
           "The system took me from Cat 3 to Cat 1. The structured approach changed everything about how I train and race.",
         name: "Daniel Stone",
-        detail: "UK $€” Cat 3 $†’ Cat 1",
+        detail: "UK â€” Cat 3 â†’ Cat 1",
       },
       {
         quote:
-          "The structure and weekly rhythm is what makes the difference. Having a coach who understands Irish racing and the conditions we train in $€” it just works.",
+          "The structure and weekly rhythm is what makes the difference. Having a coach who understands Irish racing and the conditions we train in â€” it just works.",
         name: "John Devlin",
-        detail: "Ireland $€” Club racer",
+        detail: "Ireland â€” Club racer",
       },
     ],
     faqs: [
@@ -642,19 +642,19 @@ const LOCATIONS: Record<string, LocationData> = {
       {
         question: "Is the coaching suitable for riders training across the NI/Republic border?",
         answer:
-          "Yes. Many NI riders race on both sides of the border $€” Cycling Ulster events plus Cycling Ireland leagues and sportives. Your plan handles the full calendar as one integrated season. Based in Dublin and deeply connected to Irish cycling, we understand the all-island racing landscape.",
+          "Yes. Many NI riders race on both sides of the border â€” Cycling Ulster events plus Cycling Ireland leagues and sportives. Your plan handles the full calendar as one integrated season. Based in Dublin and deeply connected to Irish cycling, we understand the all-island racing landscape.",
       },
     ],
     localContent: [
       "Coaching for Cycling Ulster leagues and the Ulster calendar",
       "Plans built for the Mournes, Antrim Coast, and NI climbs",
-      "Same time zone $€” Dublin operates on GMT/BST like Belfast",
+      "Same time zone â€” Dublin operates on GMT/BST like Belfast",
       "Members racing across NI and the Republic of Ireland",
     ],
   },
   edinburgh: {
     title: "Cycling Coach Edinburgh",
-    seoTitle: "Cycling Coach Edinburgh $€” Online Coaching from Roadman",
+    seoTitle: "Cycling Coach Edinburgh â€” Online Coaching from Roadman",
     seoDescription:
       "Cycling coach for Edinburgh and Scottish riders. Online coaching from Roadman Cycling with training plans built for the Pentlands, Highland climbs, and Scottish racing. Trusted by cyclists across Edinburgh, Glasgow, and beyond.",
     localBusiness: {
@@ -665,7 +665,7 @@ const LOCATIONS: Record<string, LocationData> = {
     },
     heroSubtitle: "COACHING EDINBURGH AND SCOTTISH CYCLISTS",
     heroBody:
-      "Roadman Cycling coaches riders across Edinburgh and Scotland. Whether you train in the Pentlands, chase chaingangs on the Meldons, race with Edinburgh RC or Dunedin CC, or target the Etape Caledonia $€” your plan is built around Scottish roads, Highland weather, and your schedule.",
+      "Roadman Cycling coaches riders across Edinburgh and Scotland. Whether you train in the Pentlands, chase chaingangs on the Meldons, race with Edinburgh RC or Dunedin CC, or target the Etape Caledonia â€” your plan is built around Scottish roads, Highland weather, and your schedule.",
     areaServed: "Edinburgh, Scotland",
     headingLabel: "Edinburgh",
     countryCode: "GB",
@@ -675,19 +675,19 @@ const LOCATIONS: Record<string, LocationData> = {
         quote:
           "The system took me from Cat 3 to Cat 1. The structured approach changed everything about how I train and race.",
         name: "Daniel Stone",
-        detail: "UK $€” Cat 3 $†’ Cat 1",
+        detail: "UK â€” Cat 3 â†’ Cat 1",
       },
       {
         quote:
-          "I tried TrainerRoad, Zwift plans, self-coaching $€” nothing stuck. Having a real coach who adjusts my plan weekly based on how I actually feel is a completely different experience.",
+          "I tried TrainerRoad, Zwift plans, self-coaching â€” nothing stuck. Having a real coach who adjusts my plan weekly based on how I actually feel is a completely different experience.",
         name: "Aaron Kearney",
-        detail: "UK $€” Time-crunched rider",
+        detail: "UK â€” Time-crunched rider",
       },
       {
         quote:
           "This really works. I'm training so much less than last year, at lower intensities and not getting sick.",
         name: "Brian Morrissey",
-        detail: "UK $€” Age 52",
+        detail: "UK â€” Age 52",
       },
     ],
     faqs: [
@@ -699,7 +699,7 @@ const LOCATIONS: Record<string, LocationData> = {
       {
         question: "How does your coaching handle Scottish weather and shorter winter daylight?",
         answer:
-          "Scottish winters demand more indoor structure than most. Your plan integrates TrainerRoad, Zwift, and structured turbo sessions for the genuine washout weeks, with outdoor endurance rides scheduled for workable daylight windows. Winter training is not an afterthought $€” it is periodised intentionally.",
+          "Scottish winters demand more indoor structure than most. Your plan integrates TrainerRoad, Zwift, and structured turbo sessions for the genuine washout weeks, with outdoor endurance rides scheduled for workable daylight windows. Winter training is not an afterthought â€” it is periodised intentionally.",
       },
       {
         question: "Can you coach riders across both Edinburgh and Glasgow?",
@@ -710,13 +710,13 @@ const LOCATIONS: Record<string, LocationData> = {
     localContent: [
       "Coaching for Scottish Cycling events and the SNS calendar",
       "Plans built for the Pentlands, Meldons, and Highland climbs",
-      "Same time zone $€” Dublin operates on GMT/BST like Edinburgh",
+      "Same time zone â€” Dublin operates on GMT/BST like Edinburgh",
       "Members in Edinburgh RC, Dunedin CC, and Scottish clubs",
     ],
   },
   leeds: {
     title: "Cycling Coach Leeds",
-    seoTitle: "Cycling Coach Leeds $€” Online Coaching from Roadman",
+    seoTitle: "Cycling Coach Leeds â€” Online Coaching from Roadman",
     seoDescription:
       "Cycling coach for Leeds and Yorkshire riders. Online coaching from Roadman Cycling with training plans built for the Dales, Yorkshire climbs, and Tour de Yorkshire routes. Trusted by cyclists across Leeds, Harrogate, and Yorkshire.",
     localBusiness: {
@@ -727,7 +727,7 @@ const LOCATIONS: Record<string, LocationData> = {
     },
     heroSubtitle: "COACHING LEEDS AND YORKSHIRE CYCLISTS",
     heroBody:
-      "Roadman Cycling coaches riders across Leeds and Yorkshire. Whether you chain Dales loops on the weekend, race with Otley CC or Albarosa, climb Buttertubs and Holme Moss, or target the Ã‰tape du Dales $€” your plan is built around Yorkshire roads, Pennine weather, and your schedule.",
+      "Roadman Cycling coaches riders across Leeds and Yorkshire. Whether you chain Dales loops on the weekend, race with Otley CC or Albarosa, climb Buttertubs and Holme Moss, or target the Ã‰tape du Dales â€” your plan is built around Yorkshire roads, Pennine weather, and your schedule.",
     areaServed: "Leeds, United Kingdom",
     headingLabel: "Leeds",
     countryCode: "GB",
@@ -737,26 +737,26 @@ const LOCATIONS: Record<string, LocationData> = {
         quote:
           "The system took me from Cat 3 to Cat 1. The structured approach changed everything about how I train and race.",
         name: "Daniel Stone",
-        detail: "UK $€” Cat 3 $†’ Cat 1",
+        detail: "UK â€” Cat 3 â†’ Cat 1",
       },
       {
         quote:
-          "I tried TrainerRoad, Zwift plans, self-coaching $€” nothing stuck. Having a real coach who adjusts my plan weekly based on how I actually feel is a completely different experience.",
+          "I tried TrainerRoad, Zwift plans, self-coaching â€” nothing stuck. Having a real coach who adjusts my plan weekly based on how I actually feel is a completely different experience.",
         name: "Aaron Kearney",
-        detail: "UK $€” Time-crunched rider",
+        detail: "UK â€” Time-crunched rider",
       },
       {
         quote:
           "This really works. I'm training so much less than last year, at lower intensities and not getting sick.",
         name: "Brian Morrissey",
-        detail: "UK $€” Age 52",
+        detail: "UK â€” Age 52",
       },
     ],
     faqs: [
       {
         question: "Do you coach Leeds riders for Yorkshire sportives and Dales events?",
         answer:
-          "Yes. The Ã‰tape du Dales, Dave Rayner, Fred Whitton, and Yorkshire True Grit are all events we regularly coach riders for. Your plan accounts for Yorkshire's specific climbing profiles $€” sustained efforts on Buttertubs, Holme Moss, and the steeper walls in the Dales.",
+          "Yes. The Ã‰tape du Dales, Dave Rayner, Fred Whitton, and Yorkshire True Grit are all events we regularly coach riders for. Your plan accounts for Yorkshire's specific climbing profiles â€” sustained efforts on Buttertubs, Holme Moss, and the steeper walls in the Dales.",
       },
       {
         question: "Can you coach for Yorkshire road race leagues?",
@@ -772,7 +772,7 @@ const LOCATIONS: Record<string, LocationData> = {
     localContent: [
       "Coaching for Ã‰tape du Dales, Fred Whitton, and Yorkshire sportives",
       "Plans built for Yorkshire Dales climbs and Pennine routes",
-      "Same time zone $€” Dublin operates on GMT/BST like Leeds",
+      "Same time zone â€” Dublin operates on GMT/BST like Leeds",
       "Members in Otley CC, Albarosa, and Yorkshire clubs",
     ],
   },
@@ -862,7 +862,7 @@ export default async function CoachingLocationPage({ params }: Props) {
         data={{
           "@context": "https://schema.org",
           "@type": "Service",
-          name: `Roadman Cycling Coaching $€” ${data.areaServed}`,
+          name: `Roadman Cycling Coaching â€” ${data.areaServed}`,
           description: data.seoDescription,
           serviceType: "Online Cycling Coaching",
           provider: {
@@ -877,7 +877,7 @@ export default async function CoachingLocationPage({ params }: Props) {
           },
           offers: {
             "@type": "Offer",
-            name: "Not Done Yet Coaching Community $€” Personalised Coaching",
+            name: "Not Done Yet Coaching Community â€” Personalised Coaching",
             price: "195",
             priceCurrency: "USD",
             description:
@@ -912,7 +912,7 @@ export default async function CoachingLocationPage({ params }: Props) {
         }}
       />
 
-      {/* LocalBusiness schema $€” triggers Google local business features for geo-targeted pages */}
+      {/* LocalBusiness schema â€” triggers Google local business features for geo-targeted pages */}
       {data.localBusiness && (
         <JsonLd
           data={{
@@ -1038,7 +1038,7 @@ export default async function CoachingLocationPage({ params }: Props) {
               </h2>
               <p className="text-foreground-muted max-w-xl mx-auto leading-relaxed">
                 Every coaching programme covers training, nutrition, strength,
-                recovery, and community. Not just workouts $€” a complete
+                recovery, and community. Not just workouts â€” a complete
                 system built around your life.
               </p>
             </ScrollReveal>
@@ -1096,7 +1096,7 @@ export default async function CoachingLocationPage({ params }: Props) {
           </Container>
         </Section>
 
-        {/* Triathlon cross-link $€” every geo page passes authority to the
+        {/* Triathlon cross-link â€” every geo page passes authority to the
             /coaching/triathlon pillar. City-specific framing keeps it
             natural rather than boilerplate. */}
         <Section background="charcoal">
@@ -1122,18 +1122,18 @@ export default async function CoachingLocationPage({ params }: Props) {
                   </Link>{" "}
                   programme is bike-leg-specific, run-protective, and works
                   for {data.headingLabel} triathletes at 70.3 and Ironman
-                  distances. Same coach, same methodology $€” different
+                  distances. Same coach, same methodology â€” different
                   periodisation.
                 </p>
                 <Button href="/coaching/triathlon" size="lg">
-                  Triathlon Bike Coaching $†’
+                  Triathlon Bike Coaching â†’
                 </Button>
               </Card>
             </ScrollReveal>
           </Container>
         </Section>
 
-        {/* Event training plan cross-links $€” region-specific */}
+        {/* Event training plan cross-links â€” region-specific */}
         {(() => {
           const GEO_EVENTS: Record<string, { slug: string; name: string }[]> = {
             ireland: [
@@ -1206,7 +1206,7 @@ export default async function CoachingLocationPage({ params }: Props) {
                         className="inline-flex items-center justify-center gap-2 rounded-lg border border-white/15 hover:border-coral/40 bg-white/[0.04] hover:bg-white/[0.07] px-5 py-3 text-sm font-heading text-off-white tracking-wider transition-all"
                       >
                         {e.name.toUpperCase()} PLAN
-                        <span className="text-coral">$†’</span>
+                        <span className="text-coral">â†’</span>
                       </Link>
                     ))}
                   </div>
@@ -1279,7 +1279,7 @@ export default async function CoachingLocationPage({ params }: Props) {
                           {guide.description}
                         </p>
                         <p className="text-xs text-coral font-heading tracking-wider mt-4">
-                          READ THE GUIDE $†’
+                          READ THE GUIDE â†’
                         </p>
                       </Card>
                     </Link>

@@ -1,5 +1,5 @@
 // Resend-powered email alerts. Replaces the spec's #ted-alerts Slack channel.
-// Failures are non-fatal $€” logs to console if Resend isn't configured.
+// Failures are non-fatal $â€” logs to console if Resend isn't configured.
 
 export async function sendTedAlert(opts: {
   subject: string;
@@ -12,7 +12,7 @@ export async function sendTedAlert(opts: {
 
   if (!apiKey || !to) {
     console.warn(
-      `[ted-alert] skipping $€” RESEND_API_KEY=${!!apiKey} TED_ADMIN_ALERT_EMAIL=${!!to}`
+      `[ted-alert] skipping $â€” RESEND_API_KEY=${!!apiKey} TED_ADMIN_ALERT_EMAIL=${!!to}`
     );
     console.warn(`[ted-alert] ${opts.severity ?? "warn"}: ${opts.subject}\n${opts.body}`);
     return;

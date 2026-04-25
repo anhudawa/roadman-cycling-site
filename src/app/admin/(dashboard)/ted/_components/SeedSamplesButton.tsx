@@ -24,7 +24,7 @@ export function SeedSamplesButton() {
       }
       const ins = data?.inserted ?? {};
       setMsg(
-        `Inserted ${ins.prompts ?? 0} prompts, ${ins.welcomes ?? 0} welcomes, ${ins.surfaces ?? 0} surfaces. Reloading$€¦`
+        `Inserted ${ins.prompts ?? 0} prompts, ${ins.welcomes ?? 0} welcomes, ${ins.surfaces ?? 0} surfaces. Reloadingâ€¦`
       );
       setTimeout(() => window.location.reload(), 1200);
     } finally {
@@ -42,7 +42,7 @@ export function SeedSamplesButton() {
           <div className="text-xs text-foreground-subtle mt-1">
             Drops 7 daily prompts, 2 welcomes, and 3 thread surfaces into the
             queue so you can try approve / edit / reject without waiting for
-            the first real agent run. Safe to click twice $€” it&apos;s idempotent.
+            the first real agent run. Safe to click twice â€” it&apos;s idempotent.
           </div>
         </div>
         <button
@@ -50,7 +50,7 @@ export function SeedSamplesButton() {
           disabled={busy}
           className="text-sm rounded-md bg-white/10 text-white hover:bg-white/15 px-3 py-1.5 disabled:opacity-50 whitespace-nowrap"
         >
-          {busy ? "Seeding$€¦" : "Seed samples"}
+          {busy ? "Seedingâ€¦" : "Seed samples"}
         </button>
       </div>
       {msg ? (

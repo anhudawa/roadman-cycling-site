@@ -102,24 +102,24 @@ const REQUEST_TIMEOUT_MS = 180_000;
 const TODAY = new Date().toISOString().slice(0, 10);
 
 // ---------------------------------------------------------------------------
-// System prompt $Äî Roadman voice + site context
+// System prompt ‚Äî Roadman voice + site context
 // ---------------------------------------------------------------------------
 const SYSTEM_PROMPT = `You are writing a long-form blog post for Roadman Cycling, a cycling coaching and performance media brand based in Dublin, Ireland.
 
 BRAND CONTEXT
 - Founded by Anthony Walsh, host of the Roadman Cycling Podcast (1M+ monthly listeners, 1,300+ guest interviews with World Tour coaches, sports scientists, and pro riders).
-- Notable podcast guests you can cite for authority: Prof. Stephen Seiler (polarised training, University of Agder), Dan Lorang (Head of Performance at Red Bull-Bora-Hansgrohe; long-time coach to Jan Frodeno, Anne Haug and Lucy Charles-Barclay $Äî announced April 2026 he leaves the team end of 2026 season; do NOT credit him with Gustav Iden or Kristian Blummenfelt, they are Olav Bu athletes), Joe Friel (author, The Cyclist's Training Bible), Dan Bigham (former UCI Hour Record holder; Head of Engineering at Red Bull-Bora-Hansgrohe since late 2024), Tim Spector (ZOE founder $Äî microbiome and individualised nutrition only; do NOT credit him with 90-120g/hr CHO work, that is Asker Jeukendrup's research), John Wakefield (Red Bull-Bora-Hansgrohe Director of Development), Asker Jeukendrup (carbohydrate oxidation, multiple transportable carbs, gut training).
-- Coaching programme is called "Not Done Yet" $Äî $195/month, 1:1 personalised, five pillars (training, nutrition, strength, recovery, accountability).
+- Notable podcast guests you can cite for authority: Prof. Stephen Seiler (polarised training, University of Agder), Dan Lorang (Head of Performance at Red Bull-Bora-Hansgrohe; long-time coach to Jan Frodeno, Anne Haug and Lucy Charles-Barclay ‚Äî announced April 2026 he leaves the team end of 2026 season; do NOT credit him with Gustav Iden or Kristian Blummenfelt, they are Olav Bu athletes), Joe Friel (author, The Cyclist's Training Bible), Dan Bigham (former UCI Hour Record holder; Head of Engineering at Red Bull-Bora-Hansgrohe since late 2024), Tim Spector (ZOE founder ‚Äî microbiome and individualised nutrition only; do NOT credit him with 90-120g/hr CHO work, that is Asker Jeukendrup's research), John Wakefield (Red Bull-Bora-Hansgrohe Director of Development), Asker Jeukendrup (carbohydrate oxidation, multiple transportable carbs, gut training).
+- Coaching programme is called "Not Done Yet" ‚Äî $195/month, 1:1 personalised, five pillars (training, nutrition, strength, recovery, accountability).
 - Triathlon bike coaching is a specialism: coaching the bike leg with explicit protection of the run.
 
 VOICE
 - Direct, plainspoken, high signal-to-noise. Sentences do real work.
 - No "unlock", "uncover", "discover", "journey", "game-changing", "elevate", "level up", no hedging "can" and "may" where assertion is possible.
 - No direct-to-reader hype ("you'll be amazed", "wait until you see").
-- Cite named sources when claims are non-obvious: "Prof. Seiler's research shows$Ä¶", "Dan Lorang's World Tour athletes$Ä¶".
+- Cite named sources when claims are non-obvious: "Prof. Seiler's research shows‚Ä¶", "Dan Lorang's World Tour athletes‚Ä¶".
 - Numbers where possible. Ranges, percentages, time durations. "Most" and "many" are weaker than "80%" or "two out of three".
 - British English spellings: "periodised", "optimise", "programme", "specialise", "analyse".
-- Paragraphs are short $Äî 2-4 sentences each.
+- Paragraphs are short ‚Äî 2-4 sentences each.
 - Use em-dashes sparingly (no more than 4-5 in the whole article). Modern AI output overuses them.
 
 STRUCTURE
@@ -133,21 +133,21 @@ FRONTMATTER RULES
 - Use block-scalar (>-) for any string over 80 characters (seoDescription, excerpt, answerCapsule, long FAQ answers).
 - keywords: YAML array of 5-8 strings.
 - faq: YAML array of {question, answer} objects with 3-5 entries. FAQ answers must be 40-80 words. Questions are real search queries, not fluff.
-- answerCapsule: 60-100 words, citation-ready, self-contained. Reads like a Wikipedia lead $Äî factual, specific, no marketing. Lead with the concrete claim.
+- answerCapsule: 60-100 words, citation-ready, self-contained. Reads like a Wikipedia lead ‚Äî factual, specific, no marketing. Lead with the concrete claim.
 - publishDate: ISO string.
 
 MDX BODY RULES
 - No markdown links in H2 headings.
-- Use [anchor](/path) format for every internal link specified in the spec. Internal links must appear naturally $Äî don't just dump them at the end.
+- Use [anchor](/path) format for every internal link specified in the spec. Internal links must appear naturally ‚Äî don't just dump them at the end.
 - Body length must fall within 80-120% of the spec word target. Count words carefully.
-- Do NOT add "TL;DR" or "Summary" sections $Äî the answerCapsule frontmatter already serves that role.
+- Do NOT add "TL;DR" or "Summary" sections ‚Äî the answerCapsule frontmatter already serves that role.
 - Do NOT invent statistics, studies, or quotes. If you cite Prof. Seiler or Dan Lorang, the claim must be broadly consistent with what's publicly documented about their work.
 
 OUTPUT FORMAT
 Return ONLY the MDX file content. Start with --- and end after the final line of body. No preamble, no explanation, no code-fence markers (no triple backticks). Just the raw MDX.`;
 
 // ---------------------------------------------------------------------------
-// User prompt $Äî the article spec
+// User prompt ‚Äî the article spec
 // ---------------------------------------------------------------------------
 function buildUserPrompt(spec: ClusterArticleSpec): string {
   const parts: string[] = [];
@@ -163,7 +163,7 @@ function buildUserPrompt(spec: ClusterArticleSpec): string {
   parts.push(`Editorial angle: ${spec.angle}`);
   parts.push(`Pillar: ${spec.pillar}`);
   parts.push(`Featured image: ${spec.featuredImage}`);
-  parts.push(`Word target: ${spec.wordTarget} words (acceptable range: ${Math.round(spec.wordTarget * 0.8)}$Äì${Math.round(spec.wordTarget * 1.2)})`);
+  parts.push(`Word target: ${spec.wordTarget} words (acceptable range: ${Math.round(spec.wordTarget * 0.8)}‚Äì${Math.round(spec.wordTarget * 1.2)})`);
   parts.push(`Publish date: ${TODAY}`);
   parts.push("");
   parts.push(`Required H2 sections (use these as section headings, in this order):`);
@@ -171,7 +171,7 @@ function buildUserPrompt(spec: ClusterArticleSpec): string {
     parts.push(`  - ${s}`);
   }
   parts.push("");
-  parts.push(`Internal links to weave in naturally (not all in the same paragraph $Äî distribute across the article):`);
+  parts.push(`Internal links to weave in naturally (not all in the same paragraph ‚Äî distribute across the article):`);
   for (const link of spec.internalLinks) {
     parts.push(`  - [${link.anchor}](${link.href})`);
   }
@@ -220,7 +220,7 @@ async function generateArticle(
 ): Promise<string | null> {
   if (dryRun) {
     console.log(
-      `   [DRY RUN] would call ${MODEL} $∑ target ${spec.wordTarget} words`,
+      `   [DRY RUN] would call ${MODEL} ¬∑ target ${spec.wordTarget} words`,
     );
     return null;
   }
@@ -228,7 +228,7 @@ async function generateArticle(
   // Non-streaming messages.create with an explicit AbortController timeout.
   // SDK 0.82.0 has no built-in request timeout, so without this the call
   // hangs indefinitely when the sandbox proxy or Cloudflare kills the idle
-  // connection. 180s is generous $Äî Sonnet finishes in ~30s, Opus in ~90s.
+  // connection. 180s is generous ‚Äî Sonnet finishes in ~30s, Opus in ~90s.
   const controller = new AbortController();
   const timer = setTimeout(() => controller.abort(), REQUEST_TIMEOUT_MS);
 
@@ -254,7 +254,7 @@ async function generateArticle(
 
   // Must begin with --- (YAML frontmatter opener).
   if (!raw.startsWith("---")) {
-    console.warn(`   $ö†Ô∏è  Output missing frontmatter opener. Preview:\n${raw.slice(0, 300)}`);
+    console.warn(`   ‚ö†Ô∏è  Output missing frontmatter opener. Preview:\n${raw.slice(0, 300)}`);
     return null;
   }
 
@@ -263,9 +263,9 @@ async function generateArticle(
   const maxWords = Math.round(spec.wordTarget * 1.35);
   if (wordCount < minWords || wordCount > maxWords) {
     console.warn(
-      `   $ö†Ô∏è  Word count ${wordCount} outside acceptable range (${minWords}$Äì${maxWords}). Saving anyway under a .draft.mdx suffix.`,
+      `   ‚ö†Ô∏è  Word count ${wordCount} outside acceptable range (${minWords}‚Äì${maxWords}). Saving anyway under a .draft.mdx suffix.`,
     );
-    // Don't throw $Äî let the caller decide whether to accept.
+    // Don't throw ‚Äî let the caller decide whether to accept.
     return `__OUT_OF_RANGE__:${wordCount}\n${raw}`;
   }
 
@@ -290,7 +290,7 @@ async function main() {
   console.log("");
 
   if (!dryRun && !process.env.ANTHROPIC_API_KEY) {
-    console.error("$ùå ANTHROPIC_API_KEY not set in .env.local or .env.");
+    console.error("‚ùå ANTHROPIC_API_KEY not set in .env.local or .env.");
     process.exit(1);
   }
 
@@ -313,7 +313,7 @@ async function main() {
   console.log("");
 
   if (toProcess.length === 0) {
-    console.log("$úì Nothing to do.");
+    console.log("‚úì Nothing to do.");
     return;
   }
 
@@ -344,7 +344,7 @@ async function main() {
           const isRetryable = msg.includes("abort") || msg.includes("timeout") || msg.includes("idle") || msg.includes("529") || msg.includes("overloaded");
           if (isRetryable && attempt < MAX_RETRIES) {
             const wait = attempt * 30;
-            console.log(`   $ö†Ô∏è  Attempt ${attempt} failed (${msg.slice(0, 60)}), retrying in ${wait}s...`);
+            console.log(`   ‚ö†Ô∏è  Attempt ${attempt} failed (${msg.slice(0, 60)}), retrying in ${wait}s...`);
             await new Promise((r) => setTimeout(r, wait * 1000));
           } else {
             throw err;
@@ -355,7 +355,7 @@ async function main() {
       if (!mdx) {
         if (!dryRun) {
           failed++;
-          console.log(`   $úó No usable output returned`);
+          console.log(`   ‚úó No usable output returned`);
         }
         continue;
       }
@@ -365,17 +365,17 @@ async function main() {
         const wordCount = meta.split(":")[1];
         writeArticle(spec, rest.join("\n"), true);
         drafted++;
-        console.log(`   $ö†Ô∏è  Saved as .draft.mdx (${wordCount}w, outside range)`);
+        console.log(`   ‚ö†Ô∏è  Saved as .draft.mdx (${wordCount}w, outside range)`);
       } else {
         if (!dryRun) writeArticle(spec, mdx, false);
         succeeded++;
         const words = countBodyWords(mdx);
-        console.log(`   $úì ${words}w written to content/blog/${spec.slug}.mdx`);
+        console.log(`   ‚úì ${words}w written to content/blog/${spec.slug}.mdx`);
       }
     } catch (err) {
       failed++;
       const message = err instanceof Error ? err.message : String(err);
-      console.log(`   $úó ${message}`);
+      console.log(`   ‚úó ${message}`);
       if (err instanceof Anthropic.RateLimitError) {
         await new Promise((r) => setTimeout(r, 30_000));
       }
@@ -383,7 +383,7 @@ async function main() {
   }
 
   console.log("");
-  console.log(`$úì Complete.`);
+  console.log(`‚úì Complete.`);
   console.log(`  Published: ${succeeded}`);
   console.log(`  Drafted (out-of-range):  ${drafted}`);
   console.log(`  Failed: ${failed}`);

@@ -9,10 +9,10 @@ import type { Answers } from "./types";
  *  2. Pure single-profile win (Polarisation), no bumps
  *  3. Strength Gap with a distant Under-recovered runner-up
  *  4. Fueling Deficit with runner-up outside the 1-point window
- *  5. Severe multi-system $€” tie-break selects UR, severeMultiSystem fires
+ *  5. Severe multi-system â€” tie-break selects UR, severeMultiSystem fires
  */
 
-describe("scoreDiagnostic $€” Appendix A fixtures", () => {
+describe("scoreDiagnostic â€” Appendix A fixtures", () => {
   it("Fixture 1: classic Under-recovered", () => {
     const answers: Answers = {
       age: "45-54",
@@ -90,12 +90,12 @@ describe("scoreDiagnostic $€” Appendix A fixtures", () => {
     expect(result.scores.fuelingDeficit).toBe(10);
     expect(result.primary).toBe("fuelingDeficit");
     // UR = 5 direct (1+2+2) + 1 cross from Q12 = 6. 10-6 = 4, outside
-    // the 1-point window $€” so secondary must be null.
+    // the 1-point window â€” so secondary must be null.
     expect(result.scores.underRecovered).toBe(6);
     expect(result.secondary).toBeNull();
   });
 
-  it("Fixture 5: severe multi-system $€” tie-break selects Under-recovered", () => {
+  it("Fixture 5: severe multi-system â€” tie-break selects Under-recovered", () => {
     const answers: Answers = {
       age: "45-54",
       hoursPerWeek: "5-8",
@@ -111,13 +111,13 @@ describe("scoreDiagnostic $€” Appendix A fixtures", () => {
     // UR = 8 direct + 1 cross from Q12 = 9 (the highest).
     expect(result.scores.underRecovered).toBe(9);
     expect(result.primary).toBe("underRecovered");
-    // Every profile is at 6 or above $€” flip the severeMultiSystem
+    // Every profile is at 6 or above â€” flip the severeMultiSystem
     // switch so downstream CTA routing forces a direct call booking.
     expect(result.severeMultiSystem).toBe(true);
   });
 });
 
-describe("scoreDiagnostic $€” edge cases from $§8", () => {
+describe("scoreDiagnostic â€” edge cases from Â§8", () => {
   it("flags closeToBreakthrough when every profile scores under 3", () => {
     const answers: Answers = {
       age: "45-54",
@@ -131,7 +131,7 @@ describe("scoreDiagnostic $€” edge cases from $§8", () => {
     expect(result.closeToBreakthrough).toBe(true);
     expect(result.severeMultiSystem).toBe(false);
     // With no profile reaching 3, the tie-break chain still puts
-    // Under-recovered on top $€” that's deliberate. Callers swap the
+    // Under-recovered on top â€” that's deliberate. Callers swap the
     // rendered content, not the profile assignment.
     expect(result.primary).toBe("underRecovered");
   });

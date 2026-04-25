@@ -39,14 +39,14 @@ export function StickyCoachingBar({ source }: StickyCoachingBarProps) {
             className="inline-flex items-center gap-1 font-heading text-xs tracking-wider uppercase bg-coral text-off-white hover:bg-coral/90 rounded-md px-4 py-2 transition-all"
             data-track={`sticky_bar_${source}`}
           >
-            Apply $†’
+            Apply â†’
           </Link>
           <button
             onClick={() => setDismissed(true)}
             className="text-foreground-subtle hover:text-off-white text-xs transition-colors cursor-pointer"
             aria-label="Dismiss"
           >
-            $œ•
+            âœ•
           </button>
         </div>
       </div>

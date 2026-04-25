@@ -99,7 +99,7 @@ export function WelcomeReviewTable({ rows }: { rows: Row[] }) {
             <div className="flex items-center justify-between text-xs text-foreground-subtle mb-2">
               <span>
                 <span className="text-white">{r.firstName || "(no name)"}</span>{" "}
-                $· persona: {r.persona ?? "listener"} $· status {r.status} $·
+                Â· persona: {r.persona ?? "listener"} Â· status {r.status} Â·
                 joined{" "}
                 {new Date(r.createdAt).toISOString().slice(0, 10)}
               </span>

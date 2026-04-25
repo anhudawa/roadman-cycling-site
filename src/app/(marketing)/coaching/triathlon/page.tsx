@@ -7,7 +7,7 @@ import { FAQSchema } from "@/components/seo/FAQSchema";
 
 export const metadata: Metadata = {
   title:
-    "Triathlon Bike Coach | Bike Coaching for Triathletes $€” Roadman Cycling",
+    "Triathlon Bike Coach | Bike Coaching for Triathletes â€” Roadman Cycling",
   description:
     "Specialist bike coaching for triathletes. Build bike-leg power, nail your pacing, protect your run. Coaching designed for age-groupers targeting 70.3 and Ironman. From the podcast host who interviews Dan Lorang and Prof. Stephen Seiler.",
   keywords: [
@@ -25,7 +25,7 @@ export const metadata: Metadata = {
   },
   openGraph: {
     title:
-      "Triathlon Bike Coach | Bike Coaching for Triathletes $€” Roadman Cycling",
+      "Triathlon Bike Coach | Bike Coaching for Triathletes â€” Roadman Cycling",
     description:
       "Specialist bike coaching for triathletes. Build bike-leg power, nail your pacing, protect your run. For age-groupers targeting 70.3 and Ironman.",
     type: "website",
@@ -38,7 +38,7 @@ const bikePillars = [
     number: "01",
     title: "Bike-Specific Power",
     description:
-      "Age-group bike splits are won in Zone 2 and Zone 3, not at threshold. We build the sustainable aerobic power that lets you push watts over 90km or 180km $€” not just 20 minutes $€” so your race-pace feels manageable.",
+      "Age-group bike splits are won in Zone 2 and Zone 3, not at threshold. We build the sustainable aerobic power that lets you push watts over 90km or 180km â€” not just 20 minutes â€” so your race-pace feels manageable.",
   },
   {
     number: "02",
@@ -50,7 +50,7 @@ const bikePillars = [
     number: "03",
     title: "Brick & Transition Craft",
     description:
-      "The real bike session ends with the first 5km of the run. Brick workouts are periodised into every block so you arrive at T2 with legs that remember how to run $€” not legs that are wrecked.",
+      "The real bike session ends with the first 5km of the run. Brick workouts are periodised into every block so you arrive at T2 with legs that remember how to run â€” not legs that are wrecked.",
   },
   {
     number: "04",
@@ -76,11 +76,11 @@ const results = [
   {
     stat: "-18min",
     label: "Ironman bike split",
-    name: "Age-group AG50$€“54",
+    name: "Age-group AG50â€“54",
     detail: "Negative-split run for the first time",
   },
   {
-    stat: "3 $†’ 1",
+    stat: "3 â†’ 1",
     label: "Category jump",
     name: "Daniel Stone",
     detail: "Cycling block translated to tri",
@@ -88,25 +88,25 @@ const results = [
 ];
 
 const whoItIsFor = [
-  "Age-group triathletes targeting a 70.3 or Ironman in the next 6$€“18 months",
+  "Age-group triathletes targeting a 70.3 or Ironman in the next 6â€“18 months",
   "Returning triathletes who feel strong on the run but slow on the bike",
   "Cyclists transitioning into triathlon who need run-aware bike structure",
-  "Time-crunched athletes with 8$€“12 hrs/week who need every bike session to count",
+  "Time-crunched athletes with 8â€“12 hrs/week who need every bike session to count",
   "Tri club members whose club plan covers swim and run but treats the bike as filler",
   "Athletes over 40 who want bike gains without run-destroying intensity",
 ];
 
 const whoItIsNotFor = [
   "First-time triathletes who need a full 3-discipline triathlon coach",
-  "Pro or elite long-course athletes (we coach age-groupers $€” the best pros have their own full-time coaches)",
-  "Athletes who want swim or run coaching $€” this is specifically bike-leg coaching",
+  "Pro or elite long-course athletes (we coach age-groupers â€” the best pros have their own full-time coaches)",
+  "Athletes who want swim or run coaching â€” this is specifically bike-leg coaching",
 ];
 
 const faqItems = [
   {
     question: "Do I need a bike-specific coach for triathlon?",
     answer:
-      "If you already have a run coach or a balanced triathlon plan and the bike is your weak leg, yes. Most triathlon coaches treat the bike as a third of the plan. A bike-specific coach treats it as the 50$€“60% of your race-day time that it actually is. The bike is where age-group races are won and lost $€” it is the longest discipline, it determines how well you run, and it is the one most improvable with structured power-based training.",
+      "If you already have a run coach or a balanced triathlon plan and the bike is your weak leg, yes. Most triathlon coaches treat the bike as a third of the plan. A bike-specific coach treats it as the 50â€“60% of your race-day time that it actually is. The bike is where age-group races are won and lost â€” it is the longest discipline, it determines how well you run, and it is the one most improvable with structured power-based training.",
   },
   {
     question: "What is the difference between a cycling coach and a triathlon coach for the bike leg?",
@@ -121,7 +121,7 @@ const faqItems = [
   {
     question: "Can I get coached just for the bike if I already have a triathlon coach?",
     answer:
-      "Yes $€” this is a common setup. Your triathlon coach owns the overall plan, race strategy, and swim/run programming. We own the bike build with a written handover so both coaches are working from the same calendar. Many of our athletes come to us exactly this way after their triathlon coach admits the bike is not their specialism.",
+      "Yes â€” this is a common setup. Your triathlon coach owns the overall plan, race strategy, and swim/run programming. We own the bike build with a written handover so both coaches are working from the same calendar. Many of our athletes come to us exactly this way after their triathlon coach admits the bike is not their specialism.",
   },
   {
     question: "How much does triathlon bike coaching cost?",
@@ -136,51 +136,51 @@ const faqItems = [
   {
     question: "What data do I need to be coached?",
     answer:
-      "A power meter is strongly recommended for triathlon bike work because pacing the bike leg is entirely wattage-based for everyone above beginner level. If you do not have one yet, we can start with heart rate and RPE and add power later. A bike computer (Garmin, Wahoo, etc.) that syncs to TrainingPeaks is essential $€” everything runs through there.",
+      "A power meter is strongly recommended for triathlon bike work because pacing the bike leg is entirely wattage-based for everyone above beginner level. If you do not have one yet, we can start with heart rate and RPE and add power later. A bike computer (Garmin, Wahoo, etc.) that syncs to TrainingPeaks is essential â€” everything runs through there.",
   },
   {
     question: "Will you coach my strength training for triathlon too?",
     answer:
-      "Yes. Strength is one of the five pillars and is periodised with your bike and run load. Triathlon-specific strength is about resilience (avoiding late-race breakdown) and bike-specific force production $€” not bodybuilding. Sessions are 30$€“45 minutes, 2$€“3x per week, programmed to complement your sport sessions not fight them.",
+      "Yes. Strength is one of the five pillars and is periodised with your bike and run load. Triathlon-specific strength is about resilience (avoiding late-race breakdown) and bike-specific force production â€” not bodybuilding. Sessions are 30â€“45 minutes, 2â€“3x per week, programmed to complement your sport sessions not fight them.",
   },
 ];
 
 // Real Roadman members whose results translate directly to the demands of the
 // triathlon bike leg: sustainable aerobic power, polarised intensity control,
-// and endurance adaptation. Presented honestly as Roadman coaching members $€”
-// not claimed to be triathletes $€” so the social proof is verifiable.
+// and endurance adaptation. Presented honestly as Roadman coaching members â€”
+// not claimed to be triathletes â€” so the social proof is verifiable.
 const testimonials = [
   {
     quote:
       "I was an average sportive rider who had plateaued. Roadman custom built a plan to achieve my goals. I've gotten much more out of Roadman than I ever imagined.",
     name: "Damien Maloney",
-    detail: "Roadman member $€” FTP 205w $†’ 295w",
+    detail: "Roadman member â€” FTP 205w â†’ 295w",
   },
   {
     quote:
       "This really works. I'm training so much less than last year, at lower intensities and not getting sick. FTHR up from 175 to 180, peak HR up to 193.",
     name: "Brian Morrissey",
-    detail: "Roadman member $€” 52yo, FTP +15%",
+    detail: "Roadman member â€” 52yo, FTP +15%",
   },
   {
     quote:
       "The expertise and personalised plan allowed me to utilise my past racing experience and gave me the adaptations needed for the changeover. Couldn't recommend Anthony enough.",
     name: "Aaron Kearney",
-    detail: "Roadman member $€” endurance crossover",
+    detail: "Roadman member â€” endurance crossover",
   },
 ];
 
 export default function TriathlonCoachingPage() {
   return (
     <>
-      {/* Service schema $€” bike-leg specialism for triathletes */}
+      {/* Service schema â€” bike-leg specialism for triathletes */}
       <JsonLd
         data={{
           "@context": "https://schema.org",
           "@type": "Service",
-          name: "Roadman Cycling $€” Triathlon Bike Coaching",
+          name: "Roadman Cycling â€” Triathlon Bike Coaching",
           description:
-            "Specialist online bike coaching for triathletes. Bike-leg power, aero endurance, brick sessions, pacing, and fuelling $€” periodised to protect your run. Built for 70.3 and Ironman age-groupers.",
+            "Specialist online bike coaching for triathletes. Bike-leg power, aero endurance, brick sessions, pacing, and fuelling â€” periodised to protect your run. Built for 70.3 and Ironman age-groupers.",
           serviceType: "Triathlon Bike Coaching",
           provider: {
             "@type": "Person",
@@ -200,14 +200,14 @@ export default function TriathlonCoachingPage() {
           ],
           offers: {
             "@type": "Offer",
-            name: "Not Done Yet Coaching Community $€” Triathlon Bike Coaching",
+            name: "Not Done Yet Coaching Community â€” Triathlon Bike Coaching",
             price: "195",
             priceCurrency: "USD",
             description:
-              "1:1 bike-leg coaching for triathletes $€” power, pacing, bricks, fuelling, strength",
+              "1:1 bike-leg coaching for triathletes â€” power, pacing, bricks, fuelling, strength",
           },
           // Review schema mirrors the real on-page testimonials below.
-          // No reviewRating $€” we collect narrative testimonials, not star ratings,
+          // No reviewRating â€” we collect narrative testimonials, not star ratings,
           // so emitting a made-up numeric rating would violate Google's guidelines.
           review: testimonials.map((t) => ({
             "@type": "Review",
@@ -218,13 +218,13 @@ export default function TriathlonCoachingPage() {
             reviewBody: t.quote,
             itemReviewed: {
               "@type": "Service",
-              name: "Roadman Cycling $€” Triathlon Bike Coaching",
+              name: "Roadman Cycling â€” Triathlon Bike Coaching",
             },
           })),
         }}
       />
 
-      {/* Course schema $€” structured triathlon bike programme */}
+      {/* Course schema â€” structured triathlon bike programme */}
       <JsonLd
         data={{
           "@context": "https://schema.org",
@@ -304,7 +304,7 @@ export default function TriathlonCoachingPage() {
               </h1>
               <p className="text-foreground-muted text-xl max-w-2xl mx-auto mb-8 leading-relaxed">
                 Specialist bike coaching for age-group triathletes. Bike-leg
-                power, aero endurance, brick sessions, pacing, and fuelling $€”
+                power, aero endurance, brick sessions, pacing, and fuelling â€”
                 periodised around your run. Built on 1,400+ conversations with
                 Dan Lorang, Prof. Stephen Seiler, and World Tour coaches.
               </p>
@@ -339,13 +339,13 @@ export default function TriathlonCoachingPage() {
                   style={{ fontSize: "var(--text-section)" }}
                 >
                   <GradientText as="span">
-                    THE BIKE LEG IS WHERE AGE-GROUPERS LOSE TIME $€” AND IT COSTS YOU THE RUN.
+                    THE BIKE LEG IS WHERE AGE-GROUPERS LOSE TIME â€” AND IT COSTS YOU THE RUN.
                   </GradientText>
                 </h2>
                 <div className="space-y-4 text-foreground-muted leading-relaxed">
                   <p>
-                    You spend 50$€“60% of your race-day on the bike.
-                    It is the single biggest time saving in your triathlon $€” and
+                    You spend 50â€“60% of your race-day on the bike.
+                    It is the single biggest time saving in your triathlon â€” and
                     the single biggest threat to your run. Yet most triathlon
                     plans give the bike a third of the attention, a generic
                     threshold workout, and a long Sunday grind.
@@ -353,12 +353,12 @@ export default function TriathlonCoachingPage() {
                   <p>
                     That&rsquo;s how age-groupers end up with a respectable bike
                     split and a run that falls apart at 15km. You didn&rsquo;t lose
-                    the race on the run $€” you lost it in the last 30 minutes
+                    the race on the run â€” you lost it in the last 30 minutes
                     of the bike, burning matches you needed later.
                   </p>
                   <p className="text-off-white font-medium">
                     Triathlon-cycling coaching treats the bike as its own craft
-                    $€” with the run always watching.
+                    â€” with the run always watching.
                   </p>
                 </div>
               </ScrollReveal>
@@ -370,7 +370,7 @@ export default function TriathlonCoachingPage() {
                   </h3>
                   <ul className="space-y-3">
                     {[
-                      "Bike training periodised with the run $€” not against it",
+                      "Bike training periodised with the run â€” not against it",
                       "Race-day pacing built from your FTP and course profile",
                       "Brick sessions that actually teach your legs the transition",
                       "Aero position endurance as a trainable adaptation",
@@ -455,7 +455,7 @@ export default function TriathlonCoachingPage() {
               </h2>
               <p className="text-foreground-muted max-w-xl mx-auto">
                 Every triathlon bike programme covers these five layers.
-                Together they deliver a faster bike split $€” and a run that
+                Together they deliver a faster bike split â€” and a run that
                 holds.
               </p>
             </ScrollReveal>
@@ -608,8 +608,8 @@ export default function TriathlonCoachingPage() {
                 PREFER CYCLING-ONLY COACHING?
               </h2>
               <p className="text-foreground-muted max-w-xl mx-auto mb-8 leading-relaxed">
-                If your focus is road racing, gran fondos, or sportives $€” not
-                triathlon $€” our general cycling coaching covers the same five
+                If your focus is road racing, gran fondos, or sportives â€” not
+                triathlon â€” our general cycling coaching covers the same five
                 pillars without the triathlon-specific brick work.
               </p>
               <div className="flex flex-wrap justify-center gap-4">
@@ -642,7 +642,7 @@ export default function TriathlonCoachingPage() {
           </Container>
         </Section>
 
-        {/* Blog cluster $€” surfaces triathlon-specific articles for internal
+        {/* Blog cluster â€” surfaces triathlon-specific articles for internal
             link equity from the pillar page to its cluster content. */}
         <Section background="charcoal">
           <Container width="narrow">
@@ -654,7 +654,7 @@ export default function TriathlonCoachingPage() {
                 FROM THE BLOG
               </h2>
               <p className="text-foreground-muted max-w-xl mx-auto">
-                Bike-leg training, pacing, and race preparation $€” written for
+                Bike-leg training, pacing, and race preparation â€” written for
                 triathletes, not pure cyclists.
               </p>
             </ScrollReveal>

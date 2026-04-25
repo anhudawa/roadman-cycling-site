@@ -10,7 +10,7 @@ import { createNotification } from "@/lib/crm/notifications";
  * Body: { action: "accept" | "decline" | "reply", message?: string }
  *
  * Receiver (assignee) of a requested task can accept, decline, or reply with
- * a message. Reply doesn't change status $€” it just nudges the sender to
+ * a message. Reply doesn't change status â€” it just nudges the sender to
  * renegotiate. Sender gets a notification on every response.
  */
 export async function POST(
@@ -55,7 +55,7 @@ export async function POST(
   if (!task) return NextResponse.json({ error: "Not found" }, { status: 404 });
 
   // Only the assignee of a requested task may respond (or the original sender,
-  // who can cancel by declining $€” we handle that loosely here).
+  // who can cancel by declining â€” we handle that loosely here).
   if (task.assignedTo !== user.slug && task.createdBy !== user.slug) {
     return NextResponse.json(
       { error: "Not your task to respond to" },
@@ -70,7 +70,7 @@ export async function POST(
   };
   if (action === "accept") patch.requestStatus = "accepted";
   if (action === "decline") patch.requestStatus = "declined";
-  // action === "reply" $†’ status unchanged
+  // action === "reply" â†’ status unchanged
 
   await db.update(tasksTable).set(patch).where(eq(tasksTable.id, id));
 
@@ -94,7 +94,7 @@ export async function POST(
         type: "task_assigned",
         title: `${user.name} ${actionLabel} your task`,
         body: message
-          ? `"${message.slice(0, 140)}" $€” re: ${task.title}`
+          ? `"${message.slice(0, 140)}" â€” re: ${task.title}`
           : task.title,
         link: "/admin/my-day",
       });

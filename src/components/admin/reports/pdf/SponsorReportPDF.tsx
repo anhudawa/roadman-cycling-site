@@ -28,14 +28,14 @@ function monthLabel(month: string): string {
 
 export function SponsorReportPDF({ payload }: { payload: ReportPayload }) {
   const { sponsor, month, headline, episodeGroups, platforms } = payload;
-  const fmt = (v: number | null) => (v === null ? '$Äî' : v.toLocaleString('en-GB'));
+  const fmt = (v: number | null) => (v === null ? '‚Äî' : v.toLocaleString('en-GB'));
 
   return (
     <Document>
       <Page size="A4" style={styles.page}>
         {sponsor.logoUrl && <Image src={sponsor.logoUrl} style={styles.heroLogo} />}
         <Text style={styles.heroTitle}>{sponsor.brandName}</Text>
-        <Text style={styles.heroSub}>MONTHLY PARTNERSHIP REPORT $Äî {monthLabel(month).toUpperCase()}</Text>
+        <Text style={styles.heroSub}>MONTHLY PARTNERSHIP REPORT ‚Äî {monthLabel(month).toUpperCase()}</Text>
         <View style={styles.hr} />
 
         <View style={styles.statsGrid}>
@@ -63,13 +63,13 @@ export function SponsorReportPDF({ payload }: { payload: ReportPayload }) {
         ) : (
           episodeGroups.map((g) => (
             <View key={g.episodeSlug} style={styles.epCard}>
-              <Text style={styles.epTitle}>Ep {g.episodeNumber} $Äî {g.episodeTitle}</Text>
+              <Text style={styles.epTitle}>Ep {g.episodeNumber} ‚Äî {g.episodeTitle}</Text>
               <Text style={styles.epMeta}>
-                {g.publishDate} $∑ {g.mentions.length} mention(s) $∑ {g.downloads.toLocaleString('en-GB')} downloads
+                {g.publishDate} ¬∑ {g.mentions.length} mention(s) ¬∑ {g.downloads.toLocaleString('en-GB')} downloads
               </Text>
               {g.mentions.map((m, i) => (
                 <Text key={i} style={styles.mention}>
-                  <Text style={styles.ts}>{formatTimestamp(m.timestampSeconds)}</Text> $Äî $Äú{m.quote}$Äù
+                  <Text style={styles.ts}>{formatTimestamp(m.timestampSeconds)}</Text> ‚Äî ‚Äú{m.quote}‚Äù
                 </Text>
               ))}
             </View>
@@ -87,7 +87,7 @@ export function SponsorReportPDF({ payload }: { payload: ReportPayload }) {
         </View>
 
         <Text style={styles.footer}>
-          Generated {new Date(payload.generatedAt).toLocaleString('en-GB')} $Äî Roadman Cycling
+          Generated {new Date(payload.generatedAt).toLocaleString('en-GB')} ‚Äî Roadman Cycling
         </Text>
       </Page>
     </Document>

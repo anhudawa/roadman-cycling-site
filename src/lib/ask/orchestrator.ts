@@ -3,7 +3,7 @@
  *
  * Pipeline, in order:
  *   1. persist the user message
- *   2. safety pre-filter (regex) $€” if blocked, emit fixed template + CTA, done
+ *   2. safety pre-filter (regex) $â€” if blocked, emit fixed template + CTA, done
  *   3. intent classification (Haiku)
  *   4. load rider profile (if session has one)
  *   5. retrieval fan-out (episodes + methodology + content chunks)
@@ -15,7 +15,7 @@
  *  11. emit done
  *
  * Any step that fails catastrophically falls through to an `error` SSE
- * event $€” the client shows a friendly message and the operation is logged.
+ * event $â€” the client shows a friendly message and the operation is logged.
  */
 
 import Anthropic from "@anthropic-ai/sdk";
@@ -58,12 +58,12 @@ export async function streamAnswer(
       content: input.query,
     });
   } catch {
-    sse.enqueue({ type: "error", data: { message: "Couldn't persist the question $€” try again." } });
+    sse.enqueue({ type: "error", data: { message: "Couldn't persist the question $â€” try again." } });
     sse.close();
     return;
   }
 
-  // 2 $€” safety pre-filter
+  // 2 $â€” safety pre-filter
   const safety = detectSafety(input.query);
   if (safety.block) {
     await emitSafeBlock({
@@ -76,14 +76,14 @@ export async function streamAnswer(
     return;
   }
 
-  // 3-4 $€” intent + profile + seed in parallel
+  // 3-4 $â€” intent + profile + seed in parallel
   const [classification, profile, seed] = await Promise.all([
     classifyIntent(input.query),
     input.riderProfileId != null ? loadProfileById(input.riderProfileId) : Promise.resolve(null),
     input.seed ? loadSeedContext(input.seed.tool, input.seed.slug).catch(() => null) : Promise.resolve(null),
   ]);
 
-  // 5 $€” retrieval. If the rider arrived with a seed context, broaden the
+  // 5 $â€” retrieval. If the rider arrived with a seed context, broaden the
   //     query with the seed headline so retrieval leans toward material
   //     that explains their saved result.
   const retrievalQuery = seed ? `${input.query} ${seed.headline}` : input.query;
@@ -94,7 +94,7 @@ export async function streamAnswer(
     retrieval = { chunks: [], totalCandidates: 0 };
   }
 
-  // 6 $€” CTA
+  // 6 $â€” CTA
   const cta = pickCta({
     intent: classification.intent,
     hasProfile: profile != null,
@@ -102,7 +102,7 @@ export async function streamAnswer(
     retrieved: retrieval.chunks,
   });
 
-  // 7 $€” meta event so the client can paint a skeleton
+  // 7 $â€” meta event so the client can paint a skeleton
   sse.enqueue({
     type: "meta",
     data: {
@@ -116,7 +116,7 @@ export async function streamAnswer(
     },
   });
 
-  // 8 $€” emit citations + cta upfront so the UI can show them while the answer streams
+  // 8 $â€” emit citations + cta upfront so the UI can show them while the answer streams
   if (retrieval.chunks.length > 0) {
     sse.enqueue({
       type: "citation",
@@ -133,7 +133,7 @@ export async function streamAnswer(
     sse.enqueue({ type: "cta", data: cta });
   }
 
-  // 9 $€” stream the answer
+  // 9 $â€” stream the answer
   try {
     const full = await streamFromAnthropic({
       query: input.query,
@@ -146,7 +146,7 @@ export async function streamAnswer(
       sse,
     });
 
-    // 10 $€” post-filter + persist
+    // 10 $â€” post-filter + persist
     const { flaggedInvented } = postFilterCitations(
       full.text,
       retrieval.chunks.map((c) => c.title),
@@ -294,7 +294,7 @@ function buildFallbackNoKey(intent: Intent, chunks: RetrievedChunk[]): string {
   const topTitle = chunks[0]?.title;
   const topUrl = chunks[0]?.url;
   const linkHint = topTitle
-    ? `\n\nWhile Ask Roadman is offline, the closest Roadman material is "${topTitle}"${topUrl ? ` $€” ${topUrl}` : ""}.`
+    ? `\n\nWhile Ask Roadman is offline, the closest Roadman material is "${topTitle}"${topUrl ? ` $â€” ${topUrl}` : ""}.`
     : "";
   return `Ask Roadman is temporarily unavailable (the AI backend isn't configured for this environment). Intent detected: ${intent}.${linkHint}`;
 }

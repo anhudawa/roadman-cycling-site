@@ -19,14 +19,14 @@ import { upsertByEmail as upsertRiderProfile } from "@/lib/rider-profile/store";
 import { riderProfilePatchFromDiagnostic } from "@/lib/diagnostic/rider-profile-patch";
 
 /**
- * Masters Plateau Diagnostic $€” submission endpoint.
+ * Masters Plateau Diagnostic â€” submission endpoint.
  *
  * Flow:
  *   1. Validate answers + email. 400 on malformed input.
- *   2. Score the answers (pure, deterministic) $€” $§8 scoring engine.
+ *   2. Score the answers (pure, deterministic) â€” Â§8 scoring engine.
  *   3. Call Claude for a personalised breakdown; fall back to the
- *      static $§9 template if the LLM fails twice or the API key is
- *      missing. The fallback path is deliberately first-class $€” the
+ *      static Â§9 template if the LLM fails twice or the API key is
+ *      missing. The fallback path is deliberately first-class â€” the
  *      user never waits on a broken LLM.
  *   4. Persist everything (raw answers, scores, breakdown, UTMs).
  *   5. Best-effort Beehiiv subscribe + profile tag + CRM upsert +
@@ -68,7 +68,7 @@ export async function POST(request: Request) {
     );
   }
 
-  // GDPR: reject unchecked consent $€” privacy page is linked from the
+  // GDPR: reject unchecked consent â€” privacy page is linked from the
   // email gate component.
   if (body.consent !== true) {
     return NextResponse.json(
@@ -111,8 +111,8 @@ export async function POST(request: Request) {
 
   const scoring = scoreDiagnostic(answers);
 
-  // generateBreakdown never throws $€” it catches its own errors and
-  // returns the static $§9 fallback when Claude is unavailable or the
+  // generateBreakdown never throws â€” it catches its own errors and
+  // returns the static Â§9 fallback when Claude is unavailable or the
   // output fails validation twice in a row.
   const generation = await generateBreakdown(
     scoring.primary,
@@ -120,7 +120,7 @@ export async function POST(request: Request) {
     answers
   );
 
-  // Retake detection per $§17. First submission for this email is
+  // Retake detection per Â§17. First submission for this email is
   // retake_number = 1, second is 2, etc. Counted before insert so we
   // have the right number to store + tag Beehiiv with.
   let retakeNumber = 1;
@@ -150,12 +150,12 @@ export async function POST(request: Request) {
     );
   }
 
-  // $”€$”€ Non-fatal side-effects group $”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€
-  // Everything below is best-effort $€” failures get logged but never
+  // â”€â”€ Non-fatal side-effects group â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+  // Everything below is best-effort â€” failures get logged but never
   // prevent the user from seeing their results.
   const profileLabel = PROFILE_LABELS[scoring.primary];
 
-  // Rider profile upsert $€” progressive, undefined preserves existing
+  // Rider profile upsert â€” progressive, undefined preserves existing
   // values. Runs before the Promise.all below so the rider_profile_id
   // attach can piggyback on the returned row without extra awaits.
   const profilePatch = riderProfilePatchFromDiagnostic({
@@ -226,7 +226,7 @@ export async function POST(request: Request) {
 
     // Transactional confirmation via Resend. This is the immediate
     // "here's your link" email so the funnel works even before the
-    // Beehiiv nurture sequence ($§13) is authored. The Beehiiv Email 1
+    // Beehiiv nurture sequence (Â§13) is authored. The Beehiiv Email 1
     // ("Your diagnosis: [Profile]") is a separate, deeper touch.
     sendDiagnosisConfirmation({
       email,

@@ -48,7 +48,7 @@ describe("dublinISODate", () => {
   });
 
   it("wraps correctly across midnight UTC", () => {
-    // 01:00 UTC April 20 is 02:00 Dublin (IST) $€” still April 20
+    // 01:00 UTC April 20 is 02:00 Dublin (IST) $â€” still April 20
     expect(dublinISODate(new Date("2026-04-20T01:00:00Z"))).toBe("2026-04-20");
     // 23:30 UTC April 19 is 00:30 Dublin April 20 during IST
     expect(dublinISODate(new Date("2026-04-19T23:30:00Z"))).toBe("2026-04-20");

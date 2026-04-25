@@ -1,4 +1,4 @@
-# Transcript Indexer Agent $€” Decisions & Assumptions
+# Transcript Indexer Agent â€” Decisions & Assumptions
 
 ## Architecture
 
@@ -49,7 +49,7 @@ creates:
 - `aiCitationBlock`: string (standalone quotable paragraph)
 
 ### Internal links
-Reciprocal links are injected as MDX content blocks in existing episode files $€”
+Reciprocal links are injected as MDX content blocks in existing episode files â€”
 specifically a `## Related Episodes` section update. The agent only modifies files
 in the same primary cluster and adds a single link per file, avoiding churn.
 
@@ -65,7 +65,7 @@ with 3-minute intervals between episodes.
 | 1. Metadata extraction | claude-haiku-4-5 | Structured extraction, low complexity |
 | 2. Topic cluster assignment | claude-haiku-4-5 | Classification task |
 | 3. Page generation | claude-sonnet-4-6 | Creative writing with voice constraints |
-| 4. Voice fidelity check | claude-opus-4-6 | Nuanced quality gate $€” the hardest step |
+| 4. Voice fidelity check | claude-opus-4-6 | Nuanced quality gate â€” the hardest step |
 | 5. Link injection | N/A (programmatic) | No LLM needed |
 | 6. PR creation | N/A (gh CLI) | No LLM needed |
 
@@ -88,12 +88,12 @@ which stores processed episode IDs.
 
 ### Watch mode: one PR per episode
 Branch: `episode/<ep-number>-<slug>`
-Title: `Episode <n>: <title> $€” auto-indexed`
+Title: `Episode <n>: <title> â€” auto-indexed`
 
 ### Backfill mode: batch PRs
 10 episodes per PR to avoid review fatigue.
 Branch: `backfill/<start>-<end>`
-Title: `Backfill: Episodes <start>-<end> $€” auto-indexed`
+Title: `Backfill: Episodes <start>-<end> â€” auto-indexed`
 
 ## Observability
 
@@ -103,4 +103,4 @@ Fields: timestamp, runId, episodeId, step, model, tokensUsed, runtimeMs,
 regenerationAttempt, sacredCowResults, pass/fail.
 
 ### Weekly summary
-`logs/agent/weekly-<date>.md` $€” generated programmatically, not via LLM.
+`logs/agent/weekly-<date>.md` â€” generated programmatically, not via LLM.

@@ -13,6 +13,6 @@ export async function searchContentChunks(
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   _limit = 4,
 ): Promise<RetrievedChunk[]> {
-  // Placeholder $€” Phase 4 adds the real implementation.
+  // Placeholder $â€” Phase 4 adds the real implementation.
   return [];
 }

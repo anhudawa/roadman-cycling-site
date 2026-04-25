@@ -4,15 +4,15 @@ export const BOTTOM_FUNNEL_ARTICLES: ClusterArticleSpec[] = [
   {
     slug: "cycling-coaching-results-before-and-after",
     title: "Cycling Coaching Results: Before and After From Real Riders",
-    seoTitle: "Cycling Coaching Results $€” Before & After From Real NDY Members (2026)",
+    seoTitle: "Cycling Coaching Results â€” Before & After From Real NDY Members (2026)",
     seoDescription:
       "Real cycling coaching results from Not Done Yet members. FTP gains, weight loss, category upgrades, and the training changes that drove them. No stock photos, no fake numbers.",
     excerpt:
-      "Real results from real riders. FTP gains of 90w, Cat 3 to Cat 1 upgrades, 16kg weight loss. Here's what changed $€” and what the numbers looked like before and after.",
+      "Real results from real riders. FTP gains of 90w, Cat 3 to Cat 1 upgrades, 16kg weight loss. Here's what changed â€” and what the numbers looked like before and after.",
     targetKeyword: "cycling coaching results",
     supportingKeywords: ["cycling coach before after", "online cycling coaching results", "cycling coaching testimonials", "cycling FTP improvement coaching"],
     angle:
-      "Case-study format using real NDY member data: Damien Maloney (205$†’295w), Daniel Stone (Cat 3$†’Cat 1), Chris O'Connor (-16kg), Brian Morrissey (+15% FTP at 52). Each case includes the training change that drove the result.",
+      "Case-study format using real NDY member data: Damien Maloney (205â†’295w), Daniel Stone (Cat 3â†’Cat 1), Chris O'Connor (-16kg), Brian Morrissey (+15% FTP at 52). Each case includes the training change that drove the result.",
     pillar: "coaching",
     requiredSections: [
       "What changed for a sportive rider stuck at 205w FTP",
@@ -34,7 +34,7 @@ export const BOTTOM_FUNNEL_ARTICLES: ClusterArticleSpec[] = [
   {
     slug: "cycling-coaching-free-trial",
     title: "7-Day Free Coaching Trial: What You Get and How It Works",
-    seoTitle: "Free Cycling Coaching Trial $€” 7 Days, No Commitment (2026)",
+    seoTitle: "Free Cycling Coaching Trial â€” 7 Days, No Commitment (2026)",
     seoDescription:
       "Try Not Done Yet cycling coaching free for 7 days. Full access to personalised TrainingPeaks plan, coaching calls, and community. No card required to start. Here's exactly what the trial includes.",
     excerpt:
@@ -64,11 +64,11 @@ export const BOTTOM_FUNNEL_ARTICLES: ClusterArticleSpec[] = [
   {
     slug: "not-done-yet-coaching-review",
     title: "Not Done Yet Coaching Review: What Members Actually Think",
-    seoTitle: "Not Done Yet Coaching Review $€” Honest Member Feedback (2026)",
+    seoTitle: "Not Done Yet Coaching Review â€” Honest Member Feedback (2026)",
     seoDescription:
       "An honest review of Not Done Yet cycling coaching from Roadman Cycling. What members say works, what could be better, pricing, and who it's built for.",
     excerpt:
-      "Not Done Yet is Roadman Cycling's coaching programme. Here's the honest review $€” what works, what could be better, who it's for, and whether $195/month is worth it.",
+      "Not Done Yet is Roadman Cycling's coaching programme. Here's the honest review â€” what works, what could be better, who it's for, and whether $195/month is worth it.",
     targetKeyword: "not done yet coaching review",
     supportingKeywords: ["roadman cycling coaching review", "not done yet review", "online cycling coaching review", "ndy coaching"],
     angle:
@@ -98,7 +98,7 @@ export const BOTTOM_FUNNEL_ARTICLES: ClusterArticleSpec[] = [
     seoDescription:
       "How to choose the best cycling coach if you're over 40. Recovery changes, FTP expectations, strength integration, and what to look for in a masters-focused coach.",
     excerpt:
-      "After 40, the training that worked at 30 stops working. Here's what to look for in a coach who understands masters physiology $€” and what most coaches get wrong.",
+      "After 40, the training that worked at 30 stops working. Here's what to look for in a coach who understands masters physiology â€” and what most coaches get wrong.",
     targetKeyword: "best cycling coach masters",
     supportingKeywords: ["cycling coach over 40", "masters cycling coaching", "cycling training after 40", "best coach older cyclists"],
     angle:
@@ -124,7 +124,7 @@ export const BOTTOM_FUNNEL_ARTICLES: ClusterArticleSpec[] = [
   {
     slug: "cycling-coaching-testimonials",
     title: "Cycling Coaching Testimonials: What Our Members Say",
-    seoTitle: "Cycling Coaching Testimonials $€” Real Member Stories (2026)",
+    seoTitle: "Cycling Coaching Testimonials â€” Real Member Stories (2026)",
     seoDescription:
       "Real testimonials from Not Done Yet cycling coaching members. FTP gains, weight loss, racing upgrades, and comeback stories. Named riders, real numbers.",
     excerpt:

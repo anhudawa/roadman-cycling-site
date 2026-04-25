@@ -69,7 +69,7 @@ export default async function DealsPage() {
           avgDealSizeCents: stats.avgDealSizeCents,
           openCount,
         }}
-        defaultCurrency="EUR"
+        defaultCurrency="USD"
       />
     </div>
   );

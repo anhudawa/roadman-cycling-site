@@ -27,7 +27,7 @@ export interface SkoolBrowserOpts {
   dryRun?: boolean;
 }
 
-// Skool UI selectors $€” each field is a comma-separated list of alternates;
+// Skool UI selectors $â€” each field is a comma-separated list of alternates;
 // Playwright tries the whole list and takes the first match.
 const SELECTORS = {
   loginEmail: [
@@ -71,7 +71,7 @@ const SELECTORS = {
     'button:has-text("Post")',
     'button:has-text("Publish")',
   ],
-  // Each post in the feed $€” styled-components fragment is stable enough across
+  // Each post in the feed $â€” styled-components fragment is stable enough across
   // builds to serve as an anchor; falls back to the href pattern.
   threadCard: [
     '[class*="PostItemCardContent"]',
@@ -232,7 +232,7 @@ export class SkoolBrowser {
         await page.fill(sel(SELECTORS.composeTitleInput), title, { timeout: 3000 });
         await this.jitter();
       } catch {
-        // No title input visible $€” some composer variants may only need body.
+        // No title input visible $â€” some composer variants may only need body.
       }
     }
 
@@ -244,11 +244,11 @@ export class SkoolBrowser {
           .getByRole("option", { name: params.category })
           .click({ timeout: 3000 });
       } catch {
-        // category picker may be unavailable $€” fall through to default
+        // category picker may be unavailable $â€” fall through to default
       }
     }
 
-    // Fill the body $€” use click+type for contenteditable (fill doesn't always
+    // Fill the body $â€” use click+type for contenteditable (fill doesn't always
     // work on rich-text editors).
     const bodyLocator = page.locator(sel(SELECTORS.composeBody)).first();
     await bodyLocator.click();
@@ -257,7 +257,7 @@ export class SkoolBrowser {
     await this.screenshot("compose-filled");
 
     if (this.opts.dryRun) {
-      console.log("[skool-browser] dry-run $€” skipping Post button click");
+      console.log("[skool-browser] dry-run $â€” skipping Post button click");
       return null;
     }
 
@@ -266,7 +266,7 @@ export class SkoolBrowser {
     await this.jitter();
     await this.screenshot("post-submitted");
 
-    // Best-effort URL capture $€” Skool usually redirects to the new post page.
+    // Best-effort URL capture $â€” Skool usually redirects to the new post page.
     return { url: page.url() };
   }
 
@@ -287,7 +287,7 @@ export class SkoolBrowser {
     await this.screenshot("reply-filled");
 
     if (this.opts.dryRun) {
-      console.log("[skool-browser] dry-run $€” skipping Reply button click");
+      console.log("[skool-browser] dry-run $â€” skipping Reply button click");
       return null;
     }
 

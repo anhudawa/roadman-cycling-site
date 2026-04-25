@@ -5,9 +5,9 @@ describe("quickBannedWordScan", () => {
   it("returns empty for clean copy", () => {
     const body = `Question for the group.
 
-Z2 rides done perfectly or intervals done perfectly $€” which would you pick? Curious what you'd do.
+Z2 rides done perfectly or intervals done perfectly $â€” which would you pick? Curious what you'd do.
 
-$€” Ted`;
+$â€” Ted`;
     expect(quickBannedWordScan(body)).toEqual([]);
   });
 
@@ -20,7 +20,7 @@ $€” Ted`;
   });
 
   it("flags multiple phrases independently", () => {
-    const hits = quickBannedWordScan("delve into the ecosystem $€” a game-changer");
+    const hits = quickBannedWordScan("delve into the ecosystem $â€” a game-changer");
     expect(hits).toEqual(expect.arrayContaining(["delve", "ecosystem", "game-changer"]));
   });
 
@@ -29,7 +29,7 @@ $€” Ted`;
   });
 
   it("does not false-positive on valid cycling words", () => {
-    const body = `Seiler's interval work $€” does threshold still hold up? Tell me what's changed for you.`;
+    const body = `Seiler's interval work $â€” does threshold still hold up? Tell me what's changed for you.`;
     expect(quickBannedWordScan(body)).toEqual([]);
   });
 });

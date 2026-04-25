@@ -133,7 +133,7 @@ export default async function ApplicationsPage({ searchParams }: PageProps) {
             <p className="text-foreground-muted text-sm mt-1.5">
               {currentView === "kanban"
                 ? `${totalCount} /apply submission${totalCount === 1 ? "" : "s"}`
-                : "/apply submissions $· list view"}
+                : "/apply submissions Â· list view"}
             </p>
           </div>
           <div className="inline-flex rounded-lg border border-white/10 bg-background-elevated p-0.5 text-[11px] shrink-0">

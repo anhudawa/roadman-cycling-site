@@ -10,11 +10,11 @@ import type { NextRequest } from "next/server";
  * well (a future enhancement could auto-generate this from the DB).
  */
 interface ActiveTest {
-  /** Unique experiment id $€” used as the cookie suffix */
+  /** Unique experiment id â€” used as the cookie suffix */
   id: string;
   /** URL path prefix the test applies to (e.g. "/" or "/skool") */
   pathPrefix: string;
-  /** Variant IDs to randomly assign $€” first is always "control" */
+  /** Variant IDs to randomly assign â€” first is always "control" */
   variantIds: string[];
 }
 
@@ -49,7 +49,7 @@ export async function proxy(request: NextRequest) {
   const activeTests = await getActiveTests(origin);
   const response = NextResponse.next();
 
-  // $”€$”€ Global visitor variant assignment cookie $”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€
+  // â”€â”€ Global visitor variant assignment cookie â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
   // Every visitor gets a stable `ab_variant` UUID that persists for 30 days.
   // This ID is used to deterministically bucket visitors into experiment
   // cohorts and ensure a consistent experience across sessions.
@@ -64,7 +64,7 @@ export async function proxy(request: NextRequest) {
     });
   }
 
-  // $”€$”€ Per-experiment variant assignment $”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€
+  // â”€â”€ Per-experiment variant assignment â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
   if (activeTests.length === 0) {
     return response;
   }
@@ -79,7 +79,7 @@ export async function proxy(request: NextRequest) {
     const existing = request.cookies.get(cookieName)?.value;
 
     if (existing && test.variantIds.includes(existing)) {
-      // Already assigned $€” carry forward
+      // Already assigned â€” carry forward
       assignments[test.id] = existing;
     } else {
       // Randomly assign a variant

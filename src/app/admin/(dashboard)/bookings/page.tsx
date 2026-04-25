@@ -55,7 +55,7 @@ export default async function BookingsPage() {
             Bookings
           </h1>
           <p className="text-foreground-muted text-sm mt-1">
-            Next 30 days from your Google Calendar $· cached 60s
+            Next 30 days from your Google Calendar Â· cached 60s
           </p>
         </div>
         <Link
@@ -135,7 +135,7 @@ export default async function BookingsPage() {
                       <div className="font-mono tabular-nums text-[var(--color-fg)] text-sm min-w-[96px]">
                         {ev.allDay
                           ? "ALL DAY"
-                          : `${fmtTime(ev.start)} $€“ ${fmtTime(ev.end)}`}
+                          : `${fmtTime(ev.start)} â€“ ${fmtTime(ev.end)}`}
                       </div>
                       <div className="flex-1 min-w-0">
                         <p className="text-off-white text-sm font-semibold truncate">
@@ -150,7 +150,7 @@ export default async function BookingsPage() {
                           <p className="text-foreground-subtle text-[11px] mt-1">
                             {ev.attendees.length} attendee
                             {ev.attendees.length === 1 ? "" : "s"}
-                            {ev.hangoutLink && " $· Meet link available"}
+                            {ev.hangoutLink && " Â· Meet link available"}
                           </p>
                         )}
                       </div>

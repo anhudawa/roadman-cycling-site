@@ -1,16 +1,16 @@
 /**
  * scripts/generate-episode-capsules.ts
  *
- * Generates citation-ready answer capsules (60$€“100 word TL;DRs) for every
+ * Generates citation-ready answer capsules (60â€“100 word TL;DRs) for every
  * podcast episode with a transcript. Writes `answerCapsule` back to the
  * episode MDX frontmatter.
  *
  * Why this matters for AEO (answer-engine optimisation):
  *   - Episode pages currently show `seoDescription` (155 chars, keyword-
  *     dense, SERP-optimised) as the .answer-capsule block. That's fine
- *     for Google snippets but terrible for AI-citation quality $€” it reads
+ *     for Google snippets but terrible for AI-citation quality â€” it reads
  *     like ad copy, not a self-contained factual summary.
- *   - A curated 60$€“100 word capsule written from the full transcript is
+ *   - A curated 60â€“100 word capsule written from the full transcript is
  *     what ChatGPT/Perplexity/Claude will actually quote when the
  *     episode is used as a source. Higher chance of surfacing Roadman
  *     as an authoritative citation.
@@ -69,11 +69,11 @@ const SYSTEM_PROMPT = `You write citation-ready TL;DR capsules for podcast episo
 CONTEXT:
 These capsules are rendered at the top of the episode page and read by AI
 assistants (ChatGPT, Perplexity, Claude) when citing the episode as a
-source. They are distinct from SEO meta descriptions $€” this is a factual,
+source. They are distinct from SEO meta descriptions â€” this is a factual,
 self-contained summary that holds up when quoted on its own.
 
 RULES:
-- 60$€“100 words. Two to three short sentences.
+- 60â€“100 words. Two to three short sentences.
 - Authoritative and specific. Lead with the concrete thesis or finding.
 - Name the guest (if one) in the first sentence with their credential.
 - Include one actionable takeaway or surprising insight, not generic fluff.
@@ -105,7 +105,7 @@ function buildUserPrompt(
     `\nTRANSCRIPT EXCERPT (first ~1500 words):\n${transcriptExcerpt}\n`,
   );
   parts.push(
-    `Write the 60$€“100 word citation-ready TL;DR for this episode, following all rules in the system prompt.`,
+    `Write the 60â€“100 word citation-ready TL;DR for this episode, following all rules in the system prompt.`,
   );
   return parts.join("\n");
 }
@@ -169,7 +169,7 @@ async function generateCapsuleForEpisode(
   episode: EpisodeRecord,
 ): Promise<string | null> {
   // First ~1500 words of the transcript is typically plenty to capture
-  // the thesis $€” avoids blowing the per-call token budget when transcripts
+  // the thesis â€” avoids blowing the per-call token budget when transcripts
   // reach 10K+ words.
   const transcriptExcerpt = episode.transcript.split(/\s+/).slice(0, 1500).join(" ");
 
@@ -197,17 +197,17 @@ async function generateCapsuleForEpisode(
   const textBlock = response.content.find((b) => b.type === "text");
   if (!textBlock || textBlock.type !== "text") return null;
 
-  // Clean up $€” strip any surrounding quotes or markdown the model might have added
+  // Clean up â€” strip any surrounding quotes or markdown the model might have added
   let capsule = textBlock.text.trim();
   capsule = capsule.replace(/^[""]|[""]$/g, "");
   capsule = capsule.replace(/^["']|["']$/g, "");
   capsule = capsule.replace(/^[*_]+|[*_]+$/g, "");
 
-  // Sanity-check word count. Outside 40$€“140 words = suspicious, skip.
+  // Sanity-check word count. Outside 40â€“140 words = suspicious, skip.
   const wordCount = capsule.split(/\s+/).length;
   if (wordCount < 40 || wordCount > 140) {
     console.warn(
-      `   $š ï¸  Capsule length out of range (${wordCount} words). Skipping.`,
+      `   âš ï¸  Capsule length out of range (${wordCount} words). Skipping.`,
     );
     return null;
   }
@@ -225,7 +225,7 @@ function writeAnswerCapsule(episode: EpisodeRecord, capsule: string) {
 }
 
 async function main() {
-  console.log(`ðŸ’$ Generate episode answer capsules`);
+  console.log(`ðŸ’¬ Generate episode answer capsules`);
   console.log(`   Model: ${MODEL}`);
   console.log(`   Dry run: ${dryRun}`);
   console.log(`   Force: ${force}`);
@@ -234,7 +234,7 @@ async function main() {
   console.log("");
 
   if (!dryRun && !process.env.ANTHROPIC_API_KEY) {
-    console.error("$Œ ANTHROPIC_API_KEY not set in .env.local or .env.");
+    console.error("âŒ ANTHROPIC_API_KEY not set in .env.local or .env.");
     process.exit(1);
   }
 
@@ -250,7 +250,7 @@ async function main() {
   console.log("");
 
   if (toProcess.length === 0) {
-    console.log("$œ“ Nothing to do.");
+    console.log("âœ“ Nothing to do.");
     return;
   }
 
@@ -274,18 +274,18 @@ async function main() {
       if (!capsule) {
         if (!dryRun) {
           skippedInvalid++;
-          console.log(`   $š ï¸  Skipped (invalid capsule)`);
+          console.log(`   âš ï¸  Skipped (invalid capsule)`);
         }
         continue;
       }
 
       if (!dryRun) writeAnswerCapsule(ep, capsule);
       succeeded++;
-      console.log(`   $œ“ ${capsule.split(/\s+/).length} words: "${capsule.slice(0, 80)}${capsule.length > 80 ? "$€¦" : ""}"`);
+      console.log(`   âœ“ ${capsule.split(/\s+/).length} words: "${capsule.slice(0, 80)}${capsule.length > 80 ? "â€¦" : ""}"`);
     } catch (err) {
       failed++;
       const message = err instanceof Error ? err.message : String(err);
-      console.log(`   $œ— ${message}`);
+      console.log(`   âœ— ${message}`);
       if (err instanceof Anthropic.RateLimitError) {
         await new Promise((r) => setTimeout(r, 30_000));
       }
@@ -293,7 +293,7 @@ async function main() {
   }
 
   console.log("");
-  console.log(`$œ“ Complete.`);
+  console.log(`âœ“ Complete.`);
   console.log(`  Succeeded: ${succeeded}`);
   console.log(`  Length-skipped: ${skippedInvalid}`);
   console.log(`  Failed: ${failed}`);

@@ -7,7 +7,7 @@ import { FAQSchema } from "@/components/seo/FAQSchema";
 import { getTestimonialsByName } from "@/lib/testimonials";
 
 export const metadata: Metadata = {
-  title: "Online Cycling Coach $€” Personalised Coaching | $195/month",
+  title: "Online Cycling Coach â€” Personalised Coaching | $195/month",
   description:
     "Personalised cycling coaching built on 1,400+ expert podcast conversations. Training plans, nutrition, strength, recovery, and community. Trusted by cyclists in Ireland, UK, and USA.",
   keywords: [
@@ -24,7 +24,7 @@ export const metadata: Metadata = {
     canonical: "https://roadmancycling.com/coaching",
   },
   openGraph: {
-    title: "Online Cycling Coach $€” Personalised Coaching | $195/month",
+    title: "Online Cycling Coach â€” Personalised Coaching | $195/month",
     description:
       "Personalised cycling coaching built on 1,400+ expert podcast conversations. Training, nutrition, strength, recovery, and community.",
     type: "website",
@@ -37,10 +37,10 @@ const results = [
     stat: "+90w",
     label: "FTP gain",
     name: "Damien Maloney",
-    detail: "205w $†’ 295w",
+    detail: "205w â†’ 295w",
   },
   {
-    stat: "3 $†’ 1",
+    stat: "3 â†’ 1",
     label: "Category jump",
     name: "Daniel Stone",
     detail: "Roadman Cycling Club",
@@ -49,11 +49,11 @@ const results = [
     stat: "+15%",
     label: "FTP gain at age 52",
     name: "Brian Morrissey",
-    detail: "230w $†’ 265w",
+    detail: "230w â†’ 265w",
   },
 ];
 
-// Editorial choice $€” three different persona angles for the 'IN THEIR
+// Editorial choice â€” three different persona angles for the 'IN THEIR
 // WORDS' row. Pulled from the central testimonials library so any quote
 // update ripples across /coaching, /apply, /you/<slug>, etc.
 const voiceTestimonials = getTestimonialsByName([
@@ -67,13 +67,13 @@ const pillars = [
     number: "01",
     title: "Training",
     description:
-      "Personalised TrainingPeaks plans built around your life, your goals, and your data. Adjusted weekly based on how you actually responded $€” not how an algorithm predicted you would.",
+      "Personalised TrainingPeaks plans built around your life, your goals, and your data. Adjusted weekly based on how you actually responded â€” not how an algorithm predicted you would.",
   },
   {
     number: "02",
     title: "Nutrition",
     description:
-      "Race weight, fuelling strategy, and body composition guidance. Not calorie counting $€” practical nutrition that makes a measurable difference to your power-to-weight ratio.",
+      "Race weight, fuelling strategy, and body composition guidance. Not calorie counting â€” practical nutrition that makes a measurable difference to your power-to-weight ratio.",
   },
   {
     number: "03",
@@ -85,13 +85,13 @@ const pillars = [
     number: "04",
     title: "Recovery",
     description:
-      "Sleep optimisation, stress management, and adaptation protocols. The part most cyclists ignore $€” and the part that determines whether training actually sticks.",
+      "Sleep optimisation, stress management, and adaptation protocols. The part most cyclists ignore â€” and the part that determines whether training actually sticks.",
   },
   {
     number: "05",
     title: "Community",
     description:
-      "Weekly coaching calls, a private group of serious cyclists, and 1:1 plan reviews. The reason this works when apps and solo plans don't $€” you're surrounded by people who know your situation and are watching.",
+      "Weekly coaching calls, a private group of serious cyclists, and 1:1 plan reviews. The reason this works when apps and solo plans don't â€” you're surrounded by people who know your situation and are watching.",
   },
 ];
 
@@ -104,12 +104,12 @@ const faqItems = [
   {
     question: "How does online cycling coaching work?",
     answer:
-      "You get a personalised training plan on TrainingPeaks that adapts weekly based on your data, life context, and how you responded to the previous week. This includes weekly coaching calls, 1:1 plan reviews, nutrition guidance, strength programming, and access to a private community of serious cyclists. Everything is remote $€” your coach sees more of your training data than an in-person coach ever could.",
+      "You get a personalised training plan on TrainingPeaks that adapts weekly based on your data, life context, and how you responded to the previous week. This includes weekly coaching calls, 1:1 plan reviews, nutrition guidance, strength programming, and access to a private community of serious cyclists. Everything is remote â€” your coach sees more of your training data than an in-person coach ever could.",
   },
   {
     question: "How much does a cycling coach cost?",
     answer:
-      "Coaching is $195 per month and includes 1:1 personalised coaching with Anthony Walsh across all five pillars $€” training, nutrition, strength, recovery, and community. You get a personalised TrainingPeaks plan, weekly coaching calls, and a private community of serious cyclists. Includes a 7-day free trial.",
+      "Coaching is $195 per month and includes 1:1 personalised coaching with Anthony Walsh across all five pillars â€” training, nutrition, strength, recovery, and community. You get a personalised TrainingPeaks plan, weekly coaching calls, and a private community of serious cyclists. Includes a 7-day free trial.",
   },
   {
     question:
@@ -125,12 +125,12 @@ const faqItems = [
   {
     question: "Can I get coaching if I only ride 6-8 hours per week?",
     answer:
-      "Yes $€” in fact, time-limited cyclists benefit the most from coaching. When you only have 6-8 hours, every session needs to count. A coach ensures you are doing the right work at the right intensity instead of accumulating junk miles. Several of our strongest results come from riders training under 8 hours per week.",
+      "Yes â€” in fact, time-limited cyclists benefit the most from coaching. When you only have 6-8 hours, every session needs to count. A coach ensures you are doing the right work at the right intensity instead of accumulating junk miles. Several of our strongest results come from riders training under 8 hours per week.",
   },
   {
     question: "Do you coach cyclists in Ireland, the UK, and the USA?",
     answer:
-      "Yes. Roadman Cycling is based in Dublin, Ireland, and coaches cyclists across Ireland, the UK, the USA, and worldwide. All coaching is delivered online through TrainingPeaks, Zoom, and our private community platform. Time zones are never an issue $€” coaching calls are scheduled flexibly and all communication is asynchronous-first.",
+      "Yes. Roadman Cycling is based in Dublin, Ireland, and coaches cyclists across Ireland, the UK, the USA, and worldwide. All coaching is delivered online through TrainingPeaks, Zoom, and our private community platform. Time zones are never an issue â€” coaching calls are scheduled flexibly and all communication is asynchronous-first.",
   },
 ];
 
@@ -139,7 +139,7 @@ const testimonials = [
     quote:
       "I was an average sportive rider who had plateaued. Roadman custom built a plan to achieve my goals. I've gotten much more out of Roadman than I ever imagined.",
     name: "Damien Maloney",
-    detail: "FTP: 205w $†’ 295w",
+    detail: "FTP: 205w â†’ 295w",
   },
   {
     quote:
@@ -155,7 +155,7 @@ const testimonials = [
   },
   {
     quote:
-      "From 315lbs to sub-100kg, and I'm still going. The accountability and structure changed my life $€” not just my cycling.",
+      "From 315lbs to sub-100kg, and I'm still going. The accountability and structure changed my life â€” not just my cycling.",
     name: "Gregory Gross",
     detail: "USA",
   },
@@ -190,25 +190,25 @@ export default function CoachingPage() {
           ],
           offers: {
             "@type": "Offer",
-            name: "Not Done Yet Coaching Community $€” Personalised Coaching",
+            name: "Not Done Yet Coaching Community â€” Personalised Coaching",
             price: "195",
             priceCurrency: "USD",
             description:
               "1:1 personalised coaching across training, nutrition, strength, recovery, and community",
           },
           // Testimonials render on the page but are NOT marked up as
-          // schema.org/Review $€” Google requires reviewRating on every
+          // schema.org/Review â€” Google requires reviewRating on every
           // Review, and we collect narrative testimonials not star ratings.
           // Emitting Review without reviewRating triggers the structured-
           // data spam policy. Re-add with real ratings if we ever collect them.
         }}
       />
-      {/* Course schema $€” structured coaching programme with instructor + delivery mode */}
+      {/* Course schema â€” structured coaching programme with instructor + delivery mode */}
       <JsonLd
         data={{
           "@context": "https://schema.org",
           "@type": "Course",
-          name: "Roadman Cycling $€” Not Done Yet Coaching Community",
+          name: "Roadman Cycling â€” Not Done Yet Coaching Community",
           description:
             "Structured online cycling coaching programme covering training, nutrition, strength, recovery, and community. Delivered via TrainingPeaks, weekly coaching calls, and a private community of serious cyclists.",
           provider: {
@@ -277,11 +277,11 @@ export default function CoachingPage() {
               <p className="text-foreground-muted text-xl max-w-2xl mx-auto mb-8 leading-relaxed">
                 Personalised cycling coaching built on 1,400+ conversations with
                 the world&apos;s best coaches and scientists. Training,
-                nutrition, strength, recovery, and community $€” structured
+                nutrition, strength, recovery, and community â€” structured
                 into your week so every session counts.
               </p>
 
-              {/* Hero proof point $€” single killer stat + quote, above the fold */}
+              {/* Hero proof point â€” single killer stat + quote, above the fold */}
               <div className="relative mx-auto max-w-2xl mb-10">
                 <div className="rounded-2xl border border-coral/20 bg-gradient-to-br from-coral/10 via-deep-purple/30 to-deep-purple/50 px-6 py-6 md:px-10 md:py-7 text-left">
                   <div className="flex flex-col md:flex-row md:items-center gap-5 md:gap-7">
@@ -305,7 +305,7 @@ export default function CoachingPage() {
                       </p>
                       <p className="text-foreground-subtle text-sm mt-3">
                         <span className="text-off-white font-medium">Damien Maloney</span>
-                        &nbsp;$· Ireland $· 205w &rarr; 295w
+                        &nbsp;Â· Ireland Â· 205w &rarr; 295w
                       </p>
                     </div>
                   </div>
@@ -371,7 +371,7 @@ export default function CoachingPage() {
               ))}
             </div>
 
-            {/* In-their-words testimonial row $€” three different persona
+            {/* In-their-words testimonial row â€” three different persona
                 angles (plateau, comeback, body comp) with full quotes so
                 prospects can self-identify with a specific case. */}
             <ScrollReveal direction="up" className="text-center mb-8">
@@ -426,12 +426,12 @@ export default function CoachingPage() {
                 <div className="space-y-4 text-foreground-muted leading-relaxed">
                   <p>
                     You bought the power meter. Downloaded the training app. Did
-                    the intervals. And it worked $€” for a while. Then the gains
+                    the intervals. And it worked â€” for a while. Then the gains
                     stopped, motivation dipped, and you started wondering whether
                     this is just your ceiling.
                   </p>
                   <p>
-                    It&apos;s not. The problem isn&apos;t effort $€” it&apos;s
+                    It&apos;s not. The problem isn&apos;t effort â€” it&apos;s
                     structure. Training apps give you workouts. They can&apos;t
                     adjust for a bad night of sleep, a stressful week at work, or
                     the fact that your nutrition is quietly undermining everything
@@ -661,7 +661,7 @@ export default function CoachingPage() {
                   RACING A 70.3 OR IRONMAN?
                 </h2>
                 <p className="text-foreground-muted max-w-xl mx-auto mb-6 leading-relaxed">
-                  The bike leg is where age-group races are won and lost $€” and
+                  The bike leg is where age-group races are won and lost â€” and
                   where most run legs fall apart. Our{" "}
                   <Link
                     href="/coaching/triathlon"
@@ -677,7 +677,7 @@ export default function CoachingPage() {
                   size="lg"
                   dataTrack="coaching_hub_to_triathlon_pillar"
                 >
-                  Triathlon Bike Coaching $†’
+                  Triathlon Bike Coaching â†’
                 </Button>
               </Card>
             </ScrollReveal>
@@ -696,7 +696,7 @@ export default function CoachingPage() {
               </h2>
               <p className="text-foreground-muted max-w-xl mx-auto mb-8 leading-relaxed">
                 Based in Dublin, Ireland. Coaching cyclists across Ireland, the
-                UK, the USA, and beyond. All coaching is delivered online $€” your
+                UK, the USA, and beyond. All coaching is delivered online â€” your
                 location is never a barrier to getting faster.
               </p>
               <div className="flex flex-wrap justify-center gap-4">
@@ -746,7 +746,7 @@ export default function CoachingPage() {
           </Container>
         </Section>
 
-        {/* Blog cluster $€” coaching-pillar articles for internal link equity */}
+        {/* Blog cluster â€” coaching-pillar articles for internal link equity */}
         <Section background="charcoal">
           <Container width="narrow">
             <ScrollReveal direction="up" className="text-center mb-10">

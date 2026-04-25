@@ -6,17 +6,17 @@
  *
  * Background: we purged coral from the admin UI except for a tight allowlist.
  * Coral is a brand-signature accent and must not creep back into arbitrary
- * buttons, toggles, or status bits $€” the surviving uses are intentional and
+ * buttons, toggles, or status bits $â€” the surviving uses are intentional and
  * carry design meaning (primary CTA, sidebar active state, mission-control
  * glide path, and unread indicators).
  *
  * Allowed files:
  *   1. src/components/admin/ui.tsx
- *      (primitives file $€” owns Button-primary + UnreadBadge coral)
+ *      (primitives file $â€” owns Button-primary + UnreadBadge coral)
  *   2. src/app/admin/(dashboard)/AdminSidebar.tsx
- *      (coral active-nav indicator $€” brand signature)
+ *      (coral active-nav indicator $â€” brand signature)
  *   3. src/app/admin/(dashboard)/mission-control/page.tsx
- *      (the glide-path gradient $€” single brand moment)
+ *      (the glide-path gradient $â€” single brand moment)
  *   4. Any file whose basename matches /[uU]nread/ (unread-badge components)
  *
  * Everywhere else under src/app/admin/** and src/components/admin/** this

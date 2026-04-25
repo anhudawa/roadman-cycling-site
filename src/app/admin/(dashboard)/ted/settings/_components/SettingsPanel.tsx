@@ -63,7 +63,7 @@ export function SettingsPanel({ initial }: { initial: State }) {
             }`}
             onClick={() => save({ paused: !state.paused, reason: state.reason })}
           >
-            {state.paused ? "Paused $€” click to resume" : "Running $€” click to pause"}
+            {state.paused ? "Paused $â€” click to resume" : "Running $â€” click to pause"}
           </button>
         </div>
         <div>

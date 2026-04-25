@@ -24,7 +24,7 @@ interface EpisodeCandidate {
   relevance: string;
 }
 
-/** Deterministic cascade: tag $†’ link $†’ summary. First one that doesn't SKIP wins. */
+/** Deterministic cascade: tag â†’ link â†’ summary. First one that doesn't SKIP wins. */
 export async function generateSurfaceForThread(opts: {
   promptsDir: string;
   thread: SkoolPost;
@@ -108,7 +108,7 @@ function buildTagUser(
   const memberList = members
     .map(
       (m) =>
-        `- @${m.firstName} $€” topics: ${m.topicTags.join(", ")}; prior note: ${m.priorContributionNote}`
+        `- @${m.firstName} â€” topics: ${m.topicTags.join(", ")}; prior note: ${m.priorContributionNote}`
     )
     .join("\n");
   return `Thread to surface:
@@ -120,7 +120,7 @@ ${thread.body}
 Candidate active members:
 ${memberList}
 
-Pick ONE member. Write a reply that tags them in. Return only the post body (including \`$€” Ted\`), or \`[SKIP $€” no match]\` if none is a strong fit.`;
+Pick ONE member. Write a reply that tags them in. Return only the post body (including \`â€” Ted\`), or \`[SKIP â€” no match]\` if none is a strong fit.`;
 }
 
 function buildLinkUser(
@@ -142,7 +142,7 @@ ${thread.body}
 Candidate episodes:
 ${epList}
 
-Pick ONE episode. Write a reply linking it. Return only the post body (including \`$€” Ted\`), or \`[SKIP $€” no match]\`.`;
+Pick ONE episode. Write a reply linking it. Return only the post body (including \`â€” Ted\`), or \`[SKIP â€” no match]\`.`;
 }
 
 function buildSummaryUser(thread: SkoolPost): string {
@@ -152,9 +152,9 @@ Author: ${thread.author}
 Body:
 ${thread.body}
 
-(Replies preview omitted here $€” the browser module provides them live when needed.)
+(Replies preview omitted here â€” the browser module provides them live when needed.)
 
-Summarise the takes so far for lurkers. Return only the post body (including \`$€” Ted\`), or \`[SKIP $€” thread too thin]\`.`;
+Summarise the takes so far for lurkers. Return only the post body (including \`â€” Ted\`), or \`[SKIP â€” thread too thin]\`.`;
 }
 
 export function voiceCheckEmpty(): VoiceCheckResult {

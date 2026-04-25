@@ -128,10 +128,10 @@ function extractEnrichmentBlob(cf: Record<string, unknown>): EnrichmentBlob | nu
   return e as EnrichmentBlob;
 }
 
-function formatGbp(cents: number): string {
-  return new Intl.NumberFormat("en-GB", {
+function formatUsd(cents: number): string {
+  return new Intl.NumberFormat("en-US", {
     style: "currency",
-    currency: "GBP",
+    currency: "USD",
     maximumFractionDigits: 0,
   }).format(cents / 100);
 }
@@ -764,7 +764,7 @@ export function ContactDetail({
                 className={`text-[10px] px-2 py-0.5 rounded border tabular-nums uppercase tracking-widest ${leadBandClass(leadBand(leadScore))}`}
                 title="Lead score"
               >
-                {leadScore} $· {leadBand(leadScore)}
+                {leadScore} $ï¿½ {leadBand(leadScore)}
               </span>
             )}
             {canRescore && (
@@ -802,7 +802,7 @@ export function ContactDetail({
                   className="px-4 py-2 bg-red-500/20 text-red-400 text-sm font-heading tracking-wider rounded-lg border border-red-500/30 hover:bg-red-500/30 disabled:opacity-50 uppercase"
                 >
                   {deletingApps
-                    ? "Deleting$€¦"
+                    ? "Deleting$ï¿½ï¿½"
                     : `Confirm delete${apps.length > 1 ? ` (${apps.length})` : ""}`}
                 </button>
                 <button
@@ -873,8 +873,8 @@ export function ContactDetail({
                   </div>
                   <p className="text-xs text-foreground-muted truncate">
                     {d.email}
-                    {d.phone ? ` $· ${d.phone}` : ""}
-                    {d.owner ? ` $· ${d.owner}` : ""}
+                    {d.phone ? ` $ï¿½ ${d.phone}` : ""}
+                    {d.owner ? ` $ï¿½ ${d.owner}` : ""}
                   </p>
                 </div>
                 <button
@@ -946,7 +946,7 @@ export function ContactDetail({
               initialValues={initialCustomValues}
             />
 
-            {/* Tasks here too $€” quick actions belong on overview */}
+            {/* Tasks here too $â€” quick actions belong on overview */}
             <div className="bg-background-elevated rounded-xl border border-white/5 p-4">
               <p className="text-[10px] uppercase tracking-widest text-foreground-subtle font-medium mb-3">
                 Tasks
@@ -1000,7 +1000,7 @@ export function ContactDetail({
                           {t.dueAt
                             ? `Due ${new Date(t.dueAt).toLocaleDateString("en-GB")}`
                             : "No due date"}
-                          {t.assignedTo ? ` $· ${t.assignedTo}` : ""}
+                          {t.assignedTo ? ` $ï¿½ ${t.assignedTo}` : ""}
                         </p>
                       </div>
                       <button
@@ -1115,7 +1115,7 @@ export function ContactDetail({
                       <div key={k} className="flex justify-between gap-2">
                         <dt className="text-foreground-subtle capitalize">{k}</dt>
                         <dd className="text-foreground-muted text-right break-words max-w-[60%]">
-                          {v === null || v === undefined ? "$€”" : String(v)}
+                          {v === null || v === undefined ? "$â€”" : String(v)}
                         </dd>
                       </div>
                     ))}
@@ -1163,7 +1163,7 @@ export function ContactDetail({
 
               {!enrichment ? (
                 <p className="text-xs text-foreground-subtle">
-                  Not enriched yet $€” click Refresh.
+                  Not enriched yet $â€” click Refresh.
                 </p>
               ) : (
                 <>
@@ -1222,7 +1222,7 @@ export function ContactDetail({
                         <div className="flex justify-between">
                           <span className="text-foreground-subtle">LTV</span>
                           <span className="text-off-white font-medium">
-                            {formatGbp(enrichment.stripe.lifetimeValueCents)}
+                            {formatUsd(enrichment.stripe.lifetimeValueCents)}
                           </span>
                         </div>
                         <div className="flex justify-between text-foreground-muted">
@@ -1247,7 +1247,7 @@ export function ContactDetail({
                                   {s.status}
                                 </span>
                                 <span className="text-off-white text-xs">
-                                  {formatGbp(s.amountCents)}
+                                  {formatUsd(s.amountCents)}
                                 </span>
                               </div>
                               <div className="text-foreground-muted mt-1">{s.productName}</div>
@@ -1298,7 +1298,7 @@ export function ContactDetail({
               className="w-full mb-2 px-3 py-2 text-sm bg-[var(--color-sunken)] border border-[var(--color-border-strong)] text-[var(--color-fg)] rounded-[var(--radius-admin-md)] focus-ring focus:border-[var(--color-border-focus)]"
             />
             <textarea
-              placeholder="Body (optional) $€” mention teammates with @ted, @sarah, @wes, @matthew"
+              placeholder="Body (optional) $â€” mention teammates with @ted, @sarah, @wes, @matthew"
               value={noteBody}
               onChange={(e) => setNoteBody(e.target.value)}
               rows={3}
@@ -1383,8 +1383,8 @@ export function ContactDetail({
                         </div>
                         <p className="text-[10px] uppercase tracking-widest text-foreground-subtle mt-0.5">
                           {isEmail ? "email sent" : a.type.replace(/_/g, " ")}
-                          {a.authorName ? ` $· ${a.authorName}` : ""}
-                          {emailStatus && emailStatus !== "sent" ? ` $· ${emailStatus}` : ""}
+                          {a.authorName ? ` $ï¿½ ${a.authorName}` : ""}
+                          {emailStatus && emailStatus !== "sent" ? ` $ï¿½ ${emailStatus}` : ""}
                         </p>
                         {clickLink && (
                           <p className="text-xs text-cyan-300/80 mt-1 truncate">{clickLink}</p>
@@ -1467,10 +1467,10 @@ export function ContactDetail({
                         </div>
                         <p className="text-[11px] text-foreground-subtle mt-1">
                           To {m.toAddress}
-                          {tpl ? ` $· ${tpl.name}` : ""} $· from {m.fromUser} $· {relativeTime(sentLabel)}
+                          {tpl ? ` $ï¿½ ${tpl.name}` : ""} $ï¿½ from {m.fromUser} $ï¿½ {relativeTime(sentLabel)}
                         </p>
                       </div>
-                      <span className="text-foreground-subtle text-xs shrink-0">{isOpen ? "$ˆ’" : "+"}</span>
+                      <span className="text-foreground-subtle text-xs shrink-0">{isOpen ? "$ï¿½ï¿½" : "+"}</span>
                     </div>
                   </button>
                   {isOpen && (
@@ -1554,7 +1554,7 @@ export function ContactDetail({
                 </p>
                 {currentUser && (
                   <p className="text-[11px] text-foreground-subtle mt-0.5">
-                    Sending as {currentUser.name} $· replies route to {currentUser.email}
+                    Sending as {currentUser.name} $ï¿½ replies route to {currentUser.email}
                   </p>
                 )}
               </div>
@@ -1584,7 +1584,7 @@ export function ContactDetail({
                   }
                   className="w-full px-3 py-2 text-sm bg-[var(--color-sunken)] border border-[var(--color-border-strong)] text-[var(--color-fg)] rounded-[var(--radius-admin-md)] focus-ring focus:border-[var(--color-border-focus)]"
                 >
-                  <option value="">$€” Ad-hoc (no template) $€”</option>
+                  <option value="">$â€” Ad-hoc (no template) $â€”</option>
                   {templates.map((t) => (
                     <option key={t.id} value={t.id}>
                       {t.name}
@@ -1674,16 +1674,16 @@ function ApplicationCard({ app }: { app: ApplicationRow }) {
     `Email: ${app.email}`,
     `Cohort: ${app.cohort}`,
     `Hours/week: ${app.hours}`,
-    `FTP: ${app.ftp ?? "$€”"}`,
-    `Persona: ${app.persona ?? "$€”"}`,
+    `FTP: ${app.ftp ?? "$â€”"}`,
+    `Persona: ${app.persona ?? "$â€”"}`,
     `Status: ${app.status}`,
     `Submitted: ${submitted}`,
     ``,
     `Goal:`,
-    app.goal || "$€”",
+    app.goal || "$â€”",
     ``,
     `What's doing your head in:`,
-    app.frustration || "$€”",
+    app.frustration || "$â€”",
   ].join("\n");
 
   async function handleCopyAll() {
@@ -1700,17 +1700,17 @@ function ApplicationCard({ app }: { app: ApplicationRow }) {
         <span className="text-foreground-subtle">
           Submitted <span className="text-off-white">{submitted}</span>
         </span>
-        <span className="text-foreground-subtle">$·</span>
+        <span className="text-foreground-subtle">$ï¿½</span>
         <span className="text-foreground-subtle">
           Cohort <span className="text-off-white">{app.cohort}</span>
         </span>
-        <span className="text-foreground-subtle">$·</span>
+        <span className="text-foreground-subtle">$ï¿½</span>
         <span className="text-foreground-subtle">
           Status <span className="text-off-white">{app.status.replace(/_/g, " ")}</span>
         </span>
         {app.persona && (
           <>
-            <span className="text-foreground-subtle">$·</span>
+            <span className="text-foreground-subtle">$ï¿½</span>
             <span className="text-foreground-subtle">
               Persona <span className="text-off-white capitalize">{app.persona}</span>
             </span>
@@ -1792,7 +1792,7 @@ function AppField({
           mono ? "font-mono" : ""
         } ${!v ? "text-foreground-subtle italic" : ""}`}
       >
-        {v || "$€”"}
+        {v || "$â€”"}
       </p>
     </div>
   );

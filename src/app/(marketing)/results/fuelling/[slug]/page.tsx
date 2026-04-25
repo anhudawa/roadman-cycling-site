@@ -7,7 +7,7 @@ import { AskFromResult } from "@/components/features/results/AskFromResult";
 
 /**
  * Permalink view for a saved fuelling-calculator result. Server-rendered
- * from tool_results $€” the slug is unguessable so the row is safe to
+ * from tool_results â€” the slug is unguessable so the row is safe to
  * share; we still set robots:noindex so search engines don't crawl
  * individual rider results.
  */
@@ -22,9 +22,9 @@ export async function generateMetadata({
   const { slug } = await params;
   const result = await getToolResultBySlug(slug);
   if (!result || result.toolSlug !== "fuelling")
-    return { title: "Fuelling plan $€” Roadman Cycling" };
+    return { title: "Fuelling plan â€” Roadman Cycling" };
   return {
-    title: `Your fuelling plan $€” Roadman Cycling`,
+    title: `Your fuelling plan â€” Roadman Cycling`,
     description: result.summary.slice(0, 160),
     robots: { index: false, follow: false },
   };
@@ -131,10 +131,10 @@ export default async function FuellingResultPage({
                 </h3>
                 <p className="text-foreground-muted text-sm">
                   <strong className="text-off-white">Glucose (SGLT1):</strong>{" "}
-                  {outputs.glucosePerHour}g/hr $·{" "}
+                  {outputs.glucosePerHour}g/hr Â·{" "}
                   <strong className="text-off-white">Fructose (GLUT5):</strong>{" "}
                   {outputs.fructosePerHour}g/hr. Single-source glucose saturates
-                  at ~60g/hr $€” fructose uses an independent transporter.
+                  at ~60g/hr â€” fructose uses an independent transporter.
                 </p>
               </div>
             )}

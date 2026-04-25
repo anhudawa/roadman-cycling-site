@@ -6,10 +6,10 @@ import { type ContentPillar } from "@/types";
  * of content + a specific coaching CTA matched to that persona's pain.
  *
  * Four personas, mapped from the Roadman brand bible:
- *   - plateau  $†’ Tom, plateau-stuck club racer
- *   - event    $†’ Mark, event-target gran fondo achiever
- *   - comeback $†’ James, comeback athlete reclaiming form
- *   - listener $†’ Dave, podcast loyalist who hasn't pulled the trigger
+ *   - plateau  â†’ Tom, plateau-stuck club racer
+ *   - event    â†’ Mark, event-target gran fondo achiever
+ *   - comeback â†’ James, comeback athlete reclaiming form
+ *   - listener â†’ Dave, podcast loyalist who hasn't pulled the trigger
  *
  * Content bundles are hand-curated to match each persona's dominant
  * pain point rather than generic pillar tags.
@@ -23,9 +23,9 @@ export interface PersonaContent {
   urlLabel: string;
   /** Hero strapline above H1 */
   kicker: string;
-  /** Hero H1 $€” recognition statement. Not a value prop, a mirror. */
+  /** Hero H1 â€” recognition statement. Not a value prop, a mirror. */
   headline: string;
-  /** Hero subheading $€” extends the recognition statement */
+  /** Hero subheading â€” extends the recognition statement */
   subheading: string;
   /** Meta title & description for SEO */
   metaTitle: string;
@@ -43,7 +43,7 @@ export interface PersonaContent {
   };
   /** Whether to render the mini-diagnostic widget on this page */
   hasDiagnostic: boolean;
-  /** CTA block $€” coaching pitch + fallback soft CTA */
+  /** CTA block â€” coaching pitch + fallback soft CTA */
   ctaHeadline: string;
   ctaBody: string;
   /** Subject-line preview for the Saturday Spin email capture */
@@ -59,7 +59,7 @@ export const PERSONAS: Record<PersonaSlug, PersonaContent> = {
     kicker: "YOU'RE HERE BECAUSE",
     headline: "YOU'VE STOPPED GETTING FASTER.",
     subheading:
-      "FTP hasn't moved in months. Same Strava segments, same numbers. You're training consistently, following the plans, doing the intervals $€” and nothing is moving. This is the most common pattern in amateur cycling. It has a name, a cause, and a fix.",
+      "FTP hasn't moved in months. Same Strava segments, same numbers. You're training consistently, following the plans, doing the intervals â€” and nothing is moving. This is the most common pattern in amateur cycling. It has a name, a cause, and a fix.",
     metaTitle:
       "Stuck at a Cycling Plateau? Here's What's Actually Going On (2026)",
     metaDescription:
@@ -75,7 +75,7 @@ export const PERSONAS: Record<PersonaSlug, PersonaContent> = {
     ],
     featuredYoutube: {
       id: "j443DjmheHw",
-      title: "80/20 Training $€” Why it Actually Works",
+      title: "80/20 Training â€” Why it Actually Works",
       guest: "Prof. Stephen Seiler",
       duration: "52 min",
     },
@@ -93,11 +93,11 @@ export const PERSONAS: Record<PersonaSlug, PersonaContent> = {
     kicker: "YOU'RE HERE BECAUSE",
     headline: "YOU'VE GOT A TARGET EVENT.",
     subheading:
-      "A sportive, race, or fondo on the calendar. Maybe the Wicklow 200. Maybe Ride London. Maybe a Cat 3 league. You don't just want to finish $€” you want to perform. And you've got a specific number of weeks to make it happen.",
+      "A sportive, race, or fondo on the calendar. Maybe the Wicklow 200. Maybe Ride London. Maybe a Cat 3 league. You don't just want to finish â€” you want to perform. And you've got a specific number of weeks to make it happen.",
     metaTitle:
       "Training for a Specific Cycling Event? Build the Right Plan (2026)",
     metaDescription:
-      "Structured training for sportives, fondos, and races. Periodisation, peaking, taper $€” the exact framework amateur cyclists use when they've got a target date and can't afford to wing it.",
+      "Structured training for sportives, fondos, and races. Periodisation, peaking, taper â€” the exact framework amateur cyclists use when they've got a target date and can't afford to wing it.",
     blogSlugs: [
       "cycling-periodisation-plan-guide",
       "cycling-tapering-guide",
@@ -116,7 +116,7 @@ export const PERSONAS: Record<PersonaSlug, PersonaContent> = {
     hasDiagnostic: true,
     ctaHeadline: "Build your season around the date.",
     ctaBody:
-      "The Not Done Yet coaching community builds your plan backwards from your target event. Base, build, peak, taper $€” all structured around the specific week your event lands. 7-day free trial.",
+      "The Not Done Yet coaching community builds your plan backwards from your target event. Base, build, peak, taper â€” all structured around the specific week your event lands. 7-day free trial.",
     emailHook:
       "One specific session a week, tied to where you are in the build. Every Saturday.",
     pillar: "coaching",
@@ -127,11 +127,11 @@ export const PERSONAS: Record<PersonaSlug, PersonaContent> = {
     kicker: "YOU'RE HERE BECAUSE",
     headline: "YOU'RE COMING BACK.",
     subheading:
-      "Life got in the way. An injury, a crash, kids, the job, burnout, winter $€” whatever it was, you're rebuilding. The engine isn't what it used to be. The numbers look unfamiliar. But you're not done. And the right way back is not just 'ride more'.",
+      "Life got in the way. An injury, a crash, kids, the job, burnout, winter â€” whatever it was, you're rebuilding. The engine isn't what it used to be. The numbers look unfamiliar. But you're not done. And the right way back is not just 'ride more'.",
     metaTitle:
       "Coming Back to Cycling After a Break? Rebuild Without Wasting Months",
     metaDescription:
-      "How to rebuild cycling fitness after a break $€” injury, life, burnout. Evidence-based return-to-riding protocols, body composition, strength, and the mental side of comeback.",
+      "How to rebuild cycling fitness after a break â€” injury, life, burnout. Evidence-based return-to-riding protocols, body composition, strength, and the mental side of comeback.",
     blogSlugs: [
       "cycling-returning-after-break",
       "cycling-over-40-getting-faster",
@@ -150,7 +150,7 @@ export const PERSONAS: Record<PersonaSlug, PersonaContent> = {
     hasDiagnostic: false,
     ctaHeadline: "Rebuild the engine, properly.",
     ctaBody:
-      "The Not Done Yet coaching community is the coached comeback $€” especially for cyclists over 40 and anyone returning after a break. Structured, gentle-to-intense progression. Strength training built in. Personal accountability. 7-day free trial.",
+      "The Not Done Yet coaching community is the coached comeback â€” especially for cyclists over 40 and anyone returning after a break. Structured, gentle-to-intense progression. Strength training built in. Personal accountability. 7-day free trial.",
     emailHook:
       "Every Saturday: what the research shows actually works for cyclists rebuilding form. No guilt, no 'all or nothing'.",
     pillar: "coaching",
@@ -161,11 +161,11 @@ export const PERSONAS: Record<PersonaSlug, PersonaContent> = {
     kicker: "YOU'RE HERE BECAUSE",
     headline: "YOU WANT TO TRAIN LIKE THE PROS.",
     subheading:
-      "You listen to the podcast. You know the names $€” Seiler, Lorang, LeMond, Morton, Friel. You've absorbed the principles. But knowing and doing are two different things. This page is the short path: the best conversations, the core concepts, and what to do with them.",
+      "You listen to the podcast. You know the names â€” Seiler, Lorang, LeMond, Morton, Friel. You've absorbed the principles. But knowing and doing are two different things. This page is the short path: the best conversations, the core concepts, and what to do with them.",
     metaTitle:
       "Train Like the Pros: The Essentials Playlist from the Roadman Podcast",
     metaDescription:
-      "The core cycling concepts from 1,400+ Roadman Podcast episodes $€” polarised training, periodisation, nutrition, recovery $€” curated into one starting point. Plus what to do next.",
+      "The core cycling concepts from 1,400+ Roadman Podcast episodes â€” polarised training, periodisation, nutrition, recovery â€” curated into one starting point. Plus what to do next.",
     blogSlugs: [
       "is-a-cycling-coach-worth-it",
       "what-does-a-cycling-coach-do",
@@ -177,14 +177,14 @@ export const PERSONAS: Record<PersonaSlug, PersonaContent> = {
     ],
     featuredYoutube: {
       id: "j443DjmheHw",
-      title: "80/20 Training $€” Why it Actually Works",
+      title: "80/20 Training â€” Why it Actually Works",
       guest: "Prof. Stephen Seiler",
       duration: "52 min",
     },
     hasDiagnostic: false,
     ctaHeadline: "Listening is enough. Until it isn't.",
     ctaBody:
-      "Most of the audience stays here. The ones who compound the knowledge into results join the Not Done Yet coaching community $€” structured plan, weekly coaching calls, expert masterclasses, the same principles every episode has been pointing at. 7-day free trial.",
+      "Most of the audience stays here. The ones who compound the knowledge into results join the Not Done Yet coaching community â€” structured plan, weekly coaching calls, expert masterclasses, the same principles every episode has been pointing at. 7-day free trial.",
     emailHook:
       "One practical takeaway from the week's best conversations. Every Saturday. Free.",
     pillar: "coaching",

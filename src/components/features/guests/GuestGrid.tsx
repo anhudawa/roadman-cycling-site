@@ -84,7 +84,7 @@ export function GuestGrid({ guests }: { guests: GuestCardData[] }) {
         })}
       </div>
 
-      {/* Grid $€” cards render statically; the earlier per-card ScrollReveal
+      {/* Grid $â€” cards render statically; the earlier per-card ScrollReveal
           wrapper pushed 57 guest cards to opacity:0 in SSR HTML which hid
           them from crawlers and no-JS users. */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">

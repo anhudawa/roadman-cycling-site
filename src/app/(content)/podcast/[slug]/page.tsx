@@ -103,7 +103,7 @@ export default async function EpisodePage({
   }).slice(0, 3);
 
   // Segment the transcript once on the server so the schema and the
-  // TranscriptViewer render from the same segmentation $€” keeping schema
+  // TranscriptViewer render from the same segmentation â€” keeping schema
   // `hasPart` anchors in sync with the actual `<h3 id>`s in the DOM.
   const segments = episode.transcript
     ? segmentTranscript(episode.transcript, { titles: episode.segmentTitles })
@@ -164,7 +164,7 @@ export default async function EpisodePage({
           },
           // Declare every transcript segment as a CreativeWork part with a
           // fragment URL pointing at its h3 anchor. Gives Google a native
-          // route to "passage indexing" $€” each segment can rank independently
+          // route to "passage indexing" â€” each segment can rank independently
           // for its specific topic.
           ...(segments.length > 1 && {
             hasPart: segments.map((segment) => ({
@@ -327,7 +327,7 @@ export default async function EpisodePage({
           </Container>
         </Section>
 
-        {/* YouTube Embed (primary) $€” Wide for cinematic feel */}
+        {/* YouTube Embed (primary) â€” Wide for cinematic feel */}
         {episode.youtubeId && (
           <Section background="charcoal" className="!py-8 border-b border-white/5">
             <Container>
@@ -411,8 +411,8 @@ export default async function EpisodePage({
                 { label: episode.title },
               ]}
             />
-            {/* Answer capsule $€” AI-citation-optimised TL;DR of the episode.
-                Prefers the curated `answerCapsule` (60$€“100 words, generated
+            {/* Answer capsule â€” AI-citation-optimised TL;DR of the episode.
+                Prefers the curated `answerCapsule` (60â€“100 words, generated
                 from the full transcript) over `seoDescription` (150-char
                 SERP snippet). Aligned with the .answer-capsule CSS selector
                 referenced by SpeakableSpecification schema. Primary AI-
@@ -431,7 +431,7 @@ export default async function EpisodePage({
               />
             </article>
 
-            {/* Key Quotes $€” verbatim expert quotes from the transcript,
+            {/* Key Quotes â€” verbatim expert quotes from the transcript,
                 rendered as styled blockquotes with speaker attribution.
                 Placed between show notes and transcript for maximum
                 visibility without interrupting the reading flow. */}
@@ -465,7 +465,7 @@ export default async function EpisodePage({
               </section>
             )}
 
-            {/* Coaching CTA $€” high-intent position after content, before transcript */}
+            {/* Coaching CTA â€” high-intent position after content, before transcript */}
             {(episode.pillar === "coaching" || episode.pillar === "nutrition") && (
               <div className="mt-12 rounded-2xl border border-coral/30 bg-gradient-to-br from-coral/10 via-deep-purple/40 to-charcoal p-6 md:p-8 text-center">
                 <p className="font-heading text-coral text-xs tracking-widest mb-2">
@@ -482,7 +482,7 @@ export default async function EpisodePage({
                   className="inline-flex items-center justify-center gap-2 font-heading tracking-wider uppercase rounded-md bg-coral text-off-white hover:bg-coral/90 px-6 py-3 text-sm transition-all"
                   data-track="podcast_coaching_cta"
                 >
-                  Apply for Coaching $†’
+                  Apply for Coaching â†’
                 </Link>
               </div>
             )}
@@ -496,7 +496,7 @@ export default async function EpisodePage({
               />
             )}
 
-            {/* FAQ section $€” visible accordion for episodes with FAQ pairs */}
+            {/* FAQ section â€” visible accordion for episodes with FAQ pairs */}
             {episode.faq && episode.faq.length > 0 && (
               <section className="mt-16" aria-label="Frequently asked questions">
                 <h2 className="font-heading text-2xl text-off-white mb-6 tracking-wide">
@@ -521,7 +521,7 @@ export default async function EpisodePage({
               </section>
             )}
 
-            {/* E-E-A-T trust block $€” named host, editorial standards,
+            {/* E-E-A-T trust block â€” named host, editorial standards,
                 corrections link + named on-episode guest as an expert
                 source when present. Renders on every episode page. */}
             <EvidenceBlock
@@ -551,7 +551,7 @@ export default async function EpisodePage({
               className="mt-16"
             />
 
-            {/* Author-curated related blog posts $€” explicit episode$†’blog
+            {/* Author-curated related blog posts â€” explicit episodeâ†’blog
                 link equity. Populated by
                 scripts/populate-episode-related-posts.ts. */}
             {episode.relatedPosts && episode.relatedPosts.length > 0 && (() => {
@@ -579,7 +579,7 @@ export default async function EpisodePage({
                         </p>
                         <p className="text-xs text-foreground-subtle">
                           {p.excerpt.slice(0, 140)}
-                          {p.excerpt.length > 140 ? "$€¦" : ""}
+                          {p.excerpt.length > 140 ? "â€¦" : ""}
                         </p>
                       </Link>
                     ))}
@@ -600,7 +600,7 @@ export default async function EpisodePage({
                       href={`/plan/${e.slug}`}
                       className="inline-flex items-center gap-2 rounded-lg border border-white/15 hover:border-coral/40 bg-white/[0.04] hover:bg-white/[0.07] px-4 py-2 text-sm font-heading text-off-white tracking-wider transition-all"
                     >
-                      {e.shortName.toUpperCase()} $†’
+                      {e.shortName.toUpperCase()} â†’
                     </Link>
                   ))}
                 </div>
@@ -625,7 +625,7 @@ export default async function EpisodePage({
               className="mt-16"
             />
 
-            {/* CTA $€” coaching-pillar episodes get a coaching funnel,
+            {/* CTA â€” coaching-pillar episodes get a coaching funnel,
                 others get the Clubhouse community CTA */}
             {episode.pillar === "coaching" ? (
               <div className="mt-12 bg-deep-purple/30 rounded-xl border border-purple/20 p-8 text-center">
@@ -634,11 +634,11 @@ export default async function EpisodePage({
                 </h3>
                 <p className="text-foreground-muted mb-6 max-w-md mx-auto">
                   The Not Done Yet coaching community is 1:1 personalised
-                  coaching $€” training, nutrition, strength, recovery, and
+                  coaching â€” training, nutrition, strength, recovery, and
                   accountability. $195/month. 7-day free trial.
                 </p>
                 <div className="flex flex-col sm:flex-row gap-3 justify-center">
-                  <Button href="/apply">Apply Now $€” 7-Day Free Trial</Button>
+                  <Button href="/apply">Apply Now â€” 7-Day Free Trial</Button>
                   <Button href="/coaching" variant="ghost">
                     See Coaching Options
                   </Button>
@@ -655,7 +655,7 @@ export default async function EpisodePage({
                 </p>
                 <div className="flex flex-col sm:flex-row gap-3 justify-center">
                   <Button href="/community/clubhouse">
-                    Join the Clubhouse $€” Free
+                    Join the Clubhouse â€” Free
                   </Button>
                   <Button href="/podcast" variant="ghost">
                     More Episodes

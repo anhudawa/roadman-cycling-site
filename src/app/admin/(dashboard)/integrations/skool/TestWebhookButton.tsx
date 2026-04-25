@@ -5,11 +5,11 @@ import { useState } from "react";
 /**
  * Fire a sample payload at /api/skool-webhook so the admin can verify the
  * pipeline end-to-end without touching Zapier / Skool. The button only
- * sends the body $€” the server uses process.env.SKOOL_WEBHOOK_SECRET the
+ * sends the body â€” the server uses process.env.SKOOL_WEBHOOK_SECRET the
  * same as a real Skool call would, so it's a faithful smoke test.
  *
- * NOTE: the test POST does not include ?secret=$€¦, so if SKOOL_WEBHOOK_SECRET
- * is configured, the event shows up in the audit log as "unauthorized" $€”
+ * NOTE: the test POST does not include ?secret=â€¦, so if SKOOL_WEBHOOK_SECRET
+ * is configured, the event shows up in the audit log as "unauthorized" â€”
  * that's deliberate, it proves the secret is being enforced. Clicking with
  * "Send authenticated" uses the admin's login cookie to call a small proxy
  * route that attaches the secret server-side.
@@ -48,7 +48,7 @@ export function TestWebhookButton() {
         setStatus("ok");
         setMessage(
           `Delivered ${res.status}: ${body.ok ? "accepted" : body.reason ?? "skipped"}${
-            body.persona ? ` $· persona=${body.persona}` : ""
+            body.persona ? ` Â· persona=${body.persona}` : ""
           }`
         );
       } else {
@@ -69,7 +69,7 @@ export function TestWebhookButton() {
         disabled={status === "sending"}
         className="text-xs px-3 py-1.5 rounded-lg bg-[var(--color-bad-tint)] text-[var(--color-bad)] border border-[var(--color-border-strong)] hover:bg-[var(--color-bad-tint)] disabled:opacity-50 font-heading tracking-wider uppercase"
       >
-        {status === "sending" ? "Sending$€¦" : "Send test webhook"}
+        {status === "sending" ? "Sendingâ€¦" : "Send test webhook"}
       </button>
       <button
         type="button"

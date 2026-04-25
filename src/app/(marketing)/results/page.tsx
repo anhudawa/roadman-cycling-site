@@ -12,12 +12,12 @@ import type { ToolSlug } from "@/lib/tool-results/types";
  * Signed history page. When a valid HMAC token is present in the URL,
  * we render every tool_result and diagnostic_submission under that
  * email, newest first. Otherwise we show the email-capture form that
- * mints and mails a token. Either path is robots:noindex $€” this page
+ * mints and mails a token. Either path is robots:noindex â€” this page
  * is per-user and must never be crawled.
  */
 
 export const metadata: Metadata = {
-  title: "Your saved results $€” Roadman Cycling",
+  title: "Your saved results â€” Roadman Cycling",
   description:
     "Every plateau diagnostic, fuelling plan and FTP zone table you've saved, in one place.",
   robots: { index: false, follow: false },
@@ -120,7 +120,7 @@ export default async function ResultsPage({
         slug: d.slug,
         createdAt: d.createdAt,
         headline: PROFILE_LABELS[d.primaryProfile],
-        tag: d.retakeNumber > 1 ? `Plateau diagnostic $· retake ${d.retakeNumber}` : "Plateau diagnostic",
+        tag: d.retakeNumber > 1 ? `Plateau diagnostic Â· retake ${d.retakeNumber}` : "Plateau diagnostic",
         href: `/diagnostic/${d.slug}`,
         secondary,
       };
@@ -155,8 +155,8 @@ export default async function ResultsPage({
             </h1>
             <p className="text-foreground-muted text-sm">
               {items.length === 0
-                ? "No saved results on this email yet $€” run a diagnostic or calculator and come back."
-                : `${items.length} saved result${items.length === 1 ? "" : "s"} $· signed link expires ${formatDate(verified.expiresAt)}.`}
+                ? "No saved results on this email yet â€” run a diagnostic or calculator and come back."
+                : `${items.length} saved result${items.length === 1 ? "" : "s"} Â· signed link expires ${formatDate(verified.expiresAt)}.`}
             </p>
           </Container>
         </Section>

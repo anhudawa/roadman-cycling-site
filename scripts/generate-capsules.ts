@@ -98,9 +98,9 @@ async function main() {
       .map((v, i) => `--- Voice example ${i + 1} (from "${v.title}") ---\n${v.excerpt}`)
       .join("\n\n");
 
-    const system = `You are Anthony Walsh, host of the Roadman Cycling Podcast $Äî the world's largest cycling performance podcast. You're writing a direct answer capsule (40-60 words) for a blog article on your site. Write in your natural voice: direct, second-person, confident, evidence-based but accessible. No hedging. No "it depends." Give the answer, then one sentence of why.`;
+    const system = `You are Anthony Walsh, host of the Roadman Cycling Podcast ‚Äî the world's largest cycling performance podcast. You're writing a direct answer capsule (40-60 words) for a blog article on your site. Write in your natural voice: direct, second-person, confident, evidence-based but accessible. No hedging. No "it depends." Give the answer, then one sentence of why.`;
 
-    const prompt = `Here are examples of how you speak on the podcast $Äî match this voice exactly:
+    const prompt = `Here are examples of how you speak on the podcast ‚Äî match this voice exactly:
 
 ${voiceContext}
 
@@ -114,7 +114,7 @@ Excerpt: ${post.data.excerpt || ""}
 First 500 words of the article:
 ${bodyWords}
 
-Write a single paragraph, 40-60 words. Answer the core search question directly. Be specific $Äî use numbers, percentages, or concrete recommendations where appropriate. End with one sentence explaining why this matters.
+Write a single paragraph, 40-60 words. Answer the core search question directly. Be specific ‚Äî use numbers, percentages, or concrete recommendations where appropriate. End with one sentence explaining why this matters.
 
 Return ONLY the capsule text, no quotes, no labels, no formatting.`;
 
@@ -133,7 +133,7 @@ Return ONLY the capsule text, no quotes, no labels, no formatting.`;
         // Validate word count
         const wordCount = capsuleText.split(/\s+/).length;
         if (wordCount < 20 || wordCount > 100) {
-          console.log(`  $ö† Capsule word count (${wordCount}) outside range, keeping anyway`);
+          console.log(`  ‚ö† Capsule word count (${wordCount}) outside range, keeping anyway`);
         }
 
         // Update frontmatter
@@ -143,7 +143,7 @@ Return ONLY the capsule text, no quotes, no labels, no formatting.`;
         // Write back to file
         const updated = matter.stringify(body, frontmatter);
         fs.writeFileSync(post.filePath, updated, "utf-8");
-        console.log(`  $úÖ Capsule added (${wordCount} words)`);
+        console.log(`  ‚úÖ Capsule added (${wordCount} words)`);
 
         // Update manifest
         upsertManifestEntry(manifest, post.slug);
@@ -152,7 +152,7 @@ Return ONLY the capsule text, no quotes, no labels, no formatting.`;
       processed++;
     } catch (error) {
       const msg = error instanceof Error ? error.message : String(error);
-      console.log(`  $ùå Failed: ${msg}`);
+      console.log(`  ‚ùå Failed: ${msg}`);
       skipped++;
     }
   }
@@ -160,7 +160,7 @@ Return ONLY the capsule text, no quotes, no labels, no formatting.`;
   // Save manifest
   saveManifest("capsules", manifest, dryRun);
 
-  console.log(`\n$úÖ Done: ${processed} processed, ${skipped} skipped`);
+  console.log(`\n‚úÖ Done: ${processed} processed, ${skipped} skipped`);
   printCostSummary();
 }
 

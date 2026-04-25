@@ -25,7 +25,7 @@ interface TestCase {
 const testCases: TestCase[] = [
   // --- Inner Circle (profiles 1-3) ---
   {
-    name: '#1: IC $€” 9-12hrs, race, 280-350W, plateau, self-coached, 72kg',
+    name: '#1: IC $â€” 9-12hrs, race, 280-350W, plateau, self-coached, 72kg',
     answers: prospect({
       q1TrainingFor: 'race_with_date',
       q2HoursPerWeek: '9_to_12',
@@ -38,7 +38,7 @@ const testCases: TestCase[] = [
     expected: 'inner_circle',
   },
   {
-    name: '#2: IC $€” 12+hrs, race, 350+W, plateau, had coach, 68kg',
+    name: '#2: IC $â€” 12+hrs, race, 350+W, plateau, had coach, 68kg',
     answers: prospect({
       q1TrainingFor: 'race_with_date',
       q2HoursPerWeek: '12_plus',
@@ -51,7 +51,7 @@ const testCases: TestCase[] = [
     expected: 'inner_circle',
   },
   {
-    name: '#3: IC via w/kg $€” 200-280W range but 65kg (3.69 w/kg >= 3.5)',
+    name: '#3: IC via w/kg $â€” 200-280W range but 65kg (3.69 w/kg >= 3.5)',
     answers: prospect({
       q1TrainingFor: 'race_with_date',
       q2HoursPerWeek: '9_to_12',
@@ -65,7 +65,7 @@ const testCases: TestCase[] = [
   },
   // --- Premium (profiles 4-7) ---
   {
-    name: '#4: Premium $€” 200-280W but 80kg (3.0 w/kg, below IC threshold)',
+    name: '#4: Premium $â€” 200-280W but 80kg (3.0 w/kg, below IC threshold)',
     answers: prospect({
       q1TrainingFor: 'race_with_date',
       q2HoursPerWeek: '9_to_12',
@@ -78,7 +78,7 @@ const testCases: TestCase[] = [
     expected: 'premium',
   },
   {
-    name: '#5: Premium $€” specific watts target, 6-9hrs, self-coached',
+    name: '#5: Premium $â€” specific watts target, 6-9hrs, self-coached',
     answers: prospect({
       q1TrainingFor: 'specific_watts_target',
       q2HoursPerWeek: '6_to_9',
@@ -90,7 +90,7 @@ const testCases: TestCase[] = [
     expected: 'premium',
   },
   {
-    name: '#6: Premium $€” group ride, 6-9hrs, no structure, had coach',
+    name: '#6: Premium $â€” group ride, 6-9hrs, no structure, had coach',
     answers: prospect({
       q1TrainingFor: 'group_ride_fitness',
       q2HoursPerWeek: '6_to_9',
@@ -102,7 +102,7 @@ const testCases: TestCase[] = [
     expected: 'premium',
   },
   {
-    name: '#7: Premium $€” race, 6-9hrs, 280-350W, no structure, self-coached',
+    name: '#7: Premium $â€” race, 6-9hrs, 280-350W, no structure, self-coached',
     answers: prospect({
       q1TrainingFor: 'race_with_date',
       q2HoursPerWeek: '6_to_9',
@@ -116,7 +116,7 @@ const testCases: TestCase[] = [
   },
   // --- Premium (profiles 8-12, now default for non-IC, non-disqualified) ---
   {
-    name: '#8: Premium $€” strong profile, never coached (no longer blocks Premium)',
+    name: '#8: Premium $â€” strong profile, never coached (no longer blocks Premium)',
     answers: prospect({
       q1TrainingFor: 'specific_watts_target',
       q2HoursPerWeek: '9_to_12',
@@ -129,7 +129,7 @@ const testCases: TestCase[] = [
     expected: 'premium',
   },
   {
-    name: '#9: Premium $€” race goal, 4-6hrs, never coached',
+    name: '#9: Premium $â€” race goal, 4-6hrs, never coached',
     answers: prospect({
       q1TrainingFor: 'race_with_date',
       q2HoursPerWeek: '4_to_6',
@@ -141,7 +141,7 @@ const testCases: TestCase[] = [
     expected: 'premium',
   },
   {
-    name: '#10: Premium $€” general fitness, 4-6hrs, lost motivation, never coached',
+    name: '#10: Premium $â€” general fitness, 4-6hrs, lost motivation, never coached',
     answers: prospect({
       q1TrainingFor: 'general_fitness',
       q2HoursPerWeek: '4_to_6',
@@ -153,7 +153,7 @@ const testCases: TestCase[] = [
     expected: 'premium',
   },
   {
-    name: '#11: Premium $€” group ride, 4-6hrs, lost motivation, self-coached',
+    name: '#11: Premium $â€” group ride, 4-6hrs, lost motivation, self-coached',
     answers: prospect({
       q1TrainingFor: 'group_ride_fitness',
       q2HoursPerWeek: '4_to_6',
@@ -165,7 +165,7 @@ const testCases: TestCase[] = [
     expected: 'premium',
   },
   {
-    name: '#12: Premium $€” other goal, 6-9hrs, not sure FTP, never coached',
+    name: '#12: Premium $â€” other goal, 6-9hrs, not sure FTP, never coached',
     answers: prospect({
       q1TrainingFor: 'other',
       q2HoursPerWeek: '6_to_9',
@@ -178,7 +178,7 @@ const testCases: TestCase[] = [
   },
   // --- Standard (only via budget override) ---
   {
-    name: '#13: Standard (budget override) $€” IC profile but mentions cost',
+    name: '#13: Standard (budget override) $â€” IC profile but mentions cost',
     answers: prospect({
       q1TrainingFor: 'race_with_date',
       q2HoursPerWeek: '9_to_12',
@@ -192,7 +192,7 @@ const testCases: TestCase[] = [
     expected: 'standard',
   },
   {
-    name: '#14: Standard (budget override) $€” IC profile, "can\'t afford much"',
+    name: '#14: Standard (budget override) $â€” IC profile, "can\'t afford much"',
     answers: prospect({
       q1TrainingFor: 'race_with_date',
       q2HoursPerWeek: '12_plus',
@@ -207,7 +207,7 @@ const testCases: TestCase[] = [
   },
   // --- Not a fit (profiles 15-18) ---
   {
-    name: '#15: Not a fit $€” under 4hrs, general fitness, recurring injury',
+    name: '#15: Not a fit $â€” under 4hrs, general fitness, recurring injury',
     answers: prospect({
       q1TrainingFor: 'general_fitness',
       q2HoursPerWeek: 'under_4',
@@ -219,7 +219,7 @@ const testCases: TestCase[] = [
     expected: 'not_a_fit',
   },
   {
-    name: '#16: Not a fit $€” under 4hrs, recurring injury + injury in freetext',
+    name: '#16: Not a fit $â€” under 4hrs, recurring injury + injury in freetext',
     answers: prospect({
       q1TrainingFor: 'group_ride_fitness',
       q2HoursPerWeek: 'under_4',
@@ -232,7 +232,7 @@ const testCases: TestCase[] = [
     expected: 'not_a_fit',
   },
   {
-    name: '#17: Not a fit $€” under 4hrs, general fitness (no specific goal)',
+    name: '#17: Not a fit $â€” under 4hrs, general fitness (no specific goal)',
     answers: prospect({
       q1TrainingFor: 'general_fitness',
       q2HoursPerWeek: 'under_4',
@@ -244,7 +244,7 @@ const testCases: TestCase[] = [
     expected: 'not_a_fit',
   },
   {
-    name: '#18: Not a fit $€” recurring injury in Q5 + injury confirmed in freetext',
+    name: '#18: Not a fit $â€” recurring injury in Q5 + injury confirmed in freetext',
     answers: prospect({
       q1TrainingFor: 'race_with_date',
       q2HoursPerWeek: '4_to_6',
@@ -259,7 +259,7 @@ const testCases: TestCase[] = [
   },
   // --- Edge cases (profiles 19-20) ---
   {
-    name: '#19: IC $€” currently has a coach, meets all other IC criteria',
+    name: '#19: IC $â€” currently has a coach, meets all other IC criteria',
     answers: prospect({
       q1TrainingFor: 'race_with_date',
       q2HoursPerWeek: '9_to_12',
@@ -272,7 +272,7 @@ const testCases: TestCase[] = [
     expected: 'inner_circle',
   },
   {
-    name: '#20: Premium $€” specific watts, 6-9hrs, other frustration, self-coached',
+    name: '#20: Premium $â€” specific watts, 6-9hrs, other frustration, self-coached',
     answers: prospect({
       q1TrainingFor: 'specific_watts_target',
       q2HoursPerWeek: '6_to_9',

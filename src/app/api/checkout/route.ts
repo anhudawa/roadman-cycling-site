@@ -9,7 +9,7 @@ function getStripe() {
   return new Stripe(key);
 }
 
-// The Strength Training course price ID $€” set in env or hardcode after creating in Stripe
+// The Strength Training course price ID $â€” set in env or hardcode after creating in Stripe
 const STRENGTH_TRAINING_PRICE_ID = process.env.STRIPE_STRENGTH_PRICE_ID;
 
 export async function POST(request: Request) {

@@ -2,8 +2,8 @@
  * Programmatic SEO landing pages: /plan/[event]/[weeks-out]
  *
  * Each landing page combines:
- *   - TrainingEvent $€” a specific target event (Wicklow 200, Ride London, etc.)
- *   - TrainingPhase $€” weeks-out bucket (16, 12, 8, 4, 2, 1)
+ *   - TrainingEvent â€” a specific target event (Wicklow 200, Ride London, etc.)
+ *   - TrainingPhase â€” weeks-out bucket (16, 12, 8, 4, 2, 1)
  *
  * That gives event-specific + phase-specific content at scale
  * without writing every combination by hand. A rider searching
@@ -23,12 +23,12 @@ export interface TrainingEvent {
   slug: string;
   name: string;
   shortName: string;
-  /** Country/region $€” powers geo SEO. */
+  /** Country/region â€” powers geo SEO. */
   region: string;
   type: EventType;
   distanceKm: number;
   elevationGainM: number;
-  /** E.g. "8-12 hours" $€” typical amateur finish. */
+  /** E.g. "8-12 hours" â€” typical amateur finish. */
   typicalFinishTime: string;
   /** Month the event usually runs, e.g. "May", "July". */
   defaultMonth: string;
@@ -86,25 +86,25 @@ export const EVENTS: TrainingEvent[] = [
     typicalFinishTime: "8-12 hours",
     defaultMonth: "June",
     description:
-      "The Wicklow 200 is Ireland's classic mass-participation sportive $€” 200km across the Wicklow Mountains with around 3,000m of climbing. Starts and finishes in Greystones or thereabouts, runs in early June.",
+      "The Wicklow 200 is Ireland's classic mass-participation sportive â€” 200km across the Wicklow Mountains with around 3,000m of climbing. Starts and finishes in Greystones or thereabouts, runs in early June.",
     keyCharacteristics: [
       "Five named climbs including Sally Gap, Slieve Mann, and the Shay Elliott",
       "Weather can shift from baking to cold rain inside an hour",
-      "Cut-off times at checkpoints $€” pacing mistakes end your day early",
+      "Cut-off times at checkpoints â€” pacing mistakes end your day early",
       "Long valleys between climbs demand steady aerobic fitness",
       "Mass start means the opening 30km can drag you into the red",
     ],
     commonMistakes: [
       "Going too hard in the first 50km in a pack surge",
       "Underfueling on Sally Gap because it's 'only' the first big climb",
-      "Pack light thinking 'it's June' $€” expect wind and showers",
+      "Pack light thinking 'it's June' â€” expect wind and showers",
     ],
     pacingStrategy:
       "Think of it as two 100km rides stitched together. Target heart-rate ceiling on Sally Gap (climb 1) that's 5-8 beats below your sportive threshold. If you feel comfortable at the 100km mark, you paced it right. If you're already hanging on, the back half will be a grind.",
     nutritionAngle:
-      "80-100g carbs/hour for 200km is the realistic target if your gut's trained. Start fuelling within 45 minutes. Cafe stop at the 140km feed zone is a strategic checkpoint, not a recovery break $€” keep it under 20 minutes.",
+      "80-100g carbs/hour for 200km is the realistic target if your gut's trained. Start fuelling within 45 minutes. Cafe stop at the 140km feed zone is a strategic checkpoint, not a recovery break â€” keep it under 20 minutes.",
     kitAngle:
-      "Rain cape stashed in the jersey pocket. Compact chainset for Shay Elliott unless you're built for hills. Double-bottle plus one refill at every stop $€” Irish weather dehydrates you even when it feels cool.",
+      "Rain cape stashed in the jersey pocket. Compact chainset for Shay Elliott unless you're built for hills. Double-bottle plus one refill at every stop â€” Irish weather dehydrates you even when it feels cool.",
     blogSlug: "wicklow-200-training-plan",
   },
   {
@@ -118,25 +118,25 @@ export const EVENTS: TrainingEvent[] = [
     typicalFinishTime: "5-8 hours",
     defaultMonth: "May",
     description:
-      "Ring of Beara is the coastal Kerry sportive $€” 140km around the wildest peninsula in Ireland, with the Caha Mountains and Healy Pass as the defining climbs. Smaller field than Wicklow 200, steeper climbs.",
+      "Ring of Beara is the coastal Kerry sportive â€” 140km around the wildest peninsula in Ireland, with the Caha Mountains and Healy Pass as the defining climbs. Smaller field than Wicklow 200, steeper climbs.",
     keyCharacteristics: [
-      "Healy Pass $€” the signature climb, long switchbacks, sustained 6-8% on the hard side",
+      "Healy Pass â€” the signature climb, long switchbacks, sustained 6-8% on the hard side",
       "Exposed coastal sections with unpredictable crosswinds",
       "140km is shorter than Wicklow but the terrain is punchier",
       "Early May means the road is often wet",
-      "Small villages for feed zones $€” plan your stops carefully",
+      "Small villages for feed zones â€” plan your stops carefully",
     ],
     commonMistakes: [
       "Treating Healy Pass like an easy climb because it's 'only' a few km",
       "Packing like it's July when it's May on the Atlantic",
-      "Cranking the gearing too hard $€” long compact gearing saves the day",
+      "Cranking the gearing too hard â€” long compact gearing saves the day",
     ],
     pacingStrategy:
       "The first 80km are rolling with two controllable climbs. The Healy Pass at km 100 is the ride. If you arrive at the base feeling fresh you'll finish strong. If you're already ragged you'll crack on the steep section. Pace for Healy, not the flats.",
     nutritionAngle:
-      "Shorter than Wicklow but more climbing per km. 70-90g carbs/hour. Refill at Kenmare or Glengarriff depending on the route. The Healy Pass has no feed zone $€” come to it with a full bottle and a gel.",
+      "Shorter than Wicklow but more climbing per km. 70-90g carbs/hour. Refill at Kenmare or Glengarriff depending on the route. The Healy Pass has no feed zone â€” come to it with a full bottle and a gel.",
     kitAngle:
-      "Gilet and armwarmers even in May. Compact crankset with 11-32 cassette. The descent off Healy is technical $€” check brake pads before you start.",
+      "Gilet and armwarmers even in May. Compact crankset with 11-32 cassette. The descent off Healy is technical â€” check brake pads before you start.",
     blogSlug: "ring-of-beara-training-plan",
   },
   {
@@ -150,25 +150,25 @@ export const EVENTS: TrainingEvent[] = [
     typicalFinishTime: "5-9 hours",
     defaultMonth: "May",
     description:
-      "Ride London-Essex 100 is the UK's largest mass-participation sportive $€” 160km (100 miles) from east London out through the Essex countryside and back on closed roads. Since 2022 the route has run through Essex rather than the Surrey Hills, making it flatter, faster, and pack-dominated. First-time 100-mile riders dominate the field.",
+      "Ride London-Essex 100 is the UK's largest mass-participation sportive â€” 160km (100 miles) from east London out through the Essex countryside and back on closed roads. Since 2022 the route has run through Essex rather than the Surrey Hills, making it flatter, faster, and pack-dominated. First-time 100-mile riders dominate the field.",
     keyCharacteristics: [
       "Closed roads from central London out through Essex and back",
-      "Rolling Essex countryside $€” few sustained climbs, lots of short rises",
-      "Pack riding dominates $€” drafting saves 20-30% of your work",
+      "Rolling Essex countryside â€” few sustained climbs, lots of short rises",
+      "Pack riding dominates â€” drafting saves 20-30% of your work",
       "Central London finish on The Mall with huge crowds",
-      "Early start (often 06:30) $€” means late nights the week before ruin you",
+      "Early start (often 06:30) â€” means late nights the week before ruin you",
     ],
     commonMistakes: [
       "Surfing from group to group in the first 40km and burning matches",
       "Underhydrating because it 'doesn't feel hot' on closed roads",
-      "Treating it like a climbing sportive $€” it's a pack-speed event, pick the right wheels",
+      "Treating it like a climbing sportive â€” it's a pack-speed event, pick the right wheels",
     ],
     pacingStrategy:
-      "Sit in a pack at your sportive pace. Don't chase a faster pack if you can't comfortably hold a wheel for 10 minutes. The Essex route is rolling rather than climber's terrain $€” your target power should be close to tempo for long stretches, with brief spikes over the short rises. Save matches for the last 30km back into London, where gaps open up.",
+      "Sit in a pack at your sportive pace. Don't chase a faster pack if you can't comfortably hold a wheel for 10 minutes. The Essex route is rolling rather than climber's terrain â€” your target power should be close to tempo for long stretches, with brief spikes over the short rises. Save matches for the last 30km back into London, where gaps open up.",
     nutritionAngle:
-      "Gels every 30-45 min + bar every 90. Closed-road feed zones are plentiful but often packed $€” carry enough that you can skip one. Caffeine gel at 100km keeps the focus through the urban section.",
+      "Gels every 30-45 min + bar every 90. Closed-road feed zones are plentiful but often packed â€” carry enough that you can skip one. Caffeine gel at 100km keeps the focus through the urban section.",
     kitAngle:
-      "Aero road bike with 52/36 + 11-30 cassette is plenty. No need for climbing gear. Bidon cage warming bottles (it often rains). Thin gloves $€” finish is in London, traffic after the line.",
+      "Aero road bike with 52/36 + 11-30 cassette is plenty. No need for climbing gear. Bidon cage warming bottles (it often rains). Thin gloves â€” finish is in London, traffic after the line.",
     blogSlug: "ride-london-training-plan",
   },
   {
@@ -182,13 +182,13 @@ export const EVENTS: TrainingEvent[] = [
     typicalFinishTime: "8-12 hours",
     defaultMonth: "May",
     description:
-      "Fred Whitton Challenge is the UK's hardest sportive $€” 180km through the Lake District with 3,500m of climbing including Hardknott Pass (33% max gradient). A pure climbing test. Finishers consider it a career highlight.",
+      "Fred Whitton Challenge is the UK's hardest sportive â€” 180km through the Lake District with 3,500m of climbing including Hardknott Pass (33% max gradient). A pure climbing test. Finishers consider it a career highlight.",
     keyCharacteristics: [
-      "Hardknott Pass $€” 33% max gradient, narrow unrelenting tarmac",
+      "Hardknott Pass â€” 33% max gradient, narrow unrelenting tarmac",
       "Four 10%+ climbs stacked on top of each other",
       "Weather can put visibility at 50m on the summits",
       "Cut-off times at checkpoints tight for slower riders",
-      "Field size smaller than Wicklow or Ride London $€” less pack riding",
+      "Field size smaller than Wicklow or Ride London â€” less pack riding",
     ],
     commonMistakes: [
       "Riding a 50/34 + 11-28 and discovering 33% gradient mid-effort",
@@ -196,11 +196,11 @@ export const EVENTS: TrainingEvent[] = [
       "Pushing the descent after the Struggle when the legs are done",
     ],
     pacingStrategy:
-      "Fred Whitton is about finishing. Heart rate management on the first three climbs is everything. Target Z3 ceiling on Kirkstone, Honister, and Newlands. Save Zone 4 for Wrynose and Hardknott. The last 30km are a drift $€” pace for survival.",
+      "Fred Whitton is about finishing. Heart rate management on the first three climbs is everything. Target Z3 ceiling on Kirkstone, Honister, and Newlands. Save Zone 4 for Wrynose and Hardknott. The last 30km are a drift â€” pace for survival.",
     nutritionAngle:
-      "10-12 hours needs 80-100g carbs/hour sustained $€” that's the difference-maker. Food at every feed zone, don't skip 'because you feel OK'. Electrolytes matter more than calories in the last 60km.",
+      "10-12 hours needs 80-100g carbs/hour sustained â€” that's the difference-maker. Food at every feed zone, don't skip 'because you feel OK'. Electrolytes matter more than calories in the last 60km.",
     kitAngle:
-      "34x34 minimum gearing. Some riders use a 1x setup. Walking shoes are not weakness $€” plenty of people walk Hardknott. Long-finger gloves for descents.",
+      "34x34 minimum gearing. Some riders use a 1x setup. Walking shoes are not weakness â€” plenty of people walk Hardknott. Long-finger gloves for descents.",
     blogSlug: "fred-whitton-challenge-training-plan",
   },
   {
@@ -214,25 +214,25 @@ export const EVENTS: TrainingEvent[] = [
     typicalFinishTime: "8-12 hours",
     defaultMonth: "July",
     description:
-      "The Ã‰tape du Tour is cycling's mass-participation crown jewel $€” one stage of the current year's Tour de France, on closed roads, run by ASO. Varies each year but always hard, always mountainous, always an international field.",
+      "The Ã‰tape du Tour is cycling's mass-participation crown jewel â€” one stage of the current year's Tour de France, on closed roads, run by ASO. Varies each year but always hard, always mountainous, always an international field.",
     keyCharacteristics: [
       "Closed roads on full HC / Category-1 climbs",
       "15,000+ riders means the start can take 40 minutes to clear",
-      "Altitude $€” many editions cross 2,000m",
+      "Altitude â€” many editions cross 2,000m",
       "Support unmatched: feed zones every 25-30km, full medical",
-      "Cut-off times mirror the pro race $€” strict",
+      "Cut-off times mirror the pro race â€” strict",
     ],
     commonMistakes: [
-      "Treating it like a normal sportive $€” this is mountain racing",
+      "Treating it like a normal sportive â€” this is mountain racing",
       "Underestimating heat at altitude (sun intensity + thin air)",
       "Saving legs for the final climb and ending up missing the cut-off",
     ],
     pacingStrategy:
-      "Ã‰tape pacing is pro-race pacing scaled to your FTP. Treat each HC climb as its own threshold effort with rigid wattage ceilings. The summit-to-summit interval is often the crux $€” don't burn matches on the valley transitions.",
+      "Ã‰tape pacing is pro-race pacing scaled to your FTP. Treat each HC climb as its own threshold effort with rigid wattage ceilings. The summit-to-summit interval is often the crux â€” don't burn matches on the valley transitions.",
     nutritionAngle:
-      "8+ hours at altitude demands 100g/hr carbs minimum if gut-trained. Altitude suppresses thirst $€” force-drink on a timer. Feed zones have baguettes and ham $€” use them but fuel continuously from your own supplies.",
+      "8+ hours at altitude demands 100g/hr carbs minimum if gut-trained. Altitude suppresses thirst â€” force-drink on a timer. Feed zones have baguettes and ham â€” use them but fuel continuously from your own supplies.",
     kitAngle:
-      "34x32 minimum $€” many amateurs run 34x34. Clear lenses for the descents. Full-finger gloves for the summits (even in July). A gilet stashed in the pocket is non-negotiable for the mountain descents.",
+      "34x32 minimum â€” many amateurs run 34x34. Clear lenses for the descents. Full-finger gloves for the summits (even in July). A gilet stashed in the pocket is non-negotiable for the mountain descents.",
   },
   {
     slug: "maratona-dles-dolomites",
@@ -245,12 +245,12 @@ export const EVENTS: TrainingEvent[] = [
     typicalFinishTime: "6-10 hours",
     defaultMonth: "July",
     description:
-      "The Maratona dles Dolomites is the classic Italian sportive $€” 138km over 7 Dolomite passes with 4,230m of climbing. Ballotted entry, 9,000 riders, closed roads from dawn. Arguably the most beautiful sportive on the calendar.",
+      "The Maratona dles Dolomites is the classic Italian sportive â€” 138km over 7 Dolomite passes with 4,230m of climbing. Ballotted entry, 9,000 riders, closed roads from dawn. Arguably the most beautiful sportive on the calendar.",
     keyCharacteristics: [
       "Seven passes: Campolongo, Pordoi, Sella, Gardena, Giau, Falzarego, Valparola",
-      "Passo Giau is the crux $€” 9.9km at 9.3%",
+      "Passo Giau is the crux â€” 9.9km at 9.3%",
       "Altitude 1,200-2,240m across the day",
-      "Early start (pre-dawn) $€” means the first climb is in darkness for some",
+      "Early start (pre-dawn) â€” means the first climb is in darkness for some",
       "Technical descents demand road-race confidence",
     ],
     commonMistakes: [
@@ -259,11 +259,11 @@ export const EVENTS: TrainingEvent[] = [
       "Altitude-naive riders struggling with heart-rate drift on the upper passes",
     ],
     pacingStrategy:
-      "Start conservative $€” the first three passes are warm-up. Giau is the race. Control HR on Giau below threshold for the bottom half, hold the line for the top. Falzarego is the victory lap but still 600m of climbing $€” respect it.",
+      "Start conservative â€” the first three passes are warm-up. Giau is the race. Control HR on Giau below threshold for the bottom half, hold the line for the top. Falzarego is the victory lap but still 600m of climbing â€” respect it.",
     nutritionAngle:
-      "90-110g carbs/hour. Feed zones are excellent (Italian sportives understand food) but own-supply is faster. Water at every tap $€” Dolomite sun is deceiving.",
+      "90-110g carbs/hour. Feed zones are excellent (Italian sportives understand food) but own-supply is faster. Water at every tap â€” Dolomite sun is deceiving.",
     kitAngle:
-      "Climbing bike. 34x30 minimum. Light windproof gilet $€” descents are cold even in July. Sunscreen on arms + legs $€” Dolomite UV is brutal.",
+      "Climbing bike. 34x30 minimum. Light windproof gilet â€” descents are cold even in July. Sunscreen on arms + legs â€” Dolomite UV is brutal.",
   },
   {
     slug: "mallorca-312",
@@ -276,23 +276,23 @@ export const EVENTS: TrainingEvent[] = [
     typicalFinishTime: "10-14 hours",
     defaultMonth: "April",
     description:
-      "The Mallorca 312 is spring's most talked-about sportive $€” 312km around Mallorca with 5,000m+ of climbing, including the classic Tramuntana climbs that define road cycling on the island. Runs in late April. Open-road format, closed to traffic in parts. Route varies year to year; some editions include Sa Calobra, others do not.",
+      "The Mallorca 312 is spring's most talked-about sportive â€” 312km around Mallorca with 5,000m+ of climbing, including the classic Tramuntana climbs that define road cycling on the island. Runs in late April. Open-road format, closed to traffic in parts. Route varies year to year; some editions include Sa Calobra, others do not.",
     keyCharacteristics: [
-      "Tramuntana range $€” Puig Major, Coll de SÃ³ller, Coll dels Reis stacked early",
+      "Tramuntana range â€” Puig Major, Coll de SÃ³ller, Coll dels Reis stacked early",
       "Sa Calobra features in some editions: ~10km descent to the sea then ~10km climb back out at 7% average",
       "312km distance means fuelling strategy determines who finishes",
-      "Three distance options: 312km, 225km, 167km $€” pick realistically",
+      "Three distance options: 312km, 225km, 167km â€” pick realistically",
       "Weather shift from cold morning climbs to afternoon Mediterranean heat",
     ],
     commonMistakes: [
-      "Choosing the 312 because you've done other long sportives $€” Mallorca's combination of distance + heat is different",
+      "Choosing the 312 because you've done other long sportives â€” Mallorca's combination of distance + heat is different",
       "Underfuelling the first 80km because the climbing starts easy",
-      "Forgetting Sa Calobra is a ~7% sustained climb, not a gentle return $€” many riders bonk here when it's on the route",
+      "Forgetting Sa Calobra is a ~7% sustained climb, not a gentle return â€” many riders bonk here when it's on the route",
     ],
     pacingStrategy:
-      "The 312 is a fueling problem more than a fitness one. Pace the opening 100km at 60-65% FTP maximum. Ride the middle 100km conservatively with strict carb/fluid discipline. The last 100km is where preparation shows $€” those who fuelled correctly can even push. Arrive at the final named climb with reserves, not red-lined.",
+      "The 312 is a fueling problem more than a fitness one. Pace the opening 100km at 60-65% FTP maximum. Ride the middle 100km conservatively with strict carb/fluid discipline. The last 100km is where preparation shows â€” those who fuelled correctly can even push. Arrive at the final named climb with reserves, not red-lined.",
     nutritionAngle:
-      "10+ hours means 80g carbs/hour minimum, 100g if gut-trained. 500-750ml fluid/hour once the heat kicks in. Food at every aid station on the route $€” don't skip any. Electrolytes become dominant after hour 6. A 'second breakfast' at the PollenÃ§a aid stop (km 80) is a classic move.",
+      "10+ hours means 80g carbs/hour minimum, 100g if gut-trained. 500-750ml fluid/hour once the heat kicks in. Food at every aid station on the route â€” don't skip any. Electrolytes become dominant after hour 6. A 'second breakfast' at the PollenÃ§a aid stop (km 80) is a classic move.",
     kitAngle:
       "Long-finger gloves + gilet for the first two hours (cold on the climbs pre-dawn). 34x30 minimum, 34x32 recommended for Sa Calobra late in the day. Extra bottle cages or a frame bag for the long desert-like middle section.",
   },
@@ -307,21 +307,21 @@ export const EVENTS: TrainingEvent[] = [
     typicalFinishTime: "60-120 hours",
     defaultMonth: "September",
     description:
-      "Badlands is one of the hardest self-supported ultras in the world $€” 800km across Andalusia and the Tabernas Desert (Europe's only true desert) with 16,000m of climbing. Mixed gravel/road, 40$°C+ daytime heat, freezing desert nights. A bucket-list race for the ultra-endurance community and a recurring topic on the Roadman Podcast.",
+      "Badlands is one of the hardest self-supported ultras in the world â€” 800km across Andalusia and the Tabernas Desert (Europe's only true desert) with 16,000m of climbing. Mixed gravel/road, 40Â°C+ daytime heat, freezing desert nights. A bucket-list race for the ultra-endurance community and a recurring topic on the Roadman Podcast.",
     keyCharacteristics: [
-      "Self-supported format $€” resupply only at open shops + fountains",
-      "Tabernas Desert crossing: 40$°C+ daytime, freezing at night",
-      "16,000m climbing across 800km averages 20m/km $€” relentless",
+      "Self-supported format â€” resupply only at open shops + fountains",
+      "Tabernas Desert crossing: 40Â°C+ daytime, freezing at night",
+      "16,000m climbing across 800km averages 20m/km â€” relentless",
       "Sleep strategy is part of the race (2-6 hours/day at best)",
-      "Mix of road + gravel + rough dirt $€” tyre choice is a gamble",
+      "Mix of road + gravel + rough dirt â€” tyre choice is a gamble",
     ],
     commonMistakes: [
-      "Underestimating the night desert cold $€” riders treat 'Spain in September' as warm, it isn't at 2am",
-      "Treating it like a long sportive $€” Badlands breaks people who haven't done shorter ultras first",
-      "Poor tyre pressure $€” either too light (punctures) or too firm (fatigue)",
+      "Underestimating the night desert cold â€” riders treat 'Spain in September' as warm, it isn't at 2am",
+      "Treating it like a long sportive â€” Badlands breaks people who haven't done shorter ultras first",
+      "Poor tyre pressure â€” either too light (punctures) or too firm (fatigue)",
     ],
     pacingStrategy:
-      "Don't race the start. Badlands has a 4-5 day finishing window for most riders and the leaderboard means almost nothing if you DNF at km 400. Sustainable pace $€” roughly 60% of your 8-hour FTP as an all-day ceiling. Sleep plan written in advance: where, how long, triggered by which km.",
+      "Don't race the start. Badlands has a 4-5 day finishing window for most riders and the leaderboard means almost nothing if you DNF at km 400. Sustainable pace â€” roughly 60% of your 8-hour FTP as an all-day ceiling. Sleep plan written in advance: where, how long, triggered by which km.",
     nutritionAngle:
       "No aid stations. You carry or you resupply from shops. 80-100g carbs/hour on the bike minimum. Calories eaten at shops count. Salt + electrolytes critical in the desert crossing. CafÃ©s and gas stations become your crew.",
     kitAngle:
@@ -338,25 +338,25 @@ export const EVENTS: TrainingEvent[] = [
     typicalFinishTime: "8-12 hours",
     defaultMonth: "August",
     description:
-      "Leadville 100 is the definitive high-altitude MTB race $€” 160km through the Colorado Rockies starting at 3,100m (10,200ft) with 3,800m of climbing and a topout above 3,800m on Columbine Mine. Lottery entry, hard cut-offs, finisher buckle is a career milestone.",
+      "Leadville 100 is the definitive high-altitude MTB race â€” 160km through the Colorado Rockies starting at 3,100m (10,200ft) with 3,800m of climbing and a topout above 3,800m on Columbine Mine. Lottery entry, hard cut-offs, finisher buckle is a career milestone.",
     keyCharacteristics: [
-      "Altitude 3,100-3,810m $€” altitude-naive riders lose 20-30% power",
-      "Columbine Mine climb $€” 9km straight up to 3,810m above sea level",
+      "Altitude 3,100-3,810m â€” altitude-naive riders lose 20-30% power",
+      "Columbine Mine climb â€” 9km straight up to 3,810m above sea level",
       "Cut-off at the Columbine turnaround (6:00) is the race",
-      "Powerline descent $€” fast, rocky, tyre-popping territory",
-      "Weather varies from freezing dawn to 30$°C + thunderstorms",
+      "Powerline descent â€” fast, rocky, tyre-popping territory",
+      "Weather varies from freezing dawn to 30Â°C + thunderstorms",
     ],
     commonMistakes: [
       "Arriving less than 2 weeks before for altitude acclimatisation",
       "Racing the first 40km on paved road sections and blowing up at altitude",
-      "Running tyres too light $€” Leadville's rocks destroy XC casings",
+      "Running tyres too light â€” Leadville's rocks destroy XC casings",
     ],
     pacingStrategy:
-      "Altitude changes everything. Target a power ceiling 15-20% below what you'd hold at sea level. Heart rate runs 5-10 bpm higher than your lowland rate at the same effort $€” don't panic. Columbine Mine is a controlled climb at aerobic threshold. The flats + the Powerline descent are where the front group makes time; the back half is where you win your sub-9 buckle.",
+      "Altitude changes everything. Target a power ceiling 15-20% below what you'd hold at sea level. Heart rate runs 5-10 bpm higher than your lowland rate at the same effort â€” don't panic. Columbine Mine is a controlled climb at aerobic threshold. The flats + the Powerline descent are where the front group makes time; the back half is where you win your sub-9 buckle.",
     nutritionAngle:
-      "Altitude suppresses appetite $€” force-fuel on a timer. 70-90g carbs/hour. Feed zones are excellent (crew + on-course). Hydration is critical: 750ml+/hour with electrolytes. The dry Colorado air dehydrates faster than you feel.",
+      "Altitude suppresses appetite â€” force-fuel on a timer. 70-90g carbs/hour. Feed zones are excellent (crew + on-course). Hydration is critical: 750ml+/hour with electrolytes. The dry Colorado air dehydrates faster than you feel.",
     kitAngle:
-      "Hardtail or 120mm trail bike. 2.3-2.4\" tyres with Enduro or MaxxTerra casings $€” not XC race tyres. CO2 + pump + plug kit + spare tube. Arm warmers + gilet for the 06:30 start (cold). Altitude requires sunglasses with good UV + clear lens backup for the Columbine descent (often cloud + rain).",
+      "Hardtail or 120mm trail bike. 2.3-2.4\" tyres with Enduro or MaxxTerra casings â€” not XC race tyres. CO2 + pump + plug kit + spare tube. Arm warmers + gilet for the 06:30 start (cold). Altitude requires sunglasses with good UV + clear lens backup for the Columbine descent (often cloud + rain).",
   },
   {
     slug: "gran-fondo-nyc",
@@ -369,25 +369,25 @@ export const EVENTS: TrainingEvent[] = [
     typicalFinishTime: "5-9 hours",
     defaultMonth: "May",
     description:
-      "Gran Fondo New York (GFNY) is the flagship USA sportive $€” 160km from the George Washington Bridge up the Hudson Valley with 2,500m of climbing. Competitive timed format (your position matters), international field, closed bridge at the start.",
+      "Gran Fondo New York (GFNY) is the flagship USA sportive â€” 160km from the George Washington Bridge up the Hudson Valley with 2,500m of climbing. Competitive timed format (your position matters), international field, closed bridge at the start.",
     keyCharacteristics: [
-      "Start on the George Washington Bridge $€” 8,000+ riders",
-      "Bear Mountain climb $€” the signature climb at km 90",
+      "Start on the George Washington Bridge â€” 8,000+ riders",
+      "Bear Mountain climb â€” the signature climb at km 90",
       "Timed format: results matter, pacing strategies ruthless",
-      "Rolling Hudson Valley terrain $€” few flat km",
-      "May weather: anywhere from 10$°C and raining to 30$°C and humid",
+      "Rolling Hudson Valley terrain â€” few flat km",
+      "May weather: anywhere from 10Â°C and raining to 30Â°C and humid",
     ],
     commonMistakes: [
-      "Burning matches matching pace on the first 30km $€” it's a race start, not your pace",
-      "Riding solo instead of working groups $€” drafting saves 25-30% on the Hudson roads",
+      "Burning matches matching pace on the first 30km â€” it's a race start, not your pace",
+      "Riding solo instead of working groups â€” drafting saves 25-30% on the Hudson roads",
       "Underfueling because the early rollers feel 'just easy enough'",
     ],
     pacingStrategy:
-      "Get in a pack at your sportive pace within the first 15km. Work the pack on the flats + rollers. Bear Mountain at km 90 is a 25-30 min threshold effort $€” attack it at 90-95% FTP if you're chasing a time, 80-85% if you're chasing a finish. The back half rewards steady pacing over heroic climbs.",
+      "Get in a pack at your sportive pace within the first 15km. Work the pack on the flats + rollers. Bear Mountain at km 90 is a 25-30 min threshold effort â€” attack it at 90-95% FTP if you're chasing a time, 80-85% if you're chasing a finish. The back half rewards steady pacing over heroic climbs.",
     nutritionAngle:
-      "80-90g carbs/hour. Feed zones at km 55 and km 110 are strategic. Don't skip the km 55 stop. US roadie fuelling culture means everyone carries their own $€” don't rely on aid station variety.",
+      "80-90g carbs/hour. Feed zones at km 55 and km 110 are strategic. Don't skip the km 55 stop. US roadie fuelling culture means everyone carries their own â€” don't rely on aid station variety.",
     kitAngle:
-      "Aero road bike with 11-30 cassette. Arm warmers + gilet stashed $€” weather varies. Rear light mandatory (enforced). Sunglasses with clear lenses for the GW Bridge tunnel at the start.",
+      "Aero road bike with 11-30 cassette. Arm warmers + gilet stashed â€” weather varies. Rear light mandatory (enforced). Sunglasses with clear lenses for the GW Bridge tunnel at the start.",
   },
   {
     slug: "dirty-reiver",
@@ -400,25 +400,25 @@ export const EVENTS: TrainingEvent[] = [
     typicalFinishTime: "8-14 hours",
     defaultMonth: "April",
     description:
-      "Dirty Reiver is the UK's flagship gravel event $€” 200km across Kielder Forest with 2,500m of climbing on forestry roads, single track, and open fell crossings. Self-supported navigation, weather-exposed. The event that established UK gravel.",
+      "Dirty Reiver is the UK's flagship gravel event â€” 200km across Kielder Forest with 2,500m of climbing on forestry roads, single track, and open fell crossings. Self-supported navigation, weather-exposed. The event that established UK gravel.",
     keyCharacteristics: [
-      "Forestry roads in Kielder $€” fast, wide, surprisingly rolling",
+      "Forestry roads in Kielder â€” fast, wide, surprisingly rolling",
       "Weather can shift from sunny to snowy inside an hour in April",
       "Self-supported: carry what you eat/drink",
       "Short 130km + 65km options for first-timers",
       "Borderline mountain bike terrain in sections",
     ],
     commonMistakes: [
-      "Running road tyres $€” you will puncture",
-      "Underdressing because 'it's April' $€” Kielder makes its own weather",
-      "Pacing like a sportive $€” gravel eats your legs faster than tarmac",
+      "Running road tyres â€” you will puncture",
+      "Underdressing because 'it's April' â€” Kielder makes its own weather",
+      "Pacing like a sportive â€” gravel eats your legs faster than tarmac",
     ],
     pacingStrategy:
-      "Gravel events punish overpacing effort because the surface varies. Target heart-rate rather than power $€” aim for high Z2 / low Z3 as your all-day ceiling. Let others go early on the fast sections; you'll catch them when the rough stuff starts. Eat on the flat sections when you can chew safely.",
+      "Gravel events punish overpacing effort because the surface varies. Target heart-rate rather than power â€” aim for high Z2 / low Z3 as your all-day ceiling. Let others go early on the fast sections; you'll catch them when the rough stuff starts. Eat on the flat sections when you can chew safely.",
     nutritionAngle:
-      "Self-supported means you pack it. 70-90g carbs/hour, more if cold. One water refill at the mid-point feed stop (if it's there $€” not guaranteed). Real food works better than gels when the ride stretches beyond 8 hours $€” sandwiches, bars, waffles.",
+      "Self-supported means you pack it. 70-90g carbs/hour, more if cold. One water refill at the mid-point feed stop (if it's there â€” not guaranteed). Real food works better than gels when the ride stretches beyond 8 hours â€” sandwiches, bars, waffles.",
     kitAngle:
-      "Gravel bike with 40-45mm tyres $€” Rene Herse Humptulips, Challenge Getaway, WTB Nano. Tubeless with sealant. Mudguards help in wet years. Frame bag + top tube bag for food. Rain jacket that actually works. Head torch if you're a slower finisher.",
+      "Gravel bike with 40-45mm tyres â€” Rene Herse Humptulips, Challenge Getaway, WTB Nano. Tubeless with sealant. Mudguards help in wet years. Frame bag + top tube bag for food. Rain jacket that actually works. Head torch if you're a slower finisher.",
   },
   {
     slug: "unbound-gravel",
@@ -431,23 +431,23 @@ export const EVENTS: TrainingEvent[] = [
     typicalFinishTime: "12-20 hours",
     defaultMonth: "June",
     description:
-      "Unbound Gravel is the world's biggest gravel event $€” 320km (200mi) across the Flint Hills of Kansas on rocky unpaved roads. Lottery entry, professional field mixed with amateurs, 100mi + 50mi options. Mud years and dust years both exist.",
+      "Unbound Gravel is the world's biggest gravel event â€” 320km (200mi) across the Flint Hills of Kansas on rocky unpaved roads. Lottery entry, professional field mixed with amateurs, 100mi + 50mi options. Mud years and dust years both exist.",
     keyCharacteristics: [
       "320km (200mi) flagship + 100mi + 50mi options",
       "Flint Hills rocks destroy tyres, wheels, and souls",
       "Mud years (historic): bike-carrying, abandonments, DNFs at 50%",
-      "Kansas heat: 25-35$°C with no shade",
+      "Kansas heat: 25-35Â°C with no shade",
       "Self-navigated (GPS) after the first 20km",
     ],
     commonMistakes: [
-      "Running tyres under 40mm $€” Unbound shreds light tyres",
+      "Running tyres under 40mm â€” Unbound shreds light tyres",
       "Trying to ride from a sportive background without ultra pacing",
-      "Underfueling because 'it's just bikes, not running' $€” 12-20 hours is ultra territory",
+      "Underfueling because 'it's just bikes, not running' â€” 12-20 hours is ultra territory",
     ],
     pacingStrategy:
-      "Unbound is an ultra with a drop bag. Pace at 55-60% of your 4-hour FTP as a realistic all-day ceiling. The rocks force constant micro-adjustments; you don't hold steady power like on road. Drop bag at checkpoints 2 and 3 $€” strategise what's in each bag before the start.",
+      "Unbound is an ultra with a drop bag. Pace at 55-60% of your 4-hour FTP as a realistic all-day ceiling. The rocks force constant micro-adjustments; you don't hold steady power like on road. Drop bag at checkpoints 2 and 3 â€” strategise what's in each bag before the start.",
     nutritionAngle:
-      "80-100g carbs/hour for 12+ hours. Aid stations are official but crowded $€” own supply between them is faster. Heat means electrolytes dominate. Solid food at checkpoints, gels + bars between. Texan rule: if you're not peeing every 2 hours you're underfuelling.",
+      "80-100g carbs/hour for 12+ hours. Aid stations are official but crowded â€” own supply between them is faster. Heat means electrolytes dominate. Solid food at checkpoints, gels + bars between. Texan rule: if you're not peeing every 2 hours you're underfuelling.",
     kitAngle:
       "Gravel bike with 42-45mm tyres, reinforced sidewalls (Panaracer GravelKing SK+, Challenge Gravine Race, Rene Herse Stampede Pass). Tubeless mandatory. 2-3 tyre plugs + CO2 + spare tube. Mudguards optional (but essential in mud years). Hydration pack optional but helps in heat.",
   },
@@ -462,23 +462,23 @@ export const EVENTS: TrainingEvent[] = [
     typicalFinishTime: "8 days (stage race)",
     defaultMonth: "March",
     description:
-      "The Absa Cape Epic is the premier 8-day MTB stage race $€” 700km + 15,000m of climbing across the Western Cape of South Africa, raced in teams of two. World Series status, lottery entry, the hardest amateur MTB event on earth.",
+      "The Absa Cape Epic is the premier 8-day MTB stage race â€” 700km + 15,000m of climbing across the Western Cape of South Africa, raced in teams of two. World Series status, lottery entry, the hardest amateur MTB event on earth.",
     keyCharacteristics: [
-      "8-day stage race $€” sleep, recover, repeat",
-      "Raced in teams of 2 $€” you finish together or you DNF",
+      "8-day stage race â€” sleep, recover, repeat",
+      "Raced in teams of 2 â€” you finish together or you DNF",
       "Technical singletrack AND long climbs on each stage",
       "Heat, dust, and altitude variations across the Cape",
-      "Stage cut-offs $€” slower teams eliminated during the week",
+      "Stage cut-offs â€” slower teams eliminated during the week",
     ],
     commonMistakes: [
       "Arriving undertrained for back-to-back 6-8 hour days",
-      "Mismatching partner fitness $€” you ride at the slower rider's pace",
-      "Skipping the first two stages' recovery protocols $€” day 5 is where it breaks",
+      "Mismatching partner fitness â€” you ride at the slower rider's pace",
+      "Skipping the first two stages' recovery protocols â€” day 5 is where it breaks",
     ],
     pacingStrategy:
-      "Cape Epic pacing is multi-day pacing, not single-stage racing. Target day 1 at 70-75% of a single-day race effort. Recovery $€” sleep, nutrition, legs up $€” is the race after day 3. The strongest teams at the finish line are those who held back on days 1-3 and still had legs on days 5-8.",
+      "Cape Epic pacing is multi-day pacing, not single-stage racing. Target day 1 at 70-75% of a single-day race effort. Recovery â€” sleep, nutrition, legs up â€” is the race after day 3. The strongest teams at the finish line are those who held back on days 1-3 and still had legs on days 5-8.",
     nutritionAngle:
-      "Daily calorie intake 5,000-7,000 kcal during the event. Fuel on the bike aggressively (80g carbs/hour). Recovery window post-stage: 4:1 carb:protein within 30 minutes. Hydrate all day every day $€” dehydration compounds across stages.",
+      "Daily calorie intake 5,000-7,000 kcal during the event. Fuel on the bike aggressively (80g carbs/hour). Recovery window post-stage: 4:1 carb:protein within 30 minutes. Hydrate all day every day â€” dehydration compounds across stages.",
     kitAngle:
       "Trail or lightweight XC full-suspension. 2.3-2.4\" tyres with good sidewalls (MaxxTerra or Enduro casing). Service-day bike fleet access (mandatory at the Cape Epic). 2x kit pieces of everything. Tyre plugs, pump, CO2, multitool.",
   },
@@ -493,25 +493,25 @@ export const EVENTS: TrainingEvent[] = [
     typicalFinishTime: "6-9 days",
     defaultMonth: "October",
     description:
-      "Trans Pyrenees is one of the hardest self-supported ultras in Europe $€” roughly 1,500km across the Pyrenees between the Atlantic and Mediterranean coasts, with around 28,000m of climbing depending on the year's parcours. 6-9 day finishes. October weather unpredictable.",
+      "Trans Pyrenees is one of the hardest self-supported ultras in Europe â€” roughly 1,500km across the Pyrenees between the Atlantic and Mediterranean coasts, with around 28,000m of climbing depending on the year's parcours. 6-9 day finishes. October weather unpredictable.",
     keyCharacteristics: [
-      "~28,000m climbing $€” more than three times the height of Everest across the event",
-      "Every HC and Cat 1 Pyrenean pass featured $€” Tourmalet, Aubisque, Aspin, Peyresourde, Portet",
+      "~28,000m climbing â€” more than three times the height of Everest across the event",
+      "Every HC and Cat 1 Pyrenean pass featured â€” Tourmalet, Aubisque, Aspin, Peyresourde, Portet",
       "October weather: snow on passes, freezing rain, wind",
-      "Self-supported $€” you carry, you sleep where you can",
+      "Self-supported â€” you carry, you sleep where you can",
       "Mandatory tracker, daily check-in times",
     ],
     commonMistakes: [
-      "Treating it like Badlands (Mediterranean) $€” the Pyrenees are colder, wetter, mountainous",
-      "Underspecing kit $€” October above 1,800m needs winter gear",
+      "Treating it like Badlands (Mediterranean) â€” the Pyrenees are colder, wetter, mountainous",
+      "Underspecing kit â€” October above 1,800m needs winter gear",
       "Sleep deprivation affecting descending safety on day 4+",
     ],
     pacingStrategy:
-      "Trans Pyrenees is a climbing-dominated ultra. Pace on the climbs $€” not the flats. Target sub-threshold on every pass, regardless of time pressure. Sleep 5-7 hours/day for sustainable progress. Check weather nightly and pick tomorrow's start time accordingly.",
+      "Trans Pyrenees is a climbing-dominated ultra. Pace on the climbs â€” not the flats. Target sub-threshold on every pass, regardless of time pressure. Sleep 5-7 hours/day for sustainable progress. Check weather nightly and pick tomorrow's start time accordingly.",
     nutritionAngle:
       "No aid stations. Resupply at open shops, cafÃ©s, petrol stations. 80-100g carbs/hour on the bike, with real food stops at cafÃ©s every 4-5 hours. Hot drinks at altitude pass points matter more than people expect. Carry extra gels for nighttime emergencies.",
     kitAngle:
-      "Full bikepacking kit. Dynamo hub for lights + devices. 32-35mm tyres with reinforcement. Waterproof jacket, waterproof gloves, waterproof socks. Bivvy + sleeping bag rated to 0$°C. Emergency mylar blanket. Spare battery pack.",
+      "Full bikepacking kit. Dynamo hub for lights + devices. 32-35mm tyres with reinforcement. Waterproof jacket, waterproof gloves, waterproof socks. Bivvy + sleeping bag rated to 0Â°C. Emergency mylar blanket. Spare battery pack.",
   },
 ];
 
@@ -526,17 +526,17 @@ export const PHASES: TrainingPhase[] = [
     label: "BASE PHASE",
     tagline: "Aerobic foundation. High volume, low intensity. Don't skip this.",
     focus:
-      "Sixteen weeks out, your job is volume. Forget intervals. Forget Strava. Build the aerobic engine that every later phase sits on top of. 80% of your time should be in Zone 2 $€” conversational pace, nose-breathing territory. If your base phase feels easy, you're doing it right.",
+      "Sixteen weeks out, your job is volume. Forget intervals. Forget Strava. Build the aerobic engine that every later phase sits on top of. 80% of your time should be in Zone 2 â€” conversational pace, nose-breathing territory. If your base phase feels easy, you're doing it right.",
     anchorSession: {
       name: "The long Z2 ride",
       detail:
         "One 3-4 hour steady Zone 2 ride per week. Flat to rolling route. Cadence 85-95rpm. Heart rate below first ventilatory threshold the whole way. This is where your mitochondrial density grows.",
     },
     weekStructure: [
-      { day: "Monday", session: "Rest or 45min Z1", detail: "Recovery day $€” coffee spin only if you want to." },
+      { day: "Monday", session: "Rest or 45min Z1", detail: "Recovery day â€” coffee spin only if you want to." },
       { day: "Tuesday", session: "90min Z2 endurance", detail: "Steady, controlled, aerobic." },
       { day: "Wednesday", session: "1h strength + 30min easy spin", detail: "Squats, deadlifts, core. Builds what the bike can't." },
-      { day: "Thursday", session: "90min Z2 with 3x5min tempo", detail: "Intro to structured effort $€” don't race it." },
+      { day: "Thursday", session: "90min Z2 with 3x5min tempo", detail: "Intro to structured effort â€” don't race it." },
       { day: "Friday", session: "Rest", detail: "Genuine rest. The adaptations happen now." },
       { day: "Saturday", session: "3-4h long Z2 ride", detail: "Anchor session. Fueled from minute 30." },
       { day: "Sunday", session: "90min group ride or solo Z2", detail: "Social pace. No heroes allowed." },
@@ -550,7 +550,7 @@ export const PHASES: TrainingPhase[] = [
     label: "LATE BASE",
     tagline: "Bridge phase. Volume still rules, but structure begins.",
     focus:
-      "Twelve weeks out, you're still building the base $€” but specific structure is starting to appear. Tempo work enters the picture one day a week. Long rides get longer. This is where the event-specific fitness starts to take shape without compromising your aerobic foundation.",
+      "Twelve weeks out, you're still building the base â€” but specific structure is starting to appear. Tempo work enters the picture one day a week. Long rides get longer. This is where the event-specific fitness starts to take shape without compromising your aerobic foundation.",
     anchorSession: {
       name: "Tempo sandwich",
       detail:
@@ -574,16 +574,16 @@ export const PHASES: TrainingPhase[] = [
     label: "BUILD PHASE",
     tagline: "Structured intensity enters. Threshold + VO2 max work.",
     focus:
-      "Eight weeks out, the build phase kicks in. One threshold session, one VO2 max session, and the long ride all in a week. Volume stays high, but now intensity layers on top. This is where your FTP should start climbing $€” if it doesn't, distribution is wrong, not effort.",
+      "Eight weeks out, the build phase kicks in. One threshold session, one VO2 max session, and the long ride all in a week. Volume stays high, but now intensity layers on top. This is where your FTP should start climbing â€” if it doesn't, distribution is wrong, not effort.",
     anchorSession: {
       name: "2x20min threshold",
       detail:
-        "Warm up 15min. 2x20min at 91-105% FTP with 5min recovery between. Cool down. Hit the target power both reps $€” if you fade the second, you started too hard. This is your bread-and-butter threshold session.",
+        "Warm up 15min. 2x20min at 91-105% FTP with 5min recovery between. Cool down. Hit the target power both reps â€” if you fade the second, you started too hard. This is your bread-and-butter threshold session.",
     },
     weekStructure: [
-      { day: "Monday", session: "Rest", detail: "Recovery is a session $€” treat it like one." },
+      { day: "Monday", session: "Rest", detail: "Recovery is a session â€” treat it like one." },
       { day: "Tuesday", session: "Threshold intervals (2x20min)", detail: "Your key quality session of the week." },
-      { day: "Wednesday", session: "90min Z2 + strength", detail: "Reduced gym volume $€” maintenance only." },
+      { day: "Wednesday", session: "90min Z2 + strength", detail: "Reduced gym volume â€” maintenance only." },
       { day: "Thursday", session: "VO2 max (4x4min @ 106-120% FTP)", detail: "Push the ceiling. Rep 4 should be the hardest." },
       { day: "Friday", session: "Rest or 45min recovery", detail: "Legs up." },
       { day: "Saturday", session: "4-6h long ride with 3x15min at event pace", detail: "Specificity starts here." },
@@ -598,7 +598,7 @@ export const PHASES: TrainingPhase[] = [
     label: "PEAK PHASE",
     tagline: "Event-specific sharpening. Volume drops, quality rises.",
     focus:
-      "Four weeks out, you stop building and start sharpening. Volume drops 15-20%. Intensity gets very specific to your event. Long rides mimic race pacing. The goal is to arrive fresh, not fitter $€” if you're still building now, you peaked wrong.",
+      "Four weeks out, you stop building and start sharpening. Volume drops 15-20%. Intensity gets very specific to your event. Long rides mimic race pacing. The goal is to arrive fresh, not fitter â€” if you're still building now, you peaked wrong.",
     anchorSession: {
       name: "Event simulation",
       detail:
@@ -609,7 +609,7 @@ export const PHASES: TrainingPhase[] = [
       { day: "Tuesday", session: "Threshold (3x10min)", detail: "Shorter, sharper threshold reps." },
       { day: "Wednesday", session: "60min Z2", detail: "Just keeping the legs open." },
       { day: "Thursday", session: "Race-pace intervals (5x5min)", detail: "At your target sportive pace." },
-      { day: "Friday", session: "Rest", detail: "Full rest $€” no bike." },
+      { day: "Friday", session: "Rest", detail: "Full rest â€” no bike." },
       { day: "Saturday", session: "3h event simulation", detail: "Dial in pacing + fueling + kit." },
       { day: "Sunday", session: "90min Z2", detail: "Easy, social." },
     ],
@@ -622,11 +622,11 @@ export const PHASES: TrainingPhase[] = [
     label: "TAPER",
     tagline: "Sharpness is banked. Now shed fatigue.",
     focus:
-      "Two weeks out you're in taper territory. Fitness plateaus or nudges up $€” you don't lose meaningful fitness in two weeks, but fatigue disappears fast. Short sharp efforts to keep legs awake. Everything else is volume reduction.",
+      "Two weeks out you're in taper territory. Fitness plateaus or nudges up â€” you don't lose meaningful fitness in two weeks, but fatigue disappears fast. Short sharp efforts to keep legs awake. Everything else is volume reduction.",
     anchorSession: {
       name: "Race-pace openers",
       detail:
-        "60min ride with 3x3min at race pace + 3x1min at VO2. Not training $€” priming. The efforts remind your legs what fast feels like. Nothing more.",
+        "60min ride with 3x3min at race pace + 3x1min at VO2. Not training â€” priming. The efforts remind your legs what fast feels like. Nothing more.",
     },
     weekStructure: [
       { day: "Monday", session: "Rest", detail: "Rest is the session." },
@@ -638,7 +638,7 @@ export const PHASES: TrainingPhase[] = [
       { day: "Sunday", session: "60min Z1 or rest", detail: "Total reset." },
     ],
     gotcha:
-      "The taper-anxiety mistake: riding harder in taper because your legs feel fresh. Fresh legs aren't a problem $€” they're the whole point. Hold the line.",
+      "The taper-anxiety mistake: riding harder in taper because your legs feel fresh. Fresh legs aren't a problem â€” they're the whole point. Hold the line.",
   },
   {
     slug: "1-week-out",
@@ -655,14 +655,14 @@ export const PHASES: TrainingPhase[] = [
     weekStructure: [
       { day: "Monday", session: "45min Z1 + openers (3x1min race pace)", detail: "Legs awake, fatigue low." },
       { day: "Tuesday", session: "Rest or 30min easy", detail: "Focus on hydration + sleep." },
-      { day: "Wednesday", session: "60min with 4x30sec race pace", detail: "Final primer $€” nothing heroic." },
+      { day: "Wednesday", session: "60min with 4x30sec race pace", detail: "Final primer â€” nothing heroic." },
       { day: "Thursday", session: "Rest", detail: "Start carb-loading today." },
       { day: "Friday", session: "30min easy spin + openers", detail: "Race check. Kit lay-out. Route review." },
       { day: "Saturday (race day -1)", session: "20-30min very easy", detail: "Or rest. Whichever calms nerves." },
       { day: "Race Day", session: "Event", detail: "Pace it. Fuel it. Enjoy it." },
     ],
     gotcha:
-      "Race-week mistakes are always additive $€” an extra hard session, extra volume, an unfamiliar food. Do less. The last week cannot make you fitter. It can absolutely make you slower.",
+      "Race-week mistakes are always additive â€” an extra hard session, extra volume, an unfamiliar food. Do less. The last week cannot make you fitter. It can absolutely make you slower.",
   },
 ];
 
@@ -686,7 +686,7 @@ export function getAllPhaseSlugs(): string[] {
   return PHASES.map((p) => p.slug);
 }
 
-/** All event Ã— phase combinations $€” generates the static params. */
+/** All event Ã— phase combinations â€” generates the static params. */
 export function getAllPlanCombinations(): {
   event: string;
   weeksOut: string;

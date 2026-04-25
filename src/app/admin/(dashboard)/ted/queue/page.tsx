@@ -66,7 +66,7 @@ export default async function TedQueuePage({
   return (
     <div className="space-y-6">
       <div>
-        <h1 className="text-2xl font-semibold text-white">Ted $€” review queue</h1>
+        <h1 className="text-2xl font-semibold text-white">Ted $â€” review queue</h1>
         <p className="text-sm text-foreground-subtle">
           Approve, edit, or reject each draft. Edits feed the weekly edit-rate metric.
         </p>

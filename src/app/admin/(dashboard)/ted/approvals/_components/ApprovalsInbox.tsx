@@ -296,7 +296,7 @@ function HeaderMeta({ item }: { item: ApprovalItem }) {
         rel="noreferrer"
         className="text-blue-300 hover:underline"
       >
-        open thread $†’
+        open thread â†’
       </a>
     </>
   );

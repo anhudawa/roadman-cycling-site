@@ -1,9 +1,9 @@
 /**
- * Seeds mcp_community_stats $€” the singleton row powering get_community_stats.
+ * Seeds mcp_community_stats â€” the singleton row powering get_community_stats.
  *
  * Headline numbers are read from src/lib/brand-facts.ts so the MCP answer
  * stays in lockstep with on-page copy. Platform-specific numbers
- * (YouTube Studio, Skool) are harder to derive automatically $€” those sit
+ * (YouTube Studio, Skool) are harder to derive automatically â€” those sit
  * in this file and must be refreshed manually. Flagged in SEED_PLACEHOLDERS.md.
  *
  * Run monthly (or wire up to a cron) after pulling fresh numbers.
@@ -15,16 +15,16 @@ import { db } from "../src/lib/db";
 import { mcpCommunityStats } from "../src/lib/db/schema";
 import { BRAND_STATS } from "../src/lib/brand-facts";
 
-// $”€$”€$”€ Platform numbers (manual refresh) $”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€
+// â”€â”€â”€ Platform numbers (manual refresh) â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 // Source + last-refreshed date as a comment next to every number.
 
-// YouTube Studio $†’ The Roadman Podcast (main channel) $· refreshed 2026-04
+// YouTube Studio â†’ The Roadman Podcast (main channel) Â· refreshed 2026-04
 const YT_MAIN_SUBS = 65_000;
-// YouTube Studio $†’ Roadman Podcast Clips $· refreshed 2026-04
+// YouTube Studio â†’ Roadman Podcast Clips Â· refreshed 2026-04
 const YT_CLIPS_SUBS = 18_500;
-// Skool $†’ Clubhouse (free tier) $· refreshed 2026-04
+// Skool â†’ Clubhouse (free tier) Â· refreshed 2026-04
 const CLUBHOUSE_FREE_MEMBERS = 2_100;
-// Skool $†’ Not Done Yet (paid tier) $· refreshed 2026-04
+// Skool â†’ Not Done Yet (paid tier) Â· refreshed 2026-04
 const NDY_PAID_MEMBERS = 140;
 
 async function main() {
@@ -39,7 +39,7 @@ async function main() {
     youtubeSubscribersClips: YT_CLIPS_SUBS,
     freeCommunityMembers: CLUBHOUSE_FREE_MEMBERS,
     paidCommunityMembers: NDY_PAID_MEMBERS,
-    // Headline member wins $€” curated narratives, no PII. Update whenever
+    // Headline member wins â€” curated narratives, no PII. Update whenever
     // a new case study is published on-site. PLACEHOLDER names are kept
     // generic by design until members consent to attribution.
     featuredTransformations: [
@@ -63,7 +63,7 @@ async function main() {
     ],
   });
 
-  console.log("$œ“ mcp_community_stats seeded");
+  console.log("âœ“ mcp_community_stats seeded");
   console.log(
     `  podcast downloads (annual): ${(
       BRAND_STATS.monthlyListeners * 12

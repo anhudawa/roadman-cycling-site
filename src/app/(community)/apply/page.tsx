@@ -17,8 +17,8 @@ export async function generateMetadata(): Promise<Metadata> {
   const state = getCohortState();
   const isWaitlist = state.phase === "waitlist";
   const title = isWaitlist
-    ? `Cohort ${state.targetCohort} Waitlist $€” Not Done Yet Coaching Community`
-    : `Cohort ${state.currentCohort} $€” Not Done Yet Coaching Community`;
+    ? `Cohort ${state.targetCohort} Waitlist â€” Not Done Yet Coaching Community`
+    : `Cohort ${state.currentCohort} â€” Not Done Yet Coaching Community`;
   const description = isWaitlist
     ? `Cohort ${state.targetCohort} is coming soon. Apply now to join the waitlist and get 24-hour early access. Personalised cycling coaching with Anthony Walsh.`
     : "30 places. 5 pillars. $195/month. Applications open now. Personalised cycling coaching with Anthony Walsh.";
@@ -37,16 +37,16 @@ export async function generateMetadata(): Promise<Metadata> {
   };
 }
 
-// $”€$”€ Testimonials (existing members + screenshots) $”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€
+// â”€â”€ Testimonials (existing members + screenshots) â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 
 const heroStats = [
   { value: "+90w", label: "Damien's FTP gain" },
-  { value: "3$†’1", label: "Daniel's cat jump in one season" },
+  { value: "3â†’1", label: "Daniel's cat jump in one season" },
   { value: "-16kg", label: "Chris's weight loss" },
   { value: "+15%", label: "Brian's FTP at age 52" },
 ];
 
-// "Wins this week" wall $€” pulled from the central testimonials library
+// "Wins this week" wall â€” pulled from the central testimonials library
 // in editorial order. David Lundy leads (comeback fits the "not done yet"
 // angle most directly), then the power-PR quotes.
 const communityWins = getTestimonialsByName([
@@ -60,7 +60,7 @@ const communityWins = getTestimonialsByName([
   "Keano Donne",
 ]);
 
-// Featured results $€” quote + stat pulled from the central library;
+// Featured results â€” quote + stat pulled from the central library;
 // FTP-before/after bars are page-specific visuals so they stay local.
 const featuredResults = (
   [
@@ -90,7 +90,7 @@ const pillars = [
   {
     icon: "ğŸ",
     name: "Nutrition",
-    description: "Race weight, fuelling strategy, and body composition $€” not calorie counting",
+    description: "Race weight, fuelling strategy, and body composition â€” not calorie counting",
   },
   {
     icon: "ğŸ’ª",
@@ -112,19 +112,19 @@ const pillars = [
 const objections = [
   {
     q: "Is this just another online coaching programme?",
-    a: "No. It's a system built from 1,400+ conversations with the coaches, nutritionists, and scientists at the top of the sport. Not recycled content $€” structured, applied knowledge with accountability.",
+    a: "No. It's a system built from 1,400+ conversations with the coaches, nutritionists, and scientists at the top of the sport. Not recycled content â€” structured, applied knowledge with accountability.",
   },
   {
     q: "Can I cancel anytime?",
     a: "Yes. Month-to-month. No contracts. No lock-in. We keep you because the system works, not because you're stuck.",
   },
   {
-    q: "I only have 6 hours a week $€” is that enough?",
+    q: "I only have 6 hours a week â€” is that enough?",
     a: "That's our sweet spot. Most members are professionals training 4-9 hours a week. The plans are built for real life, not the fantasy schedule you'll never follow.",
   },
   {
     q: "Why do I need to apply?",
-    a: "We keep cohorts small (30 people) so the coaching stays personal. We want to make sure you're a fit $€” and that we can actually help you with where you are right now.",
+    a: "We keep cohorts small (30 people) so the coaching stays personal. We want to make sure you're a fit â€” and that we can actually help you with where you are right now.",
   },
 ];
 
@@ -137,7 +137,7 @@ export default function ApplyPage() {
         data={{
           "@context": "https://schema.org",
           "@type": "Service",
-          name: "Not Done Yet Coaching Community $€” Personalised Cycling Coaching",
+          name: "Not Done Yet Coaching Community â€” Personalised Cycling Coaching",
           description: "1:1 personalised cycling coaching across five pillars: training, nutrition, strength, recovery, and community. $195/month with 7-day free trial.",
           serviceType: "Online Cycling Coaching",
           provider: {
@@ -184,7 +184,7 @@ export default function ApplyPage() {
       <Header />
 
       <main id="main-content">
-        {/* $”€$”€ Hero $”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€ */}
+        {/* â”€â”€ Hero â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */}
         <Section background="deep-purple" grain className="pt-32 pb-16 relative overflow-hidden">
           {/* Animated gradient orb behind text */}
           <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] rounded-full bg-coral/5 blur-[120px] pointer-events-none" />
@@ -195,8 +195,8 @@ export default function ApplyPage() {
                 <span className="w-2 h-2 rounded-full bg-coral animate-pulse" />
                 <span className="text-coral text-sm font-medium tracking-wide">
                   {isWaitlist
-                    ? `COHORT ${cohortState.targetCohort} COMING SOON $€” JOIN THE WAITLIST`
-                    : "APPLICATIONS OPEN $€” 30 PLACES"}
+                    ? `COHORT ${cohortState.targetCohort} COMING SOON â€” JOIN THE WAITLIST`
+                    : "APPLICATIONS OPEN â€” 30 PLACES"}
                 </span>
               </div>
 
@@ -214,12 +214,12 @@ export default function ApplyPage() {
                 style={{ fontSize: "clamp(0.9rem, 2vw, 1.2rem)" }}
               >
                 {isWaitlist
-                  ? `COHORT ${cohortState.targetCohort} $· WAITLIST`
+                  ? `COHORT ${cohortState.targetCohort} Â· WAITLIST`
                   : "COACHING PROGRAM"}
               </p>
               <p className="text-foreground-muted text-lg max-w-md mx-auto mb-6">
                 {isWaitlist
-                  ? `Cohort ${cohortState.targetCohort} is coming soon. Apply now to secure your spot on the waitlist $€” members get 24-hour early access before public launch.`
+                  ? `Cohort ${cohortState.targetCohort} is coming soon. Apply now to secure your spot on the waitlist â€” members get 24-hour early access before public launch.`
                   : "7-day free trial. 5 pillars. $195/mo. Cancel anytime."}
               </p>
 
@@ -233,7 +233,7 @@ export default function ApplyPage() {
                 href="#apply"
                 className="inline-flex items-center px-8 py-4 rounded-xl bg-coral text-off-white font-heading text-lg tracking-wider hover:bg-coral/90 transition-all shadow-lg shadow-coral/20 mb-10"
               >
-                {isWaitlist ? "APPLY NOW $€” JOIN THE WAITLIST" : "APPLY NOW"}
+                {isWaitlist ? "APPLY NOW â€” JOIN THE WAITLIST" : "APPLY NOW"}
               </a>
             </ScrollReveal>
 
@@ -251,14 +251,14 @@ export default function ApplyPage() {
           </Container>
         </Section>
 
-        {/* $”€$”€ YouTube intro video $”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€ */}
+        {/* â”€â”€ YouTube intro video â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */}
         <Section background="charcoal">
           <Container width="narrow">
             <ScrollReveal direction="up">
               <div className="relative aspect-video rounded-xl overflow-hidden border border-white/10 bg-background-elevated shadow-2xl">
                 <iframe
                   src="https://www.youtube-nocookie.com/embed/mQJuKIjXxXg"
-                  title="Not Done Yet $€” Roadman Cycling"
+                  title="Not Done Yet â€” Roadman Cycling"
                   allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                   allowFullScreen
                   loading="lazy"
@@ -269,7 +269,7 @@ export default function ApplyPage() {
           </Container>
         </Section>
 
-        {/* $”€$”€ Five Pillars $”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€ */}
+        {/* â”€â”€ Five Pillars â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */}
         <Section background="charcoal">
           <Container>
             <ScrollReveal direction="up">
@@ -301,10 +301,10 @@ export default function ApplyPage() {
           </Container>
         </Section>
 
-        {/* $”€$”€ Gradient divider $”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€ */}
+        {/* â”€â”€ Gradient divider â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */}
         <div className="gradient-divider" />
 
-        {/* $”€$”€ Featured Results $”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€ */}
+        {/* â”€â”€ Featured Results â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */}
         <Section background="deep-purple" grain>
           <Container>
             <ScrollReveal direction="up">
@@ -372,10 +372,10 @@ export default function ApplyPage() {
           </Container>
         </Section>
 
-        {/* $”€$”€ Gradient divider $”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€ */}
+        {/* â”€â”€ Gradient divider â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */}
         <div className="gradient-divider" />
 
-        {/* $”€$”€ Community Wins Wall $”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€ */}
+        {/* â”€â”€ Community Wins Wall â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */}
         <Section background="charcoal">
           <Container>
             <ScrollReveal direction="up">
@@ -433,10 +433,10 @@ export default function ApplyPage() {
           </Container>
         </Section>
 
-        {/* $”€$”€ Gradient divider $”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€ */}
+        {/* â”€â”€ Gradient divider â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */}
         <div className="gradient-divider" />
 
-        {/* $”€$”€ Application Form $”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€ */}
+        {/* â”€â”€ Application Form â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */}
         <Section background="deep-purple" grain className="relative overflow-hidden">
           <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[400px] rounded-full bg-coral/5 blur-[150px] pointer-events-none" />
 
@@ -455,7 +455,7 @@ export default function ApplyPage() {
               </div>
             </ScrollReveal>
 
-            {/* What happens next $€” reduces apprehension before the form.
+            {/* What happens next â€” reduces apprehension before the form.
                 Prospects are much more likely to submit when they know a
                 real human (Anthony) is on the other end and what the
                 concrete next step looks like. */}
@@ -527,7 +527,7 @@ export default function ApplyPage() {
           </Container>
         </Section>
 
-        {/* $”€$”€ FAQ with schema $”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€ */}
+        {/* â”€â”€ FAQ with schema â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */}
         <JsonLd
           data={{
             "@context": "https://schema.org",
@@ -576,14 +576,14 @@ export default function ApplyPage() {
                 </h2>
                 <p className="text-foreground-muted mb-6 max-w-md mx-auto">
                   {isWaitlist
-                    ? `Cohort ${cohortState.targetCohort} is coming soon. 30 places. Apply now $€” waitlist members get first access.`
+                    ? `Cohort ${cohortState.targetCohort} is coming soon. 30 places. Apply now â€” waitlist members get first access.`
                     : "30 places. Same coaches. Same system. Your turn."}
                 </p>
                 <a
                   href="#apply"
                   className="inline-flex items-center px-8 py-4 rounded-xl bg-coral text-off-white font-heading text-lg tracking-wider hover:bg-coral/90 transition-all shadow-lg shadow-coral/20"
                 >
-                  {isWaitlist ? "APPLY NOW $€” JOIN THE WAITLIST" : "APPLY NOW"}
+                  {isWaitlist ? "APPLY NOW â€” JOIN THE WAITLIST" : "APPLY NOW"}
                 </a>
               </div>
             </ScrollReveal>

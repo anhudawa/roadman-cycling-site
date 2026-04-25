@@ -1,4 +1,4 @@
-// Static schedule display $€” cron expressions are hardcoded in the workflows
+// Static schedule display â€” cron expressions are hardcoded in the workflows
 // and vercel.json, so we mirror them here for operator visibility. Update
 // both places if schedules change.
 
@@ -18,9 +18,9 @@ interface Slot {
 const SLOTS: Slot[] = [
   {
     job: "draft-prompt",
-    when: "daily 07:00 Dublin ($±1h DST)",
+    when: "daily 07:00 Dublin (Â±1h DST)",
     cron: "0 6 * * * UTC",
-    note: "GH Actions $€” generates tomorrow's prompt into the queue",
+    note: "GH Actions â€” generates tomorrow's prompt into the queue",
     utcHours: [6],
     minute: 0,
   },
@@ -28,15 +28,15 @@ const SLOTS: Slot[] = [
     job: "post-prompt",
     when: "daily 07:30 Dublin",
     cron: "30 6 * * * UTC",
-    note: "GH Actions $€” posts next approved draft (if gate enabled)",
+    note: "GH Actions â€” posts next approved draft (if gate enabled)",
     utcHours: [6],
     minute: 30,
   },
   {
     job: "welcomes",
-    when: "twice daily $€” 09:00 + 18:00 Dublin",
+    when: "twice daily â€” 09:00 + 18:00 Dublin",
     cron: "0 8,17 * * * UTC",
-    note: "GH Actions $€” drafts pending welcomes (min 3), then posts (if gate enabled)",
+    note: "GH Actions â€” drafts pending welcomes (min 3), then posts (if gate enabled)",
     utcHours: [8, 17],
     minute: 0,
   },
@@ -44,7 +44,7 @@ const SLOTS: Slot[] = [
     job: "surface-threads",
     when: "daily 14:00 Dublin",
     cron: "0 13 * * * UTC",
-    note: "GH Actions $€” scans last 48h, surfaces up to 2 (if gate enabled)",
+    note: "GH Actions â€” scans last 48h, surfaces up to 2 (if gate enabled)",
     utcHours: [13],
     minute: 0,
   },
@@ -52,7 +52,7 @@ const SLOTS: Slot[] = [
     job: "heartbeat",
     when: "every 6 hours",
     cron: "0 */6 * * * UTC",
-    note: "Vercel cron $€” alerts if no activity in 36h",
+    note: "Vercel cron â€” alerts if no activity in 36h",
     utcHours: [0, 6, 12, 18],
     minute: 0,
   },
@@ -60,7 +60,7 @@ const SLOTS: Slot[] = [
     job: "weekly-digest",
     when: "Mondays 09:00 UTC",
     cron: "0 9 * * 1 UTC",
-    note: "Vercel cron $€” emails the weekly metrics summary",
+    note: "Vercel cron â€” emails the weekly metrics summary",
     utcHours: [9],
     minute: 0,
     dayOfWeek: 1,

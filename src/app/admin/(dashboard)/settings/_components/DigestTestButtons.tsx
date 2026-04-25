@@ -40,9 +40,9 @@ function TestButton({
 
   const btnLabel =
     status === "sending"
-      ? "Sending$€¦"
+      ? "Sendingâ€¦"
       : status === "sent"
-      ? "Sent $œ“"
+      ? "Sent âœ“"
       : status === "error"
       ? "Retry"
       : label;
@@ -81,7 +81,7 @@ export function DigestTestButtons() {
           <div>
             <div className="text-sm text-off-white">Daily digest</div>
             <div className="text-xs text-foreground-subtle">
-              Your My-Day rollup $€” overdue tasks, apps waiting, stale contacts.
+              Your My-Day rollup â€” overdue tasks, apps waiting, stale contacts.
             </div>
           </div>
           <TestButton label="Send daily test" endpoint="/api/admin/crm/digest/send-me" />
@@ -90,7 +90,7 @@ export function DigestTestButtons() {
           <div>
             <div className="text-sm text-off-white">Weekly rollup</div>
             <div className="text-xs text-foreground-subtle">
-              Last 7 days $€” new contacts, apps, deals, email engagement.
+              Last 7 days â€” new contacts, apps, deals, email engagement.
             </div>
           </div>
           <TestButton

@@ -11,17 +11,17 @@ The audience: serious amateur cyclists aged 35-55. Professionals with families. 
 Your job: given a YouTube video title, generate 5 BRILLIANT content angles that could each become a standalone LinkedIn post, Facebook post, blog article, and X thread.
 
 Each idea MUST use one of these proven content frameworks:
-1. CONTRARIAN TAKE $€” challenge conventional wisdom. "Everyone says X. Here's why that's wrong." This is Anthony's signature move.
-2. SPECIFIC RESULT $€” anchor to a real, specific outcome. "How Brian Morrissey added 15% to his FTP at age 52 by training less."
-3. HIDDEN INSIGHT $€” something the audience hasn't considered. The "here's the thing nobody tells you" angle.
-4. PRACTICAL PROTOCOL $€” a specific session, routine, or nutrition strategy they can use THIS WEEK. Numbers, sets, reps, watts, durations.
-5. IDENTITY/EMOTION $€” tap into who the reader wants to become. "You're not done yet" energy. The fear of the plateau. The longing to recapture form.
+1. CONTRARIAN TAKE $â€” challenge conventional wisdom. "Everyone says X. Here's why that's wrong." This is Anthony's signature move.
+2. SPECIFIC RESULT $â€” anchor to a real, specific outcome. "How Brian Morrissey added 15% to his FTP at age 52 by training less."
+3. HIDDEN INSIGHT $â€” something the audience hasn't considered. The "here's the thing nobody tells you" angle.
+4. PRACTICAL PROTOCOL $â€” a specific session, routine, or nutrition strategy they can use THIS WEEK. Numbers, sets, reps, watts, durations.
+5. IDENTITY/EMOTION $â€” tap into who the reader wants to become. "You're not done yet" energy. The fear of the plateau. The longing to recapture form.
 
-QUALITY BAR $€” each idea must pass ALL of these:
+QUALITY BAR $â€” each idea must pass ALL of these:
 - Would a serious Cat 3 racer stop scrolling to read this? If not, bin it.
 - Is it specific enough that you couldn't swap "cycling" for "running" and have it still work?
 - Does it have a genuine insight or just restate the obvious?
-- Would it make someone feel something $€” curiosity, recognition, frustration, hope?
+- Would it make someone feel something $â€” curiosity, recognition, frustration, hope?
 
 DO NOT generate:
 - Generic "tips and tricks" angles
@@ -56,7 +56,7 @@ export async function POST(request: Request) {
       messages: [
         {
           role: "user",
-          content: `YouTube video title: "${videoTitle}"\n\nGenerate 5 content ideas. Make each one genuinely different $€” different framework, different emotional register, different target within the audience. At least one should be slightly uncomfortable or provocative.`,
+          content: `YouTube video title: "${videoTitle}"\n\nGenerate 5 content ideas. Make each one genuinely different $â€” different framework, different emotional register, different target within the audience. At least one should be slightly uncomfortable or provocative.`,
         },
       ],
     });

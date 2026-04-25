@@ -75,7 +75,7 @@ function flatten(res: SearchResponse): FlatResult[] {
       key: `app-${app.id}`,
       group: "Applications",
       label: app.name,
-      sublabel: `${app.email} $· ${app.status}`,
+      sublabel: `${app.email} Â· ${app.status}`,
       href: app.contactId ? `/admin/contacts/${app.contactId}` : "/admin/applications",
     });
   }

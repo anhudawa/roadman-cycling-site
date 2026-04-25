@@ -67,14 +67,14 @@ function taskRowHtml(t: MyDayTaskRow): string {
     : "";
   const dueLabel = t.dueAt ? formatDueDate(t.dueAt) : "";
   return `<tr><td style="padding:8px 0;border-bottom:1px solid #eee;">
-    <div style="font-size:14px;color:#222;"><strong>${esc(t.title)}</strong>${dueLabel ? ` <span style="color:#888;font-weight:normal;">$· ${dueLabel}</span>` : ""}</div>
+    <div style="font-size:14px;color:#222;"><strong>${esc(t.title)}</strong>${dueLabel ? ` <span style="color:#888;font-weight:normal;">Â· ${dueLabel}</span>` : ""}</div>
     ${contactLine}
   </td></tr>`;
 }
 
 function appRowHtml(a: MyDayApplicationRow): string {
   return `<tr><td style="padding:8px 0;border-bottom:1px solid #eee;">
-    <div style="font-size:14px;color:#222;"><strong>${esc(a.name)}</strong> <span style="color:#888;font-weight:normal;">$· ${esc(a.status.replace(/_/g, " "))}</span></div>
+    <div style="font-size:14px;color:#222;"><strong>${esc(a.name)}</strong> <span style="color:#888;font-weight:normal;">Â· ${esc(a.status.replace(/_/g, " "))}</span></div>
     <div style="font-size:12px;color:#666;margin-top:2px;">${esc(a.email)}</div>
   </td></tr>`;
 }
@@ -86,7 +86,7 @@ function bookingRowHtml(b: BookingRow): string {
     ? `<div style="font-size:12px;color:#666;margin-top:2px;">${esc(b.contactName ?? b.contactEmail)}</div>`
     : "";
   return `<tr><td style="padding:8px 0;border-bottom:1px solid #eee;">
-    <div style="font-size:14px;color:#222;"><strong>${esc(time)}</strong> <span style="color:#888;font-weight:normal;">$· ${esc(b.title)} $· ${b.durationMinutes}m</span></div>
+    <div style="font-size:14px;color:#222;"><strong>${esc(time)}</strong> <span style="color:#888;font-weight:normal;">Â· ${esc(b.title)} Â· ${b.durationMinutes}m</span></div>
     ${contactLine}
   </td></tr>`;
 }
@@ -105,7 +105,7 @@ function sectionHtml(title: string, href: string, rowsHtml: string, empty: strin
   return `<div style="margin-top:28px;">
     <div style="display:flex;justify-content:space-between;align-items:baseline;">
       <h2 style="margin:0;font-size:13px;letter-spacing:0.12em;text-transform:uppercase;color:#222;">${esc(title)}</h2>
-      <a href="${href}" style="font-size:12px;color:${ACCENT};text-decoration:none;">View $†’</a>
+      <a href="${href}" style="font-size:12px;color:${ACCENT};text-decoration:none;">View â†’</a>
     </div>
     ${inner}
   </div>`;
@@ -113,7 +113,7 @@ function sectionHtml(title: string, href: string, rowsHtml: string, empty: strin
 
 export function renderDailyDigest(user: TeamUser, data: MyDayData): RenderedDigest {
   const totals = digestTotals(data);
-  const subject = `Your day $€” ${totals.todayTasks} task${totals.todayTasks === 1 ? "" : "s"}, ${totals.overdueTasks} overdue`;
+  const subject = `Your day â€” ${totals.todayTasks} task${totals.todayTasks === 1 ? "" : "s"}, ${totals.overdueTasks} overdue`;
 
   const todayScheduledBookings = data.todayBookings.filter((b) => b.status === "scheduled");
   const bookingRows = todayScheduledBookings.slice(0, MAX_ROWS).map(bookingRowHtml).join("");
@@ -161,7 +161,7 @@ export function renderDailyDigest(user: TeamUser, data: MyDayData): RenderedDige
   ${sectionHtml("Stale contacts (>7d)", contactsUrl, staleRows, "All current.")}
 
   <div style="margin-top:36px;padding-top:20px;border-top:1px solid #eee;text-align:center;">
-    <a href="${myDayUrl}" style="color:${ACCENT};text-decoration:none;font-size:14px;font-weight:600;">View full dashboard $†’</a>
+    <a href="${myDayUrl}" style="color:${ACCENT};text-decoration:none;font-size:14px;font-weight:600;">View full dashboard â†’</a>
   </div>
 </td></tr>
 </table>
@@ -181,28 +181,28 @@ export function renderDailyDigest(user: TeamUser, data: MyDayData): RenderedDige
     for (const b of todayScheduledBookings.slice(0, MAX_ROWS)) {
       const d = new Date(b.scheduledAt);
       const time = d.toLocaleTimeString("en-GB", { hour: "2-digit", minute: "2-digit" });
-      textLines.push(`  - ${time} $· ${b.title} (${b.durationMinutes}m)${b.contactEmail ? ` $€” ${b.contactName ?? b.contactEmail}` : ""}`);
+      textLines.push(`  - ${time} Â· ${b.title} (${b.durationMinutes}m)${b.contactEmail ? ` â€” ${b.contactName ?? b.contactEmail}` : ""}`);
     }
     textLines.push("");
   }
   if (data.overdueTasks.length) {
     textLines.push("OVERDUE TASKS");
     for (const t of data.overdueTasks.slice(0, MAX_ROWS)) {
-      textLines.push(`  - ${t.title}${t.dueAt ? ` (${formatDueDate(t.dueAt)})` : ""}${t.contactEmail ? ` $€” ${t.contactName ?? t.contactEmail}` : ""}`);
+      textLines.push(`  - ${t.title}${t.dueAt ? ` (${formatDueDate(t.dueAt)})` : ""}${t.contactEmail ? ` â€” ${t.contactName ?? t.contactEmail}` : ""}`);
     }
     textLines.push("");
   }
   if (data.todaysTasks.length) {
     textLines.push("DUE TODAY");
     for (const t of data.todaysTasks.slice(0, MAX_ROWS)) {
-      textLines.push(`  - ${t.title}${t.contactEmail ? ` $€” ${t.contactName ?? t.contactEmail}` : ""}`);
+      textLines.push(`  - ${t.title}${t.contactEmail ? ` â€” ${t.contactName ?? t.contactEmail}` : ""}`);
     }
     textLines.push("");
   }
   if (data.applicationsWaiting.length) {
     textLines.push("APPLICATIONS WAITING");
     for (const a of data.applicationsWaiting.slice(0, MAX_ROWS)) {
-      textLines.push(`  - ${a.name} <${a.email}> $€” ${a.status}`);
+      textLines.push(`  - ${a.name} <${a.email}> â€” ${a.status}`);
     }
     textLines.push("");
   }

@@ -29,7 +29,7 @@ export default async function ThisWeekPage() {
           THIS WEEK
         </h1>
         <p className="text-foreground-muted text-sm mt-1">
-          Production schedule $€” episodes publishing soon
+          Production schedule $â€” episodes publishing soon
         </p>
       </div>
       <ThisWeekClient

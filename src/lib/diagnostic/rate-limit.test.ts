@@ -20,7 +20,7 @@ vi.mock("@/lib/db", () => ({
   },
 }));
 
-// Minimal drizzle schema stub $€” only the bits the rate-limit module
+// Minimal drizzle schema stub $â€” only the bits the rate-limit module
 // reads (column references inside the sql template).
 vi.mock("@/lib/db/schema", () => ({
   diagnosticSubmissions: {
@@ -89,7 +89,7 @@ describe("rate-limit", () => {
     for (let i = 0; i < 5; i++) {
       await checkRateLimit(mockRequest("10.0.0.1"), "a@b.com");
     }
-    // Different IP, same email $€” should still be allowed.
+    // Different IP, same email $â€” should still be allowed.
     const v = await checkRateLimit(mockRequest("10.0.0.2"), "a@b.com");
     expect(v.ok).toBe(true);
   });

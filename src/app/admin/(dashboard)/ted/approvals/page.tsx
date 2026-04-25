@@ -98,7 +98,7 @@ export default async function TedApprovalsPage() {
   return (
     <div className="space-y-4">
       <div>
-        <h1 className="text-2xl font-semibold text-white">Ted $€” approvals inbox</h1>
+        <h1 className="text-2xl font-semibold text-white">Ted $â€” approvals inbox</h1>
         <p className="text-sm text-foreground-subtle">
           Everything waiting on you across prompts, welcomes, and surfaces. Filter by type or work the lot top-to-bottom.
         </p>

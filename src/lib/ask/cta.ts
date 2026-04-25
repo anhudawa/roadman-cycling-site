@@ -2,7 +2,7 @@
  * CTA selection.
  *
  * Intent + rider profile hints + retrieval signals map to a single contextual
- * CTA. Exhaustive switch over `Intent` $€” TypeScript will complain if a new
+ * CTA. Exhaustive switch over `Intent` â€” TypeScript will complain if a new
  * intent is added without a routing decision.
  */
 
@@ -33,14 +33,14 @@ export const CTA_CATALOG: Record<Exclude<CtaKey, "none">, CtaDescriptor> = {
   ftp_zones: {
     key: "ftp_zones",
     title: "Calculate your zones",
-    body: "Punch in your FTP $€” get Coggan, Seiler, and the zones Anthony actually uses.",
+    body: "Punch in your FTP â€” get Coggan, Seiler, and the zones Anthony actually uses.",
     href: "/tools/ftp-zones",
     analyticsEvent: "cta_clicked:ftp_zones",
   },
   saturday_spin: {
     key: "saturday_spin",
     title: "Get Saturday Spin",
-    body: "Anthony's weekly newsletter $€” one performance idea, grounded, no fluff.",
+    body: "Anthony's weekly newsletter â€” one performance idea, grounded, no fluff.",
     href: "/saturday-spin",
     analyticsEvent: "cta_clicked:saturday_spin",
   },
@@ -53,7 +53,7 @@ export const CTA_CATALOG: Record<Exclude<CtaKey, "none">, CtaDescriptor> = {
   },
   roadman_plus: {
     key: "roadman_plus",
-    title: "Roadman+ $€” Coming Soon",
+    title: "Roadman+ â€” Coming Soon",
     body: "Digital-only access to training plans, masterclasses, and structured coaching content. Launching later this year.",
     href: "/roadman-plus",
     analyticsEvent: "cta_clicked:roadman_plus",
@@ -68,14 +68,14 @@ export const CTA_CATALOG: Record<Exclude<CtaKey, "none">, CtaDescriptor> = {
   vip_coaching: {
     key: "vip_coaching",
     title: "Apply for VIP 1:1",
-    body: "Private coaching with Anthony $€” limited roster. Book a strategy call first.",
+    body: "Private coaching with Anthony â€” limited roster. Book a strategy call first.",
     href: "/coaching/apply",
     analyticsEvent: "cta_clicked:vip_coaching",
   },
   episode_list: {
     key: "episode_list",
     title: "Browse the podcast archive",
-    body: "Every Roadman episode by topic $€” zone 2, fuelling, masters, pro stories, more.",
+    body: "Every Roadman episode by topic â€” zone 2, fuelling, masters, pro stories, more.",
     href: "/podcast",
     analyticsEvent: "cta_clicked:episode_list",
   },

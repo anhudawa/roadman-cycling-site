@@ -52,7 +52,7 @@ export function WorkflowRuns() {
   if (data === null) {
     return (
       <div className="rounded-md bg-white/5 border border-white/10 p-4 text-xs text-foreground-subtle">
-        Loading workflow runs$€¦
+        Loading workflow runsâ€¦
       </div>
     );
   }

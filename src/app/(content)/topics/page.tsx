@@ -6,14 +6,14 @@ import { JsonLd } from "@/components/seo/JsonLd";
 import { getAllTopics } from "@/lib/topics";
 
 export const metadata: Metadata = {
-  title: "Cycling Topics $€” In-Depth Guides & Resources",
+  title: "Cycling Topics $â€” In-Depth Guides & Resources",
   description:
     "Browse cycling topics: FTP training, nutrition, training plans, recovery, strength & conditioning, weight loss, and beginner guides. Curated expert content from the podcast.",
   alternates: {
     canonical: "https://roadmancycling.com/topics",
   },
   openGraph: {
-    title: "Cycling Topics $€” In-Depth Guides & Resources",
+    title: "Cycling Topics $â€” In-Depth Guides & Resources",
     description:
       "Browse cycling topics: FTP training, nutrition, training plans, recovery, strength & conditioning, weight loss, and beginner guides. Curated expert content from the podcast.",
     type: "website",

@@ -48,7 +48,7 @@ export function paths(repoRoot: string) {
   };
 }
 
-// Model selection $€” matches agents/transcript-indexer conventions.
+// Model selection $â€” matches agents/transcript-indexer conventions.
 export const MODELS = {
   prompt: "claude-haiku-4-5",
   welcome: "claude-haiku-4-5",
@@ -64,7 +64,7 @@ export const COST_PER_M: Record<string, { input: number; output: number }> = {
 
 export const MAX_VOICE_RETRIES = 2;
 
-// Playwright politeness $€” random delay between actions to avoid looking like a scraper.
+// Playwright politeness $â€” random delay between actions to avoid looking like a scraper.
 export const ACTION_JITTER_MS: [number, number] = [2000, 5000];
 
 export const DUBLIN_TZ = "Europe/Dublin";

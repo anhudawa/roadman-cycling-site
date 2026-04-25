@@ -89,7 +89,7 @@ export async function POST(request: Request) {
         await upsertOnSignup(email, page, source);
       } catch (err) {
         console.error("[Events API] Subscriber upsert failed:", err);
-        // Non-blocking $€” event was already recorded
+        // Non-blocking $â€” event was already recorded
       }
     }
 

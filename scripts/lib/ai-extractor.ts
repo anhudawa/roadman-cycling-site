@@ -48,9 +48,9 @@ ${transcript}
 
 Please extract:
 
-1. A 2-3 sentence intro paragraph summarising what this episode covers. Write it in a direct, warm, knowledgeable tone $€” like a mate explaining what you'll learn. Don't use phrases like "in this episode" or "join us as".
+1. A 2-3 sentence intro paragraph summarising what this episode covers. Write it in a direct, warm, knowledgeable tone â€” like a mate explaining what you'll learn. Don't use phrases like "in this episode" or "join us as".
 
-2. 4-6 key takeaways as concise bullet points. Each should be a specific, actionable insight $€” not vague summaries.
+2. 4-6 key takeaways as concise bullet points. Each should be a specific, actionable insight â€” not vague summaries.
 
 3. 2-3 standout quotes from the episode (verbatim or near-verbatim from the transcript). Pick quotes that are surprising, insightful, or memorable. Include who said them if clear.
 
@@ -66,7 +66,7 @@ Respond in exactly this JSON format (no markdown, no code blocks):
     // Parse JSON response
     const jsonMatch = text.match(/\{[\s\S]*\}/);
     if (!jsonMatch) {
-      console.warn(`  $š  Could not parse AI response for: ${title}`);
+      console.warn(`  âš  Could not parse AI response for: ${title}`);
       return null;
     }
 
@@ -74,14 +74,14 @@ Respond in exactly this JSON format (no markdown, no code blocks):
 
     // Validate structure
     if (!parsed.intro || !Array.isArray(parsed.keyTakeaways) || !Array.isArray(parsed.quotes)) {
-      console.warn(`  $š  Invalid AI response structure for: ${title}`);
+      console.warn(`  âš  Invalid AI response structure for: ${title}`);
       return null;
     }
 
     return parsed;
   } catch (error) {
     const msg = error instanceof Error ? error.message : String(error);
-    console.warn(`  $š  AI extraction failed for "${title}": ${msg}`);
+    console.warn(`  âš  AI extraction failed for "${title}": ${msg}`);
     return null;
   }
 }

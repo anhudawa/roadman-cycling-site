@@ -11,7 +11,7 @@ import { useSearchParams } from "next/navigation";
  * URL because we strip the param from the address bar after mount.
  *
  * Closes the email-gate loop: the user gave us their email and the
- * very next thing they see is "$œ“ Sent. Check your inbox."
+ * very next thing they see is "âœ“ Sent. Check your inbox."
  */
 export function SuccessBanner({ emailHint }: { emailHint?: string }) {
   const searchParams = useSearchParams();
@@ -43,14 +43,14 @@ export function SuccessBanner({ emailHint }: { emailHint?: string }) {
         className="w-full text-left rounded-lg bg-emerald-500/15 border border-emerald-500/40 backdrop-blur px-4 py-3 cursor-pointer flex items-start gap-3"
       >
         <span aria-hidden="true" className="text-emerald-400 text-lg leading-none mt-0.5">
-          $œ“
+          âœ“
         </span>
         <span className="text-sm text-off-white">
           <strong className="font-semibold">Sent.</strong>{" "}
           {emailHint
             ? `A copy is on the way to ${emailHint}.`
             : "A copy is on the way to your inbox."}{" "}
-          Save the link $€” some riders come back a few weeks in.
+          Save the link â€” some riders come back a few weeks in.
         </span>
       </button>
     </div>

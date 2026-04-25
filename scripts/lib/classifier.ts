@@ -52,15 +52,15 @@ export function extractGuest(title: string, description: string): string | undef
   // Common patterns in podcast titles
   const patterns = [
     // "EP 247: Guest Name on Topic"
-    /^(?:EP?|Episode|#)\s*\d+\s*[:\-$€“$€”|]\s*(.+?)\s+(?:on|about|explains|reveals|talks|discusses|shares)\s/i,
+    /^(?:EP?|Episode|#)\s*\d+\s*[:\-$â€“$â€”|]\s*(.+?)\s+(?:on|about|explains|reveals|talks|discusses|shares)\s/i,
     // "Topic | Guest Name"
     /\|\s*(.+?)$/,
-    // "Guest Name $€” Topic"
-    /^(.+?)\s*[$€”$€“\-]\s*.+$/,
+    // "Guest Name $â€” Topic"
+    /^(.+?)\s*[$â€”$â€“\-]\s*.+$/,
     // "Guest Name: Topic"
     /^([A-Z][a-z]+(?: [A-Z][a-z]+)+)\s*:/,
     // "Interview with Guest Name"
-    /(?:interview|chat|conversation)\s+with\s+(.+?)(?:\s*[|\-$€“$€”]|$)/i,
+    /(?:interview|chat|conversation)\s+with\s+(.+?)(?:\s*[|\-$â€“$â€”]|$)/i,
     // "with Guest Name" at end
     /with\s+([A-Z][a-z]+(?: (?:[A-Z][a-z]+|[A-Z]\.?))+)$/,
   ];

@@ -172,7 +172,7 @@ export function NotificationBell() {
                               </p>
                             )}
                             <p className="text-[10px] uppercase tracking-widest text-foreground-subtle mt-1">
-                              {n.type.replace(/_/g, " ")} $· {relativeTime(n.createdAt)}
+                              {n.type.replace(/_/g, " ")} Â· {relativeTime(n.createdAt)}
                             </p>
                           </div>
                         </div>

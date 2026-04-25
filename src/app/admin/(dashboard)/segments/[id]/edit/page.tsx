@@ -30,7 +30,7 @@ export default async function EditSegmentPage({
     <div>
       <div className="mb-6">
         <Link href={`/admin/segments/${id}`} className="text-xs text-foreground-subtle hover:text-accent">
-          $† {segment.name}
+          â† {segment.name}
         </Link>
         <h1 className="font-heading text-2xl text-off-white tracking-wider uppercase mt-2">
           Edit Segment

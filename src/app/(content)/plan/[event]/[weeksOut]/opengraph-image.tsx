@@ -93,7 +93,7 @@ export default async function Image({
                 letterSpacing: "4px",
               }}
             >
-              $· {weeksLabel}
+              Â· {weeksLabel}
             </span>
           </div>
           <div

@@ -2,7 +2,7 @@
  * scripts/submit-indexnow.ts
  *
  * Submits fresh + updated URLs to IndexNow (Bing, Yandex, Seznam, and a
- * handful of smaller engines honour it $€” Google explicitly does NOT,
+ * handful of smaller engines honour it â€” Google explicitly does NOT,
  * which is the only caveat worth flagging).
  *
  * Why: when new articles or schema-heavy pages go live, IndexNow cuts
@@ -41,7 +41,7 @@ const KEY = "309675b80de50644461aae338ba6e352";
 const KEY_LOCATION = `https://${HOST}/${KEY}.txt`;
 
 // ---------------------------------------------------------------------------
-// Curated list $€” the pages that benefit most from faster discovery.
+// Curated list â€” the pages that benefit most from faster discovery.
 // ---------------------------------------------------------------------------
 const CURATED: string[] = [
   // Pillar + authority
@@ -186,7 +186,7 @@ function allEpisodeUrls(): string[] {
     .filter((f) => f.endsWith(".mdx"))
     .filter((f) => {
       // Only include episodes that actually exist (have a transcript or
-      // publishDate) $€” filters out edge cases.
+      // publishDate) â€” filters out edge cases.
       const raw = fs.readFileSync(path.join(PODCAST_DIR, f), "utf-8");
       const { data } = matter(raw);
       return Boolean(data.publishDate);
@@ -206,12 +206,12 @@ async function submit(urls: string[]): Promise<void> {
       urlList: chunk,
     };
 
-    console.log(`\n$†’ Submitting ${chunk.length} URLs (chunk ${Math.floor(i / CHUNK) + 1})`);
+    console.log(`\nâ†’ Submitting ${chunk.length} URLs (chunk ${Math.floor(i / CHUNK) + 1})`);
 
     if (dryRun) {
       console.log("  [DRY RUN] no request sent");
       chunk.slice(0, 5).forEach((u) => console.log(`    ${u}`));
-      if (chunk.length > 5) console.log(`    $€¦ and ${chunk.length - 5} more`);
+      if (chunk.length > 5) console.log(`    â€¦ and ${chunk.length - 5} more`);
       continue;
     }
 
@@ -222,10 +222,10 @@ async function submit(urls: string[]): Promise<void> {
     });
 
     if (response.ok) {
-      console.log(`  $œ“ ${response.status} ${response.statusText}`);
+      console.log(`  âœ“ ${response.status} ${response.statusText}`);
     } else {
       const text = await response.text();
-      console.log(`  $œ— ${response.status} ${response.statusText}`);
+      console.log(`  âœ— ${response.status} ${response.statusText}`);
       console.log(`    ${text.slice(0, 500)}`);
     }
   }
@@ -258,12 +258,12 @@ async function main() {
   if (!dryRun) {
     // Before submitting, verify the key file is publicly readable. If it
     // isn't, IndexNow rejects the whole batch.
-    console.log(`\n   Checking key file at ${KEY_LOCATION}$€¦`);
+    console.log(`\n   Checking key file at ${KEY_LOCATION}â€¦`);
     try {
       const check = await fetch(KEY_LOCATION);
       if (!check.ok) {
         console.error(
-          `   $œ— Key file returned ${check.status}. Deploy the site first so ` +
+          `   âœ— Key file returned ${check.status}. Deploy the site first so ` +
             `public/${KEY}.txt is reachable, then re-run.`,
         );
         process.exit(1);
@@ -271,14 +271,14 @@ async function main() {
       const body = (await check.text()).trim();
       if (body !== KEY) {
         console.error(
-          `   $œ— Key file body does not match expected key. Got: "${body.slice(0, 40)}$€¦"`,
+          `   âœ— Key file body does not match expected key. Got: "${body.slice(0, 40)}â€¦"`,
         );
         process.exit(1);
       }
-      console.log("   $œ“ Key file is live and correct");
+      console.log("   âœ“ Key file is live and correct");
     } catch (err) {
       console.error(
-        `   $œ— Could not reach key file: ${err instanceof Error ? err.message : String(err)}`,
+        `   âœ— Could not reach key file: ${err instanceof Error ? err.message : String(err)}`,
       );
       console.error(
         `     The site may not be deployed yet. Run this once it's live.`,
@@ -293,7 +293,7 @@ async function main() {
   console.log("Done.");
   console.log("");
   console.log(
-    "IndexNow submission reaches Bing, Yandex, Seznam, Naver. Google does NOT honour IndexNow $€” use Google Search Console's URL-inspection tool for /coaching/triathlon and your most important new articles.",
+    "IndexNow submission reaches Bing, Yandex, Seznam, Naver. Google does NOT honour IndexNow â€” use Google Search Console's URL-inspection tool for /coaching/triathlon and your most important new articles.",
   );
 }
 

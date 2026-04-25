@@ -7,13 +7,13 @@ import { clampString, LIMITS, normaliseEmail } from "@/lib/validation";
 /**
  * Saturday Spin / newsletter subscribe endpoint.
  *
- * Hardened 2026-04 $€” previously used `email.includes('@')` which
+ * Hardened 2026-04 $â€” previously used `email.includes('@')` which
  * accepted `foo@` / `@bar`. Now uses the shared EMAIL_REGEX +
  * delegates to the central `subscribeToBeehiiv` helper, which handles
  * reactivation, 409 lookups, tag application, and logging
  * consistently with /apply, /contact, and /tools/report.
  *
- * Non-fatal on all side-effects $€” if Beehiiv is down, we still record
+ * Non-fatal on all side-effects $â€” if Beehiiv is down, we still record
  * the event + upsert the CRM subscriber row so the lead isn't lost.
  */
 export async function POST(request: Request) {
@@ -35,7 +35,7 @@ export async function POST(request: Request) {
     const source = clampString(raw.source, LIMITS.shortText) ?? "/newsletter";
     const name = clampString(raw.name, LIMITS.name) ?? undefined;
 
-    // Analytics event + subscriber upsert $€” non-fatal group.
+    // Analytics event + subscriber upsert $â€” non-fatal group.
     try {
       await Promise.all([
         recordEvent("signup", source, {
@@ -73,7 +73,7 @@ export async function POST(request: Request) {
       return NextResponse.json({
         success: true,
         beehiivSynced: false,
-        message: "We've got your signup $€” if you don't see a confirmation in 5 minutes, email hello@roadmancycling.com.",
+        message: "We've got your signup $â€” if you don't see a confirmation in 5 minutes, email hello@roadmancycling.com.",
       });
     }
 

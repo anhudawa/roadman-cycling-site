@@ -5,9 +5,9 @@ import { TOOL_EVENTS, trackTool } from "@/lib/analytics/tool-events";
 import type { ToolSlug } from "@/lib/tool-results/types";
 
 /**
- * Small client button $€” navigates to Ask Roadman with the seed
+ * Small client button â€” navigates to Ask Roadman with the seed
  * params, and fires the handoff analytics event so we can measure
- * tool$†’AI conversion in the admin dashboard.
+ * toolâ†’AI conversion in the admin dashboard.
  */
 
 interface Props {
@@ -35,7 +35,7 @@ export function AskFromResult({ tool, slug, variant = "primary" }: Props) {
         onClick={onClick}
         className="inline-flex items-center gap-2 font-heading tracking-wider uppercase text-sm bg-white/5 hover:bg-white/10 text-off-white px-4 py-2 rounded-md border border-white/10 transition-colors"
       >
-        Ask Roadman what this means $†’
+        Ask Roadman what this means â†’
       </Link>
     );
   }
@@ -46,7 +46,7 @@ export function AskFromResult({ tool, slug, variant = "primary" }: Props) {
       onClick={onClick}
       className="inline-flex items-center gap-2 font-heading tracking-wider uppercase text-sm bg-coral hover:bg-coral-hover text-off-white px-5 py-3 rounded-md transition-colors"
     >
-      Ask Roadman what this means $†’
+      Ask Roadman what this means â†’
     </Link>
   );
 }

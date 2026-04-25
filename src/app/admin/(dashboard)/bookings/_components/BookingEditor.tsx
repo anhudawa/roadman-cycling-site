@@ -116,7 +116,7 @@ export function BookingEditor({
     <div className="max-w-3xl">
       <div className="flex items-center gap-2 text-xs text-foreground-subtle mb-2">
         <Link href="/admin/bookings" className="hover:text-[var(--color-fg)]">
-          $Üê Bookings
+          ‚Üê Bookings
         </Link>
       </div>
       <div className="flex items-start justify-between gap-4 mb-6">

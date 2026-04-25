@@ -1,5 +1,5 @@
 /* =========================================================
-   GlitchHero $€” animated portrait block (Direction 3: "Hero Crop")
+   GlitchHero â€” animated portrait block (Direction 3: "Hero Crop")
    Hard-edge top, soft mask fade at the bottom so the jersey
    dissolves into the deep-purple section background. Shard
    displacements run loud because the portrait sits at a crop
@@ -17,10 +17,10 @@
   --glow-purple: rgba(178, 123, 240, 0.4);
   --portrait: url("/images/hero/glitch-portrait.jpg");
 
-  /* Hard-capped at 640px $€” never upscaled past native 801Ã—801.
+  /* Hard-capped at 640px â€” never upscaled past native 801Ã—801.
      72vmin on small viewports keeps headline + CTAs above the
      fold on short phones; 88vmin past md, capped at 640px on
-     lg so the glitch shards ($±10-18px) stay proportionally
+     lg so the glitch shards (Â±10-18px) stay proportionally
      punchy. */
   position: relative;
   width: min(72vmin, 520px);
@@ -30,7 +30,7 @@
   overflow: hidden;
   isolation: isolate;
 
-  /* Bottom mask fade $€” opaque 0-78%, soft dissolve to transparent
+  /* Bottom mask fade â€” opaque 0-78%, soft dissolve to transparent
      at 100%. Starts at 78% (was 65%) so the fade terminates below
      the typical laptop fold line instead of creating a visible
      horizontal band across the portrait. */
@@ -51,7 +51,7 @@
 
 /* Shared background image for portrait + shards + slices.
    `cover` fills the square with the 801Ã—801 source 1:1 at this
-   render size $€” max-quality, no interpolation. */
+   render size â€” max-quality, no interpolation. */
 .portrait,
 .shard,
 .slice {
@@ -63,7 +63,7 @@
   background-repeat: no-repeat;
 }
 
-/* Layer 1 $€” ambient radial glow */
+/* Layer 1 â€” ambient radial glow */
 .glow {
   position: absolute;
   background: radial-gradient(
@@ -78,7 +78,7 @@
   left: 7.5%;
   top: 7.5%;
   transform-origin: center;
-  /* 2s pulse $€” matches the shard beat so the whole block breathes
+  /* 2s pulse â€” matches the shard beat so the whole block breathes
      on a single 2s downbeat (shards 2s, slices 4s, portrait 8s
      are all multiples). Feels like one organism instead of three
      independent loops. */
@@ -96,7 +96,7 @@
   }
 }
 
-/* Layer 2 $€” portrait w/ radial mask hugging head + shoulders */
+/* Layer 2 â€” portrait w/ radial mask hugging head + shoulders */
 .portrait {
   z-index: 1;
   mask-image: radial-gradient(
@@ -112,7 +112,7 @@
     transparent 95%
   );
   transform-origin: center;
-  /* 8s breathe $€” slowest loop in the block. 2s Ã— 4 keeps it on the
+  /* 8s breathe â€” slowest loop in the block. 2s Ã— 4 keeps it on the
      shared beat with shards (2s) and slices (4s). */
   animation: portraitBreathe 8s ease-in-out infinite;
 }
@@ -128,7 +128,7 @@
   }
 }
 
-/* Layer 3 $€” glitch shards (louder offsets: $±10-18px at 640px crop) */
+/* Layer 3 â€” glitch shards (louder offsets: Â±10-18px at 640px crop) */
 .shard {
   z-index: 2;
   mask-image: radial-gradient(
@@ -147,7 +147,7 @@
 }
 .shardRed {
   filter: hue-rotate(-20deg) saturate(3) brightness(1.2);
-  /* 2s $€” the shared downbeat. Slices and breathe are multiples. */
+  /* 2s â€” the shared downbeat. Slices and breathe are multiples. */
   animation: glitchRed 2s steps(1, end) infinite;
 }
 .shardCyan {
@@ -210,10 +210,10 @@
   }
 }
 
-/* Layer 4 $€” slice strips.
+/* Layer 4 â€” slice strips.
    Re-targeted to 20% / 48% / 72% so the bands land on:
      A  helmet crown
-     B  sunglasses bridge  $† money shot for chromatic aberration
+     B  sunglasses bridge  â† money shot for chromatic aberration
      C  jersey logo
    18px tall each, 9px top and bottom of the target Y line. */
 .slice {
@@ -227,7 +227,7 @@
     100% calc(20% + 9px),
     0% calc(20% + 9px)
   );
-  /* 4s cycle $€” 2Ã— the shard beat. sliceA fires on downbeats,
+  /* 4s cycle â€” 2Ã— the shard beat. sliceA fires on downbeats,
      sliceB at +1s, sliceC at +2s. All three slices cycle within
      one slice period but on different sub-beats so the glitch
      rhythm reads as a coherent pattern, not three random loops. */
@@ -326,7 +326,7 @@
   }
 }
 
-/* Layer 5 $€” vignette: subtle deep-purple bias */
+/* Layer 5 â€” vignette: subtle deep-purple bias */
 .vignette {
   position: absolute;
   inset: 0;
@@ -338,7 +338,7 @@
   );
 }
 
-/* Accessibility $€” kill all motion when requested */
+/* Accessibility â€” kill all motion when requested */
 @media (prefers-reduced-motion: reduce) {
   .hero *,
   .hero *::before,

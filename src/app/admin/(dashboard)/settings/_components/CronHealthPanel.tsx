@@ -37,7 +37,7 @@ function pillClass(s: Status): string {
 }
 
 function fmt(ts: string | null): string {
-  if (!ts) return "$€”";
+  if (!ts) return "$â€”";
   try {
     return new Date(ts).toLocaleString(undefined, {
       year: "numeric",
@@ -113,7 +113,7 @@ function Row({ row }: { row: CronKindRow }) {
                       ? r.error
                       : r.result
                       ? JSON.stringify(r.result)
-                      : "$€”"}
+                      : "$â€”"}
                   </span>
                 </div>
               ))}

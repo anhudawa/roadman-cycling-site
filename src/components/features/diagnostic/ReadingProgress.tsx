@@ -3,8 +3,8 @@
 import { useEffect, useState } from "react";
 
 /**
- * Top-of-page reading progress bar $€” fills as the user scrolls. The
- * spec calls this out for the results page ($§11): "signals there's a
+ * Top-of-page reading progress bar â€” fills as the user scrolls. The
+ * spec calls this out for the results page (Â§11): "signals there's a
  * lot here, worth reading."
  *
  * Scroll listener is throttled via requestAnimationFrame so it stays
@@ -21,7 +21,7 @@ export function ReadingProgress() {
       const scrollable = doc.scrollHeight - doc.clientHeight;
       const next =
         scrollable > 0 ? Math.min(100, (doc.scrollTop / scrollable) * 100) : 0;
-      // Avoid no-op state updates on every animation frame $€” only
+      // Avoid no-op state updates on every animation frame â€” only
       // notify React when the rounded value actually changed.
       setPercent((prev) => {
         const rounded = Math.round(next);

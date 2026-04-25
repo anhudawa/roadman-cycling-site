@@ -4,13 +4,13 @@ import { JsonLd } from "@/components/seo/JsonLd";
 import { SoftwareApplicationSchema } from "@/components/seo/SoftwareApplicationSchema";
 
 export const metadata: Metadata = {
-  title: "Heart Rate Zone Calculator $€” Free Cycling HR Zones",
+  title: "Heart Rate Zone Calculator $â€” Free Cycling HR Zones",
   description:
     "Calculate your 5 heart rate training zones from your max HR or LTHR. Free tool for cyclists who train by heart rate.",
   keywords: ["heart rate zone calculator", "cycling HR zones", "heart rate training zones", "max heart rate zones"],
   alternates: { canonical: "https://roadmancycling.com/tools/hr-zones" },
   openGraph: {
-    title: "Heart Rate Zone Calculator $€” Free Cycling HR Zones",
+    title: "Heart Rate Zone Calculator $â€” Free Cycling HR Zones",
     description: "Calculate your 5 heart rate training zones from your max HR or LTHR.",
     type: "website",
     url: "https://roadmancycling.com/tools/hr-zones",
@@ -78,7 +78,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
               name: "Should I train by heart rate or power?",
               acceptedAnswer: {
                 "@type": "Answer",
-                text: "Power is more precise and instant, but heart rate is cheaper and still useful $€” especially for pacing easy rides and detecting fatigue. Many coaches recommend using both: power for interval targets, heart rate for Zone 2 rides and recovery monitoring.",
+                text: "Power is more precise and instant, but heart rate is cheaper and still useful $â€” especially for pacing easy rides and detecting fatigue. Many coaches recommend using both: power for interval targets, heart rate for Zone 2 rides and recovery monitoring.",
               },
             },
           ],

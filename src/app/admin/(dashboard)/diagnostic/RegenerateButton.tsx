@@ -44,7 +44,7 @@ export function RegenerateButton({ slug }: { slug: string }) {
         disabled={status === "loading"}
         className="text-xs text-foreground-subtle hover:text-[var(--color-fg)] disabled:opacity-50 cursor-pointer"
       >
-        {status === "loading" ? "$€¦" : "Regenerate"}
+        {status === "loading" ? "â€¦" : "Regenerate"}
       </button>
       {status === "error" && msg && (
         <span className="text-[10px] text-red-400" title={msg}>

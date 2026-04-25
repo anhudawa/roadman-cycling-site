@@ -1,5 +1,5 @@
 // ---------------------------------------------------------------------------
-// Transcript Indexer Agent $€” Core Types
+// Transcript Indexer Agent $â€” Core Types
 // ---------------------------------------------------------------------------
 
 export interface EpisodeInput {
@@ -45,7 +45,7 @@ export interface GeneratedContent {
   seo_title: string;
 }
 
-// Step 3b output $€” social content
+// Step 3b output $â€” social content
 export interface SocialContent {
   facebook: {
     post: string;
@@ -59,7 +59,7 @@ export interface SocialContent {
   };
 }
 
-// Step 3c output $€” blog content
+// Step 3c output $â€” blog content
 export interface BlogContent {
   title: string;
   seoTitle: string;

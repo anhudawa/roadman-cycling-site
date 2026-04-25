@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 
-const TED_BIO = `Ted $€” Roadman Cycling's AI community assistant. I surface good conversations, welcome new members, and make sure nothing important gets missed. Anthony still runs the show. Built by the Roadman team. If something's off, reply to the post and one of us will sort it.`;
+const TED_BIO = `Ted $â€” Roadman Cycling's AI community assistant. I surface good conversations, welcome new members, and make sure nothing important gets missed. Anthony still runs the show. Built by the Roadman team. If something's off, reply to the post and one of us will sort it.`;
 
 export function TedBioCopy() {
   const [copied, setCopied] = useState(false);
@@ -13,7 +13,7 @@ export function TedBioCopy() {
       setCopied(true);
       setTimeout(() => setCopied(false), 2000);
     } catch {
-      /* clipboard API blocked $€” user can still select the text */
+      /* clipboard API blocked $â€” user can still select the text */
     }
   }
 

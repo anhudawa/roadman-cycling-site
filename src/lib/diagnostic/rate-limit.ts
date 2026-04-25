@@ -13,7 +13,7 @@ import { diagnosticSubmissions } from "@/lib/db/schema";
  *
  *  1. **In-memory per-instance** token bucket keyed by IP. Stops
  *     casual flooding from a single client without touching the DB.
- *     Not shared across Vercel serverless instances $€” a determined
+ *     Not shared across Vercel serverless instances $â€” a determined
  *     attacker hitting different regions bypasses this layer.
  *
  *  2. **DB-backed email throttle** via a count query against
@@ -22,7 +22,7 @@ import { diagnosticSubmissions } from "@/lib/db/schema";
  *     the email they're spamming. Legitimate retakes are days apart
  *     in practice so a 10-minute window is generous.
  *
- * Both layers are best-effort on failure $€” if the DB query blows up
+ * Both layers are best-effort on failure $â€” if the DB query blows up
  * we fall back to "allow" rather than block real users.
  */
 
@@ -54,7 +54,7 @@ export type RateLimitVerdict =
 
 /**
  * In-memory IP throttle. Called first because it's free (no DB
- * round-trip). Returns `null` when the caller has no IP to key off $€”
+ * round-trip). Returns `null` when the caller has no IP to key off $â€”
  * the submit route still runs the DB layer in that case.
  */
 function checkIpBucket(ip: string | null): RateLimitVerdict | null {
@@ -86,7 +86,7 @@ function checkIpBucket(ip: string | null): RateLimitVerdict | null {
 
 /**
  * DB-backed email throttle. Counts same-email submissions inside the
- * window. Safe on failure $€” a DB hiccup doesn't block legitimate
+ * window. Safe on failure $â€” a DB hiccup doesn't block legitimate
  * traffic.
  */
 async function checkEmailThrottle(email: string): Promise<RateLimitVerdict> {
@@ -113,7 +113,7 @@ async function checkEmailThrottle(email: string): Promise<RateLimitVerdict> {
 }
 
 /**
- * Full rate-limit check. Call before scoring / Claude $€” cheap enough
+ * Full rate-limit check. Call before scoring / Claude $â€” cheap enough
  * that we never start the expensive work for an abusive caller.
  */
 export async function checkRateLimit(

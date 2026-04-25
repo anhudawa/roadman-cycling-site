@@ -6,14 +6,14 @@ import { diagnosticSubmissions } from "@/lib/db/schema";
  * Auth-free health check for the Plateau Diagnostic. Returns
  * `{ ok: boolean }` plus a `checks` map with per-dependency status.
  *
- * Public on purpose $€” uptime monitors (Better Uptime, UptimeRobot,
+ * Public on purpose â€” uptime monitors (Better Uptime, UptimeRobot,
  * etc.) hit it without credentials. The body never reveals an env
  * var value, only its presence as "set" / "missing".
  *
  * 503 when the DB roundtrip fails so monitors can page us; 200
  * otherwise even if optional integrations (LLM, Beehiiv) are
- * unconfigured. The funnel still works end-to-end without those $€”
- * just with the static $§9 fallback and a missed nurture sync.
+ * unconfigured. The funnel still works end-to-end without those â€”
+ * just with the static Â§9 fallback and a missed nurture sync.
  */
 
 type Status = "set" | "missing" | "ok" | "error";

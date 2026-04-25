@@ -20,7 +20,7 @@ export const PERSONA_KEYWORDS: Record<Persona, string[]> = {
     "etape", "ironman", "triathlon", "century", "audax", "ultra",
     "competition", "time trial",
   ],
-  // listener is the default $€” no keywords needed
+  // listener is the default $â€” no keywords needed
   listener: [],
 };
 

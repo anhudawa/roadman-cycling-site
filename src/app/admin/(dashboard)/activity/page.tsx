@@ -65,7 +65,7 @@ function dayLabel(key: string): string {
 function clip(s: string | null, n = 200): string {
   if (!s) return "";
   if (s.length <= n) return s;
-  return s.slice(0, n).trimEnd() + "$Ä¶";
+  return s.slice(0, n).trimEnd() + "‚Ä¶";
 }
 
 function firstString(v: string | string[] | undefined): string {
@@ -201,7 +201,7 @@ export default async function ActivityPage({
                               <span className="text-foreground-muted">
                                 {r.authorName ?? r.authorSlug ?? "system"}
                               </span>
-                              <span className="text-foreground-subtle">$∑</span>
+                              <span className="text-foreground-subtle">¬∑</span>
                               <Link
                                 href={`/admin/contacts/${r.contactId}`}
                                 className="text-off-white hover:text-[var(--color-fg)] truncate"
@@ -210,7 +210,7 @@ export default async function ActivityPage({
                               </Link>
                               {toStage && (
                                 <span className="px-1.5 py-0.5 rounded bg-amber-500/10 text-amber-300 border border-amber-500/20 text-[10px]">
-                                  $Üí {toStage}
+                                  ‚Üí {toStage}
                                 </span>
                               )}
                             </div>
@@ -234,7 +234,7 @@ export default async function ActivityPage({
 
       <div className="flex items-center justify-between mt-4 text-xs text-foreground-muted">
         <span>
-          Showing {showingFrom}$Äì{showingTo} of {total}
+          Showing {showingFrom}‚Äì{showingTo} of {total}
         </span>
         <div className="flex items-center gap-2">
           {hasPrev ? (
@@ -242,11 +242,11 @@ export default async function ActivityPage({
               href={buildPageUrl(Math.max(offset - PAGE_SIZE, 0))}
               className="px-3 py-1.5 rounded border border-white/10 hover:border-[var(--color-border-strong)] hover:text-[var(--color-fg)]"
             >
-              $Üê Prev
+              ‚Üê Prev
             </Link>
           ) : (
             <span className="px-3 py-1.5 rounded border border-white/5 text-foreground-subtle/50">
-              $Üê Prev
+              ‚Üê Prev
             </span>
           )}
           {hasNext ? (
@@ -254,11 +254,11 @@ export default async function ActivityPage({
               href={buildPageUrl(offset + PAGE_SIZE)}
               className="px-3 py-1.5 rounded border border-white/10 hover:border-[var(--color-border-strong)] hover:text-[var(--color-fg)]"
             >
-              Next $Üí
+              Next ‚Üí
             </Link>
           ) : (
             <span className="px-3 py-1.5 rounded border border-white/5 text-foreground-subtle/50">
-              Next $Üí
+              Next ‚Üí
             </span>
           )}
         </div>

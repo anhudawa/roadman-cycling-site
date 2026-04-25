@@ -7,7 +7,7 @@ import type { ToolResult, ToolSlug } from "./types";
  * URL and a one-click Ask Roadman hand-off so the email becomes a
  * portable "your results" mini-page.
  *
- * Non-fatal by convention $€” the caller logs and moves on if this
+ * Non-fatal by convention $â€” the caller logs and moves on if this
  * rejects; the tool_result row is already persisted so the rider can
  * reach it via the history page.
  */

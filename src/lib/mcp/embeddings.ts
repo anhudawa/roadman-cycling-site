@@ -1,6 +1,6 @@
 // Embedding provider controlled by EMBEDDING_PROVIDER env var.
-// voyage (default) $†’ voyage-3-large (1024 dims)
-// openai          $†’ text-embedding-3-large (1024 dims)
+// voyage (default) â†’ voyage-3-large (1024 dims)
+// openai          â†’ text-embedding-3-large (1024 dims)
 
 const PROVIDER = process.env.EMBEDDING_PROVIDER ?? "voyage";
 

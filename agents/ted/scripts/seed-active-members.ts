@@ -78,7 +78,7 @@ async function main() {
       console.log(`  ${r.memberId.padEnd(24)} ${r.firstName.padEnd(20)} [${r.topicTags.join(", ")}]`);
     }
     if (rows.length > 10) console.log(`  ... and ${rows.length - 10} more`);
-    console.log("\n(dry-run $€” not writing to DB)");
+    console.log("\n(dry-run $â€” not writing to DB)");
     return;
   }
 

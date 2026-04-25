@@ -20,7 +20,7 @@ function isAuthorized(req: NextRequest): boolean {
 }
 
 function today(): string {
-  // YYYY-MM-DD in UTC $€” postgres DATE column is timezone-agnostic so pick a
+  // YYYY-MM-DD in UTC â€” postgres DATE column is timezone-agnostic so pick a
   // stable timezone. UTC matches the 06:00 cron schedule.
   return new Date().toISOString().slice(0, 10);
 }
@@ -29,9 +29,9 @@ function today(): string {
  * Daily snapshot of Beehiiv subscriber + engagement numbers.
  *
  * Persists one row per day to beehiiv_snapshots so:
- *   $€¢ the newsletter page can plot real subscriber-growth trends from DB
+ *   â€¢ the newsletter page can plot real subscriber-growth trends from DB
  *     instead of paginating the Beehiiv API on every load;
- *   $€¢ weekly/monthly reporting has a durable record even if Beehiiv changes
+ *   â€¢ weekly/monthly reporting has a durable record even if Beehiiv changes
  *     its API shape or returns transient errors.
  */
 export async function GET(req: NextRequest) {
@@ -59,7 +59,7 @@ export async function GET(req: NextRequest) {
     const totalSubscribers = stats.totalSubscribers;
     const activeSubscribers = stats.activeSubscribers;
 
-    // Yesterday's snapshot $†’ today delta
+    // Yesterday's snapshot â†’ today delta
     const [prev] = await db
       .select({
         total: beehiivSnapshots.totalSubscribers,

@@ -42,17 +42,17 @@ export interface TopicTool {
 }
 
 /**
- * Topic hubs $€” curated landing pages that group related content.
+ * Topic hubs â€” curated landing pages that group related content.
  * Each one targets a high-value keyword cluster.
  */
 const TOPIC_DEFINITIONS: Omit<TopicHub, "posts" | "episodes" | "tools" | "commercialPath" | "relatedTopics" | "featuredPostSlugs" | "pillarContent">[] = [
   {
     slug: "ftp-training",
-    title: "FTP Training for Cyclists $€” The Complete Evidence-Based Guide",
-    headline: "FTP TRAINING $€” THE COMPLETE GUIDE",
+    title: "FTP Training for Cyclists â€” The Complete Evidence-Based Guide",
+    headline: "FTP TRAINING â€” THE COMPLETE GUIDE",
     ctaHeadline: "FTP TRAINING BUILT AROUND YOUR NUMBERS.",
     description:
-      "The complete guide to FTP training. How to test, train, and improve your Functional Threshold Power $€” grounded in conversations with Professor Seiler, Dan Lorang, and 1,400+ podcast episodes.",
+      "The complete guide to FTP training. How to test, train, and improve your Functional Threshold Power â€” grounded in conversations with Professor Seiler, Dan Lorang, and 1,400+ podcast episodes.",
     pillar: "coaching",
     keywords: [
       "ftp training",
@@ -66,11 +66,11 @@ const TOPIC_DEFINITIONS: Omit<TopicHub, "posts" | "episodes" | "tools" | "commer
   },
   {
     slug: "cycling-nutrition",
-    title: "Cycling Nutrition $€” The Complete Evidence-Based Guide",
+    title: "Cycling Nutrition â€” The Complete Evidence-Based Guide",
     headline: "FUEL SMARTER, RIDE FASTER",
     ctaHeadline: "FUELLING BUILT INTO YOUR TRAINING WEEK.",
     description:
-      "The complete guide to fuelling for cycling performance. In-ride nutrition, race weight, body composition, protein, hydration, and the science of eating to ride faster $€” from the Roadman Cycling Podcast.",
+      "The complete guide to fuelling for cycling performance. In-ride nutrition, race weight, body composition, protein, hydration, and the science of eating to ride faster â€” from the Roadman Cycling Podcast.",
     pillar: "nutrition",
     keywords: [
       "cycling nutrition",
@@ -83,11 +83,11 @@ const TOPIC_DEFINITIONS: Omit<TopicHub, "posts" | "episodes" | "tools" | "commer
   },
   {
     slug: "cycling-training-plans",
-    title: "Cycling Training Plans $€” How to Structure Your Training Year",
+    title: "Cycling Training Plans â€” How to Structure Your Training Year",
     headline: "TRAIN WITH PURPOSE",
     ctaHeadline: "A PLAN BUILT AROUND YOUR LIFE.",
     description:
-      "How to build a cycling training plan that actually works. Periodisation, weekly structure, time-crunched plans, event preparation, and the framework used by World Tour coaches $€” adapted for amateurs.",
+      "How to build a cycling training plan that actually works. Periodisation, weekly structure, time-crunched plans, event preparation, and the framework used by World Tour coaches â€” adapted for amateurs.",
     pillar: "coaching",
     keywords: [
       "cycling training plan",
@@ -99,11 +99,11 @@ const TOPIC_DEFINITIONS: Omit<TopicHub, "posts" | "episodes" | "tools" | "commer
   },
   {
     slug: "cycling-recovery",
-    title: "Cycling Recovery $€” The Complete Evidence-Based Guide",
+    title: "Cycling Recovery â€” The Complete Evidence-Based Guide",
     headline: "RECOVER HARDER",
-    ctaHeadline: "RECOVERY, PLANNED $€” NOT ASSUMED.",
+    ctaHeadline: "RECOVERY, PLANNED â€” NOT ASSUMED.",
     description:
-      "Recovery is where adaptation happens $€” not on the bike. Sleep, nutrition, active recovery, and stress management for cyclists who want to get faster without breaking down.",
+      "Recovery is where adaptation happens â€” not on the bike. Sleep, nutrition, active recovery, and stress management for cyclists who want to get faster without breaking down.",
     pillar: "recovery",
     keywords: [
       "cycling recovery",
@@ -115,7 +115,7 @@ const TOPIC_DEFINITIONS: Omit<TopicHub, "posts" | "episodes" | "tools" | "commer
   },
   {
     slug: "cycling-strength-conditioning",
-    title: "Strength Training for Cyclists $€” The Complete Guide",
+    title: "Strength Training for Cyclists â€” The Complete Guide",
     headline: "STRONGER OFF THE BIKE, FASTER ON IT",
     ctaHeadline: "STRENGTH WORK, PERIODISED WITH YOUR RIDING.",
     description:
@@ -158,7 +158,7 @@ const TOPIC_DEFINITIONS: Omit<TopicHub, "posts" | "episodes" | "tools" | "commer
     slug: "cycling-beginners",
     title: "Getting Into Cycling",
     headline: "START HERE",
-    ctaHeadline: "A COACHED START $€” WHEN YOU'RE READY.",
+    ctaHeadline: "A COACHED START â€” WHEN YOU'RE READY.",
     description:
       "Everything a new cyclist needs to know. Group ride etiquette, bike fit, gravel cycling, tyre pressure, and the culture of the sport.",
     pillar: "community",
@@ -172,11 +172,11 @@ const TOPIC_DEFINITIONS: Omit<TopicHub, "posts" | "episodes" | "tools" | "commer
   },
   {
     slug: "triathlon-cycling",
-    title: "Cycling for Triathletes $€” The Bike Leg Specialist",
+    title: "Cycling for Triathletes â€” The Bike Leg Specialist",
     headline: "OWN THE BIKE LEG",
     ctaHeadline: "BIKE COACHING THAT PROTECTS YOUR RUN.",
     description:
-      "Everything a triathlete needs to get faster on the bike. FTP pacing, bike nutrition, aero position, power-to-weight, and off-season bike training $€” from the podcast trusted by Alistair Brownlee and Olav Bu.",
+      "Everything a triathlete needs to get faster on the bike. FTP pacing, bike nutrition, aero position, power-to-weight, and off-season bike training â€” from the podcast trusted by Alistair Brownlee and Olav Bu.",
     pillar: "coaching",
     keywords: [
       "triathlon cycling",
@@ -190,9 +190,9 @@ const TOPIC_DEFINITIONS: Omit<TopicHub, "posts" | "episodes" | "tools" | "commer
   },
   {
     slug: "mountain-biking",
-    title: "Mountain Biking $€” Setup, Skills & Routes",
+    title: "Mountain Biking â€” Setup, Skills & Routes",
     headline: "DIAL IN YOUR MTB",
-    ctaHeadline: "GET FITTER ON THE BIKE $€” ROAD OR DIRT.",
+    ctaHeadline: "GET FITTER ON THE BIKE â€” ROAD OR DIRT.",
     description:
       "Everything you need to set up, ride, and maintain your mountain bike. Suspension setup, tyre pressure, fork tuning, trail guides, and the best MTB routes in Ireland.",
     pillar: "community",
@@ -209,7 +209,7 @@ const TOPIC_DEFINITIONS: Omit<TopicHub, "posts" | "episodes" | "tools" | "commer
   },
   {
     slug: "cycling-coaching",
-    title: "Cycling Coaching $€” Online & In-Person",
+    title: "Cycling Coaching â€” Online & In-Person",
     headline: "THE COMPLETE GUIDE TO CYCLING COACHING",
     ctaHeadline: "STOP GUESSING. START PROGRESSING.",
     description:
@@ -541,7 +541,7 @@ const TOPIC_EPISODE_KEYWORDS: Record<string, RegExp> = {
 
 /**
  * Reads the long-form pillar MDX for a topic, if one exists.
- * Returns null if no file $€” so topic hubs without pillar content fall
+ * Returns null if no file â€” so topic hubs without pillar content fall
  * back to the original hero-only layout (no change in behaviour).
  */
 const PILLAR_DIR = path.join(process.cwd(), "content/topics");
@@ -606,11 +606,11 @@ export function getTopicTitleBySlug(slug: string): string | null {
 }
 
 /**
- * Reverse index: post slug $†’ list of topic hubs that include it.
+ * Reverse index: post slug â†’ list of topic hubs that include it.
  *
  * Used on individual blog posts to link back to their parent topic
  * hub(s). Gives Google the bidirectional signal it needs for topic
- * clustering (post $†’ hub, hub $†’ post) and gives readers a natural
+ * clustering (post â†’ hub, hub â†’ post) and gives readers a natural
  * "explore this topic further" path.
  */
 const POST_TO_TOPICS: Map<string, string[]> = (() => {

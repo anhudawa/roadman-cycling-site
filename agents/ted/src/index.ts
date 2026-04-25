@@ -1,6 +1,6 @@
 #!/usr/bin/env tsx
 // ---------------------------------------------------------------------------
-// Ted $€” Roadman Cycling Clubhouse community agent
+// Ted $â€” Roadman Cycling Clubhouse community agent
 //
 // Usage:
 //   tsx agents/ted/src/index.ts --job=draft-prompt [--dry-run] [--date=YYYY-MM-DD]
@@ -43,7 +43,7 @@ async function main() {
     process.exit(1);
   }
 
-  console.log(`=== Ted $€” ${job}${dryRun ? " (dry-run)" : ""} ===`);
+  console.log(`=== Ted $â€” ${job}${dryRun ? " (dry-run)" : ""} ===`);
 
   switch (job) {
     case "draft-prompt":
@@ -82,7 +82,7 @@ async function main() {
       process.exit(1);
   }
 
-  console.log(`=== Ted $€” ${job} complete ===`);
+  console.log(`=== Ted $â€” ${job} complete ===`);
 }
 
 main().catch((err) => {

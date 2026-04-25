@@ -31,7 +31,7 @@ export function ShareButton({
       setCopied(true);
       setTimeout(() => setCopied(false), 2000);
     } catch {
-      // fall back to manual selection $€” do nothing, user can still
+      // fall back to manual selection â€” do nothing, user can still
       // grab the URL from the browser bar
     }
   };
@@ -43,7 +43,7 @@ export function ShareButton({
         onClick={handleCopy}
         className="text-sm rounded-md bg-white/5 border border-white/10 text-foreground-muted hover:text-off-white hover:bg-white/10 px-4 py-2 cursor-pointer transition-colors"
       >
-        {copied ? "$œ“ Link copied" : "Copy link"}
+        {copied ? "âœ“ Link copied" : "Copy link"}
       </button>
       <a
         href={tweetUrl}

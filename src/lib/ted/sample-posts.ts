@@ -1,4 +1,4 @@
-// Seed content used by POST /api/admin/ted/seed-samples $€” lets an admin click
+// Seed content used by POST /api/admin/ted/seed-samples â€” lets an admin click
 // "Seed sample posts" on /admin/ted and immediately see drafts in their
 // approvals inbox to try out the review flow. Idempotent via stable keys.
 
@@ -32,30 +32,30 @@ function addDays(daysFromToday: number): string {
 }
 
 export const SAMPLE_PROMPTS: SamplePromptSeed[] = [
-  // $”€$”€ Week 1 $€” one per pillar, sitting in the upcoming 7 days $”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€
+  // â”€â”€ Week 1 â€” one per pillar, sitting in the upcoming 7 days â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
   {
     pillar: "monday",
     scheduledFor: addDays(1),
     body: `Question for the group.
 
-If you had to pick one $€” your Z2 rides done properly, or your intervals done properly $€” which would you drop?
+If you had to pick one â€” your Z2 rides done properly, or your intervals done properly â€” which would you drop?
 
 Seiler said on the podcast that amateurs get it backwards. Grind the easy days. Coast the hard ones.
 
 Curious what you'd do if you genuinely had to choose. And why.
 
-$€” Ted`,
+â€” Ted`,
   },
   {
     pillar: "tuesday",
     scheduledFor: addDays(2),
     body: `60g of carbs an hour used to be the ceiling. Ben Healy won at the Tour on 140.
 
-Podlogar's been saying the gut trains like any other tissue $€” weeks, not days. And most amateurs never try.
+Podlogar's been saying the gut trains like any other tissue â€” weeks, not days. And most amateurs never try.
 
 When's the last time you pushed past 80g on a long ride? What happened?
 
-$€” Ted`,
+â€” Ted`,
   },
   {
     pillar: "wednesday",
@@ -64,11 +64,11 @@ $€” Ted`,
 
 Not squats. Not crunches. Hinging.
 
-Deadlift, RDL, kettlebell swing $€” whichever version you can own without your back rounding.
+Deadlift, RDL, kettlebell swing â€” whichever version you can own without your back rounding.
 
 What's one S&C habit you started and actually kept?
 
-$€” Ted`,
+â€” Ted`,
   },
   {
     pillar: "thursday",
@@ -79,18 +79,18 @@ Most riders know this. Most still override it on a Tuesday night when Netflix is
 
 What's the recovery habit that looked optional until you lost it?
 
-$€” Ted`,
+â€” Ted`,
   },
   {
     pillar: "friday",
     scheduledFor: addDays(5),
-    body: `The unwritten rule I still get wrong sometimes $€” you don't half-wheel the group-ride leader.
+    body: `The unwritten rule I still get wrong sometimes â€” you don't half-wheel the group-ride leader.
 
 Did it twice in Wicklow last spring. Got a proper look the second time. Fair enough.
 
 What's one you wish someone had told you earlier?
 
-$€” Ted`,
+â€” Ted`,
   },
   {
     pillar: "saturday",
@@ -101,7 +101,7 @@ His framing on what actually limits age-group riders is the opposite of what we 
 
 Does that track with you? Or is it letting the coaches off the hook?
 
-$€” Ted`,
+â€” Ted`,
   },
   {
     pillar: "sunday",
@@ -110,14 +110,14 @@ $€” Ted`,
 
 What did you ride? And what did you learn?
 
-$€” Ted`,
+â€” Ted`,
   },
 
-  // $”€$”€ Week 2 $€” second option per pillar so the reviewer can compare voices $”€$”€
+  // â”€â”€ Week 2 â€” second option per pillar so the reviewer can compare voices â”€â”€
   {
     pillar: "monday",
     scheduledFor: addDays(8),
-    body: `Coaching question $€” serious one.
+    body: `Coaching question â€” serious one.
 
 Would you rather coach your former self at 25, or your current self?
 
@@ -125,7 +125,7 @@ Different info, different stubbornness, different stakes. Stephen Seiler told An
 
 What would you do differently if you had your old self in front of you?
 
-$€” Ted`,
+â€” Ted`,
   },
   {
     pillar: "tuesday",
@@ -134,11 +134,11 @@ $€” Ted`,
 
 Knew better. Did it anyway.
 
-The "train low" idea has been mangled beyond recognition at amateur level. Wakefield is pretty clear $€” it's a pro-level tool, not a weekend habit.
+The "train low" idea has been mangled beyond recognition at amateur level. Wakefield is pretty clear â€” it's a pro-level tool, not a weekend habit.
 
 When did fasted riding actually work for you? When did it backfire?
 
-$€” Ted`,
+â€” Ted`,
   },
   {
     pillar: "wednesday",
@@ -151,18 +151,18 @@ Most fit-ups fix the saddle and ignore the muscle work that should have happened
 
 What did it take for you to fix yours?
 
-$€” Ted`,
+â€” Ted`,
   },
   {
     pillar: "thursday",
     scheduledFor: addDays(11),
     body: `HRV is the most misused number in amateur training.
 
-Joe Friel's take $€” a single-day score tells you almost nothing. The trend over two weeks is the only thing worth looking at.
+Joe Friel's take â€” a single-day score tells you almost nothing. The trend over two weeks is the only thing worth looking at.
 
 Does your HRV actually change what you do? Or is it a vibe check before a hard session?
 
-$€” Ted`,
+â€” Ted`,
   },
   {
     pillar: "friday",
@@ -175,7 +175,7 @@ I've still got the jersey I wore on one of them. Smells like the wash that got s
 
 What's the ride that stuck?
 
-$€” Ted`,
+â€” Ted`,
   },
 ];
 
@@ -186,11 +186,11 @@ export const SAMPLE_WELCOMES: SampleWelcomeSeed[] = [
     persona: "listener",
     draftBody: `Welcome in, Alice. Good to have you.
 
-Quick way to get value here $€” drop a reply with (1) where you're riding, (2) what you're working on, (3) one thing you'd like to get better at.
+Quick way to get value here â€” drop a reply with (1) where you're riding, (2) what you're working on, (3) one thing you'd like to get better at.
 
 People will pile in. That's how this place works.
 
-$€” Ted`,
+â€” Ted`,
   },
   {
     memberEmail: "sample-sean@example.com",
@@ -202,7 +202,7 @@ Saw the note about time off the bike. Loads of folks in here have done the same 
 
 Drop a line with where you're riding now and what you're working back up to. They'll come in with the stuff they wish they'd known.
 
-$€” Ted`,
+â€” Ted`,
   },
   {
     memberEmail: "sample-priya@example.com",
@@ -210,11 +210,11 @@ $€” Ted`,
     persona: "plateau",
     draftBody: `Welcome in, Priya. Good to have you.
 
-Saw the note $€” stuck at the same level for a while. You're in good company, more in here are plateaued than will admit it.
+Saw the note â€” stuck at the same level for a while. You're in good company, more in here are plateaued than will admit it.
 
 Drop a reply with where you're riding, what you've tried, and what hasn't moved. There's usually someone here who's been where you are.
 
-$€” Ted`,
+â€” Ted`,
   },
   {
     memberEmail: "sample-matthew@example.com",
@@ -222,11 +222,11 @@ $€” Ted`,
     persona: "event-prep",
     draftBody: `Matthew, welcome.
 
-Event coming up on the calendar. Few folks in here prepping for the same kind of day $€” some still in the block, some just back from theirs.
+Event coming up on the calendar. Few folks in here prepping for the same kind of day â€” some still in the block, some just back from theirs.
 
 Reply with the event, when it is, and where the training's at. People will share what worked and what they'd do differently.
 
-$€” Ted`,
+â€” Ted`,
   },
 ];
 
@@ -239,9 +239,9 @@ export const SAMPLE_SURFACES: SampleSurfaceSeed[] = [
     threadBody:
       "Did 5Ã—3 at 115% this morning. Been wrecked for three days. Is this just me or do VO2 blocks need a lighter week afterwards?",
     surfaceType: "tag",
-    body: `@Niamh you were on this exact question in January $€” might have a take. Your 3Ã—5 rotation looked like it worked.
+    body: `@Niamh you were on this exact question in January â€” might have a take. Your 3Ã—5 rotation looked like it worked.
 
-$€” Ted`,
+â€” Ted`,
   },
   {
     skoolPostId: "sample-thread-fuel",
@@ -249,17 +249,17 @@ $€” Ted`,
     threadAuthor: "Matthew",
     threadTitle: "How do you fuel a 4-hour gravel race?",
     threadBody:
-      "First gravel race coming up $€” 4 hours, hilly, Irish summer so warm. What are people actually eating and drinking through it?",
+      "First gravel race coming up â€” 4 hours, hilly, Irish summer so warm. What are people actually eating and drinking through it?",
     surfaceType: "link",
-    body: `Tim Podlogar's episode from March covers this directly $€” around minute 18 he walks through the 120g/hr protocol and what it takes to actually get there. Worth the listen.
+    body: `Tim Podlogar's episode from March covers this directly â€” around minute 18 he walks through the 120g/hr protocol and what it takes to actually get there. Worth the listen.
 
-$€” Ted`,
+â€” Ted`,
   },
   {
     skoolPostId: "sample-thread-winter",
     threadUrl: "https://www.skool.com/roadman/sample-winter-thread",
     threadAuthor: "Priya",
-    threadTitle: "Winter training $€” how many Z2 hours is enough?",
+    threadTitle: "Winter training â€” how many Z2 hours is enough?",
     threadBody:
       "6 hours a week is all I've got. Feeling like I should be doing 10+ based on what pros say. Am I wasting my time?",
     surfaceType: "summary",
@@ -267,13 +267,13 @@ $€” Ted`,
 
 What's the fourth?
 
-$€” Ted`,
+â€” Ted`,
   },
   {
     skoolPostId: "sample-thread-bonk",
     threadUrl: "https://www.skool.com/roadman/sample-bonk-thread",
     threadAuthor: "Darragh",
-    threadTitle: "Bonked on my long ride AGAIN $€” what am I missing?",
+    threadTitle: "Bonked on my long ride AGAIN â€” what am I missing?",
     threadBody:
       "Third Saturday in a row. 3-hour ride, started feeling rough at two hours, crawled home. Eating a banana and a bar on the way out. What's happening?",
     surfaceType: "summary",
@@ -281,7 +281,7 @@ $€” Ted`,
 
 What's the angle nobody's said yet?
 
-$€” Ted`,
+â€” Ted`,
   },
   {
     skoolPostId: "sample-thread-deload",
@@ -289,18 +289,18 @@ $€” Ted`,
     threadAuthor: "Kate",
     threadTitle: "Is a deload week actually necessary every 4 weeks?",
     threadBody:
-      "Programme says deload every 4. I feel fine. Skipping it this cycle $€” talk me out of it if I'm being stupid.",
+      "Programme says deload every 4. I feel fine. Skipping it this cycle â€” talk me out of it if I'm being stupid.",
     surfaceType: "tag",
     body: `@Darragh you tested the skip-a-deload experiment last summer and wrote it up. Might be worth saying how it went.
 
-$€” Ted`,
+â€” Ted`,
   },
 ];
 
 export const SAMPLE_VOICE_CHECK_MARKER = {
   pass: true,
   redFlags: [],
-  notes: "Seeded sample $€” skipped voice-check.",
+  notes: "Seeded sample â€” skipped voice-check.",
   regenerationNotes: "",
   seededBy: "admin-sample",
 };

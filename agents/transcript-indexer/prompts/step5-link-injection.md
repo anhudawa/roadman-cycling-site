@@ -1,6 +1,6 @@
-# Step 5 $€” Internal Link Injection
+# Step 5 â€” Internal Link Injection
 
-This step is programmatic $€” no LLM call needed.
+This step is programmatic â€” no LLM call needed.
 
 ## Logic
 

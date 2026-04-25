@@ -8,7 +8,7 @@ import {
 
 /**
  * Paid-report upsell card used on /results/[tool]/[slug] and tool
- * result pages. Small client-side form $€” captures email confirmation
+ * result pages. Small client-side form â€” captures email confirmation
  * (pre-filled from the saved result) and opens Stripe checkout via
  * /api/reports/checkout.
  *
@@ -31,9 +31,9 @@ function formatPrice(cents: number, currency: string): string {
   const major = (cents / 100).toFixed(cents % 100 === 0 ? 0 : 2);
   switch (currency.toLowerCase()) {
     case "eur":
-      return `$$$${major}`;
+      return `â‚¬${major}`;
     case "gbp":
-      return `$$${major}`;
+      return `Â£${major}`;
     case "usd":
       return `$${major}`;
     default:
@@ -55,7 +55,7 @@ export function UpsellCard({
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
-  // Impression beacon $€” fires once when the card first mounts so the
+  // Impression beacon â€” fires once when the card first mounts so the
   // upsell-view vs checkout-start ratio is measurable.
   useEffect(() => {
     trackPaidReport({
@@ -114,7 +114,7 @@ export function UpsellCard({
         <span className="font-heading text-off-white text-3xl">
           {formatPrice(priceCents, currency)}
         </span>
-        <span className="text-foreground-subtle text-xs">one-off payment $· delivered instantly</span>
+        <span className="text-foreground-subtle text-xs">one-off payment Â· delivered instantly</span>
       </div>
 
       <div className="flex flex-col sm:flex-row gap-2">
@@ -134,7 +134,7 @@ export function UpsellCard({
           data-track="paid_report_checkout_start"
           data-product={productSlug}
         >
-          {loading ? "Redirecting$€¦" : "Get the report"}
+          {loading ? "Redirectingâ€¦" : "Get the report"}
         </button>
       </div>
       {error ? (

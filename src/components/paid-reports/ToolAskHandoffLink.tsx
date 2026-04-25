@@ -7,7 +7,7 @@ import {
 } from "@/lib/analytics/paid-report-events";
 
 /**
- * Wraps the /results/[tool]/[slug] $†’ /ask handoff link so the click
+ * Wraps the /results/[tool]/[slug] â†’ /ask handoff link so the click
  * fires a typed event (surfacing in the Diagnostics dashboard's
  * "Ask handoffs" column via tool-events aggregation on toolResults)
  * and in the paid-report funnel breakdown.

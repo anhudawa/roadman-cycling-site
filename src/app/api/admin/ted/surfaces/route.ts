@@ -6,7 +6,7 @@ import { requireAuth } from "@/lib/admin/auth";
 
 export const dynamic = "force-dynamic";
 
-// PATCH /api/admin/ted/surfaces $€” approve / edit / reject a surface draft.
+// PATCH /api/admin/ted/surfaces $â€” approve / edit / reject a surface draft.
 // Body: { id: number, action: "approve"|"edit"|"reject", editedBody?: string }
 export async function PATCH(request: Request) {
   let user;

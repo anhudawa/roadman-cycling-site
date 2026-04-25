@@ -19,7 +19,7 @@ async function main() {
   if (!process.env.POSTGRES_URL) throw new Error("POSTGRES_URL not set");
 
   const hashed = hashPassword(newPassword);
-  // Discover which columns exist $€” schema has drifted slightly across envs.
+  // Discover which columns exist â€” schema has drifted slightly across envs.
   const cols = await sql.query<{ column_name: string }>(
     `SELECT column_name FROM information_schema.columns WHERE table_name = 'team_users'`
   );
@@ -43,7 +43,7 @@ async function main() {
     throw new Error(`No team_user found with slug="${slug}"`);
   }
   const user = r.rows[0];
-  console.log("$œ“ password rotated for", user.slug);
+  console.log("âœ“ password rotated for", user.slug);
   console.log("  id:", user.id);
   console.log("  email:", user.email);
   console.log("  role:", user.role);

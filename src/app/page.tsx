@@ -13,7 +13,7 @@ import { CONTENT_PILLARS, type ContentPillar } from "@/types";
 const marqueeGuests = [
   { name: "Greg LeMond", credential: "3Ã— Tour de France winner", href: "https://www.youtube.com/watch?v=_kFSe3VxS10" },
   { name: "Professor Seiler", credential: "Polarised training pioneer", href: "https://www.youtube.com/watch?v=j443DjmheHw" },
-  { name: "Dan Lorang", credential: "Red Bull$€“Bora$€“Hansgrohe", href: "https://www.youtube.com/watch?v=Qbub4VwLHW4" },
+  { name: "Dan Lorang", credential: "Red Bull$â€“Bora$â€“Hansgrohe", href: "https://www.youtube.com/watch?v=Qbub4VwLHW4" },
   { name: "Lachlan Morton", credential: "EF Education, alt-racing pioneer", href: "https://www.youtube.com/watch?v=-X-Owk2VOoM" },
   { name: "Dan Bigham", credential: "Former Hour Record holder", href: "https://www.youtube.com/watch?v=gxiqIIVB3OA" },
   { name: "Alistair Brownlee", credential: "2Ã— Olympic triathlon gold", href: "https://www.youtube.com/watch?v=gZEl_NCr5_I" },
@@ -34,7 +34,7 @@ const marqueeGuests = [
 const tools = [
   // The Masters Plateau Diagnostic sits in the feature slot (2-col
   // span on sm+). It's the highest-intent action on the site for
-  // 40+ riders $€” higher conversion to NDY than any of the other
+  // 40+ riders $â€” higher conversion to NDY than any of the other
   // calculators, so it earns the prime position.
   {
     title: "Plateau Diagnostic",
@@ -81,17 +81,17 @@ export default function HomePage() {
       <Header />
 
       <main id="main-content">
-        {/* HERO $€” podcast-first on mobile (waveform + play latest),
+        {/* HERO $â€” podcast-first on mobile (waveform + play latest),
             glitch portrait on desktop. APPLY is the primary CTA. */}
         <HeroSection latestEpisode={latestEpisode} />
 
-        {/* STATS $€” Animated counters */}
+        {/* STATS $â€” Animated counters */}
         <StatsSection />
 
-        {/* PERSONA ROUTER $€” route visitors by current cycling state */}
+        {/* PERSONA ROUTER $â€” route visitors by current cycling state */}
         <PersonaRouter />
 
-        {/* SATURDAY SPIN $€” moved up from mid-page. Specific promise +
+        {/* SATURDAY SPIN $â€” moved up from mid-page. Specific promise +
             social proof count, tied to the community not generic "insights". */}
         <EmailCapture
           variant="banner"
@@ -126,7 +126,7 @@ export default function HomePage() {
                   Not Done Yet coaching community
                 </Link>
                 , everything connects. Training, nutrition, strength, recovery,
-                and community $€” coached together as one system. That&apos;s what
+                and community $â€” coached together as one system. That&apos;s what
                 makes the difference between guessing and getting faster.
               </p>
               <Button href="/apply">
@@ -164,7 +164,7 @@ export default function HomePage() {
           </Container>
         </Section>
 
-        {/* PARALLAX DIVIDER $€” Epic desert road climb */}
+        {/* PARALLAX DIVIDER $â€” Epic desert road climb */}
         <ParallaxImage
           src="/images/cycling/gravel-desert-road-epic.jpg"
           alt="Two cyclists climbing a winding road through dramatic desert terrain"
@@ -174,7 +174,7 @@ export default function HomePage() {
           overlayColor="from-charcoal via-charcoal/50 to-deep-purple"
         />
 
-        {/* EXPERT ACCESS $€” The Moat */}
+        {/* EXPERT ACCESS $â€” The Moat */}
         <Section background="deep-purple" grain className="overflow-hidden">
           <Container>
             <ScrollReveal direction="up" className="text-center mb-4">
@@ -192,7 +192,7 @@ export default function HomePage() {
             </ScrollReveal>
           </Container>
 
-          {/* Full-bleed marquee $€” breaks out of Container for edge-to-edge scroll */}
+          {/* Full-bleed marquee $â€” breaks out of Container for edge-to-edge scroll */}
           <div className="my-10">
             <GuestMarquee guests={marqueeGuests} />
           </div>
@@ -209,7 +209,7 @@ export default function HomePage() {
           </Container>
         </Section>
 
-        {/* PARALLAX DIVIDER $€” Beach bikepacking */}
+        {/* PARALLAX DIVIDER $â€” Beach bikepacking */}
         <ParallaxImage
           src="/images/community/DSC05808.JPG"
           alt="Two riders pushing bikes across a beach at sunset"
@@ -255,7 +255,7 @@ export default function HomePage() {
           </Container>
         </Section>
 
-        {/* PARALLAX DIVIDER $€” Post-ride rest against wall */}
+        {/* PARALLAX DIVIDER $â€” Post-ride rest against wall */}
         <ParallaxImage
           src="/images/cycling/post-ride-rest-wall.jpg"
           alt="Two cyclists resting against a white wall with their gravel bikes after a long ride"
@@ -279,8 +279,8 @@ export default function HomePage() {
                 Most cyclists plateau because they train alone, guess at
                 nutrition, and skip the stuff that actually compounds.
                 Inside the Not Done Yet coaching community, riders follow
-                one coached system $€” training, nutrition, strength,
-                recovery, and accountability $€” and they&apos;re proving every
+                one coached system $â€” training, nutrition, strength,
+                recovery, and accountability $â€” and they&apos;re proving every
                 week that faster is still ahead.
               </p>
             </ScrollReveal>
@@ -346,7 +346,7 @@ export default function HomePage() {
                   </p>
                   <p className="text-foreground-muted mb-6 leading-relaxed">
                     You&apos;re not buying a subscription. You&apos;re joining
-                    the Not Done Yet coaching community $€” cyclists who refuse
+                    the Not Done Yet coaching community $â€” cyclists who refuse
                     to plateau. Five pillars. One coached system. The same
                     principles Seiler and Lorang discussed on the podcast,
                     structured into your week.
@@ -382,7 +382,7 @@ export default function HomePage() {
           </Container>
         </Section>
 
-        {/* Featured content $€” passes homepage authority to high-value
+        {/* Featured content $â€” passes homepage authority to high-value
             blog cluster articles. These links are the single strongest
             internal-link equity transfer on the site. */}
         <Section background="charcoal">

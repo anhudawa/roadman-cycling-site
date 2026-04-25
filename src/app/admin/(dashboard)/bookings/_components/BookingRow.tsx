@@ -85,7 +85,7 @@ export function BookingRow({ booking }: { booking: BookingRowType }) {
           )}
           {booking.location && (
             <>
-              <span className="text-foreground-subtle">$·</span>
+              <span className="text-foreground-subtle">Â·</span>
               <span className="truncate">{booking.location}</span>
             </>
           )}

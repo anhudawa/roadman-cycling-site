@@ -85,7 +85,7 @@ export default async function EpisodeDetailPage({
   try {
     detail = await getEpisodeDetail(episodeId);
   } catch {
-    // DB not provisioned or error $€” fall through to error state
+    // DB not provisioned or error $â€” fall through to error state
   }
 
   if (!detail) {

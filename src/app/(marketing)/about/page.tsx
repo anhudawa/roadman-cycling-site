@@ -6,14 +6,14 @@ import { Button, Card, ScrollReveal, ParallaxImage } from "@/components/ui";
 import { JsonLd } from "@/components/seo/JsonLd";
 
 export const metadata: Metadata = {
-  title: "About $€” Anthony Walsh & Roadman Cycling",
+  title: "About â€” Anthony Walsh & Roadman Cycling",
   description:
     "The story behind Roadman Cycling. How Anthony Walsh built a 1M+ listener podcast and a community of serious cyclists who refuse to accept their best days are behind them.",
   alternates: {
     canonical: "https://roadmancycling.com/about",
   },
   openGraph: {
-    title: "About $€” Anthony Walsh & Roadman Cycling",
+    title: "About â€” Anthony Walsh & Roadman Cycling",
     description:
       "The story behind Roadman Cycling. How Anthony Walsh built a 1M+ listener podcast and a community of serious cyclists who refuse to accept their best days are behind them.",
     type: "profile",
@@ -31,15 +31,15 @@ const categoryStyles: Record<ExpertCategory, { label: string; color: string; bor
 
 const expertNetwork: { name: string; role: string; category: ExpertCategory; highlight?: string; slug?: string }[] = [
   { name: "Professor Stephen Seiler", role: "Exercise physiologist", category: "scientist", highlight: "Polarised training pioneer" },
-  { name: "Dan Lorang", role: "Head of Performance, Red Bull$€“Bora$€“Hansgrohe", category: "coach", highlight: "World Tour training methodology" },
+  { name: "Dan Lorang", role: "Head of Performance, Red Bullâ€“Boraâ€“Hansgrohe", category: "coach", highlight: "World Tour training methodology" },
   { name: "Greg LeMond", role: "3Ã— Tour de France winner", category: "athlete", highlight: "American cycling legend" },
   { name: "Lachlan Morton", role: "EF Education pro", category: "athlete", highlight: "Alt-racing pioneer" },
   { name: "Joe Friel", role: "Author, Cyclist's Training Bible", category: "coach", highlight: "Legendary cycling coach" },
   { name: "Dr. David Dunne", role: "Sports science researcher", category: "scientist", highlight: "Performance physiology" },
   { name: "Ben Healy", role: "Pro cyclist, Tour de France", category: "athlete", highlight: "Irish cycling star" },
-  { name: "John Wakefield", role: "Red Bull$€“Bora$€“Hansgrohe coach", category: "coach", highlight: "World Tour performance" },
+  { name: "John Wakefield", role: "Red Bullâ€“Boraâ€“Hansgrohe coach", category: "coach", highlight: "World Tour performance" },
   { name: "Michael Matthews", role: "15+ year World Tour pro", category: "athlete", highlight: "Grand Tour stage winner" },
-  { name: "Dan Bigham", role: "Head of Engineering, Red Bull$€“Bora$€“Hansgrohe", category: "athlete", highlight: "Former UCI Hour Record holder" },
+  { name: "Dan Bigham", role: "Head of Engineering, Red Bullâ€“Boraâ€“Hansgrohe", category: "athlete", highlight: "Former UCI Hour Record holder" },
   { name: "Rosa Kloser", role: "2024 Unbound Gravel 200 winner", category: "athlete", highlight: "Off-road trailblazer" },
   { name: "Tim Spector", role: "ZOE founder, epidemiologist", category: "scientist", highlight: "Nutrition science" },
 ];
@@ -48,7 +48,7 @@ const milestones = [
   { year: "2021", event: "Roadman Cycling Podcast launches", icon: "ðŸŽ™ï¸" },
   { year: "2022", event: "1 million downloads", icon: "ðŸ“ˆ" },
   { year: "2023", event: "Sarah joins the podcast team", icon: "ðŸ¤" },
-  { year: "2024", event: "Greg LeMond interview $€” a career highlight", icon: "ðŸ†" },
+  { year: "2024", event: "Greg LeMond interview â€” a career highlight", icon: "ðŸ†" },
   { year: "2025", event: "1 million monthly listeners", icon: "ðŸ”Š" },
   { year: "2026", event: "Not Done Yet coaching community launches", icon: "ðŸ’ª" },
   { year: "NOW", event: "New site. New era. We're just getting started.", icon: "ðŸš€" },
@@ -57,7 +57,7 @@ const milestones = [
 export default function AboutPage() {
   return (
     <>
-      {/* Full Person entity for Anthony Walsh $€” supports Google Knowledge Panel
+      {/* Full Person entity for Anthony Walsh â€” supports Google Knowledge Panel
           eligibility by linking the same-name entity across Roadman's podcast
           feeds, YouTube, and social platforms. Kept consistent with the founder
           Person inside Organization JsonLd emitted in JsonLd.tsx. */}
@@ -72,7 +72,7 @@ export default function AboutPage() {
             name: "Anthony Walsh",
           },
           description:
-            "Cycling coach and founder of Roadman Cycling. Host of the Roadman Cycling Podcast, with over 1,400 conversations with World Tour coaches, sports scientists, and professional riders $€” including Prof. Stephen Seiler, Dan Lorang, Greg LeMond, and Lachlan Morton.",
+            "Cycling coach and founder of Roadman Cycling. Host of the Roadman Cycling Podcast, with over 1,400 conversations with World Tour coaches, sports scientists, and professional riders â€” including Prof. Stephen Seiler, Dan Lorang, Greg LeMond, and Lachlan Morton.",
           image: "https://roadmancycling.com/images/about/anthony-walsh-podcast.jpg",
           jobTitle: "Cycling Coach & Podcast Host",
           url: "https://roadmancycling.com/about",
@@ -123,11 +123,11 @@ export default function AboutPage() {
                 WHY WE EXIST
               </h1>
               <p className="text-foreground-muted text-xl max-w-3xl mx-auto leading-relaxed">
-                The best information in sport $€” the stuff that actually moves
-                the needle $€” reaches elite athletes first, then the mega-rich,
+                The best information in sport â€” the stuff that actually moves
+                the needle â€” reaches elite athletes first, then the mega-rich,
                 and takes years to filter down to the rest of us. I set out to
                 short-circuit that. To connect you directly with the coaches,
-                scientists, and riders at the tip of the spear $€” so you get
+                scientists, and riders at the tip of the spear â€” so you get
                 the same edge without the wait. Performance, longevity, and a
                 better life on and off the bike. That&apos;s why Roadman exists.
               </p>
@@ -154,7 +154,7 @@ export default function AboutPage() {
                 <div className="relative aspect-[4/3] md:aspect-[9/16] rounded-xl overflow-hidden">
                   <Image
                     src="/images/about/anthony-profile-closeup.jpg"
-                    alt="Anthony Walsh $€” close-up profile after a ride"
+                    alt="Anthony Walsh â€” close-up profile after a ride"
                     fill
                     className="object-cover object-center"
                     sizes="(max-width: 768px) 100vw, 400px"
@@ -183,7 +183,7 @@ export default function AboutPage() {
                 <p>
                   Most of what makes cyclists faster never leaves the team bus.
                   The periodisation models, the nutrition protocols, the recovery
-                  strategies $€” they stay behind closed doors. Roadman Cycling
+                  strategies â€” they stay behind closed doors. Roadman Cycling
                   was built to change that.
                 </p>
               </ScrollReveal>
@@ -192,7 +192,7 @@ export default function AboutPage() {
                 <p>
                   Anthony Walsh started as a cyclist chasing marginal gains with
                   no access to the people who actually understood them. So he
-                  picked up a microphone and went straight to the source $€”
+                  picked up a microphone and went straight to the source â€”
                   the coaches, the scientists, the riders living it every day.
                 </p>
               </ScrollReveal>
@@ -210,7 +210,7 @@ export default function AboutPage() {
 
               <ScrollReveal direction="up" delay={0.25}>
                 <p>
-                  Today, 1 million monthly listeners tune in $€” not casual fans,
+                  Today, 1 million monthly listeners tune in â€” not casual fans,
                   but serious cyclists with families, limited time, and real
                   ambitions on the bike. People who refuse to accept that their
                   best days are behind them.
@@ -227,7 +227,7 @@ export default function AboutPage() {
           </Container>
         </Section>
 
-        {/* Parallax $€” Desert road climb */}
+        {/* Parallax â€” Desert road climb */}
         <ParallaxImage
           src="/images/cycling/gravel-desert-road-epic.jpg"
           alt="Two cyclists climbing a winding road through dramatic desert terrain"
@@ -276,7 +276,7 @@ export default function AboutPage() {
                         }`}
                       />
 
-                      {/* Content card $€” mobile: always right of line, desktop: alternating */}
+                      {/* Content card â€” mobile: always right of line, desktop: alternating */}
                       <div className="pl-12 md:pl-0 md:w-1/2">
                         <div
                           className={`${
@@ -309,7 +309,7 @@ export default function AboutPage() {
           </Container>
         </Section>
 
-        {/* Coaching CTA $€” caught mid-story, highest-intent moment */}
+        {/* Coaching CTA â€” caught mid-story, highest-intent moment */}
         <Section background="charcoal" className="!py-16">
           <Container width="narrow">
             <ScrollReveal direction="up">
@@ -325,7 +325,7 @@ export default function AboutPage() {
                 </h3>
                 <p className="text-foreground-muted text-lg mb-8 max-w-xl mx-auto leading-relaxed">
                   1,400+ conversations with the best coaches, scientists and
-                  riders in the sport $€” distilled into a plan built around
+                  riders in the sport â€” distilled into a plan built around
                   your power numbers, your events, your calendar, your life.
                 </p>
                 <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
@@ -337,7 +337,7 @@ export default function AboutPage() {
                   </Button>
                 </div>
                 <p className="text-foreground-subtle text-sm mt-6">
-                  7-day free trial $· $195/month $· Cancel anytime
+                  7-day free trial Â· $195/month Â· Cancel anytime
                 </p>
               </div>
             </ScrollReveal>
@@ -474,7 +474,7 @@ export default function AboutPage() {
               ))}
             </div>
 
-            {/* CTA $€” apply is primary; free community + press are softer options */}
+            {/* CTA â€” apply is primary; free community + press are softer options */}
             <div className="mt-16 text-center">
               <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
                 <Button href="/apply" size="lg">

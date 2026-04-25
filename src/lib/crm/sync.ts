@@ -122,7 +122,7 @@ export async function syncStripeCustomers(): Promise<{
   const runId = await startRun("stripe");
   const result = emptyResult();
   try {
-    // $”€$”€ 1. Sync customers into contacts (existing behaviour) $”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€
+    // â”€â”€ 1. Sync customers into contacts (existing behaviour) â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
     const customers = await fetchAllCustomers({ limit: MAX_UPSERTS_PER_RUN });
     result.scanned = customers.length;
 
@@ -161,7 +161,7 @@ export async function syncStripeCustomers(): Promise<{
       processed++;
     }
 
-    // $”€$”€ 2. Sync subscription lifecycle into subscribers table $”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€
+    // â”€â”€ 2. Sync subscription lifecycle into subscribers table â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
     // Previously missing: subscribers.paid_at / trial_started_at / churned_at
     // were never set from Stripe, so /admin/funnel, /admin/health and
     // trial-conversion metrics all showed 0. Populate them here so everything
@@ -206,7 +206,7 @@ export async function syncStripeCustomers(): Promise<{
         //   - trialStartedAt: earliest trial_start across this customer's subs
         //   - paidAt: earliest createdAt of an active/past_due sub
         //   - churnedAt: canceled_at of the most recent canceled sub
-        //     (only if no live sub exists $€” a churn-then-resubscribe is "paid")
+        //     (only if no live sub exists â€” a churn-then-resubscribe is "paid")
         const trialStart = rows
           .map((r) => r.trialStart)
           .filter((d): d is Date => d !== null)

@@ -50,7 +50,7 @@ export default async function FunnelPage({
       getCohortData(from, to),
       getSourceBreakdown(from, to),
     ]);
-    // If the DB query succeeded (even with zeros), trust the live numbers $€”
+    // If the DB query succeeded (even with zeros), trust the live numbers $â€”
     // showing demo data when real data is just empty misled us into thinking
     // the site was more active than it was.
     funnel = f;
@@ -58,7 +58,7 @@ export default async function FunnelPage({
     sources = s;
     usingLiveData = true;
   } catch {
-    // DB not available $€” demo data already set
+    // DB not available $â€” demo data already set
   }
 
   const funnelSteps = [

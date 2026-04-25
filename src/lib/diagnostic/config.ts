@@ -4,7 +4,7 @@ import { ctaFor } from "./profiles";
 /**
  * Resolves CTA hrefs for the results page. The static CTA config uses
  * `{{BOOKING_URL}}` as a placeholder so the profile definitions stay
- * pure $€” the actual Cal.com URL is environment-specific and pulled
+ * pure $â€” the actual Cal.com URL is environment-specific and pulled
  * from env here.
  */
 export function resolveCta(

@@ -99,14 +99,14 @@ async function main(): Promise<void> {
   }
 
   console.log("\nSeed summary:");
-  console.log("$”€".repeat(80));
+  console.log("â”€".repeat(80));
   for (const r of results) {
     const pad = (s: string, n: number) => s.padEnd(n);
     console.log(
       `${pad(r.slug, 10)} ${pad(r.email, 35)} ${pad(r.status, 10)} ${r.reason ?? ""}`
     );
   }
-  console.log("$”€".repeat(80));
+  console.log("â”€".repeat(80));
 
   process.exit(0);
 }

@@ -6,7 +6,7 @@ import { requireAuth } from "@/lib/admin/auth";
 
 export const dynamic = "force-dynamic";
 
-// GET /api/admin/ted/log/export $€” stream the last N log entries as JSONL.
+// GET /api/admin/ted/log/export $â€” stream the last N log entries as JSONL.
 // Query: ?limit=N  (default 1000, max 5000)
 export async function GET(request: Request) {
   try {

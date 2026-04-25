@@ -57,7 +57,7 @@ export default async function PersonaPage({
   const persona = getPersona(slug);
   if (!persona) notFound();
 
-  // Resolve curated content bundles $€” posts and episodes that
+  // Resolve curated content bundles â€” posts and episodes that
   // actually exist on disk, skipping anything that doesn't.
   const posts = persona.blogSlugs
     .map((s) => getPostBySlug(s))
@@ -118,7 +118,7 @@ export default async function PersonaPage({
       <Header />
 
       <main id="main-content">
-        {/* Hero $€” recognition statement, not a value prop */}
+        {/* Hero â€” recognition statement, not a value prop */}
         <Section background="deep-purple" grain className="pt-32 pb-16">
           <Container width="narrow" className="text-center">
             <ScrollReveal direction="up" eager>
@@ -138,7 +138,7 @@ export default async function PersonaPage({
           </Container>
         </Section>
 
-        {/* Hero testimonial $€” single punchy quote with stat pull-out */}
+        {/* Hero testimonial â€” single punchy quote with stat pull-out */}
         <Section background="charcoal" className="!py-14">
           <Container width="narrow">
             <ScrollReveal direction="up">
@@ -192,7 +192,7 @@ export default async function PersonaPage({
           </Section>
         )}
 
-        {/* Featured YouTube $€” the anchor conversation */}
+        {/* Featured YouTube â€” the anchor conversation */}
         <Section background="charcoal" className="!pt-0">
           <Container width="narrow">
             <ScrollReveal direction="up">
@@ -224,7 +224,7 @@ export default async function PersonaPage({
           </Container>
         </Section>
 
-        {/* Curated content bundle $€” blogs + podcasts */}
+        {/* Curated content bundle â€” blogs + podcasts */}
         {(posts.length > 0 || episodes.length > 0) && (
           <Section background="deep-purple" grain>
             <Container>
@@ -326,7 +326,7 @@ export default async function PersonaPage({
                             </p>
                             <p className="text-xs text-foreground-subtle">
                               {ep.duration}
-                              {ep.guest && ` $· with ${ep.guest}`}
+                              {ep.guest && ` Â· with ${ep.guest}`}
                             </p>
                           </div>
                         </Link>
@@ -339,7 +339,7 @@ export default async function PersonaPage({
           </Section>
         )}
 
-        {/* Mid-page coaching CTA $€” closes the reading-distance gap between
+        {/* Mid-page coaching CTA â€” closes the reading-distance gap between
             the content bundle and the testimonial wall. Plateau and event
             get a diagnostic-gated soft CTA higher up; comeback and listener
             have no /apply touchpoint between hero and end-of-page without
@@ -362,7 +362,7 @@ export default async function PersonaPage({
           </Container>
         </Section>
 
-        {/* Testimonial wall $€” 6 more quotes tagged for this persona */}
+        {/* Testimonial wall â€” 6 more quotes tagged for this persona */}
         {wallTestimonials.length > 0 && (
           <Section background="charcoal" className="section-glow-coral">
             <Container>
@@ -435,7 +435,7 @@ export default async function PersonaPage({
                 </p>
                 <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
                   <Button href="/apply" size="lg">
-                    Apply $€” 7-Day Free Trial
+                    Apply â€” 7-Day Free Trial
                   </Button>
                   <Button href="/coaching" variant="ghost" size="lg">
                     How Coaching Works
@@ -449,7 +449,7 @@ export default async function PersonaPage({
           </Container>
         </Section>
 
-        {/* Saturday Spin $€” soft fallback for the not-ready-to-apply visitor */}
+        {/* Saturday Spin â€” soft fallback for the not-ready-to-apply visitor */}
         <EmailCapture
           variant="banner"
           heading="NOT READY TO APPLY? START WITH THE SATURDAY SPIN."

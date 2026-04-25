@@ -4,7 +4,7 @@ import { useState } from "react";
 
 /**
  * Email capture form for /results. Posts to /api/results/request-link
- * which always returns success $€” no information leaked about which
+ * which always returns success â€” no information leaked about which
  * emails we actually have on file. The UI shows a generic "check your
  * inbox" confirmation regardless.
  */
@@ -41,7 +41,7 @@ export function RequestLinkForm({ tokenStatus }: { tokenStatus?: "expired" | "in
 
   const bannerMsg =
     tokenStatus === "expired"
-      ? "That link has expired. We can send a fresh one $€” enter your email below."
+      ? "That link has expired. We can send a fresh one â€” enter your email below."
       : tokenStatus === "invalid"
       ? "That link doesn't look right. Enter your email and we'll send a working one."
       : null;
@@ -57,7 +57,7 @@ export function RequestLinkForm({ tokenStatus }: { tokenStatus?: "expired" | "in
       <p className="text-foreground-muted text-sm mb-5 leading-relaxed">
         Every plateau diagnostic, fuelling plan, and FTP zone table you&apos;ve
         saved lives on one page. Enter the email you used and we&apos;ll send a
-        signed link that opens it $€” good for seven days.
+        signed link that opens it â€” good for seven days.
       </p>
 
       {bannerMsg && (
@@ -73,7 +73,7 @@ export function RequestLinkForm({ tokenStatus }: { tokenStatus?: "expired" | "in
           </p>
           <p className="text-foreground-muted text-sm">
             If we have results on file for that email, a link is on its way.
-            Give it a minute to land $€” and peek in spam if you don&apos;t see
+            Give it a minute to land â€” and peek in spam if you don&apos;t see
             it.
           </p>
         </div>
@@ -94,7 +94,7 @@ export function RequestLinkForm({ tokenStatus }: { tokenStatus?: "expired" | "in
             disabled={status === "submitting"}
             className="px-5 py-3 rounded-lg bg-coral hover:bg-coral-hover text-off-white font-heading text-sm tracking-wider disabled:opacity-60 disabled:cursor-not-allowed transition-colors"
           >
-            {status === "submitting" ? "SENDING$€¦" : "SEND LINK"}
+            {status === "submitting" ? "SENDINGâ€¦" : "SEND LINK"}
           </button>
         </form>
       )}

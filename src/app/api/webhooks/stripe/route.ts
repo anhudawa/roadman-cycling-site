@@ -143,7 +143,7 @@ export async function POST(request: NextRequest) {
     }
 
     default:
-      // Unhandled event type $€” log and acknowledge
+      // Unhandled event type $â€” log and acknowledge
       console.log(`Unhandled Stripe event type: ${event.type}`);
   }
 
@@ -210,14 +210,14 @@ async function handleCheckoutCompleted(
 }
 
 /* ============================================================ */
-/* Paid report $€” checkout completed                              */
+/* Paid report $â€” checkout completed                              */
 /* ============================================================ */
 /**
  * Webhook branch for paid-report checkouts. Flow:
- *  1. Dedupe by event id $€” Stripe retries, we don't re-generate.
+ *  1. Dedupe by event id $â€” Stripe retries, we don't re-generate.
  *  2. Flip the order to paid (idempotent).
  *  3. Flip the paid_report row to payment_confirmed.
- *  4. Fire the async generator $€” it owns the rest of the lifecycle.
+ *  4. Fire the async generator $â€” it owns the rest of the lifecycle.
  *  5. Refresh lead score so admin sees the new paying rider.
  */
 async function handlePaidReportCheckoutCompleted(
@@ -256,7 +256,7 @@ async function handlePaidReportCheckoutCompleted(
 
   if (!flipped) {
     console.log(
-      `[Stripe Webhook] paid_report order ${orderId} already paid $€” skipping`,
+      `[Stripe Webhook] paid_report order ${orderId} already paid $â€” skipping`,
     );
     return;
   }
@@ -283,7 +283,7 @@ async function handlePaidReportCheckoutCompleted(
     orderId,
   });
 
-  // Lead score refresh $€” non-fatal.
+  // Lead score refresh $â€” non-fatal.
   const riderProfileId = Number(metadata.rider_profile_id);
   if (riderProfileId) {
     void refreshLeadScore(riderProfileId).catch((err) =>
@@ -298,7 +298,7 @@ async function handlePaidReportCheckoutCompleted(
 }
 
 /* ============================================================ */
-/* Paid report $€” refund handler                                  */
+/* Paid report $â€” refund handler                                  */
 /* ============================================================ */
 async function handlePaidReportRefund(charge: Stripe.Charge, eventId: string) {
   const paymentIntentId =
@@ -307,7 +307,7 @@ async function handlePaidReportRefund(charge: Stripe.Charge, eventId: string) {
       : charge.payment_intent?.id ?? null;
   if (!paymentIntentId) return;
 
-  // Find the order by payment intent $€” we may have multiple orders in the
+  // Find the order by payment intent $â€” we may have multiple orders in the
   // DB so scan. Refunds are rare enough that a sequential scan is fine.
   const { db } = await import("@/lib/db");
   const { orders: ordersTable } = await import("@/lib/db/schema");

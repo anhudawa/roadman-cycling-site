@@ -60,7 +60,7 @@ export default function ContactPage() {
           </Container>
         </Section>
 
-        {/* Response expectations + team transparency $€” moves the contact
+        {/* Response expectations + team transparency $â€” moves the contact
             experience from "founder-only" to "real organisation that
             replies to emails". */}
         <Section background="charcoal" className="!pt-8 !pb-2">

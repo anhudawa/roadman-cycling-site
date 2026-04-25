@@ -63,7 +63,7 @@ function EpisodeCard({ episode }: { episode: Episode }) {
         month: "short",
         year: "numeric",
       })
-    : "$€”";
+    : "$â€”";
 
   return (
     <Link
@@ -112,7 +112,7 @@ export default async function ContentPipelinePage({
   try {
     episodes = await getEpisodes(activeFilter === "all" ? undefined : activeFilter);
   } catch {
-    // DB not provisioned $€” empty state shown below
+    // DB not provisioned $â€” empty state shown below
   }
 
   return (

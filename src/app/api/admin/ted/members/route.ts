@@ -13,7 +13,7 @@ interface UpsertRow {
   topicTags: string[];
 }
 
-// POST /api/admin/ted/members $€” CSV upsert.
+// POST /api/admin/ted/members $â€” CSV upsert.
 // Body: { csv: string }
 // CSV shape: member_id,first_name,topic_tags  (topic_tags comma-separated inside a quoted field)
 export async function POST(request: Request) {

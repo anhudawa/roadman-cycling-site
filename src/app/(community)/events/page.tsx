@@ -4,14 +4,14 @@ import { JsonLd } from "@/components/seo/JsonLd";
 import { EventsClient } from "@/components/features/events/EventsClient";
 
 export const metadata: Metadata = {
-  title: "Events $€” Weekly Rides, Coaching Calls & Community",
+  title: "Events $â€” Weekly Rides, Coaching Calls & Community",
   description:
     "Join the Roadman Cycling community for weekly group rides in Dublin, live coaching calls, and structured training sessions. All levels welcome.",
   alternates: {
     canonical: "https://roadmancycling.com/events",
   },
   openGraph: {
-    title: "Events $€” Weekly Rides, Coaching Calls & Community",
+    title: "Events $â€” Weekly Rides, Coaching Calls & Community",
     description:
       "Join the Roadman Cycling community for weekly group rides in Dublin, live coaching calls, and structured training sessions.",
     type: "website",

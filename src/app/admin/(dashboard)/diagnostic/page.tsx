@@ -10,10 +10,10 @@ import { isProfile, type Profile } from "@/lib/diagnostic/types";
 import { RegenerateButton } from "./RegenerateButton";
 
 /**
- * Admin stats page for the Masters Plateau Diagnostic ($§15).
+ * Admin stats page for the Masters Plateau Diagnostic (Â§15).
  * Summary counts, breakdown by profile, recent submissions with a
  * link into each individual result page. The regenerate control lives
- * on the per-submission row $€” it POSTs to the admin-gated regenerate
+ * on the per-submission row â€” it POSTs to the admin-gated regenerate
  * endpoint and reloads.
  */
 
@@ -103,7 +103,7 @@ export default async function AdminDiagnosticPage({
         </Link>
       </header>
 
-      {/* $”€$”€ Top-level counts $”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€ */}
+      {/* â”€â”€ Top-level counts â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */}
       <section className="grid grid-cols-2 md:grid-cols-4 gap-4">
         <StatCard label="Total submissions" value={stats.total} />
         <StatCard label="Last 7 days" value={stats.last7d} />
@@ -111,11 +111,11 @@ export default async function AdminDiagnosticPage({
         <StatCard
           label="LLM success rate"
           value={`${stats.llmSuccessRate.toFixed(0)}%`}
-          hint="Validated outputs from Claude vs total (rest are $§9 fallbacks)"
+          hint="Validated outputs from Claude vs total (rest are Â§9 fallbacks)"
         />
       </section>
 
-      {/* $”€$”€ Breakdown by profile $”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€ */}
+      {/* â”€â”€ Breakdown by profile â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */}
       <section className="rounded-md bg-white/5 border border-white/10 p-5">
         <h2 className="text-lg font-semibold text-white mb-4">
           By profile
@@ -139,7 +139,7 @@ export default async function AdminDiagnosticPage({
                   {pct.toFixed(0)}% of total
                 </p>
                 <p className="text-xs text-foreground-subtle mt-2 leading-relaxed">
-                  {PROFILE_BREAKDOWNS[profile].diagnosis.slice(0, 120)}$€¦
+                  {PROFILE_BREAKDOWNS[profile].diagnosis.slice(0, 120)}â€¦
                 </p>
               </div>
             );
@@ -147,7 +147,7 @@ export default async function AdminDiagnosticPage({
         </div>
       </section>
 
-      {/* $”€$”€ Recent submissions $”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€ */}
+      {/* â”€â”€ Recent submissions â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */}
       <section className="rounded-md bg-white/5 border border-white/10 p-5">
         <div className="flex items-baseline justify-between mb-4 flex-wrap gap-3">
           <h2 className="text-lg font-semibold text-white">
@@ -170,7 +170,7 @@ export default async function AdminDiagnosticPage({
           <FilterTabLink current={filter} value="llm" label="LLM" />
           <FilterTabLink current={filter} value="fallback" label="Fallback" />
           <FilterTabLink current={filter} value="multi" label="Multi-system" />
-          <span className="mx-1 text-foreground-subtle">$·</span>
+          <span className="mx-1 text-foreground-subtle">Â·</span>
           {ALL_PROFILES.map((p) => (
             <FilterTabLink
               key={p}
@@ -241,19 +241,19 @@ export default async function AdminDiagnosticPage({
                       </div>
                     </td>
                     <td className="py-2 pr-4 text-xs">
-                      {r.utmCampaign ?? "$€”"}
+                      {r.utmCampaign ?? "â€”"}
                     </td>
                     <td className="py-2 pr-4 text-xs text-foreground-subtle">
-                      {r.utmContent ?? "$€”"}
+                      {r.utmContent ?? "â€”"}
                     </td>
                     <td className="py-2 pr-4 text-right whitespace-nowrap">
                       <RegenerateButton slug={r.slug} />
-                      <span className="mx-2 text-foreground-subtle">$·</span>
+                      <span className="mx-2 text-foreground-subtle">Â·</span>
                       <Link
                         href={`/admin/diagnostic/${r.slug}`}
                         className="text-xs text-[var(--color-bad)] hover:underline"
                       >
-                        QA $†’
+                        QA â†’
                       </Link>
                     </td>
                   </tr>

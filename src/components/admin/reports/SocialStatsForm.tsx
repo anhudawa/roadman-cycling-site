@@ -48,7 +48,7 @@ export function SocialStatsForm({ sponsorId, month, initial }: Props) {
         disabled={pending}
         className="mt-4 rounded-md bg-[#F16363] px-4 py-2 font-semibold text-white hover:bg-[#e14d4d] disabled:opacity-50"
       >
-        {pending ? 'Saving$€¦' : saved ? 'Saved $œ“' : 'Save'}
+        {pending ? 'Savingâ€¦' : saved ? 'Saved âœ“' : 'Save'}
       </button>
     </form>
   );

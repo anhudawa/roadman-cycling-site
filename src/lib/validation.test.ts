@@ -97,7 +97,7 @@ describe("escapeHtml", () => {
     const malicious = `<img src=x onerror="alert('pwn')">`;
     const safe = escapeHtml(malicious);
     // The dangerous bits are the tag brackets and the quotes that
-    // delimit the attribute $€” once those are escaped, the browser
+    // delimit the attribute â€” once those are escaped, the browser
     // renders the whole thing as visible text, which is fine.
     expect(safe).not.toContain("<img");
     expect(safe).not.toContain(">");
@@ -109,7 +109,7 @@ describe("escapeHtml", () => {
 
   it("is idempotent for already-escaped strings after one pass", () => {
     // Important because an attacker could double-encode to bypass.
-    // Our escape converts & $†’ &amp;, so escape(escape(x)) is NOT
+    // Our escape converts & â†’ &amp;, so escape(escape(x)) is NOT
     // identical to escape(x). We escape exactly once before using
     // in HTML; consumers shouldn't double-apply.
     const once = escapeHtml("a & b");

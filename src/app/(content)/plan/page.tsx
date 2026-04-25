@@ -9,7 +9,7 @@ import { getAllPosts } from "@/lib/blog";
 export const metadata: Metadata = {
   title: "Cycling Training Plans by Event and Weeks Out",
   description:
-    "Event-specific cycling training plans for the Wicklow 200, Ride London, Fred Whitton, Ã‰tape du Tour, Maratona Dolomites and more. Structured by weeks out from your event $€” base, build, peak, taper.",
+    "Event-specific cycling training plans for the Wicklow 200, Ride London, Fred Whitton, Ã‰tape du Tour, Maratona Dolomites and more. Structured by weeks out from your event â€” base, build, peak, taper.",
   alternates: {
     canonical: "https://roadmancycling.com/plan",
   },
@@ -116,9 +116,9 @@ export default function PlanIndexPage() {
                     </div>
                     <div className="flex flex-wrap gap-x-3 gap-y-1 text-xs text-foreground-subtle mb-4">
                       <span>{e.distanceKm} km</span>
-                      <span className="opacity-50">$·</span>
+                      <span className="opacity-50">Â·</span>
                       <span>{e.elevationGainM.toLocaleString()} m</span>
-                      <span className="opacity-50">$·</span>
+                      <span className="opacity-50">Â·</span>
                       <span>{e.defaultMonth}</span>
                     </div>
                     <p className="text-foreground-muted text-sm leading-relaxed mb-5 flex-1">
@@ -132,7 +132,7 @@ export default function PlanIndexPage() {
                           className="flex items-center justify-between px-3 py-2 rounded-lg border border-white/10 hover:border-coral/30 hover:bg-white/[0.04] transition-all text-sm"
                         >
                           <span className="text-foreground-muted">
-                            {p.weeksOut} weeks out $· {p.label}
+                            {p.weeksOut} weeks out Â· {p.label}
                           </span>
                           <span className="text-coral">&rarr;</span>
                         </Link>
@@ -159,7 +159,7 @@ export default function PlanIndexPage() {
                 HOW THE PLAN CHANGES OVER TIME
               </h2>
               <p className="text-foreground-muted text-base md:text-lg leading-relaxed max-w-2xl mx-auto mt-5">
-                Every plan moves through the same phases $€” base, build, peak, taper. The ratio shifts as you get closer to the event. Below is what each phase looks like in isolation.
+                Every plan moves through the same phases â€” base, build, peak, taper. The ratio shifts as you get closer to the event. Below is what each phase looks like in isolation.
               </p>
             </ScrollReveal>
             <div className="space-y-4">

@@ -16,7 +16,7 @@ interface ScrollRevealProps {
   /**
    * Skip the reveal animation entirely. The default SSR-safe behaviour
    * already keeps above-the-fold content visible on first paint, so pass
-   * `eager` only when you want to permanently opt out of the reveal $€”
+   * `eager` only when you want to permanently opt out of the reveal $â€”
    * e.g. static brand/hero content that should never animate.
    */
   eager?: boolean;
@@ -32,7 +32,7 @@ const directionOffsets: Record<RevealDirection, { x: number; y: number }> = {
 
 /**
  * SSR renders a plain visible `<div>` (so Googlebot and no-JS users see
- * fully rendered HTML). After hydration we measure the element's position $€”
+ * fully rendered HTML). After hydration we measure the element's position $â€”
  * anything already in the viewport stays as a plain div, anything below the
  * fold swaps to a motion.div that reveals on scroll.
  *
@@ -64,7 +64,7 @@ export function ScrollReveal({
         return;
       }
       // If the element is already in (or near) the viewport at hydration time
-      // the user already saw it rendered by SSR $€” don't flash opacity:0 at
+      // the user already saw it rendered by SSR $â€” don't flash opacity:0 at
       // them. Only animate the reveal for content still below the fold when
       // JS boots.
       const rect = ref.current?.getBoundingClientRect();

@@ -33,7 +33,7 @@ interface ResendEvent {
  *   svix-id, svix-timestamp, svix-signature
  * where svix-signature is a space-separated list of "v1,<base64>".
  * The signed string is `${id}.${timestamp}.${body}` and the secret is
- * delivered as `whsec_<base64>` $€” strip the prefix before decoding.
+ * delivered as `whsec_<base64>` $â€” strip the prefix before decoding.
  */
 function verifySvixSignature(
   rawBody: string,
@@ -88,7 +88,7 @@ export async function POST(request: Request) {
   // fabricated events to this endpoint.
   if (!secret) {
     console.error(
-      "[resend webhook] RESEND_WEBHOOK_SECRET not set $€” rejecting event"
+      "[resend webhook] RESEND_WEBHOOK_SECRET not set $â€” rejecting event"
     );
     return NextResponse.json(
       { error: "Webhook secret not configured" },
@@ -119,7 +119,7 @@ export async function POST(request: Request) {
     .limit(1);
   const message = matches[0];
   if (!message) {
-    // Non-CRM email or unmatched $€” silently accept.
+    // Non-CRM email or unmatched $â€” silently accept.
     return NextResponse.json({ ok: true });
   }
 
@@ -187,7 +187,7 @@ export async function POST(request: Request) {
       break;
     }
     default:
-      // Unknown event $€” accept silently.
+      // Unknown event $â€” accept silently.
       break;
   }
 

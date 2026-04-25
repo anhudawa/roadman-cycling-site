@@ -1,4 +1,4 @@
-# Blog Accuracy Audit $€“ Slice AA (32 posts)
+# Blog Accuracy Audit â€“ Slice AA (32 posts)
 
 **Auditor:** Fact-check agent AA
 **Date:** 2026-04-23
@@ -6,7 +6,7 @@
 
 ## 1. Files edited (17 of 32)
 
-The 15 files not edited were reviewed in full and found to contain no factual errors requiring correction and no claims where a peer-reviewed citation would add meaningful rigour (mostly geo / logistical / opinion posts, and coach-guide posts where citation density guidance was 0$€“2).
+The 15 files not edited were reviewed in full and found to contain no factual errors requiring correction and no claims where a peer-reviewed citation would add meaningful rigour (mostly geo / logistical / opinion posts, and coach-guide posts where citation density guidance was 0â€“2).
 
 Edited:
 
@@ -33,13 +33,13 @@ Edited:
 
 ## 2. Factual corrections made
 
-### 2.1 Badlands elevation gain: 20,000m $†’ ~16,000m
+### 2.1 Badlands elevation gain: 20,000m â†’ ~16,000m
 **File:** `badlands-800km-fuelling-strategy.mdx`
 **Before:** "20,000m of climbing" (answerCapsule + body)
 **After:** "roughly 16,000m of climbing"
 **Source:** Official Badlands race site and multiple independent race reports consistently describe the course as ~800km / ~16,000m of elevation gain. The 20,000m figure in the original copy was not supported by the organiser's own numbers.
 
-### 2.2 Podcast episode count: 1,400 $†’ 1,300
+### 2.2 Podcast episode count: 1,400 â†’ 1,300
 **File:** `best-cycling-podcasts-for-2026-edition.mdx` (line 153)
 **Before:** "Over 1,400 guest interviews"
 **After:** "Over 1,300 guest interviews"
@@ -48,25 +48,25 @@ Edited:
 ### 2.3 Royal Canal Greenway start point
 **File:** `best-gravel-trails-ireland.mdx`
 **Before:** "from Dublin's north inner city all the way to Cloondara in County Longford"
-**After:** "from Maynooth in County Kildare through to Cloondara in County Longford $€¦ ongoing extensions are pushing the waymarked route further east"
-**Source:** Waterways Ireland / Royal Canal Amenity Group. The 130km waymarked greenway runs Maynooth $†’ Cloondara; the Maynooth-to-Dublin section is being upgraded but is not yet a dedicated greenway along the full length.
+**After:** "from Maynooth in County Kildare through to Cloondara in County Longford â€¦ ongoing extensions are pushing the waymarked route further east"
+**Source:** Waterways Ireland / Royal Canal Amenity Group. The 130km waymarked greenway runs Maynooth â†’ Cloondara; the Maynooth-to-Dublin section is being upgraded but is not yet a dedicated greenway along the full length.
 
 ### 2.4 IMT / breathing "6% FTP gain" claim softened to evidence-supported range
 **File:** `breathing-techniques-cycling-performance.mdx`
 **Before:** seoTitle "6% FTP Gains (2026)"; body repeatedly stated "FTP improvements of up to 6%" attributed to a single unnamed study.
-**After:** seoTitle "What the Research Shows (2026)"; body cites Romer et al. (PMID 17874123) with realistic effect sizes (2$€“5% TT performance improvement, ~10% at ventilatory thresholds).
-**Source:** Romer, McConnell & Jones, J Appl Physiol / Sports Med literature $€” https://pubmed.ncbi.nlm.nih.gov/17874123/ . The "6% FTP" headline was not traceable to a specific peer-reviewed result; the corrected ranges are.
+**After:** seoTitle "What the Research Shows (2026)"; body cites Romer et al. (PMID 17874123) with realistic effect sizes (2â€“5% TT performance improvement, ~10% at ventilatory thresholds).
+**Source:** Romer, McConnell & Jones, J Appl Physiol / Sports Med literature â€” https://pubmed.ncbi.nlm.nih.gov/17874123/ . The "6% FTP" headline was not traceable to a specific peer-reviewed result; the corrected ranges are.
 
-### 2.5 FTP decline per 1,000m altitude: 5% $†’ 6$€“7%
+### 2.5 FTP decline per 1,000m altitude: 5% â†’ 6â€“7%
 **File:** `cycling-altitude-training.mdx`
 **Before:** "FTP drops roughly 5% per 1,000m of elevation"
-**After:** "FTP drops roughly 6$€“7% per 1,000m of elevation above your home altitude for trained cyclists"
-**Source:** Wehrlin & HallÃ©n (2006), PMID 16311764 $€” linear decrease in VO2max ~6.3%/1000m in well-trained athletes; other studies land 6$€“9%. 5% was too generous.
+**After:** "FTP drops roughly 6â€“7% per 1,000m of elevation above your home altitude for trained cyclists"
+**Source:** Wehrlin & HallÃ©n (2006), PMID 16311764 â€” linear decrease in VO2max ~6.3%/1000m in well-trained athletes; other studies land 6â€“9%. 5% was too generous.
 
 ### 2.6 Masters muscle-loss rate softened
 **File:** `best-cycling-coach-masters-riders.mdx`
-**Before:** "Sarcopenia $€¦ progresses at about 1% per year without intervention"; FAQ: "muscle mass declines at roughly 1% per year"
-**After:** "~3$€“8% per decade from the 30s onwards, accelerating after 60" with citation to Cruz-Jentoft & Sayer (PMID 30427277)
+**Before:** "Sarcopenia â€¦ progresses at about 1% per year without intervention"; FAQ: "muscle mass declines at roughly 1% per year"
+**After:** "~3â€“8% per decade from the 30s onwards, accelerating after 60" with citation to Cruz-Jentoft & Sayer (PMID 30427277)
 **Source:** Lancet 2019 sarcopenia review. The "1%/yr across the board" formulation is overstated for the 40s (and under-states later decades).
 
 ### 2.7 Pollock/Trappe/Hagberg masters-decline citation added with specific paper
@@ -76,7 +76,7 @@ Edited:
 
 ## 3. Citations added (inline `[text](url)` links)
 
-Citation density kept deliberately low (target 3$€“6 for training-science posts, 0$€“2 for editorial/comparison posts, 0 for geo/plan posts). Preferred source used in each case.
+Citation density kept deliberately low (target 3â€“6 for training-science posts, 0â€“2 for editorial/comparison posts, 0 for geo/plan posts). Preferred source used in each case.
 
 | File | Claim | Citation |
 |---|---|---|
@@ -109,43 +109,43 @@ Citation density kept deliberately low (target 3$€“6 for training-science posts,
 
 ## 4. Softened claims
 
-### 4.1 "90$€“120 g/hr" attributed broadly to Jeukendrup
-Several posts equated "90$€“120 g/hr" with Jeukendrup's established research. In reality Jeukendrup's classic data establishes ~90 g/hr as the oxidation ceiling with multiple transportable CHO; the 120 g/hr figure is more recent and less well-established. Where I could, I reframed as "around 90 g/hr (with emerging evidence for up to 120 g/hr)" rather than implying Jeukendrup personally established 120. Files affected: `alex-larson-body-composition-cyclists.mdx`, `common-training-mistakes-from-1300-podcast-episodes.mdx`. (`best-cycling-podcast-for-triathletes.mdx` still quotes the 90$€“120 band but correctly frames it as "current guidance from Asker Jeukendrup's carbohydrate oxidation research and performance coaches" $€” i.e. not solely Jeukendrup.)
+### 4.1 "90â€“120 g/hr" attributed broadly to Jeukendrup
+Several posts equated "90â€“120 g/hr" with Jeukendrup's established research. In reality Jeukendrup's classic data establishes ~90 g/hr as the oxidation ceiling with multiple transportable CHO; the 120 g/hr figure is more recent and less well-established. Where I could, I reframed as "around 90 g/hr (with emerging evidence for up to 120 g/hr)" rather than implying Jeukendrup personally established 120. Files affected: `alex-larson-body-composition-cyclists.mdx`, `common-training-mistakes-from-1300-podcast-episodes.mdx`. (`best-cycling-podcast-for-triathletes.mdx` still quotes the 90â€“120 band but correctly frames it as "current guidance from Asker Jeukendrup's carbohydrate oxidation research and performance coaches" â€” i.e. not solely Jeukendrup.)
 
 ### 4.2 Seiler-on-Badlands removed (not a Seiler topic)
-In `badlands-800km-fuelling-strategy.mdx` the phrase "Prof. Stephen Seiler's work on intensity distribution reinforces this indirectly $€” athletes who manage energy in the early hours of hard events preserve the capacity to perform in the final third" attributed an energy-management claim to Seiler that his polarised-training work doesn't cover. Rewritten to a generic principle without attribution.
+In `badlands-800km-fuelling-strategy.mdx` the phrase "Prof. Stephen Seiler's work on intensity distribution reinforces this indirectly â€” athletes who manage energy in the early hours of hard events preserve the capacity to perform in the final third" attributed an energy-management claim to Seiler that his polarised-training work doesn't cover. Rewritten to a generic principle without attribution.
 
 ### 4.3 "6% FTP" softened across breathing post
-See $§2.4 above.
+See Â§2.4 above.
 
 ## 5. Flagged for human review
 
 - **`best-cycling-podcasts-2026.mdx`: "100 million downloads and counting."** I could not verify or refute the aggregate download number for the Roadman Cycling Podcast. Flagging for Anthony to confirm. (Left as-is.)
 - **`best-cycling-podcasts-2026.mdx`: "The 2-part Greg LeMond interview is the most downloaded episode in the show's history."** Similarly internal-data-dependent; left as-is but flagged.
 - **`age-group-ftp-benchmarks-2026.mdx`: Coggan W/kg tables.** The bands used in the post are widely attributed to Hunter Allen / Andrew Coggan's *Training and Racing with a Power Meter* and to Coggan's published reference tables. There is no free peer-reviewed URL to link to; the book is the authoritative source. Left unlinked rather than linking to a weak secondary source.
-- **`best-cycling-coach-masters-riders.mdx`: "One Roadman athlete, Brian Morrissey, added 15% to his FTP at age 52".** Internal client claim $€” not verifiable externally. Assumed true per the coaching-case-study convention established site-wide.
+- **`best-cycling-coach-masters-riders.mdx`: "One Roadman athlete, Brian Morrissey, added 15% to his FTP at age 52".** Internal client claim â€” not verifiable externally. Assumed true per the coaching-case-study convention established site-wide.
 - **`aero-vs-weight-cyclist.mdx`: CdA / wattage worked examples.** The illustrative numbers (e.g. "270 W at 40 km/h on standard road bike", "dropping 1 kg saves about 0.5 W at 40 km/h flat") are within the range produced by bikecalculator.com and similar aero calculators but are illustrative rather than sourced from a single study. Left as-is; they are clearly framed as worked examples, not empirical findings.
-- **`breathing-techniques-cycling-performance.mdx`: "Dr. Sellers" / "episode 28".** I could not find a "Dr. Sellers" from Roadman episode 28 in my searches $€” this may be an internal name or a transliteration error. Left as-is per the instruction to leave named-practitioner citations to Anthony.
-- **`best-cycling-coach-ireland.mdx`**: references "Cycling Ireland Level 3" $€” Cycling Ireland's public pathway typically runs through Level 1 and Level 2 with British Cycling Level 3 as the UK equivalent. The post says "Level 3 is rare and serious", which is ambiguously accurate. Left unchanged.
-- **`best-cycling-training-podcasts-age-groupers.mdx`** describes Fast Talk "now in its eighth year" $€” unable to verify launch date without access to the show's archive. Left unchanged.
+- **`breathing-techniques-cycling-performance.mdx`: "Dr. Sellers" / "episode 28".** I could not find a "Dr. Sellers" from Roadman episode 28 in my searches â€” this may be an internal name or a transliteration error. Left as-is per the instruction to leave named-practitioner citations to Anthony.
+- **`best-cycling-coach-ireland.mdx`**: references "Cycling Ireland Level 3" â€” Cycling Ireland's public pathway typically runs through Level 1 and Level 2 with British Cycling Level 3 as the UK equivalent. The post says "Level 3 is rare and serious", which is ambiguously accurate. Left unchanged.
+- **`best-cycling-training-podcasts-age-groupers.mdx`** describes Fast Talk "now in its eighth year" â€” unable to verify launch date without access to the show's archive. Left unchanged.
 
 ## 6. Expert-attribution guardrails
 
 Every expert-attribution trigger name in the guardrail list was scanned across the 32 files. Results:
 
-- **Dan Lorang** $€” always paired with Frodeno / Haug / Lucy Charles-Barclay and / or described as "Head of Performance at Red Bull-Bora-Hansgrohe". No Gustav Iden / Kristian Blummenfelt attribution anywhere. $œ“
-- **Tim Spector** $€” only referenced in `best-cycling-training-podcasts-age-groupers.mdx` and `best-indoor-cycling-podcasts-winter.mdx`, correctly framed around ZOE / microbiome / personalised nutrition. $œ“
-- **Dan Bigham** $€” always "former UCI Hour Record holder" and / or "Head of Engineering at Red Bull-Bora-Hansgrohe". No "Ineos Grenadiers" attribution anywhere. $œ“
-- **Rosa Kloser** $€” no references in slice AA. $œ“
-- **Greg LeMond** $€” one reference in `best-cycling-podcasts-2026.mdx`, simply "Greg LeMond interview". No 2Ã— claim. $œ“
-- **Lachlan Morton** $€” one reference in `best-cycling-podcasts-for-2026-edition.mdx` and one in `best-cycling-podcasts-2026.mdx`, no Tour Divide FKT numbers cited. $œ“
-- **Stephen Seiler** $€” always "University of Agder", always polarised / 80-20. $œ“
-- **Joe Friel** $€” correctly cited as author of *The Cyclist's Training Bible*. $œ“
-- **Anthony Walsh** $€” "1,300+ episodes" throughout slice AA after the one-line fix in $§2.2. No "1,400+" remaining. $œ“
+- **Dan Lorang** â€” always paired with Frodeno / Haug / Lucy Charles-Barclay and / or described as "Head of Performance at Red Bull-Bora-Hansgrohe". No Gustav Iden / Kristian Blummenfelt attribution anywhere. âœ“
+- **Tim Spector** â€” only referenced in `best-cycling-training-podcasts-age-groupers.mdx` and `best-indoor-cycling-podcasts-winter.mdx`, correctly framed around ZOE / microbiome / personalised nutrition. âœ“
+- **Dan Bigham** â€” always "former UCI Hour Record holder" and / or "Head of Engineering at Red Bull-Bora-Hansgrohe". No "Ineos Grenadiers" attribution anywhere. âœ“
+- **Rosa Kloser** â€” no references in slice AA. âœ“
+- **Greg LeMond** â€” one reference in `best-cycling-podcasts-2026.mdx`, simply "Greg LeMond interview". No 2Ã— claim. âœ“
+- **Lachlan Morton** â€” one reference in `best-cycling-podcasts-for-2026-edition.mdx` and one in `best-cycling-podcasts-2026.mdx`, no Tour Divide FKT numbers cited. âœ“
+- **Stephen Seiler** â€” always "University of Agder", always polarised / 80-20. âœ“
+- **Joe Friel** â€” correctly cited as author of *The Cyclist's Training Bible*. âœ“
+- **Anthony Walsh** â€” "1,300+ episodes" throughout slice AA after the one-line fix in Â§2.2. No "1,400+" remaining. âœ“
 
 ## 7. Build verification
 
-`npx tsc --noEmit --project tsconfig.json` $†’ PASS.
+`npx tsc --noEmit --project tsconfig.json` â†’ PASS.
 
 ## 8. Commit hash
 

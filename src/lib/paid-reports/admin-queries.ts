@@ -12,7 +12,7 @@ import { asOrderStatus, asPaidReportStatus } from "./types";
 /**
  * Read-only queries that power the admin dashboards for paid reports
  * and the diagnostic framework. Everything here is admin-only and
- * returns compact row shapes $€” the full domain objects live in the
+ * returns compact row shapes $â€” the full domain objects live in the
  * dedicated stores.
  */
 

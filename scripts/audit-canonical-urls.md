@@ -1,4 +1,4 @@
-# Canonical URL Audit $€” 2026-04-07
+# Canonical URL Audit â€” 2026-04-07
 
 ## Site URL
 
@@ -7,7 +7,7 @@
 ## Convention Enforced
 
 - **No trailing slash** on any canonical URL (matches Next.js default `trailingSlash: false`)
-- **No www prefix** $€” bare domain `roadmancycling.com` is canonical
+- **No www prefix** â€” bare domain `roadmancycling.com` is canonical
 - `metadataBase` set in root layout to `https://roadmancycling.com`
 
 ## Issues Found and Fixed
@@ -15,8 +15,8 @@
 ### 1. www vs non-www inconsistency
 
 **Files changed:**
-- `src/app/layout.tsx` $€” RSS feed `<link>` used `www.roadmancycling.com`, changed to `roadmancycling.com`
-- `src/app/feed/podcast/route.ts` $€” `SITE_URL` constant used `www.roadmancycling.com`, changed to `roadmancycling.com`
+- `src/app/layout.tsx` â€” RSS feed `<link>` used `www.roadmancycling.com`, changed to `roadmancycling.com`
+- `src/app/feed/podcast/route.ts` â€” `SITE_URL` constant used `www.roadmancycling.com`, changed to `roadmancycling.com`
 
 ### 2. Explicit `trailingSlash: false` added to next.config.ts
 
@@ -29,8 +29,8 @@ Next.js defaults to no trailing slash, but making it explicit prevents accidenta
 Both `layout.tsx` and `page.tsx` exported `metadata` with conflicting titles and different `robots` directives. Consolidated into layout only.
 
 **Files changed:**
-- `src/app/(marketing)/strength-training/success/layout.tsx` $€” Added `alternates.canonical`
-- `src/app/(marketing)/strength-training/success/page.tsx` $€” Removed duplicate `metadata` export (layout handles it)
+- `src/app/(marketing)/strength-training/success/layout.tsx` â€” Added `alternates.canonical`
+- `src/app/(marketing)/strength-training/success/page.tsx` â€” Removed duplicate `metadata` export (layout handles it)
 
 ## Full Page Canonical Coverage
 

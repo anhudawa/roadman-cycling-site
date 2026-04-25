@@ -1,4 +1,4 @@
-# Roadman Cycling Website $€” Fact Check Audit Report
+# Roadman Cycling Website â€” Fact Check Audit Report
 
 **Date:** 2026-04-03
 **Auditor:** Claude (automated)
@@ -23,46 +23,46 @@
 ## CRITICAL ISSUES
 
 ### 1. INCORRECT: Podcast launch year (About page timeline)
-- **Claim:** "2020 $€” Roadman Cycling Podcast launches"
+- **Claim:** "2020 â€” Roadman Cycling Podcast launches"
 - **Reality:** The Apple Podcasts listing (id1224143549) shows the podcast launched in **2017**, not 2020. This is a 3-year error.
 - **Location:** `src/app/(marketing)/about/page.tsx` line 40
-- **Severity:** HIGH $€” This is the origin story timeline; getting it wrong undermines credibility.
+- **Severity:** HIGH â€” This is the origin story timeline; getting it wrong undermines credibility.
 
 ### 2. INCORRECT: Rosa Kloser described as "European gravel champion"
 - **Claim:** "European gravel champion" (About page expert network)
 - **Reality:** Rosa Kloser won the **UCI Gravel World Championship** in 2024, not the European championship. She actually finished **3rd** at the European Gravel Championships after a late puncture. She also won Unbound 200 in 2024.
 - **Location:** `src/app/(marketing)/about/page.tsx` line 35
-- **Severity:** HIGH $€” The title is wrong; she should be "Gravel World Champion" or "Unbound 200 winner."
+- **Severity:** HIGH â€” The title is wrong; she should be "Gravel World Champion" or "Unbound 200 winner."
 
 ### 3. INCONSISTENT: Two different Skool URLs for the Clubhouse
 - **Clubhouse pages** link to: `https://skool.com/roadman`
 - **Homepage, Footer, NDY pages** link to: `https://skool.com/roadmancycling`
 - These appear to be two different Skool groups. The Clubhouse (free) correctly links to `/roadman`, and NDY (paid) correctly links to `/roadmancycling`. However, the homepage "Join Not Done Yet" button (line 107) links to `skool.com/roadmancycling` which is correct.
-- **Severity:** MEDIUM $€” Verify these are intentionally different URLs for different communities. If so, this is fine. If not, one set of links is wrong.
+- **Severity:** MEDIUM â€” Verify these are intentionally different URLs for different communities. If so, this is fine. If not, one set of links is wrong.
 
 ### 4. POSSIBLY INCORRECT: Standard NDY annual price ($75/year)
 - **Claim:** Standard tier is "$15/month" or "$75/year"
-- **Math:** $15 x 12 = $180/year. But annual is listed as $75/year ($6.25/month) $€” a 58% discount.
+- **Math:** $15 x 12 = $180/year. But annual is listed as $75/year ($6.25/month) â€” a 58% discount.
 - **Location:** `src/app/(community)/community/not-done-yet/page.tsx` line 21
-- **Severity:** HIGH $€” If this is a typo and should be $150/year (a common ~17% annual discount), it could be costing revenue or confusing customers. Verify with actual Skool pricing.
+- **Severity:** HIGH â€” If this is a typo and should be $150/year (a common ~17% annual discount), it could be costing revenue or confusing customers. Verify with actual Skool pricing.
 
 ### 5. INCORRECT: Podcast launch preceded "1 million downloads" by only 1 year
 - **Claim:** Timeline says 2020 launch, 2021 "1 million downloads"
 - **Reality:** If the podcast actually launched in 2017, reaching 1M total downloads by 2021 (4 years) is plausible. But the timeline suggests it took only 1 year, which is misleading if the launch year is wrong.
 - **Location:** `src/app/(marketing)/about/page.tsx` lines 40-41
-- **Severity:** HIGH $€” Tied to issue #1.
+- **Severity:** HIGH â€” Tied to issue #1.
 
 ### 6. POSSIBLY OUTDATED: Alistair Brownlee described as earning singular "Olympic triathlon gold"
 - **Claim:** "Olympic triathlon gold"
 - **Reality:** Alistair Brownlee won **TWO** Olympic gold medals in triathlon (London 2012, Rio 2016). He is the only athlete to win two individual Olympic triathlon titles. Saying "Olympic triathlon gold" (singular) is technically not wrong but significantly undersells his achievement.
 - **Location:** `src/app/page.tsx` line 16
-- **Severity:** LOW $€” Not incorrect, but a missed opportunity. Consider "2x Olympic triathlon gold."
+- **Severity:** LOW â€” Not incorrect, but a missed opportunity. Consider "2x Olympic triathlon gold."
 
 ### 7. POSSIBLY OUTDATED: Ed Clancy described as earning singular "Olympic gold, team pursuit"
 - **Claim:** "Olympic gold, team pursuit"
 - **Reality:** Ed Clancy won **THREE** consecutive Olympic gold medals in team pursuit (Beijing 2008, London 2012, Rio 2016). Like the Brownlee case, technically not wrong but underselling.
 - **Location:** `src/app/page.tsx` line 23
-- **Severity:** LOW $€” Consider "3x Olympic gold, team pursuit."
+- **Severity:** LOW â€” Consider "3x Olympic gold, team pursuit."
 
 ---
 
@@ -193,7 +193,7 @@ No specific factual claims beyond what's in guest data files. The page dynamical
 | "1,400+ episodes" | CONSISTENT | Matches other pages |
 | "Free 16-week training plans (Road, Gravel, Sportive)" | UNVERIFIABLE | |
 | "Delivered through Vekta integration" | UNVERIFIABLE | |
-| Skool URL: `skool.com/roadman` | INCONSISTENT | Different from NDY URL `skool.com/roadmancycling` $€” likely intentional (separate groups) |
+| Skool URL: `skool.com/roadman` | INCONSISTENT | Different from NDY URL `skool.com/roadmancycling` â€” likely intentional (separate groups) |
 
 ---
 
@@ -299,14 +299,14 @@ No factual claims beyond tool descriptions. All tools are described functionally
 
 ## RECOMMENDATIONS (Priority Order)
 
-1. **FIX: Podcast launch year** $€” Change from 2020 to 2017 in the about page timeline. Adjust subsequent milestones accordingly.
-2. **FIX: Rosa Kloser credential** $€” Change from "European gravel champion" to "Gravel World Champion" or "UCI Gravel World Champion."
-3. **VERIFY: $75/year annual pricing** $€” Confirm this is the actual Skool price. If it should be $150/year, update. If it is genuinely $75/year, consider whether the steep discount is intentional.
-4. **FIX: Newsletter naming** $€” Decide whether it's "The Saturday Spin" or "The Insights" and use consistently.
-5. **CONSIDER: Episode count on podcast page** $€” The dynamic `episodes.length` will show far fewer than 1,400. Either migrate all episodes to content files or hardcode "1,400+" on the podcast page.
-6. **CONSIDER: Brownlee and Clancy credentials** $€” Upgrade to "2x Olympic triathlon gold" and "3x Olympic gold, team pursuit" respectively.
-7. **CONSIDER: Colin O'Brady claim** $€” "First solo Antarctic crossing" is heavily disputed. Consider softening to "Antarctic explorer" or "endurance athlete."
-8. **CONSIDER: "World's largest cycling performance podcast"** $€” Cannot be independently verified. Consider softening to "one of the world's largest" or simply "the world's leading cycling podcast" which is more subjective.
+1. **FIX: Podcast launch year** â€” Change from 2020 to 2017 in the about page timeline. Adjust subsequent milestones accordingly.
+2. **FIX: Rosa Kloser credential** â€” Change from "European gravel champion" to "Gravel World Champion" or "UCI Gravel World Champion."
+3. **VERIFY: $75/year annual pricing** â€” Confirm this is the actual Skool price. If it should be $150/year, update. If it is genuinely $75/year, consider whether the steep discount is intentional.
+4. **FIX: Newsletter naming** â€” Decide whether it's "The Saturday Spin" or "The Insights" and use consistently.
+5. **CONSIDER: Episode count on podcast page** â€” The dynamic `episodes.length` will show far fewer than 1,400. Either migrate all episodes to content files or hardcode "1,400+" on the podcast page.
+6. **CONSIDER: Brownlee and Clancy credentials** â€” Upgrade to "2x Olympic triathlon gold" and "3x Olympic gold, team pursuit" respectively.
+7. **CONSIDER: Colin O'Brady claim** â€” "First solo Antarctic crossing" is heavily disputed. Consider softening to "Antarctic explorer" or "endurance athlete."
+8. **CONSIDER: "World's largest cycling performance podcast"** â€” Cannot be independently verified. Consider softening to "one of the world's largest" or simply "the world's leading cycling podcast" which is more subjective.
 
 ---
 

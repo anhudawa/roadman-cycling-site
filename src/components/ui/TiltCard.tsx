@@ -11,7 +11,7 @@ interface TiltCardProps {
 }
 
 /**
- * 3D perspective tilt card $€” follows cursor on hover.
+ * 3D perspective tilt card $â€” follows cursor on hover.
  * Adds subtle perspective rotation + optional glare shine.
  */
 export function TiltCard({

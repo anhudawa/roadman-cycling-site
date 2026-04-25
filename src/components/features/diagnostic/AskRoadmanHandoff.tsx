@@ -9,13 +9,13 @@ import { TOOL_EVENTS, trackTool } from "@/lib/analytics/tool-events";
  * conversation with the rider's diagnostic context.
  *
  * Client component only because we fire an analytics event on click
- * $€” the href itself is plain and works without JS.
+ * â€” the href itself is plain and works without JS.
  */
 
 interface Props {
   slug: string;
   profile: string;
-  /** Rendering variant $€” inline card or CTA stripe. */
+  /** Rendering variant â€” inline card or CTA stripe. */
   variant?: "card" | "stripe";
 }
 
@@ -38,7 +38,7 @@ export function AskRoadmanHandoff({ slug, profile, variant = "card" }: Props) {
         data-cta="ask-roadman-handoff"
         className="inline-flex items-center gap-2 font-heading tracking-wider uppercase text-sm bg-white/5 hover:bg-white/10 text-off-white px-4 py-2 rounded-md border border-white/10 transition-colors"
       >
-        Ask Roadman what this means $†’
+        Ask Roadman what this means â†’
       </Link>
     );
   }
@@ -49,7 +49,7 @@ export function AskRoadmanHandoff({ slug, profile, variant = "card" }: Props) {
         WANT TO UNPACK THIS?
       </p>
       <p className="text-off-white/90 leading-relaxed mb-4">
-        Open this diagnosis in Ask Roadman $€” the on-site assistant can
+        Open this diagnosis in Ask Roadman â€” the on-site assistant can
         dig into why you got this profile, what to focus on first, and
         what the podcast roster says about fixing it.
       </p>
@@ -59,7 +59,7 @@ export function AskRoadmanHandoff({ slug, profile, variant = "card" }: Props) {
         data-cta="ask-roadman-handoff"
         className="inline-flex items-center gap-2 font-heading tracking-wider uppercase text-sm bg-coral hover:bg-coral-hover text-off-white px-5 py-2.5 rounded-md transition-colors"
       >
-        Ask Roadman what this means $†’
+        Ask Roadman what this means â†’
       </Link>
     </div>
   );

@@ -65,7 +65,7 @@ function loadEpisode(slug: string): LoadedEpisode | null {
   const filePath = path.join(podcastDir, `${slug}.mdx`);
 
   if (!fs.existsSync(filePath)) {
-    console.error(`$Œ Episode file not found: ${filePath}`);
+    console.error(`âŒ Episode file not found: ${filePath}`);
     return null;
   }
 
@@ -75,7 +75,7 @@ function loadEpisode(slug: string): LoadedEpisode | null {
     return { slug, frontmatter: data as Record<string, unknown>, content };
   } catch (error) {
     const msg = error instanceof Error ? error.message : String(error);
-    console.error(`$Œ Failed to load episode "${slug}": ${msg}`);
+    console.error(`âŒ Failed to load episode "${slug}": ${msg}`);
     return null;
   }
 }
@@ -88,7 +88,7 @@ function findLatestEpisode(): LoadedEpisode | null {
   const podcastDir = path.join(process.cwd(), "content/podcast");
 
   if (!fs.existsSync(podcastDir)) {
-    console.error("$Œ Podcast content directory not found");
+    console.error("âŒ Podcast content directory not found");
     return null;
   }
 
@@ -133,7 +133,7 @@ function findUnprocessedEpisodes(processedSlugs: string[]): LoadedEpisode[] {
   const podcastDir = path.join(process.cwd(), "content/podcast");
 
   if (!fs.existsSync(podcastDir)) {
-    console.error("$Œ Podcast content directory not found");
+    console.error("âŒ Podcast content directory not found");
     return [];
   }
 
@@ -186,7 +186,7 @@ function toEpisodeInput(ep: LoadedEpisode): EpisodeInput | null {
 
   const transcript = String(fm.transcript ?? "").trim();
   if (!transcript) {
-    console.log(`   $š  No transcript in frontmatter for "${slug}" $€” skipping`);
+    console.log(`   âš  No transcript in frontmatter for "${slug}" â€” skipping`);
     return null;
   }
 
@@ -218,7 +218,7 @@ async function processEpisode(ep: LoadedEpisode, state: RepurposeState): Promise
 
   // Skip if already processed (unless --force)
   if (!force && outputExists(input.episodeNumber, input.slug)) {
-    console.log(`   $­  Output already exists $€” skipping (use --force to overwrite)`);
+    console.log(`   â­  Output already exists â€” skipping (use --force to overwrite)`);
     return false;
   }
 
@@ -227,7 +227,7 @@ async function processEpisode(ep: LoadedEpisode, state: RepurposeState): Promise
   console.log(`   ğŸ·  Pillar: ${input.pillar}`);
   console.log(`   ğŸ™  Type:   ${input.type}`);
   if (input.guest) {
-    console.log(`   ğŸ‘¤ Guest:  ${input.guest}${input.guestCredential ? ` $€” ${input.guestCredential}` : ""}`);
+    console.log(`   ğŸ‘¤ Guest:  ${input.guest}${input.guestCredential ? ` â€” ${input.guestCredential}` : ""}`);
   }
 
   const result: RepurposeResult = {
@@ -242,9 +242,9 @@ async function processEpisode(ep: LoadedEpisode, state: RepurposeState): Promise
     const blog = await generateBlogPost(input);
     if (blog) {
       result.blog = blog;
-      console.log(`$œ“ ${blog.slug}`);
+      console.log(`âœ“ ${blog.slug}`);
     } else {
-      console.log("$œ— failed");
+      console.log("âœ— failed");
     }
   } else {
     console.log("   ğŸ“ Blog post... skipped (--skip-blog)");
@@ -257,9 +257,9 @@ async function processEpisode(ep: LoadedEpisode, state: RepurposeState): Promise
     if (social) {
       result.social = social;
       const tweetCount = social.twitter?.tweets?.length ?? 0;
-      console.log(`$œ“ ${tweetCount} tweets + IG + LinkedIn + FB`);
+      console.log(`âœ“ ${tweetCount} tweets + IG + LinkedIn + FB`);
     } else {
-      console.log("$œ— failed");
+      console.log("âœ— failed");
     }
   } else {
     console.log("   ğŸ“± Social posts... skipped (--skip-social)");
@@ -267,20 +267,20 @@ async function processEpisode(ep: LoadedEpisode, state: RepurposeState): Promise
 
   // --- Quotes ---
   if (!skipQuotes) {
-    process.stdout.write("   ğŸ’$ Quotes... ");
+    process.stdout.write("   ğŸ’¬ Quotes... ");
     const quotes = await extractQuotes(input.transcript, input.title, input.guest);
-    console.log(`$œ“ ${quotes.length} extracted`);
+    console.log(`âœ“ ${quotes.length} extracted`);
 
     if (quotes.length > 0) {
-      // Render quote cards (skip in dry-run $€” no image fetch or rendering)
+      // Render quote cards (skip in dry-run â€” no image fetch or rendering)
       if (!dryRun) {
         // Guest image
         process.stdout.write("   ğŸ–¼  Guest image... ");
         const imageBuffer = await fetchGuestImage(input.guest, input.youtubeId);
         if (imageBuffer) {
-          console.log("$œ“");
+          console.log("âœ“");
         } else {
-          console.log("$š  none found $€” cards will use solid background");
+          console.log("âš  none found â€” cards will use solid background");
         }
 
         process.stdout.write("   ğŸ¨ Quote cards... ");
@@ -310,14 +310,14 @@ async function processEpisode(ep: LoadedEpisode, state: RepurposeState): Promise
         }
 
         result.quotes = { extracted: quotes, cardPaths };
-        console.log(`$œ“ ${cardPaths.length} cards rendered`);
+        console.log(`âœ“ ${cardPaths.length} cards rendered`);
       } else {
         console.log("   ğŸ¨ Quote cards... skipped (dry-run)");
         result.quotes = { extracted: quotes, cardPaths: [] };
       }
     }
   } else {
-    console.log("   ğŸ’$ Quotes... skipped (--skip-quotes)");
+    console.log("   ğŸ’¬ Quotes... skipped (--skip-quotes)");
   }
 
   // --- Write output ---
@@ -329,7 +329,7 @@ async function processEpisode(ep: LoadedEpisode, state: RepurposeState): Promise
   );
 
   if (!dryRun) {
-    console.log(`   $œ… Wrote ${writtenPaths.length} files`);
+    console.log(`   âœ… Wrote ${writtenPaths.length} files`);
 
     // --- Write to database ---
     await writeToDatabase(
@@ -384,7 +384,7 @@ async function main() {
   } else if (latest) {
     const ep = findLatestEpisode();
     if (!ep) {
-      console.error("$Œ Could not find any episode with a publishDate");
+      console.error("âŒ Could not find any episode with a publishDate");
       process.exit(1);
     }
     console.log(`ğŸ“‹ Latest episode: ${ep.slug}`);
@@ -393,12 +393,12 @@ async function main() {
     episodes = findUnprocessedEpisodes(state.processedEpisodeSlugs);
     console.log(`ğŸ“‹ Unprocessed episodes (last 7 days): ${episodes.length}`);
     if (episodes.length === 0) {
-      console.log("$œ… Nothing to process!");
+      console.log("âœ… Nothing to process!");
       saveRepurposeState(state);
       return;
     }
   } else {
-    console.error("$Œ No mode specified. Usage:");
+    console.error("âŒ No mode specified. Usage:");
     console.error("   npx tsx scripts/repurpose-episode.ts --episode=<slug>");
     console.error("   npx tsx scripts/repurpose-episode.ts --latest");
     console.error("   npx tsx scripts/repurpose-episode.ts --auto");
@@ -423,7 +423,7 @@ async function main() {
       }
     } catch (error) {
       const msg = error instanceof Error ? error.message : String(error);
-      console.error(`   $Œ Error: ${msg}`);
+      console.error(`   âŒ Error: ${msg}`);
       errors++;
     }
   }

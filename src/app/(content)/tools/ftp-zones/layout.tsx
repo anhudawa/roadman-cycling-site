@@ -4,13 +4,13 @@ import { JsonLd } from "@/components/seo/JsonLd";
 import { SoftwareApplicationSchema } from "@/components/seo/SoftwareApplicationSchema";
 
 export const metadata: Metadata = {
-  title: "FTP Zone Calculator $€” Free Cycling Power Zone Tool",
+  title: "FTP Zone Calculator $â€” Free Cycling Power Zone Tool",
   description:
     "Calculate your 7 cycling power zones from your FTP instantly. Free tool based on the training methodology discussed with Professor Seiler and World Tour coaches.",
   keywords: ["FTP zone calculator", "cycling power zones", "FTP calculator", "training zones cycling"],
   alternates: { canonical: "https://roadmancycling.com/tools/ftp-zones" },
   openGraph: {
-    title: "FTP Zone Calculator $€” Free Cycling Power Zone Tool",
+    title: "FTP Zone Calculator $â€” Free Cycling Power Zone Tool",
     description:
       "Calculate your 7 cycling power zones from your FTP instantly. Free tool based on the training methodology discussed with Professor Seiler and World Tour coaches.",
     type: "website",
@@ -104,7 +104,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
               name: "What is W/kg and why does it matter in cycling?",
               acceptedAnswer: {
                 "@type": "Answer",
-                text: "W/kg (watts per kilogram) is your power-to-weight ratio $€” your FTP divided by your body weight. It is the best predictor of climbing and overall cycling performance. For example, a 70kg rider with a 280W FTP has a ratio of 4.0 W/kg. Improving your W/kg through increasing power, reducing excess body fat, or both is the most effective way to get faster on the bike.",
+                text: "W/kg (watts per kilogram) is your power-to-weight ratio $â€” your FTP divided by your body weight. It is the best predictor of climbing and overall cycling performance. For example, a 70kg rider with a 280W FTP has a ratio of 4.0 W/kg. Improving your W/kg through increasing power, reducing excess body fat, or both is the most effective way to get faster on the bike.",
               },
             },
           ],

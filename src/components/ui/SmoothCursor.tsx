@@ -25,7 +25,7 @@ export function SmoothCursor() {
   const cursorX = useSpring(useMotionValue(0), springConfig);
   const cursorY = useSpring(useMotionValue(0), springConfig);
 
-  // Inner dot $€” slightly stiffer for parallax feel
+  // Inner dot $â€” slightly stiffer for parallax feel
   const dotSpringConfig = { damping: 45, stiffness: 800, mass: 0.1 };
   const dotX = useSpring(useMotionValue(0), dotSpringConfig);
   const dotY = useSpring(useMotionValue(0), dotSpringConfig);
@@ -87,7 +87,7 @@ export function SmoothCursor() {
           }
         }
       } catch {
-        // Non-critical $€” keep current state
+        // Non-critical $â€” keep current state
       }
     };
 

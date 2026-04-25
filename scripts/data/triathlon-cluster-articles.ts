@@ -6,21 +6,21 @@
  * "bike leg of triathlon" cluster. Together they provide the internal link
  * equity and topical depth `/coaching/triathlon` needs to rank.
  *
- * Source: SEO Domination Playbook $§6.2 $†’ "Triathlon-Cycling Cluster (12)"
+ * Source: SEO Domination Playbook Â§6.2 â†’ "Triathlon-Cycling Cluster (12)"
  */
 
 export interface ClusterArticleSpec {
-  /** MDX file slug $€” filename without the .mdx extension. */
+  /** MDX file slug â€” filename without the .mdx extension. */
   slug: string;
   title: string;
   seoTitle: string;
   seoDescription: string;
   excerpt: string;
-  /** Primary target keyword $€” used in the prompt to anchor search intent. */
+  /** Primary target keyword â€” used in the prompt to anchor search intent. */
   targetKeyword: string;
   /** Supporting keywords that should appear naturally. */
   supportingKeywords: string[];
-  /** One-sentence editorial angle $€” what makes this article different. */
+  /** One-sentence editorial angle â€” what makes this article different. */
   angle: string;
   /** Content pillar (matches src/types/index.ts ContentPillar). */
   pillar: "coaching" | "nutrition" | "strength" | "recovery" | "community";
@@ -28,7 +28,7 @@ export interface ClusterArticleSpec {
   requiredSections: string[];
   /** Internal links the article must weave in naturally. */
   internalLinks: Array<{ href: string; anchor: string }>;
-  /** Target word count. Article must be within 70$€“130% of this. */
+  /** Target word count. Article must be within 70â€“130% of this. */
   wordTarget: number;
   /** Image path from /public/images/. Stock cycling imagery from the existing set. */
   featuredImage: string;
@@ -41,9 +41,9 @@ export const TRIATHLON_CLUSTER_ARTICLES: ClusterArticleSpec[] = [
     seoTitle:
       "The Bike Leg of Triathlon: Why Most Age-Groupers Get It Wrong (2026)",
     seoDescription:
-      "Most age-group triathletes treat the bike as a third of the plan. It's 50$€“60% of race-day and the lever that determines your run. Here's the framework to fix it.",
+      "Most age-group triathletes treat the bike as a third of the plan. It's 50â€“60% of race-day and the lever that determines your run. Here's the framework to fix it.",
     excerpt:
-      "The bike is 50$€“60% of your race-day time and the single biggest threat to your run. Most age-group plans give it a third of the attention. Here's what to change.",
+      "The bike is 50â€“60% of your race-day time and the single biggest threat to your run. Most age-group plans give it a third of the attention. Here's what to change.",
     targetKeyword: "bike leg of triathlon",
     supportingKeywords: [
       "triathlon bike training",
@@ -52,7 +52,7 @@ export const TRIATHLON_CLUSTER_ARTICLES: ClusterArticleSpec[] = [
       "bike leg triathlon pacing",
     ],
     angle:
-      "Cornerstone piece arguing that the bike leg deserves dedicated, run-protective programming $€” not the generic endurance-club bike volume most triathlon plans prescribe.",
+      "Cornerstone piece arguing that the bike leg deserves dedicated, run-protective programming â€” not the generic endurance-club bike volume most triathlon plans prescribe.",
     pillar: "coaching",
     requiredSections: [
       "Why the bike leg is the pacing lever, not the run",
@@ -79,7 +79,7 @@ export const TRIATHLON_CLUSTER_ARTICLES: ClusterArticleSpec[] = [
     title: "Ironman Bike Training Plan: 16-Week Build for Age-Groupers",
     seoTitle: "Ironman Bike Training Plan: 16-Week Build for Age-Groupers",
     seoDescription:
-      "A 16-week Ironman bike training plan built for age-group athletes. Weekly structure, key sessions, fuelling, and race-day pacing $€” periodised around the run.",
+      "A 16-week Ironman bike training plan built for age-group athletes. Weekly structure, key sessions, fuelling, and race-day pacing â€” periodised around the run.",
     excerpt:
       "Sixteen weeks, three phases, one goal: arrive at T2 with legs that can still run a marathon. A week-by-week Ironman bike plan for age-groupers.",
     targetKeyword: "ironman bike training plan",
@@ -94,9 +94,9 @@ export const TRIATHLON_CLUSTER_ARTICLES: ClusterArticleSpec[] = [
     pillar: "coaching",
     requiredSections: [
       "Who this plan is for",
-      "Phase 1: Base endurance (weeks 1$€“6)",
-      "Phase 2: Race-specific power (weeks 7$€“12)",
-      "Phase 3: Taper and sharpen (weeks 13$€“16)",
+      "Phase 1: Base endurance (weeks 1â€“6)",
+      "Phase 2: Race-specific power (weeks 7â€“12)",
+      "Phase 3: Taper and sharpen (weeks 13â€“16)",
       "Key weekly sessions explained",
       "Fuelling the long rides",
       "How to slot in swim and run without breaking the bike block",
@@ -120,7 +120,7 @@ export const TRIATHLON_CLUSTER_ARTICLES: ClusterArticleSpec[] = [
     seoDescription:
       "A 12-week 70.3 bike training plan designed to cut your bike split without wrecking your run. Weekly structure, key sessions, and race-day pacing guidance.",
     excerpt:
-      "Twelve weeks, built to drop your 70.3 bike split by 5$€“15 minutes while still running off the bike. Week-by-week structure for age-group athletes.",
+      "Twelve weeks, built to drop your 70.3 bike split by 5â€“15 minutes while still running off the bike. Week-by-week structure for age-group athletes.",
     targetKeyword: "70.3 bike training plan",
     supportingKeywords: [
       "half ironman bike training",
@@ -133,9 +133,9 @@ export const TRIATHLON_CLUSTER_ARTICLES: ClusterArticleSpec[] = [
     pillar: "coaching",
     requiredSections: [
       "What a realistic bike-split improvement looks like",
-      "Phase 1: Aerobic base (weeks 1$€“4)",
-      "Phase 2: Sustainable power (weeks 5$€“9)",
-      "Phase 3: Race-ready taper (weeks 10$€“12)",
+      "Phase 1: Aerobic base (weeks 1â€“4)",
+      "Phase 2: Sustainable power (weeks 5â€“9)",
+      "Phase 3: Race-ready taper (weeks 10â€“12)",
       "Key weekly sessions",
       "Pacing the 90km on race day",
     ],
@@ -172,9 +172,9 @@ export const TRIATHLON_CLUSTER_ARTICLES: ClusterArticleSpec[] = [
     pillar: "coaching",
     requiredSections: [
       "Why most 70.3 bike legs are over-cooked in the first hour",
-      "Your wattage cap $€” and where it comes from",
+      "Your wattage cap â€” and where it comes from",
       "Heart-rate as the sanity check",
-      "Fuelling timeline: 0$€“30 / 30$€“60 / 60$€“90 minutes",
+      "Fuelling timeline: 0â€“30 / 30â€“60 / 60â€“90 minutes",
       "Course-specific pacing adjustments",
       "What to do if the race doesn't go to plan",
     ],
@@ -210,8 +210,8 @@ export const TRIATHLON_CLUSTER_ARTICLES: ClusterArticleSpec[] = [
     pillar: "coaching",
     requiredSections: [
       "What brick workouts actually train",
-      "Base-phase bricks (weeks 1$€“6)",
-      "Build-phase bricks (weeks 7$€“12)",
+      "Base-phase bricks (weeks 1â€“6)",
+      "Build-phase bricks (weeks 7â€“12)",
       "Race-specific bricks (weeks 13+)",
       "How often to brick and how long to make them",
       "Mistakes that make bricks counter-productive",
@@ -268,9 +268,9 @@ export const TRIATHLON_CLUSTER_ARTICLES: ClusterArticleSpec[] = [
     title: "FTP Training for Triathletes: How It's Different from Cyclists",
     seoTitle: "FTP Training for Triathletes: How It's Different from Cyclists",
     seoDescription:
-      "Why triathlete FTP training differs from pure cyclist FTP training $€” and the specific adjustments that protect your run while building bike-leg power.",
+      "Why triathlete FTP training differs from pure cyclist FTP training â€” and the specific adjustments that protect your run while building bike-leg power.",
     excerpt:
-      "Triathletes can't train FTP the way cyclists do. Volume, recovery, and session placement all have to change $€” or your run pays the price.",
+      "Triathletes can't train FTP the way cyclists do. Volume, recovery, and session placement all have to change â€” or your run pays the price.",
     targetKeyword: "ftp training for triathletes",
     supportingKeywords: [
       "triathlete ftp",
@@ -279,11 +279,11 @@ export const TRIATHLON_CLUSTER_ARTICLES: ClusterArticleSpec[] = [
       "ftp for triathletes",
     ],
     angle:
-      "Direct comparison $€” cyclist FTP training vs. triathlete FTP training $€” with specific protocol modifications.",
+      "Direct comparison â€” cyclist FTP training vs. triathlete FTP training â€” with specific protocol modifications.",
     pillar: "coaching",
     requiredSections: [
       "Why FTP still matters (more than ever) for triathletes",
-      "How cyclists train FTP $€” and why it breaks triathletes",
+      "How cyclists train FTP â€” and why it breaks triathletes",
       "Volume modifications",
       "Recovery modifications",
       "Session placement around swim and run",
@@ -306,7 +306,7 @@ export const TRIATHLON_CLUSTER_ARTICLES: ClusterArticleSpec[] = [
     seoTitle:
       "Strength Training for Triathletes: Bike-Specific Exercises (2026)",
     seoDescription:
-      "The bike-specific strength exercises that build aero-position resilience, late-race durability, and force production $€” without wrecking your run.",
+      "The bike-specific strength exercises that build aero-position resilience, late-race durability, and force production â€” without wrecking your run.",
     excerpt:
       "Triathlon-specific strength isn't bodybuilding. It's resilience training for the aero position, durability for the late-race bike, and force production that transfers to watts.",
     targetKeyword: "strength training for triathletes",
@@ -379,7 +379,7 @@ export const TRIATHLON_CLUSTER_ARTICLES: ClusterArticleSpec[] = [
     title: "Cycling Coach vs Triathlon Coach: Which Do You Actually Need?",
     seoTitle: "Cycling Coach vs Triathlon Coach: Which Do You Actually Need?",
     seoDescription:
-      "When to hire a cycling coach vs a triathlon coach $€” and when to use both. A framework for age-group triathletes deciding where their coaching spend lands.",
+      "When to hire a cycling coach vs a triathlon coach â€” and when to use both. A framework for age-group triathletes deciding where their coaching spend lands.",
     excerpt:
       "Triathlon coach, cycling coach, or both? Here's the framework for deciding, based on where your time is leaking in race-day splits.",
     targetKeyword: "cycling coach vs triathlon coach",
@@ -430,14 +430,14 @@ export const TRIATHLON_CLUSTER_ARTICLES: ClusterArticleSpec[] = [
       "triathlon aero position",
     ],
     angle:
-      "Specific progression $€” weeks 1 through 12 $€” for holding the aero position. Addresses back, neck, and power trade-offs.",
+      "Specific progression â€” weeks 1 through 12 â€” for holding the aero position. Addresses back, neck, and power trade-offs.",
     pillar: "coaching",
     requiredSections: [
       "Why aero position is a training adaptation",
       "Your current aero capacity: how to test it honestly",
-      "Weeks 1$€“4: Building aero tolerance",
-      "Weeks 5$€“8: Adding intensity in position",
-      "Weeks 9$€“12: Race-length aero endurance",
+      "Weeks 1â€“4: Building aero tolerance",
+      "Weeks 5â€“8: Adding intensity in position",
+      "Weeks 9â€“12: Race-length aero endurance",
       "Common breakdowns and how to fix them",
     ],
     internalLinks: [
@@ -457,7 +457,7 @@ export const TRIATHLON_CLUSTER_ARTICLES: ClusterArticleSpec[] = [
     seoDescription:
       "A structured indoor cycling winter plan for triathletes. How to build threshold, aerobic base, and aero endurance without the outdoor riding.",
     excerpt:
-      "Winter is when triathletes win or lose the bike leg. Here's the indoor-only 12-week plan that builds real bike-leg capacity $€” without the junk miles.",
+      "Winter is when triathletes win or lose the bike leg. Here's the indoor-only 12-week plan that builds real bike-leg capacity â€” without the junk miles.",
     targetKeyword: "indoor cycling for triathletes",
     supportingKeywords: [
       "triathlon winter training",
@@ -471,9 +471,9 @@ export const TRIATHLON_CLUSTER_ARTICLES: ClusterArticleSpec[] = [
     requiredSections: [
       "Why winter is the season that decides your bike split",
       "The indoor-cycling bike-fit reset",
-      "Weeks 1$€“4: Aerobic base (indoor edition)",
-      "Weeks 5$€“8: Threshold and VO2max",
-      "Weeks 9$€“12: Race-specific aero endurance",
+      "Weeks 1â€“4: Aerobic base (indoor edition)",
+      "Weeks 5â€“8: Threshold and VO2max",
+      "Weeks 9â€“12: Race-specific aero endurance",
       "How to avoid indoor overtraining",
     ],
     internalLinks: [

@@ -40,7 +40,7 @@ function calculateEA(
     interpretation = "Your energy availability is below optimal but above the danger zone. You may be able to lose body fat at this level, but monitor fatigue, mood, and performance closely. Don't stay here long-term.";
   } else {
     risk = "high-risk";
-    interpretation = "Your energy availability is dangerously low. This puts you at risk of Relative Energy Deficiency in Sport (RED-S) $€” which can cause hormonal disruption, bone density loss, immune suppression, and performance decline. Increase your caloric intake immediately.";
+    interpretation = "Your energy availability is dangerously low. This puts you at risk of Relative Energy Deficiency in Sport (RED-S) â€” which can cause hormonal disruption, bone density loss, immune suppression, and performance decline. Increase your caloric intake immediately.";
   }
 
   return {
@@ -98,15 +98,15 @@ export default function EnergyAvailabilityPage() {
 
   const handleCopyResults = async () => {
     if (!result) return;
-    const riskLabelsText = { optimal: "Optimal", concern: "Low $€” Monitor Closely", "high-risk": "Dangerously Low" };
-    const text = `Energy Availability: ${result.ea} kcal/kg FFM/day (${riskLabelsText[result.risk]}) $€” ${weight}kg, ${bodyFat}% BF, ${calories}kcal/day, ${hours}hrs/week training $€” roadmancycling.com/tools/energy-availability`;
+    const riskLabelsText = { optimal: "Optimal", concern: "Low â€” Monitor Closely", "high-risk": "Dangerously Low" };
+    const text = `Energy Availability: ${result.ea} kcal/kg FFM/day (${riskLabelsText[result.risk]}) â€” ${weight}kg, ${bodyFat}% BF, ${calories}kcal/day, ${hours}hrs/week training â€” roadmancycling.com/tools/energy-availability`;
     await navigator.clipboard.writeText(text);
     setCopied(true);
     setTimeout(() => setCopied(false), 2000);
   };
 
   const riskColors = { optimal: "#22C55E", concern: "#EAB308", "high-risk": "#EF4444" };
-  const riskLabels = { optimal: "OPTIMAL", concern: "LOW $€” MONITOR CLOSELY", "high-risk": "DANGEROUSLY LOW" };
+  const riskLabels = { optimal: "OPTIMAL", concern: "LOW â€” MONITOR CLOSELY", "high-risk": "DANGEROUSLY LOW" };
 
   const inputClasses = "w-full bg-white/5 border border-white/10 rounded-lg px-4 py-3 text-off-white font-heading tracking-wider placeholder:text-foreground-subtle focus:border-coral focus:outline-none transition-colors";
   const errorInputClasses = "w-full bg-white/5 border border-red-500/60 rounded-lg px-4 py-3 text-off-white font-heading tracking-wider placeholder:text-foreground-subtle focus:border-red-500 focus:outline-none transition-colors";
@@ -256,9 +256,9 @@ export default function EnergyAvailabilityPage() {
                   >
                     <h3 className="font-heading text-lg text-off-white mb-3">THE SCALE</h3>
                     <div className="space-y-2 text-sm">
-                      <p className="text-foreground-muted"><span style={{ color: "#22C55E" }}>45+ kcal/kg FFM/day</span> $€” Optimal. Full adaptation, full recovery.</p>
-                      <p className="text-foreground-muted"><span style={{ color: "#EAB308" }}>30-45 kcal/kg FFM/day</span> $€” Low. May impair adaptation. Monitor closely.</p>
-                      <p className="text-foreground-muted"><span style={{ color: "#EF4444" }}>&lt;30 kcal/kg FFM/day</span> $€” Dangerously low. RED-S risk. Increase intake.</p>
+                      <p className="text-foreground-muted"><span style={{ color: "#22C55E" }}>45+ kcal/kg FFM/day</span> â€” Optimal. Full adaptation, full recovery.</p>
+                      <p className="text-foreground-muted"><span style={{ color: "#EAB308" }}>30-45 kcal/kg FFM/day</span> â€” Low. May impair adaptation. Monitor closely.</p>
+                      <p className="text-foreground-muted"><span style={{ color: "#EF4444" }}>&lt;30 kcal/kg FFM/day</span> â€” Dangerously low. RED-S risk. Increase intake.</p>
                     </div>
                   </motion.div>
 
@@ -283,7 +283,7 @@ export default function EnergyAvailabilityPage() {
                       </li>
                       <li>
                         <a href="/topics/cycling-nutrition" className="text-coral hover:text-coral/80 text-sm transition-colors">
-                          Cycling Nutrition topic hub $†’
+                          Cycling Nutrition topic hub â†’
                         </a>
                       </li>
                       <li>
@@ -314,7 +314,7 @@ export default function EnergyAvailabilityPage() {
                         exerciseExpenditure: result.exerciseExpenditure,
                         interpretation: result.interpretation,
                       }}
-                      heading={`Your EA score: ${result.ea.toFixed(0)} $€” what to do next`}
+                      heading={`Your EA score: ${result.ea.toFixed(0)} â€” what to do next`}
                       subheading="The full interpretation of your number, what to adjust, and the warning signs every endurance athlete should know. Applies to both men and women."
                       bullets={[
                         `Personalised calorie target based on your FFM`,
@@ -356,7 +356,7 @@ export default function EnergyAvailabilityPage() {
                 className="inline-flex items-center justify-center gap-2 font-heading tracking-wider uppercase rounded-md bg-coral text-off-white hover:bg-coral/90 px-6 py-3 text-sm transition-all"
                 data-track="tool_ea_apply"
               >
-                Apply for Coaching $†’
+                Apply for Coaching â†’
               </a>
             </motion.div>
           </Container>

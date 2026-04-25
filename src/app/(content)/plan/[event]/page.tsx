@@ -39,7 +39,7 @@ export async function generateMetadata({
   const event = getEvent(eventSlug);
   if (!event) return { title: "Training Plan" };
 
-  const title = `${event.name} Training Plan $Äî ${event.distanceKm}km, ${event.elevationGainM.toLocaleString()}m`;
+  const title = `${event.name} Training Plan ‚Äî ${event.distanceKm}km, ${event.elevationGainM.toLocaleString()}m`;
   const description = `Complete training framework for the ${event.name} in ${event.region}. ${event.description.split(".")[0]}. Pick your weeks-out window.`;
 
   return {
@@ -65,7 +65,7 @@ function buildFaqs(event: TrainingEvent): { question: string; answer: string }[]
     },
     {
       question: `What's the typical finish time for the ${event.name}?`,
-      answer: `Most amateur finishers complete the ${event.name} in ${event.typicalFinishTime}. The spread is driven by climbing fitness more than flat speed $Äî the course has ${event.elevationGainM.toLocaleString()}m of vertical, and pacing the climbs is what separates a strong finish from a suffering one.`,
+      answer: `Most amateur finishers complete the ${event.name} in ${event.typicalFinishTime}. The spread is driven by climbing fitness more than flat speed ‚Äî the course has ${event.elevationGainM.toLocaleString()}m of vertical, and pacing the climbs is what separates a strong finish from a suffering one.`,
     },
     {
       question: `When does the ${event.name} take place?`,
@@ -101,11 +101,11 @@ export default async function PlanEventHubPage({
           "@context": "https://schema.org",
           "@type": "CollectionPage",
           name: `${event.name} Training Plan`,
-          description: `A complete training framework for the ${event.name} (${event.distanceKm}km, ${event.elevationGainM.toLocaleString()}m climbing, ${event.region}). Six weeks-out windows $Äî 16, 12, 8, 4, 2, 1.`,
+          description: `A complete training framework for the ${event.name} (${event.distanceKm}km, ${event.elevationGainM.toLocaleString()}m climbing, ${event.region}). Six weeks-out windows ‚Äî 16, 12, 8, 4, 2, 1.`,
           url: eventUrl,
           hasPart: PHASES.map((p) => ({
             "@type": "WebPage",
-            name: `${event.name} $Äî ${p.weeksOut} Weeks Out`,
+            name: `${event.name} ‚Äî ${p.weeksOut} Weeks Out`,
             url: `${eventUrl}/${p.slug}`,
           })),
           about: {
@@ -167,7 +167,7 @@ export default async function PlanEventHubPage({
           <Container width="narrow" className="text-center">
             <ScrollReveal direction="up" eager>
               <p className="text-coral font-heading text-sm tracking-widest mb-4">
-                {event.region.toUpperCase()} $∑ {event.type.toUpperCase().replace("-", " ")}
+                {event.region.toUpperCase()} ¬∑ {event.type.toUpperCase().replace("-", " ")}
               </p>
               <h1
                 className="font-heading text-off-white mb-6 leading-none"
@@ -182,11 +182,11 @@ export default async function PlanEventHubPage({
               </p>
               <div className="inline-flex flex-wrap items-center gap-x-5 gap-y-2 text-xs text-foreground-subtle font-body tracking-widest uppercase">
                 <span>{event.distanceKm} km</span>
-                <span className="opacity-50">$∑</span>
+                <span className="opacity-50">¬∑</span>
                 <span>{event.elevationGainM.toLocaleString()} m climbing</span>
-                <span className="opacity-50">$∑</span>
+                <span className="opacity-50">¬∑</span>
                 <span>{event.typicalFinishTime}</span>
-                <span className="opacity-50">$∑</span>
+                <span className="opacity-50">¬∑</span>
                 <span>{event.defaultMonth}</span>
               </div>
             </ScrollReveal>
@@ -383,7 +383,7 @@ export default async function PlanEventHubPage({
               href="/plan"
               className="text-coral hover:text-coral/80 text-sm font-heading tracking-widest transition-colors"
             >
-              $Üê BACK TO ALL TRAINING PLANS
+              ‚Üê BACK TO ALL TRAINING PLANS
             </Link>
           </Container>
         </Section>

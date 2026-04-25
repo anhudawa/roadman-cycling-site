@@ -5,14 +5,14 @@ import { CheckoutButton } from "@/components/features/conversion/CheckoutButton"
 import { JsonLd } from "@/components/seo/JsonLd";
 
 export const metadata: Metadata = {
-  title: "Strength Training for Cyclists $€” 12-Week S&C Plan",
+  title: "Strength Training for Cyclists $â€” 12-Week S&C Plan",
   description:
     "The 12-week S&C plan built specifically for cyclists over 30. Training plan, instructional videos, stretching guide, core guide, and goal setting audio. One-time payment. 100% money back guarantee.",
   alternates: {
     canonical: "https://roadmancycling.com/strength-training",
   },
   openGraph: {
-    title: "Strength Training for Cyclists $€” 12-Week S&C Plan",
+    title: "Strength Training for Cyclists $â€” 12-Week S&C Plan",
     description:
       "The 12-week S&C plan built specifically for cyclists over 30. Training plan, instructional videos, stretching guide, core guide, and goal setting audio. One-time payment.",
     type: "website",
@@ -25,7 +25,7 @@ const whatsIncluded = [
     number: "01",
     title: "The 12-Week Training Plan",
     description:
-      "Outlines exactly what to do on a weekly basis. Periodised, progressive, and aligned with your riding $€” so you get stronger in the gym without wrecking your legs for the bike.",
+      "Outlines exactly what to do on a weekly basis. Periodised, progressive, and aligned with your riding $â€” so you get stronger in the gym without wrecking your legs for the bike.",
   },
   {
     number: "02",
@@ -37,7 +37,7 @@ const whatsIncluded = [
     number: "03",
     title: "Stretching Guide for Cyclists",
     description:
-      "Targets the key muscle groups used in pedalling $€” more mobility, less soreness, and the tightness that leads to injury stopped before it starts.",
+      "Targets the key muscle groups used in pedalling $â€” more mobility, less soreness, and the tightness that leads to injury stopped before it starts.",
   },
   {
     number: "04",
@@ -54,8 +54,8 @@ const whatsIncluded = [
 ];
 
 const results = [
-  { stat: "8$€“15%", label: "power increase in 12 weeks", source: "RÃ¸nnestad et al., 2010" },
-  { stat: "4$€“5%", label: "improvement in cycling economy", source: "RÃ¸nnestad et al., 2010" },
+  { stat: "8$â€“15%", label: "power increase in 12 weeks", source: "RÃ¸nnestad et al., 2010" },
+  { stat: "4$â€“5%", label: "improvement in cycling economy", source: "RÃ¸nnestad et al., 2010" },
   { stat: "17%", label: "longer time to exhaustion", source: "Sunde et al., 2010" },
 ];
 
@@ -110,12 +110,12 @@ export default function StrengthTrainingPage() {
               <p className="text-foreground-muted text-xl max-w-2xl mx-auto mb-8 leading-relaxed">
                 A 12-week strength and conditioning plan built specifically for
                 cyclists over 30. Target the exact muscles and movement patterns
-                that drive better cycling $€” your glutes, core, and posterior
-                chain $€” without adding bulk or draining your energy.
+                that drive better cycling $â€” your glutes, core, and posterior
+                chain $â€” without adding bulk or draining your energy.
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-6">
                 <Button href="#enrol" size="lg">
-                  Get the Plan $€” $65
+                  Get the Plan $â€” $65
                 </Button>
 
                 <Button href="#whats-inside" variant="ghost" size="lg">
@@ -144,7 +144,7 @@ export default function StrengthTrainingPage() {
               </h2>
               <p className="text-foreground-muted max-w-xl mx-auto">
                 Peer-reviewed research on strength training for endurance
-                cyclists. These aren&apos;t opinions $€” they&apos;re results.
+                cyclists. These aren&apos;t opinions $â€” they&apos;re results.
               </p>
             </ScrollReveal>
 
@@ -187,13 +187,13 @@ export default function StrengthTrainingPage() {
                     WODs that wreck your legs before Tuesday&apos;s intervals.
                   </p>
                   <p>
-                    This plan is different $€” because it&apos;s built by cyclists,
+                    This plan is different $â€” because it&apos;s built by cyclists,
                     for cyclists. We target the exact muscles and movement patterns
                     that drive better cycling. It&apos;s all periodised, progressive,
                     and aligned with your riding.
                   </p>
                   <p className="text-off-white font-medium">
-                    You won&apos;t just feel stronger in the gym $€” you&apos;ll feel
+                    You won&apos;t just feel stronger in the gym $â€” you&apos;ll feel
                     faster, more stable, and pain-free on the bike.
                   </p>
                 </div>
@@ -206,11 +206,11 @@ export default function StrengthTrainingPage() {
                   </h3>
                   <ul className="space-y-3">
                     {[
-                      "More watts per pedal stroke $€” RÃ¸nnestad's research showed 8$€“15% power increases in 12 weeks of cycling-specific strength work. Not gym power. Bike power.",
-                      "Your position stops collapsing at hour three $€” a stronger posterior chain and core means you hold your aero position when everyone else is sitting up",
-                      "Knees and lower back stop complaining $€” most cycling pain comes from muscle imbalances that strength work fixes in weeks, not months",
-                      "Faster on climbs without more saddle time $€” force production per pedal stroke goes up, so the same effort produces more speed",
-                      "After 30, you lose 3$€“8% of muscle mass per decade. Strength training is the only thing that reverses it. Not more riding. Not stretching. Lifting.",
+                      "More watts per pedal stroke $â€” RÃ¸nnestad's research showed 8$â€“15% power increases in 12 weeks of cycling-specific strength work. Not gym power. Bike power.",
+                      "Your position stops collapsing at hour three $â€” a stronger posterior chain and core means you hold your aero position when everyone else is sitting up",
+                      "Knees and lower back stop complaining $â€” most cycling pain comes from muscle imbalances that strength work fixes in weeks, not months",
+                      "Faster on climbs without more saddle time $â€” force production per pedal stroke goes up, so the same effort produces more speed",
+                      "After 30, you lose 3$â€“8% of muscle mass per decade. Strength training is the only thing that reverses it. Not more riding. Not stretching. Lifting.",
                     ].map((item) => (
                       <li
                         key={item}
@@ -227,7 +227,7 @@ export default function StrengthTrainingPage() {
           </Container>
         </Section>
 
-        {/* Visual break $€” abstract gradient divider */}
+        {/* Visual break $â€” abstract gradient divider */}
         <div className="relative h-[25vh] overflow-hidden">
           <div className="absolute inset-0 bg-gradient-to-br from-coral/20 via-deep-purple to-charcoal" />
           <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_30%_50%,rgba(255,107,74,0.15),transparent_70%)]" />
@@ -363,7 +363,7 @@ export default function StrengthTrainingPage() {
                 },
                 {
                   quote:
-                    "I love how targeted it is to cycling $€” not just general gym stuff. Every session feels like it's actually helping my performance on the bike. Core's stronger, legs feel more connected, and even my position on the bike feels better.",
+                    "I love how targeted it is to cycling $â€” not just general gym stuff. Every session feels like it's actually helping my performance on the bike. Core's stronger, legs feel more connected, and even my position on the bike feels better.",
                   name: "Mary K",
                   detail: "Age 56",
                 },
@@ -401,7 +401,7 @@ export default function StrengthTrainingPage() {
             </h2>
             <p className="text-off-white/80 max-w-lg mx-auto mb-2">
               12-week training plan. Instructional videos. Stretching guide. Core
-              guide. Goal setting audio. Everything you need $€” nothing you don&apos;t.
+              guide. Goal setting audio. Everything you need $â€” nothing you don&apos;t.
             </p>
             <p className="font-heading text-5xl text-off-white my-8">
               $65

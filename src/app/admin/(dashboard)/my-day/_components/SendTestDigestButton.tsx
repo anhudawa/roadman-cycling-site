@@ -34,9 +34,9 @@ export function SendTestDigestButton() {
 
   const label =
     status === "sending"
-      ? "Sending$€¦"
+      ? "Sendingâ€¦"
       : status === "sent"
-      ? "Sent $œ“"
+      ? "Sent âœ“"
       : status === "error"
       ? "Retry"
       : "Send test digest";

@@ -59,11 +59,11 @@ function calculateRaceWeight(
   if (weeks === 0) {
     approach = "You're already within your target race weight range. Focus on maintaining body composition while building power.";
   } else if (weeks <= 8) {
-    approach = "A moderate deficit through better food quality and fuelling timing. No need to restrict calories $€” just eat smarter around your training.";
+    approach = "A moderate deficit through better food quality and fuelling timing. No need to restrict calories â€” just eat smarter around your training.";
   } else if (weeks <= 16) {
     approach = "A structured body composition phase. Focus on protein adequacy (1.6-2.2g/kg), fuelling your key sessions, and creating a small deficit on easy days.";
   } else {
-    approach = "A longer-term approach is needed. Prioritise slow, sustainable change $€” 0.5% body weight per week maximum. Faster than that and you risk losing power, getting sick, or developing an unhealthy relationship with food.";
+    approach = "A longer-term approach is needed. Prioritise slow, sustainable change â€” 0.5% body weight per week maximum. Faster than that and you risk losing power, getting sick, or developing an unhealthy relationship with food.";
   }
 
   return {
@@ -123,7 +123,7 @@ export default function RaceWeightPage() {
       "road-race": "Road Race", "gran-fondo": "Gran Fondo", "hill-climb": "Hill Climb",
       "time-trial": "Time Trial", "gravel": "Gravel",
     };
-    const text = `Race Weight: ${result.targetWeightMin}-${result.targetWeightMax}kg (target BF ${result.targetBfMin}-${result.targetBfMax}%, ${eventLabels[eventType]}, ${gender})${result.weeksToTarget > 0 ? ` $€” est. ${result.weeksToTarget} weeks` : ""} $€” roadmancycling.com/tools/race-weight`;
+    const text = `Race Weight: ${result.targetWeightMin}-${result.targetWeightMax}kg (target BF ${result.targetBfMin}-${result.targetBfMax}%, ${eventLabels[eventType]}, ${gender})${result.weeksToTarget > 0 ? ` â€” est. ${result.weeksToTarget} weeks` : ""} â€” roadmancycling.com/tools/race-weight`;
     await navigator.clipboard.writeText(text);
     setCopied(true);
     setTimeout(() => setCopied(false), 2000);
@@ -245,7 +245,7 @@ export default function RaceWeightPage() {
                     >
                       <p className="text-sm text-foreground-subtle mb-1">TARGET RANGE</p>
                       <p className="font-heading text-3xl text-coral">
-                        {result.targetWeightMin}$€“{result.targetWeightMax}
+                        {result.targetWeightMin}â€“{result.targetWeightMax}
                       </p>
                       <p className="text-foreground-muted text-sm">kg</p>
                     </motion.div>
@@ -257,7 +257,7 @@ export default function RaceWeightPage() {
                     >
                       <p className="text-sm text-foreground-subtle mb-1">TARGET BODY FAT</p>
                       <p className="font-heading text-3xl text-coral">
-                        {result.targetBfMin}$€“{result.targetBfMax}
+                        {result.targetBfMin}â€“{result.targetBfMax}
                       </p>
                       <p className="text-foreground-muted text-sm">%</p>
                     </motion.div>
@@ -295,7 +295,7 @@ export default function RaceWeightPage() {
                     <h3 className="font-heading text-lg text-off-white mb-3">IMPORTANT</h3>
                     <p className="text-foreground-muted text-sm leading-relaxed">
                       Race weight is about body composition, not the number on the scale.
-                      Anthony lost 7kg in 12 weeks while eating <em>more</em> food $€” by focusing on food quality,
+                      Anthony lost 7kg in 12 weeks while eating <em>more</em> food â€” by focusing on food quality,
                       protein timing, and properly fuelling rides. Crash diets destroy power and health.
                       If you&apos;re unsure about your approach, the Not Done Yet coaching community includes
                       nutrition guidance from the same principles discussed on the podcast.
@@ -323,12 +323,12 @@ export default function RaceWeightPage() {
                       </li>
                       <li>
                         <a href="/topics/cycling-weight-loss" className="text-coral hover:text-coral/80 text-sm transition-colors">
-                          Cycling Weight Loss topic hub $†’
+                          Cycling Weight Loss topic hub â†’
                         </a>
                       </li>
                       <li>
                         <a href="/podcast/ep-2044-world-tour-nutritionist-we-got-weight-loss-wrong" className="text-coral hover:text-coral/80 text-sm transition-colors">
-                          Podcast: World Tour nutritionist $€” &quot;we got weight loss wrong&quot;
+                          Podcast: World Tour nutritionist â€” &quot;we got weight loss wrong&quot;
                         </a>
                       </li>
                     </ul>
@@ -355,14 +355,14 @@ export default function RaceWeightPage() {
                         weeksToTarget: result.weeksToTarget,
                         approach: result.approach,
                       }}
-                      heading={`Your race weight plan: ${result.targetWeightMin}$€“${result.targetWeightMax} kg`}
-                      subheading="We'll email the full plan $€” target range, realistic timeline, the non-negotiables for keeping power while you lose weight. No diet culture."
+                      heading={`Your race weight plan: ${result.targetWeightMin}â€“${result.targetWeightMax} kg`}
+                      subheading="We'll email the full plan â€” target range, realistic timeline, the non-negotiables for keeping power while you lose weight. No diet culture."
                       bullets={[
-                        `Safe ${result.weeksToTarget || 0}-week timeline to ${result.targetWeightMin}$€“${result.targetWeightMax} kg`,
+                        `Safe ${result.weeksToTarget || 0}-week timeline to ${result.targetWeightMin}â€“${result.targetWeightMax} kg`,
                         "Protein target for your body weight (muscle-sparing)",
                         "Fuel-around-training approach (deficit on easy days only)",
                         "Weigh-in protocol that tracks signal over noise",
-                        "Stop signals $€” when to pause and why",
+                        "Stop signals â€” when to pause and why",
                       ]}
                     />
                   </motion.div>
@@ -397,7 +397,7 @@ export default function RaceWeightPage() {
                 className="inline-flex items-center justify-center gap-2 font-heading tracking-wider uppercase rounded-md bg-coral text-off-white hover:bg-coral/90 px-6 py-3 text-sm transition-all"
                 data-track="tool_raceweight_apply"
               >
-                Apply for Coaching $†’
+                Apply for Coaching â†’
               </a>
             </motion.div>
           </Container>

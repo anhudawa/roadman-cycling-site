@@ -6,16 +6,16 @@ import { getAllPosts } from "@/lib/blog";
 import { BlogSearch } from "@/components/features/blog/BlogSearch";
 
 export const metadata: Metadata = {
-  title: "Blog $€” Training, Nutrition & Performance",
+  title: "Blog $â€” Training, Nutrition & Performance",
   description:
-    "Expert cycling content grounded in science. Training methodology, nutrition, strength & conditioning, recovery, and cycling culture $€” from the conversations with the world's best.",
+    "Expert cycling content grounded in science. Training methodology, nutrition, strength & conditioning, recovery, and cycling culture $â€” from the conversations with the world's best.",
   alternates: {
     canonical: "https://roadmancycling.com/blog",
   },
   openGraph: {
-    title: "Blog $€” Training, Nutrition & Performance",
+    title: "Blog $â€” Training, Nutrition & Performance",
     description:
-      "Expert cycling content grounded in science. Training methodology, nutrition, strength & conditioning, recovery, and cycling culture $€” from the conversations with the world's best.",
+      "Expert cycling content grounded in science. Training methodology, nutrition, strength & conditioning, recovery, and cycling culture $â€” from the conversations with the world's best.",
     type: "website",
     url: "https://roadmancycling.com/blog",
   },
@@ -90,7 +90,7 @@ export default function BlogPage() {
                 THE KNOWLEDGE
               </h1>
               <p className="text-foreground-muted max-w-xl mx-auto text-lg">
-                Evidence-based cycling content $€” grounded in real conversations
+                Evidence-based cycling content $â€” grounded in real conversations
                 with the world&apos;s best coaches, scientists, and riders.
               </p>
             </ScrollReveal>

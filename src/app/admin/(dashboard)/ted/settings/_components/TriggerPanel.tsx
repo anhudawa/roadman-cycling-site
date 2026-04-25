@@ -76,7 +76,7 @@ export function TriggerPanel() {
       </div>
 
       {availability === null ? (
-        <div className="text-xs text-foreground-subtle">Checking availability$€¦</div>
+        <div className="text-xs text-foreground-subtle">Checking availabilityâ€¦</div>
       ) : !availability.available ? (
         <div className="text-xs text-yellow-300">
           Manual triggers unavailable: {availability.reason}.
@@ -102,7 +102,7 @@ export function TriggerPanel() {
                 disabled={busy === w.id}
                 className="text-xs rounded-md bg-white/10 text-white hover:bg-white/15 px-3 py-1.5 disabled:opacity-50"
               >
-                {busy === w.id ? "Dispatching$€¦" : "Run"}
+                {busy === w.id ? "Dispatchingâ€¦" : "Run"}
               </button>
             </div>
           ))}

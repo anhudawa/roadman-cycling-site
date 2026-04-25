@@ -3,7 +3,7 @@ import { crmSyncLogs } from "@/lib/db/schema";
 
 /**
  * Outbound CRM call audit. Every Beehiiv / contacts / Resend side-effect
- * writes one row $€” both on success and on failure $€” so admin can see the
+ * writes one row $â€” both on success and on failure $â€” so admin can see the
  * real pipeline health and we can retry from the table if an external
  * service had a bad hour.
  *

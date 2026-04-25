@@ -9,7 +9,7 @@
  * Skips:
  *  - The frontmatter block (everything between the opening and closing ---).
  *  - Any occurrence already inside a link (e.g. `[Stephen Seiler](...)` or
- *    `$€¦/stephen-seiler)$€¦`).
+ *    `â€¦/stephen-seiler)â€¦`).
  *  - Bibliography-style "PubMed: Seiler" lines.
  *
  * Idempotent: running it twice is a no-op because every match it would
@@ -57,7 +57,7 @@ function splitFrontmatter(src) {
  * NOT in a heading. Returns the index, or -1 if no match.
  */
 function findFirstFreeMention(body, name) {
-  // Build a regex that requires the name to be a standalone phrase $€”
+  // Build a regex that requires the name to be a standalone phrase â€”
   // bordered by non-word chars (but allowing punctuation either side).
   const escaped = name.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
   const re = new RegExp(`(^|[^\\w/-])(${escaped})(?=[\\s.,;:!?'")\\u2014\\u2013-]|$)`, "g");
@@ -67,7 +67,7 @@ function findFirstFreeMention(body, name) {
     // Reject if inside a link text like [Stephen Seiler]
     const before = body.slice(Math.max(0, idx - 1), idx);
     if (before === "[") continue;
-    // Reject if inside a link target $€” look for unmatched `(` before `)`
+    // Reject if inside a link target â€” look for unmatched `(` before `)`
     // on the same line up to this index.
     const lineStart = body.lastIndexOf("\n", idx) + 1;
     const lineToHere = body.slice(lineStart, idx);
@@ -103,7 +103,7 @@ for (const file of files) {
   let edits = 0;
 
   for (const expert of EXPERTS) {
-    // Skip if a link to this guest's page already exists in the body $€”
+    // Skip if a link to this guest's page already exists in the body â€”
     // their first mention is already linked somewhere.
     if (nextBody.includes(`/guests/${expert.slug}`)) continue;
     const idx = findFirstFreeMention(nextBody, expert.name);

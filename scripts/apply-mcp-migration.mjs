@@ -37,13 +37,13 @@ for (let i = 0; i < statements.length; i++) {
   const preview = stmt.slice(0, 80).replace(/\n/g, " ");
   try {
     await sql.query(stmt);
-    console.log(`  $œ“ [${i + 1}/${statements.length}] ${preview}`);
+    console.log(`  âœ“ [${i + 1}/${statements.length}] ${preview}`);
   } catch (err) {
-    console.error(`  $œ— [${i + 1}/${statements.length}] ${preview}`);
+    console.error(`  âœ— [${i + 1}/${statements.length}] ${preview}`);
     console.error(`    Error: ${err.message}`);
     process.exit(1);
   }
 }
 
-console.log("\n$œ“ Migration 0027_mcp_tables applied successfully");
+console.log("\nâœ“ Migration 0027_mcp_tables applied successfully");
 process.exit(0);

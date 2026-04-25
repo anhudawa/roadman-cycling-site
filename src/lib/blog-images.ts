@@ -3,7 +3,7 @@ import type { ContentPillar } from "@/types";
 /**
  * Featured images that were reused across many posts before we had
  * a proper image library. On the /blog index these read as visual
- * duplicates $€” scrolling 24 cards surfaces the same gravel-canyon
+ * duplicates â€” scrolling 24 cards surfaces the same gravel-canyon
  * shot 3-5 times.
  *
  * Any post whose featuredImage is in this set renders the
@@ -30,7 +30,7 @@ export const GENERIC_BLOG_IMAGES: ReadonlySet<string> = new Set([
 ]);
 
 export function isGenericImage(src?: string | null): boolean {
-  if (!src) return true; // no image at all $†’ use typography card
+  if (!src) return true; // no image at all â†’ use typography card
   return GENERIC_BLOG_IMAGES.has(src);
 }
 

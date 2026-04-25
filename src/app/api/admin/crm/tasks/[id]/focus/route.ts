@@ -8,13 +8,13 @@ import { requireAuth } from "@/lib/admin/auth";
  * POST /api/admin/crm/tasks/[id]/focus
  * Body: { action: "pin" | "unpin" | "reorder", position?: number }
  *
- * "pin"       $†’ add this task to the assignee's Main Focus list at the end
+ * "pin"       â†’ add this task to the assignee's Main Focus list at the end
  *               (or at `position` if supplied).
- * "unpin"     $†’ clear focus_order, task drops into "All other tasks".
- * "reorder"   $†’ move within Main Focus to `position` (0-based).
+ * "unpin"     â†’ clear focus_order, task drops into "All other tasks".
+ * "reorder"   â†’ move within Main Focus to `position` (0-based).
  *
  * Re-indexes focus_order to 1..N after every mutation so the list stays
- * tight and drag operations are O(N) in DB writes (N $‰¤ ~20 realistic).
+ * tight and drag operations are O(N) in DB writes (N â‰¤ ~20 realistic).
  */
 export async function POST(
   request: Request,
@@ -78,7 +78,7 @@ export async function POST(
   if (action === "unpin") {
     nextList = withoutTask;
   } else {
-    // pin or reorder $€” compute the target index
+    // pin or reorder â€” compute the target index
     let idx: number;
     if (position === null || Number.isNaN(position)) {
       idx = withoutTask.length; // append
@@ -93,7 +93,7 @@ export async function POST(
     ];
   }
 
-  // Apply new focus_order in a single batch $€” null the moved task if unpinned,
+  // Apply new focus_order in a single batch â€” null the moved task if unpinned,
   // then reassign 1..N for the remaining focused list.
   if (action === "unpin") {
     await db

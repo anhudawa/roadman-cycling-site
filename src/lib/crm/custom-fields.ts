@@ -93,7 +93,7 @@ export async function createFieldDef(
 ): Promise<CustomFieldDefRow> {
   const key = params.key.trim().toLowerCase();
   if (!isValidKey(key)) {
-    throw new Error("Invalid key: must be 1$€“40 chars, lowercase letters/digits/underscore");
+    throw new Error("Invalid key: must be 1$â€“40 chars, lowercase letters/digits/underscore");
   }
   if (!isValidType(params.type)) {
     throw new Error("Invalid type");

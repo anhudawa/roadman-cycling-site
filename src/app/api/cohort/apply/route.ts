@@ -55,7 +55,7 @@ export async function POST(request: Request) {
 
     const normalisedEmail = email.trim().toLowerCase();
 
-    // Read cohort state $€” drives which tag/cohort this submission gets.
+    // Read cohort state â€” drives which tag/cohort this submission gets.
     // During "open" + "closing-today" the submission is a real Cohort 2
     // application; during "waitlist" it's a Cohort 3 waitlist signup.
     const cohortState = getCohortState();
@@ -127,9 +127,9 @@ export async function POST(request: Request) {
     }
 
     // Beehiiv: upsert subscriber + tag. Tag varies by phase:
-    //   open / closing-today $†’ "cohort-2-applicant"
-    //   waitlist             $†’ "cohort-3-waitlist"
-    // Non-fatal $€” application still succeeds if Beehiiv is down.
+    //   open / closing-today â†’ "cohort-2-applicant"
+    //   waitlist             â†’ "cohort-3-waitlist"
+    // Non-fatal â€” application still succeeds if Beehiiv is down.
     subscribeToBeehiiv({
       email: normalisedEmail,
       name,

@@ -5,16 +5,16 @@ import { Button, Card, ScrollReveal } from "@/components/ui";
 import { JsonLd } from "@/components/seo/JsonLd";
 
 export const metadata: Metadata = {
-  title: "Community $€” Serious Cyclists Who Refuse to Settle",
+  title: "Community â€” Serious Cyclists Who Refuse to Settle",
   description:
-    "Two communities. One mission. Join the free Clubhouse or go premium with the Not Done Yet coaching community $€” personalised coaching, training plans, and the five-pillar system (training, nutrition, strength, recovery, community).",
+    "Two communities. One mission. Join the free Clubhouse or go premium with the Not Done Yet coaching community â€” personalised coaching, training plans, and the five-pillar system (training, nutrition, strength, recovery, community).",
   alternates: {
     canonical: "https://roadmancycling.com/community",
   },
   openGraph: {
-    title: "Community $€” Serious Cyclists Who Refuse to Settle",
+    title: "Community â€” Serious Cyclists Who Refuse to Settle",
     description:
-      "Two communities. One mission. Join the free Clubhouse or go premium with the Not Done Yet coaching community $€” personalised coaching, training plans, and the five-pillar system (training, nutrition, strength, recovery, community).",
+      "Two communities. One mission. Join the free Clubhouse or go premium with the Not Done Yet coaching community â€” personalised coaching, training plans, and the five-pillar system (training, nutrition, strength, recovery, community).",
     type: "website",
     url: "https://roadmancycling.com/community",
   },
@@ -89,23 +89,23 @@ export default function CommunityPage() {
               </div>
             </div>
 
-            {/* Tier ladder $€” three-step progression from free to premium */}
+            {/* Tier ladder â€” three-step progression from free to premium */}
             <div className="max-w-6xl mx-auto mb-10">
               <div className="hidden md:flex items-center justify-between text-xs text-foreground-subtle font-body tracking-widest uppercase mb-4 px-4">
                 <span>Start here</span>
-                <span>$†’</span>
+                <span>â†’</span>
                 <span>Ready to plug in</span>
-                <span>$†’</span>
+                <span>â†’</span>
                 <span>Hands-on coaching</span>
               </div>
 
               <div className="grid md:grid-cols-3 gap-6">
-                {/* TIER 1 $€” Clubhouse */}
+                {/* TIER 1 â€” Clubhouse */}
                 <Card className="p-7 h-full flex flex-col" hoverable={false}>
                   <div className="flex items-center gap-3 mb-4">
                     <div className="w-2.5 h-2.5 rounded-full bg-coral/70" />
                     <span className="text-[10px] text-foreground-subtle uppercase tracking-widest font-body">
-                      Tier 1 $· Free
+                      Tier 1 Â· Free
                     </span>
                   </div>
                   <h2 className="font-heading text-2xl md:text-3xl text-off-white mb-3 leading-tight">
@@ -145,7 +145,7 @@ export default function CommunityPage() {
                   </Button>
                 </Card>
 
-                {/* TIER 2 $€” Not Done Yet (the recommended path) */}
+                {/* TIER 2 â€” Not Done Yet (the recommended path) */}
                 <Card
                   className="p-7 h-full flex flex-col border-coral/40 bg-gradient-to-br from-background-elevated to-deep-purple/40 relative md:-mt-3"
                   hoverable={false}
@@ -156,7 +156,7 @@ export default function CommunityPage() {
                   <div className="flex items-center gap-3 mb-4">
                     <div className="w-2.5 h-2.5 rounded-full bg-coral" />
                     <span className="text-[10px] text-foreground-subtle uppercase tracking-widest font-body">
-                      Tier 2 $· $195/month
+                      Tier 2 Â· $195/month
                     </span>
                   </div>
                   <h2 className="font-heading text-2xl md:text-3xl text-off-white mb-1 leading-tight">
@@ -195,12 +195,12 @@ export default function CommunityPage() {
                   </Button>
                 </Card>
 
-                {/* TIER 3 $€” Premium / VIP */}
+                {/* TIER 3 â€” Premium / VIP */}
                 <Card className="p-7 h-full flex flex-col" hoverable={false}>
                   <div className="flex items-center gap-3 mb-4">
                     <div className="w-2.5 h-2.5 rounded-full bg-purple" />
                     <span className="text-[10px] text-foreground-subtle uppercase tracking-widest font-body">
-                      Tier 3 $· By application
+                      Tier 3 Â· By application
                     </span>
                   </div>
                   <h2 className="font-heading text-2xl md:text-3xl text-off-white mb-3 leading-tight">

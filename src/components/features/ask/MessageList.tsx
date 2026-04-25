@@ -131,7 +131,7 @@ function FeedbackRow({
         meta: { messageId, rating },
       });
     } catch {
-      // silent $€” feedback should never break the UI
+      // silent $â€” feedback should never break the UI
     }
   };
 
@@ -158,7 +158,7 @@ function FeedbackRow({
       >
         ğŸ‘
       </button>
-      {submitted && <span className="ml-1">Thanks $€” noted.</span>}
+      {submitted && <span className="ml-1">Thanks $â€” noted.</span>}
     </div>
   );
 }

@@ -25,15 +25,15 @@ interface QualifyResult {
 
 const PRODUCTS = {
   "ndy-standard": {
-    name: "Not Done Yet $€” Standard ($15/mo)",
+    name: "Not Done Yet â€” Standard ($15/mo)",
     url: "https://roadmancycling.com/community/not-done-yet",
   },
   "ndy-premium": {
-    name: "Not Done Yet $€” Premium ($195/mo)",
+    name: "Not Done Yet â€” Premium ($195/mo)",
     url: "https://roadmancycling.com/apply",
   },
   "ndy-vip": {
-    name: "Not Done Yet $€” VIP ($1,950/yr)",
+    name: "Not Done Yet â€” VIP ($1,950/yr)",
     url: "https://roadmancycling.com/apply",
   },
   "strength-training-course": {
@@ -49,7 +49,7 @@ export function qualifyLead(input: QualifyInput): QualifyResult {
   const isExperienced =
     current_level === "experienced" || current_level === "racer";
 
-  // Experienced + high volume + specific goal $†’ Premium
+  // Experienced + high volume + specific goal â†’ Premium
   if (
     (goal === "build_ftp" || goal === "target_event") &&
     isExperienced &&
@@ -60,20 +60,20 @@ export function qualifyLead(input: QualifyInput): QualifyResult {
       recommended_product_name: PRODUCTS["ndy-premium"].name,
       reasoning:
         "You're a serious cyclist with a specific goal and the training time to match. " +
-        "Premium gives you direct 1:1 access to Anthony plus the same framework World Tour coaches use $€” " +
+        "Premium gives you direct 1:1 access to Anthony plus the same framework World Tour coaches use â€” " +
         "not a generic plan, a personalised one. Given your experience level, you'll feel the difference quickly.",
       next_step_url: PRODUCTS["ndy-premium"].url,
       alternative_products: ["ndy-vip", "ndy-standard"],
     };
   }
 
-  // Comeback / beginner $†’ Standard first
+  // Comeback / beginner â†’ Standard first
   if (goal === "comeback" || current_level === "beginner") {
     return {
       recommended_product_id: "ndy-standard",
       recommended_product_name: PRODUCTS["ndy-standard"].name,
       reasoning:
-        "The comeback is the most important phase $€” structure and community matter more than intensity. " +
+        "The comeback is the most important phase â€” structure and community matter more than intensity. " +
         "Standard gives you the training framework, live Q&As with Anthony, and a community that understands " +
         "exactly where you are. Most comeback riders upgrade to Premium once they've rebuilt consistency.",
       next_step_url: PRODUCTS["ndy-standard"].url,
@@ -81,7 +81,7 @@ export function qualifyLead(input: QualifyInput): QualifyResult {
     };
   }
 
-  // Masters + event target $†’ Premium (physiology-specific coaching matters most)
+  // Masters + event target â†’ Premium (physiology-specific coaching matters most)
   if (isMasters && goal === "target_event") {
     return {
       recommended_product_id: "ndy-premium",
@@ -95,12 +95,12 @@ export function qualifyLead(input: QualifyInput): QualifyResult {
     };
   }
 
-  // Default $†’ Standard
+  // Default â†’ Standard
   return {
     recommended_product_id: "ndy-standard",
     recommended_product_name: PRODUCTS["ndy-standard"].name,
     reasoning:
-      "Not Done Yet Standard is the right starting point $€” you get the training structure, live Q&As, " +
+      "Not Done Yet Standard is the right starting point â€” you get the training structure, live Q&As, " +
       "and community without over-committing. Most members upgrade to Premium 60-90 days in once they " +
       "see the results. Start there, then decide.",
     next_step_url: PRODUCTS["ndy-standard"].url,

@@ -23,11 +23,11 @@ export async function generateMetadata({
   if (!guest) return { title: "Guest Not Found" };
 
   const description = guest.credential
-    ? `${guest.name} $€” ${guest.credential}. ${guest.episodeCount} episode${guest.episodeCount > 1 ? "s" : ""} on The Roadman Cycling Podcast.`
-    : `${guest.name} $€” ${guest.episodeCount} episode${guest.episodeCount > 1 ? "s" : ""} on The Roadman Cycling Podcast. Expert cycling knowledge from world-class guests.`;
+    ? `${guest.name} â€” ${guest.credential}. ${guest.episodeCount} episode${guest.episodeCount > 1 ? "s" : ""} on The Roadman Cycling Podcast.`
+    : `${guest.name} â€” ${guest.episodeCount} episode${guest.episodeCount > 1 ? "s" : ""} on The Roadman Cycling Podcast. Expert cycling knowledge from world-class guests.`;
 
   return {
-    title: `${guest.name} $€” Roadman Cycling Podcast Guest`,
+    title: `${guest.name} â€” Roadman Cycling Podcast Guest`,
     description,
     alternates: {
       canonical: `https://roadmancycling.com/guests/${slug}`,
@@ -81,12 +81,12 @@ export default async function GuestPage({
             override?.whyMatters ??
             override?.description ??
             (guest.credential
-              ? `${guest.name} $€” ${guest.credential}. Expert guest on The Roadman Cycling Podcast.`
-              : `${guest.name} $€” expert guest on The Roadman Cycling Podcast.`),
+              ? `${guest.name} â€” ${guest.credential}. Expert guest on The Roadman Cycling Podcast.`
+              : `${guest.name} â€” expert guest on The Roadman Cycling Podcast.`),
           url: `https://roadmancycling.com/guests/${slug}`,
           ...(override?.image && { image: override.image }),
           // sameAs is the single strongest Knowledge Graph disambiguation
-          // signal $€” it tells Google our "Greg LeMond" is THE Greg LeMond,
+          // signal â€” it tells Google our "Greg LeMond" is THE Greg LeMond,
           // not some other person with the same name.
           ...(override?.sameAs &&
             override.sameAs.length > 0 && { sameAs: override.sameAs }),
@@ -187,7 +187,7 @@ export default async function GuestPage({
           </Container>
         </Section>
 
-        {/* Why this guest matters $€” visible entity context for AEO/SGE.
+        {/* Why this guest matters â€” visible entity context for AEO/SGE.
             Renders the literal answer to "who is X?" and "why is X
             famous?" on the page so Google and LLMs can quote it. */}
         {(override?.whyMatters || override?.description) && (
@@ -208,7 +208,7 @@ export default async function GuestPage({
           </Section>
         )}
 
-        {/* Key ideas $€” short, citable claims this expert is known for.
+        {/* Key ideas â€” short, citable claims this expert is known for.
             Bullet structure is what AI search engines pull cleanly. */}
         {override?.keyIdeas && override.keyIdeas.length > 0 && (
           <Section background="charcoal" className="!pt-6 !pb-12">
@@ -231,7 +231,7 @@ export default async function GuestPage({
                         aria-hidden="true"
                         className="text-coral font-heading shrink-0"
                       >
-                        $†’
+                        â†’
                       </span>
                       <span>{idea}</span>
                     </li>
@@ -254,7 +254,7 @@ export default async function GuestPage({
               </h2>
               <p className="text-sm text-foreground-muted mb-8">
                 Every appearance by {guest.name} on The Roadman Cycling
-                Podcast $€” {guest.episodeCount} episode
+                Podcast â€” {guest.episodeCount} episode
                 {guest.episodeCount > 1 ? "s" : ""} in total.
               </p>
             </ScrollReveal>
@@ -305,8 +305,8 @@ export default async function GuestPage({
               ))}
             </div>
 
-            {/* Featured articles $€” blog posts that explicitly cite this
-                guest. Creates bidirectional entity$†”content links from the
+            {/* Featured articles â€” blog posts that explicitly cite this
+                guest. Creates bidirectional entityâ†”content links from the
                 guest page into the blog cluster. */}
             {override?.featuredArticles && override.featuredArticles.length > 0 && (() => {
               const articles = override.featuredArticles
@@ -334,7 +334,7 @@ export default async function GuestPage({
                         </p>
                         <p className="text-xs text-foreground-subtle">
                           {a.excerpt.slice(0, 140)}
-                          {a.excerpt.length > 140 ? "$€¦" : ""}
+                          {a.excerpt.length > 140 ? "â€¦" : ""}
                         </p>
                       </Link>
                     ))}
@@ -368,7 +368,7 @@ export default async function GuestPage({
                           &ldquo;{q.text}&rdquo;
                         </p>
                         <footer className="mt-2 text-xs text-foreground-subtle">
-                          $€” {q.speaker}
+                          â€” {q.speaker}
                           {q.credential && `, ${q.credential}`}
                         </footer>
                       </blockquote>
@@ -378,9 +378,9 @@ export default async function GuestPage({
               );
             })()}
 
-            {/* Related topics $€” prefers curated relatedHubs override
+            {/* Related topics â€” prefers curated relatedHubs override
                 (specific to the guest's actual subject-matter focus),
-                falls back to the auto-derived pillar$†’topic mapping. */}
+                falls back to the auto-derived pillarâ†’topic mapping. */}
             {(() => {
               const TOPIC_TITLES: Record<string, string> = {
                 "ftp-training": "FTP Training",
@@ -426,7 +426,7 @@ export default async function GuestPage({
                           href={`/topics/${slug}`}
                           className="inline-flex items-center gap-1 rounded-lg border border-white/15 hover:border-coral/40 bg-white/[0.04] hover:bg-white/[0.07] px-4 py-2 text-sm font-heading text-off-white tracking-wider transition-all"
                         >
-                          {title} $†’
+                          {title} â†’
                         </Link>
                       );
                     })}
@@ -448,7 +448,7 @@ export default async function GuestPage({
                 className="inline-flex items-center justify-center gap-2 font-heading tracking-wider uppercase rounded-md bg-coral text-off-white hover:bg-coral/90 px-6 py-3 text-sm transition-all"
                 data-track={`guest_${slug}_apply`}
               >
-                Apply for Coaching $†’
+                Apply for Coaching â†’
               </Link>
             </div>
 

@@ -1,5 +1,5 @@
 /**
- * Cohort state $€” single source of truth for whether a cohort is
+ * Cohort state â€” single source of truth for whether a cohort is
  * actively accepting applications ("open"), winding down its last
  * hours ("closing-today"), or closed with a waitlist running for
  * the next one ("waitlist").
@@ -8,10 +8,10 @@
  * below to flip the whole site between phases.
  *
  * Flip semantics (derived from now + deadlines):
- *   now < cohort2Close                $†’ phase: "open"
- *   now < cohort2Close + 1h grace     $†’ phase: "closing-today"
- *   now >= cohort2Close               $†’ phase: "waitlist"   (Cohort 3 waitlist opens automatically)
- *   now >= cohort3Open                $†’ phase: "open" for Cohort 3 (flip label)
+ *   now < cohort2Close                â†’ phase: "open"
+ *   now < cohort2Close + 1h grace     â†’ phase: "closing-today"
+ *   now >= cohort2Close               â†’ phase: "waitlist"   (Cohort 3 waitlist opens automatically)
+ *   now >= cohort3Open                â†’ phase: "open" for Cohort 3 (flip label)
  */
 
 export type CohortPhase = "open" | "closing-today" | "waitlist";
@@ -30,15 +30,15 @@ export interface CohortState {
   nextStarts: Date | null;
   /** Beehiiv tag to apply to new submissions in this phase. */
   submissionTag: string;
-  /** UI strings $€” keep editorial copy in one place so we don't drift. */
+  /** UI strings â€” keep editorial copy in one place so we don't drift. */
   banner: {
     eyebrow: string;        // "COHORT 2 IS OPEN" / "COHORT 3 COMING SOON"
-    detail: string;          // "30 places $· 7-day free trial"
+    detail: string;          // "30 places Â· 7-day free trial"
     cta: string;            // "APPLY" / "APPLY NOW"
     ctaHref: string;        // "/apply"
   };
   form: {
-    kicker: string;         // "APPLY NOW" / "APPLY NOW $€” JOIN THE WAITLIST"
+    kicker: string;         // "APPLY NOW" / "APPLY NOW â€” JOIN THE WAITLIST"
     subheading: string;     // pricing + trial line OR waitlist promise
     buttonText: string;     // "APPLY FOR YOUR SPOT" / "JOIN THE WAITLIST"
     submittedHeadline: string;
@@ -69,7 +69,7 @@ export function getCohortState(now: Date = new Date()): CohortState {
   const nowMs = now.getTime();
   const close2Ms = COHORT_2_CLOSE.getTime();
 
-  // 1 hour grace window after the close $€” lets us keep "closing-today"
+  // 1 hour grace window after the close â€” lets us keep "closing-today"
   // urgency running right up to midnight without flipping mid-session.
   if (nowMs < close2Ms - 60 * 60 * 1000) {
     return cohort2Open();
@@ -91,7 +91,7 @@ function cohort2Open(): CohortState {
     submissionTag: "cohort-2-applicant",
     banner: {
       eyebrow: "COHORT 2 IS OPEN",
-      detail: "Not Done Yet coaching $· 30 places $· 7-day free trial",
+      detail: "Not Done Yet coaching Â· 30 places Â· 7-day free trial",
       cta: "APPLY",
       ctaHref: "/apply",
     },
@@ -112,7 +112,7 @@ function cohort2ClosingToday(): CohortState {
     phase: "closing-today",
     banner: {
       eyebrow: "FINAL HOURS",
-      detail: "Not Done Yet coaching $· Cohort 2 closes at midnight $· last chance",
+      detail: "Not Done Yet coaching Â· Cohort 2 closes at midnight Â· last chance",
       cta: "APPLY",
       ctaHref: "/apply",
     },
@@ -130,14 +130,14 @@ function cohort3Waitlist(): CohortState {
     submissionTag: "cohort-3-waitlist",
     banner: {
       eyebrow: "COHORT 3 COMING SOON",
-      detail: "Not Done Yet coaching $· Apply for 24-hour early access",
+      detail: "Not Done Yet coaching Â· Apply for 24-hour early access",
       cta: "APPLY NOW",
       ctaHref: "/apply",
     },
     form: {
-      kicker: "APPLY NOW $€” JOIN THE WAITLIST",
+      kicker: "APPLY NOW â€” JOIN THE WAITLIST",
       subheading:
-        "Cohort 3 is coming soon. Apply now to secure your spot on the waitlist $€” members get 24-hour early access before public launch.",
+        "Cohort 3 is coming soon. Apply now to secure your spot on the waitlist â€” members get 24-hour early access before public launch.",
       buttonText: "JOIN THE WAITLIST",
       submittedHeadline: "YOU'RE ON THE LIST",
       submittedBody:

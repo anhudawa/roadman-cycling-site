@@ -6,12 +6,12 @@ export const NDY_CONFIG = {
   skoolStandard: 'https://www.skool.com/roadmancycling/about',
   skoolPremium: 'https://www.skool.com/roadmancycling/about',
 
-  // Calendly links $€” update when account is created
+  // Calendly links $â€” update when account is created
   // Falls back to /contact until Calendly is configured
   calendlyInnerCircle: process.env.NEXT_PUBLIC_CALENDLY_INNER_CIRCLE || '/contact',
   calendlyPremium: process.env.NEXT_PUBLIC_CALENDLY_PREMIUM || '/contact',
 
-  // Beehiiv $€” nurture sequence for not-a-fit prospects
+  // Beehiiv $â€” nurture sequence for not-a-fit prospects
   beehiivApiKey: process.env.BEEHIIV_API_KEY || '',
   beehiivPublicationId: process.env.BEEHIIV_PUBLICATION_ID || '',
 

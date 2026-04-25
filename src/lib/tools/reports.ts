@@ -1,5 +1,5 @@
 /**
- * Tool report generator $€” one function per calculator produces a
+ * Tool report generator â€” one function per calculator produces a
  * rich HTML email with the user's personalised results, practical
  * application, and soft CTAs back to the site.
  *
@@ -38,7 +38,7 @@ function wrap(title: string, subtitle: string, body: string): string {
 <body style="margin:0;padding:0;background:#1a1a1c;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif;color:#FAFAFA;">
   <div style="max-width:640px;margin:0 auto;padding:24px 16px;">
     <div style="background:#210140;color:#FAFAFA;padding:32px 28px;border-radius:12px 12px 0 0;">
-      <p style="color:#F16363;margin:0 0 8px;font-size:13px;letter-spacing:2px;text-transform:uppercase;">Roadman Cycling $· Your Report</p>
+      <p style="color:#F16363;margin:0 0 8px;font-size:13px;letter-spacing:2px;text-transform:uppercase;">Roadman Cycling Â· Your Report</p>
       <h1 style="font-size:32px;margin:0;line-height:1.1;letter-spacing:-0.02em;">${escapeHtml(title)}</h1>
       <p style="color:#e0d0ff;margin:14px 0 0;font-size:15px;line-height:1.5;">${escapeHtml(subtitle)}</p>
     </div>
@@ -46,12 +46,12 @@ function wrap(title: string, subtitle: string, body: string): string {
       ${body}
       <div style="margin-top:40px;padding-top:20px;border-top:1px solid rgba(255,255,255,0.1);">
         <p style="color:#9ca3af;font-size:13px;margin:0 0 4px;">Anthony Walsh</p>
-        <p style="color:#6b7280;font-size:12px;margin:0;">Host, Roadman Cycling Podcast $· <a href="https://roadmancycling.com" style="color:#F16363;text-decoration:none;">roadmancycling.com</a></p>
+        <p style="color:#6b7280;font-size:12px;margin:0;">Host, Roadman Cycling Podcast Â· <a href="https://roadmancycling.com" style="color:#F16363;text-decoration:none;">roadmancycling.com</a></p>
       </div>
     </div>
     <p style="text-align:center;color:#6b7280;font-size:11px;margin:16px 0 0;">
       You asked for this report from roadmancycling.com. One-off send.
-      We'll also add you to the Saturday Spin $€” <a href="{{RESEND_UNSUBSCRIBE_URL}}" style="color:#9ca3af;">unsubscribe anytime</a>.
+      We'll also add you to the Saturday Spin â€” <a href="{{RESEND_UNSUBSCRIBE_URL}}" style="color:#9ca3af;">unsubscribe anytime</a>.
     </p>
   </div>
 </body></html>`;
@@ -70,7 +70,7 @@ function softCoachingCta(): string {
     <p style="color:#F16363;font-size:11px;letter-spacing:2px;margin:0 0 6px;text-transform:uppercase;">When you're ready</p>
     <p style="color:#FAFAFA;font-size:16px;margin:0 0 4px;font-weight:600;">Want this applied to your whole training week?</p>
     <p style="color:#9ca3af;font-size:13px;margin:0 0 14px;">The Not Done Yet coaching community runs a coached five-pillar system. Personalised plan, weekly calls, expert masterclasses. 7-day free trial, $195/mo.</p>
-    <a href="https://roadmancycling.com/apply" style="display:inline-block;padding:10px 18px;background:#F16363;color:#FAFAFA;text-decoration:none;border-radius:6px;font-size:13px;letter-spacing:1.5px;text-transform:uppercase;font-weight:600;">Apply $· 7-day free trial $†’</a>
+    <a href="https://roadmancycling.com/apply" style="display:inline-block;padding:10px 18px;background:#F16363;color:#FAFAFA;text-decoration:none;border-radius:6px;font-size:13px;letter-spacing:1.5px;text-transform:uppercase;font-weight:600;">Apply Â· 7-day free trial â†’</a>
   </div>`;
 }
 
@@ -87,7 +87,7 @@ function generateFtpZonesReport(inputs: FtpZonesInputs): ReportOutput {
   const ftp = inputs.ftp;
   const name = inputs.name?.split(" ")[0] ?? "";
 
-  // Zone boundaries $€” keep identical to the on-page calculator
+  // Zone boundaries â€” keep identical to the on-page calculator
   const zones = [
     { n: 1, label: "Active Recovery", minPct: 0, maxPct: 55 },
     { n: 2, label: "Endurance", minPct: 56, maxPct: 75 },
@@ -102,7 +102,7 @@ function generateFtpZonesReport(inputs: FtpZonesInputs): ReportOutput {
     .map((z) => {
       const min = Math.round((z.minPct / 100) * ftp);
       const max = z.maxPct === null ? null : Math.round((z.maxPct / 100) * ftp);
-      const range = max === null ? `${min}w+` : `${min}$€“${max}w`;
+      const range = max === null ? `${min}w+` : `${min}â€“${max}w`;
       return `<tr>
         <td style="padding:10px 12px;border-top:1px solid rgba(255,255,255,0.06);color:#F16363;font-weight:600;">Z${z.n}</td>
         <td style="padding:10px 12px;border-top:1px solid rgba(255,255,255,0.06);color:#FAFAFA;">${z.label}</td>
@@ -120,10 +120,10 @@ function generateFtpZonesReport(inputs: FtpZonesInputs): ReportOutput {
   const vo2High = Math.round(1.2 * ftp);
 
   const body = `
-    ${name ? `<p style="color:#FAFAFA;font-size:15px;margin:0 0 16px;">${escapeHtml(name)} $€”</p>` : ""}
+    ${name ? `<p style="color:#FAFAFA;font-size:15px;margin:0 0 16px;">${escapeHtml(name)} â€”</p>` : ""}
 
     <p style="color:#FAFAFA;font-size:15px;margin:0 0 8px;">Your FTP: <strong style="color:#F16363;font-size:22px;">${ftp}w</strong></p>
-    <p style="color:#9ca3af;font-size:13px;margin:0 0 24px;">Below is your complete 7-zone breakdown. Save this email $€” these are the numbers every session on the bike lives inside.</p>
+    <p style="color:#9ca3af;font-size:13px;margin:0 0 24px;">Below is your complete 7-zone breakdown. Save this email â€” these are the numbers every session on the bike lives inside.</p>
 
     <h2 style="color:#F16363;font-size:13px;letter-spacing:2px;text-transform:uppercase;margin:0 0 8px;">Your zones</h2>
     <table style="width:100%;border-collapse:collapse;font-size:14px;background:rgba(255,255,255,0.03);border-radius:8px;overflow:hidden;margin:0 0 28px;">
@@ -142,31 +142,31 @@ function generateFtpZonesReport(inputs: FtpZonesInputs): ReportOutput {
 
     <ul style="list-style:none;padding:0;margin:0 0 28px;">
       <li style="padding:12px 14px;background:rgba(255,255,255,0.03);border-radius:8px;margin-bottom:8px;">
-        <strong style="color:#FAFAFA;display:block;margin-bottom:2px;">Monday $· Rest or easy spin</strong>
+        <strong style="color:#FAFAFA;display:block;margin-bottom:2px;">Monday Â· Rest or easy spin</strong>
         <span style="color:#9ca3af;font-size:13px;">45 min Zone 1 if you need the movement. Legs up is also training.</span>
       </li>
       <li style="padding:12px 14px;background:rgba(255,255,255,0.03);border-radius:8px;margin-bottom:8px;">
-        <strong style="color:#FAFAFA;display:block;margin-bottom:2px;">Tuesday $· Threshold $· <span style="color:#F16363;">${thresholdLow}$€“${thresholdHigh}w</span></strong>
+        <strong style="color:#FAFAFA;display:block;margin-bottom:2px;">Tuesday Â· Threshold Â· <span style="color:#F16363;">${thresholdLow}â€“${thresholdHigh}w</span></strong>
         <span style="color:#9ca3af;font-size:13px;">Warm up 15 min. 2Ã—20 min at threshold with 5 min recovery between. Cool down. This is your anchor session.</span>
       </li>
       <li style="padding:12px 14px;background:rgba(255,255,255,0.03);border-radius:8px;margin-bottom:8px;">
-        <strong style="color:#FAFAFA;display:block;margin-bottom:2px;">Wednesday $· Zone 2 $· <span style="color:#F16363;">${z2Low}$€“${z2High}w</span></strong>
-        <span style="color:#9ca3af;font-size:13px;">75$€“90 min steady. Conversational pace. If you can&apos;t talk in sentences you&apos;re too hard.</span>
+        <strong style="color:#FAFAFA;display:block;margin-bottom:2px;">Wednesday Â· Zone 2 Â· <span style="color:#F16363;">${z2Low}â€“${z2High}w</span></strong>
+        <span style="color:#9ca3af;font-size:13px;">75â€“90 min steady. Conversational pace. If you can&apos;t talk in sentences you&apos;re too hard.</span>
       </li>
       <li style="padding:12px 14px;background:rgba(255,255,255,0.03);border-radius:8px;margin-bottom:8px;">
-        <strong style="color:#FAFAFA;display:block;margin-bottom:2px;">Thursday $· VO2 max $· <span style="color:#F16363;">${vo2Low}$€“${vo2High}w</span></strong>
-        <span style="color:#9ca3af;font-size:13px;">Warm up. 4Ã—4 min at VO2 max with 4 min easy recovery. The 4th rep should be the hardest $€” if it&apos;s easy, push harder next week.</span>
+        <strong style="color:#FAFAFA;display:block;margin-bottom:2px;">Thursday Â· VO2 max Â· <span style="color:#F16363;">${vo2Low}â€“${vo2High}w</span></strong>
+        <span style="color:#9ca3af;font-size:13px;">Warm up. 4Ã—4 min at VO2 max with 4 min easy recovery. The 4th rep should be the hardest â€” if it&apos;s easy, push harder next week.</span>
       </li>
       <li style="padding:12px 14px;background:rgba(255,255,255,0.03);border-radius:8px;margin-bottom:8px;">
-        <strong style="color:#FAFAFA;display:block;margin-bottom:2px;">Friday $· Rest</strong>
+        <strong style="color:#FAFAFA;display:block;margin-bottom:2px;">Friday Â· Rest</strong>
         <span style="color:#9ca3af;font-size:13px;">Genuine rest. Or a 30 min coffee spin in Zone 1. Nothing spicy.</span>
       </li>
       <li style="padding:12px 14px;background:rgba(255,255,255,0.03);border-radius:8px;margin-bottom:8px;">
-        <strong style="color:#FAFAFA;display:block;margin-bottom:2px;">Saturday $· Long Zone 2 $· <span style="color:#F16363;">${z2Low}$€“${z2High}w</span></strong>
-        <span style="color:#9ca3af;font-size:13px;">3$€“4 hours. Fueled. The long ride is where your aerobic engine actually grows. Don&apos;t let it drift into Zone 3.</span>
+        <strong style="color:#FAFAFA;display:block;margin-bottom:2px;">Saturday Â· Long Zone 2 Â· <span style="color:#F16363;">${z2Low}â€“${z2High}w</span></strong>
+        <span style="color:#9ca3af;font-size:13px;">3â€“4 hours. Fueled. The long ride is where your aerobic engine actually grows. Don&apos;t let it drift into Zone 3.</span>
       </li>
       <li style="padding:12px 14px;background:rgba(255,255,255,0.03);border-radius:8px;">
-        <strong style="color:#FAFAFA;display:block;margin-bottom:2px;">Sunday $· Group ride or Zone 2</strong>
+        <strong style="color:#FAFAFA;display:block;margin-bottom:2px;">Sunday Â· Group ride or Zone 2</strong>
         <span style="color:#9ca3af;font-size:13px;">Group ride counts. If you&apos;ve done the quality work this week, Sunday is social + steady.</span>
       </li>
     </ul>
@@ -174,22 +174,22 @@ function generateFtpZonesReport(inputs: FtpZonesInputs): ReportOutput {
     <h2 style="color:#F16363;font-size:13px;letter-spacing:2px;text-transform:uppercase;margin:0 0 8px;">Three rules that unlock this</h2>
     <ol style="padding-left:20px;margin:0 0 28px;color:#FAFAFA;">
       <li style="margin-bottom:10px;line-height:1.55;"><strong>Keep Zone 2 easy.</strong> If your average heart rate or power drifts into Zone 3, the day stops being Zone 2. Most amateurs fail here.</li>
-      <li style="margin-bottom:10px;line-height:1.55;"><strong>Protect your hard days.</strong> One threshold, one VO2 max. If life says otherwise, drop VO2 max first $€” it needs freshness.</li>
-      <li style="line-height:1.55;"><strong>8 weeks before you judge it.</strong> The Norwegian 4Ã—8 research consistently shows 6$€“8 weeks of this pattern before a testable FTP bump.</li>
+      <li style="margin-bottom:10px;line-height:1.55;"><strong>Protect your hard days.</strong> One threshold, one VO2 max. If life says otherwise, drop VO2 max first â€” it needs freshness.</li>
+      <li style="line-height:1.55;"><strong>8 weeks before you judge it.</strong> The Norwegian 4Ã—8 research consistently shows 6â€“8 weeks of this pattern before a testable FTP bump.</li>
     </ol>
 
     <div style="padding:18px 20px;background:rgba(255,255,255,0.03);border-left:3px solid #F16363;border-radius:4px;margin:0 0 28px;">
       <p style="color:#9ca3af;font-size:13px;margin:0 0 6px;font-style:italic;">From the podcast:</p>
       <p style="color:#FAFAFA;font-size:15px;margin:0 0 10px;line-height:1.5;">&ldquo;The best endurance athletes don&apos;t have some secret. They do the obvious things consistently, for years.&rdquo;</p>
-      <p style="color:#9ca3af;font-size:13px;margin:0 0 10px;">$€” Professor Stephen Seiler, Roadman Podcast ep. 2148</p>
-      <a href="https://roadmancycling.com/podcast/ep-2148-80-20-training-to-ride-faster-dr-stephen-seiler" style="color:#F16363;font-size:13px;text-decoration:none;">Listen to the full conversation $†’</a>
+      <p style="color:#9ca3af;font-size:13px;margin:0 0 10px;">â€” Professor Stephen Seiler, Roadman Podcast ep. 2148</p>
+      <a href="https://roadmancycling.com/podcast/ep-2148-80-20-training-to-ride-faster-dr-stephen-seiler" style="color:#F16363;font-size:13px;text-decoration:none;">Listen to the full conversation â†’</a>
     </div>
 
     <p style="color:#FAFAFA;font-size:14px;margin:0 0 8px;">Further reading on the site:</p>
     <ul style="padding-left:20px;margin:0 0 28px;color:#F16363;font-size:14px;">
       <li style="margin-bottom:4px;"><a href="https://roadmancycling.com/blog/polarised-training-cycling-guide" style="color:#F16363;">Polarised training: the 80/20 approach</a></li>
       <li style="margin-bottom:4px;"><a href="https://roadmancycling.com/blog/how-to-improve-ftp-cycling" style="color:#F16363;">How to improve your FTP</a></li>
-      <li><a href="https://roadmancycling.com/blog/zone-2-training-complete-guide" style="color:#F16363;">Zone 2 training $€” complete guide</a></li>
+      <li><a href="https://roadmancycling.com/blog/zone-2-training-complete-guide" style="color:#F16363;">Zone 2 training â€” complete guide</a></li>
     </ul>
 
     ${softCoachingCta()}
@@ -217,15 +217,15 @@ interface TyrePressureInputs {
   rimWidth: number;    // mm
   surface: "smooth" | "rough" | "gravel";
   tubeType: "clincher" | "tubeless" | "tubular";
-  front: number;       // psi $€” precomputed
-  rear: number;        // psi $€” precomputed
+  front: number;       // psi â€” precomputed
+  rear: number;        // psi â€” precomputed
   name?: string;
 }
 
 function generateTyrePressureReport(i: TyrePressureInputs): ReportOutput {
-  const nameLine = i.name ? `<p style="color:#FAFAFA;font-size:15px;margin:0 0 16px;">${escapeHtml(i.name.split(" ")[0])} $€”</p>` : "";
+  const nameLine = i.name ? `<p style="color:#FAFAFA;font-size:15px;margin:0 0 16px;">${escapeHtml(i.name.split(" ")[0])} â€”</p>` : "";
 
-  // Adjustment table $€” same PSI shifted by condition. +10% rough, +5% wet, -8% gravel vs baseline.
+  // Adjustment table â€” same PSI shifted by condition. +10% rough, +5% wet, -8% gravel vs baseline.
   const dryFront = i.front;
   const dryRear = i.rear;
   const wetFront = Math.round(i.front * 0.95);
@@ -236,7 +236,7 @@ function generateTyrePressureReport(i: TyrePressureInputs): ReportOutput {
   const winterRear = Math.round(i.rear * 0.9);
 
   const tubelessNote = i.tubeType === "tubeless"
-    ? `<p style="color:#9ca3af;font-size:14px;margin:0 0 16px;">You're running tubeless $€” these numbers assume you're 4-6 psi below what a clincher tyre of the same width would need. If you start burping air, add 3 psi and recheck.</p>`
+    ? `<p style="color:#9ca3af;font-size:14px;margin:0 0 16px;">You're running tubeless â€” these numbers assume you're 4-6 psi below what a clincher tyre of the same width would need. If you start burping air, add 3 psi and recheck.</p>`
     : `<p style="color:#9ca3af;font-size:14px;margin:0 0 16px;">You're running clinchers. Going tubeless lets you drop 4-6 psi safely and gain significant grip + comfort. It's the biggest free performance upgrade most cyclists are still sitting on.</p>`;
 
   const body = `
@@ -267,14 +267,14 @@ function generateTyrePressureReport(i: TyrePressureInputs): ReportOutput {
       <li style="margin-bottom:8px;line-height:1.55;">Bike skittish in corners? Drop 2 psi.</li>
       <li style="margin-bottom:8px;line-height:1.55;">Feeling every pebble through the bars? Drop 3-4 psi.</li>
       <li style="margin-bottom:8px;line-height:1.55;">Tyre bottoming out on potholes (rim strikes)? Add 3 psi.</li>
-      <li style="line-height:1.55;">Every real-world change &gt; 5$°C changes pressure by ~1 psi. Check before hard rides.</li>
+      <li style="line-height:1.55;">Every real-world change &gt; 5Â°C changes pressure by ~1 psi. Check before hard rides.</li>
     </ol>
 
     ${softCoachingCta()}
   `;
   return {
     subject: `Your tyre pressure setup: ${dryFront}/${dryRear} psi`,
-    html: wrap(`Your tyre setup, ${i.tyreWidth}mm`, "Pressure for dry, wet, gravel, winter $€” plus a quick tuning guide.", body),
+    html: wrap(`Your tyre setup, ${i.tyreWidth}mm`, "Pressure for dry, wet, gravel, winter â€” plus a quick tuning guide.", body),
     beehiivTag: "tool-tyre-pressure-report",
     beehiivFields: { tool: "tyre-pressure", tyre_width_mm: i.tyreWidth, front_psi: i.front, rear_psi: i.rear },
   };
@@ -300,18 +300,18 @@ interface RaceWeightInputs {
 }
 
 function generateRaceWeightReport(i: RaceWeightInputs): ReportOutput {
-  const nameLine = i.name ? `<p style="color:#FAFAFA;font-size:15px;margin:0 0 16px;">${escapeHtml(i.name.split(" ")[0])} $€”</p>` : "";
+  const nameLine = i.name ? `<p style="color:#FAFAFA;font-size:15px;margin:0 0 16px;">${escapeHtml(i.name.split(" ")[0])} â€”</p>` : "";
   const weeklyLossKg = Math.round(i.currentWeight * 0.005 * 10) / 10;
   const proteinLow = Math.round(i.currentWeight * 1.6);
   const proteinHigh = Math.round(i.currentWeight * 2.2);
   const timelineText = i.weeksToTarget === 0
-    ? `You're already in your target range $€” hold position while you build power.`
-    : `${i.weeksToTarget} weeks at a safe ${weeklyLossKg} kg/week pace. That's ${Math.round(i.currentWeight * 0.005 * 100) / 100}% of body weight $€” the limit before you start losing training quality.`;
+    ? `You're already in your target range â€” hold position while you build power.`
+    : `${i.weeksToTarget} weeks at a safe ${weeklyLossKg} kg/week pace. That's ${Math.round(i.currentWeight * 0.005 * 100) / 100}% of body weight â€” the limit before you start losing training quality.`;
 
   const body = `
     ${nameLine}
     <p style="color:#FAFAFA;font-size:15px;margin:0 0 6px;">Currently: ${i.currentWeight} kg @ ${i.bodyFat}% body fat</p>
-    <p style="color:#9ca3af;font-size:14px;margin:0 0 24px;">Target: <strong style="color:#F16363;">${i.targetWeightMin}$€“${i.targetWeightMax} kg</strong> (${i.targetBfMin}$€“${i.targetBfMax}% body fat)</p>
+    <p style="color:#9ca3af;font-size:14px;margin:0 0 24px;">Target: <strong style="color:#F16363;">${i.targetWeightMin}â€“${i.targetWeightMax} kg</strong> (${i.targetBfMin}â€“${i.targetBfMax}% body fat)</p>
 
     <h2 style="color:#F16363;font-size:13px;letter-spacing:2px;text-transform:uppercase;margin:0 0 8px;">Your timeline</h2>
     <p style="color:#FAFAFA;font-size:15px;margin:0 0 16px;line-height:1.5;">${timelineText}</p>
@@ -323,10 +323,10 @@ function generateRaceWeightReport(i: RaceWeightInputs): ReportOutput {
 
     <h2 style="color:#F16363;font-size:13px;letter-spacing:2px;text-transform:uppercase;margin:0 0 8px;">Non-negotiables</h2>
     <ul style="padding-left:20px;margin:0 0 24px;color:#FAFAFA;">
-      <li style="margin-bottom:10px;line-height:1.55;"><strong>Protein: ${proteinLow}$€“${proteinHigh}g per day.</strong> Cycling is a muscle-losing sport. Protein protects lean mass while you lose fat.</li>
+      <li style="margin-bottom:10px;line-height:1.55;"><strong>Protein: ${proteinLow}â€“${proteinHigh}g per day.</strong> Cycling is a muscle-losing sport. Protein protects lean mass while you lose fat.</li>
       <li style="margin-bottom:10px;line-height:1.55;"><strong>Fuel your hard sessions.</strong> Never under-eat on training days. The deficit sits on rest days and easy-ride days only. "Fuel for the work required."</li>
       <li style="margin-bottom:10px;line-height:1.55;"><strong>Weigh in weekly, same day + time.</strong> Daily weigh-ins are noise; weekly trend is signal. Track it on a Sunday morning.</li>
-      <li style="line-height:1.55;"><strong>Stop if training quality drops.</strong> Power numbers falling, getting sick, disordered thinking about food $€” these are STOP signals. Not "push through" signals.</li>
+      <li style="line-height:1.55;"><strong>Stop if training quality drops.</strong> Power numbers falling, getting sick, disordered thinking about food â€” these are STOP signals. Not "push through" signals.</li>
     </ul>
 
     <p style="color:#FAFAFA;font-size:14px;margin:0 0 8px;">Further reading:</p>
@@ -338,8 +338,8 @@ function generateRaceWeightReport(i: RaceWeightInputs): ReportOutput {
     ${softCoachingCta()}
   `;
   return {
-    subject: `Your race weight plan: ${i.targetWeightMin}$€“${i.targetWeightMax} kg in ${i.weeksToTarget || 0} wks`,
-    html: wrap(`Your race weight target`, `${i.targetWeightMin}$€“${i.targetWeightMax} kg range, ${i.weeksToTarget || 0} weeks at safe pace, protein + fuelling rules.`, body),
+    subject: `Your race weight plan: ${i.targetWeightMin}â€“${i.targetWeightMax} kg in ${i.weeksToTarget || 0} wks`,
+    html: wrap(`Your race weight target`, `${i.targetWeightMin}â€“${i.targetWeightMax} kg range, ${i.weeksToTarget || 0} weeks at safe pace, protein + fuelling rules.`, body),
     beehiivTag: "tool-race-weight-report",
     beehiivFields: {
       tool: "race-weight",
@@ -370,16 +370,16 @@ interface EnergyAvailabilityInputs {
 }
 
 function generateEnergyAvailabilityReport(i: EnergyAvailabilityInputs): ReportOutput {
-  const nameLine = i.name ? `<p style="color:#FAFAFA;font-size:15px;margin:0 0 16px;">${escapeHtml(i.name.split(" ")[0])} $€”</p>` : "";
+  const nameLine = i.name ? `<p style="color:#FAFAFA;font-size:15px;margin:0 0 16px;">${escapeHtml(i.name.split(" ")[0])} â€”</p>` : "";
   const riskColor = i.risk === "optimal" ? "#22C55E" : i.risk === "concern" ? "#F59E0B" : "#EF4444";
   const riskLabel = i.risk === "optimal" ? "OPTIMAL" : i.risk === "concern" ? "AT RISK" : "HIGH RISK";
 
-  // Calorie targets $€” EA = (intake - exercise) / FFM
+  // Calorie targets â€” EA = (intake - exercise) / FFM
   const targetOptimal = Math.round(i.fatFreeMass * 45 + i.exerciseExpenditure);
   const targetCurrent = Math.round(i.calories);
   const gapCals = targetOptimal - targetCurrent;
   const gapLine = gapCals > 0
-    ? `You're running a ${gapCals} kcal/day shortfall vs the optimal target. Add this back in $€” ideally around training.`
+    ? `You're running a ${gapCals} kcal/day shortfall vs the optimal target. Add this back in â€” ideally around training.`
     : gapCals < -300
       ? `You're eating ${Math.abs(gapCals)} kcal/day above the optimal EA target. Not harmful; just means you're in a slight surplus.`
       : `You're close to optimal. No major shift needed.`;
@@ -413,7 +413,7 @@ function generateEnergyAvailabilityReport(i: EnergyAvailabilityInputs): ReportOu
     <ul style="padding-left:20px;margin:0 0 24px;color:#FAFAFA;">
       <li style="margin-bottom:8px;line-height:1.55;">Chronic low EA affects hormones (testosterone, thyroid, bone density) in men AND women. It's not a female-only issue.</li>
       <li style="margin-bottom:8px;line-height:1.55;">Classic signs: lost libido, disturbed sleep, unexplained fatigue, frequent illness, loss of menstrual cycle. Any combination &gt; 2 weeks = see a sports physician.</li>
-      <li style="line-height:1.55;">Fuel AROUND training $€” 30 min pre, during (after 60 min), and within 2 hours post. Carbs + protein.</li>
+      <li style="line-height:1.55;">Fuel AROUND training â€” 30 min pre, during (after 60 min), and within 2 hours post. Carbs + protein.</li>
     </ul>
 
     ${softCoachingCta()}
@@ -457,7 +457,7 @@ interface FuellingInputs {
 }
 
 function generateFuellingReport(i: FuellingInputs): ReportOutput {
-  const nameLine = i.name ? `<p style="color:#FAFAFA;font-size:15px;margin:0 0 16px;">${escapeHtml(i.name.split(" ")[0])} $€”</p>` : "";
+  const nameLine = i.name ? `<p style="color:#FAFAFA;font-size:15px;margin:0 0 16px;">${escapeHtml(i.name.split(" ")[0])} â€”</p>` : "";
   const hours = i.duration / 60;
 
   const strategyList = i.strategy.map((s) => `<li style="margin-bottom:8px;line-height:1.5;color:#FAFAFA;">${escapeHtml(s)}</li>`).join("");
@@ -465,7 +465,7 @@ function generateFuellingReport(i: FuellingInputs): ReportOutput {
   // Generate an hour-by-hour schedule
   const timeline: string[] = [];
   if (i.startFuellingAt > 0) {
-    timeline.push(`<strong>0$€“${i.startFuellingAt} min:</strong> ride in, water as needed, no carbs.`);
+    timeline.push(`<strong>0â€“${i.startFuellingAt} min:</strong> ride in, water as needed, no carbs.`);
   }
   const carbsPerFeed = Math.round(i.carbsPerHour / (60 / i.feedingInterval));
   const feedsPerHour = Math.round(60 / i.feedingInterval);
@@ -474,14 +474,14 @@ function generateFuellingReport(i: FuellingInputs): ReportOutput {
     const startMin = Math.max(i.startFuellingAt, (hr - 1) * 60);
     if (endMin <= startMin) continue;
     timeline.push(
-      `<strong>${startMin}$€“${endMin} min:</strong> ${feedsPerHour}Ã— feeds of ~${carbsPerFeed}g carbs every ${i.feedingInterval} min. Sip ~${Math.round(i.fluidPerHour / 4)}ml fluid every 15 min.`,
+      `<strong>${startMin}â€“${endMin} min:</strong> ${feedsPerHour}Ã— feeds of ~${carbsPerFeed}g carbs every ${i.feedingInterval} min. Sip ~${Math.round(i.fluidPerHour / 4)}ml fluid every 15 min.`,
     );
   }
 
   const body = `
     ${nameLine}
-    <p style="color:#FAFAFA;font-size:15px;margin:0 0 6px;">Session: ${hours.toFixed(1)} hr ${escapeHtml(i.intensityLabel)} @ ${i.watts}w $· ${escapeHtml(i.heatCategory)} conditions</p>
-    <p style="color:#9ca3af;font-size:14px;margin:0 0 24px;">Target: <strong style="color:#F16363;">${i.carbsPerHour}g carbs/hr</strong> $· <strong style="color:#F16363;">${i.fluidPerHour}ml fluid/hr</strong> $· <strong style="color:#F16363;">${i.sodiumPerHour}mg sodium/hr</strong></p>
+    <p style="color:#FAFAFA;font-size:15px;margin:0 0 6px;">Session: ${hours.toFixed(1)} hr ${escapeHtml(i.intensityLabel)} @ ${i.watts}w Â· ${escapeHtml(i.heatCategory)} conditions</p>
+    <p style="color:#9ca3af;font-size:14px;margin:0 0 24px;">Target: <strong style="color:#F16363;">${i.carbsPerHour}g carbs/hr</strong> Â· <strong style="color:#F16363;">${i.fluidPerHour}ml fluid/hr</strong> Â· <strong style="color:#F16363;">${i.sodiumPerHour}mg sodium/hr</strong></p>
 
     <h2 style="color:#F16363;font-size:13px;letter-spacing:2px;text-transform:uppercase;margin:0 0 8px;">Hour-by-hour plan</h2>
     <ul style="padding-left:0;list-style:none;margin:0 0 24px;">
@@ -510,7 +510,7 @@ function generateFuellingReport(i: FuellingInputs): ReportOutput {
   `;
   return {
     subject: `Your ${hours.toFixed(1)}hr fuelling plan: ${i.carbsPerHour}g/hr`,
-    html: wrap(`Your ${hours.toFixed(1)}hr fuelling plan`, `${i.totalCarbs}g carbs $· ${(i.totalFluid / 1000).toFixed(1)}L fluid $· ${i.sodiumPerHour}mg sodium/hr.`, body),
+    html: wrap(`Your ${hours.toFixed(1)}hr fuelling plan`, `${i.totalCarbs}g carbs Â· ${(i.totalFluid / 1000).toFixed(1)}L fluid Â· ${i.sodiumPerHour}mg sodium/hr.`, body),
     beehiivTag: "tool-fuelling-report",
     beehiivFields: {
       tool: "fuelling",
@@ -546,26 +546,26 @@ interface ShockPressureInputs {
 }
 
 function generateShockPressureReport(i: ShockPressureInputs): ReportOutput {
-  const nameLine = i.name ? `<p style="color:#FAFAFA;font-size:15px;margin:0 0 16px;">${escapeHtml(i.name.split(" ")[0])} $€”</p>` : "";
+  const nameLine = i.name ? `<p style="color:#FAFAFA;font-size:15px;margin:0 0 16px;">${escapeHtml(i.name.split(" ")[0])} â€”</p>` : "";
   const hasFork = typeof i.forkPsi === "number" && i.forkPsi > 0;
   const hasShock = typeof i.shockPsi === "number" && i.shockPsi > 0;
   const hasTyres = typeof i.tyreFrontPsi === "number";
 
   const rows: string[] = [];
   if (hasFork) {
-    rows.push(`<tr><td style="padding:10px 12px;border-top:1px solid rgba(255,255,255,0.06);color:#9ca3af;">Fork (${escapeHtml(i.forkBrand)} ${escapeHtml(i.forkModel)})</td><td style="padding:10px 12px;border-top:1px solid rgba(255,255,255,0.06);text-align:right;color:#FAFAFA;font-variant-numeric:tabular-nums;"><strong style="color:#F16363;">${i.forkPsi} psi</strong>${i.forkRebound !== undefined ? ` $· rebound ${i.forkRebound}` : ""}</td></tr>`);
+    rows.push(`<tr><td style="padding:10px 12px;border-top:1px solid rgba(255,255,255,0.06);color:#9ca3af;">Fork (${escapeHtml(i.forkBrand)} ${escapeHtml(i.forkModel)})</td><td style="padding:10px 12px;border-top:1px solid rgba(255,255,255,0.06);text-align:right;color:#FAFAFA;font-variant-numeric:tabular-nums;"><strong style="color:#F16363;">${i.forkPsi} psi</strong>${i.forkRebound !== undefined ? ` Â· rebound ${i.forkRebound}` : ""}</td></tr>`);
   }
   if (hasShock) {
-    rows.push(`<tr><td style="padding:10px 12px;border-top:1px solid rgba(255,255,255,0.06);color:#9ca3af;">Shock (${escapeHtml(i.shockBrand)} ${escapeHtml(i.shockModel)})</td><td style="padding:10px 12px;border-top:1px solid rgba(255,255,255,0.06);text-align:right;color:#FAFAFA;font-variant-numeric:tabular-nums;"><strong style="color:#F16363;">${i.shockPsi} psi</strong>${i.shockRebound !== undefined ? ` $· rebound ${i.shockRebound}` : ""}</td></tr>`);
+    rows.push(`<tr><td style="padding:10px 12px;border-top:1px solid rgba(255,255,255,0.06);color:#9ca3af;">Shock (${escapeHtml(i.shockBrand)} ${escapeHtml(i.shockModel)})</td><td style="padding:10px 12px;border-top:1px solid rgba(255,255,255,0.06);text-align:right;color:#FAFAFA;font-variant-numeric:tabular-nums;"><strong style="color:#F16363;">${i.shockPsi} psi</strong>${i.shockRebound !== undefined ? ` Â· rebound ${i.shockRebound}` : ""}</td></tr>`);
   }
   if (hasTyres) {
-    rows.push(`<tr><td style="padding:10px 12px;border-top:1px solid rgba(255,255,255,0.06);color:#9ca3af;">Tyres</td><td style="padding:10px 12px;border-top:1px solid rgba(255,255,255,0.06);text-align:right;color:#FAFAFA;font-variant-numeric:tabular-nums;">front <strong style="color:#F16363;">${i.tyreFrontPsi} psi</strong> $· rear <strong style="color:#F16363;">${i.tyreRearPsi} psi</strong></td></tr>`);
+    rows.push(`<tr><td style="padding:10px 12px;border-top:1px solid rgba(255,255,255,0.06);color:#9ca3af;">Tyres</td><td style="padding:10px 12px;border-top:1px solid rgba(255,255,255,0.06);text-align:right;color:#FAFAFA;font-variant-numeric:tabular-nums;">front <strong style="color:#F16363;">${i.tyreFrontPsi} psi</strong> Â· rear <strong style="color:#F16363;">${i.tyreRearPsi} psi</strong></td></tr>`);
   }
 
   const body = `
     ${nameLine}
-    <p style="color:#FAFAFA;font-size:15px;margin:0 0 6px;">Setup: ${i.weight} kg rider $· ${escapeHtml(i.ridingStyle)} $· ${escapeHtml(i.terrain)} terrain $· ${escapeHtml(i.tyreCasing)} casing</p>
-    <p style="color:#9ca3af;font-size:14px;margin:0 0 24px;">Your baseline setup $€” dial from here.</p>
+    <p style="color:#FAFAFA;font-size:15px;margin:0 0 6px;">Setup: ${i.weight} kg rider Â· ${escapeHtml(i.ridingStyle)} Â· ${escapeHtml(i.terrain)} terrain Â· ${escapeHtml(i.tyreCasing)} casing</p>
+    <p style="color:#9ca3af;font-size:14px;margin:0 0 24px;">Your baseline setup â€” dial from here.</p>
 
     <h2 style="color:#F16363;font-size:13px;letter-spacing:2px;text-transform:uppercase;margin:0 0 8px;">Your setup</h2>
     <table style="width:100%;border-collapse:collapse;font-size:14px;background:rgba(255,255,255,0.03);border-radius:8px;overflow:hidden;margin:0 0 24px;">
@@ -574,7 +574,7 @@ function generateShockPressureReport(i: ShockPressureInputs): ReportOutput {
 
     <h2 style="color:#F16363;font-size:13px;letter-spacing:2px;text-transform:uppercase;margin:0 0 8px;">How to tune</h2>
     <ol style="padding-left:20px;margin:0 0 24px;color:#FAFAFA;">
-      <li style="margin-bottom:10px;line-height:1.55;"><strong>Set sag first.</strong> Gear up, bounce, sit on the bike centred. Fork 15$€“25% sag (XC lower, enduro higher). Shock 25$€“30%.</li>
+      <li style="margin-bottom:10px;line-height:1.55;"><strong>Set sag first.</strong> Gear up, bounce, sit on the bike centred. Fork 15â€“25% sag (XC lower, enduro higher). Shock 25â€“30%.</li>
       <li style="margin-bottom:10px;line-height:1.55;"><strong>Rebound: control the return.</strong> Start in the middle of the range. Too fast = bouncy. Too slow = packing down on repeated hits.</li>
       <li style="margin-bottom:10px;line-height:1.55;"><strong>Compression: for big hits only.</strong> Leave LSC/HSC in the middle and only adjust after you've established air pressure and rebound on real terrain.</li>
       <li style="line-height:1.55;"><strong>Re-check every 4 weeks.</strong> Seals wear, air migrates, and seasonal temp shifts change feel. A 5-minute sag check beats guessing.</li>
@@ -582,16 +582,16 @@ function generateShockPressureReport(i: ShockPressureInputs): ReportOutput {
 
     <h2 style="color:#F16363;font-size:13px;letter-spacing:2px;text-transform:uppercase;margin:0 0 8px;">Seasonal notes</h2>
     <ul style="padding-left:20px;margin:0 0 24px;color:#FAFAFA;">
-      <li style="margin-bottom:8px;line-height:1.5;">Winter / wet: drop 1$€“2 psi front tyre for traction; fork/shock can go slightly firmer for energy return.</li>
+      <li style="margin-bottom:8px;line-height:1.5;">Winter / wet: drop 1â€“2 psi front tyre for traction; fork/shock can go slightly firmer for energy return.</li>
       <li style="margin-bottom:8px;line-height:1.5;">Summer / dry hardpack: a psi firmer fork helps cornering precision.</li>
-      <li style="line-height:1.5;">Bike park / shuttle days: +5$€“10% pressure front AND rear, faster rebound. You're hitting stuff hard.</li>
+      <li style="line-height:1.5;">Bike park / shuttle days: +5â€“10% pressure front AND rear, faster rebound. You're hitting stuff hard.</li>
     </ul>
 
     ${softCoachingCta()}
   `;
   return {
     subject: `Your MTB setup: ${hasFork ? `${i.forkPsi} psi fork` : "suspension"}${hasShock ? ` / ${i.shockPsi} psi shock` : ""}`,
-    html: wrap(`Your MTB suspension setup`, `${escapeHtml(i.ridingStyle)} $· ${escapeHtml(i.terrain)} $· ${i.weight} kg rider.`, body),
+    html: wrap(`Your MTB suspension setup`, `${escapeHtml(i.ridingStyle)} Â· ${escapeHtml(i.terrain)} Â· ${i.weight} kg rider.`, body),
     beehiivTag: "tool-shock-pressure-report",
     beehiivFields: {
       tool: "shock-pressure",
@@ -604,7 +604,7 @@ function generateShockPressureReport(i: ShockPressureInputs): ReportOutput {
 }
 
 /* ============================================================ */
-/* Entry point $€” dispatch by tool slug                          */
+/* Entry point â€” dispatch by tool slug                          */
 /* ============================================================ */
 
 export function generateToolReport(

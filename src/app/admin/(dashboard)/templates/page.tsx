@@ -29,7 +29,7 @@ export default async function TemplatesPage({
         </h1>
         <p className="text-sm text-foreground-muted mt-1">
           Reusable email bodies. Use {"{{first_name}}"}, {"{{name}}"}, {"{{email}}"} or{" "}
-          {"{{agent_name}}"} placeholders $€” they get replaced when you send.
+          {"{{agent_name}}"} placeholders $â€” they get replaced when you send.
         </p>
       </div>
       <TemplatesManager initial={templates} focusSlug={focusSlug} />

@@ -6,7 +6,7 @@ import { normaliseEmail } from "@/lib/validation";
 
 /**
  * Mint a signed history-page link and email it to the rider. We always
- * return success even when the email isn't recognised $€” giving 404s on
+ * return success even when the email isn't recognised $â€” giving 404s on
  * unknown emails would let an attacker enumerate whose results we hold.
  * The actual gating is the HMAC-signed token; only the real owner of
  * the inbox can read the link.
@@ -54,7 +54,7 @@ export async function POST(request: Request): Promise<Response> {
   const minted = mintHistoryToken(email);
   const link = `${originFromRequest(request)}/results?token=${encodeURIComponent(minted.token)}`;
 
-  // Fire-and-forget $€” we always respond success from the UI's point of
+  // Fire-and-forget $â€” we always respond success from the UI's point of
   // view, and Resend failures are logged server-side.
   void sendHistoryLinkEmail({
     email,

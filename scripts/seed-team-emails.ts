@@ -17,7 +17,7 @@ async function main() {
   for (const r of before.rows)
     console.log(`  ${r.slug.padEnd(10)} ${r.email.padEnd(40)} ${r.name} (${r.role}, active=${r.active})`);
 
-  // Anthony: rename ted@* $†’ anthony@*, slug stays 'ted' (don't want to break
+  // Anthony: rename ted@* â†’ anthony@*, slug stays 'ted' (don't want to break
   // anywhere in the code that refers to slug='ted').
   await sql.query(
     `UPDATE team_users SET email = 'anthony@roadmancycling.com'

@@ -1,5 +1,5 @@
 // ============================================
-// Roadman Cycling $€” Core Types
+// Roadman Cycling $â€” Core Types
 // ============================================
 
 export type ContentPillar =
@@ -103,7 +103,7 @@ export const CONTENT_PILLARS: Record<
     label: "Community",
     color: "var(--color-pillar-community)",
     description:
-      "The culture of cycling: rides, skills, customs, traditions, the unwritten rules $€” and the community you do them with",
+      "The culture of cycling: rides, skills, customs, traditions, the unwritten rules $â€” and the community you do them with",
   },
 };
 
