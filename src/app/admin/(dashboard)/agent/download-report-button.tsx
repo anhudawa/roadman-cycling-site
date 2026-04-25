@@ -37,8 +37,8 @@ export function DownloadReportButton({ analysis }: { analysis: AnalysisResponse 
     const periodEnd = new Date(analysis.periodEnd).toLocaleDateString("en-GB");
     const generated = new Date(analysis.generatedAt).toLocaleString("en-GB");
 
-    let md = `# Roadman Cycling $— Weekly Analysis Report\n\n`;
-    md += `**Period:** ${periodStart} $— ${periodEnd}\n`;
+    let md = `# Roadman Cycling — Weekly Analysis Report\n\n`;
+    md += `**Period:** ${periodStart} — ${periodEnd}\n`;
     md += `**Generated:** ${generated}\n\n`;
     md += `---\n\n`;
 
@@ -59,7 +59,7 @@ export function DownloadReportButton({ analysis }: { analysis: AnalysisResponse 
     if (r.suggestedExperiments.length > 0) {
       md += `## Suggested Experiments\n\n`;
       r.suggestedExperiments.forEach((exp, i) => {
-        md += `### ${i + 1}. ${exp.page} $— ${exp.element}\n\n`;
+        md += `### ${i + 1}. ${exp.page} — ${exp.element}\n\n`;
         md += `**Current:** "${exp.currentContent}"\n\n`;
         md += `**Suggested variants:**\n`;
         for (const v of exp.suggestedVariants) {

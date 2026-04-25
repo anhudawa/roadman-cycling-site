@@ -4,9 +4,9 @@ export const BENCHMARK_ARTICLES: ClusterArticleSpec[] = [
   {
     slug: "ftp-benchmarks-by-age-and-experience",
     title: "FTP Benchmarks by Age and Experience Level",
-    seoTitle: "FTP Benchmarks by Age $— Where Do You Stand?",
+    seoTitle: "FTP Benchmarks by Age — Where Do You Stand?",
     seoDescription: "FTP benchmarks for cyclists by age group and experience level. Compare your power output against recreational, competitive, and elite riders.",
-    excerpt: "Where does your FTP sit compared to other riders your age? Here are the benchmarks $— from beginner to elite $— with the context most tables leave out.",
+    excerpt: "Where does your FTP sit compared to other riders your age? Here are the benchmarks — from beginner to elite — with the context most tables leave out.",
     targetKeyword: "ftp benchmarks age",
     supportingKeywords: ["average ftp cycling", "good ftp for age", "ftp by age group", "cycling power benchmarks"],
     angle: "Benchmark reference page with tables by age group (20s, 30s, 40s, 50s, 60+) and experience level. Cites Coggan, Allen, and podcast data.",
@@ -19,9 +19,9 @@ export const BENCHMARK_ARTICLES: ClusterArticleSpec[] = [
   {
     slug: "time-crunched-cyclist-benchmarks",
     title: "What Time-Crunched Cyclists Can Realistically Achieve",
-    seoTitle: "Time-Crunched Cyclist Benchmarks $— Realistic Goals",
+    seoTitle: "Time-Crunched Cyclist Benchmarks — Realistic Goals",
     seoDescription: "Realistic performance benchmarks for cyclists training 6-10 hours per week. FTP gains, race results, and what to expect at each experience level.",
-    excerpt: "If you train 6-10 hours a week, here's what's realistically achievable $— and what isn't. Based on coaching data and the research.",
+    excerpt: "If you train 6-10 hours a week, here's what's realistically achievable — and what isn't. Based on coaching data and the research.",
     targetKeyword: "time crunched cyclist benchmarks",
     supportingKeywords: ["cycling 6 hours week", "realistic cycling improvement", "limited time cycling", "how fast can I get"],
     angle: "Benchmark page specifically for the 6-10hr/week rider. Addresses the gap between pro schedules and amateur reality.",

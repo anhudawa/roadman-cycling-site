@@ -3,7 +3,7 @@
 import dynamic from "next/dynamic";
 
 /**
- * Lazy-load the recharts impl. Recharts is ~100KB gzipped $— deferring
+ * Lazy-load the recharts impl. Recharts is ~100KB gzipped — deferring
  * it keeps initial admin-page JS bundles lean and delays the parse/
  * evaluate cost until the chart actually needs to render.
  *

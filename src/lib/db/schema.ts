@@ -210,7 +210,7 @@ export const cohortApplications = pgTable(
     index("cohort_applications_created_at_idx").on(table.createdAt),
     index("cohort_applications_cohort_idx").on(table.cohort),
     index("cohort_applications_read_at_idx").on(table.readAt),
-    // One application per email per cohort $— prevents duplicate kanban cards.
+    // One application per email per cohort — prevents duplicate kanban cards.
     uniqueIndex("cohort_applications_email_cohort_idx").on(
       table.email,
       table.cohort,
@@ -907,9 +907,9 @@ export const diagnosticSubmissions = pgTable(
     secondaryProfile: text("secondary_profile"),
     severeMultiSystem: boolean("severe_multi_system").notNull().default(false),
     closeToBreakthrough: boolean("close_to_breakthrough").notNull().default(false),
-    /** Generated breakdown (LLM or static fallback) $— render-ready. */
+    /** Generated breakdown (LLM or static fallback) — render-ready. */
     breakdown: jsonb("breakdown").notNull().$type<Record<string, unknown>>(),
-    /** 'llm' | 'fallback' $— distinguishes Claude-generated from static. */
+    /** 'llm' | 'fallback' — distinguishes Claude-generated from static. */
     generationSource: text("generation_source").notNull().default("fallback"),
     /** Raw model text for QA + prompt-refinement diffs. Can be null. */
     rawModelOutput: text("raw_model_output"),
@@ -945,7 +945,7 @@ export const diagnosticSubmissions = pgTable(
 // MCP Server Tables
 // $��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��
 
-// pgvector column $— 1024 dims for Voyage voyage-3-large / OpenAI text-embedding-3-large
+// pgvector column — 1024 dims for Voyage voyage-3-large / OpenAI text-embedding-3-large
 const vector1024 = customType<{ data: number[] }>({
   dataType() { return "vector(1024)"; },
   fromDriver(value: unknown): number[] {
@@ -1128,7 +1128,7 @@ export const riderProfiles = pgTable(
     usesPowerMeter: boolean("uses_power_meter"),
     currentTrainingTool: text("current_training_tool"),
     coachingInterest: text("coaching_interest"),
-    // 'self' | 'coached' $— captured during tool completion flows.
+    // 'self' | 'coached' — captured during tool completion flows.
     selfCoachedOrCoached: text("self_coached_or_coached"),
     accessTier: text("access_tier").notNull().default("free"),
     consentSaveProfile: boolean("consent_save_profile").notNull().default(false),
@@ -1226,7 +1226,7 @@ export const askRetrievals = pgTable(
 );
 
 // $��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��
-// Phase 2: Saved Diagnostics $— tool_results
+// Phase 2: Saved Diagnostics — tool_results
 // $��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��
 // Generic store for completed tool runs (plateau, fuelling, ftp_zones).
 // Plateau also keeps its richer `diagnostic_submissions` row; this table
@@ -1238,19 +1238,19 @@ export const toolResults = pgTable(
     id: serial("id").primaryKey(),
     /** 10-char public slug used in /results/<tool>/<slug> URLs. */
     slug: text("slug").notNull().unique(),
-    /** Nullable $— anonymous completions still save so we can email them,
+    /** Nullable — anonymous completions still save so we can email them,
      *  but only get linked to a rider profile when consent is given. */
     riderProfileId: integer("rider_profile_id").references(() => riderProfiles.id, { onDelete: "set null" }),
     email: text("email").notNull(),
-    /** 'plateau' | 'fuelling' | 'ftp_zones' $— extend the union, not this column. */
+    /** 'plateau' | 'fuelling' | 'ftp_zones' — extend the union, not this column. */
     toolSlug: text("tool_slug").notNull(),
     inputs: jsonb("inputs").notNull().$type<Record<string, unknown>>(),
     outputs: jsonb("outputs").notNull().$type<Record<string, unknown>>(),
-    /** One-line summary for the history list $— e.g. "Under-Recovered (68g/hr)". */
+    /** One-line summary for the history list — e.g. "Under-Recovered (68g/hr)". */
     summary: text("summary").notNull(),
     /** Primary result token for analytics grouping (plateau profile, carb bucket, etc). */
     primaryResult: text("primary_result"),
-    /** CRM tags applied on completion $— mirrors what was upserted to Beehiiv / contacts. */
+    /** CRM tags applied on completion — mirrors what was upserted to Beehiiv / contacts. */
     tags: jsonb("tags").$type<string[]>().notNull().default([]),
     utm: jsonb("utm").$type<Record<string, string | null | undefined>>(),
     sourcePage: text("source_page"),

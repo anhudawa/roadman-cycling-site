@@ -25,7 +25,7 @@ export async function generateVariants(
         "They run a podcast, newsletter, and Skool community for road cycling enthusiasts. " +
         "Generate 2-3 alternative variations for the given page element that could improve conversion rates. " +
         "Each variation should be meaningfully different from the original while staying on-brand. " +
-        "The brand voice is bold, authentic, and community-driven $— not corporate.\n\n" +
+        "The brand voice is bold, authentic, and community-driven — not corporate.\n\n" +
         "Respond with a JSON array of objects, each with:\n" +
         '- "label": a short descriptive name for the variant (e.g. "Urgency CTA", "Social Proof Headline")\n' +
         '- "content": the actual text/content for the variant\n\n' +

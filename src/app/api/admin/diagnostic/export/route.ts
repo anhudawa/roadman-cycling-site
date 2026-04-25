@@ -41,7 +41,7 @@ const COLUMNS = [
 function csvEscape(value: unknown): string {
   if (value === null || value === undefined) return "";
   const s = String(value);
-  // RFC 4180 $— wrap in double quotes, double any internal quotes.
+  // RFC 4180 — wrap in double quotes, double any internal quotes.
   return `"${s.replace(/"/g, '""')}"`;
 }
 

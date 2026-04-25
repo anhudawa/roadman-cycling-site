@@ -45,7 +45,7 @@ export default async function ContentPage({
     pages = rangedStats.pages;
     usingLiveData = true;
   } catch {
-    // Database not provisioned yet $— use placeholder data
+    // Database not provisioned yet — use placeholder data
     pages = PLACEHOLDER_DATA;
   }
 

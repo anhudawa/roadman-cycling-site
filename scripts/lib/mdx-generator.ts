@@ -64,9 +64,9 @@ export function generateMdx(options: GenerateOptions): {
   const keywords = extractKeywords(video.title, video.tags, guest);
   const slug = generateSlug(episodeNumber, video.title);
 
-  // Clean title $— remove episode number prefix if present
+  // Clean title — remove episode number prefix if present
   const cleanTitle = video.title
-    .replace(/^(?:EP?|Episode|#)\s*\d+\s*[:\-$–$—|]\s*/i, "")
+    .replace(/^(?:EP?|Episode|#)\s*\d+\s*[:\-–—|]\s*/i, "")
     .trim();
 
   // Build frontmatter
@@ -110,7 +110,7 @@ ${takeaways}
 ${quotes}
 `;
   } else {
-    // Metadata-only fallback $— use YouTube description
+    // Metadata-only fallback — use YouTube description
     const descLines = video.description.split("\n").filter((l) => l.trim());
     // Take first 5 meaningful lines, skip sponsor blocks
     const meaningfulLines = descLines.filter(

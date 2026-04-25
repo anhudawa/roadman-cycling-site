@@ -103,7 +103,7 @@ function classifyPair(
   const nameB = normalizeName(b.name);
 
   if (nameA && nameB && nameA === nameB) {
-    // Exact name match $— need at least one of: same phone (covered), same owner, both in applications
+    // Exact name match — need at least one of: same phone (covered), same owner, both in applications
     const sameOwner = a.owner && b.owner && a.owner === b.owner;
     const bothInApps =
       appEmails.has(a.email.toLowerCase()) && appEmails.has(b.email.toLowerCase());
@@ -137,7 +137,7 @@ export async function findDuplicateGroups(limit = 50): Promise<DuplicateGroup[]>
 
   const appEmails = await loadApplicationEmailSet();
 
-  // Bucket candidates cheaply $— avoid full O(n^2) where possible
+  // Bucket candidates cheaply — avoid full O(n^2) where possible
   const byPhone = new Map<string, ContactRow[]>();
   const byName = new Map<string, ContactRow[]>();
   const byNamePrefix = new Map<string, ContactRow[]>();

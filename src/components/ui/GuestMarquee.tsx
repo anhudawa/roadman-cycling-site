@@ -9,7 +9,7 @@ interface GuestEntry {
 /**
  * Two-row infinite scrolling marquee of notable podcast guests.
  * Uses CSS animations instead of JS-driven framer-motion for better
- * performance $— reduces main thread work and improves CLS/INP.
+ * performance — reduces main thread work and improves CLS/INP.
  * Rows scroll in opposite directions for visual depth.
  */
 export function GuestMarquee({
@@ -30,7 +30,7 @@ export function GuestMarquee({
       className={`relative overflow-hidden space-y-3 ${className}`}
       aria-label="Notable podcast guests"
     >
-      {/* Fade edges $— match section background */}
+      {/* Fade edges — match section background */}
       <div
         className={`absolute left-0 top-0 bottom-0 w-20 md:w-32 z-10 pointer-events-none bg-gradient-to-r ${
           fadeColor === "deep-purple"
@@ -73,7 +73,7 @@ function MarqueeRow({
         willChange: "transform",
       }}
     >
-      {/* Duplicate items to create seamless loop $— aria-hidden on parent prevents screen readers from reading duplicates */}
+      {/* Duplicate items to create seamless loop — aria-hidden on parent prevents screen readers from reading duplicates */}
       {[...guests, ...guests].map((guest, i) => {
         const Tag = guest.href ? "a" : "div";
         const linkProps = guest.href

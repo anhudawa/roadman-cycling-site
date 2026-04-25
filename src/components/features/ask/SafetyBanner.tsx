@@ -1,11 +1,11 @@
 export function SafetyBanner({ flags }: { flags: string[] }) {
   if (!flags || flags.length === 0) return null;
   const label = flags.includes("medical")
-    ? "This sounds medical $— please see a GP first."
+    ? "This sounds medical — please see a GP first."
     : flags.includes("injury")
       ? "Injuries need a physio, not a podcast. Get it looked at."
       : flags.includes("weight")
-        ? "Extreme weight cuts are dangerous $— dietitian first."
+        ? "Extreme weight cuts are dangerous — dietitian first."
         : "Please check with a qualified professional before acting on this.";
 
   return (

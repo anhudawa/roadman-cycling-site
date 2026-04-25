@@ -184,7 +184,7 @@ function FieldRow({
         }}
         className={baseInputClass()}
       >
-        <option value="">$—</option>
+        <option value="">—</option>
         {def.options.map((o) => (
           <option key={o.value} value={o.value}>
             {o.label}

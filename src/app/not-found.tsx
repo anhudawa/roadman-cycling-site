@@ -4,9 +4,9 @@ import { Button } from "@/components/ui";
 import { EmailCapture } from "@/components/features/conversion/EmailCapture";
 
 export const metadata: Metadata = {
-  title: "Page Not Found $— Roadman Cycling",
+  title: "Page Not Found — Roadman Cycling",
   description:
-    "This page doesn$’t exist. Head back to the homepage, the podcast archive, or the blog.",
+    "This page doesn’t exist. Head back to the homepage, the podcast archive, or the blog.",
   robots: {
     index: false,
     follow: true,
@@ -15,9 +15,9 @@ export const metadata: Metadata = {
     canonical: null,
   },
   openGraph: {
-    title: "Page Not Found $— Roadman Cycling",
+    title: "Page Not Found — Roadman Cycling",
     description:
-      "This page doesn$’t exist. Head back to the homepage, the podcast archive, or the blog.",
+      "This page doesn’t exist. Head back to the homepage, the podcast archive, or the blog.",
     type: "website",
   },
 };

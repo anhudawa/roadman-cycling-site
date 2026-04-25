@@ -68,7 +68,7 @@ describe("QUESTIONS", () => {
 
   it("includes at least one option per value on each question", () => {
     // Every question should offer a 0 (best case) and a 3 (worst
-    // case) $— otherwise the scoring collapses.
+    // case) — otherwise the scoring collapses.
     for (const q of QUESTIONS) {
       const values = new Set(q.options.map((o) => o.value));
       expect(values.has(0), `${q.key} missing a 0 option`).toBe(true);

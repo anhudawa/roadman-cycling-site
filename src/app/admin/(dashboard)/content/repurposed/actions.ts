@@ -16,7 +16,7 @@ const GITHUB_REPO = "anhudawa/roadman-cycling-site";
 const isVercel = !!process.env.VERCEL;
 
 /**
- * Write a file to the repo $— locally in dev, via GitHub API on Vercel.
+ * Write a file to the repo — locally in dev, via GitHub API on Vercel.
  */
 async function writeFileToRepo(filePath: string, content: string) {
   if (!isVercel) {
@@ -28,7 +28,7 @@ async function writeFileToRepo(filePath: string, content: string) {
 
   const token = process.env.GITHUB_TOKEN;
   if (!token) {
-    console.error("[Publish] GITHUB_TOKEN not set $— cannot write to repo from Vercel");
+    console.error("[Publish] GITHUB_TOKEN not set — cannot write to repo from Vercel");
     return;
   }
 
@@ -69,7 +69,7 @@ async function writeFileToRepo(filePath: string, content: string) {
 }
 
 /**
- * Read a file from the repo $— locally in dev, via GitHub API on Vercel.
+ * Read a file from the repo — locally in dev, via GitHub API on Vercel.
  */
 async function readFileFromRepo(filePath: string): Promise<string | null> {
   const fullPath = path.join(process.cwd(), filePath);
@@ -115,7 +115,7 @@ export async function getEpisodes(filter?: string) {
     .orderBy(desc(repurposedEpisodes.generatedAt))
     .$dynamic();
 
-  // Apply status filter in JS after fetching $— keeps the query simple and avoids
+  // Apply status filter in JS after fetching — keeps the query simple and avoids
   // $dynamic() chaining issues with conditional where clauses.
   if (filter && filter !== "all") {
     const filtered = await db
@@ -276,7 +276,7 @@ async function publishEpisodePage(episodeId: number) {
     const { data } = matter(existing);
     frontmatter = data;
   } else {
-    // No existing file $— build minimal frontmatter
+    // No existing file — build minimal frontmatter
     frontmatter = {
       title: episode.episodeTitle,
       episodeNumber: episode.episodeNumber,

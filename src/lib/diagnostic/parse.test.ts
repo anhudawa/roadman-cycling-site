@@ -3,7 +3,7 @@ import { parseAnswers, parseUtm } from "./parse";
 
 /**
  * Request parser tests. These guard the POST /api/diagnostic/submit
- * endpoint $— if parseAnswers returns null the route hands back a 400
+ * endpoint — if parseAnswers returns null the route hands back a 400
  * before ever touching the scoring engine or Claude.
  */
 

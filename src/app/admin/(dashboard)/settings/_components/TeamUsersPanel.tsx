@@ -134,7 +134,7 @@ export function TeamUsersPanel({ initial, currentUserId }: { initial: TeamUserRo
             {plaintext.password}
           </code>
           <p className="text-xs text-amber-200 mt-2">
-            Copy now $— won&apos;t be shown again.
+            Copy now — won&apos;t be shown again.
           </p>
           <button
             type="button"

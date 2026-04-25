@@ -3,7 +3,7 @@ import { getCohortState } from "./cohort";
 
 /**
  * The cohort state machine is a single source of truth with high
- * blast radius $— a regression here would silently break the banner,
+ * blast radius — a regression here would silently break the banner,
  * the /apply form copy, and the Beehiiv tagging. Lock it down.
  *
  * These tests pin behaviour against a fixed `now` rather than the
@@ -11,7 +11,7 @@ import { getCohortState } from "./cohort";
  * cohort deadline is set.
  */
 describe("getCohortState", () => {
-  // These deadlines live in src/lib/cohort.ts $— keep in sync if the
+  // These deadlines live in src/lib/cohort.ts — keep in sync if the
   // file changes. COHORT_2_CLOSE = 2026-04-17T23:00:00Z.
 
   it("returns 'open' phase well before Cohort 2 close", () => {
@@ -29,7 +29,7 @@ describe("getCohortState", () => {
     expect(state.phase).toBe("closing-today");
     expect(state.currentCohort).toBe(2);
     expect(state.banner.eyebrow).toBe("FINAL HOURS");
-    // Still accepting apps $— same tag
+    // Still accepting apps — same tag
     expect(state.submissionTag).toBe("cohort-2-applicant");
   });
 
@@ -41,7 +41,7 @@ describe("getCohortState", () => {
     expect(state.submissionTag).toBe("cohort-3-waitlist");
     expect(state.banner.eyebrow).toBe("COHORT 3 COMING SOON");
     // CTA uses "apply now" framing to match the user-facing marketing line
-    // even though the action is joining the waitlist $— keeps the primary
+    // even though the action is joining the waitlist — keeps the primary
     // verb consistent between phases.
     expect(state.banner.cta).toBe("APPLY NOW");
   });

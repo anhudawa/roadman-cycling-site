@@ -42,8 +42,8 @@ export async function generateMetadata({
   const loaded = await load(product, token);
   return {
     title: loaded
-      ? `${loaded.product.name} $— Roadman Cycling`
-      : "Report $— Roadman Cycling",
+      ? `${loaded.product.name} — Roadman Cycling`
+      : "Report — Roadman Cycling",
     robots: { index: false, follow: false },
   };
 }
@@ -58,7 +58,7 @@ export default async function PaidReportView({
   if (!loaded) notFound();
   const { report, product: productRow } = loaded;
 
-  // Count the view as a download $— same permission bar, same abuse signal.
+  // Count the view as a download — same permission bar, same abuse signal.
   void incrementDownloadCount(report.id).catch(() => {});
   void recordPaidReportServerEvent({
     name: PAID_REPORT_EVENTS.VIEWED,
@@ -118,7 +118,7 @@ export default async function PaidReportView({
               />
             ) : (
               <p className="text-foreground-muted">
-                Your report is ready $— check the PDF download above.
+                Your report is ready — check the PDF download above.
               </p>
             )}
           </Container>

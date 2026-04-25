@@ -72,13 +72,13 @@ function mockedCallLLM(bodies: string[]): void {
   }
 }
 
-describe("generateSurfaceForThread $— cascade", () => {
+describe("generateSurfaceForThread — cascade", () => {
   beforeEach(() => {
     vi.mocked(runVoiceCheck).mockReset();
   });
 
   it("picks tag first when a real body comes back", async () => {
-    mockedCallLLM(["@Seán you were talking about winter base $— might have a take.\n\n$— Ted"]);
+    mockedCallLLM(["@Seán you were talking about winter base — might have a take.\n\n— Ted"]);
     vi.mocked(runVoiceCheck).mockResolvedValue({
       result: PASS,
       usage: { inputTokens: 0, outputTokens: 0, cost: 0, runtimeMs: 0 },
@@ -100,8 +100,8 @@ describe("generateSurfaceForThread $— cascade", () => {
 
   it("falls through from tag SKIP to link", async () => {
     mockedCallLLM([
-      "[SKIP $— no match]",
-      "Episode 8 with Daryl Fitzgerald covers exactly this.\n\n$— Ted",
+      "[SKIP — no match]",
+      "Episode 8 with Daryl Fitzgerald covers exactly this.\n\n— Ted",
     ]);
     vi.mocked(runVoiceCheck).mockResolvedValue({
       result: PASS,
@@ -122,9 +122,9 @@ describe("generateSurfaceForThread $— cascade", () => {
 
   it("falls through from tag and link to summary", async () => {
     mockedCallLLM([
-      "[SKIP $— no match]",
-      "[SKIP $— no match]",
-      "Good thread for anyone lurking $— three takes so far.\n\n$— Ted",
+      "[SKIP — no match]",
+      "[SKIP — no match]",
+      "Good thread for anyone lurking — three takes so far.\n\n— Ted",
     ]);
     vi.mocked(runVoiceCheck).mockResolvedValue({
       result: PASS,
@@ -145,9 +145,9 @@ describe("generateSurfaceForThread $— cascade", () => {
 
   it("returns null if all three variants SKIP or fail voice-check", async () => {
     mockedCallLLM([
-      "[SKIP $— no match]",
-      "[SKIP $— no match]",
-      "[SKIP $— thread too thin]",
+      "[SKIP — no match]",
+      "[SKIP — no match]",
+      "[SKIP — thread too thin]",
     ]);
 
     const result = await generateSurfaceForThread({
@@ -162,8 +162,8 @@ describe("generateSurfaceForThread $— cascade", () => {
 
   it("skips a variant whose voice-check fails", async () => {
     mockedCallLLM([
-      "A tag reply that trips the voice-check.\n\n$— Ted",
-      "Episode 8 with Daryl Fitzgerald.\n\n$— Ted",
+      "A tag reply that trips the voice-check.\n\n— Ted",
+      "Episode 8 with Daryl Fitzgerald.\n\n— Ted",
     ]);
     vi.mocked(runVoiceCheck)
       .mockResolvedValueOnce({
@@ -189,7 +189,7 @@ describe("generateSurfaceForThread $— cascade", () => {
 
   it("does not attempt tag when no active members are provided", async () => {
     mockedCallLLM([
-      "Episode 8 with Daryl Fitzgerald.\n\n$— Ted",
+      "Episode 8 with Daryl Fitzgerald.\n\n— Ted",
     ]);
     vi.mocked(runVoiceCheck).mockResolvedValue({
       result: PASS,
@@ -211,8 +211,8 @@ describe("generateSurfaceForThread $— cascade", () => {
   it("drops a variant whose draft contains a banned phrase", async () => {
     // "delve" is in the quick-banned-word scanner's list
     mockedCallLLM([
-      "Let me delve into winter base.\n\n$— Ted",
-      "Episode 8 with Daryl Fitzgerald.\n\n$— Ted",
+      "Let me delve into winter base.\n\n— Ted",
+      "Episode 8 with Daryl Fitzgerald.\n\n— Ted",
     ]);
     vi.mocked(runVoiceCheck).mockResolvedValue({
       result: PASS,

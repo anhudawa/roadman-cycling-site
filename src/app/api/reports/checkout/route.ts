@@ -68,7 +68,7 @@ export async function POST(request: Request) {
       : null;
     if (body.toolResultSlug && !toolResult) {
       return NextResponse.json(
-        { error: "That result couldn't be found $— please rerun the tool." },
+        { error: "That result couldn't be found — please rerun the tool." },
         { status: 404 },
       );
     }
@@ -106,7 +106,7 @@ export async function POST(request: Request) {
       utm: body.utm ?? null,
     });
 
-    // Paired paid_report row in pending_payment $— webhook flips it forward.
+    // Paired paid_report row in pending_payment — webhook flips it forward.
     const paidReport = await createPaidReport({
       orderId: order.id,
       riderProfileId: profile.id,

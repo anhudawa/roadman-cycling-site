@@ -34,7 +34,7 @@ export default function Error({
         })
         navigator.sendBeacon('/api/events', blob)
       } catch {
-        // Swallow $— reporting must never block rendering the error UI.
+        // Swallow — reporting must never block rendering the error UI.
       }
     }
   }, [error])

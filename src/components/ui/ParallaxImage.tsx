@@ -17,7 +17,7 @@ interface ParallaxImageProps {
 }
 
 /**
- * Parallax image section $— image moves slower than scroll for depth effect.
+ * Parallax image section — image moves slower than scroll for depth effect.
  * Award-winning sites use this for section dividers and hero backgrounds.
  */
 export function ParallaxImage({

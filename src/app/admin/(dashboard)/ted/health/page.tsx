@@ -214,7 +214,7 @@ export default async function TedHealthPage() {
   return (
     <div className="space-y-6">
       <div>
-        <h1 className="text-2xl font-semibold text-white">Ted $— health &amp; schedule</h1>
+        <h1 className="text-2xl font-semibold text-white">Ted — health &amp; schedule</h1>
         <p className="text-sm text-foreground-subtle">
           Operator detail: stats, gates, environment, cron schedule, recent workflow runs, Ted&apos;s Skool bio.
         </p>
@@ -231,7 +231,7 @@ export default async function TedHealthPage() {
         <StatCard
           label="Voice-pass rate (7d)"
           value={
-            voicePassRate === null ? "$—" : `${Math.round(voicePassRate * 100)}%`
+            voicePassRate === null ? "—" : `${Math.round(voicePassRate * 100)}%`
           }
         />
         <StatCard

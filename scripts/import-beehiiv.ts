@@ -205,7 +205,7 @@ async function main() {
   console.log(`${unique.length} unique emails (${contacts.length - unique.length} duplicates removed)`);
 
   if (dryRun) {
-    console.log("\n🏃 DRY RUN $— no API calls will be made\n");
+    console.log("\n🏃 DRY RUN — no API calls will be made\n");
     console.log("Sample contacts:");
     unique.slice(0, 5).forEach((c) =>
       console.log(`  ${c.email} | ${c.firstName} ${c.lastName} | tags: ${c.tags.join(", ") || "none"}`)

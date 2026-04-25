@@ -23,10 +23,10 @@ export async function loginAction(
   try {
     await seedEvents();
   } catch {
-    // Non-critical $— dashboard works without seed data
+    // Non-critical — dashboard works without seed data
   }
 
-  // Return success instead of redirect() $— the client handles navigation
+  // Return success instead of redirect() — the client handles navigation
   // so the Set-Cookie header is properly applied before the redirect
   return { success: true };
 }

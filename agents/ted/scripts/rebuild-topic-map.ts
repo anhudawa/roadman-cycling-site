@@ -3,7 +3,7 @@
 //
 // Strategy: read only the frontmatter block (skip the massive transcript field),
 // sort by publishDate desc, group by pillar, take the top N per topic. Run this
-// whenever the podcast catalogue grows materially $— Ted's thread-surface links
+// whenever the podcast catalogue grows materially — Ted's thread-surface links
 // get better as the pool grows.
 //
 // Usage:  npx tsx agents/ted/scripts/rebuild-topic-map.ts
@@ -56,7 +56,7 @@ function findRepoRoot(): string {
   return process.cwd();
 }
 
-/** Read only the frontmatter block $— stop at the first `---\n` after the second one. */
+/** Read only the frontmatter block — stop at the first `---\n` after the second one. */
 function readFrontmatter(filePath: string): Record<string, unknown> | null {
   const raw = fs.readFileSync(filePath, "utf-8");
   try {
@@ -134,7 +134,7 @@ function main() {
     },
   };
 
-  // Strip publishDate/episodeNumber from the committed JSON $— they're only
+  // Strip publishDate/episodeNumber from the committed JSON — they're only
   // needed for sorting here. Keep slug/title/guest/relevance for the generator.
   for (const [topic, list] of Object.entries(byTopic)) {
     output[topic] = list.map((e) => ({

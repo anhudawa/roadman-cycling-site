@@ -7,7 +7,7 @@ import { getCohortState } from "@/lib/cohort";
  * Live countdown to the current cohort's application deadline.
  *
  * Reads the deadline from src/lib/cohort.ts so it rolls from cohort to
- * cohort automatically $— no hardcoded dates. Renders "APPLICATIONS
+ * cohort automatically — no hardcoded dates. Renders "APPLICATIONS
  * CLOSED" once the deadline is in the past (at which point the whole
  * page flips to waitlist mode via getCohortState and this component
  * stops being rendered by its parent anyway).

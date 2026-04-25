@@ -4,7 +4,7 @@ import type { DiagnosticDefinition } from "../framework/types";
  * In-Ride Fuelling definition.
  *
  * The existing /tools/fuelling calculator already does the heavy
- * physiology $— carb/hr, glucose:fructose split, sodium from sweat rate.
+ * physiology — carb/hr, glucose:fructose split, sodium from sweat rate.
  * This definition exists so the outputs of that calculator can be
  * converted into a standard ScoredResult + saved diagnostic + paid
  * report, using the same machinery as Plateau and FTP.
@@ -19,7 +19,7 @@ export const fuellingDefinition: DiagnosticDefinition = {
   title: "In-Ride Fuelling Diagnostic",
   subtitle: "What to eat, when to eat it, how much to drink",
   description:
-    "Your personalised carb, fluid, and sodium targets $— session type × watts × weather, with gut-training realism built in.",
+    "Your personalised carb, fluid, and sodium targets — session type × watts × weather, with gut-training realism built in.",
   disclaimer:
     "Guideline numbers based on Jeukendrup, Morton, and Romijn. Individual tolerance varies widely. Test intake on training rides before race day, and consult a sports dietitian if you have GI issues or nutrition-related medical conditions.",
   questions: [],
@@ -30,11 +30,11 @@ export const fuellingDefinition: DiagnosticDefinition = {
       label: "High-Carb Session",
       shortLabel: "High-Carb (90g+/hr)",
       explanation:
-        "Your target is at the upper end $— 90g+ carbs/hour. Single-source glucose saturates around 60g/hr, so dual-source fuel (glucose + fructose at 1:0.8) is essential.",
+        "Your target is at the upper end — 90g+ carbs/hour. Single-source glucose saturates around 60g/hr, so dual-source fuel (glucose + fructose at 1:0.8) is essential.",
       nextSteps: [
         "Mix sources: two gel flavours + energy drink + real food (rice cakes, bars).",
         "Front-load: start within the first 15 minutes, every 15 minutes after.",
-        "Gut-train progressively if 90g/hr is new $— add 10g/hr per week.",
+        "Gut-train progressively if 90g/hr is new — add 10g/hr per week.",
       ],
       recommendedResource: {
         href: "/blog/cycling-in-ride-nutrition-guide",
@@ -48,15 +48,15 @@ export const fuellingDefinition: DiagnosticDefinition = {
       label: "Mid-Carb Session",
       shortLabel: "Mid-Carb (60-89g/hr)",
       explanation:
-        "Solid middle zone $— 60$–89g/hr. Dual-source still worth it above 60g/hr. Consistency matters more than perfection.",
+        "Solid middle zone — 60–89g/hr. Dual-source still worth it above 60g/hr. Consistency matters more than perfection.",
       nextSteps: [
         "Set a 20-minute timer from the start and stick to it.",
-        "Mix one gel / one chew / one solid every hour $— reduces flavour fatigue.",
+        "Mix one gel / one chew / one solid every hour — reduces flavour fatigue.",
         "Test fuelling on any ride over 90 minutes so race day isn't the first time.",
       ],
       recommendedResource: {
         href: "/blog/cycling-energy-gels-guide",
-        label: "Cycling Energy Gels $— the full guide",
+        label: "Cycling Energy Gels — the full guide",
       },
       crmTags: ["fuelling-mid-carb"],
     },
@@ -69,11 +69,11 @@ export const fuellingDefinition: DiagnosticDefinition = {
       nextSteps: [
         "Under 45 minutes you can ride on water + a carb mouth-rinse.",
         "Over 45 minutes, add a small snack every 20 minutes from minute 30.",
-        "Use this as a base $— increase intake 20$–30% for warmer days.",
+        "Use this as a base — increase intake 20–30% for warmer days.",
       ],
       recommendedResource: {
         href: "/blog/zone-2-training-cycling-guide",
-        label: "Zone 2 Training $— why easy rides still need fuel",
+        label: "Zone 2 Training — why easy rides still need fuel",
       },
       crmTags: ["fuelling-low-carb"],
     },
@@ -95,7 +95,7 @@ export const fuellingDefinition: DiagnosticDefinition = {
         cta: {
           label: "Apply for Coaching",
           href: "/apply",
-          copy: "Coaching periodises fuelling across your whole week $— not just race day.",
+          copy: "Coaching periodises fuelling across your whole week — not just race day.",
         },
       },
     ],

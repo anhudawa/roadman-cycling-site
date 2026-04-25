@@ -10,7 +10,7 @@ interface FloatingParticlesProps {
 }
 
 /**
- * Ambient floating particles $— adds depth and atmosphere.
+ * Ambient floating particles — adds depth and atmosphere.
  * Pure CSS/Framer Motion, no canvas. Lightweight.
  *
  * Performance-safe:

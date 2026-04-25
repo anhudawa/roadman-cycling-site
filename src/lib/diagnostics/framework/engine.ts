@@ -5,7 +5,7 @@ import type {
 } from "./types";
 
 /**
- * Deterministic evaluator. No LLM in the hot path $— riders see their
+ * Deterministic evaluator. No LLM in the hot path — riders see their
  * result instantly, and admin can re-run the same inputs and get the
  * same output forever.
  */

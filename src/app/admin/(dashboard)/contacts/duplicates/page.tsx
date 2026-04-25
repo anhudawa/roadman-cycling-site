@@ -16,7 +16,7 @@ export default async function DuplicatesPage() {
         </h1>
         <p className="text-sm text-foreground-muted mt-1">
           {groups.length} potential duplicate {groups.length === 1 ? "group" : "groups"} detected.
-          Pick a primary record and merge $— this is irreversible.
+          Pick a primary record and merge — this is irreversible.
         </p>
       </div>
       <DuplicatesClient initialGroups={groups} />

@@ -24,7 +24,7 @@ export async function POST(request: NextRequest) {
 
     if (!result.success) {
       console.error("Quarter enquiry notification failed:", result.error);
-      // Don't block the user flow $— log and return success anyway
+      // Don't block the user flow — log and return success anyway
     }
 
     return NextResponse.json({ success: true });

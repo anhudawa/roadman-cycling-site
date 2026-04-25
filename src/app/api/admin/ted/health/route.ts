@@ -20,7 +20,7 @@ function isCronAuthed(req: NextRequest): boolean {
   return req.headers.get("authorization") === `Bearer ${cronSecret}`;
 }
 
-// GET /api/admin/ted/health $— JSON health summary.
+// GET /api/admin/ted/health — JSON health summary.
 // Accepts either an authenticated admin session OR a Bearer <CRON_SECRET> header
 // so external monitors (UptimeRobot, Pingdom, Better Uptime) can hit it.
 export async function GET(req: NextRequest) {
@@ -81,14 +81,14 @@ export async function GET(req: NextRequest) {
         name: "kill-switch",
         status: paused ? "warn" : "ok",
         detail: paused
-          ? `paused by ${ks[0].pausedBySlug ?? "unknown"} $— ${ks[0].reason ?? "no reason"}`
+          ? `paused by ${ks[0].pausedBySlug ?? "unknown"} — ${ks[0].reason ?? "no reason"}`
           : "running",
       });
     } else {
       checks.push({
         name: "kill-switch",
         status: "warn",
-        detail: "singleton row missing $— migration not seeded",
+        detail: "singleton row missing — migration not seeded",
       });
     }
   } catch (err) {
@@ -99,7 +99,7 @@ export async function GET(req: NextRequest) {
     });
   }
 
-  // Activity freshness $— only alert if not paused (a paused Ted is legitimately quiet)
+  // Activity freshness — only alert if not paused (a paused Ted is legitimately quiet)
   try {
     const latest = await db
       .select({ timestamp: tedActivityLog.timestamp })

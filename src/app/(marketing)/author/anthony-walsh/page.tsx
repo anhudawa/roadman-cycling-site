@@ -9,14 +9,14 @@ import { getAllPosts } from "@/lib/blog";
 import { EmailCapture } from "@/components/features/conversion/EmailCapture";
 
 export const metadata: Metadata = {
-  title: "Anthony Walsh $— Cycling Coach & Podcast Host",
+  title: "Anthony Walsh — Cycling Coach & Podcast Host",
   description:
     "Anthony Walsh is a cycling coach and founder of Roadman Cycling. Host of 1,400+ podcast episodes with World Tour coaches, scientists, and pro riders. Based in Dublin, Ireland.",
   alternates: {
     canonical: "https://roadmancycling.com/author/anthony-walsh",
   },
   openGraph: {
-    title: "Anthony Walsh $— Cycling Coach & Podcast Host",
+    title: "Anthony Walsh — Cycling Coach & Podcast Host",
     description:
       "Cycling coach and founder of Roadman Cycling. 1,400+ podcast interviews with the best minds in cycling performance.",
     type: "profile",
@@ -26,14 +26,14 @@ export const metadata: Metadata = {
         url: "https://roadmancycling.com/images/about/anthony-walsh-podcast.jpg",
         width: 1200,
         height: 630,
-        alt: "Anthony Walsh $— Roadman Cycling",
+        alt: "Anthony Walsh — Roadman Cycling",
       },
     ],
   },
 };
 
 const credentials = [
-  "Cycling coach $— Not Done Yet coaching community",
+  "Cycling coach — Not Done Yet coaching community",
   "Host of the Roadman Cycling Podcast (1M+ monthly listeners)",
   "1,400+ on-the-record interviews with World Tour coaches, sports scientists, and professional riders",
   "Guests include Prof. Stephen Seiler, Dan Lorang, Greg LeMond, Joe Friel, Tim Spector, and Ben Healy",
@@ -138,7 +138,7 @@ export default function AuthorPage() {
                 <div className="relative w-32 h-32 sm:w-40 sm:h-40 rounded-full overflow-hidden shrink-0 border-2 border-coral/30">
                   <Image
                     src="/images/about/anthony-profile-closeup.jpg"
-                    alt="Anthony Walsh $— cycling coach and host of the Roadman Cycling Podcast"
+                    alt="Anthony Walsh — cycling coach and host of the Roadman Cycling Podcast"
                     fill
                     className="object-cover"
                     sizes="160px"

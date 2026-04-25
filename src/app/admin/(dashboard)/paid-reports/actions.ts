@@ -19,7 +19,7 @@ import { generateAndDeliverPaidReport } from "@/lib/paid-reports/generator";
  *
  * Resend / regenerate both route through the generator. We only keep
  * the sha256 of the secure token, so we can't reconstruct the original
- * link $— resend is implemented as a fresh generate+deliver which
+ * link — resend is implemented as a fresh generate+deliver which
  * hands out a new token in the email. This is stricter than necessary
  * for happy-path resend, but it keeps the admin tooling honest.
  */

@@ -37,7 +37,7 @@ export default async function TedLogPage({
     <div className="space-y-4">
       <div className="flex items-baseline justify-between">
         <div>
-          <h1 className="text-2xl font-semibold text-white">Ted $— activity log</h1>
+          <h1 className="text-2xl font-semibold text-white">Ted — activity log</h1>
           <p className="text-sm text-foreground-subtle">
             Last 200 events. Filter via ?job= or ?level= in the URL.
           </p>
@@ -93,7 +93,7 @@ export default async function TedLogPage({
                   ) : r.payload ? (
                     <code className="font-mono">{JSON.stringify(r.payload)}</code>
                   ) : (
-                    "$—"
+                    "—"
                   )}
                 </td>
               </tr>

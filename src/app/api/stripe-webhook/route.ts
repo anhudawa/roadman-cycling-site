@@ -54,7 +54,7 @@ export async function POST(request: Request) {
         await resend.emails.send({
           from: "Roadman Cycling <notifications@roadmancycling.com>",
           to: NOTIFICATION_EMAIL,
-          subject: `New S&C Sale $— ${customerName} (${amount})`,
+          subject: `New S&C Sale — ${customerName} (${amount})`,
           html: `
             <div style="font-family: system-ui, sans-serif; max-width: 500px;">
               <h2 style="margin-bottom: 4px;">New S&C Plan Purchase</h2>
@@ -83,7 +83,7 @@ export async function POST(request: Request) {
         console.error("Failed to send notification email:", emailErr);
       }
     } else {
-      console.warn("Resend not configured $— no email notification sent. Set RESEND_API_KEY.");
+      console.warn("Resend not configured — no email notification sent. Set RESEND_API_KEY.");
     }
   }
 

@@ -42,7 +42,7 @@ export default async function PipelinePage() {
           PIPELINE
         </h1>
         <p className="text-foreground-muted text-sm mt-1">
-          6-month inventory overview $— click any cell to manage slots
+          6-month inventory overview — click any cell to manage slots
         </p>
       </div>
       <PipelineClient

@@ -21,7 +21,7 @@ export interface ScoredContent {
   guest?: string;
   duration?: string;
   episodeNumber?: number;
-  /** Internal score $— higher means more relevant */
+  /** Internal score — higher means more relevant */
   score: number;
 }
 

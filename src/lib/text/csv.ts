@@ -1,4 +1,4 @@
-// Minimal CSV parser $— handles double-quoted fields containing commas and
+// Minimal CSV parser — handles double-quoted fields containing commas and
 // escaped quotes (""). Good enough for seed scripts and admin UI pastes;
 // not a spec-compliant RFC-4180 library.
 

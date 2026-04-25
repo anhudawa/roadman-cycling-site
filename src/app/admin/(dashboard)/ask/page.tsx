@@ -146,10 +146,10 @@ export default async function AdminAskPage({
                   <p className="line-clamp-3 leading-relaxed">{m.content}</p>
                 </td>
                 <td className="p-3 text-foreground-muted whitespace-nowrap text-xs">
-                  {m.ctaRecommended ?? "$—"}
+                  {m.ctaRecommended ?? "—"}
                 </td>
                 <td className="p-3 text-foreground-subtle whitespace-nowrap text-xs">
-                  {m.model ?? "$—"}
+                  {m.model ?? "—"}
                   {m.latencyMs != null && (
                     <div className="text-[10px] text-foreground-subtle/80">
                       {m.latencyMs}ms

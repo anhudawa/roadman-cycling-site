@@ -35,7 +35,7 @@ interface ApiResponse {
 }
 
 // ---------------------------------------------------------------------------
-// Animation variants $— horizontal directional crossfade
+// Animation variants — horizontal directional crossfade
 // ---------------------------------------------------------------------------
 
 const questionVariants = {
@@ -329,7 +329,7 @@ function FreetextInput({
 }
 
 // ---------------------------------------------------------------------------
-// Loading screen $— concentric pulsing rings
+// Loading screen — concentric pulsing rings
 // ---------------------------------------------------------------------------
 
 const LOADING_MESSAGES = [
@@ -391,7 +391,7 @@ function LoadingScreen() {
 }
 
 // ---------------------------------------------------------------------------
-// Result screen $— dramatic reveal with staggered animations
+// Result screen — dramatic reveal with staggered animations
 // ---------------------------------------------------------------------------
 
 function ResultScreen({
@@ -432,7 +432,7 @@ function ResultScreen({
         {response.headline}
       </motion.h2>
 
-      {/* Body paragraphs $— staggered fade-in */}
+      {/* Body paragraphs — staggered fade-in */}
       <div className="space-y-4">
         {response.body.split("\n\n").map((para, i) => (
           <motion.p
@@ -537,7 +537,7 @@ function ResultScreen({
         </motion.p>
       )}
 
-      {/* CTAs $— staggered entrance */}
+      {/* CTAs — staggered entrance */}
       <motion.div
         className="flex flex-col gap-3 pt-2"
         initial="hidden"
@@ -547,7 +547,7 @@ function ResultScreen({
           visible: { transition: { staggerChildren: 0.12, delayChildren: 0.9 } },
         }}
       >
-        {/* Primary CTA $— always the real action, whether overlay or standalone */}
+        {/* Primary CTA — always the real action, whether overlay or standalone */}
         {(!isNotAFit || emailSent) && (
           <motion.div variants={{ hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0 } }}>
             <Button

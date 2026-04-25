@@ -14,7 +14,7 @@ import { SearchTrigger } from "@/components/features/search/SearchTrigger";
  * in the header. These are revenue-adjacent pages where leakage to the
  * free community is costing conversions.
  *
- * The homepage is included $— it's the site's highest-traffic surface
+ * The homepage is included — it's the site's highest-traffic surface
  * and the podcast-first hero already routes curious listeners via
  * PLAY LATEST EPISODE, so the header CTA is reserved for the paid
  * funnel.
@@ -50,7 +50,7 @@ export function Header() {
   const ctaLabel = showApply ? "APPLY" : "JOIN FREE";
   const ctaLabelMobile = showApply ? "APPLY NOW" : "JOIN THE CLUBHOUSE";
 
-  // Scroll progress $— single listener for both progress bar and header style
+  // Scroll progress — single listener for both progress bar and header style
   const { scrollY, scrollYProgress } = useScroll();
   const smoothProgress = useSpring(scrollYProgress, {
     stiffness: 100,
@@ -112,7 +112,7 @@ export function Header() {
                 height={345}
                 // Logo renders at ~88px (mobile) to ~124px (desktop) wide.
                 // Without `sizes`, next/image ships the 1920w source on every
-                // pageview $— ~80-200KB of wasted bytes per load. See
+                // pageview — ~80-200KB of wasted bytes per load. See
                 // docs/seo/cwv-audit-2026-04-23.md.
                 sizes="200px"
                 className="max-w-none h-10 md:h-14 w-auto"

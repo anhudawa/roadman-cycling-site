@@ -21,7 +21,7 @@ export async function listAllTags(): Promise<TagUsage[]> {
 
 /**
  * Rename a tag on every contact that currently has it. Returns count touched.
- * Uses a JS fallback $— building a jsonb_agg subquery against a LATERAL
+ * Uses a JS fallback — building a jsonb_agg subquery against a LATERAL
  * jsonb_array_elements_text isn't reliable when the array may be empty or null.
  */
 export async function renameTag(oldName: string, newName: string): Promise<number> {

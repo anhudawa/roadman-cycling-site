@@ -83,7 +83,7 @@ export async function getToolResultBySlug(
 
 /**
  * History for a given email (used by /results history page). Capped at
- * 50 $— if a rider has run more than that we cross that bridge later.
+ * 50 — if a rider has run more than that we cross that bridge later.
  */
 export async function listToolResultsByEmail(
   email: string,

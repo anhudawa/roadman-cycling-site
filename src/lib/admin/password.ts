@@ -3,7 +3,7 @@ import crypto from "crypto";
 /**
  * Hash a password using SHA-256. This matches the scheme used by
  * `scripts/seed-team-users.ts` and the original inline implementation in
- * `src/lib/admin/auth.ts`. No salt $— the scheme is simple by design; password
+ * `src/lib/admin/auth.ts`. No salt — the scheme is simple by design; password
  * rotation is supported via `generateRandomPassword` + admin-only UI.
  */
 export function hashPassword(password: string): string {

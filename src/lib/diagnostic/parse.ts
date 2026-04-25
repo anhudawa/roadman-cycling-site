@@ -1,7 +1,7 @@
 import { AGE_BRACKETS, HOURS_BRACKETS, type Answers } from "./types";
 
 /**
- * Request-body parser for the diagnostic submit endpoint. Strict $— we
+ * Request-body parser for the diagnostic submit endpoint. Strict — we
  * refuse the request if any of the 12 scored questions is missing or
  * out of range. Returns null if invalid so the caller returns 400.
  */

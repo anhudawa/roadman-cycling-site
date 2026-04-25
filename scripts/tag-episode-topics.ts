@@ -4,7 +4,7 @@
  * Tags each podcast episode with topic hub slugs based on keyword
  * matching against the episode title, description, and keywords.
  *
- * Adds `topicTags: string[]` to frontmatter $— an array of topic
+ * Adds `topicTags: string[]` to frontmatter — an array of topic
  * hub slugs this episode is relevant to.
  *
  * CLI: npx tsx scripts/tag-episode-topics.ts

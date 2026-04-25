@@ -26,7 +26,7 @@ export default function StrengthTrainingSuccess() {
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Button href="/community/clubhouse" size="lg">
-                Join the Clubhouse $— Free
+                Join the Clubhouse — Free
               </Button>
               <Button href="/blog" variant="ghost" size="lg">
                 Read the Blog

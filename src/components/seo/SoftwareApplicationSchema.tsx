@@ -15,7 +15,7 @@ interface SoftwareApplicationSchemaProps {
  * SoftwareApplication structured data for our free calculator tools.
  *
  * Signals to Google that the page is an interactive utility (distinct from
- * the HowTo/FAQ schema also emitted on each tool page) $— unlocks the
+ * the HowTo/FAQ schema also emitted on each tool page) — unlocks the
  * "application" rich result variant and improves discovery for queries like
  * "ftp calculator" or "tyre pressure calculator".
  */

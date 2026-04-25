@@ -84,7 +84,7 @@ describe("sendDiagnosisConfirmation", () => {
   });
 });
 
-describe("sendDiagnosisConfirmation $— missing key", () => {
+describe("sendDiagnosisConfirmation — missing key", () => {
   beforeEach(() => {
     sendMock.mockReset();
   });

@@ -946,7 +946,7 @@ export function ContactDetail({
               initialValues={initialCustomValues}
             />
 
-            {/* Tasks here too $— quick actions belong on overview */}
+            {/* Tasks here too — quick actions belong on overview */}
             <div className="bg-background-elevated rounded-xl border border-white/5 p-4">
               <p className="text-[10px] uppercase tracking-widest text-foreground-subtle font-medium mb-3">
                 Tasks
@@ -1115,7 +1115,7 @@ export function ContactDetail({
                       <div key={k} className="flex justify-between gap-2">
                         <dt className="text-foreground-subtle capitalize">{k}</dt>
                         <dd className="text-foreground-muted text-right break-words max-w-[60%]">
-                          {v === null || v === undefined ? "$—" : String(v)}
+                          {v === null || v === undefined ? "—" : String(v)}
                         </dd>
                       </div>
                     ))}
@@ -1163,7 +1163,7 @@ export function ContactDetail({
 
               {!enrichment ? (
                 <p className="text-xs text-foreground-subtle">
-                  Not enriched yet $— click Refresh.
+                  Not enriched yet — click Refresh.
                 </p>
               ) : (
                 <>
@@ -1298,7 +1298,7 @@ export function ContactDetail({
               className="w-full mb-2 px-3 py-2 text-sm bg-[var(--color-sunken)] border border-[var(--color-border-strong)] text-[var(--color-fg)] rounded-[var(--radius-admin-md)] focus-ring focus:border-[var(--color-border-focus)]"
             />
             <textarea
-              placeholder="Body (optional) $— mention teammates with @ted, @sarah, @wes, @matthew"
+              placeholder="Body (optional) — mention teammates with @ted, @sarah, @wes, @matthew"
               value={noteBody}
               onChange={(e) => setNoteBody(e.target.value)}
               rows={3}
@@ -1584,7 +1584,7 @@ export function ContactDetail({
                   }
                   className="w-full px-3 py-2 text-sm bg-[var(--color-sunken)] border border-[var(--color-border-strong)] text-[var(--color-fg)] rounded-[var(--radius-admin-md)] focus-ring focus:border-[var(--color-border-focus)]"
                 >
-                  <option value="">$— Ad-hoc (no template) $—</option>
+                  <option value="">— Ad-hoc (no template) —</option>
                   {templates.map((t) => (
                     <option key={t.id} value={t.id}>
                       {t.name}
@@ -1674,16 +1674,16 @@ function ApplicationCard({ app }: { app: ApplicationRow }) {
     `Email: ${app.email}`,
     `Cohort: ${app.cohort}`,
     `Hours/week: ${app.hours}`,
-    `FTP: ${app.ftp ?? "$—"}`,
-    `Persona: ${app.persona ?? "$—"}`,
+    `FTP: ${app.ftp ?? "—"}`,
+    `Persona: ${app.persona ?? "—"}`,
     `Status: ${app.status}`,
     `Submitted: ${submitted}`,
     ``,
     `Goal:`,
-    app.goal || "$—",
+    app.goal || "—",
     ``,
     `What's doing your head in:`,
-    app.frustration || "$—",
+    app.frustration || "—",
   ].join("\n");
 
   async function handleCopyAll() {
@@ -1792,7 +1792,7 @@ function AppField({
           mono ? "font-mono" : ""
         } ${!v ? "text-foreground-subtle italic" : ""}`}
       >
-        {v || "$—"}
+        {v || "—"}
       </p>
     </div>
   );

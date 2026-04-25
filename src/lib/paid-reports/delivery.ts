@@ -5,7 +5,7 @@
  * resend, token-expiry re-issue) uses, so the "from" + subject line +
  * Reply-To stay consistent.
  *
- * Non-fatal errors bubble up $— the generator logs + marks the report as
+ * Non-fatal errors bubble up — the generator logs + marks the report as
  * failed; we don't swallow errors here.
  */
 

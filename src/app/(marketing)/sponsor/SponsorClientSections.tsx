@@ -176,7 +176,7 @@ function StepHeader({
 }
 
 // ---------------------------------------------------------------------------
-// Step 1: Tab A $— Pick a Moment (Event Blocks)
+// Step 1: Tab A — Pick a Moment (Event Blocks)
 // ---------------------------------------------------------------------------
 
 function EventBlockCards({
@@ -234,7 +234,7 @@ function EventBlockCards({
 }
 
 // ---------------------------------------------------------------------------
-// Step 1: Tab B $— Pick a Duration
+// Step 1: Tab B — Pick a Duration
 // ---------------------------------------------------------------------------
 
 function DurationCards({
@@ -715,7 +715,7 @@ function AssetForm({
         />
         <div className="flex justify-between mt-2">
           <p className="text-foreground-subtle text-xs">
-            Keep it tight $— he&apos;ll script the read himself.
+            Keep it tight — he&apos;ll script the read himself.
           </p>
           <p className={`text-xs ${adCopy.length >= 480 ? "text-coral" : "text-foreground-subtle"}`}>
             {adCopy.length}/500
@@ -852,7 +852,7 @@ function MultiYearForm() {
         </div>
         <h3 className="font-heading text-[36px] text-off-white mb-3">CONVERSATION STARTED.</h3>
         <p className="text-foreground-muted text-lg max-w-md mx-auto">
-          Anthony or Sarah will be in touch within 48 hours. No media kit fluff $— just a straight conversation about what makes sense.
+          Anthony or Sarah will be in touch within 48 hours. No media kit fluff — just a straight conversation about what makes sense.
         </p>
       </motion.div>
     );

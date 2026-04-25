@@ -16,7 +16,7 @@ const DublinRouteMap = dynamic(
 );
 
 export const metadata: Metadata = {
-  title: "Roadman CC $— Dublin Cycling Club",
+  title: "Roadman CC — Dublin Cycling Club",
   description:
     "Three rides a week. One community. Dublin's cycling club for riders who still believe the best is ahead. Thursday Phoenix Park. Saturday and Sunday from Clontarf.",
   keywords: [
@@ -28,7 +28,7 @@ export const metadata: Metadata = {
   ],
   alternates: { canonical: "https://roadmancycling.com/community/club" },
   openGraph: {
-    title: "Roadman CC $— Dublin Cycling Club",
+    title: "Roadman CC — Dublin Cycling Club",
     description:
       "Three rides a week. One community. Dublin's cycling club for riders who still believe the best is ahead. Thursday Phoenix Park. Saturday and Sunday from Clontarf.",
     type: "website",
@@ -129,7 +129,7 @@ export default function ClubPage() {
                 <div className="relative aspect-square rounded-lg overflow-hidden col-span-2 row-span-2">
                   <Image
                     src="/images/community/club-3.jpg"
-                    alt="The Roadman CC crew at the summit $— group photo"
+                    alt="The Roadman CC crew at the summit — group photo"
                     fill
                     className="object-cover hover:scale-105 transition-transform duration-700"
                     sizes="(max-width: 768px) 100vw, 50vw"
@@ -215,7 +215,7 @@ export default function ClubPage() {
           </Container>
         </Section>
 
-        {/* Philosophy $— the emotional centre */}
+        {/* Philosophy — the emotional centre */}
         <Section background="deep-purple" grain>
           <Container width="narrow">
             <ScrollReveal direction="up">

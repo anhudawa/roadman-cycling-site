@@ -2,11 +2,11 @@
  * Shared input validation helpers for API routes.
  *
  * Keep these intentionally boring. Every public form endpoint pulls
- * from here rather than re-implementing regexes and length caps $—
+ * from here rather than re-implementing regexes and length caps —
  * prevents drift between /apply / /contact / /newsletter / /tools/report.
  */
 
-/** RFC 5322-lite $— rejects `foo@`, `@bar`, `foo@bar`, and other fat-finger failures. */
+/** RFC 5322-lite — rejects `foo@`, `@bar`, `foo@bar`, and other fat-finger failures. */
 export const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
 /** Input size caps, matched against DB column sizes where applicable. */

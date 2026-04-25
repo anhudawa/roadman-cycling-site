@@ -5,7 +5,7 @@ import type { ToolResult } from "./types";
  *
  * The DB stores the payloads as opaque JSON to keep the schema generic,
  * but every server component + email template that reads a result needs
- * a type-safe lens. These helpers return typed views $— missing or
+ * a type-safe lens. These helpers return typed views — missing or
  * malformed values fall back to the least-surprising default so a
  * partially-corrupt row still renders.
  */

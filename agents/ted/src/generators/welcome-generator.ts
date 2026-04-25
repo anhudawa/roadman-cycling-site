@@ -9,7 +9,7 @@ const PERSONA_HOOKS: Record<string, string> = {
   plateau: "hitting a plateau and wanting to break through it",
   comeback: "coming back to the bike after a break",
   "event-prep": "prepping for a specific event",
-  listener: "", // no hook $— use generic variant
+  listener: "", // no hook — use generic variant
 };
 
 export async function generateWelcome(opts: {
@@ -24,18 +24,18 @@ export async function generateWelcome(opts: {
 
   const hook =
     opts.persona && PERSONA_HOOKS[opts.persona] ? PERSONA_HOOKS[opts.persona] : "";
-  const personaNote = hook ? `Persona hook: ${hook}` : "Persona hook: (none $— use generic variant)";
+  const personaNote = hook ? `Persona hook: ${hook}` : "Persona hook: (none — use generic variant)";
 
   const baseUser = [
     `Write a Ted welcome for a new Clubhouse member.`,
     `first_name: ${opts.firstName || "(empty)"}`,
     personaNote,
     opts.questionnaireAnswers?.length
-      ? `Questionnaire answers (for tone only $— do not quote back verbatim):\n${opts.questionnaireAnswers
+      ? `Questionnaire answers (for tone only — do not quote back verbatim):\n${opts.questionnaireAnswers
           .map((a, i) => `${i + 1}. ${a}`)
           .join("\n")}`
       : "",
-    `Return only the post body (including \`$— Ted\`). No preamble, no JSON.`,
+    `Return only the post body (including \`— Ted\`). No preamble, no JSON.`,
   ]
     .filter(Boolean)
     .join("\n");

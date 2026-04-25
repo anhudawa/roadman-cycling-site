@@ -1,15 +1,15 @@
 #!/usr/bin/env tsx
 // ---------------------------------------------------------------------------
-// Roadman Cycling $— Podcast Transcript Indexer Agent
+// Roadman Cycling — Podcast Transcript Indexer Agent
 //
 // Modes:
-//   watch     $— poll RSS, process new episodes (default)
-//   backfill  $— process back catalogue in batches
+//   watch     — poll RSS, process new episodes (default)
+//   backfill  — process back catalogue in batches
 //
 // Flags:
-//   --dry-run           $— process one episode, output diff to stdout, no git
-//   --episode=<slug>    $— process a specific episode by slug
-//   --from=<n> --to=<n> $— backfill range (episode numbers)
+//   --dry-run           — process one episode, output diff to stdout, no git
+//   --episode=<slug>    — process a specific episode by slug
+//   --from=<n> --to=<n> — backfill range (episode numbers)
 //   --mode=watch|backfill
 // ---------------------------------------------------------------------------
 
@@ -152,7 +152,7 @@ function assembleMDX(
     transcript: episode.transcript,
   };
 
-  // Build MDX body $— strip any tags the model might have included in the citation block
+  // Build MDX body — strip any tags the model might have included in the citation block
   const citationText = content.ai_citation_block
     .replace(/<\/?AICitationBlock>/g, "")
     .trim();
@@ -273,10 +273,10 @@ async function processEpisode(episode: EpisodeInput): Promise<PipelineResult> {
 
     regenerationAttempts = attempt + 1;
     if (attempt < MAX_REGENERATION_ATTEMPTS) {
-      console.log(`    FAILED $— regenerating with notes: ${voiceCheck.regeneration_notes.slice(0, 100)}...`);
+      console.log(`    FAILED — regenerating with notes: ${voiceCheck.regeneration_notes.slice(0, 100)}...`);
       regenerationNotes = voiceCheck.failure_reasons.join("\n") + "\n" + voiceCheck.regeneration_notes;
     } else {
-      console.log(`    FAILED after ${MAX_REGENERATION_ATTEMPTS} attempts $— will open PR with needs-human-rewrite label`);
+      console.log(`    FAILED after ${MAX_REGENERATION_ATTEMPTS} attempts — will open PR with needs-human-rewrite label`);
     }
   }
 
@@ -374,7 +374,7 @@ async function processEpisode(episode: EpisodeInput): Promise<PipelineResult> {
 // ---------------------------------------------------------------------------
 
 async function main() {
-  console.log("=== Roadman Cycling $— Transcript Indexer Agent ===");
+  console.log("=== Roadman Cycling — Transcript Indexer Agent ===");
   console.log(`Mode: ${mode} | Dry run: ${dryRun} | Run ID: ${logger.id}`);
   console.log(`Repo root: ${repoRoot}`);
   console.log("");
@@ -462,7 +462,7 @@ async function main() {
     return;
   }
 
-  // Watch mode $— poll RSS for new episodes, or fall back to unprocessed local files
+  // Watch mode — poll RSS for new episodes, or fall back to unprocessed local files
   if (mode === "watch") {
     const rssUrl = process.env.PODCAST_RSS;
 
@@ -516,11 +516,11 @@ async function main() {
           if (localSlug) {
             episode = loadEpisodeFromMDX(localSlug);
           } else {
-            // New episode not in local files $— try to get transcript
+            // New episode not in local files — try to get transcript
             console.log(`  New episode from RSS: ${rssEp.title}`);
             const transcript = await getTranscript("", rssEp.enclosureUrl);
             if (!transcript) {
-              console.log(`  Could not get transcript for ${rssEp.title} $— skipping`);
+              console.log(`  Could not get transcript for ${rssEp.title} — skipping`);
               continue;
             }
             // Create a slug from the title

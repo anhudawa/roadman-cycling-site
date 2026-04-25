@@ -129,7 +129,7 @@ export function MiniPlayer() {
         isMinimised ? "translate-y-[calc(100%-48px)]" : "translate-y-0"
       }`}
     >
-      {/* Progress bar $— always visible at top edge */}
+      {/* Progress bar — always visible at top edge */}
       <div
         className="h-1 bg-white/10 cursor-pointer group"
         onClick={handleProgressClick}
@@ -226,7 +226,7 @@ export function MiniPlayer() {
         )}
       </div>
 
-      {/* Hidden YouTube player $— audio only */}
+      {/* Hidden YouTube player — audio only */}
       <div ref={containerRef} className="absolute -left-[9999px] w-px h-px overflow-hidden" />
     </div>
   );

@@ -31,6 +31,6 @@ export function trackAnalyticsEvent(input: TrackEventInput): void {
       keepalive: true,
     }).catch(() => undefined);
   } catch {
-    // swallow $— analytics should never break a user flow
+    // swallow — analytics should never break a user flow
   }
 }

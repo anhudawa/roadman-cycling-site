@@ -6,7 +6,7 @@ import { requireAuth } from "@/lib/admin/auth";
 
 export const dynamic = "force-dynamic";
 
-// PATCH /api/admin/ted/welcomes $— approve / edit / reject a welcome draft.
+// PATCH /api/admin/ted/welcomes — approve / edit / reject a welcome draft.
 // Body: { memberEmail: string, action: "approve"|"edit"|"reject", editedBody?: string }
 export async function PATCH(request: Request) {
   let user;

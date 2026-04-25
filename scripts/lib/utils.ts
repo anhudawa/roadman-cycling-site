@@ -18,7 +18,7 @@ export function secondsToReadable(totalSeconds: number): string {
 export function generateSlug(episodeNumber: number, title: string): string {
   // Remove episode number prefix from title if present
   const cleanTitle = title
-    .replace(/^(?:EP?|Episode|#)\s*\d+\s*[:\-$–$—|]\s*/i, "")
+    .replace(/^(?:EP?|Episode|#)\s*\d+\s*[:\-–—|]\s*/i, "")
     .trim();
 
   const slug = cleanTitle

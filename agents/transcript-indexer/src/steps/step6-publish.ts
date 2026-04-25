@@ -5,7 +5,7 @@ import type { PipelineResult } from "../types.js";
 
 /**
  * Publish an indexed episode to the admin dashboard DB.
- * Replaces the old git PR approach $— content goes straight into the
+ * Replaces the old git PR approach — content goes straight into the
  * repurposed_episodes / repurposed_content tables where the existing
  * admin UI picks it up for review, chat, and approval.
  */
@@ -16,7 +16,7 @@ export async function publishToAdminDashboard(
 ): Promise<number | null> {
   const connectionString = process.env.POSTGRES_URL;
   if (!connectionString) {
-    console.warn("  POSTGRES_URL not set $— skipping database write");
+    console.warn("  POSTGRES_URL not set — skipping database write");
     return null;
   }
 
@@ -61,13 +61,13 @@ export async function publishToAdminDashboard(
     // Build content rows
     const rows: Array<{ contentType: string; content: string }> = [];
 
-    // Episode page $— the lede + key takeaways (main voice content for review)
+    // Episode page — the lede + key takeaways (main voice content for review)
     rows.push({
       contentType: "episode-page",
       content: `${result.content.lede}\n\n## Key Takeaways\n\n${result.content.key_takeaways}`,
     });
 
-    // Episode meta $— SEO title + description
+    // Episode meta — SEO title + description
     rows.push({
       contentType: "episode-meta",
       content: JSON.stringify({
@@ -76,7 +76,7 @@ export async function publishToAdminDashboard(
       }),
     });
 
-    // Episode citation $— AI citation block
+    // Episode citation — AI citation block
     rows.push({
       contentType: "episode-citation",
       content: result.content.ai_citation_block,
@@ -99,7 +99,7 @@ export async function publishToAdminDashboard(
       });
     }
 
-    // Social content $— FB, LinkedIn, Twitter/X
+    // Social content — FB, LinkedIn, Twitter/X
     if (result.socialContent) {
       rows.push({
         contentType: "facebook",

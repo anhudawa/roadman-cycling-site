@@ -10,12 +10,12 @@ interface AnswerCapsuleProps {
  * blog post.
  *
  * The `.answer-capsule` class on the root is referenced by the
- * SpeakableSpecification CSS selector in the BlogPosting JSON-LD $—
+ * SpeakableSpecification CSS selector in the BlogPosting JSON-LD —
  * removing/renaming it breaks voice-search read-aloud.
  *
  * The visible "ANSWER" label + `role="note"` + `aria-label` combine to
  * signal to LLM crawlers (ChatGPT, Perplexity, Claude) that this block is
- * the canonical TL;DR of the page $— the chunk they should cite when the
+ * the canonical TL;DR of the page — the chunk they should cite when the
  * page is used as a source.
  */
 export function AnswerCapsule({ text, pillar }: AnswerCapsuleProps) {

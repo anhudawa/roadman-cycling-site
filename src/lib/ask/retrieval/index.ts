@@ -4,7 +4,7 @@
  * Runs episode, methodology, and content-chunk searches in parallel, merges
  * the results, dedupes by (sourceType, sourceId), sorts by relevance score
  * desc, and caps the final set (default 10). Safe to call from the orchestrator
- * hot path $— a single search failure (e.g. methodology offline) won't take
+ * hot path — a single search failure (e.g. methodology offline) won't take
  * down the others because we use `Promise.allSettled`.
  */
 

@@ -3,7 +3,7 @@ import fs from 'fs';
 import os from 'os';
 import path from 'path';
 
-// Isolated temp dir per process $— prevents race conditions when multiple
+// Isolated temp dir per process — prevents race conditions when multiple
 // worktree test runs write to the shared content/podcast/ directory.
 const FIXTURE_DIR = path.join(__dirname, '__fixtures__');
 const TEMP_PODCAST_DIR = fs.mkdtempSync(path.join(os.tmpdir(), 'roadman-sponsor-test-'));

@@ -125,7 +125,7 @@ export function SegmentActions({
             disabled={busy || memberCount === 0 || memberCount > 500 || !templateSlug}
             className="px-3 py-2 bg-[var(--color-elevated)] hover:bg-[var(--color-raised)] text-[var(--color-fg)] border border-[var(--color-border-strong)] font-medium rounded text-sm disabled:opacity-50"
           >
-            {busy ? "Sending..." : `Confirm $— send to ${memberCount}`}
+            {busy ? "Sending..." : `Confirm — send to ${memberCount}`}
           </button>
         </div>
       )}
@@ -138,7 +138,7 @@ export function SegmentActions({
 
       {result && (
         <div className="p-3 bg-green-500/10 border border-green-500/20 rounded text-sm text-green-300">
-          Sent {result.sent} $— failed {result.failed}.
+          Sent {result.sent} — failed {result.failed}.
           {result.errors.length > 0 && (
             <ul className="mt-2 text-xs text-foreground-muted space-y-0.5 max-h-40 overflow-y-auto">
               {result.errors.map((e, i) => (

@@ -1,7 +1,7 @@
 /**
  * src/lib/content-graph.ts
  *
- * Unified content graph $— the single query layer for all content
+ * Unified content graph — the single query layer for all content
  * relationships. Any template can ask "what's related to X?" and
  * get articles, episodes, tools, guests, comparisons, glossary
  * terms, and commercial pages back.
@@ -46,7 +46,7 @@ export function queryContentGraph(query: ContentGraphQuery): ContentGraphResult 
   const topic = query.topicSlug ? getTopicBySlug(query.topicSlug) : null;
   const pillar = query.pillar || topic?.pillar;
 
-  // Articles $— from topic or by pillar
+  // Articles — from topic or by pillar
   let articles: BlogPostMeta[] = [];
   if (topic) {
     articles = topic.posts.slice(0, limit);
@@ -56,7 +56,7 @@ export function queryContentGraph(query: ContentGraphQuery): ContentGraphResult 
       .slice(0, limit);
   }
 
-  // Episodes $— from topic or by pillar
+  // Episodes — from topic or by pillar
   let episodes: EpisodeMeta[] = [];
   if (topic) {
     episodes = topic.episodes.slice(0, limit);
@@ -69,34 +69,34 @@ export function queryContentGraph(query: ContentGraphQuery): ContentGraphResult 
   // Tools
   const tools = topic?.tools || [];
 
-  // Guests $— by pillar
+  // Guests — by pillar
   const guests = pillar
     ? getAllGuests()
         .filter((g) => g.pillars.includes(pillar as any))
         .slice(0, 5)
     : [];
 
-  // Comparisons $— by pillar
+  // Comparisons — by pillar
   const comparisons = pillar
     ? COMPARISONS.filter((c) => c.pillar === pillar).slice(0, 5)
     : [];
 
-  // Glossary $— by pillar
+  // Glossary — by pillar
   const glossaryTerms = pillar
     ? GLOSSARY_TERMS.filter((t) => t.pillar === pillar).slice(0, 5)
     : [];
 
-  // Best-for $— by pillar
+  // Best-for — by pillar
   const bestForPages = pillar
     ? BEST_FOR_PAGES.filter((p) => p.pillar === pillar).slice(0, 3)
     : [];
 
-  // Problem pages $— by pillar
+  // Problem pages — by pillar
   const problemPages = pillar
     ? PROBLEM_PAGES.filter((p) => p.pillar === pillar).slice(0, 3)
     : [];
 
-  // Events $— all (event pages are cross-pillar)
+  // Events — all (event pages are cross-pillar)
   const events = EVENTS.slice(0, 6);
 
   // Commercial path
@@ -118,7 +118,7 @@ export function queryContentGraph(query: ContentGraphQuery): ContentGraphResult 
 }
 
 /**
- * Quick stats for the site $— used in llms.txt, start-here, etc.
+ * Quick stats for the site — used in llms.txt, start-here, etc.
  */
 export function getSiteStats() {
   return {

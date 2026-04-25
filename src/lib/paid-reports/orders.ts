@@ -4,7 +4,7 @@ import { orders } from "@/lib/db/schema";
 import { asOrderStatus, type Order, type OrderStatus } from "./types";
 
 /**
- * Orders store $— one row per Stripe checkout session. Idempotency is
+ * Orders store — one row per Stripe checkout session. Idempotency is
  * enforced by the UNIQUE constraint on `stripe_checkout_session_id`:
  * a duplicate webhook call will land on the same row, not create a
  * second one. Event IDs accumulate in `stripe_event_ids` so we can
@@ -105,7 +105,7 @@ export interface MarkOrderPaidInput {
 
 /**
  * Mark an order paid. Appends the Stripe event id to the dedup list and
- * sets paid_at only if it isn't already set $— so a replayed webhook
+ * sets paid_at only if it isn't already set — so a replayed webhook
  * doesn't move the timestamp. Returns true if this call was the one
  * that flipped the state (useful for "should we kick off generation?").
  */

@@ -6,13 +6,13 @@ import { useEffect } from "react";
 /**
  * Lightweight Meta (Facebook) Pixel loader. Drops the standard fbq
  * snippet and fires a PageView on mount. When an `event` prop is
- * passed, fires that standard event in addition to PageView $— used on
+ * passed, fires that standard event in addition to PageView — used on
  * the results page to emit a `Lead` conversion.
  *
  * Completely no-op when `NEXT_PUBLIC_META_PIXEL_ID` isn't set, so this
  * is safe to drop into pages without guarding at every call site.
  *
- * Server-side (Conversions API) deduplication isn't wired yet $— when
+ * Server-side (Conversions API) deduplication isn't wired yet — when
  * Anthony plugs in the CAPI token, make sure server and client events
  * share the same `eventID` per Meta's dedup rules.
  */

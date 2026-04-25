@@ -1,7 +1,7 @@
 import { type ContentPillar } from "@/types";
 
 /**
- * Unified search index entry $— used for both blog posts and podcast episodes.
+ * Unified search index entry — used for both blog posts and podcast episodes.
  * This powers the site-wide search functionality.
  */
 export interface SearchableItem {
@@ -65,7 +65,7 @@ export function searchItems(
       if (keywordsLower.includes(term)) score += 5;
       // Description matches
       if (descLower.includes(term)) score += 2;
-      // Deep-content match $— catches queries that only appear in the
+      // Deep-content match — catches queries that only appear in the
       // answer capsule or segment titles (not the metadata above).
       if (deepLower.includes(term)) score += 1;
       // Exact word match bonus

@@ -42,7 +42,7 @@ export default function robots(): MetadataRoute.Robots {
         allow: "/",
         disallow: DISALLOW_PATHS,
       },
-      // AI search crawlers $— explicitly allowed for AI SEO visibility.
+      // AI search crawlers — explicitly allowed for AI SEO visibility.
       // Each gets the same disallow list so transactional paths are
       // never indexed regardless of which crawler found them.
       { userAgent: "GPTBot", allow: "/", disallow: DISALLOW_PATHS },

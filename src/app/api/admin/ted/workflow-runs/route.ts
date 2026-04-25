@@ -23,7 +23,7 @@ interface WorkflowRun {
   url: string;
 }
 
-// GET /api/admin/ted/workflow-runs $— last 5 runs per Ted workflow
+// GET /api/admin/ted/workflow-runs — last 5 runs per Ted workflow
 export async function GET() {
   try {
     await requireAuth();
@@ -55,7 +55,7 @@ export async function GET() {
               Authorization: `Bearer ${process.env.GITHUB_TOKEN}`,
               "X-GitHub-Api-Version": "2022-11-28",
             },
-            // Cache for a minute $— GitHub API rate limit is 5000/hour per token
+            // Cache for a minute — GitHub API rate limit is 5000/hour per token
             next: { revalidate: 60 },
           }
         );

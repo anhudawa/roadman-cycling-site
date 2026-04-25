@@ -6,7 +6,7 @@ export const EXPERT_SYNTHESIS_ARTICLES: ClusterArticleSpec[] = [
     title: "What 5 World Tour Coaches Say About Zone 2 Training",
     seoTitle: "What Experts Say About Zone 2 Training",
     seoDescription: "Five World Tour coaches and scientists explain Zone 2 training. Where they agree, where they differ, and what it means for your training.",
-    excerpt: "We asked five of the world's best cycling coaches the same question about Zone 2. Here's what they all agreed on $— and where they differ.",
+    excerpt: "We asked five of the world's best cycling coaches the same question about Zone 2. Here's what they all agreed on — and where they differ.",
     targetKeyword: "zone 2 training experts",
     supportingKeywords: ["what coaches say zone 2", "zone 2 consensus", "expert zone 2 advice", "professional zone 2 training"],
     angle: "Synthesis from Seiler, Lorang, Wakefield, Anastopoulos, and Friel episodes. Consensus + disagreements format.",

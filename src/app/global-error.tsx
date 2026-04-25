@@ -3,7 +3,7 @@
 import { useEffect } from 'react'
 
 /**
- * Global error boundary $— catches errors thrown in the root layout
+ * Global error boundary — catches errors thrown in the root layout
  * itself (where regular error.tsx can't reach). Must render its own
  * <html> + <body> because the normal layout has failed.
  *

@@ -65,7 +65,7 @@ export class TedLogger {
 
     console.log(
       `[${params.level ?? "info"}] ${params.job} :: ${params.action}${
-        params.error ? ` $— ${params.error}` : ""
+        params.error ? ` — ${params.error}` : ""
       }`
     );
   }

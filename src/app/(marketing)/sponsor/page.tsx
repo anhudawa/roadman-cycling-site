@@ -7,9 +7,9 @@ import type { AvailabilityByMonth } from "@/lib/inventory";
 import BookingFlow, { FAQSection } from "./SponsorClientSections";
 
 export const metadata: Metadata = {
-  title: "Sponsor $— Roadman Cycling",
+  title: "Sponsor — Roadman Cycling",
   description:
-    "Real inventory. Live pricing. Actual dates. Sponsor the biggest cycling podcast in Europe $— pick a moment or a duration, choose your slot, upload your assets, done.",
+    "Real inventory. Live pricing. Actual dates. Sponsor the biggest cycling podcast in Europe — pick a moment or a duration, choose your slot, upload your assets, done.",
   alternates: {
     canonical: "https://roadmancycling.com/sponsor",
   },
@@ -256,7 +256,7 @@ export default async function SponsorPage() {
           <Container>
             <BookingFlow
               eventBlocks={[
-                // Marquee events from Airtable $— calculate duration from dates
+                // Marquee events from Airtable — calculate duration from dates
                 ...events.map((e) => {
                   const premiumMap: Record<string, number> = { "1": 1.15, "2": 1.10 };
                   const start = new Date(e.startDate);

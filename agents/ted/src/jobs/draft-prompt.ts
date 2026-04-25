@@ -17,7 +17,7 @@ export async function runDraftPrompt(opts: DraftPromptOpts = {}): Promise<void> 
   const logger = new TedLogger({ job: "draft-prompt", logsDir: p.logsDir });
 
   try {
-    // Drafting runs even when paused $— "paused" means don't POST, not don't think.
+    // Drafting runs even when paused — "paused" means don't POST, not don't think.
     // But we still log the state.
     try {
       const state = await assertNotPaused();

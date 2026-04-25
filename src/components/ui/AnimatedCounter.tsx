@@ -36,12 +36,12 @@ function formatNumber(num: number, hasCommas: boolean): string {
  *
  * Previously this rendered "0" + suffix on the server (e.g. "0M+") and only
  * animated to the real number on client-side intersection. That shipped "0"
- * to Googlebot, AI crawlers, and no-JS / slow-network users $— killing our
+ * to Googlebot, AI crawlers, and no-JS / slow-network users — killing our
  * primary social proof.
  *
  * Now: initial state is the real value, which is what SSR + hydration render.
  * After mount, when the element scrolls into view, we restart from zero and
- * animate up $— preserving the eye candy for users who scroll down to the
+ * animate up — preserving the eye candy for users who scroll down to the
  * stats from below the fold. Above-fold stats (homepage) skip the animation
  * entirely because the element is already in view before the first paint.
  */

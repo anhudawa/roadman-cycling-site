@@ -10,14 +10,14 @@ import {
 } from "@/lib/testimonials";
 
 export const metadata: Metadata = {
-  title: "Not Done Yet Coaching Community $— Premium Cycling Coaching",
+  title: "Not Done Yet Coaching Community — Premium Cycling Coaching",
   description:
     "The Not Done Yet coaching community: personalised TrainingPeaks training plans, weekly coaching with Anthony Walsh, expert masterclasses, and a private community of serious cyclists. $195/month with a 7-day free trial. VIP tier available.",
   alternates: {
     canonical: "https://roadmancycling.com/community/not-done-yet",
   },
   openGraph: {
-    title: "Not Done Yet Coaching Community $— Premium Cycling Coaching",
+    title: "Not Done Yet Coaching Community — Premium Cycling Coaching",
     description:
       "The Not Done Yet coaching community: personalised TrainingPeaks training plans, weekly coaching with Anthony Walsh, expert masterclasses, and a private community of serious cyclists. $195/month with a 7-day free trial. VIP tier available.",
     type: "website",
@@ -64,14 +64,14 @@ const tiers = [
   },
 ];
 
-// Pre-pricing trust block $— 3 varied-angle testimonials.
+// Pre-pricing trust block — 3 varied-angle testimonials.
 const testimonials = getTestimonialsByName([
   "Chris O'Connor",
   "Ian McKnight",
   "Kazim",
 ]);
 
-// Featured results $— quote + stat from the central library; FTP
+// Featured results — quote + stat from the central library; FTP
 // progress bars are page-specific so they stay local.
 const featuredResults = (
   [
@@ -103,19 +103,19 @@ const memberTestimonials = getTestimonialsByName([
 
 const objections = [
   {
-    question: "I already listen to the podcast $— why would I pay?",
+    question: "I already listen to the podcast — why would I pay?",
     answer:
       "The podcast gives you the knowledge. The community gives you the structure and accountability to actually apply it. Knowledge without action is just entertainment.",
   },
   {
     question: "I can't afford it.",
     answer:
-      "$195/month is less than most 1:1 private coaching, which typically runs $300$–$500/month. There's a 7-day free trial so you can test the system before paying anything, and the free Clubhouse is always there as a starting point.",
+      "$195/month is less than most 1:1 private coaching, which typically runs $300–$500/month. There's a 7-day free trial so you can test the system before paying anything, and the free Clubhouse is always there as a starting point.",
   },
   {
     question: "I don't have time.",
     answer:
-      "The plans are built for busy professionals training 6-12 hours per week. The community works asynchronously $— no mandatory live sessions.",
+      "The plans are built for busy professionals training 6-12 hours per week. The community works asynchronously — no mandatory live sessions.",
   },
   {
     question: "How is this different from TrainerRoad or Zwift?",
@@ -131,7 +131,7 @@ export default function NotDoneYetPage() {
         data={{
           "@context": "https://schema.org",
           "@type": "Product",
-          name: "Not Done Yet Coaching Community $— Roadman Cycling",
+          name: "Not Done Yet Coaching Community — Roadman Cycling",
           description:
             "The Not Done Yet coaching community: personalised training plans, expert masterclasses, and weekly coaching calls with Anthony Walsh.",
           brand: {
@@ -146,7 +146,7 @@ export default function NotDoneYetPage() {
             availability: "https://schema.org/InStock",
           })),
           // Review schema mirrors real named testimonials on the page.
-          // No reviewRating $— we collect narrative testimonials rather
+          // No reviewRating — we collect narrative testimonials rather
           // than star ratings, and inventing a numeric rating would
           // violate Google's review-snippet guidelines (see the earlier
           // AggregateRating removal). Uses the full testimonials
@@ -161,7 +161,7 @@ export default function NotDoneYetPage() {
             reviewBody: t.quote,
             itemReviewed: {
               "@type": "Product",
-              name: "Not Done Yet Coaching Community $— Roadman Cycling",
+              name: "Not Done Yet Coaching Community — Roadman Cycling",
             },
           })),
         }}
@@ -198,7 +198,7 @@ export default function NotDoneYetPage() {
               </p>
               <p className="text-foreground-muted text-xl max-w-2xl mx-auto mb-6">
                 Training. Nutrition. Strength. Recovery. Community.
-                Five pillars, one system $— built from 1,400+ conversations
+                Five pillars, one system — built from 1,400+ conversations
                 with the coaches, scientists, and riders at the top of the
                 sport. Not summarised. Not repackaged. Structured into your
                 week by the coach who had every single one of them on his show.
@@ -217,7 +217,7 @@ export default function NotDoneYetPage() {
               <div className="relative aspect-video rounded-xl overflow-hidden border border-white/10 bg-background-elevated shadow-2xl">
                 <iframe
                   src="https://www.youtube-nocookie.com/embed/mQJuKIjXxXg"
-                  title="Not Done Yet $— Roadman Cycling"
+                  title="Not Done Yet — Roadman Cycling"
                   allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                   allowFullScreen
                   loading="lazy"
@@ -231,7 +231,7 @@ export default function NotDoneYetPage() {
         {/* Gradient divider */}
         <div className="gradient-divider" />
 
-        {/* Featured results $— visual before/after */}
+        {/* Featured results — visual before/after */}
         <Section background="deep-purple" grain>
           <Container>
             <ScrollReveal direction="up">
@@ -309,7 +309,7 @@ export default function NotDoneYetPage() {
         {/* Gradient divider */}
         <div className="gradient-divider" />
 
-        {/* Member testimonials $— social proof before pricing */}
+        {/* Member testimonials — social proof before pricing */}
         <Section background="deep-purple" grain>
           <Container>
             <ScrollReveal direction="up">
@@ -350,7 +350,7 @@ export default function NotDoneYetPage() {
         {/* Gradient divider */}
         <div className="gradient-divider" />
 
-        {/* Tier finder CTA $— opens fullscreen overlay */}
+        {/* Tier finder CTA — opens fullscreen overlay */}
         <Section background="charcoal" className="pb-0">
           <Container width="narrow">
             <ScrollReveal direction="up">
@@ -496,7 +496,7 @@ export default function NotDoneYetPage() {
                 <p className="text-foreground-muted mb-8 max-w-md mx-auto">
                   Cyclists across Ireland, the UK and the US have chosen
                   to stop guessing and start progressing. They&apos;re not
-                  more talented than you $— they just have a system. Same
+                  more talented than you — they just have a system. Same
                   knowledge. Same coaching. Your turn.
                 </p>
                 <Button

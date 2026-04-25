@@ -1,5 +1,5 @@
 /**
- * Canonical brand facts $— single source of truth for the numbers,
+ * Canonical brand facts — single source of truth for the numbers,
  * names, URLs, and schema `@id`s used across metadata, JSON-LD, copy,
  * llms.txt, and press-facing surfaces.
  *
@@ -8,7 +8,7 @@
 
 export const SITE_ORIGIN = "https://roadmancycling.com" as const;
 
-/** Stable JSON-LD `@id` anchors $— used so Organization / WebSite /
+/** Stable JSON-LD `@id` anchors — used so Organization / WebSite /
  *  Person / PodcastSeries form one connected knowledge graph. Every
  *  entity that references the org/author/podcast anywhere on the site
  *  should reference it by `@id`, not by name string, so Google/AI
@@ -48,7 +48,7 @@ export const BRAND = {
 
 /**
  * Public-facing brand stats. These are the numbers we quote in press,
- * in schema, and on-page. Update in lockstep with reality $— the
+ * in schema, and on-page. Update in lockstep with reality — the
  * newsletter subscriber count is especially volatile.
  */
 export const BRAND_STATS = {
@@ -109,4 +109,4 @@ export const CONTACT = {
  * snippets. Mirrors the tone of the site description but keeps the
  * fact-dense framing LLMs prefer when generating citations.
  */
-export const BRAND_SUMMARY = `${BRAND.name} is a cycling media and coaching brand founded by ${FOUNDER.name} in ${FOUNDER.location} in ${FOUNDER.foundedYear}. The core output is the ${PODCAST.name} $— ${BRAND_STATS.episodeCountLabel} episodes, ${BRAND_STATS.monthlyListenersLabel} monthly listeners across ${BRAND_STATS.countriesReachedLabel} countries $— complemented by the Not Done Yet coaching community, the Saturday Spin newsletter (${BRAND_STATS.newsletterSubscribersLabel} subscribers), ${BRAND_STATS.searchableEpisodePagesLabel} searchable episode pages, written guides, and free browser-based calculators for cyclists.`;
+export const BRAND_SUMMARY = `${BRAND.name} is a cycling media and coaching brand founded by ${FOUNDER.name} in ${FOUNDER.location} in ${FOUNDER.foundedYear}. The core output is the ${PODCAST.name} — ${BRAND_STATS.episodeCountLabel} episodes, ${BRAND_STATS.monthlyListenersLabel} monthly listeners across ${BRAND_STATS.countriesReachedLabel} countries — complemented by the Not Done Yet coaching community, the Saturday Spin newsletter (${BRAND_STATS.newsletterSubscribersLabel} subscribers), ${BRAND_STATS.searchableEpisodePagesLabel} searchable episode pages, written guides, and free browser-based calculators for cyclists.`;

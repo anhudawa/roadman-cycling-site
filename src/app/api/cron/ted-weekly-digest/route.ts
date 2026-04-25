@@ -139,7 +139,7 @@ async function sendDigestEmail(summary: Record<string, unknown>): Promise<void> 
   };
 
   const lines = [
-    "Ted $— weekly digest",
+    "Ted — weekly digest",
     "",
     "Prompts",
     `  Posted:          ${drafts.posted} / ${drafts.total}`,
@@ -155,7 +155,7 @@ async function sendDigestEmail(summary: Record<string, unknown>): Promise<void> 
     `  Total:           ${surfaces.total} (tag ${surfaces.byType.tag} / link ${surfaces.byType.link} / summary ${surfaces.byType.summary})`,
     "",
     "Pipeline health",
-    `  Voice-pass rate: ${activity.voicePassRate === null ? "$—" : `${Math.round(activity.voicePassRate * 100)}%`}`,
+    `  Voice-pass rate: ${activity.voicePassRate === null ? "—" : `${Math.round(activity.voicePassRate * 100)}%`}`,
     `  Errors (7d):     ${activity.errorCount}`,
     `  Token cost (7d): $${activity.totalCost.toFixed(2)}`,
     "",
@@ -172,7 +172,7 @@ async function sendDigestEmail(summary: Record<string, unknown>): Promise<void> 
     body: JSON.stringify({
       from,
       to,
-      subject: `Ted weekly digest $— ${new Date().toISOString().slice(0, 10)}`,
+      subject: `Ted weekly digest — ${new Date().toISOString().slice(0, 10)}`,
       text: lines.join("\n"),
     }),
   });

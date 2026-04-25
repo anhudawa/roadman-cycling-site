@@ -5,7 +5,7 @@
  * For every blog post that links to one or more /guests/[slug] entity
  * pages in its body, add (or refresh) an `experts` array in frontmatter
  * crediting the named experts cited. The blog page renders this via
- * EvidenceBlock $— making E-E-A-T signals concrete instead of generic.
+ * EvidenceBlock — making E-E-A-T signals concrete instead of generic.
  *
  * Behaviour:
  *   - Skips posts with no expert mentions (leaves them on the default
@@ -31,13 +31,13 @@ const EXPERTS = {
   },
   "dan-lorang": {
     name: "Dan Lorang",
-    role: "Head of Performance, Red Bull$–Bora-Hansgrohe",
+    role: "Head of Performance, Red Bull–Bora-Hansgrohe",
   },
   "greg-lemond": { name: "Greg LeMond", role: "3× Tour de France champion" },
   "joe-friel": { name: "Joe Friel", role: "Author, The Cyclist's Training Bible" },
   "lachlan-morton": {
     name: "Lachlan Morton",
-    role: "EF Education$–EasyPost; ultra-endurance specialist",
+    role: "EF Education–EasyPost; ultra-endurance specialist",
   },
   "dan-bigham": {
     name: "Dan Bigham",
@@ -47,10 +47,10 @@ const EXPERTS = {
     name: "Prof. Tim Spector",
     role: "Genetic epidemiologist; ZOE founder",
   },
-  "ben-healy": { name: "Ben Healy", role: "EF Education$–EasyPost pro" },
+  "ben-healy": { name: "Ben Healy", role: "EF Education–EasyPost pro" },
   "michael-matthews": {
     name: "Michael Matthews",
-    role: "Jayco AlUla pro; sprinter$–classics specialist",
+    role: "Jayco AlUla pro; sprinter–classics specialist",
   },
   "rosa-kloser": {
     name: "Rosa Klöser",

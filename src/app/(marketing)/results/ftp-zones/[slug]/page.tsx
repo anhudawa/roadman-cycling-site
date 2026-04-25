@@ -15,9 +15,9 @@ export async function generateMetadata({
   const { slug } = await params;
   const result = await getToolResultBySlug(slug);
   if (!result || result.toolSlug !== "ftp_zones")
-    return { title: "FTP zones $— Roadman Cycling" };
+    return { title: "FTP zones — Roadman Cycling" };
   return {
-    title: `Your FTP zones $— Roadman Cycling`,
+    title: `Your FTP zones — Roadman Cycling`,
     description: result.summary.slice(0, 160),
     robots: { index: false, follow: false },
   };
@@ -78,7 +78,7 @@ export default async function FtpZonesResultPage({
                       <p className="font-heading text-coral text-lg md:text-xl whitespace-nowrap">
                         {isLast && z.upper >= inputs.ftp * 2
                           ? `${z.lower}W+`
-                          : `${z.lower}$–${z.upper}W`}
+                          : `${z.lower}–${z.upper}W`}
                       </p>
                     </div>
                   );

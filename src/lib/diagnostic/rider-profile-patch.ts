@@ -4,7 +4,7 @@ import type { Answers, HoursBracket, Profile } from "./types";
  * Convert a plateau-diagnostic submission into a rider_profile patch.
  *
  * Keeps the mapping in one place so the submit route and any retake
- * flow both derive fields identically. Every field is optional $—
+ * flow both derive fields identically. Every field is optional —
  * downstream upsert treats `undefined` as "don't overwrite existing",
  * which is what we want for progressive profile building across tools.
  */

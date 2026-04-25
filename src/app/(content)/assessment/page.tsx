@@ -5,14 +5,14 @@ import { JsonLd } from "@/components/seo/JsonLd";
 import { CoachingAssessment } from "./CoachingAssessment";
 
 export const metadata: Metadata = {
-  title: "Free Coaching Assessment $— Are You Ready for a Cycling Coach?",
+  title: "Free Coaching Assessment — Are You Ready for a Cycling Coach?",
   description:
     "Answer 5 questions to find out if coaching would accelerate your cycling goals. Free, instant result, no commitment. Takes 60 seconds.",
   alternates: {
     canonical: "https://roadmancycling.com/assessment",
   },
   openGraph: {
-    title: "Free Coaching Assessment $— Are You Ready for a Cycling Coach?",
+    title: "Free Coaching Assessment — Are You Ready for a Cycling Coach?",
     description:
       "Answer 5 questions to find out if coaching would accelerate your cycling goals. Free, instant result.",
     type: "website",
@@ -57,7 +57,7 @@ export default function AssessmentPage() {
               </GradientText>
               <p className="text-foreground-muted text-lg max-w-xl mx-auto leading-relaxed">
                 5 questions. 60 seconds. Find out whether coaching would
-                accelerate your cycling $— or whether you should wait.
+                accelerate your cycling — or whether you should wait.
               </p>
             </ScrollReveal>
           </Container>

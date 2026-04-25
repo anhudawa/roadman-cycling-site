@@ -41,7 +41,7 @@ export function createSseStream(init?: { headers?: Record<string, string> }): Ss
       try {
         ctrl.enqueue(sseFormat(event));
       } catch {
-        // client disconnected $— swallow; the main loop should detect EOF elsewhere
+        // client disconnected — swallow; the main loop should detect EOF elsewhere
       }
     },
     close() {

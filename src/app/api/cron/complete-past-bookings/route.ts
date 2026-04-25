@@ -17,7 +17,7 @@ function isAuthorized(req: NextRequest): boolean {
 /**
  * Mark bookings whose scheduled end time has passed as "completed".
  *
- * Without this, past scheduled calls sit in "scheduled" forever $— the
+ * Without this, past scheduled calls sit in "scheduled" forever — the
  * dashboard shows them as future work, nobody gets a "did it happen?" nudge,
  * and conversion metrics can't compute a real completion rate.
  */

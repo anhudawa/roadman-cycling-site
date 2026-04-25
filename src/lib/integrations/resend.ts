@@ -7,7 +7,7 @@ import { Resend } from "resend";
  *
  * Consolidates the `getResend()` helper that used to live inline in
  * every route that sends transactional email. Keep the null-on-missing
- * posture $— a Vercel deploy without the key should be a WARN not a
+ * posture — a Vercel deploy without the key should be a WARN not a
  * 500 for most flows.
  */
 export function getResendClient(): Resend | null {

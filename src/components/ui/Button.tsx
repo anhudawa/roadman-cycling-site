@@ -13,7 +13,7 @@ interface ButtonBaseProps {
    * Conversion-tracking identifier. When set, the global click delegate in
    * `src/components/analytics/Tracker.tsx` fires a `cta_click` event with
    * `track_id = dataTrack` and the destination href. Use stable, semantic
-   * identifiers like `triathlon_pillar_apply_cta` $— they feed attribution
+   * identifiers like `triathlon_pillar_apply_cta` — they feed attribution
    * reporting.
    */
   dataTrack?: string;

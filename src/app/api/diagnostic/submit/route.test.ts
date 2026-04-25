@@ -2,7 +2,7 @@ import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 
 /**
  * Integration tests for POST /api/diagnostic/submit. Every collaborator
- * is mocked $— we're verifying the orchestration, not the underlying
+ * is mocked — we're verifying the orchestration, not the underlying
  * scoring / Claude / DB / Beehiiv code (each has its own unit tests).
  *
  * Coverage: request-body validation, rate-limit short-circuit, the
@@ -256,7 +256,7 @@ describe("POST /api/diagnostic/submit", () => {
     const { POST } = await import("./route");
     await POST(req(VALID_BODY));
     // All four side-effect calls must have fired by the time the
-    // route resolves $— no "fire-and-forget that escapes the response".
+    // route resolves — no "fire-and-forget that escapes the response".
     expect(mocks.recordEvent).toHaveBeenCalled();
     expect(mocks.upsertOnSignup).toHaveBeenCalled();
     expect(mocks.subscribeToBeehiiv).toHaveBeenCalled();

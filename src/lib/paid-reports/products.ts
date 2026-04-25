@@ -9,12 +9,12 @@ import {
 } from "./types";
 
 /**
- * Product registry $— thin read-through cache around `report_products`.
+ * Product registry — thin read-through cache around `report_products`.
  *
  * Prices are stored in cents so we can display them without rounding
  * drift; currency defaults to EUR but the column is a text field so
  * USD/GBP pricing lands cleanly if we localise later. Bundles reference
- * child slugs in a JSON array so we don't need a join table $— admin
+ * child slugs in a JSON array so we don't need a join table — admin
  * can re-order bundle items without a schema migration.
  */
 
@@ -42,7 +42,7 @@ function rowToDomain(row: Row): ReportProduct | null {
 
 /**
  * 5-minute in-memory TTL. Product rows are read on every checkout
- * session create $— no point hitting the DB every time.
+ * session create — no point hitting the DB every time.
  */
 const CACHE_TTL_MS = 5 * 60 * 1000;
 let cachedAt = 0;
@@ -84,7 +84,7 @@ export async function getProductForTool(
   return products.find((p) => p.toolSlug === tool) ?? null;
 }
 
-/** Invalidate cache $— call after admin price edits. */
+/** Invalidate cache — call after admin price edits. */
 export function invalidateProductCache(): void {
   cached = null;
   cachedAt = 0;

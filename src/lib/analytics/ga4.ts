@@ -21,8 +21,8 @@ function getClient(): BetaAnalyticsDataClient | null {
 
 /**
  * Returns monthly web sessions for the given 'YYYY-MM' month.
- * Returns null if GA4 is not configured or the request fails $— callers
- * should render a graceful "$—" rather than erroring.
+ * Returns null if GA4 is not configured or the request fails — callers
+ * should render a graceful "—" rather than erroring.
  */
 export async function getMonthlyWebSessions(month: string): Promise<number | null> {
   const c = getClient();

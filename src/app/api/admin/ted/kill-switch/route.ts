@@ -14,7 +14,7 @@ async function loadOrSeed() {
   return fresh[0];
 }
 
-// GET /api/admin/ted/kill-switch $— current state
+// GET /api/admin/ted/kill-switch — current state
 export async function GET() {
   try {
     await requireAuth();
@@ -25,7 +25,7 @@ export async function GET() {
   return NextResponse.json({ state });
 }
 
-// POST /api/admin/ted/kill-switch $— update state
+// POST /api/admin/ted/kill-switch — update state
 // Body: { paused?: boolean, reason?: string, postPromptEnabled?: boolean, postWelcomeEnabled?: boolean, surfaceThreadsEnabled?: boolean }
 export async function POST(request: Request) {
   let user;
