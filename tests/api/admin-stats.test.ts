@@ -1,4 +1,12 @@
-import { beforeEach, describe, expect, it, vi } from "vitest";
+import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
+
+/**
+ * Integration tests for GET /api/admin/stats.
+ *
+ * Auth-protected route that fans out to different stat queries based on
+ * a `view` query parameter. Covers the auth gate, view routing, and the
+ * 500 fallback when a downstream DB call throws.
+ */
 
 const mocks = vi.hoisted(() => ({
   isAuthenticated: vi.fn(),
