@@ -363,6 +363,52 @@ export default async function PredictResultPage({ params }: PageProps) {
             </section>
           </Container>
         </Section>
+
+        {/* ── NOT DONE YET COMMUNITY BRIDGE ─────────────────────────── */}
+        <Section background="deep-purple" className="!py-12 md:!py-16">
+          <Container width="narrow">
+            <div className="relative overflow-hidden rounded-2xl border border-white/10 bg-gradient-to-br from-purple/40 to-deep-purple/60 p-6 md:p-10">
+              <span
+                aria-hidden
+                className="pointer-events-none absolute -top-24 -left-12 w-72 h-72 rounded-full bg-coral/15 blur-3xl"
+              />
+              <div className="relative">
+                <p className="font-display text-coral text-[11px] uppercase tracking-[0.3em] mb-3">
+                  Not Done Yet
+                </p>
+                <p className="font-display text-off-white text-3xl md:text-4xl uppercase tracking-tight leading-[1.05] max-w-2xl">
+                  You've got the number.
+                  <br />
+                  <span className="text-coral">Now build the rider.</span>
+                </p>
+                <p className="mt-4 max-w-2xl text-off-white/75 text-sm md:text-base leading-relaxed">
+                  A prediction tells you where you'd finish today. Inside Not
+                  Done Yet, Anthony and the Roadman coaches show you how to
+                  close the gap — Vekta-built training plans, weekly live
+                  calls, and the same access to World Tour coaches and sports
+                  scientists you hear on the podcast. For riders who refuse
+                  to accept their best days are behind them.
+                </p>
+                <div className="mt-6 flex flex-wrap items-center gap-3">
+                  <Link
+                    href="/community/not-done-yet"
+                    data-track="predict_result_ndy"
+                    className="inline-flex items-center gap-2 rounded-md bg-coral px-6 py-3 font-display text-base uppercase tracking-[0.18em] text-charcoal transition-all hover:bg-coral-hover hover:-translate-y-0.5 hover:shadow-[0_14px_40px_-8px_rgba(241,99,99,0.65)]"
+                  >
+                    Join Not Done Yet
+                    <span aria-hidden>→</span>
+                  </Link>
+                  <Link
+                    href="/community/clubhouse"
+                    className="font-display text-sm uppercase tracking-[0.18em] text-off-white/70 hover:text-off-white transition py-3"
+                  >
+                    Free Clubhouse first ↗
+                  </Link>
+                </div>
+              </div>
+            </div>
+          </Container>
+        </Section>
       </main>
       <Footer />
     </>
