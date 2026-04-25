@@ -46,6 +46,7 @@ export const metadata: Metadata = {
       "If you're over 40 and your FTP hasn't moved in 18 months, it's one of four things. Find out which one in four minutes.",
     type: "website",
     url: "https://roadmancycling.com/plateau",
+    images: [{ url: "/og-image.jpg", width: 1200, height: 630, alt: "Roadman Cycling" }],
   },
   // The results pages are personal and shouldn't leak to search.
   // The landing page itself is fine.

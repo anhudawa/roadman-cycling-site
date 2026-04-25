@@ -8,6 +8,7 @@ import { MobileStickyApply } from "@/components/features/conversion/MobileSticky
 import { LazyCookieConsent } from "@/components/features/consent/LazyCookieConsent";
 import { Tracker } from "@/components/analytics/Tracker";
 import { ConsentAwarePixel } from "@/components/analytics/ConsentAwarePixel";
+import { WebVitalsReporter } from "@/components/analytics/WebVitalsReporter";
 import { OrganizationJsonLd } from "@/components/seo/JsonLd";
 import { BRAND_STATS } from "@/lib/brand-facts";
 import "./globals.css";
@@ -75,7 +76,7 @@ export const metadata: Metadata = {
   },
   openGraph: {
     type: "website",
-    locale: "en_IE",
+    locale: "en_US",
     url: "https://roadmancycling.com",
     siteName: "Roadman Cycling",
     title: "Roadman Cycling — Cycling Coaching, Training & Performance Podcast",
@@ -157,6 +158,7 @@ export default function RootLayout({
         <LazyCookieConsent />
         <Tracker />
         <ConsentAwarePixel />
+        <WebVitalsReporter />
       </body>
     </html>
   );

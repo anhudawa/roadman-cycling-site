@@ -15,6 +15,7 @@ export const metadata: Metadata = {
       "Calculate optimal front and rear tyre pressure based on rider weight, tyre width, road surface, and conditions. Free cycling tool from Roadman Cycling.",
     type: "website",
     url: "https://roadmancycling.com/tools/tyre-pressure",
+    images: [{ url: "/og-image.jpg", width: 1200, height: 630, alt: "Roadman Cycling" }],
   },
 };
 

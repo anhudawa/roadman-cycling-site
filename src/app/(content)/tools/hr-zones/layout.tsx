@@ -14,6 +14,7 @@ export const metadata: Metadata = {
     description: "Calculate your 5 heart rate training zones from your max HR or LTHR.",
     type: "website",
     url: "https://roadmancycling.com/tools/hr-zones",
+    images: [{ url: "/og-image.jpg", width: 1200, height: 630, alt: "Roadman Cycling" }],
   },
 };
 

@@ -15,6 +15,7 @@ export const metadata: Metadata = {
       "Free MTB suspension calculator. Get recommended shock pressure, fork PSI, and sag percentage for your weight and riding style — XC, trail, enduro, or DH.",
     type: "website",
     url: "https://roadmancycling.com/tools/shock-pressure",
+    images: [{ url: "/og-image.jpg", width: 1200, height: 630, alt: "Roadman Cycling" }],
   },
 };
 

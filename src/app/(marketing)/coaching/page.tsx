@@ -29,6 +29,7 @@ export const metadata: Metadata = {
       "Personalised cycling coaching built on 1,400+ expert podcast conversations. Training, nutrition, strength, recovery, and community.",
     type: "website",
     url: "https://roadmancycling.com/coaching",
+    images: [{ url: "/og-image.jpg", width: 1200, height: 630, alt: "Roadman Cycling" }],
   },
 };
 

@@ -20,6 +20,7 @@ export const metadata: Metadata = {
       "Browse every episode of the Roadman Cycling Podcast. 1M+ monthly listeners. Expert interviews with Professor Seiler, Dan Lorang, Lachlan Morton, Greg LeMond, and more.",
     type: "website",
     url: "https://roadmancycling.com/podcast",
+    images: [{ url: "/og-image.jpg", width: 1200, height: 630, alt: "Roadman Cycling" }],
   },
 };
 

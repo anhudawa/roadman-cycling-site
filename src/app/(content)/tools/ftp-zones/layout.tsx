@@ -15,6 +15,7 @@ export const metadata: Metadata = {
       "Calculate your 7 cycling power zones from your FTP instantly. Free tool based on the training methodology discussed with Professor Seiler and World Tour coaches.",
     type: "website",
     url: "https://roadmancycling.com/tools/ftp-zones",
+    images: [{ url: "/og-image.jpg", width: 1200, height: 630, alt: "Roadman Cycling" }],
   },
 };
 

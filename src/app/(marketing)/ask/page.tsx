@@ -17,6 +17,7 @@ export const metadata: Metadata = {
       "The on-site cycling performance assistant from Roadman Cycling. Grounded answers for serious riders.",
     type: "website",
     url: "https://roadmancycling.com/ask",
+    images: [{ url: "/og-image.jpg", width: 1200, height: 630, alt: "Roadman Cycling" }],
   },
   robots: { index: true, follow: true },
 };

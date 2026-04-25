@@ -15,6 +15,7 @@ export const metadata: Metadata = {
       "Calculate your target race weight based on body composition and event type. Free cycling tool based on competitive cyclist reference ranges.",
     type: "website",
     url: "https://roadmancycling.com/tools/race-weight",
+    images: [{ url: "/og-image.jpg", width: 1200, height: 630, alt: "Roadman Cycling" }],
   },
 };
 

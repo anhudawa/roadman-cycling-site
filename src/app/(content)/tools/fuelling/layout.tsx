@@ -15,6 +15,7 @@ export const metadata: Metadata = {
       "Calculate exactly how many carbs and how much fluid you need per hour while cycling. Based on ride duration, intensity, and body weight.",
     type: "website",
     url: "https://roadmancycling.com/tools/fuelling",
+    images: [{ url: "/og-image.jpg", width: 1200, height: 630, alt: "Roadman Cycling" }],
   },
 };
 

@@ -18,6 +18,7 @@ export const metadata: Metadata = {
       "The story behind Roadman Cycling. How Anthony Walsh built a 1M+ listener podcast and a community of serious cyclists who refuse to accept their best days are behind them.",
     type: "profile",
     url: "https://roadmancycling.com/about",
+    images: [{ url: "/og-image.jpg", width: 1200, height: 630, alt: "Roadman Cycling" }],
   },
 };
 

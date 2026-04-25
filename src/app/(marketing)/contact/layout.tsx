@@ -14,6 +14,7 @@ export const metadata: Metadata = {
       "Get in touch with the Roadman Cycling team. Sponsorship, press, partnerships, podcast guest suggestions, or general enquiries.",
     type: "website",
     url: "https://roadmancycling.com/contact",
+    images: [{ url: "/og-image.jpg", width: 1200, height: 630, alt: "Roadman Cycling" }],
   },
 };
 
