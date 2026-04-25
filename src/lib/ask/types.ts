@@ -40,7 +40,6 @@ export type CtaKey =
   | "ftp_zones"
   | "saturday_spin"
   | "clubhouse"
-  | "roadman_plus"
   | "ndy_coaching"
   | "vip_coaching"
   | "episode_list"

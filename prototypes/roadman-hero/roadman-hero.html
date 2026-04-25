@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Roadman $€” Ride the signal</title>
+    <title>Roadman â€” Ride the signal</title>
 
     <!-- Fonts: Space Grotesk (400-800) + JetBrains Mono (400-600) -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -15,13 +15,13 @@
 
     <style>
       /* =========================================================
-         .roadman-hero $€” self-contained animated hero
+         .roadman-hero â€” self-contained animated hero
          All styles scoped under .roadman-hero so nothing leaks.
          All motion via @keyframes, disabled with prefers-reduced-motion.
          ========================================================= */
 
       .roadman-hero {
-        /* Config tokens $€” tweak here, not inline */
+        /* Config tokens â€” tweak here, not inline */
         --hero-bg: #1d0838;
         --glow-red: rgba(255, 61, 90, 0.45);
         --glow-purple: rgba(178, 123, 240, 0.4);
@@ -59,7 +59,7 @@
         background-repeat: no-repeat;
       }
 
-      /* Layer 1 $€” ambient radial glow */
+      /* Layer 1 â€” ambient radial glow */
       .roadman-hero__glow {
         position: absolute;
         inset: 0;
@@ -91,7 +91,7 @@
         }
       }
 
-      /* Layer 2 $€” portrait, masked to head/shoulders */
+      /* Layer 2 â€” portrait, masked to head/shoulders */
       .roadman-hero__portrait {
         z-index: 2;
         mask-image: radial-gradient(
@@ -121,7 +121,7 @@
         }
       }
 
-      /* Layer 3 $€” glitch shards (red + cyan) sitting on top of the
+      /* Layer 3 â€” glitch shards (red + cyan) sitting on top of the
          portrait. Same mask so they only appear where the portrait does. */
       .roadman-hero__shard {
         z-index: 3;
@@ -208,12 +208,12 @@
         }
       }
 
-      /* Layer 4 $€” horizontal slice strips.
+      /* Layer 4 â€” horizontal slice strips.
          Implementation: each strip is a FULL-size copy of the portrait
          that's clipped to a narrow horizontal band via clip-path. That
-         keeps the image in register with the portrait layer $€” the slice
+         keeps the image in register with the portrait layer â€” the slice
          shows exactly the same pixels the portrait would at that Y
-         coordinate $€” while letting us translate the strip horizontally
+         coordinate â€” while letting us translate the strip horizontally
          for the glitch jump. */
       .roadman-hero__slice {
         z-index: 4;
@@ -223,7 +223,7 @@
            The clip-path is overridden per modifier below. */
       }
       .roadman-hero__slice--a {
-        /* band centred at y=22% of the hero $€” ~9px above / below */
+        /* band centred at y=22% of the hero â€” ~9px above / below */
         clip-path: polygon(
           0% calc(22% - 9px),
           100% calc(22% - 9px),
@@ -325,7 +325,7 @@
         }
       }
 
-      /* Layer 5 $€” vignette */
+      /* Layer 5 â€” vignette */
       .roadman-hero__vignette {
         position: absolute;
         inset: 0;
@@ -338,7 +338,7 @@
         );
       }
 
-      /* Overlay content $€” text + pulsing dot */
+      /* Overlay content â€” text + pulsing dot */
       .roadman-hero__overlay {
         position: absolute;
         inset: 0;
@@ -443,7 +443,7 @@
         }
       }
 
-      /* Demo-page padding $€” remove when dropping .roadman-hero into the
+      /* Demo-page padding â€” remove when dropping .roadman-hero into the
          live site. Everything above this block is the component itself. */
       body {
         margin: 0;

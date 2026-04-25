@@ -1,8 +1,8 @@
-# SEO Handoff Spec $€” Roadman Cycling
+# SEO Handoff Spec â€” Roadman Cycling
 
 **Date:** 2026-04-22
 **Author:** Claude (SEO window)
-**Branch:** `claude/add-blog-post-seo-aQR1C` (all merged to main via PRs #5$€“#41)
+**Branch:** `claude/add-blog-post-seo-aQR1C` (all merged to main via PRs #5â€“#41)
 
 ---
 
@@ -42,7 +42,7 @@
 |---|---|
 | `/plan/[event]` (14 hubs) | Event-level training plan hubs (was 404) |
 | `/start-here` | Curated onboarding for new visitors |
-| `/research` | Evidence base hub $€” maps experts to articles |
+| `/research` | Evidence base hub â€” maps experts to articles |
 | `/assessment` | 5-question coaching diagnostic quiz |
 | `/about/press` | Media kit page |
 | `/coaching/triathlon` | Triathlon bike coaching pillar |
@@ -68,12 +68,12 @@ BlogPosting, PodcastEpisode, PodcastSeries, VideoObject, FAQPage, HowTo, Service
 
 | Link type | Count |
 |---|---|
-| Blog $†’ episode (relatedEpisodes) | 186 Ã— 3 = ~558 |
-| Episode $†’ blog (relatedPosts) | 310 Ã— 3 = ~930 |
-| Auto blog $†’ plan event hubs | Dynamic (event name match) |
-| Auto podcast $†’ plan event hubs | Dynamic (event name match) |
-| Geo coaching $†’ event plans | Region-specific |
-| Topic hub $†’ blog posts (hasPart) | 10 hubs Ã— ~15 posts |
+| Blog â†’ episode (relatedEpisodes) | 186 Ã— 3 = ~558 |
+| Episode â†’ blog (relatedPosts) | 310 Ã— 3 = ~930 |
+| Auto blog â†’ plan event hubs | Dynamic (event name match) |
+| Auto podcast â†’ plan event hubs | Dynamic (event name match) |
+| Geo coaching â†’ event plans | Region-specific |
+| Topic hub â†’ blog posts (hasPart) | 10 hubs Ã— ~15 posts |
 | Footer sitewide links | 33 links on every page |
 | Inline cross-links | 7 pillar articles hand-linked |
 
@@ -107,8 +107,8 @@ BlogPosting, PodcastEpisode, PodcastSeries, VideoObject, FAQPage, HowTo, Service
 | `generate-cluster-articles.ts` | LLM article generation | `npx tsx scripts/generate-cluster-articles.ts --cluster=X --sonnet` |
 | `generate-episode-faqs.ts` | FAQ generation for episodes | `npx tsx scripts/generate-episode-faqs.ts` |
 | `extract-key-quotes.ts` | Key quote extraction | `npx tsx scripts/extract-key-quotes.ts` |
-| `populate-related-episodes.ts` | Blog $†’ episode linking | `npx tsx scripts/populate-related-episodes.ts` |
-| `populate-episode-related-posts.ts` | Episode $†’ blog linking | `npx tsx scripts/populate-episode-related-posts.ts` |
+| `populate-related-episodes.ts` | Blog â†’ episode linking | `npx tsx scripts/populate-related-episodes.ts` |
+| `populate-episode-related-posts.ts` | Episode â†’ blog linking | `npx tsx scripts/populate-episode-related-posts.ts` |
 | `submit-indexnow.ts` | IndexNow submission (542 URLs) | `npm run seo:indexnow -- --all` |
 | `audit-orphans.ts` | Orphan page detection | `npx tsx scripts/audit-orphans.ts` |
 
@@ -116,7 +116,7 @@ All scripts have `--dry-run`, `--limit=N`, `--slug=X` flags. Article generator h
 
 ### Redirect Layer
 
-- **Middleware:** `www.roadmancycling.com/*` $†’ 301 $†’ `roadmancycling.com/*`
+- **Middleware:** `www.roadmancycling.com/*` â†’ 301 â†’ `roadmancycling.com/*`
 - **40+ old URL redirects** in `next.config.ts` (ClickFunnels paths, tool shortcuts, spelling variants)
 - **Manual step required:** Add `www.roadmancycling.com` in Vercel Domains
 
@@ -124,21 +124,21 @@ All scripts have `--dry-run`, `--limit=N`, `--slug=X` flags. Article generator h
 
 ## What's NOT Done (requires human action)
 
-### P0 $€” Do This Week
+### P0 â€” Do This Week
 
 1. **Add `www.roadmancycling.com` in Vercel Domains dashboard**
    - Without this, www requests never reach the app
    - The middleware redirect only fires if Vercel routes the request to the app
 
 2. **Submit sitemap to Google Search Console**
-   - Go to GSC $†’ Sitemaps $†’ Add `https://roadmancycling.com/sitemap.xml`
+   - Go to GSC â†’ Sitemaps â†’ Add `https://roadmancycling.com/sitemap.xml`
    - URL-inspect top 10 pages (see `docs/seo/indexnow-ready.md` for the list)
 
 3. **Retry IndexNow submission**
    ```bash
    cd ~/Desktop/roadman-cycling-site && npm run seo:indexnow -- --all
    ```
-   First attempt returned "SiteVerificationNotCompleted" $€” retry after 24 hours.
+   First attempt returned "SiteVerificationNotCompleted" â€” retry after 24 hours.
 
 4. **Run migration for diagnostic tables**
    ```bash
@@ -146,29 +146,29 @@ All scripts have `--dry-run`, `--limit=N`, `--slug=X` flags. Article generator h
    ```
    The plateau diagnostic (from another window) needs DB tables created.
 
-### P1 $€” Do This Month
+### P1 â€” Do This Month
 
-5. **Digital PR outreach** $€” templates ready at `docs/seo/outreach-templates.md`
+5. **Digital PR outreach** â€” templates ready at `docs/seo/outreach-templates.md`
    - 15 podcast pitch emails
    - 10 guest post pitches
    - FTP Benchmarks article pitched to CyclingTips, road.cc, BikeRadar
 
-6. **Wikidata entity submission** $€” payload at `docs/seo/wikidata-anthony-walsh.md`
+6. **Wikidata entity submission** â€” payload at `docs/seo/wikidata-anthony-walsh.md`
    - Unlocks Knowledge Panel eligibility for "Anthony Walsh cycling"
 
-7. **Core Web Vitals audit** $€” run Lighthouse on:
+7. **Core Web Vitals audit** â€” run Lighthouse on:
    - `/coaching` (most important conversion page)
    - `/tools/ftp-zones` (highest-traffic tool)
    - `/blog/zone-2-training-complete-guide` (highest-traffic article likely)
    - `/plan/wicklow-200` (representative programmatic page)
 
-8. **Schema validation** $€” run Rich Results Test on:
+8. **Schema validation** â€” run Rich Results Test on:
    - A blog post (BlogPosting + FAQPage + BreadcrumbList)
    - A podcast episode (PodcastEpisode + VideoObject + Quotation + FAQPage)
    - `/coaching` (Service + Course + Review + FAQPage)
    - `/tools/ftp-zones` (SoftwareApplication + HowTo + FAQPage)
 
-### P2 $€” Ongoing
+### P2 â€” Ongoing
 
 9. **Monitor GSC** after 2 weeks:
    - Check indexed page count (target: 800+)
@@ -176,7 +176,7 @@ All scripts have `--dry-run`, `--limit=N`, `--slug=X` flags. Article generator h
    - Check "Enhancements" for FAQ/HowTo/Review rich result counts
    - Identify top-performing queries and create content to strengthen them
 
-10. **Content velocity** $€” the article generator is ready for more clusters:
+10. **Content velocity** â€” the article generator is ready for more clusters:
     ```bash
     npx tsx scripts/generate-cluster-articles.ts --cluster=X --sonnet
     ```
@@ -188,8 +188,8 @@ All scripts have `--dry-run`, `--limit=N`, `--slug=X` flags. Article generator h
 
 | File | What it does |
 |---|---|
-| `src/middleware.ts` | www$†’non-www redirect |
-| `next.config.ts` $†’ `redirects()` | 40+ old URL 301s |
+| `src/middleware.ts` | wwwâ†’non-www redirect |
+| `next.config.ts` â†’ `redirects()` | 40+ old URL 301s |
 | `src/app/robots.ts` | Crawler policy (AI bots allowed) |
 | `src/app/sitemap.ts` | Dynamic sitemap (~800 URLs) |
 | `src/app/llms.txt/route.ts` | AI crawler navigation map |
@@ -213,11 +213,11 @@ All scripts have `--dry-run`, `--limit=N`, `--slug=X` flags. Article generator h
 ## Merge Considerations
 
 This branch is synced with main as of 2026-04-22. If other windows have diverged, likely conflict files:
-- `src/app/sitemap.ts` $€” we added plan hubs, assessment, research, start-here
-- `src/lib/podcast.ts` $€” we added faq, keyQuotes fields
-- `src/lib/blog.ts` $€” we added relatedEpisodes, answerCapsule
-- `src/components/layout/Footer.tsx` $€” we added Start Here, Training Plans, Research, Press links
-- `next.config.ts` $€” we added 40 redirects
-- `content/podcast/*.mdx` $€” 310 files modified (FAQ + keyQuotes frontmatter)
+- `src/app/sitemap.ts` â€” we added plan hubs, assessment, research, start-here
+- `src/lib/podcast.ts` â€” we added faq, keyQuotes fields
+- `src/lib/blog.ts` â€” we added relatedEpisodes, answerCapsule
+- `src/components/layout/Footer.tsx` â€” we added Start Here, Training Plans, Research, Press links
+- `next.config.ts` â€” we added 40 redirects
+- `content/podcast/*.mdx` â€” 310 files modified (FAQ + keyQuotes frontmatter)
 
 All changes are additive. Conflicts should be resolvable by keeping both sides.

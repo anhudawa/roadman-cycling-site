@@ -1,8 +1,8 @@
-# SEO Content Generation Pipeline $€” Design Spec
+# SEO Content Generation Pipeline â€” Design Spec
 
 **Date:** 2026-04-13
 **Status:** Draft
-**Priority order:** Answer capsules $†’ Topic hub pillar content $†’ Podcast companion articles
+**Priority order:** Answer capsules â†’ Topic hub pillar content â†’ Podcast companion articles
 
 ## Overview
 
@@ -16,7 +16,7 @@ Source material: 311 podcast episode transcripts stored in `content/podcast/*.md
 - Short declarative sentences, often starting with "Here's the thing"
 - References real coaching experience and specific athletes/episodes
 - Contrarian framing: names the bad advice, then corrects it
-- Evidence-based but accessible $€” cites studies without being academic
+- Evidence-based but accessible â€” cites studies without being academic
 - Irish idiom occasionally ("grand", practical humour)
 
 ## Workstream 1: Answer Capsules
@@ -28,7 +28,7 @@ Source material: 311 podcast episode transcripts stored in `content/podcast/*.md
 New frontmatter field `answerCapsule` on each blog post:
 
 ```yaml
-answerCapsule: "Zone 2 training is riding at 55-75% of your FTP $€” a pace where you can hold a conversation. It builds mitochondrial density and fat oxidation, the aerobic base everything else sits on. Most cyclists skip it because it feels too easy. That's exactly why it works."
+answerCapsule: "Zone 2 training is riding at 55-75% of your FTP â€” a pace where you can hold a conversation. It builds mitochondrial density and fat oxidation, the aerobic base everything else sits on. Most cyclists skip it because it feels too easy. That's exactly why it works."
 ```
 
 ### Rendering
@@ -45,7 +45,7 @@ Add an `<AnswerCapsule>` component rendered at the top of every blog post that h
 1. System: "You are Anthony Walsh writing a 40-60 word direct answer for a cyclist searching Google."
 2. Voice examples: 2 transcript excerpts (200 words each) from same-pillar episodes
 3. Article context: title, excerpt, first 500 words
-4. Instruction: "Write a single paragraph, 40-60 words. Answer the search intent directly. No hedging, no 'it depends' $€” give the answer, then one sentence of why."
+4. Instruction: "Write a single paragraph, 40-60 words. Answer the search intent directly. No hedging, no 'it depends' â€” give the answer, then one sentence of why."
 
 **Output:** Write updated frontmatter back to the existing MDX file in `content/blog/`. Since these are small additions to existing files, they go directly into the blog directory but with a companion manifest at `content/drafts/capsules-manifest.json` tracking which posts have been generated and their review status:
 
@@ -82,7 +82,7 @@ In `src/app/(content)/blog/[slug]/page.tsx`:
 
 ## Workstream 2: Topic Hub Pillar Content
 
-**Goal:** Generate 2-3k words of pillar content for each of the 9 topic hubs. Currently hubs are just curated link pages $€” adding substantive content makes them rank for head terms.
+**Goal:** Generate 2-3k words of pillar content for each of the 9 topic hubs. Currently hubs are just curated link pages â€” adding substantive content makes them rank for head terms.
 
 ### Storage
 
@@ -94,22 +94,22 @@ Each hub article follows a consistent template:
 
 ```markdown
 ## What Is [Topic]?
-(100-150 words $€” definition, why it matters for cyclists)
+(100-150 words â€” definition, why it matters for cyclists)
 
 ## The Roadman Approach to [Topic]
-(200-300 words $€” Anthony's philosophy, what makes this different from generic advice)
+(200-300 words â€” Anthony's philosophy, what makes this different from generic advice)
 
 ## Key Concepts
-(3-5 subsections, 200-400 words each $€” the core knowledge)
+(3-5 subsections, 200-400 words each â€” the core knowledge)
 
 ## Common Mistakes
-(200-300 words $€” what most cyclists get wrong)
+(200-300 words â€” what most cyclists get wrong)
 
 ## How to Get Started
-(150-200 words $€” actionable first steps)
+(150-200 words â€” actionable first steps)
 
 ## FAQ
-(4-6 questions with 50-100 word answers $€” targets People Also Ask)
+(4-6 questions with 50-100 word answers â€” targets People Also Ask)
 ```
 
 ### Generation Script
@@ -132,7 +132,7 @@ Each hub article follows a consistent template:
 ```yaml
 ---
 topicSlug: ftp-training
-title: "FTP Training for Cyclists $€” The Complete Guide"
+title: "FTP Training for Cyclists â€” The Complete Guide"
 generatedAt: "2026-04-13T..."
 status: draft
 wordCount: 2400
@@ -175,8 +175,8 @@ Script outputs the ranked list for review before generating.
 
 ```markdown
 ---
-title: "[Derived from episode title $€” rewritten for search intent]"
-seoTitle: "[Keyword-optimised, $‰¤60 chars]"
+title: "[Derived from episode title â€” rewritten for search intent]"
+seoTitle: "[Keyword-optimised, â‰¤60 chars]"
 seoDescription: "[150-160 chars targeting the primary search query]"
 excerpt: "[1-2 sentences for article cards]"
 pillar: [inherited from episode]
@@ -184,24 +184,24 @@ author: Anthony Walsh
 publishDate: [episode publish date]
 keywords: [extracted from episode + gap analysis]
 relatedEpisodes: [the source episode slug]
-sourceEpisode: [episode slug $€” for tracking]
+sourceEpisode: [episode slug â€” for tracking]
 status: draft
 generatedAt: "2026-04-13T..."
 ---
 
-## [Answer the core question $€” 100 words]
+## [Answer the core question â€” 100 words]
 
 ## Key Takeaways from the Episode
-(Bulleted summary $€” 5-8 points, 20-40 words each)
+(Bulleted summary â€” 5-8 points, 20-40 words each)
 
-## [Deep-dive section 1 $€” 300-500 words]
+## [Deep-dive section 1 â€” 300-500 words]
 
-## [Deep-dive section 2 $€” 300-500 words]
+## [Deep-dive section 2 â€” 300-500 words]
 
-## [Deep-dive section 3 $€” 200-400 words]
+## [Deep-dive section 3 â€” 200-400 words]
 
 ## What This Means for Your Training
-(200-300 words $€” actionable application)
+(200-300 words â€” actionable application)
 
 ## FAQ
 (3-5 questions from the episode content)
@@ -254,7 +254,7 @@ After editorial review:
 
 - Given a pillar and optional keywords, returns 2-3 transcript excerpts (200-300 words each) that best match
 - Prefers variety: different episodes, different topics within the pillar
-- Extracts the most "voice-rich" passages (dialogue, opinion, advice $€” not introductions or sponsor reads)
+- Extracts the most "voice-rich" passages (dialogue, opinion, advice â€” not introductions or sponsor reads)
 
 ### AI Client
 
@@ -303,7 +303,7 @@ content/
 
 ## Dependencies
 
-- `@anthropic-ai/sdk` (already installed $€” used by podcast repurpose pipeline)
+- `@anthropic-ai/sdk` (already installed â€” used by podcast repurpose pipeline)
 - `gray-matter` (already installed)
 - `tsx` (already installed)
 
@@ -311,20 +311,20 @@ No new dependencies required.
 
 ## Environment Variables
 
-- `ANTHROPIC_API_KEY` $€” already in `.env.local`
+- `ANTHROPIC_API_KEY` â€” already in `.env.local`
 
 ## Review Workflow
 
-1. **Generate** $€” run the script, content appears in `content/drafts/`
-2. **Review** $€” Anthony reads drafts, edits in VS Code or any text editor
-3. **Publish** $€” move/copy to final location (`content/blog/` or topic hub integration)
-4. **Build** $€” `npm run build` picks up new content automatically
+1. **Generate** â€” run the script, content appears in `content/drafts/`
+2. **Review** â€” Anthony reads drafts, edits in VS Code or any text editor
+3. **Publish** â€” move/copy to final location (`content/blog/` or topic hub integration)
+4. **Build** â€” `npm run build` picks up new content automatically
 
 No CMS UI needed. File-based workflow matches the existing content pipeline.
 
 ## Success Metrics
 
 - Answer capsules: track featured snippet wins in Google Search Console (target: 10+ within 30 days)
-- Topic hubs: monitor ranking for head terms (e.g., "FTP training", "cycling nutrition") $€” target page 1 within 60 days
-- Companion articles: track organic traffic to new articles $€” target 500+ monthly sessions within 90 days
+- Topic hubs: monitor ranking for head terms (e.g., "FTP training", "cycling nutrition") â€” target page 1 within 60 days
+- Companion articles: track organic traffic to new articles â€” target 500+ monthly sessions within 90 days
 - Overall: organic traffic growth of 30%+ within 90 days of full content deployment

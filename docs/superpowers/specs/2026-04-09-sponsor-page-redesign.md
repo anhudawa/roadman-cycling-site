@@ -1,7 +1,7 @@
-# /sponsor Page Redesign $€” Simplified Booking Flow
+# /sponsor Page Redesign â€” Simplified Booking Flow
 
 **Date:** 2026-04-09
-**Status:** APPROVED $€” Design approved by Anthony, moving to implementation
+**Status:** APPROVED â€” Design approved by Anthony, moving to implementation
 **Replaces:** Current /sponsor page (8 sections, 3 booking flows, quiz, complex events calendar)
 
 ---
@@ -12,7 +12,7 @@ The current /sponsor page has too many entry points and too many fields. Three s
 
 The redesign collapses everything into one product with one flow:
 
-**Two ways in** (marquee event blocks OR duration-based contracts) $†’ **pick your slot type** $†’ **upload your assets** $†’ **done**.
+**Two ways in** (marquee event blocks OR duration-based contracts) â†’ **pick your slot type** â†’ **upload your assets** â†’ **done**.
 
 Three steps. One page. No quiz, no pre-screener, no application form.
 
@@ -23,7 +23,7 @@ Three steps. One page. No quiz, no pre-screener, no application form.
 | Decision | Choice |
 |----------|--------|
 | Product model | One slot type per contract. Want newsletter + mid-roll? Two contracts. |
-| Event blocks | Same model as duration $€” one slot type, event sets the duration |
+| Event blocks | Same model as duration â€” one slot type, event sets the duration |
 | Self-serve | Stripe checkout for 1-3 month deals. Form submission for 6mo+ (routes to Anthony/Sarah) |
 | Pricing | Percentage discount off monthly rate. Longer = cheaper per month. |
 | Asset collection | Three fields only: logo upload, website URL, ad copy |
@@ -38,9 +38,9 @@ Same as current. Headline, subline, one CTA button that scrolls to the booking f
 
 **Headline:** REAL NUMBERS. REAL DATES. REAL CYCLING FANS.
 **Subline:** No media kit fluff. Pick a moment or a duration. Choose your slot. Upload your assets. Done.
-**CTA:** SEE WHAT'S AVAILABLE $†’ scrolls to booking flow
+**CTA:** SEE WHAT'S AVAILABLE â†’ scrolls to booking flow
 
-### Section 2: Booking Flow (the core $€” replaces events calendar, rate card, quiz, all booking flows)
+### Section 2: Booking Flow (the core â€” replaces events calendar, rate card, quiz, all booking flows)
 Three-step progressive disclosure within one container. Details in Section 4 below.
 
 ### Section 3: Proof Block (condensed)
@@ -59,7 +59,7 @@ Dropped: "How is pricing determined?" (the booking flow shows live pricing) and 
 
 ---
 
-## 4. Booking Flow $€” Detailed Spec
+## 4. Booking Flow â€” Detailed Spec
 
 ### Step 1: Choose Your Campaign
 
@@ -81,8 +81,8 @@ Each card shows:
 - Block name (Bebas Neue heading)
 - Date range
 - One-line coverage description (from existing COVERAGE_PLANS)
-- Status badge (available / filling up / sold out) $€” live from Airtable
-- Clickable $€” selecting highlights the card with coral border and reveals Step 2
+- Status badge (available / filling up / sold out) â€” live from Airtable
+- Clickable â€” selecting highlights the card with coral border and reveals Step 2
 
 **Tab B: "PICK A DURATION"**
 
@@ -98,9 +98,9 @@ Each card shows:
 
 Each card shows:
 - Duration (large, Bebas Neue)
-- Discount badge (e.g. "SAVE 20%") $€” not shown on 1 month
+- Discount badge (e.g. "SAVE 20%") â€” not shown on 1 month
 - One-line description
-- Clickable $€” selecting highlights with coral border and reveals Step 2
+- Clickable â€” selecting highlights with coral border and reveals Step 2
 - Multi-year selection skips Step 2 and Step 3, shows a short contact form instead (name, email, brand, message)
 
 ### Step 2: Choose Your Slot
@@ -121,12 +121,12 @@ Appears below Step 1 with a smooth scroll-into-view animation after selection.
 - If Step 1 was an event block: `base_rate Ã— event_premium Ã— number_of_episodes_in_block`
 
 Example: Sponsor picks "3 months" then hovers over "Mid-roll":
-$†’ Shows: "Mid-roll Ã— 3 months (39 episodes) $€” $$1,080/ep (10% off) = $$42,120"
+â†’ Shows: "Mid-roll Ã— 3 months (39 episodes) â€” $$1,080/ep (10% off) = $$42,120"
 
 Example: Sponsor picks "Tour de France" then hovers over "Mid-roll":
-$†’ Shows: "Mid-roll Ã— Tour de France (9 episodes) $€” $$1,380/ep (+15%) = $$12,420"
+â†’ Shows: "Mid-roll Ã— Tour de France (9 episodes) â€” $$1,380/ep (+15%) = $$12,420"
 
-**Note on display:** Show the per-episode rate and total. Don't show the multiplication formula $€” sponsors want to see "what does this cost" not "how is this calculated". The formula is for our reference only.
+**Note on display:** Show the per-episode rate and total. Don't show the multiplication formula â€” sponsors want to see "what does this cost" not "how is this calculated". The formula is for our reference only.
 
 **Episode count for event blocks:**
 - Grand Tours (3 weeks): 9 episodes (3/week Ã— 3 weeks)
@@ -148,34 +148,34 @@ Appears below Step 2 with smooth scroll animation.
 
 **Summary bar at top:**
 Shows the full selection in one line, e.g.:
-"Mid-roll Ã— Tour de France $€” 9 episodes @ $$1,380/ep = **$$12,420**"
+"Mid-roll Ã— Tour de France â€” 9 episodes @ $$1,380/ep = **$$12,420**"
 or
-"Mid-roll Ã— 3 months $€” 39 episodes @ $$1,080/ep = **$$42,120**"
+"Mid-roll Ã— 3 months â€” 39 episodes @ $$1,080/ep = **$$42,120**"
 
 **Three input fields:**
 
-1. **Logo or graphic** $€” drag-and-drop upload zone. Accepts PNG, SVG, JPG. Max 5MB. Shows preview thumbnail after upload.
+1. **Logo or graphic** â€” drag-and-drop upload zone. Accepts PNG, SVG, JPG. Max 5MB. Shows preview thumbnail after upload.
    - Helper text: "Your logo for show notes and newsletter placement"
 
-2. **Website URL** $€” text input with URL validation
+2. **Website URL** â€” text input with URL validation
    - Helper text: "Where should we send listeners?"
 
-3. **Ad copy** $€” textarea, 500 char max
-   - Helper text: "What do you want Anthony to say? Keep it tight $€” he'll script the read himself."
+3. **Ad copy** â€” textarea, 500 char max
+   - Helper text: "What do you want Anthony to say? Keep it tight â€” he'll script the read himself."
 
 **CTA button (below the fields):**
 
 For **1-month and 3-month** deals (from "Pick a Duration" tab):
-$†’ Button text: **"PAY AND BOOK $€” $$X,XXX"**
-$†’ Clicking creates a Stripe Checkout Session with the total amount, slot metadata, and uploaded assets
-$†’ Redirects to Stripe hosted checkout
-$†’ On success: slot marked sold in Airtable, notification email sent, redirect to success page
+â†’ Button text: **"PAY AND BOOK â€” $$X,XXX"**
+â†’ Clicking creates a Stripe Checkout Session with the total amount, slot metadata, and uploaded assets
+â†’ Redirects to Stripe hosted checkout
+â†’ On success: slot marked sold in Airtable, notification email sent, redirect to success page
 
 For **6-month and 12-month** deals (from "Pick a Duration" tab):
-$†’ Button text: **"SUBMIT $€” WE'LL BE IN TOUCH WITHIN 48 HOURS"**
-$†’ Also collects: contact name (text) + contact email (email) $€” two additional fields shown only for 6mo+
-$†’ Posts to `/api/sponsor/apply` which sends formatted email to anthony@roadmancycling.com via Resend
-$†’ Shows confirmation message inline
+â†’ Button text: **"SUBMIT â€” WE'LL BE IN TOUCH WITHIN 48 HOURS"**
+â†’ Also collects: contact name (text) + contact email (email) â€” two additional fields shown only for 6mo+
+â†’ Posts to `/api/sponsor/apply` which sends formatted email to anthony@roadmancycling.com via Resend
+â†’ Shows confirmation message inline
 
 For **event blocks** (from "Pick a Moment" tab):
 - Grand Tour blocks (3 weeks): **self-serve Stripe checkout** (same as 1-3 month)
@@ -183,10 +183,10 @@ For **event blocks** (from "Pick a Moment" tab):
 - Indoor Season (5 months): **form submission** (same as 6-12 month)
 
 For **multi-year** (from "Pick a Duration" tab):
-$†’ Steps 2 and 3 are skipped entirely
-$†’ Instead shows a minimal contact form: name, email, brand name, "Tell us what you're thinking" textarea
-$†’ Button: **"START THE CONVERSATION"**
-$†’ Posts to same `/api/sponsor/apply` endpoint
+â†’ Steps 2 and 3 are skipped entirely
+â†’ Instead shows a minimal contact form: name, email, brand name, "Tell us what you're thinking" textarea
+â†’ Button: **"START THE CONVERSATION"**
+â†’ Posts to same `/api/sponsor/apply` endpoint
 
 ### Step transitions
 
@@ -238,13 +238,13 @@ Each step uses a smooth `framer-motion` slide-down + fade-in animation. Previous
 
 The following current page elements are **deleted**:
 
-- Recommendation quiz (4 questions) $€” replaced by the two-tab design
-- Spotlight/Quarter/Annual tier naming $€” replaced by duration + slot type
-- Quarter pre-screener (3 questions + Calendly) $€” replaced by Stripe checkout or form submission
-- Annual application form (10 questions) $€” replaced by the 3-field asset form + contact fields for long deals
-- Individual event "BOOK THIS EVENT" buttons $€” replaced by event block selection in Step 1
-- Separate events calendar horizontal scroll section $€” events are now inside the "Pick a Moment" tab
-- Rate card section (three-column Spotlight/Quarter/Annual) $€” replaced by the slot type picker in Step 2
+- Recommendation quiz (4 questions) â€” replaced by the two-tab design
+- Spotlight/Quarter/Annual tier naming â€” replaced by duration + slot type
+- Quarter pre-screener (3 questions + Calendly) â€” replaced by Stripe checkout or form submission
+- Annual application form (10 questions) â€” replaced by the 3-field asset form + contact fields for long deals
+- Individual event "BOOK THIS EVENT" buttons â€” replaced by event block selection in Step 1
+- Separate events calendar horizontal scroll section â€” events are now inside the "Pick a Moment" tab
+- Rate card section (three-column Spotlight/Quarter/Annual) â€” replaced by the slot type picker in Step 2
 - "PICK YOUR WEIGHT CLASS" heading and tier descriptions
 
 The following are **kept**:
@@ -258,15 +258,15 @@ The following are **kept**:
 ## 7. API Changes
 
 ### Keep
-- `POST /api/sponsor/apply` $€” receives form submissions for 6mo+, multi-year, and long event blocks. Sends email via Resend.
-- `POST /api/sponsor/spotlight` $€” renamed conceptually but same endpoint. Creates Stripe Checkout Session for self-serve deals (1-3 month + Grand Tour blocks).
-- `POST /api/webhooks/stripe` $€” unchanged. Handles checkout.session.completed.
+- `POST /api/sponsor/apply` â€” receives form submissions for 6mo+, multi-year, and long event blocks. Sends email via Resend.
+- `POST /api/sponsor/spotlight` â€” renamed conceptually but same endpoint. Creates Stripe Checkout Session for self-serve deals (1-3 month + Grand Tour blocks).
+- `POST /api/webhooks/stripe` â€” unchanged. Handles checkout.session.completed.
 
 ### Remove
-- `POST /api/sponsor/quarter-enquiry` $€” no longer needed (no separate Quarter flow)
+- `POST /api/sponsor/quarter-enquiry` â€” no longer needed (no separate Quarter flow)
 
 ### Modify
-- `POST /api/sponsor/spotlight` $€” update to accept new metadata format:
+- `POST /api/sponsor/spotlight` â€” update to accept new metadata format:
   - `duration` or `eventBlock` (identifies what was selected in Step 1)
   - `slotType` (pre-roll / mid-roll / end-roll / newsletter)
   - `totalAmount` (calculated price)
@@ -291,10 +291,10 @@ Both use existing `getSlots()` with date range + type filters.
 
 | File | Action |
 |------|--------|
-| `src/app/(marketing)/sponsor/page.tsx` | Rewrite $€” 4 sections instead of 8 |
-| `src/app/(marketing)/sponsor/SponsorClientSections.tsx` | Rewrite $€” replace all client components with the 3-step booking flow |
-| `src/app/api/sponsor/spotlight/route.ts` | Modify $€” accept new metadata format |
-| `src/app/api/sponsor/apply/route.ts` | Modify $€” accept simplified form data |
+| `src/app/(marketing)/sponsor/page.tsx` | Rewrite â€” 4 sections instead of 8 |
+| `src/app/(marketing)/sponsor/SponsorClientSections.tsx` | Rewrite â€” replace all client components with the 3-step booking flow |
+| `src/app/api/sponsor/spotlight/route.ts` | Modify â€” accept new metadata format |
+| `src/app/api/sponsor/apply/route.ts` | Modify â€” accept simplified form data |
 | `src/app/api/sponsor/quarter-enquiry/route.ts` | Delete |
 
 ---

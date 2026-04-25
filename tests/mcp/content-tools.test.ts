@@ -105,7 +105,7 @@ describe("search_methodology service", () => {
   });
 });
 
-describe("MCP server $€” content tool names", () => {
+describe("MCP server â€” content tool names", () => {
   it("registers all content tools", () => {
     const server = buildMcpServer("test");
     const tools = Object.keys(

@@ -34,10 +34,10 @@ describe("ask SSE round-trip", () => {
     ctrl.enqueue({
       type: "citation",
       data: [
-        { type: "episode", source_id: "1", title: "Ep 100 $€” Seiler", excerpt: "polarised training$€¦" },
+        { type: "episode", source_id: "1", title: "Ep 100 â€” Seiler", excerpt: "polarised trainingâ€¦" },
       ],
     });
-    ctrl.enqueue({ type: "cta", data: { key: "plateau_diagnostic", title: "Take the$€¦", body: "$€¦", href: "/diagnostic/plateau" } });
+    ctrl.enqueue({ type: "cta", data: { key: "plateau_diagnostic", title: "Take theâ€¦", body: "â€¦", href: "/diagnostic/plateau" } });
     ctrl.enqueue({ type: "delta", data: "The short answer is " });
     ctrl.enqueue({ type: "delta", data: "you're probably under-recovered." });
     ctrl.enqueue({ type: "done", data: { messageId: "m1", flaggedForReview: false } });
@@ -72,7 +72,7 @@ describe("ask SSE round-trip", () => {
     ctrl.enqueue({ type: "meta", data: { intent: "safety_medical", chunksRetrieved: 0, safetyFlags: ["medical"] } });
     ctrl.enqueue({ type: "safety", data: { flags: ["medical"], templateKey: "medical" } });
     ctrl.enqueue({ type: "cta", data: { key: "none", title: "", body: "", href: "" } });
-    ctrl.enqueue({ type: "delta", data: "See a GP first $€” this sounds medical." });
+    ctrl.enqueue({ type: "delta", data: "See a GP first â€” this sounds medical." });
     ctrl.enqueue({ type: "done", data: { flaggedForReview: true } });
     ctrl.close();
 

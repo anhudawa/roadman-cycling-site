@@ -6,7 +6,7 @@
 
 **Architecture:** Each test file mocks all external collaborators (DB, Anthropic, Stripe, Resend, Voyage) using `vi.hoisted()` + `vi.mock()`, tests the orchestration layer via HTTP `Request`/`Response`, and uses dynamic `import()` inside each `it()` to avoid module-cache poisoning between tests.
 
-**Tech Stack:** Vitest 4.1.3, Node test environment (`environment: 'node'` in vitest.config.mts), TypeScript path aliases (`@/$€¦`).
+**Tech Stack:** Vitest 4.1.3, Node test environment (`environment: 'node'` in vitest.config.mts), TypeScript path aliases (`@/â€¦`).
 
 ---
 
@@ -74,7 +74,7 @@ describe("POST /api/...", () => {
 
 ---
 
-## Task 1: Ask Roadman $€” POST /api/ask
+## Task 1: Ask Roadman â€” POST /api/ask
 
 **Files:**
 - Create: `src/app/api/ask/route.test.ts`
@@ -130,7 +130,7 @@ const SESSION = {
   messageCount: 0,
 };
 
-// Minimal SSE stream mock $€” enqueued events can be inspected via enqueueCapture
+// Minimal SSE stream mock â€” enqueued events can be inspected via enqueueCapture
 let enqueueCapture: unknown[] = [];
 const mockCtrl = {
   enqueue: vi.fn((event: unknown) => { enqueueCapture.push(event); }),
@@ -328,7 +328,7 @@ git commit -m "test: integration tests for POST /api/ask chat endpoint"
 
 ---
 
-## Task 2: Ask Session $€” GET /api/ask/session
+## Task 2: Ask Session â€” GET /api/ask/session
 
 **Files:**
 - Create: `src/app/api/ask/session/route.test.ts`
@@ -476,7 +476,7 @@ git commit -m "test: integration tests for GET /api/ask/session"
 
 ---
 
-## Task 3: Diagnostic Read $€” GET /api/diagnostic/[slug]
+## Task 3: Diagnostic Read â€” GET /api/diagnostic/[slug]
 
 **Files:**
 - Create: `src/app/api/diagnostic/[slug]/route.test.ts`
@@ -579,7 +579,7 @@ git commit -m "test: integration tests for GET /api/diagnostic/[slug]"
 
 ---
 
-## Task 4: Diagnostic Regenerate $€” POST /api/diagnostic/[slug]/regenerate
+## Task 4: Diagnostic Regenerate â€” POST /api/diagnostic/[slug]/regenerate
 
 **Files:**
 - Create: `src/app/api/diagnostic/[slug]/regenerate/route.test.ts`
@@ -705,7 +705,7 @@ git commit -m "test: integration tests for POST /api/diagnostic/[slug]/regenerat
 
 ---
 
-## Task 5: Tool Calculator Reports $€” POST /api/tools/report
+## Task 5: Tool Calculator Reports â€” POST /api/tools/report
 
 **Files:**
 - Create: `src/app/api/tools/report/route.test.ts`
@@ -738,14 +738,14 @@ vi.mock("@/lib/crm/contacts", () => ({
 
 const FUELLING_REPORT = {
   html: "<html>Your fuelling strategy</html>",
-  subject: "Your Fuelling Strategy $€” Roadman Cycling",
+  subject: "Your Fuelling Strategy â€” Roadman Cycling",
   beehiivTag: "used-fuelling-tool",
   beehiivFields: { last_tool: "fuelling" },
 };
 
 const FTP_REPORT = {
   html: "<html>Your FTP zones</html>",
-  subject: "Your FTP Zones $€” Roadman Cycling",
+  subject: "Your FTP Zones â€” Roadman Cycling",
   beehiivTag: "used-ftp-zones-tool",
   beehiivFields: { last_tool: "ftp-zones" },
 };
@@ -880,7 +880,7 @@ git commit -m "test: integration tests for POST /api/tools/report (fuelling + ft
 
 ---
 
-## Task 6: Paid Reports Checkout $€” POST /api/reports/checkout
+## Task 6: Paid Reports Checkout â€” POST /api/reports/checkout
 
 **Files:**
 - Create: `src/app/api/reports/checkout/route.test.ts`
@@ -1101,7 +1101,7 @@ git commit -m "test: integration tests for POST /api/reports/checkout"
 
 ---
 
-## Task 7: Paid Reports Download $€” GET /api/reports/download/[token]
+## Task 7: Paid Reports Download â€” GET /api/reports/download/[token]
 
 **Files:**
 - Create: `src/app/api/reports/download/[token]/route.test.ts`
@@ -1302,7 +1302,7 @@ git commit -m "test: integration tests for GET /api/reports/download/[token]"
 
 ---
 
-## Task 8: Stripe Webhook $€” POST /api/webhooks/stripe
+## Task 8: Stripe Webhook â€” POST /api/webhooks/stripe
 
 **Files:**
 - Create: `src/app/api/webhooks/stripe/route.test.ts`
@@ -1376,7 +1376,7 @@ vi.mock("@/lib/inventory", () => ({
 vi.mock("@/lib/notifications", () => ({
   notifySpotlightPurchase: mocks.notifySpotlightPurchase,
 }));
-// The refund handler dynamically imports db and schema $€” stub them
+// The refund handler dynamically imports db and schema â€” stub them
 vi.mock("@/lib/db", () => ({
   db: {
     select: () => ({
@@ -1520,7 +1520,7 @@ git commit -m "test: integration tests for POST /api/webhooks/stripe (paid repor
 
 ---
 
-## Task 9: MCP Server $€” POST /api/mcp
+## Task 9: MCP Server â€” POST /api/mcp
 
 **Files:**
 - Create: `src/app/api/mcp/route.test.ts`
@@ -1669,7 +1669,7 @@ git commit -m "test: integration tests for POST /api/mcp server"
 
 ---
 
-## Task 10: Admin Stats $€” GET /api/admin/stats
+## Task 10: Admin Stats â€” GET /api/admin/stats
 
 **Files:**
 - Create: `src/app/api/admin/stats/route.test.ts`
@@ -1793,7 +1793,7 @@ git commit -m "test: integration tests for GET /api/admin/stats"
 
 ---
 
-## Task 11: Admin Diagnostic Export $€” GET /api/admin/diagnostic/export
+## Task 11: Admin Diagnostic Export â€” GET /api/admin/diagnostic/export
 
 **Files:**
 - Create: `src/app/api/admin/diagnostic/export/route.test.ts`
@@ -1953,7 +1953,7 @@ git commit -m "test: integration tests for GET /api/admin/diagnostic/export (CSV
 
 ---
 
-## Task 12: SEO $€” robots.ts
+## Task 12: SEO â€” robots.ts
 
 **Files:**
 - Create: `src/app/robots.test.ts`
@@ -2045,7 +2045,7 @@ git commit -m "test: robots.ts disallow rules, AI-crawler allowlist, sitemap lis
 
 ---
 
-## Task 13: SEO $€” JSON-LD Schema Components
+## Task 13: SEO â€” JSON-LD Schema Components
 
 **Files:**
 - Create: `src/components/seo/JsonLd.test.tsx`
@@ -2274,7 +2274,7 @@ git commit -m "test: JSON-LD schema component structure (Article, FAQ, Breadcrum
 
 ---
 
-## Task 14: SEO $€” llms.txt Route
+## Task 14: SEO â€” llms.txt Route
 
 **Files:**
 - Create: `src/app/llms.txt/route.test.ts`
@@ -2294,7 +2294,7 @@ const mocks = vi.hoisted(() => ({
 vi.mock("@/lib/blog", () => ({ getAllPosts: mocks.getAllPosts }));
 vi.mock("@/lib/podcast", () => ({ getAllEpisodes: mocks.getAllEpisodes }));
 
-// tagUrlForAICrawler just appends UTM params $€” use real implementation
+// tagUrlForAICrawler just appends UTM params â€” use real implementation
 vi.mock("@/lib/analytics/ai-referrer", () => ({
   tagUrlForAICrawler: (url: string, source: string) =>
     `${url}?utm_source=${source}&utm_medium=ai-crawler`,
@@ -2386,7 +2386,7 @@ npm run test:run -- src/app/llms.txt/route.test.ts
 
 ```bash
 git add src/app/llms.txt/route.test.ts
-git commit -m "test: llms.txt route $€” content-type, UTM tagging, brand sections"
+git commit -m "test: llms.txt route â€” content-type, UTM tagging, brand sections"
 ```
 
 ---
@@ -2418,7 +2418,7 @@ Expected: all 14 test files pass.
 
 ```bash
 git add -p
-git commit -m "test: fixup $€” adjust mock shapes after running full integration suite"
+git commit -m "test: fixup â€” adjust mock shapes after running full integration suite"
 ```
 
 - [ ] **Push branch**
@@ -2432,19 +2432,19 @@ git push -u origin HEAD
 ## Self-Review Checklist
 
 **Spec coverage:**
-- $œ… Ask Roadman chat $€” POST /api/ask: validation, rate limiting, session management, streaming response, session_ack event
-- $œ… Ask Roadman sessions $€” GET /api/ask/session: load by id, by anonKey, with profile
-- $œ… Diagnostics read $€” GET /api/diagnostic/[slug]: masked email, 404 guards
-- $œ… Diagnostics regenerate $€” POST /api/diagnostic/[slug]/regenerate: auth, 404, DB failure
-- $œ… Calculator tool reports $€” POST /api/tools/report: fuelling, ftp-zones, email/Beehiiv/CRM side-effects
-- $œ… Paid reports checkout $€” POST /api/reports/checkout: full validation chain, Stripe session creation, metadata
-- $œ… Secure token download $€” GET /api/reports/download/[token]: all status cases, streaming, analytics
-- $œ… Stripe webhooks $€” POST /api/webhooks/stripe: signature verification, paid report lifecycle, idempotency
-- $œ… MCP server $€” POST /api/mcp: rate limiting, IP extraction, server delegation, GET 405
-- $œ… Admin stats $€” GET /api/admin/stats: auth, all view cases
-- $œ… Admin export $€” GET /api/admin/diagnostic/export: auth, CSV structure, RFC 4180 escaping
-- $œ… SEO robots.ts $€” disallow rules, AI crawler allowlist, sitemaps
-- $œ… SEO JSON-LD $€” all 5 component types with correct schema.org structure
-- $œ… SEO llms.txt $€” content-type, UTM tagging, brand content, cache header
+- âœ… Ask Roadman chat â€” POST /api/ask: validation, rate limiting, session management, streaming response, session_ack event
+- âœ… Ask Roadman sessions â€” GET /api/ask/session: load by id, by anonKey, with profile
+- âœ… Diagnostics read â€” GET /api/diagnostic/[slug]: masked email, 404 guards
+- âœ… Diagnostics regenerate â€” POST /api/diagnostic/[slug]/regenerate: auth, 404, DB failure
+- âœ… Calculator tool reports â€” POST /api/tools/report: fuelling, ftp-zones, email/Beehiiv/CRM side-effects
+- âœ… Paid reports checkout â€” POST /api/reports/checkout: full validation chain, Stripe session creation, metadata
+- âœ… Secure token download â€” GET /api/reports/download/[token]: all status cases, streaming, analytics
+- âœ… Stripe webhooks â€” POST /api/webhooks/stripe: signature verification, paid report lifecycle, idempotency
+- âœ… MCP server â€” POST /api/mcp: rate limiting, IP extraction, server delegation, GET 405
+- âœ… Admin stats â€” GET /api/admin/stats: auth, all view cases
+- âœ… Admin export â€” GET /api/admin/diagnostic/export: auth, CSV structure, RFC 4180 escaping
+- âœ… SEO robots.ts â€” disallow rules, AI crawler allowlist, sitemaps
+- âœ… SEO JSON-LD â€” all 5 component types with correct schema.org structure
+- âœ… SEO llms.txt â€” content-type, UTM tagging, brand content, cache header
 
 **No placeholders:** every step contains actual test code or an exact shell command.

@@ -50,7 +50,7 @@ describe("/robots.ts", () => {
     }
   });
 
-  it("applies the same disallow list to every named bot $€” no leak via /admin", () => {
+  it("applies the same disallow list to every named bot â€” no leak via /admin", () => {
     const named = (result.rules as Array<{ userAgent: string; disallow: string[] }>)
       .filter((r) => r.userAgent !== "*");
     for (const r of named) {

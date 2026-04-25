@@ -1,7 +1,7 @@
-# Roadman Cycling $€” Sponsor Sales & Operations System
+# Roadman Cycling â€” Sponsor Sales & Operations System
 
 **Date:** 2026-04-08
-**Status:** DRAFT $€” Pending review
+**Status:** DRAFT â€” Pending review
 **Site:** ~/Desktop/roadman-cycling-site (Next.js 16.2.2, App Router, Tailwind 4, Vercel)
 **Author:** Spec produced via brainstorming session, to be handed to Claude Code for implementation
 
@@ -13,15 +13,15 @@
 
 A sponsor sales and operations system added to the existing Roadman Cycling Next.js site. Three parts sharing one data layer:
 
-1. **Public sales page at `/sponsor`** $€” the conversion machine. Events calendar, rate card, booking flows.
-2. **Internal admin at `/admin/inventory`** $€” pipeline management, production scheduling, sponsor health tracking.
-3. **Shared data layer in Airtable** $€” single source of truth. Sarah books in admin $†’ public page updates. Brand self-books on public $†’ admin updates. Zero double-entry.
+1. **Public sales page at `/sponsor`** â€” the conversion machine. Events calendar, rate card, booking flows.
+2. **Internal admin at `/admin/inventory`** â€” pipeline management, production scheduling, sponsor health tracking.
+3. **Shared data layer in Airtable** â€” single source of truth. Sarah books in admin â†’ public page updates. Brand self-books on public â†’ admin updates. Zero double-entry.
 
 ### Why It Exists
 
-Roadman Cycling has ~$$14k/mo in sponsor revenue (TrainingPeaks $$5k, Parlee $$2k, 4Endurance $$2k, Hexis $$5k affiliate) with zero pricing transparency, zero calendar logic, zero scarcity mechanics, and zero automation. The current `/partners` page is a media kit brochure $€” every inbound becomes a personal email thread. This system replaces that with productised sponsorship: published prices, visible availability, self-serve checkout for small deals, and an operating system that lets Sarah sell proactively and Wes produce without bottlenecks.
+Roadman Cycling has ~$$14k/mo in sponsor revenue (TrainingPeaks $$5k, Parlee $$2k, 4Endurance $$2k, Hexis $$5k affiliate) with zero pricing transparency, zero calendar logic, zero scarcity mechanics, and zero automation. The current `/partners` page is a media kit brochure â€” every inbound becomes a personal email thread. This system replaces that with productised sponsorship: published prices, visible availability, self-serve checkout for small deals, and an operating system that lets Sarah sell proactively and Wes produce without bottlenecks.
 
-Target: 3Ã— sponsor revenue ($$14k $†’ $$43k/mo) within 12 months through better pricing, more inventory sold via the public page, and Annual Partner deals locking in stable cheques.
+Target: 3Ã— sponsor revenue ($$14k â†’ $$43k/mo) within 12 months through better pricing, more inventory sold via the public page, and Annual Partner deals locking in stable cheques.
 
 ### Decisions Locked
 
@@ -43,16 +43,16 @@ Target: 3Ã— sponsor revenue ($$14k $†’ $$43k/mo) within 12 months through better
 - **Stripe:** Already installed (`stripe@^22.0.0`)
 - **Design system:** Charcoal `#252526`, deep-purple `#210140`, coral `#F16363`, Bebas Neue headings, Work Sans body
 - **Route groups:** `(marketing)`, `(content)`, `(community)` already established
-- **Existing admin:** `/admin` with sidebar nav (Dashboard, Traffic, Experiments, Leads, Emails, Content, Agent, Newsletter, Revenue). Currently uses password-based cookie auth via `/api/admin/login` $€” this will be replaced with NextAuth v5 magic links.
+- **Existing admin:** `/admin` with sidebar nav (Dashboard, Traffic, Experiments, Leads, Emails, Content, Agent, Newsletter, Revenue). Currently uses password-based cookie auth via `/api/admin/login` â€” this will be replaced with NextAuth v5 magic links.
 - **Existing `/partners` page:** Has brand logos (TrainingPeaks, SRAM, Parlee, 4Endurance, Bikmo), audience stats, Discovery+ Ã— Giro case study, 4iiii testimonial. Stays as-is, CTAs updated.
 
 ### Admin Users
 
 | User | Email | Role |
 |------|-------|------|
-| Anthony Walsh | anthony@roadmancycling.com | Founder $€” approves reads, sees everything |
-| Sarah | sarah@roadmancycling.com | Operations/sales $€” manages pipeline and sponsors |
-| Wes | wes@roadmancycling.com | Video editor $€” manages production schedule |
+| Anthony Walsh | anthony@roadmancycling.com | Founder â€” approves reads, sees everything |
+| Sarah | sarah@roadmancycling.com | Operations/sales â€” manages pipeline and sponsors |
+| Wes | wes@roadmancycling.com | Video editor â€” manages production schedule |
 
 ---
 
@@ -63,7 +63,7 @@ Target: 3Ã— sponsor revenue ($$14k $†’ $$43k/mo) within 12 months through better
 ### Why This Approach
 
 - 3 users, no passwords, no external auth service dependency beyond email delivery
-- Resend is already needed for notification emails $€” single integration serves both purposes
+- Resend is already needed for notification emails â€” single integration serves both purposes
 - Allowlist pattern means adding/removing users is a config change, not a code change
 - NextAuth v5 is the standard for Next.js App Router auth, well-documented, actively maintained
 
@@ -81,9 +81,9 @@ Target: 3Ã— sponsor revenue ($$14k $†’ $$43k/mo) within 12 months through better
 ### Auth Flow
 
 ```
-User visits /admin $†’ middleware checks session $†’ no session $†’ redirect to /admin/login
-User enters email $†’ NextAuth sends magic link via Resend $†’ user clicks link
-$†’ NextAuth verifies token $†’ creates session $†’ redirect to /admin/inventory/pipeline
+User visits /admin â†’ middleware checks session â†’ no session â†’ redirect to /admin/login
+User enters email â†’ NextAuth sends magic link via Resend â†’ user clicks link
+â†’ NextAuth verifies token â†’ creates session â†’ redirect to /admin/inventory/pipeline
 ```
 
 ### One Role-Based Guard
@@ -109,7 +109,7 @@ Each row is one discrete, sellable ad slot.
 | `episode_number` | Number | Integer. Nullable. Podcast slots only. |
 | `episode_title` | Single line text | Nullable. Podcast slots only. |
 | `planned_publish_date` | Date | ISO 8601. Required. Used for event auto-assignment. |
-| `position` | Number | Integer 1$€“3. Podcast: 1=pre, 2=mid, 3=end. Newsletter: 1=dedicated, 2=banner, 3+=classified. |
+| `position` | Number | Integer 1â€“3. Podcast: 1=pre, 2=mid, 3=end. Newsletter: 1=dedicated, 2=banner, 3+=classified. |
 | `status` | Single select | `available`, `held`, `sold`, `live`. Default: `available`. |
 | `sponsor` | Link to `sponsors` | Nullable when status is `available`. |
 | `rate_paid` | Currency (GBP) | Actual amount charged. Nullable until sold. |
@@ -133,12 +133,12 @@ Each row is one discrete, sellable ad slot.
 | `event_name` | Single line text | Primary field. E.g. "Tour de France 2026". |
 | `event_type` | Single select | `grand_tour`, `monument`, `classics_block`, `world_championship`, `olympics`, `roadman_owned`, `winter` |
 | `start_date` | Date | Required. |
-| `end_date` | Date | Required. Must be $‰¥ `start_date`. |
+| `end_date` | Date | Required. Must be â‰¥ `start_date`. |
 | `premium_tier` | Single select | `1` (+15%), `2` (+10%), `3` (flat). |
 | `coverage_plan` | Long text | Editorial plan for the event window. |
 | `hero_image_url` | URL | For public page event cards. |
 | `status` | Single select | `upcoming`, `active`, `completed`. |
-| `inventory` | Link to `inventory` | Reverse lookup $€” all slots in this event's date window. |
+| `inventory` | Link to `inventory` | Reverse lookup â€” all slots in this event's date window. |
 
 ### Table 3: `sponsors`
 
@@ -210,9 +210,9 @@ Generate slots for next 6 months (~360 total). Create events for the 2026 cyclin
 | Il Lombardia 2026 | `monument` | 3 |
 | Migration Gravel 2026 | `roadman_owned` | 3 |
 | Roadman Performance Camp 2026 | `roadman_owned` | 3 |
-| Winter Indoor Season 2026$€“27 | `winter` | 3 |
+| Winter Indoor Season 2026â€“27 | `winter` | 3 |
 
-Seed sponsors: TrainingPeaks (annual, $$5k/mo), Parlee (quarter, $$2k/mo), 4Endurance (quarter, $$2k/mo), Hexis (affiliate $€” note only, no inventory slots), Bikmo (historical, inactive).
+Seed sponsors: TrainingPeaks (annual, $$5k/mo), Parlee (quarter, $$2k/mo), 4Endurance (quarter, $$2k/mo), Hexis (affiliate â€” note only, no inventory slots), Bikmo (historical, inactive).
 
 ### Data Access Layer: `lib/inventory/`
 
@@ -342,7 +342,7 @@ Single-page scroll. Dark charcoal base, deep-purple premium sections, coral CTAs
 
 ### 1. Hero
 
-**Component:** `SponsorHero` $€” full-viewport, dark overlay on cycling footage.
+**Component:** `SponsorHero` â€” full-viewport, dark overlay on cycling footage.
 
 **Headline (Bebas Neue, ~120px, uppercase):**
 
@@ -358,7 +358,7 @@ Single-page scroll. Dark charcoal base, deep-purple premium sections, coral CTAs
 
 ### 2. Events Calendar
 
-**Component:** `EventsCalendar` $€” full-bleed, horizontal scroll on desktop, vertical stack on mobile. Deep-purple background. Each card ~340px fixed-width.
+**Component:** `EventsCalendar` â€” full-bleed, horizontal scroll on desktop, vertical stack on mobile. Deep-purple background. Each card ~340px fixed-width.
 
 **Section label (coral, small caps):** THE NEXT 12 MONTHS
 
@@ -372,22 +372,22 @@ Single-page scroll. Dark charcoal base, deep-purple premium sections, coral CTAs
 
 **Event card structure:**
 ```
-[STATUS BADGE $€” top right]
-[EVENT NAME $€” Bebas Neue, 32px]
-[DATES $€” Work Sans, muted]
-[COVERAGE PLAN $€” Work Sans, 14px]
-[INVENTORY REMAINING $€” live from data layer]
+[STATUS BADGE â€” top right]
+[EVENT NAME â€” Bebas Neue, 32px]
+[DATES â€” Work Sans, muted]
+[COVERAGE PLAN â€” Work Sans, 14px]
+[INVENTORY REMAINING â€” live from data layer]
 [PRICING]
 [CTA BUTTON]
 ```
 
-**Tour de France card $€” coverage plan copy:**
+**Tour de France card â€” coverage plan copy:**
 
-> Three weeks. Twenty-one stages. Anthony is in the car for nine of them, with nightly dispatch episodes recorded from the team hotels and published same-day. Full daily podcast coverage for the duration, two long-form YouTube pieces $€” one at the end of the first week, one full race debrief $€” plus a dedicated email to the list on race morning and another when the peloton hits Paris. Sponsor gets read-outs in every daily episode, opening placement in both YouTube pieces, logo in the dedicated sends, and a custom mid-roll recorded by Anthony in-location.
+> Three weeks. Twenty-one stages. Anthony is in the car for nine of them, with nightly dispatch episodes recorded from the team hotels and published same-day. Full daily podcast coverage for the duration, two long-form YouTube pieces â€” one at the end of the first week, one full race debrief â€” plus a dedicated email to the list on race morning and another when the peloton hits Paris. Sponsor gets read-outs in every daily episode, opening placement in both YouTube pieces, logo in the dedicated sends, and a custom mid-roll recorded by Anthony in-location.
 
-**Migration Gravel card $€” coverage plan copy:**
+**Migration Gravel card â€” coverage plan copy:**
 
-> This is Roadman's own race. We built it. We run it. We cover every inch of it. Two dedicated pre-race episodes in the week leading up, live social coverage on the day, a full race debrief episode published within 48 hours, and a short-form YouTube doc in the following fortnight. The audience for this one is not passive $€” these are the people who paid to turn up and ride. Sponsor gets title placement in the two pre-race episodes, branding across all race-day comms, logo on the event page, and an on-site mention in Anthony's race-day address.
+> This is Roadman's own race. We built it. We run it. We cover every inch of it. Two dedicated pre-race episodes in the week leading up, live social coverage on the day, a full race debrief episode published within 48 hours, and a short-form YouTube doc in the following fortnight. The audience for this one is not passive â€” these are the people who paid to turn up and ride. Sponsor gets title placement in the two pre-race episodes, branding across all race-day comms, logo on the event page, and an on-site mention in Anthony's race-day address.
 
 **All 10 events for launch:** Spring Classics Block, Giro d'Italia, CritÃ©rium du DauphinÃ©, Tour de France, Vuelta a EspaÃ±a, World Championships, Il Lombardia, Migration Gravel, Roadman Performance Camp, Winter Indoor Season. Coverage plan copy to be written for each at build time, matching the style of Tour and Migration examples above.
 
@@ -401,17 +401,17 @@ Single-page scroll. Dark charcoal base, deep-purple premium sections, coral CTAs
 
 **Body:**
 
-> Short engagement or long game $€” both work. What doesn't work is a brand dropping in for a week and expecting transformation. Pick the level that matches where you actually are.
+> Short engagement or long game â€” both work. What doesn't work is a brand dropping in for a week and expecting transformation. Pick the level that matches where you actually are.
 
-#### Spotlight $€” from $$500
+#### Spotlight â€” from $$500
 
 **Tagline (coral):** One placement. In and out. No fuss.
 
-> You want to test the water before committing to a quarter. Fair enough. Spotlight gives you a single slot $€” one end-roll, one mid-roll, or one newsletter classified $€” scripted by Anthony, delivered to the full list or full listener base. No long brief process. You tell us what you need said, we say it properly, and we send you the numbers afterwards. If it works, you'll know.
+> You want to test the water before committing to a quarter. Fair enough. Spotlight gives you a single slot â€” one end-roll, one mid-roll, or one newsletter classified â€” scripted by Anthony, delivered to the full list or full listener base. No long brief process. You tell us what you need said, we say it properly, and we send you the numbers afterwards. If it works, you'll know.
 
-**CTA:** BOOK NOW $†’ Stripe Checkout
+**CTA:** BOOK NOW â†’ Stripe Checkout
 
-#### Quarter $€” from $$6,000/quarter
+#### Quarter â€” from $$6,000/quarter
 
 **Badge (coral):** MOST POPULAR
 
@@ -423,17 +423,17 @@ Single-page scroll. Dark charcoal base, deep-purple premium sections, coral CTAs
 | Standard | $$12,000 | 12 mid-rolls + 3 dedicated sends + 1 YouTube |
 | Premium | $$20,000 | 24 mid-rolls + 6 dedicated sends + 2 YouTube + 1 co-produced piece |
 
-> One mention doesn't move a room. But twelve weeks of consistent placement $€” mid-rolls in the episodes your audience listens to on their Saturday ride, a dedicated email to 40,000+ subscribers, your brand turning up in the YouTube pieces they share $€” that's when something shifts. This is the format that works. It gives the audience time to hear you, understand what you do, and actually consider buying. The co-produced piece at Premium level is exactly what it sounds like: Anthony sits down with your team and we make something worth watching together. Not an ad dressed up as content. Content that happens to feature your brand because it genuinely fits.
+> One mention doesn't move a room. But twelve weeks of consistent placement â€” mid-rolls in the episodes your audience listens to on their Saturday ride, a dedicated email to 40,000+ subscribers, your brand turning up in the YouTube pieces they share â€” that's when something shifts. This is the format that works. It gives the audience time to hear you, understand what you do, and actually consider buying. The co-produced piece at Premium level is exactly what it sounds like: Anthony sits down with your team and we make something worth watching together. Not an ad dressed up as content. Content that happens to feature your brand because it genuinely fits.
 
-**CTA:** CHECK AVAILABILITY $†’ Calendly + pre-screener
+**CTA:** CHECK AVAILABILITY â†’ Calendly + pre-screener
 
-#### Annual Title Partner $€” from $$8,000/month
+#### Annual Title Partner â€” from $$8,000/month
 
 **Tagline (coral):** Three brands. All year. First at everything.
 
 > There are three slots. That's the policy, and it won't change. Title partners get first refusal on every event, logo placement on the /partners page for the full year, a quarterly strategy call with Anthony to plan what's coming and where your brand sits in it, and the kind of deep audience familiarity that only happens when you're consistently present across twelve months of serious cycling content. This isn't a package you buy off a shelf. It's an ongoing working relationship. If that's what you're after, apply below and we'll have a proper conversation.
 
-**CTA:** APPLY FOR PARTNERSHIP $†’ Application form
+**CTA:** APPLY FOR PARTNERSHIP â†’ Application form
 
 ### 4. Proof Block
 
@@ -445,19 +445,19 @@ Single-page scroll. Dark charcoal base, deep-purple premium sections, coral CTAs
 
 > A few of the brands who've already figured out that this audience buys things.
 
-Logos: TrainingPeaks, SRAM, Parlee, 4Endurance, Bikmo $€” horizontal row, desaturated on dark, full colour on hover.
+Logos: TrainingPeaks, SRAM, Parlee, 4Endurance, Bikmo â€” horizontal row, desaturated on dark, full colour on hover.
 
 **Case study reference (deep-purple background):**
 
 Label: CASE STUDY
 Heading: DISCOVERY+ Ã— GIRO D'ITALIA
 
-> The Discovery+ partnership around the Giro d'Italia is documented in full. If you want to see how a major media brand integrated into a race coverage block and what the results looked like, that case study is available $€” ask for it in the enquiry form.
+> The Discovery+ partnership around the Giro d'Italia is documented in full. If you want to see how a major media brand integrated into a race coverage block and what the results looked like, that case study is available â€” ask for it in the enquiry form.
 
 **Testimonial:**
 
-> "THE ROADMAN AUDIENCE DOESN'T JUST LISTEN $€” THEY ACT."
-> $€” 4iiii [CONFIRM: exact quote and attribution name/title needed from Anthony]
+> "THE ROADMAN AUDIENCE DOESN'T JUST LISTEN â€” THEY ACT."
+> â€” 4iiii [CONFIRM: exact quote and attribution name/title needed from Anthony]
 
 ### 5. Audience Block
 
@@ -470,7 +470,7 @@ Heading: DISCOVERY+ Ã— GIRO D'ITALIA
 | Purchase intent | 73% | [CONFIRM: placeholder] |
 | Annual cycling spend | $$4,200 | [CONFIRM: placeholder] |
 
-> Full audience report $€” demographics, device split, geographic breakdown, purchasing behaviour $€” available on request. Ask for it in the enquiry form.
+> Full audience report â€” demographics, device split, geographic breakdown, purchasing behaviour â€” available on request. Ask for it in the enquiry form.
 
 ### 6. FAQ
 
@@ -480,27 +480,27 @@ Heading: DISCOVERY+ Ã— GIRO D'ITALIA
 
 **Q1: How is pricing determined?**
 
-> Straight answer: format, placement, and timing. A mid-roll in a standard episode costs less than a mid-roll in a Tour de France dispatch episode because the audience for the latter is three times the size and already hyped. Event-specific inventory is priced per block based on the reach of that coverage window. The rate card gives you the floor $€” actual pricing for event slots is listed on the calendar above. No hidden fees, no "call us for pricing" nonsense. What you see is what you pay.
+> Straight answer: format, placement, and timing. A mid-roll in a standard episode costs less than a mid-roll in a Tour de France dispatch episode because the audience for the latter is three times the size and already hyped. Event-specific inventory is priced per block based on the reach of that coverage window. The rate card gives you the floor â€” actual pricing for event slots is listed on the calendar above. No hidden fees, no "call us for pricing" nonsense. What you see is what you pay.
 
 **Q2: What's the turnaround from brief to live?**
 
-> Minimum two weeks from signed agreement to first placement. That gives us time to receive your brief, script the read, get your sign-off, and slot it into the production schedule. For event-specific blocks, we work backwards from the event start date $€” if you're booking the Tour de France block, you want to be confirmed at least four weeks out. Rush slots exist if something comes up and you need to move fast. Flag it in the enquiry form and we'll tell you honestly whether we can make it work.
+> Minimum two weeks from signed agreement to first placement. That gives us time to receive your brief, script the read, get your sign-off, and slot it into the production schedule. For event-specific blocks, we work backwards from the event start date â€” if you're booking the Tour de France block, you want to be confirmed at least four weeks out. Rush slots exist if something comes up and you need to move fast. Flag it in the enquiry form and we'll tell you honestly whether we can make it work.
 
 **Q3: Can I see audience data before committing?**
 
-> Yes. Full audience report is available on request $€” demographics, household income, purchase intent, geographic split, device breakdown, the works. We don't put every number on the page because some of it requires context to be useful and we'd rather talk you through it. Fill in the form below and we'll send it over. No commitment required to see the data.
+> Yes. Full audience report is available on request â€” demographics, household income, purchase intent, geographic split, device breakdown, the works. We don't put every number on the page because some of it requires context to be useful and we'd rather talk you through it. Fill in the form below and we'll send it over. No commitment required to see the data.
 
 **Q4: Do you have category restrictions?**
 
-> A few. We don't work with brands whose core business is at odds with the sport $€” so no fast food, no tobacco, nothing that would make Anthony cringe to read out loud. Beyond that, we do apply a one-brand-per-category rule for Title Partners, and we'll flag if a category is already taken for a specific quarter before you go through the booking process. If you're not sure whether your brand fits, ask. Worst we can say is no.
+> A few. We don't work with brands whose core business is at odds with the sport â€” so no fast food, no tobacco, nothing that would make Anthony cringe to read out loud. Beyond that, we do apply a one-brand-per-category rule for Title Partners, and we'll flag if a category is already taken for a specific quarter before you go through the booking process. If you're not sure whether your brand fits, ask. Worst we can say is no.
 
 **Q5: Can I test before committing to a quarter?**
 
-> That's exactly what Spotlight is for. One placement, proper execution, real numbers sent back to you afterwards. If it works, you move to a Quarter. If it doesn't $€” which is rare, but happens $€” you've spent $$500 and found out quickly. We'd rather you do a Spotlight first and then commit to three months than skip the test, do a full quarter, and not be happy. Spotlight is at the top of the page. Book one.
+> That's exactly what Spotlight is for. One placement, proper execution, real numbers sent back to you afterwards. If it works, you move to a Quarter. If it doesn't â€” which is rare, but happens â€” you've spent $$500 and found out quickly. We'd rather you do a Spotlight first and then commit to three months than skip the test, do a full quarter, and not be happy. Spotlight is at the top of the page. Book one.
 
 **Q6: What does success look like?**
 
-> That depends on what you're tracking, and we'll ask you that at the start. Some brands are tracking promo code redemptions. Some are tracking site traffic from the link in show notes. Some just want the association with the audience $€” they know their sales cycle is long and they're playing a longer game. We'll agree what we're measuring before anything goes live, and we'll send you the numbers when it's done. We don't hide behind "brand awareness" when a brand wants to see clicks. We also don't pretend every campaign produces a direct-attribution sale, because that's not always how this works. Honest conversation upfront means no awkward one afterwards.
+> That depends on what you're tracking, and we'll ask you that at the start. Some brands are tracking promo code redemptions. Some are tracking site traffic from the link in show notes. Some just want the association with the audience â€” they know their sales cycle is long and they're playing a longer game. We'll agree what we're measuring before anything goes live, and we'll send you the numbers when it's done. We don't hide behind "brand awareness" when a brand wants to see clicks. We also don't pretend every campaign produces a direct-attribution sale, because that's not always how this works. Honest conversation upfront means no awkward one afterwards.
 
 ### 7. Recommendation Quiz
 
@@ -510,9 +510,9 @@ Heading: DISCOVERY+ Ã— GIRO D'ITALIA
 
 **Body:**
 
-> Four questions. Thirty seconds. Anthony effectively asks you these anyway on the first call $€” this just saves us both some time. Answer honestly and we'll point you at the right tier.
+> Four questions. Thirty seconds. Anthony effectively asks you these anyway on the first call â€” this just saves us both some time. Answer honestly and we'll point you at the right tier.
 
-**CTA:** LET'S FIND OUT $†’
+**CTA:** LET'S FIND OUT â†’
 
 **Question 1: What's the honest reason you're here?**
 - A) We want to test whether podcast sponsorship works for us before spending serious money
@@ -522,43 +522,43 @@ Heading: DISCOVERY+ Ã— GIRO D'ITALIA
 
 **Question 2: What's your approximate budget for this?**
 - A) Under $$2,000
-- B) $$2,000$€“$$15,000
-- C) $$15,000$€“$$30,000+
+- B) $$2,000â€“$$15,000
+- C) $$15,000â€“$$30,000+
 - D) We have a specific event budget and it depends on the slot
 
 **Question 3: How quickly do you need this live?**
-- A) This week or next $€” we have something specific to promote
+- A) This week or next â€” we have something specific to promote
 - B) We're planning a quarter out, no rush
 - C) We're thinking about next year and want to get ahead of it
-- D) We're flexible $€” we just want the right slot, not the fastest one
+- D) We're flexible â€” we just want the right slot, not the fastest one
 
 **Question 4: Has your brand ever sponsored a podcast or sport-adjacent media before?**
-- A) No $€” this would be the first time
-- B) Yes, and it worked $€” we want to do more of it
-- C) Yes, and it didn't work $€” but we think Roadman's audience is different
+- A) No â€” this would be the first time
+- B) Yes, and it worked â€” we want to do more of it
+- C) Yes, and it didn't work â€” but we think Roadman's audience is different
 - D) We're a returning Roadman partner
 
 **Routing logic:**
 
 | Pattern | Result |
 |---------|--------|
-| Mostly A's / Q2=A | $†’ **Spotlight**: "Start with a single placement. Low risk, real data, proper execution." |
-| Mostly B's / Q2=B or C | $†’ **Quarter**: "Three months gives the audience time to actually learn who you are. This is the format that works." |
-| Mostly C's / Q2=C+ / Q4=B or D | $†’ **Annual Title Partner**: "You're thinking like a long-term partner. There are three slots. Apply below." |
-| Q1=D or event-specific answers | $†’ **Events Calendar**: "You've got something specific in mind. Go back to the calendar above and book the slot." |
+| Mostly A's / Q2=A | â†’ **Spotlight**: "Start with a single placement. Low risk, real data, proper execution." |
+| Mostly B's / Q2=B or C | â†’ **Quarter**: "Three months gives the audience time to actually learn who you are. This is the format that works." |
+| Mostly C's / Q2=C+ / Q4=B or D | â†’ **Annual Title Partner**: "You're thinking like a long-term partner. There are three slots. Apply below." |
+| Q1=D or event-specific answers | â†’ **Events Calendar**: "You've got something specific in mind. Go back to the calendar above and book the slot." |
 
 ### 8. Booking Flows
 
 #### Spotlight: Stripe Checkout
 
-1. Slot picker $€” tabs for End-roll / Mid-roll / Newsletter Classified. Date grid shows available weeks (live from data layer).
-2. Brief upload $€” Brand name, product/service, key message (200 chars), show notes URL, brief PDF (optional), words to avoid (optional).
+1. Slot picker â€” tabs for End-roll / Mid-roll / Newsletter Classified. Date grid shows available weeks (live from data layer).
+2. Brief upload â€” Brand name, product/service, key message (200 chars), show notes URL, brief PDF (optional), words to avoid (optional).
 
 **Brief intro copy:**
 
-> Keep the brief tight. Anthony scripts the read himself $€” you're telling him what to say, not writing the script for him. The shorter and clearer this is, the better the result.
+> Keep the brief tight. Anthony scripts the read himself â€” you're telling him what to say, not writing the script for him. The shorter and clearer this is, the better the result.
 
-3. Stripe Checkout redirect $€” full payment for selected slot.
+3. Stripe Checkout redirect â€” full payment for selected slot.
 4. Success page:
 
 > Done. You'll get a confirmation to the email you used at checkout, and we'll be in touch within 2 working days to confirm your slot and collect anything else we need. If you have questions in the meantime, it's partnerships@roadmancycling.com.
@@ -567,15 +567,15 @@ Heading: DISCOVERY+ Ã— GIRO D'ITALIA
 
 **Intro:**
 
-> Three questions before we get a call in the diary. Honest answers only $€” if the Quarter isn't right for you, we'll tell you and point you at something that is.
+> Three questions before we get a call in the diary. Honest answers only â€” if the Quarter isn't right for you, we'll tell you and point you at something that is.
 
 1. Brand name + website URL
-2. Approximate budget (dropdown): Under $$2k / $$2k$€“$$5,999 / $$6k$€“$$12k / $$12k$€“$$20k / $$20k+
+2. Approximate budget (dropdown): Under $$2k / $$2kâ€“$$5,999 / $$6kâ€“$$12k / $$12kâ€“$$20k / $$20k+
 3. Target launch month (month picker, next 6 months + "Flexible")
 
 **Routing:**
-- Budget < $$6k $†’ redirect to Spotlight with message: "Look, the Quarter starts at $$6k and we can't flex that. But a Spotlight at $$500 is a proper entry point $€” one placement, real numbers, no commitment. Start there and see how it goes."
-- Budget $‰¥ $$6k $†’ Calendly embed, pre-populated with brand name and launch month.
+- Budget < $$6k â†’ redirect to Spotlight with message: "Look, the Quarter starts at $$6k and we can't flex that. But a Spotlight at $$500 is a proper entry point â€” one placement, real numbers, no commitment. Start there and see how it goes."
+- Budget â‰¥ $$6k â†’ Calendly embed, pre-populated with brand name and launch month.
 
 #### Annual: Application Form
 
@@ -589,18 +589,18 @@ Heading: DISCOVERY+ Ã— GIRO D'ITALIA
 2. Website (URL)
 3. Primary contact name and title (text)
 4. Contact email (email)
-5. Describe your brand in two sentences (textarea, 300 chars) $€” *"Not your marketing copy. What you actually do and who buys it."*
+5. Describe your brand in two sentences (textarea, 300 chars) â€” *"Not your marketing copy. What you actually do and who buys it."*
 6. Who is your target customer and why do you think they overlap with the Roadman audience? (textarea, 500 chars)
-7. What's the outcome you're looking for from a year-long partnership? (textarea, 500 chars) $€” *"Be specific. 'Brand awareness' is not specific."*
-8. Budget range (dropdown): $$96k/yr ($$8k/mo) / $$120k$€“$$180k/yr / $$180k+/yr / Let's discuss
-9. Previous podcast/sport sponsorship experience $€” what worked, what didn't? (textarea, 500 chars)
-10. Anything about your category or business we should know? (textarea, 300 chars) $€” *"Category exclusivity, competitor restrictions, timing constraints $€” flag it here."*
+7. What's the outcome you're looking for from a year-long partnership? (textarea, 500 chars) â€” *"Be specific. 'Brand awareness' is not specific."*
+8. Budget range (dropdown): $$96k/yr ($$8k/mo) / $$120kâ€“$$180k/yr / $$180k+/yr / Let's discuss
+9. Previous podcast/sport sponsorship experience â€” what worked, what didn't? (textarea, 500 chars)
+10. Anything about your category or business we should know? (textarea, 300 chars) â€” *"Category exclusivity, competitor restrictions, timing constraints â€” flag it here."*
 
-**Submit $†’ webhook $†’ email to anthony@roadmancycling.com** with formatted summary.
+**Submit â†’ webhook â†’ email to anthony@roadmancycling.com** with formatted summary.
 
 **Post-submit:**
 
-> Application received. Anthony reads these himself and responds within 48 hours $€” usually faster. If you don't hear back in two working days, check your spam filter and then email partnerships@roadmancycling.com directly.
+> Application received. Anthony reads these himself and responds within 48 hours â€” usually faster. If you don't hear back in two working days, check your spam filter and then email partnerships@roadmancycling.com directly.
 
 ---
 
@@ -609,11 +609,11 @@ Heading: DISCOVERY+ Ã— GIRO D'ITALIA
 ### Route Structure
 
 ```
-/admin/inventory                    $†’ redirects to /pipeline (default)
-/admin/inventory/this-week          $†’ View 1: Editor Production
-/admin/inventory/pipeline           $†’ View 2: Quarter Pipeline
-/admin/inventory/sponsors           $†’ View 3: Sponsor Health
-/admin/inventory/events             $†’ View 4: Events Overlay
+/admin/inventory                    â†’ redirects to /pipeline (default)
+/admin/inventory/this-week          â†’ View 1: Editor Production
+/admin/inventory/pipeline           â†’ View 2: Quarter Pipeline
+/admin/inventory/sponsors           â†’ View 3: Sponsor Health
+/admin/inventory/events             â†’ View 4: Events Overlay
 ```
 
 Add "Inventory" to existing admin sidebar with four child links.
@@ -626,28 +626,28 @@ Episodes publishing in the next 14 days, grouped by date. Each episode shows its
 - Sponsor name or "AVAILABLE"
 - Talking points summary + brief link (if sold)
 - Inline editable script text field (auto-saves on blur)
-- Read status stepper $€” single-click advancement:
-  - `pending` $†’ "Mark as Written" $†’ `script_written`
-  - `script_written` $†’ "Mark as Recorded" $†’ `read_recorded`
-  - `read_recorded` $†’ "Submit for Approval" $†’ `approved` (Wes sees "Awaiting Anthony" for this and `live`)
-  - `approved` $†’ "Mark Live" (Anthony only)
-  - `live` $†’ green badge, done
+- Read status stepper â€” single-click advancement:
+  - `pending` â†’ "Mark as Written" â†’ `script_written`
+  - `script_written` â†’ "Mark as Recorded" â†’ `read_recorded`
+  - `read_recorded` â†’ "Submit for Approval" â†’ `approved` (Wes sees "Awaiting Anthony" for this and `live`)
+  - `approved` â†’ "Mark Live" (Anthony only)
+  - `live` â†’ green badge, done
 
 Toggle between 7-day and 14-day windows. Filter by status (all / needs attention / sold only).
 
 ### View 2: Quarter Pipeline (Sarah's + Anthony's view)
 
-**Top metric bar:** Revenue Booked | Available at Rack Rate | Gap (Opportunity) $€” computed across next 6 months.
+**Top metric bar:** Revenue Booked | Available at Rack Rate | Gap (Opportunity) â€” computed across next 6 months.
 
 **Grid:** Months across top (current + 5), inventory types down side. Each cell shows `sold/total` with colour-coded fill bar:
-- 0$€“49%: grey
-- 50$€“74%: amber
-- 75$€“100%: green
+- 0â€“49%: grey
+- 50â€“74%: amber
+- 75â€“100%: green
 
-Click any cell $†’ SlotListDrawer slides in from right. Shows individual slots. Actions:
-- Available $†’ Book (inline form: sponsor select, rate, campaign ID)
-- Held $†’ Convert to sold or Release
-- Sold $†’ View details (editable inline)
+Click any cell â†’ SlotListDrawer slides in from right. Shows individual slots. Actions:
+- Available â†’ Book (inline form: sponsor select, rate, campaign ID)
+- Held â†’ Convert to sold or Release
+- Sold â†’ View details (editable inline)
 
 **Events Overlay toggle:** Enables coloured bands showing event windows on the grid.
 
@@ -659,14 +659,14 @@ Sortable table of active sponsors:
 |--------|---------|
 | Brand | Logo + name + alert badge if needs attention |
 | Tier | Pill badge |
-| Campaign dates | Start $†’ End |
+| Campaign dates | Start â†’ End |
 | Contract value | $$X,XXX |
 | Delivery | Progress bar: delivered/contracted per slot type |
-| Renewal | Date, colour-coded: green (60+ days), amber (30$€“60), red (<30) |
-| Last contact | Date + staleness dot: green (<14 days), amber (14$€“30), red (30+) |
+| Renewal | Date, colour-coded: green (60+ days), amber (30â€“60), red (<30) |
+| Last contact | Date + staleness dot: green (<14 days), amber (14â€“30), red (30+) |
 | Notes | Truncated, expand on click |
 
-Click row $†’ SponsorDetailDrawer with tabs: Overview (editable fields), Slots (all assigned slots), History (past campaigns).
+Click row â†’ SponsorDetailDrawer with tabs: Overview (editable fields), Slots (all assigned slots), History (past campaigns).
 
 Alert badges on sponsors where renewal < 30 days OR last contact > 30 days.
 
@@ -703,7 +703,7 @@ NextAuth v5 session guard on all `/admin/*` routes. One role check: only `anthon
 - Use Stripe Checkout Sessions
 - On "Book Now" click: create a Checkout Session with line item = selected slot type + week, metadata includes `slot_id`
 - Redirect to Stripe's hosted checkout page
-- Webhook: `checkout.session.completed` $†’ update slot status to `sold` in Airtable, create sponsor record if new, send notification email
+- Webhook: `checkout.session.completed` â†’ update slot status to `sold` in Airtable, create sponsor record if new, send notification email
 
 ### Webhook Handling
 
@@ -741,7 +741,7 @@ Renewal and staleness alerts: daily check via Vercel Cron at 8am, scans sponsors
 
 **Scenario:** Episode 1450 was scheduled July 10 (inside Tour, +15% premium). Slot sold at $$1,380. Date slips to August 5 (outside Tour).
 
-**Rule:** Once a slot is `sold`, the `rate_paid` is locked. The event link may update but the price doesn't change retroactively. The sponsor paid for a Tour-adjacent placement and should receive equivalent value $€” either the episode stays associated with Tour coverage thematically (even if published slightly after), or Sarah contacts the sponsor to discuss options. The system flags the discrepancy (slot linked to no event but `rate_paid` > `rack_rate`) so Sarah can handle it manually.
+**Rule:** Once a slot is `sold`, the `rate_paid` is locked. The event link may update but the price doesn't change retroactively. The sponsor paid for a Tour-adjacent placement and should receive equivalent value â€” either the episode stays associated with Tour coverage thematically (even if published slightly after), or Sarah contacts the sponsor to discuss options. The system flags the discrepancy (slot linked to no event but `rate_paid` > `rack_rate`) so Sarah can handle it manually.
 
 **Implementation:** On date change for a sold slot, if the new date falls outside the original event window, add a `notes` entry: "Date moved from [old] to [new]. Originally in [event name] at premium rate. Review with sponsor." Send notification email to Sarah.
 
@@ -755,7 +755,7 @@ Renewal and staleness alerts: daily check via Vercel Cron at 8am, scans sponsors
 
 **Scenario:** Brand self-books a Spotlight on the public page. Sarah is simultaneously booking the same brand into a Quarter in the admin.
 
-**Rule:** Airtable handles concurrent writes. The Spotlight creates a new sponsor record. Sarah's Quarter booking links to the existing sponsor record. On next admin view refresh, Sarah sees both $€” the Spotlight purchase and her Quarter booking $€” and can merge/reconcile manually. For v1, this is acceptable. V2 could add a "brand already exists" check during Spotlight checkout.
+**Rule:** Airtable handles concurrent writes. The Spotlight creates a new sponsor record. Sarah's Quarter booking links to the existing sponsor record. On next admin view refresh, Sarah sees both â€” the Spotlight purchase and her Quarter booking â€” and can merge/reconcile manually. For v1, this is acceptable. V2 could add a "brand already exists" check during Spotlight checkout.
 
 ### Slot double-booking
 
@@ -765,7 +765,7 @@ Renewal and staleness alerts: daily check via Vercel Cron at 8am, scans sponsors
 
 ### Airtable rate limits
 
-Airtable's API allows 5 requests/second per base. At current scale this is fine. If the public page gets significant traffic, add server-side caching (Vercel KV or simple in-memory with 60-second TTL) for `getAvailability()` responses. The admin doesn't need caching $€” 3 users won't hit rate limits.
+Airtable's API allows 5 requests/second per base. At current scale this is fine. If the public page gets significant traffic, add server-side caching (Vercel KV or simple in-memory with 60-second TTL) for `getAvailability()` responses. The admin doesn't need caching â€” 3 users won't hit rate limits.
 
 ---
 
@@ -790,8 +790,8 @@ Migrate from Airtable to Postgres when any of these triggers hit:
 ### What to Avoid
 
 - Don't put Airtable field IDs or API-specific logic anywhere outside `lib/inventory/`
-- Don't use Airtable formula fields for business logic $€” keep rack rate calculation in TypeScript
-- Don't store configuration (base rates, multipliers) in Airtable $€” keep in `lib/inventory/config.ts`
+- Don't use Airtable formula fields for business logic â€” keep rack rate calculation in TypeScript
+- Don't store configuration (base rates, multipliers) in Airtable â€” keep in `lib/inventory/config.ts`
 
 ---
 
@@ -815,7 +815,7 @@ Migrate from Airtable to Postgres when any of these triggers hit:
 - Magic link login works for all three email addresses
 - Old password auth is removed
 
-### Phase 2: Admin $€” /admin/inventory (1$€“2 sessions)
+### Phase 2: Admin â€” /admin/inventory (1â€“2 sessions)
 
 **Build:**
 - All four admin views (This Week, Pipeline, Sponsors, Events)
@@ -833,7 +833,7 @@ Migrate from Airtable to Postgres when any of these triggers hit:
 - Anthony can approve reads and mark as live
 - All CRUD operations work end-to-end through Airtable
 
-### Phase 3: Public /sponsor Page (1$€“2 sessions)
+### Phase 3: Public /sponsor Page (1â€“2 sessions)
 
 **Build:**
 - Full page: Hero, Events Calendar, Rate Card, Proof Block, Audience Block, FAQ, Recommendation Quiz
@@ -863,7 +863,7 @@ Migrate from Airtable to Postgres when any of these triggers hit:
 - Vercel Cron for daily renewal/staleness checks
 
 **Done when:**
-- Test Spotlight purchase works end-to-end: select slot $†’ pay via Stripe test mode $†’ slot marked sold in Airtable $†’ availability updates on /sponsor $†’ notification email received
+- Test Spotlight purchase works end-to-end: select slot â†’ pay via Stripe test mode â†’ slot marked sold in Airtable â†’ availability updates on /sponsor â†’ notification email received
 - Double-booking scenario handled (second buyer refunded)
 - Quarter and Annual form submissions trigger notification emails
 - Renewal alerts fire for sponsors within 30 days of renewal
@@ -882,20 +882,20 @@ Migrate from Airtable to Postgres when any of these triggers hit:
 - Several events show "filling up" or partial availability
 - All booking flows work in Stripe test mode
 - No broken states in admin after rapid booking/releasing
-- Public page Lighthouse performance score $‰¥ 90
+- Public page Lighthouse performance score â‰¥ 90
 
 ---
 
 ## 11. What Claude Code Should Do First
 
-### Session 1 $€” Start Here
+### Session 1 â€” Start Here
 
 1. Read this entire spec. Don't skim.
-2. Read `AGENTS.md` in the project root $€” it warns that this is Next.js 16, not the version you know. Check `node_modules/next/dist/docs/` for API changes.
-3. Check the existing admin structure at `src/app/admin/` $€” there's already a dashboard with sidebar, login page, and layout. You're adding to this, not replacing it (except the auth, which you are replacing).
-4. Check the existing design system in `src/app/globals.css` $€” the brand tokens, typography, and colour variables are already defined. Use them.
+2. Read `AGENTS.md` in the project root â€” it warns that this is Next.js 16, not the version you know. Check `node_modules/next/dist/docs/` for API changes.
+3. Check the existing admin structure at `src/app/admin/` â€” there's already a dashboard with sidebar, login page, and layout. You're adding to this, not replacing it (except the auth, which you are replacing).
+4. Check the existing design system in `src/app/globals.css` â€” the brand tokens, typography, and colour variables are already defined. Use them.
 5. Set up the Airtable base and create the three tables. Ask for the Airtable API key and base ID if not in env vars.
-6. Build `lib/inventory/` $€” types, config, and the first few functions (getSlots, getEvents, getSponsors). Verify they return real data from Airtable.
+6. Build `lib/inventory/` â€” types, config, and the first few functions (getSlots, getEvents, getSponsors). Verify they return real data from Airtable.
 7. Replace the existing password auth with NextAuth v5 + Resend. Test magic link login.
 8. Stop and check in. Show me what's working before moving to Phase 2.
 
@@ -919,13 +919,13 @@ NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY=
 Before the public page goes live, Anthony needs to confirm:
 
 - [ ] Monthly podcast listener count (currently listed as 1M+)
-- [ ] $$85,000 average household income $€” needs audience survey source
-- [ ] 73% purchase intent $€” needs source or remove
-- [ ] $$4,200 average annual cycling spend $€” needs survey source
-- [ ] 4iiii testimonial $€” exact quote and attribution
-- [ ] Discovery+ Ã— Giro case study $€” cleared for public reference?
-- [ ] Roadman Performance Camp $€” exact November dates and format
-- [ ] Winter Indoor Season $€” format and coverage plan details
+- [ ] $$85,000 average household income â€” needs audience survey source
+- [ ] 73% purchase intent â€” needs source or remove
+- [ ] $$4,200 average annual cycling spend â€” needs survey source
+- [ ] 4iiii testimonial â€” exact quote and attribution
+- [ ] Discovery+ Ã— Giro case study â€” cleared for public reference?
+- [ ] Roadman Performance Camp â€” exact November dates and format
+- [ ] Winter Indoor Season â€” format and coverage plan details
 - [ ] Calendly link for Quarter bookings
 - [ ] Stripe account: test mode vs live mode for initial deploy
 

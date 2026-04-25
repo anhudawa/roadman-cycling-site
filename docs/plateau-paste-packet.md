@@ -1,4 +1,4 @@
-# Plateau Diagnostic $€” Paste Packet
+# Plateau Diagnostic â€” Paste Packet
 
 Everything you need to paste or configure in external systems to get
 the funnel live. Complements `docs/plateau-diagnostic.md` (which is
@@ -6,17 +6,17 @@ the ordered checklist).
 
 Scripts referenced below:
 
-- `npm run migrate:diagnostic` $€” applies migrations 0025 + 0026
-- `npm run seed:beehiiv:plateau -- --email=seed@your-test-inbox.com` $€”
-  forces Beehiiv to create the 6 tags + prints the $§13 email sequence
-- `npm run smoke:plateau -- --url=https://roadmancycling.com` $€”
+- `npm run migrate:diagnostic` â€” applies migrations 0025 + 0026
+- `npm run seed:beehiiv:plateau -- --email=seed@your-test-inbox.com` â€”
+  forces Beehiiv to create the 6 tags + prints the Â§13 email sequence
+- `npm run smoke:plateau -- --url=https://roadmancycling.com` â€”
   post-deploy sanity check
-- `npm run smoke:plateau -- --url=... --submit --email=you+smoke@...` $€”
+- `npm run smoke:plateau -- --url=... --submit --email=you+smoke@...` â€”
   runs a full end-to-end submission (real email + Beehiiv hit)
 
 ---
 
-## 1. Env vars (Vercel $†’ Project Settings $†’ Environment Variables)
+## 1. Env vars (Vercel â†’ Project Settings â†’ Environment Variables)
 
 Copy-paste these keys; fill in the values:
 
@@ -31,13 +31,13 @@ NEXT_PUBLIC_SITE_URL=https://roadmancycling.com
 CRON_SECRET=
 ```
 
-All seven are optional at build time $€” the funnel degrades gracefully
+All seven are optional at build time â€” the funnel degrades gracefully
 per `docs/plateau-diagnostic.md`. The smoke script flags which are
 missing after deploy.
 
 ---
 
-## 2. Beehiiv $€” tags
+## 2. Beehiiv â€” tags
 
 Run `npm run seed:beehiiv:plateau -- --email=seed@your-test-inbox.com`
 once against the publication. It force-creates these by subscribing
@@ -58,17 +58,17 @@ will re-apply them.
 
 ---
 
-## 3. Beehiiv $€” 5-email nurture automation
+## 3. Beehiiv â€” 5-email nurture automation
 
 Beehiiv's public API doesn't expose automations, so this is manual.
-Run the seed script once and it prints the full $§13 sequence to your
-terminal $€” **copy from that output directly**, don't re-type from here.
+Run the seed script once and it prints the full Â§13 sequence to your
+terminal â€” **copy from that output directly**, don't re-type from here.
 
-Automation config (Audience $†’ Automations $†’ New):
+Automation config (Audience â†’ Automations â†’ New):
 
 | Field | Value |
 | --- | --- |
-| Trigger | Tag applied $· `plateau-diagnostic` |
+| Trigger | Tag applied Â· `plateau-diagnostic` |
 | Audience | All subscribers |
 | Delay basis | Tag-applied timestamp |
 | Delays | Day 0 (send within 5m), Day 1, Day 3, Day 5, Day 7 |
@@ -79,59 +79,59 @@ merge tags render correctly from email 1 onward.
 
 ---
 
-## 4. Cal.com $€” 15-minute call event type
+## 4. Cal.com â€” 15-minute call event type
 
 Create a new event type, then copy the link into
 `NEXT_PUBLIC_CAL_BOOKING_URL`.
 
 | Field | Value |
 | --- | --- |
-| Title | Plateau diagnostic $€” 15 minutes with Anthony |
+| Title | Plateau diagnostic â€” 15 minutes with Anthony |
 | Slug | plateau-15 |
 | Duration | 15 minutes |
 | Buffer before/after | 5 min / 5 min |
 | Schedule | Anthony's working hours (your call) |
 | Required questions | Name, email, "Which profile did you get?" (short text) |
-| Confirmation email | Default Cal.com $€” you can override later |
+| Confirmation email | Default Cal.com â€” you can override later |
 
-Webhook (optional but recommended) $€” wire once we have the CAPI work
+Webhook (optional but recommended) â€” wire once we have the CAPI work
 done:
 
 - Trigger: `BOOKING_CREATED`
-- URL: `https://roadmancycling.com/api/webhooks/calcom` (not built yet $€” flag for a later PR)
+- URL: `https://roadmancycling.com/api/webhooks/calcom` (not built yet â€” flag for a later PR)
 
 ---
 
-## 5. Meta Business $€” Pixel + Conversions API
+## 5. Meta Business â€” Pixel + Conversions API
 
 **Pixel (already wired on the page, just needs an ID):**
 
-1. Meta Business Manager $†’ Events Manager $†’ Connect Data Sources $†’ Web
+1. Meta Business Manager â†’ Events Manager â†’ Connect Data Sources â†’ Web
 2. Create a new pixel; call it "Roadman Cycling" or similar
-3. Copy the 16-digit pixel id $†’ `NEXT_PUBLIC_META_PIXEL_ID` on Vercel
-4. No further setup needed $€” the client fires `PageView` on `/plateau`
+3. Copy the 16-digit pixel id â†’ `NEXT_PUBLIC_META_PIXEL_ID` on Vercel
+4. No further setup needed â€” the client fires `PageView` on `/plateau`
    and `PageView` + `Lead` on `/diagnostic/[slug]`
 
-**Conversions API (deferred $€” this PR only wires the client pixel):**
+**Conversions API (deferred â€” this PR only wires the client pixel):**
 
 When you add it:
 
-1. Events Manager $†’ Settings $†’ Conversions API $†’ Generate access token
+1. Events Manager â†’ Settings â†’ Conversions API â†’ Generate access token
 2. Store as `META_CAPI_TOKEN` on Vercel
 3. Build a server-side `Lead` emitter in the submit route; pass a
    shared `eventID` per Meta dedup rules (client + server must share it)
-4. Test via Events Manager $†’ Test Events tab
+4. Test via Events Manager â†’ Test Events tab
 
-Dedup is the only tricky part $€” without a shared `eventID` you'll
+Dedup is the only tricky part â€” without a shared `eventID` you'll
 double-count Leads and the ad optimisation breaks.
 
 ---
 
-## 6. Facebook ads ($§14) $€” creative copy
+## 6. Facebook ads (Â§14) â€” creative copy
 
 Three variants. Run all three at $$$50/day, kill underperformers at day 3.
 
-### Variant 1 $€” "The four reasons" (primary)
+### Variant 1 â€” "The four reasons" (primary)
 
 Primary text:
 
@@ -139,20 +139,20 @@ Primary text:
 >
 > It's usually not what you'd guess. And it's almost never "train harder."
 >
-> Twelve questions. Four minutes. A specific answer for why you're stuck $€” and the exact fix, written for riders who train 6 to 12 hours a week around a real life.
+> Twelve questions. Four minutes. A specific answer for why you're stuck â€” and the exact fix, written for riders who train 6 to 12 hours a week around a real life.
 >
 > Built from 1,300+ podcast conversations with the coaches behind PogaÄar, Froome and Bernal.
 >
-> Start the diagnostic $†’
+> Start the diagnostic â†’
 
 Headline: `One of four reasons your FTP is stuck`
 
 CTA button: `Learn more`
 
-Media: Anthony to camera, 15$€“20s, direct delivery of the hook. No
+Media: Anthony to camera, 15â€“20s, direct delivery of the hook. No
 stock footage, no music-over.
 
-### Variant 2 $€” "The specific number"
+### Variant 2 â€” "The specific number"
 
 Primary text:
 
@@ -160,9 +160,9 @@ Primary text:
 >
 > Every block starts well. Week four, you're flat. Week six, the numbers are back where they started. You've been blaming training hours, age, work stress, genetics.
 >
-> It's almost certainly one specific thing $€” and it's fixable. Four minutes will tell you which of four profiles you fit, and what to actually do about it.
+> It's almost certainly one specific thing â€” and it's fixable. Four minutes will tell you which of four profiles you fit, and what to actually do about it.
 >
-> Start the diagnostic $†’
+> Start the diagnostic â†’
 
 Headline: `Same FTP for 18 months?`
 
@@ -171,31 +171,31 @@ CTA button: `Learn more`
 Media: Static asset. Charcoal `#252526` background, Bebas Neue
 headline "SAME FTP FOR 18 MONTHS?", purple accent, coral CTA pill.
 
-### Variant 3 $€” "The identity angle" (retargeting)
+### Variant 3 â€” "The identity angle" (retargeting)
 
 Primary text:
 
 > You listen to the podcast. You know the content. You've heard me interview Seiler, Lorang, LeMond, Morton.
 >
-> Here's the awkward bit. If you've been listening for a year and your FTP hasn't moved $€” the content isn't translating into training. That's not on you. That's how content works.
+> Here's the awkward bit. If you've been listening for a year and your FTP hasn't moved â€” the content isn't translating into training. That's not on you. That's how content works.
 >
 > This is different. Twelve questions, a specific answer for where you're stuck, and a protocol that fits your life. Not a plan. Not another podcast episode.
 >
-> Start the diagnostic $†’
+> Start the diagnostic â†’
 
 Headline: `From the podcast, into your training`
 
 CTA button: `Learn more`
 
 Media: Thumbnail-style image of Anthony with a top guest (Lachlan
-Morton, Professor Seiler $€” whoever has the strongest clip library).
+Morton, Professor Seiler â€” whoever has the strongest clip library).
 Text overlay: "From the podcast, into your training."
 
 ### Targeting (all variants)
 
 | Axis | Setting |
 | --- | --- |
-| Age | 35$€“60 |
+| Age | 35â€“60 |
 | Interests | Cycling, road cycling, Strava, Zwift, masters cycling, Tadej PogaÄar, Greg LeMond, TrainerRoad, cycling training |
 | Lookalikes | 1% LAL off existing Skool paid members |
 | Exclusions | Existing email list, existing NDY members |
@@ -210,7 +210,7 @@ Text overlay: "From the podcast, into your training."
 ```
 
 Where `<variant-id>` is `four-reasons`, `specific-number`, or
-`identity-angle`. The submit route persists these per row $€” admin
+`identity-angle`. The submit route persists these per row â€” admin
 list filters by `utm_campaign` + `utm_content`.
 
 ---
@@ -228,4 +228,4 @@ npm run smoke:plateau -- --url=https://roadmancycling.com
 npm run smoke:plateau -- --url=https://roadmancycling.com --submit --email=you+smoke@example.com
 ```
 
-Expected output: $œ“ on every line, exit 0.
+Expected output: âœ“ on every line, exit 0.

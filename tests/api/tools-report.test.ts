@@ -4,9 +4,9 @@ import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
  * Integration tests for POST /api/tools/report.
  *
  * The route has two branches:
- *   a) Saveable tools ("ftp-zones", "fuelling") $€” route through completeToolResult
+ *   a) Saveable tools ("ftp-zones", "fuelling") â€” route through completeToolResult
  *      which persists a tool_results row and emails a report.
- *   b) Legacy tools ("tyre-pressure", "race-weight", etc.) $€” generate an HTML
+ *   b) Legacy tools ("tyre-pressure", "race-weight", etc.) â€” generate an HTML
  *      report and email it directly via Resend.
  *
  * Coverage: tool routing (saveable vs legacy), validation, email/Beehiiv/CRM

@@ -1,4 +1,4 @@
-# IndexNow Submission $€” Ready to Run
+# IndexNow Submission â€” Ready to Run
 
 ## Quick start
 
@@ -52,18 +52,18 @@ Google explicitly does not participate in the IndexNow protocol. To get Google t
 
 ## Top 10 URLs to manually inspect in GSC
 
-These are the highest-priority pages $€” manually request indexing for each one via the URL Inspection tool:
+These are the highest-priority pages â€” manually request indexing for each one via the URL Inspection tool:
 
-- [ ] `https://roadmancycling.com/` $€” homepage
-- [ ] `https://roadmancycling.com/coaching` $€” coaching pillar
-- [ ] `https://roadmancycling.com/coaching/triathlon` $€” triathlon coaching pillar
-- [ ] `https://roadmancycling.com/start-here` $€” curated onboarding hub
-- [ ] `https://roadmancycling.com/plan` $€” training plan hub
-- [ ] `https://roadmancycling.com/blog/age-group-ftp-benchmarks-2026` $€” flagship content asset
-- [ ] `https://roadmancycling.com/podcast` $€” podcast index
-- [ ] `https://roadmancycling.com/tools` $€” tools hub
-- [ ] `https://roadmancycling.com/tools/ftp-zones` $€” FTP zones calculator
-- [ ] `https://roadmancycling.com/about` $€” about / trust page
+- [ ] `https://roadmancycling.com/` â€” homepage
+- [ ] `https://roadmancycling.com/coaching` â€” coaching pillar
+- [ ] `https://roadmancycling.com/coaching/triathlon` â€” triathlon coaching pillar
+- [ ] `https://roadmancycling.com/start-here` â€” curated onboarding hub
+- [ ] `https://roadmancycling.com/plan` â€” training plan hub
+- [ ] `https://roadmancycling.com/blog/age-group-ftp-benchmarks-2026` â€” flagship content asset
+- [ ] `https://roadmancycling.com/podcast` â€” podcast index
+- [ ] `https://roadmancycling.com/tools` â€” tools hub
+- [ ] `https://roadmancycling.com/tools/ftp-zones` â€” FTP zones calculator
+- [ ] `https://roadmancycling.com/about` â€” about / trust page
 
 ## URL breakdown (curated, 92 URLs)
 

@@ -11,49 +11,49 @@ const chunk: RetrievedChunk = {
 };
 
 describe("ask/cta pickCta", () => {
-  it("plateau intent $†’ plateau diagnostic", () => {
+  it("plateau intent â†’ plateau diagnostic", () => {
     const c = pickCta({ intent: "plateau", hasProfile: false, retrieved: [] });
     expect(c.key).toBe("plateau_diagnostic");
   });
 
-  it("fuelling intent $†’ fuelling calculator", () => {
+  it("fuelling intent â†’ fuelling calculator", () => {
     const c = pickCta({ intent: "fuelling", hasProfile: false, retrieved: [] });
     expect(c.key).toBe("fuelling_calculator");
   });
 
-  it("coaching_decision with interest=ready $†’ vip_coaching", () => {
+  it("coaching_decision with interest=ready â†’ vip_coaching", () => {
     const c = pickCta({ intent: "coaching_decision", hasProfile: true, coachingInterest: "ready", retrieved: [] });
     expect(c.key).toBe("vip_coaching");
   });
 
-  it("coaching_decision with interest=interested $†’ ndy_coaching", () => {
+  it("coaching_decision with interest=interested â†’ ndy_coaching", () => {
     const c = pickCta({ intent: "coaching_decision", hasProfile: true, coachingInterest: "interested", retrieved: [] });
     expect(c.key).toBe("ndy_coaching");
   });
 
-  it("coaching_decision with no interest $†’ roadman_plus", () => {
+  it("coaching_decision with no interest â†’ roadman_plus", () => {
     const c = pickCta({ intent: "coaching_decision", hasProfile: false, retrieved: [] });
     expect(c.key).toBe("roadman_plus");
   });
 
-  it("event_prep with profile $†’ ndy_coaching, without profile $†’ plateau_diagnostic", () => {
+  it("event_prep with profile â†’ ndy_coaching, without profile â†’ plateau_diagnostic", () => {
     const withP = pickCta({ intent: "event_prep", hasProfile: true, retrieved: [] });
     expect(withP.key).toBe("ndy_coaching");
     const withoutP = pickCta({ intent: "event_prep", hasProfile: false, retrieved: [] });
     expect(withoutP.key).toBe("plateau_diagnostic");
   });
 
-  it("training_general with retrieved content $†’ saturday_spin", () => {
+  it("training_general with retrieved content â†’ saturday_spin", () => {
     const c = pickCta({ intent: "training_general", hasProfile: false, retrieved: [chunk] });
     expect(c.key).toBe("saturday_spin");
   });
 
-  it("training_general with no retrieved content $†’ clubhouse", () => {
+  it("training_general with no retrieved content â†’ clubhouse", () => {
     const c = pickCta({ intent: "training_general", hasProfile: false, retrieved: [] });
     expect(c.key).toBe("clubhouse");
   });
 
-  it("safety and off-topic intents $†’ no cta", () => {
+  it("safety and off-topic intents â†’ no cta", () => {
     for (const intent of ["safety_medical", "safety_injury", "safety_weight", "off_topic", "unknown"] as const) {
       const c = pickCta({ intent, hasProfile: false, retrieved: [] });
       expect(c.key).toBe("none");

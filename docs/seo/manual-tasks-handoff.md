@@ -1,4 +1,4 @@
-# Manual SEO Tasks $€” Handoff Guide
+# Manual SEO Tasks â€” Handoff Guide
 
 **Date:** 2026-04-23
 **For:** Ted / whoever has Vercel + GSC access
@@ -20,8 +20,8 @@ These two tasks take 10 minutes combined and unblock everything the SEO engine h
 5. In the "Add Domain" input, type: `www.roadmancycling.com`
 6. Click **Add**
 7. Vercel will show one of two options:
-   - **"Redirect to roadmancycling.com"** $€” select this (preferred, handled at the edge, fastest)
-   - **"Add and configure DNS"** $€” if this appears, select the redirect option instead
+   - **"Redirect to roadmancycling.com"** â€” select this (preferred, handled at the edge, fastest)
+   - **"Add and configure DNS"** â€” if this appears, select the redirect option instead
 8. If Vercel asks about DNS, it will show a CNAME record to add. The record is:
    - Type: `CNAME`
    - Name: `www`
@@ -36,7 +36,7 @@ These two tasks take 10 minutes combined and unblock everything the SEO engine h
 
 ## Task 2: Google Search Console Setup (5-8 minutes)
 
-**Why:** We shipped ~860 indexed pages, 186 blog articles, 310 enriched episodes, 8 tools, 10 comparisons, 20 glossary terms, and more $€” but Google doesn't know about most of them yet. Submitting the sitemap and manually inspecting priority pages forces discovery within 24-48 hours instead of waiting weeks.
+**Why:** We shipped ~860 indexed pages, 186 blog articles, 310 enriched episodes, 8 tools, 10 comparisons, 20 glossary terms, and more â€” but Google doesn't know about most of them yet. Submitting the sitemap and manually inspecting priority pages forces discovery within 24-48 hours instead of waiting weeks.
 
 ### Part A: Submit Sitemap
 
@@ -45,7 +45,7 @@ These two tasks take 10 minutes combined and unblock everything the SEO engine h
 3. In the left sidebar, click **Sitemaps**
 4. In the "Add a new sitemap" field, enter: `https://roadmancycling.com/sitemap.xml`
 5. Click **Submit**
-6. You should see status: "Success" or "Pending" $€” both are fine
+6. You should see status: "Success" or "Pending" â€” both are fine
 7. The sitemap index contains 6 child sitemaps (articles, episodes, guests, plans, topics+glossary+comparisons, static pages). GSC will discover all of them automatically from the index.
 
 ### Part B: Request Indexing on 15 Priority Pages
@@ -87,22 +87,22 @@ https://roadmancycling.com/editorial-standards
 ### Part C: Verify Next Day (optional but recommended)
 
 Come back tomorrow and check:
-1. **Sitemaps** $†’ confirm "Last read" date is recent and status is "Success"
-2. **Pages** $†’ check if "Indexed" count is increasing
-3. **URL Inspection** $†’ spot-check `/coaching` to confirm it shows "URL is on Google" with a fresh crawl date
-4. **Enhancements** $†’ check for FAQ, HowTo, and Review rich result counts (should start appearing within 48-72 hours)
+1. **Sitemaps** â†’ confirm "Last read" date is recent and status is "Success"
+2. **Pages** â†’ check if "Indexed" count is increasing
+3. **URL Inspection** â†’ spot-check `/coaching` to confirm it shows "URL is on Google" with a fresh crawl date
+4. **Enhancements** â†’ check for FAQ, HowTo, and Review rich result counts (should start appearing within 48-72 hours)
 
 ---
 
 ## Task 3: Retry IndexNow (2 minutes)
 
-The first attempt returned "SiteVerificationNotCompleted" $€” this usually clears within 24 hours.
+The first attempt returned "SiteVerificationNotCompleted" â€” this usually clears within 24 hours.
 
 ```bash
 cd ~/Desktop/roadman-cycling-site && git pull origin main && npm run seo:indexnow -- --all
 ```
 
-Expected output: `$œ“ 200 OK` with 542+ URLs submitted. IndexNow reaches Bing, Yandex, Seznam, and Naver. Google does NOT use IndexNow $€” that's what the GSC submission above handles.
+Expected output: `âœ“ 200 OK` with 542+ URLs submitted. IndexNow reaches Bing, Yandex, Seznam, and Naver. Google does NOT use IndexNow â€” that's what the GSC submission above handles.
 
 ---
 
@@ -113,4 +113,4 @@ Expected output: `$œ“ 200 OK` with 542+ URLs submitted. IndexNow reaches Bing, Y
 - **2-4 weeks:** Rankings begin settling. Non-brand impressions appear in GSC.
 - **8-12 weeks:** Cluster authority compounds. Topic hubs start ranking for head terms.
 
-Everything else $€” content, schema, internal links, conversion layer, AI search $€” is already deployed and waiting for Google to discover it.
+Everything else â€” content, schema, internal links, conversion layer, AI search â€” is already deployed and waiting for Google to discover it.

@@ -166,7 +166,7 @@ export default async function ResultsPage({
             {items.length === 0 ? (
               <div className="mt-4 grid grid-cols-1 sm:grid-cols-3 gap-3">
                 <Link
-                  href="/diagnostic"
+                  href="/plateau"
                   className="rounded-xl border border-white/10 bg-background-elevated p-5 hover:border-coral/40 transition-colors"
                 >
                   <p className="font-heading text-coral text-[11px] tracking-widest mb-1">

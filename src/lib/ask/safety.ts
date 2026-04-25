@@ -88,7 +88,7 @@ const SATURDAY_SPIN_CTA: CtaDescriptor = {
   key: "saturday_spin",
   title: "Get Saturday Spin",
   body: "Roadman's weekly newsletter — safe, evidence-led performance writing.",
-  href: "https://roadmancycling.com/saturday-spin",
+  href: "https://roadmancycling.com/newsletter",
   analyticsEvent: "cta_clicked:saturday_spin",
 };
 

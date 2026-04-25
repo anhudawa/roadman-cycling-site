@@ -41,7 +41,7 @@ export const CTA_CATALOG: Record<Exclude<CtaKey, "none">, CtaDescriptor> = {
     key: "saturday_spin",
     title: "Get Saturday Spin",
     body: "Anthony's weekly newsletter — one performance idea, grounded, no fluff.",
-    href: "/saturday-spin",
+    href: "/newsletter",
     analyticsEvent: "cta_clicked:saturday_spin",
   },
   clubhouse: {
@@ -50,13 +50,6 @@ export const CTA_CATALOG: Record<Exclude<CtaKey, "none">, CtaDescriptor> = {
     body: "Free community of serious amateur cyclists. Live Q&As with Anthony weekly.",
     href: "https://www.skool.com/roadman",
     analyticsEvent: "cta_clicked:clubhouse",
-  },
-  roadman_plus: {
-    key: "roadman_plus",
-    title: "Roadman+ — Coming Soon",
-    body: "Digital-only access to training plans, masterclasses, and structured coaching content. Launching later this year.",
-    href: "/roadman-plus",
-    analyticsEvent: "cta_clicked:roadman_plus",
   },
   ndy_coaching: {
     key: "ndy_coaching",
@@ -69,7 +62,7 @@ export const CTA_CATALOG: Record<Exclude<CtaKey, "none">, CtaDescriptor> = {
     key: "vip_coaching",
     title: "Apply for VIP 1:1",
     body: "Private coaching with Anthony — limited roster. Book a strategy call first.",
-    href: "/coaching/apply",
+    href: "/apply",
     analyticsEvent: "cta_clicked:vip_coaching",
   },
   episode_list: {
@@ -101,7 +94,10 @@ export function pickCta(input: CtaPickInput): CtaDescriptor {
     case "coaching_decision":
       if (input.coachingInterest === "ready") return CTA_CATALOG.vip_coaching;
       if (input.coachingInterest === "interested") return CTA_CATALOG.ndy_coaching;
-      return CTA_CATALOG.roadman_plus;
+      // Cool/uncertain: route to the free Clubhouse as a low-commitment
+      // entry point. Used to be roadman_plus ("Coming Soon") — that
+      // product is parked, so we surface the live community instead.
+      return CTA_CATALOG.clubhouse;
     case "recovery_masters":
       return CTA_CATALOG.clubhouse;
     case "content_discovery":

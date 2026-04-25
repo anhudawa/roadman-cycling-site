@@ -1,10 +1,10 @@
-# Podcast Content Repurposing Pipeline $Äî Implementation Plan
+# Podcast Content Repurposing Pipeline ‚Äî Implementation Plan
 
 > **For agentic workers:** REQUIRED SUB-SKILL: Use superpowers:subagent-driven-development (recommended) or superpowers:executing-plans to implement this plan task-by-task. Steps use checkbox (`- [ ]`) syntax for tracking.
 
-**Goal:** Build a CLI pipeline that takes a podcast episode transcript and generates a blog post, social media posts for 4 platforms, and branded quote card images $Äî saving everything to `content/repurposed/`.
+**Goal:** Build a CLI pipeline that takes a podcast episode transcript and generates a blog post, social media posts for 4 platforms, and branded quote card images ‚Äî saving everything to `content/repurposed/`.
 
-**Architecture:** Single orchestration script (`scripts/repurpose-episode.ts`) calling modular generators in `scripts/lib/repurpose/`. Mirrors the existing `sync-youtube.ts` pattern: CLI arg parsing $Üí episode loading $Üí sequential generation $Üí atomic file writes $Üí state tracking.
+**Architecture:** Single orchestration script (`scripts/repurpose-episode.ts`) calling modular generators in `scripts/lib/repurpose/`. Mirrors the existing `sync-youtube.ts` pattern: CLI arg parsing ‚Üí episode loading ‚Üí sequential generation ‚Üí atomic file writes ‚Üí state tracking.
 
 **Tech Stack:** TypeScript (tsx), @anthropic-ai/sdk (Claude Sonnet + Haiku), gray-matter (MDX frontmatter), sharp (image processing), satori + @resvg/resvg-js (quote card rendering), Google Custom Search API (guest images)
 
@@ -19,11 +19,11 @@
 | `scripts/lib/repurpose/types.ts` | Shared interfaces for all repurpose modules |
 | `scripts/lib/repurpose/prompts.ts` | All Claude prompt templates (blog, social, quotes) |
 | `scripts/lib/repurpose/repurpose-state.ts` | Load/save repurpose state (which episodes processed) |
-| `scripts/lib/repurpose/blog-generator.ts` | Transcript $Üí SEO blog post MDX string |
-| `scripts/lib/repurpose/social-generator.ts` | Transcript $Üí Twitter/IG/LinkedIn/FB JSON |
-| `scripts/lib/repurpose/quote-extractor.ts` | Transcript $Üí array of quotable moments |
-| `scripts/lib/repurpose/guest-image-fetcher.ts` | Google CSE / local file $Üí processed guest image buffer |
-| `scripts/lib/repurpose/quote-card-renderer.ts` | Quote data + image $Üí PNG files via satori |
+| `scripts/lib/repurpose/blog-generator.ts` | Transcript ‚Üí SEO blog post MDX string |
+| `scripts/lib/repurpose/social-generator.ts` | Transcript ‚Üí Twitter/IG/LinkedIn/FB JSON |
+| `scripts/lib/repurpose/quote-extractor.ts` | Transcript ‚Üí array of quotable moments |
+| `scripts/lib/repurpose/guest-image-fetcher.ts` | Google CSE / local file ‚Üí processed guest image buffer |
+| `scripts/lib/repurpose/quote-card-renderer.ts` | Quote data + image ‚Üí PNG files via satori |
 | `scripts/lib/repurpose/content-writer.ts` | Write all outputs to content/repurposed/ atomically |
 | `scripts/repurpose-episode.ts` | CLI entry point and orchestration |
 | `.github/workflows/podcast-repurpose.yml` | Commented-out GitHub Action |
@@ -240,7 +240,7 @@ interface RelatedEpisode {
   episodeNumber: number;
 }
 
-const VOICE_SYSTEM = `You are a content writer for Roadman Cycling, a cycling media brand. Write in Anthony Walsh's voice: direct, practical, no fluff. Aimed at amateur cyclists who want to get faster. Not academic, not corporate. Warm but knowledgeable $Äî like advice from a cycling mate who happens to be an expert. Never use phrases like "in this episode" or "dive into" or "join us as". Never use corporate buzzwords. Be specific and actionable.`;
+const VOICE_SYSTEM = `You are a content writer for Roadman Cycling, a cycling media brand. Write in Anthony Walsh's voice: direct, practical, no fluff. Aimed at amateur cyclists who want to get faster. Not academic, not corporate. Warm but knowledgeable ‚Äî like advice from a cycling mate who happens to be an expert. Never use phrases like "in this episode" or "dive into" or "join us as". Never use corporate buzzwords. Be specific and actionable.`;
 
 export function blogPrompt(
   episode: EpisodeInput,
@@ -258,7 +258,7 @@ export function blogPrompt(
     user: `Write a 1500-2000 word SEO blog post based on this podcast episode transcript.
 
 Episode: "${episode.title}" (Episode ${episode.episodeNumber})
-${episode.guest ? `Guest: ${episode.guest}${episode.guestCredential ? ` $Äî ${episode.guestCredential}` : ""}` : "Solo/co-hosted episode"}
+${episode.guest ? `Guest: ${episode.guest}${episode.guestCredential ? ` ‚Äî ${episode.guestCredential}` : ""}` : "Solo/co-hosted episode"}
 Pillar: ${episode.pillar}
 Keywords to target naturally: ${episode.keywords.join(", ")}
 
@@ -275,7 +275,7 @@ FORMAT REQUIREMENTS:
 - Include a "Key Takeaways" section near the end with 4-6 bullet points
 - End with a short conclusion and CTA to listen to the full episode
 - Weave in internal links to the related episodes where contextually relevant, using the exact markdown format provided
-- Write for Google $Äî use target keywords naturally in headers and body text
+- Write for Google ‚Äî use target keywords naturally in headers and body text
 
 Also generate these metadata fields and include them at the very top of your response as a JSON block:
 \`\`\`json
@@ -297,7 +297,7 @@ export function socialPrompt(episode: EpisodeInput): PromptPair {
     user: `Generate social media content for all 4 platforms based on this podcast episode.
 
 Episode: "${episode.title}" (Episode ${episode.episodeNumber})
-${episode.guest ? `Guest: ${episode.guest}${episode.guestCredential ? ` $Äî ${episode.guestCredential}` : ""}` : "Solo/co-hosted episode"}
+${episode.guest ? `Guest: ${episode.guest}${episode.guestCredential ? ` ‚Äî ${episode.guestCredential}` : ""}` : "Solo/co-hosted episode"}
 Episode URL: /podcast/${episode.slug}
 
 TRANSCRIPT:
@@ -307,7 +307,7 @@ Respond with ONLY a JSON object in this exact format (no markdown, no code block
 {
   "twitter": {
     "tweets": [
-      {"text": "Hook tweet $Äî bold claim or surprising insight from the episode", "index": 1},
+      {"text": "Hook tweet ‚Äî bold claim or surprising insight from the episode", "index": 1},
       {"text": "Key insight #1...", "index": 2},
       {"text": "Key insight #2...", "index": 3},
       {"text": "Key insight #3...", "index": 4},
@@ -332,9 +332,9 @@ Respond with ONLY a JSON object in this exact format (no markdown, no code block
 RULES:
 - Each tweet must be under 280 characters
 - Instagram caption should use line breaks (\\n) for readability
-- LinkedIn should be professional but accessible $Äî not corporate
+- LinkedIn should be professional but accessible ‚Äî not corporate
 - Facebook should be personal, conversational, storytelling. First person. 500-800 words.
-- All content should be specific to THIS episode $Äî no generic cycling advice`,
+- All content should be specific to THIS episode ‚Äî no generic cycling advice`,
   };
 }
 
@@ -495,7 +495,7 @@ export async function generateBlogPost(
   episode: EpisodeInput
 ): Promise<BlogOutput | null> {
   if (!process.env.ANTHROPIC_API_KEY) {
-    console.warn("  $ö† ANTHROPIC_API_KEY not set, skipping blog generation");
+    console.warn("  ‚ö† ANTHROPIC_API_KEY not set, skipping blog generation");
     return null;
   }
 
@@ -534,7 +534,7 @@ export async function generateBlogPost(
       try {
         metadata = { ...metadata, ...JSON.parse(jsonMatch[1]) };
       } catch {
-        console.warn("  $ö† Could not parse blog metadata JSON, using defaults");
+        console.warn("  ‚ö† Could not parse blog metadata JSON, using defaults");
       }
     }
 
@@ -576,7 +576,7 @@ export async function generateBlogPost(
     return { mdxContent, slug: blogSlug };
   } catch (error) {
     const msg = error instanceof Error ? error.message : String(error);
-    console.error(`  $ùå Blog generation failed: ${msg}`);
+    console.error(`  ‚ùå Blog generation failed: ${msg}`);
     return null;
   }
 }
@@ -667,7 +667,7 @@ export async function generateSocialPosts(
   episode: EpisodeInput
 ): Promise<SocialOutput | null> {
   if (!process.env.ANTHROPIC_API_KEY) {
-    console.warn("  $ö† ANTHROPIC_API_KEY not set, skipping social generation");
+    console.warn("  ‚ö† ANTHROPIC_API_KEY not set, skipping social generation");
     return null;
   }
 
@@ -686,7 +686,7 @@ export async function generateSocialPosts(
     const text =
       response.content[0].type === "text" ? response.content[0].text : "";
 
-    // Parse JSON $Äî may be wrapped in ```json blocks or raw
+    // Parse JSON ‚Äî may be wrapped in ```json blocks or raw
     let jsonStr = text;
     const codeBlockMatch = text.match(/```(?:json)?\s*\n([\s\S]*?)\n```/);
     if (codeBlockMatch) {
@@ -701,7 +701,7 @@ export async function generateSocialPosts(
     const parsed = JSON.parse(jsonStr);
 
     if (!validateSocialResponse(parsed)) {
-      console.warn("  $ö† Social response failed validation");
+      console.warn("  ‚ö† Social response failed validation");
       return null;
     }
 
@@ -733,7 +733,7 @@ export async function generateSocialPosts(
     };
   } catch (error) {
     const msg = error instanceof Error ? error.message : String(error);
-    console.error(`  $ùå Social generation failed: ${msg}`);
+    console.error(`  ‚ùå Social generation failed: ${msg}`);
     return null;
   }
 }
@@ -788,7 +788,7 @@ export async function extractQuotes(
   guest?: string
 ): Promise<ExtractedQuote[]> {
   if (!process.env.ANTHROPIC_API_KEY) {
-    console.warn("  $ö† ANTHROPIC_API_KEY not set, skipping quote extraction");
+    console.warn("  ‚ö† ANTHROPIC_API_KEY not set, skipping quote extraction");
     return [];
   }
 
@@ -807,7 +807,7 @@ export async function extractQuotes(
     const text =
       response.content[0].type === "text" ? response.content[0].text : "";
 
-    // Parse JSON array $Äî may be wrapped in code blocks or raw
+    // Parse JSON array ‚Äî may be wrapped in code blocks or raw
     let jsonStr = text;
     const codeBlockMatch = text.match(/```(?:json)?\s*\n([\s\S]*?)\n```/);
     if (codeBlockMatch) {
@@ -822,7 +822,7 @@ export async function extractQuotes(
     const parsed = JSON.parse(jsonStr);
 
     if (!Array.isArray(parsed)) {
-      console.warn("  $ö† Quote extraction did not return an array");
+      console.warn("  ‚ö† Quote extraction did not return an array");
       return [];
     }
 
@@ -837,7 +837,7 @@ export async function extractQuotes(
     );
   } catch (error) {
     const msg = error instanceof Error ? error.message : String(error);
-    console.error(`  $ùå Quote extraction failed: ${msg}`);
+    console.error(`  ‚ùå Quote extraction failed: ${msg}`);
     return [];
   }
 }
@@ -865,7 +865,7 @@ git commit -m "feat(repurpose): add quote extractor (Claude Haiku)"
 **Files:**
 - Create: `scripts/lib/repurpose/guest-image-fetcher.ts`
 
-Fetches a guest headshot via priority: local file $Üí Google Custom Search $Üí YouTube thumbnail $Üí null.
+Fetches a guest headshot via priority: local file ‚Üí Google Custom Search ‚Üí YouTube thumbnail ‚Üí null.
 
 - [ ] **Step 1: Create guest-image-fetcher.ts**
 
@@ -880,7 +880,7 @@ const GUESTS_DIR = path.join(process.cwd(), "content/guests");
 
 /**
  * Convert a guest name to a slug for file matching.
- * "Lael Wilcox" $Üí "lael-wilcox"
+ * "Lael Wilcox" ‚Üí "lael-wilcox"
  */
 function guestSlug(name: string): string {
   return name
@@ -1009,7 +1009,7 @@ export async function fetchGuestImage(
       }
       const slug = guestSlug(guestName);
       fs.writeFileSync(path.join(GUESTS_DIR, `${slug}.jpg`), processed);
-      console.log(`   $úì Found and cached image for ${guestName}`);
+      console.log(`   ‚úì Found and cached image for ${guestName}`);
       return processed;
     }
   }
@@ -1049,7 +1049,7 @@ git commit -m "feat(repurpose): add guest image fetcher with Google CSE + YouTub
 **Files:**
 - Create: `scripts/lib/repurpose/quote-card-renderer.ts`
 
-Renders branded quote card images using satori (JSX $Üí SVG) + @resvg/resvg-js (SVG $Üí PNG). Two sizes: 1080x1080 square (Instagram) and 1200x675 landscape (Twitter).
+Renders branded quote card images using satori (JSX ‚Üí SVG) + @resvg/resvg-js (SVG ‚Üí PNG). Two sizes: 1080x1080 square (Instagram) and 1200x675 landscape (Twitter).
 
 - [ ] **Step 1: Create quote-card-renderer.ts**
 
@@ -1176,7 +1176,7 @@ function buildCardElement(
               marginTop: 30,
               textAlign: "center",
             },
-            children: `$Äî ${quote.speaker}`,
+            children: `‚Äî ${quote.speaker}`,
           },
         },
         // Context
@@ -1729,7 +1729,7 @@ function toEpisodeInput(ep: LoadedEpisode): EpisodeInput | null {
   const transcript = fm.transcript as string | undefined;
 
   if (!transcript) {
-    console.warn(`  $ö† No transcript for ${ep.slug} $Äî skipping`);
+    console.warn(`  ‚ö† No transcript for ${ep.slug} ‚Äî skipping`);
     return null;
   }
 
@@ -1765,7 +1765,7 @@ async function processEpisode(
 
   // Check if already processed (unless --force)
   if (!force && outputExists(epNum, ep.slug)) {
-    console.log(`  $è≠ Already repurposed (use --force to regenerate)`);
+    console.log(`  ‚è≠ Already repurposed (use --force to regenerate)`);
     return false;
   }
 
@@ -1783,9 +1783,9 @@ async function processEpisode(
     process.stdout.write("   üìù Blog post... ");
     result.blog = await generateBlogPost(input);
     if (result.blog) {
-      console.log("$úì");
+      console.log("‚úì");
     } else {
-      console.log("$ö† skipped");
+      console.log("‚ö† skipped");
     }
   }
 
@@ -1795,10 +1795,10 @@ async function processEpisode(
     result.social = await generateSocialPosts(input);
     if (result.social) {
       console.log(
-        `$úì (${result.social.twitter.tweets.length} tweets, FB: ${result.social.facebook.post.length} chars)`
+        `‚úì (${result.social.twitter.tweets.length} tweets, FB: ${result.social.facebook.post.length} chars)`
       );
     } else {
-      console.log("$ö† skipped");
+      console.log("‚ö† skipped");
     }
   }
 
@@ -1812,15 +1812,15 @@ async function processEpisode(
     );
 
     if (quotes.length > 0) {
-      console.log(`$úì ${quotes.length} quotes extracted`);
+      console.log(`‚úì ${quotes.length} quotes extracted`);
 
       // Fetch guest image
       process.stdout.write("   üñº  Guest image... ");
       const guestImage = await fetchGuestImage(input.guest, input.youtubeId);
       if (guestImage) {
-        console.log("$úì");
+        console.log("‚úì");
       } else {
-        console.log("$ö† none (using text-only template)");
+        console.log("‚ö† none (using text-only template)");
       }
 
       // Render quote cards
@@ -1833,7 +1833,7 @@ async function processEpisode(
           guestImage,
           outputDir
         );
-        console.log(`$úì ${cardPaths.length * 2} images`);
+        console.log(`‚úì ${cardPaths.length * 2} images`);
         result.quotes = { extracted: quotes, cardPaths };
       } else {
         result.quotes = {
@@ -1845,7 +1845,7 @@ async function processEpisode(
         };
       }
     } else {
-      console.log("$ö† none found");
+      console.log("‚ö† none found");
     }
   }
 
@@ -1855,7 +1855,7 @@ async function processEpisode(
   if (!dryRun) {
     state.processedEpisodeSlugs.unshift(ep.slug);
     console.log(
-      `   $úÖ ${writtenFiles.length} files written to ${path.relative(process.cwd(), getOutputDir(epNum, ep.slug))}/`
+      `   ‚úÖ ${writtenFiles.length} files written to ${path.relative(process.cwd(), getOutputDir(epNum, ep.slug))}/`
     );
   }
 
@@ -1882,7 +1882,7 @@ async function main() {
   if (episodeSlug) {
     const ep = loadEpisode(episodeSlug);
     if (!ep) {
-      console.error(`$ùå Episode not found: ${episodeSlug}`);
+      console.error(`‚ùå Episode not found: ${episodeSlug}`);
       console.error(
         `   Check content/podcast/ for available .mdx files`
       );
@@ -1892,19 +1892,19 @@ async function main() {
   } else if (latest) {
     const ep = findLatestEpisode();
     if (!ep) {
-      console.error("$ùå No episodes found in content/podcast/");
+      console.error("‚ùå No episodes found in content/podcast/");
       process.exit(1);
     }
     episodes = [ep];
   } else if (auto) {
     episodes = findUnprocessedEpisodes(state.processedEpisodeSlugs);
     if (episodes.length === 0) {
-      console.log("$úÖ No new episodes to repurpose!");
+      console.log("‚úÖ No new episodes to repurpose!");
       return;
     }
     console.log(`üÜï Found ${episodes.length} unprocessed episode(s)`);
   } else {
-    console.error("$ùå Specify --episode=<slug>, --latest, or --auto");
+    console.error("‚ùå Specify --episode=<slug>, --latest, or --auto");
     console.error("   Example: npx tsx scripts/repurpose-episode.ts --episode=ep-308-my-episode");
     process.exit(1);
   }
@@ -1918,7 +1918,7 @@ async function main() {
       if (success) processed++;
     } catch (error) {
       const msg = error instanceof Error ? error.message : String(error);
-      console.error(`\n   $ùå Error processing ${ep.slug}: ${msg}`);
+      console.error(`\n   ‚ùå Error processing ${ep.slug}: ${msg}`);
       errors++;
     }
   }
@@ -2112,7 +2112,7 @@ for (const f of files) {
     found++;
   }
 }
-if (found === 0) console.log('No episodes with transcripts found $Äî test with --latest and verify transcript warning');
+if (found === 0) console.log('No episodes with transcripts found ‚Äî test with --latest and verify transcript warning');
 "
 ```
 
@@ -2149,13 +2149,13 @@ if (!fs.existsSync(blogPath)) { console.log('No blog post found'); process.exit(
 const { data } = matter(fs.readFileSync(blogPath, 'utf-8'));
 const required = ['title', 'seoDescription', 'excerpt', 'pillar', 'author', 'publishDate', 'keywords'];
 for (const field of required) {
-  console.log(field + ':', data[field] ? '$úì' : '$úó MISSING');
+  console.log(field + ':', data[field] ? '‚úì' : '‚úó MISSING');
 }
-console.log('sourceEpisode:', data.sourceEpisode || '$úó MISSING');
+console.log('sourceEpisode:', data.sourceEpisode || '‚úó MISSING');
 "
 ```
 
-Expected: All fields show $úì
+Expected: All fields show ‚úì
 
 - [ ] **Step 5: Commit any generated test content (if applicable)**
 
