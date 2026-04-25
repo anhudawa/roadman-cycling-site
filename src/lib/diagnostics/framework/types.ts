@@ -156,7 +156,19 @@ export type ReportSectionKind =
   | "risk_addendum"
   | "ask_roadman"
   | "community_invite"
-  | "disclaimer";
+  | "disclaimer"
+  // Value-stack additions
+  | "world_tour_comparison"
+  | "session_protocols"
+  | "ranked_actions"
+  | "body_composition"
+  | "meal_plan_7day"
+  | "three_window_fuelling"
+  | "ftp_5reasons"
+  | "ftp_6week_plan"
+  | "ftp_trajectory"
+  | "roadmap_90day"
+  | "not_done_yet_cta";
 
 export interface ReportSection {
   kind: ReportSectionKind;

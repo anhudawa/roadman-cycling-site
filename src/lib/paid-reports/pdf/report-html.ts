@@ -21,6 +21,9 @@ function escapeHtml(s: string): string {
 }
 
 function renderSection(section: RenderedSection): string {
+  if (section.kind === "not_done_yet_cta") {
+    return renderNdyCtaSection(section);
+  }
   const eyebrow = sectionEyebrowFor(section.kind);
   const paragraphs = section.paragraphs
     .map((p) => `<p style="margin:0 0 10px;color:#545559;line-height:1.6;">${escapeHtml(p)}</p>`)
@@ -44,6 +47,29 @@ function renderSection(section: RenderedSection): string {
   `;
 }
 
+function renderNdyCtaSection(section: RenderedSection): string {
+  const paragraphs = section.paragraphs
+    .map((p) => `<p style="margin:0 0 10px;color:#FAFAFA;opacity:0.9;line-height:1.6;font-size:14px;">${escapeHtml(p)}</p>`)
+    .join("");
+  const bullets =
+    section.bullets && section.bullets.length > 0
+      ? section.bullets
+          .map(
+            (b) =>
+              `<div style="display:flex;align-items:flex-start;margin:6px 0;"><span style="color:#F16363;margin-right:8px;flex-shrink:0;">▸</span><span style="color:#FAFAFA;opacity:0.9;font-size:13px;line-height:1.5;">${escapeHtml(b)}</span></div>`,
+          )
+          .join("")
+      : "";
+  return `
+    <section style="margin:0 0 32px;padding:24px;background:#210140;border-radius:8px;">
+      <p style="margin:0 0 6px;color:#F16363;font-size:11px;letter-spacing:2px;text-transform:uppercase;font-weight:700;">Your coaching option</p>
+      <h2 style="margin:0 0 16px;color:#FAFAFA;font-size:22px;font-weight:800;text-transform:uppercase;line-height:1.15;">${escapeHtml(section.title)}</h2>
+      ${paragraphs}
+      ${bullets ? `<div style="margin-top:12px;">${bullets}</div>` : ""}
+    </section>
+  `;
+}
+
 function sectionEyebrowFor(kind: string): string | undefined {
   const map: Record<string, string> = {
     summary: "The short answer",
@@ -58,6 +84,16 @@ function sectionEyebrowFor(kind: string): string | undefined {
     ask_roadman: "Keep going",
     community_invite: "The room",
     disclaimer: "Important",
+    world_tour_comparison: "World Tour benchmark",
+    session_protocols: "Session protocols",
+    ranked_actions: "Start here",
+    three_window_fuelling: "Before · During · After",
+    body_composition: "Race weight",
+    meal_plan_7day: "7-day template",
+    ftp_5reasons: "5 fixable reasons",
+    ftp_6week_plan: "6-week plan",
+    ftp_trajectory: "Projected gains",
+    roadmap_90day: "90-day roadmap",
   };
   return map[kind];
 }

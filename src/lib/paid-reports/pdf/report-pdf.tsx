@@ -147,6 +147,52 @@ const styles = StyleSheet.create({
     color: "#545559",
     lineHeight: 1.5,
   },
+  ndyCta: {
+    marginTop: 8,
+    padding: 16,
+    backgroundColor: "#210140",
+    borderRadius: 4,
+  },
+  ndyCtaEyebrow: {
+    fontSize: 8,
+    color: "#F16363",
+    letterSpacing: 2,
+    textTransform: "uppercase" as const,
+    marginBottom: 6,
+    fontFamily: "Helvetica-Bold",
+  },
+  ndyCtaTitle: {
+    fontSize: 16,
+    color: "#FAFAFA",
+    fontFamily: "Helvetica-Bold",
+    textTransform: "uppercase" as const,
+    marginBottom: 8,
+  },
+  ndyCtaParagraph: {
+    fontSize: 10,
+    color: "#FAFAFA",
+    opacity: 0.9,
+    lineHeight: 1.5,
+    marginBottom: 6,
+  },
+  ndyCtaBulletRow: {
+    flexDirection: "row" as const,
+    marginBottom: 4,
+    marginTop: 2,
+  },
+  ndyCtaBulletMarker: {
+    width: 14,
+    color: "#F16363",
+    fontFamily: "Helvetica-Bold",
+    fontSize: 10,
+  },
+  ndyCtaBulletText: {
+    flex: 1,
+    color: "#FAFAFA",
+    fontSize: 10,
+    lineHeight: 1.5,
+    opacity: 0.9,
+  },
 });
 
 function SectionBlock({
@@ -227,6 +273,7 @@ export function ReportDocument({ content }: { content: ReportContent }) {
         </Text>
         {bodySections.map((s, idx) => {
           const isDisclaimer = s.kind === "disclaimer";
+          const isNdyCta = s.kind === "not_done_yet_cta";
           return (
             <View key={idx}>
               {isDisclaimer ? (
@@ -248,6 +295,26 @@ export function ReportDocument({ content }: { content: ReportContent }) {
                     </Text>
                   ))}
                 </View>
+              ) : isNdyCta ? (
+                <View style={styles.ndyCta} wrap={false}>
+                  <Text style={styles.ndyCtaEyebrow}>
+                    {sectionEyebrowFor(s.kind)}
+                  </Text>
+                  <Text style={styles.ndyCtaTitle}>{s.title.toUpperCase()}</Text>
+                  {s.paragraphs.map((p, i) => (
+                    <Text key={i} style={styles.ndyCtaParagraph}>{p}</Text>
+                  ))}
+                  {s.bullets && s.bullets.length > 0 ? (
+                    <View style={{ marginTop: 6 }}>
+                      {s.bullets.map((b, i) => (
+                        <View key={i} style={styles.ndyCtaBulletRow}>
+                          <Text style={styles.ndyCtaBulletMarker}>▸</Text>
+                          <Text style={styles.ndyCtaBulletText}>{b}</Text>
+                        </View>
+                      ))}
+                    </View>
+                  ) : null}
+                </View>
               ) : (
                 <SectionBlock
                   eyebrow={sectionEyebrowFor(s.kind)}
@@ -256,7 +323,7 @@ export function ReportDocument({ content }: { content: ReportContent }) {
                   bullets={s.bullets}
                 />
               )}
-              {idx < bodySections.length - 1 && !isDisclaimer ? (
+              {idx < bodySections.length - 1 && !isDisclaimer && !isNdyCta ? (
                 <View style={styles.divider} />
               ) : null}
             </View>
@@ -287,6 +354,17 @@ function sectionEyebrowFor(kind: string): string | undefined {
     risk_addendum: "Watch-outs",
     ask_roadman: "Keep going",
     community_invite: "The room",
+    world_tour_comparison: "World Tour benchmark",
+    session_protocols: "Session protocols",
+    ranked_actions: "Start here",
+    three_window_fuelling: "Before · During · After",
+    body_composition: "Race weight",
+    meal_plan_7day: "7-day template",
+    ftp_5reasons: "5 fixable reasons",
+    ftp_6week_plan: "6-week plan",
+    ftp_trajectory: "Projected gains",
+    roadmap_90day: "90-day roadmap",
+    not_done_yet_cta: "Your coaching option",
   };
   return map[kind];
 }

@@ -15,7 +15,7 @@ import {
 } from "./reports";
 import { getOrderById } from "./orders";
 import { getProductBySlug } from "./products";
-import { buildReportContent } from "./pdf/content";
+import { buildReportContent, BUNDLE_REPORT_SECTIONS } from "./pdf/content";
 import { renderDeliveryEmailHtml, renderReportHtml } from "./pdf/report-html";
 import { logCrmSync } from "./crm-sync-log";
 import { sendReportEmail } from "./delivery";
@@ -104,7 +104,15 @@ export async function generateAndDeliverPaidReport(
 
     const def = getDefinition(toolResultRow.toolSlug);
 
-    const content = buildReportContent(def, toolResultRow, {
+    // For bundle products, substitute the comprehensive bundle section list
+    // so the report covers all three tools + the 90-day roadmap, using
+    // whatever tool result the buyer had at checkout for personalisation.
+    const isBundle = Boolean(product.bundleItems && product.bundleItems.length > 0);
+    const effectiveDef = isBundle
+      ? { ...def, reportSections: BUNDLE_REPORT_SECTIONS }
+      : def;
+
+    const content = buildReportContent(effectiveDef, toolResultRow, {
       productName: product.name,
       riderFirstName: rider?.firstName ?? null,
     });
