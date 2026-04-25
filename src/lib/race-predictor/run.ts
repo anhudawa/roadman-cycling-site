@@ -13,6 +13,7 @@ import {
   confidenceBracket,
   pickKeyInsight,
   type KeyInsight,
+  type Precision,
 } from "./insights";
 import type {
   Course,
@@ -105,6 +106,23 @@ export function buildRiderProfile(input: RiderInputDTO): RiderProfile {
   };
 }
 
+/**
+ * Pick the precision tier for the confidence band based on what the rider
+ * actually supplied. Explicit CdA + Crr + a real PD curve → ±1.5 %. FTP-only
+ * with default position → ±3 %. The defaults must under-promise: riders
+ * forgive a prediction they beat far more readily than one they miss.
+ */
+function inferPrecision(rider: RiderInputDTO): Precision {
+  const hasExplicitCda = typeof rider.cda === "number";
+  const hasExplicitCrr = typeof rider.crr === "number";
+  const hasFullPdCurve =
+    rider.powerProfile?.p20min !== undefined &&
+    rider.powerProfile?.p60min !== undefined;
+  if (hasExplicitCda && hasExplicitCrr && hasFullPdCurve) return "high";
+  if (hasFullPdCurve || (hasExplicitCda && hasExplicitCrr)) return "default";
+  return "low";
+}
+
 export function buildEnvironment(input?: EnvironmentInputDTO): Environment {
   return {
     airTemperature: input?.airTemperatureC ?? 15,
@@ -170,7 +188,8 @@ export function runPrediction(args: RunPredictArgs): PredictionRunResult {
           pacing: adjustedPacing,
         });
 
-  const confidence = confidenceBracket(result.totalTime);
+  const precision = inferPrecision(args.rider);
+  const confidence = confidenceBracket(result.totalTime, { precision });
   const insight = pickKeyInsight({ course: args.course, result, rider });
 
   return {

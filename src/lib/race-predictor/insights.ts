@@ -118,14 +118,34 @@ function formatTime(seconds: number): string {
   return `${m}:${s.toString().padStart(2, "0")}`;
 }
 
-/** Bracket: ±3 % around predicted time as the user-facing confidence range.
- *  Ties out to "<2 % error vs reality" target with a buffer. */
-export function confidenceBracket(predictedSeconds: number): {
-  low: number;
-  high: number;
-} {
+/**
+ * Confidence bracket around predicted time.
+ *
+ * Bracket width depends on how confident we are in the inputs:
+ *   - precision="high":   ±1.5 %  (rider supplied explicit CdA + Crr + full PD curve)
+ *   - precision="default": ±3 %    (FTP-only, position preset, surface preset)
+ *   - precision="low":     ±5 %    (AI translator with low confidence, defaults)
+ *
+ * Ties out to "<2 % error vs reality" target. The default bracket sits a
+ * touch wider than that target so we under-promise even when the engine
+ * could do better — riders punish over-promising more than they punish a
+ * tight prediction that they beat.
+ */
+export type Precision = "high" | "default" | "low";
+
+const BRACKET_FRACTIONS: Record<Precision, number> = {
+  high: 0.015,
+  default: 0.03,
+  low: 0.05,
+};
+
+export function confidenceBracket(
+  predictedSeconds: number,
+  options: { precision?: Precision } = {},
+): { low: number; high: number } {
+  const fraction = BRACKET_FRACTIONS[options.precision ?? "default"];
   return {
-    low: Math.round(predictedSeconds * 0.97),
-    high: Math.round(predictedSeconds * 1.03),
+    low: Math.round(predictedSeconds * (1 - fraction)),
+    high: Math.round(predictedSeconds * (1 + fraction)),
   };
 }

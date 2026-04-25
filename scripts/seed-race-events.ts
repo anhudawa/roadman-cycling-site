@@ -203,6 +203,42 @@ const EVENTS: EventSpec[] = [
     ],
   },
   {
+    slug: "wicklow-200",
+    name: "Wicklow 200",
+    country: "Ireland",
+    region: "Wicklow",
+    startLat: 53.14,
+    startLon: -6.06,
+    startElevation: 50,
+    surfaceSummary: "tarmac_mixed",
+    source: "wicklow_200",
+    eventDates: ["2026-06-21"],
+    segments: [
+      { km: 6, gradePct: 0.5 },     // Greystones flat run-out
+      { km: 5, gradePct: 5.5 },     // Calary climb (cat-3)
+      { km: 5, gradePct: -2.5 },
+      { km: 8, gradePct: 1.5 },
+      { km: 12, gradePct: 5.5 },    // Sally Gap (cat-2, ~500m)
+      { km: 12, gradePct: -4.5 },
+      { km: 10, gradePct: 1.0 },
+      { km: 8, gradePct: 6.0 },     // Wicklow Gap (cat-2)
+      { km: 9, gradePct: -4.5 },
+      { km: 12, gradePct: 1.5 },
+      { km: 6, gradePct: 6.5 },     // Slieve Maan (short cat-3)
+      { km: 6, gradePct: -3.5 },
+      { km: 15, gradePct: 1.0 },
+      { km: 5, gradePct: 6.0 },     // Drumgoff
+      { km: 5, gradePct: -3.5 },
+      { km: 10, gradePct: 1.5 },
+      { km: 6, gradePct: 5.5 },     // Glenmalure
+      { km: 7, gradePct: -3.0 },
+      { km: 18, gradePct: 0.5 },
+      { km: 5, gradePct: 4.0 },     // Roundwood lump
+      { km: 7, gradePct: -2.5 },
+      { km: 23, gradePct: -0.5 },   // run-in to Greystones
+    ],
+  },
+  {
     slug: "haute-route-pyrenees-stage-1",
     name: "Haute Route Pyrenees · Stage 1",
     country: "France",

@@ -18,10 +18,19 @@ export async function GET() {
       country: c.country,
       region: c.region,
       discipline: c.discipline,
+      distanceM: c.distanceM,
       distanceKm: Math.round(c.distanceM / 100) / 10,
       elevationGainM: c.elevationGainM,
       surfaceSummary: c.surfaceSummary,
       eventDates: c.eventDates ?? [],
+      // Slim shape used by visual course cards: only segments + climbs.
+      courseData: {
+        segments: c.courseData.segments,
+        climbs: c.courseData.climbs,
+        totalDistance: c.courseData.totalDistance,
+        totalElevationGain: c.courseData.totalElevationGain,
+        totalElevationLoss: c.courseData.totalElevationLoss,
+      },
     })),
   });
 }
