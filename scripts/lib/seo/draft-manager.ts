@@ -50,7 +50,7 @@ export function writeDraft(
   }
 
   fs.writeFileSync(filePath, content, "utf-8");
-  console.log(`  âœ… Wrote: ${filePath}`);
+  console.log(`  $œ… Wrote: ${filePath}`);
   return filePath;
 }
 

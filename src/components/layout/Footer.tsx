@@ -154,7 +154,7 @@ export function Footer() {
                 THE SATURDAY SPIN NEWSLETTER
               </h3>
               <p className="text-foreground-muted text-sm mb-4">
-                Every Saturday. The week&apos;s sharpest cycling insights â€” straight
+                Every Saturday. The week&apos;s sharpest cycling insights $€” straight
                 from the podcast.
               </p>
               <EmailCapture
@@ -247,11 +247,11 @@ export function Footer() {
                 &copy; {new Date().getFullYear()} Roadman Cycling. All rights
                 reserved.
               </span>
-              <span aria-hidden="true" className="hidden md:inline">Â·</span>
+              <span aria-hidden="true" className="hidden md:inline">$·</span>
               <span>
                 Based in Dublin, Ireland
               </span>
-              <span aria-hidden="true" className="hidden md:inline">Â·</span>
+              <span aria-hidden="true" className="hidden md:inline">$·</span>
               <a
                 href="mailto:anthony@roadmancycling.com"
                 className="hover:text-coral transition-colors"

@@ -1,10 +1,10 @@
-# Ted â€” Community Agent
+# Ted $€” Community Agent
 
 Autonomous agent that runs the free Roadman Cycling Clubhouse on Skool. Three jobs:
 
-1. **Daily community prompt** â€” one post per day, rotating through 5 content pillars.
-2. **New member welcomes** â€” within 24h, by first name, non-identical copy.
-3. **Thread surfacing** â€” tag returners, link podcast episodes, summarise discussion for lurkers.
+1. **Daily community prompt** $€” one post per day, rotating through 5 content pillars.
+2. **New member welcomes** $€” within 24h, by first name, non-identical copy.
+3. **Thread surfacing** $€” tag returners, link podcast episodes, summarise discussion for lurkers.
 
 Transparent: posts under a profile clearly identified as an AI assistant. Anthony batch-approves drafts. Kill switch in `/admin/ted/settings`.
 
@@ -12,8 +12,8 @@ Transparent: posts under a profile clearly identified as an AI assistant. Anthon
 
 Skool has no public posting API. Two runtimes:
 
-- **Drafting (no browser)** â†’ Vercel Cron endpoints under `/api/cron/ted-*`. Generates draft posts via Claude, writes to Postgres, runs voice-check. No Skool login.
-- **Posting + scanning (Playwright)** â†’ GitHub Actions workflows in `.github/workflows/ted-*.yml`. Reads approved drafts from Postgres, posts into Skool, scans threads.
+- **Drafting (no browser)** $†’ Vercel Cron endpoints under `/api/cron/ted-*`. Generates draft posts via Claude, writes to Postgres, runs voice-check. No Skool login.
+- **Posting + scanning (Playwright)** $†’ GitHub Actions workflows in `.github/workflows/ted-*.yml`. Reads approved drafts from Postgres, posts into Skool, scans threads.
 
 Skool credentials live as GitHub Actions secrets; the Next.js app never holds them.
 
@@ -33,12 +33,12 @@ npm run ted:surface -- --dry-run                # scan + generate, don't post
 
 ## Files
 
-- `src/index.ts` â€” entrypoint, dispatches on `--job=<name>`
-- `src/jobs/*` â€” job orchestrators
-- `src/generators/*` â€” Claude-backed content generators
-- `src/lib/*` â€” shared (anthropic, voice-check, skool-browser, memory, kill-switch, log, alert)
-- `prompts/*` â€” system prompts for each pillar and job (markdown)
-- `data/episode-topic-map.json` â€” manual top-50 podcast episodes by topic (curated for v1)
+- `src/index.ts` $€” entrypoint, dispatches on `--job=<name>`
+- `src/jobs/*` $€” job orchestrators
+- `src/generators/*` $€” Claude-backed content generators
+- `src/lib/*` $€” shared (anthropic, voice-check, skool-browser, memory, kill-switch, log, alert)
+- `prompts/*` $€” system prompts for each pillar and job (markdown)
+- `data/episode-topic-map.json` $€” manual top-50 podcast episodes by topic (curated for v1)
 
 ## Voice
 
@@ -48,9 +48,9 @@ Voice rules live in `prompts/system-ted.md` and the short-form voice-check in `p
 
 Per-job posting is gated by flags in the `ted_kill_switch` table:
 
-- `paused` â€” global kill switch
-- `post_prompt_enabled` â€” enable posting daily prompts
-- `post_welcome_enabled` â€” enable posting welcomes
-- `surface_threads_enabled` â€” enable posting thread surfaces
+- `paused` $€” global kill switch
+- `post_prompt_enabled` $€” enable posting daily prompts
+- `post_welcome_enabled` $€” enable posting welcomes
+- `surface_threads_enabled` $€” enable posting thread surfaces
 
 Week 1 all flags false (shadow mode). Flip per-job as each lane stabilises.

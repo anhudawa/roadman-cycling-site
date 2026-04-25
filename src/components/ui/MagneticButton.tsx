@@ -10,7 +10,7 @@ interface MagneticButtonProps {
 }
 
 /**
- * Magnetic button â€” subtly attracts toward the cursor on hover.
+ * Magnetic button $€” subtly attracts toward the cursor on hover.
  * A signature interaction pattern from Awwwards SOTD winners.
  */
 export function MagneticButton({

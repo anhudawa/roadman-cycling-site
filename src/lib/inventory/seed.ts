@@ -172,7 +172,7 @@ const SPONSORS: SeedSponsor[] = [
     contractEnd: '2026-12-31',
     totalValue: 60000,
     renewalDate: '2026-11-01',
-    notes: 'Annual title partner. £5k/mo.',
+    notes: 'Annual title partner. $5k/mo.',
     logoUrl: null,
   },
   {
@@ -184,7 +184,7 @@ const SPONSORS: SeedSponsor[] = [
     contractEnd: '2026-06-30',
     totalValue: 6000,
     renewalDate: '2026-06-01',
-    notes: 'Quarter standard. £2k/mo.',
+    notes: 'Quarter standard. $2k/mo.',
     logoUrl: null,
   },
   {
@@ -196,7 +196,7 @@ const SPONSORS: SeedSponsor[] = [
     contractEnd: '2026-06-30',
     totalValue: 6000,
     renewalDate: '2026-06-01',
-    notes: 'Quarter standard. £2k/mo.',
+    notes: 'Quarter standard. $2k/mo.',
     logoUrl: null,
   },
   {
@@ -208,7 +208,7 @@ const SPONSORS: SeedSponsor[] = [
     contractEnd: null,
     totalValue: null,
     renewalDate: null,
-    notes: 'Affiliate arrangement only. ~£5k/mo variable. No inventory slots assigned.',
+    notes: 'Affiliate arrangement only. ~$5k/mo variable. No inventory slots assigned.',
     logoUrl: null,
   },
   {

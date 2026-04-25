@@ -5,14 +5,14 @@ import { Card, ScrollReveal, GradientText } from "@/components/ui";
 import { JsonLd } from "@/components/seo/JsonLd";
 
 export const metadata: Metadata = {
-  title: "Research & Evidence Base â€” Roadman Cycling",
+  title: "Research & Evidence Base $€” Roadman Cycling",
   description:
     "The research, expert interviews, and evidence that underpins every Roadman article and coaching decision. Named sources, specific studies, zero guesswork.",
   alternates: {
     canonical: "https://roadmancycling.com/research",
   },
   openGraph: {
-    title: "Research & Evidence Base â€” Roadman Cycling",
+    title: "Research & Evidence Base $€” Roadman Cycling",
     description:
       "The research, expert interviews, and evidence behind Roadman's coaching methodology.",
     type: "website",
@@ -41,7 +41,7 @@ const RESEARCH_AREAS = [
       { title: "Every Lorang Episode", href: "/blog/every-roadman-episode-with-dan-lorang" },
       { title: "How a Pro Cyclist Trains for 60 Days", href: "/blog/how-pro-cyclist-trains-60-days" },
     ],
-    description: "Lorang's periodisation framework adapted from Grand Tour preparation to amateur cycling â€” the same methodology, different volume.",
+    description: "Lorang's periodisation framework adapted from Grand Tour preparation to amateur cycling $€” the same methodology, different volume.",
   },
   {
     title: "Cycling Nutrition & Body Composition",
@@ -62,7 +62,7 @@ const RESEARCH_AREAS = [
       { title: "Aero vs Weight", href: "/blog/aero-vs-weight-cyclist" },
       { title: "Tubeless vs Clincher Tyres", href: "/blog/tubeless-vs-clincher-tyres" },
     ],
-    description: "Bigham's hierarchy of aerodynamic gains â€” position, clothing, helmet, wheels, frame â€” validated by wind tunnel data and Hour Record preparation.",
+    description: "Bigham's hierarchy of aerodynamic gains $€” position, clothing, helmet, wheels, frame $€” validated by wind tunnel data and Hour Record preparation.",
   },
   {
     title: "Strength & Conditioning for Cyclists",
@@ -78,9 +78,9 @@ const RESEARCH_AREAS = [
     title: "Respiratory & Breathing Performance",
     expert: "Dr Sellers",
     articles: [
-      { title: "Breathing Techniques: 2â€“5% Time-Trial Gains", href: "/blog/breathing-techniques-cycling-performance" },
+      { title: "Breathing Techniques: 2$€“5% Time-Trial Gains", href: "/blog/breathing-techniques-cycling-performance" },
     ],
-    description: "Inspiratory muscle training producing 2â€“5% time-trial improvements in trained cyclists in the published literature. Device protocols and evidence review.",
+    description: "Inspiratory muscle training producing 2$€“5% time-trial improvements in trained cyclists in the published literature. Device protocols and evidence review.",
   },
 ];
 
@@ -91,7 +91,7 @@ export default function ResearchPage() {
         data={{
           "@context": "https://schema.org",
           "@type": "CollectionPage",
-          name: "Research & Evidence Base â€” Roadman Cycling",
+          name: "Research & Evidence Base $€” Roadman Cycling",
           description:
             "The research, expert interviews, and evidence that underpins Roadman's coaching methodology and content.",
           url: "https://roadmancycling.com/research",
@@ -157,7 +157,7 @@ export default function ResearchPage() {
                           href={a.href}
                           className="inline-flex items-center gap-1 rounded-lg border border-white/15 hover:border-coral/40 bg-white/[0.04] hover:bg-white/[0.07] px-3 py-1.5 text-xs font-heading text-off-white tracking-wider transition-all"
                         >
-                          {a.title} <span className="text-coral">â†’</span>
+                          {a.title} <span className="text-coral">$†’</span>
                         </Link>
                       ))}
                     </div>
@@ -184,10 +184,10 @@ export default function ResearchPage() {
                 </a>.
               </p>
               <div className="flex flex-wrap gap-4 justify-center text-sm">
-                <Link href="/editorial-standards" className="text-coral hover:text-coral/80 transition-colors">Editorial Standards â†’</Link>
-                <Link href="/about" className="text-coral hover:text-coral/80 transition-colors">About â†’</Link>
-                <Link href="/podcast" className="text-coral hover:text-coral/80 transition-colors">Podcast â†’</Link>
-                <Link href="/blog" className="text-coral hover:text-coral/80 transition-colors">All Articles â†’</Link>
+                <Link href="/editorial-standards" className="text-coral hover:text-coral/80 transition-colors">Editorial Standards $†’</Link>
+                <Link href="/about" className="text-coral hover:text-coral/80 transition-colors">About $†’</Link>
+                <Link href="/podcast" className="text-coral hover:text-coral/80 transition-colors">Podcast $†’</Link>
+                <Link href="/blog" className="text-coral hover:text-coral/80 transition-colors">All Articles $†’</Link>
               </div>
             </ScrollReveal>
           </Container>

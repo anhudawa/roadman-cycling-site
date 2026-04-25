@@ -2,14 +2,14 @@ import Link from "next/link";
 import { ScrollReveal } from "@/components/ui";
 
 /**
- * Persona router â€” 4 tiles that route visitors to the right entry point
+ * Persona router $€” 4 tiles that route visitors to the right entry point
  * based on where they are in their cycling journey.
  *
  * Mirrors Roadman's 4 audience personas:
- *   - Tom    â†’ plateaued club racer                 (FTP focus)
- *   - Mark   â†’ event-specific gran fondo achiever   (plans focus)
- *   - James  â†’ comeback athlete                     (return-from-break focus)
- *   - Dave   â†’ podcast loyalist, passive consumer   (podcast focus)
+ *   - Tom    $†’ plateaued club racer                 (FTP focus)
+ *   - Mark   $†’ event-specific gran fondo achiever   (plans focus)
+ *   - James  $†’ comeback athlete                     (return-from-break focus)
+ *   - Dave   $†’ podcast loyalist, passive consumer   (podcast focus)
  *
  * Each tile uses the persona's dominant emotional trigger as the opener
  * ("I've stopped getting faster", "I'm training for...") rather than
@@ -21,7 +21,7 @@ const personas = [
   {
     opener: "I've stopped getting faster.",
     detail:
-      "Plateaued FTP, same results for months. Take the 3-question diagnostic â€” find out what's actually keeping you stuck.",
+      "Plateaued FTP, same results for months. Take the 3-question diagnostic $€” find out what's actually keeping you stuck.",
     cta: "Break the plateau",
     href: "/you/plateau",
     accent: "coral",
@@ -29,7 +29,7 @@ const personas = [
   {
     opener: "I've got a target event.",
     detail:
-      "A sportive, race, or fondo on the calendar. Find which phase you should be in right now â€” and the week's anchor session.",
+      "A sportive, race, or fondo on the calendar. Find which phase you should be in right now $€” and the week's anchor session.",
     cta: "Build the plan",
     href: "/you/event",
     accent: "purple",
@@ -37,7 +37,7 @@ const personas = [
   {
     opener: "I'm coming back.",
     detail:
-      "Life got in the way. Injury, kids, work, a crash. Rebuild the engine without wasting months â€” the right way back.",
+      "Life got in the way. Injury, kids, work, a crash. Rebuild the engine without wasting months $€” the right way back.",
     cta: "Rebuild the engine",
     href: "/you/comeback",
     accent: "coral",

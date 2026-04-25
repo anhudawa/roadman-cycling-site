@@ -150,7 +150,7 @@ async function main() {
   console.log();
 
   if (rankOnly) {
-    console.log("Rank-only mode ‚Äî stopping here.");
+    console.log("Rank-only mode $Äî stopping here.");
     return;
   }
 
@@ -174,7 +174,7 @@ async function main() {
 
     const existingArticleList = existingTitles.slice(0, 30).map((t) => `- ${t}`).join("\n");
 
-    const system = `You are Anthony Walsh, host of the Roadman Cycling Podcast. You're writing a comprehensive blog article based on one of your podcast episodes. Write in your natural voice: direct, second-person, evidence-based, conversational. Reference the podcast conversation naturally. If there was a guest, attribute their insights. Be specific ‚Äî use numbers, protocols, and actionable advice.`;
+    const system = `You are Anthony Walsh, host of the Roadman Cycling Podcast. You're writing a comprehensive blog article based on one of your podcast episodes. Write in your natural voice: direct, second-person, evidence-based, conversational. Reference the podcast conversation naturally. If there was a guest, attribute their insights. Be specific $Äî use numbers, protocols, and actionable advice.`;
 
     const prompt = `Here are examples of your voice from other episodes:
 
@@ -199,11 +199,11 @@ ${existingArticleList}
 
 Write the article following this structure:
 
-1. Start with a direct answer paragraph (100 words) ‚Äî answer the core question/topic of this episode
-2. "Key Takeaways" section ‚Äî 5-8 bullet points, 20-40 words each
-3. 2-3 deep-dive sections (300-500 words each) ‚Äî the main insights from the episode. Use descriptive ## headers that target search queries.
-4. "What This Means for Your Training" section (200-300 words) ‚Äî practical application
-5. FAQ section ‚Äî 3-5 questions with 50-100 word answers
+1. Start with a direct answer paragraph (100 words) $Äî answer the core question/topic of this episode
+2. "Key Takeaways" section $Äî 5-8 bullet points, 20-40 words each
+3. 2-3 deep-dive sections (300-500 words each) $Äî the main insights from the episode. Use descriptive ## headers that target search queries.
+4. "What This Means for Your Training" section (200-300 words) $Äî practical application
+5. FAQ section $Äî 3-5 questions with 50-100 word answers
 
 Target 1500-2500 words total. Write in markdown. Do NOT include a title H1.
 
@@ -211,7 +211,7 @@ At the very end, on a new line, output the following metadata in this exact JSON
 {"suggestedTitle":"...","seoTitle":"...","seoDescription":"...","excerpt":"...","suggestedKeywords":["..."],"internalLinks":["article-slug-1","article-slug-2"]}
 
 The suggestedTitle should be rewritten for search intent (not the podcast episode title).
-The seoTitle must be ‚â§60 characters.
+The seoTitle must be $â§60 characters.
 The seoDescription must be 150-160 characters.`;
 
     try {
@@ -234,7 +234,7 @@ The seoDescription must be 150-160 characters.`;
             metadata = JSON.parse(jsonMatch[0]);
             articleBody = result.text.slice(0, jsonMatch.index).trim();
           } catch {
-            console.log("  ‚ö† Could not parse metadata JSON, using defaults");
+            console.log("  $ö† Could not parse metadata JSON, using defaults");
           }
         }
 
@@ -259,7 +259,7 @@ The seoDescription must be 150-160 characters.`;
         const mdxContent = matter.stringify(articleBody, frontmatter);
         const filename = `companion-${ep.slug}.mdx`;
         writeDraft("companion", filename, mdxContent, false);
-        console.log(`  ‚úÖ Generated (${wordCount} words)`);
+        console.log(`  $úÖ Generated (${wordCount} words)`);
 
         upsertManifestEntry(manifest, ep.slug);
       }
@@ -267,13 +267,13 @@ The seoDescription must be 150-160 characters.`;
       processed++;
     } catch (error) {
       const msg = error instanceof Error ? error.message : String(error);
-      console.log(`  ‚ùå Failed: ${msg}`);
+      console.log(`  $ùå Failed: ${msg}`);
     }
   }
 
   saveManifest("companion", manifest, dryRun);
 
-  console.log(`\n‚úÖ Done: ${processed} companion articles generated`);
+  console.log(`\n$úÖ Done: ${processed} companion articles generated`);
   printCostSummary();
 }
 

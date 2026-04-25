@@ -34,7 +34,7 @@ export async function safeQuery<T>(
   }
 }
 
-/** Merge many SafeResults â€” aggregate their data + surface the first error. */
+/** Merge many SafeResults $€” aggregate their data + surface the first error. */
 export function anyNeedsMigration(results: SafeResult<unknown>[]): boolean {
   return results.some((r) => r.migrationsNeeded);
 }

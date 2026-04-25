@@ -235,7 +235,7 @@ export function RuleBuilder({
 
         {stageOpts.length > 0 && (
           <div>
-            <label className="text-[10px] uppercase tracking-widest text-foreground-subtle font-medium">To stage (optional â€” blank = any)</label>
+            <label className="text-[10px] uppercase tracking-widest text-foreground-subtle font-medium">To stage (optional $€” blank = any)</label>
             <select
               value={draft.triggerConfig.toStage ?? ""}
               onChange={(e) => setField("triggerConfig", { ...draft.triggerConfig, toStage: e.target.value || undefined })}

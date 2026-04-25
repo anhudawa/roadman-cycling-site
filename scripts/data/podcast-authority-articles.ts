@@ -9,7 +9,7 @@
  *   - Guest-compilation pages (every episode with Seiler / Lorang)
  *   - Persona pages (podcasts for cyclists over 40, for indoor training)
  *
- * Source: SEO Domination Playbook Â§6.2 â†’ "Podcast / Authority Cluster (11)"
+ * Source: SEO Domination Playbook $§6.2 $†’ "Podcast / Authority Cluster (11)"
  */
 
 import type { ClusterArticleSpec } from "./triathlon-cluster-articles";
@@ -20,9 +20,9 @@ export const PODCAST_AUTHORITY_ARTICLES: ClusterArticleSpec[] = [
     title: "The 20 Best Cycling Podcasts for 2026",
     seoTitle: "The 20 Best Cycling Podcasts for 2026 (Ranked & Reviewed)",
     seoDescription:
-      "Twenty cycling podcasts worth your commute in 2026 â€” from training deep-dives to pro-racing analysis. Who each show is for, what they do well, and what they skip.",
+      "Twenty cycling podcasts worth your commute in 2026 $€” from training deep-dives to pro-racing analysis. Who each show is for, what they do well, and what they skip.",
     excerpt:
-      "The cycling podcast landscape is crowded. Here are the 20 shows that actually move the needle in 2026 â€” organised by what you'd want to listen for.",
+      "The cycling podcast landscape is crowded. Here are the 20 shows that actually move the needle in 2026 $€” organised by what you'd want to listen for.",
     targetKeyword: "best cycling podcasts 2026",
     supportingKeywords: [
       "best cycling podcasts",
@@ -56,9 +56,9 @@ export const PODCAST_AUTHORITY_ARTICLES: ClusterArticleSpec[] = [
     title: "Best Indoor Cycling Podcasts to Survive the Winter",
     seoTitle: "Best Indoor Cycling Podcasts to Survive the Winter (2026)",
     seoDescription:
-      "The cycling podcasts that make indoor training tolerable â€” two-hour episodes with enough substance to justify the trainer time.",
+      "The cycling podcasts that make indoor training tolerable $€” two-hour episodes with enough substance to justify the trainer time.",
     excerpt:
-      "Indoor training hurts less with the right podcast. Here are the cycling shows built for long turbo sessions â€” with episode length, pacing, and substance in mind.",
+      "Indoor training hurts less with the right podcast. Here are the cycling shows built for long turbo sessions $€” with episode length, pacing, and substance in mind.",
     targetKeyword: "best indoor cycling podcasts",
     supportingKeywords: [
       "cycling podcasts for turbo",
@@ -89,7 +89,7 @@ export const PODCAST_AUTHORITY_ARTICLES: ClusterArticleSpec[] = [
     title: "Best Cycling Training Podcasts for Age-Groupers",
     seoTitle: "Best Cycling Training Podcasts for Age-Groupers (2026)",
     seoDescription:
-      "The cycling podcasts that actually help age-group cyclists get faster â€” training science, realistic methodology, and what applies to riders with jobs and families.",
+      "The cycling podcasts that actually help age-group cyclists get faster $€” training science, realistic methodology, and what applies to riders with jobs and families.",
     excerpt:
       "Most cycling training podcasts are aimed at pros or total beginners. Here are the shows that actually speak to the age-grouper balancing real life with real progression.",
     targetKeyword: "cycling training podcasts",
@@ -121,9 +121,9 @@ export const PODCAST_AUTHORITY_ARTICLES: ClusterArticleSpec[] = [
     title: "Best Cycling Podcast for Triathletes",
     seoTitle: "Best Cycling Podcast for Triathletes (2026 Guide)",
     seoDescription:
-      "Cycling content that actually speaks to triathletes â€” bike-leg pacing, fuelling, and the training that protects your run. Which shows get it.",
+      "Cycling content that actually speaks to triathletes $€” bike-leg pacing, fuelling, and the training that protects your run. Which shows get it.",
     excerpt:
-      "Most cycling podcasts don't know the bike is half your triathlon. Here are the shows â€” and specific episodes â€” that do.",
+      "Most cycling podcasts don't know the bike is half your triathlon. Here are the shows $€” and specific episodes $€” that do.",
     targetKeyword: "cycling podcast for triathletes",
     supportingKeywords: [
       "best cycling podcast triathlon",
@@ -157,9 +157,9 @@ export const PODCAST_AUTHORITY_ARTICLES: ClusterArticleSpec[] = [
     seoTitle:
       "Fast Talk vs The Cycling Podcast vs Roadman: Which One for You?",
     seoDescription:
-      "A fair comparison of three of the biggest cycling podcasts â€” what each does best, which listener each is for, and why you might want to listen to all three.",
+      "A fair comparison of three of the biggest cycling podcasts $€” what each does best, which listener each is for, and why you might want to listen to all three.",
     excerpt:
-      "Three of cycling's best podcasts. Three different missions. Here's the honest breakdown of what each does best â€” and when to reach for which.",
+      "Three of cycling's best podcasts. Three different missions. Here's the honest breakdown of what each does best $€” and when to reach for which.",
     targetKeyword: "fast talk vs the cycling podcast",
     supportingKeywords: [
       "cycling podcast comparison",
@@ -192,7 +192,7 @@ export const PODCAST_AUTHORITY_ARTICLES: ClusterArticleSpec[] = [
     seoTitle:
       "Every Episode of Roadman Podcast with Dan Lorang (Full Archive)",
     seoDescription:
-      "Every Roadman Cycling Podcast appearance with Dan Lorang â€” Red Bull-Bora-Hansgrohe's performance lead and the coach behind Frodeno and Charles-Barclay.",
+      "Every Roadman Cycling Podcast appearance with Dan Lorang $€” Red Bull-Bora-Hansgrohe's performance lead and the coach behind Frodeno and Charles-Barclay.",
     excerpt:
       "Dan Lorang has been on Roadman more than any other World Tour coach. Here's every episode, what it covers, and why it matters for age-group training.",
     targetKeyword: "dan lorang podcast",
@@ -225,7 +225,7 @@ export const PODCAST_AUTHORITY_ARTICLES: ClusterArticleSpec[] = [
     title: "Every Episode with Prof. Stephen Seiler",
     seoTitle: "Every Roadman Episode with Prof. Stephen Seiler (Full Archive)",
     seoDescription:
-      "Every Roadman Cycling Podcast appearance with Prof. Stephen Seiler â€” the exercise physiologist who coined polarised training. Full archive with episode summaries.",
+      "Every Roadman Cycling Podcast appearance with Prof. Stephen Seiler $€” the exercise physiologist who coined polarised training. Full archive with episode summaries.",
     excerpt:
       "Prof. Seiler has shaped more endurance training in the last 20 years than almost anyone. Here's every Roadman appearance, with what to take from each.",
     targetKeyword: "stephen seiler podcast",
@@ -264,9 +264,9 @@ export const PODCAST_AUTHORITY_ARTICLES: ClusterArticleSpec[] = [
     title: "Podcasts for Cyclists Over 40: 10 Shows That Get It",
     seoTitle: "Podcasts for Cyclists Over 40: 10 Shows That Get It (2026)",
     seoDescription:
-      "Cycling and endurance podcasts aimed at masters athletes â€” longevity, recovery, training around real life. The shows that understand the over-40 cyclist.",
+      "Cycling and endurance podcasts aimed at masters athletes $€” longevity, recovery, training around real life. The shows that understand the over-40 cyclist.",
     excerpt:
-      "Most cycling content is aimed at 25-year-old racers. Here are the ten podcasts that actually speak to the masters cyclist â€” longevity, recovery, and the training that still works after 40.",
+      "Most cycling content is aimed at 25-year-old racers. Here are the ten podcasts that actually speak to the masters cyclist $€” longevity, recovery, and the training that still works after 40.",
     targetKeyword: "cycling podcasts over 40",
     supportingKeywords: [
       "podcasts for masters cyclists",
@@ -296,7 +296,7 @@ export const PODCAST_AUTHORITY_ARTICLES: ClusterArticleSpec[] = [
     title: "Cycling Podcasts for Indoor Training",
     seoTitle: "Cycling Podcasts for Indoor Training (2026 Guide)",
     seoDescription:
-      "The cycling podcasts that genuinely pair with indoor sessions â€” which shows work for intervals, which for Zone 2, and which to save for recovery rides.",
+      "The cycling podcasts that genuinely pair with indoor sessions $€” which shows work for intervals, which for Zone 2, and which to save for recovery rides.",
     excerpt:
       "Not every cycling podcast survives a threshold interval. Here's the match-up: which shows pair with which indoor session type.",
     targetKeyword: "cycling podcasts indoor training",
@@ -307,7 +307,7 @@ export const PODCAST_AUTHORITY_ARTICLES: ClusterArticleSpec[] = [
       "podcasts for cyclists indoor",
     ],
     angle:
-      "Session-matched recommendation. Different from the 'best indoor podcasts' article â€” this is granular (Zone 2 vs intervals vs recovery).",
+      "Session-matched recommendation. Different from the 'best indoor podcasts' article $€” this is granular (Zone 2 vs intervals vs recovery).",
     pillar: "coaching",
     requiredSections: [
       "Podcasts for Zone 2 endurance rides",
@@ -325,13 +325,13 @@ export const PODCAST_AUTHORITY_ARTICLES: ClusterArticleSpec[] = [
 
   {
     slug: "how-we-record-the-roadman-podcast",
-    title: "How We Record the Roadman Podcast â€” Behind the Scenes",
+    title: "How We Record the Roadman Podcast $€” Behind the Scenes",
     seoTitle:
       "How We Record the Roadman Cycling Podcast (Behind the Scenes, 2026)",
     seoDescription:
-      "The gear, the workflow, and the editorial choices behind the Roadman Cycling Podcast â€” from 1-on-1 guest prep to multi-camera YouTube publishing.",
+      "The gear, the workflow, and the editorial choices behind the Roadman Cycling Podcast $€” from 1-on-1 guest prep to multi-camera YouTube publishing.",
     excerpt:
-      "The Roadman Cycling Podcast is a full-stack media operation now. Here's the gear, the workflow, the prep â€” and the editorial choices that shape every episode.",
+      "The Roadman Cycling Podcast is a full-stack media operation now. Here's the gear, the workflow, the prep $€” and the editorial choices that shape every episode.",
     targetKeyword: "how to record cycling podcast",
     supportingKeywords: [
       "podcast production workflow",
@@ -364,9 +364,9 @@ export const PODCAST_AUTHORITY_ARTICLES: ClusterArticleSpec[] = [
     seoTitle:
       "What Cycling Podcasts Got Wrong About Polarised Training (And What Seiler Actually Said)",
     seoDescription:
-      "Most cycling content simplifies polarised training into '80/20' and stops there. Here's the nuance Prof. Seiler keeps pointing out â€” and why it matters for your week.",
+      "Most cycling content simplifies polarised training into '80/20' and stops there. Here's the nuance Prof. Seiler keeps pointing out $€” and why it matters for your week.",
     excerpt:
-      "The cycling internet has turned polarised training into a one-line prescription. Prof. Seiler has spent a decade pointing out what that misses â€” and it matters for how you train.",
+      "The cycling internet has turned polarised training into a one-line prescription. Prof. Seiler has spent a decade pointing out what that misses $€” and it matters for how you train.",
     targetKeyword: "polarised training mistakes",
     supportingKeywords: [
       "polarised training misconceptions",

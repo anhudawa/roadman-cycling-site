@@ -51,7 +51,7 @@ export interface MrrSummary {
   churnedSubscribers30d: number;
   /** Approximate churned MRR (count Ã— current ARPU). */
   approxChurnedMrrCents: number;
-  /** Trial â†’ paid conversion rate last 30d. */
+  /** Trial $†’ paid conversion rate last 30d. */
   trialsStarted30d: number;
   trialsConverted30d: number;
   trialConversionRate: number; // 0..1
@@ -72,7 +72,7 @@ export async function getMrrSummary(
 ): Promise<MrrSummary | null> {
   const trendDays = opts.trendDays ?? 90;
 
-  // 1. MRR now â€” prefer today's snapshot, fall back to live fetch.
+  // 1. MRR now $€” prefer today's snapshot, fall back to live fetch.
   const latest = await db
     .select()
     .from(stripeSnapshots)
@@ -119,7 +119,7 @@ export async function getMrrSummary(
     pastDueMrrCents: Number(h.pastDueMrrCents ?? 0),
   }));
 
-  // 3. Last-30d avg daily net add â†’ monthly projection
+  // 3. Last-30d avg daily net add $†’ monthly projection
   const last30 = trend.slice(-30);
   const sum30 = last30.reduce((s, p) => s + p.netNewMrrCents, 0);
   const avgDaily = last30.length > 0 ? sum30 / last30.length : 0;
@@ -164,7 +164,7 @@ export async function getMrrSummary(
     churnedSubscribers30d * approxArpu
   );
 
-  // 6. Trial â†’ paid conversion (trailing 30d)
+  // 6. Trial $†’ paid conversion (trailing 30d)
   const [trialsStartedRow] = await db
     .select({ n: count() })
     .from(subscribers)

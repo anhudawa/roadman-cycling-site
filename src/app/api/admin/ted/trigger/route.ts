@@ -20,7 +20,7 @@ function canTrigger(): { ok: true } | { ok: false; reason: string } {
   return { ok: true };
 }
 
-// GET â€” report whether manual triggers are available.
+// GET $€” report whether manual triggers are available.
 export async function GET() {
   try {
     await requireAuth();
@@ -35,7 +35,7 @@ export async function GET() {
   });
 }
 
-// POST â€” trigger a workflow_dispatch on the given workflow.
+// POST $€” trigger a workflow_dispatch on the given workflow.
 // Body: { workflow: "draft-prompt" | "post-prompt" | "welcomes" | "surface-threads", inputs?: Record<string,string> }
 export async function POST(request: Request) {
   try {

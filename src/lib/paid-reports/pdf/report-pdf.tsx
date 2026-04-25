@@ -10,7 +10,7 @@ import type { ReportContent } from "./content";
 /**
  * Brand-matched PDF document for a paid report.
  *
- * Uses Helvetica (built-in) intentionally â€” custom font registration
+ * Uses Helvetica (built-in) intentionally $€” custom font registration
  * with @react-pdf/renderer at runtime is fragile and fails silently in
  * serverless. Visual identity comes from colour, layout, and typography
  * weighting, not the typeface.
@@ -175,7 +175,7 @@ function SectionBlock({
         <View style={styles.bulletList}>
           {bullets.map((b, i) => (
             <View key={i} style={styles.bulletRow}>
-              <Text style={styles.bulletMarker}>â€¢</Text>
+              <Text style={styles.bulletMarker}>$€¢</Text>
               <Text style={styles.bulletText}>{b}</Text>
             </View>
           ))}
@@ -203,7 +203,7 @@ export function ReportDocument({ content }: { content: ReportContent }) {
     >
       {/* Cover */}
       <Page size="A4" style={styles.coverPage}>
-        <Text style={styles.coverEyebrow}>Roadman Cycling Â· Paid Report</Text>
+        <Text style={styles.coverEyebrow}>Roadman Cycling $· Paid Report</Text>
         <Text style={styles.coverTitle}>
           {coverSection?.title ?? content.productName}
         </Text>
@@ -215,7 +215,7 @@ export function ReportDocument({ content }: { content: ReportContent }) {
           {content.summary}
         </Text>
         <Text style={styles.coverMeta}>
-          Generated {dateLabel} Â· roadmancycling.com
+          Generated {dateLabel} $· roadmancycling.com
         </Text>
       </Page>
 
@@ -265,7 +265,7 @@ export function ReportDocument({ content }: { content: ReportContent }) {
         <Text
           style={styles.footer}
           render={({ pageNumber, totalPages }) =>
-            `Roadman Cycling Â· ${content.productName} Â· page ${pageNumber} of ${totalPages}`
+            `Roadman Cycling $· ${content.productName} $· page ${pageNumber} of ${totalPages}`
           }
           fixed
         />

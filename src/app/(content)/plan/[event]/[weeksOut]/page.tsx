@@ -43,7 +43,7 @@ export async function generateMetadata({
   const phase = getPhase(weeksOut);
   if (!event || !phase) return { title: "Training Plan" };
 
-  const title = `${event.name} Training Plan ‚Äî ${phase.weeksOut} Weeks Out`;
+  const title = `${event.name} Training Plan $Äî ${phase.weeksOut} Weeks Out`;
   const description = `Personalised ${phase.weeksOut}-week training plan for the ${event.name} (${event.distanceKm}km, ${event.elevationGainM}m climbing, ${event.region}). ${phase.tagline}`;
 
   return {
@@ -149,13 +149,13 @@ export default async function PlanPage({
                 <span className="text-off-white">{event.shortName}</span>
               </nav>
               <p className="text-coral font-heading text-sm tracking-widest mb-3">
-                {phase.label} ¬∑ {phase.weeksOut} WEEKS OUT
+                {phase.label} $∑ {phase.weeksOut} WEEKS OUT
               </p>
               <h1
                 className="font-heading text-off-white mb-5 leading-none"
                 style={{ fontSize: "var(--text-hero)" }}
               >
-                {event.name.toUpperCase()} ‚Äî <span className="text-coral">{phase.weeksOut} WEEKS OUT</span>
+                {event.name.toUpperCase()} $Äî <span className="text-coral">{phase.weeksOut} WEEKS OUT</span>
               </h1>
               <p className="plan-tagline text-foreground-muted text-lg md:text-xl leading-relaxed mb-6">
                 {phase.tagline} Built around the {event.distanceKm}km /{" "}
@@ -164,18 +164,18 @@ export default async function PlanPage({
               </p>
               <div className="inline-flex flex-wrap items-center gap-x-5 gap-y-2 text-xs text-foreground-subtle font-body tracking-widest uppercase">
                 <span>{event.distanceKm} km</span>
-                <span className="opacity-50">¬∑</span>
+                <span className="opacity-50">$∑</span>
                 <span>{event.elevationGainM.toLocaleString()} m climbing</span>
-                <span className="opacity-50">¬∑</span>
+                <span className="opacity-50">$∑</span>
                 <span>{event.typicalFinishTime}</span>
-                <span className="opacity-50">¬∑</span>
+                <span className="opacity-50">$∑</span>
                 <span>{event.defaultMonth}</span>
               </div>
             </ScrollReveal>
           </Container>
         </Section>
 
-        {/* The focus ‚Äî what training emphasises */}
+        {/* The focus $Äî what training emphasises */}
         <Section background="charcoal" className="!py-14">
           <Container width="narrow">
             <ScrollReveal direction="up">
@@ -315,7 +315,7 @@ export default async function PlanPage({
                     key={m}
                     className="flex items-start gap-2 text-foreground-muted leading-relaxed"
                   >
-                    <span className="text-coral mt-0.5 shrink-0">‚úï</span>
+                    <span className="text-coral mt-0.5 shrink-0">$úï</span>
                     <span>{m}</span>
                   </li>
                 ))}
@@ -428,7 +428,7 @@ export default async function PlanPage({
                   className="rounded-xl border border-white/10 bg-white/[0.03] p-5 hover:border-coral/30 hover:bg-white/[0.06] transition-all block"
                 >
                   <p className="text-xs text-foreground-subtle uppercase tracking-widest mb-1">
-                    Earlier phase ‚Üê {prev.weeksOut} weeks out
+                    Earlier phase $Üê {prev.weeksOut} weeks out
                   </p>
                   <p className="font-heading text-off-white text-base leading-tight">
                     {prev.label}
@@ -441,7 +441,7 @@ export default async function PlanPage({
                   className="rounded-xl border border-white/10 bg-white/[0.03] p-5 hover:border-coral/30 hover:bg-white/[0.06] transition-all block"
                 >
                   <p className="text-xs text-foreground-subtle uppercase tracking-widest mb-1">
-                    Later phase ‚Üí {next.weeksOut} weeks out
+                    Later phase $Üí {next.weeksOut} weeks out
                   </p>
                   <p className="font-heading text-off-white text-base leading-tight">
                     {next.label}
@@ -469,7 +469,7 @@ export default async function PlanPage({
   );
 }
 
-/** Event √ó phase FAQ generator ‚Äî 4-5 targeted questions per combination. */
+/** Event √ó phase FAQ generator $Äî 4-5 targeted questions per combination. */
 function buildFaqs(
   event: TrainingEvent,
   phase: TrainingPhase,
@@ -480,17 +480,17 @@ function buildFaqs(
     question: `Is ${phase.weeksOut} weeks enough to train for the ${event.name}?`,
     answer:
       phase.weeksOut >= 12
-        ? `Yes, ${phase.weeksOut} weeks is a strong window. That's enough time for a full base phase, build, peak, and taper ‚Äî the classical periodisation structure. ${event.elevationGainM.toLocaleString()}m of climbing over ${event.distanceKm}km is built with sustained Z2 volume (base) + threshold work (build) in that order.`
+        ? `Yes, ${phase.weeksOut} weeks is a strong window. That's enough time for a full base phase, build, peak, and taper $Äî the classical periodisation structure. ${event.elevationGainM.toLocaleString()}m of climbing over ${event.distanceKm}km is built with sustained Z2 volume (base) + threshold work (build) in that order.`
         : phase.weeksOut >= 4
-          ? `Yes, if you already have a reasonable aerobic base. ${phase.weeksOut} weeks out means peak and taper ‚Äî we can sharpen and refine, but we can't build new aerobic fitness from scratch. If you're starting from zero now, aim for finishing rather than personal bests.`
+          ? `Yes, if you already have a reasonable aerobic base. ${phase.weeksOut} weeks out means peak and taper $Äî we can sharpen and refine, but we can't build new aerobic fitness from scratch. If you're starting from zero now, aim for finishing rather than personal bests.`
           : phase.weeksOut >= 2
-            ? `${phase.weeksOut} weeks out your training can't meaningfully change your fitness ‚Äî you're in taper. Focus on recovery, hydration, familiarisation with your kit + fuelling, and event-day logistics. Don't try to add fitness this close to the event.`
+            ? `${phase.weeksOut} weeks out your training can't meaningfully change your fitness $Äî you're in taper. Focus on recovery, hydration, familiarisation with your kit + fuelling, and event-day logistics. Don't try to add fitness this close to the event.`
             : `Race week is about showing up fresh. No new fitness gains possible in a week. Focus on sleep, hydration, carb loading 48-72 hours out, and mental prep. Any hard session this week costs you more than it gives.`,
   });
 
   qs.push({
     question: `What's the hardest part of the ${event.name}?`,
-    answer: `${event.keyCharacteristics[0]}. ${event.commonMistakes[0].replace(/^\w/, (c) => c.toLowerCase())} ‚Äî so pacing discipline is the single biggest lever most amateurs miss. ${event.pacingStrategy.split(".")[0]}.`,
+    answer: `${event.keyCharacteristics[0]}. ${event.commonMistakes[0].replace(/^\w/, (c) => c.toLowerCase())} $Äî so pacing discipline is the single biggest lever most amateurs miss. ${event.pacingStrategy.split(".")[0]}.`,
   });
 
   qs.push({
@@ -499,13 +499,13 @@ function buildFaqs(
       phase.weeksOut >= 12
         ? `Aim for 8-12 hours/week if you're targeting a strong finish. The long weekend ride is the anchor (3-4 hours at ${phase.weeksOut > 16 ? "early base" : phase.weeksOut > 12 ? "late base" : "build"} intensities) plus 3-4 structured weekday sessions. Volume matters more than intensity at this phase.`
         : phase.weeksOut >= 4
-          ? `Reduce to 8-10 hours with rising intensity quality. This is the peak phase ‚Äî fewer, sharper sessions. Long weekend ride stays but drops slightly (3-4 hours with event-specific work). Weekday sessions are shorter and more intense.`
+          ? `Reduce to 8-10 hours with rising intensity quality. This is the peak phase $Äî fewer, sharper sessions. Long weekend ride stays but drops slightly (3-4 hours with event-specific work). Weekday sessions are shorter and more intense.`
           : `Drop to 6-8 hours with minimal intensity. The taper protects the fitness you've built rather than growing more. Short, sharp openers to keep legs awake. Nothing aerobically challenging.`,
   });
 
   qs.push({
     question: `Do I need a coach to train for the ${event.name}?`,
-    answer: `You don't need a coach to finish. You do need structure. If you're new to sportives, have a target finish time, have a plateau you can't break, or have a history of peaking wrong, a coached plan pays for itself. Inside the Not Done Yet coaching community the plan is built backwards from your event date ‚Äî base, build, peak, taper timed to the week the ${event.name} runs. 7-day free trial, $195/mo.`,
+    answer: `You don't need a coach to finish. You do need structure. If you're new to sportives, have a target finish time, have a plateau you can't break, or have a history of peaking wrong, a coached plan pays for itself. Inside the Not Done Yet coaching community the plan is built backwards from your event date $Äî base, build, peak, taper timed to the week the ${event.name} runs. 7-day free trial, $195/mo.`,
   });
 
   qs.push({

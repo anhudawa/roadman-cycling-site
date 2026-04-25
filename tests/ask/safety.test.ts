@@ -10,7 +10,7 @@ describe("ask/safety detectSafety", () => {
   });
 
   it("flags injury for a torn meniscus", () => {
-    const d = detectSafety("I tore my meniscus last week â€” what rehab should I do?");
+    const d = detectSafety("I tore my meniscus last week $€” what rehab should I do?");
     expect(d.flags).toContain("injury_escalation");
     expect(d.block).toBe(true);
     expect(d.templateKey).toBe("injury");

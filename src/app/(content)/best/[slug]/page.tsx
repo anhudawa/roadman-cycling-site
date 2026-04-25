@@ -126,7 +126,7 @@ export default async function BestForPage({
                         <p className="text-coral text-sm font-heading tracking-wider mb-2">{pick.verdict.toUpperCase()}</p>
                         <p className="text-foreground-muted text-sm leading-relaxed mb-3">{pick.bestFor}</p>
                         <Link href={pick.href} className="text-coral hover:text-coral/80 text-sm transition-colors">
-                          Read comparison â†’
+                          Read comparison $†’
                         </Link>
                       </div>
                     </div>

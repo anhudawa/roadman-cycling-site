@@ -62,7 +62,7 @@ export async function POST(request: NextRequest) {
             unit_amount: unitAmount,
             product_data: {
               name: slotConfig.label,
-              description: `Roadman Cycling ${slotConfig.label} â€” single placement, scripted by Anthony.`,
+              description: `Roadman Cycling ${slotConfig.label} $€” single placement, scripted by Anthony.`,
             },
           },
           quantity: 1,

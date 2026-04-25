@@ -6,7 +6,7 @@ import { validateBreakdown, type ValidationResult } from "./validator";
 
 /**
  * Calls Claude to generate a personalised breakdown, validates it,
- * and falls back to the static Â§9 template on failure. One retry on
+ * and falls back to the static $§9 template on failure. One retry on
  * transient failures; on the second strike we return the fallback
  * rather than blocking the user on a spinner.
  */
@@ -16,8 +16,8 @@ const MAX_TOKENS = 2000;
 const TEMPERATURE = 0.7;
 
 // Hard ceiling per Claude attempt. Paid traffic won't tolerate a
-// 15-second spinner â€” at 6s we abandon the attempt and either retry
-// (if attempts remain) or fall back to the static Â§9 template.
+// 15-second spinner $€” at 6s we abandon the attempt and either retry
+// (if attempts remain) or fall back to the static $§9 template.
 const ATTEMPT_TIMEOUT_MS = 6_000;
 
 export type { GenerationSource } from "./types";
@@ -28,7 +28,7 @@ export interface GenerationResult {
   /** null if we returned the static fallback straight away. */
   rawModelOutput: string | null;
   /** Validation result from the last model attempt, even if we ended
-   * up returning the fallback â€” useful for the admin QA view. */
+   * up returning the fallback $€” useful for the admin QA view. */
   validation: ValidationResult | null;
   attempts: number;
   errors: string[];
@@ -145,11 +145,11 @@ function fallbackFor(primary: Profile, secondary: Profile | null): Breakdown {
   if (!secondary) return base;
 
   // Append a contributing-factor note pulled from the secondary's own
-  // static template so the fallback path still respects Â§8's
+  // static template so the fallback path still respects $§8's
   // secondary-profile rule.
   return {
     ...base,
-    secondaryNote: `Your secondary issue is ${PROFILE_LABELS[secondary]}. Fix the primary first, but keep ${PROFILE_LABELS[secondary]} in view â€” it's close enough to the surface to matter.`,
+    secondaryNote: `Your secondary issue is ${PROFILE_LABELS[secondary]}. Fix the primary first, but keep ${PROFILE_LABELS[secondary]} in view $€” it's close enough to the surface to matter.`,
   };
 }
 
@@ -161,7 +161,7 @@ export async function generateBreakdown(
   const errors: string[] = [];
 
   if (!process.env.ANTHROPIC_API_KEY) {
-    errors.push("ANTHROPIC_API_KEY missing â€” serving static fallback");
+    errors.push("ANTHROPIC_API_KEY missing $€” serving static fallback");
     return {
       breakdown: fallbackFor(primary, secondary),
       source: "fallback",

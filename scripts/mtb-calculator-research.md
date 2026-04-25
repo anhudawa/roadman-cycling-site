@@ -1,4 +1,4 @@
-# MTB Calculator Research â€” Shock Pressure & Tyre Pressure
+# MTB Calculator Research $€” Shock Pressure & Tyre Pressure
 
 ## Date: 2026-04-08
 
@@ -375,9 +375,9 @@ For tyres, use Bike Faff-style formula with terrain and casing adjustments.
 
 ### Current Calculator Issues
 
-1. **Fork pressure is brand-agnostic** â€” uses a single linear formula (`PSI = kg * multiplier + offset`) when in reality Fox 36 FLOAT at 175lbs = 86 PSI, while RockShox Zeb at 175lbs = 50-74 PSI depending on travel. This is a MASSIVE difference.
+1. **Fork pressure is brand-agnostic** $€” uses a single linear formula (`PSI = kg * multiplier + offset`) when in reality Fox 36 FLOAT at 175lbs = 86 PSI, while RockShox Zeb at 175lbs = 50-74 PSI depending on travel. This is a MASSIVE difference.
 
-2. **No fork brand/model selection** â€” the current calculator only has shock brand/model selection, not fork brand/model.
+2. **No fork brand/model selection** $€” the current calculator only has shock brand/model selection, not fork brand/model.
 
 3. **Shock data is reasonably close** but needs refinement:
    - Fox Float X/DPX2 existing: [100,140], [120,160], etc. vs Fox official: "PSI = body weight in lbs" starting point

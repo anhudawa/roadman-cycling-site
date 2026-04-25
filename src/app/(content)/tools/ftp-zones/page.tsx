@@ -19,14 +19,14 @@ interface Zone {
 
 const ZONES: Zone[] = [
   {
-    name: "Zone 1 â€” Active Recovery",
+    name: "Zone 1 $€” Active Recovery",
     description: "Easy spinning. Recovery rides. Coffee stops.",
     minPercent: 0,
     maxPercent: 55,
     color: "#94A3B8",
   },
   {
-    name: "Zone 2 â€” Endurance",
+    name: "Zone 2 $€” Endurance",
     description:
       "The base. Where pros spend 80% of their time. Build your aerobic engine here.",
     minPercent: 56,
@@ -34,7 +34,7 @@ const ZONES: Zone[] = [
     color: "#3B82F6",
   },
   {
-    name: "Zone 3 â€” Tempo",
+    name: "Zone 3 $€” Tempo",
     description:
       "Moderate effort. Useful for specific training blocks but often the 'grey zone' to avoid.",
     minPercent: 76,
@@ -42,7 +42,7 @@ const ZONES: Zone[] = [
     color: "#22C55E",
   },
   {
-    name: "Zone 4 â€” Threshold",
+    name: "Zone 4 $€” Threshold",
     description:
       "Your FTP. The effort you can sustain for about an hour. The line between aerobic and anaerobic.",
     minPercent: 91,
@@ -50,7 +50,7 @@ const ZONES: Zone[] = [
     color: "#EAB308",
   },
   {
-    name: "Zone 5 â€” VO2max",
+    name: "Zone 5 $€” VO2max",
     description:
       "Hard intervals. 3-8 minute efforts that build your ceiling. This is where breakthroughs happen.",
     minPercent: 106,
@@ -58,7 +58,7 @@ const ZONES: Zone[] = [
     color: "#F97316",
   },
   {
-    name: "Zone 6 â€” Anaerobic Capacity",
+    name: "Zone 6 $€” Anaerobic Capacity",
     description:
       "Short, sharp efforts. 30 seconds to 3 minutes. Builds top-end power for attacks and sprints.",
     minPercent: 121,
@@ -66,7 +66,7 @@ const ZONES: Zone[] = [
     color: "#EF4444",
   },
   {
-    name: "Zone 7 â€” Neuromuscular",
+    name: "Zone 7 $€” Neuromuscular",
     description:
       "Max sprints. Under 30 seconds. Pure explosive power. Think Cavendish on the Champs-Elysees.",
     minPercent: 151,
@@ -109,7 +109,7 @@ export default function FTPZonesPage() {
       const max = z.maxPercent === 999 ? null : Math.round((z.maxPercent / 100) * ftpValue);
       return `${z.name}: ${max ? `${min}-${max}W` : `${min}W+`}`;
     }).join("\n");
-    const text = `FTP Zones (${ftpValue}W FTP)\n${zoneLines}\nâ€” roadmancycling.com/tools/ftp-zones`;
+    const text = `FTP Zones (${ftpValue}W FTP)\n${zoneLines}\n$€” roadmancycling.com/tools/ftp-zones`;
     await navigator.clipboard.writeText(text);
     setCopied(true);
     setTimeout(() => setCopied(false), 2000);
@@ -202,7 +202,7 @@ export default function FTPZonesPage() {
               >
                 <div className="flex items-center justify-between mb-6">
                   <h2 className="font-heading text-2xl text-off-white">
-                    YOUR POWER ZONES â€” {ftpValue}W FTP
+                    YOUR POWER ZONES $€” {ftpValue}W FTP
                   </h2>
                   <button
                     onClick={handleCopyResults}
@@ -224,7 +224,7 @@ export default function FTPZonesPage() {
                     ftp={ftpValue}
                     zones={ZONES.map((z) => ({
                       name: z.name,
-                      shortName: z.name.split("â€”")[0].trim(),
+                      shortName: z.name.split("$€”")[0].trim(),
                       minWatts: z.minPercent === 0 ? 0 : Math.round((z.minPercent / 100) * ftpValue),
                       maxWatts: z.maxPercent === 999 ? null : Math.round((z.maxPercent / 100) * ftpValue),
                       color: z.color,
@@ -268,11 +268,11 @@ export default function FTPZonesPage() {
                       </div>
                       <div className="sm:text-right shrink-0">
                         <p className="font-heading text-2xl text-coral stat-glow">
-                          {max ? `${min}â€“${max}W` : `${min}W+`}
+                          {max ? `${min}$€“${max}W` : `${min}W+`}
                         </p>
                         <p className="text-xs text-foreground-subtle">
                           {max
-                            ? `${zone.minPercent}â€“${zone.maxPercent}% FTP`
+                            ? `${zone.minPercent}$€“${zone.maxPercent}% FTP`
                             : `${zone.minPercent}%+ FTP`}
                         </p>
                       </div>
@@ -314,7 +314,7 @@ export default function FTPZonesPage() {
                   </div>
                 </div>
 
-                {/* Email-gated report â€” "get the 7-day training week built
+                {/* Email-gated report $€” "get the 7-day training week built
                     around your exact FTP". Personalised, delivered via Resend,
                     subscribes to Beehiiv tagged tool-ftp-zones-report. */}
                 <motion.div
@@ -330,7 +330,7 @@ export default function FTPZonesPage() {
                     outputs={{
                       wkg: null,
                       zones: ZONES.map((z) => ({
-                        zone: z.name.split("â€”")[0].trim(),
+                        zone: z.name.split("$€”")[0].trim(),
                         label: z.name,
                         lower:
                           z.minPercent === 0
@@ -343,7 +343,7 @@ export default function FTPZonesPage() {
                       })),
                     }}
                     heading={`Save your ${ftpValue}w power zones`}
-                    subheading="We'll email your personalised zone table and save the permalink to your rider profile, so you can pull it up from your phone mid-session â€” or hand it to Ask Roadman to plan a session around it."
+                    subheading="We'll email your personalised zone table and save the permalink to your rider profile, so you can pull it up from your phone mid-session $€” or hand it to Ask Roadman to plan a session around it."
                     bullets={[
                       "Permalink you can screenshot or share",
                       "Emailed copy with every zone range in watts",
@@ -374,7 +374,7 @@ export default function FTPZonesPage() {
                     </li>
                     <li>
                       <Link href="/topics/ftp-training" className="text-coral hover:text-coral/80 text-sm transition-colors">
-                        FTP Training topic hub â†’
+                        FTP Training topic hub $†’
                       </Link>
                     </li>
                     <li>
@@ -385,7 +385,7 @@ export default function FTPZonesPage() {
                   </ul>
                 </motion.div>
 
-                {/* Coaching CTA â€” post-calculation, highest intent */}
+                {/* Coaching CTA $€” post-calculation, highest intent */}
                 <motion.div
                   className="mt-8 rounded-2xl border border-coral/30 bg-gradient-to-br from-coral/10 via-deep-purple/40 to-charcoal p-6 md:p-8 text-center"
                   initial={{ opacity: 0, y: 10 }}
@@ -407,7 +407,7 @@ export default function FTPZonesPage() {
                     className="inline-flex items-center justify-center gap-2 font-heading tracking-wider uppercase rounded-md bg-coral text-off-white hover:bg-coral/90 px-6 py-3 text-sm transition-all"
                     data-track="tool_ftp_apply"
                   >
-                    Apply for Coaching â†’
+                    Apply for Coaching $†’
                   </a>
                 </motion.div>
               </motion.div>

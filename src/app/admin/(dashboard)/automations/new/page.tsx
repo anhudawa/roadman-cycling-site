@@ -10,7 +10,7 @@ export default async function NewAutomationPage() {
     <div>
       <div className="mb-6">
         <Link href="/admin/automations" className="text-xs text-foreground-subtle hover:text-accent">
-          ‚Üê Automations
+          $Üê Automations
         </Link>
         <h1 className="font-heading text-2xl text-off-white tracking-wider uppercase mt-2">
           New Automation Rule

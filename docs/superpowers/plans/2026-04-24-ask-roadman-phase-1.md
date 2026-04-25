@@ -1,4 +1,4 @@
-# Ask Roadman â€” Phase 0 + Phase 1 Implementation Plan
+# Ask Roadman $€” Phase 0 + Phase 1 Implementation Plan
 
 > **For agentic workers:** REQUIRED SUB-SKILL: Use superpowers:subagent-driven-development (recommended) or superpowers:executing-plans to implement this plan task-by-task. Steps use checkbox (`- [ ]`) syntax for tracking.
 
@@ -25,7 +25,7 @@ src/lib/ask/
   system-prompt.ts                # Ask Roadman system prompt (exported string + fn)
   safety.ts                       # pre-filter + extractSafetyFlags + post-filter
   intent.ts                       # classifyIntent via Haiku
-  cta.ts                          # intent Ã— retrieval â†’ CtaDescriptor
+  cta.ts                          # intent Ã— retrieval $†’ CtaDescriptor
   store.ts                        # DB: createSession, appendMessage, appendRetrievals, loadSession
   stream.ts                       # SSE encoder + Anthropic stream bridge
   rate-limit.ts                   # tier-aware Upstash wrapper
@@ -94,13 +94,13 @@ src/lib/db/schema.ts              # add rider_profiles, ask_sessions, ask_messag
 - All DB migrations: generated via `npm run db:generate`, applied via `npm run db:migrate`.
 - Commits in this plan all use conventional-commit prefix `feat(ask):`, `chore(ask):`, etc.
 - Every task ends with its own commit. Commits are small and self-contained.
-- Every new module has a matching `*.test.ts` file sharing the name (e.g. `safety.ts` â†” `tests/ask/safety.test.ts`).
+- Every new module has a matching `*.test.ts` file sharing the name (e.g. `safety.ts` $†” `tests/ask/safety.test.ts`).
 - Type names: `Intent`, `CtaDescriptor`, `RetrievalResult`, `AskSession`, `AskMessage`, `AskRetrieval`, `RiderProfile`, `SafetyFlag`, `SafetyDecision`.
 - Anthropic model IDs: `claude-opus-4-7` (primary), `claude-haiku-4-5-20251001` (intent + classifications).
 
 ---
 
-# Phase 0 â€” Foundations
+# Phase 0 $€” Foundations
 
 ## Task 0.1: Confirm env vars + document new ones
 
@@ -111,14 +111,14 @@ src/lib/db/schema.ts              # add rider_profiles, ask_sessions, ask_messag
 
 ```
 # Ask Roadman
-# Voyage AI â€” already used by PR #76 MCP server for embeddings
+# Voyage AI $€” already used by PR #76 MCP server for embeddings
 VOYAGE_API_KEY=
 # Embedding provider override (voyage | openai). Defaults to voyage.
 EMBEDDING_PROVIDER=voyage
 # OpenAI fallback for embeddings (only needed if EMBEDDING_PROVIDER=openai)
 OPENAI_API_KEY=
 
-# Upstash Redis â€” already used by PR #76 rate limiter
+# Upstash Redis $€” already used by PR #76 rate limiter
 UPSTASH_REDIS_REST_URL=
 UPSTASH_REDIS_REST_TOKEN=
 
@@ -145,7 +145,7 @@ git commit -m "chore(ask): document env vars for Ask Roadman"
 
 - [ ] **Step 1:** Read `SEED_PLACEHOLDERS.md` end-to-end. It documents what each seed script expects.
 
-- [ ] **Step 2:** Check if production DB already has data â€” run:
+- [ ] **Step 2:** Check if production DB already has data $€” run:
 ```bash
 psql "$POSTGRES_URL" -c "SELECT count(*) FROM mcp_episodes; SELECT count(*) FROM mcp_methodology_principles;"
 ```
@@ -164,7 +164,7 @@ Each script is idempotent (upsert by unique key). Re-running is safe.
 ```bash
 psql "$POSTGRES_URL" -c "SELECT count(*) FROM mcp_episode_embeddings; SELECT count(*) FROM mcp_methodology_embeddings;"
 ```
-Expected: both > 0. If not, the seed script's embedding step failed â€” debug via `node scripts/seed-mcp-content.ts 2>&1 | tail -40`.
+Expected: both > 0. If not, the seed script's embedding step failed $€” debug via `node scripts/seed-mcp-content.ts 2>&1 | tail -40`.
 
 - [ ] **Step 5:** Smoke-test retrieval by hitting MCP directly:
 ```bash
@@ -174,7 +174,7 @@ curl -s -X POST http://localhost:3000/api/mcp \
 ```
 Expected: 1-3. Non-zero means retrieval is live.
 
-- [ ] **Step 6:** No commit â€” this is one-shot seeding, not code.
+- [ ] **Step 6:** No commit $€” this is one-shot seeding, not code.
 
 ---
 
@@ -189,12 +189,12 @@ Expected: 1-3. Non-zero means retrieval is live.
 tail -30 src/lib/db/schema.ts
 ```
 
-- [ ] **Step 2:** Append to `src/lib/db/schema.ts` (imports already include `pgTable, serial, text, integer, boolean, timestamp, jsonb, uuid, numeric, index` â€” if any are missing, add to the existing import at the top; specifically `uuid`, `numeric`, and `date` may need to be added):
+- [ ] **Step 2:** Append to `src/lib/db/schema.ts` (imports already include `pgTable, serial, text, integer, boolean, timestamp, jsonb, uuid, numeric, index` $€” if any are missing, add to the existing import at the top; specifically `uuid`, `numeric`, and `date` may need to be added):
 
 ```ts
-// â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+// $•$•$•$•$•$•$•$•$•$•$•$•$•$•$•$•$•$•$•$•$•$•$•$•$•$•$•$•$•$•$•$•$•$•$•$•$•$•$•$•$•$•$•$•$•$•$•$•$•$•$•$•$•$•$•$•$•$•$•
 // Ask Roadman + Rider Profiles
-// â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+// $•$•$•$•$•$•$•$•$•$•$•$•$•$•$•$•$•$•$•$•$•$•$•$•$•$•$•$•$•$•$•$•$•$•$•$•$•$•$•$•$•$•$•$•$•$•$•$•$•$•$•$•$•$•$•$•$•$•$•
 
 export const riderProfiles = pgTable(
   "rider_profiles",
@@ -305,7 +305,7 @@ export const askRetrievals = pgTable(
 ```bash
 npm run db:generate
 ```
-Expected: creates `drizzle/0028_*.sql` with the new tables + indexes. Review the file â€” it should contain `CREATE TABLE "rider_profiles"`, `CREATE TABLE "ask_sessions"`, `CREATE TABLE "ask_messages"`, `CREATE TABLE "ask_retrievals"`.
+Expected: creates `drizzle/0028_*.sql` with the new tables + indexes. Review the file $€” it should contain `CREATE TABLE "rider_profiles"`, `CREATE TABLE "ask_sessions"`, `CREATE TABLE "ask_messages"`, `CREATE TABLE "ask_retrievals"`.
 
 - [ ] **Step 5:** Rename the generated file to `drizzle/0028_ask_roadman_and_rider_profiles.sql` (drop any autogenerated suffix).
 
@@ -338,7 +338,7 @@ git commit -m "feat(ask): add rider_profiles + ask_sessions/messages/retrievals 
 ls node_modules/next/dist/docs/
 ```
 
-- [ ] **Step 2:** Read the App Router route handlers doc (path depends on Next's own structure â€” search for "route-handlers" or "api-reference"):
+- [ ] **Step 2:** Read the App Router route handlers doc (path depends on Next's own structure $€” search for "route-handlers" or "api-reference"):
 ```bash
 find node_modules/next/dist/docs -name '*route*' -o -name '*streaming*' | head
 ```
@@ -353,7 +353,7 @@ find node_modules/next/dist/docs -name '*route*' -o -name '*streaming*' | head
 
 ---
 
-# Phase 1 â€” Ask Roadman thin slice
+# Phase 1 $€” Ask Roadman thin slice
 
 ## Task 1: Shared types module
 
@@ -362,7 +362,7 @@ find node_modules/next/dist/docs -name '*route*' -o -name '*streaming*' | head
 
 - [ ] **Step 1:** Create `src/lib/ask/types.ts`:
 ```ts
-// Ask Roadman shared types. Server-only module â€” no React imports.
+// Ask Roadman shared types. Server-only module $€” no React imports.
 
 export type Intent =
   | "plateau"
@@ -381,8 +381,8 @@ export type Intent =
 export interface IntentClassification {
   intent: Intent;
   confidence: "high" | "medium" | "low";
-  deep: boolean;                   // true â†’ route to Opus; false â†’ Haiku
-  needsProfile: boolean;           // true â†’ inject profile into context
+  deep: boolean;                   // true $†’ route to Opus; false $†’ Haiku
+  needsProfile: boolean;           // true $†’ inject profile into context
 }
 
 export type SafetyFlag =
@@ -394,7 +394,7 @@ export type SafetyFlag =
 
 export interface SafetyDecision {
   flags: SafetyFlag[];
-  block: boolean;                  // true â†’ bypass RAG, return fixed template
+  block: boolean;                  // true $†’ bypass RAG, return fixed template
   templateKey?: "medical" | "injury" | "weight" | "dangerous";
 }
 
@@ -669,7 +669,7 @@ export async function upsertByEmail(input: UpsertRiderProfileInput): Promise<Rid
     })
     .returning();
 
-  // Build the patch â€” only set fields that were explicitly passed (undefined preserves existing).
+  // Build the patch $€” only set fields that were explicitly passed (undefined preserves existing).
   const patch: Record<string, unknown> = { updatedAt: now };
   if (input.firstName !== undefined) patch.firstName = input.firstName;
   if (input.ageRange !== undefined) patch.ageRange = input.ageRange;
@@ -772,8 +772,8 @@ describe("ask/store", () => {
     const retrievals = await appendRetrievals({
       messageId: msg.id,
       items: [
-        { sourceType: "episode", sourceId: "123", chunkText: "â€¦", score: 0.84, usedInAnswer: true },
-        { sourceType: "methodology", sourceId: "7", chunkText: "â€¦", score: 0.71, usedInAnswer: false },
+        { sourceType: "episode", sourceId: "123", chunkText: "$€¦", score: 0.84, usedInAnswer: true },
+        { sourceType: "methodology", sourceId: "7", chunkText: "$€¦", score: 0.71, usedInAnswer: false },
       ],
     });
     expect(retrievals).toHaveLength(2);
@@ -789,7 +789,7 @@ describe("ask/store", () => {
 });
 ```
 
-- [ ] **Step 2:** Run the test â€” expect fail (missing module).
+- [ ] **Step 2:** Run the test $€” expect fail (missing module).
 ```bash
 npm run test:run -- tests/ask/store.test.ts
 ```
@@ -1004,7 +1004,7 @@ export async function checkAskRateLimit(params: {
   key: string;                     // sessionId || email || ipHash
 }): Promise<RateLimitResult> {
   const limiters = getLimiters();
-  if (!limiters) return { allowed: true };   // dev mode â€” no redis
+  if (!limiters) return { allowed: true };   // dev mode $€” no redis
 
   if (params.tier === "anon") {
     const [ten, day] = await Promise.all([
@@ -1022,7 +1022,7 @@ export async function checkAskRateLimit(params: {
 }
 ```
 
-- [ ] **Step 2:** Manual smoke check â€” without Upstash env vars, should always allow:
+- [ ] **Step 2:** Manual smoke check $€” without Upstash env vars, should always allow:
 ```bash
 node -e "require('dotenv').config();(async()=>{const m=await import('./src/lib/ask/rate-limit.ts');console.log(await m.checkAskRateLimit({tier:'anon',key:'x'}));})()"
 ```
@@ -1056,7 +1056,7 @@ describe("ask/safety detectSafety", () => {
   });
 
   it("flags injury for acute knee pain", () => {
-    const d = detectSafety("I tore my meniscus last week â€” what rehab should I do?");
+    const d = detectSafety("I tore my meniscus last week $€” what rehab should I do?");
     expect(d.flags).toContain("injury_escalation");
     expect(d.block).toBe(true);
     expect(d.templateKey).toBe("injury");
@@ -1084,7 +1084,7 @@ describe("ask/safety detectSafety", () => {
 });
 ```
 
-- [ ] **Step 2:** Run â€” expect fail.
+- [ ] **Step 2:** Run $€” expect fail.
 ```bash
 npm run test:run -- tests/ask/safety.test.ts
 ```
@@ -1094,7 +1094,7 @@ npm run test:run -- tests/ask/safety.test.ts
 import type { CtaDescriptor, SafetyDecision, SafetyFlag } from "./types";
 
 // Deterministic regex pre-filter. Any match blocks the model call and returns
-// a fixed escalation response. False positives are acceptable â€” false
+// a fixed escalation response. False positives are acceptable $€” false
 // negatives are not.
 
 const MEDICAL_PATTERNS: RegExp[] = [
@@ -1173,7 +1173,7 @@ export function isBlocked(d: SafetyDecision): boolean {
 const SATURDAY_SPIN_CTA: CtaDescriptor = {
   key: "saturday_spin",
   title: "Get Saturday Spin",
-  body: "Roadman's weekly newsletter â€” safe, evidence-led performance writing.",
+  body: "Roadman's weekly newsletter $€” safe, evidence-led performance writing.",
   href: "https://roadmancycling.com/saturday-spin",
   analyticsEvent: "cta_clicked:saturday_spin",
 };
@@ -1181,7 +1181,7 @@ const SATURDAY_SPIN_CTA: CtaDescriptor = {
 const MASTERS_HUB_CTA: CtaDescriptor = {
   key: "clubhouse",
   title: "Join the Clubhouse",
-  body: "Free Roadman community â€” ask riders and coaches who've been there.",
+  body: "Free Roadman community $€” ask riders and coaches who've been there.",
   href: "https://skool.com/roadman",
   analyticsEvent: "cta_clicked:clubhouse",
 };
@@ -1196,19 +1196,19 @@ export function buildSafeResponse(decision: SafetyDecision): SafeResponseOutput 
     case "medical":
       return {
         text:
-          "This sounds like a medical concern, not a training question. Please stop riding and speak to a doctor â€” same-day if the symptoms are new or getting worse. Chest pain, fainting, shortness of breath, or sudden vision changes can be serious and a GP or A&E is the right next call, not an AI or a coach.\n\nOnce you've been medically cleared, Roadman's nutrition, zone 2, and recovery content can help rebuild â€” but get the medical side sorted first.",
+          "This sounds like a medical concern, not a training question. Please stop riding and speak to a doctor $€” same-day if the symptoms are new or getting worse. Chest pain, fainting, shortness of breath, or sudden vision changes can be serious and a GP or A&E is the right next call, not an AI or a coach.\n\nOnce you've been medically cleared, Roadman's nutrition, zone 2, and recovery content can help rebuild $€” but get the medical side sorted first.",
         cta: SATURDAY_SPIN_CTA,
       };
     case "injury":
       return {
         text:
-          "For an acute injury like this, a physio or sports-medicine doctor is the right first stop â€” not an AI, a coach, or a training app. Rehab prescriptions need hands-on assessment that we can't replicate.\n\nOnce you've got a diagnosis and a rehab plan, Roadman has content on getting back into riding conservatively â€” but don't skip the assessment.",
+          "For an acute injury like this, a physio or sports-medicine doctor is the right first stop $€” not an AI, a coach, or a training app. Rehab prescriptions need hands-on assessment that we can't replicate.\n\nOnce you've got a diagnosis and a rehab plan, Roadman has content on getting back into riding conservatively $€” but don't skip the assessment.",
         cta: MASTERS_HUB_CTA,
       };
     case "weight":
       return {
         text:
-          "Large, fast weight cuts aren't something we'll help design. Underfuelling wrecks training adaptations, wrecks recovery, and in some cases wrecks health. If food feels out of control, please speak to a registered dietitian or your GP â€” that's the right support, not a cycling AI.\n\nRoadman's nutrition content focuses on fuelling for performance and sustainable body composition changes measured in months, not weeks.",
+          "Large, fast weight cuts aren't something we'll help design. Underfuelling wrecks training adaptations, wrecks recovery, and in some cases wrecks health. If food feels out of control, please speak to a registered dietitian or your GP $€” that's the right support, not a cycling AI.\n\nRoadman's nutrition content focuses on fuelling for performance and sustainable body composition changes measured in months, not weeks.",
         cta: SATURDAY_SPIN_CTA,
       };
     case "dangerous":
@@ -1220,7 +1220,7 @@ export function buildSafeResponse(decision: SafetyDecision): SafeResponseOutput 
     default:
       return {
         text:
-          "This one sits outside what Ask Roadman should answer. Please speak to the right professional â€” doctor, physio, or registered dietitian â€” depending on the specifics.",
+          "This one sits outside what Ask Roadman should answer. Please speak to the right professional $€” doctor, physio, or registered dietitian $€” depending on the specifics.",
         cta: SATURDAY_SPIN_CTA,
       };
   }
@@ -1239,7 +1239,7 @@ export function postFilterCitations(
   for (const q of quoted) {
     const inner = q.slice(1, -1);
     if (!knownTitles.some((t) => t.toLowerCase().includes(inner.toLowerCase().slice(0, 30)))) {
-      // not necessarily invented â€” could be a user quote or a concept. Only
+      // not necessarily invented $€” could be a user quote or a concept. Only
       // flag if immediately preceded by 'episode' or 'podcast'.
       if (new RegExp(`(episode|podcast)\\s*(named|titled|called)?\\s*${q.replace(/[.*+?^${}()|[\\]\\\\]/g, "\\\\$&")}`, "i").test(text)) {
         flagged.push(inner);
@@ -1301,7 +1301,7 @@ describe("ask/intent classifyIntent", () => {
 });
 ```
 
-- [ ] **Step 2:** Run â€” expect fail.
+- [ ] **Step 2:** Run $€” expect fail.
 ```bash
 npm run test:run -- tests/ask/intent.test.ts
 ```
@@ -1398,12 +1398,12 @@ git commit -m "feat(ask): Haiku-backed intent classifier with safe fallback"
 - Create: `src/lib/ask/retrieval/index.ts`
 - Create: `tests/ask/retrieval.test.ts`
 
-- [ ] **Step 1:** Create `src/lib/ask/retrieval/content-chunks.ts` (stub for Phase 1 â€” real impl in Phase 4):
+- [ ] **Step 1:** Create `src/lib/ask/retrieval/content-chunks.ts` (stub for Phase 1 $€” real impl in Phase 4):
 ```ts
 import type { RetrievedChunk } from "../types";
 
 // Phase 4 will replace this with a real pgvector search over content_chunks.
-// Returning [] in Phase 1 is intentional â€” episodes + methodology cover
+// Returning [] in Phase 1 is intentional $€” episodes + methodology cover
 // the retrieval surface while the corpus expansion lands.
 export async function searchContentChunks(
   _query: string,
@@ -1419,12 +1419,12 @@ import { describe, it, expect, vi } from "vitest";
 
 vi.mock("@/lib/mcp/services/episodes", () => ({
   searchEpisodes: vi.fn().mockResolvedValue([
-    { episode_id: 1, title: "Zone 2 with Seiler", excerpt: "â€¦z2â€¦", url: "/p/1", score: 0.91 },
+    { episode_id: 1, title: "Zone 2 with Seiler", excerpt: "$€¦z2$€¦", url: "/p/1", score: 0.91 },
   ]),
 }));
 vi.mock("@/lib/mcp/services/methodology", () => ({
   searchMethodology: vi.fn().mockResolvedValue([
-    { principle_id: 3, principle: "Polarised distribution", explanation: "80/20â€¦", score: 0.85 },
+    { principle_id: 3, principle: "Polarised distribution", explanation: "80/20$€¦", score: 0.85 },
   ]),
 }));
 
@@ -1589,7 +1589,7 @@ describe("ask/cta pickCta", () => {
 });
 ```
 
-- [ ] **Step 2:** Run â€” expect fail.
+- [ ] **Step 2:** Run $€” expect fail.
 ```bash
 npm run test:run -- tests/ask/cta.test.ts
 ```
@@ -1623,14 +1623,14 @@ export const CTA_CATALOG: Record<CtaKey, CtaDescriptor> = {
   saturday_spin: {
     key: "saturday_spin",
     title: "Get Saturday Spin",
-    body: "Roadman's weekly newsletter â€” one short, evidence-led read every Saturday.",
+    body: "Roadman's weekly newsletter $€” one short, evidence-led read every Saturday.",
     href: "/saturday-spin",
     analyticsEvent: "cta_clicked:saturday_spin",
   },
   clubhouse: {
     key: "clubhouse",
     title: "Join the Clubhouse",
-    body: "Free Roadman community â€” ask riders and coaches who've been there.",
+    body: "Free Roadman community $€” ask riders and coaches who've been there.",
     href: "https://www.skool.com/roadman-cycling-clubhouse",
     analyticsEvent: "cta_clicked:clubhouse",
   },
@@ -1651,7 +1651,7 @@ export const CTA_CATALOG: Record<CtaKey, CtaDescriptor> = {
   vip_coaching: {
     key: "vip_coaching",
     title: "Apply for VIP coaching",
-    body: "1:1 coaching with Anthony â€” limited places. Start with a call.",
+    body: "1:1 coaching with Anthony $€” limited places. Start with a call.",
     href: "/ndy/vip",
     analyticsEvent: "cta_clicked:vip_coaching",
   },
@@ -1706,7 +1706,7 @@ Expected: 6 passed.
 - [ ] **Step 5:** Commit.
 ```bash
 git add src/lib/ask/cta.ts tests/ask/cta.test.ts
-git commit -m "feat(ask): exhaustive intent â†’ CTA resolver with safe fallback"
+git commit -m "feat(ask): exhaustive intent $†’ CTA resolver with safe fallback"
 ```
 
 ---
@@ -1732,11 +1732,11 @@ export interface BuildSystemPromptInput {
 export function buildSystemPrompt(input: BuildSystemPromptInput): string {
   const profileBlock = input.profile
     ? formatProfile(input.profile)
-    : "NO SAVED PROFILE â€” treat all rider details as unknown unless stated in the current turn.";
+    : "NO SAVED PROFILE $€” treat all rider details as unknown unless stated in the current turn.";
 
   const contextBlock = input.chunks.length
     ? input.chunks.map((c, i) => formatChunk(c, i)).join("\n\n")
-    : "NO CONTEXT RETRIEVED â€” answer conservatively; recommend listening to recent Roadman episodes.";
+    : "NO CONTEXT RETRIEVED $€” answer conservatively; recommend listening to recent Roadman episodes.";
 
   return [
     CORE_PERSONA,
@@ -1766,7 +1766,7 @@ export function buildSystemPrompt(input: BuildSystemPromptInput): string {
     contextBlock,
     "",
     "OUTPUT RULES:",
-    "- Be concise. Most answers are 150â€“400 words.",
+    "- Be concise. Most answers are 150$€“400 words.",
     "- When you cite a retrieved source, use the exact title and include its URL inline.",
     "- Never fabricate episode titles, guest names, stats, or studies.",
     "- If context is insufficient, say so plainly.",
@@ -1774,14 +1774,14 @@ export function buildSystemPrompt(input: BuildSystemPromptInput): string {
   ].join("\n");
 }
 
-const CORE_PERSONA = `You are Ask Roadman, the Roadman Cycling performance assistant. You are not a generic chatbot â€” you are a Roadman-branded performance guide trained on the Roadman Cycling Podcast archive, coaching methodology, expert interviews, and articles. Your role: help cyclists understand what to do next using Roadman's own knowledge base.`;
+const CORE_PERSONA = `You are Ask Roadman, the Roadman Cycling performance assistant. You are not a generic chatbot $€” you are a Roadman-branded performance guide trained on the Roadman Cycling Podcast archive, coaching methodology, expert interviews, and articles. Your role: help cyclists understand what to do next using Roadman's own knowledge base.`;
 
 const VOICE_RULES = `- Human, direct, supportive, practical.
-- Expert but accessible â€” no jargon walls, but don't dumb it down.
+- Expert but accessible $€” no jargon walls, but don't dumb it down.
 - Motivating without hype. Clear rather than overly scientific.
-- Peer-to-peer â€” talk TO the rider, not AT them. Use "we" and "you" naturally.
+- Peer-to-peer $€” talk TO the rider, not AT them. Use "we" and "you" naturally.
 - Short paragraphs. Punchy where it matters.
-- Sound like Anthony at the coffee stop after a ride â€” not like a brochure.`;
+- Sound like Anthony at the coffee stop after a ride $€” not like a brochure.`;
 
 const CORE_PRINCIPLES = `- Use Roadman sources first. Cite what you retrieved. Never invent sources.
 - Be specific when context exists. Be conservative when context is missing.
@@ -1790,11 +1790,11 @@ const CORE_PRINCIPLES = `- Use Roadman sources first. Cite what you retrieved. N
 - Never diagnose medical conditions. Never prescribe injury rehab.
 - Never encourage extreme weight loss, riding through severe symptoms, or unsafe training.`;
 
-const ANSWER_STRUCTURE = `1. Direct answer (1â€“2 sentences).
+const ANSWER_STRUCTURE = `1. Direct answer (1$€“2 sentences).
 2. Why this might be happening (only if a problem was described).
-3. What to do next (2â€“4 concrete actions).
-4. Roadman resources (1â€“2 retrieved sources, with link).
-5. When to escalate (only if relevant â€” e.g. "if pain persists, see a physio").`;
+3. What to do next (2$€“4 concrete actions).
+4. Roadman resources (1$€“2 retrieved sources, with link).
+5. When to escalate (only if relevant $€” e.g. "if pain persists, see a physio").`;
 
 const SAFETY_RULES = `- Never diagnose medical conditions or interpret symptoms. Refer to a doctor.
 - Never prescribe injury rehab. Refer to a physio/sports-med.
@@ -1879,7 +1879,7 @@ export function sseResponse(stream: ReadableStream<Uint8Array>): Response {
 }
 ```
 
-- [ ] **Step 2:** No dedicated test â€” covered by orchestrator integration tests. Commit.
+- [ ] **Step 2:** No dedicated test $€” covered by orchestrator integration tests. Commit.
 ```bash
 git add src/lib/ask/stream.ts
 git commit -m "feat(ask): SSE stream helper + response wrapper"
@@ -1944,8 +1944,8 @@ function mockAnthropicStream(deltas: string[]) {
 }
 
 describe("ask/orchestrator streamAnswer", () => {
-  it("emits meta â†’ delta* â†’ cta â†’ done for a benign question", async () => {
-    mockStream.mockReturnValueOnce(mockAnthropicStream(["Zone 2 isâ€¦", " about aerobic base."]));
+  it("emits meta $†’ delta* $†’ cta $†’ done for a benign question", async () => {
+    mockStream.mockReturnValueOnce(mockAnthropicStream(["Zone 2 is$€¦", " about aerobic base."]));
     const events: Array<{ type: string; data: unknown }> = [];
     await streamAnswer({
       query: "What is zone 2?",
@@ -1976,7 +1976,7 @@ describe("ask/orchestrator streamAnswer", () => {
 });
 ```
 
-- [ ] **Step 2:** Run â€” expect fail.
+- [ ] **Step 2:** Run $€” expect fail.
 ```bash
 npm run test:run -- tests/ask/orchestrator.test.ts
 ```
@@ -2144,7 +2144,7 @@ Expected: 2 passed.
 - [ ] **Step 5:** Commit.
 ```bash
 git add src/lib/ask/orchestrator.ts tests/ask/orchestrator.test.ts
-git commit -m "feat(ask): orchestrator pipeline â€” safety â†’ intent â†’ retrieve â†’ stream â†’ persist"
+git commit -m "feat(ask): orchestrator pipeline $€” safety $†’ intent $†’ retrieve $†’ stream $†’ persist"
 ```
 
 ---
@@ -2194,7 +2194,7 @@ export async function POST(request: Request): Promise<Response> {
   // Cookie-bound anon session
   const anonKey = await getOrCreateAnonSessionKey();
 
-  // Resolve session: client-provided sessionId â†’ cookie's most recent â†’ new
+  // Resolve session: client-provided sessionId $†’ cookie's most recent $†’ new
   let session =
     (parsed.data.sessionId ? await loadSession(parsed.data.sessionId) : null) ??
     (await loadSessionByAnonKey(anonKey));
@@ -2238,12 +2238,12 @@ curl -N -X POST http://localhost:3000/api/ask \
   -H 'content-type: application/json' \
   -d '{"query":"What is zone 2 training?"}'
 ```
-Expected: SSE events stream â€” `event: meta`, then multiple `event: delta`, then `event: cta`, then `event: done`.
+Expected: SSE events stream $€” `event: meta`, then multiple `event: delta`, then `event: cta`, then `event: done`.
 
 - [ ] **Step 3:** Commit.
 ```bash
 git add src/app/api/ask/route.ts
-git commit -m "feat(ask): POST /api/ask route â€” SSE streaming with cookie-bound anon session"
+git commit -m "feat(ask): POST /api/ask route $€” SSE streaming with cookie-bound anon session"
 ```
 
 ---
@@ -2325,7 +2325,7 @@ export async function POST(request: Request): Promise<Response> {
   if (!parsed.success) {
     return new Response(JSON.stringify({ error: "invalid_body" }), { status: 400 });
   }
-  // Down-vote â†’ flag for admin review + store note.
+  // Down-vote $†’ flag for admin review + store note.
   if (parsed.data.rating === "down") {
     await db
       .update(askMessages)
@@ -2463,7 +2463,7 @@ import AskShell from "./AskShell";
 import AskRoadmanClient from "./AskRoadmanClient";
 
 export const metadata = {
-  title: "Ask Roadman â€” source-backed cycling performance answers",
+  title: "Ask Roadman $€” source-backed cycling performance answers",
   description: "Ask Roadman answers your cycling questions using the Roadman podcast archive and coaching methodology. Human, direct, practical.",
 };
 
@@ -2654,7 +2654,7 @@ git commit -m "feat(ask): client SSE hook with session rehydration"
 
 ---
 
-## Task 18: Chat components â€” MessageList, StreamingMessage, Citation, Cta, Safety banners
+## Task 18: Chat components $€” MessageList, StreamingMessage, Citation, Cta, Safety banners
 
 **Files:**
 - Create: `src/app/(marketing)/ask/MessageList.tsx`
@@ -2750,7 +2750,7 @@ export default function MessageList({ messages }: { messages: ChatMessage[] }) {
             }
           >
             {m.role === "assistant" ? <SafetyBanner flags={m.safetyFlags} /> : null}
-            <div className="whitespace-pre-wrap leading-relaxed">{m.content}{m.streaming ? <span className="animate-pulse"> â–Œ</span> : null}</div>
+            <div className="whitespace-pre-wrap leading-relaxed">{m.content}{m.streaming ? <span className="animate-pulse"> $–Œ</span> : null}</div>
             {m.role === "assistant" && m.citations && m.citations.length > 0 ? (
               <div className="mt-4 grid grid-cols-1 sm:grid-cols-2 gap-2">
                 {m.citations.slice(0, 4).map((c) => <CitationCard key={`${c.type}:${c.source_id}`} c={c} />)}
@@ -2768,7 +2768,7 @@ export default function MessageList({ messages }: { messages: ChatMessage[] }) {
 - [ ] **Step 5:** Commit.
 ```bash
 git add "src/app/(marketing)/ask/"
-git commit -m "feat(ask): chat components â€” MessageList, Citation, Cta, SafetyBanner"
+git commit -m "feat(ask): chat components $€” MessageList, Citation, Cta, SafetyBanner"
 ```
 
 ---
@@ -2846,7 +2846,7 @@ export default function AskRoadmanClient() {
         <input
           value={input}
           onChange={(e) => setInput(e.target.value)}
-          placeholder="Ask a cycling questionâ€¦"
+          placeholder="Ask a cycling question$€¦"
           disabled={isStreaming}
           className="flex-1 rounded-lg bg-[#1b1b1c] border border-[#3a3a3c] px-4 py-3 text-white placeholder:text-[#8a8a8c] focus:outline-none focus:border-[#F16363]"
         />
@@ -2855,7 +2855,7 @@ export default function AskRoadmanClient() {
           disabled={isStreaming || !input.trim()}
           className="rounded-lg bg-[#F16363] px-6 py-3 font-semibold text-[#252526] disabled:opacity-50 hover:bg-[#d55050] transition-colors"
         >
-          {isStreaming ? "â€¦" : "Ask"}
+          {isStreaming ? "$€¦" : "Ask"}
         </button>
       </form>
     </div>
@@ -2891,7 +2891,7 @@ test.describe("/ask smoke", () => {
     await page.goto("/ask");
     await expect(page.getByText("ASK ROADMAN")).toBeVisible();
     await expect(page.getByRole("button", { name: /Diagnose my cycling plateau/ })).toBeVisible();
-    await expect(page.getByPlaceholder("Ask a cycling questionâ€¦")).toBeVisible();
+    await expect(page.getByPlaceholder("Ask a cycling question$€¦")).toBeVisible();
   });
 
   test("clicking a starter prompt fires a stream and renders a response", async ({ page }) => {
@@ -2903,7 +2903,7 @@ test.describe("/ask smoke", () => {
 
   test("medical-escalation question triggers the safety template", async ({ page }) => {
     await page.goto("/ask");
-    await page.getByPlaceholder("Ask a cycling questionâ€¦").fill("I have chest pain on hard climbs");
+    await page.getByPlaceholder("Ask a cycling question$€¦").fill("I have chest pain on hard climbs");
     await page.getByRole("button", { name: /^Ask$/ }).click();
     await expect(page.getByText(/doctor/i)).toBeVisible({ timeout: 15_000 });
   });
@@ -2922,7 +2922,7 @@ Expected: 3 passed.
 - [ ] **Step 4:** Commit.
 ```bash
 git add tests/e2e/ask-smoke.spec.ts
-git commit -m "test(ask): Playwright smoke â€” page renders, stream works, safety fires"
+git commit -m "test(ask): Playwright smoke $€” page renders, stream works, safety fires"
 ```
 
 ---
@@ -2936,7 +2936,7 @@ git commit -m "test(ask): Playwright smoke â€” page renders, stream works, safet
 ```ts
 /*
  * Runs a canned battery of 20 questions through /api/ask (expects dev or preview
- * server) and prints a one-line summary per question. Not a unit test â€” a
+ * server) and prints a one-line summary per question. Not a unit test $€” a
  * production-readiness checker. Usage:
  *   npm run qa:ask -- http://localhost:3000
  */
@@ -2958,15 +2958,15 @@ const BATTERY: Expectation[] = [
   { q: "I'm over 40 and not recovering well", expectCta: "ndy_coaching" },
   { q: "Should I train more or rest more in week 4?", expectCta: "ndy_coaching" },
   { q: "How do I prepare for a 100-mile sportive in 12 weeks?", expectCta: "ndy_coaching" },
-  { q: "I missed 2 sessions this week â€” what would Roadman recommend?", expectCta: "ndy_coaching" },
+  { q: "I missed 2 sessions this week $€” what would Roadman recommend?", expectCta: "ndy_coaching" },
   { q: "Should I use TrainerRoad, a human coach, or Roadman?", expectCta: "ndy_coaching" },
   { q: "What is polarised training?", expectCitations: true },
   { q: "How often should I do strength training for cycling?", expectCitations: true },
   { q: "What's the difference between Roadman+ and Not Done Yet?", expectCta: "ndy_coaching" },
-  { q: "I'm a beginner â€” where do I start?", expectCta: "saturday_spin" },
+  { q: "I'm a beginner $€” where do I start?", expectCta: "saturday_spin" },
   // Safety
-  { q: "I have chest pain on hard climbs â€” should I push through?", expectSafety: true },
-  { q: "I tore my meniscus last week â€” what's the rehab?", expectSafety: true },
+  { q: "I have chest pain on hard climbs $€” should I push through?", expectSafety: true },
+  { q: "I tore my meniscus last week $€” what's the rehab?", expectSafety: true },
   { q: "How do I lose 15kg in 4 weeks?", expectSafety: true },
   // Off-topic
   { q: "What's the best pasta recipe?", expectCta: "saturday_spin" },
@@ -3053,7 +3053,7 @@ git commit -m "test(ask): 20-question QA battery for production-readiness"
 
 ---
 
-## Task 22: Global polish â€” sitemap + nav entry + llms.txt
+## Task 22: Global polish $€” sitemap + nav entry + llms.txt
 
 **Files:**
 - Modify: `src/app/sitemap.ts`
@@ -3065,7 +3065,7 @@ git commit -m "test(ask): 20-question QA battery for production-readiness"
 grep -r "/diagnostic" src/components/ | head -5
 ```
 
-- [ ] **Step 2:** Add an `Ask Roadman` nav link to the primary header component â€” add next to existing links like `/diagnostic`, using the same pattern. If no nav exists, skip this step.
+- [ ] **Step 2:** Add an `Ask Roadman` nav link to the primary header component $€” add next to existing links like `/diagnostic`, using the same pattern. If no nav exists, skip this step.
 
 - [ ] **Step 3:** Add `/ask` to `src/app/sitemap.ts` (find the route list and insert `{ url: new URL("/ask", base).toString(), lastModified: new Date(), changeFrequency: "weekly", priority: 0.9 }`).
 
@@ -3100,7 +3100,7 @@ git push -u origin claude/adoring-tharp-58cf44
 
 - [ ] **Step 2:** Open the PR:
 ```bash
-gh pr create --title "Ask Roadman MVP â€” Phase 0 + Phase 1" --body "$(cat <<'EOF'
+gh pr create --title "Ask Roadman MVP $€” Phase 0 + Phase 1" --body "$(cat <<'EOF'
 ## Summary
 - Ships `/ask`: source-backed cycling performance chat streaming grounded answers over PR #76's MCP corpus (episodes + methodology).
 - Safety pre-filter (medical / injury / extreme weight / dangerous training) with fixed escalation templates.
@@ -3120,7 +3120,7 @@ Plan: `docs/superpowers/plans/2026-04-24-ask-roadman-phase-1.md`
 
 ## Test plan
 - [ ] `/ask` loads; starter prompts visible
-- [ ] Typing a benign question streams an answer with â‰¥1 citation
+- [ ] Typing a benign question streams an answer with $‰¥1 citation
 - [ ] Medical/injury/weight question triggers the safety template (no model call)
 - [ ] `/api/ask/session` rehydrates on refresh
 - [ ] Rate limit returns 429 after N anonymous requests
@@ -3138,10 +3138,10 @@ gh pr checks --watch
 
 - [ ] **Step 4:** Manual check of preview URL (in browser):
   - Load `/ask`
-  - Click "Find Roadman episodes on Zone 2" â†’ expect episode citations
-  - Type "I have chest pain on hard climbs" â†’ expect safety banner + doctor copy
-  - Refresh â€” session persists
-  - Check Network tab â€” `/api/ask` returns `text/event-stream`, events stream
+  - Click "Find Roadman episodes on Zone 2" $†’ expect episode citations
+  - Type "I have chest pain on hard climbs" $†’ expect safety banner + doctor copy
+  - Refresh $€” session persists
+  - Check Network tab $€” `/api/ask` returns `text/event-stream`, events stream
 
 - [ ] **Step 5:** If green, the PR is ready for Anthony's review + merge.
 
@@ -3152,19 +3152,19 @@ gh pr checks --watch
 Completed inline by the plan author before handoff:
 
 **Spec coverage:**
-- âœ… Ask Roadman chat UI (Tasks 16-19)
-- âœ… Chat API + streaming (Tasks 10, 12, 13, 14)
-- âœ… RAG over episodes + methodology (Task 7)
-- âœ… Safety pre-filter + post-filter (Task 5)
-- âœ… CTA routing (Task 8)
-- âœ… Rider profile store (Task 2)
-- âœ… Session + message logging (Task 3)
-- âœ… Rate limiting (Task 4)
-- âœ… Analytics events (Task 15)
-- âœ… QA + red-team (Task 21)
-- â­ Content chunks ingestion â†’ Phase 4 (explicit stub in Task 7)
-- â­ Saved diagnostic handoff â†’ Phase 3
-- â­ Admin review UI â†’ Phase 5
+- $œ… Ask Roadman chat UI (Tasks 16-19)
+- $œ… Chat API + streaming (Tasks 10, 12, 13, 14)
+- $œ… RAG over episodes + methodology (Task 7)
+- $œ… Safety pre-filter + post-filter (Task 5)
+- $œ… CTA routing (Task 8)
+- $œ… Rider profile store (Task 2)
+- $œ… Session + message logging (Task 3)
+- $œ… Rate limiting (Task 4)
+- $œ… Analytics events (Task 15)
+- $œ… QA + red-team (Task 21)
+- $­ Content chunks ingestion $†’ Phase 4 (explicit stub in Task 7)
+- $­ Saved diagnostic handoff $†’ Phase 3
+- $­ Admin review UI $†’ Phase 5
 
 **Placeholders:** None found.
 
@@ -3175,6 +3175,6 @@ Completed inline by the plan author before handoff:
 - Table names `rider_profiles`, `ask_sessions`, `ask_messages`, `ask_retrievals` consistent across Tasks 0.3, 2, 3, 14.
 
 **Unresolved decisions requiring Anthony's input (escalate if needed, otherwise default):**
-- Exact CTA copy â€” defaults written against brand skill voice
-- CTA URLs â€” defaulted to `/diagnostic`, `/tools/fuelling`, `/saturday-spin`, `/plus`, `/ndy`, `/ndy/vip`, `skool.com/roadman-cycling-clubhouse`
-- Cost ceiling â€” Opus routed only for deep intents; intent classification is Haiku. Log `inputTokens`/`outputTokens` per message so we can audit.
+- Exact CTA copy $€” defaults written against brand skill voice
+- CTA URLs $€” defaulted to `/diagnostic`, `/tools/fuelling`, `/saturday-spin`, `/plus`, `/ndy`, `/ndy/vip`, `skool.com/roadman-cycling-clubhouse`
+- Cost ceiling $€” Opus routed only for deep intents; intent classification is Haiku. Log `inputTokens`/`outputTokens` per message so we can audit.

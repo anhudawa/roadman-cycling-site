@@ -132,13 +132,13 @@ export async function notifySpotlightPurchase(
       row("Brand", sponsorName) +
       row("Slot Type", slotLabels[slotType] ?? slotType) +
       row("Week", week) +
-      row("Amount", `Â£${amount.toLocaleString("en-GB")}`)
+      row("Amount", `$${amount.toLocaleString("en-US")}`)
     ),
   );
 
   return sendEmail({
     to: [RECIPIENTS.anthony, RECIPIENTS.sarah],
-    subject: `Spotlight Purchase: ${sponsorName} â€” ${slotLabels[slotType] ?? slotType}`,
+    subject: `Spotlight Purchase: ${sponsorName} $€” ${slotLabels[slotType] ?? slotType}`,
     html,
   });
 }
@@ -153,8 +153,8 @@ export async function notifyQuarterEnquiry(
   launchMonth: string,
 ) {
   const budgetLabels: Record<string, string> = {
-    "6k_12k": "Â£6k â€“ Â£12k/quarter",
-    "12k_plus": "Â£12k+/quarter",
+    "6k_12k": "$6k $€“ $12k/quarter",
+    "12k_plus": "$12k+/quarter",
   };
 
   const html = emailWrapper(
@@ -195,9 +195,9 @@ export interface AnnualApplicationData {
 }
 
 const BUDGET_LABELS: Record<string, string> = {
-  "96k": "Â£96k/yr (Â£8k/mo)",
-  "120k_180k": "Â£120k â€“ Â£180k/yr",
-  "180k_plus": "Â£180k+/yr",
+  "96k": "$96k/yr ($8k/mo)",
+  "120k_180k": "$120k $€“ $180k/yr",
+  "180k_plus": "$180k+/yr",
   discuss: "Let's discuss",
 };
 
@@ -263,7 +263,7 @@ export async function notifyRenewalApproaching(
     table(
       row("Sponsor", sponsorName) +
       row("Renewal Date", new Date(renewalDate).toLocaleDateString("en-GB", { day: "numeric", month: "long", year: "numeric" })) +
-      row("Contract Value", `Â£${contractValue.toLocaleString("en-GB")}`) +
+      row("Contract Value", `$${contractValue.toLocaleString("en-US")}`) +
       row("Days Remaining", String(daysUntil))
     ) +
     `<p style="color: #B0B0B5; margin-top: 16px; font-size: 13px;">
@@ -273,7 +273,7 @@ export async function notifyRenewalApproaching(
 
   return sendEmail({
     to: RECIPIENTS.sarah,
-    subject: `Renewal in ${daysUntil} days: ${sponsorName} (Â£${contractValue.toLocaleString("en-GB")})`,
+    subject: `Renewal in ${daysUntil} days: ${sponsorName} ($${contractValue.toLocaleString("en-US")})`,
     html,
   });
 }
@@ -305,7 +305,7 @@ export async function notifyStaleSponsor(
 
   return sendEmail({
     to: RECIPIENTS.sarah,
-    subject: `Stale sponsor: ${sponsorName} â€” ${daysSince} days since contact`,
+    subject: `Stale sponsor: ${sponsorName} $€” ${daysSince} days since contact`,
     html,
   });
 }
@@ -353,7 +353,7 @@ export async function notifyCohortApplication(data: {
     ) +
     `<p style="margin-top: 16px;">
       <a href="https://roadmancycling.com/admin/applications" style="color: #F16363; text-decoration: underline;">
-        View in admin panel â†’
+        View in admin panel $†’
       </a>
     </p>`,
   );

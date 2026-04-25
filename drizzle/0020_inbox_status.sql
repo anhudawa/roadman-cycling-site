@@ -3,16 +3,16 @@
 -- board instead of only a flat list.
 --
 -- Stage model (mirrors applications kanban):
---   new          â†’ just arrived, nobody acting
---   in_progress  â†’ assigned owner is actively handling it
---   replied      â†’ outbound reply sent, waiting on their response
---   follow_up    â†’ we owe them a nudge / next action
---   closed       â†’ resolved, archived from board
+--   new          $†’ just arrived, nobody acting
+--   in_progress  $†’ assigned owner is actively handling it
+--   replied      $†’ outbound reply sent, waiting on their response
+--   follow_up    $†’ we owe them a nudge / next action
+--   closed       $†’ resolved, archived from board
 
 ALTER TABLE contact_submissions
   ADD COLUMN IF NOT EXISTS status text NOT NULL DEFAULT 'new';
 
--- Backfill: anything already read â†’ in_progress; unread stays new.
+-- Backfill: anything already read $†’ in_progress; unread stays new.
 UPDATE contact_submissions
    SET status = 'in_progress'
  WHERE status = 'new' AND read_at IS NOT NULL;

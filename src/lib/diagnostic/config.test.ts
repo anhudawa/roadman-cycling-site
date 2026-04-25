@@ -3,7 +3,7 @@ import { resolveBookingUrl, resolveCta } from "./config";
 
 /**
  * CTA resolution tests. Verifies that every profile routes to the
- * right primary / secondary per ยง12 and that severeMultiSystem
+ * right primary / secondary per $ง12 and that severeMultiSystem
  * always forces the direct-call variant.
  */
 

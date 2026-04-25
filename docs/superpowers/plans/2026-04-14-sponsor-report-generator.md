@@ -2,9 +2,9 @@
 
 > **For agentic workers:** REQUIRED SUB-SKILL: Use superpowers:subagent-driven-development (recommended) or superpowers:executing-plans to implement this plan task-by-task. Steps use checkbox (`- [ ]`) syntax for tracking.
 
-**Goal:** Ship a monthly per-sponsor report at `/admin/inventory/sponsors/[sponsorId]/reports/[yyyy-mm]` with podcast brand mentions, episode reach, web sessions, and social stats ‚Äî plus a PDF export.
+**Goal:** Ship a monthly per-sponsor report at `/admin/inventory/sponsors/[sponsorId]/reports/[yyyy-mm]` with podcast brand mentions, episode reach, web sessions, and social stats $Äî plus a PDF export.
 
-**Architecture:** Server-rendered report page backed by pure composer functions. Mentions are computed on-demand from existing MDX transcripts (regex + char-index ‚Üí approximate timestamp). Episode downloads are seeded deterministic numbers cached in Postgres. Monthly social stats are manually entered and persisted. GA4 supplies web sessions. Same React component tree renders for the web view and the PDF export.
+**Architecture:** Server-rendered report page backed by pure composer functions. Mentions are computed on-demand from existing MDX transcripts (regex + char-index $Üí approximate timestamp). Episode downloads are seeded deterministic numbers cached in Postgres. Monthly social stats are manually entered and persisted. GA4 supplies web sessions. Same React component tree renders for the web view and the PDF export.
 
 **Tech Stack:** Next.js 16 (App Router, RSC + Server Actions), TypeScript, Tailwind 4, Drizzle ORM on Postgres, Airtable (existing sponsor pipeline), Vitest, `@react-pdf/renderer`, `@google-analytics/data`.
 
@@ -18,14 +18,14 @@
 
 ```
 src/lib/reports/
-  mentions.ts                    # findMentions() ‚Äî pure
+  mentions.ts                    # findMentions() $Äî pure
   mentions.test.ts
-  timestamp.ts                   # approximateTimestamp() ‚Äî pure
+  timestamp.ts                   # approximateTimestamp() $Äî pure
   timestamp.test.ts
   downloads.ts                   # seededDownloads() + cache read-through
   downloads.test.ts
   social-stats.ts                # get/upsert monthly_social_stats
-  sponsor-report.ts              # composer: (sponsorId, month) ‚Üí ReportPayload
+  sponsor-report.ts              # composer: (sponsorId, month) $Üí ReportPayload
   types.ts                       # Mention, EpisodeMentionGroup, ReportPayload
 
 src/lib/analytics/
@@ -48,18 +48,18 @@ src/components/admin/reports/pdf/
 src/app/admin/inventory/sponsors/[sponsorId]/reports/[month]/
   page.tsx                       # server component
   actions.ts                     # saveSocialStats server action
-  pdf/route.ts                   # GET ‚Üí PDF stream
+  pdf/route.ts                   # GET $Üí PDF stream
 
 drizzle/<timestamp>_sponsor_reports.sql   # generated migration
 ```
 
 ### Modified files
 
-- `src/lib/db/schema.ts` ‚Äî add `monthlySocialStats`, `episodeDownloadsCache`.
-- `src/lib/inventory/types.ts` ‚Äî add `brandAliases?: string` on `Sponsor`.
-- `src/lib/inventory/airtable.ts` ‚Äî read new `Brand Aliases` Airtable field.
-- `src/app/admin/inventory/sponsors/SponsorsClient.tsx` (or equivalent) ‚Äî add a **Reports** button + `MonthPicker` on each sponsor card.
-- `.env.example` ‚Äî add `GA4_PROPERTY_ID`, `GOOGLE_APPLICATION_CREDENTIALS_JSON`.
+- `src/lib/db/schema.ts` $Äî add `monthlySocialStats`, `episodeDownloadsCache`.
+- `src/lib/inventory/types.ts` $Äî add `brandAliases?: string` on `Sponsor`.
+- `src/lib/inventory/airtable.ts` $Äî read new `Brand Aliases` Airtable field.
+- `src/app/admin/inventory/sponsors/SponsorsClient.tsx` (or equivalent) $Äî add a **Reports** button + `MonthPicker` on each sponsor card.
+- `.env.example` $Äî add `GA4_PROPERTY_ID`, `GOOGLE_APPLICATION_CREDENTIALS_JSON`.
 
 ---
 
@@ -132,7 +132,7 @@ git commit -m "feat(reports): add shared report type definitions"
 
 ---
 
-## Task 2: `findMentions` ‚Äî pure mention scanner
+## Task 2: `findMentions` $Äî pure mention scanner
 
 **Files:**
 - Create: `src/lib/reports/mentions.ts`
@@ -209,7 +209,7 @@ describe('findMentions', () => {
 - [ ] **Step 2: Run tests to verify they fail**
 
 Run: `npx vitest run src/lib/reports/mentions.test.ts`
-Expected: FAIL ‚Äî `findMentions` is not defined.
+Expected: FAIL $Äî `findMentions` is not defined.
 
 - [ ] **Step 3: Implement `findMentions`**
 
@@ -274,7 +274,7 @@ git commit -m "feat(reports): add findMentions transcript scanner"
 
 ---
 
-## Task 3: `approximateTimestamp` ‚Äî char index ‚Üí seconds
+## Task 3: `approximateTimestamp` $Äî char index $Üí seconds
 
 **Files:**
 - Create: `src/lib/reports/timestamp.ts`
@@ -336,7 +336,7 @@ describe('parseDurationString', () => {
 - [ ] **Step 2: Run tests to verify they fail**
 
 Run: `npx vitest run src/lib/reports/timestamp.test.ts`
-Expected: FAIL ‚Äî module not found.
+Expected: FAIL $Äî module not found.
 
 - [ ] **Step 3: Implement**
 
@@ -385,7 +385,7 @@ git commit -m "feat(reports): add approximateTimestamp + duration parsing helper
 
 ---
 
-## Task 4: DB schema ‚Äî `monthly_social_stats` + `episode_downloads_cache`
+## Task 4: DB schema $Äî `monthly_social_stats` + `episode_downloads_cache`
 
 **Files:**
 - Modify: `src/lib/db/schema.ts` (append at end)
@@ -396,7 +396,7 @@ git commit -m "feat(reports): add approximateTimestamp + duration parsing helper
 Add to the bottom of `src/lib/db/schema.ts`:
 
 ```ts
-// ‚îÄ‚îÄ Sponsor Reports ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ
+// $îÄ$îÄ Sponsor Reports $îÄ$îÄ$îÄ$îÄ$îÄ$îÄ$îÄ$îÄ$îÄ$îÄ$îÄ$îÄ$îÄ$îÄ$îÄ$îÄ$îÄ$îÄ$îÄ$îÄ$îÄ$îÄ$îÄ$îÄ$îÄ$îÄ$îÄ$îÄ$îÄ$îÄ$îÄ$îÄ$îÄ$îÄ$îÄ$îÄ$îÄ$îÄ$îÄ
 export const monthlySocialStats = pgTable(
   "monthly_social_stats",
   {
@@ -434,7 +434,7 @@ Read the new file. Ensure it contains `CREATE TABLE "monthly_social_stats"`, `CR
 
 - [ ] **Step 4: Apply migration locally**
 
-Run: `npx drizzle-kit push` (or `npx drizzle-kit migrate` if that's the team convention ‚Äî check README).
+Run: `npx drizzle-kit push` (or `npx drizzle-kit migrate` if that's the team convention $Äî check README).
 Expected: Both tables exist in the local Postgres.
 
 - [ ] **Step 5: Commit**
@@ -487,7 +487,7 @@ describe('deterministicDownloadNumber', () => {
 - [ ] **Step 2: Run tests to verify they fail**
 
 Run: `npx vitest run src/lib/reports/downloads.test.ts`
-Expected: FAIL ‚Äî module not found.
+Expected: FAIL $Äî module not found.
 
 - [ ] **Step 3: Implement**
 
@@ -500,7 +500,7 @@ import { eq } from 'drizzle-orm';
 const MIN = 70_000;
 const MAX = 150_000;
 
-// FNV-1a 32-bit ‚Äî deterministic, fast, no dependencies
+// FNV-1a 32-bit $Äî deterministic, fast, no dependencies
 function fnv1a(str: string): number {
   let hash = 0x811c9dc5;
   for (let i = 0; i < str.length; i++) {
@@ -541,7 +541,7 @@ export async function getDownloads(episodeId: string): Promise<number> {
 - [ ] **Step 4: Run tests to verify pure-function tests pass**
 
 Run: `npx vitest run src/lib/reports/downloads.test.ts`
-Expected: PASS (the pure `deterministicDownloadNumber` tests ‚Äî `getDownloads` is not tested here because it touches the DB).
+Expected: PASS (the pure `deterministicDownloadNumber` tests $Äî `getDownloads` is not tested here because it touches the DB).
 
 - [ ] **Step 5: Commit**
 
@@ -654,8 +654,8 @@ function getClient(): BetaAnalyticsDataClient | null {
 
 /**
  * Returns monthly web sessions for the given 'YYYY-MM' month.
- * Returns null if GA4 is not configured or the request fails ‚Äî callers
- * should render a graceful "‚Äî" rather than erroring.
+ * Returns null if GA4 is not configured or the request fails $Äî callers
+ * should render a graceful "$Äî" rather than erroring.
  */
 export async function getMonthlyWebSessions(month: string): Promise<number | null> {
   const c = getClient();
@@ -688,7 +688,7 @@ export async function getMonthlyWebSessions(month: string): Promise<number | nul
 Append:
 
 ```
-# Sponsor reports ‚Äî Google Analytics 4
+# Sponsor reports $Äî Google Analytics 4
 GA4_PROPERTY_ID=
 GOOGLE_APPLICATION_CREDENTIALS_JSON=
 ```
@@ -727,11 +727,11 @@ In `src/lib/inventory/airtable.ts`, find the sponsor mapping function and add:
 brandAliases: record.get('Brand Aliases') as string | undefined,
 ```
 
-(Field name in Airtable must match exactly. If the field doesn't exist yet, mapping will return `undefined` ‚Äî no breakage.)
+(Field name in Airtable must match exactly. If the field doesn't exist yet, mapping will return `undefined` $Äî no breakage.)
 
 - [ ] **Step 3: Add `Brand Aliases` long-text field to Airtable Sponsors table**
 
-Manual step ‚Äî note in commit message. (Out-of-band ‚Äî Ted adds the field in the Airtable UI.)
+Manual step $Äî note in commit message. (Out-of-band $Äî Ted adds the field in the Airtable UI.)
 
 - [ ] **Step 4: Commit**
 
@@ -745,7 +745,7 @@ Sponsors table. Comma-separated aliases used for podcast mention matching."
 
 ---
 
-## Task 9: Report composer ‚Äî `buildSponsorReport`
+## Task 9: Report composer $Äî `buildSponsorReport`
 
 **Files:**
 - Create: `src/lib/reports/sponsor-report.ts`
@@ -987,7 +987,7 @@ export function MonthPicker({ sponsorId }: Props) {
         onClick={() => router.push(`/admin/inventory/sponsors/${sponsorId}/reports/${month}`)}
         className="rounded-md bg-[#F16363] px-3 py-1 text-sm font-semibold text-white hover:bg-[#e14d4d]"
       >
-        Report ‚Üí
+        Report $Üí
       </button>
     </div>
   );
@@ -1098,7 +1098,7 @@ export function ReportHero({ brandName, logoUrl, monthLabel }: Props) {
         {brandName}
       </h1>
       <p className="text-lg uppercase tracking-[0.3em] text-white/60">
-        Monthly Partnership Report ‚Äî {monthLabel}
+        Monthly Partnership Report $Äî {monthLabel}
       </p>
       <div className="h-1 w-24 rounded-full bg-[#F16363]" />
     </section>
@@ -1131,7 +1131,7 @@ function DeltaPill({ pct }: { pct: number | null }) {
         up ? 'bg-[#F16363]/20 text-[#F16363]' : 'bg-white/10 text-white/60'
       }`}
     >
-      {up ? '‚Üë' : '‚Üì'} {Math.abs(pct)}%
+      {up ? '$Üë' : '$Üì'} {Math.abs(pct)}%
     </span>
   );
 }
@@ -1142,7 +1142,7 @@ export function HeadlineStats({ stats }: Props) {
       {stats.map((s) => (
         <div key={s.label} className="rounded-xl border border-white/5 bg-white/5 p-6 text-center">
           <div className="font-[var(--font-bebas-neue)] text-5xl text-white">
-            {s.value === null ? '‚Äî' : <CounterAnimated value={s.value} />}
+            {s.value === null ? '$Äî' : <CounterAnimated value={s.value} />}
           </div>
           <div className="mt-2 text-xs uppercase tracking-widest text-white/50">
             {s.label}
@@ -1175,7 +1175,7 @@ export function MentionsTimeline({ groups }: Props) {
   if (groups.length === 0) {
     return (
       <section className="py-12 text-center text-white/60">
-        <p className="text-xl">No mentions this month ‚Äî here&apos;s your audience growth instead.</p>
+        <p className="text-xl">No mentions this month $Äî here&apos;s your audience growth instead.</p>
       </section>
     );
   }
@@ -1187,7 +1187,7 @@ export function MentionsTimeline({ groups }: Props) {
           <header className="flex flex-wrap items-center justify-between gap-4">
             <div>
               <div className="text-xs uppercase tracking-widest text-white/50">
-                Episode {g.episodeNumber} ¬∑ {g.publishDate}
+                Episode {g.episodeNumber} $∑ {g.publishDate}
               </div>
               <h3 className="text-xl font-semibold text-white">{g.episodeTitle}</h3>
             </div>
@@ -1219,7 +1219,7 @@ export function MentionsTimeline({ groups }: Props) {
                       rel="noopener noreferrer"
                       className="shrink-0 rounded-md bg-[#F16363] px-3 py-1 text-sm font-semibold text-white hover:bg-[#e14d4d]"
                     >
-                      Listen ‚Üí
+                      Listen $Üí
                     </a>
                   )}
                 </li>
@@ -1260,13 +1260,13 @@ export function AudiencePanel({ platforms }: Props) {
           <div key={p.platform} className="rounded-xl border border-white/5 bg-white/5 p-6">
             <div className="text-xs uppercase tracking-widest text-white/50">{LABELS[p.platform]}</div>
             <div className="mt-2 font-[var(--font-bebas-neue)] text-5xl text-white">
-              {p.views === null ? '‚Äî' : <CounterAnimated value={p.views} />}
+              {p.views === null ? '$Äî' : <CounterAnimated value={p.views} />}
             </div>
             {p.deltaPct !== null && (
               <div
                 className={`mt-1 text-sm ${p.deltaPct >= 0 ? 'text-[#F16363]' : 'text-white/50'}`}
               >
-                {p.deltaPct >= 0 ? '‚Üë' : '‚Üì'} {Math.abs(p.deltaPct)}% vs last month
+                {p.deltaPct >= 0 ? '$Üë' : '$Üì'} {Math.abs(p.deltaPct)}% vs last month
               </div>
             )}
           </div>
@@ -1375,7 +1375,7 @@ export function SocialStatsForm({ sponsorId, month, initial }: Props) {
         disabled={pending}
         className="mt-4 rounded-md bg-[#F16363] px-4 py-2 font-semibold text-white hover:bg-[#e14d4d] disabled:opacity-50"
       >
-        {pending ? 'Saving‚Ä¶' : saved ? 'Saved ‚úì' : 'Save'}
+        {pending ? 'Saving$Ä¶' : saved ? 'Saved $úì' : 'Save'}
       </button>
     </form>
   );
@@ -1496,7 +1496,7 @@ export default async function Page({ params }: Params) {
 - [ ] **Step 3: Smoke test in the browser**
 
 Run: `npx next dev`
-From the sponsors index, pick a sponsor, pick last month, click Report. Page should render with the hero, stats (real or `‚Äî`), mentions timeline (or empty state), audience grid, social form, and a Download PDF button (broken until Task 15).
+From the sponsors index, pick a sponsor, pick last month, click Report. Page should render with the hero, stats (real or `$Äî`), mentions timeline (or empty state), audience grid, social form, and a Download PDF button (broken until Task 15).
 
 - [ ] **Step 4: Commit**
 
@@ -1552,14 +1552,14 @@ function monthLabel(month: string): string {
 
 export function SponsorReportPDF({ payload }: { payload: ReportPayload }) {
   const { sponsor, month, headline, episodeGroups, platforms } = payload;
-  const fmt = (v: number | null) => (v === null ? '‚Äî' : v.toLocaleString('en-GB'));
+  const fmt = (v: number | null) => (v === null ? '$Äî' : v.toLocaleString('en-GB'));
 
   return (
     <Document>
       <Page size="A4" style={styles.page}>
         {sponsor.logoUrl && <Image src={sponsor.logoUrl} style={styles.heroLogo} />}
         <Text style={styles.heroTitle}>{sponsor.brandName}</Text>
-        <Text style={styles.heroSub}>MONTHLY PARTNERSHIP REPORT ‚Äî {monthLabel(month).toUpperCase()}</Text>
+        <Text style={styles.heroSub}>MONTHLY PARTNERSHIP REPORT $Äî {monthLabel(month).toUpperCase()}</Text>
         <View style={styles.hr} />
 
         <View style={styles.statsGrid}>
@@ -1587,13 +1587,13 @@ export function SponsorReportPDF({ payload }: { payload: ReportPayload }) {
         ) : (
           episodeGroups.map((g) => (
             <View key={g.episodeSlug} style={styles.epCard}>
-              <Text style={styles.epTitle}>Ep {g.episodeNumber} ‚Äî {g.episodeTitle}</Text>
+              <Text style={styles.epTitle}>Ep {g.episodeNumber} $Äî {g.episodeTitle}</Text>
               <Text style={styles.epMeta}>
-                {g.publishDate} ¬∑ {g.mentions.length} mention(s) ¬∑ {g.downloads.toLocaleString('en-GB')} downloads
+                {g.publishDate} $∑ {g.mentions.length} mention(s) $∑ {g.downloads.toLocaleString('en-GB')} downloads
               </Text>
               {g.mentions.map((m, i) => (
                 <Text key={i} style={styles.mention}>
-                  <Text style={styles.ts}>{formatTimestamp(m.timestampSeconds)}</Text> ‚Äî ‚Äú{m.quote}‚Äù
+                  <Text style={styles.ts}>{formatTimestamp(m.timestampSeconds)}</Text> $Äî $Äú{m.quote}$Äù
                 </Text>
               ))}
             </View>
@@ -1611,7 +1611,7 @@ export function SponsorReportPDF({ payload }: { payload: ReportPayload }) {
         </View>
 
         <Text style={styles.footer}>
-          Generated {new Date(payload.generatedAt).toLocaleString('en-GB')} ‚Äî Roadman Cycling
+          Generated {new Date(payload.generatedAt).toLocaleString('en-GB')} $Äî Roadman Cycling
         </Text>
       </Page>
     </Document>
@@ -1670,7 +1670,7 @@ git commit -m "feat(reports): add PDF export route and @react-pdf document"
 
 **Files:**
 - Create: `src/lib/reports/sponsor-report.integration.test.ts`
-- Create: `src/lib/reports/__fixtures__/` with 1‚Äì2 minimal MDX files
+- Create: `src/lib/reports/__fixtures__/` with 1$Äì2 minimal MDX files
 
 - [ ] **Step 1: Fixture episodes**
 
@@ -1791,7 +1791,7 @@ git commit -m "test(reports): add integration test for sponsor report composer"
 ## Task 17: Final smoke test + docs
 
 **Files:**
-- Modify: `README.md` (a short "Sponsor Reports" section) ‚Äî optional if project README is thin.
+- Modify: `README.md` (a short "Sponsor Reports" section) $Äî optional if project README is thin.
 
 - [ ] **Step 1: Full smoke test checklist**
 
@@ -1804,7 +1804,7 @@ With the dev server running:
 5. Fill in FB / X / Insta, hit Save. Confirm numbers persist on reload.
 6. Click Download PDF. Confirm file downloads, opens, matches the on-screen design.
 7. Try an all-zeros case: pick a month with no mentions. Confirm empty state renders and page doesn't error.
-8. Try a sponsor without aliases configured ‚Äî should still match the brand name.
+8. Try a sponsor without aliases configured $Äî should still match the brand name.
 
 - [ ] **Step 2: Run the full test suite**
 
@@ -1826,8 +1826,8 @@ git commit --allow-empty -m "chore(reports): sponsor report generator v1 complet
 
 ## Self-Review Checklist (internal, don't execute tasks for this)
 
-- **Spec coverage:** Route ‚úì (Task 14), mentions ‚úì (2, 9), timestamps ‚úì (3, 9), downloads ‚úì (5), GA4 ‚úì (7), social stats ‚úì (6, 13), aliases ‚úì (8, 9), UI sections ‚úì (11, 12), PDF ‚úì (15), error handling ‚úì (empty states in 12, graceful GA4 null in 7, no-sponsor 404 in 14), month picker ‚úì (10), tests ‚úì (2, 3, 5, 16).
-- **Placeholders:** none ‚Äî every code block is concrete.
+- **Spec coverage:** Route $úì (Task 14), mentions $úì (2, 9), timestamps $úì (3, 9), downloads $úì (5), GA4 $úì (7), social stats $úì (6, 13), aliases $úì (8, 9), UI sections $úì (11, 12), PDF $úì (15), error handling $úì (empty states in 12, graceful GA4 null in 7, no-sponsor 404 in 14), month picker $úì (10), tests $úì (2, 3, 5, 16).
+- **Placeholders:** none $Äî every code block is concrete.
 - **Type consistency:** `Mention`, `EpisodeMentionGroup`, `PlatformStat`, `ReportPayload` defined once in Task 1 and referenced unchanged thereafter. `SocialPlatform` defined once in Task 6.
 - **Known assumptions:**
   - Airtable field is named exactly `Brand Aliases`. Task 8 flags this as a manual out-of-band step.

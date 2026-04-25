@@ -71,7 +71,7 @@ export async function POST(request: Request) {
       console.error("[Contact Form] CRM sync failed:", crmErr);
     }
 
-    // Beehiiv sync â€” non-fatal, tagged contact-form so it can be
+    // Beehiiv sync $€” non-fatal, tagged contact-form so it can be
     // segmented or suppressed in Saturday Spin campaigns.
     subscribeToBeehiiv({
       email,
@@ -82,7 +82,7 @@ export async function POST(request: Request) {
     }).catch((err) => console.error("[Contact Form] Beehiiv sync failed:", err));
 
     // Send notification email to Anthony (Resend). Escape user input
-    // to prevent HTML injection via contact form â€” even though only
+    // to prevent HTML injection via contact form $€” even though only
     // Anthony sees it, this is the correct posture.
     const resend = getResendClient();
     if (resend) {
@@ -91,7 +91,7 @@ export async function POST(request: Request) {
           from: "Roadman Cycling <noreply@roadmancycling.com>",
           to: NOTIFICATION_EMAIL,
           replyTo: email,
-          subject: `[Contact Form] ${subject} â€” from ${name}`,
+          subject: `[Contact Form] ${subject} $€” from ${name}`,
           html: `
             <h2>New Contact Form Submission</h2>
             <p><strong>From:</strong> ${escapeHtml(name)} &lt;${escapeHtml(email)}&gt;</p>
@@ -107,7 +107,7 @@ export async function POST(request: Request) {
         console.error("[Contact Form] Resend email failed:", emailErr);
       }
     } else {
-      console.warn("[Contact Form] RESEND_API_KEY not configured â€” email not sent");
+      console.warn("[Contact Form] RESEND_API_KEY not configured $€” email not sent");
     }
 
     return NextResponse.json({ success: true });

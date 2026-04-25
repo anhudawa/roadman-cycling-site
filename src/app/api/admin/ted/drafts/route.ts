@@ -6,7 +6,7 @@ import { requireAuth } from "@/lib/admin/auth";
 
 export const dynamic = "force-dynamic";
 
-// GET /api/admin/ted/drafts â€” list drafts, newest first
+// GET /api/admin/ted/drafts $€” list drafts, newest first
 export async function GET(request: Request) {
   try {
     await requireAuth();
@@ -34,7 +34,7 @@ export async function GET(request: Request) {
   return NextResponse.json({ drafts: rows });
 }
 
-// PATCH /api/admin/ted/drafts â€” approve / edit / reject a draft
+// PATCH /api/admin/ted/drafts $€” approve / edit / reject a draft
 // Body: { id: number, action: 'approve' | 'edit' | 'reject', editedBody?: string }
 export async function PATCH(request: Request) {
   let user;

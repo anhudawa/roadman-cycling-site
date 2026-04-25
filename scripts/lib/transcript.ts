@@ -37,7 +37,7 @@ export async function fetchTranscript(
     if (msg.includes("disabled") || msg.includes("not available")) {
       return null;
     }
-    console.warn(`  âš  Transcript fetch failed for ${videoId}: ${msg}`);
+    console.warn(`  $š  Transcript fetch failed for ${videoId}: ${msg}`);
     return null;
   }
 }

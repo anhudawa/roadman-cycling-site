@@ -112,7 +112,7 @@ export default async function Image({
             <span>
               {episodes} {episodes === 1 ? "EPISODE" : "EPISODES"}
             </span>
-            <span>Â·</span>
+            <span>$·</span>
             <span>ROADMAN CYCLING</span>
           </div>
         </div>

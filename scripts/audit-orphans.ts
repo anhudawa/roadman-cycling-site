@@ -10,7 +10,7 @@
  *   - All blog MDX bodies + frontmatter (relatedEpisodes, internalLinks)
  *   - All podcast MDX bodies + frontmatter (relatedPosts)
  *   - Pillar pages (/coaching, /coaching/triathlon, /podcast, /about,
- *     etc.) â€” both for links OUT and for links IN.
+ *     etc.) $€” both for links OUT and for links IN.
  *   - Guest profile overrides (featuredArticles)
  *
  * Reports:
@@ -235,7 +235,7 @@ function main() {
   for (const file of walk(SRC_DIR)) {
     const text = fs.readFileSync(file, "utf-8");
     // Attribute all source-code links as originating from the homepage
-    // for scoring purposes â€” simplification; good enough for finding
+    // for scoring purposes $€” simplification; good enough for finding
     // true orphans.
     for (const href of extractLinksFromTsx(text)) {
       if (byPath[href]) byPath[href].inbound.add("[src]");
@@ -290,13 +290,13 @@ function main() {
     lines.push("");
     for (const b of weaklyLinkedBlogs) {
       const source = Array.from(b.inbound)[0];
-      lines.push(`- [${b.title}](${b.path}) â€” linked only from \`${source}\``);
+      lines.push(`- [${b.title}](${b.path}) $€” linked only from \`${source}\``);
     }
     lines.push("");
   }
 
   // Also: find outbound links that point at non-existent pages
-  const referencedMissing = new Map<string, string[]>(); // missing-path â†’ sources
+  const referencedMissing = new Map<string, string[]>(); // missing-path $†’ sources
   const tracked: Set<string> = new Set(Object.keys(byPath));
   for (const n of [...blogs, ...episodes]) {
     for (const out of n.outbound) {
@@ -314,7 +314,7 @@ function main() {
     for (const [miss, sources] of referencedMissing) {
       lines.push(`- \`${miss}\` referenced by:`);
       for (const s of sources.slice(0, 5)) lines.push(`  - \`${s}\``);
-      if (sources.length > 5) lines.push(`  - â€¦and ${sources.length - 5} more`);
+      if (sources.length > 5) lines.push(`  - $€¦and ${sources.length - 5} more`);
     }
     lines.push("");
   }

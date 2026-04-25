@@ -27,7 +27,7 @@ function reasonClass(r: DuplicateReason): string {
 }
 
 function formatDate(iso: string | null): string {
-  if (!iso) return "â€”";
+  if (!iso) return "$€”";
   return new Date(iso).toLocaleDateString("en-GB", {
     day: "numeric",
     month: "short",
@@ -191,7 +191,7 @@ export function DuplicatesClient({ initialGroups }: { initialGroups: DuplicateGr
                       <dl className="mt-2 space-y-0.5 text-[11px] text-foreground-subtle">
                         <div className="flex justify-between gap-2">
                           <dt>Owner</dt>
-                          <dd className="text-foreground-muted">{c.owner ?? "â€”"}</dd>
+                          <dd className="text-foreground-muted">{c.owner ?? "$€”"}</dd>
                         </div>
                         <div className="flex justify-between gap-2">
                           <dt>Stage</dt>

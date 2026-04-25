@@ -1,4 +1,4 @@
-# NDY Sales Assistant â€” Sample Responses for Anthony's Review
+# NDY Sales Assistant $€” Sample Responses for Anthony's Review
 
 Generated: 2026-04-08
 
@@ -23,19 +23,19 @@ Mark each as APPROVED or NEEDS EDIT with notes.**
 | Frustration | plateaued_at_number |
 | Weight | 72 |
 | Coaching history | self_coached |
-| Freetext | â€” |
+| Freetext | $€” |
 
 ### We should talk.
 
 You're doing 9 to 12 hours a week, targeting a specific race or event, sitting at 280 to 350W at 4.38 w/kg, and you've self-coached from podcasts and forums. That's not a beginner profile. That's someone who's done the work and hit a ceiling.
 
-Inner Circle is something we don't list publicly. It's a small group â€” direct access to me, quarterly strategy calls, priority on everything, and a level of personalisation that doesn't scale beyond a handful of riders. The conversation comes first because this only works if it's the right fit on both sides.
+Inner Circle is something we don't list publicly. It's a small group $€” direct access to me, quarterly strategy calls, priority on everything, and a level of personalisation that doesn't scale beyond a handful of riders. The conversation comes first because this only works if it's the right fit on both sides.
 
 No checkout link here. Book a call and we'll talk through where you are, what you're trying to do, and whether this makes sense.
 
 **Primary CTA:** Book a call with Anthony
 **Secondary CTA:** Tell me more first
-**Tertiary CTA:** Not ready yet â€” send me the free resources
+**Tertiary CTA:** Not ready yet $€” send me the free resources
 
 **Anthony's verdict:** [ ] APPROVED / [ ] NEEDS EDIT
 **Notes:**
@@ -55,19 +55,19 @@ No checkout link here. Book a call and we'll talk through where you are, what yo
 | Frustration | plateaued_at_number |
 | Weight | 68 |
 | Coaching history | had_coach_before |
-| Freetext | â€” |
+| Freetext | $€” |
 
 ### We should talk.
 
 You're doing 12+ hours a week, targeting a specific race or event, sitting at 350W+ at 5.51 w/kg, and you've worked with a coach before. That's not a beginner profile. That's someone who's done the work and hit a ceiling.
 
-Inner Circle is something we don't list publicly. It's a small group â€” direct access to me, quarterly strategy calls, priority on everything, and a level of personalisation that doesn't scale beyond a handful of riders. The conversation comes first because this only works if it's the right fit on both sides.
+Inner Circle is something we don't list publicly. It's a small group $€” direct access to me, quarterly strategy calls, priority on everything, and a level of personalisation that doesn't scale beyond a handful of riders. The conversation comes first because this only works if it's the right fit on both sides.
 
 No checkout link here. Book a call and we'll talk through where you are, what you're trying to do, and whether this makes sense.
 
 **Primary CTA:** Book a call with Anthony
 **Secondary CTA:** Tell me more first
-**Tertiary CTA:** Not ready yet â€” send me the free resources
+**Tertiary CTA:** Not ready yet $€” send me the free resources
 
 **Anthony's verdict:** [ ] APPROVED / [ ] NEEDS EDIT
 **Notes:**
@@ -87,19 +87,19 @@ No checkout link here. Book a call and we'll talk through where you are, what yo
 | Frustration | plateaued_at_number |
 | Weight | 65 |
 | Coaching history | self_coached |
-| Freetext | â€” |
+| Freetext | $€” |
 
 ### We should talk.
 
 You're doing 9 to 12 hours a week, targeting a specific race or event, sitting at 200 to 280W at 3.69 w/kg, and you've self-coached from podcasts and forums. That's not a beginner profile. That's someone who's done the work and hit a ceiling.
 
-Inner Circle is something we don't list publicly. It's a small group â€” direct access to me, quarterly strategy calls, priority on everything, and a level of personalisation that doesn't scale beyond a handful of riders. The conversation comes first because this only works if it's the right fit on both sides.
+Inner Circle is something we don't list publicly. It's a small group $€” direct access to me, quarterly strategy calls, priority on everything, and a level of personalisation that doesn't scale beyond a handful of riders. The conversation comes first because this only works if it's the right fit on both sides.
 
 No checkout link here. Book a call and we'll talk through where you are, what you're trying to do, and whether this makes sense.
 
 **Primary CTA:** Book a call with Anthony
 **Secondary CTA:** Tell me more first
-**Tertiary CTA:** Not ready yet â€” send me the free resources
+**Tertiary CTA:** Not ready yet $€” send me the free resources
 
 **Anthony's verdict:** [ ] APPROVED / [ ] NEEDS EDIT
 **Notes:**
@@ -119,11 +119,11 @@ No checkout link here. Book a call and we'll talk through where you are, what yo
 | Frustration | plateaued_at_number |
 | Weight | 80 |
 | Coaching history | self_coached |
-| Freetext | â€” |
+| Freetext | $€” |
 
 ### Premium is where this gets serious.
 
-You're sitting at 200 to 280W (3 w/kg), training 9 to 12 hours a week, and you're stuck at a number you can't shift. You've been around long enough to know that more volume isn't the answer. The riders who break through plateaus aren't training more â€” they're training with precision.
+You're sitting at 200 to 280W (3 w/kg), training 9 to 12 hours a week, and you're stuck at a number you can't shift. You've been around long enough to know that more volume isn't the answer. The riders who break through plateaus aren't training more $€” they're training with precision.
 
 Premium gives you personalised TrainingPeaks plans built around your life, not a template. You get priority access on coaching calls, advanced masterclasses on periodisation and race preparation, and regular 1:1 plan reviews. The difference between this and Standard is the difference between a group class and having someone in your corner who knows your numbers.
 
@@ -131,7 +131,7 @@ You're training 9 to 12 hours a week with a specific race or event in mind. That
 
 **Primary CTA:** Start your 7-day free trial
 **Secondary CTA:** Book a call first
-**Tertiary CTA:** Not ready yet â€” send me the free resources
+**Tertiary CTA:** Not ready yet $€” send me the free resources
 
 **Anthony's verdict:** [ ] APPROVED / [ ] NEEDS EDIT
 **Notes:**
@@ -151,11 +151,11 @@ You're training 9 to 12 hours a week with a specific race or event in mind. That
 | Frustration | plateaued_at_number |
 | Weight | skipped |
 | Coaching history | self_coached |
-| Freetext | â€” |
+| Freetext | $€” |
 
 ### Premium is where this gets serious.
 
-You're at 200 to 280W, training 6 to 9 hours a week, and you're stuck at a number you can't shift. You've been around long enough to know that more volume isn't the answer. The riders who break through plateaus aren't training more â€” they're training with precision.
+You're at 200 to 280W, training 6 to 9 hours a week, and you're stuck at a number you can't shift. You've been around long enough to know that more volume isn't the answer. The riders who break through plateaus aren't training more $€” they're training with precision.
 
 Premium gives you personalised TrainingPeaks plans built around your life, not a template. You get priority access on coaching calls, advanced masterclasses on periodisation and race preparation, and regular 1:1 plan reviews. The difference between this and Standard is the difference between a group class and having someone in your corner who knows your numbers.
 
@@ -163,7 +163,7 @@ You're training 6 to 9 hours a week with a watts target in mind. That's enough t
 
 **Primary CTA:** Start your 7-day free trial
 **Secondary CTA:** Book a call first
-**Tertiary CTA:** Not ready yet â€” send me the free resources
+**Tertiary CTA:** Not ready yet $€” send me the free resources
 
 **Anthony's verdict:** [ ] APPROVED / [ ] NEEDS EDIT
 **Notes:**
@@ -183,11 +183,11 @@ You're training 6 to 9 hours a week with a watts target in mind. That's enough t
 | Frustration | no_structure |
 | Weight | skipped |
 | Coaching history | had_coach_before |
-| Freetext | â€” |
+| Freetext | $€” |
 
 ### Premium is where this gets serious.
 
-You're at under 200W, training 6 to 9 hours a week, and you're no structure in your training. You've been around long enough to know that more volume isn't the answer. The riders who break through plateaus aren't training more â€” they're training with precision.
+You're at under 200W, training 6 to 9 hours a week, and you're no structure in your training. You've been around long enough to know that more volume isn't the answer. The riders who break through plateaus aren't training more $€” they're training with precision.
 
 Premium gives you personalised TrainingPeaks plans built around your life, not a template. You get priority access on coaching calls, advanced masterclasses on periodisation and race preparation, and regular 1:1 plan reviews. The difference between this and Standard is the difference between a group class and having someone in your corner who knows your numbers.
 
@@ -195,7 +195,7 @@ You're training 6 to 9 hours a week with not getting dropped on the group ride i
 
 **Primary CTA:** Start your 7-day free trial
 **Secondary CTA:** Book a call first
-**Tertiary CTA:** Not ready yet â€” send me the free resources
+**Tertiary CTA:** Not ready yet $€” send me the free resources
 
 **Anthony's verdict:** [ ] APPROVED / [ ] NEEDS EDIT
 **Notes:**
@@ -215,11 +215,11 @@ You're training 6 to 9 hours a week with not getting dropped on the group ride i
 | Frustration | no_structure |
 | Weight | 75 |
 | Coaching history | self_coached |
-| Freetext | â€” |
+| Freetext | $€” |
 
 ### Premium is where this gets serious.
 
-You're sitting at 280 to 350W (4.2 w/kg), training 6 to 9 hours a week, and you're no structure in your training. You've been around long enough to know that more volume isn't the answer. The riders who break through plateaus aren't training more â€” they're training with precision.
+You're sitting at 280 to 350W (4.2 w/kg), training 6 to 9 hours a week, and you're no structure in your training. You've been around long enough to know that more volume isn't the answer. The riders who break through plateaus aren't training more $€” they're training with precision.
 
 Premium gives you personalised TrainingPeaks plans built around your life, not a template. You get priority access on coaching calls, advanced masterclasses on periodisation and race preparation, and regular 1:1 plan reviews. The difference between this and Standard is the difference between a group class and having someone in your corner who knows your numbers.
 
@@ -227,7 +227,7 @@ You're training 6 to 9 hours a week with a specific race or event in mind. That'
 
 **Primary CTA:** Start your 7-day free trial
 **Secondary CTA:** Book a call first
-**Tertiary CTA:** Not ready yet â€” send me the free resources
+**Tertiary CTA:** Not ready yet $€” send me the free resources
 
 **Anthony's verdict:** [ ] APPROVED / [ ] NEEDS EDIT
 **Notes:**
@@ -247,11 +247,11 @@ You're training 6 to 9 hours a week with a specific race or event in mind. That'
 | Frustration | plateaued_at_number |
 | Weight | 70 |
 | Coaching history | never |
-| Freetext | â€” |
+| Freetext | $€” |
 
 ### Standard is the right starting point.
 
-So you're training 9 to 12 hours a week, you're stuck at a number you can't shift, and you've never had coaching. Here's the thing â€” that's a fixable situation. Most of the riders in our community started exactly where you are right now.
+So you're training 9 to 12 hours a week, you're stuck at a number you can't shift, and you've never had coaching. Here's the thing $€” that's a fixable situation. Most of the riders in our community started exactly where you are right now.
 
 What you're missing isn't more hours or more intensity. It's structure. A clear plan that fits the time you actually have, not the time you wish you had. That's what Standard gives you.
 
@@ -259,7 +259,7 @@ You get weekly structured training plans, group coaching calls with me, a streng
 
 **Primary CTA:** Start your 7-day free trial
 **Secondary CTA:** Talk to someone first
-**Tertiary CTA:** Not ready yet â€” send me the free resources
+**Tertiary CTA:** Not ready yet $€” send me the free resources
 
 **Anthony's verdict:** [ ] APPROVED / [ ] NEEDS EDIT
 **Notes:**
@@ -279,11 +279,11 @@ You get weekly structured training plans, group coaching calls with me, a streng
 | Frustration | no_structure |
 | Weight | skipped |
 | Coaching history | never |
-| Freetext | â€” |
+| Freetext | $€” |
 
 ### Standard is the right starting point.
 
-So you're training 4 to 6 hours a week, you're no structure in your training, and you've never had coaching. Here's the thing â€” that's a fixable situation. Most of the riders in our community started exactly where you are right now.
+So you're training 4 to 6 hours a week, you're no structure in your training, and you've never had coaching. Here's the thing $€” that's a fixable situation. Most of the riders in our community started exactly where you are right now.
 
 What you're missing isn't more hours or more intensity. It's structure. A clear plan that fits the time you actually have, not the time you wish you had. That's what Standard gives you.
 
@@ -291,7 +291,7 @@ You get weekly structured training plans, group coaching calls with me, a streng
 
 **Primary CTA:** Start your 7-day free trial
 **Secondary CTA:** Talk to someone first
-**Tertiary CTA:** Not ready yet â€” send me the free resources
+**Tertiary CTA:** Not ready yet $€” send me the free resources
 
 **Anthony's verdict:** [ ] APPROVED / [ ] NEEDS EDIT
 **Notes:**
@@ -311,11 +311,11 @@ You get weekly structured training plans, group coaching calls with me, a streng
 | Frustration | lost_motivation |
 | Weight | skipped |
 | Coaching history | never |
-| Freetext | â€” |
+| Freetext | $€” |
 
 ### Standard is the right starting point.
 
-So you're training 4 to 6 hours a week, you're struggling with motivation, and you've never had coaching. Here's the thing â€” that's a fixable situation. Most of the riders in our community started exactly where you are right now.
+So you're training 4 to 6 hours a week, you're struggling with motivation, and you've never had coaching. Here's the thing $€” that's a fixable situation. Most of the riders in our community started exactly where you are right now.
 
 What you're missing isn't more hours or more intensity. It's structure. A clear plan that fits the time you actually have, not the time you wish you had. That's what Standard gives you.
 
@@ -323,7 +323,7 @@ You get weekly structured training plans, group coaching calls with me, a streng
 
 **Primary CTA:** Start your 7-day free trial
 **Secondary CTA:** Talk to someone first
-**Tertiary CTA:** Not ready yet â€” send me the free resources
+**Tertiary CTA:** Not ready yet $€” send me the free resources
 
 **Anthony's verdict:** [ ] APPROVED / [ ] NEEDS EDIT
 **Notes:**
@@ -343,11 +343,11 @@ You get weekly structured training plans, group coaching calls with me, a streng
 | Frustration | lost_motivation |
 | Weight | skipped |
 | Coaching history | self_coached |
-| Freetext | â€” |
+| Freetext | $€” |
 
 ### Standard is the right starting point.
 
-So you're training 4 to 6 hours a week, you're struggling with motivation, and you've self-coached from podcasts and forums. Here's the thing â€” that's a fixable situation. Most of the riders in our community started exactly where you are right now.
+So you're training 4 to 6 hours a week, you're struggling with motivation, and you've self-coached from podcasts and forums. Here's the thing $€” that's a fixable situation. Most of the riders in our community started exactly where you are right now.
 
 What you're missing isn't more hours or more intensity. It's structure. A clear plan that fits the time you actually have, not the time you wish you had. That's what Standard gives you.
 
@@ -355,7 +355,7 @@ You get weekly structured training plans, group coaching calls with me, a streng
 
 **Primary CTA:** Start your 7-day free trial
 **Secondary CTA:** Talk to someone first
-**Tertiary CTA:** Not ready yet â€” send me the free resources
+**Tertiary CTA:** Not ready yet $€” send me the free resources
 
 **Anthony's verdict:** [ ] APPROVED / [ ] NEEDS EDIT
 **Notes:**
@@ -375,11 +375,11 @@ You get weekly structured training plans, group coaching calls with me, a streng
 | Frustration | other |
 | Weight | skipped |
 | Coaching history | never |
-| Freetext | â€” |
+| Freetext | $€” |
 
 ### Standard is the right starting point.
 
-So you're training 6 to 9 hours a week, you're something specific holding you back, and you've never had coaching. Here's the thing â€” that's a fixable situation. Most of the riders in our community started exactly where you are right now.
+So you're training 6 to 9 hours a week, you're something specific holding you back, and you've never had coaching. Here's the thing $€” that's a fixable situation. Most of the riders in our community started exactly where you are right now.
 
 What you're missing isn't more hours or more intensity. It's structure. A clear plan that fits the time you actually have, not the time you wish you had. That's what Standard gives you.
 
@@ -387,7 +387,7 @@ You get weekly structured training plans, group coaching calls with me, a streng
 
 **Primary CTA:** Start your 7-day free trial
 **Secondary CTA:** Talk to someone first
-**Tertiary CTA:** Not ready yet â€” send me the free resources
+**Tertiary CTA:** Not ready yet $€” send me the free resources
 
 **Anthony's verdict:** [ ] APPROVED / [ ] NEEDS EDIT
 **Notes:**
@@ -411,7 +411,7 @@ You get weekly structured training plans, group coaching calls with me, a streng
 
 ### Standard is the right starting point.
 
-So you're training 9 to 12 hours a week, you're stuck at a number you can't shift, and you've self-coached from podcasts and forums. Here's the thing â€” that's a fixable situation. Most of the riders in our community started exactly where you are right now.
+So you're training 9 to 12 hours a week, you're stuck at a number you can't shift, and you've self-coached from podcasts and forums. Here's the thing $€” that's a fixable situation. Most of the riders in our community started exactly where you are right now.
 
 What you're missing isn't more hours or more intensity. It's structure. A clear plan that fits the time you actually have, not the time you wish you had. That's what Standard gives you.
 
@@ -419,7 +419,7 @@ You get weekly structured training plans, group coaching calls with me, a streng
 
 **Primary CTA:** Start your 7-day free trial
 **Secondary CTA:** Talk to someone first
-**Tertiary CTA:** Not ready yet â€” send me the free resources
+**Tertiary CTA:** Not ready yet $€” send me the free resources
 
 **Anthony's verdict:** [ ] APPROVED / [ ] NEEDS EDIT
 **Notes:**
@@ -443,7 +443,7 @@ You get weekly structured training plans, group coaching calls with me, a streng
 
 ### Standard is the right starting point.
 
-So you're training 12+ hours a week, you're stuck at a number you can't shift, and you've worked with a coach before. Here's the thing â€” that's a fixable situation. Most of the riders in our community started exactly where you are right now.
+So you're training 12+ hours a week, you're stuck at a number you can't shift, and you've worked with a coach before. Here's the thing $€” that's a fixable situation. Most of the riders in our community started exactly where you are right now.
 
 What you're missing isn't more hours or more intensity. It's structure. A clear plan that fits the time you actually have, not the time you wish you had. That's what Standard gives you.
 
@@ -451,7 +451,7 @@ You get weekly structured training plans, group coaching calls with me, a streng
 
 **Primary CTA:** Start your 7-day free trial
 **Secondary CTA:** Talk to someone first
-**Tertiary CTA:** Not ready yet â€” send me the free resources
+**Tertiary CTA:** Not ready yet $€” send me the free resources
 
 **Anthony's verdict:** [ ] APPROVED / [ ] NEEDS EDIT
 **Notes:**
@@ -471,11 +471,11 @@ You get weekly structured training plans, group coaching calls with me, a streng
 | Frustration | recurring_injury |
 | Weight | skipped |
 | Coaching history | never |
-| Freetext | â€” |
+| Freetext | $€” |
 
-### Honest answer â€” not right now.
+### Honest answer $€” not right now.
 
-You mentioned a recurring injury, and I want to be straight with you â€” coaching isn't the right next step here. What you need first is someone who can look at the injury properly. A good sports physio or your doctor. Trying to train through it with a structured plan is just going to make a fixable problem worse.
+You mentioned a recurring injury, and I want to be straight with you $€” coaching isn't the right next step here. What you need first is someone who can look at the injury properly. A good sports physio or your doctor. Trying to train through it with a structured plan is just going to make a fixable problem worse.
 
 That doesn't mean you're stuck. Get the injury sorted, build back from there, and when you can train with structure again, we'll be here. In the meantime, I've put together some free resources that'll help you think about your training differently once you're back on the bike.
 
@@ -502,9 +502,9 @@ That doesn't mean you're stuck. Get the injury sorted, build back from there, an
 | Coaching history | never |
 | Freetext | bad knee from physio |
 
-### Honest answer â€” not right now.
+### Honest answer $€” not right now.
 
-You mentioned a recurring injury, and I want to be straight with you â€” coaching isn't the right next step here. What you need first is someone who can look at the injury properly. A good sports physio or your doctor. Trying to train through it with a structured plan is just going to make a fixable problem worse.
+You mentioned a recurring injury, and I want to be straight with you $€” coaching isn't the right next step here. What you need first is someone who can look at the injury properly. A good sports physio or your doctor. Trying to train through it with a structured plan is just going to make a fixable problem worse.
 
 That doesn't mean you're stuck. Get the injury sorted, build back from there, and when you can train with structure again, we'll be here. In the meantime, I've put together some free resources that'll help you think about your training differently once you're back on the bike.
 
@@ -529,13 +529,13 @@ That doesn't mean you're stuck. Get the injury sorted, build back from there, an
 | Frustration | lost_motivation |
 | Weight | skipped |
 | Coaching history | never |
-| Freetext | â€” |
+| Freetext | $€” |
 
-### Honest answer â€” not right now.
+### Honest answer $€” not right now.
 
-Here's the honest answer â€” paid coaching isn't the right move for you right now. With under 4 hours a week and general fitness on the table, the return on a monthly coaching plan isn't going to be there yet. I'd rather tell you that now than take your money and have you wondering why nothing's changing in three months.
+Here's the honest answer $€” paid coaching isn't the right move for you right now. With under 4 hours a week and general fitness on the table, the return on a monthly coaching plan isn't going to be there yet. I'd rather tell you that now than take your money and have you wondering why nothing's changing in three months.
 
-The good news is there's plenty you can do for free. I've put together resources that cover the fundamentals â€” how to structure what time you do have, basic nutrition, and how to build consistency. Start there. When your hours or goals shift, come back and we'll find the right fit.
+The good news is there's plenty you can do for free. I've put together resources that cover the fundamentals $€” how to structure what time you do have, basic nutrition, and how to build consistency. Start there. When your hours or goals shift, come back and we'll find the right fit.
 
 **Primary CTA:** Get the free resources
 **Secondary CTA:** Talk to someone anyway
@@ -560,9 +560,9 @@ The good news is there's plenty you can do for free. I've put together resources
 | Coaching history | self_coached |
 | Freetext | recurring back injury from doctor |
 
-### Honest answer â€” not right now.
+### Honest answer $€” not right now.
 
-You mentioned a recurring injury, and I want to be straight with you â€” coaching isn't the right next step here. What you need first is someone who can look at the injury properly. A good sports physio or your doctor. Trying to train through it with a structured plan is just going to make a fixable problem worse.
+You mentioned a recurring injury, and I want to be straight with you $€” coaching isn't the right next step here. What you need first is someone who can look at the injury properly. A good sports physio or your doctor. Trying to train through it with a structured plan is just going to make a fixable problem worse.
 
 That doesn't mean you're stuck. Get the injury sorted, build back from there, and when you can train with structure again, we'll be here. In the meantime, I've put together some free resources that'll help you think about your training differently once you're back on the bike.
 
@@ -587,19 +587,19 @@ That doesn't mean you're stuck. Get the injury sorted, build back from there, an
 | Frustration | other |
 | Weight | 74 |
 | Coaching history | currently_have_one |
-| Freetext | â€” |
+| Freetext | $€” |
 
 ### We should talk.
 
 You're doing 9 to 12 hours a week, targeting a specific race or event, sitting at 280 to 350W at 4.26 w/kg, and you've currently working with a coach. That's not a beginner profile. That's someone who's done the work and hit a ceiling.
 
-Inner Circle is something we don't list publicly. It's a small group â€” direct access to me, quarterly strategy calls, priority on everything, and a level of personalisation that doesn't scale beyond a handful of riders. The conversation comes first because this only works if it's the right fit on both sides.
+Inner Circle is something we don't list publicly. It's a small group $€” direct access to me, quarterly strategy calls, priority on everything, and a level of personalisation that doesn't scale beyond a handful of riders. The conversation comes first because this only works if it's the right fit on both sides.
 
 No checkout link here. Book a call and we'll talk through where you are, what you're trying to do, and whether this makes sense.
 
 **Primary CTA:** Book a call with Anthony
 **Secondary CTA:** Tell me more first
-**Tertiary CTA:** Not ready yet â€” send me the free resources
+**Tertiary CTA:** Not ready yet $€” send me the free resources
 
 **Anthony's verdict:** [ ] APPROVED / [ ] NEEDS EDIT
 **Notes:**
@@ -619,11 +619,11 @@ No checkout link here. Book a call and we'll talk through where you are, what yo
 | Frustration | other |
 | Weight | skipped |
 | Coaching history | self_coached |
-| Freetext | â€” |
+| Freetext | $€” |
 
 ### Premium is where this gets serious.
 
-You're at 200 to 280W, training 6 to 9 hours a week, and you're something specific holding you back. You've been around long enough to know that more volume isn't the answer. The riders who break through plateaus aren't training more â€” they're training with precision.
+You're at 200 to 280W, training 6 to 9 hours a week, and you're something specific holding you back. You've been around long enough to know that more volume isn't the answer. The riders who break through plateaus aren't training more $€” they're training with precision.
 
 Premium gives you personalised TrainingPeaks plans built around your life, not a template. You get priority access on coaching calls, advanced masterclasses on periodisation and race preparation, and regular 1:1 plan reviews. The difference between this and Standard is the difference between a group class and having someone in your corner who knows your numbers.
 
@@ -631,7 +631,7 @@ You're training 6 to 9 hours a week with a watts target in mind. That's enough t
 
 **Primary CTA:** Start your 7-day free trial
 **Secondary CTA:** Book a call first
-**Tertiary CTA:** Not ready yet â€” send me the free resources
+**Tertiary CTA:** Not ready yet $€” send me the free resources
 
 **Anthony's verdict:** [ ] APPROVED / [ ] NEEDS EDIT
 **Notes:**

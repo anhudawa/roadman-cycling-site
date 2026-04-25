@@ -1,4 +1,4 @@
-# Sponsor System â€” Morning Status Report
+# Sponsor System $€” Morning Status Report
 **Updated:** 2026-04-09 (overnight session complete)
 **Status:** BUILT, SEEDED, VERIFIED
 
@@ -13,7 +13,7 @@
 
 ### Infrastructure: Complete
 - Airtable base created: `appraxzCzNsH71Tk8` (roadman-sponsorship)
-- 3 tables: inventory, events, sponsors â€” with all fields, linked records, and select options
+- 3 tables: inventory, events, sponsors $€” with all fields, linked records, and select options
 - Airtable token updated with `schema.bases:write` scope
 - Resend API key created (roadman-sponsor-system, sending access)
 - AUTH_SECRET generated
@@ -28,8 +28,8 @@
 - `/sponsor` returns HTTP 200, 239KB HTML
 - All 6 page sections render: Events Calendar, Rate Card, Proof Block, FAQ, Quiz, Booking Flows
 - 10 event cards with live inventory counts from Airtable (e.g. "49 of 49 slots remaining")
-- 20 "slots remaining" data points across event cards â€” all live from Airtable
-- Tour de France, Giro, Vuelta, Spring Classics, Migration Gravel, Performance Camp â€” all present
+- 20 "slots remaining" data points across event cards $€” all live from Airtable
+- Tour de France, Giro, Vuelta, Spring Classics, Migration Gravel, Performance Camp $€” all present
 - Spotlight, Quarter, Annual tiers all rendering with correct copy
 
 ### Known Dev Server Issue
@@ -41,18 +41,18 @@ The Next.js 16 Turbopack dev server has intermittent cache corruption (`middlewa
 
 ### You Need To Do (2 minutes, in Stripe dashboard)
 
-1. **Stripe Webhook** â€” go to https://dashboard.stripe.com/webhooks
+1. **Stripe Webhook** $€” go to https://dashboard.stripe.com/webhooks
    - Click "+ Add endpoint"
    - URL: `https://roadmancycling.com/api/webhooks/stripe` (or staging domain)
    - Events: `checkout.session.completed`
-   - Copy the signing secret â†’ put in `.env.local` as `STRIPE_WEBHOOK_SECRET`
+   - Copy the signing secret $†’ put in `.env.local` as `STRIPE_WEBHOOK_SECRET`
 
-2. **Stripe Publishable Key** â€” go to https://dashboard.stripe.com/apikeys
+2. **Stripe Publishable Key** $€” go to https://dashboard.stripe.com/apikeys
    - Copy "Publishable key" (starts with `pk_live_`)
    - Put in `.env.local` as `NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY`
    - Note: this is only needed if you switch to embedded Stripe checkout. Current code uses redirect checkout which doesn't need a publishable key.
 
-3. **Vercel CRON_SECRET** â€” set in Vercel project settings â†’ Environment Variables
+3. **Vercel CRON_SECRET** $€” set in Vercel project settings $†’ Environment Variables
    - Name: `CRON_SECRET`, value: any random string
    - Used by the daily sponsor renewal/staleness alert cron
 
@@ -75,9 +75,9 @@ The Next.js 16 Turbopack dev server has intermittent cache corruption (`middlewa
 | AUTH_ALLOWED_EMAILS | Set (anthony, sarah, wes) |
 | RESEND_API_KEY | Set |
 | STRIPE_SECRET_KEY | Set (pre-existing) |
-| NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY | Placeholder â€” get from Stripe dashboard |
-| STRIPE_WEBHOOK_SECRET | Placeholder â€” create webhook in Stripe dashboard |
-| CRON_SECRET | Not set â€” add in Vercel project settings |
+| NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY | Placeholder $€” get from Stripe dashboard |
+| STRIPE_WEBHOOK_SECRET | Placeholder $€” create webhook in Stripe dashboard |
+| CRON_SECRET | Not set $€” add in Vercel project settings |
 
 ---
 
@@ -131,7 +131,7 @@ src/app/(marketing)/sponsor/     # Public sales page
   SponsorClientSections.tsx      # Client components (quiz, FAQ, booking flows)
 
 src/app/api/sponsor/             # API routes
-  apply/route.ts                 # Annual application â†’ email
+  apply/route.ts                 # Annual application $†’ email
   spotlight/route.ts             # Stripe Checkout Session
   quarter-enquiry/route.ts       # Quarter lead notification
 

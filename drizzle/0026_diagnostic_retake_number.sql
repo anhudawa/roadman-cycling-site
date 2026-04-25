@@ -1,6 +1,6 @@
 -- Retake number for duplicate diagnostic submissions.
--- See spec Â§17: "Allow duplicate email submissions, but tag as 'retake'
--- in DB. Don't block â€” some users genuinely retake to see how their
+-- See spec $§17: "Allow duplicate email submissions, but tag as 'retake'
+-- in DB. Don't block $€” some users genuinely retake to see how their
 -- profile shifts."
 --
 -- retake_number = 1 on first submission for an email, 2 on the second,

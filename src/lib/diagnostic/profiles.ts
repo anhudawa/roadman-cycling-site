@@ -1,7 +1,7 @@
 import type { Breakdown, CtaConfig, Profile } from "./types";
 
 /**
- * Static breakdowns verbatim from the spec ¬ß9. These are the source
+ * Static breakdowns verbatim from the spec $ß9. These are the source
  * of truth for voice + content: the Claude API is prompted against
  * them, and if validation fails twice we fall back to rendering the
  * static version directly. Do not rewrite without Anthony's sign-off.
@@ -12,7 +12,7 @@ export const PROFILE_BREAKDOWNS: Record<Profile, Breakdown> = {
     diagnosis:
       "Your diagnosis is Under-recovered. Training stress and life stress share the same bucket, and right now the bucket is overflowing.",
     whyThisIsHappening:
-      "Training stress and life stress share the same bucket. When sleep drops, work pressure climbs, and the legs never come good ‚Äî the body can't absorb the work you're putting in. You're doing the training. You're just not getting the adaptation.\n\nThis is the pattern Professor Seiler's work on endurance adaptation describes over and over. The riders who break through are the ones who back off first.",
+      "Training stress and life stress share the same bucket. When sleep drops, work pressure climbs, and the legs never come good $Äî the body can't absorb the work you're putting in. You're doing the training. You're just not getting the adaptation.\n\nThis is the pattern Professor Seiler's work on endurance adaptation describes over and over. The riders who break through are the ones who back off first.",
     whatItsCosting:
       "Every hard session lands on top of fatigue, so the stimulus gets muted. Over months, that looks exactly like a plateau, except it's not a training problem. It's a recovery problem pretending to be one.",
     fix: [
@@ -26,7 +26,7 @@ export const PROFILE_BREAKDOWNS: Record<Profile, Breakdown> = {
         step: 2,
         title: "Flip the load.",
         detail:
-          "Two hard days max per week for the next eight weeks. Everything else is easy. Not tempo ‚Äî easy.",
+          "Two hard days max per week for the next eight weeks. Everything else is easy. Not tempo $Äî easy.",
       },
       {
         step: 3,
@@ -38,7 +38,7 @@ export const PROFILE_BREAKDOWNS: Record<Profile, Breakdown> = {
     whyAlone:
       "Because admitting you need less is the hardest thing in cycling. Everyone around you is training more. The coaches behind Tadej Pogaƒçar and the ones Professor Seiler has studied for decades know this. The riders who break through are the ones who back off first.",
     nextMove:
-      "For Under-recovered profiles I'd rather jump on a 15-minute call than send you to a sales page. Book a slot ‚Äî I'll tell you what I'd do if it were your training.",
+      "For Under-recovered profiles I'd rather jump on a 15-minute call than send you to a sales page. Book a slot $Äî I'll tell you what I'd do if it were your training.",
     secondaryNote: null,
   },
 
@@ -47,7 +47,7 @@ export const PROFILE_BREAKDOWNS: Record<Profile, Breakdown> = {
     diagnosis:
       "Your diagnosis is Polarisation Failure. Most of your riding is neither easy enough to aid recovery nor hard enough to drive adaptation.",
     whyThisIsHappening:
-      "Most of your riding is neither easy enough to aid recovery nor hard enough to drive adaptation. Tempo, sweet spot, \"moderately hard\" ‚Äî it all feels productive. It's not.\n\nStephen Seiler's research shows elite endurance athletes spend roughly 80% of their time at an intensity so easy that most recreational riders would find it frustrating to hold back. That's not an accident. That's the work.",
+      "Most of your riding is neither easy enough to aid recovery nor hard enough to drive adaptation. Tempo, sweet spot, \"moderately hard\" $Äî it all feels productive. It's not.\n\nStephen Seiler's research shows elite endurance athletes spend roughly 80% of their time at an intensity so easy that most recreational riders would find it frustrating to hold back. That's not an accident. That's the work.",
     whatItsCosting:
       "You accumulate fatigue without adaptation. Your easy rides are too hard to recover from, and your hard sessions are too tired to actually be hard. So the stimulus blurs, and the needle stops moving.",
     fix: [
@@ -70,7 +70,7 @@ export const PROFILE_BREAKDOWNS: Record<Profile, Breakdown> = {
       },
     ],
     whyAlone:
-      "Because slow riding feels like wasted time. Every instinct says push a bit harder. A plan on a screen won't fix this ‚Äî you need someone looking at your actual weekly output and calling the ride before you start.",
+      "Because slow riding feels like wasted time. Every instinct says push a bit harder. A plan on a screen won't fix this $Äî you need someone looking at your actual weekly output and calling the ride before you start.",
     nextMove:
       "Have a look at Not Done Yet Premium. It's built for exactly the profile you got.",
     secondaryNote: null,
@@ -79,9 +79,9 @@ export const PROFILE_BREAKDOWNS: Record<Profile, Breakdown> = {
   strengthGap: {
     headline: "The engine's fine. The chassis isn't.",
     diagnosis:
-      "Your diagnosis is Strength Gap. Your aerobic system is probably still intact ‚Äî but the neuromuscular power that lets you follow an attack or finish a sprint is quietly leaking away.",
+      "Your diagnosis is Strength Gap. Your aerobic system is probably still intact $Äî but the neuromuscular power that lets you follow an attack or finish a sprint is quietly leaking away.",
     whyThisIsHappening:
-      "After about 40, we lose roughly 1% of muscle mass per year without deliberate strength work. Your aerobic system is probably still intact ‚Äî but the neuromuscular power that lets you follow an attack, finish a sprint, or grind a 10-minute climb is quietly leaking away. Cardio-only training can't replace it.\n\nMost masters cycling plans bolt on a token strength block at the end. That's backwards.",
+      "After about 40, we lose roughly 1% of muscle mass per year without deliberate strength work. Your aerobic system is probably still intact $Äî but the neuromuscular power that lets you follow an attack, finish a sprint, or grind a 10-minute climb is quietly leaking away. Cardio-only training can't replace it.\n\nMost masters cycling plans bolt on a token strength block at the end. That's backwards.",
     whatItsCosting:
       "Your FTP might hold, but your top-end collapses. You're strong on the flats, dropped on the punches. The number on the screen doesn't tell the whole story.",
     fix: [
@@ -89,7 +89,7 @@ export const PROFILE_BREAKDOWNS: Record<Profile, Breakdown> = {
         step: 1,
         title: "Lift heavy, twice a week.",
         detail:
-          "Not bodyweight, not bands ‚Äî actual barbell work. Squats, deadlifts, hinges.",
+          "Not bodyweight, not bands $Äî actual barbell work. Squats, deadlifts, hinges.",
       },
       {
         step: 2,
@@ -107,16 +107,16 @@ export const PROFILE_BREAKDOWNS: Record<Profile, Breakdown> = {
     whyAlone:
       "Because strength training for cyclists is counterintuitive. Most plans are endurance-first and bolt on a token strength block. That's backwards for masters athletes. You need someone who programs the whole picture.",
     nextMove:
-      "Have a look at Not Done Yet ‚Äî the S&C roadmap and oversight is built in.",
+      "Have a look at Not Done Yet $Äî the S&C roadmap and oversight is built in.",
     secondaryNote: null,
   },
 
   fuelingDeficit: {
     headline: "You're training hungry.",
     diagnosis:
-      "Your diagnosis is Fuelling Deficit. The body can't build power when it's managing a shortage ‚Äî every session is being paid for with tomorrow's adaptation.",
+      "Your diagnosis is Fuelling Deficit. The body can't build power when it's managing a shortage $Äî every session is being paid for with tomorrow's adaptation.",
     whyThisIsHappening:
-      "Chronic low energy availability. Either you're under-fuelling on the bike, eating too little around training, or chasing a race weight that's driving the whole system into conservation mode. The body can't build power when it's managing a shortage. Every session is being paid for with tomorrow's adaptation.\n\nFemale cyclists hit this harder and earlier, but it's widespread in masters men too ‚Äî and almost never diagnosed.",
+      "Chronic low energy availability. Either you're under-fuelling on the bike, eating too little around training, or chasing a race weight that's driving the whole system into conservation mode. The body can't build power when it's managing a shortage. Every session is being paid for with tomorrow's adaptation.\n\nFemale cyclists hit this harder and earlier, but it's widespread in masters men too $Äî and almost never diagnosed.",
     whatItsCosting:
       "Low-grade fatigue. Dropped immune function. A plateau that looks like a training problem but is actually a fuel problem.",
     fix: [
@@ -141,24 +141,24 @@ export const PROFILE_BREAKDOWNS: Record<Profile, Breakdown> = {
     whyAlone:
       "Because the cycling internet has spent 20 years telling you lighter is faster. That advice is outdated. The coaches who work with pros now fuel them aggressively. You need someone in your corner who'll tell you to eat the second breakfast.",
     nextMove:
-      "For Fuelling Deficit profiles I'd rather jump on a 15-minute call than send you to a sales page. Book a slot ‚Äî I'll tell you what I'd do if it were your training.",
+      "For Fuelling Deficit profiles I'd rather jump on a 15-minute call than send you to a sales page. Book a slot $Äî I'll tell you what I'd do if it were your training.",
     secondaryNote: null,
   },
 };
 
 /**
- * Dropped in when every profile scored under 3 points ‚Äî the rider
+ * Dropped in when every profile scored under 3 points $Äî the rider
  * probably isn't plateaued the way we measure. Still cleanly routes
- * them into NDY rather than dead-ending, per ¬ß8 edge cases.
+ * them into NDY rather than dead-ending, per $ß8 edge cases.
  */
 export const CLOSE_TO_BREAKTHROUGH: Breakdown = {
   headline: "You're closer to breakthrough than you think.",
   diagnosis:
-    "Honestly? None of the four profiles lit up strongly for you. That usually means you're closer to breakthrough than you think ‚Äî not plateaued in any of the ways this diagnostic measures.",
+    "Honestly? None of the four profiles lit up strongly for you. That usually means you're closer to breakthrough than you think $Äî not plateaued in any of the ways this diagnostic measures.",
   whyThisIsHappening:
-    "Most riders who fit this pattern have the fundamentals in place. Sleep's decent, training is polarised enough, you're fuelling reasonably, you're lifting. The stall is probably sitting in something more specific to your situation ‚Äî a block structure, a taper, or a specific event target.\n\nThat's good news. The fix is almost always narrower and faster than a full profile-level rebuild.",
+    "Most riders who fit this pattern have the fundamentals in place. Sleep's decent, training is polarised enough, you're fuelling reasonably, you're lifting. The stall is probably sitting in something more specific to your situation $Äî a block structure, a taper, or a specific event target.\n\nThat's good news. The fix is almost always narrower and faster than a full profile-level rebuild.",
   whatItsCosting:
-    "Not as much as you think. The risk here is overcorrecting ‚Äî chasing a big change when all you need is a small, specific one.",
+    "Not as much as you think. The risk here is overcorrecting $Äî chasing a big change when all you need is a small, specific one.",
   fix: [
     {
       step: 1,
@@ -184,13 +184,13 @@ export const CLOSE_TO_BREAKTHROUGH: Breakdown = {
 };
 
 /**
- * CTA routing per spec ¬ß12.
+ * CTA routing per spec $ß12.
  *
- *   Under-recovered / Fueling ‚Üí direct call booking first, NDY second
- *   Polarisation / Strength Gap ‚Üí NDY first, secondary resource second
+ *   Under-recovered / Fueling $Üí direct call booking first, NDY second
+ *   Polarisation / Strength Gap $Üí NDY first, secondary resource second
  *
- * severeMultiSystem (¬ß8) forces the direct-call variant regardless of
- * profile ‚Äî these folks need human diagnosis, not more content.
+ * severeMultiSystem ($ß8) forces the direct-call variant regardless of
+ * profile $Äî these folks need human diagnosis, not more content.
  */
 export function ctaFor(
   profile: Profile,
@@ -242,7 +242,7 @@ export const CLOSE_TO_BREAKTHROUGH_LABEL =
   "Closer to breakthrough than you think";
 
 /**
- * One-shot resolver for "what label do we show this user?" ‚Äî collapses
+ * One-shot resolver for "what label do we show this user?" $Äî collapses
  * the close-to-breakthrough edge case into the same call site as the
  * regular profile lookup so the results page + metadata + OG image
  * don't each reimplement the branch.

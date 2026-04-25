@@ -7,7 +7,7 @@ import { isToolSlug } from "@/lib/tool-results/types";
 import { getDefinition } from "@/lib/diagnostics/framework/registry";
 
 export const metadata: Metadata = {
-  title: "Ask Roadman â€” the cycling performance assistant",
+  title: "Ask Roadman $€” the cycling performance assistant",
   description:
     "Ask Roadman: the on-site cycling performance assistant. Grounded in 100M+ downloads of conversations with Dan Lorang, Professor Seiler, Dr David Dunne and the Roadman guest roster. Honest, cited, on-brand answers for serious amateur cyclists.",
   alternates: { canonical: "https://roadmancycling.com/ask" },
@@ -35,7 +35,7 @@ interface SeedContext {
  * Resolve the `?seed_tool=&seed_result=` pair into a banner-ready
  * context object. Silently bails if either param is missing, the tool
  * slug isn't a known one, or the result doesn't exist / doesn't match
- * the requested tool â€” we never surface an error on the free Ask page.
+ * the requested tool $€” we never surface an error on the free Ask page.
  */
 async function loadSeedContext(
   seedTool: string | undefined,
@@ -123,7 +123,7 @@ export default async function AskPage({
                 {seed.toolTitle}
                 {seed.primaryCategoryLabel ? (
                   <>
-                    {" â€” "}
+                    {" $€” "}
                     <span className="text-coral">
                       {seed.primaryCategoryLabel}
                     </span>

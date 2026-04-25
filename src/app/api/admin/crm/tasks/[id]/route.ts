@@ -129,7 +129,7 @@ export async function DELETE(
     return NextResponse.json({ error: "Not found" }, { status: 404 });
 
   // Only the assignee or the creator may delete a task. (Admins can also
-  // delete anything â€” kept permissive for the small internal team.)
+  // delete anything $€” kept permissive for the small internal team.)
   const canDelete =
     existing.assignedTo === user.slug ||
     existing.createdBy === user.slug ||

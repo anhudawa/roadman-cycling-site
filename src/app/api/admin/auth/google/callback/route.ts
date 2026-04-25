@@ -32,12 +32,12 @@ export async function GET(req: NextRequest) {
 
   const stateCookie = req.cookies.get(STATE_COOKIE)?.value;
   if (!stateCookie || stateCookie !== stateParam)
-    return errRedirect(req, "OAuth state mismatch â€” try again");
+    return errRedirect(req, "OAuth state mismatch $€” try again");
 
   const next = verifyState(stateParam);
   if (!next) return errRedirect(req, "Invalid OAuth state signature");
 
-  // 1. Exchange code â†’ tokens
+  // 1. Exchange code $†’ tokens
   let tokens: Awaited<ReturnType<typeof exchangeCodeForTokens>>;
   try {
     tokens = await exchangeCodeForTokens(code);
@@ -99,7 +99,7 @@ export async function GET(req: NextRequest) {
     !user.googleRefreshToken &&
     !tokens.refresh_token
   ) {
-    // He's linked but we have no refresh token on file at all â€” keep him on
+    // He's linked but we have no refresh token on file at all $€” keep him on
     // his `next` destination. Not fatal: bookings just won't populate.
   }
   const res = NextResponse.redirect(new URL(landing, req.url));

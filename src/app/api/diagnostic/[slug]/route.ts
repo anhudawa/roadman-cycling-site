@@ -4,7 +4,7 @@ import { maskEmail } from "@/lib/admin/events-store";
 
 /**
  * Public read endpoint for a diagnostic result. Returns only the
- * render-safe fields â€” we never expose the raw email or the full
+ * render-safe fields $€” we never expose the raw email or the full
  * question answers over this route. Admins pull more detail from the
  * admin stats page, which reads from the DB directly.
  */

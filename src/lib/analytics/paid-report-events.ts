@@ -75,7 +75,7 @@ export function trackPaidReport(input: TrackPaidReportInput): void {
 
 /**
  * Server-side recorder. Safe to call from webhook handlers + the
- * generator â€” wraps `recordEvent` and swallows errors so analytics
+ * generator $€” wraps `recordEvent` and swallows errors so analytics
  * writes never block a paid-report state transition.
  */
 export async function recordPaidReportServerEvent(

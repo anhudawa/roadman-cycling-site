@@ -65,7 +65,7 @@ export async function generateMetadata({
       // NB: og:image is injected automatically by Next.js from
       // src/app/(content)/blog/[slug]/opengraph-image.tsx (a
       // Satori-backed 1200Ã—630 branded card). Do NOT hardcode
-      // openGraph.images here â€” the previous implementation
+      // openGraph.images here $€” the previous implementation
       // declared width:1200 Ã— height:630 for every post regardless
       // of the actual featuredImage dimensions, which broke
       // iMessage/Twitter/LinkedIn previews for posts whose
@@ -158,7 +158,7 @@ export default async function BlogPostPage({
           // E-E-A-T: schema.org `mentions` lets Google connect the article
           // to the cited experts as entities. Each mention points at the
           // expert's /guests/[slug] page, which already emits full Person +
-          // sameAs schema (Wikipedia/Wikidata/etc.) â€” no need to duplicate
+          // sameAs schema (Wikipedia/Wikidata/etc.) $€” no need to duplicate
           // here.
           ...(post.experts && post.experts.length > 0 && {
             mentions: post.experts
@@ -266,7 +266,7 @@ export default async function BlogPostPage({
           </Container>
         </Section>
 
-        {/* Featured Image â€” either the curated post image or, when
+        {/* Featured Image $€” either the curated post image or, when
             the post's image is in the shared "generic" pool (gravel
             stock photos reused across 100+ posts), the Satori-
             generated branded hero. */}
@@ -318,7 +318,7 @@ export default async function BlogPostPage({
               <MDXRemote source={post.content} components={mdxComponents} />
             </article>
 
-            {/* WeeksOutSelector â€” only renders on event-specific training
+            {/* WeeksOutSelector $€” only renders on event-specific training
                 plan posts whose slug matches an event in training-plans.ts.
                 Routes readers into the programmatic /plan/<event>/<weeks>
                 landing pages. */}
@@ -336,21 +336,21 @@ export default async function BlogPostPage({
                       href={`/plan/${e.slug}`}
                       className="inline-flex items-center gap-2 rounded-lg border border-white/15 hover:border-coral/40 bg-white/[0.04] hover:bg-white/[0.07] px-4 py-2 text-sm font-heading text-off-white tracking-wider transition-all"
                     >
-                      {e.shortName.toUpperCase()} â†’
+                      {e.shortName.toUpperCase()} $†’
                     </Link>
                   ))}
                 </div>
               </div>
             )}
 
-            {/* Mid-article inline CTA â€” injects after 3rd paragraph, pillar-aware.
+            {/* Mid-article inline CTA $€” injects after 3rd paragraph, pillar-aware.
                 Client-side portal so only JS users see it. */}
             <InlineArticleCTA
               pillar={post.pillar}
               source={`blog-inline-${slug}`}
             />
 
-            {/* Visible FAQ â€” rendered from frontmatter faq[] array so the
+            {/* Visible FAQ $€” rendered from frontmatter faq[] array so the
                 structured data we already emit as FAQPage JSON-LD also
                 reads as actual on-page content. details/summary gives
                 native accordion behaviour without JS and stays accessible
@@ -400,7 +400,7 @@ export default async function BlogPostPage({
               </section>
             )}
 
-            {/* Persistent "next step" block â€” SSR-rendered, pillar-aware,
+            {/* Persistent "next step" block $€” SSR-rendered, pillar-aware,
                 three-option conversion surface. Placed immediately after
                 the FAQ because that's the natural scroll-stop where the
                 reader has just finished the "am I a fit?" decision loop
@@ -418,19 +418,19 @@ export default async function BlogPostPage({
               }
             />
 
-            {/* End-of-article email capture â€” SSR-rendered so Googlebot,
+            {/* End-of-article email capture $€” SSR-rendered so Googlebot,
                 AI crawlers, and no-JS visitors all see a newsletter opp. */}
             <div className="mt-16">
               <EmailCapture
                 variant="inline"
-                heading="KEEP READING â€” THE SATURDAY SPIN"
+                heading="KEEP READING $€” THE SATURDAY SPIN"
                 subheading="The week's training takeaways, pro insights, and what to do about them. 65,000+ serious cyclists open it every Saturday."
                 source={`blog-end-${slug}`}
                 buttonText="SUBSCRIBE"
               />
             </div>
 
-            {/* Soft coaching CTA â€” only on high-intent pillars (coaching /
+            {/* Soft coaching CTA $€” only on high-intent pillars (coaching /
                 nutrition). Visitors reading a training/nutrition deep-dive
                 have already demonstrated problem-awareness; a gentle Apply
                 prompt converts the highest-intent tail. */}
@@ -452,7 +452,7 @@ export default async function BlogPostPage({
                 </p>
                 <div className="flex flex-col sm:flex-row gap-3 justify-center items-center">
                   <Button href="/apply" size="md">
-                    Apply â€” 7-Day Free Trial
+                    Apply $€” 7-Day Free Trial
                   </Button>
                   <Button href="/coaching" variant="ghost" size="md">
                     How Coaching Works
@@ -461,7 +461,7 @@ export default async function BlogPostPage({
               </div>
             )}
 
-            {/* Topic hub back-links â€” bidirectional signal for Google +
+            {/* Topic hub back-links $€” bidirectional signal for Google +
                 natural "keep exploring" path for readers. */}
             {parentTopics.length > 0 && (
               <div className="mt-12 pt-8 border-t border-white/5">
@@ -506,11 +506,11 @@ export default async function BlogPostPage({
               <ShareButtons title={post.title} slug={slug} />
             </div>
 
-            {/* Author bio â€” E-E-A-T signal + entity-link chain from every
+            {/* Author bio $€” E-E-A-T signal + entity-link chain from every
                 blog post to /about + verified social sameAs URLs. */}
             <AuthorBio />
 
-            {/* Evidence block â€” sources, related episodes, review date.
+            {/* Evidence block $€” sources, related episodes, review date.
                 Experts default to Anthony alone but can be overridden per
                 post via the `experts` frontmatter array, which is how
                 articles credit named coaches and scientists they cite. */}
@@ -543,7 +543,7 @@ export default async function BlogPostPage({
               reviewedBy={post.reviewedBy || "Anthony Walsh"}
             />
 
-            {/* Graph-powered: related calculator tools â€” surfaces at least
+            {/* Graph-powered: related calculator tools $€” surfaces at least
                 one pillar-matched tool per article so every long-form piece
                 has a "try it yourself" action, and satisfies the article
                 internal-linking rule (1 hub + articles + tool + episode). */}
@@ -590,8 +590,8 @@ export default async function BlogPostPage({
               <RelatedPosts posts={relatedPosts} className="mt-16" />
             )}
 
-            {/* Author-curated related episodes â€” surfaced from the
-                `relatedEpisodes` frontmatter array. Bidirectional blogâ†”podcast
+            {/* Author-curated related episodes $€” surfaced from the
+                `relatedEpisodes` frontmatter array. Bidirectional blog$†”podcast
                 link equity. Only renders when the author explicitly tagged
                 episodes for this post. */}
             {post.relatedEpisodes && post.relatedEpisodes.length > 0 && (() => {
@@ -621,7 +621,7 @@ export default async function BlogPostPage({
                           <p className="text-xs text-foreground-subtle">
                             with {ep.guest}
                             {ep.guestCredential
-                              ? ` â€” ${ep.guestCredential}`
+                              ? ` $€” ${ep.guestCredential}`
                               : ""}
                           </p>
                         )}
@@ -641,7 +641,7 @@ export default async function BlogPostPage({
               className="mt-16"
             />
 
-            {/* Coaching funnel CTA â€” coaching-pillar posts only */}
+            {/* Coaching funnel CTA $€” coaching-pillar posts only */}
             {post.pillar === "coaching" && (
               <div className="mt-16 bg-deep-purple/30 rounded-xl border border-purple/20 p-8 text-center">
                 <h3 className="font-heading text-2xl text-off-white mb-3">
@@ -653,7 +653,7 @@ export default async function BlogPostPage({
                   accountability. $195/month with a 7-day free trial.
                 </p>
                 <div className="flex flex-col sm:flex-row gap-3 justify-center">
-                  <Button href="/apply">Apply Now â€” 7-Day Free Trial</Button>
+                  <Button href="/apply">Apply Now $€” 7-Day Free Trial</Button>
                   <Button href="/coaching" variant="ghost">
                     See Coaching Options
                   </Button>

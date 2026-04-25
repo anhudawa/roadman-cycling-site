@@ -84,7 +84,7 @@ export default function ChatPanel({
         setStreamingText(fullText);
       }
 
-      // Stream complete â€” add to messages and notify parent
+      // Stream complete $€” add to messages and notify parent
       setMessages((prev) => [
         ...prev,
         { role: "assistant", message: fullText },

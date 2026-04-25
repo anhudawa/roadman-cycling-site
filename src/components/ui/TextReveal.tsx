@@ -11,7 +11,7 @@ interface TextRevealProps {
 }
 
 /**
- * Award-worthy text reveal â€” each word fades up with a stagger.
+ * Award-worthy text reveal $€” each word fades up with a stagger.
  * Used on hero headlines and section titles for cinematic effect.
  */
 export function TextReveal({

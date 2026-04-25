@@ -20,7 +20,7 @@ export async function generateMetadata({
   if (!term) return { title: "Term Not Found" };
 
   return {
-    title: `What Is ${term.term}? ‚Äî Cycling Glossary`,
+    title: `What Is ${term.term}? $Äî Cycling Glossary`,
     description: term.definition,
     alternates: {
       canonical: `https://roadmancycling.com/glossary/${slug}`,
@@ -124,7 +124,7 @@ export default async function GlossaryTermPage({
                   <Link href={term.relatedArticle} className="block">
                     <Card hoverable className="p-4">
                       <p className="font-heading text-coral text-xs tracking-widest mb-1">DEEP DIVE</p>
-                      <p className="text-off-white text-sm">Read the full guide ‚Üí</p>
+                      <p className="text-off-white text-sm">Read the full guide $Üí</p>
                     </Card>
                   </Link>
                 )}
@@ -132,7 +132,7 @@ export default async function GlossaryTermPage({
                   <Link href={term.relatedTool} className="block">
                     <Card hoverable className="p-4">
                       <p className="font-heading text-coral text-xs tracking-widest mb-1">FREE TOOL</p>
-                      <p className="text-off-white text-sm">Calculate yours ‚Üí</p>
+                      <p className="text-off-white text-sm">Calculate yours $Üí</p>
                     </Card>
                   </Link>
                 )}
@@ -140,7 +140,7 @@ export default async function GlossaryTermPage({
                   <Link href={term.relatedTopicHub} className="block">
                     <Card hoverable className="p-4">
                       <p className="font-heading text-coral text-xs tracking-widest mb-1">TOPIC HUB</p>
-                      <p className="text-off-white text-sm">Explore the full topic ‚Üí</p>
+                      <p className="text-off-white text-sm">Explore the full topic $Üí</p>
                     </Card>
                   </Link>
                 )}
@@ -171,7 +171,7 @@ export default async function GlossaryTermPage({
 
             <div className="mt-10 text-center">
               <Link href="/glossary" className="text-coral hover:text-coral/80 text-sm font-heading tracking-widest transition-colors">
-                ‚Üê BACK TO GLOSSARY
+                $Üê BACK TO GLOSSARY
               </Link>
             </div>
           </Container>

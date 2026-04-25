@@ -13,7 +13,7 @@ async function main() {
   const r = await sql.query(
     `UPDATE cohort_applications SET status = 'contacted' WHERE status = 'qualified' RETURNING id`
   );
-  console.log(`Migrated ${r.rowCount} qualified â†’ contacted`);
+  console.log(`Migrated ${r.rowCount} qualified $†’ contacted`);
 
   const after = await sql.query<{ status: string; n: number }>(
     `SELECT status, count(*)::int AS n FROM cohort_applications GROUP BY status ORDER BY status`

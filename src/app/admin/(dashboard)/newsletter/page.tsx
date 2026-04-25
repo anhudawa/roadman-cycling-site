@@ -38,7 +38,7 @@ export default async function NewsletterPage() {
   }
 
   // Prefer DB-backed growth from the daily cron (accurate 60k-scale counts)
-  // when we have â‰¥2 days of snapshots; fall back to the live Beehiiv paginate
+  // when we have $‰¥2 days of snapshots; fall back to the live Beehiiv paginate
   // otherwise.
   let growthSource: "snapshot" | "live" = "live";
   try {
@@ -69,7 +69,7 @@ export default async function NewsletterPage() {
       }
     }
   } catch {
-    // Snapshots table / DB unavailable â€” stick with live growth
+    // Snapshots table / DB unavailable $€” stick with live growth
   }
 
   // Compute open/click rates across sent posts.

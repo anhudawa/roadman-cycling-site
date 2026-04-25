@@ -39,7 +39,7 @@ export default async function TedSettingsPage() {
   return (
     <div className="space-y-6">
       <div>
-        <h1 className="text-2xl font-semibold text-white">Ted â€” settings</h1>
+        <h1 className="text-2xl font-semibold text-white">Ted $€” settings</h1>
         <p className="text-sm text-foreground-subtle">
           Kill switch + per-job posting gates. Scheduled jobs read these on every run.
         </p>

@@ -102,7 +102,7 @@ export async function runPostWelcome(opts: PostWelcomeOpts = {}): Promise<void> 
             payload: { memberEmail: row.memberEmail },
             error: msg,
           });
-          // Continue with next member â€” one failure shouldn't block the batch.
+          // Continue with next member $€” one failure shouldn't block the batch.
         }
 
         // Re-check the kill switch between posts.

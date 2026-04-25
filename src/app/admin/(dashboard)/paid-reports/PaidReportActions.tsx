@@ -13,9 +13,9 @@ import {
  * Inline actions for a single paid-report row. Three controls wired to
  * the matching server actions:
  *
- *  - Resend      â†’ only visible once a PDF has been generated
- *  - Regenerate  â†’ available while the report isn't in a terminal state
- *  - Revoke      â†’ destructive; prompts for a reason before firing
+ *  - Resend      $†’ only visible once a PDF has been generated
+ *  - Regenerate  $†’ available while the report isn't in a terminal state
+ *  - Revoke      $†’ destructive; prompts for a reason before firing
  *
  * `useTransition` gives us a cheap pending indicator and
  * `router.refresh()` after completion picks up the new status row.
@@ -71,7 +71,7 @@ export function PaidReportActions({ reportId, status }: Props) {
       ) : null}
       {canRegenerate ? (
         <>
-          <span className="text-foreground-subtle">Â·</span>
+          <span className="text-foreground-subtle">$·</span>
           <button
             type="button"
             disabled={isPending}
@@ -84,7 +84,7 @@ export function PaidReportActions({ reportId, status }: Props) {
       ) : null}
       {canRevoke ? (
         <>
-          <span className="text-foreground-subtle">Â·</span>
+          <span className="text-foreground-subtle">$·</span>
           <button
             type="button"
             disabled={isPending}
@@ -96,7 +96,7 @@ export function PaidReportActions({ reportId, status }: Props) {
         </>
       ) : null}
       {isPending ? (
-        <span className="text-foreground-subtle">â€¦</span>
+        <span className="text-foreground-subtle">$€¦</span>
       ) : null}
       {error ? (
         <span className="text-[10px] text-red-400" title={error}>

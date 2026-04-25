@@ -4,13 +4,13 @@ import { JsonLd } from "@/components/seo/JsonLd";
 import { SoftwareApplicationSchema } from "@/components/seo/SoftwareApplicationSchema";
 
 export const metadata: Metadata = {
-  title: "Race Weight Calculator â€” Peak Cycling Weight",
+  title: "Race Weight Calculator $€” Peak Cycling Weight",
   description:
     "Calculate your target race weight based on body composition and event type. Free cycling tool based on competitive cyclist reference ranges.",
   keywords: ["race weight calculator", "cycling race weight", "cycling body composition", "power to weight cycling"],
   alternates: { canonical: "https://roadmancycling.com/tools/race-weight" },
   openGraph: {
-    title: "Race Weight Calculator â€” Peak Cycling Weight",
+    title: "Race Weight Calculator $€” Peak Cycling Weight",
     description:
       "Calculate your target race weight based on body composition and event type. Free cycling tool based on competitive cyclist reference ranges.",
     type: "website",
@@ -64,7 +64,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
               name: "What is ideal race weight for cycling?",
               acceptedAnswer: {
                 "@type": "Answer",
-                text: "Ideal race weight for cycling is the body weight at which you achieve the best power-to-weight ratio without compromising health or performance. It is determined by body composition â€” specifically lean mass and body fat percentage â€” rather than a BMI chart. For competitive male cyclists, target body fat typically ranges from 7-15% depending on the event; for female cyclists, 14-25%. A hill climb specialist will aim leaner than a gran fondo rider.",
+                text: "Ideal race weight for cycling is the body weight at which you achieve the best power-to-weight ratio without compromising health or performance. It is determined by body composition $€” specifically lean mass and body fat percentage $€” rather than a BMI chart. For competitive male cyclists, target body fat typically ranges from 7-15% depending on the event; for female cyclists, 14-25%. A hill climb specialist will aim leaner than a gran fondo rider.",
               },
             },
             {
@@ -88,7 +88,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
               name: "How fast should I lose weight for cycling?",
               acceptedAnswer: {
                 "@type": "Answer",
-                text: "The safe and sustainable rate is a maximum of 0.5% of your body weight per week â€” roughly 0.3-0.5kg per week for most cyclists. Faster weight loss risks muscle loss, reduced power output, hormonal disruption, and increased illness risk. Focus on food quality and protein adequacy (1.6-2.2g/kg/day) rather than severe calorie restriction, and always fuel your key training sessions properly.",
+                text: "The safe and sustainable rate is a maximum of 0.5% of your body weight per week $€” roughly 0.3-0.5kg per week for most cyclists. Faster weight loss risks muscle loss, reduced power output, hormonal disruption, and increased illness risk. Focus on food quality and protein adequacy (1.6-2.2g/kg/day) rather than severe calorie restriction, and always fuel your key training sessions properly.",
               },
             },
             {
@@ -96,7 +96,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
               name: "What body fat percentage do professional cyclists have?",
               acceptedAnswer: {
                 "@type": "Answer",
-                text: "Male professional cyclists typically race at 6-10% body fat, while female professionals are usually 12-18%. However, these figures are maintained only during peak racing season under professional medical supervision. Amateur cyclists should not target professional body fat levels â€” the health risks outweigh the marginal performance gains. A competitive amateur male at 10-14% or female at 18-24% is in an excellent range.",
+                text: "Male professional cyclists typically race at 6-10% body fat, while female professionals are usually 12-18%. However, these figures are maintained only during peak racing season under professional medical supervision. Amateur cyclists should not target professional body fat levels $€” the health risks outweigh the marginal performance gains. A competitive amateur male at 10-14% or female at 18-24% is in an excellent range.",
               },
             },
             {
@@ -104,7 +104,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
               name: "Is BMI useful for cyclists?",
               acceptedAnswer: {
                 "@type": "Answer",
-                text: "BMI is a poor metric for cyclists because it does not distinguish between muscle and fat. A muscular cyclist with low body fat can have the same BMI as a sedentary person with high body fat. Body composition â€” your ratio of lean mass to fat mass â€” is far more relevant. Tools like DEXA scans, bioelectrical impedance scales, or caliper tests give a more useful picture of your physique for cycling performance.",
+                text: "BMI is a poor metric for cyclists because it does not distinguish between muscle and fat. A muscular cyclist with low body fat can have the same BMI as a sedentary person with high body fat. Body composition $€” your ratio of lean mass to fat mass $€” is far more relevant. Tools like DEXA scans, bioelectrical impedance scales, or caliper tests give a more useful picture of your physique for cycling performance.",
               },
             },
           ],

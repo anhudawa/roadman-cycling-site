@@ -30,7 +30,7 @@ export interface SaveToolResultInput {
   outputs: Record<string, unknown>;
   /** One-line summary shown in history lists. */
   summary: string;
-  /** Grouping key for admin analytics (plateau profile, carb bucketâ€¦). */
+  /** Grouping key for admin analytics (plateau profile, carb bucket$€¦). */
   primaryResult: string | null;
   tags: string[];
   utm?: ToolResultUtm | null;
@@ -56,7 +56,7 @@ export interface ToolResult {
 }
 
 /**
- * Row shape the /results list renders â€” the full outputs payload is
+ * Row shape the /results list renders $€” the full outputs payload is
  * only loaded when the rider drills into an individual result page.
  */
 export interface ToolResultSummary {

@@ -28,7 +28,7 @@ function getResource(server: ReturnType<typeof buildMcpServer>, uri: string) {
   return registry[uri];
 }
 
-describe("MCP resources â€” registration", () => {
+describe("MCP resources $€” registration", () => {
   it("registers all 3 resource URIs", () => {
     const server = buildMcpServer("test");
     const registry = (
@@ -41,7 +41,7 @@ describe("MCP resources â€” registration", () => {
   });
 });
 
-describe("MCP resources â€” content", () => {
+describe("MCP resources $€” content", () => {
   it("brand/overview includes Roadman identity markers", async () => {
     const server = buildMcpServer("test");
     const resource = getResource(server, "roadman://brand/overview");

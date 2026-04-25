@@ -1,8 +1,8 @@
 /**
- * Shared types for the paid-report domain: products â†’ orders â†’ reports.
+ * Shared types for the paid-report domain: products $†’ orders $†’ reports.
  *
  * Status lifecycles are enforced as string unions so callers can exhaustively
- * switch on them. The database columns are `text` â€” if a row comes back with
+ * switch on them. The database columns are `text` $€” if a row comes back with
  * an unexpected value, `asOrderStatus`/`asPaidReportStatus` clamps it to the
  * nearest valid state so code never breaks on bad data.
  */

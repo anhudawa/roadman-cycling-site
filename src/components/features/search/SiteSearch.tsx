@@ -333,7 +333,7 @@ export function SiteSearch({ items }: SiteSearchProps) {
 
       {/* Results */}
       {!hasQuery ? (
-        /* Empty state â€” no query entered */
+        /* Empty state $€” no query entered */
         <div className="text-center py-20">
           <div className="inline-flex items-center justify-center w-20 h-20 rounded-full bg-white/5 mb-6">
             <svg

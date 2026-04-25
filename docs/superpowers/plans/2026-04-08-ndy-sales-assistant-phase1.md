@@ -1,4 +1,4 @@
-# NDY Sales Assistant â€” Phase 1 Implementation Plan
+# NDY Sales Assistant $€” Phase 1 Implementation Plan
 
 > **For agentic workers:** REQUIRED SUB-SKILL: Use superpowers:subagent-driven-development (recommended) or superpowers:executing-plans to implement this plan task-by-task. Steps use checkbox (`- [ ]`) syntax for tracking.
 
@@ -6,7 +6,7 @@
 
 **Architecture:** Server-side routing via a pure JavaScript function. A single POST endpoint `/api/ndy/recommend` accepts prospect answers, runs deterministic routing rules, writes to Airtable, and returns the routing decision. No LLM calls, no front-end, no templates in this phase.
 
-**Tech Stack:** Next.js 16 (app router), TypeScript, Vitest (new â€” needs setup), Airtable REST API (existing pattern at `src/lib/inventory/airtable.ts`).
+**Tech Stack:** Next.js 16 (app router), TypeScript, Vitest (new $€” needs setup), Airtable REST API (existing pattern at `src/lib/inventory/airtable.ts`).
 
 **Spec:** `docs/superpowers/specs/2026-04-08-ndy-sales-assistant-design.md`
 
@@ -16,11 +16,11 @@
 
 | File | Responsibility |
 |------|---------------|
-| `vitest.config.mts` | Vitest configuration (new â€” project has no test framework yet) |
+| `vitest.config.mts` | Vitest configuration (new $€” project has no test framework yet) |
 | `src/lib/ndy/types.ts` | TypeScript types for questions, answers, routing decisions, Airtable record |
-| `src/lib/ndy/routing.ts` | Pure routing function: answers in â†’ routing decision out |
+| `src/lib/ndy/routing.ts` | Pure routing function: answers in $†’ routing decision out |
 | `src/lib/ndy/airtable.ts` | Airtable client for `ndy_prospects` table (create record, follows existing pattern) |
-| `src/lib/ndy/routing.test.ts` | Unit tests for routing logic â€” 20 sample profiles |
+| `src/lib/ndy/routing.test.ts` | Unit tests for routing logic $€” 20 sample profiles |
 | `src/app/api/ndy/recommend/route.ts` | POST endpoint: validate input, run routing, write Airtable, return decision |
 
 ---
@@ -37,7 +37,7 @@
 cd ~/Desktop/roadman-cycling-site && npm install -D vitest vite-tsconfig-paths
 ```
 
-No React Testing Library needed â€” Phase 1 tests are pure logic, no components.
+No React Testing Library needed $€” Phase 1 tests are pure logic, no components.
 
 - [ ] **Step 2: Create vitest.config.mts**
 
@@ -297,7 +297,7 @@ export function routeProspect(answers: ProspectAnswers): RoutingResult {
     return { decision: 'not_a_fit', budgetFlag, injuryFlag, computedWpkg: wpkg };
   }
 
-  // Rule 2: Budget override â†’ Standard
+  // Rule 2: Budget override $†’ Standard
   if (budgetFlag) {
     return { decision: 'standard', budgetFlag, injuryFlag, computedWpkg: wpkg };
   }
@@ -395,7 +395,7 @@ interface TestCase {
 const testCases: TestCase[] = [
   // --- Inner Circle (profiles 1-3) ---
   {
-    name: '#1: IC â€” 9-12hrs, race, 280-350W, plateau, self-coached, 72kg',
+    name: '#1: IC $€” 9-12hrs, race, 280-350W, plateau, self-coached, 72kg',
     answers: prospect({
       q1TrainingFor: 'race_with_date',
       q2HoursPerWeek: '9_to_12',
@@ -408,7 +408,7 @@ const testCases: TestCase[] = [
     expected: 'inner_circle',
   },
   {
-    name: '#2: IC â€” 12+hrs, race, 350+W, plateau, had coach, 68kg',
+    name: '#2: IC $€” 12+hrs, race, 350+W, plateau, had coach, 68kg',
     answers: prospect({
       q1TrainingFor: 'race_with_date',
       q2HoursPerWeek: '12_plus',
@@ -421,7 +421,7 @@ const testCases: TestCase[] = [
     expected: 'inner_circle',
   },
   {
-    name: '#3: IC via w/kg â€” 200-280W range but 65kg (3.69 w/kg >= 3.5)',
+    name: '#3: IC via w/kg $€” 200-280W range but 65kg (3.69 w/kg >= 3.5)',
     answers: prospect({
       q1TrainingFor: 'race_with_date',
       q2HoursPerWeek: '9_to_12',
@@ -435,7 +435,7 @@ const testCases: TestCase[] = [
   },
   // --- Premium (profiles 4-7) ---
   {
-    name: '#4: Premium â€” 200-280W but 80kg (3.0 w/kg, below IC threshold)',
+    name: '#4: Premium $€” 200-280W but 80kg (3.0 w/kg, below IC threshold)',
     answers: prospect({
       q1TrainingFor: 'race_with_date',
       q2HoursPerWeek: '9_to_12',
@@ -448,7 +448,7 @@ const testCases: TestCase[] = [
     expected: 'premium',
   },
   {
-    name: '#5: Premium â€” specific watts target, 6-9hrs, self-coached',
+    name: '#5: Premium $€” specific watts target, 6-9hrs, self-coached',
     answers: prospect({
       q1TrainingFor: 'specific_watts_target',
       q2HoursPerWeek: '6_to_9',
@@ -460,7 +460,7 @@ const testCases: TestCase[] = [
     expected: 'premium',
   },
   {
-    name: '#6: Premium â€” group ride, 6-9hrs, no structure, had coach',
+    name: '#6: Premium $€” group ride, 6-9hrs, no structure, had coach',
     answers: prospect({
       q1TrainingFor: 'group_ride_fitness',
       q2HoursPerWeek: '6_to_9',
@@ -472,7 +472,7 @@ const testCases: TestCase[] = [
     expected: 'premium',
   },
   {
-    name: '#7: Premium â€” race, 6-9hrs, 280-350W, no structure, self-coached',
+    name: '#7: Premium $€” race, 6-9hrs, 280-350W, no structure, self-coached',
     answers: prospect({
       q1TrainingFor: 'race_with_date',
       q2HoursPerWeek: '6_to_9',
@@ -486,7 +486,7 @@ const testCases: TestCase[] = [
   },
   // --- Standard (profiles 8-14) ---
   {
-    name: '#8: Standard â€” strong profile but never coached (blocks Premium)',
+    name: '#8: Standard $€” strong profile but never coached (blocks Premium)',
     answers: prospect({
       q1TrainingFor: 'specific_watts_target',
       q2HoursPerWeek: '9_to_12',
@@ -499,7 +499,7 @@ const testCases: TestCase[] = [
     expected: 'standard',
   },
   {
-    name: '#9: Standard â€” race goal, 4-6hrs, never coached',
+    name: '#9: Standard $€” race goal, 4-6hrs, never coached',
     answers: prospect({
       q1TrainingFor: 'race_with_date',
       q2HoursPerWeek: '4_to_6',
@@ -511,7 +511,7 @@ const testCases: TestCase[] = [
     expected: 'standard',
   },
   {
-    name: '#10: Standard â€” general fitness, 4-6hrs, lost motivation, never coached',
+    name: '#10: Standard $€” general fitness, 4-6hrs, lost motivation, never coached',
     answers: prospect({
       q1TrainingFor: 'general_fitness',
       q2HoursPerWeek: '4_to_6',
@@ -523,7 +523,7 @@ const testCases: TestCase[] = [
     expected: 'standard',
   },
   {
-    name: '#11: Standard â€” group ride, 4-6hrs, lost motivation, self-coached',
+    name: '#11: Standard $€” group ride, 4-6hrs, lost motivation, self-coached',
     answers: prospect({
       q1TrainingFor: 'group_ride_fitness',
       q2HoursPerWeek: '4_to_6',
@@ -535,7 +535,7 @@ const testCases: TestCase[] = [
     expected: 'standard',
   },
   {
-    name: '#12: Standard â€” other goal, 6-9hrs, not sure FTP, never coached',
+    name: '#12: Standard $€” other goal, 6-9hrs, not sure FTP, never coached',
     answers: prospect({
       q1TrainingFor: 'other',
       q2HoursPerWeek: '6_to_9',
@@ -547,7 +547,7 @@ const testCases: TestCase[] = [
     expected: 'standard',
   },
   {
-    name: '#13: Standard (budget override) â€” IC profile but mentions cost',
+    name: '#13: Standard (budget override) $€” IC profile but mentions cost',
     answers: prospect({
       q1TrainingFor: 'race_with_date',
       q2HoursPerWeek: '9_to_12',
@@ -561,7 +561,7 @@ const testCases: TestCase[] = [
     expected: 'standard',
   },
   {
-    name: '#14: Standard (budget override) â€” IC profile, "can\'t afford much"',
+    name: '#14: Standard (budget override) $€” IC profile, "can\'t afford much"',
     answers: prospect({
       q1TrainingFor: 'race_with_date',
       q2HoursPerWeek: '12_plus',
@@ -576,7 +576,7 @@ const testCases: TestCase[] = [
   },
   // --- Not a fit (profiles 15-18) ---
   {
-    name: '#15: Not a fit â€” under 4hrs, general fitness, recurring injury',
+    name: '#15: Not a fit $€” under 4hrs, general fitness, recurring injury',
     answers: prospect({
       q1TrainingFor: 'general_fitness',
       q2HoursPerWeek: 'under_4',
@@ -588,7 +588,7 @@ const testCases: TestCase[] = [
     expected: 'not_a_fit',
   },
   {
-    name: '#16: Not a fit â€” under 4hrs, recurring injury + injury in freetext',
+    name: '#16: Not a fit $€” under 4hrs, recurring injury + injury in freetext',
     answers: prospect({
       q1TrainingFor: 'group_ride_fitness',
       q2HoursPerWeek: 'under_4',
@@ -601,7 +601,7 @@ const testCases: TestCase[] = [
     expected: 'not_a_fit',
   },
   {
-    name: '#17: Not a fit â€” under 4hrs, general fitness (no specific goal)',
+    name: '#17: Not a fit $€” under 4hrs, general fitness (no specific goal)',
     answers: prospect({
       q1TrainingFor: 'general_fitness',
       q2HoursPerWeek: 'under_4',
@@ -613,7 +613,7 @@ const testCases: TestCase[] = [
     expected: 'not_a_fit',
   },
   {
-    name: '#18: Not a fit â€” recurring injury in Q5 + injury confirmed in freetext',
+    name: '#18: Not a fit $€” recurring injury in Q5 + injury confirmed in freetext',
     answers: prospect({
       q1TrainingFor: 'race_with_date',
       q2HoursPerWeek: '4_to_6',
@@ -628,7 +628,7 @@ const testCases: TestCase[] = [
   },
   // --- Edge cases (profiles 19-20) ---
   {
-    name: '#19: IC â€” currently has a coach, meets all other IC criteria',
+    name: '#19: IC $€” currently has a coach, meets all other IC criteria',
     answers: prospect({
       q1TrainingFor: 'race_with_date',
       q2HoursPerWeek: '9_to_12',
@@ -641,7 +641,7 @@ const testCases: TestCase[] = [
     expected: 'inner_circle',
   },
   {
-    name: '#20: Premium â€” specific watts, 6-9hrs, other frustration, self-coached',
+    name: '#20: Premium $€” specific watts, 6-9hrs, other frustration, self-coached',
     answers: prospect({
       q1TrainingFor: 'specific_watts_target',
       q2HoursPerWeek: '6_to_9',
@@ -741,7 +741,7 @@ git commit -m "test(ndy): add 20 routing profiles + 7 flag/wpkg tests"
 
 - [ ] **Step 1: Create the Airtable client**
 
-This follows the exact pattern from `src/lib/inventory/airtable.ts` â€” uses the same env vars, same `createRecords` function, same `mapFieldsToAirtable` helper.
+This follows the exact pattern from `src/lib/inventory/airtable.ts` $€” uses the same env vars, same `createRecords` function, same `mapFieldsToAirtable` helper.
 
 ```ts
 // src/lib/ndy/airtable.ts
@@ -890,7 +890,7 @@ export async function POST(request: Request) {
     const { answers } = validation;
     const routing = routeProspect(answers);
 
-    // Write to Airtable (non-blocking â€” don't fail the response if Airtable is down)
+    // Write to Airtable (non-blocking $€” don't fail the response if Airtable is down)
     const airtablePromise = createProspect({
       timestamp: new Date().toISOString(),
       ...answers,
@@ -907,7 +907,7 @@ export async function POST(request: Request) {
       console.error('Airtable write failed:', err);
     });
 
-    // Don't await Airtable â€” return the routing decision immediately
+    // Don't await Airtable $€” return the routing decision immediately
     void airtablePromise;
 
     return NextResponse.json({
@@ -970,7 +970,7 @@ Expected response:
 }
 ```
 
-- [ ] **Step 2: Test validation â€” send invalid input**
+- [ ] **Step 2: Test validation $€” send invalid input**
 
 ```bash
 curl -X POST http://localhost:3000/api/ndy/recommend \
@@ -999,7 +999,7 @@ curl -X POST http://localhost:3000/api/ndy/recommend \
 
 Expected: `{"decision": "standard", "budgetFlag": true, ...}`
 
-Note: Airtable writes will fail silently if `AIRTABLE_API_KEY` and `AIRTABLE_BASE_ID` aren't set in `.env.local`. That's expected â€” the routing response still works. Airtable integration is verified once Anthony provides the credentials.
+Note: Airtable writes will fail silently if `AIRTABLE_API_KEY` and `AIRTABLE_BASE_ID` aren't set in `.env.local`. That's expected $€” the routing response still works. Airtable integration is verified once Anthony provides the credentials.
 
 ---
 
@@ -1029,12 +1029,12 @@ If any files were modified during smoke testing (e.g. `.env.local` additions), e
 
 ## Phase 1 Deliverable Checklist
 
-- [ ] `src/lib/ndy/types.ts` â€” All types for questions, answers, routing, Airtable record
-- [ ] `src/lib/ndy/routing.ts` â€” Pure routing function, no side effects
-- [ ] `src/lib/ndy/routing.test.ts` â€” 20 profile tests + 7 flag/wpkg tests, all passing
-- [ ] `src/lib/ndy/airtable.ts` â€” Airtable client following existing pattern
-- [ ] `src/app/api/ndy/recommend/route.ts` â€” POST endpoint with validation
-- [ ] `vitest.config.mts` â€” Test framework setup
+- [ ] `src/lib/ndy/types.ts` $€” All types for questions, answers, routing, Airtable record
+- [ ] `src/lib/ndy/routing.ts` $€” Pure routing function, no side effects
+- [ ] `src/lib/ndy/routing.test.ts` $€” 20 profile tests + 7 flag/wpkg tests, all passing
+- [ ] `src/lib/ndy/airtable.ts` $€” Airtable client following existing pattern
+- [ ] `src/app/api/ndy/recommend/route.ts` $€” POST endpoint with validation
+- [ ] `vitest.config.mts` $€” Test framework setup
 - [ ] Build passes, no regressions
 
 **Stop here.** Phase 2 (response templates in Anthony's voice) requires Anthony's review before proceeding.

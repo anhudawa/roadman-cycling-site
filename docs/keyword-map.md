@@ -1,4 +1,4 @@
-# Roadman Cycling â€” Master Keyword / Search Term Map
+# Roadman Cycling $€” Master Keyword / Search Term Map
 
 Last updated: 2026-04-14
 
@@ -6,16 +6,16 @@ This is the comprehensive list of search queries Roadman Cycling is targeting, t
 
 ## How this is organised
 
-- **Tier 1 â€” Commercial (coaching)**: High-intent queries where we sell. Landing page or geo page owns these.
-- **Tier 2 â€” Brand / comparison**: Someone's looking for the best X. We win these via authoritative listicles, reviews, and review-schema pages.
-- **Tier 3 â€” Pillar-topic (informational)**: High-volume educational queries that feed our blog + topic hubs and funnel to the coaching offer.
-- **Tier 4 â€” Event-specific / local**: Irish/UK event names, destinations, races.
-- **Tier 5 â€” Long-tail "question" queries**: People-Also-Ask / AI-search queries. One per FAQ item across the site.
-- **Tier 6 â€” Brand**: Roadman / Anthony Walsh / podcast.
+- **Tier 1 $€” Commercial (coaching)**: High-intent queries where we sell. Landing page or geo page owns these.
+- **Tier 2 $€” Brand / comparison**: Someone's looking for the best X. We win these via authoritative listicles, reviews, and review-schema pages.
+- **Tier 3 $€” Pillar-topic (informational)**: High-volume educational queries that feed our blog + topic hubs and funnel to the coaching offer.
+- **Tier 4 $€” Event-specific / local**: Irish/UK event names, destinations, races.
+- **Tier 5 $€” Long-tail "question" queries**: People-Also-Ask / AI-search queries. One per FAQ item across the site.
+- **Tier 6 $€” Brand**: Roadman / Anthony Walsh / podcast.
 
 ---
 
-## Tier 1 â€” Commercial (coaching) â€” highest $/click
+## Tier 1 $€” Commercial (coaching) $€” highest $/click
 
 Owned by `/coaching`, `/coaching/[country]`, `/coaching/[city]`, `/apply`, and the `cycling-coaching` topic hub.
 
@@ -68,12 +68,12 @@ Owned by `/coaching`, `/coaching/[country]`, `/coaching/[city]`, `/apply`, and t
 | remote cycling coach | /coaching | |
 | cycling coach near me | /coaching | Handled via city pages + schema |
 | how to find a cycling coach | /blog/how-to-choose-cycling-coach | |
-| hire a cycling coach | /blog/is-a-cycling-coach-worth-it | Informational â†’ commercial |
+| hire a cycling coach | /blog/is-a-cycling-coach-worth-it | Informational $†’ commercial |
 | affordable cycling coach | /coaching | |
 | cycling coach cost | /blog/how-much-does-online-cycling-coach-cost-2026 | |
 | cycling coach price | /blog/how-much-does-online-cycling-coach-cost-2026 | |
 | how much does a cycling coach cost | /blog/how-much-does-online-cycling-coach-cost-2026 | |
-| cycling coach vs trainingpeaks | /blog/cycling-coach-vs-software | (content-gap â€” to write) |
+| cycling coach vs trainingpeaks | /blog/cycling-coach-vs-software | (content-gap $€” to write) |
 | cycling coach for beginners | /coaching | |
 | cycling coach for cat 1 racing | /coaching | |
 | cycling coach for sportive | /coaching | |
@@ -82,14 +82,14 @@ Owned by `/coaching`, `/coaching/[country]`, `/coaching/[city]`, `/apply`, and t
 ### Tri / duathlon bike-leg (NO expert positioning)
 | Query | Primary page | Positioning note |
 |---|---|---|
-| cycling coach for triathlon | /blog/triathlon-bike-leg-coaching | NOT triathlon experts. Position: "we get you faster on the bike â€” the rest is on you." |
+| cycling coach for triathlon | /blog/triathlon-bike-leg-coaching | NOT triathlon experts. Position: "we get you faster on the bike $€” the rest is on you." |
 | bike coach for triathletes | /blog/triathlon-bike-leg-coaching | Same. |
 | ironman bike coach | /blog/triathlon-bike-leg-coaching | Same. |
 | 70.3 bike training | /blog/triathlon-bike-leg-coaching | Same. |
 
 ---
 
-## Tier 2 â€” Brand / comparison queries
+## Tier 2 $€” Brand / comparison queries
 
 High intent, high visibility. Own these via authoritative listicles and review pages.
 
@@ -119,7 +119,7 @@ High intent, high visibility. Own these via authoritative listicles and review p
 
 ---
 
-## Tier 3 â€” Pillar-topic (informational) queries
+## Tier 3 $€” Pillar-topic (informational) queries
 
 Educational queries with massive volume. Feed the topic hubs + blog. These don't sell directly but drive sign-ups and support AI-search citations.
 
@@ -157,7 +157,7 @@ Educational queries with massive volume. Feed the topic hubs + blog. These don't
 - eating for a century ride
 - gut training cycling
 
-### Strength & conditioning pillar (currently thin â€” content gap)
+### Strength & conditioning pillar (currently thin $€” content gap)
 - strength training for cyclists
 - gym for cyclists / gym program for cyclists
 - best exercises for cyclists
@@ -191,7 +191,7 @@ Educational queries with massive volume. Feed the topic hubs + blog. These don't
 
 ---
 
-## Tier 4 â€” Event-specific / local queries
+## Tier 4 $€” Event-specific / local queries
 
 High conversion because they're training for something specific. Must be featured on country + city + event-guide pages.
 
@@ -226,7 +226,7 @@ High conversion because they're training for something specific. Must be feature
 
 ---
 
-## Tier 5 â€” Long-tail question queries (AI search + PAA)
+## Tier 5 $€” Long-tail question queries (AI search + PAA)
 
 These are answered directly in FAQ sections across relevant pages. Each one should have a matching FAQ schema item.
 
@@ -273,7 +273,7 @@ These are answered directly in FAQ sections across relevant pages. Each one shou
 
 ---
 
-## Tier 6 â€” Brand queries
+## Tier 6 $€” Brand queries
 
 Low volume but must-win. Own the top result.
 
@@ -291,13 +291,13 @@ Low volume but must-win. Own the top result.
 
 Content gaps identified by this map that are NOT yet written or under-served:
 
-1. **"Best cycling podcasts" listicle** â€” /blog/best-cycling-podcasts â€” highest Tier 2 priority given our category position
-2. **"Best cycling coaches" listicles** â€” /blog/best-cycling-coaches-guide, /blog/best-cycling-coaches-ireland, /blog/best-cycling-coaches-uk, /blog/best-cycling-coaches-usa
-3. **Wicklow 200 + Ring of Beara training guides** â€” /blog/wicklow-200-training-plan, /blog/ring-of-beara-training-plan (currently only referenced in coaching pages)
-4. **Ride London / Fred Whitton training guides** â€” /blog/ride-london-training-plan, /blog/fred-whitton-training-plan
-5. **S&C content expansion** â€” 4+ posts on gym program, core, leg day, yoga (in the Phase 2 roadmap)
-6. **Cycling coach cost guide** â€” /blog/how-much-does-online-cycling-coach-cost-2026 (commercial-intent informational)
-7. **TrainerRoad vs coach / Zwift vs coach** â€” comparison content
-8. **Cycling over 40 / over 50** â€” masters-specific guide (big untapped audience)
-9. **Tri bike-leg landing page** â€” small, clearly-scoped page reinforcing the "bike leg only" positioning
-10. **Annual "best of 2026" refreshes** â€” best podcasts, best coaches, best books refreshed every January
+1. **"Best cycling podcasts" listicle** $€” /blog/best-cycling-podcasts $€” highest Tier 2 priority given our category position
+2. **"Best cycling coaches" listicles** $€” /blog/best-cycling-coaches-guide, /blog/best-cycling-coaches-ireland, /blog/best-cycling-coaches-uk, /blog/best-cycling-coaches-usa
+3. **Wicklow 200 + Ring of Beara training guides** $€” /blog/wicklow-200-training-plan, /blog/ring-of-beara-training-plan (currently only referenced in coaching pages)
+4. **Ride London / Fred Whitton training guides** $€” /blog/ride-london-training-plan, /blog/fred-whitton-training-plan
+5. **S&C content expansion** $€” 4+ posts on gym program, core, leg day, yoga (in the Phase 2 roadmap)
+6. **Cycling coach cost guide** $€” /blog/how-much-does-online-cycling-coach-cost-2026 (commercial-intent informational)
+7. **TrainerRoad vs coach / Zwift vs coach** $€” comparison content
+8. **Cycling over 40 / over 50** $€” masters-specific guide (big untapped audience)
+9. **Tri bike-leg landing page** $€” small, clearly-scoped page reinforcing the "bike leg only" positioning
+10. **Annual "best of 2026" refreshes** $€” best podcasts, best coaches, best books refreshed every January

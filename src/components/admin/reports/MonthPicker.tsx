@@ -53,7 +53,7 @@ export function MonthPicker({ sponsorId }: Props) {
         }}
         className="rounded-md bg-[#F16363] px-3 py-1 text-sm font-semibold text-white hover:bg-[#e14d4d]"
       >
-        Report â†’
+        Report $†’
       </button>
     </div>
   );

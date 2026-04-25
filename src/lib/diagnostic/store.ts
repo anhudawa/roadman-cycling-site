@@ -22,16 +22,16 @@ const SLUG_ALPHABET = "abcdefghijklmnopqrstuvwxyz0123456789";
 const SLUG_LEN = 10;
 
 /**
- * Collisions at 36^10 â‰ˆ 3.6e15 are astronomically unlikely, but a
+ * Collisions at 36^10 $‰ˆ 3.6e15 are astronomically unlikely, but a
  * unique-constraint retry is cheap insurance against pathological
- * RNG. Three attempts is plenty â€” if it fails three times in a row
+ * RNG. Three attempts is plenty $€” if it fails three times in a row
  * the crypto source is broken.
  */
 const SLUG_RETRY_ATTEMPTS = 3;
 
 /**
  * URL-friendly short id. Collisions are astronomically unlikely at
- * 36^10 â‰ˆ 3.6e15, but we still tolerate a unique-constraint retry in
+ * 36^10 $‰ˆ 3.6e15, but we still tolerate a unique-constraint retry in
  * insertSubmission.
  */
 function generateSlug(): string {
@@ -230,7 +230,7 @@ export async function getSubmissionBySlug(
 
 /**
  * Admin-side detail for the QA dashboard. Returns the full row,
- * including raw model output and generation_meta â€” never returned
+ * including raw model output and generation_meta $€” never returned
  * over the public read endpoint. Caller must already be auth-gated.
  */
 export interface SubmissionDetail extends StoredSubmission {
@@ -293,7 +293,7 @@ export async function attachBeehiivId(slug: string, subscriberId: string): Promi
 
 /**
  * Phase 2: link a submission to the rider profile after the insert so
- * the request path stays fast. Best-effort â€” the submission row is
+ * the request path stays fast. Best-effort $€” the submission row is
  * already persisted, this is purely a denormalised join for dashboards
  * and /results history.
  */

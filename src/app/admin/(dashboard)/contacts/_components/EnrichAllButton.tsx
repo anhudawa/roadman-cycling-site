@@ -10,7 +10,7 @@ export function EnrichAllButton() {
 
   async function run() {
     setRunning(true);
-    setMsg("Enriching all contactsâ€¦");
+    setMsg("Enriching all contacts$€¦");
     try {
       const res = await fetch("/api/admin/crm/enrich/all", { method: "POST" });
       const data = await res.json();

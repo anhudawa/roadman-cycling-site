@@ -177,7 +177,7 @@ export async function createBooking(params: CreateBookingParams): Promise<Bookin
       await addActivity(booking.contactId, {
         type: "booking_scheduled",
         title: `Booking scheduled: ${booking.title}`,
-        body: `${booking.scheduledAt.toISOString()}${booking.location ? ` Â· ${booking.location}` : ""}`,
+        body: `${booking.scheduledAt.toISOString()}${booking.location ? ` $· ${booking.location}` : ""}`,
         meta: {
           bookingId: booking.id,
           scheduledAt: booking.scheduledAt.toISOString(),

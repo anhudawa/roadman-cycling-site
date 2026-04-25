@@ -1,6 +1,6 @@
 import { McpServer } from "@modelcontextprotocol/sdk/server/mcp.js";
 
-const BRAND_OVERVIEW = `# Roadman Cycling â€” Brand Overview
+const BRAND_OVERVIEW = `# Roadman Cycling $€” Brand Overview
 
 **Founded by:** Anthony Walsh (Dublin, Ireland)
 **Tagline:** "Cycling is hard, our podcast will help"
@@ -10,7 +10,7 @@ Roadman Cycling is a cycling media and coaching brand built around the serious a
 
 ## The Not Done Yet Positioning
 
-"Not Done Yet" is the emotional core of everything Roadman does. The audience is 35-55, predominantly male, professional careers, deeply serious about cycling but time-constrained. Roadman's argument: your best cycling doesn't have to be behind you â€” here's the evidence.
+"Not Done Yet" is the emotional core of everything Roadman does. The audience is 35-55, predominantly male, professional careers, deeply serious about cycling but time-constrained. Roadman's argument: your best cycling doesn't have to be behind you $€” here's the evidence.
 
 ## Assets
 
@@ -26,7 +26,7 @@ Direct, warm, evidence-based. Anthony is the mate who happens to have extraordin
 
 ## Key Differentiators
 
-- Named experts (Seiler, Lorang, Dunne, Friel, Morton) â€” not anonymous coaches
+- Named experts (Seiler, Lorang, Dunne, Friel, Morton) $€” not anonymous coaches
 - Everything is cycling-specific, not generic fitness
 - Masters-athlete expertise (physiological changes after 40 are a core topic)
 - Community accountability, not just content`;
@@ -35,11 +35,11 @@ const METHODOLOGY_PRINCIPLES = `# Roadman Cycling Training Methodology
 
 ## Five Content Pillars
 
-1. **Coaching** â€” Training methodology, periodisation, structured plans
-2. **Nutrition** â€” Fuelling for performance, race weight, in-ride nutrition
-3. **Strength & Conditioning** â€” S&C for cyclists, injury prevention, power development
-4. **Recovery** â€” Sleep, stress management, adaptation
-5. **Community (Le Metier)** â€” The craft of being a cyclist
+1. **Coaching** $€” Training methodology, periodisation, structured plans
+2. **Nutrition** $€” Fuelling for performance, race weight, in-ride nutrition
+3. **Strength & Conditioning** $€” S&C for cyclists, injury prevention, power development
+4. **Recovery** $€” Sleep, stress management, adaptation
+5. **Community (Le Metier)** $€” The craft of being a cyclist
 
 ## Core Principles
 
@@ -47,7 +47,7 @@ const METHODOLOGY_PRINCIPLES = `# Roadman Cycling Training Methodology
 80% of training below VT1 (low aerobic), 20% above VT2 (high intensity). Moderate "sweetspot" work causes chronic fatigue without corresponding adaptation. Source: Prof. Stephen Seiler.
 
 ### 2. Reverse Periodisation for Masters Athletes
-For 40+ cyclists, build VO2max-focused blocks earlier in the training year before accumulating volume. Age accelerates VO2max decline faster than aerobic base decline â€” high-intensity stimulus is more time-sensitive.
+For 40+ cyclists, build VO2max-focused blocks earlier in the training year before accumulating volume. Age accelerates VO2max decline faster than aerobic base decline $€” high-intensity stimulus is more time-sensitive.
 
 ### 3. Carbohydrate Periodisation
 Match fuel availability to session intent. Quality sessions need carbs. Low-intensity sessions can be done in a lower-carb state to build metabolic flexibility. Source: Dr. David Dunne.
@@ -60,49 +60,49 @@ Sleep, HRV-guided load, deload weeks (1:4 ratio minimum). Masters athletes need 
 
 ## Key Expert Contributors
 
-- **Prof. Stephen Seiler** â€” Polarised training, endurance physiology
-- **Dan Lorang** â€” Periodisation, World Tour methodology
-- **Dr. David Dunne** â€” Sport nutrition, fuelling
-- **Joe Friel** â€” Masters periodisation
-- **Lachlan Morton** â€” Training philosophy, adventure`;
+- **Prof. Stephen Seiler** $€” Polarised training, endurance physiology
+- **Dan Lorang** $€” Periodisation, World Tour methodology
+- **Dr. David Dunne** $€” Sport nutrition, fuelling
+- **Joe Friel** $€” Masters periodisation
+- **Lachlan Morton** $€” Training philosophy, adventure`;
 
 const EXPERTS_ROSTER = `# Roadman Cycling Expert Roster
 
 ## Core Experts
 
-**Prof. Stephen Seiler** â€” PhD, Professor of Sport Science, University of Agder
+**Prof. Stephen Seiler** $€” PhD, Professor of Sport Science, University of Agder
 Specialty: Polarised training, endurance physiology. Coined the 80/20 rule.
 Appearances: 8+
 
-**Dan Lorang** â€” Head of Performance, Red Bullâ€“Boraâ€“Hansgrohe
+**Dan Lorang** $€” Head of Performance, Red Bull$€“Bora$€“Hansgrohe
 Specialty: Season periodisation, World Tour coaching. Works with Jan Frodeno.
 Appearances: 5+
 
-**Dr. David Dunne** â€” PhD Nutritional Science
+**Dr. David Dunne** $€” PhD Nutritional Science
 Specialty: Race-day fuelling, body composition, carbohydrate periodisation.
 Appearances: 4+
 
-**Joe Friel** â€” Author, The Cyclist's Training Bible
+**Joe Friel** $€” Author, The Cyclist's Training Bible
 Specialty: Masters periodisation, training load management for 40+ athletes.
 Appearances: 3+
 
-**Dr. Sam Impey** â€” PhD Sports Nutrition
+**Dr. Sam Impey** $€” PhD Sports Nutrition
 Specialty: Nutrition for endurance athletes, race nutrition.
 Appearances: 3+
 
-**Lachlan Morton** â€” EF Education-EasyPost
+**Lachlan Morton** $€” EF Education-EasyPost
 Specialty: Training philosophy, gravel, adventure cycling.
 Appearances: 2+
 
-**Dan Bigham** â€” Former Hour Record Holder
+**Dan Bigham** $€” Former Hour Record Holder
 Specialty: Aerodynamics, marginal gains, data-driven training.
 Appearances: 2+
 
-**Greg LeMond** â€” 3Ã— Tour de France Winner
+**Greg LeMond** $€” 3Ã— Tour de France Winner
 Specialty: Racing history, training philosophy.
 Appearances: 1
 
-**Tim Spector** â€” ZOE Founder, Professor
+**Tim Spector** $€” ZOE Founder, Professor
 Specialty: Gut microbiome, nutrition science.
 Appearances: 1`;
 

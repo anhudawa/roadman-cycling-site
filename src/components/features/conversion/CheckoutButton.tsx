@@ -12,7 +12,7 @@ interface CheckoutButtonProps {
    */
   paymentLink?: string;
   /**
-   * Product identifier â€” used for analytics events + event logging.
+   * Product identifier $€” used for analytics events + event logging.
    * Defaults to "strength-training".
    */
   product?: string;
@@ -31,7 +31,7 @@ interface CheckoutButtonProps {
  * Stripe Payment Link for the Strength Training course ($65 one-off).
  *
  * Created 2026-04-16 using the live Stripe account so checkout works
- * without any server-side API call â€” removes dependency on
+ * without any server-side API call $€” removes dependency on
  * STRIPE_SECRET_KEY being correctly set in Vercel. Payment Links are
  * hosted on Stripe's own infra and don't go through our API route.
  *
@@ -45,7 +45,7 @@ const MIN_LOADING_MS = 250;
 
 /**
  * Fire Meta Pixel InitiateCheckout + GA event before redirect. Consent-
- * gated via ConsentAwarePixel â€” silently no-ops if consent denied or
+ * gated via ConsentAwarePixel $€” silently no-ops if consent denied or
  * pixel blocked. Guarded against all edge cases so it can never throw
  * and block the actual checkout.
  */
@@ -100,7 +100,7 @@ function logCheckoutAttempt(product: string) {
       }),
     );
   } catch {
-    /* sendBeacon not supported â€” skip, not fatal */
+    /* sendBeacon not supported $€” skip, not fatal */
   }
 }
 
@@ -134,7 +134,7 @@ export function CheckoutButton({
   const handleCheckout = async () => {
     setErrorMsg(null);
 
-    // Analytics + event log BEFORE redirect â€” otherwise they get lost
+    // Analytics + event log BEFORE redirect $€” otherwise they get lost
     // when the browser navigates away.
     trackInitiateCheckout(product, productName, value);
     logCheckoutAttempt(product);

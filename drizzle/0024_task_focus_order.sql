@@ -5,7 +5,7 @@
 -- (sorted by due date / creation), tasks with focus_order NOT NULL live
 -- in "My main focus" (sorted by focus_order ascending).
 --
--- We re-index the focus list on every move (1, 2, 3, â€¦) to keep ordering
+-- We re-index the focus list on every move (1, 2, 3, $€¦) to keep ordering
 -- simple, but the integer column gives us room to do sparse indexing
 -- later if drag performance becomes an issue.
 

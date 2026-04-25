@@ -1,26 +1,26 @@
 "use client";
 
 /**
- * Shared building blocks for the Submissions kanban â€” used by both the
+ * Shared building blocks for the Submissions kanban $€” used by both the
  * Contact-form board (InboxPipelineBoard) and the /apply board
  * (PipelineBoard) so the two views look and feel like the same system.
  *
  * Design goals (v2, post-mobile audit):
- *  â€¢ Flat columns (no double card nesting). Column is just "header + list".
- *  â€¢ Stage-specific accent colour for each column header â€” coral reserved
+ *  $€¢ Flat columns (no double card nesting). Column is just "header + list".
+ *  $€¢ Stage-specific accent colour for each column header $€” coral reserved
  *    for primary actions and unread only.
- *  â€¢ 72vw columns on mobile so there's ALWAYS a peek of the next column
- *    telling the user to swipe â€” paired with edge fades.
- *  â€¢ Sentence-case column labels; uppercase only on tab pills + CTAs.
- *  â€¢ Single-line message preview (scannable in 1 beat; full text in modal).
- *  â€¢ "Move" dropdown on each card so stage changes work on touch (HTML5
+ *  $€¢ 72vw columns on mobile so there's ALWAYS a peek of the next column
+ *    telling the user to swipe $€” paired with edge fades.
+ *  $€¢ Sentence-case column labels; uppercase only on tab pills + CTAs.
+ *  $€¢ Single-line message preview (scannable in 1 beat; full text in modal).
+ *  $€¢ "Move" dropdown on each card so stage changes work on touch (HTML5
  *    drag-and-drop is broken on iOS/Android).
- *  â€¢ Larger tap targets (owner avatar + move + open) â€” 36â€“40px min.
+ *  $€¢ Larger tap targets (owner avatar + move + open) $€” 36$€“40px min.
  */
 
 import { useEffect, useRef, useState, type KeyboardEvent, type ReactNode } from "react";
 
-// â”€â”€ Owner avatar â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+// $”€$”€ Owner avatar $”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€
 
 // Per design spec: avatars use the per-stage accent palette, NOT coral.
 // Anthony = triage-purple, Matthew = info-blue, Wes = warn-amber, Sarah = good-green.
@@ -68,7 +68,7 @@ export function OwnerAvatar({
   );
 }
 
-// â”€â”€ Contact avatar from name â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+// $”€$”€ Contact avatar from name $”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€
 
 export function NameAvatar({
   name,
@@ -78,8 +78,8 @@ export function NameAvatar({
   size?: "sm" | "md";
 }) {
   const initial = (name.trim()[0] ?? "?").toUpperCase();
-  // Stable but non-specific tint per name â€” just use name length mod to pick.
-  // No coral here â€” contacts get neutral / stage-accent tints only. Coral
+  // Stable but non-specific tint per name $€” just use name length mod to pick.
+  // No coral here $€” contacts get neutral / stage-accent tints only. Coral
   // is reserved for primary CTA + unread badge per the design spec.
   const palette = [
     "bg-[var(--color-stage-triage-tint)] text-[var(--color-stage-triage)]",
@@ -99,7 +99,7 @@ export function NameAvatar({
   );
 }
 
-// â”€â”€ Column wrapper â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+// $”€$”€ Column wrapper $”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€
 
 export function Column({
   stage,
@@ -138,14 +138,14 @@ export function Column({
           : ""
       }`}
     >
-      {/* 2px stage stripe per spec â€” carries the per-stage accent without coral. */}
+      {/* 2px stage stripe per spec $€” carries the per-stage accent without coral. */}
       <span
         aria-hidden="true"
         className={`h-[2px] rounded-t-[var(--radius-md)] ${
           stripeColor ?? accent
         }`}
       />
-      {/* Flat column header â€” no double card nesting. */}
+      {/* Flat column header $€” no double card nesting. */}
       <div
         className={`flex items-center gap-2 px-2 pt-2 pb-2 border-b ${
           count === 0 ? "border-white/[0.04]" : "border-white/10"
@@ -169,7 +169,7 @@ export function Column({
   );
 }
 
-// â”€â”€ Card â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+// $”€$”€ Card $”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€
 
 export function SubmissionCard({
   headline,
@@ -187,9 +187,9 @@ export function SubmissionCard({
   headline: string;
   /** Second line: subject, persona/cohort tag, or metadata. Hide if empty. */
   subline?: ReactNode;
-  /** Single-line preview of message body / goal â€” line-clamp-1, full text in modal. */
+  /** Single-line preview of message body / goal $€” line-clamp-1, full text in modal. */
   preview?: string;
-  /** Chip â€” typically a relative timestamp â€” rendered bottom-right. */
+  /** Chip $€” typically a relative timestamp $€” rendered bottom-right. */
   rightChip?: ReactNode;
   unread?: boolean;
   dragging?: boolean;
@@ -237,7 +237,7 @@ export function SubmissionCard({
           </div>
         </div>
 
-        {/* Preview â€” one line; user opens modal for full text */}
+        {/* Preview $€” one line; user opens modal for full text */}
         {preview && (
           <p className="text-foreground-muted text-[12px] leading-snug truncate pl-[38px]">
             {preview}
@@ -260,7 +260,7 @@ export function SubmissionCard({
   );
 }
 
-// â”€â”€ Move-to-stage menu (touch fallback for drag-and-drop) â”€â”€â”€â”€â”€â”€â”€
+// $”€$”€ Move-to-stage menu (touch fallback for drag-and-drop) $”€$”€$”€$”€$”€$”€$”€
 
 export interface MoveStage {
   value: string;
@@ -345,7 +345,7 @@ export function MoveMenu({
   );
 }
 
-// â”€â”€ Owner-assign popover â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+// $”€$”€ Owner-assign popover $”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€
 
 export interface OwnerOption {
   value: string | null;

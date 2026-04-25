@@ -71,7 +71,7 @@ export async function POST(
     return NextResponse.json(
       {
         error:
-          "BLOB_READ_WRITE_TOKEN not configured â€” run `vercel blob` to provision Blob storage",
+          "BLOB_READ_WRITE_TOKEN not configured $€” run `vercel blob` to provision Blob storage",
       },
       { status: 503 }
     );

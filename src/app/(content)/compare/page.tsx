@@ -6,7 +6,7 @@ import { JsonLd } from "@/components/seo/JsonLd";
 import { COMPARISONS } from "@/lib/comparisons";
 
 export const metadata: Metadata = {
-  title: "Compare â€” Cycling Training Decisions Made Simple",
+  title: "Compare $€” Cycling Training Decisions Made Simple",
   description:
     "Side-by-side comparisons for cycling training decisions. Coach vs app, power vs heart rate, polarised vs pyramidal, and more.",
   alternates: {
@@ -76,7 +76,7 @@ export default function CompareIndexPage() {
                             {comp.verdict}
                           </p>
                         </div>
-                        <span className="text-coral shrink-0 mt-1">â†’</span>
+                        <span className="text-coral shrink-0 mt-1">$†’</span>
                       </div>
                     </Card>
                   </Link>
@@ -99,7 +99,7 @@ export default function CompareIndexPage() {
                 className="inline-flex items-center justify-center gap-2 font-heading tracking-wider uppercase rounded-md bg-coral text-off-white hover:bg-coral/90 px-6 py-3 text-sm transition-all"
                 data-track="compare_index_apply"
               >
-                Apply for Coaching â†’
+                Apply for Coaching $†’
               </Link>
             </ScrollReveal>
           </Container>

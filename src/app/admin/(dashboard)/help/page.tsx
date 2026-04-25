@@ -91,7 +91,7 @@ export default async function HelpPage() {
         <H2 id="quick-start">Quick start</H2>
         <P>
           The CRM is where every lead, application, booking, and customer lives. Contacts are the
-          spine â€” everything else (applications, deals, emails, tasks, bookings) hangs off a
+          spine $€” everything else (applications, deals, emails, tasks, bookings) hangs off a
           contact. Your job most days is to keep things moving: reply to what needs replying to,
           push applications down the pipeline, and log what happened so the rest of the team has
           context.
@@ -101,17 +101,17 @@ export default async function HelpPage() {
         </P>
         <ul className="text-sm text-foreground-muted space-y-1 mb-3 list-disc pl-5">
           <li>
-            <C>/admin/my-day</C> â€” your personal queue: tasks due, bookings today, applications
+            <C>/admin/my-day</C> $€” your personal queue: tasks due, bookings today, applications
             waiting on you.
           </li>
           <li>
-            <C>/admin/contacts</C> â€” search, filter, and open any person.
+            <C>/admin/contacts</C> $€” search, filter, and open any person.
           </li>
           <li>
-            <C>/admin/applications</C> â€” kanban of cohort applications.
+            <C>/admin/applications</C> $€” kanban of cohort applications.
           </li>
           <li>
-            <C>/admin/tasks</C> â€” every follow-up you&apos;ve committed to.
+            <C>/admin/tasks</C> $€” every follow-up you&apos;ve committed to.
           </li>
         </ul>
 
@@ -125,12 +125,12 @@ export default async function HelpPage() {
 
         <H2 id="contacts">Contacts</H2>
         <P>
-          A <B>contact</B> is one human â€” identified by email. Anyone who books a call, fills an
+          A <B>contact</B> is one human $€” identified by email. Anyone who books a call, fills an
           application, subscribes to the newsletter, or buys something becomes a contact. The
           system <B>upserts</B> by email, so you won&apos;t get duplicates from repeat form fills.
         </P>
         <P>
-          Open a contact to see the <B>timeline</B> â€” every touchpoint in chronological order:
+          Open a contact to see the <B>timeline</B> $€” every touchpoint in chronological order:
           emails, app submissions, stage changes, notes, booking activity. Add a <B>note</B> with{" "}
           <C>@mention</C> to ping a teammate (they get a notification). Drop files on the{" "}
           <B>attachments</B> section (contracts, screenshots, etc.). Use <B>custom fields</B> for
@@ -138,7 +138,7 @@ export default async function HelpPage() {
         </P>
         <P>
           If you find two records for the same person, use <B>Merge duplicates</B> on the contact
-          detail page â€” the older contact absorbs the newer one and keeps the combined timeline.{" "}
+          detail page $€” the older contact absorbs the newer one and keeps the combined timeline.{" "}
           <B>Saved views</B> are filter shortcuts: build a filter you&apos;ll rerun (e.g. &quot;UK
           + high intent + no booking&quot;) and save it so it&apos;s one click next time.
         </P>
@@ -146,9 +146,9 @@ export default async function HelpPage() {
         <H2 id="pipeline">Pipeline (applications)</H2>
         <P>
           <C>/admin/applications</C> is a kanban board of <B>cohort applications</B> only. Stages:{" "}
-          <B>new</B> (just submitted, unread) â†’ <B>reviewing</B> (you&apos;ve read it) â†’{" "}
-          <B>awaiting_response</B> (ball is in their court) â†’ <B>accepted</B> / <B>rejected</B>.
-          Drag cards to change stage. Each app has an <B>owner</B> â€” assign yourself when you pick
+          <B>new</B> (just submitted, unread) $†’ <B>reviewing</B> (you&apos;ve read it) $†’{" "}
+          <B>awaiting_response</B> (ball is in their court) $†’ <B>accepted</B> / <B>rejected</B>.
+          Drag cards to change stage. Each app has an <B>owner</B> $€” assign yourself when you pick
           it up, so My Day surfaces it.
         </P>
 
@@ -156,8 +156,8 @@ export default async function HelpPage() {
         <P>
           <B>Deals</B> are for 1-1 coaching and any non-cohort revenue opportunity. Think of it
           this way: <B>applications = cohort only</B>, <B>deals = everything else with a dollar
-          value</B>. Each deal has a stage (<C>lead</C> â†’ <C>qualified</C> â†’ <C>proposal</C> â†’{" "}
-          <C>won</C> / <C>lost</C>), a value in USD, and an owner. Mark won/lost honestly â€”
+          value</B>. Each deal has a stage (<C>lead</C> $†’ <C>qualified</C> $†’ <C>proposal</C> $†’{" "}
+          <C>won</C> / <C>lost</C>), a value in USD, and an owner. Mark won/lost honestly $€”
           that&apos;s what powers the revenue reports.
         </P>
 
@@ -170,7 +170,7 @@ export default async function HelpPage() {
         </P>
         <P>
           <B>Open/click tracking</B> comes back via the Resend webhook and shows on the contact
-          timeline. Note: this requires <C>RESEND_WEBHOOK_SECRET</C> to be set in env â€” if opens
+          timeline. Note: this requires <C>RESEND_WEBHOOK_SECRET</C> to be set in env $€” if opens
           aren&apos;t showing up, check Settings.
         </P>
 
@@ -196,15 +196,15 @@ export default async function HelpPage() {
           </span>
           <br />
           Email actions fire <B>synchronously</B>. Do <B>not</B> enable an email automation on{" "}
-          <C>contact.created</C> if you have a large CSV import pending â€” it&apos;ll blast
+          <C>contact.created</C> if you have a large CSV import pending $€” it&apos;ll blast
           everyone on the import. Stage the import first, or flip the kill switch during the
           import.
         </P>
 
         <H2 id="lead-scoring">Lead scoring</H2>
         <P>
-          Every contact has a <B>lead score</B> (0â€“100) and a <B>band</B>: <B>cold</B> (0â€“30),{" "}
-          <B>warm</B> (31â€“65), <B>hot</B> (66â€“100). The score measures engagement â€” email opens,
+          Every contact has a <B>lead score</B> (0$€“100) and a <B>band</B>: <B>cold</B> (0$€“30),{" "}
+          <B>warm</B> (31$€“65), <B>hot</B> (66$€“100). The score measures engagement $€” email opens,
           page visits, application submitted, booking completed, recency. Scores recompute
           nightly at <B>06:30 UTC</B> via the <C>/api/cron/score-all</C> cron.
         </P>
@@ -226,16 +226,16 @@ export default async function HelpPage() {
 
         <H2 id="tags">Tags</H2>
         <P>
-          Tags are freeform â€” which means they sprawl. Every month or so, head to{" "}
+          Tags are freeform $€” which means they sprawl. Every month or so, head to{" "}
           <C>/admin/tags</C> to rename, merge, or delete tags. Keep the living taxonomy clean;
           filters are only as good as the tags they target.
         </P>
 
         <H2 id="shortcuts">Shortcuts</H2>
         <P>
-          <B>Cmd+K</B> opens the command palette â€” search contacts, jump to pages, run common
+          <B>Cmd+K</B> opens the command palette $€” search contacts, jump to pages, run common
           actions. The <B>sidebar</B> groups pages by purpose (Personal / Analytics / Growth /
-          etc.). The <B>notification bell</B> in the top bar shows @mentions and system alerts â€”
+          etc.). The <B>notification bell</B> in the top bar shows @mentions and system alerts $€”
           check it morning and evening.
         </P>
 
@@ -249,7 +249,7 @@ export default async function HelpPage() {
         </P>
         <P>
           When adding a new team member: create them in settings, share the one-time password,
-          tell them to log in and change it. When someone leaves: deactivate (don&apos;t delete) â€”
+          tell them to log in and change it. When someone leaves: deactivate (don&apos;t delete) $€”
           that preserves history in the timeline and reports.
         </P>
       </article>

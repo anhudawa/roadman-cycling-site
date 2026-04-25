@@ -4,7 +4,7 @@ import { useState } from "react";
 import Link from "next/link";
 
 /**
- * Event diagnostic â€” three questions, one phase-specific prescription.
+ * Event diagnostic $€” three questions, one phase-specific prescription.
  *
  * Used inside /you/event. Output tells the rider which phase they
  * should be in right now based on their event date, and what one
@@ -77,11 +77,11 @@ function diagnose(
   // 12+ weeks out
   if (volume === "low") {
     return {
-      phase: "BASE â€” ADD VOLUME",
+      phase: "BASE $€” ADD VOLUME",
       summary: `12+ weeks out with under 6 hours/week is the window to add volume. Every hour you can add to your base now pays back compound interest for the event.`,
       anchorSession: "The added Z2 ride",
       anchorDetail:
-        "Add one 90-minute easy ride to your current week. Goal: 6-8 hours/week. Easy means easy â€” you can hold conversation the whole time.",
+        "Add one 90-minute easy ride to your current week. Goal: 6-8 hours/week. Easy means easy $€” you can hold conversation the whole time.",
       articleHref: "/blog/cycling-base-training-guide",
       articleLabel: "Base training complete guide",
     };
@@ -89,7 +89,7 @@ function diagnose(
 
   return {
     phase: "BASE",
-    summary: `12+ weeks out is base territory. Build the aerobic engine. Keep intensity minimal. This is the phase most amateurs skip â€” and then wonder why the build phase doesn't work.`,
+    summary: `12+ weeks out is base territory. Build the aerobic engine. Keep intensity minimal. This is the phase most amateurs skip $€” and then wonder why the build phase doesn't work.`,
     anchorSession: "The long ride",
     anchorDetail:
       "One 3-4 hour ride/week at true Zone 2 (nose-breathing pace). The rest is medium duration Z2 rides plus one mild tempo session.",
@@ -114,7 +114,7 @@ export function EventDiagnostic() {
   return (
     <div className="rounded-2xl border border-coral/20 bg-gradient-to-br from-coral/5 via-deep-purple/40 to-charcoal p-6 md:p-10">
       <p className="font-heading text-coral text-xs tracking-widest mb-3">
-        QUICK DIAGNOSTIC Â· 3 QUESTIONS
+        QUICK DIAGNOSTIC $· 3 QUESTIONS
       </p>
       <h3 className="font-heading text-off-white text-2xl md:text-3xl mb-8 leading-tight">
         WHICH PHASE SHOULD YOU BE IN RIGHT NOW?

@@ -174,7 +174,7 @@ export function SaveToolResultForm({
                   disabled={status === "submitting"}
                   className="px-5 py-3 rounded-lg bg-coral hover:bg-coral-hover text-off-white font-heading text-sm tracking-wider disabled:opacity-60 disabled:cursor-not-allowed transition-colors whitespace-nowrap"
                 >
-                  {status === "submitting" ? "SAVINGâ€¦" : buttonText}
+                  {status === "submitting" ? "SAVING$€¦" : buttonText}
                 </button>
               </div>
               <label className="flex items-start gap-2 text-[11px] text-foreground-subtle leading-relaxed">
@@ -217,7 +217,7 @@ export function SaveToolResultForm({
             <p className="text-foreground-muted text-sm mb-5">
               {emailSent
                 ? `We emailed a copy to ${email}. You can also view and share it anytime at the permalink below.`
-                : `You can view and share your result at the permalink below. (We couldn't email this one â€” check your inbox in a minute or open the link directly.)`}
+                : `You can view and share your result at the permalink below. (We couldn't email this one $€” check your inbox in a minute or open the link directly.)`}
             </p>
 
             <div className="flex flex-col sm:flex-row gap-3">
@@ -234,7 +234,7 @@ export function SaveToolResultForm({
                   }
                   className="flex-1 text-center px-5 py-3 rounded-lg bg-coral hover:bg-coral-hover text-off-white font-heading text-sm tracking-wider transition-colors"
                 >
-                  VIEW MY RESULT â†’
+                  VIEW MY RESULT $†’
                 </Link>
               )}
               {askUrl && (
@@ -250,7 +250,7 @@ export function SaveToolResultForm({
                   }
                   className="flex-1 text-center px-5 py-3 rounded-lg bg-white/5 hover:bg-white/10 border border-white/10 text-off-white font-heading text-sm tracking-wider transition-colors"
                 >
-                  ASK ROADMAN â†’
+                  ASK ROADMAN $†’
                 </Link>
               )}
             </div>
@@ -262,7 +262,7 @@ export function SaveToolResultForm({
               >
                 /results
               </Link>{" "}
-              â€” request a signed link there.
+              $€” request a signed link there.
             </p>
           </motion.div>
         )}

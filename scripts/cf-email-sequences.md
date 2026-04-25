@@ -1,11 +1,11 @@
-# ClickFunnels Email Sequences â€” Extracted Content
+# ClickFunnels Email Sequences $€” Extracted Content
 
-## Workflow: skool (listener/newbie) â€” ID: BVGzyw
+## Workflow: skool (listener/newbie) $€” ID: BVGzyw
 **Trigger:** Tag added: "listener"
 **7 emails, 1-day delays between each**
 
 ### Email 1
-- **Subject:** You're in â€” here's where to start
+- **Subject:** You're in $€” here's where to start
 - **Preheadline:** The one thing to do first inside the Clubhouse
 - **From:** Anthony Walsh <admin@roadmancycling.com>
 - **Delay:** Immediate on trigger
@@ -16,7 +16,7 @@ Hey,
 
 Welcome to the Roadman Cycling Clubhouse.
 
-You said you've been learning about cycling but haven't followed a structured plan yet. You're not alone â€” that's the most common thing I hear from podcast listeners and community members.
+You said you've been learning about cycling but haven't followed a structured plan yet. You're not alone $€” that's the most common thing I hear from podcast listeners and community members.
 
 Here's where to start:
 
@@ -24,7 +24,7 @@ Here's where to start:
 
 This is the bridge between consuming information and actually following a system. Pick the plan that matches your goals. 2 minutes.
 
-Over the next couple of weeks, I'll share some of the most useful things I've learned from 1,300+ podcast conversations â€” and more importantly, how to actually apply them.
+Over the next couple of weeks, I'll share some of the most useful things I've learned from 1,300+ podcast conversations $€” and more importantly, how to actually apply them.
 
 Talk soon,
 Anthony
@@ -64,11 +64,11 @@ Anthony
 
 Hey,
 
-Damien Maloney was an average sportive rider. Not getting any better. He'd plateaued like a lot of riders do â€” regular Zone 2 and Zone 3 rides, no clear plan.
+Damien Maloney was an average sportive rider. Not getting any better. He'd plateaued like a lot of riders do $€” regular Zone 2 and Zone 3 rides, no clear plan.
 
 His words: "I had no clear objective or plan." Sound familiar?
 
-When Roadman built him a structured programme around his goals and schedule, his FTP went from the low 200s to 295. He said joining was one of the smartest things he'd done â€” not because of the plan, but because he finally had a team behind him and a coach who could see the truth in his numbers.
+When Roadman built him a structured programme around his goals and schedule, his FTP went from the low 200s to 295. He said joining was one of the smartest things he'd done $€” not because of the plan, but because he finally had a team behind him and a coach who could see the truth in his numbers.
 
 Damien had all the information before. What changed was he committed to a system.
 
@@ -83,7 +83,7 @@ Anthony
 ---
 
 ### Email 4
-- **Subject:** Score yourself on these 5 things â€” be honest
+- **Subject:** Score yourself on these 5 things $€” be honest
 - **Delay:** 1 day after Email 3
 
 **Body:**
@@ -141,7 +141,7 @@ Anthony
 ---
 
 ### Email 6
-- **Subject:** "I'm already getting it for free â€” why would I pay $195?"
+- **Subject:** "I'm already getting it for free $€” why would I pay $195?"
 - **Delay:** 1 day after Email 5
 
 **Body:**
@@ -150,7 +150,7 @@ Hey,
 
 This is the most honest question I get, so here's the most honest answer I can give.
 
-The podcast is free. The Clubhouse is free. The training plans, the calculators, the nutrition masterclass â€” all free. And it's genuinely good. I'm proud of it.
+The podcast is free. The Clubhouse is free. The training plans, the calculators, the nutrition masterclass $€” all free. And it's genuinely good. I'm proud of it.
 
 But here's what free content can never do:
 
@@ -186,7 +186,7 @@ You've been learning. Absorbing. You probably know more about training theory th
 
 But knowing isn't doing. And every week that gap stays open, your potential sits there untouched.
 
-The free tools are a starting line. "Not Done Yet" is where the knowledge becomes action â€” a coach who reviews your files, a monthly one-on-one call to keep your plan honest, a weekly Q&A, and a community that won't let you disappear.
+The free tools are a starting line. "Not Done Yet" is where the knowledge becomes action $€” a coach who reviews your files, a monthly one-on-one call to keep your plan honest, a weekly Q&A, and a community that won't let you disappear.
 
 The 7-day trial is free. One week inside the system, and the difference between education and coaching will be obvious.
 
@@ -205,13 +205,13 @@ Anthony
 
 ---
 
-## Workflow: skool (event) â€” ID: GBbEGP
+## Workflow: skool (event) $€” ID: GBbEGP
 **Trigger:** Tag added: "event"
 **7 emails, 1-day delays between each**
 **Stats:** 110 completed, 12 active
 
 ### Email 1
-- **Subject:** You're in â€” here's where to start
+- **Subject:** You're in $€” here's where to start
 - **Preheadline:** The one thing to do first inside the Clubhouse
 - **From:** Anthony Walsh <admin@roadmancycling.com>
 - **Delay:** Immediate on trigger
@@ -222,13 +222,13 @@ Hey,
 
 Welcome to the Roadman Cycling Clubhouse.
 
-You've got an event on the horizon â€” and you're in the right place. Here's where to start:
+You've got an event on the horizon $€” and you're in the right place. Here's where to start:
 
 ðŸ‘‰ Grab your free 16-week training plan: [CLASSROOM LINK]
 
-Pick the plan that fits where you are right now â€” not where you used to be. Start there.
+Pick the plan that fits where you are right now $€” not where you used to be. Start there.
 
-Over the next 7 days, I'll share some of the most useful things I've learned from 1,300+ conversations with coaches and sport scientists â€” specifically around event preparation and fuelling.
+Over the next 7 days, I'll share some of the most useful things I've learned from 1,300+ conversations with coaches and sport scientists $€” specifically around event preparation and fuelling.
 
 Talk soon,
 Anthony
@@ -293,7 +293,7 @@ Hey,
 
 You've got an event coming. You're training for it. But training is only one of five things that will determine how you perform on the day.
 
-Score yourself honestly on each of these headings â€” 1 point (not doing it), 2 points (doing it but guessing), 3 points (dialled in):
+Score yourself honestly on each of these headings $€” 1 point (not doing it), 2 points (doing it but guessing), 3 points (dialled in):
 
 **1. Training structure.** Is your plan periodised and counting backwards from your event date? Or are you just getting the miles in and hoping the fitness arrives on time?
 
@@ -307,11 +307,11 @@ Score yourself honestly on each of these headings â€” 1 point (not doing it), 2 
 
 Add up your score.
 
-**Under 8?** You're preparing for your event with serious gaps. And gaps don't show up in training â€” they show up on race day, on the climb you needed your legs for, in the final hour when your fuelling falls apart.
+**Under 8?** You're preparing for your event with serious gaps. And gaps don't show up in training $€” they show up on race day, on the climb you needed your legs for, in the final hour when your fuelling falls apart.
 
-**8â€“12?** You've got some bases covered but you're guessing on the rest. That's the difference between crossing the line knowing you did everything right and crossing it wondering what you left on the table.
+**8$€“12?** You've got some bases covered but you're guessing on the rest. That's the difference between crossing the line knowing you did everything right and crossing it wondering what you left on the table.
 
-**13â€“15?** You're dialled. Go enjoy the ride.
+**13$€“15?** You're dialled. Go enjoy the ride.
 
 Anthony
 
@@ -335,7 +335,7 @@ Here's what it looks like when all 5 are built for you inside the Not Done Yet C
 
 **Strength & conditioning:** A programme that builds climbing power and injury resilience during your volume ramp-up. Designed to complement your bike work, not wreck your legs.
 
-**Recovery:** Prescribed deload weeks, recovery nutrition, sleep protocols â€” all planned around your build-up. Not guessed at when you're already cooked.
+**Recovery:** Prescribed deload weeks, recovery nutrition, sleep protocols $€” all planned around your build-up. Not guessed at when you're already cooked.
 
 **Accountability:** Weekly live Q&A where you can ask event-specific questions in real time. A monthly one-on-one coaching call to review your build-up, adjust the plan, and make sure nothing falls through the cracks.
 
@@ -357,7 +357,7 @@ Ian Hennessy completed the Haute Route Alps - one of the hardest multi-day event
 
 He had a monthly coaching call tracking his build-up and a weekly Q&A to troubleshoot event-specific questions in real time. He's already planning his next challenge.
 
-Mark O'Donnell has been a coaching client for almost 4 years. He uses the system to prepare for bigger European sportives and major climbing routes. He said the flexibility to work around his schedule â€” alongside work and family â€” is what makes it sustainable. Not a training camp followed by burnout. A system that fits his actual life, with a coach who adjusts when things change.
+Mark O'Donnell has been a coaching client for almost 4 years. He uses the system to prepare for bigger European sportives and major climbing routes. He said the flexibility to work around his schedule $€” alongside work and family $€” is what makes it sustainable. Not a training camp followed by burnout. A system that fits his actual life, with a coach who adjusts when things change.
 
 $195/month is a real investment. The 7-day trial is free specifically so you can see whether the coaching, the community, and the system are worth it before you spend a cent.
 
@@ -379,7 +379,7 @@ I'll keep this short.
 
 You signed up for an event because something in you wants to prove you can do it properly. Not just finish, perform & enjoy it.
 
-You know where the gaps are. Training might be covered. But nutrition, strength, recovery, and accountability â€” the four pillars that separate "I survived" from "I nailed it" â€” are they dialled in?
+You know where the gaps are. Training might be covered. But nutrition, strength, recovery, and accountability $€” the four pillars that separate "I survived" from "I nailed it" $€” are they dialled in?
 
 The 7-day trial is free. One week with a coach reviewing your files, a plan built around your event, and a community preparing alongside you. That's enough time to know.
 
@@ -391,13 +391,13 @@ Anthony
 
 ---
 
-## Workflow: Skool (Comeback) â€” ID: YLqMnP
+## Workflow: Skool (Comeback) $€” ID: YLqMnP
 **Trigger:** Tag added: "comeback"
 **7 emails, 1-day delays between each**
 **Stats:** 122 completed, 19 active
 
 ### Email 1
-- **Subject:** You're in â€” here's where to start
+- **Subject:** You're in $€” here's where to start
 - **Preheadline:** The one thing to do first inside the Clubhouse
 - **From:** Anthony Walsh <admin@roadmancycling.com>
 - **Delay:** Immediate on trigger
@@ -414,7 +414,7 @@ Here's where to start:
 
 ðŸ‘‰ Grab your free 16-week training plan: [CLASSROOM LINK]
 
-Pick the plan that fits where you are right now â€” not where you used to be. Start there.
+Pick the plan that fits where you are right now $€” not where you used to be. Start there.
 
 Over the next couple of weeks, I'll share some of the most useful things I've learned from 1,300+ conversations with coaches and sport scientists, specifically around coming back safely, rebuilding fitness, and managing the mental side of a comeback.
 
@@ -433,7 +433,7 @@ Hey,
 
 I recently went through my own comeback. Went from 86kg to 79kg in 12 weeks, eating more food than ever before. No calorie counting. No fasted rides. And I got faster, not slower.
 
-The biggest mistake I see comeback riders make â€” and I made it too â€” is ramping up too fast. You remember what you could do, so you train like you're still that person. Then you get injured. Then you stop for four months. Then you start again and repeat the cycle.
+The biggest mistake I see comeback riders make $€” and I made it too $€” is ramping up too fast. You remember what you could do, so you train like you're still that person. Then you get injured. Then you stop for four months. Then you start again and repeat the cycle.
 
 The fix is counterintuitive: go slower to go faster. Build your base properly. Get the nutrition right first. The fitness follows.
 
@@ -448,7 +448,7 @@ Anthony
 ---
 
 ### Email 3
-- **Subject:** From 84kg to 68kg â€” how Chris did it
+- **Subject:** From 84kg to 68kg $€” how Chris did it
 - **Delay:** 1 day after Email 2
 
 **Body:**
@@ -481,7 +481,7 @@ Anthony
 
 Hey,
 
-Every comeback I've seen fail â€” and I've seen a lot â€” fails for the same reason. The rider comes back, starts training, and ignores everything else. Then they get injured. Or burn out. Or lose 3kg, put 4 back on, and quietly stop.
+Every comeback I've seen fail $€” and I've seen a lot $€” fails for the same reason. The rider comes back, starts training, and ignores everything else. Then they get injured. Or burn out. Or lose 3kg, put 4 back on, and quietly stop.
 
 It's not a motivation problem. It's a system problem. A successful comeback needs five things working together.
 
@@ -501,9 +501,9 @@ Add up your score.
 
 **Under 8?** You're relying on motivation alone. That's why previous comebacks didn't stick.
 
-**8â€“12?** You know what's missing but you're guessing your way through it. This is where most comeback riders stall out.
+**8$€“12?** You know what's missing but you're guessing your way through it. This is where most comeback riders stall out.
 
-**13â€“15?** Your system is working. Keep going.
+**13$€“15?** Your system is working. Keep going.
 
 Anthony
 
@@ -521,15 +521,15 @@ Last email I asked you to think about the 5 pillars your comeback needs. If you'
 
 Here's what it looks like when all 5 are built for you inside the Not Done Yet Coaching Community:
 
-**Training:** A personalised daily plan that meets you where you are â€” not where you were. A coach reviews your files, gets on one-on-one calls with you, and builds your progression week by week. No guessing.
+**Training:** A personalised daily plan that meets you where you are $€” not where you were. A coach reviews your files, gets on one-on-one calls with you, and builds your progression week by week. No guessing.
 
-**Nutrition:** Exact amounts prescribed by the meal, changing based on what you're training that day. This is the fastest way to see body composition results â€” and those visible results are what keep a comeback alive.
+**Nutrition:** Exact amounts prescribed by the meal, changing based on what you're training that day. This is the fastest way to see body composition results $€” and those visible results are what keep a comeback alive.
 
 **Strength & conditioning:** A programme that prevents the injuries that have stopped every previous attempt. Built to complement your riding, not compete with it.
 
-**Recovery:** Prescribed protocols for sleep, nutrition timing, and deload weeks. Your body is coming back from a long break â€” recovery isn't optional, it's the foundation.
+**Recovery:** Prescribed protocols for sleep, nutrition timing, and deload weeks. Your body is coming back from a long break $€” recovery isn't optional, it's the foundation.
 
-**Accountability:** Weekly live Q&A where you can ask me anything about your return to form. A monthly one-on-one coaching call where we review your progress, look at your body composition, adjust the next training block, and keep the comeback on track. And a community of real riders â€” many on their own comebacks â€” who show up on calls and keep each other honest.
+**Accountability:** Weekly live Q&A where you can ask me anything about your return to form. A monthly one-on-one coaching call where we review your progress, look at your body composition, adjust the next training block, and keep the comeback on track. And a community of real riders $€” many on their own comebacks $€” who show up on calls and keep each other honest.
 
 Anthony
 
@@ -547,13 +547,13 @@ $195/month is a real number. I'm not going to pretend it isn't. So let me tell y
 
 It's not the riders who are already at 90% and need a small tweak. It's the riders who have the most to gain across all five pillars.
 
-Chris O'Connor came back after decades off the bike at 84kg. Every single pillar was at zero. Training, nutrition, strength, recovery, accountability â€” all of it needed building from the ground up.
+Chris O'Connor came back after decades off the bike at 84kg. Every single pillar was at zero. Training, nutrition, strength, recovery, accountability $€” all of it needed building from the ground up.
 
 That's where coaching makes the biggest difference. He had a monthly one-on-one call where his coach reviewed his body composition, adjusted his training, and kept the comeback on track.
 
 A weekly Q&A where he could ask anything. And a community that noticed when he wasn't there. 12 months later: 68kg, 7% body fat, wattage doubled.
 
-Brian Morrissey is 52, works shifts, and saw his FTP jump 15% in 10 weeks â€” training less than the year before. He didn't need more hours. He needed all five pillars working together for the first time. His words: "This really works."
+Brian Morrissey is 52, works shifts, and saw his FTP jump 15% in 10 weeks $€” training less than the year before. He didn't need more hours. He needed all five pillars working together for the first time. His words: "This really works."
 
 The riders starting from furthest back get the biggest return because there's so much low-hanging fruit across nutrition, strength, recovery, and accountability that they've never addressed.
 
@@ -566,7 +566,7 @@ Anthony
 ---
 
 ### Email 7
-- **Subject:** You haven't lost it â€” you've just been away
+- **Subject:** You haven't lost it $€” you've just been away
 - **Delay:** 1 day after Email 6
 
 **Body:**
@@ -579,7 +579,7 @@ You came back to cycling because something inside you isn't done yet. You rememb
 
 The free tools inside the Roadman Clubhouse are a starting line.
 
-"Not Done Yet" is where the comeback becomes real â€” a coach who reviews your files, a monthly one-on-one call to keep your plan honest, a weekly Q&A, and a community that won't let you disappear.
+"Not Done Yet" is where the comeback becomes real $€” a coach who reviews your files, a monthly one-on-one call to keep your plan honest, a weekly Q&A, and a community that won't let you disappear.
 
 The trial is free. That's enough time to know.
 
@@ -591,13 +591,13 @@ Anthony
 
 ---
 
-## Workflow: Skool (Plateau) â€” ID: baOzVZ
+## Workflow: Skool (Plateau) $€” ID: baOzVZ
 **Trigger:** Tag added: "plateau"
 **7 emails, 1-day delays between each**
 **Stats:** 109 completed, 14 active
 
 ### Email 1
-- **Subject:** You're in â€” here's where to start
+- **Subject:** You're in $€” here's where to start
 - **Preheadline:** The one thing to do first inside the Clubhouse
 - **From:** Anthony Walsh <admin@roadmancycling.com>
 - **Delay:** Immediate on trigger
@@ -608,7 +608,7 @@ Hey
 
 Welcome to the Roadman Cycling Clubhouse.
 
-You said your results have flatlined despite putting in the hours. That's one of the most common and most fixable problems in cycling â€” and you're in the right place to sort it.
+You said your results have flatlined despite putting in the hours. That's one of the most common and most fixable problems in cycling $€” and you're in the right place to sort it.
 
 Here's where to start:
 
@@ -616,7 +616,7 @@ Here's where to start:
 
 Pick the plan that matches your goals (gravel, road, or sportive). It takes 2 minutes.
 
-Over the next couple of weeks, I'll share some of the most useful things I've learned from 1,300+ conversations with World Tour coaches and sport scientists â€” specifically around breaking through plateaus. No fluff. Just what actually works.
+Over the next couple of weeks, I'll share some of the most useful things I've learned from 1,300+ conversations with World Tour coaches and sport scientists $€” specifically around breaking through plateaus. No fluff. Just what actually works.
 
 Talk soon,
 Anthony
@@ -633,7 +633,7 @@ Hey
 
 After 1,300+ podcast conversations, the single biggest insight I've had about plateau-stuck cyclists is this: most are training too hard on easy days and too easy on hard days.
 
-Professor Stephen Seiler calls it the "black hole" of working hard enough to build fatigue but not hard enough â€” a common trap in amateur cycling.
+Professor Stephen Seiler calls it the "black hole" of working hard enough to build fatigue but not hard enough $€” a common trap in amateur cycling.
 
 Anthony
 
@@ -647,21 +647,21 @@ Anthony
 
 Hey,
 
-Daniel Stone was doing everything right â€” or so he thought.
+Daniel Stone was doing everything right $€” or so he thought.
 
 12 hours a week on the bike. Structured intervals. Watching his TSS. Reading every article, listening to every podcast. He was the most informed rider in the club and one of the least improved.
 
-Cat 3 and stuck. Same guys dropping him on the same climbs. He'd finish a race, check his power file, and see the numbers were fine â€” but the results never matched the effort.
+Cat 3 and stuck. Same guys dropping him on the same climbs. He'd finish a race, check his power file, and see the numbers were fine $€” but the results never matched the effort.
 
 That's the thing about plateaus. It's not that you're lazy. It's that you're working hard inside a broken system.
 
-When Daniel joined the Not Done Yet Collective, the first thing we changed wasn't his training volume â€” it was his polarisation. He was living in the grey zone. Every ride was "kind of hard." Nothing was truly easy. Nothing was truly brutal. His body had adapted to mediocrity and stopped responding.
+When Daniel joined the Not Done Yet Collective, the first thing we changed wasn't his training volume $€” it was his polarisation. He was living in the grey zone. Every ride was "kind of hard." Nothing was truly easy. Nothing was truly brutal. His body had adapted to mediocrity and stopped responding.
 
 We restructured his week: genuine Zone 1 & 2 on easy days, properly programmed intensity on hard days, strength sessions he'd never done before, and a nutrition overhaul that meant he was actually fuelled for the sessions that mattered.
 
 Within 4 months he was a different rider. By the end of the season he'd gone from Cat 3 to Cat 1. Same guy. Same hours. Different system.
 
-I'm sharing this because Daniel's story isn't exceptional â€” it's what happens when a serious rider stops self-coaching and plugs into a system built on how the best coaches in the world actually train athletes.
+I'm sharing this because Daniel's story isn't exceptional $€” it's what happens when a serious rider stops self-coaching and plugs into a system built on how the best coaches in the world actually train athletes.
 
 More on that soon.
 
@@ -677,17 +677,17 @@ Anthony
 
 Hey
 
-I want you to try something this week. Score yourself honestly on five areas â€” the five pillars that every World Tour programme is built on. Give yourself a 1 (not doing it), a 2 (doing it but guessing), or a 3 (dialled in with confidence).
+I want you to try something this week. Score yourself honestly on five areas $€” the five pillars that every World Tour programme is built on. Give yourself a 1 (not doing it), a 2 (doing it but guessing), or a 3 (dialled in with confidence).
 
-**1. Training structure.** Are your easy days genuinely easy and your hard days genuinely hard? Or does every ride end up somewhere in the middle? Is someone looking at your files and telling you what to change â€” or are you coaching yourself?
+**1. Training structure.** Are your easy days genuinely easy and your hard days genuinely hard? Or does every ride end up somewhere in the middle? Is someone looking at your files and telling you what to change $€” or are you coaching yourself?
 
-**2. Nutrition.** Do you know exactly how many carbs you need before a threshold session versus a Zone 2 day â€” and does your breakfast actually change based on that? Or are you eating the same thing every morning regardless of what's on the plan?
+**2. Nutrition.** Do you know exactly how many carbs you need before a threshold session versus a Zone 2 day $€” and does your breakfast actually change based on that? Or are you eating the same thing every morning regardless of what's on the plan?
 
-**3. Strength & conditioning.** Are you doing sessions designed to complement your bike work â€” building power where you're weak without fatiguing the muscles you need fresh for tomorrow's intervals? Or are you either skipping the gym entirely or following a generic programme that leaves your legs wrecked?
+**3. Strength & conditioning.** Are you doing sessions designed to complement your bike work $€” building power where you're weak without fatiguing the muscles you need fresh for tomorrow's intervals? Or are you either skipping the gym entirely or following a generic programme that leaves your legs wrecked?
 
-**4. Recovery.** Do you have prescribed protocols â€” sleep targets, recovery nutrition timed to the session, deload weeks planned in advance? Or is your recovery strategy "rest day when I feel destroyed"?
+**4. Recovery.** Do you have prescribed protocols $€” sleep targets, recovery nutrition timed to the session, deload weeks planned in advance? Or is your recovery strategy "rest day when I feel destroyed"?
 
-**5. Accountability.** Does anyone actually review your training? Does anyone notice when you sandbagged an interval or skipped a session? Is there a coach on the other end of your power files â€” or are you uploading to Strava and hoping the TSS adds up?
+**5. Accountability.** Does anyone actually review your training? Does anyone notice when you sandbagged an interval or skipped a session? Is there a coach on the other end of your power files $€” or are you uploading to Strava and hoping the TSS adds up?
 
 Add up your score. Be honest.
 
@@ -695,7 +695,7 @@ If you're under 10, you've found the reason your FTP hasn't moved. It's not fitn
 
 The free tools in the Clubhouse will get you moving on these. The training plans give you structure. The nutrition masterclass with Dr Dunne and Dr Impey gives you the knowledge. The community gives you riders to talk to who are working through the same problems.
 
-But knowing what your five pillars should be and having someone build all five around your actual life â€” your schedule, your race calendar, your body, your week â€” are very different things. One is education. The other is coaching.
+But knowing what your five pillars should be and having someone build all five around your actual life $€” your schedule, your race calendar, your body, your week $€” are very different things. One is education. The other is coaching.
 
 Anthony
 
@@ -713,13 +713,13 @@ Last email I asked you to audit yourself across the 5 pillars. If you're like mo
 
 Here's what it looks like when all 5 are actually built for you inside the Not Done Yet Collective:
 
-**Training:** A personalised daily plan â€” not a template. A coach reviews your power files, gets on one-on-one calls with you, and adjusts week by week based on what's actually happening in your training, not what a spreadsheet predicted three months ago.
+**Training:** A personalised daily plan $€” not a template. A coach reviews your power files, gets on one-on-one calls with you, and adjusts week by week based on what's actually happening in your training, not what a spreadsheet predicted three months ago.
 
-**Nutrition:** Exact amounts that change by the meal, changing based on what you're training that day. Your breakfast before a threshold session is different from your breakfast on a rest day. This isn't "eat more carbs" â€” it's precision fuelling prescribed to you.
+**Nutrition:** Exact amounts that change by the meal, changing based on what you're training that day. Your breakfast before a threshold session is different from your breakfast on a rest day. This isn't "eat more carbs" $€” it's precision fuelling prescribed to you.
 
 **Strength & Conditioning:** A programme designed to complement your bike work. Built so your gym sessions build cycling power and prevent injury, not wreck your legs for tomorrow's intervals.
 
-**Recovery:** Prescribed protocols â€” sleep, nutrition timing, deload weeks â€” all planned around your training block, not guessed at when you're already cooked.
+**Recovery:** Prescribed protocols $€” sleep, nutrition timing, deload weeks $€” all planned around your training block, not guessed at when you're already cooked.
 
 **Accountability:** A real community of riders who show up on live calls, who notice when you're not there, and who genuinely care whether you hit your goals. A coach who sees the truth in your numbers and a team behind you.
 
@@ -775,7 +775,7 @@ A few days ago I asked you to score yourself on the 5 pillars. You know where yo
 
 You can keep running on one or two pillars and hope the others sort themselves out.
 
-Or you can try 7 days inside a system where a coach builds all five around your life â€” reviews your files, gets on a monthly one-on-one call to keep your plan honest, runs a weekly Q&A, and puts you in a community that won't let you disappear.
+Or you can try 7 days inside a system where a coach builds all five around your life $€” reviews your files, gets on a monthly one-on-one call to keep your plan honest, runs a weekly Q&A, and puts you in a community that won't let you disappear.
 
 The trial is free. The first week will tell you everything you need to know.
 

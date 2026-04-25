@@ -1,4 +1,4 @@
-# Link Mismatch Audit â€” 2026-04-22
+# Link Mismatch Audit $€” 2026-04-22
 
 Research-only pass. No files were edited. Scope was the curated hardcoded-link
 surfaces listed in the brief: landing pages under `src/app/**`, curated
@@ -26,7 +26,7 @@ excluded as instructed.
 
 ## Confirmed mismatches (high confidence, fix recommended)
 
-### [1] /blog/every-roadman-episode-with-dan-lorang â€” "related episode" is a John Wakefield episode
+### [1] /blog/every-roadman-episode-with-dan-lorang $€” "related episode" is a John Wakefield episode
 - **File:** `/Users/tedcrilly/Desktop/roadman-cycling-site/content/blog/every-roadman-episode-with-dan-lorang.mdx:68`
 - **Current link:** `/podcast/ep-2132-how-do-team-bora-approach-building-endurance-we-find-out-joh`
 - **Target episode title:** "How Team Bora Build Endurance: John Wakefield on Ultra Cycling Training"
@@ -35,12 +35,12 @@ excluded as instructed.
   every Dan Lorang episode. The `relatedEpisodes` frontmatter lists the
   John Wakefield interview as a Lorang episode. It renders in a
   "RELATED PODCAST EPISODES" block on a page titled "Every Episode of
-  Roadman Podcast with Dan Lorang" â€” identical bug class to the
+  Roadman Podcast with Dan Lorang" $€” identical bug class to the
   already-fixed /start-here card.
 - **Recommended fix:** Swap for `ep-2056-13-years-of-coaching-pros-what-amateurs-dont-know`
   (guest: Dan Lorang, "13 Years Of Coaching Pros: What Amateurs Don't Know").
 
-### [2] /blog/every-roadman-episode-with-stephen-seiler â€” two of three related episodes are not Seiler episodes
+### [2] /blog/every-roadman-episode-with-stephen-seiler $€” two of three related episodes are not Seiler episodes
 - **File:** `/Users/tedcrilly/Desktop/roadman-cycling-site/content/blog/every-roadman-episode-with-stephen-seiler.mdx:72-74`
 - **Current links:**
   - `/podcast/ep-2094-5-crucial-winter-training-tips-i-wish-i-knew-sooner-rider-su` (guest: Rider Support)
@@ -51,9 +51,9 @@ excluded as instructed.
   features him.
 - **Recommended fix:** Repoint at `ep-2095-secret-to-cycling-fast-at-a-low-heart-rate-prof-seiler`
   (guest: Prof Seiler) and a second genuine Seiler episode if one exists
-  in the archive â€” Ted to confirm list.
+  in the archive $€” Ted to confirm list.
 
-### [3] /blog/dan-lorang-amateur-training-plan â€” two of three related episodes are filler
+### [3] /blog/dan-lorang-amateur-training-plan $€” two of three related episodes are filler
 - **File:** `/Users/tedcrilly/Desktop/roadman-cycling-site/content/blog/dan-lorang-amateur-training-plan.mdx:71,73`
 - **Current links:**
   - `/podcast/ep-2094-5-crucial-winter-training-tips-i-wish-i-knew-sooner-rider-su` (guest: Rider Support)
@@ -67,7 +67,7 @@ excluded as instructed.
   Dan Lorang) and `ep-2-i-asked-world-tour-coaches-about-zone-2-heres-what-they-said`
   (mentions Lorang heavily), leaving `ep-2134` in place.
 
-### [4] /blog/alistair-brownlee-endurance-lessons â€” no Brownlee episode in related list
+### [4] /blog/alistair-brownlee-endurance-lessons $€” no Brownlee episode in related list
 - **File:** `/Users/tedcrilly/Desktop/roadman-cycling-site/content/blog/alistair-brownlee-endurance-lessons.mdx:71-74`
 - **Current links:**
   - `/podcast/ep-2094-5-crucial-winter-training-tips-i-wish-i-knew-sooner-rider-su` (Rider Support)
@@ -80,15 +80,15 @@ excluded as instructed.
 - **Recommended fix:** Add `ep-2063-brownlee-5-endurance-lessons-i-wish-i-knew-earlier`
   and drop at least one of the filler slugs.
 
-### [5] /blog/dan-bigham-aerodynamics-amateur-cyclists â€” no Bigham episode in related list
+### [5] /blog/dan-bigham-aerodynamics-amateur-cyclists $€” no Bigham episode in related list
 - **File:** `/Users/tedcrilly/Desktop/roadman-cycling-site/content/blog/dan-bigham-aerodynamics-amateur-cyclists.mdx:68-71`
-- **Current links:** `ep-2046-the-unbound-200-set-up-everyone-says-will-fail`, `ep-2073-my-best-cycling-purchases`, `ep-2028-theyre-cheating-and-its-totally-legal` â€” none feature Bigham.
+- **Current links:** `ep-2046-the-unbound-200-set-up-everyone-says-will-fail`, `ep-2073-my-best-cycling-purchases`, `ep-2028-theyre-cheating-and-its-totally-legal` $€” none feature Bigham.
 - **Issue:** Post is built around Dan Bigham's aero hierarchy. The
   canonical Bigham episode `ep-2106-he-accidentally-mastered-aerodynamics-dan-bigham`
   exists but is missing from `relatedEpisodes`.
 - **Recommended fix:** Add `ep-2106-he-accidentally-mastered-aerodynamics-dan-bigham`.
 
-### [6] /blog/matt-bottrill-7-pro-hacks â€” no Bottrill episode in related list
+### [6] /blog/matt-bottrill-7-pro-hacks $€” no Bottrill episode in related list
 - **File:** `/Users/tedcrilly/Desktop/roadman-cycling-site/content/blog/matt-bottrill-7-pro-hacks.mdx:71-74`
 - **Current links:** two solo/Rider Support episodes plus `ep-2221-decoding-dylan-johnsons-speed-boosting-bike-hacks` (Dylan Johnson, not Bottrill).
 - **Issue:** Canonical Bottrill episode `ep-2128-7-hacks-pro-riders-use-that-you-probably-dont-matt-bottrill`
@@ -96,9 +96,9 @@ excluded as instructed.
   seven pro hacks.
 - **Recommended fix:** Add `ep-2128-7-hacks-pro-riders-use-that-you-probably-dont-matt-bottrill`.
 
-### [7] /blog/courtney-conley-cycling-shoes-fit â€” no Conley episode in related list
+### [7] /blog/courtney-conley-cycling-shoes-fit $€” no Conley episode in related list
 - **File:** `/Users/tedcrilly/Desktop/roadman-cycling-site/content/blog/courtney-conley-cycling-shoes-fit.mdx:73-76`
-- **Current links:** `ep-2073-my-best-cycling-purchases`, `ep-2081-10-years-of-cycling-knowledge-in-under-5-minutes`, `ep-2105-why-cycling-fast-makes-you-slow-rider-support` â€” all solo or Rider Support.
+- **Current links:** `ep-2073-my-best-cycling-purchases`, `ep-2081-10-years-of-cycling-knowledge-in-under-5-minutes`, `ep-2105-why-cycling-fast-makes-you-slow-rider-support` $€” all solo or Rider Support.
 - **Issue:** The post is about Dr Courtney Conley's shoe-fit framework.
   The actual Conley episode `ep-2107-the-surprising-downside-of-incorrect-cycling-shoes-courtney`
   exists but is not linked.
@@ -106,9 +106,9 @@ excluded as instructed.
 
 ## Possible mismatches (medium confidence, review recommended)
 
-### [8] /blog/prof-seiler-low-heart-rate-cycling â€” ep-2066 may not be the Seiler episode implied
+### [8] /blog/prof-seiler-low-heart-rate-cycling $€” ep-2066 may not be the Seiler episode implied
 - **File:** `/Users/tedcrilly/Desktop/roadman-cycling-site/content/blog/prof-seiler-low-heart-rate-cycling.mdx` (relatedEpisodes)
-- **Current link:** `/podcast/ep-2066-how-to-cycle-fast-with-a-low-heart-rate` ("How To Cycle Fast With A Low Heart Rate" â€” frontmatter has no `guest:` field).
+- **Current link:** `/podcast/ep-2066-how-to-cycle-fast-with-a-low-heart-rate` ("How To Cycle Fast With A Low Heart Rate" $€” frontmatter has no `guest:` field).
 - **Issue:** The blog is specifically about Prof. Seiler on low heart
   rate cycling. The actual Seiler-on-low-heart-rate episode is
   `ep-2095-secret-to-cycling-fast-at-a-low-heart-rate-prof-seiler`
@@ -119,26 +119,26 @@ excluded as instructed.
   so the Seiler-named post links to the Seiler episode, and drop a
   filler slug.
 
-### [9] /blog/alex-larson-body-composition-cyclists â€” only first related episode is Larson
+### [9] /blog/alex-larson-body-composition-cyclists $€” only first related episode is Larson
 - **File:** `/Users/tedcrilly/Desktop/roadman-cycling-site/content/blog/alex-larson-body-composition-cyclists.mdx` (relatedEpisodes)
 - **Current links:**
-  - `ep-2088-how-cyclists-can-get-lean-stay-lean-forever-alex-larson` (guest: Alex Larson â€” correct)
+  - `ep-2088-how-cyclists-can-get-lean-stay-lean-forever-alex-larson` (guest: Alex Larson $€” correct)
   - `ep-2130-how-cycling-can-sabotage-your-weight-loss-and-the-fix` (no guest field)
   - `ep-34-how-pro-cyclists-get-so-lean-what-amateurs-don-t-know` (no guest field)
-- **Issue:** The two non-Larson episodes aren't obviously wrong â€” they're
-  thematically related to body composition â€” but on a page titled for
+- **Issue:** The two non-Larson episodes aren't obviously wrong $€” they're
+  thematically related to body composition $€” but on a page titled for
   Alex Larson it would be more user-honest to surface more Larson
   conversations if any exist. Flag for Ted.
 
-### [10] /blog/john-archibald-ride-faster-than-98-percent â€” two fillers, one correct
+### [10] /blog/john-archibald-ride-faster-than-98-percent $€” two fillers, one correct
 - **File:** `/Users/tedcrilly/Desktop/roadman-cycling-site/content/blog/john-archibald-ride-faster-than-98-percent.mdx` (relatedEpisodes)
 - **Current links:** `ep-2081-10-years-of-cycling-knowledge-in-under-5-minutes` (solo), `ep-2105-why-cycling-fast-makes-you-slow-rider-support` (Rider Support), `ep-2089-how-to-ride-faster-than-98-of-people-john-archibald` (correct Archibald ep).
 - **Issue:** Same autogenerated-filler pattern. Only one of three is
   actually Archibald. Lower severity because the canonical episode is
-  at least present â€” it's the other two slots that should probably be
+  at least present $€” it's the other two slots that should probably be
   swapped for topically tighter episodes. Ted to decide.
 
-### [11] /blog/vasilis-anastopoulos-cavendish-sprint-training â€” only first is Anastopoulos
+### [11] /blog/vasilis-anastopoulos-cavendish-sprint-training $€” only first is Anastopoulos
 - **File:** `/Users/tedcrilly/Desktop/roadman-cycling-site/content/blog/vasilis-anastopoulos-cavendish-sprint-training.mdx` (relatedEpisodes)
 - **Current links:** `ep-2108-did-cavendishs-coach-reveal-the-secret-to-winning-vasilis-an` (correct), `ep-2081-...` (solo), `ep-2094-...-rider-support` (Rider Support).
 - **Issue:** Same filler pattern. The Anastopoulos episode is there, but
@@ -160,7 +160,7 @@ For findings [1] and [3] above, Ted should pick the two canonical Lorang
 slugs he wants surfaced in the curated "related" block rather than letting
 autogeneration refill with solo/Rider-Support filler.
 
-### [13] Multiple Stephen Seiler episodes exist â€” Ted should curate the "Every Seiler" list
+### [13] Multiple Stephen Seiler episodes exist $€” Ted should curate the "Every Seiler" list
 The `every-roadman-episode-with-stephen-seiler.mdx` page body claims
 "Every Roadman episode, in order" and lists five. But only one
 (`ep-2148`) is actually linked in `relatedEpisodes`. Candidates with

@@ -11,7 +11,7 @@ import { PaidReportActions } from "./PaidReportActions";
 /**
  * Admin dashboard for the paid-report funnel.
  *
- * Top-line stats â†’ revenue + delivery health. The table is keyed on
+ * Top-line stats $†’ revenue + delivery health. The table is keyed on
  * report id and shows the join of report + order + rider lead score
  * so we can triage failures and spot high-value leads at a glance.
  * Per-row actions (resend / revoke / regenerate) are gated on the
@@ -34,9 +34,9 @@ function formatMoney(cents: number, currency: string): string {
   const major = (cents / 100).toFixed(2);
   switch (currency.toLowerCase()) {
     case "eur":
-      return `â‚¬${major}`;
+      return `$$$${major}`;
     case "gbp":
-      return `Â£${major}`;
+      return `$$${major}`;
     case "usd":
       return `$${major}`;
     default:
@@ -92,7 +92,7 @@ export default async function AdminPaidReportsPage({
           href="/admin/diagnostics"
           className="text-sm rounded-md bg-white/5 border border-white/10 text-white hover:bg-white/10 px-3 py-1.5"
         >
-          Diagnostics overview â†’
+          Diagnostics overview $†’
         </Link>
       </header>
 
@@ -188,7 +188,7 @@ export default async function AdminPaidReportsPage({
                           {r.riderFirstName}
                         </span>
                       ) : (
-                        <span className="text-foreground-subtle">â€”</span>
+                        <span className="text-foreground-subtle">$€”</span>
                       )}
                       {typeof r.riderLeadScore === "number" ? (
                         <span className="ml-2 text-[10px] tracking-widest text-foreground-subtle">

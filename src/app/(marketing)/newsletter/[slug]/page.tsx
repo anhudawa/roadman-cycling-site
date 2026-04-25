@@ -24,7 +24,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   return {
     title: issue.title,
     description: issue.previewText || issue.subtitle || issue.subject,
-    // Newsletter archive issues are one-time email broadcasts â€” thin content for
+    // Newsletter archive issues are one-time email broadcasts $€” thin content for
     // web search indexing. Noindex to avoid dragging site-wide quality signals
     // down, while still letting subscribers share/link to specific issues.
     robots: {

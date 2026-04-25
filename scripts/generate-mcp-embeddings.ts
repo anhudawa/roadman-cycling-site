@@ -2,17 +2,17 @@
  * Generates pgvector embeddings for MCP semantic search.
  *
  * Populates:
- *   mcp_episode_embeddings      â€” one row per chunk per episode
- *   mcp_methodology_embeddings  â€” one row per methodology principle
+ *   mcp_episode_embeddings      $€” one row per chunk per episode
+ *   mcp_methodology_embeddings  $€” one row per methodology principle
  *
  * Source:
  *   mcp_episodes (title, summary, key_insights, transcript_text)
  *   mcp_methodology_principles (principle, explanation, topic_tags)
  *
  * Provider (auto-selected, controlled by env):
- *   VOYAGE_API_KEY set           â†’ Voyage voyage-3-large (1024 dims)
- *   else OPENAI_API_KEY set      â†’ OpenAI text-embedding-3-large (1024 dims)
- *   EMBEDDING_PROVIDER=openai    â†’ force OpenAI (honoured by src/lib/mcp/embeddings.ts too)
+ *   VOYAGE_API_KEY set           $†’ Voyage voyage-3-large (1024 dims)
+ *   else OPENAI_API_KEY set      $†’ OpenAI text-embedding-3-large (1024 dims)
+ *   EMBEDDING_PROVIDER=openai    $†’ force OpenAI (honoured by src/lib/mcp/embeddings.ts too)
  *
  * Resumable: skips episodes that already have embeddings (unless --force).
  * Rate-limited: 200 ms between batches, exponential backoff on 429.
@@ -38,7 +38,7 @@ import {
   mcpMethodologyEmbeddings,
 } from "../src/lib/db/schema";
 
-// â”€â”€â”€ CLI args â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+// $”€$”€$”€ CLI args $”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€
 
 interface Args {
   only: "episodes" | "methodology" | "both";
@@ -74,7 +74,7 @@ function parseArgs(): Args {
   };
 }
 
-// â”€â”€â”€ Provider selection + batch embedding â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+// $”€$”€$”€ Provider selection + batch embedding $”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€
 
 type Provider = "voyage" | "openai";
 
@@ -115,7 +115,7 @@ async function embedBatchVoyage(inputs: string[]): Promise<number[][]> {
     }
     if (res.status === 429 && attempt < 6) {
       const wait = 2_000 * Math.pow(2, attempt);
-      console.warn(`  âš ï¸Ž Voyage 429 â€” backing off ${wait}ms (attempt ${attempt + 1})`);
+      console.warn(`  $š ï¸Ž Voyage 429 $€” backing off ${wait}ms (attempt ${attempt + 1})`);
       await sleep(wait);
       attempt++;
       continue;
@@ -149,7 +149,7 @@ async function embedBatchOpenAI(inputs: string[]): Promise<number[][]> {
     }
     if (res.status === 429 && attempt < 6) {
       const wait = 2_000 * Math.pow(2, attempt);
-      console.warn(`  âš ï¸Ž OpenAI 429 â€” backing off ${wait}ms (attempt ${attempt + 1})`);
+      console.warn(`  $š ï¸Ž OpenAI 429 $€” backing off ${wait}ms (attempt ${attempt + 1})`);
       await sleep(wait);
       attempt++;
       continue;
@@ -166,7 +166,7 @@ async function embedBatch(
   return embedBatchOpenAI(inputs);
 }
 
-// â”€â”€â”€ Chunking â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+// $”€$”€$”€ Chunking $”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€
 
 /**
  * Split text into overlapping character windows. We chunk by character
@@ -249,7 +249,7 @@ function methodologyText(p: {
   return `Principle: ${p.principle}\n\n${p.explanation}${tagLine}`;
 }
 
-// â”€â”€â”€ Episode embedding pipeline â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+// $”€$”€$”€ Episode embedding pipeline $”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€
 
 interface EpisodeTask {
   episodeId: number;
@@ -283,7 +283,7 @@ async function loadEpisodes(args: Args) {
 }
 
 async function embedEpisodes(args: Args, provider: Provider) {
-  console.log(`\nâ†’ Episodes (provider=${provider})`);
+  console.log(`\n$†’ Episodes (provider=${provider})`);
   const rows = await loadEpisodes(args);
   if (rows.length === 0) {
     console.log("  nothing to do");
@@ -312,7 +312,7 @@ async function embedEpisodes(args: Args, provider: Provider) {
   }
 
   console.log(
-    `  ${rows.length} episodes â†’ ${tasks.length} chunks, batch size ${args.batchSize}`
+    `  ${rows.length} episodes $†’ ${tasks.length} chunks, batch size ${args.batchSize}`
   );
   if (args.dryRun) {
     console.log("  (dry-run) skipping API calls + DB writes");
@@ -349,10 +349,10 @@ async function embedEpisodes(args: Args, provider: Provider) {
     process.stdout.write(`  ${done}/${tasks.length}\r`);
     await sleep(200);
   }
-  console.log(`\n  âœ“ ${tasks.length} episode chunks embedded`);
+  console.log(`\n  $œ“ ${tasks.length} episode chunks embedded`);
 }
 
-// â”€â”€â”€ Methodology embedding pipeline â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+// $”€$”€$”€ Methodology embedding pipeline $”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€
 
 async function loadMethodology(args: Args) {
   const rows = await db
@@ -375,7 +375,7 @@ async function loadMethodology(args: Args) {
 }
 
 async function embedMethodology(args: Args, provider: Provider) {
-  console.log(`\nâ†’ Methodology (provider=${provider})`);
+  console.log(`\n$†’ Methodology (provider=${provider})`);
   const rows = await loadMethodology(args);
   if (rows.length === 0) {
     console.log("  nothing to do");
@@ -411,15 +411,15 @@ async function embedMethodology(args: Args, provider: Provider) {
     process.stdout.write(`  ${done}/${rows.length}\r`);
     await sleep(200);
   }
-  console.log(`\n  âœ“ ${rows.length} methodology principles embedded`);
+  console.log(`\n  $œ“ ${rows.length} methodology principles embedded`);
 }
 
-// â”€â”€â”€ Main â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+// $”€$”€$”€ Main $”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€
 
 async function main() {
   const args = parseArgs();
   const provider = chooseProvider();
-  console.log(`Generating MCP embeddings Â· provider=${provider}`);
+  console.log(`Generating MCP embeddings $· provider=${provider}`);
   console.log(
     `  only=${args.only} force=${args.force} dryRun=${args.dryRun} limit=${args.limit ?? "-"}`
   );
@@ -431,7 +431,7 @@ async function main() {
     await embedMethodology(args, provider);
   }
 
-  console.log("\nâœ“ done");
+  console.log("\n$œ“ done");
   process.exit(0);
 }
 

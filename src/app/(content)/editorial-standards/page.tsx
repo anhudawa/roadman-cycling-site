@@ -5,7 +5,7 @@ import { Card, ScrollReveal, GradientText } from "@/components/ui";
 import { JsonLd } from "@/components/seo/JsonLd";
 
 export const metadata: Metadata = {
-  title: "Editorial Standards â€” How We Write and Review Content",
+  title: "Editorial Standards $€” How We Write and Review Content",
   description:
     "How Roadman Cycling creates, reviews, and maintains its content. Sources, methodology, review process, and the standards every article and episode must meet.",
   alternates: {
@@ -37,7 +37,7 @@ const STANDARDS = [
   {
     title: "Commercial Transparency",
     description:
-      "Roadman Cycling generates revenue through coaching, community membership, and digital products. When an article links to /coaching or /apply, that is a commercial recommendation. We do not accept payment for editorial placement. Comparison articles are honest â€” we recommend competitors when they are the better fit.",
+      "Roadman Cycling generates revenue through coaching, community membership, and digital products. When an article links to /coaching or /apply, that is a commercial recommendation. We do not accept payment for editorial placement. Comparison articles are honest $€” we recommend competitors when they are the better fit.",
   },
   {
     title: "Corrections",
@@ -115,8 +115,8 @@ export default function EditorialStandardsPage() {
                 </a>
               </p>
               <div className="flex flex-wrap gap-4 justify-center text-sm">
-                <Link href="/about" className="text-coral hover:text-coral/80 transition-colors">About â†’</Link>
-                <Link href="/research" className="text-coral hover:text-coral/80 transition-colors">Research & Evidence â†’</Link>
+                <Link href="/about" className="text-coral hover:text-coral/80 transition-colors">About $†’</Link>
+                <Link href="/research" className="text-coral hover:text-coral/80 transition-colors">Research & Evidence $†’</Link>
               </div>
             </ScrollReveal>
           </Container>

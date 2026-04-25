@@ -21,7 +21,7 @@ export async function generateSocialPosts(
 ): Promise<SocialOutput | null> {
   const apiKey = process.env.ANTHROPIC_API_KEY;
   if (!apiKey) {
-    console.error("  âœ— ANTHROPIC_API_KEY not set â€” skipping social generation");
+    console.error("  $œ— ANTHROPIC_API_KEY not set $€” skipping social generation");
     return null;
   }
 
@@ -40,7 +40,7 @@ export async function generateSocialPosts(
     const text =
       response.content[0].type === "text" ? response.content[0].text : "";
 
-    // Try to parse JSON â€” response should be raw JSON per prompt instructions
+    // Try to parse JSON $€” response should be raw JSON per prompt instructions
     let jsonStr = text.trim();
 
     // Handle case where model wraps in code block despite instructions
@@ -54,7 +54,7 @@ export async function generateSocialPosts(
       parsed = JSON.parse(jsonStr);
     } catch {
       console.error(
-        `  âœ— Failed to parse social JSON for: ${episode.title}`
+        `  $œ— Failed to parse social JSON for: ${episode.title}`
       );
       return null;
     }
@@ -72,7 +72,7 @@ export async function generateSocialPosts(
       !fb || typeof fb.post !== "string" || typeof fb.angle !== "string"
     ) {
       console.error(
-        `  âœ— Social JSON missing required fields for: ${episode.title}`
+        `  $œ— Social JSON missing required fields for: ${episode.title}`
       );
       return null;
     }
@@ -108,7 +108,7 @@ export async function generateSocialPosts(
   } catch (error) {
     const msg = error instanceof Error ? error.message : String(error);
     console.error(
-      `  âœ— Social generation failed for "${episode.title}": ${msg}`
+      `  $œ— Social generation failed for "${episode.title}": ${msg}`
     );
     return null;
   }

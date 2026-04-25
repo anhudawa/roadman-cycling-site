@@ -9,7 +9,7 @@ import { getCohortState } from "@/lib/cohort";
  * revenue pages. Keeps the primary CTA thumb-reachable while the visitor
  * scrolls through 800+ px of marketing copy on mobile.
  *
- * Desktop users don't see this â€” they have the header CTA always visible.
+ * Desktop users don't see this $€” they have the header CTA always visible.
  *
  * Copy is driven entirely by src/lib/cohort.ts so it flips automatically
  * between "Cohort X Open" and "Cohort X Coming Soon" with no hardcoded

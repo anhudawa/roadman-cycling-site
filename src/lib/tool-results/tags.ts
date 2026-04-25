@@ -5,7 +5,7 @@ import type { ToolSlug } from "./types";
  * Beehiiv and Roadman contacts so segmentation ("fuelled for >90g/hr",
  * "FTP zones pulled this week") stays trivial.
  *
- * Helper: keep tag values lowercase with hyphens â€” matches the rest of
+ * Helper: keep tag values lowercase with hyphens $€” matches the rest of
  * the CRM tag convention (plateau-diagnostic, profile-underRecovered).
  */
 

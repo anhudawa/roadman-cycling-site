@@ -1,4 +1,4 @@
-name: Ted â€” draft daily prompt
+name: Ted $€” draft daily prompt
 
 # Drafts tomorrow's Clubhouse prompt and parks it in the review queue
 # at /admin/ted/queue. Runs daily at 06:00 UTC so there's time for
@@ -10,7 +10,7 @@ on:
   workflow_dispatch:
     inputs:
       dry_run:
-        description: "Dry run â€” generate and print, don't write to DB"
+        description: "Dry run $€” generate and print, don't write to DB"
         required: false
         default: "false"
       date:

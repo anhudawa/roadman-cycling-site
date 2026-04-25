@@ -8,7 +8,7 @@ import { CheckoutSuccessBeacon } from "@/components/paid-reports/CheckoutSuccess
  * Post-checkout confirmation page.
  *
  * Stripe redirects here with ?session_id=... on a successful checkout.
- * We don't trust that for anything authoritative â€” the webhook is the
+ * We don't trust that for anything authoritative $€” the webhook is the
  * source of truth for order + report state. This page is purely a
  * receipt + "what happens next" landing so the rider knows they're
  * covered while the async generator runs.
@@ -25,8 +25,8 @@ export async function generateMetadata({
   const productRow = await getProductBySlug(product);
   return {
     title: productRow
-      ? `Thanks â€” ${productRow.name} on its way`
-      : "Thanks â€” your Roadman report is on the way",
+      ? `Thanks $€” ${productRow.name} on its way`
+      : "Thanks $€” your Roadman report is on the way",
     robots: { index: false, follow: false },
   };
 }
@@ -62,7 +62,7 @@ export default async function PaidReportSuccess({
               YOUR {productRow ? productRow.name.toUpperCase() : "ROADMAN REPORT"} IS ON THE WAY.
             </h1>
             <p className="text-foreground-muted text-lg leading-relaxed mb-4">
-              Thanks â€” the payment came through cleanly. The report is
+              Thanks $€” the payment came through cleanly. The report is
               generating now and will land in your inbox within a few minutes.
             </p>
             <p className="text-foreground-subtle text-sm mb-8">
@@ -78,7 +78,7 @@ export default async function PaidReportSuccess({
               <ol className="space-y-3 text-foreground-muted text-sm leading-relaxed">
                 <li>
                   <span className="text-coral font-heading mr-2">1.</span>
-                  We score the report from your saved inputs â€” no extra forms.
+                  We score the report from your saved inputs $€” no extra forms.
                 </li>
                 <li>
                   <span className="text-coral font-heading mr-2">2.</span>
@@ -86,7 +86,7 @@ export default async function PaidReportSuccess({
                 </li>
                 <li>
                   <span className="text-coral font-heading mr-2">3.</span>
-                  Open Ask Roadman any time to talk through the plan â€” it has
+                  Open Ask Roadman any time to talk through the plan $€” it has
                   your result pre-loaded.
                 </li>
               </ol>
@@ -109,7 +109,7 @@ export default async function PaidReportSuccess({
 
             {sessionId ? (
               <p className="text-foreground-subtle text-xs mt-8 font-mono opacity-60">
-                Session reference: {sessionId.slice(0, 20)}â€¦
+                Session reference: {sessionId.slice(0, 20)}$€¦
               </p>
             ) : null}
           </Container>

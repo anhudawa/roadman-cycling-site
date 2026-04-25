@@ -29,7 +29,7 @@ const workSans = Work_Sans({
 // their CSS variables at the html level so any page that opts-in can
 // reference them, but `preload: false` stops next/font from adding a
 // <link rel="preload"> per route. On non-homepage routes they stay
-// inert â€” no network request â€” and the homepage swaps them in via
+// inert $€” no network request $€” and the homepage swaps them in via
 // display: swap with a subtle FOUT that's invisible behind the
 // coral/purple gradient hero.
 const spaceGrotesk = Space_Grotesk({
@@ -50,7 +50,7 @@ const jetbrainsMono = JetBrains_Mono({
 
 export const metadata: Metadata = {
   title: {
-    default: "Roadman Cycling â€” Cycling Coaching, Training & Performance Podcast",
+    default: "Roadman Cycling $€” Cycling Coaching, Training & Performance Podcast",
     template: "%s | Roadman Cycling",
   },
   description: `The cycling podcast trusted by ${BRAND_STATS.monthlyListenersLabel} monthly listeners across ${BRAND_STATS.countriesReachedLabel} countries. Expert coaching, training plans, nutrition, and a community that refuses to settle. ${BRAND_STATS.episodeCountLabel} episodes. ${BRAND_STATS.newsletterSubscribersLabel} newsletter readers.`,
@@ -78,7 +78,7 @@ export const metadata: Metadata = {
     locale: "en_IE",
     url: "https://roadmancycling.com",
     siteName: "Roadman Cycling",
-    title: "Roadman Cycling â€” Cycling Coaching, Training & Performance Podcast",
+    title: "Roadman Cycling $€” Cycling Coaching, Training & Performance Podcast",
     description: `The podcast trusted by ${BRAND_STATS.monthlyListenersLabel} monthly listeners. Expert cycling coaching, training, nutrition, and community. ${BRAND_STATS.episodeCountLabel} episodes.`,
     images: [
       {

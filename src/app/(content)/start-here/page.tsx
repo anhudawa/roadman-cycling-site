@@ -5,14 +5,14 @@ import { Button, Card, ScrollReveal, GradientText } from "@/components/ui";
 import { JsonLd } from "@/components/seo/JsonLd";
 
 export const metadata: Metadata = {
-  title: "Start Here ‚Äî New to Roadman Cycling?",
+  title: "Start Here $Äî New to Roadman Cycling?",
   description:
-    "New to Roadman? Start here. The best episodes, articles, tools, and resources to get you faster on the bike ‚Äî curated from 1,400+ episodes and 170 articles.",
+    "New to Roadman? Start here. The best episodes, articles, tools, and resources to get you faster on the bike $Äî curated from 1,400+ episodes and 170 articles.",
   alternates: {
     canonical: "https://roadmancycling.com/start-here",
   },
   openGraph: {
-    title: "Start Here ‚Äî New to Roadman Cycling?",
+    title: "Start Here $Äî New to Roadman Cycling?",
     description:
       "The best episodes, articles, tools, and resources to get you faster on the bike.",
     type: "website",
@@ -29,7 +29,7 @@ const FOUNDATION_ARTICLES = [
   {
     title: "Zone 2 Training: Complete Guide",
     href: "/blog/zone-2-training-complete-guide",
-    desc: "Why pros ride 80% easy ‚Äî and how to apply it yourself.",
+    desc: "Why pros ride 80% easy $Äî and how to apply it yourself.",
   },
   {
     title: "FTP Training Zones Guide",
@@ -39,7 +39,7 @@ const FOUNDATION_ARTICLES = [
   {
     title: "Is a Cycling Coach Worth It?",
     href: "/blog/is-a-cycling-coach-worth-it",
-    desc: "Honest breakdown of when coaching pays off ‚Äî and when it doesn't.",
+    desc: "Honest breakdown of when coaching pays off $Äî and when it doesn't.",
   },
 ];
 
@@ -62,7 +62,7 @@ const COMPARISON_PICKS = [
   {
     title: "Power Meter vs Smart Trainer",
     href: "/blog/power-meter-vs-smart-trainer",
-    desc: "Where your first ¬£500 should go.",
+    desc: "Where your first $500 should go.",
   },
 ];
 
@@ -85,7 +85,7 @@ const MUST_LISTEN = [
   {
     title: "Dan Lorang: How Rogliƒç's Coach Trains Amateurs",
     href: "/podcast/ep-2134-roglics-coach-builds-a-training-plan-for-amateur-riders-dan",
-    desc: "The head of performance at Red Bull‚ÄìBora‚ÄìHansgrohe builds a plan for time-crunched age-groupers.",
+    desc: "The head of performance at Red Bull$ÄìBora$ÄìHansgrohe builds a plan for time-crunched age-groupers.",
   },
   {
     title: "Joe Friel on Structuring Training",
@@ -106,7 +106,7 @@ export default function StartHerePage() {
         data={{
           "@context": "https://schema.org",
           "@type": "CollectionPage",
-          name: "Start Here ‚Äî New to Roadman Cycling?",
+          name: "Start Here $Äî New to Roadman Cycling?",
           description:
             "Curated starting point for new visitors. Best episodes, articles, tools, and resources from 1,400+ episodes and 170 articles.",
           url: "https://roadmancycling.com/start-here",
@@ -141,7 +141,7 @@ export default function StartHerePage() {
                 <span style={{ fontSize: "var(--text-hero)" }}>START HERE.</span>
               </GradientText>
               <p className="text-foreground-muted text-lg md:text-xl max-w-2xl mx-auto leading-relaxed">
-                1,400+ episodes. 170 articles. 6 free tools. This page cuts through it all ‚Äî the
+                1,400+ episodes. 170 articles. 6 free tools. This page cuts through it all $Äî the
                 essential starting points to get faster on the bike.
               </p>
             </ScrollReveal>
@@ -275,10 +275,10 @@ export default function StartHerePage() {
                   </Button>
                 </div>
                 <div className="flex flex-wrap gap-4 justify-center mt-6 text-sm">
-                  <Link href="/blog" className="text-coral hover:text-coral/80 transition-colors">All Articles ‚Üí</Link>
-                  <Link href="/topics" className="text-coral hover:text-coral/80 transition-colors">Topic Hubs ‚Üí</Link>
-                  <Link href="/plan" className="text-coral hover:text-coral/80 transition-colors">Training Plans ‚Üí</Link>
-                  <Link href="/guests" className="text-coral hover:text-coral/80 transition-colors">Guest Archive ‚Üí</Link>
+                  <Link href="/blog" className="text-coral hover:text-coral/80 transition-colors">All Articles $Üí</Link>
+                  <Link href="/topics" className="text-coral hover:text-coral/80 transition-colors">Topic Hubs $Üí</Link>
+                  <Link href="/plan" className="text-coral hover:text-coral/80 transition-colors">Training Plans $Üí</Link>
+                  <Link href="/guests" className="text-coral hover:text-coral/80 transition-colors">Guest Archive $Üí</Link>
                 </div>
               </div>
             </ScrollReveal>

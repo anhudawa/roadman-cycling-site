@@ -22,7 +22,7 @@ interface SyncRun {
 type Source = "beehiiv" | "stripe";
 
 function fmtDate(iso: string | null): string {
-  if (!iso) return "â€”";
+  if (!iso) return "$€”";
   try {
     return new Date(iso).toLocaleString();
   } catch {
@@ -191,7 +191,7 @@ export function IntegrationsPanel() {
                 disabled={busy}
                 className="px-3 py-1.5 rounded text-xs font-medium bg-white/10 hover:bg-white/15 disabled:opacity-50 disabled:cursor-not-allowed text-off-white"
               >
-                {busy ? "Syncingâ€¦" : "Sync now"}
+                {busy ? "Syncing$€¦" : "Sync now"}
               </button>
             </div>
           );

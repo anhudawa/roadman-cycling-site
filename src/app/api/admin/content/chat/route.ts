@@ -6,9 +6,9 @@ import { repurposedContent, contentChatMessages } from "@/lib/db/schema";
 import { eq, asc } from "drizzle-orm";
 
 const SYSTEM_PROMPT =
-  "You are editing content for Roadman Cycling. Maintain Anthony Walsh's voice: direct, practical, warm, knowledgeable. Aimed at amateur cyclists who want to get faster. You will receive the current content and a request to amend it. Return the COMPLETE revised content â€” not a diff, the full replacement. Match the exact format of the input.";
+  "You are editing content for Roadman Cycling. Maintain Anthony Walsh's voice: direct, practical, warm, knowledgeable. Aimed at amateur cyclists who want to get faster. You will receive the current content and a request to amend it. Return the COMPLETE revised content $€” not a diff, the full replacement. Match the exact format of the input.";
 
-const EPISODE_PAGE_SYSTEM_PROMPT = `You are editing episode page content for Roadman Cycling. You are writing as Anthony Walsh â€” not "in the style of", as him.
+const EPISODE_PAGE_SYSTEM_PROMPT = `You are editing episode page content for Roadman Cycling. You are writing as Anthony Walsh $€” not "in the style of", as him.
 
 VOICE RULES:
 - Write rough, not polished. First-draft energy. Anthony doesn't revise for elegance.
@@ -21,10 +21,10 @@ VOICE RULES:
 - Direct address: "You know the moment when..."
 - Maximum 2 em-dashes in the entire output.
 
-HARD FAIL WORDS â€” never use:
+HARD FAIL WORDS $€” never use:
 "delve", "navigate", "leverage", "robust", "tapestry", "game-changer", "hack", "crush it", "unlock your potential", "journey", "no excuses", "sparked something", "deep dive", "unpack", "landscape", "ecosystem"
 
-Return the COMPLETE revised content â€” not a diff, the full replacement.`;
+Return the COMPLETE revised content $€” not a diff, the full replacement.`;
 
 
 export async function POST(request: Request) {
@@ -132,7 +132,7 @@ export async function POST(request: Request) {
 
           stream.on("end", async () => {
             try {
-              // Only save if we actually got a response â€” prevents wiping content on API errors
+              // Only save if we actually got a response $€” prevents wiping content on API errors
               if (fullResponse.trim().length > 0) {
                 // Save assistant response
                 await db.insert(contentChatMessages).values({
@@ -152,7 +152,7 @@ export async function POST(request: Request) {
                   })
                   .where(eq(repurposedContent.id, contentId));
               } else {
-                console.warn("[Chat] Empty response from Claude â€” content not updated");
+                console.warn("[Chat] Empty response from Claude $€” content not updated");
               }
             } catch (err) {
               console.error("[Chat] Error saving response:", err);

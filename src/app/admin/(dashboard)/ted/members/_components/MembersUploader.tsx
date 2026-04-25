@@ -68,7 +68,7 @@ export function MembersUploader() {
           disabled={busy || !csv.trim()}
           className="text-sm rounded-md bg-emerald-500/20 text-emerald-300 hover:bg-emerald-500/30 px-3 py-1.5 disabled:opacity-50"
         >
-          {busy ? "Uploadingâ€¦" : "Upsert"}
+          {busy ? "Uploading$€¦" : "Upsert"}
         </button>
         <button
           onClick={() => setCsv(EXAMPLE)}

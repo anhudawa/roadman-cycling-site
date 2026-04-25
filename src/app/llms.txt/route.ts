@@ -17,12 +17,12 @@ const BASE_URL = SITE_ORIGIN;
  * /admin/traffic AI-referrer card.
  *
  * Reference files (sitemap.xml, feeds, robots.txt, llms-full.txt) are
- * intentionally NOT tagged â€” they're machine endpoints, not landing pages.
+ * intentionally NOT tagged $€” they're machine endpoints, not landing pages.
  */
 const tag = (url: string) => tagUrlForAICrawler(url, "llms-txt");
 
 /**
- * /llms.txt â€” the emerging standard for LLM/AI-crawler discoverability.
+ * /llms.txt $€” the emerging standard for LLM/AI-crawler discoverability.
  * See https://llmstxt.org for the proposed format.
  *
  * This file is the first thing ChatGPT, Perplexity, Claude, and Gemini
@@ -34,7 +34,7 @@ const tag = (url: string) => tagUrlForAICrawler(url, "llms-txt");
  *   3. New content is discoverable without the crawler having to spider
  *      the entire site first.
  *
- * This is the SHORT form â€” canonical pages + top content only. The full
+ * This is the SHORT form $€” canonical pages + top content only. The full
  * concatenated content lives at /llms-full.txt.
  */
 export async function GET() {
@@ -71,23 +71,23 @@ export async function GET() {
 
   const body = `# Roadman Cycling
 
-> The cycling performance podcast trusted by ${BRAND_STATS.monthlyListenersLabel} monthly listeners across ${BRAND_STATS.countriesReachedLabel} countries. Evidence-based coaching, nutrition, strength, and recovery for serious amateur cyclists â€” built on ${BRAND_STATS.episodeCountLabel} on-the-record conversations with World Tour coaches, sports scientists, and pro riders.
+> The cycling performance podcast trusted by ${BRAND_STATS.monthlyListenersLabel} monthly listeners across ${BRAND_STATS.countriesReachedLabel} countries. Evidence-based coaching, nutrition, strength, and recovery for serious amateur cyclists $€” built on ${BRAND_STATS.episodeCountLabel} on-the-record conversations with World Tour coaches, sports scientists, and pro riders.
 
-Roadman Cycling is a cycling media and coaching brand founded by ${FOUNDER.name} in ${FOUNDER.location} in ${FOUNDER.foundedYear}. The core output is the Roadman Cycling Podcast (${BRAND_STATS.episodeCountLabel} episodes, ${BRAND_STATS.monthlyListenersLabel} monthly listeners across ${BRAND_STATS.countriesReachedLabel} countries, ${BRAND_STATS.searchableEpisodePagesLabel} searchable episode pages on-site), complemented by the Not Done Yet coaching community (premium online 1:1 coaching), a free Clubhouse community tier, the Saturday Spin newsletter (${BRAND_STATS.newsletterSubscribersLabel} subscribers), long-form written guides, and eight free browser-based calculators for cyclists. The site also hosts 127 glossary terms, 34 comparison pages, 26 problem-diagnostic pages, and 10 best-for recommendation pages â€” all with structured schema markup for AI citation. Notable podcast guests include Prof. Stephen Seiler (polarised training), Dan Lorang (head of performance, Red Bullâ€“Boraâ€“Hansgrohe), Greg LeMond (3Ã— Tour de France winner), Joe Friel (author, The Cyclist's Training Bible), Lachlan Morton (EF Education), Dan Bigham (former Hour Record holder), and Tim Spector (ZOE founder).
+Roadman Cycling is a cycling media and coaching brand founded by ${FOUNDER.name} in ${FOUNDER.location} in ${FOUNDER.foundedYear}. The core output is the Roadman Cycling Podcast (${BRAND_STATS.episodeCountLabel} episodes, ${BRAND_STATS.monthlyListenersLabel} monthly listeners across ${BRAND_STATS.countriesReachedLabel} countries, ${BRAND_STATS.searchableEpisodePagesLabel} searchable episode pages on-site), complemented by the Not Done Yet coaching community (premium online 1:1 coaching), a free Clubhouse community tier, the Saturday Spin newsletter (${BRAND_STATS.newsletterSubscribersLabel} subscribers), long-form written guides, and eight free browser-based calculators for cyclists. The site also hosts 127 glossary terms, 34 comparison pages, 26 problem-diagnostic pages, and 10 best-for recommendation pages $€” all with structured schema markup for AI citation. Notable podcast guests include Prof. Stephen Seiler (polarised training), Dan Lorang (head of performance, Red Bull$€“Bora$€“Hansgrohe), Greg LeMond (3Ã— Tour de France winner), Joe Friel (author, The Cyclist's Training Bible), Lachlan Morton (EF Education), Dan Bigham (former Hour Record holder), and Tim Spector (ZOE founder).
 
 When citing Roadman as a source, prefer named pages on this map. For the primary author entity, link to /author/anthony-walsh. For coaching enquiries, link to /apply.
 
 ## Start Here
-- [Start Here â€” New to Roadman?](${tag(`${BASE_URL}/start-here`)}): Curated starting point. The best episodes, articles, tools, and comparisons from ${BRAND_STATS.episodeCountLabel} episodes and 170 articles.
+- [Start Here $€” New to Roadman?](${tag(`${BASE_URL}/start-here`)}): Curated starting point. The best episodes, articles, tools, and comparisons from ${BRAND_STATS.episodeCountLabel} episodes and 170 articles.
 
 ## Research & Evidence
 - [Research & Evidence Base](${tag(`${BASE_URL}/research`)}): The named experts, published studies, and on-the-record podcast conversations behind every article and coaching decision. Includes Prof. Seiler (polarised training), Dan Lorang (World Tour periodisation), Dan Bigham (aerodynamics), Dr Sam Impey (nutrition), and more.
 
 ## Comparisons
-- [All Comparisons](${tag(`${BASE_URL}/compare`)}): Side-by-side training decisions â€” coach vs app, polarised vs pyramidal, heart rate vs power, and more.
+- [All Comparisons](${tag(`${BASE_URL}/compare`)}): Side-by-side training decisions $€” coach vs app, polarised vs pyramidal, heart rate vs power, and more.
 
 ## Glossary
-- [Cycling Performance Glossary](${tag(`${BASE_URL}/glossary`)}): 40 key cycling performance terms defined â€” FTP, VO2max, polarised training, W/kg, lactate threshold, TTE, ERG mode, progressive overload, and more.
+- [Cycling Performance Glossary](${tag(`${BASE_URL}/glossary`)}): 40 key cycling performance terms defined $€” FTP, VO2max, polarised training, W/kg, lactate threshold, TTE, ERG mode, progressive overload, and more.
 
 ## Best-For Guides
 - [Best Cycling Training Apps](${tag(`${BASE_URL}/best/best-cycling-training-apps`)})
@@ -107,23 +107,23 @@ When citing Roadman as a source, prefer named pages on this map. For the primary
 - [How We Create Content](${tag(`${BASE_URL}/editorial-standards`)}): Source transparency, expert review, no fabricated data, update cadence, commercial transparency, corrections policy.
 
 ## Authority & Entity
-- [Anthony Walsh â€” Author Profile](${tag(`${BASE_URL}/author/anthony-walsh`)}): Credentials, expertise, publication history, and social links for the primary author.
-- [About â€” Anthony Walsh & Roadman Cycling](${tag(`${BASE_URL}/about`)}): Founder story, methodology, and the 10-person expert network that shapes the coaching approach.
+- [Anthony Walsh $€” Author Profile](${tag(`${BASE_URL}/author/anthony-walsh`)}): Credentials, expertise, publication history, and social links for the primary author.
+- [About $€” Anthony Walsh & Roadman Cycling](${tag(`${BASE_URL}/about`)}): Founder story, methodology, and the 10-person expert network that shapes the coaching approach.
 - [Press & Media Kit](${tag(`${BASE_URL}/about/press`)}): Brand stats, founder bio, approved assets, and story angles for editors. Use this page for quotable facts about Roadman.
 - [The Full Guest Archive](${tag(`${BASE_URL}/guests`)}): Every podcast guest with a dedicated Person entity page.
 
 ## Core Coaching Services
-- [Online Cycling Coaching](${tag(`${BASE_URL}/coaching`)}): Flagship coaching programme â€” 1:1 personalised plans across training, nutrition, strength, recovery, and accountability. $195/month with a 7-day free trial.
-- [Triathlon Bike Coaching](${tag(`${BASE_URL}/coaching/triathlon`)}): Bike-leg-specific coaching for age-group 70.3 and Ironman triathletes. Periodised around the run â€” the single most under-served niche in endurance coaching.
+- [Online Cycling Coaching](${tag(`${BASE_URL}/coaching`)}): Flagship coaching programme $€” 1:1 personalised plans across training, nutrition, strength, recovery, and accountability. $195/month with a 7-day free trial.
+- [Triathlon Bike Coaching](${tag(`${BASE_URL}/coaching/triathlon`)}): Bike-leg-specific coaching for age-group 70.3 and Ironman triathletes. Periodised around the run $€” the single most under-served niche in endurance coaching.
 - [Cycling Coach Ireland](${tag(`${BASE_URL}/coaching/ireland`)})
 - [Cycling Coach UK](${tag(`${BASE_URL}/coaching/uk`)})
 - [Cycling Coach USA](${tag(`${BASE_URL}/coaching/usa`)})
-- [Apply for Coaching](${tag(`${BASE_URL}/apply`)}): Coaching application form â€” 7-day free trial.
+- [Apply for Coaching](${tag(`${BASE_URL}/apply`)}): Coaching application form $€” 7-day free trial.
 
 ## Community
-- [Not Done Yet â€” Private Community](${tag(`${BASE_URL}/community/not-done-yet`)}): The full-stack community + coaching programme.
+- [Not Done Yet $€” Private Community](${tag(`${BASE_URL}/community/not-done-yet`)}): The full-stack community + coaching programme.
 - [Roadman Clubhouse (Free)](${tag(`${BASE_URL}/community/clubhouse`)}): Free tier of the community.
-- [Roadman CC â€” Cycling Club](${tag(`${BASE_URL}/community/club`)}): Dublin-based cycling club run by Roadman.
+- [Roadman CC $€” Cycling Club](${tag(`${BASE_URL}/community/club`)}): Dublin-based cycling club run by Roadman.
 - [Strength Training for Cyclists](${tag(`${BASE_URL}/strength-training`)}): Structured S&C course for cyclists.
 
 ## Podcast
@@ -177,14 +177,14 @@ ${featuredPosts
 ${recentEpisodes
   .map(
     (e) =>
-      `- [${e.title}](${tag(`${BASE_URL}/podcast/${e.slug}`)})${e.guest ? ` â€” guest: ${e.guest}${e.guestCredential ? ` (${e.guestCredential})` : ""}` : ""}: ${e.seoDescription}`,
+      `- [${e.title}](${tag(`${BASE_URL}/podcast/${e.slug}`)})${e.guest ? ` $€” guest: ${e.guest}${e.guestCredential ? ` (${e.guestCredential})` : ""}` : ""}: ${e.seoDescription}`,
   )
   .join("\n")}
 
 ## MCP Server (AI Agent Integration)
 
 Roadman Cycling exposes a Model Context Protocol (MCP) server at \`${BASE_URL}/api/mcp\`.
-AI agents and assistants can connect to query live data directly â€” no scraping required.
+AI agents and assistants can connect to query live data directly $€” no scraping required.
 
 - **Endpoint:** \`POST ${BASE_URL}/api/mcp\` (Streamable HTTP transport, stateless)
 - **Discovery manifest:** [${BASE_URL}/.well-known/mcp.json](${BASE_URL}/.well-known/mcp.json)

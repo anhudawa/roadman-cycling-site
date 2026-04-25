@@ -7,13 +7,13 @@ config({ path: ".env.local" });
 async function main() {
   if (!process.env.POSTGRES_URL) throw new Error("POSTGRES_URL not set");
   const body = readFileSync("drizzle/0022_team_google_oauth.sql", "utf8");
-  console.log("Applying drizzle/0022_team_google_oauth.sql â€¦");
+  console.log("Applying drizzle/0022_team_google_oauth.sql $€¦");
   await sql.query(body);
   const r = await sql.query(
     `SELECT column_name FROM information_schema.columns WHERE table_name = 'team_users' ORDER BY ordinal_position`
   );
   console.log("team_users columns:");
-  for (const row of r.rows) console.log(`  Â· ${row.column_name}`);
+  for (const row of r.rows) console.log(`  $· ${row.column_name}`);
 }
 
 main().catch((err) => {

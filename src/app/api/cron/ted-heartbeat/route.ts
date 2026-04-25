@@ -5,12 +5,12 @@ import { and, desc, eq, gte } from "drizzle-orm";
 
 export const dynamic = "force-dynamic";
 
-// Stale threshold â€” if no activity (any job, any level) in this many hours,
+// Stale threshold $€” if no activity (any job, any level) in this many hours,
 // something is broken: GH Actions disabled, secrets rotated, DB unreachable
 // from the runner, etc.
 const STALE_HOURS = 36;
 
-// De-dupe window â€” once we send an alert, suppress further alerts for this
+// De-dupe window $€” once we send an alert, suppress further alerts for this
 // many hours even if Ted is still stale. Prevents email floods.
 const DEDUPE_HOURS = 24;
 
@@ -25,7 +25,7 @@ export async function GET(req: NextRequest) {
     return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
   }
 
-  // Skip heartbeat entirely if Ted is deliberately paused â€” that state is
+  // Skip heartbeat entirely if Ted is deliberately paused $€” that state is
   // already explicit, emailing about it every 6h is noise.
   const ks = await db
     .select({ paused: tedKillSwitch.paused })
@@ -86,7 +86,7 @@ export async function GET(req: NextRequest) {
     : "never";
 
   const body = [
-    "Ted heartbeat alert â€” no activity detected.",
+    "Ted heartbeat alert $€” no activity detected.",
     "",
     `Last activity: ${staleLabel}`,
     `Stale threshold: ${STALE_HOURS}h`,
@@ -110,7 +110,7 @@ export async function GET(req: NextRequest) {
         body: JSON.stringify({
           from,
           to,
-          subject: "[ted-error] heartbeat â€” no activity",
+          subject: "[ted-error] heartbeat $€” no activity",
           text: body,
         }),
       });

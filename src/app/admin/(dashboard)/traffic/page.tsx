@@ -167,7 +167,7 @@ export default async function TrafficPage({
         </Card>
       </div>
 
-      {/* AI Referrers (AEO-003) â€” traffic attributed to answer engines
+      {/* AI Referrers (AEO-003) $€” traffic attributed to answer engines
           like ChatGPT, Perplexity, Claude, Gemini, Copilot. */}
       <Card>
         <CardBody compact>

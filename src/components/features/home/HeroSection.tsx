@@ -18,13 +18,13 @@ interface HeroSectionProps {
 }
 
 /**
- * Homepage hero â€” Direction 3 "Hero Crop", unified across all viewports.
+ * Homepage hero $€” Direction 3 "Hero Crop", unified across all viewports.
  *
  * Mobile (`<md`):    single column. Glitch portrait first (visitor sees
  *                    the brand face on first paint), then eyebrow,
  *                    4-line headline, coral hairline, CTAs, proof line.
  * Tablet (`md`):     single column (same stack as mobile, larger type).
- * Desktop (`lg+`):   2-column split â€” text in cols 1-5, portrait in
+ * Desktop (`lg+`):   2-column split $€” text in cols 1-5, portrait in
  *                    cols 7-12. `order-*` classes flip the DOM-first
  *                    portrait to the right rail without re-ordering
  *                    source.
@@ -35,7 +35,7 @@ interface HeroSectionProps {
  *
  * Headline copy is verbatim "CYCLING IS HARD, OUR COACHING WILL HELP."
  * broken across 4 lines as CYCLING / IS HARD, / OUR COACHING / WILL
- * HELP. Line breaks are hand-tuned â€” if the copy changes, rebalance
+ * HELP. Line breaks are hand-tuned $€” if the copy changes, rebalance
  * manually. Do not auto-wrap.
  */
 export function HeroSection({ latestEpisode }: HeroSectionProps) {
@@ -53,7 +53,7 @@ export function HeroSection({ latestEpisode }: HeroSectionProps) {
     mass: 0.5,
   });
 
-  // Gentle parallax on the portrait only â€” text stays put.
+  // Gentle parallax on the portrait only $€” text stays put.
   const portraitY = useTransform(smoothProgress, [0, 1], [0, 80]);
 
   useMotionValueEvent(scrollYProgress, "change", (v) => {
@@ -80,7 +80,7 @@ export function HeroSection({ latestEpisode }: HeroSectionProps) {
 
       <div className="relative z-10 pt-[calc(5rem+var(--cohort-banner-height,0px))] md:pt-[calc(6rem+var(--cohort-banner-height,0px))] pb-16 md:pb-24">
         <div className="mx-auto max-w-[1200px] px-5 md:px-8 grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-8 items-start">
-          {/* â”€â”€ GLITCH PORTRAIT â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+          {/* $”€$”€ GLITCH PORTRAIT $”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€
               DOM-first so it shows first on mobile (the brand face
               is the visual anchor). On lg+ it's placed in cols 7-12
               and explicitly pinned to row 1 so it sits on the right
@@ -95,7 +95,7 @@ export function HeroSection({ latestEpisode }: HeroSectionProps) {
             <GlitchHero />
           </motion.div>
 
-          {/* â”€â”€ TEXT RAIL: eyebrow / headline / hairline / CTAs / proof â”€â”€ */}
+          {/* $”€$”€ TEXT RAIL: eyebrow / headline / hairline / CTAs / proof $”€$”€ */}
           <div className="lg:col-start-1 lg:col-span-5 lg:row-start-1 text-center lg:text-left lg:pt-8">
             <motion.p
               className="font-body text-[11px] md:text-xs tracking-[0.3em] uppercase mb-6 md:mb-8"
@@ -115,7 +115,7 @@ export function HeroSection({ latestEpisode }: HeroSectionProps) {
               >
                 PODCAST
               </Link>
-              <span className="inline-block mx-2 text-off-white/30">Â·</span>
+              <span className="inline-block mx-2 text-off-white/30">$·</span>
               <Link
                 href="/coaching"
                 className="text-coral/85 hover:text-coral transition-colors"
@@ -186,7 +186,7 @@ export function HeroSection({ latestEpisode }: HeroSectionProps) {
                 className="w-full sm:w-auto shadow-[0_12px_40px_-8px_rgba(241,99,99,0.55)] hover:shadow-[0_16px_50px_-6px_rgba(241,99,99,0.7)] transition-shadow"
                 dataTrack="home_hero_apply"
               >
-                Apply â†’
+                Apply $†’
               </Button>
               <Link
                 href={latestEpisode ? `/podcast/${latestEpisode.slug}` : "/podcast"}
@@ -194,7 +194,7 @@ export function HeroSection({ latestEpisode }: HeroSectionProps) {
                 style={{ transitionDuration: "var(--duration-fast)" }}
                 data-track="home_hero_listen"
               >
-                listen <span aria-hidden="true">â†’</span>
+                listen <span aria-hidden="true">$†’</span>
               </Link>
             </motion.div>
 
@@ -209,16 +209,16 @@ export function HeroSection({ latestEpisode }: HeroSectionProps) {
               transition={{ duration: 0.8, delay: 0.9 }}
             >
               <span>1M monthly listeners</span>
-              <span className="mx-2 opacity-50">Â·</span>
+              <span className="mx-2 opacity-50">$·</span>
               <span>65K newsletter</span>
-              <span className="mx-2 opacity-50">Â·</span>
+              <span className="mx-2 opacity-50">$·</span>
               <span>1,400+ episodes</span>
             </motion.p>
           </div>
         </div>
       </div>
 
-      {/* Animated scroll indicator â€” md+ only */}
+      {/* Animated scroll indicator $€” md+ only */}
       <motion.div
         className="absolute bottom-4 left-1/2 -translate-x-1/2 z-10 hidden md:flex flex-col items-center gap-2"
         initial={{ opacity: 0 }}

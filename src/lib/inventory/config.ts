@@ -1,9 +1,9 @@
 import type { InventoryType, PremiumTier } from '@/lib/inventory/types';
 
 /**
- * Base rack rates in EUR per episode/send for each inventory type.
+ * Base rack rates in USD per episode/send for each inventory type.
  * These are the per-unit prices before any event premium or duration discount.
- * Anchored from real sponsor rates: TrainingPeaks pays €625/read (loyalty rate).
+ * Anchored from real sponsor rates: TrainingPeaks pays $625/read (loyalty rate).
  * New sponsors pay a slight discount per-read but buy all 3 eps/week.
  */
 export const BASE_RATES: Record<InventoryType, number> = {
@@ -19,7 +19,7 @@ export const BASE_RATES: Record<InventoryType, number> = {
 /**
  * Currency for all public-facing pricing.
  */
-export const CURRENCY = 'EUR' as const;
+export const CURRENCY = 'USD' as const;
 
 /**
  * Duration discount percentages. Longer deals = lower per-episode rate.

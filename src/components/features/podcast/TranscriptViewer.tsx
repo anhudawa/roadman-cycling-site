@@ -14,12 +14,12 @@ interface TranscriptViewerProps {
  * Semantic transcript renderer.
  *
  * The transcript is always in the DOM (inside a default-open `<details>` so
- * users can collapse it â€” but it is fully indexable even when collapsed per
+ * users can collapse it $€” but it is fully indexable even when collapsed per
  * Google's rendering model).
  *
  * The key SEO upgrade over the previous "wall of paragraphs" version:
  * every transcript is split into topic-sized `<section>` blocks with
- * `<h3 id="segment-N">` anchors, which gives each episode ~6â€“10 deep-linkable
+ * `<h3 id="segment-N">` anchors, which gives each episode ~6$€“10 deep-linkable
  * long-tail landing targets rather than a single flat page.
  */
 export function TranscriptViewer({
@@ -36,7 +36,7 @@ export function TranscriptViewer({
     [transcript, titles],
   );
 
-  // Derive match count straight from state â€” no effect needed.
+  // Derive match count straight from state $€” no effect needed.
   const matchCount = useMemo(() => {
     if (!searchQuery.trim()) return 0;
     const escaped = searchQuery.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
@@ -123,7 +123,7 @@ export function TranscriptViewer({
       </summary>
 
       <div className="border-t border-white/5">
-        {/* Segment jump-links â€” each link targets a stable h3#segment-N anchor
+        {/* Segment jump-links $€” each link targets a stable h3#segment-N anchor
             inside the transcript. Exposes the segment structure to crawlers
             and gives real users a fast way to skim. */}
         <nav
@@ -202,7 +202,7 @@ export function TranscriptViewer({
           </div>
         </div>
 
-        {/* Transcript body â€” semantic sections with h3 anchors */}
+        {/* Transcript body $€” semantic sections with h3 anchors */}
         <div ref={contentRef} className="px-6 py-6 scrollbar-thin">
           <div
             className="space-y-8 transcript-body"

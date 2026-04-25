@@ -52,7 +52,7 @@ export default async function ReportsPage() {
           Reports
         </h1>
         <p className="text-foreground-muted text-sm mt-1">
-          Pipeline, engagement &amp; throughput â€” signed in as {user.name}
+          Pipeline, engagement &amp; throughput $€” signed in as {user.name}
         </p>
       </div>
 
@@ -91,7 +91,7 @@ export default async function ReportsPage() {
         </ReportCard>
 
         {/* Applications per week */}
-        <ReportCard title="Applications â€” Last 12 Weeks">
+        <ReportCard title="Applications $€” Last 12 Weeks">
           <div className="flex items-end gap-1.5 h-40">
             {weekly.map((w) => {
               const pct = Math.round((w.count / weeklyMax) * 100);
@@ -200,7 +200,7 @@ export default async function ReportsPage() {
                         key={s}
                         className="text-right tabular-nums text-foreground-muted"
                       >
-                        {o.perStage[s] || "â€”"}
+                        {o.perStage[s] || "$€”"}
                       </td>
                     ))}
                   </tr>
@@ -312,7 +312,7 @@ export default async function ReportsPage() {
             )}
           </ReportCard>
 
-          <ReportCard title="Won Revenue â€” Last 90 Days">
+          <ReportCard title="Won Revenue $€” Last 90 Days">
             {(() => {
               const max = Math.max(
                 1,

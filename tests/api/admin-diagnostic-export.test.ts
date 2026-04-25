@@ -89,12 +89,12 @@ describe("GET /api/admin/diagnostic/export", () => {
 
   it("RFC 4180 quotes every cell and escapes internal quotes", async () => {
     mocks.dbOrderBy.mockResolvedValue([
-      { ...sampleRow, goal: 'Etape "2026" â€” sub-9' },
+      { ...sampleRow, goal: 'Etape "2026" $€” sub-9' },
     ]);
     const { GET } = await import("@/app/api/admin/diagnostic/export/route");
     const csv = await (await GET()).text();
     // Doubled internal quotes
-    expect(csv).toContain('"Etape ""2026"" â€” sub-9"');
+    expect(csv).toContain('"Etape ""2026"" $€” sub-9"');
   });
 
   it("populates score columns from the JSON scores blob", async () => {

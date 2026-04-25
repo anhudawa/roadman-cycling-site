@@ -99,7 +99,7 @@ function BlogContent({ content }: { content: string }) {
       <p className="text-xs text-foreground-subtle">{words} words</p>
       <div className="text-sm text-foreground-muted whitespace-pre-wrap leading-relaxed">
         {expanded ? body : preview}
-        {hasMore && !expanded && <span className="text-foreground-subtle">â€¦</span>}
+        {hasMore && !expanded && <span className="text-foreground-subtle">$€¦</span>}
       </div>
       {hasMore && (
         <button
@@ -219,7 +219,7 @@ function FacebookContent({ content }: { content: string }) {
       )}
       <div className="text-sm text-foreground-muted whitespace-pre-wrap leading-relaxed">
         {expanded ? text : preview}
-        {hasMore && !expanded && <span className="text-foreground-subtle">â€¦</span>}
+        {hasMore && !expanded && <span className="text-foreground-subtle">$€¦</span>}
       </div>
       {hasMore && (
         <button
@@ -310,7 +310,7 @@ function QuoteCardContent({ content }: { content: string }) {
         &ldquo;{quote}&rdquo;
       </blockquote>
       {speaker && (
-        <p className="text-xs text-foreground-muted font-medium">â€” {speaker}</p>
+        <p className="text-xs text-foreground-muted font-medium">$€” {speaker}</p>
       )}
       {context && (
         <p className="text-xs text-foreground-subtle">{context}</p>

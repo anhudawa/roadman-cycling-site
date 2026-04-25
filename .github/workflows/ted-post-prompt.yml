@@ -1,8 +1,8 @@
-name: Ted â€” post daily prompt
+name: Ted $€” post daily prompt
 
 # Posts the next approved daily prompt to Skool. Needs Playwright.
 # Gate: skipped if ted_kill_switch.post_prompt_enabled=false (shadow mode).
-# Runs at 06:30 UTC â‰ˆ 07:30 Dublin year-round with Â±1h DST drift.
+# Runs at 06:30 UTC $‰ˆ 07:30 Dublin year-round with $±1h DST drift.
 
 on:
   schedule:
@@ -10,7 +10,7 @@ on:
   workflow_dispatch:
     inputs:
       dry_run:
-        description: "Dry run â€” login + navigate + screenshot, no submit"
+        description: "Dry run $€” login + navigate + screenshot, no submit"
         required: false
         default: "false"
 

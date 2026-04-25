@@ -11,7 +11,7 @@ interface RelatedEpisode {
   episodeNumber: number;
 }
 
-const VOICE_SYSTEM = `You are a content writer for Roadman Cycling, a cycling media brand. Write in Anthony Walsh's voice: direct, practical, no fluff. Aimed at amateur cyclists who want to get faster. Not academic, not corporate. Warm but knowledgeable â€” like advice from a cycling mate who happens to be an expert. Never use phrases like "in this episode" or "dive into" or "join us as". Never use corporate buzzwords. Be specific and actionable.`;
+const VOICE_SYSTEM = `You are a content writer for Roadman Cycling, a cycling media brand. Write in Anthony Walsh's voice: direct, practical, no fluff. Aimed at amateur cyclists who want to get faster. Not academic, not corporate. Warm but knowledgeable $€” like advice from a cycling mate who happens to be an expert. Never use phrases like "in this episode" or "dive into" or "join us as". Never use corporate buzzwords. Be specific and actionable.`;
 
 export function blogPrompt(
   episode: EpisodeInput,
@@ -29,7 +29,7 @@ export function blogPrompt(
     user: `Write a 1500-2000 word SEO blog post based on this podcast episode transcript.
 
 Episode: "${episode.title}" (Episode ${episode.episodeNumber})
-${episode.guest ? `Guest: ${episode.guest}${episode.guestCredential ? ` â€” ${episode.guestCredential}` : ""}` : "Solo/co-hosted episode"}
+${episode.guest ? `Guest: ${episode.guest}${episode.guestCredential ? ` $€” ${episode.guestCredential}` : ""}` : "Solo/co-hosted episode"}
 Pillar: ${episode.pillar}
 Keywords to target naturally: ${episode.keywords.join(", ")}
 
@@ -46,7 +46,7 @@ FORMAT REQUIREMENTS:
 - Include a "Key Takeaways" section near the end with 4-6 bullet points
 - End with a short conclusion and CTA to listen to the full episode
 - Weave in internal links to the related episodes where contextually relevant, using the exact markdown format provided
-- Write for Google â€” use target keywords naturally in headers and body text
+- Write for Google $€” use target keywords naturally in headers and body text
 
 Also generate these metadata fields and include them at the very top of your response as a JSON block:
 \`\`\`json
@@ -68,7 +68,7 @@ export function socialPrompt(episode: EpisodeInput): PromptPair {
     user: `Generate social media content for all 4 platforms based on this podcast episode.
 
 Episode: "${episode.title}" (Episode ${episode.episodeNumber})
-${episode.guest ? `Guest: ${episode.guest}${episode.guestCredential ? ` â€” ${episode.guestCredential}` : ""}` : "Solo/co-hosted episode"}
+${episode.guest ? `Guest: ${episode.guest}${episode.guestCredential ? ` $€” ${episode.guestCredential}` : ""}` : "Solo/co-hosted episode"}
 Episode URL: /podcast/${episode.slug}
 
 TRANSCRIPT:
@@ -78,7 +78,7 @@ Respond with ONLY a JSON object in this exact format (no markdown, no code block
 {
   "twitter": {
     "tweets": [
-      {"text": "Hook tweet â€” bold claim or surprising insight from the episode", "index": 1},
+      {"text": "Hook tweet $€” bold claim or surprising insight from the episode", "index": 1},
       {"text": "Key insight #1...", "index": 2},
       {"text": "Key insight #2...", "index": 3},
       {"text": "Key insight #3...", "index": 4},
@@ -103,9 +103,9 @@ Respond with ONLY a JSON object in this exact format (no markdown, no code block
 RULES:
 - Each tweet must be under 280 characters
 - Instagram caption should use line breaks (\\n) for readability
-- LinkedIn should be professional but accessible â€” not corporate
+- LinkedIn should be professional but accessible $€” not corporate
 - Facebook should be personal, conversational, storytelling. First person. 500-800 words.
-- All content should be specific to THIS episode â€” no generic cycling advice`,
+- All content should be specific to THIS episode $€” no generic cycling advice`,
   };
 }
 

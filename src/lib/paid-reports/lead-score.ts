@@ -5,24 +5,24 @@ import { loadById, updateLeadScore } from "@/lib/rider-profile/store";
 import type { RiderProfile } from "@/lib/rider-profile/types";
 
 /**
- * Lead-score heuristics â€” zero-sum buckets summed to a single integer
+ * Lead-score heuristics $€” zero-sum buckets summed to a single integer
  * so admin can sort by a single column. Score is a signal, not a
  * decision: admin dashboards show the breakdown so we can tune
  * weights as the funnel matures.
  *
  * Contributors (mirrors the rider's commercial intent):
  *
- *   +25 has_paid_report            â€” bought any report
+ *   +25 has_paid_report            $€” bought any report
  *   +15 per additional paid report (capped +30)
- *   +15 completed_multiple_tools   â€” 2+ distinct tools saved
+ *   +15 completed_multiple_tools   $€” 2+ distinct tools saved
  *   +10 fuelling_completed
  *   +10 ftp_zones_completed
  *   +10 plateau_completed
  *   +15 plateau_severe_multi_system (if the plateau primary_result hints at overreach)
- *   +15 coaching_interest_high     â€” coaching_interest_level >= 4
- *   +20 coaching_status_unsure     â€” actively evaluating coaching
- *   +10 target_event_within_90d    â€” event soon means urgency
- *   +10 marketing_consent          â€” opted in to email nurture
+ *   +15 coaching_interest_high     $€” coaching_interest_level >= 4
+ *   +20 coaching_status_unsure     $€” actively evaluating coaching
+ *   +10 target_event_within_90d    $€” event soon means urgency
+ *   +10 marketing_consent          $€” opted in to email nurture
  *
  * Cap at 100 so the admin sort is stable and a runaway summation
  * doesn't dominate the leaderboard.
@@ -91,7 +91,7 @@ export async function scoreRider(
     });
 
   if ((profile.coachingInterestLevel ?? 0) >= 4)
-    factors.push({ key: "coaching_interest_high", label: "Coaching interest â‰¥ 4", points: 15 });
+    factors.push({ key: "coaching_interest_high", label: "Coaching interest $‰¥ 4", points: 15 });
   if (profile.coachingStatus === "unsure")
     factors.push({
       key: "coaching_status_unsure",
@@ -115,7 +115,7 @@ export async function scoreRider(
 }
 
 function isTargetEventWithin90d(profile: RiderProfile): boolean {
-  // Placeholder â€” we don't yet persist target_event_date on the profile
+  // Placeholder $€” we don't yet persist target_event_date on the profile
   // shape, only the text. When Phase 2d adds the date, flip this to
   // read from profile and compare to Date.now() + 90 days.
   void profile;
@@ -124,7 +124,7 @@ function isTargetEventWithin90d(profile: RiderProfile): boolean {
 
 /**
  * Re-score + persist. Call this at the end of completeToolResult and
- * after Stripe webhook confirms payment â€” anywhere a new signal lands.
+ * after Stripe webhook confirms payment $€” anywhere a new signal lands.
  */
 export async function refreshLeadScore(
   riderProfileId: number,

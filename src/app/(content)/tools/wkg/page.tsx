@@ -127,16 +127,16 @@ export default function WkgPage() {
                       <li><Link href="/tools/ftp-zones" className="text-coral hover:text-coral/80 text-sm transition-colors">Calculate Your Power Zones</Link></li>
                       <li><Link href="/tools/race-weight" className="text-coral hover:text-coral/80 text-sm transition-colors">Find Your Target Race Weight</Link></li>
                       <li><Link href="/glossary/w-kg" className="text-coral hover:text-coral/80 text-sm transition-colors">What Is W/kg?</Link></li>
-                      <li><Link href="/topics/ftp-training" className="text-coral hover:text-coral/80 text-sm transition-colors">FTP Training topic hub â†’</Link></li>
+                      <li><Link href="/topics/ftp-training" className="text-coral hover:text-coral/80 text-sm transition-colors">FTP Training topic hub $†’</Link></li>
                       <li><Link href="/podcast/ep-2026-ftp-jumped-30-watts-after-this-workout" className="text-coral hover:text-coral/80 text-sm transition-colors">Podcast: FTP jumped 30 watts after this workout</Link></li>
                     </ul>
                   </div>
 
                   <div className="rounded-2xl border border-coral/30 bg-gradient-to-br from-coral/10 via-deep-purple/40 to-charcoal p-6 md:p-8 text-center">
                     <p className="font-heading text-coral text-xs tracking-widest mb-2">WANT TO IMPROVE THIS NUMBER?</p>
-                    <p className="text-off-white font-heading text-lg mb-4">Coaching targets both sides â€” more power, better composition.</p>
+                    <p className="text-off-white font-heading text-lg mb-4">Coaching targets both sides $€” more power, better composition.</p>
                     <a href="/apply" className="inline-flex items-center justify-center gap-2 font-heading tracking-wider uppercase rounded-md bg-coral text-off-white hover:bg-coral/90 px-6 py-3 text-sm transition-all" data-track="tool_wkg_apply">
-                      Apply for Coaching â†’
+                      Apply for Coaching $†’
                     </a>
                   </div>
                 </motion.div>
@@ -166,7 +166,7 @@ export default function WkgPage() {
                 (morning, before eating). W/kg varies with hydration and time of day.
               </p>
               <p className="text-xs text-foreground-subtle">
-                Last updated: April 2026 Â· Tool version 1.0
+                Last updated: April 2026 $· Tool version 1.0
               </p>
             </div>
           </Container>

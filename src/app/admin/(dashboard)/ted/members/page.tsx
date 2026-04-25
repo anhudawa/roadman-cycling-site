@@ -25,7 +25,7 @@ export default async function TedMembersPage() {
   return (
     <div className="space-y-4">
       <div>
-        <h1 className="text-2xl font-semibold text-white">Ted â€” active members</h1>
+        <h1 className="text-2xl font-semibold text-white">Ted $€” active members</h1>
         <p className="text-sm text-foreground-subtle">
           Members Ted can tag in thread-surface replies. Upsert below, or seed
           via
@@ -78,7 +78,7 @@ export default async function TedMembersPage() {
                     </div>
                   </td>
                   <td className="p-2 font-mono text-foreground-subtle whitespace-nowrap">
-                    {r.lastSeenAt?.toISOString().slice(0, 10) ?? "â€”"}
+                    {r.lastSeenAt?.toISOString().slice(0, 10) ?? "$€”"}
                   </td>
                   <td className="p-2 text-right text-white">{r.postCount}</td>
                   <td className="p-2 text-right text-white">{r.replyCount}</td>

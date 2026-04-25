@@ -18,7 +18,7 @@ export function ReportHero({ brandName, logoUrl, monthLabel }: Props) {
         {brandName}
       </h1>
       <p className="text-lg uppercase tracking-[0.3em] text-white/60">
-        Monthly Partnership Report â€” {monthLabel}
+        Monthly Partnership Report $€” {monthLabel}
       </p>
       <div className="h-1 w-24 rounded-full bg-[#F16363]" />
     </section>

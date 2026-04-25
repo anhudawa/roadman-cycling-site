@@ -20,13 +20,13 @@ import matter from "gray-matter";
 
 const ROOT = process.cwd();
 // Topic pages generate metadata server-side from src/lib/topics.ts (see
-// src/app/(content)/topics/[slug]/page.tsx â†’ generateMetadata) â€” their MDX
+// src/app/(content)/topics/[slug]/page.tsx $†’ generateMetadata) $€” their MDX
 // files intentionally carry no frontmatter, so scanning them would only
 // produce false positives.
 const SCAN = ["content/blog"];
 
-const titles = new Map(); // seoTitle â†’ [files]
-const descs = new Map(); // seoDescription â†’ [files]
+const titles = new Map(); // seoTitle $†’ [files]
+const descs = new Map(); // seoDescription $†’ [files]
 const issues = []; // { file, kind, detail }
 
 function trim(s) {
@@ -83,7 +83,7 @@ for (const [title, files] of dupTitles.sort((a, b) => b[1].length - a[1].length)
 console.log("\n=== Duplicate seoDescription ===");
 if (dupDescs.length === 0) console.log("(none)");
 for (const [desc, files] of dupDescs.sort((a, b) => b[1].length - a[1].length)) {
-  console.log(`\n  "${desc.slice(0, 90)}â€¦"`);
+  console.log(`\n  "${desc.slice(0, 90)}$€¦"`);
   files.forEach((f) => console.log(`    ${f}`));
 }
 
@@ -96,9 +96,9 @@ for (const i of issues) {
 for (const [kind, list] of grouped) {
   console.log(`\n  [${kind}] (${list.length})`);
   list.slice(0, 30).forEach((i) => {
-    console.log(`    ${i.file}${i.detail ? ` â€” ${i.detail}` : ""}`);
+    console.log(`    ${i.file}${i.detail ? ` $€” ${i.detail}` : ""}`);
   });
-  if (list.length > 30) console.log(`    â€¦ and ${list.length - 30} more`);
+  if (list.length > 30) console.log(`    $€¦ and ${list.length - 30} more`);
 }
 
 console.log(`\nSummary: ${dupTitles.length} duplicate titles, ${dupDescs.length} duplicate descriptions, ${issues.length} other issues.`);

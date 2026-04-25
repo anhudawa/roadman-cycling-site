@@ -79,7 +79,7 @@ export default async function InboxPage({ searchParams }: PageProps) {
   const subtitle =
     currentView === "kanban"
       ? `${totalCount} contact-form message${totalCount === 1 ? "" : "s"}`
-      : "Contact-form messages Â· list view";
+      : "Contact-form messages $· list view";
 
   const pillActiveCls =
     "bg-[var(--color-raised)] text-[var(--color-fg)] shadow-inner";
@@ -115,7 +115,7 @@ export default async function InboxPage({ searchParams }: PageProps) {
         }
       />
 
-      {/* Source tabs â€” contact forms vs applications */}
+      {/* Source tabs $€” contact forms vs applications */}
       <div className="mb-5 inline-flex rounded-[var(--radius-admin-md)] border border-[var(--color-border)] bg-[var(--color-elevated)] p-0.5 text-[11px]">
         <Link
           href="/admin/inbox"

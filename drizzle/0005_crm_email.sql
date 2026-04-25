@@ -54,7 +54,7 @@ CREATE INDEX IF NOT EXISTS "email_messages_status_idx" ON "email_messages" USING
 INSERT INTO "email_templates" ("name", "slug", "subject", "body", "created_by")
 VALUES
   (
-    'NDY Application â€” quick follow-up',
+    'NDY Application $€” quick follow-up',
     'ndy-followup-48h',
     'Following up on your NDY application',
     E'{{first_name}},\n\nSaw your application for NDY Cohort 2 come through a couple of days back. Wanted to make sure it didn''t get buried.\n\nStill keen to chat if you are. Reply here and I''ll get back to you the same day.\n\nAnthony',
@@ -64,14 +64,14 @@ VALUES
     'Welcome to NDY Cohort 2',
     'cohort-welcome',
     'Welcome to NDY Cohort 2',
-    E'{{first_name}},\n\nYou''re in. Welcome to Cohort 2.\n\nNext steps land in your inbox over the coming days â€” onboarding call, training plan intake, the lot. Nothing for you to do right now except keep riding.\n\nIf you''ve any questions in the meantime, reply here. Goes straight to me.\n\nAnthony',
+    E'{{first_name}},\n\nYou''re in. Welcome to Cohort 2.\n\nNext steps land in your inbox over the coming days $€” onboarding call, training plan intake, the lot. Nothing for you to do right now except keep riding.\n\nIf you''ve any questions in the meantime, reply here. Goes straight to me.\n\nAnthony',
     'ted'
   ),
   (
-    'NDY Cohort 2 â€” decision',
+    'NDY Cohort 2 $€” decision',
     'cohort-rejection',
     'About your NDY Cohort 2 application',
-    E'{{first_name}},\n\nThanks for putting the application in. Had a proper read through it.\n\nCohort 2 isn''t the right fit for you right now. That''s not a reflection on you as a rider â€” it''s about where you are versus what this cohort is built around.\n\nI''ll keep you on the list for the next intake and flag anything else that might suit. Keep at it.\n\nAnthony',
+    E'{{first_name}},\n\nThanks for putting the application in. Had a proper read through it.\n\nCohort 2 isn''t the right fit for you right now. That''s not a reflection on you as a rider $€” it''s about where you are versus what this cohort is built around.\n\nI''ll keep you on the list for the next intake and flag anything else that might suit. Keep at it.\n\nAnthony',
     'ted'
   ),
   (

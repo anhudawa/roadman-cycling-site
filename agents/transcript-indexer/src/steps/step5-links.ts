@@ -32,7 +32,7 @@ export function injectReciprocalLinks(
     );
 
     if (relatedMatch) {
-      // Append to existing section â€” find the end of the section
+      // Append to existing section $€” find the end of the section
       const sectionStart = content.indexOf(relatedMatch[0]);
       const nextHeadingMatch = content
         .slice(sectionStart + relatedMatch[0].length)
@@ -53,7 +53,7 @@ export function injectReciprocalLinks(
         sectionModified: relatedMatch[1],
       });
     } else {
-      // No related section exists â€” add one before the transcript section if present
+      // No related section exists $€” add one before the transcript section if present
       const transcriptMatch = content.match(/^## Transcript/m);
       if (transcriptMatch && transcriptMatch.index !== undefined) {
         const insertPos = transcriptMatch.index;
@@ -74,7 +74,7 @@ export function injectReciprocalLinks(
     if (!dryRun) {
       fs.writeFileSync(targetPath, content);
     } else {
-      console.log(`  [dry-run] Would edit ${targetSlug}.mdx â€” add link to ${newEpisodeSlug}`);
+      console.log(`  [dry-run] Would edit ${targetSlug}.mdx $€” add link to ${newEpisodeSlug}`);
     }
   }
 

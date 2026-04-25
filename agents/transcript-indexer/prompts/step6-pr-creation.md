@@ -1,6 +1,6 @@
-# Step 6 â€” PR Creation
+# Step 6 $€” PR Creation
 
-This step uses `gh` CLI â€” no LLM call needed.
+This step uses `gh` CLI $€” no LLM call needed.
 
 ## Watch Mode (single episode)
 
@@ -11,7 +11,7 @@ episode/<ep-number>-<slug>
 
 ### PR Title
 ```
-Episode <n>: <title> â€” auto-indexed
+Episode <n>: <title> $€” auto-indexed
 ```
 
 ### PR Body Template
@@ -36,8 +36,8 @@ Episode <n>: <title> â€” auto-indexed
 **Score:** <score>/7
 
 ## Internal Links Added
-- Added link from `<slug>` â†’ new episode
-- Added link from `<slug>` â†’ new episode
+- Added link from `<slug>` $†’ new episode
+- Added link from `<slug>` $†’ new episode
 
 ## Files Changed
 - `content/podcast/<slug>.mdx` (new episode page)
@@ -64,7 +64,7 @@ backfill/<start-ep>-<end-ep>
 
 ### PR Title
 ```
-Backfill: Episodes <start>-<end> â€” auto-indexed (<count> episodes)
+Backfill: Episodes <start>-<end> $€” auto-indexed (<count> episodes)
 ```
 
 ### PR Body

@@ -25,7 +25,7 @@ const FAIL = {
   pass: false,
   redFlags: ["missing sign-off"],
   notes: "body cuts off",
-  regenerationNotes: "add 'â€” Ted' on its own line at the end",
+  regenerationNotes: "add '$€” Ted' on its own line at the end",
 };
 
 function mockLLMBodies(bodies: string[]): void {
@@ -49,7 +49,7 @@ beforeEach(() => {
 describe("generateWelcome", () => {
   it("returns the first body on a clean voice-check pass", async () => {
     mockLLMBodies([
-      "Welcome in, Alice. Good to have you. Drop a reply below with where you're riding and what you're working on.\n\nâ€” Ted",
+      "Welcome in, Alice. Good to have you. Drop a reply below with where you're riding and what you're working on.\n\n$€” Ted",
     ]);
     vi.mocked(runVoiceCheck).mockResolvedValue({
       result: PASS,
@@ -71,8 +71,8 @@ describe("generateWelcome", () => {
 
   it("retries on voice-check failure and succeeds on second pass", async () => {
     mockLLMBodies([
-      "Welcome Alice â€” drop a line.",
-      "Welcome in, Alice. Drop a reply with where you're riding.\n\nâ€” Ted",
+      "Welcome Alice $€” drop a line.",
+      "Welcome in, Alice. Drop a reply with where you're riding.\n\n$€” Ted",
     ]);
     vi.mocked(runVoiceCheck)
       .mockResolvedValueOnce({
@@ -98,12 +98,12 @@ describe("generateWelcome", () => {
 
     const secondCallUser = vi.mocked(callLLM).mock.calls[1][0].userMessage;
     expect(secondCallUser).toContain("Previous attempt failed voice-check");
-    expect(secondCallUser).toContain("â€” Ted");
+    expect(secondCallUser).toContain("$€” Ted");
   });
 
   it("honours the persona hook when present", async () => {
     mockLLMBodies([
-      "Welcome in, Nick.\n\nâ€” Ted",
+      "Welcome in, Nick.\n\n$€” Ted",
     ]);
     vi.mocked(runVoiceCheck).mockResolvedValue({
       result: PASS,
@@ -124,7 +124,7 @@ describe("generateWelcome", () => {
   });
 
   it("falls back to the generic persona when persona is unknown", async () => {
-    mockLLMBodies(["Welcome in, SeÃ¡n.\n\nâ€” Ted"]);
+    mockLLMBodies(["Welcome in, SeÃ¡n.\n\n$€” Ted"]);
     vi.mocked(runVoiceCheck).mockResolvedValue({
       result: PASS,
       usage: { inputTokens: 80, outputTokens: 30, cost: 0.005, runtimeMs: 300 },
@@ -142,8 +142,8 @@ describe("generateWelcome", () => {
 
   it("short-circuits the cheap banned-word scan and retries", async () => {
     mockLLMBodies([
-      "Welcome in, Alice â€” delve into our content.\n\nâ€” Ted",
-      "Welcome in, Alice. Reply with where you're riding.\n\nâ€” Ted",
+      "Welcome in, Alice $€” delve into our content.\n\n$€” Ted",
+      "Welcome in, Alice. Reply with where you're riding.\n\n$€” Ted",
     ]);
     vi.mocked(runVoiceCheck).mockResolvedValue({
       result: PASS,
@@ -158,7 +158,7 @@ describe("generateWelcome", () => {
     });
 
     expect(result.attempts).toBe(2);
-    // First attempt hit cheap scan â€” voice-check ran only on the clean one
+    // First attempt hit cheap scan $€” voice-check ran only on the clean one
     expect(runVoiceCheck).toHaveBeenCalledTimes(1);
   });
 });

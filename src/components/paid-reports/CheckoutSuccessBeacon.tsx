@@ -9,7 +9,7 @@ import {
 /**
  * One-shot client beacon fired on the Stripe success landing. Uses
  * the typed paid-report wrapper so the event shape matches what the
- * webhook already records server-side â€” letting admin dedupe / cross-
+ * webhook already records server-side $€” letting admin dedupe / cross-
  * reference browser vs webhook timing if delivery feels slow.
  */
 

@@ -1,4 +1,4 @@
-name: Ted â€” CI
+name: Ted $€” CI
 
 # Runs on every push to a Ted branch and on PRs touching Ted files.
 # Catches type errors, lint regressions, and broken unit tests.

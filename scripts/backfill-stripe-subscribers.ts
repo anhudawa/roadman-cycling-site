@@ -8,7 +8,7 @@ async function main() {
   // Dynamic import so dotenv is loaded first
   const { syncStripeCustomers } = await import("../src/lib/crm/sync");
   const res = await syncStripeCustomers();
-  console.log("sync complete â€” runId:", res.runId);
+  console.log("sync complete $€” runId:", res.runId);
   console.log("result:", res.result);
 
   const { sql } = await import("@vercel/postgres");

@@ -1,11 +1,11 @@
 /**
- * Intent classification via Claude Haiku 4.5. Cheap, fast, and structured â€”
+ * Intent classification via Claude Haiku 4.5. Cheap, fast, and structured $€”
  * the orchestrator uses the output to pick a retrieval strategy, a CTA, and
  * whether to spend Opus tokens on the answer.
  *
  * Robustness: any parse or network failure falls back to
  * `{ intent: "training_general", deep: true, needsProfile: false, confidence: "low" }`
- * so a flaky Haiku call never breaks the pipeline â€” Opus still runs on the
+ * so a flaky Haiku call never breaks the pipeline $€” Opus still runs on the
  * retrieval set.
  */
 
@@ -18,23 +18,23 @@ const ATTEMPT_TIMEOUT_MS = 4_000;
 const SYSTEM_PROMPT = `You are the intent classifier for Ask Roadman, a cycling-performance assistant.
 Classify the user's query into exactly one intent from this enum:
 
-  plateau                â€” rider is stuck, FTP/performance has stalled, training isn't working
-  fuelling               â€” in-ride or training nutrition, carbs-per-hour, race fuelling
-  content_discovery      â€” asking about an episode, guest, or specific Roadman content
-  recovery_masters       â€” recovery, sleep, masters-specific training, ageing, HRV
-  event_prep             â€” preparing for a specific event (gran fondo, etape, race)
-  coaching_decision      â€” evaluating coaching (self-coaching vs coach, NDY, VIP)
-  training_general       â€” generic training questions that don't fit above
-  safety_medical         â€” medical symptoms (chest pain, fainting, heart issues)
-  safety_injury          â€” acute injury (torn muscle, broken bone, rupture)
-  safety_weight          â€” extreme weight loss / disordered eating signals
-  off_topic              â€” not cycling-related (weather, stock market, politics, etc.)
-  unknown                â€” can't tell
+  plateau                $€” rider is stuck, FTP/performance has stalled, training isn't working
+  fuelling               $€” in-ride or training nutrition, carbs-per-hour, race fuelling
+  content_discovery      $€” asking about an episode, guest, or specific Roadman content
+  recovery_masters       $€” recovery, sleep, masters-specific training, ageing, HRV
+  event_prep             $€” preparing for a specific event (gran fondo, etape, race)
+  coaching_decision      $€” evaluating coaching (self-coaching vs coach, NDY, VIP)
+  training_general       $€” generic training questions that don't fit above
+  safety_medical         $€” medical symptoms (chest pain, fainting, heart issues)
+  safety_injury          $€” acute injury (torn muscle, broken bone, rupture)
+  safety_weight          $€” extreme weight loss / disordered eating signals
+  off_topic              $€” not cycling-related (weather, stock market, politics, etc.)
+  unknown                $€” can't tell
 
 Also decide:
-  deep           â€” should this use the deep model (true) or a fast model (false)? Generally true for plateau / event_prep / coaching_decision; false for content_discovery / training_general.
-  needsProfile   â€” would knowing the rider's profile (FTP, hours, age) materially improve the answer? true for plateau / fuelling / event_prep / coaching_decision; false otherwise.
-  confidence     â€” high / medium / low
+  deep           $€” should this use the deep model (true) or a fast model (false)? Generally true for plateau / event_prep / coaching_decision; false for content_discovery / training_general.
+  needsProfile   $€” would knowing the rider's profile (FTP, hours, age) materially improve the answer? true for plateau / fuelling / event_prep / coaching_decision; false otherwise.
+  confidence     $€” high / medium / low
 
 Return ONLY valid JSON in this exact shape:
 {"intent":"...","deep":true,"needsProfile":false,"confidence":"high"}

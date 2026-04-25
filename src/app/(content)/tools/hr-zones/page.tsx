@@ -15,19 +15,19 @@ interface HRZone {
 }
 
 const ZONES_MAX_HR: HRZone[] = [
-  { name: "Zone 1 â€” Recovery", description: "Easy spinning. Active recovery.", minPercent: 50, maxPercent: 60, color: "#94A3B8" },
-  { name: "Zone 2 â€” Endurance", description: "Conversational pace. Build your aerobic base here.", minPercent: 60, maxPercent: 70, color: "#3B82F6" },
-  { name: "Zone 3 â€” Tempo", description: "Comfortably hard. Moderate aerobic work.", minPercent: 70, maxPercent: 80, color: "#22C55E" },
-  { name: "Zone 4 â€” Threshold", description: "Hard. Sustainable for 20-60 minutes.", minPercent: 80, maxPercent: 90, color: "#EAB308" },
-  { name: "Zone 5 â€” VO2max", description: "Very hard. Short intervals only.", minPercent: 90, maxPercent: 100, color: "#EF4444" },
+  { name: "Zone 1 $€” Recovery", description: "Easy spinning. Active recovery.", minPercent: 50, maxPercent: 60, color: "#94A3B8" },
+  { name: "Zone 2 $€” Endurance", description: "Conversational pace. Build your aerobic base here.", minPercent: 60, maxPercent: 70, color: "#3B82F6" },
+  { name: "Zone 3 $€” Tempo", description: "Comfortably hard. Moderate aerobic work.", minPercent: 70, maxPercent: 80, color: "#22C55E" },
+  { name: "Zone 4 $€” Threshold", description: "Hard. Sustainable for 20-60 minutes.", minPercent: 80, maxPercent: 90, color: "#EAB308" },
+  { name: "Zone 5 $€” VO2max", description: "Very hard. Short intervals only.", minPercent: 90, maxPercent: 100, color: "#EF4444" },
 ];
 
 const ZONES_LTHR: HRZone[] = [
-  { name: "Zone 1 â€” Recovery", description: "Easy spinning. Active recovery.", minPercent: 0, maxPercent: 81, color: "#94A3B8" },
-  { name: "Zone 2 â€” Endurance", description: "Conversational pace. Aerobic base.", minPercent: 81, maxPercent: 90, color: "#3B82F6" },
-  { name: "Zone 3 â€” Tempo", description: "Comfortably hard. Moderate effort.", minPercent: 90, maxPercent: 94, color: "#22C55E" },
-  { name: "Zone 4 â€” Threshold", description: "Hard. Race pace for 1 hour.", minPercent: 94, maxPercent: 100, color: "#EAB308" },
-  { name: "Zone 5 â€” VO2max", description: "Very hard. Short intervals.", minPercent: 100, maxPercent: 106, color: "#EF4444" },
+  { name: "Zone 1 $€” Recovery", description: "Easy spinning. Active recovery.", minPercent: 0, maxPercent: 81, color: "#94A3B8" },
+  { name: "Zone 2 $€” Endurance", description: "Conversational pace. Aerobic base.", minPercent: 81, maxPercent: 90, color: "#3B82F6" },
+  { name: "Zone 3 $€” Tempo", description: "Comfortably hard. Moderate effort.", minPercent: 90, maxPercent: 94, color: "#22C55E" },
+  { name: "Zone 4 $€” Threshold", description: "Hard. Race pace for 1 hour.", minPercent: 94, maxPercent: 100, color: "#EAB308" },
+  { name: "Zone 5 $€” VO2max", description: "Very hard. Short intervals.", minPercent: 100, maxPercent: 106, color: "#EF4444" },
 ];
 
 export default function HRZonesPage() {
@@ -47,7 +47,7 @@ export default function HRZonesPage() {
       return `${z.name}: ${min}-${max} bpm`;
     }).join("\n");
     const label = method === "maxhr" ? `Max HR ${hrValue}` : `LTHR ${hrValue}`;
-    await navigator.clipboard.writeText(`HR Zones (${label})\n${lines}\nâ€” roadmancycling.com/tools/hr-zones`);
+    await navigator.clipboard.writeText(`HR Zones (${label})\n${lines}\n$€” roadmancycling.com/tools/hr-zones`);
     setCopied(true);
     setTimeout(() => setCopied(false), 2000);
   };
@@ -130,7 +130,7 @@ export default function HRZonesPage() {
                 >
                   <div className="flex items-center justify-between mb-4">
                     <h2 className="font-heading text-2xl text-off-white">
-                      YOUR HR ZONES â€” {hrValue} BPM {method === "maxhr" ? "MAX" : "LTHR"}
+                      YOUR HR ZONES $€” {hrValue} BPM {method === "maxhr" ? "MAX" : "LTHR"}
                     </h2>
                     <button onClick={handleCopy} className="text-sm text-coral hover:text-coral/80 font-heading tracking-wider transition-colors cursor-pointer">
                       {copied ? "Copied!" : "Copy"}
@@ -148,7 +148,7 @@ export default function HRZonesPage() {
                           <p className="text-xs text-foreground-muted">{z.description}</p>
                         </div>
                         <p className="font-heading text-off-white text-lg tracking-wider shrink-0">
-                          {min}â€“{max} <span className="text-xs text-foreground-subtle">bpm</span>
+                          {min}$€“{max} <span className="text-xs text-foreground-subtle">bpm</span>
                         </p>
                       </div>
                     );
@@ -166,7 +166,7 @@ export default function HRZonesPage() {
                       <li><Link href="/blog/heart-rate-high-cycling-fixable-reasons" className="text-coral hover:text-coral/80 text-sm transition-colors">Why Is My Heart Rate So High on the Bike?</Link></li>
                       <li><Link href="/tools/ftp-zones" className="text-coral hover:text-coral/80 text-sm transition-colors">FTP Zone Calculator (power-based zones)</Link></li>
                       <li><Link href="/compare/heart-rate-vs-power" className="text-coral hover:text-coral/80 text-sm transition-colors">Heart Rate vs Power: Which Should You Use?</Link></li>
-                      <li><Link href="/topics/ftp-training" className="text-coral hover:text-coral/80 text-sm transition-colors">FTP Training topic hub â†’</Link></li>
+                      <li><Link href="/topics/ftp-training" className="text-coral hover:text-coral/80 text-sm transition-colors">FTP Training topic hub $†’</Link></li>
                       <li><Link href="/podcast/ep-2095-secret-to-cycling-fast-at-a-low-heart-rate-prof-seiler" className="text-coral hover:text-coral/80 text-sm transition-colors">Podcast: Prof. Seiler on cycling fast at a low heart rate</Link></li>
                     </ul>
                   </motion.div>
@@ -181,7 +181,7 @@ export default function HRZonesPage() {
                     <p className="text-off-white font-heading text-lg md:text-xl mb-2">Coaching builds your week around these exact numbers.</p>
                     <p className="text-foreground-muted text-sm mb-5 max-w-md mx-auto">$195/month. 7-day free trial.</p>
                     <a href="/apply" className="inline-flex items-center justify-center gap-2 font-heading tracking-wider uppercase rounded-md bg-coral text-off-white hover:bg-coral/90 px-6 py-3 text-sm transition-all" data-track="tool_hr_apply">
-                      Apply for Coaching â†’
+                      Apply for Coaching $†’
                     </a>
                   </motion.div>
                 </motion.div>
@@ -213,7 +213,7 @@ export default function HRZonesPage() {
                 interval targeting. Heart rate remains useful for pacing easy rides and monitoring recovery.
               </p>
               <p className="text-xs text-foreground-subtle">
-                Last updated: April 2026 Â· Tool version 1.0
+                Last updated: April 2026 $· Tool version 1.0
               </p>
             </div>
           </Container>

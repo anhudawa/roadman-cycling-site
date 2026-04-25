@@ -1,7 +1,7 @@
-# Roadman Cycling â€” Site Architecture Design Spec
+# Roadman Cycling $€” Site Architecture Design Spec
 
 **Date:** 2026-04-01
-**Status:** APPROVED â€” Decisions finalised 2026-04-02
+**Status:** APPROVED $€” Decisions finalised 2026-04-02
 **Replaces:** roadmancycling.com (ClickFunnels)
 **Stack:** Next.js 16 (App Router) + Tailwind CSS 4 + Vercel
 **Design:** Dark-first, mobile-first, award-calibre (Awwwards SOTD target)
@@ -16,7 +16,7 @@
 | Payments | Stripe (direct) | Own the payment flow, not through ClickFunnels |
 | Email | Beehiiv | Modern newsletter platform, replaces dormant CF list |
 | Animations | Framer Motion | Component animations + scroll triggers, no GSAP |
-| Build priority | Blog system first | Highest SEO leverage â€” organic traffic is priority #1 |
+| Build priority | Blog system first | Highest SEO leverage $€” organic traffic is priority #1 |
 | Domain | roadmancycling.com (keep) | Existing domain authority + brand recognition |
 
 ---
@@ -25,7 +25,7 @@
 
 ### Why This Site Exists
 
-Roadman Cycling has a 100M+ download podcast, 29,782 email contacts, 49.4K Instagram followers, 30K Facebook followers, and a Skool community doing ~$15,929/month. But the current site is a ClickFunnels page â€” a funnel tool pretending to be a website. It has:
+Roadman Cycling has a 100M+ download podcast, 29,782 email contacts, 49.4K Instagram followers, 30K Facebook followers, and a Skool community doing ~$15,929/month. But the current site is a ClickFunnels page $€” a funnel tool pretending to be a website. It has:
 
 - No blog (zero organic search presence)
 - No podcast archive (100M+ downloads with no SEO value captured)
@@ -38,12 +38,12 @@ Roadman Cycling has a 100M+ download podcast, 29,782 email contacts, 49.4K Insta
 
 ### Business Goals (Priority Order)
 
-1. **Capture organic search traffic** â€” Podcast-to-blog system targeting keyword clusters around training, nutrition, recovery, cycling performance
-2. **Convert visitors to email subscribers** â€” From 29,782 to 100K+ contacts through tools, blog, and content
-3. **Drive free community signups** â€” Clubhouse as the gateway (currently 1,852 members)
-4. **Upgrade free to paid** â€” Not Done Yet community ($15-$1,950/year tiers)
-5. **Establish brand authority** â€” Award-worthy design that positions Roadman as the premium cycling content brand
-6. **Replace ClickFunnels** â€” Own the domain, own the data, own the experience
+1. **Capture organic search traffic** $€” Podcast-to-blog system targeting keyword clusters around training, nutrition, recovery, cycling performance
+2. **Convert visitors to email subscribers** $€” From 29,782 to 100K+ contacts through tools, blog, and content
+3. **Drive free community signups** $€” Clubhouse as the gateway (currently 1,852 members)
+4. **Upgrade free to paid** $€” Not Done Yet community ($15-$1,950/year tiers)
+5. **Establish brand authority** $€” Award-worthy design that positions Roadman as the premium cycling content brand
+6. **Replace ClickFunnels** $€” Own the domain, own the data, own the experience
 
 ### Target Personas (from Brand Bible)
 
@@ -56,30 +56,30 @@ Roadman Cycling has a 100M+ download podcast, 29,782 email contacts, 49.4K Insta
 
 ---
 
-## 2. Site Architecture â€” Information Architecture
+## 2. Site Architecture $€” Information Architecture
 
 ### Sitemap
 
 ```
-/                           â†’ Home (cinematic hero, value prop, social proof)
-/podcast                    â†’ Podcast hub (search, filter, latest episodes)
-/podcast/[slug]             â†’ Individual episode page (player, transcript, blog post, schema)
-/blog                       â†’ Blog index (all posts, filtered by pillar)
-/blog/[slug]                â†’ Individual blog post (SEO-optimised long-form)
-/tools                      â†’ Tools hub (all calculators)
-/tools/tyre-pressure        â†’ Tyre Pressure Calculator
-/tools/energy-availability  â†’ Energy Availability Calculator
-/tools/shock-pressure       â†’ Shock Pressure Calculator
-/tools/ftp-zones            â†’ FTP Zone Calculator
-/tools/race-weight          â†’ Race Weight Calculator
-/tools/fuelling             â†’ In-Ride Fuelling Calculator
-/community                  â†’ Community overview (Clubhouse + Not Done Yet)
-/community/clubhouse        â†’ Free community (Clubhouse) landing
-/community/not-done-yet     â†’ Paid community (Not Done Yet) sales page
-/about                      â†’ About Anthony + Roadman story
-/contact                    â†’ Contact form
-/strength-training          â†’ Strength Training course sales page (replaces CF funnel)
-/newsletter                 â†’ Newsletter signup landing page
+/                           $†’ Home (cinematic hero, value prop, social proof)
+/podcast                    $†’ Podcast hub (search, filter, latest episodes)
+/podcast/[slug]             $†’ Individual episode page (player, transcript, blog post, schema)
+/blog                       $†’ Blog index (all posts, filtered by pillar)
+/blog/[slug]                $†’ Individual blog post (SEO-optimised long-form)
+/tools                      $†’ Tools hub (all calculators)
+/tools/tyre-pressure        $†’ Tyre Pressure Calculator
+/tools/energy-availability  $†’ Energy Availability Calculator
+/tools/shock-pressure       $†’ Shock Pressure Calculator
+/tools/ftp-zones            $†’ FTP Zone Calculator
+/tools/race-weight          $†’ Race Weight Calculator
+/tools/fuelling             $†’ In-Ride Fuelling Calculator
+/community                  $†’ Community overview (Clubhouse + Not Done Yet)
+/community/clubhouse        $†’ Free community (Clubhouse) landing
+/community/not-done-yet     $†’ Paid community (Not Done Yet) sales page
+/about                      $†’ About Anthony + Roadman story
+/contact                    $†’ Contact form
+/strength-training          $†’ Strength Training course sales page (replaces CF funnel)
+/newsletter                 $†’ Newsletter signup landing page
 ```
 
 ### URL Strategy
@@ -94,37 +94,37 @@ Roadman Cycling has a 100M+ download podcast, 29,782 email contacts, 49.4K Insta
 
 ```
 src/app/
-â”œâ”€â”€ (marketing)/           â†’ Public pages with marketing layout
-â”‚   â”œâ”€â”€ page.tsx           â†’ Home
-â”‚   â”œâ”€â”€ about/
-â”‚   â”œâ”€â”€ contact/
-â”‚   â”œâ”€â”€ newsletter/
-â”‚   â””â”€â”€ strength-training/
-â”œâ”€â”€ (content)/             â†’ Content pages with content layout
-â”‚   â”œâ”€â”€ blog/
-â”‚   â”‚   â”œâ”€â”€ page.tsx       â†’ Blog index
-â”‚   â”‚   â””â”€â”€ [slug]/
-â”‚   â”œâ”€â”€ podcast/
-â”‚   â”‚   â”œâ”€â”€ page.tsx       â†’ Podcast hub
-â”‚   â”‚   â””â”€â”€ [slug]/
-â”‚   â””â”€â”€ tools/
-â”‚       â”œâ”€â”€ page.tsx       â†’ Tools hub
-â”‚       â”œâ”€â”€ tyre-pressure/
-â”‚       â”œâ”€â”€ energy-availability/
-â”‚       â”œâ”€â”€ shock-pressure/
-â”‚       â”œâ”€â”€ ftp-zones/
-â”‚       â”œâ”€â”€ race-weight/
-â”‚       â””â”€â”€ fuelling/
-â”œâ”€â”€ (community)/           â†’ Community pages with community layout
-â”‚   â””â”€â”€ community/
-â”‚       â”œâ”€â”€ page.tsx       â†’ Community overview
-â”‚       â”œâ”€â”€ clubhouse/
-â”‚       â””â”€â”€ not-done-yet/
-â”œâ”€â”€ api/                   â†’ API routes
-â”‚   â”œâ”€â”€ newsletter/        â†’ Email capture endpoint
-â”‚   â”œâ”€â”€ contact/           â†’ Contact form endpoint
-â”‚   â””â”€â”€ og/                â†’ Dynamic OG image generation
-â””â”€â”€ layout.tsx             â†’ Root layout (global nav, footer, analytics)
+$”œ$”€$”€ (marketing)/           $†’ Public pages with marketing layout
+$”$   $”œ$”€$”€ page.tsx           $†’ Home
+$”$   $”œ$”€$”€ about/
+$”$   $”œ$”€$”€ contact/
+$”$   $”œ$”€$”€ newsletter/
+$”$   $””$”€$”€ strength-training/
+$”œ$”€$”€ (content)/             $†’ Content pages with content layout
+$”$   $”œ$”€$”€ blog/
+$”$   $”$   $”œ$”€$”€ page.tsx       $†’ Blog index
+$”$   $”$   $””$”€$”€ [slug]/
+$”$   $”œ$”€$”€ podcast/
+$”$   $”$   $”œ$”€$”€ page.tsx       $†’ Podcast hub
+$”$   $”$   $””$”€$”€ [slug]/
+$”$   $””$”€$”€ tools/
+$”$       $”œ$”€$”€ page.tsx       $†’ Tools hub
+$”$       $”œ$”€$”€ tyre-pressure/
+$”$       $”œ$”€$”€ energy-availability/
+$”$       $”œ$”€$”€ shock-pressure/
+$”$       $”œ$”€$”€ ftp-zones/
+$”$       $”œ$”€$”€ race-weight/
+$”$       $””$”€$”€ fuelling/
+$”œ$”€$”€ (community)/           $†’ Community pages with community layout
+$”$   $””$”€$”€ community/
+$”$       $”œ$”€$”€ page.tsx       $†’ Community overview
+$”$       $”œ$”€$”€ clubhouse/
+$”$       $””$”€$”€ not-done-yet/
+$”œ$”€$”€ api/                   $†’ API routes
+$”$   $”œ$”€$”€ newsletter/        $†’ Email capture endpoint
+$”$   $”œ$”€$”€ contact/           $†’ Contact form endpoint
+$”$   $””$”€$”€ og/                $†’ Dynamic OG image generation
+$””$”€$”€ layout.tsx             $†’ Root layout (global nav, footer, analytics)
 ```
 
 ---
@@ -185,63 +185,63 @@ src/app/
 
 ### Design Principles (Award-Calibre)
 
-1. **Cinematic scale** â€” Hero sections with full-viewport imagery, oversized typography, dramatic negative space
-2. **Scroll-driven storytelling** â€” Content reveals through scroll, parallax layers, and progressive disclosure
-3. **Purposeful animation** â€” Every motion communicates meaning (section reveals, hover states, number counters)
-4. **Dark dominance** â€” Charcoal (#252526) base with deep purple (#210140) for premium sections, coral (#F16363) for energy/CTAs
-5. **Mobile-first immersion** â€” Touch-friendly, swipeable, fast. No desktop-first compromises.
-6. **Photography-led** â€” Full-bleed cycling imagery (roads, climbs, peloton, suffering faces) as section backdrops
-7. **Micro-interactions** â€” Cursor effects, hover reveals, smooth state transitions on calculators
+1. **Cinematic scale** $€” Hero sections with full-viewport imagery, oversized typography, dramatic negative space
+2. **Scroll-driven storytelling** $€” Content reveals through scroll, parallax layers, and progressive disclosure
+3. **Purposeful animation** $€” Every motion communicates meaning (section reveals, hover states, number counters)
+4. **Dark dominance** $€” Charcoal (#252526) base with deep purple (#210140) for premium sections, coral (#F16363) for energy/CTAs
+5. **Mobile-first immersion** $€” Touch-friendly, swipeable, fast. No desktop-first compromises.
+6. **Photography-led** $€” Full-bleed cycling imagery (roads, climbs, peloton, suffering faces) as section backdrops
+7. **Micro-interactions** $€” Cursor effects, hover reveals, smooth state transitions on calculators
 
 ### Component Library (Core)
 
 ```
 src/components/
-â”œâ”€â”€ ui/                    â†’ Atomic design elements
-â”‚   â”œâ”€â”€ Button.tsx         â†’ Primary (coral), Secondary (purple), Ghost
-â”‚   â”œâ”€â”€ Input.tsx          â†’ Form inputs with floating labels
-â”‚   â”œâ”€â”€ Badge.tsx          â†’ Content pillar tags
-â”‚   â”œâ”€â”€ Card.tsx           â†’ Episode cards, blog cards, tool cards
-â”‚   â”œâ”€â”€ Avatar.tsx         â†’ Guest/member avatars
-â”‚   â”œâ”€â”€ Counter.tsx        â†’ Animated number counters (100M+, 1,852 members)
-â”‚   â””â”€â”€ Skeleton.tsx       â†’ Loading states
-â”œâ”€â”€ layout/                â†’ Structural components
-â”‚   â”œâ”€â”€ Header.tsx         â†’ Sticky header with scroll-aware behaviour
-â”‚   â”œâ”€â”€ Footer.tsx         â†’ Full footer with nav, social, newsletter
-â”‚   â”œâ”€â”€ Section.tsx        â†’ Full-width section wrapper with scroll animations
-â”‚   â”œâ”€â”€ Container.tsx      â†’ Max-width content container
-â”‚   â””â”€â”€ MobileNav.tsx      â†’ Full-screen mobile navigation overlay
-â”œâ”€â”€ features/              â†’ Feature-specific components
-â”‚   â”œâ”€â”€ podcast/
-â”‚   â”‚   â”œâ”€â”€ EpisodeCard.tsx
-â”‚   â”‚   â”œâ”€â”€ EpisodePlayer.tsx
-â”‚   â”‚   â”œâ”€â”€ PodcastSearch.tsx
-â”‚   â”‚   â””â”€â”€ TranscriptViewer.tsx
-â”‚   â”œâ”€â”€ blog/
-â”‚   â”‚   â”œâ”€â”€ BlogCard.tsx
-â”‚   â”‚   â”œâ”€â”€ BlogContent.tsx
-â”‚   â”‚   â”œâ”€â”€ TableOfContents.tsx
-â”‚   â”‚   â””â”€â”€ RelatedPosts.tsx
-â”‚   â”œâ”€â”€ tools/
-â”‚   â”‚   â”œâ”€â”€ Calculator.tsx      â†’ Base calculator shell
-â”‚   â”‚   â”œâ”€â”€ TyrePressure.tsx
-â”‚   â”‚   â”œâ”€â”€ EnergyAvailability.tsx
-â”‚   â”‚   â”œâ”€â”€ ShockPressure.tsx
-â”‚   â”‚   â”œâ”€â”€ FTPZones.tsx
-â”‚   â”‚   â”œâ”€â”€ RaceWeight.tsx
-â”‚   â”‚   â””â”€â”€ Fuelling.tsx
-â”‚   â”œâ”€â”€ community/
-â”‚   â”‚   â”œâ”€â”€ MemberTestimonial.tsx
-â”‚   â”‚   â”œâ”€â”€ TierComparison.tsx
-â”‚   â”‚   â””â”€â”€ CommunityStats.tsx
-â”‚   â””â”€â”€ conversion/
-â”‚       â”œâ”€â”€ EmailCapture.tsx    â†’ Inline + modal email capture
-â”‚       â”œâ”€â”€ CTABanner.tsx       â†’ Full-width conversion banners
-â”‚       â””â”€â”€ ExitIntent.tsx      â†’ Exit-intent popup
-â””â”€â”€ seo/
-    â”œâ”€â”€ JsonLd.tsx              â†’ Structured data component
-    â”œâ”€â”€ MetaTags.tsx            â†’ Dynamic meta tags
-    â””â”€â”€ Breadcrumbs.tsx         â†’ Breadcrumb navigation + schema
+$”œ$”€$”€ ui/                    $†’ Atomic design elements
+$”$   $”œ$”€$”€ Button.tsx         $†’ Primary (coral), Secondary (purple), Ghost
+$”$   $”œ$”€$”€ Input.tsx          $†’ Form inputs with floating labels
+$”$   $”œ$”€$”€ Badge.tsx          $†’ Content pillar tags
+$”$   $”œ$”€$”€ Card.tsx           $†’ Episode cards, blog cards, tool cards
+$”$   $”œ$”€$”€ Avatar.tsx         $†’ Guest/member avatars
+$”$   $”œ$”€$”€ Counter.tsx        $†’ Animated number counters (100M+, 1,852 members)
+$”$   $””$”€$”€ Skeleton.tsx       $†’ Loading states
+$”œ$”€$”€ layout/                $†’ Structural components
+$”$   $”œ$”€$”€ Header.tsx         $†’ Sticky header with scroll-aware behaviour
+$”$   $”œ$”€$”€ Footer.tsx         $†’ Full footer with nav, social, newsletter
+$”$   $”œ$”€$”€ Section.tsx        $†’ Full-width section wrapper with scroll animations
+$”$   $”œ$”€$”€ Container.tsx      $†’ Max-width content container
+$”$   $””$”€$”€ MobileNav.tsx      $†’ Full-screen mobile navigation overlay
+$”œ$”€$”€ features/              $†’ Feature-specific components
+$”$   $”œ$”€$”€ podcast/
+$”$   $”$   $”œ$”€$”€ EpisodeCard.tsx
+$”$   $”$   $”œ$”€$”€ EpisodePlayer.tsx
+$”$   $”$   $”œ$”€$”€ PodcastSearch.tsx
+$”$   $”$   $””$”€$”€ TranscriptViewer.tsx
+$”$   $”œ$”€$”€ blog/
+$”$   $”$   $”œ$”€$”€ BlogCard.tsx
+$”$   $”$   $”œ$”€$”€ BlogContent.tsx
+$”$   $”$   $”œ$”€$”€ TableOfContents.tsx
+$”$   $”$   $””$”€$”€ RelatedPosts.tsx
+$”$   $”œ$”€$”€ tools/
+$”$   $”$   $”œ$”€$”€ Calculator.tsx      $†’ Base calculator shell
+$”$   $”$   $”œ$”€$”€ TyrePressure.tsx
+$”$   $”$   $”œ$”€$”€ EnergyAvailability.tsx
+$”$   $”$   $”œ$”€$”€ ShockPressure.tsx
+$”$   $”$   $”œ$”€$”€ FTPZones.tsx
+$”$   $”$   $”œ$”€$”€ RaceWeight.tsx
+$”$   $”$   $””$”€$”€ Fuelling.tsx
+$”$   $”œ$”€$”€ community/
+$”$   $”$   $”œ$”€$”€ MemberTestimonial.tsx
+$”$   $”$   $”œ$”€$”€ TierComparison.tsx
+$”$   $”$   $””$”€$”€ CommunityStats.tsx
+$”$   $””$”€$”€ conversion/
+$”$       $”œ$”€$”€ EmailCapture.tsx    $†’ Inline + modal email capture
+$”$       $”œ$”€$”€ CTABanner.tsx       $†’ Full-width conversion banners
+$”$       $””$”€$”€ ExitIntent.tsx      $†’ Exit-intent popup
+$””$”€$”€ seo/
+    $”œ$”€$”€ JsonLd.tsx              $†’ Structured data component
+    $”œ$”€$”€ MetaTags.tsx            $†’ Dynamic meta tags
+    $””$”€$”€ Breadcrumbs.tsx         $†’ Breadcrumb navigation + schema
 ```
 
 ---
@@ -254,23 +254,23 @@ src/components/
 
 **Sections (scroll order):**
 
-1. **Hero** â€” Full-viewport. Background: dramatic cycling footage or high-contrast still (road disappearing into mountain). Overlay: deep purple gradient from bottom. Copy: "CYCLING IS HARD. WE MAKE IT LESS HARD." (Bebas Neue, 128px). Sub: "The podcast trusted by 100 million listeners. The community where serious cyclists stop guessing." CTA: "Listen Now" (coral) + "Join Free" (ghost).
+1. **Hero** $€” Full-viewport. Background: dramatic cycling footage or high-contrast still (road disappearing into mountain). Overlay: deep purple gradient from bottom. Copy: "CYCLING IS HARD. WE MAKE IT LESS HARD." (Bebas Neue, 128px). Sub: "The podcast trusted by 100 million listeners. The community where serious cyclists stop guessing." CTA: "Listen Now" (coral) + "Join Free" (ghost).
 
-2. **Social Proof Bar** â€” Horizontal scroll of logos/numbers: "100M+ Downloads" | "1,852 Community Members" | "61K YouTube Subscribers" | "Featured Experts: Seiler, Lorang, Morton". Animated counters on scroll-into-view.
+2. **Social Proof Bar** $€” Horizontal scroll of logos/numbers: "100M+ Downloads" | "1,852 Community Members" | "61K YouTube Subscribers" | "Featured Experts: Seiler, Lorang, Morton". Animated counters on scroll-into-view.
 
-3. **Content Pillars** â€” Five cards (Coaching, Nutrition, S&C, Recovery, Le Metier) with hover-reveal descriptions. Each links to filtered blog view. Dark cards with coral accent lines.
+3. **Content Pillars** $€” Five cards (Coaching, Nutrition, S&C, Recovery, Le Metier) with hover-reveal descriptions. Each links to filtered blog view. Dark cards with coral accent lines.
 
-4. **Latest Episodes** â€” 3 latest podcast episodes as cinematic cards with play buttons. Horizontal scroll on mobile. Each shows guest photo, episode title, duration.
+4. **Latest Episodes** $€” 3 latest podcast episodes as cinematic cards with play buttons. Horizontal scroll on mobile. Each shows guest photo, episode title, duration.
 
-5. **Tools Showcase** â€” Interactive preview of one calculator (e.g., FTP Zones). "Type your FTP" input right on the homepage that generates a preview result, then CTA to full tool + email capture.
+5. **Tools Showcase** $€” Interactive preview of one calculator (e.g., FTP Zones). "Type your FTP" input right on the homepage that generates a preview result, then CTA to full tool + email capture.
 
-6. **Community Section** â€” Split: Left = Clubhouse (free, "Join 1,852 cyclists"), Right = Not Done Yet (paid, "The serious cyclists' system"). Member testimonials carousel. Real screenshots of wins.
+6. **Community Section** $€” Split: Left = Clubhouse (free, "Join 1,852 cyclists"), Right = Not Done Yet (paid, "The serious cyclists' system"). Member testimonials carousel. Real screenshots of wins.
 
-7. **Anthony Walsh** â€” Photo + short bio. "I've spent 10 years sitting across the table from the best coaches, scientists, and riders in the world. This is everything I've learned." CTA to About page.
+7. **Anthony Walsh** $€” Photo + short bio. "I've spent 10 years sitting across the table from the best coaches, scientists, and riders in the world. This is everything I've learned." CTA to About page.
 
-8. **Newsletter CTA** â€” Full-width coral section. "Get the insights. No fluff. Once a week." Email input + submit.
+8. **Newsletter CTA** $€” Full-width coral section. "Get the insights. No fluff. Once a week." Email input + submit.
 
-9. **Footer** â€” Full navigation, social links, podcast platform links, legal.
+9. **Footer** $€” Full navigation, social links, podcast platform links, legal.
 
 ### 4.2 Podcast Hub (`/podcast`)
 
@@ -312,7 +312,7 @@ src/components/
 **Blog Post:**
 - Hero: Title, author (Anthony Walsh), date, read time, pillar badge
 - Full-width featured image
-- Long-form content with proper heading hierarchy (H1 â†’ H2 â†’ H3)
+- Long-form content with proper heading hierarchy (H1 $†’ H2 $†’ H3)
 - Table of contents sidebar (sticky on desktop)
 - Inline CTAs every ~800 words
 - Related posts
@@ -335,21 +335,21 @@ src/components/
 **Individual Tool Pages:**
 Each calculator is a full, interactive experience:
 
-1. **Tyre Pressure Calculator** â€” Inputs: rider weight, bike weight, tyre width, road surface, conditions. Output: front/rear PSI with explanation. Formula based on industry-standard calculations.
+1. **Tyre Pressure Calculator** $€” Inputs: rider weight, bike weight, tyre width, road surface, conditions. Output: front/rear PSI with explanation. Formula based on industry-standard calculations.
 
-2. **Energy Availability Calculator** â€” Inputs: weight, training load (hours/week), caloric intake. Output: EA score, risk assessment (RED-S), recommendations. This is the body composition hook.
+2. **Energy Availability Calculator** $€” Inputs: weight, training load (hours/week), caloric intake. Output: EA score, risk assessment (RED-S), recommendations. This is the body composition hook.
 
-3. **Shock Pressure Calculator** â€” Inputs: rider weight, shock type, riding style. Output: recommended PSI/sag percentage.
+3. **Shock Pressure Calculator** $€” Inputs: rider weight, shock type, riding style. Output: recommended PSI/sag percentage.
 
-4. **FTP Zone Calculator** â€” Inputs: FTP value. Output: 7-zone power table with descriptions, training recommendations per zone. This is the training methodology hook.
+4. **FTP Zone Calculator** $€” Inputs: FTP value. Output: 7-zone power table with descriptions, training recommendations per zone. This is the training methodology hook.
 
-5. **Race Weight Calculator** â€” Inputs: height, current weight, body fat %, target event. Output: optimal race weight range, timeline, approach. The hidden motivator tool.
+5. **Race Weight Calculator** $€” Inputs: height, current weight, body fat %, target event. Output: optimal race weight range, timeline, approach. The hidden motivator tool.
 
-6. **In-Ride Fuelling Calculator** â€” Inputs: ride duration, intensity, weight. Output: carbs/hour target, hydration plan, specific product suggestions. The nutrition hook.
+6. **In-Ride Fuelling Calculator** $€” Inputs: ride duration, intensity, weight. Output: carbs/hour target, hydration plan, specific product suggestions. The nutrition hook.
 
 **Conversion flow per tool:**
-1. User inputs data â†’ gets partial result (above the fold)
-2. "Get your full personalised report" â†’ email capture gate
+1. User inputs data $†’ gets partial result (above the fold)
+2. "Get your full personalised report" $†’ email capture gate
 3. Full result delivered on-page + emailed
 4. Follow-up: "Join 1,852 cyclists in the Clubhouse" CTA
 
@@ -365,7 +365,7 @@ Each calculator is a full, interactive experience:
 - Free community landing page
 - What's inside: weekly Q&A, training plans, community
 - Social proof (member count, engagement stats)
-- CTA: "Join Free" â†’ Skool link
+- CTA: "Join Free" $†’ Skool link
 
 **Not Done Yet (`/community/not-done-yet`):**
 - Premium sales page (replaces Skool About page as primary entry)
@@ -375,11 +375,11 @@ Each calculator is a full, interactive experience:
 - Member results showcase
 - Objection handling
 - Risk reversal / guarantee
-- CTA: "Apply Now" â†’ application funnel
+- CTA: "Apply Now" $†’ application funnel
 
 ### 4.7 About (`/about`)
 
-- Anthony's story â€” from listener to host to having the world's best on speed dial
+- Anthony's story $€” from listener to host to having the world's best on speed dial
 - The "Riding Through" manifesto
 - Expert network showcase (Seiler, Lorang, Morton, etc.)
 - Team (Sarah, Sinead, Wes)
@@ -496,9 +496,9 @@ interface BlogPost {
 
 ### Email Integration
 
-- Newsletter signup â†’ API route â†’ email service (ConvertKit, Resend, or existing ClickFunnels list)
-- Tool email capture â†’ same flow with persona tagging
-- Contact form â†’ API route â†’ notification email
+- Newsletter signup $†’ API route $†’ email service (ConvertKit, Resend, or existing ClickFunnels list)
+- Tool email capture $†’ same flow with persona tagging
+- Contact form $†’ API route $†’ notification email
 - All forms: client-side validation + server-side validation + honeypot spam protection
 
 ### Analytics & Tracking
@@ -516,23 +516,23 @@ interface BlogPost {
 ### The Funnel (Every Page)
 
 ```
-ATTRACT              â†’ ENGAGE              â†’ CAPTURE              â†’ CONVERT
+ATTRACT              $†’ ENGAGE              $†’ CAPTURE              $†’ CONVERT
 Blog/SEO/Social        Content/Tools          Email/Community        Paid Community
 
-Organic search     â†’   Read blog post     â†’   Email capture      â†’   Clubhouse (free)
-Social media       â†’   Use calculator     â†’   Tool result gate   â†’   Not Done Yet (paid)
-Podcast link       â†’   Listen to episode  â†’   Newsletter signup  â†’   Strength Training
-Direct/referral    â†’   Browse archive     â†’   Exit intent        â†’   Premium/VIP
+Organic search     $†’   Read blog post     $†’   Email capture      $†’   Clubhouse (free)
+Social media       $†’   Use calculator     $†’   Tool result gate   $†’   Not Done Yet (paid)
+Podcast link       $†’   Listen to episode  $†’   Newsletter signup  $†’   Strength Training
+Direct/referral    $†’   Browse archive     $†’   Exit intent        $†’   Premium/VIP
 ```
 
 ### Email Capture Points
 
-1. **Inline blog CTAs** â€” Every ~800 words in blog posts
-2. **Tool result gates** â€” Partial result free, full result gated
-3. **Newsletter section** â€” Footer of every page + dedicated page
-4. **Exit intent popup** â€” Triggered on mouse-leave (desktop) or scroll-up pattern (mobile)
-5. **Content upgrades** â€” Downloadable PDFs related to specific blog topics
-6. **Podcast follow-up** â€” "Get the show notes + resources" email capture on episode pages
+1. **Inline blog CTAs** $€” Every ~800 words in blog posts
+2. **Tool result gates** $€” Partial result free, full result gated
+3. **Newsletter section** $€” Footer of every page + dedicated page
+4. **Exit intent popup** $€” Triggered on mouse-leave (desktop) or scroll-up pattern (mobile)
+5. **Content upgrades** $€” Downloadable PDFs related to specific blog topics
+6. **Podcast follow-up** $€” "Get the show notes + resources" email capture on episode pages
 
 ### CTA Hierarchy
 
@@ -550,13 +550,13 @@ Direct/referral    â†’   Browse archive     â†’   Exit intent        â†’   Premi
 
 Every podcast episode generates a long-form SEO blog post:
 
-1. **Episode publishes** â†’ transcript generated
-2. **Keyword research** â†’ identify target cluster for episode topic
-3. **Blog post generated** â†’ 2,000-5,000 word article structured around the keyword cluster, drawing from transcript + knowledge base
-4. **SEO optimised** â†’ title tag, meta description, headings, internal links, schema
-5. **Published** â†’ episode page with both player and blog content
+1. **Episode publishes** $†’ transcript generated
+2. **Keyword research** $†’ identify target cluster for episode topic
+3. **Blog post generated** $†’ 2,000-5,000 word article structured around the keyword cluster, drawing from transcript + knowledge base
+4. **SEO optimised** $†’ title tag, meta description, headings, internal links, schema
+5. **Published** $†’ episode page with both player and blog content
 
-### Content Pillar â†’ Keyword Cluster Mapping
+### Content Pillar $†’ Keyword Cluster Mapping
 
 | Pillar | Example Keyword Clusters |
 |--------|------------------------|
@@ -571,7 +571,7 @@ Every podcast episode generates a long-form SEO blog post:
 ```markdown
 # [Keyword-Rich H1 Title]
 
-[Hook paragraph â€” problem/insight from the episode]
+[Hook paragraph $€” problem/insight from the episode]
 
 ## Table of Contents
 [Auto-generated]
@@ -582,10 +582,10 @@ Every podcast episode generates a long-form SEO blog post:
 ### [H3: Subtopic]
 [Specific, actionable advice]
 
-> "Quote from expert guest" â€” [Guest Name], [Credential]
+> "Quote from expert guest" $€” [Guest Name], [Credential]
 
 ## [H2: Practical Application]
-[How to actually do this â€” sessions, numbers, specifics]
+[How to actually do this $€” sessions, numbers, specifics]
 
 ## Key Takeaways
 [Bulleted summary]
@@ -601,7 +601,7 @@ Every podcast episode generates a long-form SEO blog post:
 
 ---
 
-## 8. Interactive Tools â€” Technical Specs
+## 8. Interactive Tools $€” Technical Specs
 
 ### Shared Calculator Architecture
 
@@ -624,13 +624,13 @@ All calculators share a common pattern:
 
 **FTP Zones (7-zone model):**
 ```
-Zone 1: Active Recovery    â€” < 55% FTP
-Zone 2: Endurance          â€” 56-75% FTP
-Zone 3: Tempo              â€” 76-90% FTP
-Zone 4: Threshold          â€” 91-105% FTP
-Zone 5: VO2max             â€” 106-120% FTP
-Zone 6: Anaerobic Capacity â€” 121-150% FTP
-Zone 7: Neuromuscular      â€” 150%+ FTP
+Zone 1: Active Recovery    $€” < 55% FTP
+Zone 2: Endurance          $€” 56-75% FTP
+Zone 3: Tempo              $€” 76-90% FTP
+Zone 4: Threshold          $€” 91-105% FTP
+Zone 5: VO2max             $€” 106-120% FTP
+Zone 6: Anaerobic Capacity $€” 121-150% FTP
+Zone 7: Neuromuscular      $€” 150%+ FTP
 ```
 
 **Energy Availability:**
@@ -660,24 +660,24 @@ Zone 7: Neuromuscular      â€” 150%+ FTP
 
 Based on 2025-2026 SOTD winners, these patterns are expected:
 
-1. **Scroll-triggered reveals** â€” Content fades/slides in as you scroll. Not cheesy â€” purposeful.
-2. **Parallax depth** â€” Layered elements that move at different speeds creating depth.
-3. **Custom cursor** â€” Cursor changes on interactive elements (play button on episodes, etc.)
-4. **Smooth page transitions** â€” Route changes with crossfade or slide animations.
-5. **Oversized typography** â€” Headlines that dominate the viewport.
-6. **Horizontal scroll sections** â€” For carousels and showcases.
-7. **Video backgrounds** â€” Hero section with autoplay muted cycling footage.
-8. **Number animations** â€” Stats that count up when scrolled into view.
-9. **Magnetic buttons** â€” Buttons that subtly attract to the cursor on hover.
-10. **Grain texture** â€” Subtle film grain overlay on dark sections for cinematic feel.
+1. **Scroll-triggered reveals** $€” Content fades/slides in as you scroll. Not cheesy $€” purposeful.
+2. **Parallax depth** $€” Layered elements that move at different speeds creating depth.
+3. **Custom cursor** $€” Cursor changes on interactive elements (play button on episodes, etc.)
+4. **Smooth page transitions** $€” Route changes with crossfade or slide animations.
+5. **Oversized typography** $€” Headlines that dominate the viewport.
+6. **Horizontal scroll sections** $€” For carousels and showcases.
+7. **Video backgrounds** $€” Hero section with autoplay muted cycling footage.
+8. **Number animations** $€” Stats that count up when scrolled into view.
+9. **Magnetic buttons** $€” Buttons that subtly attract to the cursor on hover.
+10. **Grain texture** $€” Subtle film grain overlay on dark sections for cinematic feel.
 
 ### Specific to Roadman
 
-- **The Road Line** â€” A continuous road/route line that threads through the page as a design element (like a GPS trace)
-- **Gradient shifts** â€” Background subtly shifts from charcoal â†’ deep purple â†’ charcoal as you scroll through sections
-- **Cycling photography** â€” Full-bleed, high-contrast, desaturated cycling images as section dividers
-- **The Coral Pulse** â€” CTAs have a subtle pulsing glow effect to draw the eye
-- **Stats Reveal** â€” "100M+ Downloads" counts up from 0 with each digit rolling like an odometer
+- **The Road Line** $€” A continuous road/route line that threads through the page as a design element (like a GPS trace)
+- **Gradient shifts** $€” Background subtly shifts from charcoal $†’ deep purple $†’ charcoal as you scroll through sections
+- **Cycling photography** $€” Full-bleed, high-contrast, desaturated cycling images as section dividers
+- **The Coral Pulse** $€” CTAs have a subtle pulsing glow effect to draw the eye
+- **Stats Reveal** $€” "100M+ Downloads" counts up from 0 with each digit rolling like an odometer
 
 ---
 
@@ -689,7 +689,7 @@ These decisions need your input before deep implementation:
 
 2. **CMS strategy:** Start with MDX files (simpler, version-controlled) or go straight to a headless CMS like Sanity (more scalable, non-dev editing)? Recommendation: MDX now, migrate to CMS when content volume demands it.
 
-3. **Podcast hosting integration:** Which platform hosts the podcast audio? (Apple, Spotify, Buzzsprout, Libsyn, etc.) â€” this determines the embed player approach.
+3. **Podcast hosting integration:** Which platform hosts the podcast audio? (Apple, Spotify, Buzzsprout, Libsyn, etc.) $€” this determines the embed player approach.
 
 4. **Payment integration:** Keep Stripe through ClickFunnels for the strength training course, or integrate Stripe directly into the new site?
 

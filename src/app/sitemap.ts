@@ -20,16 +20,16 @@ const BASE_URL = "https://roadmancycling.com";
  * generateSitemaps(); adding a route handler at /sitemap.xml collides
  * with the metadata-file convention and breaks the build. Crawler
  * discovery is handled through robots.ts which lists every child
- * sitemap explicitly â€” Google, Bing, and the AI crawlers all support
+ * sitemap explicitly $€” Google, Bing, and the AI crawlers all support
  * multiple `Sitemap:` entries in robots.txt, so an index file is not
  * required. Visiting /sitemap.xml directly will 404; this is cosmetic.
  *
- *   /sitemap/0.xml â€” static/core pages + coaching + tools + community
- *   /sitemap/1.xml â€” blog articles
- *   /sitemap/2.xml â€” podcast episodes
- *   /sitemap/3.xml â€” guest pages
- *   /sitemap/4.xml â€” plan pages (event hubs + phase pages)
- *   /sitemap/5.xml â€” topics + glossary + comparisons + best-for + problems + newsletter
+ *   /sitemap/0.xml $€” static/core pages + coaching + tools + community
+ *   /sitemap/1.xml $€” blog articles
+ *   /sitemap/2.xml $€” podcast episodes
+ *   /sitemap/3.xml $€” guest pages
+ *   /sitemap/4.xml $€” plan pages (event hubs + phase pages)
+ *   /sitemap/5.xml $€” topics + glossary + comparisons + best-for + problems + newsletter
  */
 
 const SITEMAP_IDS = [0, 1, 2, 3, 4, 5] as const;

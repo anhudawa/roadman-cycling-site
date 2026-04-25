@@ -92,7 +92,7 @@ export default async function Image({
                   letterSpacing: "4px",
                 }}
               >
-                Â· {region.toUpperCase()}
+                $· {region.toUpperCase()}
               </span>
             )}
           </div>
@@ -119,7 +119,7 @@ export default async function Image({
               }}
             >
               <span>{distance}</span>
-              <span>Â·</span>
+              <span>$·</span>
               <span>{elevation} climbing</span>
             </div>
           )}

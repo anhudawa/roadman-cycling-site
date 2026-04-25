@@ -118,8 +118,8 @@ describe("validateBreakdown", () => {
     ).toBe(true);
   });
 
-  it("passes every static Â§9 fallback breakdown", () => {
-    // These ship to users when Claude fails â€” they must always pass
+  it("passes every static $§9 fallback breakdown", () => {
+    // These ship to users when Claude fails $€” they must always pass
     // validation themselves. Note: because the static templates are
     // intentionally tight, they land under the 500-word floor. The
     // fallback path bypasses validation, but we still want structural

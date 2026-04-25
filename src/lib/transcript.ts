@@ -6,17 +6,17 @@
  * timestamps). These utilities turn that blob into semantic, indexable
  * content:
  *
- *   1. `segmentTranscript` â€” splits the full transcript into 4-10 topic-sized
+ *   1. `segmentTranscript` $€” splits the full transcript into 4-10 topic-sized
  *      segments with stable slug ids + a human-readable heading derived from
  *      the segment's first sentence. Each segment becomes an H3-anchored
  *      section on the episode page, which massively expands the site's
  *      indexable long-tail surface area (310 episodes Ã— ~8 segments = ~2,400
  *      new #anchor landing targets).
  *
- *   2. `normaliseTranscriptText` â€” light cleanup so segments read as prose
+ *   2. `normaliseTranscriptText` $€” light cleanup so segments read as prose
  *      rather than a lowercase wall: capitalises the first letter of each
  *      segment and collapses excess whitespace. Does NOT attempt full
- *      speaker/punctuation reconstruction â€” that would require an LLM pass
+ *      speaker/punctuation reconstruction $€” that would require an LLM pass
  *      and we do not have one at build time.
  */
 
@@ -27,14 +27,14 @@ export interface TranscriptSegment {
   index: number;
   /** Human-readable heading derived from the segment's opening sentence. */
   title: string;
-  /** The segment body text â€” always pre-normalised. */
+  /** The segment body text $€” always pre-normalised. */
   text: string;
-  /** Approximate word count â€” useful for Speakable/Clip schema hints. */
+  /** Approximate word count $€” useful for Speakable/Clip schema hints. */
   wordCount: number;
 }
 
 interface SegmentOptions {
-  /** Target words per segment. Default 900 â€” balanced between segment-level rankability and per-episode anchor density. */
+  /** Target words per segment. Default 900 $€” balanced between segment-level rankability and per-episode anchor density. */
   targetWords?: number;
   /** Maximum segments per transcript regardless of length. Default 10. */
   maxSegments?: number;
@@ -48,7 +48,7 @@ interface SegmentOptions {
    * `scripts/generate-segment-titles.ts` pipeline which calls Claude to
    * produce human-readable chapter titles. If provided but the length does
    * not match the number of produced segments, the override is silently
-   * ignored and the heuristic title is used instead â€” keeps segmentation
+   * ignored and the heuristic title is used instead $€” keeps segmentation
    * stable if chunking changes after titles were generated.
    */
   titles?: string[];
@@ -112,7 +112,7 @@ export function segmentTranscript(
     currentSentences.push(sentence);
     currentWordCount += sentenceWords;
 
-    // Flush the segment once it's at/over its target share â€” unless we've
+    // Flush the segment once it's at/over its target share $€” unless we've
     // already emitted the requested number of segments, in which case
     // accumulate everything remaining into the final segment.
     if (
@@ -145,7 +145,7 @@ export function segmentTranscript(
   }
 
   // Apply title overrides only if the provided array length matches the
-  // segments we actually produced â€” otherwise the mapping is ambiguous and
+  // segments we actually produced $€” otherwise the mapping is ambiguous and
   // we fall back to the heuristic titles above.
   if (titles && titles.length === segments.length) {
     return segments.map((segment, i) => ({
@@ -173,8 +173,8 @@ const FILLER_OPENERS = new Set([
  * segment's `<h3>` text and the jump-to-anchor link label.
  *
  * Transcripts come from raw Whisper speech-to-text, so the literal first
- * sentence is often a filler-word fragment ("uh you just finishedâ€¦",
- * "so um that's theâ€¦"). We strip those fillers and, if the remaining
+ * sentence is often a filler-word fragment ("uh you just finished$€¦",
+ * "so um that's the$€¦"). We strip those fillers and, if the remaining
  * opener is still trivially short, concatenate the next sentence.
  */
 export function generateSegmentTitle(
@@ -184,7 +184,7 @@ export function generateSegmentTitle(
   const clean = text.trim();
   if (!clean) return "Transcript";
 
-  // Pull the first 2â€“3 sentences as title candidates. Join short fragments
+  // Pull the first 2$€“3 sentences as title candidates. Join short fragments
   // together so "Welcome back." doesn't become a title on its own.
   const sentences = clean
     .split(/(?<=[.!?])\s+/g)
@@ -216,7 +216,7 @@ export function generateSegmentTitle(
   const cutoff = titleCased.slice(0, maxChars);
   const lastSpace = cutoff.lastIndexOf(" ");
   const safeCut = lastSpace > maxChars * 0.6 ? cutoff.slice(0, lastSpace) : cutoff;
-  return safeCut.trim() + "â€¦";
+  return safeCut.trim() + "$€¦";
 }
 
 function stripLeadingFillers(text: string): string {
@@ -244,7 +244,7 @@ function countMeaningfulWords(text: string): number {
  * openings don't read like fragments, and normalise whitespace. Strips
  * `>>` speaker-change markers that some Whisper variants emit.
  *
- * Intentionally conservative â€” we do NOT attempt speaker detection or
+ * Intentionally conservative $€” we do NOT attempt speaker detection or
  * punctuation reconstruction, which would need an LLM and would risk
  * introducing errors into authoritative guest quotes.
  */
@@ -270,7 +270,7 @@ function splitIntoSentences(text: string): string[] {
 
   if (punctSplit.length > 1) return punctSplit;
 
-  // Pathological case: no sentence punctuation â€” chunk by every ~25 words
+  // Pathological case: no sentence punctuation $€” chunk by every ~25 words
   // so segmentTranscript still has something to work with.
   const words = text.split(/\s+/);
   const chunks: string[] = [];

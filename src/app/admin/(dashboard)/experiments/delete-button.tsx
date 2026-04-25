@@ -51,7 +51,7 @@ export function DeleteButton({ experimentId }: { experimentId: string }) {
           disabled={loading}
           className="px-2 py-1 bg-red-500/20 text-red-400 hover:bg-red-500/30 text-xs font-medium rounded"
         >
-          {loading ? "Deletingâ€¦" : "Delete"}
+          {loading ? "Deleting$€¦" : "Delete"}
         </button>
         <button
           onClick={handleCancel}

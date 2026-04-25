@@ -7,14 +7,14 @@ import { JsonLd } from "@/components/seo/JsonLd";
 import { fetchNewsletterIssues } from "@/lib/integrations/beehiiv";
 
 export const metadata: Metadata = {
-  title: "Newsletter â€” Weekly Cycling Insights",
+  title: "Newsletter $€” Weekly Cycling Insights",
   description:
     "Get the stuff that actually makes you faster. Once a week. No fluff. Training, nutrition, and performance insights from Anthony Walsh and the Roadman Cycling Podcast.",
   alternates: {
     canonical: "https://roadmancycling.com/newsletter",
   },
   openGraph: {
-    title: "Newsletter â€” Weekly Cycling Insights",
+    title: "Newsletter $€” Weekly Cycling Insights",
     description:
       "Get the stuff that actually makes you faster. Once a week. No fluff. Training, nutrition, and performance insights from Anthony Walsh and the Roadman Cycling Podcast.",
     type: "website",
@@ -32,7 +32,7 @@ export default async function NewsletterPage() {
         data={{
           "@context": "https://schema.org",
           "@type": "WebPage",
-          name: "The Saturday Spin Newsletter â€” Roadman Cycling",
+          name: "The Saturday Spin Newsletter $€” Roadman Cycling",
           description:
             "Weekly cycling insights from Anthony Walsh. Training, nutrition, and performance content drawn from conversations with the world's best coaches and scientists.",
           url: "https://roadmancycling.com/newsletter",
@@ -54,7 +54,7 @@ export default async function NewsletterPage() {
           <Container width="narrow" className="text-center">
             <ScrollReveal direction="up">
               <p className="text-coral font-heading text-sm tracking-widest mb-4">
-                EVERY SATURDAY Â· FROM THE ROADMAN PODCAST
+                EVERY SATURDAY $· FROM THE ROADMAN PODCAST
               </p>
               <h1
                 className="font-heading text-off-white mb-6"
@@ -110,12 +110,12 @@ export default async function NewsletterPage() {
                 {
                   title: "Training insights you can apply this week",
                   description:
-                    "Zone 2 structure, interval sessions, periodisation â€” the principles from Seiler, Lorang, and Wakefield translated into actionable training advice.",
+                    "Zone 2 structure, interval sessions, periodisation $€” the principles from Seiler, Lorang, and Wakefield translated into actionable training advice.",
                 },
                 {
                   title: "Nutrition that actually works for cyclists",
                   description:
-                    "Fuelling, body composition, race weight â€” the stuff that makes a real difference to your power-to-weight ratio. No diet culture.",
+                    "Fuelling, body composition, race weight $€” the stuff that makes a real difference to your power-to-weight ratio. No diet culture.",
                 },
                 {
                   title: "The stories behind the podcast",

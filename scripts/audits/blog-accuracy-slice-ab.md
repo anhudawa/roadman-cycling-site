@@ -1,4 +1,4 @@
-# Blog Accuracy Audit â€” Slice AB (32 posts)
+# Blog Accuracy Audit $€” Slice AB (32 posts)
 
 Scope: cycling-*.mdx posts listed in the slice AB assignment, covering back-pain through interval-training-beginners.
 
@@ -28,9 +28,9 @@ Posts reviewed and left unchanged: cycling-bike-upgrade-worth-it, cycling-body-c
 
 ## 2. Factual corrections made
 
-### 2.1 Abt et al. (2007) mis-attribution â€” `cycling-core-workout-routine.mdx`
+### 2.1 Abt et al. (2007) mis-attribution $€” `cycling-core-workout-routine.mdx`
 
-**Before (FAQ):** "Research from Abt et al. (2007) showed that core fatigue directly reduces pedalling efficiency and alters knee mechanics â€” leading to both lost watts and injury risk."
+**Before (FAQ):** "Research from Abt et al. (2007) showed that core fatigue directly reduces pedalling efficiency and alters knee mechanics $€” leading to both lost watts and injury risk."
 
 **After:** "Research from Abt et al. (2007) showed that induced core fatigue altered knee kinematics during cycling, which the authors suggested could increase knee injury risk over time."
 
@@ -38,46 +38,46 @@ Posts reviewed and left unchanged: cycling-bike-upgrade-worth-it, cycling-body-c
 
 **Body-text version corrected identically.** Inline link added to PubMed 18076271.
 
-### 2.2 Exercise-Associated Muscle Cramps attribution â€” `cycling-cramp-prevention.mdx`
+### 2.2 Exercise-Associated Muscle Cramps attribution $€” `cycling-cramp-prevention.mdx`
 
-**Before:** "The more current view, supported by Professor Noakes and others: cramps are primarily caused by fatigue-induced dysfunctionâ€¦"
+**Before:** "The more current view, supported by Professor Noakes and others: cramps are primarily caused by fatigue-induced dysfunction$€¦"
 
 **After:** "The more current view, developed by Professor Martin Schwellnus and colleagues: cramps are primarily caused by fatigue-induced alterations in the signals between your nervous system and muscles. When a muscle is pushed beyond its fatigue threshold, inhibitory feedback from the Golgi tendon organs drops, excitatory muscle-spindle activity rises, and the muscle contracts uncontrollably."
 
-**Source verified:** The altered-neuromuscular-control theory of EAMC is primarily Schwellnus's (1997, updated 2008/2009 â€” PubMed 18981039), not Noakes's. Citation added inline.
+**Source verified:** The altered-neuromuscular-control theory of EAMC is primarily Schwellnus's (1997, updated 2008/2009 $€” PubMed 18981039), not Noakes's. Citation added inline.
 
-### 2.3 Dan Lorang athlete-roster updates â€” 2 files
+### 2.3 Dan Lorang athlete-roster updates $€” 2 files
 
-Anne Haug retired in 2025, and Jan Frodeno retired in 2024. Lorang now coaches Lucy Charles-Barclay (consistent with guardrails) and Taylor Knibb, in addition to his Red Bullâ€“Boraâ€“Hansgrohe performance role.
+Anne Haug retired in 2025, and Jan Frodeno retired in 2024. Lorang now coaches Lucy Charles-Barclay (consistent with guardrails) and Taylor Knibb, in addition to his Red Bull$€“Bora$€“Hansgrohe performance role.
 
-- `cycling-coach-vs-triathlon-coach.mdx` â€” present tense "coached Jan Frodeno and Anne Haug" with LCB added.
-- `cycling-coaching-results-before-and-after.mdx` â€” same fix.
+- `cycling-coach-vs-triathlon-coach.mdx` $€” present tense "coached Jan Frodeno and Anne Haug" with LCB added.
+- `cycling-coaching-results-before-and-after.mdx` $€” same fix.
 
-### 2.4 Garbled physics claim â€” `cycling-coaching-results-before-and-after.mdx`
+### 2.4 Garbled physics claim $€” `cycling-coaching-results-before-and-after.mdx`
 
-**Before:** "Every kilogram costs approximately 6â€“8 watts per kilogram of body weight on a 6â€“8% gradient"
+**Before:** "Every kilogram costs approximately 6$€“8 watts per kilogram of body weight on a 6$€“8% gradient"
 
-**After:** "Every extra kilogram costs a few watts to drag up a 6â€“8% gradient, and over a long climb those watts compound"
+**After:** "Every extra kilogram costs a few watts to drag up a 6$€“8% gradient, and over a long climb those watts compound"
 
-The original was unit-garbled (watts-per-kg-per-kg). The physics is approximately 2â€“3 W per kg at 8% gradient at typical amateur climbing speeds (depends on velocity), but rather than assert a specific number without precise assumptions the claim has been softened to preserve editorial voice without inventing precision.
+The original was unit-garbled (watts-per-kg-per-kg). The physics is approximately 2$€“3 W per kg at 8% gradient at typical amateur climbing speeds (depends on velocity), but rather than assert a specific number without precise assumptions the claim has been softened to preserve editorial voice without inventing precision.
 
-### 2.5 RÃ¸nnestad posterior-chain claim â€” `cycling-gym-exercises-best.mdx`
+### 2.5 RÃ¸nnestad posterior-chain claim $€” `cycling-gym-exercises-best.mdx`
 
 **Before:** "Ronnestad's research at Lillehammer University has repeatedly shown that posterior chain strength is the strongest predictor of improved cycling economy in trained cyclists."
 
-**After:** "RÃ¸nnestad and Mujika's review of heavy strength training in endurance athletes shows consistent gains in cycling performance, maximal aerobic power and earlier peak torque in the pedal stroke â€” adaptations that the RDL's hip-hinge pattern directly supports."
+**After:** "RÃ¸nnestad and Mujika's review of heavy strength training in endurance athletes shows consistent gains in cycling performance, maximal aerobic power and earlier peak torque in the pedal stroke $€” adaptations that the RDL's hip-hinge pattern directly supports."
 
 The original overstated what the research shows. RÃ¸nnestad's work has not established posterior chain strength as THE strongest predictor of cycling economy; his work has established that heavy strength training produces performance benefits via earlier peak torque and improved pedalling mechanics. Citation added to RÃ¸nnestad & Mujika (2014) review.
 
-### 2.6 Sam Impey team list â€” `cycling-fasted-riding-myth.mdx`
+### 2.6 Sam Impey team list $€” `cycling-fasted-riding-myth.mdx`
 
 **Before:** "used by several World Tour teams (Ineos Grenadiers, EF Education, Tudor, Q36.5 and Alpecin among them)"
 
-**After:** "used by World Tour teams including Ineos Grenadiers, EF Pro Cycling, Tudor Pro Cycling, Q36.5 and Alpecinâ€“Premier Tech"
+**After:** "used by World Tour teams including Ineos Grenadiers, EF Pro Cycling, Tudor Pro Cycling, Q36.5 and Alpecin$€“Premier Tech"
 
 Updated to use current team brand names per Hexis's own client list, and linked to Impey et al. 2018 *Sports Medicine* paper.
 
-### 2.7 Base-training FTP range consistency â€” `cycling-base-training-guide.mdx`
+### 2.7 Base-training FTP range consistency $€” `cycling-base-training-guide.mdx`
 
 Fixed a 56-75% vs 55-75% FTP inconsistency for Zone 2 between the TL;DR and the FAQ (now consistently 55-75%).
 
@@ -112,22 +112,22 @@ The `cycling-gym-exercises-best.mdx` FAQ item mentioning Lauersen's BJSM strengt
 
 ## 4. Softened claims
 
-- `cycling-coaching-results-before-and-after.mdx` â€” the "6â€“8 W/kg-per-kg at 6â€“8% gradient" physics claim was softened to "a few watts per kg" because the exact number depends on climbing speed and is not worth inventing false precision for.
-- `cycling-gym-exercises-best.mdx` â€” the RÃ¸nnestad "strongest predictor of cycling economy" claim was softened to accurately reflect what the RÃ¸nnestad & Mujika 2014 review actually found.
-- `cycling-core-workout-routine.mdx` â€” the Abt et al. citation was softened from "reduces pedalling efficiency" to "altered knee kinematics" because the original study reported no significant differences in pedalling forces.
+- `cycling-coaching-results-before-and-after.mdx` $€” the "6$€“8 W/kg-per-kg at 6$€“8% gradient" physics claim was softened to "a few watts per kg" because the exact number depends on climbing speed and is not worth inventing false precision for.
+- `cycling-gym-exercises-best.mdx` $€” the RÃ¸nnestad "strongest predictor of cycling economy" claim was softened to accurately reflect what the RÃ¸nnestad & Mujika 2014 review actually found.
+- `cycling-core-workout-routine.mdx` $€” the Abt et al. citation was softened from "reduces pedalling efficiency" to "altered knee kinematics" because the original study reported no significant differences in pedalling forces.
 
 ## 5. Flagged for human review
 
 **None of high severity.** Minor flags:
 
-- `cycling-coaching-results-before-and-after.mdx` and `cycling-coaching-testimonials.mdx` contain **named-rider testimonials with specific FTP/weight/category numbers** (Damien Maloney, Daniel Stone, Chris O'Connor, Brian Morrissey, Niall Sheridan, Mark Connelly, Sarah Doyle, Tom Riordan, Declan Fogarty, Claire Hennessy, Brendan Walsh, Aoife Moran, James Killeen, Eoin Daly, Sinead McCarthy, PÃ¡draic Nolan, Kevin O'Sullivan, Fiona Brady, Colm Ryan, Rachel O'Brien). These were left as-is because they are first-party member stories and not externally verifiable by me â€” Anthony should confirm before public launch that every name corresponds to a real member who consented to attribution, or replace with pseudonyms flagged as such.
+- `cycling-coaching-results-before-and-after.mdx` and `cycling-coaching-testimonials.mdx` contain **named-rider testimonials with specific FTP/weight/category numbers** (Damien Maloney, Daniel Stone, Chris O'Connor, Brian Morrissey, Niall Sheridan, Mark Connelly, Sarah Doyle, Tom Riordan, Declan Fogarty, Claire Hennessy, Brendan Walsh, Aoife Moran, James Killeen, Eoin Daly, Sinead McCarthy, PÃ¡draic Nolan, Kevin O'Sullivan, Fiona Brady, Colm Ryan, Rachel O'Brien). These were left as-is because they are first-party member stories and not externally verifiable by me $€” Anthony should confirm before public launch that every name corresponds to a real member who consented to attribution, or replace with pseudonyms flagged as such.
 - `cycling-cadence-optimal-guide.mdx` contains specific cadence figures for Lance Armstrong (110rpm) and Jan Ullrich (70rpm). These are commonly-cited but were retained without inline citation because they are widely-accepted cycling history and the post is editorial rather than scientific.
 - `cycling-body-composition-guide.mdx` table of body-fat ranges by tier (e.g., pros at 6-10% men, 12-16% women) was left unchanged. These figures are consistent with multiple popular sports-nutrition sources but are not drawn from a single peer-reviewed reference. Consider linking to a SuppVersity / McMaster review if Anthony wants stronger provenance.
-- `cycling-fasted-riding-myth.mdx` â€” Anthony's personal claim "took me from 86kg to 79kg" was not touched. This is first-person editorial voice.
+- `cycling-fasted-riding-myth.mdx` $€” Anthony's personal claim "took me from 86kg to 79kg" was not touched. This is first-person editorial voice.
 
 ## 6. Commit hash
 
-`ddd9472` â€” Fact-check + cite: blog slice AB (32 posts)
+`ddd9472` $€” Fact-check + cite: blog slice AB (32 posts)
 
 Note on commit contents: due to a race condition with a parallel slice-AE
 fact-check agent running concurrently on the same working tree, the commit

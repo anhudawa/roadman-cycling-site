@@ -10,7 +10,7 @@ export default async function NewSegmentPage() {
     <div>
       <div className="mb-6">
         <Link href="/admin/segments" className="text-xs text-foreground-subtle hover:text-accent">
-          â† Segments
+          $† Segments
         </Link>
         <h1 className="font-heading text-2xl text-off-white tracking-wider uppercase mt-2">
           New Segment

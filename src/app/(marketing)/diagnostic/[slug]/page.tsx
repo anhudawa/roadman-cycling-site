@@ -19,7 +19,7 @@ import type { Breakdown } from "@/lib/diagnostic/types";
 
 /**
  * Results page. Reads straight from the DB on the server so the
- * initial render is already populated â€” no loading spinner, no
+ * initial render is already populated $€” no loading spinner, no
  * client round-trip. Safe to share the URL because slugs are
  * unguessable.
  */
@@ -33,7 +33,7 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const { slug } = await params;
   const submission = await getSubmissionBySlug(slug);
-  if (!submission) return { title: "Your diagnosis â€” Roadman Cycling" };
+  if (!submission) return { title: "Your diagnosis $€” Roadman Cycling" };
 
   const label = labelFor(
     submission.primaryProfile,
@@ -41,7 +41,7 @@ export async function generateMetadata({
   );
 
   return {
-    title: `Your diagnosis: ${label} â€” Roadman Cycling`,
+    title: `Your diagnosis: ${label} $€” Roadman Cycling`,
     description: submission.breakdown.diagnosis?.slice(0, 160),
     // Results contain personal info in the URL. Don't let search engines
     // index individual diagnosis pages.
@@ -68,7 +68,7 @@ export default async function DiagnosticResultsPage({
   );
 
   // Close-to-breakthrough always routes to a direct call. Otherwise
-  // use the per-profile matrix from Â§12.
+  // use the per-profile matrix from $§12.
   const cta = isCloseToBreakthrough
     ? {
         primaryLabel: "Book a 15-minute call with Anthony",
@@ -88,7 +88,7 @@ export default async function DiagnosticResultsPage({
       <Suspense fallback={null}>
         <SuccessBanner emailHint={maskEmail(submission.email)} />
       </Suspense>
-      {/* Fires fbq PageView + Lead when the pixel env is configured â€”
+      {/* Fires fbq PageView + Lead when the pixel env is configured $€”
           this is the diagnostic funnel's primary conversion signal. */}
       <MetaPixel
         event="Lead"
@@ -100,12 +100,12 @@ export default async function DiagnosticResultsPage({
       <ResultsAnalytics slug={submission.slug} profile={submission.primaryProfile} />
       <Header />
       <main id="main-content">
-        {/* â”€â”€ Hero diagnosis â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */}
+        {/* $”€$”€ Hero diagnosis $”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€ */}
         <Section background="charcoal" grain className="pt-32 pb-12">
           <Container width="narrow">
             <ScrollReveal direction="up" eager>
               <p className="text-coral font-heading text-xs tracking-widest mb-4">
-                YOUR DIAGNOSIS Â· {profileLabel.toUpperCase()}
+                YOUR DIAGNOSIS $· {profileLabel.toUpperCase()}
               </p>
               <h1
                 className="font-heading text-off-white mb-6"
@@ -131,7 +131,7 @@ export default async function DiagnosticResultsPage({
           </Container>
         </Section>
 
-        {/* â”€â”€ Why this is happening â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */}
+        {/* $”€$”€ Why this is happening $”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€ */}
         <Section background="deep-purple" grain>
           <Container width="narrow">
             <ScrollReveal direction="up">
@@ -177,7 +177,7 @@ export default async function DiagnosticResultsPage({
           </Container>
         </Section>
 
-        {/* â”€â”€ The fix â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */}
+        {/* $”€$”€ The fix $”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€ */}
         <Section background="charcoal">
           <Container width="narrow">
             <ScrollReveal direction="up">
@@ -211,7 +211,7 @@ export default async function DiagnosticResultsPage({
           </Container>
         </Section>
 
-        {/* â”€â”€ Why alone â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */}
+        {/* $”€$”€ Why alone $”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€ */}
         <Section background="deep-purple" grain>
           <Container width="narrow">
             <ScrollReveal direction="up">
@@ -225,7 +225,7 @@ export default async function DiagnosticResultsPage({
           </Container>
         </Section>
 
-        {/* â”€â”€ CTA + secondary â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */}
+        {/* $”€$”€ CTA + secondary $”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€ */}
         <Section background="charcoal">
           <Container width="narrow" className="text-center space-y-6">
             <h2 className="font-heading text-off-white text-2xl md:text-3xl">
@@ -253,7 +253,7 @@ export default async function DiagnosticResultsPage({
                 </Link>
               )}
             </div>
-            {/* Phase 2 handoff â€” rider can dig into the result with the
+            {/* Phase 2 handoff $€” rider can dig into the result with the
                 on-site assistant. Appears below the primary CTA so it
                 never competes with a booking/coaching conversion. */}
             <div className="pt-8 mx-auto max-w-xl text-left">
@@ -265,7 +265,7 @@ export default async function DiagnosticResultsPage({
           </Container>
         </Section>
 
-        {/* â”€â”€ Secondary profile note â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */}
+        {/* $”€$”€ Secondary profile note $”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€ */}
         {breakdown.secondaryNote && (
           <Section background="deep-purple">
             <Container width="narrow">
@@ -281,7 +281,7 @@ export default async function DiagnosticResultsPage({
           </Section>
         )}
 
-        {/* â”€â”€ Share + footer meta â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */}
+        {/* $”€$”€ Share + footer meta $”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€ */}
         <Section background="charcoal" className="pb-24">
           <Container width="narrow">
             <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-6 pt-4 border-t border-white/10">

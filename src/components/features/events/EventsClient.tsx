@@ -33,7 +33,7 @@ const weeklyEvents: RecurringEvent[] = [
     title: "LIVE COACHING CALL",
     subtitle: "Not Done Yet Coaching Community Members",
     description:
-      "Weekly live Q&A and coaching session with Anthony Walsh. Bring your questions on training, nutrition, race prep â€” anything. This is where the five-pillar system comes alive.",
+      "Weekly live Q&A and coaching session with Anthony Walsh. Bring your questions on training, nutrition, race prep $€” anything. This is where the five-pillar system comes alive.",
     type: "call",
     color: "purple",
     cta: "Apply for Coaching",
@@ -49,13 +49,13 @@ const weeklyEvents: RecurringEvent[] = [
     title: "THURSDAY CHOP",
     subtitle: "Open Group Ride",
     description:
-      "The midweek hit-out. Fast-paced group ride through Phoenix Park. All abilities welcome â€” the group naturally splits. First couple of rides are on us, then join the club.",
+      "The midweek hit-out. Fast-paced group ride through Phoenix Park. All abilities welcome $€” the group naturally splits. First couple of rides are on us, then join the club.",
     location: "Popes Cross, Phoenix Park",
     locationDetail: "Dublin",
     mapUrl: "https://maps.google.com/?q=Popes+Cross+Phoenix+Park+Dublin",
     type: "ride",
     color: "coral",
-    cta: "Join Roadman CC â€” $75/year",
+    cta: "Join Roadman CC $€” $75/year",
     ctaHref: "https://www.skool.com/roadmancycling/about",
     external: true,
   },
@@ -68,19 +68,19 @@ const weeklyEvents: RecurringEvent[] = [
     title: "SATURDAY SPIN",
     subtitle: "Community Group Ride",
     description:
-      "The weekend social. Steady pace, good conversation, coffee stop. The ride that built the community. Come along for a spin â€” if you like it, join the club.",
+      "The weekend social. Steady pace, good conversation, coffee stop. The ride that built the community. Come along for a spin $€” if you like it, join the club.",
     location: "360 Cycles, Clontarf",
     locationDetail: "Dublin",
     mapUrl: "https://maps.google.com/?q=360+Cycles+Clontarf+Dublin",
     type: "ride",
     color: "coral",
-    cta: "Join Roadman CC â€” $75/year",
+    cta: "Join Roadman CC $€” $75/year",
     ctaHref: "https://www.skool.com/roadmancycling/about",
     external: true,
   },
 ];
 
-/* â”€â”€ Countdown to next event â”€â”€ */
+/* $”€$”€ Countdown to next event $”€$”€ */
 function getNextEvent(): { event: RecurringEvent; msUntil: number } {
   const now = new Date();
   const currentDay = (now.getDay() + 6) % 7; // Convert Sunday=0 to Monday=0
@@ -128,7 +128,7 @@ function useCountdown() {
   return { event: next.event, days, hours, minutes, seconds };
 }
 
-/* â”€â”€ Animated countdown digit â”€â”€ */
+/* $”€$”€ Animated countdown digit $”€$”€ */
 function CountdownUnit({ value, label }: { value: number; label: string }) {
   const prevRef = useRef(value);
   const [animate, setAnimate] = useState(false);
@@ -162,7 +162,7 @@ function CountdownUnit({ value, label }: { value: number; label: string }) {
   );
 }
 
-/* â”€â”€ Animated timeline connector â”€â”€ */
+/* $”€$”€ Animated timeline connector $”€$”€ */
 function TimelineConnector() {
   return (
     <div className="hidden md:flex absolute left-[3.25rem] top-0 bottom-0 w-px">
@@ -171,7 +171,7 @@ function TimelineConnector() {
   );
 }
 
-/* â”€â”€ Timeline dot â”€â”€ */
+/* $”€$”€ Timeline dot $”€$”€ */
 function TimelineDot({ color, active }: { color: "purple" | "coral"; active: boolean }) {
   return (
     <div className="hidden md:flex absolute left-[2.5rem] top-8 z-10">
@@ -198,7 +198,7 @@ function TimelineDot({ color, active }: { color: "purple" | "coral"; active: boo
   );
 }
 
-/* â”€â”€ Radial week visualisation â”€â”€ */
+/* $”€$”€ Radial week visualisation $”€$”€ */
 function WeekWheel({ nextEventDay }: { nextEventDay: string }) {
   const days = ["MON", "TUE", "WED", "THU", "FRI", "SAT", "SUN"];
   const eventDays: Record<string, { label: string; color: string }> = {
@@ -308,7 +308,7 @@ function WeekWheel({ nextEventDay }: { nextEventDay: string }) {
   );
 }
 
-/* â”€â”€ Event Card â”€â”€ */
+/* $”€$”€ Event Card $”€$”€ */
 function EventCard({
   event,
   index,
@@ -470,7 +470,7 @@ function EventCard({
   );
 }
 
-/* â”€â”€ Main Client Component â”€â”€ */
+/* $”€$”€ Main Client Component $”€$”€ */
 export function EventsClient() {
   const { event: nextEvent, days, hours, minutes, seconds } = useCountdown();
   const [mounted, setMounted] = useState(false);

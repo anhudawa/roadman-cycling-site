@@ -11,7 +11,7 @@ import type { Profile } from "@/lib/diagnostic/types";
 /**
  * Daily digest of plateau-diagnostic activity. Sent to Anthony at
  * 8am UTC. Built deliberately small + isolated so it doesn't share
- * code with the heavier per-user `daily-digest` cron â€” different
+ * code with the heavier per-user `daily-digest` cron $€” different
  * audience, different cadence concerns.
  *
  * Skips silently when there's nothing to report (no inbox spam on
@@ -144,18 +144,18 @@ function renderDigestHtml(p: DigestPayload): string {
   const recentRows = p.recent
     .map(
       (r) =>
-        `<tr><td style="padding:4px 12px 4px 0;color:#666;font-size:12px">${escapeHtml(r.createdAt.toISOString().slice(11, 16))}</td><td style="padding:4px 12px 4px 0;color:#1a1a1a">${escapeHtml(PROFILE_LABELS[r.profile])}</td><td style="padding:4px 0;font-size:12px"><a href="${escapeHtml(absoluteUrl(`/admin/diagnostic/${r.slug}`))}" style="color:#F16363">QA â†’</a></td></tr>`
+        `<tr><td style="padding:4px 12px 4px 0;color:#666;font-size:12px">${escapeHtml(r.createdAt.toISOString().slice(11, 16))}</td><td style="padding:4px 12px 4px 0;color:#1a1a1a">${escapeHtml(PROFILE_LABELS[r.profile])}</td><td style="padding:4px 0;font-size:12px"><a href="${escapeHtml(absoluteUrl(`/admin/diagnostic/${r.slug}`))}" style="color:#F16363">QA $†’</a></td></tr>`
     )
     .join("");
 
   return `<!DOCTYPE html>
 <html><body style="margin:0;padding:24px;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;color:#1a1a1a;background:#f6f6f4">
   <div style="max-width:560px;margin:0 auto;background:#fff;padding:24px;border-radius:8px">
-    <p style="font-size:12px;letter-spacing:2px;color:#F16363;margin:0 0 8px;text-transform:uppercase;font-weight:600">Plateau Diagnostic Â· Last 24h</p>
+    <p style="font-size:12px;letter-spacing:2px;color:#F16363;margin:0 0 8px;text-transform:uppercase;font-weight:600">Plateau Diagnostic $· Last 24h</p>
     <h1 style="font-size:28px;line-height:1.2;margin:0 0 16px">${p.total24h} new diagnoses</h1>
     <p style="margin:0 0 20px;color:#555">
-      ${p.total7d} over the past 7 days Â· LLM rate ${llmRate}% (${p.llmCount} LLM / ${p.fallbackCount} fallback)
-      ${p.multiSystemCount > 0 ? ` Â· <strong style="color:#F16363">${p.multiSystemCount} multi-system</strong>` : ""}
+      ${p.total7d} over the past 7 days $· LLM rate ${llmRate}% (${p.llmCount} LLM / ${p.fallbackCount} fallback)
+      ${p.multiSystemCount > 0 ? ` $· <strong style="color:#F16363">${p.multiSystemCount} multi-system</strong>` : ""}
     </p>
 
     <h2 style="font-size:14px;letter-spacing:1px;text-transform:uppercase;color:#666;margin:24px 0 8px">By profile</h2>
@@ -166,7 +166,7 @@ function renderDigestHtml(p: DigestPayload): string {
     ${recentRows ? `<h2 style="font-size:14px;letter-spacing:1px;text-transform:uppercase;color:#666;margin:24px 0 8px">Recent</h2><table style="border-collapse:collapse;width:100%;font-size:14px">${recentRows}</table>` : ""}
 
     <p style="margin:32px 0 0;font-size:12px;color:#888">
-      <a href="${escapeHtml(absoluteUrl("/admin/diagnostic"))}" style="color:#888">Open admin â†’</a>
+      <a href="${escapeHtml(absoluteUrl("/admin/diagnostic"))}" style="color:#888">Open admin $†’</a>
       &middot;
       <a href="${escapeHtml(absoluteUrl("/api/admin/diagnostic/export"))}" style="color:#888">CSV export</a>
     </p>
@@ -181,7 +181,7 @@ export async function GET(req: NextRequest) {
 
   const payload = await buildPayload();
 
-  // Quiet days get no email â€” Anthony's inbox stays clean.
+  // Quiet days get no email $€” Anthony's inbox stays clean.
   if (payload.total24h === 0) {
     return NextResponse.json({ skipped: "no_submissions_24h" });
   }
@@ -194,7 +194,7 @@ export async function GET(req: NextRequest) {
     );
   }
 
-  const subject = `Plateau Diagnostic Â· ${payload.total24h} new in the last 24h`;
+  const subject = `Plateau Diagnostic $· ${payload.total24h} new in the last 24h`;
   try {
     const result = await resend.emails.send({
       from: FROM,

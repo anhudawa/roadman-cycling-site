@@ -66,7 +66,7 @@ function isLikelyPersonName(name: string): boolean {
 
 /**
  * Normalize guest names for deduplication.
- * "Dr Stephen Seiler" and "Professor Stephen Seiler" â†’ "Stephen Seiler"
+ * "Dr Stephen Seiler" and "Professor Stephen Seiler" $†’ "Stephen Seiler"
  */
 const NAME_ALIASES: Record<string, string> = {
   "Dr Stephen Seiler": "Stephen Seiler",
@@ -119,7 +119,7 @@ const KNOWN_CREDENTIALS: Record<string, string> = {
   "Courtney Conley": "Foot health specialist, founder of Gait Happens",
   "Cynthia Thurlow": "Intermittent fasting expert, nurse practitioner",
   "Dan Bigham": "Former Hour Record holder, Head of Engineering at Red Bull-Bora-Hansgrohe",
-  "Dan Lorang": "Head of Performance, Red Bullâ€“Boraâ€“Hansgrohe",
+  "Dan Lorang": "Head of Performance, Red Bull$€“Bora$€“Hansgrohe",
   "David Gillick": "European indoor 400m champion",
   "Dr Allen Lim": "Sports physiologist, founder of Skratch Labs",
   "Dr Andy Pruitt": "Pioneering bike fit expert, founder of Boulder Center for Sports Medicine",
@@ -146,7 +146,7 @@ const KNOWN_CREDENTIALS: Record<string, string> = {
   "James Golding": "Ultra-endurance cyclist, two-time cancer survivor",
   "Joe Friel": "Author of The Cyclist's Training Bible",
   "John Archibald": "British track cyclist, pursuit specialist",
-  "John Wakefield": "Director of Coaching & Sports Science, Red Bullâ€“Boraâ€“Hansgrohe",
+  "John Wakefield": "Director of Coaching & Sports Science, Red Bull$€“Bora$€“Hansgrohe",
   "Jonas Abrahamsen": "Uno-X pro cyclist, KOM jersey holder",
   "Josh Amberger": "Professional Ironman triathlete",
   "Lachlan Morton": "EF Education pro cyclist, alt-racing pioneer",
@@ -176,7 +176,7 @@ const KNOWN_CREDENTIALS: Record<string, string> = {
  * Based on WHO they are, not which episodes they appeared on.
  */
 const GUEST_PILLAR_MAP: Record<string, ContentPillar> = {
-  // Coaching â€” coaches, exercise physiologists, sports scientists
+  // Coaching $€” coaches, exercise physiologists, sports scientists
   "Stephen Seiler": "coaching",
   "Dan Lorang": "coaching",
   "Joe Friel": "coaching",
@@ -187,7 +187,7 @@ const GUEST_PILLAR_MAP: Record<string, ContentPillar> = {
   "John Wakefield": "coaching",
   "Dr David Lipman": "coaching",
 
-  // Nutrition â€” nutritionists, chefs, diet experts
+  // Nutrition $€” nutritionists, chefs, diet experts
   "Alan Murchison": "nutrition",
   "Hannah Grant": "nutrition",
   "Tim Spector": "nutrition",
@@ -203,18 +203,18 @@ const GUEST_PILLAR_MAP: Record<string, ContentPillar> = {
   "Dr Sam Impey": "nutrition",
   "Tim Podlogar": "nutrition",
 
-  // Strength â€” S&C, physio, bike fitting
+  // Strength $€” S&C, physio, bike fitting
   "Derek Teel": "strength",
   "Courtney Conley": "strength",
   "Dr Andy Pruitt": "strength",
 
-  // Recovery â€” psychology, mindset, wellness, hormones
+  // Recovery $€” psychology, mindset, wellness, hormones
   "Chris Voss": "recovery",
   "Dr Michael Gervais": "recovery",
   "Erin Ayala": "recovery",
   "Dr Mark Gordon": "recovery",
 
-  // Community â€” pro riders, journalists, ultra-endurance, culture, crossover athletes
+  // Community $€” pro riders, journalists, ultra-endurance, culture, crossover athletes
   "Greg LeMond": "community",
   "Lachlan Morton": "community",
   "Alex Dowsett": "community",
@@ -264,7 +264,7 @@ const GUEST_PILLAR_MAP: Record<string, ContentPillar> = {
  * Higher = appears earlier in the list. Unweighted guests default to 0.
  */
 const GUEST_PROMINENCE: Record<string, number> = {
-  // Tier 1 â€” Household names, Tour winners, Olympic champions
+  // Tier 1 $€” Household names, Tour winners, Olympic champions
   "Greg LeMond": 100,
   "Stephen Seiler": 95,
   "Dan Lorang": 90,
@@ -279,7 +279,7 @@ const GUEST_PROMINENCE: Record<string, number> = {
   "Ed Clancy": 73,
   "Tim Spector": 72,
 
-  // Tier 2 â€” Well-known in cycling world
+  // Tier 2 $€” Well-known in cycling world
   "John Wakefield": 60,
   "Olav Bu": 58,
   "Hannah Grant": 56,
@@ -296,7 +296,7 @@ const GUEST_PROMINENCE: Record<string, number> = {
   "Laurens Ten Dam": 45,
   "Uli Schoberer": 44,
 
-  // Tier 3 â€” Notable guests
+  // Tier 3 $€” Notable guests
   "Chris Voss": 35,
   "Hannah Otto": 34,
   "Sofiane Sehili": 33,
@@ -370,8 +370,8 @@ const GUEST_TAGS: Record<string, GuestTag[]> = {
 function slugify(name: string): string {
   return name
     .toLowerCase()
-    .replace(/['â€™â€˜]/g, "")
-    // Normalise diacritics so "Rosa KlÃ¶ser" â†’ "rosa-kloser", matching the
+    .replace(/['$€™$€˜]/g, "")
+    // Normalise diacritics so "Rosa KlÃ¶ser" $†’ "rosa-kloser", matching the
     // override key. Without NFD stripping, the slug becomes "rosa-kl-ser"
     // and never finds the curated profile data.
     .normalize("NFD")

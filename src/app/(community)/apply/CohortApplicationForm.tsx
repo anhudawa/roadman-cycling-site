@@ -4,7 +4,7 @@ import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { getCohortState } from "@/lib/cohort";
 
-/** RFC-5322 lite â€” rejects `foo@`, `@bar`, and other common fat-finger failures. */
+/** RFC-5322 lite $€” rejects `foo@`, `@bar`, and other common fat-finger failures. */
 const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
 /** localStorage key for persisting in-progress application answers. */
@@ -36,7 +36,7 @@ function saveDraft(state: DraftState) {
   try {
     localStorage.setItem(DRAFT_KEY, JSON.stringify(state));
   } catch {
-    /* quota exceeded or storage unavailable â€” ignore */
+    /* quota exceeded or storage unavailable $€” ignore */
   }
 }
 
@@ -105,9 +105,9 @@ function trackLead(
 
 const GOALS = [
   { value: "Race or event with a date", emoji: "ğŸ" },
-  { value: "Hit a specific power number", emoji: "âš¡" },
+  { value: "Hit a specific power number", emoji: "$š¡" },
   { value: "Stop getting dropped on group rides", emoji: "ğŸ’¨" },
-  { value: "Lose weight without losing power", emoji: "âš–ï¸" },
+  { value: "Lose weight without losing power", emoji: "$š–ï¸" },
   { value: "Get structured after years of winging it", emoji: "ğŸ“‹" },
 ];
 
@@ -120,10 +120,10 @@ const HOURS = [
 ];
 
 const FRUSTRATIONS = [
-  { value: "Plateaued â€” stuck at a number I can't shift", emoji: "ğŸ“‰" },
-  { value: "No structure â€” making it up as I go", emoji: "ğŸ²" },
-  { value: "Lost motivation â€” can't stay consistent", emoji: "ğŸ˜©" },
-  { value: "Injury or comeback â€” trying to get back", emoji: "ğŸ©¹" },
+  { value: "Plateaued $€” stuck at a number I can't shift", emoji: "ğŸ“‰" },
+  { value: "No structure $€” making it up as I go", emoji: "ğŸ²" },
+  { value: "Lost motivation $€” can't stay consistent", emoji: "ğŸ˜©" },
+  { value: "Injury or comeback $€” trying to get back", emoji: "ğŸ©¹" },
   { value: "Training hard but not seeing results", emoji: "ğŸ˜¤" },
 ];
 
@@ -149,7 +149,7 @@ export function CohortApplicationForm() {
   useEffect(() => {
     const draft = loadDraft();
     if (!draft) return;
-    // Don't restore to the submitted step â€” force user back into flow
+    // Don't restore to the submitted step $€” force user back into flow
     if (draft.step && draft.step !== "submitted") setStep(draft.step);
     if (draft.goal) setGoal(draft.goal);
     if (draft.hours) setHours(draft.hours);
@@ -204,14 +204,14 @@ export function CohortApplicationForm() {
         success?: boolean;
         persona?: string;
       };
-      // Lead event (FB Pixel + GA) â€” attribution for ad spend
+      // Lead event (FB Pixel + GA) $€” attribution for ad spend
       trackLead(
         trimmedEmail,
         data.persona,
         cohortState.phase,
         cohortState.targetCohort,
       );
-      // Success â€” wipe the draft so next visit starts fresh
+      // Success $€” wipe the draft so next visit starts fresh
       clearDraft();
       setStep("submitted");
     } catch (err) {
@@ -419,7 +419,7 @@ export function CohortApplicationForm() {
             transition={{ duration: 0.3 }}
             className="text-center py-8"
           >
-            <div className="text-5xl mb-4">{isWaitlist ? "âœ…" : "ğŸ¯"}</div>
+            <div className="text-5xl mb-4">{isWaitlist ? "$œ…" : "ğŸ¯"}</div>
             <h3 className="font-heading text-off-white text-3xl mb-3">
               {cohortCopy.submittedHeadline}
             </h3>

@@ -7,9 +7,9 @@ import type { AvailabilityByMonth } from "@/lib/inventory";
 import BookingFlow, { FAQSection } from "./SponsorClientSections";
 
 export const metadata: Metadata = {
-  title: "Sponsor â€” Roadman Cycling",
+  title: "Sponsor $€” Roadman Cycling",
   description:
-    "Real inventory. Live pricing. Actual dates. Sponsor the biggest cycling podcast in Europe â€” pick a moment or a duration, choose your slot, upload your assets, done.",
+    "Real inventory. Live pricing. Actual dates. Sponsor the biggest cycling podcast in Europe $€” pick a moment or a duration, choose your slot, upload your assets, done.",
   alternates: {
     canonical: "https://roadmancycling.com/sponsor",
   },
@@ -256,7 +256,7 @@ export default async function SponsorPage() {
           <Container>
             <BookingFlow
               eventBlocks={[
-                // Marquee events from Airtable â€” calculate duration from dates
+                // Marquee events from Airtable $€” calculate duration from dates
                 ...events.map((e) => {
                   const premiumMap: Record<string, number> = { "1": 1.15, "2": 1.10 };
                   const start = new Date(e.startDate);
@@ -371,7 +371,7 @@ export default async function SponsorPage() {
               <ScrollReveal delay={0.1}>
                 <div className="text-center stat-card-pulse rounded-xl p-6">
                   <p className="font-heading text-[clamp(2.5rem,5vw,4rem)] text-coral stat-glow">
-                    <AnimatedCounter value="Â£65K+" />
+                    <AnimatedCounter value="$65K+" />
                   </p>
                   <p className="text-foreground-muted text-sm mt-2">
                     Avg. household income
@@ -393,7 +393,7 @@ export default async function SponsorPage() {
               <ScrollReveal delay={0.3}>
                 <div className="text-center stat-card-pulse rounded-xl p-6">
                   <p className="font-heading text-[clamp(2.5rem,5vw,4rem)] text-coral stat-glow">
-                    <AnimatedCounter value="Â£3,500+" />
+                    <AnimatedCounter value="$3,500+" />
                   </p>
                   <p className="text-foreground-muted text-sm mt-2">
                     Avg. annual cycling spend

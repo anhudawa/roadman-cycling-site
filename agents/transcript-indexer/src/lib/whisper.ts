@@ -22,13 +22,13 @@ export async function getTranscript(
 
   // Fallback: Whisper via OpenAI API
   if (!audioUrl) {
-    console.log(`    No YouTube captions and no audio URL â€” skipping`);
+    console.log(`    No YouTube captions and no audio URL $€” skipping`);
     return null;
   }
 
   const openaiKey = process.env.OPENAI_API_KEY;
   if (!openaiKey) {
-    console.log(`    No OPENAI_API_KEY set â€” cannot use Whisper fallback`);
+    console.log(`    No OPENAI_API_KEY set $€” cannot use Whisper fallback`);
     return null;
   }
 
@@ -91,7 +91,7 @@ async function transcribeChunked(
   apiKey: string,
   tempDir: string
 ): Promise<string> {
-  console.log(`    File > 24MB â€” splitting into 10-minute chunks...`);
+  console.log(`    File > 24MB $€” splitting into 10-minute chunks...`);
 
   // Use ffmpeg to split
   try {
@@ -100,8 +100,8 @@ async function transcribeChunked(
       { stdio: "pipe" }
     );
   } catch {
-    // ffmpeg might not be installed â€” try without chunking
-    console.log(`    ffmpeg not available â€” attempting full file transcription`);
+    // ffmpeg might not be installed $€” try without chunking
+    console.log(`    ffmpeg not available $€” attempting full file transcription`);
     return (await callWhisperAPI(audioFile, apiKey)) ?? "";
   }
 
@@ -143,7 +143,7 @@ async function callWhisperAPI(
 
   if (!response.ok) {
     const errorText = await response.text();
-    console.error(`    Whisper API error: ${response.status} â€” ${errorText.slice(0, 200)}`);
+    console.error(`    Whisper API error: ${response.status} $€” ${errorText.slice(0, 200)}`);
     return null;
   }
 

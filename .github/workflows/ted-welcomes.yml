@@ -1,7 +1,7 @@
-name: Ted â€” welcomes
+name: Ted $€” welcomes
 
 # Drafts and posts welcomes for pending new members.
-# Runs twice daily (09:00 and 18:00 Dublin â†’ 08:00/17:00 UTC year-round, Â±1h DST).
+# Runs twice daily (09:00 and 18:00 Dublin $†’ 08:00/17:00 UTC year-round, $±1h DST).
 # Gate: post-welcome is skipped if ted_kill_switch.post_welcome_enabled=false.
 
 on:

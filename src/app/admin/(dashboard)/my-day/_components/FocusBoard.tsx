@@ -285,7 +285,7 @@ export function FocusBoard({
         </div>
         {focus.length === 0 ? (
           <p className="text-foreground-subtle text-xs text-center py-4">
-            Drop your 1â€“3 priority tasks here to pin them to the top of your
+            Drop your 1$€“3 priority tasks here to pin them to the top of your
             day.
           </p>
         ) : (
@@ -327,7 +327,7 @@ export function FocusBoard({
                   )}
                 </div>
                 <span className="text-xs text-foreground-subtle whitespace-nowrap">
-                  {t.dueAt && `${formatDate(t.dueAt)} Â· ${formatTime(t.dueAt)}`}
+                  {t.dueAt && `${formatDate(t.dueAt)} $· ${formatTime(t.dueAt)}`}
                 </span>
                 <TaskDeleteButton
                   disabled={deletingId === t.id}
@@ -369,7 +369,7 @@ export function FocusBoard({
         </div>
         {others.length === 0 ? (
           <EmptyState
-            icon="âœ“"
+            icon="$œ“"
             title="All caught up"
             subtitle={
               focus.length === 0
@@ -443,7 +443,7 @@ export function FocusBoard({
             router.refresh();
           }}
           onSentToOther={() => {
-            // Request flow â€” doesn't appear on sender's board, just close.
+            // Request flow $€” doesn't appear on sender's board, just close.
             setComposerOpen(false);
             router.refresh();
           }}
@@ -568,7 +568,7 @@ function AddTaskComposer({
             </select>
             {!isSelf && (
               <p className="text-[10px] text-foreground-subtle mt-1">
-                This will be sent as a request â€” they can accept, reply, or decline.
+                This will be sent as a request $€” they can accept, reply, or decline.
               </p>
             )}
           </div>
@@ -593,7 +593,7 @@ function AddTaskComposer({
               value={notes}
               onChange={(e) => setNotes(e.target.value)}
               rows={3}
-              placeholder="Why, links, anything usefulâ€¦"
+              placeholder="Why, links, anything useful$€¦"
               className="w-full px-3 py-2 text-sm bg-[var(--color-sunken)] border border-[var(--color-border-strong)] text-[var(--color-fg)] rounded-[var(--radius-admin-md)] focus-ring focus:border-[var(--color-border-focus)]"
             />
           </div>
@@ -629,7 +629,7 @@ function AddTaskComposer({
             disabled={sending || !title.trim() || !assignedTo}
             className="font-body font-semibold text-[13px] px-4 py-1.5 rounded-[var(--radius-admin-md)] bg-[var(--color-elevated)] hover:bg-[var(--color-raised)] text-[var(--color-fg)] border border-[var(--color-border-strong)] disabled:opacity-50"
           >
-            {sending ? "Savingâ€¦" : isSelf ? "Create" : "Send"}
+            {sending ? "Saving$€¦" : isSelf ? "Create" : "Send"}
           </button>
         </div>
       </div>

@@ -105,7 +105,7 @@ ${siblings.map((s) => `- /podcast/${s}`).join("\n") || "None available yet"}
 ${truncated}`;
 
   if (regenerationNotes) {
-    userMessage += `\n\n## REGENERATION NOTES â€” Previous attempt failed. Fix these issues:\n${regenerationNotes}`;
+    userMessage += `\n\n## REGENERATION NOTES $€” Previous attempt failed. Fix these issues:\n${regenerationNotes}`;
   }
 
   const result = await callLLM({

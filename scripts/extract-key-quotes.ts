@@ -75,7 +75,7 @@ const SYSTEM_PROMPT = `You extract notable verbatim quotes from podcast transcri
 
 RULES:
 - Extract exactly 2-3 quotes from the transcript.
-- Each quote MUST be verbatim text from the transcript â€” do not paraphrase or clean up grammar.
+- Each quote MUST be verbatim text from the transcript $€” do not paraphrase or clean up grammar.
 - Each quote should be 1-3 sentences (roughly 15-60 words).
 - Each quote must be attributed to a specific named speaker (not "the host" or "the guest").
 - Prefer quotes that contain:

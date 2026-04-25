@@ -15,9 +15,9 @@
 Extract a `"use client"` component `ExperimentActions` that receives `experimentId: string`, `status: ABTestStatus`, `variants: ABVariant[]`, and `winnerVariantId: string | null`.
 
 Buttons by status:
-- `draft` â†’ "Start Test" button. Calls `PATCH /api/admin/experiments` with `{ id: experimentId, action: "start" }`.
-- `running` â†’ "Stop Test" and "Declare Winner" buttons. Stop calls `{ id, action: "stop" }`. Declare Winner shows a variant selector (dropdown or button per variant), then calls `{ id, action: "declare_winner", winnerVariantId }`.
-- `completed` â†’ No action buttons. Winner banner already renders.
+- `draft` $†’ "Start Test" button. Calls `PATCH /api/admin/experiments` with `{ id: experimentId, action: "start" }`.
+- `running` $†’ "Stop Test" and "Declare Winner" buttons. Stop calls `{ id, action: "stop" }`. Declare Winner shows a variant selector (dropdown or button per variant), then calls `{ id, action: "declare_winner", winnerVariantId }`.
+- `completed` $†’ No action buttons. Winner banner already renders.
 
 Behavior:
 - Each action shows a loading spinner on the clicked button and disables all other buttons.
@@ -115,13 +115,13 @@ Logic:
 2. If any variant has `isSignificant: true` AND `impressions >= estimateSampleSize(controlRate, 0.1)` (minimum detectable effect of 10%):
    - Find the variant with the highest `conversionRate` among significant variants.
    - Call the internal PATCH logic (or fetch to `/api/admin/experiments`) with `{ id, action: "declare_winner", winnerVariantId }`.
-   - Add a field `completedBy: "auto"` to the DB update (requires adding this column to the `ab_tests` schema â€” nullable string, values: `"manual" | "auto"`).
+   - Add a field `completedBy: "auto"` to the DB update (requires adding this column to the `ab_tests` schema $€” nullable string, values: `"manual" | "auto"`).
 3. Refresh the page data after auto-declaration.
 
 **Notification surfaces:**
 
 - **Experiments list page:** For experiments where `status = 'completed'` and `completedBy = 'auto'` and `endedAt` is within the last 7 days, show a small "Auto" badge next to the status badge.
-- **Experiment detail page:** When `completedBy = 'auto'`, show a callout banner: "This experiment was automatically completed â€” {winnerLabel} won with {confidence}% confidence."
+- **Experiment detail page:** When `completedBy = 'auto'`, show a callout banner: "This experiment was automatically completed $€” {winnerLabel} won with {confidence}% confidence."
 
 **Schema change:** Add `completedBy` column to `ab_tests` table in `src/lib/db/schema.ts`:
 ```
@@ -132,7 +132,7 @@ completedBy: varchar('completed_by', { length: 10 }), // 'manual' | 'auto' | nul
 
 ## 2. Dashboard Data Wiring
 
-### 2A. Overview Page â€” Replace Placeholders
+### 2A. Overview Page $€” Replace Placeholders
 
 **File:** `src/app/admin/(dashboard)/page.tsx`
 
@@ -144,7 +144,7 @@ Changes:
 5. Replace `PLACEHOLDER_SOURCES` with `statsForRange.traffic.referrers` (feed into `DonutChart`).
 6. Replace `generateDemoTimeSeries()` with a new `getDailyVisitors(from, to)` function (see below). `getStatsForRange` only returns aggregate totals, not daily breakdowns, so a separate query is needed.
 
-Keep existing `DEMO_STATS` fallback for `getDashboardStats()` â€” that's the summary cards which work independently.
+Keep existing `DEMO_STATS` fallback for `getDashboardStats()` $€” that's the summary cards which work independently.
 
 ### 2B. TimeRangePicker on Content, Traffic, Leads Pages
 
@@ -169,7 +169,7 @@ All three follow the same pattern:
 - Add `searchParams` to page props.
 - Call `parseTimeRange(searchParams.range ?? '7d')`.
 - Replace `getRecentLeads(100)` with `getStatsForRange(from, to)` and use `.leads`.
-- Replace `getLeadTotals()` â€” the summary cards can derive today/week/month from the ranged data or keep calling `getLeadTotals()` separately (simpler).
+- Replace `getLeadTotals()` $€” the summary cards can derive today/week/month from the ranged data or keep calling `getLeadTotals()` separately (simpler).
 - Keep demo data fallback.
 
 ### 2B-extra. Daily Visitors for Overview Chart
@@ -184,12 +184,12 @@ async function getDailyVisitors(
 ```
 
 - Queries `events` table: `SELECT DATE(timestamp) as day, COUNT(*) FROM events WHERE type = 'pageview' AND timestamp BETWEEN from AND to GROUP BY DATE(timestamp) ORDER BY day ASC`.
-- Returns `{ date: "2026-04-01", visitors: 142 }[]` â€” one entry per day.
+- Returns `{ date: "2026-04-01", visitors: 142 }[]` $€” one entry per day.
 - Used by the overview page `TimeSeriesChart` to replace `generateDemoTimeSeries()`.
 
 ### 2C. Revenue Trend Chart
 
-**New function** in `src/lib/admin/events-store.ts` (or a new `src/lib/admin/stripe-store.ts` if preferred â€” keeping it in events-store is simpler since it follows the same DB access pattern):
+**New function** in `src/lib/admin/events-store.ts` (or a new `src/lib/admin/stripe-store.ts` if preferred $€” keeping it in events-store is simpler since it follows the same DB access pattern):
 
 ```
 async function getRevenueSnapshots(
@@ -208,9 +208,9 @@ async function getRevenueSnapshots(
 - Call `getRevenueSnapshots(from, to)` in the try/catch block.
 - Replace the placeholder "Revenue trend chart coming soon" dashed box with:
   - If snapshots are non-empty: `<TimeSeriesChart data={snapshots} dataKeys={[{ key: "revenue", color: chartColors.coral, label: "Revenue ($)" }]} />`.
-  - If snapshots are empty: Styled empty state â€” "Revenue data will appear once daily sync begins."
+  - If snapshots are empty: Styled empty state $€” "Revenue data will appear once daily sync begins."
 
-### 2D. Agent Page â€” Pre-fill Experiment Form
+### 2D. Agent Page $€” Pre-fill Experiment Form
 
 **File:** `src/app/admin/(dashboard)/experiments/new/page.tsx`
 
@@ -232,7 +232,7 @@ The page is already `"use client"`. Changes:
    }, []);
    ```
 
-No changes to the agent page â€” links already pass `page`, `element`, and `content` query params.
+No changes to the agent page $€” links already pass `page`, `element`, and `content` query params.
 
 ---
 

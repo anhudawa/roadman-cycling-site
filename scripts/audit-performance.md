@@ -1,7 +1,7 @@
 # Performance Audit & Core Web Vitals Optimization
 
 **Date:** 2026-04-08
-**Scope:** Full site â€” layout, homepage, key components, third-party scripts
+**Scope:** Full site $€” layout, homepage, key components, third-party scripts
 
 ---
 
@@ -41,7 +41,7 @@ Added an optional `priority` prop. When false (default), images load lazily.
 
 The marquee was using framer-motion's `animate` prop for continuous scrolling. This keeps the JS thread busy recalculating positions every frame. Replaced with CSS `@keyframes` animation using `transform: translateX()` which runs entirely on the compositor thread.
 
-**File:** `src/app/globals.css` â€” Added `marquee-left` and `marquee-right` keyframes, plus `prefers-reduced-motion` rule to pause marquees.
+**File:** `src/app/globals.css` $€” Added `marquee-left` and `marquee-right` keyframes, plus `prefers-reduced-motion` rule to pause marquees.
 
 **Impact:** Eliminates continuous JS animation overhead. Transform animations run at 60fps on the compositor without touching the main thread.
 
@@ -66,7 +66,7 @@ The hero renders two FloatingParticles instances (25 + 10 = 35 animated divs). O
 ## Already Optimized (no changes needed)
 
 - **Fonts:** Bebas Neue and Work Sans loaded via `next/font/google` with `display: "swap"` and CSS variable injection. No FOIT.
-- **Meta Pixel:** Uses `strategy="lazyOnload"` â€” the most deferred Script strategy. Does not block render or interactivity.
+- **Meta Pixel:** Uses `strategy="lazyOnload"` $€” the most deferred Script strategy. Does not block render or interactivity.
 - **Exit Intent Popup:** Already wrapped in `dynamic()` with `ssr: false`.
 - **Smooth Cursor:** Already wrapped in `dynamic()` with `ssr: false`, and only activates on `pointer: fine` devices.
 - **Header logo:** Has `priority` set correctly (above the fold).
@@ -74,15 +74,15 @@ The hero renders two FloatingParticles instances (25 + 10 = 35 animated divs). O
 - **Image formats:** Config enables AVIF and WebP via `next.config.ts`.
 - **Cache headers:** Static assets and images get `max-age=31536000, immutable`.
 - **Package imports:** `framer-motion`, `shiki`, and `rehype-pretty-code` are in `optimizePackageImports`.
-- **PodcastPlayerShell:** Uses React context provider pattern â€” children pass through as server components (no unnecessary client boundary).
+- **PodcastPlayerShell:** Uses React context provider pattern $€” children pass through as server components (no unnecessary client boundary).
 - **CLS:** All images use `fill` with aspect-ratio containers or explicit `width`/`height`. No layout shift sources found.
 
 ---
 
-## Recommendations (not implemented â€” require manual testing)
+## Recommendations (not implemented $€” require manual testing)
 
-1. **Consider replacing framer-motion ScrollReveal with CSS `@starting-style`** â€” The site has 47 `"use client"` files, many just for scroll-reveal animations. CSS `@starting-style` (supported in all modern browsers) could replace many of these, reducing the client JS bundle. This is a larger refactor.
+1. **Consider replacing framer-motion ScrollReveal with CSS `@starting-style`** $€” The site has 47 `"use client"` files, many just for scroll-reveal animations. CSS `@starting-style` (supported in all modern browsers) could replace many of these, reducing the client JS bundle. This is a larger refactor.
 
-2. **Add `fetchPriority="high"` to the hero background if/when a hero image is added** â€” Currently the hero is pure CSS gradients, but if a background image is ever added, it should get `fetchPriority="high"`.
+2. **Add `fetchPriority="high"` to the hero background if/when a hero image is added** $€” Currently the hero is pure CSS gradients, but if a background image is ever added, it should get `fetchPriority="high"`.
 
-3. **Consider `next/dynamic` for below-fold tool pages** â€” The calculator pages (FTP zones, tyre pressure, etc.) are all `"use client"` with framer-motion. Since they're standalone pages this is fine, but if they're ever embedded in other pages, they should be dynamically imported.
+3. **Consider `next/dynamic` for below-fold tool pages** $€” The calculator pages (FTP zones, tyre pressure, etc.) are all `"use client"` with framer-motion. Since they're standalone pages this is fine, but if they're ever embedded in other pages, they should be dynamically imported.

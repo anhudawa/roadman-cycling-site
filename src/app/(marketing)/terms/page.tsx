@@ -3,7 +3,7 @@ import Link from "next/link";
 import { Header, Footer, Section, Container } from "@/components/layout";
 
 export const metadata: Metadata = {
-  title: "Terms of Service â€” Roadman Cycling",
+  title: "Terms of Service $€” Roadman Cycling",
   description:
     "Terms and conditions for using Roadman Cycling's website, newsletter, podcast, and paid community. Governed by the laws of Ireland.",
   alternates: {
@@ -61,14 +61,14 @@ export default function TermsOfServicePage() {
                     <span className="text-off-white font-medium">
                       Free content
                     </span>{" "}
-                    â€” blog articles, the Roadman Cycling Podcast, training tools,
+                    $€” blog articles, the Roadman Cycling Podcast, training tools,
                     and the weekly Saturday Spin Newsletter.
                   </li>
                   <li>
                     <span className="text-off-white font-medium">
                       Paid community
                     </span>{" "}
-                    â€” the Not Done Yet coaching community hosted on Skool,
+                    $€” the Not Done Yet coaching community hosted on Skool,
                     offering structured training programmes, community
                     interaction, and exclusive content.
                   </li>
@@ -100,9 +100,9 @@ export default function TermsOfServicePage() {
                   INTELLECTUAL PROPERTY
                 </h2>
                 <p>
-                  All content on roadmancycling.com â€” including but not limited
+                  All content on roadmancycling.com $€” including but not limited
                   to articles, podcast episodes, images, videos, graphics,
-                  training plans, tools, and brand assets â€” is owned by Roadman
+                  training plans, tools, and brand assets $€” is owned by Roadman
                   Cycling or licensed to us and is protected by copyright and
                   intellectual property laws.
                 </p>
@@ -203,9 +203,9 @@ export default function TermsOfServicePage() {
                   LIMITATION OF LIABILITY
                 </h2>
                 <p>
-                  All content provided by Roadman Cycling â€” including podcast
+                  All content provided by Roadman Cycling $€” including podcast
                   episodes, blog articles, training tools, and community
-                  discussions â€” is for{" "}
+                  discussions $€” is for{" "}
                   <span className="text-off-white font-medium">
                     educational and informational purposes only
                   </span>
@@ -234,7 +234,7 @@ export default function TermsOfServicePage() {
                 </h2>
                 <p>
                   We reserve the right to suspend or terminate your access to any
-                  of our services â€” including the Not Done Yet coaching community â€” at our
+                  of our services $€” including the Not Done Yet coaching community $€” at our
                   discretion, if we reasonably believe you have violated these
                   Terms of Service. In cases of termination for cause, no refund
                   will be issued for any remaining subscription period.

@@ -1,13 +1,13 @@
 /**
  * scripts/lint-content-graph.ts
  *
- * Content-graph linter ‚Äî enforces minimum cross-linking and CTA
+ * Content-graph linter $Äî enforces minimum cross-linking and CTA
  * density across all blog posts. Run as a CI check or pre-push audit.
  *
  * Rules:
- *   - Every blog post must link to ‚â•1 tool page (/tools/*)
- *   - Every blog post must link to ‚â•2 other blog posts (/blog/*)
- *   - Every blog post must contain ‚â•1 commercial CTA path
+ *   - Every blog post must link to $â•1 tool page (/tools/*)
+ *   - Every blog post must link to $â•2 other blog posts (/blog/*)
+ *   - Every blog post must contain $â•1 commercial CTA path
  *     (/coaching, /apply, /community/not-done-yet, /strength-training,
  *      /assessment, /plateau)
  *
@@ -61,9 +61,9 @@ function lintPost(filePath: string): LintResult {
   const ctaLinks = new Set(ctaMatches).size;
 
   const issues: string[] = [];
-  if (toolLinks < 1) issues.push("Missing tool link (need ‚â•1 /tools/* link)");
+  if (toolLinks < 1) issues.push("Missing tool link (need $â•1 /tools/* link)");
   if (blogLinks < 2)
-    issues.push(`Only ${blogLinks} blog cross-links (need ‚â•2)`);
+    issues.push(`Only ${blogLinks} blog cross-links (need $â•2)`);
   if (ctaLinks < 1) issues.push("Missing commercial CTA link");
 
   return { file: fileName, toolLinks, blogLinks, ctaLinks, issues };
@@ -80,15 +80,15 @@ const failing = results.filter((r) => r.issues.length > 0);
 const passing = results.filter((r) => r.issues.length === 0);
 
 console.log(`\nüìä Content-Graph Lint: ${files.length} blog posts\n`);
-console.log(`  ‚úÖ Passing: ${passing.length}`);
-console.log(`  ‚ùå Failing: ${failing.length}\n`);
+console.log(`  $úÖ Passing: ${passing.length}`);
+console.log(`  $ùå Failing: ${failing.length}\n`);
 
 if (failing.length > 0) {
   console.log("--- ISSUES ---\n");
   for (const r of failing) {
     console.log(`  ${r.file}`);
     for (const issue of r.issues) {
-      console.log(`    ‚ö†  ${issue}`);
+      console.log(`    $ö†  ${issue}`);
     }
   }
   console.log("");
@@ -108,7 +108,7 @@ console.log(`  CTA links/post:   ${avgCta.toFixed(1)}\n`);
 
 if (strict && failing.length > 0) {
   console.log(
-    `‚ùå ${failing.length} posts fail content-graph lint. Fix before pushing.\n`,
+    `$ùå ${failing.length} posts fail content-graph lint. Fix before pushing.\n`,
   );
   process.exit(1);
 }

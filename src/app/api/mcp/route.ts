@@ -2,7 +2,7 @@ import { WebStandardStreamableHTTPServerTransport } from "@modelcontextprotocol/
 import { buildMcpServer } from "@/lib/mcp/server";
 import { checkRateLimit } from "@/lib/mcp/rate-limiter";
 
-// Force Node.js runtime â€” pgvector + @vercel/postgres require it
+// Force Node.js runtime $€” pgvector + @vercel/postgres require it
 export const runtime = "nodejs";
 
 // GET: return discovery hint
@@ -37,7 +37,7 @@ export async function POST(request: Request): Promise<Response> {
   }
 
   const transport = new WebStandardStreamableHTTPServerTransport({
-    sessionIdGenerator: undefined, // stateless â€” new session per request
+    sessionIdGenerator: undefined, // stateless $€” new session per request
   });
 
   const server = buildMcpServer(ip);

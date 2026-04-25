@@ -1,4 +1,4 @@
--- Masters Plateau Diagnostic â€” lead-magnet submissions table.
+-- Masters Plateau Diagnostic $€” lead-magnet submissions table.
 -- See src/lib/diagnostic/* for the scoring engine + generator.
 -- Idempotent so this file can be re-applied safely.
 

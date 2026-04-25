@@ -57,7 +57,7 @@ export default async function HealthPage() {
     healthStats = h;
     usingLiveData = true;
   } catch {
-    // DB not available â€” demo data already set
+    // DB not available $€” demo data already set
   }
 
   return (
@@ -76,7 +76,7 @@ export default async function HealthPage() {
         <Card>
           <CardBody compact>
             <p className="text-foreground-subtle text-xs uppercase tracking-wider mb-1">
-              Trial â†’ Paid (This Week)
+              Trial $†’ Paid (This Week)
             </p>
             <p className="text-2xl font-heading text-off-white">
               {healthStats.trialToPaidRate.toFixed(0)}%
@@ -115,7 +115,7 @@ export default async function HealthPage() {
         <div className="px-5 py-3 border-b border-white/5 flex items-center gap-2">
           <span className="w-2 h-2 rounded-full bg-red-400" />
           <h2 className="font-heading text-sm text-red-400 tracking-wider">
-            AT RISK â€” TRIALS EXPIRING ({trials.length})
+            AT RISK $€” TRIALS EXPIRING ({trials.length})
           </h2>
         </div>
         <div className="overflow-x-auto">

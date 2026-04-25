@@ -130,7 +130,7 @@ export async function generateBlogPost(
 ): Promise<BlogOutput | null> {
   const apiKey = process.env.ANTHROPIC_API_KEY;
   if (!apiKey) {
-    console.error("  âœ— ANTHROPIC_API_KEY not set â€” skipping blog generation");
+    console.error("  $œ— ANTHROPIC_API_KEY not set $€” skipping blog generation");
     return null;
   }
 
@@ -157,7 +157,7 @@ export async function generateBlogPost(
     // Parse the metadata JSON block (```json ... ```)
     const jsonBlockMatch = text.match(/```json\s*([\s\S]*?)```/);
     if (!jsonBlockMatch) {
-      console.error(`  âœ— Could not find JSON block in response for: ${episode.title}`);
+      console.error(`  $œ— Could not find JSON block in response for: ${episode.title}`);
       return null;
     }
 
@@ -171,7 +171,7 @@ export async function generateBlogPost(
     try {
       metadata = JSON.parse(jsonBlockMatch[1].trim());
     } catch {
-      console.error(`  âœ— Failed to parse metadata JSON for: ${episode.title}`);
+      console.error(`  $œ— Failed to parse metadata JSON for: ${episode.title}`);
       return null;
     }
 
@@ -181,7 +181,7 @@ export async function generateBlogPost(
     const blogBody = sanitizeMdx(afterJsonBlock);
 
     if (!blogBody) {
-      console.error(`  âœ— Empty blog body for: ${episode.title}`);
+      console.error(`  $œ— Empty blog body for: ${episode.title}`);
       return null;
     }
 
@@ -218,7 +218,7 @@ export async function generateBlogPost(
     return { mdxContent, slug };
   } catch (error) {
     const msg = error instanceof Error ? error.message : String(error);
-    console.error(`  âœ— Blog generation failed for "${episode.title}": ${msg}`);
+    console.error(`  $œ— Blog generation failed for "${episode.title}": ${msg}`);
     return null;
   }
 }

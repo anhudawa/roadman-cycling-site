@@ -53,7 +53,7 @@ export function CookieConsent() {
 
     // Defer showing the banner until the user has scrolled OR dwelled
     // for 6s, whichever comes first. This keeps the hero's first paint
-    // clean â€” nothing covers the H1 or primary CTA while the visitor
+    // clean $€” nothing covers the H1 or primary CTA while the visitor
     // is still reading the value prop. We still show the banner before
     // they can submit a form or convert.
     let shown = false;
@@ -182,7 +182,7 @@ export function CookieConsent() {
           {showPrefs && (
             <div className="border-t border-white/10 pt-4 pb-1">
               <div className="grid gap-3 sm:grid-cols-3 max-w-xl">
-                {/* Essential â€” always on */}
+                {/* Essential $€” always on */}
                 <label className="flex items-center gap-2 text-sm text-off-white/70">
                   <input
                     type="checkbox"

@@ -21,7 +21,7 @@ interface Props {
 }
 
 function fmtRelative(iso: string | null): string {
-  if (!iso) return "‚Äî";
+  if (!iso) return "$Äî";
   const diff = Date.now() - new Date(iso).getTime();
   const m = Math.floor(diff / 60_000);
   const h = Math.floor(diff / 3_600_000);
@@ -102,11 +102,11 @@ export function TaskRequests({
                     <p className="text-foreground-subtle text-xs mt-0.5">
                       From{" "}
                       <span className="text-off-white">
-                        {t.createdByName ?? t.createdBy ?? "‚Äî"}
+                        {t.createdByName ?? t.createdBy ?? "$Äî"}
                       </span>
-                      {" ¬∑ "}
+                      {" $∑ "}
                       {fmtRelative(t.createdAt)}
-                      {t.dueAt && ` ¬∑ due ${new Date(t.dueAt).toLocaleDateString("en-GB", { day: "numeric", month: "short" })}`}
+                      {t.dueAt && ` $∑ due ${new Date(t.dueAt).toLocaleDateString("en-GB", { day: "numeric", month: "short" })}`}
                     </p>
                     {t.notes && (
                       <p className="text-foreground-muted text-xs mt-1 whitespace-pre-wrap">
@@ -123,7 +123,7 @@ export function TaskRequests({
                     )}
                     {t.responseMessage && (
                       <p className="text-[11px] text-foreground-muted mt-2 italic border-l-2 border-[var(--color-border-strong)] pl-2">
-                        Your last reply: ‚Äú{t.responseMessage}‚Äù
+                        Your last reply: $Äú{t.responseMessage}$Äù
                       </p>
                     )}
                   </div>
@@ -156,7 +156,7 @@ export function TaskRequests({
                 </div>
                 {replyOpenFor === t.id && (
                   <ReplyBox
-                    placeholder={`Reply to ${t.createdByName ?? "sender"}‚Ä¶`}
+                    placeholder={`Reply to ${t.createdByName ?? "sender"}$Ä¶`}
                     disabled={busyId === t.id}
                     onSubmit={(msg) => respond(t.id, "reply", msg)}
                     onCancel={() => setReplyOpenFor(null)}
@@ -190,14 +190,14 @@ export function TaskRequests({
                       <span className="text-off-white">
                         {t.assignedToName ?? t.assignedTo}
                       </span>
-                      {" ¬∑ sent "}
+                      {" $∑ sent "}
                       {fmtRelative(t.createdAt)}
-                      {t.dueAt && ` ¬∑ due ${new Date(t.dueAt).toLocaleDateString("en-GB", { day: "numeric", month: "short" })}`}
+                      {t.dueAt && ` $∑ due ${new Date(t.dueAt).toLocaleDateString("en-GB", { day: "numeric", month: "short" })}`}
                     </p>
                     {t.responseMessage && (
                       <p className="text-[11px] text-off-white mt-2 border-l-2 border-[var(--color-border-strong)] pl-2">
                         <span className="text-foreground-subtle">Reply:</span>{" "}
-                        ‚Äú{t.responseMessage}‚Äù
+                        $Äú{t.responseMessage}$Äù
                       </p>
                     )}
                   </div>
@@ -224,7 +224,7 @@ export function TaskRequests({
         </p>
       )}
 
-      {/* Keep currentUserName referenced so lint doesn't strip it ‚Äî still used by parent. */}
+      {/* Keep currentUserName referenced so lint doesn't strip it $Äî still used by parent. */}
       <span className="hidden" aria-hidden="true">
         {currentUserName}
       </span>
@@ -389,7 +389,7 @@ function ComposerModal({
               value={notes}
               onChange={(e) => setNotes(e.target.value)}
               rows={3}
-              placeholder="Why, links, anything useful‚Ä¶"
+              placeholder="Why, links, anything useful$Ä¶"
               className="w-full px-3 py-2 text-sm bg-[var(--color-sunken)] border border-[var(--color-border-strong)] text-[var(--color-fg)] rounded-[var(--radius-admin-md)] focus-ring focus:border-[var(--color-border-focus)]"
             />
           </div>
@@ -425,7 +425,7 @@ function ComposerModal({
             disabled={sending || !title.trim() || !assignedTo}
             className="font-body font-semibold text-[13px] px-4 py-1.5 rounded-[var(--radius-admin-md)] bg-[var(--color-elevated)] hover:bg-[var(--color-raised)] text-[var(--color-fg)] border border-[var(--color-border-strong)] disabled:opacity-50"
           >
-            {sending ? "Sending‚Ä¶" : "Send"}
+            {sending ? "Sending$Ä¶" : "Send"}
           </button>
         </div>
       </div>

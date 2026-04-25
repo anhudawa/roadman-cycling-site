@@ -15,7 +15,7 @@ export async function fetchRSSFeed(feedUrl: string): Promise<RSSEpisode[]> {
 }
 
 /**
- * Minimal RSS XML parser â€” extracts <item> elements without a full XML library.
+ * Minimal RSS XML parser $€” extracts <item> elements without a full XML library.
  * Handles standard podcast RSS feeds (title, guid, pubDate, enclosure, duration).
  */
 function parseRSSXml(xml: string): RSSEpisode[] {

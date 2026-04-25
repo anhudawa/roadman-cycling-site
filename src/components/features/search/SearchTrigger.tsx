@@ -5,7 +5,7 @@ import { useRouter } from "next/navigation";
 
 /**
  * Global Cmd+K search trigger.
- * Place this in the Header â€” it renders nothing visible but registers the
+ * Place this in the Header $€” it renders nothing visible but registers the
  * keyboard shortcut to navigate to /search.
  */
 export function SearchTrigger() {
@@ -22,6 +22,6 @@ export function SearchTrigger() {
     return () => document.removeEventListener("keydown", handleKeyDown);
   }, [router]);
 
-  // Invisible component â€” only provides the keyboard shortcut
+  // Invisible component $€” only provides the keyboard shortcut
   return null;
 }

@@ -21,7 +21,7 @@ interface Props {
 }
 
 function formatSize(bytes: number | null): string {
-  if (!bytes || bytes <= 0) return "â€”";
+  if (!bytes || bytes <= 0) return "$€”";
   if (bytes < 1024) return `${bytes} B`;
   if (bytes < 1024 * 1024) return `${(bytes / 1024).toFixed(1)} KB`;
   return `${(bytes / (1024 * 1024)).toFixed(2)} MB`;
@@ -158,7 +158,7 @@ export function ContactAttachments({ contactId, initial, currentUser }: Props) {
           disabled={uploading}
           className="font-body font-semibold text-[13px] text-[var(--color-fg-muted)] hover:text-[var(--color-fg)] hover:underline disabled:opacity-40"
         >
-          {uploading ? "Uploadingâ€¦" : "+ Upload"}
+          {uploading ? "Uploading$€¦" : "+ Upload"}
         </button>
       </div>
 
@@ -231,7 +231,7 @@ export function ContactAttachments({ contactId, initial, currentUser }: Props) {
                   )}
                   <p className="text-[11px] text-foreground-subtle">
                     {formatSize(a.sizeBytes)}
-                    {a.uploadedBySlug ? ` Â· ${a.uploadedBySlug}` : ""} Â· {formatDate(a.createdAt)}
+                    {a.uploadedBySlug ? ` $· ${a.uploadedBySlug}` : ""} $· {formatDate(a.createdAt)}
                   </p>
                 </div>
                 {canDelete && !isPending && (

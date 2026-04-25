@@ -19,7 +19,7 @@ const stats = [
 export function StatsSection() {
   return (
     <section className="bg-deep-purple py-12 md:py-16 relative overflow-hidden">
-      {/* Dot field â€” single div with CSS radial-gradient pattern, zero JS overhead */}
+      {/* Dot field $€” single div with CSS radial-gradient pattern, zero JS overhead */}
       <div
         className="absolute inset-0 pointer-events-none opacity-[0.07]"
         aria-hidden="true"

@@ -19,7 +19,7 @@ function DeltaPill({ pct }: { pct: number | null }) {
         up ? 'bg-[#F16363]/20 text-[#F16363]' : 'bg-white/10 text-white/60'
       }`}
     >
-      {up ? 'â†‘' : 'â†“'} {Math.abs(pct)}%
+      {up ? '$†‘' : '$†“'} {Math.abs(pct)}%
     </span>
   );
 }
@@ -30,7 +30,7 @@ export function HeadlineStats({ stats }: Props) {
       {stats.map((s) => (
         <div key={s.label} className="rounded-xl border border-white/5 bg-white/5 p-6 text-center">
           <div className="font-[var(--font-bebas-neue)] text-5xl text-white">
-            {s.value === null ? 'â€”' : <CounterAnimated value={s.value} />}
+            {s.value === null ? '$€”' : <CounterAnimated value={s.value} />}
           </div>
           <div className="mt-2 text-xs uppercase tracking-widest text-white/50">
             {s.label}

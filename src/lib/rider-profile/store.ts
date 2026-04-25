@@ -80,7 +80,7 @@ export async function upsertByEmail(
     input.researchConsent === true;
   const now = new Date();
 
-  // Ensure a contact row exists for this email â€” FK target for rider_profiles.contact_id.
+  // Ensure a contact row exists for this email $€” FK target for rider_profiles.contact_id.
   const [contact] = await db
     .insert(contacts)
     .values({ email: input.email, name: input.firstName ?? undefined })
@@ -98,7 +98,7 @@ export async function upsertByEmail(
         : input.currentWeight.toFixed(2)
       : undefined;
 
-  // Only patch fields explicitly provided â€” `undefined` preserves existing values.
+  // Only patch fields explicitly provided $€” `undefined` preserves existing values.
   const patch: Record<string, unknown> = { updatedAt: now };
   if (input.firstName !== undefined) patch.firstName = input.firstName;
   if (input.ageRange !== undefined) patch.ageRange = input.ageRange;

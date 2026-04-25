@@ -10,7 +10,7 @@ const BEEHIIV_PUBLICATION_ID = process.env.BEEHIIV_PUBLICATION_ID;
 const SKOOL_WEBHOOK_SECRET = process.env.SKOOL_WEBHOOK_SECRET;
 
 /**
- * Skool Clubhouse â†’ CRM webhook.
+ * Skool Clubhouse $†’ CRM webhook.
  *
  * Tolerant of three payload shapes so the admin "Skool Joins" count reflects
  * reality regardless of how signups are piped in:
@@ -18,7 +18,7 @@ const SKOOL_WEBHOOK_SECRET = process.env.SKOOL_WEBHOOK_SECRET;
  *   1. Skool native webhook:
  *        { event: "member.joined", data: { email, name, questions: [...] } }
  *
- *   2. Zapier "New Member in Community" trigger â†’ webhook POST:
+ *   2. Zapier "New Member in Community" trigger $†’ webhook POST:
  *        { email, name, questionnaire_answers: [...], ... }
  *      or flat with numeric keys (Zapier-flattened objects).
  *
@@ -26,7 +26,7 @@ const SKOOL_WEBHOOK_SECRET = process.env.SKOOL_WEBHOOK_SECRET;
  *        { email: "x@y.com", name: "...", answers: ["stuck on a plateau"] }
  *
  * Every call is logged to the `skool_events` table so /admin/integrations/skool
- * can prove the pipeline is working â€” including rejections, so bad secrets /
+ * can prove the pipeline is working $€” including rejections, so bad secrets /
  * bad payloads don't fail silently.
  *
  * Auth: set SKOOL_WEBHOOK_SECRET and pass it via either
@@ -35,7 +35,7 @@ const SKOOL_WEBHOOK_SECRET = process.env.SKOOL_WEBHOOK_SECRET;
  *   ?secret=<secret>   (query param, for Zapier flavours that don't do headers)
  */
 
-// â”€â”€ Payload normalisation â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+// $”€$”€ Payload normalisation $”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€
 
 interface NormalisedEvent {
   source: "skool_native" | "zapier" | "make" | "curl" | "unknown";
@@ -104,7 +104,7 @@ function normalisePayload(payload: unknown): NormalisedEvent {
     // Accept multiple naming schemes for question answers
     out.answers = extractAnswers(p);
 
-    // Event hint â€” some platforms send an explicit `action` field; otherwise
+    // Event hint $€” some platforms send an explicit `action` field; otherwise
     // treat any payload with an email as a "join" (which is the right call for
     // the Clubhouse "New Member" Zap).
     const action = stringOrNull(p.event ?? p.action ?? p.type)?.toLowerCase();
@@ -162,7 +162,7 @@ function extractAnswers(obj: Record<string, unknown>): string[] {
   return out;
 }
 
-// â”€â”€ Audit log â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+// $”€$”€ Audit log $”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€
 
 async function logEvent(args: {
   eventType: string;
@@ -190,7 +190,7 @@ async function logEvent(args: {
   }
 }
 
-// â”€â”€ Beehiiv tagging â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+// $”€$”€ Beehiiv tagging $”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€
 
 async function tagSubscriber(
   subscriberId: string,
@@ -288,7 +288,7 @@ async function upsertInBeehiiv(
   return false;
 }
 
-// â”€â”€ Main handler â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+// $”€$”€ Main handler $”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€
 
 export async function POST(request: Request) {
   const url = new URL(request.url);
@@ -337,7 +337,7 @@ export async function POST(request: Request) {
 
   const normalised = normalisePayload(payload);
 
-  // Not a member event we care about (or missing email) â†’ log + skip.
+  // Not a member event we care about (or missing email) $†’ log + skip.
   if (!normalised.email || !normalised.email.includes("@")) {
     await logEvent({
       eventType: normalised.eventType,
@@ -380,8 +380,8 @@ export async function POST(request: Request) {
     console.error("[Skool Webhook] Subscriber upsert failed:", err);
   }
 
-  // Enqueue a Ted welcome (idempotent â€” duplicate joins don't duplicate
-  // welcomes). Non-blocking â€” Beehiiv flow continues regardless.
+  // Enqueue a Ted welcome (idempotent $€” duplicate joins don't duplicate
+  // welcomes). Non-blocking $€” Beehiiv flow continues regardless.
   if (normalised.eventType === "member_joined") {
     try {
       const existing = await db
@@ -436,7 +436,7 @@ export async function POST(request: Request) {
   });
 }
 
-// Health check â€” returns the real status of the Skool webhook so /admin can
+// Health check $€” returns the real status of the Skool webhook so /admin can
 // show it on a pill without making a full POST.
 export async function GET() {
   return NextResponse.json({

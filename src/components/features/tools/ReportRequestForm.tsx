@@ -4,17 +4,17 @@ import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { type ToolSlug } from "@/lib/tools/reports";
 
-/** RFC-lite email regex â€” consistent with /apply + newsletter endpoints. */
+/** RFC-lite email regex $€” consistent with /apply + newsletter endpoints. */
 const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
 interface ReportRequestFormProps {
   /** Which calculator this report belongs to. Drives the API payload. */
   tool: ToolSlug;
-  /** Inputs captured from the calculator â€” forwarded to the report generator. */
+  /** Inputs captured from the calculator $€” forwarded to the report generator. */
   inputs: Record<string, unknown>;
   /** Optional: defaults when the user has already given their name. */
   defaultName?: string;
-  /** Short headline above the form â€” what they're getting. */
+  /** Short headline above the form $€” what they're getting. */
   heading: string;
   /** 1-2 sentence value prop. */
   subheading: string;
@@ -32,7 +32,7 @@ type Status = "idle" | "submitting" | "sent" | "error";
  * on the user-facing promise (bullet list of what's inside), tight on
  * the server side (one API call hits Resend + Beehiiv + CRM).
  *
- * Success state shows a "check your inbox" card â€” no instant-inline
+ * Success state shows a "check your inbox" card $€” no instant-inline
  * reveal to preserve the email-worth-giving feel. If the user already
  * has our cookie-consent for marketing, this is frictionless.
  */
@@ -149,7 +149,7 @@ export function ReportRequestForm({
                 disabled={status === "submitting"}
                 className="px-5 py-3 rounded-lg bg-coral hover:bg-coral-hover text-off-white font-heading text-sm tracking-wider disabled:opacity-60 disabled:cursor-not-allowed transition-colors whitespace-nowrap"
               >
-                {status === "submitting" ? "SENDINGâ€¦" : buttonText}
+                {status === "submitting" ? "SENDING$€¦" : buttonText}
               </button>
             </form>
 
@@ -159,7 +159,7 @@ export function ReportRequestForm({
 
             <p className="text-foreground-subtle text-xs mt-3">
               One-off report email. We&apos;ll also add you to the Saturday
-              Spin â€” unsubscribe anytime.
+              Spin $€” unsubscribe anytime.
             </p>
           </motion.div>
         ) : (
@@ -171,7 +171,7 @@ export function ReportRequestForm({
             transition={{ duration: 0.25 }}
             className="text-center"
           >
-            <div className="text-4xl mb-3">ðŸ“¬</div>
+            <div className="text-4xl mb-3">ðŸ“$</div>
             <p className="font-heading text-coral text-xs tracking-widest mb-2">
               REPORT ON ITS WAY
             </p>
@@ -182,7 +182,7 @@ export function ReportRequestForm({
               We just sent your personalised report to{" "}
               <span className="text-coral">{email}</span>. If it&apos;s not
               there in a minute, check your spam folder and mark us as &ldquo;not
-              spam&rdquo; â€” it helps with future deliveries.
+              spam&rdquo; $€” it helps with future deliveries.
             </p>
           </motion.div>
         )}

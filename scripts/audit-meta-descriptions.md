@@ -1,4 +1,4 @@
-# Meta Description Audit â€” April 2026
+# Meta Description Audit $€” April 2026
 
 ## Summary
 
@@ -16,7 +16,7 @@ Comprehensive audit of all meta descriptions across the Roadman Cycling site. Ch
 |------|-------|--------|-------|
 | `src/app/layout.tsx` (root) | Too long (197 chars) | "The podcast trusted by 1 million monthly listeners..." | "The cycling podcast trusted by 1M+ monthly listeners. Expert coaching, training plans, nutrition, and a community that refuses to settle." |
 | `src/app/(marketing)/strength-training/success/layout.tsx` | Too short (93 chars) | "You're in. Check your email for access details to the Strength Training for Cyclists course." | "You're in. Check your email for instant access to the 12-week Strength Training for Cyclists plan, instructional videos, and bonus guides." |
-| `src/app/(content)/tools/shock-pressure/layout.tsx` | Too short (113 chars) | "Calculate recommended air pressure and sag percentage..." | "Free MTB suspension calculator. Get recommended shock pressure, fork PSI, and sag percentage for your weight and riding style â€” XC, trail, enduro, or DH." |
+| `src/app/(content)/tools/shock-pressure/layout.tsx` | Too short (113 chars) | "Calculate recommended air pressure and sag percentage..." | "Free MTB suspension calculator. Get recommended shock pressure, fork PSI, and sag percentage for your weight and riding style $€” XC, trail, enduro, or DH." |
 | `src/app/(content)/tools/energy-availability/layout.tsx` | Too short (107 chars) | "Check if you're eating enough to support your cycling training..." | "Free energy availability calculator for cyclists. Find out if you're eating enough to train, recover, and avoid RED-S. Based on fat-free mass and training load." |
 
 ### Passed (25+ pages)
@@ -36,34 +36,34 @@ All other static pages had descriptions in the 120-160 range:
 
 **Total:** 92 posts. All had `seoDescription` frontmatter fields.
 
-### Fixed (24 posts â€” all too long, >160 chars)
+### Fixed (24 posts $€” all too long, >160 chars)
 
 Trimmed descriptions to 120-160 range while preserving keywords and intent:
 
-- `ftp-plateau-breakthrough.mdx` â€” 168 to 149 chars
-- `best-mtb-trails-ireland.mdx` â€” 161 to 139 chars
-- `cycling-protein-requirements.mdx` â€” 165 to 137 chars
-- `cycling-returning-after-break.mdx` â€” 161 to 136 chars
-- `cycling-fasted-riding-myth.mdx` â€” 163 to 139 chars
-- `best-mtb-trails-belfast.mdx` â€” 162 to 137 chars
-- `mtb-skills-beginners-guide.mdx` â€” 207 to 132 chars
-- `triathlon-ftp-pacing-strategy.mdx` â€” 174 to 121 chars
-- `triathlon-aero-position-guide.mdx` â€” 170 to 135 chars
-- `how-to-descend-faster-cycling.mdx` â€” 163 to 129 chars
-- `triathlon-cycling-training-plan.mdx` â€” 189 to 151 chars
-- `bike-fit-one-change-amateurs-should-make.mdx` â€” 176 to 146 chars
-- `cycling-energy-gels-guide.mdx` â€” 162 to 138 chars
-- `mtb-fork-setup-guide.mdx` â€” 164 to 143 chars
-- `mtb-maintenance-guide.mdx` â€” 177 to 129 chars
-- `cycling-caffeine-performance.mdx` â€” 164 to 149 chars
-- `cycling-in-rain-guide.mdx` â€” 172 to 139 chars
-- `greg-lemond-interview-roadman-podcast.mdx` â€” 170 to 130 chars
-- `triathlon-cycling-power-to-weight.mdx` â€” 163 to 128 chars
-- `cycling-recovery-tips.mdx` â€” 163 to 147 chars
-- `mtb-bike-fit-basics.mdx` â€” 165 to 139 chars
-- `cycling-over-40-getting-faster.mdx` â€” 167 to 137 chars
-- `cycling-climbing-tips-stop-getting-dropped.mdx` â€” 165 to 131 chars
-- `low-cadence-training-cycling-torque-intervals.mdx` â€” 170 to 147 chars
+- `ftp-plateau-breakthrough.mdx` $€” 168 to 149 chars
+- `best-mtb-trails-ireland.mdx` $€” 161 to 139 chars
+- `cycling-protein-requirements.mdx` $€” 165 to 137 chars
+- `cycling-returning-after-break.mdx` $€” 161 to 136 chars
+- `cycling-fasted-riding-myth.mdx` $€” 163 to 139 chars
+- `best-mtb-trails-belfast.mdx` $€” 162 to 137 chars
+- `mtb-skills-beginners-guide.mdx` $€” 207 to 132 chars
+- `triathlon-ftp-pacing-strategy.mdx` $€” 174 to 121 chars
+- `triathlon-aero-position-guide.mdx` $€” 170 to 135 chars
+- `how-to-descend-faster-cycling.mdx` $€” 163 to 129 chars
+- `triathlon-cycling-training-plan.mdx` $€” 189 to 151 chars
+- `bike-fit-one-change-amateurs-should-make.mdx` $€” 176 to 146 chars
+- `cycling-energy-gels-guide.mdx` $€” 162 to 138 chars
+- `mtb-fork-setup-guide.mdx` $€” 164 to 143 chars
+- `mtb-maintenance-guide.mdx` $€” 177 to 129 chars
+- `cycling-caffeine-performance.mdx` $€” 164 to 149 chars
+- `cycling-in-rain-guide.mdx` $€” 172 to 139 chars
+- `greg-lemond-interview-roadman-podcast.mdx` $€” 170 to 130 chars
+- `triathlon-cycling-power-to-weight.mdx` $€” 163 to 128 chars
+- `cycling-recovery-tips.mdx` $€” 163 to 147 chars
+- `mtb-bike-fit-basics.mdx` $€” 165 to 139 chars
+- `cycling-over-40-getting-faster.mdx` $€” 167 to 137 chars
+- `cycling-climbing-tips-stop-getting-dropped.mdx` $€” 165 to 131 chars
+- `low-cadence-training-cycling-torque-intervals.mdx` $€” 170 to 147 chars
 
 ### Passed (68 posts)
 
@@ -115,11 +115,11 @@ These had "[Guest] joins Anthony for another Roadman Cycling Podcast" as the des
 
 Approximately 212 podcast episodes still use `>-` YAML multiline descriptions that are truncated YouTube descriptions. These typically:
 
-1. **End with `...`** â€” cut off mid-sentence from YouTube description imports
-2. **Are informal/first-person** â€” "In this video Anthony..." or "Today I chat with..."
-3. **Reference YouTube** â€” "You can check out the full conversation here..."
-4. **Are too long** â€” multiline `>-` descriptions that exceed 160 chars when rendered
-5. **Lack keyword density** â€” rambling intros instead of focused SEO copy
+1. **End with `...`** $€” cut off mid-sentence from YouTube description imports
+2. **Are informal/first-person** $€” "In this video Anthony..." or "Today I chat with..."
+3. **Reference YouTube** $€” "You can check out the full conversation here..."
+4. **Are too long** $€” multiline `>-` descriptions that exceed 160 chars when rendered
+5. **Lack keyword density** $€” rambling intros instead of focused SEO copy
 
 ### Recommended approach for remaining episodes
 
@@ -146,7 +146,7 @@ High-traffic topics that likely drive organic search:
 
 ## Files Created
 
-- `scripts/check-descriptions.mjs` â€” Audit script (not executed, can be used for future automated checks)
+- `scripts/check-descriptions.mjs` $€” Audit script (not executed, can be used for future automated checks)
 
 ---
 

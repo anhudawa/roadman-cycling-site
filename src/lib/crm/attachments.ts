@@ -83,13 +83,13 @@ export async function deleteAttachment(
     return { ok: false, status: 403, error: "Only the uploader or an admin can delete this file" };
   }
 
-  // Try blob deletion. Don't block on token errors â€” but log.
+  // Try blob deletion. Don't block on token errors $€” but log.
   try {
     if (process.env.BLOB_READ_WRITE_TOKEN) {
       const { del } = await import("@vercel/blob");
       await del(row.blobPathname, { token: process.env.BLOB_READ_WRITE_TOKEN });
     } else {
-      console.warn("[attachments] BLOB_READ_WRITE_TOKEN missing â€” skipping blob delete");
+      console.warn("[attachments] BLOB_READ_WRITE_TOKEN missing $€” skipping blob delete");
     }
   } catch (err) {
     console.error("[attachments] blob delete failed", err);

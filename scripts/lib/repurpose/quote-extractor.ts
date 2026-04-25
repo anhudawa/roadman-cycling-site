@@ -18,7 +18,7 @@ export async function extractQuotes(
   guest?: string
 ): Promise<ExtractedQuote[]> {
   if (!process.env.ANTHROPIC_API_KEY) {
-    console.warn("  âš  ANTHROPIC_API_KEY not set, skipping quote extraction");
+    console.warn("  $š  ANTHROPIC_API_KEY not set, skipping quote extraction");
     return [];
   }
 
@@ -37,7 +37,7 @@ export async function extractQuotes(
     const text =
       response.content[0].type === "text" ? response.content[0].text : "";
 
-    // Parse JSON array â€” may be wrapped in code blocks or raw
+    // Parse JSON array $€” may be wrapped in code blocks or raw
     let jsonStr = text;
     const codeBlockMatch = text.match(/```(?:json)?\s*\n([\s\S]*?)\n```/);
     if (codeBlockMatch) {
@@ -52,7 +52,7 @@ export async function extractQuotes(
     const parsed = JSON.parse(jsonStr);
 
     if (!Array.isArray(parsed)) {
-      console.warn("  âš  Quote extraction did not return an array");
+      console.warn("  $š  Quote extraction did not return an array");
       return [];
     }
 

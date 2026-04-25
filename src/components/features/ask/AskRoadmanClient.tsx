@@ -6,7 +6,7 @@ import { MessageList } from "./MessageList";
 import { StarterPrompts } from "./StarterPrompts";
 
 export interface AskSeed {
-  /** Canonical tool slug (e.g. "ftp_zones") â€” forwarded to the orchestrator. */
+  /** Canonical tool slug (e.g. "ftp_zones") $€” forwarded to the orchestrator. */
   toolSlug: string;
   toolTitle: string;
   summary: string;
@@ -60,7 +60,7 @@ export function AskRoadmanClient({ seed = null }: { seed?: AskSeed | null }) {
           })),
         });
       } catch {
-        // silent â€” starter prompts still work
+        // silent $€” starter prompts still work
       }
     })();
     return () => {
@@ -79,7 +79,7 @@ export function AskRoadmanClient({ seed = null }: { seed?: AskSeed | null }) {
     autoGrow();
   }, [input, autoGrow]);
 
-  // Attach seed to the first message only â€” subsequent turns rely on
+  // Attach seed to the first message only $€” subsequent turns rely on
   // session-persisted context, and resending would just grow the prompt.
   const sendWithSeed = useCallback(
     async (query: string, starter?: string) => {
@@ -112,7 +112,7 @@ export function AskRoadmanClient({ seed = null }: { seed?: AskSeed | null }) {
       {!hasMessages && (
         <div className="px-4 md:px-6 pt-6 pb-2">
           <p className="text-foreground-muted text-sm mb-4">
-            Ask anything â€” training, fuelling, recovery, strength, masters-specific
+            Ask anything $€” training, fuelling, recovery, strength, masters-specific
             questions, or how to prep for an event. Roadman answers with the same
             positions you&rsquo;d hear on the podcast, grounded in Anthony&rsquo;s
             conversations with Dan Lorang, Professor Seiler, Dr David Dunne and the
@@ -148,7 +148,7 @@ export function AskRoadmanClient({ seed = null }: { seed?: AskSeed | null }) {
                 onSubmit();
               }
             }}
-            placeholder="Ask Roadman a cycling questionâ€¦"
+            placeholder="Ask Roadman a cycling question$€¦"
             rows={1}
             maxLength={2000}
             className="flex-1 resize-none bg-white/[0.04] border border-white/10 focus:border-coral/60 focus:bg-white/[0.07] rounded-lg px-3 py-2 text-off-white placeholder:text-foreground-subtle outline-none transition-colors"
@@ -159,7 +159,7 @@ export function AskRoadmanClient({ seed = null }: { seed?: AskSeed | null }) {
             disabled={isStreaming || input.trim().length < 2}
             className="font-heading tracking-wider uppercase text-sm bg-coral hover:bg-coral-hover disabled:opacity-40 disabled:cursor-not-allowed text-off-white px-5 py-2.5 rounded-md transition-colors"
           >
-            {isStreaming ? "Thinkingâ€¦" : "Send"}
+            {isStreaming ? "Thinking$€¦" : "Send"}
           </button>
         </div>
         <p className="text-foreground-subtle text-[11px] mt-1.5">

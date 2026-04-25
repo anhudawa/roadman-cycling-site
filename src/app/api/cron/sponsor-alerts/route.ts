@@ -9,7 +9,7 @@ import { notifyRenewalApproaching, notifyStaleSponsor } from "@/lib/notification
  * 1. Renewal dates within 30 days
  * 2. Last contact older than 30 days
  *
- * Protected by CRON_SECRET env var â€” Vercel sends this as an Authorization
+ * Protected by CRON_SECRET env var $€” Vercel sends this as an Authorization
  * header automatically when using Vercel Cron.
  */
 
@@ -31,7 +31,7 @@ export async function GET(request: NextRequest) {
   const thirtyDaysAgo = new Date(now.getTime() - 30 * 24 * 60 * 60 * 1000);
 
   try {
-    // Fetch all sponsors â€” we need to check dates client-side since Airtable
+    // Fetch all sponsors $€” we need to check dates client-side since Airtable
     // formula support for date comparisons is limited
     const sponsors = await getSponsors();
 

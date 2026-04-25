@@ -69,7 +69,7 @@ describe("prompt files", () => {
     const pillars = readPromptFiles().filter((f) => f.name.startsWith("pillar-"));
     for (const p of pillars) {
       expect(p.contents, `${p.name} must mention the Ted sign-off`).toMatch(
-        /â€” Ted/
+        /$€” Ted/
       );
     }
   });

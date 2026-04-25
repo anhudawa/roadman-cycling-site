@@ -87,7 +87,7 @@ export function writeRepurposedContent(
     }
   }
 
-  // Quote card PNGs are already written by the renderer â€” just track paths
+  // Quote card PNGs are already written by the renderer $€” just track paths
   if (result.quotes) {
     for (const cardPaths of result.quotes.cardPaths) {
       writtenPaths.push(cardPaths.squarePath);
@@ -123,7 +123,7 @@ export async function writeToDatabase(
 ): Promise<void> {
   const connectionString = process.env.POSTGRES_URL;
   if (!connectionString) {
-    console.warn("   âš  POSTGRES_URL not set â€” skipping database write");
+    console.warn("   $š  POSTGRES_URL not set $€” skipping database write");
     return;
   }
 
@@ -186,7 +186,7 @@ export async function writeToDatabase(
     console.log(`   ðŸ’¾ DB: wrote ${rows.length} content rows for episode ${episodeId}`);
   } catch (error) {
     const msg = error instanceof Error ? error.message : String(error);
-    console.error(`   âš  DB write failed (non-fatal): ${msg}`);
+    console.error(`   $š  DB write failed (non-fatal): ${msg}`);
   } finally {
     await pool.end();
   }

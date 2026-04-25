@@ -2,11 +2,11 @@ import type { Breakdown } from "./types";
 
 /**
  * Validation layer for LLM-generated breakdowns. Runs before we render
- * or persist â€” on failure the caller falls back to the static Â§9
+ * or persist $€” on failure the caller falls back to the static $§9
  * template for the assigned profile.
  *
  * Banned-phrase list is Appendix B of the spec. Structural checks are
- * Â§10 ("Validation layer").
+ * $§10 ("Validation layer").
  */
 
 export interface ValidationFailure {
@@ -86,7 +86,7 @@ function breakdownFullText(b: Breakdown): string {
 export function validateBreakdown(b: Breakdown): ValidationResult {
   const failures: ValidationFailure[] = [];
 
-  // â”€â”€ Structural checks â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+  // $”€$”€ Structural checks $”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€
   const requiredFields: Array<keyof Breakdown> = [
     "headline",
     "diagnosis",
@@ -124,11 +124,11 @@ export function validateBreakdown(b: Breakdown): ValidationResult {
   if (wordCount < 500 || wordCount > 900) {
     failures.push({
       code: "word_count",
-      detail: `${wordCount} words (required 500â€“900)`,
+      detail: `${wordCount} words (required 500$€“900)`,
     });
   }
 
-  // â”€â”€ Banned phrases â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+  // $”€$”€ Banned phrases $”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€
   for (const [regex, label] of BANNED_REGEXES) {
     if (regex.test(fullText)) {
       failures.push({ code: "banned_phrase", detail: label });
@@ -137,7 +137,7 @@ export function validateBreakdown(b: Breakdown): ValidationResult {
   for (const match of checkOptimise(fullText)) {
     failures.push({
       code: "banned_phrase",
-      detail: `"optimise" without a specific noun â€” "${match}"`,
+      detail: `"optimise" without a specific noun $€” "${match}"`,
     });
   }
 

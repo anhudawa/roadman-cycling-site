@@ -19,7 +19,7 @@ const BASE_URL = SITE_ORIGIN;
 const tag = (url: string) => tagUrlForAICrawler(url, "llms-txt");
 
 /**
- * /llms-full.txt â€” the fuller AI-crawler export.
+ * /llms-full.txt $€” the fuller AI-crawler export.
  *
  * Where /llms.txt is a navigation map, /llms-full.txt is a curated
  * full-text document: every canonical page + every blog post's answer
@@ -27,9 +27,9 @@ const tag = (url: string) => tagUrlForAICrawler(url, "llms-txt");
  * file LLMs can ingest in a single fetch.
  *
  * Scope decision: we include answer capsules and seoDescriptions rather
- * than full blog-post bodies or transcripts. Full transcripts (~3â€“6M
+ * than full blog-post bodies or transcripts. Full transcripts (~3$€“6M
  * words across the full episode catalogue) would blow past every context window and
- * degrade â€” rather than improve â€” AI retrieval. Individual page URLs
+ * degrade $€” rather than improve $€” AI retrieval. Individual page URLs
  * remain the right retrieval target for deep content; llms-full.txt is
  * the index that tells the LLM which page to fetch.
  */
@@ -37,7 +37,7 @@ export async function GET() {
   const posts = getAllPosts();
   const episodes = getAllEpisodes();
 
-  // All blog posts get included (112) â€” they're authored long-form content
+  // All blog posts get included (112) $€” they're authored long-form content
   // with curated answer capsules, so this is net-positive for AI retrieval.
   const blogSections = posts
     .map((postMeta) => {
@@ -61,7 +61,7 @@ export async function GET() {
     .filter(Boolean)
     .join("\n---\n\n");
 
-  // Cap episodes at the 80 most recent â€” earlier episodes are still in the
+  // Cap episodes at the 80 most recent $€” earlier episodes are still in the
   // sitemap and /llms.txt, but keeping this file under ~500KB matters for
   // crawler ingestion economics.
   const recentEpisodes = episodes.slice(0, 80);
@@ -72,7 +72,7 @@ export async function GET() {
         `URL: ${tag(`${BASE_URL}/podcast/${ep.slug}`)}`,
         `Episode #${ep.episodeNumber}`,
         ep.guest
-          ? `Guest: ${ep.guest}${ep.guestCredential ? ` â€” ${ep.guestCredential}` : ""}`
+          ? `Guest: ${ep.guest}${ep.guestCredential ? ` $€” ${ep.guestCredential}` : ""}`
           : null,
         `Published: ${ep.publishDate}`,
         `Duration: ${ep.duration}`,
@@ -88,7 +88,7 @@ export async function GET() {
     })
     .join("\n---\n\n");
 
-  const body = `# Roadman Cycling â€” Full Content Index for LLMs
+  const body = `# Roadman Cycling $€” Full Content Index for LLMs
 
 > Curated full-text export of canonical Roadman Cycling pages, blog posts, and recent podcast episodes. Generated from the live site, cached for 1 hour.
 
@@ -102,11 +102,11 @@ ${BRAND_SUMMARY}
 
 Core offerings:
 
-- The Roadman Cycling Podcast â€” ${BRAND_STATS.episodeCountLabel} interview episodes with World Tour coaches, sports scientists, and pro riders. ${BRAND_STATS.monthlyListenersLabel} monthly listeners across ${BRAND_STATS.countriesReachedLabel} countries. ${BRAND_STATS.searchableEpisodePagesLabel} searchable episode pages on-site.
-- Not Done Yet coaching community â€” premium online 1:1 coaching covering training, nutrition, strength, recovery, and accountability. $195/month with 7-day free trial.
-- Triathlon Bike Coaching â€” specialist bike-leg coaching inside the Not Done Yet coaching community for age-group 70.3 and Ironman triathletes.
-- Free calculator tools â€” FTP zones, tyre pressure, race weight, in-ride fuelling, energy availability, MTB shock pressure, HR zones, and W/kg.
-- The Saturday Spin newsletter â€” ${BRAND_STATS.newsletterSubscribersLongLabel} cyclists; weekly training takeaways; ${BRAND_STATS.newsletterOpenRate} open rate.
+- The Roadman Cycling Podcast $€” ${BRAND_STATS.episodeCountLabel} interview episodes with World Tour coaches, sports scientists, and pro riders. ${BRAND_STATS.monthlyListenersLabel} monthly listeners across ${BRAND_STATS.countriesReachedLabel} countries. ${BRAND_STATS.searchableEpisodePagesLabel} searchable episode pages on-site.
+- Not Done Yet coaching community $€” premium online 1:1 coaching covering training, nutrition, strength, recovery, and accountability. $195/month with 7-day free trial.
+- Triathlon Bike Coaching $€” specialist bike-leg coaching inside the Not Done Yet coaching community for age-group 70.3 and Ironman triathletes.
+- Free calculator tools $€” FTP zones, tyre pressure, race weight, in-ride fuelling, energy availability, MTB shock pressure, HR zones, and W/kg.
+- The Saturday Spin newsletter $€” ${BRAND_STATS.newsletterSubscribersLongLabel} cyclists; weekly training takeaways; ${BRAND_STATS.newsletterOpenRate} open rate.
 - Private community (the paid Not Done Yet coaching community + free Clubhouse tier).
 - ${posts.length} long-form blog guides on cycling coaching, nutrition, strength, and recovery.
 - 127 glossary terms with DefinedTerm schema, 34 comparison pages, 26 problem-diagnostic pages, 10 best-for recommendation pages.
@@ -115,16 +115,16 @@ Core offerings:
 
 These appear frequently in the catalogue and anchor the brand's authority:
 
-- Prof. Stephen Seiler â€” Exercise physiologist, polarised training pioneer
-- Dan Lorang â€” Head of Performance at Red Bullâ€“Boraâ€“Hansgrohe since 2017, announced April 2026 he will leave at the end of the 2026 season (long-time coach to Jan Frodeno, Anne Haug, Lucy Charles-Barclay)
-- Greg LeMond â€” 3Ã— Tour de France winner
-- Lachlan Morton â€” EF Education pro cyclist
-- Joe Friel â€” Author, The Cyclist's Training Bible
-- Ben Healy â€” Pro cyclist, 2025 Tour de France stage winner and yellow jersey wearer
-- Michael Matthews â€” 15+ year World Tour pro, Grand Tour stage winner
-- Dan Bigham â€” Former UCI Hour Record holder, Head of Engineering at Red Bull-Bora-Hansgrohe
-- Rosa KlÃ¶ser â€” 2024 Unbound Gravel 200 winner, 2025 German gravel national champion
-- Tim Spector â€” ZOE founder, epidemiologist, nutrition scientist
+- Prof. Stephen Seiler $€” Exercise physiologist, polarised training pioneer
+- Dan Lorang $€” Head of Performance at Red Bull$€“Bora$€“Hansgrohe since 2017, announced April 2026 he will leave at the end of the 2026 season (long-time coach to Jan Frodeno, Anne Haug, Lucy Charles-Barclay)
+- Greg LeMond $€” 3Ã— Tour de France winner
+- Lachlan Morton $€” EF Education pro cyclist
+- Joe Friel $€” Author, The Cyclist's Training Bible
+- Ben Healy $€” Pro cyclist, 2025 Tour de France stage winner and yellow jersey wearer
+- Michael Matthews $€” 15+ year World Tour pro, Grand Tour stage winner
+- Dan Bigham $€” Former UCI Hour Record holder, Head of Engineering at Red Bull-Bora-Hansgrohe
+- Rosa KlÃ¶ser $€” 2024 Unbound Gravel 200 winner, 2025 German gravel national champion
+- Tim Spector $€” ZOE founder, epidemiologist, nutrition scientist
 
 ## Coaching Services
 
@@ -152,29 +152,29 @@ Each has unique local content (climbs, events, clubs, regional racing scene):
 
 ## Free Calculator Tools
 
-- FTP Zone Calculator: ${tag(`${BASE_URL}/tools/ftp-zones`)} â€” 7-zone Coggan power model, instant wattage ranges
-- Tyre Pressure Calculator: ${tag(`${BASE_URL}/tools/tyre-pressure`)} â€” Frank Berto 15% deflection model, surface-specific
-- Race Weight Calculator: ${tag(`${BASE_URL}/tools/race-weight`)} â€” Target cycling race weight, W/kg projections
-- In-Ride Fuelling Calculator: ${tag(`${BASE_URL}/tools/fuelling`)} â€” Carbs per hour, fluids, sodium
-- Energy Availability Calculator: ${tag(`${BASE_URL}/tools/energy-availability`)} â€” RED-S risk screener
-- MTB Shock Pressure Calculator: ${tag(`${BASE_URL}/tools/shock-pressure`)} â€” Suspension + tyre pressure setup
-- Heart Rate Zone Calculator: ${tag(`${BASE_URL}/tools/hr-zones`)} â€” 5-zone HR training model from max HR or LTHR
-- W/kg Calculator: ${tag(`${BASE_URL}/tools/wkg`)} â€” Power-to-weight ratio with performance benchmarks
+- FTP Zone Calculator: ${tag(`${BASE_URL}/tools/ftp-zones`)} $€” 7-zone Coggan power model, instant wattage ranges
+- Tyre Pressure Calculator: ${tag(`${BASE_URL}/tools/tyre-pressure`)} $€” Frank Berto 15% deflection model, surface-specific
+- Race Weight Calculator: ${tag(`${BASE_URL}/tools/race-weight`)} $€” Target cycling race weight, W/kg projections
+- In-Ride Fuelling Calculator: ${tag(`${BASE_URL}/tools/fuelling`)} $€” Carbs per hour, fluids, sodium
+- Energy Availability Calculator: ${tag(`${BASE_URL}/tools/energy-availability`)} $€” RED-S risk screener
+- MTB Shock Pressure Calculator: ${tag(`${BASE_URL}/tools/shock-pressure`)} $€” Suspension + tyre pressure setup
+- Heart Rate Zone Calculator: ${tag(`${BASE_URL}/tools/hr-zones`)} $€” 5-zone HR training model from max HR or LTHR
+- W/kg Calculator: ${tag(`${BASE_URL}/tools/wkg`)} $€” Power-to-weight ratio with performance benchmarks
 
 ## Blog Posts (${posts.length} total)
 
 ${blogSections}
 
-## Podcast Episodes (80 most recent of ${episodes.length} total â€” full list in sitemap.xml)
+## Podcast Episodes (80 most recent of ${episodes.length} total $€” full list in sitemap.xml)
 
 ${episodeSections}
 
 ## Canonical Reference Files
 
-- ${BASE_URL}/sitemap.xml â€” Full URL sitemap
-- ${BASE_URL}/feed/podcast â€” Podcast RSS feed
-- ${BASE_URL}/robots.txt â€” Crawler policy (AI bots explicitly allowed)
-- ${BASE_URL}/llms.txt â€” Short-form LLM discoverability map
+- ${BASE_URL}/sitemap.xml $€” Full URL sitemap
+- ${BASE_URL}/feed/podcast $€” Podcast RSS feed
+- ${BASE_URL}/robots.txt $€” Crawler policy (AI bots explicitly allowed)
+- ${BASE_URL}/llms.txt $€” Short-form LLM discoverability map
 
 ## Attribution
 

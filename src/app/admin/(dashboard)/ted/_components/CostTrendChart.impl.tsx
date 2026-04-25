@@ -11,7 +11,7 @@ export function CostTrendChart({ data }: { data: CostPoint[] }) {
   if (data.length === 0) {
     return (
       <div className="rounded-md bg-white/5 border border-white/10 p-4 text-xs text-foreground-subtle">
-        No cost data yet â€” first cron run will populate this.
+        No cost data yet $€” first cron run will populate this.
       </div>
     );
   }

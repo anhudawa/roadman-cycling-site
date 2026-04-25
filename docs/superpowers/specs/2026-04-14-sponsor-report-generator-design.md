@@ -1,4 +1,4 @@
-# Sponsor Report Generator â€” Design Spec
+# Sponsor Report Generator $€” Design Spec
 
 **Date:** 2026-04-14
 **Status:** Approved for implementation
@@ -30,19 +30,19 @@ Give Roadman a one-click monthly report per sponsor (Training Peaks, Bikmo, Parl
 | Mentions | Computed on-demand | Regex scan transcript for each alias, case-insensitive, word-boundary. Return `{episodeId, charIndex, quote}`. |
 | Approximate timestamp | Computed on-demand | `timestampSeconds = (charIndex / transcript.length) * episodeDurationSeconds`. |
 | Episode downloads (v1) | Seeded deterministic fake | `seededDownloads(episodeId)` returns a stable integer in `[70_000, 150_000]` derived from a hash of the episode id. Cached in `episode_downloads_cache` on first access. |
-| Website sessions | GA4 Data API | New helper `src/lib/analytics/ga4.ts` â†’ `getMonthlyWebSessions(month)`. |
+| Website sessions | GA4 Data API | New helper `src/lib/analytics/ga4.ts` $†’ `getMonthlyWebSessions(month)`. |
 | Social views (FB / X / Instagram) | Manual entry | Stored in new `monthly_social_stats` table. Small form on the report page, one input per platform. |
 
 ### Caching
 
 - Mentions + GA4 sessions: HTTP cache 1 hour per `(sponsorId, month)`.
-- Social stats: no TTL â€” invalidate on save.
+- Social stats: no TTL $€” invalidate on save.
 - Downloads cache: written once per episode, never auto-expired (source column allows later upgrade to real data).
 
 ### Rendering
 
-- Report view is a React Server Component â€” fetches sponsor, episodes for the month, mentions, downloads, GA4, and social stats in parallel.
-- PDF export route re-uses the same report components rendered through `@react-pdf/renderer` for a print-ready file. (Fall back to Puppeteer if `@react-pdf/renderer` has styling parity issues with the dark theme â€” evaluate during implementation.)
+- Report view is a React Server Component $€” fetches sponsor, episodes for the month, mentions, downloads, GA4, and social stats in parallel.
+- PDF export route re-uses the same report components rendered through `@react-pdf/renderer` for a print-ready file. (Fall back to Puppeteer if `@react-pdf/renderer` has styling parity issues with the dark theme $€” evaluate during implementation.)
 
 ## Data model
 
@@ -81,11 +81,11 @@ Mentions are computed on-demand from transcript text and cached at the HTTP laye
 | File | Purpose |
 |------|---------|
 | `src/lib/reports/sponsor-report.ts` | Top-level composer: takes `(sponsorId, month)`, returns the full report payload. |
-| `src/lib/reports/mentions.ts` | `findMentions(transcript, aliases) â†’ Mention[]` with char-index + quote. Pure function, unit-tested. |
+| `src/lib/reports/mentions.ts` | `findMentions(transcript, aliases) $†’ Mention[]` with char-index + quote. Pure function, unit-tested. |
 | `src/lib/reports/timestamp.ts` | `approximateTimestamp(charIndex, transcriptLength, durationSeconds)`. Pure, unit-tested. |
-| `src/lib/reports/downloads.ts` | `seededDownloads(episodeId)` â€” deterministic hash â†’ `[70k, 150k]`. Wraps `episode_downloads_cache` read-through. |
+| `src/lib/reports/downloads.ts` | `seededDownloads(episodeId)` $€” deterministic hash $†’ `[70k, 150k]`. Wraps `episode_downloads_cache` read-through. |
 | `src/lib/reports/social-stats.ts` | CRUD for `monthly_social_stats`. Upsert on save. |
-| `src/lib/analytics/ga4.ts` | GA4 Data API wrapper. One function: `getMonthlyWebSessions(month) â†’ number`. |
+| `src/lib/analytics/ga4.ts` | GA4 Data API wrapper. One function: `getMonthlyWebSessions(month) $†’ number`. |
 | `src/app/admin/inventory/sponsors/[sponsorId]/reports/[month]/page.tsx` | Server component report view. |
 | `src/app/admin/inventory/sponsors/[sponsorId]/reports/[month]/pdf/route.ts` | PDF export route. |
 | `src/app/admin/inventory/sponsors/[sponsorId]/reports/[month]/actions.ts` | Server action for social-stats form submit. |
@@ -101,27 +101,27 @@ Mentions are computed on-demand from transcript text and cached at the HTTP laye
 
 ### Sponsors index (existing page, light upgrade)
 
-Each sponsor card gains a **Reports** button with a month picker popover (defaults to previous month â€” the useful default for renewal conversations).
+Each sponsor card gains a **Reports** button with a month picker popover (defaults to previous month $€” the useful default for renewal conversations).
 
 ### Report page
 
 Full-bleed dark layout, designed as a deliverable.
 
-1. **Hero** â€” sponsor logo (large), sponsor name in Bebas Neue, subtitle "Monthly Partnership Report â€” <Month Year>". Coral divider.
-2. **Headline stats row** â€” 4 animated counters:
+1. **Hero** $€” sponsor logo (large), sponsor name in Bebas Neue, subtitle "Monthly Partnership Report $€” <Month Year>". Coral divider.
+2. **Headline stats row** $€” 4 animated counters:
    - Brand Mentions
    - Total Episode Reach (sum of downloads across mentioning episodes)
    - Web Sessions
    - Social Impressions (sum of FB + X + Insta)
 
-   Each with a month-over-month delta pill (â†‘ coral / â†“ muted grey). Comparison month = previous month's report for the same sponsor.
-3. **Mentions timeline** â€” chronological list of episodes that mentioned the sponsor this month. Each episode row shows:
+   Each with a month-over-month delta pill ($†‘ coral / $†“ muted grey). Comparison month = previous month's report for the same sponsor.
+3. **Mentions timeline** $€” chronological list of episodes that mentioned the sponsor this month. Each episode row shows:
    - Episode number + title
    - Mention count badge
    - Downloads number
-   - Below: mention sub-rows of `MM:SS â€” "...10â€“15 words of surrounding transcript..."` with a coral **Listen â†’** button (Spotify deeplink with `?t=seconds`).
-4. **Audience panel** â€” 2Ã—2 grid of platform cards (Website, Facebook, X, Instagram). Each card: monthly view count, sparkline if history exists, platform icon, subtle brand-colored accent.
-5. **Footer** â€” "Generated on <date> â€” Roadman Cycling" + prominent coral **Download PDF** button.
+   - Below: mention sub-rows of `MM:SS $€” "...10$€“15 words of surrounding transcript..."` with a coral **Listen $†’** button (Spotify deeplink with `?t=seconds`).
+4. **Audience panel** $€” 2Ã—2 grid of platform cards (Website, Facebook, X, Instagram). Each card: monthly view count, sparkline if history exists, platform icon, subtle brand-colored accent.
+5. **Footer** $€” "Generated on <date> $€” Roadman Cycling" + prominent coral **Download PDF** button.
 
 ### Visual language
 
@@ -133,9 +133,9 @@ Full-bleed dark layout, designed as a deliverable.
 
 ## Error handling & edge cases
 
-- **Sponsor has no mentions this month:** timeline shows a friendly empty state ("No mentions this month â€” here's your audience growth instead") with the audience panel still rendered. Report is still useful.
+- **Sponsor has no mentions this month:** timeline shows a friendly empty state ("No mentions this month $€” here's your audience growth instead") with the audience panel still rendered. Report is still useful.
 - **No episodes published this month:** same empty state; headline counter reads `0` with delta disabled.
-- **GA4 unreachable:** render the web card with a subtle "â€”" and an admin-only tooltip explaining the fetch failed. Report still loads.
+- **GA4 unreachable:** render the web card with a subtle "$€”" and an admin-only tooltip explaining the fetch failed. Report still loads.
 - **Social stats not yet entered:** platform cards show the entry form inline instead of the number. Saving submits via server action and re-renders.
 - **Transcript missing for an episode:** skip that episode silently for mention-matching but still include it in downloads if relevant. Log to server console.
 - **Future month selected:** month picker disables future months.
@@ -152,7 +152,7 @@ Full-bleed dark layout, designed as a deliverable.
 - Automated social scraping (manual entry chosen deliberately).
 - Shareable public links for sponsors (sponsor email + PDF covers 95% of use cases).
 - Human confirmation/correction of transcript mentions (can add later if alias matching proves noisy).
-- Historical backfill for months before today â€” sparklines will fill in organically as months tick past.
+- Historical backfill for months before today $€” sparklines will fill in organically as months tick past.
 
 ## Rollout
 

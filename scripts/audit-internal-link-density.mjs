@@ -8,10 +8,10 @@
  *   - Strongest hubs (most-linked-to posts)
  *
  * Inbound link = body-text /blog/<target-slug> reference from a different
- * post. Each (referrer â†’ target) pair is counted at most once even if the
+ * post. Each (referrer $†’ target) pair is counted at most once even if the
  * referrer links to the target multiple times. The RelatedPosts widget at
  * the bottom of every post is rendered server-side from getRelatedPosts()
- * and is NOT counted here â€” this audit measures editorial link equity
+ * and is NOT counted here $€” this audit measures editorial link equity
  * (which Google weights higher), not template-driven sidebar links.
  *
  * Use this to spot:

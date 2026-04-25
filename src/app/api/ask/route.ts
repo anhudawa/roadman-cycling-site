@@ -76,7 +76,7 @@ export async function POST(request: Request): Promise<Response> {
     return jsonError(
       429,
       "rate_limited",
-      `Hold up â€” too many questions in a short window. Try again in ${rl.retryAfterSeconds ?? 60}s.`,
+      `Hold up $€” too many questions in a short window. Try again in ${rl.retryAfterSeconds ?? 60}s.`,
       { retryAfterSeconds: rl.retryAfterSeconds },
     );
   }
@@ -110,7 +110,7 @@ export async function POST(request: Request): Promise<Response> {
   // Send an immediate session-id event so the client can store it.
   ctrl.enqueue({ type: "meta", data: { sessionId: session.id, kind: "session_ack" } });
 
-  // Run the orchestrator without awaiting â€” the Response is the ReadableStream.
+  // Run the orchestrator without awaiting $€” the Response is the ReadableStream.
   streamAnswer(
     {
       query,

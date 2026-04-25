@@ -118,14 +118,14 @@ export function DealEditor({ deal: initial }: { deal: DealData }) {
             {deal.title}
           </h1>
           <p className="text-sm text-foreground-muted mt-1">
-            {formatCurrency(deal.valueCents, deal.currency)} Â· {STAGE_LABELS[deal.stage]}
+            {formatCurrency(deal.valueCents, deal.currency)} $· {STAGE_LABELS[deal.stage]}
           </p>
           {deal.contactId && (
             <Link
               href={`/admin/contacts/${deal.contactId}`}
               className="inline-block mt-2 text-xs text-[var(--color-bad)] hover:underline"
             >
-              {deal.contactName ?? deal.contactEmail} â†’
+              {deal.contactName ?? deal.contactEmail} $†’
             </Link>
           )}
         </div>
@@ -142,7 +142,7 @@ export function DealEditor({ deal: initial }: { deal: DealData }) {
             disabled={busy}
             className="px-4 py-2 bg-[var(--color-elevated)] hover:bg-[var(--color-raised)] text-[var(--color-fg)] border border-[var(--color-border-strong)] text-sm font-heading tracking-wider rounded-lg uppercase disabled:opacity-50"
           >
-            {busy ? "Savingâ€¦" : "Save"}
+            {busy ? "Saving$€¦" : "Save"}
           </button>
         </div>
       </div>
@@ -251,7 +251,7 @@ export function DealEditor({ deal: initial }: { deal: DealData }) {
             <dl className="space-y-2 text-xs">
               <Row label="Created">{fmt(deal.createdAt)}</Row>
               <Row label="Updated">{fmt(deal.updatedAt)}</Row>
-              <Row label="Closed">{deal.closedAt ? fmt(deal.closedAt) : "â€”"}</Row>
+              <Row label="Closed">{deal.closedAt ? fmt(deal.closedAt) : "$€”"}</Row>
               <Row label="Contact">
                 {deal.contactId ? (
                   <Link
@@ -261,7 +261,7 @@ export function DealEditor({ deal: initial }: { deal: DealData }) {
                     {deal.contactName ?? deal.contactEmail}
                   </Link>
                 ) : (
-                  "â€”"
+                  "$€”"
                 )}
               </Row>
             </dl>

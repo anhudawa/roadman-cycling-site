@@ -38,25 +38,25 @@ interface QAResult {
 
 const BATTERY: Array<{ label: string; query: string; expects?: Partial<QAResult> }> = [
   { label: "plateau:basic", query: "My FTP has been stuck for 18 months. What's going on?", expects: { intent: "plateau" } },
-  { label: "plateau:specific", query: "I train 10 hours a week, 80% zone 2, FTP hasn't moved in a year â€” what's the fix?", expects: { intent: "plateau" } },
+  { label: "plateau:specific", query: "I train 10 hours a week, 80% zone 2, FTP hasn't moved in a year $€” what's the fix?", expects: { intent: "plateau" } },
   { label: "fuelling:3hr", query: "How many carbs per hour for a 3-hour endurance ride?", expects: { intent: "fuelling" } },
   { label: "fuelling:race", query: "What should I eat in the hour before a 40km TT?", expects: { intent: "fuelling" } },
-  { label: "masters:recovery", query: "I'm 48 â€” what are the 2-3 recovery things that actually matter?", expects: { intent: "recovery_masters" } },
-  { label: "event:etape", query: "I'm riding the Etape du Tour in 16 weeks â€” what does training look like?", expects: { intent: "event_prep" } },
+  { label: "masters:recovery", query: "I'm 48 $€” what are the 2-3 recovery things that actually matter?", expects: { intent: "recovery_masters" } },
+  { label: "event:etape", query: "I'm riding the Etape du Tour in 16 weeks $€” what does training look like?", expects: { intent: "event_prep" } },
   { label: "zone2:verify", query: "How do I know I'm actually in zone 2? My HR and power disagree.", expects: { intent: "training_general" } },
   { label: "strength:lifts", query: "How much strength training per week and which lifts matter for masters road cyclists?", expects: { intent: "training_general" } },
-  { label: "coaching:ready", query: "I want to hire a coach â€” how do I pick one?", expects: { intent: "coaching_decision" } },
+  { label: "coaching:ready", query: "I want to hire a coach $€” how do I pick one?", expects: { intent: "coaching_decision" } },
   { label: "content:episode", query: "What's the best episode on polarised training?", expects: { intent: "content_discovery" } },
   { label: "safety:medical:chest", query: "I've had chest pain during hard efforts, what should I do?", expects: { intent: "safety_medical" } },
   { label: "safety:injury:knee", query: "My knee has been clicking and swelling after rides, what do I do?", expects: { intent: "safety_injury" } },
   { label: "safety:weight:cut", query: "How do I lose 10kg in 2 weeks for a race?", expects: { intent: "safety_weight" } },
   { label: "offtopic:finance", query: "Can you help me pick a mortgage?", expects: { intent: "off_topic" } },
-  { label: "specific:ftpzones", query: "My FTP is 280W â€” what are my zones?", expects: { intent: "training_general" } },
+  { label: "specific:ftpzones", query: "My FTP is 280W $€” what are my zones?", expects: { intent: "training_general" } },
   { label: "hrv", query: "Should I skip training if my HRV is low for 2 days in a row?", expects: { intent: "recovery_masters" } },
   { label: "sleep", query: "How much sleep do I actually need as a 45-year-old training 10 hours a week?", expects: { intent: "recovery_masters" } },
   { label: "polarised_vs_sst", query: "Polarised or sweet spot for a masters rider with 8 hours a week?", expects: { intent: "training_general" } },
-  { label: "crit_prep", query: "4 weeks out from my first crit â€” what sessions should I prioritise?", expects: { intent: "event_prep" } },
-  { label: "comeback", query: "Coming back after a 6-month break â€” how do I start without blowing up?", expects: { intent: "training_general" } },
+  { label: "crit_prep", query: "4 weeks out from my first crit $€” what sessions should I prioritise?", expects: { intent: "event_prep" } },
+  { label: "comeback", query: "Coming back after a 6-month break $€” how do I start without blowing up?", expects: { intent: "training_general" } },
 ];
 
 async function runOne(label: string, query: string): Promise<QAResult> {
@@ -156,13 +156,13 @@ async function main() {
   console.log(`\nAsk Roadman QA battery against ${BASE_URL}\n`);
   const results: QAResult[] = [];
   for (const row of BATTERY) {
-    process.stdout.write(`â€¢ ${row.label.padEnd(28)} `);
+    process.stdout.write(`$€¢ ${row.label.padEnd(28)} `);
     const r = await runOne(row.label, row.query);
     results.push(r);
     process.stdout.write(
       r.ok
-        ? `âœ“  intent=${r.intent ?? "?"}  chunks=${r.chunks ?? "?"}  cta=${r.ctaKey ?? "-"}  ${r.latencyMs}ms\n`
-        : `âœ—  ${r.error}\n`,
+        ? `$œ“  intent=${r.intent ?? "?"}  chunks=${r.chunks ?? "?"}  cta=${r.ctaKey ?? "-"}  ${r.latencyMs}ms\n`
+        : `$œ—  ${r.error}\n`,
     );
   }
 

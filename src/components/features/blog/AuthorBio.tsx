@@ -5,7 +5,7 @@ import Link from "next/link";
  * Author bio card rendered at the bottom of every blog post. E-E-A-T
  * signal that tells Google (and AI citation agents) who wrote this and
  * what their authority is. Every blog page ends up surfacing a Person
- * link to /about and verified `sameAs` social URLs â€” compounding the
+ * link to /about and verified `sameAs` social URLs $€” compounding the
  * site's entity consolidation for the Anthony Walsh Person entity.
  *
  * Kept deliberately simple: one author (Anthony) because every article
@@ -25,7 +25,7 @@ export function AuthorBio() {
         <div className="relative w-20 h-20 sm:w-24 sm:h-24 rounded-full overflow-hidden shrink-0 border border-white/10">
           <Image
             src="/images/about/anthony-profile-closeup.jpg"
-            alt="Anthony Walsh â€” founder, Roadman Cycling"
+            alt="Anthony Walsh $€” founder, Roadman Cycling"
             fill
             className="object-cover"
             sizes="96px"
@@ -41,7 +41,7 @@ export function AuthorBio() {
           <p className="text-sm text-foreground-muted leading-relaxed mb-4">
             Host of the Roadman Cycling Podcast, with over 1,400 on-the-record
             conversations with World Tour coaches, sports scientists, and pro
-            riders â€” including Prof. Stephen Seiler, Dan Lorang, Greg LeMond
+            riders $€” including Prof. Stephen Seiler, Dan Lorang, Greg LeMond
             and Joe Friel. Based in Dublin, Ireland. Coaches cyclists and
             triathletes across Ireland, the UK and the US through the{" "}
             <Link
@@ -57,13 +57,13 @@ export function AuthorBio() {
               href="/author/anthony-walsh"
               className="text-foreground-muted hover:text-coral transition-colors"
             >
-              ABOUT â†’
+              ABOUT $†’
             </Link>
             <Link
               href="/editorial-standards"
               className="text-foreground-muted hover:text-coral transition-colors"
             >
-              EDITORIAL STANDARDS â†’
+              EDITORIAL STANDARDS $†’
             </Link>
             <a
               href="https://x.com/Roadman_Podcast"

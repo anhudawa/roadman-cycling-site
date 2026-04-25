@@ -2,7 +2,7 @@ import crypto from "crypto";
 
 /**
  * Google OAuth 2.0 helpers. We deliberately do NOT pull in NextAuth or
- * googleapis â€” both add significant surface area for a flow with just two
+ * googleapis $€” both add significant surface area for a flow with just two
  * endpoints. Keep it small and boring.
  */
 
@@ -72,7 +72,7 @@ export function configured(): boolean {
   );
 }
 
-/** Signed state token â€” CSRF protection + carries the `next` redirect. */
+/** Signed state token $€” CSRF protection + carries the `next` redirect. */
 export function createState(next: string): string {
   const secret =
     process.env.AUTH_SECRET ??

@@ -14,12 +14,12 @@ interface PodcastHeroProps {
 
 /**
  * Mobile-primary hero surface. Lead with the product 1M people a
- * month actually consume â€” the podcast. The headline stays the
+ * month actually consume $€” the podcast. The headline stays the
  * brand promise; the waveform is the visual anchor; the latest
  * episode is the thing you can hit play on right now.
  *
  * The primary coral button triggers the in-site MiniPlayer via
- * usePodcastPlayer() â€” no round-trip to /podcast/[slug]. The
+ * usePodcastPlayer() $€” no round-trip to /podcast/[slug]. The
  * secondary text link routes to /apply (the paid funnel) so the
  * coaching CTA is still one tap away without competing visually
  * with Play.
@@ -92,7 +92,7 @@ export function PodcastHero({ episode, ctaHref, ctaLabel }: PodcastHeroProps) {
           >
             <span className="block font-heading text-xs tracking-[0.25em] text-coral/90 mb-1">
               {episode.episodeNumber ? `EP. ${episode.episodeNumber}` : "LATEST EPISODE"}
-              <span className="text-off-white/40 mx-2">Â·</span>
+              <span className="text-off-white/40 mx-2">$·</span>
               <span className="text-off-white/60 font-body tracking-normal normal-case">
                 {episode.duration}
               </span>
@@ -134,7 +134,7 @@ export function PodcastHero({ episode, ctaHref, ctaLabel }: PodcastHeroProps) {
           className="font-heading text-sm tracking-[0.18em] text-off-white/75 hover:text-coral transition-colors py-2"
           style={{ transitionDuration: "var(--duration-fast)" }}
         >
-          {ctaLabel} <span aria-hidden="true">â†’</span>
+          {ctaLabel} <span aria-hidden="true">$†’</span>
         </Link>
       </motion.div>
     </div>

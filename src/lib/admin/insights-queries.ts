@@ -12,7 +12,7 @@ import type { ToolSlug } from "@/lib/tool-results/types";
 
 /**
  * SQL aggregates backing /admin/insights. Each helper returns a small
- * POJO the page can render directly â€” no formatting, no presentational
+ * POJO the page can render directly $€” no formatting, no presentational
  * decisions. Heavy lifting stays in SQL so the page remains a thin
  * server-component composer.
  */
@@ -108,7 +108,7 @@ export async function getToolFunnels(range: InsightsRange): Promise<ToolFunnel[]
   const handoffMap = new Map(handoffRows.map((r) => [r.tool, r.cnt]));
 
   // Analytics events write the tool name with either dash or underscore
-  // depending on when the call-site wrote it â€” normalise both.
+  // depending on when the call-site wrote it $€” normalise both.
   const norm = (t: string) => t.replace(/-/g, "_");
 
   const sumByNorm = (map: Map<string, number>, tool: ToolSlug): number => {
@@ -134,7 +134,7 @@ export interface TopQuestion {
 /**
  * Panel 2: top user questions grouped by first 8 words. Hand-written
  * stop-list keeps the grouping stable without pulling in a full NLP
- * dep â€” most of the value is spotting repeat phrasings.
+ * dep $€” most of the value is spotting repeat phrasings.
  */
 export async function getTopQuestions(range: InsightsRange, limit = 20): Promise<TopQuestion[]> {
   const since = rangeToSince(range);
@@ -172,7 +172,7 @@ export interface PrimaryResultRow {
 }
 
 /**
- * Panel 3: most-common primary_result values per tool â€” e.g. how many
+ * Panel 3: most-common primary_result values per tool $€” e.g. how many
  * riders land on the "underRecovered" profile or the "75g/hr" carb
  * bucket.
  */
@@ -199,7 +199,7 @@ export async function getTopPrimaryResults(
 
   return rows.map((r) => ({
     tool: r.tool as ToolSlug,
-    primaryResult: r.primaryResult ?? "â€”",
+    primaryResult: r.primaryResult ?? "$€”",
     count: Number(r.cnt),
   }));
 }
@@ -406,7 +406,7 @@ export async function getCoachingLeads(range: InsightsRange, limit = 25): Promis
 export interface EmailCaptureStats {
   total: number;
   emailed: number;
-  rate: number; // 0â€“100
+  rate: number; // 0$€“100
 }
 
 export async function getEmailCaptureStats(range: InsightsRange): Promise<EmailCaptureStats> {

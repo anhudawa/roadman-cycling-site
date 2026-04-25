@@ -3,7 +3,7 @@ import Link from "next/link";
 import { Header, Footer, Section, Container } from "@/components/layout";
 
 export const metadata: Metadata = {
-  title: "Privacy Policy â€” Roadman Cycling",
+  title: "Privacy Policy $€” Roadman Cycling",
   description:
     "How Roadman Cycling collects, uses, and protects your personal data. GDPR-compliant privacy policy covering newsletter signups, analytics, and third-party services.",
   alternates: {
@@ -43,7 +43,7 @@ export default function PrivacyPolicyPage() {
                   Roadman Cycling is an Irish cycling media and education brand.
                   We produce the Roadman Cycling Podcast, publish written content
                   about cycling performance and training, operate the Saturday
-                  Spin Newsletter, and run the Not Done Yet coaching community â€”
+                  Spin Newsletter, and run the Not Done Yet coaching community $€”
                   our paid online coaching community for serious cyclists.
                 </p>
                 <p className="mt-3">
@@ -67,28 +67,28 @@ export default function PrivacyPolicyPage() {
                     <span className="text-off-white font-medium">
                       Email addresses
                     </span>{" "}
-                    â€” provided when you sign up for the Saturday Spin Newsletter
+                    $€” provided when you sign up for the Saturday Spin Newsletter
                     or other email communications.
                   </li>
                   <li>
                     <span className="text-off-white font-medium">
                       Analytics data
                     </span>{" "}
-                    â€” page views, scroll depth, time on page, and navigation
+                    $€” page views, scroll depth, time on page, and navigation
                     patterns collected through our custom analytics tracker.
                   </li>
                   <li>
                     <span className="text-off-white font-medium">
                       Device and browser information
                     </span>{" "}
-                    â€” browser type, operating system, screen resolution, and
+                    $€” browser type, operating system, screen resolution, and
                     device type collected automatically when you visit our site.
                   </li>
                   <li>
                     <span className="text-off-white font-medium">
                       Referrer data
                     </span>{" "}
-                    â€” the website or source that directed you to our site.
+                    $€” the website or source that directed you to our site.
                   </li>
                 </ul>
               </div>
@@ -103,7 +103,7 @@ export default function PrivacyPolicyPage() {
                     <span className="text-off-white font-medium">
                       Newsletter delivery
                     </span>{" "}
-                    â€” your email address is used to send you the Saturday Spin
+                    $€” your email address is used to send you the Saturday Spin
                     Newsletter and occasional updates about Roadman Cycling
                     content and offerings, delivered via Beehiiv.
                   </li>
@@ -111,7 +111,7 @@ export default function PrivacyPolicyPage() {
                     <span className="text-off-white font-medium">
                       Site analytics
                     </span>{" "}
-                    â€” we use analytics data to understand how visitors interact
+                    $€” we use analytics data to understand how visitors interact
                     with our site, identify popular content, and improve the user
                     experience.
                   </li>
@@ -119,7 +119,7 @@ export default function PrivacyPolicyPage() {
                     <span className="text-off-white font-medium">
                       Conversion tracking
                     </span>{" "}
-                    â€” we track conversions (such as newsletter signups) to
+                    $€” we track conversions (such as newsletter signups) to
                     measure the effectiveness of our content and marketing
                     efforts.
                   </li>
@@ -127,7 +127,7 @@ export default function PrivacyPolicyPage() {
                     <span className="text-off-white font-medium">
                       A/B testing
                     </span>{" "}
-                    â€” we run experiments to test different versions of pages and
+                    $€” we run experiments to test different versions of pages and
                     features, using cookies to ensure you see a consistent
                     experience during each experiment.
                   </li>
@@ -148,7 +148,7 @@ export default function PrivacyPolicyPage() {
                     <span className="text-off-white font-medium">
                       Beehiiv
                     </span>{" "}
-                    â€” email newsletter platform. Your email address is stored and
+                    $€” email newsletter platform. Your email address is stored and
                     processed by Beehiiv to deliver the Saturday Spin Newsletter.
                     Beehiiv may collect open rates and click data on our behalf.
                   </li>
@@ -156,20 +156,20 @@ export default function PrivacyPolicyPage() {
                     <span className="text-off-white font-medium">
                       Meta / Facebook Pixel
                     </span>{" "}
-                    â€” advertising and conversion tracking. The Meta Pixel
+                    $€” advertising and conversion tracking. The Meta Pixel
                     collects data about your visit to help us measure advertising
                     effectiveness and build audiences for targeted advertising on
                     Facebook and Instagram.
                   </li>
                   <li>
                     <span className="text-off-white font-medium">Vercel</span>{" "}
-                    â€” website hosting and analytics. Our site is hosted on Vercel,
+                    $€” website hosting and analytics. Our site is hosted on Vercel,
                     which may collect standard server logs including IP addresses,
                     request timestamps, and page URLs.
                   </li>
                   <li>
                     <span className="text-off-white font-medium">Stripe</span>{" "}
-                    â€” payment processing. If you purchase a subscription to the
+                    $€” payment processing. If you purchase a subscription to the
                     Not Done Yet coaching community (hosted on Skool), payment is
                     processed by Stripe. We do not store your full payment card details on our
                     servers.
@@ -191,14 +191,14 @@ export default function PrivacyPolicyPage() {
                     <span className="text-off-white font-medium">
                       Session cookies
                     </span>{" "}
-                    â€” essential cookies for site functionality that expire when
+                    $€” essential cookies for site functionality that expire when
                     you close your browser.
                   </li>
                   <li>
                     <span className="text-off-white font-medium">
                       Analytics cookies
                     </span>{" "}
-                    â€” our custom analytics tracker uses sessionStorage
+                    $€” our custom analytics tracker uses sessionStorage
                     (roadman_session_id) to track page views, scroll depth, and
                     time on page.
                   </li>
@@ -206,7 +206,7 @@ export default function PrivacyPolicyPage() {
                     <span className="text-off-white font-medium">
                       A/B testing cookies
                     </span>{" "}
-                    â€” <code className="text-coral text-sm">ab_variant</code>{" "}
+                    $€” <code className="text-coral text-sm">ab_variant</code>{" "}
                     (30-day duration) and{" "}
                     <code className="text-coral text-sm">roadman_ab_*</code>{" "}
                     (90-day duration per experiment) cookies are used to assign
@@ -216,7 +216,7 @@ export default function PrivacyPolicyPage() {
                     <span className="text-off-white font-medium">
                       Meta Pixel cookies
                     </span>{" "}
-                    â€” including <code className="text-coral text-sm">_fbp</code>{" "}
+                    $€” including <code className="text-coral text-sm">_fbp</code>{" "}
                     and <code className="text-coral text-sm">_fbc</code> cookies
                     set by Meta for advertising attribution and tracking.
                   </li>
@@ -245,42 +245,42 @@ export default function PrivacyPolicyPage() {
                     <span className="text-off-white font-medium">
                       Right of access
                     </span>{" "}
-                    â€” you can request a copy of the personal data we hold about
+                    $€” you can request a copy of the personal data we hold about
                     you.
                   </li>
                   <li>
                     <span className="text-off-white font-medium">
                       Right to rectification
                     </span>{" "}
-                    â€” you can ask us to correct any inaccurate or incomplete
+                    $€” you can ask us to correct any inaccurate or incomplete
                     personal data.
                   </li>
                   <li>
                     <span className="text-off-white font-medium">
                       Right to erasure
                     </span>{" "}
-                    â€” you can request that we delete your personal data, subject
+                    $€” you can request that we delete your personal data, subject
                     to certain legal exceptions.
                   </li>
                   <li>
                     <span className="text-off-white font-medium">
                       Right to data portability
                     </span>{" "}
-                    â€” you can request your data in a structured,
+                    $€” you can request your data in a structured,
                     commonly-used, machine-readable format.
                   </li>
                   <li>
                     <span className="text-off-white font-medium">
                       Right to object
                     </span>{" "}
-                    â€” you can object to the processing of your personal data for
+                    $€” you can object to the processing of your personal data for
                     direct marketing or other purposes.
                   </li>
                   <li>
                     <span className="text-off-white font-medium">
                       Right to withdraw consent
                     </span>{" "}
-                    â€” where processing is based on consent, you can withdraw that
+                    $€” where processing is based on consent, you can withdraw that
                     consent at any time. For newsletter subscriptions, you can
                     unsubscribe at any time using the link in every email.
                   </li>
@@ -304,7 +304,7 @@ export default function PrivacyPolicyPage() {
                     <span className="text-off-white font-medium">
                       Email addresses
                     </span>{" "}
-                    â€” retained until you unsubscribe from our newsletter. Upon
+                    $€” retained until you unsubscribe from our newsletter. Upon
                     unsubscription, your email is removed from our active mailing
                     list. Beehiiv may retain suppression records to honour your
                     unsubscribe request.
@@ -313,7 +313,7 @@ export default function PrivacyPolicyPage() {
                     <span className="text-off-white font-medium">
                       Analytics data
                     </span>{" "}
-                    â€” retained for 12 months, after which it is aggregated or
+                    $€” retained for 12 months, after which it is aggregated or
                     deleted.
                   </li>
                 </ul>

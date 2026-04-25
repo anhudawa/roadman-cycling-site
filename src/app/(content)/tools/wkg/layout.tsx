@@ -4,7 +4,7 @@ import { JsonLd } from "@/components/seo/JsonLd";
 import { SoftwareApplicationSchema } from "@/components/seo/SoftwareApplicationSchema";
 
 export const metadata: Metadata = {
-  title: "W/kg Calculator â€” Cycling Power-to-Weight Ratio",
+  title: "W/kg Calculator $€” Cycling Power-to-Weight Ratio",
   description:
     "Calculate your cycling power-to-weight ratio (W/kg) instantly. Compare against amateur, competitive, and professional benchmarks.",
   keywords: ["w/kg calculator", "watts per kg cycling", "power to weight ratio", "cycling w/kg"],

@@ -4,8 +4,8 @@
  * SEO quality assurance audit across all blog + podcast content.
  * Checks every page against the blueprint's definition of done:
  *
- *   - Has seoTitle (â‰¤60 chars)
- *   - Has seoDescription (â‰¤155 chars)
+ *   - Has seoTitle ($‰¤60 chars)
+ *   - Has seoDescription ($‰¤155 chars)
  *   - Has canonical URL
  *   - Has keywords
  *   - Has answerCapsule

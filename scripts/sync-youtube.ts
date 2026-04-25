@@ -70,7 +70,7 @@ async function main() {
   let videoIds: string[];
   if (singleVideo) {
     videoIds = [singleVideo];
-    console.log(`üé¨ Single video mode: ${singleVideo}`);
+    console.log(`üé$ Single video mode: ${singleVideo}`);
   } else {
     console.log("üìã Fetching video list from YouTube...");
     videoIds = getAllVideoIds(CHANNEL_HANDLE);
@@ -89,7 +89,7 @@ async function main() {
   console.log(`üÜï New videos to process: ${newVideoIds.length}`);
 
   if (newVideoIds.length === 0) {
-    console.log("‚úÖ Nothing to sync!");
+    console.log("$úÖ Nothing to sync!");
     saveState(state);
     return;
   }
@@ -114,7 +114,7 @@ async function main() {
     const video = getVideoDetails(videoId);
 
     if (!video) {
-      console.log("‚ùå Could not fetch metadata");
+      console.log("$ùå Could not fetch metadata");
       errors++;
       continue;
     }
@@ -122,7 +122,7 @@ async function main() {
     // Filter check
     const { passed } = filterVideos([video]);
     if (passed.length === 0) {
-      console.log(`‚è≠ Filtered: ${video.title.slice(0, 50)}...`);
+      console.log(`$è≠ Filtered: ${video.title.slice(0, 50)}...`);
       state.skippedVideoIds.push(videoId);
       filtered++;
       continue;
@@ -151,7 +151,7 @@ async function main() {
 
         if (transcript) {
           const wordCount = transcript.split(/\s+/).length;
-          console.log(`‚úì ${wordCount} words`);
+          console.log(`$úì ${wordCount} words`);
 
           // AI extraction
           if (process.env.ANTHROPIC_API_KEY) {
@@ -164,15 +164,15 @@ async function main() {
             );
             if (aiContent) {
               console.log(
-                `‚úì ${aiContent.keyTakeaways.length} takeaways, ${aiContent.quotes.length} quotes`
+                `$úì ${aiContent.keyTakeaways.length} takeaways, ${aiContent.quotes.length} quotes`
               );
             } else {
-              console.log("‚ö† Failed");
+              console.log("$ö† Failed");
             }
             await aiDelay();
           }
         } else {
-          console.log("‚ö† None available");
+          console.log("$ö† None available");
         }
 
         // Small delay between videos
@@ -194,14 +194,14 @@ async function main() {
         console.log(`   üè∑  Would write: ${existingPath ? path.basename(existingPath) : slug + ".mdx"}${existingPath ? " (overwrite)" : ""}`);
       } else {
         writeMdxFile(writePath, content);
-        console.log(`   ‚úÖ ${existingPath ? path.basename(existingPath) + " (enriched)" : slug + ".mdx"}`);
+        console.log(`   $úÖ ${existingPath ? path.basename(existingPath) + " (enriched)" : slug + ".mdx"}`);
       }
 
       state.processedVideoIds.unshift(video.videoId);
       created++;
     } catch (error) {
       const msg = error instanceof Error ? error.message : String(error);
-      console.error(`   ‚ùå Error: ${msg}`);
+      console.error(`   $ùå Error: ${msg}`);
       errors++;
     }
   }

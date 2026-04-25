@@ -8,14 +8,14 @@ import { PodcastSearch } from "@/components/features/podcast/PodcastSearch";
 import { ENTITY_IDS, SITE_ORIGIN } from "@/lib/brand-facts";
 
 export const metadata: Metadata = {
-  title: "Podcast Archive â€” Every Episode",
+  title: "Podcast Archive $€” Every Episode",
   description:
     "Browse every episode of the Roadman Cycling Podcast. 1M+ monthly listeners. Expert interviews with Professor Seiler, Dan Lorang, Lachlan Morton, Greg LeMond, and more.",
   alternates: {
     canonical: "https://roadmancycling.com/podcast",
   },
   openGraph: {
-    title: "Podcast Archive â€” Every Episode",
+    title: "Podcast Archive $€” Every Episode",
     description:
       "Browse every episode of the Roadman Cycling Podcast. 1M+ monthly listeners. Expert interviews with Professor Seiler, Dan Lorang, Lachlan Morton, Greg LeMond, and more.",
     type: "website",
@@ -92,7 +92,7 @@ export default function PodcastPage() {
             <div className="relative w-32 h-32 md:w-40 md:h-40 mx-auto mb-8 rounded-full overflow-hidden ring-2 ring-coral/30 ring-offset-4 ring-offset-deep-purple">
               <Image
                 src="/images/about/anthony-podcast-promo.jpg"
-                alt="Anthony Walsh â€” Roadman Cycling Podcast host"
+                alt="Anthony Walsh $€” Roadman Cycling Podcast host"
                 fill
                 className="object-cover object-top"
                 sizes="160px"
@@ -133,7 +133,7 @@ export default function PodcastPage() {
           </Container>
         </Section>
 
-        {/* Podcast guides â€” internal links from the pillar to
+        {/* Podcast guides $€” internal links from the pillar to
             authority cluster articles */}
         <Section background="deep-purple" grain>
           <Container width="narrow">

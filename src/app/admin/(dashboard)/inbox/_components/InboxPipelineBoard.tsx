@@ -272,10 +272,10 @@ export function InboxPipelineBoard({ initialStages }: Props) {
         </div>
       )}
 
-      {/* Totals hidden â€” page header already shows them. Keep totalCount referenced for TS. */}
+      {/* Totals hidden $€” page header already shows them. Keep totalCount referenced for TS. */}
       <span className="sr-only">{totalCount} total</span>
 
-      {/* Edge-fade wrapper â€” the CSS gradient overlays at the viewport edges
+      {/* Edge-fade wrapper $€” the CSS gradient overlays at the viewport edges
           hint there's more to scroll. Board itself uses snap-scroll with a
           peek of the next column (72vw on mobile). */}
       <div className="relative -mx-4 sm:-mx-6">
@@ -442,7 +442,7 @@ function InboxDetailModal({
             {sub.subject || "Inbox message"}
           </h2>
           <span className="text-foreground-subtle text-[11px] font-mono tabular-nums shrink-0">
-            #{sub.id} Â· {submitted}
+            #{sub.id} $· {submitted}
           </span>
           <div className="ml-auto flex items-center gap-2 shrink-0">
             <Button

@@ -6,7 +6,7 @@ import {
 
 function isAuthorized(req: NextRequest): boolean {
   const cronSecret = process.env.CRON_SECRET;
-  if (!cronSecret) return true; // no secret configured â€” allow
+  if (!cronSecret) return true; // no secret configured $€” allow
 
   const authHeader = req.headers.get("authorization");
   return authHeader === `Bearer ${cronSecret}`;

@@ -259,7 +259,7 @@ export function SegmentBuilder({
               type="text"
               value={draft.name}
               onChange={(e) => setDraft((d) => ({ ...d, name: e.target.value }))}
-              placeholder="e.g. Stale customers â€” no activity 90d"
+              placeholder="e.g. Stale customers $€” no activity 90d"
               className="mt-1 w-full px-3 py-2 bg-background-deep border border-white/10 rounded text-sm text-off-white"
             />
           </div>
@@ -289,7 +289,7 @@ export function SegmentBuilder({
           </div>
 
           <div>
-            <label className="text-[10px] uppercase tracking-widest text-foreground-subtle font-medium">Tags â€” any of (comma separated)</label>
+            <label className="text-[10px] uppercase tracking-widest text-foreground-subtle font-medium">Tags $€” any of (comma separated)</label>
             <input
               type="text"
               value={csvInput(f.tagsAny)}
@@ -475,7 +475,7 @@ export function SegmentBuilder({
           <h3 className="font-heading text-sm text-off-white tracking-wider uppercase">Preview</h3>
           {previewing && <span className="text-[10px] text-foreground-subtle">updating...</span>}
         </div>
-        <div className="text-3xl font-heading text-[var(--color-bad)]">{preview?.count ?? "â€”"}</div>
+        <div className="text-3xl font-heading text-[var(--color-bad)]">{preview?.count ?? "$€”"}</div>
         <div className="text-[10px] uppercase tracking-widest text-foreground-subtle mb-3">matching contacts</div>
         {preview && preview.preview.length > 0 ? (
           <ul className="space-y-1.5 max-h-[500px] overflow-y-auto">

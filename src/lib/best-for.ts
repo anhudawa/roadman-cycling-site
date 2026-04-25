@@ -21,7 +21,7 @@ export const BEST_FOR_PAGES: BestForPage[] = [
     slug: "best-cycling-training-apps",
     title: "Best Cycling Training Apps",
     seoTitle: "Best Cycling Training Apps for Structured Training",
-    seoDescription: "The best cycling training apps compared. TrainerRoad, Zwift, TrainingPeaks, Rouvy â€” which one fits your goals? Honest picks by rider type.",
+    seoDescription: "The best cycling training apps compared. TrainerRoad, Zwift, TrainingPeaks, Rouvy $€” which one fits your goals? Honest picks by rider type.",
     pillar: "coaching",
     intro: "The right training app depends on what you need: structured plans, social motivation, analytics depth, or coach integration. Here are the best options for each use case.",
     picks: [
@@ -39,7 +39,7 @@ export const BEST_FOR_PAGES: BestForPage[] = [
     slug: "best-power-meters-amateur-cyclists",
     title: "Best Power Meters for Amateur Cyclists",
     seoTitle: "Best Power Meters for Amateur Cyclists",
-    seoDescription: "Best power meters for amateur cyclists in 2026. Pedal, crank, spider â€” compared by accuracy, portability, and value for the money.",
+    seoDescription: "Best power meters for amateur cyclists in 2026. Pedal, crank, spider $€” compared by accuracy, portability, and value for the money.",
     pillar: "community",
     intro: "A power meter is the most impactful training tool you can buy after a bike that fits. Here are the best options for amateur cyclists by type and budget.",
     picks: [
@@ -50,16 +50,16 @@ export const BEST_FOR_PAGES: BestForPage[] = [
     ],
     faq: [
       { question: "Is a single-sided power meter accurate enough?", answer: "For training, yes. Single-sided doubles one leg's reading. If your left-right balance is 48-52%, the error is minimal and consistency matters more than absolute accuracy." },
-      { question: "Should I buy a power meter or smart trainer first?", answer: "If you ride mostly indoors, smart trainer. If you ride mostly outdoors, power meter. If 50/50, power meter â€” it works in both environments." },
+      { question: "Should I buy a power meter or smart trainer first?", answer: "If you ride mostly indoors, smart trainer. If you ride mostly outdoors, power meter. If 50/50, power meter $€” it works in both environments." },
     ],
   },
   {
     slug: "best-indoor-training-platforms",
     title: "Best Indoor Training Platforms for Road Cyclists",
     seoTitle: "Best Indoor Training Platforms for Road Cyclists",
-    seoDescription: "Best indoor cycling platforms compared for road cyclists. Structured workouts, virtual riding, analytics â€” which platform delivers results?",
+    seoDescription: "Best indoor cycling platforms compared for road cyclists. Structured workouts, virtual riding, analytics $€” which platform delivers results?",
     pillar: "coaching",
-    intro: "Indoor training platforms have transformed winter cycling. But they serve different purposes â€” structured training, social motivation, route simulation, or analytics. Pick the one that matches how you actually ride.",
+    intro: "Indoor training platforms have transformed winter cycling. But they serve different purposes $€” structured training, social motivation, route simulation, or analytics. Pick the one that matches how you actually ride.",
     picks: [
       { name: "TrainerRoad", verdict: "Best for structured adaptive training", bestFor: "Self-coached riders who want AI-adjusted plans", href: "/blog/zwift-vs-trainerroad" },
       { name: "Zwift", verdict: "Best for social riding and racing", bestFor: "Riders who need external motivation to train indoors", href: "/blog/zwift-vs-trainerroad" },
@@ -67,7 +67,7 @@ export const BEST_FOR_PAGES: BestForPage[] = [
       { name: "TrainingPeaks + ERG", verdict: "Best for coached athletes", bestFor: "Riders with a human coach building their plan", href: "/compare/trainerroad-vs-trainingpeaks" },
     ],
     faq: [
-      { question: "Can I use Zwift for structured training?", answer: "Yes â€” Zwift has structured workouts and training plans. But its adaptive training is less sophisticated than TrainerRoad's, and the gamification can pull you off plan." },
+      { question: "Can I use Zwift for structured training?", answer: "Yes $€” Zwift has structured workouts and training plans. But its adaptive training is less sophisticated than TrainerRoad's, and the gamification can pull you off plan." },
       { question: "Do I need a smart trainer for these platforms?", answer: "Strongly recommended. A smart trainer provides accurate power data and ERG mode (automatic resistance adjustment). Without one, you're guessing at intensity." },
     ],
   },
@@ -84,7 +84,7 @@ export const BEST_FOR_PAGES: BestForPage[] = [
       { name: "FasCat Coaching", verdict: "Strong event-plan focus", bestFor: "Riders who want a structured calendar with racing periodisation", href: "/compare/self-coached-vs-coached" },
     ],
     faq: [
-      { question: "When should I start coaching before a sportive?", answer: "12-16 weeks before the event is ideal. This gives enough time for a base phase, a build phase, and a taper. Under 8 weeks and coaching is damage limitation â€” still useful, but you're working with the fitness you have." },
+      { question: "When should I start coaching before a sportive?", answer: "12-16 weeks before the event is ideal. This gives enough time for a base phase, a build phase, and a taper. Under 8 weeks and coaching is damage limitation $€” still useful, but you're working with the fitness you have." },
       { question: "Do I need a coach for every sportive?", answer: "No. If you've done the event before and know your body well, self-coaching with a structured app can work. Coaching adds most value for first-time events, events with significant climbing, or events where you have a specific time goal." },
     ],
   },
@@ -92,7 +92,7 @@ export const BEST_FOR_PAGES: BestForPage[] = [
     slug: "best-cycling-coach-comeback-riders",
     title: "Best Cycling Coach for Comeback Riders",
     seoTitle: "Best Cycling Coach for Comeback Riders",
-    seoDescription: "Returning to cycling after time off? The best coaching options for comeback riders â€” rebuilding safely without overtraining or injury.",
+    seoDescription: "Returning to cycling after time off? The best coaching options for comeback riders $€” rebuilding safely without overtraining or injury.",
     pillar: "coaching",
     intro: "Coming back to cycling after illness, injury, or life is where coaching prevents the most damage. The instinct is to rush; a coach manages the rebuild.",
     picks: [
@@ -109,9 +109,9 @@ export const BEST_FOR_PAGES: BestForPage[] = [
     slug: "best-cycling-apps-structured-training",
     title: "Best Cycling Apps for Structured Training",
     seoTitle: "Best Cycling Apps for Structured Training",
-    seoDescription: "The best cycling apps for structured training in 2026. TrainerRoad, Zwift, TrainingPeaks, Intervals.icu â€” compared for real training, not just features.",
+    seoDescription: "The best cycling apps for structured training in 2026. TrainerRoad, Zwift, TrainingPeaks, Intervals.icu $€” compared for real training, not just features.",
     pillar: "coaching",
-    intro: "Structured training apps have made quality coaching methodology accessible to everyone. But they're not all the same â€” and the best one depends on how you ride.",
+    intro: "Structured training apps have made quality coaching methodology accessible to everyone. But they're not all the same $€” and the best one depends on how you ride.",
     picks: [
       { name: "TrainerRoad", verdict: "Best adaptive structured training", bestFor: "Self-coached riders who want AI-adjusted plans that evolve with them", href: "/blog/zwift-vs-trainerroad" },
       { name: "Intervals.icu", verdict: "Best free analytics platform", bestFor: "Data-focused riders who want deep analytics without paying monthly", href: "/compare/heart-rate-vs-power" },
@@ -119,7 +119,7 @@ export const BEST_FOR_PAGES: BestForPage[] = [
       { name: "Zwift", verdict: "Best for social indoor training", bestFor: "Riders who need gamification and community to stay on the trainer", href: "/blog/zwift-vs-trainerroad" },
     ],
     faq: [
-      { question: "Can I use multiple training apps?", answer: "Yes â€” many riders use TrainingPeaks for planning + Zwift or TrainerRoad for execution + Intervals.icu for free analytics. The key is having one source of truth for your training plan." },
+      { question: "Can I use multiple training apps?", answer: "Yes $€” many riders use TrainingPeaks for planning + Zwift or TrainerRoad for execution + Intervals.icu for free analytics. The key is having one source of truth for your training plan." },
       { question: "Do training apps replace a coach?", answer: "For beginners and intermediate riders, often yes. For plateaued riders, time-crunched professionals, or anyone who needs accountability, a human coach fills gaps no app can." },
     ],
   },
@@ -127,7 +127,7 @@ export const BEST_FOR_PAGES: BestForPage[] = [
     slug: "best-cycling-coach-masters-riders",
     title: "Best Cycling Coach for Masters Riders (40+)",
     seoTitle: "Best Cycling Coach for Masters Riders (Over 40)",
-    seoDescription: "Best coaching options for cyclists over 40. Masters training, recovery, strength â€” who does it best.",
+    seoDescription: "Best coaching options for cyclists over 40. Masters training, recovery, strength $€” who does it best.",
     pillar: "coaching",
     intro: "Masters cycling is a different sport. Recovery takes longer, muscle mass declines without intervention, and the training that worked at 30 doesn't work at 45.",
     picks: [
@@ -170,15 +170,15 @@ export const BEST_FOR_PAGES: BestForPage[] = [
       { name: "Roadman Fuelling Calculator", verdict: "Best free in-ride fuelling planner", bestFor: "Riders wanting exact carbs/hour and sodium targets", href: "/tools/fuelling" },
     ],
     faq: [
-      { question: "Do I need a nutrition app for cycling?", answer: "Not strictly â€” but tracking carbs per hour during rides is one of the highest-leverage changes most amateurs can make. A free calculator gives targets. An app like Fuelin automates daily nutrition." },
-      { question: "Is MyFitnessPal good enough?", answer: "For basic macros, yes. But it doesn't understand periodisation â€” same targets on rest day and 5-hour ride day. For fuel-for-the-work-required, you need something that reads your training calendar." },
+      { question: "Do I need a nutrition app for cycling?", answer: "Not strictly $€” but tracking carbs per hour during rides is one of the highest-leverage changes most amateurs can make. A free calculator gives targets. An app like Fuelin automates daily nutrition." },
+      { question: "Is MyFitnessPal good enough?", answer: "For basic macros, yes. But it doesn't understand periodisation $€” same targets on rest day and 5-hour ride day. For fuel-for-the-work-required, you need something that reads your training calendar." },
     ],
   },
   {
     slug: "best-turbo-trainers-2026",
     title: "Best Smart Turbo Trainers in 2026",
     seoTitle: "Best Smart Turbo Trainers 2026",
-    seoDescription: "Best smart turbo trainers for 2026. Direct drive, budget, premium â€” compared by accuracy, noise, and ride feel.",
+    seoDescription: "Best smart turbo trainers for 2026. Direct drive, budget, premium $€” compared by accuracy, noise, and ride feel.",
     pillar: "community",
     intro: "A smart trainer is the single best indoor training investment. ERG mode, accurate power, and platform compatibility transform winter training from junk miles to structured gains.",
     picks: [
@@ -189,7 +189,7 @@ export const BEST_FOR_PAGES: BestForPage[] = [
     ],
     faq: [
       { question: "Direct-drive or wheel-on?", answer: "Direct-drive recommended for serious training. Wheel-on trainers slip at high power, wear tyres, and are less accurate. A budget direct-drive (Elite Suito-T) beats a premium wheel-on." },
-      { question: "Smart trainer or power meter first?", answer: "Mostly indoors: smart trainer. Mostly outdoors: power meter. 50/50: power meter â€” it works in both environments." },
+      { question: "Smart trainer or power meter first?", answer: "Mostly indoors: smart trainer. Mostly outdoors: power meter. 50/50: power meter $€” it works in both environments." },
     ],
   },
 ];

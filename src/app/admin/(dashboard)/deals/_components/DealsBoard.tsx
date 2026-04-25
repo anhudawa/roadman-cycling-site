@@ -493,7 +493,7 @@ function NewDealModal({
                     }}
                     className="w-full text-left px-3 py-1.5 text-xs hover:bg-white/5 text-off-white"
                   >
-                    {h.name ?? "â€”"}{" "}
+                    {h.name ?? "$€”"}{" "}
                     <span className="text-foreground-subtle">{h.email}</span>
                   </button>
                 </li>
@@ -501,7 +501,7 @@ function NewDealModal({
             </ul>
           )}
           {searching && (
-            <p className="text-[10px] text-foreground-subtle mt-1">searchingâ€¦</p>
+            <p className="text-[10px] text-foreground-subtle mt-1">searching$€¦</p>
           )}
         </Field>
 
@@ -538,7 +538,7 @@ function NewDealModal({
             disabled={submitting}
             className="px-3 py-1.5 text-xs font-heading tracking-wider uppercase bg-[var(--color-elevated)] hover:bg-[var(--color-raised)] text-[var(--color-fg)] border border-[var(--color-border-strong)] rounded disabled:opacity-50"
           >
-            {submitting ? "Savingâ€¦" : "Create"}
+            {submitting ? "Saving$€¦" : "Create"}
           </button>
         </div>
       </div>

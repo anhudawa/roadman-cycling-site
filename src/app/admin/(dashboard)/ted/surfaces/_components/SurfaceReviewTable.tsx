@@ -115,7 +115,7 @@ export function SurfaceReviewTable({ rows }: { rows: Row[] }) {
                   rel="noreferrer"
                   className="text-blue-300 hover:underline"
                 >
-                  open thread â†’
+                  open thread $†’
                 </a>
               </div>
               <span>#{r.id}</span>

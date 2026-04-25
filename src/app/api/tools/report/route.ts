@@ -13,14 +13,14 @@ import type { ToolSlug as SaveableToolSlug } from "@/lib/tool-results/types";
  *
  * Two branches:
  *
- *   a) Saveable tools ("fuelling", "ftp-zones") â€” route through the
+ *   a) Saveable tools ("fuelling", "ftp-zones") $€” route through the
  *      completeToolResult pipeline which persists a `tool_results`
  *      row, upserts the rider profile, fires CRM tags, syncs Beehiiv,
  *      and emails the personalised report. Client gets back a permalink
  *      slug so it can redirect to /results/<tool>/<slug>.
  *
  *   b) Legacy tools (tyre-pressure, race-weight, energy-availability,
- *      shock-pressure) â€” use the original email-only path. No save.
+ *      shock-pressure) $€” use the original email-only path. No save.
  */
 
 const LEGACY_TOOLS: LegacyToolSlug[] = [
@@ -86,7 +86,7 @@ async function sendReportEmail(
 }
 
 /* ============================================================ */
-/* Saveable path â€” fuelling + ftp-zones                          */
+/* Saveable path $€” fuelling + ftp-zones                          */
 /* ============================================================ */
 
 function buildSaveableSavePayload(
@@ -194,7 +194,7 @@ async function handleSaveable(
 }
 
 /* ============================================================ */
-/* Legacy path â€” email-only tools                                */
+/* Legacy path $€” email-only tools                                */
 /* ============================================================ */
 
 async function handleLegacy(
@@ -259,7 +259,7 @@ async function handleLegacy(
         success: true,
         emailSent: false,
         message:
-          "We saved your results â€” but the email send failed. We'll look into it.",
+          "We saved your results $€” but the email send failed. We'll look into it.",
       },
       { status: 200 },
     );

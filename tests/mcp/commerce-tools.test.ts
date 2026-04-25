@@ -34,7 +34,7 @@ describe("list_products service", () => {
       {
         id: 1,
         productKey: "ndy-standard",
-        name: "Not Done Yet â€” Standard",
+        name: "Not Done Yet $€” Standard",
         priceCents: 1500,
         currency: "USD",
         billingPeriod: "monthly",
@@ -74,7 +74,7 @@ describe("list_upcoming_events service", () => {
     ).mockResolvedValueOnce([
       {
         id: 1,
-        name: "NDY Live Q&A â€” May 2026",
+        name: "NDY Live Q&A $€” May 2026",
         type: "live_qa",
         startsAt: futureDate,
         location: null,
@@ -89,7 +89,7 @@ describe("list_upcoming_events service", () => {
 
     const events = await listUpcomingEvents();
     expect(events).toHaveLength(1);
-    expect(events[0].name).toBe("NDY Live Q&A â€” May 2026");
+    expect(events[0].name).toBe("NDY Live Q&A $€” May 2026");
     expect(events[0].type).toBe("live_qa");
     expect(events[0].is_members_only).toBe(true);
     expect(typeof events[0].starts_at).toBe("string");

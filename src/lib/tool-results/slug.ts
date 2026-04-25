@@ -2,7 +2,7 @@ import crypto from "crypto";
 
 /**
  * URL-friendly slug for tool_results rows. 10 chars from a 36-symbol
- * alphabet â‰ˆ 3.6e15 combinations â€” unique-constraint retries on the
+ * alphabet $‰ˆ 3.6e15 combinations $€” unique-constraint retries on the
  * DB side cover the vanishingly small collision probability.
  */
 const SLUG_ALPHABET = "abcdefghijklmnopqrstuvwxyz0123456789";

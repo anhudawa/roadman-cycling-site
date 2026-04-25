@@ -43,7 +43,7 @@ export function DublinRouteMap() {
           </radialGradient>
         </defs>
 
-        {/* Topographic contour lines â€” create depth and terrain feel */}
+        {/* Topographic contour lines $€” create depth and terrain feel */}
         {[0, 1, 2, 3, 4, 5, 6, 7].map((i) => (
           <motion.ellipse
             key={`contour-${i}`}
@@ -60,7 +60,7 @@ export function DublinRouteMap() {
           />
         ))}
 
-        {/* Dublin Bay â€” water area with subtle gradient */}
+        {/* Dublin Bay $€” water area with subtle gradient */}
         <motion.path
           d="M 750 0 Q 800 80 840 140 Q 880 200 930 240 Q 980 270 1050 290 Q 1120 305 1200 310 L 1200 0 Z"
           fill="rgba(33, 1, 64, 0.5)"
@@ -69,7 +69,7 @@ export function DublinRouteMap() {
           transition={{ duration: 1.5 }}
         />
 
-        {/* Coastline â€” glowing */}
+        {/* Coastline $€” glowing */}
         <motion.path
           d="M 750 0 Q 770 50 790 100 Q 810 150 840 190 Q 870 220 910 245 Q 950 262 1000 275 Q 1060 288 1120 296 Q 1160 302 1200 306"
           stroke="rgba(250, 250, 250, 0.2)"
@@ -100,7 +100,7 @@ export function DublinRouteMap() {
           transition={{ duration: 2, delay: 0.3, ease: "easeOut" }}
         />
 
-        {/* Street grid â€” subtle texture */}
+        {/* Street grid $€” subtle texture */}
         {[240, 280, 320, 360].map((y) => (
           <line key={`h-${y}`} x1="250" y1={y} x2="730" y2={y} stroke="rgba(250, 250, 250, 0.02)" strokeWidth="0.5" />
         ))}
@@ -108,7 +108,7 @@ export function DublinRouteMap() {
           <line key={`v-${x}`} x1={x} y1="200" x2={x} y2="420" stroke="rgba(250, 250, 250, 0.02)" strokeWidth="0.5" />
         ))}
 
-        {/* Phoenix Park â€” filled area */}
+        {/* Phoenix Park $€” filled area */}
         <motion.path
           d="M 160 230 Q 200 180 280 175 Q 350 178 380 210 Q 395 240 370 275 Q 340 300 270 305 Q 200 300 165 270 Q 150 250 160 230"
           stroke="rgba(250, 250, 250, 0.08)"
@@ -121,7 +121,7 @@ export function DublinRouteMap() {
 
         {/* ===================== ROUTES ===================== */}
 
-        {/* Thursday Circuit â€” Phoenix Park (dashed, glowing) */}
+        {/* Thursday Circuit $€” Phoenix Park (dashed, glowing) */}
         <motion.path
           d="M 270 215 Q 330 195 360 220 Q 375 245 355 275 Q 325 295 270 290 Q 215 280 200 250 Q 200 225 270 215"
           stroke="url(#coralGrad)"
@@ -135,7 +135,7 @@ export function DublinRouteMap() {
           transition={{ duration: 2, delay: 1.5, ease: "easeOut" }}
         />
 
-        {/* Saturday Main Ride â€” Clontarf north loop (solid, glowing) */}
+        {/* Saturday Main Ride $€” Clontarf north loop (solid, glowing) */}
         <motion.path
           d="M 760 210 Q 740 180 710 145 Q 680 110 640 80 Q 600 55 550 45 Q 500 40 460 55 Q 430 70 420 100 Q 420 130 450 150 Q 490 165 540 155 Q 590 145 640 160 Q 690 180 730 200 Q 750 208 760 210"
           stroke="url(#coralGrad)"
@@ -148,7 +148,7 @@ export function DublinRouteMap() {
           transition={{ duration: 3, delay: 2, ease: "easeOut" }}
         />
 
-        {/* Sunday Spin â€” shorter Clontarf loop (purple, softer) */}
+        {/* Sunday Spin $€” shorter Clontarf loop (purple, softer) */}
         <motion.path
           d="M 760 210 Q 730 185 700 170 Q 665 160 635 168 Q 610 180 608 200 Q 612 220 635 230 Q 670 238 710 232 Q 745 222 760 210"
           stroke="#4C1273"
@@ -195,7 +195,7 @@ export function DublinRouteMap() {
             PHOENIX PARK
           </text>
           <text x="270" y="363" textAnchor="middle" fill="#F16363" fontSize="13" fontFamily="sans-serif">
-            Thu 6:30pm Â· The Circuit
+            Thu 6:30pm $· The Circuit
           </text>
         </motion.g>
 
@@ -231,7 +231,7 @@ export function DublinRouteMap() {
             360 CYCLES
           </text>
           <text x="760" y="283" textAnchor="middle" fill="#F16363" fontSize="13" fontFamily="sans-serif">
-            Sat 9:30am Â· Sun 10am
+            Sat 9:30am $· Sun 10am
           </text>
         </motion.g>
 
@@ -278,13 +278,13 @@ export function DublinRouteMap() {
         >
           <rect x="30" y="505" width="230" height="75" rx="8" fill="rgba(37, 37, 38, 0.6)" stroke="rgba(250, 250, 250, 0.05)" strokeWidth="0.5" />
           <line x1="50" y1="528" x2="80" y2="528" stroke="#F16363" strokeWidth="2.5" strokeDasharray="6 4" />
-          <text x="90" y="532" fill="#A0A0A5" fontSize="12" fontFamily="sans-serif">Thursday Circuit Â· 40km</text>
+          <text x="90" y="532" fill="#A0A0A5" fontSize="12" fontFamily="sans-serif">Thursday Circuit $· 40km</text>
 
           <line x1="50" y1="548" x2="80" y2="548" stroke="#F16363" strokeWidth="2.5" />
-          <text x="90" y="552" fill="#A0A0A5" fontSize="12" fontFamily="sans-serif">Saturday Main Ride Â· 90km</text>
+          <text x="90" y="552" fill="#A0A0A5" fontSize="12" fontFamily="sans-serif">Saturday Main Ride $· 90km</text>
 
           <line x1="50" y1="568" x2="80" y2="568" stroke="#4C1273" strokeWidth="2" />
-          <text x="90" y="572" fill="#A0A0A5" fontSize="12" fontFamily="sans-serif">Sunday Spin Â· 80km</text>
+          <text x="90" y="572" fill="#A0A0A5" fontSize="12" fontFamily="sans-serif">Sunday Spin $· 80km</text>
         </motion.g>
       </svg>
     </div>

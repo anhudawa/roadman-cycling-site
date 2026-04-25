@@ -95,7 +95,7 @@ export async function fetchOwnerCalendarEvents(
       errorMessage:
         err instanceof Error
           ? err.message
-          : "Failed to refresh access token â€” re-link Google",
+          : "Failed to refresh access token $€” re-link Google",
     };
   }
 
@@ -113,7 +113,7 @@ export async function fetchOwnerCalendarEvents(
 
   const res = await fetch(`${EVENTS_URL}?${params.toString()}`, {
     headers: { Authorization: `Bearer ${accessToken}` },
-    // Revalidate every 60s â€” this page is server-rendered; we don't need
+    // Revalidate every 60s $€” this page is server-rendered; we don't need
     // to hammer Google on every request.
     next: { revalidate: 60 },
   });

@@ -14,7 +14,7 @@ import {
  * Looks up a paid_report by secure-token hash. If the report is in a
  * deliverable state and has a blob-hosted PDF, streams the PDF back to
  * the rider. The token is unguessable (32 bytes base64url = ~256 bits
- * of entropy) so we don't require auth â€” possession of the link proves
+ * of entropy) so we don't require auth $€” possession of the link proves
  * ownership.
  *
  * We increment a download counter so admin can see abuse (e.g. someone
@@ -68,7 +68,7 @@ export async function GET(
   }
 
   // Fetch from the blob store and stream back. Keeps the blob URL
-  // private â€” the rider only ever sees our token-scoped path.
+  // private $€” the rider only ever sees our token-scoped path.
   const upstream = await fetch(report.pdfUrl);
   if (!upstream.ok || !upstream.body) {
     return NextResponse.json(

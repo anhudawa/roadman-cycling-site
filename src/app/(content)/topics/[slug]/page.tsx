@@ -69,7 +69,7 @@ export default async function TopicPage({
             name: "Roadman Cycling",
             url: "https://roadmancycling.com",
           },
-          // hasPart uses WebPage stubs rather than full BlogPosting nodes â€”
+          // hasPart uses WebPage stubs rather than full BlogPosting nodes $€”
           // shallow BlogPosting references without image/datePublished/author/
           // publisher fail schema validation. The full BlogPosting schema is
           // emitted on each individual /blog/<slug> page.
@@ -139,7 +139,7 @@ export default async function TopicPage({
           </Container>
         </Section>
 
-        {/* Pillar content (long-form evidence-based guide) â€” present on
+        {/* Pillar content (long-form evidence-based guide) $€” present on
             hubs with content/topics/<slug>.mdx, absent elsewhere so thin
             hubs don't gain an empty section. The duplicate "Free Tools",
             "Podcast Episodes", and "Related Topics" sections were pre-
@@ -154,7 +154,7 @@ export default async function TopicPage({
                   components={mdxComponents}
                   options={{
                     mdxOptions: {
-                      // GFM gives us tables, strikethrough, and task lists â€”
+                      // GFM gives us tables, strikethrough, and task lists $€”
                       // the pillar content uses markdown tables heavily for
                       // zone charts, weekly structures, and comparison grids.
                       remarkPlugins: [remarkGfm],
@@ -231,7 +231,7 @@ export default async function TopicPage({
                         <h3 className="font-heading text-off-white text-base mb-1">
                           {tool.title}
                         </h3>
-                        <span className="text-coral text-sm">Try it free â†’</span>
+                        <span className="text-coral text-sm">Try it free $†’</span>
                       </Card>
                     </Link>
                   </ScrollReveal>
@@ -281,7 +281,7 @@ export default async function TopicPage({
                       default:
                         return "See More";
                     }
-                  })()}{" "}â†’
+                  })()}{" "}$†’
                 </Link>
               </div>
             </ScrollReveal>
@@ -373,7 +373,7 @@ export default async function TopicPage({
                       href={`/topics/${relSlug}`}
                       className="inline-flex items-center gap-1 rounded-lg border border-white/15 hover:border-coral/40 bg-white/[0.04] hover:bg-white/[0.07] px-4 py-2 text-sm font-heading text-off-white tracking-wider transition-all"
                     >
-                      {title} â†’
+                      {title} $†’
                     </Link>
                   );
                 })}
@@ -396,7 +396,7 @@ export default async function TopicPage({
                     community: "THE CRAFT, DELIVERED WEEKLY",
                   }[topic.pillar] || "GET THE INSIGHTS"
                 }
-                subheading={`The best of ${topic.title.toLowerCase()} â€” evidence-based, once a week. No fluff.`}
+                subheading={`The best of ${topic.title.toLowerCase()} $€” evidence-based, once a week. No fluff.`}
                 source={`topic-${topic.slug}`}
               />
             </ScrollReveal>
@@ -446,7 +446,7 @@ export default async function TopicPage({
           </Section>
         )}
 
-        {/* CTA â€” coaching hub gets a coaching-specific funnel */}
+        {/* CTA $€” coaching hub gets a coaching-specific funnel */}
         {topic.slug === "cycling-coaching" ? (
           <Section background="charcoal">
             <Container className="text-center">
@@ -457,11 +457,11 @@ export default async function TopicPage({
                   </h2>
                   <p className="text-foreground-muted max-w-lg mx-auto mb-6">
                     The Not Done Yet coaching community is 1:1 personalised
-                    cycling coaching â€” training, nutrition, strength, recovery,
+                    cycling coaching $€” training, nutrition, strength, recovery,
                     and accountability. $195/month with a 7-day free trial.
                   </p>
                   <div className="flex flex-col sm:flex-row gap-3 justify-center mb-6">
-                    <Button href="/apply">Apply Now â€” 7-Day Free Trial</Button>
+                    <Button href="/apply">Apply Now $€” 7-Day Free Trial</Button>
                     <Button href="/coaching" variant="ghost">
                       See All Coaching Options
                     </Button>
@@ -505,7 +505,7 @@ export default async function TopicPage({
                   </p>
                   <div className="flex flex-col sm:flex-row gap-3 justify-center">
                     <Button href="/community/clubhouse">
-                      Join the Clubhouse â€” Free
+                      Join the Clubhouse $€” Free
                     </Button>
                     <Button href="/topics" variant="ghost">
                       Browse All Topics

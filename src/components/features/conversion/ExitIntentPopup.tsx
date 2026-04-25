@@ -59,7 +59,7 @@ export function ExitIntentPopup() {
     // Don't initialize if already shown this session
     if (sessionStorage.getItem("roadman_exit_shown")) return;
 
-    // Delay activation â€” don't trigger on immediate bounces
+    // Delay activation $€” don't trigger on immediate bounces
     let armed = false;
     const armTimer = setTimeout(() => {
       armed = true;
@@ -158,7 +158,7 @@ export function ExitIntentPopup() {
                       <span className="text-off-white font-medium">
                         24-hour early access
                       </span>{" "}
-                      before public launch â€” plus a personal reply from Anthony.
+                      before public launch $€” plus a personal reply from Anthony.
                     </>
                   ) : (
                     <>
@@ -191,8 +191,8 @@ export function ExitIntentPopup() {
                   style={{ transitionDuration: "var(--duration-fast)" }}
                 >
                   {isWaitlist
-                    ? "APPLY NOW â€” JOIN THE WAITLIST"
-                    : "APPLY â€” 7-DAY FREE TRIAL"}
+                    ? "APPLY NOW $€” JOIN THE WAITLIST"
+                    : "APPLY $€” 7-DAY FREE TRIAL"}
                 </Link>
                 <button
                   onClick={handleDismiss}
@@ -215,7 +215,7 @@ export function ExitIntentPopup() {
               {showCoachingVariant
                 ? isWaitlist
                   ? "Waitlist members get first dibs when Cohort 3 opens."
-                  : "Cancel anytime inside the 7-day trial â€” no charge."
+                  : "Cancel anytime inside the 7-day trial $€” no charge."
                 : "One email per week. Unsubscribe anytime."}
             </p>
           </div>

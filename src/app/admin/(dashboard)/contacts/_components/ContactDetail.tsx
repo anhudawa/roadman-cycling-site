@@ -764,7 +764,7 @@ export function ContactDetail({
                 className={`text-[10px] px-2 py-0.5 rounded border tabular-nums uppercase tracking-widest ${leadBandClass(leadBand(leadScore))}`}
                 title="Lead score"
               >
-                {leadScore} Â· {leadBand(leadScore)}
+                {leadScore} $· {leadBand(leadScore)}
               </span>
             )}
             {canRescore && (
@@ -802,7 +802,7 @@ export function ContactDetail({
                   className="px-4 py-2 bg-red-500/20 text-red-400 text-sm font-heading tracking-wider rounded-lg border border-red-500/30 hover:bg-red-500/30 disabled:opacity-50 uppercase"
                 >
                   {deletingApps
-                    ? "Deletingâ€¦"
+                    ? "Deleting$€¦"
                     : `Confirm delete${apps.length > 1 ? ` (${apps.length})` : ""}`}
                 </button>
                 <button
@@ -873,8 +873,8 @@ export function ContactDetail({
                   </div>
                   <p className="text-xs text-foreground-muted truncate">
                     {d.email}
-                    {d.phone ? ` Â· ${d.phone}` : ""}
-                    {d.owner ? ` Â· ${d.owner}` : ""}
+                    {d.phone ? ` $· ${d.phone}` : ""}
+                    {d.owner ? ` $· ${d.owner}` : ""}
                   </p>
                 </div>
                 <button
@@ -946,7 +946,7 @@ export function ContactDetail({
               initialValues={initialCustomValues}
             />
 
-            {/* Tasks here too â€” quick actions belong on overview */}
+            {/* Tasks here too $€” quick actions belong on overview */}
             <div className="bg-background-elevated rounded-xl border border-white/5 p-4">
               <p className="text-[10px] uppercase tracking-widest text-foreground-subtle font-medium mb-3">
                 Tasks
@@ -1000,7 +1000,7 @@ export function ContactDetail({
                           {t.dueAt
                             ? `Due ${new Date(t.dueAt).toLocaleDateString("en-GB")}`
                             : "No due date"}
-                          {t.assignedTo ? ` Â· ${t.assignedTo}` : ""}
+                          {t.assignedTo ? ` $· ${t.assignedTo}` : ""}
                         </p>
                       </div>
                       <button
@@ -1115,7 +1115,7 @@ export function ContactDetail({
                       <div key={k} className="flex justify-between gap-2">
                         <dt className="text-foreground-subtle capitalize">{k}</dt>
                         <dd className="text-foreground-muted text-right break-words max-w-[60%]">
-                          {v === null || v === undefined ? "â€”" : String(v)}
+                          {v === null || v === undefined ? "$€”" : String(v)}
                         </dd>
                       </div>
                     ))}
@@ -1163,7 +1163,7 @@ export function ContactDetail({
 
               {!enrichment ? (
                 <p className="text-xs text-foreground-subtle">
-                  Not enriched yet â€” click Refresh.
+                  Not enriched yet $€” click Refresh.
                 </p>
               ) : (
                 <>
@@ -1298,7 +1298,7 @@ export function ContactDetail({
               className="w-full mb-2 px-3 py-2 text-sm bg-[var(--color-sunken)] border border-[var(--color-border-strong)] text-[var(--color-fg)] rounded-[var(--radius-admin-md)] focus-ring focus:border-[var(--color-border-focus)]"
             />
             <textarea
-              placeholder="Body (optional) â€” mention teammates with @ted, @sarah, @wes, @matthew"
+              placeholder="Body (optional) $€” mention teammates with @ted, @sarah, @wes, @matthew"
               value={noteBody}
               onChange={(e) => setNoteBody(e.target.value)}
               rows={3}
@@ -1383,8 +1383,8 @@ export function ContactDetail({
                         </div>
                         <p className="text-[10px] uppercase tracking-widest text-foreground-subtle mt-0.5">
                           {isEmail ? "email sent" : a.type.replace(/_/g, " ")}
-                          {a.authorName ? ` Â· ${a.authorName}` : ""}
-                          {emailStatus && emailStatus !== "sent" ? ` Â· ${emailStatus}` : ""}
+                          {a.authorName ? ` $· ${a.authorName}` : ""}
+                          {emailStatus && emailStatus !== "sent" ? ` $· ${emailStatus}` : ""}
                         </p>
                         {clickLink && (
                           <p className="text-xs text-cyan-300/80 mt-1 truncate">{clickLink}</p>
@@ -1467,10 +1467,10 @@ export function ContactDetail({
                         </div>
                         <p className="text-[11px] text-foreground-subtle mt-1">
                           To {m.toAddress}
-                          {tpl ? ` Â· ${tpl.name}` : ""} Â· from {m.fromUser} Â· {relativeTime(sentLabel)}
+                          {tpl ? ` $· ${tpl.name}` : ""} $· from {m.fromUser} $· {relativeTime(sentLabel)}
                         </p>
                       </div>
-                      <span className="text-foreground-subtle text-xs shrink-0">{isOpen ? "âˆ’" : "+"}</span>
+                      <span className="text-foreground-subtle text-xs shrink-0">{isOpen ? "$ˆ’" : "+"}</span>
                     </div>
                   </button>
                   {isOpen && (
@@ -1554,7 +1554,7 @@ export function ContactDetail({
                 </p>
                 {currentUser && (
                   <p className="text-[11px] text-foreground-subtle mt-0.5">
-                    Sending as {currentUser.name} Â· replies route to {currentUser.email}
+                    Sending as {currentUser.name} $· replies route to {currentUser.email}
                   </p>
                 )}
               </div>
@@ -1584,7 +1584,7 @@ export function ContactDetail({
                   }
                   className="w-full px-3 py-2 text-sm bg-[var(--color-sunken)] border border-[var(--color-border-strong)] text-[var(--color-fg)] rounded-[var(--radius-admin-md)] focus-ring focus:border-[var(--color-border-focus)]"
                 >
-                  <option value="">â€” Ad-hoc (no template) â€”</option>
+                  <option value="">$€” Ad-hoc (no template) $€”</option>
                   {templates.map((t) => (
                     <option key={t.id} value={t.id}>
                       {t.name}
@@ -1674,16 +1674,16 @@ function ApplicationCard({ app }: { app: ApplicationRow }) {
     `Email: ${app.email}`,
     `Cohort: ${app.cohort}`,
     `Hours/week: ${app.hours}`,
-    `FTP: ${app.ftp ?? "â€”"}`,
-    `Persona: ${app.persona ?? "â€”"}`,
+    `FTP: ${app.ftp ?? "$€”"}`,
+    `Persona: ${app.persona ?? "$€”"}`,
     `Status: ${app.status}`,
     `Submitted: ${submitted}`,
     ``,
     `Goal:`,
-    app.goal || "â€”",
+    app.goal || "$€”",
     ``,
     `What's doing your head in:`,
-    app.frustration || "â€”",
+    app.frustration || "$€”",
   ].join("\n");
 
   async function handleCopyAll() {
@@ -1700,17 +1700,17 @@ function ApplicationCard({ app }: { app: ApplicationRow }) {
         <span className="text-foreground-subtle">
           Submitted <span className="text-off-white">{submitted}</span>
         </span>
-        <span className="text-foreground-subtle">Â·</span>
+        <span className="text-foreground-subtle">$·</span>
         <span className="text-foreground-subtle">
           Cohort <span className="text-off-white">{app.cohort}</span>
         </span>
-        <span className="text-foreground-subtle">Â·</span>
+        <span className="text-foreground-subtle">$·</span>
         <span className="text-foreground-subtle">
           Status <span className="text-off-white">{app.status.replace(/_/g, " ")}</span>
         </span>
         {app.persona && (
           <>
-            <span className="text-foreground-subtle">Â·</span>
+            <span className="text-foreground-subtle">$·</span>
             <span className="text-foreground-subtle">
               Persona <span className="text-off-white capitalize">{app.persona}</span>
             </span>
@@ -1792,7 +1792,7 @@ function AppField({
           mono ? "font-mono" : ""
         } ${!v ? "text-foreground-subtle italic" : ""}`}
       >
-        {v || "â€”"}
+        {v || "$€”"}
       </p>
     </div>
   );

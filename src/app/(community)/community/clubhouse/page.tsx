@@ -4,14 +4,14 @@ import { JsonLd } from "@/components/seo/JsonLd";
 import { SkoolTrialButton } from "@/components/features/community/SkoolTrialButton";
 
 export const metadata: Metadata = {
-  title: "The Clubhouse â€” Free Cycling Community",
+  title: "The Clubhouse $€” Free Cycling Community",
   description:
     "Join 2,100+ serious cyclists in the free Roadman Cycling Clubhouse. Weekly live Q&A with Anthony Walsh, free training plans, and a community that gets it.",
   alternates: {
     canonical: "https://roadmancycling.com/community/clubhouse",
   },
   openGraph: {
-    title: "The Clubhouse â€” Free Cycling Community",
+    title: "The Clubhouse $€” Free Cycling Community",
     description:
       "Join 2,100+ serious cyclists in the free Roadman Cycling Clubhouse. Weekly live Q&A with Anthony Walsh, free training plans, and a community that gets it.",
     type: "website",
@@ -26,7 +26,7 @@ export default function ClubhousePage() {
         data={{
           "@context": "https://schema.org",
           "@type": "Service",
-          name: "The Clubhouse â€” Free Cycling Community",
+          name: "The Clubhouse $€” Free Cycling Community",
           description:
             "Free cycling community with weekly live Q&A, 16-week training plans, and peer support for serious cyclists.",
           url: "https://roadmancycling.com/community/clubhouse",
@@ -50,7 +50,7 @@ export default function ClubhousePage() {
         <Section background="deep-purple" grain className="pt-32 pb-16">
           <Container className="text-center">
             <p className="text-coral font-heading text-lg mb-4 tracking-widest">
-              FREE â€” NO CATCH
+              FREE $€” NO CATCH
             </p>
             <h1
               className="font-heading text-off-white mb-6"
@@ -69,7 +69,7 @@ export default function ClubhousePage() {
               source="clubhouse_hero"
               size="lg"
             >
-              Join the Clubhouse â€” Free
+              Join the Clubhouse $€” Free
             </SkoolTrialButton>
           </Container>
         </Section>
@@ -140,7 +140,7 @@ export default function ClubhousePage() {
                 source="clubhouse_footer"
                 size="lg"
               >
-                Join the Clubhouse â€” Free
+                Join the Clubhouse $€” Free
               </SkoolTrialButton>
             </div>
           </Container>

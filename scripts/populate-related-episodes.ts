@@ -7,10 +7,10 @@
  * back to the MDX frontmatter.
  *
  * The blog/[slug] page renders this as a "Related Podcast Episodes"
- * section â€” creating explicit, author-curated-looking bidirectional
- * links between every blog article and 2â€“3 podcast episodes. Compounds
+ * section $€” creating explicit, author-curated-looking bidirectional
+ * links between every blog article and 2$€“3 podcast episodes. Compounds
  * the internal link graph: 148 blog posts Ã— 2.5 avg episode references
- * â‰ˆ 370 new blogâ†’podcast crawl paths.
+ * $‰ˆ 370 new blog$†’podcast crawl paths.
  *
  * Idempotent: skips articles that already have relatedEpisodes populated.
  * --force overwrites.
@@ -21,7 +21,7 @@
  *   pnpm run seo:related-episodes --force
  *   pnpm run seo:related-episodes --slug=<slug>
  *
- * No API calls â€” pure keyword/pillar matching against the local
+ * No API calls $€” pure keyword/pillar matching against the local
  * episode catalogue. Safe to run offline.
  */
 
@@ -107,7 +107,7 @@ function scoreEpisode(
     if (epTitleWords.includes(aw)) score += 1;
   }
 
-  // Small recency boost â€” prefer recent episodes when quality is tied.
+  // Small recency boost $€” prefer recent episodes when quality is tied.
   const age = Date.now() - new Date(ep.publishDate).getTime();
   if (age < 1000 * 60 * 60 * 24 * 365) score += 0.5; // < 1 year
 
@@ -120,10 +120,10 @@ function findRelatedEpisodes(
 ): string[] {
   const scored = episodes
     .map((ep) => ({ ep, score: scoreEpisode(article, ep) }))
-    .filter((s) => s.score >= 6) // minimum threshold â€” noise floor
+    .filter((s) => s.score >= 6) // minimum threshold $€” noise floor
     .sort((a, b) => b.score - a.score);
 
-  // Deduplicate by guest â€” avoid three episodes with the same guest
+  // Deduplicate by guest $€” avoid three episodes with the same guest
   // unless there's nothing else.
   const seenGuests = new Set<string>();
   const picked: string[] = [];
@@ -189,7 +189,7 @@ function main() {
 
     if (dryRun) {
       console.log(`   [DRY] ${slug}`);
-      related.forEach((r) => console.log(`      â†’ ${r}`));
+      related.forEach((r) => console.log(`      $†’ ${r}`));
       continue;
     }
 
@@ -200,11 +200,11 @@ function main() {
     const output = matter.stringify(content, updatedFrontmatter);
     fs.writeFileSync(filePath, output, "utf-8");
     updated++;
-    console.log(`   âœ“ ${slug} (${related.length})`);
+    console.log(`   $œ“ ${slug} (${related.length})`);
   }
 
   console.log("");
-  console.log(`âœ“ Complete.`);
+  console.log(`$œ“ Complete.`);
   console.log(`  Updated:           ${updated}`);
   console.log(`  Skipped (already): ${skipped}`);
   console.log(`  No match found:    ${noMatch}`);

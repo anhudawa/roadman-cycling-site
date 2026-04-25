@@ -71,7 +71,7 @@ export default async function AdminDashboardPage({
   const { from, to, prevFrom, prevTo, label: rangeLabel, compLabel } =
     parseTimeRangeWithComparison(rangeParam);
 
-  // â”€â”€ Range-aware stats for stat cards â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+  // $”€$”€ Range-aware stats for stat cards $”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€
   let currentStats: PeriodStats;
   let previousStats: PeriodStats;
 
@@ -81,12 +81,12 @@ export default async function AdminDashboardPage({
       computePeriodStats(prevFrom, prevTo),
     ]);
   } catch {
-    // Database not provisioned yet â€” use demo data
+    // Database not provisioned yet $€” use demo data
     currentStats = DEMO_CURRENT;
     previousStats = DEMO_PREVIOUS;
   }
 
-  // Actual Skool joins (from subscribers.skoolJoinedAt / Skool webhook) â€”
+  // Actual Skool joins (from subscribers.skoolJoinedAt / Skool webhook) $€”
   // distinct from skoolTrials (CTA click events on Clubhouse page).
   let currentSkoolJoins = 0;
   let previousSkoolJoins = 0;
@@ -108,7 +108,7 @@ export default async function AdminDashboardPage({
     return ((current - previous) / previous) * 100;
   }
 
-  // â”€â”€ Sparkline data â€” use the selected range (up to last 30 points) â”€â”€
+  // $”€$”€ Sparkline data $€” use the selected range (up to last 30 points) $”€$”€
   let sparkVisitors = [0, 0, 0, 0, 0, 0, 0];
   let sparkSignups = [0, 0, 0, 0, 0, 0, 0];
   let sparkTrials = [0, 0, 0, 0, 0, 0, 0];
@@ -123,10 +123,10 @@ export default async function AdminDashboardPage({
       sparkTrials = tail.map((d) => d.trials);
     }
   } catch {
-    // Non-critical â€” hardcoded fallback already set
+    // Non-critical $€” hardcoded fallback already set
   }
 
-  // â”€â”€ Ranged data for tables and charts â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+  // $”€$”€ Ranged data for tables and charts $”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€
   let topPages = PLACEHOLDER_TOP_PAGES;
   let trafficSources = PLACEHOLDER_SOURCES;
   let timeSeries = generateDemoTimeSeries();
@@ -137,7 +137,7 @@ export default async function AdminDashboardPage({
       getDailyVisitors(from, to),
     ]);
 
-    // Trust the DB query outcome â€” if it returns empty arrays, show an empty
+    // Trust the DB query outcome $€” if it returns empty arrays, show an empty
     // state instead of substituting fake top pages / referrers, which made
     // the dashboard look alive when nothing had been tracked yet.
     topPages = rangedStats.pages.slice(0, 5).map((p) => ({
@@ -158,10 +158,10 @@ export default async function AdminDashboardPage({
       signups: 0,
     }));
   } catch {
-    // DB not available â€” placeholders already set above
+    // DB not available $€” placeholders already set above
   }
 
-  // â”€â”€ Funnel uses the selected range â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+  // $”€$”€ Funnel uses the selected range $”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€
   const funnelSteps = [
     { label: "Visitors", value: currentStats.visitors },
     { label: "Email Signups", value: currentStats.signups },
@@ -181,7 +181,7 @@ export default async function AdminDashboardPage({
         }
       />
 
-      {/* Stat cards â€” reflect selected range */}
+      {/* Stat cards $€” reflect selected range */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 xl:grid-cols-5 gap-4">
         <StatCard
           label={`Visitors (${rangeLabel})`}
@@ -218,11 +218,11 @@ export default async function AdminDashboardPage({
         />
       </div>
 
-      {/* Period vs Previous comparison â€” contextual to selected range */}
+      {/* Period vs Previous comparison $€” contextual to selected range */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
         <Card>
           <CardBody compact>
-            <h2 className={SECTION_H2}>Current period Â· {rangeLabel}</h2>
+            <h2 className={SECTION_H2}>Current period $· {rangeLabel}</h2>
             <div className="grid grid-cols-2 gap-3">
               <div>
                 <p className={STAT_LABEL}>Visitors</p>
@@ -246,7 +246,7 @@ export default async function AdminDashboardPage({
         {compLabel && (
           <Card>
             <CardBody compact>
-              <h2 className={SECTION_H2}>Previous period Â· {compLabel}</h2>
+              <h2 className={SECTION_H2}>Previous period $· {compLabel}</h2>
               <div className="grid grid-cols-2 gap-3">
                 <div>
                   <p className={STAT_LABEL}>Visitors</p>
@@ -288,7 +288,7 @@ export default async function AdminDashboardPage({
       {/* Conversion Funnel */}
       <Card>
         <CardBody compact>
-          <h2 className={SECTION_H2}>Conversion funnel Â· {rangeLabel}</h2>
+          <h2 className={SECTION_H2}>Conversion funnel $· {rangeLabel}</h2>
           <FunnelDisplay steps={funnelSteps} />
         </CardBody>
       </Card>
@@ -341,7 +341,7 @@ export default async function AdminDashboardPage({
           </CardBody>
         </Card>
 
-        {/* Traffic Sources â€” now with DonutChart */}
+        {/* Traffic Sources $€” now with DonutChart */}
         <Card>
           <CardBody compact>
             <h2 className={SECTION_H2}>Traffic sources</h2>

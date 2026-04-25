@@ -16,7 +16,7 @@ import {
 
 export const dynamic = "force-dynamic";
 
-// POST â€” insert the sample posts so the reviewer can try the approval flow.
+// POST $€” insert the sample posts so the reviewer can try the approval flow.
 // Idempotent: each sample has a stable key, so running twice won't duplicate.
 export async function POST() {
   try {

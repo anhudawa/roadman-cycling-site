@@ -44,14 +44,14 @@ const nextConfig: NextConfig = {
         destination: "https://roadmancycling.com/blog/:slug*",
         permanent: true,
       },
-      // 14-Day Kickstart Challenge â€” retired product; closest match is /apply
+      // 14-Day Kickstart Challenge $€” retired product; closest match is /apply
       {
         source: "/14day",
         has: COACHING_SUBDOMAIN,
         destination: "https://roadmancycling.com/apply",
         permanent: true,
       },
-      // "It works" testimonials page â†’ coaching landing (has testimonials inline)
+      // "It works" testimonials page $†’ coaching landing (has testimonials inline)
       {
         source: "/itworks",
         has: COACHING_SUBDOMAIN,
@@ -60,7 +60,7 @@ const nextConfig: NextConfig = {
       },
       // ClickFunnels opt-in pages (pattern: /optin-<anything>).
       // Path-to-regexp v8 (Next.js 16+) rejects `:rest*` without a
-      // slash prefix â€” the `-` separator doesn't count. Using an
+      // slash prefix $€” the `-` separator doesn't count. Using an
       // inline regex `(.*)` to match any suffix instead.
       {
         source: "/optin-:rest(.*)",
@@ -85,7 +85,7 @@ const nextConfig: NextConfig = {
       // ==========================================================
       // Existing apex-domain redirects begin here.
       // These have no host filter and will ALSO fire for subdomain
-      // traffic when the path matches â€” which is the desired
+      // traffic when the path matches $€” which is the desired
       // fall-through behaviour for slugs like /members, /strong,
       // /self-coaching-system etc. that may have been used on
       // both hosts historically.
@@ -117,7 +117,7 @@ const nextConfig: NextConfig = {
         permanent: true,
       },
 
-      // Old site structure â†’ new equivalents
+      // Old site structure $†’ new equivalents
       { source: "/shop", destination: "/tools", permanent: true },
       { source: "/store", destination: "/tools", permanent: true },
       { source: "/products", destination: "/tools", permanent: true },
@@ -165,7 +165,7 @@ const nextConfig: NextConfig = {
       { source: "/skool", destination: "/community/clubhouse", permanent: true },
       { source: "/blog/i-lost-7kg-eating-more-cycling", destination: "/blog/cycling-weight-loss-fuel-for-the-work-required", permanent: true },
       { source: "/blog/cycling-periodisation-training", destination: "/blog/cycling-periodisation-plan-guide", permanent: true },
-      // ClickFunnels funnel pages â€” P0 redirects (revenue + backlinks)
+      // ClickFunnels funnel pages $€” P0 redirects (revenue + backlinks)
       { source: "/2026-optin", destination: "/apply", permanent: true },
       { source: "/application", destination: "/apply", permanent: true },
       { source: "/strength", destination: "/strength-training", permanent: true },
@@ -175,14 +175,14 @@ const nextConfig: NextConfig = {
       { source: "/roadman-club-membership", destination: "/community/club", permanent: true },
       { source: "/roadman-cookbook-bundle", destination: "/tools", permanent: true },
 
-      // ClickFunnels funnel pages â€” P1 redirects
+      // ClickFunnels funnel pages $€” P1 redirects
       { source: "/tyre-pressure-2", destination: "/tools/tyre-pressure", permanent: true },
       { source: "/tyre-pressure-2-copy", destination: "/tools/tyre-pressure", permanent: true },
       { source: "/optin", destination: "/apply", permanent: true },
       { source: "/getstrong", destination: "/strength-training", permanent: true },
       { source: "/s-c-plan", destination: "/strength-training", permanent: true },
 
-      // Consolidated duplicate blog posts â€” keep canonical, 301 the dupes
+      // Consolidated duplicate blog posts $€” keep canonical, 301 the dupes
       {
         source: "/blog/best-cycling-podcasts-for-2026-edition",
         destination: "/blog/best-cycling-podcasts-2026",
@@ -209,7 +209,7 @@ const nextConfig: NextConfig = {
         permanent: true,
       },
 
-      // ClickFunnels orphan landing pages â€” P2 redirects
+      // ClickFunnels orphan landing pages $€” P2 redirects
       { source: "/tyre-pressure-2-page--64de3", destination: "/tools/tyre-pressure", permanent: true },
       { source: "/toolkit2-page", destination: "/tools", permanent: true },
       { source: "/optin-page", destination: "/apply", permanent: true },
@@ -235,7 +235,7 @@ const nextConfig: NextConfig = {
   async rewrites() {
     return {
       beforeFiles: [
-        // ClickFunnels dead URLs â†’ 410 Gone (thank-you pages, checkout forms,
+        // ClickFunnels dead URLs $†’ 410 Gone (thank-you pages, checkout forms,
         // template demos, archived funnels). Rewrite to /api/gone which returns 410.
         { source: "/thank-you-1", destination: "/api/gone" },
         { source: "/thank-you", destination: "/api/gone" },

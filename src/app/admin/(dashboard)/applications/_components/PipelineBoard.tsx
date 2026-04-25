@@ -61,7 +61,7 @@ function timeAgo(dateStr: string): string {
 
 function truncate(s: string, n: number): string {
   if (!s) return "";
-  return s.length <= n ? s : s.slice(0, n - 1).trimEnd() + "â€¦";
+  return s.length <= n ? s : s.slice(0, n - 1).trimEnd() + "$€¦";
 }
 
 export function PipelineBoard({ initialStages, cohorts, initialCohort }: Props) {
@@ -415,7 +415,7 @@ export function PipelineBoard({ initialStages, cohorts, initialCohort }: Props) 
                           aria-label="Assign owner"
                         >
                           {app.owner
-                            ? `${app.owner.charAt(0).toUpperCase()} Â· ${app.owner}`
+                            ? `${app.owner.charAt(0).toUpperCase()} $· ${app.owner}`
                             : "unassigned"}
                           {ownerMenuFor === app.id && (
                             <span
@@ -581,7 +581,7 @@ function Field({
           mono ? "font-mono" : ""
         } ${!v ? "text-foreground-subtle italic" : ""}`}
       >
-        {v || "â€”"}
+        {v || "$€”"}
       </p>
     </div>
   );
@@ -606,16 +606,16 @@ function ApplicationDetailModal({
     `Email: ${app.email}`,
     `Cohort: ${app.cohort}`,
     `Hours/week: ${app.hours}`,
-    `FTP: ${app.ftp ?? "â€”"}`,
-    `Persona: ${app.persona ?? "â€”"}`,
+    `FTP: ${app.ftp ?? "$€”"}`,
+    `Persona: ${app.persona ?? "$€”"}`,
     `Status: ${app.status}`,
     `Submitted: ${new Date(app.createdAt).toLocaleString("en-GB")}`,
     ``,
     `Goal:`,
-    app.goal || "â€”",
+    app.goal || "$€”",
     ``,
     `Frustration:`,
-    app.frustration || "â€”",
+    app.frustration || "$€”",
   ].join("\n");
 
   async function copyAll() {
@@ -640,7 +640,7 @@ function ApplicationDetailModal({
             Application
           </h2>
           <span className="text-foreground-subtle text-[10px]">
-            #{app.id} Â· {new Date(app.createdAt).toLocaleDateString("en-GB")}
+            #{app.id} $· {new Date(app.createdAt).toLocaleDateString("en-GB")}
           </span>
           <button
             type="button"
@@ -662,7 +662,7 @@ function ApplicationDetailModal({
                   disabled={deleting}
                   className="text-xs px-3 py-1.5 rounded-lg bg-red-500/20 text-red-400 border border-red-500/30 hover:bg-red-500/30 disabled:opacity-50 font-heading tracking-wider uppercase"
                 >
-                  {deleting ? "Deletingâ€¦" : "Confirm"}
+                  {deleting ? "Deleting$€¦" : "Confirm"}
                 </button>
                 <button
                   type="button"
@@ -732,7 +732,7 @@ function ApplicationDetailModal({
 
           <div className="flex items-center gap-3 text-[11px] text-foreground-subtle pt-2 border-t border-white/5">
             <span>Status: <span className="text-off-white">{app.status}</span></span>
-            <span>Â·</span>
+            <span>$·</span>
             <span>Submitted {new Date(app.createdAt).toLocaleString("en-GB")}</span>
           </div>
         </div>

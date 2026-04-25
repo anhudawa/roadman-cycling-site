@@ -2,8 +2,8 @@ import type { ReportContent, RenderedSection } from "./content";
 
 /**
  * Brand-consistent HTML version of the paid report, used by:
- *   Â· the tokenised /reports/[product]/view/[token] web view
- *   Â· the inline body of the delivery email (strip to a digest)
+ *   $· the tokenised /reports/[product]/view/[token] web view
+ *   $· the inline body of the delivery email (strip to a digest)
  *
  * Keeps the same narrative + section order as the PDF so the rider
  * sees a consistent experience whether they open the PDF or the link.
@@ -30,7 +30,7 @@ function renderSection(section: RenderedSection): string {
       ? `<ul style="margin:8px 0 0;padding-left:20px;color:#545559;line-height:1.6;">${section.bullets
           .map(
             (b) =>
-              `<li style="margin:6px 0;"><span style="color:#F16363;margin-right:4px;">â–¸</span>${escapeHtml(b)}</li>`,
+              `<li style="margin:6px 0;"><span style="color:#F16363;margin-right:4px;">$–¸</span>${escapeHtml(b)}</li>`,
           )
           .join("")}</ul>`
       : "";
@@ -82,13 +82,13 @@ export function renderReportHtml(content: ReportContent, opts?: { pdfHref?: stri
   <meta charset="utf-8"/>
   <meta name="viewport" content="width=device-width,initial-scale=1"/>
   <meta name="robots" content="noindex,nofollow"/>
-  <title>${escapeHtml(content.productName)} Â· Roadman Cycling</title>
+  <title>${escapeHtml(content.productName)} $· Roadman Cycling</title>
 </head>
 <body style="margin:0;padding:0;background:#FAFAFA;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif;color:#252526;">
   <div style="max-width:720px;margin:0 auto;padding:0 0 48px;">
     <header style="background:#210140;color:#FAFAFA;padding:40px 32px 32px;">
       <p style="margin:0 0 12px;color:#F16363;font-size:11px;letter-spacing:2px;text-transform:uppercase;font-weight:700;">
-        Roadman Cycling Â· Paid Report
+        Roadman Cycling $· Paid Report
       </p>
       <h1 style="margin:0 0 16px;color:#FAFAFA;font-size:32px;font-weight:800;text-transform:uppercase;line-height:1.1;">
         ${escapeHtml(cover?.title ?? content.productName)}
@@ -110,8 +110,8 @@ export function renderReportHtml(content: ReportContent, opts?: { pdfHref?: stri
     </main>
 
     <footer style="padding:24px 32px;background:#210140;color:#FAFAFA;opacity:0.85;font-size:11px;line-height:1.6;">
-      <p style="margin:0 0 8px;">Generated ${dateLabel} Â· Roadman Cycling</p>
-      <p style="margin:0;">Questions? Reply to this email â€” Anthony and the team read everything.</p>
+      <p style="margin:0 0 8px;">Generated ${dateLabel} $· Roadman Cycling</p>
+      <p style="margin:0;">Questions? Reply to this email $€” Anthony and the team read everything.</p>
     </footer>
   </div>
 </body>
@@ -119,7 +119,7 @@ export function renderReportHtml(content: ReportContent, opts?: { pdfHref?: stri
 }
 
 /**
- * Email-friendly digest â€” trimmed to the essentials with prominent CTAs
+ * Email-friendly digest $€” trimmed to the essentials with prominent CTAs
  * back to the full web view + PDF. Inline styles everywhere since most
  * email clients ignore <style>.
  */
@@ -158,7 +158,7 @@ export function renderDeliveryEmailHtml(
       ${
         primary
           ? `<p style="margin:0 0 8px;color:#F16363;font-size:11px;letter-spacing:2px;text-transform:uppercase;font-weight:700;">Primary limiter</p>
-      <p style="margin:0 0 16px;"><strong>${escapeHtml(primary.label)}</strong> â€” ${escapeHtml(primary.explanation)}</p>`
+      <p style="margin:0 0 16px;"><strong>${escapeHtml(primary.label)}</strong> $€” ${escapeHtml(primary.explanation)}</p>`
           : ""
       }
 
@@ -168,13 +168,13 @@ export function renderDeliveryEmailHtml(
       </div>
 
       <p style="margin:24px 0 0;color:#545559;font-size:12px;line-height:1.5;">
-        Keep this email â€” the links are private and tied to your report. Lose
+        Keep this email $€” the links are private and tied to your report. Lose
         the email? Reply and we'll resend a fresh link.
       </p>
     </div>
 
     <div style="padding:16px 24px;background:#210140;color:#FAFAFA;opacity:0.85;font-size:11px;line-height:1.6;text-align:center;">
-      Roadman Cycling Â· roadmancycling.com
+      Roadman Cycling $· roadmancycling.com
     </div>
   </div>
 </body>

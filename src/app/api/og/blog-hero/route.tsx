@@ -3,23 +3,23 @@ import { NextRequest } from "next/server";
 import { getPostBySlug } from "@/lib/blog";
 
 /**
- * Dynamic blog hero generator â€” Satori-backed.
+ * Dynamic blog hero generator $€” Satori-backed.
  *
  * Preview URLs (once deployed):
  *   /api/og/blog-hero?slug=<any-existing-blog-slug>
  *   /api/og/blog-hero?title=Any%20Title&pillar=coaching
  *
  * Returns a 1600Ã—900 (16:9) PNG. Consumers render it at whatever
- * aspect they need â€” the post page hero crops to 21:9, the /blog
+ * aspect they need $€” the post page hero crops to 21:9, the /blog
  * index cards render at 16:9 as-is.
  *
  * Design brief:
- *  - Same visual language as the homepage glitch hero â€” deep-purple
+ *  - Same visual language as the homepage glitch hero $€” deep-purple
  *    bg (#210140), pillar-coloured accents, subtle grain.
  *  - Enormous pillar-coloured numeric "0Ã˜" glyph at right as the
  *    visual anchor (cheaper than a real portrait, reads as a
  *    data/benchmark signal).
- *  - Headline fills the left rail â€” Bebas-style condensed caps,
+ *  - Headline fills the left rail $€” Bebas-style condensed caps,
  *    auto-sized based on length.
  *  - "ROADMAN" watermark at the bottom, 24px tracked-out.
  *
@@ -28,7 +28,7 @@ import { getPostBySlug } from "@/lib/blog";
  * re-invoking Satori per request.
  */
 
-// Node runtime (default) â€” Satori works fine here and getPostBySlug
+// Node runtime (default) $€” Satori works fine here and getPostBySlug
 // reads MDX files from disk at render time. Responses cache
 // aggressively via the Cache-Control header on the response, so
 // Satori only runs once per unique (slug|title|pillar) tuple.
@@ -52,7 +52,7 @@ const pillarLabels: Record<string, string> = {
 function resolveTitleFontSize(title: string): number {
   // Target a ~3-4 line wrap at 1600px wide with the left rail (~900px
   // of content width). The output is 21:9 (1600Ã—686) so vertical
-  // real-estate is tighter than a 16:9 card â€” drop sizes one step
+  // real-estate is tighter than a 16:9 card $€” drop sizes one step
   // faster than we used to, and add a 90+ char tier because the
   // longest blog title today is 81 chars and a few podcast-adjacent
   // headlines push past 90.
@@ -98,7 +98,7 @@ export async function GET(req: NextRequest) {
           fontFamily: "sans-serif",
         }}
       >
-        {/* Diagonal pillar-coloured radial glow â€” visual interest
+        {/* Diagonal pillar-coloured radial glow $€” visual interest
             in the right-bottom quadrant without dominating. */}
         <div
           style={{
@@ -120,7 +120,7 @@ export async function GET(req: NextRequest) {
           }}
         />
 
-        {/* Oversized pillar "â€¢" glyph â€” minimal brand anchor. Tuned
+        {/* Oversized pillar "$€¢" glyph $€” minimal brand anchor. Tuned
             so it reads as an accent, not a bullseye. */}
         <div
           style={{
@@ -161,7 +161,7 @@ export async function GET(req: NextRequest) {
             justifyContent: "space-between",
           }}
         >
-          {/* â”€â”€ top row: pillar + blog â”€â”€â”€â”€â”€â”€â”€â”€â”€ */}
+          {/* $”€$”€ top row: pillar + blog $”€$”€$”€$”€$”€$”€$”€$”€$”€ */}
           <div
             style={{
               display: "flex",
@@ -206,11 +206,11 @@ export async function GET(req: NextRequest) {
                 letterSpacing: "4px",
               }}
             >
-              ROADMAN Â· BLOG
+              ROADMAN $· BLOG
             </span>
           </div>
 
-          {/* â”€â”€ headline â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */}
+          {/* $”€$”€ headline $”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€ */}
           <div
             style={{
               display: "flex",
@@ -233,7 +233,7 @@ export async function GET(req: NextRequest) {
               {title}
             </h1>
 
-            {/* 48px coral hairline â€” matches the homepage hero */}
+            {/* 48px coral hairline $€” matches the homepage hero */}
             <div
               style={{
                 width: "48px",
@@ -244,7 +244,7 @@ export async function GET(req: NextRequest) {
             />
           </div>
 
-          {/* â”€â”€ bottom row: brand + url â”€â”€â”€â”€â”€â”€â”€â”€ */}
+          {/* $”€$”€ bottom row: brand + url $”€$”€$”€$”€$”€$”€$”€$”€ */}
           <div
             style={{
               display: "flex",
@@ -282,7 +282,7 @@ export async function GET(req: NextRequest) {
       // (aspect-[21/9] w/ object-cover) so nothing gets clipped
       // top/bottom. Previously this was 1600Ã—900 (16:9) which got
       // centre-cropped to 21:9 on the page, chopping ~107px off
-      // the top + bottom â€” that's the "headline text cut off"
+      // the top + bottom $€” that's the "headline text cut off"
       // bug users reported on long-title posts.
       width: 1600,
       height: 686,

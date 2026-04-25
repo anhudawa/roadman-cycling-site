@@ -1,83 +1,83 @@
-# Ask Roadman + Saved Diagnostics â€” MVP Design
+# Ask Roadman + Saved Diagnostics $€” MVP Design
 
 **Date:** 2026-04-24
 **Author:** Claude (for Anthony)
 **Status:** Proposed
-**Depends on:** PR #76 (merged as `747884c`) â€” MCP server, pgvector, episode/methodology embeddings
+**Depends on:** PR #76 (merged as `747884c`) $€” MCP server, pgvector, episode/methodology embeddings
 
 ## 1. Summary
 
-Build an "Ask Roadman" chat surface on roadmancycling.com that answers cyclist questions using Roadman's own podcast archive, methodology, and coaching content â€” plus upgrade three diagnostic tools (Plateau Diagnostic, In-Ride Fuelling, FTP Zones) so their saved results feed both the rider profile and Ask Roadman's context.
+Build an "Ask Roadman" chat surface on roadmancycling.com that answers cyclist questions using Roadman's own podcast archive, methodology, and coaching content $€” plus upgrade three diagnostic tools (Plateau Diagnostic, In-Ride Fuelling, FTP Zones) so their saved results feed both the rider profile and Ask Roadman's context.
 
 The MVP unifies five moving parts that already partially exist:
 
-1. **Ask Roadman chat** (new) â€” `/ask` page, streaming API, RAG over the MCP layer PR #76 shipped.
-2. **Saved Diagnostics** â€” Plateau Diagnostic already exists (`src/lib/diagnostic/`); fuelling calculator and FTP zone calculator get built/upgraded to the same "save + email + CRM tag" pattern.
-3. **Shared rider profile** â€” a single `rider_profiles` record per email, linked to the existing `contacts` row, holding discipline / hours / FTP / goal / limiter / consent / history pointers.
-4. **Shared content corpus** â€” extend PR #76's vector store with a generic `content_chunks` table so articles, guides, tool pages, FAQs, case studies are retrievable alongside episodes and methodology principles.
-5. **Admin + analytics** â€” reuse `src/app/admin/` shell, add a `/admin/ask` surface for chat review, and a `/admin/corpus` surface for ingestion audit. Analytics events fire to the existing `events` table via `trackAnalyticsEvent`.
+1. **Ask Roadman chat** (new) $€” `/ask` page, streaming API, RAG over the MCP layer PR #76 shipped.
+2. **Saved Diagnostics** $€” Plateau Diagnostic already exists (`src/lib/diagnostic/`); fuelling calculator and FTP zone calculator get built/upgraded to the same "save + email + CRM tag" pattern.
+3. **Shared rider profile** $€” a single `rider_profiles` record per email, linked to the existing `contacts` row, holding discipline / hours / FTP / goal / limiter / consent / history pointers.
+4. **Shared content corpus** $€” extend PR #76's vector store with a generic `content_chunks` table so articles, guides, tool pages, FAQs, case studies are retrievable alongside episodes and methodology principles.
+5. **Admin + analytics** $€” reuse `src/app/admin/` shell, add a `/admin/ask` surface for chat review, and a `/admin/corpus` surface for ingestion audit. Analytics events fire to the existing `events` table via `trackAnalyticsEvent`.
 
 ## 2. Recommended technical architecture
 
 ```
-â”Œâ”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”
-â”‚                     roadmancycling.com (Next.js 16)                  â”‚
-â”‚                                                                      â”‚
-â”‚  /ask                  /diagnostic             /tools/fuelling       â”‚
-â”‚  â”Œâ”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”          â”Œâ”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”         â”Œâ”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”      â”‚
-â”‚  â”‚AskShell  â”‚          â”‚PlateauForm  â”‚         â”‚FuellingCalc  â”‚      â”‚
-â”‚  â”‚+stream   â”‚          â”‚+save+email  â”‚         â”‚+save+email   â”‚      â”‚
-â”‚  â””â”€â”€â”€â”€â”¬â”€â”€â”€â”€â”€â”˜          â””â”€â”€â”€â”€â”€â”€â”¬â”€â”€â”€â”€â”€â”€â”˜         â””â”€â”€â”€â”€â”€â”€â”¬â”€â”€â”€â”€â”€â”€â”€â”˜      â”‚
-â”‚       â”‚                       â”‚                       â”‚              â”‚
-â”‚       â–¼                       â–¼                       â–¼              â”‚
-â”‚  /api/ask (stream)   /api/diagnostic/submit   /api/tools/*/save      â”‚
-â”‚       â”‚                       â”‚                       â”‚              â”‚
-â”‚       â–¼                       â””â”€â”€â”€â”€â”€â”€â”€â”€â”¬â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”˜              â”‚
-â”‚  â”Œâ”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”                     â–¼                             â”‚
-â”‚  â”‚ask-orchestratorâ”‚          rider-profile.upsert()                  â”‚
-â”‚  â”‚ (server-only)  â”‚â—„â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”                                â”‚
-â”‚  â””â”€â”€â”€â”€â”€â”€â”¬â”€â”€â”€â”€â”€â”€â”€â”€â”€â”˜                 â”‚ load saved profile             â”‚
-â”‚         â”‚                           â”‚ on /ask load                   â”‚
-â”‚         â–¼                           â”‚                                â”‚
-â”‚  retrieval.search(query, filters) â”€â”€â”˜                                â”‚
-â”‚   â”œâ”€â”€ search_episodes (existing)                                     â”‚
-â”‚   â”œâ”€â”€ search_methodology (existing)                                  â”‚
-â”‚   â”œâ”€â”€ search_content_chunks (NEW) â”€â”€â”€â”€ articles/guides/FAQs/tools   â”‚
-â”‚   â”œâ”€â”€ get_expert_insights (existing)                                 â”‚
-â”‚   â”œâ”€â”€ list_products (existing)                                       â”‚
-â”‚   â””â”€â”€ recommend_cta (NEW) â”€â”€ maps intent â†’ Roadman surface           â”‚
-â”‚                                                                      â”‚
-â”‚  claude-3-5-sonnet / claude-opus-4 (Anthropic SDK)                   â”‚
-â”‚   â”œâ”€â”€ system prompt = Ask Roadman persona + safety                   â”‚
-â”‚   â”œâ”€â”€ context = retrieved chunks + saved profile + diagnostic state  â”‚
-â”‚   â”œâ”€â”€ tools exposed to model = retrieval fns above                   â”‚
-â”‚   â””â”€â”€ streaming response with inline citations                       â”‚
-â”‚                                                                      â”‚
-â”‚  ask_sessions, ask_messages, ask_retrievals (NEW tables)             â”‚
-â”‚  rider_profiles (NEW table, FK to contacts)                          â”‚
-â”‚  content_sources + content_chunks (NEW tables, vector(1024))         â”‚
-â””â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”˜
+$”Œ$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”
+$”$                     roadmancycling.com (Next.js 16)                  $”$
+$”$                                                                      $”$
+$”$  /ask                  /diagnostic             /tools/fuelling       $”$
+$”$  $”Œ$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”          $”Œ$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”         $”Œ$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”      $”$
+$”$  $”$AskShell  $”$          $”$PlateauForm  $”$         $”$FuellingCalc  $”$      $”$
+$”$  $”$+stream   $”$          $”$+save+email  $”$         $”$+save+email   $”$      $”$
+$”$  $””$”€$”€$”€$”€$”$$”€$”€$”€$”€$”€$”˜          $””$”€$”€$”€$”€$”€$”€$”$$”€$”€$”€$”€$”€$”€$”˜         $””$”€$”€$”€$”€$”€$”€$”$$”€$”€$”€$”€$”€$”€$”€$”˜      $”$
+$”$       $”$                       $”$                       $”$              $”$
+$”$       $–¼                       $–¼                       $–¼              $”$
+$”$  /api/ask (stream)   /api/diagnostic/submit   /api/tools/*/save      $”$
+$”$       $”$                       $”$                       $”$              $”$
+$”$       $–¼                       $””$”€$”€$”€$”€$”€$”€$”€$”€$”$$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”˜              $”$
+$”$  $”Œ$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”                     $–¼                             $”$
+$”$  $”$ask-orchestrator$”$          rider-profile.upsert()                  $”$
+$”$  $”$ (server-only)  $”$$—„$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”                                $”$
+$”$  $””$”€$”€$”€$”€$”€$”€$”$$”€$”€$”€$”€$”€$”€$”€$”€$”€$”˜                 $”$ load saved profile             $”$
+$”$         $”$                           $”$ on /ask load                   $”$
+$”$         $–¼                           $”$                                $”$
+$”$  retrieval.search(query, filters) $”€$”€$”˜                                $”$
+$”$   $”œ$”€$”€ search_episodes (existing)                                     $”$
+$”$   $”œ$”€$”€ search_methodology (existing)                                  $”$
+$”$   $”œ$”€$”€ search_content_chunks (NEW) $”€$”€$”€$”€ articles/guides/FAQs/tools   $”$
+$”$   $”œ$”€$”€ get_expert_insights (existing)                                 $”$
+$”$   $”œ$”€$”€ list_products (existing)                                       $”$
+$”$   $””$”€$”€ recommend_cta (NEW) $”€$”€ maps intent $†’ Roadman surface           $”$
+$”$                                                                      $”$
+$”$  claude-3-5-sonnet / claude-opus-4 (Anthropic SDK)                   $”$
+$”$   $”œ$”€$”€ system prompt = Ask Roadman persona + safety                   $”$
+$”$   $”œ$”€$”€ context = retrieved chunks + saved profile + diagnostic state  $”$
+$”$   $”œ$”€$”€ tools exposed to model = retrieval fns above                   $”$
+$”$   $””$”€$”€ streaming response with inline citations                       $”$
+$”$                                                                      $”$
+$”$  ask_sessions, ask_messages, ask_retrievals (NEW tables)             $”$
+$”$  rider_profiles (NEW table, FK to contacts)                          $”$
+$”$  content_sources + content_chunks (NEW tables, vector(1024))         $”$
+$””$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”˜
 ```
 
 ### Key boundaries
 
-- **UI layer** (`src/app/(marketing)/ask/`, `src/app/tools/*`) â€” client components for chat + diagnostic forms, server components for layout. No business logic; calls API routes only.
-- **API layer** (`src/app/api/ask/`, `src/app/api/diagnostic/*`, `src/app/api/tools/*`) â€” thin request/response adapters. Rate-limits, auth, validation, streams.
-- **Orchestration layer** (`src/lib/ask/`) â€” pure server-only module. Receives `{query, profile, sessionHistory}`, decides retrieval, calls Claude, streams result. Testable in isolation.
-- **Retrieval layer** (`src/lib/ask/retrieval/`) â€” one function per source type. Episodes + methodology reuse PR #76 services verbatim; content_chunks is new.
-- **Data layer** (`src/lib/db/schema.ts` + `src/lib/rider-profile/`, `src/lib/ask/store.ts`, `src/lib/corpus/`) â€” Drizzle queries, no HTTP, no Claude.
-- **Ingestion layer** (`agents/corpus-indexer/` or extend `agents/transcript-indexer/`) â€” reads MDX + structured content, chunks, embeds, upserts `content_chunks`.
+- **UI layer** (`src/app/(marketing)/ask/`, `src/app/tools/*`) $€” client components for chat + diagnostic forms, server components for layout. No business logic; calls API routes only.
+- **API layer** (`src/app/api/ask/`, `src/app/api/diagnostic/*`, `src/app/api/tools/*`) $€” thin request/response adapters. Rate-limits, auth, validation, streams.
+- **Orchestration layer** (`src/lib/ask/`) $€” pure server-only module. Receives `{query, profile, sessionHistory}`, decides retrieval, calls Claude, streams result. Testable in isolation.
+- **Retrieval layer** (`src/lib/ask/retrieval/`) $€” one function per source type. Episodes + methodology reuse PR #76 services verbatim; content_chunks is new.
+- **Data layer** (`src/lib/db/schema.ts` + `src/lib/rider-profile/`, `src/lib/ask/store.ts`, `src/lib/corpus/`) $€” Drizzle queries, no HTTP, no Claude.
+- **Ingestion layer** (`agents/corpus-indexer/` or extend `agents/transcript-indexer/`) $€” reads MDX + structured content, chunks, embeds, upserts `content_chunks`.
 
 ## 3. Stack
 
 | Layer | Choice | Reason |
 |-------|--------|--------|
-| Framework | Next.js 16 App Router (already in repo) | Matches repo. **AGENTS.md says read `node_modules/next/dist/docs/` before writing code** â€” breaking changes from earlier Next. |
+| Framework | Next.js 16 App Router (already in repo) | Matches repo. **AGENTS.md says read `node_modules/next/dist/docs/` before writing code** $€” breaking changes from earlier Next. |
 | Language | TypeScript 5 (already in repo) | Matches repo |
 | UI | React 19 + Tailwind v4 + framer-motion (already in repo) | Matches repo and brand palette already wired |
-| LLM | `@anthropic-ai/sdk` v0.82 â€” claude-opus-4-7 for primary answers, claude-haiku-4-5 for intent classification / cheap classification | Already installed. Opus for quality on main answer, Haiku for intent/cta routing to keep cost/latency sane. |
+| LLM | `@anthropic-ai/sdk` v0.82 $€” claude-opus-4-7 for primary answers, claude-haiku-4-5 for intent classification / cheap classification | Already installed. Opus for quality on main answer, Haiku for intent/cta routing to keep cost/latency sane. |
 | Streaming | Server-Sent Events via Next App Router `Response` with `ReadableStream` (Anthropic SDK `.stream()`) | Standard for chat; avoids websockets |
-| Embeddings | Voyage `voyage-3-large` (1024 dim) â€” already wired via `src/lib/mcp/embeddings.ts` | Use the provider already in use; do not mix dimensions |
+| Embeddings | Voyage `voyage-3-large` (1024 dim) $€” already wired via `src/lib/mcp/embeddings.ts` | Use the provider already in use; do not mix dimensions |
 | Vector DB | Postgres + pgvector on Vercel Postgres (already enabled) | PR #76 already installed extension |
 | Rate limiting | `@upstash/ratelimit` sliding window (already installed for MCP) | Consistent with MCP rate limiter |
 | Auth | next-auth v5 beta (already in repo) + email-magic-link for logged-in tier | Already wired for admin; extend to public |
@@ -93,7 +93,7 @@ All new tables use `ask_` or `rider_` or `content_` prefix to avoid colliding wi
 ```sql
 -- Migration 0028_ask_roadman_and_rider_profiles.sql
 
--- â”€â”€ Rider profile â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+-- $”€$”€ Rider profile $”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€
 CREATE TABLE "rider_profiles" (
   "id" serial PRIMARY KEY,
   "contact_id" integer UNIQUE REFERENCES "contacts"("id") ON DELETE CASCADE,
@@ -120,7 +120,7 @@ CREATE TABLE "rider_profiles" (
 CREATE INDEX "rider_profiles_email_idx" ON "rider_profiles" ("email");
 CREATE INDEX "rider_profiles_contact_id_idx" ON "rider_profiles" ("contact_id");
 
--- â”€â”€ Ask Roadman sessions â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+-- $”€$”€ Ask Roadman sessions $”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€
 CREATE TABLE "ask_sessions" (
   "id" uuid PRIMARY KEY DEFAULT gen_random_uuid(),
   "rider_profile_id" integer REFERENCES "rider_profiles"("id") ON DELETE SET NULL,
@@ -137,7 +137,7 @@ CREATE INDEX "ask_sessions_rider_profile_id_idx" ON "ask_sessions" ("rider_profi
 CREATE INDEX "ask_sessions_anon_session_key_idx" ON "ask_sessions" ("anon_session_key");
 CREATE INDEX "ask_sessions_last_activity_at_idx" ON "ask_sessions" ("last_activity_at");
 
--- â”€â”€ Ask Roadman messages â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+-- $”€$”€ Ask Roadman messages $”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€
 CREATE TABLE "ask_messages" (
   "id" uuid PRIMARY KEY DEFAULT gen_random_uuid(),
   "session_id" uuid NOT NULL REFERENCES "ask_sessions"("id") ON DELETE CASCADE,
@@ -161,7 +161,7 @@ CREATE INDEX "ask_messages_session_id_idx" ON "ask_messages" ("session_id");
 CREATE INDEX "ask_messages_created_at_idx" ON "ask_messages" ("created_at");
 CREATE INDEX "ask_messages_flagged_idx" ON "ask_messages" ("flagged_for_review") WHERE flagged_for_review;
 
--- â”€â”€ Retrieval trace per assistant message â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+-- $”€$”€ Retrieval trace per assistant message $”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€$”€
 CREATE TABLE "ask_retrievals" (
   "id" uuid PRIMARY KEY DEFAULT gen_random_uuid(),
   "message_id" uuid NOT NULL REFERENCES "ask_messages"("id") ON DELETE CASCADE,
@@ -174,7 +174,7 @@ CREATE TABLE "ask_retrievals" (
 );
 CREATE INDEX "ask_retrievals_message_id_idx" ON "ask_retrievals" ("message_id");
 
--- â”€â”€ Generic content corpus (articles, guides, tools, FAQs) â”€â”€
+-- $”€$”€ Generic content corpus (articles, guides, tools, FAQs) $”€$”€
 CREATE TABLE "content_sources" (
   "id" serial PRIMARY KEY,
   "slug" text UNIQUE NOT NULL,
@@ -210,7 +210,7 @@ CREATE INDEX "content_chunks_source_id_idx" ON "content_chunks" ("source_id");
 -- IVFFlat index added after initial bulk ingest:
 -- CREATE INDEX content_chunks_embedding_ivfflat ON content_chunks USING ivfflat (embedding vector_cosine_ops) WITH (lists=100);
 
--- â”€â”€ Saved Diagnostic Results (fuelling + FTP zones) â”€â”€â”€â”€â”€â”€
+-- $”€$”€ Saved Diagnostic Results (fuelling + FTP zones) $”€$”€$”€$”€$”€$”€
 CREATE TABLE "fuelling_submissions" (
   "id" serial PRIMARY KEY,
   "slug" text NOT NULL UNIQUE,
@@ -246,29 +246,29 @@ CREATE INDEX "ftp_zone_submissions_email_idx" ON "ftp_zone_submissions" ("email"
 
 ### Relationships
 
-- `contacts.email == rider_profiles.email` â€” profile is the enriched, rider-domain view; contact row stays the CRM truth.
+- `contacts.email == rider_profiles.email` $€” profile is the enriched, rider-domain view; contact row stays the CRM truth.
 - `diagnostic_submissions` (existing Plateau), `fuelling_submissions`, `ftp_zone_submissions` each carry `email` so we can backfill `rider_profile_id` later and the existing Plateau table doesn't need restructuring.
-- `ask_sessions.rider_profile_id` is nullable â€” anon sessions are cookie-bound via `anon_session_key`; they upgrade to profile-bound when an email is captured.
+- `ask_sessions.rider_profile_id` is nullable $€” anon sessions are cookie-bound via `anon_session_key`; they upgrade to profile-bound when an email is captured.
 - `ask_messages.retrieval_ids` gives us forensic trace: every assistant message links to the exact chunks retrieved, used in the admin review surface and in CTA-click attribution.
 
 ### Consent and sensitive fields
 
 - `weight_kg` is optional on rider_profiles and fuelling_submissions. Never required. Never displayed back to the user outside "your saved data" surfaces.
 - `consent_save_profile` + `consent_email_followup` explicit booleans with a `consent_recorded_at` timestamp (GDPR-grade audit trail).
-- The Plateau Diagnostic already captures consent via the beehiiv subscribe step â€” mirror that pattern for fuelling + FTP.
+- The Plateau Diagnostic already captures consent via the beehiiv subscribe step $€” mirror that pattern for fuelling + FTP.
 
 ## 5. API structure
 
-All routes are App Router handlers under `src/app/api/â€¦/route.ts`.
+All routes are App Router handlers under `src/app/api/$€¦/route.ts`.
 
 ### Ask Roadman
 
 ```
-POST   /api/ask                  â€” start a message (streams SSE)
-GET    /api/ask/session          â€” load current session (cookie-bound)
-POST   /api/ask/session/email    â€” capture email + upgrade anon â†’ profile
-POST   /api/ask/feedback         â€” thumbs up/down on a message
-POST   /api/ask/cta-click        â€” log a CTA click tied to a message
+POST   /api/ask                  $€” start a message (streams SSE)
+GET    /api/ask/session          $€” load current session (cookie-bound)
+POST   /api/ask/session/email    $€” capture email + upgrade anon $†’ profile
+POST   /api/ask/feedback         $€” thumbs up/down on a message
+POST   /api/ask/cta-click        $€” log a CTA click tied to a message
 ```
 
 Request shape (`POST /api/ask`):
@@ -280,11 +280,11 @@ Response: SSE with events: `meta` (session_id, message_id, retrieval summary), `
 ### Diagnostics
 
 ```
-POST   /api/diagnostic/submit       â€” existing plateau flow (no change)
-POST   /api/tools/fuelling/save     â€” new
-POST   /api/tools/ftp-zones/save    â€” new
-GET    /api/tools/fuelling/:slug    â€” public result page
-GET    /api/tools/ftp-zones/:slug   â€” public result page
+POST   /api/diagnostic/submit       $€” existing plateau flow (no change)
+POST   /api/tools/fuelling/save     $€” new
+POST   /api/tools/ftp-zones/save    $€” new
+GET    /api/tools/fuelling/:slug    $€” public result page
+GET    /api/tools/ftp-zones/:slug   $€” public result page
 ```
 
 All three save-endpoints:
@@ -299,11 +299,11 @@ All three save-endpoints:
 ### Admin
 
 ```
-GET    /api/admin/ask/messages      â€” recent/flagged messages
-POST   /api/admin/ask/flag          â€” toggle flagged_for_review
-POST   /api/admin/ask/preferred     â€” set admin_preferred_answer
-GET    /api/admin/corpus/sources    â€” list sources, indexing status
-POST   /api/admin/corpus/reindex    â€” trigger re-embed of a slug
+GET    /api/admin/ask/messages      $€” recent/flagged messages
+POST   /api/admin/ask/flag          $€” toggle flagged_for_review
+POST   /api/admin/ask/preferred     $€” set admin_preferred_answer
+GET    /api/admin/corpus/sources    $€” list sources, indexing status
+POST   /api/admin/corpus/reindex    $€” trigger re-embed of a slug
 ```
 
 All admin routes behind existing `isAnthony()` + allowlist guard.
@@ -324,105 +324,105 @@ Limits bounded by `anon_session_key` cookie OR `email` OR `ip_hash` (whichever h
 
 ```
 src/app/(marketing)/ask/
-â”œâ”€â”€ page.tsx                       â€” RSC shell, loads session (if cookie) and profile (if logged in)
-â”œâ”€â”€ AskRoadmanClient.tsx           â€” top-level client component, owns chat state
-â”œâ”€â”€ AskShell.tsx                   â€” dark charcoal + purple background, Bebas Neue header
-â”œâ”€â”€ StarterPrompts.tsx             â€” 6 coral-accented chips (Diagnose my plateau / Fuel a long ride / etc.)
-â”œâ”€â”€ MessageList.tsx                â€” assistant + user bubbles, Work Sans body, coral accent on CTAs
-â”œâ”€â”€ StreamingMessage.tsx           â€” renders SSE delta tokens + inline citation pills
-â”œâ”€â”€ CitationCard.tsx               â€” episode/article preview with cover art + "Listen" / "Read" CTA
-â”œâ”€â”€ CtaCard.tsx                    â€” the contextual Roadman-product recommendation
-â”œâ”€â”€ EmailCapturePrompt.tsx         â€” shown after N messages; coral CTA
-â”œâ”€â”€ SafetyBanner.tsx               â€” appears on medical/injury-sensitive flags
-â”œâ”€â”€ SavedContextChip.tsx           â€” "Using your saved Plateau Diagnostic ( 2026-04-15 )" banner
-â””â”€â”€ styles.module.css              â€” chat-specific polish only
+$”œ$”€$”€ page.tsx                       $€” RSC shell, loads session (if cookie) and profile (if logged in)
+$”œ$”€$”€ AskRoadmanClient.tsx           $€” top-level client component, owns chat state
+$”œ$”€$”€ AskShell.tsx                   $€” dark charcoal + purple background, Bebas Neue header
+$”œ$”€$”€ StarterPrompts.tsx             $€” 6 coral-accented chips (Diagnose my plateau / Fuel a long ride / etc.)
+$”œ$”€$”€ MessageList.tsx                $€” assistant + user bubbles, Work Sans body, coral accent on CTAs
+$”œ$”€$”€ StreamingMessage.tsx           $€” renders SSE delta tokens + inline citation pills
+$”œ$”€$”€ CitationCard.tsx               $€” episode/article preview with cover art + "Listen" / "Read" CTA
+$”œ$”€$”€ CtaCard.tsx                    $€” the contextual Roadman-product recommendation
+$”œ$”€$”€ EmailCapturePrompt.tsx         $€” shown after N messages; coral CTA
+$”œ$”€$”€ SafetyBanner.tsx               $€” appears on medical/injury-sensitive flags
+$”œ$”€$”€ SavedContextChip.tsx           $€” "Using your saved Plateau Diagnostic ( 2026-04-15 )" banner
+$””$”€$”€ styles.module.css              $€” chat-specific polish only
 ```
 
 Visual direction: dark charcoal `#252526` background, deep-purple `#210140` on message bubbles, coral `#F16363` on CTAs and user bubbles, Bebas Neue for section headers, Work Sans for body. Matches the "premium, not generic embedded chatbot" requirement and the existing brand palette.
 
 Suggested starter prompts (fixed for MVP):
 
-1. **Diagnose my cycling plateau** â†’ deep-links with intent=plateau, routes to Plateau Diagnostic CTA
-2. **Help me fuel a long ride** â†’ intent=fuelling, routes to In-Ride Fuelling Calculator CTA
-3. **Find Roadman episodes on Zone 2** â†’ intent=content_discovery, shows top 3 matching episodes
-4. **I'm over 40 and not recovering well** â†’ intent=recovery_masters, routes to masters hub + NDY
-5. **Help me prepare for an event** â†’ intent=event_prep, asks for event + date
-6. **Should I get a coach?** â†’ intent=coaching_decision, routes to qualify_lead tool + NDY
+1. **Diagnose my cycling plateau** $†’ deep-links with intent=plateau, routes to Plateau Diagnostic CTA
+2. **Help me fuel a long ride** $†’ intent=fuelling, routes to In-Ride Fuelling Calculator CTA
+3. **Find Roadman episodes on Zone 2** $†’ intent=content_discovery, shows top 3 matching episodes
+4. **I'm over 40 and not recovering well** $†’ intent=recovery_masters, routes to masters hub + NDY
+5. **Help me prepare for an event** $†’ intent=event_prep, asks for event + date
+6. **Should I get a coach?** $†’ intent=coaching_decision, routes to qualify_lead tool + NDY
 
 ### New: tool result pages + upgraded forms
 
 ```
 src/app/(marketing)/tools/
-â”œâ”€â”€ fuelling/
-â”‚   â”œâ”€â”€ page.tsx                   â€” calculator form (client)
-â”‚   â”œâ”€â”€ [slug]/page.tsx            â€” saved result (server, public)
-â”‚   â””â”€â”€ FuellingCalculator.tsx
-â”œâ”€â”€ ftp-zones/
-â”‚   â”œâ”€â”€ page.tsx
-â”‚   â”œâ”€â”€ [slug]/page.tsx
-â”‚   â””â”€â”€ FtpZoneCalculator.tsx
+$”œ$”€$”€ fuelling/
+$”$   $”œ$”€$”€ page.tsx                   $€” calculator form (client)
+$”$   $”œ$”€$”€ [slug]/page.tsx            $€” saved result (server, public)
+$”$   $””$”€$”€ FuellingCalculator.tsx
+$”œ$”€$”€ ftp-zones/
+$”$   $”œ$”€$”€ page.tsx
+$”$   $”œ$”€$”€ [slug]/page.tsx
+$”$   $””$”€$”€ FtpZoneCalculator.tsx
 ```
 
-Plateau Diagnostic already at `/diagnostic` (existing). We are not redesigning it â€” we wire up its saved results into rider_profiles + Ask Roadman context.
+Plateau Diagnostic already at `/diagnostic` (existing). We are not redesigning it $€” we wire up its saved results into rider_profiles + Ask Roadman context.
 
 ### New: admin surfaces
 
 ```
 src/app/admin/(dashboard)/ask/
-â”œâ”€â”€ page.tsx                       â€” list view: recent questions, filters (flagged, low-confidence, topic)
-â”œâ”€â”€ [id]/page.tsx                  â€” single conversation + retrieval trace + preferred answer editor
-â”œâ”€â”€ topics/page.tsx                â€” top questions by cluster
-â””â”€â”€ corpus/page.tsx                â€” content source list + reindex buttons
+$”œ$”€$”€ page.tsx                       $€” list view: recent questions, filters (flagged, low-confidence, topic)
+$”œ$”€$”€ [id]/page.tsx                  $€” single conversation + retrieval trace + preferred answer editor
+$”œ$”€$”€ topics/page.tsx                $€” top questions by cluster
+$””$”€$”€ corpus/page.tsx                $€” content source list + reindex buttons
 ```
 
 ## 7. Backend services
 
 ```
 src/lib/ask/
-â”œâ”€â”€ orchestrator.ts                â€” main server-only entry. streamAnswer({query, session, profile}).
-â”œâ”€â”€ system-prompt.ts               â€” the Ask Roadman system prompt (exported, testable, version-tagged)
-â”œâ”€â”€ safety.ts                      â€” isMedicalEscalation(), extractSafetyFlags(), injectSafetyBanner()
-â”œâ”€â”€ intent.ts                      â€” classifyIntent(query) via Haiku â€” returns {intent, confidence}
-â”œâ”€â”€ retrieval/
-â”‚   â”œâ”€â”€ index.ts                   â€” retrieve({query, intent, profile}) â†’ RetrievalResult
-â”‚   â”œâ”€â”€ episodes.ts                â€” wraps searchEpisodes from src/lib/mcp/services
-â”‚   â”œâ”€â”€ methodology.ts             â€” wraps searchMethodology
-â”‚   â”œâ”€â”€ content-chunks.ts          â€” NEW: vector search over content_chunks
-â”‚   â”œâ”€â”€ experts.ts                 â€” wraps getExpertInsights
-â”‚   â””â”€â”€ products.ts                â€” wraps listProducts (for CTA routing)
-â”œâ”€â”€ cta.ts                         â€” intent Ã— profile Ã— retrieved context â†’ single CTA descriptor
-â”œâ”€â”€ store.ts                       â€” DB read/write for ask_sessions + ask_messages + ask_retrievals
-â”œâ”€â”€ rate-limit.ts                  â€” Upstash wrapper, tier-aware
-â””â”€â”€ stream.ts                      â€” SSE encoder + Anthropic stream bridge
+$”œ$”€$”€ orchestrator.ts                $€” main server-only entry. streamAnswer({query, session, profile}).
+$”œ$”€$”€ system-prompt.ts               $€” the Ask Roadman system prompt (exported, testable, version-tagged)
+$”œ$”€$”€ safety.ts                      $€” isMedicalEscalation(), extractSafetyFlags(), injectSafetyBanner()
+$”œ$”€$”€ intent.ts                      $€” classifyIntent(query) via Haiku $€” returns {intent, confidence}
+$”œ$”€$”€ retrieval/
+$”$   $”œ$”€$”€ index.ts                   $€” retrieve({query, intent, profile}) $†’ RetrievalResult
+$”$   $”œ$”€$”€ episodes.ts                $€” wraps searchEpisodes from src/lib/mcp/services
+$”$   $”œ$”€$”€ methodology.ts             $€” wraps searchMethodology
+$”$   $”œ$”€$”€ content-chunks.ts          $€” NEW: vector search over content_chunks
+$”$   $”œ$”€$”€ experts.ts                 $€” wraps getExpertInsights
+$”$   $””$”€$”€ products.ts                $€” wraps listProducts (for CTA routing)
+$”œ$”€$”€ cta.ts                         $€” intent Ã— profile Ã— retrieved context $†’ single CTA descriptor
+$”œ$”€$”€ store.ts                       $€” DB read/write for ask_sessions + ask_messages + ask_retrievals
+$”œ$”€$”€ rate-limit.ts                  $€” Upstash wrapper, tier-aware
+$””$”€$”€ stream.ts                      $€” SSE encoder + Anthropic stream bridge
 
 src/lib/rider-profile/
-â”œâ”€â”€ upsert.ts                      â€” upsertByEmail({email, patch, consent}) + log activity
-â”œâ”€â”€ load.ts                        â€” loadByEmailOrAnon(sessionKey | email)
-â””â”€â”€ enrich-from-submissions.ts     â€” pulls latest plateau/fuelling/ftp snapshots into profile context
+$”œ$”€$”€ upsert.ts                      $€” upsertByEmail({email, patch, consent}) + log activity
+$”œ$”€$”€ load.ts                        $€” loadByEmailOrAnon(sessionKey | email)
+$””$”€$”€ enrich-from-submissions.ts     $€” pulls latest plateau/fuelling/ftp snapshots into profile context
 
 src/lib/corpus/
-â”œâ”€â”€ ingest.ts                      â€” scan MDX + structured sources, chunk, embed, upsert
-â”œâ”€â”€ chunker.ts                     â€” heading-aware chunking (~1200 tokens, 150 overlap)
-â”œâ”€â”€ sources/
-â”‚   â”œâ”€â”€ mdx-articles.ts            â€” reads src/content/**/*.mdx via existing blog.ts loader
-â”‚   â”œâ”€â”€ tool-pages.ts              â€” coded list of tool page URLs + descriptions
-â”‚   â”œâ”€â”€ coaching-pages.ts          â€” (marketing)/coaching/*, /ndy/*
-â”‚   â”œâ”€â”€ faqs.ts                    â€” pulls FAQ sections out of MDX front-matter
-â”‚   â””â”€â”€ case-studies.ts            â€” existing testimonials.ts
-â””â”€â”€ reindex.ts                     â€” one slug at a time, idempotent via source_hash
+$”œ$”€$”€ ingest.ts                      $€” scan MDX + structured sources, chunk, embed, upsert
+$”œ$”€$”€ chunker.ts                     $€” heading-aware chunking (~1200 tokens, 150 overlap)
+$”œ$”€$”€ sources/
+$”$   $”œ$”€$”€ mdx-articles.ts            $€” reads src/content/**/*.mdx via existing blog.ts loader
+$”$   $”œ$”€$”€ tool-pages.ts              $€” coded list of tool page URLs + descriptions
+$”$   $”œ$”€$”€ coaching-pages.ts          $€” (marketing)/coaching/*, /ndy/*
+$”$   $”œ$”€$”€ faqs.ts                    $€” pulls FAQ sections out of MDX front-matter
+$”$   $””$”€$”€ case-studies.ts            $€” existing testimonials.ts
+$””$”€$”€ reindex.ts                     $€” one slug at a time, idempotent via source_hash
 
 src/lib/tools/
-â”œâ”€â”€ fuelling/
-â”‚   â”œâ”€â”€ calculator.ts              â€” pure fn: inputs â†’ {carbs_g_per_hr, fluid_ml_per_hr, sodium_mg_per_hr, breakdown}
-â”‚   â”œâ”€â”€ email.ts                   â€” Resend template
-â”‚   â””â”€â”€ store.ts                   â€” insert fuelling_submissions
-â””â”€â”€ ftp-zones/
-    â”œâ”€â”€ calculator.ts              â€” pure fn: ftp + method â†’ zones[]
-    â”œâ”€â”€ email.ts
-    â””â”€â”€ store.ts
+$”œ$”€$”€ fuelling/
+$”$   $”œ$”€$”€ calculator.ts              $€” pure fn: inputs $†’ {carbs_g_per_hr, fluid_ml_per_hr, sodium_mg_per_hr, breakdown}
+$”$   $”œ$”€$”€ email.ts                   $€” Resend template
+$”$   $””$”€$”€ store.ts                   $€” insert fuelling_submissions
+$””$”€$”€ ftp-zones/
+    $”œ$”€$”€ calculator.ts              $€” pure fn: ftp + method $†’ zones[]
+    $”œ$”€$”€ email.ts
+    $””$”€$”€ store.ts
 
 src/lib/analytics/
-â””â”€â”€ ask-events.ts                  â€” typed wrapper around trackAnalyticsEvent for the ~15 event types
+$””$”€$”€ ask-events.ts                  $€” typed wrapper around trackAnalyticsEvent for the ~15 event types
 ```
 
 ### Orchestrator flow (server-only, per message)
@@ -454,9 +454,9 @@ streamAnswer({ query, sessionId, profile }) {
 Implemented as a hard pre-filter + a soft post-filter:
 
 - **Pre-filter** (`safety.ts`): regex + Haiku call for "medical / injury / weight / suicidal / underage". On a hit:
-  - Medical symptom queries ("chest pain while riding") â†’ immediate escalation response, no RAG, log as `safety_flag=medical_escalation`
-  - Eating-disorder / extreme weight loss â†’ escalation to registered dietitian response
-  - Injury rehab prescriptions â†’ "speak to a physio" response
+  - Medical symptom queries ("chest pain while riding") $†’ immediate escalation response, no RAG, log as `safety_flag=medical_escalation`
+  - Eating-disorder / extreme weight loss $†’ escalation to registered dietitian response
+  - Injury rehab prescriptions $†’ "speak to a physio" response
   - These responses use a fixed template, bypass the model for the unsafe portion, and still offer a helpful Roadman link where safe (e.g. masters recovery content for general recovery questions).
 - **System prompt** embeds the seven explicit "Never" rules verbatim.
 - **Post-filter**: scan output for invented-source patterns (episode titles not in retrieval, guest names not in experts table). If found, strip the citation, set `confidence=low`, `flagged_for_review=true`.
@@ -484,7 +484,7 @@ Implemented as a hard pre-filter + a soft post-filter:
 - Heading-aware: split on h2/h3 from MDX AST; fall back to ~1200-token chunks with 150-token overlap.
 - Preserve `heading_path` (`"Nutrition > Carbohydrate > In-ride"`) for display in citations.
 - Store `source_hash` so re-embedding only triggers on real changes.
-- Episode transcripts already chunked by PR #76 â€” don't re-chunk.
+- Episode transcripts already chunked by PR #76 $€” don't re-chunk.
 
 ### Retrieval strategy
 
@@ -493,7 +493,7 @@ Parallel fan-out per query, merged + re-ranked:
 1. `search_content_chunks(query, filters={type in ['article','guide','tool_page','faq','case_study']}, limit=8)`
 2. `search_episodes(query, limit=4)`
 3. `search_methodology(query, limit=4)`
-4. `get_expert_insights(...)` â€” only when intent=expert_quote or methodology-heavy
+4. `get_expert_insights(...)` $€” only when intent=expert_quote or methodology-heavy
 
 Merge: normalize cosine scores per source, MMR (Î»=0.5) to diversify, cap at 10 total.
 
@@ -501,16 +501,16 @@ Give the model the 10 chunks as a structured `<context>` block with explicit `<s
 
 ### When RAG is intentionally bypassed
 
-- Rider profile Q&A ("what's my FTP?") â†’ pulled from saved profile, not RAG
-- CTA routing questions ("should I get a coach?") â†’ calls existing `qualifyLead` MCP service + formats reply; RAG supplements
-- Safety escalations â†’ fixed template, no model call on unsafe portion
-- Pure "find episodes on X" requests â†’ return structured list of top-K episodes, light model wrap
+- Rider profile Q&A ("what's my FTP?") $†’ pulled from saved profile, not RAG
+- CTA routing questions ("should I get a coach?") $†’ calls existing `qualifyLead` MCP service + formats reply; RAG supplements
+- Safety escalations $†’ fixed template, no model call on unsafe portion
+- Pure "find episodes on X" requests $†’ return structured list of top-K episodes, light model wrap
 
 ## 9. CRM integration
 
 All already-wired:
 
-- `rider_profiles.contact_id` â†’ `contacts.id`
+- `rider_profiles.contact_id` $†’ `contacts.id`
 - Tool completion inserts `contact_activities` row: `type=tool_completed, title='Completed Fuelling Calculator', meta={slug, carbs_g_per_hr, duration_min}`
 - Ask Roadman email capture inserts `contact_activities` row: `type=ask_roadman_email_captured`
 - CTA clicks insert `type=cta_clicked, meta={cta_key, ask_message_id}` so CRM segments can target "clicked coaching CTA but didn't apply"
@@ -519,7 +519,7 @@ All already-wired:
   - `plateau_profile_{primaryProfile}` (e.g. `plateau_profile_under-recovered`)
   - `discipline_{x}`, `age_{x}`, `hours_{x}`
   - `coaching_interest_{ready|interested|curious|none}`
-- Consent for email followup adds the contact to Beehiiv (existing Plateau Diagnostic already does this â€” use the same `src/lib/crm/sync.ts`).
+- Consent for email followup adds the contact to Beehiiv (existing Plateau Diagnostic already does this $€” use the same `src/lib/crm/sync.ts`).
 
 ## 10. Admin dashboard plan
 
@@ -537,18 +537,18 @@ Single new section at `/admin/ask`, styled to match the existing `/admin` shell.
 
 ### Admin actions
 
-- Flag a message â†’ sets `flagged_for_review=true`
-- Write a preferred answer â†’ stored on `admin_preferred_answer`; surfaced to Anthony in the review view only (not auto-served to users in MVP)
-- "Reindex this source" â†’ enqueues job, updates `content_sources.is_indexed`
-- Export â†’ CSV of `ask_messages` with filter applied
+- Flag a message $†’ sets `flagged_for_review=true`
+- Write a preferred answer $†’ stored on `admin_preferred_answer`; surfaced to Anthony in the review view only (not auto-served to users in MVP)
+- "Reindex this source" $†’ enqueues job, updates `content_sources.is_indexed`
+- Export $†’ CSV of `ask_messages` with filter applied
 
 ## 11. Privacy and consent plan
 
 - **Anonymous users**: `anon_session_key` cookie (httpOnly, secure, sameSite=lax, 90-day). Sessions/messages stored keyed only by that cookie; IP stored only as SHA-256 hash for abuse detection.
 - **Email capture**: an explicit CTA after 3 successful messages OR on user-initiated "save answer." Requires:
   - email
-  - checkbox: "Save my questions + profile to improve my answers" â†’ `consent_save_profile`
-  - checkbox: "Send me Roadman's weekly newsletter + follow-ups" â†’ `consent_email_followup`
+  - checkbox: "Save my questions + profile to improve my answers" $†’ `consent_save_profile`
+  - checkbox: "Send me Roadman's weekly newsletter + follow-ups" $†’ `consent_email_followup`
   - Disclosure: "You can delete your data anytime at /account/delete."
 - **Rider profile visibility**: only the owner can view; admin can only view aggregate analytics, never per-user PII outside `/admin/ask/[id]` (which is allowlisted).
 - **Data retention**: anon sessions auto-purged after 90 days idle. Profiles retained until user deletes.
@@ -560,13 +560,13 @@ Single new section at `/admin/ask`, styled to match the existing `/admin` shell.
 
 Each phase ends in a shippable, testable state. We DO NOT move to the next phase until the current one is green in production.
 
-### Phase 0 â€” Foundations (half day)
+### Phase 0 $€” Foundations (half day)
 - [x] Merge PR #76 (done)
 - Seed MCP tables (`seed:mcp:community-stats`, `seed:mcp:content`, `seed:mcp:products`, `seed:mcp:events`) with real data from brand skill
 - Run `db:migrate` for migration 0028
 - Set env vars (`ANTHROPIC_API_KEY`, `VOYAGE_API_KEY`, `UPSTASH_REDIS_REST_URL/TOKEN` if not already set)
 
-### Phase 1 â€” Ask Roadman thin slice (2-3 days)
+### Phase 1 $€” Ask Roadman thin slice (2-3 days)
 - `rider_profiles` + `ask_sessions/messages/retrievals` tables
 - `src/lib/ask/{orchestrator, system-prompt, retrieval, cta, store, safety, rate-limit, stream}.ts`
 - `/api/ask` + `/api/ask/session` routes with SSE streaming
@@ -577,7 +577,7 @@ Each phase ends in a shippable, testable state. We DO NOT move to the next phase
 
 **Gate to phase 2:** the 20 sample questions return grounded, cited, on-brand answers with correct safety handling.
 
-### Phase 2 â€” Saved Diagnostics upgrade (2-3 days)
+### Phase 2 $€” Saved Diagnostics upgrade (2-3 days)
 - `fuelling_submissions` + `ftp_zone_submissions` tables
 - `src/lib/tools/fuelling/` + `src/lib/tools/ftp-zones/`
 - `/tools/fuelling` + `/tools/ftp-zones` forms with save flow
@@ -587,27 +587,27 @@ Each phase ends in a shippable, testable state. We DO NOT move to the next phase
 - CRM tags applied
 - Plateau Diagnostic: no code change, but wire up `rider_profile_id` backfill
 
-### Phase 3 â€” Profile + diagnostic handoff (1-2 days)
+### Phase 3 $€” Profile + diagnostic handoff (1-2 days)
 - `src/lib/rider-profile/` module
 - `/ask` page loads saved profile into session context (if cookie matches)
 - Ask Roadman uses latest Plateau / Fuelling / FTP results in its context block
 - `SavedContextChip` shown on `/ask` when profile is attached
-- `/api/ask/session/email` endpoint: captures email, upgrades anon session â†’ profile-bound
+- `/api/ask/session/email` endpoint: captures email, upgrades anon session $†’ profile-bound
 
-### Phase 4 â€” Corpus expansion (2-3 days)
+### Phase 4 $€” Corpus expansion (2-3 days)
 - `content_sources` + `content_chunks` tables
 - `src/lib/corpus/` ingestion
 - `scripts/ingest-corpus.ts` one-shot; `agents/corpus-indexer/` for incremental
 - Index articles, tool pages, coaching pages, FAQs, case studies
 - Update orchestrator retrieval to fan out to `content_chunks`
-- Re-run 20-question QA â€” we expect materially better answers for "how do I fuel a 4-hour ride?" now
+- Re-run 20-question QA $€” we expect materially better answers for "how do I fuel a 4-hour ride?" now
 
-### Phase 5 â€” Admin + analytics depth (2 days)
+### Phase 5 $€” Admin + analytics depth (2 days)
 - `/admin/ask/*` surfaces
 - Topic clustering cron
 - Metrics dashboard
 
-### Phase 6 â€” Roadman+ tier shell (0.5-1 day, no billing)
+### Phase 6 $€” Roadman+ tier shell (0.5-1 day, no billing)
 - Stub `rider_profiles.access_tier` column (`free | plus | vip`)
 - Rate limiter reads tier
 - Document the hook points so future billing just sets the tier
@@ -633,11 +633,11 @@ Estimated total: ~10-12 working days end-to-end for one engineer.
 
 ## 14. What's needed from Anthony before building
 
-These are the items I'll block on â€” I cannot decide them alone.
+These are the items I'll block on $€” I cannot decide them alone.
 
 ### Must have before Phase 1
 
-1. **Production env vars** added to Vercel: `ANTHROPIC_API_KEY`, `VOYAGE_API_KEY`, `UPSTASH_REDIS_REST_URL`, `UPSTASH_REDIS_REST_TOKEN`. (Some may already be set from PR #76 â€” I'll audit.)
+1. **Production env vars** added to Vercel: `ANTHROPIC_API_KEY`, `VOYAGE_API_KEY`, `UPSTASH_REDIS_REST_URL`, `UPSTASH_REDIS_REST_TOKEN`. (Some may already be set from PR #76 $€” I'll audit.)
 2. **Cost ceiling** per month for the Anthropic API. I'll design under that ceiling. Suggested default: $300/mo for MVP.
 3. **Exact product URLs + copy** for these CTAs:
    - Saturday Spin newsletter (signup URL)
@@ -645,15 +645,15 @@ These are the items I'll block on â€” I cannot decide them alone.
    - Roadman+ / Not Done Yet paid (Skool paid URL)
    - VIP coaching (application URL)
    - Plateau Diagnostic (`/diagnostic`, confirmed)
-   - Fuelling Calculator (confirm path â€” I'll use `/tools/fuelling`)
-   - FTP Zone Calculator (confirm path â€” I'll use `/tools/ftp-zones`)
+   - Fuelling Calculator (confirm path $€” I'll use `/tools/fuelling`)
+   - FTP Zone Calculator (confirm path $€” I'll use `/tools/ftp-zones`)
    I'll use sensible defaults from the brand skill where missing.
 4. **Go/no-go on data retention defaults**: anon sessions 90 days, profiles indefinite. Acceptable?
 
 ### Must have before Phase 2
 
-5. **Fuelling calculator logic reference** â€” do you have a preferred formula/doc (Burke, Bent, Roadman house blend)? I'll default to the grams/hr-by-intensity Roadman methodology used in recent episodes unless directed otherwise.
-6. **FTP zone model** â€” 7-zone Coggan or 3-zone polarised. I'll default to 7-zone Coggan with a second polarised view since that's Roadman house position.
+5. **Fuelling calculator logic reference** $€” do you have a preferred formula/doc (Burke, Bent, Roadman house blend)? I'll default to the grams/hr-by-intensity Roadman methodology used in recent episodes unless directed otherwise.
+6. **FTP zone model** $€” 7-zone Coggan or 3-zone polarised. I'll default to 7-zone Coggan with a second polarised view since that's Roadman house position.
 
 ### Must have before Phase 5
 
@@ -661,14 +661,14 @@ These are the items I'll block on â€” I cannot decide them alone.
 
 ### Nice-to-have
 
-8. **Testimonials/case studies cleared for public citation** â€” list in a Google Doc; I'll tag `safety_sensitivity=normal` on those, skip the rest.
-9. **List of any known "never talk about X" topics** â€” sponsors in conflict, guests under embargo, etc.
+8. **Testimonials/case studies cleared for public citation** $€” list in a Google Doc; I'll tag `safety_sensitivity=normal` on those, skip the rest.
+9. **List of any known "never talk about X" topics** $€” sponsors in conflict, guests under embargo, etc.
 
-I will not wait for items 4, 7, 8, 9 to start building â€” I'll pick defaults and flag them in the PR description.
+I will not wait for items 4, 7, 8, 9 to start building $€” I'll pick defaults and flag them in the PR description.
 
 ## 15. Acceptance criteria (MVP v1)
 
-Phase 1â€“5 complete and verified:
+Phase 1$€“5 complete and verified:
 
 - [ ] `/ask` is live, branded, and streams answers
 - [ ] Answers cite real Roadman episodes / articles / methodology with working links
@@ -679,13 +679,13 @@ Phase 1â€“5 complete and verified:
 - [ ] `/admin/ask` shows recent questions, flagged items, retrieval trace
 - [ ] Analytics events fire per the list in the spec
 - [ ] Ingestion covers episodes, methodology, articles, tools, coaching, FAQs, case studies
-- [ ] 20-question QA battery passes with â‰¥18 on-brand, grounded answers
-- [ ] Red-team 30-prompt safety battery passes â€” zero unsafe outputs
+- [ ] 20-question QA battery passes with $‰¥18 on-brand, grounded answers
+- [ ] Red-team 30-prompt safety battery passes $€” zero unsafe outputs
 - [ ] `rider_profiles.access_tier` column exists and is read by the rate limiter (future-proofing for Roadman+)
 
 ## 16. Out of scope for MVP v1
 
-Explicit non-goals â€” these come after MVP ships:
+Explicit non-goals $€” these come after MVP ships:
 
 - Billing / Stripe for Roadman+ tier gating (hook points only)
 - Adaptive workout generation
@@ -696,11 +696,11 @@ Explicit non-goals â€” these come after MVP ships:
 - Coach handoff inbox (CRM tags only for now)
 - Spanish / multi-language answers
 - Fine-tuning (preferred answers are captured for future use, not served)
-- Fully automated weekly topic clustering (start manual â†’ weekly cron later)
+- Fully automated weekly topic clustering (start manual $†’ weekly cron later)
 
 ## 17. Open questions left for implementation-plan stage
 
-- Exact CTA copy for each intent â€” drafted during Phase 1 against voice-guide
-- Chunk size tuning â€” start 1200 tokens, measure retrieval precision@5, tune
-- Opus vs Haiku split thresholds â€” start on intent.deep heuristic, A/B test in Phase 5
+- Exact CTA copy for each intent $€” drafted during Phase 1 against voice-guide
+- Chunk size tuning $€” start 1200 tokens, measure retrieval precision@5, tune
+- Opus vs Haiku split thresholds $€” start on intent.deep heuristic, A/B test in Phase 5
 - Should admin preferred answers be auto-served in later versions? (Out of scope v1; collect them now, decide later.)

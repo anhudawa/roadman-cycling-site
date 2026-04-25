@@ -4,14 +4,14 @@ import { useState } from "react";
 import Link from "next/link";
 
 /**
- * Plateau diagnostic â€” 3 questions, one recommendation.
+ * Plateau diagnostic $€” 3 questions, one recommendation.
  *
  * Used inside /you/plateau. Not gated (no email capture before the
  * recommendation) because the first job here is earning trust. The
  * recommendation ends with a soft /apply CTA + an email capture for
  * readers who want the full weekly prescription.
  *
- * Questions cascade: volume â†’ duration-stuck â†’ distribution. The
+ * Questions cascade: volume $†’ duration-stuck $†’ distribution. The
  * recommendation is a specific session + blog link, not generic
  * "train more polarised" advice.
  */
@@ -52,12 +52,12 @@ function diagnose(
   if (volume === "low") {
     return {
       summary:
-        "You're undertrained. Volume is the biggest single predictor of aerobic fitness â€” and you're not hitting enough of it.",
+        "You're undertrained. Volume is the biggest single predictor of aerobic fitness $€” and you're not hitting enough of it.",
       prescription:
         "Before fixing distribution or intensity, add an extra ride. Even a 90-min easy spin. Get to 6-8 hours/week for at least 8 weeks.",
       sessionName: "The extra Z2 ride",
       sessionDetail:
-        "90 minutes at true Zone 2 â€” you can hold a conversation the whole time. Fasted is fine if you've trained that. Goal: one additional session/week.",
+        "90 minutes at true Zone 2 $€” you can hold a conversation the whole time. Fasted is fine if you've trained that. Goal: one additional session/week.",
       articleHref: "/blog/zone-2-training-complete-guide",
       articleLabel: "Complete Zone 2 guide",
     };
@@ -80,12 +80,12 @@ function diagnose(
   if (volume === "high" && distribution === "mostly-easy") {
     return {
       summary:
-        "High volume, mostly easy â€” you have the base, but you're missing the ceiling work. Adding a small, precise dose of genuinely hard intensity is the next step.",
+        "High volume, mostly easy $€” you have the base, but you're missing the ceiling work. Adding a small, precise dose of genuinely hard intensity is the next step.",
       prescription:
         "Keep the volume. Add one weekly VO2 max session. That's it. Don't overthink the rest.",
       sessionName: "4x4 VO2 max",
       sessionDetail:
-        "Once a week, not on your long day. 4 x 4 min at 106-120% FTP, 4-min recovery between. Rate yourself 9/10 on the final rep â€” if it's easier, the intensity is too low.",
+        "Once a week, not on your long day. 4 x 4 min at 106-120% FTP, 4-min recovery between. Rate yourself 9/10 on the final rep $€” if it's easier, the intensity is too low.",
       articleHref: "/blog/cycling-vo2max-intervals",
       articleLabel: "VO2 max interval protocols",
     };
@@ -120,13 +120,13 @@ export function PlateauDiagnostic() {
   return (
     <div className="rounded-2xl border border-coral/20 bg-gradient-to-br from-coral/5 via-deep-purple/40 to-charcoal p-6 md:p-10">
       <p className="font-heading text-coral text-xs tracking-widest mb-3">
-        QUICK DIAGNOSTIC Â· 3 QUESTIONS
+        QUICK DIAGNOSTIC $· 3 QUESTIONS
       </p>
       <h3 className="font-heading text-off-white text-2xl md:text-3xl mb-8 leading-tight">
         WHAT'S ACTUALLY KEEPING YOU STUCK?
       </h3>
 
-      {/* Step 1 â€” volume */}
+      {/* Step 1 $€” volume */}
       {step === "volume" && (
         <DiagnosticQuestion
           question="How many hours a week are you currently riding?"
@@ -146,7 +146,7 @@ export function PlateauDiagnostic() {
         />
       )}
 
-      {/* Step 2 â€” how long stuck */}
+      {/* Step 2 $€” how long stuck */}
       {step === "duration" && (
         <DiagnosticQuestion
           question="How long have your numbers been flat?"
@@ -166,7 +166,7 @@ export function PlateauDiagnostic() {
         />
       )}
 
-      {/* Step 3 â€” distribution */}
+      {/* Step 3 $€” distribution */}
       {step === "distribution" && (
         <DiagnosticQuestion
           question="How would you describe your intensity mix?"
@@ -183,7 +183,7 @@ export function PlateauDiagnostic() {
             },
             {
               value: "varied",
-              label: "Varied â€” easy, hard, and everything between",
+              label: "Varied $€” easy, hard, and everything between",
               detail: "Unstructured mix",
             },
           ]}

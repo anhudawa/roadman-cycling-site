@@ -6,12 +6,12 @@ import type { Breakdown, Profile } from "./types";
 
 /**
  * Transactional confirmation email sent via Resend immediately after
- * a submission. Short and service-oriented â€” just the link back to
- * the results page and a one-line "what you got" summary. The Â§13
- * nurture sequence (Emails 1â€“5, Beehiiv-authored) handles the actual
+ * a submission. Short and service-oriented $€” just the link back to
+ * the results page and a one-line "what you got" summary. The $§13
+ * nurture sequence (Emails 1$€“5, Beehiiv-authored) handles the actual
  * handoff + sell.
  *
- * Non-fatal â€” if RESEND_API_KEY is missing we log and return. The
+ * Non-fatal $€” if RESEND_API_KEY is missing we log and return. The
  * user still has the results page and will be picked up by Beehiiv.
  */
 
@@ -31,7 +31,7 @@ export async function sendDiagnosisConfirmation(
   const resend = getResendClient();
   if (!resend) {
     console.warn(
-      "[Diagnostic] RESEND_API_KEY not configured â€” confirmation email skipped"
+      "[Diagnostic] RESEND_API_KEY not configured $€” confirmation email skipped"
     );
     return { sent: false, error: "resend_not_configured" };
   }
@@ -122,7 +122,7 @@ function renderTemplate(input: TemplateInput): { html: string; text: string } {
 </html>`;
 
   const text = [
-    `YOUR DIAGNOSIS â€” ${profileLabel}`,
+    `YOUR DIAGNOSIS $€” ${profileLabel}`,
     "",
     headline,
     "",
@@ -136,7 +136,7 @@ function renderTemplate(input: TemplateInput): { html: string; text: string } {
     "",
     "Anthony",
     "",
-    "â€”",
+    "$€”",
     "You're getting this because you just completed the Masters Plateau Diagnostic at https://roadmancycling.com/plateau.",
   ].join("\n");
 

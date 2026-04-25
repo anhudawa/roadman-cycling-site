@@ -7,15 +7,15 @@ export const dynamic = "force-dynamic";
 
 function triggerSummary(triggerType: string, cfg: Record<string, unknown> | null | undefined): string {
   const c = cfg ?? {};
-  if (triggerType === "application.stage_changed") return `Application â†’ ${c.toStage ?? "any"}`;
-  if (triggerType === "deal.stage_changed") return `Deal â†’ ${c.toStage ?? "any"}`;
+  if (triggerType === "application.stage_changed") return `Application $†’ ${c.toStage ?? "any"}`;
+  if (triggerType === "deal.stage_changed") return `Deal $†’ ${c.toStage ?? "any"}`;
   if (triggerType === "contact.created") return `Contact created${c.source ? ` (source=${c.source})` : ""}`;
-  if (triggerType === "contact.lifecycle_changed") return `Lifecycle â†’ ${c.toStage ?? "any"}`;
+  if (triggerType === "contact.lifecycle_changed") return `Lifecycle $†’ ${c.toStage ?? "any"}`;
   return triggerType;
 }
 
 function formatWhen(iso: string | null): string {
-  if (!iso) return "â€”";
+  if (!iso) return "$€”";
   const d = new Date(iso);
   return d.toLocaleString("en-GB", { day: "numeric", month: "short", hour: "2-digit", minute: "2-digit" });
 }
@@ -45,7 +45,7 @@ export default async function AutomationsPage() {
         <div className="bg-background-elevated border border-white/5 rounded-lg p-8 text-center">
           <p className="text-foreground-muted text-sm">No automation rules yet.</p>
           <Link href="/admin/automations/new" className="inline-block mt-3 text-accent text-sm hover:underline">
-            Create your first rule â†’
+            Create your first rule $†’
           </Link>
         </div>
       ) : (

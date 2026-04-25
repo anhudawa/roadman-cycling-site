@@ -46,7 +46,7 @@ const OWNERS: Array<{ value: string; label: string }> = [
 ];
 
 function formatRelative(dateStr: string | null): string {
-  if (!dateStr) return "â€”";
+  if (!dateStr) return "$€”";
   const d = new Date(dateStr);
   const diffMs = Date.now() - d.getTime();
   const m = Math.floor(diffMs / 60_000);
@@ -352,7 +352,7 @@ export function ContactsTable({ rows }: { rows: ContactRow[] }) {
                           {c.owner}
                         </span>
                       ) : (
-                        <span className="text-xs text-foreground-subtle">â€”</span>
+                        <span className="text-xs text-foreground-subtle">$€”</span>
                       )}
                     </Link>
                   </td>
@@ -368,7 +368,7 @@ export function ContactsTable({ rows }: { rows: ContactRow[] }) {
                   <td className="px-4 py-3">
                     <Link href={`/admin/contacts/${c.id}`} className="flex flex-wrap gap-1">
                       {tags.length === 0 ? (
-                        <span className="text-xs text-foreground-subtle">â€”</span>
+                        <span className="text-xs text-foreground-subtle">$€”</span>
                       ) : (
                         tags.slice(0, 3).map((t) => (
                           <span
@@ -388,10 +388,10 @@ export function ContactsTable({ rows }: { rows: ContactRow[] }) {
                           className={`text-[10px] px-2 py-0.5 rounded border tabular-nums uppercase tracking-widest ${bandClass(getBand(c.score))}`}
                           title={`Score ${c.score}`}
                         >
-                          {c.score} Â· {getBand(c.score)}
+                          {c.score} $· {getBand(c.score)}
                         </span>
                       ) : (
-                        <span className="text-xs text-foreground-subtle">â€”</span>
+                        <span className="text-xs text-foreground-subtle">$€”</span>
                       )}
                     </Link>
                   </td>

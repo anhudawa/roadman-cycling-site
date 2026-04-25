@@ -1,4 +1,4 @@
--- One application per email per cohort â€” prevents duplicate kanban cards.
+-- One application per email per cohort $€” prevents duplicate kanban cards.
 -- Deduplicate any existing rows before adding the unique index.
 WITH duplicates AS (
   SELECT

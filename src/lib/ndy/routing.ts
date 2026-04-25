@@ -81,7 +81,7 @@ export function routeProspect(answers: ProspectAnswers): RoutingResult {
     return { decision: 'not_a_fit', budgetFlag, injuryFlag, computedWpkg: wpkg };
   }
 
-  // Rule 2: Budget override â†’ Standard
+  // Rule 2: Budget override $†’ Standard
   if (budgetFlag) {
     return { decision: 'standard', budgetFlag, injuryFlag, computedWpkg: wpkg };
   }

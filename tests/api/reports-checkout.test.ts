@@ -40,7 +40,7 @@ function req(body: unknown): Request {
   });
 }
 
-describe("POST /api/reports/checkout â€” validation", () => {
+describe("POST /api/reports/checkout $€” validation", () => {
   const original = process.env.STRIPE_SECRET_KEY;
 
   beforeEach(() => {

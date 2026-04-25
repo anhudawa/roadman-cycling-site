@@ -14,7 +14,7 @@ interface EmailCaptureProps {
 export function EmailCapture({
   variant = "inline",
   heading = "THE SATURDAY SPIN NEWSLETTER",
-  subheading = "One email every Saturday. What the best coaches and scientists said this week â€” translated into stuff you can actually use on the bike.",
+  subheading = "One email every Saturday. What the best coaches and scientists said this week $€” translated into stuff you can actually use on the bike.",
   buttonText = "SUBSCRIBE",
   source = "website",
   className = "",

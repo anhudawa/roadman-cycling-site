@@ -6,10 +6,10 @@
 -- task is accepted or declined.
 --
 -- request_status semantics:
---   NULL              â†’ legacy / direct-owned task (no request flow)
---   'requested'       â†’ sent but not yet accepted/declined
---   'accepted'        â†’ receiver accepted; now behaves like a normal open task
---   'declined'        â†’ receiver declined; stays in history but hidden from active lists
+--   NULL              $†’ legacy / direct-owned task (no request flow)
+--   'requested'       $†’ sent but not yet accepted/declined
+--   'accepted'        $†’ receiver accepted; now behaves like a normal open task
+--   'declined'        $†’ receiver declined; stays in history but hidden from active lists
 --
 -- response_message holds the receiver's latest reply (e.g. "let's push to
 -- next week"). responded_at tracks the most-recent action time.

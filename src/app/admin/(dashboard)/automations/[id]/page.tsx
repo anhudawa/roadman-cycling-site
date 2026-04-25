@@ -53,13 +53,13 @@ export default async function AutomationDetailPage({
     <div>
       <div className="mb-6">
         <Link href="/admin/automations" className="text-xs text-foreground-subtle hover:text-accent">
-          ‚Üê Automations
+          $Üê Automations
         </Link>
         <h1 className="font-heading text-2xl text-off-white tracking-wider uppercase mt-2">
           {rule.name}
         </h1>
         <p className="text-xs text-foreground-subtle mt-1">
-          Created {formatWhen(rule.createdAt.toISOString())} ¬∑ {rule.runCount} runs
+          Created {formatWhen(rule.createdAt.toISOString())} $∑ {rule.runCount} runs
         </p>
       </div>
 
@@ -91,7 +91,7 @@ export default async function AutomationDetailPage({
                         {result.actions.map((a, i) => (
                           <li key={i} className="text-foreground-muted">
                             <span className="text-accent">{a.type}</span>: {a.status}
-                            {a.message ? ` ‚Äî ${a.message}` : ""}
+                            {a.message ? ` $Äî ${a.message}` : ""}
                           </li>
                         ))}
                       </ul>

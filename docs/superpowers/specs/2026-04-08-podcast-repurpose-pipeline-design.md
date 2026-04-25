@@ -1,27 +1,27 @@
-# Podcast Content Repurposing Pipeline â€” Design Spec
+# Podcast Content Repurposing Pipeline $€” Design Spec
 
 ## Overview
 
-An automated CLI pipeline that takes a podcast episode (MDX file with transcript) and generates: a blog post, platform-specific social media posts, and branded quote card images. Built as a scripts-only tool â€” not part of the Next.js app runtime.
+An automated CLI pipeline that takes a podcast episode (MDX file with transcript) and generates: a blog post, platform-specific social media posts, and branded quote card images. Built as a scripts-only tool $€” not part of the Next.js app runtime.
 
-**Goal:** Reduce Anthony's content creation time from hours per episode to a review-and-publish workflow. Generated content targets 80% quality â€” Anthony tweaks and publishes.
+**Goal:** Reduce Anthony's content creation time from hours per episode to a review-and-publish workflow. Generated content targets 80% quality $€” Anthony tweaks and publishes.
 
 ## Architecture
 
 **Approach:** Single orchestration script (`scripts/repurpose-episode.ts`) with modular generator libraries in `scripts/lib/repurpose/`. Mirrors the existing `sync-youtube.ts` pattern.
 
 **AI models:**
-- Claude Sonnet â€” blog posts and social media content (quality matters)
-- Claude Haiku â€” quote extraction (bulk, cheaper)
+- Claude Sonnet $€” blog posts and social media content (quality matters)
+- Claude Haiku $€” quote extraction (bulk, cheaper)
 
 **New dependencies:**
-- `sharp` â€” image processing (resize, crop, overlay)
-- `satori` â€” JSX â†’ SVG rendering for quote cards
-- `@resvg/resvg-js` â€” SVG â†’ PNG conversion
+- `sharp` $€” image processing (resize, crop, overlay)
+- `satori` $€” JSX $†’ SVG rendering for quote cards
+- `@resvg/resvg-js` $€” SVG $†’ PNG conversion
 
 **New env vars:**
-- `GOOGLE_CSE_API_KEY` â€” Google Custom Search API key (for guest image fetching)
-- `GOOGLE_CSE_ID` â€” Google Custom Search Engine ID
+- `GOOGLE_CSE_API_KEY` $€” Google Custom Search API key (for guest image fetching)
+- `GOOGLE_CSE_ID` $€” Google Custom Search Engine ID
 
 ## File Structure
 
@@ -31,11 +31,11 @@ scripts/
   repurpose-state.json                # Tracks which episodes have been repurposed
   lib/
     repurpose/
-      blog-generator.ts               # Transcript â†’ SEO blog post MDX
-      social-generator.ts             # Transcript â†’ Twitter/IG/LinkedIn/FB JSON
-      quote-extractor.ts              # Transcript â†’ quote text + attribution (Haiku)
-      quote-card-renderer.ts          # Quote data + guest image â†’ PNG via satori
-      guest-image-fetcher.ts          # Google Custom Search â†’ cropped headshot
+      blog-generator.ts               # Transcript $†’ SEO blog post MDX
+      social-generator.ts             # Transcript $†’ Twitter/IG/LinkedIn/FB JSON
+      quote-extractor.ts              # Transcript $†’ quote text + attribution (Haiku)
+      quote-card-renderer.ts          # Quote data + guest image $†’ PNG via satori
+      guest-image-fetcher.ts          # Google Custom Search $†’ cropped headshot
       content-writer.ts               # Write all outputs to content/repurposed/
       prompts.ts                      # All Claude prompt templates centralized
 
@@ -62,14 +62,14 @@ content/
 ### Entry point: `scripts/repurpose-episode.ts`
 
 **Flags:**
-- `--episode=<slug>` â€” Process a specific episode by slug
-- `--latest` â€” Process the most recent episode (by publishDate)
-- `--auto` â€” Detect and process all un-repurposed episodes since last run
-- `--dry-run` â€” Log what would be generated, don't write files
-- `--force` â€” Overwrite existing output directory (default: skip if exists)
-- `--skip-blog` â€” Skip blog post generation
-- `--skip-social` â€” Skip social media generation
-- `--skip-quotes` â€” Skip quote card generation
+- `--episode=<slug>` $€” Process a specific episode by slug
+- `--latest` $€” Process the most recent episode (by publishDate)
+- `--auto` $€” Detect and process all un-repurposed episodes since last run
+- `--dry-run` $€” Log what would be generated, don't write files
+- `--force` $€” Overwrite existing output directory (default: skip if exists)
+- `--skip-blog` $€” Skip blog post generation
+- `--skip-social` $€” Skip social media generation
+- `--skip-quotes` $€” Skip quote card generation
 
 **npm scripts:**
 ```json
@@ -88,8 +88,8 @@ content/
    - `--auto`: compare against `repurpose-state.json`, find unprocessed episodes
 3. For each episode:
    a. Load episode MDX (frontmatter + body)
-   b. Verify transcript exists in frontmatter â€” abort with error if missing
-   c. Check if `content/repurposed/ep-{number}-{slug}/` exists â€” skip unless `--force`
+   b. Verify transcript exists in frontmatter $€” abort with error if missing
+   c. Check if `content/repurposed/ep-{number}-{slug}/` exists $€” skip unless `--force`
    d. Run enabled generators in sequence:
       - Blog generation (Claude Sonnet)
       - Social media generation (Claude Sonnet, single call for all 4 platforms)
@@ -106,7 +106,7 @@ content/
 
 ## Module Specifications
 
-### `prompts.ts` â€” Prompt Templates
+### `prompts.ts` $€” Prompt Templates
 
 Centralizes all Claude prompt templates. Each prompt is a function that takes episode metadata and returns `{ system: string, user: string }`.
 
@@ -114,9 +114,9 @@ Centralizes all Claude prompt templates. Each prompt is a function that takes ep
 - Anthony's voice: direct, practical, no fluff
 - Aimed at amateur cyclists who want to get faster
 - Not academic, not corporate
-- Warm but knowledgeable â€” like advice from a cycling mate who happens to be an expert
+- Warm but knowledgeable $€” like advice from a cycling mate who happens to be an expert
 
-### `blog-generator.ts` â€” Blog Post Generation
+### `blog-generator.ts` $€” Blog Post Generation
 
 **Input:** Episode frontmatter + transcript + related episode slugs
 **Output:** Complete MDX string with frontmatter
@@ -143,7 +143,7 @@ Centralizes all Claude prompt templates. Each prompt is a function that takes ep
 
 **Rate limiting:** 500ms delay after API call (match existing `aiDelay()` pattern)
 
-### `social-generator.ts` â€” Social Media Posts
+### `social-generator.ts` $€” Social Media Posts
 
 **Input:** Episode frontmatter + transcript
 **Output:** Object with four platform payloads
@@ -155,7 +155,7 @@ Centralizes all Claude prompt templates. Each prompt is a function that takes ep
 
 **Output schemas:**
 
-#### Twitter/X Thread â€” `twitter-thread.json`
+#### Twitter/X Thread $€” `twitter-thread.json`
 ```json
 {
   "tweets": [
@@ -171,7 +171,7 @@ Centralizes all Claude prompt templates. Each prompt is a function that takes ep
 - First tweet: bold claim, surprising stat, or question
 - Last tweet: link to episode page (`/podcast/{slug}`)
 
-#### Instagram â€” `instagram.json`
+#### Instagram $€” `instagram.json`
 ```json
 {
   "caption": "Multi-line caption...",
@@ -184,7 +184,7 @@ Centralizes all Claude prompt templates. Each prompt is a function that takes ep
 - 15-20 relevant cycling hashtags
 - CTA to listen (link in bio / episode number reference)
 
-#### LinkedIn â€” `linkedin.json`
+#### LinkedIn $€” `linkedin.json`
 ```json
 {
   "post": "Professional-angle post...",
@@ -196,7 +196,7 @@ Centralizes all Claude prompt templates. Each prompt is a function that takes ep
 - Mention guest by name + credential if interview episode
 - No hashtags
 
-#### Facebook â€” `facebook.json`
+#### Facebook $€” `facebook.json`
 ```json
 {
   "post": "Long-form storytelling post...",
@@ -207,10 +207,10 @@ Centralizes all Claude prompt templates. Each prompt is a function that takes ep
 ```
 - 500-800 words, conversational first-person (Anthony's voice)
 - AI selects the single most compelling/shareable insight and builds a storytelling post around it
-- Personal tone â€” like Anthony writing to his cycling community
+- Personal tone $€” like Anthony writing to his cycling community
 - Designed to post later in the day (timing note in metadata, not enforced by pipeline)
 
-### `quote-extractor.ts` â€” Quote Extraction
+### `quote-extractor.ts` $€” Quote Extraction
 
 **Input:** Episode transcript
 **Output:** Array of quote objects
@@ -226,15 +226,15 @@ Centralizes all Claude prompt templates. Each prompt is a function that takes ep
    }
    ```
 
-### `guest-image-fetcher.ts` â€” Guest Image Sourcing
+### `guest-image-fetcher.ts` $€” Guest Image Sourcing
 
 **Input:** Guest name, guest slug, YouTube video ID
 **Output:** Buffer of processed guest image (or null)
 
 **Image source priority:**
-1. `content/guests/{guest-slug}.jpg` â€” manually-provided image (highest priority)
-2. Google Custom Search API â€” search `"{guest name}" cycling` â†’ fetch first high-quality result
-3. YouTube episode thumbnail â€” `https://img.youtube.com/vi/{youtubeId}/maxresdefault.jpg`
+1. `content/guests/{guest-slug}.jpg` $€” manually-provided image (highest priority)
+2. Google Custom Search API $€” search `"{guest name}" cycling` $†’ fetch first high-quality result
+3. YouTube episode thumbnail $€” `https://img.youtube.com/vi/{youtubeId}/maxresdefault.jpg`
 4. Fallback: return null (quote card renderer uses text-only branded template)
 
 **Image processing with sharp:**
@@ -245,12 +245,12 @@ Centralizes all Claude prompt templates. Each prompt is a function that takes ep
 
 **Rate limiting:** Cache fetched images in `content/guests/` with guest slug filename so subsequent runs don't re-fetch.
 
-### `quote-card-renderer.ts` â€” Quote Card Image Generation
+### `quote-card-renderer.ts` $€” Quote Card Image Generation
 
 **Input:** Quote object + guest image buffer (or null)
 **Output:** PNG files (square + landscape)
 
-**Technology:** satori (JSX â†’ SVG) + @resvg/resvg-js (SVG â†’ PNG)
+**Technology:** satori (JSX $†’ SVG) + @resvg/resvg-js (SVG $†’ PNG)
 
 **Template layout:**
 - **Background:** Guest image with dark gradient overlay (semi-transparent black from bottom, ~60% opacity)
@@ -268,7 +268,7 @@ Centralizes all Claude prompt templates. Each prompt is a function that takes ep
 
 **File naming:** `quote-{n}-square.png`, `quote-{n}-landscape.png`
 
-### `content-writer.ts` â€” Output Writer
+### `content-writer.ts` $€” Output Writer
 
 **Input:** All generated content for an episode
 **Output:** Files written to `content/repurposed/ep-{number}-{slug}/`
@@ -291,11 +291,11 @@ Rather than a separate detection mechanism, reuse the existing sync infrastructu
 4. Optionally filter to only recent episodes (e.g., published in last 7 days)
 5. Run the full pipeline on each new episode
 
-This pairs with the existing `sync-youtube.ts` â€” run sync first to get new episodes, then run repurpose to generate content.
+This pairs with the existing `sync-youtube.ts` $€” run sync first to get new episodes, then run repurpose to generate content.
 
 ## GitHub Action (Commented Out)
 
-`.github/workflows/podcast-repurpose.yml` â€” designed but commented out:
+`.github/workflows/podcast-repurpose.yml` $€” designed but commented out:
 
 ```yaml
 name: Podcast Content Repurpose

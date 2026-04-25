@@ -50,7 +50,7 @@ export async function POST(request: Request) {
     dueAt = d;
   }
 
-  // "Send task" â€” becomes a REQUEST that needs accept/decline/reply from the
+  // "Send task" $€” becomes a REQUEST that needs accept/decline/reply from the
   // assignee before it lands in their regular list. Must be assigned to
   // someone other than the sender.
   const sendAsRequest = Boolean(body.sendAsRequest);

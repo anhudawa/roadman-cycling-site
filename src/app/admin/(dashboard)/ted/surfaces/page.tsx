@@ -56,7 +56,7 @@ export default async function TedSurfacesPage() {
   return (
     <div className="space-y-6">
       <div>
-        <h1 className="text-2xl font-semibold text-white">Ted â€” thread surfaces</h1>
+        <h1 className="text-2xl font-semibold text-white">Ted $€” thread surfaces</h1>
         <p className="text-sm text-foreground-subtle">
           Surface replies don&apos;t publish until you approve each one. Ted
           scans daily, drafts candidate replies (tag / link / summary), and
@@ -149,7 +149,7 @@ export default async function TedSurfacesPage() {
                             rel="noreferrer"
                             className="block mt-1 text-blue-300 hover:underline"
                           >
-                            View reply on Skool â†’
+                            View reply on Skool $†’
                           </a>
                         ) : null}
                       </td>

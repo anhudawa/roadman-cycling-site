@@ -22,7 +22,7 @@ export async function runVoiceCheck(
 ): Promise<VoiceCheckCall> {
   const system = loadPrompt(promptsDir, "voice-check-ted.md");
 
-  const userMessage = `## Ted post â€” voice check
+  const userMessage = `## Ted post $€” voice check
 
 Job: ${ctx.jobLabel}
 Variant / pillar: ${ctx.pillarOrVariant}
@@ -40,7 +40,7 @@ ${ctx.draftBody}
   try {
     parsed = parseJsonResponse<VoiceCheckResult>(resp.text);
   } catch (err) {
-    // Treat parse failures as a soft fail â€” don't block posting entirely; hand it to a human.
+    // Treat parse failures as a soft fail $€” don't block posting entirely; hand it to a human.
     parsed = {
       pass: false,
       redFlags: ["voice-check returned unparseable output"],

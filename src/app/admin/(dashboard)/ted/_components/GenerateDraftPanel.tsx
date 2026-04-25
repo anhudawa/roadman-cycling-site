@@ -4,13 +4,13 @@ import { useState } from "react";
 
 const PILLARS: Array<{ value: string; label: string }> = [
   { value: "auto", label: "Auto (today's pillar)" },
-  { value: "monday", label: "Monday â€” Coaching" },
-  { value: "tuesday", label: "Tuesday â€” Nutrition" },
-  { value: "wednesday", label: "Wednesday â€” S&C" },
-  { value: "thursday", label: "Thursday â€” Recovery" },
-  { value: "friday", label: "Friday â€” Community" },
-  { value: "saturday", label: "Saturday â€” Podcast" },
-  { value: "sunday", label: "Sunday â€” Weekend ride" },
+  { value: "monday", label: "Monday $€” Coaching" },
+  { value: "tuesday", label: "Tuesday $€” Nutrition" },
+  { value: "wednesday", label: "Wednesday $€” S&C" },
+  { value: "thursday", label: "Thursday $€” Recovery" },
+  { value: "friday", label: "Friday $€” Community" },
+  { value: "saturday", label: "Saturday $€” Podcast" },
+  { value: "sunday", label: "Sunday $€” Weekend ride" },
 ];
 
 export function GenerateDraftPanel() {
@@ -38,7 +38,7 @@ export function GenerateDraftPanel() {
       }
       setPreview(data.body);
       setMsg(
-        `Ted drafted a ${data.pillar} post for ${data.scheduledFor}. It's in the inbox below. Reloadingâ€¦`
+        `Ted drafted a ${data.pillar} post for ${data.scheduledFor}. It's in the inbox below. Reloading$€¦`
       );
       setTimeout(() => window.location.reload(), 2200);
     } finally {
@@ -60,7 +60,7 @@ export function GenerateDraftPanel() {
       }
       const ins = data?.inserted ?? {};
       setMsg(
-        `Inserted ${ins.prompts ?? 0} prompts, ${ins.welcomes ?? 0} welcomes, ${ins.surfaces ?? 0} surfaces. Reloadingâ€¦`
+        `Inserted ${ins.prompts ?? 0} prompts, ${ins.welcomes ?? 0} welcomes, ${ins.surfaces ?? 0} surfaces. Reloading$€¦`
       );
       setTimeout(() => window.location.reload(), 1500);
     } finally {
@@ -107,7 +107,7 @@ export function GenerateDraftPanel() {
             disabled={busy !== null}
             className="text-sm rounded-md bg-emerald-500/20 text-emerald-300 hover:bg-emerald-500/30 px-3 py-1.5 disabled:opacity-50"
           >
-            {busy === "generate" ? "Draftingâ€¦" : "Generate now"}
+            {busy === "generate" ? "Drafting$€¦" : "Generate now"}
           </button>
         </div>
       </div>
@@ -117,14 +117,14 @@ export function GenerateDraftPanel() {
         <div className="text-xs text-foreground-subtle">
           Drops 21 pre-written examples into the inbox (12 prompts, 4 welcomes,
           5 surfaces) so you can try the approve / edit / reject flow without
-          spending a cent. Safe to click twice â€” idempotent.
+          spending a cent. Safe to click twice $€” idempotent.
         </div>
         <button
           onClick={seed}
           disabled={busy !== null}
           className="text-sm rounded-md bg-white/10 text-white hover:bg-white/15 px-3 py-1.5 disabled:opacity-50"
         >
-          {busy === "seed" ? "Seedingâ€¦" : "Seed samples"}
+          {busy === "seed" ? "Seeding$€¦" : "Seed samples"}
         </button>
       </div>
 

@@ -4,7 +4,7 @@
  * Offline pipeline that generates human-readable chapter titles for each
  * transcript segment on every podcast episode. The heuristic titles shipped
  * in `src/lib/transcript.ts` are good enough as navigation but they read
- * like raw speech-to-text ("Welcome back. Today I have a chanceâ€¦"). This
+ * like raw speech-to-text ("Welcome back. Today I have a chance$€¦"). This
  * script replaces them with Claude-written titles that sound like real
  * podcast chapter headings ("Dan Lorang on the bike-first off-season",
  * "How Seiler measures Zone 2 compliance").
@@ -78,12 +78,12 @@ const SYSTEM_PROMPT = `You write short, natural-reading chapter titles for podca
 RULES:
 - Each title is 3-8 words.
 - Titles read like real podcast chapter headings, not sentences extracted from a transcript. No trailing ellipses, no filler words ("uh", "so", "but"), no fragments.
-- Each title is distinct from the others in the same episode â€” if two segments cover the same topic, differentiate them (e.g. by angle, method, or speaker).
+- Each title is distinct from the others in the same episode $€” if two segments cover the same topic, differentiate them (e.g. by angle, method, or speaker).
 - Capture the segment's most specific substantive topic. Prefer concrete phrasing ("Seiler's 80/20 field test") over abstract ("training intensity discussion").
 - Never invent content not present in the segment. If a segment is small talk or an intro, say so ("Welcome and intro", "Guest catch-up").
 
 OUTPUT:
-Return exactly one JSON array of strings â€” one title per segment, in order. No prose, no explanation, no markdown code fences. Just the JSON array.`;
+Return exactly one JSON array of strings $€” one title per segment, in order. No prose, no explanation, no markdown code fences. Just the JSON array.`;
 
 function buildUserPrompt(
   episodeTitle: string,
@@ -102,7 +102,7 @@ function buildUserPrompt(
     `\nHere are ${segments.length} transcript segments in order. Generate a chapter title for each.\n`,
   );
   for (const seg of segments) {
-    // Keep segment body bounded â€” 400 words is enough to identify the topic
+    // Keep segment body bounded $€” 400 words is enough to identify the topic
     // while keeping per-call token cost predictable.
     const words = seg.text.split(/\s+/).slice(0, 400).join(" ");
     parts.push(`\n--- SEGMENT ${seg.index} ---\n${words}\n`);
@@ -223,7 +223,7 @@ async function generateTitlesForEpisode(
     messages: [{ role: "user", content: userPrompt }],
   });
 
-  // Extract text â€” structured outputs still lands in a text content block
+  // Extract text $€” structured outputs still lands in a text content block
   // for the Messages API (parsing into a typed field is a separate .parse()
   // helper we don't need here).
   const textBlock = response.content.find((b) => b.type === "text");
@@ -232,7 +232,7 @@ async function generateTitlesForEpisode(
   const titles = parseTitleArray(textBlock.text, segments.length);
   if (!titles) {
     console.warn(
-      `   âš ï¸  Could not parse ${segments.length}-item title array from response. Raw:\n${textBlock.text.slice(0, 400)}`,
+      `   $š ï¸  Could not parse ${segments.length}-item title array from response. Raw:\n${textBlock.text.slice(0, 400)}`,
     );
     return null;
   }
@@ -259,7 +259,7 @@ async function main() {
 
   if (!dryRun && !process.env.ANTHROPIC_API_KEY) {
     console.error(
-      "âŒ ANTHROPIC_API_KEY not set in .env.local or .env â€” required for real runs.",
+      "$Œ ANTHROPIC_API_KEY not set in .env.local or .env $€” required for real runs.",
     );
     process.exit(1);
   }
@@ -286,7 +286,7 @@ async function main() {
   console.log("");
 
   if (toProcess.length === 0) {
-    console.log("âœ“ Nothing to do.");
+    console.log("$œ“ Nothing to do.");
     return;
   }
 
@@ -302,7 +302,7 @@ async function main() {
     console.log(`${progress} ${ep.slug}`);
 
     try {
-      // Light rate limit â€” Opus 4.7 default is 50 RPM; 1 call/sec keeps us
+      // Light rate limit $€” Opus 4.7 default is 50 RPM; 1 call/sec keeps us
       // comfortably under even with adaptive thinking overhead.
       if (!dryRun && i > 0) {
         await new Promise((r) => setTimeout(r, 1200));
@@ -311,10 +311,10 @@ async function main() {
       const titles = await generateTitlesForEpisode(client, ep);
       if (!titles) {
         if (dryRun) {
-          // Dry run produces no titles â€” skip silently
+          // Dry run produces no titles $€” skip silently
         } else {
           skippedInvalid++;
-          console.log(`   âš ï¸  Skipped (no titles returned)`);
+          console.log(`   $š ï¸  Skipped (no titles returned)`);
         }
         continue;
       }
@@ -324,12 +324,12 @@ async function main() {
       }
       succeeded++;
       console.log(
-        `   âœ“ ${titles.length} titles Â· sample: "${titles[0]}" / "${titles[Math.min(titles.length - 1, 1)]}"`,
+        `   $œ“ ${titles.length} titles $· sample: "${titles[0]}" / "${titles[Math.min(titles.length - 1, 1)]}"`,
       );
     } catch (err) {
       failed++;
       const message = err instanceof Error ? err.message : String(err);
-      console.log(`   âœ— ${message}`);
+      console.log(`   $œ— ${message}`);
       if (err instanceof Anthropic.RateLimitError) {
         // Back off extra hard on 429
         await new Promise((r) => setTimeout(r, 30_000));
@@ -338,7 +338,7 @@ async function main() {
   }
 
   console.log("");
-  console.log(`âœ“ Complete.`);
+  console.log(`$œ“ Complete.`);
   console.log(`  Succeeded: ${succeeded}`);
   console.log(`  Parse-skipped: ${skippedInvalid}`);
   console.log(`  Failed: ${failed}`);

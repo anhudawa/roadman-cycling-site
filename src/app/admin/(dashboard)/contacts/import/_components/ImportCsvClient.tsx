@@ -4,7 +4,7 @@ import Link from "next/link";
 import { useState } from "react";
 
 const TARGET_FIELDS = [
-  { value: "", label: "â€” Ignore â€”" },
+  { value: "", label: "$€” Ignore $€”" },
   { value: "email", label: "Email" },
   { value: "name", label: "Name" },
   { value: "phone", label: "Phone" },
@@ -192,7 +192,7 @@ export function ImportCsvClient() {
         {fileName && (
           <p className="mt-2 text-xs text-foreground-muted">
             Loaded: <span className="text-off-white">{fileName}</span>
-            {parsed ? ` Â· ${parsed.rows.length} rows Â· ${parsed.headers.length} columns` : ""}
+            {parsed ? ` $· ${parsed.rows.length} rows $· ${parsed.headers.length} columns` : ""}
           </p>
         )}
       </div>
@@ -207,7 +207,7 @@ export function ImportCsvClient() {
         <div className="bg-background-elevated rounded-xl border border-white/5 overflow-hidden">
           <div className="p-4 border-b border-white/5 flex items-center justify-between flex-wrap gap-3">
             <p className="text-[10px] uppercase tracking-widest text-foreground-subtle font-medium">
-              Column mapping Â· first 10 rows
+              Column mapping $· first 10 rows
             </p>
             <button
               type="button"
@@ -268,9 +268,9 @@ export function ImportCsvClient() {
           </p>
           <p className="text-sm text-off-white">
             <span className="text-green-400">{result.created} created</span>
-            {" Â· "}
+            {" $· "}
             <span className="text-blue-400">{result.updated} updated</span>
-            {" Â· "}
+            {" $· "}
             <span className={result.errors.length > 0 ? "text-amber-400" : "text-foreground-muted"}>
               {result.errors.length} errors
             </span>

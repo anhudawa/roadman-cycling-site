@@ -1,11 +1,11 @@
-name: Ted â€” surface threads
+name: Ted $€” surface threads
 
 # Two-phase daily flow:
 #   1. Scan Clubhouse threads in the last 48h and draft up to 2 candidate
 #      surface replies (tag / link / summary) into ted_surface_drafts.
 #   2. Post any drafts a human has approved via /admin/ted/surfaces.
 # Gate: post phase is skipped if ted_kill_switch.surface_threads_enabled=false.
-# Runs at 13:00 UTC â‰ˆ 14:00 Dublin year-round with Â±1h DST drift.
+# Runs at 13:00 UTC $‰ˆ 14:00 Dublin year-round with $±1h DST drift.
 
 on:
   schedule:
@@ -13,7 +13,7 @@ on:
   workflow_dispatch:
     inputs:
       dry_run:
-        description: "Dry run â€” scan + generate, don't post"
+        description: "Dry run $€” scan + generate, don't post"
         required: false
         default: "false"
       max:

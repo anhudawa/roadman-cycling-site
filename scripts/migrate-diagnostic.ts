@@ -9,7 +9,7 @@ import { sql } from "@vercel/postgres";
  *
  *   POSTGRES_URL=postgres://... npm run migrate:diagnostic
  *
- * Matches the pattern in scripts/apply-0024.ts â€” dotenv + @vercel/postgres,
+ * Matches the pattern in scripts/apply-0024.ts $€” dotenv + @vercel/postgres,
  * no new runtime deps.
  */
 
@@ -23,15 +23,15 @@ const MIGRATIONS = [
 async function main() {
   if (!process.env.POSTGRES_URL) {
     throw new Error(
-      "POSTGRES_URL is not set. Copy it from Vercel (Storage â†’ Postgres â†’ .env.local)."
+      "POSTGRES_URL is not set. Copy it from Vercel (Storage $†’ Postgres $†’ .env.local)."
     );
   }
 
   for (const file of MIGRATIONS) {
     const body = readFileSync(file, "utf8");
-    console.log(`â†’ Applying ${file} â€¦`);
+    console.log(`$†’ Applying ${file} $€¦`);
     await sql.query(body);
-    console.log(`  âœ“ done`);
+    console.log(`  $œ“ done`);
   }
 
   console.log("\nVerifying diagnostic_submissions shape:");
@@ -43,11 +43,11 @@ async function main() {
   );
   if (cols.rows.length === 0) {
     throw new Error(
-      "diagnostic_submissions not found after migration â€” something's wrong."
+      "diagnostic_submissions not found after migration $€” something's wrong."
     );
   }
   for (const row of cols.rows) {
-    console.log(`  Â· ${row.column_name} (${row.data_type})`);
+    console.log(`  $· ${row.column_name} (${row.data_type})`);
   }
 
   const [{ count }] = (
@@ -62,7 +62,7 @@ async function main() {
 }
 
 main().catch((err) => {
-  console.error("\nâœ— Migration failed:");
+  console.error("\n$œ— Migration failed:");
   console.error(err);
   process.exit(1);
 });

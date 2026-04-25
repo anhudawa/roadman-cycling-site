@@ -1,4 +1,4 @@
-# Ted â€” Rollout Runbook
+# Ted $€” Rollout Runbook
 
 Step-by-step for taking Ted from a merged branch to fully-operational, following the 6-week rollout sequence in the spec.
 
@@ -16,25 +16,25 @@ One of:
 ```bash
 npm run db:migrate
 ```
-or apply directly: `drizzle/0019_ted_community_agent.sql`. The migration seeds `ted_kill_switch` with `paused=false` but every posting gate (`post_prompt_enabled`, `post_welcome_enabled`, `surface_threads_enabled`) starts **false** â€” shadow mode by default.
+or apply directly: `drizzle/0019_ted_community_agent.sql`. The migration seeds `ted_kill_switch` with `paused=false` but every posting gate (`post_prompt_enabled`, `post_welcome_enabled`, `surface_threads_enabled`) starts **false** $€” shadow mode by default.
 
 Verify in `/admin/ted/settings` that all three gates show as **shadow**.
 
 ### 3. Set GitHub Actions secrets
 
-In the repository settings (Settings â†’ Secrets and variables â†’ Actions):
+In the repository settings (Settings $†’ Secrets and variables $†’ Actions):
 
 Required:
-- `ANTHROPIC_API_KEY` â€” Claude access for drafting and voice-check
-- `POSTGRES_URL` â€” the same `@vercel/postgres` URL the Next app uses
-- `SKOOL_EMAIL` / `SKOOL_PASSWORD` â€” Ted's Skool account credentials (NOT Anthony's)
-- `SKOOL_COMMUNITY_SLUG` â€” `roadman` unless it changed
-- `SKOOL_INTRO_CATEGORY` â€” exact Skool category name for welcomes (default: `Intro Yourself`)
+- `ANTHROPIC_API_KEY` $€” Claude access for drafting and voice-check
+- `POSTGRES_URL` $€” the same `@vercel/postgres` URL the Next app uses
+- `SKOOL_EMAIL` / `SKOOL_PASSWORD` $€” Ted's Skool account credentials (NOT Anthony's)
+- `SKOOL_COMMUNITY_SLUG` $€” `roadman` unless it changed
+- `SKOOL_INTRO_CATEGORY` $€” exact Skool category name for welcomes (default: `Intro Yourself`)
 
 Optional but recommended:
-- `RESEND_API_KEY` â€” for error/flag alerts
-- `TED_ADMIN_ALERT_EMAIL` â€” who gets the alerts
-- `TED_ALERT_FROM` â€” `ted@roadmancycling.com` or similar verified sender
+- `RESEND_API_KEY` $€” for error/flag alerts
+- `TED_ADMIN_ALERT_EMAIL` $€” who gets the alerts
+- `TED_ALERT_FROM` $€” `ted@roadmancycling.com` or similar verified sender
 
 ### 4. Set Vercel env vars
 
@@ -43,7 +43,7 @@ For the weekly digest email + heartbeat alerts to work, Vercel project needs:
 - `RESEND_API_KEY` and `TED_ADMIN_ALERT_EMAIL`
 - `ANTHROPIC_API_KEY` and `POSTGRES_URL` for the `/api/admin/ted/*` routes
 
-Optional â€” enables the "Run a job now" buttons on `/admin/ted/settings`:
+Optional $€” enables the "Run a job now" buttons on `/admin/ted/settings`:
 - `GITHUB_TOKEN` (fine-grained, scope = `actions:write` on the repo)
 - `GITHUB_REPO` (e.g. `anhudawa/roadman-cycling-site`)
 - `GITHUB_DEFAULT_BRANCH` (defaults to `main`)
@@ -52,13 +52,13 @@ Optional â€” enables the "Run a job now" buttons on `/admin/ted/settings`:
 
 Paste this exact bio into Ted's Skool profile:
 
-> Ted â€” Roadman Cycling's AI community assistant. I surface good conversations, welcome new members, and make sure nothing important gets missed. Anthony still runs the show. Built by the Roadman team. If something's off, reply to the post and one of us will sort it.
+> Ted $€” Roadman Cycling's AI community assistant. I surface good conversations, welcome new members, and make sure nothing important gets missed. Anthony still runs the show. Built by the Roadman team. If something's off, reply to the post and one of us will sort it.
 
 Profile picture: whatever Anthony wants, but something that doesn't look like a real person.
 
 ### 6. Connect the Skool webhook
 
-If not already: In Skool admin â†’ Settings â†’ Webhooks â†’ Add:
+If not already: In Skool admin $†’ Settings $†’ Webhooks $†’ Add:
 - URL: `https://roadmancycling.com/api/skool-webhook`
 - Header: `Authorization: Bearer <SKOOL_WEBHOOK_SECRET>`
 
@@ -70,7 +70,7 @@ That webhook already tags members to Beehiiv; Ted now also enqueues a welcome ro
 
 ### A. Dry-run the drafting path
 
-Manually trigger the `Ted â€” draft daily prompt` workflow from GitHub Actions UI with `dry_run=true`. Check:
+Manually trigger the `Ted $€” draft daily prompt` workflow from GitHub Actions UI with `dry_run=true`. Check:
 
 - The workflow run succeeds.
 - Artifacts contain `logs/ted/*.jsonl` with `"action":"generated"` and `"voiceCheckPass":true|false`.
@@ -78,48 +78,48 @@ Manually trigger the `Ted â€” draft daily prompt` workflow from GitHub Actions U
 
 ### B. Dry-run the posting path
 
-Trigger `Ted â€” post daily prompt` with `dry_run=true`. Check:
+Trigger `Ted $€” post daily prompt` with `dry_run=true`. Check:
 
 - Workflow logs in at `https://www.skool.com/login` (look for `login-complete` screenshot in the artifact).
 - Community page loads (`community-home` screenshot).
 - Composer opens and fills (`compose-filled` screenshot).
-- The workflow logs `[skool-browser] dry-run â€” skipping Post button click`.
+- The workflow logs `[skool-browser] dry-run $€” skipping Post button click`.
 
 **If any selector fails**, check the screenshot and update `SELECTORS` in `agents/ted/src/lib/skool-browser.ts`. Every Skool UI change risks this; keep an eye.
 
 ### C. Verify the admin UI
 
 - Log in to `/admin/ted`.
-- Click through: dashboard â†’ queue â†’ log â†’ settings.
+- Click through: dashboard $†’ queue $†’ log $†’ settings.
 - Confirm kill switch toggles work (flip on, flip off; watch the page update).
 
 ---
 
-## Week 1 â€” Shadow mode (all gates off)
+## Week 1 $€” Shadow mode (all gates off)
 
 All gates stay **shadow**. Ted runs drafting + (dry-run) scans, never posts.
 
-- `ted-draft-prompt` workflow runs at 06:00 UTC daily â†’ drafts land in `/admin/ted/queue`.
-- Anthony reviews on Monday and Thursday. Edits go through the queue UI â€” every edit writes to `ted_edits` for the weekly digest metric.
+- `ted-draft-prompt` workflow runs at 06:00 UTC daily $†’ drafts land in `/admin/ted/queue`.
+- Anthony reviews on Monday and Thursday. Edits go through the queue UI $€” every edit writes to `ted_edits` for the weekly digest metric.
 - Welcomes + surfacing stay false. No Skool activity from Ted.
 
 **Success for Week 1:** 7 drafts in the queue, Anthony's edits captured, no errors in `/admin/ted/log`.
 
 ---
 
-## Week 2 â€” Enable daily prompts
+## Week 2 $€” Enable daily prompts
 
 At `/admin/ted/settings`, flip **Daily prompts** to enabled.
 
 - `ted-post-prompt` workflow (06:30 UTC daily) now publishes the next approved draft.
 - Anthony continues batch-approving on Mon/Thu.
-- Monitor `/admin/ted/log` for `post-prompt` errors. Common first-run failures are Skool selector mismatches â€” update `skool-browser.ts`.
+- Monitor `/admin/ted/log` for `post-prompt` errors. Common first-run failures are Skool selector mismatches $€” update `skool-browser.ts`.
 
 **Success for Week 2:** 7 days of published prompts, no misposts, no banned phrases in production.
 
 ---
 
-## Week 3 â€” Enable welcomes
+## Week 3 $€” Enable welcomes
 
 Flip **New-member welcomes** to enabled.
 
@@ -132,14 +132,14 @@ Flip **New-member welcomes** to enabled.
 
 ---
 
-## Week 4 â€” Enable thread surfacing
+## Week 4 $€” Enable thread surfacing
 
 Flip **Thread surfacing** to enabled.
 
 - `ted-surface-threads` workflow runs at 13:00 UTC daily.
   Phase 1 (draft-surfaces) scans the last 48h of threads and drafts up to 2 candidate replies into `ted_surface_drafts`.
   Phase 2 (post-surfaces) posts only the drafts you've approved in `/admin/ted/surfaces`.
-- Criteria: â‰¥3 replies, not already surfaced in last 48h, not authored by Ted or Anthony.
+- Criteria: $‰¥3 replies, not already surfaced in last 48h, not authored by Ted or Anthony.
 
 **Pre-requisite:** `ted_active_members` should have at least 10 rows so `surface-tag` can fire. See "Seeding active members" below.
 
@@ -147,21 +147,21 @@ Flip **Thread surfacing** to enabled.
 
 ---
 
-## Weeks 5â€“6 â€” Full operation
+## Weeks 5$€“6 $€” Full operation
 
 All three gates on. Anthony batch-approves prompts Mon/Thu. Weekly digest email lands Monday morning.
 
 Watch `/admin/ted` dashboard for:
-- **Edit rate â†“** over time (Ted learning Anthony's voice)
-- **Voice-flagged drafts â†“** (cheap scan catching more before Opus runs)
+- **Edit rate $†“** over time (Ted learning Anthony's voice)
+- **Voice-flagged drafts $†“** (cheap scan catching more before Opus runs)
 - **Posted prompts = 7/week**
-- **Errors â†“ or stable near zero**
+- **Errors $†“ or stable near zero**
 
 ### Decision point at Week 6
 
-- Edit rate **<20%** â†’ hand over to Sarah with the voice notes Anthony accumulated.
-- Edit rate **20â€“50%** â†’ Sarah shadows Anthony for 2 weeks.
-- Edit rate **>50%** â†’ extend batch approval 4 more weeks. Don't push Sarah.
+- Edit rate **<20%** $†’ hand over to Sarah with the voice notes Anthony accumulated.
+- Edit rate **20$€“50%** $†’ Sarah shadows Anthony for 2 weeks.
+- Edit rate **>50%** $†’ extend batch approval 4 more weeks. Don't push Sarah.
 
 ---
 
@@ -188,12 +188,12 @@ Re-run any time. The seeder upserts, so repeated rows update `last_seen_at` and 
 
 Every `/admin/ted/*` page shares a navigation bar across the top:
 
-- **Dashboard** â€” six stat cards (drafts pending, edit rate, voice-pass rate, welcomes ready, surfaces, 7d cost), per-gate status pills, daily-cost bar chart, recent errors, preflight checks, schedule with live countdowns, recent GitHub Actions runs, Ted's Skool bio with a copy button.
-- **Queue** â€” draft-by-draft review. Approve, edit (captures a word-level diff + logs the change), or reject. Chips at the top filter by status or pillar and are URL-param driven for bookmarkable views.
-- **Welcomes** â€” read-only view of the welcome pipeline (pending â†’ drafted â†’ posted), showing persona, draft body, and Skool link once posted.
-- **Members** â€” `ted_active_members` roster plus a paste-CSV upsert form. Sample CSV at `agents/ted/data/example-members.csv`.
-- **Log** â€” latest 200 activity log entries with filter query-params, auto-refresh toggle (default 30s), and a JSONL export for archival.
-- **Settings** â€” kill switch + three per-job posting gates + a "Run a job now" panel (requires `GITHUB_TOKEN`).
+- **Dashboard** $€” six stat cards (drafts pending, edit rate, voice-pass rate, welcomes ready, surfaces, 7d cost), per-gate status pills, daily-cost bar chart, recent errors, preflight checks, schedule with live countdowns, recent GitHub Actions runs, Ted's Skool bio with a copy button.
+- **Queue** $€” draft-by-draft review. Approve, edit (captures a word-level diff + logs the change), or reject. Chips at the top filter by status or pillar and are URL-param driven for bookmarkable views.
+- **Welcomes** $€” read-only view of the welcome pipeline (pending $†’ drafted $†’ posted), showing persona, draft body, and Skool link once posted.
+- **Members** $€” `ted_active_members` roster plus a paste-CSV upsert form. Sample CSV at `agents/ted/data/example-members.csv`.
+- **Log** $€” latest 200 activity log entries with filter query-params, auto-refresh toggle (default 30s), and a JSONL export for archival.
+- **Settings** $€” kill switch + three per-job posting gates + a "Run a job now" panel (requires `GITHUB_TOKEN`).
 
 ## Health endpoint for external monitoring
 
@@ -201,7 +201,7 @@ Every `/admin/ted/*` page shares a navigation bar across the top:
 
 ## Emergency pause
 
-From `/admin/ted/settings`, click the kill switch. Every scheduled Ted job reads the flag at start and between items â€” a mid-run pause aborts within one post/welcome/surface.
+From `/admin/ted/settings`, click the kill switch. Every scheduled Ted job reads the flag at start and between items $€” a mid-run pause aborts within one post/welcome/surface.
 
 Resume by clicking again. Reason field is optional; it shows up on the dashboard when paused.
 
@@ -216,4 +216,4 @@ Resume by clicking again. Reason field is optional; it shows up on the dashboard
 | Welcomes identical | Welcome generator not rotating | Check `prompts/welcome.md` opener list; regenerate the `ted_welcome_queue` row (mark status='pending') |
 | Weekly digest not arriving | Missing `RESEND_API_KEY` on Vercel | Set env var, redeploy |
 | `post-prompt` succeeds but `skool_post_url` is wrong | Skool URL capture is `page.url()` best-effort | Tune the post-submit wait in `postToCommunity()` to wait for the feed page to settle |
-| Kill switch flipped but jobs still run | Cache or stale cron | Check `/admin/ted/log` â€” jobs that started before the flip will finish their single item then abort |
+| Kill switch flipped but jobs still run | Cache or stale cron | Check `/admin/ted/log` $€” jobs that started before the flip will finish their single item then abort |

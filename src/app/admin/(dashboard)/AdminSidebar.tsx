@@ -18,7 +18,7 @@ interface NavSection {
   items: NavItem[];
 }
 
-// Consolidated navigation â€” evidence-driven pass (see feature-usage audit).
+// Consolidated navigation $€” evidence-driven pass (see feature-usage audit).
 // Routes removed from the sidebar still exist in the codebase; direct URLs
 // will work. This is about surfacing only what actually has data or daily
 // workflow value, not deleting capability.
@@ -312,7 +312,7 @@ export function AdminSidebar({
           </Link>
         </div>
 
-        {/* Search â€” opens command palette */}
+        {/* Search $€” opens command palette */}
         <div className="px-4 pt-4">
           <button
             type="button"
@@ -328,7 +328,7 @@ export function AdminSidebar({
             </svg>
             <span className="flex-1 text-left">Search...</span>
             <kbd className="text-[10px] text-foreground-subtle bg-white/5 border border-white/10 rounded px-1.5 py-0.5">
-              âŒ˜K
+              $Œ˜K
             </kbd>
           </button>
         </div>
@@ -399,7 +399,7 @@ export function AdminSidebar({
           })}
         </nav>
 
-        {/* Help link â€” visible to all roles */}
+        {/* Help link $€” visible to all roles */}
         <div className="px-4 pb-2">
           <Link
             href="/admin/help"

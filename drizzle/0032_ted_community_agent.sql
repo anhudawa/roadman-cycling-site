@@ -1,4 +1,4 @@
--- Ted Community Agent â€” drafts, welcomes, surfaces, memory, kill switch.
+-- Ted Community Agent $€” drafts, welcomes, surfaces, memory, kill switch.
 -- See agents/ted/README.md.
 
 CREATE TABLE IF NOT EXISTS "ted_drafts" (
