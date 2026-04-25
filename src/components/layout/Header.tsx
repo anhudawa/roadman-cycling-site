@@ -251,49 +251,91 @@ export function Header() {
         {isMobileMenuOpen && (
           <motion.div
             id="mobile-menu"
-            className="fixed inset-0 z-40 bg-deep-purple/98 backdrop-blur-lg flex flex-col items-center justify-center lg:hidden"
+            className="fixed inset-0 z-40 bg-deep-purple/98 backdrop-blur-lg overflow-y-auto overscroll-contain lg:hidden"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.35 }}
           >
-            <nav aria-label="Mobile navigation" className="flex flex-col items-center gap-6">
+            <nav
+              aria-label="Mobile navigation"
+              className="flex flex-col items-stretch gap-1 px-6 pt-24 pb-16 max-w-md mx-auto text-center"
+            >
               {NAV_ITEMS.map((item, i) => (
                 <motion.div
                   key={item.href}
-                  initial={{ opacity: 0, y: 30 }}
+                  initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, y: -20 }}
+                  exit={{ opacity: 0, y: -10 }}
                   transition={{
-                    duration: 0.4,
-                    delay: 0.05 + i * 0.06,
+                    duration: 0.35,
+                    delay: 0.04 + i * 0.05,
                     ease: [0.16, 1, 0.3, 1],
                   }}
+                  className="border-b border-white/5 last:border-b-0 pb-2"
                 >
                   <Link
                     href={item.href}
-                    className="font-heading text-4xl text-off-white hover:text-coral transition-colors px-4 py-2"
+                    className="block font-heading text-2xl text-off-white hover:text-coral transition-colors px-4 py-3"
                     onClick={() => setIsMobileMenuOpen(false)}
                     style={{ transitionDuration: "var(--duration-fast)" }}
                   >
                     {item.label}
                   </Link>
+                  {item.children && (
+                    <div className="flex flex-col items-stretch">
+                      {item.children.map((child) => (
+                        <Link
+                          key={child.href}
+                          href={child.href}
+                          className="block font-body text-base text-foreground-muted hover:text-coral transition-colors px-4 py-2"
+                          onClick={() => setIsMobileMenuOpen(false)}
+                          style={{ transitionDuration: "var(--duration-fast)" }}
+                        >
+                          {child.label}
+                        </Link>
+                      ))}
+                    </div>
+                  )}
                 </motion.div>
               ))}
               <motion.div
-                initial={{ opacity: 0, y: 30 }}
+                initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: -20 }}
+                exit={{ opacity: 0, y: -10 }}
                 transition={{
-                  duration: 0.4,
-                  delay: 0.05 + NAV_ITEMS.length * 0.06,
+                  duration: 0.35,
+                  delay: 0.04 + NAV_ITEMS.length * 0.05,
                   ease: [0.16, 1, 0.3, 1],
                 }}
+                className="flex flex-col items-center gap-3 pt-6"
               >
+                <Link
+                  href="/search"
+                  className="inline-flex items-center gap-2 font-body text-sm text-foreground-muted hover:text-coral transition-colors px-4 py-2"
+                  onClick={() => setIsMobileMenuOpen(false)}
+                  style={{ transitionDuration: "var(--duration-fast)" }}
+                >
+                  <svg
+                    className="w-4 h-4"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                    strokeWidth={2}
+                    aria-hidden="true"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z"
+                    />
+                  </svg>
+                  Search
+                </Link>
                 <Link
                   href={ctaHref}
                   className="
-                    mt-4 font-heading text-xl tracking-wider
+                    font-heading text-xl tracking-wider
                     bg-coral hover:bg-coral-hover
                     text-off-white px-10 py-4 rounded-md
                     transition-all
