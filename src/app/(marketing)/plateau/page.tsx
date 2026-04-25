@@ -168,22 +168,20 @@ export default async function PlateauPage() {
       <Header />
       <main id="main-content">
         {/* ── Hero — built for paid traffic, sub-2-second comprehension ── */}
-        {/* pt-24 puts the CTA above the fold on iPhone SE (375×667)
-            once the global header is accounted for. */}
-        <Section background="charcoal" grain className="pt-24 pb-8">
+        <Section background="charcoal" grain className="pt-32 pb-16">
           <Container width="narrow" className="text-center">
             <ScrollReveal direction="up" eager>
-              <p className="text-coral font-heading text-sm tracking-widest mb-4">
+              <p className="text-coral font-heading text-sm tracking-widest mb-6">
                 THE MASTERS PLATEAU DIAGNOSTIC
               </p>
               <h1
-                className="font-heading text-off-white mb-5"
+                className="font-heading text-off-white mb-6"
                 style={{ fontSize: "var(--text-hero)" }}
               >
                 FTP STUCK FOR A YEAR? IT&rsquo;S ALMOST ALWAYS ONE OF FOUR
                 THINGS.
               </h1>
-              <p className="text-foreground-muted text-lg md:text-xl leading-relaxed mb-7 max-w-xl mx-auto">
+              <p className="text-foreground-muted text-lg md:text-xl leading-relaxed mb-8">
                 Twelve questions. Four minutes. A specific answer for why your
                 progress has stalled &mdash; and the exact fix.
               </p>
@@ -203,12 +201,12 @@ export default async function PlateauPage() {
           </Container>
         </Section>
 
+        <div className="gradient-divider" />
+
         {/* ── Social proof strip ──────────────────────── */}
-        {/* Below the hero so it pre-qualifies the diagnostic without
-            adding to first-paint reading load. */}
-        <Section background="deep-purple" className="py-8">
+        <Section background="deep-purple" className="py-12">
           <Container width="wide">
-            <ul className="grid md:grid-cols-3 gap-6 text-foreground-muted text-sm">
+            <ul className="grid md:grid-cols-3 gap-8 text-foreground-muted text-sm">
               {SOCIAL_PROOF.map((line, i) => (
                 <li key={line}>
                   <ScrollReveal direction="up" delay={i * 0.1}>
@@ -222,21 +220,20 @@ export default async function PlateauPage() {
           </Container>
         </Section>
 
+        <div className="gradient-divider" />
+
         {/* ── Profile-preview teaser strip ─────────────── */}
-        {/* Curiosity-driver: shows the four profile names so the user
-            commits to the diagnostic to find out which one they are.
-            Lifts completion rate with negligible page weight. */}
-        <Section background="charcoal" className="py-8 border-t border-white/5">
+        <Section background="charcoal" className="py-12">
           <Container width="wide">
             <ScrollReveal direction="up">
-              <p className="text-center text-foreground-subtle text-sm mb-4">
+              <p className="text-center text-foreground-subtle text-sm mb-5">
                 You&rsquo;ll be one of these four.
               </p>
-              <ul className="flex flex-wrap items-center justify-center gap-2 md:gap-3">
+              <ul className="flex flex-wrap items-center justify-center gap-3">
                 {(Object.values(PROFILE_LABELS) as string[]).map((label) => (
                   <li
                     key={label}
-                    className="rounded-full border border-coral/30 bg-coral/5 px-4 py-1.5 text-sm font-heading tracking-wide text-off-white"
+                    className="rounded-full border border-coral/30 bg-coral/5 px-5 py-2 text-sm font-heading tracking-wide text-off-white"
                   >
                     {label}
                   </li>
@@ -246,32 +243,31 @@ export default async function PlateauPage() {
           </Container>
         </Section>
 
+        <div className="gradient-divider" />
+
         {/* ── How it works (3-step primer) ─────────────── */}
-        {/* Sits between social proof and the diagnostic so users
-            who need a "how" before they commit get it without
-            scrolling past the diagnostic and back. */}
-        <Section background="charcoal" className="py-12">
+        <Section background="charcoal">
           <Container width="narrow">
             <ScrollReveal direction="up">
               <p className="text-coral font-heading text-xs tracking-widest text-center mb-3">
                 HOW IT WORKS
               </p>
               <h2
-                className="font-heading text-off-white text-center mb-10"
+                className="font-heading text-off-white text-center mb-12"
                 style={{ fontSize: "var(--text-section)" }}
               >
                 FOUR MINUTES TO YOUR ANSWER
               </h2>
             </ScrollReveal>
-            <ol className="grid sm:grid-cols-3 gap-4 list-none p-0">
+            <ol className="grid sm:grid-cols-3 gap-6 list-none p-0">
               {HOW_IT_WORKS.map((step, i) => (
                 <li key={step.n}>
                   <ScrollReveal direction="up" delay={i * 0.1}>
-                    <div className="rounded-xl border border-white/5 bg-background-elevated p-5 h-full">
-                      <p className="font-heading text-3xl text-coral mb-2">
+                    <div className="rounded-xl border border-white/10 bg-background-elevated p-6 h-full">
+                      <p className="font-heading text-4xl text-coral mb-3">
                         {step.n}
                       </p>
-                      <p className="font-heading text-base text-off-white mb-2">
+                      <p className="font-heading text-base tracking-wide text-off-white mb-2">
                         {step.title.toUpperCase()}
                       </p>
                       <p className="text-foreground-muted text-sm leading-relaxed">
@@ -285,13 +281,9 @@ export default async function PlateauPage() {
           </Container>
         </Section>
 
+        <div className="gradient-divider" />
+
         {/* ── The diagnostic itself ───────────────────── */}
-        {/* Moved up the page (was below "What you'll get"). For paid
-            traffic the diagnostic IS the page — every section between
-            the hero and Q1 sheds clicks. The cards are still below
-            for users scrolling to research before committing.
-            Suspense wraps the flow because useSearchParams() forces a
-            CSR bailout during static generation otherwise. */}
         <Section background="deep-purple" grain id="start">
           <Container width="narrow">
             <Suspense fallback={<DiagnosticSkeleton />}>
@@ -299,6 +291,8 @@ export default async function PlateauPage() {
             </Suspense>
           </Container>
         </Section>
+
+        <div className="gradient-divider" />
 
         {/* ── What you'll get ─────────────────────────── */}
         <Section background="charcoal">
@@ -314,7 +308,7 @@ export default async function PlateauPage() {
             <div className="grid md:grid-cols-3 gap-6">
               {CARDS.map((card, i) => (
                 <ScrollReveal key={card.title} direction="up" delay={i * 0.1}>
-                  <div className="bg-background-elevated rounded-xl border border-white/5 p-6 h-full">
+                  <div className="bg-background-elevated rounded-xl border border-white/10 p-6 h-full">
                     <h3 className="font-heading text-xl text-off-white mb-3">
                       {card.title.toUpperCase()}
                     </h3>
@@ -328,25 +322,27 @@ export default async function PlateauPage() {
           </Container>
         </Section>
 
+        <div className="gradient-divider" />
+
         {/* ── FAQ ─────────────────────────────────────── */}
         <Section background="charcoal">
           <Container width="narrow">
             <h2
-              className="font-heading text-off-white text-center mb-10"
+              className="font-heading text-off-white text-center mb-12"
               style={{ fontSize: "var(--text-section)" }}
             >
               COMMON QUESTIONS
             </h2>
-            <dl className="space-y-6">
+            <dl className="space-y-4">
               {FAQS.map((faq) => (
                 <div
                   key={faq.q}
-                  className="bg-background-elevated rounded-lg border border-white/5 p-6"
+                  className="bg-background-elevated rounded-xl border border-white/10 p-6"
                 >
-                  <dt className="font-heading text-lg text-off-white mb-2">
+                  <dt className="font-heading text-xl text-off-white mb-2">
                     {faq.q}
                   </dt>
-                  <dd className="text-foreground-muted leading-relaxed">
+                  <dd className="text-foreground-muted leading-relaxed text-sm">
                     {faq.a}
                   </dd>
                 </div>
@@ -356,19 +352,16 @@ export default async function PlateauPage() {
         </Section>
 
         {/* ── Final CTA ───────────────────────────────── */}
-        {/* Anyone who scrolled this far is high-intent — give them
-            one more chance to start without a scroll-back to the
-            hero or the embedded form. */}
-        <Section background="deep-purple" grain className="py-16">
+        <Section background="deep-purple" grain>
           <Container width="narrow" className="text-center">
             <ScrollReveal direction="up">
               <h2
-                className="font-heading text-off-white mb-4"
+                className="font-heading text-off-white mb-6"
                 style={{ fontSize: "var(--text-section)" }}
               >
                 STILL HERE? ANSWER YOUR FIRST QUESTION.
               </h2>
-              <p className="text-foreground-muted mb-8 max-w-md mx-auto">
+              <p className="text-foreground-muted mb-8 max-w-md mx-auto leading-relaxed">
                 Four minutes from now you&rsquo;ll have a specific answer
                 for why your FTP has stalled.
               </p>

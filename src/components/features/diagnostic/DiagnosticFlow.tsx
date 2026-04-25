@@ -468,9 +468,9 @@ function ProgressBar({
         </span>
         <span>{percent}%</span>
       </div>
-      <div className="h-1 w-full bg-white/10 rounded-full overflow-hidden">
+      <div className="h-1.5 w-full bg-white/10 rounded-full overflow-hidden">
         <div
-          className="h-full bg-coral transition-[width] duration-300"
+          className="h-full bg-coral transition-[width] duration-300 ease-out"
           style={{ width: `${percent}%` }}
         />
       </div>
@@ -514,7 +514,7 @@ function ChoiceStep({
               ${
                 selectedId === opt.id
                   ? "border-coral bg-coral/10 text-off-white"
-                  : "border-white/10 bg-white/0 text-foreground-muted hover:border-white/30 hover:bg-white/5 hover:text-off-white"
+                  : "border-white/10 bg-white/[0.03] text-foreground-muted hover:border-white/25 hover:bg-white/[0.07] hover:text-off-white"
               }
             `}
           >
@@ -556,7 +556,7 @@ function QuestionStep({
               ${
                 selectedValue === opt.value
                   ? "border-coral bg-coral/10 text-off-white"
-                  : "border-white/10 bg-white/0 text-foreground-muted hover:border-white/30 hover:bg-white/5 hover:text-off-white"
+                  : "border-white/10 bg-white/[0.03] text-foreground-muted hover:border-white/25 hover:bg-white/[0.07] hover:text-off-white"
               }
             `}
           >
@@ -753,7 +753,7 @@ function EmailStep({
         "
         disabled={submitting}
       />
-      <label className="flex items-start gap-2 cursor-pointer">
+      <label className="flex items-start gap-3 cursor-pointer group">
         <input
           type="checkbox"
           checked={consent}
@@ -763,7 +763,7 @@ function EmailStep({
           }}
           className="accent-coral mt-0.5 w-4 h-4 shrink-0 cursor-pointer"
         />
-        <span className="text-sm text-foreground-muted">
+        <span className="text-sm text-foreground-muted leading-relaxed group-hover:text-off-white transition-colors">
           Send me my diagnosis and the Saturday Spin newsletter. I agree
           to the{" "}
           <a href="/privacy" className="text-coral hover:underline">
@@ -862,13 +862,13 @@ function StepHeader({
 }) {
   return (
     <div>
-      <p className="text-coral font-heading text-xs tracking-widest mb-2">
+      <p className="text-coral font-heading text-xs tracking-widest mb-3">
         {kicker.toUpperCase()}
       </p>
-      <h2 className="font-heading text-off-white text-2xl md:text-3xl leading-tight">
+      <h2 className="font-heading text-off-white text-2xl md:text-3xl leading-snug">
         {heading}
       </h2>
-      {hint && <p className="text-foreground-muted mt-3 text-sm">{hint}</p>}
+      {hint && <p className="text-foreground-muted mt-2 text-sm leading-relaxed">{hint}</p>}
     </div>
   );
 }
