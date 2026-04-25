@@ -33,7 +33,13 @@ interface SolveSpeedArgs {
  * Power balance at the wheel:
  *   P_rider · η = m·g·sin(θ)·v + Crr·m·g·cos(θ)·v + 0.5·ρ·CdA·(v + v_w)²·v
  *
- * Solved by Newton-Raphson on the residual f(v) = required_wheel_power − P_rider · η.
+ * Solved by bracketed bisection on the residual f(v) = required − wheelPower.
+ *
+ * Bisection (vs Newton-Raphson) is robust on steep descents where f(v) has a
+ * local minimum at v* = sqrt(-(gravTerm+rollTerm)/(1.5·ρ·CdA)). Below that
+ * minimum f' < 0, and Newton-Raphson moves the wrong direction; clamping to
+ * MIN_SPEED leaves NR stuck at v=1 m/s indefinitely. Bisection on a fixed
+ * bracket [MIN_SPEED, V_HI] always converges in <30 iterations.
  */
 export function solveSpeedFromPower(args: SolveSpeedArgs): number {
   const {
@@ -52,32 +58,38 @@ export function solveSpeedFromPower(args: SolveSpeedArgs): number {
   const gravTerm = mass * G * sinθ;
   const rollTerm = crr * mass * G * cosθ;
 
-  // Initial guess
-  let v = 8;
-  for (let iter = 0; iter < 60; iter++) {
+  const residual = (v: number): number => {
     const apparent = v + headwind;
     const aeroForce = 0.5 * airDensity * cda * apparent * Math.abs(apparent);
-    const required = gravTerm * v + rollTerm * v + aeroForce * v;
-    const f = required - wheelPower;
-    // d(required)/dv = gravTerm + rollTerm + 0.5·ρ·CdA · (3v² + 4v·hw + hw²)
-    const df =
-      gravTerm +
-      rollTerm +
-      0.5 * airDensity * cda * (3 * v * v + 4 * v * headwind + headwind * headwind);
-    if (Math.abs(df) < 1e-9) break;
-    let next = v - f / df;
-    if (!Number.isFinite(next)) break;
-    // Damp wild swings
-    if (Math.abs(next - v) > 20) {
-      next = v + Math.sign(next - v) * 5;
-    }
-    if (Math.abs(next - v) < 1e-5) {
-      v = next;
-      break;
-    }
-    v = Math.max(MIN_SPEED, next);
+    return gravTerm * v + rollTerm * v + aeroForce * v - wheelPower;
+  };
+
+  let lo = MIN_SPEED;
+  let hi = 60; // 216 km/h — well above any realistic terminal velocity on a bike
+  const fLo = residual(lo);
+  if (fLo >= 0) {
+    // Rider can't even hold MIN_SPEED at this power on this gradient —
+    // a stall on a steep climb. Caller treats MIN_SPEED as a clamp.
+    return lo;
   }
-  return v;
+  // Extend hi if even 60 m/s isn't enough (pathological inputs); rare.
+  let fHi = residual(hi);
+  let safety = 0;
+  while (fHi < 0 && safety++ < 4) {
+    hi *= 2;
+    fHi = residual(hi);
+  }
+  if (fHi < 0) return hi;
+
+  // Bisection: 30 iterations gives precision (60-1)/2^30 ≈ 5.5e-8 m/s.
+  for (let iter = 0; iter < 40; iter++) {
+    const mid = (lo + hi) / 2;
+    const fMid = residual(mid);
+    if (Math.abs(fMid) < 1e-4 || hi - lo < 1e-5) return mid;
+    if (fMid < 0) lo = mid;
+    else hi = mid;
+  }
+  return (lo + hi) / 2;
 }
 
 interface SimulateCourseArgs {
