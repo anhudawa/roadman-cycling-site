@@ -580,7 +580,7 @@ export default async function PlateauPage() {
         {/* ── Promoted no-hard-sell strip ────────────────────────────── */}
         <section className="bg-deep-purple/60 border-y border-white/5">
           <Container width="default" className="py-6 md:py-8">
-            <ScrollReveal direction="up">
+            <ScrollReveal direction="up" eager>
               <p className="text-center text-foreground-muted text-sm md:text-base leading-relaxed">
                 <span className="text-coral font-heading tracking-wider mr-2">
                   NO HARD SELL.
@@ -597,7 +597,7 @@ export default async function PlateauPage() {
         <Section background="charcoal">
           <Container width="default">
             <div className="grid md:grid-cols-[280px_1fr] gap-10 md:gap-14 items-center">
-              <ScrollReveal direction="up">
+              <ScrollReveal direction="up" eager>
                 <div className="relative aspect-square rounded-2xl overflow-hidden border border-white/10 max-w-[280px] mx-auto md:mx-0">
                   <Image
                     src="/images/about/anthony-profile-closeup.jpg"
@@ -622,7 +622,7 @@ export default async function PlateauPage() {
                 </div>
               </ScrollReveal>
 
-              <ScrollReveal direction="up" delay={0.1}>
+              <ScrollReveal direction="up" delay={0.1} eager>
                 <p className="text-coral font-heading text-xs tracking-[0.3em] mb-3">
                   BUILT BY
                 </p>
@@ -688,7 +688,7 @@ export default async function PlateauPage() {
         {/* ── Profiles grid — four named profiles, pillar colours ────── */}
         <Section background="charcoal">
           <Container width="default">
-            <ScrollReveal direction="up">
+            <ScrollReveal direction="up" eager>
               <p className="text-coral font-heading text-xs tracking-[0.3em] text-center mb-3">
                 THE FOUR
               </p>
@@ -709,7 +709,7 @@ export default async function PlateauPage() {
                 const Icon = p.Icon;
                 return (
                   <li key={p.title}>
-                    <ScrollReveal direction="up" delay={i * 0.08}>
+                    <ScrollReveal direction="up" delay={i * 0.08} eager>
                       <div
                         className="
                           group relative h-full rounded-2xl
@@ -788,7 +788,7 @@ export default async function PlateauPage() {
 
             {/* Mid-page CTA */}
             <div className="mt-12 text-center">
-              <ScrollReveal direction="up">
+              <ScrollReveal direction="up" eager>
                 <a href="#start" data-cta="mid" className={ctaButtonClass}>
                   FIND MY PROFILE {ctaArrow}
                 </a>
@@ -805,7 +805,7 @@ export default async function PlateauPage() {
         {/* ── How it works timeline ─────────────────────────────────── */}
         <Section background="deep-purple" grain>
           <Container width="default">
-            <ScrollReveal direction="up">
+            <ScrollReveal direction="up" eager>
               <p className="text-coral font-heading text-xs tracking-[0.3em] text-center mb-3">
                 HOW IT WORKS
               </p>
@@ -831,7 +831,7 @@ export default async function PlateauPage() {
                 const Icon = step.Icon;
                 return (
                   <li key={step.n} className="relative">
-                    <ScrollReveal direction="up" delay={i * 0.1}>
+                    <ScrollReveal direction="up" delay={i * 0.1} eager>
                       <div className="relative text-center md:text-left">
                         <div className="flex md:block items-center gap-4 md:gap-0 mb-4">
                           <span
@@ -879,7 +879,7 @@ export default async function PlateauPage() {
         {/* ── The diagnostic itself — framed with eyebrow + ambient glow ── */}
         <Section background="deep-purple" grain id="start">
           <Container width="narrow">
-            <ScrollReveal direction="up" className="text-center mb-10">
+            <ScrollReveal direction="up" className="text-center mb-10" eager>
               <p className="text-coral font-heading text-xs tracking-[0.3em] mb-3">
                 START HERE
               </p>
@@ -919,7 +919,7 @@ export default async function PlateauPage() {
         {/* ── Member testimonials — real numbers, real names ────────── */}
         <Section background="charcoal">
           <Container width="default">
-            <ScrollReveal direction="up">
+            <ScrollReveal direction="up" eager>
               <p className="text-coral font-heading text-xs tracking-[0.3em] text-center mb-3">
                 IN THEIR WORDS
               </p>
@@ -937,7 +937,7 @@ export default async function PlateauPage() {
             <ul className="grid md:grid-cols-3 gap-5 list-none p-0">
               {testimonials.map((t, i) => (
                 <li key={t.name}>
-                  <ScrollReveal direction="up" delay={i * 0.08}>
+                  <ScrollReveal direction="up" delay={i * 0.08} eager>
                     <figure
                       className="
                         h-full rounded-2xl bg-background-elevated
@@ -984,7 +984,7 @@ export default async function PlateauPage() {
         {/* ── What you'll get ───────────────────────────────────────── */}
         <Section background="deep-purple">
           <Container width="default">
-            <ScrollReveal direction="up">
+            <ScrollReveal direction="up" eager>
               <p className="text-coral font-heading text-xs tracking-[0.3em] text-center mb-3">
                 WHAT YOU GET
               </p>
@@ -999,7 +999,7 @@ export default async function PlateauPage() {
               {WHAT_YOU_GET.map((card, i) => {
                 const Icon = card.Icon;
                 return (
-                  <ScrollReveal key={card.title} direction="up" delay={i * 0.1}>
+                  <ScrollReveal key={card.title} direction="up" delay={i * 0.1} eager>
                     <div
                       className="
                         group h-full bg-charcoal rounded-2xl border border-white/10
@@ -1030,7 +1030,7 @@ export default async function PlateauPage() {
         {/* ── FAQ accordion ─────────────────────────────────────────── */}
         <Section background="charcoal">
           <Container width="narrow">
-            <ScrollReveal direction="up">
+            <ScrollReveal direction="up" eager>
               <p className="text-coral font-heading text-xs tracking-[0.3em] text-center mb-3">
                 COMMON QUESTIONS
               </p>
@@ -1073,7 +1073,7 @@ export default async function PlateauPage() {
             }}
           />
           <Container width="narrow" className="relative text-center">
-            <ScrollReveal direction="up">
+            <ScrollReveal direction="up" eager>
               <h2
                 className="font-heading text-off-white mb-6 leading-tight"
                 style={{ fontSize: "var(--text-section)" }}
