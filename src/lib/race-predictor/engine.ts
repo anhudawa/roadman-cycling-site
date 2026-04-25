@@ -9,6 +9,7 @@ import type {
   SegmentResult,
 } from './types';
 import { segmentAirState } from './environment';
+import { normalizedPower, variabilityIndex } from './analysis';
 import { G, MIN_SPEED } from './constants';
 
 interface SolveSpeedArgs {
@@ -144,14 +145,13 @@ export function simulateCourse(args: SimulateCourseArgs): CourseResult {
   }
 
   const averagePower = totalTime > 0 ? energySum / totalTime : 0;
-  // NP/VI computed in analysis.ts and wired in by Task 19.
   return {
     segmentResults: results,
     totalTime,
     totalDistance,
     averageSpeed: totalDistance / totalTime,
     averagePower,
-    normalizedPower: averagePower,
-    variabilityIndex: 1.0,
+    normalizedPower: normalizedPower(results),
+    variabilityIndex: variabilityIndex(results),
   };
 }
