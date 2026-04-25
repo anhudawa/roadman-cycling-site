@@ -103,8 +103,8 @@ export default async function AdminPaidReportsPage({
         <StatCard label="Failed" value={stats.failed} tone="alert" />
         <StatCard
           label="Revenue (paid)"
-          value={formatMoney(stats.revenueCents, "eur")}
-          hint="Sum of paid orders, EUR-normalised"
+          value={formatMoney(stats.revenueCents, "usd")}
+          hint="Sum of paid orders, USD-normalised"
         />
       </section>
 
