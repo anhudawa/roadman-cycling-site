@@ -764,7 +764,7 @@ export function ContactDetail({
                 className={`text-[10px] px-2 py-0.5 rounded border tabular-nums uppercase tracking-widest ${leadBandClass(leadBand(leadScore))}`}
                 title="Lead score"
               >
-                {leadScore} $� {leadBand(leadScore)}
+                {leadScore} · {leadBand(leadScore)}
               </span>
             )}
             {canRescore && (
@@ -802,7 +802,7 @@ export function ContactDetail({
                   className="px-4 py-2 bg-red-500/20 text-red-400 text-sm font-heading tracking-wider rounded-lg border border-red-500/30 hover:bg-red-500/30 disabled:opacity-50 uppercase"
                 >
                   {deletingApps
-                    ? "Deleting$��"
+                    ? "Deleting…"
                     : `Confirm delete${apps.length > 1 ? ` (${apps.length})` : ""}`}
                 </button>
                 <button
@@ -873,8 +873,8 @@ export function ContactDetail({
                   </div>
                   <p className="text-xs text-foreground-muted truncate">
                     {d.email}
-                    {d.phone ? ` $� ${d.phone}` : ""}
-                    {d.owner ? ` $� ${d.owner}` : ""}
+                    {d.phone ? ` · ${d.phone}` : ""}
+                    {d.owner ? ` · ${d.owner}` : ""}
                   </p>
                 </div>
                 <button
@@ -1000,7 +1000,7 @@ export function ContactDetail({
                           {t.dueAt
                             ? `Due ${new Date(t.dueAt).toLocaleDateString("en-GB")}`
                             : "No due date"}
-                          {t.assignedTo ? ` $� ${t.assignedTo}` : ""}
+                          {t.assignedTo ? ` · ${t.assignedTo}` : ""}
                         </p>
                       </div>
                       <button
@@ -1383,8 +1383,8 @@ export function ContactDetail({
                         </div>
                         <p className="text-[10px] uppercase tracking-widest text-foreground-subtle mt-0.5">
                           {isEmail ? "email sent" : a.type.replace(/_/g, " ")}
-                          {a.authorName ? ` $� ${a.authorName}` : ""}
-                          {emailStatus && emailStatus !== "sent" ? ` $� ${emailStatus}` : ""}
+                          {a.authorName ? ` · ${a.authorName}` : ""}
+                          {emailStatus && emailStatus !== "sent" ? ` · ${emailStatus}` : ""}
                         </p>
                         {clickLink && (
                           <p className="text-xs text-cyan-300/80 mt-1 truncate">{clickLink}</p>
@@ -1467,10 +1467,10 @@ export function ContactDetail({
                         </div>
                         <p className="text-[11px] text-foreground-subtle mt-1">
                           To {m.toAddress}
-                          {tpl ? ` $� ${tpl.name}` : ""} $� from {m.fromUser} $� {relativeTime(sentLabel)}
+                          {tpl ? ` · ${tpl.name}` : ""} · from {m.fromUser} · {relativeTime(sentLabel)}
                         </p>
                       </div>
-                      <span className="text-foreground-subtle text-xs shrink-0">{isOpen ? "$��" : "+"}</span>
+                      <span className="text-foreground-subtle text-xs shrink-0">{isOpen ? "−" : "+"}</span>
                     </div>
                   </button>
                   {isOpen && (
@@ -1554,7 +1554,7 @@ export function ContactDetail({
                 </p>
                 {currentUser && (
                   <p className="text-[11px] text-foreground-subtle mt-0.5">
-                    Sending as {currentUser.name} $� replies route to {currentUser.email}
+                    Sending as {currentUser.name} · replies route to {currentUser.email}
                   </p>
                 )}
               </div>
@@ -1700,17 +1700,17 @@ function ApplicationCard({ app }: { app: ApplicationRow }) {
         <span className="text-foreground-subtle">
           Submitted <span className="text-off-white">{submitted}</span>
         </span>
-        <span className="text-foreground-subtle">$�</span>
+        <span className="text-foreground-subtle">·</span>
         <span className="text-foreground-subtle">
           Cohort <span className="text-off-white">{app.cohort}</span>
         </span>
-        <span className="text-foreground-subtle">$�</span>
+        <span className="text-foreground-subtle">·</span>
         <span className="text-foreground-subtle">
           Status <span className="text-off-white">{app.status.replace(/_/g, " ")}</span>
         </span>
         {app.persona && (
           <>
-            <span className="text-foreground-subtle">$�</span>
+            <span className="text-foreground-subtle">·</span>
             <span className="text-foreground-subtle">
               Persona <span className="text-off-white capitalize">{app.persona}</span>
             </span>

@@ -15,7 +15,7 @@ import {
   customType,
 } from "drizzle-orm/pg-core";
 
-// $��$�� Events $��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��
+// --- Events ---
 export const events = pgTable(
   "events",
   {
@@ -39,7 +39,7 @@ export const events = pgTable(
   ]
 );
 
-// $��$�� Beehiiv Snapshots $��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��
+// --- Beehiiv Snapshots ---
 export const beehiivSnapshots = pgTable(
   "beehiiv_snapshots",
   {
@@ -57,7 +57,7 @@ export const beehiivSnapshots = pgTable(
   ]
 );
 
-// $��$�� Stripe Snapshots $��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��
+// --- Stripe Snapshots ---
 export const stripeSnapshots = pgTable(
   "stripe_snapshots",
   {
@@ -80,7 +80,7 @@ export const stripeSnapshots = pgTable(
   ]
 );
 
-// $��$�� A/B Tests $��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��
+// --- A/B Tests ---
 export const abTests = pgTable("ab_tests", {
   id: serial("id").primaryKey(),
   name: text("name").notNull(),
@@ -95,7 +95,7 @@ export const abTests = pgTable("ab_tests", {
   completedBy: text("completed_by"),
 });
 
-// $��$�� Agent Reports $��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��
+// --- Agent Reports ---
 export const agentReports = pgTable("agent_reports", {
   id: serial("id").primaryKey(),
   reportDate: date("report_date").notNull(),
@@ -107,7 +107,7 @@ export const agentReports = pgTable("agent_reports", {
   createdAt: timestamp("created_at", { withTimezone: true }).defaultNow(),
 });
 
-// $��$�� Subscribers (unified identity) $��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��
+// --- Subscribers (unified identity) ---
 export const subscribers = pgTable(
   "subscribers",
   {
@@ -131,7 +131,7 @@ export const subscribers = pgTable(
   ]
 );
 
-// $��$�� Repurposed Episodes $��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��
+// --- Repurposed Episodes ---
 export const repurposedEpisodes = pgTable("repurposed_episodes", {
   id: serial("id").primaryKey(),
   episodeSlug: text("episode_slug").notNull().unique(),
@@ -144,7 +144,7 @@ export const repurposedEpisodes = pgTable("repurposed_episodes", {
   updatedAt: timestamp("updated_at").notNull().defaultNow(),
 });
 
-// $��$�� Repurposed Content $��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��
+// --- Repurposed Content ---
 export const repurposedContent = pgTable("repurposed_content", {
   id: serial("id").primaryKey(),
   episodeId: integer("episode_id").notNull().references(() => repurposedEpisodes.id),
@@ -156,7 +156,7 @@ export const repurposedContent = pgTable("repurposed_content", {
   updatedAt: timestamp("updated_at").notNull().defaultNow(),
 });
 
-// $��$�� Contact Submissions $��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��
+// --- Contact Submissions ---
 export const contactSubmissions = pgTable(
   "contact_submissions",
   {
@@ -189,7 +189,7 @@ export function isInboxStage(x: string): x is InboxStage {
   return (INBOX_STAGES as readonly string[]).includes(x);
 }
 
-// $��$�� Cohort Applications $��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��
+// --- Cohort Applications ---
 export const cohortApplications = pgTable(
   "cohort_applications",
   {
@@ -218,7 +218,7 @@ export const cohortApplications = pgTable(
   ]
 );
 
-// $��$�� CRM: Contacts $��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��
+// --- CRM: Contacts ---
 export const contacts = pgTable(
   "contacts",
   {
@@ -244,7 +244,7 @@ export const contacts = pgTable(
   ]
 );
 
-// $��$�� CRM: Contact Activities $��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��
+// --- CRM: Contact Activities ---
 export const contactActivities = pgTable(
   "contact_activities",
   {
@@ -265,7 +265,7 @@ export const contactActivities = pgTable(
   ]
 );
 
-// $��$�� CRM: Tasks $��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��
+// --- CRM: Tasks ---
 export const tasks = pgTable(
   "tasks",
   {
@@ -292,7 +292,7 @@ export const tasks = pgTable(
   ]
 );
 
-// $��$�� Team Users $��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��
+// --- Team Users ---
 export const teamUsers = pgTable(
   "team_users",
   {
@@ -317,7 +317,7 @@ export const teamUsers = pgTable(
   ]
 );
 
-// $��$�� CRM: Email Templates $��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��
+// --- CRM: Email Templates ---
 export const emailTemplates = pgTable(
   "email_templates",
   {
@@ -336,7 +336,7 @@ export const emailTemplates = pgTable(
   ]
 );
 
-// $��$�� CRM: Email Messages $��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��
+// --- CRM: Email Messages ---
 export const emailMessages = pgTable(
   "email_messages",
   {
@@ -365,7 +365,7 @@ export const emailMessages = pgTable(
   ]
 );
 
-// $��$�� Content Chat Messages $��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��
+// --- Content Chat Messages ---
 export const contentChatMessages = pgTable("content_chat_messages", {
   id: serial("id").primaryKey(),
   contentId: integer("content_id").notNull().references(() => repurposedContent.id),
@@ -374,7 +374,7 @@ export const contentChatMessages = pgTable("content_chat_messages", {
   createdAt: timestamp("created_at").notNull().defaultNow(),
 });
 
-// $��$�� Sponsor Reports $��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��
+// --- Sponsor Reports ---
 export const monthlySocialStats = pgTable(
   "monthly_social_stats",
   {
@@ -393,7 +393,7 @@ export const monthlySocialStats = pgTable(
   }),
 );
 
-// $��$�� CRM: Saved Views $��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��
+// --- CRM: Saved Views ---
 export const savedViews = pgTable(
   "saved_views",
   {
@@ -410,7 +410,7 @@ export const savedViews = pgTable(
   ]
 );
 
-// $��$�� CRM: Notifications $��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��
+// --- CRM: Notifications ---
 export const notifications = pgTable(
   "notifications",
   {
@@ -430,7 +430,7 @@ export const notifications = pgTable(
   ]
 );
 
-// $��$�� CRM: Deals $��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��
+// --- CRM: Deals ---
 export const deals = pgTable(
   "deals",
   {
@@ -456,7 +456,7 @@ export const deals = pgTable(
   ]
 );
 
-// $��$�� CRM: Automations $��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��
+// --- CRM: Automations ---
 export type AutomationTriggerType =
   | "application.stage_changed"
   | "deal.stage_changed"
@@ -516,7 +516,7 @@ export const automationRuns = pgTable(
   ]
 );
 
-// $��$�� CRM: Segments $��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��
+// --- CRM: Segments ---
 export type CustomFieldFilterOp = "eq" | "ne" | "contains" | "present" | "absent";
 
 export interface CustomFieldFilter {
@@ -556,7 +556,7 @@ export const segments = pgTable(
   ]
 );
 
-// $��$�� CRM: Attachments $��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��
+// --- CRM: Attachments ---
 export const attachments = pgTable(
   "attachments",
   {
@@ -576,7 +576,7 @@ export const attachments = pgTable(
   ]
 );
 
-// $��$�� CRM: Custom Field Defs $��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��
+// --- CRM: Custom Field Defs ---
 export type CustomFieldType =
   | "text"
   | "longtext"
@@ -607,7 +607,7 @@ export const customFieldDefs = pgTable(
   (table) => [index("custom_field_defs_sort_order_idx").on(table.sortOrder)]
 );
 
-// $��$�� CRM: Sync Runs $��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��
+// --- CRM: Sync Runs ---
 export interface SyncRunResult {
   scanned: number;
   created: number;
@@ -632,7 +632,7 @@ export const syncRuns = pgTable(
   ]
 );
 
-// $��$�� CRM: Bookings $��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��
+// --- CRM: Bookings ---
 export const bookings = pgTable(
   "bookings",
   {
@@ -659,7 +659,7 @@ export const bookings = pgTable(
   ]
 );
 
-// $��$�� CRM: Cron Runs $��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��
+// --- CRM: Cron Runs ---
 export type CronRunKind =
   | "daily_digest"
   | "weekly_digest"
@@ -692,7 +692,7 @@ export const episodeDownloadsCache = pgTable("episode_downloads_cache", {
   updatedAt: timestamp("updated_at", { withTimezone: true }).defaultNow(),
 });
 
-// $��$�� Ted Community Agent $��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��
+// --- Ted Community Agent ---
 // Autonomous agent that runs the free Roadman Clubhouse on Skool.
 // See agents/ted/README.md for runtime split (Vercel drafts, GitHub Actions posts).
 
@@ -860,7 +860,7 @@ export const tedKillSwitch = pgTable("ted_kill_switch", {
   updatedAt: timestamp("updated_at", { withTimezone: true }).notNull().defaultNow(),
 });
 
-// $��$�� Skool Webhook Events (audit log) $��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��
+// --- Skool Webhook Events (audit log) ---
 export const skoolEvents = pgTable(
   "skool_events",
   {
@@ -881,7 +881,7 @@ export const skoolEvents = pgTable(
   ]
 );
 
-// $��$�� Masters Plateau Diagnostic $��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��
+// --- Masters Plateau Diagnostic ---
 // Lead magnet: a 12-question assessment that returns a personalised
 // diagnosis across four profiles. Each submission stores the raw
 // answers, computed profile scores, assigned profile, optional LLM
@@ -923,7 +923,7 @@ export const diagnosticSubmissions = pgTable(
     userAgent: text("user_agent"),
     referrer: text("referrer"),
     beehiivSubscriberId: text("beehiiv_subscriber_id"),
-    /** 1 on first submission for an email, 2 on second, etc. See $�17. */
+    /** 1 on first submission for an email, 2 on second, etc. See §17. */
     retakeNumber: integer("retake_number").notNull().default(1),
     /** Phase 2: link this submission to the shared rider profile so the
      *  admin dashboard and /results history surfaces group all tools by
@@ -941,10 +941,9 @@ export const diagnosticSubmissions = pgTable(
   ]
 );
 
-// $��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��
+// ------------------------------------------------------------
 // MCP Server Tables
-// $��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��
-
+// ------------------------------------------------------------
 // pgvector column — 1024 dims for Voyage voyage-3-large / OpenAI text-embedding-3-large
 const vector1024 = customType<{ data: number[] }>({
   dataType() { return "vector(1024)"; },
@@ -959,7 +958,7 @@ const vector1024 = customType<{ data: number[] }>({
   },
 });
 
-// $��$�� MCP: Episodes $��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��
+// --- MCP: Episodes ---
 export const mcpEpisodes = pgTable(
   "mcp_episodes",
   {
@@ -985,7 +984,7 @@ export const mcpEpisodes = pgTable(
   ]
 );
 
-// $��$�� MCP: Episode Embeddings $��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��
+// --- MCP: Episode Embeddings ---
 export const mcpEpisodeEmbeddings = pgTable(
   "mcp_episode_embeddings",
   {
@@ -998,7 +997,7 @@ export const mcpEpisodeEmbeddings = pgTable(
   (t) => [index("mcp_episode_embeddings_episode_id_idx").on(t.episodeId)]
 );
 
-// $��$�� MCP: Experts $��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��
+// --- MCP: Experts ---
 export const mcpExperts = pgTable("mcp_experts", {
   id: serial("id").primaryKey(),
   name: text("name").notNull().unique(),
@@ -1009,7 +1008,7 @@ export const mcpExperts = pgTable("mcp_experts", {
   latestAppearance: timestamp("latest_appearance", { withTimezone: true }),
 });
 
-// $��$�� MCP: Expert Quotes $��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��
+// --- MCP: Expert Quotes ---
 export const mcpExpertQuotes = pgTable(
   "mcp_expert_quotes",
   {
@@ -1023,7 +1022,7 @@ export const mcpExpertQuotes = pgTable(
   (t) => [index("mcp_expert_quotes_expert_id_idx").on(t.expertId)]
 );
 
-// $��$�� MCP: Methodology Principles $��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��
+// --- MCP: Methodology Principles ---
 export const mcpMethodologyPrinciples = pgTable("mcp_methodology_principles", {
   id: serial("id").primaryKey(),
   principle: text("principle").notNull(),
@@ -1033,14 +1032,14 @@ export const mcpMethodologyPrinciples = pgTable("mcp_methodology_principles", {
   supportingEpisodeIds: integer("supporting_episode_ids").array(),
 });
 
-// $��$�� MCP: Methodology Embeddings $��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��
+// --- MCP: Methodology Embeddings ---
 export const mcpMethodologyEmbeddings = pgTable("mcp_methodology_embeddings", {
   id: serial("id").primaryKey(),
   principleId: integer("principle_id").notNull().references(() => mcpMethodologyPrinciples.id, { onDelete: "cascade" }),
   embedding: vector1024("embedding"),
 });
 
-// $��$�� MCP: Products $��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��
+// --- MCP: Products ---
 export const mcpProducts = pgTable("mcp_products", {
   id: serial("id").primaryKey(),
   productKey: text("product_key").notNull().unique(),
@@ -1054,7 +1053,7 @@ export const mcpProducts = pgTable("mcp_products", {
   isActive: boolean("is_active").notNull().default(true),
 });
 
-// $��$�� Roadman Events (calendar, NOT analytics) $��$��$��$��$��$��$��$��$��$��$��$��$��$��
+// --- Roadman Events (calendar, NOT analytics) ---
 // Named roadman_events to avoid collision with the analytics events table.
 export const roadmanEvents = pgTable(
   "roadman_events",
@@ -1072,7 +1071,7 @@ export const roadmanEvents = pgTable(
   (t) => [index("roadman_events_starts_at_idx").on(t.startsAt)]
 );
 
-// $��$�� MCP: Community Stats (singleton) $��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��
+// --- MCP: Community Stats (singleton) ---
 export const mcpCommunityStats = pgTable("mcp_community_stats", {
   id: serial("id").primaryKey(),
   podcastDownloadsTotal: integer("podcast_downloads_total").notNull().default(0),
@@ -1086,7 +1085,7 @@ export const mcpCommunityStats = pgTable("mcp_community_stats", {
   updatedAt: timestamp("updated_at", { withTimezone: true }).notNull().defaultNow(),
 });
 
-// $��$�� MCP: Call Logs $��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��
+// --- MCP: Call Logs ---
 export const mcpCallLogs = pgTable(
   "mcp_call_logs",
   {
@@ -1105,10 +1104,9 @@ export const mcpCallLogs = pgTable(
   ]
 );
 
-// $��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��
+// ------------------------------------------------------------
 // Ask Roadman + Rider Profiles
-// $��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��
-
+// ------------------------------------------------------------
 export const riderProfiles = pgTable(
   "rider_profiles",
   {
@@ -1225,9 +1223,9 @@ export const askRetrievals = pgTable(
   ]
 );
 
-// $��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��
+// ------------------------------------------------------------
 // Phase 2: Saved Diagnostics — tool_results
-// $��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��
+// ------------------------------------------------------------
 // Generic store for completed tool runs (plateau, fuelling, ftp_zones).
 // Plateau also keeps its richer `diagnostic_submissions` row; this table
 // is the unified history/analytics surface that the /results page and
@@ -1267,10 +1265,9 @@ export const toolResults = pgTable(
   ]
 );
 
-// $��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��
+// ------------------------------------------------------------
 // Phase 2: Paid Reports + Diagnostic Framework (migration 0030)
-// $��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��$��
-
+// ------------------------------------------------------------
 export const diagnosticDefinitions = pgTable(
   "diagnostic_definitions",
   {

@@ -305,7 +305,7 @@ export async function notifyStaleSponsor(
 
   return sendEmail({
     to: RECIPIENTS.sarah,
-    subject: `Stale sponsor: ${sponsorName} $�� ${daysSince} days since contact`,
+    subject: `Stale sponsor: ${sponsorName} — ${daysSince} days since contact`,
     html,
   });
 }
@@ -353,7 +353,7 @@ export async function notifyCohortApplication(data: {
     ) +
     `<p style="margin-top: 16px;">
       <a href="https://roadmancycling.com/admin/applications" style="color: #F16363; text-decoration: underline;">
-        View in admin panel $��
+        View in admin panel →
       </a>
     </p>`,
   );
