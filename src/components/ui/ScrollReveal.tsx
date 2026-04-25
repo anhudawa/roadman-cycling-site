@@ -1,7 +1,7 @@
 "use client";
 
-import { useRef, useEffect, useState } from "react";
-import { motion, useInView } from "framer-motion";
+import { useRef, useEffect } from "react";
+import { motion, useInView, useAnimationControls } from "framer-motion";
 import { type ReactNode } from "react";
 
 type RevealDirection = "up" | "down" | "left" | "right" | "none";
@@ -14,10 +14,8 @@ interface ScrollRevealProps {
   className?: string;
   once?: boolean;
   /**
-   * Skip the reveal animation entirely. The default SSR-safe behaviour
-   * already keeps above-the-fold content visible on first paint, so pass
-   * `eager` only when you want to permanently opt out of the reveal $—
-   * e.g. static brand/hero content that should never animate.
+   * Skip the reveal animation entirely and keep content permanently visible.
+   * Use for hero/brand content that should never animate.
    */
   eager?: boolean;
 }
@@ -31,13 +29,16 @@ const directionOffsets: Record<RevealDirection, { x: number; y: number }> = {
 };
 
 /**
- * SSR renders a plain visible `<div>` (so Googlebot and no-JS users see
- * fully rendered HTML). After hydration we measure the element's position $—
- * anything already in the viewport stays as a plain div, anything below the
- * fold swaps to a motion.div that reveals on scroll.
+ * SSR renders a plain visible motion.div (no inline opacity styles) so
+ * Googlebot and no-JS users see fully rendered HTML. After hydration we
+ * check whether the element is already in the viewport:
+ *   - in view  → leave it visible, no animation
+ *   - below fold → controls.set() immediately hides it, then controls.start()
+ *                  animates it in when the IntersectionObserver fires
  *
- * The earlier implementation emitted `opacity:0` in SSR HTML for every
- * ScrollReveal instance, which hid below-the-fold content from crawlers.
+ * We always render motion.div (never swap to a plain div). Swapping element
+ * types after hydration detaches the element that the IntersectionObserver
+ * is watching, causing isInView to never fire.
  */
 export function ScrollReveal({
   children,
@@ -49,62 +50,53 @@ export function ScrollReveal({
   eager = false,
 }: ScrollRevealProps) {
   const ref = useRef<HTMLDivElement>(null);
+  const controls = useAnimationControls();
   const isInView = useInView(ref, { once, margin: "-50px" });
-  const [phase, setPhase] = useState<"ssr" | "animate" | "static">("ssr");
+  const offset = directionOffsets[direction];
 
+  // On mount: immediately hide below-fold content so it can animate in on
+  // scroll. controls.set() applies synchronously with no transition, avoiding
+  // the one-frame flash that animate would cause.
   useEffect(() => {
-    if (eager) {
-      setPhase("static");
-      return;
-    }
+    if (eager) return;
     const mq = window.matchMedia("(prefers-reduced-motion: reduce)");
     const setup = () => {
       if (mq.matches) {
-        setPhase("static");
+        controls.set({ opacity: 1, x: 0, y: 0 });
         return;
       }
-      // If the element is already in (or near) the viewport at hydration time
-      // the user already saw it rendered by SSR $— don't flash opacity:0 at
-      // them. Only animate the reveal for content still below the fold when
-      // JS boots.
       const rect = ref.current?.getBoundingClientRect();
-      const alreadyInView =
+      const alreadyVisible =
         !rect || (rect.top < window.innerHeight - 50 && rect.bottom > 50);
-      setPhase(alreadyInView ? "static" : "animate");
+      if (!alreadyVisible) {
+        controls.set({ opacity: 0, x: offset.x, y: offset.y });
+      }
     };
     setup();
-    const handler = () => setup();
-    mq.addEventListener("change", handler);
-    return () => mq.removeEventListener("change", handler);
-  }, [eager]);
+    mq.addEventListener("change", setup);
+    return () => mq.removeEventListener("change", setup);
+  }, [eager, controls, offset.x, offset.y]);
 
-  // SSR + the first client render before useEffect runs must produce identical
-  // HTML to avoid hydration mismatch. Keep it a plain visible div.
-  if (phase !== "animate") {
-    return (
-      <div ref={ref} className={className}>
-        {children}
-      </div>
-    );
-  }
+  // Animate in when the element enters the viewport.
+  useEffect(() => {
+    if (eager) return;
+    const mq = window.matchMedia("(prefers-reduced-motion: reduce)");
+    if (mq.matches) return;
+    if (isInView) {
+      controls.start({
+        opacity: 1,
+        x: 0,
+        y: 0,
+        transition: { duration, delay, ease: [0.16, 1, 0.3, 1] },
+      });
+    } else if (!once) {
+      // For repeating reveals: snap back to hidden when scrolled past.
+      controls.set({ opacity: 0, x: offset.x, y: offset.y });
+    }
+  }, [isInView, eager, controls, duration, delay, once, offset.x, offset.y]);
 
-  const offset = directionOffsets[direction];
   return (
-    <motion.div
-      ref={ref}
-      initial={{ opacity: 0, x: offset.x, y: offset.y }}
-      animate={
-        isInView
-          ? { opacity: 1, x: 0, y: 0 }
-          : { opacity: 0, x: offset.x, y: offset.y }
-      }
-      transition={{
-        duration,
-        delay,
-        ease: [0.16, 1, 0.3, 1],
-      }}
-      className={className}
-    >
+    <motion.div ref={ref} animate={controls} className={className}>
       {children}
     </motion.div>
   );

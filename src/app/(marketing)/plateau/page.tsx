@@ -470,7 +470,7 @@ export default async function PlateauPage() {
             }}
           />
           <Container width="narrow" className="relative text-center">
-            <ScrollReveal direction="up" eager>
+            <ScrollReveal direction="up">
               <p className="text-coral font-heading text-xs md:text-sm tracking-[0.3em] mb-6">
                 THE MASTERS PLATEAU DIAGNOSTIC
               </p>
