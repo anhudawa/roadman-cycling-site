@@ -95,7 +95,7 @@ export default async function AskPage({
       <main id="main-content" className="bg-charcoal">
         {/* Hero */}
         <div className="relative border-b border-white/10">
-          <div className="max-w-5xl mx-auto px-4 md:px-6 pt-20 pb-6">
+          <div className="max-w-5xl mx-auto px-4 md:px-6 pt-[calc(5rem+var(--cohort-banner-height,0px))] md:pt-[calc(6rem+var(--cohort-banner-height,0px))] pb-6">
             <p className="font-heading text-coral tracking-widest text-xs uppercase mb-3">
               Ask Roadman
             </p>
