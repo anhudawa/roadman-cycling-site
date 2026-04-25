@@ -179,9 +179,9 @@ export function DealEditor({ deal: initial }: { deal: DealData }) {
                   onChange={(e) => setCurrency(e.target.value)}
                   className="w-full px-3 py-2 text-sm bg-background-deep border border-white/10 text-off-white rounded focus-ring focus:border-[var(--color-border-focus)]"
                 >
-                  <option value="EUR">EUR</option>
-                  <option value="GBP">GBP</option>
                   <option value="USD">USD</option>
+                  <option value="GBP">GBP</option>
+                  <option value="EUR">EUR</option>
                 </select>
               </Field>
             </div>

@@ -311,7 +311,7 @@ function NewDealModal({
 }) {
   const [title, setTitle] = useState("");
   const [value, setValue] = useState("");
-  const [currency, setCurrency] = useState("EUR");
+  const [currency, setCurrency] = useState("USD");
   const [stage, setStage] = useState<DealStage>("qualified");
   const [owner, setOwner] = useState("");
   const [closeDate, setCloseDate] = useState("");
@@ -433,9 +433,9 @@ function NewDealModal({
               onChange={(e) => setCurrency(e.target.value)}
               className="w-full px-3 py-2 text-sm bg-background-deep border border-white/10 text-off-white rounded focus-ring focus:border-[var(--color-border-focus)]"
             >
-              <option value="EUR">EUR</option>
-              <option value="GBP">GBP</option>
               <option value="USD">USD</option>
+              <option value="GBP">GBP</option>
+              <option value="EUR">EUR</option>
             </select>
           </Field>
         </div>
