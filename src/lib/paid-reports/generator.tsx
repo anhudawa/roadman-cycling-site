@@ -66,6 +66,17 @@ export async function generateAndDeliverPaidReport(
       return;
     }
 
+    // Race reports go through their own pipeline — they read a saved
+    // prediction rather than a tool_result, so the diagnostic-driven flow
+    // below doesn't apply.
+    if (report.productSlug === "report_race") {
+      const { generateAndDeliverRaceReport } = await import(
+        "@/lib/race-predictor/report"
+      );
+      await generateAndDeliverRaceReport(paidReportId);
+      return;
+    }
+
     const order = await getOrderById(report.orderId);
     if (!order) {
       await markFailed(paidReportId, "order_missing");

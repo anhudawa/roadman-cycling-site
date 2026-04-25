@@ -37,6 +37,8 @@
     { "idx": 32, "version": "7", "when": 1776186200568, "tag": "0028_ask_roadman_and_rider_profiles",  "breakpoints": true },
     { "idx": 33, "version": "7", "when": 1776186200569, "tag": "0029_phase2_saved_diagnostics",        "breakpoints": true },
     { "idx": 34, "version": "7", "when": 1776186200570, "tag": "0030_paid_reports",                    "breakpoints": true },
-    { "idx": 35, "version": "7", "when": 1777719600000, "tag": "0035_paid_reports_usd",                "breakpoints": true }
+    { "idx": 35, "version": "7", "when": 1777719600000, "tag": "0035_paid_reports_usd",                "breakpoints": true },
+    { "idx": 36, "version": "7", "when": 1777719600001, "tag": "0036_report_prices",                   "breakpoints": true },
+    { "idx": 37, "version": "7", "when": 1777719600002, "tag": "0037_race_predictor",                  "breakpoints": true }
   ]
 }

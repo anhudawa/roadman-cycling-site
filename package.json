@@ -19,6 +19,7 @@
     "db:studio": "drizzle-kit studio",
     "seed:inventory": "tsx src/lib/inventory/seed.ts",
     "seed:inventory:dry": "tsx src/lib/inventory/seed.ts --dry-run",
+    "seed:race-events": "tsx scripts/seed-race-events.ts",
     "migrate:diagnostic": "tsx scripts/migrate-diagnostic.ts",
     "seed:beehiiv:plateau": "tsx scripts/seed-beehiiv-plateau.ts",
     "seed:beehiiv:plateau:dry": "tsx scripts/seed-beehiiv-plateau.ts --dry-run",
