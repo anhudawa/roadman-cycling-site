@@ -54,24 +54,190 @@ export const metadata: Metadata = {
 
 export const revalidate = 3600;
 
+type IconProps = { className?: string };
+
+const IconBike = ({ className }: IconProps) => (
+  <svg
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    strokeWidth="1.5"
+    strokeLinecap="round"
+    strokeLinejoin="round"
+    className={className}
+    aria-hidden="true"
+  >
+    <circle cx="6" cy="17" r="4" />
+    <circle cx="18" cy="17" r="4" />
+    <path d="M15 17h-3l-2-7H8m4 0l3 7m-3-7V6h2" />
+  </svg>
+);
+
+const IconChecklist = ({ className }: IconProps) => (
+  <svg
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    strokeWidth="1.5"
+    strokeLinecap="round"
+    strokeLinejoin="round"
+    className={className}
+    aria-hidden="true"
+  >
+    <path d="M9 11l3 3L22 4" />
+    <path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11" />
+  </svg>
+);
+
+const IconTarget = ({ className }: IconProps) => (
+  <svg
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    strokeWidth="1.5"
+    strokeLinecap="round"
+    strokeLinejoin="round"
+    className={className}
+    aria-hidden="true"
+  >
+    <circle cx="12" cy="12" r="10" />
+    <circle cx="12" cy="12" r="6" />
+    <circle cx="12" cy="12" r="2" />
+  </svg>
+);
+
+const IconMoon = ({ className }: IconProps) => (
+  <svg
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    strokeWidth="1.5"
+    strokeLinecap="round"
+    strokeLinejoin="round"
+    className={className}
+    aria-hidden="true"
+  >
+    <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" />
+  </svg>
+);
+
+const IconWave = ({ className }: IconProps) => (
+  <svg
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    strokeWidth="1.5"
+    strokeLinecap="round"
+    strokeLinejoin="round"
+    className={className}
+    aria-hidden="true"
+  >
+    <path d="M3 12h3l3-7 4 14 3-7h5" />
+  </svg>
+);
+
+const IconDumbbell = ({ className }: IconProps) => (
+  <svg
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    strokeWidth="1.5"
+    strokeLinecap="round"
+    strokeLinejoin="round"
+    className={className}
+    aria-hidden="true"
+  >
+    <path d="M6 7v10M3 9v6M18 7v10M21 9v6M6 12h12" />
+  </svg>
+);
+
+const IconFlame = ({ className }: IconProps) => (
+  <svg
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    strokeWidth="1.5"
+    strokeLinecap="round"
+    strokeLinejoin="round"
+    className={className}
+    aria-hidden="true"
+  >
+    <path d="M12 22c4.97 0 8-3.13 8-7 0-3-1.5-5-3-7-1.5-2-2-3-2-5 0 2-1 3-3 5s-3 4-3 7c0 3.87 3 7 3 7z" />
+    <path d="M12 18c1.66 0 3-1.34 3-3 0-1.5-1-2.5-1.5-3-1 1-1.5 2-1.5 3 0 1.66-1.34 3 0 3z" />
+  </svg>
+);
+
+const IconCompass = ({ className }: IconProps) => (
+  <svg
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    strokeWidth="1.5"
+    strokeLinecap="round"
+    strokeLinejoin="round"
+    className={className}
+    aria-hidden="true"
+  >
+    <circle cx="12" cy="12" r="10" />
+    <polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76" />
+  </svg>
+);
+
+const IconDoc = ({ className }: IconProps) => (
+  <svg
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    strokeWidth="1.5"
+    strokeLinecap="round"
+    strokeLinejoin="round"
+    className={className}
+    aria-hidden="true"
+  >
+    <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
+    <polyline points="14 2 14 8 20 8" />
+    <line x1="9" y1="13" x2="15" y2="13" />
+    <line x1="9" y1="17" x2="15" y2="17" />
+  </svg>
+);
+
+const IconArrow = ({ className }: IconProps) => (
+  <svg
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    strokeWidth="1.5"
+    strokeLinecap="round"
+    strokeLinejoin="round"
+    className={className}
+    aria-hidden="true"
+  >
+    <line x1="5" y1="12" x2="19" y2="12" />
+    <polyline points="12 5 19 12 12 19" />
+  </svg>
+);
+
 const HOW_IT_WORKS = [
   {
     n: "01",
     title: "Tell us about your training",
     body: "Age, weekly hours, optionally your FTP and goal. Two taps each.",
     time: "30 seconds",
+    Icon: IconBike,
   },
   {
     n: "02",
     title: "Twelve quick questions",
     body: "Sleep, intensity distribution, strength, fuelling. One screen at a time, with a back button.",
     time: "3 minutes",
+    Icon: IconChecklist,
   },
   {
     n: "03",
     title: "Get your specific profile",
     body: "One of four profiles, named and explained — and the exact three steps to fix it. Sent to your inbox.",
     time: "30 seconds",
+    Icon: IconTarget,
   },
 ];
 
@@ -94,33 +260,41 @@ const PROFILE_PREVIEWS = [
     n: "01",
     title: "Under-recovered",
     line: "Doing the training. Not getting the adaptation. Sleep, life stress and back-to-back hard sessions are eating the gains.",
+    tells: ["Wakes tired", "HR creeping up", "Hard days hit hard"],
     accent: "var(--color-pillar-recovery)",
     accentBg: "rgba(33, 150, 243, 0.10)",
     accentRing: "rgba(33, 150, 243, 0.35)",
+    Icon: IconMoon,
   },
   {
     n: "02",
     title: "Grey-zone trap",
     line: "Most of your riding is neither easy enough to recover from nor hard enough to drive change. The middle is where progress dies.",
+    tells: ["Tempo by default", "Easy isn't easy", "Hard isn't hard"],
     accent: "var(--color-pillar-coaching)",
     accentBg: "rgba(241, 99, 99, 0.10)",
     accentRing: "rgba(241, 99, 99, 0.40)",
+    Icon: IconWave,
   },
   {
     n: "03",
     title: "Strength gap",
     line: "Your aerobic engine still works. The neuromuscular power that drives it is leaking quietly — about 1% per year after 40 if you're not lifting.",
+    tells: ["Dropped on punches", "Sprint gone", "Climbs feel heavy"],
     accent: "var(--color-pillar-strength)",
     accentBg: "rgba(255, 152, 0, 0.10)",
     accentRing: "rgba(255, 152, 0, 0.40)",
+    Icon: IconDumbbell,
   },
   {
     n: "04",
     title: "Fuelling deficit",
     line: "Training hungry. Chasing race weight. Every session is paid for with tomorrow's adaptation.",
+    tells: ["Bonking late", "Sleep wrecked", "Race-weight chase"],
     accent: "var(--color-pillar-nutrition)",
     accentBg: "rgba(76, 175, 80, 0.10)",
     accentRing: "rgba(76, 175, 80, 0.40)",
+    Icon: IconFlame,
   },
 ];
 
@@ -128,14 +302,17 @@ const WHAT_YOU_GET = [
   {
     title: "Your specific profile",
     body: "One of four reasons your FTP has stalled, named and explained in plain language.",
+    Icon: IconCompass,
   },
   {
     title: "A two-page breakdown",
     body: "What's actually happening, what it's costing you, and the three steps to fix it.",
+    Icon: IconDoc,
   },
   {
     title: "Your next move",
     body: "A clear recommendation, not a generic plan. Built for riders with a life.",
+    Icon: IconArrow,
   },
 ];
 
@@ -258,17 +435,23 @@ export default async function PlateauPage() {
       />
       <Header />
       <main id="main-content">
-        {/* ── Hero ─ cinematic, charcoal → deep-purple, two-line headline ── */}
+        {/* ── Hero — full-bleed, aurora ambient, two-line headline ───── */}
         <section
           id="plateau-hero"
           className="
             relative overflow-hidden
-            min-h-[88vh] flex items-center
+            min-h-[92vh] flex items-center
             pt-32 pb-16 md:pt-40 md:pb-24
             bg-charcoal grain-overlay
           "
         >
-          {/* Layered gradient wash */}
+          {/* Aurora ambient bands (filter:blur 80px), beneath the gradient wash */}
+          <div className="aurora-container pointer-events-none">
+            <div className="aurora-band aurora-band-1" />
+            <div className="aurora-band aurora-band-2" />
+            <div className="aurora-band aurora-band-3" />
+          </div>
+          {/* Layered gradient wash — refines the aurora into directional light */}
           <div
             aria-hidden="true"
             className="absolute inset-0 pointer-events-none"
@@ -277,10 +460,10 @@ export default async function PlateauPage() {
                 "radial-gradient(ellipse at 20% 0%, rgba(76, 18, 115, 0.55), transparent 60%), radial-gradient(ellipse at 80% 100%, rgba(33, 1, 64, 0.7), transparent 55%)",
             }}
           />
-          {/* Subtle coral accent at top */}
+          {/* Subtle coral hairline at the very top */}
           <div
             aria-hidden="true"
-            className="absolute top-0 inset-x-0 h-[1px]"
+            className="absolute top-0 inset-x-0 h-px"
             style={{
               background:
                 "linear-gradient(90deg, transparent, rgba(241,99,99,0.6), transparent)",
@@ -312,26 +495,30 @@ export default async function PlateauPage() {
               <a href="#start" data-cta="hero" className={ctaButtonClass}>
                 FIND MY PROFILE {ctaArrow}
               </a>
-              <p className="text-foreground-subtle text-xs md:text-sm mt-5 px-4">
+              <div className="flex flex-wrap items-center justify-center gap-x-4 gap-y-2 text-foreground-subtle text-xs md:text-sm mt-5 px-4">
                 <span className="whitespace-nowrap">No card</span>
-                {" · "}
+                <span className="opacity-40">·</span>
                 <span className="whitespace-nowrap">4 minutes</span>
-                {" · "}
+                <span className="opacity-40">·</span>
                 <span className="whitespace-nowrap">
                   Email only when you want the result
                 </span>
                 {recentCount !== null && (
                   <>
-                    {" · "}
-                    <span className="whitespace-nowrap">
+                    <span className="opacity-40">·</span>
+                    <span className="inline-flex items-center gap-2 whitespace-nowrap">
+                      <span className="relative flex h-2 w-2">
+                        <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-coral opacity-60" />
+                        <span className="relative inline-flex h-2 w-2 rounded-full bg-coral" />
+                      </span>
                       {recentCount.toLocaleString()} took it this week
                     </span>
                   </>
                 )}
-              </p>
+              </div>
 
               {/* Built-by strip — Anthony presence above the fold */}
-              <div className="mt-12 inline-flex items-center gap-3 rounded-full border border-white/10 bg-white/[0.03] py-2 pl-2 pr-5">
+              <div className="mt-12 inline-flex items-center gap-3 rounded-full border border-white/10 bg-white/[0.03] backdrop-blur-sm py-2 pl-2 pr-5">
                 <span className="relative w-9 h-9 rounded-full overflow-hidden shrink-0 border border-white/15">
                   <Image
                     src="/images/about/anthony-profile-closeup.jpg"
@@ -352,6 +539,41 @@ export default async function PlateauPage() {
                 </span>
               </div>
             </ScrollReveal>
+
+            {/* Scroll cue — desktop only, low-key */}
+            <div
+              aria-hidden="true"
+              className="hidden md:flex absolute left-1/2 -translate-x-1/2 -bottom-4 flex-col items-center text-foreground-subtle/60"
+            >
+              <span className="font-heading text-[10px] tracking-[0.3em] mb-2">
+                SCROLL
+              </span>
+              <svg
+                width="14"
+                height="22"
+                viewBox="0 0 14 22"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="1.5"
+                strokeLinecap="round"
+              >
+                <rect x="1" y="1" width="12" height="20" rx="6" />
+                <line x1="7" y1="6" x2="7" y2="10">
+                  <animate
+                    attributeName="y2"
+                    values="10;14;10"
+                    dur="1.6s"
+                    repeatCount="indefinite"
+                  />
+                  <animate
+                    attributeName="y1"
+                    values="6;10;6"
+                    dur="1.6s"
+                    repeatCount="indefinite"
+                  />
+                </line>
+              </svg>
+            </div>
           </Container>
         </section>
 
@@ -371,7 +593,7 @@ export default async function PlateauPage() {
           </Container>
         </section>
 
-        {/* ── Anthony intro ─ who built it, why it works ─────────────── */}
+        {/* ── Anthony intro — who built it, why it works ─────────────── */}
         <Section background="charcoal">
           <Container width="default">
             <div className="grid md:grid-cols-[280px_1fr] gap-10 md:gap-14 items-center">
@@ -387,6 +609,15 @@ export default async function PlateauPage() {
                   <div
                     aria-hidden="true"
                     className="absolute inset-0 ring-1 ring-inset ring-white/10 rounded-2xl"
+                  />
+                  {/* Soft coral spotlight on the portrait */}
+                  <div
+                    aria-hidden="true"
+                    className="absolute inset-0 pointer-events-none"
+                    style={{
+                      background:
+                        "radial-gradient(ellipse at 75% 0%, rgba(241,99,99,0.18), transparent 60%)",
+                    }}
                   />
                 </div>
               </ScrollReveal>
@@ -474,53 +705,85 @@ export default async function PlateauPage() {
             </ScrollReveal>
 
             <ul className="grid sm:grid-cols-2 lg:grid-cols-4 gap-5 list-none p-0">
-              {PROFILE_PREVIEWS.map((p, i) => (
-                <li key={p.title}>
-                  <ScrollReveal direction="up" delay={i * 0.08}>
-                    <div
-                      className="
-                        group relative h-full rounded-2xl
-                        bg-background-elevated border border-white/10
-                        p-6 md:p-7
-                        transition-all duration-300 ease-[cubic-bezier(0.16,1,0.3,1)]
-                        hover:-translate-y-1 hover:border-white/20
-                      "
-                      style={{
-                        boxShadow: "0 6px 20px rgba(0,0,0,0.25)",
-                      }}
-                    >
-                      <span
-                        aria-hidden="true"
-                        className="absolute left-0 top-6 bottom-6 w-[3px] rounded-r"
-                        style={{ background: p.accent }}
-                      />
-                      <span
-                        aria-hidden="true"
+              {PROFILE_PREVIEWS.map((p, i) => {
+                const Icon = p.Icon;
+                return (
+                  <li key={p.title}>
+                    <ScrollReveal direction="up" delay={i * 0.08}>
+                      <div
                         className="
-                          absolute inset-0 rounded-2xl pointer-events-none
-                          opacity-0 group-hover:opacity-100
-                          transition-opacity duration-300
+                          group relative h-full rounded-2xl
+                          bg-background-elevated border border-white/10
+                          p-6 md:p-7
+                          transition-all duration-300 ease-[cubic-bezier(0.16,1,0.3,1)]
+                          hover:-translate-y-1 hover:border-white/20
                         "
                         style={{
-                          boxShadow: `0 14px 40px ${p.accentBg}, inset 0 0 0 1px ${p.accentRing}`,
+                          boxShadow: "0 6px 20px rgba(0,0,0,0.25)",
                         }}
-                      />
-                      <p
-                        className="font-heading text-3xl mb-2"
-                        style={{ color: p.accent }}
                       >
-                        {p.n}
-                      </p>
-                      <h3 className="font-heading text-xl text-off-white tracking-wide mb-3">
-                        {p.title.toUpperCase()}
-                      </h3>
-                      <p className="text-foreground-muted text-sm leading-relaxed">
-                        {p.line}
-                      </p>
-                    </div>
-                  </ScrollReveal>
-                </li>
-              ))}
+                        <span
+                          aria-hidden="true"
+                          className="absolute left-0 top-6 bottom-6 w-[3px] rounded-r"
+                          style={{ background: p.accent }}
+                        />
+                        <span
+                          aria-hidden="true"
+                          className="
+                            absolute inset-0 rounded-2xl pointer-events-none
+                            opacity-0 group-hover:opacity-100
+                            transition-opacity duration-300
+                          "
+                          style={{
+                            boxShadow: `0 14px 40px ${p.accentBg}, inset 0 0 0 1px ${p.accentRing}`,
+                          }}
+                        />
+
+                        <div className="flex items-center justify-between mb-3">
+                          <p
+                            className="font-heading text-3xl leading-none"
+                            style={{ color: p.accent }}
+                          >
+                            {p.n}
+                          </p>
+                          <span
+                            className="
+                              inline-flex items-center justify-center
+                              w-10 h-10 rounded-lg border
+                              transition-colors duration-300
+                            "
+                            style={{
+                              color: p.accent,
+                              background: p.accentBg,
+                              borderColor: p.accentRing,
+                            }}
+                          >
+                            <Icon className="w-5 h-5" />
+                          </span>
+                        </div>
+
+                        <h3 className="font-heading text-xl text-off-white tracking-wide mb-3">
+                          {p.title.toUpperCase()}
+                        </h3>
+                        <p className="text-foreground-muted text-sm leading-relaxed mb-5">
+                          {p.line}
+                        </p>
+
+                        <ul className="flex flex-wrap gap-1.5 list-none p-0">
+                          {p.tells.map((t) => (
+                            <li
+                              key={t}
+                              className="text-[11px] tracking-wide text-foreground-subtle rounded-full border border-white/10 bg-white/[0.03] px-2.5 py-1"
+                            >
+                              {t}
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
+                    </ScrollReveal>
+                  </li>
+                );
+              })}
             </ul>
 
             {/* Mid-page CTA */}
@@ -540,7 +803,7 @@ export default async function PlateauPage() {
         <div className="gradient-divider" />
 
         {/* ── How it works timeline ─────────────────────────────────── */}
-        <Section background="deep-purple">
+        <Section background="deep-purple" grain>
           <Container width="default">
             <ScrollReveal direction="up">
               <p className="text-coral font-heading text-xs tracking-[0.3em] text-center mb-3">
@@ -555,7 +818,7 @@ export default async function PlateauPage() {
             </ScrollReveal>
 
             <ol className="relative grid md:grid-cols-3 gap-8 md:gap-6 list-none p-0">
-              {/* Connecting line — desktop horizontal, mobile vertical */}
+              {/* Connecting line — desktop horizontal */}
               <span
                 aria-hidden="true"
                 className="hidden md:block absolute left-[12%] right-[12%] top-[36px] h-[2px]"
@@ -564,52 +827,90 @@ export default async function PlateauPage() {
                     "linear-gradient(90deg, transparent, rgba(241,99,99,0.5), rgba(241,99,99,0.5), transparent)",
                 }}
               />
-              {HOW_IT_WORKS.map((step, i) => (
-                <li key={step.n} className="relative">
-                  <ScrollReveal direction="up" delay={i * 0.1}>
-                    <div className="relative text-center md:text-left">
-                      <div className="flex md:block items-center gap-4 md:gap-0 mb-4">
-                        <span
-                          className="
-                            relative inline-flex items-center justify-center
-                            w-[72px] h-[72px] rounded-full
-                            bg-charcoal border-2 border-coral/60
-                            font-heading text-2xl text-coral
-                            shadow-[0_0_24px_rgba(241,99,99,0.25)]
-                            mx-auto md:mx-0
-                          "
-                        >
-                          {step.n}
-                        </span>
-                        <span className="md:hidden font-heading text-base text-foreground-subtle tracking-wider">
+              {HOW_IT_WORKS.map((step, i) => {
+                const Icon = step.Icon;
+                return (
+                  <li key={step.n} className="relative">
+                    <ScrollReveal direction="up" delay={i * 0.1}>
+                      <div className="relative text-center md:text-left">
+                        <div className="flex md:block items-center gap-4 md:gap-0 mb-4">
+                          <span
+                            className="
+                              relative inline-flex items-center justify-center
+                              w-[72px] h-[72px] rounded-full
+                              bg-charcoal border-2 border-coral/60
+                              text-coral
+                              shadow-[0_0_24px_rgba(241,99,99,0.25)]
+                              mx-auto md:mx-0
+                            "
+                          >
+                            <Icon className="w-7 h-7" />
+                            <span
+                              aria-hidden="true"
+                              className="absolute -top-2 -right-2 w-7 h-7 rounded-full bg-coral text-off-white font-heading text-xs flex items-center justify-center shadow-[0_4px_10px_rgba(241,99,99,0.5)]"
+                            >
+                              {step.n}
+                            </span>
+                          </span>
+                          <span className="md:hidden font-heading text-base text-foreground-subtle tracking-wider">
+                            {step.time.toUpperCase()}
+                          </span>
+                        </div>
+                        <p className="hidden md:block font-heading text-xs text-foreground-subtle tracking-widest mb-2">
                           {step.time.toUpperCase()}
-                        </span>
+                        </p>
+                        <h3 className="font-heading text-xl text-off-white tracking-wide mb-2">
+                          {step.title.toUpperCase()}
+                        </h3>
+                        <p className="text-foreground-muted text-sm leading-relaxed">
+                          {step.body}
+                        </p>
                       </div>
-                      <p className="hidden md:block font-heading text-xs text-foreground-subtle tracking-widest mb-2">
-                        {step.time.toUpperCase()}
-                      </p>
-                      <h3 className="font-heading text-xl text-off-white tracking-wide mb-2">
-                        {step.title.toUpperCase()}
-                      </h3>
-                      <p className="text-foreground-muted text-sm leading-relaxed">
-                        {step.body}
-                      </p>
-                    </div>
-                  </ScrollReveal>
-                </li>
-              ))}
+                    </ScrollReveal>
+                  </li>
+                );
+              })}
             </ol>
           </Container>
         </Section>
 
         <div className="gradient-divider" />
 
-        {/* ── The diagnostic itself ─────────────────────────────────── */}
+        {/* ── The diagnostic itself — framed with eyebrow + ambient glow ── */}
         <Section background="deep-purple" grain id="start">
           <Container width="narrow">
-            <Suspense fallback={<DiagnosticSkeleton />}>
-              <DiagnosticFlow />
-            </Suspense>
+            <ScrollReveal direction="up" className="text-center mb-10">
+              <p className="text-coral font-heading text-xs tracking-[0.3em] mb-3">
+                START HERE
+              </p>
+              <h2
+                className="font-heading text-off-white mb-3"
+                style={{ fontSize: "var(--text-section)" }}
+              >
+                ANSWER YOUR FIRST QUESTION.
+              </h2>
+              <p className="text-foreground-muted leading-relaxed">
+                Twelve questions. Save-as-you-go. The diagnosis lands in your
+                inbox the moment you finish.
+              </p>
+            </ScrollReveal>
+
+            <div className="relative">
+              {/* Ambient coral glow behind the form */}
+              <div
+                aria-hidden="true"
+                className="absolute -inset-x-8 -inset-y-6 pointer-events-none blur-3xl"
+                style={{
+                  background:
+                    "radial-gradient(ellipse at center, rgba(241,99,99,0.14), transparent 70%)",
+                }}
+              />
+              <div className="relative">
+                <Suspense fallback={<DiagnosticSkeleton />}>
+                  <DiagnosticFlow />
+                </Suspense>
+              </div>
+            </div>
           </Container>
         </Section>
 
@@ -642,7 +943,9 @@ export default async function PlateauPage() {
                         h-full rounded-2xl bg-background-elevated
                         border border-white/10 p-6 md:p-7
                         flex flex-col
-                        transition-colors hover:border-coral/30
+                        transition-all duration-300
+                        hover:border-coral/30 hover:-translate-y-0.5
+                        hover:shadow-[0_18px_40px_rgba(0,0,0,0.35)]
                       "
                     >
                       {t.stat && (
@@ -693,23 +996,31 @@ export default async function PlateauPage() {
               </h2>
             </ScrollReveal>
             <div className="grid md:grid-cols-3 gap-5">
-              {WHAT_YOU_GET.map((card, i) => (
-                <ScrollReveal key={card.title} direction="up" delay={i * 0.1}>
-                  <div
-                    className="
-                      bg-charcoal rounded-2xl border border-white/10 p-6 md:p-7 h-full
-                      transition-colors hover:border-coral/30
-                    "
-                  >
-                    <h3 className="font-heading text-xl text-off-white tracking-wide mb-3">
-                      {card.title.toUpperCase()}
-                    </h3>
-                    <p className="text-foreground-muted text-sm leading-relaxed">
-                      {card.body}
-                    </p>
-                  </div>
-                </ScrollReveal>
-              ))}
+              {WHAT_YOU_GET.map((card, i) => {
+                const Icon = card.Icon;
+                return (
+                  <ScrollReveal key={card.title} direction="up" delay={i * 0.1}>
+                    <div
+                      className="
+                        group h-full bg-charcoal rounded-2xl border border-white/10
+                        p-6 md:p-7
+                        transition-all duration-300
+                        hover:border-coral/30 hover:-translate-y-0.5
+                      "
+                    >
+                      <div className="w-11 h-11 rounded-lg bg-coral/10 border border-coral/30 flex items-center justify-center text-coral mb-5 group-hover:bg-coral/20 transition-colors duration-300">
+                        <Icon className="w-5 h-5" />
+                      </div>
+                      <h3 className="font-heading text-xl text-off-white tracking-wide mb-3">
+                        {card.title.toUpperCase()}
+                      </h3>
+                      <p className="text-foreground-muted text-sm leading-relaxed">
+                        {card.body}
+                      </p>
+                    </div>
+                  </ScrollReveal>
+                );
+              })}
             </div>
           </Container>
         </Section>
@@ -744,11 +1055,15 @@ export default async function PlateauPage() {
           </Container>
         </Section>
 
-        {/* ── Final CTA ─────────────────────────────────────────────── */}
+        {/* ── Final CTA — aurora + radial wash ───────────────────────── */}
         <section
           id="plateau-final-cta"
           className="relative overflow-hidden bg-deep-purple grain-overlay py-20 md:py-28"
         >
+          <div className="aurora-container pointer-events-none">
+            <div className="aurora-band aurora-band-1" />
+            <div className="aurora-band aurora-band-2" />
+          </div>
           <div
             aria-hidden="true"
             className="absolute inset-0 pointer-events-none"
