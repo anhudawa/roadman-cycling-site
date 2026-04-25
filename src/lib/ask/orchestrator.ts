@@ -183,7 +183,8 @@ export async function streamAnswer(
     }
 
     sse.enqueue({ type: "done", data: { messageId: assistant.id, flaggedForReview: flagged } });
-  } catch {
+  } catch (err) {
+    console.error("[ask/orchestrator] answer generation failed:", err);
     sse.enqueue({
       type: "error",
       data: { message: "Something went sideways generating the answer. Try again in a moment." },
@@ -284,7 +285,10 @@ async function streamFromAnthropic(args: StreamArgs): Promise<{
       outputTokens = msg.usage?.output_tokens;
     });
     stream.on("end", () => resolve());
-    stream.on("error", (err) => reject(err));
+    stream.on("error", (err) => {
+      console.error("[ask/orchestrator] Anthropic stream error:", err);
+      reject(err);
+    });
   });
 
   return { text: full, inputTokens, outputTokens };

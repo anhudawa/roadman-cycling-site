@@ -25,6 +25,7 @@ export function AskRoadmanClient({ seed = null }: { seed?: AskSeed | null }) {
   const { messages, sessionId, isStreaming, error, submit, hydrate } = useAskStream();
   const [input, setInput] = useState(() => initialPromptFromSeed(seed));
   const textareaRef = useRef<HTMLTextAreaElement>(null);
+  const scrollBodyRef = useRef<HTMLDivElement>(null);
   const hasMessages = messages.length > 0;
   const seedConsumedRef = useRef(false);
 
@@ -79,6 +80,12 @@ export function AskRoadmanClient({ seed = null }: { seed?: AskSeed | null }) {
     autoGrow();
   }, [input, autoGrow]);
 
+  useEffect(() => {
+    const el = scrollBodyRef.current;
+    if (!el) return;
+    el.scrollTop = el.scrollHeight;
+  }, [messages]);
+
   // Attach seed to the first message only — subsequent turns rely on
   // session-persisted context, and resending would just grow the prompt.
   const sendWithSeed = useCallback(
@@ -109,23 +116,26 @@ export function AskRoadmanClient({ seed = null }: { seed?: AskSeed | null }) {
 
   return (
     <div className="flex flex-col h-full">
-      {!hasMessages && (
-        <div className="px-4 md:px-6 pt-6 pb-2">
-          <p className="text-foreground-muted text-sm mb-4">
-            Ask anything — training, fuelling, recovery, strength, masters-specific
-            questions, or how to prep for an event. Roadman answers with the same
-            positions you&rsquo;d hear on the podcast, grounded in Anthony&rsquo;s
-            conversations with Dan Lorang, Professor Seiler, Dr David Dunne, and
-            the rest of the guest roster.
-          </p>
-          <p className="font-heading text-xs tracking-widest text-coral uppercase mb-3">
-            Try one of these
-          </p>
-          <StarterPrompts onPick={onStarter} sessionId={sessionId} />
-        </div>
-      )}
-
-      <MessageList messages={messages} sessionId={sessionId} />
+      {/* Single scrollable body — starter prompts + messages share one scroll context
+          so the form is always visible outside the scrollable area on all screen sizes */}
+      <div ref={scrollBodyRef} className="flex-1 overflow-y-auto min-h-0">
+        {!hasMessages && (
+          <div className="px-4 md:px-6 pt-6 pb-4">
+            <p className="text-foreground-muted text-sm mb-4">
+              Ask anything — training, fuelling, recovery, strength, masters-specific
+              questions, or how to prep for an event. Roadman answers with the same
+              positions you&rsquo;d hear on the podcast, grounded in Anthony&rsquo;s
+              conversations with Dan Lorang, Professor Seiler, Dr David Dunne, and
+              the rest of the guest roster.
+            </p>
+            <p className="font-heading text-xs tracking-widest text-coral uppercase mb-3">
+              Try one of these
+            </p>
+            <StarterPrompts onPick={onStarter} sessionId={sessionId} />
+          </div>
+        )}
+        <MessageList messages={messages} sessionId={sessionId} />
+      </div>
 
       {error && (
         <div className="mx-4 md:mx-6 mb-2 rounded-md border border-red-400/30 bg-red-500/[0.08] px-3 py-2 text-sm text-red-200">
@@ -135,7 +145,7 @@ export function AskRoadmanClient({ seed = null }: { seed?: AskSeed | null }) {
 
       <form
         onSubmit={onSubmit}
-        className="sticky bottom-0 border-t border-white/10 bg-charcoal/95 backdrop-blur px-4 md:px-6 py-3"
+        className="border-t border-white/10 bg-charcoal/95 backdrop-blur px-4 md:px-6 py-3"
       >
         <div className="flex items-end gap-2">
           <textarea
@@ -157,7 +167,7 @@ export function AskRoadmanClient({ seed = null }: { seed?: AskSeed | null }) {
           <button
             type="submit"
             disabled={isStreaming || input.trim().length < 2}
-            className="font-heading tracking-wider uppercase text-sm bg-coral hover:bg-coral-hover disabled:opacity-40 disabled:cursor-not-allowed text-off-white px-5 py-2.5 rounded-md transition-colors"
+            className="shrink-0 whitespace-nowrap font-heading tracking-wider uppercase text-sm bg-coral hover:bg-coral-hover disabled:opacity-40 disabled:cursor-not-allowed text-off-white px-5 py-3 min-h-[44px] rounded-md transition-colors"
           >
             {isStreaming ? "Thinking…" : "Send"}
           </button>

@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useState } from "react";
 import type { AskStreamMessage } from "@/app/(marketing)/ask/use-ask-stream";
 import { CitationCard } from "./CitationCard";
 import { CtaCard } from "./CtaCard";
@@ -13,19 +13,8 @@ interface MessageListProps {
 }
 
 export function MessageList({ messages, sessionId }: MessageListProps) {
-  const scrollerRef = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    const el = scrollerRef.current;
-    if (!el) return;
-    el.scrollTop = el.scrollHeight;
-  }, [messages]);
-
   return (
-    <div
-      ref={scrollerRef}
-      className="flex-1 overflow-y-auto space-y-6 px-4 md:px-6 py-6"
-    >
+    <div className="space-y-6 px-4 md:px-6 py-6">
       {messages.map((m) => (
         <MessageRow key={m.id} message={m} sessionId={sessionId} />
       ))}

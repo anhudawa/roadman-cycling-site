@@ -92,9 +92,9 @@ export default async function AskPage({
         }}
       />
       <Header />
-      <main id="main-content" className="bg-charcoal">
+      <main id="main-content" className="bg-charcoal flex flex-col overflow-hidden" style={{ height: "100svh" }}>
         {/* Hero */}
-        <div className="relative border-b border-white/10">
+        <div className="relative border-b border-white/10 shrink-0">
           <div className="max-w-5xl mx-auto px-4 md:px-6 pt-[calc(5rem+var(--cohort-banner-height,0px))] md:pt-[calc(6rem+var(--cohort-banner-height,0px))] pb-6">
             <p className="font-heading text-coral tracking-widest text-xs uppercase mb-3">
               Ask Roadman
@@ -115,7 +115,7 @@ export default async function AskPage({
         </div>
 
         {seed ? (
-          <div className="max-w-5xl mx-auto px-4 md:px-6 pt-6">
+          <div className="max-w-5xl mx-auto px-4 md:px-6 pt-6 shrink-0">
             <div className="rounded-lg border border-coral/30 bg-coral/[0.06] px-4 py-3 text-sm">
               <p className="font-heading text-coral tracking-widest text-[10px] uppercase mb-1">
                 Asked with context
@@ -138,9 +138,9 @@ export default async function AskPage({
           </div>
         ) : null}
 
-        {/* Chat */}
-        <div className="max-w-5xl mx-auto px-0 md:px-6">
-          <div className="bg-charcoal md:bg-white/[0.01] md:rounded-xl md:my-6 md:border md:border-white/10 h-[calc(100vh-220px)] md:h-[72vh] flex flex-col overflow-hidden">
+        {/* Chat — flex-1 fills remaining viewport height on mobile; capped at 72vh on desktop */}
+        <div className="max-w-5xl w-full mx-auto px-0 md:px-6 flex-1 flex flex-col min-h-0 md:flex-none md:block">
+          <div className="bg-charcoal md:bg-white/[0.01] md:rounded-xl md:my-6 md:border md:border-white/10 flex-1 flex flex-col overflow-hidden min-h-0 md:flex-none md:h-[72vh]">
             <AskRoadmanClient
               seed={
                 seed
