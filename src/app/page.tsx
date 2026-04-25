@@ -43,6 +43,18 @@ const tools = [
     href: "/plateau",
   },
   {
+    title: "Ask Roadman",
+    description:
+      "Anthony's coaching brain on tap. Ask any cycling question — answers grounded in 1,400+ podcast episodes.",
+    href: "/ask",
+  },
+  {
+    title: "Coaching Assessment",
+    description:
+      "Ten questions to surface the right coaching pathway for where you are right now.",
+    href: "/assessment",
+  },
+  {
     title: "FTP Zone Calculator",
     description: "Know your zones. Train with precision.",
     href: "/tools/ftp-zones",

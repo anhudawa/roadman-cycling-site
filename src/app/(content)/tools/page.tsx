@@ -6,20 +6,41 @@ import { JsonLd } from "@/components/seo/JsonLd";
 export const metadata: Metadata = {
   title: "Cycling Tools & Calculators",
   description:
-    "Free interactive tools for serious cyclists. Tyre pressure, FTP zones, race weight, fuelling, energy availability, and shock pressure calculators.",
+    "Free interactive tools for serious cyclists. Plateau Diagnostic, Ask Roadman, Coaching Assessment, plus calculators for FTP zones, tyre pressure, race weight, fuelling, energy availability, and shock pressure.",
   alternates: {
     canonical: "https://roadmancycling.com/tools",
   },
   openGraph: {
     title: "Cycling Tools & Calculators",
     description:
-      "Free interactive tools for serious cyclists. Tyre pressure, FTP zones, race weight, fuelling, energy availability, and shock pressure calculators.",
+      "Free interactive tools for serious cyclists. Plateau Diagnostic, Ask Roadman, Coaching Assessment, plus calculators for FTP zones, tyre pressure, race weight, fuelling, energy availability, and shock pressure.",
     type: "website",
     url: "https://roadmancycling.com/tools",
   },
 };
 
 const tools = [
+  {
+    title: "Plateau Diagnostic",
+    description:
+      "Stuck on the same FTP for a year? Twelve questions. Four minutes. One specific answer keyed to your limiter.",
+    href: "/plateau",
+    status: "live" as const,
+  },
+  {
+    title: "Ask Roadman",
+    description:
+      "Anthony's coaching brain on tap. Ask any cycling question and get an answer grounded in 1,400+ episodes with World Tour coaches and sports scientists.",
+    href: "/ask",
+    status: "live" as const,
+  },
+  {
+    title: "Coaching Assessment",
+    description:
+      "Ten questions to surface the right coaching pathway for where you are now — Clubhouse, Not Done Yet, or 1:1.",
+    href: "/assessment",
+    status: "live" as const,
+  },
   {
     title: "FTP Zone Calculator",
     description:
