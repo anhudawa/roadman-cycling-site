@@ -105,6 +105,8 @@ export interface OrchestratorInput {
   ip: string;
   /** Optional seed handoff from a saved tool result. */
   seed?: { tool: string; slug: string } | null;
+  /** True when sessionId was synthesised because DB was unreachable. Skip persists. */
+  sessionEphemeral?: boolean;
 }
 
 export type OrchestratorEmitType =

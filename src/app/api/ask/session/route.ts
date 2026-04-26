@@ -59,7 +59,9 @@ export async function GET(request: Request): Promise<Response> {
         : null,
     });
   } catch (err) {
-    console.error("[ask/session] GET failed", err);
-    return Response.json({ error: "Failed to load session." }, { status: 500 });
+    // DB outages or missing tables shouldn't break the /ask page on load —
+    // surface "no session" so the rider sees the empty state and can ask.
+    console.error("[ask/session] GET failed (returning empty state):", err);
+    return Response.json({ session: null, messages: [], profile: null });
   }
 }

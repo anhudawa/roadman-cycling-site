@@ -51,16 +51,19 @@ export async function streamAnswer(
 ): Promise<void> {
   const startedAt = Date.now();
 
-  try {
-    await appendMessage({
-      sessionId: input.sessionId,
-      role: "user",
-      content: input.query,
-    });
-  } catch {
-    sse.enqueue({ type: "error", data: { message: "Couldn't persist the question — try again." } });
-    sse.close();
-    return;
+  // User-message persistence is best-effort: if the DB is unreachable
+  // (e.g. ask_messages table missing in prod), log it and continue so
+  // the rider still gets an answer.
+  if (!input.sessionEphemeral) {
+    try {
+      await appendMessage({
+        sessionId: input.sessionId,
+        role: "user",
+        content: input.query,
+      });
+    } catch (err) {
+      console.error("[ask/orchestrator] user message persist failed (continuing):", err);
+    }
   }
 
   // 2 — safety pre-filter
@@ -72,6 +75,7 @@ export async function streamAnswer(
       query: input.query,
       decision: safety,
       startedAt,
+      ephemeral: Boolean(input.sessionEphemeral),
     });
     return;
   }
@@ -133,9 +137,11 @@ export async function streamAnswer(
     sse.enqueue({ type: "cta", data: cta });
   }
 
-  // 9 — stream the answer
+  // 9 — stream the answer. The Anthropic call is the only step that
+  // should surface a user-visible error; persistence (10) is best-effort.
+  let full: Awaited<ReturnType<typeof streamFromAnthropic>>;
   try {
-    const full = await streamFromAnthropic({
+    full = await streamFromAnthropic({
       query: input.query,
       intent: classification.intent,
       deep: classification.deep,
@@ -145,53 +151,68 @@ export async function streamAnswer(
       seed,
       sse,
     });
-
-    // 10 — post-filter + persist
-    const { flaggedInvented } = postFilterCitations(
-      full.text,
-      retrieval.chunks.map((c) => c.title),
-    );
-
-    const flagged = flaggedInvented.length > 0;
-
-    const assistant = await appendMessage({
-      sessionId: input.sessionId,
-      role: "assistant",
-      content: full.text,
-      citations: retrieval.chunks.map((c) => ({
-        type: c.sourceType,
-        source_id: c.sourceId,
-        title: c.title,
-        url: c.url,
-        excerpt: c.excerpt.slice(0, 280),
-      })),
-      ctaRecommended: cta.key,
-      safetyFlags: flagged ? ["invented_citation"] : [],
-      confidence: classification.confidence,
-      model: classification.deep ? MODEL_DEEP : MODEL_FAST,
-      inputTokens: full.inputTokens ?? null,
-      outputTokens: full.outputTokens ?? null,
-      latencyMs: Date.now() - startedAt,
-      flaggedForReview: flagged,
-    });
-
-    if (retrieval.chunks.length > 0) {
-      await appendRetrievals({
-        messageId: assistant.id,
-        items: retrieval.chunks.map((c) => chunkToRetrievalItem(c, true)),
-      });
-    }
-
-    sse.enqueue({ type: "done", data: { messageId: assistant.id, flaggedForReview: flagged } });
   } catch (err) {
     console.error("[ask/orchestrator] answer generation failed:", err);
     sse.enqueue({
       type: "error",
       data: { message: "Something went sideways generating the answer. Try again in a moment." },
     });
-  } finally {
     sse.close();
+    return;
   }
+
+  // 10 — post-filter + persist (best-effort).
+  const { flaggedInvented } = postFilterCitations(
+    full.text,
+    retrieval.chunks.map((c) => c.title),
+  );
+  const flagged = flaggedInvented.length > 0;
+
+  let assistantId: string | null = null;
+  if (!input.sessionEphemeral) {
+    try {
+      const assistant = await appendMessage({
+        sessionId: input.sessionId,
+        role: "assistant",
+        content: full.text,
+        citations: retrieval.chunks.map((c) => ({
+          type: c.sourceType,
+          source_id: c.sourceId,
+          title: c.title,
+          url: c.url,
+          excerpt: c.excerpt.slice(0, 280),
+        })),
+        ctaRecommended: cta.key,
+        safetyFlags: flagged ? ["invented_citation"] : [],
+        confidence: classification.confidence,
+        model: classification.deep ? MODEL_DEEP : MODEL_FAST,
+        inputTokens: full.inputTokens ?? null,
+        outputTokens: full.outputTokens ?? null,
+        latencyMs: Date.now() - startedAt,
+        flaggedForReview: flagged,
+      });
+      assistantId = assistant.id;
+
+      if (retrieval.chunks.length > 0) {
+        try {
+          await appendRetrievals({
+            messageId: assistant.id,
+            items: retrieval.chunks.map((c) => chunkToRetrievalItem(c, true)),
+          });
+        } catch (err) {
+          console.error("[ask/orchestrator] retrieval persist failed (non-fatal):", err);
+        }
+      }
+    } catch (err) {
+      console.error("[ask/orchestrator] assistant message persist failed (non-fatal):", err);
+    }
+  }
+
+  sse.enqueue({
+    type: "done",
+    data: { messageId: assistantId, flaggedForReview: flagged },
+  });
+  sse.close();
 }
 
 async function emitSafeBlock(args: {
@@ -200,8 +221,9 @@ async function emitSafeBlock(args: {
   query: string;
   decision: ReturnType<typeof detectSafety>;
   startedAt: number;
+  ephemeral: boolean;
 }): Promise<void> {
-  const { sse, sessionId, decision, startedAt } = args;
+  const { sse, sessionId, decision, startedAt, ephemeral } = args;
   const safe = buildSafeResponse(decision);
 
   sse.enqueue({
@@ -214,25 +236,28 @@ async function emitSafeBlock(args: {
   // emit the text as a single delta so the UI renders the same way as a model response
   sse.enqueue({ type: "delta", data: safe.text });
 
-  try {
-    const assistant = await appendMessage({
-      sessionId,
-      role: "assistant",
-      content: safe.text,
-      citations: [],
-      ctaRecommended: safe.cta.key,
-      safetyFlags: decision.flags,
-      confidence: "high",
-      model: "safety_template",
-      latencyMs: Date.now() - startedAt,
-      flaggedForReview: true,
-    });
-    sse.enqueue({ type: "done", data: { messageId: assistant.id, flaggedForReview: true } });
-  } catch {
-    sse.enqueue({ type: "done", data: { flaggedForReview: true } });
-  } finally {
-    sse.close();
+  let messageId: string | null = null;
+  if (!ephemeral) {
+    try {
+      const assistant = await appendMessage({
+        sessionId,
+        role: "assistant",
+        content: safe.text,
+        citations: [],
+        ctaRecommended: safe.cta.key,
+        safetyFlags: decision.flags,
+        confidence: "high",
+        model: "safety_template",
+        latencyMs: Date.now() - startedAt,
+        flaggedForReview: true,
+      });
+      messageId = assistant.id;
+    } catch (err) {
+      console.error("[ask/orchestrator] safety persist failed (non-fatal):", err);
+    }
   }
+  sse.enqueue({ type: "done", data: { messageId, flaggedForReview: true } });
+  sse.close();
 }
 
 interface StreamArgs {

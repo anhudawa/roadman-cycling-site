@@ -50,10 +50,21 @@ let cached: ReportProduct[] | null = null;
 
 async function loadAllProducts(): Promise<ReportProduct[]> {
   if (cached && Date.now() - cachedAt < CACHE_TTL_MS) return cached;
-  const rows = await db
-    .select()
-    .from(reportProducts)
-    .where(eq(reportProducts.active, true));
+  // If the report_products table is missing (e.g. migrations 0030/0035/0036
+  // not yet applied in the current environment), fall back to an empty
+  // list so callers can hide the upsell rather than crash the page.
+  let rows: Row[];
+  try {
+    rows = await db
+      .select()
+      .from(reportProducts)
+      .where(eq(reportProducts.active, true));
+  } catch (err) {
+    console.error("[paid-reports/products] loadAllProducts failed (returning empty):", err);
+    cached = [];
+    cachedAt = Date.now();
+    return cached;
+  }
   cached = rows
     .map(rowToDomain)
     .filter((x): x is ReportProduct => x !== null);

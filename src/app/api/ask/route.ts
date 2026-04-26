@@ -1,5 +1,5 @@
 import { z } from "zod";
-import { createHash } from "node:crypto";
+import { createHash, randomUUID } from "node:crypto";
 import { streamAnswer } from "@/lib/ask/orchestrator";
 import { createSseStream, sseFormat } from "@/lib/ask/stream";
 import { checkAskRateLimit } from "@/lib/ask/rate-limit";
@@ -87,18 +87,22 @@ export async function POST(request: Request): Promise<Response> {
     );
   }
 
-  // Open the SSE stream before any DB work so all failures below can emit
-  // structured error events instead of falling back to a JSON 500 response.
+  // Open the SSE stream before any DB work so all post-rate-limit failures
+  // emit structured error events instead of falling back to a JSON 500.
   const { response, controller } = createSseStream();
   const ctrl = await controller;
 
-  // Resolve or create the session — errors after this point go through SSE
+  // Resolve or create the session. If the DB is unreachable or the
+  // ask_sessions table doesn't exist (e.g. migrations not yet applied),
+  // fall back to an ephemeral UUID so the chat still works without
+  // persistence. The orchestrator separately tolerates persist failures.
   let session = incomingSessionId ? await loadSession(incomingSessionId).catch(() => null) : null;
   if (!session) {
     session = riderProfileId
       ? await loadSessionByRiderProfile(riderProfileId).catch(() => null)
       : await loadSessionByAnonKey(anonKey).catch(() => null);
   }
+  let sessionEphemeral = false;
   if (!session) {
     try {
       session = await createSession({
@@ -108,13 +112,20 @@ export async function POST(request: Request): Promise<Response> {
         userAgent,
       });
     } catch (err) {
-      console.error("[ask] createSession failed", err);
-      const msg = isTableMissingError(err)
-        ? "Ask Roadman is being set up — please check back in a few minutes."
-        : "Couldn't start a chat session. Try again in a moment.";
-      ctrl.enqueue({ type: "error", data: { message: msg } });
-      ctrl.close();
-      return response;
+      console.error("[ask] createSession failed — using ephemeral session id:", err);
+      sessionEphemeral = true;
+      session = {
+        id: randomUUID(),
+        riderProfileId: riderProfileId ?? null,
+        anonSessionKey: riderProfileId ? null : anonKey,
+        startedAt: new Date(),
+        lastActivityAt: new Date(),
+        messageCount: 0,
+        ipHash,
+        userAgent,
+        utmSource: null,
+        utmCampaign: null,
+      };
     }
   } else {
     await touchSession(session.id).catch(() => undefined);
@@ -131,6 +142,7 @@ export async function POST(request: Request): Promise<Response> {
       riderProfileId: session.riderProfileId,
       ip: ipHash,
       seed: seed ?? null,
+      sessionEphemeral,
     },
     ctrl,
   ).catch((err) => {
@@ -140,15 +152,6 @@ export async function POST(request: Request): Promise<Response> {
   });
 
   return response;
-}
-
-function isTableMissingError(err: unknown): boolean {
-  if (!err || typeof err !== "object") return false;
-  const e = err as Record<string, unknown>;
-  return (
-    e.code === "42P01" ||
-    (typeof e.message === "string" && e.message.includes("relation") && e.message.includes("does not exist"))
-  );
 }
 
 function jsonError(

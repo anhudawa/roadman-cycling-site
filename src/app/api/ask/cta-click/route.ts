@@ -26,6 +26,7 @@ export async function POST(request: Request): Promise<Response> {
     );
   }
 
+  // Best-effort telemetry — never block the click on a logging failure.
   try {
     await recordEvent("ask_cta_clicked", "/ask", {
       sessionId: parsed.data.sessionId,
@@ -35,9 +36,8 @@ export async function POST(request: Request): Promise<Response> {
         ...(parsed.data.messageId ? { messageId: parsed.data.messageId } : {}),
       },
     });
-    return Response.json({ ok: true });
   } catch (err) {
-    console.error("[ask/cta-click] POST failed", err);
-    return Response.json({ error: "Failed to record click." }, { status: 500 });
+    console.error("[ask/cta-click] recordEvent failed (non-fatal):", err);
   }
+  return Response.json({ ok: true });
 }
