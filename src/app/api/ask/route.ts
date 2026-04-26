@@ -63,10 +63,16 @@ export async function POST(request: Request): Promise<Response> {
 
   const ip = ipFromRequest(request);
   const ipHash = hashIp(ip);
-  const anonKey = await getOrCreateAnonSessionKey();
   const userAgent = request.headers.get("user-agent")?.slice(0, 240) ?? null;
 
-  // Rate limit (tier-aware)
+  let anonKey: string;
+  try {
+    anonKey = await getOrCreateAnonSessionKey();
+  } catch {
+    anonKey = ipHash;
+  }
+
+  // Rate limit (tier-aware) — 429 stays JSON; the client handles it specifically
   const rl = await checkAskRateLimit({
     tier: riderProfileId ? "profile" : "anon",
     sessionKey: riderProfileId ? `profile:${riderProfileId}` : anonKey,
@@ -81,7 +87,12 @@ export async function POST(request: Request): Promise<Response> {
     );
   }
 
-  // Resolve or create the session
+  // Open the SSE stream before any DB work so all failures below can emit
+  // structured error events instead of falling back to a JSON 500 response.
+  const { response, controller } = createSseStream();
+  const ctrl = await controller;
+
+  // Resolve or create the session — errors after this point go through SSE
   let session = incomingSessionId ? await loadSession(incomingSessionId).catch(() => null) : null;
   if (!session) {
     session = riderProfileId
@@ -98,14 +109,16 @@ export async function POST(request: Request): Promise<Response> {
       });
     } catch (err) {
       console.error("[ask] createSession failed", err);
-      return jsonError(500, "session_failed", "Couldn't start a chat session. Try again in a moment.");
+      const msg = isTableMissingError(err)
+        ? "Ask Roadman is being set up — please check back in a few minutes."
+        : "Couldn't start a chat session. Try again in a moment.";
+      ctrl.enqueue({ type: "error", data: { message: msg } });
+      ctrl.close();
+      return response;
     }
   } else {
     await touchSession(session.id).catch(() => undefined);
   }
-
-  const { response, controller } = createSseStream();
-  const ctrl = await controller;
 
   // Send an immediate session-id event so the client can store it.
   ctrl.enqueue({ type: "meta", data: { sessionId: session.id, kind: "session_ack" } });
@@ -127,6 +140,15 @@ export async function POST(request: Request): Promise<Response> {
   });
 
   return response;
+}
+
+function isTableMissingError(err: unknown): boolean {
+  if (!err || typeof err !== "object") return false;
+  const e = err as Record<string, unknown>;
+  return (
+    e.code === "42P01" ||
+    (typeof e.message === "string" && e.message.includes("relation") && e.message.includes("does not exist"))
+  );
 }
 
 function jsonError(

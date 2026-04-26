@@ -39,7 +39,6 @@ function installFakeStripe() {
     };
   return () => {
     (Module as unknown as { _resolveFilename: typeof orig })._resolveFilename = orig;
-    // @ts-expect-error - require.cache cleanup
     delete require.cache[FAKE_STRIPE_ID];
   };
 }
