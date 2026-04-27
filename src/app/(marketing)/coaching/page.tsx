@@ -8,6 +8,7 @@ import { FAQSchema } from "@/components/seo/FAQSchema";
 import { getTestimonialsByName } from "@/lib/testimonials";
 import { BeforeAfterMetrics, type MetricRow } from "@/components/proof";
 import { JourneyBlock } from "@/components/journey";
+import { SEGMENT_DISPLAY_ORDER } from "@/lib/coaching-segments";
 
 export const metadata: Metadata = {
   title: "Online Cycling Coach — Evidence-Based Coaching | $195/month",
@@ -680,6 +681,44 @@ export default function CoachingPage() {
                     </div>
                   </Card>
                 </ScrollReveal>
+              ))}
+            </div>
+          </Container>
+        </Section>
+
+        {/* Coaching by segment — entry points to the 10 segment pages */}
+        <Section background="deep-purple" grain>
+          <Container width="narrow">
+            <ScrollReveal direction="up" className="text-center mb-12">
+              <p className="text-coral font-heading text-xs tracking-widest mb-3">
+                COACHING BY SEGMENT
+              </p>
+              <h2
+                className="font-heading text-off-white mb-4"
+                style={{ fontSize: "var(--text-section)" }}
+              >
+                FIND THE COACHING THAT FITS YOU
+              </h2>
+              <p className="text-foreground-muted max-w-xl mx-auto">
+                Same five-pillar system. Periodised differently depending on
+                who you are and what you&apos;re training for.
+              </p>
+            </ScrollReveal>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+              {SEGMENT_DISPLAY_ORDER.map((s) => (
+                <Link
+                  key={s.slug}
+                  href={`/coaching/${s.slug}`}
+                  className="group block p-5 rounded-lg bg-white/5 hover:bg-coral/10 border border-white/5 hover:border-coral/30 transition-all"
+                >
+                  <p className="font-heading text-base text-off-white group-hover:text-coral transition-colors tracking-wide mb-1">
+                    {s.label.toUpperCase()}
+                  </p>
+                  <p className="text-xs text-foreground-subtle leading-relaxed">
+                    {s.tagline}
+                  </p>
+                </Link>
               ))}
             </div>
           </Container>
