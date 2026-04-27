@@ -47,14 +47,14 @@ export default async function GlossaryTermPage({
         data={{
           "@context": "https://schema.org",
           "@type": "DefinedTerm",
+          "@id": `https://roadmancycling.com/glossary/${slug}#term`,
           name: term.term,
           description: term.definition,
           url: `https://roadmancycling.com/glossary/${slug}`,
-          inDefinedTermSet: {
-            "@type": "DefinedTermSet",
-            name: "Cycling Performance Glossary",
-            url: "https://roadmancycling.com/glossary",
-          },
+          // Reference the parent set by @id so every term resolves into
+          // the same DefinedTermSet entity declared on /glossary, not a
+          // duplicate string-named set per term.
+          inDefinedTermSet: { "@id": "https://roadmancycling.com/glossary#termset" },
         }}
       />
       <JsonLd

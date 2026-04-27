@@ -14,7 +14,7 @@ interface MessageListProps {
 
 export function MessageList({ messages, sessionId }: MessageListProps) {
   return (
-    <div className="space-y-6 px-4 md:px-6 py-6">
+    <div className="space-y-6 px-4 md:px-6 pt-6 pb-12">
       {messages.map((m) => (
         <MessageRow key={m.id} message={m} sessionId={sessionId} />
       ))}

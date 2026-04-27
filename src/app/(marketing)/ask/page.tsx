@@ -93,11 +93,27 @@ export default async function AskPage({
           "@type": "WebApplication",
           name: "Ask Roadman",
           description:
-            "On-site cycling performance assistant grounded in the Roadman Cycling content library.",
+            "On-site cycling performance assistant grounded in 1,400+ Roadman Cycling Podcast conversations with World Tour coaches, sports scientists, and pro cyclists.",
           url: "https://roadmancycling.com/ask",
           applicationCategory: "HealthApplication",
+          operatingSystem: "Web",
+          browserRequirements: "Requires JavaScript, modern browser",
           isAccessibleForFree: true,
+          inLanguage: "en",
+          featureList: [
+            "Conversational answers grounded in 1,400+ podcast conversations",
+            "Citations to the source episode for every answer",
+            "Tool result handoff (FTP zones, race weight, fuelling, etc.)",
+            "Pre-filled prompts from blog posts and guest pages",
+          ],
+          offers: {
+            "@type": "Offer",
+            price: "0",
+            priceCurrency: "USD",
+          },
           publisher: { "@id": ENTITY_IDS.organization },
+          creator: { "@id": ENTITY_IDS.person },
+          isPartOf: { "@id": ENTITY_IDS.website },
         }}
       />
       <style
@@ -106,7 +122,19 @@ export default async function AskPage({
         }}
       />
       <Header />
-      <main id="main-content" className="bg-charcoal flex flex-col overflow-hidden" style={{ height: "100svh" }}>
+      <main
+        id="main-content"
+        className="bg-charcoal flex flex-col overflow-hidden"
+        style={{
+          // Subtract any fixed-bottom global UI from the viewport-locked
+          // height so the chat input form never gets covered. Currently
+          // accounts for the cookie consent banner (sets
+          // --cookie-banner-height when visible). Falls back to 100svh
+          // when nothing's overlaying the bottom.
+          height:
+            "calc(100svh - var(--cookie-banner-height, 0px))",
+        }}
+      >
         {/* Hero */}
         <div className="relative border-b border-white/10 shrink-0">
           <div className="max-w-5xl mx-auto px-4 md:px-6 pt-[calc(5rem+var(--cohort-banner-height,0px))] md:pt-[calc(6rem+var(--cohort-banner-height,0px))] pb-6">

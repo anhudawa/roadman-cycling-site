@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { Header, Footer, Section, Container } from "@/components/layout";
@@ -81,6 +81,7 @@ const DIFFICULTY_OPTIONS = [
 
 export default function PredictPage() {
   const router = useRouter();
+  const setupRef = useRef<HTMLDivElement | null>(null);
 
   // Read deep-link course slug from the URL after mount. We avoid
   // useSearchParams() so the page can stay statically prerendered
@@ -125,9 +126,16 @@ export default function PredictPage() {
   const [search, setSearch] = useState("");
   const [country, setCountry] = useState("");
   const [difficulty, setDifficulty] = useState("");
+  const [showEventList, setShowEventList] = useState(true);
 
   const [submitting, setSubmitting] = useState(false);
   const [submitError, setSubmitError] = useState<string | null>(null);
+
+  function scrollToSetup() {
+    window.setTimeout(() => {
+      setupRef.current?.scrollIntoView({ behavior: "smooth", block: "start" });
+    }, 80);
+  }
 
   useEffect(() => {
     setCoursesLoading(true);
@@ -158,6 +166,7 @@ export default function PredictPage() {
     if (courseSlug || gpx) return;
     if (courseQuery && coursesBySlug.has(courseQuery)) {
       setCourseSlug(courseQuery);
+      setShowEventList(false);
       return;
     }
     const firstPredictable = RACES.find(
@@ -188,6 +197,10 @@ export default function PredictPage() {
   const selectedCourse = useMemo(
     () => courses.find((c) => c.slug === courseSlug) ?? null,
     [courses, courseSlug],
+  );
+  const selectedRace = useMemo(
+    () => RACES.find((r) => r.predictor_slug === courseSlug) ?? null,
+    [courseSlug],
   );
 
   // Build a Course-shaped object for the elevation preview from either a
@@ -396,7 +409,7 @@ export default function PredictPage() {
         <Section
           background="deep-purple"
           grain
-          className="pt-32 md:pt-40 pb-12 md:pb-16 relative overflow-hidden"
+          className="pt-20 md:pt-40 pb-6 md:pb-16 relative overflow-hidden"
         >
           {/* Aurora wash */}
           <div className="absolute inset-0 pointer-events-none">
@@ -417,17 +430,21 @@ export default function PredictPage() {
           <Container className="relative">
             <div className="max-w-3xl">
               <p
-                className="text-[0.65rem] tracking-[0.28em] uppercase text-coral mb-4"
+                className="hidden sm:block text-[0.65rem] tracking-[0.28em] uppercase text-coral mb-4"
                 style={{ fontFamily: "var(--font-jetbrains-mono)" }}
               >
                 ROADMAN · RACE PREDICTOR
               </p>
-              <h1 className="font-heading uppercase tracking-tight text-off-white leading-[0.92] text-[clamp(2.75rem,8vw,6rem)] mb-5">
+              <h1 className="mt-14 sm:mt-0 font-heading uppercase tracking-tight text-off-white leading-[0.92] text-[clamp(2.35rem,12vw,6rem)] mb-4 md:mb-5">
                 Predict your finish.
                 <br />
                 <span className="text-coral">Pace your race.</span>
               </h1>
-              <p className="text-lg md:text-xl text-off-white/80 max-w-2xl leading-relaxed mb-2">
+              <p className="sm:hidden text-base text-off-white/80 leading-relaxed mb-2">
+                Pick your event. Enter FTP and weight. Get a finish prediction
+                and pacing guidance. Free to run.
+              </p>
+              <p className="hidden sm:block text-base md:text-xl text-off-white/80 max-w-2xl leading-relaxed mb-2">
                 Enter your FTP and weight, pick your event or drop a GPX, and
                 we&rsquo;ll simulate the ride on real elevation, real wind, and
                 real rolling resistance — and hand you a finish time within
@@ -436,7 +453,7 @@ export default function PredictPage() {
               </p>
 
               <div
-                className="mt-6 flex items-center gap-2 text-sm text-foreground-muted flex-wrap"
+                className="mt-5 flex items-center gap-2 text-xs sm:text-sm text-foreground-muted flex-wrap"
                 style={{ fontFamily: "var(--font-jetbrains-mono)" }}
               >
                 <span className="block w-1.5 h-1.5 rounded-full bg-emerald-400" />
@@ -469,123 +486,180 @@ export default function PredictPage() {
               </p>
             </div>
 
-            {/* Filters */}
-            <div className="flex flex-wrap gap-3 mb-5">
-              <input
-                type="search"
-                placeholder="Search by name, country, or tag…"
-                value={search}
-                onChange={(e) => setSearch(e.target.value)}
-                className="flex-1 min-w-[180px] bg-white/[0.06] border border-white/10 text-off-white text-sm rounded-lg px-3 py-2 placeholder:text-foreground-subtle focus:outline-none focus:border-coral/60 transition-colors"
-                aria-label="Search races"
-              />
-              <select
-                value={country}
-                onChange={(e) => setCountry(e.target.value)}
-                className="bg-white/[0.06] border border-white/10 text-off-white text-sm rounded-lg px-3 py-2 focus:outline-none focus:border-coral/60 transition-colors"
-                aria-label="Filter by country"
-              >
-                {COUNTRY_OPTIONS.map((o) => (
-                  <option key={o.value} value={o.value}>
-                    {o.label}
-                  </option>
-                ))}
-              </select>
-              <select
-                value={difficulty}
-                onChange={(e) => setDifficulty(e.target.value)}
-                className="bg-white/[0.06] border border-white/10 text-off-white text-sm rounded-lg px-3 py-2 focus:outline-none focus:border-coral/60 transition-colors"
-                aria-label="Filter by difficulty"
-              >
-                {DIFFICULTY_OPTIONS.map((o) => (
-                  <option key={o.value} value={o.value}>
-                    {o.label}
-                  </option>
-                ))}
-              </select>
-              {filtersActive && (
-                <button
-                  type="button"
-                  onClick={() => {
-                    setSearch("");
-                    setCountry("");
-                    setDifficulty("");
-                  }}
-                  className="text-sm text-foreground-muted hover:text-off-white transition-colors px-2"
-                >
-                  Clear filters
-                </button>
-              )}
-            </div>
-
-            <p className="text-foreground-muted text-xs mb-5">
-              {filteredRaces.length} {filteredRaces.length === 1 ? "race" : "races"}
-              {filtersActive ? " match the filters" : " in the calendar"} ·{" "}
-              <span className="text-coral">Coral border</span> = you can run a
-              prediction now
-            </p>
-
-            {/* Race grid */}
-            {filteredRaces.length === 0 ? (
-              <div className="text-center py-12 text-foreground-muted">
-                No races match those filters. Try clearing them, or upload your
-                own GPX below.
-              </div>
-            ) : (
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-5">
-                {filteredRaces.map((race) => {
-                  const matchedCourse = race.predictor_slug
-                    ? coursesBySlug.get(race.predictor_slug)
-                    : undefined;
-                  const isSelected =
-                    !gpx && race.predictor_slug === courseSlug && Boolean(matchedCourse);
-                  return (
-                    <RaceTile
-                      key={race.slug}
-                      race={race}
-                      profile={matchedCourse?.profile}
-                      selected={isSelected}
-                      predictable={Boolean(matchedCourse)}
-                      coursesLoading={coursesLoading}
-                      onSelect={() => {
-                        if (matchedCourse && race.predictor_slug) {
-                          setGpx(null);
-                          setCourseSlug(race.predictor_slug);
-                        }
-                      }}
-                    />
-                  );
-                })}
+            {(selectedRace || gpx) && (
+              <div className="mb-5 rounded-xl border border-coral/40 bg-coral/8 p-4 sm:p-5">
+                <div className="flex items-start justify-between gap-4">
+                  <div>
+                    <p
+                      className="text-[0.62rem] tracking-[0.2em] uppercase text-coral mb-1"
+                      style={{ fontFamily: "var(--font-jetbrains-mono)" }}
+                    >
+                      Selected route
+                    </p>
+                    <h3 className="font-heading text-2xl uppercase tracking-tight text-off-white">
+                      {gpx?.name ?? selectedCourse?.name ?? selectedRace?.name}
+                    </h3>
+                    <p className="mt-1 text-sm text-foreground-muted">
+                      {gpx
+                        ? `${(gpx.distanceM / 1000).toFixed(0)} km · ${gpx.elevationGainM.toLocaleString()} m climbing`
+                        : selectedCourse
+                          ? `${selectedCourse.distanceKm.toFixed(0)} km · ${selectedCourse.elevationGainM.toLocaleString()} m climbing`
+                          : selectedRace?.location}
+                    </p>
+                  </div>
+                  <span
+                    className="shrink-0 rounded-full bg-coral px-2.5 py-1 text-[0.62rem] uppercase tracking-[0.16em] text-charcoal"
+                    style={{ fontFamily: "var(--font-jetbrains-mono)" }}
+                  >
+                    Ready
+                  </span>
+                </div>
+                <div className="mt-4 grid grid-cols-1 sm:grid-cols-[auto_auto_1fr] gap-2">
+                  <button
+                    type="button"
+                    onClick={scrollToSetup}
+                    className="rounded-lg bg-coral px-4 py-3 text-sm font-semibold text-charcoal transition-colors hover:bg-coral/90"
+                  >
+                    Continue to rider setup
+                  </button>
+                  <button
+                    type="button"
+                    onClick={() => setShowEventList((v) => !v)}
+                    className="rounded-lg border border-white/12 px-4 py-3 text-sm text-off-white transition-colors hover:border-white/30"
+                  >
+                    {showEventList ? "Hide calendar" : "Change race or upload GPX"}
+                  </button>
+                </div>
               </div>
             )}
 
-            {/* GPX alternative — secondary, below */}
-            <div className="mt-10 pt-8 border-t border-white/8">
-              <div className="flex items-end justify-between mb-4 flex-wrap gap-3">
-                <div>
-                  <p
-                    className="text-[0.62rem] tracking-[0.22em] uppercase text-foreground-muted mb-1"
-                    style={{ fontFamily: "var(--font-jetbrains-mono)" }}
+            {showEventList && (
+              <>
+                {/* Filters */}
+                <div className="grid grid-cols-1 sm:grid-cols-[1fr_auto_auto] gap-3 mb-5">
+                  <input
+                    type="search"
+                    placeholder="Search by name, country, or tag…"
+                    value={search}
+                    onChange={(e) => setSearch(e.target.value)}
+                    className="w-full bg-white/[0.06] border border-white/10 text-off-white text-base sm:text-sm rounded-lg px-3 py-3 sm:py-2 placeholder:text-foreground-subtle focus:outline-none focus:border-coral/60 transition-colors"
+                    aria-label="Search races"
+                  />
+                  <select
+                    value={country}
+                    onChange={(e) => setCountry(e.target.value)}
+                    className="w-full bg-white/[0.06] border border-white/10 text-off-white text-base sm:text-sm rounded-lg px-3 py-3 sm:py-2 focus:outline-none focus:border-coral/60 transition-colors"
+                    aria-label="Filter by country"
                   >
-                    NOT IN THE CALENDAR?
-                  </p>
-                  <h3 className="font-heading text-xl uppercase tracking-tight text-off-white">
-                    Upload your own GPX
-                  </h3>
+                    {COUNTRY_OPTIONS.map((o) => (
+                      <option key={o.value} value={o.value}>
+                        {o.label}
+                      </option>
+                    ))}
+                  </select>
+                  <select
+                    value={difficulty}
+                    onChange={(e) => setDifficulty(e.target.value)}
+                    className="w-full bg-white/[0.06] border border-white/10 text-off-white text-base sm:text-sm rounded-lg px-3 py-3 sm:py-2 focus:outline-none focus:border-coral/60 transition-colors"
+                    aria-label="Filter by difficulty"
+                  >
+                    {DIFFICULTY_OPTIONS.map((o) => (
+                      <option key={o.value} value={o.value}>
+                        {o.label}
+                      </option>
+                    ))}
+                  </select>
                 </div>
-                <p className="text-sm text-foreground-muted max-w-md">
-                  Export the route from Strava, Komoot, Garmin or RideWithGPS,
-                  then drop the .gpx file here.
+
+                {filtersActive && (
+                  <button
+                    type="button"
+                    onClick={() => {
+                      setSearch("");
+                      setCountry("");
+                      setDifficulty("");
+                    }}
+                    className="mb-4 text-sm text-foreground-muted hover:text-off-white transition-colors"
+                  >
+                    Clear filters
+                  </button>
+                )}
+
+                <p className="text-foreground-muted text-xs mb-5">
+                  {filteredRaces.length} {filteredRaces.length === 1 ? "race" : "races"}
+                  {filtersActive ? " match the filters" : " in the calendar"} ·{" "}
+                  <span className="text-coral">Coral border</span> = prediction-ready
                 </p>
-              </div>
-              <GpxDropzone
-                value={gpx}
-                onChange={(g) => {
-                  setGpx(g);
-                  if (g) setCourseSlug("");
-                }}
-              />
-            </div>
+
+                {/* Race grid */}
+                {filteredRaces.length === 0 ? (
+                  <div className="text-center py-12 text-foreground-muted">
+                    No races match those filters. Try clearing them, or upload your
+                    own GPX below.
+                  </div>
+                ) : (
+                  <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 md:gap-5">
+                    {filteredRaces.map((race) => {
+                      const matchedCourse = race.predictor_slug
+                        ? coursesBySlug.get(race.predictor_slug)
+                        : undefined;
+                      const isSelected =
+                        !gpx && race.predictor_slug === courseSlug && Boolean(matchedCourse);
+                      return (
+                        <RaceTile
+                          key={race.slug}
+                          race={race}
+                          profile={matchedCourse?.profile}
+                          selected={isSelected}
+                          predictable={Boolean(matchedCourse)}
+                          coursesLoading={coursesLoading}
+                          onSelect={() => {
+                            if (matchedCourse && race.predictor_slug) {
+                              setGpx(null);
+                              setCourseSlug(race.predictor_slug);
+                              setShowEventList(false);
+                              scrollToSetup();
+                            }
+                          }}
+                        />
+                      );
+                    })}
+                  </div>
+                )}
+
+                {/* GPX alternative — secondary, below */}
+                <div className="mt-8 pt-6 border-t border-white/8">
+                  <div className="flex items-end justify-between mb-4 flex-wrap gap-3">
+                    <div>
+                      <p
+                        className="text-[0.62rem] tracking-[0.22em] uppercase text-foreground-muted mb-1"
+                        style={{ fontFamily: "var(--font-jetbrains-mono)" }}
+                      >
+                        NOT IN THE CALENDAR?
+                      </p>
+                      <h3 className="font-heading text-xl uppercase tracking-tight text-off-white">
+                        Upload your own GPX
+                      </h3>
+                    </div>
+                    <p className="text-sm text-foreground-muted max-w-md">
+                      Export the route from Strava, Komoot, Garmin or RideWithGPS,
+                      then drop the .gpx file here.
+                    </p>
+                  </div>
+                  <GpxDropzone
+                    value={gpx}
+                    onChange={(g) => {
+                      setGpx(g);
+                      if (g) {
+                        setCourseSlug("");
+                        setShowEventList(false);
+                        scrollToSetup();
+                      }
+                    }}
+                  />
+                </div>
+              </>
+            )}
           </Container>
         </Section>
 
@@ -600,7 +674,7 @@ export default function PredictPage() {
                       className="text-[0.62rem] tracking-[0.22em] uppercase text-coral"
                       style={{ fontFamily: "var(--font-jetbrains-mono)" }}
                     >
-                      THIS IS THE COURSE · HOVER TO SCRUB
+                      THIS IS THE COURSE
                     </p>
                     <p className="font-heading text-2xl uppercase tracking-tight text-off-white mt-1">
                       {previewData.name}
@@ -622,6 +696,7 @@ export default function PredictPage() {
         )}
 
         {/* STEP 02 — RIDER SETUP */}
+        <div ref={setupRef} className="scroll-mt-24" />
         <Section background="charcoal" className="!py-10 md:!py-12">
           <Container>
             <div className="grid lg:grid-cols-[1.4fr_1fr] gap-6">
@@ -647,7 +722,7 @@ export default function PredictPage() {
                   >
                     POWER & WEIGHT
                   </p>
-                  <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
+                  <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
                     <NumberField
                       label="FTP"
                       unit="W"
@@ -1037,7 +1112,7 @@ function RaceTile({
   const inner = (
     <div className="relative h-full flex flex-col">
       {profile && profile.length > 1 ? (
-        <div className="relative bg-gradient-to-b from-deep-purple/40 to-charcoal/0 px-5 pt-5 pb-3">
+        <div className="relative bg-gradient-to-b from-deep-purple/40 to-charcoal/0 px-4 sm:px-5 pt-4 sm:pt-5 pb-2 sm:pb-3">
           <CourseElevationMini
             profile={profile}
             width={300}
@@ -1047,10 +1122,10 @@ function RaceTile({
           />
         </div>
       ) : (
-        <div className="h-[68px] bg-gradient-to-b from-deep-purple/30 to-charcoal/0" />
+        <div className="h-[52px] sm:h-[68px] bg-gradient-to-b from-deep-purple/30 to-charcoal/0" />
       )}
 
-      <div className="px-5 pb-5 pt-2 flex-1 flex flex-col">
+      <div className="px-4 sm:px-5 pb-4 sm:pb-5 pt-2 flex-1 flex flex-col">
         {/* Country + difficulty row */}
         <div className="flex items-center justify-between mb-2">
           <span
@@ -1063,12 +1138,12 @@ function RaceTile({
           <DifficultyDots level={race.difficulty} />
         </div>
 
-        <h3 className="font-heading text-[1.4rem] leading-tight text-off-white uppercase tracking-tight mb-1 group-hover:text-coral transition-colors">
+        <h3 className="font-heading text-[1.25rem] sm:text-[1.4rem] leading-tight text-off-white uppercase tracking-tight mb-1 group-hover:text-coral transition-colors">
           {race.name}
         </h3>
         <p className="text-foreground-muted text-xs mb-3">{race.location}</p>
 
-        <div className="grid grid-cols-3 gap-2 mb-3">
+        <div className="grid grid-cols-3 gap-2 mb-3 text-xs">
           <Stat label="Distance" value={`${race.distance_km}km`} />
           <Stat label="Climb" value={`${race.elevation_m.toLocaleString()}m`} />
           <Stat
