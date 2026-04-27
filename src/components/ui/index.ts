@@ -15,3 +15,5 @@ export { GradientText } from "./GradientText";
 export { SplitText } from "./SplitText";
 export { GuestMarquee } from "./GuestMarquee";
 export { Skeleton, PodcastSearchSkeleton, GuestGridSkeleton, EpisodeCardSkeleton, GuestCardSkeleton } from "./Skeleton";
+export { EvidenceLevel, EVIDENCE_LEVELS, type EvidenceLevelType } from "./EvidenceLevel";
+export { CitedClaimTable, type CitedClaim } from "./CitedClaimTable";

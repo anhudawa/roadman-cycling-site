@@ -4,7 +4,7 @@ import { notFound } from "next/navigation";
 import { MDXRemote } from "next-mdx-remote/rsc";
 import remarkGfm from "remark-gfm";
 import { Header, Footer, Section, Container } from "@/components/layout";
-import { ScrollReveal, Card, Badge, Button } from "@/components/ui";
+import { ScrollReveal, Card, Badge, Button, CitedClaimTable } from "@/components/ui";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { ENTITY_IDS } from "@/lib/brand-facts";
 import { Breadcrumbs } from "@/components/seo/Breadcrumbs";
@@ -151,6 +151,23 @@ export default async function TopicPage({
             </ScrollReveal>
           </Container>
         </Section>
+
+        {/* Cited claim table — structured "what we believe and why"
+            anchored above the long-form pillar content. Renders only on
+            hubs with claims defined in topics.ts. Each row carries an
+            optional EvidenceLevel chip so readers and AI crawlers see
+            the strength of each position at a glance. */}
+        {topic.citedClaims.length > 0 && (
+          <Section background="charcoal" className="!pt-12 !pb-2">
+            <Container width="narrow">
+              <CitedClaimTable
+                claims={topic.citedClaims}
+                heading={topic.claimsHeading}
+                caption={topic.claimsCaption}
+              />
+            </Container>
+          </Section>
+        )}
 
         {/* Pillar content (long-form evidence-based guide) — present on
             hubs with content/topics/<slug>.mdx, absent elsewhere so thin

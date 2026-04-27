@@ -24,6 +24,8 @@ import { StickyCoachingBar } from "@/components/features/conversion/StickyCoachi
 import { EmailCapture } from "@/components/features/conversion/EmailCapture";
 import { TableOfContents } from "@/components/features/blog/TableOfContents";
 import { AnswerCapsule } from "@/components/ui/AnswerCapsule";
+import { CitedClaimTable } from "@/components/ui/CitedClaimTable";
+import { EvidenceLevel } from "@/components/ui/EvidenceLevel";
 import { AskRoadmanCTA } from "@/components/features/aeo/AskRoadmanCTA";
 import { mdxComponents } from "@/components/mdx/MDXComponents";
 
@@ -281,6 +283,22 @@ export default async function BlogPostPage({
               <div className="answer-capsule mb-8">
                 <AnswerCapsule text={post.answerCapsule} pillar={post.pillar} />
               </div>
+            )}
+
+            {post.evidenceLevel && (
+              <EvidenceLevel
+                level={post.evidenceLevel}
+                variant="block"
+                note={post.evidenceNote}
+              />
+            )}
+
+            {post.citedClaims && post.citedClaims.length > 0 && (
+              <CitedClaimTable
+                claims={post.citedClaims}
+                heading={post.claimsHeading}
+                caption={post.claimsCaption}
+              />
             )}
 
             <article className="prose-roadman prose-enhanced">

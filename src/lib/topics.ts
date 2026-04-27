@@ -3,6 +3,7 @@ import path from "node:path";
 import { getAllPosts, type BlogPostMeta } from "./blog";
 import { getAllEpisodes, type EpisodeMeta } from "./podcast";
 import { type ContentPillar } from "@/types";
+import { type CitedClaim } from "@/components/ui/CitedClaimTable";
 
 export interface TopicHub {
   slug: string;
@@ -33,6 +34,15 @@ export interface TopicHub {
    * ranking/citation for "cycling X" head-term queries.
    */
   pillarContent: string | null;
+  /**
+   * Optional structured claim table for the topic — rendered above the
+   * pillar content when present. Each row is a claim → Roadman position
+   * → evidence source → practical implication, with an optional
+   * `evidenceLevel` chip per row.
+   */
+  citedClaims: CitedClaim[];
+  claimsHeading?: string;
+  claimsCaption?: string;
 }
 
 export interface TopicTool {
@@ -45,7 +55,7 @@ export interface TopicTool {
  * Topic hubs — curated landing pages that group related content.
  * Each one targets a high-value keyword cluster.
  */
-const TOPIC_DEFINITIONS: Omit<TopicHub, "posts" | "episodes" | "tools" | "commercialPath" | "relatedTopics" | "featuredPostSlugs" | "pillarContent">[] = [
+const TOPIC_DEFINITIONS: Omit<TopicHub, "posts" | "episodes" | "tools" | "commercialPath" | "relatedTopics" | "featuredPostSlugs" | "pillarContent" | "citedClaims" | "claimsHeading" | "claimsCaption">[] = [
   {
     slug: "ftp-training",
     title: "FTP Training for Cyclists — The Complete Evidence-Based Guide",
@@ -392,12 +402,15 @@ const TOPIC_POST_MAP: Record<string, string[]> = {
   ],
 };
 
-/** Cluster enrichment: tools, commercial path, related topics, featured posts */
+/** Cluster enrichment: tools, commercial path, related topics, featured posts, optional claim table */
 const TOPIC_ENRICHMENT: Record<string, {
   tools: TopicTool[];
   commercialPath: string;
   relatedTopics: string[];
   featuredPostSlugs: string[];
+  citedClaims?: CitedClaim[];
+  claimsHeading?: string;
+  claimsCaption?: string;
 }> = {
   "ftp-training": {
     tools: [
@@ -411,6 +424,31 @@ const TOPIC_ENRICHMENT: Record<string, {
       "ftp-training-zones-cycling-complete-guide",
       "how-to-improve-ftp-cycling",
       "ftp-plateau-breakthrough",
+    ],
+    claimsCaption:
+      "Where Roadman lands on the recurring questions about FTP — and the strength of evidence behind each position.",
+    citedClaims: [
+      {
+        claim: "FTP can improve in trained amateurs",
+        position: "Yes, but rate depends on training age",
+        source: "Expert interviews + case data",
+        implication: "Expect slower gains after beginner phase",
+        evidenceLevel: "strong",
+      },
+      {
+        claim: "Masters cyclists need more recovery",
+        position: "Usually yes",
+        source: "Research + coaching experience",
+        implication: "Reduce intensity density",
+        evidenceLevel: "moderate",
+      },
+      {
+        claim: "20-min test estimates raw FTP within ~5%",
+        position: "Close enough for most amateurs",
+        source: "Coggan protocol + athlete data",
+        implication: "Use it to set zones, not to chase PRs",
+        evidenceLevel: "moderate",
+      },
     ],
   },
   "cycling-nutrition": {
@@ -589,6 +627,9 @@ export function getAllTopics(): TopicHub[] {
       relatedTopics: enrichment.relatedTopics,
       featuredPostSlugs: enrichment.featuredPostSlugs,
       pillarContent: loadPillarContent(topic.slug),
+      citedClaims: enrichment.citedClaims ?? [],
+      claimsHeading: enrichment.claimsHeading,
+      claimsCaption: enrichment.claimsCaption,
     };
   });
 }

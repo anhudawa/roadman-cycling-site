@@ -1,5 +1,7 @@
 import Image from "next/image";
 import type { ComponentPropsWithoutRef } from "react";
+import { EvidenceLevel } from "@/components/ui/EvidenceLevel";
+import { CitedClaimTable } from "@/components/ui/CitedClaimTable";
 
 /**
  * MDX component overrides.
@@ -62,4 +64,9 @@ function MDXLink({ href, children, ...rest }: AnchorProps) {
 export const mdxComponents = {
   img: MDXImage,
   a: MDXLink,
+  // Custom components authors can drop into MDX directly:
+  //   <EvidenceLevel level="strong" />
+  //   <CitedClaimTable claims={[...]} />
+  EvidenceLevel,
+  CitedClaimTable,
 };

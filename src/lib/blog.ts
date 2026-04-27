@@ -3,6 +3,8 @@ import path from "path";
 import matter from "gray-matter";
 import readingTime from "reading-time";
 import { type ContentPillar } from "@/types";
+import { type CitedClaim } from "@/components/ui/CitedClaimTable";
+import { type EvidenceLevelType } from "@/components/ui/EvidenceLevel";
 
 const BLOG_DIR = path.join(process.cwd(), "content/blog");
 
@@ -16,6 +18,8 @@ export interface ExpertSource {
   role?: string;
   href?: string;
 }
+
+export type { CitedClaim, EvidenceLevelType };
 
 export interface BlogFrontmatter {
   title: string;
@@ -40,6 +44,21 @@ export interface BlogFrontmatter {
   // publishDate when omitted.
   reviewedBy?: string;
   lastReviewed?: string;
+  // Optional structured claim table — rendered after the AnswerCapsule
+  // and before the article body when present. Each row is a claim →
+  // Roadman position → evidence source → practical implication, with
+  // an optional `evidenceLevel` (strong | moderate | emerging |
+  // anecdotal) chip. Gives readers a scannable trust signal and AI
+  // crawlers a structured claim graph at the top of the page.
+  citedClaims?: CitedClaim[];
+  claimsHeading?: string;
+  claimsCaption?: string;
+  // Optional evidence-level callout for the whole article (rendered
+  // alongside the AnswerCapsule). Use when one level dominates the
+  // piece; for mixed-strength articles, attach levels per claim row
+  // via citedClaims instead.
+  evidenceLevel?: EvidenceLevelType;
+  evidenceNote?: string;
 }
 
 export interface BlogPostMeta extends BlogFrontmatter {
