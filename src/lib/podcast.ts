@@ -67,6 +67,63 @@ export interface EpisodeFrontmatter {
    * answerCapsule, title, description, and keywords.
    */
   faq?: { question: string; answer: string }[];
+  /**
+   * 3-5 plain-English bullet takeaways. The thing a listener should
+   * walk away knowing if they read nothing else. Surfaced near the top
+   * of the episode page (above the show notes) so a skimming reader
+   * gets the value in seconds, and so AI assistants have a clean
+   * extraction target when answering "what does episode X say about Y".
+   */
+  keyTakeaways?: string[];
+  /**
+   * Chapter markers with HH:MM:SS or MM:SS timestamps. Different from
+   * `segmentTitles` (which names auto-generated transcript chunks) —
+   * these are author-curated chapters with real timestamps that map
+   * to YouTube/Spotify timecode jumps. Rendered as a clickable list
+   * that deep-links into the YouTube player.
+   */
+  chapters?: { timestamp: string; title: string }[];
+  /**
+   * Discrete factual claims surfaced in the episode, each tagged with
+   * an evidence level so readers can weight them appropriately and AI
+   * assistants can quote with the right hedging. Levels:
+   * - `study` — peer-reviewed research or formal trial cited
+   * - `expert` — stated by a named expert with relevant credentials
+   * - `practice` — observed pattern from coaching/team practice
+   * - `anecdote` — single rider/race example
+   * - `opinion` — host/guest perspective without further support
+   */
+  claims?: {
+    claim: string;
+    evidence: "study" | "expert" | "practice" | "anecdote" | "opinion";
+    source?: string;
+  }[];
+  /**
+   * Resources, papers, books, tools, or other episodes referenced in
+   * the conversation. Renders as a "Resources mentioned" list with
+   * outbound links. Type drives the icon/label.
+   */
+  citations?: {
+    title: string;
+    type: "paper" | "book" | "article" | "tool" | "episode" | "website";
+    url?: string;
+    author?: string;
+  }[];
+  /**
+   * Optional URLs the guest is canonically known by — Wikipedia,
+   * Strava, ProCyclingStats, personal site, lab page, official team
+   * profile, X/Instagram. Emitted as `sameAs` on the guest's Person
+   * schema so search engines can disambiguate the entity.
+   */
+  guestSameAs?: string[];
+  /**
+   * Topics the guest is recognised as knowledgeable about. Emitted as
+   * `knowsAbout` on the guest's Person schema — helps Google's
+   * Knowledge Graph link the guest to subjects this site covers.
+   */
+  guestKnowsAbout?: string[];
+  /** Optional one-paragraph bio surfaced in the guest card. */
+  guestBio?: string;
 }
 
 export interface EpisodeMeta extends EpisodeFrontmatter {

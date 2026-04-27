@@ -18,7 +18,16 @@ import { PlayButton } from "@/components/features/podcast/PlayButton";
 import { RelatedContent } from "@/components/features/RelatedContent";
 import { RelatedEpisodes } from "@/components/features/podcast/RelatedEpisodes";
 import { EmailCapture } from "@/components/features/conversion/EmailCapture";
+import { KeyTakeaways } from "@/components/features/podcast/KeyTakeaways";
+import { EpisodeChapters } from "@/components/features/podcast/EpisodeChapters";
+import { EpisodeClaims } from "@/components/features/podcast/EpisodeClaims";
+import { EpisodeCitations } from "@/components/features/podcast/EpisodeCitations";
+import { EpisodeTopicTags } from "@/components/features/podcast/EpisodeTopicTags";
+import { GuestBioCard } from "@/components/features/podcast/GuestBioCard";
 import { getPostBySlug } from "@/lib/blog";
+import { getTopicBySlug } from "@/lib/topics";
+import { slugifyGuestName } from "@/lib/guests";
+import { getGuestProfileOverride } from "@/lib/guests/profiles";
 import { EVENTS } from "@/lib/training-plans";
 import Link from "next/link";
 import { mdxComponents } from "@/components/mdx/MDXComponents";
@@ -98,6 +107,34 @@ export default async function EpisodePage({
   const publishDate = new Date(episode.publishDate);
   const episodeUrl = `https://roadmancycling.com/podcast/${slug}`;
 
+  // Resolve topic-tag slugs into hub objects so we can render labels
+  // and emit `about` schema entries. Skips slugs that don't match a
+  // live topic hub (defensive — catches frontmatter typos at render
+  // time without breaking the page).
+  const resolvedTopicTags = (episode.topicTags ?? [])
+    .map((slug) => {
+      const hub = getTopicBySlug(slug);
+      if (!hub) return null;
+      const shortLabel = hub.title.split(" — ")[0].split(":")[0].trim();
+      return { slug, label: shortLabel, title: hub.title };
+    })
+    .filter((t): t is NonNullable<typeof t> => t !== null);
+
+  // Pull the curated guest profile override so the inline bio card and
+  // PodcastEpisode schema can carry sameAs / knowsAbout / bio without
+  // re-declaring it per episode. Episode-level frontmatter wins where
+  // it disagrees (lets a one-off episode override the canonical bio).
+  // Use the same alias-aware slug helper as the guests directory so
+  // "Dr Stephen Seiler" / "Prof Seiler" / "Professor Stephen Seiler" all
+  // resolve to the canonical /guests/stephen-seiler profile and the
+  // matching `GUEST_PROFILE_OVERRIDES` entry.
+  const guestSlug = episode.guest ? slugifyGuestName(episode.guest) : null;
+  const guestOverride = guestSlug ? getGuestProfileOverride(guestSlug) : null;
+  const guestBio =
+    episode.guestBio ?? guestOverride?.whyMatters ?? guestOverride?.description;
+  const guestSameAs = episode.guestSameAs ?? guestOverride?.sameAs ?? [];
+  const guestKnowsAbout = episode.guestKnowsAbout ?? [];
+
   const mentionedEvents = EVENTS.filter((e) => {
     const haystack = `${episode.title} ${episode.description} ${episode.transcript || ""}`.toLowerCase();
     return haystack.includes(e.name.toLowerCase()) || haystack.includes(e.shortName.toLowerCase());
@@ -147,9 +184,46 @@ export default async function EpisodePage({
             actor: {
               "@type": "Person",
               name: episode.guest,
-              description: episode.guestCredential,
+              ...(guestSlug && {
+                "@id": `${SITE_ORIGIN}/guests/${guestSlug}#person`,
+                url: `${SITE_ORIGIN}/guests/${guestSlug}`,
+              }),
+              ...(episode.guestCredential && {
+                description: episode.guestCredential,
+              }),
+              ...(guestSameAs.length > 0 && { sameAs: guestSameAs }),
+              ...(guestKnowsAbout.length > 0 && {
+                knowsAbout: guestKnowsAbout,
+              }),
             },
           }),
+          ...(resolvedTopicTags.length > 0 && {
+            about: resolvedTopicTags.map((t) => ({
+              "@type": "Thing",
+              name: t.title,
+              url: `${SITE_ORIGIN}/topics/${t.slug}`,
+            })),
+          }),
+          ...(episode.keyTakeaways &&
+            episode.keyTakeaways.length > 0 && {
+              abstract: episode.keyTakeaways.join(" "),
+            }),
+          ...(episode.citations &&
+            episode.citations.length > 0 && {
+              citation: episode.citations.map((c) => ({
+                "@type":
+                  c.type === "paper"
+                    ? "ScholarlyArticle"
+                    : c.type === "book"
+                      ? "Book"
+                      : c.type === "episode"
+                        ? "PodcastEpisode"
+                        : "CreativeWork",
+                name: c.title,
+                ...(c.url && { url: c.url }),
+                ...(c.author && { author: { "@type": "Person", name: c.author } }),
+              })),
+            }),
           // Expose the full transcript text to search + AI assistants as a
           // first-class schema field (supported under PodcastEpisode via
           // schema.org CreativeWork inheritance). Lets LLM crawlers ingest
@@ -163,20 +237,43 @@ export default async function EpisodePage({
             "@type": "SpeakableSpecification",
             cssSelector: ["h1", ".answer-capsule"],
           },
-          // Declare every transcript segment as a CreativeWork part with a
-          // fragment URL pointing at its h3 anchor. Gives Google a native
-          // route to "passage indexing" — each segment can rank independently
-          // for its specific topic.
-          ...(segments.length > 1 && {
-            hasPart: segments.map((segment) => ({
-              "@type": "CreativeWork",
-              name: segment.title,
-              url: `${episodeUrl}#${segment.id}`,
-              position: segment.index,
-              wordCount: segment.wordCount,
-              isPartOf: { "@type": "PodcastEpisode", url: episodeUrl },
-            })),
-          }),
+          // hasPart strategy: prefer author-curated `chapters` (with real
+          // YouTube timecodes) when present; otherwise fall back to the
+          // auto-segmented transcript anchors. Chapters give Google a
+          // native passage-indexing target tied to actual narrative beats
+          // — same UX as YouTube's chapter strip but indexable in DOM.
+          ...(episode.chapters && episode.chapters.length > 0
+            ? {
+                hasPart: episode.chapters.map((c, i) => {
+                  const parts = c.timestamp.split(":").map(Number);
+                  const secs =
+                    parts.length === 3
+                      ? parts[0] * 3600 + parts[1] * 60 + parts[2]
+                      : parts.length === 2
+                        ? parts[0] * 60 + parts[1]
+                        : parts[0] || 0;
+                  return {
+                    "@type": "Clip",
+                    name: c.title,
+                    startOffset: secs,
+                    position: i + 1,
+                    url: episode.youtubeId
+                      ? `https://www.youtube.com/watch?v=${episode.youtubeId}&t=${secs}s`
+                      : `${episodeUrl}#chapter-${i + 1}`,
+                    isPartOf: { "@type": "PodcastEpisode", url: episodeUrl },
+                  };
+                }),
+              }
+            : segments.length > 1 && {
+                hasPart: segments.map((segment) => ({
+                  "@type": "CreativeWork",
+                  name: segment.title,
+                  url: `${episodeUrl}#${segment.id}`,
+                  position: segment.index,
+                  wordCount: segment.wordCount,
+                  isPartOf: { "@type": "PodcastEpisode", url: episodeUrl },
+                })),
+              }),
         }}
       />
       <JsonLd
@@ -352,32 +449,19 @@ export default async function EpisodePage({
         <Section background="charcoal" className="!py-6 border-b border-white/5">
           <Container width="narrow">
             <div className="flex flex-col gap-6">
-              {/* Guest card with link to guest page */}
-              {episode.guest && (
-                <a
-                  href={`/guests/${episode.guest.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/(^-|-$)/g, "")}`}
-                  className="flex items-center gap-4 p-5 bg-background-elevated rounded-xl border border-white/5 hover:border-coral/30 transition-all group"
-                  style={{ transitionDuration: "var(--duration-normal)" }}
-                >
-                  <div className="w-14 h-14 rounded-full bg-purple/40 border border-purple/30 flex items-center justify-center shrink-0 group-hover:border-coral/40 transition-colors">
-                    <span className="font-heading text-lg text-off-white">
-                      {episode.guest.split(" ").map(w => w[0]).join("").slice(0, 2)}
-                    </span>
-                  </div>
-                  <div className="flex-1 min-w-0">
-                    <p className="font-heading text-lg text-off-white group-hover:text-coral transition-colors">
-                      {episode.guest.toUpperCase()}
-                    </p>
-                    {episode.guestCredential && (
-                      <p className="text-sm text-foreground-muted truncate">
-                        {episode.guestCredential}
-                      </p>
-                    )}
-                  </div>
-                  <span className="text-coral text-sm font-heading shrink-0 opacity-0 group-hover:opacity-100 transition-opacity">
-                    VIEW &rarr;
-                  </span>
-                </a>
+              {/* Guest bio card — richer than a single-line link: pulls
+                  curated bio + verified profiles + topics-known-for from
+                  GUEST_PROFILE_OVERRIDES, with episode-frontmatter
+                  fields taking precedence for episode-specific overrides. */}
+              {episode.guest && guestSlug && (
+                <GuestBioCard
+                  name={episode.guest}
+                  slug={guestSlug}
+                  credential={episode.guestCredential}
+                  bio={guestBio}
+                  knowsAbout={guestKnowsAbout}
+                  sameAs={guestSameAs}
+                />
               )}
 
               {/* Spotify Embed (secondary, if available) */}
@@ -425,12 +509,63 @@ export default async function EpisodePage({
                 pillar={episode.pillar}
               />
             )}
+
+            {/* Key takeaways — skim-first summary above show notes so a
+                rushed reader walks away with the value in seconds. */}
+            {episode.keyTakeaways && episode.keyTakeaways.length > 0 && (
+              <KeyTakeaways
+                takeaways={episode.keyTakeaways}
+                className="mb-8"
+              />
+            )}
+
+            {/* Topic tags → topic hub link block. Feeds the hub-and-spoke
+                architecture: episodes → topics → coaching CTA. */}
+            {resolvedTopicTags.length > 0 && (
+              <EpisodeTopicTags
+                tags={resolvedTopicTags.map(({ slug: s, label }) => ({
+                  slug: s,
+                  label,
+                }))}
+                className="mb-8"
+              />
+            )}
+
+            {/* Author-curated chapter markers with YouTube timecode
+                deep-links. Only rendered when chapters are explicitly
+                authored — auto transcript segmentation continues to
+                power the TranscriptViewer below. */}
+            {episode.chapters && episode.chapters.length > 0 && (
+              <EpisodeChapters
+                chapters={episode.chapters}
+                youtubeId={episode.youtubeId}
+                className="mb-10"
+              />
+            )}
+
             <article className="prose-roadman prose-episode">
               <MDXRemote
                 source={episode.content}
                 components={{ ...mdxComponents, AICitationBlock }}
               />
             </article>
+
+            {/* Claims surfaced in the episode, each tagged with an
+                evidence level (study / expert / practice / anecdote /
+                opinion) so readers know what's grounded vs. a take. */}
+            {episode.claims && episode.claims.length > 0 && (
+              <EpisodeClaims claims={episode.claims} className="mt-12" />
+            )}
+
+            {/* Resources mentioned — papers, books, tools, episodes
+                referenced in the conversation. Outbound links carry
+                rel="nofollow" by default to keep authority on-site. */}
+            {episode.citations && episode.citations.length > 0 && (
+              <EpisodeCitations
+                citations={episode.citations}
+                className="mt-12"
+              />
+            )}
 
             {/* Key Quotes — verbatim expert quotes from the transcript,
                 rendered as styled blockquotes with speaker attribution.

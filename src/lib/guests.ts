@@ -367,6 +367,15 @@ const GUEST_TAGS: Record<string, GuestTag[]> = {
   "Yanto Barker": ["industry"],
 };
 
+/**
+ * Slugify a guest name. Exported so other surfaces (episode pages,
+ * sitemap helpers) can compute the same canonical slug as the guest
+ * profile pages without duplicating the regex.
+ */
+export function slugifyGuestName(name: string): string {
+  return slugify(normalizeName(name));
+}
+
 function slugify(name: string): string {
   return name
     .toLowerCase()
