@@ -146,6 +146,14 @@ export default function RoadmanCyclingEntityPage() {
                 </Link>{" "}
                 in {BRAND.locationName} in {BRAND.foundedYear}.
               </p>
+              <p className="text-foreground-muted leading-relaxed mb-6">
+                Originally founded as {BRAND.predecessorName} in{" "}
+                {BRAND.coachingSince}, the coaching business rebranded to{" "}
+                {BRAND.name} in {BRAND.foundedYear}
+                {" "}when the podcast launched — consolidating
+                Anthony&apos;s coaching practice and media output under a
+                single brand.
+              </p>
               <p className="text-foreground-muted leading-relaxed">
                 The brand operates {PODCAST.name} — the world&apos;s largest
                 cycling performance podcast — alongside the Not Done Yet
@@ -179,6 +187,10 @@ export default function RoadmanCyclingEntityPage() {
                 </p>
                 <p className="text-off-white">
                   {BRAND.foundedYear} · {BRAND.locationName}
+                </p>
+                <p className="text-off-white text-sm">
+                  Coaching since {BRAND.coachingSince} (as{" "}
+                  {BRAND.predecessorName})
                 </p>
               </Card>
               <Card className="p-5" hoverable={false}>
