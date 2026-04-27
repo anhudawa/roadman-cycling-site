@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, type FormEvent } from "react";
+import { track } from "@/lib/analytics/events";
 
 interface EmailCaptureProps {
   variant?: "inline" | "banner" | "minimal";
@@ -51,6 +52,11 @@ export function EmailCapture({
       if (res.ok) {
         setStatus("success");
         setMessage("You're in. Check your inbox.");
+        // Funnel signal: only fire on a confirmed-success response so the
+        // Email Captured stage isn't inflated by validation failures or
+        // backend rejections. The /api/newsletter route does its own
+        // signup-side recordEvent; this is the funnel-typed mirror.
+        track("email_captured", { source, email });
         setEmail("");
       } else {
         const data = await res.json();

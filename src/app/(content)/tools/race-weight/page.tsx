@@ -1,10 +1,11 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Header, Footer, Section, Container } from "@/components/layout";
 import { Button } from "@/components/ui";
 import { ReportRequestForm } from "@/components/features/tools/ReportRequestForm";
+import { useTrack } from "@/hooks/useTrack";
 
 type EventType = "road-race" | "gran-fondo" | "hill-climb" | "time-trial" | "gravel";
 type Gender = "male" | "female";
@@ -101,6 +102,23 @@ export default function RaceWeightPage() {
   const [eventType, setEventType] = useState<EventType>("road-race");
   const [result, setResult] = useState<ReturnType<typeof calculateRaceWeight> | null>(null);
   const [copied, setCopied] = useState(false);
+  const track = useTrack();
+  const startedRef = useRef(false);
+
+  // Fire `prediction_started` once per page-load when the user first
+  // interacts. Tracking on mount would over-count bots / drive-by views.
+  const markStarted = () => {
+    if (startedRef.current) return;
+    startedRef.current = true;
+    track("prediction_started", { tool: "race-weight" });
+  };
+
+  // Race-weight is the canonical "race page" today — fire once on mount so
+  // race_page_viewed reflects intent regardless of whether the user runs
+  // the calculator.
+  useEffect(() => {
+    track("race_page_viewed", { race: "race-weight" });
+  }, [track]);
 
   const heightError = getValidationError(height, "height");
   const weightError = getValidationError(weight, "weight");
@@ -109,11 +127,13 @@ export default function RaceWeightPage() {
 
   const handleCalculate = () => {
     if (hasErrors) return;
+    markStarted();
     const h = parseFloat(height);
     const w = parseFloat(weight);
     const bf = parseFloat(bodyFat);
     if (h > 0 && w > 0 && bf > 0 && bf < 50) {
       setResult(calculateRaceWeight(h, w, bf, eventType, gender));
+      track("prediction_completed", { tool: "race-weight" });
     }
   };
 

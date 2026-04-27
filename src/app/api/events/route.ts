@@ -1,6 +1,7 @@
 import { recordEvent } from "@/lib/admin/events-store";
 import type { EventType } from "@/lib/admin/events-store";
 import { upsertOnSignup } from "@/lib/admin/subscribers-store";
+import { readAnonSessionKey } from "@/lib/rider-profile/anon-session";
 
 export async function POST(request: Request) {
   try {
@@ -66,6 +67,16 @@ export async function POST(request: Request) {
       "paid_report_ask_handoff",
       "tool_result_upsell_view",
       "tool_result_ask_handoff",
+      // Conversion funnel (acquisition)
+      "page_view",
+      "prediction_started",
+      "prediction_completed",
+      "email_captured",
+      "report_purchased",
+      "community_cta_clicked",
+      "ask_roadman_used",
+      "race_page_viewed",
+      "share_clicked",
     ];
     if (!validTypes.includes(type)) {
       return Response.json({ error: "Invalid event type" }, { status: 400 });
@@ -73,13 +84,25 @@ export async function POST(request: Request) {
 
     const userAgent = request.headers.get("user-agent") || undefined;
 
+    // Fall back to the httpOnly anon cookie when the client doesn't supply
+    // a session_id. Lets useTrack callers in random page components log
+    // events without each one having to plumb a session id through props.
+    let resolvedSessionId: string | undefined = session_id;
+    if (!resolvedSessionId) {
+      try {
+        resolvedSessionId = (await readAnonSessionKey()) ?? undefined;
+      } catch {
+        // cookie store unavailable — leave undefined, recordEvent stores "unknown"
+      }
+    }
+
     const event = await recordEvent(type, page, {
       referrer,
       userAgent,
       email,
       source,
       meta: mergedMeta,
-      sessionId: session_id,
+      sessionId: resolvedSessionId,
       variantId: variant_id,
     });
 

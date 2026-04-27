@@ -46,7 +46,19 @@ export type EventType =
   | "paid_report_viewed"
   | "paid_report_ask_handoff"
   | "tool_result_upsell_view"
-  | "tool_result_ask_handoff";
+  | "tool_result_ask_handoff"
+  // ── Conversion funnel (acquisition) ────────────────────
+  // New canonical names introduced with the funnel dashboard.
+  // `pageview` (existing) and `page_view` (alias) both flow into Visit.
+  | "page_view"
+  | "prediction_started"
+  | "prediction_completed"
+  | "email_captured"
+  | "report_purchased"
+  | "community_cta_clicked"
+  | "ask_roadman_used"
+  | "race_page_viewed"
+  | "share_clicked";
 
 export interface TrackingEvent {
   id: string;

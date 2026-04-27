@@ -12,6 +12,7 @@ import {
   type CohortRow,
   type SourceRow,
 } from "@/lib/admin/subscribers-store";
+import { FunnelTabs } from "./_components/FunnelTabs";
 
 const DEMO_FUNNEL: FunnelStats = {
   signups: 142, skoolJoins: 23, trialStarts: 8, paidMembers: 5, activeAfter30d: 3,
@@ -71,10 +72,12 @@ export default async function FunnelPage({
 
   return (
     <div className="space-y-6">
+      <FunnelTabs active="lifecycle" />
+
       <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
         <div>
           <h1 className="font-heading text-3xl text-off-white tracking-wider">
-            FUNNEL
+            LIFECYCLE FUNNEL
           </h1>
           <p className="text-foreground-muted text-sm mt-1">
             {usingLiveData

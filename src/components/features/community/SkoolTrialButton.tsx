@@ -1,6 +1,7 @@
 "use client";
 
 import type { ReactNode } from "react";
+import { track } from "@/lib/analytics/events";
 
 type Variant = "primary" | "secondary" | "ghost" | "outline";
 type Size = "sm" | "md" | "lg";
@@ -63,6 +64,13 @@ export function SkoolTrialButton({
         body: JSON.stringify(payload),
         keepalive: true,
       }).catch(() => {});
+      // Fan out the same click as a funnel event so the acquisition
+      // dashboard's Community Signup stage and CTA-source breakdowns
+      // stay accurate without a second backend hop.
+      track("community_cta_clicked", {
+        destination: "skool",
+        placement: source ?? "clubhouse_cta",
+      });
     } catch {
       // Never block the click on a tracking failure.
     }

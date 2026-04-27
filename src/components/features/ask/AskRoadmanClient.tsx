@@ -4,6 +4,7 @@ import { useCallback, useEffect, useRef, useState } from "react";
 import { useAskStream, type AskCitation } from "@/app/(marketing)/ask/use-ask-stream";
 import { MessageList } from "./MessageList";
 import { StarterPrompts } from "./StarterPrompts";
+import { track } from "@/lib/analytics/events";
 
 export interface AskSeed {
   /** Canonical tool slug (e.g. "ftp_zones") — forwarded to the orchestrator. */
@@ -88,6 +89,7 @@ export function AskRoadmanClient({ seed = null }: { seed?: AskSeed | null }) {
 
   // Attach seed to the first message only — subsequent turns rely on
   // session-persisted context, and resending would just grow the prompt.
+  const askUsageFiredRef = useRef(false);
   const sendWithSeed = useCallback(
     async (query: string, starter?: string) => {
       const shouldAttachSeed = seed !== null && !seedConsumedRef.current;
@@ -95,9 +97,16 @@ export function AskRoadmanClient({ seed = null }: { seed?: AskSeed | null }) {
         ? { tool: seed.toolSlug, slug: seed.resultSlug }
         : null;
       if (shouldAttachSeed) seedConsumedRef.current = true;
+      // Funnel umbrella event: fire once per page-load (the existing
+      // ask_question_submitted fires on every turn — we want a session-
+      // level "engaged with Ask Roadman" signal for the funnel).
+      if (!askUsageFiredRef.current) {
+        askUsageFiredRef.current = true;
+        track("ask_roadman_used", { sessionId: sessionId ?? undefined });
+      }
       await submit(query, { starter, seed: seedSignal });
     },
-    [seed, submit],
+    [seed, sessionId, submit],
   );
 
   const onSubmit = async (e?: React.FormEvent) => {

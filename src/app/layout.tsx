@@ -9,6 +9,7 @@ import { LazyCookieConsent } from "@/components/features/consent/LazyCookieConse
 import { Tracker } from "@/components/analytics/Tracker";
 import { ConsentAwarePixel } from "@/components/analytics/ConsentAwarePixel";
 import { WebVitalsReporter } from "@/components/analytics/WebVitalsReporter";
+import { Analytics as VercelAnalytics } from "@vercel/analytics/next";
 import { OrganizationJsonLd } from "@/components/seo/JsonLd";
 import { BRAND_STATS } from "@/lib/brand-facts";
 import "./globals.css";
@@ -159,6 +160,7 @@ export default function RootLayout({
         <Tracker />
         <ConsentAwarePixel />
         <WebVitalsReporter />
+        <VercelAnalytics />
       </body>
     </html>
   );
