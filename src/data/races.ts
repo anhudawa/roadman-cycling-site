@@ -138,7 +138,6 @@ export const RACES: Race[] = [
     similar_races: ["ring-of-kerry", "tour-de-yorkshire", "dragon-ride"],
     month: "June",
     tags: ["gran fondo", "ireland", "mountain", "classic", "endurance"],
-    predictor_slug: "wicklow-200",
   },
   {
     name: "Ring of Kerry",
