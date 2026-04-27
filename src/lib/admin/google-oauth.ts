@@ -1,10 +1,40 @@
 import crypto from "crypto";
+import { authSecret } from "@/lib/admin/secret";
 
 /**
  * Google OAuth 2.0 helpers. We deliberately do NOT pull in NextAuth or
  * googleapis — both add significant surface area for a flow with just two
  * endpoints. Keep it small and boring.
  */
+
+/**
+ * Sanitize a `next` redirect path. The OAuth start endpoint accepts a
+ * `?next=` query param so the user lands on the page they meant to visit.
+ * That parameter is attacker-controlled — without sanitization a crafted
+ * link can bounce a logged-in admin to an external host (open redirect)
+ * or to a non-admin path that leaks session context.
+ *
+ * Rule: the only acceptable `next` is a relative path under `/admin`.
+ *
+ *   "/admin"             → "/admin"          (default)
+ *   "/admin/inbox"       → "/admin/inbox"
+ *   "/admin/x?y=1"       → "/admin/x?y=1"
+ *   "/dashboard"         → "/admin"          (not under /admin)
+ *   "//evil.com/x"       → "/admin"          (protocol-relative)
+ *   "https://evil.com"   → "/admin"          (absolute URL)
+ *   "javascript:..."     → "/admin"
+ */
+export function sanitizeNext(value: unknown): string {
+  if (typeof value !== "string" || value.length === 0) return "/admin";
+  // Reject protocol-relative ("//foo") and any URL with a scheme ("https://", "javascript:").
+  if (value.startsWith("//")) return "/admin";
+  if (value.includes("://")) return "/admin";
+  // Must start with /admin and either end there or continue with /, ?, or #.
+  if (!value.startsWith("/admin")) return "/admin";
+  const after = value.slice("/admin".length);
+  if (after.length > 0 && !"/?#".includes(after[0])) return "/admin";
+  return value;
+}
 
 export const WHITELIST_EMAILS = [
   "anthony@roadmancycling.com",
@@ -74,12 +104,10 @@ export function configured(): boolean {
 
 /** Signed state token — CSRF protection + carries the `next` redirect. */
 export function createState(next: string): string {
-  const secret =
-    process.env.AUTH_SECRET ??
-    process.env.ADMIN_PASSWORD ??
-    "fallback-dev-secret";
+  const safeNext = sanitizeNext(next);
+  const secret = authSecret();
   const nonce = crypto.randomBytes(16).toString("hex");
-  const payload = `${nonce}|${encodeURIComponent(next)}`;
+  const payload = `${nonce}|${encodeURIComponent(safeNext)}`;
   const sig = crypto.createHmac("sha256", secret).update(payload).digest("hex");
   return `${payload}|${sig}`;
 }
@@ -91,10 +119,7 @@ export function verifyState(state: string): string | null {
   if (parts.length !== 3) return null;
   const [nonce, nextEnc, sig] = parts;
   const payload = `${nonce}|${nextEnc}`;
-  const secret =
-    process.env.AUTH_SECRET ??
-    process.env.ADMIN_PASSWORD ??
-    "fallback-dev-secret";
+  const secret = authSecret();
   const expected = crypto
     .createHmac("sha256", secret)
     .update(payload)
@@ -108,11 +133,15 @@ export function verifyState(state: string): string | null {
   } catch {
     return null;
   }
+  let decoded: string;
   try {
-    return decodeURIComponent(nextEnc);
+    decoded = decodeURIComponent(nextEnc);
   } catch {
     return null;
   }
+  // Defense-in-depth: re-sanitize on the consume side. A signed-but-malformed
+  // payload (e.g. created before sanitisation was added) still gets clamped.
+  return sanitizeNext(decoded);
 }
 
 export function buildAuthUrl(state: string, opts: StartOptions = {}): string {

@@ -6,7 +6,9 @@ import {
 
 function isAuthorized(req: NextRequest): boolean {
   const cronSecret = process.env.CRON_SECRET;
-  if (!cronSecret) return true; // no secret configured — allow
+  // Fail closed: a missing secret must NEVER be treated as "no auth required".
+  // Beehiiv subscriber data + posts are not for public consumption.
+  if (!cronSecret) return false;
 
   const authHeader = req.headers.get("authorization");
   return authHeader === `Bearer ${cronSecret}`;

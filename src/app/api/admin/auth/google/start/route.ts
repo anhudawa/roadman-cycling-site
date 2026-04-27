@@ -3,6 +3,7 @@ import {
   buildAuthUrl,
   configured,
   createState,
+  sanitizeNext,
   STATE_COOKIE,
   CALENDAR_SCOPE_EMAIL,
 } from "@/lib/admin/google-oauth";
@@ -21,7 +22,7 @@ export async function GET(req: NextRequest) {
   }
 
   const { searchParams } = req.nextUrl;
-  const next = searchParams.get("next") ?? "/admin";
+  const next = sanitizeNext(searchParams.get("next"));
   // Allow caller to request calendar scope (the login page can pre-hint for
   // Anthony via `?email=anthony@...`); otherwise we default to base scopes.
   // First-time Anthony sign-in should use ?calendar=1 to grant calendar.

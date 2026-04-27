@@ -2,6 +2,7 @@ import { NextResponse } from "next/server";
 import { normaliseEmail, clampString, LIMITS } from "@/lib/validation";
 import { parseGpx, buildCourse } from "@/lib/race-predictor/gpx";
 import { insertCourse } from "@/lib/race-predictor/store";
+import { checkUploadRateLimit } from "@/lib/race-predictor/upload-rate-limit";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
@@ -27,6 +28,19 @@ interface UploadBody {
  * promotes them.
  */
 export async function POST(request: Request) {
+  // Anonymous endpoint that parses 5 MB bodies and writes to the DB — gate
+  // behind a per-IP throttle so casual abuse doesn't get free DB inserts.
+  const verdict = checkUploadRateLimit(request);
+  if (!verdict.ok) {
+    return NextResponse.json(
+      { error: "Too many uploads from this address. Try again later." },
+      {
+        status: 429,
+        headers: { "Retry-After": String(verdict.retryAfterSeconds) },
+      },
+    );
+  }
+
   let body: UploadBody;
   try {
     body = (await request.json()) as UploadBody;

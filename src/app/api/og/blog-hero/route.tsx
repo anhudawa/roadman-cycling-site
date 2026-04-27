@@ -50,17 +50,14 @@ const pillarLabels: Record<string, string> = {
 };
 
 function resolveTitleFontSize(title: string): number {
-  // Target a ~3-4 line wrap at 1600px wide with the left rail (~900px
-  // of content width). The output is 21:9 (1600×686) so vertical
-  // real-estate is tighter than a 16:9 card — drop sizes one step
-  // faster than we used to, and add a 90+ char tier because the
-  // longest blog title today is 81 chars and a few podcast-adjacent
-  // headlines push past 90.
-  if (title.length > 90) return 58;
-  if (title.length > 75) return 68;
-  if (title.length > 55) return 80;
-  if (title.length > 35) return 100;
-  return 118;
+  // Output is 16:9 (1600×900) — matches the /blog index card containers
+  // exactly so titles never get side-cropped. Plenty of vertical room
+  // for 3-4 line wraps at the larger sizes.
+  if (title.length > 90) return 64;
+  if (title.length > 75) return 76;
+  if (title.length > 55) return 88;
+  if (title.length > 35) return 108;
+  return 124;
 }
 
 export async function GET(req: NextRequest) {
@@ -278,14 +275,12 @@ export async function GET(req: NextRequest) {
       </div>
     ),
     {
-      // 21:9 matches the blog post page's hero container
-      // (aspect-[21/9] w/ object-cover) so nothing gets clipped
-      // top/bottom. Previously this was 1600×900 (16:9) which got
-      // centre-cropped to 21:9 on the page, chopping ~107px off
-      // the top + bottom — that's the "headline text cut off"
-      // bug users reported on long-title posts.
+      // 16:9 (1600×900) matches the /blog index card containers
+      // exactly so titles never get cropped on the sides. The
+      // post page hero no longer renders this image, so the prior
+      // 21:9 constraint is gone.
       width: 1600,
-      height: 686,
+      height: 900,
       headers: {
         "Cache-Control": "public, max-age=31536000, immutable",
         "Content-Type": "image/png",

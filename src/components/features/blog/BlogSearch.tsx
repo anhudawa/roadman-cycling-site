@@ -172,7 +172,7 @@ export function BlogSearch({ posts }: BlogSearchProps) {
                 "
                 style={{ transitionDuration: "var(--duration-normal)" }}
               >
-                <div className="aspect-[16/9] relative bg-gradient-to-br from-deep-purple to-charcoal overflow-hidden">
+                <div className="aspect-[16/9] relative bg-gradient-to-br from-deep-purple/40 to-charcoal/40 overflow-hidden">
                   {(() => {
                     const hero = heroSrcForCard(post);
                     if (!hero) return null;
@@ -324,7 +324,7 @@ export function BlogSearch({ posts }: BlogSearchProps) {
                   "
                   style={{ transitionDuration: "var(--duration-normal)" }}
                 >
-                  <div className="aspect-[16/9] relative bg-gradient-to-br from-deep-purple to-charcoal overflow-hidden">
+                  <div className="aspect-[16/9] relative bg-gradient-to-br from-deep-purple/40 to-charcoal/40 overflow-hidden">
                     {(() => {
                       const hero = heroSrcForCard(post);
                       if (!hero) return null;

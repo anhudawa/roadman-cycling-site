@@ -30,7 +30,7 @@ export function RelatedPosts({ posts, className = "" }: RelatedPostsProps) {
             "
             style={{ transitionDuration: "var(--duration-normal)" }}
           >
-            <div className="aspect-[16/9] relative bg-gradient-to-br from-deep-purple to-charcoal overflow-hidden">
+            <div className="aspect-[16/9] relative bg-gradient-to-br from-deep-purple/40 to-charcoal/40 overflow-hidden">
               {(() => {
                 const useSatori = isGenericImage(post.featuredImage);
                 const src = useSatori

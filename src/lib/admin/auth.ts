@@ -4,7 +4,8 @@ import crypto from "crypto";
 import { db } from "@/lib/db";
 import { teamUsers } from "@/lib/db/schema";
 import { eq } from "drizzle-orm";
-import { hashPassword } from "@/lib/admin/password";
+import { verifyPassword, hashPasswordForStorage } from "@/lib/admin/password";
+import { authSecret } from "@/lib/admin/secret";
 
 export const COOKIE_NAME = "roadman_admin_session";
 export const SESSION_DURATION = 60 * 60 * 24 * 7; // 7 days in seconds
@@ -17,10 +18,6 @@ export interface TeamUser {
   name: string;
   email: string;
   role: TeamUserRole;
-}
-
-function authSecret(): string {
-  return process.env.AUTH_SECRET ?? process.env.ADMIN_PASSWORD ?? "fallback-dev-secret";
 }
 
 /** Create a signed session token bound to a user id. */
@@ -124,12 +121,15 @@ export async function verifyAndCreateTokenForUser(
   const row = await loadUserByEmail(email);
   if (!row || !row.active) return null;
   if (!row.passwordHash) return null; // unseeded user
-  if (hashPassword(password) !== row.passwordHash) return null;
+  const verdict = await verifyPassword(password, row.passwordHash);
+  if (!verdict.ok) return null;
 
-  await db
-    .update(teamUsers)
-    .set({ lastLoginAt: new Date() })
-    .where(eq(teamUsers.id, row.id));
+  const patch: Partial<typeof teamUsers.$inferInsert> = { lastLoginAt: new Date() };
+  // Migrate legacy SHA-256 hashes to bcrypt on successful login.
+  if (verdict.needsRehash) {
+    patch.passwordHash = await hashPasswordForStorage(password);
+  }
+  await db.update(teamUsers).set(patch).where(eq(teamUsers.id, row.id));
 
   return {
     token: createSignedTokenForUser(row.id),
@@ -145,15 +145,21 @@ export async function verifyAndCreateTokenForUser(
 export async function verifyAndCreateToken(password: string): Promise<string | null> {
   if (!password) return null;
   const tedRow = await loadUserBySlug("ted");
-  const incomingHash = hashPassword(password);
 
-  if (tedRow && tedRow.active && tedRow.passwordHash && incomingHash === tedRow.passwordHash) {
-    await db.update(teamUsers).set({ lastLoginAt: new Date() }).where(eq(teamUsers.id, tedRow.id));
-    return createSignedTokenForUser(tedRow.id);
+  if (tedRow && tedRow.active && tedRow.passwordHash) {
+    const verdict = await verifyPassword(password, tedRow.passwordHash);
+    if (verdict.ok) {
+      const patch: Partial<typeof teamUsers.$inferInsert> = { lastLoginAt: new Date() };
+      if (verdict.needsRehash) {
+        patch.passwordHash = await hashPasswordForStorage(password);
+      }
+      await db.update(teamUsers).set(patch).where(eq(teamUsers.id, tedRow.id));
+      return createSignedTokenForUser(tedRow.id);
+    }
   }
 
   const adminPassword = process.env.ADMIN_PASSWORD;
-  if (adminPassword && hashPassword(adminPassword) === incomingHash && tedRow && tedRow.active) {
+  if (adminPassword && password === adminPassword && tedRow && tedRow.active) {
     await db.update(teamUsers).set({ lastLoginAt: new Date() }).where(eq(teamUsers.id, tedRow.id));
     return createSignedTokenForUser(tedRow.id);
   }
