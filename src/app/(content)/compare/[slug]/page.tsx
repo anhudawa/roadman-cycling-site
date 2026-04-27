@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { Fragment } from "react";
 import { notFound } from "next/navigation";
 import { Header, Footer, Section, Container } from "@/components/layout";
 import { JsonLd } from "@/components/seo/JsonLd";
@@ -10,6 +11,45 @@ import {
   ComparisonTemplate,
   type RelatedLink,
 } from "@/components/templates";
+
+/**
+ * Renders a paragraph string supporting two micro-syntaxes:
+ *   - **bold** → <strong>
+ *   - [text](href) → <a> (internal href stays a relative link)
+ * Kept inline rather than pulling in MDX because comparison body copy
+ * is short and doesn't need a full markdown pipeline.
+ */
+function renderInline(text: string): React.ReactNode {
+  // First split on bold, then process each chunk for links.
+  const boldSplit = text.split(/(\*\*[^*]+\*\*)/g);
+  return boldSplit.map((chunk, i) => {
+    if (chunk.startsWith("**") && chunk.endsWith("**")) {
+      return <strong key={i}>{chunk.slice(2, -2)}</strong>;
+    }
+    const linkRe = /\[([^\]]+)\]\(([^)]+)\)/g;
+    const out: React.ReactNode[] = [];
+    let lastIdx = 0;
+    let match: RegExpExecArray | null;
+    while ((match = linkRe.exec(chunk)) !== null) {
+      if (match.index > lastIdx) out.push(chunk.slice(lastIdx, match.index));
+      const isExternal = match[2].startsWith("http");
+      out.push(
+        <a
+          key={`${i}-${match.index}`}
+          href={match[2]}
+          {...(isExternal
+            ? { target: "_blank", rel: "noopener noreferrer" }
+            : {})}
+        >
+          {match[1]}
+        </a>,
+      );
+      lastIdx = match.index + match[0].length;
+    }
+    if (lastIdx < chunk.length) out.push(chunk.slice(lastIdx));
+    return <Fragment key={i}>{out.length > 0 ? out : chunk}</Fragment>;
+  });
+}
 
 export function generateStaticParams() {
   return getAllComparisonSlugs().map((slug) => ({ slug }));
@@ -108,6 +148,14 @@ export default async function ComparePage({
                 text: comp.verdict,
               },
             },
+            ...(comp.faqs ?? []).map((faq) => ({
+              "@type": "Question",
+              name: faq.q,
+              acceptedAnswer: {
+                "@type": "Answer",
+                text: faq.a,
+              },
+            })),
           ],
         }}
       />
@@ -135,7 +183,51 @@ export default async function ComparePage({
         bestForB={comp.bestForB}
         related={related.length > 0 ? related : undefined}
         source={`compare-${slug}`}
-      />
+      >
+        {(comp.intro || comp.body || comp.faqs || comp.disclosure) && (
+          <>
+            {comp.intro && comp.intro.length > 0 && (
+              <section aria-label="Context" className="mb-8">
+                {comp.intro.map((p, i) => (
+                  <p key={`intro-${i}`}>{renderInline(p)}</p>
+                ))}
+              </section>
+            )}
+            {comp.body && comp.body.length > 0 && (
+              <section aria-label="Analysis" className="mb-4">
+                <h2>The Honest Read</h2>
+                {comp.body.map((p, i) => (
+                  <p key={`body-${i}`}>{renderInline(p)}</p>
+                ))}
+              </section>
+            )}
+            {comp.faqs && comp.faqs.length > 0 && (
+              <section aria-label="Frequently Asked Questions" className="mt-12">
+                <h2>FAQ</h2>
+                {comp.faqs.map((faq, i) => (
+                  <div key={`faq-${i}`} className="mb-6">
+                    <h3>{faq.q}</h3>
+                    <p>{renderInline(faq.a)}</p>
+                  </div>
+                ))}
+              </section>
+            )}
+            {comp.disclosure && (
+              <aside
+                aria-label="Disclosure"
+                className="mt-12 rounded-lg border border-coral/30 bg-coral/5 p-5"
+              >
+                <p className="font-heading text-coral text-xs tracking-[0.3em] mb-2">
+                  DISCLOSURE
+                </p>
+                <p className="text-foreground-muted text-sm leading-relaxed">
+                  {renderInline(comp.disclosure)}
+                </p>
+              </aside>
+            )}
+          </>
+        )}
+      </ComparisonTemplate>
 
       {/* Source methodology — pillar-matched episodes that informed the
           verdict, surfaced under the template so the trail from claim to
