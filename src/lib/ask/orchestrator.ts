@@ -43,7 +43,6 @@ import type { RiderProfile } from "@/lib/rider-profile/types";
 const MODEL_DEEP = "claude-opus-4-7";
 const MODEL_FAST = "claude-haiku-4-5-20251001";
 const MAX_TOKENS = 1200;
-const TEMPERATURE = 0.6;
 
 export async function streamAnswer(
   input: OrchestratorInput,
@@ -291,7 +290,6 @@ async function streamFromAnthropic(args: StreamArgs): Promise<{
   const stream = client.messages.stream({
     model,
     max_tokens: MAX_TOKENS,
-    temperature: TEMPERATURE,
     system,
     messages: [{ role: "user", content: query }],
   });
