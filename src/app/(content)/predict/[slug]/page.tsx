@@ -299,7 +299,7 @@ export default async function PredictResultPage({ params }: PageProps) {
                 baseTimeS={prediction.predictedTimeS}
               />
               <p className="text-xs text-foreground-subtle mt-3">
-                Directional preview — the Race Report runs the full physics engine
+                Directional preview — the Race Report runs the full simulation
                 against each scenario for an exact delta.
               </p>
             </Container>

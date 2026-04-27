@@ -23,7 +23,7 @@ const tools = [
   {
     title: "Race Predictor",
     description:
-      "Physics-grade time prediction for your A-race. Free first insight; full Race Report with pacing, fuelling, and equipment scenarios for $29.",
+      "Enter your FTP, weight, and course — we simulate the ride on real elevation data and give you a finish time within ±3%. Free for the prediction. The $29 Race Report adds your full pacing plan, fuelling strategy, and equipment what-ifs.",
     href: "/predict",
     status: "live" as const,
   },

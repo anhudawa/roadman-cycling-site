@@ -144,7 +144,7 @@ export function WhatIfSliders(props: WhatIfSlidersProps) {
         className="mt-4 pt-3 border-t border-white/5 text-[0.62rem] tracking-[0.15em] uppercase text-foreground-subtle"
         style={{ fontFamily: "var(--font-jetbrains-mono)" }}
       >
-        Directional only · Submit for the full physics-grade prediction
+        Quick estimate · Submit for the full course simulation
       </p>
     </div>
   );

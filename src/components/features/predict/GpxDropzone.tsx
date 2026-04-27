@@ -205,10 +205,11 @@ export function GpxDropzone({ value, onChange }: GpxDropzoneProps) {
       </div>
 
       <p className="font-heading text-base uppercase tracking-wider text-off-white mb-1">
-        {parsing ? "Parsing track…" : "Drop a GPX file"}
+        {parsing ? "Parsing track…" : "Upload your own GPX"}
       </p>
       <p className="text-xs text-foreground-muted">
-        Or click to browse · Strava, Komoot, Garmin exports work
+        Drop a .gpx file here, or click to browse. Export the route from
+        Strava, Komoot, Garmin or RideWithGPS, then upload it here.
       </p>
 
       {error && (

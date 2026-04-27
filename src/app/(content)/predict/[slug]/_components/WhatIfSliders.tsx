@@ -180,7 +180,7 @@ export function WhatIfSliders({
 
       <div className="flex items-center justify-between gap-3 flex-wrap">
         <p className="text-off-white/45 text-[11px]">
-          Live recompute via the same physics engine that ran your prediction.
+          Live recompute on the same engine that ran your prediction.
         </p>
         {!isBaseline && (
           <button

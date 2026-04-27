@@ -6,25 +6,25 @@ interface ModeCardProps {
 
 const COPY = {
   plan_my_race: {
-    eyebrow: "T-MINUS 24-48H",
+    eyebrow: "RACE WEEK",
     title: "Plan my race",
     body:
-      "Optimised pacing for your A-race. Variable-power plan, weather-aware, durability-aware. The version of the ride you can actually execute.",
+      "You're racing in the next few weeks. We'll plan your pacing for the day — power targets per climb, where to push, where to ease, fuelling tied to effort.",
     bullets: [
-      "Per-km power targets",
+      "Per-climb power targets",
       "Climb-by-climb time budget",
-      "Fuelling rate locked to effort",
+      "Fuelling rate per hour",
     ],
   },
   can_i_make_it: {
-    eyebrow: "6+ MONTHS OUT",
+    eyebrow: "MONTHS OUT",
     title: "Can I make it?",
     body:
-      "Honest gap analysis. What you'd ride today at sustainable effort — surfacing exactly where the work needs doing.",
+      "You're still training. We'll show you what you'd realistically ride today, plus where the gap is between you and your finish-time goal.",
     bullets: [
-      "Realistic baseline finish",
-      "Cutoff confidence interval",
-      "Where to invest training hours",
+      "Honest baseline finish time",
+      "How close to the cutoff you are",
+      "Where the training gap lives",
     ],
   },
 } as const;
