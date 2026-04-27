@@ -1,3 +1,4 @@
+import { preload } from "react-dom";
 import { Header, Footer, Section, Container } from "@/components/layout";
 import { Button, Card, ScrollReveal, ParallaxImage, GradientText, GuestMarquee } from "@/components/ui";
 import Image from "next/image";
@@ -87,6 +88,14 @@ const tools = [
 ];
 
 export default function HomePage() {
+  // The hero portrait is a CSS background-image (see GlitchHero.module.css),
+  // so Next.js can't auto-preload it. Preload from the server so the browser
+  // can fetch it in parallel with the route's CSS chunk — improves mobile LCP.
+  preload("/images/hero/glitch-portrait.jpg", {
+    as: "image",
+    fetchPriority: "high",
+  });
+
   const latestEpisode = getLatestEpisode();
   return (
     <>
