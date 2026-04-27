@@ -282,7 +282,7 @@ export async function GET(req: NextRequest) {
       width: 1600,
       height: 900,
       headers: {
-        "Cache-Control": "public, max-age=31536000, immutable",
+        "Cache-Control": "public, max-age=86400, s-maxage=604800, stale-while-revalidate=86400",
         "Content-Type": "image/png",
       },
     },
