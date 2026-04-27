@@ -22,6 +22,17 @@ let cachedTests: ActiveTest[] = [];
 let cacheTimestamp = 0;
 const CACHE_TTL = 60_000; // 60 seconds
 
+/**
+ * Query parameters that produce duplicate URLs in search results and
+ * should be stripped with a 308 redirect to the canonical clean URL.
+ * Sourced from legacy WordPress crawl trails:
+ *   - post_page / post_pages: WP pagination artefacts (/blog/?post_page=1)
+ *   - replytocom: WP comment-reply deeplinks
+ * Tracking params (utm_*, fbclid, gclid, mc_cid, mc_eid) are NOT stripped —
+ * they're needed by analytics and don't fragment Google's index.
+ */
+const STRIP_QUERY_PARAMS = ["post_page", "post_pages", "replytocom"] as const;
+
 async function getActiveTests(origin: string): Promise<ActiveTest[]> {
   const now = Date.now();
   if (now - cacheTimestamp < CACHE_TTL) return cachedTests;
@@ -44,6 +55,20 @@ function generateUUID(): string {
 }
 
 export async function proxy(request: NextRequest) {
+  // ── Strip junk query parameters ───────────────────────────────────────
+  // Runs before any A/B logic so the redirect happens in a single hop.
+  const cleanUrl = request.nextUrl.clone();
+  let strippedAny = false;
+  for (const key of STRIP_QUERY_PARAMS) {
+    if (cleanUrl.searchParams.has(key)) {
+      cleanUrl.searchParams.delete(key);
+      strippedAny = true;
+    }
+  }
+  if (strippedAny) {
+    return NextResponse.redirect(cleanUrl, 308);
+  }
+
   const { pathname } = request.nextUrl;
   const origin = new URL(request.url).origin;
   const activeTests = await getActiveTests(origin);
