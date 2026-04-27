@@ -22,6 +22,7 @@ import { InlineArticleCTA } from "@/components/features/conversion/InlineArticle
 import { NextStepBlock } from "@/components/features/conversion/NextStepBlock";
 import { StickyCoachingBar } from "@/components/features/conversion/StickyCoachingBar";
 import { EmailCapture } from "@/components/features/conversion/EmailCapture";
+import { IntentCTA, inferIntentCategory } from "@/components/cta";
 import { TableOfContents } from "@/components/features/blog/TableOfContents";
 import { AnswerCapsule } from "@/components/ui/AnswerCapsule";
 import { CitedClaimTable } from "@/components/ui/CitedClaimTable";
@@ -119,6 +120,41 @@ export default async function BlogPostPage({
     limit: 3,
   });
   const publishDate = new Date(post.publishDate);
+
+  // Pick the intent CTA off the article's metadata. When inference
+  // turns up "event" we need a concrete event name for the variant —
+  // pull it from `planEvent` (frontmatter ↔ EVENTS reverse-lookup) or
+  // fall back to the first body-mentioned event. With no name we drop
+  // the inference and let pillar fallback fire so the headline doesn't
+  // read "Download your training plan" with nothing in the slot.
+  const inferredCategory = inferIntentCategory({
+    keywords: post.keywords,
+    title: post.title,
+    excerpt: post.excerpt,
+    pillar: post.pillar,
+  });
+  // Accent-tolerant fallback so an article whose keywords say "etape"
+  // still matches the EVENTS entry "Étape du Tour" — `mentionedEvents`
+  // above stays accent-strict because the WeeksOutSelector flow it
+  // feeds depends on display-name parity. The intent CTA is happy
+  // with a fuzzy match.
+  const stripAccents = (s: string) =>
+    s.normalize("NFD").replace(/\p{Diacritic}/gu, "").toLowerCase();
+  const intentHaystack = stripAccents(
+    `${post.title} ${post.excerpt} ${(post.keywords ?? []).join(" ")}`,
+  );
+  const fuzzyMatchedEvent =
+    EVENTS.find((e) => {
+      const name = stripAccents(e.name);
+      const short = stripAccents(e.shortName);
+      return intentHaystack.includes(name) || intentHaystack.includes(short);
+    }) ?? null;
+  const intentEventName =
+    planEvent?.name ??
+    mentionedEvents[0]?.name ??
+    fuzzyMatchedEvent?.name ??
+    null;
+  const intentSource = `blog-intent-${slug}`;
 
   return (
     <>
@@ -417,36 +453,29 @@ export default async function BlogPostPage({
               />
             </div>
 
-            {/* Soft coaching CTA — only on high-intent pillars (coaching /
-                nutrition). Visitors reading a training/nutrition deep-dive
-                have already demonstrated problem-awareness; a gentle Apply
-                prompt converts the highest-intent tail. */}
-            {(post.pillar === "coaching" || post.pillar === "nutrition") && (
-              <div className="mt-10 rounded-xl border border-white/10 bg-gradient-to-br from-deep-purple/50 to-charcoal p-6 md:p-8 text-center">
-                <p className="font-heading text-coral text-xs tracking-widest mb-3">
-                  WANT THIS APPLIED TO YOUR TRAINING?
-                </p>
-                <p className="font-heading text-off-white text-xl md:text-2xl leading-tight">
-                  NOT DONE YET
-                </p>
-                <p className="font-heading text-coral tracking-[0.25em] uppercase mt-1 mb-3 text-[11px] md:text-xs">
-                  Coaching Community
-                </p>
-                <p className="text-foreground-muted text-sm mb-5 max-w-xl mx-auto">
-                  Your power numbers, your events, your calendar. 7-day free
-                  trial. $195/month. Applications reviewed personally by
-                  Anthony.
-                </p>
-                <div className="flex flex-col sm:flex-row gap-3 justify-center items-center">
-                  <Button href="/apply" size="md">
-                    Apply — 7-Day Free Trial
-                  </Button>
-                  <Button href="/coaching" variant="ghost" size="md">
-                    How Coaching Works
-                  </Button>
-                </div>
-              </div>
-            )}
+            {/* Intent-specific CTA — picks the right offer from article
+                keywords (plateau / zones / event / masters / nutrition /
+                strength / coaching-decision / podcast). Falls back to
+                the pillar's default category when nothing scores. The
+                bottom-of-article coaching funnel (rendered below for
+                coaching-pillar posts) keeps the Apply pitch alive — this
+                slot is now intent-routed instead of the old static
+                "Apply for Coaching" block. */}
+            <div className="mt-10">
+              {inferredCategory === "event" && intentEventName ? (
+                <IntentCTA
+                  category="event"
+                  props={{ event: intentEventName, source: intentSource }}
+                />
+              ) : inferredCategory && inferredCategory !== "event" ? (
+                <IntentCTA
+                  category={inferredCategory}
+                  source={intentSource}
+                />
+              ) : (
+                <IntentCTA pillar={post.pillar} source={intentSource} />
+              )}
+            </div>
 
             {/* Topic hub back-links — bidirectional signal for Google +
                 natural "keep exploring" path for readers. */}
