@@ -1,11 +1,24 @@
 "use client";
 
 import { useState } from "react";
+import { track } from "@/lib/analytics/events";
 
 interface ShareButtonsProps {
   title: string;
   slug: string;
   className?: string;
+}
+
+type ShareChannel = "twitter" | "facebook" | "email" | "copy" | "other";
+
+// X (Twitter), WhatsApp, LinkedIn — coerce all of them onto the
+// share_clicked channel union. We don't expand the union for every
+// network; "other" is the catch-all so the funnel chart stays readable.
+function classifyChannel(label: string): ShareChannel {
+  if (label.includes("X") || label.toLowerCase().includes("twitter")) return "twitter";
+  if (label.toLowerCase().includes("facebook")) return "facebook";
+  if (label.toLowerCase().includes("email")) return "email";
+  return "other";
 }
 
 export function ShareButtons({ title, slug, className = "" }: ShareButtonsProps) {
@@ -15,6 +28,7 @@ export function ShareButtons({ title, slug, className = "" }: ShareButtonsProps)
   const encodedTitle = encodeURIComponent(title);
 
   const handleCopyLink = async () => {
+    track("share_clicked", { channel: "copy", url });
     try {
       await navigator.clipboard.writeText(url);
       setCopied(true);
@@ -75,6 +89,7 @@ export function ShareButtons({ title, slug, className = "" }: ShareButtonsProps)
           rel="noopener noreferrer"
           title={link.label}
           aria-label={link.label}
+          onClick={() => track("share_clicked", { channel: classifyChannel(link.label), url })}
           className="
             inline-flex items-center justify-center w-9 h-9
             bg-white/5 border border-white/10 rounded-lg
