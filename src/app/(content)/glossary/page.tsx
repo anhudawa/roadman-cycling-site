@@ -26,6 +26,30 @@ export default function GlossaryPage() {
           url: "https://roadmancycling.com/glossary",
         }}
       />
+      {/* DefinedTermSet enumerates every term in the glossary as a
+          first-class entity — gives Google + AI crawlers an explicit list
+          of terms in this set so each /glossary/[slug] DefinedTerm can be
+          linked back to a concrete parent set, not just a name string. */}
+      <JsonLd
+        data={{
+          "@context": "https://schema.org",
+          "@type": "DefinedTermSet",
+          "@id": "https://roadmancycling.com/glossary#termset",
+          name: "Cycling Performance Glossary",
+          description:
+            "Cycling performance vocabulary — FTP, VO2max, polarised training, sweet spot, W/kg, periodisation, and more. Defined by a coach, not a textbook.",
+          url: "https://roadmancycling.com/glossary",
+          inLanguage: "en",
+          publisher: { "@id": "https://roadmancycling.com/#organization" },
+          hasDefinedTerm: GLOSSARY_TERMS.map((term) => ({
+            "@type": "DefinedTerm",
+            "@id": `https://roadmancycling.com/glossary/${term.slug}#term`,
+            name: term.term,
+            description: term.definition,
+            url: `https://roadmancycling.com/glossary/${term.slug}`,
+          })),
+        }}
+      />
       <JsonLd
         data={{
           "@context": "https://schema.org",

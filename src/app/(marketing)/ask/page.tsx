@@ -93,11 +93,27 @@ export default async function AskPage({
           "@type": "WebApplication",
           name: "Ask Roadman",
           description:
-            "On-site cycling performance assistant grounded in the Roadman Cycling content library.",
+            "On-site cycling performance assistant grounded in 1,400+ Roadman Cycling Podcast conversations with World Tour coaches, sports scientists, and pro cyclists.",
           url: "https://roadmancycling.com/ask",
           applicationCategory: "HealthApplication",
+          operatingSystem: "Web",
+          browserRequirements: "Requires JavaScript, modern browser",
           isAccessibleForFree: true,
+          inLanguage: "en",
+          featureList: [
+            "Conversational answers grounded in 1,400+ podcast conversations",
+            "Citations to the source episode for every answer",
+            "Tool result handoff (FTP zones, race weight, fuelling, etc.)",
+            "Pre-filled prompts from blog posts and guest pages",
+          ],
+          offers: {
+            "@type": "Offer",
+            price: "0",
+            priceCurrency: "USD",
+          },
           publisher: { "@id": ENTITY_IDS.organization },
+          creator: { "@id": ENTITY_IDS.person },
+          isPartOf: { "@id": ENTITY_IDS.website },
         }}
       />
       <style

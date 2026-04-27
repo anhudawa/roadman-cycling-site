@@ -1,3 +1,4 @@
+import { ENTITY_IDS } from "@/lib/brand-facts";
 import { JsonLd } from "./JsonLd";
 
 interface SoftwareApplicationSchemaProps {
@@ -12,12 +13,10 @@ interface SoftwareApplicationSchemaProps {
 }
 
 /**
- * SoftwareApplication structured data for our free calculator tools.
- *
- * Signals to Google that the page is an interactive utility (distinct from
- * the HowTo/FAQ schema also emitted on each tool page) — unlocks the
- * "application" rich result variant and improves discovery for queries like
- * "ftp calculator" or "tyre pressure calculator".
+ * WebApplication structured data for our free browser-based calculators.
+ * WebApplication is a more specific schema.org subtype of SoftwareApplication;
+ * it tells search engines the tool runs in the browser (no install) and
+ * unlocks the "application" rich result for queries like "ftp calculator".
  */
 export function SoftwareApplicationSchema({
   name,
@@ -29,23 +28,20 @@ export function SoftwareApplicationSchema({
     <JsonLd
       data={{
         "@context": "https://schema.org",
-        "@type": "SoftwareApplication",
+        "@type": "WebApplication",
         name,
         description,
         url,
         applicationCategory: "SportsApplication",
-        operatingSystem: "Any",
+        operatingSystem: "Web",
         browserRequirements: "Requires JavaScript, modern browser",
+        isAccessibleForFree: true,
         offers: {
           "@type": "Offer",
           price: "0",
           priceCurrency: "USD",
         },
-        publisher: {
-          "@type": "Organization",
-          name: "Roadman Cycling",
-          url: "https://roadmancycling.com",
-        },
+        publisher: { "@id": ENTITY_IDS.organization },
         ...(features && features.length > 0 && { featureList: features }),
       }}
     />
