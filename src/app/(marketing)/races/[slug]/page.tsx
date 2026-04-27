@@ -24,7 +24,7 @@ export async function generateMetadata({
   const race = getRaceBySlug(slug);
   if (!race) return {};
 
-  const title = `${race.name} Race Guide — Distance, Elevation & Finish Times | Roadman Cycling`;
+  const title = `${race.name} Race Guide — Distance, Elevation & Finish Times`;
   const description = `Complete ${race.name} guide: ${race.distance_km}km, ${race.elevation_m.toLocaleString()}m elevation. Key climbs, typical finish times for all abilities and training advice from Roadman Cycling.`;
 
   return {
@@ -107,10 +107,11 @@ export default async function RacePage({
     `I'm training for the ${race.name} (${race.distance_km}km, ${race.elevation_m.toLocaleString()}m elevation). What finish time should I target and how should I structure my preparation?`,
   );
 
-  // If a matching predictor course exists, link directly to it; otherwise
-  // send the rider to the predictor courses index to find their event.
+  // If a matching predictor course exists, deep-link the predict form with
+  // that course pre-selected (?course=<slug>). /predict/[slug] is the
+  // *result* route — generated post-submit — so linking there 404s.
   const predictorHref = race.predictor_slug
-    ? `/predict/${race.predictor_slug}`
+    ? `/predict?course=${race.predictor_slug}`
     : `/predict/courses`;
 
   const jsonLd = {

@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { Header, Footer, Section, Container } from "@/components/layout";
@@ -26,6 +27,35 @@ interface PageProps {
   params: Promise<{ slug: string }>;
 }
 
+export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
+  const { slug } = await params;
+  const prediction = await getPredictionBySlug(slug).catch(() => null);
+  if (!prediction) {
+    return {
+      title: "Race Prediction",
+      robots: { index: false, follow: false },
+    };
+  }
+  const course = prediction.courseId
+    ? await getCourseById(prediction.courseId).catch(() => null)
+    : null;
+  const courseName = course?.name ?? "Custom Course";
+  const url = `https://roadmancycling.com/predict/${slug}`;
+  return {
+    title: `${courseName} — Your Predicted Finish Time`,
+    description: `Predicted finish time, climb-by-climb breakdown, fuelling targets and what-if scenarios for ${courseName}. Built by the Roadman Race Predictor.`,
+    alternates: { canonical: url },
+    openGraph: {
+      title: `${courseName} — Your Predicted Finish Time`,
+      description: `Climb-by-climb breakdown, fuelling targets, and pacing scenarios for ${courseName}.`,
+      type: "website",
+      url,
+      images: [{ url: "/og-image.jpg", width: 1200, height: 630, alt: courseName }],
+    },
+    robots: { index: false, follow: true },
+  };
+}
+
 // Known event sweep wagons (in seconds). For uploaded GPX or events without
 // a published cutoff, the gap-to-cutoff bar is suppressed.
 const COURSE_CUTOFFS: Record<string, number> = {
@@ -37,13 +67,6 @@ const COURSE_CUTOFFS: Record<string, number> = {
   "tour-of-flanders-sportive": 10 * 3600,
   "haute-route-pyrenees-stage-1": 8 * 3600,
 };
-
-function siteUrl() {
-  return (
-    process.env.NEXT_PUBLIC_SITE_URL?.replace(/\/+$/, "") ??
-    "https://roadmancycling.com"
-  );
-}
 
 export default async function PredictResultPage({ params }: PageProps) {
   const { slug } = await params;
@@ -73,11 +96,6 @@ export default async function PredictResultPage({ params }: PageProps) {
       | { headline: string; body: string; tag?: string }
       | undefined) ?? null;
 
-  const baselinePower =
-    prediction.averagePower ??
-    prediction.normalizedPower ??
-    Math.round(prediction.riderInputs.powerProfile?.p60min ?? 220);
-
   const avgSpeedKmh =
     distanceKm > 0 ? distanceKm / (prediction.predictedTimeS / 3600) : 0;
 
@@ -95,9 +113,6 @@ export default async function PredictResultPage({ params }: PageProps) {
     cda: prediction.riderInputs?.cda ?? 0.32,
     elevationGainM,
   });
-
-  void baselinePower;
-  void siteUrl;
 
   return (
     <>
@@ -400,7 +415,7 @@ export default async function PredictResultPage({ params }: PageProps) {
                   </p>
                 </div>
                 <div className="flex flex-col gap-2 w-full md:w-auto md:min-w-[200px]">
-                  <Button href="/not-done-yet" size="lg" dataTrack="predict_ndy_cta">
+                  <Button href="/community/not-done-yet" size="lg" dataTrack="predict_ndy_cta">
                     Join the community →
                   </Button>
                   <Link
