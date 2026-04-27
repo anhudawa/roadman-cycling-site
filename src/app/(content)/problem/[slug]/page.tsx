@@ -4,7 +4,35 @@ import { notFound } from "next/navigation";
 import { Header, Footer, Section, Container } from "@/components/layout";
 import { Card, ScrollReveal, Badge, Button } from "@/components/ui";
 import { JsonLd } from "@/components/seo/JsonLd";
+import { ShortAnswer } from "@/components/features/aeo/ShortAnswer";
+import { SourceMethodology } from "@/components/features/aeo/SourceMethodology";
+import { AskRoadmanCTA } from "@/components/features/aeo/AskRoadmanCTA";
 import { getProblemBySlug, getAllProblemSlugs } from "@/lib/problems";
+import { queryContentGraph } from "@/lib/content-graph";
+
+/**
+ * Build a short, extractable answer from the structured problem-page
+ * data. The page already declares the most-likely cause (causes[0]) and
+ * the canonical fix (solutions[0]) — combining them produces a 1-2
+ * sentence direct answer that AI crawlers can lift verbatim without
+ * having to read the whole page. Falls back gracefully when either field
+ * is missing so older problem-page records don't crash.
+ */
+function buildProblemShortAnswer(p: {
+  problem: string;
+  causes: string[];
+  solutions: { title: string; description: string }[];
+}): string {
+  const cause = p.causes[0];
+  const fix = p.solutions[0];
+  if (cause && fix) {
+    return `Most often, this is because ${cause.charAt(0).toLowerCase() + cause.slice(1)}. The fix: ${fix.title.toLowerCase()} — ${fix.description.toLowerCase()}.`;
+  }
+  if (fix) {
+    return `${fix.title}: ${fix.description}`;
+  }
+  return p.problem;
+}
 
 export function generateStaticParams() {
   return getAllProblemSlugs().map((slug) => ({ slug }));
@@ -35,6 +63,17 @@ export default async function ProblemPageRoute({
   const page = getProblemBySlug(slug);
   if (!page) notFound();
 
+  const shortAnswer = buildProblemShortAnswer(page);
+  const graph = queryContentGraph({ pillar: page.pillar, limit: 2 });
+  const sourceEpisodes = graph.episodes.slice(0, 2).map((ep) => ({
+    title: ep.title,
+    href: `/podcast/${ep.slug}`,
+  }));
+  const sourceArticles = graph.articles.slice(0, 2).map((a) => ({
+    title: a.title,
+    href: `/blog/${a.slug}`,
+  }));
+
   return (
     <>
       <JsonLd
@@ -46,7 +85,29 @@ export default async function ProblemPageRoute({
           url: `https://roadmancycling.com/problem/${slug}`,
           speakable: {
             "@type": "SpeakableSpecification",
-            cssSelector: ["h1", ".problem-description"],
+            cssSelector: ["h1", ".short-answer", ".problem-description"],
+          },
+        }}
+      />
+      {/* QAPage schema — flags this template to crawlers as a structured
+          question/answer pair. The `name` is the user's question, the
+          `acceptedAnswer` is the extractable short answer rendered in the
+          .short-answer block. Helps AI engines like Perplexity and ChatGPT
+          treat the page as a citation-worthy answer rather than an article. */}
+      <JsonLd
+        data={{
+          "@context": "https://schema.org",
+          "@type": "QAPage",
+          mainEntity: {
+            "@type": "Question",
+            name: page.title,
+            text: page.problem,
+            answerCount: 1,
+            acceptedAnswer: {
+              "@type": "Answer",
+              text: shortAnswer,
+              url: `https://roadmancycling.com/problem/${slug}`,
+            },
           },
         }}
       />
@@ -74,9 +135,18 @@ export default async function ProblemPageRoute({
               >
                 {page.title.toUpperCase()}
               </h1>
-              <p className="problem-description text-foreground-muted text-lg leading-relaxed max-w-2xl">
+              <p className="problem-description text-foreground-muted text-lg leading-relaxed max-w-2xl mb-6">
                 {page.problem}
               </p>
+              {/* Answer-first block — extracted from the most-common cause +
+                  the canonical fix so AI crawlers can lift a citation-ready
+                  one-liner without having to scrape the cause list and
+                  solutions grid below. */}
+              <ShortAnswer
+                text={shortAnswer}
+                pillar={page.pillar}
+                heading="THE SHORT ANSWER"
+              />
             </ScrollReveal>
           </Container>
         </Section>
@@ -149,6 +219,25 @@ export default async function ProblemPageRoute({
             </Container>
           </Section>
         )}
+
+        {/* Source + methodology + Ask handoff */}
+        <Section background="deep-purple" grain className="!py-14">
+          <Container width="narrow">
+            <ScrollReveal direction="up">
+              <SourceMethodology
+                methodology={`This diagnostic combines the recurring causes Anthony hears in coaching calls with the on-the-record positions of named experts on the Roadman Cycling Podcast. The fixes are ordered by impact-per-hour, not novelty.`}
+                episodes={sourceEpisodes}
+                articles={sourceArticles}
+              />
+              <AskRoadmanCTA
+                topic={page.title}
+                question={`I'm stuck on this: ${page.title}. What's the first thing I should change?`}
+                source={`problem-${slug}`}
+                heading="STILL NOT SURE?"
+              />
+            </ScrollReveal>
+          </Container>
+        </Section>
       </main>
 
       <Footer />

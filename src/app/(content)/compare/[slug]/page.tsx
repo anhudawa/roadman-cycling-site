@@ -4,7 +4,11 @@ import { notFound } from "next/navigation";
 import { Header, Footer, Section, Container } from "@/components/layout";
 import { Card, ScrollReveal, Badge, Button } from "@/components/ui";
 import { JsonLd } from "@/components/seo/JsonLd";
+import { ShortAnswer } from "@/components/features/aeo/ShortAnswer";
+import { SourceMethodology } from "@/components/features/aeo/SourceMethodology";
+import { AskRoadmanCTA } from "@/components/features/aeo/AskRoadmanCTA";
 import { getComparisonBySlug, getAllComparisonSlugs } from "@/lib/comparisons";
+import { queryContentGraph } from "@/lib/content-graph";
 
 export function generateStaticParams() {
   return getAllComparisonSlugs().map((slug) => ({ slug }));
@@ -37,6 +41,19 @@ export default async function ComparePage({
   const comp = getComparisonBySlug(slug);
   if (!comp) notFound();
 
+  // Pull pillar-matched episodes + articles for the methodology block so
+  // every comparison page exposes its evidence trail without bespoke
+  // per-page wiring. Limited to 2 of each to keep the footer scannable.
+  const graph = queryContentGraph({ pillar: comp.pillar, limit: 2 });
+  const sourceEpisodes = graph.episodes.slice(0, 2).map((ep) => ({
+    title: ep.title,
+    href: `/podcast/${ep.slug}`,
+  }));
+  const sourceArticles = graph.articles.slice(0, 2).map((a) => ({
+    title: a.title,
+    href: `/blog/${a.slug}`,
+  }));
+
   return (
     <>
       <JsonLd
@@ -48,7 +65,7 @@ export default async function ComparePage({
           url: `https://roadmancycling.com/compare/${slug}`,
           speakable: {
             "@type": "SpeakableSpecification",
-            cssSelector: ["h1", ".verdict-block"],
+            cssSelector: ["h1", ".short-answer", ".verdict-block"],
           },
         }}
       />
@@ -96,14 +113,17 @@ export default async function ComparePage({
                 <br />
                 <span className="text-coral">VS {comp.optionB.toUpperCase()}</span>
               </h1>
-              <div className="verdict-block rounded-xl border border-coral/30 bg-coral/10 p-5 md:p-6">
-                <p className="font-heading text-coral text-xs tracking-widest mb-2">
-                  QUICK VERDICT
-                </p>
-                <p className="text-off-white text-base leading-relaxed">
-                  {comp.verdict}
-                </p>
-              </div>
+              {/* Answer-first block — semantic <section> on .short-answer
+                  so AI crawlers can extract the verdict without scraping
+                  the comparison table. Wraps the long-standing
+                  .verdict-block inside the same surface for backwards-
+                  compat with the SpeakableSpecification selector. */}
+              <ShortAnswer
+                text={comp.verdict}
+                pillar={comp.pillar}
+                heading="THE SHORT ANSWER"
+                className="verdict-block"
+              />
             </ScrollReveal>
           </Container>
         </Section>
@@ -203,6 +223,25 @@ export default async function ComparePage({
               <Button href="/apply" size="lg" dataTrack={`compare_${slug}_apply`}>
                 Apply for Coaching
               </Button>
+            </ScrollReveal>
+          </Container>
+        </Section>
+
+        {/* Source + methodology + Ask handoff */}
+        <Section background="deep-purple" grain className="!py-14">
+          <Container width="narrow">
+            <ScrollReveal direction="up">
+              <SourceMethodology
+                methodology={`The verdict on "${comp.optionA} vs ${comp.optionB}" is the Roadman editorial position synthesised from podcast conversations with named coaches and our own coaching practice. We weight personalisation, accountability, and time-efficiency over price-sensitivity — the call differs for time-crunched amateurs vs absolute beginners.`}
+                episodes={sourceEpisodes}
+                articles={sourceArticles}
+              />
+              <AskRoadmanCTA
+                topic={`${comp.optionA} vs ${comp.optionB}`}
+                question={`I'm choosing between ${comp.optionA} and ${comp.optionB}. Given my situation, which is the right call?`}
+                source={`compare-${slug}`}
+                heading="WANT THIS APPLIED TO YOU?"
+              />
             </ScrollReveal>
           </Container>
         </Section>
