@@ -44,6 +44,7 @@ function shouldShowApplyCta(pathname: string | null): boolean {
 export function Header() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [expandedMenu, setExpandedMenu] = useState<string | null>(null);
   const pathname = usePathname();
   const showApply = shouldShowApplyCta(pathname);
   const ctaHref = showApply ? "/apply" : "/community/clubhouse";
@@ -68,6 +69,7 @@ export function Header() {
       document.body.style.overflow = "hidden";
     } else {
       document.body.style.overflow = "";
+      setExpandedMenu(null);
     }
     return () => {
       document.body.style.overflow = "";
@@ -259,46 +261,105 @@ export function Header() {
           >
             <nav
               aria-label="Mobile navigation"
-              className="flex flex-col items-stretch gap-1 px-6 pt-24 pb-16 max-w-md mx-auto text-center"
+              className="flex flex-col items-stretch gap-1 px-6 pt-24 pb-12"
             >
-              {NAV_ITEMS.map((item, i) => (
-                <motion.div
-                  key={item.href}
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, y: -10 }}
-                  transition={{
-                    duration: 0.35,
-                    delay: 0.04 + i * 0.05,
-                    ease: [0.16, 1, 0.3, 1],
-                  }}
-                  className="border-b border-white/5 last:border-b-0 pb-2"
-                >
-                  <Link
-                    href={item.href}
-                    className="block font-heading text-2xl text-off-white hover:text-coral transition-colors px-4 py-3"
-                    onClick={() => setIsMobileMenuOpen(false)}
-                    style={{ transitionDuration: "var(--duration-fast)" }}
+              {NAV_ITEMS.map((item, i) => {
+                const isExpanded = expandedMenu === item.href;
+                const hasChildren = !!item.children?.length;
+                return (
+                  <motion.div
+                    key={item.href}
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: -10 }}
+                    transition={{
+                      duration: 0.35,
+                      delay: 0.04 + i * 0.05,
+                      ease: [0.16, 1, 0.3, 1],
+                    }}
+                    className="border-b border-white/10"
                   >
-                    {item.label}
-                  </Link>
-                  {item.children && (
-                    <div className="flex flex-col items-stretch">
-                      {item.children.map((child) => (
-                        <Link
-                          key={child.href}
-                          href={child.href}
-                          className="block font-body text-base text-foreground-muted hover:text-coral transition-colors px-4 py-2"
-                          onClick={() => setIsMobileMenuOpen(false)}
-                          style={{ transitionDuration: "var(--duration-fast)" }}
+                    <div className="flex items-center justify-between">
+                      <Link
+                        href={item.href}
+                        className="flex-1 font-heading text-3xl text-off-white hover:text-coral transition-colors py-4"
+                        onClick={() => setIsMobileMenuOpen(false)}
+                        style={{ transitionDuration: "var(--duration-fast)" }}
+                      >
+                        {item.label}
+                      </Link>
+                      {hasChildren && (
+                        <button
+                          type="button"
+                          onClick={() =>
+                            setExpandedMenu(isExpanded ? null : item.href)
+                          }
+                          aria-expanded={isExpanded}
+                          aria-controls={`mobile-submenu-${item.href}`}
+                          aria-label={
+                            isExpanded
+                              ? `Collapse ${item.label} menu`
+                              : `Expand ${item.label} menu`
+                          }
+                          className="p-3 -mr-3 text-off-white"
                         >
-                          {child.label}
-                        </Link>
-                      ))}
+                          <motion.svg
+                            className="w-6 h-6"
+                            viewBox="0 0 24 24"
+                            fill="none"
+                            stroke="currentColor"
+                            strokeWidth={2}
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            animate={{ rotate: isExpanded ? 180 : 0 }}
+                            transition={{
+                              duration: 0.25,
+                              ease: [0.16, 1, 0.3, 1],
+                            }}
+                          >
+                            <path d="M6 9l6 6 6-6" />
+                          </motion.svg>
+                        </button>
+                      )}
                     </div>
-                  )}
-                </motion.div>
-              ))}
+                    <AnimatePresence initial={false}>
+                      {hasChildren && isExpanded && (
+                        <motion.ul
+                          id={`mobile-submenu-${item.href}`}
+                          initial={{ height: 0, opacity: 0 }}
+                          animate={{ height: "auto", opacity: 1 }}
+                          exit={{ height: 0, opacity: 0 }}
+                          transition={{
+                            duration: 0.3,
+                            ease: [0.16, 1, 0.3, 1],
+                          }}
+                          className="overflow-hidden"
+                        >
+                          <li className="pb-3 pt-1">
+                            <ul className="flex flex-col gap-0.5 pl-4 border-l-2 border-coral/30">
+                              {item.children!.map((child) => (
+                                <li key={child.href}>
+                                  <Link
+                                    href={child.href}
+                                    className="block font-body text-base text-foreground-muted hover:text-coral transition-colors py-2.5 px-3"
+                                    onClick={() => setIsMobileMenuOpen(false)}
+                                    style={{
+                                      transitionDuration:
+                                        "var(--duration-fast)",
+                                    }}
+                                  >
+                                    {child.label}
+                                  </Link>
+                                </li>
+                              ))}
+                            </ul>
+                          </li>
+                        </motion.ul>
+                      )}
+                    </AnimatePresence>
+                  </motion.div>
+                );
+              })}
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
@@ -308,7 +369,7 @@ export function Header() {
                   delay: 0.04 + NAV_ITEMS.length * 0.05,
                   ease: [0.16, 1, 0.3, 1],
                 }}
-                className="flex flex-col items-center gap-3 pt-6"
+                className="flex justify-center pt-8"
               >
                 <Link
                   href="/search"
