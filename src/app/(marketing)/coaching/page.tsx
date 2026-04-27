@@ -217,7 +217,13 @@ export default function CoachingPage() {
           description:
             "Personalised online cycling coaching across five pillars: training, nutrition, strength, recovery, and community. Built on 1,400+ expert podcast conversations.",
           serviceType: "Online Cycling Coaching",
-          provider: { "@id": ENTITY_IDS.person },
+          // The service is offered by the Roadman Cycling organisation;
+          // the head coach (Anthony) is the named provider of the Course
+          // schema below. Splitting org/coach by relationship lets Google
+          // resolve the brand entity for SERP and the human expert for
+          // E-E-A-T separately.
+          provider: { "@id": ENTITY_IDS.organization },
+          brand: { "@id": ENTITY_IDS.organization },
           areaServed: [
             { "@type": "Country", name: "Ireland" },
             { "@type": "Country", name: "United Kingdom" },
@@ -230,6 +236,8 @@ export default function CoachingPage() {
             priceCurrency: "USD",
             description:
               "1:1 personalised coaching across training, nutrition, strength, recovery, and community",
+            availability: "https://schema.org/InStock",
+            url: "https://roadmancycling.com/apply",
           },
           // Testimonials render on the page but are NOT marked up as
           // schema.org/Review — Google requires reviewRating on every

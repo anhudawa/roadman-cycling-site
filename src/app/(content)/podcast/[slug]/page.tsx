@@ -137,12 +137,32 @@ export default async function EpisodePage({
           partOfSeries: { "@id": ENTITY_IDS.podcast },
           author: { "@id": ENTITY_IDS.person },
           publisher: { "@id": ENTITY_IDS.organization },
-          associatedMedia: episode.spotifyId
+          // AudioObject is the schema.org canonical for podcast audio —
+          // tells crawlers this is the playable episode payload, not just
+          // a generic media reference. Falls through when neither Spotify
+          // nor YouTube IDs are present (rare, legacy episodes only).
+          ...(episode.spotifyId || episode.youtubeId
             ? {
-                "@type": "MediaObject",
-                contentUrl: `https://open.spotify.com/episode/${episode.spotifyId}`,
+                associatedMedia: {
+                  "@type": "AudioObject",
+                  ...(episode.spotifyId && {
+                    contentUrl: `https://open.spotify.com/episode/${episode.spotifyId}`,
+                    embedUrl: `https://open.spotify.com/embed/episode/${episode.spotifyId}`,
+                  }),
+                  ...(!episode.spotifyId && episode.youtubeId && {
+                    contentUrl: `https://www.youtube.com/watch?v=${episode.youtubeId}`,
+                  }),
+                  encodingFormat: "audio/mpeg",
+                  duration: (() => {
+                    const parts = episode.duration.split(":").map(Number);
+                    if (parts.length === 3) return `PT${parts[0]}H${parts[1]}M${parts[2]}S`;
+                    if (parts.length === 2) return `PT${parts[0]}M${parts[1]}S`;
+                    return `PT${parts[0]}M`;
+                  })(),
+                  uploadDate: episode.publishDate,
+                },
               }
-            : undefined,
+            : {}),
           ...(episode.guest && {
             actor: {
               "@type": "Person",

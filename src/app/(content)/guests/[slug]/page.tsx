@@ -97,6 +97,42 @@ export default async function GuestPage({
               ...(override.worksFor.url && { url: override.worksFor.url }),
             },
           }),
+          // hasOccupation is richer than jobTitle — it carries the credential
+          // string plus the inferred occupational category and the cycling/
+          // endurance pillars this guest is known for, so AI assistants can
+          // ground "what does X do?" queries with the same answer that
+          // appears on the visible page.
+          ...(guest.credential && {
+            hasOccupation: {
+              "@type": "Occupation",
+              name: guest.credential,
+              occupationalCategory: "Sports / Endurance Performance",
+              skills: guest.pillars.map((p) =>
+                p === "coaching"
+                  ? "cycling coaching"
+                  : p === "nutrition"
+                    ? "cycling nutrition"
+                    : p === "recovery"
+                      ? "cycling recovery"
+                      : p === "strength"
+                        ? "strength training for cyclists"
+                        : p === "community"
+                          ? "cycling culture"
+                          : p
+              ),
+            },
+          }),
+          // memberOf mirrors worksFor for guests with a verified team /
+          // university affiliation — gives Google a redundant Organization
+          // reference under the relationship Schema actually documents for
+          // sports professionals.
+          ...(override?.worksFor && {
+            memberOf: {
+              "@type": override.worksFor.type,
+              name: override.worksFor.name,
+              ...(override.worksFor.url && { url: override.worksFor.url }),
+            },
+          }),
           knowsAbout: guest.pillars.map((p) =>
             p === "coaching"
               ? "cycling coaching"
