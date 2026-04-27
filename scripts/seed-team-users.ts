@@ -1,6 +1,6 @@
 #!/usr/bin/env tsx
 /**
- * Seed / upsert team_users with SHA-256 password hashes.
+ * Seed / upsert team_users with bcrypt password hashes.
  *
  * Usage:
  *   POSTGRES_URL=... \
@@ -16,7 +16,7 @@
 import { db } from "../src/lib/db/index";
 import { teamUsers } from "../src/lib/db/schema";
 import { sql } from "drizzle-orm";
-import { hashPassword } from "../src/lib/admin/password";
+import { hashPasswordForStorage } from "../src/lib/admin/password";
 
 interface SeedUser {
   slug: string;
@@ -55,7 +55,7 @@ async function main(): Promise<void> {
       results.push({ slug: u.slug, email: u.email, status: "skipped", reason: `${u.envVar} not set` });
       continue;
     }
-    const passwordHash = hashPassword(password);
+    const passwordHash = await hashPasswordForStorage(password);
 
     try {
       const inserted = await db

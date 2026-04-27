@@ -1,6 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
-import { cookies } from "next/headers";
-import { COOKIE_NAME } from "@/lib/admin/auth";
+import { getCurrentUser } from "@/lib/admin/auth";
 import type { ABTest, ABVariant, ABElementType } from "@/lib/ab/types";
 
 // ── Database helpers (graceful fallback) ─────────────────
@@ -100,15 +99,18 @@ async function deleteExperiment(id: number): Promise<boolean> {
 
 // ── Auth helper ──────────────────────────────────────────
 
+/**
+ * Authorize either an automated cron caller (Bearer CRON_SECRET) or a real
+ * admin session. The cookie is verified — presence alone is not enough.
+ */
 async function isAuthorized(req: NextRequest): Promise<boolean> {
   const cronSecret = process.env.CRON_SECRET;
   if (cronSecret) {
     const authHeader = req.headers.get("authorization");
     if (authHeader === `Bearer ${cronSecret}`) return true;
   }
-  const cookieStore = await cookies();
-  const session = cookieStore.get(COOKIE_NAME)?.value;
-  return !!session;
+  const user = await getCurrentUser();
+  return user !== null;
 }
 
 // ── Route handlers ───────────────────────────────────────

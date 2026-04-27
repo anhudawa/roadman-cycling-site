@@ -6,6 +6,7 @@ import {
   exchangeCodeForTokens,
   fetchUserInfo,
   isWhitelisted,
+  sanitizeNext,
   STATE_COOKIE,
   verifyState,
   CALENDAR_SCOPE_EMAIL,
@@ -102,7 +103,10 @@ export async function GET(req: NextRequest) {
     // He's linked but we have no refresh token on file at all — keep him on
     // his `next` destination. Not fatal: bookings just won't populate.
   }
-  const res = NextResponse.redirect(new URL(landing, req.url));
+  // Defense-in-depth: even though `landing` came out of a signed state token,
+  // re-clamp it to /admin-only paths before constructing the redirect URL.
+  const safeLanding = sanitizeNext(landing);
+  const res = NextResponse.redirect(new URL(safeLanding, req.url));
   res.cookies.delete(STATE_COOKIE);
   return res;
 }

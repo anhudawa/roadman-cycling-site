@@ -314,25 +314,43 @@ export async function POST(request: Request) {
   }
 
   // --- Auth ---
-  if (SKOOL_WEBHOOK_SECRET) {
-    const authHeader = request.headers.get("authorization");
-    const headerToken =
-      authHeader?.replace("Bearer ", "") ||
-      request.headers.get("x-webhook-secret") ||
-      url.searchParams.get("secret");
-    if (headerToken !== SKOOL_WEBHOOK_SECRET) {
-      await logEvent({
-        eventType: "unauthorized",
-        source: "unknown",
-        email: null,
-        name: null,
-        persona: null,
-        rawPayload: payload,
-        status: "error",
-        errorMessage: "Invalid or missing secret",
-      });
-      return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
-    }
+  // Fail closed: if SKOOL_WEBHOOK_SECRET is missing, treat as misconfigured
+  // and reject everything. The previous behaviour silently let unauthenticated
+  // POSTs through whenever the env var was unset.
+  if (!SKOOL_WEBHOOK_SECRET) {
+    await logEvent({
+      eventType: "misconfigured",
+      source: "unknown",
+      email: null,
+      name: null,
+      persona: null,
+      rawPayload: payload,
+      status: "error",
+      errorMessage: "SKOOL_WEBHOOK_SECRET not configured",
+    });
+    return NextResponse.json(
+      { error: "Webhook not configured" },
+      { status: 500 }
+    );
+  }
+
+  const authHeader = request.headers.get("authorization");
+  const headerToken =
+    authHeader?.replace("Bearer ", "") ||
+    request.headers.get("x-webhook-secret") ||
+    url.searchParams.get("secret");
+  if (headerToken !== SKOOL_WEBHOOK_SECRET) {
+    await logEvent({
+      eventType: "unauthorized",
+      source: "unknown",
+      email: null,
+      name: null,
+      persona: null,
+      rawPayload: payload,
+      status: "error",
+      errorMessage: "Invalid or missing secret",
+    });
+    return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
   }
 
   const normalised = normalisePayload(payload);

@@ -1,13 +1,11 @@
 import { NextRequest, NextResponse } from "next/server";
-import { cookies } from "next/headers";
 import { generateVariants } from "@/lib/ab/variant-generator";
-import { COOKIE_NAME } from "@/lib/admin/auth";
+import { getCurrentUser } from "@/lib/admin/auth";
 
 export async function POST(req: NextRequest) {
-  // Auth check
-  const cookieStore = await cookies();
-  const session = cookieStore.get(COOKIE_NAME)?.value;
-  if (!session) {
+  // Auth check — verify the session cookie, don't trust mere presence.
+  const user = await getCurrentUser();
+  if (!user) {
     return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
   }
 

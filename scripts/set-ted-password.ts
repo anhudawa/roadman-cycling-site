@@ -1,12 +1,8 @@
-import crypto from "node:crypto";
 import { config } from "dotenv";
 import { sql } from "@vercel/postgres";
+import bcrypt from "bcryptjs";
 
 config({ path: ".env.local" });
-
-function hashPassword(pw: string): string {
-  return crypto.createHash("sha256").update(pw).digest("hex");
-}
 
 async function main() {
   const slug = process.argv[2] ?? "ted";
@@ -18,7 +14,7 @@ async function main() {
   }
   if (!process.env.POSTGRES_URL) throw new Error("POSTGRES_URL not set");
 
-  const hashed = hashPassword(newPassword);
+  const hashed = await bcrypt.hash(newPassword, 12);
   // Discover which columns exist — schema has drifted slightly across envs.
   const cols = await sql.query<{ column_name: string }>(
     `SELECT column_name FROM information_schema.columns WHERE table_name = 'team_users'`

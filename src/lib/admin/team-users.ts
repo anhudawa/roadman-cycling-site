@@ -1,7 +1,7 @@
 import { db } from "@/lib/db";
 import { teamUsers } from "@/lib/db/schema";
 import { eq } from "drizzle-orm";
-import { hashPassword, generateRandomPassword } from "@/lib/admin/password";
+import { hashPasswordForStorage, generateRandomPassword } from "@/lib/admin/password";
 
 export type TeamUserRow = typeof teamUsers.$inferSelect;
 
@@ -24,7 +24,7 @@ export async function createTeamUser(
   input: CreateTeamUserInput
 ): Promise<{ user: TeamUserRow; plaintextPassword: string }> {
   const plaintextPassword = generateRandomPassword(20);
-  const passwordHash = hashPassword(plaintextPassword);
+  const passwordHash = await hashPasswordForStorage(plaintextPassword);
   const inserted = await db
     .insert(teamUsers)
     .values({
@@ -60,7 +60,7 @@ export async function rotateTeamUserPassword(
   id: number
 ): Promise<{ user: TeamUserRow; plaintextPassword: string } | null> {
   const plaintextPassword = generateRandomPassword(20);
-  const passwordHash = hashPassword(plaintextPassword);
+  const passwordHash = await hashPasswordForStorage(plaintextPassword);
   const updated = await db
     .update(teamUsers)
     .set({ passwordHash })

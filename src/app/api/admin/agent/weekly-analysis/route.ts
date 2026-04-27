@@ -1,8 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
-import { cookies } from "next/headers";
 import { getStatsForRange } from "@/lib/admin/events-store";
 import { generateWeeklyReport } from "@/lib/agent/weekly-analysis";
-import { COOKIE_NAME } from "@/lib/admin/auth";
+import { getCurrentUser } from "@/lib/admin/auth";
 
 async function isAuthorized(req: NextRequest): Promise<boolean> {
   // Check CRON_SECRET header first (for automated calls)
@@ -12,10 +11,10 @@ async function isAuthorized(req: NextRequest): Promise<boolean> {
     if (authHeader === `Bearer ${cronSecret}`) return true;
   }
 
-  // Fall back to admin session cookie
-  const cookieStore = await cookies();
-  const sessionCookie = cookieStore.get(COOKIE_NAME)?.value;
-  return !!sessionCookie;
+  // Otherwise require a verified admin session — presence-only checks let
+  // any non-empty cookie value through, which is the bug this replaced.
+  const user = await getCurrentUser();
+  return user !== null;
 }
 
 export async function GET(req: NextRequest) {
