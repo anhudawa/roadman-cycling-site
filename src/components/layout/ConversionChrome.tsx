@@ -49,14 +49,6 @@ const MobileStickyApply = dynamic(
   { ssr: false },
 );
 
-const AddToHomeScreenPrompt = dynamic(
-  () =>
-    import("@/components/pwa/AddToHomeScreenPrompt").then(
-      (mod) => mod.AddToHomeScreenPrompt,
-    ),
-  { ssr: false },
-);
-
 const LazyExitIntent = dynamic(
   () =>
     import("@/components/features/conversion/LazyExitIntent").then(
@@ -73,7 +65,6 @@ export function ConversionChrome() {
       <SmoothCursorWrapper />
       <CohortBanner />
       <MobileStickyApply />
-      <AddToHomeScreenPrompt />
       <LazyExitIntent />
     </>
   );
