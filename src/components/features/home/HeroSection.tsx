@@ -1,7 +1,6 @@
 "use client";
 
 import { useRef, useState } from "react";
-import Image from "next/image";
 import Link from "next/link";
 import {
   motion,
@@ -11,28 +10,28 @@ import {
   useMotionValueEvent,
 } from "framer-motion";
 import { Button } from "@/components/ui";
+import { GlitchHero } from "./GlitchHero";
 import type { EpisodeMeta } from "@/lib/podcast";
 
 interface HeroSectionProps {
   latestEpisode: EpisodeMeta | null;
 }
 
-const HERO_MASK =
-  "linear-gradient(to bottom, #000 0%, #000 78%, transparent 100%)";
-
 /**
  * Homepage hero — Direction 3 "Hero Crop", unified across all viewports.
  *
- * Mobile (`<md`):    single column. Cycling image first (visual anchor),
- *                    then eyebrow, 4-line headline, coral hairline, CTAs,
- *                    proof line.
+ * Mobile (`<md`):    single column. Glitch portrait first (visitor sees
+ *                    the brand face on first paint), then eyebrow,
+ *                    4-line headline, coral hairline, CTAs, proof line.
  * Tablet (`md`):     single column (same stack as mobile, larger type).
- * Desktop (`lg+`):   2-column split — text in cols 1-5, image in cols
- *                    7-12.
+ * Desktop (`lg+`):   2-column split — text in cols 1-5, portrait in
+ *                    cols 7-12. `order-*` classes flip the DOM-first
+ *                    portrait to the right rail without re-ordering
+ *                    source.
  *
- * Image renders inside a square frame hard-capped at 640px (72vmin <md,
- * 88vmin md+). A soft bottom mask fade dissolves it into the section's
- * deep-purple background.
+ * Portrait is hard-capped at 640px (via GlitchHero.module.css), safely
+ * below the 801×801 source so no upscaling; a soft bottom mask fade
+ * dissolves it into the section's deep-purple bg.
  *
  * Headline copy is verbatim "CYCLING IS HARD, OUR COACHING WILL HELP."
  * broken across 4 lines as CYCLING / IS HARD, / OUR COACHING / WILL
@@ -81,12 +80,15 @@ export function HeroSection({ latestEpisode }: HeroSectionProps) {
 
       <div className="relative z-10 pt-[calc(5rem+var(--cohort-banner-height,0px))] md:pt-[calc(6rem+var(--cohort-banner-height,0px))] pb-16 md:pb-24">
         <div className="mx-auto max-w-[1200px] px-5 md:px-8 grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-8 items-start">
-          {/* ── HERO IMAGE ──────────────────────────────────
-              DOM-first so it shows first on mobile (visual anchor).
-              On lg+ it's placed in cols 7-12 and pinned to row 1 so
-              it sits on the right rail with the text on the left.
-              LCP element on mobile and a major LCP element on desktop —
-              avoid initial opacity:0 (would delay LCP until JS runs). */}
+          {/* ── GLITCH PORTRAIT ──────────────────────────────
+              DOM-first so it shows first on mobile (the brand face
+              is the visual anchor). On lg+ it's placed in cols 7-12
+              and explicitly pinned to row 1 so it sits on the right
+              rail with the text on the left. */}
+          {/* LCP element on mobile (DOM-first) and a major LCP element on desktop.
+              Avoid initial opacity:0 — framer-motion would render the wrapper
+              invisible during SSR/hydration and delay LCP until JS runs. We keep
+              the gentle scale-in but start visible. */}
           <motion.div
             className="lg:col-start-7 lg:col-span-6 lg:row-start-1 w-full flex justify-center lg:justify-end"
             style={{ y: portraitY }}
@@ -94,23 +96,7 @@ export function HeroSection({ latestEpisode }: HeroSectionProps) {
             animate={{ scale: 1 }}
             transition={{ duration: 0.95, ease: [0.16, 1, 0.3, 1] }}
           >
-            <div
-              className="relative w-[min(72vmin,520px)] md:w-[min(88vmin,640px)] aspect-square overflow-hidden rounded-lg bg-deep-purple"
-              style={{
-                maskImage: HERO_MASK,
-                WebkitMaskImage: HERO_MASK,
-              }}
-            >
-              <Image
-                src="/images/cycling/gravel-road-climb.jpg"
-                alt="Two cyclists climbing a winding gravel road"
-                fill
-                preload
-                sizes="(max-width: 768px) 80vw, 640px"
-                className="object-cover"
-                style={{ objectPosition: "center 40%" }}
-              />
-            </div>
+            <GlitchHero />
           </motion.div>
 
           {/* ── TEXT RAIL: eyebrow / headline / hairline / CTAs / proof ── */}
