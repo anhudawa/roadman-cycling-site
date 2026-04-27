@@ -184,7 +184,7 @@ export default async function ComparePage({
         related={related.length > 0 ? related : undefined}
         source={`compare-${slug}`}
       >
-        {(comp.intro || comp.body || comp.faqs || comp.disclosure) && (
+        {(comp.intro || comp.body || comp.faqs) && (
           <>
             {comp.intro && comp.intro.length > 0 && (
               <section aria-label="Context" className="mb-8">
@@ -211,19 +211,6 @@ export default async function ComparePage({
                   </div>
                 ))}
               </section>
-            )}
-            {comp.disclosure && (
-              <aside
-                aria-label="Disclosure"
-                className="mt-12 rounded-lg border border-coral/30 bg-coral/5 p-5"
-              >
-                <p className="font-heading text-coral text-xs tracking-[0.3em] mb-2">
-                  DISCLOSURE
-                </p>
-                <p className="text-foreground-muted text-sm leading-relaxed">
-                  {renderInline(comp.disclosure)}
-                </p>
-              </aside>
             )}
           </>
         )}
