@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect, useCallback } from "react";
+import { useState, useEffect, useCallback, useRef } from "react";
 import { usePathname } from "next/navigation";
 import Link from "next/link";
 
@@ -113,10 +113,41 @@ export function CookieConsent() {
     setTimeout(() => setVisible(false), 300);
   }, [analytics, marketing]);
 
+  // Publish the visible banner height as a CSS variable so layouts that
+  // are viewport-locked (e.g. /ask, where main is `height: 100svh` with
+  // overflow-hidden) can subtract it and avoid covering their own
+  // sticky-bottom UI like the chat input form. Mirrors the existing
+  // --cohort-banner-height pattern. Uses ResizeObserver because the
+  // banner height varies between collapsed (~110px) and expanded
+  // preferences (~280px) and we want both states to reserve correctly.
+  const bannerRef = useRef<HTMLDivElement | null>(null);
+  useEffect(() => {
+    const root = document.documentElement;
+    const reset = () => root.style.setProperty("--cookie-banner-height", "0px");
+    if (!visible || !animateIn) {
+      reset();
+      return reset;
+    }
+    const el = bannerRef.current;
+    if (!el) return reset;
+    const sync = () => {
+      const h = Math.ceil(el.getBoundingClientRect().height);
+      root.style.setProperty("--cookie-banner-height", `${h}px`);
+    };
+    sync();
+    const ro = new ResizeObserver(sync);
+    ro.observe(el);
+    return () => {
+      ro.disconnect();
+      reset();
+    };
+  }, [visible, animateIn, showPrefs]);
+
   if (!visible) return null;
 
   return (
     <div
+      ref={bannerRef}
       className={`
         fixed bottom-0 left-0 right-0 z-50
         bg-[#2E2E30] border-t border-white/10

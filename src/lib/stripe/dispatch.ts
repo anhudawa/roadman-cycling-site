@@ -34,7 +34,10 @@ import {
   PAID_REPORT_EVENTS,
   recordPaidReportServerEvent,
 } from "@/lib/analytics/paid-report-events";
-import { sendStripeSaleNotification } from "./notifications";
+import {
+  notifyPaidReportSale,
+  sendStripeSaleNotification,
+} from "./notifications";
 
 export interface DispatchOptions {
   /** Pre-built Stripe SDK client. Required for events that need follow-up
@@ -58,7 +61,6 @@ export async function dispatchStripeEvent(
         await handleCheckoutCompleted(
           event.data.object as Stripe.Checkout.Session,
           event.id,
-          opts,
         );
         return;
 
@@ -109,7 +111,6 @@ export async function dispatchStripeEvent(
 async function handleCheckoutCompleted(
   session: Stripe.Checkout.Session,
   eventId: string,
-  opts: DispatchOptions,
 ): Promise<void> {
   const metadata = session.metadata ?? {};
 
@@ -172,6 +173,20 @@ async function handlePaidReportCheckoutCompleted(
   }
 
   await markPaymentConfirmed(paidReportId);
+  await notifyPaidReportSale({
+    email,
+    productSlug:
+      typeof metadata.product_slug === "string"
+        ? metadata.product_slug
+        : "paid_report",
+    orderId,
+    paidReportId,
+    amountCents: session.amount_total,
+    predictionSlug:
+      typeof metadata.prediction_slug === "string"
+        ? metadata.prediction_slug
+        : null,
+  });
 
   await logCrmSync({
     email,
