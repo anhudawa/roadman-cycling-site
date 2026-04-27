@@ -61,13 +61,30 @@ async function loadSeedContext(
   };
 }
 
+/**
+ * Cap the pre-filled question length so a malformed link can't paste a
+ * runaway string into the textarea. The textarea itself maxes at 2000;
+ * 600 keeps the AEO handoff prompts well under that and avoids visual
+ * overflow on the seed banner.
+ */
+function sanitiseInitialQuestion(q: string | undefined): string {
+  if (!q) return "";
+  return q.replace(/\s+/g, " ").trim().slice(0, 600);
+}
+
 export default async function AskPage({
   searchParams,
 }: {
-  searchParams: Promise<{ seed_tool?: string; seed_result?: string }>;
+  searchParams: Promise<{
+    seed_tool?: string;
+    seed_result?: string;
+    /** Pre-fill the chat input. Set by AskRoadmanCTA on content templates. */
+    q?: string;
+  }>;
 }) {
-  const { seed_tool: seedTool, seed_result: seedResult } = await searchParams;
+  const { seed_tool: seedTool, seed_result: seedResult, q } = await searchParams;
   const seed = await loadSeedContext(seedTool, seedResult);
+  const initialQuestion = sanitiseInitialQuestion(q);
   return (
     <>
       <JsonLd
@@ -150,6 +167,7 @@ export default async function AskPage({
                     }
                   : null
               }
+              initialQuestion={initialQuestion}
             />
           </div>
         </div>

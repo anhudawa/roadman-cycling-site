@@ -211,6 +211,17 @@ export function CohortApplicationForm() {
         cohortState.phase,
         cohortState.targetCohort,
       );
+      // Internal funnel event (DEV-DATA-01): terminal step of the
+      // content -> coaching funnel on the measurement dashboard.
+      try {
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        const track = (window as any).__roadmanTrack;
+        if (typeof track === "function") {
+          track("coaching_apply_submitted", { source: "cohort-apply" });
+        }
+      } catch {
+        // analytics never breaks UX
+      }
       // Success — wipe the draft so next visit starts fresh
       clearDraft();
       setStep("submitted");

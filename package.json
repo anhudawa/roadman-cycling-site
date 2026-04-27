@@ -23,6 +23,7 @@
     "migrate:diagnostic": "tsx scripts/migrate-diagnostic.ts",
     "seed:beehiiv:plateau": "tsx scripts/seed-beehiiv-plateau.ts",
     "seed:beehiiv:plateau:dry": "tsx scripts/seed-beehiiv-plateau.ts --dry-run",
+    "seed:brand-prompts": "tsx scripts/seed-brand-prompts.ts",
     "smoke:plateau": "tsx scripts/plateau-smoke.ts",
     "enrich:transcripts": "tsx scripts/enrich-transcripts.ts",
     "repurpose:episode": "tsx scripts/repurpose-episode.ts",

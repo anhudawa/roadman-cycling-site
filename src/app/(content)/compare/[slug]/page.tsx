@@ -1,10 +1,15 @@
 import type { Metadata } from "next";
-import Link from "next/link";
 import { notFound } from "next/navigation";
 import { Header, Footer, Section, Container } from "@/components/layout";
-import { Card, ScrollReveal, Badge, Button } from "@/components/ui";
 import { JsonLd } from "@/components/seo/JsonLd";
+import { SourceMethodology } from "@/components/features/aeo/SourceMethodology";
+import { AskRoadmanCTA } from "@/components/features/aeo/AskRoadmanCTA";
 import { getComparisonBySlug, getAllComparisonSlugs } from "@/lib/comparisons";
+import { queryContentGraph } from "@/lib/content-graph";
+import {
+  ComparisonTemplate,
+  type RelatedLink,
+} from "@/components/templates";
 
 export function generateStaticParams() {
   return getAllComparisonSlugs().map((slug) => ({ slug }));
@@ -37,6 +42,44 @@ export default async function ComparePage({
   const comp = getComparisonBySlug(slug);
   if (!comp) notFound();
 
+  // Pull pillar-matched episodes + articles for the methodology block so
+  // every comparison page exposes its evidence trail without bespoke
+  // per-page wiring. Limited to 2 of each to keep the footer scannable.
+  const graph = queryContentGraph({ pillar: comp.pillar, limit: 2 });
+  const sourceEpisodes = graph.episodes.slice(0, 2).map((ep) => ({
+    title: ep.title,
+    href: `/podcast/${ep.slug}`,
+  }));
+  const sourceArticles = graph.articles.slice(0, 2).map((a) => ({
+    title: a.title,
+    href: `/blog/${a.slug}`,
+  }));
+
+  // Combine the legacy `relatedArticle`/`relatedTool` plus the graph-
+  // derived articles into a single related rail rendered by the
+  // template. Episodes go through the SourceMethodology block below so
+  // the visual hierarchy stays "decision → evidence → CTA".
+  const related: RelatedLink[] = [];
+  if (comp.relatedArticle) {
+    related.push({
+      label: "Deep dive article",
+      href: comp.relatedArticle,
+      description: "The long-form piece that backs this comparison.",
+    });
+  }
+  if (comp.relatedTool) {
+    related.push({
+      label: "Free tool / assessment",
+      href: comp.relatedTool,
+      description: "Apply this comparison to your own numbers.",
+    });
+  }
+  for (const a of sourceArticles) {
+    if (!related.some((r) => r.href === a.href)) {
+      related.push({ label: a.title, href: a.href });
+    }
+  }
+
   return (
     <>
       <JsonLd
@@ -48,7 +91,7 @@ export default async function ComparePage({
           url: `https://roadmancycling.com/compare/${slug}`,
           speakable: {
             "@type": "SpeakableSpecification",
-            cssSelector: ["h1", ".verdict-block"],
+            cssSelector: ["h1", ".short-answer", ".verdict-block"],
           },
         }}
       />
@@ -82,131 +125,42 @@ export default async function ComparePage({
 
       <Header />
 
-      <main id="main-content">
-        {/* Hero + Verdict */}
-        <Section background="deep-purple" grain className="pt-32 pb-14">
+      <ComparisonTemplate
+        optionA={comp.optionA}
+        optionB={comp.optionB}
+        pillar={comp.pillar}
+        verdict={comp.verdict}
+        rows={comp.features}
+        bestForA={comp.bestForA}
+        bestForB={comp.bestForB}
+        related={related.length > 0 ? related : undefined}
+        source={`compare-${slug}`}
+      />
+
+      {/* Source methodology — pillar-matched episodes that informed the
+          verdict, surfaced under the template so the trail from claim to
+          source is one scroll away. AskRoadmanCTA gives high-intent
+          readers a path into the assistant for follow-up questions. */}
+      {(sourceEpisodes.length > 0 || sourceArticles.length > 0) && (
+        <Section background="charcoal" className="!py-12 border-t border-white/5">
           <Container width="narrow">
-            <ScrollReveal direction="up" eager>
-              <Badge pillar={comp.pillar} size="md" />
-              <h1
-                className="font-heading text-off-white mt-4 mb-6"
-                style={{ fontSize: "var(--text-hero)" }}
-              >
-                {comp.optionA.toUpperCase()}
-                <br />
-                <span className="text-coral">VS {comp.optionB.toUpperCase()}</span>
-              </h1>
-              <div className="verdict-block rounded-xl border border-coral/30 bg-coral/10 p-5 md:p-6">
-                <p className="font-heading text-coral text-xs tracking-widest mb-2">
-                  QUICK VERDICT
-                </p>
-                <p className="text-off-white text-base leading-relaxed">
-                  {comp.verdict}
-                </p>
-              </div>
-            </ScrollReveal>
+            <SourceMethodology
+              methodology={`This comparison is built from ${comp.pillar} content on the Roadman Cycling Podcast and our written guides. The verdict mirrors the consensus across these conversations — adjusted for serious amateur and masters cyclists rather than World Tour riders.`}
+              episodes={sourceEpisodes}
+              articles={sourceArticles}
+            />
           </Container>
         </Section>
+      )}
 
-        {/* Comparison Table */}
-        <Section background="charcoal">
-          <Container width="narrow">
-            <ScrollReveal direction="up" className="mb-8 text-center">
-              <h2 className="font-heading text-off-white" style={{ fontSize: "var(--text-section)" }}>
-                SIDE BY SIDE
-              </h2>
-            </ScrollReveal>
-
-            <div className="overflow-x-auto">
-              <table className="w-full text-sm">
-                <thead>
-                  <tr className="border-b border-white/10">
-                    <th className="text-left py-3 px-4 text-foreground-subtle font-heading text-xs tracking-widest">FEATURE</th>
-                    <th className="text-left py-3 px-4 text-coral font-heading text-xs tracking-widest">{comp.optionA.toUpperCase()}</th>
-                    <th className="text-left py-3 px-4 text-foreground-subtle font-heading text-xs tracking-widest">{comp.optionB.toUpperCase()}</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {comp.features.map((f) => (
-                    <tr key={f.feature} className="border-b border-white/5">
-                      <td className="py-3 px-4 text-off-white font-medium">{f.feature}</td>
-                      <td className="py-3 px-4 text-foreground-muted">{f.optionA}</td>
-                      <td className="py-3 px-4 text-foreground-muted">{f.optionB}</td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
-            </div>
-          </Container>
-        </Section>
-
-        {/* Best For */}
-        <Section background="deep-purple" grain>
-          <Container width="narrow">
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              <ScrollReveal direction="up">
-                <Card className="p-6 h-full" hoverable={false}>
-                  <p className="font-heading text-coral text-xs tracking-widest mb-3">
-                    CHOOSE {comp.optionA.toUpperCase()} IF
-                  </p>
-                  <ul className="space-y-2">
-                    {comp.bestForA.map((item) => (
-                      <li key={item} className="flex items-start gap-2 text-foreground-muted text-sm">
-                        <span className="text-coral mt-0.5 shrink-0">&#10003;</span>
-                        <span>{item}</span>
-                      </li>
-                    ))}
-                  </ul>
-                </Card>
-              </ScrollReveal>
-              <ScrollReveal direction="up" delay={0.1}>
-                <Card className="p-6 h-full" hoverable={false}>
-                  <p className="font-heading text-foreground-subtle text-xs tracking-widest mb-3">
-                    CHOOSE {comp.optionB.toUpperCase()} IF
-                  </p>
-                  <ul className="space-y-2">
-                    {comp.bestForB.map((item) => (
-                      <li key={item} className="flex items-start gap-2 text-foreground-muted text-sm">
-                        <span className="text-foreground-subtle mt-0.5 shrink-0">&#10003;</span>
-                        <span>{item}</span>
-                      </li>
-                    ))}
-                  </ul>
-                </Card>
-              </ScrollReveal>
-            </div>
-          </Container>
-        </Section>
-
-        {/* Related + CTA */}
-        <Section background="charcoal" className="!py-14">
-          <Container width="narrow" className="text-center">
-            <ScrollReveal direction="up">
-              <div className="flex flex-wrap gap-3 justify-center mb-8">
-                {comp.relatedArticle && (
-                  <Link
-                    href={comp.relatedArticle}
-                    className="inline-flex items-center gap-1 rounded-lg border border-white/15 hover:border-coral/40 bg-white/[0.04] hover:bg-white/[0.07] px-4 py-2 text-sm font-heading text-off-white tracking-wider transition-all"
-                  >
-                    Deep Dive Article →
-                  </Link>
-                )}
-                {comp.relatedTool && (
-                  <Link
-                    href={comp.relatedTool}
-                    className="inline-flex items-center gap-1 rounded-lg border border-white/15 hover:border-coral/40 bg-white/[0.04] hover:bg-white/[0.07] px-4 py-2 text-sm font-heading text-off-white tracking-wider transition-all"
-                  >
-                    Free Assessment →
-                  </Link>
-                )}
-              </div>
-              <Button href="/apply" size="lg" dataTrack={`compare_${slug}_apply`}>
-                Apply for Coaching
-              </Button>
-            </ScrollReveal>
-          </Container>
-        </Section>
-      </main>
+      <Section background="deep-purple" grain className="!py-12">
+        <Container width="narrow">
+          <AskRoadmanCTA
+            topic={`${comp.optionA} vs ${comp.optionB}`}
+            source={`compare-${slug}`}
+          />
+        </Container>
+      </Section>
 
       <Footer />
     </>

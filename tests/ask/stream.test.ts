@@ -2,10 +2,16 @@ import { describe, it, expect } from "vitest";
 import { sseFormat, createSseStream } from "@/lib/ask/stream";
 
 describe("ask/stream", () => {
-  it("sseFormat encodes a string data event", () => {
+  it("sseFormat JSON-encodes string data so newlines and leading spaces survive", () => {
     const bytes = sseFormat({ type: "delta", data: "hello" });
     const text = new TextDecoder().decode(bytes);
-    expect(text).toBe("event: delta\ndata: hello\n\n");
+    expect(text).toBe(`event: delta\ndata: "hello"\n\n`);
+
+    // The whole point of JSON-encoding strings: payloads with embedded
+    // newlines or leading spaces round-trip cleanly.
+    const tricky = sseFormat({ type: "delta", data: " a\n\nb" });
+    const trickyText = new TextDecoder().decode(tricky);
+    expect(trickyText).toBe(`event: delta\ndata: " a\\n\\nb"\n\n`);
   });
 
   it("sseFormat splits multi-line string data into multiple data: lines", () => {
@@ -49,7 +55,7 @@ describe("ask/stream", () => {
     const text = await response.text();
     expect(text).toContain("event: meta");
     expect(text).toContain("\"sessionId\":\"abc\"");
-    expect(text).toContain("event: delta\ndata: hi\n\n");
+    expect(text).toContain(`event: delta\ndata: "hi"\n\n`);
   });
 
   it("enqueue after close does not throw", async () => {
