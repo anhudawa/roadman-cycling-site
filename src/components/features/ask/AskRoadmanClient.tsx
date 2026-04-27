@@ -170,7 +170,13 @@ export function AskRoadmanClient({
 
       <form
         onSubmit={onSubmit}
-        className="border-t border-white/10 bg-charcoal/95 backdrop-blur px-4 md:px-6 py-3"
+        className="border-t border-white/10 bg-charcoal/95 backdrop-blur px-4 md:px-6 pt-3"
+        style={{
+          // Honour iOS home-indicator safe area so the helper text and
+          // tap targets don't sit under the gesture zone. max() keeps the
+          // 12px floor on every other platform.
+          paddingBottom: "max(0.75rem, env(safe-area-inset-bottom))",
+        }}
       >
         <div className="flex items-end gap-2">
           <textarea
