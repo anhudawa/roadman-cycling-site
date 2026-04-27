@@ -2,8 +2,15 @@ import { NextResponse } from "next/server";
 import Stripe from "stripe";
 import { clampString, LIMITS, normaliseEmail } from "@/lib/validation";
 import { getProductBySlug } from "@/lib/paid-reports/products";
-import { createOrder } from "@/lib/paid-reports/orders";
-import { createPaidReport } from "@/lib/paid-reports/reports";
+import {
+  createOrder,
+  findReusablePendingOrder,
+  setOrderCheckoutSession,
+} from "@/lib/paid-reports/orders";
+import {
+  createPaidReport,
+  getPaidReportByOrderId,
+} from "@/lib/paid-reports/reports";
 import { upsertByEmail as upsertRiderProfile } from "@/lib/rider-profile/store";
 import { getToolResultBySlug } from "@/lib/tool-results/store";
 import { logCrmSync } from "@/lib/paid-reports/crm-sync-log";
@@ -94,26 +101,42 @@ export async function POST(request: Request) {
     }
     const stripe = new Stripe(STRIPE_SECRET_KEY);
 
-    // Pending order first so we have an id to put in Stripe metadata.
-    const order = await createOrder({
-      riderProfileId: profile.id,
+    // Idempotency: if a still-pending order matches email + product +
+    // toolResult inside a 10-minute window, reuse it. The paid_report row
+    // is keyed off the order so we re-use it too. Prevents duplicate
+    // orders when a rider clicks "Checkout" twice in quick succession.
+    const reusable = await findReusablePendingOrder({
       email,
       productSlug: product.slug,
       toolResultId: toolResult?.id ?? null,
-      amountCents: product.priceCents,
-      currency: product.currency,
-      stripeCheckoutSessionId: null,
-      utm: body.utm ?? null,
     });
 
-    // Paired paid_report row in pending_payment — webhook flips it forward.
-    const paidReport = await createPaidReport({
-      orderId: order.id,
-      riderProfileId: profile.id,
-      email,
-      productSlug: product.slug,
-      toolResultId: toolResult?.id ?? null,
-    });
+    let order = reusable;
+    if (!order) {
+      order = await createOrder({
+        riderProfileId: profile.id,
+        email,
+        productSlug: product.slug,
+        toolResultId: toolResult?.id ?? null,
+        amountCents: product.priceCents,
+        currency: product.currency,
+        stripeCheckoutSessionId: null,
+        utm: body.utm ?? null,
+      });
+    }
+
+    let paidReport = reusable
+      ? await getPaidReportByOrderId(reusable.id)
+      : null;
+    if (!paidReport) {
+      paidReport = await createPaidReport({
+        orderId: order.id,
+        riderProfileId: profile.id,
+        email,
+        productSlug: product.slug,
+        toolResultId: toolResult?.id ?? null,
+      });
+    }
 
     const baseUrl = new URL(request.url).origin;
     const session = await stripe.checkout.sessions.create({
@@ -167,14 +190,7 @@ export async function POST(request: Request) {
     }
 
     // Backfill the session id on the order so the webhook can look it up.
-    await import("@/lib/db").then(async ({ db }) => {
-      const { orders } = await import("@/lib/db/schema");
-      const { eq } = await import("drizzle-orm");
-      await db
-        .update(orders)
-        .set({ stripeCheckoutSessionId: session.id, updatedAt: new Date() })
-        .where(eq(orders.id, order.id));
-    });
+    await setOrderCheckoutSession(order.id, session.id);
 
     await logCrmSync({
       email,

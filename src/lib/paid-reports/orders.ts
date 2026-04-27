@@ -1,4 +1,4 @@
-import { desc, eq, sql } from "drizzle-orm";
+import { and, desc, eq, gt, isNull, sql } from "drizzle-orm";
 import { db } from "@/lib/db";
 import { orders } from "@/lib/db/schema";
 import { asOrderStatus, type Order, type OrderStatus } from "./types";
@@ -81,6 +81,55 @@ export async function getOrderByCheckoutSessionId(
     .where(eq(orders.stripeCheckoutSessionId, sessionId))
     .limit(1);
   return row ? rowToDomain(row) : null;
+}
+
+export interface FindReusablePendingOrderInput {
+  email: string;
+  productSlug: string;
+  toolResultId: number | null;
+  /** Window in ms — orders younger than this can be reused. */
+  windowMs?: number;
+}
+
+/**
+ * Look for a still-pending order matching email + product + toolResult
+ * within the last `windowMs` (default 10 min). Returned order is safe
+ * to reuse for a fresh Stripe session — the caller backfills the new
+ * session id. Avoids creating duplicate orders when a rider clicks
+ * "Checkout" twice.
+ */
+export async function findReusablePendingOrder(
+  input: FindReusablePendingOrderInput,
+): Promise<Order | null> {
+  const windowMs = input.windowMs ?? 10 * 60 * 1000;
+  const cutoff = new Date(Date.now() - windowMs);
+  const conds = [
+    eq(orders.email, input.email),
+    eq(orders.productSlug, input.productSlug),
+    eq(orders.status, "pending"),
+    gt(orders.createdAt, cutoff),
+    input.toolResultId === null
+      ? isNull(orders.toolResultId)
+      : eq(orders.toolResultId, input.toolResultId),
+  ];
+  const [row] = await db
+    .select()
+    .from(orders)
+    .where(and(...conds))
+    .orderBy(desc(orders.createdAt))
+    .limit(1);
+  return row ? rowToDomain(row) : null;
+}
+
+/** Backfill the Stripe session id on an existing pending order. */
+export async function setOrderCheckoutSession(
+  orderId: number,
+  sessionId: string,
+): Promise<void> {
+  await db
+    .update(orders)
+    .set({ stripeCheckoutSessionId: sessionId, updatedAt: new Date() })
+    .where(eq(orders.id, orderId));
 }
 
 export async function listOrdersByEmail(
