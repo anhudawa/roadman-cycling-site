@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Bebas_Neue, Work_Sans, Space_Grotesk, JetBrains_Mono } from "next/font/google";
 import { SmoothCursorWrapper } from "@/components/ui/SmoothCursorWrapper";
 import { PodcastPlayerShell } from "@/components/features/podcast/PodcastPlayerShell";
@@ -11,6 +11,8 @@ import { ConsentAwarePixel } from "@/components/analytics/ConsentAwarePixel";
 import { WebVitalsReporter } from "@/components/analytics/WebVitalsReporter";
 import { Analytics as VercelAnalytics } from "@vercel/analytics/next";
 import { OrganizationJsonLd } from "@/components/seo/JsonLd";
+import { ServiceWorkerRegister } from "@/components/pwa/ServiceWorkerRegister";
+import { AddToHomeScreenPrompt } from "@/components/pwa/AddToHomeScreenPrompt";
 import { BRAND_STATS } from "@/lib/brand-facts";
 import "./globals.css";
 
@@ -107,6 +109,20 @@ export const metadata: Metadata = {
       "max-snippet": -1,
     },
   },
+  manifest: "/manifest.webmanifest",
+  appleWebApp: {
+    capable: true,
+    title: "Roadman",
+    statusBarStyle: "black-translucent",
+  },
+};
+
+export const viewport: Viewport = {
+  themeColor: "#210140",
+  colorScheme: "dark",
+  width: "device-width",
+  initialScale: 1,
+  viewportFit: "cover",
 };
 
 export default function RootLayout({
@@ -155,12 +171,14 @@ export default function RootLayout({
           {children}
         </PodcastPlayerShell>
         <MobileStickyApply />
+        <AddToHomeScreenPrompt />
         <LazyExitIntent />
         <LazyCookieConsent />
         <Tracker />
         <ConsentAwarePixel />
         <WebVitalsReporter />
         <VercelAnalytics />
+        <ServiceWorkerRegister />
       </body>
     </html>
   );
