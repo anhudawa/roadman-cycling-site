@@ -56,7 +56,7 @@ export class AgentLogger {
 
   summarize(): { episodeCount: number; totalTokens: number; totalCost: number } {
     let totalTokens = 0;
-    let totalCost = 0;
+    const totalCost = 0;
     const episodes = new Set<string>();
 
     for (const entry of this.entries) {

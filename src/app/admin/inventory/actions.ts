@@ -3,6 +3,7 @@
 import { auth } from "@/lib/auth";
 import { isAnthony } from "@/lib/auth-utils";
 import { revalidatePath } from "next/cache";
+import type { SponsorTier } from "@/lib/inventory/types";
 import {
   updateSlot,
   createSlot,
@@ -156,7 +157,7 @@ export async function createSponsorAction(data: {
     brandName: data.brandName,
     contactName: data.contactName,
     contactEmail: data.contactEmail,
-    tier: data.tier as any,
+    tier: data.tier as SponsorTier | null,
     contractStart: null,
     contractEnd: null,
     totalValue: data.totalValue,

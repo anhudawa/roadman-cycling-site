@@ -31,7 +31,7 @@ export default async function SuccessPage({ params }: PageProps) {
               Your Race Report is on the way
             </h1>
             <p className="text-off-white/80 text-lg max-w-xl mx-auto">
-              We're generating your full report now — pacing plan, climb-by-climb
+              We&apos;re generating your full report now — pacing plan, climb-by-climb
               breakdown, fuelling targets, and equipment scenarios. The secure
               link will land in your inbox in under a minute.
             </p>
@@ -91,14 +91,14 @@ export default async function SuccessPage({ params }: PageProps) {
             )}
 
             <div className="mt-8 text-off-white/50 text-xs text-center">
-              Didn't receive your email after 5 minutes? Check spam, then email{" "}
+              Didn&apos;t receive your email after 5 minutes? Check spam, then email{" "}
               <a
                 href="mailto:support@roadmancycling.com"
                 className="text-coral underline"
               >
                 support@roadmancycling.com
               </a>{" "}
-              with your prediction slug — we'll re-send.
+              with your prediction slug — we&apos;ll re-send.
             </div>
           </Container>
         </Section>

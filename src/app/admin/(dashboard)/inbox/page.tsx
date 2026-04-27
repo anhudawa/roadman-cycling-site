@@ -49,7 +49,7 @@ export default async function InboxPage({ searchParams }: PageProps) {
   const view = Array.isArray(viewRaw) ? viewRaw[0] : viewRaw;
   const currentView: "kanban" | "list" = view === "list" ? "list" : "kanban";
 
-  let initialStages: InboxStageMap = {
+  const initialStages: InboxStageMap = {
     new: [],
     reviewing: [],
     awaiting_reply: [],

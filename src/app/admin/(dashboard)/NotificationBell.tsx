@@ -60,6 +60,7 @@ export function NotificationBell() {
   }
 
   useEffect(() => {
+    // eslint-disable-next-line react-hooks/set-state-in-effect -- initial fetch + polling
     fetchCount();
     const id = setInterval(fetchCount, 30_000);
     return () => clearInterval(id);
@@ -67,6 +68,7 @@ export function NotificationBell() {
 
   useEffect(() => {
     if (open) {
+      // eslint-disable-next-line react-hooks/set-state-in-effect -- loading flag for popover open
       setLoading(true);
       fetchAll().finally(() => setLoading(false));
     }

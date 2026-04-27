@@ -23,7 +23,7 @@ function sendVital(metric: Parameters<Parameters<typeof useReportWebVitals>[0]>[
 export function WebVitalsReporter() {
   useReportWebVitals((metric) => {
     if (process.env.NODE_ENV === "development") {
-      // eslint-disable-next-line no-console
+       
       console.log(`[WebVitals] ${metric.name}: ${metric.value.toFixed(1)} (${metric.rating ?? "n/a"})`);
       return;
     }

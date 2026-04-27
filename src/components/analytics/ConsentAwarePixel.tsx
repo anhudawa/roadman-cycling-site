@@ -24,6 +24,7 @@ export function ConsentAwarePixel() {
   useEffect(() => {
     // Check on mount
     if (hasMarketingConsent()) {
+      // eslint-disable-next-line react-hooks/set-state-in-effect -- consent gate evaluated on mount
       setEnabled(true);
     }
 

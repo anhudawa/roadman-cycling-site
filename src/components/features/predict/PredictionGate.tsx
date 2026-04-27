@@ -92,7 +92,7 @@ export function PredictionGate({
             See the climb-by-climb breakdown
           </h2>
           <p className="text-off-white/85 text-base md:text-lg leading-relaxed mb-5">
-            We've shown you the predicted time and the headline insight. The
+            We&apos;ve shown you the predicted time and the headline insight. The
             full breakdown — climbs, scenario deltas, and your shareable card —
             unlocks with your email so we can send it through.
           </p>

@@ -10,6 +10,7 @@
  * Episode, Person, Tool, Event, Offer, Study."
  */
 
+import { type ContentPillar } from "@/types";
 import { getAllPosts, getPostBySlug, type BlogPostMeta } from "./blog";
 import { getAllEpisodes, type EpisodeMeta } from "./podcast";
 import { getAllGuests, type GuestProfile } from "./guests";
@@ -72,7 +73,7 @@ export function queryContentGraph(query: ContentGraphQuery): ContentGraphResult 
   // Guests — by pillar
   const guests = pillar
     ? getAllGuests()
-        .filter((g) => g.pillars.includes(pillar as any))
+        .filter((g) => g.pillars.includes(pillar as ContentPillar))
         .slice(0, 5)
     : [];
 

@@ -66,9 +66,9 @@ export function EmailGate({ firstName, onUnlock, allowSkip = true }: Props) {
         <span className="text-coral">Saturday Spin in your inbox.</span>
       </p>
       <p className="mt-4 max-w-2xl text-off-white/75 text-sm md:text-base leading-relaxed">
-        We'll send you the year's sharpest cycling lessons from the podcast,
+        We&apos;ll send you the year&apos;s sharpest cycling lessons from the podcast,
         no spam — drop your email to unlock the cards. Already on the list?
-        Same email, you'll only ever get one copy.
+        Same email, you&apos;ll only ever get one copy.
       </p>
 
       <form onSubmit={handleSubmit} className="mt-5 flex flex-col sm:flex-row gap-3 max-w-xl">

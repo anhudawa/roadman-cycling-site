@@ -31,6 +31,7 @@ export function CountUp({
   const [value, setValue] = useState(0);
 
   useEffect(() => {
+    // eslint-disable-next-line react-hooks/set-state-in-effect -- animation reset on prop change
     setValue(0);
     const start = performance.now();
     const target = Math.max(0, Math.round(to));

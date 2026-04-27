@@ -53,6 +53,7 @@ export function SmoothCursor() {
     const mediaQuery = window.matchMedia("(pointer: fine)");
     if (!mediaQuery.matches) return;
 
+    // eslint-disable-next-line react-hooks/set-state-in-effect -- mouse-pointer media query gate
     setIsVisible(true);
 
     // Use rAF to batch mouse updates to display refresh rate

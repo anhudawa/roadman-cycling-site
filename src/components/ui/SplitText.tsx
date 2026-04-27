@@ -39,6 +39,7 @@ export function SplitText({
 
   useEffect(() => {
     const mq = window.matchMedia("(prefers-reduced-motion: reduce)");
+    // eslint-disable-next-line react-hooks/set-state-in-effect -- prefers-reduced-motion subscription
     setPrefersReducedMotion(mq.matches);
     const handler = (e: MediaQueryListEvent) =>
       setPrefersReducedMotion(e.matches);

@@ -66,7 +66,9 @@ export function CohortBanner() {
   /** Minute-resolution tick — triggers state re-evaluation + countdown refresh. */
   const [tick, setTick] = useState(0);
 
-  const state = getCohortState(new Date(Date.now() + tick * 0)); // tick just forces re-render
+  // tick is used as a dependency so the countdown re-evaluates each minute.
+  // eslint-disable-next-line react-hooks/purity -- intentional time read; tick state forces re-render every 60s
+  const state = getCohortState(new Date(Date.now() + tick * 0));
 
   useEffect(() => {
     // Pick up any prior dismissal for this phase + cohort
@@ -100,6 +102,7 @@ export function CohortBanner() {
   if (hidden) return null;
 
   const countdown = state.deadline
+    // eslint-disable-next-line react-hooks/purity -- intentional time read; tick state forces re-render every 60s
     ? formatCountdown(state.deadline.getTime() - Date.now())
     : "";
 

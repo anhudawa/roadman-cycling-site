@@ -84,13 +84,18 @@ describe("GET /api/ask/session", () => {
     expect(mocks.loadSessionByAnonKey).toHaveBeenCalledWith("anon-xyz");
   });
 
-  it("returns 500 when storage throws", async () => {
+  it("returns empty state (200) when storage throws — graceful DB-down", async () => {
     mocks.loadSession.mockRejectedValue(new Error("db down"));
+    const errSpy = vi.spyOn(console, "error").mockImplementation(() => {});
     const { GET } = await import("@/app/api/ask/session/route");
     const res = await GET(
       new Request(`https://example.test/api/ask/session?sessionId=${SESSION_ID}`),
     );
-    expect(res.status).toBe(500);
+    expect(res.status).toBe(200);
+    const body = await res.json();
+    expect(body).toEqual({ session: null, messages: [], profile: null });
+    expect(errSpy).toHaveBeenCalled();
+    errSpy.mockRestore();
   });
 
   it("returns rider profile when session has riderProfileId", async () => {

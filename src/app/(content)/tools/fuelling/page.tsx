@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect, useCallback } from "react";
+import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
 import { Header, Footer, Section, Container } from "@/components/layout";
 import { Button } from "@/components/ui";
@@ -713,24 +714,24 @@ export default function FuellingPage() {
                     <h3 className="font-heading text-xs text-off-white mb-3 tracking-wider">LEARN MORE</h3>
                     <ul className="space-y-2">
                       <li>
-                        <a href="/blog/cycling-in-ride-nutrition-guide" className="text-coral hover:text-coral/80 text-sm transition-colors">
+                        <Link href="/blog/cycling-in-ride-nutrition-guide" className="text-coral hover:text-coral/80 text-sm transition-colors">
                           Cycling In-Ride Nutrition Guide →
-                        </a>
+                        </Link>
                       </li>
                       <li>
-                        <a href="/blog/cycling-energy-gels-guide" className="text-coral hover:text-coral/80 text-sm transition-colors">
+                        <Link href="/blog/cycling-energy-gels-guide" className="text-coral hover:text-coral/80 text-sm transition-colors">
                           Cycling Energy Gels Guide →
-                        </a>
+                        </Link>
                       </li>
                       <li>
-                        <a href="/topics/cycling-nutrition" className="text-coral hover:text-coral/80 text-sm transition-colors">
+                        <Link href="/topics/cycling-nutrition" className="text-coral hover:text-coral/80 text-sm transition-colors">
                           Cycling Nutrition topic hub →
-                        </a>
+                        </Link>
                       </li>
                       <li>
-                        <a href="/podcast/ep-2035-world-tour-nutritionist-we-got-fuelling-wrong" className="text-coral hover:text-coral/80 text-sm transition-colors">
+                        <Link href="/podcast/ep-2035-world-tour-nutritionist-we-got-fuelling-wrong" className="text-coral hover:text-coral/80 text-sm transition-colors">
                           Podcast: World Tour nutritionist — &quot;we got fuelling wrong&quot;
-                        </a>
+                        </Link>
                       </li>
                     </ul>
                   </motion.div>

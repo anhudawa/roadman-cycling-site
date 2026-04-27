@@ -522,7 +522,7 @@ function ResultScreen({
             </Button>
           </div>
           <p className="text-white/20 text-xs font-body">
-            We'll send the free resources and nothing else.
+            We&apos;ll send the free resources and nothing else.
           </p>
         </motion.div>
       )}

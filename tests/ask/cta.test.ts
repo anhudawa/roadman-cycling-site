@@ -31,9 +31,9 @@ describe("ask/cta pickCta", () => {
     expect(c.key).toBe("ndy_coaching");
   });
 
-  it("coaching_decision with no interest → roadman_plus", () => {
+  it("coaching_decision with no interest → clubhouse (roadman_plus is parked)", () => {
     const c = pickCta({ intent: "coaching_decision", hasProfile: false, retrieved: [] });
-    expect(c.key).toBe("roadman_plus");
+    expect(c.key).toBe("clubhouse");
   });
 
   it("event_prep with profile → ndy_coaching, without profile → plateau_diagnostic", () => {

@@ -42,6 +42,7 @@ export default async function NewsletterPage() {
   // otherwise.
   let growthSource: "snapshot" | "live" = "live";
   try {
+    // eslint-disable-next-line react-hooks/purity -- async server component; Date.now() is server-side render time, not React render
     const cutoff = new Date(Date.now() - 60 * 24 * 60 * 60 * 1000);
     const cutoffDate = cutoff.toISOString().slice(0, 10);
     const snapshots = await db

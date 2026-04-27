@@ -123,7 +123,7 @@ export function PlateauDiagnostic() {
         QUICK DIAGNOSTIC · 3 QUESTIONS
       </p>
       <h3 className="font-heading text-off-white text-2xl md:text-3xl mb-8 leading-tight">
-        WHAT'S ACTUALLY KEEPING YOU STUCK?
+        WHAT&apos;S ACTUALLY KEEPING YOU STUCK?
       </h3>
 
       {/* Step 1 — volume */}

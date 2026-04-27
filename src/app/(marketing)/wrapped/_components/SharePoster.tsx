@@ -286,7 +286,7 @@ function posterBody(cardId: CardId, data: WrappedData, firstName: string) {
       return (
         <>
           <text fill="rgba(250,250,250,0.7)" fontFamily={HEADLINE_F} fontSize={42} letterSpacing={3}>
-            {firstName.toUpperCase()}'S YEAR ON THE BIKE
+            {firstName.toUpperCase()}&apos;S YEAR ON THE BIKE
           </text>
           <text y={260} fill="#FAFAFA" fontFamily={HEADLINE_F} fontSize={300} letterSpacing={-6}>
             {formatKm(data.totals.distanceM)}
@@ -375,7 +375,7 @@ function posterBody(cardId: CardId, data: WrappedData, firstName: string) {
             </text>
           )}
           <text y={500} fill="rgba(250,250,250,0.85)" fontFamily={BODY_F} fontSize={30}>
-            One day. One ride. The story you'll tell next.
+            One day. One ride. The story you&apos;ll tell next.
           </text>
         </>
       );

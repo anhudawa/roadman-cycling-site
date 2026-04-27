@@ -69,6 +69,7 @@ export function AnimatedCounter({ value, className = "" }: AnimatedCounterProps)
     if (!isInView || hasAnimatedRef.current) return;
     hasAnimatedRef.current = true;
 
+    // eslint-disable-next-line react-hooks/set-state-in-effect -- rAF count-up animation
     setDisplayValue(formatNumber(0, hasCommas));
     const duration = 1500;
     const startTime = Date.now();

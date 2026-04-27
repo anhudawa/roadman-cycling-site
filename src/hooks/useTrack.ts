@@ -68,8 +68,8 @@ export interface TrackFunction {
 export function useTrack(): TrackFunction {
   const pathname = usePathname();
 
-  return useCallback(
-    ((name: string, props?: Record<string, unknown>, ctx?: Partial<TrackContext>) => {
+  const track = useCallback(
+    (name: string, props?: Record<string, unknown>, ctx?: Partial<TrackContext>) => {
       const search =
         typeof window !== "undefined" && window.location.search
           ? window.location.search
@@ -85,7 +85,8 @@ export function useTrack(): TrackFunction {
         props,
         { page, sessionId, referrer, variantId: ctx?.variantId },
       );
-    }) as TrackFunction,
+    },
     [pathname],
   );
+  return track as TrackFunction;
 }

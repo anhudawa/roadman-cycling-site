@@ -1573,29 +1573,29 @@ export default function MtbSetupPage() {
                     <h3 className="font-heading text-lg text-off-white mb-3">LEARN MORE</h3>
                     <ul className="space-y-2">
                       <li>
-                        <a href="/blog/mtb-suspension-setup-complete-guide" className="text-coral hover:text-coral/80 text-sm transition-colors">
+                        <Link href="/blog/mtb-suspension-setup-complete-guide" className="text-coral hover:text-coral/80 text-sm transition-colors">
                           MTB Suspension Setup: The Complete Guide
-                        </a>
+                        </Link>
                       </li>
                       <li>
-                        <a href="/blog/mtb-tyre-pressure-guide" className="text-coral hover:text-coral/80 text-sm transition-colors">
+                        <Link href="/blog/mtb-tyre-pressure-guide" className="text-coral hover:text-coral/80 text-sm transition-colors">
                           MTB Tyre Pressure Guide
-                        </a>
+                        </Link>
                       </li>
                       <li>
-                        <a href="/blog/mtb-fork-setup-guide" className="text-coral hover:text-coral/80 text-sm transition-colors">
+                        <Link href="/blog/mtb-fork-setup-guide" className="text-coral hover:text-coral/80 text-sm transition-colors">
                           MTB Fork Setup Guide
-                        </a>
+                        </Link>
                       </li>
                       <li>
-                        <a href="/topics/mountain-biking" className="text-coral hover:text-coral/80 text-sm transition-colors">
+                        <Link href="/topics/mountain-biking" className="text-coral hover:text-coral/80 text-sm transition-colors">
                           Mountain Biking topic hub →
-                        </a>
+                        </Link>
                       </li>
                       <li>
-                        <a href="/podcast/ep-2057-your-tyres-are-slowing-you-down-here-s-why" className="text-coral hover:text-coral/80 text-sm transition-colors">
+                        <Link href="/podcast/ep-2057-your-tyres-are-slowing-you-down-here-s-why" className="text-coral hover:text-coral/80 text-sm transition-colors">
                           Podcast: Your tyres are slowing you down — here&apos;s why
-                        </a>
+                        </Link>
                       </li>
                     </ul>
                   </motion.div>

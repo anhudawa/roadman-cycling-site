@@ -135,6 +135,7 @@ function CountdownUnit({ value, label }: { value: number; label: string }) {
 
   useEffect(() => {
     if (prevRef.current !== value) {
+      // eslint-disable-next-line react-hooks/set-state-in-effect -- client-side filter init
       setAnimate(true);
       prevRef.current = value;
       const t = setTimeout(() => setAnimate(false), 300);
@@ -475,6 +476,7 @@ export function EventsClient() {
   const { event: nextEvent, days, hours, minutes, seconds } = useCountdown();
   const [mounted, setMounted] = useState(false);
 
+  // eslint-disable-next-line react-hooks/set-state-in-effect -- one-shot mount flag for hydration-safe rendering
   useEffect(() => setMounted(true), []);
 
   return (

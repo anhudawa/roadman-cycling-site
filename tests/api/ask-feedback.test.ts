@@ -74,10 +74,15 @@ describe("POST /api/ask/feedback", () => {
     expect(mocks.flagMessage).toHaveBeenCalledWith(MID, "user_downvote");
   });
 
-  it("returns 500 when recordEvent throws", async () => {
+  it("returns 200 ok when recordEvent throws — best-effort, non-fatal", async () => {
     mocks.recordEvent.mockRejectedValueOnce(new Error("db down"));
+    const errSpy = vi.spyOn(console, "error").mockImplementation(() => {});
     const { POST } = await import("@/app/api/ask/feedback/route");
     const res = await POST(req({ messageId: MID, rating: "up" }));
-    expect(res.status).toBe(500);
+    expect(res.status).toBe(200);
+    const body = await res.json();
+    expect(body).toEqual({ ok: true });
+    expect(errSpy).toHaveBeenCalled();
+    errSpy.mockRestore();
   });
 });

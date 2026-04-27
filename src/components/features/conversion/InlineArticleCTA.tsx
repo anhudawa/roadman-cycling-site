@@ -75,6 +75,7 @@ export function InlineArticleCTA({
 
     // Insert after the target paragraph
     targetParagraph.after(wrapper);
+    // eslint-disable-next-line react-hooks/set-state-in-effect -- scroll-trigger reveal
     setMountNode(wrapper);
     injectedRef.current = true;
   }, [containerSelector, afterParagraph]);

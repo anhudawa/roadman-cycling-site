@@ -1,10 +1,10 @@
 import { NextResponse } from "next/server";
 
-function getStripe() {
+async function getStripe() {
   const key = process.env.STRIPE_SECRET_KEY;
   if (!key) return null;
   // Dynamic import to avoid build-time errors when key is missing
-  const StripeModule = require("stripe");
+  const StripeModule = await import("stripe");
   const Stripe = StripeModule.default || StripeModule;
   return new Stripe(key);
 }
@@ -16,7 +16,7 @@ export async function POST(request: Request) {
   try {
     const { priceId, successUrl, cancelUrl } = await request.json();
 
-    const stripe = getStripe();
+    const stripe = await getStripe();
     if (!stripe) {
       return NextResponse.json(
         { error: "Stripe not configured. Set STRIPE_SECRET_KEY in env." },

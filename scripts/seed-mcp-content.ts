@@ -194,7 +194,7 @@ async function seedExperts(): Promise<Map<string, number>> {
 
   const nameToId = new Map<string, number>();
   let inserted = 0;
-  let updated = 0;
+  const updated = 0;
   for (const g of eligible) {
     const result = await db
       .insert(mcpExperts)

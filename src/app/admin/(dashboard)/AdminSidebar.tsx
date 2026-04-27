@@ -250,6 +250,7 @@ export function AdminSidebar({
   // Auto-close the mobile drawer whenever the route changes so the user
   // isn't left staring at the overlay on top of their destination page.
   useEffect(() => {
+    // eslint-disable-next-line react-hooks/set-state-in-effect -- auto-close on route change
     setMobileOpen(false);
   }, [pathname]);
 

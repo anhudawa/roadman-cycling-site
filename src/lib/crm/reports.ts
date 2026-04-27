@@ -132,7 +132,7 @@ export async function getOwnerBreakdown(): Promise<OwnerBreakdownRow[]> {
   for (const u of users) nameBySlug.set(u.slug, u.name);
 
   const bySlug = new Map<string, OwnerBreakdownRow>();
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+   
   for (const r of rows as unknown as Array<{ slug: string; status: string; count: number }>) {
     const slug = r.slug;
     if (!bySlug.has(slug)) {

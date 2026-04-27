@@ -55,7 +55,7 @@ export function YearTotalCard({ data, trigger }: CardProps) {
   const firstName = data.rider.firstName ?? "You";
   return (
     <CardShell>
-      <Eyebrow step={meta}>{firstName}'s year on the bike</Eyebrow>
+      <Eyebrow step={meta}>{firstName}&apos;s year on the bike</Eyebrow>
       <motion.div className="mt-4" {...REVEAL} transition={{ delay: 0.1 }}>
         <p
           className="font-display text-off-white leading-[0.85]"

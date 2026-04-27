@@ -107,6 +107,9 @@ export default function GlobalError({
               Error ID: {error.digest}
             </p>
           ) : null}
+          {/* Intentional raw <a>: root layout has crashed, so router/Link
+              context may be unsafe. A full page reload is the recovery path. */}
+          {/* eslint-disable-next-line @next/next/no-html-link-for-pages */}
           <a
             href="/"
             style={{

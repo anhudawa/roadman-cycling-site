@@ -190,7 +190,7 @@ export function EventDiagnostic() {
       {step === "result" && result && (
         <div>
           <p className="font-heading text-coral text-xs tracking-widest mb-2">
-            YOU'RE IN THE
+            YOU&apos;RE IN THE
           </p>
           <p className="font-heading text-off-white text-3xl md:text-4xl mb-4 leading-none">
             {result.phase}
@@ -201,7 +201,7 @@ export function EventDiagnostic() {
 
           <div className="rounded-xl border border-white/10 bg-white/[0.03] p-5 md:p-6 mb-6">
             <p className="font-heading text-coral text-sm tracking-widest mb-2">
-              THIS WEEK'S ANCHOR SESSION
+              THIS WEEK&apos;S ANCHOR SESSION
             </p>
             <p className="font-heading text-off-white text-lg mb-2 leading-tight">
               {result.anchorSession.toUpperCase()}

@@ -233,7 +233,7 @@ function PreviewTease({ data }: { data: WrappedData }) {
         {data.totals.rides} rides
       </p>
       <p className="mt-3 text-off-white/55 text-xs leading-relaxed">
-        That's our demo rider's year. Yours will look like this — your
+        That&apos;s our demo rider&apos;s year. Yours will look like this — your
         numbers, your spirit rider, your share-ready cards.
       </p>
       <Link

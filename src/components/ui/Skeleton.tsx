@@ -44,7 +44,7 @@ export function PodcastSearchSkeleton() {
             <div
               key={i}
               className="skeleton h-9 rounded-full"
-              style={{ width: `${60 + Math.random() * 40}px` }}
+              style={{ width: `${60 + ((i * 13) % 40)}px` }}
             />
           ))}
         </div>
@@ -91,7 +91,7 @@ export function GuestGridSkeleton() {
           <div
             key={i}
             className="skeleton h-9 rounded-full"
-            style={{ width: `${50 + Math.random() * 40}px` }}
+            style={{ width: `${50 + ((i * 13) % 40)}px` }}
           />
         ))}
       </div>

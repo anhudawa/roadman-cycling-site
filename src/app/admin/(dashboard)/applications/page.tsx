@@ -58,7 +58,7 @@ export default async function ApplicationsPage({ searchParams }: PageProps) {
     .from(cohortApplications);
   const cohorts = cohortsRows.map((c) => c.cohort).filter(Boolean) as string[];
 
-  let initialStages: StageMap = {
+  const initialStages: StageMap = {
     awaiting_response: [],
     contacted: [],
     offered: [],

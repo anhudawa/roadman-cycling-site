@@ -170,7 +170,7 @@ describe("real-world reference cases", () => {
       const speedKmh = ((c.course.totalDistance / 1000) / (t / 3600)).toFixed(1);
 
       // Always log the prediction so engine drift is visible in CI.
-      // eslint-disable-next-line no-console
+       
       console.log(
         `[real-world] ${c.label}: predicted ${fmt(t)} (${speedKmh} km/h, ${distanceKm.toFixed(0)} km) — band ${fmt(c.expectedLow)}–${fmt(c.expectedHigh)}`,
       );

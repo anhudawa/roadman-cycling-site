@@ -109,6 +109,7 @@ function useSessionId(): string {
     try {
       const existing = sessionStorage.getItem("plateau-session-id");
       if (existing) {
+        // eslint-disable-next-line react-hooks/set-state-in-effect -- restore answers from storage
         setSessionId(existing);
         return;
       }

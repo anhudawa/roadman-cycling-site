@@ -50,7 +50,7 @@ function pickCategory(
   return def.categories.find((c) => c.key === key) ?? null;
 }
 
-// eslint-disable-next-line complexity
+ 
 function renderSection(
   section: ReportSection,
   def: DiagnosticDefinition,

@@ -161,13 +161,23 @@ describe("POST /api/ask", () => {
     expect(text).toContain(SESSION_ID);
   });
 
-  it("returns 500 session_failed when createSession throws", async () => {
+  it("falls back to an ephemeral session when createSession throws (graceful DB-down)", async () => {
     mocks.createSession.mockRejectedValue(new Error("db down"));
+    const errSpy = vi.spyOn(console, "error").mockImplementation(() => {});
     const { POST } = await import("@/app/api/ask/route");
     const res = await POST(req({ query: "Will you still respond?" }));
-    expect(res.status).toBe(500);
-    const body = await res.json();
-    expect(body.error.code).toBe("session_failed");
+    expect(res.status).toBe(200);
+    expect(res.headers.get("content-type")).toContain("text/event-stream");
+    const text = await consumeStream(res.body);
+    expect(text).toContain("event: meta");
+    expect(text).toContain('"kind":"session_ack"');
+    // Ephemeral session id is a fresh UUID, not the mocked SESSION_ID
+    expect(text).toMatch(
+      /"sessionId":"[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}"/,
+    );
+    expect(text).not.toContain(SESSION_ID);
+    expect(errSpy).toHaveBeenCalled();
+    errSpy.mockRestore();
   });
 
   it("derives ip hash from x-forwarded-for", async () => {

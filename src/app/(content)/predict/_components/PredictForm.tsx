@@ -272,7 +272,7 @@ export function PredictForm({ courses }: PredictFormProps) {
               <p>{aiResult.reasoning}</p>
               {aiResult.missing.length > 0 && (
                 <p className="mt-1.5 text-off-white/55">
-                  Couldn't extract: {aiResult.missing.join(", ")}. Adjust below.
+                  Couldn&apos;t extract: {aiResult.missing.join(", ")}. Adjust below.
                 </p>
               )}
             </div>

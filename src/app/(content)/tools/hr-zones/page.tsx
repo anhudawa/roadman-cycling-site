@@ -204,7 +204,7 @@ export default function HRZonesPage() {
               </p>
               <p>
                 <strong className="text-off-white">LTHR method:</strong> Zones are calculated from lactate
-                threshold heart rate using Joe Friel's methodology from <em>The Cyclist's Training Bible</em>.
+                threshold heart rate using Joe Friel&apos;s methodology from <em>The Cyclist&apos;s Training Bible</em>.
                 LTHR-based zones are more accurate because they reflect fitness, not just genetics.
               </p>
               <p>

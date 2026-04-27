@@ -11,6 +11,7 @@ export default function AdminLoginPage() {
     if (typeof window === "undefined") return;
     const params = new URLSearchParams(window.location.search);
     const e = params.get("error");
+    // eslint-disable-next-line react-hooks/set-state-in-effect -- read URL search param on mount
     if (e) setError(e);
   }, []);
 

@@ -27,6 +27,7 @@ export function FloatingParticles({
   const [reducedMotion, setReducedMotion] = useState(false);
 
   useEffect(() => {
+    // eslint-disable-next-line react-hooks/set-state-in-effect -- one-shot mount + media-query subscription
     setMounted(true);
     const mq = window.matchMedia("(prefers-reduced-motion: reduce)");
     setReducedMotion(mq.matches);
@@ -42,15 +43,22 @@ export function FloatingParticles({
 
   const particles = useMemo(() => {
     if (!mounted) return [];
+    // Deterministic per-index pseudo-random — keeps visual variety while
+    // staying pure (Math.random() in render trips react-hooks/purity and
+    // would also risk hydration mismatch on a fast client→server round trip).
+    const rng = (i: number, salt: number) => {
+      const x = Math.sin(i * 9999 + salt) * 10000;
+      return x - Math.floor(x);
+    };
     return Array.from({ length: effectiveCount }, (_, i) => ({
       id: i,
-      x: Math.random() * 100,
-      y: Math.random() * 100,
-      size: Math.random() * 3 + 1,
-      duration: Math.random() * 20 + 15,
-      delay: Math.random() * 10,
-      driftX: (Math.random() - 0.5) * 60,
-      driftY: -(Math.random() * 40 + 20),
+      x: rng(i, 1) * 100,
+      y: rng(i, 2) * 100,
+      size: rng(i, 3) * 3 + 1,
+      duration: rng(i, 4) * 20 + 15,
+      delay: rng(i, 5) * 10,
+      driftX: (rng(i, 6) - 0.5) * 60,
+      driftY: -(rng(i, 7) * 40 + 20),
     }));
   }, [effectiveCount, mounted]);
 

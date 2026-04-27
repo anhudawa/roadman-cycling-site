@@ -94,7 +94,7 @@ export async function GET(req: NextRequest) {
   // 6. Clean up state cookie + redirect to `next`.
   // If Anthony linked for the first time WITHOUT calendar scope (wrong entry
   // point), nudge him to re-link with calendar so Bookings populates.
-  let landing = next;
+  const landing = next;
   if (
     email === CALENDAR_SCOPE_EMAIL &&
     !user.googleRefreshToken &&

@@ -19,6 +19,7 @@ export function MiniPlayer() {
   useEffect(() => {
     if (typeof window === "undefined") return;
     if ((window as unknown as Record<string, unknown>).YT) {
+      // eslint-disable-next-line react-hooks/set-state-in-effect -- YT API ready check
       setApiReady(true);
       return;
     }

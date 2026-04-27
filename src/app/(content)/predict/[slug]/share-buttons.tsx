@@ -28,6 +28,7 @@ export function ShareButtons({
   const [canNativeShare, setCanNativeShare] = useState(false);
 
   useEffect(() => {
+    // eslint-disable-next-line react-hooks/set-state-in-effect -- feature detection on mount
     setCanNativeShare(
       typeof navigator !== "undefined" && typeof navigator.share === "function",
     );

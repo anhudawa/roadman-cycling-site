@@ -13,10 +13,17 @@ process.env.TEST_PODCAST_DIR = TEMP_PODCAST_DIR;
 
 // Also mock getAllEpisodes so the episode list comes from TEMP_PODCAST_DIR,
 // not the real content/podcast directory.
+//
+// NOTE: vi.mock factories run before top-level ESM imports finish resolving,
+// so we use createRequire to load gray-matter/path/fs synchronously. This is
+// the documented pattern for vi.mock() factories that need filesystem access.
+import { createRequire } from 'node:module';
+const requireFromHere = createRequire(import.meta.url);
+
 vi.mock('@/lib/podcast', () => {
-  const matter = require('gray-matter');
-  const path = require('path');
-  const fs = require('fs');
+  const matter = requireFromHere('gray-matter');
+  const path = requireFromHere('path');
+  const fs = requireFromHere('fs');
   const dir = process.env.TEST_PODCAST_DIR!;
   return {
     getAllEpisodes: () => {

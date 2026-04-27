@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
 import { Header, Footer, Section, Container } from "@/components/layout";
 import { Button } from "@/components/ui";
@@ -332,24 +333,24 @@ export default function RaceWeightPage() {
                     <h3 className="font-heading text-lg text-off-white mb-3">LEARN MORE</h3>
                     <ul className="space-y-2">
                       <li>
-                        <a href="/blog/cycling-body-composition-guide" className="text-coral hover:text-coral/80 text-sm transition-colors">
+                        <Link href="/blog/cycling-body-composition-guide" className="text-coral hover:text-coral/80 text-sm transition-colors">
                           Cycling Body Composition Guide
-                        </a>
+                        </Link>
                       </li>
                       <li>
-                        <a href="/blog/cycling-weight-loss-fuel-for-the-work-required" className="text-coral hover:text-coral/80 text-sm transition-colors">
+                        <Link href="/blog/cycling-weight-loss-fuel-for-the-work-required" className="text-coral hover:text-coral/80 text-sm transition-colors">
                           Fuel for the Work Required: Weight Loss in Cycling
-                        </a>
+                        </Link>
                       </li>
                       <li>
-                        <a href="/topics/cycling-weight-loss" className="text-coral hover:text-coral/80 text-sm transition-colors">
+                        <Link href="/topics/cycling-weight-loss" className="text-coral hover:text-coral/80 text-sm transition-colors">
                           Cycling Weight Loss topic hub →
-                        </a>
+                        </Link>
                       </li>
                       <li>
-                        <a href="/podcast/ep-2044-world-tour-nutritionist-we-got-weight-loss-wrong" className="text-coral hover:text-coral/80 text-sm transition-colors">
+                        <Link href="/podcast/ep-2044-world-tour-nutritionist-we-got-weight-loss-wrong" className="text-coral hover:text-coral/80 text-sm transition-colors">
                           Podcast: World Tour nutritionist — &quot;we got weight loss wrong&quot;
-                        </a>
+                        </Link>
                       </li>
                     </ul>
                   </motion.div>

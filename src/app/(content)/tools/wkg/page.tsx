@@ -156,7 +156,7 @@ export default function WkgPage() {
                 FTP should be determined from a 20-minute all-out test (×0.95) or ramp test.
               </p>
               <p>
-                <strong className="text-off-white">Benchmarks:</strong> Based on published data from Coggan's
+                <strong className="text-off-white">Benchmarks:</strong> Based on published data from Coggan&apos;s
                 power profiling, adjusted for real-world amateur and masters populations. Professional benchmarks
                 from World Tour race data.
               </p>

@@ -171,8 +171,10 @@ export default async function TedHealthPage() {
       : 0;
 
   const costByDay = new Map<string, number>();
+  // eslint-disable-next-line react-hooks/purity -- async server component; Date.now() is server-side render time, not React render
+  const nowMs = Date.now();
   for (let i = 6; i >= 0; i--) {
-    const d = new Date(Date.now() - i * 24 * 60 * 60 * 1000);
+    const d = new Date(nowMs - i * 24 * 60 * 60 * 1000);
     costByDay.set(d.toISOString().slice(0, 10), 0);
   }
   let weeklyCost = 0;

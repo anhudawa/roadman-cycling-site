@@ -36,6 +36,7 @@ export function StickyMobileCta() {
       o.observe(hero);
       observers.push(o);
     } else {
+      // eslint-disable-next-line react-hooks/set-state-in-effect -- fallback when IntersectionObserver unsupported
       setPastHero(true);
     }
 

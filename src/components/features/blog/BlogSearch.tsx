@@ -143,6 +143,7 @@ export function BlogSearch({ posts }: BlogSearchProps) {
   // Reset pagination whenever filters change so the user doesn't see
   // more-than-expected (or an empty load-more button).
   useEffect(() => {
+    // eslint-disable-next-line react-hooks/set-state-in-effect -- client-side index hydration
     setVisibleCount(INITIAL_POSTS_PER_PAGE);
   }, [query, pillarFilter, topicFilter]);
 

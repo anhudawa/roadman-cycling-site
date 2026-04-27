@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
 import { Header, Footer, Section, Container } from "@/components/layout";
 import { Button } from "@/components/ui";
@@ -410,24 +411,24 @@ export default function TyrePressurePage() {
                     <h3 className="font-heading text-lg text-off-white mb-3">LEARN MORE</h3>
                     <ul className="space-y-2">
                       <li>
-                        <a href="/blog/cycling-tyre-pressure-guide" className="text-coral hover:text-coral/80 text-sm transition-colors">
+                        <Link href="/blog/cycling-tyre-pressure-guide" className="text-coral hover:text-coral/80 text-sm transition-colors">
                           Cycling Tyre Pressure Guide
-                        </a>
+                        </Link>
                       </li>
                       <li>
-                        <a href="/blog/mtb-tyre-pressure-guide" className="text-coral hover:text-coral/80 text-sm transition-colors">
+                        <Link href="/blog/mtb-tyre-pressure-guide" className="text-coral hover:text-coral/80 text-sm transition-colors">
                           MTB Tyre Pressure Guide
-                        </a>
+                        </Link>
                       </li>
                       <li>
-                        <a href="/topics/mountain-biking" className="text-coral hover:text-coral/80 text-sm transition-colors">
+                        <Link href="/topics/mountain-biking" className="text-coral hover:text-coral/80 text-sm transition-colors">
                           Mountain Biking topic hub →
-                        </a>
+                        </Link>
                       </li>
                       <li>
-                        <a href="/podcast/ep-2057-your-tyres-are-slowing-you-down-here-s-why" className="text-coral hover:text-coral/80 text-sm transition-colors">
+                        <Link href="/podcast/ep-2057-your-tyres-are-slowing-you-down-here-s-why" className="text-coral hover:text-coral/80 text-sm transition-colors">
                           Podcast: Your tyres are slowing you down — here&apos;s why
-                        </a>
+                        </Link>
                       </li>
                     </ul>
                   </motion.div>

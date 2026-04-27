@@ -40,6 +40,7 @@ export function TableOfContents({
       });
     });
 
+    // eslint-disable-next-line react-hooks/set-state-in-effect -- active heading observer
     setHeadings(items);
   }, [containerSelector]);
 
