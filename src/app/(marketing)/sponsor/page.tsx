@@ -7,7 +7,7 @@ import type { AvailabilityByMonth } from "@/lib/inventory";
 import BookingFlow, { FAQSection } from "./SponsorClientSections";
 
 export const metadata: Metadata = {
-  title: "Sponsor — Roadman Cycling",
+  title: "Sponsor",
   description:
     "Real inventory. Live pricing. Actual dates. Sponsor the biggest cycling podcast in Europe — pick a moment or a duration, choose your slot, upload your assets, done.",
   alternates: {

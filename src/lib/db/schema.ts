@@ -31,11 +31,13 @@ export const events = pgTable(
     sessionId: text("session_id").notNull(),
     meta: jsonb("meta"),
     variantId: text("variant_id"),
+    aiReferrer: text("ai_referrer"),
   },
   (table) => [
     index("events_timestamp_idx").on(table.timestamp),
     index("events_page_idx").on(table.page),
     index("events_session_id_idx").on(table.sessionId),
+    index("events_ai_referrer_idx").on(table.aiReferrer),
   ]
 );
 
@@ -1553,4 +1555,36 @@ export const predictionResults = pgTable(
   (table) => [
     index("prediction_results_prediction_id_idx").on(table.predictionId),
   ]
+);
+
+// --- Brand Citation Tests (DEV-DATA-03) ---
+export const brandPrompts = pgTable("brand_prompts", {
+  id: serial("id").primaryKey(),
+  prompt: text("prompt").notNull(),
+  category: text("category").notNull(),
+  enabled: boolean("enabled").notNull().default(true),
+  createdAt: timestamp("created_at", { withTimezone: true }).notNull().defaultNow(),
+});
+
+export const brandCitationRuns = pgTable(
+  "brand_citation_runs",
+  {
+    id: serial("id").primaryKey(),
+    promptId: integer("prompt_id")
+      .notNull()
+      .references(() => brandPrompts.id, { onDelete: "cascade" }),
+    model: text("model").notNull(),
+    response: text("response"),
+    mentioned: boolean("mentioned").notNull().default(false),
+    matchedTerms: jsonb("matched_terms"),
+    matchedUrls: jsonb("matched_urls"),
+    citations: jsonb("citations"),
+    error: text("error"),
+    ranAt: timestamp("ran_at", { withTimezone: true }).notNull().defaultNow(),
+  },
+  (table) => [
+    index("brand_citation_runs_prompt_id_idx").on(table.promptId),
+    index("brand_citation_runs_ran_at_idx").on(table.ranAt),
+    index("brand_citation_runs_model_idx").on(table.model),
+  ],
 );

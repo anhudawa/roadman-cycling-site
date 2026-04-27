@@ -85,11 +85,15 @@ export function HeroSection({ latestEpisode }: HeroSectionProps) {
               is the visual anchor). On lg+ it's placed in cols 7-12
               and explicitly pinned to row 1 so it sits on the right
               rail with the text on the left. */}
+          {/* LCP element on mobile (DOM-first) and a major LCP element on desktop.
+              Avoid initial opacity:0 — framer-motion would render the wrapper
+              invisible during SSR/hydration and delay LCP until JS runs. We keep
+              the gentle scale-in but start visible. */}
           <motion.div
             className="lg:col-start-7 lg:col-span-6 lg:row-start-1 w-full flex justify-center lg:justify-end"
             style={{ y: portraitY }}
-            initial={{ opacity: 0, scale: 0.96 }}
-            animate={{ opacity: 1, scale: 1 }}
+            initial={{ scale: 0.98 }}
+            animate={{ scale: 1 }}
             transition={{ duration: 0.95, ease: [0.16, 1, 0.3, 1] }}
           >
             <GlitchHero />
@@ -135,6 +139,8 @@ export function HeroSection({ latestEpisode }: HeroSectionProps) {
                 textShadow: "0 4px 30px rgba(0,0,0,0.55)",
               }}
             >
+              {/* Headline is a strong LCP candidate — render visible from SSR.
+                  Keep the slide-in via translate only; no opacity gate. */}
               {headlineLines.map((line, i) => (
                 <motion.span
                   key={line.text}
@@ -144,8 +150,8 @@ export function HeroSection({ latestEpisode }: HeroSectionProps) {
                       ? { letterSpacing: "-0.03em" }
                       : undefined
                   }
-                  initial={{ opacity: 0, y: 24 }}
-                  animate={{ opacity: 1, y: 0 }}
+                  initial={{ y: 24 }}
+                  animate={{ y: 0 }}
                   transition={{
                     duration: 0.85,
                     delay: 0.15 + i * 0.08,

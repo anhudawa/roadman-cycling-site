@@ -3,14 +3,14 @@ import { JsonLd } from "@/components/seo/JsonLd";
 import { ENTITY_IDS } from "@/lib/brand-facts";
 
 export const metadata: Metadata = {
-  title: "Contact — Roadman Cycling",
+  title: "Contact",
   description:
     "Get in touch with the Roadman Cycling team. Sponsorship, press, partnerships, podcast guest suggestions, or general enquiries.",
   alternates: {
     canonical: "https://roadmancycling.com/contact",
   },
   openGraph: {
-    title: "Contact — Roadman Cycling",
+    title: "Contact Roadman Cycling",
     description:
       "Get in touch with the Roadman Cycling team. Sponsorship, press, partnerships, podcast guest suggestions, or general enquiries.",
     type: "website",

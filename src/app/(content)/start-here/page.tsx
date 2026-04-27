@@ -6,7 +6,7 @@ import { JsonLd } from "@/components/seo/JsonLd";
 import { ENTITY_IDS } from "@/lib/brand-facts";
 
 export const metadata: Metadata = {
-  title: "Start Here — New to Roadman Cycling?",
+  title: "Start Here — New to Roadman?",
   description:
     "New to Roadman? Start here. The best episodes, articles, tools, and resources to get you faster on the bike — curated from 1,400+ episodes and 170 articles.",
   alternates: {

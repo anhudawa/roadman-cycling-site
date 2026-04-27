@@ -1,24 +1,20 @@
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: {
-    absolute: "Race Predictor Course Catalog — Find Your Sportive | Roadman Cycling",
-  },
+  title: "All Sportives & Gran Fondos — Race Calendar",
   description:
-    "Browse the courses available in the Roadman Race Predictor — Étape du Tour, La Marmotte, Mallorca 312, RideLondon, and more. Filter by distance, elevation and country. Predict your finish time in seconds.",
+    "Every event in the Roadman race-prediction calendar. Étape du Tour, La Marmotte, Mallorca 312, Wicklow 200 and more — pick your race and predict your finish.",
   alternates: { canonical: "https://roadmancycling.com/predict/courses" },
   openGraph: {
-    title: "Race Predictor Course Catalog — Find Your Sportive",
+    title: "All Sportives & Gran Fondos — Race Calendar",
     description:
-      "Browse predictor-ready courses by distance, elevation and country. Click any course to predict your finish.",
+      "Every event in the Roadman race-prediction calendar. Pick your race and predict your finish.",
     type: "website",
     url: "https://roadmancycling.com/predict/courses",
-    images: [{ url: "/og-image.jpg", width: 1200, height: 630, alt: "Roadman Race Predictor courses" }],
   },
-  robots: { index: true, follow: true },
 };
 
-export default function CoursesLayout({
+export default function PredictCoursesLayout({
   children,
 }: {
   children: React.ReactNode;

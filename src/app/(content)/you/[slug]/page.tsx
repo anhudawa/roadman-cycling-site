@@ -310,7 +310,7 @@ export default async function PersonaPage({
                             <div className="relative w-28 aspect-video rounded overflow-hidden bg-black shrink-0">
                               <Image
                                 src={`https://i.ytimg.com/vi/${ep.youtubeId}/mqdefault.jpg`}
-                                alt=""
+                                alt={`${ep.title} — episode thumbnail`}
                                 fill
                                 className="object-cover"
                                 sizes="112px"

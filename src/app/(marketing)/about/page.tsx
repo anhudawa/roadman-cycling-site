@@ -7,7 +7,7 @@ import { JsonLd } from "@/components/seo/JsonLd";
 import { ENTITY_IDS } from "@/lib/brand-facts";
 
 export const metadata: Metadata = {
-  title: "About — Anthony Walsh & Roadman Cycling",
+  title: "About — Anthony Walsh",
   description:
     "The story behind Roadman Cycling. How Anthony Walsh built a 1M+ listener podcast and a community of serious cyclists who refuse to accept their best days are behind them.",
   alternates: {

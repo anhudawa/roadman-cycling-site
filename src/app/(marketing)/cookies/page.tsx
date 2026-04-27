@@ -3,7 +3,7 @@ import Link from "next/link";
 import { Header, Footer, Section, Container } from "@/components/layout";
 
 export const metadata: Metadata = {
-  title: "Cookie Policy — Roadman Cycling",
+  title: "Cookie Policy",
   description:
     "How Roadman Cycling uses cookies, analytics tracking, A/B testing, and third-party marketing cookies. Learn how to manage your cookie preferences.",
   alternates: {

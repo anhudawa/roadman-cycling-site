@@ -9,6 +9,9 @@ import { JsonLd } from "@/components/seo/JsonLd";
 import { ENTITY_IDS } from "@/lib/brand-facts";
 import { Breadcrumbs } from "@/components/seo/Breadcrumbs";
 import { EmailCapture } from "@/components/features/conversion/EmailCapture";
+import { ShortAnswer } from "@/components/features/aeo/ShortAnswer";
+import { SourceMethodology } from "@/components/features/aeo/SourceMethodology";
+import { AskRoadmanCTA } from "@/components/features/aeo/AskRoadmanCTA";
 import { getTopicBySlug, getAllTopicSlugs, getTopicTitleBySlug } from "@/lib/topics";
 import { queryContentGraph } from "@/lib/content-graph";
 import { mdxComponents } from "@/components/mdx/MDXComponents";
@@ -77,7 +80,7 @@ export default async function TopicPage({
           })),
           speakable: {
             "@type": "SpeakableSpecification",
-            cssSelector: ["h1", ".topic-description"],
+            cssSelector: ["h1", ".short-answer", ".topic-description"],
           },
         }}
       />
@@ -132,6 +135,19 @@ export default async function TopicPage({
                 {topic.posts.length} articles &middot; {topic.episodes.length}{" "}
                 podcast episodes
               </p>
+            </ScrollReveal>
+          </Container>
+          <Container width="narrow" className="mt-8">
+            <ScrollReveal direction="up">
+              {/* Answer-first block — surfaces the topic's defining
+                  position so AI crawlers can extract a single-sentence
+                  answer for "what is X" style queries that map to this
+                  hub. */}
+              <ShortAnswer
+                text={topic.description}
+                pillar={topic.pillar}
+                heading="THE SHORT ANSWER"
+              />
             </ScrollReveal>
           </Container>
         </Section>
@@ -442,6 +458,31 @@ export default async function TopicPage({
             </Container>
           </Section>
         )}
+
+        {/* Source + methodology + Ask handoff */}
+        <Section background="charcoal" className="!py-14">
+          <Container width="narrow">
+            <ScrollReveal direction="up">
+              <SourceMethodology
+                methodology={`This hub aggregates Roadman Cycling Podcast conversations and our written guides into a single position on ${topic.title.toLowerCase()}. Recommendations come from named experts on the show, the published research they cite, and Anthony's coaching practice — not generic fitness content.`}
+                episodes={topic.episodes.slice(0, 2).map((ep) => ({
+                  title: ep.title,
+                  href: `/podcast/${ep.slug}`,
+                }))}
+                articles={topic.posts.slice(0, 2).map((p) => ({
+                  title: p.title,
+                  href: `/blog/${p.slug}`,
+                }))}
+              />
+              <AskRoadmanCTA
+                topic={topic.title}
+                question={`I'm trying to get my head around ${topic.title.toLowerCase()}. Where should I start, given my situation?`}
+                source={`topic-${topic.slug}`}
+                heading="WANT THIS APPLIED TO YOU?"
+              />
+            </ScrollReveal>
+          </Container>
+        </Section>
 
         {/* CTA — coaching hub gets a coaching-specific funnel */}
         {topic.slug === "cycling-coaching" ? (

@@ -24,6 +24,7 @@ import { StickyCoachingBar } from "@/components/features/conversion/StickyCoachi
 import { EmailCapture } from "@/components/features/conversion/EmailCapture";
 import { TableOfContents } from "@/components/features/blog/TableOfContents";
 import { AnswerCapsule } from "@/components/ui/AnswerCapsule";
+import { AskRoadmanCTA } from "@/components/features/aeo/AskRoadmanCTA";
 import { mdxComponents } from "@/components/mdx/MDXComponents";
 
 export async function generateStaticParams() {
@@ -509,6 +510,15 @@ export default async function BlogPostPage({
                 post.lastReviewed || post.updatedDate || post.publishDate
               )}
               reviewedBy={post.reviewedBy || "Anthony Walsh"}
+            />
+
+            {/* Ask Roadman handoff — pre-fills the assistant input with
+                a question framed around this article's topic so a reader
+                with a follow-up doesn't have to re-establish context. */}
+            <AskRoadmanCTA
+              topic={post.title}
+              question={`I just read "${post.title}". What should I do next based on this?`}
+              source={`blog-${slug}`}
             />
 
             {/* Graph-powered: related calculator tools — surfaces at least

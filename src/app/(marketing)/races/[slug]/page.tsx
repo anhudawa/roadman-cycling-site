@@ -107,9 +107,11 @@ export default async function RacePage({
     `I'm training for the ${race.name} (${race.distance_km}km, ${race.elevation_m.toLocaleString()}m elevation). What finish time should I target and how should I structure my preparation?`,
   );
 
-  // If a matching predictor course exists, deep-link the predict form with
-  // that course pre-selected (?course=<slug>). /predict/[slug] is the
-  // *result* route — generated post-submit — so linking there 404s.
+  // If a matching predictor course exists, deep-link the predictor form with
+  // it preselected (?course=<slug>); otherwise send the rider to the
+  // predictor courses index. NOTE: /predict/[slug] is the *result* page
+  // (expects a prediction record), not a course page — linking there for
+  // a course slug 404s.
   const predictorHref = race.predictor_slug
     ? `/predict?course=${race.predictor_slug}`
     : `/predict/courses`;

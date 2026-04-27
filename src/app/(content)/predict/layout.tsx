@@ -1,34 +1,22 @@
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Free Race Time Predictor — Cycling Finish Times by Power, Course & Conditions",
+  title: {
+    default: "Race Time Predictor — Free GPX-Based Sportive Calculator",
+    template: "%s | Roadman Cycling",
+  },
   description:
-    "Predict your sportive or gran fondo finish time from your FTP, weight, course profile and weather. Free, evidence-based, ±3% typical accuracy. Built by Roadman Cycling.",
-  keywords: [
-    "race time predictor",
-    "cycling finish time calculator",
-    "sportive predictor",
-    "gran fondo predictor",
-    "Étape du Tour predictor",
-    "FTP race predictor",
-    "cycling pacing calculator",
-  ],
+    "Predict your finish time on Étape, Marmotte, Wicklow 200, or any GPX route. Real elevation, real wind, real rolling resistance — typical accuracy ±3%. Free.",
   alternates: { canonical: "https://roadmancycling.com/predict" },
   openGraph: {
-    title: "Free Race Time Predictor — Cycling Finish Times by Power, Course & Conditions",
+    title: "Race Time Predictor — Free GPX-Based Sportive Calculator",
     description:
-      "Predict your sportive finish time from FTP, weight, course profile and weather. Free, ±3% typical accuracy.",
+      "Predict your finish time on Étape, Marmotte, Wicklow 200, or any GPX route. Real elevation, real wind, real rolling resistance.",
     type: "website",
     url: "https://roadmancycling.com/predict",
-    images: [{ url: "/og-image.jpg", width: 1200, height: 630, alt: "Roadman Race Predictor" }],
   },
-  robots: { index: true, follow: true },
 };
 
-export default function PredictLayout({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
+export default function PredictLayout({ children }: { children: React.ReactNode }) {
   return children;
 }

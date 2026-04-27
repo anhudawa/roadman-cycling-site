@@ -6,7 +6,7 @@ import { JsonLd } from "@/components/seo/JsonLd";
 import { ENTITY_IDS } from "@/lib/brand-facts";
 
 export const metadata: Metadata = {
-  title: "Research & Evidence Base — Roadman Cycling",
+  title: "Research & Evidence Base",
   description:
     "The research, expert interviews, and evidence that underpins every Roadman article and coaching decision. Named sources, specific studies, zero guesswork.",
   alternates: {

@@ -58,7 +58,9 @@ export type EventType =
   | "community_cta_clicked"
   | "ask_roadman_used"
   | "race_page_viewed"
-  | "share_clicked";
+  | "share_clicked"
+  // ── Coaching funnel ────────────────────────────────────
+  | "coaching_apply_submitted";
 
 export interface TrackingEvent {
   id: string;
@@ -121,6 +123,7 @@ export async function recordEvent(
     sessionId?: string;
     variantId?: string;
     meta?: Record<string, string>;
+    aiReferrer?: string;
   }
 ): Promise<TrackingEvent> {
   const now = new Date();
@@ -140,6 +143,7 @@ export async function recordEvent(
       sessionId: options?.sessionId ?? "unknown",
       variantId: options?.variantId ?? null,
       meta: options?.meta ?? null,
+      aiReferrer: options?.aiReferrer ?? null,
     })
     .returning();
 
@@ -816,4 +820,130 @@ export async function getRevenueSnapshots(
     date: r.snapshotDate,
     revenue: r.totalRevenueCents / 100,
   }));
+}
+
+// ── AI Referral Analytics (DEV-DATA-02) ────────────────────────────
+export interface AIReferralBreakdownRow {
+  aiReferrer: string;
+  count: number;
+}
+
+/**
+ * Pageview counts grouped by canonical AI host (chatgpt.com, perplexity.ai,
+ * claude.ai, gemini.google.com, copilot.microsoft.com, …, llms-txt). Reads
+ * the indexed `events.ai_referrer` column populated by /api/events.
+ */
+export async function getAIReferralBreakdown(
+  from: Date,
+  to: Date,
+): Promise<AIReferralBreakdownRow[]> {
+  const rows = await db
+    .select({
+      aiReferrer: events.aiReferrer,
+      cnt: count(),
+    })
+    .from(events)
+    .where(
+      and(
+        gte(events.timestamp, from),
+        lte(events.timestamp, to),
+        sql`${events.aiReferrer} IS NOT NULL`,
+      ),
+    )
+    .groupBy(events.aiReferrer)
+    .orderBy(desc(count()));
+
+  return rows.map((r) => ({
+    aiReferrer: r.aiReferrer ?? "unknown",
+    count: Number(r.cnt),
+  }));
+}
+
+export interface AIReferralDailyRow {
+  date: string; // YYYY-MM-DD
+  total: number;
+}
+
+export async function getAIReferralDaily(
+  from: Date,
+  to: Date,
+): Promise<AIReferralDailyRow[]> {
+  const rows = await db
+    .select({
+      date: sql<string>`to_char(${events.timestamp}, 'YYYY-MM-DD')`,
+      total: count(),
+    })
+    .from(events)
+    .where(
+      and(
+        gte(events.timestamp, from),
+        lte(events.timestamp, to),
+        sql`${events.aiReferrer} IS NOT NULL`,
+      ),
+    )
+    .groupBy(sql`to_char(${events.timestamp}, 'YYYY-MM-DD')`)
+    .orderBy(sql`to_char(${events.timestamp}, 'YYYY-MM-DD')`);
+
+  return rows.map((r) => ({ date: r.date, total: Number(r.total) }));
+}
+
+// ── Content → Coaching Funnel (DEV-DATA-01) ────────────────────────
+export interface CoachingFunnelStats {
+  contentViews: number;
+  newsletterSignups: number;
+  coachingPageViews: number;
+  applyPageViews: number;
+  applySubmits: number;
+}
+
+/**
+ * Five-step funnel: content → email → /coaching → /apply → submit. Apply
+ * submits use the new `coaching_apply_submitted` event fired from the
+ * cohort apply form on success.
+ */
+export async function getContentCoachingFunnel(
+  from: Date,
+  to: Date,
+): Promise<CoachingFunnelStats> {
+  const baseRange = and(gte(events.timestamp, from), lte(events.timestamp, to));
+
+  const contentClause = sql`(
+    ${events.page} LIKE '/blog/%' OR
+    ${events.page} LIKE '/podcast/%' OR
+    ${events.page} LIKE '/glossary/%' OR
+    ${events.page} LIKE '/tools/%'
+  )`;
+
+  const [contentViewsRow] = await db
+    .select({ c: count() })
+    .from(events)
+    .where(and(baseRange, eq(events.type, "pageview"), contentClause));
+
+  const [signupsRow] = await db
+    .select({ c: count() })
+    .from(events)
+    .where(and(baseRange, eq(events.type, "signup")));
+
+  const [coachingViewsRow] = await db
+    .select({ c: count() })
+    .from(events)
+    .where(and(baseRange, eq(events.type, "pageview"), eq(events.page, "/coaching")));
+
+  const [applyViewsRow] = await db
+    .select({ c: count() })
+    .from(events)
+    .where(and(baseRange, eq(events.type, "pageview"), eq(events.page, "/apply")));
+
+  const [applySubmitsRow] = await db
+    .select({ c: count() })
+    .from(events)
+    .where(and(baseRange, eq(events.type, "coaching_apply_submitted")));
+
+  return {
+    contentViews: Number(contentViewsRow?.c ?? 0),
+    newsletterSignups: Number(signupsRow?.c ?? 0),
+    coachingPageViews: Number(coachingViewsRow?.c ?? 0),
+    applyPageViews: Number(applyViewsRow?.c ?? 0),
+    applySubmits: Number(applySubmitsRow?.c ?? 0),
+  };
 }
