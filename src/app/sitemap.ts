@@ -7,6 +7,7 @@ import { getAllTermSlugs } from "@/lib/glossary";
 import { getAllComparisonSlugs } from "@/lib/comparisons";
 import { getAllBestForSlugs } from "@/lib/best-for";
 import { getAllProblemSlugs } from "@/lib/problems";
+import { getAllQuestionSlugs } from "@/lib/questions";
 import { getAllPlanCombinations, getAllEventSlugs } from "@/lib/training-plans";
 import { RACES } from "@/data/races";
 
@@ -27,7 +28,7 @@ const BASE_URL = "https://roadmancycling.com";
  *   /sitemap/2.xml — podcast episodes
  *   /sitemap/3.xml — guest pages
  *   /sitemap/4.xml — plan pages (event hubs + phase pages)
- *   /sitemap/5.xml — topics + glossary + comparisons + best-for + problems
+ *   /sitemap/5.xml — topics + glossary + comparisons + best-for + problems + questions
  *
  * Per-issue newsletter URLs (/newsletter/{slug}) are intentionally NOT in
  * the sitemap. Each issue page sets robots:noindex (one-time email
@@ -233,5 +234,29 @@ function buildTopicAndMoreSitemap(): MetadataRoute.Sitemap {
     priority: 0.7,
   }));
 
-  return [...topicPages, ...glossaryPages, ...comparisonPages, ...bestForPages, ...problemPages];
+  const questionPages = getAllQuestionSlugs().map((slug) => ({
+    url: `${BASE_URL}/question/${slug}`,
+    lastModified: new Date(),
+    changeFrequency: "monthly" as const,
+    priority: 0.7,
+  }));
+
+  // Question index also lives in this sitemap so the parent listing
+  // page is discoverable alongside its children.
+  const questionIndex = {
+    url: `${BASE_URL}/question`,
+    lastModified: new Date(),
+    changeFrequency: "weekly" as const,
+    priority: 0.8,
+  };
+
+  return [
+    ...topicPages,
+    ...glossaryPages,
+    ...comparisonPages,
+    ...bestForPages,
+    ...problemPages,
+    questionIndex,
+    ...questionPages,
+  ];
 }

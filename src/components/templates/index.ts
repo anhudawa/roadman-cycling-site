@@ -1,5 +1,11 @@
 export { TemplateShell } from "./TemplateShell";
-export { QuestionTemplate, type EvidencePoint, type RelatedLink } from "./QuestionTemplate";
+export {
+  QuestionTemplate,
+  type EvidencePoint,
+  type RelatedLink,
+  type QuestionFaq,
+  type CoachingCta,
+} from "./QuestionTemplate";
 export { ComparisonTemplate, type ComparisonRow } from "./ComparisonTemplate";
 export {
   BenchmarkTemplate,
