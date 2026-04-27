@@ -12,6 +12,9 @@ interface PageProps {
 
 export const metadata = {
   title: "Race Report — payment received",
+  // Per-user post-purchase confirmation. Thin content, transactional, must
+  // never be indexed — Google was flagging the URL as a soft 404.
+  robots: { index: false, follow: false },
 };
 
 export default async function SuccessPage({ params }: PageProps) {

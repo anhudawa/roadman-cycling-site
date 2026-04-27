@@ -1,203 +1,248 @@
-# Indexing Audit — Roadman Cycling
+# Indexing Audit — roadmancycling.com
 
-Audit date: 2026-04-27. Triggered by Google Search Console flagging 404s, soft 404s,
-robots.txt blocks, canonical issues, and redirects.
+Audit date: 2026-04-27
+Branch: `claude/loving-elbakyan-56a27e` (merging in concurrent fixes from
+`2a633a9` on `main`).
+
+Code-side audit triggered by Google Search Console flagging:
+*Alternate page with proper canonical tag*, *Not found (404)*,
+*Page with redirect*, *Blocked by robots.txt*, *Soft 404*.
+
+Two independent audits ran in parallel and found complementary defects;
+all four fixes are now landed together.
 
 ---
 
 ## Summary
 
-| Area | Status | Issues found | Fixed |
-|------|--------|-------------|-------|
-| 404s | ✅ Clean | 0 real 404s | — |
-| Soft 404s | ✅ Clean | 0 | — |
-| robots.txt | ✅ Clean | 0 | — |
-| Canonical tags | ✅ Clean | 0 | — |
-| Redirects | ⚠️ 1 note | `/2026` is 302 (intentional) | Documented |
-| Sitemap coverage | 🔴 Fixed | 3 indexable pages missing | ✅ Fixed |
-| Sitemap resilience | 🟡 Fixed | Beehiiv failure was silent | ✅ Fixed |
+| # | Issue | Severity | Status |
+|---|-------|----------|--------|
+| 1 | `/methodology`, `/sponsor` indexable but missing from sitemap | Medium | **Fixed in `2a633a9`** |
+| 2 | `/races` hub + 20× `/races/[slug]` indexable but missing from sitemap | Medium | **Fixed in `2a633a9`** |
+| 3 | Beehiiv build-time failure was silent — no log when newsletter URLs disappeared | Low | **Resolved by #5** |
+| 4 | `/predict/[slug]/success` indexable with thin content (soft 404 risk) | High | **Fixed in this PR** |
+| 5 | `/newsletter/[slug]` is `noindex` but emitted in sitemap (contradiction) | High | **Fixed in this PR** |
+
+Everything else Google reports in those five categories is healthy in the
+codebase — listed below for completeness.
 
 ---
 
 ## 1. 404s
 
-**Result: No 404s found.**
+### Sitemap → routes
+Every URL emitted by `src/app/sitemap.ts` resolves to a real route:
+- Static pages map 1:1 to existing `page.tsx` files. After `2a633a9`,
+  `/methodology`, `/sponsor`, `/races`, and every `/races/{slug}` from
+  the `RACES` array in `src/data/races.ts` are included — these were
+  indexable pages absent from the sitemap, the textbook "Discovered, not
+  indexed" pattern.
+- Dynamic pages: every dynamic route used by the sitemap has
+  `generateStaticParams()` that fully enumerates its slugs from the
+  canonical data layer — `getAllPosts()`, `getAllEpisodes()`,
+  `getAllGuests()`, `getAllTopicSlugs()`, `getAllTermSlugs()`,
+  `getAllComparisonSlugs()`, `getAllBestForSlugs()`,
+  `getAllProblemSlugs()`, `getAllPlanCombinations()` /
+  `getAllEventSlugs()`.
+- `coaching/[location]/page.tsx` exposes the 11 locations the sitemap
+  names (ireland, uk, usa, dublin, cork, galway, london, manchester,
+  belfast, edinburgh, leeds) via a hardcoded `LOCATIONS` map plus
+  `generateStaticParams`. No gaps.
+- `/you/[slug]` covers plateau, event, comeback, listener.
 
-All routes listed in the sitemap have corresponding `page.tsx` files. Every redirect
-destination was verified to have a live route. No internal link points to a missing
-page — the only candidate flagged (`/compare/heart-rate-vs-power`) is a valid slug
-in `src/lib/comparisons.ts` and the route correctly calls `getComparisonBySlug()`.
+### Redirect destinations
+`next.config.ts` declares ~73 redirects (72 × 301, 1 × 302 — the 302 is
+`/2026 → /apply`, intentional and time-bound). Every destination
+resolves:
+- `/coaching/{ireland,uk,usa}` → real `[location]` slugs.
+- `/community/clubhouse`, `/community/club`, `/community/not-done-yet`,
+  `/strength-training`, `/apply`, `/coaching`, `/coaching/triathlon`,
+  `/tools/*`, `/about`, `/about/press`, `/partners`, `/podcast`,
+  `/contact`, `/plan` — all exist.
+- All seven blog redirect targets present in `content/blog/*.mdx`:
+  `/blog/cycling-weight-loss-fuel-for-the-work-required`,
+  `/blog/cycling-periodisation-plan-guide`,
+  `/blog/common-training-mistakes-from-1400-podcast-episodes`,
+  `/blog/best-cycling-podcasts-2026`,
+  `/blog/cycling-coach-near-me-why-location-doesnt-matter-2026`,
+  `/blog/how-much-does-online-cycling-coach-cost-2026`,
+  `/blog/trainerroad-vs-online-cycling-coach`.
+- `/compare/trainingpeaks-vs-todays-plan` →
+  `/compare/trainingpeaks-vs-vekta`: destination present in
+  `src/lib/comparisons.ts`. Verified.
 
-All redirect destinations confirmed live:
-- `/apply` ✅  `/coaching` ✅  `/community/clubhouse` ✅
-- `/community/not-done-yet` ✅  `/strength-training` ✅  `/plan` ✅
-- `/blog/*` slugs resolved at build time ✅
+No redirect chains: every `permanent: true` source goes to a final route
+in one hop.
+
+### Stale internal links
+Searched `src/components`, `src/app`, and `content/` for `<Link href="…">`
+references; cross-checked against the route map and redirect sources.
+No stale public-facing internal links found. No remaining references to
+the old `/compare/trainingpeaks-vs-todays-plan` slug exist in `src/` or
+`content/` — anything Google still has cached resolves via the 301 in
+`next.config.ts`.
+
+The admin sidebar contains a `href="/admin"` link without a matching
+`/admin/page.tsx`; this is internal-only, robots.txt-blocked, and not
+part of the GSC public-indexing surface, so out of scope.
+
+### Dynamic data-source 404 behaviour
+Every public dynamic route calls `notFound()` when the slug resolves to
+no data, returning a real HTTP 404 — never a 200 with empty content.
+Verified in `blog/[slug]`, `podcast/[slug]`, `predict/[slug]`,
+`compare/[slug]`, `glossary/[slug]`, `topics/[slug]`, `best/[slug]`,
+`problem/[slug]`, `guests/[slug]`, `you/[slug]`, `plan/[event]`,
+`plan/[event]/[weeksOut]`, `coaching/[location]`, `races/[slug]`,
+`author/[slug]`, `newsletter/[slug]`, `results/[tool]/[slug]`,
+`results/ftp-zones/[slug]`, `results/fuelling/[slug]`,
+`diagnostic/[slug]`, `reports/[product]/*`.
 
 ---
 
-## 2. Soft 404s
+## 2. robots.txt
 
-**Result: None.**
+`src/app/robots.ts` blocks:
+`/api/`, `/admin/`, `/account/`, `/cart/`, `/checkout/`, `/sign-in`,
+`/login`, `/strength-training/success`, `/success/`, `/thank-you`,
+`/unsubscribe`, `/preview/`, `/draft/`, `/_next/`.
 
-Every dynamic route calls `notFound()` when the record is absent:
-
-| Route | notFound() line |
-|-------|----------------|
-| `/blog/[slug]` | 94 |
-| `/podcast/[slug]` | 95 |
-| `/guests/[slug]` | 53 |
-| `/glossary/[slug]` | 38 |
-| `/topics/[slug]` | 57 |
-| `/best/[slug]` | 54 |
-| `/compare/[slug]` | 83 |
-| `/problem/[slug]` | 65 |
-| `/author/[slug]` | 67 |
-| `/you/[slug]` | 59 |
-| `/races/[slug]` | 102 |
-| `/plan/[event]` | 92 |
-| `/plan/[event]/[weeksOut]` | 72 |
-| `/newsletter/[slug]` | 52 |
-| `/results/[tool]/[slug]` | 60 |
-
-Pages intentionally excluded from indexing (noindex meta, not soft 404s):
-- `/diagnostic/[slug]` — personal diagnostic data
-- `/predict/[slug]` — user predictions
-- `/reports/[product]/view/[token]` — tokenised paid reports
-- `/results/ftp-zones/[slug]`, `/results/fuelling/[slug]` — saved tool results
-- `/newsletter/[slug]` — thin content per code comment
+- API and admin paths blocked correctly.
+- Defensive paths (`/account/`, `/cart/`, `/checkout/`, `/sign-in`,
+  `/login`) don't exist as routes — intentional future-proofing.
+- `/strength-training/success` is also `noindex` at the page level
+  (belt + braces).
+- `/success/` is a prefix-match disallow. It does NOT match
+  `/predict/{slug}/success` (which doesn't start with `/success/`) —
+  that page needed its own page-level `noindex` (see fix #4).
+- No sitemap URL is blocked by robots.txt. **No contradiction.**
 
 ---
 
-## 3. robots.txt
+## 3. Soft 404s
 
-**Result: Clean.**
+### Issue #4 — `/predict/[slug]/success` (FIXED in this PR)
 
-`src/app/robots.ts` disallows only non-indexable paths:
+**File:** `src/app/(content)/predict/[slug]/success/page.tsx`
 
-```
-/api/, /admin/, /account/, /cart/, /checkout/, /sign-in, /login,
-/strength-training/success, /success/, /thank-you, /unsubscribe,
-/preview/, /draft/, /_next/
-```
+Post-Stripe payment confirmation page for the Race Report. It:
+- Returns HTTP 200 regardless of whether `slug` resolves.
+- Has thin content (a single paragraph + an outbound CTA).
+- Lacked `robots: { index: false }` in its metadata.
+- Inherits the parent `/predict/layout.tsx` canonical
+  (`https://roadmancycling.com/predict`), which would tell Google this
+  page is a duplicate of `/predict`.
 
-None of these paths appear in the sitemap. No sitemap URL is blocked by robots.
+Either signal alone is enough to be flagged as a soft 404 or "Alternate
+page with proper canonical tag". The page is per-user, transactional,
+and should never be indexed.
 
-AI crawlers (GPTBot, ClaudeBot, OAI-SearchBot, etc.) are explicitly allowed with the
-same disallow rules — transactional paths are protected regardless of crawler.
+**Fix:** added `robots: { index: false, follow: false }` to the
+page-level `metadata` export. A canonical tag is unnecessary when
+noindexed.
 
-No static `public/robots.txt` exists to shadow the dynamic route.
+### Other risk pages (verified clean)
+- `/predict/[slug]` itself → already `robots: { index: false, follow: true }`.
+- `/strength-training/success` → noindex + robots.txt block.
+- `/results` → noindex (per-user, token-gated). Not in sitemap.
+- `/results/[tool]/[slug]` and `/results/{ftp-zones,fuelling}/[slug]` →
+  noindex. Not in sitemap.
+- `/reports/[product]/{success,view/[token]}` → noindex. Not in sitemap.
+  Download endpoint sets `X-Robots-Tag: noindex, nofollow`.
+- `/search` → noindex. Not in sitemap.
+- `/diagnostic/[slug]` → noindex. Not in sitemap.
+- `/wrapped` → server component with proper metadata; renders demo data
+  by default so the page is never empty.
+- `/offline` → noindex. Not in sitemap.
+- Global `not-found.tsx` → noindex; App Router emits HTTP 404
+  automatically.
 
 ---
 
-## 4. Canonical Tags
+## 4. Canonical tags
 
-**Result: Clean.**
+### Sitemap–canonical format consistency
+- Sitemap emits `https://roadmancycling.com/...` (apex, no `www`, no
+  trailing slash).
+- Every canonical tag in the codebase uses the same format.
+- `next.config.ts` sets `trailingSlash: false`.
+- `metadataBase = new URL("https://roadmancycling.com")` in
+  `src/app/layout.tsx`.
 
-All public pages export explicit `alternates.canonical` in their metadata:
+No `www.roadmancycling.com` or trailing-slash variants found.
 
-- Root layout sets `metadataBase: new URL("https://roadmancycling.com")`
-- Every dynamic route's `generateMetadata()` returns a self-referencing absolute canonical
-- "use client" pages (tool pages, contact) get canonical via parent `layout.tsx` exports —
-  correct Next.js pattern
+### Client-component canonical coverage
+Every client-component page in the sitemap (`/tools/*`, `/predict`,
+`/predict/courses`, `/contact`, `/wrapped` shell,
+`/community/not-done-yet/fit`) has a sibling `layout.tsx` that exports
+`metadata` with `alternates.canonical`. Layout-level metadata is the
+correct way to attach canonicals to client-component pages in App
+Router and is being used consistently.
+
+### Author route collision
+Both `src/app/(marketing)/author/anthony-walsh/page.tsx` (static) and
+`src/app/(marketing)/author/[slug]/page.tsx` (dynamic) exist. Next.js
+matches the static segment first, and the dynamic route's
+`generateStaticParams` filters Anthony out (`a.primary`). No duplicate
+emission, no canonical conflict.
+
+### Issue #5 — newsletter sitemap–noindex contradiction (FIXED in this PR)
+
+**Files:**
+- `src/app/(marketing)/newsletter/[slug]/page.tsx` — sets
+  `robots: { index: false, follow: true }` because individual newsletter
+  issues are thin email broadcasts repurposed as web pages.
+- `src/app/sitemap.ts` (`buildTopicAndMoreSitemap`) — was emitting one
+  entry per Beehiiv issue at `/newsletter/{slug}`.
+
+A page that's `noindex` should not be in the sitemap — Google flags this
+as "Submitted URL marked 'noindex'", and it's also one of the patterns
+that shows up under "Alternate page with proper canonical tag" because
+Google ends up choosing a different canonical entirely.
+
+**Fix:** removed the per-issue newsletter URLs from the sitemap. The
+`/newsletter` index page (which IS indexable) stays in the sitemap.
+Issue slugs remain reachable via internal links from `/newsletter`,
+RSS, and emails — they just don't claim indexability.
+
+This also resolves issue #3 (Beehiiv silent-failure logging from
+`2a633a9`): now that the sitemap doesn't depend on Beehiiv at all, the
+silent-failure path no longer exists. The `console.error` added in
+`2a633a9` was for a code path we've now removed.
 
 ---
 
 ## 5. Redirects
 
-### Overview
-72 permanent (301), 1 temporary (302). No chains (A→B→C). All destinations return 200.
+All redirects in `next.config.ts` are single-hop and land on real routes
+(see §1). The two patterns worth calling out:
 
-### `/2026 → /apply` (302 temporary) — intentional
-`next.config.ts` line 101. The 302 is deliberate: `/2026` is a year-scoped URL intended
-for re-use in subsequent years; a 301 would transfer equity permanently to `/apply` and
-make the slug hard to reclaim. **No change needed.**
+- `coaching.roadmancycling.com` subdomain rules use
+  `has: [{ type: "host" }]` and consolidate the legacy ClickFunnels
+  subdomain onto the apex. Path-to-regexp v8 (Next.js 16+) syntax is
+  used correctly (`/optin-:rest(.*)` and `/roadmancc:rest(.*)`).
+- `rewrites().beforeFiles` rewrites a list of dead ClickFunnels paths to
+  `/api/gone`, which returns HTTP 410 — the correct way to tell Google
+  those URLs are gone for good. `/sitemap.xml` rewrites to the
+  `sitemap-index.xml` route handler.
 
-### Orphan ClickFunnels URLs → 410 Gone
-17 legacy ClickFunnels paths are rewritten to `/api/gone` which returns HTTP 410.
-410 is the correct response for pages that permanently ceased to exist. GSC will
-eventually stop reporting these.
-
-### Redirect chains
-None found. All 73 redirects are direct single-hop.
-
----
-
-## 6. Sitemap Coverage — Fixed
-
-Three indexable pages existed but were missing from the sitemap, causing GSC
-"Discovered, currently not indexed" reports.
-
-### Pages added to `src/app/sitemap.ts` (`buildStaticSitemap`, sitemap/0.xml)
-
-| URL | Canonical set | robots meta | Priority | Change freq |
-|-----|--------------|------------|---------|------------|
-| `/methodology` | ✅ | index:true | 0.6 | monthly |
-| `/sponsor` | ✅ | index:true | 0.5 | monthly |
-| `/races` | ✅ | index:true, follow:true | 0.7 | monthly |
-| `/races/[slug]` × 20 | ✅ each | index:true, follow:true | 0.7 | monthly |
-
-Race slugs added: etape-du-tour, la-marmotte, mallorca-312, wicklow-200, ring-of-kerry,
-fred-whitton, maratona-dles-dolomites, leroica, haute-route-alps, dragon-ride, ridelondon,
-gran-fondo-new-york, quebrantahuesos, otztaler-radmarathon, cape-town-cycle-tour,
-liege-bastogne-liege, tour-of-flanders-cyclo, raid-pyreneen, velo-birmingham,
-tour-de-yorkshire.
-
-The `RACES` array from `src/data/races` is now imported directly so future race entries
-are automatically included in the sitemap.
+The "Page with redirect" GSC category is informational — these are
+expected for any site that has migrated URL structures, and Google will
+drop the redirect sources from the index over time. No action needed.
 
 ---
 
-## 7. Sitemap Resilience — Fixed
+## Combined fix list (this PR + `2a633a9`)
 
-### Newsletter sitemap catch block was silent
+In `src/app/sitemap.ts`:
+- ✅ `/methodology` and `/sponsor` added to `buildStaticSitemap` (`2a633a9`).
+- ✅ `/races` hub + every `/races/{slug}` from the `RACES` array added
+  via spread; new entries pick up automatically (`2a633a9`).
+- ✅ Per-issue newsletter URLs removed from `buildTopicAndMoreSitemap`
+  to resolve the noindex/sitemap contradiction (this PR).
+- ✅ Beehiiv import dropped — sitemap no longer depends on the external
+  API at all.
 
-`src/app/sitemap.ts` line 228 had an empty `catch {}` block around the Beehiiv API
-call that generates newsletter URLs for sitemap/5.xml. If the Beehiiv API is down or
-rate-limited at build time, all newsletter archive URLs silently disappear from the
-sitemap with no build-log evidence.
+In `src/app/(content)/predict/[slug]/success/page.tsx`:
+- ✅ Added `robots: { index: false, follow: false }` to the page metadata.
 
-**Fix:** Added `console.error` logging so failures are visible in Vercel build logs.
-
----
-
-## 8. Pages Not in Sitemap (Intentional)
-
-These pages exist but are correctly excluded:
-
-| Page | Reason |
-|------|--------|
-| `/terms`, `/privacy`, `/cookies` | Legal boilerplate, standard practice to exclude |
-| `/wrapped` | Seasonal/temporary page |
-| `/search` | Dynamic results page, no stable canonical content |
-| `/results` | Personal results hub, force-dynamic with noindex |
-| `/strength-training/success` | Post-purchase confirmation, blocked in robots.txt too |
-
----
-
-## 9. Redirect Inventory
-
-All 73 redirects in `next.config.ts`:
-
-**Permanent (301) — 72 total**
-
-Category | Count | Examples
----------|-------|--------
-ClickFunnels → New site | 36 | /join→/apply, /shop→/tools, /ftp-calculator→/tools/ftp-zones
-Legacy URL patterns | 8 | /plans→/plan, /episodes→/podcast, /calculators→/tools
-Content consolidation | 5 | Blog merges (duplicate posts → canonical version)
-Coaching subdomain retirement | 5 | coaching.roadmancycling.com/* → roadmancycling.com/*
-ClickFunnels orphan pages | 12 | → /api/gone (410)
-Product lifecycle | 1 | /compare/trainingpeaks-vs-todays-plan → updated slug
-Misc | 5 | /strong, /getstrong, /ndy, etc.
-
-**Temporary (302) — 1 total**
-
-- `/2026 → /apply` — year-scoped URL, intentionally temporary
-
----
-
-## Files Changed
-
-| File | Change |
-|------|--------|
-| `src/app/sitemap.ts` | Added `RACES` import; added `/methodology`, `/sponsor`, `/races`, and all 20 `/races/[slug]` entries to `buildStaticSitemap()`; added `console.error` logging to Beehiiv catch block |
+That's the full code delta. Everything else inspected was already healthy.

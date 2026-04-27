@@ -7,7 +7,6 @@ import { getAllTermSlugs } from "@/lib/glossary";
 import { getAllComparisonSlugs } from "@/lib/comparisons";
 import { getAllBestForSlugs } from "@/lib/best-for";
 import { getAllProblemSlugs } from "@/lib/problems";
-import { fetchNewsletterIssues } from "@/lib/integrations/beehiiv";
 import { getAllPlanCombinations, getAllEventSlugs } from "@/lib/training-plans";
 import { RACES } from "@/data/races";
 
@@ -28,7 +27,13 @@ const BASE_URL = "https://roadmancycling.com";
  *   /sitemap/2.xml — podcast episodes
  *   /sitemap/3.xml — guest pages
  *   /sitemap/4.xml — plan pages (event hubs + phase pages)
- *   /sitemap/5.xml — topics + glossary + comparisons + best-for + problems + newsletter
+ *   /sitemap/5.xml — topics + glossary + comparisons + best-for + problems
+ *
+ * Per-issue newsletter URLs (/newsletter/{slug}) are intentionally NOT in
+ * the sitemap. Each issue page sets robots:noindex (one-time email
+ * broadcasts are too thin for web indexing), and a noindex page in the
+ * sitemap is a Search Console contradiction. The /newsletter index page
+ * stays in /sitemap/0.xml.
  */
 
 const SITEMAP_IDS = [0, 1, 2, 3, 4, 5] as const;
@@ -185,7 +190,7 @@ function buildPlanSitemap(): MetadataRoute.Sitemap {
   return [...eventHubs, ...phasePlanPages];
 }
 
-async function buildTopicAndMoreSitemap(): Promise<MetadataRoute.Sitemap> {
+function buildTopicAndMoreSitemap(): MetadataRoute.Sitemap {
   const topicPages = getAllTopicSlugs().map((slug) => ({
     url: `${BASE_URL}/topics/${slug}`,
     lastModified: new Date(),
@@ -221,23 +226,5 @@ async function buildTopicAndMoreSitemap(): Promise<MetadataRoute.Sitemap> {
     priority: 0.7,
   }));
 
-  let newsletterPages: MetadataRoute.Sitemap = [];
-  try {
-    const issues = await fetchNewsletterIssues(100);
-    newsletterPages = issues
-      .filter(
-        (issue): issue is typeof issue & { publishDate: string } =>
-          Boolean(issue.publishDate),
-      )
-      .map((issue) => ({
-        url: `${BASE_URL}/newsletter/${issue.slug}`,
-        lastModified: new Date(issue.publishDate),
-        changeFrequency: "monthly" as const,
-        priority: 0.5,
-      }));
-  } catch (err) {
-    console.error("[sitemap] Beehiiv API unavailable — newsletter URLs omitted from sitemap/5.xml:", err);
-  }
-
-  return [...topicPages, ...glossaryPages, ...comparisonPages, ...bestForPages, ...problemPages, ...newsletterPages];
+  return [...topicPages, ...glossaryPages, ...comparisonPages, ...bestForPages, ...problemPages];
 }
