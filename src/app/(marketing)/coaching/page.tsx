@@ -6,11 +6,13 @@ import { JsonLd } from "@/components/seo/JsonLd";
 import { ENTITY_IDS } from "@/lib/brand-facts";
 import { FAQSchema } from "@/components/seo/FAQSchema";
 import { getTestimonialsByName } from "@/lib/testimonials";
+import { BeforeAfterMetrics, type MetricRow } from "@/components/proof";
+import { JourneyBlock } from "@/components/journey";
 
 export const metadata: Metadata = {
-  title: "Online Cycling Coach — Personalised Coaching | $195/month",
+  title: "Online Cycling Coach — Evidence-Based Coaching | $195/month",
   description:
-    "Personalised cycling coaching built on 1,400+ expert podcast conversations. Training plans, nutrition, strength, recovery, and community. Trusted by cyclists in Ireland, UK, and USA.",
+    "Evidence-based cycling coaching for serious amateur and masters cyclists. Personalised plans built on 1,400+ expert podcast conversations. Training, nutrition, strength, recovery, and community. Trusted by cyclists in Ireland, UK, and USA.",
   keywords: [
     "cycling coach",
     "cycling coaching",
@@ -136,6 +138,47 @@ const faqItems = [
   },
 ];
 
+// Before/after metric ladder pulled from real coached athletes. Mirrors
+// the testimonial wins above as a scannable numerical proof block.
+const memberMetrics: MetricRow[] = [
+  {
+    label: "FTP — Damien Maloney",
+    before: "205w",
+    after: "295w",
+    delta: "+90w over the coached programme",
+  },
+  {
+    label: "20-min power — Blair Corey",
+    before: "236w",
+    after: "296w",
+    delta: "+60w in 3 months on NDY",
+  },
+  {
+    label: "Body weight — Chris O'Connor",
+    before: "84kg",
+    after: "68kg",
+    delta: "-16kg, body fat 20% → 7%",
+  },
+  {
+    label: "Race category — Daniel Stone",
+    before: "Cat 3",
+    after: "Cat 1",
+    delta: "One coached season",
+  },
+  {
+    label: "FTP at 52 — Brian Morrissey",
+    before: "230w",
+    after: "265w",
+    delta: "+15% — 4 w/kg at 52, training less",
+  },
+  {
+    label: "Body weight — Gregory Gross",
+    before: "315 lbs",
+    after: "<100 kg",
+    delta: "Lowest weight in 15 years",
+  },
+];
+
 const testimonials = [
   {
     quote:
@@ -247,7 +290,7 @@ export default function CoachingPage() {
           <Container className="text-center">
             <ScrollReveal direction="up" eager>
               <p className="text-coral font-heading text-sm tracking-widest mb-6">
-                ONLINE CYCLING COACHING
+                EVIDENCE-BASED CYCLING COACHING
               </p>
               <h1
                 className="font-heading text-off-white mb-6"
@@ -258,10 +301,11 @@ export default function CoachingPage() {
                 <span className="text-coral">START PROGRESSING.</span>
               </h1>
               <p className="text-foreground-muted text-xl max-w-2xl mx-auto mb-8 leading-relaxed">
-                Personalised cycling coaching built on 1,400+ conversations with
-                the world&apos;s best coaches and scientists. Training,
-                nutrition, strength, recovery, and community — structured
-                into your week so every session counts.
+                Evidence-based coaching for serious amateur and masters
+                cyclists. Personalised plans built on 1,400+ conversations with
+                the world&apos;s best coaches and scientists — Seiler, Lorang,
+                LeMond, Friel — structured into your week so every session
+                counts.
               </p>
 
               {/* Hero proof point — single killer stat + quote, above the fold */}
@@ -318,7 +362,7 @@ export default function CoachingPage() {
         <div className="gradient-divider" />
 
         {/* Results */}
-        <Section background="charcoal">
+        <Section background="charcoal" id="real-results">
           <Container>
             <ScrollReveal direction="up" className="text-center mb-12">
               <h2
@@ -390,6 +434,18 @@ export default function CoachingPage() {
                 </ScrollReveal>
               ))}
             </div>
+
+            {/* Member before/after ladder — pulled from the central
+                testimonial library, rendered as a scannable metrics
+                block to complement the narrative quotes above. */}
+            <ScrollReveal direction="up" className="mt-16 max-w-4xl mx-auto">
+              <BeforeAfterMetrics
+                metrics={memberMetrics}
+                eyebrow="MEASURED CHANGE"
+                title="What members move in their first 6-12 months"
+                subtitle="Personal records, race categories, body composition. Plus the bit that's harder to measure — getting their cycling identity back."
+              />
+            </ScrollReveal>
           </Container>
         </Section>
 
@@ -795,6 +851,20 @@ export default function CoachingPage() {
                 </Link>
               ))}
             </div>
+          </Container>
+        </Section>
+
+        {/* Funnel-aware next steps — for visitors who've read the
+            page but aren't ready to apply yet. Routes them to the
+            methodology, real results, or the apply funnel. */}
+        <Section background="charcoal">
+          <Container width="narrow">
+            <JourneyBlock
+              stage="coaching"
+              source="coaching-page"
+              eyebrow="NOT READY YET?"
+              heading="DECIDE FROM EVIDENCE — NOT FROM A SALES PAGE."
+            />
           </Container>
         </Section>
 

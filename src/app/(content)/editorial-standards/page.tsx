@@ -116,7 +116,9 @@ export default function EditorialStandardsPage() {
               </p>
               <div className="flex flex-wrap gap-4 justify-center text-sm">
                 <Link href="/about" className="text-coral hover:text-coral/80 transition-colors">About →</Link>
+                <Link href="/methodology" className="text-coral hover:text-coral/80 transition-colors">Methodology →</Link>
                 <Link href="/research" className="text-coral hover:text-coral/80 transition-colors">Research & Evidence →</Link>
+                <Link href="/author/anthony-walsh" className="text-coral hover:text-coral/80 transition-colors">Anthony Walsh →</Link>
               </div>
             </ScrollReveal>
           </Container>
