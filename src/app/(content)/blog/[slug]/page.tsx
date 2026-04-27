@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { MDXRemote } from "next-mdx-remote/rsc";
@@ -26,7 +25,6 @@ import { EmailCapture } from "@/components/features/conversion/EmailCapture";
 import { TableOfContents } from "@/components/features/blog/TableOfContents";
 import { AnswerCapsule } from "@/components/ui/AnswerCapsule";
 import { mdxComponents } from "@/components/mdx/MDXComponents";
-import { isGenericImage } from "@/lib/blog-images";
 
 export async function generateStaticParams() {
   return getAllSlugs().map((slug) => ({ slug }));
@@ -265,36 +263,6 @@ export default async function BlogPostPage({
             </div>
           </Container>
         </Section>
-
-        {/* Featured Image — either the curated post image or, when
-            the post's image is in the shared "generic" pool (gravel
-            stock photos reused across 100+ posts), the Satori-
-            generated branded hero. */}
-        {(() => {
-          const useSatoriHero = isGenericImage(post.featuredImage);
-          const heroSrc = useSatoriHero
-            ? `/api/og/blog-hero?slug=${encodeURIComponent(slug)}`
-            : post.featuredImage;
-
-          if (!heroSrc) return null;
-
-          return (
-            <div className="w-full max-h-[480px] overflow-hidden relative aspect-[21/9]">
-              <Image
-                src={heroSrc}
-                alt={post.title}
-                fill
-                priority
-                sizes="100vw"
-                className="object-cover"
-                // Satori route returns an already-optimised PNG with
-                // its own long cache. Skip Next's image optimiser for
-                // that path so we don't double-encode.
-                unoptimized={useSatoriHero}
-              />
-            </div>
-          );
-        })()}
 
         {/* Content */}
         <Section background="charcoal" className="!py-12">
