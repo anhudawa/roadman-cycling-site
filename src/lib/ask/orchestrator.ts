@@ -43,7 +43,6 @@ import type { RiderProfile } from "@/lib/rider-profile/types";
 const MODEL_DEEP = "claude-opus-4-7";
 const MODEL_FAST = "claude-haiku-4-5-20251001";
 const MAX_TOKENS = 1200;
-const TEMPERATURE = 0.6;
 
 export async function streamAnswer(
   input: OrchestratorInput,
@@ -183,7 +182,13 @@ export async function streamAnswer(
     }
 
     sse.enqueue({ type: "done", data: { messageId: assistant.id, flaggedForReview: flagged } });
-  } catch {
+  } catch (err) {
+    console.error("[ask] streamFromAnthropic failed", {
+      sessionId: input.sessionId,
+      intent: classification.intent,
+      model: classification.deep ? MODEL_DEEP : MODEL_FAST,
+      error: err instanceof Error ? { name: err.name, message: err.message, stack: err.stack } : err,
+    });
     sse.enqueue({
       type: "error",
       data: { message: "Something went sideways generating the answer. Try again in a moment." },
@@ -265,7 +270,6 @@ async function streamFromAnthropic(args: StreamArgs): Promise<{
   const stream = client.messages.stream({
     model,
     max_tokens: MAX_TOKENS,
-    temperature: TEMPERATURE,
     system,
     messages: [{ role: "user", content: query }],
   });
