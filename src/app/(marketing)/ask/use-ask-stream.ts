@@ -11,6 +11,7 @@
 
 import { useCallback, useRef, useState } from "react";
 import { trackAsk, ASK_EVENTS } from "@/lib/analytics/ask-events";
+import { parseSseFrames } from "@/lib/ask/sse-parse";
 
 export interface AskCitation {
   type: "episode" | "methodology" | "content_chunk";
@@ -58,22 +59,6 @@ export interface UseAskStreamResult {
     sessionId: string;
     messages: AskStreamMessage[];
   }) => void;
-}
-
-function parseSseChunk(chunk: string): Array<{ event: string; data: string }> {
-  return chunk
-    .split(/\n\n/)
-    .filter((block) => block.trim().length > 0)
-    .map((block) => {
-      const lines = block.split(/\n/);
-      let event = "message";
-      const dataLines: string[] = [];
-      for (const line of lines) {
-        if (line.startsWith("event:")) event = line.slice(6).trim();
-        else if (line.startsWith("data:")) dataLines.push(line.slice(5).trimStart());
-      }
-      return { event, data: dataLines.join("\n") };
-    });
 }
 
 export function useAskStream(): UseAskStreamResult {
@@ -183,7 +168,7 @@ export function useAskStream(): UseAskStreamResult {
           if (frameEndIdx === -1) continue;
           const complete = buffer.slice(0, frameEndIdx + 2);
           buffer = buffer.slice(frameEndIdx + 2);
-          const frames = parseSseChunk(complete);
+          const frames = parseSseFrames(complete);
 
           for (const frame of frames) {
             if (frame.event === "meta") {

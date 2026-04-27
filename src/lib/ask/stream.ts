@@ -14,7 +14,16 @@ const encoder = new TextEncoder();
 export function sseFormat(event: OrchestratorEmit): Uint8Array {
   const payload =
     typeof event.data === "string" ? event.data : JSON.stringify(event.data);
-  return encoder.encode(`event: ${event.type}\ndata: ${payload}\n\n`);
+  // Per the SSE spec, every line of the data field needs its own `data:`
+  // prefix. Without splitting, a streamed text chunk that contains a paragraph
+  // break ("…end of line.\n\nNext line…") produces a malformed frame and the
+  // client silently drops everything after the first newline. JSON payloads
+  // never contain raw newlines, so the split is a no-op for them.
+  const dataLines = payload
+    .split("\n")
+    .map((line) => `data: ${line}`)
+    .join("\n");
+  return encoder.encode(`event: ${event.type}\n${dataLines}\n\n`);
 }
 
 export interface SseController {

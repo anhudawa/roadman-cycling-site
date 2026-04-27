@@ -1,29 +1,14 @@
 import { describe, it, expect } from "vitest";
 import { createSseStream } from "@/lib/ask/stream";
+import { parseSseFrames } from "@/lib/ask/sse-parse";
 
 /**
  * Round-trip test: feed the server-side SSE stream into the same parser
- * the client hook uses. Guarantees the wire format stays compatible
- * across the two sides without needing an actual browser.
+ * the client hook uses (imported from `sse-parse.ts`). Guarantees the
+ * wire format stays compatible end-to-end without spinning up a browser.
  */
 
-interface ParsedFrame {
-  event: string;
-  data: string;
-}
-
-function parseSseBuffer(text: string): ParsedFrame[] {
-  const blocks = text.split(/\n\n/).filter((b) => b.trim().length > 0);
-  return blocks.map((block) => {
-    let event = "message";
-    const dataLines: string[] = [];
-    for (const line of block.split(/\n/)) {
-      if (line.startsWith("event:")) event = line.slice(6).trim();
-      else if (line.startsWith("data:")) dataLines.push(line.slice(5).trimStart());
-    }
-    return { event, data: dataLines.join("\n") };
-  });
-}
+const parseSseBuffer = parseSseFrames;
 
 describe("ask SSE round-trip", () => {
   it("emits the exact sequence the UI expects for a happy path", async () => {
@@ -63,6 +48,41 @@ describe("ask SSE round-trip", () => {
     const done = JSON.parse(frames[5].data);
     expect(done.messageId).toBe("m1");
     expect(done.flaggedForReview).toBe(false);
+  });
+
+  it("preserves leading whitespace inside a delta chunk", async () => {
+    // Anthropic streams tokens like " the" / " probably" with a leading space.
+    // If the wire format strips them, words run together on the client
+    // ("Hellotheworld") — exactly the "missing spaces" symptom Anthony
+    // reported on /ask.
+    const { response, controller } = createSseStream();
+    const ctrl = await controller;
+    ctrl.enqueue({ type: "delta", data: "Hello" });
+    ctrl.enqueue({ type: "delta", data: " world" });
+    ctrl.enqueue({ type: "delta", data: " — and  two  spaces" });
+    ctrl.close();
+
+    const text = await response.text();
+    const frames = parseSseBuffer(text);
+    const deltas = frames.filter((f) => f.event === "delta").map((f) => f.data);
+    expect(deltas).toEqual(["Hello", " world", " — and  two  spaces"]);
+    expect(deltas.join("")).toBe("Hello world — and  two  spaces");
+  });
+
+  it("preserves embedded newlines inside a single delta chunk", async () => {
+    // Models often emit a paragraph break inside one text event. The
+    // encoder must prefix each line with `data:` per spec, otherwise
+    // anything after the first \n vanishes when the client parses frames.
+    const { response, controller } = createSseStream();
+    const ctrl = await controller;
+    ctrl.enqueue({ type: "delta", data: "First paragraph.\n\nSecond paragraph." });
+    ctrl.close();
+
+    const text = await response.text();
+    const frames = parseSseBuffer(text);
+    expect(frames.filter((f) => f.event === "delta")).toHaveLength(1);
+    expect(frames[0].event).toBe("delta");
+    expect(frames[0].data).toBe("First paragraph.\n\nSecond paragraph.");
   });
 
   it("emits safety event + done for a blocked query", async () => {
