@@ -11,6 +11,7 @@ import { getAllQuestionSlugs } from "@/lib/questions";
 import { getAllPlanCombinations, getAllEventSlugs } from "@/lib/training-plans";
 import { getAllEventGuideSlugs } from "@/lib/event-guides";
 import { RACES } from "@/data/races";
+import { SEGMENT_SLUGS } from "@/lib/coaching-segments";
 
 const BASE_URL = "https://roadmancycling.com";
 
@@ -105,6 +106,12 @@ function buildStaticSitemap(): MetadataRoute.Sitemap {
     { url: `${BASE_URL}/coaching/belfast`, lastModified: new Date(), changeFrequency: "monthly", priority: 0.6 },
     { url: `${BASE_URL}/coaching/edinburgh`, lastModified: new Date(), changeFrequency: "monthly", priority: 0.6 },
     { url: `${BASE_URL}/coaching/leeds`, lastModified: new Date(), changeFrequency: "monthly", priority: 0.6 },
+    ...SEGMENT_SLUGS.map((slug) => ({
+      url: `${BASE_URL}/coaching/${slug}`,
+      lastModified: new Date(),
+      changeFrequency: "monthly" as const,
+      priority: 0.75,
+    })),
     { url: `${BASE_URL}/events`, lastModified: new Date(), changeFrequency: "weekly", priority: 0.8 },
     { url: `${BASE_URL}/start-here`, lastModified: new Date(), changeFrequency: "monthly", priority: 0.8 },
     { url: `${BASE_URL}/assessment`, lastModified: new Date(), changeFrequency: "monthly", priority: 0.7 },
