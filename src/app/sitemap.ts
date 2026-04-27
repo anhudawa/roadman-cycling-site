@@ -9,6 +9,7 @@ import { getAllBestForSlugs } from "@/lib/best-for";
 import { getAllProblemSlugs } from "@/lib/problems";
 import { fetchNewsletterIssues } from "@/lib/integrations/beehiiv";
 import { getAllPlanCombinations, getAllEventSlugs } from "@/lib/training-plans";
+import { RACES } from "@/data/races";
 
 const BASE_URL = "https://roadmancycling.com";
 
@@ -116,6 +117,15 @@ function buildStaticSitemap(): MetadataRoute.Sitemap {
     { url: `${BASE_URL}/newsletter`, lastModified: new Date("2026-03-01"), changeFrequency: "monthly", priority: 0.6 },
     { url: `${BASE_URL}/partners`, lastModified: new Date("2026-03-01"), changeFrequency: "monthly", priority: 0.6 },
     { url: `${BASE_URL}/contact`, lastModified: new Date("2026-03-01"), changeFrequency: "yearly", priority: 0.4 },
+    { url: `${BASE_URL}/methodology`, lastModified: new Date("2026-03-01"), changeFrequency: "monthly", priority: 0.6 },
+    { url: `${BASE_URL}/sponsor`, lastModified: new Date("2026-03-01"), changeFrequency: "monthly", priority: 0.5 },
+    { url: `${BASE_URL}/races`, lastModified: new Date(), changeFrequency: "monthly", priority: 0.7 },
+    ...RACES.map((race) => ({
+      url: `${BASE_URL}/races/${race.slug}`,
+      lastModified: new Date("2026-03-01"),
+      changeFrequency: "monthly" as const,
+      priority: 0.7,
+    })),
   ];
 }
 
@@ -225,8 +235,8 @@ async function buildTopicAndMoreSitemap(): Promise<MetadataRoute.Sitemap> {
         changeFrequency: "monthly" as const,
         priority: 0.5,
       }));
-  } catch {
-    // Beehiiv API unavailable
+  } catch (err) {
+    console.error("[sitemap] Beehiiv API unavailable — newsletter URLs omitted from sitemap/5.xml:", err);
   }
 
   return [...topicPages, ...glossaryPages, ...comparisonPages, ...bestForPages, ...problemPages, ...newsletterPages];
