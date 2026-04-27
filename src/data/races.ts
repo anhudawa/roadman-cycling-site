@@ -27,6 +27,8 @@ export interface Race {
   month?: string;
   website?: string;
   tags: string[];
+  /** Slug of the matching course in the Race Predictor (/predict/[slug]), if one exists. */
+  predictor_slug?: string;
 }
 
 export const RACES: Race[] = [
@@ -55,6 +57,7 @@ export const RACES: Race[] = [
     month: "July",
     website: "https://www.letapedutour.com",
     tags: ["gran fondo", "alpine", "tour de france", "france", "cols"],
+    predictor_slug: "etape-du-tour-2026",
   },
   {
     name: "La Marmotte",
@@ -82,6 +85,7 @@ export const RACES: Race[] = [
     month: "July",
     website: "https://www.marmottegranfondoseries.com",
     tags: ["gran fondo", "alpine", "alpe d'huez", "france", "cols", "classic"],
+    predictor_slug: "marmotte-granfondo-alpes",
   },
   {
     name: "Mallorca 312",
@@ -108,6 +112,7 @@ export const RACES: Race[] = [
     month: "April",
     website: "https://www.mallorca312.com",
     tags: ["ultra endurance", "gran fondo", "island", "spain", "mediterranean"],
+    predictor_slug: "mallorca-312",
   },
   {
     name: "Wicklow 200",
@@ -133,6 +138,7 @@ export const RACES: Race[] = [
     similar_races: ["ring-of-kerry", "tour-de-yorkshire", "dragon-ride"],
     month: "June",
     tags: ["gran fondo", "ireland", "mountain", "classic", "endurance"],
+    predictor_slug: "wicklow-200",
   },
   {
     name: "Ring of Kerry",
@@ -289,6 +295,7 @@ export const RACES: Race[] = [
     similar_races: ["fred-whitton", "mallorca-312", "wicklow-200"],
     month: "June",
     tags: ["gran fondo", "wales", "uk", "mountains", "ultra endurance"],
+    predictor_slug: "dragon-ride-gran-fondo",
   },
   {
     name: "RideLondon-Surrey 100",
@@ -314,6 +321,7 @@ export const RACES: Race[] = [
     month: "May",
     website: "https://www.ridelondon.co.uk",
     tags: ["gran fondo", "england", "london", "flat", "mass participation", "closed roads"],
+    predictor_slug: "ridelondon-classique-100",
   },
   {
     name: "Gran Fondo New York",
@@ -470,6 +478,7 @@ export const RACES: Race[] = [
     month: "April",
     website: "https://www.rondevanvlaanderen.be/en/cyclo",
     tags: ["gran fondo", "belgium", "cobbles", "classics", "flanders", "iconic"],
+    predictor_slug: "tour-of-flanders-sportive",
   },
   {
     name: "Raid Pyrénéen",

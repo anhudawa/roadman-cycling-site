@@ -107,6 +107,12 @@ export default async function RacePage({
     `I'm training for the ${race.name} (${race.distance_km}km, ${race.elevation_m.toLocaleString()}m elevation). What finish time should I target and how should I structure my preparation?`,
   );
 
+  // If a matching predictor course exists, link directly to it; otherwise
+  // send the rider to the predictor courses index to find their event.
+  const predictorHref = race.predictor_slug
+    ? `/predict/${race.predictor_slug}`
+    : `/predict/courses`;
+
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "SportsEvent",
@@ -329,15 +335,24 @@ export default async function RacePage({
                     WHAT&rsquo;S YOUR REALISTIC TARGET?
                   </h2>
                   <p className="text-foreground-muted text-sm leading-relaxed mb-5">
-                    Ask Roadman about your target time for {race.name} — get an honest answer
-                    grounded in training data, not guesswork.
+                    {race.predictor_slug
+                      ? `Run the physics-based Race Predictor on the ${race.name} course — enter your FTP and weight for a personalised finish-time estimate.`
+                      : `Ask Roadman about your target time for ${race.name} — get an honest answer grounded in training data, not guesswork.`}
                   </p>
                   <Link
-                    href={`/ask?q=${askQuestion}`}
+                    href={race.predictor_slug ? predictorHref : `/ask?q=${askQuestion}`}
                     className="block w-full text-center font-heading tracking-wider uppercase text-sm bg-coral hover:bg-coral-hover text-off-white px-5 py-3 rounded-md transition-colors"
                   >
-                    Get My Time Estimate
+                    {race.predictor_slug ? "Predict My Finish Time" : "Get My Time Estimate"}
                   </Link>
+                  {!race.predictor_slug && (
+                    <Link
+                      href={predictorHref}
+                      className="block w-full text-center text-xs text-foreground-muted hover:text-off-white transition-colors mt-2"
+                    >
+                      Or try the Race Predictor →
+                    </Link>
+                  )}
                   <p className="text-foreground-subtle text-xs text-center mt-3">
                     Free · No account required
                   </p>
