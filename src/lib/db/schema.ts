@@ -1447,3 +1447,110 @@ export const adminAuditLogs = pgTable(
     index("admin_audit_logs_actor_email_idx").on(table.actorEmail),
   ]
 );
+
+// --- Race predictor: courses, course_segments, predictions, prediction_results ---
+
+export const courses = pgTable(
+  "courses",
+  {
+    id: serial("id").primaryKey(),
+    slug: text("slug").notNull().unique(),
+    name: text("name").notNull(),
+    country: text("country"),
+    region: text("region"),
+    discipline: text("discipline").notNull().default("road"),
+    distanceM: integer("distance_m").notNull(),
+    elevationGainM: integer("elevation_gain_m").notNull(),
+    elevationLossM: integer("elevation_loss_m").notNull().default(0),
+    surfaceSummary: text("surface_summary"),
+    gpxData: jsonb("gpx_data").notNull().$type<unknown>(),
+    courseData: jsonb("course_data").notNull().$type<unknown>(),
+    eventDates: jsonb("event_dates").$type<string[]>(),
+    verified: boolean("verified").notNull().default(false),
+    source: text("source"),
+    uploaderEmail: text("uploader_email"),
+    uploaderRiderId: integer("uploader_rider_id").references(() => riderProfiles.id, { onDelete: "set null" }),
+    createdAt: timestamp("created_at", { withTimezone: true }).notNull().defaultNow(),
+    updatedAt: timestamp("updated_at", { withTimezone: true }).notNull().defaultNow(),
+  },
+  (table) => [
+    index("courses_country_idx").on(table.country),
+    index("courses_discipline_idx").on(table.discipline),
+    index("courses_verified_idx").on(table.verified),
+  ]
+);
+
+export const courseSegments = pgTable(
+  "course_segments",
+  {
+    id: serial("id").primaryKey(),
+    courseId: integer("course_id").notNull().references(() => courses.id, { onDelete: "cascade" }),
+    segmentIndex: integer("segment_index").notNull(),
+    startDistance: integer("start_distance").notNull(),
+    endDistance: integer("end_distance").notNull(),
+    gradientMrad: integer("gradient_mrad").notNull(),
+    headingMrad: integer("heading_mrad").notNull(),
+    surface: text("surface"),
+    elevationM: integer("elevation_m").notNull(),
+    metadata: jsonb("metadata").$type<Record<string, unknown>>(),
+  },
+  (table) => [
+    index("course_segments_course_id_idx").on(table.courseId),
+    uniqueIndex("course_segments_course_segment_idx").on(table.courseId, table.segmentIndex),
+  ]
+);
+
+export const predictions = pgTable(
+  "predictions",
+  {
+    id: serial("id").primaryKey(),
+    slug: text("slug").notNull().unique(),
+    riderProfileId: integer("rider_profile_id").references(() => riderProfiles.id, { onDelete: "set null" }),
+    courseId: integer("course_id").references(() => courses.id, { onDelete: "set null" }),
+    courseGpxHash: text("course_gpx_hash"),
+    courseData: jsonb("course_data").$type<unknown>(),
+    mode: text("mode").notNull().default("plan_my_race"),
+    predictedTimeS: integer("predicted_time_s").notNull(),
+    confidenceLowS: integer("confidence_low_s").notNull(),
+    confidenceHighS: integer("confidence_high_s").notNull(),
+    averagePower: integer("average_power"),
+    normalizedPower: integer("normalized_power"),
+    variabilityIndex: real("variability_index"),
+    riderInputs: jsonb("rider_inputs").notNull().$type<Record<string, unknown>>(),
+    environmentInputs: jsonb("environment_inputs").notNull().$type<Record<string, unknown>>(),
+    pacingPlan: jsonb("pacing_plan").$type<number[]>(),
+    resultSummary: jsonb("result_summary").$type<Record<string, unknown>>(),
+    weatherData: jsonb("weather_data").$type<Record<string, unknown>>(),
+    aiTranslation: jsonb("ai_translation").$type<Record<string, unknown>>(),
+    email: text("email"),
+    isPaid: boolean("is_paid").notNull().default(false),
+    paidReportId: integer("paid_report_id").references(() => paidReports.id, { onDelete: "set null" }),
+    engineVersion: text("engine_version").notNull().default("v1.0"),
+    createdAt: timestamp("created_at", { withTimezone: true }).notNull().defaultNow(),
+  },
+  (table) => [
+    index("predictions_email_idx").on(table.email),
+    index("predictions_course_id_idx").on(table.courseId),
+    index("predictions_rider_profile_id_idx").on(table.riderProfileId),
+    index("predictions_is_paid_idx").on(table.isPaid),
+  ]
+);
+
+export const predictionResults = pgTable(
+  "prediction_results",
+  {
+    id: serial("id").primaryKey(),
+    predictionId: integer("prediction_id").notNull().references(() => predictions.id, { onDelete: "cascade" }),
+    actualTimeS: integer("actual_time_s").notNull(),
+    averagePower: integer("average_power"),
+    rideFileUrl: text("ride_file_url"),
+    segmentActuals: jsonb("segment_actuals").$type<Record<string, unknown>>(),
+    analysis: jsonb("analysis").$type<Record<string, unknown>>(),
+    modelErrorPct: real("model_error_pct"),
+    submittedEmail: text("submitted_email"),
+    submittedAt: timestamp("submitted_at", { withTimezone: true }).notNull().defaultNow(),
+  },
+  (table) => [
+    index("prediction_results_prediction_id_idx").on(table.predictionId),
+  ]
+);

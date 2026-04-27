@@ -21,6 +21,13 @@ export const metadata: Metadata = {
 
 const tools = [
   {
+    title: "Race Predictor",
+    description:
+      "Physics-grade time prediction for your A-race. Free first insight; full Race Report with pacing, fuelling, and equipment scenarios for $29.",
+    href: "/predict",
+    status: "live" as const,
+  },
+  {
     title: "Plateau Diagnostic",
     description:
       "Stuck on the same FTP for a year? Twelve questions. Four minutes. One specific answer keyed to your limiter.",

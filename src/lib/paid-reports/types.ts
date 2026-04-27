@@ -13,6 +13,7 @@ export const PAID_PRODUCT_SLUGS = [
   "report_plateau",
   "report_fuelling",
   "report_ftp",
+  "report_race",
   "bundle_performance",
 ] as const;
 export type PaidProductSlug = (typeof PAID_PRODUCT_SLUGS)[number];
