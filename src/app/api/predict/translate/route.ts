@@ -32,14 +32,29 @@ export async function POST(request: Request) {
     );
   }
 
+  // The translator is hardened to always return a TranslatedParams — empty
+  // input, missing key, AI errors, parse failures all fall through to a
+  // sensible default with `reasoning` explaining what happened. We catch
+  // here as a defence-in-depth so the user never sees a 5xx and can always
+  // proceed with the prediction.
   try {
     const result = await translateRiderInput(description);
     return NextResponse.json({ params: result });
   } catch (err) {
-    console.error("[predict/translate] failed:", err);
-    return NextResponse.json(
-      { error: "Could not translate that — try simpler wording or fill in the form manually." },
-      { status: 502 },
-    );
+    console.error("[predict/translate] unexpected failure:", err);
+    return NextResponse.json({
+      params: {
+        cda: 0.34,
+        crr: 0.0034,
+        bodyMass: 75,
+        bikeMass: 8,
+        position: "endurance_hoods",
+        surface: "tarmac_mixed",
+        confidence: 0.25,
+        reasoning:
+          "Translator unavailable — sensible defaults applied. Adjust the form below for a tighter prediction.",
+        missing: ["bodyMass", "bikeMass"],
+      },
+    });
   }
 }

@@ -122,39 +122,89 @@ interface TranslateOptions {
   client?: TranslatorClient;
 }
 
+/**
+ * Resolve a free-text rider description to physical parameters.
+ *
+ * Always returns a valid {@link TranslatedParams}. Failure modes — empty
+ * input, missing API key, network/parse errors, gibberish — fall back to
+ * sensible defaults so callers never have to handle exceptions. Look at the
+ * `confidence` and `missing` fields to surface that uncertainty in the UI.
+ */
 export async function translateRiderInput(
   freeText: string,
   options: TranslateOptions = {},
 ): Promise<TranslatedParams> {
-  if (!freeText || freeText.trim().length === 0) return { ...DEFAULT };
+  // Empty / whitespace-only: skip the AI call. Caller should know to surface
+  // the defaults in the UI.
+  if (!freeText || freeText.trim().length === 0) {
+    return {
+      ...DEFAULT,
+      reasoning:
+        "No description provided — sensible defaults applied. Edit the form below for a tighter prediction.",
+    };
+  }
+  // Trivially short input ("hi", "bike") rarely has signal worth a Haiku call.
+  if (freeText.trim().length < 6) {
+    return {
+      ...DEFAULT,
+      reasoning:
+        "Description is too short to extract setup details — defaults applied. Add bike, position, tyres, weight for accuracy.",
+      missing: ["bodyMass", "bikeMass", "position"],
+    };
+  }
   if (!process.env.ANTHROPIC_API_KEY && !options.client) {
     return { ...DEFAULT, reasoning: "AI translator unavailable — defaults applied." };
   }
-  const client: TranslatorClient = options.client ?? (new Anthropic() as unknown as TranslatorClient);
+  const client: TranslatorClient =
+    options.client ?? (new Anthropic() as unknown as TranslatorClient);
 
-  const response = await client.messages.create({
-    model: MODEL,
-    max_tokens: 600,
-    temperature: 0,
-    system: [
-      {
-        type: "text",
-        text: KNOWLEDGE_BASE,
-        cache_control: { type: "ephemeral" },
-      },
-    ],
-    messages: [
-      {
-        role: "user",
-        content: `Extract physical parameters from this rider's description:\n\n"""${freeText.trim().slice(0, 1200)}"""\n\nReturn STRICT JSON only.`,
-      },
-    ],
-  });
+  try {
+    const response = await client.messages.create({
+      model: MODEL,
+      max_tokens: 600,
+      temperature: 0,
+      system: [
+        {
+          type: "text",
+          text: KNOWLEDGE_BASE,
+          cache_control: { type: "ephemeral" },
+        },
+      ],
+      messages: [
+        {
+          role: "user",
+          content: `Extract physical parameters from this rider's description:\n\n"""${freeText
+            .trim()
+            .slice(0, 1200)}"""\n\nReturn STRICT JSON only.`,
+        },
+      ],
+    });
 
-  const block = response.content?.find((b) => b.type === "text");
-  if (!block || block.type !== "text") return { ...DEFAULT };
-  const parsed = parseTranslatorJson(block.text);
-  return parsed ?? { ...DEFAULT };
+    const block = response.content?.find((b) => b.type === "text");
+    if (!block || block.type !== "text") {
+      return {
+        ...DEFAULT,
+        reasoning:
+          "AI translator returned no usable response — defaults applied. Edit the form below.",
+      };
+    }
+    const parsed = parseTranslatorJson(block.text);
+    if (!parsed) {
+      return {
+        ...DEFAULT,
+        reasoning:
+          "Couldn't parse the AI output cleanly — defaults applied. Edit the form below.",
+      };
+    }
+    return parsed;
+  } catch (err) {
+    console.warn("[predict-translator] AI call failed, using defaults:", err);
+    return {
+      ...DEFAULT,
+      reasoning:
+        "AI translator hit an error — defaults applied. Adjust the form below for a tighter prediction.",
+    };
+  }
 }
 
 /** Exported for tests. */

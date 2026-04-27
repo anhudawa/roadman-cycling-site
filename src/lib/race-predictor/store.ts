@@ -7,6 +7,11 @@ import { db } from "@/lib/db";
 import { courses, predictions, predictionResults } from "@/lib/db/schema";
 import type { Course, CourseResult, RiderProfile, Environment, TrackPoint } from "./types";
 import { generateSlug } from "./slug";
+import {
+  getFixtureCourseBySlug,
+  getFixtureCourses,
+  shouldUseFixtures,
+} from "./fixtures";
 
 export interface CourseRow {
   id: number;
@@ -50,6 +55,7 @@ function rowToCourse(row: typeof courses.$inferSelect): CourseRow {
 
 /** List all verified curated courses, newest first. */
 export async function listVerifiedCourses(): Promise<CourseRow[]> {
+  if (shouldUseFixtures()) return getFixtureCourses() as CourseRow[];
   const rows = await db
     .select()
     .from(courses)
@@ -59,6 +65,7 @@ export async function listVerifiedCourses(): Promise<CourseRow[]> {
 }
 
 export async function getCourseBySlug(slug: string): Promise<CourseRow | null> {
+  if (shouldUseFixtures()) return getFixtureCourseBySlug(slug) as CourseRow | null;
   const [row] = await db
     .select()
     .from(courses)
@@ -68,6 +75,9 @@ export async function getCourseBySlug(slug: string): Promise<CourseRow | null> {
 }
 
 export async function getCourseById(id: number): Promise<CourseRow | null> {
+  if (shouldUseFixtures()) {
+    return (getFixtureCourses().find((c) => c.id === id) ?? null) as CourseRow | null;
+  }
   const [row] = await db.select().from(courses).where(eq(courses.id, id)).limit(1);
   return row ? rowToCourse(row) : null;
 }
@@ -237,10 +247,82 @@ interface CreatePredictionInput {
   email?: string | null;
 }
 
+// Dev-mode predictions store, used only when no DB is configured. Backed by a
+// JSON file under the OS temp directory so the API route handler and the page
+// render path (which Next.js may instantiate in separate module contexts) read
+// and write the same data.
+import fs from "node:fs";
+import path from "node:path";
+import os from "node:os";
+
+const FIXTURE_STORE_PATH = path.join(os.tmpdir(), "roadman-predictions.json");
+
+interface FixtureFile {
+  predictions: Record<string, PredictionRow>;
+  nextId: number;
+}
+
+function readFixtureFile(): FixtureFile {
+  try {
+    const raw = fs.readFileSync(FIXTURE_STORE_PATH, "utf8");
+    const data = JSON.parse(raw) as FixtureFile;
+    // Re-hydrate Date fields lost in JSON.
+    for (const key of Object.keys(data.predictions)) {
+      const row = data.predictions[key];
+      if (typeof row.createdAt === "string") {
+        row.createdAt = new Date(row.createdAt);
+      }
+    }
+    return data;
+  } catch {
+    return { predictions: {}, nextId: 0 };
+  }
+}
+function writeFixtureFile(data: FixtureFile): void {
+  try {
+    fs.writeFileSync(FIXTURE_STORE_PATH, JSON.stringify(data), "utf8");
+  } catch {
+    // best-effort — dev preview only
+  }
+}
+
 export async function createPrediction(
   input: CreatePredictionInput,
 ): Promise<PredictionRow> {
   const slug = generateSlug();
+  if (shouldUseFixtures()) {
+    const file = readFixtureFile();
+    file.nextId += 1;
+    const row: PredictionRow = {
+      id: file.nextId,
+      slug,
+      riderProfileId: input.riderProfileId ?? null,
+      courseId: input.courseId ?? null,
+      courseGpxHash: input.courseGpxHash ?? null,
+      courseData: input.courseData ?? null,
+      mode: input.mode,
+      predictedTimeS: input.predictedTimeS,
+      confidenceLowS: input.confidenceLowS,
+      confidenceHighS: input.confidenceHighS,
+      averagePower: input.averagePower ?? null,
+      normalizedPower: input.normalizedPower ?? null,
+      variabilityIndex: input.variabilityIndex ?? null,
+      riderInputs: input.riderInputs,
+      environmentInputs: input.environmentInputs,
+      pacingPlan: input.pacingPlan ?? null,
+      resultSummary: input.resultSummary ?? null,
+      weatherData: input.weatherData ?? null,
+      aiTranslation: input.aiTranslation ?? null,
+      email: input.email ?? null,
+      isPaid: false,
+      paidReportId: null,
+      engineVersion: "v1.0",
+      createdAt: new Date(),
+    };
+    file.predictions[slug] = row;
+    writeFixtureFile(file);
+    return row;
+  }
   const [row] = await db
     .insert(predictions)
     .values({
@@ -271,6 +353,7 @@ export async function createPrediction(
 export async function getPredictionBySlug(
   slug: string,
 ): Promise<PredictionRow | null> {
+  if (shouldUseFixtures()) return readFixtureFile().predictions[slug] ?? null;
   const [row] = await db
     .select()
     .from(predictions)
@@ -284,6 +367,33 @@ export async function getPredictionById(
 ): Promise<PredictionRow | null> {
   const [row] = await db.select().from(predictions).where(eq(predictions.id, id)).limit(1);
   return row ? rowToPrediction(row) : null;
+}
+
+/**
+ * Attach an email to a prediction. Used by the free-tier gate so we capture
+ * the lead before unlocking the full breakdown. Idempotent — overwrites any
+ * existing email since the most recent capture is the most useful one for
+ * marketing follow-up.
+ */
+export async function setPredictionEmail(
+  slug: string,
+  email: string,
+): Promise<boolean> {
+  if (shouldUseFixtures()) {
+    const file = readFixtureFile();
+    const row = file.predictions[slug];
+    if (!row) return false;
+    row.email = email;
+    file.predictions[slug] = row;
+    writeFixtureFile(file);
+    return true;
+  }
+  const result = await db
+    .update(predictions)
+    .set({ email })
+    .where(eq(predictions.slug, slug))
+    .returning({ id: predictions.id });
+  return result.length > 0;
 }
 
 export async function markPredictionPaid(

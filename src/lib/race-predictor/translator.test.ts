@@ -46,6 +46,100 @@ describe("translateRiderInput (mocked client)", () => {
     const result = await translateRiderInput("");
     expect(result.confidence).toBeLessThanOrEqual(0.4);
     expect(result.position).toBe("endurance_hoods");
+    expect(result.reasoning).toMatch(/no description|defaults/i);
+  });
+
+  it("returns defaults for trivially short input without calling the AI", async () => {
+    let called = false;
+    const mockClient = {
+      messages: {
+        create: async () => {
+          called = true;
+          return { content: [] };
+        },
+      },
+    };
+    const result = await translateRiderInput("bike", {
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      client: mockClient as any,
+    });
+    expect(called).toBe(false);
+    expect(result.position).toBe("endurance_hoods");
+    expect(result.missing).toContain("bodyMass");
+  });
+
+  it("returns defaults (not an error) when the AI client throws", async () => {
+    const mockClient = {
+      messages: {
+        create: async () => {
+          throw new Error("503 upstream");
+        },
+      },
+    };
+    const result = await translateRiderInput("Canyon Aeroad CFR, hoods, 76 kg", {
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      client: mockClient as any,
+    });
+    expect(result.position).toBe("endurance_hoods");
+    expect(result.bodyMass).toBe(75);
+    expect(result.reasoning).toMatch(/error|defaults/i);
+  });
+
+  it("returns defaults when the AI returns no text block", async () => {
+    const mockClient = {
+      messages: {
+        create: async () => ({ content: [] }),
+      },
+    };
+    const result = await translateRiderInput("road bike, 78 kg", {
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      client: mockClient as any,
+    });
+    expect(result.position).toBe("endurance_hoods");
+    expect(result.confidence).toBeLessThanOrEqual(0.4);
+  });
+
+  it("returns defaults when the AI returns unparseable text", async () => {
+    const mockClient = {
+      messages: {
+        create: async () => ({
+          content: [{ type: "text", text: "I'm sorry I cannot help with that" }],
+        }),
+      },
+    };
+    const result = await translateRiderInput("recumbent, 72 kg", {
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      client: mockClient as any,
+    });
+    expect(result.position).toBe("endurance_hoods");
+    expect(result.reasoning).toMatch(/parse|defaults/i);
+  });
+
+  it("clamps a wildly invalid AI response to safe ranges (gibberish input)", async () => {
+    const mockClient = {
+      messages: {
+        create: async () => ({
+          content: [
+            {
+              type: "text",
+              text: `{"cda":99,"crr":-1,"bodyMass":2000,"bikeMass":0,"position":"hovering","surface":"lava","confidence":3,"reasoning":"asdjkfh","missing":[]}`,
+            },
+          ],
+        }),
+      },
+    };
+    const result = await translateRiderInput("asdf qwer zxcv 12345", {
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      client: mockClient as any,
+    });
+    expect(result.cda).toBeGreaterThanOrEqual(0.18);
+    expect(result.cda).toBeLessThanOrEqual(0.5);
+    expect(result.crr).toBeGreaterThanOrEqual(0.002);
+    expect(result.bodyMass).toBeGreaterThanOrEqual(40);
+    expect(result.bodyMass).toBeLessThanOrEqual(130);
+    expect(result.position).toBe("endurance_hoods");
+    expect(result.confidence).toBeLessThanOrEqual(1);
+    expect(result.confidence).toBeGreaterThanOrEqual(0);
   });
 
   it("uses prompt caching control on the system block", async () => {

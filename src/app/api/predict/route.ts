@@ -1,4 +1,5 @@
 import { NextResponse } from "next/server";
+import { createHash } from "node:crypto";
 import { normaliseEmail } from "@/lib/validation";
 import {
   buildEnvironment,
@@ -11,6 +12,8 @@ import {
 import { buildCourse } from "@/lib/race-predictor/gpx";
 import { createPrediction, getCourseBySlug, gpxHash } from "@/lib/race-predictor/store";
 import type { Course, TrackPoint } from "@/lib/race-predictor/types";
+import { getOrCreateAnonSessionKey } from "@/lib/rider-profile/anon-session";
+import { checkPredictRateLimit } from "@/lib/race-predictor/rate-limit";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
@@ -35,14 +38,42 @@ const VALID_POSITIONS = new Set([
 
 function validateRider(rider: RiderInputDTO | undefined): string | null {
   if (!rider) return "Missing rider profile.";
-  if (typeof rider.bodyMass !== "number" || rider.bodyMass < 30 || rider.bodyMass > 150) {
-    return "Body mass must be between 30 and 150 kg.";
+  if (typeof rider.bodyMass !== "number" || !Number.isFinite(rider.bodyMass)) {
+    return "Body mass is required.";
   }
-  if (typeof rider.bikeMass !== "number" || rider.bikeMass < 5 || rider.bikeMass > 30) {
-    return "Bike mass must be between 5 and 30 kg.";
+  if (rider.bodyMass < 40 || rider.bodyMass > 150) {
+    return "Body mass should be between 40 and 150 kg — double-check that number.";
+  }
+  if (typeof rider.bikeMass !== "number" || !Number.isFinite(rider.bikeMass)) {
+    return "Bike mass is required.";
+  }
+  if (rider.bikeMass < 5 || rider.bikeMass > 30) {
+    return "Bike mass should be between 5 and 30 kg.";
   }
   if (typeof rider.position !== "string" || !VALID_POSITIONS.has(rider.position)) {
     return "Riding position is required.";
+  }
+  // FTP / power profile sanity check. The engine accepts a partial profile
+  // (just FTP), but if a value is supplied it has to be plausible.
+  const ftp = rider.powerProfile?.ftp;
+  if (ftp !== undefined) {
+    if (typeof ftp !== "number" || !Number.isFinite(ftp)) {
+      return "FTP must be a number.";
+    }
+    if (ftp < 50 || ftp > 500) {
+      return "FTP should be between 50 and 500 W. That's the realistic range — anything outside it points to a typo.";
+    }
+  }
+  // CdA / Crr from the AI translator: clamp to sensible physics ranges.
+  if (rider.cda !== undefined) {
+    if (typeof rider.cda !== "number" || rider.cda < 0.15 || rider.cda > 0.55) {
+      return "CdA must be between 0.15 and 0.55 m².";
+    }
+  }
+  if (rider.crr !== undefined) {
+    if (typeof rider.crr !== "number" || rider.crr < 0.001 || rider.crr > 0.05) {
+      return "Crr must be between 0.001 and 0.05.";
+    }
   }
   return null;
 }
@@ -56,6 +87,14 @@ function validateRider(rider: RiderInputDTO | undefined): string | null {
  * Returns the saved prediction's slug + summary so the client can redirect to
  * /predict/[slug] for the result page.
  */
+function ipHashFromRequest(request: Request): string {
+  const ip =
+    request.headers.get("x-forwarded-for")?.split(",")[0]?.trim() ??
+    request.headers.get("x-real-ip") ??
+    "unknown";
+  return createHash("sha256").update(ip).digest("hex").slice(0, 16);
+}
+
 export async function POST(request: Request) {
   let body: PredictBody;
   try {
@@ -66,6 +105,27 @@ export async function POST(request: Request) {
 
   const riderError = validateRider(body.rider);
   if (riderError) return NextResponse.json({ error: riderError }, { status: 400 });
+
+  // Free-tier rate limit. Capped at PREDICT_FREE_DAILY (default 3) per
+  // anon session per 24h. Returns 429 with a clear nudge toward the
+  // Race Report when exhausted.
+  const sessionKey = await getOrCreateAnonSessionKey();
+  const rl = await checkPredictRateLimit({
+    sessionKey,
+    ipHash: ipHashFromRequest(request),
+  });
+  if (!rl.success) {
+    const hours = Math.max(1, Math.round((rl.retryAfterSeconds ?? 0) / 3600));
+    return NextResponse.json(
+      {
+        error: `You've used your ${rl.limit} free predictions for today. Reset in ~${hours}h — or grab a Race Report for the full pacing plan now.`,
+        rateLimited: true,
+        retryAfterSeconds: rl.retryAfterSeconds,
+        limit: rl.limit,
+      },
+      { status: 429 },
+    );
+  }
 
   const mode: PredictMode = body.mode === "can_i_make_it" ? "can_i_make_it" : "plan_my_race";
   const email = normaliseEmail(body.email) ?? null;
