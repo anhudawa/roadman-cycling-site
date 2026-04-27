@@ -2,6 +2,7 @@ import { recordEvent } from "@/lib/admin/events-store";
 import type { EventType } from "@/lib/admin/events-store";
 import { upsertOnSignup } from "@/lib/admin/subscribers-store";
 import { readAnonSessionKey } from "@/lib/rider-profile/anon-session";
+import { detectAIReferrerFromRequest } from "@/lib/analytics/ai-referrer-server";
 
 export async function POST(request: Request) {
   try {
@@ -22,11 +23,26 @@ export async function POST(request: Request) {
       return Response.json({ error: "type and page are required" }, { status: 400 });
     }
 
-    // Merge AI-referrer attribution (AEO-003) into the meta jsonb column so
-    // answer-engine traffic is queryable without a dedicated schema column.
+    // Server-side AI-referrer fallback. The client sends `ai_referrer` from
+    // sessionStorage when consent is granted, but adblock/strict modes can
+    // strip it. Re-derive from the inbound page URL's utm_source + Referer
+    // header so attribution still lands. Persist to the indexed column
+    // (DEV-DATA-02) AND to meta.ai_referrer for back-compat with any reader
+    // still pointing at the jsonb path.
+    const refererHeader = request.headers.get("referer");
+    const derivedAiReferrer =
+      ai_referrer ??
+      detectAIReferrerFromRequest({
+        pageUrl: page,
+        referer: refererHeader,
+      });
+
     const mergedMeta: Record<string, string> | undefined =
-      ai_referrer || meta
-        ? { ...(meta ?? {}), ...(ai_referrer ? { ai_referrer: String(ai_referrer) } : {}) }
+      derivedAiReferrer || meta
+        ? {
+            ...(meta ?? {}),
+            ...(derivedAiReferrer ? { ai_referrer: String(derivedAiReferrer) } : {}),
+          }
         : undefined;
 
     const validTypes: EventType[] = [
@@ -77,6 +93,7 @@ export async function POST(request: Request) {
       "ask_roadman_used",
       "race_page_viewed",
       "share_clicked",
+      "coaching_apply_submitted",
     ];
     if (!validTypes.includes(type)) {
       return Response.json({ error: "Invalid event type" }, { status: 400 });
@@ -104,6 +121,7 @@ export async function POST(request: Request) {
       meta: mergedMeta,
       sessionId: resolvedSessionId,
       variantId: variant_id,
+      aiReferrer: derivedAiReferrer ? String(derivedAiReferrer) : undefined,
     });
 
     // Upsert subscriber on signup events
