@@ -46,6 +46,34 @@ export async function POST(request: Request) {
     return response;
   } catch (error) {
     console.error("[Admin Login API] Error:", error);
+    if (isDbUnavailableError(error)) {
+      return NextResponse.json(
+        { error: "Database is temporarily unavailable. Try again in a minute." },
+        { status: 503 },
+      );
+    }
     return NextResponse.json({ error: "Something went wrong" }, { status: 500 });
   }
+}
+
+function isDbUnavailableError(err: unknown): boolean {
+  if (!err || typeof err !== "object") return false;
+  const seen = new Set<unknown>();
+  let cur: unknown = err;
+  while (cur && typeof cur === "object" && !seen.has(cur)) {
+    seen.add(cur);
+    const e = cur as Record<string, unknown>;
+    const msg = typeof e.message === "string" ? e.message : "";
+    if (
+      e.code === "XX000" ||
+      e.code === "missing_connection_string" ||
+      msg.includes("compute time quota") ||
+      msg.includes("missing_connection_string") ||
+      msg.includes("ECONNREFUSED")
+    ) {
+      return true;
+    }
+    cur = (e as { cause?: unknown }).cause;
+  }
+  return false;
 }

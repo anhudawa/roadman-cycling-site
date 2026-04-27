@@ -87,10 +87,18 @@ function toTeamUser(row: typeof teamUsers.$inferSelect): TeamUser {
 }
 
 async function loadUserById(id: number): Promise<TeamUser | null> {
-  const rows = await db.select().from(teamUsers).where(eq(teamUsers.id, id)).limit(1);
-  const row = rows[0];
-  if (!row || !row.active) return null;
-  return toTeamUser(row);
+  // The DB is occasionally unreachable in production (Neon cold start,
+  // compute quota). Treat any failure here as "no current user" so /admin
+  // falls back to the login page instead of returning a 500.
+  try {
+    const rows = await db.select().from(teamUsers).where(eq(teamUsers.id, id)).limit(1);
+    const row = rows[0];
+    if (!row || !row.active) return null;
+    return toTeamUser(row);
+  } catch (err) {
+    console.error("[admin/auth] loadUserById failed (treating as logged out):", err);
+    return null;
+  }
 }
 
 async function loadUserByEmail(email: string): Promise<typeof teamUsers.$inferSelect | null> {
