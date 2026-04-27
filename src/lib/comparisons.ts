@@ -107,6 +107,40 @@ export const COMPARISONS: ComparisonPage[] = [
       "Stage-race athletes building sustained aerobic capacity",
     ],
     relatedArticle: "/blog/polarised-vs-sweet-spot-training",
+    body: [
+      "**The honest read.** Polarised training has the strongest research base for amateur cyclists, and it's not close. Professor Stephen Seiler's two decades of work on intensity distribution kicked this off, and successive studies have replicated the finding: roughly 80% easy, 20% hard, almost nothing in the middle, beats most other distributions for amateurs with limited training time.",
+      "**Pyramidal works too — particularly at high volume.** Many World Tour pros train pyramidally because they have the hours to absorb the Zone 3 work without it bleeding into recovery. Dan Lorang's plans for Pogacar and Vingegaard, the Bora setup John Wakefield runs — they're more pyramidal in base, then sharpen toward polarised through build and into race weeks. Volume is what makes pyramidal viable.",
+      "**The amateur trap is neither.** Most age-group cyclists ride neither polarised nor pyramidal — they ride threshold-grey, sitting at 75-85% FTP for most of every session. Too hard to be truly easy, too easy to be truly hard. The result is fatigue without adaptation. Both polarised and pyramidal beat the grey zone — the choice between them matters less than getting out of the middle.",
+      "**Limitations of each, plainly.** Polarised at high volume can leave riders under-cooked at threshold — a small dose of Zone 3 sweet-spot work usually has to come back in for build phases. Pyramidal at low volume (under 8 hours/week) doesn't give the body enough time to recover from the larger Zone 3 component, and adaptations stall. The model has to fit the volume.",
+      "**The decision tree.** Under 10 hours/week: polarised. 10-15 hours/week: polarised in base, pyramidal-leaning in build. Over 15 hours/week with race specificity: pyramidal works. Stuck in the grey zone right now: polarise first, worry about the nuance later.",
+      "Whichever model you pick, you need accurate zones to execute it. [The FTP zones tool](/tools/ftp-zones) gives you the bands. Want a coach to design this around your week? [Start with the assessment](/assessment).",
+    ],
+    faqs: [
+      {
+        q: "What is polarised training, exactly?",
+        a: "A distribution where roughly 80% of training time is at low intensity (Zone 1-2), 15-20% is at high intensity (Zone 4-5+), and very little time is spent in the moderate Zone 3 middle. It's not a workout type — it's how you spend the hours across a week.",
+      },
+      {
+        q: "What is pyramidal training, exactly?",
+        a: "A distribution where roughly 75% is at low intensity, 15-20% is moderate (Zone 3 / sweet spot / threshold), and 5-10% is high intensity. The shape on a graph is a pyramid — most easy, less moderate, least hard.",
+      },
+      {
+        q: "Which is better for time-crunched riders?",
+        a: "Polarised, by a clear margin. With limited hours, you can't afford the recovery cost of moderate Zone 3 work, and the polarised structure delivers more useful adaptation per hour. The Seiler 80/20 framing maps well to amateurs with 6-10 hours/week.",
+      },
+      {
+        q: "Can I switch between polarised and pyramidal across a season?",
+        a: "Yes — and many serious cyclists do. Polarised through base (October-February), pyramidal-leaning in build (8-12 weeks pre-event), back to polarised in peak and race weeks. The model serves the phase.",
+      },
+      {
+        q: "Is polarised just an excuse to ride easy?",
+        a: "It's the question most riders ask before they actually try it. The 20% hard portion of polarised training is genuinely hard — VO2max intervals, threshold work, race-pace efforts. It's not soft. It's that 80% of the time is spent building the engine that lets the 20% land.",
+      },
+      {
+        q: "Where does sweet spot fit?",
+        a: "In neither model in pure form — sweet spot lives at 88-94% FTP, which is in the moderate range polarised explicitly avoids. In a pyramidal week, sweet spot is the moderate component. In a polarised week, sweet spot is largely absent except as build-phase accents. [Sweet spot vs Zone 2 has more depth here](/compare/sweet-spot-vs-zone-2).",
+      },
+    ],
   },
   {
     slug: "strength-vs-more-miles",
@@ -130,6 +164,42 @@ export const COMPARISONS: ComparisonPage[] = [
     bestForB: ["Young riders with no injury history", "Riders with 15+ hours available", "Riders already lifting consistently", "Ultra-endurance athletes building volume"],
     relatedArticle: "/blog/new-study-confirms-heavy-strength-training-beats-more-miles-after-40",
     relatedTool: "/strength-training",
+    body: [
+      "**Bent Rønnestad's body of work has clarified this.** The most cited research on cycling-specific strength training keeps producing the same finding: heavy strength training added to endurance work, particularly for masters cyclists, delivers FTP gains that more endurance hours don't. For riders over 35, or anyone training under 10 hours/week, strength training produces better returns per hour invested than adding more riding.",
+      "**Where more miles still wins.** Young riders with no injury history, plenty of free time, and a multi-year horizon. Aerobic base built from volume produces durability, mitochondrial density, and capacity that strength work doesn't replicate. If you have 15+ hours/week available and no recurring injuries, more easy hours still beat heavy weights for fitness ceiling.",
+      "**The masters reality, plainly.** Past 35-40, type II muscle fibre loss accelerates. Without strength training, you don't get those fibres back through riding alone. The cyclists in their fifties who hold the gains from their thirties almost universally lift. The cyclists who lose 20% of their power between 40 and 60 almost universally don't. That's the trade you're making, whether you've thought about it or not.",
+      "**Limitations of strength training.** It costs recovery, particularly when first introduced. The first six weeks of a strength block tend to feel awful on the bike — heavy legs, slightly compromised intervals. Most riders who quit strength training quit in those six weeks. Push through and the second block feels different.",
+      "**Limitations of adding volume.** Diminishing returns are sharp. Going from 6 to 10 hours/week is transformative. From 10 to 14 is meaningful. From 14 to 18 is small. Above 18 hours/week, the marginal hour delivers almost nothing for non-pros — and the time cost on family, work, and recovery is real.",
+      "**The decision tree.** Under 35, under 10 hours/week, no injury history: add miles first, layer strength when you can. Over 35, any training volume: strength training is non-negotiable. Recurring injuries (especially knees, lower back): strength first, then more miles. Already lifting consistently and plateaued: more miles. Time-crunched at 4-8 hours/week: 2x/week strength has higher return per hour than any extra hour on the bike.",
+      "**The protocol that actually works.** Heavy compound lifts (squat, deadlift, lunge variants) at 80-90% 1RM, 3-5 reps, 3-5 sets. Twice a week. Light-weights-high-reps cycling-specific gym work is largely a waste. Rønnestad's protocols, the ones consistently producing results in the literature, are straightforward heavy lifting. [The strength training course](/strength-training) is built on exactly that model.",
+      "Want help integrating strength into your week without breaking the bike work? [The assessment](/assessment) covers it.",
+    ],
+    faqs: [
+      {
+        q: "Will strength training make me bulky and slow?",
+        a: "No. Heavy strength training at low rep ranges builds neural recruitment and muscle fibre quality without significant hypertrophy, particularly in the calorie-controlled environment most cyclists train in. The 'bulky' fear is one of the most persistent myths in cycling. The Rønnestad data shows zero meaningful weight gain in heavy-lifting protocols across multiple studies.",
+      },
+      {
+        q: "How many sessions per week is enough?",
+        a: "Two heavy sessions per week is the sweet spot for most cyclists. One session is enough to maintain gains. Three is excessive for anyone also trying to ride seriously — recovery becomes the bottleneck.",
+      },
+      {
+        q: "Should I lift in-season or only off-season?",
+        a: "Both, with intensity adjusted. Off-season (October-February): full heavy block, twice a week. In-season: maintenance — one session per week, slightly lower volume, never within 48 hours of a key bike workout. The mistake is dropping strength entirely in-season — gains decay faster than most riders expect.",
+      },
+      {
+        q: "Will adding miles help me lose weight faster?",
+        a: "For most riders, no — adding endurance miles often increases hunger and total food intake without much net weight change. Strength training plus moderate volume is more reliably aligned with body composition gains than pure volume increase. Body composition is a separate conversation from W/kg.",
+      },
+      {
+        q: "What if I've never lifted before?",
+        a: "Start with a coached or programmed first eight weeks. The technique loading on big compound lifts matters — heavy squats with poor form is how riders get hurt. After eight weeks of supervised technique work, you can run programs solo. Don't skip the supervised start.",
+      },
+      {
+        q: "Should I lift heavy or do bodyweight / light weights?",
+        a: "Heavy. The research is consistent. Light weights, high reps, 'cycling-specific' gym work doesn't produce the FTP gains the heavy protocols do. The Rønnestad data, replicating two decades of his earlier work, makes the case unambiguously.",
+      },
+    ],
   },
   {
     slug: "indoor-vs-outdoor-training",
@@ -152,6 +222,42 @@ export const COMPARISONS: ComparisonPage[] = [
     bestForA: ["Winter months", "Midweek structured sessions", "Time-crunched riders", "Riders with young children or shift work"],
     bestForB: ["Weekends and longer rides", "Group ride and race skills", "Mental freshness", "Race-specific preparation"],
     relatedArticle: "/blog/cycling-indoor-training-tips",
+    body: [
+      "**The honest read.** This isn't a winner. Indoor and outdoor training do different things, and the cyclists making real progress are doing both. The mistake is treating them as substitutes — riders who only train indoors lose race skills and mental freshness, riders who only train outdoors lose workout precision and time efficiency.",
+      "**Where indoor wins, plainly.** A 60-minute indoor session typically delivers what a 90-minute outdoor session does for fitness — no traffic lights, no descents, no coasting. ERG mode holds the exact watts you're prescribed. Weather doesn't disrupt the plan. For midweek structured sessions where every minute has to count, indoor wins on efficiency and precision.",
+      "**Where outdoor wins, plainly.** Race specificity. Bike handling. Mental health. Variable terrain that forces real-world surge management. Group ride dynamics. Cornering, descending, drafting — none of which exist on a smart trainer. Long aerobic rides in fresh air do something for adaptation and adherence indoor work never replicates.",
+      "**Limitations of each.** Indoor only: skills atrophy, race performance suffers, mental burnout is real by month four. Outdoor only: workout quality is hostage to terrain, traffic, and weather; midweek structure is hard to execute; winter in northern Europe makes consistent training brutal.",
+      "**The decision tree.** Midweek structured sessions: indoor whenever you can, particularly intervals. Weekend long rides: outdoor whenever weather and life allow. Winter (October-February for most): higher proportion indoor, but build outdoor rides back in as soon as conditions allow. Summer: shift the balance outdoor, keep one or two indoor sessions for tightly-prescribed quality work. Race weeks: outdoor — taper rides should match race conditions.",
+      "**Heat acclimation note.** Indoor training is hotter than most riders manage well. Open windows, fans, manage hydration carefully — heat stress on the trainer is real and accumulates faster than outdoor riding. The flip side is that controlled indoor heat exposure is one of the cleanest ways to acclimate for hot events.",
+      "**Tracking.** Both indoor and outdoor sessions should land in TrainingPeaks (or your platform of choice) so the analysis tools see the full picture. Splitting your data across platforms is the fastest way to break a coach's view of your fitness.",
+      "Wondering whether your indoor-outdoor mix is the reason you're not progressing? [The Roadman assessment](/assessment) is built around exactly that question.",
+    ],
+    faqs: [
+      {
+        q: "Is one hour indoors really equivalent to 90 minutes outdoors?",
+        a: "For training stress, roughly yes — most coaches use a 1.3-1.5x multiplier for outdoor-to-indoor equivalence on equivalent intensity. The reason is no coasting and no recovery descents. The flip side is that outdoor rides build durability, fatigue resistance, and skills indoor rides don't.",
+      },
+      {
+        q: "Can I race well off only indoor training?",
+        a: "For short events with minimal handling demand (TTs, hill climbs), yes. For road races, gran fondos, and gravel events, no — race skills atrophy fast and outdoor pacing rhythm is genuinely different. The riders we see succeed off heavy indoor blocks always re-introduce outdoor riding 6-8 weeks before race day.",
+      },
+      {
+        q: "Is Zwift / TrainerRoad indoor as good as outdoor?",
+        a: "For workout quality, often better. For everything outside workout quality, no. Best practice is to stop framing it as 'as good as' and treat indoor as a different tool with different strengths.",
+      },
+      {
+        q: "How much heat exposure is too much?",
+        a: "A practical rule: if you're soaking through your kit in 30 minutes and not training in a controlled heat-acclimation block, your environment is too hot. Open the room up, add a fan, manage temperature actively. Heat stress that you didn't intend will undermine adaptation, not enhance it.",
+      },
+      {
+        q: "What's the right indoor-outdoor split for masters cyclists?",
+        a: "Roughly 50/50 across the year for most masters in mid-latitude climates, shifting to 70% indoor in deep winter and 70% outdoor in summer. Skill maintenance from outdoor riding is particularly important for masters — losing handling fitness has real injury consequences in your fifties and beyond.",
+      },
+      {
+        q: "Should I use Zwift races as my training intensity?",
+        a: "They're useful as a stand-in for one or two high-intensity sessions per week, particularly when group ride options are limited. The limit is that Zwift race intensity is often above what your prescribed plan calls for, so use them deliberately rather than letting them replace structured intervals.",
+      },
+    ],
   },
   {
     slug: "heart-rate-vs-power",
@@ -288,6 +394,39 @@ export const COMPARISONS: ComparisonPage[] = [
     bestForA: ["Beginners in first 1-2 years", "Budget-conscious riders", "Riders who thrive on gamification", "Riders who follow plans independently"],
     bestForB: ["Plateaued riders (2+ years structured)", "Time-crunched professionals", "Riders with specific event goals", "Anyone who needs accountability"],
     relatedArticle: "/blog/zwift-vs-cycling-coach",
+    body: [
+      "**The honest read.** Zwift's training plans are good — particularly for what they cost. Fifteen quid a month gets you a structured plan, the workout library, ERG mode, and the social fabric that keeps a lot of riders consistent through winter. For riders in their first 1-2 years of structured training, Zwift can take you a long way.",
+      "**Where Zwift plans hit limits** is the same place every static plan hits limits. The plan is fixed. It doesn't read your sleep, your fuelling, your work week, your fatigue. It doesn't know whether you're cooked. It can't adjust when life goes sideways. Most riders who follow a Zwift plan for 12-16 weeks and then stall out aren't doing the wrong work — they're following a plan that has nothing left to teach them.",
+      "**What a coach actually does** that Zwift plans can't. Reads the file every week. Asks about sleep and stress. Pulls a session when you're cooked. Pushes a session when you've got more than you think. Builds nutrition and strength around the bike work. Adjusts mid-block when an event changes. Holds you accountable when motivation flags.",
+      "**The cost reality.** Zwift is around $20/month. Personal coaching is $150-300/month. The honest comparison isn't dollar-for-dollar — Zwift gives you a plan, a coach gives you a plan plus everything around it. The right question isn't 'which is cheaper' but 'which solves the problem you actually have.'",
+      "**Limitations of Zwift plans, plainly.** Generic to plan tier, not to you. No nutrition guidance. No strength programming. No race-day pacing. No mid-block adjustment. Recovery is fixed — the plan can't see that you slept four hours last night. Race specificity is limited to what's in the catalogue.",
+      "**The decision tree.** First 1-2 years of structured training, self-motivated, weekly hours stable, no recurring injuries: Zwift plan. Plateaued past 3 W/kg, life is complex, event matters, masters age, recurring injuries: a coach. Somewhere between — Zwift now, coach next year — works for plenty of riders.",
+      "**One more honest point.** Many riders run both. Zwift for the social fabric, the group rides, the winter consistency, plus personal coaching for the actual plan. Zwift becomes the venue, not the prescription. That's a thoughtful use of two different tools.",
+      "**Tracking matters whichever path.** Sync everything to TrainingPeaks. The Performance Management Chart, fitness/fatigue model, and analysis tools live there — and when you do hire a coach, that's the platform they'll want you on. [Compare TrainerRoad and TrainingPeaks](/compare/trainerroad-vs-trainingpeaks) for context on the analysis side.",
+      "Wondering if you've outgrown Zwift's plans? [The assessment](/assessment) is built for exactly that question.",
+    ],
+    faqs: [
+      {
+        q: "How much does Zwift cost vs a cycling coach?",
+        a: "Zwift is around $20/month for the platform plus plans. Personal coaching is $150-300/month. The honest comparison isn't dollar-for-dollar — Zwift delivers a plan, a coach delivers a plan plus weekly accountability, nutrition guidance, strength programming, and race-day strategy.",
+      },
+      {
+        q: "Are Zwift training plans actually good?",
+        a: "For their price and audience, yes. They're well-structured, the workout library is solid, and ERG mode means you don't have to think about pacing. The honest critique isn't of plan quality — it's that any static plan, however good, doesn't adapt to the rider in real time.",
+      },
+      {
+        q: "When should I switch from a Zwift plan to a coach?",
+        a: "Three signals. Six months of flat numbers. You're past 3 W/kg and gains have stalled. Your event date matters and the Zwift catalogue doesn't have a specific plan for it. Any one of those three is the cue to consider coaching.",
+      },
+      {
+        q: "Can I do Zwift races as my hard sessions?",
+        a: "They work as one or two high-intensity sessions a week, particularly when group ride options are limited. The trap is letting them replace structured intervals — Zwift race intensity is often above prescribed targets, which can compromise the rest of the week's work.",
+      },
+      {
+        q: "Is a coach worth it if I already use Zwift?",
+        a: "For most riders past beginner, yes. The coach owns the plan; Zwift becomes the venue you execute it in. That combination — bespoke plan, social fabric to ride consistently — outperforms either tool alone for serious amateurs.",
+      },
+    ],
   },
   {
     slug: "road-vs-gravel-fitness",
@@ -1333,6 +1472,75 @@ export const COMPARISONS: ComparisonPage[] = [
       {
         q: "When does sweet spot become the right tool?",
         a: "Build phases — 6-12 weeks before an A-race — and time-crunched windows where you genuinely can't fit a 2-hour Zone 2 ride. Sweet spot blocks of 3x15 or 2x20 minutes deliver real FTP stimulus inside an hour. Used strategically inside a polarised year, sweet spot earns its keep. Used as the default intensity for every session, it's the grey-zone trap with a fancier name.",
+      },
+    ],
+  },
+  {
+    slug: "ftp-vs-heart-rate",
+    title: "FTP-Based Training vs Heart Rate Training",
+    seoTitle: "FTP vs Heart Rate Training for Cyclists",
+    seoDescription: "Training by FTP-based power zones vs heart rate zones. Why power leads, where heart rate still matters, and how to use both.",
+    optionA: "FTP / Power Zones",
+    optionB: "Heart Rate Zones",
+    verdict: "Power-based zones — derived from FTP — are the gold standard for prescribing training. Heart rate is the response to that training, not the prescription. Use power for targets and pacing. Use heart rate for context, drift, and easy-day discipline. Riders training by heart rate alone leave gains on the table; riders ignoring heart rate entirely miss what their body is telling them. The honest answer is both, with power leading.",
+    verdictWinner: "A",
+    pillar: "coaching",
+    features: [
+      { feature: "Measures", optionA: "Output (watts)", optionB: "Response (bpm)" },
+      { feature: "Lag", optionA: "Instant", optionB: "30-90 seconds" },
+      { feature: "Affected by fatigue", optionA: "No", optionB: "Yes (cardiac drift)" },
+      { feature: "Affected by heat", optionA: "No", optionB: "Yes" },
+      { feature: "Affected by caffeine/illness", optionA: "No", optionB: "Yes" },
+      { feature: "Pacing precision", optionA: "Excellent", optionB: "Imprecise during intervals" },
+      { feature: "Recovery monitoring", optionA: "Limited", optionB: "Excellent (HRV, resting HR)" },
+      { feature: "Cost (entry tier)", optionA: "$200-600 power meter", optionB: "$30-80 HR strap" },
+      { feature: "Best for interval prescription", optionA: "Clear winner", optionB: "Lags too much" },
+      { feature: "Best for easy-day discipline", optionA: "Useful", optionB: "Excellent" },
+    ],
+    bestForA: [
+      "All structured interval work — VO2max, threshold, sweet spot",
+      "Race-day pacing and event prep",
+      "Riders who want repeatable, fatigue-independent targets",
+      "Anyone tracking FTP progression over months",
+    ],
+    bestForB: [
+      "Easy days where Zone 2 discipline matters",
+      "Riders without a power meter",
+      "Recovery and overtraining monitoring (HRV, resting HR)",
+      "Beginners learning what intensities feel like",
+    ],
+    relatedArticle: "/blog/cycling-power-meter-guide",
+    relatedTool: "/tools/ftp-zones",
+    body: [
+      "**Power leads, heart rate informs.** That's the position, and it's where every serious coach we have on the podcast — Dan Lorang, John Wakefield, Joe Friel — converges. Power tells you what you're putting out. Heart rate tells you how your body is handling it. Both matter. They tell you different things.",
+      "**Why power wins for prescription.** Heart rate lags. By 30-90 seconds, depending on the rider and the conditions. That lag means heart rate is useless for short intervals — by the time your heart rate hits your target, the interval is half over. Heart rate also drifts under fatigue (cardiac drift), gets pushed by heat and caffeine, and shifts with hydration. None of that affects the watts you're producing. If you want to prescribe an interval, prescribe it in watts.",
+      "**Why heart rate still matters.** Three reasons. First, it's the truth-test for easy rides — if you're holding 65% of FTP but your heart rate is at 78% max, you're not actually easy, you're just disciplined enough to hold the watts. The body's telling you it's not recovered. Second, it's the only way to monitor recovery and overtraining (resting HR trending up, HRV trending down). Third, it works for riders who don't yet own a power meter — Zone 2 by heart rate is good enough for the work that matters most.",
+      "**The cardiac drift test.** Run a 90-minute Zone 2 ride at constant power. Look at heart rate in the first 30 minutes vs the last 30 minutes. Drift over 5% means your aerobic base isn't where it should be — keep building. Under 5% means you're ready to layer intensity. That's a power-and-heart-rate test neither metric can do alone.",
+      "**Limitations of each, plainly.** Power-only training misses recovery signals — you can hit the watts and be wrecking yourself. Heart-rate-only training is approximate at best for intervals, and dangerous for race-day pacing where adrenaline pushes your HR up by 5-15 bpm before the gun goes.",
+      "**The decision tree.** Have a power meter: prescribe everything in watts, monitor heart rate as context. No power meter: heart rate is fine for Zone 2 and steady efforts, but intervals will be approximate. Coming from HR-only training: the move to power is the single biggest training upgrade most amateur cyclists make.",
+      "**The cost reality.** A heart rate strap is $30-80. A single-sided power meter is $350-500. For riders unsure which to invest in first when budget allows one, the honest answer is power — but heart rate is a meaningful tool while you save.",
+      "Want your zones in both metrics? [The FTP zones tool](/tools/ftp-zones) gives you both off a single test. [Compare the hardware here](/compare/heart-rate-vs-power) — that's the buy-decision rather than the methodology one.",
+    ],
+    faqs: [
+      {
+        q: "Can I train effectively with only heart rate?",
+        a: "Yes, particularly for Zone 2 and steady efforts. The limit is interval work — heart rate lag makes prescribing short intervals approximate. If you're early in structured training, focused on building base, heart rate alone gets you a long way. As you progress to interval-driven blocks, the case for adding power gets stronger.",
+      },
+      {
+        q: "How do I set heart rate zones if I have power zones?",
+        a: "Don't set them mathematically off FTP. Run a heart rate field test — the gold standard is a 30-minute time trial. Use the average heart rate of the last 20 minutes as your lactate threshold heart rate. Zones are calculated as percentages of that, not of max HR. The Joe Friel zones model is the most widely used.",
+      },
+      {
+        q: "Why does my heart rate change when I ride at the same watts?",
+        a: "Welcome to cardiac drift, heat, hydration, sleep, caffeine, illness, and life stress. All of those affect heart rate. None of them affect watts. That's exactly why power leads.",
+      },
+      {
+        q: "What's the right metric for race-day pacing?",
+        a: "Power, every time. Race-day adrenaline pushes heart rate up by 5-15 bpm before the gun goes. You'll be pacing off a number that's lying to you. Power doesn't lie. Pace by watts, monitor heart rate to spot drift in long events.",
+      },
+      {
+        q: "Should I look at HRV?",
+        a: "Yes — and not for the reasons most apps tell you. HRV is most useful as a trend line, not a daily decision-maker. A consistent downward trend over 7-14 days suggests you're not recovering. A single low day usually means you slept badly. Use it for the big-picture story, not for whether to train tomorrow.",
       },
     ],
   },
