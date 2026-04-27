@@ -4,6 +4,7 @@ import { MDXRemote } from "next-mdx-remote/rsc";
 import { Header, Footer, Section, Container } from "@/components/layout";
 import { AICitationBlock, Badge, Button } from "@/components/ui";
 import { AnswerCapsule } from "@/components/ui/AnswerCapsule";
+import { AskRoadmanCTA } from "@/components/features/aeo/AskRoadmanCTA";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { FAQSchema } from "@/components/seo/FAQSchema";
 import { Breadcrumbs } from "@/components/seo/Breadcrumbs";
@@ -540,6 +541,19 @@ export default async function EpisodePage({
                   : undefined
               }
               lastReviewed={episode.publishDate}
+            />
+
+            {/* Ask Roadman handoff — episode-specific question seed so a
+                listener with a follow-up can take the topic into the
+                assistant without re-establishing context. */}
+            <AskRoadmanCTA
+              topic={episode.title}
+              question={
+                episode.guest
+                  ? `In the episode with ${episode.guest} on "${episode.title}", what's the most important takeaway for me to apply?`
+                  : `In the episode "${episode.title}", what's the most important takeaway for me to apply?`
+              }
+              source={`podcast-${slug}`}
             />
 
             {/* Newsletter */}

@@ -230,18 +230,26 @@ html {
   }
 }
 
-/* Custom cursor: hide native cursor only on desktop with fine pointer, and only
-   when user has NOT requested reduced motion (an accessibility proxy) */
+/* Custom cursor: hide native cursor only when the SmoothCursor component has
+   actually mounted (it adds `smooth-cursor` to <body> on mount). Without this
+   gate, lean routes that don't render SmoothCursorWrapper (e.g. /predict, /ask,
+   /tools — see ConversionChrome's LEAN_PATH_PREFIXES) end up with both the
+   native cursor hidden AND no custom cursor drawn → invisible cursor.
+   Also gated on desktop fine pointer + no reduced-motion preference. */
 @media (pointer: fine) and (prefers-reduced-motion: no-preference) {
-  body {
+  body.smooth-cursor {
     cursor: none;
   }
 
-  a, button, [role="button"] {
+  body.smooth-cursor a,
+  body.smooth-cursor button,
+  body.smooth-cursor [role="button"] {
     cursor: none;
   }
 
-  input, select, textarea {
+  body.smooth-cursor input,
+  body.smooth-cursor select,
+  body.smooth-cursor textarea {
     cursor: text;
   }
 }

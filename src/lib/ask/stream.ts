@@ -2,9 +2,15 @@
  * Minimal SSE encoder for the Ask Roadman chat API.
  *
  * Spec reference: https://html.spec.whatwg.org/multipage/server-sent-events.html
- * Each event is `event: <type>\ndata: <json>\n\n`. Clients use `EventSource`
- * or a manual fetch-reader; we don't depend on the SDK's own SSE helper
- * because we need to interleave meta / citations / cta / delta events.
+ *
+ * Wire format: `event: <type>\ndata: <json>\n\n`. The data field is
+ * ALWAYS JSON-encoded (strings included) so payloads can contain
+ * newlines, leading spaces, and any other character without colliding
+ * with SSE framing. Anthropic token deltas frequently start with a
+ * single space (" Roadman", " is") and contain "\n\n" between
+ * paragraphs — encoding those as raw `data: ${value}` would either
+ * trip a frame boundary or get eaten by the spec's leading-space rule.
+ * The client mirrors this by JSON.parsing every event's data.
  */
 
 import type { OrchestratorEmit } from "./types";
@@ -12,8 +18,7 @@ import type { OrchestratorEmit } from "./types";
 const encoder = new TextEncoder();
 
 export function sseFormat(event: OrchestratorEmit): Uint8Array {
-  const payload =
-    typeof event.data === "string" ? event.data : JSON.stringify(event.data);
+  const payload = JSON.stringify(event.data);
   return encoder.encode(`event: ${event.type}\ndata: ${payload}\n\n`);
 }
 

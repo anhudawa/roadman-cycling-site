@@ -57,12 +57,48 @@ describe("ask SSE round-trip", () => {
     expect(cites).toHaveLength(1);
     expect(cites[0].type).toBe("episode");
 
-    expect(frames[3].data).toBe("The short answer is ");
-    expect(frames[4].data).toBe("you're probably under-recovered.");
+    expect(JSON.parse(frames[3].data)).toBe("The short answer is ");
+    expect(JSON.parse(frames[4].data)).toBe("you're probably under-recovered.");
 
     const done = JSON.parse(frames[5].data);
     expect(done.messageId).toBe("m1");
     expect(done.flaggedForReview).toBe(false);
+  });
+
+  it("preserves delta payloads with newlines, leading spaces, and special chars", async () => {
+    // Anthropic token deltas routinely include leading spaces (" Roadman",
+    // " is") and the model emits "\n\n" between paragraphs. The previous
+    // wire format dropped the second half of any delta containing "\n\n",
+    // and the parser's trimStart() ate single leading spaces — both are
+    // root causes of "missing words / merged words" in the rendered
+    // answer. This test locks in the round-trip guarantee for those
+    // payloads.
+    const tricky = [
+      "paragraph 1\n\nparagraph 2",
+      " starts with a space",
+      "ends with a space ",
+      "line 1\nline 2",
+      "\nleading newline",
+      "tabs\there",
+      'quotes "inside" the value',
+      "backslash\\here",
+    ];
+
+    const { response, controller } = createSseStream();
+    const ctrl = await controller;
+    for (const t of tricky) {
+      ctrl.enqueue({ type: "delta", data: t });
+    }
+    ctrl.close();
+
+    const text = await response.text();
+    const frames = parseSseBuffer(text);
+    expect(frames).toHaveLength(tricky.length);
+    for (let i = 0; i < tricky.length; i += 1) {
+      expect(frames[i].event).toBe("delta");
+      // delta data is JSON-encoded on the wire; the client JSON.parses it
+      expect(JSON.parse(frames[i].data)).toBe(tricky[i]);
+    }
   });
 
   it("emits safety event + done for a blocked query", async () => {

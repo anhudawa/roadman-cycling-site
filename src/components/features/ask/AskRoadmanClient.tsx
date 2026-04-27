@@ -22,9 +22,25 @@ function initialPromptFromSeed(seed: AskSeed | null): string {
     : `Based on my ${seed.toolTitle.toLowerCase()} result, what should I do first?`;
 }
 
-export function AskRoadmanClient({ seed = null }: { seed?: AskSeed | null }) {
+export function AskRoadmanClient({
+  seed = null,
+  initialQuestion = "",
+}: {
+  seed?: AskSeed | null;
+  /**
+   * Pre-fill the chat input. Used by handoff CTAs on blog/podcast/compare/
+   * problem/best/topic pages so the reader lands with the question already
+   * primed and can edit before submitting. Loses to `seed` because tool-
+   * result seeds carry stronger signal than a contextual handoff prompt.
+   */
+  initialQuestion?: string;
+}) {
   const { messages, sessionId, isStreaming, error, submit, hydrate } = useAskStream();
-  const [input, setInput] = useState(() => initialPromptFromSeed(seed));
+  const [input, setInput] = useState(() => {
+    const seeded = initialPromptFromSeed(seed);
+    if (seeded) return seeded;
+    return initialQuestion;
+  });
   const textareaRef = useRef<HTMLTextAreaElement>(null);
   const scrollBodyRef = useRef<HTMLDivElement>(null);
   const hasMessages = messages.length > 0;

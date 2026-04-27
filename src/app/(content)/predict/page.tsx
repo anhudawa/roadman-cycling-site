@@ -82,6 +82,15 @@ const DIFFICULTY_OPTIONS = [
 export default function PredictPage() {
   const router = useRouter();
 
+  // Read deep-link course slug from the URL after mount. We avoid
+  // useSearchParams() so the page can stay statically prerendered
+  // without forcing a top-level <Suspense> wrapper.
+  const [courseQuery, setCourseQuery] = useState<string | null>(null);
+  useEffect(() => {
+    const q = new URLSearchParams(window.location.search).get("course");
+    if (q) setCourseQuery(q);
+  }, []);
+
   const [mode, setMode] = useState<Mode>("plan_my_race");
   const [courses, setCourses] = useState<CourseAPIItem[]>([]);
   const [coursesLoading, setCoursesLoading] = useState(true);
@@ -131,18 +140,23 @@ export default function PredictPage() {
     return m;
   }, [courses]);
 
-  // Pre-select the first predictable race once courses have loaded so the
-  // live preview/what-if panel has something to render.
+  // Pre-select from `?course=<slug>` (deep-link from race guide pages) when
+  // it matches a loaded course; otherwise fall back to the first predictable
+  // race so the live preview/what-if panel always has something to render.
   useEffect(() => {
     if (coursesLoading) return;
     if (courseSlug || gpx) return;
+    if (courseQuery && coursesBySlug.has(courseQuery)) {
+      setCourseSlug(courseQuery);
+      return;
+    }
     const firstPredictable = RACES.find(
       (r) => r.predictor_slug && coursesBySlug.has(r.predictor_slug),
     );
     if (firstPredictable?.predictor_slug) {
       setCourseSlug(firstPredictable.predictor_slug);
     }
-  }, [coursesLoading, coursesBySlug, courseSlug, gpx]);
+  }, [coursesLoading, coursesBySlug, courseSlug, gpx, courseQuery]);
 
   const filteredRaces = useMemo(() => {
     const q = search.trim().toLowerCase();

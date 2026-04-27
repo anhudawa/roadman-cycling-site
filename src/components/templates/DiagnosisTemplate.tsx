@@ -31,6 +31,9 @@ interface DiagnosisTemplateProps {
   pillar: ContentPillar;
   /** One-paragraph problem framing — used by SpeakableSpecification */
   problem: string;
+  /** Optional 1-2 sentence answer-first summary, rendered above the
+   *  causes section in a .short-answer block for AI crawler extraction. */
+  shortAnswer?: string;
   /** Common causes for this problem */
   causes: DiagnosisCause[];
   /** Concrete fixes / actions */
@@ -62,6 +65,7 @@ export function DiagnosisTemplate({
   eyebrow = "DIAGNOSIS",
   pillar,
   problem,
+  shortAnswer,
   causes,
   fixes,
   tool,
@@ -76,9 +80,24 @@ export function DiagnosisTemplate({
       eyebrow={eyebrow}
       pillar={pillar}
       heroExtras={
-        <p className="problem-description text-foreground-muted text-lg leading-relaxed max-w-2xl">
-          {problem}
-        </p>
+        <>
+          <p className="problem-description text-foreground-muted text-lg leading-relaxed max-w-2xl mb-6">
+            {problem}
+          </p>
+          {shortAnswer && (
+            <section
+              className="short-answer rounded-xl border border-coral/30 bg-coral/10 p-5 md:p-6 max-w-2xl"
+              aria-label="Diagnosis short answer"
+            >
+              <p className="font-heading text-coral text-xs tracking-[0.3em] mb-2">
+                THE SHORT ANSWER
+              </p>
+              <p className="text-off-white text-base leading-relaxed">
+                {shortAnswer}
+              </p>
+            </section>
+          )}
+        </>
       }
     >
       <Section background="charcoal">

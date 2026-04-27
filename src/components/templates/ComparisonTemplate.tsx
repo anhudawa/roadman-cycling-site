@@ -75,12 +75,15 @@ export function ComparisonTemplate({
       eyebrow="COMPARISON"
       pillar={pillar}
       heroExtras={
-        <div className="verdict-block rounded-xl border border-coral/30 bg-coral/10 p-5 md:p-6 mt-6">
+        <section
+          className="short-answer verdict-block rounded-xl border border-coral/30 bg-coral/10 p-5 md:p-6 mt-6"
+          aria-label="Comparison verdict"
+        >
           <p className="font-heading text-coral text-xs tracking-[0.3em] mb-2">
             QUICK VERDICT
           </p>
           <p className="text-off-white text-base leading-relaxed">{verdict}</p>
-        </div>
+        </section>
       }
     >
       <Section background="charcoal">

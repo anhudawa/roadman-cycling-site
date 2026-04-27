@@ -214,8 +214,15 @@ export function useAskStream(): UseAskStreamResult {
                 });
               }
             } else if (frame.event === "delta") {
-              // data is raw text (may contain newlines — sse.enqueue for string data)
-              const text = frame.data;
+              // data is JSON-encoded server-side so newlines and leading
+              // spaces survive the SSE wire — see lib/ask/stream.ts.
+              let text: string;
+              try {
+                text = JSON.parse(frame.data) as string;
+              } catch {
+                continue;
+              }
+              if (typeof text !== "string" || text.length === 0) continue;
               setMessages((prev) =>
                 prev.map((m) =>
                   m.id === assistantId ? { ...m, content: (m.content ?? "") + text } : m,
