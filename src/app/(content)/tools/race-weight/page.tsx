@@ -7,76 +7,12 @@ import { Header, Footer, Section, Container } from "@/components/layout";
 import { Button } from "@/components/ui";
 import { ReportRequestForm } from "@/components/features/tools/ReportRequestForm";
 import { useTrack } from "@/hooks/useTrack";
-
-type EventType = "road-race" | "gran-fondo" | "hill-climb" | "time-trial" | "gravel";
-type Gender = "male" | "female";
-
-function calculateRaceWeight(
-  heightCm: number,
-  currentWeightKg: number,
-  bodyFatPercent: number,
-  eventType: EventType,
-  gender: Gender
-): {
-  targetWeightMin: number;
-  targetWeightMax: number;
-  targetBfMin: number;
-  targetBfMax: number;
-  weeksToTarget: number;
-  approach: string;
-} {
-  // Gender-specific target body fat ranges by event type (competitive amateur)
-  // Male ranges from sports science literature (Jeukendrup & Gleeson)
-  // Female ranges account for ~8-10% higher essential fat (Lohman 1992)
-  const targetBf: Record<EventType, Record<Gender, [number, number]>> = {
-    "road-race": { male: [8, 12], female: [16, 22] },
-    "gran-fondo": { male: [10, 14], female: [18, 24] },
-    "hill-climb": { male: [7, 10], female: [14, 19] },
-    "time-trial": { male: [10, 14], female: [18, 24] },
-    "gravel": { male: [10, 15], female: [18, 25] },
-  };
-
-  const [bfMin, bfMax] = targetBf[eventType][gender];
-  const leanMass = currentWeightKg * (1 - bodyFatPercent / 100);
-
-  // targetMin = lightest healthy target (at lowest BF%)
-  // targetMax = upper target (at highest BF%)
-  const targetMin = leanMass / (1 - bfMin / 100);
-  const targetMax = leanMass / (1 - bfMax / 100);
-
-  // Height-based minimum floor (don't recommend below healthy weight)
-  // Miller formula for minimum healthy weight
-  const heightFloor = gender === "male"
-    ? 56.2 + 1.41 * ((heightCm - 152.4) / 2.54)
-    : 53.1 + 1.36 * ((heightCm - 152.4) / 2.54);
-  const safeMin = Math.max(targetMin, heightFloor);
-
-  // Estimate weeks at safe rate (0.5% body weight per week)
-  const midTarget = (safeMin + targetMax) / 2;
-  const weightToLose = Math.max(0, currentWeightKg - midTarget);
-  const weeklyLoss = currentWeightKg * 0.005;
-  const weeks = weeklyLoss > 0 ? Math.ceil(weightToLose / weeklyLoss) : 0;
-
-  let approach = "";
-  if (weeks === 0) {
-    approach = "You're already within your target race weight range. Focus on maintaining body composition while building power.";
-  } else if (weeks <= 8) {
-    approach = "A moderate deficit through better food quality and fuelling timing. No need to restrict calories — just eat smarter around your training.";
-  } else if (weeks <= 16) {
-    approach = "A structured body composition phase. Focus on protein adequacy (1.6-2.2g/kg), fuelling your key sessions, and creating a small deficit on easy days.";
-  } else {
-    approach = "A longer-term approach is needed. Prioritise slow, sustainable change — 0.5% body weight per week maximum. Faster than that and you risk losing power, getting sick, or developing an unhealthy relationship with food.";
-  }
-
-  return {
-    targetWeightMin: Math.round(safeMin * 10) / 10,
-    targetWeightMax: Math.round(targetMax * 10) / 10,
-    targetBfMin: bfMin,
-    targetBfMax: bfMax,
-    weeksToTarget: weeks,
-    approach,
-  };
-}
+import {
+  calculateRaceWeight,
+  type RaceWeightEvent as EventType,
+  type RaceWeightGender as Gender,
+  type RaceWeightResult,
+} from "@/lib/tools/calculators";
 
 // Validation
 const VALIDATION = {
@@ -101,7 +37,7 @@ export default function RaceWeightPage() {
   const [bodyFat, setBodyFat] = useState("");
   const [gender, setGender] = useState<Gender>("male");
   const [eventType, setEventType] = useState<EventType>("road-race");
-  const [result, setResult] = useState<ReturnType<typeof calculateRaceWeight> | null>(null);
+  const [result, setResult] = useState<RaceWeightResult | null>(null);
   const [copied, setCopied] = useState(false);
   const track = useTrack();
   const startedRef = useRef(false);
@@ -133,7 +69,13 @@ export default function RaceWeightPage() {
     const w = parseFloat(weight);
     const bf = parseFloat(bodyFat);
     if (h > 0 && w > 0 && bf > 0 && bf < 50) {
-      setResult(calculateRaceWeight(h, w, bf, eventType, gender));
+      setResult(calculateRaceWeight({
+        heightCm: h,
+        currentWeightKg: w,
+        bodyFatPercent: bf,
+        eventType,
+        gender,
+      }));
       track("prediction_completed", { tool: "race-weight" });
     }
   };
