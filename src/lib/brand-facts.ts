@@ -38,12 +38,20 @@ export const BRAND = {
   url: SITE_ORIGIN,
   logo: `${SITE_ORIGIN}/images/logo-white.png`,
   ogImage: `${SITE_ORIGIN}/og-image.jpg`,
+  // The Roadman Cycling brand launched in 2021 as a rebrand of A1
+  // Coaching, which Anthony founded in 2013. `foundedYear` is the
+  // brand-entity founding (used by schema.org `foundingDate` for the
+  // Organization); `coachingSince` is the continuous coaching-business
+  // start year, surfaced in copy where the longer trading history is
+  // relevant (about, press, entity pages).
   foundedYear: FOUNDER.foundedYear,
+  coachingSince: 2013,
+  predecessorName: "A1 Coaching",
   locationName: FOUNDER.location,
   // Short, press-ready description reused by Organization schema,
   // root layout metadata, llms.txt preamble, and press pages.
   description:
-    "The world's largest cycling performance podcast. Evidence-based coaching, nutrition, strength, recovery, and community for serious amateur cyclists. Founded in Dublin in 2021 by Anthony Walsh, Roadman has grown to 1M+ monthly listeners across 18 countries.",
+    "The world's largest cycling performance podcast. Evidence-based coaching, nutrition, strength, recovery, and community for serious amateur cyclists. Founded in Dublin in 2021 by Anthony Walsh (rebranded from A1 Coaching, est. 2013), Roadman has grown to 1M+ monthly listeners across 18 countries.",
 } as const;
 
 /**
