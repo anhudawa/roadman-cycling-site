@@ -1,7 +1,8 @@
 import { type ReactNode } from "react";
 import { Section, Container } from "@/components/layout";
-import { Card, ScrollReveal } from "@/components/ui";
+import { Card, ScrollReveal, Button } from "@/components/ui";
 import { AnswerCapsule } from "@/components/ui/AnswerCapsule";
+import { EvidenceLevel, type EvidenceLevelType } from "@/components/ui/EvidenceLevel";
 import { JourneyBlock } from "@/components/journey";
 import { NextStepBlock } from "@/components/features/conversion/NextStepBlock";
 import { type ContentPillar } from "@/types";
@@ -23,20 +24,51 @@ export interface RelatedLink {
   description?: string;
 }
 
+export interface QuestionFaq {
+  question: string;
+  answer: string;
+}
+
+export interface CoachingCta {
+  /** Optional eyebrow — defaults to "STILL FIGURING IT OUT?" */
+  eyebrow?: string;
+  /** Headline — defaults to "A coach removes the guesswork." */
+  heading?: string;
+  /** Optional supporting line below the heading */
+  body?: string;
+  /** Where the primary CTA points — defaults to /apply */
+  href?: string;
+  /** Button label — defaults to "Apply for Coaching" */
+  label?: string;
+}
+
 interface QuestionTemplateProps {
   /** The question itself, used as the H1, e.g. "How long is the FTP test?" */
   question: string;
-  /** The 60-100 word answer. Renders inside AnswerCapsule for AI citation. */
+  /** The 40-60 word answer. Renders inside AnswerCapsule for AI citation. */
   answer: string;
   pillar: ContentPillar;
   /** Optional eyebrow — defaults to "QUESTION" */
   eyebrow?: string;
+  /** Optional one-line "Best for" / "Not for" labels rendered under the answer. */
+  bestFor?: string;
+  notFor?: string;
+  /** Single-sentence key takeaway — rendered as a pull-quote between the answer and the body. */
+  keyTakeaway?: string;
+  /** Evidence-grade label (Strong / Moderate / Emerging / Anecdotal). */
+  evidenceLevel?: EvidenceLevelType;
+  /** Override copy for the EvidenceLevel block. */
+  evidenceNote?: ReactNode;
   /** Body — usually MDX content, headings, etc. Optional if the answer alone is enough. */
   children?: ReactNode;
   /** Evidence points, citations, episode references */
   evidence?: EvidencePoint[];
+  /** FAQ rows — each gets its own row in a FAQPage-friendly layout. */
+  faq?: QuestionFaq[];
   /** Related questions / topic links */
   related?: RelatedLink[];
+  /** Coaching CTA — overrides defaults for the closer block. */
+  coachingCta?: CoachingCta;
   /** Source string for analytics */
   source: string;
 }
@@ -62,16 +94,96 @@ export function QuestionTemplate({
   answer,
   pillar,
   eyebrow = "QUESTION",
+  bestFor,
+  notFor,
+  keyTakeaway,
+  evidenceLevel,
+  evidenceNote,
   children,
   evidence,
+  faq,
   related,
+  coachingCta,
   source,
 }: QuestionTemplateProps) {
+  const ctaEyebrow = coachingCta?.eyebrow ?? "STILL FIGURING IT OUT?";
+  const ctaHeading = coachingCta?.heading ?? "A coach removes the guesswork.";
+  const ctaHref = coachingCta?.href ?? "/apply";
+  const ctaLabel = coachingCta?.label ?? "Apply for Coaching";
+
   return (
     <TemplateShell title={question} eyebrow={eyebrow} pillar={pillar}>
       <Section background="charcoal" className="!py-12">
         <Container width="narrow">
           <AnswerCapsule text={answer} pillar={pillar} />
+
+          {(bestFor || notFor) && (
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-8 not-prose">
+              {bestFor && (
+                <div
+                  className="rounded-lg p-4"
+                  style={{
+                    borderLeft: "3px solid #4CAF50",
+                    backgroundColor:
+                      "color-mix(in srgb, #4CAF50 6%, var(--color-charcoal))",
+                  }}
+                >
+                  <p
+                    className="font-heading text-xs tracking-[0.3em] mb-1.5"
+                    style={{ color: "#4CAF50" }}
+                  >
+                    BEST FOR
+                  </p>
+                  <p className="text-off-white text-sm leading-relaxed font-body m-0">
+                    {bestFor}
+                  </p>
+                </div>
+              )}
+              {notFor && (
+                <div
+                  className="rounded-lg p-4"
+                  style={{
+                    borderLeft: "3px solid #F16363",
+                    backgroundColor:
+                      "color-mix(in srgb, #F16363 6%, var(--color-charcoal))",
+                  }}
+                >
+                  <p
+                    className="font-heading text-xs tracking-[0.3em] mb-1.5"
+                    style={{ color: "#F16363" }}
+                  >
+                    NOT FOR
+                  </p>
+                  <p className="text-off-white text-sm leading-relaxed font-body m-0">
+                    {notFor}
+                  </p>
+                </div>
+              )}
+            </div>
+          )}
+
+          {keyTakeaway && (
+            <aside
+              className="mb-8 rounded-lg border-l-4 border-coral bg-white/[0.03] p-5 not-prose"
+              role="note"
+              aria-label="Key takeaway"
+            >
+              <p className="font-heading text-coral text-xs tracking-[0.3em] mb-2">
+                KEY TAKEAWAY
+              </p>
+              <p className="text-off-white text-base leading-relaxed font-body m-0">
+                {keyTakeaway}
+              </p>
+            </aside>
+          )}
+
+          {evidenceLevel && (
+            <EvidenceLevel
+              level={evidenceLevel}
+              variant="block"
+              note={evidenceNote}
+            />
+          )}
 
           {children && (
             <article className="prose-roadman prose-enhanced">
@@ -90,7 +202,7 @@ export function QuestionTemplate({
               >
                 WHERE THIS COMES FROM
               </h2>
-              <ul className="space-y-3">
+              <ul className="space-y-3 list-none p-0">
                 {evidence.map((e) => (
                   <li
                     key={`${e.label}-${e.detail.slice(0, 24)}`}
@@ -123,6 +235,32 @@ export function QuestionTemplate({
             </section>
           )}
 
+          {faq && faq.length > 0 && (
+            <section className="mt-12" aria-labelledby={`faq-${source}`}>
+              <p className="font-heading text-coral text-xs tracking-[0.3em] mb-3">
+                FAQ
+              </p>
+              <h2
+                id={`faq-${source}`}
+                className="font-heading text-off-white text-2xl mb-6"
+              >
+                COMMON FOLLOW-UPS
+              </h2>
+              <div className="space-y-3">
+                {faq.map((f) => (
+                  <Card key={f.question} className="p-5" hoverable={false}>
+                    <h3 className="font-heading text-off-white text-base mb-2">
+                      {f.question}
+                    </h3>
+                    <p className="text-foreground-muted text-sm leading-relaxed m-0">
+                      {f.answer}
+                    </p>
+                  </Card>
+                ))}
+              </div>
+            </section>
+          )}
+
           {related && related.length > 0 && (
             <section className="mt-12">
               <p className="font-heading text-coral text-xs tracking-[0.3em] mb-3">
@@ -146,6 +284,28 @@ export function QuestionTemplate({
               </div>
             </section>
           )}
+
+          <div className="mt-12 rounded-lg border border-coral/30 bg-coral/[0.05] p-6 text-center">
+            <p className="font-heading text-coral text-xs tracking-[0.3em] mb-2">
+              {ctaEyebrow}
+            </p>
+            <p className="font-heading text-off-white text-xl mb-2">
+              {ctaHeading}
+            </p>
+            {coachingCta?.body && (
+              <p className="text-foreground-muted text-sm leading-relaxed mb-4 max-w-xl mx-auto">
+                {coachingCta.body}
+              </p>
+            )}
+            <Button
+              href={ctaHref}
+              size="lg"
+              dataTrack={`question_${source}_apply`}
+              className="mt-2"
+            >
+              {ctaLabel}
+            </Button>
+          </div>
 
           <JourneyBlock
             stage="awareness"

@@ -20,6 +20,7 @@ import { GLOSSARY_TERMS, type GlossaryTerm } from "./glossary";
 import { COMPARISONS, type ComparisonPage } from "./comparisons";
 import { BEST_FOR_PAGES, type BestForPage } from "./best-for";
 import { PROBLEM_PAGES, type ProblemPage } from "./problems";
+import { QUESTION_PAGES, type QuestionPage } from "./questions";
 
 export interface ContentGraphQuery {
   topicSlug?: string;
@@ -37,6 +38,7 @@ export interface ContentGraphResult {
   glossaryTerms: GlossaryTerm[];
   bestForPages: BestForPage[];
   problemPages: ProblemPage[];
+  questionPages: QuestionPage[];
   events: TrainingEvent[];
   commercialPath: string;
 }
@@ -97,6 +99,11 @@ export function queryContentGraph(query: ContentGraphQuery): ContentGraphResult 
     ? PROBLEM_PAGES.filter((p) => p.pillar === pillar).slice(0, 3)
     : [];
 
+  // Question pages — by pillar
+  const questionPages = pillar
+    ? QUESTION_PAGES.filter((q) => q.pillar === pillar).slice(0, 4)
+    : [];
+
   // Events — all (event pages are cross-pillar)
   const events = EVENTS.slice(0, 6);
 
@@ -113,6 +120,7 @@ export function queryContentGraph(query: ContentGraphQuery): ContentGraphResult 
     glossaryTerms,
     bestForPages,
     problemPages,
+    questionPages,
     events,
     commercialPath,
   };
