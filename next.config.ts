@@ -27,7 +27,23 @@ const nextConfig: NextConfig = {
     const COACHING_SUBDOMAIN = [
       { type: "host" as const, value: "coaching.roadmancycling.com" },
     ];
+    const WWW_HOST = [
+      { type: "host" as const, value: "www.roadmancycling.com" },
+    ];
     return [
+      // ==========================================================
+      // www.roadmancycling.com → roadmancycling.com (apex)
+      // ----------------------------------------------------------
+      // Canonical host is the apex. Any www. request 308s to the
+      // matching apex path so we don't split link equity or appear
+      // as duplicate URLs in search.
+      // ==========================================================
+      {
+        source: "/:path*",
+        has: WWW_HOST,
+        destination: "https://roadmancycling.com/:path*",
+        permanent: true,
+      },
       // ==========================================================
       // coaching.roadmancycling.com subdomain retirement
       // ----------------------------------------------------------
@@ -230,6 +246,34 @@ const nextConfig: NextConfig = {
       { source: "/optin-page", destination: "/apply", permanent: true },
       { source: "/application-page", destination: "/apply", permanent: true },
       { source: "/copy-of-the-perfect-squeeze-page-d3318--8234c", destination: "/tools", permanent: true },
+
+      // ==========================================================
+      // Legacy WordPress-style category & tag URLs → topic hubs
+      // ----------------------------------------------------------
+      // The previous site grouped posts under /blog/<category>. Those
+      // URLs are still being surfaced in search. Each maps to the
+      // corresponding /topics/<hub> page (the canonical taxonomy hub
+      // on the current site). Catch-all `/blog/category/*` and
+      // `/blog/tag/*` archives fall back to the blog index.
+      // Real article slugs (e.g. /blog/cycling-training-plan-guide)
+      // are unaffected — these are exact-match literal paths.
+      // ==========================================================
+      { source: "/blog/training", destination: "/topics/cycling-training-plans", permanent: true },
+      { source: "/blog/nutrition", destination: "/topics/cycling-nutrition", permanent: true },
+      { source: "/blog/recovery", destination: "/topics/cycling-recovery", permanent: true },
+      { source: "/blog/strength", destination: "/topics/cycling-strength-conditioning", permanent: true },
+      { source: "/blog/strength-training", destination: "/topics/cycling-strength-conditioning", permanent: true },
+      { source: "/blog/coaching", destination: "/topics/cycling-coaching", permanent: true },
+      { source: "/blog/weight-loss", destination: "/topics/cycling-weight-loss", permanent: true },
+      { source: "/blog/beginners", destination: "/topics/cycling-beginners", permanent: true },
+      { source: "/blog/beginner", destination: "/topics/cycling-beginners", permanent: true },
+      { source: "/blog/triathlon", destination: "/topics/triathlon-cycling", permanent: true },
+      { source: "/blog/mtb", destination: "/topics/mountain-biking", permanent: true },
+      { source: "/blog/mountain-biking", destination: "/topics/mountain-biking", permanent: true },
+      { source: "/blog/ftp", destination: "/topics/ftp-training", permanent: true },
+      { source: "/blog/ftp-training", destination: "/topics/ftp-training", permanent: true },
+      { source: "/blog/category/:slug*", destination: "/blog", permanent: true },
+      { source: "/blog/tag/:slug*", destination: "/blog", permanent: true },
 
       // ==========================================================
       // coaching.roadmancycling.com subdomain catch-all
