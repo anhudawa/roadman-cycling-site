@@ -2,43 +2,278 @@
   "version": "7",
   "dialect": "postgresql",
   "entries": [
-    { "idx": 0,  "version": "7", "when": 1775681648882, "tag": "0000_youthful_chameleon",              "breakpoints": true },
-    { "idx": 1,  "version": "7", "when": 1775725421766, "tag": "0001_ambitious_supreme_intelligence",  "breakpoints": true },
-    { "idx": 2,  "version": "7", "when": 1776171617559, "tag": "0002_skinny_dark_phoenix",             "breakpoints": true },
-    { "idx": 3,  "version": "7", "when": 1776186200539, "tag": "0003_amusing_masque",                  "breakpoints": true },
-    { "idx": 4,  "version": "7", "when": 1776186200540, "tag": "0031_crm_phase1",                      "breakpoints": true },
-    { "idx": 5,  "version": "7", "when": 1776186200541, "tag": "0004_team_users",                      "breakpoints": true },
-    { "idx": 6,  "version": "7", "when": 1776186200542, "tag": "0005_crm_email",                       "breakpoints": true },
-    { "idx": 7,  "version": "7", "when": 1776186200543, "tag": "0006_activity_author_slug",            "breakpoints": true },
-    { "idx": 8,  "version": "7", "when": 1776186200544, "tag": "0007_resend_webhook",                  "breakpoints": true },
-    { "idx": 9,  "version": "7", "when": 1776186200545, "tag": "0008_saved_views",                     "breakpoints": true },
-    { "idx": 10, "version": "7", "when": 1776186200546, "tag": "0009_notifications",                   "breakpoints": true },
-    { "idx": 11, "version": "7", "when": 1776186200547, "tag": "0010_deals",                           "breakpoints": true },
-    { "idx": 12, "version": "7", "when": 1776186200548, "tag": "0011_automations",                     "breakpoints": true },
-    { "idx": 13, "version": "7", "when": 1776186200549, "tag": "0012_segments",                        "breakpoints": true },
-    { "idx": 14, "version": "7", "when": 1776186200550, "tag": "0013_automation_safety",               "breakpoints": true },
-    { "idx": 15, "version": "7", "when": 1776186200551, "tag": "0014_attachments",                     "breakpoints": true },
-    { "idx": 16, "version": "7", "when": 1776186200552, "tag": "0015_custom_field_defs",               "breakpoints": true },
-    { "idx": 17, "version": "7", "when": 1776186200553, "tag": "0016_sync_runs",                       "breakpoints": true },
-    { "idx": 18, "version": "7", "when": 1776186200554, "tag": "0017_bookings",                        "breakpoints": true },
-    { "idx": 19, "version": "7", "when": 1776186200555, "tag": "0018_cron_runs",                       "breakpoints": true },
-    { "idx": 20, "version": "7", "when": 1776186200556, "tag": "0019_skool_events",                    "breakpoints": true },
-    { "idx": 21, "version": "7", "when": 1776186200557, "tag": "0032_ted_community_agent",             "breakpoints": true },
-    { "idx": 22, "version": "7", "when": 1776186200558, "tag": "0020_inbox_status",                    "breakpoints": true },
-    { "idx": 23, "version": "7", "when": 1776186200559, "tag": "0033_ted_surface_drafts",              "breakpoints": true },
-    { "idx": 24, "version": "7", "when": 1776186200560, "tag": "0021_stripe_snapshot_cols",            "breakpoints": true },
-    { "idx": 25, "version": "7", "when": 1776186200561, "tag": "0022_cohort_apps_unique_email",        "breakpoints": true },
-    { "idx": 26, "version": "7", "when": 1776186200562, "tag": "0034_team_google_oauth",               "breakpoints": true },
-    { "idx": 27, "version": "7", "when": 1776186200563, "tag": "0023_task_requests",                   "breakpoints": true },
-    { "idx": 28, "version": "7", "when": 1776186200564, "tag": "0024_task_focus_order",                "breakpoints": true },
-    { "idx": 29, "version": "7", "when": 1776186200565, "tag": "0025_diagnostic_submissions",          "breakpoints": true },
-    { "idx": 30, "version": "7", "when": 1776186200566, "tag": "0026_diagnostic_retake_number",        "breakpoints": true },
-    { "idx": 31, "version": "7", "when": 1776186200567, "tag": "0027_mcp_tables",                      "breakpoints": true },
-    { "idx": 32, "version": "7", "when": 1776186200568, "tag": "0028_ask_roadman_and_rider_profiles",  "breakpoints": true },
-    { "idx": 33, "version": "7", "when": 1776186200569, "tag": "0029_phase2_saved_diagnostics",        "breakpoints": true },
-    { "idx": 34, "version": "7", "when": 1776186200570, "tag": "0030_paid_reports",                    "breakpoints": true },
-    { "idx": 35, "version": "7", "when": 1777719600000, "tag": "0035_paid_reports_usd",                "breakpoints": true },
-    { "idx": 36, "version": "7", "when": 1777719600001, "tag": "0036_report_prices",                   "breakpoints": true },
-    { "idx": 37, "version": "7", "when": 1777719600002, "tag": "0037_race_predictor",                  "breakpoints": true }
+    {
+      "idx": 0,
+      "version": "7",
+      "when": 1775681648882,
+      "tag": "0000_youthful_chameleon",
+      "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "7",
+      "when": 1775725421766,
+      "tag": "0001_ambitious_supreme_intelligence",
+      "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "7",
+      "when": 1776171617559,
+      "tag": "0002_skinny_dark_phoenix",
+      "breakpoints": true
+    },
+    {
+      "idx": 3,
+      "version": "7",
+      "when": 1776186200539,
+      "tag": "0003_amusing_masque",
+      "breakpoints": true
+    },
+    {
+      "idx": 4,
+      "version": "7",
+      "when": 1776186200540,
+      "tag": "0031_crm_phase1",
+      "breakpoints": true
+    },
+    {
+      "idx": 5,
+      "version": "7",
+      "when": 1776186200541,
+      "tag": "0004_team_users",
+      "breakpoints": true
+    },
+    {
+      "idx": 6,
+      "version": "7",
+      "when": 1776186200542,
+      "tag": "0005_crm_email",
+      "breakpoints": true
+    },
+    {
+      "idx": 7,
+      "version": "7",
+      "when": 1776186200543,
+      "tag": "0006_activity_author_slug",
+      "breakpoints": true
+    },
+    {
+      "idx": 8,
+      "version": "7",
+      "when": 1776186200544,
+      "tag": "0007_resend_webhook",
+      "breakpoints": true
+    },
+    {
+      "idx": 9,
+      "version": "7",
+      "when": 1776186200545,
+      "tag": "0008_saved_views",
+      "breakpoints": true
+    },
+    {
+      "idx": 10,
+      "version": "7",
+      "when": 1776186200546,
+      "tag": "0009_notifications",
+      "breakpoints": true
+    },
+    {
+      "idx": 11,
+      "version": "7",
+      "when": 1776186200547,
+      "tag": "0010_deals",
+      "breakpoints": true
+    },
+    {
+      "idx": 12,
+      "version": "7",
+      "when": 1776186200548,
+      "tag": "0011_automations",
+      "breakpoints": true
+    },
+    {
+      "idx": 13,
+      "version": "7",
+      "when": 1776186200549,
+      "tag": "0012_segments",
+      "breakpoints": true
+    },
+    {
+      "idx": 14,
+      "version": "7",
+      "when": 1776186200550,
+      "tag": "0013_automation_safety",
+      "breakpoints": true
+    },
+    {
+      "idx": 15,
+      "version": "7",
+      "when": 1776186200551,
+      "tag": "0014_attachments",
+      "breakpoints": true
+    },
+    {
+      "idx": 16,
+      "version": "7",
+      "when": 1776186200552,
+      "tag": "0015_custom_field_defs",
+      "breakpoints": true
+    },
+    {
+      "idx": 17,
+      "version": "7",
+      "when": 1776186200553,
+      "tag": "0016_sync_runs",
+      "breakpoints": true
+    },
+    {
+      "idx": 18,
+      "version": "7",
+      "when": 1776186200554,
+      "tag": "0017_bookings",
+      "breakpoints": true
+    },
+    {
+      "idx": 19,
+      "version": "7",
+      "when": 1776186200555,
+      "tag": "0018_cron_runs",
+      "breakpoints": true
+    },
+    {
+      "idx": 20,
+      "version": "7",
+      "when": 1776186200556,
+      "tag": "0019_skool_events",
+      "breakpoints": true
+    },
+    {
+      "idx": 21,
+      "version": "7",
+      "when": 1776186200557,
+      "tag": "0032_ted_community_agent",
+      "breakpoints": true
+    },
+    {
+      "idx": 22,
+      "version": "7",
+      "when": 1776186200558,
+      "tag": "0020_inbox_status",
+      "breakpoints": true
+    },
+    {
+      "idx": 23,
+      "version": "7",
+      "when": 1776186200559,
+      "tag": "0033_ted_surface_drafts",
+      "breakpoints": true
+    },
+    {
+      "idx": 24,
+      "version": "7",
+      "when": 1776186200560,
+      "tag": "0021_stripe_snapshot_cols",
+      "breakpoints": true
+    },
+    {
+      "idx": 25,
+      "version": "7",
+      "when": 1776186200561,
+      "tag": "0022_cohort_apps_unique_email",
+      "breakpoints": true
+    },
+    {
+      "idx": 26,
+      "version": "7",
+      "when": 1776186200562,
+      "tag": "0034_team_google_oauth",
+      "breakpoints": true
+    },
+    {
+      "idx": 27,
+      "version": "7",
+      "when": 1776186200563,
+      "tag": "0023_task_requests",
+      "breakpoints": true
+    },
+    {
+      "idx": 28,
+      "version": "7",
+      "when": 1776186200564,
+      "tag": "0024_task_focus_order",
+      "breakpoints": true
+    },
+    {
+      "idx": 29,
+      "version": "7",
+      "when": 1776186200565,
+      "tag": "0025_diagnostic_submissions",
+      "breakpoints": true
+    },
+    {
+      "idx": 30,
+      "version": "7",
+      "when": 1776186200566,
+      "tag": "0026_diagnostic_retake_number",
+      "breakpoints": true
+    },
+    {
+      "idx": 31,
+      "version": "7",
+      "when": 1776186200567,
+      "tag": "0027_mcp_tables",
+      "breakpoints": true
+    },
+    {
+      "idx": 32,
+      "version": "7",
+      "when": 1776186200568,
+      "tag": "0028_ask_roadman_and_rider_profiles",
+      "breakpoints": true
+    },
+    {
+      "idx": 33,
+      "version": "7",
+      "when": 1776186200569,
+      "tag": "0029_phase2_saved_diagnostics",
+      "breakpoints": true
+    },
+    {
+      "idx": 34,
+      "version": "7",
+      "when": 1776186200570,
+      "tag": "0030_paid_reports",
+      "breakpoints": true
+    },
+    {
+      "idx": 35,
+      "version": "7",
+      "when": 1777719600000,
+      "tag": "0035_paid_reports_usd",
+      "breakpoints": true
+    },
+    {
+      "idx": 36,
+      "version": "7",
+      "when": 1777719600001,
+      "tag": "0036_report_prices",
+      "breakpoints": true
+    },
+    {
+      "idx": 37,
+      "version": "7",
+      "when": 1777719600002,
+      "tag": "0037_race_predictor",
+      "breakpoints": true
+    },
+    {
+      "idx": 38,
+      "version": "7",
+      "when": 1777891200000,
+      "tag": "0038_measurement_workstream",
+      "breakpoints": true
+    }
   ]
 }
