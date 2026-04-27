@@ -97,13 +97,23 @@ export default function PredictPage() {
   const [courseSlug, setCourseSlug] = useState<string>("");
   const [gpx, setGpx] = useState<GpxUploadResult | null>(null);
 
-  const [bodyMass, setBodyMass] = useState<number>(75);
-  const [bikeMass, setBikeMass] = useState<number>(8);
+  // Numeric inputs start empty (NaN) — placeholders show recommended defaults
+  // so the field doesn't show "075" if a user types into a pre-filled "0" or
+  // "75". The live what-if estimator below substitutes sane fallbacks until
+  // the user provides a real value.
+  const [bodyMass, setBodyMass] = useState<number>(NaN);
+  const [bikeMass, setBikeMass] = useState<number>(NaN);
   const [position, setPosition] = useState<Position>("aero_hoods");
-  const [ftp, setFtp] = useState<number>(260);
+  const [ftp, setFtp] = useState<number>(NaN);
 
   const [airTempC, setAirTempC] = useState<number>(18);
   const [windSpeedMs, setWindSpeedMs] = useState<number>(0);
+
+  // Fallback values used by the live what-if estimator when the user hasn't
+  // typed in their setup yet. These should never be submitted to /api/predict.
+  const ftpForEstimate = Number.isFinite(ftp) ? ftp : 260;
+  const bodyMassForEstimate = Number.isFinite(bodyMass) ? bodyMass : 75;
+  const bikeMassForEstimate = Number.isFinite(bikeMass) ? bikeMass : 8;
 
   const [aiText, setAiText] = useState<string>("");
   const [aiLoading, setAiLoading] = useState<boolean>(false);
@@ -281,17 +291,29 @@ export default function PredictPage() {
     }
   }
 
+  // Distinguish "empty" (don't shout at the user yet — they haven't typed) from
+  // "out of range" (definitely wrong). Empty is a soft block on submit; out of
+  // range surfaces a red message under the field.
   const fieldErrors: { ftp?: string; bodyMass?: string; bikeMass?: string } = {};
-  if (!Number.isFinite(ftp) || ftp < 50 || ftp > 500) {
+  const fieldEmpty = {
+    ftp: !Number.isFinite(ftp),
+    bodyMass: !Number.isFinite(bodyMass),
+    bikeMass: !Number.isFinite(bikeMass),
+  };
+  if (Number.isFinite(ftp) && (ftp < 50 || ftp > 500)) {
     fieldErrors.ftp = "FTP should be 50–500 W.";
   }
-  if (!Number.isFinite(bodyMass) || bodyMass < 40 || bodyMass > 150) {
+  if (Number.isFinite(bodyMass) && (bodyMass < 40 || bodyMass > 150)) {
     fieldErrors.bodyMass = "Body mass should be 40–150 kg.";
   }
-  if (!Number.isFinite(bikeMass) || bikeMass < 5 || bikeMass > 30) {
+  if (Number.isFinite(bikeMass) && (bikeMass < 5 || bikeMass > 30)) {
     fieldErrors.bikeMass = "Bike mass should be 5–30 kg.";
   }
-  const formInvalid = Object.keys(fieldErrors).length > 0;
+  const formInvalid =
+    Object.keys(fieldErrors).length > 0 ||
+    fieldEmpty.ftp ||
+    fieldEmpty.bodyMass ||
+    fieldEmpty.bikeMass;
 
   async function handleSubmit() {
     setSubmitError(null);
@@ -300,9 +322,14 @@ export default function PredictPage() {
       return;
     }
     if (formInvalid) {
-      setSubmitError(
-        Object.values(fieldErrors)[0] ?? "Fix the highlighted fields and try again.",
-      );
+      const firstError = Object.values(fieldErrors)[0];
+      if (firstError) {
+        setSubmitError(firstError);
+      } else if (fieldEmpty.ftp || fieldEmpty.bodyMass || fieldEmpty.bikeMass) {
+        setSubmitError("Fill in your FTP, body mass, and bike mass to run the prediction.");
+      } else {
+        setSubmitError("Fix the highlighted fields and try again.");
+      }
       return;
     }
     setSubmitting(true);
@@ -745,8 +772,8 @@ export default function PredictPage() {
                       type="text"
                       value={aiText}
                       onChange={(e) => setAiText(e.target.value)}
-                      placeholder='e.g. "Canyon Aeroad, GP5000 28mm, on the hoods, 76 kg"'
-                      className="flex-1 px-4 py-3 rounded-lg bg-white/5 border border-white/10 text-off-white placeholder:text-foreground-subtle focus:border-coral focus:outline-none text-sm"
+                      placeholder='e.g. "Canyon Aeroad CFR, GP5000 28mm, on the hoods, 76 kg"'
+                      className="flex-1 min-h-[44px] px-4 py-3 rounded-lg bg-white/5 border border-white/10 text-off-white placeholder:text-foreground-subtle focus:border-coral focus:outline-none text-sm transition-colors"
                       maxLength={500}
                       onKeyDown={(e) => {
                         if (e.key === "Enter") runTranslator();
@@ -797,24 +824,87 @@ export default function PredictPage() {
                   >
                     STEP 03 · WHEN ARE YOU RACING?
                   </p>
-                  <p className="text-sm text-foreground-muted mb-3">
-                    Race week or still training? It changes how we model the
-                    ride.
-                  </p>
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
-                    <ModeToggle
-                      label="Race week"
-                      sublabel="Optimised pacing — power targets, fuelling rate"
-                      selected={mode === "plan_my_race"}
-                      onSelect={() => setMode("plan_my_race")}
+                  <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
+                    <NumberField
+                      label="FTP"
+                      unit="W"
+                      value={ftp}
+                      step={5}
+                      min={50}
+                      max={500}
+                      placeholder="260"
+                      onChange={setFtp}
+                      error={fieldErrors.ftp}
                     />
-                    <ModeToggle
-                      label="Still training"
-                      sublabel="Honest baseline — what you'd ride today"
-                      selected={mode === "can_i_make_it"}
-                      onSelect={() => setMode("can_i_make_it")}
+                    <NumberField
+                      label="Body mass"
+                      unit="kg"
+                      value={bodyMass}
+                      step={0.5}
+                      min={40}
+                      max={150}
+                      placeholder="75"
+                      onChange={setBodyMass}
+                      error={fieldErrors.bodyMass}
+                    />
+                    <NumberField
+                      label="Bike mass"
+                      unit="kg"
+                      value={bikeMass}
+                      step={0.1}
+                      min={5}
+                      max={30}
+                      placeholder="8"
+                      onChange={setBikeMass}
+                      error={fieldErrors.bikeMass}
                     />
                   </div>
+
+                  <button
+                    type="button"
+                    onClick={() => setShowAdvanced((v) => !v)}
+                    className="mt-4 inline-flex items-center gap-2 min-h-[44px] -mx-2 px-2 py-2 rounded-md text-xs uppercase tracking-[0.18em] text-foreground-muted hover:text-coral focus-visible:text-coral transition-colors"
+                    style={{ fontFamily: "var(--font-jetbrains-mono)" }}
+                    aria-expanded={showAdvanced}
+                  >
+                    <span>{showAdvanced ? "Hide" : "Show"} conditions</span>
+                    <svg
+                      width="10"
+                      height="10"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      strokeWidth="2"
+                      className={`transition-transform ${showAdvanced ? "rotate-180" : ""}`}
+                    >
+                      <path d="M6 9l6 6 6-6" />
+                    </svg>
+                  </button>
+
+                  {showAdvanced && (
+                    <div className="grid grid-cols-2 gap-3 mt-3 pt-4 border-t border-white/5">
+                      <NumberField
+                        label="Air temp"
+                        unit="°C"
+                        value={airTempC}
+                        step={1}
+                        min={-10}
+                        max={45}
+                        placeholder="18"
+                        onChange={setAirTempC}
+                      />
+                      <NumberField
+                        label="Headwind"
+                        unit="m/s"
+                        value={windSpeedMs}
+                        step={0.5}
+                        min={0}
+                        max={20}
+                        placeholder="0"
+                        onChange={setWindSpeedMs}
+                      />
+                    </div>
+                  )}
                 </div>
               </div>
 
@@ -823,9 +913,9 @@ export default function PredictPage() {
                 <div className="lg:sticky lg:top-28 space-y-4">
                   {previewData ? (
                     <WhatIfSliders
-                      ftp={ftp}
-                      bodyMass={bodyMass}
-                      bikeMass={bikeMass}
+                      ftp={ftpForEstimate}
+                      bodyMass={bodyMassForEstimate}
+                      bikeMass={bikeMassForEstimate}
                       windSpeed={windSpeedMs}
                       onFtp={setFtp}
                       onBodyMass={setBodyMass}
@@ -835,10 +925,32 @@ export default function PredictPage() {
                       elevationGainM={previewData.elevationGainM}
                     />
                   ) : (
-                    <div className="rounded-xl border border-white/8 bg-white/[0.02] p-6 text-center">
-                      <p className="text-sm text-foreground-muted">
-                        Pick a race above (or upload a GPX) to see your
-                        rough finish time before you commit.
+                    <div className="rounded-xl border border-white/8 bg-gradient-to-br from-deep-purple/30 to-charcoal p-6 md:p-7 text-center">
+                      <div className="mx-auto mb-3 w-10 h-10 rounded-full bg-coral/10 border border-coral/20 flex items-center justify-center">
+                        <svg
+                          width="18"
+                          height="18"
+                          viewBox="0 0 24 24"
+                          fill="none"
+                          stroke="#F16363"
+                          strokeWidth="1.8"
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          aria-hidden="true"
+                        >
+                          <path d="M3 17l6-6 4 4 8-8" />
+                          <path d="M14 7h7v7" />
+                        </svg>
+                      </div>
+                      <p
+                        className="text-[0.62rem] tracking-[0.22em] uppercase text-coral mb-1"
+                        style={{ fontFamily: "var(--font-jetbrains-mono)" }}
+                      >
+                        LIVE ESTIMATE READY
+                      </p>
+                      <p className="text-sm text-foreground-muted leading-relaxed">
+                        Pick a course above (or drop a GPX) to see a live
+                        what-if estimate update as you tweak your setup.
                       </p>
                     </div>
                   )}
@@ -857,7 +969,7 @@ export default function PredictPage() {
                       <button
                         type="button"
                         onClick={() => setSubmitError(null)}
-                        className="mt-2 text-[0.62rem] tracking-[0.18em] uppercase text-coral hover:text-coral-hover transition-colors"
+                        className="mt-2 inline-flex items-center min-h-[44px] -mx-1 px-1 text-[0.62rem] tracking-[0.18em] uppercase text-coral hover:text-coral-hover focus-visible:text-coral-hover transition-colors"
                         style={{ fontFamily: "var(--font-jetbrains-mono)" }}
                       >
                         Dismiss & retry
@@ -1079,6 +1191,15 @@ interface NumberFieldProps {
   error?: string;
 }
 
+/**
+ * Numeric input that owns its display string locally so partial keystrokes
+ * (`""`, `"0"`, `"0."`, leading zeros while typing) render exactly as typed
+ * instead of being normalised by React back to the parsed number — that
+ * normalisation is what produced the "075" rubber-banding the user reported.
+ *
+ * The parent state tracks `NaN` for empty/invalid input. We resync from
+ * `value` only when it changes externally (AI translator pre-fills the form).
+ */
 function NumberField({
   label,
   unit,
@@ -1091,26 +1212,20 @@ function NumberField({
   error,
 }: NumberFieldProps) {
   const id = `num-${label.replace(/\s+/g, "-").toLowerCase()}`;
-
-  // Internal string state lets the input be momentarily empty (for typing /
-  // editing) without forcing a 0 into parent state. Sync down whenever the
-  // parent value changes externally — e.g. when the AI translator pre-fills
-  // body mass — so the visible input matches the underlying number.
   const [text, setText] = useState<string>(
     Number.isFinite(value) ? String(value) : "",
   );
-
+  // Sync local text when the parent updates `value` externally (e.g. AI
+  // translator pre-fill). Skip if the user's in-progress text already parses
+  // to the same number — avoids clobbering their typing mid-keystroke.
   useEffect(() => {
-    if (!Number.isFinite(value)) {
-      setText("");
-      return;
-    }
-    if (Number(text) !== value) {
-      setText(String(value));
-    }
+    const parsedLocal = Number(text);
+    const sameParse =
+      text !== "" && Number.isFinite(parsedLocal) && parsedLocal === value;
+    if (sameParse) return;
+    setText(Number.isFinite(value) ? String(value) : "");
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [value]);
-
   return (
     <div>
       <label
@@ -1122,35 +1237,32 @@ function NumberField({
       </label>
       <input
         id={id}
-        type="number"
+        type="text"
         inputMode="decimal"
         step={step}
         min={min}
         max={max}
         value={text}
         placeholder={placeholder}
-        onFocus={(e) => e.target.select()}
         onChange={(e) => {
           const next = e.target.value;
           setText(next);
-          if (next === "") {
+          if (next.trim() === "") {
             onChange(NaN);
             return;
           }
-          const n = Number(next);
-          if (Number.isFinite(n)) onChange(n);
+          const v = Number(next);
+          onChange(Number.isFinite(v) ? v : NaN);
         }}
         onBlur={() => {
-          if (text === "") return;
-          const n = Number(text);
-          if (Number.isFinite(n)) {
-            // Strip leading zeros / normalise scientific notation on blur.
-            setText(String(n));
-          }
+          // On blur, normalise display: trim trailing zeros, strip leading zeros.
+          if (text.trim() === "") return;
+          const v = Number(text);
+          if (Number.isFinite(v)) setText(String(v));
         }}
         aria-invalid={Boolean(error) || undefined}
         aria-describedby={error ? `${id}-error` : undefined}
-        className={`w-full px-3 py-2.5 rounded-lg bg-white/5 border text-off-white text-base focus:outline-none tabular-nums transition-colors ${
+        className={`w-full min-h-[44px] px-3 py-2.5 rounded-lg bg-white/5 border text-off-white text-base placeholder:text-foreground-subtle focus:outline-none tabular-nums transition-colors ${
           error
             ? "border-coral/70 focus:border-coral"
             : "border-white/10 focus:border-coral"

@@ -123,7 +123,8 @@ export function GpxDropzone({ value, onChange }: GpxDropzoneProps) {
           <button
             type="button"
             onClick={() => onChange(null)}
-            className="text-foreground-muted hover:text-coral transition-colors text-xs uppercase tracking-wider"
+            className="inline-flex items-center min-h-[44px] -my-2 px-3 -mr-2 rounded-md text-foreground-muted hover:text-coral focus-visible:text-coral hover:bg-white/5 transition-colors text-xs uppercase tracking-wider"
+            aria-label="Remove uploaded GPX"
           >
             Remove
           </button>
