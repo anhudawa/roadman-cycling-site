@@ -6,6 +6,11 @@ export interface ComparisonFeature {
   optionB: string;
 }
 
+export interface ComparisonFAQ {
+  q: string;
+  a: string;
+}
+
 export interface ComparisonPage {
   slug: string;
   title: string;
@@ -21,6 +26,26 @@ export interface ComparisonPage {
   bestForB: string[];
   relatedArticle?: string;
   relatedTool?: string;
+  /**
+   * Optional opening paragraph(s) shown before the comparison body — used
+   * when context the reader needs (e.g. a competitor shutting down)
+   * deserves more space than the verdict block can carry.
+   */
+  intro?: string[];
+  /**
+   * Long-form prose paragraphs rendered between the decision blocks and
+   * the FAQ. Each string is one paragraph; basic Markdown-style links
+   * in the form `[text](href)` are converted to anchors at render time.
+   */
+  body?: string[];
+  /**
+   * Disclosure paragraph rendered in a callout — partnership notes,
+   * conflicts of interest, or anything the reader should know about
+   * the writer's relationship to the products being compared.
+   */
+  disclosure?: string;
+  /** Optional FAQ block. When present, also added to FAQPage schema. */
+  faqs?: ComparisonFAQ[];
 }
 
 export const COMPARISONS: ComparisonPage[] = [
@@ -479,36 +504,87 @@ export const COMPARISONS: ComparisonPage[] = [
     relatedTool: "/tools/ftp-zones",
   },
   {
-    slug: "trainingpeaks-vs-todays-plan",
-    title: "TrainingPeaks vs Today's Plan — Coach Software Compared",
-    seoTitle: "TrainingPeaks vs Today's Plan — Which Coach Software?",
-    seoDescription: "The two leading platforms for coached cyclists. Analysis depth, coach workflow, plan-building, and cost compared — with a clear pick by use case.",
+    slug: "trainingpeaks-vs-vekta",
+    title: "TrainingPeaks vs Vekta — Cycling Training Platforms Compared",
+    seoTitle: "TrainingPeaks vs Vekta — Which Cycling Training Platform?",
+    seoDescription: "TrainingPeaks vs Vekta — the industry-standard coaching platform every serious coach uses, compared with Vekta. Analysis depth, ecosystem, WKO5, plan marketplace and verdict.",
     optionA: "TrainingPeaks",
-    optionB: "Today's Plan",
-    verdict: "TrainingPeaks is the industry default and what most coaches use — pick it if you're starting with a coach or want maximum coach-compatibility. Today's Plan has deeper built-in intelligence and is preferred by a growing minority of coaches — worth it if your coach specifically uses it. Functionally similar for the athlete; the difference is ecosystem.",
+    optionB: "Vekta",
+    verdict: "TrainingPeaks. It's the platform every serious coach in cycling uses — the gold standard for a reason. Universal device sync, the deepest analysis tools (PMC, fitness/fatigue, WKO5 integration), thousands of prebuilt plans, and over two decades of athlete data continuity. Vekta is a newer, smaller platform with some genuinely clever plan-building features, but it can't match TrainingPeaks' coach ecosystem, analysis depth, or third-party integrations. If you're working with a coach in 2026 — or planning to — TrainingPeaks is the right choice.",
     verdictWinner: "A",
     pillar: "coaching",
     features: [
-      { feature: "Industry adoption (coaches)", optionA: "~80% of pro / serious amateur coaches", optionB: "Growing but minority" },
-      { feature: "Workout library", optionA: "Thousands of prebuilt plans available to buy", optionB: "Smaller library, more coach-delivered" },
-      { feature: "Analysis depth", optionA: "Excellent — PMC, performance modelling, fitness/fatigue charts", optionB: "Excellent — elegant visualisations, tight WKO-style metrics" },
-      { feature: "Plan intelligence", optionA: "Coach-built; static unless coach updates", optionB: "Plan can auto-adapt based on executed sessions" },
-      { feature: "Device sync", optionA: "Universal — Garmin, Wahoo, Zwift, TrainerRoad, etc.", optionB: "Universal" },
-      { feature: "Athlete cost", optionA: "Free tier + Premium at $19.95/mo", optionB: "$15-20/mo, usually bundled with coaching" },
-      { feature: "Coach price", optionA: "$20-39/mo per coach", optionB: "Often included via coach license" },
-      { feature: "Mobile app", optionA: "Mature, reliable", optionB: "Functional but less polished" },
+      { feature: "Industry adoption (coaches)", optionA: "The default — used by the vast majority of pro and serious amateur coaches worldwide", optionB: "Newer entrant, smaller coach base, growing in pockets of UK/AU" },
+      { feature: "Years on the market", optionA: "20+ years of athlete data continuity", optionB: "Younger platform, shorter track record" },
+      { feature: "Plan marketplace", optionA: "Thousands of prebuilt structured plans from world-class coaches", optionB: "Smaller library, plans usually delivered direct by coach" },
+      { feature: "Analysis depth", optionA: "Class-leading — PMC, performance modelling, fitness/fatigue, ATL/CTL/TSB", optionB: "Solid analytics, less granular than TrainingPeaks" },
+      { feature: "WKO5 integration", optionA: "Yes — full WKO5 sync, the choice of high-performance coaches", optionB: "No native WKO5 pipeline" },
+      { feature: "Device + platform sync", optionA: "Universal — Garmin, Wahoo, Zwift, TrainerRoad, Strava, MyFitnessPal, Final Surge, every major head unit", optionB: "Major brands supported, smaller ecosystem of third-party integrations" },
+      { feature: "Mobile app", optionA: "Mature, polished, works offline, premium calendar features", optionB: "Functional, improving, smaller team behind it" },
+      { feature: "Athlete pricing", optionA: "Free tier with workouts and basic charts; Premium $19.95/mo for full PMC and structured workout import", optionB: "Typically bundled with coaching, standalone pricing available" },
+      { feature: "Coach pricing", optionA: "Tiered Coach plans scale from solo coaches to large teams", optionB: "Per-coach license, often included with platform" },
+      { feature: "Plan auto-adjustment", optionA: "Coach-driven; AI-assisted suggestions in newer features", optionB: "Auto-adjusts upcoming sessions based on completed work" },
+      { feature: "Best for working with a coach", optionA: "Yes — almost every coach you'd want to hire is already on it", optionB: "Only if your specific coach has chosen Vekta" },
     ],
     bestForA: [
-      "Athletes working with a coach in 2026 — most coaches use TrainingPeaks",
-      "Self-coached athletes who want access to the premium plan marketplace",
-      "Cyclists prioritising broad device/platform interoperability",
-      "Teams and clubs coordinating multiple athletes",
+      "Anyone working with a coach in 2026 — your coach almost certainly uses TrainingPeaks",
+      "Self-coached athletes who want the biggest plan marketplace in cycling",
+      "Cyclists who use multiple devices and want everything talking to one platform",
+      "Riders who want WKO5 in their corner — the same software pro performance teams rely on",
+      "Athletes building a long-term training history (PMC, durability, year-on-year comparisons)",
+      "Teams, clubs and squads where one shared platform makes life easier for everyone",
     ],
     bestForB: [
-      "Athletes whose specific coach is already on Today's Plan",
-      "Riders who want more automated plan adjustment between coach reviews",
-      "Coaches building team programmes with automated progression rules",
-      "Athletes who prefer the visual and UX design",
+      "Athletes whose specific coach has built their workflow on Vekta",
+      "Riders inside the Roadman Not Done Yet community using the included Vekta plans",
+      "Cyclists who like Vekta's auto-adjusting plan structure and don't need WKO-level analysis",
+      "Coaches running smaller, plan-led programmes who prefer Vekta's interface",
+    ],
+    relatedArticle: "/compare/trainerroad-vs-trainingpeaks",
+    relatedTool: "/tools/ftp-zones",
+    intro: [
+      "If you landed here looking for Today's Plan — here's the bad news: it's shut down. Today's Plan has been retired and is no longer available as a product. So if you were weighing TrainingPeaks against Today's Plan, the comparison that actually matters now is TrainingPeaks vs Vekta — the two cycling-coaching platforms most riders end up choosing between in 2026.",
+      "Here's the good news: this one's a lot more clear-cut than it used to be. Let me break it down.",
+    ],
+    body: [
+      "**TrainingPeaks is the gold standard. Genuinely.** Most of the coaches we talk to on the podcast — the ones working with World Tour riders, the ones running successful amateur coaching businesses, the ones with the published research behind them — all use TrainingPeaks. That's not marketing copy, that's just where the industry is. Two decades of platform development, the deepest analytics in the sport, and the WKO5 pipeline that high-performance teams quietly rely on.",
+      "The Performance Management Chart (PMC), CTL/ATL/TSB, the fitness/fatigue model — these aren't niche features. They're the language coaches use when they sit down to plan your season. Open TrainingPeaks and a coach can read your last six months in about thirty seconds. That matters when you're paying for their time.",
+      "The plan marketplace is the other unfair advantage. Thousands of structured plans built by coaches you'd happily hire — Joe Friel's plans, Tim Cusick's WKO-built blocks, Carmichael Training Systems, the pro coaches who've published books you've already read. If you're self-coaching and you want a plan written by someone who actually knows what they're doing, TrainingPeaks is where they put it.",
+      "**Vekta is a clever, newer platform.** And we'll be straight with you: Roadman Cycling's paid Not Done Yet community uses Vekta to deliver training plans to members. We rate it. The plan auto-adjustment is genuinely useful — sessions ahead in the calendar shift based on what you actually completed, which is a nice touch. The interface is clean. The team behind it ships updates regularly.",
+      "But Vekta is a smaller platform with a smaller coach base. The third-party integration list is shorter. There's no WKO5 pipeline. The plan marketplace is much smaller. The years-of-data continuity isn't there yet. None of that makes Vekta a bad platform — it makes it a newer one. For a community-delivered plan inside a fixed coaching system, Vekta does the job. For an athlete building a multi-year training history with the platform every serious coach in the sport already uses? TrainingPeaks, every time.",
+      "**The honest answer for most cyclists:** if you're hiring a coach in 2026, ask them what platform they use, and you'll almost always get TrainingPeaks back. Sign up there. If your coach happens to use Vekta, sign up there. If you're self-coached and want the deepest tools and the biggest plan library, TrainingPeaks is the one to commit to.",
+    ],
+    disclosure:
+      "Disclosure: TrainingPeaks is a Roadman Cycling partner — we work with them because they're the platform we genuinely recommend, not the other way around. Roadman's paid Not Done Yet community uses Vekta to deliver training plans to members, so you should know we have a working relationship with both companies. The verdict above still favours TrainingPeaks because that's the honest read of the platforms — the partnership followed the position, not the other way around.",
+    faqs: [
+      {
+        q: "Is Today's Plan still available?",
+        a: "No. Today's Plan has shut down and is no longer available as a cycling training platform. If you were comparing it against TrainingPeaks, the practical comparison now is TrainingPeaks vs Vekta — those are the two platforms most coached cyclists choose between in 2026.",
+      },
+      {
+        q: "Which platform do most cycling coaches actually use?",
+        a: "TrainingPeaks. It's the industry default — the platform the vast majority of professional and serious amateur coaches have built their workflow on. If you hire a coach in 2026 without specifying a platform, there's a very high chance they'll deliver your plan through TrainingPeaks.",
+      },
+      {
+        q: "Do I need TrainingPeaks Premium, or is the free tier enough?",
+        a: "If you're working with a coach, the free tier is often enough — your coach pushes structured workouts to your calendar and you complete them. If you want to see your own Performance Management Chart, fitness/fatigue trends, and the full analysis suite, Premium ($19.95/mo) unlocks the tools that make the platform genuinely powerful for self-directed athletes.",
+      },
+      {
+        q: "What is WKO5 and why does it matter?",
+        a: "WKO5 is TrainingPeaks' high-performance analysis software — the desktop tool serious coaches use for power-duration modelling, durability analysis, and individualised zones beyond standard FTP. It's the same software many WorldTour and high-performance teams use under the hood. The fact that TrainingPeaks owns it and integrates with it directly is a meaningful advantage if you ever work with a coach who runs WKO.",
+      },
+      {
+        q: "Is Vekta a bad platform?",
+        a: "Not at all — Vekta is a well-built, well-maintained platform with some genuinely useful features, particularly the auto-adjusting plan structure. It's just newer and smaller than TrainingPeaks, with a smaller coach base and fewer third-party integrations. It's the right tool inside a community that's chosen it (like Roadman's Not Done Yet plans). For an athlete building their own long-term setup independent of a specific community, TrainingPeaks is the broader, deeper choice.",
+      },
+      {
+        q: "Can I use both?",
+        a: "Yes — and many serious athletes do. You might run TrainingPeaks as your home platform for analysis and history while following a Vekta-delivered plan from a coach or community. They both connect to Garmin, Wahoo and Zwift, so your rides land in both places. The only friction is structured-workout delivery, which has to come from one platform or the other.",
+      },
+      {
+        q: "Roadman uses Vekta — why is the verdict still TrainingPeaks?",
+        a: "Because the verdict is about the platforms, not the partnership. Roadman uses Vekta to deliver plans inside the Not Done Yet community because it suits that specific delivery model. That doesn't change the broader truth: TrainingPeaks is the industry-standard platform with the deepest analysis tools, the biggest coach base, and the longest data history. We'd recommend TrainingPeaks even if we weren't a partner — the partnership is downstream of the recommendation.",
+      },
     ],
   },
   {

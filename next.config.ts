@@ -215,6 +215,14 @@ const nextConfig: NextConfig = {
         permanent: true,
       },
 
+      // Today's Plan has shut down as a product — the old comparison
+      // page is now framed as TrainingPeaks vs Vekta at a new slug.
+      {
+        source: "/compare/trainingpeaks-vs-todays-plan",
+        destination: "/compare/trainingpeaks-vs-vekta",
+        permanent: true,
+      },
+
       // ClickFunnels orphan landing pages — P2 redirects
       { source: "/tyre-pressure-2-page--64de3", destination: "/tools/tyre-pressure", permanent: true },
       { source: "/toolkit2-page", destination: "/tools", permanent: true },
