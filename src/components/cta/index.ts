@@ -36,3 +36,6 @@ export type {
   IntentCTACategory,
   IntentCTAVariant,
 } from "./registry";
+
+export { inferIntentCategory } from "./inference";
+export type { InferIntentCategoryInput } from "./inference";
