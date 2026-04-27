@@ -16,7 +16,7 @@ const brandPartners = [
 ];
 
 export const metadata: Metadata = {
-  title: "Partner With Us — Roadman Cycling Media Kit",
+  title: "Partner With Us — Media Kit",
   description:
     "Reach 1M+ serious cyclists through podcast sponsorship, newsletter ads, community integration, and custom content. Download the Roadman Cycling media kit.",
   alternates: {
@@ -849,7 +849,7 @@ export default function PartnersPage() {
                 <Button href="/sponsor" size="lg">
                   See Rates &amp; Availability
                 </Button>
-                <Button href="/sponsor#quiz" variant="ghost" size="lg">
+                <Button href="/sponsor#booking-flow-section" variant="ghost" size="lg">
                   Take the Sponsorship Quiz
                 </Button>
               </div>

@@ -18,6 +18,7 @@ const nextConfig: NextConfig = {
       },
     ],
     formats: ["image/avif", "image/webp"],
+    qualities: [75, 85],
   },
   experimental: {
     optimizePackageImports: ["framer-motion", "shiki", "rehype-pretty-code"],

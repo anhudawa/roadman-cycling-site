@@ -7,8 +7,7 @@ import { ENTITY_IDS } from "@/lib/brand-facts";
 import { FAQSchema } from "@/components/seo/FAQSchema";
 
 export const metadata: Metadata = {
-  title:
-    "Triathlon Bike Coach | Bike Coaching for Triathletes — Roadman Cycling",
+  title: "Triathlon Bike Coach — Bike Coaching for Triathletes",
   description:
     "Specialist bike coaching for triathletes. Build bike-leg power, nail your pacing, protect your run. Coaching designed for age-groupers targeting 70.3 and Ironman. From the podcast host who interviews Dan Lorang and Prof. Stephen Seiler.",
   keywords: [
@@ -26,7 +25,7 @@ export const metadata: Metadata = {
   },
   openGraph: {
     title:
-      "Triathlon Bike Coach | Bike Coaching for Triathletes — Roadman Cycling",
+      "Triathlon Bike Coach — Bike Coaching for Triathletes",
     description:
       "Specialist bike coaching for triathletes. Build bike-leg power, nail your pacing, protect your run. For age-groupers targeting 70.3 and Ironman.",
     type: "website",

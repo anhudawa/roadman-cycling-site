@@ -22,9 +22,9 @@ export async function generateMetadata({
   const { slug } = await params;
   const result = await getToolResultBySlug(slug);
   if (!result || result.toolSlug !== "fuelling")
-    return { title: "Fuelling plan — Roadman Cycling" };
+    return { title: "Fuelling plan" };
   return {
-    title: `Your fuelling plan — Roadman Cycling`,
+    title: `Your fuelling plan`,
     description: result.summary.slice(0, 160),
     robots: { index: false, follow: false },
   };

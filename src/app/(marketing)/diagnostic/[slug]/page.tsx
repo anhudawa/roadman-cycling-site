@@ -33,7 +33,7 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const { slug } = await params;
   const submission = await getSubmissionBySlug(slug);
-  if (!submission) return { title: "Your diagnosis — Roadman Cycling" };
+  if (!submission) return { title: "Your diagnosis" };
 
   const label = labelFor(
     submission.primaryProfile,
@@ -41,7 +41,7 @@ export async function generateMetadata({
   );
 
   return {
-    title: `Your diagnosis: ${label} — Roadman Cycling`,
+    title: `Your diagnosis: ${label}`,
     description: submission.breakdown.diagnosis?.slice(0, 160),
     // Results contain personal info in the URL. Don't let search engines
     // index individual diagnosis pages.

@@ -17,7 +17,8 @@ import type { ToolSlug } from "@/lib/tool-results/types";
  */
 
 export const metadata: Metadata = {
-  title: "Your saved results — Roadman Cycling",
+  title: "Your saved results",
+  alternates: { canonical: "https://roadmancycling.com/results" },
   description:
     "Every plateau diagnostic, fuelling plan and FTP zone table you've saved, in one place.",
   robots: { index: false, follow: false },

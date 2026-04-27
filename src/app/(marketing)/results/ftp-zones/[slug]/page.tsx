@@ -15,9 +15,9 @@ export async function generateMetadata({
   const { slug } = await params;
   const result = await getToolResultBySlug(slug);
   if (!result || result.toolSlug !== "ftp_zones")
-    return { title: "FTP zones — Roadman Cycling" };
+    return { title: "FTP zones" };
   return {
-    title: `Your FTP zones — Roadman Cycling`,
+    title: `Your FTP zones`,
     description: result.summary.slice(0, 160),
     robots: { index: false, follow: false },
   };
