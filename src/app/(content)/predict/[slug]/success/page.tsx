@@ -68,8 +68,8 @@ export default async function SuccessPage({ params }: PageProps) {
                 is the work that gets you ready for it. The Roadman{" "}
                 <strong className="text-off-white">Not Done Yet</strong>{" "}
                 community is where amateur racers train alongside Anthony,
-                with weekly live calls, Vekta-driven plans, and the same
-                expert access this report draws on.
+                with TrainingPeaks delivery, weekly live calls, coach feedback,
+                and the same expert access this report draws on.
               </p>
               <Link
                 href="/community"

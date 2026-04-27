@@ -6,7 +6,8 @@
 // DB, the store goes straight to Postgres and these fixtures are never read.
 
 import { buildCourse } from "./gpx";
-import type { TrackPoint, Course } from "./types";
+import { TRAKA_2026_ROUTES } from "./traka-2026";
+import type { TrackPoint, Course, SurfaceType } from "./types";
 
 export interface FixtureCourse {
   id: number;
@@ -44,6 +45,14 @@ interface EventSpec {
   surfaceSummary: string;
   source: string;
   eventDates?: string[];
+}
+
+function buildMixedSurfacePlan(route: { terrain?: { unpavedPct: number } }, points: TrackPoint[]): SurfaceType[] {
+  const segments = Math.max(0, points.length - 1);
+  const unpavedSegments = Math.round(segments * ((route.terrain?.unpavedPct ?? 0) / 100));
+  return Array.from({ length: segments }, (_, index) =>
+    index < unpavedSegments ? "gravel_smooth" : "tarmac_mixed",
+  );
 }
 
 const EVENTS: EventSpec[] = [
@@ -190,6 +199,42 @@ const EVENTS: EventSpec[] = [
     ],
   },
   {
+    slug: "wicklow-200",
+    name: "Wicklow 200",
+    country: "Ireland",
+    region: "Wicklow",
+    startLat: 53.14,
+    startLon: -6.06,
+    startElevation: 50,
+    surfaceSummary: "tarmac_mixed",
+    source: "wicklow_200",
+    eventDates: ["2026-06-21"],
+    segments: [
+      { km: 6, gradePct: 0.5 },
+      { km: 5, gradePct: 5.5 },
+      { km: 5, gradePct: -2.5 },
+      { km: 8, gradePct: 1.5 },
+      { km: 12, gradePct: 5.5 },
+      { km: 12, gradePct: -4.5 },
+      { km: 10, gradePct: 1.0 },
+      { km: 8, gradePct: 6.0 },
+      { km: 9, gradePct: -4.5 },
+      { km: 12, gradePct: 1.5 },
+      { km: 6, gradePct: 6.5 },
+      { km: 6, gradePct: -3.5 },
+      { km: 15, gradePct: 1.0 },
+      { km: 5, gradePct: 6.0 },
+      { km: 5, gradePct: -3.5 },
+      { km: 10, gradePct: 1.5 },
+      { km: 6, gradePct: 5.5 },
+      { km: 7, gradePct: -3.0 },
+      { km: 18, gradePct: 0.5 },
+      { km: 5, gradePct: 4.0 },
+      { km: 7, gradePct: -2.5 },
+      { km: 23, gradePct: -0.5 },
+    ],
+  },
+  {
     slug: "haute-route-pyrenees-stage-1",
     name: "Haute Route Pyrenees · Stage 1",
     country: "France",
@@ -237,7 +282,7 @@ let cached: FixtureCourse[] | null = null;
 
 export function getFixtureCourses(): FixtureCourse[] {
   if (cached) return cached;
-  cached = EVENTS.map((spec, i): FixtureCourse => {
+  const profileCourses = EVENTS.map((spec, i): FixtureCourse => {
     const points = generatePoints(spec);
     const course = buildCourse(points, { name: spec.name });
     return {
@@ -259,6 +304,31 @@ export function getFixtureCourses(): FixtureCourse[] {
       uploaderEmail: null,
     };
   });
+  const trakaCourses = TRAKA_2026_ROUTES.map((route, i): FixtureCourse => {
+    const course = buildCourse(route.trackPoints, {
+      name: route.name,
+      surfaces: buildMixedSurfacePlan(route, route.trackPoints),
+    });
+    return {
+      id: -100 - i,
+      slug: route.slug,
+      name: route.name,
+      country: route.country,
+      region: route.region,
+      discipline: route.discipline,
+      distanceM: Math.round(course.totalDistance),
+      elevationGainM: Math.round(course.totalElevationGain),
+      elevationLossM: Math.round(course.totalElevationLoss),
+      surfaceSummary: route.surfaceSummary,
+      gpxData: route.trackPoints,
+      courseData: course,
+      eventDates: route.eventDates,
+      verified: true,
+      source: route.source,
+      uploaderEmail: null,
+    };
+  });
+  cached = [...trakaCourses, ...profileCourses];
   return cached;
 }
 

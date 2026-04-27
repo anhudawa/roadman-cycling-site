@@ -396,7 +396,7 @@ function buildScenarioRows(
       { name: "-1 kg system mass", riderPatch: { bodyMass: Math.max(40, rider.bodyMass - 1) } },
       { name: "Cleaner aero position", riderPatch: { cda: Math.max(0.18, rider.cda - 0.015) } },
       { name: "Faster tyres / better surface setup", riderPatch: { crr: Math.max(0.0022, rider.crr - 0.0005) } },
-      { name: "+3 m/s headwind", environmentPatch: { windSpeed: environment.windSpeed + 3 } },
+      { name: "+3 m/s headwind", environmentPatch: { windSpeed: environment.windSpeed + 3, windDirection: Math.PI / 2 } },
     ],
   });
   return scenarios

@@ -1,0 +1,54 @@
+{
+  "slug": "ep-new-study-finally-confirms-what-winning-masters-cyclists-have-known",
+  "guest_name": null,
+  "guest_credentials": null,
+  "key_claims": [
+    "A 2025 meta-analysis in the European Journal of Applied Physiology reviewed 17 studies covering 262 cyclists and found heavy strength training significantly improves cycling efficiency, anaerobic power, and time trial performance with no negative effect on VO2 max",
+    "After age 40, cyclists lose roughly 8% of muscle mass per decade, and after age 70 this rate nearly doubles to 15% per decade",
+    "Type 2 muscle fibers can be 10 to 40% smaller in older adults compared to younger ones, and heavy strength training is one of the only ways to preserve and rebuild them",
+    "Two strength training sessions per week (3-4 exercises, 3-4 sets, 4-6 reps at 4-10 rep max load) is the optimal protocol for trained cyclists",
+    "If you stop strength training for 6-8 weeks, key adaptations like power output and rate of force development return to baseline, but one session per week can maintain gains"
+  ],
+  "named_experts": [],
+  "specific_numbers": [
+    "8% muscle mass loss per decade after age 40",
+    "15% muscle mass loss per decade after age 70",
+    "10 to 40% smaller type 2 fibers in older adults",
+    "10-12% VO2 max decline per decade for sedentary people from age 40",
+    "5-6% VO2 max decline per decade with proper training",
+    "17 studies reviewed in meta-analysis",
+    "262 trained cyclists in study group",
+    "60 women in study group",
+    "5-25 weeks intervention duration",
+    "1-3 strength training sessions per week",
+    "4-6 reps at high load",
+    "4-10 rep max range",
+    "6-8 weeks to lose adaptations",
+    "80-120 grams of carbs per hour for fueling",
+    "30-40 minutes per gym session",
+    "100 athletes in initial Not Done Yet coaching program cohort",
+    "20 athletes in reopened coaching program"
+  ],
+  "ndy_members": [],
+  "episode_type": "solo",
+  "topics": [
+    "heavy-strength-training",
+    "cyclists-over-40",
+    "muscle-loss-aging",
+    "type-2-fibers",
+    "anaerobic-power",
+    "cycling-efficiency",
+    "gym-protocol",
+    "vo2-max-preservation",
+    "rate-of-force-development",
+    "fatigue-resistance"
+  ],
+  "primary_cluster": "strength",
+  "secondary_clusters": [
+    "recovery"
+  ],
+  "primary_persona": "james",
+  "cluster_reasoning": "Episode focuses on heavy strength training protocols, muscle preservation, and type 2 fiber development — core S&C content — with explicit emphasis on cyclists over 40, making recovery/longevity a natural secondary.",
+  "sacred_cow_score": 7,
+  "indexed_at": "2026-04-26T08:12:22.476Z"
+}

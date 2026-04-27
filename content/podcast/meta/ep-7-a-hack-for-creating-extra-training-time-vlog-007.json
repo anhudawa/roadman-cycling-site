@@ -1,0 +1,35 @@
+{
+  "slug": "ep-7-a-hack-for-creating-extra-training-time-vlog-007",
+  "guest_name": null,
+  "guest_credentials": null,
+  "key_claims": [
+    "Endurance ride structured as 3-hour zone 2 training with 45 minutes in zone 3 (tempo) at 7/10 effort",
+    "Road trip incorporated into training schedule by riding for 3 hours while girlfriend Sarah follows by car to pick up",
+    "Zone 2 training forms the predominant portion of endurance session",
+    "Traffic and bunch riding conditions provide similar cycling experience"
+  ],
+  "named_experts": [],
+  "specific_numbers": [
+    "3 hour training session",
+    "45 minutes in zone 3",
+    "7 out of 10 effort (zone 3)",
+    "20 minutes to figure out logistics"
+  ],
+  "ndy_members": [],
+  "episode_type": "vlog",
+  "topics": [
+    "zone-2-training",
+    "endurance-ride",
+    "time-management",
+    "road-trip-training",
+    "tempo-intervals"
+  ],
+  "primary_cluster": "coaching",
+  "secondary_clusters": [
+    "community"
+  ],
+  "primary_persona": "mark",
+  "cluster_reasoning": "Episode focuses on structured zone 2 and zone 3 training methodology (coaching pillar), with practical application to endurance rides; secondary community assignment reflects the lifestyle/travel integration angle that resonates with cycling culture.",
+  "sacred_cow_score": 5,
+  "indexed_at": "2026-04-26T08:50:09.001Z"
+}

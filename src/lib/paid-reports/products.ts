@@ -48,11 +48,34 @@ const CACHE_TTL_MS = 5 * 60 * 1000;
 let cachedAt = 0;
 let cached: ReportProduct[] | null = null;
 
+function fallbackProducts(): ReportProduct[] {
+  const raceReportActive = process.env.RACE_REPORT_ACTIVE !== "false";
+  if (!raceReportActive) return [];
+
+  const priceCents = Number(process.env.RACE_REPORT_PRICE_CENTS ?? 2900);
+  return [
+    {
+      id: -1,
+      slug: "report_race",
+      name: "Race Report",
+      description:
+        "Full pacing plan, climb-by-climb breakdown, fuelling targets, and equipment what-ifs.",
+      toolSlug: null,
+      bundleItems: null,
+      priceCents: Number.isFinite(priceCents) ? priceCents : 2900,
+      currency: process.env.RACE_REPORT_CURRENCY ?? "usd",
+      stripePriceId: process.env.STRIPE_RACE_REPORT_PRICE_ID ?? null,
+      active: true,
+      pageCountTarget: 16,
+    },
+  ];
+}
+
 async function loadAllProducts(): Promise<ReportProduct[]> {
   if (cached && Date.now() - cachedAt < CACHE_TTL_MS) return cached;
   // If the report_products table is missing (e.g. migrations 0030/0035/0036
-  // not yet applied in the current environment), fall back to an empty
-  // list so callers can hide the upsell rather than crash the page.
+  // not yet applied in the current environment), fall back to env-backed
+  // product config so Race Report checkout can still be tested locally.
   let rows: Row[];
   try {
     rows = await db
@@ -60,14 +83,17 @@ async function loadAllProducts(): Promise<ReportProduct[]> {
       .from(reportProducts)
       .where(eq(reportProducts.active, true));
   } catch (err) {
-    console.error("[paid-reports/products] loadAllProducts failed (returning empty):", err);
-    cached = [];
+    console.error("[paid-reports/products] loadAllProducts failed (using fallback):", err);
+    cached = fallbackProducts();
     cachedAt = Date.now();
     return cached;
   }
   cached = rows
     .map(rowToDomain)
     .filter((x): x is ReportProduct => x !== null);
+  if (!cached.some((p) => p.slug === "report_race")) {
+    cached = [...fallbackProducts(), ...cached];
+  }
   cachedAt = Date.now();
   return cached;
 }

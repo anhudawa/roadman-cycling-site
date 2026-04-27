@@ -5,7 +5,7 @@ import crypto from "node:crypto";
 import { and, desc, eq, isNotNull } from "drizzle-orm";
 import { db } from "@/lib/db";
 import { courses, predictions, predictionResults } from "@/lib/db/schema";
-import type { Course, CourseResult, RiderProfile, Environment, TrackPoint } from "./types";
+import type { Course, RiderProfile, Environment, TrackPoint } from "./types";
 import { generateSlug } from "./slug";
 import {
   getFixtureCourseBySlug,
@@ -53,33 +53,67 @@ function rowToCourse(row: typeof courses.$inferSelect): CourseRow {
   };
 }
 
+function canUseFixtureFallback(err: unknown): boolean {
+  const rawCause =
+    err instanceof Error && "cause" in err
+      ? (err as Error & { cause?: unknown }).cause
+      : null;
+  const cause =
+    rawCause instanceof Error ? rawCause.message : rawCause ? String(rawCause) : "";
+  const message = `${err instanceof Error ? err.message : String(err)} ${cause}`;
+  return (
+    message.includes("does not exist") ||
+    message.includes("relation") ||
+    message.includes("schema") ||
+    message.includes("connect") ||
+    message.includes("ECONN")
+  );
+}
+
 /** List all verified curated courses, newest first. */
 export async function listVerifiedCourses(): Promise<CourseRow[]> {
   if (shouldUseFixtures()) return getFixtureCourses() as CourseRow[];
-  const rows = await db
-    .select()
-    .from(courses)
-    .where(eq(courses.verified, true))
-    .orderBy(desc(courses.createdAt));
-  return rows.map(rowToCourse);
+  try {
+    const rows = await db
+      .select()
+      .from(courses)
+      .where(eq(courses.verified, true))
+      .orderBy(desc(courses.createdAt));
+    return rows.map(rowToCourse);
+  } catch (err) {
+    if (canUseFixtureFallback(err)) return getFixtureCourses() as CourseRow[];
+    throw err;
+  }
 }
 
 export async function getCourseBySlug(slug: string): Promise<CourseRow | null> {
   if (shouldUseFixtures()) return getFixtureCourseBySlug(slug) as CourseRow | null;
-  const [row] = await db
-    .select()
-    .from(courses)
-    .where(eq(courses.slug, slug))
-    .limit(1);
-  return row ? rowToCourse(row) : null;
+  try {
+    const [row] = await db
+      .select()
+      .from(courses)
+      .where(eq(courses.slug, slug))
+      .limit(1);
+    return row ? rowToCourse(row) : null;
+  } catch (err) {
+    if (canUseFixtureFallback(err)) return getFixtureCourseBySlug(slug) as CourseRow | null;
+    throw err;
+  }
 }
 
 export async function getCourseById(id: number): Promise<CourseRow | null> {
   if (shouldUseFixtures()) {
     return (getFixtureCourses().find((c) => c.id === id) ?? null) as CourseRow | null;
   }
-  const [row] = await db.select().from(courses).where(eq(courses.id, id)).limit(1);
-  return row ? rowToCourse(row) : null;
+  try {
+    const [row] = await db.select().from(courses).where(eq(courses.id, id)).limit(1);
+    return row ? rowToCourse(row) : null;
+  } catch (err) {
+    if (canUseFixtureFallback(err)) {
+      return (getFixtureCourses().find((c) => c.id === id) ?? null) as CourseRow | null;
+    }
+    throw err;
+  }
 }
 
 interface UpsertCourseInput {
@@ -286,87 +320,114 @@ function writeFixtureFile(data: FixtureFile): void {
   }
 }
 
+function createFixturePrediction(
+  slug: string,
+  input: CreatePredictionInput,
+): PredictionRow {
+  const file = readFixtureFile();
+  file.nextId += 1;
+  const row: PredictionRow = {
+    id: file.nextId,
+    slug,
+    riderProfileId: input.riderProfileId ?? null,
+    courseId: input.courseId ?? null,
+    courseGpxHash: input.courseGpxHash ?? null,
+    courseData: input.courseData ?? null,
+    mode: input.mode,
+    predictedTimeS: input.predictedTimeS,
+    confidenceLowS: input.confidenceLowS,
+    confidenceHighS: input.confidenceHighS,
+    averagePower: input.averagePower ?? null,
+    normalizedPower: input.normalizedPower ?? null,
+    variabilityIndex: input.variabilityIndex ?? null,
+    riderInputs: input.riderInputs,
+    environmentInputs: input.environmentInputs,
+    pacingPlan: input.pacingPlan ?? null,
+    resultSummary: input.resultSummary ?? null,
+    weatherData: input.weatherData ?? null,
+    aiTranslation: input.aiTranslation ?? null,
+    email: input.email ?? null,
+    isPaid: false,
+    paidReportId: null,
+    engineVersion: "v1.0",
+    createdAt: new Date(),
+  };
+  file.predictions[slug] = row;
+  writeFixtureFile(file);
+  return row;
+}
+
 export async function createPrediction(
   input: CreatePredictionInput,
 ): Promise<PredictionRow> {
   const slug = generateSlug();
   if (shouldUseFixtures()) {
-    const file = readFixtureFile();
-    file.nextId += 1;
-    const row: PredictionRow = {
-      id: file.nextId,
-      slug,
-      riderProfileId: input.riderProfileId ?? null,
-      courseId: input.courseId ?? null,
-      courseGpxHash: input.courseGpxHash ?? null,
-      courseData: input.courseData ?? null,
-      mode: input.mode,
-      predictedTimeS: input.predictedTimeS,
-      confidenceLowS: input.confidenceLowS,
-      confidenceHighS: input.confidenceHighS,
-      averagePower: input.averagePower ?? null,
-      normalizedPower: input.normalizedPower ?? null,
-      variabilityIndex: input.variabilityIndex ?? null,
-      riderInputs: input.riderInputs,
-      environmentInputs: input.environmentInputs,
-      pacingPlan: input.pacingPlan ?? null,
-      resultSummary: input.resultSummary ?? null,
-      weatherData: input.weatherData ?? null,
-      aiTranslation: input.aiTranslation ?? null,
-      email: input.email ?? null,
-      isPaid: false,
-      paidReportId: null,
-      engineVersion: "v1.0",
-      createdAt: new Date(),
-    };
-    file.predictions[slug] = row;
-    writeFixtureFile(file);
-    return row;
+    return createFixturePrediction(slug, input);
   }
-  const [row] = await db
-    .insert(predictions)
-    .values({
-      slug,
-      riderProfileId: input.riderProfileId ?? null,
-      courseId: input.courseId ?? null,
-      courseGpxHash: input.courseGpxHash ?? null,
-      courseData: input.courseData ?? null,
-      mode: input.mode,
-      predictedTimeS: input.predictedTimeS,
-      confidenceLowS: input.confidenceLowS,
-      confidenceHighS: input.confidenceHighS,
-      averagePower: input.averagePower ?? null,
-      normalizedPower: input.normalizedPower ?? null,
-      variabilityIndex: input.variabilityIndex ?? null,
-      riderInputs: input.riderInputs as unknown as Record<string, unknown>,
-      environmentInputs: input.environmentInputs as unknown as Record<string, unknown>,
-      pacingPlan: input.pacingPlan ?? null,
-      resultSummary: input.resultSummary ?? null,
-      weatherData: input.weatherData ?? null,
-      aiTranslation: input.aiTranslation ?? null,
-      email: input.email ?? null,
-    })
-    .returning();
-  return rowToPrediction(row);
+  try {
+    const [row] = await db
+      .insert(predictions)
+      .values({
+        slug,
+        riderProfileId: input.riderProfileId ?? null,
+        courseId: input.courseId ?? null,
+        courseGpxHash: input.courseGpxHash ?? null,
+        courseData: input.courseData ?? null,
+        mode: input.mode,
+        predictedTimeS: input.predictedTimeS,
+        confidenceLowS: input.confidenceLowS,
+        confidenceHighS: input.confidenceHighS,
+        averagePower: input.averagePower ?? null,
+        normalizedPower: input.normalizedPower ?? null,
+        variabilityIndex: input.variabilityIndex ?? null,
+        riderInputs: input.riderInputs as unknown as Record<string, unknown>,
+        environmentInputs: input.environmentInputs as unknown as Record<string, unknown>,
+        pacingPlan: input.pacingPlan ?? null,
+        resultSummary: input.resultSummary ?? null,
+        weatherData: input.weatherData ?? null,
+        aiTranslation: input.aiTranslation ?? null,
+        email: input.email ?? null,
+      })
+      .returning();
+    return rowToPrediction(row);
+  } catch (err) {
+    if (canUseFixtureFallback(err)) return createFixturePrediction(slug, input);
+    throw err;
+  }
 }
 
 export async function getPredictionBySlug(
   slug: string,
 ): Promise<PredictionRow | null> {
   if (shouldUseFixtures()) return readFixtureFile().predictions[slug] ?? null;
-  const [row] = await db
-    .select()
-    .from(predictions)
-    .where(eq(predictions.slug, slug))
-    .limit(1);
-  return row ? rowToPrediction(row) : null;
+  try {
+    const [row] = await db
+      .select()
+      .from(predictions)
+      .where(eq(predictions.slug, slug))
+      .limit(1);
+    return row ? rowToPrediction(row) : null;
+  } catch (err) {
+    if (canUseFixtureFallback(err)) return readFixtureFile().predictions[slug] ?? null;
+    throw err;
+  }
 }
 
 export async function getPredictionById(
   id: number,
 ): Promise<PredictionRow | null> {
-  const [row] = await db.select().from(predictions).where(eq(predictions.id, id)).limit(1);
-  return row ? rowToPrediction(row) : null;
+  if (shouldUseFixtures()) {
+    return Object.values(readFixtureFile().predictions).find((p) => p.id === id) ?? null;
+  }
+  try {
+    const [row] = await db.select().from(predictions).where(eq(predictions.id, id)).limit(1);
+    return row ? rowToPrediction(row) : null;
+  } catch (err) {
+    if (canUseFixtureFallback(err)) {
+      return Object.values(readFixtureFile().predictions).find((p) => p.id === id) ?? null;
+    }
+    throw err;
+  }
 }
 
 /**
@@ -388,12 +449,23 @@ export async function setPredictionEmail(
     writeFixtureFile(file);
     return true;
   }
-  const result = await db
-    .update(predictions)
-    .set({ email })
-    .where(eq(predictions.slug, slug))
-    .returning({ id: predictions.id });
-  return result.length > 0;
+  try {
+    const result = await db
+      .update(predictions)
+      .set({ email })
+      .where(eq(predictions.slug, slug))
+      .returning({ id: predictions.id });
+    return result.length > 0;
+  } catch (err) {
+    if (!canUseFixtureFallback(err)) throw err;
+    const file = readFixtureFile();
+    const row = file.predictions[slug];
+    if (!row) return false;
+    row.email = email;
+    file.predictions[slug] = row;
+    writeFixtureFile(file);
+    return true;
+  }
 }
 
 export async function markPredictionPaid(

@@ -1,0 +1,36 @@
+{
+  "slug": "ep-8-one-interval-to-rule-them-all-vlog-008",
+  "guest_name": null,
+  "guest_credentials": null,
+  "key_claims": [
+    "Race winning effort consists of 10 seconds full gas, 1 minute zone 5, then 4 minutes zone 4",
+    "Race winning efforts were identified by analyzing thousands of race files to find common trends among race winners",
+    "The protocol mimics a breakaway: establish separation with aggressive acceleration, then settle into a sustainable effort",
+    "Performing 4 repetitions of race winning intervals in a single session provides training benefit",
+    "The reticular activation system filters daily messages and helps achieve goals by pointing out helpful information"
+  ],
+  "named_experts": [],
+  "specific_numbers": [
+    "10 seconds full gas",
+    "1 minute zone 5",
+    "4 minutes zone 4",
+    "4 repetitions per session",
+    "40-50 km/h (riding pace mentioned)",
+    "Thousands of race files analyzed"
+  ],
+  "ndy_members": [],
+  "episode_type": "vlog",
+  "topics": [
+    "race-winning-intervals",
+    "interval-training",
+    "breakaway-tactics",
+    "zone-5-training",
+    "race-preparation"
+  ],
+  "primary_cluster": "coaching",
+  "secondary_clusters": [],
+  "primary_persona": "tom",
+  "cluster_reasoning": "Episode focuses on interval training methodology, structured protocol design based on race file analysis, and training metrics—core coaching content about what works and why.",
+  "sacred_cow_score": 5,
+  "indexed_at": "2026-04-26T08:32:31.032Z"
+}

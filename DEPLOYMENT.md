@@ -57,6 +57,9 @@ runtime errors or silent feature failures if missing. Optional vars degrade grac
 |---|---|---|
 | `STRIPE_SECRET_KEY` | **REQUIRED** | `sk_live_…` — live key for production |
 | `STRIPE_STRENGTH_PRICE_ID` | **REQUIRED** | Stripe price ID for S&C course |
+| `STRIPE_RACE_REPORT_PRICE_ID` | recommended | Stripe Price ID for the Race Report. If missing, checkout uses inline price data from `report_products` / `RACE_REPORT_PRICE_CENTS`. |
+| `RACE_REPORT_PRICE_CENTS` | optional | Fallback Race Report price in cents. Defaults to `2900`. |
+| `RACE_REPORT_CURRENCY` | optional | Fallback Race Report currency. Defaults to `usd`. |
 | `STRIPE_WEBHOOK_SECRET` | **REQUIRED** | `whsec_…` — webhook signing secret |
 
 ### Resend (transactional email)

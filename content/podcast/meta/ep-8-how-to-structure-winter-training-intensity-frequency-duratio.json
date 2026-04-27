@@ -1,0 +1,59 @@
+{
+  "slug": "ep-8-how-to-structure-winter-training-intensity-frequency-duratio",
+  "guest_name": "Daryl Fitzgerald",
+  "guest_credentials": "Coach and scientist at Science to Sport, specializes in training periodization, testing protocols, and athlete development",
+  "key_claims": [
+    "There are only three training levers: intensity, frequency, and duration — all coaching comes down to these regardless of coach quality",
+    "Zone 1 training provides significant aerobic benefit with almost zero residual fatigue, enabling better recovery and harder sessions the next day",
+    "The 80/20 polarization principle (80% easy, 20% hard) is used across different periodization approaches with minimal outcome differences between traditional, reverse, and random intensity allocation",
+    "Intramuscular triglyceride rides in carb-fasted state (with protein) can improve metabolic flexibility; zone 1 rides can be done with 30-40g carbs or fully fasted depending on athlete tolerance",
+    "Wearable data (HRV, heart rate) is incomplete without context; subjective feeling and Rate of Perceived Exertion (RPE) scale are more accurate indicators than metrics alone"
+  ],
+  "named_experts": [
+    "Stephen Seiler",
+    "John Lorang",
+    "Joe Friel",
+    "Brent Matthews",
+    "Sam Impey",
+    "David Dunne",
+    "Chris Froome",
+    "Remco Evenepoel"
+  ],
+  "specific_numbers": [
+    "8020 split: 80% easy, 20% hard polarization",
+    "30-40 grams of carbs for zone 1-2 rides",
+    "80-120 grams of carbs per hour for endurance sessions",
+    "Zone 1 rides: 2-3 hours duration",
+    "Fat max intervals: 300-340 watts, sometimes 280-330 watts",
+    "6-minute TT efforts",
+    "Resting heart rate increased from 34 to 43 (9 bpm increase with fatigue)",
+    "85-90% training compliance target",
+    "90 minutes of glycogen storage in muscles and liver",
+    "Four-week blocks for amateur athletes (case dependent)"
+  ],
+  "ndy_members": [],
+  "episode_type": "interview",
+  "topics": [
+    "winter-training-periodization",
+    "zone-1-training",
+    "training-intensity-frequency-duration",
+    "fat-max-intervals",
+    "low-cadence-work",
+    "carb-fueling-strategies",
+    "reverse-periodization",
+    "rpe-vs-metrics",
+    "coach-athlete-communication",
+    "metabolic-flexibility",
+    "recovery-protocols",
+    "stress-management-training"
+  ],
+  "primary_cluster": "coaching",
+  "secondary_clusters": [
+    "nutrition",
+    "recovery"
+  ],
+  "primary_persona": "tom",
+  "cluster_reasoning": "Episode is entirely focused on training methodology (intensity, frequency, duration, periodization, zone allocation) with Daryl Fitzgerald discussing the fundamental levers of coaching; nutrition and recovery appear as supporting topics within the training framework rather than primary pillars.",
+  "sacred_cow_score": 6,
+  "indexed_at": "2026-04-26T08:36:41.885Z"
+}

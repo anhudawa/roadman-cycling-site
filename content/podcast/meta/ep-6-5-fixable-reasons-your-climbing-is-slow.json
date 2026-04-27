@@ -1,0 +1,56 @@
+{
+  "slug": "ep-6-5-fixable-reasons-your-climbing-is-slow",
+  "guest_name": null,
+  "guest_credentials": null,
+  "key_claims": [
+    "WBAL (W' balance) is your battery for effort distribution over a climb duration; most riders improve climbing speed by distributing effort better rather than just increasing power-to-weight",
+    "Negative split climbing strategy (riding the second half faster than the first half) produces faster times than instinctive pacing and can be tested by riding the same climb on consecutive days",
+    "Long climbs (15-45+ minutes) reward high fractional utilization driven by mitochondrial density, capillarization, and lactate clearance; neglecting 45-50 minute intervals leads to poor performance on climbs over 15 minutes",
+    "Power = torque × cadence; steeper gradients force higher torque at lower cadence, recruiting more muscle fibers and depleting glycogen faster, especially problematic without cadence range training",
+    "Fueling 60-90g carbohydrates per hour on long climbs, with pre-climb fueling and 400-800ml hydration before the climb, prevents glycogen depletion and rate of perceived exertion spike; power-to-weight matters less than addressing pacing, engine durability, torque demands, and fueling"
+  ],
+  "named_experts": [
+    "Alex Wellelburn",
+    "Vasilus Santopoulos",
+    "Vincenzo Nibali",
+    "Bradley Wiggins",
+    "Dr. David Dunn",
+    "Dr. Sam Impey"
+  ],
+  "specific_numbers": [
+    "800 watts for first 6 seconds then 40 watts on 2-minute climb example",
+    "88-91% threshold for sweet spot efforts",
+    "2x20 threshold efforts progressing to 3x15 minute efforts",
+    "60-90g carbohydrates per hour fueling target",
+    "400-800ml hydration range before climb",
+    "40 cadence low end (Badlands example)",
+    "70-72 average cadence starting point progressing to mid-80s",
+    "80-120g carbs per hour depending on session intensity",
+    "1 kilogram weight reduction mentioned as modest gain",
+    "3-4kg weight loss from diet rather than crash diet approach",
+    "6-hour Alto Letras climb or 80 kilometers bottom to top",
+    "1-hour plus climbs in Morocco mentioned"
+  ],
+  "ndy_members": [],
+  "episode_type": "solo",
+  "topics": [
+    "climbing-technique",
+    "pacing-strategy",
+    "power-to-weight",
+    "climbing-fueling",
+    "cadence-and-torque",
+    "wbal-distribution",
+    "zone-2-training",
+    "threshold-intervals",
+    "durability-training",
+    "hydration-cooling"
+  ],
+  "primary_cluster": "coaching",
+  "secondary_clusters": [
+    "nutrition"
+  ],
+  "primary_persona": "mark",
+  "cluster_reasoning": "This episode is fundamentally about climbing training methodology (pacing strategy, W' balance distribution, cadence-torque relationships, durability intervals) rather than fueling alone, making coaching the primary cluster; nutrition is secondary because in-ride fueling is explicitly addressed but not the episode's core focus.",
+  "sacred_cow_score": 5,
+  "indexed_at": "2026-04-26T08:59:00.867Z"
+}

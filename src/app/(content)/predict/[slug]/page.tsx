@@ -344,7 +344,7 @@ export default async function PredictResultPage({ params }: PageProps) {
                   Check your inbox
                 </h3>
                 <p className="text-off-white/80">
-                  Your full Race Report PDF and secure web link are on the way.
+                  Your full Race Report and secure web link are on the way.
                 </p>
               </div>
             ) : (
@@ -364,7 +364,7 @@ export default async function PredictResultPage({ params }: PageProps) {
                     <Bullet>Climb-by-climb power and time budget</Bullet>
                     <Bullet>Fuelling rates dialled to your effort</Bullet>
                     <Bullet>Equipment scenarios (CdA / mass / Crr trade-offs)</Bullet>
-                    <Bullet>Delivered as PDF + secure web link in &lt; 1 min</Bullet>
+                    <Bullet>Delivered as a private web report in &lt; 1 min</Bullet>
                   </ul>
                 </div>
                 <div className="rounded-2xl border border-coral/30 bg-charcoal/60 backdrop-blur-md p-6 self-start">
@@ -409,9 +409,9 @@ export default async function PredictResultPage({ params }: PageProps) {
                     Train alongside riders chasing the same finish line
                   </h3>
                   <p className="text-off-white/80 leading-relaxed mb-2">
-                    Vekta-powered training plans, weekly live calls with Anthony,
-                    and a community of serious amateur cyclists who refuse to
-                    accept their best days are behind them.
+                    TrainingPeaks delivery, weekly live calls with Anthony,
+                    coach feedback, and a community of serious amateur cyclists
+                    who refuse to accept their best days are behind them.
                   </p>
                 </div>
                 <div className="flex flex-col gap-2 w-full md:w-auto md:min-w-[200px]">

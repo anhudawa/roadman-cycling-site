@@ -1,0 +1,51 @@
+{
+  "slug": "ep-2536-hincape-opens-up-about-how-pogacar-can-win-roubaix",
+  "guest_name": "George Hincapie",
+  "guest_credentials": "Former professional cyclist and current team director at Alpecin and Modern Adventure Pro Cycling",
+  "key_claims": [
+    "Modern Adventure Pro Cycling has 30+ staff members just for wheel support and logistics at Roubaix",
+    "Equipment evolution has shifted from 21mm tires at 140 PSI to 32-36mm tires at 55-65 PSI, making cobbles more ridable",
+    "Tire inserts help the tires stay rideable longer until a wheel change can be made",
+    "Larger WorldTour teams like UAE, Alpecin, and Ineos have 50-80 staff at Roubaix compared to Modern Adventure's 30+",
+    "Modern Adventure is using Monza Factor frames with SRAM Force 1x groupset and Michelin tubeless tires with inserts for Roubaix"
+  ],
+  "named_experts": [
+    "Seiler",
+    "Remco Evenepoel",
+    "Philippe Gilbert",
+    "Johan Museeuw",
+    "Fabian Cancellara",
+    "Tom Boonen",
+    "Peter Van der Voet",
+    "Mathieu van der Poel",
+    "Wout van Aert",
+    "Jasper Philipsen"
+  ],
+  "specific_numbers": [
+    "21mm tires with 140 PSI (old equipment)",
+    "32-36mm tires with 55-65 PSI (modern equipment)",
+    "19-year-old Ezra (Modern Adventure rider)",
+    "30 people outside staff for wheels and feeding",
+    "15 bikes built for this one-day race",
+    "80% roster confirmed before final call",
+    "50-80 staff for major teams like UAE and Alpecin at Roubaix"
+  ],
+  "ndy_members": [],
+  "episode_type": "interview",
+  "topics": [
+    "roubaix-tactics",
+    "tire-technology",
+    "cobblestone-racing",
+    "team-logistics",
+    "monument-racing",
+    "bike-handling"
+  ],
+  "primary_cluster": "community",
+  "secondary_clusters": [
+    "coaching"
+  ],
+  "primary_persona": "dave",
+  "cluster_reasoning": "This is a pro story and cultural deep-dive featuring George Hincapie discussing monument racing tactics, team logistics, and the evolution of bike technology at Roubaix—classic community content about cycling culture and professional cycling history, with secondary coaching relevance for race tactics.",
+  "sacred_cow_score": 6,
+  "indexed_at": "2026-04-26T08:17:36.739Z"
+}

@@ -1,0 +1,63 @@
+{
+  "slug": "ep-9-the-smartest-way-to-train-for-more-speed-on-gravel-rosa-kl-s",
+  "guest_name": "Rosa Klöser",
+  "guest_credentials": "Professional gravel racer; multiple gravel race winner including Unbound and Gravel Art Series Rift; also competes in road cycling and works on PhD research",
+  "key_claims": [
+    "Gravel training should be 80% polarized: 80% easy, 20% hard, focusing on V2 max sessions and fatmax intervals rather than road training plans",
+    "V2 max block structure: 2 days of high-intensity V2 max intervals (e.g., 4x8min at 106% FTP or 3x10x40/20s) followed by 1 recovery day, repeated 3-4 times for a total 2-week block",
+    "Uses lactate testing to determine FTP and interval intensities rather than 20-minute or 1-hour tests; adjusts intervals based on first and second inflection point readings",
+    "Fatmax training is essential for gravel because the surface resistance prevents full recovery, requiring athletes to spend significant time in a zone that's uncomfortable but doesn't allow complete recovery",
+    "Altitude training at 1900m in Andorra provides measurable benefits (5, 10, and 20-minute power PRs) when maintained for 2-3 weeks; trains high, sleeps high, but descends to 1300m for above-threshold intervals",
+    "Heat training extended altitude benefits for 8-10 days; used active on-bike heat training (ramping core temperature to 38.2-38.4°C) to extend altitude performance effect rather than passive sauna for adaptation",
+    "Gravel racing demands very high average power due to limited drafting opportunities; nutrition strategy critical—plan to consume 10-20 grams more carbs per hour than baseline capacity",
+    "Tire choice matters significantly more than power loss: using maximum tire clearance (45mm vs 40mm slicks) on technical terrain allows 45-second+ faster descents through delayed braking and increased cornering confidence"
+  ],
+  "named_experts": [
+    "Seiler",
+    "Klöser",
+    "Friel",
+    "Ferrari",
+    "Carmichael",
+    "Poli"
+  ],
+  "specific_numbers": [
+    "4x8min intervals at 106% FTP or 320-325 watts",
+    "3x10x40/20s intervals above 120% FTP",
+    "2-week V2 max block with 6 hit workouts and 3 recovery days (9 days total)",
+    "Living at 1900m elevation in Andorra",
+    "Training down to 1300m for above-threshold intervals",
+    "2-2.5 weeks minimum altitude exposure for measurable effect",
+    "Core temperature ramped to 38.2-38.4°C in active heat training",
+    "Rift race: ~7-7.5 hour effort, 200km distance, attacked after 30km and rode 170km solo",
+    "European Championships: 40km solo effort with 2.5+ minute gap, 50m rear tire flat on final descent",
+    "45mm tire clearance vs 40mm slicks",
+    "Training load of 25 hours per week in priority B race blocks",
+    "1.5-2 hour warm-up rides day before priority races",
+    "177cm height"
+  ],
+  "ndy_members": [],
+  "episode_type": "interview",
+  "topics": [
+    "gravel-training-structure",
+    "v2-max-intervals",
+    "altitude-training",
+    "heat-adaptation",
+    "fatmax-intervals",
+    "gravel-nutrition",
+    "tire-selection",
+    "bike-handling-skills",
+    "lactate-testing",
+    "polarized-training",
+    "race-pacing",
+    "technical-descents"
+  ],
+  "primary_cluster": "coaching",
+  "secondary_clusters": [
+    "nutrition",
+    "recovery"
+  ],
+  "primary_persona": "tom",
+  "cluster_reasoning": "Rosa's episode is fundamentally about training methodology: V2max intervals, lactate testing, polarized training structure, altitude training protocols, and periodization—all core coaching content. Nutrition and recovery are secondary because they support the primary training framework.",
+  "sacred_cow_score": 6,
+  "indexed_at": "2026-04-26T08:29:44.405Z"
+}

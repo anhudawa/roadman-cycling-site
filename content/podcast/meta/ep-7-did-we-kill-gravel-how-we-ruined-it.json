@@ -1,0 +1,59 @@
+{
+  "slug": "ep-7-did-we-kill-gravel-how-we-ruined-it",
+  "guest_name": "Nathan Haas",
+  "guest_credentials": "Professional gravel rider, former World Tour road cyclist",
+  "key_claims": [
+    "Gravel has become professionalized to the point where new riders must weigh food, attend altitude camps, and sacrifice life balance to compete at the front",
+    "The best gravel riders in the world would still be 'stomped on' by any top 200 World Tour rider, indicating a significant talent gap between disciplines",
+    "UCI gravel points now count towards overall UCI points, which will likely attract World Tour riders to major gravel races, fundamentally changing the sport",
+    "Specialized ran an 8-person pit crew for Ian Boswell at Unbound with fresh wheels, pressure wash, and full bike refresh—while privateers managed alone with basic tools",
+    "Most people cannot recall winners of major gravel races (Unbound, Gravel Worlds) from 2-3 years ago, suggesting gravel's value lies in storytelling, not results"
+  ],
+  "named_experts": [
+    "Daryl Impey",
+    "Pete Stetina",
+    "Ted King",
+    "Keegan Swenson",
+    "Ian Boswell",
+    "Darren Rafferty",
+    "Colin Strickland",
+    "Niklas Roach",
+    "Jasper Philipsen",
+    "Podium Havoc",
+    "Peter Vakoc",
+    "Kasper Asgreen",
+    "Florian Liphardt",
+    "Steve Smith"
+  ],
+  "specific_numbers": [
+    "36 years old (Nathan Haas)",
+    "10 hours per week training (early gravel era)",
+    "10 years in World Tour before switching to gravel",
+    "300 watts for 3 hours (cited as threshold for controlling a race)",
+    "4,000 people at Unbound",
+    "40 UCI gravel races in the UCI gravel series next year",
+    "8-person pit crew for Boswell at Unbound",
+    "15 hours training per week (Haas's training load early in gravel career)",
+    "50,000 person event (hypothetical future scenario for Unbound)",
+    "2-3,000 person event (current Unbound attendance)"
+  ],
+  "ndy_members": [],
+  "episode_type": "interview",
+  "topics": [
+    "professionalization-of-gravel",
+    "gravel-community-vs-competition",
+    "team-sponsorships-in-gravel",
+    "world-tour-to-gravel-transition",
+    "privateeer-model",
+    "gravel-spirit-and-inclusivity",
+    "cycling-culture-and-barriers-to-entry"
+  ],
+  "primary_cluster": "community",
+  "secondary_clusters": [
+    "coaching"
+  ],
+  "primary_persona": "dave",
+  "cluster_reasoning": "This episode is fundamentally a cultural critique of gravel cycling's professionalization—examining the sport's evolution, industry dynamics, and the tension between inclusivity and competition—making it a community/culture piece rather than a training or nutrition episode. The secondary coaching assignment reflects discussion of how World Tour training methodologies are infiltrating gravel racing.",
+  "sacred_cow_score": 7,
+  "indexed_at": "2026-04-26T08:43:57.803Z"
+}

@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Button } from "@/components/ui";
 
 export function UpgradeForm({ slug }: { slug: string }) {
@@ -8,10 +8,32 @@ export function UpgradeForm({ slug }: { slug: string }) {
   const [firstName, setFirstName] = useState("");
   const [submitting, setSubmitting] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const [available, setAvailable] = useState<boolean | null>(null);
+
+  useEffect(() => {
+    let cancelled = false;
+    fetch("/api/paid-reports/availability", { cache: "no-store" })
+      .then((res) => res.json())
+      .then((data) => {
+        if (!cancelled) {
+          setAvailable(Boolean(data?.stripeReady && data?.raceReportReady));
+        }
+      })
+      .catch(() => {
+        if (!cancelled) setAvailable(false);
+      });
+    return () => {
+      cancelled = true;
+    };
+  }, []);
 
   async function handleUpgrade(e: React.FormEvent) {
     e.preventDefault();
     setError(null);
+    if (available === false) {
+      setError("Race Report checkout is not configured on this environment yet.");
+      return;
+    }
     setSubmitting(true);
     try {
       const res = await fetch(`/api/predict/${slug}/upgrade`, {
@@ -54,11 +76,20 @@ export function UpgradeForm({ slug }: { slug: string }) {
         />
       </div>
       {error && <p className="text-coral text-sm">{error}</p>}
-      <Button type="submit" disabled={submitting || !email} size="lg" className="w-full">
-        {submitting ? "Opening checkout…" : "Get the Race Report — $29"}
+      <Button
+        type="submit"
+        disabled={submitting || !email || available === false}
+        size="lg"
+        className="w-full"
+      >
+        {submitting
+          ? "Opening checkout…"
+          : available === false
+            ? "Checkout not configured"
+            : "Get the Race Report — $29"}
       </Button>
       <p className="text-off-white/50 text-xs text-center">
-        Secure checkout via Stripe. Report lands in your inbox in under a minute.
+        Secure checkout via Stripe. Private report link lands in your inbox in under a minute.
       </p>
     </form>
   );

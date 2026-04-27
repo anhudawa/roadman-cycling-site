@@ -45,8 +45,8 @@ export function pickKeyInsight(args: {
     const lengthKm = (c.length / 1000).toFixed(1);
     const gradePct = (Math.tan(c.averageGradient) * 100).toFixed(1);
     return {
-      headline: `Your ${labelClimb(c.category)} climb pace will drop to ${avgKmh.toFixed(0)} km/h on the ${gradePct}% ramps`,
-      body: `${lengthKm} km at ${gradePct}% gives a ${formatTime(climbResults.reduce((s, r) => s + r.duration, 0))} climb. That single climb is where the day is won or lost — pacing it 5 % too hard costs more time than 30 km of bad fuelling.`,
+      headline: `The long ${labelClimb(c.category)} climb is ${lengthKm} km at ${gradePct}%`,
+      body: `Expect roughly ${avgKmh.toFixed(0)} km/h for about ${formatTime(climbResults.reduce((s, r) => s + r.duration, 0))}. Keep the first half controlled; riding this climb 5% over target is the quickest way to give time back later.`,
       tag: "climb",
     };
   }
@@ -98,13 +98,13 @@ export function pickKeyInsight(args: {
 function labelClimb(cat: ClimbCategory): string {
   switch (cat) {
     case "cat4":
-      return "category-4";
+      return "Cat 4";
     case "cat3":
-      return "category-3";
+      return "Cat 3";
     case "cat2":
-      return "category-2";
+      return "Cat 2";
     case "cat1":
-      return "category-1";
+      return "Cat 1";
     case "hc":
       return "HC";
   }
