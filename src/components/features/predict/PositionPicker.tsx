@@ -27,7 +27,7 @@ const POSITIONS: {
 
 export function PositionPicker({ value, onChange }: PositionPickerProps) {
   return (
-    <div className="grid grid-cols-2 sm:grid-cols-3 gap-2">
+    <div className="grid grid-cols-2 sm:grid-cols-3 gap-2 sm:gap-3">
       {POSITIONS.map((p) => {
         const selected = p.value === value;
         return (
@@ -35,7 +35,7 @@ export function PositionPicker({ value, onChange }: PositionPickerProps) {
             type="button"
             key={p.value}
             onClick={() => onChange(p.value)}
-            className={`group relative rounded-lg border px-3 py-3 text-left transition-all ${
+            className={`group relative rounded-lg border px-3 py-3 min-h-[88px] text-left transition-all ${
               selected
                 ? "border-coral bg-coral/10 shadow-[0_0_0_1px_rgba(241,99,99,0.4),0_4px_24px_-8px_rgba(241,99,99,0.4)]"
                 : "border-white/8 bg-white/[0.02] hover:border-white/20 hover:bg-white/[0.04]"

@@ -13,6 +13,13 @@ const ExitIntentPopup = dynamic(
 
 export function LazyExitIntent() {
   const pathname = usePathname();
-  if (pathname.startsWith("/admin") || pathname === "/apply") return null;
+  if (
+    pathname.startsWith("/admin") ||
+    pathname === "/apply" ||
+    pathname === "/predict" ||
+    pathname.startsWith("/predict/")
+  ) {
+    return null;
+  }
   return <ExitIntentPopup />;
 }
