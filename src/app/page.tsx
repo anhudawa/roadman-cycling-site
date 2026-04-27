@@ -102,9 +102,32 @@ export default function HomePage() {
       <Header />
 
       <main id="main-content">
-        {/* HERO — podcast-first on mobile (waveform + play latest),
-            glitch portrait on desktop. APPLY is the primary CTA. */}
+        {/* HERO — coaching-first headline, APPLY is the primary CTA. */}
         <HeroSection latestEpisode={latestEpisode} />
+
+        {/* MANIFESTO — frames the brand as evidence-based coaching for
+            serious amateur and masters cyclists. Sets the audience and
+            the bar before any other CTA fires. */}
+        <Section background="charcoal" className="!py-10 border-y border-white/5">
+          <Container width="narrow" className="text-center">
+            <p className="font-heading text-coral text-[11px] tracking-[0.3em] mb-3">
+              WHO THIS IS FOR
+            </p>
+            <p className="font-heading text-off-white text-xl md:text-2xl leading-snug mb-3">
+              EVIDENCE-BASED COACHING FOR SERIOUS AMATEUR AND MASTERS CYCLISTS.
+            </p>
+            <p className="text-foreground-muted text-sm md:text-base max-w-2xl mx-auto leading-relaxed">
+              Not influencer plans. Not generic apps. The same principles
+              Stephen Seiler, Dan Lorang and the World Tour use — adapted
+              for cyclists with jobs, families and limited training hours.
+              <span className="block mt-3">
+                <Link href="/methodology" className="text-coral hover:text-coral/80 transition-colors font-heading tracking-wider text-xs">
+                  READ THE METHODOLOGY →
+                </Link>
+              </span>
+            </p>
+          </Container>
+        </Section>
 
         {/* STATS — Animated counters */}
         <StatsSection />
@@ -112,8 +135,9 @@ export default function HomePage() {
         {/* PERSONA ROUTER — route visitors by current cycling state */}
         <PersonaRouter />
 
-        {/* SATURDAY SPIN — moved up from mid-page. Specific promise +
-            social proof count, tied to the community not generic "insights". */}
+        {/* SATURDAY SPIN — secondary CTA after the coaching framing.
+            Specific promise + social proof count, tied to the community
+            not generic "insights". */}
         <EmailCapture
           variant="banner"
           heading="THE SATURDAY SPIN"
@@ -306,71 +330,32 @@ export default function HomePage() {
               </p>
             </ScrollReveal>
 
+            {/* Coaching-first ordering — Not Done Yet is the primary path,
+                Clubhouse is the lower-friction starting point. */}
             <div className="grid md:grid-cols-2 gap-6">
               <ScrollReveal direction="left">
-                <Card className="p-6 md:p-8 h-full" hoverable={false}>
-                  <div className="flex items-center gap-3 mb-4">
-                    <div className="w-3 h-3 rounded-full bg-coral pulse-glow" />
-                    <span className="text-xs text-foreground-muted uppercase tracking-widest font-body">
-                      Free
-                    </span>
-                  </div>
-                  <h3 className="font-heading text-3xl text-off-white mb-3">
-                    THE CLUBHOUSE
-                  </h3>
-                  <p className="text-foreground-muted mb-6 leading-relaxed">
-                    Free tools, free plans, and 2,100 cyclists who get it. Your
-                    starting point before you&apos;re ready for the full system.
-                  </p>
-                  <ul className="space-y-2 mb-8">
-                    {[
-                      "Free 16-week training plans (road, gravel, sportive)",
-                      "Weekly live Q&A with Anthony",
-                      "Free calculators and resources",
-                      "Community of serious cyclists",
-                    ].map((item) => (
-                      <li
-                        key={item}
-                        className="flex items-start gap-2 text-sm text-foreground-muted"
-                      >
-                        <span className="text-coral mt-0.5">&#10003;</span>
-                        {item}
-                      </li>
-                    ))}
-                  </ul>
-                  <Button
-                    href="/community/clubhouse"
-                    size="lg"
-                    className="w-full"
-                  >
-                    Join Free
-                  </Button>
-                </Card>
-              </ScrollReveal>
-
-              <ScrollReveal direction="right">
                 <Card
                   className="p-6 md:p-8 h-full border-rotating rounded-lg bg-gradient-to-br from-background-elevated to-deep-purple/30"
                   hoverable={false}
                 >
                   <div className="flex items-center gap-3 mb-4">
-                    <div className="w-3 h-3 rounded-full bg-purple pulse-glow" />
+                    <div className="w-3 h-3 rounded-full bg-coral pulse-glow" />
                     <span className="text-xs text-foreground-muted uppercase tracking-widest font-body">
-                      $195/month
+                      $195/month · Coaching
                     </span>
                   </div>
                   <h3 className="font-heading text-3xl text-off-white mb-3">
                     NOT DONE YET
                   </h3>
                   <p className="text-coral font-heading text-xs tracking-widest mb-4 uppercase">
-                    The coaching community
+                    Evidence-based coaching community
                   </p>
                   <p className="text-foreground-muted mb-6 leading-relaxed">
-                    You&apos;re not buying a subscription. You&apos;re joining
-                    the Not Done Yet coaching community — cyclists who refuse
-                    to plateau. Five pillars. One coached system. The same
+                    For serious amateur and masters cyclists who refuse to
+                    plateau. Five pillars. One coached system. The same
                     principles Seiler and Lorang discussed on the podcast,
-                    structured into your week.
+                    structured into your week — and reviewed personally by
+                    Anthony.
                   </p>
                   <ul className="space-y-2 mb-8">
                     {[
@@ -390,12 +375,56 @@ export default function HomePage() {
                     ))}
                   </ul>
                   <Button
-                    href="/community/not-done-yet"
+                    href="/apply"
+                    size="lg"
+                    className="w-full"
+                    dataTrack="home_community_apply"
+                  >
+                    Apply for Coaching
+                  </Button>
+                </Card>
+              </ScrollReveal>
+
+              <ScrollReveal direction="right">
+                <Card className="p-6 md:p-8 h-full" hoverable={false}>
+                  <div className="flex items-center gap-3 mb-4">
+                    <div className="w-3 h-3 rounded-full bg-purple pulse-glow" />
+                    <span className="text-xs text-foreground-muted uppercase tracking-widest font-body">
+                      Free
+                    </span>
+                  </div>
+                  <h3 className="font-heading text-3xl text-off-white mb-3">
+                    THE CLUBHOUSE
+                  </h3>
+                  <p className="text-foreground-muted mb-6 leading-relaxed">
+                    Free tools, free plans, and 2,100 cyclists who get it. Your
+                    starting point before you&apos;re ready for the full
+                    coached system.
+                  </p>
+                  <ul className="space-y-2 mb-8">
+                    {[
+                      "Free 16-week training plans (road, gravel, sportive)",
+                      "Weekly live Q&A with Anthony",
+                      "Free calculators and resources",
+                      "Community of serious cyclists",
+                    ].map((item) => (
+                      <li
+                        key={item}
+                        className="flex items-start gap-2 text-sm text-foreground-muted"
+                      >
+                        <span className="text-coral mt-0.5">&#10003;</span>
+                        {item}
+                      </li>
+                    ))}
+                  </ul>
+                  <Button
+                    href="/community/clubhouse"
                     variant="secondary"
                     size="lg"
                     className="w-full"
+                    dataTrack="home_community_clubhouse"
                   >
-                    Inside Not Done Yet
+                    Join Free
                   </Button>
                 </Card>
               </ScrollReveal>
