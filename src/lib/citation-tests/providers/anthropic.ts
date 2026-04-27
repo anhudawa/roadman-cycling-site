@@ -34,8 +34,8 @@ export class AnthropicProvider implements CitationProvider {
         messages: [{ role: "user", content: prompt }],
       });
       const text = resp.content
-        .filter((b): b is { type: "text"; text: string } => b.type === "text")
-        .map((b) => b.text)
+        .map((b) => (b.type === "text" ? b.text : ""))
+        .filter((t) => t.length > 0)
         .join("\n");
       return { response: text, citations: [] };
     } catch (e) {
