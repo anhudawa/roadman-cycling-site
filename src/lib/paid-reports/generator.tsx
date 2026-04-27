@@ -19,6 +19,7 @@ import { buildReportContent, BUNDLE_REPORT_SECTIONS } from "./pdf/content";
 import { renderDeliveryEmailHtml, renderReportHtml } from "./pdf/report-html";
 import { logCrmSync } from "./crm-sync-log";
 import { sendReportEmail } from "./delivery";
+import { notifyPaidReportDeliveryFailed } from "@/lib/stripe/notifications";
 import {
   PAID_REPORT_EVENTS,
   recordPaidReportServerEvent,
@@ -232,6 +233,26 @@ export async function generateAndDeliverPaidReport(
       relatedTable: "paid_reports",
       relatedId: paidReportId,
     }).catch(() => {});
+
+    // Best-effort admin alert so a paying customer doesn't sit in a
+    // broken state silently. Re-load the report to get email + product
+    // even if it stayed in `pending_payment`.
+    try {
+      const stuck = await getPaidReportById(paidReportId);
+      if (stuck) {
+        await notifyPaidReportDeliveryFailed({
+          paidReportId,
+          email: stuck.email,
+          productSlug: stuck.productSlug,
+          reason: message.slice(0, 200),
+        });
+      }
+    } catch (notifyErr) {
+      console.error(
+        "[paid-reports/generator] admin alert failed:",
+        notifyErr instanceof Error ? notifyErr.message : notifyErr,
+      );
+    }
   }
 }
 

@@ -1,48 +1,31 @@
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
-import Module from "node:module";
 
-// The route uses `require("stripe")` at runtime, which Vitest's vi.mock does
-// NOT intercept. Patch Node's Module._resolveFilename + the require cache
-// so the require call returns our mock.
+/**
+ * Both `/api/stripe-webhook` and `/api/webhooks/stripe` now defer to the
+ * shared dispatcher in `@/lib/stripe/dispatch`. We mock the dispatcher
+ * directly so route-level tests stay focused on signature verification +
+ * env handling — the dispatcher itself is exercised by the e2e test.
+ */
+
 const mocks = vi.hoisted(() => ({
   constructEvent: vi.fn(),
-  resendSend: vi.fn(),
-  getResendClient: vi.fn(),
+  dispatch: vi.fn(),
+  StripeCtor: vi.fn(),
 }));
 
-vi.mock("@/lib/integrations/resend", () => ({
-  getResendClient: mocks.getResendClient,
+vi.mock("@/lib/stripe/dispatch", () => ({
+  dispatchStripeEvent: mocks.dispatch,
 }));
 
-const FAKE_STRIPE_ID = "/__fake_stripe__";
-function installFakeStripe() {
-  const fakeModule = {
-    id: FAKE_STRIPE_ID,
-    filename: FAKE_STRIPE_ID,
-    loaded: true,
-    exports: function StripeCtor(_key: string) {
-      return { webhooks: { constructEvent: mocks.constructEvent } };
-    },
-  };
-  // expose default for the `StripeModule.default || StripeModule` pattern
-  (fakeModule.exports as unknown as Record<string, unknown>).default =
-    fakeModule.exports;
-  // @ts-expect-error - require.cache is internal but supported
-  require.cache[FAKE_STRIPE_ID] = fakeModule;
-  const orig = (
-    Module as unknown as { _resolveFilename: (req: string, ...rest: unknown[]) => string }
-  )._resolveFilename;
-  (Module as unknown as { _resolveFilename: (req: string, ...rest: unknown[]) => string })._resolveFilename =
-    function (req: string, ...rest: unknown[]) {
-      if (req === "stripe") return FAKE_STRIPE_ID;
-      return orig.call(this, req, ...rest);
+vi.mock("stripe", () => ({
+  default: function FakeStripe(_key: string) {
+    mocks.StripeCtor(_key);
+    return {
+      webhooks: { constructEvent: mocks.constructEvent },
+      customers: { retrieve: vi.fn() },
     };
-  return () => {
-    (Module as unknown as { _resolveFilename: typeof orig })._resolveFilename = orig;
-    // @ts-expect-error - require.cache cleanup
-    delete require.cache[FAKE_STRIPE_ID];
-  };
-}
+  },
+}));
 
 function req(body: string, signature?: string): Request {
   return new Request("https://example.test/api/stripe-webhook", {
@@ -52,20 +35,20 @@ function req(body: string, signature?: string): Request {
   });
 }
 
-const ENV_KEYS = ["STRIPE_SECRET_KEY", "STRIPE_WEBHOOK_SECRET", "RESEND_API_KEY"];
+const ENV_KEYS = ["STRIPE_SECRET_KEY", "STRIPE_WEBHOOK_SECRET"];
 
-describe("POST /api/stripe-webhook", () => {
+describe.each([
+  ["/api/stripe-webhook", "@/app/api/stripe-webhook/route"],
+  ["/api/webhooks/stripe", "@/app/api/webhooks/stripe/route"],
+])("POST %s", (_label, importPath) => {
   const original: Record<string, string | undefined> = {};
-  let restoreStripe: (() => void) | null = null;
 
   beforeEach(() => {
     for (const k of ENV_KEYS) original[k] = process.env[k];
     process.env.STRIPE_SECRET_KEY = "sk_test";
     process.env.STRIPE_WEBHOOK_SECRET = "whsec_test";
     for (const fn of Object.values(mocks)) fn.mockReset();
-    mocks.getResendClient.mockReturnValue({ emails: { send: mocks.resendSend } });
-    mocks.resendSend.mockResolvedValue({ id: "em_1" });
-    restoreStripe = installFakeStripe();
+    mocks.dispatch.mockResolvedValue(undefined);
     vi.resetModules();
   });
 
@@ -74,105 +57,79 @@ describe("POST /api/stripe-webhook", () => {
       if (original[k] === undefined) delete process.env[k];
       else process.env[k] = original[k];
     }
-    restoreStripe?.();
-    restoreStripe = null;
   });
 
   it("returns 500 when STRIPE_SECRET_KEY is missing", async () => {
     delete process.env.STRIPE_SECRET_KEY;
     vi.resetModules();
-    const { POST } = await import("@/app/api/stripe-webhook/route");
-    const res = await POST(req("{}", "sig"));
+    const mod = (await import(importPath)) as {
+      POST: (req: Request) => Promise<Response>;
+    };
+    const res = await mod.POST(req("{}", "sig"));
     expect(res.status).toBe(500);
+    expect(mocks.dispatch).not.toHaveBeenCalled();
   });
 
   it("returns 500 when STRIPE_WEBHOOK_SECRET is missing", async () => {
     delete process.env.STRIPE_WEBHOOK_SECRET;
     vi.resetModules();
-    const { POST } = await import("@/app/api/stripe-webhook/route");
-    const res = await POST(req("{}", "sig"));
+    const mod = (await import(importPath)) as {
+      POST: (req: Request) => Promise<Response>;
+    };
+    const res = await mod.POST(req("{}", "sig"));
     expect(res.status).toBe(500);
   });
 
   it("returns 400 when stripe-signature header missing", async () => {
-    const { POST } = await import("@/app/api/stripe-webhook/route");
-    const res = await POST(req("{}"));
+    const mod = (await import(importPath)) as {
+      POST: (req: Request) => Promise<Response>;
+    };
+    const res = await mod.POST(req("{}"));
     expect(res.status).toBe(400);
+    expect(mocks.dispatch).not.toHaveBeenCalled();
   });
 
   it("returns 400 when signature verification fails", async () => {
     mocks.constructEvent.mockImplementation(() => {
       throw new Error("invalid sig");
     });
-    const { POST } = await import("@/app/api/stripe-webhook/route");
-    const res = await POST(req("{}", "bad"));
+    const mod = (await import(importPath)) as {
+      POST: (req: Request) => Promise<Response>;
+    };
+    const res = await mod.POST(req("{}", "bad"));
     expect(res.status).toBe(400);
-    const body = await res.json();
-    expect(body.error).toContain("invalid sig");
+    expect(mocks.dispatch).not.toHaveBeenCalled();
   });
 
-  it("ignores non-checkout-completed events with 200 received", async () => {
+  it("forwards verified events to the shared dispatcher", async () => {
+    const event = {
+      id: "evt_1",
+      type: "checkout.session.completed",
+      data: { object: { id: "cs_1" } },
+    };
+    mocks.constructEvent.mockReturnValue(event);
+    const mod = (await import(importPath)) as {
+      POST: (req: Request) => Promise<Response>;
+    };
+    const res = await mod.POST(req("{}", "sig"));
+    expect(res.status).toBe(200);
+    expect(mocks.dispatch).toHaveBeenCalledOnce();
+    const callArgs = mocks.dispatch.mock.calls[0];
+    expect(callArgs[0]).toEqual(event);
+    expect(callArgs[1].webhookPath).toMatch(/^\/api\//);
+  });
+
+  it("returns 200 even when dispatcher throws (defensive — Stripe shouldn't retry our internal bug)", async () => {
     mocks.constructEvent.mockReturnValue({
-      type: "payment_intent.created",
+      id: "evt_1",
+      type: "checkout.session.completed",
       data: { object: {} },
     });
-    const { POST } = await import("@/app/api/stripe-webhook/route");
-    const res = await POST(req("{}", "sig"));
+    mocks.dispatch.mockRejectedValueOnce(new Error("dispatch boom"));
+    const mod = (await import(importPath)) as {
+      POST: (req: Request) => Promise<Response>;
+    };
+    const res = await mod.POST(req("{}", "sig"));
     expect(res.status).toBe(200);
-    expect(mocks.resendSend).not.toHaveBeenCalled();
-  });
-
-  it("sends Resend notification on checkout.session.completed", async () => {
-    mocks.constructEvent.mockReturnValue({
-      type: "checkout.session.completed",
-      data: {
-        object: {
-          customer_details: { email: "rider@example.com", name: "Tom Rider" },
-          amount_total: 4999,
-        },
-      },
-    });
-    const { POST } = await import("@/app/api/stripe-webhook/route");
-    const res = await POST(req("{}", "sig"));
-    expect(res.status).toBe(200);
-    expect(mocks.resendSend).toHaveBeenCalledOnce();
-    const args = mocks.resendSend.mock.calls[0]?.[0];
-    expect(args.subject).toContain("Tom Rider");
-    expect(args.subject).toContain("$49.99");
-    expect(args.to).toBe("admin@roadmancycling.com");
-    expect(args.html).toContain("rider@example.com");
-  });
-
-  it("returns 200 even when Resend send throws", async () => {
-    mocks.constructEvent.mockReturnValue({
-      type: "checkout.session.completed",
-      data: {
-        object: {
-          customer_details: { email: "rider@example.com", name: "Tom" },
-          amount_total: 1000,
-        },
-      },
-    });
-    mocks.resendSend.mockRejectedValue(new Error("resend down"));
-    const { POST } = await import("@/app/api/stripe-webhook/route");
-    const res = await POST(req("{}", "sig"));
-    expect(res.status).toBe(200);
-  });
-
-  it("skips email send when getResendClient returns null", async () => {
-    mocks.getResendClient.mockReturnValue(null);
-    mocks.constructEvent.mockReturnValue({
-      type: "checkout.session.completed",
-      data: {
-        object: {
-          customer_details: { email: "x@y.co", name: "X" },
-          amount_total: 0,
-        },
-      },
-    });
-    const { POST } = await import("@/app/api/stripe-webhook/route");
-    const res = await POST(req("{}", "sig"));
-    expect(res.status).toBe(200);
-    expect(mocks.resendSend).not.toHaveBeenCalled();
   });
 });

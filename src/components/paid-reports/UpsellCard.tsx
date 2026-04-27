@@ -54,6 +54,8 @@ export function UpsellCard({
   const [email, setEmail] = useState(defaultEmail ?? "");
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  // null = unknown (preflight in flight); true/false = resolved.
+  const [stripeReady, setStripeReady] = useState<boolean | null>(null);
 
   // Impression beacon — fires once when the card first mounts so the
   // upsell-view vs checkout-start ratio is measurable.
@@ -64,6 +66,29 @@ export function UpsellCard({
       toolResultSlug: toolResultSlug ?? undefined,
     });
   }, [productSlug, toolResultSlug]);
+
+  // Preflight: if Stripe isn't configured, swap the button label to
+  // "Coming soon" rather than letting the rider click into a 500.
+  useEffect(() => {
+    let cancelled = false;
+    fetch("/api/paid-reports/availability")
+      .then((r) => (r.ok ? r.json() : null))
+      .then((data) => {
+        if (cancelled) return;
+        const ready = Boolean(
+          (data as { stripeReady?: boolean } | null)?.stripeReady,
+        );
+        setStripeReady(ready);
+      })
+      .catch(() => {
+        // Network blip — assume ready and let the actual checkout call
+        // surface the failure with the real error message.
+        if (!cancelled) setStripeReady(true);
+      });
+    return () => {
+      cancelled = true;
+    };
+  }, []);
 
   async function handleCheckout() {
     if (!email) {
@@ -123,18 +148,23 @@ export function UpsellCard({
           value={email}
           onChange={(e) => setEmail(e.target.value)}
           placeholder="you@example.com"
-          className="flex-1 rounded-md bg-charcoal border border-white/10 text-off-white placeholder-foreground-subtle px-4 py-3 text-sm focus:border-coral focus:outline-none"
+          className="flex-1 rounded-md bg-charcoal border border-white/10 text-off-white placeholder-foreground-subtle px-4 py-3 text-sm focus:border-coral focus:outline-none disabled:opacity-50"
           aria-label="Email for report delivery"
+          disabled={stripeReady === false}
         />
         <button
           type="button"
-          disabled={loading}
+          disabled={loading || stripeReady === false}
           onClick={handleCheckout}
           className="rounded-md bg-coral text-off-white hover:bg-coral/90 disabled:opacity-50 disabled:cursor-not-allowed px-5 py-3 text-sm font-heading tracking-wider uppercase transition-colors"
           data-track="paid_report_checkout_start"
           data-product={productSlug}
         >
-          {loading ? "Redirecting…" : "Get the report"}
+          {stripeReady === false
+            ? "Coming soon"
+            : loading
+              ? "Redirecting…"
+              : "Get the report"}
         </button>
       </div>
       {error ? (
@@ -143,7 +173,9 @@ export function UpsellCard({
         </p>
       ) : null}
       <p className="text-foreground-subtle text-xs mt-3">
-        Secure checkout by Stripe. Delivered within minutes to the email above.
+        {stripeReady === false
+          ? "Checkout is temporarily unavailable. Drop your email — we'll let you know the moment it's back."
+          : "Secure checkout by Stripe. Delivered within minutes to the email above."}
       </p>
     </div>
   );
