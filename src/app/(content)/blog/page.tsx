@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Header, Footer, Section, Container } from "@/components/layout";
 import { ScrollReveal } from "@/components/ui";
 import { JsonLd } from "@/components/seo/JsonLd";
+import { ENTITY_IDS } from "@/lib/brand-facts";
 import { getAllPosts } from "@/lib/blog";
 import { BlogSearch } from "@/components/features/blog/BlogSearch";
 
@@ -35,11 +36,7 @@ export default function BlogPage() {
             "Expert cycling content grounded in science. Training methodology, nutrition, strength & conditioning, recovery, and cycling culture.",
           url: "https://roadmancycling.com/blog",
           numberOfItems: posts.length,
-          isPartOf: {
-            "@type": "WebSite",
-            name: "Roadman Cycling",
-            url: "https://roadmancycling.com",
-          },
+          isPartOf: { "@id": ENTITY_IDS.website },
         }}
       />
       <JsonLd

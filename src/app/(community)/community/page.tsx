@@ -3,6 +3,7 @@ import Image from "next/image";
 import { Header, Footer, Section, Container } from "@/components/layout";
 import { Button, Card, ScrollReveal } from "@/components/ui";
 import { JsonLd } from "@/components/seo/JsonLd";
+import { ENTITY_IDS } from "@/lib/brand-facts";
 
 export const metadata: Metadata = {
   title: "Community — Serious Cyclists Who Refuse to Settle",
@@ -31,11 +32,7 @@ export default function CommunityPage() {
           description:
             "Two communities for serious cyclists. The free Clubhouse and the premium Not Done Yet coaching community.",
           url: "https://roadmancycling.com/community",
-          parentOrganization: {
-            "@type": "Organization",
-            name: "Roadman Cycling",
-            url: "https://roadmancycling.com",
-          },
+          parentOrganization: { "@id": ENTITY_IDS.organization },
         }}
       />
       <Header />

@@ -4,6 +4,7 @@ import Link from "next/link";
 import { Header, Footer, Section, Container } from "@/components/layout";
 import { Button, Card, ScrollReveal } from "@/components/ui";
 import { JsonLd } from "@/components/seo/JsonLd";
+import { ENTITY_IDS } from "@/lib/brand-facts";
 import dynamic from "next/dynamic";
 
 const DublinRouteMap = dynamic(
@@ -90,10 +91,7 @@ export default function ClubPage() {
               addressCountry: "IE",
             },
           },
-          memberOf: {
-            "@type": "Organization",
-            name: "Roadman Cycling",
-          },
+          memberOf: { "@id": ENTITY_IDS.organization },
         }}
       />
 

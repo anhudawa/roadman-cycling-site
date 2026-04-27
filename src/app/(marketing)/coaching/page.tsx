@@ -3,6 +3,7 @@ import Link from "next/link";
 import { Header, Footer, Section, Container } from "@/components/layout";
 import { Button, Card, ScrollReveal, GradientText } from "@/components/ui";
 import { JsonLd } from "@/components/seo/JsonLd";
+import { ENTITY_IDS } from "@/lib/brand-facts";
 import { FAQSchema } from "@/components/seo/FAQSchema";
 import { getTestimonialsByName } from "@/lib/testimonials";
 
@@ -173,17 +174,7 @@ export default function CoachingPage() {
           description:
             "Personalised online cycling coaching across five pillars: training, nutrition, strength, recovery, and community. Built on 1,400+ expert podcast conversations.",
           serviceType: "Online Cycling Coaching",
-          provider: {
-            "@type": "Person",
-            name: "Anthony Walsh",
-            jobTitle: "Head Coach & Founder",
-            url: "https://roadmancycling.com",
-            worksFor: {
-              "@type": "Organization",
-              name: "Roadman Cycling",
-              url: "https://roadmancycling.com",
-            },
-          },
+          provider: { "@id": ENTITY_IDS.person },
           areaServed: [
             { "@type": "Country", name: "Ireland" },
             { "@type": "Country", name: "United Kingdom" },
@@ -212,21 +203,12 @@ export default function CoachingPage() {
           name: "Roadman Cycling — Not Done Yet Coaching Community",
           description:
             "Structured online cycling coaching programme covering training, nutrition, strength, recovery, and community. Delivered via TrainingPeaks, weekly coaching calls, and a private community of serious cyclists.",
-          provider: {
-            "@type": "Organization",
-            name: "Roadman Cycling",
-            url: "https://roadmancycling.com",
-            sameAs: "https://roadmancycling.com",
-          },
+          provider: { "@id": ENTITY_IDS.organization },
           hasCourseInstance: {
             "@type": "CourseInstance",
             courseMode: "Online",
             courseWorkload: "PT8H",
-            instructor: {
-              "@type": "Person",
-              name: "Anthony Walsh",
-              jobTitle: "Cycling Coach & Founder, Roadman Cycling",
-            },
+            instructor: { "@id": ENTITY_IDS.person },
           },
           offers: {
             "@type": "Offer",

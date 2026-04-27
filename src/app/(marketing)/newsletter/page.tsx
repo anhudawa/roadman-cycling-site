@@ -4,6 +4,7 @@ import { Header, Footer, Section, Container } from "@/components/layout";
 import { ScrollReveal } from "@/components/ui";
 import { EmailCapture } from "@/components/features/conversion/EmailCapture";
 import { JsonLd } from "@/components/seo/JsonLd";
+import { ENTITY_IDS } from "@/lib/brand-facts";
 import { fetchNewsletterIssues } from "@/lib/integrations/beehiiv";
 
 export const metadata: Metadata = {
@@ -36,16 +37,8 @@ export default async function NewsletterPage() {
           description:
             "Weekly cycling insights from Anthony Walsh. Training, nutrition, and performance content drawn from conversations with the world's best coaches and scientists.",
           url: "https://roadmancycling.com/newsletter",
-          isPartOf: {
-            "@type": "WebSite",
-            name: "Roadman Cycling",
-            url: "https://roadmancycling.com",
-          },
-          publisher: {
-            "@type": "Organization",
-            name: "Roadman Cycling",
-            url: "https://roadmancycling.com",
-          },
+          isPartOf: { "@id": ENTITY_IDS.website },
+          publisher: { "@id": ENTITY_IDS.organization },
         }}
       />
       <Header />

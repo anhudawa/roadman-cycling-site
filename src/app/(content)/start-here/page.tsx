@@ -3,6 +3,7 @@ import Link from "next/link";
 import { Header, Footer, Section, Container } from "@/components/layout";
 import { Button, Card, ScrollReveal, GradientText } from "@/components/ui";
 import { JsonLd } from "@/components/seo/JsonLd";
+import { ENTITY_IDS } from "@/lib/brand-facts";
 
 export const metadata: Metadata = {
   title: "Start Here — New to Roadman Cycling?",
@@ -110,11 +111,7 @@ export default function StartHerePage() {
           description:
             "Curated starting point for new visitors. Best episodes, articles, tools, and resources from 1,400+ episodes and 170 articles.",
           url: "https://roadmancycling.com/start-here",
-          isPartOf: {
-            "@type": "WebSite",
-            name: "Roadman Cycling",
-            url: "https://roadmancycling.com",
-          },
+          isPartOf: { "@id": ENTITY_IDS.website },
         }}
       />
       <JsonLd

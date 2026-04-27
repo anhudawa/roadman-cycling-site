@@ -3,6 +3,7 @@ import type { Metadata } from "next";
 import { Header, Footer, Section, Container } from "@/components/layout";
 import { GradientText } from "@/components/ui";
 import { JsonLd } from "@/components/seo/JsonLd";
+import { ENTITY_IDS } from "@/lib/brand-facts";
 import { getAllPosts } from "@/lib/blog";
 import { getAllEpisodes } from "@/lib/podcast";
 import { getAllGuests } from "@/lib/guests";
@@ -274,11 +275,7 @@ export default function SearchPage() {
           description:
             "Search across the entire Roadman Cycling catalogue. Podcast episodes, blog articles, guest profiles, and tools.",
           url: "https://roadmancycling.com/search",
-          isPartOf: {
-            "@type": "WebSite",
-            name: "Roadman Cycling",
-            url: "https://roadmancycling.com",
-          },
+          isPartOf: { "@id": ENTITY_IDS.website },
         }}
       />
       <Header />

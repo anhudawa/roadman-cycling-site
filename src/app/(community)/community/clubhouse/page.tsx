@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Header, Footer, Section, Container } from "@/components/layout";
 import { JsonLd } from "@/components/seo/JsonLd";
+import { ENTITY_IDS } from "@/lib/brand-facts";
 import { SkoolTrialButton } from "@/components/features/community/SkoolTrialButton";
 
 export const metadata: Metadata = {
@@ -30,11 +31,7 @@ export default function ClubhousePage() {
           description:
             "Free cycling community with weekly live Q&A, 16-week training plans, and peer support for serious cyclists.",
           url: "https://roadmancycling.com/community/clubhouse",
-          provider: {
-            "@type": "Organization",
-            name: "Roadman Cycling",
-            url: "https://roadmancycling.com",
-          },
+          provider: { "@id": ENTITY_IDS.organization },
           isAccessibleForFree: true,
           offers: {
             "@type": "Offer",

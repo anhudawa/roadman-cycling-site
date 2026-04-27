@@ -16,13 +16,11 @@ const BASE_URL = "https://roadmancycling.com";
  * Split sitemaps by page type for GSC monitoring.
  *
  * Generates child sitemaps at /sitemap/0.xml through /sitemap/5.xml.
- * Next.js 16 does not auto-emit a /sitemap.xml index when using
- * generateSitemaps(); adding a route handler at /sitemap.xml collides
- * with the metadata-file convention and breaks the build. Crawler
- * discovery is handled through robots.ts which lists every child
- * sitemap explicitly — Google, Bing, and the AI crawlers all support
- * multiple `Sitemap:` entries in robots.txt, so an index file is not
- * required. Visiting /sitemap.xml directly will 404; this is cosmetic.
+ * The canonical index lives at /sitemap-index.xml (a route handler), and
+ * /sitemap.xml is rewritten to it via next.config.ts — Next.js 16 does
+ * not auto-emit a /sitemap.xml when using generateSitemaps() and adding
+ * a route handler at that path collides with the metadata-file
+ * convention. Both URLs return the same sitemap index XML.
  *
  *   /sitemap/0.xml — static/core pages + coaching + tools + community
  *   /sitemap/1.xml — blog articles
@@ -77,6 +75,8 @@ function buildStaticSitemap(): MetadataRoute.Sitemap {
     { url: `${BASE_URL}/strength-training`, lastModified: new Date("2026-03-01"), changeFrequency: "monthly", priority: 0.8 },
     { url: `${BASE_URL}/plateau`, lastModified: new Date("2026-04-22"), changeFrequency: "monthly", priority: 0.9 },
     { url: `${BASE_URL}/ask`, lastModified: new Date("2026-04-24"), changeFrequency: "weekly", priority: 0.9 },
+    { url: `${BASE_URL}/predict`, lastModified: new Date("2026-04-24"), changeFrequency: "weekly", priority: 0.9 },
+    { url: `${BASE_URL}/apply`, lastModified: new Date(), changeFrequency: "weekly", priority: 0.9 },
     { url: `${BASE_URL}/coaching`, lastModified: new Date(), changeFrequency: "weekly", priority: 0.8 },
     { url: `${BASE_URL}/coaching/triathlon`, lastModified: new Date(), changeFrequency: "weekly", priority: 0.8 },
     { url: `${BASE_URL}/coaching/ireland`, lastModified: new Date(), changeFrequency: "monthly", priority: 0.7 },

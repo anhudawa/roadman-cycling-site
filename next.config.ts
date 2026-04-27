@@ -241,6 +241,13 @@ const nextConfig: NextConfig = {
   async rewrites() {
     return {
       beforeFiles: [
+        // /sitemap.xml is the canonical URL crawlers (and our own llms.txt /
+        // llms-full.txt) reference. Next.js 16's generateSitemaps() emits
+        // /sitemap/0.xml … /sitemap/N.xml but does NOT auto-emit an index at
+        // /sitemap.xml, and adding a route handler at that path collides with
+        // the metadata-file convention. The rewrite serves the existing
+        // /sitemap-index.xml handler under the canonical /sitemap.xml URL.
+        { source: "/sitemap.xml", destination: "/sitemap-index.xml" },
         // ClickFunnels dead URLs → 410 Gone (thank-you pages, checkout forms,
         // template demos, archived funnels). Rewrite to /api/gone which returns 410.
         { source: "/thank-you-1", destination: "/api/gone" },

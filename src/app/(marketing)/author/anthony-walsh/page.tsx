@@ -4,6 +4,7 @@ import Link from "next/link";
 import { Header, Footer, Section, Container } from "@/components/layout";
 import { Button, ScrollReveal } from "@/components/ui";
 import { JsonLd } from "@/components/seo/JsonLd";
+import { ENTITY_IDS } from "@/lib/brand-facts";
 import { getSiteStats } from "@/lib/content-graph";
 import { getAllPosts } from "@/lib/blog";
 import { EmailCapture } from "@/components/features/conversion/EmailCapture";
@@ -58,51 +59,18 @@ export default function AuthorPage() {
 
   return (
     <>
+      {/* Canonical Person + Organization entities live in the root layout's
+          @graph. This page is the canonical Person URL, so we reference the
+          shared @id rather than redeclaring the same sameAs/knowsAbout. */}
       <JsonLd
         data={{
           "@context": "https://schema.org",
           "@type": "ProfilePage",
-          mainEntity: {
-            "@type": "Person",
-            "@id": "https://roadmancycling.com/author/anthony-walsh#person",
-            name: "Anthony Walsh",
-            alternateName: "Anthony Walsh (Roadman Cycling)",
-            description:
-              "Cycling coach and founder of Roadman Cycling. Host of the Roadman Cycling Podcast, with over 1,400 conversations with World Tour coaches, sports scientists, and professional riders.",
-            image:
-              "https://roadmancycling.com/images/about/anthony-walsh-podcast.jpg",
-            jobTitle: "Cycling Coach & Podcast Host",
-            url: "https://roadmancycling.com/author/anthony-walsh",
-            sameAs: [
-              "https://youtube.com/@theroadmanpodcast",
-              "https://instagram.com/roadman.cycling",
-              "https://facebook.com/roadmancycling",
-              "https://x.com/Roadman_Podcast",
-              "https://tiktok.com/@roadmancyclingpodcast",
-              "https://open.spotify.com/show/2oCs3N4ahypwzzUrFqgUmC",
-              "https://podcasts.apple.com/us/podcast/the-roadman-cycling-podcast/id1224143549",
-            ],
-            knowsAbout: [
-              "Cycling coaching",
-              "Cycling training methodology",
-              "Polarised training",
-              "Functional Threshold Power (FTP)",
-              "Cycling nutrition",
-              "Strength training for cyclists",
-              "Triathlon bike coaching",
-              "Endurance sports podcasting",
-            ],
-            worksFor: {
-              "@type": "Organization",
-              name: "Roadman Cycling",
-              url: "https://roadmancycling.com",
-            },
-            founder: {
-              "@type": "Organization",
-              name: "Roadman Cycling",
-              url: "https://roadmancycling.com",
-            },
-          },
+          name: "Anthony Walsh — Cycling Coach & Podcast Host",
+          url: "https://roadmancycling.com/author/anthony-walsh",
+          mainEntity: { "@id": ENTITY_IDS.person },
+          isPartOf: { "@id": ENTITY_IDS.website },
+          about: { "@id": ENTITY_IDS.person },
           dateCreated: "2024-01-01",
           dateModified: new Date().toISOString().slice(0, 10),
         }}

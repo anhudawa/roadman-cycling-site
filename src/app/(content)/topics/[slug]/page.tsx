@@ -6,6 +6,7 @@ import remarkGfm from "remark-gfm";
 import { Header, Footer, Section, Container } from "@/components/layout";
 import { ScrollReveal, Card, Badge, Button } from "@/components/ui";
 import { JsonLd } from "@/components/seo/JsonLd";
+import { ENTITY_IDS } from "@/lib/brand-facts";
 import { Breadcrumbs } from "@/components/seo/Breadcrumbs";
 import { EmailCapture } from "@/components/features/conversion/EmailCapture";
 import { getTopicBySlug, getAllTopicSlugs, getTopicTitleBySlug } from "@/lib/topics";
@@ -64,11 +65,7 @@ export default async function TopicPage({
           name: topic.title,
           description: topic.description,
           url: `https://roadmancycling.com/topics/${slug}`,
-          isPartOf: {
-            "@type": "WebSite",
-            name: "Roadman Cycling",
-            url: "https://roadmancycling.com",
-          },
+          isPartOf: { "@id": ENTITY_IDS.website },
           // hasPart uses WebPage stubs rather than full BlogPosting nodes —
           // shallow BlogPosting references without image/datePublished/author/
           // publisher fail schema validation. The full BlogPosting schema is

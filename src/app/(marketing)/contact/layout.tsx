@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { JsonLd } from "@/components/seo/JsonLd";
+import { ENTITY_IDS } from "@/lib/brand-facts";
 
 export const metadata: Metadata = {
   title: "Contact — Roadman Cycling",
@@ -33,12 +34,7 @@ export default function ContactLayout({
           description:
             "Get in touch with the Roadman Cycling team. Sponsorship, press, partnerships, podcast guest suggestions, or general enquiries.",
           url: "https://roadmancycling.com/contact",
-          mainEntity: {
-            "@type": "Organization",
-            name: "Roadman Cycling",
-            url: "https://roadmancycling.com",
-            email: "hello@roadmancycling.com",
-          },
+          mainEntity: { "@id": ENTITY_IDS.organization },
           contactPoint: {
             "@type": "ContactPoint",
             email: "hello@roadmancycling.com",

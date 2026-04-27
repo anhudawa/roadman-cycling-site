@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Footer, Header } from "@/components/layout";
 import { JsonLd } from "@/components/seo/JsonLd";
+import { ENTITY_IDS } from "@/lib/brand-facts";
 import { AskRoadmanClient } from "@/components/features/ask/AskRoadmanClient";
 import { getToolResultBySlug } from "@/lib/tool-results/store";
 import { isToolSlug } from "@/lib/tool-results/types";
@@ -79,11 +80,7 @@ export default async function AskPage({
           url: "https://roadmancycling.com/ask",
           applicationCategory: "HealthApplication",
           isAccessibleForFree: true,
-          publisher: {
-            "@type": "Organization",
-            name: "Roadman Cycling",
-            url: "https://roadmancycling.com",
-          },
+          publisher: { "@id": ENTITY_IDS.organization },
         }}
       />
       <style

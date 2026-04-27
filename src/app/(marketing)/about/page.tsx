@@ -4,6 +4,7 @@ import Link from "next/link";
 import { Header, Footer, Section, Container } from "@/components/layout";
 import { Button, Card, ScrollReveal, ParallaxImage } from "@/components/ui";
 import { JsonLd } from "@/components/seo/JsonLd";
+import { ENTITY_IDS } from "@/lib/brand-facts";
 
 export const metadata: Metadata = {
   title: "About — Anthony Walsh & Roadman Cycling",
@@ -62,51 +63,19 @@ export default function AboutPage() {
           eligibility by linking the same-name entity across Roadman's podcast
           feeds, YouTube, and social platforms. Kept consistent with the founder
           Person inside Organization JsonLd emitted in JsonLd.tsx. */}
+      {/* Canonical Person + Organization entities are emitted once in the
+          root layout's @graph (see components/seo/JsonLd.tsx). This page is
+          a ProfilePage about Anthony — reference the canonical Person by
+          @id rather than redeclaring it. */}
       <JsonLd
         data={{
           "@context": "https://schema.org",
-          "@type": ["Person", "ProfilePage"],
-          name: "Anthony Walsh",
-          alternateName: "Anthony Walsh (Roadman Cycling)",
-          mainEntity: {
-            "@type": "Person",
-            name: "Anthony Walsh",
-          },
-          description:
-            "Cycling coach and founder of Roadman Cycling. Host of the Roadman Cycling Podcast, with over 1,400 conversations with World Tour coaches, sports scientists, and professional riders — including Prof. Stephen Seiler, Dan Lorang, Greg LeMond, and Lachlan Morton.",
-          image: "https://roadmancycling.com/images/about/anthony-walsh-podcast.jpg",
-          jobTitle: "Cycling Coach & Podcast Host",
+          "@type": "ProfilePage",
+          name: "About Anthony Walsh — Roadman Cycling",
           url: "https://roadmancycling.com/about",
-          sameAs: [
-            "https://youtube.com/@theroadmanpodcast",
-            "https://instagram.com/roadman.cycling",
-            "https://facebook.com/roadmancycling",
-            "https://x.com/Roadman_Podcast",
-            "https://tiktok.com/@roadmancyclingpodcast",
-            "https://open.spotify.com/show/2oCs3N4ahypwzzUrFqgUmC",
-            "https://podcasts.apple.com/us/podcast/the-roadman-cycling-podcast/id1224143549",
-          ],
-          knowsAbout: [
-            "Cycling coaching",
-            "Cycling training methodology",
-            "Polarised training",
-            "Functional Threshold Power (FTP)",
-            "Cycling nutrition",
-            "Strength training for cyclists",
-            "Triathlon bike coaching",
-            "Endurance sports podcasting",
-          ],
-          worksFor: {
-            "@type": "Organization",
-            name: "Roadman Cycling",
-            url: "https://roadmancycling.com",
-          },
-          founder: {
-            "@type": "Organization",
-            name: "Roadman Cycling",
-            url: "https://roadmancycling.com",
-          },
-          mainEntityOfPage: "https://roadmancycling.com/about",
+          mainEntity: { "@id": ENTITY_IDS.person },
+          isPartOf: { "@id": ENTITY_IDS.website },
+          about: { "@id": ENTITY_IDS.organization },
         }}
       />
 

@@ -10,7 +10,7 @@ import { diagnosticSubmissions } from "@/lib/db/schema";
 import { JsonLd, FAQPageJsonLd } from "@/components/seo/JsonLd";
 import { DiagnosticFlow } from "@/components/features/diagnostic/DiagnosticFlow";
 import { MetaPixel } from "@/components/features/diagnostic/MetaPixel";
-import { BRAND_STATS, FOUNDER } from "@/lib/brand-facts";
+import { BRAND_STATS, ENTITY_IDS, FOUNDER } from "@/lib/brand-facts";
 import { getTestimonialsByName } from "@/lib/testimonials";
 import { FaqAccordion } from "./_components/FaqAccordion";
 import { StickyMobileCta } from "./_components/StickyMobileCta";
@@ -419,16 +419,8 @@ export default async function PlateauPage() {
           description:
             "A 12-question interactive diagnostic for cyclists over 35 whose FTP has stalled. Returns one of four personalised plateau profiles.",
           url: "https://roadmancycling.com/plateau",
-          isPartOf: {
-            "@type": "WebSite",
-            name: "Roadman Cycling",
-            url: "https://roadmancycling.com",
-          },
-          publisher: {
-            "@type": "Organization",
-            name: "Roadman Cycling",
-            url: "https://roadmancycling.com",
-          },
+          isPartOf: { "@id": ENTITY_IDS.website },
+          publisher: { "@id": ENTITY_IDS.organization },
         }}
       />
       <FAQPageJsonLd

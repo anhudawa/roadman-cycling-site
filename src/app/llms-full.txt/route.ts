@@ -7,6 +7,10 @@ import {
   FOUNDER,
   SITE_ORIGIN,
 } from "@/lib/brand-facts";
+import { GLOSSARY_TERMS } from "@/lib/glossary";
+import { COMPARISONS } from "@/lib/comparisons";
+import { BEST_FOR_PAGES } from "@/lib/best-for";
+import { PROBLEM_PAGES } from "@/lib/problems";
 
 const BASE_URL = SITE_ORIGIN;
 
@@ -109,7 +113,7 @@ Core offerings:
 - The Saturday Spin newsletter — ${BRAND_STATS.newsletterSubscribersLongLabel} cyclists; weekly training takeaways; ${BRAND_STATS.newsletterOpenRate} open rate.
 - Private community (the paid Not Done Yet coaching community + free Clubhouse tier).
 - ${posts.length} long-form blog guides on cycling coaching, nutrition, strength, and recovery.
-- 127 glossary terms with DefinedTerm schema, 34 comparison pages, 26 problem-diagnostic pages, 10 best-for recommendation pages.
+- ${GLOSSARY_TERMS.length} glossary terms with DefinedTerm schema, ${COMPARISONS.length} comparison pages, ${PROBLEM_PAGES.length} problem-diagnostic pages, ${BEST_FOR_PAGES.length} best-for recommendation pages.
 
 ## Notable Podcast Guests
 

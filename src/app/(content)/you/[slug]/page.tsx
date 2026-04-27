@@ -5,6 +5,7 @@ import { notFound } from "next/navigation";
 import { Header, Footer, Section, Container } from "@/components/layout";
 import { Button, Badge, ScrollReveal } from "@/components/ui";
 import { JsonLd } from "@/components/seo/JsonLd";
+import { ENTITY_IDS } from "@/lib/brand-facts";
 import { EmailCapture } from "@/components/features/conversion/EmailCapture";
 import { PlateauDiagnostic } from "@/components/features/persona/PlateauDiagnostic";
 import { EventDiagnostic } from "@/components/features/persona/EventDiagnostic";
@@ -83,11 +84,7 @@ export default async function PersonaPage({
           name: persona.metaTitle,
           description: persona.metaDescription,
           url: `https://roadmancycling.com/you/${slug}`,
-          isPartOf: {
-            "@type": "WebSite",
-            name: "Roadman Cycling",
-            url: "https://roadmancycling.com",
-          },
+          isPartOf: { "@id": ENTITY_IDS.website },
           speakable: {
             "@type": "SpeakableSpecification",
             cssSelector: ["h1", ".persona-subhead"],

@@ -3,6 +3,7 @@ import Link from "next/link";
 import { Header, Footer, Section, Container } from "@/components/layout";
 import { Button, Card, ScrollReveal, GradientText } from "@/components/ui";
 import { JsonLd } from "@/components/seo/JsonLd";
+import { ENTITY_IDS } from "@/lib/brand-facts";
 import { FAQSchema } from "@/components/seo/FAQSchema";
 
 export const metadata: Metadata = {
@@ -182,17 +183,7 @@ export default function TriathlonCoachingPage() {
           description:
             "Specialist online bike coaching for triathletes. Bike-leg power, aero endurance, brick sessions, pacing, and fuelling — periodised to protect your run. Built for 70.3 and Ironman age-groupers.",
           serviceType: "Triathlon Bike Coaching",
-          provider: {
-            "@type": "Person",
-            name: "Anthony Walsh",
-            jobTitle: "Head Coach & Founder",
-            url: "https://roadmancycling.com",
-            worksFor: {
-              "@type": "Organization",
-              name: "Roadman Cycling",
-              url: "https://roadmancycling.com",
-            },
-          },
+          provider: { "@id": ENTITY_IDS.person },
           areaServed: [
             { "@type": "Country", name: "Ireland" },
             { "@type": "Country", name: "United Kingdom" },
@@ -232,20 +223,12 @@ export default function TriathlonCoachingPage() {
           name: "Triathlon Bike Coaching Programme",
           description:
             "Structured online coaching programme for triathletes focused on the bike leg. Periodised over race-specific build cycles with weekly 1:1 coaching, personalised TrainingPeaks plans, brick workouts, and race-day pacing protocols.",
-          provider: {
-            "@type": "Organization",
-            name: "Roadman Cycling",
-            sameAs: "https://roadmancycling.com",
-          },
+          provider: { "@id": ENTITY_IDS.organization },
           hasCourseInstance: {
             "@type": "CourseInstance",
             courseMode: "Online",
             courseWorkload: "PT10H",
-            instructor: {
-              "@type": "Person",
-              name: "Anthony Walsh",
-              jobTitle: "Cycling Coach & Founder, Roadman Cycling",
-            },
+            instructor: { "@id": ENTITY_IDS.person },
           },
           offers: {
             "@type": "Offer",

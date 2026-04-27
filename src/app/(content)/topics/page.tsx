@@ -3,6 +3,7 @@ import Link from "next/link";
 import { Header, Footer, Section, Container } from "@/components/layout";
 import { ScrollReveal, Card, Badge } from "@/components/ui";
 import { JsonLd } from "@/components/seo/JsonLd";
+import { ENTITY_IDS } from "@/lib/brand-facts";
 import { getAllTopics } from "@/lib/topics";
 
 export const metadata: Metadata = {
@@ -34,11 +35,7 @@ export default function TopicsPage() {
           description:
             "In-depth cycling topic hubs covering training, nutrition, recovery, and more",
           url: "https://roadmancycling.com/topics",
-          isPartOf: {
-            "@type": "WebSite",
-            name: "Roadman Cycling",
-            url: "https://roadmancycling.com",
-          },
+          isPartOf: { "@id": ENTITY_IDS.website },
         }}
       />
       <JsonLd

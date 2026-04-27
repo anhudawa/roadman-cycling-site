@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Header, Footer } from "@/components/layout";
 import { JsonLd } from "@/components/seo/JsonLd";
+import { ENTITY_IDS } from "@/lib/brand-facts";
 import { RACES } from "@/data/races";
 import { RaceGrid } from "./RaceGrid";
 
@@ -28,11 +29,7 @@ export default function RacesPage() {
     description:
       "Race guides for 20+ major cycling sportives and gran fondos worldwide.",
     url: "https://roadmancycling.com/races",
-    publisher: {
-      "@type": "Organization",
-      name: "Roadman Cycling",
-      url: "https://roadmancycling.com",
-    },
+    publisher: { "@id": ENTITY_IDS.organization },
     numberOfItems: RACES.length,
     itemListElement: RACES.map((race, i) => ({
       "@type": "ListItem",

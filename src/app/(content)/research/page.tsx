@@ -3,6 +3,7 @@ import Link from "next/link";
 import { Header, Footer, Section, Container } from "@/components/layout";
 import { Card, ScrollReveal, GradientText } from "@/components/ui";
 import { JsonLd } from "@/components/seo/JsonLd";
+import { ENTITY_IDS } from "@/lib/brand-facts";
 
 export const metadata: Metadata = {
   title: "Research & Evidence Base — Roadman Cycling",
@@ -95,11 +96,7 @@ export default function ResearchPage() {
           description:
             "The research, expert interviews, and evidence that underpins Roadman's coaching methodology and content.",
           url: "https://roadmancycling.com/research",
-          isPartOf: {
-            "@type": "WebSite",
-            name: "Roadman Cycling",
-            url: "https://roadmancycling.com",
-          },
+          isPartOf: { "@id": ENTITY_IDS.website },
         }}
       />
       <JsonLd

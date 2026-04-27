@@ -4,6 +4,7 @@ import { Header, Footer, Section, Container } from "@/components/layout";
 import { Button, Card, ScrollReveal, GradientText, AnimatedCounter } from "@/components/ui";
 import { FloatingParticles } from "@/components/ui/FloatingParticles";
 import { JsonLd } from "@/components/seo/JsonLd";
+import { ENTITY_IDS } from "@/lib/brand-facts";
 import Link from "next/link";
 
 const brandPartners = [
@@ -272,18 +273,11 @@ export default function PartnersPage() {
           description:
             "Media kit and partnership opportunities for brands looking to reach serious cyclists through podcast, newsletter, community, and custom content.",
           url: "https://roadmancycling.com/partners",
-          publisher: {
-            "@type": "Organization",
-            name: "Roadman Cycling",
-            url: "https://roadmancycling.com",
-          },
+          publisher: { "@id": ENTITY_IDS.organization },
           mainEntity: {
             "@type": "Service",
             name: "Roadman Cycling Sponsorship & Advertising",
-            provider: {
-              "@type": "Organization",
-              name: "Roadman Cycling",
-            },
+            provider: { "@id": ENTITY_IDS.organization },
             serviceType: "Advertising",
             description:
               "Podcast sponsorship, newsletter advertising, community integration, and custom content partnerships for cycling and endurance brands.",

@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Header, Footer, Section, Container } from "@/components/layout";
 import { ScrollReveal } from "@/components/ui";
 import { JsonLd } from "@/components/seo/JsonLd";
+import { ENTITY_IDS } from "@/lib/brand-facts";
 import { getAllGuests } from "@/lib/guests";
 import { GuestGrid } from "@/components/features/guests/GuestGrid";
 
@@ -44,11 +45,7 @@ export default function GuestsPage() {
           description:
             "Every guest who has appeared on The Roadman Cycling Podcast",
           url: "https://roadmancycling.com/guests",
-          isPartOf: {
-            "@type": "WebSite",
-            name: "Roadman Cycling",
-            url: "https://roadmancycling.com",
-          },
+          isPartOf: { "@id": ENTITY_IDS.website },
         }}
       />
       <JsonLd
