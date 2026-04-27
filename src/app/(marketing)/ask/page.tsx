@@ -152,9 +152,9 @@ export default async function AskPage({
           </div>
         ) : null}
 
-        {/* Chat — flex-1 fills remaining viewport height on mobile; capped at 72vh on desktop */}
-        <div className="max-w-5xl w-full mx-auto px-0 md:px-6 flex-1 flex flex-col min-h-0 md:flex-none md:block">
-          <div className="bg-charcoal md:bg-white/[0.01] md:rounded-xl md:my-6 md:border md:border-white/10 flex-1 flex flex-col overflow-hidden min-h-0 md:flex-none md:h-[72vh]">
+        {/* Chat — flex-1 fills remaining viewport height on every breakpoint; max-h caps it at 72vh on tall desktops */}
+        <div className="max-w-5xl w-full mx-auto px-0 md:px-6 flex-1 flex flex-col min-h-0">
+          <div className="bg-charcoal md:bg-white/[0.01] md:rounded-xl md:my-6 md:border md:border-white/10 flex-1 flex flex-col overflow-hidden min-h-0 md:max-h-[72vh]">
             <AskRoadmanClient
               seed={
                 seed
