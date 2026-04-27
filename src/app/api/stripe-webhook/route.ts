@@ -12,8 +12,8 @@ import { dispatchStripeEvent } from "@/lib/stripe/dispatch";
  */
 
 export async function POST(request: Request): Promise<Response> {
-  const stripeKey = process.env.STRIPE_SECRET_KEY;
-  const webhookSecret = process.env.STRIPE_WEBHOOK_SECRET;
+  const stripeKey = process.env.STRIPE_SECRET_KEY?.trim();
+  const webhookSecret = process.env.STRIPE_WEBHOOK_SECRET?.trim();
   if (!stripeKey || !webhookSecret) {
     console.error(
       "[stripe-webhook] missing STRIPE_SECRET_KEY or STRIPE_WEBHOOK_SECRET",

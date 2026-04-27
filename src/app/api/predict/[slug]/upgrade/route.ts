@@ -83,7 +83,7 @@ export async function POST(request: Request, ctx: RouteContext) {
     );
   }
 
-  const STRIPE_SECRET_KEY = process.env.STRIPE_SECRET_KEY;
+  const STRIPE_SECRET_KEY = process.env.STRIPE_SECRET_KEY?.trim();
   if (!STRIPE_SECRET_KEY) {
     return NextResponse.json({ error: "Stripe not configured." }, { status: 500 });
   }
@@ -120,37 +120,53 @@ export async function POST(request: Request, ctx: RouteContext) {
   void markPredictionPaid; // keep public surface stable; webhook flips is_paid=true
 
   const baseUrl = new URL(request.url).origin;
-  const session = await stripe.checkout.sessions.create({
-    mode: "payment",
-    payment_method_types: ["card"],
-    customer_email: email,
-    line_items: product.stripePriceId
-      ? [{ price: product.stripePriceId, quantity: 1 }]
-      : [
-          {
-            quantity: 1,
-            price_data: {
-              currency: product.currency,
-              unit_amount: product.priceCents,
-              product_data: {
-                name: product.name,
-                description: product.description,
+  let session: Stripe.Checkout.Session;
+  try {
+    session = await stripe.checkout.sessions.create({
+      mode: "payment",
+      payment_method_types: ["card"],
+      customer_email: email,
+      line_items: product.stripePriceId
+        ? [{ price: product.stripePriceId.trim(), quantity: 1 }]
+        : [
+            {
+              quantity: 1,
+              price_data: {
+                currency: product.currency,
+                unit_amount: product.priceCents,
+                product_data: {
+                  name: product.name,
+                  description: product.description,
+                },
               },
             },
-          },
-        ],
-    metadata: {
-      type: "paid_report",
-      order_id: String(order.id),
-      paid_report_id: String(paidReport.id),
-      product_slug: product.slug,
-      prediction_slug: prediction.slug,
-      prediction_id: String(prediction.id),
-      rider_profile_id: String(profile.id),
-    },
-    success_url: `${baseUrl}/predict/${prediction.slug}/success?session_id={CHECKOUT_SESSION_ID}`,
-    cancel_url: `${baseUrl}/predict/${prediction.slug}`,
-  });
+          ],
+      metadata: {
+        type: "paid_report",
+        order_id: String(order.id),
+        paid_report_id: String(paidReport.id),
+        product_slug: product.slug,
+        prediction_slug: prediction.slug,
+        prediction_id: String(prediction.id),
+        rider_profile_id: String(profile.id),
+      },
+      success_url: `${baseUrl}/predict/${prediction.slug}/success?session_id={CHECKOUT_SESSION_ID}`,
+      cancel_url: `${baseUrl}/predict/${prediction.slug}`,
+    });
+  } catch (err) {
+    const message = err instanceof Error ? err.message : "Stripe checkout failed";
+    await logCrmSync({
+      email,
+      target: "stripe",
+      operation: "create_checkout_session",
+      payload: { productSlug: product.slug, orderId: order.id, predictionSlug: slug },
+      status: "failed",
+      error: message.slice(0, 255),
+      relatedTable: "orders",
+      relatedId: order.id,
+    }).catch(() => {});
+    return NextResponse.json({ error: "Could not start checkout." }, { status: 502 });
+  }
 
   if (!session.id || !session.url) {
     await logCrmSync({
