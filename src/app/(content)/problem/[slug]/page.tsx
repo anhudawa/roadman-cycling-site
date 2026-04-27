@@ -1,10 +1,39 @@
 import type { Metadata } from "next";
-import Link from "next/link";
 import { notFound } from "next/navigation";
 import { Header, Footer, Section, Container } from "@/components/layout";
-import { Card, ScrollReveal, Badge, Button } from "@/components/ui";
 import { JsonLd } from "@/components/seo/JsonLd";
+import { SourceMethodology } from "@/components/features/aeo/SourceMethodology";
+import { AskRoadmanCTA } from "@/components/features/aeo/AskRoadmanCTA";
 import { getProblemBySlug, getAllProblemSlugs } from "@/lib/problems";
+import { queryContentGraph } from "@/lib/content-graph";
+import {
+  DiagnosisTemplate,
+  type DiagnosisCause,
+  type DiagnosisFix,
+} from "@/components/templates";
+
+/**
+ * Build a short, extractable answer from the structured problem-page
+ * data. The page already declares the most-likely cause (causes[0]) and
+ * the canonical fix (solutions[0]) — combining them produces a 1-2
+ * sentence direct answer that AI crawlers can lift verbatim without
+ * having to read the whole page.
+ */
+function buildProblemShortAnswer(p: {
+  problem: string;
+  causes: string[];
+  solutions: { title: string; description: string }[];
+}): string {
+  const cause = p.causes[0];
+  const fix = p.solutions[0];
+  if (cause && fix) {
+    return `Most often, this is because ${cause.charAt(0).toLowerCase() + cause.slice(1)}. The fix: ${fix.title.toLowerCase()} — ${fix.description.toLowerCase()}.`;
+  }
+  if (fix) {
+    return `${fix.title}: ${fix.description}`;
+  }
+  return p.problem;
+}
 
 export function generateStaticParams() {
   return getAllProblemSlugs().map((slug) => ({ slug }));
@@ -35,6 +64,24 @@ export default async function ProblemPageRoute({
   const page = getProblemBySlug(slug);
   if (!page) notFound();
 
+  const shortAnswer = buildProblemShortAnswer(page);
+  const graph = queryContentGraph({ pillar: page.pillar, limit: 2 });
+  const sourceEpisodes = graph.episodes.slice(0, 2).map((ep) => ({
+    title: ep.title,
+    href: `/podcast/${ep.slug}`,
+  }));
+  const sourceArticles = graph.articles.slice(0, 2).map((a) => ({
+    title: a.title,
+    href: `/blog/${a.slug}`,
+  }));
+
+  const causes: DiagnosisCause[] = page.causes.map((c) => ({ body: c }));
+  const fixes: DiagnosisFix[] = page.solutions.map((s) => ({
+    title: s.title,
+    description: s.description,
+    href: s.href,
+  }));
+
   return (
     <>
       <JsonLd
@@ -46,7 +93,27 @@ export default async function ProblemPageRoute({
           url: `https://roadmancycling.com/problem/${slug}`,
           speakable: {
             "@type": "SpeakableSpecification",
-            cssSelector: ["h1", ".problem-description"],
+            cssSelector: ["h1", ".short-answer", ".problem-description"],
+          },
+        }}
+      />
+      {/* QAPage schema — flags this template to crawlers as a structured
+          question/answer pair. Helps AI engines like Perplexity and ChatGPT
+          treat the page as a citation-worthy answer rather than an article. */}
+      <JsonLd
+        data={{
+          "@context": "https://schema.org",
+          "@type": "QAPage",
+          mainEntity: {
+            "@type": "Question",
+            name: page.title,
+            text: page.problem,
+            answerCount: 1,
+            acceptedAnswer: {
+              "@type": "Answer",
+              text: shortAnswer,
+              url: `https://roadmancycling.com/problem/${slug}`,
+            },
           },
         }}
       />
@@ -63,93 +130,41 @@ export default async function ProblemPageRoute({
 
       <Header />
 
-      <main id="main-content">
-        <Section background="deep-purple" grain className="pt-32 pb-14">
+      <DiagnosisTemplate
+        title={page.title}
+        pillar={page.pillar}
+        problem={page.problem}
+        shortAnswer={shortAnswer}
+        causes={causes}
+        fixes={fixes}
+        tool={
+          page.toolHref
+            ? { href: page.toolHref, label: page.toolLabel || "Try the free tool" }
+            : undefined
+        }
+        source={`problem-${slug}`}
+      />
+
+      {(sourceEpisodes.length > 0 || sourceArticles.length > 0) && (
+        <Section background="charcoal" className="!py-12 border-t border-white/5">
           <Container width="narrow">
-            <ScrollReveal direction="up" eager>
-              <Badge pillar={page.pillar} size="md" />
-              <h1
-                className="font-heading text-off-white mt-4 mb-6"
-                style={{ fontSize: "var(--text-hero)" }}
-              >
-                {page.title.toUpperCase()}
-              </h1>
-              <p className="problem-description text-foreground-muted text-lg leading-relaxed max-w-2xl">
-                {page.problem}
-              </p>
-            </ScrollReveal>
+            <SourceMethodology
+              methodology={`This page draws on ${page.pillar} content from the Roadman Cycling Podcast and our written guides. The diagnosis pattern reflects what we see most often in the coaching community — adjusted for serious amateur and masters cyclists.`}
+              episodes={sourceEpisodes}
+              articles={sourceArticles}
+            />
           </Container>
         </Section>
+      )}
 
-        <Section background="charcoal">
-          <Container width="narrow">
-            <ScrollReveal direction="up" className="mb-8">
-              <h2 className="font-heading text-off-white" style={{ fontSize: "var(--text-section)" }}>
-                WHY THIS HAPPENS
-              </h2>
-            </ScrollReveal>
-            <div className="space-y-3">
-              {page.causes.map((cause, i) => (
-                <ScrollReveal key={cause} direction="up" delay={i * 0.04}>
-                  <div className="flex items-start gap-3 rounded-lg border border-white/10 bg-white/[0.03] p-4">
-                    <span className="text-coral mt-0.5 shrink-0">&#10007;</span>
-                    <p className="text-foreground-muted text-sm leading-relaxed">{cause}</p>
-                  </div>
-                </ScrollReveal>
-              ))}
-            </div>
-          </Container>
-        </Section>
-
-        <Section background="deep-purple" grain>
-          <Container width="narrow">
-            <ScrollReveal direction="up" className="mb-8">
-              <h2 className="font-heading text-off-white" style={{ fontSize: "var(--text-section)" }}>
-                WHAT TO DO ABOUT IT
-              </h2>
-            </ScrollReveal>
-            <div className="space-y-4">
-              {page.solutions.map((sol, i) => (
-                <ScrollReveal key={sol.title} direction="up" delay={i * 0.05}>
-                  <Link href={sol.href} className="block group">
-                    <Card className="p-6 transition-all group-hover:border-coral/30">
-                      <div className="flex items-start gap-4">
-                        <div className="shrink-0 w-8 h-8 rounded-full bg-coral/20 flex items-center justify-center">
-                          <span className="font-heading text-coral text-sm">{i + 1}</span>
-                        </div>
-                        <div>
-                          <h3 className="font-heading text-off-white text-base group-hover:text-coral transition-colors mb-1">
-                            {sol.title}
-                          </h3>
-                          <p className="text-foreground-muted text-sm">{sol.description}</p>
-                        </div>
-                      </div>
-                    </Card>
-                  </Link>
-                </ScrollReveal>
-              ))}
-            </div>
-          </Container>
-        </Section>
-
-        {page.toolHref && (
-          <Section background="charcoal" className="section-glow-coral !py-14">
-            <Container width="narrow" className="text-center">
-              <ScrollReveal direction="up">
-                <p className="font-heading text-coral text-xs tracking-widest mb-3">FREE DIAGNOSTIC</p>
-                <Button href={page.toolHref} size="lg" dataTrack={`problem_${slug}_tool`}>
-                  {page.toolLabel || "Try the free tool"}
-                </Button>
-                <div className="mt-4">
-                  <Link href="/apply" className="text-coral hover:text-coral/80 text-sm font-heading tracking-wider transition-colors" data-track={`problem_${slug}_apply`}>
-                    Or apply for coaching →
-                  </Link>
-                </div>
-              </ScrollReveal>
-            </Container>
-          </Section>
-        )}
-      </main>
+      <Section background="deep-purple" grain className="!py-12">
+        <Container width="narrow">
+          <AskRoadmanCTA
+            topic={page.title}
+            source={`problem-${slug}`}
+          />
+        </Container>
+      </Section>
 
       <Footer />
     </>

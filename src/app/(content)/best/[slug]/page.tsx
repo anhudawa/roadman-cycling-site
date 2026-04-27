@@ -4,7 +4,25 @@ import { notFound } from "next/navigation";
 import { Header, Footer, Section, Container } from "@/components/layout";
 import { Card, ScrollReveal, Badge, Button } from "@/components/ui";
 import { JsonLd } from "@/components/seo/JsonLd";
+import { ShortAnswer } from "@/components/features/aeo/ShortAnswer";
+import { SourceMethodology } from "@/components/features/aeo/SourceMethodology";
+import { AskRoadmanCTA } from "@/components/features/aeo/AskRoadmanCTA";
 import { getBestForBySlug, getAllBestForSlugs } from "@/lib/best-for";
+import { queryContentGraph } from "@/lib/content-graph";
+
+/**
+ * Synthesise an extractable answer for "best X for Y" queries from the
+ * top pick. Rather than the long marketing intro, AI crawlers and voice
+ * search land on a single sentence: who the top pick is and who it suits.
+ */
+function buildBestShortAnswer(p: {
+  title: string;
+  picks: { name: string; verdict: string; bestFor: string }[];
+}): string {
+  const top = p.picks[0];
+  if (!top) return p.title;
+  return `Top pick: ${top.name}. ${top.verdict}. Best for: ${top.bestFor}.`;
+}
 
 export function generateStaticParams() {
   return getAllBestForSlugs().map((slug) => ({ slug }));
@@ -35,6 +53,17 @@ export default async function BestForPage({
   const page = getBestForBySlug(slug);
   if (!page) notFound();
 
+  const shortAnswer = buildBestShortAnswer(page);
+  const graph = queryContentGraph({ pillar: page.pillar, limit: 2 });
+  const sourceEpisodes = graph.episodes.slice(0, 2).map((ep) => ({
+    title: ep.title,
+    href: `/podcast/${ep.slug}`,
+  }));
+  const sourceArticles = graph.articles.slice(0, 2).map((a) => ({
+    title: a.title,
+    href: `/blog/${a.slug}`,
+  }));
+
   return (
     <>
       <JsonLd
@@ -62,7 +91,7 @@ export default async function BestForPage({
           url: `https://roadmancycling.com/best/${slug}`,
           speakable: {
             "@type": "SpeakableSpecification",
-            cssSelector: ["h1", ".best-intro"],
+            cssSelector: ["h1", ".short-answer", ".best-intro"],
           },
         }}
       />
@@ -104,9 +133,17 @@ export default async function BestForPage({
               >
                 {page.title.toUpperCase()}
               </h1>
-              <p className="best-intro text-foreground-muted text-lg leading-relaxed max-w-2xl">
+              <p className="best-intro text-foreground-muted text-lg leading-relaxed max-w-2xl mb-6">
                 {page.intro}
               </p>
+              {/* Answer-first block — surfaces the top pick + who it suits
+                  in one sentence so AI crawlers and voice search lift the
+                  recommendation, not the marketing intro. */}
+              <ShortAnswer
+                text={shortAnswer}
+                pillar={page.pillar}
+                heading="THE SHORT ANSWER"
+              />
             </ScrollReveal>
           </Container>
         </Section>
@@ -167,6 +204,25 @@ export default async function BestForPage({
               <Button href="/apply" size="lg" dataTrack={`best_${slug}_apply`}>
                 Apply for Coaching
               </Button>
+            </ScrollReveal>
+          </Container>
+        </Section>
+
+        {/* Source + methodology + Ask handoff */}
+        <Section background="deep-purple" grain className="!py-14">
+          <Container width="narrow">
+            <ScrollReveal direction="up">
+              <SourceMethodology
+                methodology={`Picks are ranked by fit-to-rider, not affiliate revenue. We weight personalisation, time-efficiency, and accountability for amateur cyclists. Where reasonable people disagree, we say so.`}
+                episodes={sourceEpisodes}
+                articles={sourceArticles}
+              />
+              <AskRoadmanCTA
+                topic={page.title}
+                question={`I'm trying to choose for: "${page.title}". What fits my situation best?`}
+                source={`best-${slug}`}
+                heading="STILL DECIDING?"
+              />
             </ScrollReveal>
           </Container>
         </Section>
