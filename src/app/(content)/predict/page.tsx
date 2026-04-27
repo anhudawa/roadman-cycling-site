@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { Header, Footer, Section, Container } from "@/components/layout";
@@ -81,6 +81,7 @@ const DIFFICULTY_OPTIONS = [
 
 export default function PredictPage() {
   const router = useRouter();
+  const setupRef = useRef<HTMLDivElement | null>(null);
 
   // Read deep-link course slug from the URL after mount. We avoid
   // useSearchParams() so the page can stay statically prerendered
@@ -128,6 +129,12 @@ export default function PredictPage() {
 
   const [submitting, setSubmitting] = useState(false);
   const [submitError, setSubmitError] = useState<string | null>(null);
+
+  function scrollToSetup() {
+    window.setTimeout(() => {
+      setupRef.current?.scrollIntoView({ behavior: "smooth", block: "start" });
+    }, 80);
+  }
 
   useEffect(() => {
     setCoursesLoading(true);
@@ -551,6 +558,7 @@ export default function PredictPage() {
                         if (matchedCourse && race.predictor_slug) {
                           setGpx(null);
                           setCourseSlug(race.predictor_slug);
+                          scrollToSetup();
                         }
                       }}
                     />
@@ -582,7 +590,10 @@ export default function PredictPage() {
                 value={gpx}
                 onChange={(g) => {
                   setGpx(g);
-                  if (g) setCourseSlug("");
+                  if (g) {
+                    setCourseSlug("");
+                    scrollToSetup();
+                  }
                 }}
               />
             </div>
@@ -622,6 +633,7 @@ export default function PredictPage() {
         )}
 
         {/* STEP 02 — RIDER SETUP */}
+        <div ref={setupRef} className="scroll-mt-24" />
         <Section background="charcoal" className="!py-10 md:!py-12">
           <Container>
             <div className="grid lg:grid-cols-[1.4fr_1fr] gap-6">

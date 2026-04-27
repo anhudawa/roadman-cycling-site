@@ -42,16 +42,18 @@ export function PositionPicker({ value, onChange }: PositionPickerProps) {
             }`}
             aria-pressed={selected}
           >
-            <PositionGlyph position={p.value} active={selected} />
             <p
-              className={`mt-2 font-heading text-sm uppercase tracking-wide ${
+              className={`font-heading text-base uppercase tracking-wide ${
                 selected ? "text-coral" : "text-off-white"
               }`}
             >
               {p.label}
             </p>
+            <p className="mt-1 text-xs leading-snug text-foreground-muted">
+              {p.desc}
+            </p>
             <p
-              className="text-[0.62rem] mt-0.5 text-foreground-subtle"
+              className="text-[0.62rem] mt-2 text-foreground-subtle"
               style={{ fontFamily: "var(--font-jetbrains-mono)" }}
             >
               CdA {p.cda}
@@ -60,65 +62,5 @@ export function PositionPicker({ value, onChange }: PositionPickerProps) {
         );
       })}
     </div>
-  );
-}
-
-function PositionGlyph({
-  position,
-  active,
-}: {
-  position: Position;
-  active: boolean;
-}) {
-  const stroke = active ? "#F16363" : "rgba(250,250,250,0.7)";
-  // Stylised side-view of rider in each position. 40x20 viewbox.
-  const paths: Record<Position, React.ReactElement> = {
-    tt_bars: (
-      <>
-        <path d="M2 18 L20 11 L26 6 L34 6" stroke={stroke} strokeWidth={1.6} fill="none" strokeLinecap="round" strokeLinejoin="round" />
-        <circle cx="6" cy="18" r="3" stroke={stroke} strokeWidth={1.4} fill="none" />
-        <circle cx="34" cy="18" r="3" stroke={stroke} strokeWidth={1.4} fill="none" />
-      </>
-    ),
-    aero_drops: (
-      <>
-        <path d="M2 18 L18 12 L24 8 L32 9" stroke={stroke} strokeWidth={1.6} fill="none" strokeLinecap="round" strokeLinejoin="round" />
-        <circle cx="6" cy="18" r="3" stroke={stroke} strokeWidth={1.4} fill="none" />
-        <circle cx="32" cy="18" r="3" stroke={stroke} strokeWidth={1.4} fill="none" />
-      </>
-    ),
-    aero_hoods: (
-      <>
-        <path d="M2 18 L18 12 L24 9 L30 7" stroke={stroke} strokeWidth={1.6} fill="none" strokeLinecap="round" strokeLinejoin="round" />
-        <circle cx="6" cy="18" r="3" stroke={stroke} strokeWidth={1.4} fill="none" />
-        <circle cx="30" cy="18" r="3" stroke={stroke} strokeWidth={1.4} fill="none" />
-      </>
-    ),
-    endurance_hoods: (
-      <>
-        <path d="M2 18 L16 12 L22 8 L28 5" stroke={stroke} strokeWidth={1.6} fill="none" strokeLinecap="round" strokeLinejoin="round" />
-        <circle cx="6" cy="18" r="3" stroke={stroke} strokeWidth={1.4} fill="none" />
-        <circle cx="28" cy="18" r="3" stroke={stroke} strokeWidth={1.4} fill="none" />
-      </>
-    ),
-    standard_hoods: (
-      <>
-        <path d="M2 18 L16 11 L22 6 L28 4" stroke={stroke} strokeWidth={1.6} fill="none" strokeLinecap="round" strokeLinejoin="round" />
-        <circle cx="6" cy="18" r="3" stroke={stroke} strokeWidth={1.4} fill="none" />
-        <circle cx="28" cy="18" r="3" stroke={stroke} strokeWidth={1.4} fill="none" />
-      </>
-    ),
-    climbing: (
-      <>
-        <path d="M2 18 L14 10 L20 4 L26 2" stroke={stroke} strokeWidth={1.6} fill="none" strokeLinecap="round" strokeLinejoin="round" />
-        <circle cx="6" cy="18" r="3" stroke={stroke} strokeWidth={1.4} fill="none" />
-        <circle cx="26" cy="18" r="3" stroke={stroke} strokeWidth={1.4} fill="none" />
-      </>
-    ),
-  };
-  return (
-    <svg viewBox="0 0 40 22" width="100%" height="32" aria-hidden="true">
-      {paths[position]}
-    </svg>
   );
 }
