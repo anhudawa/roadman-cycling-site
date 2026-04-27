@@ -9,7 +9,10 @@
 import type Stripe from "stripe";
 import { getResendClient } from "@/lib/integrations/resend";
 
-const ADMIN_EMAIL = "admin@roadmancycling.com";
+const ADMIN_EMAIL =
+  process.env.PAID_REPORT_ADMIN_EMAIL ??
+  process.env.ADMIN_SALES_EMAIL ??
+  "anthony@roadmancycling.com";
 const FROM = "Roadman Cycling <notifications@roadmancycling.com>";
 
 function formatAmount(cents: number | null | undefined): string {
@@ -73,6 +76,67 @@ export async function sendStripeSaleNotification(
     });
   } catch (err) {
     console.error("[stripe] failed to send S&C admin email:", err);
+  }
+}
+
+/**
+ * Paid Race Report sale — confirms money has changed hands. The customer
+ * delivery email is sent separately by the report generator; this is the
+ * owner/operator alert so Anthony knows a report sold.
+ */
+export async function notifyPaidReportSale(args: {
+  email: string;
+  productSlug: string;
+  orderId: number;
+  paidReportId: number;
+  amountCents: number | null | undefined;
+  predictionSlug?: string | null;
+}): Promise<void> {
+  const amount = formatAmount(args.amountCents);
+  console.log(
+    `[stripe] paid report sale: ${args.productSlug} ${args.email} ${amount}`,
+  );
+
+  const resend = getResendClient();
+  if (!resend) {
+    console.warn(
+      `[stripe] Resend not configured — paid report sale email skipped for report ${args.paidReportId}`,
+    );
+    return;
+  }
+
+  try {
+    await resend.emails.send({
+      from: FROM,
+      to: ADMIN_EMAIL,
+      replyTo: "anthony@roadmancycling.com",
+      subject: `New Race Report Sale — ${amount}`,
+      html: `
+        <div style="font-family: system-ui, sans-serif; max-width: 560px;">
+          <h2 style="color: #4C1273; margin-bottom: 4px;">New Race Report sale</h2>
+          <p style="color: #545559; margin-top: 0;">
+            Stripe checkout completed. The report generator should now create and email the customer's private report link.
+          </p>
+          <table style="border-collapse: collapse; width: 100%; margin-top: 12px;">
+            <tr><td style="padding: 6px 0; color: #888; width: 120px;">Customer</td><td style="padding: 6px 0; font-weight: 600;">${args.email}</td></tr>
+            <tr><td style="padding: 6px 0; color: #888;">Amount</td><td style="padding: 6px 0; font-weight: 600;">${amount}</td></tr>
+            <tr><td style="padding: 6px 0; color: #888;">Product</td><td style="padding: 6px 0; font-weight: 600;">${args.productSlug}</td></tr>
+            <tr><td style="padding: 6px 0; color: #888;">Order ID</td><td style="padding: 6px 0; font-weight: 600;">${args.orderId}</td></tr>
+            <tr><td style="padding: 6px 0; color: #888;">Report ID</td><td style="padding: 6px 0; font-weight: 600;">${args.paidReportId}</td></tr>
+            ${
+              args.predictionSlug
+                ? `<tr><td style="padding: 6px 0; color: #888;">Prediction</td><td style="padding: 6px 0; font-weight: 600;"><a href="https://roadmancycling.com/predict/${args.predictionSlug}">${args.predictionSlug}</a></td></tr>`
+                : ""
+            }
+          </table>
+          <p style="margin-top: 18px; color: #545559; font-size: 13px;">
+            Admin: open <strong>/admin/paid-reports</strong> to check delivery status.
+          </p>
+        </div>
+      `,
+    });
+  } catch (err) {
+    console.error("[stripe] failed to send paid report sale email:", err);
   }
 }
 
