@@ -8,6 +8,7 @@ import { getAllComparisonSlugs } from "@/lib/comparisons";
 import { getAllBestForSlugs } from "@/lib/best-for";
 import { getAllProblemSlugs } from "@/lib/problems";
 import { getAllPlanCombinations, getAllEventSlugs } from "@/lib/training-plans";
+import { getAllEventGuideSlugs } from "@/lib/event-guides";
 import { RACES } from "@/data/races";
 
 const BASE_URL = "https://roadmancycling.com";
@@ -187,7 +188,14 @@ function buildPlanSitemap(): MetadataRoute.Sitemap {
     priority: 0.75,
   }));
 
-  return [...eventHubs, ...phasePlanPages];
+  const eventGuides = getAllEventGuideSlugs().map((slug) => ({
+    url: `${BASE_URL}/event/${slug}`,
+    lastModified: new Date(),
+    changeFrequency: "weekly" as const,
+    priority: 0.8,
+  }));
+
+  return [...eventHubs, ...phasePlanPages, ...eventGuides];
 }
 
 function buildTopicAndMoreSitemap(): MetadataRoute.Sitemap {
