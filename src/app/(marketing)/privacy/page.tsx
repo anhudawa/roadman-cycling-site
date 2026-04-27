@@ -3,7 +3,7 @@ import Link from "next/link";
 import { Header, Footer, Section, Container } from "@/components/layout";
 
 export const metadata: Metadata = {
-  title: "Privacy Policy — Roadman Cycling",
+  title: "Privacy Policy",
   description:
     "How Roadman Cycling collects, uses, and protects your personal data. GDPR-compliant privacy policy covering newsletter signups, analytics, and third-party services.",
   alternates: {

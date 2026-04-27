@@ -27,7 +27,7 @@ export async function generateMetadata({
     : `${guest.name} — ${guest.episodeCount} episode${guest.episodeCount > 1 ? "s" : ""} on The Roadman Cycling Podcast. Expert cycling knowledge from world-class guests.`;
 
   return {
-    title: `${guest.name} — Roadman Cycling Podcast Guest`,
+    title: `${guest.name} — Podcast Guest`,
     description,
     alternates: {
       canonical: `https://roadmancycling.com/guests/${slug}`,

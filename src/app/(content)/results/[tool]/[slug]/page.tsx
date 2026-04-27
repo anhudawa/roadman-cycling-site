@@ -42,9 +42,9 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const { tool, slug } = await params;
   const result = await loadResult(tool, slug);
-  if (!result) return { title: "Your result — Roadman Cycling", robots: { index: false, follow: false } };
+  if (!result) return { title: "Your result", robots: { index: false, follow: false } };
   return {
-    title: `Your result — Roadman Cycling`,
+    title: `Your result`,
     description: result.summary,
     robots: { index: false, follow: false },
   };

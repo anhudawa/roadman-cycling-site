@@ -11,7 +11,7 @@ interface PageProps {
 }
 
 export const metadata = {
-  title: "Race Report — payment received | Roadman Cycling",
+  title: "Race Report — payment received",
 };
 
 export default async function SuccessPage({ params }: PageProps) {

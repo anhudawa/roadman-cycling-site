@@ -3,7 +3,7 @@ import Link from "next/link";
 import { Header, Footer, Section, Container } from "@/components/layout";
 
 export const metadata: Metadata = {
-  title: "Terms of Service — Roadman Cycling",
+  title: "Terms of Service",
   description:
     "Terms and conditions for using Roadman Cycling's website, newsletter, podcast, and paid community. Governed by the laws of Ireland.",
   alternates: {

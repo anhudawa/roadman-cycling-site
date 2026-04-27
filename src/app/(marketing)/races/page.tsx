@@ -6,7 +6,7 @@ import { RACES } from "@/data/races";
 import { RaceGrid } from "./RaceGrid";
 
 export const metadata: Metadata = {
-  title: "Major Cycling Sportives & Gran Fondos — Race Guides | Roadman Cycling",
+  title: "Major Cycling Sportives & Gran Fondos — Race Guides",
   description:
     "Complete race guides for 20+ major cycling sportives and gran fondos — Étape du Tour, La Marmotte, Fred Whitton, Ötztaler Radmarathon, Maratona dles Dolomites and more. Distances, elevation, finish times and training advice from Roadman Cycling.",
   alternates: { canonical: "https://roadmancycling.com/races" },

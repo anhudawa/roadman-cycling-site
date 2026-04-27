@@ -34,7 +34,7 @@ import { StickyMobileCta } from "./_components/StickyMobileCta";
  */
 
 export const metadata: Metadata = {
-  title: "The Masters Plateau Diagnostic — Roadman Cycling",
+  title: "The Masters Plateau Diagnostic",
   description:
     "Twelve questions. Four minutes. A specific answer for why your FTP has stalled — and the exact fix, written for riders who train 6 to 12 hours a week around a real life.",
   alternates: {
