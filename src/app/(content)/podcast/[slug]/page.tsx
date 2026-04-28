@@ -29,6 +29,8 @@ import { getTopicBySlug } from "@/lib/topics";
 import { slugifyGuestName } from "@/lib/guests";
 import { getGuestProfileOverride } from "@/lib/guests/profiles";
 import { EVENTS } from "@/lib/training-plans";
+import { getRelevantTools } from "@/lib/podcast-tools";
+import { RelevantTools } from "@/components/features/podcast/RelevantTools";
 import Link from "next/link";
 import { mdxComponents } from "@/components/mdx/MDXComponents";
 
@@ -140,6 +142,12 @@ export default async function EpisodePage({
     return haystack.includes(e.name.toLowerCase()) || haystack.includes(e.shortName.toLowerCase());
   }).slice(0, 3);
 
+  // Score on-site calculators against the episode and surface up to 3.
+  // Same pattern as mentionedEvents — pillar match plus keyword hits in
+  // title/description/keywords/transcript. Tool pages emit WebApplication
+  // schema, so we mirror that @type when adding them to `mentions` below.
+  const relevantTools = getRelevantTools(episode, 3);
+
   // Segment the transcript once on the server so the schema and the
   // TranscriptViewer render from the same segmentation — keeping schema
   // `hasPart` anchors in sync with the actual `<h3 id>`s in the DOM.
@@ -160,7 +168,10 @@ export default async function EpisodePage({
           name: episode.title,
           url: episodeUrl,
           description: episode.seoDescription,
-          episodeNumber: episode.episodeNumber,
+          // episodeNumber intentionally omitted: clip uploads inflate the
+          // numeric ID up to ~2,536 across ~310 long-form episodes, so
+          // emitting it as a series ordinal would mislead crawlers about
+          // the show's true episode count and an episode's position in it.
           datePublished: episode.publishDate,
           timeRequired: (() => {
             const parts = episode.duration.split(":").map(Number);
@@ -267,6 +278,17 @@ export default async function EpisodePage({
                 "@id": `${SITE_ORIGIN}/blog/${post.slug}#article`,
                 name: post.title,
                 url: `${SITE_ORIGIN}/blog/${post.slug}`,
+              });
+            }
+            // Surface relevant calculators / tools as mentions so the
+            // episode's knowledge graph connects to the supporting tool
+            // pages. @type matches what each tool page already emits.
+            for (const tool of relevantTools) {
+              mentions.push({
+                "@type": tool.schemaType,
+                name: tool.title,
+                url: `${SITE_ORIGIN}${tool.href}`,
+                description: tool.blurb,
               });
             }
             return mentions.length > 0 ? { mentions } : {};
@@ -822,6 +844,8 @@ export default async function EpisodePage({
                 </div>
               </div>
             )}
+
+            <RelevantTools tools={relevantTools} className="mt-10" />
 
             {/* Related Episodes (podcast-only, server-rendered for SEO) */}
             <RelatedEpisodes

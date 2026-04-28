@@ -137,7 +137,10 @@ function ResultMeta({ item }: { item: SearchableItem }) {
   const parts: string[] = [];
 
   if (item.type === "podcast") {
-    if (item.episodeNumber) parts.push(`Ep. ${item.episodeNumber}`);
+    // episodeNumber intentionally suppressed: clip uploads inflate the
+    // numeric ID across ~310 long-form episodes, so showing "Ep. 2,536"
+    // in search results misleads users. Guest, duration, and publish
+    // date are sufficient identification.
     if (item.guest) parts.push(`with ${item.guest}`);
     if (item.duration) parts.push(item.duration);
     if (item.publishDate) parts.push(formatDate(item.publishDate));
