@@ -1,0 +1,53 @@
+{
+  "name": "@roadman/mcp-server",
+  "version": "0.1.0",
+  "description": "Read-only MCP server exposing the public Roadman Cycling content APIs (search, articles, episodes, guests, glossary, calculator tools).",
+  "keywords": [
+    "mcp",
+    "model-context-protocol",
+    "roadman",
+    "cycling",
+    "claude"
+  ],
+  "homepage": "https://roadmancycling.com",
+  "bugs": {
+    "url": "https://github.com/roadmancycling/roadman-cycling-site/issues",
+    "email": "anthony@roadmancycling.com"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/roadmancycling/roadman-cycling-site.git",
+    "directory": "mcp-server"
+  },
+  "license": "MIT",
+  "author": "Anthony Walsh <anthony@roadmancycling.com>",
+  "type": "module",
+  "main": "dist/index.js",
+  "bin": {
+    "roadman-mcp-server": "dist/index.js"
+  },
+  "files": [
+    "dist",
+    "README.md",
+    "LICENSE"
+  ],
+  "engines": {
+    "node": ">=18"
+  },
+  "scripts": {
+    "build": "tsc",
+    "prepare": "npm run build",
+    "start": "node dist/index.js",
+    "dev": "tsx src/index.ts",
+    "smoke": "node scripts/smoke.mjs"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.29.0",
+    "zod": "^4.3.6"
+  },
+  "devDependencies": {
+    "@types/node": "^20.0.0",
+    "tsx": "^4.21.0",
+    "typescript": "^5.0.0"
+  }
+}
