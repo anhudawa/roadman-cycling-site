@@ -166,6 +166,13 @@ const nextConfig: NextConfig = {
       { source: "/fuelling", destination: "/tools/fuelling", permanent: true },
       { source: "/fueling", destination: "/tools/fuelling", permanent: true },
       { source: "/energy-availability", destination: "/tools/energy-availability", permanent: true },
+      // Stale CTA defaults that pointed at /tools/<slug> for content that
+      // actually lives under /compare or /diagnostic. The CTA components
+      // have been updated, but the redirect catches any cached HTML,
+      // outbound emails, or external backlinks still pointing at the
+      // old paths.
+      { source: "/tools/coach-or-app", destination: "/compare/coach-vs-app", permanent: true },
+      { source: "/tools/plateau-diagnostic", destination: "/plateau", permanent: true },
       { source: "/press", destination: "/about/press", permanent: true },
       { source: "/media", destination: "/about/press", permanent: true },
       { source: "/sponsors", destination: "/partners", permanent: true },

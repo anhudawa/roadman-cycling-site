@@ -14,7 +14,7 @@ export interface PlateauCTAProps {
 
 export function PlateauCTA({
   source = "plateau-cta",
-  href = "/tools/plateau-diagnostic",
+  href = "/plateau",
   className = "",
 }: PlateauCTAProps) {
   return (

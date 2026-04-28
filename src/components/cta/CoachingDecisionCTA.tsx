@@ -15,7 +15,7 @@ export interface CoachingDecisionCTAProps {
 
 export function CoachingDecisionCTA({
   source = "coaching-decision-cta",
-  href = "/tools/coach-or-app",
+  href = "/compare/coach-vs-app",
   className = "",
 }: CoachingDecisionCTAProps) {
   return (
