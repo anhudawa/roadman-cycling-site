@@ -7,6 +7,7 @@ import { Header, Footer, Section, Container } from "@/components/layout";
 import { Button } from "@/components/ui";
 import { ZoneChart } from "@/components/features/tools/ZoneChart";
 import { SaveToolResultForm } from "@/components/features/tools/SaveToolResultForm";
+import { ToolLanding } from "@/components/features/tools/ToolLanding";
 import { TOOL_EVENTS, trackTool } from "@/lib/analytics/tool-events";
 
 interface Zone {
@@ -416,6 +417,8 @@ export default function FTPZonesPage() {
             </div>
           </Container>
         </Section>
+
+        <ToolLanding slug="ftp-zones" />
       </main>
       <Footer />
     </>

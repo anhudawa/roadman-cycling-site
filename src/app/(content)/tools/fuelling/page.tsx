@@ -6,6 +6,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { Header, Footer, Section, Container } from "@/components/layout";
 import { Button } from "@/components/ui";
 import { SaveToolResultForm } from "@/components/features/tools/SaveToolResultForm";
+import { ToolLanding } from "@/components/features/tools/ToolLanding";
 import { TOOL_EVENTS, trackTool } from "@/lib/analytics/tool-events";
 
 type GutTraining = "none" | "some" | "trained";
@@ -815,6 +816,8 @@ export default function FuellingPage() {
             </motion.div>
           </Container>
         </Section>
+
+        <ToolLanding slug="fuelling" />
       </main>
       <Footer />
     </>

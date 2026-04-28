@@ -6,6 +6,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { Header, Footer, Section, Container } from "@/components/layout";
 import { Button } from "@/components/ui";
 import { ReportRequestForm } from "@/components/features/tools/ReportRequestForm";
+import { ToolLanding } from "@/components/features/tools/ToolLanding";
 
 type Surface = "smooth" | "rough" | "gravel";
 type TubeType = "clincher" | "tubeless" | "tubular";
@@ -498,6 +499,8 @@ export default function TyrePressurePage() {
             </motion.div>
           </Container>
         </Section>
+
+        <ToolLanding slug="tyre-pressure" />
       </main>
       <Footer />
     </>
