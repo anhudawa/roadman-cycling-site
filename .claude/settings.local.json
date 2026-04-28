@@ -1,0 +1,9 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(open:*)",
+      "Bash(git ls-tree:*)",
+      "Bash(openssl rand:*)"
+    ]
+  }
+}

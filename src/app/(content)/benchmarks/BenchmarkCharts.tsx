@@ -365,20 +365,19 @@ export function TrainingHoursChart() {
             />
             <Tooltip
               cursor={{ fill: "rgba(241,99,99,0.08)" }}
-              content={({
-                active,
-                payload,
-              }: {
-                active?: boolean;
-                payload?: Array<{
-                  payload: {
-                    name: string;
-                    fullLow: number;
-                    fullHigh: number;
-                    typicalAbs: number;
-                  };
-                }>;
-              }) => {
+              // eslint-disable-next-line @typescript-eslint/no-explicit-any
+              content={(props: any) => {
+                const { active, payload } = props as {
+                  active?: boolean;
+                  payload?: Array<{
+                    payload: {
+                      name: string;
+                      fullLow: number;
+                      fullHigh: number;
+                      typicalAbs: number;
+                    };
+                  }>;
+                };
                 if (!active || !payload || !payload.length) return null;
                 const p = payload[0].payload;
                 return (
@@ -468,15 +467,13 @@ export function ImprovementChart() {
             />
             <Tooltip
               cursor={{ stroke: "rgba(241,99,99,0.2)" }}
-              content={({
-                active,
-                payload,
-                label,
-              }: {
-                active?: boolean;
-                payload?: Array<{ payload: typeof data[0] }>;
-                label?: string;
-              }) => {
+              // eslint-disable-next-line @typescript-eslint/no-explicit-any
+              content={(props: any) => {
+                const { active, payload, label } = props as {
+                  active?: boolean;
+                  payload?: Array<{ payload: typeof data[0] }>;
+                  label?: string;
+                };
                 if (!active || !payload || !payload.length) return null;
                 const p = payload[0].payload;
                 return (
