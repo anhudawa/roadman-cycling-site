@@ -328,8 +328,12 @@ const nextConfig: NextConfig = {
   },
   async headers() {
     return [
+      // Default security headers — applied to every path EXCEPT the public
+      // /embed routes, which need to be framable on third-party sites.
+      // path-to-regexp v8 supports regex constraints via :name(pattern); the
+      // negative lookahead skips anything beginning with `embed/` or `embed`.
       {
-        source: "/(.*)",
+        source: "/:path((?!embed(?:/|$)).*)",
         headers: [
           {
             key: "X-Frame-Options",
@@ -346,6 +350,51 @@ const nextConfig: NextConfig = {
           {
             key: "Strict-Transport-Security",
             value: "max-age=63072000; includeSubDomains; preload",
+          },
+        ],
+      },
+      // Embed routes: framable from any origin. Keep nosniff/HSTS but
+      // omit X-Frame-Options and use CSP frame-ancestors to advertise intent
+      // to modern browsers. Covers /embed and /embed/<anything>.
+      {
+        source: "/embed/:path*",
+        headers: [
+          {
+            key: "X-Content-Type-Options",
+            value: "nosniff",
+          },
+          {
+            key: "Referrer-Policy",
+            value: "strict-origin-when-cross-origin",
+          },
+          {
+            key: "Strict-Transport-Security",
+            value: "max-age=63072000; includeSubDomains; preload",
+          },
+          {
+            key: "Content-Security-Policy",
+            value: "frame-ancestors *",
+          },
+        ],
+      },
+      {
+        source: "/embed",
+        headers: [
+          {
+            key: "X-Content-Type-Options",
+            value: "nosniff",
+          },
+          {
+            key: "Referrer-Policy",
+            value: "strict-origin-when-cross-origin",
+          },
+          {
+            key: "Strict-Transport-Security",
+            value: "max-age=63072000; includeSubDomains; preload",
+          },
+          {
+            key: "Content-Security-Policy",
+            value: "frame-ancestors *",
           },
         ],
       },
