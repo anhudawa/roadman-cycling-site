@@ -434,7 +434,9 @@ export default function HomePage() {
 
         {/* Featured content — passes homepage authority to high-value
             blog cluster articles. These links are the single strongest
-            internal-link equity transfer on the site. */}
+            internal-link equity transfer on the site. The Masters Cycling
+            Training Report is the flagship long-form asset and gets a
+            full-width feature treatment above the supporting guides. */}
         <Section background="charcoal">
           <Container>
             <ScrollReveal direction="up" className="text-center mb-10">
@@ -445,6 +447,31 @@ export default function HomePage() {
                 FEATURED GUIDES
               </h2>
             </ScrollReveal>
+
+            <div className="max-w-4xl mx-auto mb-4">
+              <ScrollReveal direction="up">
+                <Link
+                  href="/blog/masters-cycling-training-report-2026"
+                  className="block p-6 md:p-8 rounded-xl bg-gradient-to-br from-coral/15 via-deep-purple/30 to-charcoal hover:from-coral/25 border border-coral/30 hover:border-coral/60 transition-all group"
+                >
+                  <p className="font-heading text-coral text-[11px] tracking-[0.3em] mb-3">
+                    THE FLAGSHIP REPORT
+                  </p>
+                  <p className="font-heading text-2xl md:text-3xl text-off-white group-hover:text-coral transition-colors tracking-wide mb-3">
+                    THE MASTERS CYCLING TRAINING REPORT 2026
+                  </p>
+                  <p className="text-foreground-muted leading-relaxed mb-4 max-w-2xl">
+                    The definitive guide to training as a masters cyclist. What
+                    actually declines after 40, what doesn&apos;t, and the
+                    training that holds up. 10 sections, 40+ citations, 5 named
+                    case studies, and a 12-week block you can run on Monday.
+                  </p>
+                  <span className="text-coral text-sm font-body font-medium">
+                    Read the full report &rarr;
+                  </span>
+                </Link>
+              </ScrollReveal>
+            </div>
 
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4 max-w-4xl mx-auto">
               {[
