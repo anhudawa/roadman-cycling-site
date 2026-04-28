@@ -173,6 +173,12 @@ const nextConfig: NextConfig = {
       // old paths.
       { source: "/tools/coach-or-app", destination: "/compare/coach-vs-app", permanent: true },
       { source: "/tools/plateau-diagnostic", destination: "/plateau", permanent: true },
+      // Old Beehiiv email links used a `-calculator` suffix that was
+      // never the real route. Catch them so opens from archived
+      // newsletters land on the live tool.
+      { source: "/tools/ftp-zones-calculator", destination: "/tools/ftp-zones", permanent: true },
+      { source: "/tools/race-weight-calculator", destination: "/tools/race-weight", permanent: true },
+      { source: "/tools/tyre-pressure-calculator", destination: "/tools/tyre-pressure", permanent: true },
       { source: "/press", destination: "/about/press", permanent: true },
       { source: "/media", destination: "/about/press", permanent: true },
       { source: "/sponsors", destination: "/partners", permanent: true },
