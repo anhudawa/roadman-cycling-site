@@ -50,16 +50,11 @@ export function RelatedEpisodes({
             "
             style={{ transitionDuration: "var(--duration-normal)" }}
           >
-            {/* Episode number strip */}
+            {/* Episode label strip */}
             <div className="px-5 pt-4 pb-0 flex items-center gap-2">
               <span className="text-[10px] uppercase tracking-widest font-heading text-foreground-subtle">
                 Episode
               </span>
-              {ep.episodeNumber && (
-                <span className="text-[10px] text-foreground-subtle">
-                  #{ep.episodeNumber}
-                </span>
-              )}
             </div>
 
             <div className="p-5 pt-3">

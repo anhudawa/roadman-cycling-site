@@ -91,7 +91,7 @@ export function PodcastHero({ episode, ctaHref, ctaLabel }: PodcastHeroProps) {
             className="block text-off-white/85 hover:text-off-white transition-colors"
           >
             <span className="block font-heading text-xs tracking-[0.25em] text-coral/90 mb-1">
-              {episode.episodeNumber ? `EP. ${episode.episodeNumber}` : "LATEST EPISODE"}
+              LATEST EPISODE
               <span className="text-off-white/40 mx-2">·</span>
               <span className="text-off-white/60 font-body tracking-normal normal-case">
                 {episode.duration}
@@ -116,7 +116,7 @@ export function PodcastHero({ episode, ctaHref, ctaLabel }: PodcastHeroProps) {
           disabled={!hasEpisode}
           className="inline-flex items-center justify-center gap-3 font-heading text-lg tracking-wider bg-coral hover:bg-coral-hover disabled:opacity-60 disabled:cursor-not-allowed text-off-white px-8 py-4 rounded-md transition-all shadow-[0_14px_44px_-10px_rgba(241,99,99,0.7)] hover:shadow-[0_18px_54px_-8px_rgba(241,99,99,0.85)] w-full max-w-[340px]"
           style={{ transitionDuration: "var(--duration-fast)" }}
-          aria-label={hasEpisode ? `Play episode ${episode.episodeNumber}` : "Listen to the podcast"}
+          aria-label={hasEpisode ? `Play latest episode: ${episode.title}` : "Listen to the podcast"}
         >
           <svg
             className="w-4 h-4"

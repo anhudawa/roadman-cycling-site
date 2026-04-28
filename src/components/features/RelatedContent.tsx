@@ -66,11 +66,6 @@ function RelatedCard({ item }: { item: ScoredContent }) {
         <span className="text-[10px] uppercase tracking-widest font-heading text-foreground-subtle">
           {item.type === "blog" ? "Article" : "Episode"}
         </span>
-        {item.type === "podcast" && item.episodeNumber && (
-          <span className="text-[10px] text-foreground-subtle">
-            #{item.episodeNumber}
-          </span>
-        )}
       </div>
 
       <div className="p-5 pt-3">
