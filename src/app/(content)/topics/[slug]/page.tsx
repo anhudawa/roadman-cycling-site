@@ -6,7 +6,7 @@ import remarkGfm from "remark-gfm";
 import { Header, Footer, Section, Container } from "@/components/layout";
 import { ScrollReveal, Card, Badge, Button, CitedClaimTable } from "@/components/ui";
 import { JsonLd } from "@/components/seo/JsonLd";
-import { ENTITY_IDS } from "@/lib/brand-facts";
+import { ENTITY_IDS, SITE_ORIGIN } from "@/lib/brand-facts";
 import { Breadcrumbs } from "@/components/seo/Breadcrumbs";
 import { EmailCapture } from "@/components/features/conversion/EmailCapture";
 import { ShortAnswer } from "@/components/features/aeo/ShortAnswer";
@@ -64,24 +64,56 @@ export default async function TopicPage({
       <JsonLd
         data={{
           "@context": "https://schema.org",
-          "@type": "CollectionPage",
-          name: topic.title,
-          description: topic.description,
-          url: `https://roadmancycling.com/topics/${slug}`,
-          isPartOf: { "@id": ENTITY_IDS.website },
-          // hasPart uses WebPage stubs rather than full BlogPosting nodes —
-          // shallow BlogPosting references without image/datePublished/author/
-          // publisher fail schema validation. The full BlogPosting schema is
-          // emitted on each individual /blog/<slug> page.
-          hasPart: topic.posts.slice(0, 20).map((post) => ({
-            "@type": "WebPage",
-            name: post.title,
-            url: `https://roadmancycling.com/blog/${post.slug}`,
-          })),
-          speakable: {
-            "@type": "SpeakableSpecification",
-            cssSelector: ["h1", ".short-answer", ".topic-description"],
-          },
+          "@graph": [
+            {
+              "@type": "CollectionPage",
+              "@id": `${SITE_ORIGIN}/topics/${slug}#topic`,
+              name: topic.title,
+              description: topic.description,
+              url: `${SITE_ORIGIN}/topics/${slug}`,
+              isPartOf: { "@id": ENTITY_IDS.website },
+              // mainEntity: the topical Thing the hub is about. Articles and
+              // episodes reference this @id from their `about` field so the
+              // topic resolves to one shared node across the site.
+              mainEntity: { "@id": `${SITE_ORIGIN}/topics/${slug}#thing` },
+              // hasPart references each member by the canonical @id its own
+              // page emits, so an article that appears on multiple hubs
+              // resolves to one BlogPosting node rather than several
+              // WebPage stubs. Members include both blog posts (capped to
+              // 20 to keep payload bounded) and podcast episodes (capped
+              // to 10) — the hub's complete content surface.
+              hasPart: [
+                ...topic.posts.slice(0, 20).map((post) => ({
+                  "@type": "BlogPosting",
+                  "@id": `${SITE_ORIGIN}/blog/${post.slug}#article`,
+                  name: post.title,
+                  url: `${SITE_ORIGIN}/blog/${post.slug}`,
+                })),
+                ...topic.episodes.slice(0, 10).map((ep) => ({
+                  "@type": "PodcastEpisode",
+                  "@id": `${SITE_ORIGIN}/podcast/${ep.slug}#episode`,
+                  name: ep.title,
+                  url: `${SITE_ORIGIN}/podcast/${ep.slug}`,
+                })),
+              ],
+              speakable: {
+                "@type": "SpeakableSpecification",
+                cssSelector: ["h1", ".short-answer", ".topic-description"],
+              },
+            },
+            // The Thing node the topic is fundamentally about. Co-located
+            // in the same @graph so a single fetch of the page resolves
+            // both the CollectionPage container and the Thing entity that
+            // articles/episodes reference from their `about` fields.
+            {
+              "@type": "Thing",
+              "@id": `${SITE_ORIGIN}/topics/${slug}#thing`,
+              name: topic.title,
+              description: topic.description,
+              url: `${SITE_ORIGIN}/topics/${slug}`,
+              sameAs: `${SITE_ORIGIN}/topics/${slug}`,
+            },
+          ],
         }}
       />
       <JsonLd

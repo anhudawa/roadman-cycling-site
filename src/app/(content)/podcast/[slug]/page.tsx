@@ -172,6 +172,18 @@ export default async function EpisodePage({
             ? `https://img.youtube.com/vi/${episode.youtubeId}/maxresdefault.jpg`
             : `${SITE_ORIGIN}/images/podcast-cover.jpg`,
           partOfSeries: { "@id": ENTITY_IDS.podcast },
+          // isPartOf: PodcastSeries (redundant with partOfSeries — schema.org
+          // recognises both, and some consumers favour one over the other)
+          // plus every topic hub the episode is tagged with, so the episode
+          // becomes a member of each hub's CollectionPage. Topic hubs emit a
+          // matching `@id` of `<origin>/topics/<slug>#topic` so these
+          // references resolve to the same node on the hub page.
+          isPartOf: [
+            { "@id": ENTITY_IDS.podcast },
+            ...resolvedTopicTags.map((t) => ({
+              "@id": `${SITE_ORIGIN}/topics/${t.slug}#topic`,
+            })),
+          ],
           author: { "@id": ENTITY_IDS.person },
           publisher: { "@id": ENTITY_IDS.organization },
           // AudioObject is the schema.org canonical for podcast audio —
@@ -218,12 +230,47 @@ export default async function EpisodePage({
             },
           }),
           ...(resolvedTopicTags.length > 0 && {
+            // about: each topic the episode is tagged with, referenced by
+            // the canonical Thing @id the topic hub page emits so all
+            // mentions of the topic across the site resolve to one node.
             about: resolvedTopicTags.map((t) => ({
               "@type": "Thing",
+              "@id": `${SITE_ORIGIN}/topics/${t.slug}#thing`,
               name: t.title,
               url: `${SITE_ORIGIN}/topics/${t.slug}`,
             })),
           }),
+          // mentions: the guest as a connected Person entity (in addition
+          // to the `actor` slot above, which is the schema.org-recommended
+          // role for a podcast episode but isn't always picked up as a
+          // graph relationship), plus any author-curated related blog
+          // posts. Both reference the canonical @ids on the target pages
+          // so the graph stays consolidated.
+          ...((() => {
+            const mentions: Array<Record<string, unknown>> = [];
+            if (episode.guest && guestSlug) {
+              mentions.push({
+                "@type": "Person",
+                "@id": `${SITE_ORIGIN}/guests/${guestSlug}#person`,
+                name: episode.guest,
+                url: `${SITE_ORIGIN}/guests/${guestSlug}`,
+                ...(episode.guestCredential && {
+                  description: episode.guestCredential,
+                }),
+              });
+            }
+            for (const postSlug of episode.relatedPosts ?? []) {
+              const post = getPostBySlug(postSlug);
+              if (!post) continue;
+              mentions.push({
+                "@type": "BlogPosting",
+                "@id": `${SITE_ORIGIN}/blog/${post.slug}#article`,
+                name: post.title,
+                url: `${SITE_ORIGIN}/blog/${post.slug}`,
+              });
+            }
+            return mentions.length > 0 ? { mentions } : {};
+          })()),
           ...(episode.keyTakeaways &&
             episode.keyTakeaways.length > 0 && {
               abstract: episode.keyTakeaways.join(" "),
