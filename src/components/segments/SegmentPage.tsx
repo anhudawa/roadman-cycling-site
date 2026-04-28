@@ -498,6 +498,46 @@ export function SegmentPage({ data }: Props) {
           </Container>
         </Section>
 
+        {/* Segment-specific resources — free tools, playlists, guides */}
+        {data.relatedResources && data.relatedResources.length > 0 && (
+          <Section background="charcoal">
+            <Container width="narrow">
+              <ScrollReveal direction="up" className="text-center mb-8">
+                <p className="text-coral font-heading text-xs tracking-widest mb-3">
+                  FREE COMPANIONS
+                </p>
+                <h2
+                  className="font-heading text-off-white mb-3"
+                  style={{ fontSize: "var(--text-section)" }}
+                >
+                  TOOLS &amp; READING FOR THIS SEGMENT
+                </h2>
+                <p className="text-foreground-muted max-w-xl mx-auto">
+                  Practical companions to the coaching — built around the same
+                  principles, free to use.
+                </p>
+              </ScrollReveal>
+
+              <div className="grid md:grid-cols-2 gap-3">
+                {data.relatedResources.map((r) => (
+                  <Link
+                    key={r.href}
+                    href={r.href}
+                    className="block p-5 rounded-lg bg-white/5 hover:bg-coral/10 border border-white/5 hover:border-coral/30 transition-all group"
+                  >
+                    <p className="font-heading text-sm text-off-white group-hover:text-coral transition-colors tracking-wide mb-2">
+                      {r.label.toUpperCase()}
+                    </p>
+                    <p className="text-xs text-foreground-subtle leading-relaxed">
+                      {r.description}
+                    </p>
+                  </Link>
+                ))}
+              </div>
+            </Container>
+          </Section>
+        )}
+
         {/* Cross-segment links */}
         <Section background="charcoal">
           <Container width="narrow">
