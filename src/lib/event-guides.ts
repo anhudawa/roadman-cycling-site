@@ -596,6 +596,519 @@ export const EVENT_GUIDES: EventGuide[] = [
       },
     ],
   },
+  {
+    slug: "maratona-dolomites-training-plan",
+    trainingEventSlug: "maratona-dles-dolomites",
+    raceSlug: "maratona-dles-dolomites",
+    pageTitle: "Maratona dles Dolomites Training Plan",
+    intent:
+      "Help ballot-lucky riders prepare for the Maratona dles Dolomites — 138km over 7 Dolomite passes with 4,230m of climbing on closed roads in early July.",
+    weatherConditions:
+      "Early July in Alta Badia starts cold (4-8°C) at the 06:30 mass start, climbs into the mid-20s in the valleys by mid-morning, and rarely gets above 18°C on the upper passes. Afternoon thunderstorms are a real risk above 2,000m — the Giau in particular has a reputation for hailing on a sunny day.",
+    terrainSummary:
+      "Seven Dolomite passes stitched together by short valley descents — Campolongo, Pordoi, Sella, Gardena, Giau, Falzarego, Valparola. The pacing problem is the route shape: the first three passes feel like a rolling warm-up, then Giau ambushes you four hours in.",
+    ftpRequirement: {
+      minimum: "3.0 W/kg",
+      competitive: "3.8 W/kg",
+      notes:
+        "The Maratona is climb-density limited. 3.0 W/kg with the right gearing finishes inside the cut-offs; 3.8+ W/kg lets you hold sub-threshold up Giau when the rest of the field is grinding into Z4. Above 4.2 W/kg, you're racing for the sub-7-hour group.",
+    },
+    enduranceDemands:
+      "10-12 hours/week peaking, with a long ride that has built up to 5 hours and includes at least three sustained climbs of 30+ minutes. Most of your training should be climbing-specific — 138km flat is a different event entirely.",
+    climbingNarrative:
+      "4,230m of climbing in 138km — that's 30m per kilometre, the densest climbing per km of any event in this cluster. The first three passes (Campolongo, Pordoi, Sella) come in 90 minutes and trick fresh legs into thinking it's a quick day. Then Gardena leads into the Giau — 9.9km at 9.3% on tired legs above 2,000m — and the day's real shape reveals itself.",
+    majorClimbs: [
+      {
+        name: "Passo Campolongo",
+        lengthKm: 5.5,
+        avgGradient: 7.0,
+        elevationGainM: 384,
+        positionInRide: "km 5",
+        notes:
+          "First climb out of the start. Steady opener — keep it deep Z2 even if the pack is launching. The day is long.",
+      },
+      {
+        name: "Passo Pordoi",
+        lengthKm: 9.4,
+        avgGradient: 6.8,
+        elevationGainM: 639,
+        positionInRide: "km 25",
+        notes:
+          "Switchback classic. 50-60 minutes of climbing — sit in a group at sub-threshold and let the kilometres pass.",
+      },
+      {
+        name: "Passo Sella",
+        lengthKm: 5.5,
+        avgGradient: 7.9,
+        elevationGainM: 434,
+        positionInRide: "km 50",
+        notes:
+          "Steeper than Pordoi but shorter. The third climb is where most riders quietly start eating the time bonuses they thought they had.",
+      },
+      {
+        name: "Passo Giau",
+        lengthKm: 9.8,
+        avgGradient: 9.3,
+        maxGradient: 14,
+        elevationGainM: 911,
+        positionInRide: "km 80",
+        notes:
+          "The crux of the day. 9% sustained on legs that have already done 2,500m of climbing. Pace it on watts, not feel — overcook the bottom and you grind the top in pieces.",
+      },
+      {
+        name: "Passo Falzarego",
+        lengthKm: 13.8,
+        avgGradient: 5.9,
+        elevationGainM: 814,
+        positionInRide: "km 110",
+        notes:
+          "Gentler gradient than Giau but it's the day's last long climb. The tunnel section near the top is cold and exposed — eat before, not on it.",
+      },
+    ],
+    finishTimes: [
+      {
+        level: "First-time finisher",
+        range: "9-12 hours",
+        fitnessProfile:
+          "FTP 2.8-3.2 W/kg, 8-10 hours/week, longest ride 5 hours including a 30+ minute climb.",
+      },
+      {
+        level: "Average enthusiast",
+        range: "7-9 hours",
+        fitnessProfile:
+          "FTP 3.2-3.7 W/kg, 10-12 hours/week, regular climbing rides, one event-specific 5-hour day per fortnight.",
+      },
+      {
+        level: "Strong amateur",
+        range: "5-7 hours",
+        fitnessProfile:
+          "FTP 3.7-4.3 W/kg, 12-15 hours/week, structured threshold work, comfortable above 2,000m.",
+      },
+      {
+        level: "Elite amateur",
+        range: "4-5 hours",
+        fitnessProfile:
+          "FTP 4.3+ W/kg, 14-18 hours/week, racing background, sub-threshold for 60+ minutes at altitude.",
+      },
+    ],
+    fuellingDeepDive:
+      "138km on the Maratona is six to nine hours for most riders — closer to a 200km day in calorie terms because of the climbing density. Target 90-110g carbs/hour: gels every 30 minutes plus a bar at the bottom of every climb. The Italian feed zones are exceptional — fresh bread, ham, fruit, espresso — but they're crowded; rely on your own bottles and gels for in-effort fuelling and treat the feed zones as top-up stops, not meal breaks. The Giau has no useful feed — come to its base with a full bottle, two gels in pockets, and a caffeine gel saved for the 2km mark. Dolomite UV at 2,000m burns faster than sea-level July; sunscreen at every aid station, full fingers + arm warmers stashed for the descents that fly straight back into shade.",
+    pacingDeepDive:
+      "Pace the Maratona backwards from Giau. Every watt you save in the first three passes is a watt you have on the climb that matters. Target 70-75% of FTP on Campolongo, Pordoi, and Sella — that's a heart-rate ceiling, not a feel. The descents off Pordoi and Gardena are technical and crowded; brake early, sit upright, and treat them as 20-minute fuelling windows. Hit the base of Giau with a full stomach and a clear head; settle into 75-80% of FTP for the bottom 4km, then ride the gradient — not the riders around you — for the steep middle. Once you're over Giau the day is yours, but Falzarego still has 800m of vertical, so eat on the descent and ride the last climb steady, not slow.",
+    detailedMistakes: [
+      {
+        mistake: "Racing the first three passes because they feel easy",
+        fix: "Campolongo, Pordoi, and Sella are the warm-up. Stay 5-8 bpm below your sportive threshold on every one of them. Riders who burn matches in the first 90 minutes are the ones grinding 6km/h up the Giau two hours later.",
+      },
+      {
+        mistake: "Treating the Giau like another climb",
+        fix: "The Giau is the race. Plan it like a 60-minute threshold test: full bottle at the base, two gels in your pockets, caffeine gel at the 2km marker, and a wattage ceiling you do not break regardless of who passes you. The summit is the win — pace to get there, not to outdrag your neighbour.",
+      },
+      {
+        mistake: "Underdressing for the descents",
+        fix: "The Pordoi and Falzarego descents drop 800-1,000m at speed. Even in mid-July, you'll be at 6-8°C in the wind. A gilet stashed in the jersey is non-negotiable; a rain cape on a thunderstormy year has saved more days than aero socks ever will.",
+      },
+    ],
+  },
+  {
+    slug: "unbound-gravel-training-plan",
+    trainingEventSlug: "unbound-gravel",
+    pageTitle: "Unbound Gravel 200 Training Plan",
+    intent:
+      "Help gravel riders prepare for Unbound Gravel 200 — 320km (200mi) across the Flint Hills of Kansas in June, with rocks that destroy tyres and 12-20 hours of self-supported riding.",
+    weatherConditions:
+      "Early June in Emporia ranges from 18°C at the 06:00 start to 32-35°C by mid-afternoon, with humidity that compounds the heat. There is almost no shade across the Flint Hills route. Mud years (2015, 2017, 2023) and dust years exist — the same race, very different days, and you don't know which you have until 50km in.",
+    terrainSummary:
+      "320km of unpaved Kansas backroads — packed dirt with embedded chert (flint) rocks that puncture inattentive tyres. Mostly rolling rather than mountainous; the climbing total is modest but the terrain never lets you settle into a rhythm. Two checkpoints with drop bags split the day into thirds.",
+    ftpRequirement: {
+      minimum: "2.6 W/kg",
+      competitive: "3.4 W/kg",
+      notes:
+        "Unbound is endurance-limited and tyre-limited before it's FTP-limited. 2.6 W/kg with ultra-trained pacing finishes inside the 21-hour cut-off; 3.4+ W/kg with disciplined fuelling lands you in the sub-12-hour group. Watts win less time at Unbound than smart tyres and a fed gut.",
+    },
+    enduranceDemands:
+      "12-15 hours/week peaking, with at least two back-to-back weekends of 7-8 hour rides paired with 4-hour days the next morning. You should have done one ride longer than 9 hours before race day, ideally on rough surface. Group-ride experience matters: drafting on Kansas dirt saves 20-25% of your output and is the difference between a 14-hour and a 17-hour finish.",
+    climbingNarrative:
+      "Around 2,800m of climbing across 320km — modest by sportive standards, brutal in context. The Flint Hills are a sequence of short, sharp rollers that never end; you stand, you sit, you stand again, every five minutes for 14 hours. There are no long climbs to settle into and no flat sections to recover on. The relentlessness is the climbing, not the elevation.",
+    majorClimbs: [
+      {
+        name: "Texaco Hill",
+        lengthKm: 1.2,
+        avgGradient: 6.5,
+        elevationGainM: 78,
+        positionInRide: "km 50",
+        notes:
+          "The early signature roller. Sets the tone — short, punchy, and there are 200 more of them coming.",
+      },
+      {
+        name: "Little Egypt",
+        lengthKm: 0.8,
+        avgGradient: 8.5,
+        maxGradient: 12,
+        elevationGainM: 68,
+        positionInRide: "varies",
+        notes:
+          "Iconic short steep with deep rocky tracks. Pick your line on the way up — wrong line is a hike-a-bike.",
+      },
+      {
+        name: "Cumulative Flint Hills rollers",
+        lengthKm: 1,
+        avgGradient: 5,
+        elevationGainM: 30,
+        positionInRide: "throughout",
+        notes:
+          "Most of the day's climbing is rollers under 2 minutes. None of them earn a name; together they're the day. Sit at endurance HR; do not stand and surge on every one.",
+      },
+    ],
+    finishTimes: [
+      {
+        level: "First-time finisher",
+        range: "16-20 hours",
+        fitnessProfile:
+          "FTP 2.4-2.8 W/kg, 8-10 hours/week, longest ride 7-8 hours, ultra-pacing experience preferred.",
+      },
+      {
+        level: "Average enthusiast",
+        range: "13-16 hours",
+        fitnessProfile:
+          "FTP 2.8-3.3 W/kg, 10-12 hours/week, multiple 8+ hour gravel rides in training.",
+      },
+      {
+        level: "Strong amateur",
+        range: "11-13 hours",
+        fitnessProfile:
+          "FTP 3.3-3.8 W/kg, 12-15 hours/week, gravel-specific terrain, structured tempo work.",
+      },
+      {
+        level: "Elite amateur",
+        range: "9-11 hours",
+        fitnessProfile:
+          "FTP 3.8+ W/kg, 14-18 hours/week, racing background, gut trained to 90g+ carbs/hour, comfortable in fast lead packs.",
+      },
+    ],
+    fuellingDeepDive:
+      "12-20 hours of riding with no aid stations between checkpoints makes Unbound a logistics problem first. Target 80-100g carbs/hour on the bike; eat additional solid food at each checkpoint (real food beats gels after hour 8). Drop bags at checkpoints 1 and 2 — pre-pack them with bottles, gels, bars, salt tabs, sunscreen, and a fresh kit option for the second half. The Texan rule applies: if you're not peeing every 2-3 hours, you're underfuelled or underhydrated, and either one ends your day. Sodium is the silent killer — Kansas heat sweats out 1,500-2,000mg/hour and you cannot replace that with gels alone. Salt tabs every hour, electrolyte mix in every bottle.",
+    pacingDeepDive:
+      "Unbound is an ultra with a drop bag. Pace at 55-60% of your 4-hour FTP as the all-day ceiling — you do not 'race' Unbound at amateur level, you sit on a controlled effort for 14 hours and let the terrain shape the day. The first 100km is where the front pack rides above your sustainable pace; let them go and ride your watts. Sit in groups whenever you can find them; the Flint Hills cross-tail-headwind sequence makes drafting more valuable here than at any pure road event. Each checkpoint is a 10-15 minute reset — refill bottles, re-grease the chain, swap drop bag, refill jersey, leave. Riders who sit down to chat at checkpoint 1 lose 30 minutes they never get back. The final 100km separates ultra-trained finishers from sportive riders who picked the wrong race.",
+    detailedMistakes: [
+      {
+        mistake: "Running tyres under 40mm",
+        fix: "42-45mm minimum, with reinforced sidewalls (Panaracer GravelKing SK+, Challenge Gravine Race, Rene Herse Stampede Pass). Tubeless mandatory, with 2-3 plug kits, CO2, and a spare tube. The Flint Hills shred light XC casings inside 50km — there is no recovering from a sliced sidewall at km 80.",
+      },
+      {
+        mistake: "Treating it like a long sportive",
+        fix: "Unbound is ultra territory. Train ultra hours, train your gut to 90g+ carbs/hour, and arrive having done one 9+ hour ride. A road sportive background without ultra pacing is the most common reason for a checkpoint-2 DNF.",
+      },
+      {
+        mistake: "Standing and surging on every roller",
+        fix: "There are 200 rollers and you cannot punch every one. Sit, hold endurance heart rate, and let the gradient do its thing. Surging on rollers is the hidden energy leak that costs people the second half.",
+      },
+    ],
+  },
+  {
+    slug: "leadville-100-training-plan",
+    trainingEventSlug: "leadville-100",
+    pageTitle: "Leadville Trail 100 MTB Training Plan",
+    intent:
+      "Help mountain bike riders prepare for the Leadville Trail 100 — 160km (100mi) starting at 3,100m altitude in the Colorado Rockies, with a sub-12-hour finisher buckle as the goal.",
+    weatherConditions:
+      "Mid-August in Leadville starts near freezing at the 06:30 start (often 0-4°C at 3,100m altitude) and peaks at 25-28°C in the valleys by mid-afternoon, with afternoon thunderstorms a near-certainty above the treeline. The temperature swing across one ride is bigger than at any sea-level event — kit choice is a real problem, not a stylistic one.",
+    terrainSummary:
+      "160km out-and-back through the Colorado Rockies on dirt roads, fire roads, and some technical singletrack. The crux is Columbine Mine — a 9km climb to 3,810m above sea level, the highest point of the day. The Powerline section on the return is fast, rocky, and tyre-popping. Cut-off at the Columbine turnaround (6 hours) is the day's first shaping moment.",
+    ftpRequirement: {
+      minimum: "3.2 W/kg",
+      competitive: "4.0 W/kg",
+      notes:
+        "Leadville is altitude-limited. At sea level your FTP is one number; above 3,000m you'll lose 12-18% of it. 3.2 W/kg sea-level FTP with proper acclimatisation gets you the buckle; 4.0+ W/kg with two-week altitude exposure puts you in the sub-9 hour group. Riders who arrive 48 hours before the race lose more time to altitude than to fitness.",
+    },
+    enduranceDemands:
+      "12-15 hours/week peaking, with a long ride that has built up to 6 hours over rolling terrain and includes at least two sustained 30+ minute climbs. MTB-specific skills are non-negotiable: technical descending, washboard fire roads, rocky singletrack — Leadville is not a road event in disguise. Aim to arrive in Leadville 2 weeks before the race for altitude acclimatisation, or as close as you can get logistically.",
+    climbingNarrative:
+      "Around 3,810m of climbing across 160km — but the elevation profile is misleading. The numbers say modest; the altitude says brutal. Columbine Mine is a 9km climb topping out at 3,810m above sea level. Sugarloaf and Powerline are short and steep but rideable. The hidden climb is the return-leg headwind out of Twin Lakes and the Powerline punch on tired legs at 9 hours in.",
+    majorClimbs: [
+      {
+        name: "St Kevin's",
+        lengthKm: 5.6,
+        avgGradient: 4.8,
+        elevationGainM: 269,
+        positionInRide: "km 20",
+        notes:
+          "First sustained climb on dirt road. Sets your altitude pacing — keep heart rate 5-10 bpm below sea-level threshold for the same effort.",
+      },
+      {
+        name: "Sugarloaf",
+        lengthKm: 6.1,
+        avgGradient: 5.2,
+        elevationGainM: 317,
+        positionInRide: "km 30",
+        notes:
+          "Drops onto Powerline on the descent — fast, rocky, do not overcook it on the outbound. You're descending it twice.",
+      },
+      {
+        name: "Columbine Mine",
+        lengthKm: 9.0,
+        avgGradient: 7.4,
+        maxGradient: 13,
+        elevationGainM: 666,
+        positionInRide: "km 65 (turnaround)",
+        notes:
+          "The race. Tops out at 3,810m above sea level. Pace it as a 60-90 minute aerobic-threshold effort — heart rate runs 8-12 bpm above your sea-level Z3 at the same wattage, and that's normal. Cut-off is 6 hours from race start; if you're not at the turnaround by 12:30, you're done.",
+      },
+      {
+        name: "Powerline (return)",
+        lengthKm: 1.6,
+        avgGradient: 12,
+        maxGradient: 23,
+        elevationGainM: 198,
+        positionInRide: "km 130",
+        notes:
+          "Steep, loose, and brutal at 9 hours in. Most amateurs hike a portion of this — that's not weakness, it's fitness management. Save it for here.",
+      },
+    ],
+    finishTimes: [
+      {
+        level: "First-time finisher (12-hour buckle)",
+        range: "10-12 hours",
+        fitnessProfile:
+          "FTP 2.8-3.2 W/kg sea level, 8-10 hours/week, longest ride 5-6 hours, MTB-specific skills, 1-2 weeks altitude prep.",
+      },
+      {
+        level: "Sub-12 buckle target",
+        range: "9-11 hours",
+        fitnessProfile:
+          "FTP 3.2-3.7 W/kg sea level, 10-12 hours/week, multiple long rides on technical terrain, 2 weeks altitude prep.",
+      },
+      {
+        level: "Sub-9 buckle (gold)",
+        range: "8-9 hours",
+        fitnessProfile:
+          "FTP 3.7-4.3 W/kg sea level, 12-15 hours/week, structured threshold + VO2 work, racing background, 3+ weeks altitude prep.",
+      },
+      {
+        level: "Top contender",
+        range: "6-8 hours",
+        fitnessProfile:
+          "FTP 4.3+ W/kg sea level, 15-20 hours/week, MTB racing background, lives at altitude or arrives 4+ weeks early.",
+      },
+    ],
+    fuellingDeepDive:
+      "Altitude suppresses appetite — if you wait until you feel hungry you've already lost 60 minutes of fuelling. Force-fuel on a timer: 70-90g carbs/hour, alarm on the head unit if you have to. Crew or the on-course aid stations cover the basics (Twin Lakes is the main resupply both ways) but own-supply between is faster than queueing. Hydration is critical: 750ml-1L/hour with electrolytes once the heat lands, and 500-600ml in the cold opening hour even if you don't feel thirsty. Dry Colorado air dehydrates 30-40% faster than the same temperature at sea level. A caffeine gel before Columbine sharpens the climb; another before Powerline keeps the focus on rocky terrain at 9 hours in.",
+    pacingDeepDive:
+      "Pace Leadville on heart rate, not power — power meters lie at altitude when you're not adapted. Target a heart rate ceiling 5-8 bpm below your sea-level Z3 for the first 4 hours; on Columbine, sit at aerobic threshold and ride the climb in pieces (climb-eat-climb), not in one effort. The descent off Columbine back to Twin Lakes is the day's free recovery — eat, drink, freewheel, do not hammer. The return leg is harder than the outbound: headwinds, tired legs, and Powerline. Pace the run-in to the finish on the singletrack rather than chasing back time on the dirt road sections; falling at 10 hours in is the most common Leadville DNF.",
+    detailedMistakes: [
+      {
+        mistake: "Arriving less than 2 weeks before the race",
+        fix: "If you cannot arrive 2 weeks early, arrive 36 hours before — splitting the difference is the worst option. The acute mountain-sickness window peaks day 2-4 of altitude exposure. Get there early enough to adapt, or late enough that you race before you feel it.",
+      },
+      {
+        mistake: "Racing the paved start road and blowing up at altitude",
+        fix: "The first 5km is downhill paved, then a 6km dirt-road climb. The lead group is gone within 10km — let them go. Riding at sea-level wattage in the first hour at 3,100m altitude burns matches you cannot get back.",
+      },
+      {
+        mistake: "Running XC race tyres",
+        fix: "2.3-2.4\" tyres with MaxxTerra or Enduro casings (Maxxis Rekon, Vittoria Mezcal, Continental Race King ProTection). XC race tyres last 80km on Leadville rocks and then you walk. Casing weight is the single biggest insurance you can buy.",
+      },
+    ],
+  },
+  {
+    slug: "gran-fondo-nyc-training-plan",
+    trainingEventSlug: "gran-fondo-nyc",
+    raceSlug: "gran-fondo-new-york",
+    pageTitle: "Gran Fondo New York Training Plan",
+    intent:
+      "Help amateur riders prepare for Gran Fondo New York — 160km from the George Washington Bridge up the Hudson Valley with 2,500m of climbing, including the signature Bear Mountain ascent. Timed format, international field, ranked finish.",
+    weatherConditions:
+      "Mid-May in the Hudson Valley swings from 8-10°C at the 06:00 GW Bridge start to 25-30°C and humid by midday. Rain years and humid years both happen; the bridge is exposed and cold even in shorts-and-jersey weather, then the inland climbs trap the heat by km 70.",
+    terrainSummary:
+      "Closed bridge start out of Manhattan, then rolling Hudson Valley terrain north into Rockland and Bear Mountain State Park. The signature climb is Bear Mountain at km 90 — a sustained 25-30 minute effort. Few flat kilometres; the day is all rolling tempo broken by the one big climb.",
+    ftpRequirement: {
+      minimum: "2.7 W/kg",
+      competitive: "3.6 W/kg",
+      notes:
+        "GFNY is timed and ranked, which changes how you should think about pacing. 2.7 W/kg with disciplined group riding gets you to the finish under 8 hours; 3.6+ W/kg lets you hold the front packs through the rollers and time-trial Bear Mountain at threshold. Above 4 W/kg, the racing is real — you're chasing an age-group podium.",
+    },
+    enduranceDemands:
+      "8-12 hours/week peaking 8-12 weeks out, with a long ride that has reached 4.5-5 hours over rolling terrain. Group-ride experience is essential — GFNY is a pack event for the first 80km, and surfing groups solo doubles your effort cost. Hill repeats are non-negotiable: Bear Mountain at threshold for 25-30 minutes is a session you should be able to rehearse in training.",
+    climbingNarrative:
+      "Around 2,500m of climbing across 160km — modest by alpine standards, deceptive in execution. The first 80km up the Hudson Valley is rolling tempo with constant 2-5 minute rises. Bear Mountain at km 90 is the day's defining effort: 7-8km at 5-6%, often raced at threshold by faster groups. The back half rolls home with no flat — every kilometre after the climb is either up or down.",
+    majorClimbs: [
+      {
+        name: "9W rollers",
+        lengthKm: 2,
+        avgGradient: 4.5,
+        elevationGainM: 90,
+        positionInRide: "km 25-75",
+        notes:
+          "The route has dozens of these — short, recurring 2-5 minute rises along Route 9W. Each one is a pack-shattering surge if you let it be. Sit, hold tempo, let the road undulate.",
+      },
+      {
+        name: "Bear Mountain (Perkins Memorial Drive)",
+        lengthKm: 7.8,
+        avgGradient: 6.3,
+        maxGradient: 9,
+        elevationGainM: 491,
+        positionInRide: "km 90",
+        notes:
+          "The race. 25-30 minute climb at sustained 6%. Pace at 90-95% FTP if you're chasing a time, 80-85% if you're chasing a finish. The climb separates the day into two — strong finishers earn their times here, not on the flats.",
+      },
+      {
+        name: "Hudson Valley return rollers",
+        lengthKm: 1.5,
+        avgGradient: 5,
+        elevationGainM: 60,
+        positionInRide: "km 110-150",
+        notes:
+          "Rolling all the way back. By this point your group is small or you're solo — pacing on power matters more than legs.",
+      },
+    ],
+    finishTimes: [
+      {
+        level: "First-time finisher",
+        range: "7-9 hours",
+        fitnessProfile:
+          "FTP 2.5-2.9 W/kg, 6-8 hours/week, longest ride 4 hours, comfortable on rolling terrain.",
+      },
+      {
+        level: "Average enthusiast",
+        range: "5-7 hours",
+        fitnessProfile:
+          "FTP 2.9-3.4 W/kg, 8-10 hours/week, regular group rides, 25-minute threshold efforts in training.",
+      },
+      {
+        level: "Strong amateur",
+        range: "4-5 hours",
+        fitnessProfile:
+          "FTP 3.4-4.0 W/kg, 10-13 hours/week, structured threshold + tempo work, racing background.",
+      },
+      {
+        level: "Elite amateur (age-group podium)",
+        range: "3:30-4 hours",
+        fitnessProfile:
+          "FTP 4.0+ W/kg, 13-18 hours/week, current racer or recent racer, sub-threshold pack-pace for 4+ hours.",
+      },
+    ],
+    fuellingDeepDive:
+      "5-9 hours of rolling tempo demands 70-90g carbs/hour — gels every 30-40 minutes plus a bar at km 50 and km 110. The official feed zones are at km 55 and km 110; both are popular and busy, and the second is your most important fuel stop because Bear Mountain is digesting in your stomach. US sportive culture means most riders carry their own; don't rely on aid station variety. Hydration is the underrated factor: humidity in the Hudson Valley by 11:00 is brutal even when the temperature looks moderate, and 750ml/hour with electrolytes is the standard. A caffeine gel at the base of Bear Mountain sharpens the climb; another at km 130 keeps the focus on the rolling run-in.",
+    pacingDeepDive:
+      "Get into a pack within the first 15km on the GW Bridge and stay in it. The first 30km is fast, closed-road, and full of riders riding above their pace — let them go and ride your group. Through the Hudson Valley rollers (km 25-75), sit at tempo (78-88% FTP) and surge briefly over the rises rather than mashing flat-pace. Bear Mountain is your race within the race: pre-fuel, pick a wattage target, and ride it on power. The descent off Bear Mountain is technical and crowded — brake early, sit upright, eat — and the run-in along the Hudson rewards riders who held back in the first half. If you're chasing a time, the right groups through the back half are worth more than 15 watts of FTP.",
+    detailedMistakes: [
+      {
+        mistake: "Burning matches matching pace on the GW Bridge start",
+        fix: "The first 5km off the bridge is a race start by half the field — let them go. Pick a pack at your goal pace within 15km and stay in it. Riders who chase the front pack on the bridge are the same ones cracked at km 100.",
+      },
+      {
+        mistake: "Riding the Hudson Valley rollers solo",
+        fix: "Drafting in the pack saves 25-30% of your output through the rollers. Even if your group is slower than your fitness, you'll arrive at Bear Mountain fresher than the rider who hammered solo. The pack is the pace.",
+      },
+      {
+        mistake: "Paying off the climb cost on the descent",
+        fix: "The descent off Bear Mountain is fast, technical, and the wind shifts at 50km/h. Brake early, hold a steady cadence, eat. Riders who try to time-trial the descent crash, freewheel, or arrive at the run-in unable to sit on a wheel.",
+      },
+    ],
+  },
+  {
+    slug: "badlands-training-plan",
+    trainingEventSlug: "badlands",
+    pageTitle: "Badlands Training Plan",
+    intent:
+      "Help ultra-endurance riders prepare for Badlands — one of the hardest self-supported gravel ultras in the world: 800km across Andalusia and the Tabernas Desert with 16,000m of climbing.",
+    weatherConditions:
+      "Early September in Andalusia is 35-42°C in the Tabernas Desert by mid-afternoon, drops to 5-10°C in the desert at 03:00, and can hit -2°C on the high Sierra Nevada passes overnight. The same kit serves daytime and nighttime only if it's chosen for both — and most riders underspec the cold.",
+    terrainSummary:
+      "800km of mixed road, gravel, and rough farm-track across the south of Spain — including a crossing of the Tabernas Desert (Europe's only true desert) and the Sierra Nevada. Self-supported: resupply at open shops, fuel at petrol stations, sleep where you can. 16,000m of climbing across 5-7 days of riding for most riders.",
+    ftpRequirement: {
+      minimum: "2.5 W/kg",
+      competitive: "3.2 W/kg",
+      notes:
+        "Badlands is not an FTP event. It's a logistics, sleep, and durability event. 2.5 W/kg with smart pacing finishes in 5-7 days; 3.2+ W/kg with a polished bikepacking setup contests the front group. Above 3.5 W/kg you're racing, not riding — but it's still the rider with the best sleep strategy who wins.",
+    },
+    enduranceDemands:
+      "20+ hours/week of base building 12-16 weeks out, including back-to-back-to-back long days (8h + 6h + 4h) at least three times in training. You should have completed at least one shorter ultra (300-500km) before attempting Badlands. The bike fit, the saddle, and the sleep system all need testing — race day is not the time to discover a hot spot.",
+    climbingNarrative:
+      "16,000m of climbing across 800km — that's an average of 20m per kilometre, relentless rather than spectacular. There are signature climbs (the Sierra Nevada crossing, the descent to the Tabernas, the climb out of Cabo de Gata) but the day-to-day reality is that nothing is flat for long. The shape of the ride is climbing-descending-climbing, day and night, for a week.",
+    majorClimbs: [
+      {
+        name: "Sierra de los Filabres",
+        lengthKm: 22,
+        avgGradient: 5.2,
+        elevationGainM: 1144,
+        positionInRide: "first major test (~km 200)",
+        notes:
+          "First long climb. Sets your pacing for the rest of the race — if you push above 65% FTP here, you pay for it on day 3.",
+      },
+      {
+        name: "Tabernas Desert crossing",
+        lengthKm: 35,
+        avgGradient: 1.5,
+        elevationGainM: 525,
+        positionInRide: "day 2-3",
+        notes:
+          "Not a climb, a test. 40°C+ temperatures, no shade, rocky farm tracks. Plan to cross at night or before 09:00; midday crossing is how riders DNF.",
+      },
+      {
+        name: "Sierra Nevada crossing",
+        lengthKm: 28,
+        avgGradient: 5.8,
+        elevationGainM: 1624,
+        positionInRide: "mid-route",
+        notes:
+          "Highest point of the race. 2,400m+. Cold, often windy, can be wet even in September. Eat on the climb, descend in layers.",
+      },
+      {
+        name: "Cabo de Gata coastal climbs",
+        lengthKm: 4,
+        avgGradient: 7,
+        elevationGainM: 280,
+        positionInRide: "varies, late race",
+        notes:
+          "Short steep coastal climbs in the final third. Salt air, exposed cliff sections, and tired legs after 600km. Pace conservatively; descents are technical.",
+      },
+    ],
+    finishTimes: [
+      {
+        level: "First-time ultra finisher",
+        range: "6-7 days",
+        fitnessProfile:
+          "FTP 2.4-2.7 W/kg, 12-15 hours/week, completed at least one 400km+ ultra, sleep plan rehearsed, bike-fit dialled.",
+      },
+      {
+        level: "Experienced ultra rider",
+        range: "5-6 days",
+        fitnessProfile:
+          "FTP 2.7-3.2 W/kg, 15-18 hours/week, multiple ultras finished, gravel-specific kit, 4-5 hours/day sleep schedule.",
+      },
+      {
+        level: "Strong contender",
+        range: "4-5 days",
+        fitnessProfile:
+          "FTP 3.2-3.7 W/kg, 18-22 hours/week, ultra racing background, 2-3 hours/day sleep tested in racing, polished bikepacking setup.",
+      },
+      {
+        level: "Race for the podium",
+        range: "3-4 days",
+        fitnessProfile:
+          "FTP 3.7+ W/kg, 20+ hours/week, ultra racing palmarès, can ride 18+ hours/day with strategic 90-minute naps, dialled nutrition and pacing.",
+      },
+    ],
+    fuellingDeepDive:
+      "Badlands is a calorie-deficit problem disguised as a race. You'll burn 8,000-12,000 kcal/day and you cannot eat that on the bike — the goal is to minimise the gap and refuel aggressively at every shop, café, and petrol station. On the bike, target 70-90g carbs/hour from gels, bars, and bottled mix; off the bike at every resupply, eat real food (sandwiches, tortilla, tuna, pastries, anything calorie-dense and palatable). Salt + electrolytes are non-negotiable in the desert sections — sodium intake of 1,000-2,000mg/hour is normal in 38°C heat. Hot food at café stops late at night isn't a luxury, it's a sleep enabler — you cannot lie down on cold gels alone. Hydration is constant: 750ml-1L/hour in heat, 500ml/hour at night. Map the shops on your GPX before the start; running out of water in the Tabernas is a 90-minute problem, not a 10-minute one.",
+    pacingDeepDive:
+      "Don't race the start. The Badlands leaderboard means almost nothing if you DNF at km 400, and most people who DNF do so because they rode the first 24 hours like a 24-hour race. Sustainable pace is roughly 60% of your 8-hour FTP as an all-day ceiling — even less if your sleep plan is aggressive. The race is won and lost on sleep strategy: 4-6 hours/day for first-time finishers, 2-4 hours for experienced ultras, 90-minute naps for the front group. Write your sleep plan before the start: where, how long, triggered by which kilometre or what time. Cross the desert sections (Tabernas, Cabo de Gata exposure) at night or before 09:00. Plan resupply windows around shop hours — Spanish villages close 14:00-17:00 and that's a problem if you didn't anticipate it. The riders who finish are the ones who treated each day as a separate stage; the riders who DNF rode the first day like a one-day race.",
+    detailedMistakes: [
+      {
+        mistake: "Underestimating the night cold in the desert",
+        fix: "Treat 'Spain in September' like 'high-elevation desert in any month' — long-sleeve baselayer, gilet, full-finger gloves, leg warmers, and a thermal layer for sleep stops. Riders who pack for 30°C and discover 4°C at 03:00 get hypothermic on the descents. The desert is hot in the day and cold at night, full stop.",
+      },
+      {
+        mistake: "Treating it like a long sportive",
+        fix: "Badlands punishes riders without ultra experience. Complete a 300-500km ultra in training, ride back-to-back long days, test your saddle, your sleep system, and your gut at full distance before race day. A road sportive background without ultra pacing is a 50% DNF probability.",
+      },
+      {
+        mistake: "Riding the first 24 hours as if it were a 24-hour race",
+        fix: "Pace at 60% of your 8-hour FTP from minute one. The leaderboard is meaningless until day 4. Riders who push above sustainable pace in the first 200km are the ones bonking in the desert two days later — and the desert does not negotiate.",
+      },
+    ],
+  },
 ];
 
 /* ============================================================ */
