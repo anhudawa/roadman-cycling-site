@@ -235,6 +235,16 @@ export const TESTIMONIALS: Testimonial[] = [
       "Anthony has been the most influential person in my cycling experience. None of it would have been possible without him.",
     personas: ["listener", "comeback"],
   },
+  {
+    name: "Rob Capps",
+    detail: "Data-backed coaching · Power, cadence, intervals",
+    quote:
+      "Working with Anthony has been a game-changer for my cycling. His depth of knowledge is truly impressive; whether it's fine-tuning my power zones, perfecting my cadence, or explaining the 'why' behind every interval, he brings an expert level of insight that is hard to find. Beyond the technical skills, his professionalism is unmatched. He's organized, responsive, and manages my training plan with a level of care and precision that keeps me motivated and injury-free. If you're looking for a coach who combines extensive, elite-level expertise with a thorough, data backed approach, I'd recommend Anthony.",
+    shortQuote:
+      "His depth of knowledge is truly impressive — fine-tuning my power zones, perfecting my cadence, the 'why' behind every interval. Organized, responsive, motivated and injury-free.",
+    personas: ["plateau", "listener"],
+    tag: "ELITE-LEVEL EXPERTISE",
+  },
 ];
 
 /**

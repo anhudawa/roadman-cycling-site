@@ -58,13 +58,15 @@ const results = [
   },
 ];
 
-// Editorial choice — three different persona angles for the 'IN THEIR
-// WORDS' row. Pulled from the central testimonials library so any quote
+// Editorial choice — four different persona angles for the 'IN THEIR
+// WORDS' row (plateau, comeback, body composition, data-backed
+// expertise). Pulled from the central testimonials library so any quote
 // update ripples across /coaching, /apply, /you/<slug>, etc.
 const voiceTestimonials = getTestimonialsByName([
   "Damien Maloney",
   "David Lundy",
   "Chris O'Connor",
+  "Rob Capps",
 ]);
 
 const pillars = [
@@ -407,15 +409,16 @@ export default function CoachingPage() {
               ))}
             </div>
 
-            {/* In-their-words testimonial row — three different persona
-                angles (plateau, comeback, body comp) with full quotes so
-                prospects can self-identify with a specific case. */}
+            {/* In-their-words testimonial row — four different persona
+                angles (plateau, comeback, body comp, data-backed
+                expertise) with full quotes so prospects can self-identify
+                with a specific case. */}
             <ScrollReveal direction="up" className="text-center mb-8">
               <p className="font-heading text-coral text-sm tracking-widest">
                 IN THEIR WORDS
               </p>
             </ScrollReveal>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-5 max-w-5xl mx-auto">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5 max-w-6xl mx-auto">
               {voiceTestimonials.map((t, i) => (
                 <ScrollReveal key={t.name} direction="up" delay={i * 0.08}>
                   <Card

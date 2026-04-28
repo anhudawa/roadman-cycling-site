@@ -5,6 +5,7 @@
       "name": "roadman-dev",
       "runtimeExecutable": "/opt/homebrew/Cellar/node@22/22.22.1_3/bin/node",
       "runtimeArgs": ["/opt/homebrew/Cellar/node@22/22.22.1_3/lib/node_modules/npm/bin/npm-cli.js", "run", "dev"],
+      "cwd": "/Users/tedcrilly/Desktop/roadman-cycling-site",
       "port": 3000,
       "autoPort": true,
       "env": {

@@ -55,7 +55,8 @@ export type QuestionCluster =
   | "ftp"
   | "masters"
   | "nutrition"
-  | "coaching";
+  | "coaching"
+  | "events";
 
 export interface QuestionPage {
   slug: string;
@@ -1710,6 +1711,471 @@ export const QUESTION_PAGES: QuestionPage[] = [
       href: "/apply",
     },
   },
+
+  // ============================================================
+  // EVENT PREP CLUSTER — sportive- and event-specific intent
+  // ============================================================
+  {
+    slug: "how-to-train-for-wicklow-200",
+    cluster: "events",
+    question: "How Should I Train for the Wicklow 200?",
+    seoTitle: "How to Train for the Wicklow 200",
+    seoDescription:
+      "A 12-16 week training framework for the Wicklow 200 — long-ride progression, threshold work, durability, and the pacing plan that beats Sally Gap and Wicklow Gap without blowing up.",
+    pillar: "coaching",
+    shortAnswer:
+      "Build a 12-16 week structured plan around two pillars: weekly long rides progressing to 6-7 hours, and twice-weekly threshold or sweet-spot intervals. Aim for 3.0+ W/kg sustainable and durability tested over 5+ hours. Treat the route as two 100km halves and train the second one — that's where the Wicklow 200 is won.",
+    bestFor:
+      "Riders 12-16 weeks out from the Wicklow 200 with a base of 6-8 hours a week.",
+    notFor:
+      "First-year cyclists with no recent long-ride history — choose the Wicklow 100 first and target the 200 next year.",
+    keyTakeaway:
+      "The Wicklow 200 is two 100km rides stitched together — the rider who trains the second half wins the day.",
+    evidenceLevel: "moderate",
+    evidenceNote:
+      "Based on the Roadman Wicklow 200 training plan, John Wakefield's interval prescriptions on the podcast, and Stephen Seiler's 80/20 distribution research applied to amateur sportive prep.",
+    fullExplanation: [
+      "The Wicklow 200 is Ireland's defining mass-participation sportive — 200km across the Wicklow Mountains with around 3,000m of climbing, anchored by Sally Gap and Wicklow Gap. Held in early June, it punishes amateurs in a specific way: the climbs are spread across the day, the early enthusiasm of fresh legs disguises a poor pacing plan, and the back 80km between Glendalough and the finish quietly destroys riders who haven't built durability.",
+      "The training framework that consistently delivers a strong finish is a 12-16 week block split into base, build, and specific phases. Weeks 1-4 build aerobic volume — long zone 2 rides progressing from 3 to 5 hours. Weeks 5-10 layer in twice-weekly threshold or sweet-spot intervals (2x20-min at 88-94% FTP, building to 3x20). Weeks 11-14 are the specific phase: 5-7 hour long rides with sweet spot at the back end, climbing repeats to model Sally Gap, and a tested fuelling plan. Weeks 15-16 taper.",
+      "On the podcast, John Wakefield (Director of Coaching, Red Bull–Bora–Hansgrohe) has been clear that durability — your power three hours into a ride — is the differentiator on long sportives, not fresh FTP. Stephen Seiler's polarised research backs the same conclusion: ~80% of training time below ventilatory threshold and ~20% well above it consistently outperforms grey-zone-heavy programmes for amateurs. A rider with a 270W FTP and well-trained durability will outride a 290W rider whose power collapses by km 130.",
+      "Practical points. Gear for the Wicklow climbs: compact crankset with a 32-tooth cassette is the standard, no shame in 34T. Pace Sally Gap (climb 1) at 5-8 beats below sportive threshold — if you arrive at the 100km feed station feeling 'comfortable', you paced it right. Fuel from minute 30 (60-90g of carbs an hour, climbing toward 90-120g for serious amateurs) and never depend on the food stations. The Roadman Wicklow 200 training plan walks the full 16-week build with the specific intervals and long-ride targets.",
+    ],
+    evidence: [
+      {
+        label: "Roadman — Wicklow 200 Training Plan",
+        detail:
+          "Full 16-week training plan tuned to the Wicklow 200's profile, including climb-specific durability work and a tested pacing template.",
+        href: "/plan/wicklow-200",
+      },
+      {
+        label: "Roadman — Wicklow 200 Training Plan (long-form guide)",
+        detail:
+          "Long-form companion to the structured plan — gear choice, pacing Sally Gap, and the most common Wicklow 200 mistakes.",
+        href: "/blog/wicklow-200-training-plan",
+      },
+      {
+        label: "John Wakefield — Roadman Podcast",
+        detail:
+          "Wakefield has discussed durability training and the back-end sweet-spot work that separates amateurs who finish strong from those who hang on.",
+        href: "/guests/john-wakefield",
+      },
+      {
+        label: "Stephen Seiler — polarised training research",
+        detail:
+          "Seiler's 80/20 intensity distribution is the framework underneath every serious amateur sportive plan, including this one.",
+        href: "/guests/stephen-seiler",
+      },
+    ],
+    faq: [
+      {
+        question: "How long do I need to train for the Wicklow 200?",
+        answer:
+          "12-16 weeks of structured training is the standard if you have a 6-8 hour base. If you're coming off a sedentary winter, extend to 18-20 weeks and dedicate the first 4 to aerobic base before any threshold work begins.",
+      },
+      {
+        question: "What gearing do I need for the Wicklow Mountains?",
+        answer:
+          "A compact crankset (50/34) with an 11-32 cassette is the practical standard for amateurs. If your FTP is below 3.0 W/kg or you're carrying extra weight, an 11-34 cassette buys you a smaller gear on Sally Gap and Wicklow Gap and saves matches for the back half.",
+      },
+      {
+        question: "Should I do the Wicklow 100 as a stepping stone?",
+        answer:
+          "Yes, if 200km is your first time at this distance. The 100 covers the same opening terrain at the same field density — a near-perfect rehearsal for pacing, fuelling, and route familiarity. Doing the 100 in year one and the 200 in year two is the safest progression.",
+      },
+    ],
+    related: [
+      {
+        label: "Wicklow 200 Training Plan",
+        href: "/plan/wicklow-200",
+      },
+      {
+        label: "Wicklow 200 Training Plan — Long-Form Guide",
+        href: "/blog/wicklow-200-training-plan",
+      },
+      {
+        label: "What FTP do I need for a sportive?",
+        href: "/question/what-ftp-for-sportive",
+      },
+      {
+        label: "How do I fuel a sportive?",
+        href: "/question/how-to-fuel-a-sportive",
+      },
+      {
+        label: "How many weeks to train for a sportive?",
+        href: "/question/how-many-weeks-to-train-for-sportive",
+      },
+      {
+        label: "FTP Zone Calculator",
+        href: "/tools/ftp-zones",
+      },
+    ],
+  },
+  {
+    slug: "how-to-pace-mallorca-312",
+    cluster: "events",
+    question: "How Do I Pace the Mallorca 312?",
+    seoTitle: "How to Pace the Mallorca 312",
+    seoDescription:
+      "A pacing plan for the Mallorca 312 — when to climb conservatively, when to draft, when to eat, and why Sa Calobra at km 80 is the trap that decides your day.",
+    pillar: "coaching",
+    shortAnswer:
+      "Sit at 60-65% of FTP through the climbing section and never cross 75% on Sa Calobra. From km 130 onwards it's flat-to-rolling — ride tempo in groups, draft hard, fuel relentlessly. Most riders blow up because they overcook the first 100km of climbing, not because of the closing flats.",
+    bestFor:
+      "Riders entered for the 312km route who have completed a 200km event and want a defensible pacing plan.",
+    notFor:
+      "First-time long-distance riders — choose the 167km or 225km route and use the 312 as next year's target.",
+    keyTakeaway:
+      "Sa Calobra is the trap — the rider who climbs it slowest finishes the strongest.",
+    evidenceLevel: "moderate",
+    fullExplanation: [
+      "The Mallorca 312 is a 312km mass-start sportive in late April with around 5,000m of climbing. The defining feature isn't the distance — it's the front-loaded profile. The first 130km contains every serious climb, including Sa Calobra (9.5km at 7%) at km 80. The closing 180km is flat-to-rolling and pack-dominated. Riders who treat the climbs as 'the hard part' and the flats as 'the recovery' have it backwards.",
+      "Climbing pacing. Target 60-65% of FTP for the opening climbing block. Sa Calobra at km 80 is where every ego mistake gets paid for. Cap power at 75% of FTP on Sa Calobra — if your FTP is 280W, that's 210W on the bottom slopes climbing to no more than 220W on the steeper middle section. The temptation to ride it 'at sportive pace' is the single biggest reason 312 riders blow up between km 150 and km 220.",
+      "The flat closing 180km is a different sport. Once you crest the final categorised climb, switch to tempo (76-87% FTP) inside groups, draft economy becomes the single biggest determinant of finishing time. A 4-rider rotating paceline at sportive tempo can save 40-60W per rider — that's the difference between a 12-hour and a 14-hour finish. Stay calm in the wind, take short turns, eat on every flat stretch.",
+      "Fuelling on a 12-hour event. Dr David Dunne's discussions of modern World Tour fuelling on the Roadman Cycling Podcast point to 90-120g of carbs per hour as the new amateur baseline for ultra-distance events, with 700-900ml of fluid and 700-1000mg of sodium each hour in Mallorca's late-April heat. That's roughly 1100-1400g of carbs across the day — most amateurs eat half that and bonk somewhere in the closing 80km. Use the fuelling calculator and gut-train every long ride beforehand.",
+    ],
+    evidence: [
+      {
+        label: "Roadman — Mallorca 312 Training Plan",
+        detail:
+          "Full 16-week training plan with pacing windows for each section of the 312 route, including Sa Calobra targets.",
+        href: "/plan/mallorca-312",
+      },
+      {
+        label: "Dr David Dunne — Roadman Podcast",
+        detail:
+          "Dunne has discussed the modern 90-120g/hr fuelling approach used by the World Tour and how it applies to amateur ultra-distance prep.",
+        href: "/guests/dr-david-dunne",
+      },
+      {
+        label: "Dan Lorang — Roadman Podcast",
+        detail:
+          "Lorang has detailed how durability training and pacing discipline matter more than fresh FTP for events over 8 hours.",
+        href: "/guests/dan-lorang",
+      },
+      {
+        label: "Roadman — Sportive Preparation Guide",
+        detail:
+          "Internal guide covering pacing, fuelling, and the most common sportive-day mistakes.",
+        href: "/blog/cycling-sportive-preparation",
+      },
+    ],
+    faq: [
+      {
+        question: "What is a realistic finishing time for the 312?",
+        answer:
+          "11-13 hours for a strong amateur (3.5+ W/kg, well-paced, well-fuelled). 13-16 hours for a survival-mode finish. Sub-10 hours puts you near the front of the field — that's a 4.0+ W/kg ride paced ruthlessly with strong group skills.",
+      },
+      {
+        question: "What FTP do I need for the Mallorca 312?",
+        answer:
+          "3.2 W/kg is the practical floor for a comfortable finish, 3.5 W/kg lifts you into a strong ride, and 4.0 W/kg puts you in the front quarter of the field. Below 3.0 W/kg the closing 100km becomes a battle of attrition that pacing alone cannot fix.",
+      },
+      {
+        question: "How many carbs per hour do I need for 12 hours on the bike?",
+        answer:
+          "90-120g per hour from minute 30 onwards, summing to roughly 1100-1400g across the day. Use multiple sources — bottles of carb mix (60g each), gels (25g), real food (rice cakes, fig rolls) — and gut-train the upper end on long training rides before the event, never on race day.",
+      },
+    ],
+    related: [
+      {
+        label: "Mallorca 312 Training Plan",
+        href: "/plan/mallorca-312",
+      },
+      {
+        label: "How do I fuel a 200km sportive?",
+        href: "/question/how-to-fuel-200km-sportive",
+      },
+      {
+        label: "What FTP do I need for a sportive?",
+        href: "/question/what-ftp-for-sportive",
+      },
+      {
+        label: "How many weeks to train for a sportive?",
+        href: "/question/how-many-weeks-to-train-for-sportive",
+      },
+      {
+        label: "Fuelling Calculator",
+        href: "/tools/fuelling",
+      },
+    ],
+  },
+  {
+    slug: "how-many-weeks-to-train-for-sportive",
+    cluster: "events",
+    question: "How Many Weeks Do I Need to Train for a Sportive?",
+    seoTitle: "How Many Weeks Do I Need to Train for a Sportive?",
+    seoDescription:
+      "Realistic training timelines for amateur cyclists targeting a sportive — 12-16 weeks for a flat 100-160km event, 16-20 for a mountain sportive, and what to do if you're already inside 8 weeks.",
+    pillar: "coaching",
+    shortAnswer:
+      "For a flat-to-rolling 100-160km sportive, 12-16 weeks of structured training is the standard. For a serious mountain sportive — Étape, Mallorca 312, Marmotte — extend to 16-20 weeks. Anything inside 8 weeks is damage control rather than preparation; the build phase needs at least 4-6 weeks once base is in place.",
+    bestFor:
+      "Riders planning their event calendar and deciding when to start a structured block.",
+    notFor:
+      "Riders inside 6 weeks of an event — pivot to taper and pacing rather than chasing more fitness.",
+    keyTakeaway:
+      "12 weeks is the floor — the harder the event, the further out you start.",
+    evidenceLevel: "moderate",
+    fullExplanation: [
+      "The standard amateur sportive build is 12-16 weeks split across four phases. 4 weeks of base (long zone 2 rides, low intensity, building aerobic capacity), 4-6 weeks of build (twice-weekly sweet spot or threshold intervals layered over the long ride), 2-3 weeks of specific work (race-pace simulations, climbing repeats, tested fuelling) and a 1-2 week taper. This isn't novel — it's Joe Friel's framework from The Cyclist's Training Bible and the structure underneath every Roadman event plan.",
+      "Mountain sportives need a longer runway. The Étape du Tour, Marmotte, Mallorca 312, Maratona dles Dolomites — these events have climbing demands that don't compress into 12 weeks for most amateurs. A 16-20 week build gives you the durability work (4-5 hour zone 2 rides, climbing-specific sweet spot at the back end of long rides) that decides whether you finish strong or hang on. The harder the event, the further out you start.",
+      "What to do inside the under-8-week window. This is damage control rather than build. Stop adding intensity — the adaptation window has closed and any new threshold work just adds fatigue. Instead, ride consistent moderate volume (3-5 rides per week, mostly zone 2 with one weekly tempo session), peak your fuelling protocol so race day isn't the day you test 90g/hr, and rehearse pacing on a long training ride at goal sportive tempo. You won't gain meaningful fitness in 6 weeks, but you can absolutely lose a sportive in those weeks by overcooking it.",
+      "The aerobic base point most amateurs underestimate. A structured 12-week block delivers full gains only if you arrive with a base — meaning 8-12 weeks of consistent zone 2 volume already in your legs. Riders who jump from 4 hours a week into a structured threshold block typically plateau by week 6 because the aerobic engine isn't ready to support the work. If you're starting cold, treat the first 4-8 weeks as base-only and add 4 more weeks to the calendar.",
+    ],
+    evidence: [
+      {
+        label: "Joe Friel — The Cyclist's Training Bible",
+        detail:
+          "Friel's 12-16 week sportive periodisation framework is the structural reference for the standard amateur build.",
+        href: "/guests/joe-friel",
+      },
+      {
+        label: "John Wakefield — Roadman Podcast",
+        detail:
+          "Wakefield has discussed phase length, taper duration, and the cost of compressing a build phase below 4 weeks.",
+        href: "/guests/john-wakefield",
+      },
+      {
+        label: "Roadman — Training Plans Index",
+        detail:
+          "Roadman's event-specific training plans, all built on a 12-20 week periodised structure.",
+        href: "/plan",
+      },
+      {
+        label: "Roadman — Sportive Preparation Guide",
+        detail:
+          "End-to-end sportive preparation guide covering periodisation, durability, fuelling, and pacing.",
+        href: "/blog/cycling-sportive-preparation",
+      },
+    ],
+    faq: [
+      {
+        question: "Can I train for a sportive in 8 weeks?",
+        answer:
+          "For a 100km flat sportive, yes if you have a base of 6+ hours a week. For a mountain sportive (Étape, Marmotte, Mallorca 312), 8 weeks is too short — you'll finish, but the back third will be a grind and the durability gap will be obvious. Push the event a year if you can.",
+      },
+      {
+        question: "Do I need a coach for a 12-week block?",
+        answer:
+          "Not strictly — Roadman's free event plans walk through the structure week by week. But a coach materially improves the quality of each phase: they catch overtraining early, adjust intervals to your real (not predicted) recovery, and stop the two most common amateur mistakes — too much grey-zone work and too little aerobic base.",
+      },
+      {
+        question: "How long should the taper be?",
+        answer:
+          "7-14 days for most sportives. The harder and longer the event, the longer the taper. A flat 100km sportive needs 5-7 days; a mountain sportive like the Étape benefits from a full 10-14 days. The principle is the same: drop volume by 40-60%, keep intensity sharp with short race-pace efforts, sleep more.",
+      },
+    ],
+    related: [
+      {
+        label: "Training Plans by Event",
+        href: "/plan",
+      },
+      {
+        label: "What FTP do I need for a sportive?",
+        href: "/question/what-ftp-for-sportive",
+      },
+      {
+        label: "How do I fuel a sportive?",
+        href: "/question/how-to-fuel-a-sportive",
+      },
+      {
+        label: "Sportive Preparation Guide",
+        href: "/blog/cycling-sportive-preparation",
+      },
+      {
+        label: "FTP Zone Calculator",
+        href: "/tools/ftp-zones",
+      },
+    ],
+  },
+  {
+    slug: "what-ftp-for-etape-du-tour",
+    cluster: "events",
+    question: "What FTP Do I Need for the Étape du Tour?",
+    seoTitle: "What FTP Do I Need for the Étape du Tour?",
+    seoDescription:
+      "Honest FTP targets for the Étape du Tour — the W/kg you need to finish strong, the floor below which you're surviving, and how long the gap takes to close for an amateur.",
+    pillar: "coaching",
+    shortAnswer:
+      "To finish the Étape du Tour comfortably, you want at least 3.5 W/kg. To ride strongly through the back third, plan for 4.0 W/kg. Below 3.2 W/kg you're surviving rather than racing — the cumulative climbing punishes weak FTPs disproportionately, and the time cuts catch riders consistently below 3.0 W/kg most years.",
+    bestFor:
+      "Riders weighing whether to enter the Étape, or comparing themselves to last year's finishers.",
+    notFor:
+      "Riders below 3.0 W/kg with less than a year of structured training — choose a flatter target sportive first and target the Étape next year.",
+    keyTakeaway:
+      "3.5 W/kg is the floor — below that you're surviving, above 4.0 W/kg you're racing.",
+    evidenceLevel: "moderate",
+    fullExplanation: [
+      "The Étape du Tour is a Tour de France stage on closed roads, ridden by amateurs the day before the pros. Distance varies by edition — typically 130-180km — but the climbing is always the deciding factor: 3,500-5,000m of vertical, often on hors-catégorie cols. The math of cumulative vertical is what destroys amateurs without enough FTP. Two consecutive 1,500m climbs at 3.0 W/kg is a fundamentally different physiological problem than one isolated climb of the same height.",
+      "The honest target ranges. Below 3.0 W/kg and the time cuts become a real risk. 3.0-3.2 W/kg gets you across the line in survival mode — heart rate pinned, pacing knife-edge, no margin if anything goes wrong. 3.5 W/kg is the practical floor for a comfortable finish where you can ride the descents safely and the back third doesn't become a grind. 4.0+ W/kg is where you're riding the event, not enduring it — strong on the final climb, in groups on the flats, finishing inside the top quarter of the field.",
+      "Why durability matters more than fresh FTP at this distance. On the podcast, Dan Lorang has detailed how the World Tour now treats fatigue resistance — your power three to four hours into a hard ride — as the primary differentiator at the elite level. The same logic scales perfectly to the Étape. A 3.5 W/kg rider whose power holds at 90% three hours in will outride a 3.7 W/kg rider whose power collapses to 75%. Long zone 2 plus sweet spot at the back end of long rides is the durability protocol.",
+      "The realistic project for an amateur. Closing the gap from 3.0 W/kg to 3.5 W/kg is 9-18 months of structured training for most amateurs — and the pace slows the closer you get to 4.0 W/kg. If you're entering the Étape this year and your FTP is honest at 3.0 W/kg, the right move is to register and treat this year as reconnaissance, then target 3.5 W/kg for next year with an 18-month structured build. The W/kg calculator gives you the bands; the FTP timeline article on the site tells you what's realistic.",
+    ],
+    evidence: [
+      {
+        label: "Roadman — Étape du Tour Training Plan",
+        detail:
+          "Full event-specific training plan with FTP targets, climbing progression, and pacing strategy for the Étape's mountain profile.",
+        href: "/plan/etape-du-tour",
+      },
+      {
+        label: "Dan Lorang — Roadman Podcast",
+        detail:
+          "Lorang has discussed durability training and fatigue resistance as the primary differentiator on long mountain events, including how amateurs should structure 4-5 hour rides for the Étape specifically.",
+        href: "/guests/dan-lorang",
+      },
+      {
+        label: "Roadman — How long does it take to increase FTP?",
+        detail:
+          "The realistic timeline for moving from 3.0 to 3.5 W/kg, drawn from Stephen Seiler's work and Roadman coaching case studies.",
+        href: "/question/how-long-to-increase-ftp",
+      },
+      {
+        label: "Roadman — Sportive Preparation Guide",
+        detail:
+          "Generalised sportive prep guide with mountain-event-specific notes on pacing, fuelling, and durability.",
+        href: "/blog/cycling-sportive-preparation",
+      },
+    ],
+    faq: [
+      {
+        question: "What if I'm only 3.0 W/kg now and the Étape is in 6 months?",
+        answer:
+          "You can probably finish if you pace and fuel ruthlessly, but you'll suffer. The honest play is either to defer the entry by a year and target 3.5 W/kg next time, or to commit to the 6-month build and accept that this year is reconnaissance. Roadman coaching case studies show 5-12% FTP gains in 24 weeks for amateurs new to structured training — meaningful, but rarely enough to close a 0.5 W/kg gap.",
+      },
+      {
+        question: "Will pacing alone get me through if my FTP is below target?",
+        answer:
+          "Pacing buys roughly 5-8% of comfortable finishing margin — meaningful, but not enough to compensate for a 0.5 W/kg gap on a mountain stage. A 3.0 W/kg rider with perfect pacing is still going to suffer disproportionately on the long cols. Pacing is the multiplier on your fitness, not a substitute.",
+      },
+      {
+        question: "What about the Étape time cuts?",
+        answer:
+          "Time cuts catch a small but non-trivial number of riders every year — usually those riding consistently below 2.8 W/kg through the major climbs, or those who overcook the early section and blow up before the final col. The cut is enforced at intermediate points on long mountain editions. Train for the back third, not the start.",
+      },
+    ],
+    related: [
+      {
+        label: "Étape du Tour Training Plan",
+        href: "/plan/etape-du-tour",
+      },
+      {
+        label: "What FTP do I need for a sportive?",
+        href: "/question/what-ftp-for-sportive",
+      },
+      {
+        label: "How long does it take to increase FTP?",
+        href: "/question/how-long-to-increase-ftp",
+      },
+      {
+        label: "How many weeks to train for a sportive?",
+        href: "/question/how-many-weeks-to-train-for-sportive",
+      },
+      {
+        label: "W/kg Calculator",
+        href: "/tools/wkg",
+      },
+      {
+        label: "FTP Zone Calculator",
+        href: "/tools/ftp-zones",
+      },
+    ],
+  },
+  {
+    slug: "how-to-fuel-200km-sportive",
+    cluster: "events",
+    question: "How Do I Fuel a 200km Sportive?",
+    seoTitle: "How to Fuel a 200km Sportive",
+    seoDescription:
+      "An evidence-based fuelling protocol for 200km sportives — pre-ride loading, in-ride carb and sodium targets, hydration through hour 7, and the gut training that makes 120g/hr possible.",
+    pillar: "nutrition",
+    shortAnswer:
+      "Take 90-120g of carbs per hour from minute 30, plus 600-900ml of fluid and 700-1000mg of sodium hourly. Total carb intake across a 6-9 hour 200km event lands at 600-1100g — most amateurs eat half that and bonk because of it. Train the gut on every long ride; race day is not the day to test new numbers.",
+    bestFor:
+      "Riders training for or doing a 200km sportive — Wicklow 200, Mallorca 312, Maratona dles Dolomites — who need a defensible fuelling plan.",
+    notFor:
+      "Riders doing a 100km or shorter sportive — different demands; the existing how-to-fuel-a-sportive guide covers shorter events.",
+    keyTakeaway:
+      "A 200km ride costs 600-1100g of carbs total — most amateurs eat half that and bonk because of it.",
+    evidenceLevel: "strong",
+    evidenceNote:
+      "Aligned with Dr David Dunne's discussion of modern World Tour fuelling on the Roadman Cycling Podcast and the academic consensus around 90-120g/hr for trained ultra-endurance athletes.",
+    fullExplanation: [
+      "A 200km sportive is a step-change in fuelling demand from a 100km event, not a linear extension. Glycogen depletion across 6-9 hours of moderate-intensity work breaks the shortcuts that work at the shorter distance — under-eating early can be patched in a 100km ride; in a 200km ride it ends in a bonk somewhere in the closing 60km. The protocol below is the new amateur baseline for any event over 6 hours, not an upper bound for elite riders.",
+      "Pre-ride loading. Eat 2-3g of carbs per kg of bodyweight 2-3 hours before the start — for a 75kg rider, that's a 150-225g breakfast (porridge with banana and honey, toast, juice). 30-60 minutes pre-start, top up with 30-40g of fast carbs (gel, banana, small flapjack). The aim is to roll out with full glycogen and stable blood sugar so you're not chasing a deficit from minute 60.",
+      "In-ride: 90-120g of carbs per hour from minute 30, climbing toward the upper end if your gut is trained for it. Set a 25-30 minute timer on your head unit and eat or drink something every alarm — hunger is a lagging indicator on long events. Mix sources: a bottle of carb drink (60g per bottle), gels (25g each), real food (rice cakes, Pop-Tarts, fig rolls). Hydration in the same window: 600-900ml of fluid per hour, 700-1000mg of sodium per hour, with heavy sweaters in heat at the upper end of both ranges.",
+      "Gut training is the non-negotiable. Most amateurs cannot tolerate 120g/hr on day one — it has to be trained, the same way you train threshold power. Build by 10-15g/hr per week from your current intake on weekly long rides, and never test a new fuelling number for the first time on race day. On the podcast, Dr David Dunne has been explicit that the 90-120g/hr World Tour standard is achievable for amateurs but only with deliberate gut training in the 8-12 weeks before the event. Use the Roadman fuelling calculator to model your specific weight, duration, and conditions.",
+    ],
+    evidence: [
+      {
+        label: "Dr David Dunne — Roadman Podcast",
+        detail:
+          "Dunne has detailed the modern 90-120g/hr World Tour fuelling standard, the gut-training protocol that makes it tolerable, and how it translates to amateur ultra-distance prep.",
+        href: "/guests/dr-david-dunne",
+      },
+      {
+        label: "Roadman — Fuelling Calculator",
+        detail:
+          "Free tool for calculating carb, fluid, and sodium needs by ride duration, intensity, weight, and conditions — the practical companion to this protocol.",
+        href: "/tools/fuelling",
+      },
+      {
+        label: "Roadman — Race-Day Nutrition",
+        detail:
+          "Hour-by-hour fuelling and hydration plan for race day, with food and product specifics for events over 6 hours.",
+        href: "/blog/cycling-nutrition-race-day-guide",
+      },
+      {
+        label: "Roadman — In-Ride Nutrition Guide",
+        detail:
+          "Generalised in-ride fuelling guide covering carb sources, gut training, and the science behind multi-source carbs (glucose + fructose).",
+        href: "/blog/cycling-in-ride-nutrition-guide",
+      },
+    ],
+    faq: [
+      {
+        question: "Can my stomach actually take 120g per hour?",
+        answer:
+          "Yes, with deliberate gut training. Build by 10-15g per hour per week from your current intake — start at, say, 50g/hr and add a gel per hour each weekly long ride until you're comfortable at 100-120g. The reason most amateurs cap out at 60-70g/hr is undertrained absorption, not a fixed physiological limit. Multiple-source carbs (glucose + fructose, e.g. 2:1 ratio) tolerate better at the upper end.",
+      },
+      {
+        question: "Should I caffeine-load for a 200km event?",
+        answer:
+          "Targeted, yes. 2-4mg/kg 60 minutes before the start, then 100-200mg every 2-3 hours through the event keeps the stimulant benefit on a long ride without over-stacking. Never use a new caffeine protocol on race day for the first time — gut tolerance and stimulant response are individual, and a long sportive is the worst place to discover yours is sensitive.",
+      },
+      {
+        question: "How do I recover if I bonk mid-ride?",
+        answer:
+          "Take 60-90g of fast carbs immediately (two gels, a Coke, rice cakes — whatever's in your jersey), drop intensity to zone 1-2 for 20-30 minutes to let the carbs land, then resume your normal hourly feeding plus an extra 20-30g for the next two hours to rebuild the deficit. A bonk that's caught early costs you 30 minutes; a bonk that's ignored ends the day.",
+      },
+    ],
+    related: [
+      {
+        label: "How do I fuel a sportive?",
+        href: "/question/how-to-fuel-a-sportive",
+      },
+      {
+        label: "How many carbs per hour for cycling?",
+        href: "/question/carbs-per-hour-cycling",
+      },
+      {
+        label: "Fuelling Calculator",
+        href: "/tools/fuelling",
+      },
+      {
+        label: "Wicklow 200 Training Plan",
+        href: "/plan/wicklow-200",
+      },
+      {
+        label: "Mallorca 312 Training Plan",
+        href: "/plan/mallorca-312",
+      },
+      {
+        label: "Race-Day Nutrition Guide",
+        href: "/blog/cycling-nutrition-race-day-guide",
+      },
+    ],
+  },
 ];
 
 export function getQuestionBySlug(slug: string): QuestionPage | null {
@@ -1758,5 +2224,11 @@ export const QUESTION_CLUSTERS: Array<{
     label: "Cycling Coaching",
     description:
       "Whether coaching is worth it, what it costs, what coaches actually do, and when to hire one.",
+  },
+  {
+    id: "events",
+    label: "Sportive & Event Prep",
+    description:
+      "Training, pacing, FTP targets and fuelling for specific sportives — Wicklow 200, Étape du Tour, Mallorca 312, and the rest.",
   },
 ];
