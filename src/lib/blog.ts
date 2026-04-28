@@ -27,6 +27,14 @@ export interface BlogFrontmatter {
   seoDescription: string;
   excerpt: string;
   pillar: ContentPillar;
+  // Slug of the topic hub this article primarily belongs to (matches a
+  // TOPIC_DEFINITIONS entry in src/lib/topics.ts). Drives the contextual
+  // hub link rendered near the top of the article. When omitted, the
+  // page falls back to the first topic resolved via getTopicsForPost()
+  // — so existing posts mapped through TOPIC_POST_MAP keep working
+  // unchanged. Set this explicitly when a post belongs to multiple
+  // topics and you want to override the implicit "first match" choice.
+  primaryHub?: string;
   author: string;
   publishDate: string;
   updatedDate?: string;
