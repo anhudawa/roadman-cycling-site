@@ -8,12 +8,13 @@ import { JsonLd } from "@/components/seo/JsonLd";
 import { ENTITY_IDS, SITE_ORIGIN } from "@/lib/brand-facts";
 import { getPostBySlug, getAllSlugs, getRelatedPosts } from "@/lib/blog";
 import { getEpisodeBySlug } from "@/lib/podcast";
-import { getTopicsForPost } from "@/lib/topics";
+import { getTopicsForPost, getTopicTitleBySlug } from "@/lib/topics";
 import { EVENTS } from "@/lib/training-plans";
 import { WeeksOutSelector } from "@/components/features/plan/WeeksOutSelector";
 import { ShareButtons } from "@/components/features/blog/ShareButtons";
 import { RelatedPosts } from "@/components/features/blog/RelatedPosts";
 import { AuthorBio } from "@/components/features/blog/AuthorBio";
+import { PrimaryHubLink } from "@/components/features/blog/PrimaryHubLink";
 import { EvidenceBlock } from "@/components/seo/EvidenceBlock";
 import { Breadcrumbs } from "@/components/seo/Breadcrumbs";
 import { queryContentGraph } from "@/lib/content-graph";
@@ -99,6 +100,14 @@ export default async function BlogPostPage({
 
   const relatedPosts = getRelatedPosts(slug, post.pillar, post.keywords, 3);
   const parentTopics = getTopicsForPost(slug);
+  // Resolve the primary topic hub for the in-article hub link. Prefer
+  // the explicit `primaryHub` frontmatter field; fall back to the first
+  // topic resolved via the reverse index so existing posts continue to
+  // surface a hub link without requiring a frontmatter migration.
+  const primaryHubSlug = post.primaryHub ?? parentTopics[0]?.slug ?? null;
+  const primaryHubTitle = primaryHubSlug
+    ? getTopicTitleBySlug(primaryHubSlug)
+    : null;
   // Reverse-lookup: does any event's blogSlug match this post? If so,
   // we render a WeeksOutSelector widget in the article.
   const planEvent = EVENTS.find((e) => e.blogSlug === slug) ?? null;
@@ -334,6 +343,18 @@ export default async function BlogPostPage({
                 claims={post.citedClaims}
                 heading={post.claimsHeading}
                 caption={post.claimsCaption}
+              />
+            )}
+
+            {/* Primary topic hub link — declares the article's home in the
+                site's information architecture and gives readers a one-tap
+                path to the wider guide. Sits above the prose so search
+                engines and humans both encounter it within the first 30%
+                of the page. */}
+            {primaryHubSlug && primaryHubTitle && (
+              <PrimaryHubLink
+                hubSlug={primaryHubSlug}
+                hubTitle={primaryHubTitle}
               />
             )}
 

@@ -5,7 +5,7 @@ import { Header, Footer, Section, Container } from "@/components/layout";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { getAllEpisodes } from "@/lib/podcast";
 import { PodcastSearch } from "@/components/features/podcast/PodcastSearch";
-import { ENTITY_IDS, SITE_ORIGIN } from "@/lib/brand-facts";
+import { ENTITY_IDS, SITE_ORIGIN, BRAND_STATS, PODCAST } from "@/lib/brand-facts";
 
 export const metadata: Metadata = {
   title: "Podcast Archive — Every Episode",
@@ -112,6 +112,52 @@ export default function PodcastPage() {
             </p>
             <p className="text-coral font-heading text-xl">
               1M+ MONTHLY LISTENERS
+            </p>
+
+            {/* Archive-scope disclosure: the on-site index covers the
+                modern episodes that have transcripts and takeaways
+                generated; the back catalogue lives on the podcast
+                platforms. Stating both numbers explicitly avoids the
+                "1,400+ episodes" claim contradicting a list that shows
+                ~310 — and routes long-tail listeners to where the
+                older episodes actually exist. */}
+            <p className="text-foreground-muted max-w-2xl mx-auto text-sm md:text-base mt-6 leading-relaxed">
+              Showing{" "}
+              <span className="text-off-white font-semibold">
+                {episodes.length} full-length episodes
+              </span>{" "}
+              with transcripts and takeaways. The Roadman Podcast has{" "}
+              <span className="text-off-white font-semibold">
+                {BRAND_STATS.episodeCountLabel} episodes total
+              </span>{" "}
+              — older episodes available on{" "}
+              <a
+                href={PODCAST.appleUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-coral hover:text-coral/80 underline-offset-4 hover:underline transition-colors"
+              >
+                Apple Podcasts
+              </a>
+              ,{" "}
+              <a
+                href={PODCAST.spotifyUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-coral hover:text-coral/80 underline-offset-4 hover:underline transition-colors"
+              >
+                Spotify
+              </a>
+              , and{" "}
+              <a
+                href={PODCAST.youtubeUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-coral hover:text-coral/80 underline-offset-4 hover:underline transition-colors"
+              >
+                YouTube
+              </a>
+              .
             </p>
           </Container>
         </Section>
