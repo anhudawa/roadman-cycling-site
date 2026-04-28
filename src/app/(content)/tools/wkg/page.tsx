@@ -5,6 +5,7 @@ import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
 import { Header, Footer, Section, Container } from "@/components/layout";
 import { Button } from "@/components/ui";
+import { ToolLanding } from "@/components/features/tools/ToolLanding";
 
 const BENCHMARKS = [
   { min: 0, max: 1.5, label: "Beginner", color: "#94A3B8" },
@@ -171,6 +172,8 @@ export default function WkgPage() {
             </div>
           </Container>
         </Section>
+
+        <ToolLanding slug="wkg" />
       </main>
       <Footer />
     </>

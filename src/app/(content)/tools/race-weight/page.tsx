@@ -6,6 +6,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { Header, Footer, Section, Container } from "@/components/layout";
 import { Button } from "@/components/ui";
 import { ReportRequestForm } from "@/components/features/tools/ReportRequestForm";
+import { ToolLanding } from "@/components/features/tools/ToolLanding";
 import { useTrack } from "@/hooks/useTrack";
 import {
   calculateRaceWeight,
@@ -365,6 +366,8 @@ export default function RaceWeightPage() {
             </motion.div>
           </Container>
         </Section>
+
+        <ToolLanding slug="race-weight" />
       </main>
       <Footer />
     </>
