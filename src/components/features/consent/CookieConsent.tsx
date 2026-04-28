@@ -45,8 +45,11 @@ export function CookieConsent() {
   const [animateIn, setAnimateIn] = useState(false);
 
   useEffect(() => {
-    // Don't show on admin pages
+    // Don't show on admin pages or embeddable widget routes — embed
+    // iframes are too small for the banner and consent is the parent
+    // page's responsibility, not ours.
     if (pathname.startsWith("/admin")) return;
+    if (pathname.startsWith("/embed")) return;
 
     const stored = localStorage.getItem(STORAGE_KEY);
     if (stored) return;

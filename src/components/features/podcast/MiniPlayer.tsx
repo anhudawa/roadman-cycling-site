@@ -2,9 +2,11 @@
 
 import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { usePodcastPlayer } from "./PodcastPlayerContext";
 
 export function MiniPlayer() {
+  const pathname = usePathname();
   const { currentEpisode, isPlaying, isMinimised, pause, resume, close, minimise, expand } =
     usePodcastPlayer();
   const playerRef = useRef<YT.Player | null>(null);
@@ -105,6 +107,9 @@ export function MiniPlayer() {
   }, [isPlaying]);
 
   if (!currentEpisode) return null;
+  // Public embed routes render inside third-party iframes — the floating
+  // mini player has no place there.
+  if (pathname?.startsWith("/embed")) return null;
 
   const formatTime = (s: number) => {
     const h = Math.floor(s / 3600);

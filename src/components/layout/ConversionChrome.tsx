@@ -16,6 +16,9 @@ const LEAN_PATH_PREFIXES = [
   "/predict",
   "/ask",
   "/tools",
+  // Public embeddable widgets rendered inside third-party iframes —
+  // exit-intent / cohort banner / sticky-apply CTAs do not belong here.
+  "/embed",
 ];
 
 function isLeanRoute(pathname: string | null): boolean {
