@@ -7,6 +7,7 @@ import {
   fetchSubscriberStats,
   fetchNewsletterPosts,
 } from "@/lib/integrations/beehiiv";
+import { verifyBearer } from "@/lib/security/bearer";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
@@ -16,7 +17,7 @@ function isAuthorized(req: NextRequest): boolean {
   const cronSecret = process.env.CRON_SECRET;
   if (!cronSecret) return false;
   const authHeader = req.headers.get("authorization");
-  return authHeader === `Bearer ${cronSecret}`;
+  return verifyBearer(authHeader, cronSecret);
 }
 
 function today(): string {

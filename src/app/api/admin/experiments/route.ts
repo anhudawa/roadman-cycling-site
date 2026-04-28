@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { getCurrentUser } from "@/lib/admin/auth";
+import { verifyBearer } from "@/lib/security/bearer";
 import type { ABTest, ABVariant, ABElementType } from "@/lib/ab/types";
 
 // ── Database helpers (graceful fallback) ─────────────────
@@ -107,7 +108,7 @@ async function isAuthorized(req: NextRequest): Promise<boolean> {
   const cronSecret = process.env.CRON_SECRET;
   if (cronSecret) {
     const authHeader = req.headers.get("authorization");
-    if (authHeader === `Bearer ${cronSecret}`) return true;
+    if (verifyBearer(authHeader, cronSecret)) return true;
   }
   const user = await getCurrentUser();
   return user !== null;

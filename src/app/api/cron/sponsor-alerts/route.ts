@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { getSponsors } from "@/lib/inventory";
 import { notifyRenewalApproaching, notifyStaleSponsor } from "@/lib/notifications";
+import { verifyBearer } from "@/lib/security/bearer";
 
 /**
  * GET /api/cron/sponsor-alerts
@@ -22,7 +23,7 @@ export async function GET(request: NextRequest) {
   }
 
   const authHeader = request.headers.get("authorization");
-  if (authHeader !== `Bearer ${cronSecret}`) {
+  if (!verifyBearer(authHeader, cronSecret)) {
     return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
   }
 
@@ -90,8 +91,10 @@ export async function GET(request: NextRequest) {
       errors: results.errors,
     });
   } catch (error) {
-    const message = error instanceof Error ? error.message : "Unknown error";
-    console.error("[sponsor-alerts] Cron failed:", message);
-    return NextResponse.json({ error: message }, { status: 500 });
+    // Log full error server-side; return generic message. The endpoint
+    // is gated by CRON_SECRET so the caller is trusted, but we keep
+    // the generic posture in case a misconfigured monitor pings it.
+    console.error("[sponsor-alerts] Cron failed:", error);
+    return NextResponse.json({ error: "Cron failed" }, { status: 500 });
   }
 }

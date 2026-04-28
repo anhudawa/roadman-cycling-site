@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { runAllPrompts } from "@/lib/citation-tests";
+import { verifyBearer } from "@/lib/security/bearer";
 
 export const dynamic = "force-dynamic";
 // Worst-case cost: ~12 prompts × 4 providers × ~5s = 4 minutes. Buffer to
@@ -9,7 +10,7 @@ export const maxDuration = 300;
 function isAuthorized(req: NextRequest): boolean {
   const secret = process.env.CRON_SECRET;
   if (!secret) return false;
-  return req.headers.get("authorization") === `Bearer ${secret}`;
+  return verifyBearer(req.headers.get("authorization"), secret);
 }
 
 export async function GET(req: NextRequest) {

@@ -3,6 +3,7 @@ import { db } from "@/lib/db";
 import { bookings } from "@/lib/db/schema";
 import { and, eq, lt, sql } from "drizzle-orm";
 import { startCronRun, finishCronRun } from "@/lib/crm/cron-runs";
+import { verifyBearer } from "@/lib/security/bearer";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
@@ -11,7 +12,7 @@ function isAuthorized(req: NextRequest): boolean {
   const cronSecret = process.env.CRON_SECRET;
   if (!cronSecret) return false; // fail-closed
   const authHeader = req.headers.get("authorization");
-  return authHeader === `Bearer ${cronSecret}`;
+  return verifyBearer(authHeader, cronSecret);
 }
 
 /**

@@ -2,6 +2,7 @@ import { NextResponse } from "next/server";
 import { recordEvent } from "@/lib/admin/events-store";
 import { upsertOnSignup } from "@/lib/admin/subscribers-store";
 import { subscribeToBeehiiv } from "@/lib/integrations/beehiiv";
+import { rateLimitOr429 } from "@/lib/rate-limit/ip-rate-limit";
 import { clampString, LIMITS, normaliseEmail } from "@/lib/validation";
 
 /**
@@ -17,6 +18,15 @@ import { clampString, LIMITS, normaliseEmail } from "@/lib/validation";
  * the event + upsert the CRM subscriber row so the lead isn't lost.
  */
 export async function POST(request: Request) {
+  // Per-IP rate limit. Each request hits Beehiiv (paid external API)
+  // and writes to our CRM — protect both surfaces from automated abuse.
+  const limited = await rateLimitOr429(request, {
+    namespace: "newsletter",
+    tokens: 10,
+    window: "10 m",
+  });
+  if (limited) return limited;
+
   try {
     const raw = (await request.json()) as {
       email?: unknown;

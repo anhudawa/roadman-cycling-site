@@ -6,6 +6,7 @@ import { getResendClient } from "@/lib/integrations/resend";
 import { absoluteUrl } from "@/lib/site";
 import { PROFILE_LABELS } from "@/lib/diagnostic/profiles";
 import { escapeHtml } from "@/lib/validation";
+import { verifyBearer } from "@/lib/security/bearer";
 import type { Profile } from "@/lib/diagnostic/types";
 
 /**
@@ -27,7 +28,7 @@ function isAuthorized(req: NextRequest): boolean {
   const cronSecret = process.env.CRON_SECRET;
   if (!cronSecret) return false;
   const authHeader = req.headers.get("authorization");
-  return authHeader === `Bearer ${cronSecret}`;
+  return verifyBearer(authHeader, cronSecret);
 }
 
 interface DigestPayload {

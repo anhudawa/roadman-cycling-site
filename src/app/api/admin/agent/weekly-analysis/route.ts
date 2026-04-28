@@ -2,13 +2,14 @@ import { NextRequest, NextResponse } from "next/server";
 import { getStatsForRange } from "@/lib/admin/events-store";
 import { generateWeeklyReport } from "@/lib/agent/weekly-analysis";
 import { getCurrentUser } from "@/lib/admin/auth";
+import { verifyBearer } from "@/lib/security/bearer";
 
 async function isAuthorized(req: NextRequest): Promise<boolean> {
   // Check CRON_SECRET header first (for automated calls)
   const cronSecret = process.env.CRON_SECRET;
   if (cronSecret) {
     const authHeader = req.headers.get("authorization");
-    if (authHeader === `Bearer ${cronSecret}`) return true;
+    if (verifyBearer(authHeader, cronSecret)) return true;
   }
 
   // Otherwise require a verified admin session — presence-only checks let

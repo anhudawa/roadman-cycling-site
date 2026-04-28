@@ -3,6 +3,7 @@ import { db } from "@/lib/db";
 import { tedActivityLog, tedKillSwitch, tedDrafts } from "@/lib/db/schema";
 import { desc, eq, sql } from "drizzle-orm";
 import { requireAuth } from "@/lib/admin/auth";
+import { verifyBearer } from "@/lib/security/bearer";
 
 export const dynamic = "force-dynamic";
 
@@ -17,7 +18,7 @@ interface Check {
 function isCronAuthed(req: NextRequest): boolean {
   const cronSecret = process.env.CRON_SECRET;
   if (!cronSecret) return false;
-  return req.headers.get("authorization") === `Bearer ${cronSecret}`;
+  return verifyBearer(req.headers.get("authorization"), cronSecret);
 }
 
 // GET /api/admin/ted/health — JSON health summary.
