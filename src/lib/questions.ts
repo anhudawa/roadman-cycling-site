@@ -668,6 +668,18 @@ export const QUESTION_PAGES: QuestionPage[] = [
     ],
     related: [
       {
+        label: "Masters FTP Benchmark Calculator",
+        href: "/tools/masters-ftp-benchmark",
+      },
+      {
+        label: "Masters Recovery Score Calculator",
+        href: "/tools/masters-recovery-score",
+      },
+      {
+        label: "Masters Cycling Podcast Playlist (By Topic)",
+        href: "/blog/masters-cycling-podcast-playlist",
+      },
+      {
         label: "Cycling Over 40 — Getting Faster",
         href: "/blog/cycling-over-40-getting-faster",
       },
@@ -756,6 +768,14 @@ export const QUESTION_PAGES: QuestionPage[] = [
       },
     ],
     related: [
+      {
+        label: "Masters Recovery Score Calculator",
+        href: "/tools/masters-recovery-score",
+      },
+      {
+        label: "Masters Cycling Podcast Playlist (By Topic)",
+        href: "/blog/masters-cycling-podcast-playlist",
+      },
       {
         label: "Cycling Over 50 Training",
         href: "/blog/cycling-over-50-training",
@@ -846,6 +866,14 @@ export const QUESTION_PAGES: QuestionPage[] = [
     ],
     related: [
       {
+        label: "Masters FTP Benchmark Calculator",
+        href: "/tools/masters-ftp-benchmark",
+      },
+      {
+        label: "Masters Cycling Podcast Playlist (By Topic)",
+        href: "/blog/masters-cycling-podcast-playlist",
+      },
+      {
         label: "Heavy Strength Beats More Miles After 40",
         href: "/blog/new-study-confirms-heavy-strength-training-beats-more-miles-after-40",
       },
@@ -928,6 +956,18 @@ export const QUESTION_PAGES: QuestionPage[] = [
       },
     ],
     related: [
+      {
+        label: "Masters Recovery Score Calculator",
+        href: "/tools/masters-recovery-score",
+      },
+      {
+        label: "Masters FTP Benchmark Calculator",
+        href: "/tools/masters-ftp-benchmark",
+      },
+      {
+        label: "Masters Cycling Podcast Playlist (By Topic)",
+        href: "/blog/masters-cycling-podcast-playlist",
+      },
       {
         label: "Common Training Mistakes (1,400+ episodes)",
         href: "/blog/common-training-mistakes-from-1400-podcast-episodes",

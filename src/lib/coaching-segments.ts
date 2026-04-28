@@ -72,6 +72,17 @@ export interface SegmentData {
   serviceType: string;
   /** Visual breaker word, e.g. "MASTERS" */
   breakerWord: string;
+  /**
+   * Optional segment-specific resource links — free tools, curated
+   * playlists, deep-dive guides. Renders as a small linked panel on the
+   * segment page when present. Use sparingly: only resources that
+   * directly serve the segment, not generic site links.
+   */
+  relatedResources?: {
+    label: string;
+    href: string;
+    description: string;
+  }[];
 }
 
 export const COACHING_SEGMENTS: Record<string, SegmentData> = {
@@ -223,6 +234,32 @@ export const COACHING_SEGMENTS: Record<string, SegmentData> = {
     ],
     serviceType: "Cycling Coaching for Masters Cyclists",
     breakerWord: "MASTERS",
+    relatedResources: [
+      {
+        label: "Masters Recovery Score",
+        href: "/tools/masters-recovery-score",
+        description:
+          "Free 0–100 recovery audit calibrated for cyclists 40+. Four inputs, one number, a calibrated recommendation.",
+      },
+      {
+        label: "Masters FTP Benchmark",
+        href: "/tools/masters-ftp-benchmark",
+        description:
+          "See where your FTP sits among trained masters cyclists in your age group. 40-44, 45-49, 50-54, 55-59, 60+.",
+      },
+      {
+        label: "Masters Cycling Podcast Playlist",
+        href: "/blog/masters-cycling-podcast-playlist",
+        description:
+          "Topic-organised playlist of Roadman episodes for masters cyclists — training, recovery, strength, racing, longevity.",
+      },
+      {
+        label: "Masters Cyclist Guide",
+        href: "/blog/masters-cyclist-guide-getting-faster-after-40",
+        description:
+          "The long-form companion guide — getting faster after 40, with the full training, recovery, and strength framework.",
+      },
+    ],
   },
 
   beginners: {

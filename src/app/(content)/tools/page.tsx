@@ -91,6 +91,20 @@ const tools = [
     href: "/tools/shock-pressure",
     status: "live" as const,
   },
+  {
+    title: "Masters Recovery Score",
+    description:
+      "Four inputs — age, training hours, sleep, and stress — into a 0–100 recovery score with a recommendation calibrated for cyclists over 40.",
+    href: "/tools/masters-recovery-score",
+    status: "live" as const,
+  },
+  {
+    title: "Masters FTP Benchmark",
+    description:
+      "Where your FTP sits among trained amateur masters cyclists in your age group — 40-44, 45-49, 50-54, 55-59, 60+. Percentile and watts to next band.",
+    href: "/tools/masters-ftp-benchmark",
+    status: "live" as const,
+  },
 ];
 
 export default function ToolsPage() {
