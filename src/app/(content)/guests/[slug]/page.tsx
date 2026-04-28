@@ -71,9 +71,16 @@ export default async function GuestPage({
         data={{
           "@context": "https://schema.org",
           "@type": ["Person", "ProfilePage"],
+          // Canonical Person @id for the guest. Episodes (`actor`,
+          // `mentions`) and articles (`mentions`) reference this same
+          // anchor so all citations of the person across the site
+          // resolve to one Knowledge Graph node rather than duplicate
+          // entities with the same name.
+          "@id": `https://roadmancycling.com/guests/${slug}#person`,
           name: guest.name,
           mainEntity: {
             "@type": "Person",
+            "@id": `https://roadmancycling.com/guests/${slug}#person`,
             name: guest.name,
           },
           ...(guest.credential && { jobTitle: guest.credential }),
@@ -148,6 +155,7 @@ export default async function GuestPage({
           ),
           subjectOf: guest.episodes.slice(0, 5).map((ep) => ({
             "@type": "PodcastEpisode",
+            "@id": `https://roadmancycling.com/podcast/${ep.slug}#episode`,
             name: ep.title,
             url: `https://roadmancycling.com/podcast/${ep.slug}`,
           })),

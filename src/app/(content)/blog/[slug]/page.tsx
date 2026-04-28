@@ -15,6 +15,7 @@ import { ShareButtons } from "@/components/features/blog/ShareButtons";
 import { RelatedPosts } from "@/components/features/blog/RelatedPosts";
 import { AuthorBio } from "@/components/features/blog/AuthorBio";
 import { EvidenceBlock } from "@/components/seo/EvidenceBlock";
+import { ArticleCitationBlock } from "@/components/seo/ArticleCitationBlock";
 import { Breadcrumbs } from "@/components/seo/Breadcrumbs";
 import { queryContentGraph } from "@/lib/content-graph";
 import { RelatedContent } from "@/components/features/RelatedContent";
@@ -160,7 +161,18 @@ export default async function BlogPostPage({
     <>
       {/* BlogPosting references the canonical Person + Organization @ids
           emitted by OrganizationJsonLd in the root layout, so crawlers see
-          a single connected knowledge graph rather than duplicate entities. */}
+          a single connected knowledge graph rather than duplicate entities.
+
+          Knowledge-graph relationships (GAP-12):
+          - `about` points at parent topic hubs by @id, so the article is
+            tied to the topical Thing nodes the hub pages emit.
+          - `isPartOf` is an array — the website (top-level container) and
+            every parent topic hub (mid-level container) — making the
+            article a member of the hub's CollectionPage.
+          - `mentions` carries cited experts (linked to /guests/[slug] @ids)
+            and explicitly cited episodes (linked to /podcast/[slug] @ids)
+            so the article is graph-connected to both Person and
+            PodcastEpisode entities. */}
       <JsonLd
         data={{
           "@context": "https://schema.org",
@@ -177,7 +189,27 @@ export default async function BlogPostPage({
             "@id": `${SITE_ORIGIN}/blog/${slug}`,
           },
           keywords: post.keywords.join(", "),
-          isPartOf: { "@id": ENTITY_IDS.website },
+          // isPartOf: WebSite (always) + every parent topic hub (when the
+          // article appears in one). Topic hubs emit a matching `@id` of
+          // `<origin>/topics/<slug>#topic` so the references resolve into
+          // the same Thing/CollectionPage on the hub page.
+          isPartOf: [
+            { "@id": ENTITY_IDS.website },
+            ...parentTopics.map((t) => ({
+              "@id": `${SITE_ORIGIN}/topics/${t.slug}#topic`,
+            })),
+          ],
+          // about: the topical Thing the article is fundamentally about.
+          // Topic hubs declare a co-located `@id` of
+          // `<origin>/topics/<slug>#thing` so this lines up.
+          ...(parentTopics.length > 0 && {
+            about: parentTopics.map((t) => ({
+              "@type": "Thing",
+              "@id": `${SITE_ORIGIN}/topics/${t.slug}#thing`,
+              name: t.title,
+              url: `${SITE_ORIGIN}/topics/${t.slug}`,
+            })),
+          }),
           speakable: {
             "@type": "SpeakableSpecification",
             cssSelector: post.answerCapsule
@@ -192,20 +224,34 @@ export default async function BlogPostPage({
               height: 630,
             },
           }),
-          // E-E-A-T: schema.org `mentions` lets Google connect the article
-          // to the cited experts as entities. Each mention points at the
-          // expert's /guests/[slug] page, which already emits full Person +
-          // sameAs schema (Wikipedia/Wikidata/etc.) — no need to duplicate
-          // here.
-          ...(post.experts && post.experts.length > 0 && {
-            mentions: post.experts
+          // mentions: experts cited in the article (linked to their
+          // /guests/[slug]#person @id which the guest page emits) plus
+          // any explicitly cited related podcast episodes (linked to
+          // /podcast/[slug]#episode @id which the episode page emits).
+          // Ties the article into the same Person and PodcastEpisode
+          // nodes used elsewhere on the site rather than declaring
+          // duplicate entities.
+          ...((() => {
+            const expertMentions = (post.experts ?? [])
               .filter((e) => e.href && e.href.startsWith("/guests/"))
               .map((e) => ({
-                "@type": "Person",
+                "@type": "Person" as const,
+                "@id": `${SITE_ORIGIN}${e.href}#person`,
                 name: e.name,
-                url: `https://roadmancycling.com${e.href}`,
-              })),
-          }),
+                url: `${SITE_ORIGIN}${e.href}`,
+              }));
+            const episodeMentions = (post.relatedEpisodes ?? [])
+              .map((s) => getEpisodeBySlug(s))
+              .filter((ep): ep is NonNullable<typeof ep> => ep !== null)
+              .map((ep) => ({
+                "@type": "PodcastEpisode" as const,
+                "@id": `${SITE_ORIGIN}/podcast/${ep.slug}#episode`,
+                name: ep.title,
+                url: `${SITE_ORIGIN}/podcast/${ep.slug}`,
+              }));
+            const all = [...expertMentions, ...episodeMentions];
+            return all.length > 0 ? { mentions: all } : {};
+          })()),
         }}
       />
       <JsonLd
@@ -525,6 +571,21 @@ export default async function BlogPostPage({
             {/* Author bio — E-E-A-T signal + entity-link chain from every
                 blog post to /about + verified social sameAs URLs. */}
             <AuthorBio />
+
+            {/* Citation aid — collapsed `<details>` block giving readers
+                and AI crawlers a structured citation (title, author,
+                publisher, canonical URL, dates, key claim) plus an APA
+                line. Schema.org Article microdata layered on top of the
+                same DOM the page-level BlogPosting JSON-LD already
+                covers, so models that prefer microdata pick up the same
+                attribution without expanding the panel. */}
+            <ArticleCitationBlock
+              title={post.title}
+              url={`${SITE_ORIGIN}/blog/${slug}`}
+              datePublished={post.publishDate}
+              dateModified={post.updatedDate}
+              keyClaim={post.answerCapsule || post.excerpt}
+            />
 
             {/* Evidence block — sources, related episodes, review date.
                 Experts default to Anthony alone but can be overridden per
