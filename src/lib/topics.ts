@@ -267,6 +267,7 @@ const TOPIC_POST_MAP: Record<string, string[]> = {
     "fasted-vs-fueled-cycling",
     "cycling-body-recomposition",
     "cycling-protein-timing-guide",
+    "alan-murchison-michelin-star-chef-cycling-nutrition",
   ],
   "cycling-training-plans": [
     "cycling-periodisation-plan-guide",
