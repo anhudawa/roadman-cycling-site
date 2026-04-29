@@ -341,6 +341,40 @@ export const GUEST_PROFILE_OVERRIDES: Record<string, GuestProfileOverride> = {
     ],
   },
 
+  "alan-murchison": {
+    description:
+      "Scottish chef and elite sports nutritionist. Held a Michelin star at L'Ortolan in Berkshire from 2003 to 2014. Founder of Performance Chef LTD; consultant to British Cycling, the chef behind Specialized Factory Racing's race plates, and author of The Cycling Chef cookbook series (Bloomsbury). Multiple-time World and European age-group duathlon champion.",
+    worksFor: {
+      name: "Performance Chef",
+      type: "Organization",
+      url: "https://performancechef.com/",
+    },
+    sameAs: [
+      "https://en.wikipedia.org/wiki/Alan_Murchison",
+      "https://performancechef.com/",
+      "https://www.instagram.com/performance.chef/",
+      "https://twitter.com/AlanMurchison",
+      "https://www.linkedin.com/in/alan-murchison-695668107/",
+      "https://www.greatbritishchefs.com/chefs/alan-murchison",
+    ],
+    featuredArticles: [
+      "alan-murchison-michelin-star-chef-cycling-nutrition",
+      "cycling-protein-requirements",
+      "cycling-in-ride-nutrition-guide",
+      "cycling-weight-loss-fuel-for-the-work-required",
+    ],
+    whyMatters:
+      "Alan Murchison is the chef who left Michelin-starred fine dining to feed Olympic cyclists, World Tour riders, and Formula 1 drivers. He spent over a decade running L'Ortolan in Berkshire to a Michelin star and four AA Rosettes, then walked away from the restaurant world to build Performance Chef — the food operation behind Specialized Factory Racing's Olympic medals, World Cup podiums, and the British Cycling consultancy that fuels riders from first-time finishers to gold medallists. He matters because he is the rare voice who can talk credibly about both the precision of fine-dining technique and the metabolic demands of racing a bike: the food still has to taste good, and it still has to land 90 grams of carbohydrate an hour without wrecking the gut. His Cycling Chef book series and his work with Canyon-SRAM have set the modern standard for what a serious amateur's kitchen actually looks like.",
+    keyIdeas: [
+      "Quality of food matters more than macros — chicken, rice, and broccoli twice a day will fuel performance and produce a malnourished athlete at the same time.",
+      "30+ different plants a week is not a wellness fad — it is the simplest proxy for the gut diversity that supports recovery, immune function, and hard training.",
+      "Race-day nutrition has to be rehearsed in training — the day of an event is the worst possible time to discover a gel does not agree with your gut.",
+      "Recovery starts in the first 30 minutes after a hard session and is mostly about getting carbohydrate, protein, and fluid in fast — the format (real food, shake, smoothie) matters less than the timing.",
+      "Plant-powered performance is genuinely possible at the elite level, but the protein and iron maths have to be deliberate — it is not just removing meat from a normal diet.",
+    ],
+    relatedHubs: ["cycling-nutrition", "cycling-weight-loss"],
+  },
+
   "rosa-kloser": {
     description:
       "German professional gravel and road cyclist, 2024 Unbound Gravel 200 winner and 2025 German gravel national champion. Races both as a gravel privateer and for the CANYON//SRAM zondacrypto road team. PhD researcher in green shipping at Copenhagen Business School.",
