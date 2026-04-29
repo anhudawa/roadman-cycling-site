@@ -340,6 +340,62 @@ const nextConfig: NextConfig = {
     };
   },
   async headers() {
+    // Content-Security-Policy in Report-Only mode for non-embed routes.
+    // Next.js's runtime + framer-motion + recharts + Vercel Analytics
+    // + GA + Stripe Checkout + Beehiiv embed all use inline styles
+    // and a few inline scripts (JSON-LD, Next bootstrap), so a strict
+    // enforcing CSP would break the site without nonce-aware
+    // refactoring. Shipping in Report-Only first lets us collect
+    // violation reports and tighten without an outage.
+    //
+    // When ready to enforce: switch the header key to
+    // `Content-Security-Policy` and remove `report-only`.
+    const CSP_REPORT_ONLY = [
+      "default-src 'self'",
+      "base-uri 'self'",
+      "object-src 'none'",
+      "frame-ancestors 'self'",
+      "form-action 'self' https://checkout.stripe.com",
+      "img-src 'self' data: blob: https://i.ytimg.com https://i.scdn.co https://cdn.sanity.io https://*.vercel-blob.com https://*.public.blob.vercel-storage.com https://www.google-analytics.com https://www.googletagmanager.com https://stats.g.doubleclick.net",
+      "media-src 'self' https://*.vercel-blob.com https://*.public.blob.vercel-storage.com",
+      "font-src 'self' data: https://fonts.gstatic.com",
+      // 'unsafe-inline' for styles is unavoidable with framer-motion +
+      // recharts inline style attributes; same for Tailwind-injected styles.
+      "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com",
+      // Scripts: 'self' for our own bundles, 'unsafe-inline' for the
+      // small Next.js bootstrap + JSON-LD blocks (no nonce yet — see
+      // comment above), plus Stripe, GA, GTM, Vercel Analytics.
+      "script-src 'self' 'unsafe-inline' 'unsafe-eval' https://js.stripe.com https://www.googletagmanager.com https://www.google-analytics.com https://*.vercel-insights.com https://va.vercel-scripts.com",
+      "connect-src 'self' https://*.upstash.io https://api.stripe.com https://*.vercel-insights.com https://www.google-analytics.com https://*.googleapis.com https://embeds.beehiiv.com https://*.public.blob.vercel-storage.com",
+      "frame-src 'self' https://js.stripe.com https://hooks.stripe.com https://embeds.beehiiv.com https://www.youtube.com https://www.youtube-nocookie.com https://open.spotify.com",
+      "worker-src 'self' blob:",
+      "upgrade-insecure-requests",
+    ].join("; ");
+
+    // Permissions-Policy — disable powerful browser APIs we don't use.
+    // We DO use payment via Stripe Checkout (separate origin), so
+    // payment is left allowed for self.
+    const PERMISSIONS_POLICY = [
+      "accelerometer=()",
+      "autoplay=()",
+      "camera=()",
+      "display-capture=()",
+      "encrypted-media=()",
+      "fullscreen=(self)",
+      "geolocation=()",
+      "gyroscope=()",
+      "magnetometer=()",
+      "microphone=()",
+      "midi=()",
+      "payment=(self)",
+      "picture-in-picture=(self)",
+      "publickey-credentials-get=()",
+      "screen-wake-lock=()",
+      "sync-xhr=()",
+      "usb=()",
+      "xr-spatial-tracking=()",
+    ].join(", ");
+
     return [
       // Default security headers — applied to every path EXCEPT the public
       // /embed routes, which need to be framable on third-party sites.
@@ -363,6 +419,14 @@ const nextConfig: NextConfig = {
           {
             key: "Strict-Transport-Security",
             value: "max-age=63072000; includeSubDomains; preload",
+          },
+          {
+            key: "Permissions-Policy",
+            value: PERMISSIONS_POLICY,
+          },
+          {
+            key: "Content-Security-Policy-Report-Only",
+            value: CSP_REPORT_ONLY,
           },
         ],
       },

@@ -3,6 +3,7 @@ import {
   fetchSubscriberStats,
   fetchNewsletterPosts,
 } from "@/lib/integrations/beehiiv";
+import { verifyBearer } from "@/lib/security/bearer";
 
 function isAuthorized(req: NextRequest): boolean {
   const cronSecret = process.env.CRON_SECRET;
@@ -11,7 +12,7 @@ function isAuthorized(req: NextRequest): boolean {
   if (!cronSecret) return false;
 
   const authHeader = req.headers.get("authorization");
-  return authHeader === `Bearer ${cronSecret}`;
+  return verifyBearer(authHeader, cronSecret);
 }
 
 export async function GET(req: NextRequest) {

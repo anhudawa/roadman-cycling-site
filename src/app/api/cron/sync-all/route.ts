@@ -4,6 +4,7 @@ import {
   syncStripeCustomers,
 } from "@/lib/crm/sync";
 import { startCronRun, finishCronRun } from "@/lib/crm/cron-runs";
+import { verifyBearer } from "@/lib/security/bearer";
 
 export const runtime = "nodejs";
 export const maxDuration = 600;
@@ -12,7 +13,7 @@ function isAuthorized(req: NextRequest): boolean {
   const cronSecret = process.env.CRON_SECRET;
   if (!cronSecret) return false; // fail-closed: missing secret is a misconfig, not a bypass
   const authHeader = req.headers.get("authorization");
-  return authHeader === `Bearer ${cronSecret}`;
+  return verifyBearer(authHeader, cronSecret);
 }
 
 export async function GET(req: NextRequest) {

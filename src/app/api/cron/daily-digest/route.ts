@@ -6,6 +6,7 @@ import type { TeamUser, TeamUserRole } from "@/lib/admin/auth";
 import { getMyDayData } from "@/lib/crm/dashboard";
 import { hasActionable, renderDailyDigest, sendDigestEmail } from "@/lib/crm/digest";
 import { startCronRun, finishCronRun } from "@/lib/crm/cron-runs";
+import { verifyBearer } from "@/lib/security/bearer";
 
 export const dynamic = "force-dynamic";
 
@@ -13,7 +14,7 @@ function isAuthorized(req: NextRequest): boolean {
   const cronSecret = process.env.CRON_SECRET;
   if (!cronSecret) return false;
   const authHeader = req.headers.get("authorization");
-  return authHeader === `Bearer ${cronSecret}`;
+  return verifyBearer(authHeader, cronSecret);
 }
 
 function toTeamUser(row: typeof teamUsers.$inferSelect): TeamUser {

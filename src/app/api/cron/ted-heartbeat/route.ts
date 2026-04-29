@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from "next/server";
 import { db } from "@/lib/db";
 import { tedActivityLog, tedKillSwitch } from "@/lib/db/schema";
 import { and, desc, eq, gte } from "drizzle-orm";
+import { verifyBearer } from "@/lib/security/bearer";
 
 export const dynamic = "force-dynamic";
 
@@ -17,7 +18,7 @@ const DEDUPE_HOURS = 24;
 function isAuthorized(req: NextRequest): boolean {
   const cronSecret = process.env.CRON_SECRET;
   if (!cronSecret) return false;
-  return req.headers.get("authorization") === `Bearer ${cronSecret}`;
+  return verifyBearer(req.headers.get("authorization"), cronSecret);
 }
 
 export async function GET(req: NextRequest) {

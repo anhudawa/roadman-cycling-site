@@ -3,6 +3,7 @@ import { recordEvent } from "@/lib/admin/events-store";
 import { upsertOnSignup } from "@/lib/admin/subscribers-store";
 import { subscribeToBeehiiv } from "@/lib/integrations/beehiiv";
 import { upsertContact, addActivity } from "@/lib/crm/contacts";
+import { rateLimitOr429 } from "@/lib/rate-limit/ip-rate-limit";
 import { clampString, LIMITS, normaliseEmail } from "@/lib/validation";
 import {
   getLeadMagnet,
@@ -28,6 +29,15 @@ import {
  * `src/lib/cta/lead-magnets.ts` AND wire the automation in Beehiiv.
  */
 export async function POST(request: Request) {
+  // Per-IP rate limit. Same posture as /api/newsletter — every
+  // request hits Beehiiv + CRM, so cap automated abuse.
+  const limited = await rateLimitOr429(request, {
+    namespace: "lead-magnets",
+    tokens: 10,
+    window: "10 m",
+  });
+  if (limited) return limited;
+
   try {
     const raw = (await request.json()) as {
       magnet?: unknown;

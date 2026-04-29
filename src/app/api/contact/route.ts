@@ -4,6 +4,7 @@ import { contactSubmissions } from "@/lib/db/schema";
 import { upsertContact, addActivity } from "@/lib/crm/contacts";
 import { subscribeToBeehiiv } from "@/lib/integrations/beehiiv";
 import { getResendClient } from "@/lib/integrations/resend";
+import { rateLimitOr429 } from "@/lib/rate-limit/ip-rate-limit";
 import {
   clampString,
   escapeHtml,
@@ -14,6 +15,17 @@ import {
 const NOTIFICATION_EMAIL = "anthony@roadmancycling.com";
 
 export async function POST(request: Request) {
+  // Per-IP rate limit. Without this, anyone could flood Anthony's
+  // inbox via the contact form (each request triggers a Resend send +
+  // Beehiiv subscribe + DB write). 5/10min is generous for a real
+  // human filling the form and tight enough to defang automated abuse.
+  const limited = await rateLimitOr429(request, {
+    namespace: "contact",
+    tokens: 5,
+    window: "10 m",
+  });
+  if (limited) return limited;
+
   try {
     const raw = (await request.json()) as {
       name?: unknown;
