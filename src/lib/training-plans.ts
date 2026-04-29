@@ -483,6 +483,38 @@ export const EVENTS: TrainingEvent[] = [
       "Trail or lightweight XC full-suspension. 2.3-2.4\" tyres with good sidewalls (MaxxTerra or Enduro casing). Service-day bike fleet access (mandatory at the Cape Epic). 2x kit pieces of everything. Tyre plugs, pump, CO2, multitool.",
   },
   {
+    slug: "haute-route-alps",
+    name: "Haute Route Alps",
+    shortName: "Haute Route Alps",
+    region: "France / Italy / Switzerland",
+    type: "sportive",
+    distanceKm: 920,
+    elevationGainM: 21000,
+    typicalFinishTime: "7 days (stage race)",
+    defaultMonth: "August",
+    description:
+      "Seven days of timed Alpine stage racing — 920km from Nice to Geneva over 21,000m of climbing, including Bonette, Galibier, Iseran, Colombière, and Joux Plane. Each stage is timed against the field; the GC after stage 7 is what people remember. ASO-quality logistics, transfer trucks, mass starts, and a peloton that races every day.",
+    keyCharacteristics: [
+      "Seven daily stages averaging 130km + 3,000m climbing — the cumulative load is the event",
+      "Multiple HC climbs each day — Bonette (2,802m), Galibier (2,642m), Iseran (2,764m), Joux Plane (1,691m)",
+      "Timed format with daily GC — riders race, not just finish",
+      "Altitude exposure 2,000-2,800m on most stages — power drops 8-15% at the top",
+      "Recovery between stages is the real workload — massage, nutrition, sleep, repeat",
+    ],
+    commonMistakes: [
+      "Riding day 1 like a sportive PR attempt and arriving at day 4 cracked",
+      "Under-fuelling the recovery window — calorie debt compounds across stages",
+      "No back-to-back long-ride training — sportive fitness does not transfer to multi-day",
+    ],
+    pacingStrategy:
+      "Treat each stage as a 70-80% effort, not a 100% effort. Day 1 power should be the slowest you can hold for 5-6 hours, not the fastest. The leaderboard rewards consistency — riders who finish day 4 at 90% of day-1 power move up the GC; riders who blow up on day 2 ride defence for the rest of the week. Pace climbs on rigid wattage ceilings, not on the wheel in front of you.",
+    nutritionAngle:
+      "On-bike: 80-100g carbs/hour for 5-7 hours daily, with feed-zone discipline. Off-bike: this is where the event is won. 1.2-1.5g protein per kg body weight per day, refined carb intake 8-10g/kg/day during the week, and a recovery shake within 30 minutes of crossing every finish line. Sleep is fuel — riders who skip the post-stage protocol crack on day 4 regardless of fitness.",
+    kitAngle:
+      "Climbing bike with 34x32 minimum, 34x34 if you have it. Two complete kit setups so one is always laundered. Light insulated layer for high-pass descents (Bonette, Iseran tops can be sub-5°C even in August). Recovery kit: foam roller, compression, recovery shake powder, electrolyte tabs. Massage is included most years — book early, every day.",
+    blogSlug: "haute-route-alps-training-guide",
+  },
+  {
     slug: "trans-pyrenees",
     name: "Trans Pyrenees",
     shortName: "Trans Pyrenees",

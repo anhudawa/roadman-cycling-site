@@ -1109,6 +1109,137 @@ export const EVENT_GUIDES: EventGuide[] = [
       },
     ],
   },
+  {
+    slug: "haute-route-alps-training-plan",
+    trainingEventSlug: "haute-route-alps",
+    raceSlug: "haute-route-alps",
+    pageTitle: "Haute Route Alps Training Plan",
+    intent:
+      "Help amateurs prepare for the Haute Route Alps — a 7-day, 920km, 21,000m timed Alpine stage race from Nice to Geneva that demands multi-day pacing more than peak FTP.",
+    weatherConditions:
+      "Late August in the Alps swings hard. Valley starts at 12-18°C, summit temperatures on Bonette and Iseran (above 2,500m) often 2-5°C, and exposed descents off the high cols turn cold fast in cloud or wind. Afternoon thunderstorms above 2,000m are weekly events — riders chasing GC time start early and finish before the front lands.",
+    terrainSummary:
+      "Seven daily stages averaging 130km and 3,000m of climbing, all timed independently with a cumulative GC. Each stage features two or three HC/Cat-1 climbs — Bonette, Galibier, Iseran, Madeleine, Colombière, Joux Plane — sometimes paired with summit finishes, sometimes with valley descents into the line. Distance and climbing vary by stage; some days are 90km/3,500m climbing, others 160km/2,500m.",
+    ftpRequirement: {
+      minimum: "3.4 W/kg",
+      competitive: "4.2 W/kg",
+      notes:
+        "Haute Route is multi-day-pacing limited, not single-day-FTP limited. 3.4 W/kg gets you through all seven stages inside cut-offs if your recovery protocol is dialled in. 4.2+ W/kg is the GC-contender bar — you need to be able to hold threshold-adjacent power on day 6 with five hard days in your legs, not just on day 1.",
+    },
+    enduranceDemands:
+      "13-16 hours/week peaking 12-16 weeks out, with at least three back-to-back long-ride weekends totalling 10+ hours each (5-6h Saturday + 4-5h Sunday). Single 5-hour rides are not enough — the Haute Route's defining demand is recovering enough overnight to do it again tomorrow, and you can only train that with stacked weekends.",
+    climbingNarrative:
+      "21,000m of climbing across 920km is more than the height of Everest scaled three times. The climbs are split across seven stages with no flat day; even the 'transfer' stages have 2,500m of vertical. Three of the seven stages cross 2,500m altitude, and most amateurs lose 8-15% of sea-level sustainable power on the upper sections of Bonette, Iseran, and Galibier. The cumulative climbing fatigue from days 1-3 is what makes day 4 the GC pivot point.",
+    majorClimbs: [
+      {
+        name: "Col de la Bonette",
+        lengthKm: 24.1,
+        avgGradient: 5.9,
+        elevationGainM: 1429,
+        positionInRide: "early-week stage — typically day 1 or 2",
+        notes:
+          "2,802m summit — the highest paved road in the French Alps. 2-2.5 hours of sustained climbing. Pace it on power, not the riders attacking off the front; the GC is decided across seven days, not on Bonette.",
+      },
+      {
+        name: "Col du Galibier",
+        lengthKm: 17.7,
+        avgGradient: 5.5,
+        elevationGainM: 1245,
+        positionInRide: "mid-week stage",
+        notes:
+          "2,642m summit, often paired with Télégraphe as a back-to-back climb. Sustained tempo for 75-90 minutes. The descent into Valloire is fast and exposed — pack a gilet for the summit even on warm days.",
+      },
+      {
+        name: "Col de l'Iseran",
+        lengthKm: 13.0,
+        avgGradient: 7.4,
+        elevationGainM: 962,
+        positionInRide: "mid-to-late-week stage",
+        notes:
+          "2,764m — the highest paved pass in the Alps. Steeper than Bonette and Galibier on average. The upper third bites: altitude, gradient, and three days of accumulated fatigue all land in the same 30 minutes.",
+      },
+      {
+        name: "Col de la Madeleine",
+        lengthKm: 19.2,
+        avgGradient: 7.9,
+        elevationGainM: 1517,
+        positionInRide: "back-half stage",
+        notes:
+          "Sustained 7-8% for 90+ minutes. No respite — the gradient barely changes from base to summit. Where amateurs who haven't trained back-to-back long days first feel the multi-day cost.",
+      },
+      {
+        name: "Col de la Colombière",
+        lengthKm: 16.3,
+        avgGradient: 6.8,
+        elevationGainM: 1108,
+        positionInRide: "late-week stage",
+        notes:
+          "Comes on day 6 or 7 most years — by this point you're racing the leaderboard and the legs simultaneously. The final 4km steepen to 9-10% and shed riders who paced the climb on early-week feel.",
+      },
+      {
+        name: "Col de Joux Plane",
+        lengthKm: 11.6,
+        avgGradient: 8.5,
+        maxGradient: 14,
+        elevationGainM: 989,
+        positionInRide: "final stage approach to Geneva",
+        notes:
+          "Famous as one of the hardest cols of the Tour de France finishes. 8.5% sustained over 11.6km on day 7 legs. The GC is won and lost here — sub-threshold riders climb in pieces, rested riders take chunks of time.",
+      },
+    ],
+    finishTimes: [
+      {
+        level: "First-time finisher (compliance)",
+        range: "55-65 hours total / 7-9h daily average",
+        fitnessProfile:
+          "FTP 3.2-3.6 W/kg, 11-13 hours/week training, two back-to-back long-ride weekends (10+ hours combined), Alpine climbing experience.",
+      },
+      {
+        level: "Mid-pack rider",
+        range: "45-55 hours total / 6-8h daily average",
+        fitnessProfile:
+          "FTP 3.6-4.0 W/kg, 13-15 hours/week training, multiple multi-day rides in the legs, refined recovery protocol, gut trained to 90g+ carbs/hour.",
+      },
+      {
+        level: "Top-third GC contender",
+        range: "38-45 hours total / 5-6:30h daily average",
+        fitnessProfile:
+          "FTP 4.0-4.5 W/kg, 15-18 hours/week training, racing background, structured threshold + sustained climbing blocks, altitude exposure 14+ days pre-race.",
+      },
+      {
+        level: "Front-of-field GC",
+        range: "32-38 hours total / 4:30-5:30h daily average",
+        fitnessProfile:
+          "FTP 4.5+ W/kg, 18-22 hours/week training, sub-threshold for 4+ hours daily, full altitude camp 3+ weeks pre-race, sub-2% body fat margin from race weight.",
+      },
+    ],
+    fuellingDeepDive:
+      "Haute Route fuelling is on-bike + off-bike, and the off-bike side is where most amateurs lose the week. On the bike: 80-100g carbs/hour for 5-7 hours, every stage, every day — that's roughly 32 gels-equivalent across a stage, plus solid food at every feed zone. Daily total carb intake during race week climbs to 8-10g/kg body weight (a 70kg rider eats 560-700g of carbs across the day) — well above what most amateurs eat in normal training. Protein matters at multi-day events more than single-day ones: 1.5-2g/kg/day to support overnight muscle repair. The recovery window is non-negotiable: a carb-protein shake (3:1 ratio) within 30 minutes of crossing every finish line, then a real meal within 90. Asker Jeukendrup's research on multiple transportable carbohydrates underpins the standard 2:1 glucose-fructose mix used by most riders. Sleep is fuel — riders banking 7-8 hours per night across the week recover; riders sleeping 5-6 hours crack on day 4 regardless of fitness.",
+    pacingDeepDive:
+      "Haute Route pacing is multi-day pacing, full stop. Each stage is a 70-80% effort, not a 100% effort. Day 1 power should be the slowest you can sustainably hold for 5-6 hours, not the fastest — riders who race day 1 are riding defence by day 3. On the climbs, pace on rigid wattage ceilings: 75-80% FTP for HC cols on stages 1-3, dropping to 70-75% by stage 5 as cumulative fatigue lands. Heart rate runs 5-10 bpm higher at altitude than at sea level for the same wattage — pace on power, accept the HR drift. The descents are recovery, not racing: eat, drink, freewheel where the gradient allows, and brake conservatively because crash-and-broken-collarbone ends a Haute Route faster than a bonk. The leaderboard rewards consistency more than peak performance — finishers who hold 95% of their day-1 average power on day 6 move up the GC; finishers who chase early-week stage wins are usually riding 60% by stage 7.",
+    detailedMistakes: [
+      {
+        mistake: "Treating it like seven independent sportives",
+        fix: "Haute Route is one event spread over seven days, not seven events. Pace and fuel for cumulative load: day 1 effort = 75% of single-day max, recovery protocol locked in from stage 1, sleep prioritised over evening socialising. The riders who finish strong on stage 7 are the ones who held back on stages 1-3.",
+      },
+      {
+        mistake: "No back-to-back long-ride training",
+        fix: "Five-hour Saturday rides do not prepare you for stacked 5-hour days. Build at least three back-to-back long-ride weekends (Saturday 5-6h + Sunday 4-5h) in the final 12 weeks, ideally with one of them in real Alpine terrain. The training problem Haute Route asks isn't 'can you ride hard for one day' — it's 'can you ride hard the day after riding hard'.",
+      },
+      {
+        mistake: "Skimping on the post-stage recovery protocol",
+        fix: "Carb-protein shake within 30 minutes of every stage finish. Real meal within 90 minutes. Compression, foam roller, and 7-8 hours of sleep that night — non-negotiable from stage 1, not 'starting tomorrow when I feel tired'. Recovery debt compounds: skip it on day 1 and you pay on day 4 with interest.",
+      },
+      {
+        mistake: "Under-gearing because 'I climb fine on 11-28'",
+        fix: "34x32 minimum, 34x34 if you have it. By day 5 your climbing power is 80-90% of fresh-leg power, and the same gradient that felt comfortable on day 1 feels different on day 6. Riders running 11-28 cassettes on day 6 of Joux Plane are grinding at 50rpm and losing 10+ minutes versus the same rider on a 34-tooth cog.",
+      },
+      {
+        mistake: "Arriving without altitude exposure",
+        fix: "Three of the seven stages cross 2,500m. At those altitudes most amateurs lose 8-15% of sea-level sustainable power. Sleep at altitude in the final 2-3 weeks if you can (a tent or chamber works for sea-level riders), or arrive 7-10 days early to acclimatise. Sea-level fitness with no altitude exposure costs 20-30 minutes per high-Alps stage.",
+      },
+    ],
+  },
 ];
 
 /* ============================================================ */
