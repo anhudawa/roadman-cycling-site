@@ -6,6 +6,11 @@ scripts/sync-state.json
 # SEO content drafts (generated, reviewed before publishing)
 content/drafts/
 
+# SEO audit / batch reports (regenerated on each run; the
+# committed dashboard at SEO-PODCAST-DASHBOARD.md is the
+# tracked snapshot)
+seo-reports/
+
 # Admin analytics data (generated at runtime)
 /data/events.json
 

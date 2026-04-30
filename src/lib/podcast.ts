@@ -97,6 +97,14 @@ export interface EpisodeFrontmatter {
     claim: string;
     evidence: "study" | "expert" | "practice" | "anecdote" | "opinion";
     source?: string;
+    /**
+     * Editorial review gate. Auto-extracted claims (from
+     * `scripts/extract-claims.ts`) are written with `reviewed: false`
+     * and hidden from the rendered page until a human approves them
+     * via `scripts/review-claims.ts`. A missing flag is treated as
+     * trusted (legacy hand-authored claims pre-date this gate).
+     */
+    reviewed?: boolean;
   }[];
   /**
    * Resources, papers, books, tools, or other episodes referenced in
@@ -108,6 +116,8 @@ export interface EpisodeFrontmatter {
     type: "paper" | "book" | "article" | "tool" | "episode" | "website";
     url?: string;
     author?: string;
+    /** Editorial review gate — see `claims[].reviewed`. */
+    reviewed?: boolean;
   }[];
   /**
    * Optional URLs the guest is canonically known by — Wikipedia,
@@ -140,6 +150,27 @@ function ensurePodcastDir() {
   }
 }
 
+/**
+ * Drops items explicitly flagged `reviewed: false` (auto-extracted but
+ * not yet approved). Items without a `reviewed` flag pre-date the
+ * editorial gate and are treated as trusted, so the filter is a no-op
+ * for hand-authored content.
+ */
+function filterReviewed<T extends { reviewed?: boolean }>(
+  items: T[] | undefined,
+): T[] | undefined {
+  if (!items) return items;
+  return items.filter((item) => item.reviewed !== false);
+}
+
+function applyReviewGate(frontmatter: EpisodeFrontmatter): EpisodeFrontmatter {
+  return {
+    ...frontmatter,
+    claims: filterReviewed(frontmatter.claims),
+    citations: filterReviewed(frontmatter.citations),
+  };
+}
+
 export function getAllEpisodes(): EpisodeMeta[] {
   ensurePodcastDir();
   const files = fs.readdirSync(PODCAST_DIR).filter((f) => f.endsWith(".mdx"));
@@ -149,7 +180,7 @@ export function getAllEpisodes(): EpisodeMeta[] {
     const filePath = path.join(PODCAST_DIR, filename);
     const fileContent = fs.readFileSync(filePath, "utf-8");
     const { data } = matter(fileContent);
-    const frontmatter = data as EpisodeFrontmatter;
+    const frontmatter = applyReviewGate(data as EpisodeFrontmatter);
 
     return {
       ...frontmatter,
@@ -184,12 +215,33 @@ export function getEpisodeBySlug(slug: string): EpisodeFull | null {
 
   const fileContent = fs.readFileSync(filePath, "utf-8");
   const { data, content } = matter(fileContent);
-  const frontmatter = data as EpisodeFrontmatter;
+  const frontmatter = applyReviewGate(data as EpisodeFrontmatter);
 
   return {
     ...frontmatter,
     slug,
     content,
+  };
+}
+
+/**
+ * Read raw episode frontmatter — bypasses the review gate. For tools
+ * (audit, batch enrichers, review CLI) that need to see *all* claims
+ * and citations including unreviewed ones. Pages must use the public
+ * `getEpisodeBySlug` / `getAllEpisodes` so the gate applies.
+ */
+export function getEpisodeRaw(
+  slug: string,
+): { frontmatter: EpisodeFrontmatter; content: string; filePath: string } | null {
+  ensurePodcastDir();
+  const filePath = path.join(PODCAST_DIR, `${slug}.mdx`);
+  if (!fs.existsSync(filePath)) return null;
+  const fileContent = fs.readFileSync(filePath, "utf-8");
+  const { data, content } = matter(fileContent);
+  return {
+    frontmatter: data as EpisodeFrontmatter,
+    content,
+    filePath,
   };
 }
 

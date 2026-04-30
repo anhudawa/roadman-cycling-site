@@ -76,7 +76,20 @@
     "seed:mcp:embeddings": "tsx scripts/generate-mcp-embeddings.ts",
     "seed:mcp:embeddings:dry": "tsx scripts/generate-mcp-embeddings.ts --dry-run",
     "seed:mcp:all": "npm run seed:mcp:content && npm run seed:mcp:products && npm run seed:mcp:events && npm run seed:mcp:community-stats && npm run seed:mcp:embeddings",
-    "validate:mcp:manifest": "tsx scripts/validate-mcp-manifest.ts"
+    "validate:mcp:manifest": "tsx scripts/validate-mcp-manifest.ts",
+    "seo:audit:episodes": "tsx scripts/audit-episode-coverage.ts",
+    "seo:audit:episodes:strict": "tsx scripts/audit-episode-coverage.ts --strict --new-only",
+    "seo:claims": "tsx scripts/extract-claims.ts",
+    "seo:claims:dry": "tsx scripts/extract-claims.ts --dry-run",
+    "seo:citations": "tsx scripts/extract-citations.ts",
+    "seo:citations:dry": "tsx scripts/extract-citations.ts --dry-run",
+    "seo:takeaways": "tsx scripts/extract-key-takeaways.ts",
+    "seo:takeaways:dry": "tsx scripts/extract-key-takeaways.ts --dry-run",
+    "seo:review": "tsx scripts/review-claims.ts",
+    "seo:batch": "tsx scripts/seo-batch.ts",
+    "seo:batch:dry": "tsx scripts/seo-batch.ts --dry-run",
+    "episode:enrich": "tsx scripts/enrich-episode.ts",
+    "episode:enrich:dry": "tsx scripts/enrich-episode.ts --dry-run"
   },
   "dependencies": {
     "@anthropic-ai/sdk": "^0.82.0",

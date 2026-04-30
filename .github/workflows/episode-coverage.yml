@@ -1,0 +1,28 @@
+name: Episode SEO Coverage
+
+on:
+  pull_request:
+    paths:
+      - "content/podcast/**.mdx"
+
+jobs:
+  coverage:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+      - run: npm ci
+      - name: Audit episode coverage (warn-only on new episodes)
+        run: npx tsx scripts/audit-episode-coverage.ts
+      - name: Upload coverage report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: episode-coverage-report
+          path: |
+            seo-reports/episode-coverage-*.md
+            seo-reports/episode-coverage-*.json
+            SEO-PODCAST-DASHBOARD.md
