@@ -1,9 +1,7 @@
 "use client";
 
 import { useCallback, useEffect, useRef, useState } from "react";
-import { useSearchParams, useRouter, usePathname } from "next/navigation";
 import { useAskStream, type AskCitation } from "@/app/(marketing)/ask/use-ask-stream";
-import { trackAsk, ASK_EVENTS } from "@/lib/analytics/ask-events";
 import { MessageList } from "./MessageList";
 import { StarterPrompts } from "./StarterPrompts";
 import { track } from "@/lib/analytics/events";
@@ -47,44 +45,6 @@ export function AskRoadmanClient({
   const scrollBodyRef = useRef<HTMLDivElement>(null);
   const hasMessages = messages.length > 0;
   const seedConsumedRef = useRef(false);
-
-  const [seed, setSeed] = useState<SeedBanner | null>(null);
-  const seedConsumedRef = useRef(false);
-  const searchParams = useSearchParams();
-  const router = useRouter();
-  const pathname = usePathname();
-
-  // Load seed context if the URL carries seed_tool/seed_result params.
-  useEffect(() => {
-    const tool = searchParams.get("seed_tool");
-    const slugRaw = searchParams.get("seed_result");
-    if (!tool || !slugRaw) return;
-    const slug = decodeURIComponent(slugRaw);
-
-    let cancelled = false;
-    (async () => {
-      try {
-        const res = await fetch(
-          `/api/ask/seed?tool=${encodeURIComponent(tool)}&slug=${encodeURIComponent(slug)}`,
-          { cache: "no-store" },
-        );
-        if (!res.ok) return;
-        const body = (await res.json()) as { seed?: Omit<SeedBanner, "tool" | "slug"> | null };
-        if (cancelled || !body.seed) return;
-        setSeed({ ...body.seed, tool, slug });
-        setInput(body.seed.suggestedPrompt);
-        trackAsk({
-          name: ASK_EVENTS.SEED_LOADED,
-          meta: { tool, slug },
-        });
-      } catch {
-        // silent — banner just won't show
-      }
-    })();
-    return () => {
-      cancelled = true;
-    };
-  }, [searchParams]);
 
   // Rehydrate any prior session so a returning user sees their history.
   useEffect(() => {
