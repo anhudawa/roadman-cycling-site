@@ -1,0 +1,13 @@
+week,phase,monday,tuesday,wednesday,thursday,friday,saturday,sunday,total_hours
+1,Aerobic build,Rest / mobility,Strength + 45 min Z1,75 min sweet-spot,60 min Z1 recovery,Strength,90 min low-cadence torque,3 h Z2,~9
+2,Aerobic build,Rest / mobility,Strength + 45 min Z1,75 min sweet-spot,60 min Z1 recovery,Strength,90 min low-cadence torque,3 h Z2,~9
+3,Recovery,Rest,30 min Z1,45 min Z1,Off,Strength (light),60 min Z1,90 min Z2,~5
+4,Intensity introduction,Rest / mobility,Strength,90 min VO2max (30/15s × 2 blocks),60 min Z1,Strength,90 min sweet-spot,3 h Z2,~10
+5,Intensity introduction,Rest / mobility,Strength,90 min VO2max (30/15s × 2 blocks),60 min Z1,Strength,90 min sweet-spot,3.5 h Z2,~10
+6,Recovery,Rest,30 min Z1,45 min Z1,Off,Strength (light),60 min Z1,90 min Z2,~5
+7,Peak block,Rest / mobility,Strength (maintenance),90 min VO2max (30/15s × 3 blocks),60 min Z1 recovery,Off (long-ride prep),120 min low-cadence torque,3.5 h Z2 with fuelled efforts,~11
+8,Peak block,Rest / mobility,Strength (maintenance),90 min VO2max (30/15s × 3 blocks),60 min Z1 recovery,Off (long-ride prep),120 min low-cadence torque,4 h Z2 with fuelled efforts,~11
+9,Recovery,Rest,30 min Z1,45 min Z1,Off,Strength (light),60 min Z1,90 min Z2,~5
+10,Goal-specific,Rest / mobility,Strength,Quality session #1 (goal-specific),60 min Z1,Strength,Quality session #2 (goal-specific),3.5 h Z2,~10
+11,Goal-specific,Rest / mobility,Strength,Quality session #1 (goal-specific),60 min Z1,Strength,Quality session #2 (goal-specific),3.5 h Z2,~10
+12,Recovery + test,Rest,30 min Z1,FTP test,Off,Off,60 min Z1,90 min Z2 + audit,~5

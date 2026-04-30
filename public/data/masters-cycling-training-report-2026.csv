@@ -1,0 +1,20 @@
+metric,age_band,trained,untrained,unit,source,notes
+VO2max decline per year,40+,0.5,1.0,% per year,"Tanaka & Seals, 2008 (J Physiol)",Trained masters lose roughly half the rate of those who stop
+VO2max decline per decade,35+,5,10,% per decade,"Pollock; Trappe; Hagberg longitudinal data",Cross-sectional sedentary vs longitudinal trained
+Max heart rate decline,30+,1,1,bpm per year,"Tanaka, 2001 (208 − 0.7 × age)",Re-test if you set zones in your 30s
+Testosterone decline,30+,1,1,% per year,"Handelsman, 1992",Modest effect on muscle mass and recovery
+Recovery between hard sessions,40–54,72,72,hours,Practical coaching consensus,Drop to one hard session/week if life-stress is high
+Recovery between hard sessions,55+,72,96,hours,Practical coaching consensus,Adjust upwards as required
+Strength sessions per week (off-season),40–54,2,3,sessions,"Rønnestad & Mujika, 2014",Heavy compound; 70–85% 1RM
+Strength sessions per week (in-season),40–54,1,2,sessions,"Rønnestad & Mujika, 2014",Maintenance dose preserves adaptations
+Strength sessions per week (female perimenopausal),40–55,3,3,sessions,Sims (multiple),Heavier end of load range; 80–90% 1RM
+Protein intake,40+,1.6,2.0,g/kg/day,"Phillips, 2011; PROT-AGE, 2013",Maintenance phase
+Protein intake,40+,1.8,2.2,g/kg/day,"Phillips, 2011",Heavy training or weight-loss phases
+Protein per meal,40+,25,40,g per feeding,"Moore, 2020 (Nutrients)",Older athletes need 40–50% more per meal vs younger
+Leucine per meal,40+,2.5,3.0,g per feeding,"Moore, 2020",Leucine threshold for MPS rises with age
+Carb intake (90 min – 3 h ride),—,60,90,g per hour,"Jeukendrup et al.",Single transporter ~60 g/h; mixed glucose+fructose extends ceiling
+Carb intake (3 h+ ride),—,90,120,g per hour,"Jeukendrup et al.",Multiple-transportable carbs (glucose+fructose)
+Sleep target,40+,7.5,9,hours per night,"Kölling et al., 2019 (Sports Medicine)",Actual sleep not time in bed
+Zone 2 weekly hours (8–12 h training week),40+,6,8,hours,"Practical coaching prescription",One to two hours above threshold; rest recovery
+Zone 2 weekly hours (6–8 h training week),40+,4,5,hours,"Practical coaching prescription",One hour above threshold; rest recovery
+Hard sessions per week,40+,1,2,sessions,"Practical coaching prescription",Two with 72 h between; drop to one when life stress is high

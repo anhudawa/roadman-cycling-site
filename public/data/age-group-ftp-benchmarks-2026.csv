@@ -1,0 +1,15 @@
+band,gender,wkg_low,wkg_high,description,zwift_category_equiv,racing_category_equiv
+Entry recreational,Men,2.0,2.5,New to structured training or returning after a long break,—,—
+Recreational,Men,2.5,3.3,"Rides regularly, enjoys fast group rides, gran fondo finisher",D,—
+Good recreational,Men,3.3,3.8,"Respectable sportive times, contests sprint points, thinking about racing",C/D,—
+Strong amateur,Men,3.8,4.2,Racing at Cat 4/3 (US) or 4th/3rd Cat (UK/IE),B,Cat 4/3 (US) · 4th/3rd (UK/IE)
+Cat 2 equivalent,Men,4.2,4.7,Consistently in the front group of regional races,A,Cat 2
+Cat 1 / regional elite,Men,4.7,5.2,Wins or top-tens in regional races; lower-tier national events,A,Cat 1
+National / elite-amateur,Men,5.2,,National-series competitive,A+,National
+Entry recreational,Women,1.5,2.0,New to structured training or returning after a long break,—,—
+Recreational,Women,2.0,2.8,"Rides regularly, enjoys fast group rides, gran fondo finisher",D,—
+Good recreational,Women,2.8,3.3,"Respectable sportive times, contests sprint points, thinking about racing",C/D,—
+Strong amateur,Women,3.3,3.7,Racing at Cat 4/3 (US) or 4th/3rd Cat (UK/IE),B,Cat 4/3 (US) · 4th/3rd (UK/IE)
+Cat 2 equivalent,Women,3.7,4.2,Consistently in the front group of regional races,A,Cat 2
+Cat 1 / regional elite,Women,4.2,4.7,Wins or top-tens in regional races; lower-tier national events,A,Cat 1
+National / elite-amateur,Women,4.7,,National-series competitive,A+,National

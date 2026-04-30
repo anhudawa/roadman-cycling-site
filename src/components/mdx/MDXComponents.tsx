@@ -2,6 +2,9 @@ import Image from "next/image";
 import type { ComponentPropsWithoutRef } from "react";
 import { EvidenceLevel } from "@/components/ui/EvidenceLevel";
 import { CitedClaimTable } from "@/components/ui/CitedClaimTable";
+import { CiteBlock } from "@/components/ui/CiteBlock";
+import { DownloadCSVButton } from "@/components/features/blog/DownloadCSVButton";
+import { EmailCapture } from "@/components/features/conversion/EmailCapture";
 
 /**
  * MDX component overrides.
@@ -67,6 +70,11 @@ export const mdxComponents = {
   // Custom components authors can drop into MDX directly:
   //   <EvidenceLevel level="strong" />
   //   <CitedClaimTable claims={[...]} />
+  //   <CiteBlock title="..." author="..." year={2026} url="..." />
+  //   <DownloadCSVButton href="/data/foo.csv" filename="foo.csv" description="..." />
   EvidenceLevel,
   CitedClaimTable,
+  CiteBlock,
+  DownloadCSVButton,
+  EmailCapture,
 };

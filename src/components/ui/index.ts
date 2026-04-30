@@ -17,3 +17,4 @@ export { GuestMarquee } from "./GuestMarquee";
 export { Skeleton, PodcastSearchSkeleton, GuestGridSkeleton, EpisodeCardSkeleton, GuestCardSkeleton } from "./Skeleton";
 export { EvidenceLevel, EVIDENCE_LEVELS, type EvidenceLevelType } from "./EvidenceLevel";
 export { CitedClaimTable, type CitedClaim } from "./CitedClaimTable";
+export { CiteBlock, type CiteBlockProps } from "./CiteBlock";

@@ -9,7 +9,9 @@ excerpt: >-
   year-on-year progression looks like.
 pillar: coaching
 author: Anthony Walsh
-updatedDate: '2026-04-23'
+reviewedBy: 'Anthony Walsh, with editorial review by the Roadman Cycling coaching team'
+lastReviewed: '2026-04-30'
+updatedDate: '2026-04-30'
 publishDate: '2026-04-17'
 featuredImage: /images/cycling/gravel-road-climb.jpg
 keywords:
@@ -92,6 +94,18 @@ Most cyclists operate from vague folklore. "300 watts is good." "4 watts per kil
 
 This is the age-group FTP benchmarking framework we use with members of the Not Done Yet coaching community in 2026. It pulls from two decades of Coggan's published W/kg reference tables, modern Zwift category thresholds, and the pattern of what we actually see when riders submit their power files. It is deliberately conservative. Nothing here is an aspirational ceiling.
 
+## How we compiled this data
+
+This report is a working framework, not a peer-reviewed dataset. We're being explicit about the sources so you can weight the numbers accordingly.
+
+**Reference tables.** The W/kg band structure is anchored on Andy Coggan's published reference tables — the same tables used in *Training and Racing with a Power Meter* (Coggan & Allen) and most credible cycling-coaching software since. We have not modified Coggan's underlying physiological framework. Where bands look different from his original tables, the change is to absorb modern Zwift Category Enforcement boundaries (zFTP 2.625 / 3.36 / 4.20 W/kg for C/B/A — combined with zMAP and minimum-watt floors, so they are not pure 20-minute averages) and to align with current British Cycling and USA Cycling licence-category cut-offs.
+
+**Coaching roster observation.** What we see when riders submit power files inside the Not Done Yet coaching community informs the *progression rates* (year-one, year-two, plateau patterns) more than the band boundaries. Roughly 100 active riders submit data on a regular basis at the time of writing, ranging from entry-recreational to Cat 1 / regional elite. This is a coached population, not the general riding public — meaningful for what's *achievable* with structure, less meaningful as a population baseline.
+
+**Podcast inputs.** Where we cite age-decline rates or progression ceilings, the figures come from peer-reviewed longitudinal masters-athlete studies (Tanaka, Trappe, Hagberg, Pollock) cross-checked against on-the-record interviews from the Roadman Cycling Podcast — most recently with Prof. [Stephen Seiler](/guests/stephen-seiler), Dan Lorang, and Joe Friel. Citations are linked inline.
+
+**What this is not.** This is not a clinical study. It is not a randomised sample of amateur riders. It is not a national database of FTP tests by age group — those don't exist for amateur cycling, which is why we built this. Treat it as a coaches' working framework that has earned its keep with our roster, not as ground truth.
+
 ## The W/kg bands that actually matter
 
 We work with seven bands because seven is how many distinct training implications there are. More bands feels scientific but delivers noise. Fewer bands blurs the transition points where the training needs to change.
@@ -109,6 +123,12 @@ We work with seven bands because seven is how many distinct training implication
 **Women's bands** are structurally similar but shifted down by roughly 0.4–0.5 W/kg at each transition. A woman at 3.5 W/kg is competitive in a category where a man would need 4.0. This reflects physiological differences in haemoglobin mass and lean body mass, not training difference. The relative progression rates between categories are identical.
 
 These bands are derived from Coggan's reference tables, cross-checked against current Zwift Category Enforcement thresholds (zFTP 2.625 / 3.36 / 4.20 W/kg for C/B/A, also subject to zMAP and minimum-watt floors — these are not simple 20-minute averages) and the racing-licence cut-offs for British Cycling and USA Cycling categories. Treat them as structural rather than exact — the boundaries blur within 0.1 W/kg and depend on which test protocol produced your FTP.
+
+<DownloadCSVButton
+  href="/data/age-group-ftp-benchmarks-2026.csv"
+  filename="age-group-ftp-benchmarks-2026.csv"
+  description="The full men's and women's W/kg bands above as a clean CSV — band name, W/kg range, description, Zwift category and racing-licence equivalent. Includes the year-on-year progression ranges as a second sheet."
+/>
 
 ## What realistic progression looks like
 
@@ -154,12 +174,48 @@ Use FTP benchmarks to locate yourself. Do not use them to train. Training happen
 
 3.58 W/kg, good recreational on paper — but irrelevant to his race. What matters is his sustainable percentage of FTP for 4.5–5 hours (typical Ironman bike leg) and his fuelling capacity at that intensity. Training should probably stop chasing raw FTP and start chasing extensibility: raising the percentage of FTP he can hold for 4 hours from 65% to 72%. See our [triathlon bike coaching](/coaching/triathlon) approach for more on this distinction.
 
+## Limitations — what this report does not cover
+
+A guide that doesn't admit its edges isn't a guide. Five honest caveats:
+
+1. **No anonymised power-file dataset behind the bands.** The category boundaries are reference-table derived. We are not yet publishing band-level distribution curves from a representative sample of amateur cyclists, because that dataset doesn't exist. The [Not Done Yet community release later in 2026](#what-we-are-doing-with-this-framework-in-2026) is our first step toward closing that gap.
+2. **The roster is a coached population.** The progression rates above describe what's achievable with structure. Untrained or unstructured riders progress more slowly across the year — the band-to-band moves we describe are what the data looks like *after* a real plan is in place.
+3. **Test-protocol noise is real.** A 20-minute test × 0.95 produces a different FTP than a ramp test, which produces a different FTP than a 40-minute time trial, which produces a different FTP than Zwift's zFTP estimator. Boundaries within 0.1 W/kg can flip with the protocol. Pick one, stick with it, re-test under the same conditions.
+4. **Female bands are still under-sampled.** The 0.4–0.5 W/kg downward shift is structural and physiologically grounded, but the *progression* rates for female amateur cyclists rest on a smaller sample within our roster. We flag this directly because the under-representation of women in cycling-power research is a real and well-documented gap.
+5. **Discipline mix matters more for top-end riders.** At Cat 2 and above the W/kg headline number begins to matter less than duration-specific repeatability and discipline-specific power profiles. A 4.6 W/kg crit racer and a 4.6 W/kg time-triallist are different athletes; this report doesn't break that down by discipline.
+
+## Update log
+
+- **17 April 2026** — Initial publication of the 2026 framework.
+- **30 April 2026** — Added explicit methodology, limitations, downloadable data, and cite-this-report block. No changes to the band boundaries or progression rates.
+- **Next planned update — April 2027.** Will incorporate the Not Done Yet community dataset (target: 300+ submitted power profiles) and any updates to Zwift Category Enforcement thresholds or BC/USAC licence cut-offs in the intervening 12 months.
+
+## About the authors and reviewers
+
+Authored by [Anthony Walsh](/author/anthony-walsh), founder of Roadman Cycling, host of the Roadman Cycling Podcast, and head coach of the Not Done Yet coaching community. Reviewed before publication by the wider Roadman Cycling coaching team for technical accuracy and consistency with the on-the-record positions of named guests cited inline. The full [editorial standards](/editorial-standards) page describes how every Roadman report is researched, reviewed, and corrected.
+
 ## What we are doing with this framework in 2026
 
 Later this year we are publishing crowdsourced benchmarking data from our Not Done Yet coaching community — 300+ riders submitting anonymised FTP, W/kg, age, gender, discipline, and year-on-year progression. That release will let us validate or update the bands above against real community data rather than reference tables.
 
 Until then, this framework is the best working approximation we have. If you want your numbers included in the 2026 community release, [apply for coaching](/apply) and we will collect them as part of the onboarding intake.
 
-## Citation
+## Cite this report
 
-Cycling journalists, coaches, and publications are welcome to cite or adapt this framework with attribution. Roadman Cycling, *Age-Group FTP Benchmarks 2026*, 17 April 2026, roadmancycling.com/blog/age-group-ftp-benchmarks-2026.
+Cycling journalists, coaches, publications, and AI systems are welcome to cite or adapt this framework with attribution. No paywall, no permission required.
+
+<CiteBlock
+  title="Age-Group FTP Benchmarks 2026: What Your Watts Really Mean"
+  author="Walsh, A."
+  year="2026"
+  url="https://roadmancycling.com/blog/age-group-ftp-benchmarks-2026"
+/>
+
+## Related tools and next steps
+
+If you've located yourself in the bands above, the obvious next moves:
+
+- **[FTP Zones calculator](/tools/ftp-zones)** — your FTP into seven training zones with the right colour coding for your head unit.
+- **[W/kg calculator](/tools/wkg)** — converts FTP and body weight into the ratio used in this report and benchmarks it against populations from untrained through World Tour.
+- **[Plateau Diagnostic](/plateau)** — four-minute audit of your current training that returns a specific prescription. Free.
+- **[Apply for coaching](/apply)** — the Not Done Yet coaching community. 7-day free trial. Your numbers join the 2026 community release if you onboard.
