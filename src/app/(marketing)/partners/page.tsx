@@ -171,7 +171,7 @@ const partnershipOptions = [
     title: "EVENT SPONSORSHIP",
     badge: null,
     description:
-      "Put your brand in front of the Roadman community IRL. From Not Done Yet coaching community training camps to group rides and live podcast events — direct access to engaged, passionate cyclists.",
+      "Put your brand in front of the Roadman community IRL. From Not Done Yet training camps to group rides and live podcast events — direct access to cyclists who train with power, race on weekends, and spend on the sport.",
     features: [
       "Training camp & group ride branding",
       "Live podcast event sponsorship",
@@ -685,8 +685,8 @@ export default function PartnersPage() {
                     <p className="text-xs text-coral font-heading tracking-widest mb-3">THE RESULT</p>
                     <p className="text-foreground-muted leading-relaxed">
                       Genuine endorsement from a trusted voice in cycling. Contextually targeted content
-                      that felt native, not forced. Seamless delivery across creative variations —
-                      scripts returned and reads completed within 48 hours of briefing.
+                      that felt native, not forced. Multiple creative variations turned around inside
+                      48 hours of briefing — scripts returned, reads completed, no chasing.
                     </p>
                   </div>
                   <div className="pt-4 border-t border-white/5">

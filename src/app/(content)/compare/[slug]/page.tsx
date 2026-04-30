@@ -108,7 +108,7 @@ export default async function ComparePage({
   const related: RelatedLink[] = [];
   if (comp.relatedArticle) {
     related.push({
-      label: "Deep dive article",
+      label: "Full article",
       href: comp.relatedArticle,
       description: "The long-form piece that backs this comparison.",
     });

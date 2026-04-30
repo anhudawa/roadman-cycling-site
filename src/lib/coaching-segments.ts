@@ -1136,7 +1136,7 @@ export const COACHING_SEGMENTS: Record<string, SegmentData> = {
     caseStudy: {
       name: "Kevin L",
       context: "Age 67. 40+ years on the bike. Felt like he'd plateaued long ago and accepted the gains were behind him.",
-      result: "Set new power numbers after four decades on the bike. More powerful, more stable, recovering faster. The protocol change unlocked work he didn't know was still there.",
+      result: "Set new power numbers after four decades on the bike. More powerful, more stable, recovering faster. The protocol change exposed power he didn't know was still there.",
       quote:
         "I've been riding for over four decades and never realised how much I was leaving on the table. I'm more powerful, more stable, and recovering faster. I only wish I found this sooner.",
     },
@@ -1528,7 +1528,7 @@ export const COACHING_SEGMENTS: Record<string, SegmentData> = {
         number: "01",
         title: "Fuel Performance",
         description:
-          "Every training session is properly fuelled. In-ride carbs at 60-90g/hr on rides over 90 minutes. Real meals around training. The energy availability that supports adaptation also unlocks body composition change — under-fuelling shuts both down.",
+          "Every training session is properly fuelled. In-ride carbs at 60-90g/hr on rides over 90 minutes. Real meals around training. The energy availability that supports adaptation is the same one that drives body composition change — under-fuelling shuts both down.",
       },
       {
         number: "02",

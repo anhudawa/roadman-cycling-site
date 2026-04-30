@@ -123,7 +123,7 @@ export default async function GlossaryTermPage({
                 {term.relatedArticle && (
                   <Link href={term.relatedArticle} className="block">
                     <Card hoverable className="p-4">
-                      <p className="font-heading text-coral text-xs tracking-widest mb-1">DEEP DIVE</p>
+                      <p className="font-heading text-coral text-xs tracking-widest mb-1">FULL ARTICLE</p>
                       <p className="text-off-white text-sm">Read the full guide →</p>
                     </Card>
                   </Link>

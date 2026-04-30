@@ -354,7 +354,7 @@ export default async function PredictResultPage({ params }: PageProps) {
                     className="text-[0.62rem] tracking-[0.22em] uppercase text-coral mb-2"
                     style={{ fontFamily: "var(--font-jetbrains-mono)" }}
                   >
-                    UNLOCK · $29
+                    GET THE REPORT · $29
                   </p>
                   <h3 className="font-heading text-4xl uppercase tracking-tight text-off-white mb-4 leading-tight">
                     The full Race Report

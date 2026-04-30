@@ -293,8 +293,8 @@ export default function StrengthTrainingPage() {
               </h2>
               <p className="text-foreground-muted max-w-lg mx-auto">
                 Designed specifically for cyclists over 30 who want to rebuild
-                strength, boost endurance, eliminate pain, and get faster on
-                the bike.
+                strength, hold their position deeper into long rides, kill the
+                niggling pains, and get faster on the bike.
               </p>
             </ScrollReveal>
 

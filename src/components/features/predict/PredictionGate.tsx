@@ -14,7 +14,7 @@ const DEFAULT_ITEMS = [
   "Climb-by-climb pacing breakdown",
   "Equipment & training scenario deltas",
   "Shareable Instagram / WhatsApp card",
-  "$29 Race Report unlock + nurture sequence",
+  "$29 Race Report access + nurture sequence",
 ];
 
 /**
@@ -54,7 +54,7 @@ export function PredictionGate({
       });
       const data = await res.json().catch(() => ({}));
       if (!res.ok) {
-        setError(data?.error ?? "Couldn't unlock — try again in a moment.");
+        setError(data?.error ?? "Couldn't send — try again in a moment.");
         return;
       }
       router.refresh();
@@ -86,7 +86,7 @@ export function PredictionGate({
             className="text-[0.65rem] tracking-[0.25em] uppercase text-coral mb-3"
             style={{ fontFamily: "var(--font-jetbrains-mono)" }}
           >
-            UNLOCK · FREE
+            FREE · 30 SECONDS
           </p>
           <h2 className="font-heading text-3xl md:text-4xl uppercase tracking-tight text-off-white leading-tight mb-4">
             See the climb-by-climb breakdown
@@ -94,7 +94,7 @@ export function PredictionGate({
           <p className="text-off-white/85 text-base md:text-lg leading-relaxed mb-5">
             We&apos;ve shown you the predicted time and the headline insight. The
             full breakdown — climbs, scenario deltas, and your shareable card —
-            unlocks with your email so we can send it through.
+            opens once you drop your email so we can send it through.
           </p>
           <ul className="space-y-2 mb-2">
             {hiddenItems.map((item) => (
@@ -132,7 +132,7 @@ export function PredictionGate({
             className="text-[0.62rem] tracking-[0.22em] uppercase text-foreground-muted mb-3"
             style={{ fontFamily: "var(--font-jetbrains-mono)" }}
           >
-            UNLOCK MY BREAKDOWN
+            SEND MY BREAKDOWN
           </p>
           <div className="space-y-3">
             <div>
@@ -190,7 +190,7 @@ export function PredictionGate({
               disabled={submitting || email.trim().length === 0}
               dataTrack="predict_gate_unlock"
             >
-              {submitting ? "Unlocking…" : "Unlock the full breakdown →"}
+              {submitting ? "Sending…" : "Send the full breakdown →"}
             </Button>
             <p
               className="text-[0.6rem] tracking-[0.18em] uppercase text-foreground-subtle text-center"

@@ -358,7 +358,7 @@ const LOCATIONS: Record<string, LocationData> = {
       {
         question: "Is there a minimum FTP or racing level to be coached?",
         answer:
-          "No. We coach complete beginners through to A1 racers. What matters is your commitment to the process — the plan is built around your current fitness, goals, and available hours. Many of our transformation stories start with riders who thought they were too slow or too new to be coached.",
+          "No. We coach complete beginners through to A1 racers. What matters is your commitment to the process — the plan is built around your current fitness, goals, and available hours. Many of our biggest results have come from riders who thought they were too slow or too new to be coached.",
       },
     ],
     localContent: [
@@ -1259,7 +1259,7 @@ export default async function CoachingLocationPage({ params }: Props) {
                   TRAINING GUIDES FOR {data.headingLabel.toUpperCase()} RIDERS.
                 </h2>
                 <p className="text-foreground-muted max-w-xl mx-auto">
-                  Free deep-dive guides for the events {data.areaServed} cyclists target most often.
+                  Free training guides for the events {data.areaServed} cyclists target most often.
                 </p>
               </ScrollReveal>
 

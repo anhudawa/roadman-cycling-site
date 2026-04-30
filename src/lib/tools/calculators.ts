@@ -1171,7 +1171,7 @@ export function calculateMastersFtpBenchmark(input: MastersFtpInput): MastersFtp
   } else {
     bandLabel = "Early masters";
     headline = "You're in the early stages relative to trained masters cyclists in your age group.";
-    interpretation = `At ${wkg.toFixed(2)} W/kg you're early in the masters journey. The good news: this is the band where structured training produces the biggest visible gains. The trap is doing too much too soon — start with consistency (4–5 rides a week) and one strength session, then build.`;
+    interpretation = `At ${wkg.toFixed(2)} W/kg you're early in your masters arc. The good news: this is the band where structured training produces the biggest visible gains. The trap is doing too much too soon — start with consistency (4–5 rides a week) and one strength session, then build.`;
   }
 
   // Watts needed to reach the next anchor (75th if user below 75, else 90th, else 95th, else 99th).

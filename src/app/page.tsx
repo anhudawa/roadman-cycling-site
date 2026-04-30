@@ -468,7 +468,7 @@ export default function HomePage() {
                     THE MASTERS CYCLING TRAINING REPORT 2026
                   </p>
                   <p className="text-foreground-muted leading-relaxed mb-4 max-w-2xl">
-                    The definitive guide to training as a masters cyclist. What
+                    The reference for training as a masters cyclist. What
                     actually declines after 40, what doesn&apos;t, and the
                     training that holds up. 10 sections, 40+ citations, 5 named
                     case studies, and a 12-week block you can run on Monday.

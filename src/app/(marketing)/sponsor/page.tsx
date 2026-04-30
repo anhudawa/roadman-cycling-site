@@ -55,7 +55,7 @@ const SEASON_BLOCKS = [
     startDate: "2026-11-01",
     endDate: "2027-03-31",
     premiumTier: "3" as const,
-    coverageDescription: "Five months of off-season content. Indoor training, gear deep-dives, and season planning \u2014 when cyclists are deciding what to buy next.",
+    coverageDescription: "Five months of off-season content. Indoor training, gear breakdowns, and season planning \u2014 when cyclists are deciding what to buy next.",
     episodeCount: 65, // 3/week x ~21.7 weeks
     newsletterCount: 22, // 1/week x ~22 weeks
   },

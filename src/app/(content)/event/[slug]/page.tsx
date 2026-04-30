@@ -19,7 +19,7 @@ import { PHASES } from "@/lib/training-plans";
  *
  * Sits above the /plan/[event]/[weeksOut] grid as a content hub:
  * climbing analysis, FTP requirement, finish-time bands, fuelling
- * deep dive — then routes riders into the right weeks-out plan and
+ * strategy — then routes riders into the right weeks-out plan and
  * the predictor (or Ask Roadman if no predictor course exists).
  */
 
@@ -446,7 +446,7 @@ export default async function EventGuidePage({
           </Container>
         </Section>
 
-        {/* Fuelling deep dive */}
+        {/* Fuelling strategy */}
         <Section background="deep-purple" grain>
           <Container width="narrow">
             <ScrollReveal direction="up" className="mb-6">
@@ -466,7 +466,7 @@ export default async function EventGuidePage({
           </Container>
         </Section>
 
-        {/* Pacing deep dive */}
+        {/* Pacing strategy */}
         <Section background="charcoal">
           <Container width="narrow">
             <ScrollReveal direction="up" className="mb-6">

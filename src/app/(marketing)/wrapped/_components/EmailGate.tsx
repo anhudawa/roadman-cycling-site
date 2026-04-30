@@ -67,7 +67,7 @@ export function EmailGate({ firstName, onUnlock, allowSkip = true }: Props) {
       </p>
       <p className="mt-4 max-w-2xl text-off-white/75 text-sm md:text-base leading-relaxed">
         We&apos;ll send you the year&apos;s sharpest cycling lessons from the podcast,
-        no spam — drop your email to unlock the cards. Already on the list?
+        no spam — drop your email to open the cards. Already on the list?
         Same email, you&apos;ll only ever get one copy.
       </p>
 

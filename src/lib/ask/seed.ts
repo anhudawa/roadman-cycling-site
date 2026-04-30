@@ -71,7 +71,7 @@ async function loadPlateauSeed(slug: string): Promise<SeedContext | null> {
       ? "Flagged: severe multi-system under-recovery (3+ dimensions red)"
       : null,
     sub.closeToBreakthrough
-      ? "Flagged: close to breakthrough — small levers likely to unlock a gain"
+      ? "Flagged: close to breakthrough — small levers likely to produce a gain"
       : null,
   ].filter((x): x is string => typeof x === "string");
 

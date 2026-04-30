@@ -171,7 +171,7 @@ function generateFtpZonesReport(inputs: FtpZonesInputs): ReportOutput {
       </li>
     </ul>
 
-    <h2 style="color:#F16363;font-size:13px;letter-spacing:2px;text-transform:uppercase;margin:0 0 8px;">Three rules that unlock this</h2>
+    <h2 style="color:#F16363;font-size:13px;letter-spacing:2px;text-transform:uppercase;margin:0 0 8px;">Three rules that make this work</h2>
     <ol style="padding-left:20px;margin:0 0 28px;color:#FAFAFA;">
       <li style="margin-bottom:10px;line-height:1.55;"><strong>Keep Zone 2 easy.</strong> If your average heart rate or power drifts into Zone 3, the day stops being Zone 2. Most amateurs fail here.</li>
       <li style="margin-bottom:10px;line-height:1.55;"><strong>Protect your hard days.</strong> One threshold, one VO2 max. If life says otherwise, drop VO2 max first — it needs freshness.</li>

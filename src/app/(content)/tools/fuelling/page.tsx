@@ -776,7 +776,7 @@ export default function FuellingPage() {
                         "Complete hour-by-hour schedule with feeding intervals",
                         "Glucose + fructose ratio explained",
                         "Heat-adjusted sodium targets",
-                        "Ask Roadman can unpack this one-click after you save",
+                        "Ask Roadman explains every number in one click after you save",
                       ]}
                     />
                   </motion.div>

@@ -161,7 +161,7 @@ export default async function FuellingResultPage({
             <div className="rounded-xl border border-coral/30 bg-coral/5 p-6 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
               <div>
                 <p className="text-coral font-heading text-xs tracking-widest mb-1">
-                  WANT TO UNPACK THIS?
+                  WANT TO GO DEEPER?
                 </p>
                 <p className="text-off-white/90 text-sm">
                   Open this plan in Ask Roadman for a grounded explanation or

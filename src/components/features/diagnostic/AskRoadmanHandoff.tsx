@@ -46,7 +46,7 @@ export function AskRoadmanHandoff({ slug, profile, variant = "card" }: Props) {
   return (
     <div className="rounded-xl border border-coral/30 bg-coral/5 p-5">
       <p className="text-coral font-heading text-xs tracking-widest mb-2">
-        WANT TO UNPACK THIS?
+        WANT TO GO DEEPER?
       </p>
       <p className="text-off-white/90 leading-relaxed mb-4">
         Open this diagnosis in Ask Roadman — the on-site assistant can

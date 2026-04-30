@@ -761,7 +761,7 @@ export const CASE_STUDIES: CaseStudy[] = [
       "Rate of weight loss varied across the arc. Plateaus were part of the process. Anyone reading this expecting linear progress will be disappointed; anyone reading it expecting durability will see the model.",
     ],
     coachCommentary: [
-      "Gregory is the case I think about when someone asks whether coaching can do anything for an athlete who's a long way from where they want to be. It can. The unlock is time, not intensity.",
+      "Gregory is the case I think about when someone asks whether coaching can do anything for an athlete who's a long way from where they want to be. It can. The lever is time, not intensity.",
       "The hard part of a long arc is staying in. Most athletes drop out at month four, month nine, month eighteen. The community piece is what keeps people in. The community is why Gregory is still going.",
       "Sub-100 kg from 315 pounds is a specific outcome. The repeatable outcome is staying in the system long enough for the body to compose itself properly. Everything that matters in cycling is downstream of that.",
     ],

@@ -99,9 +99,9 @@ export default function ClubhousePage() {
                     "This isn't a beginner group. The Clubhouse is full of professionals with families who train 6-12 hours a week and take their cycling seriously. People exactly like you.",
                 },
                 {
-                  title: "Podcast Deep-Dives",
+                  title: "Bonus Podcast Content",
                   description:
-                    "Extended discussions on episodes, bonus content, and the conversations that didn't make the final cut. The Clubhouse gets more than the public feed.",
+                    "Extended discussions on episodes, bonus material, and the conversations that didn't make the final cut. The Clubhouse gets more than the public feed.",
                 },
                 {
                   title: "Monthly Challenges",
