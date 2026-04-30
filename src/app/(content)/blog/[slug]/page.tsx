@@ -261,6 +261,44 @@ export default async function BlogPostPage({
             const all = [...expertMentions, ...episodeMentions];
             return all.length > 0 ? { mentions: all } : {};
           })()),
+          // citation: every row in `citedClaims` becomes a structured
+          // citation. Sources that look like a journal paper (year + et al,
+          // or "Journal" / "doi" markers) are typed as ScholarlyArticle to
+          // signal research provenance to crawlers; everything else falls
+          // back to the more permissive CreativeWork. Lets research-heavy
+          // guides expose their sources as first-class graph nodes rather
+          // than buried inside a table cell.
+          ...((() => {
+            if (!post.citedClaims || post.citedClaims.length === 0) return {};
+            const looksScholarly = (src: string): boolean => {
+              const s = src.toLowerCase();
+              return (
+                /\b(19|20)\d{2}\b/.test(s) &&
+                (/\bet al\.?/.test(s) ||
+                  /\bjournal\b/.test(s) ||
+                  /\bdoi\b/.test(s) ||
+                  /\bpubmed\b/.test(s) ||
+                  /\bscience\b/.test(s) ||
+                  /\bphysiol/.test(s) ||
+                  /\bsports? med/.test(s))
+              );
+            };
+            const seen = new Set<string>();
+            const citations = post.citedClaims
+              .map((c) => c.evidenceSource)
+              .filter((src): src is string => Boolean(src && src.trim()))
+              .filter((src) => {
+                const key = src.trim();
+                if (seen.has(key)) return false;
+                seen.add(key);
+                return true;
+              })
+              .map((src) => ({
+                "@type": looksScholarly(src) ? "ScholarlyArticle" : "CreativeWork",
+                name: src,
+              }));
+            return citations.length > 0 ? { citation: citations } : {};
+          })()),
         }}
       />
       <JsonLd

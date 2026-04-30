@@ -5,6 +5,7 @@ import { Header, Footer, Section, Container } from "@/components/layout";
 import { Button, Card, ScrollReveal } from "@/components/ui";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { FAQSchema } from "@/components/seo/FAQSchema";
+import { ENTITY_IDS } from "@/lib/brand-facts";
 import {
   getAllEventGuideSlugs,
   resolveEventGuide,
@@ -120,20 +121,18 @@ export default async function EventGuidePage({
         data={{
           "@context": "https://schema.org",
           "@type": "Article",
+          "@id": `${pageUrl}#article`,
           headline: `${guide.pageTitle} — Climbing, Pacing & Finish Times`,
           description: guide.intent,
           url: pageUrl,
-          mainEntityOfPage: pageUrl,
-          author: {
-            "@type": "Person",
-            name: "Anthony Walsh",
-            url: `${BASE_URL}/author/anthony-walsh`,
-          },
-          publisher: {
-            "@type": "Organization",
-            name: "Roadman Cycling",
-            url: BASE_URL,
-          },
+          mainEntityOfPage: { "@type": "WebPage", "@id": pageUrl },
+          // Author and publisher referenced by @id so this article resolves
+          // to the canonical Person + Organization entities declared in the
+          // root layout's OrganizationJsonLd graph — keeps the sitewide
+          // knowledge graph consolidated rather than re-declaring entities.
+          author: { "@id": ENTITY_IDS.person },
+          publisher: { "@id": ENTITY_IDS.organization },
+          isPartOf: { "@id": ENTITY_IDS.website },
           about: {
             "@type": "SportsEvent",
             name: trainingEvent.name,

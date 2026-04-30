@@ -5,6 +5,48 @@ import { Card, ScrollReveal, GradientText, Badge } from "@/components/ui";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { GLOSSARY_TERMS } from "@/lib/glossary";
 
+// Common "what does X mean in cycling" questions, structured for the
+// FAQPage rich result on the glossary index. Pulled from the highest-
+// search-volume cycling-terminology queries so the page can rank for
+// the question form, not just the term-name form.
+const GLOSSARY_FAQS = [
+  {
+    question: "What is FTP in cycling?",
+    answer:
+      "FTP (Functional Threshold Power) is the highest average power, in watts, you can sustain for roughly an hour. It's the anchor metric for setting training zones and tracking fitness over time. A 20-minute test multiplied by 0.95 is the standard estimate; a ramp test or a real 60-minute effort gives a more reliable number.",
+  },
+  {
+    question: "What does W/kg mean?",
+    answer:
+      "W/kg (watts per kilogram) is power-to-weight ratio: your sustained power divided by your body weight in kg. It's the single best predictor of climbing performance — a 70kg rider at 280W (4.0 W/kg) climbs faster than a 90kg rider at 320W (3.6 W/kg) on the same gradient. Race categories at the amateur level are roughly tracked by FTP-based W/kg.",
+  },
+  {
+    question: "What is polarised training?",
+    answer:
+      "Polarised training distributes hard sessions and easy sessions at the extremes — roughly 80% of training time at low intensity (zone 1–2, conversational) and 20% at high intensity (zone 4–5, hard intervals), with very little time in the moderate middle. It's the dominant model in elite endurance sport and was popularised in cycling research by Professor Stephen Seiler.",
+  },
+  {
+    question: "What is sweet spot training?",
+    answer:
+      "Sweet spot training targets 88–94% of FTP — hard enough to drive aerobic adaptations but recoverable enough to repeat several times a week. It produces fast fitness gains in time-crunched cyclists but, sustained year-round, can blunt high-end power and burn out the central nervous system. Best used in focused blocks, not as a default.",
+  },
+  {
+    question: "What is VO2max in cycling?",
+    answer:
+      "VO2max is the maximum amount of oxygen your body can use during all-out exercise, measured in millilitres per kg per minute. It sets the ceiling for your cycling potential — you train below it daily, but VO2max intervals (3–8 minute efforts above FTP) are how you raise the ceiling itself.",
+  },
+  {
+    question: "What is lactate threshold?",
+    answer:
+      "Lactate threshold is the intensity at which lactate starts accumulating in the blood faster than your body can clear it — usually within a few percent of FTP. It marks the boundary between sustainable and unsustainable efforts, and it's the metric labs measure to set training zones precisely.",
+  },
+  {
+    question: "What is periodisation in cycling training?",
+    answer:
+      "Periodisation is the structured organisation of training into blocks with different goals — base (aerobic), build (intensity), peak (race-specific), and recovery. Each block develops a specific quality, then you stack them so peak fitness lands on race day, not mid-training. Without periodisation, every week looks the same and improvement plateaus.",
+  },
+];
+
 export const metadata: Metadata = {
   title: "Cycling Performance Glossary — Key Terms Explained",
   description:
@@ -47,6 +89,20 @@ export default function GlossaryPage() {
             name: term.term,
             description: term.definition,
             url: `https://roadmancycling.com/glossary/${term.slug}`,
+          })),
+        }}
+      />
+      {/* FAQPage — pairs the term-name index above with the question form
+          of the same vocabulary so the glossary ranks for both "FTP" and
+          "what is FTP in cycling" style queries. */}
+      <JsonLd
+        data={{
+          "@context": "https://schema.org",
+          "@type": "FAQPage",
+          mainEntity: GLOSSARY_FAQS.map((f) => ({
+            "@type": "Question",
+            name: f.question,
+            acceptedAnswer: { "@type": "Answer", text: f.answer },
           })),
         }}
       />

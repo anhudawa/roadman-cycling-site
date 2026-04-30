@@ -3,10 +3,16 @@ import { Fragment } from "react";
 import { notFound } from "next/navigation";
 import { Header, Footer, Section, Container } from "@/components/layout";
 import { JsonLd } from "@/components/seo/JsonLd";
+import { ENTITY_IDS, SITE_ORIGIN } from "@/lib/brand-facts";
 import { SourceMethodology } from "@/components/features/aeo/SourceMethodology";
 import { AskRoadmanCTA } from "@/components/features/aeo/AskRoadmanCTA";
 import { getComparisonBySlug, getAllComparisonSlugs } from "@/lib/comparisons";
 import { queryContentGraph } from "@/lib/content-graph";
+
+// Comparisons are evergreen — refreshed when the underlying recommendation
+// changes, not on a publishing cadence. A static review date keeps Article
+// schema valid (Google wants datePublished) without lying about freshness.
+const COMPARISON_LAST_REVIEWED = "2026-04-30";
 import {
   ComparisonTemplate,
   type RelatedLink,
@@ -120,19 +126,70 @@ export default async function ComparePage({
     }
   }
 
+  const compareUrl = `${SITE_ORIGIN}/compare/${slug}`;
+
   return (
     <>
+      {/* Article — comparison verdicts are an editorial output (a position
+          taken by Anthony, backed by the podcast back-catalogue), not a
+          generic WebPage. Connects each comparison to the canonical Person
+          + Organization @ids so the verdict carries E-E-A-T weight. */}
       <JsonLd
         data={{
           "@context": "https://schema.org",
-          "@type": "WebPage",
-          name: comp.title,
+          "@type": "Article",
+          "@id": `${compareUrl}#article`,
+          headline: comp.title,
           description: comp.seoDescription,
-          url: `https://roadmancycling.com/compare/${slug}`,
+          url: compareUrl,
+          mainEntityOfPage: { "@type": "WebPage", "@id": compareUrl },
+          author: { "@id": ENTITY_IDS.person },
+          publisher: { "@id": ENTITY_IDS.organization },
+          isPartOf: { "@id": ENTITY_IDS.website },
+          datePublished: COMPARISON_LAST_REVIEWED,
+          dateModified: COMPARISON_LAST_REVIEWED,
+          articleSection: comp.pillar,
+          about: [
+            { "@type": "Thing", name: comp.optionA },
+            { "@type": "Thing", name: comp.optionB },
+          ],
           speakable: {
             "@type": "SpeakableSpecification",
             cssSelector: ["h1", ".short-answer", ".verdict-block"],
           },
+        }}
+      />
+      {/* ItemList — the two options under comparison as ranked entries.
+          The winning option (per `verdictWinner`) takes position 1; a
+          "depends" verdict emits both at their natural order with an
+          unordered listing so we don't fabricate a ranking. */}
+      <JsonLd
+        data={{
+          "@context": "https://schema.org",
+          "@type": "ItemList",
+          name: comp.title,
+          description: `${comp.optionA} vs ${comp.optionB} — head-to-head comparison.`,
+          url: compareUrl,
+          numberOfItems: 2,
+          itemListOrder:
+            comp.verdictWinner === "depends"
+              ? "https://schema.org/ItemListUnordered"
+              : "https://schema.org/ItemListOrderDescending",
+          itemListElement: (() => {
+            const a = {
+              "@type": "ListItem" as const,
+              position: comp.verdictWinner === "B" ? 2 : 1,
+              name: comp.optionA,
+              description: comp.bestForA.join(" "),
+            };
+            const b = {
+              "@type": "ListItem" as const,
+              position: comp.verdictWinner === "B" ? 1 : 2,
+              name: comp.optionB,
+              description: comp.bestForB.join(" "),
+            };
+            return [a, b].sort((x, y) => x.position - y.position);
+          })(),
         }}
       />
       <JsonLd
@@ -166,7 +223,7 @@ export default async function ComparePage({
           itemListElement: [
             { "@type": "ListItem", position: 1, name: "Home", item: "https://roadmancycling.com" },
             { "@type": "ListItem", position: 2, name: "Compare", item: "https://roadmancycling.com/compare" },
-            { "@type": "ListItem", position: 3, name: comp.title, item: `https://roadmancycling.com/compare/${slug}` },
+            { "@type": "ListItem", position: 3, name: comp.title, item: compareUrl },
           ],
         }}
       />

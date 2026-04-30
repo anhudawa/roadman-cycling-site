@@ -5,6 +5,7 @@ import { Header, Footer, Section, Container } from "@/components/layout";
 import { Button, Card, ScrollReveal } from "@/components/ui";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { FAQSchema } from "@/components/seo/FAQSchema";
+import { ENTITY_IDS } from "@/lib/brand-facts";
 import {
   getEvent,
   getAllEventSlugs,
@@ -128,6 +129,49 @@ export default async function PlanEventHubPage({
           speakable: {
             "@type": "SpeakableSpecification",
             cssSelector: ["h1", ".event-hub-intro"],
+          },
+        }}
+      />
+      {/* Course — the event-specific training plan as a structured Course
+          with one CourseInstance per weeks-out window. Lets Google surface
+          this as a programme (not a generic page) and connects the
+          framework to the canonical Roadman Person + Organization entities
+          for E-E-A-T. The phase grid is the visible counterpart. */}
+      <JsonLd
+        data={{
+          "@context": "https://schema.org",
+          "@type": "Course",
+          "@id": `${eventUrl}#course`,
+          name: `${event.name} Training Plan`,
+          description: `Free week-by-week ${event.name} training framework — ${event.distanceKm}km, ${event.elevationGainM.toLocaleString()}m climbing. Six weeks-out windows (16, 12, 8, 4, 2, 1) so you can pick the one that matches your remaining build time.`,
+          url: eventUrl,
+          provider: { "@id": ENTITY_IDS.organization },
+          author: { "@id": ENTITY_IDS.person },
+          inLanguage: "en",
+          educationalLevel: "Intermediate",
+          isAccessibleForFree: true,
+          about: {
+            "@type": "SportsEvent",
+            name: event.name,
+            sport: "Cycling",
+            location: { "@type": "Place", name: event.region },
+          },
+          hasCourseInstance: PHASES.map((p) => ({
+            "@type": "CourseInstance",
+            name: `${event.name} — ${p.weeksOut} ${p.weeksOut === 1 ? "Week" : "Weeks"} Out`,
+            description: p.tagline,
+            url: `${eventUrl}/${p.slug}`,
+            courseMode: "Online",
+            courseWorkload: `P${p.weeksOut}W`,
+            instructor: { "@id": ENTITY_IDS.person },
+          })),
+          offers: {
+            "@type": "Offer",
+            price: "0",
+            priceCurrency: "USD",
+            availability: "https://schema.org/InStock",
+            category: "Free training framework",
+            url: eventUrl,
           },
         }}
       />
