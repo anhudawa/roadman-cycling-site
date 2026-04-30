@@ -33,6 +33,7 @@ export const PROBLEM_PAGES: ProblemPage[] = [
       { title: "Get structured", description: "Follow a plan with clear intensity targets", href: "/blog/how-to-get-faster-cycling" },
       { title: "Fix your zones", description: "Calculate your FTP zones and stick to them", href: "/tools/ftp-zones" },
       { title: "Check your fuelling", description: "Match carbs to training demands", href: "/tools/fuelling" },
+      { title: "If your FTP specifically has plateaued", description: "Read the dedicated FTP plateau diagnostic for the structured fix", href: "/problem/stuck-on-plateau" },
       { title: "Take a coaching assessment", description: "Find out if coaching would accelerate your goals", href: "/assessment" },
     ],
     toolHref: "/assessment",
@@ -247,7 +248,8 @@ export const PROBLEM_PAGES: ProblemPage[] = [
       "Programme staleness — the body adapts, then plateaus, without periodisation",
     ],
     solutions: [
-      { title: "Take the plateau diagnostic", description: "12-question quiz identifies your specific blocker", href: "/plateau" },
+      { title: "Read the canonical plateau diagnostic", description: "Why FTP plateaus happen and the structured way through — the primary FTP plateau page", href: "/problem/stuck-on-plateau" },
+      { title: "Take the plateau diagnostic quiz", description: "12-question quiz identifies your specific blocker", href: "/plateau" },
       { title: "Vary your intensity distribution", description: "Polarised, pyramidal, sweet spot — each has a time and place", href: "/compare/polarised-vs-pyramidal" },
       { title: "Retest with proper protocol", description: "Ramp test or well-paced 20-minute test after a taper", href: "/compare/ftp-ramp-test-vs-20-minute" },
       { title: "Consider coaching", description: "A coach sees what you can't see in your own data", href: "/blog/is-a-cycling-coach-worth-it" },
