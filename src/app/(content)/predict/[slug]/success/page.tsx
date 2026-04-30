@@ -76,9 +76,9 @@ export default async function SuccessPage({ params }: PageProps) {
               </p>
               <Link
                 href="/community"
-                className="inline-block bg-coral text-charcoal font-display uppercase tracking-wide px-5 py-3 rounded text-sm hover:bg-coral-hover transition"
+                className="inline-flex items-center gap-2 whitespace-nowrap bg-coral text-charcoal font-display uppercase tracking-wide px-5 py-3 rounded text-sm hover:bg-coral-hover transition"
               >
-                See the community →
+                See the community <span aria-hidden="true">→</span>
               </Link>
             </div>
 
