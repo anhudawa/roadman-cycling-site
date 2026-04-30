@@ -1,7 +1,7 @@
 {
   "name": "@roadman/mcp-server",
-  "version": "0.1.0",
-  "description": "Read-only MCP server exposing the public Roadman Cycling content APIs (search, articles, episodes, guests, glossary, calculator tools).",
+  "version": "0.2.0",
+  "description": "Read-only MCP server exposing the public Roadman Cycling content APIs (search, articles, episodes, guests, glossary, calculator tools, event training plans).",
   "keywords": [
     "mcp",
     "model-context-protocol",

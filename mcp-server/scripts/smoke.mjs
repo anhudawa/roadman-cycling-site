@@ -3,7 +3,7 @@
 // over stdio, prints the registered tool names, and exits.
 //
 // Usage:  node scripts/smoke.mjs
-// Returns non-zero on any protocol error or if fewer than 6 tools register.
+// Returns non-zero on any protocol error or if fewer than 7 tools register.
 
 import { spawn } from "node:child_process";
 import { fileURLToPath } from "node:url";
@@ -86,6 +86,7 @@ try {
     "fetch_glossary_term",
     "fetch_guest",
     "fetch_tool_result",
+    "fetch_training_plan",
     "search_roadman",
   ];
   const missing = expected.filter((n) => !names.includes(n));
@@ -93,7 +94,7 @@ try {
     console.error("smoke: missing tools:", missing);
     process.exit(1);
   }
-  console.log("smoke: OK — all 6 tools registered");
+  console.log(`smoke: OK — all ${expected.length} tools registered`);
 } catch (e) {
   console.error("smoke: failed:", e instanceof Error ? e.message : e);
   process.exit(1);

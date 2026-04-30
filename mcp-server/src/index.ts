@@ -5,7 +5,7 @@ import type { CallToolResult } from "@modelcontextprotocol/sdk/types.js";
 import { z } from "zod";
 
 const PKG_NAME = "@roadman/mcp-server";
-const PKG_VERSION = "0.1.0";
+const PKG_VERSION = "0.2.0";
 
 const DEFAULT_BASE_URL = "https://roadmancycling.com";
 const BASE_URL = (process.env.ROADMAN_BASE_URL ?? DEFAULT_BASE_URL).replace(
@@ -66,7 +66,7 @@ interface FeedDoc<T> {
   items?: T[];
 }
 
-interface FeedItem {
+interface GlossaryFeedItem {
   id: string;
   title?: string;
   entities?: string[];
@@ -82,7 +82,7 @@ server.registerTool(
   {
     title: "Search Roadman Cycling",
     description:
-      "Full-text search across Roadman Cycling articles, podcast episodes, topic hubs, and glossary terms. Returns relevance-ranked results with titles, summaries, URLs, and basic metadata. Read-only.",
+      "Full-text search across Roadman Cycling articles, podcast episodes, topic hubs, glossary terms, podcast guests, and free tools. Returns relevance-ranked results with titles, summaries, URLs, and basic metadata. Read-only.",
     inputSchema: {
       query: z
         .string()
@@ -96,7 +96,7 @@ server.registerTool(
         .optional()
         .describe("Max results to return (1–100, default 20)."),
       type: z
-        .enum(["article", "episode", "topic", "glossary"])
+        .enum(["article", "episode", "topic", "glossary", "guest", "tool"])
         .optional()
         .describe("Restrict results to a single content type."),
     },
@@ -143,7 +143,7 @@ server.registerTool(
   {
     title: "Fetch Roadman podcast episode",
     description:
-      "Fetch the metadata for a single Roadman Cycling Podcast episode by slug. Returns the entry from /feeds/episodes.json matching the slug. Body/transcript is omitted from the feed; use search and fetch_article for transcript-backed articles. Read-only.",
+      "Fetch the full metadata for a single Roadman Cycling Podcast episode by slug. Returns the guest, topic tags, key takeaways (keyQuotes), markdown body, transcript when available, related articles, and FAQ. Read-only.",
     inputSchema: {
       slug: z
         .string()
@@ -155,14 +155,8 @@ server.registerTool(
   },
   async ({ slug }) => {
     try {
-      const feed = (await getJson("/feeds/episodes.json")) as FeedDoc<FeedItem>;
-      const item = feed.items?.find((i) => i.id === slug);
-      if (!item) return err(`No episode found with slug "${slug}".`);
-      return ok({
-        baseUrl: feed.baseUrl ?? BASE_URL,
-        generatedAt: feed.generatedAt ?? new Date().toISOString(),
-        item,
-      });
+      const qs = new URLSearchParams({ id: slug, type: "episode" });
+      return ok(await getJson(`/api/v1/fetch?${qs.toString()}`));
     } catch (e) {
       return fail(e);
     }
@@ -174,7 +168,7 @@ server.registerTool(
   {
     title: "Fetch Roadman podcast guest",
     description:
-      "Fetch the profile metadata for a single podcast guest by slug. Returns the entry from /feeds/guests.json matching the slug, including their episode list. Read-only.",
+      "Fetch the profile for a single podcast guest by slug. Returns their bio summary, credential, all episodes they've appeared on (with titles + dates), and expertise areas (pillars + tags). Read-only.",
     inputSchema: {
       slug: z
         .string()
@@ -186,14 +180,8 @@ server.registerTool(
   },
   async ({ slug }) => {
     try {
-      const feed = (await getJson("/feeds/guests.json")) as FeedDoc<FeedItem>;
-      const item = feed.items?.find((i) => i.id === slug);
-      if (!item) return err(`No guest found with slug "${slug}".`);
-      return ok({
-        baseUrl: feed.baseUrl ?? BASE_URL,
-        generatedAt: feed.generatedAt ?? new Date().toISOString(),
-        item,
-      });
+      const qs = new URLSearchParams({ id: slug, type: "guest" });
+      return ok(await getJson(`/api/v1/fetch?${qs.toString()}`));
     } catch (e) {
       return fail(e);
     }
@@ -205,7 +193,7 @@ server.registerTool(
   {
     title: "Fetch Roadman glossary term",
     description:
-      "Resolve a cycling-performance abbreviation or term (e.g. 'FTP', 'RED-S', 'lactate threshold') against the Roadman glossary. Match is case-insensitive against slug, title, and related-term aliases. Read-only.",
+      "Resolve a cycling-performance abbreviation or term (e.g. 'FTP', 'RED-S', 'lactate threshold') against the Roadman glossary and return the full definition, extended explanation (markdown body), and related terms / pages. Match is case-insensitive against slug, title, and aliases. Read-only.",
     inputSchema: {
       term: z
         .string()
@@ -215,9 +203,7 @@ server.registerTool(
   },
   async ({ term }) => {
     try {
-      const feed = (await getJson("/feeds/glossary.json")) as FeedDoc<
-        FeedItem & { definition?: string }
-      >;
+      const feed = (await getJson("/feeds/glossary.json")) as FeedDoc<GlossaryFeedItem>;
       const needle = term.trim().toLowerCase();
       const item = feed.items?.find((i) => {
         if (i.id.toLowerCase() === needle) return true;
@@ -226,11 +212,8 @@ server.registerTool(
         return false;
       });
       if (!item) return err(`No glossary term found matching "${term}".`);
-      return ok({
-        baseUrl: feed.baseUrl ?? BASE_URL,
-        generatedAt: feed.generatedAt ?? new Date().toISOString(),
-        item,
-      });
+      const qs = new URLSearchParams({ id: item.id, type: "glossary" });
+      return ok(await getJson(`/api/v1/fetch?${qs.toString()}`));
     } catch (e) {
       return fail(e);
     }
@@ -242,7 +225,7 @@ server.registerTool(
   {
     title: "Run a Roadman calculator tool",
     description:
-      "Run one of the Roadman Cycling on-site calculator tools (e.g. 'ftp-zones', 'race-weight') and return the structured result. Tool names map to URL slugs under /tools/. Inputs are passed through as URL query-string parameters. Read-only.",
+      "Run one of the Roadman Cycling on-site calculator tools (e.g. 'ftp-zones', 'race-weight', 'training-plan', 'carbs-per-hour') and return the structured result. Tool names map to URL slugs under /tools/. Inputs are passed through as URL query-string parameters. Read-only.",
     inputSchema: {
       tool_name: z
         .string()
@@ -269,6 +252,39 @@ server.registerTool(
       const qs = search.toString();
       const path = `/api/v1/tools/${encodeURIComponent(tool_name)}${qs ? `?${qs}` : ""}`;
       return ok(await getJson(path));
+    } catch (e) {
+      return fail(e);
+    }
+  },
+);
+
+server.registerTool(
+  "fetch_training_plan",
+  {
+    title: "Fetch a Roadman event-specific training plan",
+    description:
+      "Fetch the structured training plan for a target event (e.g. 'wicklow-200', 'ride-london', 'fred-whitton-challenge'). Returns event metadata (distance, elevation, pacing, nutrition, kit) plus a full weekly structure for the chosen weeks-out phase. Omit weeksOut to return all phases (16, 12, 8, 4, 2, 1 weeks out). Read-only.",
+    inputSchema: {
+      event: z
+        .string()
+        .min(1)
+        .regex(/^[a-z0-9-]+$/i, "event must be a URL-safe slug")
+        .describe(
+          "Event slug, e.g. 'wicklow-200' or 'ride-london'. Trailing segment of /plan/<event>.",
+        ),
+      weeksOut: z
+        .union([z.string(), z.number()])
+        .optional()
+        .describe(
+          "Phase to return — either a phase slug ('16-weeks-out', '1-week-out') or a number (16, 12, 8, 4, 2, 1). Omit to return all phases.",
+        ),
+    },
+  },
+  async ({ event, weeksOut }) => {
+    try {
+      const params = new URLSearchParams({ event });
+      if (weeksOut !== undefined) params.set("weeksOut", String(weeksOut));
+      return ok(await getJson(`/api/v1/training-plan?${params.toString()}`));
     } catch (e) {
       return fail(e);
     }

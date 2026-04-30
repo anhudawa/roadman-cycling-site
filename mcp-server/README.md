@@ -8,12 +8,13 @@ All tools are non-destructive `GET` proxies. There are no write paths.
 
 | Tool | Description |
 |---|---|
-| `search_roadman(query, limit?, type?)` | Full-text search across articles, podcast episodes, topic hubs, and glossary terms. |
-| `fetch_article(slug)` | Full body + metadata for a single blog article. |
-| `fetch_episode(slug)` | Metadata for a single podcast episode. |
-| `fetch_guest(slug)` | Profile + episode list for a single podcast guest. |
-| `fetch_glossary_term(term)` | Definition + extended definition for a cycling term or abbreviation. Case-insensitive on slug, title, or alias. |
-| `fetch_tool_result(tool_name, params?)` | Run an on-site calculator (e.g. `ftp-zones`, `race-weight`) and return the structured result. |
+| `search_roadman(query, limit?, type?)` | Full-text search across articles, podcast episodes, topic hubs, glossary terms, podcast guests, and free tools. |
+| `fetch_article(slug)` | Full markdown body + metadata, citations, and related pages for a single blog article. |
+| `fetch_episode(slug)` | Full metadata for a podcast episode — guest, topic tags, key takeaways (`keyQuotes`), markdown body, transcript when available, and related articles. |
+| `fetch_guest(slug)` | Profile for a podcast guest — bio, credential, all episodes (with titles + dates), and expertise areas (pillars + tags). |
+| `fetch_glossary_term(term)` | Definition + extended definition + related terms/pages for a cycling term or abbreviation. Case-insensitive on slug, title, or alias. |
+| `fetch_tool_result(tool_name, params?)` | Run an on-site calculator (e.g. `ftp-zones`, `race-weight`, `training-plan`, `carbs-per-hour`) and return the structured result. |
+| `fetch_training_plan(event, weeksOut?)` | Structured event-specific training plan (e.g. `wicklow-200`, `ride-london`). Returns event metadata + weekly structure for the chosen weeks-out phase. Omit `weeksOut` to return all phases. |
 
 ## Install
 
@@ -69,6 +70,7 @@ Once the server is registered, your agent can call the tools directly. Some prom
 - _"Fetch the full text of the article `why-your-ftp-is-not-improving`."_
 - _"What are the 7 power zones for an FTP of 280 watts? Use the Roadman calculator."_
 - _"What does Roadman's glossary say about RED-S?"_
+- _"Pull the Wicklow 200 training plan with 8 weeks to go."_
 
 Under the hood, those map to:
 
@@ -77,6 +79,7 @@ Under the hood, those map to:
 { "name": "fetch_article", "arguments": { "slug": "why-your-ftp-is-not-improving" } }
 { "name": "fetch_tool_result", "arguments": { "tool_name": "ftp-zones", "params": { "ftp": 280 } } }
 { "name": "fetch_glossary_term", "arguments": { "term": "RED-S" } }
+{ "name": "fetch_training_plan", "arguments": { "event": "wicklow-200", "weeksOut": 8 } }
 ```
 
 Each tool returns the upstream JSON pretty-printed as a single text block. Upstream HTTP errors surface as MCP tool errors (`isError: true`) with the status, URL, and response snippet.
@@ -88,7 +91,7 @@ npm install
 npm run build       # tsc → dist/
 npm run start       # node dist/index.js
 npm run dev         # tsx src/index.ts (watch-free, useful for iteration)
-npm run smoke       # spawn the built server, verify all 6 tools list correctly
+npm run smoke       # spawn the built server, verify all 7 tools list correctly
 ```
 
 The smoke test does not hit the network — it only exercises the MCP handshake and `tools/list`. To do a live end-to-end check, point an MCP-aware client at the built `dist/index.js` and call `search_roadman`.

@@ -3,11 +3,13 @@ import { getAllPosts } from "@/lib/blog";
 import { getAllEpisodes } from "@/lib/podcast";
 import { getAllTopics } from "@/lib/topics";
 import { GLOSSARY_TERMS } from "@/lib/glossary";
+import { getAllGuests } from "@/lib/guests";
+import { getAllTools } from "@/lib/tools-registry";
 import { FEED_BASE_URL, FEED_CACHE_HEADERS, feedUrl, summarise } from "@/lib/feeds";
 
 interface SearchHit {
   id: string;
-  type: "article" | "episode" | "topic" | "glossary";
+  type: "article" | "episode" | "topic" | "glossary" | "guest" | "tool";
   title: string;
   url: string;
   summary: string;
@@ -16,6 +18,15 @@ interface SearchHit {
   lastReviewed: string | null;
   score: number;
 }
+
+const ALL_TYPES: SearchHit["type"][] = [
+  "article",
+  "episode",
+  "topic",
+  "glossary",
+  "guest",
+  "tool",
+];
 
 /** Tokenise a query: lowercase, split on whitespace and `+`, drop falsy. */
 function tokenise(q: string): string[] {
@@ -52,13 +63,15 @@ function scoreHit(
  * GET /api/v1/search?q=ftp+plateau&limit=20&type=article
  *
  * Public read-only full-text search across articles, episodes,
- * topics, and glossary terms. Results sorted by relevance score.
+ * topics, glossary terms, podcast guests, and free tools. Results
+ * sorted by relevance score.
  *
  * Query params:
  *   - q (required): query string
  *   - limit (optional, default 20, max 100)
  *   - type (optional): comma-separated list to scope the search
  *     to specific content types
+ *     ("article" | "episode" | "topic" | "glossary" | "guest" | "tool")
  */
 export function GET(request: Request) {
   const url = new URL(request.url);
@@ -187,6 +200,56 @@ export function GET(request: Request) {
     }
   }
 
+  if (includes("guest")) {
+    for (const guest of getAllGuests()) {
+      const score = scoreHit(tokens, {
+        title: guest.name,
+        keywords: [...guest.pillars, ...guest.tags],
+        body: `${guest.credential ?? ""} ${guest.episodes.map((e) => e.title).join(" ")}`,
+      });
+      if (score > 0) {
+        hits.push({
+          id: guest.slug,
+          type: "guest",
+          title: guest.name,
+          url: feedUrl(`/guests/${guest.slug}`),
+          summary: summarise(
+            guest.credential
+              ? `${guest.name} — ${guest.credential}. Featured on ${guest.episodeCount} Roadman Cycling Podcast episode${guest.episodeCount === 1 ? "" : "s"}.`
+              : `${guest.name} — featured on ${guest.episodeCount} Roadman Cycling Podcast episodes.`,
+          ),
+          primaryTopic: guest.pillars[0] ?? "community",
+          datePublished: guest.firstAppearance,
+          lastReviewed: guest.latestAppearance,
+          score,
+        });
+      }
+    }
+  }
+
+  if (includes("tool")) {
+    for (const tool of getAllTools()) {
+      const score = scoreHit(tokens, {
+        title: tool.title,
+        keywords: tool.inputs ?? [],
+        body: tool.description,
+      });
+      if (score > 0) {
+        hits.push({
+          id: tool.slug,
+          type: "tool",
+          title: tool.title,
+          url: feedUrl(`/tools/${tool.slug}`),
+          summary: summarise(tool.description),
+          primaryTopic: tool.pillar,
+          datePublished: null,
+          lastReviewed: null,
+          score,
+        });
+      }
+    }
+  }
+
   hits.sort((a, b) => b.score - a.score);
   const results = hits.slice(0, limit);
 
@@ -197,6 +260,7 @@ export function GET(request: Request) {
       baseUrl: FEED_BASE_URL,
       count: results.length,
       totalMatches: hits.length,
+      indexedTypes: ALL_TYPES,
       results,
     },
     { headers: FEED_CACHE_HEADERS },
