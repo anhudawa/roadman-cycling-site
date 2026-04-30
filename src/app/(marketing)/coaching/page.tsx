@@ -418,6 +418,17 @@ export default function CoachingPage() {
               <p className="font-heading text-coral text-sm tracking-widest">
                 IN THEIR WORDS
               </p>
+              <p className="text-foreground-subtle text-xs mt-2">
+                Or read the full{" "}
+                <Link
+                  href="/case-studies"
+                  className="text-coral hover:text-coral/80 transition-colors underline-offset-2 hover:underline"
+                  data-track="coaching_to_case_studies"
+                >
+                  athlete case studies
+                </Link>{" "}
+                — starting point, intervention, outcome, caveats.
+              </p>
             </ScrollReveal>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5 max-w-6xl mx-auto">
               {voiceTestimonials.map((t, i) => (

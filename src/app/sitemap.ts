@@ -12,6 +12,7 @@ import { getAllPlanCombinations, getAllEventSlugs } from "@/lib/training-plans";
 import { getAllEventGuideSlugs } from "@/lib/event-guides";
 import { RACES } from "@/data/races";
 import { SEGMENT_SLUGS } from "@/lib/coaching-segments";
+import { getAllCaseStudySlugs } from "@/lib/case-studies";
 
 const BASE_URL = "https://roadmancycling.com";
 
@@ -149,6 +150,13 @@ function buildStaticSitemap(): MetadataRoute.Sitemap {
       lastModified: new Date("2026-03-01"),
       changeFrequency: "monthly" as const,
       priority: 0.7,
+    })),
+    { url: `${BASE_URL}/case-studies`, lastModified: new Date("2026-04-30"), changeFrequency: "monthly", priority: 0.85 },
+    ...getAllCaseStudySlugs().map((slug) => ({
+      url: `${BASE_URL}/case-studies/${slug}`,
+      lastModified: new Date("2026-04-30"),
+      changeFrequency: "monthly" as const,
+      priority: 0.8,
     })),
   ];
 }
