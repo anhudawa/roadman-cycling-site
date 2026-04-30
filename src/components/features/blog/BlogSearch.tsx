@@ -161,7 +161,7 @@ export function BlogSearch({ posts }: BlogSearchProps) {
             </span>
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
-            {featured.map((post) => (
+            {featured.map((post, i) => (
               <Link
                 key={post.slug}
                 href={`/blog/${post.slug}`}
@@ -185,6 +185,7 @@ export function BlogSearch({ posts }: BlogSearchProps) {
                         className="object-cover group-hover:scale-105 transition-transform duration-500"
                         sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 25vw"
                         unoptimized={hero.isSatori}
+                        priority={i === 0}
                       />
                     );
                   })()}

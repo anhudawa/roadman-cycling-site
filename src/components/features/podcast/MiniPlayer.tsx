@@ -17,19 +17,27 @@ export function MiniPlayer() {
   const [totalDuration, setTotalDuration] = useState(0);
   const intervalRef = useRef<ReturnType<typeof setInterval> | null>(null);
 
-  // Load YouTube IFrame API once
+  // Load YouTube IFrame API only after the user has actually picked an
+  // episode — keeps youtube.com out of the network waterfall on every
+  // page load, which is the common case where no one's listening.
   useEffect(() => {
     if (typeof window === "undefined") return;
+    if (!currentEpisode?.youtubeId) return;
     if ((window as unknown as Record<string, unknown>).YT) {
       // eslint-disable-next-line react-hooks/set-state-in-effect -- YT API ready check
       setApiReady(true);
       return;
     }
+    const existing = document.querySelector<HTMLScriptElement>(
+      'script[src="https://www.youtube.com/iframe_api"]',
+    );
+    if (existing) return;
     const tag = document.createElement("script");
     tag.src = "https://www.youtube.com/iframe_api";
+    tag.async = true;
     document.head.appendChild(tag);
     (window as unknown as Record<string, { (): void }>).onYouTubeIframeAPIReady = () => setApiReady(true);
-  }, []);
+  }, [currentEpisode?.youtubeId]);
 
   // Create/update player when episode changes
   useEffect(() => {

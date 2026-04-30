@@ -64,6 +64,7 @@ export default function CommunityPage() {
                   fill
                   className="object-cover"
                   sizes="33vw"
+                  priority
                 />
               </div>
               <div className="relative flex-1 aspect-[4/3] rounded-lg overflow-hidden">

@@ -118,7 +118,11 @@ export function CohortBanner() {
   return (
     <div
       className="fixed top-0 left-0 right-0 bg-coral text-off-white h-11 flex items-center"
-      style={{ zIndex: 60 }}
+      // `contain: layout` isolates the banner from forcing surrounding
+      // layout work when its content (countdown text, ticker) updates,
+      // and helps the browser skip recalculations elsewhere when the
+      // banner is dismissed.
+      style={{ zIndex: 60, contain: "layout" }}
     >
       <div className="mx-auto max-w-[1400px] px-4 w-full flex items-center justify-between gap-3">
         <div className="flex items-center gap-3 min-w-0">
