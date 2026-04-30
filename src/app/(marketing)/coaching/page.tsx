@@ -9,6 +9,7 @@ import { getTestimonialsByName } from "@/lib/testimonials";
 import { BeforeAfterMetrics, type MetricRow } from "@/components/proof";
 import { JourneyBlock } from "@/components/journey";
 import { SEGMENT_DISPLAY_ORDER } from "@/lib/coaching-segments";
+import { ChoosePath } from "@/components/features/routing/ChoosePath";
 
 export const metadata: Metadata = {
   title: "Online Cycling Coach — Evidence-Based Coaching | $195/month",
@@ -948,6 +949,19 @@ export default function CoachingPage() {
             </div>
           </Container>
         </Section>
+
+        {/* Choose Your Path — final routing for visitors who've read the
+            full coaching pitch but aren't ready to apply. Gives free
+            tool / newsletter / Ask Roadman exits before the final
+            coral CTA so hesitant visitors stay on-site instead of
+            bouncing. Light variant to break up the dark sections. */}
+        <ChoosePath
+          variant="light"
+          source="coaching"
+          eyebrow="NOT COACHING TODAY?"
+          heading="PICK A DIFFERENT WAY IN."
+          subheading="Coaching isn't the only path. If you're not ready, start with a free tool, the newsletter, or a question for Anthony."
+        />
 
         {/* CTA */}
         <Section background="coral" className="!py-16 md:!py-24">

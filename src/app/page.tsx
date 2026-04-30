@@ -8,6 +8,7 @@ import { getLatestEpisode } from "@/lib/podcast";
 import { StatsSection } from "@/components/features/home/StatsSection";
 import { PersonaRouter } from "@/components/features/home/PersonaRouter";
 import { PillarIcon } from "@/components/features/home/PillarIcon";
+import { ChoosePath } from "@/components/features/routing/ChoosePath";
 import { EmailCapture } from "@/components/features/conversion/EmailCapture";
 import { CONTENT_PILLARS, type ContentPillar } from "@/types";
 
@@ -299,6 +300,12 @@ export default function HomePage() {
             </div>
           </Container>
         </Section>
+
+        {/* CHOOSE YOUR PATH — problem-led routing. PersonaRouter routes
+            by identity ("who am I?"); this routes by current problem
+            ("what do I need?"). Eight specific destinations covering
+            free tools, coaching, newsletter, and Ask Roadman. */}
+        <ChoosePath source="home" />
 
         {/* PARALLAX DIVIDER — Post-ride rest against wall */}
         <ParallaxImage

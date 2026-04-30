@@ -4,6 +4,7 @@ import { Header, Footer, Section, Container } from "@/components/layout";
 import { Button, Card, ScrollReveal, GradientText } from "@/components/ui";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { ENTITY_IDS } from "@/lib/brand-facts";
+import { ChoosePath } from "@/components/features/routing/ChoosePath";
 
 export const metadata: Metadata = {
   title: "Start Here — New to Roadman?",
@@ -144,6 +145,20 @@ export default function StartHerePage() {
             </ScrollReveal>
           </Container>
         </Section>
+
+        {/* Choose Your Path — problem-led routing into tools, coaching,
+            newsletter, and Ask Roadman. Sits at the top of /start-here
+            because this IS the routing page — visitors arrive asking
+            "where do I begin?" and need a problem-shaped answer before
+            being shown reading lists. Light variant for high contrast
+            against the deep-purple hero. */}
+        <ChoosePath
+          variant="light"
+          source="start-here"
+          eyebrow="WHERE TO START"
+          heading="WHAT DO YOU NEED FIRST?"
+          subheading="Pick the problem that fits. Each one routes to the right next step — tool, plan, or coaching."
+        />
 
         {/* Foundation articles */}
         <Section background="charcoal">
