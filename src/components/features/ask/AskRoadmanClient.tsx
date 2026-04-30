@@ -189,10 +189,10 @@ export function AskRoadmanClient({
                 onSubmit();
               }
             }}
-            placeholder="Ask Roadman a cycling question…"
+            placeholder="Ask a cycling question…"
             rows={1}
             maxLength={2000}
-            className="flex-1 resize-none bg-white/[0.04] border border-white/10 focus:border-coral/60 focus:bg-white/[0.07] rounded-lg px-3 py-2 text-off-white placeholder:text-foreground-subtle outline-none transition-colors"
+            className="flex-1 min-w-0 resize-none bg-white/[0.04] border border-white/10 focus:border-coral/60 focus:bg-white/[0.07] rounded-lg px-3 py-2 text-off-white placeholder:text-foreground-subtle outline-none transition-colors"
             aria-label="Your question"
           />
           <button
@@ -200,7 +200,7 @@ export function AskRoadmanClient({
             disabled={isStreaming || input.trim().length < 2}
             className="shrink-0 whitespace-nowrap font-heading tracking-wider uppercase text-sm bg-coral hover:bg-coral-hover disabled:opacity-40 disabled:cursor-not-allowed text-off-white px-5 py-3 min-h-[44px] rounded-md transition-colors"
           >
-            {isStreaming ? "Thinking…" : "Send"}
+            {isStreaming ? "…" : "Send"}
           </button>
         </div>
         <p className="text-foreground-subtle text-[11px] mt-1.5">
