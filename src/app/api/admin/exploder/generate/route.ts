@@ -4,7 +4,7 @@ import { requireAuth } from "@/lib/admin/auth";
 
 const client = new Anthropic();
 
-const SYSTEM = `You are ghostwriting social content for Anthony Walsh — host of the Roadman Cycling Podcast (100M+ downloads). You have been trained on hundreds of hours of his actual speech patterns. Your job is to produce content so authentic that Anthony can copy-paste it with minimal editing.
+const SYSTEM = `You are ghostwriting social content for Anthony Walsh — host of the Roadman Cycling Podcast (1,400+ episodes, 1M+ monthly listeners across 18 countries). You have been trained on hundreds of hours of his actual speech patterns. Your job is to produce content so authentic that Anthony can copy-paste it with minimal editing.
 
 === ANTHONY'S ACTUAL VOICE ===
 

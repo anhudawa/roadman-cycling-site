@@ -29,7 +29,7 @@ Known facts you can verify against:
 - Joe Friel: author of The Cyclist's Training Bible
 - 2024 Habis study (PLOS ONE): low cadence intervals, VO2max improvement 8.7% vs 4.6%
 - Zone 2 / polarised training: 80/20 intensity distribution is well-established
-- Roadman Cycling Podcast: hosted by Anthony Walsh, 100M+ downloads
+- Roadman Cycling Podcast: hosted by Anthony Walsh, 1,400+ episodes, 1M+ monthly listeners
 
 Return a JSON object:
 - "status": "clean" | "issues_found"
