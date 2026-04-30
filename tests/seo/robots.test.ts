@@ -15,11 +15,15 @@ describe("/robots.ts", () => {
     }
   });
 
-  it("allows the wildcard userAgent at root", () => {
-    const wildcard = (result.rules as Array<{ userAgent: string; allow: string }>).find(
+  it("allows the wildcard userAgent at root and on /_next/static/", () => {
+    const wildcard = (result.rules as Array<{ userAgent: string; allow: string[] }>).find(
       (r) => r.userAgent === "*",
     );
-    expect(wildcard?.allow).toBe("/");
+    expect(wildcard?.allow).toContain("/");
+    // /_next/static/ must be crawlable so Googlebot and AI crawlers can
+    // fetch the JS/CSS bundles needed to render the page; the broader
+    // /_next/ tree stays disallowed.
+    expect(wildcard?.allow).toContain("/_next/static/");
   });
 
   it("disallows transactional + admin paths for the wildcard agent", () => {

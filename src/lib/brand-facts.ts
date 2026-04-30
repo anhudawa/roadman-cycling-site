@@ -60,10 +60,20 @@ export const BRAND = {
  * newsletter subscriber count is especially volatile.
  */
 export const BRAND_STATS = {
+  // Total podcast episodes published across Apple Podcasts and Spotify.
+  // This is the lifetime catalogue figure used in headline trust claims.
   episodeCount: 1400,
   episodeCountLabel: "1,400+",
-  searchableEpisodePages: 310,
-  searchableEpisodePagesLabel: "310+",
+  // Episodes also published on YouTube as video. Smaller than the audio
+  // catalogue because the YouTube video format started later. Surfaced
+  // wherever we want to specifically credit the on-camera body of work.
+  videoEpisodes: 311,
+  videoEpisodesLabel: "311+",
+  // Episodes that have a dedicated long-form page on roadmancycling.com
+  // (transcript, summary, schema). Tracks the on-site searchable corpus —
+  // not the same as the total Apple/Spotify count.
+  searchableEpisodePages: 311,
+  searchableEpisodePagesLabel: "311+",
   monthlyListeners: 1_000_000,
   monthlyListenersLabel: "1M+",
   newsletterSubscribers: 65_000,

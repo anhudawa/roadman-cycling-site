@@ -237,7 +237,7 @@ ${QUESTION_PAGES.map((q) => `- [${q.question}](${tag(`${BASE_URL}/question/${q.s
 - [W/kg Calculator](${tag(`${BASE_URL}/tools/wkg`)}): Power-to-weight ratio with performance benchmarks.
 
 ## Interactive Guides
-- [Ask Roadman](${tag(`${BASE_URL}/ask`)}): On-site cycling performance assistant grounded in 100M+ downloads of Roadman Cycling Podcast conversations. Streamed, cited answers on training, fuelling, recovery, strength, and event prep.
+- [Ask Roadman](${tag(`${BASE_URL}/ask`)}): On-site cycling performance assistant grounded in ${BRAND_STATS.episodeCountLabel} Roadman Cycling Podcast conversations (${BRAND_STATS.monthlyListenersLabel} monthly listeners). Streamed, cited answers on training, fuelling, recovery, strength, and event prep.
 - [The Masters Plateau Diagnostic](${tag(`${BASE_URL}/plateau`)}): Twelve-question diagnostic that identifies which of four plateau profiles is limiting your FTP progress.
 
 ## Topic Hubs

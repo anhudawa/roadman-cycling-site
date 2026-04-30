@@ -24,6 +24,12 @@ const DISALLOW_PATHS = [
   "/_next/",
 ];
 
+// Crawlers must be able to fetch /_next/static/ so Googlebot and AI
+// crawlers can render the page (JS, CSS, images live there). The
+// broader /_next/ tree stays disallowed so build-internal routes
+// don't get indexed. Under the REP, the more-specific Allow wins.
+const ALLOW_PATHS = ["/", "/_next/static/"];
+
 const SITEMAPS = [
   `${SITE_ORIGIN}/sitemap-index.xml`,
   `${SITE_ORIGIN}/sitemap/0.xml`,
@@ -39,25 +45,25 @@ export default function robots(): MetadataRoute.Robots {
     rules: [
       {
         userAgent: "*",
-        allow: "/",
+        allow: ALLOW_PATHS,
         disallow: DISALLOW_PATHS,
       },
       // AI search crawlers — explicitly allowed for AI SEO visibility.
       // Each gets the same disallow list so transactional paths are
       // never indexed regardless of which crawler found them.
-      { userAgent: "GPTBot", allow: "/", disallow: DISALLOW_PATHS },
-      { userAgent: "ClaudeBot", allow: "/", disallow: DISALLOW_PATHS },
-      { userAgent: "OAI-SearchBot", allow: "/", disallow: DISALLOW_PATHS },
-      { userAgent: "ChatGPT-User", allow: "/", disallow: DISALLOW_PATHS },
-      { userAgent: "PerplexityBot", allow: "/", disallow: DISALLOW_PATHS },
-      { userAgent: "Perplexity-User", allow: "/", disallow: DISALLOW_PATHS },
-      { userAgent: "Google-Extended", allow: "/", disallow: DISALLOW_PATHS },
-      { userAgent: "GoogleOther", allow: "/", disallow: DISALLOW_PATHS },
-      { userAgent: "Bingbot", allow: "/", disallow: DISALLOW_PATHS },
-      { userAgent: "Applebot-Extended", allow: "/", disallow: DISALLOW_PATHS },
-      { userAgent: "Meta-ExternalAgent", allow: "/", disallow: DISALLOW_PATHS },
-      { userAgent: "cohere-ai", allow: "/", disallow: DISALLOW_PATHS },
-      { userAgent: "Bytespider", allow: "/", disallow: DISALLOW_PATHS },
+      { userAgent: "GPTBot", allow: ALLOW_PATHS, disallow: DISALLOW_PATHS },
+      { userAgent: "ClaudeBot", allow: ALLOW_PATHS, disallow: DISALLOW_PATHS },
+      { userAgent: "OAI-SearchBot", allow: ALLOW_PATHS, disallow: DISALLOW_PATHS },
+      { userAgent: "ChatGPT-User", allow: ALLOW_PATHS, disallow: DISALLOW_PATHS },
+      { userAgent: "PerplexityBot", allow: ALLOW_PATHS, disallow: DISALLOW_PATHS },
+      { userAgent: "Perplexity-User", allow: ALLOW_PATHS, disallow: DISALLOW_PATHS },
+      { userAgent: "Google-Extended", allow: ALLOW_PATHS, disallow: DISALLOW_PATHS },
+      { userAgent: "GoogleOther", allow: ALLOW_PATHS, disallow: DISALLOW_PATHS },
+      { userAgent: "Bingbot", allow: ALLOW_PATHS, disallow: DISALLOW_PATHS },
+      { userAgent: "Applebot-Extended", allow: ALLOW_PATHS, disallow: DISALLOW_PATHS },
+      { userAgent: "Meta-ExternalAgent", allow: ALLOW_PATHS, disallow: DISALLOW_PATHS },
+      { userAgent: "cohere-ai", allow: ALLOW_PATHS, disallow: DISALLOW_PATHS },
+      { userAgent: "Bytespider", allow: ALLOW_PATHS, disallow: DISALLOW_PATHS },
     ],
     sitemap: SITEMAPS,
   };

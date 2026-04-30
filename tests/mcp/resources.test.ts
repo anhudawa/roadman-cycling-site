@@ -49,7 +49,10 @@ describe("MCP resources — content", () => {
     const text = result.contents[0].text;
     expect(text).toContain("Anthony Walsh");
     expect(text).toContain("Not Done Yet");
-    expect(text).toContain("100M+");
+    // The headline trust claim is "1M+ monthly listeners" (current),
+    // not the older cumulative-downloads framing.
+    expect(text).toContain("1M+");
+    expect(text).toContain("1,400+");
   });
 
   it("methodology/principles includes core training concepts", async () => {

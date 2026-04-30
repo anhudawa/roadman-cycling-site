@@ -4,7 +4,7 @@ import Link from "next/link";
 import { Header, Footer, Section, Container } from "@/components/layout";
 import { Button, ScrollReveal } from "@/components/ui";
 import { JsonLd } from "@/components/seo/JsonLd";
-import { ENTITY_IDS } from "@/lib/brand-facts";
+import { ENTITY_IDS, BRAND_STATS } from "@/lib/brand-facts";
 import { getSiteStats } from "@/lib/content-graph";
 import { getAllPosts } from "@/lib/blog";
 import { EmailCapture } from "@/components/features/conversion/EmailCapture";
@@ -136,10 +136,13 @@ export default function AuthorPage() {
           <Container width="narrow">
             <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
               {[
-                { label: "Podcast Episodes", value: `${stats.episodes}+` },
-                { label: "Blog Articles", value: `${stats.blogPosts}` },
+                // Total catalogue across Apple Podcasts and Spotify — the
+                // headline trust claim. The on-camera (YouTube) count is a
+                // smaller but distinct stat and lives in `Video Episodes`.
+                { label: "Podcast Episodes", value: BRAND_STATS.episodeCountLabel },
+                { label: "Video Episodes", value: BRAND_STATS.videoEpisodesLabel },
                 { label: "Expert Guests", value: `${stats.guests}+` },
-                { label: "Monthly Listeners", value: "1M+" },
+                { label: "Monthly Listeners", value: BRAND_STATS.monthlyListenersLabel },
               ].map((stat) => (
                 <div
                   key={stat.label}
