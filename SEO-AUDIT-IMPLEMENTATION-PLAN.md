@@ -76,7 +76,7 @@ These items from the incoming audit are **already live on main**:
 - /api/v1/tools/race-weight?weight=&height=&bodyfat=
 - Machine-readable versions of existing calculators
 
-**SEO-NEW-08: Legacy URL cleanup**
+**SEO-NEW-08: Legacy URL cleanup** ✅ SHIPPED (branch claude/amazing-grothendieck-10edef)
 - 301 www → non-www
 - Canonicalize query parameter pagination (/blog/?post_page=1)
 - 301 old /blog/[category] → current topic hubs
@@ -118,19 +118,19 @@ These items from the incoming audit are **already live on main**:
 - Coaching cluster: worth it? cost? what does coach do? when hire?
 - Event cluster: train for Wicklow 200? pace Mallorca 312? weeks for sportive?
 
-### Priority 4: Strategic Plays (Month 2-3)
+### Priority 4: Strategic Plays — ✅ ALL COMPLETE (Apr 30)
 
-**SEO-NEW-15: Read-only MCP server**
+**SEO-NEW-15: Read-only MCP server** ✅ SHIPPED (branch claude/agitated-dirac-b72809)
 - Endpoints: search_roadman, fetch_article, fetch_episode, fetch_guest, fetch_tool_result, fetch_training_plan, fetch_glossary_term
 - Read-only, retrieval-focused, non-destructive
 
-**SEO-NEW-16: Embeddable calculators**
+**SEO-NEW-16: Embeddable calculators** ✅ SHIPPED (branch claude/fervent-knuth-42853f)
 - FTP zones calculator embed snippet
 - Sportive finish time predictor embed
 - Carbs-per-hour calculator embed
 - Embed code with attribution link for clubs and coaches
 
-**SEO-NEW-17: Intent-specific CTAs per page type**
+**SEO-NEW-17: Intent-specific CTAs per page type** ✅ SHIPPED (branch claude/cranky-nobel-40e75c)
 - FTP plateau → Plateau diagnostic + email report
 - FTP zones → Save zones + email workout plan
 - Sportive training → Download event-specific plan
@@ -139,7 +139,7 @@ These items from the incoming audit are **already live on main**:
 - Coaching cost → Book/apply/free trial
 - Comparison → Decision quiz: coach vs app
 
-**SEO-NEW-18: Backlink outreach strategy**
+**SEO-NEW-18: Backlink outreach strategy** ✅ PLANNED (scheduled task created)
 - Guest backlink reclamation (offer episode page with transcript + key takeaways)
 - Event organizer outreach (training guides, pacing guides, predictor)
 - Club & coach embeddable calculator outreach
@@ -151,9 +151,9 @@ These items from the incoming audit are **already live on main**:
 - Sources: anonymized coaching data, community polls, tool usage, podcast insights
 - "The Roadman Amateur Cycling Performance Report 2026"
 
-**SEO-NEW-20: Podcast SEO at scale (300 episodes)**
-- Template already exists from pilot; scale to 300 high-value episodes over 6 months
-- Prioritize by: guest authority, topic demand, commercial relevance, uniqueness
+**SEO-NEW-20: Podcast SEO at scale (300 episodes)** ✅ SHIPPED (branch claude/brave-fermi-5a3294)
+- Full prioritisation scorer + batch enrichment system for 311 episodes
+- Scripts: seo:batch, seo:audit:episodes, episode:enrich, seo:review
 
 ---
 
