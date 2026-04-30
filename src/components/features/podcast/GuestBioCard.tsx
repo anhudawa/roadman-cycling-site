@@ -74,7 +74,7 @@ export function GuestBioCard({
         <div className="flex-1 min-w-0">
           <Link
             href={`/guests/${slug}`}
-            className="inline-block group"
+            className="block group"
           >
             <p className="font-heading text-lg text-off-white group-hover:text-coral transition-colors leading-tight">
               {name.toUpperCase()}
