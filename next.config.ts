@@ -231,6 +231,14 @@ const nextConfig: NextConfig = {
         destination: "/blog/best-cycling-podcasts-2026",
         permanent: true,
       },
+      // FTP coach consensus consolidation — the 25-coaches piece is the
+      // broader, more citable canonical. The narrower World Tour-only post
+      // 301s here so internal links and external backlinks consolidate.
+      {
+        source: "/blog/what-worldtour-coaches-agree-on-ftp",
+        destination: "/blog/what-25-top-coaches-agree-on-about-ftp",
+        permanent: true,
+      },
       {
         source: "/blog/cycling-coach-near-me-why-location-doesnt-matter",
         destination: "/blog/cycling-coach-near-me-why-location-doesnt-matter-2026",

@@ -1240,6 +1240,404 @@ export const EVENT_GUIDES: EventGuide[] = [
       },
     ],
   },
+  {
+    slug: "ring-of-beara-training-plan",
+    trainingEventSlug: "ring-of-beara",
+    pageTitle: "Ring of Beara Training Plan",
+    intent:
+      "Help riders prepare for Ireland's Ring of Beara Cycle — 140km around the Beara Peninsula in May, with the Healy Pass as the day's defining climb.",
+    weatherConditions:
+      "Early May on the Atlantic edge of Kerry is unpredictable. Expect anywhere from 10°C and dry to 6°C with horizontal rain off the bay. The exposed coastal sections add 5-10 km/h of crosswind even on a calm day, and the descent off Healy Pass is genuinely cold even when the valleys are warm.",
+    terrainSummary:
+      "140km around the Beara Peninsula on quiet single-track lanes, with two named climbs and a steady drip of unnamed rises connecting them. Punchier than its distance suggests — the climbing is concentrated in the back half, and the surface includes potholed bog road on a couple of stretches.",
+    ftpRequirement: {
+      minimum: "2.6 W/kg",
+      competitive: "3.4 W/kg",
+      notes:
+        "The Healy Pass at km 100 is the day. 2.6 W/kg with disciplined pacing finishes inside 8 hours; 3.4+ W/kg holds the front group over the top of Healy and lets you actually ride the descent rather than survive it.",
+    },
+    enduranceDemands:
+      "8-10 hours/week of structured riding for at least 10 weeks out, with the long ride built up to 4-5 hours over rolling terrain. You need at least one 3-hour ride that includes a 30-minute sustained climb in the legs before race day — the Healy Pass is unforgiving of riders who have only trained on flatter terrain.",
+    climbingNarrative:
+      "Around 2,200m of climbing across 140km — that's 16m/km, modest on paper, deceptive in practice. The first 80km are rolling with two controllable rises. Healy Pass at km 100 is where the day is decided. Riders who arrive at the base fresh climb it and finish strong; riders who paced the rolling section too hard crack on the steep middle and walk the back half.",
+    majorClimbs: [
+      {
+        name: "Caha Pass",
+        lengthKm: 4.5,
+        avgGradient: 5.2,
+        elevationGainM: 234,
+        positionInRide: "km 55",
+        notes:
+          "The opener that lulls riders into thinking the day is comfortable. Steady aerobic effort, but every minute over threshold here costs you double on Healy.",
+      },
+      {
+        name: "Healy Pass",
+        lengthKm: 7.4,
+        avgGradient: 6.5,
+        maxGradient: 12,
+        elevationGainM: 480,
+        positionInRide: "km 100",
+        notes:
+          "The day's signature climb. Long switchbacks on the south side, sustained 6-8% on the harder middle section. Pace it sub-threshold — the riders who try to PR it after 100km in the legs are the ones grinding 50rpm at the top.",
+      },
+    ],
+    finishTimes: [
+      {
+        level: "First-time finisher",
+        range: "7-8 hours",
+        fitnessProfile:
+          "FTP 2.4-2.8 W/kg, 6-8 hours of riding per week, longest ride 3-4 hours.",
+      },
+      {
+        level: "Average enthusiast",
+        range: "6-7 hours",
+        fitnessProfile:
+          "FTP 2.8-3.3 W/kg, 8-10 hours per week, longest ride 4-5 hours, comfortable on sustained climbs.",
+      },
+      {
+        level: "Strong amateur",
+        range: "5-6 hours",
+        fitnessProfile:
+          "FTP 3.3-3.8 W/kg, 10-12 hours per week, regular structured climbing intervals, group-ride threshold work.",
+      },
+      {
+        level: "Elite amateur / racer",
+        range: "4:30-5 hours",
+        fitnessProfile:
+          "FTP 3.8+ W/kg, 12-15 hours per week, racing background, technical descending confidence.",
+      },
+    ],
+    fuellingDeepDive:
+      "140km on the Beara Peninsula is shorter than Wicklow but more concentrated in its climbing. Target 70-90g of carbohydrate per hour on the bike — that's a gel every 25 minutes plus a bar each hour, or a 70g/hr drink mix paired with one solid item every 90 minutes. Healy Pass has no feed zone — you arrive at the base with a full bottle and a gel in the pocket, or you don't. The official feed at Kenmare is the only reliable refill on the route, so plan around it. Cold weather on the Atlantic side suppresses thirst — drink on a timer rather than waiting for the urge, especially on the climbs.",
+    pacingDeepDive:
+      "Pace the day around Healy Pass, not the flat. The first 80km are rolling with two controllable climbs; resist the urge to chase faster groups, sit at goal heart rate, and bank the legs you'll need at km 100. Caha Pass at km 55 is the warm-up, not the workout. On Healy, target heart rate 5-8 beats below your sportive threshold for the first 4km, then settle into the climb's rhythm — the riders who go full-gas on the first switchback are the ones who blow up on the steep middle. The descent off Healy is technical, narrow, and often wet. Brake early, ride it under control, and hold a measured pace through the back half. From km 130 onwards, finishing strongly is a fuelling and pacing problem — riders who arrive here with reserves overtake dozens.",
+    detailedMistakes: [
+      {
+        mistake: "Treating Healy Pass like an easy climb because it's 'only' 7km",
+        fix: "Sustained 6-8% with 100km in the legs is a different effort than the same gradient fresh. Pace it sub-threshold for the first half, ignore the riders surging past, and let the back end of the climb be where you actually ride.",
+      },
+      {
+        mistake: "Packing like it's July when it's May on the Atlantic",
+        fix: "Gilet, armwarmers, and full-finger gloves stashed in the jersey. Beara weather punishes the optimistic — a 20g rain cape has saved more Beara riders than any aero gain ever did, and the descent off Healy is colder than the start line.",
+      },
+      {
+        mistake: "Cranking the gearing too hard",
+        fix: "34x32 minimum on Healy. Some riders run 34x34. Walking the steep section is more common than the official photos show — most of those walkers chose 11-28 cassettes at sea level and discovered the difference at Healy.",
+      },
+      {
+        mistake: "Skipping the Kenmare feed because you 'feel fine'",
+        fix: "Kenmare is the only proper refill point on the route. Top up bottles, eat a real piece of food, and roll out within 10 minutes. Riders who skip it run out of water on the Healy descent, which is when the fuelling math goes wrong fast.",
+      },
+    ],
+  },
+  {
+    slug: "dirty-reiver-training-plan",
+    trainingEventSlug: "dirty-reiver",
+    pageTitle: "Dirty Reiver Training Plan",
+    intent:
+      "Help gravel riders prepare for the UK's flagship gravel event — 200km across Kielder Forest in April with self-supported logistics and weather that makes its own rules.",
+    weatherConditions:
+      "Late April in Kielder is volatile. The forest sits at 200-400m altitude on the Scottish-English border, and the same day can deliver sun, sleet, hail, and snow within 90 minutes. Wind off the Cheviots adds 8-12 km/h of crosswind on the open fell crossings. The forestry sections are sheltered but the climbs out of them are exposed.",
+    terrainSummary:
+      "200km on Kielder forestry roads, single track, and open fell crossings. Mostly fast-rolling gravel with sections of rougher fire road, occasional water crossings, and two genuinely rough fell-top stretches that punish under-tyred bikes. Borderline mountain-bike terrain in places — but rideable on a gravel bike with the right rubber.",
+    ftpRequirement: {
+      minimum: "2.4 W/kg",
+      competitive: "3.2 W/kg",
+      notes:
+        "Dirty Reiver is endurance-limited and surface-limited before it's FTP-limited. 2.4 W/kg with disciplined pacing and the right tyres finishes inside the cut-off; 3.2+ W/kg with a fed gut lands you in the sub-9-hour group. Watts win less time at Reiver than tubeless setup and the willingness to eat through cold rain.",
+    },
+    enduranceDemands:
+      "10-12 hours/week peaking, with at least two weekends of 6-7 hour rides paired with 3-4 hour days the next morning. You should have done one 8-hour ride before race day, ideally on rough gravel or forestry surface. Road-only training transfers poorly — gravel eats the legs faster than tarmac for the same heart rate, and the back-to-back rides build the durability that single Saturdays cannot.",
+    climbingNarrative:
+      "Around 2,500m of climbing across 200km — modest by sportive standards, but the surface multiplies the cost. The Reiver does not have a single defining climb. Instead it's a steady drip of forestry-road rises, fell-top crossings, and short steep punches that never let the legs settle. The hardest sections are the open fell crossings between km 120 and km 160, where the wind, the surface, and the fatigue compound.",
+    majorClimbs: [
+      {
+        name: "Bewshaugh Climb (forestry)",
+        lengthKm: 3.2,
+        avgGradient: 5.5,
+        elevationGainM: 176,
+        positionInRide: "km 40",
+        notes:
+          "First sustained forestry climb. Sets the rhythm — wide gravel, steady gradient, the place to settle into your all-day heart rate.",
+      },
+      {
+        name: "Bloody Bush Crossing",
+        lengthKm: 4.8,
+        avgGradient: 4.2,
+        elevationGainM: 200,
+        positionInRide: "km 130",
+        notes:
+          "Open fell crossing on a rougher surface. Wind exposed, surface variable, and 130km already in the legs. The day's most underrated section.",
+      },
+      {
+        name: "Kielder Stone Climb",
+        lengthKm: 2.5,
+        avgGradient: 6,
+        elevationGainM: 150,
+        positionInRide: "km 165",
+        notes:
+          "Late-day kick. Short by Lake District standards, but it lands when you've been riding for 7+ hours on rough surface and the legs notice every metre.",
+      },
+    ],
+    finishTimes: [
+      {
+        level: "First-time finisher",
+        range: "12-14 hours",
+        fitnessProfile:
+          "FTP 2.2-2.6 W/kg, 6-8 hours/week, longest ride 5-6 hours on mixed surface, gravel-specific bike handling.",
+      },
+      {
+        level: "Average enthusiast",
+        range: "10-12 hours",
+        fitnessProfile:
+          "FTP 2.6-3.2 W/kg, 8-10 hours/week, multiple 6+ hour gravel rides in training, comfortable on rough surface.",
+      },
+      {
+        level: "Strong amateur",
+        range: "8-10 hours",
+        fitnessProfile:
+          "FTP 3.2-3.6 W/kg, 10-12 hours/week, gravel-specific terrain, structured tempo work, fast group-ride experience.",
+      },
+      {
+        level: "Elite amateur",
+        range: "7-8 hours",
+        fitnessProfile:
+          "FTP 3.6+ W/kg, 12-15 hours/week, racing background, gut trained to 90g+ carbs/hour, comfortable holding fast wheels on gravel.",
+      },
+    ],
+    fuellingDeepDive:
+      "Self-supported means you pack it. Target 70-90g of carbohydrate per hour, more if it's cold (and at Kielder in April, it usually is — cold weather increases the calorie cost of staying warm). The mid-point feed stop is open in most years but not guaranteed; treat it as a bonus, not a plan. Real food works better than gels once the ride stretches past 8 hours — sandwiches in foil, malt loaf, flapjacks, soft bars that don't freeze. Hot tea or coffee at the feed if it's running is genuinely useful for both calories and morale. Sodium matters even in the cold: target 600-800mg/hour through electrolyte mix. The mistake we see most often: riders fuel well for the first 5 hours, then stop eating because they're 'not hungry' — which is exactly when the back-half bonk lands at km 160.",
+    pacingDeepDive:
+      "Gravel events punish overpacing because the surface varies. Target heart rate rather than power — aim for high Z2 / low Z3 as your all-day ceiling. Let faster riders go on the early forestry sections; you'll catch them when the rough stuff starts and they discover what their tyres weren't ready for. The first 80km are fast forestry; sit in a group if you can find one and ride at endurance heart rate. Bloody Bush at km 130 is the day's hidden test — the wind and the surface and the fatigue all land at once, and pacing it well is the difference between an 11-hour and a 13-hour finish. From km 165 onwards, the legs are heavier than the watts suggest; ride to feel rather than the head unit.",
+    detailedMistakes: [
+      {
+        mistake: "Running road tyres or under-spec gravel tyres",
+        fix: "40-45mm minimum, tubeless, with sealant and a plug kit. Rene Herse Humptulips, Challenge Getaway, WTB Nano in the wet — pick the casing for Kielder fire road, not the marketing photos. Light XC tubeless tyres puncture inside 50km on the rougher fell-top sections.",
+      },
+      {
+        mistake: "Underdressing because 'it's April'",
+        fix: "Kielder makes its own weather. Long-finger gloves, gilet, rain cape that actually works, and a base layer that retains warmth when wet. The riders who DNF at Reiver almost never DNF from fitness — they DNF from cold, which is preventable kit, not a training failure.",
+      },
+      {
+        mistake: "Pacing it like a sportive",
+        fix: "Gravel eats the legs faster than tarmac. Sit at high Z2 / low Z3 heart rate as your ceiling, accept slower forestry-road averages than you'd expect, and trust that the riders who pass you at km 30 will come back at km 160. Surface fatigue is real and only training on rough surface prepares you for it.",
+      },
+      {
+        mistake: "Skipping the feed stop because it's 'only mid-point'",
+        fix: "Refill bottles, eat a proper piece of food, take 10 minutes. Kielder has no resupply between feed and finish — running out of water at km 130 in the wind ends days that fitness alone could have finished.",
+      },
+      {
+        mistake: "No head torch in case the finish runs late",
+        fix: "Slower finishers regularly come in around dusk in low-light April. A small bar-mounted torch is mandatory in some years and useful in all of them. The forestry roads are unlit and the last 20km in fading light is genuinely dangerous without one.",
+      },
+    ],
+  },
+  {
+    slug: "cape-epic-training-plan",
+    trainingEventSlug: "cape-epic",
+    pageTitle: "Absa Cape Epic Training Plan",
+    intent:
+      "Help mountain bike teams prepare for the world's premier amateur stage race — eight days, two riders, 700km and 15,000m of climbing across the Western Cape.",
+    weatherConditions:
+      "Late March in the Western Cape ranges from 18°C at the early stage starts to 35°C+ on the open Karoo sections. Heat compounds across the week — by stage 5 the cumulative dehydration is the silent race-killer. Dust on every stage. Occasional summer rain on the mountain stages. Altitude variations from sea level to 1,800m across the route.",
+    terrainSummary:
+      "8 days of MTB stage racing across the Western Cape — fynbos singletrack, farm roads, technical mountain descents, and long sustained climbs. Each stage averages 90-100km with 2,000-2,500m climbing. Singletrack technicality varies from beginner-friendly to genuinely demanding; the climbing is where the race is decided.",
+    ftpRequirement: {
+      minimum: "3.0 W/kg",
+      competitive: "3.8 W/kg",
+      notes:
+        "Cape Epic is multi-day, so single-day FTP underestimates the demand. 3.0 W/kg sustained for 8 stages requires the same engine as 3.4 W/kg fresh. The competitive number — 3.8+ W/kg — is what holds a top-third GC across a week, not what wins a single stage. Singletrack technical skill saves more time than watts on most days.",
+    },
+    enduranceDemands:
+      "12-16 hours/week peaking, with at least three back-to-back weekends of 5-6 hour MTB rides paired with 4-hour days the next morning. You should have done one 3-day stack of 4+ hour rides in the final 12 weeks, ideally on real mountain terrain. Singletrack-specific skill work matters as much as engine work — losing 15 seconds per technical section across 8 days is hours, not minutes.",
+    climbingNarrative:
+      "Around 15,000m of climbing across the week — averaging 1,900m per stage, with the queen stages (typically stage 3 or 4) topping 2,500m. The climbing is the race. Singletrack descents matter for skill, but the GC is built and lost on long fynbos climbs in the heat. Cumulative climbing fatigue compounds across the week — stage 7 power on the climbs is typically 80-85% of stage 1 power for amateurs who managed recovery, and 65-70% for those who didn't.",
+    majorClimbs: [
+      {
+        name: "Welvanpas Climb",
+        lengthKm: 8,
+        avgGradient: 6,
+        elevationGainM: 480,
+        positionInRide: "varies by year",
+        notes:
+          "Classic Cape Epic climb when it features. Long sustained farm road into fynbos. Pace on power — heart rate drifts in the heat and lies about your effort.",
+      },
+      {
+        name: "Groenlandberg",
+        lengthKm: 12,
+        avgGradient: 5.5,
+        elevationGainM: 660,
+        positionInRide: "queen-stage day",
+        notes:
+          "Tops out around 1,000m. Long, exposed, hot. The signature climb of multiple recent editions. Manage temperature as much as wattage.",
+      },
+      {
+        name: "Stettyn's Berg",
+        lengthKm: 14,
+        avgGradient: 5,
+        elevationGainM: 700,
+        positionInRide: "mid-week",
+        notes:
+          "One of the longest sustained climbs in any edition. Drink before you're thirsty, eat before you're hungry, and pace at 70-75% FTP — not racing pace.",
+      },
+    ],
+    finishTimes: [
+      {
+        level: "Survival finisher",
+        range: "8 days, 6-7h daily average",
+        fitnessProfile:
+          "FTP 2.6-3.0 W/kg, 8-10 hours/week training, MTB-specific skill work, longest ride 5 hours, has finished a 4-day MTB stage event before.",
+      },
+      {
+        level: "Mid-pack finisher",
+        range: "8 days, 5-6h daily average",
+        fitnessProfile:
+          "FTP 3.0-3.4 W/kg, 10-12 hours/week, multiple back-to-back long-ride weekends, partner-paired endurance, gut trained to 80g carbs/hour.",
+      },
+      {
+        level: "Top-third GC",
+        range: "8 days, 4:30-5:30h daily average",
+        fitnessProfile:
+          "FTP 3.4-3.8 W/kg, 12-15 hours/week, MTB racing background, technical singletrack confidence, refined recovery protocol, gut trained to 90g+ carbs/hour.",
+      },
+      {
+        level: "Front-of-field GC",
+        range: "8 days, 3:30-4:30h daily average",
+        fitnessProfile:
+          "FTP 3.8+ W/kg, 15-18 hours/week, professional-tier race calendar, structured altitude block, partner-matched fitness, sub-2% margin on race weight.",
+      },
+    ],
+    fuellingDeepDive:
+      "Cape Epic fuelling is on-bike + off-bike, and the off-bike side is where amateurs lose the week. On the bike: 80g carbs/hour minimum, 90-100g if you've trained the gut, sustained for 5-7 hours every stage. Daily carb intake during race week climbs to 8-10g/kg body weight (a 70kg rider eats 560-700g carbs across the day). Recovery window is non-negotiable: a carb-protein shake (3:1 or 4:1 ratio) within 30 minutes of every stage finish, real meal within 90. Protein needs rise on stage races: 1.6-2g/kg/day to support overnight muscle repair. Sleep is fuel — riders banking 7-8 hours per night recover; riders sleeping 5-6 crack on day 5 regardless of fitness. Sodium losses in Karoo heat are 1,500-2,000mg/hour; replace aggressively or accept the cramp and the bonk.",
+    pacingDeepDive:
+      "Cape Epic is multi-day pacing, full stop. Each stage is a 70-75% effort, not a 100% effort. Stage 1 power should be the slowest you can comfortably hold for the day, not the fastest — riders who race stage 1 are riding defence by stage 4. Pace climbs on rigid wattage ceilings: 75-80% FTP on the major climbs through stage 3, dropping to 70-75% by stage 5 as fatigue lands. Heart rate drifts 5-10 bpm higher in the heat for the same wattage — pace on power, accept the HR. Singletrack descents are recovery, not racing: hold pace, eat, drink, do not crash (a Cape Epic broken collarbone is 8 days of waiting at the finish line). The team rule is the iron rule: you finish together or you DNF. Pace at the slower partner's level on day 1, not day 5.",
+    detailedMistakes: [
+      {
+        mistake: "Arriving undertrained for back-to-back 6-8 hour days",
+        fix: "Five-hour Saturday rides do not prepare you for stacked 5-6 hour days at altitude in the heat. Build at least three back-to-back long-ride weekends in the final 12 weeks (Saturday 5-6h + Sunday 4-5h), ideally on real mountain terrain. The training problem Cape Epic asks isn't 'can you ride hard for one day' — it's 'can you ride hard the day after riding hard, six times in a row'.",
+      },
+      {
+        mistake: "Mismatching partner fitness",
+        fix: "You ride at the slower rider's pace, every day, all week. Pair early in the training cycle, train together at least once a week, and arrive with a shared sense of pacing, fuelling, and stage strategy. The team that finishes top-third is rarely the team with the strongest individual rider — it's the team where both riders end stage 7 still able to ride.",
+      },
+      {
+        mistake: "Skimping on the post-stage recovery protocol",
+        fix: "Carb-protein shake within 30 minutes of every stage finish. Real meal within 90. Compression, foam roller, 7-8 hours of sleep — non-negotiable from stage 1, not 'starting tomorrow when I feel tired'. Recovery debt compounds: skip it on stage 1 and you pay on stage 5 with interest.",
+      },
+      {
+        mistake: "Underspecing tyres for the singletrack",
+        fix: "2.3-2.4\" tyres with MaxxTerra or Enduro casing. Tubeless mandatory with plug kit and CO2. A puncture in technical singletrack costs 10-30 minutes and can end the team's day if it lands at altitude in the heat. Run pressures conservative — comfort and grip beat rolling resistance over 8 days.",
+      },
+      {
+        mistake: "Treating altitude as a sea-level problem",
+        fix: "Several stages cross 1,500-1,800m. At those altitudes most amateurs lose 5-8% of sea-level sustainable power. Sleep at altitude in the final 2-3 weeks if you can, or arrive 7-10 days early in the Cape to acclimatise. The combined heat + altitude on the queen stage is where unprepared teams fall apart.",
+      },
+    ],
+  },
+  {
+    slug: "trans-pyrenees-training-plan",
+    trainingEventSlug: "trans-pyrenees",
+    pageTitle: "Trans Pyrenees Training Plan",
+    intent:
+      "Help self-supported ultra riders prepare for one of Europe's hardest ultras — roughly 1,500km across the Pyrenees with 28,000m of climbing and October mountain weather.",
+    weatherConditions:
+      "October in the Pyrenees is the day-and-night problem. Coastal valleys can sit at 18-22°C while the high passes (Tourmalet, Aubisque, Aspin) drop below freezing with snow above 1,800m. Daylight is short — 11 hours at the start, fewer by the finish. Wet weather is the default expectation, not the exception.",
+    terrainSummary:
+      "Roughly 1,500km of paved road across the Pyrenees between the Atlantic and Mediterranean coasts, with around 28,000m of climbing depending on the year's parcours. Self-navigated, self-supported, with a mandatory tracker and daily check-ins. Surface is mostly tarmac but can include gravel transitions on certain optional routes.",
+    ftpRequirement: {
+      minimum: "2.6 W/kg",
+      competitive: "3.4 W/kg",
+      notes:
+        "Trans Pyrenees is paced at a fraction of FTP — 50-55% sustained — so the question isn't peak power, it's the floor you can hold for 18-hour days across 6-9 days. 2.6 W/kg with disciplined pacing finishes; 3.4+ W/kg with good sleep management gets to the front of the field. Sleep economy and the willingness to ride through cold rain matter more than watts past day 3.",
+    },
+    enduranceDemands:
+      "Ultra-specific training, not sportive training. 14-18 hours/week peaking, with three multi-day training blocks (3-4 day stretches of 6-10 hours daily) in the final 12 weeks. You should have done one 24-hour ride and one self-supported overnight ride before the start. Sleep deprivation training is part of preparation: at least one 36-hour ride with 4 hours of sleep midway, to test gear, lights, fuelling, and your body's response to broken sleep on the bike.",
+    climbingNarrative:
+      "Around 28,000m of climbing across roughly 1,500km — more than three times the height of Everest across the event. Every named HC and Cat 1 Pyrenean pass features in some edition. Tourmalet (2,115m), Aubisque (1,709m), Aspin, Peyresourde, Portet — the climbing is the event. Pacing on every climb is sub-threshold, regardless of fresh legs or time pressure, because the pass after this one is also coming.",
+    majorClimbs: [
+      {
+        name: "Col du Tourmalet",
+        lengthKm: 17.2,
+        avgGradient: 7.4,
+        maxGradient: 10.5,
+        elevationGainM: 1268,
+        positionInRide: "varies",
+        notes:
+          "The signature pass. Pace it at 60-65% FTP and accept the time — riders who push it harder pay across the next two passes. In October, the top can be in cloud or snow.",
+      },
+      {
+        name: "Col d'Aubisque",
+        lengthKm: 16.5,
+        avgGradient: 7.2,
+        elevationGainM: 1190,
+        positionInRide: "early in the western section",
+        notes:
+          "Long sustained climb with a deceptive false-flat middle. Manage hydration carefully — Atlantic side weather is wetter and colder than the Mediterranean side.",
+      },
+      {
+        name: "Col du Portet",
+        lengthKm: 16,
+        avgGradient: 8.7,
+        maxGradient: 12,
+        elevationGainM: 1390,
+        positionInRide: "central section, queen-stage equivalent",
+        notes:
+          "The day's hardest climb when it's in the route. Sustained 8-9% with no flat. Pace at 55-60% of FTP, eat through the climb, and accept that ascent times do not matter — finishing the event does.",
+      },
+    ],
+    finishTimes: [
+      {
+        level: "Survival finisher",
+        range: "8-9 days",
+        fitnessProfile:
+          "FTP 2.4-2.8 W/kg, ultra background, has completed at least one 1,000km+ self-supported event, comfortable sleeping rough.",
+      },
+      {
+        level: "Mid-pack finisher",
+        range: "7-8 days",
+        fitnessProfile:
+          "FTP 2.8-3.2 W/kg, 12-14 hours/week training, multiple multi-day training blocks, sub-30-minute average daily off-bike time.",
+      },
+      {
+        level: "Strong finisher",
+        range: "6-7 days",
+        fitnessProfile:
+          "FTP 3.2-3.6 W/kg, 14-16 hours/week, ultra racing background, sleep-deprivation tolerant, refined bikepacking setup.",
+      },
+      {
+        level: "Front of field",
+        range: "5-6 days",
+        fitnessProfile:
+          "FTP 3.6+ W/kg, 16-20 hours/week, podium-tier ultra results, 4 hours of sleep per day for 6+ days, dynamo-powered without resupply windows.",
+      },
+    ],
+    fuellingDeepDive:
+      "No aid stations. Resupply at open shops, cafés, and petrol stations in valley towns — and the windows close in October as mountain villages shut for winter. Plan resupply by daylight and by altitude, not by hunger. On the bike: 80-100g carbs/hour while riding hard, 60-70g/hour during easier sections. Real food at cafés every 4-5 hours: hot meals, hot drinks, and the kind of calories supermarket bars cannot match. Hot drinks at altitude pass points are non-negotiable for both calories and core temperature management. Carry extra gels for nighttime emergencies and for the inevitable shop-closed-when-you-arrived problem. Sodium losses are higher than you'd expect even in cold weather — long-day cumulative sweating sneaks up on cold-weather riders. Sleep is fuel: aim for 5-7 hours per day for sustainable progress; less and the third-day cognitive failure rate climbs sharply.",
+    pacingDeepDive:
+      "Trans Pyrenees is climbing-dominated. Pace on the climbs, not the flats. Target sub-threshold on every pass, regardless of time pressure — 55-65% FTP for HC cols, dropping to 50-55% in the second half of the event. Heart rate runs 5-10 bpm higher at altitude than at sea level for the same wattage; pace on power, accept the HR. The descents are recovery: eat, drink, freewheel where the gradient allows, and brake conservatively. October mountain descending is genuinely dangerous after dark in wet weather — pick safe sleep windows that bracket the longest exposed descents in daylight. Sleep 5-7 hours/day for sustainable progress; check weather nightly and pick tomorrow's start time accordingly. Riders who push past 18-hour days for more than two days in a row crash on day 4 — the cognitive failure precedes the physical one.",
+    detailedMistakes: [
+      {
+        mistake: "Treating it like Badlands or other Mediterranean ultras",
+        fix: "The Pyrenees in October are colder, wetter, and more mountainous than southern Spain. Kit and pacing assumptions from southern ultras get riders cold and into hypothermia territory above 1,800m. Pack as if for a winter Alpine event, not a summer ultra.",
+      },
+      {
+        mistake: "Underspeccing kit for October above 1,800m",
+        fix: "Waterproof jacket that genuinely seals, waterproof gloves, waterproof socks (not just water-resistant), insulating layer, and a bivvy + sleeping bag rated to 0°C. October at 2,000m can be -5°C with sleet. The riders who scratch at Trans Pyrenees almost never scratch from fitness — they scratch from being cold and wet, which is a kit problem.",
+      },
+      {
+        mistake: "Sleep deprivation affecting descending safety on day 4+",
+        fix: "Plan sleep windows around the longest exposed descents. After 72 hours with less than 5 hours sleep per night, decision-making degrades sharply and reaction time on technical wet descents drops by 20-30%. The fast strategy is also the safe strategy: 5-7 hours of real sleep per night, taken in genuine accommodation when possible (hostels, hotels) rather than bivvy in mountain rain.",
+      },
+      {
+        mistake: "Inadequate lighting and dynamo setup",
+        fix: "Dynamo hub with a USB pass-through is the only realistic charging strategy for a 6-9 day event. Battery-powered lights die at the worst moment, and 11 hours of October daylight means you're riding in dark for half of every day. Pair with a backup head-mounted light. Riders who skip the dynamo end up doing café-charging stops that cost hours per day.",
+      },
+      {
+        mistake: "Pacing climbs by ego rather than wattage",
+        fix: "Every Pyrenean pass should be ridden sub-threshold, with no exceptions, regardless of whether you have fresh legs or time pressure. The climb after this one is also coming. Riders who race a single pass at sportive pace pay back the time across the next 200km, which on Trans Pyrenees usually includes another HC climb.",
+      },
+    ],
+  },
 ];
 
 /* ============================================================ */
