@@ -3,9 +3,9 @@ import { EvidenceLevel, type EvidenceLevelType } from "./EvidenceLevel";
 
 export interface CitedClaim {
   claim: string;
-  position: string;
-  source: string;
-  implication: string;
+  roadmanPosition: string;
+  evidenceSource: string;
+  practicalImplication: string;
   evidenceLevel?: EvidenceLevelType;
 }
 
@@ -15,12 +15,6 @@ interface CitedClaimTableProps {
   caption?: ReactNode;
 }
 
-/**
- * Structured "what we believe and why" claim table. Renders as a
- * full data table on tablet+ for accessibility and as a stacked card
- * list on mobile. Each row optionally carries an EvidenceLevel chip
- * so readers (and AI crawlers) can scan the strength of each claim.
- */
 export function CitedClaimTable({
   claims,
   heading = "WHAT WE BELIEVE & WHY",
@@ -37,109 +31,58 @@ export function CitedClaimTable({
         {heading}
       </p>
       {caption && (
-        <p className="text-sm text-foreground-muted mb-5 max-w-2xl leading-relaxed">
+        <p className="text-sm text-foreground-muted mb-6 max-w-2xl leading-relaxed">
           {caption}
         </p>
       )}
 
-      {/* Tablet+: real table for semantics & a11y */}
-      <div className="hidden md:block rounded-xl border border-white/10 bg-white/[0.03] overflow-hidden">
-        <table className="w-full text-left text-sm">
-          <thead>
-            <tr className="border-b border-white/10 bg-white/[0.03]">
-              <th
-                scope="col"
-                className="py-3 px-4 font-heading text-[11px] tracking-widest text-foreground-subtle uppercase w-1/4"
-              >
-                Claim
-              </th>
-              <th
-                scope="col"
-                className="py-3 px-4 font-heading text-[11px] tracking-widest text-foreground-subtle uppercase w-1/4"
-              >
-                Roadman Position
-              </th>
-              <th
-                scope="col"
-                className="py-3 px-4 font-heading text-[11px] tracking-widest text-foreground-subtle uppercase w-1/4"
-              >
-                Evidence Source
-              </th>
-              <th
-                scope="col"
-                className="py-3 px-4 font-heading text-[11px] tracking-widest text-foreground-subtle uppercase w-1/4"
-              >
-                Practical Implication
-              </th>
-            </tr>
-          </thead>
-          <tbody>
-            {claims.map((c, i) => (
-              <tr
-                key={i}
-                className={
-                  i < claims.length - 1 ? "border-b border-white/5" : ""
-                }
-              >
-                <td className="py-3 px-4 align-top text-off-white leading-snug">
-                  <span className="block mb-1">{c.claim}</span>
-                  {c.evidenceLevel && (
-                    <EvidenceLevel level={c.evidenceLevel} />
-                  )}
-                </td>
-                <td className="py-3 px-4 align-top text-foreground-muted leading-snug">
-                  {c.position}
-                </td>
-                <td className="py-3 px-4 align-top text-foreground-muted leading-snug">
-                  {c.source}
-                </td>
-                <td className="py-3 px-4 align-top text-foreground-muted leading-snug">
-                  {c.implication}
-                </td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
-      </div>
-
-      {/* Mobile: card stack */}
-      <div className="md:hidden space-y-3">
+      <ol className="space-y-4 list-none p-0 m-0">
         {claims.map((c, i) => (
-          <div
+          <li
             key={i}
-            className="rounded-xl border border-white/10 bg-white/[0.03] p-4"
+            className="rounded-xl border border-white/10 bg-white/[0.03] p-5 md:p-6"
           >
-            <div className="flex items-start justify-between gap-3 mb-3">
-              <p className="font-heading text-off-white text-base leading-snug m-0">
+            <header className="flex flex-col-reverse sm:flex-row sm:items-start sm:justify-between gap-3 mb-4 pb-4 border-b border-white/5">
+              <h3 className="font-heading text-off-white text-base md:text-lg leading-snug uppercase tracking-wide m-0">
+                <span className="text-coral mr-2">{String(i + 1).padStart(2, "0")}</span>
                 {c.claim}
-              </p>
+              </h3>
               {c.evidenceLevel && (
-                <EvidenceLevel level={c.evidenceLevel} />
+                <div className="shrink-0">
+                  <EvidenceLevel level={c.evidenceLevel} />
+                </div>
               )}
-            </div>
-            <dl className="space-y-2 text-sm m-0">
-              <div>
-                <dt className="font-heading text-coral text-[10px] tracking-widest uppercase mb-0.5">
+            </header>
+
+            <dl className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6 m-0">
+              <div className="m-0">
+                <dt className="font-heading text-coral text-[10px] tracking-widest uppercase mb-1.5">
                   Roadman Position
                 </dt>
-                <dd className="text-foreground-muted m-0">{c.position}</dd>
+                <dd className="text-off-white text-sm leading-relaxed m-0">
+                  {c.roadmanPosition}
+                </dd>
               </div>
-              <div>
-                <dt className="font-heading text-coral text-[10px] tracking-widest uppercase mb-0.5">
+              <div className="m-0">
+                <dt className="font-heading text-coral text-[10px] tracking-widest uppercase mb-1.5">
                   Evidence Source
                 </dt>
-                <dd className="text-foreground-muted m-0">{c.source}</dd>
+                <dd className="text-foreground-muted text-sm leading-relaxed m-0">
+                  {c.evidenceSource}
+                </dd>
               </div>
-              <div>
-                <dt className="font-heading text-coral text-[10px] tracking-widest uppercase mb-0.5">
+              <div className="m-0">
+                <dt className="font-heading text-coral text-[10px] tracking-widest uppercase mb-1.5">
                   Practical Implication
                 </dt>
-                <dd className="text-foreground-muted m-0">{c.implication}</dd>
+                <dd className="text-foreground-muted text-sm leading-relaxed m-0">
+                  {c.practicalImplication}
+                </dd>
               </div>
             </dl>
-          </div>
+          </li>
         ))}
-      </div>
+      </ol>
     </section>
   );
 }

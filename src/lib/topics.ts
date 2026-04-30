@@ -431,23 +431,32 @@ const TOPIC_ENRICHMENT: Record<string, {
     citedClaims: [
       {
         claim: "FTP can improve in trained amateurs",
-        position: "Yes, but rate depends on training age",
-        source: "Expert interviews + case data",
-        implication: "Expect slower gains after beginner phase",
+        roadmanPosition:
+          "Yes, but the rate of gain depends on training age. Beginners see fast jumps; experienced amateurs need block-by-block patience.",
+        evidenceSource:
+          "Convergent across Lorang, Wakefield and Friel commentary on the Roadman archive; supported by published training-age research.",
+        practicalImplication:
+          "Plan in 12-week blocks and judge progress on trend, not single-test jumps.",
         evidenceLevel: "strong",
       },
       {
-        claim: "Masters cyclists need more recovery",
-        position: "Usually yes",
-        source: "Research + coaching experience",
-        implication: "Reduce intensity density",
+        claim: "Masters cyclists need more recovery, not less work",
+        roadmanPosition:
+          "Reduce intensity density and protect sleep. The total volume can stay; the recovery between hard sessions has to grow.",
+        evidenceSource:
+          "Masters-specific research on adaptation rates plus coaching practice across the Roadman masters interviews.",
+        practicalImplication:
+          "Cap hard sessions at two per week and add a second easy day before adding any intervals.",
         evidenceLevel: "moderate",
       },
       {
-        claim: "20-min test estimates raw FTP within ~5%",
-        position: "Close enough for most amateurs",
-        source: "Coggan protocol + athlete data",
-        implication: "Use it to set zones, not to chase PRs",
+        claim: "A 20-minute test estimates FTP within ~5% for most amateurs",
+        roadmanPosition:
+          "Close enough to set zones, but only useful if the protocol is repeated identically every retest. Trend beats precision.",
+        evidenceSource:
+          "Coggan/Allen 20-minute protocol with 95% adjustment; corroborated by athlete data across the Roadman coaching network.",
+        practicalImplication:
+          "Use the same warm-up, terrain and pacing every time. Retest no more than once every 6–8 weeks.",
         evidenceLevel: "moderate",
       },
     ],
