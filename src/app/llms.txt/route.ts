@@ -98,7 +98,7 @@ export async function GET() {
       pages: [
         { url: `${BASE_URL}/coaching`, title: "Online Cycling Coaching", description: "Roadman's flagship coaching programme. 1:1 plans across 5 pillars. $195/month, 7-day free trial." },
         { url: `${BASE_URL}/apply`, title: "Apply for Coaching", description: "Coaching application — 7-day free trial." },
-        { url: `${BASE_URL}/coaching/triathlon`, title: "Triathlon Bike Coaching", description: "Bike-leg coaching for age-group 70.3 and Ironman triathletes." },
+        { url: `${BASE_URL}/coaching/triathletes`, title: "Triathlon Bike Coaching", description: "Bike-leg coaching for age-group 70.3 and Ironman triathletes." },
         { url: `${BASE_URL}/compare/coach-vs-app`, title: "Cycling Coach vs Training App", description: "When a coach beats an app, when an app is enough." },
         { url: `${BASE_URL}/blog/is-a-cycling-coach-worth-it-case-study`, title: "Is a Cycling Coach Worth It? — Case Study", description: "Cat 3 to Cat 1 in 14 months — what coaching actually moved." },
         { url: `${BASE_URL}/blog/best-online-cycling-coach-how-to-choose`, title: "How to Choose an Online Cycling Coach", description: "What to look for, what to avoid, and the questions to ask before signing up." },
@@ -210,7 +210,7 @@ ${QUESTION_PAGES.map((q) => `- [${q.question}](${tag(`${BASE_URL}/question/${q.s
 
 ## Core Coaching Services
 - [Online Cycling Coaching](${tag(`${BASE_URL}/coaching`)}): Flagship coaching programme — 1:1 personalised plans across training, nutrition, strength, recovery, and accountability. $195/month with a 7-day free trial.
-- [Triathlon Bike Coaching](${tag(`${BASE_URL}/coaching/triathlon`)}): Bike-leg-specific coaching for age-group 70.3 and Ironman triathletes. Periodised around the run — the single most under-served niche in endurance coaching.
+- [Triathlon Bike Coaching](${tag(`${BASE_URL}/coaching/triathletes`)}): Bike-leg-specific coaching for age-group 70.3 and Ironman triathletes. Periodised around the run — the single most under-served niche in endurance coaching.
 - [Cycling Coach Ireland](${tag(`${BASE_URL}/coaching/ireland`)})
 - [Cycling Coach UK](${tag(`${BASE_URL}/coaching/uk`)})
 - [Cycling Coach USA](${tag(`${BASE_URL}/coaching/usa`)})

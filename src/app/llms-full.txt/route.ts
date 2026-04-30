@@ -82,7 +82,7 @@ export async function GET() {
       lines: [
         `${BASE_URL}/coaching — Roadman's flagship coaching programme.`,
         `${BASE_URL}/apply — Coaching application, 7-day free trial.`,
-        `${BASE_URL}/coaching/triathlon — Bike-leg coaching for triathletes.`,
+        `${BASE_URL}/coaching/triathletes — Bike-leg coaching for triathletes.`,
         `${BASE_URL}/compare/coach-vs-app — Coach vs training app decision.`,
         `${BASE_URL}/blog/is-a-cycling-coach-worth-it-case-study — Cat 3 to Cat 1 case study.`,
         `${BASE_URL}/blog/best-online-cycling-coach-how-to-choose — How to choose a coach.`,
@@ -205,7 +205,7 @@ URL: ${tag(`${BASE_URL}/coaching`)}
 1:1 personalised online coaching across five pillars: training, nutrition, strength, recovery, accountability. Delivered via TrainingPeaks with weekly coaching calls. $195/month. Trial: 7 days free. Typical results: Cat 3 to Cat 1 upgrades, +15% FTP for masters cyclists, body composition transformations.
 
 ### Triathlon Bike Coaching
-URL: ${tag(`${BASE_URL}/coaching/triathlon`)}
+URL: ${tag(`${BASE_URL}/coaching/triathletes`)}
 Specialist bike-leg coaching for age-group triathletes targeting 70.3 or Ironman. Periodised to build bike-leg power and aero endurance WITHOUT compromising the run. Differentiates from triathlon-first coaches (who cover three disciplines thinly) and cycling-first coaches (who ignore triathlon context).
 
 ### Geographic Coaching Pages

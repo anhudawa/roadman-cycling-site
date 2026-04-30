@@ -1097,7 +1097,7 @@ export default async function CoachingLocationPage({ params }: Props) {
         </Section>
 
         {/* Triathlon cross-link — every geo page passes authority to the
-            /coaching/triathlon pillar. City-specific framing keeps it
+            /coaching/triathletes pillar. City-specific framing keeps it
             natural rather than boilerplate. */}
         <Section background="charcoal">
           <Container width="narrow">
@@ -1115,7 +1115,7 @@ export default async function CoachingLocationPage({ params }: Props) {
                 <p className="text-foreground-muted max-w-xl mx-auto mb-6 leading-relaxed">
                   Our{" "}
                   <Link
-                    href="/coaching/triathlon"
+                    href="/coaching/triathletes"
                     className="text-coral hover:text-coral/80 transition-colors"
                   >
                     triathlon bike coaching
@@ -1125,7 +1125,7 @@ export default async function CoachingLocationPage({ params }: Props) {
                   distances. Same coach, same methodology — different
                   periodisation.
                 </p>
-                <Button href="/coaching/triathlon" size="lg">
+                <Button href="/coaching/triathletes" size="lg">
                   Triathlon Bike Coaching →
                 </Button>
               </Card>

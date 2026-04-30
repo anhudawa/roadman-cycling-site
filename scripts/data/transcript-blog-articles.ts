@@ -42,7 +42,7 @@ export const TRANSCRIPT_BLOG_ARTICLES: ClusterArticleSpec[] = [
     angle: "Source episode: ep-2063. Brownlee's transferable wisdom on consistency, pacing, and the mental game.",
     pillar: "coaching",
     requiredSections: ["Lesson 1: consistency beats intensity", "Lesson 2: pacing is a skill you train", "Lesson 3: the recovery paradox", "Lesson 4: race-day simplicity", "Lesson 5: knowing when to stop"],
-    internalLinks: [{ href: "/coaching/triathlon", anchor: "triathlon coaching" }, { href: "/coaching", anchor: "cycling coaching" }, { href: "/blog/how-to-get-faster-cycling", anchor: "how to get faster" }],
+    internalLinks: [{ href: "/coaching/triathletes", anchor: "triathlon coaching" }, { href: "/coaching", anchor: "cycling coaching" }, { href: "/blog/how-to-get-faster-cycling", anchor: "how to get faster" }],
     wordTarget: 2300,
     featuredImage: "/images/cycling/gravel-canyon-wide.jpg",
   },

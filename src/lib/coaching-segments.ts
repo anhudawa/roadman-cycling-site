@@ -86,13 +86,13 @@ export interface SegmentData {
 }
 
 export const COACHING_SEGMENTS: Record<string, SegmentData> = {
-  "masters-cyclists": {
-    slug: "masters-cyclists",
-    seoTitle: "Cycling Coaching for Masters Cyclists | $195/mo",
+  masters: {
+    slug: "masters",
+    seoTitle: "Online Cycling Coach for Masters Riders | $195/mo",
     seoDescription:
-      "Cycling coaching for masters cyclists over 40. Power preservation, recovery management, and structured progression — built on conversations with Seiler, Lorang, and Friel. Personalised TrainingPeaks plans.",
-    h1: "Cycling Coaching for Masters Cyclists",
-    heroEyebrow: "COACHING FOR MASTERS CYCLISTS",
+      "Online cycling coach for masters riders over 40. Power preservation, recovery management, and structured progression — built on conversations with Seiler, Lorang, and Friel. Personalised TrainingPeaks plans.",
+    h1: "Online Cycling Coach for Masters Riders",
+    heroEyebrow: "COACHING FOR MASTERS RIDERS",
     heroAccent: "PROTECT THE POWER. RIDE LIKE YOU'RE NOT DONE YET.",
     directAnswer:
       "This is coaching for cyclists over 40 who refuse to accept that their best days are behind them. You've still got watts to find — but the way you trained at 30 will start breaking you down at 45. Masters coaching is built around the recovery, intensity distribution, and strength work that lets the engine keep growing while the body keeps holding up.",
@@ -697,13 +697,13 @@ export const COACHING_SEGMENTS: Record<string, SegmentData> = {
     breakerWord: "BUSY",
   },
 
-  "sportive-riders": {
-    slug: "sportive-riders",
-    seoTitle: "Cycling Coaching for Sportive Riders | Event-Specific",
+  sportives: {
+    slug: "sportives",
+    seoTitle: "Online Cycling Coach for Sportives & Gran Fondos | $195/mo",
     seoDescription:
-      "Cycling coaching for sportive riders. Event-specific build, climbing-specific blocks, race-day pacing and fuelling, and the engine to enjoy the day instead of survive it. $195/month, personalised plan.",
-    h1: "Cycling Coaching for Sportive Riders",
-    heroEyebrow: "COACHING FOR SPORTIVE RIDERS",
+      "Online cycling coach for sportive and gran fondo riders. Event-specific build, climbing-specific blocks, race-day pacing and fuelling, and the engine to enjoy the day instead of survive it. Personalised TrainingPeaks plans.",
+    h1: "Online Cycling Coach for Sportives & Gran Fondos",
+    heroEyebrow: "COACHING FOR SPORTIVES & GRAN FONDOS",
     heroAccent: "PERFORM ON THE DAY. DON'T JUST SURVIVE IT.",
     directAnswer:
       "This is coaching for cyclists targeting a specific sportive — a 100-mile, a Wicklow 200, a Marmotte, a Fred Whitton — and who want to arrive in form, pace it well, and finish strong. Not just complete the distance. Get to the finish with something left and a finishing time you actually wanted.",
@@ -840,15 +840,41 @@ export const COACHING_SEGMENTS: Record<string, SegmentData> = {
     ],
     serviceType: "Cycling Coaching for Sportive Riders",
     breakerWord: "SPORTIVE",
+    relatedResources: [
+      {
+        label: "Race Pace Predictor",
+        href: "/tools/race-pace-predictor",
+        description:
+          "Estimate your sustainable power and finish time for a sportive based on FTP, weight, and course profile. Free tool, no sign-up.",
+      },
+      {
+        label: "FTP Zones Calculator",
+        href: "/tools/ftp-zones",
+        description:
+          "Calculate your training zones from your FTP — the foundation for the pacing caps you'll hold in the first hour of an event.",
+      },
+      {
+        label: "Coaching Assessment",
+        href: "/diagnostic",
+        description:
+          "Five-minute coaching diagnostic. Where the gains are, what to fix first, and whether structured coaching is the right next step.",
+      },
+      {
+        label: "Sportive & Gran Fondo Training Guide",
+        href: "/topics/cycling-training-plans",
+        description:
+          "Long-form training plans, periodisation, and pacing guides for sportive and gran fondo riders.",
+      },
+    ],
   },
 
-  "gravel-racers": {
-    slug: "gravel-racers",
-    seoTitle: "Cycling Coaching for Gravel Racers | Mixed-Terrain",
+  gravel: {
+    slug: "gravel",
+    seoTitle: "Online Cycling Coach for Gravel Racing | $195/mo",
     seoDescription:
-      "Cycling coaching for gravel racers. Mixed-terrain endurance, fuelling for 4+ hour efforts, technical skills, and the polarised base that wins long-format gravel. $195/month, personalised plan.",
-    h1: "Cycling Coaching for Gravel Racers",
-    heroEyebrow: "COACHING FOR GRAVEL RACERS",
+      "Online cycling coach for gravel racing. Mixed-terrain endurance, fuelling for 4+ hour efforts, technical skills, and the polarised base that wins long-format gravel. Personalised TrainingPeaks plans.",
+    h1: "Online Cycling Coach for Gravel Racing",
+    heroEyebrow: "COACHING FOR GRAVEL RACING",
     heroAccent: "ENDURANCE THAT LASTS. SKILLS THAT HOLD UP.",
     directAnswer:
       "This is coaching for cyclists racing gravel — Unbound, Dirty Reiver, Migration, your local gravel league. Gravel racing isn't road racing on dirt. It's a different problem: longer events, lower average power, harder fuelling, more variable terrain, and the technical layer most road-only training never touches.",
@@ -985,6 +1011,32 @@ export const COACHING_SEGMENTS: Record<string, SegmentData> = {
     ],
     serviceType: "Cycling Coaching for Gravel Racers",
     breakerWord: "GRAVEL",
+    relatedResources: [
+      {
+        label: "Tyre Pressure Calculator",
+        href: "/tools/tyre-pressure",
+        description:
+          "Pressure recommendations for tyre, rider weight, and surface. Worth more than 10 watts of fitness on rough gravel.",
+      },
+      {
+        label: "Race Pace Predictor",
+        href: "/tools/race-pace-predictor",
+        description:
+          "Estimate average power and finish time for long gravel races. Pacing the first hour is the single biggest gravel-day variable.",
+      },
+      {
+        label: "Coaching Assessment",
+        href: "/diagnostic",
+        description:
+          "Five-minute coaching diagnostic. Where the gains are, what to fix first, and whether structured coaching is the right next step.",
+      },
+      {
+        label: "Gravel Training Topic Hub",
+        href: "/topics/cycling-training-plans",
+        description:
+          "Periodisation, long-ride structure, and fuelling guides for ultra-distance gravel events.",
+      },
+    ],
   },
 
   "over-50": {
@@ -1134,10 +1186,10 @@ export const COACHING_SEGMENTS: Record<string, SegmentData> = {
 
   "time-crunched": {
     slug: "time-crunched",
-    seoTitle: "Cycling Coaching for Time-Crunched Cyclists | <6 hrs/wk",
+    seoTitle: "Online Cycling Coach for Time-Crunched Cyclists | $195/mo",
     seoDescription:
-      "Cycling coaching for cyclists with under 6 hours a week. Maximum return per hour, indoor-first programming, no junk miles, structured intensity. $195/month, personalised plan.",
-    h1: "Cycling Coaching for Time-Crunched Cyclists",
+      "Online cycling coach for time-crunched cyclists with under 6 hours a week. Maximum return per hour, indoor-first programming, no junk miles, structured intensity. Personalised TrainingPeaks plans.",
+    h1: "Online Cycling Coach for Time-Crunched Cyclists",
     heroEyebrow: "COACHING FOR TIME-CRUNCHED CYCLISTS",
     heroAccent: "UNDER 6 HOURS. MAXIMUM RETURN PER HOUR.",
     directAnswer:
@@ -1275,6 +1327,32 @@ export const COACHING_SEGMENTS: Record<string, SegmentData> = {
     ],
     serviceType: "Cycling Coaching for Time-Crunched Cyclists",
     breakerWord: "TIME-CRUNCHED",
+    relatedResources: [
+      {
+        label: "Plateau Diagnostic",
+        href: "/plateau",
+        description:
+          "Three-minute diagnostic that pins down exactly why your power has flatlined — and what the next 12 weeks should focus on.",
+      },
+      {
+        label: "FTP Zones Calculator",
+        href: "/tools/ftp-zones",
+        description:
+          "Generate the training zones every time-crunched session is paced from. Indoor sweet spot and VO2max work needs the numbers right.",
+      },
+      {
+        label: "Coaching Assessment",
+        href: "/diagnostic",
+        description:
+          "Five-minute coaching diagnostic. Where the gains are, what to fix first, and whether structured coaching is the right next step.",
+      },
+      {
+        label: "Time-Crunched Cyclist Guide",
+        href: "/blog/time-crunched-cyclist-8-hours-week",
+        description:
+          "The long-form companion guide — getting faster on 5-8 hours a week without burning out or under-training.",
+      },
+    ],
   },
 
   "post-injury": {
@@ -1579,14 +1657,15 @@ export function getSegment(slug: string): SegmentData | null {
  * cross-segment "explore other segments" blocks.
  */
 export const SEGMENT_DISPLAY_ORDER: { slug: string; label: string; tagline: string }[] = [
-  { slug: "masters-cyclists", label: "Masters Cyclists", tagline: "40+ — preserve power, manage recovery" },
+  { slug: "masters", label: "Masters Riders", tagline: "40+ — preserve power, manage recovery" },
   { slug: "over-50", label: "Over 50", tagline: "Deeper recovery, heavy strength, joint-aware" },
   { slug: "beginners", label: "Beginners", tagline: "Build a real base. Skip the bad habits." },
   { slug: "women", label: "Women", tagline: "Female-specific physiology and benchmarks" },
   { slug: "busy-professionals", label: "Busy Professionals", tagline: "6-8 hrs/week — every hour earning its keep" },
   { slug: "time-crunched", label: "Time-Crunched", tagline: "Under 6 hrs/week — maximum return per hour" },
-  { slug: "sportive-riders", label: "Sportive Riders", tagline: "Event-specific build, pacing, and fuelling" },
-  { slug: "gravel-racers", label: "Gravel Racers", tagline: "Mixed-terrain endurance and skills" },
+  { slug: "sportives", label: "Sportives & Gran Fondos", tagline: "Event-specific build, pacing, and fuelling" },
+  { slug: "gravel", label: "Gravel Racing", tagline: "Mixed-terrain endurance and skills" },
+  { slug: "triathletes", label: "Triathletes", tagline: "Bike-leg coaching that protects the run" },
   { slug: "post-injury", label: "Post-Injury Return", tagline: "Progressive loading, physio-coordinated" },
   { slug: "weight-loss", label: "Weight Loss", tagline: "Body composition through fuelling, not restriction" },
 ];

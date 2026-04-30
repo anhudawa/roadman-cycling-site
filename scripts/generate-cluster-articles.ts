@@ -2,7 +2,7 @@
  * scripts/generate-cluster-articles.ts
  *
  * Generates the 12-article triathlon-cycling cluster that supports the
- * /coaching/triathlon pillar page. Each article is written by Claude Opus
+ * /coaching/triathletes pillar page. Each article is written by Claude Opus
  * 4.7 from a detailed spec (in `scripts/data/triathlon-cluster-articles.ts`)
  * and a system prompt that captures Roadman's voice, pillar taxonomy, and
  * internal link conventions.

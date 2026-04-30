@@ -131,7 +131,7 @@ const PATHS: readonly PathItem[] = [
     description:
       "The plan that worked at 30 is breaking you at 50. Coaching built around what changes after 40 — and what still works.",
     cta: "See masters coaching",
-    href: "/coaching/masters-cyclists",
+    href: "/coaching/masters",
     track: "masters",
   },
   {

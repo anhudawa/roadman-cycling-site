@@ -539,7 +539,7 @@ const TOPIC_ENRICHMENT: Record<string, {
       { slug: "ftp-zones", title: "FTP Zone Calculator", href: "/tools/ftp-zones" },
       { slug: "fuelling", title: "In-Ride Fuelling Calculator", href: "/tools/fuelling" },
     ],
-    commercialPath: "/coaching/triathlon",
+    commercialPath: "/coaching/triathletes",
     relatedTopics: ["cycling-nutrition", "cycling-training-plans"],
     featuredPostSlugs: [
       "bike-leg-of-triathlon-why-age-groupers-get-it-wrong",

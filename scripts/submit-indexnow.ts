@@ -47,7 +47,7 @@ const CURATED: string[] = [
   // Pillar + authority
   `https://${HOST}/`,
   `https://${HOST}/coaching`,
-  `https://${HOST}/coaching/triathlon`,
+  `https://${HOST}/coaching/triathletes`,
   `https://${HOST}/about`,
   `https://${HOST}/about/press`,
   `https://${HOST}/podcast`,
@@ -293,7 +293,7 @@ async function main() {
   console.log("Done.");
   console.log("");
   console.log(
-    "IndexNow submission reaches Bing, Yandex, Seznam, Naver. Google does NOT honour IndexNow — use Google Search Console's URL-inspection tool for /coaching/triathlon and your most important new articles.",
+    "IndexNow submission reaches Bing, Yandex, Seznam, Naver. Google does NOT honour IndexNow — use Google Search Console's URL-inspection tool for /coaching/triathletes and your most important new articles.",
   );
 }
 

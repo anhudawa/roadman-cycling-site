@@ -132,7 +132,7 @@ export const PODCAST_AUTHORITY_ARTICLES: ClusterArticleSpec[] = [
       "cycling podcast half ironman",
     ],
     angle:
-      "Natural tie-in to /coaching/triathlon pillar. Points at specific episodes worth listening to for triathletes specifically.",
+      "Natural tie-in to /coaching/triathletes pillar. Points at specific episodes worth listening to for triathletes specifically.",
     pillar: "coaching",
     requiredSections: [
       "Why most cycling podcasts miss triathletes",
@@ -142,7 +142,7 @@ export const PODCAST_AUTHORITY_ARTICLES: ClusterArticleSpec[] = [
     ],
     internalLinks: [
       {
-        href: "/coaching/triathlon",
+        href: "/coaching/triathletes",
         anchor: "triathlon bike coaching",
       },
       { href: "/podcast", anchor: "The Roadman Cycling Podcast" },

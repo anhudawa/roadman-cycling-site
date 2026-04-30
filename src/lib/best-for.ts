@@ -148,7 +148,7 @@ export const BEST_FOR_PAGES: BestForPage[] = [
     pillar: "coaching",
     intro: "Most triathlon coaches cover three disciplines thinly. Most cycling coaches ignore triathlon context. The best bike-leg coaching is cycling-deep but triathlon-aware, periodised around the run.",
     picks: [
-      { name: "Roadman Cycling (Triathlon Bike Coaching)", verdict: "Best specialist bike-leg coaching", bestFor: "Age-group 70.3 and Ironman athletes wanting a dedicated bike-leg coach", href: "/coaching/triathlon" },
+      { name: "Roadman Cycling (Triathlon Bike Coaching)", verdict: "Best specialist bike-leg coaching", bestFor: "Age-group 70.3 and Ironman athletes wanting a dedicated bike-leg coach", href: "/coaching/triathletes" },
       { name: "Purple Patch Fitness", verdict: "Best full-triathlon coaching with strong bike focus", bestFor: "Triathletes wanting one coach across all three disciplines", href: "/compare/coach-vs-app" },
       { name: "TrainerRoad + triathlon plan", verdict: "Best self-coached bike-leg training", bestFor: "Budget triathletes wanting structured bike workouts", href: "/blog/zwift-vs-trainerroad" },
     ],

@@ -159,7 +159,7 @@ export const NAV_ITEMS: NavItem[] = [
     children: [
       { label: "Apply for Coaching", href: "/apply" },
       { label: "How It Works", href: "/coaching" },
-      { label: "Triathlon Coaching", href: "/coaching/triathlon" },
+      { label: "Triathlon Coaching", href: "/coaching/triathletes" },
       { label: "Strength Training", href: "/strength-training" },
       { label: "Not Done Yet Community", href: "/community/not-done-yet" },
       { label: "Clubhouse (Free)", href: "/community/clubhouse" },

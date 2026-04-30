@@ -7,29 +7,30 @@ import { ENTITY_IDS } from "@/lib/brand-facts";
 import { FAQSchema } from "@/components/seo/FAQSchema";
 
 export const metadata: Metadata = {
-  title: "Triathlon Bike Coach — Bike Coaching for Triathletes",
+  title: "Online Cycling Coach for Triathletes | $195/mo",
   description:
-    "Specialist bike coaching for triathletes. Build bike-leg power, nail your pacing, protect your run. Coaching designed for age-groupers targeting 70.3 and Ironman. From the podcast host who interviews Dan Lorang and Prof. Stephen Seiler.",
+    "Online cycling coach for triathletes. Bike-leg power, race-day pacing, run-protective programming for age-groupers targeting 70.3 and Ironman. Personalised TrainingPeaks plans built on conversations with Dan Lorang and Prof. Stephen Seiler.",
   keywords: [
+    "cycling coach for triathletes",
+    "online cycling coach for triathletes",
     "triathlon bike coach",
     "bike coaching for triathlon",
     "bike coach for triathletes",
-    "cycling coach for triathletes",
     "triathlon cycling coach",
     "ironman bike training",
     "70.3 bike training plan",
     "cycling coach vs triathlon coach",
   ],
   alternates: {
-    canonical: "https://roadmancycling.com/coaching/triathlon",
+    canonical: "https://roadmancycling.com/coaching/triathletes",
   },
   openGraph: {
     title:
-      "Triathlon Bike Coach — Bike Coaching for Triathletes",
+      "Online Cycling Coach for Triathletes — Roadman Cycling",
     description:
-      "Specialist bike coaching for triathletes. Build bike-leg power, nail your pacing, protect your run. For age-groupers targeting 70.3 and Ironman.",
+      "Bike-leg coaching for triathletes. Build bike-leg power, nail your pacing, protect your run. For age-groupers targeting 70.3 and Ironman.",
     type: "website",
-    url: "https://roadmancycling.com/coaching/triathlon",
+    url: "https://roadmancycling.com/coaching/triathletes",
   },
 };
 
@@ -259,8 +260,8 @@ export default function TriathlonCoachingPage() {
             {
               "@type": "ListItem",
               position: 3,
-              name: "Triathlon Bike Coaching",
-              item: "https://roadmancycling.com/coaching/triathlon",
+              name: "Online Cycling Coach for Triathletes",
+              item: "https://roadmancycling.com/coaching/triathletes",
             },
           ],
         }}

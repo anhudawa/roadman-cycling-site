@@ -9,7 +9,7 @@
  * Scans:
  *   - All blog MDX bodies + frontmatter (relatedEpisodes, internalLinks)
  *   - All podcast MDX bodies + frontmatter (relatedPosts)
- *   - Pillar pages (/coaching, /coaching/triathlon, /podcast, /about,
+ *   - Pillar pages (/coaching, /coaching/triathletes, /podcast, /about,
  *     etc.) — both for links OUT and for links IN.
  *   - Guest profile overrides (featuredArticles)
  *
@@ -83,7 +83,7 @@ function loadPageNodes(): Node[] {
   const staticPages = [
     "/",
     "/coaching",
-    "/coaching/triathlon",
+    "/coaching/triathletes",
     "/coaching/ireland",
     "/coaching/uk",
     "/coaching/usa",

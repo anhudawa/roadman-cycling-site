@@ -7,6 +7,14 @@ const data = getSegment("time-crunched")!;
 export const metadata: Metadata = {
   title: data.seoTitle,
   description: data.seoDescription,
+  keywords: [
+    "time crunched cycling coach",
+    "online cycling coach for time-crunched cyclists",
+    "cycling coach 6 hours week",
+    "cycling coach for busy cyclists",
+    "time-crunched cyclist training plan",
+    "indoor cycling coach",
+  ],
   alternates: {
     canonical: `https://roadmancycling.com/coaching/${data.slug}`,
   },

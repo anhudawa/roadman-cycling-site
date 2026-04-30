@@ -332,7 +332,7 @@ export default async function TopicPage({
                         return "Apply Now";
                       case "/coaching":
                         return "See How Coaching Works";
-                      case "/coaching/triathlon":
+                      case "/coaching/triathletes":
                         return "See Triathlon Coaching";
                       case "/strength-training":
                         return "Get the Strength Plan";

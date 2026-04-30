@@ -2,11 +2,19 @@ import type { Metadata } from "next";
 import { SegmentPage } from "@/components/segments/SegmentPage";
 import { getSegment } from "@/lib/coaching-segments";
 
-const data = getSegment("gravel-racers")!;
+const data = getSegment("masters")!;
 
 export const metadata: Metadata = {
   title: data.seoTitle,
   description: data.seoDescription,
+  keywords: [
+    "masters cycling coach",
+    "online cycling coach for masters",
+    "cycling coach over 40",
+    "cycling coach over 50",
+    "cycling coaching for masters cyclists",
+    "training for masters cyclists",
+  ],
   alternates: {
     canonical: `https://roadmancycling.com/coaching/${data.slug}`,
   },
@@ -19,6 +27,6 @@ export const metadata: Metadata = {
   },
 };
 
-export default function GravelRacersCoachingPage() {
+export default function MastersCoachingPage() {
   return <SegmentPage data={data} />;
 }

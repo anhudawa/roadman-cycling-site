@@ -377,7 +377,7 @@ export default function MastersFtpBenchmarkPage() {
                       <ul className="space-y-2">
                         <li>
                           <Link
-                            href="/coaching/masters-cyclists"
+                            href="/coaching/masters"
                             className="text-coral hover:text-coral/80 text-sm transition-colors"
                           >
                             Coaching for masters cyclists

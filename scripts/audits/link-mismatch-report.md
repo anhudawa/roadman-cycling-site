@@ -15,7 +15,7 @@ or entirely fails to deliver conversations with the guest named in the
 article.
 
 Nothing new was found on `/start-here`, `/research`, `/about`, `/about/press`,
-`/coaching`, `/coaching/triathlon`, `/coaching/[location]`, `/community/*`,
+`/coaching`, `/coaching/triathletes`, `/coaching/[location]`, `/community/*`,
 `/you/[slug]`, `/plan/*`, `/topics/*`, or in `src/lib/personas.ts`,
 `src/lib/topics.ts`, `src/lib/testimonials.ts`, `src/lib/training-plans.ts`,
 `src/lib/tools/reports.ts`, `src/app/llms.txt/route.ts`, or

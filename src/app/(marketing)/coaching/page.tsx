@@ -765,7 +765,7 @@ export default function CoachingPage() {
                   The bike leg is where age-group races are won and lost — and
                   where most run legs fall apart. Our{" "}
                   <Link
-                    href="/coaching/triathlon"
+                    href="/coaching/triathletes"
                     className="text-coral hover:text-coral/80 transition-colors"
                   >
                     triathlon bike coaching
@@ -774,7 +774,7 @@ export default function CoachingPage() {
                   ruining your run.
                 </p>
                 <Button
-                  href="/coaching/triathlon"
+                  href="/coaching/triathletes"
                   size="lg"
                   dataTrack="coaching_hub_to_triathlon_pillar"
                 >

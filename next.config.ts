@@ -186,8 +186,15 @@ const nextConfig: NextConfig = {
       { source: "/coaching-ireland", destination: "/coaching/ireland", permanent: true },
       { source: "/coaching-uk", destination: "/coaching/uk", permanent: true },
       { source: "/coaching-usa", destination: "/coaching/usa", permanent: true },
-      { source: "/triathlon", destination: "/coaching/triathlon", permanent: true },
-      { source: "/triathlon-coaching", destination: "/coaching/triathlon", permanent: true },
+      { source: "/triathlon", destination: "/coaching/triathletes", permanent: true },
+      { source: "/triathlon-coaching", destination: "/coaching/triathletes", permanent: true },
+      // Coaching segment slug consolidation — moved to shorter, keyword-clean
+      // URLs (Apr 2026). Old slugs preserved as 301s to keep external links
+      // and search index references working without losing equity.
+      { source: "/coaching/triathlon", destination: "/coaching/triathletes", permanent: true },
+      { source: "/coaching/masters-cyclists", destination: "/coaching/masters", permanent: true },
+      { source: "/coaching/sportive-riders", destination: "/coaching/sportives", permanent: true },
+      { source: "/coaching/gravel-racers", destination: "/coaching/gravel", permanent: true },
       { source: "/plans", destination: "/plan", permanent: true },
       { source: "/training-plans", destination: "/plan", permanent: true },
       { source: "/training-plan", destination: "/plan", permanent: true },

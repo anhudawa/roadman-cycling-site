@@ -44,8 +44,8 @@ Source is largely clean. The biggest live issues are (a) the `topics/cycling-nut
 - **Issue:** Banned word "journey" appears in four testimonial bodies on the geo-coaching pages. Scope note said to skip citation-style usage, but these are *testimonials hand-picked for marketing pages* — they are brand copy by selection, not cited research. Same quote also embedded as review schema at `src/app/(community)/apply/page.tsx:169` adding `"journey of true discovery"` (discover + journey in one line).
 - **Recommended fix:** Use a different Chris O'Connor quote or edit down the stat line (`"Average wattage doubled. Weekly 100km+ rides are now the norm. 84kg → 68kg, 20% bodyfat → 7%."`) and drop the journey sentence.
 
-### [6] OFF-BRAND — "looking to unlock new potential" in /coaching/triathlon testimonial
-- **File:** `src/app/(marketing)/coaching/triathlon/page.tsx:167`
+### [6] OFF-BRAND — "looking to unlock new potential" in /coaching/triathletes testimonial
+- **File:** `src/app/(marketing)/coaching/triathletes/page.tsx:167`
 - **Current text:** Aaron Kearney quote, `"...if you're looking to unlock new potential, I couldn't recommend Anthony enough."`
 - **Issue:** Banned word "unlock" in a hand-selected testimonial on a pillar landing page.
 - **Recommended fix:** Trim to `"The expertise and personalised plan allowed me to utilise my past racing experience and gave me the adaptations needed for the changeover. Couldn't recommend Anthony enough."`
@@ -157,7 +157,7 @@ Source is largely clean. The biggest live issues are (a) the `topics/cycling-nut
   - All other `.split(` / `.slice(` calls are admin-side, SEO schema builders, or date formatters — no user-facing risk.
 - **Placeholder / TODO / lorem-ipsum strings in production TSX:** none. All `placeholder=` attrs are legitimate form field placeholders; no stray "TODO" / "TBD" / "XXX" copy.
 - **`/apply` CTAs:** all action-oriented and descriptive — `"Apply for Coaching"`, `"Apply — 7-Day Free Trial"`, `"Apply Now — 7-Day Free Trial"`. No "Click here" / "Submit" / "Get started" on CTAs.
-- **`/coaching` / `/coaching/triathlon` primary CTAs:** `"Apply for Coaching"`, `"See How It Works"`, `"How the Bike Block Works"` — all clear and specific.
+- **`/coaching` / `/coaching/triathletes` primary CTAs:** `"Apply for Coaching"`, `"See How It Works"`, `"How the Bike Block Works"` — all clear and specific.
 - **`/best/[slug]`, `/problem/[slug]`, `/compare/[slug]` footer CTAs:** all route to `/apply` with `"Apply for Coaching"` — consistent and unambiguous.
 - **`/guests/[slug]`:** no broken grammar; `guest.name.toUpperCase()` + credential; all interpolations are well-formed.
 - **`/podcast/[slug]`:** the `episode.guest.split(" ").map(w => w[0]).join("").slice(0, 2)` at line 362 is used only for a 2-letter avatar monogram — safe.

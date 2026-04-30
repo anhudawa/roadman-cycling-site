@@ -1,10 +1,10 @@
 /**
  * Specs for the 12-article triathlon-cycling cluster that supports the
- * `/coaching/triathlon` pillar page.
+ * `/coaching/triathletes` pillar page.
  *
  * Each article targets a distinct commercial or informational query in the
  * "bike leg of triathlon" cluster. Together they provide the internal link
- * equity and topical depth `/coaching/triathlon` needs to rank.
+ * equity and topical depth `/coaching/triathletes` needs to rank.
  *
  * Source: SEO Domination Playbook §6.2 → "Triathlon-Cycling Cluster (12)"
  */
@@ -64,7 +64,7 @@ export const TRIATHLON_CLUSTER_ARTICLES: ClusterArticleSpec[] = [
     ],
     internalLinks: [
       {
-        href: "/coaching/triathlon",
+        href: "/coaching/triathletes",
         anchor: "triathlon bike coaching",
       },
       { href: "/coaching", anchor: "our cycling coaching" },
@@ -103,7 +103,7 @@ export const TRIATHLON_CLUSTER_ARTICLES: ClusterArticleSpec[] = [
     ],
     internalLinks: [
       {
-        href: "/coaching/triathlon",
+        href: "/coaching/triathletes",
         anchor: "triathlon bike coaching",
       },
       { href: "/tools/fuelling", anchor: "in-ride fuelling calculator" },
@@ -141,7 +141,7 @@ export const TRIATHLON_CLUSTER_ARTICLES: ClusterArticleSpec[] = [
     ],
     internalLinks: [
       {
-        href: "/coaching/triathlon",
+        href: "/coaching/triathletes",
         anchor: "triathlon bike coaching",
       },
       { href: "/tools/ftp-zones", anchor: "FTP zones calculator" },
@@ -180,7 +180,7 @@ export const TRIATHLON_CLUSTER_ARTICLES: ClusterArticleSpec[] = [
     ],
     internalLinks: [
       {
-        href: "/coaching/triathlon",
+        href: "/coaching/triathletes",
         anchor: "triathlon bike coaching",
       },
       { href: "/tools/fuelling", anchor: "fuelling calculator" },
@@ -218,7 +218,7 @@ export const TRIATHLON_CLUSTER_ARTICLES: ClusterArticleSpec[] = [
     ],
     internalLinks: [
       {
-        href: "/coaching/triathlon",
+        href: "/coaching/triathletes",
         anchor: "triathlon bike coaching",
       },
     ],
@@ -255,7 +255,7 @@ export const TRIATHLON_CLUSTER_ARTICLES: ClusterArticleSpec[] = [
     internalLinks: [
       { href: "/tools/ftp-zones", anchor: "FTP zones calculator" },
       {
-        href: "/coaching/triathlon",
+        href: "/coaching/triathletes",
         anchor: "triathlon bike coaching",
       },
     ],
@@ -292,7 +292,7 @@ export const TRIATHLON_CLUSTER_ARTICLES: ClusterArticleSpec[] = [
     internalLinks: [
       { href: "/tools/ftp-zones", anchor: "FTP zones calculator" },
       {
-        href: "/coaching/triathlon",
+        href: "/coaching/triathletes",
         anchor: "triathlon bike coaching",
       },
     ],
@@ -329,7 +329,7 @@ export const TRIATHLON_CLUSTER_ARTICLES: ClusterArticleSpec[] = [
     internalLinks: [
       { href: "/strength-training", anchor: "strength course" },
       {
-        href: "/coaching/triathlon",
+        href: "/coaching/triathletes",
         anchor: "triathlon bike coaching",
       },
     ],
@@ -366,7 +366,7 @@ export const TRIATHLON_CLUSTER_ARTICLES: ClusterArticleSpec[] = [
     ],
     internalLinks: [
       {
-        href: "/coaching/triathlon",
+        href: "/coaching/triathletes",
         anchor: "triathlon bike coaching",
       },
     ],
@@ -402,7 +402,7 @@ export const TRIATHLON_CLUSTER_ARTICLES: ClusterArticleSpec[] = [
     ],
     internalLinks: [
       {
-        href: "/coaching/triathlon",
+        href: "/coaching/triathletes",
         anchor: "triathlon bike coaching",
       },
       { href: "/coaching", anchor: "our cycling coaching" },
@@ -442,7 +442,7 @@ export const TRIATHLON_CLUSTER_ARTICLES: ClusterArticleSpec[] = [
     ],
     internalLinks: [
       {
-        href: "/coaching/triathlon",
+        href: "/coaching/triathletes",
         anchor: "triathlon bike coaching",
       },
     ],
@@ -478,7 +478,7 @@ export const TRIATHLON_CLUSTER_ARTICLES: ClusterArticleSpec[] = [
     ],
     internalLinks: [
       {
-        href: "/coaching/triathlon",
+        href: "/coaching/triathletes",
         anchor: "triathlon bike coaching",
       },
       { href: "/tools/ftp-zones", anchor: "FTP zones" },
