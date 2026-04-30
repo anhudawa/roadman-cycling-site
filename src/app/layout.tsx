@@ -49,6 +49,9 @@ const jetbrainsMono = JetBrains_Mono({
 });
 
 export const metadata: Metadata = {
+  verification: {
+    google: "o3SBYrUkEn4SxMHmX42sh0yFlSn4xP04UMSjGRM3wUg",
+  },
   title: {
     default: "Roadman Cycling — Cycling Coaching, Training & Performance Podcast",
     template: "%s | Roadman Cycling",
