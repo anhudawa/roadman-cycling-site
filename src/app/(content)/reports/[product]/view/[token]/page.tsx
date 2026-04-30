@@ -10,6 +10,7 @@ import {
 } from "@/lib/analytics/paid-report-events";
 import { getProductBySlug } from "@/lib/paid-reports/products";
 import { Container, Footer, Header, Section } from "@/components/layout";
+import { IsolatedReportView } from "@/components/paid-reports/IsolatedReportView";
 import Link from "next/link";
 
 /**
@@ -112,9 +113,9 @@ export default async function PaidReportView({
         <Section background="charcoal" className="!py-10">
           <Container width="narrow">
             {report.webReportHtml ? (
-              <article
-                className="rounded-xl border border-white/5 bg-off-white text-charcoal p-0 overflow-hidden"
-                dangerouslySetInnerHTML={{ __html: report.webReportHtml }}
+              <IsolatedReportView
+                html={report.webReportHtml}
+                title={`${productRow.name} — your report`}
               />
             ) : (
               <p className="text-foreground-muted">
