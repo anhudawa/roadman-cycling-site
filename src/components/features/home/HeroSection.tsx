@@ -119,7 +119,7 @@ export function HeroSection({ latestEpisode }: HeroSectionProps) {
               >
                 PODCAST
               </Link>
-              <span className="inline-block mx-2 text-off-white/30">·</span>
+              <span className="inline-block mx-2 text-off-white/70" aria-hidden="true">·</span>
               <Link
                 href="/coaching"
                 className="text-coral/85 hover:text-coral transition-colors"

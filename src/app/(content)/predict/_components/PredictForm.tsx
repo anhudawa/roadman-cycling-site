@@ -366,7 +366,7 @@ export function PredictForm({ courses }: PredictFormProps) {
         >
           {submitting ? "Predicting…" : "Run prediction"}
         </Button>
-        <p className="text-off-white/40 text-xs text-center mt-3">
+        <p className="text-off-white/70 text-xs text-center mt-3">
           Free · Instant · Finish time within ±3%
         </p>
       </div>

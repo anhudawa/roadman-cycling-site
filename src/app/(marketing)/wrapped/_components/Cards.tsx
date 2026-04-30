@@ -40,7 +40,7 @@ function Eyebrow({ children, step }: { children: React.ReactNode; step: { step: 
       <p className="font-display text-coral text-[11px] uppercase tracking-[0.32em]">
         {children}
       </p>
-      <p className="font-display text-off-white/40 text-[10px] uppercase tracking-[0.22em]">
+      <p className="font-display text-off-white/70 text-[10px] uppercase tracking-[0.22em]">
         {step.step.toString().padStart(2, "0")} / {step.total.toString().padStart(2, "0")}
       </p>
     </div>

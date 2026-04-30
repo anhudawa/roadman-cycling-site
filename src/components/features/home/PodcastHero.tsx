@@ -92,7 +92,7 @@ export function PodcastHero({ episode, ctaHref, ctaLabel }: PodcastHeroProps) {
           >
             <span className="block font-heading text-xs tracking-[0.25em] text-coral/90 mb-1">
               LATEST EPISODE
-              <span className="text-off-white/40 mx-2">·</span>
+              <span className="text-off-white/70 mx-2" aria-hidden="true">·</span>
               <span className="text-off-white/60 font-body tracking-normal normal-case">
                 {episode.duration}
               </span>

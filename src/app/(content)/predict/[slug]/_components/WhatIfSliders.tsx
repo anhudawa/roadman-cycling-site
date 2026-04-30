@@ -268,7 +268,7 @@ function Slider({
           [&::-moz-range-thumb]:shadow-[0_0_12px_rgba(241,99,99,0.55)]
           [&::-moz-range-thumb]:cursor-grab"
       />
-      <p className="text-off-white/40 text-[10px] uppercase tracking-wider mt-1.5">
+      <p className="text-off-white/70 text-[10px] uppercase tracking-wider mt-1.5">
         baseline · {baseLabel}
       </p>
     </div>

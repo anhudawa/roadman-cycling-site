@@ -93,7 +93,7 @@ export default async function SuccessPage({ params }: PageProps) {
               </div>
             )}
 
-            <div className="mt-8 text-off-white/50 text-xs text-center">
+            <div className="mt-8 text-off-white/70 text-xs text-center">
               Didn&apos;t receive your email after 5 minutes? Check spam, then email{" "}
               <a
                 href="mailto:support@roadmancycling.com"

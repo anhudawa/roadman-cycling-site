@@ -91,7 +91,7 @@ export function CoursesGrid({ courses }: Props) {
                 value={query}
                 onChange={(e) => setQuery(e.target.value)}
                 placeholder="Search events, regions, countries…"
-                className="w-full rounded-full border border-white/10 bg-white/[0.04] py-2.5 pl-10 pr-10 text-sm text-off-white placeholder:text-off-white/40 transition focus:border-coral/60 focus:bg-white/[0.06] focus:outline-none focus:ring-2 focus:ring-coral/40"
+                className="w-full rounded-full border border-white/10 bg-white/[0.04] py-2.5 pl-10 pr-10 text-sm text-off-white placeholder:text-off-white/60 transition focus:border-coral/60 focus:bg-white/[0.06] focus:outline-none focus:ring-2 focus:ring-coral/40"
                 aria-label="Search events"
               />
               {query && (
@@ -272,7 +272,7 @@ function ChipGroup({
 }) {
   return (
     <div className="flex items-center gap-2">
-      <span className="text-[10px] font-semibold uppercase tracking-[0.12em] text-off-white/40">
+      <span className="text-[10px] font-semibold uppercase tracking-[0.12em] text-off-white/70">
         {label}
       </span>
       <div className="flex flex-wrap items-center gap-1.5">{children}</div>

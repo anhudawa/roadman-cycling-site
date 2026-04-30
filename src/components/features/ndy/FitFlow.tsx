@@ -95,7 +95,7 @@ function ProgressBar({ current, total }: { current: number; total: number }) {
           );
         })}
       </div>
-      <p className="text-center text-white/30 text-xs font-body mt-2 tracking-wider">
+      <p className="text-center text-white/70 text-xs font-body mt-2 tracking-wider">
         {current} OF {total}
       </p>
     </div>
@@ -229,7 +229,7 @@ function WeightInput({
             w-full px-6 py-4 rounded-xl
             bg-white/[0.03] border border-white/10
             text-off-white text-lg font-body
-            placeholder:text-white/20
+            placeholder:text-white/60
             focus:outline-none focus:border-coral focus:shadow-[0_0_0_3px_rgba(241,99,99,0.1)]
             transition-all duration-200
           "
@@ -239,7 +239,7 @@ function WeightInput({
           aria-invalid={!!error}
           aria-describedby={error ? "weight-error" : undefined}
         />
-        <span className="text-white/30 text-lg font-body">kg</span>
+        <span className="text-white/70 text-lg font-body">kg</span>
       </div>
       {error && (
         <p id="weight-error" role="alert" className="text-coral text-sm font-body">
@@ -252,7 +252,7 @@ function WeightInput({
         </Button>
         <button
           onClick={onSkip}
-          className="text-white/30 hover:text-coral/60 text-sm font-body transition-colors cursor-pointer"
+          className="text-white/70 hover:text-coral text-sm font-body transition-colors cursor-pointer"
         >
           Skip this one
         </button>
@@ -295,14 +295,14 @@ function FreetextInput({
           w-full px-6 py-4 rounded-xl resize-none
           bg-white/[0.03] border border-white/10
           text-off-white text-base font-body
-          placeholder:text-white/20
+          placeholder:text-white/60
           focus:outline-none focus:border-coral focus:shadow-[0_0_0_3px_rgba(241,99,99,0.1)]
           transition-all duration-200
         "
       />
       <p
         className={`text-xs font-body text-right transition-colors ${
-          value.length > 450 ? "text-coral" : "text-white/20"
+          value.length > 450 ? "text-coral" : "text-white/70"
         }`}
       >
         {value.length}/500
@@ -319,7 +319,7 @@ function FreetextInput({
         </Button>
         <button
           onClick={onSkip}
-          className="text-white/30 hover:text-coral/60 text-sm font-body transition-colors cursor-pointer"
+          className="text-white/70 hover:text-coral text-sm font-body transition-colors cursor-pointer"
         >
           Skip this one
         </button>
@@ -471,7 +471,7 @@ function ResultScreen({
             <span className="font-heading text-off-white" style={{ fontSize: "2.5rem" }}>
               {response.recommendation.price}
             </span>
-            <span className="text-white/40 font-body text-sm ml-1">
+            <span className="text-white/70 font-body text-sm ml-1">
               {response.recommendation.period}
             </span>
           </div>
@@ -512,7 +512,7 @@ function ResultScreen({
                 flex-1 px-4 py-3 rounded-xl
                 bg-white/[0.03] border border-white/10
                 text-off-white font-body
-                placeholder:text-white/20
+                placeholder:text-white/60
                 focus:outline-none focus:border-coral focus:shadow-[0_0_0_3px_rgba(241,99,99,0.1)]
                 transition-all duration-200
               "
@@ -521,7 +521,7 @@ function ResultScreen({
               Send
             </Button>
           </div>
-          <p className="text-white/20 text-xs font-body">
+          <p className="text-white/70 text-xs font-body">
             We&apos;ll send the free resources and nothing else.
           </p>
         </motion.div>
@@ -576,7 +576,7 @@ function ResultScreen({
           <motion.div variants={{ hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0 } }}>
             <button
               onClick={() => navigateTo(response.tertiaryCta!.url)}
-              className="w-full text-white/30 hover:text-coral/60 text-sm font-body transition-colors cursor-pointer pt-1"
+              className="w-full text-white/70 hover:text-coral text-sm font-body transition-colors cursor-pointer pt-1"
             >
               {response.tertiaryCta.label}
             </button>
@@ -750,7 +750,7 @@ export function FitFlow(_props: FitFlowProps = {}) {
           aria-label="Go to previous question"
           className="
             fixed top-5 left-5 z-50
-            text-white/30 hover:text-white/60
+            text-white/70 hover:text-off-white
             text-sm font-body
             transition-colors cursor-pointer
             flex items-center gap-1.5

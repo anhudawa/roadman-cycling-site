@@ -325,7 +325,7 @@ export function InteractiveElevation({
           <Swatch color="#F16363" label="5–8%" />
           <Swatch color="#B22A2A" label="≥8%" />
         </div>
-        <p className="text-[11px] text-off-white/40 hidden sm:block">
+        <p className="text-[11px] text-off-white/70 hidden sm:block">
           Drag across the profile to scrub.
         </p>
       </div>

@@ -380,7 +380,7 @@ function Field({
         max={max}
         step={step}
         maxLength={maxLength}
-        className="w-full bg-white/[0.04] border border-white/10 rounded-md px-3 py-2.5 text-off-white text-base placeholder:text-off-white/30 focus:outline-none focus:border-coral/60 focus:bg-white/[0.06] transition-colors"
+        className="w-full bg-white/[0.04] border border-white/10 rounded-md px-3 py-2.5 text-off-white text-base placeholder:text-off-white/60 focus:outline-none focus:border-coral/60 focus:bg-white/[0.06] transition-colors"
       />
     </label>
   );

@@ -225,7 +225,7 @@ export function CookieConsent() {
                     className="accent-coral w-4 h-4 rounded opacity-60"
                   />
                   <span>Essential</span>
-                  <span className="text-xs text-off-white/40">(required)</span>
+                  <span className="text-xs text-off-white/70">(required)</span>
                 </label>
 
                 {/* Analytics */}

@@ -112,7 +112,7 @@ export function CourseCard({ course, index = 0 }: Props) {
 
         {/* Footer row — next event + CTA */}
         <div className="mt-auto flex items-center justify-between gap-2 pt-1">
-          <p className="truncate text-[11px] uppercase tracking-wide text-off-white/40">
+          <p className="truncate text-[11px] uppercase tracking-wide text-off-white/70">
             {course.nextEventDate
               ? `Next: ${course.nextEventDate}`
               : course.hcCount > 0
@@ -136,7 +136,7 @@ export function CourseCard({ course, index = 0 }: Props) {
 function Metric({ label, value }: { label: string; value: string }) {
   return (
     <div className="flex flex-col gap-0.5">
-      <dt className="text-[10px] uppercase tracking-wide text-off-white/40">
+      <dt className="text-[10px] uppercase tracking-wide text-off-white/70">
         {label}
       </dt>
       <dd className="font-display text-base text-off-white">{value}</dd>

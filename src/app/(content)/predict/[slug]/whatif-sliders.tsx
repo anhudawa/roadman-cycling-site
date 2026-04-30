@@ -311,8 +311,8 @@ export function WhatIfSliders({
               isFaster
                 ? "text-coral"
                 : isSlower
-                  ? "text-off-white/40"
-                  : "text-off-white/40"
+                  ? "text-off-white/70"
+                  : "text-off-white/70"
             }`}
           >
             {anyChanged ? formatTimeDelta(totalDelta) : "no change"}
@@ -362,8 +362,8 @@ export function WhatIfSliders({
                   sliderFaster
                     ? "text-coral"
                     : sliderSlower
-                      ? "text-off-white/40"
-                      : "text-off-white/50"
+                      ? "text-off-white/70"
+                      : "text-off-white/70"
                 }`}
               >
                 {value === 0
@@ -375,7 +375,7 @@ export function WhatIfSliders({
         })}
       </div>
 
-      <p className="text-off-white/40 text-[11px] mt-5 leading-relaxed">
+      <p className="text-off-white/70 text-[11px] mt-5 leading-relaxed">
         Drag the sliders to see how each variable changes your finish time.
         Coral = faster than baseline; dimmed = slower. Wind slider replaces the
         forecast wind — negative = tailwind.

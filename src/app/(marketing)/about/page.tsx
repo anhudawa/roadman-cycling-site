@@ -426,7 +426,7 @@ export default function AboutPage() {
                         </>
                       ) : (
                         <div className="w-full h-full bg-gradient-to-br from-coral/10 via-purple/20 to-deep-purple flex items-center justify-center rounded-xl border border-white/5">
-                          <span className="font-heading text-5xl text-off-white/30 group-hover:text-off-white/50 transition-colors duration-300">
+                          <span className="font-heading text-5xl text-off-white/60 group-hover:text-off-white/90 transition-colors duration-300">
                             {"initials" in member ? (member as { initials: string }).initials : ""}
                           </span>
                         </div>

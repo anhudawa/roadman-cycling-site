@@ -77,7 +77,7 @@ export function EmailGate({ firstName, onUnlock, allowSkip = true }: Props) {
           value={email}
           onChange={(e) => setEmail(e.target.value)}
           placeholder="you@somewhere.cc"
-          className="flex-1 bg-white/[0.06] border border-white/10 rounded-md px-3 py-3 text-off-white text-base placeholder:text-off-white/40 focus:outline-none focus:border-coral/60"
+          className="flex-1 bg-white/[0.06] border border-white/10 rounded-md px-3 py-3 text-off-white text-base placeholder:text-off-white/60 focus:outline-none focus:border-coral/60"
           maxLength={200}
           required
           aria-label="Email address"
