@@ -10,6 +10,7 @@ import { getAllProblemSlugs } from "@/lib/problems";
 import { getAllQuestionSlugs } from "@/lib/questions";
 import { getAllPlanCombinations, getAllEventSlugs } from "@/lib/training-plans";
 import { getAllEventGuideSlugs } from "@/lib/event-guides";
+import { getAllEntities } from "@/lib/entities";
 import { RACES } from "@/data/races";
 import { SEGMENT_SLUGS } from "@/lib/coaching-segments";
 import { getAllCaseStudySlugs } from "@/lib/case-studies";
@@ -88,6 +89,16 @@ function buildStaticSitemap(): MetadataRoute.Sitemap {
     { url: `${BASE_URL}/entity/not-done-yet`, lastModified: new Date(), changeFrequency: "monthly", priority: 0.7 },
     { url: `${BASE_URL}/entity/ask-roadman`, lastModified: new Date(), changeFrequency: "monthly", priority: 0.7 },
     { url: `${BASE_URL}/entity/roadman-method`, lastModified: new Date(), changeFrequency: "monthly", priority: 0.7 },
+    // Expert-network entities (driven by content/entities/*.mdx via the
+    // dynamic /entity/[slug] route). Sitemap entries here so GSC sees
+    // them in the static sitemap alongside the brand-entity pages,
+    // rather than scattered across the dynamic sitemaps.
+    ...getAllEntities().map((e) => ({
+      url: `${BASE_URL}/entity/${e.slug}`,
+      lastModified: e.lastReviewed ? new Date(e.lastReviewed) : new Date(),
+      changeFrequency: "monthly" as const,
+      priority: 0.75,
+    })),
     { url: `${BASE_URL}/community`, lastModified: new Date(), changeFrequency: "weekly", priority: 0.8 },
     { url: `${BASE_URL}/strength-training`, lastModified: new Date("2026-03-01"), changeFrequency: "monthly", priority: 0.8 },
     { url: `${BASE_URL}/plateau`, lastModified: new Date("2026-04-22"), changeFrequency: "monthly", priority: 0.9 },
