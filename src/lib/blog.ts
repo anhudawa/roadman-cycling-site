@@ -43,6 +43,12 @@ export interface BlogFrontmatter {
   relatedEpisodes?: string[];
   faq?: FaqItem[];
   answerCapsule?: string;
+  // 2-3 brief, scannable takeaways rendered inside the AnswerCapsule as a
+  // semantic <ul>. Designed to give AI crawlers (ChatGPT, Perplexity,
+  // Google AI Overviews) a structured bullet list to extract alongside
+  // the one-sentence answer. Kept short — each takeaway should stand on
+  // its own and read like a claim, not a sentence fragment.
+  keyTakeaways?: string[];
   // E-E-A-T: experts cited or interviewed in the article. When present,
   // overrides the default Anthony-only experts entry on the EvidenceBlock
   // and shows readers (and search engines) which named authorities the

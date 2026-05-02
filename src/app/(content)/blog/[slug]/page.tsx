@@ -410,7 +410,11 @@ export default async function BlogPostPage({
             />
             {post.answerCapsule && (
               <div className="answer-capsule mb-8">
-                <AnswerCapsule text={post.answerCapsule} pillar={post.pillar} />
+                <AnswerCapsule
+                  text={post.answerCapsule}
+                  pillar={post.pillar}
+                  keyTakeaways={post.keyTakeaways}
+                />
               </div>
             )}
 
