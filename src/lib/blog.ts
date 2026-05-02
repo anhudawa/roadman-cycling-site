@@ -48,6 +48,11 @@ export interface BlogFrontmatter {
   // and shows readers (and search engines) which named authorities the
   // article's claims are grounded in.
   experts?: ExpertSource[];
+  // Slugs of expert-network entity pages (`content/entities/*.mdx`) the
+  // article leans on. Renders the visible "Featured experts" strip in
+  // the top 30% of the article and pushes Person @ids into Article
+  // JSON-LD `mentions`. Bidirectional link to /entity/[slug].
+  featuredEntities?: string[];
   // E-E-A-T: explicit human review trail. Falls back to updatedDate /
   // publishDate when omitted.
   reviewedBy?: string;

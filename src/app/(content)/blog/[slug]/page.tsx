@@ -8,6 +8,7 @@ import { JsonLd } from "@/components/seo/JsonLd";
 import { ENTITY_IDS, SITE_ORIGIN } from "@/lib/brand-facts";
 import { getPostBySlug, getAllSlugs, getRelatedPosts } from "@/lib/blog";
 import { getEpisodeBySlug } from "@/lib/podcast";
+import { getEntityBySlug } from "@/lib/entities";
 import { getTopicsForPost, getTopicTitleBySlug } from "@/lib/topics";
 import { EVENTS } from "@/lib/training-plans";
 import { WeeksOutSelector } from "@/components/features/plan/WeeksOutSelector";
@@ -15,6 +16,7 @@ import { ShareButtons } from "@/components/features/blog/ShareButtons";
 import { RelatedPosts } from "@/components/features/blog/RelatedPosts";
 import { AuthorBio } from "@/components/features/blog/AuthorBio";
 import { PrimaryHubLink } from "@/components/features/blog/PrimaryHubLink";
+import { FeaturedExperts } from "@/components/features/blog/FeaturedExperts";
 import { EvidenceBlock } from "@/components/seo/EvidenceBlock";
 import { ArticleCitationBlock } from "@/components/seo/ArticleCitationBlock";
 import { Breadcrumbs } from "@/components/seo/Breadcrumbs";
@@ -249,6 +251,24 @@ export default async function BlogPostPage({
                 name: e.name,
                 url: `${SITE_ORIGIN}${e.href}`,
               }));
+            // featuredEntities resolves to /entity/[slug]#person — the
+            // canonical entity-page Person @id, distinct from the
+            // /guests/[slug]#person used on the guest pages. Both are
+            // legitimate Person nodes for the same human; including
+            // them as separate mentions strengthens the cross-entity
+            // graph rather than collapsing it.
+            const entityMentions = (post.featuredEntities ?? [])
+              .map((slug) => {
+                const entity = getEntityBySlug(slug);
+                if (!entity) return null;
+                return {
+                  "@type": "Person" as const,
+                  "@id": `${SITE_ORIGIN}/entity/${slug}#person`,
+                  name: entity.name,
+                  url: `${SITE_ORIGIN}/entity/${slug}`,
+                };
+              })
+              .filter((m): m is NonNullable<typeof m> => m !== null);
             const episodeMentions = (post.relatedEpisodes ?? [])
               .map((s) => getEpisodeBySlug(s))
               .filter((ep): ep is NonNullable<typeof ep> => ep !== null)
@@ -258,7 +278,7 @@ export default async function BlogPostPage({
                 name: ep.title,
                 url: `${SITE_ORIGIN}/podcast/${ep.slug}`,
               }));
-            const all = [...expertMentions, ...episodeMentions];
+            const all = [...expertMentions, ...entityMentions, ...episodeMentions];
             return all.length > 0 ? { mentions: all } : {};
           })()),
           // citation: every row in `citedClaims` becomes a structured
@@ -440,6 +460,10 @@ export default async function BlogPostPage({
                 hubSlug={primaryHubSlug}
                 hubTitle={primaryHubTitle}
               />
+            )}
+
+            {post.featuredEntities && post.featuredEntities.length > 0 && (
+              <FeaturedExperts slugs={post.featuredEntities} />
             )}
 
             <article className="prose-roadman prose-enhanced">
