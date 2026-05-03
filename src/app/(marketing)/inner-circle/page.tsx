@@ -9,109 +9,193 @@ import { ENTITY_IDS } from "@/lib/brand-facts";
 const SKOOL_URL = "https://www.skool.com/roadmancycling/about";
 
 export const metadata: Metadata = {
-  title: "Roadman Inner Circle — Premium 1:1 Cycling Coaching | $475/month",
+  title: "Roadman Inner Circle — Premium Cohort Coaching | $475/month",
   description:
-    "The premium 1:1 coaching tier inside Roadman Cycling. Quarterly blood work, weekly 1:1 calls, daily macro monitoring, race-week protocols, and everything in Not Done Yet. $475/month. Limited intake.",
+    "Premium cohort coaching for cyclists who've stopped improving. Small cohorts of 8-12 riders, an assigned Roadman coach, daily log review, monthly 1:1 deep-dives, and quarterly blood work. The full Roadman system, dialled in. $475/month. Limited intake.",
   alternates: {
     canonical: "https://roadmancycling.com/inner-circle",
   },
   openGraph: {
-    title: "Roadman Inner Circle — Premium 1:1 Cycling Coaching",
+    title: "Roadman Inner Circle — Premium Cohort Coaching",
     description:
-      "Premium 1:1 cycling coaching with quarterly blood work, weekly calls, and daily macro monitoring. The full Roadman system, dialled to one rider. $475/month.",
+      "Premium cohort coaching for cyclists who've stopped improving. Small cohorts, assigned coach, daily review, quarterly blood work. $475/month.",
     type: "website",
     url: "https://roadmancycling.com/inner-circle",
   },
 };
 
-const features = [
+const broken = [
   {
+    title: "A training app that gives you workouts",
+    body:
+      "It doesn't know about Tuesday's bad sleep, last week's head cold, or the deadline that wrecked your Wednesday. So it keeps prescribing the same intensities, and you keep wondering why the numbers won't move.",
+  },
+  {
+    title: "A free YouTube plan written for someone else",
+    body:
+      "Whoever wrote it has never met you. Doesn't know your hours, your history, your weight, your sleep, your stress, or what your last block actually looked like. It worked for them. That doesn't make it right for you.",
+  },
+  {
+    title: "An in-person coach at €600+/month",
+    body:
+      "Reads your data once a fortnight if you're lucky, then sends you a plan they wrote on a Sunday night. Probably good. Probably expensive. Almost never integrated with your nutrition, your strength, or your bloods.",
+  },
+  {
+    title: "Friends in the bunch saying 'just train more'",
+    body:
+      "You already are. You're not under-trained. You're over-guessed. More volume on top of bad structure is just more fatigue with the same outcome.",
+  },
+];
+
+const howItWorks = [
+  {
+    number: "01",
+    title: "You join a cohort of 8–12 riders",
+    body:
+      "Small enough that the coach knows your training inside out. Big enough that you've got peers in the same window of progress to pull you forward. Not a class. Not a Discord. A real working group.",
+  },
+  {
+    number: "02",
+    title: "An assigned Roadman coach is matched to you",
+    body:
+      "One coach inside your cohort — your point of contact for everything. They know your race calendar, your numbers, your physiology, your work week. They sit inside the Roadman system, talk to Anthony weekly about the cohort, and use the same five-pillar methodology built from 1,400+ podcast conversations.",
+  },
+  {
+    number: "03",
+    title: "Daily log review — async, every day",
+    body:
+      "Your coach reads your training, sleep, and macro logs every day. Quick written feedback in your private channel. Catches the small leaks that add up — fueling drift, recovery slipping, an interval that didn't land — before they become weeks lost.",
+  },
+  {
+    number: "04",
+    title: "Weekly 1:1 written check-in",
+    body:
+      "You submit. Your coach replies inside 24 hours. Last week reviewed, next week confirmed, anything in your life that changes the plan factored in. Tight loop. No waiting a fortnight to ask the obvious question.",
+  },
+  {
+    number: "05",
+    title: "Monthly 1:1 video deep-dive",
+    body:
+      "45 minutes, camera on, last month's data on screen. Where's the trend going. What's working. What's stalling. What we change for the next four weeks. Less frequent than a check-in. Much deeper than a chat.",
+  },
+  {
+    number: "06",
+    title: "Weekly cohort live call",
+    body:
+      "The 8–12 of you on a call together. Group coaching, peer accountability, and the kind of small-room honesty that doesn't happen in a 200-person community. The bit most coaching skips, and the bit that decides whether the work sticks.",
+  },
+  {
+    number: "07",
     title: "Quarterly blood work analysis",
     body:
-      "The bloods pros pay specialists to read — iron, ferritin, Vitamin D, full thyroid, hormones — read against your actual training load. We catch the deficiencies that quietly cost you watts in February so they don't blow up your May.",
+      "Iron, ferritin, Vitamin D, full thyroid, hormones. Read against your training load, not in isolation. Catches the deficiencies that quietly cost you watts in February so they don't blow up your May.",
   },
   {
-    title: "Weekly 1:1 coaching call",
+    number: "08",
+    title: "Quarterly performance deep-dive",
     body:
-      "Same time every week, camera on, last week's data on screen. Not a check-in. A working session — what hit, what didn't, what's coming, and what we change before Monday.",
+      "Once a quarter we stop, lay it all out, and ask the harder question — are we still going the right direction? Power curves, body comp trends, race results, recovery markers. Then we re-plan the next twelve weeks from the data, not from inertia.",
+  },
+];
+
+const features = [
+  {
+    title: "Personalised TrainingPeaks plan",
+    body:
+      "Built for your week, your goals, your bike. Adjusted weekly based on what your data actually says — not what an algorithm guessed.",
   },
   {
-    title: "Daily macro monitoring",
+    title: "Cycling-specific S&C programme",
     body:
-      "Your fueling stops being a guess. Your coach sees what you ate, how it lined up with the session, and where the gaps were. Race weight without the disordered chaos of MyFitnessPal.",
+      "Periodised against your block so it transfers to the bike instead of wrecking your legs. Scales for the rider with two kids and a forty-hour week, not the one in a French training camp.",
   },
   {
-    title: "1:1 personalised plan reviews",
+    title: "Daily macro & training feedback",
     body:
-      "Every block reviewed line-by-line before it loads. Adjusted for the wedding on Saturday, the head cold last Tuesday, the work trip in week three. No template ever survived contact with your life.",
-  },
-  {
-    title: "Priority async coaching via Skool DM",
-    body:
-      "Question at 11pm before a 5am ride? Send the DM. You'll have an answer before your alarm goes off. The kind of access usually reserved for athletes the team is paying for.",
-  },
-  {
-    title: "Quarterly performance deep-dives",
-    body:
-      "Once a quarter we stop, lay everything out, and ask the harder question: are we still going the right direction? Power curves, body comp trends, race results, recovery markers — then re-plan the next twelve weeks from the data, not from inertia.",
+      "Your fueling stops being a guess. Quick written notes from your coach on the days the data drifts. Race weight without the disordered chaos of MyFitnessPal.",
   },
   {
     title: "Race & event prep plans",
     body:
-      "Marmotte, Étape, Unbound, your local A-race — built backwards from the day. Course-specific intervals, taper, fueling protocol, race-week check-ins. We don't just train you for the event — we prepare you for it.",
+      "Marmotte, Étape, Unbound, your local A-race — built backwards from the day. Course-specific intervals, taper, fueling protocol, race-week check-ins.",
   },
   {
     title: "Body composition tracking",
     body:
-      "DEXA-quality monitoring without the monthly clinic fees. Skinfolds, bioimpedance, photos against a calibrated background. We track lean mass and fat mass — the two numbers that actually move power-to-weight.",
+      "Skinfolds, bioimpedance, photos against a calibrated background. We track lean mass and fat mass — the two numbers that actually move power-to-weight.",
   },
   {
-    title: "Recovery protocol customisation",
+    title: "Recovery protocol — built for your life",
     body:
-      "Your sleep, your HRV, your stress, your life. A recovery protocol built for the 47-year-old with two kids and a mortgage — not the one written for a 23-year-old in a French training camp.",
+      "Sleep, HRV, stress, illness flags. A protocol that respects the 47-year-old with a mortgage, not one written for a 23-year-old in altitude camp.",
   },
   {
     title: "Sleep & HRV review",
     body:
-      "Whoop, Garmin, Oura — whatever you wear, we read it weekly. Sleep architecture, autonomic balance, illness flags, training-readiness signal. The stuff that quietly decides whether the work sticks.",
+      "Whoop, Garmin, Oura — whatever you wear, your coach reads it weekly. Sleep architecture, autonomic balance, training-readiness signal. The stuff that quietly decides whether the work sticks.",
+  },
+  {
+    title: "Private cohort Skool channel",
+    body:
+      "Just your 8–12 and your coach. Wins, questions, screenshots, video clips, race reports. The room where the real coaching happens between calls.",
+  },
+  {
+    title: "Roadman masterclass library",
+    body:
+      "Every masterclass we've recorded with Seiler, Lorang, LeMond, Friel and the rest — yours to work through. The audio version of a coaching education.",
   },
   {
     title: "Early access to new content & tools",
     body:
-      "When we test a new training block, build a new tool, or interview the next World Tour coach, you see it first. You're inside the lab — not waiting for the white paper.",
+      "When we test a new training block, build a new tool, or interview the next World Tour coach, the cohort sees it first. Inside the lab — not waiting for the white paper.",
+  },
+  {
+    title: "Travel & camp protocols",
+    body:
+      "Time zones, altitude, work trips, family holidays. We plan around your life — racing weekends and rest weeks both — instead of pretending it's not there.",
   },
   {
     title: "Everything in Not Done Yet",
     body:
-      "TrainingPeaks plans, full S&C programme, weekly community calls, the masterclass library, and the same private group of serious cyclists. The Inner Circle sits on top of NDY — not instead of it.",
+      "TrainingPeaks plans, weekly community calls, the masterclass library, and the wider private group of serious cyclists. The Inner Circle sits on top of NDY, not instead of it.",
   },
 ];
 
 const comparison = [
   {
-    label: "Personalised TrainingPeaks plan",
-    ndy: "Yes — built around your week",
-    ic: "Yes — adjusted weekly from your data",
+    label: "TrainingPeaks plan",
+    ndy: "Personalised, built around your week",
+    ic: "Personalised, adjusted weekly from your daily data",
   },
   {
-    label: "Coaching cadence",
-    ndy: "Group coaching call weekly",
-    ic: "Dedicated 1:1 call weekly",
+    label: "Coaching contact",
+    ndy: "Weekly group coaching call",
+    ic: "Daily async + weekly check-in + monthly 1:1 video",
+  },
+  {
+    label: "Cohort size",
+    ndy: "Open community",
+    ic: "Small cohort of 8–12 riders",
+  },
+  {
+    label: "Assigned coach",
+    ndy: "Community-led",
+    ic: "Assigned Roadman coach inside your cohort",
   },
   {
     label: "Plan review depth",
-    ndy: "Per-block",
-    ic: "Per-block, line-by-line, with deep-dive every quarter",
+    ndy: "Per block",
+    ic: "Daily log read + weekly review + monthly deep-dive",
   },
   {
     label: "Async support",
     ndy: "Community Q&A",
-    ic: "Priority 1:1 DM, same-day answers",
+    ic: "Priority cohort channel, same-day answers",
   },
   {
     label: "Nutrition guidance",
     ndy: "Frameworks, principles, masterclasses",
-    ic: "Daily macro monitoring + race-week protocols",
+    ic: "Daily macro feedback + race-week protocols",
   },
   {
     label: "Strength programme",
@@ -120,7 +204,7 @@ const comparison = [
   },
   {
     label: "Recovery & sleep",
-    ndy: "Education + protocols",
+    ndy: "Education and protocols",
     ic: "Weekly review of HRV, sleep, illness flags",
   },
   {
@@ -135,13 +219,13 @@ const comparison = [
   },
   {
     label: "Race & event prep",
-    ndy: "Templates + community advice",
+    ndy: "Templates and community advice",
     ic: "Bespoke plan, taper, fueling, race-week check-ins",
   },
   {
     label: "Intake",
     ndy: "Open enrolment",
-    ic: "Limited — priority for serious applicants",
+    ic: "Limited — cohorts open as spots free up",
   },
 ];
 
@@ -149,27 +233,32 @@ const faqs = [
   {
     question: "Why $475? That's a lot for a Skool community.",
     answer:
-      "Because it isn't really a Skool community. The Inner Circle uses Skool as the rail — the comms, the masterclass library, the private group — but the coaching itself is one-to-one. Your coach reads your blood work, monitors your macros daily, reviews your plan weekly, and is on a 1:1 video call with you every seven days. In-person 1:1 cycling coaching usually runs $600–$1,200/month and doesn't include the rest of the Roadman system. The price sits where the value sits, not where Skool sits.",
-  },
-  {
-    question: "Is this really 1:1, or is it group coaching with extras?",
-    answer:
-      "It's 1:1. You get a dedicated Roadman coach who knows your training history, your race calendar, your physiology, and your life context. The group elements — community, masterclasses, the wider NDY membership — are the bonus, not the core. The coaching relationship is the product.",
+      "Because it isn't really a Skool community — it's a small-cohort coaching programme that happens to be delivered through Skool. Your assigned Roadman coach reads your logs daily, replies to your written check-in weekly, runs a 1:1 video with you monthly, reviews your bloods quarterly, and runs a live cohort call every week. In-person 1:1 cycling coaching usually runs €600–€1,200/month and doesn't include the rest of the Roadman system. The price sits where the value sits.",
   },
   {
     question: "How is this different from Not Done Yet?",
     answer:
-      "Not Done Yet is structured group coaching with a personalised training plan inside it. Inner Circle is dedicated 1:1 coaching with the entire NDY system underneath. NDY is the gym membership and the trainer-led classes. Inner Circle is the personal trainer who also gets you membership.",
+      "Not Done Yet is open-enrolment group coaching with personalised training plans inside it — the right tier for the cyclist who needs structure and a serious community. Inner Circle is a small assigned cohort with a named coach and quarterly bloods on top. NDY is the gym membership and the trainer-led classes. Inner Circle is the small-group programme inside it where the coach knows your name.",
+  },
+  {
+    question: "Why a cohort and not pure 1:1?",
+    answer:
+      "Two reasons. First — the peer accountability inside a small group of riders at the same level beats anything you'll get on a solo call. The cohort sees your wins. They notice when you go quiet. That alone moves more numbers than another hour of 1:1 ever did. Second — pure 1:1 at this depth costs €1,000+/month or it kills the coach. The cohort model lets us deliver coach-level attention without breaking either side. It's how the best academies in the sport actually run.",
+  },
+  {
+    question: "Who actually coaches me?",
+    answer:
+      "An assigned Roadman coach inside your cohort. They sit inside the Roadman system, talk to Anthony weekly about how the cohort is moving, and use the same five-pillar methodology built from 1,400+ podcast conversations. You're not coached by a clip. You're coached by a person who knows your name, your numbers, and your race calendar.",
   },
   {
     question: "I already have a coach. Why switch?",
     answer:
-      "You probably shouldn't, if your coach is working. But if you're already paying $300+/month for a plan that doesn't move with your life, doesn't read your bloods, and doesn't tie nutrition, S&C and recovery into the picture — that's the gap the Inner Circle was built to close.",
+      "You probably shouldn't if your coach is working. But if you're paying €300+/month for a plan that doesn't move with your life, doesn't read your bloods, and doesn't tie nutrition, S&C and recovery into the picture — that's the gap the Inner Circle was built to close.",
   },
   {
     question: "What if I need to pause for a few months?",
     answer:
-      "Tell us. We pause the membership and hold your spot. Inner Circle is a long-game tier — injury weeks, work trips, bad seasons happen. We plan around them, not in spite of them.",
+      "Tell your coach. We pause the membership and hold your spot in the cohort. Inner Circle is a long-game tier — injury weeks, work trips, bad seasons happen. We plan around them, not in spite of them.",
   },
   {
     question: "How quickly will I see results?",
@@ -182,9 +271,9 @@ const faqs = [
       "No. Monthly billing inside Skool. Cancel any time. The work speaks for itself or it doesn't.",
   },
   {
-    question: "Who actually coaches me?",
+    question: "What happens after I apply?",
     answer:
-      "A dedicated Roadman coach matched to your goals and physiology. They sit inside the Roadman system, talk to Anthony weekly about the cohort, and use the same five-pillar methodology built from 1,400+ podcast conversations. You're not coached by a podcast clip and a generic plan — you're coached by a person who knows your name, your numbers, and your race calendar.",
+      "You pay your first month inside Skool. Your coach is in your DMs within 24 hours with an onboarding questionnaire — training history, bloods (if you have recent ones), goals, calendar, life context. Within seven days you're in a cohort, on TrainingPeaks, and the daily log review starts.",
   },
 ];
 
@@ -195,10 +284,10 @@ export default function InnerCirclePage() {
         data={{
           "@context": "https://schema.org",
           "@type": "Service",
-          name: "Roadman Inner Circle — Premium 1:1 Cycling Coaching",
+          name: "Roadman Inner Circle — Premium Cohort Cycling Coaching",
           description:
-            "Premium 1:1 cycling coaching tier delivered inside Skool. Quarterly blood work, weekly 1:1 coaching calls, daily macro monitoring, plan reviews, and everything in Not Done Yet.",
-          serviceType: "Premium 1:1 Online Cycling Coaching",
+            "Premium cohort cycling coaching delivered inside Skool. Small cohorts of 8-12 riders with an assigned Roadman coach, daily async log review, weekly check-ins, monthly 1:1 video deep-dives, and quarterly blood work analysis.",
+          serviceType: "Premium Cohort Online Cycling Coaching",
           provider: { "@id": ENTITY_IDS.organization },
           brand: { "@id": ENTITY_IDS.organization },
           offers: {
@@ -234,34 +323,29 @@ export default function InnerCirclePage() {
       <Header />
 
       <main id="main-content">
-        {/* Hero */}
+        {/* Hero — problem-first, identity hook */}
         <Section background="deep-purple" grain className="pt-32 pb-20">
           <Container className="text-center">
             <ScrollReveal direction="up" eager>
               <p className="text-coral font-heading text-sm tracking-[0.3em] mb-5">
-                PREMIUM 1:1 COACHING
+                THE INNER CIRCLE &middot; PREMIUM COHORT COACHING
               </p>
               <h1
-                className="font-heading text-off-white text-gradient-animated mb-4"
+                className="font-heading text-off-white text-gradient-animated mb-6"
                 style={{ fontSize: "var(--text-hero)" }}
               >
-                ROADMAN
+                STILL NOT WHERE
                 <br />
-                INNER CIRCLE
+                YOU SHOULD BE.
               </h1>
-              <p className="font-heading text-coral tracking-[0.25em] uppercase mt-2 mb-8 text-sm md:text-base">
-                One coach. One rider. The full Roadman system.
-              </p>
               <p className="text-foreground-muted text-xl max-w-2xl mx-auto mb-6 leading-relaxed">
-                Most coaching gives you a plan. The Inner Circle gives you a coach
-                who knows your blood work, your sleep score, what you ate
-                yesterday, and how your legs felt on Tuesday&apos;s climb — then
-                builds the week around all of it.
+                You read the books. You did the FTP tests. You bought the power
+                meter, the carbon shoes, the ceramic bearings — all of it. You
+                ride more hours than half the lads you can&apos;t drop. And the
+                watts haven&apos;t moved in a year.
               </p>
-              <p className="text-foreground-muted text-lg max-w-2xl mx-auto mb-10 leading-relaxed">
-                It&apos;s the closest a working professional gets to riding like a
-                pro — without the genetics, the team car, or quitting your job to
-                do it.
+              <p className="text-off-white text-xl max-w-2xl mx-auto mb-10 leading-relaxed font-medium">
+                You&apos;re not under-trained. You&apos;re over-guessed.
               </p>
 
               <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-6">
@@ -273,13 +357,13 @@ export default function InnerCirclePage() {
                 >
                   Apply Through Skool
                 </Button>
-                <Button href="#whats-inside" variant="ghost" size="lg">
-                  See What&apos;s Inside
+                <Button href="#how-it-works" variant="ghost" size="lg">
+                  See How It Works
                 </Button>
               </div>
 
               <p className="text-foreground-subtle text-sm tracking-wider">
-                $475/month &middot; Delivered inside Skool &middot; Limited intake
+                $475/month &middot; Cohorts of 8&ndash;12 &middot; Limited intake
               </p>
             </ScrollReveal>
           </Container>
@@ -287,42 +371,83 @@ export default function InnerCirclePage() {
 
         <div className="gradient-divider" />
 
-        {/* Transformation promise */}
+        {/* Problem — what they've tried */}
         <Section background="charcoal">
           <Container width="narrow">
-            <ScrollReveal direction="up" className="text-center mb-10">
+            <ScrollReveal direction="up" className="text-center mb-12">
               <p className="text-coral font-heading text-xs tracking-[0.3em] mb-4">
-                WHAT THIS BUYS YOU
+                WHAT YOU&apos;VE TRIED
               </p>
               <h2
-                className="font-heading text-off-white mb-6"
+                className="font-heading text-off-white mb-5"
                 style={{ fontSize: "var(--text-section)" }}
               >
-                NOT A PLAN.
+                FOUR THINGS THAT
                 <br />
-                <span className="text-coral">A SECOND BRAIN FOR YOUR CYCLING.</span>
+                <span className="text-coral">DON&apos;T QUITE WORK.</span>
               </h2>
+              <p className="text-foreground-muted leading-relaxed">
+                Most of what gets pitched at the cyclist who&apos;s stuck looks
+                like one of these. None are the answer on their own — they all
+                see one piece of the puzzle. And the puzzle has five.
+              </p>
             </ScrollReveal>
 
+            <div className="space-y-4">
+              {broken.map((item, i) => (
+                <ScrollReveal key={item.title} direction="up" delay={i * 0.06}>
+                  <Card
+                    className="p-6 md:p-7 border-l-2 border-l-foreground-subtle/40"
+                    hoverable={false}
+                  >
+                    <h3 className="font-heading text-lg text-off-white mb-2 tracking-wide">
+                      {item.title.toUpperCase()}
+                    </h3>
+                    <p className="text-sm text-foreground-muted leading-relaxed">
+                      {item.body}
+                    </p>
+                  </Card>
+                </ScrollReveal>
+              ))}
+            </div>
+          </Container>
+        </Section>
+
+        <div className="gradient-divider" />
+
+        {/* The reframe — here's what nobody tells you */}
+        <Section background="deep-purple" grain>
+          <Container width="narrow">
             <ScrollReveal direction="up">
-              <div className="space-y-6 text-foreground-muted text-lg leading-relaxed">
+              <p className="text-coral font-heading text-xs tracking-[0.3em] mb-4 text-center">
+                HERE&apos;S WHAT NOBODY TELLS YOU
+              </p>
+              <h2
+                className="font-heading text-off-white mb-8 text-center"
+                style={{ fontSize: "var(--text-section)" }}
+              >
+                IT&apos;S NEVER YOUR EFFORT.
+                <br />
+                <span className="text-coral">IT&apos;S YOUR STRUCTURE.</span>
+              </h2>
+              <div className="space-y-5 text-foreground-muted text-lg leading-relaxed">
                 <p>
-                  You&apos;ve already done the work. You read the books. You did
-                  the FTP tests. You crunched the numbers on TrainingPeaks. And
-                  you&apos;ve gone as far as that takes you.
+                  Two years into structured training, your ceiling stops being
+                  your genetics. It starts being whatever you&apos;re not
+                  watching. The bloods you&apos;ve never read. The fueling that
+                  drifts on Wednesdays. The sleep that quietly went south in
+                  February. The strength block you keep meaning to start.
                 </p>
                 <p>
-                  The Inner Circle is for the cyclist who wants what every World
-                  Tour rider has — a coach who watches the data daily, sees the
-                  patterns you can&apos;t, and adjusts before you break. The kind
-                  of coaching that catches the iron deficiency in February so you
-                  don&apos;t blow up in May. The kind that re-writes a climbing
-                  block when your fueling logs say it&apos;s the meal before, not
-                  the threshold work, that&apos;s breaking you.
+                  Pros don&apos;t train harder than you. They train against more
+                  data, with more eyes on it, and they correct the small leaks
+                  before those leaks become months lost. That&apos;s the
+                  difference. Five pillars, one system, watched closely by
+                  someone whose job it is to watch.
                 </p>
                 <p className="text-off-white font-medium">
-                  Same five pillars as Not Done Yet. Tighter loop. Higher
-                  resolution. One coach watching one rider.
+                  The good news — that&apos;s fixable. And it doesn&apos;t need a
+                  six-figure budget or a sabbatical from your job.
                 </p>
               </div>
             </ScrollReveal>
@@ -331,12 +456,63 @@ export default function InnerCirclePage() {
 
         <div className="gradient-divider" />
 
-        {/* Feature breakdown */}
+        {/* How it works — the cohort model */}
+        <Section background="charcoal" id="how-it-works">
+          <Container>
+            <ScrollReveal direction="up" className="text-center mb-14">
+              <p className="text-coral font-heading text-xs tracking-[0.3em] mb-4">
+                HOW THE INNER CIRCLE WORKS
+              </p>
+              <h2
+                className="font-heading text-off-white mb-4"
+                style={{ fontSize: "var(--text-section)" }}
+              >
+                A SMALL ROOM.
+                <br />
+                <span className="text-coral">THE FULL ROADMAN SYSTEM.</span>
+              </h2>
+              <p className="text-foreground-muted max-w-2xl mx-auto leading-relaxed">
+                We took everything we learned from how the best academies in
+                the sport actually run, and built it into a small-cohort model
+                that delivers coach-level attention without burning the coach
+                or the cyclist.
+              </p>
+            </ScrollReveal>
+
+            <div className="max-w-4xl mx-auto space-y-4">
+              {howItWorks.map((step, i) => (
+                <ScrollReveal key={step.title} direction="up" delay={i * 0.05}>
+                  <Card className="p-6 md:p-7 card-shimmer" glass hoverable={false}>
+                    <div className="flex flex-col md:flex-row md:items-start gap-4 md:gap-7">
+                      <div className="shrink-0">
+                        <span className="font-heading text-4xl text-coral/50">
+                          {step.number}
+                        </span>
+                      </div>
+                      <div className="flex-1">
+                        <h3 className="font-heading text-xl text-off-white mb-2 tracking-wide">
+                          {step.title.toUpperCase()}
+                        </h3>
+                        <p className="text-sm md:text-base text-foreground-muted leading-relaxed">
+                          {step.body}
+                        </p>
+                      </div>
+                    </div>
+                  </Card>
+                </ScrollReveal>
+              ))}
+            </div>
+          </Container>
+        </Section>
+
+        <div className="gradient-divider" />
+
+        {/* Features — what's in it */}
         <Section background="deep-purple" grain id="whats-inside">
           <Container>
             <ScrollReveal direction="up" className="text-center mb-14">
               <p className="text-coral font-heading text-xs tracking-[0.3em] mb-4">
-                WHAT&apos;S IN THE INNER CIRCLE
+                WHAT&apos;S IN IT
               </p>
               <h2
                 className="font-heading text-off-white mb-4"
@@ -347,14 +523,14 @@ export default function InnerCirclePage() {
                 BUILT FOR A WORKING CYCLIST.
               </h2>
               <p className="text-foreground-muted max-w-xl mx-auto">
-                Twelve things, each one chosen because it changes outcomes. No
+                Twelve things, each chosen because it changes outcomes. No
                 fluff. No padding for the price tag.
               </p>
             </ScrollReveal>
 
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-5 max-w-6xl mx-auto">
               {features.map((f, i) => (
-                <ScrollReveal key={f.title} direction="up" delay={(i % 6) * 0.06}>
+                <ScrollReveal key={f.title} direction="up" delay={(i % 6) * 0.05}>
                   <Card className="p-6 card-shimmer h-full" glass hoverable={false}>
                     <div className="flex items-start gap-3 mb-3">
                       <span className="font-heading text-coral text-sm tracking-widest pt-0.5">
@@ -376,7 +552,7 @@ export default function InnerCirclePage() {
 
         <div className="gradient-divider" />
 
-        {/* NDY vs Inner Circle */}
+        {/* Comparison */}
         <Section background="charcoal">
           <Container>
             <ScrollReveal direction="up" className="text-center mb-12">
@@ -392,15 +568,14 @@ export default function InnerCirclePage() {
                 <span className="text-coral">DIFFERENT INTENSITY.</span>
               </h2>
               <p className="text-foreground-muted max-w-xl mx-auto">
-                Both run on the same five-pillar system. The difference is how
-                close the coach is — and how much of your data they&apos;re
-                reading.
+                Both run on the five-pillar system. The difference is how close
+                the coach gets, how much of your data they read, and how small
+                the room is.
               </p>
             </ScrollReveal>
 
             <ScrollReveal direction="up">
               <div className="max-w-5xl mx-auto rounded-xl border border-white/10 bg-background-elevated overflow-hidden">
-                {/* Header row */}
                 <div className="grid grid-cols-3 border-b border-white/10 bg-deep-purple/30">
                   <div className="p-4 md:p-6">
                     <p className="font-heading text-foreground-subtle text-xs tracking-widest">
@@ -421,7 +596,6 @@ export default function InnerCirclePage() {
                   </div>
                 </div>
 
-                {/* Rows */}
                 {comparison.map((row, i) => (
                   <div
                     key={row.label}
@@ -480,12 +654,12 @@ export default function InnerCirclePage() {
                   </h3>
                   <ul className="space-y-3">
                     {[
+                      "Have been training consistently for 1–2+ years and stopped improving",
                       "Train 8+ hours a week and want every one of them to count",
                       "Have a target — a category jump, a Grand Fondo PB, an Ironman bike split",
-                      "Hit a level where free advice and group plans stopped moving the needle",
-                      "Will actually do the work — this is a system, not a status symbol",
-                      "Want a coach who knows your name, your numbers, and your race calendar",
-                      "Are ready to share your data honestly so it can be coached against",
+                      "Want a small room of serious cyclists watching your work, not a 200-person feed",
+                      "Will share your data honestly so it can be coached against",
+                      "Are ready to back a coach's call instead of second-guessing it on Reddit",
                     ].map((item) => (
                       <li
                         key={item}
@@ -554,24 +728,25 @@ export default function InnerCirclePage() {
                       <span className="text-foreground-subtle text-lg">/month</span>
                     </div>
                     <p className="text-foreground-muted max-w-md mx-auto leading-relaxed">
-                      One tier. One price. One dedicated coach. Cancel any time —
-                      the work speaks for itself or it doesn&apos;t.
+                      One tier. One price. A small cohort with an assigned
+                      Roadman coach. Cancel any time — the work speaks for
+                      itself or it doesn&apos;t.
                     </p>
                   </div>
 
                   <div className="grid sm:grid-cols-2 gap-x-6 gap-y-2 max-w-xl mx-auto mb-10">
                     {[
+                      "Cohort of 8–12 riders",
+                      "Assigned Roadman coach",
+                      "Daily async log review",
+                      "Weekly written 1:1 check-in",
+                      "Monthly 1:1 video deep-dive",
+                      "Weekly cohort live call",
                       "Quarterly blood work analysis",
-                      "Weekly 1:1 coaching call",
-                      "Daily macro monitoring",
-                      "1:1 plan reviews, every block",
-                      "Priority Skool DM access",
-                      "Race & event prep plans",
+                      "Quarterly performance deep-dive",
                       "Body composition tracking",
-                      "Sleep & HRV review",
-                      "Recovery protocol customisation",
-                      "Quarterly performance deep-dives",
-                      "Early access to new tools",
+                      "Race & event prep plans",
+                      "Roadman masterclass library",
                       "Everything in Not Done Yet",
                     ].map((item) => (
                       <div
@@ -595,8 +770,9 @@ export default function InnerCirclePage() {
                       Apply Through Skool
                     </Button>
                     <p className="text-foreground-subtle text-xs mt-4 tracking-wider">
-                      Pay your first month inside Skool. A Roadman coach is in
-                      your DMs within 24 hours.
+                      Pay your first month inside Skool. Your coach is in your
+                      DMs within 24 hours. You&apos;re in a cohort within seven
+                      days.
                     </p>
                   </div>
                 </Card>
@@ -661,12 +837,12 @@ export default function InnerCirclePage() {
               style={{ transitionDuration: "var(--duration-fast)" }}
               data-track="inner_circle_footer_apply"
             >
-              Join The Inner Circle
+              Apply Through Skool
             </Link>
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mt-6 text-off-white/70 text-sm">
               <span>$475/month</span>
               <span className="hidden sm:inline">&middot;</span>
-              <span>Cancel any time</span>
+              <span>Cohorts of 8–12</span>
               <span className="hidden sm:inline">&middot;</span>
               <span>Limited intake</span>
             </div>
