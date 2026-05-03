@@ -9,16 +9,16 @@ import { ENTITY_IDS } from "@/lib/brand-facts";
 const SKOOL_URL = "https://www.skool.com/roadmancycling/about";
 
 export const metadata: Metadata = {
-  title: "Roadman Inner Circle — The Five NDY Pillars, Levelled Up | $475/month",
+  title: "Roadman Inner Circle — The Five NDY Pillars, Levelled Up | $525/month",
   description:
-    "The five Not Done Yet pillars — training, nutrition, recovery, strength, community — with a coach reading your data daily and replying on the days it matters. Plus a sixth pillar nobody else gives you: Performance Health. $475/month. Cohorts of 8–12. Limited intake.",
+    "The five Not Done Yet pillars — training, nutrition, recovery, strength, community — with a coach reading your data daily and replying on the days it matters. Plus a sixth pillar nobody else gives you: Performance Health. $525/month. Cohorts of 8–12. Limited intake.",
   alternates: {
     canonical: "https://roadmancycling.com/inner-circle",
   },
   openGraph: {
     title: "Roadman Inner Circle — The Five NDY Pillars, Levelled Up",
     description:
-      "Everything Not Done Yet gives you, with a coach reading your data daily. Plus a sixth pillar nobody else offers: Performance Health. $475/month.",
+      "Everything Not Done Yet gives you, with a coach reading your data daily. Plus a sixth pillar nobody else offers: Performance Health. $525/month.",
     type: "website",
     url: "https://roadmancycling.com/inner-circle",
   },
@@ -125,7 +125,7 @@ const faqs = [
       "Same five pillars. Levelled up. NDY gives you the system, the plan, and the room. Inner Circle puts a coach inside it who reads your data every day and writes back when it matters — and adds a sixth pillar that NDY doesn't have at all: Performance Health. Bloods, biomarkers, hormones, inflammation, proactive screening. The pillar nobody else offers.",
   },
   {
-    question: "Why $475? That's a lot for a Skool community.",
+    question: "Why $525? That's a lot for a Skool community.",
     answer:
       "Because it isn't really a Skool community — it's a small-cohort coaching programme that uses Skool to deliver. Your coach reads your logs daily, replies to your written check-in weekly, runs a video with you monthly, reads your bloods quarterly. In-person 1:1 cycling coaching usually runs €600–€1,200/month and stops at the bike. Performance Health alone — bloods plus biomarker tracking — runs €400+/year on its own. The price sits where the value sits.",
   },
@@ -187,13 +187,13 @@ export default function InnerCirclePage() {
           offers: {
             "@type": "Offer",
             name: "Roadman Inner Circle",
-            price: "475",
+            price: "525",
             priceCurrency: "USD",
             availability: "https://schema.org/InStock",
             url: SKOOL_URL,
             priceSpecification: {
               "@type": "UnitPriceSpecification",
-              price: "475",
+              price: "525",
               priceCurrency: "USD",
               billingDuration: "P1M",
               billingIncrement: 1,
@@ -275,7 +275,7 @@ export default function InnerCirclePage() {
               </div>
 
               <div className="flex flex-wrap justify-center items-center gap-x-3 gap-y-2 text-foreground-subtle text-xs md:text-sm tracking-[0.2em] uppercase">
-                <span>$475/month</span>
+                <span>$525/month</span>
                 <span aria-hidden className="text-coral/40">&bull;</span>
                 <span>Cohorts of 8&ndash;12</span>
                 <span aria-hidden className="text-coral/40">&bull;</span>
@@ -715,7 +715,7 @@ export default function InnerCirclePage() {
                         className="font-heading text-off-white leading-none"
                         style={{ fontSize: "clamp(4rem, 9vw, 7rem)" }}
                       >
-                        $475
+                        $525
                       </span>
                       <span className="text-foreground-subtle text-lg md:text-xl tracking-wider">
                         / month
@@ -859,7 +859,7 @@ export default function InnerCirclePage() {
                 Apply Through Skool
               </Link>
               <div className="flex flex-wrap justify-center items-center gap-x-3 gap-y-2 mt-8 text-off-white/75 text-xs tracking-[0.25em] uppercase">
-                <span>$475/month</span>
+                <span>$525/month</span>
                 <span aria-hidden>&bull;</span>
                 <span>Cohorts of 8&ndash;12</span>
                 <span aria-hidden>&bull;</span>
