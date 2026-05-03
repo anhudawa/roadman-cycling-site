@@ -204,10 +204,12 @@ export default async function ContributorAuthorPage({
                     <p className="font-heading text-sm text-off-white group-hover:text-coral transition-colors tracking-wide mb-1">
                       {post.title}
                     </p>
-                    <p className="text-xs text-foreground-subtle">
-                      {post.excerpt.slice(0, 120)}
-                      {post.excerpt.length > 120 ? "..." : ""}
-                    </p>
+                    {post.excerpt && (
+                      <p className="text-xs text-foreground-subtle">
+                        {post.excerpt.slice(0, 120)}
+                        {post.excerpt.length > 120 ? "..." : ""}
+                      </p>
+                    )}
                   </Link>
                 ))}
               </div>
