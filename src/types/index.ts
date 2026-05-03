@@ -161,7 +161,7 @@ export const NAV_ITEMS: NavItem[] = [
     href: "/community/not-done-yet",
     children: [
       { label: "Not Done Yet Coaching", href: "/community/not-done-yet" },
-      { label: "Apply for 1:1 Coaching", href: "/apply" },
+      { label: "Inner Circle", href: "/inner-circle" },
       { label: "Triathlon Coaching", href: "/coaching/triathletes" },
       { label: "Strength Training", href: "/strength-training" },
       { label: "Clubhouse (Free Community)", href: "/community/clubhouse" },
