@@ -1,0 +1,231 @@
+================================================================================
+ROADMAN CYCLING: PODCAST-BLOG POST CONTENT GAP ANALYSIS
+================================================================================
+Date: May 2, 2026
+Analyzed: /content/podcast/ and /content/blog/
+
+EXECUTIVE SUMMARY
+================================================================================
+
+Total Podcast Episodes: 311
+Total Blog Posts: 229
+Episodes WITH companion blogs: 101 (32%)
+Episodes WITHOUT companion blogs: 210 (68%)
+
+A "companion blog post" is defined as a blog article that covers the same guest,
+episode topic, or explicitly references the podcast episode.
+
+CRITICAL FINDING: Only 32% of podcast episodes have corresponding blog posts,
+leaving a significant content gap that could limit discoverability, SEO value,
+and repurposing opportunities.
+
+
+PRIORITY GAPS: HIGH-VALUE GUESTS WITHOUT BLOG POSTS
+================================================================================
+
+5 high-priority guest interviews lack dedicated blog post support:
+
+1. ALAN MURCHISON (Michelin-Star Chef)
+   Pillar: NUTRITION
+   Episode File: what-pros-actually-eat-to-win-michelin-chef-alan-murchison.mdx
+   Episode Title: What Pros Actually Eat to Win | Alan Murchison
+   Impact: This episode features world-renowned nutrition expertise from a
+           chef who works with pro cyclists - critical content for the
+           nutrition pillar
+
+2. BEN HEALY (Pro Cyclist - World Tour)
+   Pillar: COMMUNITY/LE METIER
+   Episode File: ep-19-my-untold-story-of-how-yellow-didn-t-feel-like-victory-ben-h.mdx
+   Episode Title: Ben Healy on Tour Stage Wins and Cycling Tactics | Roadman
+   Impact: Direct pro rider perspective on racing tactics and mental aspects
+           of world tour cycling
+
+3. DR. DAVID DUNNE (World Tour Nutritionist)
+   Pillar: NUTRITION
+   Episode File: ep-2044-world-tour-nutritionist-we-got-weight-loss-wrong.mdx
+   Episode Title: World Tour Nutritionist - "We Got Weight Loss Wrong"
+   Impact: Debunks common weight loss myths with pro team expertise
+
+4. JOE FRIEL (Legendary Cycling Coach)
+   Pillar: COACHING
+   Episode File: ep-2205-the-training-secret-to-going-faster-after-40-joe-friel.mdx
+   Episode Title: The Training Secret To Going FASTER After 40 | Joe Friel
+   Impact: Joe Friel is cycling coaching royalty; this episode directly
+           addresses masters cyclists (40+), a key Roadman audience
+
+5. MICHAEL MATTHEWS (Pro Cyclist - 15 Years WorldTour)
+   Pillar: COACHING
+   Episode File: ep-4-15-years-of-pro-riding-what-amateurs-don-t-know-matthews.mdx
+   Episode Title: Michael Matthews on Pro Cycling Training | Roadman Cycling Podcast
+   Impact: Extensive pro training insights from experienced world tour rider
+
+
+NOTE: Other high-priority guests NOT found in blogs include:
+- Professor Stephen Seiler (2 episodes) - Polarised training expert
+- Lachlan Morton (at least 1 episode) - Ultra-distance/WorldTour legend
+- Dan Lorang (at least 1 episode) - Roglic's coach
+- John Wakefield (at least 1 episode) - Team Bora endurance specialist
+- Rosa Klöser (at least 1 episode) - Unbound gravel champion
+
+
+GAPS BY CONTENT PILLAR
+================================================================================
+
+COACHING: 24 episodes without blogs (11% of gaps)
+Notable Episodes Without Blogs:
+  - Train Slower, Ride Faster: The 80/20 Cycling Training Guide
+  - Cutting Training in Half: Real Power Data
+  - Team Visma's New Secret Training Tech The UCI Might Ban
+  - How Team Bora Build Endurance: John Wakefield on Ultra Cycling Training
+    [NOTE: Features John Wakefield - priority guest]
+  - Andre Greipel on Sprinting, Burnout & Cycling Coaching
+  - Brian Smith on Suffering, Coaching & Winning
+  - Prison to Pro Ironman: No Coach, Sub-9:30
+
+Strategic Gap: Core coaching methodology episodes lack blog post reinforcement
+for SEO and audience retention.
+
+
+NUTRITION: 22 episodes without blogs (10% of gaps)
+Notable Episodes Without Blogs:
+  - Lost 7kg Eating More: Cycling Nutrition That Works
+  - 3 Tips for Beating Travel Fatigue
+  - Leadville 100 Bike Setup & Fueling Plan
+  - Creatine for Cyclists: 30-Day Results
+  - Bedtime Protein for Cycling Recovery
+  - World Tour Nutritionist - "We Got Weight Loss Wrong"
+    [NOTE: Features Dr. David Dunne - priority guest]
+
+Strategic Gap: Nutrition is a core pillar but ~10% of nutrition episodes
+remain without blog support. Opportunity to expand nutrition content.
+
+
+S&C (Strength & Conditioning): 3 episodes without blogs (1% of gaps)
+  - I Tried Gym And Bike For 30 Days - The Results Shocked Me
+  - Alex Wild Opens Up On Power & Rivals At Sea Otter 2025
+  - The Genius Behind the First EVER Power Meter | Uli Schoberer
+
+Strategic Gap: Smallest gap area but still missing strength training
+blog expansion opportunities.
+
+
+RECOVERY: 2 episodes without blogs (0.9% of gaps)
+  - Gabby Bernstein on Trauma & Mental Recovery
+  - Taper for Cyclists: 15% Gains
+
+Strategic Gap: Minimal gap here. Recovery content is well-covered.
+
+
+COMMUNITY/LE METIER: 18 episodes without blogs (8% of gaps)
+Notable Episodes Without Blogs:
+  - 5 Pro Cyclist Winter Habits
+  - Peloton: The Rise and Fall
+  - The Dark Secret Behind Masters Racing
+  - Road Racing Is DEAD (WHAT'S REALLY GOING ON)
+  - Do British Cycling Aim to Win At All Costs? - Toxic Sports Culture
+  - Trek vs LeMond: The Doping Dispute That Ended Everything
+  - Did Pro Cycling Kill Gravel? Nathan Haas
+  - Ben Healy on Tour Stage Wins and Cycling Tactics
+    [NOTE: Features Ben Healy - priority guest]
+  - Omerta Busted: How Pro Cyclists Lose Weight FAST
+  - From Drug Addict to Pro Cyclist | Owen Vermeulen
+
+Strategic Gap: Community/cultural episodes often tell powerful human stories
+but lack blog amplification. Narrative content opportunity.
+
+
+OTHER: 141 episodes without blogs (67% of gaps)
+This category includes miscellaneous/uncategorized episodes that don't clearly
+fit into the five pillars. Many are vlogs, shorts, or specialized topics.
+
+
+TOP 10 MOST CRITICAL GAPS TO ADDRESS
+================================================================================
+
+1. Alan Murchison - Nutrition Masterclass
+   File: what-pros-actually-eat-to-win-michelin-chef-alan-murchison.mdx
+   Urgency: CRITICAL
+
+2. Dr. David Dunne - Weight Loss Myths
+   File: ep-2044-world-tour-nutritionist-we-got-weight-loss-wrong.mdx
+   Urgency: CRITICAL
+
+3. Joe Friel - Masters Cycling Training (40+)
+   File: ep-2205-the-training-secret-to-going-faster-after-40-joe-friel.mdx
+   Urgency: CRITICAL
+
+4. Ben Healy - Pro Racing Tactics
+   File: ep-19-my-untold-story-of-how-yellow-didn-t-feel-like-victory-ben-h.mdx
+   Urgency: CRITICAL
+
+5. Michael Matthews - 15 Years Pro Training
+   File: ep-4-15-years-of-pro-riding-what-amateurs-don-t-know-matthews.mdx
+   Urgency: CRITICAL
+
+6. Train Slower, Ride Faster (80/20)
+   File: ep-2027-train-slower-ride-faster-why-it-actually-works.mdx
+   Urgency: HIGH
+
+7. John Wakefield - Endurance Building
+   File: ep-2132-how-do-team-bora-approach-building-endurance-we-find-out-joh.mdx
+   Urgency: HIGH
+
+8. Andre Greipel - Sprinting & Coaching
+   File: ep-2240-what-makes-a-sprinter-unbeatable-andr-greipel-roadman.mdx
+   Urgency: MEDIUM
+
+9. Lost 7kg Eating More
+   File: ep-1-i-lost-9kg-eating-more-and-got-faster-on-the-bike.mdx
+   Urgency: MEDIUM
+
+10. Creatine for Cyclists
+    File: ep-2043-i-tried-creatine-for-30-days-the-results-shocked-me.mdx
+    Urgency: MEDIUM
+
+
+RECOMMENDATIONS
+================================================================================
+
+IMMEDIATE ACTIONS (Next 30 Days)
+
+1. Create blog posts for all 5 priority guests:
+   - Alan Murchison (Nutrition)
+   - Dr. David Dunne (Nutrition)
+   - Joe Friel (Coaching/Masters)
+   - Ben Healy (Racing/Community)
+   - Michael Matthews (Coaching)
+
+2. Create blog posts for 5 core topic episodes:
+   - 80/20 Training
+   - Cutting Training Volume
+   - Lost 7kg Eating More
+   - Creatine for Cyclists
+   - Bedtime Protein
+
+SHORT-TERM ACTIONS (30-90 Days)
+
+3. Address remaining coaching gaps (John Wakefield, Andre Greipel, Brian Smith)
+
+4. Expand nutrition pillar with 5-10 blog posts covering fueling strategies,
+   weight loss myths, race day nutrition, supplement protocols
+
+5. Create blog posts for high-traffic community episodes:
+   - Hannah Grant - Pro Weight Loss Insights
+   - Owen Vermeulen - Comeback Story
+   - Trek vs LeMond - Cycling History
+   - Peloton Rise/Fall - Industry Analysis
+
+MEDIUM-TERM ACTIONS (90-180 Days)
+
+6. Audit the 141 "other" episodes for high-value blog candidates
+
+7. Consider blog series:
+   - "Pro Rider Perspectives" (World Tour riders)
+   - "Masters Cycling Blueprint" (Joe Friel, etc.)
+   - "Nutrition from the Pros" (Murchison, Dunne, Grant)
+   - "Coaching Masterclass" series
+
+8. Implement systematic workflow: every future guest episode gets a
+   companion blog post within 2 weeks of publication
+
+================================================================================
