@@ -7,6 +7,20 @@ import { type CitedClaim } from "@/components/ui/CitedClaimTable";
 import { type EvidenceLevelType } from "@/components/ui/EvidenceLevel";
 
 const BLOG_DIR = path.join(process.cwd(), "content/blog");
+const PUBLIC_DIR = path.join(process.cwd(), "public");
+
+// Resolve a frontmatter `featuredImage` to itself only when the file
+// actually exists on disk under /public. Otherwise return undefined so
+// the existing Satori/typography fallback (`isGenericImage(undefined)`
+// → branded card) kicks in instead of rendering a broken <img>.
+// Skips http(s) URLs and any non-root-absolute path.
+function resolveFeaturedImage(value: string | undefined): string | undefined {
+  if (!value) return undefined;
+  if (/^https?:\/\//i.test(value)) return value;
+  if (!value.startsWith("/")) return value;
+  const onDisk = path.join(PUBLIC_DIR, value);
+  return fs.existsSync(onDisk) ? value : undefined;
+}
 
 export interface FaqItem {
   question: string;
@@ -109,6 +123,7 @@ export function getAllPosts(): BlogPostMeta[] {
 
     return {
       ...frontmatter,
+      featuredImage: resolveFeaturedImage(frontmatter.featuredImage),
       slug,
       readTime: stats.text,
     };
@@ -135,6 +150,7 @@ export function getPostBySlug(slug: string): BlogPostFull | null {
 
   return {
     ...frontmatter,
+    featuredImage: resolveFeaturedImage(frontmatter.featuredImage),
     slug,
     readTime: stats.text,
     content,
