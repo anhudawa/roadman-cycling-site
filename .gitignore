@@ -62,3 +62,4 @@ scripts/repurpose-state.json
 # Runtime agent logs and temp files
 /logs/
 /tmp/
+.~lock.*
