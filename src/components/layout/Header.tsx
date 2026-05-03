@@ -24,6 +24,7 @@ const REVENUE_PATH_PREFIXES = [
   "/apply",
   "/about",
   "/community/not-done-yet",
+  "/inner-circle",
 ];
 
 function shouldShowApplyCta(pathname: string | null): boolean {

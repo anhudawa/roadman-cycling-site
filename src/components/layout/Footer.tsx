@@ -42,7 +42,7 @@ const footerColumns = {
     links: [
       { label: "How It Works", href: "/coaching" },
       { label: "Not Done Yet Coaching", href: "/community/not-done-yet" },
-      { label: "Apply for 1:1 Coaching", href: "/apply" },
+      { label: "Inner Circle", href: "/inner-circle" },
       { label: "Strength Training", href: "/strength-training" },
       { label: "Cycling Coach Ireland", href: "/coaching/ireland" },
       { label: "Cycling Coach UK", href: "/coaching/uk" },
