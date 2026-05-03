@@ -14,7 +14,7 @@ interface MessageListProps {
 
 export function MessageList({ messages, sessionId }: MessageListProps) {
   return (
-    <div className="space-y-6 px-4 md:px-6 pt-6 pb-12">
+    <div className="space-y-8">
       {messages.map((m) => (
         <MessageRow key={m.id} message={m} sessionId={sessionId} />
       ))}
@@ -31,27 +31,28 @@ function MessageRow({
 }) {
   if (message.role === "user") {
     return (
-      <div className="flex justify-end">
-        <div className="max-w-[82%] rounded-2xl bg-purple/80 text-off-white px-4 py-3 shadow-sm">
-          <p className="text-[0.95rem] leading-relaxed whitespace-pre-wrap">
-            {message.content}
-          </p>
-        </div>
+      <div className="flex flex-col items-start" data-message-id={message.id}>
+        <p className="font-heading text-coral tracking-widest text-[10px] uppercase mb-2">
+          You asked
+        </p>
+        <p className="text-off-white text-lg md:text-xl leading-snug font-medium whitespace-pre-wrap">
+          {message.content}
+        </p>
       </div>
     );
   }
 
   return (
-    <div className="flex flex-col items-start">
-      <div className="max-w-full md:max-w-[88%]">
+    <div className="flex flex-col items-start" data-message-id={message.id}>
+      <div className="w-full">
         {message.safetyFlags && message.safetyFlags.length > 0 && (
           <SafetyBanner flags={message.safetyFlags} />
         )}
-        <div className="rounded-2xl bg-white/[0.04] border border-white/10 px-5 py-4">
-          <p className="font-heading text-coral tracking-widest text-xs uppercase mb-2">
-            Ask Roadman
+        <div className="border-l-2 border-coral/40 pl-5">
+          <p className="font-heading text-coral tracking-widest text-[10px] uppercase mb-2">
+            Roadman says
           </p>
-          <div className="text-off-white text-[0.95rem] leading-relaxed whitespace-pre-wrap min-h-[1.5em]">
+          <div className="text-off-white text-[1rem] leading-relaxed whitespace-pre-wrap min-h-[1.5em]">
             {message.content}
             {message.streaming && (
               <span

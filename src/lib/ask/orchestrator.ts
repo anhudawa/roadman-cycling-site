@@ -277,13 +277,18 @@ async function streamFromAnthropic(args: StreamArgs): Promise<{
 }> {
   const { query, intent, deep, profile, cta, chunks, seed, sse } = args;
 
-  if (!process.env.ANTHROPIC_API_KEY) {
+  const apiKey = process.env.ANTHROPIC_API_KEY?.trim();
+  if (!apiKey) {
+    console.error(
+      "[ask/orchestrator] ANTHROPIC_API_KEY missing or empty — serving fallback. " +
+        "Set it in Vercel → Settings → Environment Variables (Preview + Production) and redeploy.",
+    );
     const fallback = buildFallbackNoKey(intent, chunks);
     sse.enqueue({ type: "delta", data: fallback });
     return { text: fallback };
   }
 
-  const client = new Anthropic();
+  const client = new Anthropic({ apiKey });
   const system = buildSystemPrompt({ profile, cta, chunks, seed });
   const model = deep ? MODEL_DEEP : MODEL_FAST;
 
@@ -317,11 +322,23 @@ async function streamFromAnthropic(args: StreamArgs): Promise<{
   return { text: full, inputTokens, outputTokens };
 }
 
-function buildFallbackNoKey(intent: Intent, chunks: RetrievedChunk[]): string {
-  const topTitle = chunks[0]?.title;
-  const topUrl = chunks[0]?.url;
-  const linkHint = topTitle
-    ? `\n\nWhile Ask Roadman is offline, the closest Roadman material is "${topTitle}"${topUrl ? ` — ${topUrl}` : ""}.`
-    : "";
-  return `Ask Roadman is temporarily unavailable (the AI backend isn't configured for this environment). Intent detected: ${intent}.${linkHint}`;
+function buildFallbackNoKey(_intent: Intent, chunks: RetrievedChunk[]): string {
+  const top = chunks[0];
+  const second = chunks[1];
+  const intro =
+    "Ask Roadman is catching its breath right now — the live answer engine is offline. " +
+    "Here's the closest material from the podcast and notes that should help while it's down:";
+  const lines: string[] = [intro];
+  if (top) {
+    lines.push("");
+    lines.push(`• ${top.title}${top.url ? ` — ${top.url}` : ""}`);
+  }
+  if (second) {
+    lines.push(`• ${second.title}${second.url ? ` — ${second.url}` : ""}`);
+  }
+  if (!top) {
+    lines.push("");
+    lines.push("Try one of the starter prompts below, or come back in a minute.");
+  }
+  return lines.join("\n");
 }

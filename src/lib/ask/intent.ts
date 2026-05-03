@@ -93,7 +93,7 @@ function parseIntent(raw: string): IntentClassification {
 }
 
 export async function classifyIntent(query: string): Promise<IntentClassification> {
-  const apiKey = process.env.ANTHROPIC_API_KEY;
+  const apiKey = process.env.ANTHROPIC_API_KEY?.trim();
   if (!apiKey) return FALLBACK;
 
   const client = new Anthropic({ apiKey });

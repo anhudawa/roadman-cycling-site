@@ -118,26 +118,17 @@ export default async function AskPage({
       />
       <style
         dangerouslySetInnerHTML={{
-          __html: `@keyframes ask-blink { 0%,100%{opacity:1} 50%{opacity:0} }`,
+          __html: `@keyframes ask-blink { 0%,100%{opacity:1} 50%{opacity:0} }
+.ask-composer-input { field-sizing: content; }`,
         }}
       />
       <Header />
-      <main
-        id="main-content"
-        className="bg-charcoal flex flex-col overflow-hidden"
-        style={{
-          // Subtract any fixed-bottom global UI from the viewport-locked
-          // height so the chat input form never gets covered. Currently
-          // accounts for the cookie consent banner (sets
-          // --cookie-banner-height when visible). Falls back to 100svh
-          // when nothing's overlaying the bottom.
-          height:
-            "calc(100svh - var(--cookie-banner-height, 0px))",
-        }}
-      >
-        {/* Hero */}
-        <div className="relative border-b border-white/10 shrink-0">
-          <div className="max-w-5xl mx-auto px-4 md:px-6 pt-[calc(5rem+var(--cohort-banner-height,0px))] md:pt-[calc(6rem+var(--cohort-banner-height,0px))] pb-6">
+      <main id="main-content" className="bg-charcoal">
+        {/* Hero — flows with the page; no viewport lock so the chat
+            below feels like a continuation of the page rather than
+            a separate widget. */}
+        <div className="relative">
+          <div className="max-w-3xl mx-auto px-4 md:px-6 pt-[calc(5rem+var(--cohort-banner-height,0px))] md:pt-[calc(6rem+var(--cohort-banner-height,0px))] pb-2">
             <p className="font-heading text-coral tracking-widest text-xs uppercase mb-3">
               Ask Roadman
             </p>
@@ -157,8 +148,8 @@ export default async function AskPage({
         </div>
 
         {seed ? (
-          <div className="max-w-5xl mx-auto px-4 md:px-6 pt-6 shrink-0">
-            <div className="rounded-lg border border-coral/30 bg-coral/[0.06] px-4 py-3 text-sm">
+          <div className="max-w-3xl mx-auto px-4 md:px-6 pt-4">
+            <div className="border-l-2 border-coral pl-4 py-1 text-sm">
               <p className="font-heading text-coral tracking-widest text-[10px] uppercase mb-1">
                 Asked with context
               </p>
@@ -180,24 +171,23 @@ export default async function AskPage({
           </div>
         ) : null}
 
-        {/* Chat — flex-1 fills remaining viewport height on every breakpoint; max-h caps it at 72vh on tall desktops */}
-        <div className="max-w-5xl w-full mx-auto px-0 md:px-6 flex-1 flex flex-col min-h-0">
-          <div className="bg-charcoal md:bg-white/[0.01] md:rounded-xl md:my-6 md:border md:border-white/10 flex-1 flex flex-col overflow-hidden min-h-0 md:max-h-[72vh]">
-            <AskRoadmanClient
-              seed={
-                seed
-                  ? {
-                      toolSlug: seed.toolSlug,
-                      toolTitle: seed.toolTitle,
-                      summary: seed.summary,
-                      primaryCategoryLabel: seed.primaryCategoryLabel,
-                      resultSlug: seed.resultSlug,
-                    }
-                  : null
-              }
-              initialQuestion={initialQuestion}
-            />
-          </div>
+        {/* Chat — no border, no inner scroll. Messages flow as part of
+            the page; the composer is sticky at the viewport bottom. */}
+        <div className="max-w-3xl w-full mx-auto px-4 md:px-6">
+          <AskRoadmanClient
+            seed={
+              seed
+                ? {
+                    toolSlug: seed.toolSlug,
+                    toolTitle: seed.toolTitle,
+                    summary: seed.summary,
+                    primaryCategoryLabel: seed.primaryCategoryLabel,
+                    resultSlug: seed.resultSlug,
+                  }
+                : null
+            }
+            initialQuestion={initialQuestion}
+          />
         </div>
       </main>
       <Footer />
