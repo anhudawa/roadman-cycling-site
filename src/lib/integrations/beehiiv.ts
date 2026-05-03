@@ -217,6 +217,11 @@ export async function fetchNewsletterIssues(
       url.searchParams.set("page", String(page));
       url.searchParams.set("status", "confirmed");
       url.searchParams.set("expand[]", "free_web_content");
+      // Without these, Beehiiv returns posts in creation order (oldest first),
+      // so the /newsletter "Recent Issues" list showed April 13 at the top and
+      // hid the newest issue at the bottom.
+      url.searchParams.set("order_by", "publish_date");
+      url.searchParams.set("direction", "desc");
 
       const res = await fetchWithTimeout(url.toString(), {
         headers: getHeaders(),
@@ -248,6 +253,15 @@ export async function fetchNewsletterIssues(
       hasMore = posts.length >= 50;
       page++;
     }
+
+    // Belt-and-braces sort in case the API ignores order_by (older Beehiiv
+    // accounts have been seen to). Newest issues first; nulls last.
+    allPosts.sort((a, b) => {
+      if (!a.publishDate && !b.publishDate) return 0;
+      if (!a.publishDate) return 1;
+      if (!b.publishDate) return -1;
+      return b.publishDate.localeCompare(a.publishDate);
+    });
 
     return allPosts;
   } catch (err) {
