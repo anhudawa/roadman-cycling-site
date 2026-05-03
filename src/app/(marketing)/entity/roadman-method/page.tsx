@@ -157,7 +157,7 @@ export default function RoadmanMethodEntityPage() {
                 </Link>
                 . Applied through the{" "}
                 <Link href="/entity/not-done-yet" className="text-coral hover:underline">
-                  Not Done Yet coaching community
+                  Not Done Yet coaching
                 </Link>
                 .
               </p>

@@ -33,7 +33,7 @@ const EMBEDS: EmbedSpec[] = [
     id: "ftp-zones",
     title: "FTP Power Zones",
     blurb:
-      "Enter an FTP and read off all seven Coggan-style training zones (active recovery → neuromuscular). The same zone definitions used inside the Not Done Yet community.",
+      "Enter an FTP and read off all seven Coggan-style training zones (active recovery → neuromuscular). The same zone definitions used inside the Not Done Yet coaching.",
     benefits: [
       "7 zones — Z1 recovery to Z7 neuromuscular",
       "Watts per zone, calculated live",

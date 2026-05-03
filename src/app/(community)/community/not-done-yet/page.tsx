@@ -10,16 +10,16 @@ import {
 } from "@/lib/testimonials";
 
 export const metadata: Metadata = {
-  title: "Not Done Yet Coaching Community — Premium Cycling Coaching",
+  title: "Not Done Yet Coaching — Premium Cycling Coaching",
   description:
-    "The Not Done Yet coaching community: personalised TrainingPeaks training plans, weekly coaching with Anthony Walsh, expert masterclasses, and a private community of serious cyclists. $195/month with a 7-day free trial. VIP tier available.",
+    "The Not Done Yet coaching: personalised TrainingPeaks training plans, weekly coaching with Anthony Walsh, expert masterclasses, and a private community of serious cyclists. $195/month with a 7-day free trial. VIP tier available.",
   alternates: {
     canonical: "https://roadmancycling.com/community/not-done-yet",
   },
   openGraph: {
-    title: "Not Done Yet Coaching Community — Premium Cycling Coaching",
+    title: "Not Done Yet Coaching — Premium Cycling Coaching",
     description:
-      "The Not Done Yet coaching community: personalised TrainingPeaks training plans, weekly coaching with Anthony Walsh, expert masterclasses, and a private community of serious cyclists. $195/month with a 7-day free trial. VIP tier available.",
+      "The Not Done Yet coaching: personalised TrainingPeaks training plans, weekly coaching with Anthony Walsh, expert masterclasses, and a private community of serious cyclists. $195/month with a 7-day free trial. VIP tier available.",
     type: "website",
     url: "https://roadmancycling.com/community/not-done-yet",
   },
@@ -27,18 +27,18 @@ export const metadata: Metadata = {
 
 const tiers = [
   {
-    name: "Not Done Yet Coaching Community",
+    name: "Not Done Yet Coaching",
     price: "$195",
     period: "/month",
     annual: null,
-    description: "1:1 personalised coaching across the five pillars. 7-day free trial. Cancel anytime.",
+    description: "Personalised coaching across the five pillars. 7-day free trial. Cancel anytime.",
     features: [
       "Personalised TrainingPeaks plans",
       "Weekly coaching calls with Anthony",
       "Cycling-specific strength programme",
       "Race weight & nutrition guidance",
       "1:1 plan reviews",
-      "Private community of serious cyclists",
+      "Riders training alongside you, not beginners",
     ],
     cta: "Apply for Coaching",
     href: "/apply",
@@ -51,7 +51,7 @@ const tiers = [
     annual: null,
     description: "For cyclists who want the full system with direct 1:1 access to Anthony.",
     features: [
-      "Everything in the main coaching community",
+      "Everything in Not Done Yet Coaching",
       "Direct 1:1 access to Anthony",
       "Quarterly strategy calls",
       "Priority event support",
@@ -105,7 +105,7 @@ const objections = [
   {
     question: "I already listen to the podcast — why would I pay?",
     answer:
-      "The podcast gives you the knowledge. The community gives you the structure and accountability to actually apply it. Knowledge without action is just entertainment.",
+      "The podcast gives you the knowledge. The coaching gives you the structure and accountability to actually apply it. Knowledge without action is just entertainment.",
   },
   {
     question: "I can't afford it.",
@@ -115,7 +115,7 @@ const objections = [
   {
     question: "I don't have time.",
     answer:
-      "The plans are built for busy professionals training 6-12 hours per week. The community works asynchronously — no mandatory live sessions.",
+      "The plans are built for busy professionals training 6-12 hours per week. The coaching runs asynchronously — no mandatory live sessions, weekly calls are recorded.",
   },
   {
     question: "How is this different from TrainerRoad or Zwift?",
@@ -131,9 +131,9 @@ export default function NotDoneYetPage() {
         data={{
           "@context": "https://schema.org",
           "@type": "Product",
-          name: "Not Done Yet Coaching Community — Roadman Cycling",
+          name: "Not Done Yet Coaching — Roadman Cycling",
           description:
-            "The Not Done Yet coaching community: personalised training plans, expert masterclasses, and weekly coaching calls with Anthony Walsh.",
+            "The Not Done Yet coaching: personalised training plans, expert masterclasses, and weekly coaching calls with Anthony Walsh.",
           brand: {
             "@type": "Brand",
             name: "Roadman Cycling",
@@ -161,7 +161,7 @@ export default function NotDoneYetPage() {
             reviewBody: t.quote,
             itemReviewed: {
               "@type": "Product",
-              name: "Not Done Yet Coaching Community — Roadman Cycling",
+              name: "Not Done Yet Coaching — Roadman Cycling",
             },
           })),
         }}
@@ -181,7 +181,7 @@ export default function NotDoneYetPage() {
           <Container className="text-center">
             <ScrollReveal direction="up">
               <p className="text-coral font-heading text-lg mb-4 tracking-widest">
-                THE COACHING COMMUNITY
+                THE COACHING
               </p>
               <h1
                 className="font-heading text-off-white text-gradient-animated"
@@ -190,7 +190,7 @@ export default function NotDoneYetPage() {
                 NOT DONE YET
               </h1>
               <p className="font-heading text-coral tracking-[0.25em] uppercase mt-2 mb-6 text-sm md:text-base">
-                Coaching Community
+                Evidence-based coaching for serious amateurs
               </p>
               <p className="text-foreground-muted text-xl max-w-2xl mx-auto mb-6">
                 TrainerRoad sells software. Zwift sells a game.

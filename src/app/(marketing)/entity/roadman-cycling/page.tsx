@@ -54,7 +54,7 @@ const claims: { stat: string; label: string; evidence: string; href?: string }[]
     stat: BRAND_STATS.countriesReachedLabel,
     label: "Countries coached",
     evidence:
-      "The Not Done Yet coaching community serves cyclists across 18 countries.",
+      "The Not Done Yet coaching serves cyclists across 18 countries.",
     href: "/coaching",
   },
   {
@@ -70,7 +70,7 @@ const internalLinks = [
   { label: "About Roadman", href: "/about", note: "The story behind the brand" },
   { label: "Anthony Walsh — Founder", href: "/entity/anthony-walsh", note: "Founder & host" },
   { label: "The Roadman Cycling Podcast", href: "/entity/roadman-podcast", note: "Core asset" },
-  { label: "Not Done Yet Coaching", href: "/entity/not-done-yet", note: "Coaching community" },
+  { label: "Not Done Yet Coaching", href: "/entity/not-done-yet", note: "The core coaching product" },
   { label: "Ask Roadman", href: "/entity/ask-roadman", note: "AI cycling assistant" },
   { label: "The Roadman Method", href: "/entity/roadman-method", note: "Coaching philosophy" },
   { label: "Press & Media Kit", href: "/about/press", note: "For journalists" },

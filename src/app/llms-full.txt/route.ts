@@ -175,11 +175,11 @@ ${BRAND_SUMMARY}
 Core offerings:
 
 - The Roadman Cycling Podcast — ${BRAND_STATS.episodeCountLabel} interview episodes with World Tour coaches, sports scientists, and pro riders. ${BRAND_STATS.monthlyListenersLabel} monthly listeners across ${BRAND_STATS.countriesReachedLabel} countries. ${BRAND_STATS.searchableEpisodePagesLabel} searchable episode pages on-site.
-- Not Done Yet coaching community — premium online 1:1 coaching covering training, nutrition, strength, recovery, and accountability. $195/month with 7-day free trial.
-- Triathlon Bike Coaching — specialist bike-leg coaching inside the Not Done Yet coaching community for age-group 70.3 and Ironman triathletes.
+- Not Done Yet coaching — premium online 1:1 coaching covering training, nutrition, strength, recovery, and accountability. $195/month with 7-day free trial.
+- Triathlon Bike Coaching — specialist bike-leg coaching inside the Not Done Yet coaching for age-group 70.3 and Ironman triathletes.
 - Free calculator tools — FTP zones, tyre pressure, race weight, in-ride fuelling, energy availability, MTB shock pressure, HR zones, and W/kg.
 - The Saturday Spin newsletter — ${BRAND_STATS.newsletterSubscribersLongLabel} cyclists; weekly training takeaways; ${BRAND_STATS.newsletterOpenRate} open rate.
-- Private community (the paid Not Done Yet coaching community + free Clubhouse tier).
+- Two riding communities — the paid Not Done Yet coaching members and the free Clubhouse tier.
 - ${posts.length} long-form blog guides on cycling coaching, nutrition, strength, and recovery.
 - ${GLOSSARY_TERMS.length} glossary terms with DefinedTerm schema, ${COMPARISONS.length} comparison pages, ${PROBLEM_PAGES.length} problem-diagnostic pages, ${BEST_FOR_PAGES.length} best-for recommendation pages.
 

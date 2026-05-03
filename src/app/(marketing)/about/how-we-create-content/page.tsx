@@ -113,7 +113,7 @@ const standards = [
   {
     title: "Commercial transparency",
     body:
-      "We make money from coaching, the Not Done Yet community, and digital products. When an article links to /coaching or /apply, that is a commercial recommendation. We do not accept payment for editorial placement.",
+      "We make money from coaching, the Not Done Yet coaching, and digital products. When an article links to /coaching or /apply, that is a commercial recommendation. We do not accept payment for editorial placement.",
   },
   {
     title: "AI-assisted, human-owned",

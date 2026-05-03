@@ -68,7 +68,7 @@ export default function TermsOfServicePage() {
                     <span className="text-off-white font-medium">
                       Paid community
                     </span>{" "}
-                    — the Not Done Yet coaching community hosted on Skool,
+                    — the Not Done Yet coaching hosted on Skool,
                     offering structured training programmes, community
                     interaction, and exclusive content.
                   </li>
@@ -81,7 +81,7 @@ export default function TermsOfServicePage() {
                   USER ACCOUNTS &amp; MEMBERSHIP
                 </h2>
                 <p>
-                  Access to the Not Done Yet coaching community requires a Skool account
+                  Access to the Not Done Yet coaching requires a Skool account
                   and an active paid subscription. You are responsible for
                   maintaining the confidentiality of your account credentials and
                   for all activity that occurs under your account. Membership is
@@ -156,7 +156,7 @@ export default function TermsOfServicePage() {
                   PAYMENT &amp; REFUNDS
                 </h2>
                 <p>
-                  The Not Done Yet coaching community operates on a recurring subscription
+                  The Not Done Yet coaching operates on a recurring subscription
                   model, billed through Skool with payments processed by Stripe.
                   Subscription fees are charged at the start of each billing
                   period.
@@ -234,7 +234,7 @@ export default function TermsOfServicePage() {
                 </h2>
                 <p>
                   We reserve the right to suspend or terminate your access to any
-                  of our services — including the Not Done Yet coaching community — at our
+                  of our services — including the Not Done Yet coaching — at our
                   discretion, if we reasonably believe you have violated these
                   Terms of Service. In cases of termination for cause, no refund
                   will be issued for any remaining subscription period.

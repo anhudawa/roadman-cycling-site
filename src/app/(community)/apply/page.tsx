@@ -17,8 +17,8 @@ export async function generateMetadata(): Promise<Metadata> {
   const state = getCohortState();
   const isWaitlist = state.phase === "waitlist";
   const title = isWaitlist
-    ? `Cohort ${state.targetCohort} Waitlist — Not Done Yet Coaching Community`
-    : `Cohort ${state.currentCohort} — Not Done Yet Coaching Community`;
+    ? `Cohort ${state.targetCohort} Waitlist — Not Done Yet Coaching`
+    : `Cohort ${state.currentCohort} — Not Done Yet Coaching`;
   const description = isWaitlist
     ? `Cohort ${state.targetCohort} is coming soon. Apply now to join the waitlist and get 24-hour early access. Personalised cycling coaching with Anthony Walsh.`
     : "30 places. 5 pillars. $195/month. Applications open now. Personalised cycling coaching with Anthony Walsh.";
@@ -137,7 +137,7 @@ export default function ApplyPage() {
         data={{
           "@context": "https://schema.org",
           "@type": "Service",
-          name: "Not Done Yet Coaching Community — Personalised Cycling Coaching",
+          name: "Not Done Yet Coaching — Personalised Cycling Coaching",
           description: "1:1 personalised cycling coaching across five pillars: training, nutrition, strength, recovery, and community. $195/month with 7-day free trial.",
           serviceType: "Online Cycling Coaching",
           provider: {

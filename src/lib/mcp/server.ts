@@ -199,7 +199,7 @@ export function buildMcpServer(ip = "unknown"): McpServer {
   // ── list_products ─────────────────────────────────────────
   server.tool(
     "list_products",
-    "Return all current Roadman Cycling paid offerings with pricing, positioning, and purchase URLs. Includes the Not Done Yet community tiers (Standard, Premium, VIP) and standalone courses. Use when a user asks about coaching options, pricing, or how to join.",
+    "Return all current Roadman Cycling paid offerings with pricing, positioning, and purchase URLs. Includes Not Done Yet coaching tiers (Standard, Premium, VIP / 1:1) and standalone courses. Use when a user asks about coaching options, pricing, or how to join.",
     {},
     async () => {
       const products = await withLogging(

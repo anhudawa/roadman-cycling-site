@@ -34,7 +34,7 @@ export const metadata: Metadata = {
 };
 
 const credentials = [
-  "Cycling coach — Not Done Yet coaching community",
+  "Cycling coach — Not Done Yet coaching",
   "Host of the Roadman Cycling Podcast (1M+ monthly listeners)",
   "1,400+ on-the-record interviews with World Tour coaches, sports scientists, and professional riders",
   "Guests include Prof. Stephen Seiler, Dan Lorang, Greg LeMond, Joe Friel, Tim Spector, and Ben Healy",

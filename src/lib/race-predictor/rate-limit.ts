@@ -3,7 +3,7 @@
  *
  * Cap: PREDICT_FREE_DAILY (default 3) predictions per anon session per
  * 24-hour rolling window. After that, the API returns 429 with a CTA toward
- * the Race Report or the Not Done Yet community.
+ * the Race Report or Not Done Yet coaching.
  *
  * Two backends:
  *   1. Upstash Redis sliding-window (production / preview when configured)
