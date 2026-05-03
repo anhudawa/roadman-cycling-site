@@ -40,8 +40,9 @@ const footerColumns = {
   coaching: {
     title: "Coaching",
     links: [
-      { label: "Apply for Coaching", href: "/apply" },
       { label: "How It Works", href: "/coaching" },
+      { label: "Not Done Yet Coaching", href: "/community/not-done-yet" },
+      { label: "Apply for 1:1 Coaching", href: "/apply" },
       { label: "Strength Training", href: "/strength-training" },
       { label: "Cycling Coach Ireland", href: "/coaching/ireland" },
       { label: "Cycling Coach UK", href: "/coaching/uk" },
@@ -49,10 +50,11 @@ const footerColumns = {
     ],
   },
   community: {
-    title: "Community",
+    title: "Free & Community",
     links: [
-      { label: "Not Done Yet Coaching Community", href: "/community/not-done-yet" },
-      { label: "Clubhouse (Free)", href: "/community/clubhouse" },
+      { label: "Plateau Diagnostic", href: "/plateau" },
+      { label: "Saturday Spin Newsletter", href: "/newsletter" },
+      { label: "Clubhouse (Free Community)", href: "/community/clubhouse" },
       { label: "Roadman CC (Dublin)", href: "/community/club" },
       { label: "Events", href: "/events" },
     ],

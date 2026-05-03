@@ -312,9 +312,9 @@ export const COACHING_SEGMENTS: Record<string, SegmentData> = {
       },
       {
         number: "05",
-        title: "Community to Lean On",
+        title: "Riders to Lean On",
         description:
-          "Access to the Not Done Yet community — other riders going through the same learning curve. Questions answered fast, accountability built in.",
+          "Inside Not Done Yet, you train alongside other riders going through the same learning curve. Questions answered fast, accountability built in.",
       },
     ],
     sampleWeekHours: "5-7 hrs/week",
@@ -525,9 +525,9 @@ export const COACHING_SEGMENTS: Record<string, SegmentData> = {
           "Coaching becomes even more important. Hormonal shifts in perimenopause and menopause meaningfully affect recovery, body composition, sleep, and strength response. The training approach shifts to higher-intensity work, more strength, more deliberate recovery, and a clear conversation about fuelling. We coach a number of riders through this transition — it's a window where the right structure makes an enormous difference.",
       },
       {
-        question: "Will I be the only woman in the community?",
+        question: "Will I be the only woman?",
         answer:
-          "No. The Not Done Yet community has a growing female membership and our coaching covers riders across the spectrum — sportive, racing, gravel, comeback. The community Q&A, masterclasses, and coaching calls are open to all members.",
+          "No. Not Done Yet has a growing number of women coached on the programme — sportive, racing, gravel, comeback. The Q&A, masterclasses, and coaching calls are open to every coached rider.",
       },
       {
         question: "Do I need a power meter?",

@@ -43,8 +43,8 @@ export default function PrivacyPolicyPage() {
                   Roadman Cycling is an Irish cycling media and education brand.
                   We produce the Roadman Cycling Podcast, publish written content
                   about cycling performance and training, operate the Saturday
-                  Spin Newsletter, and run the Not Done Yet coaching community —
-                  our paid online coaching community for serious cyclists.
+                  Spin Newsletter, and run Not Done Yet coaching —
+                  our paid online coaching programme for serious cyclists.
                 </p>
                 <p className="mt-3">
                   Our website is{" "}
@@ -170,7 +170,7 @@ export default function PrivacyPolicyPage() {
                   <li>
                     <span className="text-off-white font-medium">Stripe</span>{" "}
                     — payment processing. If you purchase a subscription to the
-                    Not Done Yet coaching community (hosted on Skool), payment is
+                    Not Done Yet coaching (hosted on Skool), payment is
                     processed by Stripe. We do not store your full payment card details on our
                     servers.
                   </li>

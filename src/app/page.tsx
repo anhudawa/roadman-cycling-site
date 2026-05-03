@@ -167,13 +167,14 @@ export default function HomePage() {
                 </Link>
               </h2>
               <p className="text-foreground-muted max-w-xl mx-auto mb-6">
-                Inside the{" "}
+                Inside{" "}
                 <Link href="/apply" className="text-coral hover:underline">
-                  Not Done Yet coaching community
+                  Not Done Yet coaching
                 </Link>
                 , everything connects. Training, nutrition, strength, recovery,
-                and community — coached together as one system. That&apos;s what
-                makes the difference between guessing and getting faster.
+                and the riders alongside you — coached together as one system.
+                That&apos;s what makes the difference between guessing and
+                getting faster.
               </p>
               <Button href="/apply">
                 Apply to Join
@@ -330,10 +331,10 @@ export default function HomePage() {
               <p className="text-foreground-muted max-w-2xl mx-auto text-lg">
                 Most cyclists plateau because they train alone, guess at
                 nutrition, and skip the stuff that actually compounds.
-                Inside the Not Done Yet coaching community, riders follow
-                one coached system — training, nutrition, strength,
-                recovery, and accountability — and they&apos;re proving every
-                week that faster is still ahead.
+                Inside Not Done Yet coaching, riders follow one coached
+                system — training, nutrition, strength, recovery, and
+                accountability — and they&apos;re proving every week that
+                faster is still ahead.
               </p>
             </ScrollReveal>
 

@@ -9,14 +9,14 @@ const PAGE_URL = `${SITE_ORIGIN}/entity/not-done-yet`;
 const PRODUCT_URL = `${SITE_ORIGIN}/community/not-done-yet`;
 
 const NDY_DESCRIPTION =
-  "Not Done Yet is the Roadman Cycling coaching community — personalised training plans, weekly coaching with Anthony Walsh, expert masterclasses, and a private community of serious amateur cyclists who refuse to accept their best days are behind them.";
+  "Not Done Yet is Roadman Cycling's coaching product — personalised training plans, weekly coaching calls with Anthony Walsh, expert masterclasses, and a private group of serious amateur cyclists who refuse to accept their best days are behind them.";
 
 export const metadata: Metadata = {
-  title: "Not Done Yet — Coaching Community Entity",
+  title: "Not Done Yet — Coaching Entity",
   description: NDY_DESCRIPTION,
   alternates: { canonical: PAGE_URL },
   openGraph: {
-    title: "Not Done Yet — Coaching Community Entity",
+    title: "Not Done Yet — Coaching Entity",
     description: NDY_DESCRIPTION,
     type: "website",
     url: PAGE_URL,
@@ -45,7 +45,7 @@ const whatYouGet = [
       "Deep-dive sessions on nutrition, race-day fuelling, FTP testing, polarised training, and recovery — taught by the experts behind the Roadman Podcast.",
   },
   {
-    title: "Private community",
+    title: "Private member space",
     body:
       "A members-only space for accountability, ride reports, race plans, and direct peer support from cyclists at every level — Cat 4 to Cat 1, gran fondo to ultra-distance.",
   },
@@ -81,14 +81,14 @@ const outcomes = [
 
 const tiers = [
   {
-    name: "Coaching Community",
+    name: "Not Done Yet Coaching",
     price: "$195/mo",
-    detail: "1:1 personalised coaching across the five pillars. 7-day free trial.",
+    detail: "Personalised coaching across the five pillars. 7-day free trial.",
   },
   {
-    name: "VIP",
+    name: "1:1 Coaching",
     price: "$1,950/yr",
-    detail: "Direct 1:1 access to Anthony with quarterly strategy calls.",
+    detail: "Direct 1:1 access to Anthony with quarterly strategy calls. Application only.",
   },
 ];
 
@@ -99,13 +99,13 @@ export default function NotDoneYetEntityPage() {
         data={{
           "@context": "https://schema.org",
           "@type": "AboutPage",
-          name: "Not Done Yet — Coaching Community Entity",
+          name: "Not Done Yet — Coaching Entity",
           url: PAGE_URL,
           isPartOf: { "@id": ENTITY_IDS.website },
           mainEntity: {
             "@type": "Service",
             "@id": `${SITE_ORIGIN}/community/not-done-yet#service`,
-            name: "Not Done Yet Coaching Community",
+            name: "Not Done Yet Coaching",
             url: PRODUCT_URL,
             description: NDY_DESCRIPTION,
             provider: { "@id": ENTITY_IDS.organization },
@@ -124,7 +124,7 @@ export default function NotDoneYetEntityPage() {
           "@context": "https://schema.org",
           "@type": "Service",
           "@id": `${SITE_ORIGIN}/community/not-done-yet#service`,
-          name: "Not Done Yet Coaching Community",
+          name: "Not Done Yet Coaching",
           alternateName: ["Not Done Yet", "NDY"],
           url: PRODUCT_URL,
           mainEntityOfPage: PAGE_URL,
@@ -135,11 +135,11 @@ export default function NotDoneYetEntityPage() {
           offers: [
             {
               "@type": "Offer",
-              name: "Coaching Community",
+              name: "Not Done Yet Coaching",
               price: "195",
               priceCurrency: "USD",
               description:
-                "Monthly subscription. 7-day free trial. 1:1 personalised coaching across the five pillars.",
+                "Monthly subscription. 7-day free trial. Personalised coaching across the five pillars.",
               priceSpecification: {
                 "@type": "UnitPriceSpecification",
                 price: "195",
@@ -186,7 +186,7 @@ export default function NotDoneYetEntityPage() {
           <Container width="narrow">
             <ScrollReveal direction="up">
               <p className="text-coral font-heading text-sm tracking-widest mb-4">
-                ENTITY · COACHING COMMUNITY
+                ENTITY · COACHING
               </p>
               <h1
                 className="font-heading text-off-white mb-6"
@@ -228,7 +228,7 @@ export default function NotDoneYetEntityPage() {
                   CANONICAL NAME
                 </p>
                 <p className="font-heading text-off-white text-lg">
-                  Not Done Yet Coaching Community
+                  Not Done Yet Coaching
                 </p>
               </Card>
               <Card className="p-5" hoverable={false}>

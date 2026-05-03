@@ -130,6 +130,7 @@ export const NAV_ITEMS: NavItem[] = [
       { label: "Comparisons", href: "/compare" },
       { label: "Training Plans", href: "/plan" },
       { label: "Research & Evidence", href: "/research" },
+      { label: "Saturday Spin Newsletter", href: "/newsletter" },
     ],
   },
   {
@@ -145,9 +146,11 @@ export const NAV_ITEMS: NavItem[] = [
       { label: "In-Ride Fuelling", href: "/tools/fuelling" },
       { label: "Energy Availability", href: "/tools/energy-availability" },
       { label: "MTB Setup", href: "/tools/shock-pressure" },
-      { label: "Plateau Diagnostic", href: "/plateau" },
-      { label: "Coaching Assessment", href: "/assessment" },
     ],
+  },
+  {
+    label: "Plateau Diagnostic",
+    href: "/plateau",
   },
   {
     label: "Ask Roadman",
@@ -157,12 +160,12 @@ export const NAV_ITEMS: NavItem[] = [
     label: "Coaching",
     href: "/coaching",
     children: [
-      { label: "Apply for Coaching", href: "/apply" },
       { label: "How It Works", href: "/coaching" },
+      { label: "Not Done Yet Coaching", href: "/community/not-done-yet" },
+      { label: "Apply for 1:1 Coaching", href: "/apply" },
       { label: "Triathlon Coaching", href: "/coaching/triathletes" },
       { label: "Strength Training", href: "/strength-training" },
-      { label: "Not Done Yet Community", href: "/community/not-done-yet" },
-      { label: "Clubhouse (Free)", href: "/community/clubhouse" },
+      { label: "Clubhouse (Free Community)", href: "/community/clubhouse" },
     ],
   },
   {

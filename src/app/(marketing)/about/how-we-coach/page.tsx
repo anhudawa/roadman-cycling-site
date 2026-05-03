@@ -118,9 +118,9 @@ const offerings = [
     detail: "Personalised plan, weekly check-ins, monthly call. The full Roadman Method applied to your training.",
   },
   {
-    title: "Not Done Yet Community",
+    title: "Not Done Yet Coaching",
     href: "/entity/not-done-yet",
-    detail: "Group coaching tier — the same methodology delivered through Vekta-powered plans, weekly live calls, and a serious peer group.",
+    detail: "The Roadman coaching system delivered as a monthly programme — Vekta-powered plans, weekly live calls, and a serious peer group of riders training alongside you.",
   },
   {
     title: "The Roadman Method (entity)",

@@ -669,7 +669,7 @@ export const COMPARISONS: ComparisonPage[] = [
     ],
     bestForB: [
       "Athletes whose specific coach has built their workflow on Vekta",
-      "Riders inside the Roadman Not Done Yet community using the included Vekta plans",
+      "Riders inside Roadman's Not Done Yet coaching using the included Vekta plans",
       "Cyclists who like Vekta's auto-adjusting plan structure and don't need WKO-level analysis",
       "Coaches running smaller, plan-led programmes who prefer Vekta's interface",
     ],
@@ -683,8 +683,8 @@ export const COMPARISONS: ComparisonPage[] = [
       "**TrainingPeaks is the gold standard. Genuinely.** Most of the coaches we talk to on the podcast — the ones working with World Tour riders, the ones running successful amateur coaching businesses, the ones with the published research behind them — all use TrainingPeaks. That's not marketing copy, that's just where the industry is. Two decades of platform development, the deepest analytics in the sport, and the WKO5 pipeline that high-performance teams quietly rely on.",
       "The Performance Management Chart (PMC), CTL/ATL/TSB, the fitness/fatigue model — these aren't niche features. They're the language coaches use when they sit down to plan your season. Open TrainingPeaks and a coach can read your last six months in about thirty seconds. That matters when you're paying for their time.",
       "The plan marketplace is the other unfair advantage. Thousands of structured plans built by coaches you'd happily hire — Joe Friel's plans, Tim Cusick's WKO-built blocks, Carmichael Training Systems, the pro coaches who've published books you've already read. If you're self-coaching and you want a plan written by someone who actually knows what they're doing, TrainingPeaks is where they put it.",
-      "**Vekta is a clever, newer platform.** Quick context so you know where we're coming from: Roadman Cycling's paid Not Done Yet community uses Vekta to deliver training plans to members, so we know the platform well. The plan auto-adjustment is genuinely useful — sessions ahead in the calendar shift based on what you actually completed, which is a nice touch. The interface is clean. The team behind it ships updates regularly.",
-      "But Vekta is a smaller platform with a smaller coach base. The third-party integration list is shorter. There's no WKO5 pipeline. The plan marketplace is much smaller. The years-of-data continuity isn't there yet. None of that makes Vekta a bad platform — it makes it a newer one. For a community-delivered plan inside a fixed coaching system, Vekta does the job. For an athlete building a multi-year training history with the platform every serious coach in the sport already uses? TrainingPeaks, every time.",
+      "**Vekta is a clever, newer platform.** Quick context so you know where we're coming from: Roadman Cycling's paid Not Done Yet coaching uses Vekta to deliver training plans to members, so we know the platform well. The plan auto-adjustment is genuinely useful — sessions ahead in the calendar shift based on what you actually completed, which is a nice touch. The interface is clean. The team behind it ships updates regularly.",
+      "But Vekta is a smaller platform with a smaller coach base. The third-party integration list is shorter. There's no WKO5 pipeline. The plan marketplace is much smaller. The years-of-data continuity isn't there yet. None of that makes Vekta a bad platform — it makes it a newer one. For a plan delivered inside a fixed coaching system, Vekta does the job. For an athlete building a multi-year training history with the platform every serious coach in the sport already uses? TrainingPeaks, every time.",
       "**The honest answer for most cyclists:** if you're hiring a coach in 2026, ask them what platform they use, and you'll almost always get TrainingPeaks back. Sign up there. If your coach happens to use Vekta, sign up there. If you're self-coached and want the deepest tools and the biggest plan library, TrainingPeaks is the one to commit to.",
     ],
     faqs: [
@@ -706,7 +706,7 @@ export const COMPARISONS: ComparisonPage[] = [
       },
       {
         q: "Is Vekta a bad platform?",
-        a: "Not at all — Vekta is a well-built, well-maintained platform with some genuinely useful features, particularly the auto-adjusting plan structure. It's just newer and smaller than TrainingPeaks, with a smaller coach base and fewer third-party integrations. It's the right tool inside a community that's chosen it (like Roadman's Not Done Yet plans). For an athlete building their own long-term setup independent of a specific community, TrainingPeaks is the broader, deeper choice.",
+        a: "Not at all — Vekta is a well-built, well-maintained platform with some genuinely useful features, particularly the auto-adjusting plan structure. It's just newer and smaller than TrainingPeaks, with a smaller coach base and fewer third-party integrations. It's the right tool inside a coaching programme that's chosen it (like Roadman's Not Done Yet plans). For an athlete building their own long-term setup independent of a specific programme, TrainingPeaks is the broader, deeper choice.",
       },
       {
         q: "Can I use both?",
@@ -714,7 +714,7 @@ export const COMPARISONS: ComparisonPage[] = [
       },
       {
         q: "Roadman uses Vekta — why is the verdict still TrainingPeaks?",
-        a: "Because the verdict is about the platforms, not about who we work with. Roadman uses Vekta to deliver plans inside the Not Done Yet community because it suits that specific delivery model — a defined community, a fixed plan structure, riders all moving through similar blocks. That doesn't change the broader truth for an individual cyclist building their own setup: TrainingPeaks is the industry-standard platform with the deepest analysis tools, the biggest coach base, and the longest data history. The honest answer for most riders is TrainingPeaks, full stop.",
+        a: "Because the verdict is about the platforms, not about who we work with. Roadman uses Vekta to deliver plans inside Not Done Yet coaching because it suits that specific delivery model — a defined programme, a fixed plan structure, riders all moving through similar blocks. That doesn't change the broader truth for an individual cyclist building their own setup: TrainingPeaks is the industry-standard platform with the deepest analysis tools, the biggest coach base, and the longest data history. The honest answer for most riders is TrainingPeaks, full stop.",
       },
     ],
   },
@@ -1396,7 +1396,7 @@ export const COMPARISONS: ComparisonPage[] = [
       },
       {
         q: "What's the price difference?",
-        a: "Group coaching typically runs $50-150 per month — Roadman's Not Done Yet community sits in that range. 1:1 cycling coaching is usually $150-300 per month, sometimes higher for specialist or pro-level coaches. The four-to-six-times cost difference is real, and it buys bespoke programming, more direct contact, and a plan rebuilt around you specifically.",
+        a: "Group coaching typically runs $50-200 per month — Roadman's Not Done Yet coaching sits in that range at $195/month. 1:1 cycling coaching is usually $200-500 per month, sometimes higher for specialist or pro-level coaches. The cost difference is real, and it buys bespoke programming, more direct contact, and a plan rebuilt around you specifically.",
       },
       {
         q: "Can I move from group to 1:1?",

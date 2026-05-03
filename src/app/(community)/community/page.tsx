@@ -8,14 +8,14 @@ import { ENTITY_IDS } from "@/lib/brand-facts";
 export const metadata: Metadata = {
   title: "Community — Serious Cyclists Who Refuse to Settle",
   description:
-    "Two communities. One mission. Join the free Clubhouse or go premium with the Not Done Yet coaching community — personalised coaching, training plans, and the five-pillar system (training, nutrition, strength, recovery, community).",
+    "Two communities. One mission. Join the free Clubhouse or go premium with the Not Done Yet coaching — personalised coaching, training plans, and the five-pillar system (training, nutrition, strength, recovery, community).",
   alternates: {
     canonical: "https://roadmancycling.com/community",
   },
   openGraph: {
     title: "Community — Serious Cyclists Who Refuse to Settle",
     description:
-      "Two communities. One mission. Join the free Clubhouse or go premium with the Not Done Yet coaching community — personalised coaching, training plans, and the five-pillar system (training, nutrition, strength, recovery, community).",
+      "Two communities. One mission. Join the free Clubhouse or go premium with the Not Done Yet coaching — personalised coaching, training plans, and the five-pillar system (training, nutrition, strength, recovery, community).",
     type: "website",
     url: "https://roadmancycling.com/community",
   },
@@ -30,7 +30,7 @@ export default function CommunityPage() {
           "@type": "Organization",
           name: "Roadman Cycling Community",
           description:
-            "Two communities for serious cyclists. The free Clubhouse and the premium Not Done Yet coaching community.",
+            "Two communities for serious cyclists. The free Clubhouse and the premium Not Done Yet coaching.",
           url: "https://roadmancycling.com/community",
           parentOrganization: { "@id": ENTITY_IDS.organization },
         }}
@@ -214,7 +214,7 @@ export default function CommunityPage() {
                   </p>
                   <ul className="space-y-2 mb-6 flex-1">
                     {[
-                      "Everything in the Not Done Yet coaching community",
+                      "Everything in the Not Done Yet coaching",
                       "Direct 1:1 with Anthony",
                       "Race & event strategy",
                       "Custom training camps",
