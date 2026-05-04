@@ -370,11 +370,24 @@ export function Header() {
                   delay: 0.04 + NAV_ITEMS.length * 0.05,
                   ease: [0.16, 1, 0.3, 1],
                 }}
-                className="flex justify-center pt-8"
+                className="flex flex-col items-stretch gap-4 pt-8"
               >
                 <Link
+                  href={ctaHref}
+                  className="
+                    font-heading text-xl tracking-wider text-center
+                    bg-coral hover:bg-coral-hover
+                    text-off-white px-6 py-4 rounded-md
+                    transition-all
+                  "
+                  onClick={() => setIsMobileMenuOpen(false)}
+                  style={{ transitionDuration: "var(--duration-fast)" }}
+                >
+                  {ctaLabelMobile}
+                </Link>
+                <Link
                   href="/search"
-                  className="inline-flex items-center gap-2 font-body text-sm text-foreground-muted hover:text-coral transition-colors px-4 py-2"
+                  className="inline-flex items-center justify-center gap-2 font-body text-sm text-foreground-muted hover:text-coral transition-colors min-h-[44px] py-2"
                   onClick={() => setIsMobileMenuOpen(false)}
                   style={{ transitionDuration: "var(--duration-fast)" }}
                 >
@@ -393,19 +406,6 @@ export function Header() {
                     />
                   </svg>
                   Search
-                </Link>
-                <Link
-                  href={ctaHref}
-                  className="
-                    font-heading text-xl tracking-wider
-                    bg-coral hover:bg-coral-hover
-                    text-off-white px-10 py-4 rounded-md
-                    transition-all
-                  "
-                  onClick={() => setIsMobileMenuOpen(false)}
-                  style={{ transitionDuration: "var(--duration-fast)" }}
-                >
-                  {ctaLabelMobile}
                 </Link>
               </motion.div>
             </nav>
