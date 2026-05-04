@@ -168,6 +168,7 @@ export const NAV_ITEMS: NavItem[] = [
       { label: "Find Your Fit", href: "/find-your-fit" },
       { label: "Not Done Yet Coaching", href: "/community/not-done-yet" },
       { label: "Inner Circle", href: "/inner-circle" },
+      { label: "Apps vs Coaching", href: "/apps-vs-coaching" },
       { label: "Triathlon Coaching", href: "/coaching/triathletes" },
       { label: "Strength Training", href: "/strength-training" },
       { label: "Clubhouse (Free Community)", href: "/community/clubhouse" },
