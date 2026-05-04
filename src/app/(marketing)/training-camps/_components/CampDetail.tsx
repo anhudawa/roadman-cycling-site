@@ -14,7 +14,7 @@ interface Props {
   camp: CampConfig;
 }
 
-const GALLERY = [
+const TOWN_GALLERY = [
   {
     src: "/images/camps/girona-river-houses.jpg",
     alt: "The coloured houses along the Onyar river — the postcard shot of Girona old town",
@@ -46,8 +46,8 @@ const INCLUDED = [
 const NOT_INCLUDED = [
   "Flights to Girona",
   "Travel insurance",
-  "Some lunches & dinners (most are at the house, included)",
-  "Hire bike (we can arrange one for an extra fee)",
+  "Lunch and dinner",
+  "Hire bike (we can arrange one)",
 ];
 
 export function CampDetail({ camp }: Props) {
@@ -98,9 +98,7 @@ export function CampDetail({ camp }: Props) {
             name: "Anthony Walsh",
           },
           maximumAttendeeCapacity: camp.capacity,
-          image: [
-            "https://roadmancycling.com/images/camps/girona-river-houses.jpg",
-          ],
+          image: [`https://roadmancycling.com${camp.heroImage}`],
         }}
       />
       <JsonLd
@@ -154,6 +152,19 @@ export function CampDetail({ camp }: Props) {
               >
                 {camp.heroSubtitle}
               </p>
+            </ScrollReveal>
+
+            <ScrollReveal direction="up" delay={0.04}>
+              <div className="relative aspect-[16/9] max-w-5xl mx-auto mb-10 rounded-2xl overflow-hidden border border-white/10 shadow-[0_20px_60px_-20px_rgba(0,0,0,0.6)]">
+                <Image
+                  src={camp.heroImage}
+                  alt={camp.heroImageAlt}
+                  fill
+                  sizes="(max-width: 1024px) 100vw, 1024px"
+                  className="object-cover"
+                  priority
+                />
+              </div>
             </ScrollReveal>
 
             {/* Stats bar */}
@@ -388,7 +399,7 @@ export function CampDetail({ camp }: Props) {
 
               <ScrollReveal direction="up" delay={0.05}>
                 <div className="grid grid-cols-2 gap-3">
-                  {GALLERY.slice(0, 4).map((g) => (
+                  {TOWN_GALLERY.slice(0, 4).map((g) => (
                     <div
                       key={g.src}
                       className="relative aspect-[4/5] rounded-lg overflow-hidden border border-white/10"
@@ -426,7 +437,7 @@ export function CampDetail({ camp }: Props) {
               </h2>
             </ScrollReveal>
             <div className="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-4">
-              {GALLERY.map((g, i) => (
+              {TOWN_GALLERY.map((g, i) => (
                 <ScrollReveal key={g.src} direction="up" delay={i * 0.05}>
                   <div className="relative aspect-square rounded-lg overflow-hidden border border-white/10">
                     <Image

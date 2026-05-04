@@ -5,7 +5,7 @@ export const CAMP_FAQS = [
   },
   {
     q: "What's actually included for €995?",
-    a: "Four nights at the farmhouse, daily breakfast, all five guided rides, in-ride nutrition, the follow car, airport transfers from Girona, and the team on hand the whole week (Anthony, Sarah, Wes). Lunches and dinners are usually communal at the house — those are included on most days, and on the others you pay for what you eat at coffee/lunch stops.",
+    a: "Four nights at the farmhouse, daily breakfast, all five guided rides, in-ride nutrition, the follow car, airport transfers from Girona, and the team on hand the whole week (Anthony, Sarah, Wes). Lunch and dinner are not included — there's a stocked kitchen at the house and great spots a short drive or ride away, and we'll point you at our favourites.",
   },
   {
     q: "How does payment work?",

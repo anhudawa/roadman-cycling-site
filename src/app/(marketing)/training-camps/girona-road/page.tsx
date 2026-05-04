@@ -19,8 +19,8 @@ export const metadata: Metadata = {
     url: "https://roadmancycling.com/training-camps/girona-road",
     images: [
       {
-        url: "https://roadmancycling.com/images/camps/girona-river-houses.jpg",
-        alt: "Girona old town along the Onyar river",
+        url: "https://roadmancycling.com/images/camps/girona-road-coast.jpeg",
+        alt: "Group of road cyclists on a coastal road above a turquoise Costa Brava cove",
       },
     ],
   },

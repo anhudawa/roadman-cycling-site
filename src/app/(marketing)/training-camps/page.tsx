@@ -180,12 +180,8 @@ export default function TrainingCampsLandingPage() {
                   >
                     <div className="relative aspect-[16/10]">
                       <Image
-                        src={
-                          camp.slug === "road"
-                            ? "/images/camps/girona-cathedral-walls.jpg"
-                            : "/images/camps/girona-old-town.jpg"
-                        }
-                        alt={`${camp.name} — Girona`}
+                        src={camp.heroImage}
+                        alt={camp.heroImageAlt}
                         fill
                         sizes="(max-width: 768px) 100vw, 50vw"
                         className="object-cover group-hover:scale-105 transition-transform duration-700"

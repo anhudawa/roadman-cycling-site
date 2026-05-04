@@ -22,6 +22,8 @@ export interface CampConfig {
   capacity: number;
   description: string;
   heroSubtitle: string;
+  heroImage: string;
+  heroImageAlt: string;
   // Stats bar values shown on the detail page
   level: string;
   dailyDistance: string;
@@ -46,6 +48,9 @@ export const CAMPS: Record<CampSlug, CampConfig> = {
       "Five days riding the roads pros build their seasons on. Rocacorba, Els Àngels, Mare de Déu del Mont, the Banyoles loop. Two groups so nobody gets dropped or held back. A coffee stop every ride. Dinner back at the farmhouse, pool, the works.",
     heroSubtitle:
       "Five days on the roads pros use to build their seasons.",
+    heroImage: "/images/camps/girona-road-coast.jpeg",
+    heroImageAlt:
+      "Group of road cyclists on a coastal road above a turquoise Costa Brava cove",
     level: "Intermediate to advanced",
     dailyDistance: "70–110 km",
     totalElevation: "~6,500 m total",
@@ -67,6 +72,9 @@ export const CAMPS: Record<CampSlug, CampConfig> = {
       "Five days off the tarmac. Volcanic tracks in La Garrotxa, the Ter river paths, vineyard roads in the Empordà, coastal gravel above the Costa Brava. Two groups, never dropped, follow car when we're far from home.",
     heroSubtitle:
       "Five days on the dirt that built Girona's gravel reputation.",
+    heroImage: "/images/camps/girona-gravel-trail.webp",
+    heroImageAlt:
+      "Two gravel riders on a dirt trail through Catalan countryside",
     level: "Intermediate. Some technical sections.",
     dailyDistance: "55–90 km",
     totalElevation: "~5,000 m total",

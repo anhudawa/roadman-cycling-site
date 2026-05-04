@@ -122,10 +122,162 @@ async function handleCheckoutCompleted(
     await handleSpotlightCheckoutCompleted(session);
     return;
   }
+  if (metadata.type === "camp_booking") {
+    await handleCampBookingCheckoutCompleted(session);
+    return;
+  }
 
   // Fallback: legacy S&C strength training course. No metadata.type set
   // because the original `/api/checkout` route predates the typed flow.
   await sendStripeSaleNotification(session);
+}
+
+/* ============================================================ */
+/* camp_booking                                                 */
+/* ============================================================ */
+
+async function handleCampBookingCheckoutCompleted(
+  session: Stripe.Checkout.Session,
+): Promise<void> {
+  const metadata = session.metadata ?? {};
+  const bookingIdsRaw =
+    typeof metadata.booking_ids === "string" ? metadata.booking_ids : "";
+  const bookingIds = bookingIdsRaw
+    .split(",")
+    .map((s) => Number(s.trim()))
+    .filter((n) => Number.isFinite(n) && n > 0);
+  if (bookingIds.length === 0) {
+    console.error(
+      "[stripe/dispatch] camp_booking missing booking_ids in metadata",
+    );
+    return;
+  }
+
+  const paymentIntentId =
+    typeof session.payment_intent === "string"
+      ? session.payment_intent
+      : session.payment_intent?.id ?? null;
+
+  // Lazy imports keep the dispatch module light — the camp libs pull in
+  // the schema, the assigner, and the email layer, none of which are
+  // needed for the more common paid_report / subscription paths.
+  const { db } = await import("@/lib/db");
+  const { campBookings } = await import("@/lib/db/schema");
+  const { eq } = await import("drizzle-orm");
+  const { autoAssignBooking } = await import("@/lib/camps/assigner");
+  const { ROOMS_BY_KEY } = await import("@/lib/camps/rooms");
+  const { getCamp } = await import("@/lib/camps/camps");
+  const {
+    notifyCampBookingAdmin,
+    sendCampBookingConfirmation,
+  } = await import("@/lib/camps/notifications");
+  const { subscribeToBeehiiv } = await import("@/lib/integrations/beehiiv");
+
+  for (const bookingId of bookingIds) {
+    const rows = await db
+      .select()
+      .from(campBookings)
+      .where(eq(campBookings.id, bookingId))
+      .limit(1);
+    const booking = rows[0];
+    if (!booking) {
+      console.error(
+        `[stripe/dispatch] camp_booking ${bookingId} not found — skipping`,
+      );
+      continue;
+    }
+    // Idempotency: Stripe retries webhooks. If we already settled this
+    // booking (paidAt set) skip the side effects entirely.
+    if (booking.paidAt) {
+      console.log(
+        `[stripe/dispatch] camp_booking ${bookingId} already paid — skipping`,
+      );
+      continue;
+    }
+
+    const camp = booking.camp as "road" | "gravel";
+    const cfg = getCamp(camp);
+    if (!cfg) {
+      console.error(
+        `[stripe/dispatch] camp_booking ${bookingId} has unknown camp '${camp}'`,
+      );
+      continue;
+    }
+
+    // Run the auto-assigner now that payment is confirmed. A booking past
+    // the cap drops to waitlist — the email reflects that, and admin can
+    // refund manually if needed.
+    const assignment = await autoAssignBooking({
+      bookingId: booking.id,
+      camp,
+      singleRoom: booking.singleRoom,
+    });
+
+    const newStatus =
+      assignment.status === "waitlist" ? "waitlist" : "confirmed";
+
+    await db
+      .update(campBookings)
+      .set({
+        status: newStatus,
+        paidAt: new Date(),
+        stripeSessionId: session.id,
+        stripePaymentIntentId: paymentIntentId,
+        updatedAt: new Date(),
+      })
+      .where(eq(campBookings.id, booking.id));
+
+    const room = assignment.roomKey
+      ? ROOMS_BY_KEY.get(assignment.roomKey)
+      : null;
+    const roomLabel = room
+      ? `${room.label} (${assignment.bedKey})`
+      : "Waitlist";
+
+    // Fire-and-forget — webhook contract is "always 2xx after sig check".
+    notifyCampBookingAdmin({
+      camp: cfg,
+      booking: {
+        name: booking.name,
+        email: booking.email,
+        phone: booking.phone ?? "",
+        singleRoom: booking.singleRoom,
+        dietary: booking.dietary ?? "",
+        emergencyContactName: booking.emergencyContactName ?? "",
+        emergencyContactPhone: booking.emergencyContactPhone ?? "",
+        medical: booking.medical ?? "",
+        heardFrom: booking.heardFrom ?? "",
+      },
+      status: assignment.status,
+      roomLabel,
+    }).catch((err) =>
+      console.error("[stripe/dispatch] Camps admin notification failed:", err),
+    );
+
+    sendCampBookingConfirmation({
+      camp: cfg,
+      name: booking.name,
+      email: booking.email,
+      singleRoom: booking.singleRoom,
+      status: assignment.status,
+    }).catch((err) =>
+      console.error("[stripe/dispatch] Camps confirmation email failed:", err),
+    );
+
+    // Promote the lead from "applicant" to "paid" in Beehiiv. Best-effort.
+    subscribeToBeehiiv({
+      email: booking.email,
+      name: booking.name,
+      tags: [cfg.beehiivTag, "camp-paid"],
+      customFields: {
+        camp: cfg.slug,
+        single_room: booking.singleRoom ? "yes" : "no",
+        camp_status: newStatus,
+      },
+    }).catch((err) =>
+      console.error("[stripe/dispatch] Camps Beehiiv promotion failed:", err),
+    );
+  }
 }
 
 /* ============================================================ */

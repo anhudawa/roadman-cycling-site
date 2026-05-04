@@ -57,10 +57,7 @@ export function BookingForm({ defaultCamp, camps }: Props) {
   const [capacity, setCapacity] = useState<Record<"road" | "gravel", CapacityState> | null>(null);
   const [submitting, setSubmitting] = useState(false);
   const [error, setError] = useState("");
-  const [success, setSuccess] = useState<{
-    status: "assigned" | "waitlist";
-    camp: string;
-  } | null>(null);
+  const [cancelledNotice, setCancelledNotice] = useState(false);
 
   useEffect(() => {
     let aborted = false;
@@ -79,43 +76,25 @@ export function BookingForm({ defaultCamp, camps }: Props) {
     };
   }, []);
 
+  // If the rider clicked "cancel" on Stripe Checkout, the cancel_url
+  // routes them back here with ?cancelled=1. Surface that as a friendly
+  // notice so they know we kept their details and they can retry.
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+    const params = new URLSearchParams(window.location.search);
+    if (params.get("cancelled") === "1") {
+      setCancelledNotice(true);
+    }
+  }, []);
+
   function set<K extends keyof FormState>(key: K, value: FormState[K]) {
     setForm((s) => ({ ...s, [key]: value }));
-  }
-
-  // "Both" is a UI convenience — the API records one camp at a time, so we
-  // submit twice when "both" is selected.
-  async function submitOne(camp: "road" | "gravel") {
-    const res = await fetch("/api/camps/book", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        camp,
-        name: form.name,
-        email: form.email,
-        phone: form.phone,
-        singleRoom: form.singleRoom,
-        dietary: form.dietary,
-        emergencyContactName: form.emergencyContactName,
-        emergencyContactPhone: form.emergencyContactPhone,
-        medical: form.medical,
-        heardFrom: form.heardFrom,
-      }),
-    });
-    const data = (await res.json().catch(() => ({}))) as {
-      error?: string;
-      message?: string;
-      status?: "assigned" | "waitlist";
-    };
-    if (!res.ok) {
-      throw new Error(data.message || data.error || "Failed to submit");
-    }
-    return data;
   }
 
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
     setError("");
+    setCancelledNotice(false);
     if (!form.name.trim() || !form.email.trim()) {
       setError("Name and email are required.");
       return;
@@ -130,49 +109,38 @@ export function BookingForm({ defaultCamp, camps }: Props) {
     }
     setSubmitting(true);
     try {
-      let finalStatus: "assigned" | "waitlist" = "assigned";
-      if (form.camp === "both") {
-        const a = await submitOne("road");
-        const b = await submitOne("gravel");
-        if (a.status === "waitlist" || b.status === "waitlist") {
-          finalStatus = "waitlist";
-        }
-        setSuccess({ status: finalStatus, camp: "both camps" });
-      } else {
-        const r = await submitOne(form.camp);
-        finalStatus = r.status ?? "assigned";
-        setSuccess({
-          status: finalStatus,
-          camp: camps[form.camp].name,
-        });
+      const res = await fetch("/api/camps/book", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          camp: form.camp,
+          name: form.name,
+          email: form.email,
+          phone: form.phone,
+          singleRoom: form.singleRoom,
+          dietary: form.dietary,
+          emergencyContactName: form.emergencyContactName,
+          emergencyContactPhone: form.emergencyContactPhone,
+          medical: form.medical,
+          heardFrom: form.heardFrom,
+        }),
+      });
+      const data = (await res.json().catch(() => ({}))) as {
+        error?: string;
+        message?: string;
+        checkoutUrl?: string;
+      };
+      if (!res.ok || !data.checkoutUrl) {
+        throw new Error(data.message || data.error || "Could not start checkout.");
       }
+      // Hand off to Stripe Checkout. The user comes back via success_url
+      // (booking-confirmed) or cancel_url (this page with ?cancelled=1).
+      window.location.href = data.checkoutUrl;
     } catch (err) {
       const msg = err instanceof Error ? err.message : "Something went wrong.";
       setError(msg);
-    } finally {
       setSubmitting(false);
     }
-  }
-
-  if (success) {
-    return (
-      <div className="text-center py-8">
-        <div className="text-5xl mb-5" aria-hidden>
-          {success.status === "waitlist" ? "★" : "✓"}
-        </div>
-        <h3 className="font-heading text-off-white text-3xl md:text-4xl mb-4 leading-tight">
-          {success.status === "waitlist" ? "ON THE WAITLIST." : "BOOKING RECEIVED."}
-        </h3>
-        <p className="text-foreground-muted max-w-md mx-auto mb-3 leading-relaxed">
-          {success.status === "waitlist"
-            ? `We've hit our cap, so you're on the list for ${success.camp}. If a place opens up, Anthony will write back personally.`
-            : `You're in for ${success.camp}. Confirmation is on its way to ${form.email}, with the payment link to follow within 48 hours.`}
-        </p>
-        <p className="text-foreground-subtle text-xs tracking-[0.2em] uppercase">
-          Roadman Training Camps &middot; Girona 2026
-        </p>
-      </div>
-    );
   }
 
   const roadSoldOut =
@@ -380,23 +348,41 @@ export function BookingForm({ defaultCamp, camps }: Props) {
 
       <div className="rounded-lg border border-coral/30 bg-coral/[0.04] p-4 text-sm text-foreground-muted leading-relaxed">
         <p className="text-off-white font-heading text-sm tracking-[0.15em] uppercase mb-2">
-          Before you submit
+          Before you check out
         </p>
         <p className="mb-1">
-          Full payment of <strong className="text-off-white">€995</strong>
+          Full payment of{" "}
+          <strong className="text-off-white">
+            €{form.camp === "both" ? "1,990" : "995"}
+          </strong>
           {form.singleRoom && (
             <>
-              {" "}+ <strong className="text-off-white">€150</strong> single-room supplement
+              {" "}+{" "}
+              <strong className="text-off-white">
+                €{form.camp === "both" ? "300" : "150"}
+              </strong>{" "}
+              single-room supplement
             </>
           )}{" "}
           is required to lock the spot. We don&apos;t offer refunds — if something
           comes up, you can transfer the spot to a mate.
         </p>
         <p>
-          Once you submit, Anthony writes back inside 48 hours with the
-          payment link.
+          Hit the button and we&apos;ll send you straight to Stripe to pay
+          securely. Confirmation lands in your inbox the moment payment clears.
         </p>
       </div>
+
+      {cancelledNotice && (
+        <p
+          className="text-amber-300 text-sm"
+          role="status"
+          aria-live="polite"
+        >
+          Payment cancelled — your details are still saved here. Hit the button
+          again when you&apos;re ready and we&apos;ll send you back to Stripe.
+        </p>
+      )}
 
       {error && (
         <p className="text-coral text-sm" role="alert">
@@ -412,8 +398,8 @@ export function BookingForm({ defaultCamp, camps }: Props) {
         {selectedSoldOut
           ? "Sold out"
           : submitting
-            ? "Submitting…"
-            : "Reserve my spot"}
+            ? "Redirecting to Stripe…"
+            : "Reserve my spot · Pay now"}
       </button>
     </form>
   );

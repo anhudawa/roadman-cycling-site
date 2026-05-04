@@ -191,13 +191,13 @@ export async function sendCampBookingConfirmation(args: {
     status === "waitlist"
       ? `
       <p style="color: #FAFAFA; line-height: 1.7; margin: 0 0 16px 0;">
-        ${escapeHtml(firstName)}, thanks for putting your name in for the
-        ${escapeHtml(camp.name)}.
+        ${escapeHtml(firstName)}, payment received — but we've hit our cap.
       </p>
       <p style="color: #B0B0B5; line-height: 1.7; margin: 0 0 16px 0;">
-        We've hit our cap of ${camp.capacity} riders for ${escapeHtml(dates)}, so you're
-        on the waitlist. If a place opens up I'll be in touch personally —
-        usually we know within two weeks of someone signing up.
+        ${escapeHtml(camp.name)} (${escapeHtml(dates)}) is fully booked, so
+        you're on the waitlist. We'll process a refund within 48 hours and
+        I'll be in touch personally — if a spot opens up, you'll be the first
+        to know.
       </p>
       <p style="color: #FAFAFA; line-height: 1.7; margin: 0;">
         Speak soon,<br/>Anthony
@@ -208,19 +208,19 @@ export async function sendCampBookingConfirmation(args: {
         ${escapeHtml(firstName)}, you're in.
       </p>
       <p style="color: #B0B0B5; line-height: 1.7; margin: 0 0 16px 0;">
-        Booked for the <strong style="color:#FAFAFA;">${escapeHtml(camp.name)}</strong> &middot;
-        ${escapeHtml(dates)}. Five days, four nights at our farmhouse base
-        between Girona and Banyoles.
+        Booked and paid for the <strong style="color:#FAFAFA;">${escapeHtml(camp.name)}</strong>
+        &middot; ${escapeHtml(dates)}. Five days, four nights at our farmhouse
+        base between Girona and Banyoles.
       </p>
       <p style="color: #B0B0B5; line-height: 1.7; margin: 0 0 16px 0;">
-        Total due: <strong style="color:#FAFAFA;">€${total.toLocaleString("en-IE")}</strong>${singleRoom ? " (includes single-room supplement)" : ""}.
-        I'll be in touch within 48 hours with the payment link and a short
-        intake form — kit lists, flight times, food prefs.
+        Paid: <strong style="color:#FAFAFA;">€${total.toLocaleString("en-IE")}</strong>${singleRoom ? " (includes single-room supplement)" : ""}.
+        Your card receipt is in a separate email from Stripe.
       </p>
       <p style="color: #B0B0B5; line-height: 1.7; margin: 0 0 16px 0;">
-        Heads up: full payment is required to lock the spot, and we don't
-        offer refunds — if something comes up and you can't make it, you can
-        transfer the spot to a mate.
+        I'll be back in your inbox within a couple of days with the intake
+        form — kit list, flight times, food preferences. As a reminder: no
+        refunds, but you can transfer the spot to a mate if something comes
+        up.
       </p>
       <p style="color: #FAFAFA; line-height: 1.7; margin: 0;">
         See you in Girona,<br/>Anthony
@@ -228,7 +228,7 @@ export async function sendCampBookingConfirmation(args: {
     `;
 
   const html = emailWrapper(
-    status === "waitlist" ? "ON THE WAITLIST" : "BOOKING RECEIVED",
+    status === "waitlist" ? "PAID — ON THE WAITLIST" : "PAID — YOU'RE IN",
     `${camp.shortName} &middot; ${dates}`,
     body,
   );
@@ -237,8 +237,8 @@ export async function sendCampBookingConfirmation(args: {
     to: email,
     subject:
       status === "waitlist"
-        ? `Waitlist — ${camp.name}`
-        : `Booking received — ${camp.name}`,
+        ? `Waitlist (paid) — ${camp.name}`
+        : `Confirmed — ${camp.name}`,
     html,
     replyTo: ADMIN_RECIPIENT,
   });
