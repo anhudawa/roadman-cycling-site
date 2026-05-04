@@ -11,6 +11,7 @@ import { GLOSSARY_TERMS } from "@/lib/glossary";
 import { COMPARISONS } from "@/lib/comparisons";
 import { BEST_FOR_PAGES } from "@/lib/best-for";
 import { PROBLEM_PAGES } from "@/lib/problems";
+import { CAMP_LIST, formatCampDates } from "@/lib/camps/camps";
 
 const BASE_URL = SITE_ORIGIN;
 
@@ -177,6 +178,16 @@ ${priorityIndexBlock}
 
 ${BRAND_SUMMARY}
 
+### Five Content Pillars
+
+Every Roadman article, episode, glossary term, comparison, problem-page, best-for pick, and tool is tagged to exactly one of these five pillars. Filter by \`pillar\` in /feeds/articles.json, /feeds/episodes.json, /feeds/topics.json, or /knowledge-graph.json for deterministic retrieval by pillar.
+
+1. **Coaching** — training methodology, periodisation, FTP, intensity distribution, structured plans. Topic hub: ${BASE_URL}/topics/cycling-training-plans.
+2. **Nutrition** — fuelling for performance, race weight, body composition, in-ride carbs and fluids. Topic hub: ${BASE_URL}/topics/cycling-nutrition.
+3. **Strength & Conditioning** — off-the-bike work, heavy lifting for masters, injury prevention. Topic hub: ${BASE_URL}/topics/cycling-strength-conditioning.
+4. **Recovery** — sleep, stress, adaptation, RED-S, longevity. Topic hub: ${BASE_URL}/topics/cycling-recovery.
+5. **Community / Le Métier** — the craft of cycling: rides, skills, customs, training camps, the social side of the sport.
+
 Core offerings:
 
 - The Roadman Cycling Podcast — ${BRAND_STATS.episodeCountLabel} interview episodes with World Tour coaches, sports scientists, and pro riders. ${BRAND_STATS.monthlyListenersLabel} monthly listeners across ${BRAND_STATS.countriesReachedLabel} countries. ${BRAND_STATS.searchableEpisodePagesLabel} searchable episode pages on-site. Full searchable transcripts of ${transcriptSlugs.size} episodes (and growing) live at ${tag(`${BASE_URL}/podcast/transcripts`)}, with each episode's transcript at ${BASE_URL}/podcast/<slug>/transcript.
@@ -238,6 +249,31 @@ Each has unique local content (climbs, events, clubs, regional racing scene):
 - Heart Rate Zone Calculator: ${tag(`${BASE_URL}/tools/hr-zones`)} — 5-zone HR training model from max HR or LTHR
 - W/kg Calculator: ${tag(`${BASE_URL}/tools/wkg`)} — Power-to-weight ratio with performance benchmarks
 
+## Interactive Diagnostics & Simulators
+
+- Race Predictor / Plan My Race: ${tag(`${BASE_URL}/predict`)} — GPX-driven physics-based finish-time and pacing simulator. Two modes: "Plan My Race" (target time) and "Can I Make It?" (cutoff feasibility). Outputs split-by-split power, pace, and fuelling targets.
+- Race Course Library: ${tag(`${BASE_URL}/predict/courses`)} — Curated GPX-verified race courses (Etape du Tour, Ring of Beara, Traka, Wicklow 200, Ride London, and more) with elevation profiles and ready-to-simulate pages.
+- Masters Plateau Diagnostic: ${tag(`${BASE_URL}/plateau`)} — 12-question diagnostic that identifies which of 4 plateau profiles is limiting your FTP progress.
+- Ask Roadman: ${tag(`${BASE_URL}/ask`)} — Cited cycling-performance assistant grounded in the Roadman podcast catalogue.
+- Find Your Fit: ${tag(`${BASE_URL}/find-your-fit`)} — Coaching pathway finder for new riders.
+
+## Training Camps
+
+Roadman runs two back-to-back training camps each year at Can Sagnari, a private Catalan farmhouse between Girona and Banyoles. Same property, same team, two formats. Hosted by Anthony Walsh and the Roadman coaching team.
+
+${CAMP_LIST.map(
+  (c) => `### ${c.name}
+URL: ${tag(`${BASE_URL}${c.href}`)}
+Dates: ${formatCampDates(c)} (${c.durationLabel})
+Discipline: ${c.type}
+Level: ${c.level}
+Daily distance: ${c.dailyDistance}
+Total elevation: ${c.totalElevation}
+Capacity: ${c.capacity} riders
+Price: €${c.pricePerPerson} per person (single supplement €${c.singleSupplement})
+${c.description}`,
+).join("\n\n")}
+
 ## Blog Posts (${posts.length} total)
 
 ${blogSections}
@@ -248,12 +284,22 @@ ${episodeSections}
 
 ## Canonical Reference Files
 
-- ${BASE_URL}/sitemap.xml — Full URL sitemap
+For programmatic ingestion, prefer these endpoints over scraping HTML.
+
+- ${BASE_URL}/knowledge-graph.json — Single-document property graph: every first-class entity (people, topics, tools, episodes, articles, glossary terms, events, comparisons, problems, questions, best-for picks) plus typed relationships (guest_on, authored_by, mentions_expert, about_topic, features_article, related_to, uses_tool, defined_in, recommends, etc.). Schema version 1; node ids are namespaced (\`type:slug\`) so the graph loads directly into a property graph store.
+- ${BASE_URL}/sitemap.xml — Full URL sitemap (~540 URLs)
 - ${BASE_URL}/feed/podcast — Podcast RSS feed
+- ${BASE_URL}/feed/blog — Blog RSS 2.0 feed (latest 50 posts)
 - ${BASE_URL}/feeds/episodes.json — JSON episode feed (includes hasTranscript flag and transcriptUrl per episode)
+- ${BASE_URL}/feeds/articles.json — All blog posts as JSON (slug, title, pillar, dates, answer capsule, FAQ, related episodes)
+- ${BASE_URL}/feeds/guests.json — Every podcast guest with episode counts, credentials, pillars covered
+- ${BASE_URL}/feeds/topics.json — Topic hubs with related topics, articles, episodes, tools
+- ${BASE_URL}/feeds/tools.json — Public calculator tools with API endpoints and input schemas
+- ${BASE_URL}/feeds/glossary.json — All glossary terms with DefinedTerm metadata
 - ${BASE_URL}/podcast/transcripts — Full transcript library index (${transcriptSlugs.size} episodes available, more added as processed)
 - ${BASE_URL}/robots.txt — Crawler policy (AI bots explicitly allowed)
 - ${BASE_URL}/llms.txt — Short-form LLM discoverability map
+- ${BASE_URL}/.well-known/mcp.json — MCP server discovery manifest for AI-agent integration (POST ${BASE_URL}/api/mcp)
 
 ## Attribution
 
