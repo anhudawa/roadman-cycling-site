@@ -1,4 +1,4 @@
-import { describe, it, expect, beforeEach, afterEach } from "vitest";
+import { describe, it, expect, beforeEach, afterEach, vi } from "vitest";
 import { authSecret } from "./secret";
 
 describe("authSecret", () => {
@@ -7,10 +7,11 @@ describe("authSecret", () => {
   beforeEach(() => {
     delete process.env.AUTH_SECRET;
     delete process.env.ADMIN_PASSWORD;
-    process.env.NODE_ENV = "test";
+    vi.stubEnv("NODE_ENV", "test");
   });
 
   afterEach(() => {
+    vi.unstubAllEnvs();
     process.env = { ...originalEnv };
   });
 
@@ -25,17 +26,17 @@ describe("authSecret", () => {
   });
 
   it("returns the dev fallback in non-production with no secrets set", () => {
-    process.env.NODE_ENV = "development";
+    vi.stubEnv("NODE_ENV", "development");
     expect(authSecret()).toBe("fallback-dev-secret");
   });
 
   it("throws in production when no secret is configured", () => {
-    process.env.NODE_ENV = "production";
+    vi.stubEnv("NODE_ENV", "production");
     expect(() => authSecret()).toThrow(/AUTH_SECRET.*production/);
   });
 
   it("does NOT throw in production when AUTH_SECRET is set", () => {
-    process.env.NODE_ENV = "production";
+    vi.stubEnv("NODE_ENV", "production");
     process.env.AUTH_SECRET = "real-prod-secret";
     expect(authSecret()).toBe("real-prod-secret");
   });
