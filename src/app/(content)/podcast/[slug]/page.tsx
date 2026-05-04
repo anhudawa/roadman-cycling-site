@@ -10,7 +10,11 @@ import { FAQSchema } from "@/components/seo/FAQSchema";
 import { Breadcrumbs } from "@/components/seo/Breadcrumbs";
 import { EvidenceBlock } from "@/components/seo/EvidenceBlock";
 import { ENTITY_IDS, SITE_ORIGIN } from "@/lib/brand-facts";
-import { getEpisodeBySlug, getAllEpisodeSlugs } from "@/lib/podcast";
+import {
+  getEpisodeBySlug,
+  getAllEpisodeSlugs,
+  hasTranscript,
+} from "@/lib/podcast";
 import { segmentTranscript } from "@/lib/transcript";
 import { PodcastLinks } from "@/components/features/podcast/PodcastLinks";
 import { TranscriptViewer } from "@/components/features/podcast/TranscriptViewer";
@@ -155,6 +159,14 @@ export default async function EpisodePage({
   const segments = episode.transcript
     ? segmentTranscript(episode.transcript, { titles: episode.segmentTitles })
     : [];
+
+  // Filesystem transcript library check — distinct from the inline
+  // `transcript` frontmatter field that powers `<TranscriptViewer>`
+  // below. When a `.txt` file lives in `content/podcast/transcripts/`,
+  // the episode also gets a dedicated `/podcast/<slug>/transcript`
+  // page, and we surface a prominent link here so listeners (and AI
+  // crawlers) can find the full canonical transcript.
+  const transcriptFileExists = hasTranscript(slug);
 
   return (
     <>
@@ -701,6 +713,52 @@ export default async function EpisodePage({
             <div className="mt-12">
               <PlateauCTA variant="inline" source={`podcast-${slug}`} />
             </div>
+
+            {/* Read full transcript link — surfaces the dedicated
+                /podcast/<slug>/transcript page when a `.txt` file exists
+                in the transcript library. Placed above the inline
+                accordion so the canonical, full-page experience is the
+                primary affordance for readers and crawlers; the inline
+                viewer remains for in-page skimming. */}
+            {transcriptFileExists && (
+              <Link
+                href={`/podcast/${slug}/transcript`}
+                className="mt-12 group flex items-center justify-between gap-4 rounded-xl border border-white/10 hover:border-coral/40 bg-white/[0.03] hover:bg-coral/5 p-5 transition-colors"
+              >
+                <div className="flex items-center gap-4">
+                  <svg
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth={2}
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    className="w-6 h-6 text-coral shrink-0"
+                    aria-hidden="true"
+                  >
+                    <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
+                    <polyline points="14 2 14 8 20 8" />
+                    <line x1="16" y1="13" x2="8" y2="13" />
+                    <line x1="16" y1="17" x2="8" y2="17" />
+                    <polyline points="10 9 9 9 8 9" />
+                  </svg>
+                  <div>
+                    <p className="font-heading text-off-white text-base tracking-wide group-hover:text-coral transition-colors">
+                      READ THE FULL TRANSCRIPT
+                    </p>
+                    <p className="text-sm text-foreground-muted mt-0.5">
+                      Searchable, deep-linkable, every word.
+                    </p>
+                  </div>
+                </div>
+                <span
+                  className="text-coral font-heading text-xl shrink-0"
+                  aria-hidden="true"
+                >
+                  →
+                </span>
+              </Link>
+            )}
 
             {/* Transcript */}
             {episode.transcript && (

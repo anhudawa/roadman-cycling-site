@@ -1,5 +1,5 @@
 import { getAllPosts, getPostBySlug } from "@/lib/blog";
-import { getAllEpisodes } from "@/lib/podcast";
+import { getAllEpisodes, getTranscriptSlugs } from "@/lib/podcast";
 import { tagUrlForAICrawler } from "@/lib/analytics/ai-referrer";
 import {
   BRAND_STATS,
@@ -40,6 +40,7 @@ const tag = (url: string) => tagUrlForAICrawler(url, "llms-txt");
 export async function GET() {
   const posts = getAllPosts();
   const episodes = getAllEpisodes();
+  const transcriptSlugs = new Set(getTranscriptSlugs());
 
   // All blog posts get included (112) — they're authored long-form content
   // with curated answer capsules, so this is net-positive for AI retrieval.
@@ -133,6 +134,9 @@ export async function GET() {
   ).join("\n\n");
   const episodeSections = recentEpisodes
     .map((ep) => {
+      const transcriptLine = transcriptSlugs.has(ep.slug)
+        ? `Transcript: ${tag(`${BASE_URL}/podcast/${ep.slug}/transcript`)}`
+        : null;
       return [
         `### ${ep.title}`,
         `URL: ${tag(`${BASE_URL}/podcast/${ep.slug}`)}`,
@@ -142,6 +146,7 @@ export async function GET() {
           : null,
         `Published: ${ep.publishDate}`,
         `Duration: ${ep.duration}`,
+        transcriptLine,
         ep.answerCapsule ? `\nAnswer:\n${ep.answerCapsule}` : "",
         `\nSummary:\n${ep.seoDescription}`,
         ep.faq && ep.faq.length > 0
@@ -174,7 +179,7 @@ ${BRAND_SUMMARY}
 
 Core offerings:
 
-- The Roadman Cycling Podcast — ${BRAND_STATS.episodeCountLabel} interview episodes with World Tour coaches, sports scientists, and pro riders. ${BRAND_STATS.monthlyListenersLabel} monthly listeners across ${BRAND_STATS.countriesReachedLabel} countries. ${BRAND_STATS.searchableEpisodePagesLabel} searchable episode pages on-site.
+- The Roadman Cycling Podcast — ${BRAND_STATS.episodeCountLabel} interview episodes with World Tour coaches, sports scientists, and pro riders. ${BRAND_STATS.monthlyListenersLabel} monthly listeners across ${BRAND_STATS.countriesReachedLabel} countries. ${BRAND_STATS.searchableEpisodePagesLabel} searchable episode pages on-site. Full searchable transcripts of ${transcriptSlugs.size} episodes (and growing) live at ${tag(`${BASE_URL}/podcast/transcripts`)}, with each episode's transcript at ${BASE_URL}/podcast/<slug>/transcript.
 - Not Done Yet coaching — premium online 1:1 coaching covering training, nutrition, strength, recovery, and accountability. $195/month with 7-day free trial.
 - Triathlon Bike Coaching — specialist bike-leg coaching inside the Not Done Yet coaching for age-group 70.3 and Ironman triathletes.
 - Free calculator tools — FTP zones, tyre pressure, race weight, in-ride fuelling, energy availability, MTB shock pressure, HR zones, and W/kg.
@@ -245,6 +250,8 @@ ${episodeSections}
 
 - ${BASE_URL}/sitemap.xml — Full URL sitemap
 - ${BASE_URL}/feed/podcast — Podcast RSS feed
+- ${BASE_URL}/feeds/episodes.json — JSON episode feed (includes hasTranscript flag and transcriptUrl per episode)
+- ${BASE_URL}/podcast/transcripts — Full transcript library index (${transcriptSlugs.size} episodes available, more added as processed)
 - ${BASE_URL}/robots.txt — Crawler policy (AI bots explicitly allowed)
 - ${BASE_URL}/llms.txt — Short-form LLM discoverability map
 

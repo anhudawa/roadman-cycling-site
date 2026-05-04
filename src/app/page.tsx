@@ -1,7 +1,6 @@
 import { preload } from "react-dom";
 import { Header, Footer, Section, Container } from "@/components/layout";
 import { Button, Card, ScrollReveal, ParallaxImage, GradientText, GuestMarquee } from "@/components/ui";
-import Image from "next/image";
 import Link from "next/link";
 import { HeroSection } from "@/components/features/home/HeroSection";
 import { getLatestEpisode } from "@/lib/podcast";
@@ -103,24 +102,30 @@ export default function HomePage() {
       <Header />
 
       <main id="main-content">
-        {/* HERO — coaching-first headline, APPLY is the primary CTA. */}
+        {/* HERO — leads with the rider problem ("Stop plateauing. Start
+            progressing.") and routes the highest-intent visitor straight
+            into the Plateau Diagnostic. Listen sits as a soft secondary
+            link; Apply lives further down the page in the offer ladder. */}
         <HeroSection latestEpisode={latestEpisode} />
 
-        {/* MANIFESTO — frames the brand as evidence-based coaching for
-            serious amateur and masters cyclists. Sets the audience and
-            the bar before any other CTA fires. */}
+        {/* MANIFESTO — positioning. We are not a media brand. We are the
+            clearest path back to progress for serious amateurs who
+            stopped improving. */}
         <Section background="charcoal" className="!py-10 border-y border-white/5">
           <Container width="narrow" className="text-center">
             <p className="font-heading text-coral text-[11px] tracking-[0.3em] mb-3">
-              WHO THIS IS FOR
+              WHAT WE DO
             </p>
             <p className="font-heading text-off-white text-xl md:text-2xl leading-snug mb-3">
-              EVIDENCE-BASED COACHING FOR SERIOUS AMATEUR AND MASTERS CYCLISTS.
+              THE CLEAREST PATH BACK TO PROGRESS.
             </p>
             <p className="text-foreground-muted text-sm md:text-base max-w-2xl mx-auto leading-relaxed">
-              Not influencer plans. Not generic apps. The same principles
-              Stephen Seiler, Dan Lorang and the World Tour use — adapted
-              for cyclists with jobs, families and limited training hours.
+              For serious amateurs who stopped improving. Stuck FTP.
+              Plans that don&apos;t fit your week. Conflicting advice
+              from every podcast and forum. We take the same principles
+              Stephen Seiler, Dan Lorang, and the World Tour use — and
+              adapt them for cyclists with jobs, families, and 8–12 hours
+              a week.
               <span className="block mt-3">
                 <Link href="/methodology" className="text-coral hover:text-coral/80 transition-colors font-heading tracking-wider text-xs">
                   READ THE METHODOLOGY →
@@ -130,7 +135,9 @@ export default function HomePage() {
           </Container>
         </Section>
 
-        {/* STATS — Animated counters */}
+        {/* STATS — Reframed as receipts/proof. Lead with 100M+ downloads
+            so the podcast scale lands as evidence behind the coaching,
+            not the headline offering. */}
         <StatsSection />
 
         {/* PERSONA ROUTER — route visitors by current cycling state */}
@@ -221,20 +228,27 @@ export default function HomePage() {
           overlayColor="from-charcoal via-charcoal/50 to-deep-purple"
         />
 
-        {/* EXPERT ACCESS — The Moat */}
+        {/* PROOF ENGINE — the podcast reframed. Not the product. The
+            evidence behind the coaching. CTA hierarchy: coaching first
+            (Apply), archive second (Explore). */}
         <Section background="deep-purple" grain className="overflow-hidden">
           <Container>
             <ScrollReveal direction="up" className="text-center mb-4">
+              <p className="font-heading text-coral text-[11px] tracking-[0.3em] mb-3">
+                THE PROOF ENGINE
+              </p>
               <h2
                 className="font-heading text-off-white mb-3"
                 style={{ fontSize: "var(--text-section)" }}
               >
-                <span className="block">1,400+ EPISODES.</span>
+                <span className="block">100M+ DOWNLOADS.</span>
                 <span className="block text-coral">ONE GUEST LIST.</span>
               </h2>
-              <p className="text-foreground-muted max-w-lg mx-auto">
-                No other cycling podcast has Greg LeMond, Professor Seiler,
-                Dan Lorang, and Lachlan Morton on the same show.
+              <p className="text-foreground-muted max-w-xl mx-auto">
+                Greg LeMond. Professor Seiler. Dan Lorang. Lachlan Morton.
+                The podcast is not the product — it&apos;s how we earned
+                the right to coach you. What they shared on the show is
+                the foundation of Not Done Yet.
               </p>
             </ScrollReveal>
           </Container>
@@ -245,11 +259,11 @@ export default function HomePage() {
           </div>
 
           <Container>
-            <div className="flex items-center justify-center gap-4">
-              <Button href="/guests">
-                Meet the Guests
+            <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+              <Button href="/apply" dataTrack="home_proof_apply">
+                Apply for Coaching
               </Button>
-              <Button href="/podcast" variant="ghost">
+              <Button href="/podcast" variant="ghost" dataTrack="home_proof_archive">
                 Explore the Archive
               </Button>
             </div>
@@ -318,125 +332,149 @@ export default function HomePage() {
           overlayColor="from-charcoal via-charcoal/50 to-deep-purple"
         />
 
-        {/* COMMUNITY */}
+        {/* OFFER LADDER — the explicit four-step path. Free content,
+            then the Plateau Diagnostic, then Not Done Yet coaching,
+            then 1:1 with Anthony. Middle two rungs are the conversion
+            spine, so they get the coral border and primary buttons. */}
         <Section background="deep-purple" grain>
           <Container>
             <ScrollReveal direction="up" className="text-center mb-12">
+              <p className="font-heading text-coral text-[11px] tracking-[0.3em] mb-3">
+                THE PATH FORWARD
+              </p>
               <h2
                 className="font-heading mb-4"
                 style={{ fontSize: "var(--text-section)" }}
               >
-                <GradientText as="span">YOU&apos;RE NOT DONE YET</GradientText>
+                <GradientText as="span">FOUR STEPS. ONE DIRECTION.</GradientText>
               </h2>
               <p className="text-foreground-muted max-w-2xl mx-auto text-lg">
-                Most cyclists plateau because they train alone, guess at
-                nutrition, and skip the stuff that actually compounds.
-                Inside Not Done Yet coaching, riders follow one coached
-                system — training, nutrition, strength, recovery, and
-                accountability — and they&apos;re proving every week that
-                faster is still ahead.
+                Not every cyclist is ready for the same step. Start where
+                you are. Move when you&apos;re ready.
               </p>
             </ScrollReveal>
 
-            {/* Coaching-first ordering — Not Done Yet is the primary path,
-                Clubhouse is the lower-friction starting point. */}
-            <div className="grid md:grid-cols-2 gap-6">
-              <ScrollReveal direction="left">
-                <Card
-                  className="p-6 md:p-8 h-full border-rotating rounded-lg bg-gradient-to-br from-background-elevated to-deep-purple/30"
-                  hoverable={false}
-                >
-                  <div className="flex items-center gap-3 mb-4">
-                    <div className="w-3 h-3 rounded-full bg-coral pulse-glow" />
-                    <span className="text-xs text-foreground-muted uppercase tracking-widest font-body">
-                      $195/month · Coaching
-                    </span>
-                  </div>
-                  <h3 className="font-heading text-3xl text-off-white mb-3">
-                    NOT DONE YET
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+              {/* RUNG 1 — Free content. The way in. */}
+              <ScrollReveal direction="up" delay={0}>
+                <Card className="p-6 h-full" hoverable={false}>
+                  <p className="font-heading text-[10px] tracking-[0.3em] text-foreground-muted mb-3">
+                    01 · FREE
+                  </p>
+                  <h3 className="font-heading text-2xl text-off-white mb-3">
+                    PODCAST &amp; NEWSLETTER
                   </h3>
-                  <p className="text-coral font-heading text-xs tracking-widest mb-4 uppercase">
-                    Evidence-based coaching community
+                  <p className="text-foreground-muted text-sm leading-relaxed mb-6">
+                    1,400+ episodes with the coaches and pros behind Grand
+                    Tour wins. The Saturday Spin newsletter every week.
+                    Start here if you&apos;re still learning.
                   </p>
-                  <p className="text-foreground-muted mb-6 leading-relaxed">
-                    For serious amateur and masters cyclists who refuse to
-                    plateau. Five pillars. One coached system. The same
-                    principles Seiler and Lorang discussed on the podcast,
-                    structured into your week — and reviewed personally by
-                    Anthony.
-                  </p>
-                  <ul className="space-y-2 mb-8">
-                    {[
-                      "Pillar 1: Weekly structured training plans",
-                      "Pillar 2: Race weight & nutrition guidance",
-                      "Pillar 3: Cycling-specific strength programme",
-                      "Pillar 4: Recovery protocols & coaching calls",
-                      "Pillar 5: Accountability & coached community",
-                    ].map((item) => (
-                      <li
-                        key={item}
-                        className="flex items-start gap-2 text-sm text-foreground-muted"
-                      >
-                        <span className="text-coral mt-0.5">&#10003;</span>
-                        {item}
-                      </li>
-                    ))}
-                  </ul>
                   <Button
-                    href="/apply"
-                    size="lg"
+                    href="/podcast"
+                    variant="secondary"
                     className="w-full"
-                    dataTrack="home_community_apply"
+                    dataTrack="home_ladder_podcast"
                   >
-                    Apply for Coaching
+                    Listen Free
                   </Button>
                 </Card>
               </ScrollReveal>
 
-              <ScrollReveal direction="right">
-                <Card className="p-6 md:p-8 h-full" hoverable={false}>
-                  <div className="flex items-center gap-3 mb-4">
-                    <div className="w-3 h-3 rounded-full bg-purple pulse-glow" />
-                    <span className="text-xs text-foreground-muted uppercase tracking-widest font-body">
-                      Free
-                    </span>
-                  </div>
-                  <h3 className="font-heading text-3xl text-off-white mb-3">
-                    THE CLUBHOUSE
-                  </h3>
-                  <p className="text-foreground-muted mb-6 leading-relaxed">
-                    Free tools, free plans, and 2,100 cyclists who get it. Your
-                    starting point before you&apos;re ready for the full
-                    coached system.
+              {/* RUNG 2 — Plateau Diagnostic. The lead-gen spine. */}
+              <ScrollReveal direction="up" delay={0.08}>
+                <Card
+                  className="p-6 h-full border border-coral/40 rounded-lg bg-gradient-to-br from-background-elevated to-deep-purple/30"
+                  hoverable={false}
+                >
+                  <p className="font-heading text-[10px] tracking-[0.3em] text-coral mb-3">
+                    02 · FREE · 4 MIN
                   </p>
-                  <ul className="space-y-2 mb-8">
-                    {[
-                      "Free 16-week training plans (road, gravel, sportive)",
-                      "Weekly live Q&A with Anthony",
-                      "Free calculators and resources",
-                      "Community of serious cyclists",
-                    ].map((item) => (
-                      <li
-                        key={item}
-                        className="flex items-start gap-2 text-sm text-foreground-muted"
-                      >
-                        <span className="text-coral mt-0.5">&#10003;</span>
-                        {item}
-                      </li>
-                    ))}
-                  </ul>
+                  <h3 className="font-heading text-2xl text-off-white mb-3">
+                    PLATEAU DIAGNOSTIC
+                  </h3>
+                  <p className="text-foreground-muted text-sm leading-relaxed mb-6">
+                    Stuck on the same FTP for a year? Twelve questions
+                    surface the specific reason — and what to do about
+                    it this week.
+                  </p>
                   <Button
-                    href="/community/clubhouse"
-                    variant="secondary"
-                    size="lg"
+                    href="/plateau"
                     className="w-full"
-                    dataTrack="home_community_clubhouse"
+                    dataTrack="home_ladder_plateau"
                   >
-                    Join Free
+                    Take the Diagnostic
+                  </Button>
+                </Card>
+              </ScrollReveal>
+
+              {/* RUNG 3 — Not Done Yet. The core membership. */}
+              <ScrollReveal direction="up" delay={0.16}>
+                <Card
+                  className="p-6 h-full border-rotating rounded-lg bg-gradient-to-br from-background-elevated to-deep-purple/30"
+                  hoverable={false}
+                >
+                  <p className="font-heading text-[10px] tracking-[0.3em] text-coral mb-3">
+                    03 · €195/MONTH
+                  </p>
+                  <h3 className="font-heading text-2xl text-off-white mb-3">
+                    NOT DONE YET
+                  </h3>
+                  <p className="text-foreground-muted text-sm leading-relaxed mb-6">
+                    Five-pillar coached system. Weekly live calls with
+                    Anthony. Vekta training plans. The riders breaking
+                    through their plateaus right now.
+                  </p>
+                  <Button
+                    href="/apply"
+                    className="w-full"
+                    dataTrack="home_ladder_ndy"
+                  >
+                    Apply to Join
+                  </Button>
+                </Card>
+              </ScrollReveal>
+
+              {/* RUNG 4 — Premium 1:1. The high-touch tier. */}
+              <ScrollReveal direction="up" delay={0.24}>
+                <Card className="p-6 h-full" hoverable={false}>
+                  <p className="font-heading text-[10px] tracking-[0.3em] text-foreground-muted mb-3">
+                    04 · BY APPLICATION
+                  </p>
+                  <h3 className="font-heading text-2xl text-off-white mb-3">
+                    1:1 COACHING
+                  </h3>
+                  <p className="text-foreground-muted text-sm leading-relaxed mb-6">
+                    Direct coaching with Anthony. Limited slots. For
+                    riders with a specific event, a specific deadline,
+                    and the commitment to match.
+                  </p>
+                  <Button
+                    href="/coaching"
+                    variant="secondary"
+                    className="w-full"
+                    dataTrack="home_ladder_coaching"
+                  >
+                    Inquire
                   </Button>
                 </Card>
               </ScrollReveal>
             </div>
+
+            {/* Receipts — concrete member results, not vague testimonials. */}
+            <ScrollReveal direction="up" delay={0.32} className="mt-12">
+              <div className="max-w-3xl mx-auto text-center">
+                <p className="font-heading text-coral text-[11px] tracking-[0.3em] mb-3">
+                  WHAT THE LADDER LOOKS LIKE WHEN IT WORKS
+                </p>
+                <p className="text-foreground-muted text-sm md:text-base leading-relaxed">
+                  Cat 3 to Cat 1. Body fat 20% to 7%. Women&apos;s
+                  National Series results. Riders moving from
+                  &ldquo;stuck&rdquo; to &ldquo;ahead of where they
+                  were a decade ago&rdquo; — proving every week that
+                  faster is still in front of them.
+                </p>
+              </div>
+            </ScrollReveal>
           </Container>
         </Section>
 
