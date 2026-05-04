@@ -201,9 +201,9 @@ export function Header() {
               <Link
                 href={ctaHref}
                 className="
-                  font-heading text-sm tracking-wider
+                  font-heading text-xs tracking-wide whitespace-nowrap
                   bg-coral hover:bg-coral-hover
-                  text-off-white px-6 py-2.5 rounded-md
+                  text-off-white px-4 py-2 rounded-md
                   transition-all hover:shadow-[var(--shadow-glow-coral)]
                 "
                 style={{ transitionDuration: "var(--duration-fast)" }}
