@@ -76,6 +76,7 @@ export async function generateMetadata({
       description: entity.shortBio,
       type: "profile",
       url,
+      images: ["/og-image.jpg"],
     },
   };
 }
