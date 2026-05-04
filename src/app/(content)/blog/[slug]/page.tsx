@@ -26,7 +26,7 @@ import { InlineArticleCTA } from "@/components/features/conversion/InlineArticle
 import { NextStepBlock } from "@/components/features/conversion/NextStepBlock";
 import { StickyCoachingBar } from "@/components/features/conversion/StickyCoachingBar";
 import { EmailCapture } from "@/components/features/conversion/EmailCapture";
-import { IntentCTA, inferIntentCategory } from "@/components/cta";
+import { IntentCTA, PlateauCTA, inferIntentCategory } from "@/components/cta";
 import { TableOfContents } from "@/components/features/blog/TableOfContents";
 import { AnswerCapsule } from "@/components/ui/AnswerCapsule";
 import { CitedClaimTable } from "@/components/ui/CitedClaimTable";
@@ -473,6 +473,15 @@ export default async function BlogPostPage({
             <article className="prose-roadman prose-enhanced">
               <MDXRemote source={post.content} components={mdxComponents} />
             </article>
+
+            {/* Universal Plateau Diagnostic CTA — editorial entry to the
+                offer ladder. Slotted at the natural end-of-reading moment
+                (after the article body, before the structural conversion
+                blocks) so it reads like an editor's note rather than a
+                sales card. Renders on every blog post regardless of
+                topic; the topic-specific IntentCTA below still picks the
+                right deeper offer. */}
+            <PlateauCTA variant="inline" source={`blog-${slug}`} />
 
             {/* WeeksOutSelector — only renders on event-specific training
                 plan posts whose slug matches an event in training-plans.ts.

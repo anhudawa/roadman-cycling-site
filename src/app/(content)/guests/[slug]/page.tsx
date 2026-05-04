@@ -8,6 +8,7 @@ import { Breadcrumbs } from "@/components/seo/Breadcrumbs";
 import { getGuestBySlug, getAllGuestSlugs } from "@/lib/guests";
 import { getGuestProfileOverride } from "@/lib/guests/profiles";
 import { getPostBySlug } from "@/lib/blog";
+import { PlateauCTA } from "@/components/cta";
 
 export async function generateStaticParams() {
   return getAllGuestSlugs().map((slug) => ({ slug }));
@@ -479,21 +480,14 @@ export default async function GuestPage({
               );
             })()}
 
-            {/* Coaching CTA */}
-            <div className="mt-12 rounded-2xl border border-coral/30 bg-gradient-to-br from-coral/10 via-deep-purple/40 to-charcoal p-6 md:p-8 text-center">
-              <p className="font-heading text-coral text-xs tracking-widest mb-2">
-                TRAIN WITH THE KNOWLEDGE
-              </p>
-              <p className="text-off-white font-heading text-lg mb-4">
-                Apply the insights from {guest.name}&rsquo;s episodes to your own training.
-              </p>
-              <Link
-                href="/apply"
-                className="inline-flex items-center justify-center gap-2 font-heading tracking-wider uppercase rounded-md bg-coral text-off-white hover:bg-coral/90 px-6 py-3 text-sm transition-all"
-                data-track={`guest_${slug}_apply`}
-              >
-                Apply for Coaching →
-              </Link>
+            {/* Universal Plateau Diagnostic CTA — replaces the previous
+                "Apply for Coaching" block per the May 2026 copy audit:
+                Plateau Diagnostic is the universal entry CTA on all
+                content pages. The diagnostic itself routes the reader to
+                the right ladder rung — going straight to /apply was
+                burning cold readers who hadn't been segmented yet. */}
+            <div className="mt-12">
+              <PlateauCTA variant="inline" source={`guest-${slug}`} />
             </div>
 
             {/* Back + CTA */}
