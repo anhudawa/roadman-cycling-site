@@ -33,10 +33,9 @@ interface HeroSectionProps {
  * below the 801×801 source so no upscaling; a soft bottom mask fade
  * dissolves it into the section's deep-purple bg.
  *
- * Headline copy is verbatim "CYCLING IS HARD, OUR COACHING WILL HELP."
- * broken across 4 lines as CYCLING / IS HARD, / OUR COACHING / WILL
- * HELP. Line breaks are hand-tuned — if the copy changes, rebalance
- * manually. Do not auto-wrap.
+ * Headline copy is "STOP PLATEAUING. START PROGRESSING." broken across
+ * 4 lines as STOP / PLATEAUING. / START / PROGRESSING. Line breaks are
+ * hand-tuned — if the copy changes, rebalance manually. Do not auto-wrap.
  */
 export function HeroSection({ latestEpisode }: HeroSectionProps) {
   const sectionRef = useRef<HTMLElement>(null);
@@ -61,10 +60,10 @@ export function HeroSection({ latestEpisode }: HeroSectionProps) {
   });
 
   const headlineLines = [
-    { text: "CYCLING", accent: false },
-    { text: "IS HARD,", accent: false },
-    { text: "OUR COACHING", accent: false },
-    { text: "WILL HELP.", accent: true },
+    { text: "STOP", accent: false },
+    { text: "PLATEAUING.", accent: false },
+    { text: "START", accent: false },
+    { text: "PROGRESSING.", accent: true },
   ];
 
   return (
@@ -176,23 +175,38 @@ export function HeroSection({ latestEpisode }: HeroSectionProps) {
               style={{ transformOrigin: "left" }}
             />
 
+            <motion.p
+              className="text-foreground-muted text-base md:text-lg leading-relaxed max-w-md mx-auto lg:mx-0 mb-7 md:mb-9"
+              initial={{ opacity: 0, y: 16 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{
+                duration: 0.8,
+                delay: 0.6,
+                ease: [0.16, 1, 0.3, 1],
+              }}
+            >
+              The clearest path back to progress for serious amateurs
+              who stopped improving. Twelve questions. Four minutes.
+              One specific answer to why your FTP has been stuck.
+            </motion.p>
+
             <motion.div
               className="flex flex-col sm:flex-row items-center lg:items-start justify-center lg:justify-start gap-6 sm:gap-5"
               initial={{ opacity: 0, y: 16 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{
                 duration: 0.8,
-                delay: 0.65,
+                delay: 0.7,
                 ease: [0.16, 1, 0.3, 1],
               }}
             >
               <Button
-                href="/apply"
+                href="/plateau"
                 size="lg"
                 className="w-full sm:w-auto shadow-[0_12px_40px_-8px_rgba(241,99,99,0.55)] hover:shadow-[0_16px_50px_-6px_rgba(241,99,99,0.7)] transition-shadow"
-                dataTrack="home_hero_apply"
+                dataTrack="home_hero_plateau"
               >
-                Apply →
+                Take the Plateau Diagnostic →
               </Button>
               <Link
                 href={latestEpisode ? `/podcast/${latestEpisode.slug}` : "/podcast"}
@@ -200,7 +214,7 @@ export function HeroSection({ latestEpisode }: HeroSectionProps) {
                 style={{ transitionDuration: "var(--duration-fast)" }}
                 data-track="home_hero_listen"
               >
-                listen <span aria-hidden="true">→</span>
+                listen to the podcast <span aria-hidden="true">→</span>
               </Link>
             </motion.div>
 
@@ -212,9 +226,9 @@ export function HeroSection({ latestEpisode }: HeroSectionProps) {
               }}
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
-              transition={{ duration: 0.8, delay: 0.9 }}
+              transition={{ duration: 0.8, delay: 0.95 }}
             >
-              <span>1M monthly listeners</span>
+              <span>100M+ downloads</span>
               <span className="mx-2 opacity-50">·</span>
               <span>65K newsletter</span>
               <span className="mx-2 opacity-50">·</span>

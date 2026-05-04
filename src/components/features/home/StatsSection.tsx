@@ -3,10 +3,10 @@
 import { ScrollReveal, AnimatedCounter } from "@/components/ui";
 
 const stats = [
-  { value: "1M+", label: "Monthly Listeners" },
+  { value: "100M+", label: "Podcast Downloads" },
+  { value: "1,400+", label: "Episodes Recorded" },
+  { value: "65K+", label: "Newsletter Subscribers" },
   { value: "2,100+", label: "Community Members" },
-  { value: "61K+", label: "YouTube Subscribers" },
-  { value: "49K+", label: "Instagram Followers" },
 ];
 
 /**
@@ -31,6 +31,15 @@ export function StatsSection() {
       />
 
       <div className="relative z-10 mx-auto max-w-[1200px] px-5 md:px-8">
+        <div className="text-center mb-8 md:mb-10">
+          <p className="font-heading text-coral text-[11px] tracking-[0.3em] mb-2">
+            THE RECEIPTS
+          </p>
+          <p className="text-foreground-muted text-sm md:text-base max-w-xl mx-auto leading-relaxed">
+            The podcast is not the product. It&apos;s how we earned the
+            right to coach you.
+          </p>
+        </div>
         <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
           {stats.map((stat, i) => (
             <ScrollReveal key={stat.label} direction="up" delay={i * 0.12} eager>
