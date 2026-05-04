@@ -19,8 +19,8 @@ export const metadata: Metadata = {
     url: "https://roadmancycling.com/training-camps/girona-gravel",
     images: [
       {
-        url: "https://roadmancycling.com/images/camps/girona-river-houses.jpg",
-        alt: "Girona old town along the Onyar river",
+        url: "https://roadmancycling.com/images/camps/girona-gravel-trail.webp",
+        alt: "Two gravel riders on a dirt trail through Catalan countryside",
       },
     ],
   },
