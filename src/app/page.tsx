@@ -414,7 +414,7 @@ export default function HomePage() {
                   hoverable={false}
                 >
                   <p className="font-heading text-[10px] tracking-[0.3em] text-coral mb-3">
-                    03 · €195/MONTH
+                    03 · $195/MO
                   </p>
                   <h3 className="font-heading text-2xl text-off-white mb-3">
                     NOT DONE YET
