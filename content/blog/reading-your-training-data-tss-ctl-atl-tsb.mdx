@@ -1,0 +1,217 @@
+---
+title: 'How to Read Your Training Data: TSS, CTL, ATL, and TSB Without the Jargon'
+seoTitle: 'How to Read Your Training Data: TSS, CTL, ATL, TSB Explained'
+seoDescription: >-
+  TSS, CTL, ATL, and TSB explained in plain English for serious amateur
+  cyclists — what each one actually measures, how to read the trends, and
+  the three signals worth acting on.
+excerpt: >-
+  Most amateur cyclists have a TrainingPeaks account they barely read. The
+  numbers there — TSS, CTL, ATL, TSB — are not as complicated as they
+  look. Here's the field guide for reading them properly, and the three
+  signals worth acting on.
+pillar: coaching
+author: Anthony Walsh
+publishDate: '2026-05-04'
+featuredImage: /images/cycling/gravel-canyon-rest.jpg
+keywords:
+  - tss explained
+  - ctl atl tsb
+  - tss ctl atl tsb
+  - reading training data
+  - trainingpeaks tss
+  - chronic training load
+  - acute training load
+  - training stress balance
+  - cycling training metrics
+tags:
+  - tss
+  - ctl
+  - atl
+  - tsb
+  - training-data
+  - trainingpeaks
+faq:
+  - question: What is TSS in plain English?
+    answer: >-
+      Training Stress Score is a single number that summarises how hard a
+      ride was, accounting for both duration and intensity relative to
+      your FTP. A 100-TSS ride is, by definition, an hour at FTP. A
+      90-minute zone 2 ride might be 70 TSS; a 90-minute interval session
+      might be 110 TSS. The score is useful because it lets you compare
+      sessions of different durations and intensities on a single scale.
+  - question: What does CTL actually measure?
+    answer: >-
+      Chronic Training Load is the 42-day exponentially-weighted average
+      of your daily TSS — your "fitness" in TrainingPeaks language.
+      Recent rides count more than older ones because the average is
+      exponentially weighted. A CTL of 60 TSS/day means your body is
+      adapted to roughly 60 TSS per day of work, on average, over the
+      preceding six weeks.
+  - question: What is ATL?
+    answer: >-
+      Acute Training Load is the 7-day exponentially-weighted average of
+      your daily TSS — your "fatigue" in TrainingPeaks language. It
+      tracks recent load and reflects how tired the body should be from
+      the last week's work. ATL rises faster than CTL because the
+      averaging window is shorter.
+  - question: What is TSB and why does it matter?
+    answer: >-
+      Training Stress Balance is CTL minus ATL — the gap between the
+      fitness you've built and the fatigue you're carrying. Negative TSB
+      means you're loaded (typical during a build block). Positive TSB
+      means you're rested (typical during a taper). The most useful
+      pattern: hard work drives CTL up while keeping TSB negative;
+      taper drives TSB positive without losing too much CTL.
+  - question: Should I trust TSS for non-power-meter rides?
+    answer: >-
+      With reservations. Heart-rate-derived TSS estimates are less
+      precise than power-derived ones — typically within 10-15% of the
+      true value for trained riders, but with more error on shorter,
+      higher-intensity rides. RPE-derived TSS (sRPE × duration) is
+      surprisingly serviceable as a backup. For mixed-input training,
+      most coached amateurs treat the rolling averages as the signal
+      and the daily numbers as approximate.
+answerCapsule: >-
+  TSS measures how hard a ride was, normalising duration and intensity to
+  a single score. CTL is the 42-day average of daily TSS — your fitness.
+  ATL is the 7-day average — your fatigue. TSB is CTL minus ATL — the
+  gap between fitness and fatigue. The useful pattern is rising CTL with
+  controlled negative TSB through a build block, then climbing TSB
+  during a taper. Three signals worth acting on: CTL stalled despite
+  consistent training; TSB persistently below -25; or ATL spike with
+  CTL flat (a fatigue accumulation that won't translate to fitness).
+keyTakeaways:
+  - "CTL is fitness, ATL is fatigue, TSB is the gap. Together they're a working dashboard for whether the training is moving you forward."
+  - "A 4-6 TSS-per-week increase in CTL is sustainable; jumps over 8-10 typically trigger a fatigue spiral within 2-3 weeks. Slow and steady CTL gain beats heroic short-term loading every time."
+  - "TSB is meant to swing. Persistently negative TSB across a build is fine. Persistently positive TSB outside a taper means you're not training enough to gain."
+relatedEpisodes:
+  - ep-2148-80-20-training-to-ride-faster-dr-stephen-seiler
+  - ep-2154-how-to-beat-99-by-getting-faster-with-age-dr-david-lipman
+experts:
+  - name: Joe Friel
+    role: Author, The Cyclist's Training Bible
+    href: /guests/joe-friel
+  - name: Prof. Stephen Seiler
+    role: Sports scientist; polarised-training researcher
+    href: /guests/stephen-seiler
+---
+
+Most amateur cyclists have a TrainingPeaks Premium account they barely look at. The fitness/freshness chart sits there, swinging up and down, with its blue line and pink line and yellow line, and the rider — politely — has no idea what any of it means in practical terms. The opacity is the problem. The numbers themselves are not as complicated as they look.
+
+TSS, CTL, ATL, and TSB are the four foundational metrics that make TrainingPeaks (and the rest of the modern coaching toolset) useful. Understanding them is not optional for the serious amateur cyclist who wants to read their own training. This is the working field guide — what each one is, how to read the trends, and the three signals worth acting on.
+
+## TSS: how hard the ride was
+
+Training Stress Score is the single number that summarises a ride's training stress, accounting for both duration and intensity. The formula is anchored to an hour at FTP: by definition, an hour at exactly FTP delivers 100 TSS.
+
+From there, the math scales:
+
+- A 60-minute ride at 70% of FTP intensity factor delivers roughly 50 TSS.
+- A 60-minute ride at 100% of FTP (i.e. at threshold) delivers 100 TSS.
+- A 90-minute ride at 70% IF delivers roughly 75 TSS.
+- A 4-hour zone 2 ride at 65% IF delivers roughly 170 TSS.
+- A 60-minute VO2 interval session at high IF can deliver 110-120 TSS.
+
+The advantage of TSS over raw kilojoules or hours is that it normalises for both intensity and duration. A 90-minute zone 2 ride and a 50-minute interval session might deliver similar TSS while feeling completely different in the legs. The single number lets you compare load across very different sessions.
+
+The metric was developed by Dr Andy Coggan and is implemented (with minor variations) in TrainingPeaks, intervals.icu, TrainerRoad, Final Surge, and most other modern training platforms. The exact derivation differs slightly between platforms but the comparative behaviour is consistent.
+
+**A note on accuracy.** Power-derived TSS, with a calibrated power meter, is reliable. Heart-rate-derived TSS (called hrTSS in TrainingPeaks) is approximate — within 10-15% of true power-derived TSS for trained riders, with more error on shorter, higher-intensity rides. RPE-derived TSS (sRPE × duration) is rougher but serviceable as a backup. For mixed-input training, most coached amateurs treat the daily TSS as approximate and the rolling averages as the signal.
+
+## CTL: the fitness number
+
+Chronic Training Load is a 42-day exponentially-weighted moving average of your daily TSS. It's labelled as "Fitness" in TrainingPeaks. The number is reported in TSS-per-day units — a CTL of 60 means your daily TSS load, averaged across the previous 42 days with recent days weighted more heavily, sits around 60.
+
+The 42-day window matters because it approximates the timescale on which the body's adaptations actually accumulate. A single hard week doesn't move CTL much. Six weeks of consistent training does.
+
+What CTL is good at:
+
+- Showing whether you're genuinely building fitness over a multi-month block.
+- Highlighting plateaus — if your CTL has been flat for two months despite consistent riding, your daily TSS isn't progressing and the body has adapted to the current load.
+- Sizing the training jump from one phase to the next — if your base block ended at CTL 55, your build block should target 65-75 over 6-8 weeks.
+
+What CTL is not good at:
+
+- Predicting your performance on race day. A high CTL is necessary but not sufficient — fatigue load (ATL, see below) matters too.
+- Capturing intensity distribution. A rider at CTL 70 from 80% zone 2 looks the same in the metric as a rider at CTL 70 from 60% zone 3 — but their fitness profiles are different.
+
+**Sustainable rate of CTL gain.** 4-6 TSS-per-week increase in CTL is sustainable for most amateur cyclists. 8-10 per week is aggressive. Above 10 per week, the rider almost always crashes within 2-3 weeks into a fatigue spiral. Patience here is rewarded; CTL gained slowly stays.
+
+## ATL: the fatigue number
+
+Acute Training Load is a 7-day exponentially-weighted moving average of your daily TSS. It's labelled as "Fatigue" in TrainingPeaks. Same units as CTL — TSS per day.
+
+The shorter window matters because it tracks the load your body is currently absorbing, before the longer-term adaptations have fully kicked in. ATL rises faster than CTL on a hard week and falls faster on a recovery week.
+
+The classic pattern: a Tuesday hard session, a Thursday hard session, and a Saturday long ride add up to a high ATL by Sunday. The rider's body is genuinely tired at this point. Then the recovery day Monday and easy Wednesday let ATL fall back, even though the underlying CTL is still climbing.
+
+What ATL is good at:
+
+- Showing real-time fatigue load.
+- Catching weeks where the rider is digging too deep — ATL spiking 30-40 TSS above CTL is a fatigue signal worth reading.
+
+What ATL is not good at:
+
+- Telling you whether tomorrow's session should be hard or easy. The CTL/ATL relationship and the rider's RPE matter more.
+
+## TSB: the form number
+
+Training Stress Balance is CTL minus ATL. It's labelled "Form" in TrainingPeaks.
+
+When TSB is negative, you're carrying more recent fatigue than long-term fitness can absorb. This is the normal state during a build block — and it should be. Riding to consistently positive TSB outside a taper means you're not training hard enough to drive adaptation.
+
+When TSB is positive, you're more recovered than your fitness baseline. This is the state you want on race day.
+
+The numbers most coaches use as guideposts:
+
+- **TSB +10 to +25.** "Race-fresh." The taper has worked. Form is up; fitness hasn't decayed enough to matter.
+- **TSB -10 to -20.** "Productive overload." You're building, you're tired, you're absorbing work. Most of a build block lives here.
+- **TSB -20 to -30.** "Approaching fatigue limit." Watch the trend and the RPE. If you're holding form on the bike, fine. If RPE for given watts has crept up, deload.
+- **TSB below -30.** "Diminishing returns." More training in this state typically degrades the fitness it was meant to build.
+- **TSB above +30.** "Detraining." You're losing fitness faster than you're gaining recovery. Acceptable in race week; problematic outside it.
+
+**The arc of a 12-week plan.** The TSB chart of a well-executed plan shows a controlled negative TSB through the base and build (typically -10 to -25), tightening to -25 to -30 in the peak training week (week 7 or 8 of the plan), then climbing through the sharpen and taper to land at +5 to +20 by race day.
+
+The riders whose TSB chart looks like a smooth fitness curve with controlled fatigue are the riders whose race day works. The riders whose chart shows wild swings — TSB at -40 then +10 then -35 — are the riders who never quite peak.
+
+## The three signals worth acting on
+
+Most of the chart is noise. Three patterns are worth actively reading.
+
+**Signal one: CTL stalled despite consistent training.** Your daily TSS is roughly the same across the last six weeks but your CTL has flatlined. Two explanations: either your work isn't actually consistent (intermittent missed sessions you've forgotten about, or the load has subtly dropped) or your body has adapted to the current load and needs a stimulus change.
+
+The fix: pull the calendar, count the actual completed sessions versus planned, and look at the daily TSS trend. If the work is genuinely there, increase weekly TSS by 5-8% — usually by extending the long ride or adding a third quality session — and watch CTL respond over four weeks.
+
+**Signal two: TSB persistently below -25 with RPE creeping up.** The rider is training through accumulating fatigue. The CTL number looks fine; the daily files look fine; but the rider's perceived exertion at given wattages has climbed and TSB is stuck at -25 to -35.
+
+The fix: deload immediately. Take a 30-40% volume drop for one week, hold the intensity but reduce session reps, and let TSB climb back to -10. The CTL will dip slightly; the rider will return to productive training within 7-10 days.
+
+**Signal three: ATL spike with CTL flat.** A pattern that often precedes a sickness or injury. The rider has done a heavy block, ATL is spiking, but CTL hasn't caught up because the increase isn't sustainable. Typically a 7-10 TSS/day jump in ATL with no corresponding CTL rise.
+
+The fix: deload before the next planned hard session, even if it feels conservative. The rider who pushes through in this state is the rider who calls in sick on Wednesday.
+
+## What TSS doesn't catch
+
+The metrics are useful, not complete. Things they miss:
+
+- **Quality of sleep.** A 100-TSS session after 6 hours of bad sleep costs more than after 8 hours of good sleep. The numbers are the same; the actual recovery cost isn't.
+- **Life-stress load.** A rider going through a heavy work quarter has less recovery bandwidth than the same rider in a quiet month, even at the same training load.
+- **Intensity distribution.** A 70-TSS day from 90 minutes of zone 3 grey-zone work and a 70-TSS day from 90 minutes of polarised zone 2 plus 8 minutes of threshold are very different physiologically.
+- **The rest of life.** Training is one input among several. The numbers are blind to the others.
+
+This is why coaches who use TrainingPeaks data effectively pair it with subjective inputs — RPE per session, sleep duration, life-stress score, weekly check-ins. The numbers are the dashboard; the conversation around them is the actual coaching. The Vekta-built plans inside Not Done Yet Coaching push directly into TrainingPeaks for this reason — the planned daily TSS sets the target and the rider's actual file plus their RPE plus the weekly call closes the loop.
+
+## A working weekly review
+
+Five minutes per week, on a Sunday or Monday morning:
+
+1. Look at the CTL trend. Up steadily? Flat? Drifting down? Does that match the phase of the plan you're in?
+2. Look at TSB. Is it where the plan says it should be — productive overload through a build, climbing into a taper?
+3. Skim the daily TSS for the last week. Were the hard days hard enough? Were the easy days actually easy?
+4. Check planned vs completed for the coming week. Realistic given the calendar?
+5. Note any pattern — three nights bad sleep, a heavy work week, a poor session — that might shift the next 7 days' plan.
+
+That's it. The riders who do this consistently end up with a much sharper sense of where they are in a plan than the riders who only check the chart when a session goes badly.
+
+The numbers are the dashboard. They're not the engine. The engine is the work — the hours, the structure, the recovery. But riding without watching the dashboard is the same as flying without instruments. Possible. Hard. And mostly preventable with five minutes a week.
