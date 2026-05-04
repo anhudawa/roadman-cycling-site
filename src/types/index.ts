@@ -153,6 +153,10 @@ export const NAV_ITEMS: NavItem[] = [
     href: "/plateau",
   },
   {
+    label: "Masters",
+    href: "/masters",
+  },
+  {
     label: "Ask Roadman",
     href: "/ask",
   },
