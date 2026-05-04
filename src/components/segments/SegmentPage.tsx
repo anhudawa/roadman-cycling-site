@@ -101,6 +101,28 @@ export function SegmentPage({ data }: Props) {
         }}
       />
 
+      {/* WebPage schema */}
+      <JsonLd
+        data={{
+          "@context": "https://schema.org",
+          "@type": "WebPage",
+          "@id": `https://roadmancycling.com/coaching/${data.slug}#webpage`,
+          url: `https://roadmancycling.com/coaching/${data.slug}`,
+          name: data.h1,
+          description: data.seoDescription,
+          inLanguage: "en",
+          isPartOf: {
+            "@type": "WebSite",
+            "@id": "https://roadmancycling.com/#website",
+          },
+          about: { "@id": ENTITY_IDS.organization },
+          primaryImageOfPage: {
+            "@type": "ImageObject",
+            url: "https://roadmancycling.com/og-image.jpg",
+          },
+        }}
+      />
+
       <Header />
 
       <main id="main-content">
@@ -137,6 +159,15 @@ export function SegmentPage({ data }: Props) {
               </div>
               <p className="text-foreground-subtle text-sm">
                 $195/month. 7-day free trial. Cancel anytime.
+              </p>
+              <p className="text-foreground-subtle text-xs mt-4">
+                Not sure where to start?{" "}
+                <Link
+                  href="/find-your-fit"
+                  className="text-coral hover:text-coral/80 underline decoration-coral/30 hover:decoration-coral transition-colors"
+                >
+                  Find Your Fit →
+                </Link>
               </p>
             </ScrollReveal>
           </Container>
@@ -579,6 +610,104 @@ export function SegmentPage({ data }: Props) {
                 ← BACK TO ALL COACHING
               </Link>
             </ScrollReveal>
+          </Container>
+        </Section>
+
+        {/* Tier routing — three ways in */}
+        <Section background="deep-purple" grain>
+          <Container>
+            <ScrollReveal direction="up" className="text-center mb-12">
+              <h2
+                className="font-heading text-off-white mb-4"
+                style={{ fontSize: "var(--text-section)" }}
+              >
+                NOT QUITE READY TO APPLY?
+              </h2>
+              <p className="text-foreground-muted max-w-xl mx-auto">
+                Three free or low-commitment ways to get started — pick the one
+                that fits where you are right now.
+              </p>
+            </ScrollReveal>
+
+            <div className="grid md:grid-cols-3 gap-4">
+              <ScrollReveal direction="up" delay={0}>
+                <Link
+                  href="/plateau"
+                  className="block h-full"
+                  data-track={`segment_${data.slug}_tier_plateau`}
+                >
+                  <Card className="p-6 h-full" hoverable={false}>
+                    <p className="text-coral font-heading text-xs tracking-widest mb-3">
+                      FREE — START HERE
+                    </p>
+                    <h3 className="font-heading text-xl text-off-white mb-3">
+                      PLATEAU DIAGNOSTIC
+                    </h3>
+                    <p className="text-sm text-foreground-muted leading-relaxed mb-6">
+                      Three minutes. One specific reason your power has
+                      flatlined — and what the next 12 weeks should focus on.
+                    </p>
+                    <p className="text-coral font-heading text-sm tracking-wider">
+                      Take the Diagnostic →
+                    </p>
+                  </Card>
+                </Link>
+              </ScrollReveal>
+
+              <ScrollReveal direction="up" delay={0.06}>
+                <Link
+                  href="/apply"
+                  className="block h-full"
+                  data-track={`segment_${data.slug}_tier_ndy`}
+                >
+                  <Card
+                    className="p-6 h-full border-coral/40"
+                    glass
+                    hoverable={false}
+                  >
+                    <p className="text-coral font-heading text-xs tracking-widest mb-3">
+                      $195/MONTH — COACHING
+                    </p>
+                    <h3 className="font-heading text-xl text-off-white mb-3">
+                      NOT DONE YET
+                    </h3>
+                    <p className="text-sm text-foreground-muted leading-relaxed mb-6">
+                      1:1 coaching across all five pillars. Personalised
+                      TrainingPeaks plan, weekly adjustments, the community of
+                      serious riders. 7-day free trial.
+                    </p>
+                    <p className="text-coral font-heading text-sm tracking-wider">
+                      Apply for Coaching →
+                    </p>
+                  </Card>
+                </Link>
+              </ScrollReveal>
+
+              <ScrollReveal direction="up" delay={0.12}>
+                <Link
+                  href="/inner-circle"
+                  className="block h-full"
+                  data-track={`segment_${data.slug}_tier_inner_circle`}
+                >
+                  <Card className="p-6 h-full" hoverable={false}>
+                    <p className="text-coral font-heading text-xs tracking-widest mb-3">
+                      $525/MONTH — PREMIUM
+                    </p>
+                    <h3 className="font-heading text-xl text-off-white mb-3">
+                      INNER CIRCLE
+                    </h3>
+                    <p className="text-sm text-foreground-muted leading-relaxed mb-6">
+                      Everything in Not Done Yet, with a coach reading your
+                      data daily. Performance Health: bloods, biomarkers,
+                      hormones. Limited intake.
+                    </p>
+                    <p className="text-coral font-heading text-sm tracking-wider">
+                      Learn More →
+                    </p>
+                  </Card>
+                </Link>
+              </ScrollReveal>
+            </div>
           </Container>
         </Section>
 

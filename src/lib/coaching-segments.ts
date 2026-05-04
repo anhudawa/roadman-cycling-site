@@ -236,28 +236,52 @@ export const COACHING_SEGMENTS: Record<string, SegmentData> = {
     breakerWord: "MASTERS",
     relatedResources: [
       {
-        label: "Masters Recovery Score",
-        href: "/tools/masters-recovery-score",
-        description:
-          "Free 0–100 recovery audit calibrated for cyclists 40+. Four inputs, one number, a calibrated recommendation.",
-      },
-      {
         label: "Masters FTP Benchmark",
         href: "/tools/masters-ftp-benchmark",
         description:
           "See where your FTP sits among trained masters cyclists in your age group. 40-44, 45-49, 50-54, 55-59, 60+.",
       },
       {
-        label: "Masters Cycling Podcast Playlist",
-        href: "/blog/masters-cycling-podcast-playlist",
+        label: "Masters Recovery Score",
+        href: "/tools/masters-recovery-score",
         description:
-          "Topic-organised playlist of Roadman episodes for masters cyclists — training, recovery, strength, racing, longevity.",
+          "Free 0–100 recovery audit calibrated for cyclists 40+. Four inputs, one number, a calibrated recommendation.",
       },
       {
-        label: "Masters Cyclist Guide",
+        label: "FTP Zones Calculator",
+        href: "/tools/ftp-zones",
+        description:
+          "Generate disciplined training zones from your current FTP. The Zone 2 cap that stops grey-zone drift starts here.",
+      },
+      {
+        label: "How to Get Faster After 40",
         href: "/blog/masters-cyclist-guide-getting-faster-after-40",
         description:
-          "The long-form companion guide — getting faster after 40, with the full training, recovery, and strength framework.",
+          "The long-form framework for masters riders — recovery, polarised distribution, strength, fuelling, and the protocol changes 40+ training actually needs.",
+      },
+      {
+        label: "Masters Training Plan Framework",
+        href: "/blog/cycling-training-plan-masters-over-40",
+        description:
+          "How a coached masters week is structured — sessions, weekly distribution, and the periodisation that respects recovery.",
+      },
+      {
+        label: "Polarised Training: The Masters Method",
+        href: "/blog/polarised-training-cycling-guide",
+        description:
+          "Seiler's polarised model applied to masters riders. Why 85/15 beats 80/20 after 40, and how to police true Zone 2.",
+      },
+      {
+        label: "Strength Training for Cyclists Over 50",
+        href: "/blog/strength-training-cyclists-over-50",
+        description:
+          "Heavy compound lifting for masters cyclists — protecting type-2 fibres, bone density, and the watts you've already built.",
+      },
+      {
+        label: "VO2max Workouts for Masters Cyclists",
+        href: "/blog/vo2-max-workouts-cyclists-over-40",
+        description:
+          "Short, sharp, fully recovered for. The two VO2max sessions a week that build the engine without breaking it.",
       },
     ],
   },
@@ -1332,7 +1356,7 @@ export const COACHING_SEGMENTS: Record<string, SegmentData> = {
         label: "Plateau Diagnostic",
         href: "/plateau",
         description:
-          "Three-minute diagnostic that pins down exactly why your power has flatlined — and what the next 12 weeks should focus on.",
+          "Three-minute diagnostic that pins down exactly why your power has flatlined. Sub-6-hour riders plateau more than anyone — start here.",
       },
       {
         label: "FTP Zones Calculator",
@@ -1341,16 +1365,40 @@ export const COACHING_SEGMENTS: Record<string, SegmentData> = {
           "Generate the training zones every time-crunched session is paced from. Indoor sweet spot and VO2max work needs the numbers right.",
       },
       {
-        label: "Coaching Assessment",
-        href: "/diagnostic",
+        label: "W/kg Calculator",
+        href: "/tools/wkg",
         description:
-          "Five-minute coaching diagnostic. Where the gains are, what to fix first, and whether structured coaching is the right next step.",
+          "Translate your FTP into power-to-weight against trained age-group benchmarks. Useful when hours are limited and quality has to do the work.",
       },
       {
         label: "Time-Crunched Cyclist Guide",
         href: "/blog/time-crunched-cyclist-8-hours-week",
         description:
-          "The long-form companion guide — getting faster on 5-8 hours a week without burning out or under-training.",
+          "The long-form framework — getting faster on 5-8 hours a week without burning out, under-training, or following a watered-down 12-hour plan.",
+      },
+      {
+        label: "VO2max Intervals For Cyclists",
+        href: "/blog/cycling-vo2max-intervals",
+        description:
+          "The highest return-per-minute work in cycling. How to structure VO2max for time-crunched riders so the sessions actually land.",
+      },
+      {
+        label: "Cycling Interval Training For Beginners",
+        href: "/blog/cycling-interval-training-beginners",
+        description:
+          "Plain-English entry point to structured intervals — what each session does, why it works, and how to fit it into a 5-hour week.",
+      },
+      {
+        label: "Steady State vs Interval Training",
+        href: "/blog/steady-state-vs-interval-training-cycling",
+        description:
+          "The trade-off when hours are limited. Why intensity-led distribution beats more endurance volume below 6 hours a week.",
+      },
+      {
+        label: "Low-Cadence Torque Intervals",
+        href: "/blog/low-cadence-training-cycling-torque-intervals",
+        description:
+          "Strength-on-the-bike sessions for time-crunched riders — force production without an extra gym visit.",
       },
     ],
   },
@@ -1497,7 +1545,7 @@ export const COACHING_SEGMENTS: Record<string, SegmentData> = {
       "Need acute medical or physiotherapy care (we are coaches, not clinicians)",
     ],
     serviceType: "Cycling Coaching for Post-Injury Return",
-    breakerWord: "COMEBACK",
+    breakerWord: "REBUILD",
   },
 
   "weight-loss": {
@@ -1644,6 +1692,406 @@ export const COACHING_SEGMENTS: Record<string, SegmentData> = {
     serviceType: "Cycling Coaching for Body Composition",
     breakerWord: "FUEL",
   },
+
+  comeback: {
+    slug: "comeback",
+    seoTitle: "Cycling Coaching for Comeback Riders | Reclaim Your Form",
+    seoDescription:
+      "Cycling coaching for cyclists returning after a long break — injury, life, career, illness. Structured rebuild, the Not Done Yet identity, and the patience the comeback actually needs. $195/month.",
+    h1: "Cycling Coaching for Comeback Riders",
+    heroEyebrow: "COACHING FOR COMEBACK RIDERS",
+    heroAccent: "RECLAIM WHAT YOU ONCE HAD. RIDE LIKE YOU'RE NOT DONE YET.",
+    directAnswer:
+      "This is coaching for cyclists who've been off the bike for months or years and want a structured way back to the rider they used to be — the one that climbed, raced, finished strong, and felt like themselves on a bike. The reason for the break doesn't matter as much as the rebuild. Done properly, the comeback isn't a slow consolation prize. It's a second window.",
+    problem: [
+      "There's a specific kind of pain in opening Strava and looking at the version of you from three years ago. Times you can't hit. Power you can't touch. Routes that used to be Tuesday rides and now feel like challenges. The body changed. The work changed. The reasons were real — injury, career, kids, illness, burnout, life — but the gap between then and now is the part that hurts.",
+      "Most comeback riders fall into one of two traps. The first is trying to come back at the volume and intensity they left, which breaks them inside six weeks and confirms the worst story — you're done. The second is being so cautious they never load the body enough to actually adapt, and twelve months in nothing has changed. Both miss the truth: the comeback is a structured process, not a leap of faith.",
+      "The reframe is the work. You're not behind — you're a comeback rider. That's a different identity from a beginner and a different identity from someone trying to hold onto what they had. It's reclaiming, and it's measured in months, with a trajectory that matters more than any single number on the way.",
+    ],
+    whatChanges: [
+      "Plan reverse-engineered from where you ARE now, not where you were",
+      "Long-term mindset — measured in months, not weeks",
+      "Strength reintroduced in the first block, not bolted on later",
+      "Power benchmarked against your trajectory, not your old PB",
+      "Mental side coached — confidence on the bike, comparison fatigue, the Strava-ghost problem",
+      "The Not Done Yet community — riders going through the same return",
+    ],
+    pillars: [
+      {
+        number: "01",
+        title: "Honest Starting Point",
+        description:
+          "We start where your body actually is, not where your head wants it to be. A real assessment — current sustainable power, weight, training history, time off, what changed. The first plan is built around that number, not your old FTP.",
+      },
+      {
+        number: "02",
+        title: "Rebuild The Engine",
+        description:
+          "Polarised Zone 2 base for the first 6-12 weeks. Disciplined HR caps, no hero rides, no Strava chasing. The aerobic base built (or rebuilt) here is what every later block stands on. Skip it and you plateau again, but worse — because this time you'll blame yourself.",
+      },
+      {
+        number: "03",
+        title: "Strength From The Start",
+        description:
+          "Two strength sessions a week from week one — protecting joints, restoring force production, holding type-2 fibres that life off the bike has been quietly draining. This isn't bolted on at month four. It's part of the foundation.",
+      },
+      {
+        number: "04",
+        title: "The Identity Shift",
+        description:
+          "Not Done Yet is the frame. You're not a fallen version of who you were — you're a comeback rider, and that's a real category with a real protocol. The mental work is coached: handling the comparison to the old you, the patience the rebuild demands, the confidence that returns ride by ride.",
+      },
+      {
+        number: "05",
+        title: "Community That Gets It",
+        description:
+          "Inside Not Done Yet, you train alongside other riders rebuilding from breaks of their own. The Strava ghost stops feeling so personal when you're in a room with twenty people working through the same return. Accountability, perspective, and riders who actually understand.",
+      },
+    ],
+    sampleWeekHours: "5-7 hrs/week (early-block)",
+    sampleWeekContext:
+      "An early-block week for a comeback rider 6-10 weeks back into structured training, with full clearance to load. Lower volume, polarised distribution, two strength sessions, and a long Zone 2 ride that asks for discipline rather than effort.",
+    sampleWeek: [
+      { day: "Monday", session: "Rest or 20 min easy spin + mobility", duration: "0-30 min" },
+      { day: "Tuesday", session: "Easy structured Zone 2 — high cadence intervals (95-105 RPM)", duration: "60 min" },
+      { day: "Wednesday", session: "Strength — heavy compound lifts, 4 x 5", duration: "40 min" },
+      { day: "Thursday", session: "Zone 2 endurance — strict HR cap, no Strava segments", duration: "75 min" },
+      { day: "Friday", session: "Rest or 30 min easy spin", duration: "0-30 min" },
+      { day: "Saturday", session: "Long Zone 2 ride — disciplined HR, full fuelling, no surges", duration: "2.5-3 hrs" },
+      { day: "Sunday", session: "Recovery spin or short Zone 2 + second strength session", duration: "45-60 min + 30 min" },
+    ],
+    mistakes: [
+      {
+        title: "Comparing today's wattage to your old FTP",
+        description:
+          "It's the fastest way to make a real comeback feel like a failure. The number you're holding now is the start line, not the verdict. Track this week against last week — that's the metric. The old FTP comes back when the engine is rebuilt, not when you guilt yourself into it.",
+      },
+      {
+        title: "Riding the volume you used to ride",
+        description:
+          "The body that's coming back isn't the body that left. Coming back at six 12-hour weeks because that's what worked before is the most reliable way to break yourself in month two. Volume is built progressively — 10% week-on-week — even if your head wants more.",
+      },
+      {
+        title: "Skipping strength because 'I just want to ride'",
+        description:
+          "Time off the bike usually means time off the legs. Type-2 muscle fibres, bone density, and joint resilience all quietly slid while you weren't looking. Two strength sessions a week from week one is what makes the cycling adaptations stick. Skip it and the rebuild plateaus.",
+      },
+      {
+        title: "No long-term plan — riding when motivated, stopping when not",
+        description:
+          "Motivation is unreliable. Structure isn't. Comeback riders who succeed are the ones whose plan doesn't depend on how they feel on Sunday. The plan keeps moving — Tuesday is Tuesday's session — and the consistency compounds even when the feelings don't.",
+      },
+      {
+        title: "Trying to come back alone",
+        description:
+          "Solo comebacks are the hardest version. Without other riders going through the same thing, every slow ride feels like proof you're done. The community isn't a nice-to-have — it's the reason most riders stick with the process long enough for the trajectory to become visible.",
+      },
+    ],
+    caseStudy: {
+      name: "James, 47",
+      context: "Off the bike for 18 months after a job change and a second child. Used to be a Cat 3 racer. Opened his old data once, almost sold the bike, found Roadman through a podcast.",
+      result: "Six months in, FTP back to within 12% of his pre-break peak. Down 9kg through fuelled training, not restriction. Riding 6 hours a week with a structured 12-month plan. Started racing local league again at month seven.",
+      quote:
+        "I was within an inch of selling the bike. The structure gave me a way back I couldn't see on my own — and the community made it OK to be slower than I used to be while I rebuilt.",
+    },
+    faqs: [
+      {
+        question: "How is this different from the post-injury coaching?",
+        answer:
+          "Post-injury coaching is medical-rehab specific — coordinated with your physio, structured around a recent injury or surgery, and focused on progressive loading after a clinical event. Comeback coaching is broader and more identity-led: cyclists returning after a long break for any reason — life, career, illness, burnout, kids, a few quiet years — without an acute medical issue driving the rebuild. Same patience and progressive loading principles, different framing and different starting questions.",
+      },
+      {
+        question: "I'm 30kg heavier than I was at my peak. Will this still work?",
+        answer:
+          "Yes. Body composition follows fuelled, consistent training — it doesn't precede it. Most of our comeback riders see clothes get looser long before scale weight moves significantly, because strength work and the rebuild add muscle while fat slowly decreases. The protocol that rebuilds the engine is the same one that changes body composition. We don't restrict to lose weight; we fuel to train, and the body responds.",
+      },
+      {
+        question: "How long until I feel like myself again on the bike?",
+        answer:
+          "Rough guide: 3-6 months for the engine to feel like an engine again. 12 months to be at or near your previous performance level. The trajectory matters more than the timeline — riders who see consistent week-on-week progress at month three almost always reach the year-out goal. The riders who get impatient and try to compress it are the ones who reset themselves to month one.",
+      },
+      {
+        question: "What if I lose motivation halfway through?",
+        answer:
+          "It'll happen. The plan is built for that. Tuesday is still Tuesday's session whether you feel like a comeback rider or a fraud that day. The community accountability — group calls, weekly check-ins, other riders going through the same return — is the layer that holds the process together when the motivation dips. The structure doesn't stop because you do.",
+      },
+      {
+        question: "I haven't ridden in 3 years. Where do you start?",
+        answer:
+          "With an honest starting point assessment — current sustainable power, training history, time off, any niggles, life context. The first 4-6 weeks are easy Zone 2 with a strict HR cap, two short strength sessions a week, and no expectation of intensity. We build from there. There's no minimum starting fitness — there's just an honest starting point and a plan that builds from it.",
+      },
+      {
+        question: "Am I too old for this to actually work?",
+        answer:
+          "No. Brian came back to 4 w/kg at 52. Kevin set new power numbers at 67 after four decades on the bike. The trained masters cyclist gains and improves into their 60s and 70s when the methodology is right. Age is a constraint, not a ceiling. Comebacks at 45, 55, even 65 are real and we coach them.",
+      },
+    ],
+    yesIfYou: [
+      "Have been off the bike for 6+ months and want a structured return",
+      "Used to ride seriously and want THAT back, not just generic fitness",
+      "Are willing to start lower than your ego prefers",
+      "Want a long-term plan, not a 6-week fix",
+      "Want the community of riders going through the same return",
+      "Believe you've still got more in you and want a process to find it",
+    ],
+    notIfYou: [
+      "Are returning from a recent acute injury (use post-injury coaching instead)",
+      "Want a quick-fix protocol that promises old FTP back in 8 weeks",
+      "Aren't ready to commit to a 6-12 month process",
+    ],
+    serviceType: "Cycling Coaching for Comeback Riders",
+    breakerWord: "RECLAIM",
+    relatedResources: [
+      {
+        label: "Plateau Diagnostic",
+        href: "/plateau",
+        description:
+          "Three-minute diagnostic that pins down where the gap actually is — and what your first comeback block should focus on.",
+      },
+      {
+        label: "FTP Zones Calculator",
+        href: "/tools/ftp-zones",
+        description:
+          "Recalibrate your training zones from your CURRENT FTP — not your old one. Zones built around where you are now.",
+      },
+      {
+        label: "W/kg Calculator",
+        href: "/tools/wkg",
+        description:
+          "Honest power-to-weight against trained age-group benchmarks. Useful for setting the trajectory rather than chasing the old number.",
+      },
+      {
+        label: "Comeback Cyclist 12-Week Return Plan",
+        href: "/blog/comeback-cyclist-12-week-return-plan",
+        description:
+          "Block-by-block structure for the first 12 weeks back — volume, intensity, strength, and how each block earns the next.",
+      },
+      {
+        label: "Returning to Cycling After a Break",
+        href: "/blog/cycling-returning-after-break",
+        description:
+          "The principles of progressive loading for comeback riders. How to start lower, build slower, and avoid the two traps that derail most returns.",
+      },
+      {
+        label: "Owen Vermeulen — Addiction Recovery Comeback",
+        href: "/blog/owen-vermeulen-addiction-recovery-cycling-comeback",
+        description:
+          "A real comeback story from inside the community. The role structure, identity, and other riders played in finding the bike again.",
+      },
+      {
+        label: "Polarised Training Guide",
+        href: "/blog/polarised-training-cycling-guide",
+        description:
+          "The Seiler-rooted polarised model that the comeback rebuild is built on. Why true Zone 2 has to be policed, especially in the first blocks back.",
+      },
+      {
+        label: "Strength Training for Cyclists",
+        href: "/blog/strength-training-cyclists-over-50",
+        description:
+          "Heavy compound lifting reintroduced from week one — protecting joints, restoring force production, and holding the muscle that life off the bike was draining.",
+      },
+    ],
+  },
+
+  "event-prep": {
+    slug: "event-prep",
+    seoTitle: "Cycling Coaching for Event Prep | Peak For Your Target Event",
+    seoDescription:
+      "Cycling coaching for riders targeting a specific event 12-20 weeks out — sportive, gran fondo, gravel ultra, hill climb, ironman bike. Periodised build, course-specific work, taper, and race-day execution. $195/month.",
+    h1: "Cycling Coaching for Event Prep",
+    heroEyebrow: "COACHING FOR TARGET EVENTS",
+    heroAccent: "PEAK ON THE DAY. EXECUTE THE EVENT YOU BOOKED.",
+    directAnswer:
+      "This is coaching for cyclists with a specific event 12-20 weeks out — the bucket-list summer trip, the alpine sportive, the gravel ultra, the hill climb, the ironman bike leg, the local league A-race. You're not training generically. You're peaking for a date. The build is reverse-engineered from event day, the work is course-specific, and the goal is to perform on the day, not just survive it.",
+    problem: [
+      "Most riders prepping for a target event train hardest in the four weeks before it. They ride more in race month than they did three months prior, panic-buy a fuelling product they've never used, ignore tapering, and improvise pacing. Then they spend the next year saying 'next time I'll do it properly.'",
+      "Event-day performance is one of the most coachable problems in cycling because it's so well-defined. The date is fixed. The course is known. Your weight, your FTP, your fuelling tolerance — all measurable. Periodise the build to the date, replicate the course in training, test the fuelling weeks out, taper properly, and write the race-day plan down. The difference between a hoped-for finish and a result you're proud of isn't subtle.",
+      "Most event disappointment isn't a fitness problem. It's a planning problem.",
+    ],
+    whatChanges: [
+      "Plan reverse-engineered from your event date — base, build, peak, taper",
+      "Course-specific rides that replicate the demands of YOUR event",
+      "Fuelling tested in long rides for weeks, not improvised on the morning",
+      "Power-based pacing strategy with caps for each section of the course",
+      "10-day taper structured properly — sharper, not lazier",
+      "Race-day plan written down: fuelling, pacing, contingencies, kit",
+    ],
+    pillars: [
+      {
+        number: "01",
+        title: "Periodised Build",
+        description:
+          "Base, build, peak, taper. The plan is reverse-engineered from your event date so each block feeds the next. No accidental peaking three weeks too early, no panic-training in race month. The architecture is set the day we start.",
+      },
+      {
+        number: "02",
+        title: "Course-Specific Work",
+        description:
+          "An alpine sportive is a different problem from a flat 100-miler. A gravel ultra is a different problem from a hill climb. We replicate the climbs, the surface, the duration, and the demands of YOUR specific event in training. The body that arrives on the start line has already rehearsed the day.",
+      },
+      {
+        number: "03",
+        title: "Tested Fuelling",
+        description:
+          "60-100g of carbs an hour for the duration of your event is a trained skill, not an improvisation. We dial products, timing, and gut tolerance in long training rides for weeks before the event. By race day the plan is automatic — and your gut is trained to handle it.",
+      },
+      {
+        number: "04",
+        title: "Tapered Race Week",
+        description:
+          "Race week is shorter rides at the same intensity, openers two days out, and proper sleep. Most riders ride 80% of their normal volume in race week and wonder why their legs feel heavy on the day. The 10-day taper is structured: sharper sessions, less time, fuelled and rested properly.",
+      },
+      {
+        number: "05",
+        title: "Race-Day Execution",
+        description:
+          "A written race-day plan: power caps for each section, fuelling timing, contingencies for weather and crashes, what's in your jersey pockets. Most event blow-ups happen in the first hour because adrenaline overrides the plan. Writing it down is what makes the plan survive contact with the start line.",
+      },
+    ],
+    sampleWeekHours: "9-11 hrs/week",
+    sampleWeekContext:
+      "A peak-block week 5-6 weeks out from a target event (e.g., Etape du Tour, Wicklow 200, Fred Whitton, Ride London, Leadville bike leg). Course-specific work, race-pace simulation, full fuelling rehearsal.",
+    sampleWeek: [
+      { day: "Monday", session: "Rest or 30 min easy spin", duration: "0-30 min" },
+      { day: "Tuesday", session: "Course-specific intervals — 5 x 6 min @ threshold on event-matching gradient", duration: "75 min" },
+      { day: "Wednesday", session: "Zone 2 endurance — strict HR cap", duration: "90 min" },
+      { day: "Thursday", session: "Race-pace efforts — 3 x 20 min @ goal event power", duration: "90 min" },
+      { day: "Friday", session: "Easy spin or rest", duration: "30-45 min" },
+      { day: "Saturday", session: "Course simulation — 4-5 hrs with event-matching profile, full race-day fuelling", duration: "4-5 hrs" },
+      { day: "Sunday", session: "Recovery spin or short Zone 2 + 30 min strength", duration: "60 min + 30 min" },
+    ],
+    mistakes: [
+      {
+        title: "Training hardest in the four weeks before the event",
+        description:
+          "It's the universal panic. You suddenly notice the date is close and ride more in race month than you did three months prior. Your fitness was built weeks ago — race month is for sharpening and resting, not for adding new work. Trust the build. Adding load now costs you the day.",
+      },
+      {
+        title: "Improvising fuelling on the day",
+        description:
+          "If you've never eaten 80g of carbs an hour for 6 hours in training, race day is not the time to find out your gut can't handle it. Test products, timing, and total carb load in long rides for weeks before. The fuelling plan should be automatic by event day — not a brand-new experiment.",
+      },
+      {
+        title: "Going out too hard in the first hour",
+        description:
+          "Adrenaline plus fresh legs plus a fast group equals 30 watts above sustainable pace, every time. The first-hour blow-up is the single most common event-day mistake. Hold a written power cap for the first 60 minutes. The wheels you let go come back at hour four.",
+      },
+      {
+        title: "No taper or a half-taper",
+        description:
+          "Race week should look like 50-60% of your normal volume, with shorter, sharper sessions and proper sleep. Most riders ride 75-85% of normal volume because cutting back feels lazy. The taper isn't optional — it's where the form arrives. Without it, the build doesn't show up on the day.",
+      },
+      {
+        title: "No written race-day plan",
+        description:
+          "Power caps, fuelling timing, what's in your pockets, contingencies for rain, the climb you cannot blow up on. If it's not written down, the start-line adrenaline rewrites it for you. The riders who execute on event day are the ones who've put the plan on paper before they pin the number on.",
+      },
+    ],
+    caseStudy: {
+      name: "Mark, 51",
+      context: "Senior professional with a long-booked alpine sportive — Etape du Tour, 175km with 3,500m of climbing. Had finished sportives before but always cracked in the final climb. Wanted to PERFORM, not survive.",
+      result: "16-week periodised build with course-specific climbing blocks. FTP up 22w (286w to 308w). Lost 4kg through fuelled training, not restriction. Hit his goal time on the day with a written pacing plan, fuelling at 90g/hr, and finished the final climb at target power instead of crawling.",
+      quote:
+        "Every other year I'd shown up hoping. This year I showed up with a plan I'd already executed in training. The final climb didn't break me because I'd built the engine for it and held the cap for the first three hours.",
+    },
+    faqs: [
+      {
+        question: "How is this different from sportives coaching?",
+        answer:
+          "Sportives coaching focuses specifically on gran-fondo distance road events — 100 miles, Wicklow 200, Marmotte, Ride London. Event-prep is broader: any event with a fixed date you want to peak for. Alpine sportives, gravel ultras (Unbound, Dirty Reiver), hill climbs, time trials, ironman bike legs, gran fondos, local A-races. Same periodisation principles, scaled to whatever event you're targeting. If your event is a road sportive, sportives coaching is the more specialised fit. If it's anything else with a date, event-prep is the right fit.",
+      },
+      {
+        question: "How far out from my event should I start coaching?",
+        answer:
+          "12-20 weeks is ideal — one base block, one build, one peak, and a proper taper. We can start later (6-8 weeks) and still produce a real result, but the longer the runway the more we can shape. If your event is over a year out, we start with general fitness and periodise into the specific build later. Starting earlier is almost always better than starting later.",
+      },
+      {
+        question: "What kinds of events do you coach for?",
+        answer:
+          "Sportives and gran fondos (Wicklow 200, Etape du Tour, Marmotte, Fred Whitton, Ride London, Ring of Beara, Maratona), gravel ultras (Unbound, Dirty Reiver, Gran Fondo NYC), hill climbs and time trials, ironman bike legs, alpine challenge events, local A-races and league rounds, charity events with a hard target time. The build is shaped around the demands of YOUR specific event — distance, climbing, surface, expected weather, your goal time.",
+      },
+      {
+        question: "Do I need a power meter for event prep?",
+        answer:
+          "Strongly recommended for any event over 90 minutes. Pacing a long event is fundamentally a wattage problem — the discipline of holding 75-80% of FTP for the first hour is what separates a strong finish from a crack at hour four. Heart rate works as a backup but power is the primary signal, particularly for the written race-day pacing plan.",
+      },
+      {
+        question: "What if I crack in race week?",
+        answer:
+          "Race-week panic is normal — the brain decides you're under-trained and demands you ride more. The plan is built to override that. Race week is shorter, sharper, fuelled, rested. Your coach is in your TrainingPeaks daily and in the community calls reinforcing the discipline. The form you've built shows up if you let it.",
+      },
+      {
+        question: "How is this different from a downloadable training plan for my event?",
+        answer:
+          "A downloadable plan is generic. Your plan is built around your current FTP, your weekly hours, your event's specific course, your weight, and how you respond week by week. When a session lands well, the next week ramps. When you have a bad week, the plan adjusts. The race-day pacing strategy is built around YOUR numbers, not a template — and that's the layer that decides the day.",
+      },
+    ],
+    yesIfYou: [
+      "Have a specific event 8-20 weeks away you want to peak for",
+      "Have done events before but want to perform, not just survive",
+      "Want a written race-day pacing and fuelling plan",
+      "Are willing to test fuelling and pacing in training, not on the day",
+      "Have a course-specific demand (alpine, gravel, climbing-heavy) your usual training doesn't replicate",
+      "Plan multiple target events a year and want a season-long structure",
+    ],
+    notIfYou: [
+      "Don't have a specific event in mind (start with our main coaching page)",
+      "Want a one-size-fits-all PDF plan",
+      "Aren't willing to taper and trust the build",
+    ],
+    serviceType: "Cycling Coaching for Event Prep",
+    breakerWord: "PEAK",
+    relatedResources: [
+      {
+        label: "FTP Zones Calculator",
+        href: "/tools/ftp-zones",
+        description:
+          "Generate the training zones every event-day pacing cap is built from. The first-hour discipline starts with the right number.",
+      },
+      {
+        label: "Fuelling Calculator",
+        href: "/tools/fuelling",
+        description:
+          "Carb-per-hour targets and total event fuelling load by duration and intensity. Test the number in training before you race it.",
+      },
+      {
+        label: "Race Weight Calculator",
+        href: "/tools/race-weight",
+        description:
+          "Honest race-weight target for climbing-heavy events — built around fuelled training and held performance, not crash dieting into the date.",
+      },
+      {
+        label: "Cycling Tapering Guide",
+        href: "/blog/cycling-tapering-guide",
+        description:
+          "How the 10-day taper actually works — volume, intensity, openers, sleep. The block where the form arrives, not where it disappears.",
+      },
+      {
+        label: "Taper Discipline: 15% Gain",
+        href: "/blog/cycling-taper-discipline-15-percent-gain",
+        description:
+          "Why the riders who hold the taper line outperform the ones who panic-train in race week. The discipline that decides the day.",
+      },
+      {
+        label: "Race-Day Nutrition Guide",
+        href: "/blog/cycling-nutrition-race-day-guide",
+        description:
+          "Pre-event meals, in-event fuelling, hydration, and the full race-day timeline. Written down, tested, automatic.",
+      },
+      {
+        label: "100-Mile Sportive Nutrition Plan",
+        href: "/blog/cycling-nutrition-plan-100-mile-sportive",
+        description:
+          "Hour-by-hour fuelling plan for a 100-mile event. Specific products, timing, and total carb targets — not vague advice.",
+      },
+      {
+        label: "12-Week Gran Fondo Training Plan",
+        href: "/blog/gran-fondo-training-plan-12-weeks",
+        description:
+          "The 12-week periodised build framework — what each block does, how the long ride evolves, and the taper that lands the form on the day.",
+      },
+    ],
+  },
 };
 
 export const SEGMENT_SLUGS = Object.keys(COACHING_SEGMENTS);
@@ -1663,9 +2111,11 @@ export const SEGMENT_DISPLAY_ORDER: { slug: string; label: string; tagline: stri
   { slug: "women", label: "Women", tagline: "Female-specific physiology and benchmarks" },
   { slug: "busy-professionals", label: "Busy Professionals", tagline: "6-8 hrs/week — every hour earning its keep" },
   { slug: "time-crunched", label: "Time-Crunched", tagline: "Under 6 hrs/week — maximum return per hour" },
+  { slug: "event-prep", label: "Event Prep", tagline: "Targeting a specific event — periodised peak" },
   { slug: "sportives", label: "Sportives & Gran Fondos", tagline: "Event-specific build, pacing, and fuelling" },
   { slug: "gravel", label: "Gravel Racing", tagline: "Mixed-terrain endurance and skills" },
   { slug: "triathletes", label: "Triathletes", tagline: "Bike-leg coaching that protects the run" },
   { slug: "post-injury", label: "Post-Injury Return", tagline: "Progressive loading, physio-coordinated" },
+  { slug: "comeback", label: "Comeback", tagline: "Returning after a long break — reclaim your form" },
   { slug: "weight-loss", label: "Weight Loss", tagline: "Body composition through fuelling, not restriction" },
 ];
