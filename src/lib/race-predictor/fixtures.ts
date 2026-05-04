@@ -235,6 +235,58 @@ const EVENTS: EventSpec[] = [
     ],
   },
   {
+    slug: "ring-of-beara",
+    name: "Ring of Beara Cycle Kenmare",
+    country: "Ireland",
+    region: "County Kerry / Cork",
+    startLat: 51.88,
+    startLon: -9.58,
+    startElevation: 10,
+    surfaceSummary: "tarmac_mixed",
+    source: "ring_of_beara",
+    eventDates: ["2026-05-30"],
+    segments: [
+      // Section 1: Kenmare → Glengarriff via Caha Pass (~30 km)
+      { km: 3, gradePct: 0.3 },    // Kenmare departure flat
+      { km: 8, gradePct: 1.5 },    // Bonane Valley gentle rise on N71
+      { km: 4, gradePct: 3.0 },    // Approach to Caha Pass
+      { km: 7, gradePct: 4.7 },    // Caha Pass main climb (cat-3, ~330m)
+      { km: 8, gradePct: -5.0 },   // Caha descent through tunnels to Glengarriff
+      // Section 2: Glengarriff → Adrigole along Bantry Bay (~26 km)
+      { km: 3, gradePct: 0.3 },    // Glengarriff coast flat
+      { km: 3, gradePct: 3.5 },    // Coastal climb
+      { km: 2, gradePct: -3.0 },   // Descent
+      { km: 4, gradePct: 2.5 },    // Coastal rolling up
+      { km: 2, gradePct: -2.5 },   // Down
+      { km: 3, gradePct: 4.0 },    // Atlantic coast climb
+      { km: 3, gradePct: -3.5 },   // Descent
+      { km: 4, gradePct: 2.0 },    // Approach Adrigole
+      { km: 2, gradePct: 0.5 },    // Adrigole flat
+      // Section 3: Healy Pass crossing (~15 km)
+      { km: 1, gradePct: 0.5 },    // Healy Pass base (Adrigole)
+      { km: 9, gradePct: 3.6 },    // Healy Pass climb (cat-3, ~325m)
+      { km: 5, gradePct: -5.0 },   // Healy descent to Lauragh
+      // Section 4: Lauragh → Kenmare along the north coast (~66 km)
+      { km: 3, gradePct: 0.5 },    // Lauragh flat
+      { km: 4, gradePct: 5.0 },    // First north-coast climb
+      { km: 3, gradePct: -3.0 },   // Down
+      { km: 4, gradePct: 3.0 },    // Coastal roller up
+      { km: 2, gradePct: -3.0 },   // Down
+      { km: 3, gradePct: 3.5 },    // Climb
+      { km: 2, gradePct: -2.5 },   // Down
+      { km: 4, gradePct: 3.0 },    // Ardgroom rollers
+      { km: 3, gradePct: -2.5 },   // Down
+      { km: 6, gradePct: 4.5 },    // Coastal pass (Ballaghbeama-style, ~270m)
+      { km: 4, gradePct: -3.5 },   // Down
+      { km: 4, gradePct: 1.5 },    // Coast roll
+      { km: 3, gradePct: 3.0 },    // Tuosist roller
+      { km: 3, gradePct: -3.0 },   // Down
+      { km: 5, gradePct: 1.0 },    // Coast
+      { km: 3, gradePct: 2.5 },    // Final climb
+      { km: 10, gradePct: -1.0 },  // Long descent into Kenmare
+    ],
+  },
+  {
     slug: "haute-route-pyrenees-stage-1",
     name: "Haute Route Pyrenees · Stage 1",
     country: "France",
