@@ -129,6 +129,7 @@ export const NAV_ITEMS: NavItem[] = [
       { label: "Glossary", href: "/glossary" },
       { label: "Comparisons", href: "/compare" },
       { label: "Training Plans", href: "/plan" },
+      { label: "Event Prep", href: "/event-prep" },
       { label: "Research & Evidence", href: "/research" },
       { label: "Saturday Spin Newsletter", href: "/newsletter" },
     ],
