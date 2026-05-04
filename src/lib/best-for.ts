@@ -182,7 +182,7 @@ export const BEST_FOR_PAGES: BestForPage[] = [
     seoTitle: "Best Smart Turbo Trainers 2026",
     seoDescription: "Best smart turbo trainers for 2026. Direct drive, budget, premium — compared by accuracy, noise, and ride feel.",
     pillar: "community",
-    intro: "A smart trainer is the single best indoor training investment. ERG mode, accurate power, and platform compatibility transform winter training from junk miles to structured gains.",
+    intro: "A smart trainer is the single best indoor training investment. ERG mode, accurate power, and platform compatibility turn winter training from junk miles into structured gains.",
     picks: [
       { name: "Wahoo KICKR v6", verdict: "Best overall smart trainer", bestFor: "Riders wanting the best ride feel, accuracy, and ecosystem integration", href: "/blog/zwift-vs-trainerroad" },
       { name: "Tacx NEO 3M", verdict: "Best for road feel and silence", bestFor: "Apartment riders needing near-silent operation", href: "/compare/indoor-vs-outdoor-training" },

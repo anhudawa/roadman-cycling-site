@@ -649,7 +649,7 @@ export const COMPARISONS: ComparisonPage[] = [
     features: [
       { feature: "Industry adoption (coaches)", optionA: "The default — used by the vast majority of pro and serious amateur coaches worldwide", optionB: "Newer entrant, smaller coach base, growing in pockets of UK/AU" },
       { feature: "Years on the market", optionA: "20+ years of athlete data continuity", optionB: "Younger platform, shorter track record" },
-      { feature: "Plan marketplace", optionA: "Thousands of prebuilt structured plans from world-class coaches", optionB: "Smaller library, plans usually delivered direct by coach" },
+      { feature: "Plan marketplace", optionA: "Thousands of prebuilt structured plans from established coaches", optionB: "Smaller library, plans usually delivered direct by coach" },
       { feature: "Analysis depth", optionA: "Class-leading — PMC, performance modelling, fitness/fatigue, ATL/CTL/TSB", optionB: "Solid analytics, less granular than TrainingPeaks" },
       { feature: "WKO5 integration", optionA: "Yes — full WKO5 sync, the choice of high-performance coaches", optionB: "No native WKO5 pipeline" },
       { feature: "Device + platform sync", optionA: "Universal — Garmin, Wahoo, Zwift, TrainerRoad, Strava, MyFitnessPal, Final Surge, every major head unit", optionB: "Major brands supported, smaller ecosystem of third-party integrations" },

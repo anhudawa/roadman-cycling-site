@@ -59,7 +59,7 @@ export function scoreDiagnostic(
     }
     recommendations.push({
       title: primaryCat.recommendedResource.label,
-      body: "Recommended deep-dive on this topic.",
+      body: "Recommended further reading on this topic.",
       href: primaryCat.recommendedResource.href,
     });
     // Risk advice becomes additional recommendations.

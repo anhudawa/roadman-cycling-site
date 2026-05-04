@@ -14,7 +14,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Apply for the Roadman Inner Circle",
     description:
-      "Daily session review. Weekly written check-in. Monthly video deep-dive. Quarterly bloods. Limited intake. $525 / month.",
+      "Daily session review. Weekly written check-in. Monthly video review. Quarterly bloods. Limited intake. $525 / month.",
     type: "website",
     url: "https://roadmancycling.com/inner-circle/apply",
   },

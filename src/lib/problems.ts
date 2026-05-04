@@ -498,7 +498,7 @@ export const PROBLEM_PAGES: ProblemPage[] = [
       "Motivation depletes faster than it can be rebuilt alone",
     ],
     solutions: [
-      { title: "Book a spring event", description: "Target events transform winter training from optional to necessary", href: "/plan" },
+      { title: "Book a spring event", description: "Target events make winter training non-negotiable", href: "/plan" },
       { title: "Use indoor platforms strategically", description: "Zwift / TrainerRoad social features bridge the group-ride gap", href: "/blog/zwift-vs-trainerroad" },
       { title: "Short + frequent beats long + occasional", description: "4 × 45 min beats 1 × 3 hour for winter consistency", href: "/blog/how-to-structure-cycling-training-plan" },
       { title: "Get coached through winter", description: "External accountability is the single biggest winter-consistency lever", href: "/apply" },

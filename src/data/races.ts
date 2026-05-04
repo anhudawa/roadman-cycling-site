@@ -408,7 +408,7 @@ export const RACES: Race[] = [
     country: "South Africa",
     difficulty: 2,
     description:
-      "One of the world's largest individually timed cycling events, with over 35,000 riders tackling the famous route around the Cape Peninsula. The scenery is genuinely world-class — Chapman's Peak Drive, the slopes of Table Mountain, False Bay and the Atlantic Seaboard all feature. A technically accessible event with a challenge from the Cape Peninsula's famous southeaster wind, which can make the coastal sections brutally difficult.",
+      "One of the world's largest individually timed cycling events, with over 35,000 riders tackling the famous route around the Cape Peninsula. The scenery is genuinely spectacular — Chapman's Peak Drive, the slopes of Table Mountain, False Bay and the Atlantic Seaboard all feature. A technically accessible event with a challenge from the Cape Peninsula's famous southeaster wind, which can make the coastal sections brutally difficult.",
     key_climbs: [
       { name: "Chapman's Peak", elevation_m: 373, length_km: 5.5, avg_gradient: 6.8 },
       { name: "Suikerbossie", elevation_m: 260, length_km: 3.1, avg_gradient: 8.4 },

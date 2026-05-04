@@ -229,7 +229,7 @@ const FAQ = [
   },
   {
     q: "Do I need a coach, or can I figure this out from the podcast and the blog?",
-    a: "It depends on where you're stuck. If you're early on the journey, the podcast, the Saturday Spin newsletter, and the written guides will take you a long way — they're free for a reason. If you've been at it for years and your FTP has stalled, the Plateau Diagnostic is the right next step: it's a five-minute tool that pinpoints which of four common patterns you're caught in. If you want the full system — personalised TrainingPeaks plans, weekly coaching calls, the strength roadmap — Not Done Yet Coaching is the structured paid programme. If you're not sure which fits, take the Find Your Fit quiz: five questions, one specific recommendation.",
+    a: "It depends on where you're stuck. If you're early in the work, the podcast, the Saturday Spin newsletter, and the written guides will take you a long way — they're free for a reason. If you've been at it for years and your FTP has stalled, the Plateau Diagnostic is the right next step: it's a five-minute tool that pinpoints which of four common patterns you're caught in. If you want the full system — personalised TrainingPeaks plans, weekly coaching calls, the strength roadmap — Not Done Yet Coaching is the structured paid programme. If you're not sure which fits, take the Find Your Fit quiz: five questions, one specific recommendation.",
   },
   {
     q: "Is Not Done Yet Coaching built for masters cyclists, or is it general?",

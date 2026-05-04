@@ -119,7 +119,7 @@ const howItWorks = [
     body: "You submit your week — training, sleep, life context, anything affecting the plan. Your coach replies inside 24 hours with the next week mapped against how the last one actually went.",
   },
   {
-    title: "Monthly 45-minute video deep-dive",
+    title: "Monthly 45-minute video review",
     body: "Once a month, on video. The previous month reviewed in full — power curves, body composition, fuelling, recovery markers. The next month built block by block from what the data is telling us.",
   },
   {
@@ -172,7 +172,7 @@ const comparisonRows: Array<{
     ic: "24-hour reply, plan adjusted weekly",
   },
   {
-    feature: "Monthly video deep-dive",
+    feature: "Monthly video review",
     ndy: "—",
     ic: "45 minutes, on video",
   },
@@ -216,7 +216,7 @@ const faqs = [
   {
     question: "Why $525 a month?",
     answer:
-      "Because of what's inside it. Daily session review, weekly written check-in, monthly video deep-dive, quarterly bloods. In-person 1:1 cycling coaching at this depth typically runs $700–$1,400 per month and stops at the bike. Quarterly blood work and biomarker tracking on its own runs $400+ per year. The price sits where the value sits.",
+      "Because of what's inside it. Daily session review, weekly written check-in, monthly video review, quarterly bloods. In-person 1:1 cycling coaching at this depth typically runs $700–$1,400 per month and stops at the bike. Quarterly blood work and biomarker tracking on its own runs $400+ per year. The price sits where the value sits.",
   },
   {
     question: "How is daily feedback actually delivered?",
@@ -264,7 +264,7 @@ export default function InnerCirclePage() {
           "@type": "Service",
           name: "Roadman Inner Circle — Premium Cycling Coaching",
           description:
-            "Premium cycling coaching across six pillars — training, nutrition, recovery, strength, community, and Performance Health (blood work, biomarkers, hormones, inflammation, proactive screening). Daily session review, weekly written check-in, monthly video deep-dive, quarterly bloods.",
+            "Premium cycling coaching across six pillars — training, nutrition, recovery, strength, community, and Performance Health (blood work, biomarkers, hormones, inflammation, proactive screening). Daily session review, weekly written check-in, monthly video review, quarterly bloods.",
           serviceType: "Premium Online Cycling Coaching",
           provider: { "@id": ENTITY_IDS.organization },
           brand: { "@id": ENTITY_IDS.organization },
@@ -985,7 +985,7 @@ export default function InnerCirclePage() {
                       "Performance Health (sixth pillar)",
                       "Daily session and macro feedback",
                       "Weekly written check-in, 24-hour reply",
-                      "Monthly 45-minute video deep-dive",
+                      "Monthly 45-minute video review",
                       "Quarterly bloods + performance review",
                     ].map((item) => (
                       <div
