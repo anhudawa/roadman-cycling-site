@@ -1,14 +1,8 @@
 "use client";
 
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
-import {
-  motion,
-  useScroll,
-  useTransform,
-  useSpring,
-  useMotionValueEvent,
-} from "framer-motion";
+import { motion } from "framer-motion";
 import { Button } from "@/components/ui";
 import { GlitchHero } from "./GlitchHero";
 import type { EpisodeMeta } from "@/lib/podcast";
@@ -41,23 +35,23 @@ export function HeroSection({ latestEpisode }: HeroSectionProps) {
   const sectionRef = useRef<HTMLElement>(null);
   const [scrolled, setScrolled] = useState(false);
 
-  const { scrollYProgress } = useScroll({
-    target: sectionRef,
-    offset: ["start start", "end start"],
-  });
-
-  const smoothProgress = useSpring(scrollYProgress, {
-    stiffness: 100,
-    damping: 30,
-    mass: 0.5,
-  });
-
-  // Gentle parallax on the portrait only — text stays put.
-  const portraitY = useTransform(smoothProgress, [0, 1], [0, 80]);
-
-  useMotionValueEvent(scrollYProgress, "change", (v) => {
-    setScrolled(v > 0.05);
-  });
+  // Plain scroll listener for the scroll-indicator fade. Replaces
+  // framer-motion's useScroll/useSpring/useMotionValueEvent — those hooks
+  // were adding measurable hydration cost to the LCP critical path
+  // (lighthouse 2026-04-30: portrait render delay 2,053 ms).
+  useEffect(() => {
+    const handler = () => {
+      const el = sectionRef.current;
+      if (!el) return;
+      const rect = el.getBoundingClientRect();
+      const traveled = -rect.top;
+      const distance = rect.height || 1;
+      setScrolled(traveled / distance > 0.05);
+    };
+    handler();
+    window.addEventListener("scroll", handler, { passive: true });
+    return () => window.removeEventListener("scroll", handler);
+  }, []);
 
   const headlineLines = [
     { text: "STOP", accent: false },
@@ -83,20 +77,16 @@ export function HeroSection({ latestEpisode }: HeroSectionProps) {
               DOM-first so it shows first on mobile (the brand face
               is the visual anchor). On lg+ it's placed in cols 7-12
               and explicitly pinned to row 1 so it sits on the right
-              rail with the text on the left. */}
-          {/* LCP element on mobile (DOM-first) and a major LCP element on desktop.
-              Avoid initial opacity:0 — framer-motion would render the wrapper
-              invisible during SSR/hydration and delay LCP until JS runs. We keep
-              the gentle scale-in but start visible. */}
-          <motion.div
-            className="lg:col-start-7 lg:col-span-6 lg:row-start-1 w-full flex justify-center lg:justify-end"
-            style={{ y: portraitY }}
-            initial={{ scale: 0.98 }}
-            animate={{ scale: 1 }}
-            transition={{ duration: 0.95, ease: [0.16, 1, 0.3, 1] }}
-          >
+              rail with the text on the left.
+
+              LCP element on mobile (DOM-first) and a major LCP element on
+              desktop. Render as a plain <div> — the previous motion.div
+              wrapper added framer-motion mount cost on the LCP critical
+              path. Lighthouse (2026-04-30) reported portrait render delay
+              of 2,053 ms; removing the motion wrapper here drops that. */}
+          <div className="lg:col-start-7 lg:col-span-6 lg:row-start-1 w-full flex justify-center lg:justify-end">
             <GlitchHero />
-          </motion.div>
+          </div>
 
           {/* ── TEXT RAIL: eyebrow / headline / hairline / CTAs / proof ── */}
           <div className="lg:col-start-1 lg:col-span-5 lg:row-start-1 text-center lg:text-left lg:pt-8">
