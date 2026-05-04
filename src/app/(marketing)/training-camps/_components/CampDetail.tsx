@@ -35,20 +35,20 @@ const CAN_SAGNARI_GALLERY = [
 
 const GIRONA_GALLERY = [
   {
-    src: "/images/camps/girona-river-houses.jpg",
+    src: "/images/camps/girona-onyar-houses.jpeg",
     alt: "The coloured houses along the Onyar river — the postcard shot of Girona old town",
   },
   {
-    src: "/images/camps/girona-cathedral-aerial.jpg",
-    alt: "Aerial view of the Girona cathedral and old monastery",
+    src: "/images/camps/girona-bridge-view.jpeg",
+    alt: "The Eiffel bridge framing the river and the colourful buildings of Girona",
   },
   {
-    src: "/images/camps/girona-old-town.jpg",
-    alt: "Stone steps and an archway in the Girona old town",
+    src: "/images/camps/girona-cathedral.jpeg",
+    alt: "The Girona cathedral tower above the old town",
   },
   {
-    src: "/images/camps/girona-cathedral-walls.jpg",
-    alt: "The Girona cathedral seen from the medieval city walls",
+    src: "/images/camps/girona-town-5.jpeg",
+    alt: "The streets and stonework of Girona old town",
   },
 ];
 

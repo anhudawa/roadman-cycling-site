@@ -21,7 +21,7 @@ export const metadata: Metadata = {
     url: "https://roadmancycling.com/training-camps",
     images: [
       {
-        url: "https://roadmancycling.com/images/camps/girona-river-houses.jpg",
+        url: "https://roadmancycling.com/images/camps/girona-onyar-houses.jpeg",
         alt: "Girona old town along the Onyar river",
       },
     ],
@@ -29,8 +29,8 @@ export const metadata: Metadata = {
 };
 
 const HERO_IMAGES = [
-  "/images/camps/girona-river-houses.jpg",
-  "/images/camps/girona-cathedral-aerial.jpg",
+  "/images/camps/girona-onyar-houses.jpeg",
+  "/images/camps/girona-bridge-view.jpeg",
 ];
 
 const CAMP_CARD_IMAGES: Record<"road" | "gravel", string> = {
@@ -308,10 +308,10 @@ export default function TrainingCampsLandingPage() {
               <ScrollReveal direction="up" delay={0.05}>
                 <div className="grid grid-cols-2 gap-2.5 sm:gap-3">
                   {[
-                    "/images/camps/girona-river-houses.jpg",
-                    "/images/camps/girona-old-town.jpg",
-                    "/images/camps/girona-cathedral-walls.jpg",
-                    "/images/camps/girona-cathedral-aerial.jpg",
+                    "/images/camps/girona-onyar-houses.jpeg",
+                    "/images/camps/girona-bridge-view.jpeg",
+                    "/images/camps/girona-cathedral.jpeg",
+                    "/images/camps/girona-town-4.jpeg",
                   ].map((src) => (
                     <div
                       key={src}
