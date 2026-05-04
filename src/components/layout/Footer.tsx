@@ -227,14 +227,14 @@ export function Footer() {
             <p className="text-sm text-foreground-subtle uppercase tracking-widest font-heading">
               Follow Roadman
             </p>
-            <div className="flex items-center gap-5">
+            <div className="flex items-center gap-2">
               {socialLinks.map((link) => (
                 <a
                   key={link.label}
                   href={link.href}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-foreground-muted hover:text-coral transition-all hover:scale-110"
+                  className="inline-flex items-center justify-center w-11 h-11 text-foreground-muted hover:text-coral transition-all hover:scale-110"
                   style={{ transitionDuration: "var(--duration-fast)" }}
                   aria-label={link.label}
                 >
