@@ -2,7 +2,18 @@ import Anthropic from "@anthropic-ai/sdk";
 import { WEEKLY_ANALYSIS_SYSTEM_PROMPT } from "./prompts";
 import type { PageStats, PeriodStats, LeadEntry, ReferrerStats, DeviceStats } from "@/lib/admin/events-store";
 
-const client = new Anthropic();
+let _client: Anthropic | null = null;
+function getClient(): Anthropic {
+  if (!_client) {
+    if (!process.env.ANTHROPIC_API_KEY) {
+      throw new Error(
+        "ANTHROPIC_API_KEY is not configured — weekly analysis unavailable",
+      );
+    }
+    _client = new Anthropic();
+  }
+  return _client;
+}
 
 // ── Types ────────────────────────────────────────────────
 export interface WeeklyPageAnalysis {
@@ -79,7 +90,7 @@ ${data.leadStats
 Analyze this data and provide your weekly CRO report.`;
 
   try {
-    const response = await client.messages.create({
+    const response = await getClient().messages.create({
       model: "claude-haiku-4-20250414",
       max_tokens: 2048,
       system: WEEKLY_ANALYSIS_SYSTEM_PROMPT,

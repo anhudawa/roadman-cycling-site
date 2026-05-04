@@ -1,7 +1,18 @@
 import Anthropic from "@anthropic-ai/sdk";
 import type { ABVariant } from "./types";
 
-const client = new Anthropic();
+let _client: Anthropic | null = null;
+function getClient(): Anthropic {
+  if (!_client) {
+    if (!process.env.ANTHROPIC_API_KEY) {
+      throw new Error(
+        "ANTHROPIC_API_KEY is not configured — A/B variant generation unavailable",
+      );
+    }
+    _client = new Anthropic();
+  }
+  return _client;
+}
 
 /**
  * Generate A/B test variant suggestions using Claude Haiku.
@@ -17,7 +28,7 @@ export async function generateVariants(
   elementType: string
 ): Promise<ABVariant[]> {
   try {
-    const response = await client.messages.create({
+    const response = await getClient().messages.create({
       model: "claude-haiku-4-20250414",
       max_tokens: 1024,
       system:
