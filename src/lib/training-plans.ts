@@ -235,6 +235,38 @@ export const EVENTS: TrainingEvent[] = [
       "34x32 minimum — many amateurs run 34x34. Clear lenses for the descents. Full-finger gloves for the summits (even in July). A gilet stashed in the pocket is non-negotiable for the mountain descents.",
   },
   {
+    slug: "marmotte",
+    name: "La Marmotte Granfondo Alpes",
+    shortName: "Marmotte",
+    region: "France",
+    type: "sportive",
+    distanceKm: 174,
+    elevationGainM: 5000,
+    typicalFinishTime: "7-12 hours",
+    defaultMonth: "July",
+    description:
+      "La Marmotte is the original European mass-participation Alpine event — 174km from Bourg d'Oisans over the Glandon, Télégraphe, Galibier and finishing on Alpe d'Huez. 5,000m of climbing in one day, four giant cols, and a culture that treats it as the amateur Tour de France stage.",
+    keyCharacteristics: [
+      "Four legendary cols: Glandon, Télégraphe, Galibier, Alpe d'Huez",
+      "Galibier summit at 2,642m — altitude bites the upper third",
+      "Alpe d'Huez summit finish after 150km already in the legs",
+      "July heat in the Maurienne valley regularly hits 35°C+",
+      "Gold/silver/bronze finishing standards — riders chase the time bands",
+    ],
+    commonMistakes: [
+      "Racing the Glandon in the opening cool air and arriving at the Galibier hollow",
+      "Underfuelling because the climbs feel manageable in the first half",
+      "Choosing 11-28 gearing and meeting Alpe d'Huez at 50rpm",
+    ],
+    pacingStrategy:
+      "Pace La Marmotte from the Alpe backwards. Glandon at 70-75% FTP, Télégraphe-Galibier as a paired sub-threshold effort, Alpe d'Huez ridden on a wattage ceiling regardless of heat or crowd. The valley between Galibier descent and the Alpe is the day's hidden test — tailwind, heat, fatigue. Eat through it, do not hammer.",
+    nutritionAngle:
+      "8-10+ hours demands 90-110g carbs/hour minimum, and the gut has to be trained for it. Force-drink on a timer once the valley heat lands — Maurienne in July is brutal. Refill bottles at every feed; the climb to Alpe d'Huez is the worst place on earth to run dry.",
+    kitAngle:
+      "34x32 minimum, 34x34 if you have it. Gilet and arm warmers stashed for the Galibier descent (genuinely cold even on 35°C days). Clear lenses for the descents. Sunscreen reapplied at every feed — Alpine UV plus an 8-hour day is a sunburn waiting to happen.",
+    blogSlug: "marmotte-training-plan",
+  },
+  {
     slug: "maratona-dles-dolomites",
     name: "Maratona dles Dolomites",
     shortName: "Maratona Dolomites",

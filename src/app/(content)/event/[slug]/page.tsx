@@ -400,12 +400,67 @@ export default async function EventGuidePage({
           </Container>
         </Section>
 
+        {/* 12-16 week training framework — when present */}
+        {guide.trainingFramework && guide.trainingFramework.length > 0 && (
+          <Section background="charcoal">
+            <Container width="narrow">
+              <ScrollReveal direction="up" className="mb-8">
+                <p className="font-heading text-coral text-xs tracking-widest mb-3">
+                  12-16 WEEK TRAINING FRAMEWORK
+                </p>
+                <h2
+                  className="font-heading text-off-white mb-4"
+                  style={{ fontSize: "var(--text-section)" }}
+                >
+                  HOW THE BUILD ACTUALLY GOES.
+                </h2>
+                <p className="text-foreground-muted text-base md:text-lg leading-relaxed mb-8 max-w-2xl">
+                  Four phases shaped around the {trainingEvent.shortName}.
+                  Aerobic base, structured build, peak block, taper. Volume
+                  and intensity move in opposite directions on the way to
+                  race day. Skip a phase and the day rides you, not the
+                  other way round.
+                </p>
+              </ScrollReveal>
+
+              <div className="space-y-4">
+                {guide.trainingFramework.map((phase, i) => (
+                  <ScrollReveal key={phase.window} direction="up" delay={i * 0.04}>
+                    <div className="rounded-xl border border-white/10 bg-white/[0.03] p-5 md:p-6">
+                      <div className="flex flex-wrap items-baseline justify-between gap-x-4 gap-y-1 mb-2">
+                        <h3 className="font-heading text-off-white text-xl md:text-2xl leading-tight">
+                          {phase.label}
+                          <span className="text-coral">.</span>
+                        </h3>
+                        <span className="text-coral font-heading text-xs tracking-widest">
+                          {phase.window.toUpperCase()} · {phase.hoursPerWeek.toUpperCase()}
+                        </span>
+                      </div>
+                      <p className="text-foreground-muted text-sm md:text-base leading-relaxed mb-3">
+                        {phase.focus}
+                      </p>
+                      <div className="rounded-lg border border-coral/20 bg-coral/5 p-3">
+                        <p className="font-heading text-coral text-xs tracking-widest mb-1">
+                          ANCHOR SESSION
+                        </p>
+                        <p className="text-foreground-muted text-sm leading-relaxed">
+                          {phase.anchorSession}
+                        </p>
+                      </div>
+                    </div>
+                  </ScrollReveal>
+                ))}
+              </div>
+            </Container>
+          </Section>
+        )}
+
         {/* Pick your weeks-out plan */}
         <Section background="charcoal">
           <Container width="narrow">
             <ScrollReveal direction="up" className="mb-8 text-center">
               <p className="font-heading text-coral text-xs tracking-widest mb-3">
-                THE TRAINING PLAN
+                WEEK-BY-WEEK PLANS
               </p>
               <h2
                 className="font-heading text-off-white mb-4"
@@ -486,6 +541,46 @@ export default async function EventGuidePage({
           </Container>
         </Section>
 
+        {/* Equipment essentials — when present */}
+        {guide.equipmentEssentials && guide.equipmentEssentials.length > 0 && (
+          <Section background="charcoal" grain>
+            <Container width="narrow">
+              <ScrollReveal direction="up" className="mb-8">
+                <p className="font-heading text-coral text-xs tracking-widest mb-3">
+                  EQUIPMENT ESSENTIALS
+                </p>
+                <h2
+                  className="font-heading text-off-white mb-4"
+                  style={{ fontSize: "var(--text-section)" }}
+                >
+                  WHAT TO BRING. WHAT TO LEAVE.
+                </h2>
+                <p className="text-foreground-muted text-base md:text-lg leading-relaxed mb-8 max-w-2xl">
+                  The kit choices that change the day. Most DNFs at this
+                  level trace back to gearing, hydration storage, or layers
+                  for the descent — not fitness. Sort the kit and the
+                  training does its job.
+                </p>
+              </ScrollReveal>
+
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                {guide.equipmentEssentials.map((item, i) => (
+                  <ScrollReveal key={item.label} direction="up" delay={i * 0.04}>
+                    <div className="rounded-xl border border-white/10 bg-white/[0.03] p-5 h-full">
+                      <p className="font-heading text-coral text-xs tracking-widest mb-2">
+                        {item.label}
+                      </p>
+                      <p className="text-foreground-muted text-sm md:text-base leading-relaxed">
+                        {item.detail}
+                      </p>
+                    </div>
+                  </ScrollReveal>
+                ))}
+              </div>
+            </Container>
+          </Section>
+        )}
+
         {/* Common mistakes */}
         <Section background="deep-purple" grain>
           <Container width="narrow">
@@ -532,6 +627,91 @@ export default async function EventGuidePage({
             </div>
           </Container>
         </Section>
+
+        {/* Plateau Diagnostic — for stuck riders */}
+        <Section background="charcoal">
+          <Container width="narrow">
+            <ScrollReveal direction="up">
+              <div className="rounded-2xl border border-white/10 bg-white/[0.03] p-7 md:p-9">
+                <div className="flex flex-col md:flex-row md:items-center gap-5 md:gap-8">
+                  <div className="flex-1">
+                    <p className="font-heading text-coral text-xs tracking-widest mb-2">
+                      STUCK BEFORE THE EVENT?
+                    </p>
+                    <h2 className="font-heading text-off-white text-xl md:text-2xl mb-3 leading-tight">
+                      FIND OUT WHY YOUR FTP HAS PLATEAUED.
+                    </h2>
+                    <p className="text-foreground-muted text-sm md:text-base leading-relaxed">
+                      The Plateau Diagnostic is a 5-minute assessment that
+                      identifies the specific reason your training has stopped
+                      producing results. Built for riders 35+ who have been
+                      doing the work but watching the numbers stall. You'll
+                      get a profile-matched recommendation in your inbox.
+                    </p>
+                  </div>
+                  <div className="md:shrink-0">
+                    <Button
+                      href="/plateau"
+                      variant="secondary"
+                      size="lg"
+                      dataTrack={`event_guide_plateau_${guide.slug}`}
+                    >
+                      Take the Diagnostic →
+                    </Button>
+                  </div>
+                </div>
+              </div>
+            </ScrollReveal>
+          </Container>
+        </Section>
+
+        {/* Related reading — when present */}
+        {guide.relatedReading && guide.relatedReading.length > 0 && (
+          <Section background="deep-purple" grain>
+            <Container width="narrow">
+              <ScrollReveal direction="up" className="mb-8">
+                <p className="font-heading text-coral text-xs tracking-widest mb-3">
+                  GO DEEPER
+                </p>
+                <h2
+                  className="font-heading text-off-white mb-4"
+                  style={{ fontSize: "var(--text-section)" }}
+                >
+                  THE READING THAT BUILT THIS PLAN.
+                </h2>
+                <p className="text-foreground-muted text-base md:text-lg leading-relaxed mb-8 max-w-2xl">
+                  Curated long-form pieces on the methods and mistakes
+                  behind the framework above. Pick the one that addresses
+                  the gap you actually have right now.
+                </p>
+              </ScrollReveal>
+
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                {guide.relatedReading.map((post, i) => (
+                  <ScrollReveal key={post.slug} direction="up" delay={i * 0.04}>
+                    <Link
+                      href={`/blog/${post.slug}`}
+                      className="block h-full"
+                      data-track={`event_guide_blog_${guide.slug}_${post.slug}`}
+                    >
+                      <Card hoverable className="h-full p-5 md:p-6">
+                        <p className="font-heading text-coral text-xs tracking-widest mb-2">
+                          DEEPER READ
+                        </p>
+                        <h3 className="font-heading text-off-white text-lg md:text-xl mb-3 leading-tight">
+                          {post.title}
+                        </h3>
+                        <p className="text-foreground-muted text-sm leading-relaxed">
+                          {post.whyItMatters}
+                        </p>
+                      </Card>
+                    </Link>
+                  </ScrollReveal>
+                ))}
+              </div>
+            </Container>
+          </Section>
+        )}
 
         {/* Race predictor / Ask Roadman */}
         <Section background="charcoal">
@@ -621,10 +801,13 @@ export default async function EventGuidePage({
                 >
                   PLAN MADE FOR YOU, NOT FOR THE AVERAGE.
                 </h2>
-                <p className="text-foreground-muted text-base md:text-lg mb-8 max-w-xl mx-auto leading-relaxed">
-                  The framework here gets you in the right territory. Roadman
-                  coaching builds it around your FTP, your week, your weeks
-                  remaining, and your delivery via TrainingPeaks.
+                <p className="text-foreground-muted text-base md:text-lg mb-6 max-w-xl mx-auto leading-relaxed">
+                  The framework here gets you in the right territory. Inside
+                  the Not Done Yet community ($195/mo), the plan gets built
+                  around your FTP, your week, your weeks remaining, and your
+                  delivery via TrainingPeaks — with a weekly call where
+                  Anthony walks through the questions members are bringing
+                  in.
                 </p>
                 <Button
                   href="/apply"
@@ -643,6 +826,9 @@ export default async function EventGuidePage({
                     How Coaching Works
                   </Button>
                 </div>
+                <p className="mt-6 text-foreground-subtle text-xs tracking-widest font-heading uppercase">
+                  Not Done Yet · $195/month · Cancel anytime
+                </p>
               </div>
             </ScrollReveal>
           </Container>
