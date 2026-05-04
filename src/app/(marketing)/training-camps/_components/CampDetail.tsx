@@ -2,7 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { Header, Footer, Section, Container } from "@/components/layout";
 import { ScrollReveal } from "@/components/ui";
-import { JsonLd } from "@/components/seo/JsonLd";
+import { JsonLd, FAQPageJsonLd } from "@/components/seo/JsonLd";
 import { CAMPS, formatCampDates, type CampConfig } from "@/lib/camps/camps";
 import { ITINERARIES } from "@/lib/camps/itineraries";
 import { CAMP_FAQS } from "@/lib/camps/faqs";
@@ -92,11 +92,12 @@ export function CampDetail({ camp }: Props) {
           eventStatus: "https://schema.org/EventScheduled",
           location: {
             "@type": "Place",
-            name: "Can Sagnari",
+            name: "Can Sagnari, Girona",
             address: {
               "@type": "PostalAddress",
-              addressLocality: "Cornellà del Terri",
-              addressRegion: "Catalunya",
+              streetAddress: "Cornellà del Terri",
+              addressLocality: "Girona",
+              addressRegion: "Girona",
               addressCountry: "ES",
             },
           },
@@ -107,6 +108,7 @@ export function CampDetail({ camp }: Props) {
             availability: "https://schema.org/InStock",
             url: `https://roadmancycling.com${camp.href}`,
             validFrom: "2026-05-04",
+            validThrough: camp.startDate,
           },
           organizer: {
             "@type": "Organization",
@@ -120,6 +122,9 @@ export function CampDetail({ camp }: Props) {
           maximumAttendeeCapacity: camp.capacity,
           image: [`https://roadmancycling.com${camp.heroImage}`],
         }}
+      />
+      <FAQPageJsonLd
+        questions={CAMP_FAQS.map((f) => ({ question: f.q, answer: f.a }))}
       />
       <JsonLd
         data={{

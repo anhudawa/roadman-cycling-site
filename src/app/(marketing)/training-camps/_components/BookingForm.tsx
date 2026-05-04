@@ -71,6 +71,9 @@ export function BookingForm({ defaultCamp, camps }: Props) {
   const [capacity, setCapacity] = useState<Record<"road" | "gravel", CapacityState> | null>(null);
   const [submitting, setSubmitting] = useState(false);
   const [error, setError] = useState("");
+  const [errorKind, setErrorKind] = useState<
+    "validation" | "soldOut" | "paymentUnavailable" | "network" | "generic"
+  >("generic");
   const [cancelledNotice, setCancelledNotice] = useState(false);
 
   useEffect(() => {
@@ -105,29 +108,48 @@ export function BookingForm({ defaultCamp, camps }: Props) {
     setForm((s) => ({ ...s, [key]: value }));
   }
 
+  function showError(
+    kind:
+      | "validation"
+      | "soldOut"
+      | "paymentUnavailable"
+      | "network"
+      | "generic",
+    message: string,
+  ) {
+    setErrorKind(kind);
+    setError(message);
+  }
+
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
+    // Belt-and-braces double-click guard. The button is also disabled while
+    // submitting, but a touch + keyboard combo or fast double-tap can race
+    // before React flushes the disabled attribute.
+    if (submitting) return;
     setError("");
+    setErrorKind("generic");
     setCancelledNotice(false);
     if (!form.name.trim() || !form.email.trim()) {
-      setError("Name and email are required.");
+      showError("validation", "Name and email are required.");
       return;
     }
     if (!EMAIL_REGEX.test(form.email.trim())) {
-      setError("That email looks off — double-check and try again.");
+      showError("validation", "That email looks off — double-check and try again.");
       return;
     }
     if (!form.emergencyContactName.trim() || !form.emergencyContactPhone.trim()) {
-      setError("Emergency contact name and phone are required.");
+      showError("validation", "Emergency contact name and phone are required.");
       return;
     }
     if (!form.insuranceConfirmed) {
-      setError("Please confirm you have travel insurance for the trip.");
+      showError("validation", "Please confirm you have travel insurance for the trip.");
       return;
     }
     setSubmitting(true);
+    let res: Response;
     try {
-      const res = await fetch("/api/camps/book", {
+      res = await fetch("/api/camps/book", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
@@ -143,22 +165,64 @@ export function BookingForm({ defaultCamp, camps }: Props) {
           heardFrom: form.heardFrom,
         }),
       });
-      const data = (await res.json().catch(() => ({}))) as {
-        error?: string;
-        message?: string;
-        checkoutUrl?: string;
-      };
-      if (!res.ok || !data.checkoutUrl) {
-        throw new Error(data.message || data.error || "Could not start checkout.");
-      }
+    } catch {
+      // fetch only rejects on network failure / DNS / abort.
+      showError(
+        "network",
+        "Network error, please try again — your details are still saved here.",
+      );
+      setSubmitting(false);
+      return;
+    }
+    const data = (await res.json().catch(() => ({}))) as {
+      error?: string;
+      message?: string;
+      checkoutUrl?: string;
+    };
+    if (res.ok && data.checkoutUrl) {
       // Hand off to Stripe Checkout. The user comes back via success_url
       // (booking-confirmed) or cancel_url (this page with ?cancelled=1).
+      // Keep `submitting` true so the button stays disabled during the
+      // browser-level redirect.
       window.location.href = data.checkoutUrl;
-    } catch (err) {
-      const msg = err instanceof Error ? err.message : "Something went wrong.";
-      setError(msg);
-      setSubmitting(false);
+      return;
     }
+    if (res.status === 409 && data.error === "soldOut") {
+      showError(
+        "soldOut",
+        data.message ?? "This camp is sold out — drop us a line and we'll add you to the waitlist.",
+      );
+      // Refresh capacity so the picker reflects reality.
+      fetch("/api/camps/book")
+        .then((r) => (r.ok ? r.json() : null))
+        .then((cap) => {
+          if (cap?.capacity) setCapacity(cap.capacity);
+        })
+        .catch(() => {});
+      setSubmitting(false);
+      return;
+    }
+    if (res.status >= 500 || res.status === 502) {
+      showError(
+        "paymentUnavailable",
+        "Payment is unavailable right now — please try again in a moment.",
+      );
+      setSubmitting(false);
+      return;
+    }
+    if (res.status === 400) {
+      showError(
+        "validation",
+        data.message || data.error || "Please check the form and try again.",
+      );
+      setSubmitting(false);
+      return;
+    }
+    showError(
+      "generic",
+      data.message || data.error || "Could not start checkout.",
+    );
+    setSubmitting(false);
   }
 
   const roadSoldOut =
@@ -454,21 +518,75 @@ export function BookingForm({ defaultCamp, camps }: Props) {
       )}
 
       {error && (
-        <p className="text-coral text-sm leading-relaxed" role="alert">
-          {error}
-        </p>
+        <div
+          className={`rounded-lg border p-4 text-sm leading-relaxed ${
+            errorKind === "soldOut"
+              ? "border-amber-400/40 bg-amber-400/5 text-amber-200"
+              : errorKind === "paymentUnavailable"
+                ? "border-amber-400/40 bg-amber-400/5 text-amber-200"
+                : errorKind === "network"
+                  ? "border-white/15 bg-white/[0.04] text-foreground-muted"
+                  : "border-coral/40 bg-coral/[0.06] text-coral"
+          }`}
+          role="alert"
+          aria-live="assertive"
+          data-error-kind={errorKind}
+        >
+          <p className="font-heading text-[11px] tracking-[0.2em] uppercase mb-1">
+            {errorKind === "soldOut"
+              ? "Sold out"
+              : errorKind === "paymentUnavailable"
+                ? "Payment unavailable"
+                : errorKind === "network"
+                  ? "Network error"
+                  : errorKind === "validation"
+                    ? "Check the form"
+                    : "Something went wrong"}
+          </p>
+          <p>{error}</p>
+        </div>
       )}
 
       <button
         type="submit"
         disabled={submitting || selectedSoldOut}
+        aria-busy={submitting}
+        aria-disabled={submitting || selectedSoldOut}
+        data-state={
+          selectedSoldOut ? "sold-out" : submitting ? "submitting" : "idle"
+        }
         className="w-full inline-flex items-center justify-center gap-2 px-6 sm:px-8 py-4 rounded-lg font-heading tracking-[0.15em] uppercase text-off-white text-sm sm:text-base bg-coral hover:bg-coral-hover disabled:opacity-40 disabled:cursor-not-allowed transition-all shadow-[0_10px_30px_-12px_rgba(241,99,99,0.55)]"
       >
-        {selectedSoldOut
-          ? "Sold out"
-          : submitting
-            ? "Redirecting to Stripe…"
-            : "Reserve my spot · Pay now"}
+        {submitting && (
+          <svg
+            className="h-4 w-4 animate-spin"
+            viewBox="0 0 24 24"
+            fill="none"
+            aria-hidden
+          >
+            <circle
+              cx="12"
+              cy="12"
+              r="10"
+              stroke="currentColor"
+              strokeOpacity="0.3"
+              strokeWidth="3"
+            />
+            <path
+              d="M22 12a10 10 0 0 1-10 10"
+              stroke="currentColor"
+              strokeWidth="3"
+              strokeLinecap="round"
+            />
+          </svg>
+        )}
+        <span>
+          {selectedSoldOut
+            ? "Sold out"
+            : submitting
+              ? "Redirecting to Stripe…"
+              : "Reserve my spot · Pay now"}
+        </span>
       </button>
     </form>
   );

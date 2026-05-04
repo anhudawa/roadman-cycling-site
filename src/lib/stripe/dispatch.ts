@@ -140,17 +140,41 @@ async function handleCampBookingCheckoutCompleted(
   session: Stripe.Checkout.Session,
 ): Promise<void> {
   const metadata = session.metadata ?? {};
-  const bookingIdsRaw =
-    typeof metadata.booking_ids === "string" ? metadata.booking_ids : "";
-  const bookingIds = bookingIdsRaw
-    .split(",")
-    .map((s) => Number(s.trim()))
-    .filter((n) => Number.isFinite(n) && n > 0);
-  if (bookingIds.length === 0) {
-    console.error(
-      "[stripe/dispatch] camp_booking missing booking_ids in metadata",
+
+  // Defensive: card-only Checkout always returns "paid" on completion, but
+  // metadata-driven payment methods can complete with `unpaid` (async
+  // confirmation pending). Don't assign rooms or fire confirmation emails
+  // until Stripe says it's paid.
+  if (session.payment_status && session.payment_status !== "paid") {
+    console.log(
+      `[stripe/dispatch] camp_booking session ${session.id} completed with payment_status=${session.payment_status} — skipping until paid`,
     );
     return;
+  }
+
+  const bookingIdsRaw =
+    typeof metadata.booking_ids === "string" ? metadata.booking_ids : "";
+  const bookingIds = Array.from(
+    new Set(
+      bookingIdsRaw
+        .split(",")
+        .map((s) => Number(s.trim()))
+        .filter((n) => Number.isFinite(n) && n > 0),
+    ),
+  );
+  if (bookingIds.length === 0) {
+    console.error(
+      `[stripe/dispatch] camp_booking session ${session.id} missing booking_ids in metadata`,
+    );
+    return;
+  }
+  // Sanity ceiling — bundle is "road + gravel" so anything north of two is
+  // a corrupted metadata blob. Trim and log rather than processing blindly.
+  if (bookingIds.length > 2) {
+    console.warn(
+      `[stripe/dispatch] camp_booking session ${session.id} has ${bookingIds.length} booking_ids — truncating to first 2`,
+    );
+    bookingIds.length = 2;
   }
 
   const paymentIntentId =
@@ -174,109 +198,127 @@ async function handleCampBookingCheckoutCompleted(
   const { subscribeToBeehiiv } = await import("@/lib/integrations/beehiiv");
 
   for (const bookingId of bookingIds) {
-    const rows = await db
-      .select()
-      .from(campBookings)
-      .where(eq(campBookings.id, bookingId))
-      .limit(1);
-    const booking = rows[0];
-    if (!booking) {
-      console.error(
-        `[stripe/dispatch] camp_booking ${bookingId} not found — skipping`,
+    // Per-booking try/catch — if the road row blows up mid-write we still
+    // want the gravel row to settle, otherwise a single bad row in the
+    // bundle leaves the rider half-confirmed and Stripe can't help us.
+    try {
+      const rows = await db
+        .select()
+        .from(campBookings)
+        .where(eq(campBookings.id, bookingId))
+        .limit(1);
+      const booking = rows[0];
+      if (!booking) {
+        console.error(
+          `[stripe/dispatch] camp_booking ${bookingId} not found — skipping`,
+        );
+        continue;
+      }
+      // Idempotency: Stripe retries webhooks (and we have two URLs live).
+      // If we already settled this booking (paidAt set) skip the side
+      // effects entirely. autoAssignBooking is also idempotent on
+      // bookingId, but bailing early avoids re-emailing the rider.
+      if (booking.paidAt) {
+        console.log(
+          `[stripe/dispatch] camp_booking ${bookingId} already paid (session=${booking.stripeSessionId}) — skipping`,
+        );
+        continue;
+      }
+
+      const camp = booking.camp as "road" | "gravel";
+      const cfg = getCamp(camp);
+      if (!cfg) {
+        console.error(
+          `[stripe/dispatch] camp_booking ${bookingId} has unknown camp '${camp}'`,
+        );
+        continue;
+      }
+
+      // Run the auto-assigner now that payment is confirmed. A booking
+      // past the cap drops to waitlist — the email reflects that, and
+      // admin can refund manually if needed.
+      const assignment = await autoAssignBooking({
+        bookingId: booking.id,
+        camp,
+        singleRoom: booking.singleRoom,
+      });
+
+      const newStatus =
+        assignment.status === "waitlist" ? "waitlist" : "confirmed";
+
+      // Persist before firing notifications. If the email layer chokes
+      // we don't want a perpetually-pending booking row.
+      await db
+        .update(campBookings)
+        .set({
+          status: newStatus,
+          paidAt: new Date(),
+          stripeSessionId: session.id,
+          stripePaymentIntentId: paymentIntentId,
+          updatedAt: new Date(),
+        })
+        .where(eq(campBookings.id, booking.id));
+
+      const room = assignment.roomKey
+        ? ROOMS_BY_KEY.get(assignment.roomKey)
+        : null;
+      const roomLabel = room
+        ? `${room.label} (${assignment.bedKey})`
+        : "Waitlist";
+
+      // Fire-and-forget — webhook contract is "always 2xx after sig check".
+      notifyCampBookingAdmin({
+        camp: cfg,
+        booking: {
+          name: booking.name,
+          email: booking.email,
+          phone: booking.phone ?? "",
+          singleRoom: booking.singleRoom,
+          dietary: booking.dietary ?? "",
+          emergencyContactName: booking.emergencyContactName ?? "",
+          emergencyContactPhone: booking.emergencyContactPhone ?? "",
+          medical: booking.medical ?? "",
+          heardFrom: booking.heardFrom ?? "",
+        },
+        status: assignment.status,
+        roomLabel,
+      }).catch((err) =>
+        console.error(
+          "[stripe/dispatch] Camps admin notification failed:",
+          err,
+        ),
       );
-      continue;
-    }
-    // Idempotency: Stripe retries webhooks. If we already settled this
-    // booking (paidAt set) skip the side effects entirely.
-    if (booking.paidAt) {
-      console.log(
-        `[stripe/dispatch] camp_booking ${bookingId} already paid — skipping`,
-      );
-      continue;
-    }
 
-    const camp = booking.camp as "road" | "gravel";
-    const cfg = getCamp(camp);
-    if (!cfg) {
-      console.error(
-        `[stripe/dispatch] camp_booking ${bookingId} has unknown camp '${camp}'`,
-      );
-      continue;
-    }
-
-    // Run the auto-assigner now that payment is confirmed. A booking past
-    // the cap drops to waitlist — the email reflects that, and admin can
-    // refund manually if needed.
-    const assignment = await autoAssignBooking({
-      bookingId: booking.id,
-      camp,
-      singleRoom: booking.singleRoom,
-    });
-
-    const newStatus =
-      assignment.status === "waitlist" ? "waitlist" : "confirmed";
-
-    await db
-      .update(campBookings)
-      .set({
-        status: newStatus,
-        paidAt: new Date(),
-        stripeSessionId: session.id,
-        stripePaymentIntentId: paymentIntentId,
-        updatedAt: new Date(),
-      })
-      .where(eq(campBookings.id, booking.id));
-
-    const room = assignment.roomKey
-      ? ROOMS_BY_KEY.get(assignment.roomKey)
-      : null;
-    const roomLabel = room
-      ? `${room.label} (${assignment.bedKey})`
-      : "Waitlist";
-
-    // Fire-and-forget — webhook contract is "always 2xx after sig check".
-    notifyCampBookingAdmin({
-      camp: cfg,
-      booking: {
+      sendCampBookingConfirmation({
+        camp: cfg,
         name: booking.name,
         email: booking.email,
-        phone: booking.phone ?? "",
         singleRoom: booking.singleRoom,
-        dietary: booking.dietary ?? "",
-        emergencyContactName: booking.emergencyContactName ?? "",
-        emergencyContactPhone: booking.emergencyContactPhone ?? "",
-        medical: booking.medical ?? "",
-        heardFrom: booking.heardFrom ?? "",
-      },
-      status: assignment.status,
-      roomLabel,
-    }).catch((err) =>
-      console.error("[stripe/dispatch] Camps admin notification failed:", err),
-    );
+        status: assignment.status,
+      }).catch((err) =>
+        console.error("[stripe/dispatch] Camps confirmation email failed:", err),
+      );
 
-    sendCampBookingConfirmation({
-      camp: cfg,
-      name: booking.name,
-      email: booking.email,
-      singleRoom: booking.singleRoom,
-      status: assignment.status,
-    }).catch((err) =>
-      console.error("[stripe/dispatch] Camps confirmation email failed:", err),
-    );
-
-    // Promote the lead from "applicant" to "paid" in Beehiiv. Best-effort.
-    subscribeToBeehiiv({
-      email: booking.email,
-      name: booking.name,
-      tags: [cfg.beehiivTag, "camp-paid"],
-      customFields: {
-        camp: cfg.slug,
-        single_room: booking.singleRoom ? "yes" : "no",
-        camp_status: newStatus,
-      },
-    }).catch((err) =>
-      console.error("[stripe/dispatch] Camps Beehiiv promotion failed:", err),
-    );
+      // Promote the lead from "applicant" to "paid" in Beehiiv. Best-effort.
+      subscribeToBeehiiv({
+        email: booking.email,
+        name: booking.name,
+        tags: [cfg.beehiivTag, "camp-paid"],
+        customFields: {
+          camp: cfg.slug,
+          single_room: booking.singleRoom ? "yes" : "no",
+          camp_status: newStatus,
+        },
+      }).catch((err) =>
+        console.error("[stripe/dispatch] Camps Beehiiv promotion failed:", err),
+      );
+    } catch (err) {
+      console.error(
+        `[stripe/dispatch] camp_booking ${bookingId} processing failed (session=${session.id}):`,
+        err instanceof Error ? err.message : err,
+      );
+      // Continue to the next booking — don't block the bundle on one row.
+    }
   }
 }
 
