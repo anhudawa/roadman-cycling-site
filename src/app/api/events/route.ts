@@ -94,6 +94,18 @@ export async function POST(request: Request) {
       "race_page_viewed",
       "share_clicked",
       "coaching_apply_submitted",
+      // Micro-events (engagement signal layer)
+      "scroll_depth",
+      "cta_click",
+      "tool_start",
+      "tool_complete",
+      "video_play",
+      "podcast_play",
+      "link_click_internal",
+      "link_click_external",
+      "form_start",
+      "error_boundary",
+      "time_on_page",
     ];
     if (!validTypes.includes(type)) {
       return Response.json({ error: "Invalid event type" }, { status: 400 });

@@ -485,7 +485,12 @@ export default async function PlateauPage() {
                 Twelve questions. Four minutes. A specific answer for why your
                 progress has stalled &mdash; and the exact fix.
               </p>
-              <a href="#start" data-cta="hero" className={ctaButtonClass}>
+              <a
+                href="#start"
+                data-cta="hero"
+                data-track="plateau_diagnostic_hero"
+                className={ctaButtonClass}
+              >
                 FIND MY PROFILE {ctaArrow}
               </a>
               <div className="flex flex-wrap items-center justify-center gap-x-4 gap-y-2 text-foreground-subtle text-xs md:text-sm mt-5 px-4">
@@ -782,7 +787,12 @@ export default async function PlateauPage() {
             {/* Mid-page CTA */}
             <div className="mt-12 text-center">
               <ScrollReveal direction="up" eager>
-                <a href="#start" data-cta="mid" className={ctaButtonClass}>
+                <a
+                  href="#start"
+                  data-cta="mid"
+                  data-track="plateau_diagnostic_mid"
+                  className={ctaButtonClass}
+                >
                   FIND MY PROFILE {ctaArrow}
                 </a>
                 <p className="text-foreground-subtle text-xs mt-4">
@@ -1078,7 +1088,12 @@ export default async function PlateauPage() {
                 Four minutes from now you&rsquo;ll have a specific answer for
                 why your FTP has stalled.
               </p>
-              <a href="#start" data-cta="bottom" className={ctaButtonClass}>
+              <a
+                href="#start"
+                data-cta="bottom"
+                data-track="plateau_diagnostic_bottom"
+                className={ctaButtonClass}
+              >
                 FIND MY PROFILE {ctaArrow}
               </a>
               <p className="text-foreground-subtle text-xs mt-5">
