@@ -69,6 +69,7 @@ interface FeaturedEvent {
  */
 const FEATURED_EVENTS: FeaturedEvent[] = [
   { slug: "etape-du-tour", nextEdition: "2026-07-12T12:00:00Z", dateLabel: "12 July 2026" },
+  { slug: "marmotte", nextEdition: "2026-07-04T12:00:00Z", dateLabel: "4 July 2026" },
   { slug: "maratona-dles-dolomites", nextEdition: "2026-07-05T12:00:00Z", dateLabel: "5 July 2026" },
   { slug: "ride-london-100", nextEdition: "2026-05-31T12:00:00Z", dateLabel: "31 May 2026" },
   { slug: "wicklow-200", nextEdition: "2026-06-07T12:00:00Z", dateLabel: "7 June 2026" },

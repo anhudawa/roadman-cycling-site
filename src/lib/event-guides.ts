@@ -51,6 +51,35 @@ export interface CommonMistakeDetail {
   fix: string;
 }
 
+export interface TrainingPhaseSummary {
+  /** Window label, e.g. "Weeks 16-13". */
+  window: string;
+  /** Phase name in caps, e.g. "BASE". */
+  label: string;
+  /** Hours/week range during this phase. */
+  hoursPerWeek: string;
+  /** What the rider is building, in 1-2 sentences. */
+  focus: string;
+  /** The signature session of this phase for this specific event. */
+  anchorSession: string;
+}
+
+export interface EquipmentEssential {
+  /** Category label, e.g. "GEARING". */
+  label: string;
+  /** Recommendation in 1-2 sentences. */
+  detail: string;
+}
+
+export interface RelatedReading {
+  /** Blog slug under /blog/. */
+  slug: string;
+  /** Display title. */
+  title: string;
+  /** Why this post matters for this event. */
+  whyItMatters: string;
+}
+
 export interface EventGuide {
   /** Full URL slug — e.g. "wicklow-200-training-plan". */
   slug: string;
@@ -86,6 +115,21 @@ export interface EventGuide {
   pacingDeepDive: string;
   /** Common mistakes with explicit fixes — pairs each problem with the move. */
   detailedMistakes: CommonMistakeDetail[];
+
+  /**
+   * 12-16 week training framework, broken into 4 phases. Optional —
+   * pages without this fall back to the generic /plan grid only.
+   */
+  trainingFramework?: TrainingPhaseSummary[];
+
+  /** Event-specific equipment list. Optional. */
+  equipmentEssentials?: EquipmentEssential[];
+
+  /**
+   * Curated blog posts that go deeper on this event's demands.
+   * Slugs must match files in content/blog/. Optional.
+   */
+  relatedReading?: RelatedReading[];
 }
 
 /* ============================================================ */
@@ -304,6 +348,115 @@ export const EVENT_GUIDES: EventGuide[] = [
         fix: "If the route includes Sa Calobra, ride the descent at sub-threshold, eat both ways, and treat the return climb as a controlled 50-minute Z3 effort. Riders who attack the bottom of the return ride the top in pieces.",
       },
     ],
+    trainingFramework: [
+      {
+        window: "Weeks 16-13",
+        label: "BASE",
+        hoursPerWeek: "12-14 h",
+        focus:
+          "Mallorca 312 is a fuelling and endurance event before it's an FTP event. Build the aerobic depth that supports 10+ hours on the bike — 80% of riding in Zone 2, conversational pace, fuelled from minute 30. Volume is the work.",
+        anchorSession:
+          "One 5-hour Z2 ride per week on rolling terrain, fuelled at 70-80g carbs/hour. No structured intervals.",
+      },
+      {
+        window: "Weeks 12-9",
+        label: "LATE BASE",
+        hoursPerWeek: "13-15 h",
+        focus:
+          "Long ride extends to 6-7 hours. Tempo work introduces structured intensity without compromising volume. Back-to-back weekends start appearing — 5-6 hour Saturday paired with 3-4 hour Sunday.",
+        anchorSession:
+          "Tempo sandwich — 2x20 minutes at 76-88% FTP inside a 2-hour Z2 ride, plus a 6-hour weekend ride that includes one 30-minute climb.",
+      },
+      {
+        window: "Weeks 8-5",
+        label: "BUILD",
+        hoursPerWeek: "14-16 h",
+        focus:
+          "Threshold work layers on, but volume stays high — Mallorca rewards endurance over peak power. Long ride builds to 7-8 hours with sustained climbing. Gut training to 90-100g carbs/hour starts in earnest.",
+        anchorSession:
+          "2x20 minutes at 91-100% FTP plus one 7-8 hour ride with 2,000m+ climbing. Practice race-day fuelling on every long ride.",
+      },
+      {
+        window: "Weeks 4-2",
+        label: "PEAK + TAPER",
+        hoursPerWeek: "10-12 h dropping to 6-8 h",
+        focus:
+          "Volume drops 25-30%. One 6-7 hour Mallorca simulation at goal pace with full fuelling rehearsed. Then taper. Heat acclimation block in the final 14 days if logistics allow.",
+        anchorSession:
+          "Mallorca simulation — 6-7 hours at 65% FTP ceiling with two sustained climbs and full race-day fuelling. Final 10 days: race-pace openers, full rest before travel.",
+      },
+    ],
+    equipmentEssentials: [
+      {
+        label: "GEARING",
+        detail:
+          "34x32 minimum. The Tramuntana climbs are sustained 6-7% — not steep, but long. Sa Calobra return at 7% with 100km in the legs feels harder than fresh-leg gradients suggest. 34x34 if you have it.",
+      },
+      {
+        label: "BOTTLES + FUEL",
+        detail:
+          "Two bottle cages plus a frame bag or extra jersey storage for the long Pla section. Carry 12+ gels and 4+ bars for in-effort fuelling between feed stops. Aim for 80-100g carbs/hour — the gut has to be trained for this in advance.",
+      },
+      {
+        label: "CLIMATE KIT",
+        detail:
+          "Long-finger gloves and gilet for the cold Tramuntana opening (8-12°C pre-dawn). Light arm warmers for the Sa Calobra descent. Light-coloured jersey + cooling sleeves for the Pla heat once midday lands.",
+      },
+      {
+        label: "TYRES",
+        detail:
+          "25-28mm road tubeless. Mallorca tarmac is generally excellent but the Sa Calobra descent is technical. Tubeless gives you puncture margin on the long valley sections.",
+      },
+      {
+        label: "HEAT + HYDRATION",
+        detail:
+          "750ml-1L per hour from km 100. Electrolyte mix in every bottle once the temperature climbs past 25°C. Sunscreen reapplied at every feed; UV at midday in late April is brutal even when the temperature feels mild.",
+      },
+    ],
+    relatedReading: [
+      {
+        slug: "mallorca-312-training-guide",
+        title: "Mallorca 312 Training Guide: The Long Read",
+        whyItMatters:
+          "The deeper article on training for Mallorca — methodology, sessions, and the fuelling strategy that defines who finishes.",
+      },
+      {
+        slug: "cycling-carbs-per-hour-fuel-like-a-pro",
+        title: "Carbs Per Hour: Fuel Like a Pro",
+        whyItMatters:
+          "Mallorca demands 80-100g/hour for 10+ hours. Most amateurs ride below the gut's actual ceiling — this is how you train it up before race day.",
+      },
+      {
+        slug: "cycling-heat-training-guide",
+        title: "Heat Training for Cyclists",
+        whyItMatters:
+          "The Pla central plain regularly hits 28-30°C by midday. Heat acclimation in the 14 days before race day is worth more than any aero gain.",
+      },
+      {
+        slug: "cycling-cramp-prevention",
+        title: "Cycling Cramp Prevention",
+        whyItMatters:
+          "Long heat-soaked rides + sodium losses = cramps in the back half. The protocol that prevents them.",
+      },
+      {
+        slug: "cycling-nutrition-plan-100-mile-sportive",
+        title: "Sportive Nutrition Plan: 100 Miles+",
+        whyItMatters:
+          "Hour-by-hour nutrition for a long sportive day. The framework you scale up for 312km.",
+      },
+      {
+        slug: "polarised-training-cycling-guide",
+        title: "Polarised Training: The 80/20 Approach",
+        whyItMatters:
+          "The training distribution that builds the aerobic depth a 10+ hour day demands. Anchored in Professor Stephen Seiler's research.",
+      },
+      {
+        slug: "cycling-tapering-guide",
+        title: "How to Taper for a Sportive",
+        whyItMatters:
+          "Two-week taper protocol that arrives at the start line fresh, not flat. Most Mallorca DNFs trace back to a final block trained too hard.",
+      },
+    ],
   },
   {
     slug: "fred-whitton-challenge-training-plan",
@@ -500,6 +653,229 @@ export const EVENT_GUIDES: EventGuide[] = [
     ],
   },
   {
+    slug: "marmotte-training-plan",
+    trainingEventSlug: "marmotte",
+    pageTitle: "La Marmotte Training Plan",
+    intent:
+      "Help amateur riders prepare for La Marmotte Granfondo Alpes — 174km, four legendary cols, 5,000m of climbing, and the Alpe d'Huez summit finish that earned the event its reputation.",
+    weatherConditions:
+      "Early July in Bourg d'Oisans starts cool and exposed at the 07:00 start (8-12°C in the valley) and turns brutal across the day. The Maurienne valley regularly hits 35°C+ between km 60 and km 130, then the Galibier summit at 2,642m can be 4-8°C with cloud or wind. The base of Alpe d'Huez at 16:00 in 38°C heat is the day's defining temperature problem.",
+    terrainSummary:
+      "Four giant cols stitched together by valley transitions: Glandon (early), Télégraphe-Galibier paired in the middle, Alpe d'Huez as the summit finish. 174km point-to-point feel with a Bourg d'Oisans loop. No flat — every kilometre is climbing, descending, or transitioning between the two.",
+    ftpRequirement: {
+      minimum: "3.2 W/kg",
+      competitive: "4.0 W/kg",
+      notes:
+        "Marmotte is climb-density limited and altitude-limited. 3.2 W/kg with the right gearing and disciplined pacing earns the bronze medal time band; 4.0+ W/kg holds the silver bands and rides Alpe d'Huez at sub-threshold rather than survival pace. The Galibier above 2,400m costs amateurs 8-12% of sea-level FTP — pace on power, not on the climbers around you.",
+    },
+    enduranceDemands:
+      "12-15 hours/week peaking 12-16 weeks out, with at least three 5-6 hour rides that include two sustained climbs of 30+ minutes each. One ride with 3,500m+ of climbing in training is the floor — not the ceiling. Sea-level riders should find altitude exposure in the final 2-3 weeks if logistics allow; Alpine riders should ride the actual cols once before race day.",
+    climbingNarrative:
+      "5,000m of climbing across 174km — that's 29m per kilometre, denser than Étape and only beaten in this cluster by the Maratona. The shape of the day matters: Glandon early, Télégraphe-Galibier paired in the middle, Alpe d'Huez as the summit finish. The valley between Galibier descent and the Alpe is the hidden test — tailwind, baking heat, 50km of rolling tempo on legs that have already done two HC cols. Then the Alpe arrives. Pace is everything.",
+    majorClimbs: [
+      {
+        name: "Col du Glandon",
+        lengthKm: 21.7,
+        avgGradient: 5.1,
+        maxGradient: 11,
+        elevationGainM: 1108,
+        positionInRide: "km 25-50",
+        notes:
+          "First HC climb. 90 minutes of sustained effort. Pace at 70-75% FTP — the riders who attack the early ramps of the Glandon are the ones grinding 50rpm on the Alpe four hours later.",
+      },
+      {
+        name: "Col du Télégraphe",
+        lengthKm: 11.9,
+        avgGradient: 7.1,
+        elevationGainM: 856,
+        positionInRide: "km 75-90",
+        notes:
+          "First half of the Télégraphe-Galibier pair. Sustained 7% for 60 minutes. Eat through it; do not race it. Galibier is still ahead.",
+      },
+      {
+        name: "Col du Galibier (from Télégraphe)",
+        lengthKm: 17.7,
+        avgGradient: 5.5,
+        maxGradient: 12,
+        elevationGainM: 1245,
+        positionInRide: "km 95-120",
+        notes:
+          "2,642m summit. The upper third sits above 2,000m where altitude bites — power drops 8-12% for the same heart rate. Pace on watts, accept the HR drift, and eat on the climb rather than wait for the descent.",
+      },
+      {
+        name: "Alpe d'Huez",
+        lengthKm: 13.8,
+        avgGradient: 8.1,
+        maxGradient: 13,
+        elevationGainM: 1100,
+        positionInRide: "km 160 — summit finish",
+        notes:
+          "21 hairpins after 150km in your legs. Pace on a wattage ceiling and ignore the carnage around you. The first four hairpins are the steepest — settle in, ride sub-threshold, and let the bend numbers count down rather than chasing the riders around you.",
+      },
+    ],
+    finishTimes: [
+      {
+        level: "First-time finisher",
+        range: "10-12 hours",
+        fitnessProfile:
+          "FTP 2.8-3.2 W/kg, 10-12 hours/week, longest ride 5 hours with two sustained climbs.",
+      },
+      {
+        level: "Bronze medal time",
+        range: "8:30-10 hours",
+        fitnessProfile:
+          "FTP 3.2-3.7 W/kg, 11-13 hours/week, multiple 5-hour rides with 3,000m+ climbing, gut trained to 90g carbs/hour.",
+      },
+      {
+        level: "Silver medal time",
+        range: "7-8:30 hours",
+        fitnessProfile:
+          "FTP 3.7-4.3 W/kg, 13-16 hours/week, sustained 30-minute threshold blocks, altitude exposure 14+ days pre-race.",
+      },
+      {
+        level: "Gold medal time",
+        range: "5:30-7 hours",
+        fitnessProfile:
+          "FTP 4.3+ W/kg, 16-20 hours/week, racing background, sub-threshold for 60+ minutes at altitude, sub-2% body fat margin from race weight.",
+      },
+    ],
+    fuellingDeepDive:
+      "Eight to ten hours of riding with 5,000m of climbing makes Marmotte a carbohydrate problem at the limit of what most amateurs can absorb. Target 90-110g carbs/hour from the gun — gels every 25 minutes plus a bar at the base of every climb. The gut has to be trained for this; first-time 90g/hour at the Marmotte is how riders end up vomiting at the base of Alpe d'Huez. Hydration scales with the heat: 500-600ml/hour in the cool opening sections, 1L/hour through the Maurienne valley, electrolytes in every bottle. The feed at the Glandon descent is your first real refill; the Saint-Jean-de-Maurienne feed at the base of the Télégraphe is the day's most strategic — eat real food, refill bottles, leave inside 15 minutes. Caffeine gel at the base of the Galibier and a second at the base of Alpe d'Huez. The riders who finish strong on the Alpe are the ones who fuelled the valley between Galibier and the Alpe; the riders who walk are the ones who 'didn't feel hungry' on the Maurienne descent.",
+    pacingDeepDive:
+      "Pace La Marmotte from the Alpe backwards. Every watt spent above plan in the first 100km is a watt you will not have on Alpe d'Huez. Glandon at 70-75% of FTP — that's a heart-rate ceiling, not a feel. Through the Maurienne valley between Glandon and Télégraphe, sit in groups; drafting saves 25-30% of your output and keeps you below threshold while still moving fast. Télégraphe-Galibier paired at 72-77% of FTP — the Télégraphe is not the workout, the Galibier upper third is. Eat on the Galibier descent; the cold and the 30-minute downhill are your one real recovery window. The 50km valley to the base of the Alpe is the day's hidden ceiling — heat, tailwind, fatigue. Hold tempo, don't hammer, drink on a timer. Hit the base of the Alpe with a full bottle and a clear head. Settle into 75-80% FTP for the first four hairpins; ride the gradient, not the riders. The summit is the win — pace to get there, not to outdrag your neighbour.",
+    detailedMistakes: [
+      {
+        mistake: "Treating it like a normal sportive",
+        fix: "La Marmotte is the original Alpine event for a reason. Train on sustained climbs of 30+ minutes, ride at altitude in the final 2-3 weeks if logistics allow, and build at least one 5-hour ride with 3,500m+ of climbing in the legs before race day. A 100-mile flat sportive prep does not transfer.",
+      },
+      {
+        mistake: "Going hard on the Glandon because the legs feel fresh",
+        fix: "The Glandon comes inside the first 50km when you're rested, the temperature is mild, and the road is full of stronger riders. Sit at 70-75% FTP, ignore the surge, and bank the legs you will need on the Alpe four hours later. Marmotte Gold goes to riders who pace the Glandon, not the riders who race it.",
+      },
+      {
+        mistake: "Underdressing the Galibier descent",
+        fix: "Even on a 35°C valley day, the Galibier summit can be 6-10°C with wind. Gilet stashed in the jersey is non-negotiable; arm warmers stuffed in the back pocket save the descent. Riders who shiver down the Galibier arrive at the base of the Alpe cold and underfuelled — both are fixable with kit.",
+      },
+      {
+        mistake: "Choosing 11-28 gearing because 'I climb fine at home'",
+        fix: "34x32 minimum. Many finishers run 34x34. Alpe d'Huez at 8% with 150km in the legs is not the same gradient as the same climb fresh. Walking the Alpe is more common than the official photos show — most of those walkers chose 11-28 cassettes at sea level and discovered the difference at hairpin 7.",
+      },
+      {
+        mistake: "Skipping the Saint-Jean-de-Maurienne feed because you 'feel fine'",
+        fix: "Saint-Jean-de-Maurienne is the day's most strategic refill point. Top up bottles, eat real food, take 10 minutes. The Télégraphe-Galibier pair has no useful feed and the climb to Alpe d'Huez is 60+ minutes from the next refill. Riders who skip Saint-Jean run dry on the Galibier and bonk in the valley below the Alpe.",
+      },
+    ],
+    trainingFramework: [
+      {
+        window: "Weeks 16-13",
+        label: "BASE",
+        hoursPerWeek: "10-12 h",
+        focus:
+          "Build the aerobic engine the rest of the plan sits on. 80% of your time in Zone 2 — conversational pace, nose-breathing, no Strava ego. The mitochondrial density you build here is what carries you up the back half of the Galibier.",
+        anchorSession:
+          "One 4-hour Z2 ride per week, fuelled from minute 30, on rolling terrain. No structured intervals.",
+      },
+      {
+        window: "Weeks 12-9",
+        label: "LATE BASE",
+        hoursPerWeek: "11-13 h",
+        focus:
+          "Aerobic volume still rules but tempo work enters the plan. Long ride extends to 5 hours and starts including sustained climbs. This is where event-specific climbing fitness begins without compromising the base.",
+        anchorSession:
+          "Tempo sandwich — 2x20 minutes at 76-88% FTP inside a 2-hour Z2 ride. Once a week, paired with a 5-hour weekend ride that includes a 30-minute climb.",
+      },
+      {
+        window: "Weeks 8-5",
+        label: "BUILD",
+        hoursPerWeek: "13-15 h",
+        focus:
+          "Threshold and VO2 work layer on. One threshold session, one VO2 session, one 5-6 hour ride with event-specific terrain. FTP should climb here — if it isn't, recovery is the gap, not effort.",
+        anchorSession:
+          "2x20 minutes at 91-105% FTP, plus one 4x4 minute VO2 session at 106-120% FTP. Long ride mimics the Glandon-Galibier shape: two sustained climbs of 30-50 minutes inside a 5-hour day.",
+      },
+      {
+        window: "Weeks 4-2",
+        label: "PEAK + TAPER",
+        hoursPerWeek: "9-11 h dropping to 6-8 h",
+        focus:
+          "Volume drops 20-30%, intensity gets very specific. One full Marmotte simulation — 5 hours at goal pace with the climbing density you'll meet on the day. Then taper. The fitness is banked; the job is to shed fatigue without losing sharpness.",
+        anchorSession:
+          "Marmotte simulation — 5 hours with two sustained climbs of 60+ minutes at 75-80% FTP. Final 10 days: shorter rides, race-pace openers, full rest before travel.",
+      },
+    ],
+    equipmentEssentials: [
+      {
+        label: "GEARING",
+        detail:
+          "34x32 minimum, 34x34 if you have it. Walking Alpe d'Huez is fitness management for under-geared riders. Test your gearing on a 10% local hill at the end of a 4-hour ride before you commit.",
+      },
+      {
+        label: "TYRES",
+        detail:
+          "25-28mm, fast-rolling but durable (Continental GP5000 S TR, Vittoria Corsa Pro). Tubeless preferred for descent puncture margin. Pressures 10-15% lower than your usual road event for the heat-soaked tarmac on the Maurienne descent.",
+      },
+      {
+        label: "DESCENT KIT",
+        detail:
+          "Gilet stashed in jersey + arm warmers in the back pocket. Even on 35°C valley days, the Galibier summit can be 6-10°C with wind. Clear lenses for cloud or shaded hairpins; tinted lenses are useless on the Alpe descent in low afternoon sun.",
+      },
+      {
+        label: "BOTTLES + FUEL",
+        detail:
+          "Two bottle cages — minimum 1L total capacity. Carry 8-10 gels and 2-3 bars for in-effort fuelling between feed stops. The climb to Alpe d'Huez is 60+ minutes from the last refill; arrive at the base with a full bottle and a caffeine gel in the pocket.",
+      },
+      {
+        label: "SUN + HEAT",
+        detail:
+          "Reapply sunscreen at every feed — Alpine UV at 2,000m plus an 8-hour day burns skin twice. Light-coloured jersey for the Maurienne valley. Salt tabs or electrolyte mix in every bottle once the heat lands.",
+      },
+    ],
+    relatedReading: [
+      {
+        slug: "cycling-altitude-training",
+        title: "Altitude Training for Cyclists",
+        whyItMatters:
+          "The Galibier above 2,400m costs 8-12% of sea-level FTP for unacclimatised amateurs. This guide covers what's possible in 2-3 weeks pre-race.",
+      },
+      {
+        slug: "cycling-climbing-tips-stop-getting-dropped",
+        title: "Why You Get Dropped on Climbs (and How to Fix It)",
+        whyItMatters:
+          "Pacing, cadence, and the mental game on long sustained efforts. Useful framing for the Galibier and Alpe d'Huez specifically.",
+      },
+      {
+        slug: "cycling-carbs-per-hour-fuel-like-a-pro",
+        title: "Carbs Per Hour: Fuel Like a Pro",
+        whyItMatters:
+          "Marmotte demands 90-110g/hour for 8-10 hours. Most amateurs ride below the gut's actual ceiling — this is how you train it up before race day.",
+      },
+      {
+        slug: "cycling-heat-training-guide",
+        title: "Heat Training for Cyclists",
+        whyItMatters:
+          "The Maurienne valley regularly hits 35°C+ between km 60 and 130. Heat acclimation in the 14 days before race day is worth more than any aero gain.",
+      },
+      {
+        slug: "cycling-tapering-guide",
+        title: "How to Taper for a Sportive",
+        whyItMatters:
+          "Two-week taper protocol that arrives at the start line fresh, not flat. Most Marmotte DNFs trace back to a final block trained too hard.",
+      },
+      {
+        slug: "jack-burke-strava-records-stelvio-alpe-dhuez",
+        title: "Jack Burke on Pacing Alpe d'Huez and the Stelvio",
+        whyItMatters:
+          "How a Strava KOM-holder paces the Alpe — wattage discipline, fuelling on the climb, and the mental game on the hairpin count-down.",
+      },
+      {
+        slug: "polarised-training-cycling-guide",
+        title: "Polarised Training: The 80/20 Approach",
+        whyItMatters:
+          "The training distribution that builds the aerobic depth a 5,000m climbing day requires. Anchored in Professor Stephen Seiler's research.",
+      },
+    ],
+  },
+  {
     slug: "etape-du-tour-training-plan",
     trainingEventSlug: "etape-du-tour",
     raceSlug: "etape-du-tour",
@@ -593,6 +969,115 @@ export const EVENT_GUIDES: EventGuide[] = [
       {
         mistake: "Saving legs for the final climb and missing the cut-off",
         fix: "Pace the first climb on watts and the second to your training data. Cut-offs are non-negotiable and they catch riders who go too slowly on the early climbs hoping to push later. Ride the day from minute one, not from the final climb backwards.",
+      },
+    ],
+    trainingFramework: [
+      {
+        window: "Weeks 16-13",
+        label: "BASE",
+        hoursPerWeek: "10-12 h",
+        focus:
+          "Build the aerobic engine for an event that demands sustained climbing at altitude. 80/20 distribution — most rides in Zone 2, conversational pace, no Strava ego. The mitochondrial density you build here is what holds power on the upper third of an HC col.",
+        anchorSession:
+          "One 4-hour Z2 ride per week on rolling terrain, fuelled from minute 30. No structured intervals.",
+      },
+      {
+        window: "Weeks 12-9",
+        label: "LATE BASE",
+        hoursPerWeek: "11-13 h",
+        focus:
+          "Volume still rules but tempo work enters the plan and long rides extend to 5 hours with sustained climbing. Event-specific fitness builds without compromising aerobic depth.",
+        anchorSession:
+          "Tempo sandwich — 2x20 minutes at 76-88% FTP inside a 2-hour Z2 ride, paired with a 5-hour weekend ride that includes a 30-minute climb.",
+      },
+      {
+        window: "Weeks 8-5",
+        label: "BUILD",
+        hoursPerWeek: "13-15 h",
+        focus:
+          "Threshold and VO2 work layer on. One threshold session, one VO2 session, one long ride with HC-col-shaped climbing. Pro-race pacing is rehearsed here, not on race day.",
+        anchorSession:
+          "2x20 minutes at 91-105% FTP, plus one 4x4 minute VO2 session. Long ride builds to 5-6 hours with two sustained 30-50 minute climbs.",
+      },
+      {
+        window: "Weeks 4-2",
+        label: "PEAK + TAPER",
+        hoursPerWeek: "9-11 h dropping to 6-8 h",
+        focus:
+          "Volume drops 20-30%, intensity gets very specific. One full Étape simulation in altitude conditions if possible. Then taper — the goal is to arrive fresh, not fitter.",
+        anchorSession:
+          "Étape simulation — 5 hours with two HC-style climbs at 75-80% FTP. Final 10 days: race-pace openers, full rest before travel.",
+      },
+    ],
+    equipmentEssentials: [
+      {
+        label: "GEARING",
+        detail:
+          "34x32 minimum, 34x34 strongly recommended. Many editions include a summit finish that bites at km 150+ on tired legs — the difference between 32 and 34 teeth at hairpin 7 of an Alpe-style finish is not aero, it's whether you ride or walk.",
+      },
+      {
+        label: "ALTITUDE PREP",
+        detail:
+          "Many editions cross 2,000m. Sea-level riders lose 8-15% of FTP at altitude. Altitude tent in the final 2-3 weeks works for committed amateurs; arriving 7-10 days early to acclimatise is the practical fallback.",
+      },
+      {
+        label: "DESCENT KIT",
+        detail:
+          "Gilet stashed in jersey + arm warmers in the pocket. HC summit descents drop 1,000m+ at speed and run cold even in July. Clear lenses for cloud and tunnel sections; tinted lenses cost you on shaded hairpins.",
+      },
+      {
+        label: "TYRES + WHEELS",
+        detail:
+          "25-28mm road tubeless. Climbing wheels save weight; aero wheels save the valley sections. Closed-road format means you can run lighter setups than an open sportive — the safety margin is bigger.",
+      },
+      {
+        label: "SUN + HEAT",
+        detail:
+          "Sunscreen at every feed — Alpine UV at 2,000m burns skin twice. Light-coloured jersey for valley sections. Electrolyte mix in every bottle once the heat lands.",
+      },
+    ],
+    relatedReading: [
+      {
+        slug: "etape-du-tour-training-plan",
+        title: "Étape du Tour Training Plan: The Long Read",
+        whyItMatters:
+          "The deeper article on training for the Étape — methodology, sessions, and pro-coach references that ground this plan.",
+      },
+      {
+        slug: "cycling-altitude-training",
+        title: "Altitude Training for Cyclists",
+        whyItMatters:
+          "Many Étape editions cross 2,000m. This guide covers what altitude exposure is realistic in 2-3 weeks pre-race.",
+      },
+      {
+        slug: "cycling-heat-training-guide",
+        title: "Heat Training for Cyclists",
+        whyItMatters:
+          "Alpine valley sections regularly hit 35°C+. Heat acclimation in the 14 days before race day is worth more than any aero gain.",
+      },
+      {
+        slug: "cycling-climbing-tips-stop-getting-dropped",
+        title: "Why You Get Dropped on Climbs (and How to Fix It)",
+        whyItMatters:
+          "Pacing and the mental game on long sustained efforts. Directly applicable to HC-col pacing on the Étape.",
+      },
+      {
+        slug: "cycling-tapering-guide",
+        title: "How to Taper for a Sportive",
+        whyItMatters:
+          "Two-week taper protocol that arrives at the start line fresh, not flat.",
+      },
+      {
+        slug: "low-cadence-training-cycling-torque-intervals",
+        title: "Low Cadence Training: The Pro Coach's Secret",
+        whyItMatters:
+          "John Wakefield-style torque intervals build the leg strength that holds power on sustained Alpine gradients.",
+      },
+      {
+        slug: "polarised-training-cycling-guide",
+        title: "Polarised Training: The 80/20 Approach",
+        whyItMatters:
+          "The training distribution that builds the aerobic depth a multi-HC-col day requires. Anchored in Professor Stephen Seiler's research.",
       },
     ],
   },
@@ -1327,6 +1812,109 @@ export const EVENT_GUIDES: EventGuide[] = [
       {
         mistake: "Skipping the Kenmare feed because you 'feel fine'",
         fix: "Kenmare is the only proper refill point on the route. Top up bottles, eat a real piece of food, and roll out within 10 minutes. Riders who skip it run out of water on the Healy descent, which is when the fuelling math goes wrong fast.",
+      },
+    ],
+    trainingFramework: [
+      {
+        window: "Weeks 12-9",
+        label: "BASE",
+        hoursPerWeek: "7-9 h",
+        focus:
+          "Build the aerobic engine that supports a 5-7 hour day with one defining climb. 80% Zone 2, conversational pace, fuelled from minute 30. The Beara is shorter than other events in this cluster — quality of base matters more than total volume.",
+        anchorSession:
+          "One 3-4 hour Z2 ride per week on rolling terrain. No structured intervals.",
+      },
+      {
+        window: "Weeks 8-7",
+        label: "LATE BASE",
+        hoursPerWeek: "8-10 h",
+        focus:
+          "Long ride extends to 4-5 hours and starts including a sustained 20-30 minute climb. Tempo work introduces structured intensity without compromising aerobic depth.",
+        anchorSession:
+          "Tempo sandwich — 2x15 minutes at 76-88% FTP inside a 90-minute ride, paired with a 4-hour weekend ride that includes a 25-minute climb.",
+      },
+      {
+        window: "Weeks 6-3",
+        label: "BUILD",
+        hoursPerWeek: "9-11 h",
+        focus:
+          "Threshold and climbing-specific work layer on. Healy Pass at km 100 demands you be able to hold sub-threshold for 25-30 minutes on tired legs — that's the session you rehearse here.",
+        anchorSession:
+          "2x20 minutes at 91-100% FTP, plus one 4-hour ride with a 25-30 minute climb at 75-80% FTP after 2 hours of riding. Practice the Healy effort with the Caha already in your legs.",
+      },
+      {
+        window: "Weeks 2-0",
+        label: "TAPER",
+        hoursPerWeek: "6-7 h dropping to 4-5 h",
+        focus:
+          "Volume drops 30-40%. Short sharp efforts to keep the legs awake. The fitness is banked; the goal is to arrive at the start line fresh and hydrated.",
+        anchorSession:
+          "Race-pace openers — 60 minutes with 3x3 minutes at race pace + 3x1 minute at VO2. Final week: short rides only, race kit checked, route reviewed.",
+      },
+    ],
+    equipmentEssentials: [
+      {
+        label: "GEARING",
+        detail:
+          "34x32 minimum on Healy Pass. The 12% pitches in the middle bite at km 100 — many finishers run 34x34. Test the gearing on a 25-minute local hill in training before you commit.",
+      },
+      {
+        label: "WET WEATHER KIT",
+        detail:
+          "Rain cape stashed in the jersey pocket, gilet on the back, full-finger gloves. May on the Atlantic edge of Kerry punishes the optimistic — a 20g rain jacket has saved more Beara days than any aero gain.",
+      },
+      {
+        label: "TYRES",
+        detail:
+          "28mm road tubeless. The roads are quiet but include some potholed bog stretches and a wet, technical descent off Healy. Tubeless gives you puncture margin on the rougher sections.",
+      },
+      {
+        label: "BOTTLES + FUEL",
+        detail:
+          "Two bottle cages — minimum 1L total. Carry 6-8 gels and 2 bars for in-effort fuelling. The Healy Pass has no feed zone; arrive at the base with a full bottle and a gel in the pocket.",
+      },
+      {
+        label: "DESCENT KIT",
+        detail:
+          "The Healy Pass descent is technical, narrow, and often wet. Brake pads checked the week before. Clear lenses for the descent — Atlantic light shifts fast through cloud cover.",
+      },
+    ],
+    relatedReading: [
+      {
+        slug: "ring-of-beara-training-plan",
+        title: "Ring of Beara Training Plan: The Long Read",
+        whyItMatters:
+          "The deeper article on training for the Ring of Beara — methodology, sessions, and the climbing-specific work that defines a strong day on Healy.",
+      },
+      {
+        slug: "cycling-climbing-tips-stop-getting-dropped",
+        title: "Why You Get Dropped on Climbs (and How to Fix It)",
+        whyItMatters:
+          "Pacing, cadence, and the mental game on long sustained efforts. Directly applicable to pacing the Healy Pass at km 100.",
+      },
+      {
+        slug: "cycling-sportive-preparation",
+        title: "Sportive Preparation: The Roadman Method",
+        whyItMatters:
+          "End-to-end preparation for a sportive: training, kit, fuelling, taper, race day. Useful as the master checklist alongside the framework here.",
+      },
+      {
+        slug: "cycling-nutrition-plan-100-mile-sportive",
+        title: "Sportive Nutrition Plan: 100 Miles+",
+        whyItMatters:
+          "Hour-by-hour nutrition for a long sportive day. Practical fuelling that scales for the 5-7 hour Beara window.",
+      },
+      {
+        slug: "polarised-training-cycling-guide",
+        title: "Polarised Training: The 80/20 Approach",
+        whyItMatters:
+          "The training distribution that builds aerobic depth without the mid-zone fatigue trap. Anchored in Professor Stephen Seiler's research.",
+      },
+      {
+        slug: "low-cadence-training-cycling-torque-intervals",
+        title: "Low Cadence Training: The Pro Coach's Secret",
+        whyItMatters:
+          "Torque intervals build the leg strength that holds power on the steeper Healy Pass pitches with 100km already in the legs.",
       },
     ],
   },
