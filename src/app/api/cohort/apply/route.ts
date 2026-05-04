@@ -1,7 +1,7 @@
 import { NextResponse } from "next/server";
 import { db } from "@/lib/db";
 import { cohortApplications } from "@/lib/db/schema";
-import { notifyCohortApplication } from "@/lib/notifications";
+import { notifyCohortApplication, sendApplicantConfirmation } from "@/lib/notifications";
 import { upsertContact, addActivity } from "@/lib/crm/contacts";
 import { subscribeToBeehiiv } from "@/lib/integrations/beehiiv";
 import { getCohortState } from "@/lib/cohort";
@@ -200,7 +200,7 @@ export async function POST(request: Request) {
       console.error("[Cohort Apply] Beehiiv sync failed:", err),
     );
 
-    // Fire-and-forget email notification via Resend
+    // Fire-and-forget email notification to admin via Resend
     notifyCohortApplication({
       name,
       email: normalisedEmail,
@@ -210,7 +210,14 @@ export async function POST(request: Request) {
       frustration: frustrationStored,
       persona,
       isInnerCircle,
-    }).catch((err) => console.error("[Cohort Apply] Email notification failed:", err));
+    }).catch((err) => console.error("[Cohort Apply] Admin notification failed:", err));
+
+    // Fire-and-forget confirmation email to the applicant
+    sendApplicantConfirmation({
+      name,
+      email: normalisedEmail,
+      isInnerCircle,
+    }).catch((err) => console.error("[Cohort Apply] Applicant confirmation failed:", err));
 
     return NextResponse.json({
       success: true,

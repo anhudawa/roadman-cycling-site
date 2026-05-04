@@ -311,7 +311,69 @@ export async function notifyStaleSponsor(
 }
 
 // ---------------------------------------------------------------------------
-// 6. Cohort Application
+// 6a. Cohort / Inner Circle — Applicant Confirmation
+// ---------------------------------------------------------------------------
+
+export async function sendApplicantConfirmation(data: {
+  name: string;
+  email: string;
+  isInnerCircle?: boolean;
+}) {
+  const isIC = data.isInnerCircle === true;
+  const firstName = data.name.split(" ")[0] || data.name;
+
+  const body = isIC
+    ? `
+      <p style="color: #FAFAFA; line-height: 1.7; margin: 0 0 16px 0;">
+        ${escapeHtml(firstName)}, thanks for applying to the Inner Circle.
+      </p>
+      <p style="color: #B0B0B5; line-height: 1.7; margin: 0 0 16px 0;">
+        Anthony reviews every Inner Circle application personally. You'll hear
+        back within 48 hours — either with an onboarding questionnaire and a
+        call invite, or honest feedback on which tier might be a better starting
+        point right now.
+      </p>
+      <p style="color: #B0B0B5; line-height: 1.7; margin: 0 0 16px 0;">
+        In the meantime, if you have recent blood work or a TrainingPeaks
+        account, have those handy — they'll speed up onboarding if we move
+        forward.
+      </p>
+      <p style="color: #FAFAFA; line-height: 1.7; margin: 0;">
+        Speak soon,<br/>Anthony
+      </p>
+    `
+    : `
+      <p style="color: #FAFAFA; line-height: 1.7; margin: 0 0 16px 0;">
+        ${escapeHtml(firstName)}, thanks for applying to Not Done Yet.
+      </p>
+      <p style="color: #B0B0B5; line-height: 1.7; margin: 0 0 16px 0;">
+        We've received your application and will be in touch within 48 hours.
+      </p>
+      <p style="color: #FAFAFA; line-height: 1.7; margin: 0;">
+        Speak soon,<br/>Anthony
+      </p>
+    `;
+
+  const subject = isIC
+    ? "Your Inner Circle Application — Roadman Cycling"
+    : "Your Application — Roadman Cycling";
+
+  const html = emailWrapper(
+    isIC ? "APPLICATION RECEIVED" : "APPLICATION RECEIVED",
+    "Roadman Cycling",
+    body,
+  );
+
+  return sendEmail({
+    to: data.email,
+    subject,
+    html,
+    replyTo: RECIPIENTS.anthony,
+  });
+}
+
+// ---------------------------------------------------------------------------
+// 6b. Cohort Application (admin notification)
 // ---------------------------------------------------------------------------
 
 export async function notifyCohortApplication(data: {
