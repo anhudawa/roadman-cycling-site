@@ -1618,8 +1618,13 @@ export const campBookings = pgTable(
     medical: text("medical"),
     heardFrom: text("heard_from"),
     // 'pending' | 'confirmed' | 'waitlist' | 'cancelled'
+    // 'pending' covers both unpaid (awaiting Stripe) and paid-but-not-yet-
+    // assigned. The webhook flips to 'confirmed' or 'waitlist' once the bed
+    // assigner runs.
     status: text("status").notNull().default("pending"),
     paidAt: timestamp("paid_at", { withTimezone: true }),
+    stripeSessionId: text("stripe_session_id"),
+    stripePaymentIntentId: text("stripe_payment_intent_id"),
     notes: text("notes"),
     createdAt: timestamp("created_at", { withTimezone: true }).notNull().defaultNow(),
     updatedAt: timestamp("updated_at", { withTimezone: true }).notNull().defaultNow(),
@@ -1628,6 +1633,7 @@ export const campBookings = pgTable(
     index("camp_bookings_camp_idx").on(table.camp),
     index("camp_bookings_status_idx").on(table.status),
     index("camp_bookings_created_at_idx").on(table.createdAt),
+    index("camp_bookings_stripe_session_idx").on(table.stripeSessionId),
     // One active booking per email per camp — re-submitting updates rather
     // than duplicates. Cancelled bookings can be re-booked under the same email.
     uniqueIndex("camp_bookings_email_camp_idx").on(table.email, table.camp),

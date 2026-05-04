@@ -281,6 +281,13 @@
       "when": 1778204400000,
       "tag": "0039_camp_bookings",
       "breakpoints": true
+    },
+    {
+      "idx": 40,
+      "version": "7",
+      "when": 1778809200000,
+      "tag": "0040_camp_bookings_stripe",
+      "breakpoints": true
     }
   ]
 }

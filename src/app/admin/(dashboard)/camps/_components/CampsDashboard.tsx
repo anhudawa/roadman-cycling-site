@@ -116,7 +116,7 @@ export function CampsDashboard({
             <p
               className={`font-heading text-3xl ${
                 remaining === 0
-                  ? "text-coral"
+                  ? "text-rose-400"
                   : remaining <= 4
                     ? "text-amber-300"
                     : "text-emerald-300"
@@ -133,7 +133,7 @@ export function CampsDashboard({
           <div
             className={`h-full ${
               capacityPct >= 100
-                ? "bg-coral"
+                ? "bg-rose-500"
                 : capacityPct >= 75
                   ? "bg-amber-300"
                   : "bg-emerald-400"
@@ -145,10 +145,10 @@ export function CampsDashboard({
 
       {unassigned.length > 0 && (
         <section>
-          <h2 className="font-heading text-coral text-xs tracking-[0.3em] uppercase mb-3">
+          <h2 className="font-heading text-amber-300 text-xs tracking-[0.3em] uppercase mb-3">
             Unassigned / waitlist ({unassigned.length})
           </h2>
-          <div className="rounded-xl border border-coral/20 bg-coral/[0.04] divide-y divide-white/10">
+          <div className="rounded-xl border border-amber-500/20 bg-amber-500/[0.04] divide-y divide-white/10">
             {unassigned.map((b) => (
               <UnassignedRow key={b.id} booking={b} campSlug={campSlug} />
             ))}
@@ -331,7 +331,7 @@ function RoomCard({
               key={bed.key}
               className={`px-3 py-2 rounded-md border ${
                 booking.isSingleOccupancy
-                  ? "border-coral/30 bg-coral/[0.04]"
+                  ? "border-sky-500/30 bg-sky-500/[0.04]"
                   : "border-emerald-500/20 bg-emerald-500/[0.03]"
               }`}
             >
@@ -350,7 +350,7 @@ function RoomCard({
                       ? onCancelReassign()
                       : onReassignClick(booking)
                   }
-                  className="text-xs text-foreground-muted hover:text-coral transition-colors px-2"
+                  className="text-xs text-foreground-muted hover:text-off-white transition-colors px-2"
                   aria-label={
                     reassigning === booking.id
                       ? "Close reassign panel"
@@ -429,7 +429,7 @@ function ReassignPanel({
         <button
           type="submit"
           disabled={!target}
-          className="mt-2 w-full text-xs font-heading tracking-wider uppercase px-3 py-1.5 rounded bg-coral/90 hover:bg-coral text-off-white disabled:opacity-40"
+          className="mt-2 w-full text-xs font-heading tracking-wider uppercase px-3 py-1.5 rounded bg-emerald-500/90 hover:bg-emerald-500 text-off-white disabled:opacity-40"
         >
           Confirm move
         </button>
@@ -469,7 +469,7 @@ function UnassignedRow({
         />
         <button
           type="submit"
-          className="text-xs font-heading tracking-wider uppercase px-3 py-1.5 rounded bg-coral/90 hover:bg-coral text-off-white"
+          className="text-xs font-heading tracking-wider uppercase px-3 py-1.5 rounded bg-emerald-500/90 hover:bg-emerald-500 text-off-white"
         >
           Try auto-assign
         </button>
@@ -505,7 +505,7 @@ function BookingActions({
           <input type="hidden" name="status" value="cancelled" />
           <button
             type="submit"
-            className="text-[10px] font-heading tracking-wider uppercase px-2 py-1 rounded border border-white/10 text-foreground-muted hover:text-coral hover:border-coral/30"
+            className="text-[10px] font-heading tracking-wider uppercase px-2 py-1 rounded border border-white/10 text-foreground-muted hover:text-rose-400 hover:border-rose-500/30"
           >
             Cancel
           </button>
@@ -522,7 +522,7 @@ function BookingActions({
           />
           <button
             type="submit"
-            className="text-[10px] font-heading tracking-wider uppercase px-2 py-1 rounded border border-coral/30 text-coral hover:bg-coral/10"
+            className="text-[10px] font-heading tracking-wider uppercase px-2 py-1 rounded border border-amber-500/30 text-amber-300 hover:bg-amber-500/10"
           >
             Re-auto
           </button>
