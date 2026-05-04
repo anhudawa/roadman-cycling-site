@@ -154,10 +154,6 @@ export const NAV_ITEMS: NavItem[] = [
     href: "/plateau",
   },
   {
-    label: "Masters",
-    href: "/masters",
-  },
-  {
     label: "Ask Roadman",
     href: "/ask",
   },
@@ -166,6 +162,7 @@ export const NAV_ITEMS: NavItem[] = [
     href: "/community/not-done-yet",
     children: [
       { label: "Find Your Fit", href: "/find-your-fit" },
+      { label: "Masters Hub", href: "/masters" },
       { label: "Not Done Yet Coaching", href: "/community/not-done-yet" },
       { label: "Inner Circle", href: "/inner-circle" },
       { label: "Apps vs Coaching", href: "/apps-vs-coaching" },
