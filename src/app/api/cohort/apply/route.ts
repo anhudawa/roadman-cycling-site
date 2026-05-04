@@ -10,7 +10,17 @@ import { EMAIL_REGEX } from "@/lib/validation";
 export async function POST(request: Request) {
   try {
     const body = await request.json();
-    const { name, email, goal, hours, ftp, frustration } = body;
+    const {
+      name,
+      email,
+      goal,
+      hours,
+      ftp,
+      frustration,
+      triedBefore,
+      whyInnerCircle,
+      cohort: cohortOverride,
+    } = body;
 
     // Basic validation
     if (!name || !email || !goal || !hours || !frustration) {
@@ -55,11 +65,33 @@ export async function POST(request: Request) {
 
     const normalisedEmail = email.trim().toLowerCase();
 
-    // Read cohort state — drives which tag/cohort this submission gets.
-    // During "open" + "closing-today" the submission is a real Cohort 2
-    // application; during "waitlist" it's a Cohort 3 waitlist signup.
+    // Inner Circle applications come through the same endpoint but get a
+    // distinct cohort label so the admin Kanban filters them into their
+    // own column. Anything else falls back to the live cohort state.
+    const isInnerCircle =
+      typeof cohortOverride === "string" && cohortOverride.trim() === "inner-circle";
     const cohortState = getCohortState();
-    const cohortLabel = `cohort-${cohortState.targetCohort}`;
+    const cohortLabel = isInnerCircle
+      ? "inner-circle"
+      : `cohort-${cohortState.targetCohort}`;
+
+    // Inner Circle has two extra free-form questions that don't have
+    // their own DB columns. Fold them into the frustration field as
+    // labelled sections so they render cleanly in the admin detail view.
+    const frustrationStored = isInnerCircle
+      ? [
+          frustration,
+          triedBefore && `\n\nWhat I've tried before:\n${triedBefore}`,
+          whyInnerCircle && `\n\nWhy Inner Circle:\n${whyInnerCircle}`,
+        ]
+          .filter(Boolean)
+          .join("")
+      : frustration;
+
+    // Frustration column is text but the validator above caps everything
+    // sensibly. Inner Circle's combined frustration text can be longer
+    // than the original 500-char clamp, so give it more headroom.
+    const frustrationLimit = isInnerCircle ? 4000 : 500;
 
     // Idempotent by (email, cohort): re-submitting the form updates the
     // existing row rather than creating a duplicate. Matches the
@@ -72,7 +104,7 @@ export async function POST(request: Request) {
         goal: goal.slice(0, 500),
         hours: hours.slice(0, 50),
         ftp: ftp ? ftp.slice(0, 50) : null,
-        frustration: frustration.slice(0, 500),
+        frustration: frustrationStored.slice(0, frustrationLimit),
         cohort: cohortLabel,
         persona,
       })
@@ -83,42 +115,50 @@ export async function POST(request: Request) {
           goal: goal.slice(0, 500),
           hours: hours.slice(0, 50),
           ftp: ftp ? ftp.slice(0, 50) : null,
-          frustration: frustration.slice(0, 500),
+          frustration: frustrationStored.slice(0, frustrationLimit),
           persona,
         },
       });
+
+    const sourceLabel = isInnerCircle
+      ? "inner_circle_application"
+      : cohortState.phase === "waitlist"
+        ? "cohort_waitlist"
+        : "cohort_application";
+    const activityTitle = isInnerCircle
+      ? `Applied to Inner Circle (${persona})`
+      : cohortState.phase === "waitlist"
+        ? `Joined ${cohortLabel} waitlist (${persona})`
+        : `Applied to ${cohortLabel} (${persona})`;
 
     // CRM: upsert contact + activity (non-fatal)
     try {
       const contact = await upsertContact({
         email: normalisedEmail,
         name,
-        source: cohortState.phase === "waitlist" ? "cohort_waitlist" : "cohort_application",
+        source: sourceLabel,
         customFields: {
           goal,
           hours,
           ftp: ftp || null,
-          frustration,
+          frustration: frustrationStored,
           cohort: cohortLabel,
           persona,
-          phase: cohortState.phase,
+          phase: isInnerCircle ? "inner-circle" : cohortState.phase,
         },
       });
       await addActivity(contact.id, {
-        type: cohortState.phase === "waitlist" ? "cohort_waitlist" : "cohort_application",
-        title:
-          cohortState.phase === "waitlist"
-            ? `Joined ${cohortLabel} waitlist (${persona})`
-            : `Applied to ${cohortLabel} (${persona})`,
-        body: `Goal: ${goal}\n\nHours/week: ${hours}\n\nFTP: ${ftp || "n/a"}\n\nFrustration: ${frustration}`,
+        type: sourceLabel,
+        title: activityTitle,
+        body: `Goal: ${goal}\n\nHours/week: ${hours}\n\nFTP: ${ftp || "n/a"}\n\n${frustrationStored}`,
         meta: {
           goal,
           hours,
           ftp: ftp || null,
-          frustration,
+          frustration: frustrationStored,
           persona,
           cohort: cohortLabel,
-          phase: cohortState.phase,
+          phase: isInnerCircle ? "inner-circle" : cohortState.phase,
         },
         authorName: "system",
       });
@@ -126,28 +166,35 @@ export async function POST(request: Request) {
       console.error("[Cohort Apply] CRM sync failed:", crmErr);
     }
 
-    // Beehiiv: upsert subscriber + tag. Tag varies by phase:
-    //   open / closing-today → "cohort-2-applicant"
-    //   waitlist             → "cohort-3-waitlist"
+    // Beehiiv: upsert subscriber + tag.
+    //   Inner Circle             → "inner-circle-applicant"
+    //   open / closing-today     → "cohort-N-applicant"
+    //   waitlist                 → "cohort-N-waitlist"
     // Non-fatal — application still succeeds if Beehiiv is down.
+    const beehiivTag = isInnerCircle
+      ? "inner-circle-applicant"
+      : cohortState.submissionTag;
     subscribeToBeehiiv({
       email: normalisedEmail,
       name,
-      tags: [cohortState.submissionTag, `persona-${persona}`],
+      tags: [beehiivTag, `persona-${persona}`],
       customFields: {
         goal,
         hours,
         ftp: ftp || null,
-        frustration,
+        frustration: frustrationStored,
         cohort: cohortLabel,
         persona,
-        phase: cohortState.phase,
+        phase: isInnerCircle ? "inner-circle" : cohortState.phase,
       },
       utm: {
         source: "site",
-        medium:
-          cohortState.phase === "waitlist" ? "cohort-waitlist" : "cohort-application",
-        campaign: cohortState.submissionTag,
+        medium: isInnerCircle
+          ? "inner-circle-application"
+          : cohortState.phase === "waitlist"
+            ? "cohort-waitlist"
+            : "cohort-application",
+        campaign: beehiivTag,
       },
     }).catch((err) =>
       console.error("[Cohort Apply] Beehiiv sync failed:", err),
@@ -160,15 +207,16 @@ export async function POST(request: Request) {
       goal,
       hours,
       ftp: ftp || null,
-      frustration,
+      frustration: frustrationStored,
       persona,
+      isInnerCircle,
     }).catch((err) => console.error("[Cohort Apply] Email notification failed:", err));
 
     return NextResponse.json({
       success: true,
       persona,
-      phase: cohortState.phase,
-      cohort: cohortState.targetCohort,
+      phase: isInnerCircle ? "inner-circle" : cohortState.phase,
+      cohort: isInnerCircle ? "inner-circle" : cohortState.targetCohort,
     });
   } catch (error) {
     console.error("[Cohort Apply] Error:", error);

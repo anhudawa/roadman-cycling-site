@@ -97,6 +97,7 @@ export async function listDistinctAuthors(): Promise<string[]> {
 export const ALL_ACTIVITY_TYPES: ActivityType[] = [
   "contact_submission",
   "cohort_application",
+  "inner_circle_application",
   "note",
   "email_sent",
   "email_opened",
