@@ -102,7 +102,7 @@ export default function TrainingCampsLandingPage() {
         <Section
           background="deep-purple"
           grain
-          className="!pt-36 !pb-16 md:!pt-44 md:!pb-24 relative"
+          className="!pt-36 !pb-14 md:!pt-44 md:!pb-24 relative"
         >
           <div
             aria-hidden
@@ -114,19 +114,19 @@ export default function TrainingCampsLandingPage() {
           />
           <Container className="relative">
             <ScrollReveal direction="up" eager>
-              <p className="font-heading text-coral text-xs md:text-sm tracking-[0.4em] mb-6 text-center">
+              <p className="font-heading text-coral text-[11px] md:text-sm tracking-[0.35em] md:tracking-[0.4em] mb-5 md:mb-6 text-center">
                 NEW FOR 2026 &middot; ROADMAN TRAINING CAMPS
               </p>
               <h1
-                className="font-heading text-off-white leading-[1.0] mb-6 text-center"
-                style={{ fontSize: "clamp(2.75rem, 8vw, 6rem)" }}
+                className="font-heading text-off-white leading-[0.95] mb-5 md:mb-6 text-center"
+                style={{ fontSize: "clamp(3rem, 13vw, 6rem)" }}
               >
                 FIVE DAYS IN
                 <br />
                 <span className="text-coral">GIRONA.</span>
               </h1>
               <p
-                className="text-foreground-muted mx-auto mb-10 leading-relaxed font-light text-center"
+                className="text-foreground-muted mx-auto mb-8 md:mb-10 leading-relaxed font-light text-center"
                 style={{
                   fontSize: "clamp(1.0625rem, 1.5vw, 1.375rem)",
                   maxWidth: "680px",
@@ -139,17 +139,17 @@ export default function TrainingCampsLandingPage() {
             </ScrollReveal>
 
             <ScrollReveal direction="up" delay={0.06}>
-              <div className="grid grid-cols-2 max-w-2xl mx-auto rounded-xl overflow-hidden border border-white/10 relative">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-0 max-w-2xl mx-auto sm:rounded-xl sm:overflow-hidden sm:border sm:border-white/10 relative">
                 {HERO_IMAGES.map((src) => (
                   <div
                     key={src}
-                    className="relative aspect-[4/3] overflow-hidden"
+                    className="relative aspect-[4/3] overflow-hidden rounded-xl sm:rounded-none border border-white/10 sm:border-0"
                   >
                     <Image
                       src={src}
                       alt="Girona — pro cycling capital of the world"
                       fill
-                      sizes="(max-width: 768px) 50vw, 360px"
+                      sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 360px"
                       className="object-cover"
                       priority
                     />
@@ -161,19 +161,19 @@ export default function TrainingCampsLandingPage() {
         </Section>
 
         {/* CAMP CARDS ───────────────────────────────────────── */}
-        <Section background="charcoal" className="!py-20 md:!py-28">
+        <Section background="charcoal" className="!py-16 md:!py-28">
           <Container>
             <ScrollReveal direction="up">
-              <p className="font-heading text-coral text-xs tracking-[0.4em] mb-4 text-center">
+              <p className="font-heading text-coral text-[11px] md:text-xs tracking-[0.35em] md:tracking-[0.4em] mb-4 text-center">
                 PICK YOUR FORMAT
               </p>
               <h2
                 className="font-heading text-off-white leading-[1.05] mb-3 text-center"
-                style={{ fontSize: "clamp(2rem, 4vw, 3.25rem)" }}
+                style={{ fontSize: "clamp(2.125rem, 4vw, 3.25rem)" }}
               >
                 TWO CAMPS. ONE BASE.
               </h2>
-              <p className="text-foreground-muted text-center max-w-xl mx-auto leading-relaxed mb-12">
+              <p className="text-foreground-muted text-center max-w-xl mx-auto leading-relaxed mb-10 md:mb-12 text-[15px] md:text-base">
                 Same farmhouse, same team, two formats. Pick one — or stack
                 both for ten days end-to-end with no flight in between.
               </p>
@@ -186,7 +186,7 @@ export default function TrainingCampsLandingPage() {
                     href={camp.href}
                     className="group block rounded-2xl border border-white/10 bg-white/[0.02] hover:bg-white/[0.05] hover:border-coral/40 transition-all overflow-hidden"
                   >
-                    <div className="relative aspect-[16/10]">
+                    <div className="relative aspect-[4/3] sm:aspect-[16/10]">
                       <Image
                         src={CAMP_CARD_IMAGES[camp.slug]}
                         alt={`${camp.name} — Girona`}
@@ -202,18 +202,18 @@ export default function TrainingCampsLandingPage() {
                         {camp.type.toUpperCase()}
                       </div>
                     </div>
-                    <div className="p-6 md:p-8">
-                      <p className="font-heading text-foreground-subtle text-xs tracking-[0.3em] uppercase mb-3">
+                    <div className="p-5 sm:p-6 md:p-8">
+                      <p className="font-heading text-foreground-subtle text-[11px] md:text-xs tracking-[0.3em] uppercase mb-3">
                         {formatCampDates(camp)}
                       </p>
                       <h3
-                        className="font-heading text-off-white text-3xl md:text-4xl leading-[1.05] mb-4 group-hover:text-coral transition-colors"
+                        className="font-heading text-off-white text-[2rem] sm:text-3xl md:text-4xl leading-[1.05] mb-4 group-hover:text-coral transition-colors"
                       >
                         {camp.shortName.toUpperCase()}
                         <br />
                         CAMP.
                       </h3>
-                      <p className="text-foreground-muted leading-relaxed mb-5 text-sm">
+                      <p className="text-foreground-muted leading-relaxed mb-5 text-[15px] md:text-sm">
                         {camp.description}
                       </p>
                       <div className="flex items-center justify-between border-t border-white/10 pt-4">
@@ -237,22 +237,22 @@ export default function TrainingCampsLandingPage() {
 
             {/* BOTH CAMPS BUNDLE ──────────────────────────────── */}
             <ScrollReveal direction="up" delay={0.16}>
-              <div className="mt-8 rounded-2xl border border-coral/40 bg-gradient-to-br from-coral/[0.07] to-transparent p-6 md:p-8 backdrop-blur-sm flex flex-col md:flex-row md:items-center md:justify-between gap-6">
+              <div className="mt-6 md:mt-8 rounded-2xl border border-coral/40 bg-gradient-to-br from-coral/[0.07] to-transparent p-5 sm:p-6 md:p-8 backdrop-blur-sm flex flex-col md:flex-row md:items-center md:justify-between gap-5 md:gap-6">
                 <div className="md:max-w-xl">
-                  <p className="font-heading text-coral text-xs tracking-[0.3em] mb-3">
+                  <p className="font-heading text-coral text-[11px] md:text-xs tracking-[0.3em] mb-3">
                     SAVE €{BUNDLE_SAVINGS} &middot; BOTH CAMPS
                   </p>
                   <h3 className="font-heading text-off-white text-2xl md:text-3xl leading-tight mb-3">
                     DO BOTH WEEKS BACK-TO-BACK.
                   </h3>
-                  <p className="text-foreground-muted text-sm leading-relaxed">
+                  <p className="text-foreground-muted text-[15px] md:text-sm leading-relaxed">
                     Ten days. Two formats. Same farmhouse, no airport transfer
                     in between. €{BUNDLE_PRICE.toLocaleString("en-IE")} for the
                     pair — €{BUNDLE_SAVINGS} less than booking each camp on its
                     own.
                   </p>
                 </div>
-                <div className="flex flex-col items-start md:items-end gap-2">
+                <div className="flex flex-col items-start md:items-end gap-2 w-full md:w-auto">
                   <p className="font-heading text-off-white text-3xl md:text-4xl leading-none">
                     €{BUNDLE_PRICE.toLocaleString("en-IE")}
                   </p>
@@ -261,7 +261,7 @@ export default function TrainingCampsLandingPage() {
                   </p>
                   <Link
                     href="/training-camps/girona-road#book"
-                    className="mt-2 inline-flex items-center justify-center gap-2 px-6 py-3 rounded-md font-heading tracking-[0.15em] uppercase text-off-white bg-coral hover:bg-coral-hover transition-all text-sm shadow-[0_10px_30px_-12px_rgba(241,99,99,0.55)]"
+                    className="mt-3 md:mt-2 w-full md:w-auto inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-md font-heading tracking-[0.15em] uppercase text-off-white bg-coral hover:bg-coral-hover transition-all text-sm shadow-[0_10px_30px_-12px_rgba(241,99,99,0.55)]"
                   >
                     Book Both →
                   </Link>
@@ -272,32 +272,32 @@ export default function TrainingCampsLandingPage() {
         </Section>
 
         {/* WHY GIRONA ───────────────────────────────────────── */}
-        <Section background="deep-purple" grain className="!py-20 md:!py-28">
+        <Section background="deep-purple" grain className="!py-16 md:!py-28">
           <Container>
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 md:gap-12 lg:gap-16 items-center">
               <ScrollReveal direction="up">
-                <p className="font-heading text-coral text-xs tracking-[0.4em] mb-4">
+                <p className="font-heading text-coral text-[11px] md:text-xs tracking-[0.35em] md:tracking-[0.4em] mb-4">
                   WHY GIRONA
                 </p>
                 <h2
-                  className="font-heading text-off-white leading-[1.05] mb-6"
-                  style={{ fontSize: "clamp(2rem, 4vw, 3.25rem)" }}
+                  className="font-heading text-off-white leading-[1.05] mb-5 md:mb-6"
+                  style={{ fontSize: "clamp(2.125rem, 4vw, 3.25rem)" }}
                 >
                   THE PLACE PROS MOVE TO.
                 </h2>
-                <p className="text-foreground-muted leading-relaxed mb-4">
+                <p className="text-foreground-muted leading-relaxed mb-4 text-[15px] md:text-base">
                   More World Tour pros live in Girona than anywhere else on the
                   planet. They didn&apos;t pick it for the lifestyle — they
                   picked it because every road that leaves the city is good.
                   Long tempo climbs. Quiet back roads. Dirt that connects to
                   tarmac that connects to the coast.
                 </p>
-                <p className="text-foreground-muted leading-relaxed mb-4">
+                <p className="text-foreground-muted leading-relaxed mb-4 text-[15px] md:text-base">
                   October is when it&apos;s at its best. Mid-twenties most
                   days. Vines turning. Empty roads after the August rush. Pool
                   at the house still warm enough to swim in after a ride.
                 </p>
-                <p className="text-foreground-muted leading-relaxed">
+                <p className="text-foreground-muted leading-relaxed text-[15px] md:text-base">
                   We&apos;re running our first camps here because it&apos;s the
                   spot we&apos;d pick for ourselves. Same logic for everything
                   else — the farmhouse, the rides, the cafés. Sixteen of you,
@@ -306,7 +306,7 @@ export default function TrainingCampsLandingPage() {
               </ScrollReveal>
 
               <ScrollReveal direction="up" delay={0.05}>
-                <div className="grid grid-cols-2 gap-3">
+                <div className="grid grid-cols-2 gap-2.5 sm:gap-3">
                   {[
                     "/images/camps/girona-river-houses.jpg",
                     "/images/camps/girona-old-town.jpg",
@@ -333,15 +333,15 @@ export default function TrainingCampsLandingPage() {
         </Section>
 
         {/* WHAT MAKES IT DIFFERENT ──────────────────────────── */}
-        <Section background="charcoal" className="!py-20 md:!py-28">
+        <Section background="charcoal" className="!py-16 md:!py-28">
           <Container>
             <ScrollReveal direction="up">
-              <p className="font-heading text-coral text-xs tracking-[0.4em] mb-4 text-center">
+              <p className="font-heading text-coral text-[11px] md:text-xs tracking-[0.35em] md:tracking-[0.4em] mb-4 text-center">
                 WHAT MAKES IT DIFFERENT
               </p>
               <h2
-                className="font-heading text-off-white leading-[1.05] mb-12 text-center"
-                style={{ fontSize: "clamp(2rem, 4vw, 3.25rem)" }}
+                className="font-heading text-off-white leading-[1.05] mb-10 md:mb-12 text-center"
+                style={{ fontSize: "clamp(2.125rem, 4vw, 3.25rem)" }}
               >
                 NOT A TOUR COMPANY.
                 <br />
@@ -349,7 +349,7 @@ export default function TrainingCampsLandingPage() {
               </h2>
             </ScrollReveal>
 
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-5 md:gap-6 max-w-5xl mx-auto">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6 max-w-5xl mx-auto">
               {[
                 {
                   n: "01",
@@ -368,14 +368,14 @@ export default function TrainingCampsLandingPage() {
                 },
               ].map((item, i) => (
                 <ScrollReveal key={item.n} direction="up" delay={i * 0.06}>
-                  <div className="h-full rounded-xl border border-white/10 bg-white/[0.02] p-6 md:p-7 backdrop-blur-sm">
-                    <p className="font-heading text-coral text-xs tracking-[0.3em] mb-4">
+                  <div className="h-full rounded-xl border border-white/10 bg-white/[0.02] p-5 sm:p-6 md:p-7 backdrop-blur-sm">
+                    <p className="font-heading text-coral text-xs tracking-[0.3em] mb-3 md:mb-4">
                       {item.n}
                     </p>
                     <h3 className="font-heading text-off-white text-xl tracking-wide leading-snug mb-3">
                       {item.t.toUpperCase()}
                     </h3>
-                    <p className="text-foreground-muted text-sm leading-relaxed">
+                    <p className="text-foreground-muted text-[15px] md:text-sm leading-relaxed">
                       {item.d}
                     </p>
                   </div>
@@ -386,34 +386,34 @@ export default function TrainingCampsLandingPage() {
         </Section>
 
         {/* CLOSING CTA ──────────────────────────────────────── */}
-        <Section background="deep-purple" grain className="!py-20 md:!py-28">
+        <Section background="deep-purple" grain className="!py-16 md:!py-28">
           <Container width="narrow" className="text-center">
             <ScrollReveal direction="up">
               <h2
-                className="font-heading text-off-white leading-[1.05] mb-6"
-                style={{ fontSize: "clamp(2rem, 4vw, 3.25rem)" }}
+                className="font-heading text-off-white leading-[1.05] mb-5 md:mb-6"
+                style={{ fontSize: "clamp(2.125rem, 4vw, 3.25rem)" }}
               >
                 SIXTEEN SPOTS.
                 <br />
                 <span className="text-coral">FIRST-COME.</span>
               </h2>
-              <p className="text-foreground-muted leading-relaxed mb-10 max-w-md mx-auto">
+              <p className="text-foreground-muted leading-relaxed mb-8 md:mb-10 max-w-md mx-auto text-[15px] md:text-base">
                 Pick your format and book. Payment is taken in full through
                 Stripe — your spot is locked the moment it clears.
               </p>
-              <div className="flex flex-wrap items-center justify-center gap-3">
+              <div className="flex flex-col sm:flex-row sm:flex-wrap items-stretch sm:items-center justify-center gap-3">
                 {CAMP_LIST.map((c) => (
                   <Link
                     key={c.slug}
                     href={`${c.href}#book`}
-                    className="inline-flex items-center justify-center gap-2 px-7 py-3.5 rounded-md font-heading tracking-[0.15em] uppercase text-off-white bg-coral hover:bg-coral-hover transition-all shadow-[0_10px_30px_-12px_rgba(241,99,99,0.55)]"
+                    className="inline-flex items-center justify-center gap-2 px-7 py-4 sm:py-3.5 rounded-md font-heading tracking-[0.15em] uppercase text-off-white bg-coral hover:bg-coral-hover transition-all shadow-[0_10px_30px_-12px_rgba(241,99,99,0.55)]"
                   >
                     Book {c.shortName}
                   </Link>
                 ))}
                 <Link
                   href="/training-camps/girona-road#book"
-                  className="inline-flex items-center justify-center gap-2 px-7 py-3.5 rounded-md font-heading tracking-[0.15em] uppercase text-off-white border border-coral/60 hover:bg-coral/10 transition-all"
+                  className="inline-flex items-center justify-center gap-2 px-7 py-4 sm:py-3.5 rounded-md font-heading tracking-[0.15em] uppercase text-off-white border border-coral/60 hover:bg-coral/10 transition-all"
                 >
                   Book Both &middot; €{BUNDLE_PRICE.toLocaleString("en-IE")}
                 </Link>

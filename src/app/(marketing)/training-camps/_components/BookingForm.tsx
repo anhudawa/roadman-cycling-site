@@ -54,10 +54,10 @@ const initial: FormState = {
 };
 
 const fieldClass =
-  "w-full px-4 py-3 rounded-lg bg-white/[0.04] border border-white/15 text-off-white placeholder:text-foreground-subtle focus:border-coral/60 focus:outline-none focus:ring-1 focus:ring-coral/30 transition-colors";
+  "w-full px-4 py-3.5 rounded-lg bg-white/[0.04] border border-white/15 text-off-white text-base placeholder:text-foreground-subtle focus:border-coral/60 focus:outline-none focus:ring-1 focus:ring-coral/30 transition-colors";
 
 const labelClass =
-  "block font-heading text-foreground-muted text-xs tracking-[0.2em] uppercase mb-2";
+  "block font-heading text-foreground-muted text-[11px] md:text-xs tracking-[0.2em] uppercase mb-2";
 
 function formatEur(amount: number): string {
   return amount.toLocaleString("en-IE");
@@ -191,7 +191,7 @@ export function BookingForm({ defaultCamp, camps }: Props) {
   const grandTotal = baseTotal + supplementTotal;
 
   return (
-    <form onSubmit={handleSubmit} className="space-y-6">
+    <form onSubmit={handleSubmit} className="space-y-5 md:space-y-6">
       {!defaultCamp && (
         <div>
           <label className={labelClass} htmlFor="camp-select">
@@ -215,7 +215,7 @@ export function BookingForm({ defaultCamp, camps }: Props) {
                   type="button"
                   onClick={() => !isSold && set("camp", opt)}
                   disabled={isSold}
-                  className={`px-4 py-3 rounded-lg border text-left transition-all ${
+                  className={`px-4 py-4 sm:py-3 rounded-lg border text-left transition-all ${
                     form.camp === opt
                       ? "border-coral/70 bg-coral/10"
                       : "border-white/10 bg-white/[0.03] hover:border-coral/40"
@@ -240,7 +240,7 @@ export function BookingForm({ defaultCamp, camps }: Props) {
         </div>
       )}
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 md:gap-4">
         <div>
           <label htmlFor="cb-name" className={labelClass}>
             Full name
@@ -248,6 +248,7 @@ export function BookingForm({ defaultCamp, camps }: Props) {
           <input
             id="cb-name"
             type="text"
+            autoComplete="name"
             value={form.name}
             onChange={(e) => set("name", e.target.value)}
             className={fieldClass}
@@ -261,6 +262,8 @@ export function BookingForm({ defaultCamp, camps }: Props) {
           <input
             id="cb-email"
             type="email"
+            autoComplete="email"
+            inputMode="email"
             value={form.email}
             onChange={(e) => set("email", e.target.value)}
             className={fieldClass}
@@ -274,6 +277,8 @@ export function BookingForm({ defaultCamp, camps }: Props) {
           <input
             id="cb-phone"
             type="tel"
+            autoComplete="tel"
+            inputMode="tel"
             placeholder="+44 …"
             value={form.phone}
             onChange={(e) => set("phone", e.target.value)}
@@ -306,7 +311,7 @@ export function BookingForm({ defaultCamp, camps }: Props) {
           type="checkbox"
           checked={form.singleRoom}
           onChange={(e) => set("singleRoom", e.target.checked)}
-          className="mt-1 h-4 w-4 accent-coral"
+          className="mt-1 h-5 w-5 accent-coral shrink-0"
         />
         <span className="block">
           <span className="block font-heading text-off-white text-sm tracking-wide uppercase mb-1">
@@ -342,6 +347,7 @@ export function BookingForm({ defaultCamp, camps }: Props) {
           <input
             id="cb-ec-name"
             type="text"
+            autoComplete="name"
             value={form.emergencyContactName}
             onChange={(e) => set("emergencyContactName", e.target.value)}
             className={fieldClass}
@@ -355,6 +361,8 @@ export function BookingForm({ defaultCamp, camps }: Props) {
           <input
             id="cb-ec-phone"
             type="tel"
+            autoComplete="tel"
+            inputMode="tel"
             value={form.emergencyContactPhone}
             onChange={(e) => set("emergencyContactPhone", e.target.value)}
             className={fieldClass}
@@ -388,7 +396,7 @@ export function BookingForm({ defaultCamp, camps }: Props) {
           type="checkbox"
           checked={form.insuranceConfirmed}
           onChange={(e) => set("insuranceConfirmed", e.target.checked)}
-          className="mt-1 h-4 w-4 accent-coral"
+          className="mt-1 h-5 w-5 accent-coral shrink-0"
           required
         />
         <span className="block">
@@ -402,34 +410,31 @@ export function BookingForm({ defaultCamp, camps }: Props) {
         </span>
       </label>
 
-      <div className="rounded-lg border border-coral/30 bg-coral/[0.04] p-4 text-sm text-foreground-muted leading-relaxed">
-        <p className="text-off-white font-heading text-sm tracking-[0.15em] uppercase mb-2">
+      <div className="rounded-lg border border-coral/30 bg-coral/[0.04] p-4 sm:p-5 leading-relaxed">
+        <p className="text-off-white font-heading text-xs sm:text-sm tracking-[0.15em] uppercase mb-3">
           Before you check out
         </p>
-        <p className="mb-1">
-          Total today:{" "}
-          <strong className="text-off-white">€{formatEur(grandTotal)}</strong>
+        <div className="flex items-baseline justify-between gap-3 pb-3 mb-3 border-b border-coral/15">
+          <span className="text-foreground-muted text-sm">Total today</span>
+          <span className="font-heading text-off-white text-2xl sm:text-3xl leading-none">
+            €{formatEur(grandTotal)}
+          </span>
+        </div>
+        <p className="text-foreground-muted text-[13px] sm:text-sm mb-2">
           {form.camp === "both" && (
-            <>
-              {" "}— Both Camps bundle (saves €{BUNDLE_SAVINGS} vs booking
-              separately)
-            </>
+            <>Both Camps bundle — saves €{BUNDLE_SAVINGS} vs booking separately. </>
           )}
           {form.singleRoom && form.camp !== "both" && (
-            <>
-              {" "}(includes €{camps[form.camp].singleSupplement} single-room
-              supplement)
-            </>
+            <>Includes €{camps[form.camp].singleSupplement} single-room supplement. </>
           )}
           {form.singleRoom && form.camp === "both" && (
-            <>
-              {" "}(includes €{SINGLE_SUPPLEMENT_BOTH} single-room supplement,
-              both weeks)
-            </>
+            <>Includes €{SINGLE_SUPPLEMENT_BOTH} single-room supplement, both weeks. </>
           )}
-          .
+          {!form.singleRoom && form.camp !== "both" && (
+            <>Shared room — we&apos;ll pair you with another rider. </>
+          )}
         </p>
-        <p>
+        <p className="text-foreground-muted text-[13px] sm:text-sm">
           Hit the button and we&apos;ll send you straight to Stripe to pay
           securely. Confirmation lands in your inbox the moment payment clears.
           No refunds — if you can&apos;t make it, you can transfer the spot
@@ -439,7 +444,7 @@ export function BookingForm({ defaultCamp, camps }: Props) {
 
       {cancelledNotice && (
         <p
-          className="text-amber-300 text-sm"
+          className="text-amber-300 text-sm leading-relaxed"
           role="status"
           aria-live="polite"
         >
@@ -449,7 +454,7 @@ export function BookingForm({ defaultCamp, camps }: Props) {
       )}
 
       {error && (
-        <p className="text-coral text-sm" role="alert">
+        <p className="text-coral text-sm leading-relaxed" role="alert">
           {error}
         </p>
       )}
@@ -457,7 +462,7 @@ export function BookingForm({ defaultCamp, camps }: Props) {
       <button
         type="submit"
         disabled={submitting || selectedSoldOut}
-        className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-8 py-4 rounded-lg font-heading tracking-[0.15em] uppercase text-off-white bg-coral hover:bg-coral-hover disabled:opacity-40 disabled:cursor-not-allowed transition-all shadow-[0_10px_30px_-12px_rgba(241,99,99,0.55)]"
+        className="w-full inline-flex items-center justify-center gap-2 px-6 sm:px-8 py-4 rounded-lg font-heading tracking-[0.15em] uppercase text-off-white text-sm sm:text-base bg-coral hover:bg-coral-hover disabled:opacity-40 disabled:cursor-not-allowed transition-all shadow-[0_10px_30px_-12px_rgba(241,99,99,0.55)]"
       >
         {selectedSoldOut
           ? "Sold out"

@@ -140,7 +140,7 @@ export function CampDetail({ camp }: Props) {
         <Section
           background="deep-purple"
           grain
-          className="!pt-36 !pb-16 md:!pt-44 md:!pb-24 relative"
+          className="!pt-36 !pb-14 md:!pt-44 md:!pb-24 relative"
         >
           <div
             aria-hidden
@@ -152,19 +152,19 @@ export function CampDetail({ camp }: Props) {
           />
           <Container className="relative">
             <ScrollReveal direction="up" eager>
-              <p className="font-heading text-coral text-xs md:text-sm tracking-[0.4em] mb-6 text-center">
+              <p className="font-heading text-coral text-[11px] md:text-sm tracking-[0.35em] md:tracking-[0.4em] mb-5 md:mb-6 text-center">
                 ROADMAN TRAINING CAMPS &middot; GIRONA 2026
               </p>
               <h1
-                className="font-heading text-off-white leading-[1.0] mb-6 text-center"
-                style={{ fontSize: "clamp(2.5rem, 7vw, 5.5rem)" }}
+                className="font-heading text-off-white leading-[0.95] mb-5 md:mb-6 text-center"
+                style={{ fontSize: "clamp(2.75rem, 12vw, 5.5rem)" }}
               >
                 {camp.shortName.toUpperCase()}
                 <br />
                 <span className="text-coral">CAMP.</span>
               </h1>
               <p
-                className="text-foreground-muted mx-auto mb-10 leading-relaxed font-light text-center"
+                className="text-foreground-muted mx-auto mb-8 md:mb-10 leading-relaxed font-light text-center"
                 style={{
                   fontSize: "clamp(1.0625rem, 1.5vw, 1.375rem)",
                   maxWidth: "660px",
@@ -175,7 +175,7 @@ export function CampDetail({ camp }: Props) {
             </ScrollReveal>
 
             <ScrollReveal direction="up" delay={0.04}>
-              <div className="relative aspect-[16/9] max-w-5xl mx-auto mb-10 rounded-2xl overflow-hidden border border-white/10 shadow-[0_20px_60px_-20px_rgba(0,0,0,0.6)]">
+              <div className="relative aspect-[4/5] sm:aspect-[16/10] md:aspect-[16/9] max-w-5xl mx-auto mb-8 md:mb-10 rounded-xl md:rounded-2xl overflow-hidden border border-white/10 shadow-[0_20px_60px_-20px_rgba(0,0,0,0.6)]">
                 <Image
                   src={camp.heroImage}
                   alt={camp.heroImageAlt}
@@ -189,19 +189,25 @@ export function CampDetail({ camp }: Props) {
 
             {/* Stats bar */}
             <ScrollReveal direction="up" delay={0.05}>
-              <div className="grid grid-cols-2 md:grid-cols-5 gap-px bg-white/10 max-w-5xl mx-auto rounded-xl overflow-hidden border border-white/10">
+              <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-px bg-white/10 max-w-5xl mx-auto rounded-xl overflow-hidden border border-white/10">
                 {[
                   { label: "Dates", value: formatCampDates(camp) },
                   { label: "Duration", value: camp.durationLabel },
                   { label: "Level", value: camp.level },
                   { label: "Daily distance", value: camp.dailyDistance },
                   { label: "Total elevation", value: camp.totalElevation },
-                ].map((stat) => (
+                ].map((stat, idx) => (
                   <div
                     key={stat.label}
-                    className="bg-deep-purple px-4 py-5 text-center"
+                    className={`bg-deep-purple px-4 py-4 md:py-5 text-center ${
+                      // 5 items in a 2-col grid leaves the last item orphaned;
+                      // span both columns so it fills the row cleanly.
+                      idx === 4
+                        ? "col-span-2 sm:col-span-1"
+                        : ""
+                    }`}
                   >
-                    <p className="font-heading text-coral text-[10px] tracking-[0.25em] uppercase mb-2">
+                    <p className="font-heading text-coral text-[10px] tracking-[0.25em] uppercase mb-1.5 md:mb-2">
                       {stat.label}
                     </p>
                     <p className="text-off-white text-sm md:text-base font-light leading-tight">
@@ -212,16 +218,16 @@ export function CampDetail({ camp }: Props) {
               </div>
             </ScrollReveal>
 
-            <div className="flex flex-wrap items-center justify-center gap-3 mt-10">
+            <div className="flex flex-col sm:flex-row sm:flex-wrap items-stretch sm:items-center justify-center gap-3 mt-8 md:mt-10">
               <a
                 href="#book"
-                className="inline-flex items-center justify-center gap-2 px-7 py-3.5 rounded-md font-heading tracking-[0.15em] uppercase text-off-white bg-coral hover:bg-coral-hover transition-all shadow-[0_10px_30px_-12px_rgba(241,99,99,0.55)]"
+                className="inline-flex items-center justify-center gap-2 px-7 py-4 sm:py-3.5 rounded-md font-heading tracking-[0.15em] uppercase text-off-white bg-coral hover:bg-coral-hover transition-all shadow-[0_10px_30px_-12px_rgba(241,99,99,0.55)]"
               >
                 Book now &middot; €{camp.pricePerPerson}
               </a>
               <a
                 href="#itinerary"
-                className="inline-flex items-center justify-center gap-2 px-7 py-3.5 rounded-md font-heading tracking-[0.15em] uppercase text-foreground-muted border border-white/15 hover:text-off-white hover:border-white/30 transition-colors"
+                className="inline-flex items-center justify-center gap-2 px-7 py-4 sm:py-3.5 rounded-md font-heading tracking-[0.15em] uppercase text-foreground-muted border border-white/15 hover:text-off-white hover:border-white/30 transition-colors"
               >
                 See the rides
               </a>
@@ -230,25 +236,25 @@ export function CampDetail({ camp }: Props) {
         </Section>
 
         {/* SUMMARY ──────────────────────────────────────────── */}
-        <Section background="charcoal" className="!py-20 md:!py-28">
+        <Section background="charcoal" className="!py-16 md:!py-28">
           <Container>
-            <div className="grid grid-cols-1 lg:grid-cols-3 gap-10 lg:gap-14">
+            <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 md:gap-10 lg:gap-14">
               <ScrollReveal direction="up" className="lg:col-span-2">
-                <p className="font-heading text-coral text-xs tracking-[0.4em] mb-4">
+                <p className="font-heading text-coral text-[11px] md:text-xs tracking-[0.35em] md:tracking-[0.4em] mb-4">
                   THE CAMP
                 </p>
                 <h2
-                  className="font-heading text-off-white leading-[1.05] mb-6"
-                  style={{ fontSize: "clamp(2rem, 4vw, 3.25rem)" }}
+                  className="font-heading text-off-white leading-[1.05] mb-5 md:mb-6"
+                  style={{ fontSize: "clamp(2.125rem, 4vw, 3.25rem)" }}
                 >
                   {camp.summaryHeading.main}
                   <br />
                   <span className="text-coral">{camp.summaryHeading.accent}</span>
                 </h2>
-                <p className="text-foreground-muted leading-relaxed text-lg mb-5">
+                <p className="text-foreground-muted leading-relaxed text-[17px] md:text-lg mb-4 md:mb-5">
                   {camp.description}
                 </p>
-                <p className="text-foreground-muted leading-relaxed">
+                <p className="text-foreground-muted leading-relaxed text-[15px] md:text-base">
                   This isn&apos;t a tour company. It&apos;s us — Anthony, Sarah and
                   Matthew — taking sixteen riders to the spot we&apos;d pick for
                   ourselves and riding it the way it&apos;s meant to be ridden. Two
@@ -259,8 +265,8 @@ export function CampDetail({ camp }: Props) {
               </ScrollReveal>
 
               <ScrollReveal direction="up" delay={0.05}>
-                <div className="rounded-xl border border-white/10 bg-white/[0.02] p-6 backdrop-blur-sm">
-                  <p className="font-heading text-coral text-[10px] tracking-[0.3em] uppercase mb-4">
+                <div className="rounded-xl border border-white/10 bg-white/[0.02] p-5 sm:p-6 backdrop-blur-sm">
+                  <p className="font-heading text-coral text-[10px] tracking-[0.3em] uppercase mb-3 md:mb-4">
                     At a glance
                   </p>
                   <dl className="space-y-3 text-sm">
@@ -276,12 +282,12 @@ export function CampDetail({ camp }: Props) {
                     ].map(([k, v]) => (
                       <div
                         key={k}
-                        className="flex items-baseline justify-between gap-4 border-b border-white/5 pb-3 last:border-0 last:pb-0"
+                        className="flex items-baseline justify-between gap-3 border-b border-white/5 pb-3 last:border-0 last:pb-0"
                       >
-                        <dt className="text-foreground-subtle text-xs tracking-[0.15em] uppercase">
+                        <dt className="text-foreground-subtle text-[11px] md:text-xs tracking-[0.15em] uppercase shrink-0">
                           {k}
                         </dt>
-                        <dd className="text-off-white text-right font-light">
+                        <dd className="text-off-white text-right font-light text-[13px] md:text-sm">
                           {v}
                         </dd>
                       </div>
@@ -298,16 +304,16 @@ export function CampDetail({ camp }: Props) {
           id="itinerary"
           background="deep-purple"
           grain
-          className="!py-20 md:!py-28"
+          className="!py-16 md:!py-28"
         >
           <Container>
             <ScrollReveal direction="up">
-              <p className="font-heading text-coral text-xs tracking-[0.4em] mb-4 text-center">
+              <p className="font-heading text-coral text-[11px] md:text-xs tracking-[0.35em] md:tracking-[0.4em] mb-4 text-center">
                 DAY BY DAY
               </p>
               <h2
-                className="font-heading text-off-white leading-[1.05] mb-12 text-center"
-                style={{ fontSize: "clamp(2rem, 4vw, 3.25rem)" }}
+                className="font-heading text-off-white leading-[1.05] mb-10 md:mb-12 text-center"
+                style={{ fontSize: "clamp(2.125rem, 4vw, 3.25rem)" }}
               >
                 {camp.itineraryHeading.main}
                 <br />
@@ -328,23 +334,23 @@ export function CampDetail({ camp }: Props) {
         </Section>
 
         {/* INCLUDED / NOT ───────────────────────────────────── */}
-        <Section background="charcoal" className="!py-20 md:!py-24">
+        <Section background="charcoal" className="!py-16 md:!py-24">
           <Container>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 max-w-5xl mx-auto">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-12 max-w-5xl mx-auto">
               <ScrollReveal direction="up">
-                <p className="font-heading text-coral text-xs tracking-[0.4em] mb-4">
+                <p className="font-heading text-coral text-[11px] md:text-xs tracking-[0.35em] md:tracking-[0.4em] mb-4">
                   WHAT&apos;S INCLUDED
                 </p>
-                <h3 className="font-heading text-off-white text-3xl mb-6 leading-tight">
+                <h3 className="font-heading text-off-white text-2xl sm:text-3xl mb-5 md:mb-6 leading-tight">
                   EVERYTHING SORTED ONCE YOU LAND.
                 </h3>
-                <ul className="space-y-3">
+                <ul className="space-y-3 md:space-y-3.5">
                   {INCLUDED.map((item) => (
                     <li
                       key={item}
-                      className="flex items-start gap-3 text-foreground-muted leading-relaxed"
+                      className="flex items-start gap-3 text-foreground-muted leading-relaxed text-[15px] md:text-base"
                     >
-                      <span className="text-coral mt-0.5 shrink-0" aria-hidden>
+                      <span className="text-coral mt-0.5 shrink-0 font-heading" aria-hidden>
                         ✓
                       </span>
                       <span>{item}</span>
@@ -354,17 +360,17 @@ export function CampDetail({ camp }: Props) {
               </ScrollReveal>
 
               <ScrollReveal direction="up" delay={0.05}>
-                <p className="font-heading text-foreground-subtle text-xs tracking-[0.4em] mb-4">
+                <p className="font-heading text-foreground-subtle text-[11px] md:text-xs tracking-[0.35em] md:tracking-[0.4em] mb-4">
                   NOT INCLUDED
                 </p>
-                <h3 className="font-heading text-off-white text-3xl mb-6 leading-tight">
+                <h3 className="font-heading text-off-white text-2xl sm:text-3xl mb-5 md:mb-6 leading-tight">
                   ON YOU. WE&apos;LL POINT YOU IN THE RIGHT DIRECTION.
                 </h3>
-                <ul className="space-y-3">
+                <ul className="space-y-3 md:space-y-3.5">
                   {NOT_INCLUDED.map((item) => (
                     <li
                       key={item}
-                      className="flex items-start gap-3 text-foreground-muted leading-relaxed"
+                      className="flex items-start gap-3 text-foreground-muted leading-relaxed text-[15px] md:text-base"
                     >
                       <span className="text-foreground-subtle mt-0.5 shrink-0" aria-hidden>
                         —
@@ -379,45 +385,63 @@ export function CampDetail({ camp }: Props) {
         </Section>
 
         {/* ACCOMMODATION ────────────────────────────────────── */}
-        <Section background="deep-purple" grain className="!py-20 md:!py-28">
+        <Section background="deep-purple" grain className="!py-16 md:!py-28">
           <Container>
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 md:gap-12 items-center">
               <ScrollReveal direction="up">
-                <p className="font-heading text-coral text-xs tracking-[0.4em] mb-4">
+                <p className="font-heading text-coral text-[11px] md:text-xs tracking-[0.35em] md:tracking-[0.4em] mb-4">
                   THE BASE
                 </p>
                 <h2
-                  className="font-heading text-off-white leading-[1.05] mb-6"
-                  style={{ fontSize: "clamp(2rem, 4vw, 3.25rem)" }}
+                  className="font-heading text-off-white leading-[1.05] mb-5 md:mb-6"
+                  style={{ fontSize: "clamp(2.125rem, 4vw, 3.25rem)" }}
                 >
                   CAN SAGNARI.
                   <br />
                   <span className="text-coral">A 1749 FARMHOUSE.</span>
                 </h2>
-                <p className="text-foreground-muted leading-relaxed mb-4">
+                <p className="text-foreground-muted leading-relaxed mb-4 text-[15px] md:text-base">
                   Our private base in Cornellà del Terri, 20 minutes from
                   Girona and five from Banyoles. A restored Catalan stone
                   farmhouse with 500 m² of living space and four thousand
                   square metres of gardens to wander after a long day on the
                   bike.
                 </p>
-                <p className="text-foreground-muted leading-relaxed mb-6">
+                <p className="text-foreground-muted leading-relaxed mb-6 text-[15px] md:text-base">
                   Pool open all year. A pond, a petanque court, and the kind
                   of stone walls and slow Catalan light you&apos;d normally only
                   get if you knew someone with a place out here. Now you do.
                 </p>
-                <ul className="grid grid-cols-2 gap-x-4 gap-y-2 text-sm text-foreground-muted">
-                  <li>★ Pool, year-round</li>
-                  <li>★ Gardens & petanque</li>
-                  <li>★ 20 min from Girona</li>
-                  <li>★ 5 min from Lake Banyoles</li>
-                  <li>★ 1749 Catalan stone farmhouse</li>
-                  <li>★ 500 m² living space</li>
+                <ul className="grid grid-cols-1 sm:grid-cols-2 gap-x-4 gap-y-2.5 text-[15px] md:text-sm text-foreground-muted">
+                  <li className="flex items-baseline gap-2">
+                    <span className="text-coral" aria-hidden>★</span>
+                    <span>Pool, year-round</span>
+                  </li>
+                  <li className="flex items-baseline gap-2">
+                    <span className="text-coral" aria-hidden>★</span>
+                    <span>Gardens &amp; petanque</span>
+                  </li>
+                  <li className="flex items-baseline gap-2">
+                    <span className="text-coral" aria-hidden>★</span>
+                    <span>20 min from Girona</span>
+                  </li>
+                  <li className="flex items-baseline gap-2">
+                    <span className="text-coral" aria-hidden>★</span>
+                    <span>5 min from Lake Banyoles</span>
+                  </li>
+                  <li className="flex items-baseline gap-2">
+                    <span className="text-coral" aria-hidden>★</span>
+                    <span>1749 Catalan stone farmhouse</span>
+                  </li>
+                  <li className="flex items-baseline gap-2">
+                    <span className="text-coral" aria-hidden>★</span>
+                    <span>500 m² living space</span>
+                  </li>
                 </ul>
               </ScrollReveal>
 
               <ScrollReveal direction="up" delay={0.05}>
-                <div className="grid grid-cols-2 gap-3">
+                <div className="grid grid-cols-2 gap-2.5 sm:gap-3">
                   {CAN_SAGNARI_GALLERY.map((g) => (
                     <div
                       key={g.src}
@@ -442,20 +466,20 @@ export function CampDetail({ camp }: Props) {
         </Section>
 
         {/* GALLERY ──────────────────────────────────────────── */}
-        <Section background="charcoal" className="!py-20 md:!py-24">
+        <Section background="charcoal" className="!py-16 md:!py-24">
           <Container>
             <ScrollReveal direction="up">
-              <p className="font-heading text-coral text-xs tracking-[0.4em] mb-4 text-center">
+              <p className="font-heading text-coral text-[11px] md:text-xs tracking-[0.35em] md:tracking-[0.4em] mb-4 text-center">
                 THE PLACE
               </p>
               <h2
-                className="font-heading text-off-white leading-[1.05] mb-12 text-center"
-                style={{ fontSize: "clamp(2rem, 4vw, 3.25rem)" }}
+                className="font-heading text-off-white leading-[1.05] mb-10 md:mb-12 text-center"
+                style={{ fontSize: "clamp(2.125rem, 4vw, 3.25rem)" }}
               >
                 GIRONA.
               </h2>
             </ScrollReveal>
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-4">
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-2.5 sm:gap-3 md:gap-4">
               {GIRONA_GALLERY.map((g, i) => (
                 <ScrollReveal key={g.src} direction="up" delay={i * 0.05}>
                   <div className="relative aspect-square rounded-lg overflow-hidden border border-white/10">
@@ -478,26 +502,26 @@ export function CampDetail({ camp }: Props) {
           id="book"
           background="deep-purple"
           grain
-          className="!py-20 md:!py-28 relative"
+          className="!py-16 md:!py-28 relative"
         >
           <Container width="narrow" className="relative">
             <ScrollReveal direction="up">
-              <p className="font-heading text-coral text-xs tracking-[0.4em] mb-4 text-center">
+              <p className="font-heading text-coral text-[11px] md:text-xs tracking-[0.35em] md:tracking-[0.4em] mb-4 text-center">
                 RESERVE YOUR SPOT
               </p>
               <h2
                 className="font-heading text-off-white leading-[1.05] mb-4 text-center"
-                style={{ fontSize: "clamp(2rem, 4vw, 3.25rem)" }}
+                style={{ fontSize: "clamp(2.125rem, 4vw, 3.25rem)" }}
               >
                 BOOK THE {camp.shortName.toUpperCase()} CAMP.
               </h2>
-              <p className="text-foreground-muted text-center max-w-xl mx-auto leading-relaxed mb-10">
+              <p className="text-foreground-muted text-center max-w-xl mx-auto leading-relaxed mb-8 md:mb-10 text-[15px] md:text-base">
                 Sixteen spots, first-come. Fill the form, pay through Stripe,
                 and the spot is yours the moment the payment clears.
               </p>
             </ScrollReveal>
             <ScrollReveal direction="up" delay={0.05}>
-              <div className="rounded-2xl border border-white/10 bg-charcoal/60 backdrop-blur-sm p-6 sm:p-10">
+              <div className="rounded-xl md:rounded-2xl border border-white/10 bg-charcoal/60 backdrop-blur-sm p-5 sm:p-7 md:p-10">
                 <BookingForm defaultCamp={camp.slug} camps={CAMPS} />
               </div>
             </ScrollReveal>
@@ -518,15 +542,15 @@ export function CampDetail({ camp }: Props) {
         </Section>
 
         {/* FAQ ──────────────────────────────────────────────── */}
-        <Section background="charcoal" className="!py-20 md:!py-24">
+        <Section background="charcoal" className="!py-16 md:!py-24">
           <Container width="narrow">
             <ScrollReveal direction="up">
-              <p className="font-heading text-coral text-xs tracking-[0.4em] mb-4 text-center">
+              <p className="font-heading text-coral text-[11px] md:text-xs tracking-[0.35em] md:tracking-[0.4em] mb-4 text-center">
                 COMMON QUESTIONS
               </p>
               <h2
-                className="font-heading text-off-white leading-[1.05] mb-12 text-center"
-                style={{ fontSize: "clamp(2rem, 4vw, 3rem)" }}
+                className="font-heading text-off-white leading-[1.05] mb-10 md:mb-12 text-center"
+                style={{ fontSize: "clamp(2.125rem, 4vw, 3rem)" }}
               >
                 THINGS PEOPLE ASK.
               </h2>
