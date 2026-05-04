@@ -60,7 +60,24 @@ export type EventType =
   | "race_page_viewed"
   | "share_clicked"
   // ── Coaching funnel ────────────────────────────────────
-  | "coaching_apply_submitted";
+  | "coaching_apply_submitted"
+  // ── Micro-events (engagement signal layer) ─────────────
+  // Fired client-side from Tracker.tsx + per-page hooks. These are
+  // high-volume, low-individual-value events used to compute engagement
+  // depth and friction points. Stored in the same `events` table; the
+  // admin funnel views ignore them, but they feed the engagement
+  // dashboard and are queryable for ad-hoc analysis.
+  | "scroll_depth"
+  | "cta_click"
+  | "tool_start"
+  | "tool_complete"
+  | "video_play"
+  | "podcast_play"
+  | "link_click_internal"
+  | "link_click_external"
+  | "form_start"
+  | "error_boundary"
+  | "time_on_page";
 
 export interface TrackingEvent {
   id: string;

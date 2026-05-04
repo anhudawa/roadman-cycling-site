@@ -1,11 +1,12 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import { usePathname } from "next/navigation";
 import {
   ensureAIReferrerPersisted,
   getStoredAIReferrer,
 } from "@/lib/analytics/ai-referrer";
+import { useScrollDepth } from "@/hooks/useScrollDepth";
 
 const STORAGE_KEY = "roadman_cookie_consent";
 
@@ -71,39 +72,14 @@ function sendEvent(type: string, data: Record<string, string> = {}) {
   }
 }
 
-// ── Scroll Depth Tracker ──────────────────────────────────
-function useScrollDepth(consented: boolean) {
-  const firedRef = useRef<Set<number>>(new Set());
-  const pathname = usePathname();
-
-  useEffect(() => {
-    if (!consented) return;
-
-    // Reset on page change
-    firedRef.current = new Set();
-
-    const thresholds = [25, 50, 75, 100];
-
-    function handleScroll() {
-      const scrollHeight = document.documentElement.scrollHeight - window.innerHeight;
-      if (scrollHeight <= 0) return;
-
-      const pct = Math.round((window.scrollY / scrollHeight) * 100);
-
-      for (const t of thresholds) {
-        if (pct >= t && !firedRef.current.has(t)) {
-          firedRef.current.add(t);
-          sendEvent("scroll_depth", { depth: String(t) });
-        }
-      }
-    }
-
-    window.addEventListener("scroll", handleScroll, { passive: true });
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, [pathname, consented]);
-}
-
 // ── Time on Page Tracker ──────────────────────────────────
+// Fires `time_on_page` events at 30s, 60s, 120s, 300s milestones AND a
+// final event with the actual duration when the tab is hidden. Milestones
+// give us histogram-style engagement bands without needing to retain raw
+// timestamps; the final visibility-change event preserves the precise
+// session length for sessions that exit before 300s.
+const TIME_MILESTONES_S = [30, 60, 120, 300] as const;
+
 function useTimeOnPage(consented: boolean) {
   const pathname = usePathname();
 
@@ -111,16 +87,43 @@ function useTimeOnPage(consented: boolean) {
     if (!consented) return;
 
     const startTime = Date.now();
+    const fired = new Set<number>();
+    const timers: ReturnType<typeof setTimeout>[] = [];
+
+    for (const milestone of TIME_MILESTONES_S) {
+      timers.push(
+        setTimeout(() => {
+          if (fired.has(milestone)) return;
+          // Only fire if the tab is still visible — a backgrounded tab
+          // shouldn't pad its engagement numbers.
+          if (
+            typeof document !== "undefined" &&
+            document.visibilityState === "hidden"
+          ) {
+            return;
+          }
+          fired.add(milestone);
+          sendEvent("time_on_page", {
+            seconds: String(milestone),
+            milestone: "true",
+          });
+        }, milestone * 1000),
+      );
+    }
 
     function handleVisibilityChange() {
       if (document.visibilityState === "hidden") {
         const duration = Math.round((Date.now() - startTime) / 1000);
-        sendEvent("time_on_page", { seconds: String(duration) });
+        sendEvent("time_on_page", {
+          seconds: String(duration),
+          milestone: "false",
+        });
       }
     }
 
     document.addEventListener("visibilitychange", handleVisibilityChange);
     return () => {
+      timers.forEach((t) => clearTimeout(t));
       document.removeEventListener("visibilitychange", handleVisibilityChange);
     };
   }, [pathname, consented]);
@@ -145,7 +148,10 @@ export function Tracker() {
   }, []);
 
   // Scroll depth and time-on-page tracking
-  useScrollDepth(consented);
+  const onScrollThreshold = useCallback((depth: number) => {
+    sendEvent("scroll_depth", { depth: String(depth) });
+  }, []);
+  useScrollDepth({ enabled: consented, onThreshold: onScrollThreshold });
   useTimeOnPage(consented);
 
   // Capture first-touch AI referrer (ChatGPT, Perplexity, Claude, Gemini,

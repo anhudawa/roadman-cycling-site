@@ -92,6 +92,7 @@ export function SkoolTrialButton({
       target="_blank"
       rel="noopener noreferrer"
       onClick={handleClick}
+      data-track={`ndy_skool_trial_${source ?? "clubhouse_cta"}`}
       className={classes}
       style={{ transitionDuration: "var(--duration-fast)" }}
     >

@@ -552,6 +552,7 @@ export function BookingForm({ defaultCamp, camps }: Props) {
         disabled={submitting || selectedSoldOut}
         aria-busy={submitting}
         aria-disabled={submitting || selectedSoldOut}
+        data-track={`camp_booking_submit_${form.camp}`}
         data-state={
           selectedSoldOut ? "sold-out" : submitting ? "submitting" : "idle"
         }
