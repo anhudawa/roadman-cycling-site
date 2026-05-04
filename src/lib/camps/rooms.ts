@@ -3,7 +3,7 @@
  *
  * The bedrooms on the main floor of the 1749 farmhouse plus a 6-bed annex
  * and one sofa bed for overflow. Rooms 1 and 2 are reserved for the team
- * (Anthony + Sarah, and Wes) and never get auto-assigned.
+ * (Anthony + Sarah, and Matthew) and never get auto-assigned.
  *
  * Each bed is a discrete, lockable slot — the auto-assigner places
  * bookings into beds, not rooms.
@@ -58,8 +58,8 @@ export const ROOMS: RoomConfig[] = [
   {
     key: "B2",
     label: "Bedroom 2",
-    blurb: "Wes — team",
-    reservedFor: "Wes",
+    blurb: "Matthew — team",
+    reservedFor: "Matthew",
     building: "main",
     capacityOrder: 0,
     beds: [{ key: "B2-Q1", label: "Queen", type: "queen", sleeps: 2 }],

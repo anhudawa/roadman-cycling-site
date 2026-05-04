@@ -7,6 +7,13 @@
 
 import type { CampSlug } from "@/lib/db/schema";
 
+export interface HeadingPair {
+  /** White portion of the section heading. */
+  main: string;
+  /** Coral portion rendered on the second line. */
+  accent: string;
+}
+
 export interface CampConfig {
   slug: CampSlug;
   name: string;
@@ -22,8 +29,13 @@ export interface CampConfig {
   capacity: number;
   description: string;
   heroSubtitle: string;
+  /** In-page hero image on the detail page (also used for OG/Schema.org). */
   heroImage: string;
   heroImageAlt: string;
+  /** Per-camp headline for the summary block on the detail page. */
+  summaryHeading: HeadingPair;
+  /** Per-camp headline for the itinerary block on the detail page. */
+  itineraryHeading: HeadingPair;
   // Stats bar values shown on the detail page
   level: string;
   dailyDistance: string;
@@ -37,20 +49,28 @@ export const CAMPS: Record<CampSlug, CampConfig> = {
     shortName: "Girona Road",
     type: "Road",
     href: "/training-camps/girona-road",
-    startDate: "2026-10-13",
-    endDate: "2026-10-17",
+    startDate: "2026-10-10",
+    endDate: "2026-10-15",
     durationLabel: "5 days / 4 nights",
     pricePerPerson: 995,
     singleSupplement: 150,
     beehiivTag: "camp-road-2026",
     capacity: 16,
     description:
-      "Five days riding the roads pros build their seasons on. Rocacorba, Els Àngels, Mare de Déu del Mont, the Banyoles loop. Two groups so nobody gets dropped or held back. A coffee stop every ride. Dinner back at the farmhouse, pool, the works.",
+      "Five days on the climbs Girona's pros use to build their seasons. Rocacorba's 11 km test piece. Els Àngels' even tempo. The long pull up Mare de Déu del Mont. Two pace groups, follow car, a proper coffee stop on every ride.",
     heroSubtitle:
-      "Five days on the roads pros use to build their seasons.",
+      "Five days on the climbs the World Tour rides twelve months a year.",
     heroImage: "/images/camps/girona-road-coast.jpeg",
     heroImageAlt:
       "Group of road cyclists on a coastal road above a turquoise Costa Brava cove",
+    summaryHeading: {
+      main: "BIG CLIMBS. PROPER ROADS.",
+      accent: "— THE GIRONA THE PROS RIDE.",
+    },
+    itineraryHeading: {
+      main: "FIVE RIDES.",
+      accent: "FIVE GIRONA CLASSICS.",
+    },
     level: "Intermediate to advanced",
     dailyDistance: "70–110 km",
     totalElevation: "~6,500 m total",
@@ -61,20 +81,28 @@ export const CAMPS: Record<CampSlug, CampConfig> = {
     shortName: "Girona Gravel",
     type: "Gravel",
     href: "/training-camps/girona-gravel",
-    startDate: "2026-10-18",
-    endDate: "2026-10-22",
+    startDate: "2026-10-16",
+    endDate: "2026-10-21",
     durationLabel: "5 days / 4 nights",
     pricePerPerson: 995,
     singleSupplement: 150,
     beehiivTag: "camp-gravel-2026",
     capacity: 16,
     description:
-      "Five days off the tarmac. Volcanic tracks in La Garrotxa, the Ter river paths, vineyard roads in the Empordà, coastal gravel above the Costa Brava. Two groups, never dropped, follow car when we're far from home.",
+      "Five days off the tarmac, on the dirt that turned Girona into Europe's gravel capital. Volcanic tracks through La Garrotxa. Cork-oak singletrack in Les Gavarres. Vineyard service roads in the Empordà. Coastal lines above the Med.",
     heroSubtitle:
-      "Five days on the dirt that built Girona's gravel reputation.",
+      "Five days off the tarmac. The volcanic, vineyard and forest dirt that earned Girona its name.",
     heroImage: "/images/camps/girona-gravel-trail.webp",
     heroImageAlt:
       "Two gravel riders on a dirt trail through Catalan countryside",
+    summaryHeading: {
+      main: "VOLCANIC DIRT. VINEYARD TRACKS.",
+      accent: "— THE GIRONA NO TOUR EVER SHOWS YOU.",
+    },
+    itineraryHeading: {
+      main: "FIVE RIDES.",
+      accent: "FIVE FACES OF GIRONA DIRT.",
+    },
     level: "Intermediate. Some technical sections.",
     dailyDistance: "55–90 km",
     totalElevation: "~5,000 m total",

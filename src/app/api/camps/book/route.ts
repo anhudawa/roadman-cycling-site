@@ -12,6 +12,13 @@ import { EMAIL_REGEX } from "@/lib/validation";
 const STR = (v: unknown, max = 500) =>
   typeof v === "string" ? v.trim().slice(0, max) : "";
 
+/**
+ * Both Camps bundle pricing — kept in sync with the BookingForm in
+ * src/app/(marketing)/training-camps/_components/BookingForm.tsx.
+ */
+const BUNDLE_PRICE = 1700;
+const BUNDLE_SAVINGS = 995 * 2 - BUNDLE_PRICE; // €290
+
 type CampSelection = "road" | "gravel" | "both";
 
 function isCampSelection(v: string): v is CampSelection {
@@ -222,7 +229,7 @@ export async function POST(request: Request) {
         title: `Camp checkout started: ${slugs
           .map((s) => CAMPS[s].shortName)
           .join(" + ")}`,
-        body: buildCrmActivityBody(slugs, input),
+        body: buildCrmActivityBody(selection, slugs, input),
         meta: {
           camp: selection,
           status: "pending_payment",
@@ -234,39 +241,71 @@ export async function POST(request: Request) {
       console.error("[Camps Book] CRM sync failed:", crmErr);
     }
 
-    // Build Stripe line items: one per camp, plus a separate single-room
-    // supplement line per camp when applicable. Using two lines (rather
-    // than rolling the supplement into the camp price) keeps the receipt
-    // legible — the rider sees exactly what they paid for.
+    // Build Stripe line items. Single-camp bookings get one camp line plus
+    // an optional supplement line. The "both" bundle is a single line at
+    // BUNDLE_PRICE (€1,700 — €290 less than 2 × €995) plus one supplement
+    // line per camp when applicable. Two lines (rather than rolling the
+    // supplement into the camp price) keeps the Stripe receipt legible.
     const stripe = new Stripe(stripeKey);
     type CreateParams = NonNullable<
       Parameters<typeof stripe.checkout.sessions.create>[0]
     >;
     const lineItems: NonNullable<CreateParams["line_items"]> = [];
-    for (const slug of slugs) {
-      const cfg = CAMPS[slug];
+    if (selection === "both") {
+      const road = CAMPS.road;
+      const gravel = CAMPS.gravel;
       lineItems.push({
         quantity: 1,
         price_data: {
           currency: "eur",
-          unit_amount: cfg.pricePerPerson * 100,
+          unit_amount: BUNDLE_PRICE * 100,
           product_data: {
-            name: cfg.name,
-            description: `${cfg.durationLabel} · ${cfg.startDate} → ${cfg.endDate}`,
+            name: "Roadman Girona Camps — Both Camps bundle",
+            description: `${road.name} (${road.startDate} → ${road.endDate}) + ${gravel.name} (${gravel.startDate} → ${gravel.endDate}). Saves €${BUNDLE_SAVINGS} vs booking each separately.`,
           },
         },
       });
       if (input.singleRoom) {
+        for (const slug of slugs) {
+          const cfg = CAMPS[slug];
+          lineItems.push({
+            quantity: 1,
+            price_data: {
+              currency: "eur",
+              unit_amount: cfg.singleSupplement * 100,
+              product_data: {
+                name: `${cfg.shortName} — single-room supplement`,
+              },
+            },
+          });
+        }
+      }
+    } else {
+      for (const slug of slugs) {
+        const cfg = CAMPS[slug];
         lineItems.push({
           quantity: 1,
           price_data: {
             currency: "eur",
-            unit_amount: cfg.singleSupplement * 100,
+            unit_amount: cfg.pricePerPerson * 100,
             product_data: {
-              name: `${cfg.shortName} — single-room supplement`,
+              name: cfg.name,
+              description: `${cfg.durationLabel} · ${cfg.startDate} → ${cfg.endDate}`,
             },
           },
         });
+        if (input.singleRoom) {
+          lineItems.push({
+            quantity: 1,
+            price_data: {
+              currency: "eur",
+              unit_amount: cfg.singleSupplement * 100,
+              product_data: {
+                name: `${cfg.shortName} — single-room supplement`,
+              },
+            },
+          });
+        }
       }
     }
     const baseUrl = new URL(request.url).origin;
@@ -342,15 +381,29 @@ export async function GET() {
   }
 }
 
-function buildCrmActivityBody(slugs: CampSlug[], input: BookingInput): string {
+function buildCrmActivityBody(
+  selection: CampSelection,
+  slugs: CampSlug[],
+  input: BookingInput,
+): string {
   const lines: string[] = [];
   for (const slug of slugs) {
     const cfg: CampConfig = CAMPS[slug];
-    const total =
-      cfg.pricePerPerson + (input.singleRoom ? cfg.singleSupplement : 0);
-    lines.push(`${cfg.name} · ${cfg.startDate} → ${cfg.endDate} · €${total}`);
+    lines.push(`${cfg.name} · ${cfg.startDate} → ${cfg.endDate}`);
   }
-  lines.push(`Single room: ${input.singleRoom ? "yes" : "no"}`);
+  const supplementTotal = input.singleRoom
+    ? slugs.reduce((acc, s) => acc + CAMPS[s].singleSupplement, 0)
+    : 0;
+  const baseTotal =
+    selection === "both"
+      ? BUNDLE_PRICE
+      : slugs.reduce((acc, s) => acc + CAMPS[s].pricePerPerson, 0);
+  const grandTotal = baseTotal + supplementTotal;
+  if (selection === "both") {
+    lines.push(`Both Camps bundle: €${BUNDLE_PRICE} (saves €${BUNDLE_SAVINGS})`);
+  }
+  lines.push(`Single room: ${input.singleRoom ? `yes (+€${supplementTotal})` : "no"}`);
+  lines.push(`Total paid: €${grandTotal}`);
   lines.push(`Dietary: ${input.dietary || "—"}`);
   lines.push(`Medical: ${input.medical || "—"}`);
   lines.push(

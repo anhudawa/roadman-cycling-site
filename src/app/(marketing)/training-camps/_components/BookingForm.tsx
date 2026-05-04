@@ -5,6 +5,14 @@ import type { CampConfig } from "@/lib/camps/camps";
 
 const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
+/**
+ * Both Camps bundle pricing — kept in sync with the API route in
+ * src/app/api/camps/book/route.ts. €1,700 instead of 2 × €995 = €1,990.
+ */
+const BUNDLE_PRICE = 1700;
+const BUNDLE_SAVINGS = 995 * 2 - BUNDLE_PRICE; // €290
+const SINGLE_SUPPLEMENT_BOTH = 150 * 2; // €300, one per camp
+
 interface CapacityState {
   total: number;
   taken: number;
@@ -28,6 +36,7 @@ interface FormState {
   emergencyContactPhone: string;
   medical: string;
   heardFrom: string;
+  insuranceConfirmed: boolean;
 }
 
 const initial: FormState = {
@@ -41,6 +50,7 @@ const initial: FormState = {
   emergencyContactPhone: "",
   medical: "",
   heardFrom: "",
+  insuranceConfirmed: false,
 };
 
 const fieldClass =
@@ -48,6 +58,10 @@ const fieldClass =
 
 const labelClass =
   "block font-heading text-foreground-muted text-xs tracking-[0.2em] uppercase mb-2";
+
+function formatEur(amount: number): string {
+  return amount.toLocaleString("en-IE");
+}
 
 export function BookingForm({ defaultCamp, camps }: Props) {
   const [form, setForm] = useState<FormState>({
@@ -107,6 +121,10 @@ export function BookingForm({ defaultCamp, camps }: Props) {
       setError("Emergency contact name and phone are required.");
       return;
     }
+    if (!form.insuranceConfirmed) {
+      setError("Please confirm you have travel insurance for the trip.");
+      return;
+    }
     setSubmitting(true);
     try {
       const res = await fetch("/api/camps/book", {
@@ -151,7 +169,7 @@ export function BookingForm({ defaultCamp, camps }: Props) {
   const selectedSoldOut =
     (form.camp === "road" && roadSoldOut) ||
     (form.camp === "gravel" && gravelSoldOut) ||
-    (form.camp === "both" && roadSoldOut && gravelSoldOut);
+    (form.camp === "both" && (roadSoldOut || gravelSoldOut));
 
   function capacityNote(slug: "road" | "gravel"): string {
     const c = capacity?.[slug];
@@ -160,6 +178,17 @@ export function BookingForm({ defaultCamp, camps }: Props) {
     if (c.remaining <= 4) return `Only ${c.remaining} of ${c.total} spots left`;
     return `${c.remaining} of ${c.total} spots left`;
   }
+
+  // Total shown in the "before you check out" banner. Bundle pricing kicks
+  // in when "both" is selected; otherwise it's the per-camp price.
+  const baseTotal =
+    form.camp === "both" ? BUNDLE_PRICE : camps[form.camp].pricePerPerson;
+  const supplementTotal = form.singleRoom
+    ? form.camp === "both"
+      ? SINGLE_SUPPLEMENT_BOTH
+      : camps[form.camp].singleSupplement
+    : 0;
+  const grandTotal = baseTotal + supplementTotal;
 
   return (
     <form onSubmit={handleSubmit} className="space-y-6">
@@ -173,13 +202,13 @@ export function BookingForm({ defaultCamp, camps }: Props) {
               const isSold =
                 (opt === "road" && roadSoldOut) ||
                 (opt === "gravel" && gravelSoldOut) ||
-                (opt === "both" && roadSoldOut && gravelSoldOut);
+                (opt === "both" && (roadSoldOut || gravelSoldOut));
               const label =
                 opt === "road"
-                  ? "Road · 13–17 Oct"
+                  ? "Road · 10–15 Oct"
                   : opt === "gravel"
-                    ? "Gravel · 18–22 Oct"
-                    : "Both back-to-back";
+                    ? "Gravel · 16–21 Oct"
+                    : "Both Camps · €1,700";
               return (
                 <button
                   key={opt}
@@ -195,15 +224,15 @@ export function BookingForm({ defaultCamp, camps }: Props) {
                   <span className="font-heading text-base text-off-white block">
                     {label}
                   </span>
-                  {opt !== "both" && (
-                    <span
-                      className={`text-xs tracking-[0.15em] uppercase ${
-                        isSold ? "text-coral" : "text-foreground-subtle"
-                      }`}
-                    >
-                      {capacityNote(opt)}
-                    </span>
-                  )}
+                  <span
+                    className={`text-xs tracking-[0.15em] uppercase ${
+                      isSold ? "text-coral" : "text-foreground-subtle"
+                    }`}
+                  >
+                    {opt === "both"
+                      ? `Save €${BUNDLE_SAVINGS}`
+                      : capacityNote(opt)}
+                  </span>
                 </button>
               );
             })}
@@ -281,7 +310,9 @@ export function BookingForm({ defaultCamp, camps }: Props) {
         />
         <span className="block">
           <span className="block font-heading text-off-white text-sm tracking-wide uppercase mb-1">
-            Single-room supplement &middot; +€150
+            Single-room supplement &middot; +€
+            {form.camp === "both" ? SINGLE_SUPPLEMENT_BOTH : 150}
+            {form.camp === "both" && " (€150 per camp)"}
           </span>
           <span className="block text-foreground-muted text-sm leading-relaxed">
             Your own room for the trip. Otherwise we&apos;ll pair you up with another rider in a shared room.
@@ -346,30 +377,63 @@ export function BookingForm({ defaultCamp, camps }: Props) {
         />
       </div>
 
+      <label
+        className={`flex items-start gap-3 p-4 rounded-lg border cursor-pointer transition-colors ${
+          form.insuranceConfirmed
+            ? "border-coral/60 bg-coral/5"
+            : "border-white/10 bg-white/[0.02] hover:border-coral/30"
+        }`}
+      >
+        <input
+          type="checkbox"
+          checked={form.insuranceConfirmed}
+          onChange={(e) => set("insuranceConfirmed", e.target.checked)}
+          className="mt-1 h-4 w-4 accent-coral"
+          required
+        />
+        <span className="block">
+          <span className="block font-heading text-off-white text-sm tracking-wide uppercase mb-1">
+            Travel insurance &middot; required
+          </span>
+          <span className="block text-foreground-muted text-sm leading-relaxed">
+            I confirm I&apos;ll have travel insurance in place for the trip,
+            covering cycling, medical, and trip cancellation.
+          </span>
+        </span>
+      </label>
+
       <div className="rounded-lg border border-coral/30 bg-coral/[0.04] p-4 text-sm text-foreground-muted leading-relaxed">
         <p className="text-off-white font-heading text-sm tracking-[0.15em] uppercase mb-2">
           Before you check out
         </p>
         <p className="mb-1">
-          Full payment of{" "}
-          <strong className="text-off-white">
-            €{form.camp === "both" ? "1,990" : "995"}
-          </strong>
-          {form.singleRoom && (
+          Total today:{" "}
+          <strong className="text-off-white">€{formatEur(grandTotal)}</strong>
+          {form.camp === "both" && (
             <>
-              {" "}+{" "}
-              <strong className="text-off-white">
-                €{form.camp === "both" ? "300" : "150"}
-              </strong>{" "}
-              single-room supplement
+              {" "}— Both Camps bundle (saves €{BUNDLE_SAVINGS} vs booking
+              separately)
             </>
-          )}{" "}
-          is required to lock the spot. We don&apos;t offer refunds — if something
-          comes up, you can transfer the spot to a mate.
+          )}
+          {form.singleRoom && form.camp !== "both" && (
+            <>
+              {" "}(includes €{camps[form.camp].singleSupplement} single-room
+              supplement)
+            </>
+          )}
+          {form.singleRoom && form.camp === "both" && (
+            <>
+              {" "}(includes €{SINGLE_SUPPLEMENT_BOTH} single-room supplement,
+              both weeks)
+            </>
+          )}
+          .
         </p>
         <p>
           Hit the button and we&apos;ll send you straight to Stripe to pay
           securely. Confirmation lands in your inbox the moment payment clears.
+          No refunds — if you can&apos;t make it, you can transfer the spot
+          to a mate.
         </p>
       </div>
 

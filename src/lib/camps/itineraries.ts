@@ -25,7 +25,7 @@ export const ITINERARIES: Record<CampSlug, ItineraryDay[]> = {
       distance: "45 km",
       elevation: "350 m",
       description:
-        "Pickup from Girona airport in the morning. Once everyone's at the house and bikes are built, we roll out a steady spin around Lake Banyoles to shake the legs out, dial fits, and figure out the two ride groups. Back for a barbecue and a proper sit-down.",
+        "Pickup from Girona airport in the morning. Bikes built, fits dialled, then a steady spin around Lake Banyoles to shake the legs out and figure out the two pace groups. Back to the house — pool, gardens, the rest of the afternoon's yours.",
       highlights: [
         "Airport transfer from Girona",
         "Bike build assistance & fit check",
@@ -39,7 +39,7 @@ export const ITINERARIES: Record<CampSlug, ItineraryDay[]> = {
       distance: "85 km",
       elevation: "1,400 m",
       description:
-        "The local climb every Girona pro has done a thousand times. Long, even gradient, view at the top that explains why people move here. Coffee at the monastery before we drop down through the Empordà and pick our way home along the quiet Ter river road.",
+        "The local climb every Girona pro has done a thousand times. Long. Even gradient. The view at the top is why people move here. Coffee at the Sanctuari, then drop down through the Empordà and roll home along the quiet Ter river road.",
       highlights: [
         "10 km tempo climb",
         "Coffee stop at the Sanctuari",
@@ -53,11 +53,11 @@ export const ITINERARIES: Record<CampSlug, ItineraryDay[]> = {
       distance: "105 km",
       elevation: "2,200 m",
       description:
-        "The big day. A long approach through the foothills, then the real climb — 12 km, properly steep at the top, the kind of summit you remember. Two ride groups all day. Follow car carries spares, food, and the second-coffee fund. Lunch at Beuda on the way back.",
+        "The big day. A long warm-up through the foothills, then the real climb — 12 km, properly steep at the top, the kind of summit you tell people about for the rest of the year. Both groups all day. Follow car with spares, gels, and the second-coffee fund.",
       highlights: [
         "12 km mountain finish",
         "Follow car & in-ride nutrition",
-        "Lunch stop at Beuda",
+        "Coffee stop in Beuda",
       ],
     },
     {
@@ -67,7 +67,7 @@ export const ITINERARIES: Record<CampSlug, ItineraryDay[]> = {
       distance: "100 km",
       elevation: "1,100 m",
       description:
-        "Drop east to the coast on the rolling roads that connect Girona to the Mediterranean. Coffee in a fishing village, lunch by the water, and the long pull back home in the afternoon light. Active recovery legs welcome — there's a shorter option that loops back via Bordils.",
+        "Drop east to the coast on the rolling roads that link Girona to the Mediterranean. Coffee in a fishing village, then the long pull back home in the afternoon light. Active recovery legs welcome — there's a shorter option that loops back via Bordils.",
       highlights: [
         "Mediterranean coffee stop",
         "Long pull home through Empordà",
@@ -77,15 +77,15 @@ export const ITINERARIES: Record<CampSlug, ItineraryDay[]> = {
     {
       day: 5,
       title: "Rocacorba",
-      ride: "Rocacorba & farewell lunch",
+      ride: "Rocacorba & farewell roll",
       distance: "70 km",
       elevation: "1,400 m",
       description:
-        "The legend. Quiet roads out to Pujarnol, then 11 km of the climb every pro in town uses for testing. Time it, ride it easy, your call — both groups regroup at the top. Long lunch back at the house in the afternoon. Transfers to the airport from there.",
+        "The legend. Quiet roads out to Pujarnol, then 11 km of the climb every pro in town uses for testing. Time it. Ride it easy. Your call — both groups regroup at the top. Easy roll home, quick clean-up, airport transfers in the afternoon.",
       highlights: [
         "Rocacorba — the test piece",
         "Group regroup at the summit",
-        "Long farewell lunch at the house",
+        "Airport transfers in the afternoon",
       ],
     },
   ],
@@ -97,7 +97,7 @@ export const ITINERARIES: Record<CampSlug, ItineraryDay[]> = {
       distance: "40 km",
       elevation: "300 m",
       description:
-        "Airport pickup, bikes built, an easy roll along the gravel paths that line the Ter river. Mostly flat, fast, gives the new arrivals a feel for Girona dirt. Group sorting. Barbecue back at the house.",
+        "Airport pickup. Bikes built. An easy roll along the gravel paths that line the Ter river — mostly flat, mostly fast, gives the new arrivals a feel for Girona dirt. Group sorting on the way. Back to the house — pool, gardens, the rest of the afternoon's yours.",
       highlights: [
         "Airport transfer",
         "Tyre-pressure clinic & bike checks",
@@ -111,7 +111,7 @@ export const ITINERARIES: Record<CampSlug, ItineraryDay[]> = {
       distance: "75 km",
       elevation: "1,500 m",
       description:
-        "North into the Garrotxa Natural Park. The trails wind through dormant volcanoes, beech forests, and medieval villages. Coffee in Santa Pau (cobbles, tiny square, perfect). Some technical singletrack inside the park — Chill group takes the wider fire roads.",
+        "North into the Garrotxa Natural Park. The trails wind through dormant volcanoes, beech forests, and medieval villages you'd otherwise drive past. Coffee in Santa Pau — cobbles, tiny square, perfect. Properly technical singletrack inside the park; the Chill group takes the wider fire roads.",
       highlights: [
         "Volcanic park trails",
         "Beech forest singletrack",
@@ -125,10 +125,10 @@ export const ITINERARIES: Record<CampSlug, ItineraryDay[]> = {
       distance: "85 km",
       elevation: "1,200 m",
       description:
-        "East across farm tracks, vineyard service roads, and the dirt that connects every winery in the region. Late lunch in a producer's courtyard, then a long flat run home. Easy day on the legs, big day on the camera.",
+        "East across farm tracks, vineyard service roads, and the dirt that connects every winery in the region. A long, flat run home through the afternoon. Easy day on the legs. Big day on the camera.",
       highlights: [
         "Vineyard service roads",
-        "Lunch at a working winery",
+        "Open Empordà farm country",
         "Mostly flat, fast & sociable",
       ],
     },
@@ -139,11 +139,11 @@ export const ITINERARIES: Record<CampSlug, ItineraryDay[]> = {
       distance: "70 km",
       elevation: "1,400 m",
       description:
-        "The tight, technical forest trails of Les Gavarres. Cork oaks, single track, the sort of riding that earned Girona its gravel reputation. Two groups: Fast takes the techy lines, Chill takes the wider trails. Picnic lunch deep in the forest.",
+        "Tight, technical forest trails through Les Gavarres. Cork oaks. Singletrack. The kind of riding that earned Girona its gravel reputation. Two groups: Fast takes the techy lines, Chill takes the wider trails. Coffee stop deep in the forest.",
       highlights: [
         "Cork-oak singletrack",
         "Two-group split for tech sections",
-        "Picnic lunch in the forest",
+        "Coffee stop deep in the forest",
       ],
     },
     {
@@ -153,11 +153,11 @@ export const ITINERARIES: Record<CampSlug, ItineraryDay[]> = {
       distance: "55 km",
       elevation: "600 m",
       description:
-        "The last ride: the coastal gravel paths that drop down toward the Med. Short, photogenic, exactly the right last day for the legs you'll have by now. Lunch back at the house, transfers to the airport in the late afternoon.",
+        "Last ride: the coastal gravel paths that drop down toward the Med. Short. Photogenic. Exactly the right finale for the legs you'll have by now. Easy roll home, quick clean-up, airport transfers in the afternoon.",
       highlights: [
         "Coastal gravel paths",
         "Short & scenic — legs-friendly",
-        "Long farewell lunch at the house",
+        "Airport transfers in the afternoon",
       ],
     },
   ],

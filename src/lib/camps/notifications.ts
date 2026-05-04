@@ -217,10 +217,9 @@ export async function sendCampBookingConfirmation(args: {
         Your card receipt is in a separate email from Stripe.
       </p>
       <p style="color: #B0B0B5; line-height: 1.7; margin: 0 0 16px 0;">
-        I'll be back in your inbox within a couple of days with the intake
-        form — kit list, flight times, food preferences. As a reminder: no
-        refunds, but you can transfer the spot to a mate if something comes
-        up.
+        I'll be back in your inbox closer to the camp with the intake form —
+        kit list, flight times, food preferences. Heads up: refunds aren't a
+        thing, but you can transfer the spot to a mate if something comes up.
       </p>
       <p style="color: #FAFAFA; line-height: 1.7; margin: 0;">
         See you in Girona,<br/>Anthony

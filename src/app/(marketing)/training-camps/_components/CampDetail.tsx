@@ -14,7 +14,26 @@ interface Props {
   camp: CampConfig;
 }
 
-const TOWN_GALLERY = [
+const CAN_SAGNARI_GALLERY = [
+  {
+    src: "/images/camps/can-sagnari-pool.png",
+    alt: "Can Sagnari — the pool with loungers, open all year",
+  },
+  {
+    src: "/images/camps/can-sagnari-interior.png",
+    alt: "Can Sagnari — stone-walled interior lounge",
+  },
+  {
+    src: "/images/camps/can-sagnari-exterior.png",
+    alt: "Can Sagnari — the 1749 Catalan farmhouse from outside",
+  },
+  {
+    src: "/images/camps/can-sagnari-aerial.png",
+    alt: "Can Sagnari — aerial view of the farmhouse and pool",
+  },
+];
+
+const GIRONA_GALLERY = [
   {
     src: "/images/camps/girona-river-houses.jpg",
     alt: "The coloured houses along the Onyar river — the postcard shot of Girona old town",
@@ -34,20 +53,21 @@ const TOWN_GALLERY = [
 ];
 
 const INCLUDED = [
-  "4 nights at our private farmhouse, Can Sagnari",
-  "Daily breakfast at the house",
-  "5 guided rides — one per day, two ride groups",
-  "In-ride nutrition (gels, bars, drink mix)",
-  "Follow car for support and spares",
-  "Airport transfers from Girona-Costa Brava (GRO)",
-  "Anthony, Sarah and Wes on hand the whole week",
+  "4 nights at Can Sagnari, our private 1749 farmhouse",
+  "Breakfast every morning at the house",
+  "5 fully guided rides — two pace groups, never dropped",
+  "Follow car the whole week — spares, support, mid-ride fund",
+  "In-ride nutrition every day — gels, bars, drink mix",
+  "Airport transfers from Girona–Costa Brava (GRO), both ways",
+  "Anthony, Sarah and Matthew hosting it all",
 ];
 
 const NOT_INCLUDED = [
-  "Flights to Girona",
-  "Travel insurance",
-  "Lunch and dinner",
-  "Hire bike (we can arrange one)",
+  "Flights — fly into Girona (GRO) or Barcelona (BCN)",
+  "Travel insurance — required, sort it before you fly",
+  "Lunches and dinners — €15–25 per meal, eaten out",
+  "Hire bike — we can sort one through a Girona shop for a fee",
+  "Single-room supplement (+€150) — optional, otherwise we pair you up",
 ];
 
 export function CampDetail({ camp }: Props) {
@@ -197,7 +217,7 @@ export function CampDetail({ camp }: Props) {
                 href="#book"
                 className="inline-flex items-center justify-center gap-2 px-7 py-3.5 rounded-md font-heading tracking-[0.15em] uppercase text-off-white bg-coral hover:bg-coral-hover transition-all shadow-[0_10px_30px_-12px_rgba(241,99,99,0.55)]"
               >
-                Reserve a spot &middot; €{camp.pricePerPerson}
+                Book now &middot; €{camp.pricePerPerson}
               </a>
               <a
                 href="#itinerary"
@@ -221,20 +241,20 @@ export function CampDetail({ camp }: Props) {
                   className="font-heading text-off-white leading-[1.05] mb-6"
                   style={{ fontSize: "clamp(2rem, 4vw, 3.25rem)" }}
                 >
-                  FIVE DAYS RIDING WITH YOUR MATES
+                  {camp.summaryHeading.main}
                   <br />
-                  <span className="text-coral">— WHO HAPPEN TO KNOW EVERY ROAD.</span>
+                  <span className="text-coral">{camp.summaryHeading.accent}</span>
                 </h2>
                 <p className="text-foreground-muted leading-relaxed text-lg mb-5">
                   {camp.description}
                 </p>
                 <p className="text-foreground-muted leading-relaxed">
-                  This isn&apos;t a tour company. It&apos;s us — Anthony, Sarah, and Wes —
-                  taking sixteen riders to the spot we&apos;d pick for ourselves and
-                  spending the week riding it the way it&apos;s meant to be ridden.
-                  Two groups so nobody gets dropped, follow car when we&apos;re far
-                  from home, and the kind of dinners back at the house that turn
-                  a riding holiday into a week you&apos;ll talk about for years.
+                  This isn&apos;t a tour company. It&apos;s us — Anthony, Sarah and
+                  Matthew — taking sixteen riders to the spot we&apos;d pick for
+                  ourselves and riding it the way it&apos;s meant to be ridden. Two
+                  groups so nobody waits or gets dropped. A car behind us with
+                  everything you need. The kind of week you&apos;ll talk about for
+                  years.
                 </p>
               </ScrollReveal>
 
@@ -289,9 +309,9 @@ export function CampDetail({ camp }: Props) {
                 className="font-heading text-off-white leading-[1.05] mb-12 text-center"
                 style={{ fontSize: "clamp(2rem, 4vw, 3.25rem)" }}
               >
-                FIVE RIDES.
+                {camp.itineraryHeading.main}
                 <br />
-                <span className="text-coral">FIVE GIRONA CLASSICS.</span>
+                <span className="text-coral">{camp.itineraryHeading.accent}</span>
               </h2>
             </ScrollReveal>
             <ScrollReveal direction="up" delay={0.05}>
@@ -316,7 +336,7 @@ export function CampDetail({ camp }: Props) {
                   WHAT&apos;S INCLUDED
                 </p>
                 <h3 className="font-heading text-off-white text-3xl mb-6 leading-tight">
-                  EVERYTHING YOU NEED ONCE YOU&apos;RE IN GIRONA.
+                  EVERYTHING SORTED ONCE YOU LAND.
                 </h3>
                 <ul className="space-y-3">
                   {INCLUDED.map((item) => (
@@ -338,7 +358,7 @@ export function CampDetail({ camp }: Props) {
                   NOT INCLUDED
                 </p>
                 <h3 className="font-heading text-off-white text-3xl mb-6 leading-tight">
-                  YOU SORT THESE — WE&apos;LL HELP IF YOU NEED.
+                  ON YOU. WE&apos;LL POINT YOU IN THE RIGHT DIRECTION.
                 </h3>
                 <ul className="space-y-3">
                   {NOT_INCLUDED.map((item) => (
@@ -375,31 +395,30 @@ export function CampDetail({ camp }: Props) {
                   <span className="text-coral">A 1749 FARMHOUSE.</span>
                 </h2>
                 <p className="text-foreground-muted leading-relaxed mb-4">
-                  Our private base in Cornellà del Terri, ten minutes from
-                  Girona and five from Banyoles. Eight bedrooms in the main
-                  house plus an annex, six bathrooms, 500 m² of living space,
-                  and four thousand square metres of gardens to wander after a
-                  long day on the bike.
+                  Our private base in Cornellà del Terri, 20 minutes from
+                  Girona and five from Banyoles. A restored Catalan stone
+                  farmhouse with 500 m² of living space and four thousand
+                  square metres of gardens to wander after a long day on the
+                  bike.
                 </p>
                 <p className="text-foreground-muted leading-relaxed mb-6">
-                  Pool open all year, BBQ that gets a serious workout most
-                  evenings, a pond, a petanque court, and the kind of stone
-                  walls and slow Catalan dinners you&apos;d normally only get if you
-                  knew someone with a place out there. Now you do.
+                  Pool open all year. A pond, a petanque court, and the kind
+                  of stone walls and slow Catalan light you&apos;d normally only
+                  get if you knew someone with a place out here. Now you do.
                 </p>
                 <ul className="grid grid-cols-2 gap-x-4 gap-y-2 text-sm text-foreground-muted">
                   <li>★ Pool, year-round</li>
-                  <li>★ BBQ & gardens</li>
-                  <li>★ 8 bedrooms, 6 bathrooms</li>
-                  <li>★ 10 min from Girona</li>
+                  <li>★ Gardens & petanque</li>
+                  <li>★ 20 min from Girona</li>
                   <li>★ 5 min from Lake Banyoles</li>
-                  <li>★ Catalan stone-house build</li>
+                  <li>★ 1749 Catalan stone farmhouse</li>
+                  <li>★ 500 m² living space</li>
                 </ul>
               </ScrollReveal>
 
               <ScrollReveal direction="up" delay={0.05}>
                 <div className="grid grid-cols-2 gap-3">
-                  {TOWN_GALLERY.slice(0, 4).map((g) => (
+                  {CAN_SAGNARI_GALLERY.map((g) => (
                     <div
                       key={g.src}
                       className="relative aspect-[4/5] rounded-lg overflow-hidden border border-white/10"
@@ -415,7 +434,7 @@ export function CampDetail({ camp }: Props) {
                   ))}
                 </div>
                 <p className="text-foreground-subtle text-xs mt-3 leading-relaxed">
-                  Photos: Girona old town and the cathedral — five minutes from the house.
+                  Can Sagnari — pool, interior, exterior, aerial.
                 </p>
               </ScrollReveal>
             </div>
@@ -437,7 +456,7 @@ export function CampDetail({ camp }: Props) {
               </h2>
             </ScrollReveal>
             <div className="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-4">
-              {TOWN_GALLERY.map((g, i) => (
+              {GIRONA_GALLERY.map((g, i) => (
                 <ScrollReveal key={g.src} direction="up" delay={i * 0.05}>
                   <div className="relative aspect-square rounded-lg overflow-hidden border border-white/10">
                     <Image
@@ -473,8 +492,8 @@ export function CampDetail({ camp }: Props) {
                 BOOK THE {camp.shortName.toUpperCase()} CAMP.
               </h2>
               <p className="text-foreground-muted text-center max-w-xl mx-auto leading-relaxed mb-10">
-                Sixteen spots, first-come. Full payment is required to lock the
-                spot — Anthony writes back inside 48 hours with the link.
+                Sixteen spots, first-come. Fill the form, pay through Stripe,
+                and the spot is yours the moment the payment clears.
               </p>
             </ScrollReveal>
             <ScrollReveal direction="up" delay={0.05}>

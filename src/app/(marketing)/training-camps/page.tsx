@@ -9,14 +9,14 @@ import { CAMP_LIST, formatCampDates } from "@/lib/camps/camps";
 export const metadata: Metadata = {
   title: "Roadman Training Camps — Girona, October 2026",
   description:
-    "Two five-day camps in Girona, October 2026. Road camp 13–17 October, Gravel camp 18–22 October. Led by Anthony Walsh, Sarah and Wes. Sixteen spots per camp. €995 all-in.",
+    "Two five-day camps in Girona, October 2026. Road 10–15 October, Gravel 16–21 October. Sixteen riders per camp, Anthony in the group every day. €995 per camp, or €1,700 for both back-to-back.",
   alternates: {
     canonical: "https://roadmancycling.com/training-camps",
   },
   openGraph: {
     title: "Roadman Training Camps — Girona, October 2026",
     description:
-      "Two five-day camps in Girona. Road and Gravel. Led by Anthony, Sarah and Wes. Sixteen spots, €995 all-in.",
+      "Two five-day camps in Girona. Road and Gravel, back-to-back. Anthony, Sarah and Matthew on hand all week. Sixteen spots, €995 per camp, €1,700 for both.",
     type: "website",
     url: "https://roadmancycling.com/training-camps",
     images: [
@@ -32,6 +32,14 @@ const HERO_IMAGES = [
   "/images/camps/girona-river-houses.jpg",
   "/images/camps/girona-cathedral-aerial.jpg",
 ];
+
+const CAMP_CARD_IMAGES: Record<"road" | "gravel", string> = {
+  road: "/images/camps/girona-road-landing.jpg",
+  gravel: "/images/camps/girona-gravel-landing.webp",
+};
+
+const BUNDLE_PRICE = 1700;
+const BUNDLE_SAVINGS = 995 * 2 - BUNDLE_PRICE; // €290
 
 export default function TrainingCampsLandingPage() {
   return (
@@ -121,12 +129,12 @@ export default function TrainingCampsLandingPage() {
                 className="text-foreground-muted mx-auto mb-10 leading-relaxed font-light text-center"
                 style={{
                   fontSize: "clamp(1.0625rem, 1.5vw, 1.375rem)",
-                  maxWidth: "660px",
+                  maxWidth: "680px",
                 }}
               >
-                The first-ever Roadman camps. Two five-day weeks at our private
-                farmhouse base, October 2026. Road, then gravel, back to back.
-                Sixteen spots each.
+                The first-ever Roadman camps. Two weeks in October at our
+                private Catalan farmhouse — road first, then gravel. Sixteen
+                riders per camp, and Anthony&apos;s in the group every day.
               </p>
             </ScrollReveal>
 
@@ -163,11 +171,11 @@ export default function TrainingCampsLandingPage() {
                 className="font-heading text-off-white leading-[1.05] mb-3 text-center"
                 style={{ fontSize: "clamp(2rem, 4vw, 3.25rem)" }}
               >
-                TWO CAMPS, BACK TO BACK.
+                TWO CAMPS. ONE BASE.
               </h2>
               <p className="text-foreground-muted text-center max-w-xl mx-auto leading-relaxed mb-12">
-                Same farmhouse, same team, two formats. Pick one. Or do both —
-                ten days, no airport transfer in between.
+                Same farmhouse, same team, two formats. Pick one — or stack
+                both for ten days end-to-end with no flight in between.
               </p>
             </ScrollReveal>
 
@@ -180,8 +188,8 @@ export default function TrainingCampsLandingPage() {
                   >
                     <div className="relative aspect-[16/10]">
                       <Image
-                        src={camp.heroImage}
-                        alt={camp.heroImageAlt}
+                        src={CAMP_CARD_IMAGES[camp.slug]}
+                        alt={`${camp.name} — Girona`}
                         fill
                         sizes="(max-width: 768px) 100vw, 50vw"
                         className="object-cover group-hover:scale-105 transition-transform duration-700"
@@ -226,6 +234,40 @@ export default function TrainingCampsLandingPage() {
                 </ScrollReveal>
               ))}
             </div>
+
+            {/* BOTH CAMPS BUNDLE ──────────────────────────────── */}
+            <ScrollReveal direction="up" delay={0.16}>
+              <div className="mt-8 rounded-2xl border border-coral/40 bg-gradient-to-br from-coral/[0.07] to-transparent p-6 md:p-8 backdrop-blur-sm flex flex-col md:flex-row md:items-center md:justify-between gap-6">
+                <div className="md:max-w-xl">
+                  <p className="font-heading text-coral text-xs tracking-[0.3em] mb-3">
+                    SAVE €{BUNDLE_SAVINGS} &middot; BOTH CAMPS
+                  </p>
+                  <h3 className="font-heading text-off-white text-2xl md:text-3xl leading-tight mb-3">
+                    DO BOTH WEEKS BACK-TO-BACK.
+                  </h3>
+                  <p className="text-foreground-muted text-sm leading-relaxed">
+                    Ten days. Two formats. Same farmhouse, no airport transfer
+                    in between. €{BUNDLE_PRICE.toLocaleString("en-IE")} for the
+                    pair — €{BUNDLE_SAVINGS} less than booking each camp on its
+                    own.
+                  </p>
+                </div>
+                <div className="flex flex-col items-start md:items-end gap-2">
+                  <p className="font-heading text-off-white text-3xl md:text-4xl leading-none">
+                    €{BUNDLE_PRICE.toLocaleString("en-IE")}
+                  </p>
+                  <p className="text-foreground-subtle text-[10px] tracking-[0.2em] uppercase">
+                    Both Camps &middot; per person
+                  </p>
+                  <Link
+                    href="/training-camps/girona-road#book"
+                    className="mt-2 inline-flex items-center justify-center gap-2 px-6 py-3 rounded-md font-heading tracking-[0.15em] uppercase text-off-white bg-coral hover:bg-coral-hover transition-all text-sm shadow-[0_10px_30px_-12px_rgba(241,99,99,0.55)]"
+                  >
+                    Book Both →
+                  </Link>
+                </div>
+              </div>
+            </ScrollReveal>
           </Container>
         </Section>
 
@@ -245,21 +287,21 @@ export default function TrainingCampsLandingPage() {
                 </h2>
                 <p className="text-foreground-muted leading-relaxed mb-4">
                   More World Tour pros live in Girona than anywhere else on the
-                  planet. They didn&apos;t pick it for the lifestyle — they picked
-                  it because every road that leaves the city is good. Long
-                  tempo climbs, quiet roads, dirt that connects to tarmac that
-                  connects to the coast.
+                  planet. They didn&apos;t pick it for the lifestyle — they
+                  picked it because every road that leaves the city is good.
+                  Long tempo climbs. Quiet back roads. Dirt that connects to
+                  tarmac that connects to the coast.
                 </p>
                 <p className="text-foreground-muted leading-relaxed mb-4">
-                  October is when Girona is at its best. Vines turning, low
-                  traffic, mid-twenties most days, sea still warm enough to swim
-                  in if you fancy it after a ride.
+                  October is when it&apos;s at its best. Mid-twenties most
+                  days. Vines turning. Empty roads after the August rush. Pool
+                  at the house still warm enough to swim in after a ride.
                 </p>
                 <p className="text-foreground-muted leading-relaxed">
-                  We&apos;re running our first camps here because it&apos;s the spot
-                  we&apos;d pick for ourselves. Same logic for everything else this
-                  week — the house, the rides, the coffee stops. We&apos;re going
-                  where we&apos;d go anyway, and bringing sixteen people with us.
+                  We&apos;re running our first camps here because it&apos;s the
+                  spot we&apos;d pick for ourselves. Same logic for everything
+                  else — the farmhouse, the rides, the cafés. Sixteen of you,
+                  three of us, the place we&apos;d go anyway.
                 </p>
               </ScrollReveal>
 
@@ -312,17 +354,17 @@ export default function TrainingCampsLandingPage() {
                 {
                   n: "01",
                   t: "Anthony rides every day",
-                  d: "Not a guide and a clipboard. Anthony rides one of the two groups every day, both camps. Sarah handles ops and rides. Wes is on support. Three of us, sixteen of you.",
+                  d: "No guide with a clipboard. Anthony rides one of the two groups every day, both camps. Sarah's on ops and in the saddle. Matthew runs the follow car. Three of us, sixteen of you.",
                 },
                 {
                   n: "02",
                   t: "Two groups, never dropped",
-                  d: "Chill and Fast. We sort the groups on day one and adjust through the week. The follow car is in radio contact with both — nobody waits at the side of a Catalan back road.",
+                  d: "Chill and Fast. We sort the groups on day one and adjust through the week. The follow car's on radio with both — nobody waits at the side of a Catalan back road.",
                 },
                 {
                   n: "03",
                   t: "Roads we'd ride anyway",
-                  d: "Rocacorba. Els Àngels. The Ter river path. The Gavarres forest. The roads in your training plan, but with the right people, the right coffee stops, and the follow car carrying gels.",
+                  d: "Rocacorba. Els Àngels. The Ter river path. Les Gavarres. The roads you've watched on YouTube — ridden with the right people, the right coffee stops, and a car behind you carrying gels.",
                 },
               ].map((item, i) => (
                 <ScrollReveal key={item.n} direction="up" delay={i * 0.06}>
@@ -356,19 +398,25 @@ export default function TrainingCampsLandingPage() {
                 <span className="text-coral">FIRST-COME.</span>
               </h2>
               <p className="text-foreground-muted leading-relaxed mb-10 max-w-md mx-auto">
-                Pick your format and reserve a spot. Anthony writes back inside
-                48 hours with the payment link.
+                Pick your format and book. Payment is taken in full through
+                Stripe — your spot is locked the moment it clears.
               </p>
               <div className="flex flex-wrap items-center justify-center gap-3">
                 {CAMP_LIST.map((c) => (
                   <Link
                     key={c.slug}
-                    href={c.href}
+                    href={`${c.href}#book`}
                     className="inline-flex items-center justify-center gap-2 px-7 py-3.5 rounded-md font-heading tracking-[0.15em] uppercase text-off-white bg-coral hover:bg-coral-hover transition-all shadow-[0_10px_30px_-12px_rgba(241,99,99,0.55)]"
                   >
                     Book {c.shortName}
                   </Link>
                 ))}
+                <Link
+                  href="/training-camps/girona-road#book"
+                  className="inline-flex items-center justify-center gap-2 px-7 py-3.5 rounded-md font-heading tracking-[0.15em] uppercase text-off-white border border-coral/60 hover:bg-coral/10 transition-all"
+                >
+                  Book Both &middot; €{BUNDLE_PRICE.toLocaleString("en-IE")}
+                </Link>
               </div>
             </ScrollReveal>
           </Container>
