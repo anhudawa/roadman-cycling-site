@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-import { getAllEpisodes } from "@/lib/podcast";
+import { getAllEpisodes, getTranscriptSlugs } from "@/lib/podcast";
 import { FEED_BASE_URL, FEED_CACHE_HEADERS, feedUrl, summarise } from "@/lib/feeds";
 
 const PILLAR_TOOL: Record<string, string> = {
@@ -17,12 +17,17 @@ const PILLAR_TOOL: Record<string, string> = {
  * pull the full transcript via /api/v1/fetch?id=…
  */
 export function GET() {
+  // Hash the transcript slug list once per request so each item lookup
+  // is O(1) instead of re-reading the transcripts directory per episode.
+  const transcriptSlugs = new Set(getTranscriptSlugs());
+
   const items = getAllEpisodes().map((ep) => {
     const author = ep.guest || "Anthony Walsh";
     const summary = summarise(ep.answerCapsule || ep.seoDescription || ep.description);
     const entities = Array.from(
       new Set([...(ep.keywords ?? []), ...(ep.topicTags ?? [])]),
     );
+    const hasTranscript = transcriptSlugs.has(ep.slug);
 
     return {
       id: ep.slug,
@@ -42,6 +47,10 @@ export function GET() {
       evidenceLevel: ep.guest ? "expert-interview" : "host-led",
       episodeNumber: ep.episodeNumber,
       duration: ep.duration,
+      hasTranscript,
+      transcriptUrl: hasTranscript
+        ? feedUrl(`/podcast/${ep.slug}/transcript`)
+        : null,
     };
   });
 

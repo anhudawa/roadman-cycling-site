@@ -4,6 +4,7 @@ import matter from "gray-matter";
 import { type ContentPillar, type EpisodeType } from "@/types";
 
 const PODCAST_DIR = path.join(process.cwd(), "content/podcast");
+const TRANSCRIPT_DIR = path.join(PODCAST_DIR, "transcripts");
 
 export interface EpisodeFrontmatter {
   title: string;
@@ -251,6 +252,76 @@ export function getAllEpisodeSlugs(): string[] {
     .readdirSync(PODCAST_DIR)
     .filter((f) => f.endsWith(".mdx"))
     .map((f) => f.replace(/\.mdx$/, ""));
+}
+
+/**
+ * Filesystem transcript library. Distinct from the per-episode
+ * `transcript` frontmatter field (which powers the inline
+ * `<TranscriptViewer>` accordion on the episode page) — these `.txt`
+ * files in `content/podcast/transcripts/` are the canonical, polished
+ * transcripts that get their own dedicated `/podcast/<slug>/transcript`
+ * page, an index at `/podcast/transcripts`, and feed flags.
+ */
+export interface Transcript {
+  text: string;
+  wordCount: number;
+}
+
+function transcriptPath(slug: string): string {
+  return path.join(TRANSCRIPT_DIR, `${slug}.txt`);
+}
+
+export function hasTranscript(slug: string): boolean {
+  return fs.existsSync(transcriptPath(slug));
+}
+
+export function getTranscript(slug: string): Transcript | null {
+  const filePath = transcriptPath(slug);
+  if (!fs.existsSync(filePath)) return null;
+  const text = fs.readFileSync(filePath, "utf-8").trim();
+  if (!text) return null;
+  const wordCount = text.split(/\s+/).filter(Boolean).length;
+  return { text, wordCount };
+}
+
+/**
+ * Slugs of every episode with a `.txt` transcript on disk. Used by
+ * `generateStaticParams` for the dedicated transcript route and by the
+ * `/podcast/transcripts` index. Filters against the live episode set so
+ * an orphaned `.txt` (no matching `.mdx`) doesn't generate a broken page.
+ */
+export function getTranscriptSlugs(): string[] {
+  if (!fs.existsSync(TRANSCRIPT_DIR)) return [];
+  const episodeSlugs = new Set(getAllEpisodeSlugs());
+  return fs
+    .readdirSync(TRANSCRIPT_DIR)
+    .filter((f) => f.endsWith(".txt"))
+    .map((f) => f.replace(/\.txt$/, ""))
+    .filter((slug) => episodeSlugs.has(slug));
+}
+
+/**
+ * Episodes (with metadata) that have a `.txt` transcript file, sorted
+ * by `publishDate` descending. Each entry carries the transcript word
+ * count so the index page can render it without re-reading every file.
+ */
+export interface EpisodeWithTranscript extends EpisodeMeta {
+  transcriptWordCount: number;
+}
+
+export function getEpisodesWithTranscripts(): EpisodeWithTranscript[] {
+  const transcriptSlugs = new Set(getTranscriptSlugs());
+  if (transcriptSlugs.size === 0) return [];
+
+  return getAllEpisodes()
+    .filter((ep) => transcriptSlugs.has(ep.slug))
+    .map((ep) => {
+      const t = getTranscript(ep.slug);
+      return {
+        ...ep,
+        transcriptWordCount: t?.wordCount ?? 0,
+      };
+    });
 }
 
 /**

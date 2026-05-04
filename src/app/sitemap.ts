@@ -1,6 +1,6 @@
 import type { MetadataRoute } from "next";
 import { getAllPosts } from "@/lib/blog";
-import { getAllEpisodes } from "@/lib/podcast";
+import { getAllEpisodes, getTranscriptSlugs } from "@/lib/podcast";
 import { getAllGuests } from "@/lib/guests";
 import { getAllTopicSlugs } from "@/lib/topics";
 import { getAllTermSlugs } from "@/lib/glossary";
@@ -75,6 +75,7 @@ function buildStaticSitemap(): MetadataRoute.Sitemap {
   return [
     { url: BASE_URL, lastModified: new Date(), changeFrequency: "daily", priority: 1.0 },
     { url: `${BASE_URL}/podcast`, lastModified: new Date(), changeFrequency: "weekly", priority: 0.8 },
+    { url: `${BASE_URL}/podcast/transcripts`, lastModified: new Date(), changeFrequency: "weekly", priority: 0.7 },
     { url: `${BASE_URL}/blog`, lastModified: new Date(), changeFrequency: "weekly", priority: 0.8 },
     { url: `${BASE_URL}/tools`, lastModified: new Date(), changeFrequency: "monthly", priority: 0.8 },
     { url: `${BASE_URL}/guests`, lastModified: new Date(), changeFrequency: "weekly", priority: 0.8 },
@@ -187,7 +188,10 @@ function buildBlogSitemap(): MetadataRoute.Sitemap {
 }
 
 function buildPodcastSitemap(): MetadataRoute.Sitemap {
-  return getAllEpisodes().map((ep) => {
+  const episodes = getAllEpisodes();
+  const transcriptSlugs = new Set(getTranscriptSlugs());
+
+  const episodeEntries: MetadataRoute.Sitemap = episodes.map((ep) => {
     const lastMod = new Date(ep.publishDate);
     return {
       url: `${BASE_URL}/podcast/${ep.slug}`,
@@ -196,6 +200,23 @@ function buildPodcastSitemap(): MetadataRoute.Sitemap {
       priority: 0.6,
     };
   });
+
+  // Dedicated transcript pages get the same lastModified as the parent
+  // episode and a slightly lower priority — they're a deeper view of
+  // the same content, so they shouldn't outrank the episode itself.
+  const transcriptEntries: MetadataRoute.Sitemap = episodes
+    .filter((ep) => transcriptSlugs.has(ep.slug))
+    .map((ep) => {
+      const lastMod = new Date(ep.publishDate);
+      return {
+        url: `${BASE_URL}/podcast/${ep.slug}/transcript`,
+        lastModified: lastMod,
+        changeFrequency: changeFreqByAge(lastMod),
+        priority: 0.5,
+      };
+    });
+
+  return [...episodeEntries, ...transcriptEntries];
 }
 
 function buildGuestSitemap(): MetadataRoute.Sitemap {
