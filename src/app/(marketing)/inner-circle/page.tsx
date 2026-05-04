@@ -6,7 +6,7 @@ import { JsonLd } from "@/components/seo/JsonLd";
 import { FAQSchema } from "@/components/seo/FAQSchema";
 import { ENTITY_IDS } from "@/lib/brand-facts";
 
-const APPLY_URL = "https://www.skool.com/roadmancycling/about";
+const APPLY_URL = "/inner-circle/apply";
 
 export const metadata: Metadata = {
   title:
@@ -274,7 +274,7 @@ export default function InnerCirclePage() {
             price: "525",
             priceCurrency: "USD",
             availability: "https://schema.org/InStock",
-            url: APPLY_URL,
+            url: "https://roadmancycling.com/inner-circle/apply",
             priceSpecification: {
               "@type": "UnitPriceSpecification",
               price: "525",
@@ -359,7 +359,6 @@ export default function InnerCirclePage() {
               <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-10">
                 <Button
                   href={APPLY_URL}
-                  external
                   size="lg"
                   dataTrack="inner_circle_hero_apply"
                 >
@@ -1004,7 +1003,6 @@ export default function InnerCirclePage() {
                   <div className="text-center">
                     <Button
                       href={APPLY_URL}
-                      external
                       size="lg"
                       dataTrack="inner_circle_pricing_apply"
                       className="w-full sm:w-auto"
@@ -1107,8 +1105,6 @@ export default function InnerCirclePage() {
               </p>
               <Link
                 href={APPLY_URL}
-                target="_blank"
-                rel="noopener noreferrer"
                 className="inline-flex items-center justify-center gap-2 font-heading tracking-[0.15em] uppercase rounded-md transition-all cursor-pointer active:scale-[0.97] active:duration-75 px-10 md:px-12 py-5 text-base md:text-lg bg-off-white text-coral hover:bg-off-white/95 shadow-[0_20px_40px_-12px_rgba(0,0,0,0.35)]"
                 style={{ transitionDuration: "var(--duration-fast)" }}
                 data-track="inner_circle_footer_apply"

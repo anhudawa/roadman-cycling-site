@@ -250,15 +250,24 @@ export function PipelineBoard({ initialStages, cohorts, initialCohort }: Props) 
           value={cohort}
           onChange={(e) => changeCohort(e.target.value)}
           disabled={loadingCohort}
-          className="bg-[var(--color-sunken)] border border-[var(--color-border-strong)] text-[var(--color-fg)] text-sm rounded-[var(--radius-admin-md)] px-3 py-1.5 focus-ring focus:border-[var(--color-border-focus)]"
+          className={`bg-[var(--color-sunken)] border text-sm rounded-[var(--radius-admin-md)] px-3 py-1.5 focus-ring focus:border-[var(--color-border-focus)] ${
+            cohort === "inner-circle"
+              ? "border-amber-400/70 text-amber-200 shadow-[0_0_12px_rgba(251,191,36,0.18)]"
+              : "border-[var(--color-border-strong)] text-[var(--color-fg)]"
+          }`}
         >
           <option value="all">All cohorts</option>
           {cohorts.map((c) => (
             <option key={c} value={c}>
-              {c}
+              {c === "inner-circle" ? "★ inner-circle" : c}
             </option>
           ))}
         </select>
+        {cohort === "inner-circle" && (
+          <span className="inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-[10px] font-heading tracking-[0.18em] uppercase bg-gradient-to-r from-amber-300 to-amber-500 text-[#1a0535] shadow-md">
+            ★ Inner Circle &middot; $525/mo
+          </span>
+        )}
         <span className="sr-only">{totalCount} applications</span>
         {error && (
           <span className="ml-auto text-xs text-red-400 bg-red-500/10 border border-red-500/20 px-3 py-1 rounded-lg">
@@ -334,6 +343,7 @@ export function PipelineBoard({ initialStages, cohorts, initialCohort }: Props) 
                 )}
                 {cards.map((app) => {
                   const dragging = dragId === app.id;
+                  const isInnerCircle = app.cohort === "inner-circle";
                   return (
                     <div
                       key={app.id}
@@ -358,10 +368,22 @@ export function PipelineBoard({ initialStages, cohorts, initialCohort }: Props) 
                           openCard(app);
                         }
                       }}
-                      className={`group relative block w-full text-left p-3 rounded-lg border border-[var(--color-border)] bg-[var(--color-elevated)] hover:border-[var(--color-border-strong)] hover:bg-white/[0.04] transition cursor-grab active:cursor-grabbing ${
+                      className={`group relative block w-full text-left p-3 rounded-lg border bg-[var(--color-elevated)] hover:bg-white/[0.04] transition cursor-grab active:cursor-grabbing ${
+                        isInnerCircle
+                          ? "border-amber-400/60 ring-1 ring-amber-400/30 shadow-[0_0_18px_rgba(251,191,36,0.18)] hover:border-amber-400/80"
+                          : "border-[var(--color-border)] hover:border-[var(--color-border-strong)]"
+                      } ${
                         dragging ? `opacity-40 scale-[0.98] ring-1 ${color.ring}` : ""
                       } ${deletingId === app.id ? "opacity-40 pointer-events-none" : ""}`}
                     >
+                      {isInnerCircle && (
+                        <span
+                          className="absolute -top-2 -left-2 z-10 inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[9px] font-heading tracking-[0.18em] uppercase bg-gradient-to-r from-amber-300 to-amber-500 text-[#1a0535] shadow-md"
+                          aria-label="Inner Circle application"
+                        >
+                          ★ Inner Circle
+                        </span>
+                      )}
                       <InlineDelete
                         disabled={deletingId !== null}
                         onConfirm={() => deleteCard(app.id)}
