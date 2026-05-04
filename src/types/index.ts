@@ -175,6 +175,15 @@ export const NAV_ITEMS: NavItem[] = [
     ],
   },
   {
+    label: "Training Camps",
+    href: "/training-camps",
+    children: [
+      { label: "All Camps", href: "/training-camps" },
+      { label: "Girona Road · 13–17 Oct 2026", href: "/training-camps/girona-road" },
+      { label: "Girona Gravel · 18–22 Oct 2026", href: "/training-camps/girona-gravel" },
+    ],
+  },
+  {
     label: "About",
     href: "/about",
   },

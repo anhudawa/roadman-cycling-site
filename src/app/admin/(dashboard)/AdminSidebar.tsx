@@ -44,6 +44,7 @@ const NAV_SECTIONS: NavSection[] = [
       { href: "/admin/inbox", label: "Submissions", icon: "inbox" },
       { href: "/admin/contacts", label: "Contacts", icon: "users" },
       { href: "/admin/activity", label: "Activity", icon: "pulse" },
+      { href: "/admin/camps", label: "Training Camps", icon: "calendar" },
     ],
   },
   {

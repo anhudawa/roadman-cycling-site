@@ -1588,3 +1588,84 @@ export const brandCitationRuns = pgTable(
     index("brand_citation_runs_model_idx").on(table.model),
   ],
 );
+
+// --- Camp Bookings ---
+// Roadman Training Camps. One row per booking. The room layout is held in
+// code (src/lib/camps/rooms.ts) and assignments are derived rows below.
+export const CAMP_SLUGS = ["road", "gravel"] as const;
+export type CampSlug = (typeof CAMP_SLUGS)[number];
+
+export const CAMP_BOOKING_STATUSES = [
+  "pending",
+  "confirmed",
+  "waitlist",
+  "cancelled",
+] as const;
+export type CampBookingStatus = (typeof CAMP_BOOKING_STATUSES)[number];
+
+export const campBookings = pgTable(
+  "camp_bookings",
+  {
+    id: serial("id").primaryKey(),
+    camp: text("camp").notNull(), // 'road' | 'gravel'
+    name: text("name").notNull(),
+    email: text("email").notNull(),
+    phone: text("phone"),
+    singleRoom: boolean("single_room").notNull().default(false),
+    dietary: text("dietary"),
+    emergencyContactName: text("emergency_contact_name"),
+    emergencyContactPhone: text("emergency_contact_phone"),
+    medical: text("medical"),
+    heardFrom: text("heard_from"),
+    // 'pending' | 'confirmed' | 'waitlist' | 'cancelled'
+    status: text("status").notNull().default("pending"),
+    paidAt: timestamp("paid_at", { withTimezone: true }),
+    notes: text("notes"),
+    createdAt: timestamp("created_at", { withTimezone: true }).notNull().defaultNow(),
+    updatedAt: timestamp("updated_at", { withTimezone: true }).notNull().defaultNow(),
+  },
+  (table) => [
+    index("camp_bookings_camp_idx").on(table.camp),
+    index("camp_bookings_status_idx").on(table.status),
+    index("camp_bookings_created_at_idx").on(table.createdAt),
+    // One active booking per email per camp — re-submitting updates rather
+    // than duplicates. Cancelled bookings can be re-booked under the same email.
+    uniqueIndex("camp_bookings_email_camp_idx").on(table.email, table.camp),
+  ],
+);
+
+// One row per assigned bed. roomKey + bedKey reference the static layout in
+// src/lib/camps/rooms.ts. Stored separately so the admin can swap people
+// between rooms without touching the booking row.
+export const campRoomAssignments = pgTable(
+  "camp_room_assignments",
+  {
+    id: serial("id").primaryKey(),
+    bookingId: integer("booking_id")
+      .notNull()
+      .references(() => campBookings.id, { onDelete: "cascade" }),
+    camp: text("camp").notNull(), // denormalised for fast per-camp queries
+    roomKey: text("room_key").notNull(),
+    bedKey: text("bed_key").notNull(),
+    isSingleOccupancy: boolean("is_single_occupancy").notNull().default(false),
+    assignedAt: timestamp("assigned_at", { withTimezone: true }).notNull().defaultNow(),
+    assignedBy: text("assigned_by").notNull().default("auto"), // 'auto' | 'manual' | team slug
+  },
+  (table) => [
+    index("camp_room_assignments_camp_idx").on(table.camp),
+    index("camp_room_assignments_booking_id_idx").on(table.bookingId),
+    // A bed can only hold one person. If single_room is set, the auto-assigner
+    // also occupies the other beds in that room with placeholder rows so this
+    // unique index keeps the room locked to that booking.
+    uniqueIndex("camp_room_assignments_camp_room_bed_idx").on(
+      table.camp,
+      table.roomKey,
+      table.bedKey,
+    ),
+    uniqueIndex("camp_room_assignments_booking_room_idx").on(
+      table.bookingId,
+      table.roomKey,
+      table.bedKey,
+    ),
+  ],
+);
