@@ -60,7 +60,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
           },
           {
             name: "Use the interpretation to choose your next training focus",
-            text: "Each band has a calibrated interpretation explaining the most common unlocks at that level — whether that is intensity discipline, strength training, base volume, or recovery work.",
+            text: "Each band has a calibrated interpretation explaining the most common breakthroughs at that level — whether that is intensity discipline, strength training, base volume, or recovery work.",
           },
         ]}
       />

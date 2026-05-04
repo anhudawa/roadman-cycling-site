@@ -115,7 +115,7 @@ const objections = [
   {
     question: "I don't have time.",
     answer:
-      "The plans are built for busy professionals training 6-12 hours per week. The coaching runs asynchronously — no mandatory live sessions, weekly calls are recorded.",
+      "The plans are built for busy professionals training 6-12 hours per week. The coaching runs on your schedule — no mandatory live sessions, weekly calls are recorded.",
   },
   {
     question: "How is this different from TrainerRoad or Zwift?",

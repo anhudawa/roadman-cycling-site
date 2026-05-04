@@ -823,7 +823,7 @@ export default function InnerCirclePage() {
                     </div>
                     <div className="text-[14px] md:text-[15px] text-foreground-muted font-light">
                       <span className="sm:hidden font-heading text-foreground-subtle text-[10px] tracking-[0.3em] mr-2">
-                        NDY:
+                        Not Done Yet:
                       </span>
                       {row.ndy}
                     </div>

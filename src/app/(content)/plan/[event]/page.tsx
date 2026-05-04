@@ -62,7 +62,7 @@ function buildFaqs(event: TrainingEvent): { question: string; answer: string }[]
   return [
     {
       question: `How long should I train for the ${event.name}?`,
-      answer: `For the ${event.name} (${event.distanceKm}km with ${event.elevationGainM.toLocaleString()}m of climbing), most riders benefit from at least 12-16 weeks of structured preparation. If you've been riding consistently, 8 weeks of focused work can still be enough to transform your result. Pick the weeks-out plan that matches your window.`,
+      answer: `For the ${event.name} (${event.distanceKm}km with ${event.elevationGainM.toLocaleString()}m of climbing), most riders benefit from at least 12-16 weeks of structured preparation. If you've been riding consistently, 8 weeks of focused work can still be enough to shift your result. Pick the weeks-out plan that matches your window.`,
     },
     {
       question: `What's the typical finish time for the ${event.name}?`,

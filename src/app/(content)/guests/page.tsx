@@ -83,7 +83,7 @@ export default function GuestsPage() {
                 THE EXPERTS
               </h1>
               <p className="text-foreground-muted max-w-xl mx-auto text-lg">
-                World-class coaches, scientists, pro cyclists, and endurance
+                Leading coaches, scientists, pro cyclists, and endurance
                 athletes who&apos;ve shared their knowledge on the podcast.
               </p>
             </ScrollReveal>

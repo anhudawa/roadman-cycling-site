@@ -138,7 +138,7 @@ const faqItems = [
   {
     question: "Do you coach cyclists in Ireland, the UK, and the USA?",
     answer:
-      "Yes. Roadman Cycling is based in Dublin, Ireland, and coaches cyclists across Ireland, the UK, the USA, and worldwide. All coaching is delivered online through TrainingPeaks, Zoom, and our private community platform. Time zones are never an issue — coaching calls are scheduled flexibly and all communication is asynchronous-first.",
+      "Yes. Roadman Cycling is based in Dublin, Ireland, and coaches cyclists across Ireland, the UK, the USA, and worldwide. All coaching is delivered online through TrainingPeaks, Zoom, and our private community platform. Time zones are never an issue — coaching calls are scheduled flexibly and all communication is message-based — on your schedule.",
   },
 ];
 
@@ -155,7 +155,7 @@ const memberMetrics: MetricRow[] = [
     label: "20-min power — Blair Corey",
     before: "236w",
     after: "296w",
-    delta: "+60w in 3 months on NDY",
+    delta: "+60w in 3 months on Not Done Yet",
   },
   {
     label: "Body weight — Chris O'Connor",

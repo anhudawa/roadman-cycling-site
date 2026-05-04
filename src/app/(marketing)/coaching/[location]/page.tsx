@@ -224,7 +224,7 @@ const LOCATIONS: Record<string, LocationData> = {
       {
         question: "What time zone are coaching calls for US riders?",
         answer:
-          "All coaching communication is asynchronous-first — you update your training log and your coach reviews and adjusts your plan on their schedule. For live coaching calls, we offer flexible scheduling that works across US time zones. Many of our American members prefer evening calls EST which align with morning time in Dublin.",
+          "All coaching communication runs on your schedule — you update your training log and your coach reviews and adjusts your plan on their schedule. For live coaching calls, we offer flexible scheduling that works across US time zones. Many of our American members prefer evening calls EST which align with morning time in Dublin.",
       },
       {
         question: "Do you coach for USAC races and American events?",
@@ -234,13 +234,13 @@ const LOCATIONS: Record<string, LocationData> = {
       {
         question: "Is online coaching as effective as having a local coach?",
         answer:
-          "Online coaching is often more effective because your coach has access to all your training data — power files, heart rate trends, sleep metrics, and subjective feedback — which gives a more complete picture than a local coach who sees you once a week. The key is communication, and our system is built around regular asynchronous check-ins plus live calls when needed.",
+          "Online coaching is often more effective because your coach has access to all your training data — power files, heart rate trends, sleep metrics, and subjective feedback — which gives a more complete picture than a local coach who sees you once a week. The key is communication, and our system is built around regular message-based check-ins plus live calls.",
       },
     ],
     localContent: [
       "Flexible scheduling across all US time zones",
       "Coaching for USAC racing, gran fondos, and century rides",
-      "Asynchronous-first communication for cross-Atlantic coaching",
+      "Message-based communication for cross-Atlantic coaching",
       "Members across all 50 states from New York to California",
     ],
   },
@@ -642,7 +642,7 @@ const LOCATIONS: Record<string, LocationData> = {
       {
         question: "Is the coaching suitable for riders training across the NI/Republic border?",
         answer:
-          "Yes. Many NI riders race on both sides of the border — Cycling Ulster events plus Cycling Ireland leagues and sportives. Your plan handles the full calendar as one integrated season. Based in Dublin and deeply connected to Irish cycling, we understand the all-island racing landscape.",
+          "Yes. Many NI riders race on both sides of the border — Cycling Ulster events plus Cycling Ireland leagues and sportives. Your plan handles the full calendar as one integrated season. Based in Dublin and deeply connected to Irish cycling, we understand the all-island racing scene.",
       },
     ],
     localContent: [

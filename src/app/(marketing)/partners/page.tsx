@@ -767,7 +767,7 @@ export default function PartnersPage() {
         <div className="gradient-divider" />
 
         {/* ═══════════════════════════════════════════
-            WORLD-CLASS GUESTS — Credibility
+            LEADING GUESTS — Credibility
         ═══════════════════════════════════════════ */}
         <Section background="charcoal" className="section-glow-coral">
           <Container>
@@ -780,7 +780,7 @@ export default function PartnersPage() {
                   className="font-heading text-off-white mb-4"
                   style={{ fontSize: "var(--text-section)" }}
                 >
-                  WORLD-CLASS GUESTS
+                  LEADING GUESTS
                 </h2>
                 <p className="text-foreground-muted max-w-xl mx-auto">
                   Tour de France winners, Olympic gold medallists, world-leading
