@@ -867,7 +867,7 @@ export const COACHING_SEGMENTS: Record<string, SegmentData> = {
     relatedResources: [
       {
         label: "Race Pace Predictor",
-        href: "/tools/race-pace-predictor",
+        href: "/predict",
         description:
           "Estimate your sustainable power and finish time for a sportive based on FTP, weight, and course profile. Free tool, no sign-up.",
       },
@@ -1044,7 +1044,7 @@ export const COACHING_SEGMENTS: Record<string, SegmentData> = {
       },
       {
         label: "Race Pace Predictor",
-        href: "/tools/race-pace-predictor",
+        href: "/predict",
         description:
           "Estimate average power and finish time for long gravel races. Pacing the first hour is the single biggest gravel-day variable.",
       },

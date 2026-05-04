@@ -55,14 +55,14 @@ const VARIANTS: Record<EpisodeCtaVariant, Omit<EpisodeCtaSpec, "reason">> = {
     headline: "Build the strength your training is missing.",
     body: "The Roadman Strength Training programme — built for cyclists, designed to make you faster on the bike without breaking your weekly hours.",
     cta: "Get the strength programme",
-    href: "/products/strength-training",
+    href: "/strength-training",
   },
   "toolkit-nutrition": {
     variant: "toolkit-nutrition",
     headline: "Get the fueling right and the watts follow.",
     body: "Grab the free Roadman Toolkit — carbs-per-hour calculator, race weight guide, and the nutrition cheatsheet 8,000+ riders use.",
     cta: "Download the toolkit",
-    href: "/toolkit",
+    href: "/tools",
   },
   "newsletter-recovery": {
     variant: "newsletter-recovery",
