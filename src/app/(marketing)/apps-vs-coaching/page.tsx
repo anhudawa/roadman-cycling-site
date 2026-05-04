@@ -22,13 +22,21 @@ import { getTestimonialsByName } from "@/lib/testimonials";
 const PAGE_PATH = "/apps-vs-coaching";
 const PAGE_URL = `${SITE_ORIGIN}${PAGE_PATH}`;
 
-const APPS = [
+type AppEntry = {
+  name: string;
+  role: string;
+  strength: string;
+  cost: string;
+  favourable?: boolean;
+};
+
+const APPS: readonly AppEntry[] = [
   {
     name: "TrainingPeaks",
     role: "The plan calendar",
     strength:
       "The standard the coaching world runs on. Workout structure, TSS, CTL/ATL/TSB, post-ride compliance, the comments thread between rider and coach — all in one place. Roadman partners with TrainingPeaks because Vekta plans push directly into it. If you only have one paid app, this is the one that earns it.",
-    cost: "USD ,95/mo Premium",
+    cost: "USD $19.95/mo Premium",
     favourable: true,
   },
   {
@@ -36,21 +44,21 @@ const APPS = [
     role: "The indoor workout engine",
     strength:
       "The reason a lot of riders actually finish their Tuesday intervals in winter. Group rides, race series, structured workouts that pair with TrainingPeaks. When the weather kills your block, Zwift keeps the block alive.",
-    cost: "USD ,99/mo",
+    cost: "USD $19.99/mo",
   },
   {
     name: "TrainerRoad",
     role: "Adaptive workouts",
     strength:
       "Smart progression, useful workout library, AI FTP detection that actually correlates with field tests. Strong for riders who want a structured workout served to them with the prescription already calculated.",
-    cost: "USD ,95/mo",
+    cost: "USD $19.95/mo",
   },
   {
     name: "Strava",
     role: "The ride record and the social layer",
     strength:
       "Where the ride lives after it ends. Segments, fitness/freshness, kudos, the group context. Useful for context and pattern-spotting; lousy as a sole source of truth for training load.",
-    cost: "USD ,99/mo or USD ,99/yr Premium",
+    cost: "USD $11.99/mo or USD $79.99/yr Premium",
   },
   {
     name: "Garmin Connect",
@@ -64,16 +72,16 @@ const APPS = [
     role: "Indoor workout library",
     strength:
       "The Sufferfest pedigree, with structured 4DP-based workouts and named training plans. Good for riders who like a defined eight-week block they can run.",
-    cost: "USD ,99/mo",
+    cost: "USD $14.99/mo",
   },
   {
     name: "Whoop / Oura",
     role: "The recovery signal",
     strength:
       "Sleep architecture, HRV trend, strain score. Best used as a trend line over weeks, not a daily verdict. Pairs well with a coach who can read the trend in context.",
-    cost: "USD /mo (Whoop) · USD ,99/yr (Oura, hardware separate)",
+    cost: "USD $30/mo (Whoop) · USD $299/yr (Oura, hardware separate)",
   },
-] as const;
+];
 
 const APPS_DO = [
   {
@@ -121,7 +129,14 @@ const APPS_DONT = [
   },
 ] as const;
 
-const STACK = [
+type StackEntry = {
+  layer: string;
+  tool: string;
+  job: string;
+  primary?: boolean;
+};
+
+const STACK: readonly StackEntry[] = [
   {
     layer: "Head unit",
     tool: "Garmin Edge / Wahoo Bolt",
@@ -153,7 +168,7 @@ const STACK = [
     job: "Read everything above in context. Decide what changes. Write the next four weeks.",
     primary: true,
   },
-] as const;
+];
 
 const FAQ = [
   {

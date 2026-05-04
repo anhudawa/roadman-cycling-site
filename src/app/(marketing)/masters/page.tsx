@@ -23,7 +23,15 @@ import { getTestimonialsByName } from "@/lib/testimonials";
 const HUB_PATH = "/masters";
 const HUB_URL = `${SITE_ORIGIN}${HUB_PATH}`;
 
-const FEATURED_BLOG_POSTS = [
+type FeaturedBlogPost = {
+  slug: string;
+  title: string;
+  description: string;
+  pillar: string;
+  isFlagship?: boolean;
+};
+
+const FEATURED_BLOG_POSTS: readonly FeaturedBlogPost[] = [
   {
     slug: "masters-cycling-training-report-2026",
     title: "The Masters Cycling Training Report 2026",
@@ -109,7 +117,7 @@ const FEATURED_BLOG_POSTS = [
       "The companion to the Masters Training Report — sleep architecture, HRV interpretation, deload cadence, and the recovery patterns that hold up across the coaching roster.",
     pillar: "Recovery",
   },
-] as const;
+];
 
 const FEATURED_EPISODES = [
   {
@@ -162,7 +170,14 @@ const FEATURED_EPISODES = [
   },
 ] as const;
 
-const TOOLS = [
+type ToolEntry = {
+  href: string;
+  label: string;
+  description: string;
+  primary?: boolean;
+};
+
+const TOOLS: readonly ToolEntry[] = [
   {
     href: "/tools/masters-ftp-benchmark",
     label: "Masters FTP Benchmark",
@@ -201,7 +216,7 @@ const TOOLS = [
     description:
       "Check whether you're under-fuelling for the work you're doing — the hidden lid on masters performance.",
   },
-] as const;
+];
 
 const FAQ = [
   {
