@@ -2586,6 +2586,115 @@ export const QUESTION_PAGES: QuestionPage[] = [
       label: "Take the Plateau Diagnostic",
     },
   },
+  {
+    slug: "how-to-increase-ftp-after-40",
+    cluster: "masters",
+    question: "How to Increase FTP After 40",
+    seoTitle: "How to Increase FTP After 40 — The Masters Cyclist's Playbook",
+    seoDescription:
+      "How masters cyclists actually lift FTP after 40 — the polarised-plus-strength template, recovery windows, fuelling, and the changes that work when 'just train harder' has stopped working.",
+    pillar: "coaching",
+    shortAnswer:
+      "After 40, FTP gains come from four moves: polarised intensity (80% genuine zone 2, 20% genuinely hard), two strength sessions a week, 72-96 hours between hard rides, and properly fuelled long rides. Most masters cyclists hold or lift FTP doing less but better — the model that works at 32 is rarely the model that works at 48.",
+    bestFor:
+      "Masters cyclists who've trained for years, watched FTP slide, and are ready to restructure rather than just push harder.",
+    notFor:
+      "Riders new to structured training — your first FTP gain comes from doing anything consistent. The masters-specific levers kick in once you've already plateaued.",
+    keyTakeaway:
+      "After 40, the system around the work matters more than the work itself — fix the system and the FTP follows.",
+    evidenceLevel: "strong",
+    evidenceNote:
+      "Built on Seiler's polarised research, Rønnestad's strength training studies, the Roadman expert network (Wakefield, Lorang, Galpin, Friel), and case data from the Not Done Yet masters cohort.",
+    fullExplanation: [
+      "Anthony has had this conversation more times than any other on the Roadman Cycling Podcast — with John Wakefield, Dan Lorang, Joe Friel, Andy Galpin. The consensus is direct. Increasing FTP after 40 is rarely about training harder. The over-40 amateur who tries to push their way out of a plateau is usually the one most over-trained and least adapted. The masters playbook is structural: change the inputs, then let the body respond.",
+      "Move one is the intensity distribution. Run polarised — roughly 80% genuine zone 2, 15-20% genuinely above threshold, almost nothing in the middle. Seiler's research is unambiguous and the masters case data inside Not Done Yet matches it: the cohort who restructured to 80/20 and held it for 12-16 weeks produced the largest FTP gains. The cohort who stayed in sweet spot or grey-zone training mostly stayed flat or slid backwards.",
+      "Move two is non-negotiable strength training. Bent Rønnestad's research showed 8-15% FTP gains for cyclists who added structured heavy resistance training two days a week — without increasing bike volume. After 40, that finding is even sharper. Andy Galpin's work explains why: fast-twitch fibres atrophy first, and they're the fibres carrying short hard efforts and accelerations. Two sessions a week — squats, deadlifts, single-leg work, hip hinges — protects the engine that carries the threshold work. Skip it and you're capped.",
+      "Move three is recovery as infrastructure. The over-40 cyclist needs 72-96 hours between hard sessions, not the 48-72 hours that worked at 32. Sleep is the single biggest performance lever — the Roadman masters report references this directly. Fuel long rides properly (70-90g of carbohydrate per hour for build-phase amateurs) so your body doesn't dig into recovery debt. One full rest day a week, every week. None of this is glamorous. All of it consistently works.",
+      "Move four is the deload. Three weeks build, one week deload, repeat. The masters cyclists who lift FTP after 40 inside the Roadman community almost always do it via shorter, sharper build blocks with disciplined deloads — not heroic 8-week marathons. The body that's adapted, recovered, and properly fuelled responds. The body that's pushed without those three doesn't, no matter how hard the rider trains.",
+    ],
+    evidence: [
+      {
+        label: "Stephen Seiler — polarised training research",
+        detail:
+          "Seiler's 80/20 framework is the dominant intensity model for masters FTP gain — the structural lever the case data inside Roadman keeps confirming.",
+        href: "/guests/stephen-seiler",
+      },
+      {
+        label: "Bent Rønnestad — strength training for cyclists",
+        detail:
+          "Rønnestad's published research showing 8-15% FTP gains from heavy resistance training without added bike volume is the strongest single masters intervention.",
+      },
+      {
+        label: "Andy Galpin — Roadman Podcast",
+        detail:
+          "Galpin's work on fast-twitch fibre loss after 40 explains why strength is non-negotiable for masters cyclists trying to lift FTP rather than just hold it.",
+        href: "/blog/andy-galpin-fast-twitch-fibres-cyclist-after-40",
+      },
+      {
+        label: "John Wakefield — Roadman Podcast",
+        detail:
+          "Wakefield's masters prescription — 72-96 hour recovery windows, polarised distribution, protected intensity — is the operating template Roadman uses inside Not Done Yet.",
+        href: "/guests/john-wakefield",
+      },
+      {
+        label: "Roadman Masters Training Report (2026)",
+        detail:
+          "Aggregates the evidence base and the Roadman coaching network's case data on what actually moves FTP after 40.",
+        href: "/blog/masters-cycling-training-report-2026",
+      },
+    ],
+    faq: [
+      {
+        question: "Can a 50-year-old cyclist still increase FTP?",
+        answer:
+          "Yes — and most can lift FTP further than they assume, particularly if they've never done structured strength training or run a true polarised distribution. The masters cohort inside Not Done Yet routinely sees 5-12% FTP gains in the first 16-week structured block. The slide doesn't continue when the inputs change.",
+      },
+      {
+        question: "How long does it take to lift FTP after 40?",
+        answer:
+          "A 12-16 week structured block is the standard window for a measurable FTP gain in masters athletes. The change in trajectory shows up faster — better recovery and cleaner zones inside 4-6 weeks — but the FTP number reflects compounded adaptation, which takes time. The deeper answer is in the Roadman piece on FTP improvement timelines.",
+      },
+      {
+        question: "Should I cut training hours to lift FTP after 40?",
+        answer:
+          "Often, yes. The masters cyclist who drops from 12 chaotic hours to 8 structured hours, with strength training and proper recovery, almost always lifts FTP. The hours weren't the problem — the lack of structure and recovery around them was.",
+      },
+      {
+        question: "Do I need a coach to increase FTP after 40?",
+        answer:
+          "Not necessarily, but the riders who get it most wrong tend to be self-coached masters who can't see the leaks in their own programme. A coach (or a community with structured plans like Not Done Yet) gives you the outside read that catches the patterns in your data you've stopped noticing.",
+      },
+    ],
+    related: [
+      {
+        label: "How long does it take to increase FTP?",
+        href: "/question/how-long-to-increase-ftp",
+      },
+      {
+        label: "Why am I losing power as I age?",
+        href: "/question/why-losing-power-with-age",
+      },
+      {
+        label: "Should I do strength training as a cyclist over 40?",
+        href: "/question/strength-training-cyclist-over-40",
+      },
+      {
+        label: "Polarised vs Sweet Spot for Masters Cyclists",
+        href: "/compare/polarised-vs-sweet-spot-masters",
+      },
+      {
+        label: "Masters Cycling Training Report (2026)",
+        href: "/blog/masters-cycling-training-report-2026",
+      },
+    ],
+    cta: {
+      eyebrow: "STILL FIGURING OUT WHICH LEVER TO PULL",
+      heading: "The Plateau Diagnostic shows you which one matters most.",
+      body: "Built for masters cyclists who've tried 'train harder' and need an honest read on what's actually capping the FTP — intensity, strength, recovery, or fuelling.",
+      href: "/plateau",
+      label: "Take the Plateau Diagnostic",
+    },
+  },
 ];
 
 export function getQuestionBySlug(slug: string): QuestionPage | null {
