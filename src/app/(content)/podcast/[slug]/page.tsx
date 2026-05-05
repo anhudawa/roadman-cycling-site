@@ -21,6 +21,7 @@ import { TranscriptViewer } from "@/components/features/podcast/TranscriptViewer
 import { PlayButton } from "@/components/features/podcast/PlayButton";
 import { RelatedContent } from "@/components/features/RelatedContent";
 import { RelatedEpisodes } from "@/components/features/podcast/RelatedEpisodes";
+import { JourneyLinks } from "@/components/features/JourneyLinks";
 import { EmailCapture } from "@/components/features/conversion/EmailCapture";
 import { KeyTakeaways } from "@/components/features/podcast/KeyTakeaways";
 import { EpisodeChapters } from "@/components/features/podcast/EpisodeChapters";
@@ -913,26 +914,23 @@ export default async function EpisodePage({
               className="mt-16"
             />
 
-            {/* CTA — coaching-pillar episodes get a coaching funnel,
-                others get the Clubhouse community CTA */}
-            {episode.pillar === "coaching" ? (
-              <div className="mt-12 bg-deep-purple/30 rounded-xl border border-purple/20 p-8 text-center">
-                <h3 className="font-heading text-2xl text-off-white mb-3">
-                  WANT THIS APPLIED TO YOUR TRAINING?
-                </h3>
-                <p className="text-foreground-muted mb-6 max-w-md mx-auto">
-                  The Not Done Yet coaching community is 1:1 personalised
-                  coaching — training, nutrition, strength, recovery, and
-                  accountability. $195/month. 7-day free trial.
-                </p>
-                <div className="flex flex-col sm:flex-row gap-3 justify-center">
-                  <Button href="/apply">Apply Now — 7-Day Free Trial</Button>
-                  <Button href="/coaching" variant="ghost">
-                    See Coaching Options
-                  </Button>
-                </div>
-              </div>
-            ) : (
+            {/* Journey-aware funnel block — replaces the static "Want
+                this applied to your training?" CTA with stage + pillar
+                aware routing. Coaching-pillar episodes still resolve
+                to /apply via the destination resolver; non-coaching
+                episodes get the Inner Circle community pitch. The
+                forward links bridge listeners back to a reading-format
+                explainer and a related episode. */}
+            <JourneyLinks
+              currentType="podcast"
+              currentSlug={slug}
+              currentTitle={episode.title}
+              pillar={episode.pillar}
+              keywords={episode.keywords}
+              source={`podcast-${slug}`}
+              className="mt-12"
+            />
+            {episode.pillar !== "coaching" && (
               <div className="mt-12 bg-deep-purple/30 rounded-xl border border-purple/20 p-8 text-center">
                 <h3 className="font-heading text-2xl text-off-white mb-3">
                   LIKED THIS EPISODE?
