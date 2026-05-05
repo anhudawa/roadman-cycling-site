@@ -651,6 +651,30 @@ export const PROBLEM_PAGES: ProblemPage[] = [
     toolHref: "/tools/fuelling",
     toolLabel: "Build your race-day fuel plan",
   },
+  {
+    slug: "ftp-stuck-250-watts",
+    title: "FTP Stuck at 250 Watts? What You're Probably Doing Wrong",
+    seoTitle: "FTP Stuck at 250 Watts? Here's What You're Doing Wrong",
+    seoDescription: "FTP stuck at 250W for months? The five structural reasons amateurs plateau at the 3.5 W/kg ceiling — and the fix that actually moves the number.",
+    pillar: "coaching",
+    problem: "Your FTP has been stuck at 250 watts for six months, maybe twelve. You're a 70kg rider, so that's the 3.5 W/kg shelf — exactly where most committed amateurs stall out. You train 8-10 hours a week, you do intervals, you've tried sweet spot blocks, but the number won't budge. The problem isn't effort. It's almost always one of five structural blockers in the system around the work.",
+    causes: [
+      "You're stuck in the grey zone — most rides are 'medium' instead of properly easy or properly hard",
+      "Your aerobic base is too shallow to support more threshold work — you've maxed the gain from intensity without enough zone 2 underneath",
+      "You're under-recovering — same load, but recovery hasn't caught up, so adaptation can't happen",
+      "You're under-fuelling long rides — sub-60g of carbs an hour caps the quality of every interval that week",
+      "Your programme has gone stale — same intervals, same routes, same intensities for over a year",
+    ],
+    solutions: [
+      { title: "Fix the intensity distribution", description: "Run polarised — roughly 80% genuinely easy, 20% genuinely hard. Cut sweet spot until the base is thicker.", href: "/blog/80-20-cycling-training-the-grey-zone-trap" },
+      { title: "Diagnose the specific blocker", description: "The Plateau Diagnostic asks four minutes of questions and tells you which of the five patterns is yours.", href: "/plateau" },
+      { title: "Add low-cadence torque work", description: "The 2024 Habis study showed 40-60 RPM intervals on a climb produced near-double the VO2max gains of self-selected cadence.", href: "/blog/low-cadence-torque-intervals-cycling" },
+      { title: "Audit your fuelling on long rides", description: "Most stuck-at-250 riders are eating 30-40g/hr. Targets for amateurs in build phase are 70-90g/hr.", href: "/tools/fuelling" },
+      { title: "Talk to a coach", description: "If the system is the issue, an outside read on six months of data finds the leak faster than another six months of guessing.", href: "/apply" },
+    ],
+    toolHref: "/plateau",
+    toolLabel: "Take the plateau diagnostic",
+  },
 ];
 
 export function getProblemBySlug(slug: string): ProblemPage | null {

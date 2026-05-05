@@ -2176,6 +2176,840 @@ export const QUESTION_PAGES: QuestionPage[] = [
       },
     ],
   },
+  // ============================================================
+  // MASTERS CLUSTER — high-intent queries from cyclists over 40
+  // ============================================================
+  {
+    slug: "zone-2-training-cyclists-over-40",
+    cluster: "masters",
+    question: "Zone 2 Training for Cyclists Over 40 — How to Do It Right",
+    seoTitle: "Zone 2 Training for Cyclists Over 40 — The Honest Guide",
+    seoDescription:
+      "Zone 2 training for masters cyclists. Why it works harder for the over-40s than the over-30s, how slow is slow enough, and the weekly volume that actually moves FTP.",
+    pillar: "coaching",
+    shortAnswer:
+      "For cyclists over 40, zone 2 should make up roughly 80% of weekly volume — which usually means slower than you think. Heart rate sits around 65-75% of max, conversational pace, nose-breathing capable. The masters payoff is bigger than the under-40 version: zone 2 protects mitochondrial function and recovery capacity, both of which decline with age if you don't train them deliberately.",
+    bestFor:
+      "Riders over 40 training 6-12 hours a week who want to keep gaining FTP without breaking themselves on intensity.",
+    notFor:
+      "Riders who already do plenty of easy riding and need the missing 20% — true threshold or VO2max work, not more zone 2.",
+    keyTakeaway:
+      "After 40, zone 2 isn't a warm-up — it's the stimulus that protects the engine you still have to train hard with.",
+    evidenceLevel: "strong",
+    evidenceNote:
+      "Built on Stephen Seiler's polarised research, Iñigo San Millán's mitochondrial work with Pogacar, and what John Wakefield, Dan Lorang, and the Roadman masters coaching community see week to week.",
+    fullExplanation: [
+      "Anthony has had this conversation with Stephen Seiler more than once on the Roadman Cycling Podcast. The 80/20 distribution — roughly 80% of training volume in zone 2 and below, 20% well above threshold — is what every elite endurance programme runs on. The mistake most masters cyclists make is thinking 'easy' means zone 3. It doesn't. Zone 2 is the pace where you can hold a full conversation, breathe through your nose, and feel like you're undertraining. That feeling is the work.",
+      "What changes after 40 is the stake. Iñigo San Millán — the coach behind Tadej Pogacar's mitochondrial work — has been clear that zone 2 is the most powerful stimulus we have for protecting mitochondrial density and fat oxidation. Both decline with age unless you train them. So a masters cyclist who skips zone 2 isn't just missing a stimulus — they're letting the engine itself shrink, then trying to layer threshold work on top of a smaller base every year.",
+      "The honest question isn't whether to do zone 2. It's how slow to go. For a 50-year-old amateur with a max HR around 175, zone 2 sits roughly between 115 and 135 bpm. By power, it's 56-75% of FTP. If your normalised power on a 'long endurance' ride is 80% of FTP, you're not in zone 2. You're in zone 3 — the grey zone — and you're paying a recovery cost you'd be better off saving for your one or two real interval sessions.",
+      "Practically, an 8-hour week for a masters rider might look like this: two endurance rides (90 minutes and 2 hours, both genuine zone 2), one threshold or VO2max session (60-75 minutes including warm-up), one strength session, and one recovery spin. That structure — heavy zone 2, one quality day, one strength day — is what the masters cohort inside Not Done Yet runs and what Wakefield and Lorang prescribe to the pros they coach. The compounding effect over six months is significant. The compounding effect over five years is the reason serious 50-year-olds still ride at the front of sportives.",
+    ],
+    evidence: [
+      {
+        label: "Stephen Seiler — polarised training research",
+        detail:
+          "Seiler's work on training intensity distribution underpins the 80/20 model that Roadman recommends for masters cyclists. Zone 2 dominates the easy 80%.",
+        href: "/guests/stephen-seiler",
+      },
+      {
+        label: "Iñigo San Millán — mitochondrial training",
+        detail:
+          "San Millán's published work and his interviews on Pogacar's training establish zone 2 as the primary stimulus for mitochondrial biogenesis — the lever that ages the slowest if you keep training it.",
+      },
+      {
+        label: "John Wakefield — Roadman Podcast",
+        detail:
+          "Wakefield (Director of Coaching, Red Bull–Bora–Hansgrohe) has confirmed on the podcast that the over-40 cohort responds harder to volume restoration than to more intensity.",
+        href: "/guests/john-wakefield",
+      },
+      {
+        label: "Roadman masters community — case data",
+        detail:
+          "Documented FTP gains in the Not Done Yet community after rebalancing toward 80/20 distribution — reversing 12-18 months of grey-zone stagnation.",
+        href: "/blog/masters-cycling-training-report-2026",
+      },
+    ],
+    faq: [
+      {
+        question: "How many hours of zone 2 per week should a masters cyclist do?",
+        answer:
+          "Aim for 80% of total weekly training time. On 8 hours a week, that's roughly 6.5 hours of true zone 2 — typically split across two longer endurance rides plus a recovery spin. On 12 hours, closer to 9.5. The number that matters is the ratio, not the absolute hours.",
+      },
+      {
+        question: "Is zone 2 the same as easy spinning?",
+        answer:
+          "Close but not identical. Zone 2 is structured easy — a deliberate intensity that's hard enough to drive aerobic adaptation but easy enough to keep next-day fatigue low. Pure recovery spinning is below zone 2 and serves a different purpose. Both belong in a masters week.",
+      },
+      {
+        question: "Can I lose weight on zone 2 alone?",
+        answer:
+          "Zone 2 is metabolically efficient — it trains the body to oxidise fat at higher intensities — but body composition is mostly built in the kitchen. Combine genuine zone 2 with adequate protein, properly fuelled long rides, and a small daily energy gap and weight will move. Anthony's own 7kg loss came from eating more, not less, while running a heavily zone-2 weekly base.",
+      },
+      {
+        question: "How do I know I'm actually in zone 2, not zone 3?",
+        answer:
+          "The cleanest test is the talk test combined with nasal breathing. If you can hold a full sentence and still breathe through your nose, you're in zone 2. If you're snatching breaths or finishing sentences in chunks, you've drifted to zone 3. By heart rate, it's typically 65-75% of max; by power, 56-75% of FTP.",
+      },
+    ],
+    related: [
+      {
+        label: "How should cyclists over 40 train?",
+        href: "/question/how-should-cyclists-over-40-train",
+      },
+      {
+        label: "Polarised vs Sweet Spot for Masters Cyclists",
+        href: "/compare/polarised-vs-sweet-spot-masters",
+      },
+      {
+        label: "80/20 Cycling Training — The Grey-Zone Trap",
+        href: "/blog/80-20-cycling-training-the-grey-zone-trap",
+      },
+      {
+        label: "Cycling Over 40 — Getting Faster Guide",
+        href: "/blog/cycling-over-40-getting-faster",
+      },
+      {
+        label: "Masters FTP Benchmark Tool",
+        href: "/tools/masters-ftp-benchmark",
+      },
+    ],
+    cta: {
+      eyebrow: "STILL SECOND-GUESSING THE PACE?",
+      heading: "The Plateau Diagnostic finds the leak in 4 minutes.",
+      body: "Built for masters cyclists who've been doing the work and want to know exactly where the system is leaking — grey-zone drift, recovery, fuelling, or stale programming.",
+      href: "/plateau",
+      label: "Take the Plateau Diagnostic",
+    },
+  },
+  {
+    slug: "cycling-training-hours-per-week",
+    cluster: "coaching",
+    question: "How Many Hours Should I Train Per Week Cycling?",
+    seoTitle: "How Many Hours Per Week Should You Cycle? Honest Targets",
+    seoDescription:
+      "Realistic weekly cycling hours by goal — from finishing a sportive to lifting FTP into Cat 2. Why the right structured 6-8 hours beats an unstructured 12.",
+    pillar: "coaching",
+    shortAnswer:
+      "For most amateurs, 6-10 well-structured hours a week produce more fitness than 12-15 unstructured hours. Beginners can build at 4-6, intermediates aiming to lift FTP need 8-10, and ambitious masters or Cat 2/3 racers do 10-14. Above 14 hours, returns shrink fast unless you're racing seriously.",
+    bestFor:
+      "Working amateurs trying to set a realistic weekly target without copying a pro plan they can't sustain.",
+    notFor:
+      "Riders whose fitness ceiling is recovery-limited — adding hours to a system that's already over-fatigued just deepens the hole.",
+    keyTakeaway:
+      "More hours don't beat better hours — quality of structure beats raw volume for everyone training under 12 hours a week.",
+    evidenceLevel: "strong",
+    fullExplanation: [
+      "The honest answer most cyclists don't want to hear: there is no universal number. Joe Friel sets it cleanly in The Cyclist's Training Bible — your weekly volume should be the most you can absorb while still adapting and still living the rest of your life. For the audience reading this, that almost always lands between 6 and 12 hours. Below 6 you can hold fitness but rarely lift it; above 12 the marginal gain shrinks unless you've got the recovery infrastructure of a full-time athlete.",
+      "Anthony has dug into this on the podcast with John Wakefield, Dan Lorang, and the Bora coaching team. Their consistent message: a structured 8 hours a week beats an unstructured 12 every time. Two genuinely easy zone 2 rides, one threshold or VO2max session, one strength session, and one moderate weekend ride will move FTP further in twelve weeks than a random 12-hour week of group rides and sweet spot. The reason is simple — randomness produces fatigue without specificity, and the body adapts to the stimulus you actually deliver, not the hours on Strava.",
+      "Practical targets by goal: to finish a 100-mile sportive comfortably, 5-7 structured hours a week for 12 weeks is enough. To lift FTP from 3.0 to 3.5 W/kg, 7-9 hours with proper periodisation usually does it inside 16-20 weeks. To race Cat 3 with a chance of staying in the bunch, 8-12 hours. To compete in Cat 2 or finish a Marmotte/Étape strongly, 10-14 hours plus strength. Above 14 hours you're in serious-amateur or elite-amateur territory and most of the gain comes from recovery and structure, not more saddle time.",
+      "Two warnings from inside the coaching community. First, the hours figure on Strava lies. A 60-minute zone 2 ride and a 60-minute group ride that touches threshold are not the same training stress. Stop counting hours; start counting load with intent. Second, more hours added to a system that's recovery-broken makes things worse, not better. If you're already 8 hours a week and tired all the time, the answer is rarely 'go to 10'. It's 'recover properly for two weeks, then come back to 8 with cleaner zones'. Roadman's masters cohort sees this play out every block.",
+    ],
+    evidence: [
+      {
+        label: "Joe Friel — The Cyclist's Training Bible",
+        detail:
+          "Friel's volume guidance underpins the structured-hours-by-goal framework most amateur coaches use, including Roadman's.",
+        href: "/guests/joe-friel",
+      },
+      {
+        label: "John Wakefield — Roadman Podcast",
+        detail:
+          "On the podcast, Wakefield (Director of Coaching, Red Bull–Bora–Hansgrohe) has been consistent: structured 8-10 hour weeks for amateurs outperform unstructured 12-15 hour weeks.",
+        href: "/guests/john-wakefield",
+      },
+      {
+        label: "Dan Lorang — Roadman Podcast",
+        detail:
+          "Lorang (long-time coach to Pogacar and Vingegaard at the start of their careers) has stressed that the work-life-recovery balance dictates the right volume — copy the prescription, never the volume.",
+        href: "/guests/dan-lorang",
+      },
+      {
+        label: "Roadman case data — time-crunched cohort",
+        detail:
+          "Members training 6-9 structured hours produce comparable FTP gains to the 10-12 hour cohort over 12 weeks — the differentiator is intensity distribution, not raw hours.",
+        href: "/blog/cycling-training-plan-masters-over-40",
+      },
+    ],
+    faq: [
+      {
+        question: "Is 5 hours per week enough cycling?",
+        answer:
+          "Yes — for maintaining fitness, completing most sportives, and making modest FTP gains in your first year of structured training. Below 5 you'll hold what you have but lifting top-end is hard. Above 5, intensity distribution starts to matter more than the hours themselves.",
+      },
+      {
+        question: "How many hours do pro cyclists train per week?",
+        answer:
+          "Tour de France-level pros average 25-35 hours a week in build phases — but that includes recovery rides, training camps, and a job description that ends with 'cycling'. Comparing your week to theirs is the wrong frame. What's relevant from the pro world is the 80/20 distribution and the periodisation, not the raw hours.",
+      },
+      {
+        question: "Can I get faster cycling 4 hours a week?",
+        answer:
+          "Yes, in your first 12-18 months of structured training, and if every hour is deliberate. Two zone 2 rides, one quality interval session, and a strength session inside 4 hours can lift a recreational FTP into the strong-amateur band. Beyond that, 4 hours becomes maintenance, not progression.",
+      },
+      {
+        question: "How many days a week should I cycle?",
+        answer:
+          "Three to five days suits most amateurs. Three is the floor for fitness gains; five with one strength day and one full rest day is the sweet spot for time-crunched riders. Six or seven days only makes sense if at least two are genuine recovery rides and your sleep is dialled.",
+      },
+    ],
+    related: [
+      {
+        label: "Cycling training plan for full-time workers",
+        href: "/question/cycling-training-plan-full-time-workers",
+      },
+      {
+        label: "How many hard rides per week for masters?",
+        href: "/question/hard-rides-per-week-masters",
+      },
+      {
+        label: "Polarised vs Sweet Spot for Masters Cyclists",
+        href: "/compare/polarised-vs-sweet-spot-masters",
+      },
+      {
+        label: "Masters Cycling Training Report (2026)",
+        href: "/blog/masters-cycling-training-report-2026",
+      },
+      {
+        label: "FTP Zone Calculator",
+        href: "/tools/ftp-zones",
+      },
+    ],
+    cta: {
+      eyebrow: "WHEN HOURS ALONE WON'T MOVE THE NUMBER",
+      heading: "Find out what's actually capping your FTP.",
+      body: "The Plateau Diagnostic is built for time-crunched amateurs whose hours are right but the system isn't.",
+      href: "/plateau",
+      label: "Take the Plateau Diagnostic",
+    },
+  },
+  {
+    slug: "cycling-training-plan-full-time-workers",
+    cluster: "coaching",
+    question: "What's the Best Cycling Training Plan for Full-Time Workers?",
+    seoTitle: "Cycling Training Plan for Full-Time Workers — Honest Template",
+    seoDescription:
+      "Cycling training for full-time professionals. The 6-8 hour weekly template that fits around a job, lifts FTP, and doesn't burn you out by Wednesday.",
+    pillar: "coaching",
+    shortAnswer:
+      "The right plan for a full-time worker is roughly 6-8 hours across 4-5 days, structured 80/20: two short weekday quality sessions (45-75 minutes), two longer weekend rides (one zone 2, one mixed-intensity), and one strength session. This template lifts FTP in 12-week blocks without forcing you to choose between training, work, and family.",
+    bestFor:
+      "Working professionals — typically 35-55 — training around a 9-5, family obligations, and irregular travel.",
+    notFor:
+      "Riders with the time and recovery bandwidth for 12+ hours a week — they need a different load model.",
+    keyTakeaway:
+      "The best plan isn't the one that promises the biggest gains. It's the one you can actually finish three weeks in a row.",
+    evidenceLevel: "moderate",
+    evidenceNote:
+      "Built from the time-crunched programming Roadman runs inside the Not Done Yet community plus the consistent guidance from John Wakefield, Dan Lorang, and Joe Friel on amateur volume.",
+    fullExplanation: [
+      "Most cycling training plans on the internet are written by people who train cycling for a living, then handed to people who don't. That's the core failure. A plan that prescribes 12 hours when you have 8, or stacks intensity on Tuesday and Thursday when those are your two longest meeting days, isn't a bad plan — it's a plan for someone else. The right plan for a full-time worker starts from the constraints, not the ambition.",
+      "The shape that consistently works for the working amateur — and what Anthony has watched the masters cohort inside Not Done Yet run to good effect — is built around 6-8 hours, four to five days. Two midweek sessions of 45-75 minutes, both indoor or short-loop outdoors, where one is a true zone 2 endurance ride and the other is the week's quality session (threshold or VO2max intervals). One strength session — squats, deadlifts, single-leg work — lasting 45 minutes. One longer weekend zone 2 ride of 2-3 hours. One mixed-intensity weekend ride: warm-up, group ride or sweet spot, cool-down. That's it.",
+      "The non-obvious part of programming around a job is the deload. A working amateur who hits 8 quality hours every week for six straight weeks is heading for a fatigue wall around week seven, regardless of how strong the plan looked on paper. The Wakefield prescription Anthony has talked through on the podcast is to build for three weeks, deload one — drop volume by 30-40%, keep one quality session at intensity. It's the difference between a plan that lifts FTP for a year and a plan that breaks you in 10 weeks.",
+      "Two practical rules from the Roadman coaching community for the time-crunched cyclist. First, intensity stays sacred. If you can only protect one session a week, protect the threshold or VO2max work — that's where the FTP gains come from. Skip the long ride before you skip the intervals. Second, recovery has to be programmed, not hoped for. Sleep, fuelling and one full rest day a week are non-negotiable. The plans that actually move the number assume you'll defend those — not just on the easy weeks, but on the hard ones too.",
+    ],
+    evidence: [
+      {
+        label: "John Wakefield — Roadman Podcast",
+        detail:
+          "Wakefield's prescription for time-crunched amateurs — three weeks build, one week deload, intensity protected — is the rhythm Roadman applies inside the masters cohort.",
+        href: "/guests/john-wakefield",
+      },
+      {
+        label: "Joe Friel — The Cyclist's Training Bible",
+        detail:
+          "Friel's framework for periodising around limited weekly hours is the underpinning logic for the 6-8 hour template.",
+        href: "/guests/joe-friel",
+      },
+      {
+        label: "Dan Lorang — Roadman Podcast",
+        detail:
+          "Lorang has been explicit on the podcast: copy the structure, not the volume. The lesson translated into a working amateur's plan is what this template encodes.",
+        href: "/guests/dan-lorang",
+      },
+      {
+        label: "Roadman Not Done Yet — case data",
+        detail:
+          "Documented FTP gains across the time-crunched masters cohort running 6-8 structured hours with one weekly strength session.",
+        href: "/blog/cycling-training-plan-masters-over-40",
+      },
+    ],
+    faq: [
+      {
+        question: "Can I get faster cycling 5 hours a week with a full-time job?",
+        answer:
+          "Yes — particularly in your first 12-18 months of structured training. The constraint isn't hours; it's whether each session has a clear purpose. Two interval sessions, one strength session, and one long zone 2 ride inside 5 hours can lift FTP from a recreational baseline into the committed-amateur band.",
+      },
+      {
+        question: "When should I train if I work 9-5?",
+        answer:
+          "Most working amateurs do best with two early mornings (Tuesday and Thursday work cleanly because Wednesday becomes recovery) plus the weekend. If you can only do evenings, accept that quality drops after a 12-hour day — keep intervals to one weekday and protect them with a lighter day before.",
+      },
+      {
+        question: "Is indoor training better for time-crunched cyclists?",
+        answer:
+          "For weekday quality sessions, yes. A 60-minute indoor threshold session delivers more usable training than a 75-minute outdoor session interrupted by junctions, traffic, and cold legs. For weekend volume, outdoor wins on engagement and durability — and durability is what most masters are actually under-trained on.",
+      },
+      {
+        question: "Should I train through travel weeks?",
+        answer:
+          "Treat travel weeks as a structured recovery block — short hotel-gym sessions, walk a lot, and don't beat yourself up. Trying to maintain quality through a chaotic travel week is how the well-intentioned amateur ends up with one good week followed by three sub-par ones. Better to lose four days deliberately than four weeks accidentally.",
+      },
+    ],
+    related: [
+      {
+        label: "How many hours should I train per week cycling?",
+        href: "/question/cycling-training-hours-per-week",
+      },
+      {
+        label: "How should cyclists over 40 train?",
+        href: "/question/how-should-cyclists-over-40-train",
+      },
+      {
+        label: "Cycling Training Plan — Masters Over 40",
+        href: "/blog/cycling-training-plan-masters-over-40",
+      },
+      {
+        label: "Polarised vs Sweet Spot for Masters Cyclists",
+        href: "/compare/polarised-vs-sweet-spot-masters",
+      },
+      {
+        label: "Cycling Coaching — Topic Hub",
+        href: "/topics/cycling-coaching",
+      },
+    ],
+    cta: {
+      eyebrow: "WHEN THE PLAN FITS BUT THE NUMBER WON'T MOVE",
+      heading: "The Plateau Diagnostic finds what's leaking.",
+      body: "Built for working amateurs who've been doing the right hours and need an honest read on what's actually blocking the gain.",
+      href: "/plateau",
+      label: "Take the Plateau Diagnostic",
+    },
+  },
+  {
+    slug: "why-losing-power-with-age",
+    cluster: "masters",
+    question: "Why Am I Losing Power as I Age?",
+    seoTitle: "Why Am I Losing Cycling Power as I Age? The Honest Answer",
+    seoDescription:
+      "Why cyclists lose power with age — sarcopenia, VO2max decline, recovery debt, and grey-zone training. What's biology, what's fixable, and where to start.",
+    pillar: "coaching",
+    shortAnswer:
+      "You're not losing power because you're old. You're losing it because muscle mass declines about 8% per decade after 40 without strength training, recovery capacity drops, and most masters cyclists keep training the way they did at 30. Real biological decline in trained athletes is closer to 5% per decade — most of the rest is fixable. The fix is structural, not heroic.",
+    bestFor:
+      "Riders in their 40s and 50s watching their FTP slide despite training as hard as ever — and ready to address the system, not just push harder.",
+    notFor:
+      "Riders looking for a single supplement, gadget, or shortcut. The fixes are boring: strength, sleep, fuelling, structured intensity.",
+    keyTakeaway:
+      "Most age-related power loss in trained cyclists is sarcopenia and recovery debt — both are trainable, neither is destiny.",
+    evidenceLevel: "strong",
+    evidenceNote:
+      "Built on the published masters athlete literature (Tanaka & Seals on VO2max decline, Faulkner on sarcopenia), Iñigo San Millán's mitochondrial work, and the Roadman expert network — Wakefield, Lorang, Friel, Galpin.",
+    fullExplanation: [
+      "The first thing to separate out is what's biology and what's behaviour. Tanaka and Seals' work on age-related VO2max decline — the most-cited paper in this conversation — shows trained endurance athletes lose roughly 5% of VO2max per decade. Sedentary adults lose closer to 10%. So if your FTP has dropped 15% in 5 years, only a fraction of that is age. The rest is something you can do something about.",
+      "The biggest 'something' is sarcopenia — age-related muscle loss. After 40, untrained adults lose around 3-8% of muscle mass per decade depending on whose data you read. For cyclists, that translates directly into less force per pedal stroke and a lower top-end. Andy Galpin has talked about this on the Roadman Cycling Podcast — fast-twitch fibres atrophy first, which is why older cyclists feel the loss most on accelerations and short climbs. The defence is non-negotiable resistance training, twice a week, focused on heavy compound lifts. Without it, you are choosing the steepest version of the curve.",
+      "The second blocker is recovery debt. Same load, more fatigue. The masters research is consistent: 48-72 hours between hard sessions is the standard prescription for under-40 amateurs; for over-45 it stretches to 72-96. The cyclist who runs Tuesday-Thursday-Saturday hard for years is fine at 35 and quietly under-recovered at 50. Fix that by spreading hard sessions further apart, prioritising sleep as the single biggest performance lever, and protecting one full rest day a week. Most of the riders inside the Not Done Yet community who've reversed an FTP slide did it by training less, not more.",
+      "The third blocker is the one nobody wants to admit: most masters cyclists are still training like they're 32. Same intervals. Same group rides. Same off-season volume. The structural change that consistently moves the number is rebalancing toward a true 80/20 polarised distribution — more zone 2, sharper but less frequent threshold work, two strength sessions, and properly fuelled long rides. The question 'why am I losing power' usually has the same answer it had at 32: the system is leaking. The difference is that at 50, the system is less forgiving — so the leaks show up faster.",
+    ],
+    evidence: [
+      {
+        label: "Tanaka & Seals — VO2max decline with age",
+        detail:
+          "Reference paper showing trained endurance athletes lose roughly 5% VO2max per decade vs ~10% for sedentary adults — establishing how much of age-related decline is trainable.",
+      },
+      {
+        label: "Andy Galpin — Roadman Podcast",
+        detail:
+          "Galpin's conversation on fast-twitch fibre loss after 40 anchors the strength-training case for masters cyclists.",
+        href: "/blog/andy-galpin-fast-twitch-fibres-cyclist-after-40",
+      },
+      {
+        label: "Iñigo San Millán — mitochondrial training",
+        detail:
+          "San Millán's work explains why zone 2 protects mitochondrial density — the substrate that ages slowest if you train it deliberately.",
+      },
+      {
+        label: "Roadman Masters Cycling Training Report (2026)",
+        detail:
+          "Aggregates the masters literature with the Roadman coaching network's case data on FTP retention and recovery windows after 40.",
+        href: "/blog/masters-cycling-training-report-2026",
+      },
+    ],
+    faq: [
+      {
+        question: "How much power do you lose per year after 40?",
+        answer:
+          "Untrained adults lose around 1% of VO2max per year after 40. Trained cyclists lose closer to 0.5%, and trained masters who include strength work and quality intensity often hold flat or even improve into their late 40s and early 50s. The annual figure isn't a constant — it's a reflection of what you're doing about it.",
+      },
+      {
+        question: "Can I get my FTP back to where it was at 35?",
+        answer:
+          "For most masters under 55 with no underlying health issues, yes — provided the FTP slide came from training drift, not biology. The cohort inside Not Done Yet who recover lost FTP almost always do it the same way: structured polarised volume, two strength sessions, deeper recovery, and properly fuelled long rides. Six to twelve months is the realistic window.",
+      },
+      {
+        question: "Is the power loss permanent?",
+        answer:
+          "Most of it isn't. The portion driven by sarcopenia is reversible with consistent strength training. The portion driven by recovery debt reverses inside weeks once you give the system room to breathe. The truly age-driven portion — the 5% per decade in trained athletes — is the smallest piece and the only one outside your direct control.",
+      },
+      {
+        question: "Should I just accept the decline and ride for fun?",
+        answer:
+          "If that's what you want, ride for fun. But the data is clear: the cyclists in their 50s and 60s still riding strongly haven't 'beaten the curve' — they've just trained on the right side of it. The Roadman position, and the reason 'Not Done Yet' exists, is that the slide is far less inevitable than the cycling internet suggests.",
+      },
+    ],
+    related: [
+      {
+        label: "Losing Power After 40 — What to Do About It",
+        href: "/problem/losing-power-after-40",
+      },
+      {
+        label: "How should cyclists over 40 train?",
+        href: "/question/how-should-cyclists-over-40-train",
+      },
+      {
+        label: "Should I do strength training as a cyclist over 40?",
+        href: "/question/strength-training-cyclist-over-40",
+      },
+      {
+        label: "Cycling Over 40 — Getting Faster Guide",
+        href: "/blog/cycling-over-40-getting-faster",
+      },
+      {
+        label: "Andy Galpin on fast-twitch fibres after 40",
+        href: "/blog/andy-galpin-fast-twitch-fibres-cyclist-after-40",
+      },
+    ],
+    cta: {
+      eyebrow: "BEFORE YOU ACCEPT THE DECLINE",
+      heading: "Find out which leak is yours.",
+      body: "The Plateau Diagnostic is built for masters cyclists who've felt the slide and want to know whether it's biology, recovery, fuelling, or programming.",
+      href: "/plateau",
+      label: "Take the Plateau Diagnostic",
+    },
+  },
+  {
+    slug: "how-to-increase-ftp-after-40",
+    cluster: "masters",
+    question: "How to Increase FTP After 40",
+    seoTitle: "How to Increase FTP After 40 — The Masters Cyclist's Playbook",
+    seoDescription:
+      "How masters cyclists actually lift FTP after 40 — the polarised-plus-strength template, recovery windows, fuelling, and the changes that work when 'just train harder' has stopped working.",
+    pillar: "coaching",
+    shortAnswer:
+      "After 40, FTP gains come from four moves: polarised intensity (80% genuine zone 2, 20% genuinely hard), two strength sessions a week, 72-96 hours between hard rides, and properly fuelled long rides. Most masters cyclists hold or lift FTP doing less but better — the model that works at 32 is rarely the model that works at 48.",
+    bestFor:
+      "Masters cyclists who've trained for years, watched FTP slide, and are ready to restructure rather than just push harder.",
+    notFor:
+      "Riders new to structured training — your first FTP gain comes from doing anything consistent. The masters-specific levers kick in once you've already plateaued.",
+    keyTakeaway:
+      "After 40, the system around the work matters more than the work itself — fix the system and the FTP follows.",
+    evidenceLevel: "strong",
+    evidenceNote:
+      "Built on Seiler's polarised research, Rønnestad's strength training studies, the Roadman expert network (Wakefield, Lorang, Galpin, Friel), and case data from the Not Done Yet masters cohort.",
+    fullExplanation: [
+      "Anthony has had this conversation more times than any other on the Roadman Cycling Podcast — with John Wakefield, Dan Lorang, Joe Friel, Andy Galpin. The consensus is direct. Increasing FTP after 40 is rarely about training harder. The over-40 amateur who tries to push their way out of a plateau is usually the one most over-trained and least adapted. The masters playbook is structural: change the inputs, then let the body respond.",
+      "Move one is the intensity distribution. Run polarised — roughly 80% genuine zone 2, 15-20% genuinely above threshold, almost nothing in the middle. Seiler's research is unambiguous and the masters case data inside Not Done Yet matches it: the cohort who restructured to 80/20 and held it for 12-16 weeks produced the largest FTP gains. The cohort who stayed in sweet spot or grey-zone training mostly stayed flat or slid backwards.",
+      "Move two is non-negotiable strength training. Bent Rønnestad's research showed 8-15% FTP gains for cyclists who added structured heavy resistance training two days a week — without increasing bike volume. After 40, that finding is even sharper. Andy Galpin's work explains why: fast-twitch fibres atrophy first, and they're the fibres carrying short hard efforts and accelerations. Two sessions a week — squats, deadlifts, single-leg work, hip hinges — protects the engine that carries the threshold work. Skip it and you're capped.",
+      "Move three is recovery as infrastructure. The over-40 cyclist needs 72-96 hours between hard sessions, not the 48-72 hours that worked at 32. Sleep is the single biggest performance lever — the Roadman masters report references this directly. Fuel long rides properly (70-90g of carbohydrate per hour for build-phase amateurs) so your body doesn't dig into recovery debt. One full rest day a week, every week. None of this is glamorous. All of it consistently works.",
+      "Move four is the deload. Three weeks build, one week deload, repeat. The masters cyclists who lift FTP after 40 inside the Roadman community almost always do it via shorter, sharper build blocks with disciplined deloads — not heroic 8-week marathons. The body that's adapted, recovered, and properly fuelled responds. The body that's pushed without those three doesn't, no matter how hard the rider trains.",
+    ],
+    evidence: [
+      {
+        label: "Stephen Seiler — polarised training research",
+        detail:
+          "Seiler's 80/20 framework is the dominant intensity model for masters FTP gain — the structural lever the case data inside Roadman keeps confirming.",
+        href: "/guests/stephen-seiler",
+      },
+      {
+        label: "Bent Rønnestad — strength training for cyclists",
+        detail:
+          "Rønnestad's published research showing 8-15% FTP gains from heavy resistance training without added bike volume is the strongest single masters intervention.",
+      },
+      {
+        label: "Andy Galpin — Roadman Podcast",
+        detail:
+          "Galpin's work on fast-twitch fibre loss after 40 explains why strength is non-negotiable for masters cyclists trying to lift FTP rather than just hold it.",
+        href: "/blog/andy-galpin-fast-twitch-fibres-cyclist-after-40",
+      },
+      {
+        label: "John Wakefield — Roadman Podcast",
+        detail:
+          "Wakefield's masters prescription — 72-96 hour recovery windows, polarised distribution, protected intensity — is the operating template Roadman uses inside Not Done Yet.",
+        href: "/guests/john-wakefield",
+      },
+      {
+        label: "Roadman Masters Training Report (2026)",
+        detail:
+          "Aggregates the evidence base and the Roadman coaching network's case data on what actually moves FTP after 40.",
+        href: "/blog/masters-cycling-training-report-2026",
+      },
+    ],
+    faq: [
+      {
+        question: "Can a 50-year-old cyclist still increase FTP?",
+        answer:
+          "Yes — and most can lift FTP further than they assume, particularly if they've never done structured strength training or run a true polarised distribution. The masters cohort inside Not Done Yet routinely sees 5-12% FTP gains in the first 16-week structured block. The slide doesn't continue when the inputs change.",
+      },
+      {
+        question: "How long does it take to lift FTP after 40?",
+        answer:
+          "A 12-16 week structured block is the standard window for a measurable FTP gain in masters athletes. The change in trajectory shows up faster — better recovery and cleaner zones inside 4-6 weeks — but the FTP number reflects compounded adaptation, which takes time. The deeper answer is in the Roadman piece on FTP improvement timelines.",
+      },
+      {
+        question: "Should I cut training hours to lift FTP after 40?",
+        answer:
+          "Often, yes. The masters cyclist who drops from 12 chaotic hours to 8 structured hours, with strength training and proper recovery, almost always lifts FTP. The hours weren't the problem — the lack of structure and recovery around them was.",
+      },
+      {
+        question: "Do I need a coach to increase FTP after 40?",
+        answer:
+          "Not necessarily, but the riders who get it most wrong tend to be self-coached masters who can't see the leaks in their own programme. A coach (or a community with structured plans like Not Done Yet) gives you the outside read that catches the patterns in your data you've stopped noticing.",
+      },
+    ],
+    related: [
+      {
+        label: "How long does it take to increase FTP?",
+        href: "/question/how-long-to-increase-ftp",
+      },
+      {
+        label: "Why am I losing power as I age?",
+        href: "/question/why-losing-power-with-age",
+      },
+      {
+        label: "Should I do strength training as a cyclist over 40?",
+        href: "/question/strength-training-cyclist-over-40",
+      },
+      {
+        label: "Polarised vs Sweet Spot for Masters Cyclists",
+        href: "/compare/polarised-vs-sweet-spot-masters",
+      },
+      {
+        label: "Masters Cycling Training Report (2026)",
+        href: "/blog/masters-cycling-training-report-2026",
+      },
+    ],
+    cta: {
+      eyebrow: "STILL FIGURING OUT WHICH LEVER TO PULL",
+      heading: "The Plateau Diagnostic shows you which one matters most.",
+      body: "Built for masters cyclists who've tried 'train harder' and need an honest read on what's actually capping the FTP — intensity, strength, recovery, or fuelling.",
+      href: "/plateau",
+      label: "Take the Plateau Diagnostic",
+    },
+  },
+  {
+    slug: "cycling-recovery-tips-older-riders",
+    cluster: "masters",
+    question: "Cycling Recovery Tips for Older Riders",
+    seoTitle: "Cycling Recovery Tips for Older Riders — What Actually Works",
+    seoDescription:
+      "Recovery for cyclists over 40 — the levers that actually move the needle. Sleep, fuelling, hard-day spacing, deloads, and what most masters get wrong.",
+    pillar: "recovery",
+    shortAnswer:
+      "For cyclists over 40, the recovery levers that actually matter are sleep (7-9 hours, dark room, cool temperature), 72-96 hours between hard sessions, properly fuelled long rides (70-90g carbs/hr in build phase), one full rest day every week, and a planned deload every fourth week. Ice baths, gadgets and supplements are secondary — the basics, done consistently, deliver almost all the gain.",
+    bestFor:
+      "Riders over 40 who train consistently, ride hard, and feel the recovery cost more than they used to.",
+    notFor:
+      "Riders looking for a single supplement, gadget, or trick that replaces sleep and structure.",
+    keyTakeaway:
+      "Older cyclists don't need a longer list of recovery tools — they need to defend the boring basics every single week.",
+    evidenceLevel: "strong",
+    evidenceNote:
+      "Built on the masters athlete recovery literature (Tanaka & Seals, Faulkner sarcopenia work), Matthew Walker's sleep research, and the Roadman case data on what actually rebuilds masters cyclists between hard sessions.",
+    fullExplanation: [
+      "The honest summary first: the cycling internet sells masters recovery as a stack of gadgets, supplements, and protocols. The published evidence and the case data inside Roadman's masters cohort point somewhere much less marketable — sleep, fuelling, hard-day spacing, and deloads. None of them are sexy. All of them, defended every week, produce almost all of the recovery delta that separates the over-40 cyclist who keeps progressing from the one who doesn't.",
+      "Sleep first. Matthew Walker's research is the cleanest version of the case: trained athletes who drop below seven hours a night for a week show measurable losses in time-to-exhaustion, reaction time, and recovery markers. The masters effect is sharper. The riders inside Not Done Yet who fix their sleep — earlier wind-down, dark cool room, alcohol-free midweek, no late-night screens — usually report inside two weeks that their HRV trend lifts and their recovery rides actually feel like recovery. The gain is structural and free.",
+      "Hard-day spacing is the second lever and the easiest to get wrong. The standard amateur template — Tuesday hard, Thursday hard, Saturday hard — was built for athletes under 40. The masters research suggests stretching that to 72-96 hours between hard sessions. Many over-40 cyclists do well with one mid-week quality session and one weekend mixed-intensity ride, with the rest of the week genuinely easy zone 2 plus a strength day. Less hard work, properly recovered, beats more hard work, chronically under-recovered.",
+      "Fuelling is the third. The masters cyclist who under-fuels long rides — 30-40g of carbohydrate per hour, often justified as 'training the fat-burning' — pays for it with cratered next-day recovery and stalled FTP. Build-phase amateurs need 70-90g per hour. Add adequate protein (around 1.6-2.2g per kg of bodyweight per day, with attention to evening dosing — there's published work on bedtime protein for masters recovery). Hydrate properly. None of this is glamorous, all of it lets the other levers work.",
+      "Two more things, then the gadgets. The fourth lever is the planned deload — three weeks build, one week deload, every block. The masters cyclists who never deload are the ones who plateau the fastest. The fifth is one full rest day every week, defended like a meeting on the calendar. Once those five are in place, ice baths and recovery boots and tart cherry juice can give you a 1-2% lift if you've already got the 90% from the basics. Get them backwards and nothing else compensates.",
+    ],
+    evidence: [
+      {
+        label: "Matthew Walker — sleep & athletic recovery",
+        detail:
+          "Walker's published research and book ('Why We Sleep') anchors the case for sleep as the primary masters recovery lever. The performance cost of chronic short sleep is consistently larger than most cyclists assume.",
+      },
+      {
+        label: "Cycling After 40 Recovery Report (2026)",
+        detail:
+          "Roadman's published synthesis of the masters recovery literature — recovery windows, sleep architecture, sarcopenia, and hormonal context.",
+        href: "/blog/cycling-after-40-recovery-report-2026",
+      },
+      {
+        label: "Bedtime protein protocol — Roadman",
+        detail:
+          "Roadman's deep-dive on the published protein-before-sleep research and how masters cyclists can implement it without overhauling their nutrition.",
+        href: "/blog/bedtime-protein-cyclists-recovery-protocol",
+      },
+      {
+        label: "John Wakefield — Roadman Podcast",
+        detail:
+          "Wakefield's prescription for the masters cohort — 72-96 hour windows between hard sessions, intensity protected, deloads disciplined — is the operating template Roadman runs inside Not Done Yet.",
+        href: "/guests/john-wakefield",
+      },
+    ],
+    faq: [
+      {
+        question: "How many days off should an older cyclist take per week?",
+        answer:
+          "At least one full rest day a week, defended every week. Many masters do better with two — one full rest, one true active recovery (30-45 minutes very easy spinning). The cohort that progresses across years usually rests more than the cohort that flames out at year two or three.",
+      },
+      {
+        question: "Are ice baths and saunas worth it for older cyclists?",
+        answer:
+          "They have a measurable but secondary effect. Cold immersion can blunt some inflammatory adaptations if used right after strength work, and saunas have promising heat-acclimation data. Neither replaces sleep, fuelling, and hard-day spacing. Use them as a 1-2% addition once the basics are nailed, not as a substitute.",
+      },
+      {
+        question: "Why do I take so long to recover after long rides at 50?",
+        answer:
+          "Three reasons. Muscle fibre damage takes longer to repair as we age (the published sarcopenia research underpins this). Glycogen replenishment is slower if fuelling is sub-optimal. And many over-50 cyclists are training on a baseline of recovery debt they don't realise they're carrying. Fixing all three — strength training, deliberate fuelling, and respecting recovery windows — usually shortens the post-long-ride hangover noticeably.",
+      },
+      {
+        question: "Should masters cyclists track HRV?",
+        answer:
+          "Yes, but as a trend line, not a daily oracle. A 7-14 day downward trend in HRV is a real signal that recovery isn't keeping up. A single low day is usually one bad night's sleep. Use HRV to spot the bigger pattern; don't let it dictate whether to ride tomorrow.",
+      },
+    ],
+    related: [
+      {
+        label: "Recovery for cyclists over 50",
+        href: "/question/recovery-for-cyclists-over-50",
+      },
+      {
+        label: "Cycling After 40 Recovery Report (2026)",
+        href: "/blog/cycling-after-40-recovery-report-2026",
+      },
+      {
+        label: "Bedtime Protein Protocol for Cyclists",
+        href: "/blog/bedtime-protein-cyclists-recovery-protocol",
+      },
+      {
+        label: "Cycling Active Recovery — Explained",
+        href: "/blog/cycling-active-recovery-explained",
+      },
+      {
+        label: "Masters Recovery Score Tool",
+        href: "/tools/masters-recovery-score",
+      },
+    ],
+    cta: {
+      eyebrow: "WHEN RECOVERY IS THE LEAK",
+      heading: "Find out exactly what's blocking your gains.",
+      body: "The Plateau Diagnostic identifies whether your stalled FTP is a recovery problem, a fuelling problem, or a programming problem — in 4 minutes.",
+      href: "/plateau",
+      label: "Take the Plateau Diagnostic",
+    },
+  },
+  {
+    slug: "strength-training-cyclist-over-40",
+    cluster: "masters",
+    question: "Should I Do Strength Training as a Cyclist Over 40?",
+    seoTitle: "Should Cyclists Over 40 Lift Weights? The Honest Answer",
+    seoDescription:
+      "Should you strength train as a cyclist over 40? The published evidence (Rønnestad), the masters case for it, and the two-session-a-week template that actually works.",
+    pillar: "strength",
+    shortAnswer:
+      "Yes — and after 40, it's the single highest-return non-cycling intervention you can make. Heavy resistance training twice a week produces 8-15% FTP gains without adding bike volume (Rønnestad), protects fast-twitch muscle from age-related loss, and improves cycling economy by 4-5%. Skip it after 40 and you're choosing the steepest version of the decline curve.",
+    bestFor:
+      "Masters cyclists training under 12 hours a week who want to keep gaining power, protect against injury, and stay competitive into their 50s and 60s.",
+    notFor:
+      "Riders unwilling to commit to two consistent sessions a week — sporadic strength work is closer to no strength work than to the published-evidence dose.",
+    keyTakeaway:
+      "After 40, strength training stops being optional — it becomes the protective layer that keeps the bike work from running out of muscle to push.",
+    evidenceLevel: "strong",
+    evidenceNote:
+      "Built on Bent Rønnestad's published research, Andy Galpin's masters fast-twitch work, and the Roadman case data inside Not Done Yet — alongside the gym-vs-bike strength training literature reviewed in our 2026 report.",
+    fullExplanation: [
+      "If there's one near-consensus inside the Roadman expert network, it's this one. Bent Rønnestad's published research is the single cleanest piece of evidence — heavy resistance training twice a week, alongside normal cycling volume, lifted FTP by 8-15% in trained cyclists. Cycling economy improved by 4-5%. Time-to-exhaustion at threshold went up. The cost was 60-90 minutes twice a week. The return per hour is hard to find anywhere else in the masters playbook.",
+      "After 40, the case sharpens. Andy Galpin has been clear on the Roadman Cycling Podcast: fast-twitch fibres atrophy first with age, and they're the fibres that carry short hard efforts, accelerations, and the top-end of your FTP. Without resistance training, you're losing them by 3-8% a decade. With it, you can hold or even build them into your 50s and 60s. Watching a 55-year-old who lifts ride away from a 35-year-old who doesn't is a regular feature of any serious masters training group — the work is the difference.",
+      "The honest counter-argument: 'lifting will make me bulky and slow me down.' The published research doesn't support this for the protocols that actually deliver FTP gains — heavy compound lifts (squats, deadlifts, single-leg work, hip hinges) at low rep ranges (3-6 reps, 3-5 sets) twice a week. Hypertrophy isn't the goal and isn't what happens at this dose. What happens is neural — better motor unit recruitment, stiffer tendons, more force per pedal stroke. The masters who report feeling 'too bulky' are usually doing high-rep bodybuilding sessions, not the strength template that moves cycling performance.",
+      "Practically, the template Roadman runs inside Not Done Yet is two sessions a week, ideally on the same days as a hard ride (so you're not stacking another stressful day) or on a separate strength day if your week allows. Squats, deadlifts, lunges or split squats, a hip hinge variant, and core. 45-60 minutes including warm-up. Heavy enough to be hard at 3-5 reps. Off-season builds the foundation; in-season maintains it. Skip it for 8 weeks and you'll feel the loss on every steep climb.",
+    ],
+    evidence: [
+      {
+        label: "Bent Rønnestad — strength training for cyclists",
+        detail:
+          "Rønnestad's published trials showing 8-15% FTP gains from 8-12 weeks of heavy resistance training without added bike volume — the strongest single masters intervention.",
+      },
+      {
+        label: "Andy Galpin — Roadman Podcast",
+        detail:
+          "Galpin's research and conversation on fast-twitch fibre loss after 40 establishes why strength training is non-negotiable rather than optional for masters cyclists.",
+        href: "/blog/andy-galpin-fast-twitch-fibres-cyclist-after-40",
+      },
+      {
+        label: "Roadman strength training research review",
+        detail:
+          "Roadman's synthesis of the gym-vs-more-miles literature, including the published meta-analyses on age-group cyclists and the case data from the masters cohort.",
+        href: "/blog/gym-vs-bike-strength-training-cyclists-research",
+      },
+      {
+        label: "Roadman Strength Training Course",
+        detail:
+          "The published Roadman strength programme that operationalises the Rønnestad protocol for masters cyclists who don't have a coach.",
+        href: "/strength-training",
+      },
+    ],
+    faq: [
+      {
+        question: "How many strength sessions per week for cyclists over 40?",
+        answer:
+          "Two is the published-evidence standard and the dose that delivers most of the FTP gain. Three can work in off-season for riders who recover well; one is enough for in-season maintenance once the foundation is built. Below one a week is closer to no programme than to the published research.",
+      },
+      {
+        question: "When should I do strength training in my cycling week?",
+        answer:
+          "Two patterns work. Stack it on hard ride days — fewer total stressful days, more recovery days clean. Or run it as standalone strength days with easy or rest cycling around them. Avoid putting heavy lower-body strength on the day before a key cycling session.",
+      },
+      {
+        question: "Will lifting make me a slower climber?",
+        answer:
+          "If you're doing high-rep bodybuilding-style sessions and gaining 8kg of upper-body muscle, yes. If you're doing the heavy-low-rep cycling-specific protocol — squats, deadlifts, single-leg work — the evidence consistently shows the opposite: faster climbing, better economy, more durability. The protocol matters more than the activity.",
+      },
+      {
+        question: "Can I just do bodyweight or do I need a gym?",
+        answer:
+          "Bodyweight gets you most of the way for the first 3-6 months, particularly if you're new to strength work. Beyond that, the published gains require external load — barbells, dumbbells, kettlebells. The masters cohort inside Roadman who've shifted from bodyweight to loaded sessions report the bigger jump came in the second phase.",
+      },
+    ],
+    related: [
+      {
+        label: "Do older cyclists need strength training?",
+        href: "/question/do-older-cyclists-need-strength",
+      },
+      {
+        label: "Strength Training vs More Miles",
+        href: "/compare/strength-vs-more-miles",
+      },
+      {
+        label: "Cycling Strength Training Guide",
+        href: "/blog/cycling-strength-training-guide",
+      },
+      {
+        label: "Andy Galpin on fast-twitch fibres after 40",
+        href: "/blog/andy-galpin-fast-twitch-fibres-cyclist-after-40",
+      },
+      {
+        label: "Roadman Strength Training Programme",
+        href: "/strength-training",
+      },
+    ],
+    cta: {
+      eyebrow: "READY TO STOP LEAVING POWER ON THE TABLE",
+      heading: "The Plateau Diagnostic reveals where strength fits in your week.",
+      body: "Built for masters cyclists who suspect strength is the missing piece — and want a structured read on where exactly the FTP is leaking.",
+      href: "/plateau",
+      label: "Take the Plateau Diagnostic",
+    },
+  },
+  {
+    slug: "lose-weight-without-losing-power-cycling",
+    cluster: "nutrition",
+    question: "How to Lose Weight Without Losing Power as a Cyclist",
+    seoTitle: "Lose Weight Without Losing Power Cycling — The Honest Method",
+    seoDescription:
+      "How cyclists actually lose weight without dropping FTP — fuel for the work required, protein adequacy, body composition over scale weight. The evidence-based method that doesn't break performance.",
+    pillar: "nutrition",
+    shortAnswer:
+      "Lose weight without losing power by fuelling the work properly (don't under-eat on training days), eating enough protein (1.6-2.2g per kg of bodyweight), and creating a small daily energy gap on lighter days only. The cyclists who hold or lift FTP while leaning out almost never crash-diet, never train fasted long, and never use generic calorie apps. Anthony lost 7kg in 12 weeks while eating more food than ever.",
+    bestFor:
+      "Riders 5-10kg above their ideal racing weight who want to lean out without losing fitness, particularly masters cyclists for whom muscle loss is the bigger risk.",
+    notFor:
+      "Riders chasing aggressive cuts in short timeframes — the published RED-S literature is unambiguous that fast losses cost performance, recovery, and (in women) menstrual function.",
+    keyTakeaway:
+      "Power and weight aren't opposites — they go together when you fuel the work and create the gap on the right days.",
+    evidenceLevel: "strong",
+    evidenceNote:
+      "Built on the published RED-S/LEA literature, Dr David Dunne's World Tour nutrition work on the podcast, Hannah Grant's pro-team chef perspective, and Anthony's own 12-week, 7kg case study.",
+    fullExplanation: [
+      "The cycling internet's standard advice on weight loss — 'calories in versus calories out, ride more, eat less' — is, in Anthony's words on the podcast, outdated. It produces the exact pattern most masters cyclists know intimately: drop a kilo, lose 10W, plateau, regain the kilo, regain the watts, repeat. The published research and the World Tour conversations Roadman has had with David Dunne, Alex Larson and Alan Murchison point a different way: fuel the work required, eat enough protein, create the gap on the right days, and let body composition shift rather than scale weight.",
+      "'Fuel for the work required' is the governing phrase. On a hard training day or a long ride, you eat to support the work. On a recovery or rest day, you eat closer to maintenance. The body doesn't care about a daily calorie average — it cares about whether each session was supported. A rider who eats 2,200 kcal on rest days and 3,500 kcal on long ride days finishes the week leaner, fitter, and recovering faster than the rider who chains 2,800 kcal across every day. Anthony's own 7kg-in-12-weeks loss came from this exact pattern: more food on hard days, slightly less on easy days, no fasted long rides, no calorie tracking app.",
+      "Protein adequacy is the second non-negotiable. The published research for endurance athletes lands at 1.6-2.2g of protein per kg of bodyweight per day for those losing weight, with attention to per-meal dosing (around 0.4g/kg per meal, four meals a day works for most). For an 80kg cyclist trying to drop to 75kg, that means 130-175g of protein daily — significantly more than most amateurs eat. The protein doesn't 'add' fat loss; it protects muscle while you're in the gap. Without it, the rider losing weight loses muscle. With it, they lose mostly fat. The first scenario costs FTP. The second protects it.",
+      "The third pillar is the size of the gap. The Roadman position, anchored in the RED-S literature and David Dunne's podcast conversation, is that the daily energy gap should be modest — typically 200-400 kcal below maintenance on lighter days, with full fuelling on harder days. That produces 0.3-0.5kg per week of loss in most amateurs, almost all of it body fat. Aggressive deficits — 800+ kcal/day — drop weight faster but reliably cost FTP, recovery, and (in women) menstrual function. The Hannah Grant podcast on pro-team chef perspectives is consistent: the riders who lean out for the season do it slowly across 8-12 weeks, never inside two.",
+      "Two practical points. First, fasted long rides are a trap for masters cyclists trying to lean out. They feel productive, they bonk you 60km from home, and the body responds by hoarding the next meal. Roadman's position is to skip them — fuel the long ride properly with 70-90g of carbohydrate per hour, recover faster, train better next session. Second, body composition matters more than scale weight. A 75kg rider with more muscle and less fat will outride a 73kg rider who got there by losing both. Track the trend over months, not the number on a Tuesday morning.",
+    ],
+    evidence: [
+      {
+        label: "Dr David Dunne — Roadman Podcast",
+        detail:
+          "Dunne (World Tour nutritionist) has been explicit on the podcast — fuel the work required, defend the protein, take the loss slowly. The cleanest masters-friendly framing in the cycling nutrition space.",
+        href: "/blog/david-dunne-world-tour-nutritionist-cycling-weight-loss",
+      },
+      {
+        label: "Alex Larson — body composition for cyclists",
+        detail:
+          "Larson's published work and her podcast conversation anchor the protein-adequacy and body-composition-over-weight argument for endurance athletes.",
+        href: "/blog/alex-larson-body-composition-cyclists",
+      },
+      {
+        label: "Hannah Grant — pro team chef perspective",
+        detail:
+          "Grant has cooked for Tinkoff and other pro teams. Her podcast take on how riders actually lean out — slowly, with proper fuelling — informs the Roadman framework.",
+        href: "/blog/hannah-grant-pro-team-chef-weight-loss",
+      },
+      {
+        label: "RED-S / LEA published literature",
+        detail:
+          "The published research on Relative Energy Deficiency in Sport documents the performance, recovery, and (in women) hormonal cost of aggressive deficits — the basis for keeping the daily gap modest.",
+        href: "/problem/red-s-low-energy-availability",
+      },
+      {
+        label: "Roadman cycling weight loss mistakes",
+        detail:
+          "The Roadman article documenting the most common amateur weight-loss patterns and why they fail — particularly under-fuelling and fasted training.",
+        href: "/blog/cycling-weight-loss-mistakes",
+      },
+    ],
+    faq: [
+      {
+        question: "Can you lose weight while building cycling power?",
+        answer:
+          "Yes, particularly for amateurs who are 5-10kg above their racing weight. The pattern that consistently works in the Roadman case data: fuel hard sessions properly, eat protein adequately, create a modest gap on easy days only, and lose 0.3-0.5kg per week. FTP usually holds or lifts across the period.",
+      },
+      {
+        question: "How fast can a cyclist lose weight without losing power?",
+        answer:
+          "Around 0.5kg per week is the upper end before performance starts to suffer for most amateurs. Below that — 0.3-0.5kg per week — is the comfortable range. Above 0.7kg per week reliably costs FTP, recovery, and sleep quality. Slow is faster in this game.",
+      },
+      {
+        question: "Should I ride fasted to lose weight?",
+        answer:
+          "Generally, no — particularly for masters cyclists. Fasted rides feel productive, often crater the rest of the day's recovery, and rarely deliver the fat-oxidation benefit they promise outside of carefully programmed contexts. Fuel the rides properly, create the calorie gap elsewhere.",
+      },
+      {
+        question: "How much protein for a cyclist trying to lose weight?",
+        answer:
+          "1.6-2.2g per kg of bodyweight per day is the published-evidence range for endurance athletes in a deficit. For an 80kg cyclist, that's 130-175g daily, ideally split across four meals. Below 1.5g/kg, the case data shows higher rates of muscle loss and FTP regression during the cut.",
+      },
+    ],
+    related: [
+      {
+        label: "How much protein do cyclists need?",
+        href: "/question/how-much-protein-cyclists-need",
+      },
+      {
+        label: "Cycling Weight Loss Mistakes",
+        href: "/blog/cycling-weight-loss-mistakes",
+      },
+      {
+        label: "Fuel for the Work Required",
+        href: "/blog/cycling-weight-loss-fuel-for-the-work-required",
+      },
+      {
+        label: "Eating More for Weight Loss — The Off-Bike Effects",
+        href: "/blog/eating-more-weight-loss-off-bike-effects",
+      },
+      {
+        label: "Race Weight Calculator",
+        href: "/tools/race-weight",
+      },
+    ],
+    cta: {
+      eyebrow: "WEIGHT MOVING, FTP STUCK?",
+      heading: "The Plateau Diagnostic finds where the leak is.",
+      body: "Built for amateurs whose body composition is moving but whose power isn't — and who want to know whether it's fuelling, recovery, or programming.",
+      href: "/plateau",
+      label: "Take the Plateau Diagnostic",
+    },
+  },
 ];
 
 export function getQuestionBySlug(slug: string): QuestionPage | null {
