@@ -83,6 +83,8 @@ export default function TrainingCampsLandingPage() {
               price: String(c.pricePerPerson),
               priceCurrency: "EUR",
               availability: "https://schema.org/InStock",
+              url: `https://roadmancycling.com${c.href}`,
+              validFrom: "2026-05-04",
             },
             organizer: {
               "@type": "Organization",
