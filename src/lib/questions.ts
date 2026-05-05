@@ -2695,6 +2695,109 @@ export const QUESTION_PAGES: QuestionPage[] = [
       label: "Take the Plateau Diagnostic",
     },
   },
+  {
+    slug: "cycling-recovery-tips-older-riders",
+    cluster: "masters",
+    question: "Cycling Recovery Tips for Older Riders",
+    seoTitle: "Cycling Recovery Tips for Older Riders — What Actually Works",
+    seoDescription:
+      "Recovery for cyclists over 40 — the levers that actually move the needle. Sleep, fuelling, hard-day spacing, deloads, and what most masters get wrong.",
+    pillar: "recovery",
+    shortAnswer:
+      "For cyclists over 40, the recovery levers that actually matter are sleep (7-9 hours, dark room, cool temperature), 72-96 hours between hard sessions, properly fuelled long rides (70-90g carbs/hr in build phase), one full rest day every week, and a planned deload every fourth week. Ice baths, gadgets and supplements are secondary — the basics, done consistently, deliver almost all the gain.",
+    bestFor:
+      "Riders over 40 who train consistently, ride hard, and feel the recovery cost more than they used to.",
+    notFor:
+      "Riders looking for a single supplement, gadget, or trick that replaces sleep and structure.",
+    keyTakeaway:
+      "Older cyclists don't need a longer list of recovery tools — they need to defend the boring basics every single week.",
+    evidenceLevel: "strong",
+    evidenceNote:
+      "Built on the masters athlete recovery literature (Tanaka & Seals, Faulkner sarcopenia work), Matthew Walker's sleep research, and the Roadman case data on what actually rebuilds masters cyclists between hard sessions.",
+    fullExplanation: [
+      "The honest summary first: the cycling internet sells masters recovery as a stack of gadgets, supplements, and protocols. The published evidence and the case data inside Roadman's masters cohort point somewhere much less marketable — sleep, fuelling, hard-day spacing, and deloads. None of them are sexy. All of them, defended every week, produce almost all of the recovery delta that separates the over-40 cyclist who keeps progressing from the one who doesn't.",
+      "Sleep first. Matthew Walker's research is the cleanest version of the case: trained athletes who drop below seven hours a night for a week show measurable losses in time-to-exhaustion, reaction time, and recovery markers. The masters effect is sharper. The riders inside Not Done Yet who fix their sleep — earlier wind-down, dark cool room, alcohol-free midweek, no late-night screens — usually report inside two weeks that their HRV trend lifts and their recovery rides actually feel like recovery. The gain is structural and free.",
+      "Hard-day spacing is the second lever and the easiest to get wrong. The standard amateur template — Tuesday hard, Thursday hard, Saturday hard — was built for athletes under 40. The masters research suggests stretching that to 72-96 hours between hard sessions. Many over-40 cyclists do well with one mid-week quality session and one weekend mixed-intensity ride, with the rest of the week genuinely easy zone 2 plus a strength day. Less hard work, properly recovered, beats more hard work, chronically under-recovered.",
+      "Fuelling is the third. The masters cyclist who under-fuels long rides — 30-40g of carbohydrate per hour, often justified as 'training the fat-burning' — pays for it with cratered next-day recovery and stalled FTP. Build-phase amateurs need 70-90g per hour. Add adequate protein (around 1.6-2.2g per kg of bodyweight per day, with attention to evening dosing — there's published work on bedtime protein for masters recovery). Hydrate properly. None of this is glamorous, all of it lets the other levers work.",
+      "Two more things, then the gadgets. The fourth lever is the planned deload — three weeks build, one week deload, every block. The masters cyclists who never deload are the ones who plateau the fastest. The fifth is one full rest day every week, defended like a meeting on the calendar. Once those five are in place, ice baths and recovery boots and tart cherry juice can give you a 1-2% lift if you've already got the 90% from the basics. Get them backwards and nothing else compensates.",
+    ],
+    evidence: [
+      {
+        label: "Matthew Walker — sleep & athletic recovery",
+        detail:
+          "Walker's published research and book ('Why We Sleep') anchors the case for sleep as the primary masters recovery lever. The performance cost of chronic short sleep is consistently larger than most cyclists assume.",
+      },
+      {
+        label: "Cycling After 40 Recovery Report (2026)",
+        detail:
+          "Roadman's published synthesis of the masters recovery literature — recovery windows, sleep architecture, sarcopenia, and hormonal context.",
+        href: "/blog/cycling-after-40-recovery-report-2026",
+      },
+      {
+        label: "Bedtime protein protocol — Roadman",
+        detail:
+          "Roadman's deep-dive on the published protein-before-sleep research and how masters cyclists can implement it without overhauling their nutrition.",
+        href: "/blog/bedtime-protein-cyclists-recovery-protocol",
+      },
+      {
+        label: "John Wakefield — Roadman Podcast",
+        detail:
+          "Wakefield's prescription for the masters cohort — 72-96 hour windows between hard sessions, intensity protected, deloads disciplined — is the operating template Roadman runs inside Not Done Yet.",
+        href: "/guests/john-wakefield",
+      },
+    ],
+    faq: [
+      {
+        question: "How many days off should an older cyclist take per week?",
+        answer:
+          "At least one full rest day a week, defended every week. Many masters do better with two — one full rest, one true active recovery (30-45 minutes very easy spinning). The cohort that progresses across years usually rests more than the cohort that flames out at year two or three.",
+      },
+      {
+        question: "Are ice baths and saunas worth it for older cyclists?",
+        answer:
+          "They have a measurable but secondary effect. Cold immersion can blunt some inflammatory adaptations if used right after strength work, and saunas have promising heat-acclimation data. Neither replaces sleep, fuelling, and hard-day spacing. Use them as a 1-2% addition once the basics are nailed, not as a substitute.",
+      },
+      {
+        question: "Why do I take so long to recover after long rides at 50?",
+        answer:
+          "Three reasons. Muscle fibre damage takes longer to repair as we age (the published sarcopenia research underpins this). Glycogen replenishment is slower if fuelling is sub-optimal. And many over-50 cyclists are training on a baseline of recovery debt they don't realise they're carrying. Fixing all three — strength training, deliberate fuelling, and respecting recovery windows — usually shortens the post-long-ride hangover noticeably.",
+      },
+      {
+        question: "Should masters cyclists track HRV?",
+        answer:
+          "Yes, but as a trend line, not a daily oracle. A 7-14 day downward trend in HRV is a real signal that recovery isn't keeping up. A single low day is usually one bad night's sleep. Use HRV to spot the bigger pattern; don't let it dictate whether to ride tomorrow.",
+      },
+    ],
+    related: [
+      {
+        label: "Recovery for cyclists over 50",
+        href: "/question/recovery-for-cyclists-over-50",
+      },
+      {
+        label: "Cycling After 40 Recovery Report (2026)",
+        href: "/blog/cycling-after-40-recovery-report-2026",
+      },
+      {
+        label: "Bedtime Protein Protocol for Cyclists",
+        href: "/blog/bedtime-protein-cyclists-recovery-protocol",
+      },
+      {
+        label: "Cycling Active Recovery — Explained",
+        href: "/blog/cycling-active-recovery-explained",
+      },
+      {
+        label: "Masters Recovery Score Tool",
+        href: "/tools/masters-recovery-score",
+      },
+    ],
+    cta: {
+      eyebrow: "WHEN RECOVERY IS THE LEAK",
+      heading: "Find out exactly what's blocking your gains.",
+      body: "The Plateau Diagnostic identifies whether your stalled FTP is a recovery problem, a fuelling problem, or a programming problem — in 4 minutes.",
+      href: "/plateau",
+      label: "Take the Plateau Diagnostic",
+    },
+  },
 ];
 
 export function getQuestionBySlug(slug: string): QuestionPage | null {
