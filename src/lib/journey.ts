@@ -73,6 +73,14 @@ export interface JourneyInput {
   keywords?: string[];
   /** Persona signal (only set for /you/[slug] pages). */
   persona?: PersonaSlug;
+  /**
+   * Slugs to drop from the candidate pool. Use on persona pages so we
+   * don't re-surface the curated posts/episodes that already appear
+   * higher up the page. Matched against blog slugs and podcast slugs
+   * indiscriminately — the chance of a collision between the two
+   * namespaces is low enough that a single set is safe.
+   */
+  excludeSlugs?: string[];
 }
 
 // ============================================
@@ -194,10 +202,12 @@ function topPosts(
   preferStage: FunnelStage,
   limit: number,
 ): BlogPostMeta[] {
+  const exclude = new Set(input.excludeSlugs ?? []);
   const all = getAllPosts().filter((p) => {
     if (input.currentType === "blog" && p.slug === input.currentSlug) {
       return false;
     }
+    if (exclude.has(p.slug)) return false;
     return true;
   });
   return all
@@ -209,10 +219,12 @@ function topPosts(
 }
 
 function topEpisodes(input: JourneyInput, limit: number): EpisodeMeta[] {
+  const exclude = new Set(input.excludeSlugs ?? []);
   const all = getAllEpisodes().filter((e) => {
     if (input.currentType === "podcast" && e.slug === input.currentSlug) {
       return false;
     }
+    if (exclude.has(e.slug)) return false;
     return true;
   });
   return all
@@ -331,10 +343,9 @@ export function resolveJourney(input: JourneyInput): JourneyResult {
     title: input.currentTitle,
   });
 
-  // Lateral: same-stage same-pillar deeper-reading suggestions
-  const lateral: JourneyLink[] = topPosts(input, stage, 2).map(postToLink);
-
-  // Forward: next-stage links — the actual funnel motion
+  // Forward links go first so they win the dedupe — they carry the
+  // funnel motion (tool to apply / comparison to decide) and would
+  // be wasted in the secondary "go deeper" zone.
   const forward: JourneyLink[] = [];
 
   if (stage === "awareness") {
@@ -344,10 +355,9 @@ export function resolveJourney(input: JourneyInput): JourneyResult {
     const tool = getPrimaryToolForPillar(input.pillar);
     if (tool) forward.push(toolToLink(tool));
   } else if (stage === "comparison") {
-    // comparison → tool (run the numbers) → coaching CTA (handled as destination)
+    // comparison → tool (run the numbers) → related episode for context
     const tool = getPrimaryToolForPillar(input.pillar);
     if (tool) forward.push(toolToLink(tool));
-    // Add one same-pillar awareness piece for context
     const eps = topEpisodes(input, 1);
     if (eps[0]) forward.push(episodeToLink(eps[0]));
   } else if (stage === "tools") {
@@ -372,6 +382,17 @@ export function resolveJourney(input: JourneyInput): JourneyResult {
     const eps = topEpisodes(input, 1);
     if (eps[0]) forward.push(episodeToLink(eps[0]));
   }
+
+  // Lateral: same-stage same-pillar deeper-reading suggestions, with
+  // an exclude set built from the forward picks above so we don't
+  // surface the same article in both zones. Pull a few extra from
+  // `topPosts` so we still end up with two lateral cards after the
+  // dedup filter runs.
+  const forwardHrefs = new Set(forward.map((f) => f.href));
+  const lateral: JourneyLink[] = topPosts(input, stage, 4)
+    .map(postToLink)
+    .filter((link) => !forwardHrefs.has(link.href))
+    .slice(0, 2);
 
   return {
     currentStage: stage,

@@ -32,6 +32,12 @@ export interface JourneyLinksProps {
   keywords?: string[];
   /** Persona signal (only set for /you/[slug] pages). */
   persona?: PersonaSlug;
+  /**
+   * Slugs to exclude from the candidate pool. Use on persona pages
+   * so curated content above the journey block doesn't re-surface
+   * inside it.
+   */
+  excludeSlugs?: string[];
   /** Analytics namespace, e.g. "blog-ftp-zones" */
   source: string;
   /** Visual variant */
@@ -83,6 +89,7 @@ export function JourneyLinks({
   pillar,
   keywords = [],
   persona,
+  excludeSlugs,
   source,
   variant = "panel",
   eyebrow,
@@ -95,6 +102,7 @@ export function JourneyLinks({
     pillar,
     keywords,
     persona,
+    excludeSlugs,
   };
   const journey = resolveJourney(input);
 

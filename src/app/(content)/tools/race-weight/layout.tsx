@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { ToolSchemas } from "@/components/seo/ToolSchemas";
+import { ToolJourney } from "@/components/features/tools/ToolJourney";
 
 export const metadata: Metadata = {
   title: "Race Weight Calculator — Peak Cycling Weight",
@@ -22,6 +23,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
     <>
       <ToolSchemas slug="race-weight" />
       {children}
+      <ToolJourney slug="race-weight" />
     </>
   );
 }

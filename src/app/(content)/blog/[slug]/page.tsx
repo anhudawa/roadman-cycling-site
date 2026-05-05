@@ -24,6 +24,7 @@ import { queryContentGraph } from "@/lib/content-graph";
 import { RelatedContent } from "@/components/features/RelatedContent";
 import { InlineArticleCTA } from "@/components/features/conversion/InlineArticleCTA";
 import { NextStepBlock } from "@/components/features/conversion/NextStepBlock";
+import { JourneyLinks } from "@/components/features/JourneyLinks";
 import { StickyCoachingBar } from "@/components/features/conversion/StickyCoachingBar";
 import { EmailCapture } from "@/components/features/conversion/EmailCapture";
 import { IntentCTA, PlateauCTA, inferIntentCategory } from "@/components/cta";
@@ -823,25 +824,23 @@ export default async function BlogPostPage({
               className="mt-16"
             />
 
-            {/* Coaching funnel CTA — coaching-pillar posts only */}
-            {post.pillar === "coaching" && (
-              <div className="mt-16 bg-deep-purple/30 rounded-xl border border-purple/20 p-8 text-center">
-                <h3 className="font-heading text-2xl text-off-white mb-3">
-                  READY TO APPLY THIS TO YOUR TRAINING?
-                </h3>
-                <p className="text-foreground-muted mb-6 max-w-md mx-auto">
-                  The Not Done Yet coaching community is 1:1 personalised
-                  coaching across training, nutrition, strength, recovery, and
-                  accountability. $195/month with a 7-day free trial.
-                </p>
-                <div className="flex flex-col sm:flex-row gap-3 justify-center">
-                  <Button href="/apply">Apply Now — 7-Day Free Trial</Button>
-                  <Button href="/coaching" variant="ghost">
-                    See Coaching Options
-                  </Button>
-                </div>
-              </div>
-            )}
+            {/* Journey-aware internal-linking engine — classifies the
+                article (awareness vs comparison) and routes the reader
+                to the next funnel stage: a tool to apply the idea, a
+                comparison piece to decide between options, or the
+                offer-ladder destination (Plateau Diagnostic for
+                top-of-funnel readers, /apply for coaching-pillar
+                readers). Replaces the static "Apply for coaching"
+                block with funnel-aware copy. */}
+            <JourneyLinks
+              currentType="blog"
+              currentSlug={slug}
+              currentTitle={post.title}
+              pillar={post.pillar}
+              keywords={post.keywords}
+              source={`blog-${slug}`}
+              className="mt-16"
+            />
 
             {/* Back to blog */}
             <div className="mt-12 text-center">

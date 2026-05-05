@@ -20,6 +20,7 @@ import {
 } from "@/lib/testimonials";
 import { getPostBySlug } from "@/lib/blog";
 import { getEpisodeBySlug } from "@/lib/podcast";
+import { JourneyLinks } from "@/components/features/JourneyLinks";
 
 export function generateStaticParams() {
   return getAllPersonaSlugs().map((slug) => ({ slug }));
@@ -443,6 +444,35 @@ export default async function PersonaPage({
                 </p>
               </div>
             </ScrollReveal>
+          </Container>
+        </Section>
+
+        {/* Journey-aware "if you're asking this, you might also want…"
+            block. Aggregates keywords from this persona's curated content
+            so the engine surfaces semantically-related posts/episodes
+            beyond the hand-picked bundle, then routes the reader to the
+            persona-appropriate offer-ladder destination (plateau persona
+            → Plateau Diagnostic; comeback/event personas → /apply). The
+            curated slugs are excluded so we don't surface the same posts
+            twice on a single page. */}
+        <Section background="charcoal" className="!py-12">
+          <Container width="narrow">
+            <JourneyLinks
+              currentType="persona"
+              currentSlug={slug}
+              currentTitle={persona.headline}
+              pillar={persona.pillar}
+              keywords={[
+                ...posts.flatMap((p) => p.keywords ?? []),
+                ...episodes.flatMap((e) => e.keywords ?? []),
+              ]}
+              persona={persona.slug}
+              excludeSlugs={[
+                ...persona.blogSlugs,
+                ...persona.podcastSlugs,
+              ]}
+              source={`persona-${slug}`}
+            />
           </Container>
         </Section>
 
