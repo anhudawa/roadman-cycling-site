@@ -2176,6 +2176,111 @@ export const QUESTION_PAGES: QuestionPage[] = [
       },
     ],
   },
+  // ============================================================
+  // MASTERS CLUSTER — high-intent queries from cyclists over 40
+  // ============================================================
+  {
+    slug: "zone-2-training-cyclists-over-40",
+    cluster: "masters",
+    question: "Zone 2 Training for Cyclists Over 40 — How to Do It Right",
+    seoTitle: "Zone 2 Training for Cyclists Over 40 — The Honest Guide",
+    seoDescription:
+      "Zone 2 training for masters cyclists. Why it works harder for the over-40s than the over-30s, how slow is slow enough, and the weekly volume that actually moves FTP.",
+    pillar: "coaching",
+    shortAnswer:
+      "For cyclists over 40, zone 2 should make up roughly 80% of weekly volume — which usually means slower than you think. Heart rate sits around 65-75% of max, conversational pace, nose-breathing capable. The masters payoff is bigger than the under-40 version: zone 2 protects mitochondrial function and recovery capacity, both of which decline with age if you don't train them deliberately.",
+    bestFor:
+      "Riders over 40 training 6-12 hours a week who want to keep gaining FTP without breaking themselves on intensity.",
+    notFor:
+      "Riders who already do plenty of easy riding and need the missing 20% — true threshold or VO2max work, not more zone 2.",
+    keyTakeaway:
+      "After 40, zone 2 isn't a warm-up — it's the stimulus that protects the engine you still have to train hard with.",
+    evidenceLevel: "strong",
+    evidenceNote:
+      "Built on Stephen Seiler's polarised research, Iñigo San Millán's mitochondrial work with Pogacar, and what John Wakefield, Dan Lorang, and the Roadman masters coaching community see week to week.",
+    fullExplanation: [
+      "Anthony has had this conversation with Stephen Seiler more than once on the Roadman Cycling Podcast. The 80/20 distribution — roughly 80% of training volume in zone 2 and below, 20% well above threshold — is what every elite endurance programme runs on. The mistake most masters cyclists make is thinking 'easy' means zone 3. It doesn't. Zone 2 is the pace where you can hold a full conversation, breathe through your nose, and feel like you're undertraining. That feeling is the work.",
+      "What changes after 40 is the stake. Iñigo San Millán — the coach behind Tadej Pogacar's mitochondrial work — has been clear that zone 2 is the most powerful stimulus we have for protecting mitochondrial density and fat oxidation. Both decline with age unless you train them. So a masters cyclist who skips zone 2 isn't just missing a stimulus — they're letting the engine itself shrink, then trying to layer threshold work on top of a smaller base every year.",
+      "The honest question isn't whether to do zone 2. It's how slow to go. For a 50-year-old amateur with a max HR around 175, zone 2 sits roughly between 115 and 135 bpm. By power, it's 56-75% of FTP. If your normalised power on a 'long endurance' ride is 80% of FTP, you're not in zone 2. You're in zone 3 — the grey zone — and you're paying a recovery cost you'd be better off saving for your one or two real interval sessions.",
+      "Practically, an 8-hour week for a masters rider might look like this: two endurance rides (90 minutes and 2 hours, both genuine zone 2), one threshold or VO2max session (60-75 minutes including warm-up), one strength session, and one recovery spin. That structure — heavy zone 2, one quality day, one strength day — is what the masters cohort inside Not Done Yet runs and what Wakefield and Lorang prescribe to the pros they coach. The compounding effect over six months is significant. The compounding effect over five years is the reason serious 50-year-olds still ride at the front of sportives.",
+    ],
+    evidence: [
+      {
+        label: "Stephen Seiler — polarised training research",
+        detail:
+          "Seiler's work on training intensity distribution underpins the 80/20 model that Roadman recommends for masters cyclists. Zone 2 dominates the easy 80%.",
+        href: "/guests/stephen-seiler",
+      },
+      {
+        label: "Iñigo San Millán — mitochondrial training",
+        detail:
+          "San Millán's published work and his interviews on Pogacar's training establish zone 2 as the primary stimulus for mitochondrial biogenesis — the lever that ages the slowest if you keep training it.",
+      },
+      {
+        label: "John Wakefield — Roadman Podcast",
+        detail:
+          "Wakefield (Director of Coaching, Red Bull–Bora–Hansgrohe) has confirmed on the podcast that the over-40 cohort responds harder to volume restoration than to more intensity.",
+        href: "/guests/john-wakefield",
+      },
+      {
+        label: "Roadman masters community — case data",
+        detail:
+          "Documented FTP gains in the Not Done Yet community after rebalancing toward 80/20 distribution — reversing 12-18 months of grey-zone stagnation.",
+        href: "/blog/masters-cycling-training-report-2026",
+      },
+    ],
+    faq: [
+      {
+        question: "How many hours of zone 2 per week should a masters cyclist do?",
+        answer:
+          "Aim for 80% of total weekly training time. On 8 hours a week, that's roughly 6.5 hours of true zone 2 — typically split across two longer endurance rides plus a recovery spin. On 12 hours, closer to 9.5. The number that matters is the ratio, not the absolute hours.",
+      },
+      {
+        question: "Is zone 2 the same as easy spinning?",
+        answer:
+          "Close but not identical. Zone 2 is structured easy — a deliberate intensity that's hard enough to drive aerobic adaptation but easy enough to keep next-day fatigue low. Pure recovery spinning is below zone 2 and serves a different purpose. Both belong in a masters week.",
+      },
+      {
+        question: "Can I lose weight on zone 2 alone?",
+        answer:
+          "Zone 2 is metabolically efficient — it trains the body to oxidise fat at higher intensities — but body composition is mostly built in the kitchen. Combine genuine zone 2 with adequate protein, properly fuelled long rides, and a small daily energy gap and weight will move. Anthony's own 7kg loss came from eating more, not less, while running a heavily zone-2 weekly base.",
+      },
+      {
+        question: "How do I know I'm actually in zone 2, not zone 3?",
+        answer:
+          "The cleanest test is the talk test combined with nasal breathing. If you can hold a full sentence and still breathe through your nose, you're in zone 2. If you're snatching breaths or finishing sentences in chunks, you've drifted to zone 3. By heart rate, it's typically 65-75% of max; by power, 56-75% of FTP.",
+      },
+    ],
+    related: [
+      {
+        label: "How should cyclists over 40 train?",
+        href: "/question/how-should-cyclists-over-40-train",
+      },
+      {
+        label: "Polarised vs Sweet Spot for Masters Cyclists",
+        href: "/compare/polarised-vs-sweet-spot-masters",
+      },
+      {
+        label: "80/20 Cycling Training — The Grey-Zone Trap",
+        href: "/blog/80-20-cycling-training-the-grey-zone-trap",
+      },
+      {
+        label: "Cycling Over 40 — Getting Faster Guide",
+        href: "/blog/cycling-over-40-getting-faster",
+      },
+      {
+        label: "Masters FTP Benchmark Tool",
+        href: "/tools/masters-ftp-benchmark",
+      },
+    ],
+    cta: {
+      eyebrow: "STILL SECOND-GUESSING THE PACE?",
+      heading: "The Plateau Diagnostic finds the leak in 4 minutes.",
+      body: "Built for masters cyclists who've been doing the work and want to know exactly where the system is leaking — grey-zone drift, recovery, fuelling, or stale programming.",
+      href: "/plateau",
+      label: "Take the Plateau Diagnostic",
+    },
+  },
 ];
 
 export function getQuestionBySlug(slug: string): QuestionPage | null {
