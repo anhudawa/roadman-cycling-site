@@ -2485,6 +2485,107 @@ export const QUESTION_PAGES: QuestionPage[] = [
       label: "Take the Plateau Diagnostic",
     },
   },
+  {
+    slug: "why-losing-power-with-age",
+    cluster: "masters",
+    question: "Why Am I Losing Power as I Age?",
+    seoTitle: "Why Am I Losing Cycling Power as I Age? The Honest Answer",
+    seoDescription:
+      "Why cyclists lose power with age — sarcopenia, VO2max decline, recovery debt, and grey-zone training. What's biology, what's fixable, and where to start.",
+    pillar: "coaching",
+    shortAnswer:
+      "You're not losing power because you're old. You're losing it because muscle mass declines about 8% per decade after 40 without strength training, recovery capacity drops, and most masters cyclists keep training the way they did at 30. Real biological decline in trained athletes is closer to 5% per decade — most of the rest is fixable. The fix is structural, not heroic.",
+    bestFor:
+      "Riders in their 40s and 50s watching their FTP slide despite training as hard as ever — and ready to address the system, not just push harder.",
+    notFor:
+      "Riders looking for a single supplement, gadget, or shortcut. The fixes are boring: strength, sleep, fuelling, structured intensity.",
+    keyTakeaway:
+      "Most age-related power loss in trained cyclists is sarcopenia and recovery debt — both are trainable, neither is destiny.",
+    evidenceLevel: "strong",
+    evidenceNote:
+      "Built on the published masters athlete literature (Tanaka & Seals on VO2max decline, Faulkner on sarcopenia), Iñigo San Millán's mitochondrial work, and the Roadman expert network — Wakefield, Lorang, Friel, Galpin.",
+    fullExplanation: [
+      "The first thing to separate out is what's biology and what's behaviour. Tanaka and Seals' work on age-related VO2max decline — the most-cited paper in this conversation — shows trained endurance athletes lose roughly 5% of VO2max per decade. Sedentary adults lose closer to 10%. So if your FTP has dropped 15% in 5 years, only a fraction of that is age. The rest is something you can do something about.",
+      "The biggest 'something' is sarcopenia — age-related muscle loss. After 40, untrained adults lose around 3-8% of muscle mass per decade depending on whose data you read. For cyclists, that translates directly into less force per pedal stroke and a lower top-end. Andy Galpin has talked about this on the Roadman Cycling Podcast — fast-twitch fibres atrophy first, which is why older cyclists feel the loss most on accelerations and short climbs. The defence is non-negotiable resistance training, twice a week, focused on heavy compound lifts. Without it, you are choosing the steepest version of the curve.",
+      "The second blocker is recovery debt. Same load, more fatigue. The masters research is consistent: 48-72 hours between hard sessions is the standard prescription for under-40 amateurs; for over-45 it stretches to 72-96. The cyclist who runs Tuesday-Thursday-Saturday hard for years is fine at 35 and quietly under-recovered at 50. Fix that by spreading hard sessions further apart, prioritising sleep as the single biggest performance lever, and protecting one full rest day a week. Most of the riders inside the Not Done Yet community who've reversed an FTP slide did it by training less, not more.",
+      "The third blocker is the one nobody wants to admit: most masters cyclists are still training like they're 32. Same intervals. Same group rides. Same off-season volume. The structural change that consistently moves the number is rebalancing toward a true 80/20 polarised distribution — more zone 2, sharper but less frequent threshold work, two strength sessions, and properly fuelled long rides. The question 'why am I losing power' usually has the same answer it had at 32: the system is leaking. The difference is that at 50, the system is less forgiving — so the leaks show up faster.",
+    ],
+    evidence: [
+      {
+        label: "Tanaka & Seals — VO2max decline with age",
+        detail:
+          "Reference paper showing trained endurance athletes lose roughly 5% VO2max per decade vs ~10% for sedentary adults — establishing how much of age-related decline is trainable.",
+      },
+      {
+        label: "Andy Galpin — Roadman Podcast",
+        detail:
+          "Galpin's conversation on fast-twitch fibre loss after 40 anchors the strength-training case for masters cyclists.",
+        href: "/blog/andy-galpin-fast-twitch-fibres-cyclist-after-40",
+      },
+      {
+        label: "Iñigo San Millán — mitochondrial training",
+        detail:
+          "San Millán's work explains why zone 2 protects mitochondrial density — the substrate that ages slowest if you train it deliberately.",
+      },
+      {
+        label: "Roadman Masters Cycling Training Report (2026)",
+        detail:
+          "Aggregates the masters literature with the Roadman coaching network's case data on FTP retention and recovery windows after 40.",
+        href: "/blog/masters-cycling-training-report-2026",
+      },
+    ],
+    faq: [
+      {
+        question: "How much power do you lose per year after 40?",
+        answer:
+          "Untrained adults lose around 1% of VO2max per year after 40. Trained cyclists lose closer to 0.5%, and trained masters who include strength work and quality intensity often hold flat or even improve into their late 40s and early 50s. The annual figure isn't a constant — it's a reflection of what you're doing about it.",
+      },
+      {
+        question: "Can I get my FTP back to where it was at 35?",
+        answer:
+          "For most masters under 55 with no underlying health issues, yes — provided the FTP slide came from training drift, not biology. The cohort inside Not Done Yet who recover lost FTP almost always do it the same way: structured polarised volume, two strength sessions, deeper recovery, and properly fuelled long rides. Six to twelve months is the realistic window.",
+      },
+      {
+        question: "Is the power loss permanent?",
+        answer:
+          "Most of it isn't. The portion driven by sarcopenia is reversible with consistent strength training. The portion driven by recovery debt reverses inside weeks once you give the system room to breathe. The truly age-driven portion — the 5% per decade in trained athletes — is the smallest piece and the only one outside your direct control.",
+      },
+      {
+        question: "Should I just accept the decline and ride for fun?",
+        answer:
+          "If that's what you want, ride for fun. But the data is clear: the cyclists in their 50s and 60s still riding strongly haven't 'beaten the curve' — they've just trained on the right side of it. The Roadman position, and the reason 'Not Done Yet' exists, is that the slide is far less inevitable than the cycling internet suggests.",
+      },
+    ],
+    related: [
+      {
+        label: "Losing Power After 40 — What to Do About It",
+        href: "/problem/losing-power-after-40",
+      },
+      {
+        label: "How should cyclists over 40 train?",
+        href: "/question/how-should-cyclists-over-40-train",
+      },
+      {
+        label: "Should I do strength training as a cyclist over 40?",
+        href: "/question/strength-training-cyclist-over-40",
+      },
+      {
+        label: "Cycling Over 40 — Getting Faster Guide",
+        href: "/blog/cycling-over-40-getting-faster",
+      },
+      {
+        label: "Andy Galpin on fast-twitch fibres after 40",
+        href: "/blog/andy-galpin-fast-twitch-fibres-cyclist-after-40",
+      },
+    ],
+    cta: {
+      eyebrow: "BEFORE YOU ACCEPT THE DECLINE",
+      heading: "Find out which leak is yours.",
+      body: "The Plateau Diagnostic is built for masters cyclists who've felt the slide and want to know whether it's biology, recovery, fuelling, or programming.",
+      href: "/plateau",
+      label: "Take the Plateau Diagnostic",
+    },
+  },
 ];
 
 export function getQuestionBySlug(slug: string): QuestionPage | null {
