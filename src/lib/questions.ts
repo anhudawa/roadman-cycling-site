@@ -2281,6 +2281,107 @@ export const QUESTION_PAGES: QuestionPage[] = [
       label: "Take the Plateau Diagnostic",
     },
   },
+  {
+    slug: "cycling-training-hours-per-week",
+    cluster: "coaching",
+    question: "How Many Hours Should I Train Per Week Cycling?",
+    seoTitle: "How Many Hours Per Week Should You Cycle? Honest Targets",
+    seoDescription:
+      "Realistic weekly cycling hours by goal — from finishing a sportive to lifting FTP into Cat 2. Why the right structured 6-8 hours beats an unstructured 12.",
+    pillar: "coaching",
+    shortAnswer:
+      "For most amateurs, 6-10 well-structured hours a week produce more fitness than 12-15 unstructured hours. Beginners can build at 4-6, intermediates aiming to lift FTP need 8-10, and ambitious masters or Cat 2/3 racers do 10-14. Above 14 hours, returns shrink fast unless you're racing seriously.",
+    bestFor:
+      "Working amateurs trying to set a realistic weekly target without copying a pro plan they can't sustain.",
+    notFor:
+      "Riders whose fitness ceiling is recovery-limited — adding hours to a system that's already over-fatigued just deepens the hole.",
+    keyTakeaway:
+      "More hours don't beat better hours — quality of structure beats raw volume for everyone training under 12 hours a week.",
+    evidenceLevel: "strong",
+    fullExplanation: [
+      "The honest answer most cyclists don't want to hear: there is no universal number. Joe Friel sets it cleanly in The Cyclist's Training Bible — your weekly volume should be the most you can absorb while still adapting and still living the rest of your life. For the audience reading this, that almost always lands between 6 and 12 hours. Below 6 you can hold fitness but rarely lift it; above 12 the marginal gain shrinks unless you've got the recovery infrastructure of a full-time athlete.",
+      "Anthony has dug into this on the podcast with John Wakefield, Dan Lorang, and the Bora coaching team. Their consistent message: a structured 8 hours a week beats an unstructured 12 every time. Two genuinely easy zone 2 rides, one threshold or VO2max session, one strength session, and one moderate weekend ride will move FTP further in twelve weeks than a random 12-hour week of group rides and sweet spot. The reason is simple — randomness produces fatigue without specificity, and the body adapts to the stimulus you actually deliver, not the hours on Strava.",
+      "Practical targets by goal: to finish a 100-mile sportive comfortably, 5-7 structured hours a week for 12 weeks is enough. To lift FTP from 3.0 to 3.5 W/kg, 7-9 hours with proper periodisation usually does it inside 16-20 weeks. To race Cat 3 with a chance of staying in the bunch, 8-12 hours. To compete in Cat 2 or finish a Marmotte/Étape strongly, 10-14 hours plus strength. Above 14 hours you're in serious-amateur or elite-amateur territory and most of the gain comes from recovery and structure, not more saddle time.",
+      "Two warnings from inside the coaching community. First, the hours figure on Strava lies. A 60-minute zone 2 ride and a 60-minute group ride that touches threshold are not the same training stress. Stop counting hours; start counting load with intent. Second, more hours added to a system that's recovery-broken makes things worse, not better. If you're already 8 hours a week and tired all the time, the answer is rarely 'go to 10'. It's 'recover properly for two weeks, then come back to 8 with cleaner zones'. Roadman's masters cohort sees this play out every block.",
+    ],
+    evidence: [
+      {
+        label: "Joe Friel — The Cyclist's Training Bible",
+        detail:
+          "Friel's volume guidance underpins the structured-hours-by-goal framework most amateur coaches use, including Roadman's.",
+        href: "/guests/joe-friel",
+      },
+      {
+        label: "John Wakefield — Roadman Podcast",
+        detail:
+          "On the podcast, Wakefield (Director of Coaching, Red Bull–Bora–Hansgrohe) has been consistent: structured 8-10 hour weeks for amateurs outperform unstructured 12-15 hour weeks.",
+        href: "/guests/john-wakefield",
+      },
+      {
+        label: "Dan Lorang — Roadman Podcast",
+        detail:
+          "Lorang (long-time coach to Pogacar and Vingegaard at the start of their careers) has stressed that the work-life-recovery balance dictates the right volume — copy the prescription, never the volume.",
+        href: "/guests/dan-lorang",
+      },
+      {
+        label: "Roadman case data — time-crunched cohort",
+        detail:
+          "Members training 6-9 structured hours produce comparable FTP gains to the 10-12 hour cohort over 12 weeks — the differentiator is intensity distribution, not raw hours.",
+        href: "/blog/cycling-training-plan-masters-over-40",
+      },
+    ],
+    faq: [
+      {
+        question: "Is 5 hours per week enough cycling?",
+        answer:
+          "Yes — for maintaining fitness, completing most sportives, and making modest FTP gains in your first year of structured training. Below 5 you'll hold what you have but lifting top-end is hard. Above 5, intensity distribution starts to matter more than the hours themselves.",
+      },
+      {
+        question: "How many hours do pro cyclists train per week?",
+        answer:
+          "Tour de France-level pros average 25-35 hours a week in build phases — but that includes recovery rides, training camps, and a job description that ends with 'cycling'. Comparing your week to theirs is the wrong frame. What's relevant from the pro world is the 80/20 distribution and the periodisation, not the raw hours.",
+      },
+      {
+        question: "Can I get faster cycling 4 hours a week?",
+        answer:
+          "Yes, in your first 12-18 months of structured training, and if every hour is deliberate. Two zone 2 rides, one quality interval session, and a strength session inside 4 hours can lift a recreational FTP into the strong-amateur band. Beyond that, 4 hours becomes maintenance, not progression.",
+      },
+      {
+        question: "How many days a week should I cycle?",
+        answer:
+          "Three to five days suits most amateurs. Three is the floor for fitness gains; five with one strength day and one full rest day is the sweet spot for time-crunched riders. Six or seven days only makes sense if at least two are genuine recovery rides and your sleep is dialled.",
+      },
+    ],
+    related: [
+      {
+        label: "Cycling training plan for full-time workers",
+        href: "/question/cycling-training-plan-full-time-workers",
+      },
+      {
+        label: "How many hard rides per week for masters?",
+        href: "/question/hard-rides-per-week-masters",
+      },
+      {
+        label: "Polarised vs Sweet Spot for Masters Cyclists",
+        href: "/compare/polarised-vs-sweet-spot-masters",
+      },
+      {
+        label: "Masters Cycling Training Report (2026)",
+        href: "/blog/masters-cycling-training-report-2026",
+      },
+      {
+        label: "FTP Zone Calculator",
+        href: "/tools/ftp-zones",
+      },
+    ],
+    cta: {
+      eyebrow: "WHEN HOURS ALONE WON'T MOVE THE NUMBER",
+      heading: "Find out what's actually capping your FTP.",
+      body: "The Plateau Diagnostic is built for time-crunched amateurs whose hours are right but the system isn't.",
+      href: "/plateau",
+      label: "Take the Plateau Diagnostic",
+    },
+  },
 ];
 
 export function getQuestionBySlug(slug: string): QuestionPage | null {
