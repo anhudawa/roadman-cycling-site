@@ -215,7 +215,7 @@ const TIERS: Record<
   },
   notDoneYet: {
     name: "Not Done Yet",
-    price: "$95 / month",
+    price: "$195 / month",
     href: "/community/not-done-yet",
     tagline:
       "The system that ends the guessing. A real plan, a real community, a coach in the room.",
@@ -227,7 +227,7 @@ const TIERS: Record<
     ],
     cta: "Explore Not Done Yet",
     track: "find_your_fit_result_ndy",
-    pixelValue: 95,
+    pixelValue: 195,
   },
   innerCircle: {
     name: "Inner Circle",
@@ -686,7 +686,7 @@ function buildReasons(tier: TierId, answers: Answers): string[] {
   if (investment === "free" && tier === "clubhouse")
     reasons.push("Free for now — start here, prove the system to yourself, and ascend when you're ready.");
   if (investment === "under-100" && tier === "notDoneYet")
-    reasons.push("At $95 a month, Not Done Yet is the most leverage you can buy under a hundred bucks.");
+    reasons.push("At $195 a month, Not Done Yet is the most coaching leverage you can get short of a 1:1 seat.");
   if (investment === "300-600" && tier === "innerCircle")
     reasons.push("Inner Circle sits in your investment range and gives you daily coach feedback for it.");
   if (investment === "premium" && tier === "oneOnOne")

@@ -10,7 +10,7 @@ import { FitFinder } from "./_components/FitFinder";
  * /find-your-fit — interactive five-question router that points
  * riders at the right Roadman product:
  *   • Free Clubhouse
- *   • Not Done Yet ($95/month)
+ *   • Not Done Yet ($195/month)
  *   • Inner Circle ($525/month)
  *   • 1:1 Coaching (application)
  *
