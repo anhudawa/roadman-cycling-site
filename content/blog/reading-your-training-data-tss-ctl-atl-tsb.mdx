@@ -117,7 +117,7 @@ The advantage of TSS over raw kilojoules or hours is that it normalises for both
 
 The metric was developed by Dr Andy Coggan and is implemented (with minor variations) in TrainingPeaks, intervals.icu, TrainerRoad, Final Surge, and most other modern training platforms. The exact derivation differs slightly between platforms but the comparative behaviour is consistent.
 
-**A note on accuracy.** Power-derived TSS, with a calibrated power meter, is reliable. Heart-rate-derived TSS (called hrTSS in TrainingPeaks) is approximate — within 10-15% of true power-derived TSS for trained riders, with more error on shorter, higher-intensity rides. RPE-derived TSS (sRPE × duration) is rougher but serviceable as a backup. For mixed-input training, most coached amateurs treat the daily TSS as approximate and the rolling averages as the signal.
+**A note on accuracy.** Power-derived TSS, with a calibrated power meter, is reliable. Heart-rate-derived TSS (called hrTSS in TrainingPeaks) is approximate — within 10-15% of true power-derived TSS for trained riders, with more error on shorter, higher-intensity rides. RPE-derived TSS (sRPE × duration) is rougher but serviceable as a backup. For mixed-input training, most coached amateurs treat the daily TSS as approximate and the rolling averages as the signal. If your zones aren't honest, the metric isn't either — set them with the [FTP zones calculator](/tools/ftp-zones) before you trust the numbers.
 
 ## CTL: the fitness number
 
@@ -197,10 +197,10 @@ The metrics are useful, not complete. Things they miss:
 
 - **Quality of sleep.** A 100-TSS session after 6 hours of bad sleep costs more than after 8 hours of good sleep. The numbers are the same; the actual recovery cost isn't.
 - **Life-stress load.** A rider going through a heavy work quarter has less recovery bandwidth than the same rider in a quiet month, even at the same training load.
-- **Intensity distribution.** A 70-TSS day from 90 minutes of zone 3 grey-zone work and a 70-TSS day from 90 minutes of polarised zone 2 plus 8 minutes of threshold are very different physiologically.
+- **Intensity distribution.** A 70-TSS day from 90 minutes of zone 3 grey-zone work and a 70-TSS day from 90 minutes of polarised zone 2 plus 8 minutes of threshold are very different physiologically. The fix for that one sits in [the 80/20 grey-zone trap](/blog/80-20-cycling-training-the-grey-zone-trap).
 - **The rest of life.** Training is one input among several. The numbers are blind to the others.
 
-This is why coaches who use TrainingPeaks data effectively pair it with subjective inputs — RPE per session, sleep duration, life-stress score, weekly check-ins. The numbers are the dashboard; the conversation around them is the actual coaching. The Vekta-built plans inside Not Done Yet Coaching push directly into TrainingPeaks for this reason — the planned daily TSS sets the target and the rider's actual file plus their RPE plus the weekly call closes the loop.
+This is why coaches who use TrainingPeaks data effectively pair it with subjective inputs — RPE per session, sleep duration, life-stress score, weekly check-ins. The numbers are the dashboard; the conversation around them is the actual coaching. The Vekta-built plans inside [Not Done Yet Coaching](/community/not-done-yet) push directly into TrainingPeaks for this reason — the planned daily TSS sets the target and the rider's actual file plus their RPE plus the weekly call closes the loop. The deeper case for pairing the numbers with perceived effort sits in [RPE and power: using them together](/blog/rpe-and-power-using-them-together).
 
 ## A working weekly review
 
