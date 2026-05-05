@@ -1544,6 +1544,79 @@ export const COMPARISONS: ComparisonPage[] = [
       },
     ],
   },
+  {
+    slug: "polarised-vs-sweet-spot-masters",
+    title: "Polarised vs Sweet Spot Training for Masters Cyclists",
+    seoTitle: "Polarised vs Sweet Spot for Masters Cyclists — Honest Verdict",
+    seoDescription: "Polarised (80/20) or sweet spot for cyclists over 40? The honest read on which intensity model fits the masters athlete and where each one breaks down.",
+    optionA: "Polarised (80/20)",
+    optionB: "Sweet Spot",
+    verdict: "For most cyclists over 40, polarised wins — recovery capacity declines with age and sweet spot's mid-intensity load punishes that decline. Sweet spot still has a place in short build blocks before specific events, but as the dominant year-round model for masters, it's the wrong tool.",
+    verdictWinner: "A",
+    pillar: "coaching",
+    features: [
+      { feature: "Easy training %", optionA: "~80%", optionB: "~50-60%" },
+      { feature: "Mid-intensity (Zone 3/sweet spot) %", optionA: "~0-5%", optionB: "~30-40%" },
+      { feature: "High-intensity %", optionA: "~15-20%", optionB: "~5-10%" },
+      { feature: "Recovery demand for over-40s", optionA: "Manageable", optionB: "High — recovery debt accumulates" },
+      { feature: "Time-crunched compatibility", optionA: "Strong fit", optionB: "Poor fit" },
+      { feature: "Research support for masters", optionA: "Strong (Seiler base)", optionB: "Limited masters-specific evidence" },
+      { feature: "Sustainability across a season", optionA: "High", optionB: "Burnout-prone after 8-12 weeks" },
+      { feature: "Best use case", optionA: "Year-round structure", optionB: "Short, sharp build blocks pre-event" },
+    ],
+    bestForA: [
+      "Masters cyclists over 40 training 6-12 hours a week",
+      "Riders with elevated resting HR or fragmented sleep — markers of recovery debt",
+      "Anyone who's plateaued doing extended sweet spot blocks",
+      "Cyclists running structured strength training alongside the bike work",
+    ],
+    bestForB: [
+      "Riders inside an 8-12 week sportive or race build with adequate recovery infrastructure",
+      "Younger amateurs (under 35) with high recovery capacity",
+      "Cyclists targeting steady-state events (long climbs, time trials) where threshold durability is the limiter",
+      "Riders who run short blocks of sweet spot then return to polarised base",
+    ],
+    relatedArticle: "/blog/80-20-cycling-training-the-grey-zone-trap",
+    relatedTool: "/plateau",
+    intro: [
+      "Sweet spot has a long marketing tail. It became the default amateur prescription because it feels productive — every session is hard enough to feel real, easy enough to do back-to-back. For a 32-year-old with eight hours of training in him, that's a workable framing. For a 48-year-old training around a job and a family, the maths breaks.",
+      "The honest read for the masters cyclist is that polarised — Stephen Seiler's 80/20 model — is the more sustainable structure. Sweet spot still has a role, but as a tool inside a build block, not as the year-round operating system. This page is the head-to-head, anchored in what Seiler, John Wakefield, Dan Lorang, and the Roadman masters cohort actually do.",
+    ],
+    body: [
+      "**The honest read.** Polarised is the better default for masters cyclists, and the gap widens with age. Seiler's research on intensity distribution shows trained endurance athletes adapt best when ~80% of training time is below ventilatory threshold and ~15-20% is well above it. Sweet spot — sitting at 88-94% FTP — is exactly in the middle that polarised explicitly avoids. For an under-40 with deep recovery capacity, that mid-zone work can land. For an over-40, it accumulates fatigue faster than the body can clear it.",
+      "**Where sweet spot still earns its place.** Sweet spot isn't broken; it's misapplied. As a 6-8 week build block ahead of a specific event — a sportive with sustained climbs, a Cat 3 race calendar, a Mallorca 312 — sweet spot work raises threshold durability in ways that pure polarised rarely matches. The pattern Roadman runs inside Not Done Yet for over-40 riders is polarised base for 16-24 weeks, a sharper sweet-spot or threshold block for 6-8 weeks pre-event, then back to polarised. The mistake is treating sweet spot as the default rather than the tool.",
+      "**The recovery argument.** John Wakefield has been clear on the podcast that the over-40 cohort needs 72-96 hours between hard sessions, not the 48-72 standard for younger amateurs. Sweet spot at three days a week — the most common amateur sweet-spot prescription — leaves no real recovery window. Within 8-12 weeks, the masters rider is running a chronic fatigue debt that caps the very FTP gains the block was meant to deliver. Polarised at the same volume produces less acute discomfort but more cumulative adaptation.",
+      "**The grey-zone trap.** Most masters cyclists don't actually run sweet spot — they run a confused middle. They start a session aiming for sweet spot, drift into threshold on the climbs, drop into tempo on the flats, and call it a workout. That's not sweet spot. That's the grey zone. It's what kills more amateur FTP gains than any other single mistake, and it's the precise thing polarised structure prevents. If you can't honestly hold sweet spot at 90% FTP for the full prescribed duration, the data says you'd benefit more from rebuilding the base than from another grey-zone block.",
+      "**The decision tree.** Over 40, training 6-10 hours/week: polarised year-round, with one short sweet-spot block 6-8 weeks before a specific event. Over 40, training 10-14 hours: polarised base, sweet-spot or threshold-leaning build phase, polarised peak. Under 40 with high recovery capacity: either model works — the choice is closer to taste than physiology. Stuck in the grey zone right now: polarise first.",
+      "Whichever model you pick, you need accurate zones to execute it cleanly. [The FTP zones tool](/tools/ftp-zones) gives you the bands. To find out which structural pattern your current FTP plateau actually fits, [take the Plateau Diagnostic](/plateau).",
+    ],
+    faqs: [
+      {
+        q: "Is sweet spot training bad for cyclists over 40?",
+        a: "Not bad — just easy to misapply. Sweet spot in the right dose at the right time of year is useful for masters. Sweet spot as the dominant intensity model year-round, three sessions a week, is the pattern that quietly burns masters cyclists out and stalls FTP. The model has to fit the cyclist's age and recovery infrastructure.",
+      },
+      {
+        q: "How much sweet spot can a 50-year-old cyclist handle?",
+        a: "In a build block, two sweet spot sessions a week for 4-8 weeks is typically sustainable if recovery is properly defended. Beyond 8 weeks, most over-50 riders accumulate enough fatigue to cap further gain. The Roadman masters cohort tends to run shorter sweet-spot blocks more often, rather than long ones rarely.",
+      },
+      {
+        q: "Will polarised training make me slower at sweet spot pace?",
+        a: "Short answer: no. Long answer: a pure polarised programme can leave threshold durability under-trained for very specific events, which is why the masters template runs polarised base then a focused sweet-spot or threshold block before peak events. The base supports the build; the build doesn't replace the base.",
+      },
+      {
+        q: "What's the best intensity distribution for a 45-year-old cyclist?",
+        a: "Roughly 80% in zone 2, 15-20% above threshold (VO2max work), and almost nothing in the middle. The 'almost nothing' is the part most masters cyclists struggle with — it feels counterintuitive to skip the moderate work. The published research and the Roadman case data point the same way: the middle is where masters get stuck.",
+      },
+      {
+        q: "Can I do polarised training and still race well?",
+        a: "Yes — and most masters who race well are running some version of it. The 20% high-intensity component when properly executed is harder than most amateurs imagine, and the 80% base is what holds the body together across a multi-month season. The pyramidal-vs-polarised debate at the elite level is real; at the amateur masters level, it's largely settled.",
+      },
+      {
+        q: "Where does this leave threshold work?",
+        a: "In a polarised week, threshold (around 95-100% FTP) lives in the 20% hard portion, alongside VO2max work — but in tighter, sharper doses than sweet spot allows. Think 3 x 8 minutes at threshold once a week, not 3 x 20 minutes at sweet spot three times a week. [Sweet spot vs threshold has more depth here](/compare/sweet-spot-vs-threshold).",
+      },
+    ],
+  },
 ];
 
 export function getComparisonBySlug(slug: string): ComparisonPage | null {
