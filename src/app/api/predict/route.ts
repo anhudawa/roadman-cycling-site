@@ -215,9 +215,10 @@ export async function POST(request: Request) {
     return NextResponse.json({ error: "Course unavailable." }, { status: 500 });
   }
 
+  const riderInput = body.rider as RiderInputDTO;
   const run = runPrediction({
     course,
-    rider: body.rider as RiderInputDTO,
+    rider: riderInput,
     environment: body.environment,
     mode,
   });
@@ -241,6 +242,20 @@ export async function POST(request: Request) {
       averageSpeedKmh: run.result.averageSpeed * 3.6,
       totalDistanceKm: run.result.totalDistance / 1000,
       climbCount: course.climbs.length,
+      assumptions: {
+        eventType: riderInput.eventType ?? "sportive",
+        drafting: riderInput.drafting ?? "solo",
+        surface: riderInput.surface ?? null,
+        heightCm: riderInput.heightCm ?? null,
+        drivetrainEfficiency: run.rider.drivetrainEfficiency,
+        cdaSource: typeof riderInput.cda === "number" ? "explicit" : "preset",
+        crrSource:
+          typeof riderInput.crr === "number"
+            ? "explicit"
+            : riderInput.surface
+              ? "surface"
+              : "default",
+      },
     },
     email,
   });

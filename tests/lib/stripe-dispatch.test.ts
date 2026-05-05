@@ -27,7 +27,9 @@ const mocks = vi.hoisted(() => ({
   refreshLeadScore: vi.fn(),
   logCrmSync: vi.fn(),
   recordPaidReportServerEvent: vi.fn(),
+  recordEvent: vi.fn(),
   sendStripeSaleNotification: vi.fn(),
+  notifyPaidReportSale: vi.fn(),
   notifyDeliveryFailed: vi.fn(),
   upsertOnPaid: vi.fn(),
   upsertOnTrialStart: vi.fn(),
@@ -60,8 +62,12 @@ vi.mock("@/lib/analytics/paid-report-events", () => ({
   PAID_REPORT_EVENTS: { CHECKOUT_SUCCESS: "paid_report_checkout_success" },
   recordPaidReportServerEvent: mocks.recordPaidReportServerEvent,
 }));
+vi.mock("@/lib/admin/events-store", () => ({
+  recordEvent: mocks.recordEvent,
+}));
 vi.mock("@/lib/stripe/notifications", () => ({
   sendStripeSaleNotification: mocks.sendStripeSaleNotification,
+  notifyPaidReportSale: mocks.notifyPaidReportSale,
   notifyPaidReportDeliveryFailed: mocks.notifyDeliveryFailed,
 }));
 vi.mock("@/lib/admin/subscribers-store", () => ({
@@ -127,6 +133,8 @@ describe("dispatchStripeEvent — paid_report pipeline", () => {
     mocks.refreshLeadScore.mockResolvedValue(undefined);
     mocks.logCrmSync.mockResolvedValue(undefined);
     mocks.recordPaidReportServerEvent.mockResolvedValue(undefined);
+    mocks.recordEvent.mockResolvedValue(undefined);
+    mocks.notifyPaidReportSale.mockResolvedValue(undefined);
   });
 
   afterEach(async () => {
@@ -154,6 +162,19 @@ describe("dispatchStripeEvent — paid_report pipeline", () => {
     expect(mocks.refreshLeadScore).toHaveBeenCalledWith(7);
     expect(mocks.logCrmSync).toHaveBeenCalled();
     expect(mocks.recordPaidReportServerEvent).toHaveBeenCalled();
+    expect(mocks.recordEvent).toHaveBeenCalledWith(
+      "report_purchased",
+      "/api/webhooks/stripe",
+      expect.objectContaining({
+        email: "rider@example.com",
+        source: "stripe_webhook",
+        meta: expect.objectContaining({
+          order_id: "42",
+          paid_report_id: "99",
+          product_slug: "report_plateau",
+        }),
+      }),
+    );
   });
 
   it("skips downstream work when the order was already paid (replayed webhook)", async () => {

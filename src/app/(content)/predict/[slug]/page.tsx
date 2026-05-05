@@ -3,6 +3,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { Header, Footer, Section, Container } from "@/components/layout";
 import { Button } from "@/components/ui";
+import { JsonLd } from "@/components/seo/JsonLd";
 import {
   PredictedTimeHero,
   ElevationProfile,
@@ -542,12 +543,97 @@ function PredictEventLanding({ course }: { course: CourseRow }) {
   const distanceKm = course.distanceM / 1000;
   const elevationGainM = Math.round(course.elevationGainM);
   const climbCount = fullCourse.climbs.length;
+  const pageUrl = `https://roadmancycling.com/predict/${course.slug}`;
+  const faqs = buildPredictEventFaqs(course, race, distanceKm, elevationGainM);
   const hardestClimbs = [...fullCourse.climbs]
     .sort((a, b) => b.elevationGain - a.elevationGain)
     .slice(0, 3);
+  const breadcrumbLd = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      { "@type": "ListItem", position: 1, name: "Home", item: "https://roadmancycling.com" },
+      { "@type": "ListItem", position: 2, name: "Race Predictor", item: "https://roadmancycling.com/predict" },
+      { "@type": "ListItem", position: 3, name: course.name, item: pageUrl },
+    ],
+  };
+  const predictorLd = {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    name: `${course.name} Race Predictor`,
+    applicationCategory: "SportsApplication",
+    operatingSystem: "Web",
+    url: pageUrl,
+    description: `Predict your ${course.name} finish time from rider profile, bike setup, weather assumptions, and ${distanceKm.toFixed(0)} km of route data.`,
+    provider: {
+      "@type": "Organization",
+      name: "Roadman Cycling",
+      url: "https://roadmancycling.com",
+    },
+    offers: [
+      {
+        "@type": "Offer",
+        name: "Free race prediction",
+        price: "0",
+        priceCurrency: "USD",
+        availability: "https://schema.org/InStock",
+      },
+      {
+        "@type": "Offer",
+        name: "Premium Race Report",
+        price: "29",
+        priceCurrency: "USD",
+        availability: "https://schema.org/InStock",
+      },
+    ],
+  };
+  const courseLd = {
+    "@context": "https://schema.org",
+    "@type": "SportsActivityLocation",
+    name: course.name,
+    url: pageUrl,
+    sport: "Cycling",
+    description: `${course.name} route profile: ${distanceKm.toFixed(0)} km with ${elevationGainM.toLocaleString()} m of climbing.`,
+    containedInPlace: race
+      ? {
+          "@type": "Place",
+          name: race.location,
+          address: {
+            "@type": "PostalAddress",
+            addressCountry: race.country,
+          },
+        }
+      : undefined,
+    additionalProperty: [
+      { "@type": "PropertyValue", name: "Distance", value: `${distanceKm.toFixed(1)} km` },
+      { "@type": "PropertyValue", name: "Elevation gain", value: `${elevationGainM} m` },
+      { "@type": "PropertyValue", name: "Climbs", value: String(climbCount) },
+      {
+        "@type": "PropertyValue",
+        name: "Surface",
+        value: course.surfaceSummary?.replace(/_/g, " ") ?? "mixed",
+      },
+    ],
+  };
+  const faqLd = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: faqs.map((faq) => ({
+      "@type": "Question",
+      name: faq.question,
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: faq.answer,
+      },
+    })),
+  };
 
   return (
     <>
+      <JsonLd data={breadcrumbLd} />
+      <JsonLd data={predictorLd} />
+      <JsonLd data={courseLd} />
+      <JsonLd data={faqLd} />
       <Header />
       <main>
         <Section
@@ -671,6 +757,37 @@ function PredictEventLanding({ course }: { course: CourseRow }) {
           </Section>
         )}
 
+        <Section background="charcoal" className="!py-10 md:!py-14">
+          <Container>
+            <div className="max-w-3xl mb-6">
+              <p
+                className="text-[0.65rem] tracking-[0.22em] uppercase text-coral mb-2"
+                style={{ fontFamily: "var(--font-jetbrains-mono)" }}
+              >
+                EVENT PREDICTION FAQ
+              </p>
+              <h2 className="font-heading text-3xl uppercase tracking-tight text-off-white">
+                What riders usually want to know
+              </h2>
+            </div>
+            <div className="grid md:grid-cols-2 gap-3">
+              {faqs.map((faq) => (
+                <div
+                  key={faq.question}
+                  className="rounded-xl border border-white/8 bg-white/[0.03] p-5"
+                >
+                  <h3 className="font-heading text-xl uppercase tracking-tight text-off-white">
+                    {faq.question}
+                  </h3>
+                  <p className="mt-3 text-sm leading-relaxed text-off-white/76">
+                    {faq.answer}
+                  </p>
+                </div>
+              ))}
+            </div>
+          </Container>
+        </Section>
+
         <Section background="deep-purple" grain className="!py-12">
           <Container>
             <div className="max-w-3xl">
@@ -700,6 +817,42 @@ function PredictEventLanding({ course }: { course: CourseRow }) {
       <Footer />
     </>
   );
+}
+
+function buildPredictEventFaqs(
+  course: CourseRow,
+  race: (typeof RACES)[number] | undefined,
+  distanceKm: number,
+  elevationGainM: number,
+): { question: string; answer: string }[] {
+  const eventName = race?.name ?? course.name;
+  const surface = course.surfaceSummary?.replace(/_/g, " ") ?? "mixed surface";
+  const climbText =
+    elevationGainM >= 4000
+      ? "This is a climb-heavy course, so pacing the early climbs and protecting carbohydrate availability matter more than chasing speed early."
+      : elevationGainM >= 2000
+        ? "The climbing is meaningful enough that rider weight, bike weight, and power pacing will materially affect the prediction."
+        : "The course is less climb-dominated, so aerodynamics, wind direction, group riding, and steady power become bigger drivers of finish time.";
+
+  return [
+    {
+      question: `How does the ${eventName} predictor work?`,
+      answer: `It combines the saved ${eventName} route profile with your FTP, body weight, bike setup, riding position, surface, wind, and drafting assumptions. The result is a deterministic finish-time estimate with a confidence range, not a guaranteed race-day time.`,
+    },
+    {
+      question: `What data is used for ${eventName}?`,
+      answer: `This page uses ${distanceKm.toFixed(0)} km of course distance, ${elevationGainM.toLocaleString()} m of elevation gain, detected climbs, and ${surface} assumptions. Better route files and more actual rider results will improve future confidence.`,
+    },
+    {
+      question: "What makes the prediction more accurate?",
+      answer: `Measured FTP, honest rider weight, realistic bike weight, known tyre/surface choice, accurate wind conditions, and a good estimate of riding position all improve the model. ${climbText}`,
+    },
+    {
+      question: "What is in the premium Race Report?",
+      answer:
+        "The Race Report turns the free finish-time estimate into a race plan: segment pacing, climb strategy, wind notes, fuelling targets, equipment guidance, biggest time gains, biggest risks, and race-week checklists.",
+    },
+  ];
 }
 
 function derivePredictionFactors(args: {

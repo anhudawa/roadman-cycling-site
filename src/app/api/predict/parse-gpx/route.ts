@@ -3,6 +3,20 @@ import { buildCourse, parseGpx } from "@/lib/race-predictor/gpx";
 
 export const runtime = "nodejs";
 
+const ALLOWED_CONTENT_TYPES = [
+  "application/gpx+xml",
+  "application/xml",
+  "text/xml",
+  "application/octet-stream",
+];
+
+function isAllowedContentType(request: Request): boolean {
+  const raw = request.headers.get("content-type");
+  if (!raw) return true;
+  const contentType = raw.split(";")[0]?.trim().toLowerCase();
+  return ALLOWED_CONTENT_TYPES.includes(contentType);
+}
+
 function qualityWarnings(quality: {
   invalidCoordinateCount: number;
   missingElevationCount: number;
@@ -48,6 +62,13 @@ function qualityWarnings(quality: {
  * unchanged to /api/predict.
  */
 export async function POST(request: Request) {
+  if (!isAllowedContentType(request)) {
+    return NextResponse.json(
+      { error: "Unsupported file type. Upload a .gpx XML file." },
+      { status: 415 },
+    );
+  }
+
   let xml: string;
   try {
     xml = await request.text();

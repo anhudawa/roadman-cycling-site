@@ -228,3 +228,45 @@ This audit covers the current `/predict` product in the local Roadman Cycling Ne
 - Tyre-pressure guidance now responds to rider+bike system mass, rolling-resistance/surface signals, and avoids pretending to know tyre width when it was not supplied.
 - Gearing guidance responds to climb severity, especially steep routes where bailout gears are a real race-day limiter.
 - Added report-rendering test coverage so these premium equipment sections stay present.
+
+## Sixteenth Chunk Implemented
+
+- Saved key modelling assumptions into each prediction `resultSummary`: event type, drafting, surface, rider height, drivetrain efficiency, and whether CdA/Crr came from explicit inputs or presets.
+- Added a "Model assumptions" section to the premium Race Report so riders can see the inputs behind the number and correct bad assumptions.
+- Extended report-rendering tests to cover the assumptions section.
+
+## Seventeenth Chunk Implemented
+
+- Added a canonical `report_purchased` conversion event to the Stripe-confirmed paid Race Report webhook path.
+- The existing `paid_report_checkout_success` event remains in place; `report_purchased` gives the acquisition funnel its generic purchase-completed signal without relying on the browser success redirect.
+- The event records product slug, order id, paid report id, prediction slug, and amount in cents, while keeping payment/session details out of public analytics metadata.
+
+## Eighteenth Chunk Implemented
+
+- Added premium upsell impression tracking to the prediction result upgrade form.
+- The funnel now captures when the Race Report CTA is viewed, when checkout is started, and when Stripe confirms purchase.
+- This closes a key measurement gap between free prediction completion and paid-report conversion.
+
+## Nineteenth Chunk Implemented
+
+- Added API coverage for the Race Report availability endpoint so preview/local deployments safely show checkout as unavailable when Stripe is not configured.
+- Hardened the Stripe dispatcher test to cover the canonical `report_purchased` event fired from the webhook-confirmed purchase path.
+- Cleaned `.env.example` and documented the Race Report checkout, webhook, database, delivery, and optional Blob storage variables needed for Vercel.
+
+## Twentieth Chunk Implemented
+
+- Added SEO structured data to `/predict/[slug]` event landing pages: breadcrumb schema, predictor app/offers schema, course properties, and FAQPage schema.
+- Added a visible event-prediction FAQ block that explains how the model works, what data the event page uses, what improves accuracy, and what the premium Race Report unlocks.
+- This strengthens indexable event predictor pages without making unsupported accuracy claims.
+
+## Twenty-First Chunk Implemented
+
+- Expanded the race guide and predictor event catalog with five named priority events from the brief: Strade Bianche Gran Fondo, Paris-Roubaix Challenge, Belgian Waffle Ride California, Unbound Gravel 200, and Leadville Trail 100 MTB.
+- Added matching synthetic fallback courses and seed-script entries so local previews and seeded environments can predict these events before real GPX provenance is available.
+- Linked Wicklow 200 to its existing predictor course and added regression coverage proving every priority event has a race guide, predictor slug, and fallback course data.
+
+## Twenty-Second Chunk Implemented
+
+- Added a content-type gate to `/api/predict/parse-gpx` so the server accepts GPX/XML uploads and rejects unsupported file types with a clear 415 response.
+- Added direct API route tests for unsupported file type, empty GPX, huge GPX, malformed GPX, sparse/too-short tracks, and a valid GPX response with profile, points, quality counts, warnings, and course stats.
+- Re-ran the parser test suite alongside the new API tests, strengthening the GPX hardening coverage requested in Phase 3.

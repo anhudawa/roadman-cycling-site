@@ -34,6 +34,7 @@ import {
   PAID_REPORT_EVENTS,
   recordPaidReportServerEvent,
 } from "@/lib/analytics/paid-report-events";
+import { recordEvent } from "@/lib/admin/events-store";
 import {
   notifyPaidReportSale,
   sendStripeSaleNotification,
@@ -402,6 +403,28 @@ async function handlePaidReportCheckoutCompleted(
     reportId: paidReportId,
     orderId,
   });
+  await recordEvent("report_purchased", "/api/webhooks/stripe", {
+    email,
+    source: "stripe_webhook",
+    meta: {
+      product_slug:
+        typeof metadata.product_slug === "string"
+          ? metadata.product_slug
+          : "paid_report",
+      order_id: String(orderId),
+      paid_report_id: String(paidReportId),
+      prediction_slug:
+        typeof metadata.prediction_slug === "string"
+          ? metadata.prediction_slug
+          : "",
+      amount_cents:
+        typeof session.amount_total === "number"
+          ? String(session.amount_total)
+          : "",
+    },
+  }).catch((err) =>
+    console.error("[stripe/dispatch] report_purchased event failed:", err),
+  );
 
   const riderProfileId = Number(metadata.rider_profile_id);
   if (riderProfileId) {

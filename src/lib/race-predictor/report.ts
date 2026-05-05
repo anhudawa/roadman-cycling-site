@@ -277,6 +277,47 @@ function surfaceLabel(surface: string | undefined): string {
   return surface.replace(/_/g, " ");
 }
 
+function compactLabel(value: string | null | undefined): string {
+  if (!value) return "not supplied";
+  return value.replace(/_/g, " ");
+}
+
+interface ReportAssumptions {
+  eventType?: string | null;
+  drafting?: string | null;
+  surface?: string | null;
+  heightCm?: number | null;
+  drivetrainEfficiency?: number | null;
+  cdaSource?: string | null;
+  crrSource?: string | null;
+}
+
+function getReportAssumptions(summary: Record<string, unknown> | null): ReportAssumptions | null {
+  const raw = summary?.assumptions;
+  if (!raw || typeof raw !== "object") return null;
+  return raw as ReportAssumptions;
+}
+
+function buildAssumptionRows(assumptions: ReportAssumptions | null, rider: RiderProfile): string {
+  const rows = [
+    ["Event type", compactLabel(assumptions?.eventType)],
+    ["Drafting", compactLabel(assumptions?.drafting)],
+    ["Surface input", compactLabel(assumptions?.surface)],
+    [
+      "Rider height",
+      typeof assumptions?.heightCm === "number" ? `${Math.round(assumptions.heightCm)} cm` : "not supplied",
+    ],
+    ["Drivetrain", `${Math.round((assumptions?.drivetrainEfficiency ?? rider.drivetrainEfficiency) * 1000) / 10}% efficient`],
+    [
+      "Aero / rolling source",
+      `CdA ${compactLabel(assumptions?.cdaSource)} · Crr ${compactLabel(assumptions?.crrSource)}`,
+    ],
+  ];
+  return rows
+    .map(([label, value]) => `<tr><td>${escape(label)}</td><td>${escape(value)}</td></tr>`)
+    .join("");
+}
+
 interface CourseSlice {
   name: string;
   startKm: number;
@@ -530,6 +571,8 @@ export function renderRaceReportHtml(p: RenderHtmlArgs): string {
   const insight = (p.resultSummary?.insight ?? null) as
     | { headline: string; body: string }
     | null;
+  const assumptions = getReportAssumptions(p.resultSummary);
+  const assumptionRows = buildAssumptionRows(assumptions, p.rider);
   const ftp = deriveFtp(p.rider);
   const avgSpeed = course ? ((course.totalDistance / p.predictedTimeS) * 3.6).toFixed(1) : "—";
   const slices = course ? buildCourseSlices(course, p.pacingPlan, ftp) : [];
@@ -654,6 +697,14 @@ export function renderRaceReportHtml(p: RenderHtmlArgs): string {
     <div class="stat"><div class="stat-label">Normalised power</div><div class="stat-value">${p.normalizedPower ?? "—"} W</div></div>
     <div class="stat"><div class="stat-label">Variability index</div><div class="stat-value">${p.variabilityIndex ? p.variabilityIndex.toFixed(2) : "—"}</div></div>
     <div class="stat"><div class="stat-label">Avg speed</div><div class="stat-value">${avgSpeed} km/h</div></div>
+  </div>
+
+  <h2>Model assumptions</h2>
+  <div class="block">
+    <p>The number is only useful if the assumptions are visible. These are the key inputs used for this report; update the prediction if any of them are wrong.</p>
+    <table>
+      <tbody>${assumptionRows}</tbody>
+    </table>
   </div>
 
   ${

@@ -1,16 +1,27 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Button } from "@/components/ui";
 import { useTrack } from "@/hooks/useTrack";
 
 export function UpgradeForm({ slug }: { slug: string }) {
   const track = useTrack();
+  const viewedRef = useRef(false);
   const [email, setEmail] = useState("");
   const [firstName, setFirstName] = useState("");
   const [submitting, setSubmitting] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [available, setAvailable] = useState<boolean | null>(null);
+
+  useEffect(() => {
+    if (viewedRef.current) return;
+    viewedRef.current = true;
+    track("tool_result_upsell_view", {
+      product: "report_race",
+      predictionSlug: slug,
+      placement: "race_report_upgrade_form",
+    });
+  }, [slug, track]);
 
   useEffect(() => {
     let cancelled = false;

@@ -47,7 +47,17 @@ describe("renderRaceReportHtml", () => {
       normalizedPower: 235,
       variabilityIndex: 1.14,
       pacingPlan: fixture!.courseData.segments.map(() => 205),
-      resultSummary: null,
+      resultSummary: {
+        assumptions: {
+          eventType: "sportive",
+          drafting: "small_group",
+          surface: "tarmac_rough",
+          heightCm: 178,
+          drivetrainEfficiency: 0.97,
+          cdaSource: "preset",
+          crrSource: "surface",
+        },
+      },
       course: fixture!.courseData,
     });
 
@@ -55,5 +65,8 @@ describe("renderRaceReportHtml", () => {
     expect(html).toContain("<h3>Gearing</h3>");
     expect(html).toContain("bailout gearing");
     expect(html).toContain("83 kg rider+bike system");
+    expect(html).toContain("<h2>Model assumptions</h2>");
+    expect(html).toContain("small group");
+    expect(html).toContain("178 cm");
   });
 });
