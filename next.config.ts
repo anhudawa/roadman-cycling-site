@@ -21,7 +21,18 @@ const nextConfig: NextConfig = {
     qualities: [75, 85],
   },
   experimental: {
-    optimizePackageImports: ["framer-motion", "shiki", "rehype-pretty-code"],
+    // Tree-shake named exports from heavy libraries. recharts and date-fns
+    // ship large barrel files — without this, importing one named export
+    // pulls the whole module into the route's client chunk. lucide-react
+    // sees a similar effect with icon barrel imports.
+    optimizePackageImports: [
+      "framer-motion",
+      "shiki",
+      "rehype-pretty-code",
+      "recharts",
+      "date-fns",
+      "lucide-react",
+    ],
   },
   async redirects() {
     const COACHING_SUBDOMAIN = [

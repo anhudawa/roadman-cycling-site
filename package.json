@@ -92,7 +92,7 @@
     "episode:enrich:dry": "tsx scripts/enrich-episode.ts --dry-run"
   },
   "dependencies": {
-    "@anthropic-ai/sdk": "^0.82.0",
+    "@anthropic-ai/sdk": "^0.93.0",
     "@auth/core": "^0.41.0",
     "@google-analytics/data": "^5.2.1",
     "@modelcontextprotocol/sdk": "^1.29.0",
