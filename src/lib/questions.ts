@@ -2798,6 +2798,108 @@ export const QUESTION_PAGES: QuestionPage[] = [
       label: "Take the Plateau Diagnostic",
     },
   },
+  {
+    slug: "strength-training-cyclist-over-40",
+    cluster: "masters",
+    question: "Should I Do Strength Training as a Cyclist Over 40?",
+    seoTitle: "Should Cyclists Over 40 Lift Weights? The Honest Answer",
+    seoDescription:
+      "Should you strength train as a cyclist over 40? The published evidence (Rønnestad), the masters case for it, and the two-session-a-week template that actually works.",
+    pillar: "strength",
+    shortAnswer:
+      "Yes — and after 40, it's the single highest-return non-cycling intervention you can make. Heavy resistance training twice a week produces 8-15% FTP gains without adding bike volume (Rønnestad), protects fast-twitch muscle from age-related loss, and improves cycling economy by 4-5%. Skip it after 40 and you're choosing the steepest version of the decline curve.",
+    bestFor:
+      "Masters cyclists training under 12 hours a week who want to keep gaining power, protect against injury, and stay competitive into their 50s and 60s.",
+    notFor:
+      "Riders unwilling to commit to two consistent sessions a week — sporadic strength work is closer to no strength work than to the published-evidence dose.",
+    keyTakeaway:
+      "After 40, strength training stops being optional — it becomes the protective layer that keeps the bike work from running out of muscle to push.",
+    evidenceLevel: "strong",
+    evidenceNote:
+      "Built on Bent Rønnestad's published research, Andy Galpin's masters fast-twitch work, and the Roadman case data inside Not Done Yet — alongside the gym-vs-bike strength training literature reviewed in our 2026 report.",
+    fullExplanation: [
+      "If there's one near-consensus inside the Roadman expert network, it's this one. Bent Rønnestad's published research is the single cleanest piece of evidence — heavy resistance training twice a week, alongside normal cycling volume, lifted FTP by 8-15% in trained cyclists. Cycling economy improved by 4-5%. Time-to-exhaustion at threshold went up. The cost was 60-90 minutes twice a week. The return per hour is hard to find anywhere else in the masters playbook.",
+      "After 40, the case sharpens. Andy Galpin has been clear on the Roadman Cycling Podcast: fast-twitch fibres atrophy first with age, and they're the fibres that carry short hard efforts, accelerations, and the top-end of your FTP. Without resistance training, you're losing them by 3-8% a decade. With it, you can hold or even build them into your 50s and 60s. Watching a 55-year-old who lifts ride away from a 35-year-old who doesn't is a regular feature of any serious masters training group — the work is the difference.",
+      "The honest counter-argument: 'lifting will make me bulky and slow me down.' The published research doesn't support this for the protocols that actually deliver FTP gains — heavy compound lifts (squats, deadlifts, single-leg work, hip hinges) at low rep ranges (3-6 reps, 3-5 sets) twice a week. Hypertrophy isn't the goal and isn't what happens at this dose. What happens is neural — better motor unit recruitment, stiffer tendons, more force per pedal stroke. The masters who report feeling 'too bulky' are usually doing high-rep bodybuilding sessions, not the strength template that moves cycling performance.",
+      "Practically, the template Roadman runs inside Not Done Yet is two sessions a week, ideally on the same days as a hard ride (so you're not stacking another stressful day) or on a separate strength day if your week allows. Squats, deadlifts, lunges or split squats, a hip hinge variant, and core. 45-60 minutes including warm-up. Heavy enough to be hard at 3-5 reps. Off-season builds the foundation; in-season maintains it. Skip it for 8 weeks and you'll feel the loss on every steep climb.",
+    ],
+    evidence: [
+      {
+        label: "Bent Rønnestad — strength training for cyclists",
+        detail:
+          "Rønnestad's published trials showing 8-15% FTP gains from 8-12 weeks of heavy resistance training without added bike volume — the strongest single masters intervention.",
+      },
+      {
+        label: "Andy Galpin — Roadman Podcast",
+        detail:
+          "Galpin's research and conversation on fast-twitch fibre loss after 40 establishes why strength training is non-negotiable rather than optional for masters cyclists.",
+        href: "/blog/andy-galpin-fast-twitch-fibres-cyclist-after-40",
+      },
+      {
+        label: "Roadman strength training research review",
+        detail:
+          "Roadman's synthesis of the gym-vs-more-miles literature, including the published meta-analyses on age-group cyclists and the case data from the masters cohort.",
+        href: "/blog/gym-vs-bike-strength-training-cyclists-research",
+      },
+      {
+        label: "Roadman Strength Training Course",
+        detail:
+          "The published Roadman strength programme that operationalises the Rønnestad protocol for masters cyclists who don't have a coach.",
+        href: "/strength-training",
+      },
+    ],
+    faq: [
+      {
+        question: "How many strength sessions per week for cyclists over 40?",
+        answer:
+          "Two is the published-evidence standard and the dose that delivers most of the FTP gain. Three can work in off-season for riders who recover well; one is enough for in-season maintenance once the foundation is built. Below one a week is closer to no programme than to the published research.",
+      },
+      {
+        question: "When should I do strength training in my cycling week?",
+        answer:
+          "Two patterns work. Stack it on hard ride days — fewer total stressful days, more recovery days clean. Or run it as standalone strength days with easy or rest cycling around them. Avoid putting heavy lower-body strength on the day before a key cycling session.",
+      },
+      {
+        question: "Will lifting make me a slower climber?",
+        answer:
+          "If you're doing high-rep bodybuilding-style sessions and gaining 8kg of upper-body muscle, yes. If you're doing the heavy-low-rep cycling-specific protocol — squats, deadlifts, single-leg work — the evidence consistently shows the opposite: faster climbing, better economy, more durability. The protocol matters more than the activity.",
+      },
+      {
+        question: "Can I just do bodyweight or do I need a gym?",
+        answer:
+          "Bodyweight gets you most of the way for the first 3-6 months, particularly if you're new to strength work. Beyond that, the published gains require external load — barbells, dumbbells, kettlebells. The masters cohort inside Roadman who've shifted from bodyweight to loaded sessions report the bigger jump came in the second phase.",
+      },
+    ],
+    related: [
+      {
+        label: "Do older cyclists need strength training?",
+        href: "/question/do-older-cyclists-need-strength",
+      },
+      {
+        label: "Strength Training vs More Miles",
+        href: "/compare/strength-vs-more-miles",
+      },
+      {
+        label: "Cycling Strength Training Guide",
+        href: "/blog/cycling-strength-training-guide",
+      },
+      {
+        label: "Andy Galpin on fast-twitch fibres after 40",
+        href: "/blog/andy-galpin-fast-twitch-fibres-cyclist-after-40",
+      },
+      {
+        label: "Roadman Strength Training Programme",
+        href: "/strength-training",
+      },
+    ],
+    cta: {
+      eyebrow: "READY TO STOP LEAVING POWER ON THE TABLE",
+      heading: "The Plateau Diagnostic reveals where strength fits in your week.",
+      body: "Built for masters cyclists who suspect strength is the missing piece — and want a structured read on where exactly the FTP is leaking.",
+      href: "/plateau",
+      label: "Take the Plateau Diagnostic",
+    },
+  },
 ];
 
 export function getQuestionBySlug(slug: string): QuestionPage | null {
