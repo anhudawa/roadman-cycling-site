@@ -3,6 +3,42 @@ import { buildCourse, parseGpx } from "@/lib/race-predictor/gpx";
 
 export const runtime = "nodejs";
 
+function qualityWarnings(quality: {
+  invalidCoordinateCount: number;
+  missingElevationCount: number;
+  invalidElevationCount: number;
+  gpsSpikeCount: number;
+  elevationSpikeCount: number;
+}): string[] {
+  const warnings: string[] = [];
+  if (quality.invalidCoordinateCount > 0) {
+    warnings.push(
+      `${quality.invalidCoordinateCount} bad GPS point${quality.invalidCoordinateCount === 1 ? " was" : "s were"} ignored.`,
+    );
+  }
+  if (quality.gpsSpikeCount > 0) {
+    warnings.push(
+      `${quality.gpsSpikeCount} GPS spike${quality.gpsSpikeCount === 1 ? " was" : "s were"} removed from the route.`,
+    );
+  }
+  if (quality.elevationSpikeCount > 0) {
+    warnings.push(
+      `${quality.elevationSpikeCount} elevation spike${quality.elevationSpikeCount === 1 ? " was" : "s were"} smoothed.`,
+    );
+  }
+  if (quality.invalidElevationCount > 0) {
+    warnings.push(
+      `${quality.invalidElevationCount} invalid elevation value${quality.invalidElevationCount === 1 ? " was" : "s were"} treated as 0 m.`,
+    );
+  }
+  if (quality.missingElevationCount > 0) {
+    warnings.push(
+      `${quality.missingElevationCount} point${quality.missingElevationCount === 1 ? " is" : "s are"} missing elevation, so the climbing estimate is less certain.`,
+    );
+  }
+  return warnings;
+}
+
 /**
  * POST /api/predict/parse-gpx
  *
@@ -41,6 +77,7 @@ export async function POST(request: Request) {
   }
 
   const course = buildCourse(parsed.points, { name: parsed.name });
+  const warnings = qualityWarnings(parsed.quality);
 
   // Compact profile pairs for the thumbnail
   const SAMPLES = 120;
@@ -62,6 +99,8 @@ export async function POST(request: Request) {
   return NextResponse.json({
     name: parsed.name ?? "Custom course",
     points: parsed.points,
+    quality: parsed.quality,
+    warnings,
     profile,
     distanceM: course.totalDistance,
     elevationGainM: Math.round(course.totalElevationGain),

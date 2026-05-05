@@ -189,6 +189,7 @@ export const RACES: Race[] = [
     similar_races: ["dragon-ride", "wicklow-200", "tour-de-yorkshire"],
     month: "May",
     tags: ["gran fondo", "england", "lake district", "mountains", "classic", "cobbles"],
+    predictor_slug: "fred-whitton-challenge",
   },
   {
     name: "Maratona dles Dolomites",
@@ -217,6 +218,7 @@ export const RACES: Race[] = [
     month: "July",
     website: "https://www.maratona.it",
     tags: ["gran fondo", "dolomites", "italy", "mountains", "ballot", "iconic"],
+    predictor_slug: "maratona-dles-dolomites",
   },
   {
     name: "L'Eroica",
@@ -269,6 +271,7 @@ export const RACES: Race[] = [
     month: "August",
     website: "https://www.hauteroute.org",
     tags: ["multi-day", "ultra endurance", "alps", "france", "switzerland", "italy", "iconic"],
+    predictor_slug: "haute-route-pyrenees-stage-1",
   },
   {
     name: "Dragon Ride",
@@ -346,6 +349,7 @@ export const RACES: Race[] = [
     month: "May",
     website: "https://granfondonewyork.com",
     tags: ["gran fondo", "usa", "new york", "iconic", "international"],
+    predictor_slug: "gran-fondo-new-york",
   },
   {
     name: "Quebrantahuesos",

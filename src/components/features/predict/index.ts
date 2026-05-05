@@ -13,3 +13,4 @@ export { ScenarioCards, deriveDefaultScenarios } from "./ScenarioCards";
 export { GapToCutoffBar } from "./GapToCutoffBar";
 export { ShareCard } from "./ShareCard";
 export { PredictionGate } from "./PredictionGate";
+export { AccuracyFeedback } from "./AccuracyFeedback";

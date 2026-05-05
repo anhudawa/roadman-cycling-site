@@ -2,8 +2,10 @@
 
 import { useEffect, useState } from "react";
 import { Button } from "@/components/ui";
+import { useTrack } from "@/hooks/useTrack";
 
 export function UpgradeForm({ slug }: { slug: string }) {
+  const track = useTrack();
   const [email, setEmail] = useState("");
   const [firstName, setFirstName] = useState("");
   const [submitting, setSubmitting] = useState(false);
@@ -34,6 +36,10 @@ export function UpgradeForm({ slug }: { slug: string }) {
       setError("Race Report checkout is not configured on this environment yet.");
       return;
     }
+    track("paid_report_checkout_start", {
+      product: "report_race",
+      predictionSlug: slug,
+    });
     setSubmitting(true);
     try {
       const res = await fetch(`/api/predict/${slug}/upgrade`, {
@@ -47,6 +53,12 @@ export function UpgradeForm({ slug }: { slug: string }) {
         setSubmitting(false);
         return;
       }
+      track("cta_click", {
+        placement: "race_report_upgrade_form",
+        action: "checkout_redirect",
+        product: "report_race",
+        predictionSlug: slug,
+      });
       window.location.assign(data.url);
     } catch {
       setError("Network issue — try again.");

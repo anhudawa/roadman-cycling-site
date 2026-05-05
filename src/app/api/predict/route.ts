@@ -2,8 +2,6 @@ import { NextResponse } from "next/server";
 import { createHash } from "node:crypto";
 import { normaliseEmail } from "@/lib/validation";
 import {
-  buildEnvironment,
-  buildRiderProfile,
   runPrediction,
   type EnvironmentInputDTO,
   type PredictMode,
@@ -36,6 +34,8 @@ const VALID_POSITIONS = new Set([
   "climbing",
 ]);
 
+const VALID_DRAFTING = new Set(["solo", "small_group", "large_group"]);
+
 function validateRider(rider: RiderInputDTO | undefined): string | null {
   if (!rider) return "Missing rider profile.";
   if (typeof rider.bodyMass !== "number" || !Number.isFinite(rider.bodyMass)) {
@@ -52,6 +52,12 @@ function validateRider(rider: RiderInputDTO | undefined): string | null {
   }
   if (typeof rider.position !== "string" || !VALID_POSITIONS.has(rider.position)) {
     return "Riding position is required.";
+  }
+  if (
+    rider.drafting !== undefined &&
+    (typeof rider.drafting !== "string" || !VALID_DRAFTING.has(rider.drafting))
+  ) {
+    return "Drafting assumption is not recognised.";
   }
   // FTP / power profile sanity check. The engine accepts a partial profile
   // (just FTP), but if a value is supplied it has to be plausible.

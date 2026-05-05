@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { Button } from "@/components/ui";
+import { useTrack } from "@/hooks/useTrack";
 
 interface PredictionGateProps {
   slug: string;
@@ -30,6 +31,7 @@ export function PredictionGate({
   hiddenItems = DEFAULT_ITEMS,
 }: PredictionGateProps) {
   const router = useRouter();
+  const track = useTrack();
   const [email, setEmail] = useState("");
   const [firstName, setFirstName] = useState("");
   const [submitting, setSubmitting] = useState(false);
@@ -57,6 +59,11 @@ export function PredictionGate({
         setError(data?.error ?? "Couldn't send — try again in a moment.");
         return;
       }
+      track("email_captured", {
+        source: "race_predictor_gate",
+        email: trimmedEmail,
+        predictionSlug: slug,
+      });
       router.refresh();
     } catch {
       setError("Network issue — try again.");

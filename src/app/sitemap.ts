@@ -42,7 +42,6 @@ const BASE_URL = "https://roadmancycling.com";
  */
 
 const SITEMAP_IDS = [0, 1, 2, 3, 4, 5] as const;
-type SitemapId = (typeof SITEMAP_IDS)[number];
 
 export async function generateSitemaps() {
   return SITEMAP_IDS.map((id) => ({ id }));
@@ -105,6 +104,18 @@ function buildStaticSitemap(): MetadataRoute.Sitemap {
     { url: `${BASE_URL}/plateau`, lastModified: new Date("2026-04-22"), changeFrequency: "monthly", priority: 0.9 },
     { url: `${BASE_URL}/ask`, lastModified: new Date("2026-04-24"), changeFrequency: "weekly", priority: 0.9 },
     { url: `${BASE_URL}/predict`, lastModified: new Date("2026-04-24"), changeFrequency: "weekly", priority: 0.9 },
+    ...Array.from(
+      new Set(
+        RACES.map((race) => race.predictor_slug).filter(
+          (slug): slug is string => Boolean(slug),
+        ),
+      ),
+    ).map((slug) => ({
+      url: `${BASE_URL}/predict/${slug}`,
+      lastModified: new Date("2026-05-05"),
+      changeFrequency: "monthly" as const,
+      priority: 0.78,
+    })),
     { url: `${BASE_URL}/apply`, lastModified: new Date(), changeFrequency: "weekly", priority: 0.9 },
     { url: `${BASE_URL}/coaching`, lastModified: new Date(), changeFrequency: "weekly", priority: 0.8 },
     { url: `${BASE_URL}/coaching/triathletes`, lastModified: new Date(), changeFrequency: "weekly", priority: 0.8 },

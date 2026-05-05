@@ -29,6 +29,7 @@ export interface RiderInputDTO {
   bodyMass: number;
   bikeMass: number;
   position: RidingPosition;
+  drafting?: DraftingAssumption;
   cda?: number;            // optional override; otherwise from position
   crr?: number;            // optional override; otherwise from surface
   surface?: SurfaceType;
@@ -46,6 +47,13 @@ export interface EnvironmentInputDTO {
 }
 
 export type PredictMode = "can_i_make_it" | "plan_my_race";
+export type DraftingAssumption = "solo" | "small_group" | "large_group";
+
+const DRAFTING_CDA_MULTIPLIER: Record<DraftingAssumption, number> = {
+  solo: 1,
+  small_group: 0.88,
+  large_group: 0.78,
+};
 
 export interface RunPredictArgs {
   course: Course;
@@ -76,7 +84,9 @@ export function synthesizePowerProfile(ftp: number): PowerProfile {
 }
 
 export function buildRiderProfile(input: RiderInputDTO): RiderProfile {
-  const cda = input.cda ?? CDA_BY_POSITION[input.position];
+  const baseCda = input.cda ?? CDA_BY_POSITION[input.position];
+  const drafting = input.drafting ?? "solo";
+  const cda = baseCda * DRAFTING_CDA_MULTIPLIER[drafting];
   const crr =
     input.crr ?? (input.surface ? CRR_BY_SURFACE[input.surface] : 0.0034);
   // FTP precedence: explicit ftp → derive from p20min (×0.95) → 250 default.
@@ -113,6 +123,7 @@ export function buildRiderProfile(input: RiderInputDTO): RiderProfile {
  * forgive a prediction they beat far more readily than one they miss.
  */
 function inferPrecision(rider: RiderInputDTO): Precision {
+  if (rider.drafting && rider.drafting !== "solo") return "low";
   const hasExplicitCda = typeof rider.cda === "number";
   const hasExplicitCrr = typeof rider.crr === "number";
   const hasFullPdCurve =

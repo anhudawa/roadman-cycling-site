@@ -5,6 +5,7 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { Header, Footer, Section, Container } from "@/components/layout";
 import { Button } from "@/components/ui";
+import { useTrack } from "@/hooks/useTrack";
 import {
   PositionPicker,
   GpxDropzone,
@@ -22,6 +23,7 @@ import {
 import type { Course } from "@/lib/race-predictor/types";
 
 type Mode = "plan_my_race" | "can_i_make_it";
+type Drafting = "solo" | "small_group" | "large_group";
 type Position =
   | "tt_bars"
   | "aero_drops"
@@ -79,8 +81,26 @@ const DIFFICULTY_OPTIONS = [
   { value: "5", label: "Extreme (5)" },
 ];
 
+const WIND_DIRECTIONS = [
+  { value: 0, label: "N" },
+  { value: 45, label: "NE" },
+  { value: 90, label: "E" },
+  { value: 135, label: "SE" },
+  { value: 180, label: "S" },
+  { value: 225, label: "SW" },
+  { value: 270, label: "W" },
+  { value: 315, label: "NW" },
+];
+
+const DRAFTING_OPTIONS: { value: Drafting; label: string; detail: string }[] = [
+  { value: "solo", label: "Mostly solo", detail: "TT, triathlon, or riding alone" },
+  { value: "small_group", label: "Small group", detail: "Working turns with a few riders" },
+  { value: "large_group", label: "Bunch", detail: "Sportive or road-race pack" },
+];
+
 export default function PredictPage() {
   const router = useRouter();
+  const track = useTrack();
   const setupRef = useRef<HTMLDivElement | null>(null);
 
   // Read deep-link course slug from the URL after mount. We avoid
@@ -109,6 +129,8 @@ export default function PredictPage() {
 
   const [airTempC, setAirTempC] = useState<number>(18);
   const [windSpeedMs, setWindSpeedMs] = useState<number>(0);
+  const [windDirectionDeg, setWindDirectionDeg] = useState<number>(0);
+  const [drafting, setDrafting] = useState<Drafting>("solo");
 
   // Fallback values used by the live what-if estimator when the user hasn't
   // typed in their setup yet. These should never be submitted to /api/predict.
@@ -346,6 +368,15 @@ export default function PredictPage() {
       return;
     }
     setSubmitting(true);
+    track("prediction_started", {
+      tool: "race_predictor",
+      mode,
+      source: gpx ? "gpx_upload" : "event_catalog",
+      courseSlug: gpx ? null : courseSlug,
+      drafting,
+      windSpeedMs,
+      windDirectionDeg,
+    });
     try {
       const ctrl = new AbortController();
       const timer = setTimeout(() => ctrl.abort(), 12_000);
@@ -364,10 +395,12 @@ export default function PredictPage() {
             powerProfile: { ftp },
             cda: aiResult?.cda,
             crr: aiResult?.crr,
+            drafting,
           },
           environment: {
             airTemperatureC: airTempC,
             windSpeedMs,
+            windDirectionRad: (windDirectionDeg * Math.PI) / 180,
           },
         }),
       }).finally(() => clearTimeout(timer));
@@ -386,6 +419,13 @@ export default function PredictPage() {
         );
         return;
       }
+      track("prediction_completed", {
+        tool: "race_predictor",
+        resultSlug: data.slug,
+        source: gpx ? "gpx_upload" : "event_catalog",
+        courseSlug: gpx ? null : courseSlug,
+        drafting,
+      });
       router.push(`/predict/${data.slug}`);
     } catch (e) {
       const aborted = e instanceof DOMException && e.name === "AbortError";
@@ -447,8 +487,8 @@ export default function PredictPage() {
               <p className="hidden sm:block text-base md:text-xl text-off-white/80 max-w-2xl leading-relaxed mb-2">
                 Enter your FTP and weight, pick your event or drop a GPX, and
                 we&rsquo;ll simulate the ride on real elevation, real wind, and
-                real rolling resistance — and hand you a finish time within
-                ±3%. Free for the prediction. The $29 Race Report adds your
+                real rolling resistance — then show a realistic finish range
+                instead of pretending race day is a lab test. Free for the prediction. The $29 Race Report adds your
                 full pacing plan, fuelling strategy, and equipment what-ifs.
               </p>
 
@@ -459,7 +499,7 @@ export default function PredictPage() {
                 <span className="block w-1.5 h-1.5 rounded-full bg-emerald-400" />
                 <span>REAL ELEVATION · REAL WIND</span>
                 <span className="text-foreground-subtle">·</span>
-                <span>±3% TYPICAL ACCURACY</span>
+                <span>CONFIDENCE RANGE INCLUDED</span>
               </div>
             </div>
           </Container>
@@ -615,6 +655,12 @@ export default function PredictPage() {
                           coursesLoading={coursesLoading}
                           onSelect={() => {
                             if (matchedCourse && race.predictor_slug) {
+                              track("cta_click", {
+                                placement: "predict_event_grid",
+                                action: "event_selected",
+                                race: race.slug,
+                                courseSlug: race.predictor_slug,
+                              });
                               setGpx(null);
                               setCourseSlug(race.predictor_slug);
                               setShowEventList(false);
@@ -651,6 +697,12 @@ export default function PredictPage() {
                     onChange={(g) => {
                       setGpx(g);
                       if (g) {
+                        track("cta_click", {
+                          placement: "predict_gpx_dropzone",
+                          action: "gpx_uploaded",
+                          distanceKm: Math.round(g.distanceM / 1000),
+                          climbCount: g.climbCount,
+                        });
                         setCourseSlug("");
                         setShowEventList(false);
                         scrollToSetup();
@@ -779,7 +831,7 @@ export default function PredictPage() {
                   </button>
 
                   {showAdvanced && (
-                    <div className="grid grid-cols-2 gap-3 mt-3 pt-4 border-t border-white/5">
+                    <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 mt-3 pt-4 border-t border-white/5">
                       <NumberField
                         label="Air temp"
                         unit="°C"
@@ -791,7 +843,7 @@ export default function PredictPage() {
                         onChange={setAirTempC}
                       />
                       <NumberField
-                        label="Headwind"
+                        label="Wind speed"
                         unit="m/s"
                         value={windSpeedMs}
                         step={0.5}
@@ -799,6 +851,10 @@ export default function PredictPage() {
                         max={20}
                         placeholder="0"
                         onChange={setWindSpeedMs}
+                      />
+                      <WindDirectionSelect
+                        value={windDirectionDeg}
+                        onChange={setWindDirectionDeg}
                       />
                     </div>
                   )}
@@ -818,6 +874,39 @@ export default function PredictPage() {
                     </p>
                   </div>
                   <PositionPicker value={position} onChange={setPosition} />
+                </div>
+
+                <div className="rounded-xl border border-white/8 bg-white/[0.02] p-5 mb-5">
+                  <div className="flex items-baseline justify-between mb-3 flex-wrap gap-2">
+                    <p
+                      className="text-[0.62rem] tracking-[0.22em] uppercase text-foreground-muted"
+                      style={{ fontFamily: "var(--font-jetbrains-mono)" }}
+                    >
+                      DRAFTING ASSUMPTION
+                    </p>
+                    <p className="text-[0.62rem] text-foreground-subtle">
+                      Group riding changes aero drag, especially on fast roads
+                    </p>
+                  </div>
+                  <div className="grid grid-cols-1 sm:grid-cols-3 gap-2">
+                    {DRAFTING_OPTIONS.map((option) => (
+                      <button
+                        key={option.value}
+                        type="button"
+                        onClick={() => setDrafting(option.value)}
+                        className={`rounded-lg border p-3 text-left transition-colors ${
+                          drafting === option.value
+                            ? "border-coral bg-coral/10 text-off-white"
+                            : "border-white/10 bg-white/[0.03] text-off-white/70 hover:border-white/25"
+                        }`}
+                      >
+                        <span className="block text-sm font-semibold">{option.label}</span>
+                        <span className="mt-1 block text-xs leading-snug text-foreground-muted">
+                          {option.detail}
+                        </span>
+                      </button>
+                    ))}
+                  </div>
                 </div>
 
                 {/* AI shortcut — re-framed: clear what it does, what you get */}
@@ -899,39 +988,18 @@ export default function PredictPage() {
                   >
                     STEP 03 · WHEN ARE YOU RACING?
                   </p>
-                  <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
-                    <NumberField
-                      label="FTP"
-                      unit="W"
-                      value={ftp}
-                      step={5}
-                      min={50}
-                      max={500}
-                      placeholder="260"
-                      onChange={setFtp}
-                      error={fieldErrors.ftp}
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                    <ModeToggle
+                      label="Plan my race"
+                      sublabel="Best for pacing, fuelling, and execution on a target event."
+                      selected={mode === "plan_my_race"}
+                      onSelect={() => setMode("plan_my_race")}
                     />
-                    <NumberField
-                      label="Body mass"
-                      unit="kg"
-                      value={bodyMass}
-                      step={0.5}
-                      min={40}
-                      max={150}
-                      placeholder="75"
-                      onChange={setBodyMass}
-                      error={fieldErrors.bodyMass}
-                    />
-                    <NumberField
-                      label="Bike mass"
-                      unit="kg"
-                      value={bikeMass}
-                      step={0.1}
-                      min={5}
-                      max={30}
-                      placeholder="8"
-                      onChange={setBikeMass}
-                      error={fieldErrors.bikeMass}
+                    <ModeToggle
+                      label="Can I make it?"
+                      sublabel="More conservative. Useful for cutoffs and first-time long events."
+                      selected={mode === "can_i_make_it"}
+                      onSelect={() => setMode("can_i_make_it")}
                     />
                   </div>
 
@@ -957,7 +1025,7 @@ export default function PredictPage() {
                   </button>
 
                   {showAdvanced && (
-                    <div className="grid grid-cols-2 gap-3 mt-3 pt-4 border-t border-white/5">
+                    <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 mt-3 pt-4 border-t border-white/5">
                       <NumberField
                         label="Air temp"
                         unit="°C"
@@ -969,7 +1037,7 @@ export default function PredictPage() {
                         onChange={setAirTempC}
                       />
                       <NumberField
-                        label="Headwind"
+                        label="Wind speed"
                         unit="m/s"
                         value={windSpeedMs}
                         step={0.5}
@@ -977,6 +1045,10 @@ export default function PredictPage() {
                         max={20}
                         placeholder="0"
                         onChange={setWindSpeedMs}
+                      />
+                      <WindDirectionSelect
+                        value={windDirectionDeg}
+                        onChange={setWindDirectionDeg}
                       />
                     </div>
                   )}
@@ -1079,7 +1151,7 @@ export default function PredictPage() {
                   </Button>
 
                   <p className="text-[0.6rem] tracking-[0.18em] uppercase text-foreground-subtle text-center" style={{ fontFamily: "var(--font-jetbrains-mono)" }}>
-                    Free · No signup · Within ±3%
+                    Free · No signup · Confidence range included
                   </p>
                 </div>
               </div>
@@ -1352,6 +1424,38 @@ function NumberField({
           {error}
         </p>
       )}
+    </div>
+  );
+}
+
+function WindDirectionSelect({
+  value,
+  onChange,
+}: {
+  value: number;
+  onChange: (v: number) => void;
+}) {
+  return (
+    <div>
+      <label
+        htmlFor="wind-direction"
+        className="text-[0.62rem] tracking-[0.18em] uppercase text-foreground-muted mb-1.5 block"
+        style={{ fontFamily: "var(--font-jetbrains-mono)" }}
+      >
+        Wind from <span className="text-foreground-subtle">/ compass</span>
+      </label>
+      <select
+        id="wind-direction"
+        value={value}
+        onChange={(e) => onChange(Number(e.target.value))}
+        className="w-full min-h-[44px] px-3 py-2.5 rounded-lg bg-white/5 border border-white/10 text-off-white text-base focus:outline-none focus:border-coral transition-colors"
+      >
+        {WIND_DIRECTIONS.map((direction) => (
+          <option key={direction.value} value={direction.value}>
+            {direction.label}
+          </option>
+        ))}
+      </select>
     </div>
   );
 }

@@ -8,6 +8,17 @@ export interface GpxUploadResult {
   name: string;
   /** Full track points to submit to /api/predict. */
   points: TrackPoint[];
+  quality?: {
+    rawPointCount: number;
+    validPointCount: number;
+    invalidCoordinateCount: number;
+    missingElevationCount: number;
+    invalidElevationCount: number;
+    gpsSpikeCount: number;
+    elevationSpikeCount: number;
+    cleanedPointCount: number;
+  };
+  warnings?: string[];
   /** Compact `[[distM, elevM], ...]` thumbnail profile. */
   profile: number[][];
   distanceM: number;
@@ -77,6 +88,8 @@ export function GpxDropzone({ value, onChange }: GpxDropzoneProps) {
         onChange({
           name: data.name ?? file.name.replace(/\.gpx$/i, ""),
           points: data.points,
+          quality: data.quality,
+          warnings: Array.isArray(data.warnings) ? data.warnings : [],
           profile: data.profile,
           distanceM: data.distanceM,
           elevationGainM: data.elevationGainM,
@@ -145,6 +158,24 @@ export function GpxDropzone({ value, onChange }: GpxDropzoneProps) {
           <Mini label="Climb" value={`${value.elevationGainM.toLocaleString()} m`} />
           <Mini label="Climbs" value={`${value.climbCount}`} />
         </div>
+
+        {value.warnings && value.warnings.length > 0 && (
+          <div className="mt-4 rounded-lg border border-amber-300/25 bg-amber-300/10 p-3">
+            <p
+              className="text-[0.58rem] tracking-[0.18em] uppercase text-amber-200 mb-2"
+              style={{ fontFamily: "var(--font-jetbrains-mono)" }}
+            >
+              Track cleaned
+            </p>
+            <ul className="space-y-1">
+              {value.warnings.slice(0, 3).map((warning) => (
+                <li key={warning} className="text-xs leading-relaxed text-off-white/75">
+                  {warning}
+                </li>
+              ))}
+            </ul>
+          </div>
+        )}
       </div>
     );
   }

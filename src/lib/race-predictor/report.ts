@@ -407,6 +407,77 @@ function buildScenarioRows(
     .join("");
 }
 
+function buildBiggestGains(args: {
+  course: Course | null;
+  rider: RiderProfile;
+  environment: Environment;
+}): string[] {
+  const gains: string[] = [];
+  const climbDensity =
+    args.course && args.course.totalDistance > 0
+      ? args.course.totalElevationGain / (args.course.totalDistance / 1000)
+      : 0;
+
+  if (climbDensity > 20) {
+    gains.push("Keep climbs boring: cap early surges and save threshold work for the final third of each long climb.");
+  } else {
+    gains.push("Stay aero when the speed is high. On flatter ground, posture and clothing can matter as much as a training block.");
+  }
+
+  if (args.environment.windSpeed >= 4) {
+    gains.push("Spend power into headwinds and exposed drags; do not waste matches chasing speed with a tailwind or on fast descents.");
+  }
+
+  if (args.rider.cda > 0.34) {
+    gains.push("Clean up the riding position before buying speed. A smaller frontal area is likely worth more than losing a small amount of bike weight.");
+  } else {
+    gains.push("Protect the aero setup you already have: relaxed shoulders, stable head, and no sitting up unless you are eating or handling the bike.");
+  }
+
+  gains.push("Fuel from minute 20. The cheapest minutes are the ones you avoid losing to a late-race energy dip.");
+  return gains.slice(0, 4);
+}
+
+function buildBiggestRisks(args: {
+  course: Course | null;
+  predictedTimeS: number;
+  environment: Environment;
+  rider: RiderProfile;
+}): string[] {
+  const risks: string[] = [];
+  const hardClimbCount =
+    args.course?.climbs.filter((c) => c.category === "cat1" || c.category === "hc").length ?? 0;
+
+  if (hardClimbCount > 0) {
+    risks.push("Over-riding the first major climb. The model assumes controlled pacing, not repeated threshold spikes.");
+  }
+  if (args.predictedTimeS > 4 * 3600) {
+    risks.push("Durability fade after four hours. If long rides are thin in training, treat the final hour as the real test.");
+  }
+  if (args.environment.windSpeed >= 5) {
+    risks.push("Exposed cross/headwind sections. Position, group choice, and calm pacing matter more than the average wind number suggests.");
+  }
+  if (args.rider.crr >= 0.006) {
+    risks.push("Rolling resistance. Tyre choice, pressure, and surface setup can quietly tax every kilometre.");
+  }
+  risks.push("Under-fuelling early because the pace feels easy. By the time it feels costly, the mistake is already banked.");
+  return risks.slice(0, 4);
+}
+
+function windStrategy(environment: Environment): string {
+  if (environment.windSpeed < 2) {
+    return "Wind is not a major limiter in this run. Stay tidy and re-check race-week forecasts before locking the final plan.";
+  }
+  if (environment.windSpeed < 5) {
+    return "Moderate wind: hold your target power on exposed headwind sections, stay aero on fast ground, and avoid chasing speed when the course gives it for free.";
+  }
+  return "Strong wind: ride by power, not speed. In headwinds, keep pressure steady and use groups wisely; in tailwinds and descents, eat, drink, and conserve.";
+}
+
+function listItems(items: string[]): string {
+  return items.map((item) => `<li>${escape(item)}</li>`).join("");
+}
+
 interface RenderHtmlArgs extends PredictionForReport {
   course: Course | null;
 }
@@ -427,6 +498,18 @@ export function renderRaceReportHtml(p: RenderHtmlArgs): string {
     : "";
   const fuellingNote = formatFuelling(p.predictedTimeS, p.averagePower ?? 0);
   const surfaceSummary = course ? buildSurfaceSummary(course) : "Course surface not supplied";
+  const biggestGains = buildBiggestGains({
+    course,
+    rider: p.rider,
+    environment: p.environment,
+  });
+  const biggestRisks = buildBiggestRisks({
+    course,
+    predictedTimeS: p.predictedTimeS,
+    environment: p.environment,
+    rider: p.rider,
+  });
+  const windNote = windStrategy(p.environment);
 
   const pacingRows = slices
     .map(
@@ -476,6 +559,8 @@ export function renderRaceReportHtml(p: RenderHtmlArgs): string {
   .stat-value { font-size: 22px; font-weight: 700; color: ${CHARCOAL}; }
   .block { background: white; border-radius: 8px; padding: 18px; margin: 16px 0; }
   .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+  .coach-list { margin: 0; padding-left: 18px; }
+  .coach-list li { margin: 8px 0; line-height: 1.45; }
   .gain { color: #0f7a45; font-weight: 700; }
   .loss { color: ${CORAL}; font-weight: 700; }
   .premium { background: #210140; color: ${OFFWHITE}; border-radius: 8px; padding: 22px; margin-top: 28px; }
@@ -508,6 +593,17 @@ export function renderRaceReportHtml(p: RenderHtmlArgs): string {
          </div>`
       : ""
   }
+
+  <div class="two-col">
+    <div class="block">
+      <h2 style="margin-top:0;">Biggest time gains</h2>
+      <ul class="coach-list">${listItems(biggestGains)}</ul>
+    </div>
+    <div class="block">
+      <h2 style="margin-top:0;">Biggest risks</h2>
+      <ul class="coach-list">${listItems(biggestRisks)}</ul>
+    </div>
+  </div>
 
   <h2>Race-day dashboard</h2>
   <div class="stat-grid">
@@ -543,6 +639,11 @@ export function renderRaceReportHtml(p: RenderHtmlArgs): string {
     <p><strong>Rule for the day:</strong> start eating in the first 20 minutes, then keep the drip feed going. If you wait until you feel low, you are already paying interest.</p>
   </div>
 
+  <h2>Wind strategy</h2>
+  <div class="block">
+    <p>${escape(windNote)}</p>
+  </div>
+
   <h2>Equipment and course levers</h2>
   <div class="two-col">
     <div class="block">
@@ -562,6 +663,28 @@ export function renderRaceReportHtml(p: RenderHtmlArgs): string {
          </table>`
       : ""
   }
+
+  <h2>Race-week checklist</h2>
+  <div class="two-col">
+    <div class="block">
+      <h3>48-72 hours out</h3>
+      <ul class="coach-list">
+        <li>Confirm final route, start time, weather, and kit choice.</li>
+        <li>Pre-load carbs without changing foods dramatically.</li>
+        <li>Check tyres, chain, brake pads, sealant/tubes, and computer mount.</li>
+        <li>Put target power ranges somewhere you will actually see them.</li>
+      </ul>
+    </div>
+    <div class="block">
+      <h3>Morning of</h3>
+      <ul class="coach-list">
+        <li>Eat the breakfast you have already tested.</li>
+        <li>Start hydrated, but do not chase a heroic bottle count before the gun.</li>
+        <li>Ride the first 20 minutes below ego. Let the day come to you.</li>
+        <li>Begin fuelling before you feel like you need it.</li>
+      </ul>
+    </div>
+  </div>
 
   <h2>What this report bakes in</h2>
   <ul>

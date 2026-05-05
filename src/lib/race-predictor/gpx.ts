@@ -18,6 +18,21 @@ import {
 
 const toRad = (deg: number) => (deg * Math.PI) / 180;
 
+const MAX_REASONABLE_POINT_GAP_M = 5_000;
+const MAX_REASONABLE_GRADE = 0.35;
+const SPIKE_DETOUR_RATIO = 8;
+
+function validLatLon(lat: number, lon: number): boolean {
+  return (
+    Number.isFinite(lat) &&
+    Number.isFinite(lon) &&
+    lat >= -90 &&
+    lat <= 90 &&
+    lon >= -180 &&
+    lon <= 180
+  );
+}
+
 /** Haversine great-circle distance, m. */
 export function haversineDistance(
   lat1: number,
@@ -85,6 +100,23 @@ export function gaussianSmooth(values: number[], sigma: number): number[] {
 interface ParsedGpx {
   name?: string;
   points: TrackPoint[];
+  quality: TrackPointQuality;
+}
+
+export interface TrackPointQuality {
+  rawPointCount: number;
+  validPointCount: number;
+  invalidCoordinateCount: number;
+  missingElevationCount: number;
+  invalidElevationCount: number;
+  gpsSpikeCount: number;
+  elevationSpikeCount: number;
+  cleanedPointCount: number;
+}
+
+export interface CleanTrackResult {
+  points: TrackPoint[];
+  quality: TrackPointQuality;
 }
 
 const xmlParser = new XMLParser({
@@ -134,6 +166,10 @@ export function parseGpx(xml: string): ParsedGpx {
   if (tracks.length === 0) throw new Error('Invalid GPX: no <trk> elements');
 
   const points: TrackPoint[] = [];
+  let rawPointCount = 0;
+  let invalidCoordinateCount = 0;
+  let missingElevationCount = 0;
+  let invalidElevationCount = 0;
   let name: string | undefined;
 
   for (const trk of tracks) {
@@ -142,18 +178,203 @@ export function parseGpx(xml: string): ParsedGpx {
     for (const seg of segs) {
       const trkpts = ensureArray(seg.trkpt);
       for (const p of trkpts) {
+        rawPointCount += 1;
         const lat = Number(p['@_lat']);
         const lon = Number(p['@_lon']);
-        if (!Number.isFinite(lat) || !Number.isFinite(lon)) continue;
+        if (!validLatLon(lat, lon)) {
+          invalidCoordinateCount += 1;
+          continue;
+        }
         const elevation = p.ele !== undefined ? Number(p.ele) : 0;
+        if (p.ele === undefined) missingElevationCount += 1;
+        if (p.ele !== undefined && !Number.isFinite(elevation)) {
+          invalidElevationCount += 1;
+        }
         const time = typeof p.time === 'string' ? new Date(p.time) : undefined;
-        points.push({ lat, lon, elevation, time });
+        points.push({
+          lat,
+          lon,
+          elevation: Number.isFinite(elevation) ? elevation : 0,
+          time,
+        });
       }
     }
   }
 
   if (points.length === 0) throw new Error('Invalid GPX: no track points found');
-  return { name, points };
+  const cleaned = cleanTrackPointsWithQuality(points, {
+    rawPointCount,
+    invalidCoordinateCount,
+    missingElevationCount,
+    invalidElevationCount,
+  });
+  return { name, points: cleaned.points, quality: cleaned.quality };
+}
+
+/**
+ * Remove impossible GPS jumps before distance/elevation derivation.
+ *
+ * Consumer GPS exports sometimes contain one wild point hundreds of km away
+ * from the route. Keeping it would create fake distance, fake gradients, and
+ * absurd predicted times. This filter removes only obvious single-point
+ * detours: both neighbouring legs must be very long and the route via the
+ * point must be many times longer than the direct neighbour-to-neighbour leg.
+ */
+export function removeGpsSpikes(points: TrackPoint[]): TrackPoint[] {
+  const valid = points.filter((p) => validLatLon(p.lat, p.lon));
+  if (valid.length < 3) return valid;
+
+  const cleaned: TrackPoint[] = [valid[0]];
+  for (let i = 1; i < valid.length - 1; i++) {
+    const prev = valid[i - 1];
+    const curr = valid[i];
+    const next = valid[i + 1];
+    const inLeg = haversineDistance(prev.lat, prev.lon, curr.lat, curr.lon);
+    const outLeg = haversineDistance(curr.lat, curr.lon, next.lat, next.lon);
+    const direct = haversineDistance(prev.lat, prev.lon, next.lat, next.lon);
+    const via = inLeg + outLeg;
+    const isSinglePointDetour =
+      inLeg > MAX_REASONABLE_POINT_GAP_M &&
+      outLeg > MAX_REASONABLE_POINT_GAP_M &&
+      direct > 0 &&
+      via / direct > SPIKE_DETOUR_RATIO;
+
+    if (!isSinglePointDetour) cleaned.push(curr);
+  }
+  cleaned.push(valid[valid.length - 1]);
+  return cleaned;
+}
+
+function removeGpsSpikesWithCount(points: TrackPoint[]): {
+  points: TrackPoint[];
+  removed: number;
+} {
+  const valid = points.filter((p) => validLatLon(p.lat, p.lon));
+  if (valid.length < 3) return { points: valid, removed: points.length - valid.length };
+
+  const cleaned: TrackPoint[] = [valid[0]];
+  let removed = points.length - valid.length;
+  for (let i = 1; i < valid.length - 1; i++) {
+    const prev = valid[i - 1];
+    const curr = valid[i];
+    const next = valid[i + 1];
+    const inLeg = haversineDistance(prev.lat, prev.lon, curr.lat, curr.lon);
+    const outLeg = haversineDistance(curr.lat, curr.lon, next.lat, next.lon);
+    const direct = haversineDistance(prev.lat, prev.lon, next.lat, next.lon);
+    const via = inLeg + outLeg;
+    const isSinglePointDetour =
+      inLeg > MAX_REASONABLE_POINT_GAP_M &&
+      outLeg > MAX_REASONABLE_POINT_GAP_M &&
+      direct > 0 &&
+      via / direct > SPIKE_DETOUR_RATIO;
+
+    if (isSinglePointDetour) removed += 1;
+    else cleaned.push(curr);
+  }
+  cleaned.push(valid[valid.length - 1]);
+  return { points: cleaned, removed };
+}
+
+/**
+ * Replace isolated elevation spikes with local interpolation.
+ *
+ * We intentionally do not flatten steep roads. A point is treated as a spike
+ * only when the incoming and outgoing grades are both implausibly steep and
+ * point in opposite directions, which is the classic barometric/GPS altitude
+ * glitch shape.
+ */
+export function removeElevationSpikes(points: TrackPoint[]): TrackPoint[] {
+  if (points.length < 3) return [...points];
+  const out = points.map((p) => ({ ...p }));
+
+  for (let i = 1; i < out.length - 1; i++) {
+    const prev = out[i - 1];
+    const curr = out[i];
+    const next = out[i + 1];
+    const d1 = haversineDistance(prev.lat, prev.lon, curr.lat, curr.lon);
+    const d2 = haversineDistance(curr.lat, curr.lon, next.lat, next.lon);
+    if (d1 <= 0 || d2 <= 0) continue;
+
+    const g1 = (curr.elevation - prev.elevation) / d1;
+    const g2 = (next.elevation - curr.elevation) / d2;
+    const reversesHard = Math.sign(g1) !== Math.sign(g2);
+    const bothImplausible =
+      Math.abs(g1) > MAX_REASONABLE_GRADE && Math.abs(g2) > MAX_REASONABLE_GRADE;
+
+    if (reversesHard && bothImplausible) {
+      const t = d1 / (d1 + d2);
+      curr.elevation = prev.elevation + (next.elevation - prev.elevation) * t;
+    }
+  }
+
+  return out;
+}
+
+function removeElevationSpikesWithCount(points: TrackPoint[]): {
+  points: TrackPoint[];
+  corrected: number;
+} {
+  if (points.length < 3) return { points: [...points], corrected: 0 };
+  const out = points.map((p) => ({ ...p }));
+  let corrected = 0;
+
+  for (let i = 1; i < out.length - 1; i++) {
+    const prev = out[i - 1];
+    const curr = out[i];
+    const next = out[i + 1];
+    const d1 = haversineDistance(prev.lat, prev.lon, curr.lat, curr.lon);
+    const d2 = haversineDistance(curr.lat, curr.lon, next.lat, next.lon);
+    if (d1 <= 0 || d2 <= 0) continue;
+
+    const g1 = (curr.elevation - prev.elevation) / d1;
+    const g2 = (next.elevation - curr.elevation) / d2;
+    const reversesHard = Math.sign(g1) !== Math.sign(g2);
+    const bothImplausible =
+      Math.abs(g1) > MAX_REASONABLE_GRADE && Math.abs(g2) > MAX_REASONABLE_GRADE;
+
+    if (reversesHard && bothImplausible) {
+      const t = d1 / (d1 + d2);
+      curr.elevation = prev.elevation + (next.elevation - prev.elevation) * t;
+      corrected += 1;
+    }
+  }
+
+  return { points: out, corrected };
+}
+
+export function cleanTrackPoints(points: TrackPoint[]): TrackPoint[] {
+  return cleanTrackPointsWithQuality(points).points;
+}
+
+export function cleanTrackPointsWithQuality(
+  points: TrackPoint[],
+  parseCounts?: {
+    rawPointCount?: number;
+    invalidCoordinateCount?: number;
+    missingElevationCount?: number;
+    invalidElevationCount?: number;
+  },
+): CleanTrackResult {
+  const gps = removeGpsSpikesWithCount(points);
+  const elevation = removeElevationSpikesWithCount(gps.points);
+  const rawPointCount = parseCounts?.rawPointCount ?? points.length;
+  const invalidCoordinateCount = parseCounts?.invalidCoordinateCount ?? 0;
+  const missingElevationCount = parseCounts?.missingElevationCount ?? 0;
+  const invalidElevationCount = parseCounts?.invalidElevationCount ?? 0;
+
+  return {
+    points: elevation.points,
+    quality: {
+      rawPointCount,
+      validPointCount: points.length,
+      invalidCoordinateCount,
+      missingElevationCount,
+      invalidElevationCount,
+      gpsSpikeCount: gps.removed,
+      elevationSpikeCount: elevation.corrected,
+      cleanedPointCount: elevation.points.length,
+    },
+  };
 }
 
 interface BuildCourseOptions {
@@ -172,12 +393,13 @@ export function buildCourse(
   points: TrackPoint[],
   options: BuildCourseOptions = {},
 ): Course {
-  if (points.length < 2) {
+  const cleanPoints = cleanTrackPoints(points);
+  if (cleanPoints.length < 2) {
     throw new Error('buildCourse requires at least 2 track points');
   }
   const sigma = options.smoothingSigma ?? DEFAULT_SMOOTHING_SIGMA;
   const elevations = gaussianSmooth(
-    points.map((p) => p.elevation),
+    cleanPoints.map((p) => p.elevation),
     sigma,
   );
 
@@ -186,9 +408,9 @@ export function buildCourse(
   let totalGain = 0;
   let totalLoss = 0;
 
-  for (let i = 0; i < points.length - 1; i++) {
-    const a = points[i];
-    const b = points[i + 1];
+  for (let i = 0; i < cleanPoints.length - 1; i++) {
+    const a = cleanPoints[i];
+    const b = cleanPoints[i + 1];
     const distance = haversineDistance(a.lat, a.lon, b.lat, b.lon);
     if (distance < 1e-6) continue;
     const startElev = elevations[i];

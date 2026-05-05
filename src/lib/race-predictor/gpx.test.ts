@@ -6,6 +6,8 @@ import {
   parseGpx,
   buildCourse,
   detectClimbs,
+  removeElevationSpikes,
+  removeGpsSpikes,
 } from './gpx';
 import type { Segment, TrackPoint } from './types';
 
@@ -127,6 +129,49 @@ describe('parseGpx', () => {
     const result = parseGpx(v10);
     expect(result.points).toHaveLength(4);
   });
+
+  it('skips malformed coordinates instead of poisoning the course', () => {
+    const badCoords = `<?xml version="1.0"?>
+<gpx version="1.1"><trk><trkseg>
+  <trkpt lat="51.0" lon="-1.0"><ele>10</ele></trkpt>
+  <trkpt lat="999" lon="-1.0"><ele>20</ele></trkpt>
+  <trkpt lat="51.001" lon="-1.0"><ele>12</ele></trkpt>
+</trkseg></trk></gpx>`;
+    const result = parseGpx(badCoords);
+    expect(result.points).toHaveLength(2);
+    expect(result.quality.rawPointCount).toBe(3);
+    expect(result.quality.invalidCoordinateCount).toBe(1);
+    expect(result.quality.cleanedPointCount).toBe(2);
+    expect(result.points.every((p) => p.lat <= 90 && p.lon >= -180)).toBe(true);
+  });
+
+  it('defaults missing or invalid elevation to zero', () => {
+    const missingEle = `<?xml version="1.0"?>
+<gpx version="1.1"><trk><trkseg>
+  <trkpt lat="51.0" lon="-1.0"></trkpt>
+  <trkpt lat="51.001" lon="-1.0"><ele>oops</ele></trkpt>
+</trkseg></trk></gpx>`;
+    const result = parseGpx(missingEle);
+    expect(result.points.map((p) => p.elevation)).toEqual([0, 0]);
+    expect(result.quality.missingElevationCount).toBe(1);
+    expect(result.quality.invalidElevationCount).toBe(1);
+  });
+
+  it('returns cleaned points and quality counts for GPS and elevation spikes', () => {
+    const spiky = `<?xml version="1.0"?>
+<gpx version="1.1"><trk><trkseg>
+  <trkpt lat="51.5000" lon="-0.1000"><ele>100</ele></trkpt>
+  <trkpt lat="0.0000" lon="0.0000"><ele>100</ele></trkpt>
+  <trkpt lat="51.5005" lon="-0.1000"><ele>500</ele></trkpt>
+  <trkpt lat="51.5010" lon="-0.1000"><ele>102</ele></trkpt>
+  <trkpt lat="51.5015" lon="-0.1000"><ele>103</ele></trkpt>
+</trkseg></trk></gpx>`;
+    const result = parseGpx(spiky);
+    expect(result.quality.gpsSpikeCount).toBe(1);
+    expect(result.quality.elevationSpikeCount).toBe(1);
+    expect(result.points).toHaveLength(4);
+    expect(result.points[1].elevation).toBeLessThan(103);
+  });
 });
 
 describe('buildCourse', () => {
@@ -190,6 +235,34 @@ describe('buildCourse', () => {
 
   it('rejects fewer than 2 points', () => {
     expect(() => buildCourse([{ lat: 0, lon: 0, elevation: 0 }])).toThrow();
+  });
+
+  it('removes obvious one-point GPS detours before building distance', () => {
+    const points: TrackPoint[] = [
+      { lat: 51.5, lon: -0.1, elevation: 10 },
+      { lat: 0, lon: 0, elevation: 10 },
+      { lat: 51.5005, lon: -0.1, elevation: 11 },
+      { lat: 51.501, lon: -0.1, elevation: 12 },
+    ];
+    const cleaned = removeGpsSpikes(points);
+    expect(cleaned).toHaveLength(3);
+    const course = buildCourse(points, { smoothingSigma: 0 });
+    expect(course.totalDistance).toBeLessThan(150);
+  });
+
+  it('replaces isolated elevation spikes but preserves neighbouring trend', () => {
+    const points: TrackPoint[] = [
+      { lat: 51.5, lon: 0, elevation: 100 },
+      { lat: 51.501, lon: 0, elevation: 500 },
+      { lat: 51.502, lon: 0, elevation: 102 },
+      { lat: 51.503, lon: 0, elevation: 103 },
+    ];
+    const cleaned = removeElevationSpikes(points);
+    expect(cleaned[1].elevation).toBeGreaterThan(100);
+    expect(cleaned[1].elevation).toBeLessThan(103);
+
+    const course = buildCourse(points, { smoothingSigma: 0 });
+    expect(course.totalElevationGain).toBeLessThan(10);
   });
 });
 

@@ -12,12 +12,16 @@ import {
   GapToCutoffBar,
   ShareCard,
   PredictionGate,
+  AccuracyFeedback,
 } from "@/components/features/predict";
 import {
   getPredictionBySlug,
   getCourseById,
+  getCourseBySlug,
+  type CourseRow,
 } from "@/lib/race-predictor/store";
 import type { Course } from "@/lib/race-predictor/types";
+import { RACES } from "@/data/races";
 import { UpgradeForm } from "./upgrade-form";
 
 export const runtime = "nodejs";
@@ -31,6 +35,25 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   const { slug } = await params;
   const prediction = await getPredictionBySlug(slug).catch(() => null);
   if (!prediction) {
+    const eventCourse = await getCourseBySlug(slug).catch(() => null);
+    if (eventCourse) {
+      const courseName = eventCourse.name;
+      const distanceKm = Math.round(eventCourse.distanceM / 1000);
+      const url = `https://roadmancycling.com/predict/${slug}`;
+      return {
+        title: `${courseName} Race Predictor | Roadman Cycling`,
+        description: `Predict your ${courseName} finish time from FTP, weight, bike setup, wind, drafting, ${distanceKm} km of route data, and ${eventCourse.elevationGainM.toLocaleString()} m of climbing.`,
+        alternates: { canonical: url },
+        openGraph: {
+          title: `${courseName} Race Predictor`,
+          description: `Estimate your finish time, confidence range, pacing needs, and premium Race Report for ${courseName}.`,
+          type: "website",
+          url,
+          images: [{ url: "/og-image.jpg", width: 1200, height: 630, alt: courseName }],
+        },
+        robots: { index: true, follow: true },
+      };
+    }
     return {
       title: "Race Prediction",
       robots: { index: false, follow: false },
@@ -71,7 +94,11 @@ const COURSE_CUTOFFS: Record<string, number> = {
 export default async function PredictResultPage({ params }: PageProps) {
   const { slug } = await params;
   const prediction = await getPredictionBySlug(slug);
-  if (!prediction) notFound();
+  if (!prediction) {
+    const eventCourse = await getCourseBySlug(slug);
+    if (!eventCourse) notFound();
+    return <PredictEventLanding course={eventCourse} />;
+  }
 
   const course = prediction.courseId
     ? await getCourseById(prediction.courseId)
@@ -100,6 +127,23 @@ export default async function PredictResultPage({ params }: PageProps) {
     distanceKm > 0 ? distanceKm / (prediction.predictedTimeS / 3600) : 0;
 
   const cutoffS = courseSlug ? COURSE_CUTOFFS[courseSlug] : undefined;
+  const confidencePct =
+    ((Math.max(
+      Math.abs(prediction.predictedTimeS - prediction.confidenceLowS),
+      Math.abs(prediction.confidenceHighS - prediction.predictedTimeS),
+    ) /
+      prediction.predictedTimeS) *
+      100);
+  const freeFactors = derivePredictionFactors({
+    course: fullCourse,
+    courseIsCatalog: Boolean(course),
+    windSpeed: prediction.environmentInputs.windSpeed,
+    averagePower: prediction.averagePower ?? undefined,
+    riderMass: prediction.riderInputs.bodyMass,
+    bikeMass: prediction.riderInputs.bikeMass,
+    cda: prediction.riderInputs.cda,
+    confidencePct,
+  });
 
   // Free tier shows the time hero + key insight. The full breakdown
   // (climb-by-climb, scenarios, share card) unlocks once we capture an email.
@@ -188,6 +232,52 @@ export default async function PredictResultPage({ params }: PageProps) {
               variabilityIndex={prediction.variabilityIndex}
               mode={prediction.mode}
             />
+          </Container>
+        </Section>
+
+        <Section background="charcoal" className="!py-8 md:!py-10">
+          <Container>
+            <div className="grid lg:grid-cols-[0.9fr_1.1fr] gap-4 md:gap-5">
+              <div className="rounded-2xl border border-white/8 bg-white/[0.03] p-5 md:p-6">
+                <p
+                  className="text-[0.62rem] tracking-[0.22em] uppercase text-coral mb-2"
+                  style={{ fontFamily: "var(--font-jetbrains-mono)" }}
+                >
+                  CONFIDENCE · WHAT TO KNOW
+                </p>
+                <h2 className="font-heading text-3xl uppercase tracking-tight text-off-white leading-tight">
+                  Useful range, not fake precision
+                </h2>
+                <p className="mt-3 text-sm leading-relaxed text-off-white/76">
+                  This prediction uses a ±{confidencePct.toFixed(1)}% range
+                  because course files, wind, rider position, group dynamics,
+                  and long-event durability can move the real finish time. The
+                  tighter those inputs get, the tighter the report can be.
+                </p>
+              </div>
+
+              <div className="grid sm:grid-cols-3 gap-3">
+                {freeFactors.map((factor) => (
+                  <div
+                    key={factor.label}
+                    className="rounded-2xl border border-white/8 bg-gradient-to-br from-deep-purple/30 to-charcoal p-4 md:p-5"
+                  >
+                    <p
+                      className="text-[0.58rem] tracking-[0.18em] uppercase text-foreground-subtle"
+                      style={{ fontFamily: "var(--font-jetbrains-mono)" }}
+                    >
+                      {factor.label}
+                    </p>
+                    <p className="mt-2 font-heading text-2xl uppercase tracking-tight text-off-white leading-tight">
+                      {factor.value}
+                    </p>
+                    <p className="mt-2 text-xs leading-relaxed text-foreground-muted">
+                      {factor.detail}
+                    </p>
+                  </div>
+                ))}
+              </div>
+            </div>
           </Container>
         </Section>
 
@@ -393,6 +483,16 @@ export default async function PredictResultPage({ params }: PageProps) {
           </Section>
         )}
 
+        <Section background="charcoal" className="!py-8 md:!py-10">
+          <Container>
+            <AccuracyFeedback
+              slug={prediction.slug}
+              predictedTimeS={prediction.predictedTimeS}
+              defaultEmail={prediction.email}
+            />
+          </Container>
+        </Section>
+
         {/* COMMUNITY CTA */}
         <Section background="charcoal" className="!py-12">
           <Container>
@@ -434,6 +534,273 @@ export default async function PredictResultPage({ params }: PageProps) {
       <Footer />
     </>
   );
+}
+
+function PredictEventLanding({ course }: { course: CourseRow }) {
+  const fullCourse = course.courseData;
+  const race = RACES.find((item) => item.predictor_slug === course.slug);
+  const distanceKm = course.distanceM / 1000;
+  const elevationGainM = Math.round(course.elevationGainM);
+  const climbCount = fullCourse.climbs.length;
+  const hardestClimbs = [...fullCourse.climbs]
+    .sort((a, b) => b.elevationGain - a.elevationGain)
+    .slice(0, 3);
+
+  return (
+    <>
+      <Header />
+      <main>
+        <Section
+          background="deep-purple"
+          grain
+          className="pt-28 md:pt-36 pb-10 relative overflow-hidden"
+        >
+          <Container className="relative">
+            <div className="max-w-4xl">
+              <p
+                className="text-[0.65rem] tracking-[0.25em] uppercase text-coral mb-3"
+                style={{ fontFamily: "var(--font-jetbrains-mono)" }}
+              >
+                ROADMAN · EVENT RACE PREDICTOR
+              </p>
+              <h1 className="font-heading uppercase tracking-tight text-off-white leading-[0.95] text-[clamp(2.5rem,8vw,5.5rem)]">
+                {course.name}
+              </h1>
+              <p className="mt-5 max-w-2xl text-base md:text-xl leading-relaxed text-off-white/82">
+                Estimate your finish time from FTP, body weight, bike setup,
+                wind, drafting assumptions, and the course profile. The free
+                prediction gives you a realistic range; the Race Report turns
+                it into a pacing and fuelling plan.
+              </p>
+              <div
+                className="mt-6 flex flex-wrap gap-3 text-sm text-off-white/75"
+                style={{ fontFamily: "var(--font-jetbrains-mono)" }}
+              >
+                <Tag>{distanceKm.toFixed(0)} KM</Tag>
+                <Tag>{elevationGainM.toLocaleString()} M GAIN</Tag>
+                <Tag>{climbCount} CLIMBS</Tag>
+                <Tag>{course.surfaceSummary?.replace(/_/g, " ").toUpperCase() ?? "MIXED SURFACE"}</Tag>
+              </div>
+              <div className="mt-7 flex flex-col sm:flex-row gap-3">
+                <Button href={`/predict?course=${course.slug}`} size="lg">
+                  Predict my finish time →
+                </Button>
+                {race && (
+                  <Button href={`/races/${race.slug}`} variant="outline" size="lg">
+                    Read the race guide
+                  </Button>
+                )}
+              </div>
+            </div>
+          </Container>
+        </Section>
+
+        <Section background="charcoal" className="!py-10 md:!py-14">
+          <Container>
+            <div className="grid lg:grid-cols-[1.2fr_0.8fr] gap-6">
+              <div className="rounded-2xl border border-white/8 bg-gradient-to-br from-deep-purple/35 via-charcoal to-charcoal p-5 md:p-6">
+                <div className="mb-4">
+                  <p
+                    className="text-[0.62rem] tracking-[0.22em] uppercase text-coral"
+                    style={{ fontFamily: "var(--font-jetbrains-mono)" }}
+                  >
+                    COURSE PROFILE
+                  </p>
+                  <h2 className="font-heading text-3xl uppercase tracking-tight text-off-white mt-1">
+                    The shape of the day
+                  </h2>
+                </div>
+                <ElevationProfile course={fullCourse} height={320} showClimbBands />
+              </div>
+
+              <div className="rounded-2xl border border-white/8 bg-white/[0.03] p-5 md:p-6">
+                <p
+                  className="text-[0.62rem] tracking-[0.22em] uppercase text-coral mb-3"
+                  style={{ fontFamily: "var(--font-jetbrains-mono)" }}
+                >
+                  WHY PREDICT THIS RACE
+                </p>
+                <ul className="space-y-3 text-sm leading-relaxed text-off-white/78">
+                  <li>See whether your target power is realistic before the start line.</li>
+                  <li>Model wind direction and group-riding assumptions instead of using a flat average speed.</li>
+                  <li>Get a confidence range so the number stays useful when race-day conditions shift.</li>
+                  <li>Upgrade to a Race Report for segment pacing, fuelling, equipment notes, and race-week priorities.</li>
+                </ul>
+              </div>
+            </div>
+          </Container>
+        </Section>
+
+        {hardestClimbs.length > 0 && (
+          <Section background="charcoal" className="!py-10 md:!py-14">
+            <Container>
+              <div className="mb-5">
+                <p
+                  className="text-[0.65rem] tracking-[0.22em] uppercase text-coral mb-2"
+                  style={{ fontFamily: "var(--font-jetbrains-mono)" }}
+                >
+                  CLIMBS · KEY SECTIONS
+                </p>
+                <h2 className="font-heading text-3xl uppercase tracking-tight text-off-white">
+                  Where the prediction earns its keep
+                </h2>
+              </div>
+              <div className="grid md:grid-cols-3 gap-3">
+                {hardestClimbs.map((climb, index) => (
+                  <div
+                    key={`${climb.startDistance}-${climb.endDistance}`}
+                    className="rounded-xl border border-white/8 bg-white/[0.03] p-4"
+                  >
+                    <p
+                      className="text-[0.58rem] tracking-[0.18em] uppercase text-foreground-subtle"
+                      style={{ fontFamily: "var(--font-jetbrains-mono)" }}
+                    >
+                      Climb {index + 1}
+                    </p>
+                    <p className="mt-2 font-heading text-2xl uppercase tracking-tight text-off-white">
+                      {(climb.length / 1000).toFixed(1)} km
+                    </p>
+                    <p className="mt-1 text-sm text-foreground-muted">
+                      {(Math.tan(climb.averageGradient) * 100).toFixed(1)}% avg ·{" "}
+                      {Math.round(climb.elevationGain).toLocaleString()} m gain
+                    </p>
+                  </div>
+                ))}
+              </div>
+            </Container>
+          </Section>
+        )}
+
+        <Section background="deep-purple" grain className="!py-12">
+          <Container>
+            <div className="max-w-3xl">
+              <p
+                className="text-[0.65rem] tracking-[0.22em] uppercase text-coral mb-2"
+                style={{ fontFamily: "var(--font-jetbrains-mono)" }}
+              >
+                FREE PREDICTION · PREMIUM REPORT
+              </p>
+              <h2 className="font-heading text-4xl uppercase tracking-tight text-off-white leading-tight">
+                Turn the course into a race-day plan
+              </h2>
+              <p className="mt-4 text-off-white/80 leading-relaxed">
+                Start with the free finish-time prediction. If this is an A race,
+                unlock the Race Report for climb pacing, wind strategy, fuelling
+                targets, equipment changes, and the biggest time gains.
+              </p>
+              <div className="mt-6">
+                <Button href={`/predict?course=${course.slug}`} size="lg">
+                  Start the prediction →
+                </Button>
+              </div>
+            </div>
+          </Container>
+        </Section>
+      </main>
+      <Footer />
+    </>
+  );
+}
+
+function derivePredictionFactors(args: {
+  course: Course;
+  courseIsCatalog: boolean;
+  windSpeed: number;
+  averagePower?: number;
+  riderMass: number;
+  bikeMass: number;
+  cda: number;
+  confidencePct: number;
+}): { label: string; value: string; detail: string }[] {
+  const distanceKm = args.course.totalDistance / 1000;
+  const elevationGainM = args.course.totalElevationGain;
+  const climbDensity = distanceKm > 0 ? elevationGainM / distanceKm : 0;
+  const totalMass = args.riderMass + args.bikeMass;
+  const wattsPerKg =
+    args.averagePower && totalMass > 0 ? args.averagePower / totalMass : null;
+
+  const courseFactor =
+    climbDensity >= 25
+      ? {
+          label: "Course load",
+          value: `${Math.round(climbDensity)} m/km`,
+          detail: "Climbing density is the main time driver. Pacing the long climbs matters more than chasing speed on descents.",
+        }
+      : {
+          label: "Course load",
+          value: `${Math.round(climbDensity)} m/km`,
+          detail: "This course is less climb-dominated, so wind, position, and steady power have a bigger effect on finish time.",
+        };
+
+  const windFactor =
+    args.windSpeed >= 5
+      ? {
+          label: "Wind risk",
+          value: `${(args.windSpeed * 3.6).toFixed(0)} km/h`,
+          detail: "Wind is strong enough to move the prediction. Direction and exposed sections become premium-report priorities.",
+        }
+      : {
+          label: "Wind risk",
+          value: args.windSpeed > 0 ? `${(args.windSpeed * 3.6).toFixed(0)} km/h` : "Calm",
+          detail: "Wind is not the main limiter in this run. If race day changes, re-run the prediction with the new forecast.",
+        };
+
+  const setupFactor =
+    args.cda <= 0.27
+      ? {
+          label: "Aero setup",
+          value: "Fast",
+          detail: "Your position assumption is aero. Small comfort changes can still matter over long flat or exposed sections.",
+        }
+      : args.cda >= 0.36
+        ? {
+            label: "Aero setup",
+            value: "Costly",
+            detail: "Body position is likely costing minutes on faster sections. This is one of the cleanest places to gain time.",
+          }
+        : {
+            label: "Aero setup",
+            value: "Moderate",
+            detail: "Aero drag is in a normal road-riding range. Position, clothing, and group riding can still shift the day.",
+          };
+
+  const powerFactor =
+    wattsPerKg != null
+      ? {
+          label: "Power load",
+          value: `${wattsPerKg.toFixed(1)} W/kg`,
+          detail: "This is average race-load against rider plus bike mass. Long events punish starts that sit above this too often.",
+        }
+      : {
+          label: "Power load",
+          value: "Unknown",
+          detail: "Power data was incomplete, so the model leans more heavily on conservative defaults.",
+        };
+
+  const qualityFactor = {
+    label: "Course data",
+    value: args.courseIsCatalog ? "Catalog" : "Uploaded",
+    detail: args.courseIsCatalog
+      ? "Using a saved Roadman course profile. Real GPX provenance will tighten this further as the event database improves."
+      : "Using your uploaded GPX. Clean elevation and real route files improve confidence more than generic event distance.",
+  };
+
+  const confidenceFactor = {
+    label: "Range width",
+    value: `±${args.confidencePct.toFixed(1)}%`,
+    detail: "The range is intentionally conservative. Better CdA, Crr, weather, and actual result data tighten the model over time.",
+  };
+
+  const ranked = [
+    courseFactor,
+    windFactor,
+    setupFactor,
+    powerFactor,
+    qualityFactor,
+    confidenceFactor,
+  ];
+
+  return ranked.slice(0, 3);
 }
 
 function Tag({ children }: { children: React.ReactNode }) {

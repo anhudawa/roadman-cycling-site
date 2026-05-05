@@ -77,6 +77,54 @@ describe("runPrediction", () => {
     expect(profile.powerProfile.p60min).toBeGreaterThan(100);
   });
 
+  it("drafting assumptions reduce effective CdA but widen confidence", () => {
+    const course = flatCourse(50);
+    const soloProfile = buildRiderProfile({
+      bodyMass: 75,
+      bikeMass: 8,
+      position: "aero_hoods",
+      drafting: "solo",
+    });
+    const groupProfile = buildRiderProfile({
+      bodyMass: 75,
+      bikeMass: 8,
+      position: "aero_hoods",
+      drafting: "large_group",
+    });
+    expect(groupProfile.cda).toBeLessThan(soloProfile.cda);
+
+    const solo = runPrediction({
+      course,
+      rider: {
+        bodyMass: 75,
+        bikeMass: 8,
+        position: "aero_hoods",
+        cda: 0.31,
+        crr: 0.0034,
+        powerProfile: { p20min: 285, p60min: 260 },
+        drafting: "solo",
+      },
+      mode: "plan_my_race",
+    });
+    const bunch = runPrediction({
+      course,
+      rider: {
+        bodyMass: 75,
+        bikeMass: 8,
+        position: "aero_hoods",
+        cda: 0.31,
+        crr: 0.0034,
+        powerProfile: { p20min: 285, p60min: 260 },
+        drafting: "large_group",
+      },
+      mode: "plan_my_race",
+    });
+    expect(bunch.result.totalTime).toBeLessThan(solo.result.totalTime);
+    expect(bunch.confidence.high - bunch.confidence.low).toBeGreaterThan(
+      solo.confidence.high - solo.confidence.low,
+    );
+  });
+
   it("buildEnvironment fills sane defaults", () => {
     const env = buildEnvironment();
     expect(env.airTemperature).toBe(15);
