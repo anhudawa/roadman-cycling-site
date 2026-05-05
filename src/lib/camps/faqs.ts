@@ -5,7 +5,7 @@ export const CAMP_FAQS = [
   },
   {
     q: "What's actually included for €995?",
-    a: "Four nights at the farmhouse, breakfast every morning, all five guided rides, in-ride nutrition (gels, bars, drink mix), the follow car, airport transfers from Girona, and Anthony, Sarah and Matthew on hand the whole week. Lunches and dinners aren't included — most days we eat out at coffee stops or local spots. Reckon on €15–25 a meal.",
+    a: "Five nights at the farmhouse, breakfast every morning, all six guided rides, in-ride nutrition (gels, bars, drink mix), the follow car, airport transfers from Girona, and Anthony, Sarah and Matthew on hand the whole week. Lunches and dinners aren't included — most days we eat out at coffee stops or local spots. Reckon on €15–25 a meal.",
   },
   {
     q: "How does payment work?",
@@ -29,7 +29,7 @@ export const CAMP_FAQS = [
   },
   {
     q: "Can I do both camps?",
-    a: "Yes — and there's a bundle for it. Both camps back-to-back is ten days, two formats, same farmhouse, no airport transfer in between. €1,700 for the pair (saves €290 vs booking each on its own), plus €150 per camp if you want a single room. Pick 'Both Camps' on the booking form.",
+    a: "Yes — and there's a bundle for it. Both camps back-to-back is twelve days, two formats, same farmhouse, no airport transfer in between. €1,700 for the pair (saves €290 vs booking each on its own), plus €150 per camp if you want a single room. Pick 'Both Camps' on the booking form.",
   },
   {
     q: "Who's leading the rides?",

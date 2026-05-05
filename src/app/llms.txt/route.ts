@@ -236,8 +236,8 @@ ${QUESTION_PAGES.map((q) => `- [${q.question}](${tag(`${BASE_URL}/question/${q.s
 
 ## Training Camps
 - [Roadman Training Camps — Girona, October 2026](${tag(`${BASE_URL}/training-camps`)}): Two back-to-back weeks at Can Sagnari, a private Catalan farmhouse between Girona and Banyoles. Hosted by Anthony Walsh and the Roadman coaching team.
-- [Girona Road Camp (10–15 October 2026)](${tag(`${BASE_URL}/training-camps/girona-road`)}): 5 days / 4 nights on the climbs the World Tour rides — Rocacorba, Els Àngels, Mare de Déu del Mont. €995 per person, single supplement €150. Two pace groups, follow car, capacity 16. Daily distance 70–110 km, ~6,500 m total elevation.
-- [Girona Gravel Camp (16–21 October 2026)](${tag(`${BASE_URL}/training-camps/girona-gravel`)}): 5 days / 4 nights on the volcanic, vineyard, and forest dirt that earned Girona its name. La Garrotxa, Les Gavarres, the Empordà. €995 per person, single supplement €150. Capacity 16. Daily distance 55–90 km, ~5,000 m total elevation.
+- [Girona Road Camp (10–15 October 2026)](${tag(`${BASE_URL}/training-camps/girona-road`)}): 6 days / 5 nights on the climbs the World Tour rides — Rocacorba, Els Àngels, Mare de Déu del Mont. €995 per person, single supplement €150. Two pace groups, follow car, capacity 16. Daily distance 70–110 km, ~6,500 m total elevation.
+- [Girona Gravel Camp (16–21 October 2026)](${tag(`${BASE_URL}/training-camps/girona-gravel`)}): 6 days / 5 nights on the volcanic, vineyard, and forest dirt that earned Girona its name. La Garrotxa, Les Gavarres, the Empordà. €995 per person, single supplement €150. Capacity 16. Daily distance 55–90 km, ~5,000 m total elevation.
 
 ## Podcast
 - [The Roadman Cycling Podcast](${tag(`${BASE_URL}/podcast`)}): Show index. Weekly interview-led podcast with World Tour coaches, sports scientists, and pro riders.

@@ -22,7 +22,7 @@ export interface CampConfig {
   href: string;
   startDate: string; // ISO yyyy-mm-dd
   endDate: string;
-  durationLabel: string; // "5 days / 4 nights"
+  durationLabel: string; // "6 days / 5 nights"
   pricePerPerson: number; // EUR
   singleSupplement: number; // EUR
   beehiivTag: string;
@@ -51,15 +51,15 @@ export const CAMPS: Record<CampSlug, CampConfig> = {
     href: "/training-camps/girona-road",
     startDate: "2026-10-10",
     endDate: "2026-10-15",
-    durationLabel: "5 days / 4 nights",
+    durationLabel: "6 days / 5 nights",
     pricePerPerson: 995,
     singleSupplement: 150,
     beehiivTag: "camp-road-2026",
     capacity: 16,
     description:
-      "Five days on the climbs Girona's pros use to build their seasons. Rocacorba's 11 km test piece. Els Àngels' even tempo. The long pull up Mare de Déu del Mont. Two pace groups, follow car, a proper coffee stop on every ride.",
+      "Six days on the climbs Girona's pros use to build their seasons. Rocacorba's 11 km test piece. Els Àngels' even tempo. The long pull up Mare de Déu del Mont. Two pace groups, follow car, a proper coffee stop on every ride.",
     heroSubtitle:
-      "Five days on the climbs the World Tour rides twelve months a year.",
+      "Six days on the climbs the World Tour rides twelve months a year.",
     heroImage: "/images/camps/girona-road-coast.jpeg",
     heroImageAlt:
       "Group of road cyclists on a coastal road above a turquoise Costa Brava cove",
@@ -68,8 +68,8 @@ export const CAMPS: Record<CampSlug, CampConfig> = {
       accent: "— THE GIRONA THE PROS RIDE.",
     },
     itineraryHeading: {
-      main: "FIVE RIDES.",
-      accent: "FIVE GIRONA CLASSICS.",
+      main: "SIX RIDES.",
+      accent: "SIX GIRONA CLASSICS.",
     },
     level: "Intermediate to advanced",
     dailyDistance: "70–110 km",
@@ -83,15 +83,15 @@ export const CAMPS: Record<CampSlug, CampConfig> = {
     href: "/training-camps/girona-gravel",
     startDate: "2026-10-16",
     endDate: "2026-10-21",
-    durationLabel: "5 days / 4 nights",
+    durationLabel: "6 days / 5 nights",
     pricePerPerson: 995,
     singleSupplement: 150,
     beehiivTag: "camp-gravel-2026",
     capacity: 16,
     description:
-      "Five days off the tarmac, on the dirt that turned Girona into Europe's gravel capital. Volcanic tracks through La Garrotxa. Cork-oak singletrack in Les Gavarres. Vineyard service roads in the Empordà. Coastal lines above the Med.",
+      "Six days off the tarmac, on the dirt that turned Girona into Europe's gravel capital. Volcanic tracks through La Garrotxa. Cork-oak singletrack in Les Gavarres. Vineyard service roads in the Empordà. Coastal lines above the Med.",
     heroSubtitle:
-      "Five days off the tarmac. The volcanic, vineyard and forest dirt that earned Girona its name.",
+      "Six days off the tarmac. The volcanic, vineyard and forest dirt that earned Girona its name.",
     heroImage: "/images/camps/girona-gravel-trail.webp",
     heroImageAlt:
       "Two gravel riders on a dirt trail through Catalan countryside",
@@ -100,8 +100,8 @@ export const CAMPS: Record<CampSlug, CampConfig> = {
       accent: "— THE GIRONA NO TOUR EVER SHOWS YOU.",
     },
     itineraryHeading: {
-      main: "FIVE RIDES.",
-      accent: "FIVE FACES OF GIRONA DIRT.",
+      main: "SIX RIDES.",
+      accent: "SIX FACES OF GIRONA DIRT.",
     },
     level: "Intermediate. Some technical sections.",
     dailyDistance: "55–90 km",

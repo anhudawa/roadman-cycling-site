@@ -9,14 +9,14 @@ import { CAMP_LIST, formatCampDates } from "@/lib/camps/camps";
 export const metadata: Metadata = {
   title: "Roadman Training Camps — Girona, October 2026",
   description:
-    "Two five-day camps in Girona, October 2026. Road 10–15 October, Gravel 16–21 October. Sixteen riders per camp, Anthony in the group every day. €995 per camp, or €1,700 for both back-to-back.",
+    "Two six-day camps in Girona, October 2026. Road 10–15 October, Gravel 16–21 October. Sixteen riders per camp, Anthony in the group every day. €995 per camp, or €1,700 for both back-to-back.",
   alternates: {
     canonical: "https://roadmancycling.com/training-camps",
   },
   openGraph: {
     title: "Roadman Training Camps — Girona, October 2026",
     description:
-      "Two five-day camps in Girona. Road and Gravel, back-to-back. Anthony, Sarah and Matthew on hand all week. Sixteen spots, €995 per camp, €1,700 for both.",
+      "Two six-day camps in Girona. Road and Gravel, back-to-back. Anthony, Sarah and Matthew on hand all week. Sixteen spots, €995 per camp, €1,700 for both.",
     type: "website",
     url: "https://roadmancycling.com/training-camps",
     images: [
@@ -51,7 +51,7 @@ export default function TrainingCampsLandingPage() {
           name: "Roadman Training Camps — Girona 2026",
           url: "https://roadmancycling.com/training-camps",
           description:
-            "Two five-day cycling camps in Girona, October 2026. Road and Gravel formats. Led by Anthony Walsh.",
+            "Two six-day cycling camps in Girona, October 2026. Road and Gravel formats. Led by Anthony Walsh.",
           isPartOf: { "@id": "https://roadmancycling.com#website" },
         }}
       />
@@ -123,7 +123,7 @@ export default function TrainingCampsLandingPage() {
                 className="font-heading text-off-white leading-[0.95] mb-5 md:mb-6 text-center"
                 style={{ fontSize: "clamp(3rem, 13vw, 6rem)" }}
               >
-                FIVE DAYS IN
+                SIX DAYS IN
                 <br />
                 <span className="text-coral">GIRONA.</span>
               </h1>

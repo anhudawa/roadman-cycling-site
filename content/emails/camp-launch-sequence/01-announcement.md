@@ -1,5 +1,5 @@
 **Subject:** We're running camps.
-**Preheader:** Two five-day camps in Girona, October 2026. The longer version inside.
+**Preheader:** Two six-day camps in Girona, October 2026. The longer version inside.
 **Send timing:** Day 0 — launch day.
 **Beehiiv tag:** camp-launch-2026
 

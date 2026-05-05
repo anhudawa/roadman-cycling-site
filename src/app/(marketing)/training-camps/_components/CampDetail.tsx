@@ -53,10 +53,10 @@ const GIRONA_GALLERY = [
 ];
 
 const INCLUDED = [
-  "4 nights at Can Sagnari, our private 1749 farmhouse",
+  "5 nights at Can Sagnari, our private 1749 farmhouse",
   "Breakfast every morning at the house",
-  "5 fully guided rides — two pace groups, never dropped",
-  "Follow car the whole week — spares, support, mid-ride fund",
+  "6 fully guided rides — two pace groups, never dropped",
+  "Follow car the whole week — spares, support, mechanicals covered",
   "In-ride nutrition every day — gels, bars, drink mix",
   "Airport transfers from Girona–Costa Brava (GRO), both ways",
   "Anthony, Sarah and Matthew hosting it all",
@@ -66,7 +66,7 @@ const NOT_INCLUDED = [
   "Flights — fly into Girona (GRO) or Barcelona (BCN)",
   "Travel insurance — required, sort it before you fly",
   "Lunches and dinners — €15–25 per meal, eaten out",
-  "Hire bike — we can sort one through a Girona shop for a fee",
+  "Hire bike — we can help you source a hire bike",
   "Single-room supplement (+€150) — optional, otherwise we pair you up",
 ];
 

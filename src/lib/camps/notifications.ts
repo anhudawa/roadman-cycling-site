@@ -209,7 +209,7 @@ export async function sendCampBookingConfirmation(args: {
       </p>
       <p style="color: #B0B0B5; line-height: 1.7; margin: 0 0 16px 0;">
         Booked and paid for the <strong style="color:#FAFAFA;">${escapeHtml(camp.name)}</strong>
-        &middot; ${escapeHtml(dates)}. Five days, four nights at our farmhouse
+        &middot; ${escapeHtml(dates)}. Six days, five nights at our farmhouse
         base between Girona and Banyoles.
       </p>
       <p style="color: #B0B0B5; line-height: 1.7; margin: 0 0 16px 0;">
