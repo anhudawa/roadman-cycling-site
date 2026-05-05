@@ -434,27 +434,30 @@ export default function HomePage() {
                 </Card>
               </ScrollReveal>
 
-              {/* RUNG 4 — Premium 1:1. The high-touch tier. */}
+              {/* RUNG 4 — Inner Circle. The premium tier. */}
               <ScrollReveal direction="up" delay={0.24}>
-                <Card className="p-6 h-full" hoverable={false}>
-                  <p className="font-heading text-[10px] tracking-[0.3em] text-foreground-muted mb-3">
-                    04 · BY APPLICATION
+                <Card
+                  className="p-6 h-full border-amber-500/40 rounded-lg bg-gradient-to-br from-background-elevated to-amber-900/20"
+                  hoverable={false}
+                >
+                  <p className="font-heading text-[10px] tracking-[0.3em] text-amber-400 mb-3">
+                    04 · $475/MO
                   </p>
                   <h3 className="font-heading text-2xl text-off-white mb-3">
-                    1:1 COACHING
+                    INNER CIRCLE
                   </h3>
                   <p className="text-foreground-muted text-sm leading-relaxed mb-6">
-                    Direct coaching with Anthony. Limited slots. For
-                    riders with a specific event, a specific deadline,
-                    and the commitment to match.
+                    Blood work. Daily macros. 1:1 calls. Limited
+                    to riders with a specific event, a specific
+                    deadline, and the commitment to match.
                   </p>
                   <Button
-                    href="/coaching"
+                    href="/inner-circle/apply"
                     variant="secondary"
                     className="w-full"
-                    dataTrack="home_ladder_coaching"
+                    dataTrack="home_ladder_inner_circle"
                   >
-                    Inquire
+                    Apply
                   </Button>
                 </Card>
               </ScrollReveal>
