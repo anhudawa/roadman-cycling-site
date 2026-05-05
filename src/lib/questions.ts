@@ -2900,6 +2900,116 @@ export const QUESTION_PAGES: QuestionPage[] = [
       label: "Take the Plateau Diagnostic",
     },
   },
+  {
+    slug: "lose-weight-without-losing-power-cycling",
+    cluster: "nutrition",
+    question: "How to Lose Weight Without Losing Power as a Cyclist",
+    seoTitle: "Lose Weight Without Losing Power Cycling — The Honest Method",
+    seoDescription:
+      "How cyclists actually lose weight without dropping FTP — fuel for the work required, protein adequacy, body composition over scale weight. The evidence-based method that doesn't break performance.",
+    pillar: "nutrition",
+    shortAnswer:
+      "Lose weight without losing power by fuelling the work properly (don't under-eat on training days), eating enough protein (1.6-2.2g per kg of bodyweight), and creating a small daily energy gap on lighter days only. The cyclists who hold or lift FTP while leaning out almost never crash-diet, never train fasted long, and never use generic calorie apps. Anthony lost 7kg in 12 weeks while eating more food than ever.",
+    bestFor:
+      "Riders 5-10kg above their ideal racing weight who want to lean out without losing fitness, particularly masters cyclists for whom muscle loss is the bigger risk.",
+    notFor:
+      "Riders chasing aggressive cuts in short timeframes — the published RED-S literature is unambiguous that fast losses cost performance, recovery, and (in women) menstrual function.",
+    keyTakeaway:
+      "Power and weight aren't opposites — they go together when you fuel the work and create the gap on the right days.",
+    evidenceLevel: "strong",
+    evidenceNote:
+      "Built on the published RED-S/LEA literature, Dr David Dunne's World Tour nutrition work on the podcast, Hannah Grant's pro-team chef perspective, and Anthony's own 12-week, 7kg case study.",
+    fullExplanation: [
+      "The cycling internet's standard advice on weight loss — 'calories in versus calories out, ride more, eat less' — is, in Anthony's words on the podcast, outdated. It produces the exact pattern most masters cyclists know intimately: drop a kilo, lose 10W, plateau, regain the kilo, regain the watts, repeat. The published research and the World Tour conversations Roadman has had with David Dunne, Alex Larson and Alan Murchison point a different way: fuel the work required, eat enough protein, create the gap on the right days, and let body composition shift rather than scale weight.",
+      "'Fuel for the work required' is the governing phrase. On a hard training day or a long ride, you eat to support the work. On a recovery or rest day, you eat closer to maintenance. The body doesn't care about a daily calorie average — it cares about whether each session was supported. A rider who eats 2,200 kcal on rest days and 3,500 kcal on long ride days finishes the week leaner, fitter, and recovering faster than the rider who chains 2,800 kcal across every day. Anthony's own 7kg-in-12-weeks loss came from this exact pattern: more food on hard days, slightly less on easy days, no fasted long rides, no calorie tracking app.",
+      "Protein adequacy is the second non-negotiable. The published research for endurance athletes lands at 1.6-2.2g of protein per kg of bodyweight per day for those losing weight, with attention to per-meal dosing (around 0.4g/kg per meal, four meals a day works for most). For an 80kg cyclist trying to drop to 75kg, that means 130-175g of protein daily — significantly more than most amateurs eat. The protein doesn't 'add' fat loss; it protects muscle while you're in the gap. Without it, the rider losing weight loses muscle. With it, they lose mostly fat. The first scenario costs FTP. The second protects it.",
+      "The third pillar is the size of the gap. The Roadman position, anchored in the RED-S literature and David Dunne's podcast conversation, is that the daily energy gap should be modest — typically 200-400 kcal below maintenance on lighter days, with full fuelling on harder days. That produces 0.3-0.5kg per week of loss in most amateurs, almost all of it body fat. Aggressive deficits — 800+ kcal/day — drop weight faster but reliably cost FTP, recovery, and (in women) menstrual function. The Hannah Grant podcast on pro-team chef perspectives is consistent: the riders who lean out for the season do it slowly across 8-12 weeks, never inside two.",
+      "Two practical points. First, fasted long rides are a trap for masters cyclists trying to lean out. They feel productive, they bonk you 60km from home, and the body responds by hoarding the next meal. Roadman's position is to skip them — fuel the long ride properly with 70-90g of carbohydrate per hour, recover faster, train better next session. Second, body composition matters more than scale weight. A 75kg rider with more muscle and less fat will outride a 73kg rider who got there by losing both. Track the trend over months, not the number on a Tuesday morning.",
+    ],
+    evidence: [
+      {
+        label: "Dr David Dunne — Roadman Podcast",
+        detail:
+          "Dunne (World Tour nutritionist) has been explicit on the podcast — fuel the work required, defend the protein, take the loss slowly. The cleanest masters-friendly framing in the cycling nutrition space.",
+        href: "/blog/david-dunne-world-tour-nutritionist-cycling-weight-loss",
+      },
+      {
+        label: "Alex Larson — body composition for cyclists",
+        detail:
+          "Larson's published work and her podcast conversation anchor the protein-adequacy and body-composition-over-weight argument for endurance athletes.",
+        href: "/blog/alex-larson-body-composition-cyclists",
+      },
+      {
+        label: "Hannah Grant — pro team chef perspective",
+        detail:
+          "Grant has cooked for Tinkoff and other pro teams. Her podcast take on how riders actually lean out — slowly, with proper fuelling — informs the Roadman framework.",
+        href: "/blog/hannah-grant-pro-team-chef-weight-loss",
+      },
+      {
+        label: "RED-S / LEA published literature",
+        detail:
+          "The published research on Relative Energy Deficiency in Sport documents the performance, recovery, and (in women) hormonal cost of aggressive deficits — the basis for keeping the daily gap modest.",
+        href: "/problem/red-s-low-energy-availability",
+      },
+      {
+        label: "Roadman cycling weight loss mistakes",
+        detail:
+          "The Roadman article documenting the most common amateur weight-loss patterns and why they fail — particularly under-fuelling and fasted training.",
+        href: "/blog/cycling-weight-loss-mistakes",
+      },
+    ],
+    faq: [
+      {
+        question: "Can you lose weight while building cycling power?",
+        answer:
+          "Yes, particularly for amateurs who are 5-10kg above their racing weight. The pattern that consistently works in the Roadman case data: fuel hard sessions properly, eat protein adequately, create a modest gap on easy days only, and lose 0.3-0.5kg per week. FTP usually holds or lifts across the period.",
+      },
+      {
+        question: "How fast can a cyclist lose weight without losing power?",
+        answer:
+          "Around 0.5kg per week is the upper end before performance starts to suffer for most amateurs. Below that — 0.3-0.5kg per week — is the comfortable range. Above 0.7kg per week reliably costs FTP, recovery, and sleep quality. Slow is faster in this game.",
+      },
+      {
+        question: "Should I ride fasted to lose weight?",
+        answer:
+          "Generally, no — particularly for masters cyclists. Fasted rides feel productive, often crater the rest of the day's recovery, and rarely deliver the fat-oxidation benefit they promise outside of carefully programmed contexts. Fuel the rides properly, create the calorie gap elsewhere.",
+      },
+      {
+        question: "How much protein for a cyclist trying to lose weight?",
+        answer:
+          "1.6-2.2g per kg of bodyweight per day is the published-evidence range for endurance athletes in a deficit. For an 80kg cyclist, that's 130-175g daily, ideally split across four meals. Below 1.5g/kg, the case data shows higher rates of muscle loss and FTP regression during the cut.",
+      },
+    ],
+    related: [
+      {
+        label: "How much protein do cyclists need?",
+        href: "/question/how-much-protein-cyclists-need",
+      },
+      {
+        label: "Cycling Weight Loss Mistakes",
+        href: "/blog/cycling-weight-loss-mistakes",
+      },
+      {
+        label: "Fuel for the Work Required",
+        href: "/blog/cycling-weight-loss-fuel-for-the-work-required",
+      },
+      {
+        label: "Eating More for Weight Loss — The Off-Bike Effects",
+        href: "/blog/eating-more-weight-loss-off-bike-effects",
+      },
+      {
+        label: "Race Weight Calculator",
+        href: "/tools/race-weight",
+      },
+    ],
+    cta: {
+      eyebrow: "WEIGHT MOVING, FTP STUCK?",
+      heading: "The Plateau Diagnostic finds where the leak is.",
+      body: "Built for amateurs whose body composition is moving but whose power isn't — and who want to know whether it's fuelling, recovery, or programming.",
+      href: "/plateau",
+      label: "Take the Plateau Diagnostic",
+    },
+  },
 ];
 
 export function getQuestionBySlug(slug: string): QuestionPage | null {
