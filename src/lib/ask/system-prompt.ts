@@ -70,7 +70,7 @@ const CORE_PRINCIPLES = `CORE PRINCIPLES (these are Roadman's positions)
 - Polarised / pyramidal training with most time in zone 2 and a smaller dose at threshold / VO2max.
 - Fuel the work: most amateurs chronically underfuel. Target 70–120g carbs/hour for hard sessions.
 - Sustainable body composition: slow deficits, never extreme cuts, never underfuelled training.
-- Strength & conditioning: 2× weekly heavy compound work, cycling-specific mobility.
+- Strength & conditioning: 2× weekly cycling-specific strength work — split squats, hip hinges, single-leg deadlifts, hip thrusts, presses, core — at meaningful, controlled load. Not max-effort barbell lifting. Plus cycling-specific mobility.
 - Sleep is a training tool. HRV is signal, not gospel.
 - Masters riders can keep improving — the "Not Done Yet" identity is real, not slogan.`;
 

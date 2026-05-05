@@ -87,9 +87,9 @@ export const PROFILE_BREAKDOWNS: Record<Profile, Breakdown> = {
     fix: [
       {
         step: 1,
-        title: "Lift heavy, twice a week.",
+        title: "Lift twice a week with meaningful load.",
         detail:
-          "Not bodyweight, not bands — actual barbell work. Squats, deadlifts, hinges.",
+          "Not bodyweight-only, not bands — structured resistance work scaled to your level. Cycling-specific patterns: split squats, hip hinges, single-leg deadlifts, hip thrusts, presses, core. Progressed gradually.",
       },
       {
         step: 2,

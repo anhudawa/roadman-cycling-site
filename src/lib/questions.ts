@@ -152,7 +152,7 @@ export const QUESTION_PAGES: QuestionPage[] = [
       {
         question: "What's a good FTP for a 50-year-old cyclist?",
         answer:
-          "Most age-graded benchmarks knock 0.05-0.1 W/kg off each band per decade after 40. So a 'strong' FTP for a 50-year-old amateur male sits closer to 3.7-3.9 W/kg, not 4.0+. The key intervention isn't doing more cycling — it's adding heavy strength training twice a week, which the masters research now treats as non-negotiable.",
+          "Most age-graded benchmarks knock 0.05-0.1 W/kg off each band per decade after 40. So a 'strong' FTP for a 50-year-old amateur male sits closer to 3.7-3.9 W/kg, not 4.0+. The key intervention isn't doing more cycling — it's adding targeted strength training twice a week, which the masters research now treats as non-negotiable.",
       },
       {
         question: "Is FTP the most important number in cycling?",
@@ -610,7 +610,7 @@ export const QUESTION_PAGES: QuestionPage[] = [
       "How masters cyclists over 40 should actually train — recovery, intensity distribution, and the strength work that separates riders who keep gaining from riders who decline.",
     pillar: "coaching",
     shortAnswer:
-      "Masters cyclists over 40 should train fewer hard sessions but make each one count, build more recovery into the week, and treat heavy strength work as non-negotiable. The polarised model — most rides easy, a small number very hard — works better at 45 than at 25, not worse. The same plan that worked at 30 won't work now.",
+      "Masters cyclists over 40 should train fewer hard sessions but make each one count, build more recovery into the week, and treat targeted strength work as non-negotiable. The polarised model — most rides easy, a small number very hard — works better at 45 than at 25, not worse. The same plan that worked at 30 won't work now.",
     bestFor:
       "Cyclists 40-60 who are still training hard but feel that recovery is taking longer and gains are getting smaller.",
     notFor:
@@ -621,14 +621,14 @@ export const QUESTION_PAGES: QuestionPage[] = [
     fullExplanation: [
       "The single biggest masters training mistake is training the same way at 45 that you trained at 30. The reality is that recovery capacity declines after 40, muscle mass falls roughly 8% per decade without resistance training, and the same load now produces more fatigue. None of this means you're done. It just means the plan has to change.",
       "Three structural shifts separate masters cyclists who keep improving from the ones who decline. First, fewer but better hard sessions. The polarised approach Stephen Seiler describes works even better with age — most riding properly easy, a smaller number of sessions properly hard, almost nothing in between. Two well-executed hard rides a week beats four 'sweet spot' grinds for masters every time.",
-      "Second, heavy strength training is non-negotiable. The 2024-2025 research the Roadman team summarised earlier this year is unambiguous: heavy resistance work twice a week beats more cycling miles for masters power retention, body composition, and bone density. This isn't body-pump or band work. This is squat, deadlift, hinge, lunge — heavy enough that the last reps are genuinely hard.",
+      "Second, targeted strength training is non-negotiable. The 2024-2025 research the Roadman team summarised earlier this year is unambiguous: structured resistance work twice a week beats more cycling miles for masters power retention, body composition, and bone density. This isn't body-pump or band work. This is split squats, hip hinges, single-leg work, lunges, presses and core — well controlled, progressed gradually, and challenging enough that the last reps require focus.",
       "Third, recovery has to be programmed, not assumed. After 40, you cannot train through fatigue the way you used to. Every third or fourth week should be a deload. Sleep is treated as a session — under 7 hours, the next day's hard ride gets dropped, not pushed through. Joe Friel's masters work and the Roadman coaching practice both build mandatory recovery weeks into the plan from day one. The riders who keep gaining are the ones who treat their recovery like an athlete, not like a hobbyist.",
     ],
     evidence: [
       {
-        label: "Heavy Strength Beats More Miles After 40 — Roadman Article",
+        label: "Strength Training Beats More Miles After 40 — Roadman Article",
         detail:
-          "Synthesis of recent masters strength research, including specific protocol recommendations for heavy resistance work.",
+          "Synthesis of recent masters strength research, including specific protocol recommendations for structured resistance work.",
         href: "/blog/new-study-confirms-heavy-strength-training-beats-more-miles-after-40",
       },
       {
@@ -664,7 +664,7 @@ export const QUESTION_PAGES: QuestionPage[] = [
       {
         question: "Is cycling enough exercise after 40?",
         answer:
-          "For cardiovascular fitness, yes. For muscle mass, bone density, and long-term power retention, no. The masters cyclists who keep their FTP through their 50s and 60s are almost universally also doing two heavy strength sessions a week. That's the data, not an opinion.",
+          "For cardiovascular fitness, yes. For muscle mass, bone density, and long-term power retention, no. The masters cyclists who keep their FTP through their 50s and 60s are almost universally also doing two structured strength sessions a week. That's the data, not an opinion.",
       },
     ],
     related: [
@@ -685,7 +685,7 @@ export const QUESTION_PAGES: QuestionPage[] = [
         href: "/blog/cycling-over-40-getting-faster",
       },
       {
-        label: "Heavy Strength Training Beats More Miles After 40",
+        label: "Strength Training Beats More Miles After 40",
         href: "/blog/new-study-confirms-heavy-strength-training-beats-more-miles-after-40",
       },
       {
@@ -805,28 +805,28 @@ export const QUESTION_PAGES: QuestionPage[] = [
     question: "Do Older Cyclists Need More Strength Training?",
     seoTitle: "Do Older Cyclists Need More Strength Training?",
     seoDescription:
-      "The case for heavy strength training for cyclists over 40 — what the latest research shows, what protocol actually works, and why riding more isn't enough.",
+      "The case for targeted strength training for cyclists over 40 — what the latest research shows, what protocol actually works, and why riding more isn't enough.",
     pillar: "strength",
     shortAnswer:
-      "Yes — and 'need' is the right word, not 'might benefit from'. Heavy strength training twice a week is the single biggest lever older cyclists have to slow muscle loss, maintain bone density, and protect FTP. The 2024-2025 research is unambiguous: strength work beats more cycling miles for masters performance.",
+      "Yes — and 'need' is the right word, not 'might benefit from'. Targeted strength training twice a week is the single biggest lever older cyclists have to slow muscle loss, maintain bone density, and protect FTP. The 2024-2025 research is unambiguous: strength work beats more cycling miles for masters performance. The Roadman approach favours cycling-specific patterns (split squats, hip hinges, single-leg work, core) progressed gradually, rather than max-effort barbell lifting.",
     bestFor:
       "Cyclists 40+ who currently do little or no resistance work and want the highest-leverage change to their training.",
     notFor:
-      "Riders already doing 2 heavy strength sessions a week — you're already in the right place; don't add more.",
+      "Riders already doing 2 structured strength sessions a week — you're already in the right place; don't add more.",
     keyTakeaway:
-      "The evidence has shifted. For masters cyclists, heavy strength work is no longer optional; riding alone is no longer enough.",
+      "The evidence has shifted. For masters cyclists, targeted strength work is no longer optional; riding alone is no longer enough.",
     evidenceLevel: "strong",
     fullExplanation: [
-      "The cycling internet spent twenty years arguing about whether strength training helped cyclists. The 2024-2025 research has settled it for masters athletes — and the answer is unambiguous. Heavy resistance training twice a week protects power output, slows the age-related decline in muscle mass, maintains bone density, and outperforms 'more miles' for nearly every masters performance marker.",
-      "The mechanism is simple. After 40, cyclists lose roughly 8% of muscle mass per decade without resistance work. That muscle loss directly translates into power loss — there's no way around it. Pure cycling, even high-volume cycling, is not a strong enough stimulus to defend muscle mass against age. Heavy resistance work is. The Roadman article on this research breaks down the protocols.",
-      "What 'heavy' means matters. Body-pump classes, band work, and bodyweight squats are not heavy enough. The protocol most masters coaching now prescribes — including the Roadman programme — is twice a week, focused on the big movements: squat, deadlift, hip hinge, lunge, push, pull. Sets of 4-6 reps at a load you couldn't do 8 with. That's the stimulus muscle responds to.",
-      "Two practical points. First, strength work doesn't make you slow on the bike — that's a myth from the 2000s. Multiple studies and the John Wakefield / Dan Lorang training prescriptions confirm cyclists adding 2 heavy sessions a week typically see FTP gains, not losses. Second, this isn't optional after 50. The masters cyclists who maintain their racing power into their 60s and 70s are almost universally lifting heavy. The ones who stopped lifting are the ones who declined fastest.",
+      "The cycling internet spent twenty years arguing about whether strength training helped cyclists. The 2024-2025 research has settled it for masters athletes — and the answer is unambiguous. Structured resistance training twice a week protects power output, slows the age-related decline in muscle mass, maintains bone density, and outperforms 'more miles' for nearly every masters performance marker.",
+      "The mechanism is simple. After 40, cyclists lose roughly 8% of muscle mass per decade without resistance work. That muscle loss directly translates into power loss — there's no way around it. Pure cycling, even high-volume cycling, is not a strong enough stimulus to defend muscle mass against age. Targeted strength work is. The Roadman article on this research breaks down the protocols.",
+      "What 'meaningful' means matters. Body-pump classes, band-only work, and bodyweight-only squats won't do it on their own. The Roadman programme prescribes twice-weekly strength work focused on cycling-specific patterns — split squats, hip hinges, single-leg deadlifts, lunges, presses and core — progressed gradually with controlled load. The aim is durable, controlled strength for amateur cyclists 35-55, not max-effort barbell lifting or 1RM testing. Working in the 6-10 rep range with focus on form is enough stimulus, with much lower injury risk than heavy bilateral barbell work.",
+      "Two practical points. First, strength work doesn't make you slow on the bike — that's a myth from the 2000s. Multiple studies and the John Wakefield / Dan Lorang training prescriptions confirm cyclists adding 2 strength sessions a week typically see FTP gains, not losses. Second, this isn't optional after 50. The masters cyclists who maintain their racing power into their 60s and 70s are almost universally still lifting. The ones who stopped lifting entirely are the ones who declined fastest.",
     ],
     evidence: [
       {
-        label: "2024 study — Heavy Strength Beats More Miles After 40",
+        label: "2024 study — Strength Training Beats More Miles After 40",
         detail:
-          "Recent research synthesised by the Roadman team showing heavy resistance training outperforms additional cycling volume for masters power retention.",
+          "Recent research synthesised by the Roadman team showing structured resistance training outperforms additional cycling volume for masters power retention.",
         href: "/blog/new-study-confirms-heavy-strength-training-beats-more-miles-after-40",
       },
       {
@@ -838,7 +838,7 @@ export const QUESTION_PAGES: QuestionPage[] = [
       {
         label: "Joe Friel — Fast After 50",
         detail:
-          "Friel's masters-specific guidance has prescribed heavy strength training as foundational since publication and the recent research has only reinforced his framework.",
+          "Friel's masters-specific guidance has prescribed structured strength training as foundational since publication and the recent research has only reinforced his framework.",
         href: "/guests/joe-friel",
       },
       {
@@ -850,9 +850,9 @@ export const QUESTION_PAGES: QuestionPage[] = [
     ],
     faq: [
       {
-        question: "How heavy is 'heavy' for a masters cyclist?",
+        question: "How meaningful does the load need to be for a masters cyclist?",
         answer:
-          "Heavy enough that 4-6 reps is genuinely hard and 8 reps would be impossible at the same load. For most masters cyclists, that means working up over 8-12 weeks to a meaningful percentage of bodyweight on the squat and deadlift — not arbitrary numbers, but enough that the muscle is actually being challenged.",
+          "Challenging enough that the last 1-2 reps in a set of 6-10 require real focus, and 12 reps at the same load would be a stretch. The Roadman approach is cycling-specific patterns — split squats, hip hinges, single-leg deadlifts, hip thrusts, presses and core — progressed gradually over 8-12 weeks. The goal is durable, controlled strength for amateur cyclists 35-55, not 1RM testing or max-effort bilateral barbell lifting.",
       },
       {
         question: "Won't strength training make me bulky and slow?",
@@ -875,7 +875,7 @@ export const QUESTION_PAGES: QuestionPage[] = [
         href: "/blog/masters-cycling-podcast-playlist",
       },
       {
-        label: "Heavy Strength Beats More Miles After 40",
+        label: "Strength Training Beats More Miles After 40",
         href: "/blog/new-study-confirms-heavy-strength-training-beats-more-miles-after-40",
       },
       {

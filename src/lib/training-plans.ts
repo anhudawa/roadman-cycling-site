@@ -599,7 +599,7 @@ export const PHASES: TrainingPhase[] = [
     weekStructure: [
       { day: "Monday", session: "Rest or 45min Z1", detail: "Recovery day — coffee spin only if you want to." },
       { day: "Tuesday", session: "90min Z2 endurance", detail: "Steady, controlled, aerobic." },
-      { day: "Wednesday", session: "1h strength + 30min easy spin", detail: "Squats, deadlifts, core. Builds what the bike can't." },
+      { day: "Wednesday", session: "1h strength + 30min easy spin", detail: "Split squats, single-leg hinges, hip thrusts, core. Builds what the bike can't." },
       { day: "Thursday", session: "90min Z2 with 3x5min tempo", detail: "Intro to structured effort — don't race it." },
       { day: "Friday", session: "Rest", detail: "Genuine rest. The adaptations happen now." },
       { day: "Saturday", session: "3-4h long Z2 ride", detail: "Anchor session. Fueled from minute 30." },

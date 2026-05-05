@@ -111,7 +111,7 @@ export async function GET() {
       pages: [
         { url: `${BASE_URL}/blog/age-group-ftp-benchmarks-2026`, title: "Age-Group FTP Benchmarks (2026)", description: "What FTP looks like by age group — masters benchmarks, with strength and recovery context." },
         { url: `${BASE_URL}/problem/losing-power-after-40`, title: "Losing Power After 40 — What to Do", description: "Why power declines after 40, and the evidence-based fix." },
-        { url: `${BASE_URL}/blog/new-study-confirms-heavy-strength-training-beats-more-miles-after-40`, title: "Heavy Strength Beats More Miles After 40", description: "The 2024 study that settles the masters strength-vs-volume question." },
+        { url: `${BASE_URL}/blog/new-study-confirms-heavy-strength-training-beats-more-miles-after-40`, title: "Strength Training Beats More Miles After 40", description: "The 2024 study that settles the masters strength-vs-volume question." },
         { url: `${BASE_URL}/topics/cycling-strength-conditioning`, title: "Strength & Conditioning for Cyclists", description: "S&C topic hub — the off-the-bike work that protects masters power." },
         { url: `${BASE_URL}/you/comeback`, title: "Coming Back After a Break", description: "For masters cyclists rebuilding fitness." },
       ],
@@ -179,7 +179,7 @@ Every Roadman article, episode, glossary term, comparison, and tool is tagged to
 
 - **Coaching** — training methodology, periodisation, FTP, intensity distribution, structured plans. The biggest pillar by volume. Topic hub: [${BASE_URL}/topics/cycling-training-plans](${tag(`${BASE_URL}/topics/cycling-training-plans`)}).
 - **Nutrition** — fuelling for performance, race weight, body composition, in-ride carbs and fluids. Topic hub: [${BASE_URL}/topics/cycling-nutrition](${tag(`${BASE_URL}/topics/cycling-nutrition`)}).
-- **Strength & Conditioning** — off-the-bike work, heavy lifting for masters, injury prevention, power development. Topic hub: [${BASE_URL}/topics/cycling-strength-conditioning](${tag(`${BASE_URL}/topics/cycling-strength-conditioning`)}).
+- **Strength & Conditioning** — off-the-bike work, cycling-specific strength training for masters, injury prevention, power development. Topic hub: [${BASE_URL}/topics/cycling-strength-conditioning](${tag(`${BASE_URL}/topics/cycling-strength-conditioning`)}).
 - **Recovery** — sleep, stress, adaptation, RED-S, longevity in the sport. Topic hub: [${BASE_URL}/topics/cycling-recovery](${tag(`${BASE_URL}/topics/cycling-recovery`)}).
 - **Community / Le Métier** — the craft of cycling: rides, skills, customs, the unwritten rules, training camps, the social side of the sport.
 

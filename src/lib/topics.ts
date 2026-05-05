@@ -129,12 +129,12 @@ const TOPIC_DEFINITIONS: Omit<TopicHub, "posts" | "episodes" | "tools" | "commer
     headline: "STRONGER OFF THE BIKE, FASTER ON IT",
     ctaHeadline: "STRENGTH WORK, PERIODISED WITH YOUR RIDING.",
     description:
-      "Cycling-specific strength training: what exercises to do, how heavy, how often, and how to periodise gym work alongside your bike training. Evidence-based, coach-approved.",
+      "Cycling-specific strength training: what exercises to do, what loads, how often, and how to periodise gym work alongside your bike training. Evidence-based, coach-approved.",
     pillar: "strength",
     keywords: [
       "strength training for cyclists",
       "strength training for cyclists over 40",
-      "heavy lifting cyclists",
+      "cycling-specific strength training",
       "cycling gym exercises",
       "cycling gym exercises best",
       "best exercises for cyclists",
@@ -144,7 +144,7 @@ const TOPIC_DEFINITIONS: Omit<TopicHub, "posts" | "episodes" | "tools" | "commer
       "gym programme for cyclists",
       "cycling stretching routine",
       "in-season strength cycling",
-      "heavy strength cycling",
+      "structured strength training cycling",
       "strength training cycling performance",
     ],
   },

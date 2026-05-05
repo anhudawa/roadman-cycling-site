@@ -137,7 +137,7 @@ function renderSection(
           "Monday — Full rest or 20 min easy spin + mobility.",
           "Tuesday — Threshold (2×20 at 95–100% FTP) + 10 min S&C.",
           "Wednesday — Z2 for 90 min. No grey zone.",
-          "Thursday — VO2 (5×4 min at 110%) + strength (squat, deadlift, single-leg).",
+          "Thursday — VO2 (5×4 min at 110%) + strength (split squats, hip hinges, single-leg work, core).",
           "Friday — 45 min Z1/Z2 recovery spin.",
           "Saturday — Long ride, 3–4 hours, 80% Z2 with 20 min tempo mid-ride.",
           "Sunday — Optional Z1 ride or full rest day. Family first.",
@@ -291,7 +291,7 @@ function renderSection(
             sessions = [
               "Threshold: 2×20 min at 96–100% FTP. 5 min recovery between reps. The single most effective session in structured amateur cycling — keep it honest.",
               "VO2 Max: 5×4 min at 108–112% FTP. 3 min recovery. Stop at 4 clean reps if RPE on rep 5 would be 10 — 4 good reps beats 5 ugly ones.",
-              "Strength (weekly): Back squat 3×6 · Romanian deadlift 3×8 · Single-leg press 3×10 · Core 3×30s.",
+              "Strength (weekly): Bulgarian split squat 3×8 each leg · Single-leg deadlift 3×8 each · Single-leg press 3×10 · Core 3×30s.",
             ];
             break;
           default:
@@ -299,7 +299,7 @@ function renderSection(
               "Threshold: 2×20 min at 95–100% FTP. Can't hold it? Drop to 3×15 or 4×10 — total time at threshold matters more than rep shape.",
               "VO2 Max: 5×3 min at 107–110% FTP. 3 min full recovery. Build to 5×4 min over 4 weeks.",
               "Long ride: 2.5–4 hr, genuinely easy. No pushing on climbs. If you finish tired, it was too hard.",
-              "Strength (weekly): Goblet squat 3×10 · Deadlift 3×8 · Single-leg deadlift 3×8 · Plank 3×45s.",
+              "Strength (weekly): Goblet squat 3×10 · Single-leg deadlift 3×8 each · Step-up 3×10 each · Plank 3×45s.",
             ];
         }
       } else {
@@ -309,7 +309,7 @@ function renderSection(
             sessions = [
               "Recovery spin: 30–40 min at 55–65% FTP. This is the hard one — genuinely not a workout. Your brain will want to push. Don't.",
               "Zone 2 base: 60–90 min at 65–75% FTP. Conversational pace — you should be able to say a full sentence without pausing.",
-              "Strength (once rested): Bodyweight only for week 1 — squat 3×10, RDL 3×10, core 3×30s. Add load from week 2 onward.",
+              "Strength (once rested): Bodyweight only for week 1 — split squat 3×10 each, single-leg hinge 3×10 each, core 3×30s. Add load from week 2 onward.",
               "What to skip for 7 days: all intervals, all threshold work, all racing. One recovery week costs nothing; persistent under-recovery costs months.",
             ];
             break;
@@ -318,12 +318,12 @@ function renderSection(
               "Threshold session: 2×20 at 96–100% FTP. 5 min recovery. This is your 'hard' day. Nothing goes harder than this.",
               "VO2 session: 5×4 min at 108–112% FTP. 3 min recovery. Two hard days per week maximum — this is your second one.",
               "Zone 2 (everything else): 65–75% FTP. Conversational. If you're on a group ride and can't hold a conversation, you're in the grey zone.",
-              "Strength (twice weekly, 30 min): Squat 3×8 · Deadlift 3×8 · Single-leg work 3×8 each · Core 3×30s.",
+              "Strength (twice weekly, 30 min): Split squat 3×8 each · Single-leg deadlift 3×8 each · Hip thrust 3×10 · Core 3×30s.",
             ];
             break;
           case "strengthGap":
             sessions = [
-              "Strength A (start of week): Back squat 3×6–8 · Romanian deadlift 3×8 · Bulgarian split squat 3×8 each · Hip thrust 3×10.",
+              "Strength A (start of week): Bulgarian split squat 3×8 each · Single-leg hinge 3×8 each · Hip thrust 3×10 · Press variation 3×8.",
               "Strength B (mid-week): Single-leg deadlift 3×8 each · Step-up 3×10 each · Copenhagen plank 3×20s · Hanging core 3×10.",
               "Late-ride quality block: Build to 15 min tempo in the last 30 min of your long ride. Progress over 4 weeks.",
               "What to maintain: Two threshold or VO2 sessions per week. Strength doesn't replace bike quality work — it adds to it.",
@@ -404,7 +404,7 @@ function renderSection(
             actions = [
               "1. Start with 3×15 threshold this week — more achievable than 2×20. Set a wattage target, hit it, feel what that feels like.",
               "2. Get your weekly hours consistent: same 4–6 hours, same days, every week for 4 consecutive weeks. Consistency is the prerequisite for everything else.",
-              "3. Add one 20-min strength session this week: goblet squat, deadlift, core. Off-bike power is real and most building riders leave it entirely untouched.",
+              "3. Add one 20-min strength session this week: goblet squat, single-leg hinge, core. Off-bike power is real and most building riders leave it entirely untouched.",
             ];
         }
       } else {
@@ -426,7 +426,7 @@ function renderSection(
             break;
           case "strengthGap":
             actions = [
-              "1. Add two 30-min strength sessions this week. Back squat, Romanian deadlift, single-leg work, core. This is where your missing watts are.",
+              "1. Add two 30-min strength sessions this week. Split squats, single-leg deadlifts, hip thrusts, core. This is where your missing watts are.",
               "2. End your next long ride with a 15-min quality block: 10 min tempo + 5 min at threshold. This trains durability — holding power when already fatigued.",
               "3. Add hip and core work twice a week, 10 min each time. Power at the pedal is limited by hip stability. This gap is invisible until you address it.",
             ];
@@ -528,7 +528,7 @@ function renderSection(
         bullets: [
           "1. Stale zones — Training to zones that are 3–6 months old makes every session wrong. If your last FTP test was more than 12 weeks ago, your zones are stale. Re-test now.",
           "2. Grey-zone trap — If 50%+ of your sessions sit at 75–88% FTP, you're neither recovering well nor adapting fast. Too hard to be easy, not hard enough to drive threshold. The fix: hard sessions harder, easy sessions genuinely easy.",
-          "3. No strength work — Cyclists who add two properly-dosed S&C sessions per week see 3–7% FTP gains in 12 weeks. Squat and deadlift give neuromuscular recruitment the bike can't.",
+          "3. No strength work — Cyclists who add two properly-dosed S&C sessions per week see 3–7% FTP gains in 12 weeks. Cycling-specific strength patterns (split squats, hip hinges, single-leg work) drive neuromuscular recruitment the bike can't.",
           "4. Under-fuelling — FTP cannot increase in a caloric deficit. Carb restriction + high intensity = cortisol spike + suppressed adaptation. If you're restricting food and wondering why FTP is flat, here's your answer.",
           "5. Skipping recovery weeks — Week 4 must be easy (30–40% volume reduction). The adaptation from the previous three weeks consolidates here. A 4th hard week on top of three already-hard weeks doesn't add fitness — it stalls it.",
         ],
