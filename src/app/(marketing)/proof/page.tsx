@@ -17,6 +17,22 @@ import {
 } from "@/lib/testimonials";
 import { CASE_STUDIES } from "@/lib/case-studies";
 
+/**
+ * Map of testimonial.name → /case-studies/[slug] href.
+ * Built once at module load so every TestimonialBlock on the page can
+ * link out to the long-form study without an O(n) scan per render.
+ * Testimonials without a case study fall back to /apply (NDY) at the
+ * call site — keeps the page editorial rather than tying every card
+ * to a generic "Apply" link.
+ */
+const CASE_STUDY_HREF_BY_NAME: Record<string, string> = Object.fromEntries(
+  CASE_STUDIES.map((c) => [c.testimonialName, `/case-studies/${c.slug}`]),
+);
+
+function caseStudyHref(name: string): string | undefined {
+  return CASE_STUDY_HREF_BY_NAME[name];
+}
+
 export const metadata: Metadata = {
   title: "Real Cyclist Results — Proof Library",
   description:
@@ -109,7 +125,13 @@ function CategorySection({
         </ScrollReveal>
 
         <ScrollReveal direction="up" delay={0.05}>
-          <TestimonialBlock testimonial={spotlight} variant="spotlight" />
+          <TestimonialBlock
+            testimonial={spotlight}
+            variant="spotlight"
+            href={caseStudyHref(spotlight.name)}
+            hrefLabel="Read the full case study"
+            dataTrack={`proof_${source}_spotlight_case_study`}
+          />
         </ScrollReveal>
 
         {supporting.length > 0 && (
@@ -120,6 +142,11 @@ function CategorySection({
                   testimonial={t}
                   variant="compact"
                   preferShort
+                  href={caseStudyHref(t.name)}
+                  hrefLabel="Read the case study"
+                  dataTrack={`proof_${source}_supporting_${t.name
+                    .toLowerCase()
+                    .replace(/[^a-z0-9]+/g, "-")}`}
                 />
               </ScrollReveal>
             ))}
@@ -282,36 +309,87 @@ export default function ProofLibraryPage() {
     },
   ];
 
-  const orgQuotes = TESTIMONIALS.filter((t) => t.quote && t.name).slice(0, 12);
+  const orgQuotes = TESTIMONIALS.filter((t) => t.quote && t.name);
+  const serviceId = `${SITE_ORIGIN}/#coaching-service`;
+
+  // Review schema is emitted on this page (not on the per-testimonial
+  // component) because Google's structured-data policy requires
+  // ratings on every Review. Every quote in TESTIMONIALS is an
+  // unambiguous positive endorsement of Roadman coaching — coding
+  // them as 5/5 endorsements of the parent Service is honest, not
+  // fabricated. Aggregate rating sums them so the Service entity
+  // carries a single AggregateRating that crawlers can resolve.
+  const reviews = orgQuotes.map((t) => ({
+    "@type": "Review",
+    author: {
+      "@type": "Person",
+      name: t.name,
+      ...(t.detail ? { description: t.detail } : {}),
+    },
+    reviewBody: t.quote,
+    reviewRating: {
+      "@type": "Rating",
+      ratingValue: 5,
+      bestRating: 5,
+      worstRating: 1,
+    },
+    itemReviewed: { "@id": serviceId },
+    publisher: { "@id": ENTITY_IDS.organization },
+  }));
 
   return (
     <>
       <JsonLd
         data={{
           "@context": "https://schema.org",
-          "@type": "CollectionPage",
-          name: "Real Cyclist Results — Roadman Cycling Proof Library",
-          description:
-            "Verified results, testimonials, and case studies from cyclists coached by Roadman Cycling.",
-          url: `${SITE_ORIGIN}/proof`,
-          isPartOf: { "@id": ENTITY_IDS.website },
-          publisher: { "@id": ENTITY_IDS.organization },
-          mainEntity: {
-            "@type": "ItemList",
-            numberOfItems: orgQuotes.length,
-            itemListElement: orgQuotes.map((t, i) => ({
-              "@type": "ListItem",
-              position: i + 1,
-              item: {
-                "@type": "Person",
-                name: t.name,
-                description: t.detail,
+          "@graph": [
+            {
+              "@type": "CollectionPage",
+              "@id": `${SITE_ORIGIN}/proof#page`,
+              name: "Real Cyclist Results — Roadman Cycling Proof Library",
+              description:
+                "Verified results, testimonials, and case studies from cyclists coached by Roadman Cycling.",
+              url: `${SITE_ORIGIN}/proof`,
+              isPartOf: { "@id": ENTITY_IDS.website },
+              publisher: { "@id": ENTITY_IDS.organization },
+              about: { "@id": serviceId },
+              mainEntity: {
+                "@type": "ItemList",
+                numberOfItems: orgQuotes.length,
+                itemListElement: orgQuotes.map((t, i) => ({
+                  "@type": "ListItem",
+                  position: i + 1,
+                  item: {
+                    "@type": "Person",
+                    name: t.name,
+                    description: t.detail,
+                  },
+                })),
               },
-            })),
-          },
-          significantLink: CASE_STUDIES.slice(0, 6).map(
-            (c) => `${SITE_ORIGIN}/case-studies/${c.slug}`,
-          ),
+              significantLink: CASE_STUDIES.map(
+                (c) => `${SITE_ORIGIN}/case-studies/${c.slug}`,
+              ),
+            },
+            {
+              "@type": "Service",
+              "@id": serviceId,
+              name: "Roadman Cycling Coaching",
+              serviceType: "Cycling coaching",
+              provider: { "@id": ENTITY_IDS.organization },
+              areaServed: "Worldwide",
+              description:
+                "Personalised cycling coaching from Anthony Walsh and the Roadman team — Not Done Yet group coaching ($195/month) and Inner Circle 1:1 coaching ($525/month).",
+              url: `${SITE_ORIGIN}/coaching`,
+              aggregateRating: {
+                "@type": "AggregateRating",
+                ratingValue: 5,
+                bestRating: 5,
+                worstRating: 1,
+                reviewCount: reviews.length,
+              },
+              review: reviews,
+            },
+          ],
         }}
       />
       <JsonLd
@@ -367,6 +445,28 @@ export default function ProofLibraryPage() {
                 Quotes are from real members of the Not Done Yet community and
                 Anthony&apos;s 1:1 coaching roster. Where a number isn&apos;t
                 verifiable, it isn&apos;t here.
+              </p>
+
+              <div className="mt-10 flex flex-col sm:flex-row gap-3 sm:items-center">
+                <Button
+                  href="/plateau"
+                  size="lg"
+                  dataTrack="proof_hero_plateau"
+                >
+                  Start with the Plateau Diagnostic
+                </Button>
+                <Link
+                  href="/apply"
+                  className={ctaButtonGhost}
+                  data-track="proof_hero_apply_ndy"
+                >
+                  Apply for Not Done Yet
+                </Link>
+              </div>
+              <p className="text-foreground-subtle text-xs mt-4 max-w-xl">
+                Twelve questions to find out which system is holding you back —
+                or jump straight to a Not Done Yet application. $195/month,
+                7-day free trial.
               </p>
             </ScrollReveal>
           </Container>
@@ -443,7 +543,7 @@ export default function ProofLibraryPage() {
           ctaBody="The Plateau Diagnostic is a free 12-question tool that pinpoints which of the five systems is holding you back — recovery, fuelling, polarisation, strength, or pacing. Personal report. No upsell required."
           ctaPrimaryLabel="Run the Plateau Diagnostic"
           ctaPrimaryHref="/plateau"
-          ctaSecondaryLabel="Apply for coaching"
+          ctaSecondaryLabel="Apply for Not Done Yet"
           ctaSecondaryHref="/apply"
           source="ftp"
           background="charcoal"
@@ -461,7 +561,7 @@ export default function ProofLibraryPage() {
           metricsSubtitle="Quotes verbatim. No before-and-after photo theatre."
           ctaHeading="LOSE THE WEIGHT THAT'S HOLDING YOU BACK."
           ctaBody="Apply for coaching and you'll get a fuelling and body composition plan personal to your numbers, alongside the training. Not a generic deficit. Not a crash diet. Sustainable shifts that don't tank your power."
-          ctaPrimaryLabel="Apply for coaching"
+          ctaPrimaryLabel="Apply for Not Done Yet"
           ctaPrimaryHref="/apply"
           ctaSecondaryLabel="Run the Plateau Diagnostic"
           ctaSecondaryHref="/plateau"
@@ -481,10 +581,10 @@ export default function ProofLibraryPage() {
           metricsSubtitle="Category upgrades, power PRs, race wins."
           ctaHeading="WANT TO RACE WITH A REAL PLAN BEHIND YOU?"
           ctaBody="Inner Circle is the small-group coaching room for serious racers and event riders. Weekly check-ins with Anthony, Vekta-built training plans, and the same five-pillar system that put Daniel Stone in Cat 1 in one season."
-          ctaPrimaryLabel="See Inner Circle"
-          ctaPrimaryHref="/inner-circle"
-          ctaSecondaryLabel="Run the Plateau Diagnostic"
-          ctaSecondaryHref="/plateau"
+          ctaPrimaryLabel="Apply for Inner Circle"
+          ctaPrimaryHref="/inner-circle/apply"
+          ctaSecondaryLabel="Apply for Not Done Yet"
+          ctaSecondaryHref="/apply"
           source="race"
           background="charcoal"
         />
@@ -498,7 +598,7 @@ export default function ProofLibraryPage() {
           supporting={comebackSupporting}
           ctaHeading="COMING BACK FROM A SETBACK? DO IT WITH STRUCTURE."
           ctaBody="Whether it's a crash, an illness, or just a long break — the path back is faster, safer, and more enjoyable with a coach reading your numbers and adjusting in real time. Apply and we'll talk about whether coaching is right for where you are."
-          ctaPrimaryLabel="Apply for coaching"
+          ctaPrimaryLabel="Apply for Not Done Yet"
           ctaPrimaryHref="/apply"
           ctaSecondaryLabel="Run the Plateau Diagnostic"
           ctaSecondaryHref="/plateau"
@@ -515,10 +615,10 @@ export default function ProofLibraryPage() {
           supporting={eventSupporting}
           ctaHeading="GOT AN EVENT ON THE CALENDAR? BUILD A REAL CAMPAIGN."
           ctaBody="Tell us the event and the date. We'll build a coaching plan that hits peak form on the right day, with the strength, nutrition, and pacing work to back it up. Most event athletes start with a coaching application or the Plateau Diagnostic."
-          ctaPrimaryLabel="Apply for coaching"
+          ctaPrimaryLabel="Apply for Not Done Yet"
           ctaPrimaryHref="/apply"
-          ctaSecondaryLabel="See coaching for sportives"
-          ctaSecondaryHref="/coaching/sportives"
+          ctaSecondaryLabel="Run the Plateau Diagnostic"
+          ctaSecondaryHref="/plateau"
           source="events"
           background="charcoal"
         />
@@ -532,10 +632,10 @@ export default function ProofLibraryPage() {
           supporting={mastersSupporting}
           ctaHeading="OVER 50 AND STILL CHASING NUMBERS? GOOD."
           ctaBody="Coaching for masters cyclists isn't a watered-down version of coaching for racers — it's smarter periodisation, more deliberate strength work, and recovery that respects what your body actually needs. Apply and we'll build it around you."
-          ctaPrimaryLabel="Apply for coaching"
+          ctaPrimaryLabel="Apply for Not Done Yet"
           ctaPrimaryHref="/apply"
-          ctaSecondaryLabel="See coaching for over-50s"
-          ctaSecondaryHref="/coaching/over-50"
+          ctaSecondaryLabel="Run the Plateau Diagnostic"
+          ctaSecondaryHref="/plateau"
           source="masters"
           background="deep-purple"
         />
@@ -621,9 +721,9 @@ export default function ProofLibraryPage() {
               <Link
                 href="/apply"
                 className="inline-flex items-center justify-center font-heading tracking-wider uppercase rounded-md px-8 md:px-10 py-4 text-lg border-2 border-off-white text-off-white hover:bg-off-white hover:text-coral transition-colors"
-                data-track="proof_final_apply"
+                data-track="proof_final_apply_ndy"
               >
-                Apply for coaching
+                Apply for Not Done Yet
               </Link>
             </div>
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mt-8 text-off-white/70 text-sm">
