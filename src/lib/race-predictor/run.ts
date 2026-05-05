@@ -28,8 +28,10 @@ import type {
 export interface RiderInputDTO {
   bodyMass: number;
   bikeMass: number;
+  heightCm?: number;
   position: RidingPosition;
   drafting?: DraftingAssumption;
+  eventType?: RaceEventType;
   cda?: number;            // optional override; otherwise from position
   crr?: number;            // optional override; otherwise from surface
   surface?: SurfaceType;
@@ -48,11 +50,33 @@ export interface EnvironmentInputDTO {
 
 export type PredictMode = "can_i_make_it" | "plan_my_race";
 export type DraftingAssumption = "solo" | "small_group" | "large_group";
+export type RaceEventType =
+  | "sportive"
+  | "gran_fondo"
+  | "road_race"
+  | "time_trial"
+  | "gravel"
+  | "triathlon";
 
 const DRAFTING_CDA_MULTIPLIER: Record<DraftingAssumption, number> = {
   solo: 1,
   small_group: 0.88,
   large_group: 0.78,
+};
+
+function heightCdaMultiplier(heightCm?: number): number {
+  if (typeof heightCm !== "number" || !Number.isFinite(heightCm)) return 1;
+  const ratio = (heightCm - 175) / 100;
+  return Math.min(1.08, Math.max(0.93, 1 + ratio * 0.35));
+}
+
+const EVENT_TARGET_IF: Record<RaceEventType, { plan: number; finish: number }> = {
+  sportive: { plan: 0.84, finish: 0.78 },
+  gran_fondo: { plan: 0.85, finish: 0.79 },
+  road_race: { plan: 0.87, finish: 0.80 },
+  time_trial: { plan: 0.88, finish: 0.82 },
+  gravel: { plan: 0.82, finish: 0.76 },
+  triathlon: { plan: 0.78, finish: 0.72 },
 };
 
 export interface RunPredictArgs {
@@ -86,7 +110,8 @@ export function synthesizePowerProfile(ftp: number): PowerProfile {
 export function buildRiderProfile(input: RiderInputDTO): RiderProfile {
   const baseCda = input.cda ?? CDA_BY_POSITION[input.position];
   const drafting = input.drafting ?? "solo";
-  const cda = baseCda * DRAFTING_CDA_MULTIPLIER[drafting];
+  const sizeMultiplier = input.cda ? 1 : heightCdaMultiplier(input.heightCm);
+  const cda = baseCda * sizeMultiplier * DRAFTING_CDA_MULTIPLIER[drafting];
   const crr =
     input.crr ?? (input.surface ? CRR_BY_SURFACE[input.surface] : 0.0034);
   // FTP precedence: explicit ftp → derive from p20min (×0.95) → 250 default.
@@ -124,6 +149,9 @@ export function buildRiderProfile(input: RiderInputDTO): RiderProfile {
  */
 function inferPrecision(rider: RiderInputDTO): Precision {
   if (rider.drafting && rider.drafting !== "solo") return "low";
+  if (rider.eventType === "road_race" || rider.eventType === "gravel") {
+    return "low";
+  }
   const hasExplicitCda = typeof rider.cda === "number";
   const hasExplicitCrr = typeof rider.crr === "number";
   const hasFullPdCurve =
@@ -132,6 +160,11 @@ function inferPrecision(rider: RiderInputDTO): Precision {
   if (hasExplicitCda && hasExplicitCrr && hasFullPdCurve) return "high";
   if (hasFullPdCurve || (hasExplicitCda && hasExplicitCrr)) return "default";
   return "low";
+}
+
+function targetIntensityFactor(mode: PredictMode, eventType: RaceEventType): number {
+  const target = EVENT_TARGET_IF[eventType];
+  return mode === "can_i_make_it" ? target.finish : target.plan;
 }
 
 export function buildEnvironment(input?: EnvironmentInputDTO): Environment {
@@ -157,7 +190,8 @@ export function runPrediction(args: RunPredictArgs): PredictionRunResult {
   const environment = buildEnvironment(args.environment);
 
   const cpModel = fitCpModel(rider.powerProfile);
-  const targetIF = args.mode === "can_i_make_it" ? 0.80 : 0.85;
+  const eventType = args.rider.eventType ?? "sportive";
+  const targetIF = targetIntensityFactor(args.mode, eventType);
 
   const pacing =
     args.mode === "can_i_make_it"

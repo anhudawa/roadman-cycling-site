@@ -24,7 +24,7 @@ const tools = [
   {
     title: "Race Predictor",
     description:
-      "Enter your FTP, weight, and course — we simulate the ride on real elevation data and give you a finish time within ±3%. Free for the prediction. The $29 Race Report adds your full pacing plan, fuelling strategy, and equipment what-ifs.",
+      "Enter your FTP, weight, and course — we simulate the ride on real elevation data and show a finish-time range. Free for the prediction. The $29 Race Report adds your full pacing plan, fuelling strategy, and equipment what-ifs.",
     href: "/predict",
     status: "live" as const,
   },

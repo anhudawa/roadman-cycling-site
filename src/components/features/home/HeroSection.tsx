@@ -27,8 +27,8 @@ interface HeroSectionProps {
  * below the 801×801 source so no upscaling; a soft bottom mask fade
  * dissolves it into the section's deep-purple bg.
  *
- * Headline copy is "STOP PLATEAUING. START PROGRESSING." broken across
- * 4 lines as STOP / PLATEAUING. / START / PROGRESSING. Line breaks are
+ * Headline copy is "YOUR BEST NUMBERS AREN'T BEHIND YOU." broken across
+ * 4 lines as YOUR BEST / NUMBERS / AREN'T / BEHIND YOU. Line breaks are
  * hand-tuned — if the copy changes, rebalance manually. Do not auto-wrap.
  */
 export function HeroSection({ latestEpisode }: HeroSectionProps) {
@@ -54,10 +54,10 @@ export function HeroSection({ latestEpisode }: HeroSectionProps) {
   }, []);
 
   const headlineLines = [
-    { text: "STOP", accent: false },
-    { text: "PLATEAUING.", accent: false },
-    { text: "START", accent: false },
-    { text: "PROGRESSING.", accent: true },
+    { text: "YOUR BEST", accent: false },
+    { text: "NUMBERS", accent: false },
+    { text: "AREN'T", accent: false },
+    { text: "BEHIND YOU.", accent: true },
   ];
 
   return (
@@ -175,9 +175,9 @@ export function HeroSection({ latestEpisode }: HeroSectionProps) {
                 ease: [0.16, 1, 0.3, 1],
               }}
             >
-              The clearest path back to progress for serious amateurs
-              who stopped improving. Twelve questions. Four minutes.
-              One specific answer to why your FTP has been stuck.
+              Built for serious amateurs who&apos;ve been on the same
+              numbers for a year. Twelve questions. Four minutes.
+              One specific answer.
             </motion.p>
 
             <motion.div

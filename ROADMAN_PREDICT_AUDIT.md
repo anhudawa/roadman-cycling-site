@@ -183,3 +183,41 @@ This audit covers the current `/predict` product in the local Roadman Cycling Ne
 - Added predictor mappings for more high-intent race guides: Fred Whitton Challenge, Maratona dles Dolomites, Gran Fondo New York, and Haute Route Alps.
 - Added synthetic but event-shaped seed/fixture courses for Fred Whitton, Maratona dles Dolomites, and Gran Fondo New York so they can appear as prediction-ready before real GPX provenance lands.
 - Seed script and local fixture fallback were updated together to keep local/Vercel behaviour aligned.
+
+## Ninth Chunk Implemented
+
+- Added fixture regression tests to ensure every SEO `predictor_slug` has fallback course data.
+- Added plausibility checks for the new Maratona, Fred Whitton, and GFNY synthetic fixtures so distance, elevation, and climb counts stay inside reasonable bounds.
+- Verified the current implementation with focused predictor tests, lint on changed files, TypeScript, and a production build.
+
+## Tenth Chunk Implemented
+
+- Removed remaining public "within ±3%" / "typical accuracy ±3%" Race Predictor claims from metadata, the tools page, race guide CTAs, and the older predictor form.
+- Replaced those claims with confidence-range language that better matches the model's current evidence level.
+- Added client-side checkout-success tracking on the Race Report post-payment page, without logging raw Stripe session IDs.
+
+## Eleventh Chunk Implemented
+
+- Exposed the engine's existing surface / rolling-resistance model in the main `/predict` form with road, gravel, and cobble options.
+- Passed the selected surface through `/api/predict` into the deterministic model, while preserving explicit AI-derived Crr overrides when present.
+- Added API validation and unit coverage proving rougher surfaces increase Crr and produce slower predictions.
+
+## Twelfth Chunk Implemented
+
+- Added event type as a first-class rider input: sportive, gran fondo, road race, time trial, gravel, and triathlon.
+- The prediction engine now uses event type to set conservative pacing intensity targets instead of treating every event like the same steady sportive.
+- Road race and gravel assumptions widen confidence bands because pack dynamics, surface variability, and tactical surges make the prediction less deterministic.
+- Added API validation and unit tests for event-type pacing and confidence behaviour.
+
+## Thirteenth Chunk Implemented
+
+- Added optional rider height to the `/predict` setup form and API validation.
+- Height now nudges preset CdA conservatively when no explicit CdA is available, improving the default aero estimate without pretending to know a rider's tested drag.
+- Explicit CdA from the bike/setup translator still wins, so measured or richer estimates are not overwritten.
+- Added unit coverage for height-adjusted CdA and explicit-CdA precedence.
+
+## Fourteenth Chunk Implemented
+
+- Added drivetrain condition to the `/predict` setup flow with cyclist-language choices: race-ready, normal, dirty, and poor.
+- The selected condition maps to drivetrain efficiency and is passed into the deterministic model, where lower efficiency reduces wheel power and slows the prediction.
+- Added API validation for drivetrain efficiency and unit coverage proving dirty/poor drivetrains produce slower predictions.

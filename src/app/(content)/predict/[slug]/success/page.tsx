@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { Header, Footer, Section, Container } from "@/components/layout";
 import { getPredictionBySlug } from "@/lib/race-predictor/store";
+import { CheckoutSuccessTracker } from "./checkout-success-tracker";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
@@ -17,12 +18,14 @@ export const metadata = {
   robots: { index: false, follow: false },
 };
 
-export default async function SuccessPage({ params }: PageProps) {
+export default async function SuccessPage({ params, searchParams }: PageProps) {
   const { slug } = await params;
+  const { session_id: sessionId } = await searchParams;
   const prediction = await getPredictionBySlug(slug).catch(() => null);
 
   return (
     <>
+      <CheckoutSuccessTracker predictionSlug={slug} sessionId={sessionId} />
       <Header />
       <main id="main-content">
         <Section background="deep-purple" grain className="pt-32 pb-16">

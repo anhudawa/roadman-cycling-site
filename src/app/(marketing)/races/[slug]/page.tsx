@@ -339,7 +339,7 @@ export default async function RacePage({
                   </h2>
                   <p className="text-foreground-muted text-sm leading-relaxed mb-5">
                     {race.predictor_slug
-                      ? `Enter your FTP and weight — we'll simulate the ${race.name} course on real elevation data and give you a finish time within ±3%.`
+                      ? `Enter your FTP and weight — we'll simulate the ${race.name} course on real elevation data and give you a realistic finish-time range.`
                       : `Ask Roadman about your target time for ${race.name} — get an honest answer grounded in training data, not guesswork.`}
                   </p>
                   <Link

@@ -35,6 +35,23 @@ const VALID_POSITIONS = new Set([
 ]);
 
 const VALID_DRAFTING = new Set(["solo", "small_group", "large_group"]);
+const VALID_EVENT_TYPES = new Set([
+  "sportive",
+  "gran_fondo",
+  "road_race",
+  "time_trial",
+  "gravel",
+  "triathlon",
+]);
+const VALID_SURFACES = new Set([
+  "tarmac_smooth",
+  "tarmac_mixed",
+  "tarmac_rough",
+  "chip_seal",
+  "gravel_smooth",
+  "gravel_rough",
+  "cobbles",
+]);
 
 function validateRider(rider: RiderInputDTO | undefined): string | null {
   if (!rider) return "Missing rider profile.";
@@ -43,6 +60,16 @@ function validateRider(rider: RiderInputDTO | undefined): string | null {
   }
   if (rider.bodyMass < 40 || rider.bodyMass > 150) {
     return "Body mass should be between 40 and 150 kg — double-check that number.";
+  }
+  if (rider.heightCm !== undefined) {
+    if (
+      typeof rider.heightCm !== "number" ||
+      !Number.isFinite(rider.heightCm) ||
+      rider.heightCm < 140 ||
+      rider.heightCm > 210
+    ) {
+      return "Height should be between 140 and 210 cm.";
+    }
   }
   if (typeof rider.bikeMass !== "number" || !Number.isFinite(rider.bikeMass)) {
     return "Bike mass is required.";
@@ -58,6 +85,18 @@ function validateRider(rider: RiderInputDTO | undefined): string | null {
     (typeof rider.drafting !== "string" || !VALID_DRAFTING.has(rider.drafting))
   ) {
     return "Drafting assumption is not recognised.";
+  }
+  if (
+    rider.eventType !== undefined &&
+    (typeof rider.eventType !== "string" || !VALID_EVENT_TYPES.has(rider.eventType))
+  ) {
+    return "Event type is not recognised.";
+  }
+  if (
+    rider.surface !== undefined &&
+    (typeof rider.surface !== "string" || !VALID_SURFACES.has(rider.surface))
+  ) {
+    return "Surface type is not recognised.";
   }
   // FTP / power profile sanity check. The engine accepts a partial profile
   // (just FTP), but if a value is supplied it has to be plausible.
@@ -79,6 +118,16 @@ function validateRider(rider: RiderInputDTO | undefined): string | null {
   if (rider.crr !== undefined) {
     if (typeof rider.crr !== "number" || rider.crr < 0.001 || rider.crr > 0.05) {
       return "Crr must be between 0.001 and 0.05.";
+    }
+  }
+  if (rider.drivetrainEfficiency !== undefined) {
+    if (
+      typeof rider.drivetrainEfficiency !== "number" ||
+      !Number.isFinite(rider.drivetrainEfficiency) ||
+      rider.drivetrainEfficiency < 0.9 ||
+      rider.drivetrainEfficiency > 0.99
+    ) {
+      return "Drivetrain efficiency must be between 0.90 and 0.99.";
     }
   }
   return null;

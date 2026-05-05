@@ -20,10 +20,13 @@ import {
   DIFFICULTY_COLORS,
   type Race,
 } from "@/data/races";
-import type { Course } from "@/lib/race-predictor/types";
+import type { Course, SurfaceType } from "@/lib/race-predictor/types";
 
 type Mode = "plan_my_race" | "can_i_make_it";
 type Drafting = "solo" | "small_group" | "large_group";
+type EventType = "sportive" | "gran_fondo" | "road_race" | "time_trial" | "gravel" | "triathlon";
+type Surface = SurfaceType;
+type DrivetrainCondition = "race_ready" | "normal" | "dirty" | "poor";
 type Position =
   | "tt_bars"
   | "aero_drops"
@@ -98,6 +101,36 @@ const DRAFTING_OPTIONS: { value: Drafting; label: string; detail: string }[] = [
   { value: "large_group", label: "Bunch", detail: "Sportive or road-race pack" },
 ];
 
+const EVENT_TYPE_OPTIONS: { value: EventType; label: string; detail: string }[] = [
+  { value: "sportive", label: "Sportive", detail: "Steady pacing, finish-focused" },
+  { value: "gran_fondo", label: "Gran fondo", detail: "Hard day, timed finish" },
+  { value: "road_race", label: "Road race", detail: "Surges, bunch dynamics" },
+  { value: "time_trial", label: "Time trial", detail: "Solo, controlled effort" },
+  { value: "gravel", label: "Gravel", detail: "Variable surface and pacing" },
+  { value: "triathlon", label: "Triathlon", detail: "Bike split with run legs" },
+];
+
+const SURFACE_OPTIONS: { value: Surface; label: string; detail: string }[] = [
+  { value: "tarmac_smooth", label: "Fast road", detail: "Smooth tarmac, good tyres" },
+  { value: "tarmac_mixed", label: "Mixed road", detail: "Normal sportive roads" },
+  { value: "tarmac_rough", label: "Rough road", detail: "Broken lanes or heavy chip" },
+  { value: "gravel_smooth", label: "Fast gravel", detail: "Hardpack, file tread" },
+  { value: "gravel_rough", label: "Rough gravel", detail: "Loose, slow or chunky" },
+  { value: "cobbles", label: "Cobbles", detail: "Roubaix/Flanders style sectors" },
+];
+
+const DRIVETRAIN_OPTIONS: {
+  value: DrivetrainCondition;
+  efficiency: number;
+  label: string;
+  detail: string;
+}[] = [
+  { value: "race_ready", efficiency: 0.98, label: "Race-ready", detail: "Clean chain, good wax/lube" },
+  { value: "normal", efficiency: 0.97, label: "Normal", detail: "Decent chain, normal losses" },
+  { value: "dirty", efficiency: 0.955, label: "Dirty", detail: "Wet or gritty drivetrain" },
+  { value: "poor", efficiency: 0.94, label: "Poor", detail: "Worn chain or neglected setup" },
+];
+
 export default function PredictPage() {
   const router = useRouter();
   const track = useTrack();
@@ -117,14 +150,18 @@ export default function PredictPage() {
   const [coursesLoading, setCoursesLoading] = useState(true);
   const [courseSlug, setCourseSlug] = useState<string>("");
   const [gpx, setGpx] = useState<GpxUploadResult | null>(null);
+  const [eventType, setEventType] = useState<EventType>("sportive");
 
   // Numeric inputs start empty (NaN) — placeholders show recommended defaults
   // so the field doesn't show "075" if a user types into a pre-filled "0" or
   // "75". The live what-if estimator below substitutes sane fallbacks until
   // the user provides a real value.
   const [bodyMass, setBodyMass] = useState<number>(NaN);
+  const [heightCm, setHeightCm] = useState<number>(NaN);
   const [bikeMass, setBikeMass] = useState<number>(NaN);
   const [position, setPosition] = useState<Position>("aero_hoods");
+  const [surface, setSurface] = useState<Surface>("tarmac_mixed");
+  const [drivetrain, setDrivetrain] = useState<DrivetrainCondition>("normal");
   const [ftp, setFtp] = useState<number>(NaN);
 
   const [airTempC, setAirTempC] = useState<number>(18);
@@ -137,6 +174,8 @@ export default function PredictPage() {
   const ftpForEstimate = Number.isFinite(ftp) ? ftp : 260;
   const bodyMassForEstimate = Number.isFinite(bodyMass) ? bodyMass : 75;
   const bikeMassForEstimate = Number.isFinite(bikeMass) ? bikeMass : 8;
+  const drivetrainEfficiency =
+    DRIVETRAIN_OPTIONS.find((option) => option.value === drivetrain)?.efficiency ?? 0.97;
 
   const [aiText, setAiText] = useState<string>("");
   const [aiLoading, setAiLoading] = useState<boolean>(false);
@@ -329,7 +368,7 @@ export default function PredictPage() {
   // Distinguish "empty" (don't shout at the user yet — they haven't typed) from
   // "out of range" (definitely wrong). Empty is a soft block on submit; out of
   // range surfaces a red message under the field.
-  const fieldErrors: { ftp?: string; bodyMass?: string; bikeMass?: string } = {};
+  const fieldErrors: { ftp?: string; bodyMass?: string; heightCm?: string; bikeMass?: string } = {};
   const fieldEmpty = {
     ftp: !Number.isFinite(ftp),
     bodyMass: !Number.isFinite(bodyMass),
@@ -340,6 +379,9 @@ export default function PredictPage() {
   }
   if (Number.isFinite(bodyMass) && (bodyMass < 40 || bodyMass > 150)) {
     fieldErrors.bodyMass = "Body mass should be 40–150 kg.";
+  }
+  if (Number.isFinite(heightCm) && (heightCm < 140 || heightCm > 210)) {
+    fieldErrors.heightCm = "Height should be 140–210 cm.";
   }
   if (Number.isFinite(bikeMass) && (bikeMass < 5 || bikeMass > 30)) {
     fieldErrors.bikeMass = "Bike mass should be 5–30 kg.";
@@ -374,6 +416,9 @@ export default function PredictPage() {
       source: gpx ? "gpx_upload" : "event_catalog",
       courseSlug: gpx ? null : courseSlug,
       drafting,
+      eventType,
+      heightCm: Number.isFinite(heightCm) ? heightCm : null,
+      drivetrain,
       windSpeedMs,
       windDirectionDeg,
     });
@@ -390,12 +435,16 @@ export default function PredictPage() {
           mode,
           rider: {
             bodyMass,
+            heightCm: Number.isFinite(heightCm) ? heightCm : undefined,
             bikeMass,
             position,
             powerProfile: { ftp },
             cda: aiResult?.cda,
             crr: aiResult?.crr,
+            surface,
+            drivetrainEfficiency,
             drafting,
+            eventType,
           },
           environment: {
             airTemperatureC: airTempC,
@@ -774,7 +823,7 @@ export default function PredictPage() {
                   >
                     POWER & WEIGHT
                   </p>
-                  <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3">
                     <NumberField
                       label="FTP"
                       unit="W"
@@ -796,6 +845,17 @@ export default function PredictPage() {
                       placeholder="75"
                       onChange={setBodyMass}
                       error={fieldErrors.bodyMass}
+                    />
+                    <NumberField
+                      label="Height"
+                      unit="cm"
+                      value={heightCm}
+                      step={1}
+                      min={140}
+                      max={210}
+                      placeholder="175"
+                      onChange={setHeightCm}
+                      error={fieldErrors.heightCm}
                     />
                     <NumberField
                       label="Bike weight"
@@ -874,6 +934,36 @@ export default function PredictPage() {
                     </p>
                   </div>
                   <PositionPicker value={position} onChange={setPosition} />
+                </div>
+
+                <div className="rounded-xl border border-white/8 bg-white/[0.02] p-5 mb-5">
+                  <div className="flex items-baseline justify-between mb-3 flex-wrap gap-2">
+                    <p
+                      className="text-[0.62rem] tracking-[0.22em] uppercase text-foreground-muted"
+                      style={{ fontFamily: "var(--font-jetbrains-mono)" }}
+                    >
+                      SURFACE & TYRES
+                    </p>
+                    <p className="text-[0.62rem] text-foreground-subtle">
+                      Rolling resistance matters more than it feels
+                    </p>
+                  </div>
+                  <SurfacePicker value={surface} onChange={setSurface} />
+                </div>
+
+                <div className="rounded-xl border border-white/8 bg-white/[0.02] p-5 mb-5">
+                  <div className="flex items-baseline justify-between mb-3 flex-wrap gap-2">
+                    <p
+                      className="text-[0.62rem] tracking-[0.22em] uppercase text-foreground-muted"
+                      style={{ fontFamily: "var(--font-jetbrains-mono)" }}
+                    >
+                      DRIVETRAIN
+                    </p>
+                    <p className="text-[0.62rem] text-foreground-subtle">
+                      Small losses add up over long events
+                    </p>
+                  </div>
+                  <DrivetrainPicker value={drivetrain} onChange={setDrivetrain} />
                 </div>
 
                 <div className="rounded-xl border border-white/8 bg-white/[0.02] p-5 mb-5">
@@ -988,6 +1078,20 @@ export default function PredictPage() {
                   >
                     STEP 03 · WHEN ARE YOU RACING?
                   </p>
+                  <div className="mb-4">
+                    <div className="flex items-baseline justify-between mb-3 flex-wrap gap-2">
+                      <p
+                        className="text-[0.62rem] tracking-[0.22em] uppercase text-foreground-muted"
+                        style={{ fontFamily: "var(--font-jetbrains-mono)" }}
+                      >
+                        EVENT TYPE
+                      </p>
+                      <p className="text-[0.62rem] text-foreground-subtle">
+                        Sets the effort target and confidence range
+                      </p>
+                    </div>
+                    <EventTypePicker value={eventType} onChange={setEventType} />
+                  </div>
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                     <ModeToggle
                       label="Plan my race"
@@ -1456,6 +1560,99 @@ function WindDirectionSelect({
           </option>
         ))}
       </select>
+    </div>
+  );
+}
+
+function SurfacePicker({
+  value,
+  onChange,
+}: {
+  value: Surface;
+  onChange: (v: Surface) => void;
+}) {
+  return (
+    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2">
+      {SURFACE_OPTIONS.map((option) => (
+        <button
+          key={option.value}
+          type="button"
+          onClick={() => onChange(option.value)}
+          aria-pressed={value === option.value}
+          className={`min-h-[72px] rounded-lg border p-3 text-left transition-colors ${
+            value === option.value
+              ? "border-coral bg-coral/10 text-off-white"
+              : "border-white/10 bg-white/[0.03] text-off-white/70 hover:border-white/25"
+          }`}
+        >
+          <span className="block text-sm font-semibold">{option.label}</span>
+          <span className="mt-1 block text-xs leading-snug text-foreground-muted">
+            {option.detail}
+          </span>
+        </button>
+      ))}
+    </div>
+  );
+}
+
+function EventTypePicker({
+  value,
+  onChange,
+}: {
+  value: EventType;
+  onChange: (v: EventType) => void;
+}) {
+  return (
+    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2">
+      {EVENT_TYPE_OPTIONS.map((option) => (
+        <button
+          key={option.value}
+          type="button"
+          onClick={() => onChange(option.value)}
+          aria-pressed={value === option.value}
+          className={`min-h-[74px] rounded-lg border p-3 text-left transition-colors ${
+            value === option.value
+              ? "border-coral bg-coral/10 text-off-white"
+              : "border-white/10 bg-white/[0.03] text-off-white/70 hover:border-white/25"
+          }`}
+        >
+          <span className="block text-sm font-semibold">{option.label}</span>
+          <span className="mt-1 block text-xs leading-snug text-foreground-muted">
+            {option.detail}
+          </span>
+        </button>
+      ))}
+    </div>
+  );
+}
+
+function DrivetrainPicker({
+  value,
+  onChange,
+}: {
+  value: DrivetrainCondition;
+  onChange: (v: DrivetrainCondition) => void;
+}) {
+  return (
+    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-2">
+      {DRIVETRAIN_OPTIONS.map((option) => (
+        <button
+          key={option.value}
+          type="button"
+          onClick={() => onChange(option.value)}
+          aria-pressed={value === option.value}
+          className={`min-h-[74px] rounded-lg border p-3 text-left transition-colors ${
+            value === option.value
+              ? "border-coral bg-coral/10 text-off-white"
+              : "border-white/10 bg-white/[0.03] text-off-white/70 hover:border-white/25"
+          }`}
+        >
+          <span className="block text-sm font-semibold">{option.label}</span>
+          <span className="mt-1 block text-xs leading-snug text-foreground-muted">
+            {option.detail}
+          </span>
+        </button>
+      ))}
     </div>
   );
 }

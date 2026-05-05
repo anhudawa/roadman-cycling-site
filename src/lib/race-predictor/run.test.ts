@@ -61,7 +61,7 @@ describe("runPrediction", () => {
       },
       mode: "can_i_make_it",
     });
-    // can_i_make_it caps at 0.80 IF; plan_my_race targets 0.85 IF.
+    // can_i_make_it uses a lower finish-focused IF than plan_my_race.
     // Honest mode should be at least a bit slower.
     expect(honest.result.totalTime).toBeGreaterThan(planned.result.totalTime);
   });
@@ -75,6 +75,30 @@ describe("runPrediction", () => {
     expect(profile.cda).toBeCloseTo(0.31, 2);
     expect(profile.crr).toBeGreaterThan(0);
     expect(profile.powerProfile.p60min).toBeGreaterThan(100);
+  });
+
+  it("height nudges preset CdA but explicit CdA wins", () => {
+    const shorter = buildRiderProfile({
+      bodyMass: 65,
+      heightCm: 160,
+      bikeMass: 8,
+      position: "aero_hoods",
+    });
+    const taller = buildRiderProfile({
+      bodyMass: 85,
+      heightCm: 195,
+      bikeMass: 8,
+      position: "aero_hoods",
+    });
+    const explicit = buildRiderProfile({
+      bodyMass: 85,
+      heightCm: 195,
+      bikeMass: 8,
+      position: "aero_hoods",
+      cda: 0.3,
+    });
+    expect(shorter.cda).toBeLessThan(taller.cda);
+    expect(explicit.cda).toBeCloseTo(0.3, 4);
   });
 
   it("drafting assumptions reduce effective CdA but widen confidence", () => {
@@ -122,6 +146,125 @@ describe("runPrediction", () => {
     expect(bunch.result.totalTime).toBeLessThan(solo.result.totalTime);
     expect(bunch.confidence.high - bunch.confidence.low).toBeGreaterThan(
       solo.confidence.high - solo.confidence.low,
+    );
+  });
+
+  it("surface assumptions change rolling resistance and predicted time", () => {
+    const course = flatCourse(50);
+    const roadProfile = buildRiderProfile({
+      bodyMass: 75,
+      bikeMass: 8,
+      position: "aero_hoods",
+      surface: "tarmac_smooth",
+      powerProfile: { ftp: 260 },
+    });
+    const gravelProfile = buildRiderProfile({
+      bodyMass: 75,
+      bikeMass: 8,
+      position: "aero_hoods",
+      surface: "gravel_rough",
+      powerProfile: { ftp: 260 },
+    });
+    expect(gravelProfile.crr).toBeGreaterThan(roadProfile.crr);
+
+    const road = runPrediction({
+      course,
+      rider: {
+        bodyMass: 75,
+        bikeMass: 8,
+        position: "aero_hoods",
+        surface: "tarmac_smooth",
+        powerProfile: { ftp: 260 },
+      },
+      mode: "plan_my_race",
+    });
+    const gravel = runPrediction({
+      course,
+      rider: {
+        bodyMass: 75,
+        bikeMass: 8,
+        position: "aero_hoods",
+        surface: "gravel_rough",
+        powerProfile: { ftp: 260 },
+      },
+      mode: "plan_my_race",
+    });
+    expect(gravel.result.totalTime).toBeGreaterThan(road.result.totalTime);
+  });
+
+  it("drivetrain efficiency affects predicted time", () => {
+    const course = flatCourse(50);
+    const clean = runPrediction({
+      course,
+      rider: {
+        bodyMass: 75,
+        bikeMass: 8,
+        position: "aero_hoods",
+        drivetrainEfficiency: 0.98,
+        powerProfile: { ftp: 260 },
+      },
+      mode: "plan_my_race",
+    });
+    const dirty = runPrediction({
+      course,
+      rider: {
+        bodyMass: 75,
+        bikeMass: 8,
+        position: "aero_hoods",
+        drivetrainEfficiency: 0.94,
+        powerProfile: { ftp: 260 },
+      },
+      mode: "plan_my_race",
+    });
+    expect(dirty.rider.drivetrainEfficiency).toBeLessThan(clean.rider.drivetrainEfficiency);
+    expect(dirty.result.totalTime).toBeGreaterThan(clean.result.totalTime);
+  });
+
+  it("event type changes pacing assumptions conservatively", () => {
+    const course = flatCourse(40);
+    const common = {
+      bodyMass: 75,
+      bikeMass: 8,
+      position: "aero_hoods" as const,
+      surface: "tarmac_smooth" as const,
+      powerProfile: { ftp: 260 },
+    };
+    const timeTrial = runPrediction({
+      course,
+      rider: { ...common, eventType: "time_trial" },
+      mode: "plan_my_race",
+    });
+    const triathlon = runPrediction({
+      course,
+      rider: { ...common, eventType: "triathlon" },
+      mode: "plan_my_race",
+    });
+    expect(triathlon.result.averagePower).toBeLessThan(timeTrial.result.averagePower);
+    expect(triathlon.result.totalTime).toBeGreaterThan(timeTrial.result.totalTime);
+  });
+
+  it("chaotic event types widen the confidence band", () => {
+    const course = flatCourse(40);
+    const common = {
+      bodyMass: 75,
+      bikeMass: 8,
+      position: "aero_hoods" as const,
+      cda: 0.31,
+      crr: 0.0032,
+      powerProfile: { p20min: 285, p60min: 260 },
+    };
+    const timeTrial = runPrediction({
+      course,
+      rider: { ...common, eventType: "time_trial" },
+      mode: "plan_my_race",
+    });
+    const roadRace = runPrediction({
+      course,
+      rider: { ...common, eventType: "road_race" },
+      mode: "plan_my_race",
+    });
+    expect(roadRace.confidence.high - roadRace.confidence.low).toBeGreaterThan(
+      timeTrial.confidence.high - timeTrial.confidence.low,
     );
   });
 
