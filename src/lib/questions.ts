@@ -2382,6 +2382,109 @@ export const QUESTION_PAGES: QuestionPage[] = [
       label: "Take the Plateau Diagnostic",
     },
   },
+  {
+    slug: "cycling-training-plan-full-time-workers",
+    cluster: "coaching",
+    question: "What's the Best Cycling Training Plan for Full-Time Workers?",
+    seoTitle: "Cycling Training Plan for Full-Time Workers — Honest Template",
+    seoDescription:
+      "Cycling training for full-time professionals. The 6-8 hour weekly template that fits around a job, lifts FTP, and doesn't burn you out by Wednesday.",
+    pillar: "coaching",
+    shortAnswer:
+      "The right plan for a full-time worker is roughly 6-8 hours across 4-5 days, structured 80/20: two short weekday quality sessions (45-75 minutes), two longer weekend rides (one zone 2, one mixed-intensity), and one strength session. This template lifts FTP in 12-week blocks without forcing you to choose between training, work, and family.",
+    bestFor:
+      "Working professionals — typically 35-55 — training around a 9-5, family obligations, and irregular travel.",
+    notFor:
+      "Riders with the time and recovery bandwidth for 12+ hours a week — they need a different load model.",
+    keyTakeaway:
+      "The best plan isn't the one that promises the biggest gains. It's the one you can actually finish three weeks in a row.",
+    evidenceLevel: "moderate",
+    evidenceNote:
+      "Built from the time-crunched programming Roadman runs inside the Not Done Yet community plus the consistent guidance from John Wakefield, Dan Lorang, and Joe Friel on amateur volume.",
+    fullExplanation: [
+      "Most cycling training plans on the internet are written by people who train cycling for a living, then handed to people who don't. That's the core failure. A plan that prescribes 12 hours when you have 8, or stacks intensity on Tuesday and Thursday when those are your two longest meeting days, isn't a bad plan — it's a plan for someone else. The right plan for a full-time worker starts from the constraints, not the ambition.",
+      "The shape that consistently works for the working amateur — and what Anthony has watched the masters cohort inside Not Done Yet run to good effect — is built around 6-8 hours, four to five days. Two midweek sessions of 45-75 minutes, both indoor or short-loop outdoors, where one is a true zone 2 endurance ride and the other is the week's quality session (threshold or VO2max intervals). One strength session — squats, deadlifts, single-leg work — lasting 45 minutes. One longer weekend zone 2 ride of 2-3 hours. One mixed-intensity weekend ride: warm-up, group ride or sweet spot, cool-down. That's it.",
+      "The non-obvious part of programming around a job is the deload. A working amateur who hits 8 quality hours every week for six straight weeks is heading for a fatigue wall around week seven, regardless of how strong the plan looked on paper. The Wakefield prescription Anthony has talked through on the podcast is to build for three weeks, deload one — drop volume by 30-40%, keep one quality session at intensity. It's the difference between a plan that lifts FTP for a year and a plan that breaks you in 10 weeks.",
+      "Two practical rules from the Roadman coaching community for the time-crunched cyclist. First, intensity stays sacred. If you can only protect one session a week, protect the threshold or VO2max work — that's where the FTP gains come from. Skip the long ride before you skip the intervals. Second, recovery has to be programmed, not hoped for. Sleep, fuelling and one full rest day a week are non-negotiable. The plans that actually move the number assume you'll defend those — not just on the easy weeks, but on the hard ones too.",
+    ],
+    evidence: [
+      {
+        label: "John Wakefield — Roadman Podcast",
+        detail:
+          "Wakefield's prescription for time-crunched amateurs — three weeks build, one week deload, intensity protected — is the rhythm Roadman applies inside the masters cohort.",
+        href: "/guests/john-wakefield",
+      },
+      {
+        label: "Joe Friel — The Cyclist's Training Bible",
+        detail:
+          "Friel's framework for periodising around limited weekly hours is the underpinning logic for the 6-8 hour template.",
+        href: "/guests/joe-friel",
+      },
+      {
+        label: "Dan Lorang — Roadman Podcast",
+        detail:
+          "Lorang has been explicit on the podcast: copy the structure, not the volume. The lesson translated into a working amateur's plan is what this template encodes.",
+        href: "/guests/dan-lorang",
+      },
+      {
+        label: "Roadman Not Done Yet — case data",
+        detail:
+          "Documented FTP gains across the time-crunched masters cohort running 6-8 structured hours with one weekly strength session.",
+        href: "/blog/cycling-training-plan-masters-over-40",
+      },
+    ],
+    faq: [
+      {
+        question: "Can I get faster cycling 5 hours a week with a full-time job?",
+        answer:
+          "Yes — particularly in your first 12-18 months of structured training. The constraint isn't hours; it's whether each session has a clear purpose. Two interval sessions, one strength session, and one long zone 2 ride inside 5 hours can lift FTP from a recreational baseline into the committed-amateur band.",
+      },
+      {
+        question: "When should I train if I work 9-5?",
+        answer:
+          "Most working amateurs do best with two early mornings (Tuesday and Thursday work cleanly because Wednesday becomes recovery) plus the weekend. If you can only do evenings, accept that quality drops after a 12-hour day — keep intervals to one weekday and protect them with a lighter day before.",
+      },
+      {
+        question: "Is indoor training better for time-crunched cyclists?",
+        answer:
+          "For weekday quality sessions, yes. A 60-minute indoor threshold session delivers more usable training than a 75-minute outdoor session interrupted by junctions, traffic, and cold legs. For weekend volume, outdoor wins on engagement and durability — and durability is what most masters are actually under-trained on.",
+      },
+      {
+        question: "Should I train through travel weeks?",
+        answer:
+          "Treat travel weeks as a structured recovery block — short hotel-gym sessions, walk a lot, and don't beat yourself up. Trying to maintain quality through a chaotic travel week is how the well-intentioned amateur ends up with one good week followed by three sub-par ones. Better to lose four days deliberately than four weeks accidentally.",
+      },
+    ],
+    related: [
+      {
+        label: "How many hours should I train per week cycling?",
+        href: "/question/cycling-training-hours-per-week",
+      },
+      {
+        label: "How should cyclists over 40 train?",
+        href: "/question/how-should-cyclists-over-40-train",
+      },
+      {
+        label: "Cycling Training Plan — Masters Over 40",
+        href: "/blog/cycling-training-plan-masters-over-40",
+      },
+      {
+        label: "Polarised vs Sweet Spot for Masters Cyclists",
+        href: "/compare/polarised-vs-sweet-spot-masters",
+      },
+      {
+        label: "Cycling Coaching — Topic Hub",
+        href: "/topics/cycling-coaching",
+      },
+    ],
+    cta: {
+      eyebrow: "WHEN THE PLAN FITS BUT THE NUMBER WON'T MOVE",
+      heading: "The Plateau Diagnostic finds what's leaking.",
+      body: "Built for working amateurs who've been doing the right hours and need an honest read on what's actually blocking the gain.",
+      href: "/plateau",
+      label: "Take the Plateau Diagnostic",
+    },
+  },
 ];
 
 export function getQuestionBySlug(slug: string): QuestionPage | null {
