@@ -221,3 +221,10 @@ This audit covers the current `/predict` product in the local Roadman Cycling Ne
 - Added drivetrain condition to the `/predict` setup flow with cyclist-language choices: race-ready, normal, dirty, and poor.
 - The selected condition maps to drivetrain efficiency and is passed into the deterministic model, where lower efficiency reduces wheel power and slows the prediction.
 - Added API validation for drivetrain efficiency and unit coverage proving dirty/poor drivetrains produce slower predictions.
+
+## Fifteenth Chunk Implemented
+
+- Expanded the premium Race Report equipment section with practical tyre-pressure and gearing guidance.
+- Tyre-pressure guidance now responds to rider+bike system mass, rolling-resistance/surface signals, and avoids pretending to know tyre width when it was not supplied.
+- Gearing guidance responds to climb severity, especially steep routes where bailout gears are a real race-day limiter.
+- Added report-rendering test coverage so these premium equipment sections stay present.

@@ -474,6 +474,47 @@ function windStrategy(environment: Environment): string {
   return "Strong wind: ride by power, not speed. In headwinds, keep pressure steady and use groups wisely; in tailwinds and descents, eat, drink, and conserve.";
 }
 
+function tyrePressureGuidance(course: Course | null, rider: RiderProfile): string {
+  const systemMass = rider.bodyMass + rider.bikeMass;
+  const roughSurface =
+    rider.crr >= 0.01 ||
+    course?.segments.some((segment) =>
+      ["gravel_rough", "cobbles"].includes(segment.surface ?? ""),
+    );
+  const mixedSurface =
+    rider.crr >= 0.006 ||
+    course?.segments.some((segment) =>
+      ["tarmac_rough", "chip_seal", "gravel_smooth"].includes(segment.surface ?? ""),
+    );
+
+  if (roughSurface) {
+    return `Start lower than road pressure and prioritise grip: for a ${Math.round(systemMass)} kg rider+bike system, use your tyre maker's chart for the exact width, then bias 5-10 psi lower than smooth-road instincts. If you are on tubeless gravel tyres, comfort and control will likely save more time than a rock-hard setup.`;
+  }
+  if (mixedSurface) {
+    return `The route/surface model points to meaningful rolling losses. For a ${Math.round(systemMass)} kg rider+bike system, start from a modern tyre-pressure chart and bias slightly lower than old-school high-pressure habits, especially on rough lanes or chip seal.`;
+  }
+  return `Surface looks comparatively fast. For a ${Math.round(systemMass)} kg rider+bike system on good road tyres, use a width-specific pressure chart and avoid over-inflating: the aim is low rolling loss with enough comfort to hold position late in the ride.`;
+}
+
+function gearingGuidance(course: Course | null): string {
+  if (!course || course.climbs.length === 0) {
+    return "No major climb data is available, so gearing advice is conservative: choose a lowest gear you can spin when tired, not the gear you can force for five fresh minutes.";
+  }
+  const steepest = course.climbs.reduce((max, climb) =>
+    climb.averageGradient > max.averageGradient ? climb : max,
+  );
+  const steepestPct = Math.tan(steepest.averageGradient) * 100;
+  const longClimb = course.climbs.some((climb) => climb.length >= 8_000);
+
+  if (steepestPct >= 9) {
+    return `Steep climbing is a real limiter here. Fit bailout gearing you are not embarrassed to use: compact or sub-compact up front, and a 32-34 tooth largest sprocket if your setup allows it. Walking because you ran out of gear is slower than carrying one easier sprocket all day.`;
+  }
+  if (longClimb) {
+    return "The course rewards cadence discipline on long climbs. Prioritise a gear range that lets you sit around endurance/tempo power without grinding below your normal climbing cadence.";
+  }
+  return "Standard road gearing should be workable for most riders, but do not optimise only for speed on the flat. The right lowest gear is the one that still feels smooth in the final hour.";
+}
+
 function listItems(items: string[]): string {
   return items.map((item) => `<li>${escape(item)}</li>`).join("");
 }
@@ -510,6 +551,8 @@ export function renderRaceReportHtml(p: RenderHtmlArgs): string {
     rider: p.rider,
   });
   const windNote = windStrategy(p.environment);
+  const tyreNote = tyrePressureGuidance(course, p.rider);
+  const gearingNote = gearingGuidance(course);
 
   const pacingRows = slices
     .map(
@@ -653,6 +696,16 @@ export function renderRaceReportHtml(p: RenderHtmlArgs): string {
     <div class="block">
       <h3>Setup note</h3>
       <p>Current model uses CdA ${p.rider.cda.toFixed(3)} and Crr ${p.rider.crr.toFixed(4)}. If those are guessed, the fastest accuracy gain is a real ride file or CdA test.</p>
+    </div>
+  </div>
+  <div class="two-col">
+    <div class="block">
+      <h3>Tyre pressure</h3>
+      <p>${escape(tyreNote)}</p>
+    </div>
+    <div class="block">
+      <h3>Gearing</h3>
+      <p>${escape(gearingNote)}</p>
     </div>
   </div>
   ${
