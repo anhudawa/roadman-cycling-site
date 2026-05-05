@@ -53,7 +53,7 @@ export const CAMPS: Record<CampSlug, CampConfig> = {
     endDate: "2026-10-15",
     durationLabel: "6 days / 5 nights",
     pricePerPerson: 995,
-    singleSupplement: 150,
+    singleSupplement: 200,
     beehiivTag: "camp-road-2026",
     capacity: 16,
     description:
@@ -85,7 +85,7 @@ export const CAMPS: Record<CampSlug, CampConfig> = {
     endDate: "2026-10-21",
     durationLabel: "6 days / 5 nights",
     pricePerPerson: 995,
-    singleSupplement: 150,
+    singleSupplement: 200,
     beehiivTag: "camp-gravel-2026",
     capacity: 16,
     description:

@@ -11,7 +11,7 @@ const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
  */
 const BUNDLE_PRICE = 1700;
 const BUNDLE_SAVINGS = 995 * 2 - BUNDLE_PRICE; // €290
-const SINGLE_SUPPLEMENT_BOTH = 150 * 2; // €300, one per camp
+const SINGLE_SUPPLEMENT_BOTH = 200 * 2; // €400, one per camp
 
 interface CapacityState {
   total: number;
@@ -380,8 +380,8 @@ export function BookingForm({ defaultCamp, camps }: Props) {
         <span className="block">
           <span className="block font-heading text-off-white text-sm tracking-wide uppercase mb-1">
             Single-room supplement &middot; +€
-            {form.camp === "both" ? SINGLE_SUPPLEMENT_BOTH : 150}
-            {form.camp === "both" && " (€150 per camp)"}
+            {form.camp === "both" ? SINGLE_SUPPLEMENT_BOTH : 200}
+            {form.camp === "both" && " (€200 per camp)"}
           </span>
           <span className="block text-foreground-muted text-sm leading-relaxed">
             Your own room for the trip. Otherwise we&apos;ll pair you up with another rider in a shared room.

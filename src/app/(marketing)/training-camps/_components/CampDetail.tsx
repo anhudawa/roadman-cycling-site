@@ -67,7 +67,7 @@ const NOT_INCLUDED = [
   "Travel insurance — required, sort it before you fly",
   "Lunches and dinners — €15–25 per meal, eaten out",
   "Hire bike — we can help you source a hire bike",
-  "Single-room supplement (+€150) — optional, otherwise we pair you up",
+  "Single-room supplement (+€200) — optional, otherwise we pair you up",
 ];
 
 export function CampDetail({ camp }: Props) {

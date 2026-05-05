@@ -211,7 +211,7 @@ export function CampsDashboard({
                     <td className="px-4 py-3 text-off-white">{b.name}</td>
                     <td className="px-4 py-3 text-foreground-muted">{b.email}</td>
                     <td className="px-4 py-3 text-foreground-muted">
-                      {b.singleRoom ? "Yes (+€150)" : "Shared"}
+                      {b.singleRoom ? "Yes (+€200)" : "Shared"}
                     </td>
                     <td className="px-4 py-3 text-foreground-muted">
                       {room ? `${room.label} · ${b.bedKey}` : "—"}
@@ -455,7 +455,7 @@ function UnassignedRow({
           </span>
         </p>
         <p className="text-xs text-foreground-muted">
-          {booking.singleRoom ? "Single room (+€150)" : "Shared room"} ·{" "}
+          {booking.singleRoom ? "Single room (+€200)" : "Shared room"} ·{" "}
           {booking.status}
         </p>
       </div>

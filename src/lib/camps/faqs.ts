@@ -9,7 +9,7 @@ export const CAMP_FAQS = [
   },
   {
     q: "How does payment work?",
-    a: "Payment is taken in full at the time of booking through Stripe — €995 for one camp, €1,700 for both back-to-back, plus €150 per camp if you add the single-room supplement. The spot is yours the moment the payment clears. No deposits, no waiting around for an invoice.",
+    a: "Payment is taken in full at the time of booking through Stripe — €995 for one camp, €1,700 for both back-to-back, plus €200 per camp if you add the single-room supplement. The spot is yours the moment the payment clears. No deposits, no waiting around for an invoice.",
   },
   {
     q: "What's the refund policy?",
@@ -29,7 +29,7 @@ export const CAMP_FAQS = [
   },
   {
     q: "Can I do both camps?",
-    a: "Yes — and there's a bundle for it. Both camps back-to-back is twelve days, two formats, same farmhouse, no airport transfer in between. €1,700 for the pair (saves €290 vs booking each on its own), plus €150 per camp if you want a single room. Pick 'Both Camps' on the booking form.",
+    a: "Yes — and there's a bundle for it. Both camps back-to-back is twelve days, two formats, same farmhouse, no airport transfer in between. €1,700 for the pair (saves €290 vs booking each on its own), plus €200 per camp if you want a single room. Pick 'Both Camps' on the booking form.",
   },
   {
     q: "Who's leading the rides?",
