@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { type Testimonial } from "@/lib/testimonials";
 
 interface TestimonialBlockProps {
@@ -7,6 +8,14 @@ interface TestimonialBlockProps {
   variant?: "spotlight" | "compact";
   /** Use shortQuote when available — useful in tight grids */
   preferShort?: boolean;
+  /** Optional URL the card links to (e.g. case study). When set, the
+   *  card becomes a single click target with a small footer arrow. */
+  href?: string;
+  /** Label for the footer arrow when `href` is set. Defaults to
+   *  "Read the case study". */
+  hrefLabel?: string;
+  /** Optional analytics tag for tracking clicks on this card */
+  dataTrack?: string;
   className?: string;
 }
 
@@ -26,6 +35,9 @@ export function TestimonialBlock({
   testimonial,
   variant = "compact",
   preferShort = false,
+  href,
+  hrefLabel = "Read the case study",
+  dataTrack,
   className = "",
 }: TestimonialBlockProps) {
   const quote =
@@ -34,59 +46,70 @@ export function TestimonialBlock({
       : testimonial.quote;
 
   if (variant === "spotlight") {
-    return (
-      <figure
-        className={`
-          relative rounded-2xl
-          border border-coral/20
-          bg-gradient-to-br from-coral/10 via-deep-purple/30 to-deep-purple/50
-          px-6 py-6 md:px-10 md:py-7 text-left
-          ${className}
-        `}
-      >
-        <div className="flex flex-col md:flex-row md:items-center gap-5 md:gap-7">
-          {testimonial.stat && (
-            <div className="shrink-0 text-center md:text-left">
-              <p
-                className="font-heading text-coral leading-none"
-                style={{ fontSize: "clamp(2.5rem, 5vw, 3.5rem)" }}
-              >
-                {testimonial.stat}
+    const spotlightInner = (
+      <div className="flex flex-col md:flex-row md:items-center gap-5 md:gap-7">
+        {testimonial.stat && (
+          <div className="shrink-0 text-center md:text-left">
+            <p
+              className="font-heading text-coral leading-none"
+              style={{ fontSize: "clamp(2.5rem, 5vw, 3.5rem)" }}
+            >
+              {testimonial.stat}
+            </p>
+            {testimonial.statLabel && (
+              <p className="text-xs font-body tracking-widest text-foreground-subtle uppercase mt-1">
+                {testimonial.statLabel}
               </p>
-              {testimonial.statLabel && (
-                <p className="text-xs font-body tracking-widest text-foreground-subtle uppercase mt-1">
-                  {testimonial.statLabel}
-                </p>
-              )}
-            </div>
-          )}
-          {testimonial.stat && (
-            <div className="h-px md:h-14 md:w-px bg-white/10 shrink-0" />
-          )}
-          <div>
-            <blockquote className="text-off-white italic leading-relaxed text-base md:text-lg m-0">
-              &ldquo;{quote}&rdquo;
-            </blockquote>
-            <figcaption className="text-foreground-subtle text-sm mt-3">
-              <span className="text-off-white font-medium">
-                {testimonial.name}
-              </span>
-              {testimonial.detail && <> · {testimonial.detail}</>}
-            </figcaption>
+            )}
           </div>
+        )}
+        {testimonial.stat && (
+          <div className="h-px md:h-14 md:w-px bg-white/10 shrink-0" />
+        )}
+        <div>
+          <blockquote className="text-off-white italic leading-relaxed text-base md:text-lg m-0">
+            &ldquo;{quote}&rdquo;
+          </blockquote>
+          <figcaption className="text-foreground-subtle text-sm mt-3">
+            <span className="text-off-white font-medium">
+              {testimonial.name}
+            </span>
+            {testimonial.detail && <> · {testimonial.detail}</>}
+          </figcaption>
+          {href && (
+            <p className="font-heading text-coral text-[11px] tracking-[0.25em] mt-4">
+              {hrefLabel.toUpperCase()} <span aria-hidden="true">→</span>
+            </p>
+          )}
         </div>
-      </figure>
+      </div>
     );
+
+    const spotlightClasses = `
+      relative block rounded-2xl
+      border border-coral/20
+      bg-gradient-to-br from-coral/10 via-deep-purple/30 to-deep-purple/50
+      px-6 py-6 md:px-10 md:py-7 text-left
+      ${href ? "transition-colors hover:border-coral/50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-coral focus-visible:ring-offset-2 focus-visible:ring-offset-deep-purple" : ""}
+      ${className}
+    `;
+
+    if (href) {
+      return (
+        <Link
+          href={href}
+          className={spotlightClasses}
+          {...(dataTrack ? { "data-track": dataTrack } : {})}
+        >
+          <figure className="m-0">{spotlightInner}</figure>
+        </Link>
+      );
+    }
+    return <figure className={spotlightClasses}>{spotlightInner}</figure>;
   }
 
-  return (
-    <figure
-      className={`
-        flex flex-col h-full rounded-xl border border-white/10
-        bg-white/[0.03] p-6 md:p-7
-        ${className}
-      `}
-    >
+  const compactInner = (
+    <>
       {testimonial.tag && (
         <p className="font-heading text-coral text-[11px] tracking-[0.25em] mb-4">
           {testimonial.tag.toUpperCase()}
@@ -117,7 +140,32 @@ export function TestimonialBlock({
             {testimonial.detail}
           </p>
         )}
+        {href && (
+          <p className="font-heading text-coral text-[10px] tracking-[0.25em] mt-3">
+            {hrefLabel.toUpperCase()} <span aria-hidden="true">→</span>
+          </p>
+        )}
       </figcaption>
-    </figure>
+    </>
   );
+
+  const compactClasses = `
+    flex flex-col h-full rounded-xl border border-white/10
+    bg-white/[0.03] p-6 md:p-7
+    ${href ? "transition-colors hover:border-coral/40 hover:bg-white/[0.05] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-coral focus-visible:ring-offset-2 focus-visible:ring-offset-charcoal" : ""}
+    ${className}
+  `;
+
+  if (href) {
+    return (
+      <Link
+        href={href}
+        className={compactClasses}
+        {...(dataTrack ? { "data-track": dataTrack } : {})}
+      >
+        <figure className="flex flex-col h-full m-0">{compactInner}</figure>
+      </Link>
+    );
+  }
+  return <figure className={compactClasses}>{compactInner}</figure>;
 }
