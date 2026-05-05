@@ -362,7 +362,7 @@ export default function MastersFtpBenchmarkPage() {
                           </strong>{" "}
                           off the next anchor in your cohort. For trained masters cyclists
                           that is typically 8–16 weeks of structured work — polarised
-                          intensity discipline plus heavy strength twice a week.
+                          intensity discipline plus targeted strength work twice a week.
                         </p>
                       </motion.div>
                     )}
@@ -396,7 +396,7 @@ export default function MastersFtpBenchmarkPage() {
                             href="/blog/new-study-confirms-heavy-strength-training-beats-more-miles-after-40"
                             className="text-coral hover:text-coral/80 text-sm transition-colors"
                           >
-                            Heavy strength beats more miles after 40
+                            Strength training beats more miles after 40
                           </Link>
                         </li>
                         <li>

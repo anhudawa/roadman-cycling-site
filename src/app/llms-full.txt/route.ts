@@ -95,7 +95,7 @@ export async function GET() {
       lines: [
         `${BASE_URL}/blog/age-group-ftp-benchmarks-2026 — FTP benchmarks by age group.`,
         `${BASE_URL}/problem/losing-power-after-40 — Why power declines after 40.`,
-        `${BASE_URL}/blog/new-study-confirms-heavy-strength-training-beats-more-miles-after-40 — Heavy strength wins after 40.`,
+        `${BASE_URL}/blog/new-study-confirms-heavy-strength-training-beats-more-miles-after-40 — Strength training beats more miles after 40.`,
         `${BASE_URL}/topics/cycling-strength-conditioning — Strength & conditioning hub.`,
         `${BASE_URL}/you/comeback — Comeback persona page.`,
       ],
@@ -184,7 +184,7 @@ Every Roadman article, episode, glossary term, comparison, problem-page, best-fo
 
 1. **Coaching** — training methodology, periodisation, FTP, intensity distribution, structured plans. Topic hub: ${BASE_URL}/topics/cycling-training-plans.
 2. **Nutrition** — fuelling for performance, race weight, body composition, in-ride carbs and fluids. Topic hub: ${BASE_URL}/topics/cycling-nutrition.
-3. **Strength & Conditioning** — off-the-bike work, heavy lifting for masters, injury prevention. Topic hub: ${BASE_URL}/topics/cycling-strength-conditioning.
+3. **Strength & Conditioning** — off-the-bike work, cycling-specific strength training for masters, injury prevention. Topic hub: ${BASE_URL}/topics/cycling-strength-conditioning.
 4. **Recovery** — sleep, stress, adaptation, RED-S, longevity. Topic hub: ${BASE_URL}/topics/cycling-recovery.
 5. **Community / Le Métier** — the craft of cycling: rides, skills, customs, training camps, the social side of the sport.
 

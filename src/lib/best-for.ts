@@ -139,7 +139,7 @@ export const BEST_FOR_PAGES: BestForPage[] = [
     ],
     faq: [
       { question: "Do masters cyclists need a different coaching approach?", answer: "Yes. Recovery capacity declines after 40. Muscle mass drops ~8% per decade without resistance training. A masters coach adjusts training density, adds mandatory strength work, and manages nutrition for body composition." },
-      { question: "Is strength training essential for cyclists over 40?", answer: "Non-negotiable. Heavy resistance training 2x/week preserves muscle mass, maintains bone density, and counteracts age-related power decline that aerobic training alone cannot prevent." },
+      { question: "Is strength training essential for cyclists over 40?", answer: "Non-negotiable. Targeted, loaded resistance training 2x/week through cycling-specific patterns (split squats, hip hinges, single-leg deadlifts, hip thrusts, presses, core) preserves muscle mass, maintains bone density, and counteracts age-related power decline that aerobic training alone cannot prevent." },
     ],
   },
   {

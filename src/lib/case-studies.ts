@@ -225,7 +225,7 @@ export const CASE_STUDIES: CaseStudy[] = [
     ],
     nutritionStrength: [
       "After a crash, two things tend to slip: nutrition (because motivation is low and meals get sloppy) and strength (because the gym feels like the last thing you want to do). The Roadman five-pillar approach addresses both before they become the thing that stalls the comeback.",
-      "The strength piece matters here. Heavy strength training — the kind Olav Aleksander Bu and the Norwegian-method coaches keep coming back to — is one of the cleanest ways to rebuild durable power without putting the body through repeat hard rides it can't yet absorb.",
+      "The strength piece matters here. Cycling-specific strength training — the kind the coaches Anthony interviews keep coming back to — is one of the cleanest ways to rebuild durable power without putting the body through repeat hard rides it can't yet absorb.",
     ],
     outcome: [
       "Four months in, David's testimonial is direct: \"I've got my mojo back and I'm really enjoying riding again. Just signed up for my first race this coming Tuesday.\"",

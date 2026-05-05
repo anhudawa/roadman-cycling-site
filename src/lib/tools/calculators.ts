@@ -1159,7 +1159,7 @@ export function calculateMastersFtpBenchmark(input: MastersFtpInput): MastersFtp
   } else if (percentile >= 60) {
     bandLabel = "Above average";
     headline = "You're in the top 40% of masters cyclists in your age group.";
-    interpretation = `At ${wkg.toFixed(2)} W/kg you're above average for trained masters cyclists. Most riders at this level can move up a band with two changes: more disciplined Zone 2 endurance, and adding (or progressing) heavy strength training twice a week.`;
+    interpretation = `At ${wkg.toFixed(2)} W/kg you're above average for trained masters cyclists. Most riders at this level can move up a band with two changes: more disciplined Zone 2 endurance, and adding (or progressing) targeted strength training twice a week.`;
   } else if (percentile >= 40) {
     bandLabel = "Average masters";
     headline = "You're sitting around the middle of masters cyclists in your age group.";

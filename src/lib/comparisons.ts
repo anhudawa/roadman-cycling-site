@@ -165,27 +165,27 @@ export const COMPARISONS: ComparisonPage[] = [
     relatedArticle: "/blog/new-study-confirms-heavy-strength-training-beats-more-miles-after-40",
     relatedTool: "/strength-training",
     body: [
-      "**Bent Rønnestad's body of work has clarified this.** The most cited research on cycling-specific strength training keeps producing the same finding: heavy strength training added to endurance work, particularly for masters cyclists, delivers FTP gains that more endurance hours don't. For riders over 35, or anyone training under 10 hours/week, strength training produces better returns per hour invested than adding more riding.",
+      "**Bent Rønnestad's body of work has clarified this.** The most cited research on cycling-specific strength training keeps producing the same finding: structured strength training added to endurance work, particularly for masters cyclists, delivers FTP gains that more endurance hours don't. For riders over 35, or anyone training under 10 hours/week, strength training produces better returns per hour invested than adding more riding.",
       "**Where more miles still wins.** Young riders with no injury history, plenty of free time, and a multi-year horizon. Aerobic base built from volume produces durability, mitochondrial density, and capacity that strength work doesn't replicate. If you have 15+ hours/week available and no recurring injuries, more easy hours still beat heavy weights for fitness ceiling.",
       "**The masters reality, plainly.** Past 35-40, type II muscle fibre loss accelerates. Without strength training, you don't get those fibres back through riding alone. The cyclists in their fifties who hold the gains from their thirties almost universally lift. The cyclists who lose 20% of their power between 40 and 60 almost universally don't. That's the trade you're making, whether you've thought about it or not.",
       "**Limitations of strength training.** It costs recovery, particularly when first introduced. The first six weeks of a strength block tend to feel awful on the bike — heavy legs, slightly compromised intervals. Most riders who quit strength training quit in those six weeks. Push through and the second block feels different.",
       "**Limitations of adding volume.** Diminishing returns are sharp. Going from 6 to 10 hours/week reshapes your fitness. From 10 to 14 is meaningful. From 14 to 18 is small. Above 18 hours/week, the marginal hour delivers almost nothing for non-pros — and the time cost on family, work, and recovery is real.",
       "**The decision tree.** Under 35, under 10 hours/week, no injury history: add miles first, layer strength when you can. Over 35, any training volume: strength training is non-negotiable. Recurring injuries (especially knees, lower back): strength first, then more miles. Already lifting consistently and plateaued: more miles. Time-crunched at 4-8 hours/week: 2x/week strength has higher return per hour than any extra hour on the bike.",
-      "**The protocol that actually works.** Heavy compound lifts (squat, deadlift, lunge variants) at 80-90% 1RM, 3-5 reps, 3-5 sets. Twice a week. Light-weights-high-reps cycling-specific gym work is largely a waste. Rønnestad's protocols, the ones consistently producing results in the literature, are straightforward heavy lifting. [The strength training course](/strength-training) is built on exactly that model.",
+      "**The protocol that actually works.** Cycling-specific strength patterns (split squats, hip hinges, single-leg deadlifts, lunges, hip thrusts, presses, core), worked in the 6-10 rep range with controlled, progressively loaded resistance. Twice a week. Bands-only and bodyweight-only routines are largely a waste — the load has to mean something. The Rønnestad literature underpins the principle (resistance work matters), and the Roadman approach applies it through patterns and load ranges that are sustainable for amateur cyclists 35-55. [The strength training course](/strength-training) is built around that model.",
       "Want help integrating strength into your week without breaking the bike work? [The assessment](/assessment) covers it.",
     ],
     faqs: [
       {
         q: "Will strength training make me bulky and slow?",
-        a: "No. Heavy strength training at low rep ranges builds neural recruitment and muscle fibre quality without significant hypertrophy, particularly in the calorie-controlled environment most cyclists train in. The 'bulky' fear is one of the most persistent myths in cycling. The Rønnestad data shows zero meaningful weight gain in heavy-lifting protocols across multiple studies.",
+        a: "No. Structured strength training at moderate rep ranges builds neural recruitment and muscle fibre quality without significant hypertrophy, particularly in the calorie-controlled environment most cyclists train in. The 'bulky' fear is one of the most persistent myths in cycling. The Rønnestad data shows zero meaningful weight gain in resistance-training protocols across multiple studies.",
       },
       {
         q: "How many sessions per week is enough?",
-        a: "Two heavy sessions per week is the sweet spot for most cyclists. One session is enough to maintain gains. Three is excessive for anyone also trying to ride seriously — recovery becomes the bottleneck.",
+        a: "Two structured sessions per week is the sweet spot for most cyclists. One session is enough to maintain gains. Three is excessive for anyone also trying to ride seriously — recovery becomes the bottleneck.",
       },
       {
         q: "Should I lift in-season or only off-season?",
-        a: "Both, with intensity adjusted. Off-season (October-February): full heavy block, twice a week. In-season: maintenance — one session per week, slightly lower volume, never within 48 hours of a key bike workout. The mistake is dropping strength entirely in-season — gains decay faster than most riders expect.",
+        a: "Both, with load adjusted. Off-season (October-February): full progression, twice a week. In-season: maintenance — one session per week, slightly lower volume, never within 48 hours of a key bike workout. The mistake is dropping strength entirely in-season — gains decay faster than most riders expect.",
       },
       {
         q: "Will adding miles help me lose weight faster?",
@@ -193,11 +193,11 @@ export const COMPARISONS: ComparisonPage[] = [
       },
       {
         q: "What if I've never lifted before?",
-        a: "Start with a coached or programmed first eight weeks. The technique loading on big compound lifts matters — heavy squats with poor form is how riders get hurt. After eight weeks of supervised technique work, you can run programs solo. Don't skip the supervised start.",
+        a: "Start with a coached or programmed first eight weeks. Form and load progression matter — bad form under load is how riders get hurt. The Roadman approach is single-leg-led and core-led for the first block, with bilateral load layered in carefully once movement quality is solid. After eight weeks of supervised technique work, you can run programs solo. Don't skip the supervised start.",
       },
       {
-        q: "Should I lift heavy or do bodyweight / light weights?",
-        a: "Heavy. The research is consistent. Light weights, high reps, 'cycling-specific' gym work doesn't produce the FTP gains the heavy protocols do. The Rønnestad data, replicating two decades of his earlier work, makes the case unambiguously.",
+        q: "Should I lift with meaningful load or stick to bodyweight / bands?",
+        a: "Load matters. Bodyweight-only and band-only routines won't produce the FTP gains the resistance-training protocols do — the Rønnestad data is unambiguous. The Roadman position is meaningful, controlled load through cycling-specific patterns (split squats, hip hinges, single-leg work, hip thrusts, presses, core), progressed gradually. Not max-effort barbell lifting; not unloaded calisthenics. The load has to challenge the muscle without putting the rider at avoidable injury risk.",
       },
     ],
   },

@@ -70,7 +70,7 @@ export const plateauDefinition: DiagnosticDefinition = {
       explanation:
         "The bike work looks fine — the legs aren't strong enough to express it late in rides. Durability and power come from off-the-bike work.",
       nextSteps: [
-        "Two 30-min strength sessions a week: squat / deadlift / single-leg.",
+        "Two 30-min strength sessions a week: split squats, hip hinges, single-leg work, core.",
         "Prioritise late-ride quality: one long ride with a quality block at the end.",
         "Core + hip work twice a week, 10 minutes is plenty.",
       ],

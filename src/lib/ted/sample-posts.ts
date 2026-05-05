@@ -64,7 +64,7 @@ When's the last time you pushed past 80g on a long ride? What happened?
 
 Not squats. Not crunches. Hinging.
 
-Deadlift, RDL, kettlebell swing — whichever version you can own without your back rounding.
+Single-leg deadlifts, kettlebell swings, hip thrusts — whichever variant you can own with a flat back and full control.
 
 What's one S&C habit you started and actually kept?
 

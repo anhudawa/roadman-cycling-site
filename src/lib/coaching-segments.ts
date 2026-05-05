@@ -126,7 +126,7 @@ export const COACHING_SEGMENTS: Record<string, SegmentData> = {
         number: "03",
         title: "Strength That Protects",
         description:
-          "30-45 min of cycling-specific lifting twice a week — heavy enough to maintain type-2 fibre recruitment, intelligent enough not to wreck your legs.",
+          "30-45 min of cycling-specific lifting twice a week — controlled, single-leg-led, and progressed gradually. Enough load to maintain type-2 fibre recruitment, scaled so you're not wrecked for the bike.",
       },
       {
         number: "04",
@@ -148,7 +148,7 @@ export const COACHING_SEGMENTS: Record<string, SegmentData> = {
       { day: "Monday", session: "Full rest or 20 min easy spin + mobility", duration: "0-30 min" },
       { day: "Tuesday", session: "VO2max — 5 x 4 min @ 110% FTP, 4 min easy", duration: "75 min" },
       { day: "Wednesday", session: "Zone 2 endurance — true HR cap, no Strava segments", duration: "75 min" },
-      { day: "Thursday", session: "Strength session — heavy compound lifts, 4 x 5", duration: "45 min" },
+      { day: "Thursday", session: "Strength session — cycling-specific S&C (split squats, hip hinges, single-leg work, core)", duration: "45 min" },
       { day: "Friday", session: "Easy spin or rest — driven by HRV reading", duration: "0-45 min" },
       { day: "Saturday", session: "Long Zone 2 club ride — disciplined HR, no chaingang efforts", duration: "3-4 hrs" },
       { day: "Sunday", session: "Sweet spot — 3 x 12 min @ 88-93% FTP", duration: "90 min" },
@@ -275,7 +275,7 @@ export const COACHING_SEGMENTS: Record<string, SegmentData> = {
         label: "Strength Training for Cyclists Over 50",
         href: "/blog/strength-training-cyclists-over-50",
         description:
-          "Heavy compound lifting for masters cyclists — protecting type-2 fibres, bone density, and the watts you've already built.",
+          "Targeted, cycling-specific strength work for masters cyclists — protecting type-2 fibres, bone density, and the watts you've already built. Built around split squats, hip hinges, single-leg work, and core, scaled to the rider.",
       },
       {
         label: "VO2max Workouts for Masters Cyclists",
@@ -471,7 +471,7 @@ export const COACHING_SEGMENTS: Record<string, SegmentData> = {
         number: "03",
         title: "Strength as a Pillar",
         description:
-          "Two heavy strength sessions a week. Not pink dumbbells — proper compound lifting periodised with your riding. Power preservation, bone density, and the kind of force production that matters on every steep climb.",
+          "Two cycling-specific strength sessions a week. Not pink dumbbells, not max-effort barbell work — targeted single-leg, hinge, and core movements periodised with your riding. Power preservation, bone density, and the kind of force production that matters on every steep climb.",
       },
       {
         number: "04",
@@ -493,7 +493,7 @@ export const COACHING_SEGMENTS: Record<string, SegmentData> = {
       { day: "Monday", session: "Rest or active recovery walk", duration: "0-30 min" },
       { day: "Tuesday", session: "VO2max — 6 x 3 min @ 110-115% FTP, 3 min easy", duration: "75 min" },
       { day: "Wednesday", session: "Zone 2 endurance — disciplined HR cap", duration: "75 min" },
-      { day: "Thursday", session: "Heavy strength — back squat, deadlift, hip thrust, 4 x 5", duration: "50 min" },
+      { day: "Thursday", session: "Strength — split squats, single-leg hinges, hip thrusts, core (3-4 sets)", duration: "50 min" },
       { day: "Friday", session: "Easy spin or rest", duration: "0-45 min" },
       { day: "Saturday", session: "Long Zone 2 ride — fuelled at 60-80g carbs/hr from the start", duration: "3-4 hrs" },
       { day: "Sunday", session: "Sweet spot — 3 x 12 min @ 88-93% FTP", duration: "90 min" },
@@ -512,7 +512,7 @@ export const COACHING_SEGMENTS: Record<string, SegmentData> = {
       {
         title: "Skipping strength because 'I just want to ride'",
         description:
-          "Female cyclists lose bone density and type-2 fibres faster without resistance training. Two heavy strength sessions a week aren't optional after 35 — they're the foundation of long-term power and a body that holds up.",
+          "Female cyclists lose bone density and type-2 fibres faster without resistance training. Two structured strength sessions a week aren't optional after 35 — they're the foundation of long-term power and a body that holds up.",
       },
       {
         title: "Comparing your watts to male riders in your group",
@@ -528,7 +528,7 @@ export const COACHING_SEGMENTS: Record<string, SegmentData> = {
     caseStudy: {
       name: "Mary K",
       context: "Age 56. Long-time cyclist who'd never done structured strength work. Felt power leaking on steep climbs.",
-      result: "Two heavy strength sessions a week alongside structured cycling. Core stronger, position on the bike improved, climbing power back. Strength built without sacrificing ride time.",
+      result: "Two cycling-specific strength sessions a week alongside structured cycling. Core stronger, position on the bike improved, climbing power back. Strength built without sacrificing ride time.",
       quote:
         "I love how targeted it is to cycling — not just general gym stuff. Every session feels like it's actually helping my performance on the bike. Core's stronger, legs feel more connected, and even my position on the bike feels better.",
     },
@@ -1081,7 +1081,7 @@ export const COACHING_SEGMENTS: Record<string, SegmentData> = {
     whatChanges: [
       "More true Zone 2 — closer to 85-90% of weekly volume",
       "VO2max sessions less frequent but executed at full quality",
-      "Heavy strength training (proper lifting, not bodyweight) twice a week minimum",
+      "Targeted strength training (resistance work, scaled to your level) twice a week minimum",
       "Recovery treated as a structural pillar — sleep, HRV, rest days enforced",
       "Joint health: cadence, position, and running protocols built in for longevity",
       "Bone density and strength prioritised — the work matters past the bike too",
@@ -1095,9 +1095,9 @@ export const COACHING_SEGMENTS: Record<string, SegmentData> = {
       },
       {
         number: "02",
-        title: "Heavy Strength",
+        title: "Targeted Strength",
         description:
-          "Squat, deadlift, hip thrust, press. Compound lifting at heavy loads (4 x 5 territory, not 12-15 reps with light dumbbells) twice a week. Type-2 fibre preservation, bone density, joint protection — all driven by this.",
+          "Split squats, hip hinges, hip thrusts, presses, core. Cycling-specific resistance work — meaningful load with control, not max-effort barbell sessions. Twice a week, scaled to the rider. Type-2 fibre preservation, bone density, joint protection — all driven by this.",
       },
       {
         number: "03",
@@ -1124,7 +1124,7 @@ export const COACHING_SEGMENTS: Record<string, SegmentData> = {
     sampleWeek: [
       { day: "Monday", session: "Full rest", duration: "0 min" },
       { day: "Tuesday", session: "VO2max — 5 x 4 min @ 110% FTP, 4 min easy (only if HRV is green)", duration: "75 min" },
-      { day: "Wednesday", session: "Heavy strength — back squat, deadlift, RDL, 4 x 5", duration: "50 min" },
+      { day: "Wednesday", session: "Strength — split squats, single-leg deadlifts, hip thrusts, core (3-4 sets)", duration: "50 min" },
       { day: "Thursday", session: "Zone 2 endurance — strict HR cap, no Zone 3 drift", duration: "75 min" },
       { day: "Friday", session: "Rest or recovery walk", duration: "0-30 min" },
       { day: "Saturday", session: "Long Zone 2 club ride — disciplined HR, 80g/hr fuelling", duration: "3-4 hrs" },
@@ -1139,7 +1139,7 @@ export const COACHING_SEGMENTS: Record<string, SegmentData> = {
       {
         title: "Skipping or under-loading strength",
         description:
-          "Bodyweight squats and pink dumbbells aren't strength training — they're warm-ups. After 50 you need heavy compound lifting at proper loads twice a week to preserve type-2 fibres and bone density. This is non-negotiable for long-term cycling performance and for staying out of the orthopaedic surgeon's office.",
+          "Bodyweight-only routines and pink dumbbells aren't strength training — they're warm-ups. After 50 you need structured resistance work twice a week, with meaningful load applied through cycling-specific patterns (split squats, hip hinges, single-leg work, core, presses), to preserve type-2 fibres and bone density. The goal is durable, controlled strength — not 1RM testing — but it has to be real load progressed over time.",
       },
       {
         title: "Ignoring HRV and sleep data",
@@ -1173,7 +1173,7 @@ export const COACHING_SEGMENTS: Record<string, SegmentData> = {
       {
         question: "How important is strength training after 50?",
         answer:
-          "It moves from 'recommended' to 'non-negotiable'. After 50, untrained adults lose 1-2% of muscle mass per year. Heavy resistance training (proper compound lifts at challenging loads) is the only intervention that reliably preserves type-2 muscle fibres, bone density, and joint resilience. For cyclists, this directly translates to maintained power, fewer injuries, and a body that can handle training year after year.",
+          "It moves from 'recommended' to 'non-negotiable'. After 50, untrained adults lose 1-2% of muscle mass per year. Structured resistance training — cycling-specific patterns at meaningful, well-controlled loads — is the only intervention that reliably preserves type-2 muscle fibres, bone density, and joint resilience. For cyclists, this directly translates to maintained power, fewer injuries, and a body that can handle training year after year.",
       },
       {
         question: "How do you handle joint issues common after 50?",
@@ -1254,7 +1254,7 @@ export const COACHING_SEGMENTS: Record<string, SegmentData> = {
         number: "04",
         title: "Strength as an Insurance Policy",
         description:
-          "Two short, heavy strength sessions a week protect power, build force, and stop injuries before they start. For time-crunched cyclists this is one of the highest-leverage uses of 30 minutes available.",
+          "Two short, focused strength sessions a week protect power, build force, and stop injuries before they start. For time-crunched cyclists this is one of the highest-leverage uses of 30 minutes available.",
       },
       {
         number: "05",
@@ -1269,7 +1269,7 @@ export const COACHING_SEGMENTS: Record<string, SegmentData> = {
     sampleWeek: [
       { day: "Monday", session: "Rest", duration: "0 min" },
       { day: "Tuesday", session: "VO2max — 6 x 3 min @ 115% FTP, 3 min easy (indoor)", duration: "60 min" },
-      { day: "Wednesday", session: "Strength — heavy compound lifts, 4 x 5", duration: "30 min" },
+      { day: "Wednesday", session: "Strength — split squats, hip hinges, single-leg work, core (3 sets)", duration: "30 min" },
       { day: "Thursday", session: "Sweet spot — 3 x 15 min @ 88-93% FTP (indoor)", duration: "75 min" },
       { day: "Friday", session: "Strength — second session, focus on posterior chain", duration: "30 min" },
       { day: "Saturday", session: "Long ride — 2-2.5 hrs Zone 2 + 2 x 12 min sweet spot embedded", duration: "2.5 hrs" },
@@ -1610,7 +1610,7 @@ export const COACHING_SEGMENTS: Record<string, SegmentData> = {
       { day: "Monday", session: "Rest day — protein priority, no caloric restriction", duration: "0 min" },
       { day: "Tuesday", session: "VO2max — 5 x 4 min @ 110% FTP, fuelled with carbs pre and during", duration: "75 min" },
       { day: "Wednesday", session: "Zone 2 endurance — fuelled, NOT fasted, 60g/hr carbs", duration: "75 min" },
-      { day: "Thursday", session: "Heavy strength — back squat, deadlift, RDL, 4 x 5", duration: "50 min" },
+      { day: "Thursday", session: "Strength — split squats, single-leg deadlifts, hip thrusts, core (3-4 sets)", duration: "50 min" },
       { day: "Friday", session: "Easy spin or rest — protein-led day", duration: "0-45 min" },
       { day: "Saturday", session: "Long Zone 2 ride — 80g/hr carbs from start, real meal after", duration: "3-4 hrs" },
       { day: "Sunday", session: "Sweet spot — 3 x 12 min @ 88-93% FTP, fuelled session", duration: "90 min" },
@@ -1754,7 +1754,7 @@ export const COACHING_SEGMENTS: Record<string, SegmentData> = {
     sampleWeek: [
       { day: "Monday", session: "Rest or 20 min easy spin + mobility", duration: "0-30 min" },
       { day: "Tuesday", session: "Easy structured Zone 2 — high cadence intervals (95-105 RPM)", duration: "60 min" },
-      { day: "Wednesday", session: "Strength — heavy compound lifts, 4 x 5", duration: "40 min" },
+      { day: "Wednesday", session: "Strength — split squats, hip hinges, single-leg work, core (3-4 sets)", duration: "40 min" },
       { day: "Thursday", session: "Zone 2 endurance — strict HR cap, no Strava segments", duration: "75 min" },
       { day: "Friday", session: "Rest or 30 min easy spin", duration: "0-30 min" },
       { day: "Saturday", session: "Long Zone 2 ride — disciplined HR, full fuelling, no surges", duration: "2.5-3 hrs" },
@@ -1888,7 +1888,7 @@ export const COACHING_SEGMENTS: Record<string, SegmentData> = {
         label: "Strength Training for Cyclists",
         href: "/blog/strength-training-cyclists-over-50",
         description:
-          "Heavy compound lifting reintroduced from week one — protecting joints, restoring force production, and holding the muscle that life off the bike was draining.",
+          "Cycling-specific strength work reintroduced from week one — protecting joints, restoring force production, and holding the muscle that life off the bike was draining. Split squats, single-leg work, hip hinges, core — controlled load, progressed gradually.",
       },
     ],
   },
@@ -2106,7 +2106,7 @@ export function getSegment(slug: string): SegmentData | null {
  */
 export const SEGMENT_DISPLAY_ORDER: { slug: string; label: string; tagline: string }[] = [
   { slug: "masters", label: "Masters Riders", tagline: "40+ — preserve power, manage recovery" },
-  { slug: "over-50", label: "Over 50", tagline: "Deeper recovery, heavy strength, joint-aware" },
+  { slug: "over-50", label: "Over 50", tagline: "Deeper recovery, targeted strength, joint-aware" },
   { slug: "beginners", label: "Beginners", tagline: "Build a real base. Skip the bad habits." },
   { slug: "women", label: "Women", tagline: "Female-specific physiology and benchmarks" },
   { slug: "busy-professionals", label: "Busy Professionals", tagline: "6-8 hrs/week — every hour earning its keep" },

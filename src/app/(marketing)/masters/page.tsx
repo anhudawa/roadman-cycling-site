@@ -56,9 +56,9 @@ const FEATURED_BLOG_POSTS: readonly FeaturedBlogPost[] = [
   },
   {
     slug: "new-study-confirms-heavy-strength-training-beats-more-miles-after-40",
-    title: "Heavy Strength Training Beats More Miles After 40",
+    title: "Strength Training Beats More Miles After 40",
     description:
-      "A 2025 meta-analysis reviewed 17 studies covering 262 trained cyclists and found heavy strength training significantly improves cycling performance with zero negative effect on VO2 max. If you're over 40 and only training on the bike, here's what you're missing.",
+      "A 2025 meta-analysis reviewed 17 studies covering 262 trained cyclists and found structured strength training significantly improves cycling performance with zero negative effect on VO2 max. If you're over 40 and only training on the bike, here's what you're missing.",
     pillar: "Strength",
   },
   {
@@ -72,7 +72,7 @@ const FEATURED_BLOG_POSTS: readonly FeaturedBlogPost[] = [
     slug: "strength-training-cyclists-over-50",
     title: "Strength Training for Cyclists Over 50",
     description:
-      "After 50, the riders who keep getting faster are the ones lifting heavy. Not bands. Not circuits. Real load, six reps, twice a week. The protocol that actually preserves power.",
+      "After 50, the riders who keep getting faster are the ones doing structured, cycling-specific strength work. Not bands-only. Not circuits. Meaningful, controlled load through patterns that fit how cyclists actually need to be strong.",
     pillar: "Strength",
   },
   {
@@ -158,7 +158,7 @@ const FEATURED_EPISODES = [
     guest: "Derek Teel",
     credential: "Coach, strength training for cyclists",
     relevance:
-      "Compound lifts, in-season maintenance, scheduling around hard rides. Where strength shifts from optional to non-negotiable after 40.",
+      "Cycling-specific strength patterns, in-season maintenance, scheduling around hard rides. Where strength shifts from optional to non-negotiable after 40.",
   },
   {
     slug: "ep-2037-the-new-science-of-getting-faster-after-40",
@@ -221,11 +221,11 @@ const TOOLS: readonly ToolEntry[] = [
 const FAQ = [
   {
     q: "Can you actually get faster after 40, or is everyone just chasing maintenance?",
-    a: "You can get faster. The data on VO2 max decline ranges from 5% to 46% per decade depending on training consistency — the trained masters cyclists who keep getting faster are the ones at the top end of that range. The work that gets them there isn't more volume or harder intervals; it's polarised intensity distribution, heavy strength work twice a week, longer recovery between hard sessions, and protein timed across the day. The Roadman archive — Friel, Seiler, Lipman — backs this up with research and with named case studies. The training that worked at 30 doesn't work the same after 40, but the right training still produces gains.",
+    a: "You can get faster. The data on VO2 max decline ranges from 5% to 46% per decade depending on training consistency — the trained masters cyclists who keep getting faster are the ones at the top end of that range. The work that gets them there isn't more volume or harder intervals; it's polarised intensity distribution, targeted strength work twice a week, longer recovery between hard sessions, and protein timed across the day. The Roadman archive — Friel, Seiler, Lipman — backs this up with research and with named case studies. The training that worked at 30 doesn't work the same after 40, but the right training still produces gains.",
   },
   {
     q: "What's different about masters training versus general cycling training?",
-    a: "Three things change. One: recovery windows are longer, so two genuinely hard sessions a week beats three almost-hard ones. Two: strength work shifts from optional to non-negotiable — a 2025 meta-analysis of 17 studies showed heavy strength training improves cycling performance after 40 with no cost to VO2 max. Three: fuelling and protein become load-bearing — 1.6 to 2.0 g/kg/day, spread across meals, not skipped at breakfast. Most masters cyclists fall behind because they keep doing what worked at 30 with less recovery and worse fuel. The fix is rarely 'train harder.'",
+    a: "Three things change. One: recovery windows are longer, so two genuinely hard sessions a week beats three almost-hard ones. Two: strength work shifts from optional to non-negotiable — a 2025 meta-analysis of 17 studies showed structured strength training improves cycling performance after 40 with no cost to VO2 max. Three: fuelling and protein become load-bearing — 1.6 to 2.0 g/kg/day, spread across meals, not skipped at breakfast. Most masters cyclists fall behind because they keep doing what worked at 30 with less recovery and worse fuel. The fix is rarely 'train harder.'",
   },
   {
     q: "Do I need a coach, or can I figure this out from the podcast and the blog?",
