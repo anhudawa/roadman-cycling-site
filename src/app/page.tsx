@@ -464,17 +464,17 @@ export default function HomePage() {
             </div>
 
             {/* Receipts — concrete member results, not vague testimonials. */}
-            <ScrollReveal direction="up" delay={0.32} className="mt-12">
-              <div className="max-w-3xl mx-auto text-center">
-                <p className="font-heading text-coral text-[11px] tracking-[0.3em] mb-3">
-                  WHAT THE LADDER LOOKS LIKE WHEN IT WORKS
-                </p>
+            <ScrollReveal direction="up" delay={0.32} className="mt-16">
+              <div className="max-w-2xl mx-auto text-center border-t border-white/10 pt-10">
+                <h3 className="font-heading text-off-white text-2xl md:text-3xl tracking-tight mb-4">
+                  WHAT THE LADDER LOOKS LIKE<br />
+                  <span className="text-coral">WHEN IT WORKS</span>
+                </h3>
                 <p className="text-foreground-muted text-sm md:text-base leading-relaxed">
-                  Cat 3 to Cat 1. Body fat 20% to 7%. Women&apos;s
+                  Cat 3 to Cat 1. Body fat from 20% to 7%. Women&apos;s
                   National Series results. Riders moving from
-                  &ldquo;stuck&rdquo; to &ldquo;ahead of where they
-                  were a decade ago&rdquo; — proving every week that
-                  faster is still in front of them.
+                  &ldquo;stuck&rdquo; to &ldquo;ahead of where they were
+                  a decade ago.&rdquo;
                 </p>
               </div>
             </ScrollReveal>

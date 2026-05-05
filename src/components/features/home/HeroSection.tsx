@@ -192,8 +192,7 @@ export function HeroSection({ latestEpisode }: HeroSectionProps) {
             >
               <Button
                 href="/plateau"
-                size="lg"
-                className="w-full sm:w-auto shadow-[0_12px_40px_-8px_rgba(241,99,99,0.55)] hover:shadow-[0_16px_50px_-6px_rgba(241,99,99,0.7)] transition-shadow"
+                className="shadow-[0_12px_40px_-8px_rgba(241,99,99,0.55)] hover:shadow-[0_16px_50px_-6px_rgba(241,99,99,0.7)] transition-shadow"
                 dataTrack="home_hero_plateau"
               >
                 Take the Plateau Diagnostic →
