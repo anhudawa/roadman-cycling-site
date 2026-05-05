@@ -567,7 +567,7 @@ export default function EventPrepPage() {
                     </p>
                     <p className="text-foreground-muted text-sm leading-relaxed flex-1 mb-4">
                       Structured plan around your event date. Weekly live calls
-                      with Anthony. Tactical reviews before your race. $95/mo.
+                      with Anthony. Tactical reviews before your race. $195/mo.
                     </p>
                     <Link
                       href="/community/not-done-yet"

@@ -199,7 +199,7 @@ const comparisonRows: Array<{
     ic: "Heart, bone density, masters protocols",
     highlight: true,
   },
-  { feature: "Price", ndy: "$95 / month", ic: "$525 / month" },
+  { feature: "Price", ndy: "$195 / month", ic: "$525 / month" },
 ];
 
 const faqs = [
