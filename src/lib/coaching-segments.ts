@@ -795,6 +795,44 @@ export const COACHING_SEGMENTS: Record<string, SegmentData> = {
     ],
     serviceType: "Cycling Coaching for Busy Professionals",
     breakerWord: "BUSY",
+    relatedResources: [
+      {
+        label: "Plateau Diagnostic",
+        href: "/plateau",
+        description:
+          "Three-minute diagnostic that pins down exactly why your power has flatlined — and what your next 12 weeks should focus on.",
+      },
+      {
+        label: "FTP Zones Calculator",
+        href: "/tools/ftp-zones",
+        description:
+          "Generate the training zones every busy-professional session is paced from. Indoor sweet spot and VO2max work needs the numbers right.",
+      },
+      {
+        label: "Indoor Cycling Training Tips",
+        href: "/blog/cycling-indoor-training-tips",
+        description:
+          "Getting the most adaptation out of 60-min indoor sessions. Why indoor isn't a downgrade for time-crunched riders — it's actively the right tool.",
+      },
+      {
+        label: "Indoor vs Outdoor Cycling Training",
+        href: "/blog/indoor-vs-outdoor-cycling-training-when-each-wins",
+        description:
+          "When each modality earns its slot in a 6-8 hour week. The trade-offs that decide which session goes where.",
+      },
+      {
+        label: "Cycling Zwift Training Guide",
+        href: "/blog/cycling-zwift-training-guide",
+        description:
+          "How to use Zwift inside a coached structure rather than as the structure. Free riding, structured workouts, and races — periodised properly.",
+      },
+      {
+        label: "Time-Crunched Cyclist Guide",
+        href: "/blog/time-crunched-cyclist-8-hours-week",
+        description:
+          "Long-form framework for 5-8 hour weeks — distribution, weekday programming, weekend long ride, and the periodisation that respects real life.",
+      },
+    ],
   },
 
   sportives: {
