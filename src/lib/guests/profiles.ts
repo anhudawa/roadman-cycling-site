@@ -409,6 +409,312 @@ export const GUEST_PROFILE_OVERRIDES: Record<string, GuestProfileOverride> = {
     relatedHubs: ["cycling-strength-conditioning", "cycling-recovery"],
   },
 
+  "alistair-brownlee": {
+    description:
+      "British former professional triathlete. Two-time Olympic triathlon champion (London 2012, Rio 2016) — the only athlete to hold back-to-back Olympic individual triathlon titles — four-time European champion, and 2014 Commonwealth Games gold medallist. Retired from professional racing in November 2024.",
+    worksFor: {
+      name: "Brownlee Fitness",
+      type: "Organization",
+      url: "https://brownleefitness.com/",
+    },
+    sameAs: [
+      "https://en.wikipedia.org/wiki/Alistair_Brownlee",
+      "https://www.alistairbrownlee.com/",
+      "https://www.instagram.com/alistair.brownlee/",
+      "https://triathlon.org/athletes/profile/7788/alistair-brownlee",
+      "https://www.teamgb.com/athlete/alistair-brownlee/VXXED6uYsmhlvhF6O8HIK",
+    ],
+    featuredArticles: [
+      "alistair-brownlee-endurance-lessons",
+      "triathlon-cycling-training-plan",
+      "triathlon-ftp-pacing-strategy",
+    ],
+    whyMatters:
+      "Alistair Brownlee is the standard the rest of triathlon spent a decade chasing. Back-to-back Olympic golds, four European titles, a Commonwealth title, and a career built on a training philosophy of high aerobic volume layered with brutal threshold work — the same template the Norwegian school then refined. For Roadman's masters and triathlete audience he is the bridge from World Tour-level cycling fitness to multi-discipline endurance, and a credible voice on what genuinely transfers from elite training and what does not.",
+    keyIdeas: [
+      "Back-to-back Olympic triathlon golds at London 2012 and Rio 2016 — the only athlete to hold the title in consecutive Games.",
+      "Aerobic base done right beats fashionable intensity protocols — the volume he ran for ten years is what made the threshold sessions land.",
+      "Cross-discipline transfer is real: cycling fitness builds the run, but only if the run gets specific work too — neither sport substitutes for the other.",
+      "Race-day execution is built in training, not on the line. The Brownlee model is to rehearse pacing, fuelling, and pain tolerance until they're automatic.",
+      "The athletic career is one chapter — coaching, business, and longevity matter more than another medal. Knowing when to retire is part of the craft.",
+    ],
+    relatedHubs: ["triathlon-cycling", "cycling-training-plans"],
+  },
+
+  "valtteri-bottas": {
+    description:
+      "Finnish Formula 1 driver, two-time World Drivers' Championship runner-up (2019, 2020) with Mercedes, ten-time Grand Prix winner. Returned to F1 with Cadillac for 2026. Outside racing he is a serious gravel cyclist and co-founder of FNLD GRVL in Finland.",
+    worksFor: {
+      name: "Cadillac F1 Team",
+      type: "Organization",
+      url: "https://www.formula1.com/en/teams/cadillac",
+    },
+    sameAs: [
+      "https://en.wikipedia.org/wiki/Valtteri_Bottas",
+      "https://www.wikidata.org/wiki/Q138745",
+      "https://www.formula1.com/en/drivers/valtteri-bottas",
+      "https://www.instagram.com/valtteribottas/",
+    ],
+    whyMatters:
+      "Valtteri Bottas is the F1 driver who became one of the most credible amateur gravel racers in the world while still in the paddock. Two seasons as Mercedes runner-up, ten Grand Prix wins, and a 2024 UCI Gravel World Championships start — plus FNLD GRVL, the Finnish gravel race he co-founded with partner Tiffany Cromwell. For Roadman's audience he is the proof that genuine cycling performance is reachable while holding down a career outside the sport, and a voice on what motorsport-grade preparation, recovery, and discipline look like applied to the bike.",
+    keyIdeas: [
+      "Cycling discipline transfers from motorsport — the same focus on data, recovery, and incremental gains drives both.",
+      "Serious amateur cycling is compatible with a demanding career, but only if training is non-negotiable in the calendar before everything else fills in.",
+      "Race weight matters less than year-round fuelling — under-eating to chase numbers compromises the F1 day job and the bike at once.",
+      "Gravel events are the rare format where pros and amateurs share a course on a level playing field — a humbling and motivating reality check.",
+      "Recovery is the limiting factor for athletes pushing two careers — sleep and stress regulation matter more than another training block.",
+    ],
+    relatedHubs: ["cycling-training-plans", "cycling-recovery"],
+  },
+
+  "andre-greipel": {
+    description:
+      "German former professional sprinter who rode at the WorldTour level from 2005 to 2021. 158 career wins including 22 Grand Tour stages — 11 Tour de France, 7 Giro d'Italia, 4 Vuelta — and the 2018 Belgian one-day classics circuit. Now national road coach for the German Cycling Federation.",
+    worksFor: {
+      name: "Bund Deutscher Radfahrer (German Cycling Federation)",
+      type: "Organization",
+      url: "https://www.rad-net.de/",
+    },
+    sameAs: [
+      "https://en.wikipedia.org/wiki/Andr%C3%A9_Greipel",
+      "https://www.wikidata.org/wiki/Q168712",
+      "https://www.andregreipel.de/en/",
+      "https://www.procyclingstats.com/rider/andre-greipel",
+    ],
+    featuredArticles: [
+      "andre-greipel-sprint-captaincy-burnout",
+      "andre-greipel-sprint-captains-code",
+    ],
+    whyMatters:
+      "André Greipel is one of the most decorated Grand Tour sprinters of his generation — eleven Tour de France stage wins, twenty-two Grand Tour stages in total, and a fifteen-year top-flight career across Lotto, Arkéa, and Israel. He is also one of the few sprinters who has talked openly about the mental cost of the role: managing leadout teams, surviving non-sprint stages, and the burnout cycle that ends most sprinting careers early. As Germany's national road coach since 2023 he sees the next generation up close, which makes his perspective on what amateur sprinters get wrong unusually current.",
+    keyIdeas: [
+      "Sprinting is captaincy, not just kick — the leadout train, the protection in the bunch, and the radio calls determine whether the sprint even starts in the right position.",
+      "Surviving the mountain stages is the unsexy skill that decides Grand Tour sprint careers — pure speed without resilience does not translate to GT stage wins.",
+      "Burnout in pro sprinting is real and underdiscussed — the constant calorie management, post-stage recovery, and team pressure compound over a career.",
+      "Amateur sprinters skip the positioning work and over-index on raw watts — the win is decided in the last 5km positioning, not the last 200m.",
+      "The transition from rider to coach is brutal but clarifying — what looks like talent at WorldTour level is mostly accumulated decision-making under fatigue.",
+    ],
+    relatedHubs: ["cycling-training-plans", "cycling-coaching"],
+  },
+
+  "george-hincapie": {
+    description:
+      "American former professional cyclist (1994–2012), 17-time Tour de France finisher (a record at retirement), three-time US national road champion, and 2001 Gent-Wevelgem winner. Veteran of the US Postal / Discovery Channel era. Founder of Hincapie Sportswear and, in 2025, Modern Adventure Pro Cycling.",
+    worksFor: {
+      name: "Modern Adventure Pro Cycling",
+      type: "SportsTeam",
+      url: "https://hincapie.com/",
+    },
+    sameAs: [
+      "https://en.wikipedia.org/wiki/George_Hincapie",
+      "https://www.procyclingstats.com/rider/george-hincapie",
+      "https://www.olympedia.org/athletes/14752",
+      "https://www.teamusa.com/profiles/george-hincapie",
+      "https://hincapie.com/",
+    ],
+    featuredArticles: [
+      "pogacar-van-der-poel-hincapie-paris-roubaix-2026",
+      "tyler-hamilton-us-postal-doping-confession",
+    ],
+    whyMatters:
+      "George Hincapie rode 17 Tours de France — the record when he retired — and was the only rider to support Lance Armstrong through all seven of his Tour wins (since stripped). He is one of the few American riders who has openly addressed the doping era, the team dynamics inside US Postal, and the post-Armstrong rebuilding of US cycling. His 2025 launch of Modern Adventure Pro Cycling, alongside his brother Richard, makes him both a primary historical witness and an active team owner — a rare combination for that era.",
+    keyIdeas: [
+      "Classics survival is built on positioning, not power — Hincapie's career proves that being in the right wheel for 250km matters more than peak watts.",
+      "The doping era was a team-level decision, not an individual one — the post-Armstrong reckoning is also institutional, not just personal.",
+      "American pro cycling's pipeline broke when US Postal dissolved — the Modern Adventure project is an attempt to rebuild that domestic pathway.",
+      "Paris-Roubaix tactics have changed less than the equipment — the cobbles still reward the rider who reads the bunch and times the move into the right sector.",
+      "Longevity at WorldTour level is a function of team role clarity — the riders who last are the ones who know exactly what they're paid to do each race.",
+    ],
+    relatedHubs: ["cycling-training-plans", "cycling-coaching"],
+  },
+
+  "alex-dowsett": {
+    description:
+      "British former professional road and time-trial cyclist (2011–2024). Held the UCI Hour Record in 2015 (52.937 km), six-time British national TT champion, Commonwealth Games gold medallist, and Giro d'Italia stage winner. Lifelong haemophilia campaigner and founder of the Little Bleeders charity.",
+    worksFor: {
+      name: "Little Bleeders",
+      type: "Organization",
+      url: "https://www.littlebleeders.org/",
+    },
+    sameAs: [
+      "https://en.wikipedia.org/wiki/Alex_Dowsett",
+      "https://www.procyclingstats.com/rider/alex-dowsett",
+      "https://www.cyclingweekly.com/tag/alex-dowsett",
+    ],
+    featuredArticles: [
+      "alex-dowsett-pro-cycling-lessons-amateur",
+      "heat-training-cyclists-30-watts-ftp-protocol",
+      "jack-burke-strava-records-stelvio-alpe-dhuez",
+    ],
+    whyMatters:
+      "Alex Dowsett is the rare WorldTour rider whose entire career was built on aerodynamics, time-trialling, and methodical preparation rather than raw climbing wattage. The 2015 Hour Record (52.937km), six British TT titles, and a Giro d'Italia stage win came from being the most prepared rider on the start line, not the most genetically gifted. He has also been one of cycling's most public haemophilia campaigners, founding Little Bleeders to support kids with bleeding disorders into sport. His post-retirement coaching and content work — including Astana's aero programme — make him a current voice on what amateurs get wrong about position, equipment, and pacing.",
+    keyIdeas: [
+      "Aerodynamics is the cheapest watts amateurs ignore — position and skinsuit fit beat power upgrades for almost every age-grouper on flat or rolling terrain.",
+      "Pacing the Hour Record is a discipline most amateurs cannot replicate — the brain wants to surge, the body needs absolutely flat power for sixty minutes.",
+      "Time-trial preparation is a long-arc project — a Hour Record bike, position, and pacing model takes 18+ months to build, not a training block.",
+      "Haemophilia did not stop a WorldTour career — adaptive training and medical support are the difference, not avoidance of the sport.",
+      "Most amateur TT mistakes happen in the first 5km — going out too hard from a standing start blows the entire effort before the engine has settled.",
+    ],
+    relatedHubs: ["ftp-training", "cycling-training-plans"],
+  },
+
+  "ed-clancy": {
+    description:
+      "British former track cyclist, three-time Olympic team-pursuit gold medallist (2008 Beijing, 2012 London, 2016 Rio) — the most successful team-pursuit rider in history. Eight-time UCI Track World Championship medallist. OBE for services to cycling. Now a coach, broadcaster, and motivational speaker.",
+    worksFor: {
+      name: "British Cycling",
+      type: "Organization",
+      url: "https://www.britishcycling.org.uk/",
+    },
+    sameAs: [
+      "https://en.wikipedia.org/wiki/Ed_Clancy",
+      "https://www.wikidata.org/wiki/Q712919",
+      "https://www.olympedia.org/athletes/113193",
+      "https://www.teamgb.com/athlete/ed-clancy/6H6EYRLX80BRZ7YF8n8fWk",
+    ],
+    whyMatters:
+      "Ed Clancy holds three Olympic team-pursuit gold medals — Beijing, London, and Rio — and is the most successful team-pursuit rider in the discipline's history. He was the start-man on the British squad that turned a four-minute event into a sub-3:50 standard. His specialism — the thirty-second standing start that sets the team's pace — is the ultimate expression of trained anaerobic power, neuromuscular drive, and pressure management. For Roadman's audience he is the bridge between road cycling fitness and the explosive end of the sport that most amateurs never train.",
+    keyIdeas: [
+      "Standing-start power is a trainable skill, not a genetic gift — the British team built it through years of specific neuromuscular work and gym programming.",
+      "Team pursuit teaches what amateurs never learn — pacing in a four-rider rotation under threshold-plus, where the wheel in front is the only thing that matters.",
+      "The British Cycling marginal-gains era was real but oversold — the actual edge was strength training, sleep discipline, and recruitment, not magic kit.",
+      "Track training transfers to road power — the threshold and VO2max work done at velodrome intensity translates directly to time-trial and climbing performance.",
+      "Career transition for Olympians is brutal — the structure that made the medals possible is gone the day you retire, and the rebuild has to start from scratch.",
+    ],
+    relatedHubs: ["ftp-training", "cycling-training-plans"],
+  },
+
+  "olav-bu": {
+    description:
+      "Norwegian sports scientist and head coach. Architect of the 'Norwegian Method' that produced Kristian Blummenfelt's 2021 Olympic triathlon gold and Gustav Iden's two Ironman 70.3 world titles plus 2022 Ironman world title. Now also head coach of Norwegian WorldTour cycling team Uno-X Mobility.",
+    worksFor: {
+      name: "Uno-X Mobility",
+      type: "SportsTeam",
+      url: "https://www.uno-x.no/",
+    },
+    sameAs: [
+      "https://www.tri247.com/triathlon-news/elite/olav-aleksander-bu-pro-cycling-switch-kristian-blummenfelt-gustav-iden",
+      "https://triathlonmagazine.ca/personalities/kristian-blummenfelts-coach-becomes-head-coach-of-norwegian-cycling-team-uno-x/",
+    ],
+    featuredArticles: [
+      "cycling-hrv-training-guide",
+      "triathlon-ftp-pacing-strategy",
+      "triathlon-cycling-training-plan",
+    ],
+    whyMatters:
+      "Olav Aleksander Bu is the sports scientist who turned a small Norwegian triathlon programme into the most replicated coaching template in modern endurance sport. The 'Norwegian Method' — high lactate-threshold volume, daily lactate testing, double-threshold sessions — produced Blummenfelt's Olympic gold, Iden's Ironman world titles, and a generation of imitators across cycling and running. His 2024 move to head coach of Uno-X Mobility makes him one of the few coaches who has run the same testing-driven, individualised approach across both World Tour cycling and elite triathlon.",
+    keyIdeas: [
+      "Threshold work, dosed correctly, is the single highest-leverage intervention for trained endurance athletes — but it requires lactate testing to dose right.",
+      "Individualised lactate response trumps generic zones — two riders at the same FTP can need wildly different threshold prescriptions.",
+      "The Norwegian Method scales — the same testing-led framework that built Olympic triathletes is now driving Uno-X cycling improvements.",
+      "Endurance science has converged across sports — the biggest gains for cyclists now come from triathlon, running, and rowing literature, not cycling-specific research.",
+      "Recovery quality is the rate-limiter — the volume and threshold work only land if sleep, fuelling, and stress are managed at the same level as the training.",
+    ],
+    relatedHubs: ["cycling-training-plans", "ftp-training", "triathlon-cycling"],
+  },
+
+  "hannah-grant": {
+    description:
+      "Danish chef and author. Chef for Bjarne Riis' Tinkoff–Saxo cycling team for five years across multiple Grand Tours, Daytime Emmy winner for Amazon's Eat Race Win, and author of The Grand Tour Cookbook and The New Grand Tour Cookbook 2.0. Trained at Noma; founder of Musette Publishing.",
+    worksFor: {
+      name: "Musette Publishing",
+      type: "Organization",
+      url: "https://hannahgrant.com/",
+    },
+    sameAs: [
+      "https://hannahgrant.com/",
+      "https://www.imdb.com/name/nm9617179/",
+      "https://hannahgrant.bigcartel.com/product/the-grand-tour-cookbook",
+    ],
+    featuredArticles: [
+      "cycling-protein-requirements",
+      "hannah-grant-pro-team-chef-weight-loss",
+      "dr-allen-lim-cycling-after-armstrong-clean-innovation",
+    ],
+    whyMatters:
+      "Hannah Grant fed a WorldTour team across five seasons of Grand Tours and turned the experience into the most credible cycling-nutrition cookbook ever published. Trained at Noma, chef for Tinkoff-Saxo from 2011, Daytime Emmy winner for Eat Race Win — she is the rare voice who has cooked at fine-dining level AND fed riders racing 200km a day for three weeks. For Roadman's audience she is the practical answer to the question most amateurs avoid: what do you actually put on the plate, every day, to fuel real training without ending up fat or under-recovered?",
+    keyIdeas: [
+      "Quality cooking and performance fuelling are not in conflict — the same flavour discipline that wins Michelin stars makes athletes eat more of the right food.",
+      "Pro-team meals are mostly real food — pasta, rice, vegetables, fish — not gel-and-bar engineering. Amateurs who copy the supplements miss the actual diet.",
+      "Recovery food has to be appetising or it does not get eaten — the protein dose post-stage matters less than whether the rider actually finishes the plate.",
+      "Hydration is fuelling — the saltiest pro-team meal of the day is breakfast, deliberately, to set up the day's electrolyte balance.",
+      "Race-week kitchen logistics decide outcomes — the team that can cook fresh in a hotel kitchen at 11pm has a genuine performance edge.",
+    ],
+    relatedHubs: ["cycling-nutrition", "cycling-weight-loss"],
+  },
+
+  "mark-beaumont": {
+    description:
+      "British long-distance cyclist, broadcaster, and author. Holder of the around-the-world cycling record at 78 days, 14 hours (2017), having ridden ~240 miles a day for nearly three months. BEM. Author of multiple bestselling adventure books and a regular BBC presenter.",
+    worksFor: {
+      name: "Mark Beaumont Online",
+      type: "Organization",
+      url: "https://markbeaumontonline.com/",
+    },
+    sameAs: [
+      "https://en.wikipedia.org/wiki/Mark_Beaumont_(cyclist)",
+      "https://markbeaumontonline.com/",
+      "https://www.guinnessworldrecords.com/news/2019/8/mark-beaumont-explains-what-it-takes-to-cycle-around-the-world-in-record-time-585073",
+    ],
+    whyMatters:
+      "Mark Beaumont rode around the world in 78 days — 18,000 miles, ~240 miles a day, sixteen hours in the saddle, five hours of sleep, for the better part of three months. The record beat the previous mark by 44 days and remains untouched. For Roadman's ultra-endurance and 'Not Done Yet' audience he is the proof that the human ceiling on volume is much higher than amateurs assume, and a credible voice on the recovery, fuelling, and mental discipline that ultra-distance demands. His broadcast career and books also make him one of the sport's most articulate ambassadors.",
+    keyIdeas: [
+      "The body adapts to ultra-distance volume faster than the brain does — the limiting factor on round-the-world rides is psychological, not aerobic.",
+      "Sleep at five hours a night is survivable for weeks but not months — the around-the-world record is the edge of the human envelope, not a template.",
+      "Fuel-on-the-bike is the difference between finishing and quitting — solid food intake at 2,000+ kcal/day was Beaumont's non-negotiable.",
+      "Equipment failure ends ultra rides more often than fitness does — bikepacking durability beats marginal aero gains every time.",
+      "The post-record decompression is the hardest phase — coming back to normal life and training rhythms after that volume takes longer than the ride itself.",
+    ],
+    relatedHubs: ["cycling-training-plans", "cycling-recovery"],
+  },
+
+  "eddie-dunbar": {
+    description:
+      "Irish professional cyclist from Banteer, County Cork. Two-stage winner at the 2024 Vuelta a España, 2024 Irish national time-trial champion. Rode for Team Sky, INEOS Grenadiers, and Jayco–AlUla; signed with Q36.5 Pro Cycling for 2026 alongside Tom Pidcock.",
+    worksFor: {
+      name: "Q36.5 Pro Cycling Team",
+      type: "SportsTeam",
+      url: "https://www.q36-5procycling.com/",
+    },
+    sameAs: [
+      "https://en.wikipedia.org/wiki/Eddie_Dunbar",
+      "https://www.procyclingstats.com/rider.php?id=181466",
+    ],
+    featuredArticles: [
+      "best-cycling-coach-ireland",
+    ],
+    whyMatters:
+      "Eddie Dunbar is the Irish climber who turned a near-career-ending sequence of injuries and team transitions into two Vuelta stage wins in 2024 and a 2026 move to Q36.5 alongside Tom Pidcock. From Aqua Blue Sport to Team Sky to INEOS to Jayco-AlUla and now Q36.5, his career has been the modern WorldTour journeyman story — and his honesty about how close he came to being out of the sport makes him a rare voice on what genuine resilience looks like at the top end. For the Irish audience and the broader masters base, he is a credible model for staying in the fight when the data says you should not.",
+    keyIdeas: [
+      "Climbing form is built on consistent base years, not single training blocks — the riders who hold WorldTour climbing legs are the ones who never lost their base.",
+      "Team fit matters more than team prestige — being a domestique at INEOS taught Dunbar what he could not do, but a leadership role at Q36.5 will reveal what he can.",
+      "Stage racing is a recovery game — the Vuelta wins came after he stopped chasing every breakaway and started managing the three-week load.",
+      "Injuries do not have to end careers — the rebuild model is to come back as a slightly different rider, not the same one.",
+      "Irish cycling now has a structural pathway — coaches, junior racing, sponsors — that was missing in the post-Roche decades. Dunbar is part of that proof.",
+    ],
+    relatedHubs: ["cycling-training-plans", "ftp-training"],
+  },
+
+  "andy-mcgrath": {
+    description:
+      "British cycling journalist and author. Former editor of Rouleur magazine. Author of Tom Simpson: Bird on the Wire (2017 William Hill Sports Book of the Year), God Is Dead: The Rise and Fall of Frank Vandenbroucke, and Tadej Pogačar: Unstoppable. Contributor to The Guardian, Financial Times, and Cyclingnews.",
+    sameAs: [
+      "https://www.penguinrandomhouse.com/authors/2270469/andy-mcgrath/",
+      "https://www.cyclingnews.com/author/andy-mcgrath/",
+      "https://uk.linkedin.com/in/andy-mcgrath-b7442251",
+    ],
+    whyMatters:
+      "Andy McGrath is the cycling journalist who has written the definitive modern biographies of three very different riders — Tom Simpson, Frank Vandenbroucke, and Tadej Pogačar. His Tom Simpson book won the 2017 William Hill Sports Book of the Year, the highest honour in British sportswriting, and his Vandenbroucke biography is the only credible English-language account of one of the sport's most tragic talents. As former editor of Rouleur and a long-form contributor to the Guardian and FT, he sits where most cycling fans wish they could — close enough to the riders for real access, far enough away to write honestly about them.",
+    keyIdeas: [
+      "Cycling journalism's golden age was built on long-form access — the era of riders sitting down for hours of interview is largely over, and that loss is showing.",
+      "Tom Simpson's death at Mont Ventoux is the foundational story of professional cycling's drug culture — the modern peloton is still living in its shadow.",
+      "Frank Vandenbroucke is the warning sign nobody wanted to see — extraordinary talent paired with managed mental illness, in a sport that had no framework for either.",
+      "Tadej Pogačar is the most studied modern rider because the journalism finally caught up — his openness has reset what fans can know about a Tour winner's daily life.",
+      "Books outlast features — the long-form biography is the format that survives the news cycle, and the one most cycling fans actually keep.",
+    ],
+    relatedHubs: ["cycling-training-plans", "cycling-coaching"],
+  },
+
   "rosa-kloser": {
     description:
       "German professional gravel and road cyclist, 2024 Unbound Gravel 200 winner and 2025 German gravel national champion. Races both as a gravel privateer and for the CANYON//SRAM zondacrypto road team. PhD researcher in green shipping at Copenhagen Business School.",
