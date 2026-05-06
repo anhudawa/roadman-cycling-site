@@ -1320,6 +1320,50 @@ export const COACHING_SEGMENTS: Record<string, SegmentData> = {
     ],
     serviceType: "Cycling Coaching for Over-50 Cyclists",
     breakerWord: "OVER 50",
+    relatedResources: [
+      {
+        label: "Masters Recovery Score",
+        href: "/tools/masters-recovery-score",
+        description:
+          "Free 0–100 recovery audit calibrated for cyclists 40+. Four inputs, one number, a calibrated recommendation that drives this week's training.",
+      },
+      {
+        label: "Masters FTP Benchmark",
+        href: "/tools/masters-ftp-benchmark",
+        description:
+          "See where your FTP sits among trained masters cyclists in your age band. 50-54, 55-59, 60+ — the trajectory matters more than the absolute number.",
+      },
+      {
+        label: "Cycling Over 50: Training Framework",
+        href: "/blog/cycling-over-50-training",
+        description:
+          "How the training week shifts after 50 — polarised distribution, two strength sessions, deeper recovery, and the architecture that delivers year-on-year progress.",
+      },
+      {
+        label: "Joe Friel: Fast After 50",
+        href: "/blog/joe-friel-fast-after-50-cycling-method",
+        description:
+          "Joe Friel's framework for masters cyclists — what he prescribes, why it works, and how it translates to coached weekly structure.",
+      },
+      {
+        label: "Strength Training for Cyclists Over 50",
+        href: "/blog/strength-training-cyclists-over-50",
+        description:
+          "Cycling-specific resistance work — split squats, hip hinges, single-leg work, hip thrusts, core. Controlled, scaled load that protects type-2 fibres, bone density, and the watts you've already built.",
+      },
+      {
+        label: "Masters Recovery Audit",
+        href: "/blog/masters-recovery-audit-seven-things-to-check",
+        description:
+          "Seven recovery markers to check when training stops landing — sleep, HRV, resting HR, fuelling, stress, illness frequency, and motivation.",
+      },
+      {
+        label: "Polarised Training Guide",
+        href: "/blog/polarised-training-cycling-guide",
+        description:
+          "Seiler's polarised model applied to over-50 cyclists. Why 85/15 beats 80/20 after 50 and how to police true Zone 2 when grey-zone temptation is real.",
+      },
+    ],
   },
 
   "time-crunched": {
