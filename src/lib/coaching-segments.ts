@@ -1704,6 +1704,44 @@ export const COACHING_SEGMENTS: Record<string, SegmentData> = {
     ],
     serviceType: "Cycling Coaching for Post-Injury Return",
     breakerWord: "REBUILD",
+    relatedResources: [
+      {
+        label: "FTP Zones Calculator",
+        href: "/tools/ftp-zones",
+        description:
+          "Recalibrate your training zones from your CURRENT FTP — not your pre-injury one. The Zone 2 cap that holds the early comeback steady.",
+      },
+      {
+        label: "HR Zones Calculator",
+        href: "/tools/hr-zones",
+        description:
+          "Build heart-rate zones for the early comeback weeks when power may not be on the bike yet. Strict caps drive the conservative start.",
+      },
+      {
+        label: "Comeback Cyclist 12-Week Return Plan",
+        href: "/blog/comeback-cyclist-12-week-return-plan",
+        description:
+          "Block-by-block structure for the first 12 weeks back — volume, intensity, strength, and how each block earns the next.",
+      },
+      {
+        label: "Returning to Cycling After a Break",
+        href: "/blog/cycling-returning-after-break",
+        description:
+          "Principles of progressive loading after time off. How to start lower, build slower, and avoid the two traps that derail most returns.",
+      },
+      {
+        label: "James Golding: Race Across America Comeback",
+        href: "/blog/james-golding-race-across-america-comeback",
+        description:
+          "A real comeback from serious injury and illness to ultra-endurance racing. The role structure, patience, and identity played in the rebuild.",
+      },
+      {
+        label: "Strength Training for Cyclists",
+        href: "/blog/strength-training-cyclists-over-50",
+        description:
+          "Cycling-specific strength work integrated from week one — split squats, hip hinges, single-leg work, core. Controlled load, progressed gradually, addressing the imbalances injury creates.",
+      },
+    ],
   },
 
   "weight-loss": {
