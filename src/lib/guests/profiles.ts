@@ -325,6 +325,16 @@ export const GUEST_PROFILE_OVERRIDES: Record<string, GuestProfileOverride> = {
       "https://www.linkedin.com/in/john-wakefield-a7449785/",
       "https://www.trainingpeaks.com/coach/john-sciencetosport",
     ],
+    whyMatters:
+      "John Wakefield is the South African-born coach and bike fitter who runs Science to Sport in Girona — one of the leading lab-to-bike performance facilities in cycling — and now serves as Director of Coaching & Sports Science at Red Bull–Bora–Hansgrohe. He spent four seasons as Performance Coordinator and Coach at UAE Team Emirates working alongside the Pogačar-era programme, and has coached riders from amateur to Grand Tour level using a metabolic-testing-led methodology. His work matters because he is one of the few coaches who systematically translates lab data — VO2max, Fat Max, lactate response — into the actual training week amateurs and pros ride.",
+    keyIdeas: [
+      "Lab-based metabolic testing reveals zone errors that FTP-derived calculations always miss.",
+      "Most amateurs ride too hard on easy days because their power-derived Zone 2 is set too high.",
+      "Aerobic-base deficits show up as second-half fade on rides over 2 hours — not on 20-minute tests.",
+      "Bike fit is a performance variable, not a comfort one — the Girona lab combines fit and physiology testing on the same day.",
+      "Pro and amateur training principles converge on the same physiology — the difference is the volume and the recovery.",
+    ],
+    relatedHubs: ["cycling-coaching", "cycling-training-plans", "ftp-training"],
   },
 
   "david-dunne": {
@@ -339,6 +349,16 @@ export const GUEST_PROFILE_OVERRIDES: Record<string, GuestProfileOverride> = {
       "https://www.researchgate.net/profile/David-Dunne-9",
       "https://www.hexis.live/blog/meet-the-team-david-dunne",
     ],
+    whyMatters:
+      "David Dunne is the performance nutritionist behind Hexis, the personalised sports-nutrition platform used by World Tour cyclists, Premier League clubs, NBA franchises, Super League sides, and Ryder Cup Team Europe. With a PhD in behaviour change, design thinking, and technology innovation in sports nutrition, and IOC alumnus credentials, he sits at the intersection of academic research and practical application. His work matters because he turned periodised nutrition — matching carb intake to training load day by day — from a coaching idea into a measurable system used by hundreds of elite athletes and tens of thousands of amateurs.",
+    keyIdeas: [
+      "Carbohydrate periodisation matches daily intake to training load — it is not low-carb, it is right-carb.",
+      "Energy availability is the unsung lever for body-composition change and long-term training durability.",
+      "Fuelling around training matters more than total daily macro targets — the timing changes the adaptation.",
+      "Behaviour change in nutrition is a design problem — make the right thing easy and the wrong thing inconvenient.",
+      "Personalised plans outperform generic ones at every level, but only if they are actually used — adherence is the limiting factor.",
+    ],
+    relatedHubs: ["cycling-nutrition", "cycling-weight-loss"],
   },
 
   "alan-murchison": {
@@ -715,6 +735,387 @@ export const GUEST_PROFILE_OVERRIDES: Record<string, GuestProfileOverride> = {
     relatedHubs: ["cycling-training-plans", "cycling-coaching"],
   },
 
+  "derek-teel": {
+    description:
+      "American strength coach. Founder of Dialed Health, an online cycling-specific strength and conditioning programme used by amateur and professional cyclists. Background in functional movement and corrective exercise.",
+    worksFor: {
+      name: "Dialed Health",
+      type: "Organization",
+    },
+    whyMatters:
+      "Derek Teel is the strength coach who built Dialed Health into one of the most accessible cycling-specific S&C programmes online. He works with amateurs from base level to category racing, and his frameworks for off-bike strength — single-leg work, hip hinges, posterior chain, mobility — have shaped how a generation of time-crunched riders think about supplementing their training. For Roadman listeners chasing power, durability, and longevity, his work is a primary practical reference for what strength training for cycling actually looks like.",
+    keyIdeas: [
+      "Cycling-specific strength is single-leg, hip-dominant, and built around movement quality, not max effort.",
+      "Two 30-minute sessions a week is enough to change body composition and protect against injury for most amateurs.",
+      "Mobility work pre-ride is not warm-up — it is a separate adaptation that protects the bike position long-term.",
+      "Strength training fits inside a cycling week if you give up one easy spin and protect the hard sessions on the bike.",
+      "Off-season is the highest-leverage window for building strength capacity that lasts through the racing year.",
+    ],
+    relatedHubs: ["cycling-strength-conditioning"],
+  },
+
+  "chris-voss": {
+    description:
+      "American author and former FBI lead international kidnapping negotiator (1992–2007). Founder of The Black Swan Group. Author of Never Split the Difference: Negotiating As If Your Life Depended On It.",
+    sameAs: [
+      "https://en.wikipedia.org/wiki/Chris_Voss",
+    ],
+    whyMatters:
+      "Chris Voss is the former FBI lead international kidnapping negotiator and author of Never Split the Difference, the modern textbook on high-stakes negotiation. His work on tactical empathy, mirroring, and labelling has reshaped how everyone from sales professionals to senior executives approaches difficult conversations. For Roadman listeners, his frameworks transfer directly to the negotiations cyclists face day-to-day — with sponsors, with employers about training time, with family about race weekends, and with their own internal voice when training gets hard.",
+    keyIdeas: [
+      "Tactical empathy: understanding the other person's perspective without agreeing with it is the foundation of every good negotiation.",
+      "Mirroring and labelling open the other person's emotional state — they are simple, repeatable, and effective.",
+      "'No' is the start of a negotiation, not the end — it is the moment you find out what the other person actually cares about.",
+      "Black swans — unknown unknowns — are usually the difference between a good outcome and a great one.",
+      "High-stakes negotiation principles work in low-stakes contexts too — every conversation about training time is a negotiation.",
+    ],
+    relatedHubs: ["cycling-coaching"],
+  },
+
+  "colin-o-brady": {
+    description:
+      "American endurance athlete. First person to complete a solo unsupported crossing of Antarctica (2018, 932 miles in 54 days). Set the Explorers Grand Slam record (Seven Summits plus skiing to both poles in 139 days, 2016). Author of The Impossible First.",
+    sameAs: [
+      "https://en.wikipedia.org/wiki/Colin_O%27Brady",
+    ],
+    whyMatters:
+      "Colin O'Brady is the American endurance athlete who completed the first solo unsupported Antarctic crossing — 932 miles, 54 days, dragging a 375-pound sled across the continent. He held the Explorers Grand Slam record (Seven Summits plus both poles in 139 days). His work matters for cyclists not because of the equipment overlap but because of the methodology: training for multi-week ultra-endurance, mental rehearsal under load, energy availability across 6,000-calorie days, and recovery from genuinely extreme physical demands. For Roadman listeners thinking about week-long bikepacking trips or Race Across America-style efforts, his frameworks are some of the cleanest available.",
+    keyIdeas: [
+      "Mental rehearsal of suffering is a trainable skill — the riders who finish are the ones who have been there in their head first.",
+      "Energy availability for multi-week efforts is the limiting factor — you cannot make up calorie debt mid-event.",
+      "Recovery from extreme efforts is months, not weeks — most ultra athletes underestimate the carryover deficit.",
+      "Goal-setting for ultra-endurance has to be process-led, not outcome-led, or you break under day-3 doubt.",
+      "Solo unsupported is a different sport from supported — the calorie maths and the gear maths are everything.",
+    ],
+    relatedHubs: ["cycling-training-plans", "cycling-recovery"],
+  },
+
+  "dr-allen-lim": {
+    description:
+      "American sports physiologist. Founder of Skratch Labs. Former director of sports science for Team Garmin–Slipstream (2008–2010) and personal coach to riders including Lance Armstrong, Levi Leipheimer, and Christian Vande Velde. Author of The Feed Zone Cookbook series.",
+    worksFor: {
+      name: "Skratch Labs",
+      type: "Organization",
+    },
+    sameAs: [
+      "https://en.wikipedia.org/wiki/Allen_Lim",
+    ],
+    whyMatters:
+      "Dr Allen Lim is the sports physiologist who turned the World Tour kitchen on its head. As director of sports science at Garmin–Slipstream and personal physiologist to riders including Lance Armstrong, Levi Leipheimer, Christian Vande Velde, and the Schleck brothers, he was inside the rooms where modern endurance fuelling shifted from sports-drink-and-bar standards to real food. He founded Skratch Labs, wrote the Feed Zone Cookbook series with Biju Thomas, and has shaped how an entire generation of amateurs thinks about hydration, on-bike fuelling, and recovery meals. His work matters because it sits at the intersection of physiology research and what actually works in a team kitchen on a Grand Tour.",
+    keyIdeas: [
+      "Hydration is about sodium and absorption rate, not just water — the standard sports-drink formulations were too sweet and too low in electrolytes.",
+      "Real food on the bike (rice cakes, potatoes, baked goods) outperforms gels for many riders — gut tolerance is the limit.",
+      "Recovery starts in the first 30 minutes after a hard session and is dominated by carbohydrate, fluid, and protein in that order.",
+      "Personalised nutrition is not a marketing term — sweat sodium loss, gut tolerance, and energy needs vary by orders of magnitude between athletes.",
+      "Race-day fuelling has to be rehearsed in training — the day of an event is the worst time to discover a product does not work for you.",
+    ],
+    relatedHubs: ["cycling-nutrition"],
+  },
+
+  "dr-andy-pruitt": {
+    description:
+      "American sports medicine specialist and bike fit pioneer. Founder of the Boulder Center for Sports Medicine (1990) and the Specialized Body Geometry (BG) Fit programme. Has worked with US national-level cyclists, triathletes, and Olympic athletes for over four decades.",
+    worksFor: {
+      name: "Boulder Center for Sports Medicine",
+      type: "Organization",
+    },
+    whyMatters:
+      "Dr Andy Pruitt is the founder of the Boulder Center for Sports Medicine and the godfather of modern bike fitting. He developed the Specialized BG (Body Geometry) Fit system that is now used in thousands of bike shops worldwide, and has worked with US Olympic cyclists, professional teams, and World Tour riders for over four decades. His work matters because he turned bike fit from a craft into a measurable, repeatable, evidence-based discipline. For amateurs dealing with knee pain, lower back issues, or numb hands, his frameworks for fit-by-injury are the most thorough in the field.",
+    keyIdeas: [
+      "Bike fit is biomechanics, not aesthetics — the goal is to put the rider in the position that protects their joints over thousands of hours.",
+      "Knee pain on the bike is almost always a saddle height or cleat alignment issue, not a training issue.",
+      "Saddle height is set off the hip-knee-ankle relationship, not from a generic formula based on inseam.",
+      "Lower-back pain is usually a core/hamstring strength deficit being unmasked by the bike position — fit is part of the answer, not all of it.",
+      "Aero positioning for amateurs has to be earned through flexibility and core work — the position the pros hold takes years to build.",
+    ],
+    relatedHubs: ["cycling-strength-conditioning"],
+  },
+
+  "mark-sisson": {
+    description:
+      "American author and former US national-class marathon runner and triathlete. Founder of Mark's Daily Apple and Primal Kitchen (sold to Kraft-Heinz in 2018). Author of The Primal Blueprint, Primal Endurance, and 30+ other books on health and endurance.",
+    sameAs: [
+      "https://en.wikipedia.org/wiki/Mark_Sisson",
+    ],
+    whyMatters:
+      "Mark Sisson is the former US national-class marathon runner and triathlete who launched the modern primal/ancestral health movement with Mark's Daily Apple, Primal Kitchen, and the Primal Blueprint book series. He has written 30+ books on health, training, and endurance, including Primal Endurance, which argued that aerobic-base development through low-heart-rate training was undervalued by the endurance community. For Roadman listeners thinking about long-term training durability, body composition, and the trade-offs of high-volume aerobic work, his work is one of the most-cited starting points.",
+    keyIdeas: [
+      "Aerobic-base development through MAF heart-rate training is the foundation that supports all higher-intensity work.",
+      "Low-carb endurance training has a place for some athletes, but most performance work still requires carbohydrate around hard sessions.",
+      "Long-term training durability matters more than peak performance for most amateurs — programmes that wear out the rider lose the long game.",
+      "Lifestyle factors (sleep, sun, movement, stress) account for a larger share of body composition outcomes than most training plans assume.",
+      "Recovery is a leading indicator — track it, respect it, and train into it, not through it.",
+    ],
+    relatedHubs: ["cycling-nutrition", "cycling-training-plans"],
+  },
+
+  "laurens-ten-dam": {
+    description:
+      "Dutch former professional road cyclist (1999–2019) and current professional gravel racer. Tour de France GC top-10 finisher, founder of the Live Slow Ride Fast podcast. Now races gravel privately and runs the Ten Dam Foundation.",
+    sameAs: [
+      "https://en.wikipedia.org/wiki/Laurens_ten_Dam",
+    ],
+    whyMatters:
+      "Laurens Ten Dam is one of the more articulate Dutch riders of his generation — a Tour de France GC top-10 finisher with Belkin and CCC, and now a serious gravel privateer who has finished Unbound, raced the Migration Gravel Race, and built one of the most-watched amateur gravel YouTube channels. His Live Slow Ride Fast podcast, co-hosted with Stefan Bolt, is one of the longest-running cycling podcasts in Europe. For amateurs interested in the transition from road racing to gravel and ultra-endurance — and the realities of training as a near-50 ex-pro — his content is exceptional.",
+    keyIdeas: [
+      "Gravel and ultra-endurance racing is reinforcing the long-distance volume that road training had quietly abandoned.",
+      "Pacing 200-mile gravel events is closer to a slow Grand Tour stage than to a road race — discipline beats talent.",
+      "Post-pro masters racing requires more recovery and more strength work than the pro version, not less.",
+      "Live Slow Ride Fast is built on the principle that long endurance riding is best enjoyed at conversational pace.",
+      "Privateer gravel is now economically viable because of YouTube, podcasts, and direct sponsor relationships.",
+    ],
+    relatedHubs: ["cycling-training-plans"],
+  },
+
+  "matt-bottrill": {
+    description:
+      "British former professional cyclist and current cycling coach. 7-time British national time trial champion, multiple British Best All-Rounder titles, and now founder of Matt Bottrill Performance Coaching. Specialises in time trial and triathlon coaching for amateur and pro athletes.",
+    worksFor: {
+      name: "Matt Bottrill Performance Coaching",
+      type: "Organization",
+    },
+    whyMatters:
+      "Matt Bottrill is one of the most decorated British TT specialists of his generation — seven national time trial titles and a string of British Best All-Rounder finishes — and now one of the country's most respected time trial coaches. His coaching at Matt Bottrill Performance Coaching has produced national, age-group world, and Ironman bike-leg champions. For amateurs trying to translate FTP into actual time trial results, his methodology is one of the cleanest in the UK: pacing discipline, position work, fuelling rehearsal, and equipment selection that earns its weight.",
+    keyIdeas: [
+      "Time trial pacing is a power discipline — the riders who win are the ones who hold their wattage cap when they do not feel like it.",
+      "Position work is years long — saddle, bar, helmet, position adapt incrementally and reward the patient rider.",
+      "Aero gains are real but only after fit is sorted — most amateurs leave 30 W on the table by chasing kit before position.",
+      "Triathlon bike legs are not standalone TTs — they are paced for the run that follows, which fundamentally changes the wattage strategy.",
+      "Strength and core work are non-negotiable for holding TT position over 25 miles or 180 km.",
+    ],
+    relatedHubs: ["ftp-training", "cycling-training-plans"],
+  },
+
+  "yanto-barker": {
+    description:
+      "British former professional road cyclist (2002–2017) and 2008 British road race champion. Founder and CEO of Le Col, a British cycling apparel company that supplies WorldTour and continental teams.",
+    worksFor: {
+      name: "Le Col",
+      type: "Organization",
+      url: "https://www.lecol.cc",
+    },
+    whyMatters:
+      "Yanto Barker is the former British road race champion (2008) and founder and CEO of Le Col, the British cycling apparel company that has become one of the leading premium kit brands worldwide. He raced as a professional for over 15 years on UK and European continental teams, then built Le Col from a kit-room idea into a brand that now sponsors WorldTour teams and Grand Tour podium finishers. For amateurs interested in the business side of cycling, the realities of being a UK-based pro, or the technical decisions behind premium cycling apparel, his perspective is uniquely informed.",
+    keyIdeas: [
+      "Premium cycling apparel is built around fit, fabric, and durability — the visible price reflects the engineering, not just the logo.",
+      "UK pro cycling pathway is harder than the Continental one because the domestic calendar is smaller — most riders go abroad.",
+      "Sponsor relationships are a long game built on actually delivering value, not on the size of the team budget.",
+      "Off-bike business in cycling works when you stay close to riders — the brands that drift lose the credibility that built them.",
+      "Masters racing and amateur cycling now drive most of the apparel market — the pro peloton is the show, not the volume.",
+    ],
+    relatedHubs: ["cycling-coaching"],
+  },
+
+  "tim-podlogar": {
+    description:
+      "Slovenian sports nutritionist and researcher in carbohydrate metabolism and endurance performance. Peer-reviewed work on glucose-fructose oxidation and high-carb fuelling. Has worked with World Tour cyclists and Ironman athletes on race nutrition.",
+    sameAs: [
+      "https://www.researchgate.net/profile/Tim-Podlogar",
+    ],
+    whyMatters:
+      "Tim Podlogar is the Slovenian sports nutritionist whose peer-reviewed work on high-rate glucose-fructose fuelling has shaped how the World Tour, Ironman field, and serious age-group athletes now fuel long efforts. His research on carbohydrate transporter saturation, on-bike absorption rates, and gut training matters because it provides the experimental basis for what every modern cyclist's fuelling plan now looks like. For Roadman listeners chasing high-carb fuelling protocols without GI distress, his work is one of the most-cited research starting points in cycling.",
+    keyIdeas: [
+      "Glucose-fructose ratios (typically around 1:0.8) bypass single-transporter saturation and allow 90–120 g/hr absorption.",
+      "Gut training is real and trainable — chronic exposure to high-carb fuelling shifts what the gut can absorb without distress.",
+      "On-bike fuelling is now the single most-improvable nutrition variable for amateur endurance athletes.",
+      "Race-day fuelling has to be rehearsed in long training rides for weeks — gut tolerance is not a race-day decision.",
+      "Periodised fuelling around training (low-carb easy, high-carb hard) supports body-composition goals without compromising sessions.",
+    ],
+    relatedHubs: ["cycling-nutrition"],
+  },
+
+  "dr-michael-gervais": {
+    description:
+      "American high-performance psychologist. Co-founder of Compete to Create with Pete Carroll, performance psychologist for the Seattle Seahawks during their Super Bowl-winning era, and host of the Finding Mastery podcast. Has worked with Olympic gold medallists, World Series champions, and a global roster of corporate leaders.",
+    whyMatters:
+      "Dr Michael Gervais is one of the most-cited high-performance psychologists working today. He worked with Pete Carroll's Seattle Seahawks during their Super Bowl-winning era, with Olympic gold medallists across multiple disciplines, and now hosts the Finding Mastery podcast — one of the most respected interview shows on elite performance. His framework for mindset, deliberate practice, and the relationship between fear and performance has shaped how a generation of professional and amateur athletes prepare for high-stakes events. For Roadman listeners chasing PBs, racing decisions, or just consistency, his work is a primary reference.",
+    keyIdeas: [
+      "High performance is a craft — the practices that produce gold medals are the same practices that produce sustained excellence anywhere.",
+      "Fear is a performance signal, not a stop sign — the goal is to move toward what scares you, not to eliminate the fear itself.",
+      "Mindfulness in sport is not a wellness add-on — it is the discipline that lets you stay present when results matter.",
+      "Identity-led training (you are the kind of person who trains) outperforms outcome-led training (you want a result).",
+      "Recovery from failure is the core skill — the athletes who last are the ones who recover faster, not the ones who fail less.",
+    ],
+    relatedHubs: ["cycling-recovery", "cycling-coaching"],
+  },
+
+  "dr-mark-gordon": {
+    description:
+      "American endocrinologist. Founder of Millennium Health Centers in California, specialising in traumatic brain injury (TBI) and hormonal recovery. Author of clinical materials on the hypothalamic–pituitary axis and post-TBI hormonal management.",
+    worksFor: {
+      name: "Millennium Health Centers",
+      type: "Organization",
+    },
+    whyMatters:
+      "Dr Mark Gordon is a US endocrinologist whose work on traumatic brain injury and hormonal recovery has made him one of the more debated voices in functional endocrinology. His clinics treat post-concussion syndromes, age-related hormonal decline, and the cumulative effects of athletic and military head trauma. For Roadman listeners interested in the male hormonal landscape after 40, the connection between cycling crashes and long-term health, or the realities of testosterone and recovery, his perspective raises questions worth hearing — though several of his framings remain debated within mainstream endocrinology, and his protocols should be considered alongside conventional clinical guidance.",
+    keyIdeas: [
+      "Traumatic brain injury can disrupt the hypothalamic–pituitary axis and produce long-term hormonal deficits.",
+      "Cycling crashes that produce concussion deserve the same workup as other TBI events — most athletes do not get it.",
+      "Free testosterone in masters athletes can be a more useful marker than total testosterone for performance and recovery.",
+      "Hormonal optimisation is not the same as anabolic abuse — but the line is poorly drawn and easily abused.",
+      "Sleep, stress, and energy availability are upstream of most hormonal issues for masters cyclists.",
+    ],
+    relatedHubs: ["cycling-recovery"],
+  },
+
+  "vasilis-anastopoulos": {
+    description:
+      "Greek performance coach. Senior coaching roles at Astana Pro Team and Soudal Quick-Step, and consultant to multiple WorldTour and continental teams. Background in exercise physiology with a focus on Grand Tour preparation, altitude camps, and threshold work.",
+    whyMatters:
+      "Vasilis Anastopoulos is one of the more underrated performance coaches working in the WorldTour. He has held senior coaching roles at Astana Pro Team and Soudal Quick-Step and has consulted with multiple Grand Tour-winning teams on aerobic-base development, threshold work, and altitude camps. His public conversations on the differences between Grand Tour and one-day Classics preparation, and his frameworks for periodising a 9-month racing season, are some of the more practical pro-tour insights in the cycling podcast world. For amateurs trying to understand how a Grand Tour team really structures a year, his work is a primary reference.",
+    keyIdeas: [
+      "Grand Tour preparation is built on multi-week aerobic-base blocks, not on threshold intervals.",
+      "Altitude camps produce repeatable physiological adaptations when sequenced correctly with the racing calendar.",
+      "Classics preparation is closer to track-and-power work than to GC training — the demands shift fundamentally.",
+      "Periodised season planning works backwards from one or two A-races, with everything else as build or recovery.",
+      "Recovery between racing blocks is the limiting factor for season-long form — most amateurs ignore this entirely.",
+    ],
+    relatedHubs: ["cycling-coaching", "cycling-training-plans", "ftp-training"],
+  },
+
+  "alex-howes": {
+    description:
+      "American former professional road cyclist for EF Education–EasyPost. 2019 USA national road race champion, multi-Grand Tour finisher, and one of the public faces of the EF alternative racing calendar. Now retired and active as an alt-racing privateer.",
+    whyMatters:
+      "Alex Howes is the former EF Education–EasyPost rider, 2019 USA national road race champion, and one of the public faces of the EF alternative-calendar project that brought riders like himself, Lachlan Morton, and Mike Woods into Tour Divide, Atlas Mountain Race, and gravel-style events alongside their World Tour duties. Now retired from the road, he is a useful voice on what it actually feels like to transition from a 25-hour-a-week pro programme into a self-directed mix of ultra-endurance, gravel, and amateur racing.",
+    keyIdeas: [
+      "Alt-racing inside a World Tour team unlocked a different audience for cycling — the calendar matters.",
+      "Transition out of the pro peloton is mostly about rebuilding identity, not fitness.",
+      "Gravel and ultra-endurance reinforce the road racer's aerobic capacity — they are not a replacement.",
+      "Self-coached training works after years inside a structured programme — but only if you understand what the programme was actually doing.",
+      "Cycling's audience is broader than the Tour de France — alt-racing is part of how that gets reflected back to fans.",
+    ],
+    relatedHubs: ["cycling-training-plans"],
+  },
+
+  "alex-larson": {
+    description:
+      "American registered dietitian. Founder of Alex Larson Nutrition, specialising in endurance nutrition for cyclists, triathletes, and ultra-endurance athletes. Master's in nutrition; host of the Alex Larson Nutrition Podcast.",
+    worksFor: {
+      name: "Alex Larson Nutrition",
+      type: "Organization",
+    },
+    whyMatters:
+      "Alex Larson is a US registered dietitian who has built one of the most accessible online nutrition practices for endurance athletes. Through Alex Larson Nutrition, the Alex Larson Nutrition Podcast, and her work with cyclists, triathletes, and ultra-endurance athletes, she translates academic nutrition into practical periodised plans for time-crunched amateurs. Her clinical focus on body composition through fuelling, on-bike protocols, and the link between energy availability and performance makes her a primary practical reference for Roadman listeners chasing race weight without losing power.",
+    keyIdeas: [
+      "Body composition change works through fuelling for performance, not through restriction — most athletes get this backwards.",
+      "On-bike carb targets (60–90 g/hr) should be the first nutrition intervention before macros are touched at the table.",
+      "Energy availability after training matters as much as carb intake during it for long-term body composition.",
+      "Race weight is set by training-block periodisation, not by short-term cuts before A-races.",
+      "Female athlete physiology requires fuelling protocols that account for menstrual cycle, perimenopause, and menopause — generic plans miss this.",
+    ],
+    relatedHubs: ["cycling-nutrition", "cycling-weight-loss"],
+  },
+
+  "hannah-otto": {
+    description:
+      "American professional ultra-endurance and marathon mountain biker. Multiple US national marathon MTB champion, set the Kokopelli Trail FKT in 2024 (130 miles, 13 hours, 49 minutes), and races gravel events including Unbound 200.",
+    whyMatters:
+      "Hannah Otto is one of the leading lights in US ultra-endurance and marathon MTB racing — multi-time national marathon MTB champion and holder of the Kokopelli Trail FKT she set in 2024 (130 miles in 13 hours, 49 minutes). She races a mixed calendar of marathon MTB, ultra-distance gravel including Unbound 200, and select FKT projects. For Roadman listeners, her perspective on training for events that mix steep, technical terrain with 8+ hours of pacing is one of the cleanest in the sport.",
+    keyIdeas: [
+      "Marathon MTB and ultra gravel reward repeatable threshold output more than peak FTP.",
+      "Technical terrain is a fitness multiplier — riders who handle rough surfaces well save watts at every transition.",
+      "FKT projects are the ultimate fuelling rehearsal — there is no aid station, no race kitchen, and no second chance.",
+      "Female-specific fuelling and energy availability conversations are still under-served in marathon MTB.",
+      "Recovery between long ultra-endurance days requires the same discipline as a Grand Tour stage racer.",
+    ],
+    relatedHubs: ["cycling-training-plans"],
+  },
+
+  "sofiane-sehili": {
+    description:
+      "French ultra-distance bikepacking and self-supported endurance cyclist. Two-time Transcontinental Race winner (TCR No.7 in 2019, TCR No.10 in 2024) and multi-time finisher of major bikepacking events including the Silk Road Mountain Race.",
+    whyMatters:
+      "Sofiane Sehili is one of the most successful self-supported ultra-distance riders in the world — a two-time Transcontinental Race winner across the TCR No.7 (2019) and TCR No.10 (2024), and a regular podium finisher at the Silk Road Mountain Race and other unsupported events. His perspective on routing, sleep strategy, gear minimalism, and sustainable pacing across 4,000+ km races is one of the most experienced on record. For Roadman listeners thinking about TCR, ATR, or solo bikepacking, his content is a primary practical reference.",
+    keyIdeas: [
+      "Sleep strategy is the single biggest variable in unsupported ultra-distance — pace is downstream of how well you sleep.",
+      "Routing decisions made off the bike often beat watts saved on the bike — efficient lines win unsupported races.",
+      "Gear minimalism is earned through experience, not chosen on a packing list — the right kit is rider-specific.",
+      "Pacing self-supported events requires conservative early discipline — the riders who lead day one rarely lead day six.",
+      "Weather, road quality, and resupply are race-day variables to be planned around, not survived.",
+    ],
+    relatedHubs: ["cycling-training-plans"],
+  },
+
+  "jonas-abrahamsen": {
+    description:
+      "Norwegian professional road cyclist for Uno-X Mobility. Tour de France stage breakaway specialist and 2024 Tour de France polka-dot KOM jersey wearer for multiple stages, with multiple WorldTour-level breakaway and stage-race results.",
+    worksFor: {
+      name: "Uno-X Mobility",
+      type: "SportsTeam",
+    },
+    whyMatters:
+      "Jonas Abrahamsen is the Uno-X Mobility breakaway specialist who became one of the public faces of the 2024 Tour de France through his stage-long efforts in the polka-dot KOM jersey. As one of the leading lights of the Norwegian programme — backed by Olav Bu's performance team — he represents the new generation of riders who have come up through structured Norwegian endurance science rather than the traditional European junior pipeline. For Roadman listeners interested in how the Norwegian model produces World Tour talent, he is one of the most visible recent examples.",
+    keyIdeas: [
+      "Breakaway craft is a discrete skill set — gauging the bunch's appetite and committing 50 km out wins the day.",
+      "Norwegian-system riders combine high aerobic volume with disciplined intensity, producing durability across stage races.",
+      "Body composition and weight management for breakaway riders trade against power output for long, climb-heavy stages.",
+      "Mental approach to long solo efforts is built in training rides that simulate the demand without the cameras.",
+      "Smaller-budget WorldTour teams now have a viable model — selective racing, breakaway specialism, and visible results.",
+    ],
+    relatedHubs: ["cycling-training-plans"],
+  },
+
+  "cory-williams": {
+    description:
+      "American professional road cyclist and co-founder of L39ION of Los Angeles. Multi-time US national criterium champion, advocate for diversity in US cycling, and one of the most followed pro cyclists on social media globally.",
+    whyMatters:
+      "Cory Williams is the co-founder of L39ION of Los Angeles — the team he built with his brother Justin to change who races and watches American cycling. Multi-time US national criterium champion and one of the most followed pro cyclists on social media, he has used his platform to widen the sport's audience, mentor underrepresented riders, and rebuild the credibility of US criterium racing. For Roadman listeners, his perspective on the business of racing, sponsorship, and community-building inside US cycling is uniquely informed.",
+    keyIdeas: [
+      "Criterium racing in the US has cultural and tactical traditions that demand specific training — it is not a road race in miniature.",
+      "Sponsorship and team-building work when riders are personally connected to the brand and the audience.",
+      "Diversity in pro cycling is a pipeline problem — the answer is junior development and visible role models, not just hiring quotas.",
+      "Social media built on personality, not just results, has changed who can sustain a pro career.",
+      "L39ION's model proves that team identity and visible community work can rival big-budget WorldTour squads for engagement.",
+    ],
+    relatedHubs: ["cycling-training-plans"],
+  },
+
+  "mads-wurtz-schmidt": {
+    description:
+      "Danish professional cyclist. Former WorldTour rider with Israel-Premier Tech, 2015 U23 World Time Trial Champion. Now races gravel and breakaway-focused road events across European and US calendars.",
+    whyMatters:
+      "Mads Wurtz Schmidt is the Danish 2015 U23 World Time Trial Champion who built a long WorldTour career on time trial discipline and breakaway craft. After racing for Stölting, Katusha-Alpecin, and Israel-Premier Tech across Grand Tours and Classics, he has pivoted toward gravel and selective road events as a privateer. His perspective on the realities of being a workhorse-tier WorldTour rider — and the transition into post-WorldTour racing — is candid and useful for amateurs trying to understand how pro careers actually work.",
+    keyIdeas: [
+      "Time trial discipline learned at U23 level transfers across the entire pro career — it is the most coachable single skill.",
+      "Workhorse-tier WorldTour life is mostly about consistency and durability, not stage wins.",
+      "Transition from WorldTour to gravel privateer is now a viable career step, not a downshift.",
+      "Breakaway opportunities reward riders who read the race well and commit early — talent is necessary but not sufficient.",
+      "Long-term durability across a 12-year pro career is built on respect for recovery and disciplined off-season strength work.",
+    ],
+    relatedHubs: ["cycling-training-plans"],
+  },
+
+  "james-golding": {
+    description:
+      "British ultra-endurance cyclist and motivational speaker. Two-time cancer survivor, multiple Race Across America (RAAM) finisher, and ambassador for the Macmillan Cancer Support charity. Author of multiple books and a sought-after corporate speaker.",
+    whyMatters:
+      "James Golding is the British ultra-endurance cyclist who has finished Race Across America after surviving cancer twice and a major road accident. His work as a Macmillan Cancer Support ambassador, motivational speaker, and ultra-endurance rider sits at the intersection of physical endurance and post-illness identity. For Roadman listeners thinking about cycling as a comeback from serious illness, or about what motivates people to take on multi-day challenges in the first place, his story is one of the most affecting in modern ultra-endurance.",
+    keyIdeas: [
+      "Comeback fitness after serious illness is months-to-years, not weeks — and the engine often comes back stronger than before.",
+      "Ultra-endurance racing as a fundraising and awareness vehicle matters because it makes invisible health conversations visible.",
+      "Mental resilience built through illness translates directly to multi-day racing — the suffering is familiar.",
+      "RAAM is closer to a sleep-deprivation event than a cycling event — pacing is downstream of recovery strategy.",
+      "Storytelling around cycling matters as much as results — the audience the sport reaches grows with the riders willing to share.",
+    ],
+    relatedHubs: ["cycling-training-plans", "cycling-recovery"],
+  },
+
+  "jack-burke": {
+    description:
+      "Irish-Canadian cyclist and author. Author of How To Become A Pro Cyclist, holder of multiple Strava KOM records on Alpe d'Huez and Stelvio, and one of the most-followed amateur-to-pro pathway documentarians in cycling.",
+    whyMatters:
+      "Jack Burke is the Irish-Canadian rider who turned the question of \"how do you actually become a pro cyclist?\" into a public, documented project. Author of How To Become A Pro Cyclist, holder of multiple Strava KOM records on Alpe d'Huez, Stelvio, and other iconic climbs, and one of the most-followed amateur-to-pro pathway documentarians in cycling. His work matters for Roadman listeners because he answers the questions amateurs actually ask — about racing pathways, training volume, sponsor relationships, and what it really costs to chase a pro contract — with more transparency than the typical pro press cycle allows.",
+    keyIdeas: [
+      "The amateur-to-pro pathway is more accessible than most riders assume — but it requires deliberate, public-facing effort.",
+      "Strava KOMs on iconic climbs are now a credible alternative metric for amateur visibility and sponsor interest.",
+      "Self-funded and self-documented racing models change the economics of trying to turn pro.",
+      "Coaching, fuelling, and equipment for legitimate KOM attempts is a discrete training block, not a ride out.",
+      "Honest writing about the cost of trying to turn pro is rarer than honest writing about succeeding at it.",
+    ],
+    relatedHubs: ["cycling-training-plans"],
+  },
+
   "rosa-kloser": {
     description:
       "German professional gravel and road cyclist, 2024 Unbound Gravel 200 winner and 2025 German gravel national champion. Races both as a gravel privateer and for the CANYON//SRAM zondacrypto road team. PhD researcher in green shipping at Copenhagen Business School.",
@@ -738,96 +1139,6 @@ export const GUEST_PROFILE_OVERRIDES: Record<string, GuestProfileOverride> = {
     relatedHubs: ["cycling-training-plans", "cycling-nutrition"],
   },
 
-  "chris-voss": {
-    description:
-      "Former lead international kidnapping negotiator for the FBI. Founder and CEO of The Black Swan Group. Author of Never Split the Difference: Negotiating As If Your Life Depended On It (HarperBusiness, 2016, with Tahl Raz).",
-    worksFor: {
-      name: "The Black Swan Group",
-      type: "Organization",
-    },
-    sameAs: [
-      "https://en.wikipedia.org/wiki/Chris_Voss_(negotiator)",
-      "https://www.blackswanltd.com",
-    ],
-    whyMatters:
-      "Chris Voss spent 24 years at the FBI, the last decade as the bureau's lead international kidnapping negotiator across more than 150 cases. He left to write Never Split the Difference, which has become a standard text on negotiation in business, law, and high-stakes communication. For cyclists, his framework of tactical empathy, calibrated questions, and 'getting to no' translates directly to the mental side of racing: managing self-talk under pressure, holding nerves in a bunch sprint or technical descent, and the harder coach-athlete and partner-athlete conversations that surround serious training.",
-    keyIdeas: [
-      "Tactical empathy — labelling the other side's emotions out loud — defuses conflict faster than logic or persuasion.",
-      "'No' is the start of a real conversation, not the end. People relax once they have it.",
-      "Calibrated questions ('How am I supposed to do that?') let the other side solve your problem for you.",
-      "The voice you use matters more than the words. The late-night FM DJ voice is your most powerful tool.",
-      "Mirror the last three words the other person said and stay silent — it produces information faster than any direct question.",
-    ],
-    relatedHubs: ["cycling-coaching"],
-  },
-
-  "mark-sisson": {
-    description:
-      "Founder of Mark's Daily Apple and Primal Kitchen (acquired by Kraft Heinz in 2018). Author of The Primal Blueprint (2009) and Two Meals a Day. Former elite marathoner and Ironman triathlete; placed 4th at the 1980 US Olympic Marathon Trials.",
-    worksFor: {
-      name: "Mark's Daily Apple",
-      type: "Organization",
-      url: "https://www.marksdailyapple.com",
-    },
-    sameAs: [
-      "https://en.wikipedia.org/wiki/Mark_Sisson",
-      "https://www.marksdailyapple.com",
-    ],
-    whyMatters:
-      "Mark Sisson is one of the original voices of the ancestral-health movement. After a high-mileage running career that ended with chronic injuries, he reframed endurance training around lower-volume aerobic work, ample fat as fuel, and resistance training — what he calls the Primal Blueprint. For cyclists in their 40s and 50s burning out on chronic mid-zone training, his model of mostly easy aerobic work, sprinkled with short hard efforts and lifting, is one of the most-cited templates for sustainable training without inflammation and joint damage.",
-    keyIdeas: [
-      "Chronic cardio — long sessions in the upper aerobic zone — is a metabolic dead end. Most riders should drop the intensity of their easy days.",
-      "Becoming fat-adapted lets you ride longer at low intensity without depending on mid-ride feeding, and protects glycogen for when it counts.",
-      "Heavy compound strength work twice a week is non-negotiable for endurance athletes after 35.",
-      "Sleep, daylight, and stress management belong in the training plan — they are not lifestyle extras.",
-      "Sprint sessions of 6-10 short maximum efforts with full recovery do more than long threshold work for an aging athlete.",
-    ],
-    relatedHubs: ["cycling-nutrition", "cycling-weight-loss", "cycling-training-plans"],
-  },
-
-  "dr-allen-lim": {
-    description:
-      "Sports physiologist. Founder of Skratch Labs. Former Director of Sports Science for Garmin-Slipstream and RadioShack-Nissan-Trek. PhD in exercise physiology from the University of Colorado Boulder. Co-author of The Feed Zone Cookbook series with chef Biju Thomas.",
-    worksFor: {
-      name: "Skratch Labs",
-      type: "Organization",
-      url: "https://www.skratchlabs.com",
-    },
-    sameAs: [
-      "https://en.wikipedia.org/wiki/Allen_Lim",
-      "https://www.skratchlabs.com",
-    ],
-    whyMatters:
-      "Allen Lim was the World Tour physiologist who quietly rewrote on-bike fuelling. He left academia to work with Garmin-Slipstream and later RadioShack, where his rice-cake-and-real-food approach to feeding pro riders became the template for the modern peloton. The Feed Zone Cookbook turned that work into a kitchen-ready manual for amateurs. Skratch Labs grew out of his frustration with the over-engineered sports drinks of the 2000s — his answer was simpler hydration, real ingredients, and dose tied to sweat rate. Most current thinking on race-day fuelling owes him a footnote.",
-    keyIdeas: [
-      "Real food on the bike — rice cakes, savoury bites — is better tolerated for hours-long efforts than gels alone.",
-      "Hydration is dose-dependent: most amateurs under-drink, then over-correct with electrolytes that taste of nothing real.",
-      "The gut is trainable. Race-day carb tolerance comes from rehearsing high carbohydrate intake in training, not from buying a different gel.",
-      "Sweat rate, not body weight, sets your fluid prescription — and it varies enormously between riders.",
-      "Cooking your own ride food is the highest-leverage nutrition change most amateurs can make — cheaper, kinder on the gut, and more enjoyable.",
-    ],
-    relatedHubs: ["cycling-nutrition"],
-  },
-
-  "dr-andy-pruitt": {
-    description:
-      "Pioneering bike-fit clinician. Founder of the Boulder Center for Sports Medicine (1989) and the BCSM bike-fit programme. Author of Andy Pruitt's Complete Medical Guide for Cyclists (VeloPress).",
-    worksFor: {
-      name: "Boulder Center for Sports Medicine",
-      type: "Organization",
-    },
-    whyMatters:
-      "Andy Pruitt is the clinician most responsible for moving cycling biomechanics into mainstream sports medicine. The Boulder Center for Sports Medicine, which he founded in 1989, became the first US medical clinic with a dedicated bike-fit and cycling-injury programme, and trained a generation of fitters now scattered across pro teams and bike-fit studios worldwide. His Complete Medical Guide for Cyclists is still the most-cited reference on common cycling injuries — knee, lower-back, saddle, foot — and why most of them are bike-fit problems first.",
-    keyIdeas: [
-      "Most overuse injuries in cycling are bike-fit problems disguised as training problems — fit before you train through pain.",
-      "Saddle position drives knee pain more than any other variable. Fix the saddle before you change cleats or shoes.",
-      "Cleat position is a clinical decision, not a fashion choice. Mid-foot cleats are appropriate for some riders, not all.",
-      "Foot stability — arch, forefoot tilt, leg-length — propagates up the chain. A bike fit ignores it at its peril.",
-      "A good bike fit is iterative: small adjustments, ridden for weeks, then revisited. One-shot fits miss the body's adaptation curve.",
-    ],
-    relatedHubs: ["cycling-strength-conditioning"],
-  },
-
   "phil-burt": {
     description:
       "British physiotherapist and bike-fit consultant. Former Lead Physiotherapist for British Cycling and bike-fit consultant to Team Sky / Team INEOS. Founder of Phil Burt Innovation. Author of Bike Fit (Bloomsbury). Worked with Bradley Wiggins, Chris Froome, Geraint Thomas, Victoria Pendleton, and Chris Hoy.",
@@ -845,30 +1156,6 @@ export const GUEST_PROFILE_OVERRIDES: Record<string, GuestProfileOverride> = {
       "A bike fit is a process, not a single session. Every change deserves a few weeks of riding before the next adjustment.",
     ],
     relatedHubs: ["cycling-strength-conditioning", "cycling-coaching"],
-  },
-
-  "yanto-barker": {
-    description:
-      "Former British professional road cyclist. Multiple-time British road race champion. Founder of premium cycling apparel brand Le Col (2011).",
-    worksFor: {
-      name: "Le Col",
-      type: "Organization",
-      url: "https://www.lecol.cc",
-    },
-    sameAs: [
-      "https://en.wikipedia.org/wiki/Yanto_Barker",
-      "https://www.lecol.cc",
-    ],
-    whyMatters:
-      "Yanto Barker raced as a British professional through the 2000s and 2010s, including a long career on the British road racing scene. After retirement he founded Le Col, the British cycling apparel brand that grew from a side project into a sponsor of WorldTour teams and a serious player in premium kit. He is one of the more useful voices for amateurs because he sits on both sides of the experience: the suffering side of being paid to ride a bike, and the commercial side of building a cycling business from scratch.",
-    keyIdeas: [
-      "British domestic racing is a harder school than people credit — long stage events, bad weather, small budgets.",
-      "Kit matters more than amateurs admit, but for thermal regulation and fit rather than for aero or weight savings.",
-      "Building a cycling brand is mostly about endurance — staying credible to riders for a decade is harder than launching well.",
-      "The amateur-to-pro pipeline in the UK still relies heavily on individual sponsorships and small teams; that has not been fixed.",
-      "Most amateurs underestimate how much a long, structured base block changes the second half of the season.",
-    ],
-    relatedHubs: ["cycling-training-plans"],
   },
 
   "uli-schoberer": {
@@ -890,25 +1177,6 @@ export const GUEST_PROFILE_OVERRIDES: Record<string, GuestProfileOverride> = {
       "Hardware standards mature slowly because each generation of riders refuses to give up the metric they trained on.",
     ],
     relatedHubs: ["ftp-training"],
-  },
-
-  "laurens-ten-dam": {
-    description:
-      "Dutch former professional cyclist. Raced for Rabobank, Belkin/LottoNL-Jumbo, Sunweb and CCC. Multiple top-10 Tour de France finishes. Now a gravel and ultra-endurance rider, and co-host of the Live Slow Ride Fast podcast.",
-    sameAs: [
-      "https://en.wikipedia.org/wiki/Laurens_ten_Dam",
-      "https://www.procyclingstats.com/rider/laurens-ten-dam",
-    ],
-    whyMatters:
-      "Laurens Ten Dam was one of the Dutch generation that bridged the post-Rabobank era of pro cycling — twenty years on the World Tour, multiple Tour de France top-10s, and a reputation as one of the most resilient climbers in the bunch. Since retiring he has become one of the most public examples of the World-Tour-to-gravel pipeline, racing Unbound, the Migration Gravel Race, and ultra-endurance events while running the Live Slow Ride Fast podcast. He is the rider many amateurs follow when they want to see how a pro re-organises their training around long, social, mostly-Zone-2 riding.",
-    keyIdeas: [
-      "Twenty years of World Tour racing is mostly Zone 2 with sharp days woven through — amateurs who copy the sharp days and skip the volume burn out.",
-      "Mental durability on long days is the biggest differentiator at the top of stage racing — the engine is similar at that level.",
-      "The transition from road to gravel is more cultural than physiological — the engine carries over; the mindset is the work.",
-      "Eating enough is the most-broken habit in masters and amateur cycling. Most riders under-fuel chronically.",
-      "A rest day is a training day. The riders who keep going for decades take rest seriously.",
-    ],
-    relatedHubs: ["cycling-training-plans", "cycling-nutrition"],
   },
 };
 
