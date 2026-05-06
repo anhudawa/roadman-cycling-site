@@ -325,6 +325,16 @@ export const GUEST_PROFILE_OVERRIDES: Record<string, GuestProfileOverride> = {
       "https://www.linkedin.com/in/john-wakefield-a7449785/",
       "https://www.trainingpeaks.com/coach/john-sciencetosport",
     ],
+    whyMatters:
+      "John Wakefield is the South African-born coach and bike fitter who runs Science to Sport in Girona — one of the leading lab-to-bike performance facilities in cycling — and now serves as Director of Coaching & Sports Science at Red Bull–Bora–Hansgrohe. He spent four seasons as Performance Coordinator and Coach at UAE Team Emirates working alongside the Pogačar-era programme, and has coached riders from amateur to Grand Tour level using a metabolic-testing-led methodology. His work matters because he is one of the few coaches who systematically translates lab data — VO2max, Fat Max, lactate response — into the actual training week amateurs and pros ride.",
+    keyIdeas: [
+      "Lab-based metabolic testing reveals zone errors that FTP-derived calculations always miss.",
+      "Most amateurs ride too hard on easy days because their power-derived Zone 2 is set too high.",
+      "Aerobic-base deficits show up as second-half fade on rides over 2 hours — not on 20-minute tests.",
+      "Bike fit is a performance variable, not a comfort one — the Girona lab combines fit and physiology testing on the same day.",
+      "Pro and amateur training principles converge on the same physiology — the difference is the volume and the recovery.",
+    ],
+    relatedHubs: ["cycling-coaching", "cycling-training-plans", "ftp-training"],
   },
 
   "david-dunne": {
@@ -339,6 +349,16 @@ export const GUEST_PROFILE_OVERRIDES: Record<string, GuestProfileOverride> = {
       "https://www.researchgate.net/profile/David-Dunne-9",
       "https://www.hexis.live/blog/meet-the-team-david-dunne",
     ],
+    whyMatters:
+      "David Dunne is the performance nutritionist behind Hexis, the personalised sports-nutrition platform used by World Tour cyclists, Premier League clubs, NBA franchises, Super League sides, and Ryder Cup Team Europe. With a PhD in behaviour change, design thinking, and technology innovation in sports nutrition, and IOC alumnus credentials, he sits at the intersection of academic research and practical application. His work matters because he turned periodised nutrition — matching carb intake to training load day by day — from a coaching idea into a measurable system used by hundreds of elite athletes and tens of thousands of amateurs.",
+    keyIdeas: [
+      "Carbohydrate periodisation matches daily intake to training load — it is not low-carb, it is right-carb.",
+      "Energy availability is the unsung lever for body-composition change and long-term training durability.",
+      "Fuelling around training matters more than total daily macro targets — the timing changes the adaptation.",
+      "Behaviour change in nutrition is a design problem — make the right thing easy and the wrong thing inconvenient.",
+      "Personalised plans outperform generic ones at every level, but only if they are actually used — adherence is the limiting factor.",
+    ],
+    relatedHubs: ["cycling-nutrition", "cycling-weight-loss"],
   },
 
   "alan-murchison": {
@@ -902,6 +922,55 @@ export const GUEST_PROFILE_OVERRIDES: Record<string, GuestProfileOverride> = {
       "Periodised fuelling around training (low-carb easy, high-carb hard) supports body-composition goals without compromising sessions.",
     ],
     relatedHubs: ["cycling-nutrition"],
+  },
+
+  "dr-michael-gervais": {
+    description:
+      "American high-performance psychologist. Co-founder of Compete to Create with Pete Carroll, performance psychologist for the Seattle Seahawks during their Super Bowl-winning era, and host of the Finding Mastery podcast. Has worked with Olympic gold medallists, World Series champions, and a global roster of corporate leaders.",
+    whyMatters:
+      "Dr Michael Gervais is one of the most-cited high-performance psychologists working today. He worked with Pete Carroll's Seattle Seahawks during their Super Bowl-winning era, with Olympic gold medallists across multiple disciplines, and now hosts the Finding Mastery podcast — one of the most respected interview shows on elite performance. His framework for mindset, deliberate practice, and the relationship between fear and performance has shaped how a generation of professional and amateur athletes prepare for high-stakes events. For Roadman listeners chasing PBs, racing decisions, or just consistency, his work is a primary reference.",
+    keyIdeas: [
+      "High performance is a craft — the practices that produce gold medals are the same practices that produce sustained excellence anywhere.",
+      "Fear is a performance signal, not a stop sign — the goal is to move toward what scares you, not to eliminate the fear itself.",
+      "Mindfulness in sport is not a wellness add-on — it is the discipline that lets you stay present when results matter.",
+      "Identity-led training (you are the kind of person who trains) outperforms outcome-led training (you want a result).",
+      "Recovery from failure is the core skill — the athletes who last are the ones who recover faster, not the ones who fail less.",
+    ],
+    relatedHubs: ["cycling-recovery", "cycling-coaching"],
+  },
+
+  "dr-mark-gordon": {
+    description:
+      "American endocrinologist. Founder of Millennium Health Centers in California, specialising in traumatic brain injury (TBI) and hormonal recovery. Author of clinical materials on the hypothalamic–pituitary axis and post-TBI hormonal management.",
+    worksFor: {
+      name: "Millennium Health Centers",
+      type: "Organization",
+    },
+    whyMatters:
+      "Dr Mark Gordon is a US endocrinologist whose work on traumatic brain injury and hormonal recovery has made him one of the more debated voices in functional endocrinology. His clinics treat post-concussion syndromes, age-related hormonal decline, and the cumulative effects of athletic and military head trauma. For Roadman listeners interested in the male hormonal landscape after 40, the connection between cycling crashes and long-term health, or the realities of testosterone and recovery, his perspective raises questions worth hearing — though several of his framings remain debated within mainstream endocrinology, and his protocols should be considered alongside conventional clinical guidance.",
+    keyIdeas: [
+      "Traumatic brain injury can disrupt the hypothalamic–pituitary axis and produce long-term hormonal deficits.",
+      "Cycling crashes that produce concussion deserve the same workup as other TBI events — most athletes do not get it.",
+      "Free testosterone in masters athletes can be a more useful marker than total testosterone for performance and recovery.",
+      "Hormonal optimisation is not the same as anabolic abuse — but the line is poorly drawn and easily abused.",
+      "Sleep, stress, and energy availability are upstream of most hormonal issues for masters cyclists.",
+    ],
+    relatedHubs: ["cycling-recovery"],
+  },
+
+  "vasilis-anastopoulos": {
+    description:
+      "Greek performance coach. Senior coaching roles at Astana Pro Team and Soudal Quick-Step, and consultant to multiple WorldTour and continental teams. Background in exercise physiology with a focus on Grand Tour preparation, altitude camps, and threshold work.",
+    whyMatters:
+      "Vasilis Anastopoulos is one of the more underrated performance coaches working in the WorldTour. He has held senior coaching roles at Astana Pro Team and Soudal Quick-Step and has consulted with multiple Grand Tour-winning teams on aerobic-base development, threshold work, and altitude camps. His public conversations on the differences between Grand Tour and one-day Classics preparation, and his frameworks for periodising a 9-month racing season, are some of the more practical pro-tour insights in the cycling podcast world. For amateurs trying to understand how a Grand Tour team really structures a year, his work is a primary reference.",
+    keyIdeas: [
+      "Grand Tour preparation is built on multi-week aerobic-base blocks, not on threshold intervals.",
+      "Altitude camps produce repeatable physiological adaptations when sequenced correctly with the racing calendar.",
+      "Classics preparation is closer to track-and-power work than to GC training — the demands shift fundamentally.",
+      "Periodised season planning works backwards from one or two A-races, with everything else as build or recovery.",
+      "Recovery between racing blocks is the limiting factor for season-long form — most amateurs ignore this entirely.",
+    ],
+    relatedHubs: ["cycling-coaching", "cycling-training-plans", "ftp-training"],
   },
 
   "rosa-kloser": {
