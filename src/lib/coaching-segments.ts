@@ -429,6 +429,44 @@ export const COACHING_SEGMENTS: Record<string, SegmentData> = {
     ],
     serviceType: "Cycling Coaching for Beginner Cyclists",
     breakerWord: "BEGINNER",
+    relatedResources: [
+      {
+        label: "FTP Zones Calculator",
+        href: "/tools/ftp-zones",
+        description:
+          "Generate disciplined training zones from your current FTP. The Zone 2 cap that stops grey-zone drift starts here.",
+      },
+      {
+        label: "HR Zones Calculator",
+        href: "/tools/hr-zones",
+        description:
+          "Build heart-rate zones if you're starting on HR alone — workable structure before a power meter is worth the spend.",
+      },
+      {
+        label: "Cycling Base Training Guide",
+        href: "/blog/cycling-base-training-guide",
+        description:
+          "What real Zone 2 base actually looks like, why most beginners skip it, and how the engine you build here decides the next two years.",
+      },
+      {
+        label: "Cycling Coaching for Beginners — When Ready",
+        href: "/blog/cycling-coaching-for-beginners-when-ready",
+        description:
+          "When structured coaching is worth it as a beginner, when self-coaching with a plan is enough, and how to tell which side of the line you're on.",
+      },
+      {
+        label: "Cycling Interval Training for Beginners",
+        href: "/blog/cycling-interval-training-beginners",
+        description:
+          "Plain-English entry to structured intervals — what each session does, why it works, when to add it to your week.",
+      },
+      {
+        label: "Beginner Cyclist Topic Hub",
+        href: "/topics/cycling-beginners",
+        description:
+          "Long-form library of beginner-focused training, fuelling, and equipment guides — the curated path through the first 24 months.",
+      },
+    ],
   },
 
   women: {
@@ -574,6 +612,44 @@ export const COACHING_SEGMENTS: Record<string, SegmentData> = {
     ],
     serviceType: "Cycling Coaching for Women",
     breakerWord: "WOMEN",
+    relatedResources: [
+      {
+        label: "Energy Availability Calculator",
+        href: "/tools/energy-availability",
+        description:
+          "Calculate energy availability against training load. Most female cyclists drift under the threshold without realising — the single number that decides whether power gets built or lost.",
+      },
+      {
+        label: "FTP Zones Calculator",
+        href: "/tools/ftp-zones",
+        description:
+          "Generate training zones built around your current FTP — the disciplined Zone 2 cap that stops grey-zone drift in the luteal phase when HR can mislead.",
+      },
+      {
+        label: "Menopause and Cycling Performance",
+        href: "/blog/menopause-cycling-performance",
+        description:
+          "How perimenopause and menopause meaningfully change training response — and the protocol shifts that get you faster, not slower, through the transition.",
+      },
+      {
+        label: "Cycling After 40: Recovery Report",
+        href: "/blog/cycling-after-40-recovery-report-2026",
+        description:
+          "Recovery data from 40+ cyclists. Female athletes face a steeper recovery cost on the same load — what the numbers actually show.",
+      },
+      {
+        label: "Strength Training: Minimum Effective Dose",
+        href: "/blog/strength-training-cyclists-minimum-effective-dose",
+        description:
+          "Targeted, cycling-specific strength work — split squats, hip hinges, single-leg work, hip thrusts, core. The sessions that protect type-2 fibres and bone density without taking over your week.",
+      },
+      {
+        label: "Cycling Body Composition Guide",
+        href: "/blog/cycling-body-composition-guide",
+        description:
+          "Body composition through fuelling and training — not restriction. The protocol that protects power and ends the diet-and-rebound cycle.",
+      },
+    ],
   },
 
   "busy-professionals": {
@@ -719,6 +795,44 @@ export const COACHING_SEGMENTS: Record<string, SegmentData> = {
     ],
     serviceType: "Cycling Coaching for Busy Professionals",
     breakerWord: "BUSY",
+    relatedResources: [
+      {
+        label: "Plateau Diagnostic",
+        href: "/plateau",
+        description:
+          "Three-minute diagnostic that pins down exactly why your power has flatlined — and what your next 12 weeks should focus on.",
+      },
+      {
+        label: "FTP Zones Calculator",
+        href: "/tools/ftp-zones",
+        description:
+          "Generate the training zones every busy-professional session is paced from. Indoor sweet spot and VO2max work needs the numbers right.",
+      },
+      {
+        label: "Indoor Cycling Training Tips",
+        href: "/blog/cycling-indoor-training-tips",
+        description:
+          "Getting the most adaptation out of 60-min indoor sessions. Why indoor isn't a downgrade for time-crunched riders — it's actively the right tool.",
+      },
+      {
+        label: "Indoor vs Outdoor Cycling Training",
+        href: "/blog/indoor-vs-outdoor-cycling-training-when-each-wins",
+        description:
+          "When each modality earns its slot in a 6-8 hour week. The trade-offs that decide which session goes where.",
+      },
+      {
+        label: "Cycling Zwift Training Guide",
+        href: "/blog/cycling-zwift-training-guide",
+        description:
+          "How to use Zwift inside a coached structure rather than as the structure. Free riding, structured workouts, and races — periodised properly.",
+      },
+      {
+        label: "Time-Crunched Cyclist Guide",
+        href: "/blog/time-crunched-cyclist-8-hours-week",
+        description:
+          "Long-form framework for 5-8 hour weeks — distribution, weekday programming, weekend long ride, and the periodisation that respects real life.",
+      },
+    ],
   },
 
   sportives: {
@@ -1206,6 +1320,50 @@ export const COACHING_SEGMENTS: Record<string, SegmentData> = {
     ],
     serviceType: "Cycling Coaching for Over-50 Cyclists",
     breakerWord: "OVER 50",
+    relatedResources: [
+      {
+        label: "Masters Recovery Score",
+        href: "/tools/masters-recovery-score",
+        description:
+          "Free 0–100 recovery audit calibrated for cyclists 40+. Four inputs, one number, a calibrated recommendation that drives this week's training.",
+      },
+      {
+        label: "Masters FTP Benchmark",
+        href: "/tools/masters-ftp-benchmark",
+        description:
+          "See where your FTP sits among trained masters cyclists in your age band. 50-54, 55-59, 60+ — the trajectory matters more than the absolute number.",
+      },
+      {
+        label: "Cycling Over 50: Training Framework",
+        href: "/blog/cycling-over-50-training",
+        description:
+          "How the training week shifts after 50 — polarised distribution, two strength sessions, deeper recovery, and the architecture that delivers year-on-year progress.",
+      },
+      {
+        label: "Joe Friel: Fast After 50",
+        href: "/blog/joe-friel-fast-after-50-cycling-method",
+        description:
+          "Joe Friel's framework for masters cyclists — what he prescribes, why it works, and how it translates to coached weekly structure.",
+      },
+      {
+        label: "Strength Training for Cyclists Over 50",
+        href: "/blog/strength-training-cyclists-over-50",
+        description:
+          "Cycling-specific resistance work — split squats, hip hinges, single-leg work, hip thrusts, core. Controlled, scaled load that protects type-2 fibres, bone density, and the watts you've already built.",
+      },
+      {
+        label: "Masters Recovery Audit",
+        href: "/blog/masters-recovery-audit-seven-things-to-check",
+        description:
+          "Seven recovery markers to check when training stops landing — sleep, HRV, resting HR, fuelling, stress, illness frequency, and motivation.",
+      },
+      {
+        label: "Polarised Training Guide",
+        href: "/blog/polarised-training-cycling-guide",
+        description:
+          "Seiler's polarised model applied to over-50 cyclists. Why 85/15 beats 80/20 after 50 and how to police true Zone 2 when grey-zone temptation is real.",
+      },
+    ],
   },
 
   "time-crunched": {
@@ -1546,6 +1704,44 @@ export const COACHING_SEGMENTS: Record<string, SegmentData> = {
     ],
     serviceType: "Cycling Coaching for Post-Injury Return",
     breakerWord: "REBUILD",
+    relatedResources: [
+      {
+        label: "FTP Zones Calculator",
+        href: "/tools/ftp-zones",
+        description:
+          "Recalibrate your training zones from your CURRENT FTP — not your pre-injury one. The Zone 2 cap that holds the early comeback steady.",
+      },
+      {
+        label: "HR Zones Calculator",
+        href: "/tools/hr-zones",
+        description:
+          "Build heart-rate zones for the early comeback weeks when power may not be on the bike yet. Strict caps drive the conservative start.",
+      },
+      {
+        label: "Comeback Cyclist 12-Week Return Plan",
+        href: "/blog/comeback-cyclist-12-week-return-plan",
+        description:
+          "Block-by-block structure for the first 12 weeks back — volume, intensity, strength, and how each block earns the next.",
+      },
+      {
+        label: "Returning to Cycling After a Break",
+        href: "/blog/cycling-returning-after-break",
+        description:
+          "Principles of progressive loading after time off. How to start lower, build slower, and avoid the two traps that derail most returns.",
+      },
+      {
+        label: "James Golding: Race Across America Comeback",
+        href: "/blog/james-golding-race-across-america-comeback",
+        description:
+          "A real comeback from serious injury and illness to ultra-endurance racing. The role structure, patience, and identity played in the rebuild.",
+      },
+      {
+        label: "Strength Training for Cyclists",
+        href: "/blog/strength-training-cyclists-over-50",
+        description:
+          "Cycling-specific strength work integrated from week one — split squats, hip hinges, single-leg work, core. Controlled load, progressed gradually, addressing the imbalances injury creates.",
+      },
+    ],
   },
 
   "weight-loss": {
@@ -1691,6 +1887,56 @@ export const COACHING_SEGMENTS: Record<string, SegmentData> = {
     ],
     serviceType: "Cycling Coaching for Body Composition",
     breakerWord: "FUEL",
+    relatedResources: [
+      {
+        label: "Race Weight Calculator",
+        href: "/tools/race-weight",
+        description:
+          "Honest race-weight target for climbing-heavy events — built around fuelled training and held performance, not crash dieting into the date.",
+      },
+      {
+        label: "Energy Availability Calculator",
+        href: "/tools/energy-availability",
+        description:
+          "Calculate energy availability against training load. The single number that decides whether body composition change protects power or kills it.",
+      },
+      {
+        label: "Fuelling Calculator",
+        href: "/tools/fuelling",
+        description:
+          "Carb-per-hour targets for fuelled rides. The opposite of fasted training — and the protocol that actually drops body fat without dropping power.",
+      },
+      {
+        label: "Cycling Weight Loss: Fuel for the Work Required",
+        href: "/blog/cycling-weight-loss-fuel-for-the-work-required",
+        description:
+          "The reframe that ends diet-and-rebound cycles. Eat to support training, not to punish it — body composition follows.",
+      },
+      {
+        label: "Cycling Weight Loss Mistakes",
+        href: "/blog/cycling-weight-loss-mistakes",
+        description:
+          "The five patterns that wreck cyclist weight loss — fasted rides, calorie tracking, low-carb training, daily weigh-ins, restriction-on-restriction.",
+      },
+      {
+        label: "The Fasted Riding Myth",
+        href: "/blog/cycling-fasted-riding-myth",
+        description:
+          "Why fasted rides bonk training, kill power, and don't accelerate fat loss meaningfully. The science the internet's diet content keeps ignoring.",
+      },
+      {
+        label: "Eating More, Weight Loss, Off-Bike Effects",
+        href: "/blog/eating-more-weight-loss-off-bike-effects",
+        description:
+          "The protocol Anthony used to lose 7kg in 12 weeks while eating more food than he had in years — and why power went up, not down.",
+      },
+      {
+        label: "Cycling Body Composition Guide",
+        href: "/blog/cycling-body-composition-guide",
+        description:
+          "DEXA, calipers, and the metrics that actually tell the body composition story. Why scale weight conflates muscle, fat, water, and glycogen — and what to track instead.",
+      },
+    ],
   },
 
   comeback: {

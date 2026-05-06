@@ -375,6 +375,40 @@ export const GUEST_PROFILE_OVERRIDES: Record<string, GuestProfileOverride> = {
     relatedHubs: ["cycling-nutrition", "cycling-weight-loss"],
   },
 
+  "andy-galpin": {
+    description:
+      "Professor of Kinesiology at California State University, Fullerton, and one of the most cited muscle physiologists in the world. Founder of the Center for Sport Performance and the Biochemistry & Molecular Exercise Laboratory at Cal State Fullerton, co-author of more than ninety peer-reviewed papers on skeletal muscle, and host of the Perform with Dr Andy Galpin podcast.",
+    worksFor: {
+      name: "California State University, Fullerton",
+      type: "CollegeOrUniversity",
+      url: "https://hhd.fullerton.edu/knes/",
+    },
+    sameAs: [
+      "https://www.andygalpin.com/",
+      "https://hhd.fullerton.edu/knes/faculty-staff/fulltime-faculty/andy-galpin.html",
+      "https://www.performpodcast.com/",
+      "https://www.youtube.com/@drandygalpin",
+      "https://www.instagram.com/drandygalpin/",
+    ],
+    featuredArticles: [
+      "andy-galpin-fast-twitch-fibres-cyclist-after-40",
+      "cycling-strength-training-guide",
+      "cycling-training-plan-masters-over-40",
+      "masters-cyclist-guide-getting-faster-after-40",
+      "cycling-over-40-getting-faster",
+    ],
+    whyMatters:
+      "Andy Galpin is the muscle physiologist most masters cyclists have been quoting without realising it. He runs the Center for Sport Performance and the Biochemistry & Molecular Exercise Laboratory at Cal State Fullerton, has co-authored more than ninety peer-reviewed papers on skeletal muscle, hypertrophy, fibre-type adaptation, and recovery, and consults for athletes across MMA, motorsport, the NBA, the NFL, and Olympic sport. If you have heard a coaching argument in the last three years that turned on type II fibre atrophy, velocity-based training, or protein dose timing for older athletes, the original work behind that argument almost certainly has Andy's name on it. He is also the rare academic whose communication ability matches his research credentials — his Perform podcast and Huberman Lab guest appearances have done more to translate skeletal muscle physiology into amateur-athlete language than any textbook ever has.",
+    keyIdeas: [
+      "Power output declines faster than maximal strength, and strength declines faster than muscle mass — the neuromuscular system is the first thing to age in an athlete.",
+      "Type II (fast-twitch) fibres can shrink 10 to 40 percent in older adults compared to younger controls; type I fibres are relatively preserved, which is why endurance riding alone protects the wrong half of the system.",
+      "Velocity-based training matters as much as load — moving a moderate weight fast does more for an older athlete's nervous system than grinding a heavier weight slowly.",
+      "Daily protein for trained masters athletes should sit at 1.6 to 2.2 grams per kilogram, distributed across four meals, with at least one dose above 35 grams to clear the leucine threshold for older muscle.",
+      "Recovery is the active process that turns training into adaptation — sleep, stress regulation, and the gap between hard sessions determine whether work compounds or just accumulates as fatigue.",
+    ],
+    relatedHubs: ["cycling-strength-conditioning", "cycling-recovery"],
+  },
+
   "rosa-kloser": {
     description:
       "German professional gravel and road cyclist, 2024 Unbound Gravel 200 winner and 2025 German gravel national champion. Races both as a gravel privateer and for the CANYON//SRAM zondacrypto road team. PhD researcher in green shipping at Copenhagen Business School.",

@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Header, Footer, Section, Container } from "@/components/layout";
 import { ScrollReveal, GradientText } from "@/components/ui";
 import { JsonLd } from "@/components/seo/JsonLd";
+import { SoftwareApplicationSchema } from "@/components/seo/SoftwareApplicationSchema";
 import { CoachingAssessment } from "./CoachingAssessment";
 
 export const metadata: Metadata = {
@@ -31,6 +32,17 @@ export default function AssessmentPage() {
           description: "A 5-question diagnostic to determine if personalised cycling coaching would accelerate your goals.",
           url: "https://roadmancycling.com/assessment",
         }}
+      />
+      <SoftwareApplicationSchema
+        name="Roadman Coaching Assessment"
+        description="Free 5-question coaching readiness diagnostic. Returns an instant verdict on whether personalised cycling coaching would accelerate your goals — or whether you should wait."
+        url="https://roadmancycling.com/assessment"
+        features={[
+          "5 questions, 60-second flow",
+          "Instant readiness verdict — no email gate",
+          "Routes ready riders to coaching, not-yet-ready riders to free resources",
+          "Built around the same five pillars Roadman coaching uses",
+        ]}
       />
       <JsonLd
         data={{
