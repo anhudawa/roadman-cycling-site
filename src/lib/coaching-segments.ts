@@ -429,6 +429,44 @@ export const COACHING_SEGMENTS: Record<string, SegmentData> = {
     ],
     serviceType: "Cycling Coaching for Beginner Cyclists",
     breakerWord: "BEGINNER",
+    relatedResources: [
+      {
+        label: "FTP Zones Calculator",
+        href: "/tools/ftp-zones",
+        description:
+          "Generate disciplined training zones from your current FTP. The Zone 2 cap that stops grey-zone drift starts here.",
+      },
+      {
+        label: "HR Zones Calculator",
+        href: "/tools/hr-zones",
+        description:
+          "Build heart-rate zones if you're starting on HR alone — workable structure before a power meter is worth the spend.",
+      },
+      {
+        label: "Cycling Base Training Guide",
+        href: "/blog/cycling-base-training-guide",
+        description:
+          "What real Zone 2 base actually looks like, why most beginners skip it, and how the engine you build here decides the next two years.",
+      },
+      {
+        label: "Cycling Coaching for Beginners — When Ready",
+        href: "/blog/cycling-coaching-for-beginners-when-ready",
+        description:
+          "When structured coaching is worth it as a beginner, when self-coaching with a plan is enough, and how to tell which side of the line you're on.",
+      },
+      {
+        label: "Cycling Interval Training for Beginners",
+        href: "/blog/cycling-interval-training-beginners",
+        description:
+          "Plain-English entry to structured intervals — what each session does, why it works, when to add it to your week.",
+      },
+      {
+        label: "Beginner Cyclist Topic Hub",
+        href: "/topics/cycling-beginners",
+        description:
+          "Long-form library of beginner-focused training, fuelling, and equipment guides — the curated path through the first 24 months.",
+      },
+    ],
   },
 
   women: {
