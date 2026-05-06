@@ -612,6 +612,44 @@ export const COACHING_SEGMENTS: Record<string, SegmentData> = {
     ],
     serviceType: "Cycling Coaching for Women",
     breakerWord: "WOMEN",
+    relatedResources: [
+      {
+        label: "Energy Availability Calculator",
+        href: "/tools/energy-availability",
+        description:
+          "Calculate energy availability against training load. Most female cyclists drift under the threshold without realising — the single number that decides whether power gets built or lost.",
+      },
+      {
+        label: "FTP Zones Calculator",
+        href: "/tools/ftp-zones",
+        description:
+          "Generate training zones built around your current FTP — the disciplined Zone 2 cap that stops grey-zone drift in the luteal phase when HR can mislead.",
+      },
+      {
+        label: "Menopause and Cycling Performance",
+        href: "/blog/menopause-cycling-performance",
+        description:
+          "How perimenopause and menopause meaningfully change training response — and the protocol shifts that get you faster, not slower, through the transition.",
+      },
+      {
+        label: "Cycling After 40: Recovery Report",
+        href: "/blog/cycling-after-40-recovery-report-2026",
+        description:
+          "Recovery data from 40+ cyclists. Female athletes face a steeper recovery cost on the same load — what the numbers actually show.",
+      },
+      {
+        label: "Strength Training: Minimum Effective Dose",
+        href: "/blog/strength-training-cyclists-minimum-effective-dose",
+        description:
+          "Targeted, cycling-specific strength work — split squats, hip hinges, single-leg work, hip thrusts, core. The sessions that protect type-2 fibres and bone density without taking over your week.",
+      },
+      {
+        label: "Cycling Body Composition Guide",
+        href: "/blog/cycling-body-composition-guide",
+        description:
+          "Body composition through fuelling and training — not restriction. The protocol that protects power and ends the diet-and-rebound cycle.",
+      },
+    ],
   },
 
   "busy-professionals": {
