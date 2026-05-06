@@ -1887,6 +1887,56 @@ export const COACHING_SEGMENTS: Record<string, SegmentData> = {
     ],
     serviceType: "Cycling Coaching for Body Composition",
     breakerWord: "FUEL",
+    relatedResources: [
+      {
+        label: "Race Weight Calculator",
+        href: "/tools/race-weight",
+        description:
+          "Honest race-weight target for climbing-heavy events — built around fuelled training and held performance, not crash dieting into the date.",
+      },
+      {
+        label: "Energy Availability Calculator",
+        href: "/tools/energy-availability",
+        description:
+          "Calculate energy availability against training load. The single number that decides whether body composition change protects power or kills it.",
+      },
+      {
+        label: "Fuelling Calculator",
+        href: "/tools/fuelling",
+        description:
+          "Carb-per-hour targets for fuelled rides. The opposite of fasted training — and the protocol that actually drops body fat without dropping power.",
+      },
+      {
+        label: "Cycling Weight Loss: Fuel for the Work Required",
+        href: "/blog/cycling-weight-loss-fuel-for-the-work-required",
+        description:
+          "The reframe that ends diet-and-rebound cycles. Eat to support training, not to punish it — body composition follows.",
+      },
+      {
+        label: "Cycling Weight Loss Mistakes",
+        href: "/blog/cycling-weight-loss-mistakes",
+        description:
+          "The five patterns that wreck cyclist weight loss — fasted rides, calorie tracking, low-carb training, daily weigh-ins, restriction-on-restriction.",
+      },
+      {
+        label: "The Fasted Riding Myth",
+        href: "/blog/cycling-fasted-riding-myth",
+        description:
+          "Why fasted rides bonk training, kill power, and don't accelerate fat loss meaningfully. The science the internet's diet content keeps ignoring.",
+      },
+      {
+        label: "Eating More, Weight Loss, Off-Bike Effects",
+        href: "/blog/eating-more-weight-loss-off-bike-effects",
+        description:
+          "The protocol Anthony used to lose 7kg in 12 weeks while eating more food than he had in years — and why power went up, not down.",
+      },
+      {
+        label: "Cycling Body Composition Guide",
+        href: "/blog/cycling-body-composition-guide",
+        description:
+          "DEXA, calipers, and the metrics that actually tell the body composition story. Why scale weight conflates muscle, fat, water, and glycogen — and what to track instead.",
+      },
+    ],
   },
 
   comeback: {
