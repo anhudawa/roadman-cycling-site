@@ -73,6 +73,8 @@ const NAME_ALIASES: Record<string, string> = {
   "Professor Stephen Seiler": "Stephen Seiler",
   "Prof Seiler": "Stephen Seiler",
   "Prof Tim Spector": "Tim Spector",
+  "Dr Andy Galpin": "Andy Galpin",
+  "Professor Andy Galpin": "Andy Galpin",
   "Dr Berry": "Dr Ken Berry",
   "Dr Gordan": "Dr Mark Gordon",
   "Dr Gervais": "Dr Michael Gervais",
@@ -109,6 +111,7 @@ const KNOWN_CREDENTIALS: Record<string, string> = {
   "Alexey Vermeulen": "Former WorldTour rider, professional gravel racer",
   "Alistair Brownlee": "Olympic triathlon gold medallist",
   "André Greipel": "Grand Tour sprint legend, 22 Grand Tour stage wins",
+  "Andy Galpin": "Professor of kinesiology, muscle physiologist, host of Perform with Dr Andy Galpin",
   "Andy McGrath": "Cycling journalist, author of Lanterne Rouge",
   "Aron D'Souza": "Founder of the Enhanced Games",
   "Ben Hoffman": "Professional triathlete, Ironman podium finisher",
@@ -207,6 +210,7 @@ const GUEST_PILLAR_MAP: Record<string, ContentPillar> = {
   "Derek Teel": "strength",
   "Courtney Conley": "strength",
   "Dr Andy Pruitt": "strength",
+  "Andy Galpin": "strength",
 
   // Recovery — psychology, mindset, wellness, hormones
   "Chris Voss": "recovery",
@@ -272,6 +276,7 @@ const GUEST_PROMINENCE: Record<string, number> = {
   "Alistair Brownlee": 85,
   "Valtteri Bottas": 83,
   "Dan Bigham": 80,
+  "Andy Galpin": 79,
   "Joe Friel": 78,
   "André Greipel": 76,
   "George Hincapie": 75,
@@ -360,6 +365,7 @@ const GUEST_TAGS: Record<string, GuestTag[]> = {
   "David Dunne": ["science"],
   "Sam Impey": ["science"],
   "Tim Podlogar": ["science"],
+  "Andy Galpin": ["science"],
 
   // Industry
   "Uli Schoberer": ["industry"],
