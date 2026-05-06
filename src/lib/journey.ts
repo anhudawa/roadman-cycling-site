@@ -168,7 +168,7 @@ function scorePost(
   if (post.pillar === input.pillar) score += 10;
 
   const inputKeywords = (input.keywords ?? []).map((k) => k.toLowerCase());
-  const postKeywords = post.keywords.map((k) => k.toLowerCase());
+  const postKeywords = (post.keywords ?? []).map((k) => k.toLowerCase());
   for (const a of inputKeywords) {
     for (const b of postKeywords) {
       if (a === b) score += 3;

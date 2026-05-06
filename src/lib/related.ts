@@ -45,8 +45,8 @@ function scoreBlogPost(post: BlogPostMeta, input: ScoringInput): number {
 
   if (post.pillar === input.pillar) score += 10;
 
-  const postKeywords = post.keywords.map((k) => k.toLowerCase());
-  const inputKeywords = input.keywords.map((k) => k.toLowerCase());
+  const postKeywords = (post.keywords ?? []).map((k) => k.toLowerCase());
+  const inputKeywords = (input.keywords ?? []).map((k) => k.toLowerCase());
 
   for (const inputKw of inputKeywords) {
     for (const postKw of postKeywords) {

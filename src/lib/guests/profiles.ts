@@ -737,6 +737,179 @@ export const GUEST_PROFILE_OVERRIDES: Record<string, GuestProfileOverride> = {
     ],
     relatedHubs: ["cycling-training-plans", "cycling-nutrition"],
   },
+
+  "chris-voss": {
+    description:
+      "Former lead international kidnapping negotiator for the FBI. Founder and CEO of The Black Swan Group. Author of Never Split the Difference: Negotiating As If Your Life Depended On It (HarperBusiness, 2016, with Tahl Raz).",
+    worksFor: {
+      name: "The Black Swan Group",
+      type: "Organization",
+    },
+    sameAs: [
+      "https://en.wikipedia.org/wiki/Chris_Voss_(negotiator)",
+      "https://www.blackswanltd.com",
+    ],
+    whyMatters:
+      "Chris Voss spent 24 years at the FBI, the last decade as the bureau's lead international kidnapping negotiator across more than 150 cases. He left to write Never Split the Difference, which has become a standard text on negotiation in business, law, and high-stakes communication. For cyclists, his framework of tactical empathy, calibrated questions, and 'getting to no' translates directly to the mental side of racing: managing self-talk under pressure, holding nerves in a bunch sprint or technical descent, and the harder coach-athlete and partner-athlete conversations that surround serious training.",
+    keyIdeas: [
+      "Tactical empathy — labelling the other side's emotions out loud — defuses conflict faster than logic or persuasion.",
+      "'No' is the start of a real conversation, not the end. People relax once they have it.",
+      "Calibrated questions ('How am I supposed to do that?') let the other side solve your problem for you.",
+      "The voice you use matters more than the words. The late-night FM DJ voice is your most powerful tool.",
+      "Mirror the last three words the other person said and stay silent — it produces information faster than any direct question.",
+    ],
+    relatedHubs: ["cycling-coaching"],
+  },
+
+  "mark-sisson": {
+    description:
+      "Founder of Mark's Daily Apple and Primal Kitchen (acquired by Kraft Heinz in 2018). Author of The Primal Blueprint (2009) and Two Meals a Day. Former elite marathoner and Ironman triathlete; placed 4th at the 1980 US Olympic Marathon Trials.",
+    worksFor: {
+      name: "Mark's Daily Apple",
+      type: "Organization",
+      url: "https://www.marksdailyapple.com",
+    },
+    sameAs: [
+      "https://en.wikipedia.org/wiki/Mark_Sisson",
+      "https://www.marksdailyapple.com",
+    ],
+    whyMatters:
+      "Mark Sisson is one of the original voices of the ancestral-health movement. After a high-mileage running career that ended with chronic injuries, he reframed endurance training around lower-volume aerobic work, ample fat as fuel, and resistance training — what he calls the Primal Blueprint. For cyclists in their 40s and 50s burning out on chronic mid-zone training, his model of mostly easy aerobic work, sprinkled with short hard efforts and lifting, is one of the most-cited templates for sustainable training without inflammation and joint damage.",
+    keyIdeas: [
+      "Chronic cardio — long sessions in the upper aerobic zone — is a metabolic dead end. Most riders should drop the intensity of their easy days.",
+      "Becoming fat-adapted lets you ride longer at low intensity without depending on mid-ride feeding, and protects glycogen for when it counts.",
+      "Heavy compound strength work twice a week is non-negotiable for endurance athletes after 35.",
+      "Sleep, daylight, and stress management belong in the training plan — they are not lifestyle extras.",
+      "Sprint sessions of 6-10 short maximum efforts with full recovery do more than long threshold work for an aging athlete.",
+    ],
+    relatedHubs: ["cycling-nutrition", "cycling-weight-loss", "cycling-training-plans"],
+  },
+
+  "dr-allen-lim": {
+    description:
+      "Sports physiologist. Founder of Skratch Labs. Former Director of Sports Science for Garmin-Slipstream and RadioShack-Nissan-Trek. PhD in exercise physiology from the University of Colorado Boulder. Co-author of The Feed Zone Cookbook series with chef Biju Thomas.",
+    worksFor: {
+      name: "Skratch Labs",
+      type: "Organization",
+      url: "https://www.skratchlabs.com",
+    },
+    sameAs: [
+      "https://en.wikipedia.org/wiki/Allen_Lim",
+      "https://www.skratchlabs.com",
+    ],
+    whyMatters:
+      "Allen Lim was the World Tour physiologist who quietly rewrote on-bike fuelling. He left academia to work with Garmin-Slipstream and later RadioShack, where his rice-cake-and-real-food approach to feeding pro riders became the template for the modern peloton. The Feed Zone Cookbook turned that work into a kitchen-ready manual for amateurs. Skratch Labs grew out of his frustration with the over-engineered sports drinks of the 2000s — his answer was simpler hydration, real ingredients, and dose tied to sweat rate. Most current thinking on race-day fuelling owes him a footnote.",
+    keyIdeas: [
+      "Real food on the bike — rice cakes, savoury bites — is better tolerated for hours-long efforts than gels alone.",
+      "Hydration is dose-dependent: most amateurs under-drink, then over-correct with electrolytes that taste of nothing real.",
+      "The gut is trainable. Race-day carb tolerance comes from rehearsing high carbohydrate intake in training, not from buying a different gel.",
+      "Sweat rate, not body weight, sets your fluid prescription — and it varies enormously between riders.",
+      "Cooking your own ride food is the highest-leverage nutrition change most amateurs can make — cheaper, kinder on the gut, and more enjoyable.",
+    ],
+    relatedHubs: ["cycling-nutrition"],
+  },
+
+  "dr-andy-pruitt": {
+    description:
+      "Pioneering bike-fit clinician. Founder of the Boulder Center for Sports Medicine (1989) and the BCSM bike-fit programme. Author of Andy Pruitt's Complete Medical Guide for Cyclists (VeloPress).",
+    worksFor: {
+      name: "Boulder Center for Sports Medicine",
+      type: "Organization",
+    },
+    whyMatters:
+      "Andy Pruitt is the clinician most responsible for moving cycling biomechanics into mainstream sports medicine. The Boulder Center for Sports Medicine, which he founded in 1989, became the first US medical clinic with a dedicated bike-fit and cycling-injury programme, and trained a generation of fitters now scattered across pro teams and bike-fit studios worldwide. His Complete Medical Guide for Cyclists is still the most-cited reference on common cycling injuries — knee, lower-back, saddle, foot — and why most of them are bike-fit problems first.",
+    keyIdeas: [
+      "Most overuse injuries in cycling are bike-fit problems disguised as training problems — fit before you train through pain.",
+      "Saddle position drives knee pain more than any other variable. Fix the saddle before you change cleats or shoes.",
+      "Cleat position is a clinical decision, not a fashion choice. Mid-foot cleats are appropriate for some riders, not all.",
+      "Foot stability — arch, forefoot tilt, leg-length — propagates up the chain. A bike fit ignores it at its peril.",
+      "A good bike fit is iterative: small adjustments, ridden for weeks, then revisited. One-shot fits miss the body's adaptation curve.",
+    ],
+    relatedHubs: ["cycling-strength-conditioning"],
+  },
+
+  "phil-burt": {
+    description:
+      "British physiotherapist and bike-fit consultant. Former Lead Physiotherapist for British Cycling and bike-fit consultant to Team Sky / Team INEOS. Founder of Phil Burt Innovation. Author of Bike Fit (Bloomsbury). Worked with Bradley Wiggins, Chris Froome, Geraint Thomas, Victoria Pendleton, and Chris Hoy.",
+    worksFor: {
+      name: "Phil Burt Innovation",
+      type: "Organization",
+    },
+    whyMatters:
+      "Phil Burt is the physio behind a generation of British Olympic gold medals and Tour de France wins. As Lead Physiotherapist at British Cycling and bike-fit lead at Team Sky during their dominant decade, he is the person riders went to when a knee, back, or saddle issue threatened a season. His Bike Fit book turned that clinical work into a manual that amateur fitters now use as a reference. For riders chasing a few more durable watts without injury, his approach — anchor the saddle, then the cleat, then the cockpit, and never optimise aero at the expense of physiology — is the modern gold standard.",
+    keyIdeas: [
+      "Position is built bottom-up: feet and saddle first, then cockpit. Optimising the front end before the foundation gives unstable fits.",
+      "Aero is a fitting constraint, not a starting point. The most aerodynamic position you can hold for the duration of the event beats a sharper position you cannot.",
+      "Saddle pain is almost always a position problem before it is a saddle-shape problem. Fit the rider; the saddle follows.",
+      "Most amateur fits are too aggressive at the front end and too high at the saddle — riders chase pro positions their flexibility cannot support.",
+      "A bike fit is a process, not a single session. Every change deserves a few weeks of riding before the next adjustment.",
+    ],
+    relatedHubs: ["cycling-strength-conditioning", "cycling-coaching"],
+  },
+
+  "yanto-barker": {
+    description:
+      "Former British professional road cyclist. Multiple-time British road race champion. Founder of premium cycling apparel brand Le Col (2011).",
+    worksFor: {
+      name: "Le Col",
+      type: "Organization",
+      url: "https://www.lecol.cc",
+    },
+    sameAs: [
+      "https://en.wikipedia.org/wiki/Yanto_Barker",
+      "https://www.lecol.cc",
+    ],
+    whyMatters:
+      "Yanto Barker raced as a British professional through the 2000s and 2010s, including a long career on the British road racing scene. After retirement he founded Le Col, the British cycling apparel brand that grew from a side project into a sponsor of WorldTour teams and a serious player in premium kit. He is one of the more useful voices for amateurs because he sits on both sides of the experience: the suffering side of being paid to ride a bike, and the commercial side of building a cycling business from scratch.",
+    keyIdeas: [
+      "British domestic racing is a harder school than people credit — long stage events, bad weather, small budgets.",
+      "Kit matters more than amateurs admit, but for thermal regulation and fit rather than for aero or weight savings.",
+      "Building a cycling brand is mostly about endurance — staying credible to riders for a decade is harder than launching well.",
+      "The amateur-to-pro pipeline in the UK still relies heavily on individual sponsorships and small teams; that has not been fixed.",
+      "Most amateurs underestimate how much a long, structured base block changes the second half of the season.",
+    ],
+    relatedHubs: ["cycling-training-plans"],
+  },
+
+  "uli-schoberer": {
+    description:
+      "German engineer. Founder of SRM (Schoberer Rad Messtechnik) in 1986. Designer of the first commercially available bicycle power meter, used as the research and pro-team standard for two decades.",
+    worksFor: {
+      name: "SRM",
+      type: "Organization",
+      url: "https://www.srm.de",
+    },
+    sameAs: ["https://www.srm.de"],
+    whyMatters:
+      "Uli Schoberer is the reason cyclists have power meters. As a young engineer in the mid-1980s he built the first practical strain-gauge crank that could measure bicycle power in the field, and SRM became the de-facto research and pro-team standard for two decades — used by World Tour science departments long before competitors caught up. The vocabulary of modern training — FTP, power profiles, normalised power — exists because his hardware made it measurable on the road, not just in a lab.",
+    keyIdeas: [
+      "Power, not heart rate, is the right primary variable for training prescription — heart rate lags, drifts with heat, and varies day to day.",
+      "Calibration discipline is what separates a useful power meter from a misleading one. Zero-offset before every ride; treat the device like a lab instrument.",
+      "The gap between pro power data and amateur power data is mostly durability, not peak watts. Ten-second numbers are similar; 5-hour numbers are not.",
+      "A power meter pays for itself in the first week of zone-2 work — most riders discover their easy pace was meaningfully too hard.",
+      "Hardware standards mature slowly because each generation of riders refuses to give up the metric they trained on.",
+    ],
+    relatedHubs: ["ftp-training"],
+  },
+
+  "laurens-ten-dam": {
+    description:
+      "Dutch former professional cyclist. Raced for Rabobank, Belkin/LottoNL-Jumbo, Sunweb and CCC. Multiple top-10 Tour de France finishes. Now a gravel and ultra-endurance rider, and co-host of the Live Slow Ride Fast podcast.",
+    sameAs: [
+      "https://en.wikipedia.org/wiki/Laurens_ten_Dam",
+      "https://www.procyclingstats.com/rider/laurens-ten-dam",
+    ],
+    whyMatters:
+      "Laurens Ten Dam was one of the Dutch generation that bridged the post-Rabobank era of pro cycling — twenty years on the World Tour, multiple Tour de France top-10s, and a reputation as one of the most resilient climbers in the bunch. Since retiring he has become one of the most public examples of the World-Tour-to-gravel pipeline, racing Unbound, the Migration Gravel Race, and ultra-endurance events while running the Live Slow Ride Fast podcast. He is the rider many amateurs follow when they want to see how a pro re-organises their training around long, social, mostly-Zone-2 riding.",
+    keyIdeas: [
+      "Twenty years of World Tour racing is mostly Zone 2 with sharp days woven through — amateurs who copy the sharp days and skip the volume burn out.",
+      "Mental durability on long days is the biggest differentiator at the top of stage racing — the engine is similar at that level.",
+      "The transition from road to gravel is more cultural than physiological — the engine carries over; the mindset is the work.",
+      "Eating enough is the most-broken habit in masters and amateur cycling. Most riders under-fuel chronically.",
+      "A rest day is a training day. The riders who keep going for decades take rest seriously.",
+    ],
+    relatedHubs: ["cycling-training-plans", "cycling-nutrition"],
+  },
 };
 
 /** Look up overrides for a guest by slug. Returns undefined if no curated data. */
