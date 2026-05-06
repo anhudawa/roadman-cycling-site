@@ -8,6 +8,7 @@ import { ScrollReveal } from "@/components/ui";
 import { db } from "@/lib/db";
 import { diagnosticSubmissions } from "@/lib/db/schema";
 import { JsonLd, FAQPageJsonLd } from "@/components/seo/JsonLd";
+import { SoftwareApplicationSchema } from "@/components/seo/SoftwareApplicationSchema";
 import { DiagnosticFlow } from "@/components/features/diagnostic/DiagnosticFlow";
 import { MetaPixel } from "@/components/features/diagnostic/MetaPixel";
 import { BRAND_STATS, ENTITY_IDS, FOUNDER } from "@/lib/brand-facts";
@@ -422,6 +423,18 @@ export default async function PlateauPage() {
           isPartOf: { "@id": ENTITY_IDS.website },
           publisher: { "@id": ENTITY_IDS.organization },
         }}
+      />
+      <SoftwareApplicationSchema
+        name="The Masters Plateau Diagnostic"
+        description="A 12-question interactive diagnostic for cyclists over 35 whose FTP has stalled. Returns one of four personalised plateau profiles with the specific fix for each."
+        url="https://roadmancycling.com/plateau"
+        features={[
+          "12-question diagnostic flow tuned for masters cyclists",
+          "Returns one of four named plateau profiles",
+          "Specific fix and next-step guidance per profile",
+          "Free, no card, takes four minutes",
+          "Built on the methodology behind Roadman Cycling coaching",
+        ]}
       />
       <FAQPageJsonLd
         questions={FAQS.map((f) => ({ question: f.q, answer: f.a }))}
