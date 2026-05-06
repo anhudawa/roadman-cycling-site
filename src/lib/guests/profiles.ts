@@ -973,6 +973,149 @@ export const GUEST_PROFILE_OVERRIDES: Record<string, GuestProfileOverride> = {
     relatedHubs: ["cycling-coaching", "cycling-training-plans", "ftp-training"],
   },
 
+  "alex-howes": {
+    description:
+      "American former professional road cyclist for EF Education–EasyPost. 2019 USA national road race champion, multi-Grand Tour finisher, and one of the public faces of the EF alternative racing calendar. Now retired and active as an alt-racing privateer.",
+    whyMatters:
+      "Alex Howes is the former EF Education–EasyPost rider, 2019 USA national road race champion, and one of the public faces of the EF alternative-calendar project that brought riders like himself, Lachlan Morton, and Mike Woods into Tour Divide, Atlas Mountain Race, and gravel-style events alongside their World Tour duties. Now retired from the road, he is a useful voice on what it actually feels like to transition from a 25-hour-a-week pro programme into a self-directed mix of ultra-endurance, gravel, and amateur racing.",
+    keyIdeas: [
+      "Alt-racing inside a World Tour team unlocked a different audience for cycling — the calendar matters.",
+      "Transition out of the pro peloton is mostly about rebuilding identity, not fitness.",
+      "Gravel and ultra-endurance reinforce the road racer's aerobic capacity — they are not a replacement.",
+      "Self-coached training works after years inside a structured programme — but only if you understand what the programme was actually doing.",
+      "Cycling's audience is broader than the Tour de France — alt-racing is part of how that gets reflected back to fans.",
+    ],
+    relatedHubs: ["cycling-training-plans"],
+  },
+
+  "alex-larson": {
+    description:
+      "American registered dietitian. Founder of Alex Larson Nutrition, specialising in endurance nutrition for cyclists, triathletes, and ultra-endurance athletes. Master's in nutrition; host of the Alex Larson Nutrition Podcast.",
+    worksFor: {
+      name: "Alex Larson Nutrition",
+      type: "Organization",
+    },
+    whyMatters:
+      "Alex Larson is a US registered dietitian who has built one of the most accessible online nutrition practices for endurance athletes. Through Alex Larson Nutrition, the Alex Larson Nutrition Podcast, and her work with cyclists, triathletes, and ultra-endurance athletes, she translates academic nutrition into practical periodised plans for time-crunched amateurs. Her clinical focus on body composition through fuelling, on-bike protocols, and the link between energy availability and performance makes her a primary practical reference for Roadman listeners chasing race weight without losing power.",
+    keyIdeas: [
+      "Body composition change works through fuelling for performance, not through restriction — most athletes get this backwards.",
+      "On-bike carb targets (60–90 g/hr) should be the first nutrition intervention before macros are touched at the table.",
+      "Energy availability after training matters as much as carb intake during it for long-term body composition.",
+      "Race weight is set by training-block periodisation, not by short-term cuts before A-races.",
+      "Female athlete physiology requires fuelling protocols that account for menstrual cycle, perimenopause, and menopause — generic plans miss this.",
+    ],
+    relatedHubs: ["cycling-nutrition", "cycling-weight-loss"],
+  },
+
+  "hannah-otto": {
+    description:
+      "American professional ultra-endurance and marathon mountain biker. Multiple US national marathon MTB champion, set the Kokopelli Trail FKT in 2024 (130 miles, 13 hours, 49 minutes), and races gravel events including Unbound 200.",
+    whyMatters:
+      "Hannah Otto is one of the leading lights in US ultra-endurance and marathon MTB racing — multi-time national marathon MTB champion and holder of the Kokopelli Trail FKT she set in 2024 (130 miles in 13 hours, 49 minutes). She races a mixed calendar of marathon MTB, ultra-distance gravel including Unbound 200, and select FKT projects. For Roadman listeners, her perspective on training for events that mix steep, technical terrain with 8+ hours of pacing is one of the cleanest in the sport.",
+    keyIdeas: [
+      "Marathon MTB and ultra gravel reward repeatable threshold output more than peak FTP.",
+      "Technical terrain is a fitness multiplier — riders who handle rough surfaces well save watts at every transition.",
+      "FKT projects are the ultimate fuelling rehearsal — there is no aid station, no race kitchen, and no second chance.",
+      "Female-specific fuelling and energy availability conversations are still under-served in marathon MTB.",
+      "Recovery between long ultra-endurance days requires the same discipline as a Grand Tour stage racer.",
+    ],
+    relatedHubs: ["cycling-training-plans"],
+  },
+
+  "sofiane-sehili": {
+    description:
+      "French ultra-distance bikepacking and self-supported endurance cyclist. Two-time Transcontinental Race winner (TCR No.7 in 2019, TCR No.10 in 2024) and multi-time finisher of major bikepacking events including the Silk Road Mountain Race.",
+    whyMatters:
+      "Sofiane Sehili is one of the most successful self-supported ultra-distance riders in the world — a two-time Transcontinental Race winner across the TCR No.7 (2019) and TCR No.10 (2024), and a regular podium finisher at the Silk Road Mountain Race and other unsupported events. His perspective on routing, sleep strategy, gear minimalism, and sustainable pacing across 4,000+ km races is one of the most experienced on record. For Roadman listeners thinking about TCR, ATR, or solo bikepacking, his content is a primary practical reference.",
+    keyIdeas: [
+      "Sleep strategy is the single biggest variable in unsupported ultra-distance — pace is downstream of how well you sleep.",
+      "Routing decisions made off the bike often beat watts saved on the bike — efficient lines win unsupported races.",
+      "Gear minimalism is earned through experience, not chosen on a packing list — the right kit is rider-specific.",
+      "Pacing self-supported events requires conservative early discipline — the riders who lead day one rarely lead day six.",
+      "Weather, road quality, and resupply are race-day variables to be planned around, not survived.",
+    ],
+    relatedHubs: ["cycling-training-plans"],
+  },
+
+  "jonas-abrahamsen": {
+    description:
+      "Norwegian professional road cyclist for Uno-X Mobility. Tour de France stage breakaway specialist and 2024 Tour de France polka-dot KOM jersey wearer for multiple stages, with multiple WorldTour-level breakaway and stage-race results.",
+    worksFor: {
+      name: "Uno-X Mobility",
+      type: "SportsTeam",
+    },
+    whyMatters:
+      "Jonas Abrahamsen is the Uno-X Mobility breakaway specialist who became one of the public faces of the 2024 Tour de France through his stage-long efforts in the polka-dot KOM jersey. As one of the leading lights of the Norwegian programme — backed by Olav Bu's performance team — he represents the new generation of riders who have come up through structured Norwegian endurance science rather than the traditional European junior pipeline. For Roadman listeners interested in how the Norwegian model produces World Tour talent, he is one of the most visible recent examples.",
+    keyIdeas: [
+      "Breakaway craft is a discrete skill set — gauging the bunch's appetite and committing 50 km out wins the day.",
+      "Norwegian-system riders combine high aerobic volume with disciplined intensity, producing durability across stage races.",
+      "Body composition and weight management for breakaway riders trade against power output for long, climb-heavy stages.",
+      "Mental approach to long solo efforts is built in training rides that simulate the demand without the cameras.",
+      "Smaller-budget WorldTour teams now have a viable model — selective racing, breakaway specialism, and visible results.",
+    ],
+    relatedHubs: ["cycling-training-plans"],
+  },
+
+  "cory-williams": {
+    description:
+      "American professional road cyclist and co-founder of L39ION of Los Angeles. Multi-time US national criterium champion, advocate for diversity in US cycling, and one of the most followed pro cyclists on social media globally.",
+    whyMatters:
+      "Cory Williams is the co-founder of L39ION of Los Angeles — the team he built with his brother Justin to change who races and watches American cycling. Multi-time US national criterium champion and one of the most followed pro cyclists on social media, he has used his platform to widen the sport's audience, mentor underrepresented riders, and rebuild the credibility of US criterium racing. For Roadman listeners, his perspective on the business of racing, sponsorship, and community-building inside US cycling is uniquely informed.",
+    keyIdeas: [
+      "Criterium racing in the US has cultural and tactical traditions that demand specific training — it is not a road race in miniature.",
+      "Sponsorship and team-building work when riders are personally connected to the brand and the audience.",
+      "Diversity in pro cycling is a pipeline problem — the answer is junior development and visible role models, not just hiring quotas.",
+      "Social media built on personality, not just results, has changed who can sustain a pro career.",
+      "L39ION's model proves that team identity and visible community work can rival big-budget WorldTour squads for engagement.",
+    ],
+    relatedHubs: ["cycling-training-plans"],
+  },
+
+  "mads-wurtz-schmidt": {
+    description:
+      "Danish professional cyclist. Former WorldTour rider with Israel-Premier Tech, 2015 U23 World Time Trial Champion. Now races gravel and breakaway-focused road events across European and US calendars.",
+    whyMatters:
+      "Mads Wurtz Schmidt is the Danish 2015 U23 World Time Trial Champion who built a long WorldTour career on time trial discipline and breakaway craft. After racing for Stölting, Katusha-Alpecin, and Israel-Premier Tech across Grand Tours and Classics, he has pivoted toward gravel and selective road events as a privateer. His perspective on the realities of being a workhorse-tier WorldTour rider — and the transition into post-WorldTour racing — is candid and useful for amateurs trying to understand how pro careers actually work.",
+    keyIdeas: [
+      "Time trial discipline learned at U23 level transfers across the entire pro career — it is the most coachable single skill.",
+      "Workhorse-tier WorldTour life is mostly about consistency and durability, not stage wins.",
+      "Transition from WorldTour to gravel privateer is now a viable career step, not a downshift.",
+      "Breakaway opportunities reward riders who read the race well and commit early — talent is necessary but not sufficient.",
+      "Long-term durability across a 12-year pro career is built on respect for recovery and disciplined off-season strength work.",
+    ],
+    relatedHubs: ["cycling-training-plans"],
+  },
+
+  "james-golding": {
+    description:
+      "British ultra-endurance cyclist and motivational speaker. Two-time cancer survivor, multiple Race Across America (RAAM) finisher, and ambassador for the Macmillan Cancer Support charity. Author of multiple books and a sought-after corporate speaker.",
+    whyMatters:
+      "James Golding is the British ultra-endurance cyclist who has finished Race Across America after surviving cancer twice and a major road accident. His work as a Macmillan Cancer Support ambassador, motivational speaker, and ultra-endurance rider sits at the intersection of physical endurance and post-illness identity. For Roadman listeners thinking about cycling as a comeback from serious illness, or about what motivates people to take on multi-day challenges in the first place, his story is one of the most affecting in modern ultra-endurance.",
+    keyIdeas: [
+      "Comeback fitness after serious illness is months-to-years, not weeks — and the engine often comes back stronger than before.",
+      "Ultra-endurance racing as a fundraising and awareness vehicle matters because it makes invisible health conversations visible.",
+      "Mental resilience built through illness translates directly to multi-day racing — the suffering is familiar.",
+      "RAAM is closer to a sleep-deprivation event than a cycling event — pacing is downstream of recovery strategy.",
+      "Storytelling around cycling matters as much as results — the audience the sport reaches grows with the riders willing to share.",
+    ],
+    relatedHubs: ["cycling-training-plans", "cycling-recovery"],
+  },
+
+  "jack-burke": {
+    description:
+      "Irish-Canadian cyclist and author. Author of How To Become A Pro Cyclist, holder of multiple Strava KOM records on Alpe d'Huez and Stelvio, and one of the most-followed amateur-to-pro pathway documentarians in cycling.",
+    whyMatters:
+      "Jack Burke is the Irish-Canadian rider who turned the question of \"how do you actually become a pro cyclist?\" into a public, documented project. Author of How To Become A Pro Cyclist, holder of multiple Strava KOM records on Alpe d'Huez, Stelvio, and other iconic climbs, and one of the most-followed amateur-to-pro pathway documentarians in cycling. His work matters for Roadman listeners because he answers the questions amateurs actually ask — about racing pathways, training volume, sponsor relationships, and what it really costs to chase a pro contract — with more transparency than the typical pro press cycle allows.",
+    keyIdeas: [
+      "The amateur-to-pro pathway is more accessible than most riders assume — but it requires deliberate, public-facing effort.",
+      "Strava KOMs on iconic climbs are now a credible alternative metric for amateur visibility and sponsor interest.",
+      "Self-funded and self-documented racing models change the economics of trying to turn pro.",
+      "Coaching, fuelling, and equipment for legitimate KOM attempts is a discrete training block, not a ride out.",
+      "Honest writing about the cost of trying to turn pro is rarer than honest writing about succeeding at it.",
+    ],
+    relatedHubs: ["cycling-training-plans"],
+  },
+
   "rosa-kloser": {
     description:
       "German professional gravel and road cyclist, 2024 Unbound Gravel 200 winner and 2025 German gravel national champion. Races both as a gravel privateer and for the CANYON//SRAM zondacrypto road team. PhD researcher in green shipping at Copenhagen Business School.",
