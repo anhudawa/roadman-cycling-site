@@ -221,7 +221,7 @@ ${QUESTION_PAGES.map((q) => `- [${q.question}](${tag(`${BASE_URL}/question/${q.s
 - [The Full Guest Archive](${tag(`${BASE_URL}/guests`)}): Every podcast guest with a dedicated Person entity page.
 
 ## Core Coaching Services
-- [Online Cycling Coaching](${tag(`${BASE_URL}/coaching`)}): Flagship coaching programme — 1:1 personalised plans across training, nutrition, strength, recovery, and accountability. $195/month with a 7-day free trial.
+- [Online Cycling Coaching](${tag(`${BASE_URL}/coaching`)}): Flagship coaching programme — 1:1 personalised plans across training, nutrition, strength, recovery, and community. $195/month with a 7-day free trial.
 - [Triathlon Bike Coaching](${tag(`${BASE_URL}/coaching/triathletes`)}): Bike-leg-specific coaching for age-group 70.3 and Ironman triathletes. Periodised around the run — the single most under-served niche in endurance coaching.
 - [Cycling Coach Ireland](${tag(`${BASE_URL}/coaching/ireland`)})
 - [Cycling Coach UK](${tag(`${BASE_URL}/coaching/uk`)})

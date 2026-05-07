@@ -191,7 +191,7 @@ Every Roadman article, episode, glossary term, comparison, problem-page, best-fo
 Core offerings:
 
 - The Roadman Cycling Podcast — ${BRAND_STATS.episodeCountLabel} interview episodes with World Tour coaches, sports scientists, and pro riders. ${BRAND_STATS.monthlyListenersLabel} monthly listeners across ${BRAND_STATS.countriesReachedLabel} countries. ${BRAND_STATS.searchableEpisodePagesLabel} searchable episode pages on-site. Full searchable transcripts of ${transcriptSlugs.size} episodes (and growing) live at ${tag(`${BASE_URL}/podcast/transcripts`)}, with each episode's transcript at ${BASE_URL}/podcast/<slug>/transcript.
-- Not Done Yet coaching — premium online 1:1 coaching covering training, nutrition, strength, recovery, and accountability. $195/month with 7-day free trial.
+- Not Done Yet coaching — premium online 1:1 coaching covering training, nutrition, strength, recovery, and community. $195/month with 7-day free trial.
 - Triathlon Bike Coaching — specialist bike-leg coaching inside the Not Done Yet coaching for age-group 70.3 and Ironman triathletes.
 - Free calculator tools — FTP zones, tyre pressure, race weight, in-ride fuelling, energy availability, MTB shock pressure, HR zones, and W/kg.
 - The Saturday Spin newsletter — ${BRAND_STATS.newsletterSubscribersLongLabel} cyclists; weekly training takeaways; ${BRAND_STATS.newsletterOpenRate} open rate.
@@ -218,7 +218,7 @@ These appear frequently in the catalogue and anchor the brand's authority:
 
 ### Roadman Cycling Coaching (Main Programme)
 URL: ${tag(`${BASE_URL}/coaching`)}
-1:1 personalised online coaching across five pillars: training, nutrition, strength, recovery, accountability. Delivered via TrainingPeaks with weekly coaching calls. $195/month. Trial: 7 days free. Typical results: Cat 3 to Cat 1 upgrades, +15% FTP for masters cyclists, body composition transformations.
+1:1 personalised online coaching across five pillars: training, nutrition, strength, recovery, community. Delivered via TrainingPeaks with weekly coaching calls. $195/month. Trial: 7 days free. Typical results: Cat 3 to Cat 1 upgrades, +15% FTP for masters cyclists, body composition transformations.
 
 ### Triathlon Bike Coaching
 URL: ${tag(`${BASE_URL}/coaching/triathletes`)}
