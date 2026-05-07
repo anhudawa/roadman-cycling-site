@@ -50,10 +50,10 @@ export function searchItems(
 
   const scored = items.map((item) => {
     let score = 0;
-    const titleLower = item.title.toLowerCase();
-    const descLower = item.description.toLowerCase();
+    const titleLower = (item.title || "").toLowerCase();
+    const descLower = (item.description || "").toLowerCase();
     const guestLower = (item.guest || "").toLowerCase();
-    const keywordsLower = item.keywords.join(" ").toLowerCase();
+    const keywordsLower = (item.keywords || []).join(" ").toLowerCase();
     const deepLower = (item.deepText || "").toLowerCase();
 
     for (const term of terms) {

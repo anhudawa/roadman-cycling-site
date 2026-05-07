@@ -10,7 +10,18 @@ import { getAllGuests } from "@/lib/guests";
 import { EVENTS, PHASES } from "@/lib/training-plans";
 import { PERSONAS, type PersonaSlug } from "@/lib/personas";
 import { type SearchableItem } from "@/lib/search";
+import { CONTENT_PILLARS, type ContentPillar } from "@/types";
 import { SiteSearch } from "@/components/features/search/SiteSearch";
+
+// Sanitize a pillar value coming from MDX frontmatter. Returns a valid
+// ContentPillar so Badge cannot blow up rendering on a stray slug like
+// "strength-and-conditioning" or undefined.
+function safePillar(value: unknown): ContentPillar {
+  if (typeof value === "string" && value in CONTENT_PILLARS) {
+    return value as ContentPillar;
+  }
+  return "community";
+}
 
 export const metadata: Metadata = {
   title: "Search — Find Episodes, Articles, Guests & Tools",
@@ -171,11 +182,11 @@ function buildSearchIndex(): SearchableItem[] {
     items.push({
       type: "podcast",
       slug: ep.slug,
-      title: ep.title,
-      description: ep.description,
-      pillar: ep.pillar,
+      title: ep.title || "",
+      description: ep.description || "",
+      pillar: safePillar(ep.pillar),
       publishDate: ep.publishDate,
-      keywords: ep.keywords,
+      keywords: ep.keywords || [],
       episodeNumber: ep.episodeNumber,
       guest: ep.guest,
       guestCredential: ep.guestCredential,
@@ -194,11 +205,11 @@ function buildSearchIndex(): SearchableItem[] {
     items.push({
       type: "blog",
       slug: post.slug,
-      title: post.title,
-      description: post.excerpt,
-      pillar: post.pillar,
+      title: post.title || "",
+      description: post.excerpt || "",
+      pillar: safePillar(post.pillar),
       publishDate: post.publishDate,
-      keywords: post.keywords,
+      keywords: post.keywords || [],
       readTime: post.readTime,
       excerpt: post.excerpt,
       deepText,
@@ -211,13 +222,13 @@ function buildSearchIndex(): SearchableItem[] {
     items.push({
       type: "guest",
       slug: guest.slug,
-      title: guest.name,
+      title: guest.name || "",
       description: guest.credential || "",
-      pillar: guest.pillars[0] || "community",
+      pillar: safePillar(guest.pillars?.[0]),
       keywords: [
-        ...guest.tags,
-        ...guest.pillars,
-        guest.name.toLowerCase(),
+        ...(guest.tags || []),
+        ...(guest.pillars || []),
+        (guest.name || "").toLowerCase(),
       ],
       guest: guest.name,
       guestCredential: guest.credential,

@@ -6,7 +6,10 @@ interface BadgeProps {
 }
 
 export function Badge({ pillar, size = "sm" }: BadgeProps) {
-  const { label, color } = CONTENT_PILLARS[pillar];
+  // Defensive fallback: bad/unknown pillar slugs in MDX frontmatter would
+  // otherwise blow up render. Default to community so the page still renders.
+  const config = CONTENT_PILLARS[pillar] ?? CONTENT_PILLARS.community;
+  const { label, color } = config;
 
   return (
     <span
