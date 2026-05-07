@@ -439,7 +439,6 @@ export const GUEST_PROFILE_OVERRIDES: Record<string, GuestProfileOverride> = {
     },
     sameAs: [
       "https://en.wikipedia.org/wiki/Alistair_Brownlee",
-      "https://www.alistairbrownlee.com/",
       "https://www.instagram.com/alistair.brownlee/",
       "https://triathlon.org/athletes/profile/7788/alistair-brownlee",
       "https://www.teamgb.com/athlete/alistair-brownlee/VXXED6uYsmhlvhF6O8HIK",
@@ -553,7 +552,6 @@ export const GUEST_PROFILE_OVERRIDES: Record<string, GuestProfileOverride> = {
     worksFor: {
       name: "Little Bleeders",
       type: "Organization",
-      url: "https://www.littlebleeders.org/",
     },
     sameAs: [
       "https://en.wikipedia.org/wiki/Alex_Dowsett",
@@ -609,7 +607,7 @@ export const GUEST_PROFILE_OVERRIDES: Record<string, GuestProfileOverride> = {
     worksFor: {
       name: "Uno-X Mobility",
       type: "SportsTeam",
-      url: "https://www.uno-x.no/",
+      url: "https://www.unoxteam.com/",
     },
     sameAs: [
       "https://www.tri247.com/triathlon-news/elite/olav-aleksander-bu-pro-cycling-switch-kristian-blummenfelt-gustav-iden",
@@ -693,7 +691,6 @@ export const GUEST_PROFILE_OVERRIDES: Record<string, GuestProfileOverride> = {
     worksFor: {
       name: "Q36.5 Pro Cycling Team",
       type: "SportsTeam",
-      url: "https://www.q36-5procycling.com/",
     },
     sameAs: [
       "https://en.wikipedia.org/wiki/Eddie_Dunbar",
