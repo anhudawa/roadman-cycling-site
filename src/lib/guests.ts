@@ -28,6 +28,7 @@ const EXCLUDED_NAMES = new Set([
   "Roadman Cycling Podcast",
   "Roadman Clips",
   "Team Jayco's Secret AI Tech",
+  "Team Jayco’s Secret AI Tech",
   "Time Trial",
   "Tour of Flanders",
   "World Tour Nutritionist",
@@ -101,6 +102,10 @@ const NAME_ALIASES: Record<string, string> = {
   "Ger Redmond": "Ger Remond",
   "Trek Segafredo Star Taylor Wiles": "Tayler Wiles",
   "Dr Gordon Laing": "Dr Mark Gordon",
+  "Dr Michael Ormsbee": "Michael Ormsbee",
+  "Dr. Christian Schrot": "Christian Schrot",
+  "Dr Christian Schrot": "Christian Schrot",
+  "Darren Raferty": "Darren Rafferty",
 };
 
 /** Known credentials for guests (enrichment data) */

@@ -1799,6 +1799,24 @@ export const GUEST_PROFILE_OVERRIDES: Record<string, GuestProfileOverride> = {
     relatedHubs: ["ftp-training", "cycling-training-plans"],
   },
 
+  "jack-thompson": {
+    description:
+      "Australian ultra-endurance cyclist and Guinness World Record holder. Rode 3,505km in 7 days in Sevilla to break the world distance-in-7-days record. Best known by his social handle 'Jack Ultracyclist'. Climbed Taiwan KOM four times back-to-back before racing the event on the final ascent.",
+    sameAs: [
+      "https://www.instagram.com/jack_ultracyclist/",
+    ],
+    whyMatters:
+      "Jack Thompson is the Australian ultra-endurance cyclist behind the Guinness World Record for 7-day distance — 3,505km in Sevilla — and the only rider to climb Taiwan KOM four times back-to-back before racing the actual event on the final ascent. His public arc is unusual: he came back to cycling through addiction recovery, his dad's influence, and a YouTube production discipline that has built him a serious crossover audience. For Roadman's audience, he is one of the cleanest case studies in how ultra-distance cycling can function as both a sport and a recovery framework.",
+    keyIdeas: [
+      "3,505km in 7 days redefines the upper limit of human distance — the Sevilla record was preceded by Taiwan KOM four times back-to-back as a single block.",
+      "The path back to cycling is often through addiction recovery, not despite it — endurance sport gives the rebuilt brain a long-arc structure to work with.",
+      "Success isn't determination or genetics — it's the support structure around you. Coaching can spot the rider whose partner is the bottleneck on the training plan.",
+      "Cycling-as-meditation is a real physiological mechanism — pedal stroke, breath, heart rate; time stands still; same pathway as formal mindfulness practice.",
+      "Production values matter on YouTube — sloppy cycling edits don't make it through the algorithm; Hollywood-grade cinematography is the entry bar now.",
+    ],
+    relatedHubs: ["cycling-recovery", "cycling-training-plans"],
+  },
+
   "uli-schoberer": {
     description:
       "German engineer. Founder of SRM (Schoberer Rad Messtechnik) in 1986. Designer of the first commercially available bicycle power meter, used as the research and pro-team standard for two decades.",
