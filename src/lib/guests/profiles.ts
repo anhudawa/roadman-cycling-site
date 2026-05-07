@@ -1464,6 +1464,146 @@ export const GUEST_PROFILE_OVERRIDES: Record<string, GuestProfileOverride> = {
     relatedHubs: ["cycling-recovery"],
   },
 
+  "dr-david-lipman": {
+    description:
+      "Australian sports physician and exercise science researcher. Public voice on injury-free training accumulation, age-related performance decline, and the floor-vs-ceiling framing of long-arc athletic development.",
+    whyMatters:
+      "Dr David Lipman is one of the more useful voices in the masters-cyclist conversation: an Australian sports physician whose central claim is that age-related decline is driven by training gaps — parenthood, career stress, injury — rather than biology itself. His framing of 'floor matters more than ceiling' and 'injury-free time is the best predictor of performance' gives amateurs a structural way to think about decade-long consistency rather than chasing peak FTP cycles separated by extended breaks.",
+    keyIdeas: [
+      "Age-related decline in athletes is mostly driven by training gaps (parenthood, career, injury), not biology — most people feel the same at 40 as at 30 if they kept moving.",
+      "Your floor matters more than your ceiling — best blocks count less than worst ones across decades. Set a floor you don't drop below, even when busy or travelling.",
+      "Best predictor of athletic performance is injury-free time. Best predictor of injury is previous injury. Accumulation of consistent weeks beats peak training intensity.",
+      "Replace short-term goals with non-negotiable standards — 'always ready to accept a long ride invitation today' is a better target than peak fitness cycles.",
+      "98% of the population reportedly never sprints again past age 25 — sprinting is use-it-or-lose-it. Add short, full-effort sprints back in.",
+    ],
+    relatedHubs: ["cycling-training-plans", "cycling-recovery"],
+  },
+
+  "sarah-berry": {
+    description:
+      "British nutrition scientist. Professor of Nutritional Sciences at King's College London and Chief Scientist at ZOE. Lead researcher on the PREDICT studies into individual metabolic response to food.",
+    worksFor: {
+      name: "ZOE",
+      type: "Organization",
+      url: "https://zoe.com",
+    },
+    sameAs: [
+      "https://zoe.com/learn/sarah-berry",
+      "https://www.kcl.ac.uk/people/sarah-berry",
+    ],
+    whyMatters:
+      "Sarah Berry is one of the most-cited nutrition researchers working today — Professor of Nutritional Sciences at King's College London and Chief Scientist at ZOE, where she leads the PREDICT studies into how the same meal produces 20-fold different glucose, lipid, and inflammatory responses across individuals. For cyclists chasing the last 2–3% of body composition, fixing mid-ride GI issues, or trying to make sense of why a sports nutrition plan that worked for a teammate doesn't work for them, her work is the most rigorous starting point.",
+    keyIdeas: [
+      "Individual blood glucose responses to identical meals vary up to 20-fold between people — generic nutrition guidelines underperform personalised approaches because the variation is genuinely enormous.",
+      "Ultra-processed food gets eaten ~50% faster, bypassing satiety signals — the mechanism is consumption speed, not just composition, producing ~500 extra calories/day at the population level.",
+      "Eat fibre, fat or protein BEFORE carbohydrate at a meal — same food, lower glucose peak. Slows gastric emptying. The food order is a free intervention.",
+      "Sleep deprivation worsens metabolic response to identical food — the same breakfast after a bad night produces a higher glucose peak. Sleep is a direct nutritional strategy.",
+      "Evening snacking after 9pm is structurally bad — circadian disruption plus worse food choices. The same calories earlier in the day land differently.",
+    ],
+    relatedHubs: ["cycling-nutrition", "cycling-weight-loss"],
+  },
+
+  "chris-kresser": {
+    description:
+      "American functional medicine practitioner, ancestral nutrition advocate, and author. Founder of the Kresser Institute. New York Times bestselling author of The Paleo Cure and Unconventional Medicine. Globally recognised expert in functional and integrative medicine.",
+    worksFor: {
+      name: "Kresser Institute",
+      type: "Organization",
+      url: "https://kresserinstitute.com",
+    },
+    sameAs: [
+      "https://chriskresser.com/",
+      "https://kresserinstitute.com/",
+    ],
+    whyMatters:
+      "Chris Kresser is one of the most influential figures in functional and ancestral medicine — a New York Times bestselling author, founder of the Kresser Institute, and a long-time educator on how to translate research into individualised nutrition. For cyclists confused by the gap between conventional medical advice and personalised performance nutrition, his framing of the health–longevity–performance triad and his work on micronutrient deficiency is one of the most useful starting points outside of the formal sports-science literature.",
+    keyIdeas: [
+      "Health, longevity and performance form a triad you can't fully maximise simultaneously — pick the priority and design nutrition around it.",
+      "Conventional GPs receive <25 hours of nutrition training and have ~25-patient days that leave no room for personalised diet guidance — functional/ancestral practitioners are better placed for long-arc nutrition.",
+      "All ancestral approaches (paleo, carnivore, etc.) share one foundation: minimally processed whole foods. The disagreements are on macro ratios, which should be personalised, not dogmatic.",
+      "Linus Pauling Institute data shows most Americans are deficient in several essential micronutrients — the effect is insidious because no acute symptoms force the issue.",
+      "Every cellular and metabolic process requires specific nutrients as enzyme cofactors — nutrient density isn't a nice-to-have, it's the floor of biological function.",
+    ],
+    relatedHubs: ["cycling-nutrition", "cycling-weight-loss"],
+  },
+
+  "cynthia-thurlow": {
+    description:
+      "American Nurse Practitioner, women's health advocate, and intermittent fasting expert. Author of Intermittent Fasting Transformation. TEDx speaker on intermittent fasting for women.",
+    sameAs: [
+      "https://cynthiathurlow.com/",
+    ],
+    whyMatters:
+      "Cynthia Thurlow is one of the leading public voices on intermittent fasting in the US — a Nurse Practitioner with two decades of clinical experience and a TEDx talk on fasting for women that has been viewed by millions. Her work matters for cycling because the masters audience asking 'why am I gaining weight despite training the same?' is mostly looking at meal-frequency and circadian-rhythm questions her framework is built around. She is also one of the few public voices who explicitly distinguishes how fasting protocols should differ for women, particularly perimenopausal women.",
+    keyIdeas: [
+      "Chronic meal frequency, not just caloric excess, drives much of today's metabolic disease — constant snacking blocks the cellular maintenance pathways that overnight fasting provides automatically.",
+      "A 16-hour fast (16:8 window) triggers autophagy and activates the migrating motor complex — the digestive clearance pattern that needs ~4–5 hours between meals to function.",
+      "Cap routine fasts at 24 hours for lean adults to protect muscle mass — longer fasts have a place in clinical contexts but are not the everyday tool.",
+      "Loss of menstrual cycle is a clinical warning sign, not a 'lean and fit' badge — female endurance athletes who over-train and over-fast are the most exposed group.",
+      "Pair fasting with protein and resistance training — the combination prevents the muscle loss that derails long-term metabolic health, particularly in perimenopause and beyond.",
+    ],
+    relatedHubs: ["cycling-nutrition", "cycling-weight-loss"],
+  },
+
+  "james-nestor": {
+    description:
+      "American science journalist and author. New York Times bestselling author of Breath: The New Science of a Lost Art and Deep: Freediving, Renegade Science, and What the Ocean Tells Us About Ourselves.",
+    sameAs: [
+      "https://www.mrjamesnestor.com/",
+    ],
+    whyMatters:
+      "James Nestor is the journalist-author whose New York Times bestseller Breath turned nasal breathing from a niche performance hack into a mainstream conversation. His Stanford 10-day mouth-breathing experiment — and the immediate spikes in blood pressure and snoring that followed switching pathways — gave the protocol the kind of headline data that makes coaches actually try it. For cyclists trying to extract the last 1–2% of aerobic efficiency, his work matters because it documents that the breath itself, not the legs, is often the limiting factor at submaximal intensity.",
+    keyIdeas: [
+      "Stanford 10-day mouth-breathing study: Nestor's blood pressure shot up 25 points within hours of switching from nasal to mouth breathing, and snoring went from zero to four hours overnight.",
+      "Roughly 60% of the population breathes through the mouth at night — mouth-taping (a small piece of tape) trains nasal breathing during sleep and has been an ENT/dental prescription for decades.",
+      "Data without action is the modern fitness paradox — five wearables and zero behaviour change is the default; the infrastructure exists, the awareness lags.",
+      "Breathing is measurable in seconds — count breaths per minute, watch BP and HRV after slow nasal breathing. It is one of the cheapest interventions available.",
+      "Elite trainers across NFL, NHL and the pro peloton are using nasal-breathing protocols quietly — they don't want to tell competitors what works.",
+    ],
+    relatedHubs: ["cycling-recovery", "cycling-strength-conditioning"],
+  },
+
+  "gabby-bernstein": {
+    description:
+      "American author, speaker and meditation teacher. New York Times bestselling author of nine books on trauma, meditation, and mental health, including The Universe Has Your Back, Super Attractor, and Self Help.",
+    sameAs: [
+      "https://gabbybernstein.com/",
+    ],
+    whyMatters:
+      "Gabby Bernstein is a New York Times bestselling author of nine books on trauma, meditation and mental health. Her perspective is useful for endurance athletes for two reasons: the explicit framing that 'spiritual practice isn't a substitute for clinical care' is a corrective for the wellness-industry tendency to under-refer, and her management-by-fun approach to running a creative business is a counterweight to the over-optimised, metrics-driven default that grinds amateur cyclists down. For Roadman's audience navigating the mental side of long training arcs, both halves matter.",
+    keyIdeas: [
+      "Spiritual practice isn't a substitute for clinical care — when the issue is biochemical and a proper diagnosis is in place, no meditation gets you out of that.",
+      "Some books take six years longer than planned because you can't write them until you're on the other side of what you're describing — useful frame for any athlete trying to talk about a hard experience too soon.",
+      "The 'highest and best' filter — only do what you enjoy, what's fast for you, and what moves the needle. Everything else gets delegated.",
+      "Measure your own success by how much fun you're having, not by output — if you're not having fun, the work isn't channeled, and the team's energy follows yours.",
+      "Hire by finding what people are great at and rebuilding the role around it — people come in for one job and end up in a different one because the strength is somewhere else.",
+    ],
+    relatedHubs: ["cycling-recovery"],
+  },
+
+  "michael-ormsbee": {
+    description:
+      "American exercise scientist. Professor of Nutrition and Integrative Physiology at Florida State University. Director of the FSU Institute of Sports Sciences and Medicine. Two decades of published research on pre-sleep protein feeding and overnight muscle protein synthesis.",
+    worksFor: {
+      name: "Florida State University",
+      type: "CollegeOrUniversity",
+      url: "https://www.fsu.edu/",
+    },
+    sameAs: [
+      "https://www.cci.fsu.edu/person/michael-ormsbee",
+    ],
+    whyMatters:
+      "Dr Mike Ormsbee is the FSU professor whose two decades of pre-sleep protein research dismantled the 'don't eat before bed' rule that an entire generation of cyclists were taught. His repeated studies — including ones using belly-fat probes to measure overnight fat release — show no difference between fasted sleep and a 30–40g pre-bed protein dose for body composition, while delivering a measurable boost to overnight muscle protein synthesis. For amateurs over 40, masters racers, or back-to-back-day stage racers and Ironman athletes, this is one of the highest-return interventions in the show's archive.",
+    keyIdeas: [
+      "30–40g protein before bed does not make you fat — repeated studies, including ones with belly-fat probes, show no difference in overnight fat release vs fasted sleep.",
+      "The thermic effect of food revs digestion overnight — your body absorbs the protein and uses it for muscle protein synthesis while you sleep.",
+      "Even 4.4g/kg/day in overfeeding studies (more than necessary and hard to actually eat) produced no body-fat gain — the thermic effect compensates.",
+      "Ultraman triathletes (long swim+bike Friday, long bike Saturday, double marathon Sunday) make the strongest case — skip pre-bed fueling and you can't race the next morning.",
+      "Adaptation = training stimulus + recovery — the recovery half is what most amateurs neglect, and pre-bed protein is one of the highest-return, easiest interventions on that side.",
+    ],
+    relatedHubs: ["cycling-nutrition", "cycling-protein-requirements"],
+  },
+
   "uli-schoberer": {
     description:
       "German engineer. Founder of SRM (Schoberer Rad Messtechnik) in 1986. Designer of the first commercially available bicycle power meter, used as the research and pro-team standard for two decades.",
