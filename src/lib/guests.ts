@@ -93,7 +93,12 @@ const NAME_ALIASES: Record<string, string> = {
   "Aron D": "Aron D'Souza",
   "Dr David Dunne": "David Dunne",
   "Dr Sam Impey": "Sam Impey",
+  "Dr. Sam Impey": "Sam Impey",
+  "Dr Tim Podlogar": "Tim Podlogar",
+  "Phil Bert": "Phil Burt",
   "Jack Ultra Cyclist": "Jack Thompson",
+  "Jack Ultracyclist": "Jack Thompson",
+  "Ger Redmond": "Ger Remond",
   "Trek Segafredo Star Taylor Wiles": "Tayler Wiles",
   "Dr Gordon Laing": "Dr Mark Gordon",
 };
