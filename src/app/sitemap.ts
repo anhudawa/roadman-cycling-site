@@ -57,6 +57,20 @@ function changeFreqByAge(
   return "yearly";
 }
 
+// A single bad `publishDate` in MDX frontmatter (missing, malformed, or
+// the literal string "Invalid Date") used to crash the whole sitemap
+// build with `RangeError: Invalid time value` when Next called
+// `toISOString()` on the resulting Date. Coerce anything unparseable to
+// "now" so one stray file can't take down /sitemap/*.xml.
+function safeDate(value: string | Date | undefined | null): Date {
+  if (value instanceof Date) {
+    return Number.isNaN(value.getTime()) ? new Date() : value;
+  }
+  if (!value) return new Date();
+  const d = new Date(value);
+  return Number.isNaN(d.getTime()) ? new Date() : d;
+}
+
 export default async function sitemap(props: {
   id: Promise<string>;
 }): Promise<MetadataRoute.Sitemap> {
@@ -95,7 +109,7 @@ function buildStaticSitemap(): MetadataRoute.Sitemap {
     // rather than scattered across the dynamic sitemaps.
     ...getAllEntities().map((e) => ({
       url: `${BASE_URL}/entity/${e.slug}`,
-      lastModified: e.lastReviewed ? new Date(e.lastReviewed) : new Date(),
+      lastModified: safeDate(e.lastReviewed),
       changeFrequency: "monthly" as const,
       priority: 0.75,
     })),
@@ -186,9 +200,7 @@ function buildStaticSitemap(): MetadataRoute.Sitemap {
 
 function buildBlogSitemap(): MetadataRoute.Sitemap {
   return getAllPosts().map((post) => {
-    const lastMod = post.updatedDate
-      ? new Date(post.updatedDate)
-      : new Date(post.publishDate);
+    const lastMod = safeDate(post.updatedDate ?? post.publishDate);
     return {
       url: `${BASE_URL}/blog/${post.slug}`,
       lastModified: lastMod,
@@ -203,7 +215,7 @@ function buildPodcastSitemap(): MetadataRoute.Sitemap {
   const transcriptSlugs = new Set(getTranscriptSlugs());
 
   const episodeEntries: MetadataRoute.Sitemap = episodes.map((ep) => {
-    const lastMod = new Date(ep.publishDate);
+    const lastMod = safeDate(ep.publishDate);
     return {
       url: `${BASE_URL}/podcast/${ep.slug}`,
       lastModified: lastMod,
@@ -218,7 +230,7 @@ function buildPodcastSitemap(): MetadataRoute.Sitemap {
   const transcriptEntries: MetadataRoute.Sitemap = episodes
     .filter((ep) => transcriptSlugs.has(ep.slug))
     .map((ep) => {
-      const lastMod = new Date(ep.publishDate);
+      const lastMod = safeDate(ep.publishDate);
       return {
         url: `${BASE_URL}/podcast/${ep.slug}/transcript`,
         lastModified: lastMod,
@@ -232,7 +244,7 @@ function buildPodcastSitemap(): MetadataRoute.Sitemap {
 
 function buildGuestSitemap(): MetadataRoute.Sitemap {
   return getAllGuests().map((guest) => {
-    const lastMod = new Date(guest.latestAppearance);
+    const lastMod = safeDate(guest.latestAppearance);
     return {
       url: `${BASE_URL}/guests/${guest.slug}`,
       lastModified: lastMod,

@@ -169,11 +169,16 @@ export function getRelatedPosts(
 ): BlogPostMeta[] {
   const allPosts = getAllPosts().filter((p) => p.slug !== currentSlug);
 
-  // Score each post by relevance: pillar match + keyword overlap
+  // Score each post by relevance: pillar match + keyword overlap.
+  // `?? []` guards against MDX files whose frontmatter is missing the
+  // required `keywords` array — without it, one bad file would crash
+  // the prerender of every blog page that calls getRelatedPosts.
   const scored = allPosts.map((post) => {
     let score = 0;
     if (post.pillar === pillar) score += 10;
-    const postKeywords = new Set(post.keywords.map((k) => k.toLowerCase()));
+    const postKeywords = new Set(
+      (post.keywords ?? []).map((k) => k.toLowerCase()),
+    );
     for (const kw of keywords) {
       if (postKeywords.has(kw.toLowerCase())) score += 3;
     }
