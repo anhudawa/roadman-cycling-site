@@ -1720,6 +1720,85 @@ export const GUEST_PROFILE_OVERRIDES: Record<string, GuestProfileOverride> = {
     relatedHubs: ["cycling-training-plans", "cycling-strength-conditioning"],
   },
 
+  "ger-remond": {
+    description:
+      "Irish Ironman triathlete. Self-coached sub-9:30 finisher and Ironman pro license holder. Former North Dublin footballer who signed for Dunfermline as a teenager. Public voice on adversity, mentorship, and second-chance athletic careers.",
+    whyMatters:
+      "Ger Redmond is the North Dublin athlete who went from Mountjoy Prison to a sub-9:30 Ironman pro license without a coach — and never having swum a length of a pool before signing up for his first Ironman. His story disrupts every 'you must do X to do Y' frame in endurance training: no periodisation programme, no athletic background in the discipline, no support team. For Roadman's audience navigating mid-life pivots into endurance sport, he is one of the most useful counter-examples to the structured-coaching orthodoxy.",
+    keyIdeas: [
+      "Sub-9:30 Ironman is achievable without a coach, a periodisation plan, or a swimming background — story disrupts the orthodoxy of structured triathlon coaching.",
+      "The original life arc was football — 16-year-old North Dublin kid signs for Dunfermline, scores a 4-3 winner off the bench in his trial, lives the dream until a family crisis call brings him home and the spiral starts.",
+      "The €500-stolen-boots story is a parable for how a single bad decision ends a Premier League trajectory — the talent isn't the limiting factor, the mentorship is.",
+      "Mentorship and role models matter more than talent identification — the kids who go pro and stay pro are the ones who had someone explain right from wrong before the wrong choice broke their dream.",
+      "Endurance sport is unusually accessible to second-chance athletes — the time you put into training, not the time you started, is what determines the result.",
+    ],
+    relatedHubs: ["triathlon-cycling", "cycling-recovery"],
+  },
+
+  "darren-rafferty": {
+    description:
+      "Irish professional cyclist for EF Education–EasyPost. Born 2003. Came up through the British/Irish junior pathway and Hagens Berman Axeon U23 development team before turning pro at 19. Current Irish national TT champion at U23 and senior level.",
+    worksFor: {
+      name: "EF Education–EasyPost",
+      type: "SportsTeam",
+      url: "https://www.efprocycling.com",
+    },
+    sameAs: [
+      "https://www.procyclingstats.com/rider/darren-rafferty",
+    ],
+    whyMatters:
+      "Darren Rafferty is a young Irish EF Education–EasyPost pro who reached the WorldTour at 19 through the U23 Axeon pathway and rode his first Vuelta a year later. His perspective is valuable because he is one of the first Irish riders of his generation to articulate what the modern WorldTour development pathway actually looks like from inside it — coach, nutritionist, agent, training pipeline all in place at 18 — which sets a useful expectation for the next wave of Irish junior racers and their parents.",
+    keyIdeas: [
+      "Carrying mild fatigue into a race can beat going in fresh — riding the 2024 Vuelta TT in Z2 (310–320W) as recovery left him undercooked the next stage; two-hour tempo on rest days fixed it.",
+      "The pro lifestyle is automation, not willpower — Michael Matthews's 'secret' is the same bedtime and wake-up for a decade. Decisions removed = energy preserved.",
+      "Treat the scale and food log as data, not a verdict — Hexis weighs the oats; the framing rejects 'good food / bad food' in favour of macro awareness.",
+      "The amateur–pro gap has shrunk — every WT team now runs a development setup; riders arrive at 18 with coach, nutritionist and agent already in place.",
+      "Why some teams dominate? Money. Better coaches, better aero testing, better bikes — and once you win, better riders want in. UAE's three-year transformation is the case study.",
+    ],
+    relatedHubs: ["cycling-training-plans", "cycling-nutrition"],
+  },
+
+  "sam-impey": {
+    description:
+      "British sports nutritionist and World Tour performance researcher. PhD-level researcher in carbohydrate metabolism. Performance nutritionist working with Tom Pidcock, Filippo Ganna, and other WorldTour athletes. Adviser to Exo Analytics.",
+    worksFor: {
+      name: "Exo Analytics",
+      type: "Organization",
+    },
+    sameAs: [
+      "https://uk.linkedin.com/in/sam-impey-37551839",
+    ],
+    whyMatters:
+      "Dr Sam Impey is one of the WorldTour-facing performance nutritionists most relevant to the modern fuelling conversation — working with Tom Pidcock and Filippo Ganna at the elite level, advising Exo Analytics, and publishing on carbohydrate metabolism. His usefulness for the Roadman audience is that he is the rare practitioner willing to publicly say: stop copying the 120g/hr pro number — that protocol is built for 8–12 g/kg/day workloads across 20–30 hours of training and is the wrong starting point for amateurs.",
+    keyIdeas: [
+      "Stop copying the 120g/hr pro number — amateur fuelling should scale to total energy output and gut-training history, not to what Pidcock or Ganna eat at the Tour.",
+      "Sensible amateur starting point: ~60g of carbohydrate per hour (1g/min) regardless of intensity, then build from there.",
+      "Above FTP, glycogen burn becomes exponential — the fuelling target jumps not because of intensity per se but because of glycogen depletion rate at and above threshold.",
+      "The gut is trainable because the intestinal lining renews roughly every five days — adaptation is real but must be earned over weeks, not added on race day.",
+      "GI symptoms ≠ malabsorption — distinguish discomfort from carbohydrate not being delivered to muscle; overfeeding lower-intensity sessions can blunt fat-oxidation adaptations amateurs particularly need.",
+    ],
+    relatedHubs: ["cycling-nutrition", "cycling-in-ride-nutrition-guide"],
+  },
+
+  "christian-schrot": {
+    description:
+      "German cycling coach and sports scientist. Coach at Team Jayco–AlUla on the WorldTour. Public voice on lab-based intensity-zone calibration, fat oxidation curves, and the gap between FTP-derived and metabolic-test-derived training zones.",
+    worksFor: {
+      name: "Team Jayco–AlUla",
+      type: "SportsTeam",
+    },
+    whyMatters:
+      "Dr Christian Schrot is a coach at Team Jayco–AlUla whose technical work focuses on lab-based zone calibration: how individual fat-oxidation curves diverge from FTP-derived zones, and what that means for amateurs setting their training intensity off a 20-minute test. His perspective is particularly useful for time-crunched riders, because he is explicit about why over-correcting toward intensity stops moving fitness forward — and what to do instead. For the Roadman audience trying to make 80/20 actually work, he is one of the more practical coaching voices the show has run.",
+    keyIdeas: [
+      "Time-crunched amateurs over-correct by going too hard on every ride — the fix isn't more suffering, it's stricter zone discipline. Roughly 80% should feel almost embarrassingly easy.",
+      "Fat oxidation curves are individual — lab spirometry will often show your true Fat Max and zones differ meaningfully from anything derived off a 20-minute FTP test.",
+      "A 20-minute FTP field test estimates threshold power but says nothing about fuel utilisation — power-derived zones miscalibrate fuel-burning intent right at the start.",
+      "Track work via kilojoules per zone, not TSS as a single number — you see how much work is actually being done at each intensity, which is what moves fitness.",
+      "An 80/20 distribution can flex (the 20 can land at 15 or 28 in any given week) — what's non-negotiable is that the 80 is genuinely easy.",
+    ],
+    relatedHubs: ["ftp-training", "cycling-training-plans"],
+  },
+
   "uli-schoberer": {
     description:
       "German engineer. Founder of SRM (Schoberer Rad Messtechnik) in 1986. Designer of the first commercially available bicycle power meter, used as the research and pro-team standard for two decades.",
