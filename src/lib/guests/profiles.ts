@@ -1604,6 +1604,122 @@ export const GUEST_PROFILE_OVERRIDES: Record<string, GuestProfileOverride> = {
     relatedHubs: ["cycling-nutrition", "cycling-protein-requirements"],
   },
 
+  "gareth-joyce": {
+    description:
+      "American executive and CEO of Wahoo Fitness. Career arc through Mercedes-Benz, Delta Air Lines and Proterra (electric bus manufacturer) before joining Wahoo. Long-time cyclist; took the Wahoo CEO role to grow the connected-fitness platform against Garmin in cycling.",
+    worksFor: {
+      name: "Wahoo Fitness",
+      type: "Organization",
+      url: "https://www.wahoofitness.com",
+    },
+    whyMatters:
+      "Gareth Joyce is the CEO of Wahoo Fitness — the cycling-first connected-fitness company that has spent the last decade carving market share out of Garmin in head units, smart trainers and sensors. His career arc through Mercedes, Delta and Proterra (electric buses) before Wahoo gives him a different read on how a smaller, athlete-built company beats a larger general-purpose incumbent. For cyclists trying to understand where indoor training, navigation and connected fitness are heading, he is one of the most strategically positioned voices in the industry.",
+    keyIdeas: [
+      "Wahoo carved cycling out of Garmin because it was built BY athletes FOR athletes — that intuition is structural, not marketable.",
+      "Big incumbents have a structural weakness in their bulk — you can pick off a small corner like cycling navigation and out-execute thousands of employees because they can't move fast enough.",
+      "80% of outdoor cyclists are still male — connected fitness and indoor training is where female participation crosses through to outdoor.",
+      "The auto-to-aviation career jump felt like building a whole new toolbox, not adding to the old one — useful frame for any cyclist transitioning careers in their 40s.",
+      "Founder-CEOs of athletic-product companies tend to share specific origin stories — Joyce bought his first bike at 10 by strategically asking for cash and gift cards at his birthday party.",
+    ],
+    relatedHubs: ["cycling-coaching", "ftp-training"],
+  },
+
+  "courtney-conley": {
+    description:
+      "American chiropractor and foot health specialist. Founder of Gait Happens. Educator and clinician focused on the relationship between footwear, gait mechanics, and athletic performance. Public voice on minimalist and wide-toe-box footwear.",
+    worksFor: {
+      name: "Gait Happens",
+      type: "Organization",
+      url: "https://gaithappens.com",
+    },
+    sameAs: [
+      "https://gaithappens.com/",
+    ],
+    whyMatters:
+      "Dr Courtney Conley is the chiropractor and foot health specialist behind Gait Happens — the most-cited modern resource on the connection between footwear, foot dexterity and performance. Cycling is brutal on feet (narrow toe-box race shoes, rigid soles, fixed cleat positions) and most riders dismiss the resulting forefoot pain as a fit issue rather than a foot-mechanics issue. Her work matters because it gives amateurs a low-cost, off-the-bike intervention that produces measurable strength and sensory gains without changing a single watt of training.",
+    keyIdeas: [
+      "Most cycling shoes have narrow toe boxes that compress the forefoot — that's where forefoot pain, Morton's neuroma, and a chunk of 'cleat position' power loss actually originate.",
+      "The foot is a tripod that needs dissociation between rearfoot, midfoot and forefoot — rigid cleats freeze that movement and disrupt the kinetic chain to the pedal.",
+      "Most cyclists won't switch out of stiff race shoes — compensate off the bike: wear wide-toe-box, low-stack-height footwear daily to let the toes splay and restore sensory input.",
+      "Toe dexterity is a measurable, trainable function — if you can't isolate big toe vs smaller toes, the brain-to-foot signal is 'static on a phone' and motor output suffers.",
+      "Wearing minimalist wide-toe shoes daily produced strength gains nearly equivalent to dedicated foot-strength exercises in research — footwear is the underrated intervention.",
+    ],
+    relatedHubs: ["cycling-strength-conditioning", "cycling-recovery"],
+  },
+
+  "john-archibald": {
+    description:
+      "British professional time trial specialist. Multiple British national time trial titles and Commonwealth Games team pursuit medallist. UCI Hour Record contender. Among the fastest 10- and 25-mile TT riders in the UK.",
+    sameAs: [
+      "https://www.procyclingstats.com/rider/john-archibald",
+    ],
+    whyMatters:
+      "John Archibald is one of the fastest UK time trial riders of his generation — multiple British national TT titles, Commonwealth Games team pursuit medallist, and a long-running Hour Record contender. He sustained a near-pro performance level for years on roughly 15 hours of training a week alongside a full-time job — which is exactly the volume that the Roadman audience is realistically training to. His perspective on aero-first decision-making, interval work in the skis, and pacing by course rather than by power number is one of the most actionable on the show for any rider chasing a 10- or 25-mile TT PB.",
+    keyIdeas: [
+      "Train around 15 hours a week and protect recovery — pushing past 20–25 hours stops paying back because you can't absorb the work, even at full-time pro level.",
+      "Do your intervals in the skis, not just on the road bike — holding aero posture under VO2 and threshold loads is a trainable skill, not a one-off positional choice.",
+      "Stop chasing weight; chase CdA and watts — below a 10kg swing, mass barely changes a 10-mile time once you're over 50km/h. Aero dominates the budget.",
+      "Buy aero gains in the right order — tyres, a big single chainring, oversized jockey wheels and a waxed chain are universal; helmet, skinsuit, overshoes and bar position need rider-specific testing.",
+      "Pace from the course, not the power number — model in Best Bike Split, push above threshold on draggy climbs you can recover from, treat tight corners as forced recovery.",
+    ],
+    relatedHubs: ["ftp-training", "cycling-training-plans"],
+  },
+
+  "erin-ayala": {
+    description:
+      "American sport psychologist and mental performance consultant. PhD in counselling psychology, former Senior Editor at the Journal of Sport Psychology in Action. Founder of Skadi Sport Psychology. Public voice on confidence, motivation and mental performance for endurance athletes.",
+    worksFor: {
+      name: "Skadi Sport Psychology",
+      type: "Organization",
+    },
+    whyMatters:
+      "Dr Erin Ayala is one of the more grounded sport psychologists working with endurance athletes — a PhD in counselling psychology, former Senior Editor at the Journal of Sport Psychology in Action, and founder of Skadi Sport Psychology. Her framing of self-efficacy as task-specific (rather than 'general confidence'), and of motivation as a habit problem rather than a willpower problem, is the cleanest articulation of the mental side that the show has run. For riders who plateau on the mental side faster than the physical, her work is the right starting point.",
+    keyIdeas: [
+      "Self-efficacy beats general confidence — belief in your ability to execute a specific task (the field sprint, the technical descent, the climb selection) predicts performance better than feeling good in general.",
+      "You can't will confidence into existence — the harder you grip for it the further it slips. Peak performance shows up when you stop monitoring how you look and trust the process.",
+      "Motivation is fluid and unreliable — build habits that run without it. Make the entry bar small enough to feel underwhelming, plan for the day motivation wanes, and treat the second missed day as the one that matters.",
+      "Mental toughness isn't about blocking pain — welcome it, give the discomfort a nod, and stay curious about how deep you can go.",
+      "Visualise the selection point of the race before you start — decide what your thoughts and response will be at the climb, the technical section, or the team attack.",
+    ],
+    relatedHubs: ["cycling-recovery"],
+  },
+
+  "sami-sauri": {
+    description:
+      "Spanish cyclist, filmmaker and storyteller. Komoot ambassador. Former alley-cat and fixed-gear racer turned long-distance gravel and adventure rider. Known for ultra-distance road and gravel rides documented on film.",
+    sameAs: [
+      "https://www.instagram.com/samisauri/",
+    ],
+    whyMatters:
+      "Sami Sauri is the Spanish cyclist-filmmaker who built an entire cycling career outside the World Tour ladder — alley-cat racing in Barcelona, the Red Hook Crit, LA Sweat road racing, then long-distance gravel and adventure rides for Komoot, Velocio and Thereabouts. Her work matters because it is the cleanest example of how a non-pro can make cycling their life through storytelling, photography and adventure rides without ever signing a WorldTour contract. For amateurs who love the sport but don't want to chase a results career, she is the model.",
+    keyIdeas: [
+      "You don't need a WorldTour contract to make cycling your life — adventure, filmmaking and storytelling is a parallel career path that bypasses the racing ladder entirely.",
+      "Saying yes to a trip you haven't trained for produces some of the best riding of your life — 280km on Route 66 at 31kph from a fixed-gear racer's base is the case in point.",
+      "Cycling careers branch — fixed-gear → alley-cat → Red Hook Crit → road → adventure gravel is a real path, not a series of unconnected hobbies.",
+      "The Roadman name as a gender-neutral marker of respect is intentional — riders are riders regardless of gender, and the editorial position should match.",
+      "Photographic distinctiveness matters — a film with a surfboard strapped to a gravel bike on a remote Atlantic island is what gets people to engage with cycling who otherwise wouldn't.",
+    ],
+    relatedHubs: ["cycling-training-plans"],
+  },
+
+  "jimmy-whelan": {
+    description:
+      "Australian former WorldTour cyclist (EF Education–Nippo / EF Education–EasyPost) turned competitive runner. Now writes and coaches on the technical transition between cycling fitness and running fitness for endurance athletes.",
+    sameAs: [
+      "https://www.procyclingstats.com/rider/jimmy-whelan",
+    ],
+    whyMatters:
+      "Jimmy Whelan is the former EF Education WorldTour cyclist who, after retirement, became a competitive runner — and one of the most useful guides for cyclists trying to add running into their week without injury. His perspective matters because he has the bike fitness most amateurs aspire to AND the running mechanics most cyclists lack, which makes his guidance on shoe choice, aerobic intensity, and the cyclist-specific traps of jumping into running unusually credible. For Roadman's audience trying to add running without losing their cycling base, he's the right starting point.",
+    keyIdeas: [
+      "The cyclist's running trap: 40 minutes pinned at 155 BPM in zone 3, sore for days. 'Just run easy' is the unsexy advice nobody wants to hear.",
+      "Modern foam shoes (40–45mm stack) are the right place to start — soft and responsive, takes the impact load out of bones and tendons. Not carbon-plated super shoes for jogging.",
+      "The forefoot vs heel landing debate maps to cycling style — pure cyclists land midfoot/heel because that's how they pedal; runners-turned-cyclists climb out of the saddle more often.",
+      "An easy 10k once a week as a 'rest day' during pro years keeps tendons and bones loaded — most pros don't run at all and pay for it after retirement.",
+      "Bike fitness is not running fitness — five pros on a treadmill at 4:00/km will all look different in landing mechanics, glute use, and force vectors.",
+    ],
+    relatedHubs: ["cycling-training-plans", "cycling-strength-conditioning"],
+  },
+
   "uli-schoberer": {
     description:
       "German engineer. Founder of SRM (Schoberer Rad Messtechnik) in 1986. Designer of the first commercially available bicycle power meter, used as the research and pro-team standard for two decades.",
