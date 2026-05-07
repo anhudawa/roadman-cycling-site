@@ -111,7 +111,7 @@ export const GUEST_PROFILE_OVERRIDES: Record<string, GuestProfileOverride> = {
 
   "stephen-seiler": {
     description:
-      "Professor of Sport Science at the University of Agder, Norway. Exercise physiologist who coined the polarised-training model and the 80/20 rule of intensity distribution.",
+      "Professor of Sport Science at the University of Agder, Norway. Exercise physiologist who defined the polarised-training model and the 80/20 rule of intensity distribution.",
     worksFor: {
       name: "University of Agder",
       type: "CollegeOrUniversity",
@@ -363,7 +363,7 @@ export const GUEST_PROFILE_OVERRIDES: Record<string, GuestProfileOverride> = {
 
   "alan-murchison": {
     description:
-      "Scottish chef and elite sports nutritionist. Held a Michelin star at L'Ortolan in Berkshire from 2003 to 2014. Founder of Performance Chef LTD; consultant to British Cycling, the chef behind Specialized Factory Racing's race plates, and author of The Cycling Chef cookbook series (Bloomsbury). Multiple-time World and European age-group duathlon champion.",
+      "Scottish chef and elite sports nutritionist. Held a Michelin star at L'Ortolan in Berkshire until 2014. Founder of Performance Chef LTD; consultant to British Cycling, the chef behind Specialized Factory Racing's race plates, and author of The Cycling Chef cookbook series (Bloomsbury). Multiple-time World and European age-group duathlon champion.",
     worksFor: {
       name: "Performance Chef",
       type: "Organization",
@@ -397,7 +397,7 @@ export const GUEST_PROFILE_OVERRIDES: Record<string, GuestProfileOverride> = {
 
   "andy-galpin": {
     description:
-      "Professor of Kinesiology at California State University, Fullerton, and one of the most cited muscle physiologists in the world. Founder of the Center for Sport Performance and the Biochemistry & Molecular Exercise Laboratory at Cal State Fullerton, co-author of more than ninety peer-reviewed papers on skeletal muscle, and host of the Perform with Dr Andy Galpin podcast.",
+      "Professor of Kinesiology at California State University, Fullerton, and one of the most recognised muscle physiologists in endurance sport. Founder of the Center for Sport Performance and the Biochemistry & Molecular Exercise Laboratory at Cal State Fullerton, co-author of more than ninety peer-reviewed papers on skeletal muscle, and host of the Perform with Dr Andy Galpin podcast.",
     worksFor: {
       name: "California State University, Fullerton",
       type: "CollegeOrUniversity",
@@ -489,7 +489,7 @@ export const GUEST_PROFILE_OVERRIDES: Record<string, GuestProfileOverride> = {
 
   "andre-greipel": {
     description:
-      "German former professional sprinter who rode at the WorldTour level from 2005 to 2021. 158 career wins including 22 Grand Tour stages — 11 Tour de France, 7 Giro d'Italia, 4 Vuelta — and the 2018 Belgian one-day classics circuit. Now national road coach for the German Cycling Federation.",
+      "German former professional sprinter who rode at the WorldTour level from 2005 to 2021. 158 career wins including 22 Grand Tour stages — 11 Tour de France, 7 Giro d'Italia, 4 Vuelta — and the 2018 Belgian one-day classics circuit. Former national road coach for the German Cycling Federation (2023–2025).",
     worksFor: {
       name: "Bund Deutscher Radfahrer (German Cycling Federation)",
       type: "Organization",
@@ -519,7 +519,7 @@ export const GUEST_PROFILE_OVERRIDES: Record<string, GuestProfileOverride> = {
 
   "george-hincapie": {
     description:
-      "American former professional cyclist (1994–2012), 17-time Tour de France finisher (a record at retirement), three-time US national road champion, and 2001 Gent-Wevelgem winner. Veteran of the US Postal / Discovery Channel era. Founder of Hincapie Sportswear and, in 2025, Modern Adventure Pro Cycling.",
+      "American former professional cyclist (1994–2012), 17-time Tour de France starter (16 finishes), three-time US national road champion, and 2001 Gent-Wevelgem winner. Veteran of the US Postal / Discovery Channel era. Founder of Hincapie Sportswear and, in 2025, Modern Adventure Pro Cycling.",
     worksFor: {
       name: "Modern Adventure Pro Cycling",
       type: "SportsTeam",
@@ -580,7 +580,7 @@ export const GUEST_PROFILE_OVERRIDES: Record<string, GuestProfileOverride> = {
 
   "ed-clancy": {
     description:
-      "British former track cyclist, three-time Olympic team-pursuit gold medallist (2008 Beijing, 2012 London, 2016 Rio) — the most successful team-pursuit rider in history. Eight-time UCI Track World Championship medallist. OBE for services to cycling. Now a coach, broadcaster, and motivational speaker.",
+      "British former track cyclist, three-time Olympic team-pursuit gold medallist (2008 Beijing, 2012 London, 2016 Rio) — the most successful team-pursuit rider in history. Twelve-time UCI Track World Championship medallist (six golds). OBE for services to cycling. Now a coach, broadcaster, and motivational speaker.",
     worksFor: {
       name: "British Cycling",
       type: "Organization",
@@ -792,7 +792,7 @@ export const GUEST_PROFILE_OVERRIDES: Record<string, GuestProfileOverride> = {
 
   "dr-allen-lim": {
     description:
-      "American sports physiologist. Founder of Skratch Labs. Former director of sports science for Team Garmin–Slipstream (2008–2010) and personal coach to riders including Lance Armstrong, Levi Leipheimer, and Christian Vande Velde. Author of The Feed Zone Cookbook series.",
+      "American sports physiologist. Founder of Skratch Labs. Former director of sports science for Team Garmin–Slipstream (2008–2010) and sports scientist who worked with riders including Lance Armstrong, Levi Leipheimer, and Christian Vande Velde. Author of The Feed Zone Cookbook series.",
     worksFor: {
       name: "Skratch Labs",
       type: "Organization",
@@ -1024,9 +1024,9 @@ export const GUEST_PROFILE_OVERRIDES: Record<string, GuestProfileOverride> = {
 
   "sofiane-sehili": {
     description:
-      "French ultra-distance bikepacking and self-supported endurance cyclist. Two-time Transcontinental Race winner (TCR No.7 in 2019, TCR No.10 in 2024) and multi-time finisher of major bikepacking events including the Silk Road Mountain Race.",
+      "French ultra-distance bikepacking and self-supported endurance cyclist. Winner of the Tour Divide, Atlas Mountain Race, and three-time Silk Road Mountain Race champion.",
     whyMatters:
-      "Sofiane Sehili is one of the most successful self-supported ultra-distance riders in the world — a two-time Transcontinental Race winner across the TCR No.7 (2019) and TCR No.10 (2024), and a regular podium finisher at the Silk Road Mountain Race and other unsupported events. His perspective on routing, sleep strategy, gear minimalism, and sustainable pacing across 4,000+ km races is one of the most experienced on record. For Roadman listeners thinking about TCR, ATR, or solo bikepacking, his content is a primary practical reference.",
+      "Sofiane Sehili is one of the most successful self-supported ultra-distance riders in the world — winner of the Tour Divide, the Atlas Mountain Race, and a three-time Silk Road Mountain Race champion. His perspective on routing, sleep strategy, gear minimalism, and sustainable pacing across 4,000+ km races is one of the most experienced on record. For Roadman listeners thinking about TCR, ATR, or solo bikepacking, his content is a primary practical reference.",
     keyIdeas: [
       "Sleep strategy is the single biggest variable in unsupported ultra-distance — pace is downstream of how well you sleep.",
       "Routing decisions made off the bike often beat watts saved on the bike — efficient lines win unsupported races.",
