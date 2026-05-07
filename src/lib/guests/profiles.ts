@@ -1158,6 +1158,117 @@ export const GUEST_PROFILE_OVERRIDES: Record<string, GuestProfileOverride> = {
     relatedHubs: ["cycling-strength-conditioning", "cycling-coaching"],
   },
 
+  "david-millar": {
+    description:
+      "Scottish former professional cyclist (1997–2014). Tour de France stage winner, 2003 Tour de France prologue winner and yellow jersey, multiple British TT champion, 2010 Commonwealth Games TT silver. Co-founder of Slipstream Sports (which became Garmin-Sharp), ITV4 cycling commentator, and author of Racing Through the Dark and The Racer.",
+    sameAs: [
+      "https://en.wikipedia.org/wiki/David_Millar",
+      "https://www.procyclingstats.com/rider/david-millar",
+    ],
+    whyMatters:
+      "David Millar is one of the most articulate voices in cycling — a former Tour de France stage winner and yellow jersey wearer, multiple British TT champion, and a rider whose 2004 EPO ban turned him into one of the sport's most credible reformist voices. He co-founded the team that became Slipstream / Garmin-Sharp explicitly around an anti-doping mission, served two decades on the front end of British TT culture, and is now ITV4's lead cycling commentator. For amateurs trying to understand TT pacing, position, and what the modern peloton actually thinks about racing, he is the bridge.",
+    keyIdeas: [
+      "The fastest TT position is the one you can hold and produce power in for the full distance — wind-tunnel-optimal is irrelevant if you fall apart at 30 minutes.",
+      "Wider tyres at appropriate pressure roll faster than narrow high-pressure tyres on real road surfaces — 25mm beats 19mm at 130psi for nearly every amateur.",
+      "Cadence beats gearing in a TT — spinning a smaller gear faster beats grinding a bigger one over 10–25 mile distances.",
+      "Speed is the only metric that scores you in a TT — power and heart rate are inputs, speed is the output.",
+      "Position, tyres, pacing and pedalling efficiency on a stock bike give amateurs more time than a £10,000 frame upgrade ever will.",
+    ],
+    relatedHubs: ["ftp-training", "cycling-training-plans"],
+  },
+
+  "brian-smith": {
+    description:
+      "Scottish former professional cyclist, sports director, and ITV4 cycling commentator. Two-time British National Road Race Champion (1991, 1994). 1992 World Championships top finisher in the lead group with Sean Kelly. Sports director at MTN-Qhubeka — the first African team to ride the Tour de France.",
+    whyMatters:
+      "Brian Smith won the British National Championships twice in the early 1990s entirely self-coached, then went on to direct MTN-Qhubeka — the first African registered team to ride the Tour de France. He is one of the rare voices in cycling who has been a pro, a sports director, and a commentator, which makes his read on race tactics, motorbike pacing, and rider intent sharper than most. For amateurs interested in coaching philosophy, his perspective on what real coach–athlete trust looks like is unusually grounded.",
+    keyIdeas: [
+      "Self-coached pros built fitness on phone calls — Robert Millar's prescription of low-cadence (50–60 rpm) big-gear flat work was Smith's template before power meters existed.",
+      "Coaching is a relationship, not a service — a coach can only realistically coach 6–10 riders well at any one time because trust takes years to build.",
+      "Don't sell a power meter to a rider who calls it an 'investment' — the word is the alarm; run a low-tech plan first.",
+      "A coach who has been a pro, a sports director and a commentator reads races more accurately than any pundit who has only one of those perspectives.",
+      "The first African team at the Tour proved both the depth of the talent and the structural barriers in equal measure — the riders were ready long before the platform was.",
+    ],
+    relatedHubs: ["cycling-coaching", "cycling-training-plans"],
+  },
+
+  "fred-wright": {
+    description:
+      "British professional cyclist for Bahrain Victorious, born 1999. Came through the British Cycling junior pathway. Multiple Grand Tour breakaway specialist and Monument near-misser, including 4th at Paris-Roubaix 2024.",
+    worksFor: {
+      name: "Bahrain Victorious",
+      type: "SportsTeam",
+    },
+    sameAs: [
+      "https://en.wikipedia.org/wiki/Fred_Wright_(cyclist)",
+      "https://www.procyclingstats.com/rider/fred-wright",
+    ],
+    whyMatters:
+      "Fred Wright is one of the most aggressive young British riders of his generation — a Bahrain Victorious pro who has spent his early career attacking out of breakaways at Monuments and Grand Tours and has come within seconds of winning Paris-Roubaix. His openness in long-form interviews — particularly about the death of his teammate and friend Gino Mäder — has made him one of the more thoughtful voices on what life inside the peloton actually costs. For amateurs trying to understand the trade-offs of going pro, his honesty is the antidote to the highlight-reel pro mythology.",
+    keyIdeas: [
+      "The pro fatigue ceiling is cognitive before it is physical — past about 3 hours of daily riding, focus on anything else collapses.",
+      "Racing at the WT level is an explicit, not implicit, trade-off with the rest of life: 'you become a useless human at everything else.'",
+      "Early-season 2-hour daily blocks are a relief, not a chore — bandwidth returns before the 25–30hr weeks restart.",
+      "Recognition is asymmetric — pros are spotted in race kit and invisible without it, which makes Zone 2 in public parks weirder than it sounds.",
+      "Consistency outperforms volume even at the elite level — a steady month of riding produces gains accessible to any amateur willing to make the trade.",
+    ],
+    relatedHubs: ["cycling-recovery", "cycling-training-plans"],
+  },
+
+  "genevieve-jeanson": {
+    description:
+      "Canadian former professional cyclist. 1999 UCI Junior Road Race and Time Trial World Champion. 2003 Pan American Games road race gold medallist. Banned in 2007 after admitting EPO use under coercive coaching from age 16. Now a public advocate for athlete welfare and clean sport.",
+    sameAs: [
+      "https://en.wikipedia.org/wiki/Genevi%C3%A8ve_Jeanson",
+    ],
+    whyMatters:
+      "Geneviève Jeanson was the most successful junior road cyclist in the world in 1999 — UCI World Champion in both road race and time trial — before being driven into EPO use by an abusive coach starting at age 16. Her decision in adulthood to come forward, name the coach, and tell the full story of how doping starts (with body-shaming and isolation, not syringes) reframed how cycling and Olympic sport understand junior welfare. Her return to gravel racing in her 40s as a recovery project — not a results project — is a model worth holding on to in a sport that still struggles with what to do with riders after the doping label.",
+    keyIdeas: [
+      "Doping in junior cycling rarely begins with a substance — it begins with body-shaming and isolation. The substance comes later.",
+      "Friends and family often see signs but lack a framework to intervene — behavioural change, not results, is the leading indicator.",
+      "Specialising too young leaves athletes without basic life tools — many feel 'starting at 16 again' when they retire.",
+      "The paranoia of an active doping period is its own punishment — surveillance fear leaves marks long after the substance does.",
+      "Healing took 15+ years of therapy and a decision at 40 to return to gravel racing not for results but to 'rewrite the ending.'",
+    ],
+    relatedHubs: ["cycling-recovery"],
+  },
+
+  "aron-dsouza": {
+    description:
+      "Australian-Maltese-American entrepreneur and lawyer. Founder and President of the Enhanced Games — an unsanctioned sporting event with no anti-doping testing and explicit support for performance-enhancing drugs under medical supervision. DPhil from the University of Oxford (Christ Church).",
+    sameAs: [
+      "https://en.wikipedia.org/wiki/Enhanced_Games",
+    ],
+    whyMatters:
+      "Aron D'Souza is the founder of the Enhanced Games — the most direct challenge to WADA and the Olympic anti-doping framework in a generation. Whatever you make of the project, the questions it forces — about athlete consent, the economics of 'clean' sport, the gap between testing and reality, and who actually benefits from the current rules — are the conversations cycling has been avoiding for decades. For an audience that grew up watching Armstrong and is now watching modern peloton numbers that look statistically similar on paper, his arguments are uncomfortable but unavoidable.",
+    keyIdeas: [
+      "Athlete consent to WADA rules isn't meaningful when there's no competing structure to opt into — the monopoly is the problem.",
+      "Survey data suggests around 44% of elite athletes admit to using banned substances while only 1% are caught — testing is not catching what it claims to.",
+      "Olympic prize structures (~$30k/year for top runners and swimmers) are economically fragile against a $1M record bounty offered outside the sanctioned system.",
+      "Professor David Nutt's 2012 Lancet harm survey ranked alcohol and heroin above clinically supervised steroids — the harm framing of doping is partly inherited rhetoric.",
+      "'Protect the children' arguments collapse when McDonald's and Coca-Cola sponsor the same Olympics — pick a principle and apply it consistently.",
+    ],
+  },
+
+  "nathan-haas": {
+    description:
+      "Australian retired professional cyclist. Raced 10 seasons in the World Tour with Garmin-Sharp, Dimension Data and Cofidis before transitioning to elite gravel and ultra-endurance racing. 2017 Tour of Britain points jersey winner. One of the first European-based road pros to switch full-time to gravel.",
+    sameAs: [
+      "https://en.wikipedia.org/wiki/Nathan_Haas",
+      "https://www.procyclingstats.com/rider/nathan-haas",
+    ],
+    whyMatters:
+      "Nathan Haas spent a decade in the World Tour with Garmin-Sharp, Dimension Data and Cofidis before becoming one of the first European road pros to switch full-time to elite gravel — and then retiring at 36 because, in his read, gravel had professionalised to the point that the lifestyle gap to the World Tour had closed. His perspective on what makes a sport elite, what gets lost when money arrives, and what amateurs misunderstand about the gap between pro and very-good is sharp because he has lived both sides of it. For Roadman's audience trying to make sense of where gravel is going, he is one of the most honest voices on it.",
+    keyIdeas: [
+      "Elite gravel now demands what the World Tour demands — altitude camps, weighed food, no life — the lifestyle frontier closed faster than expected.",
+      "The 'gravel pro' barrier is partly fake — Instagram followers and a sponsor slot can get you on the start line, which is good for sponsors and bad for meritocracy claims.",
+      "The depth gap to the World Tour is structural — the best gravel pros wouldn't crack the road WT top 200 at the same age.",
+      "Pete Stetina and Ted King created the first real 'gravel pro' template in the late 2010s — the money chased the model, then the model started copying road racing.",
+      "Knowing when to leave a sport is its own skill — when the trade-offs stop adding up, the right answer is to retire on your own terms.",
+    ],
+    relatedHubs: ["cycling-training-plans"],
+  },
+
   "uli-schoberer": {
     description:
       "German engineer. Founder of SRM (Schoberer Rad Messtechnik) in 1986. Designer of the first commercially available bicycle power meter, used as the research and pro-team standard for two decades.",
