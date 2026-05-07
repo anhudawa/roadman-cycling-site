@@ -1377,6 +1377,93 @@ export const GUEST_PROFILE_OVERRIDES: Record<string, GuestProfileOverride> = {
     relatedHubs: ["ftp-training", "cycling-training-plans"],
   },
 
+  "ben-hoffman": {
+    description:
+      "American professional triathlete. Multiple-time Ironman champion (Ironman South Africa, Ironman Brazil, Ironman Boulder, Ironman Coeur d'Alene, others). Multiple Ironman World Championship podium contender across his career.",
+    sameAs: [
+      "https://en.wikipedia.org/wiki/Ben_Hoffman_(triathlete)",
+    ],
+    whyMatters:
+      "Ben Hoffman is one of the most consistent Ironman-distance triathletes of the last decade — multi-time Ironman champion across South Africa, Brazil, Boulder, and Coeur d'Alene, and a perennial Kona contender. His perspective is useful because he has done the long-arc career thing the right way: gradual training stress, structured recovery, and a willingness to talk publicly about the mental side that most pros only acknowledge after retirement. For amateurs juggling family, work and an Ironman build, his framing of 'stress + rest = growth' is the cleanest model in the sport.",
+    keyIdeas: [
+      "'Stress + rest = growth' — most amateurs apply it wrong by stacking training stress on top of unmeasured work, family and social-media stress; the fix is often less training, not more.",
+      "Mental skills work is the final frontier of performance — most pros, including Hoffman, regret not making it a structured part of the programme earlier.",
+      "Iron-distance young guns are winning partly via lifestyle discipline — explicitly removing distractions, controlling environments around training and recovery.",
+      "Endurance peaks have moved younger as training science is applied earlier in athletic development — the historical 30+ peak for Iron-distance is no longer the only model.",
+      "A genuine training community is one of the most underrated long-term performance factors — accountability, shared standards, and a motivational cycle solo training can't replicate.",
+    ],
+    relatedHubs: ["triathlon-cycling", "cycling-recovery", "cycling-training-plans"],
+  },
+
+  "josh-amberger": {
+    description:
+      "Australian professional triathlete. Multi-time Ironman 70.3 winner. Known as one of the strongest swim legs in long-course triathlon. Multiple Ironman Australia and Ironman Cairns titles.",
+    sameAs: [
+      "https://en.wikipedia.org/wiki/Josh_Amberger",
+    ],
+    whyMatters:
+      "Josh Amberger is one of the strongest swimmers in professional triathlon — a multi-time Ironman 70.3 winner whose swim background (10–12 sessions a week from age 11) gave him a stroke he no longer needs to think about. For age-group triathletes who didn't swim as kids and are now wondering how to close the gap, his perspective is unusually direct: technique-first, mobility-led maintenance, and a long view on offseason recovery rather than chasing back-to-back peaks.",
+    keyIdeas: [
+      "Swimming is overwhelmingly technical — unlike cycling and running, you can't self-correct once bad habits form, and adult-onset swimmers face a real performance ceiling no amount of volume fully closes.",
+      "A childhood-built stroke is maintained by upper-body mobility (lats, triceps, pecs) more than by total swim volume in adult years.",
+      "Take a real offseason — phone away, weight on, time off. Back-to-back altitude camps deliver short-term PBs but a real long-tail mental and career cost.",
+      "On-bike fuelling has doubled in a decade — from ~70g/hr to 120g+/hr — and the younger generation has the 'no shame in eating' culture built in from day one.",
+      "Triathlon aero has shifted fastest in the last 5 years — integrated fairings and custom extensions have pushed 180km bike legs to near 4-hour paces, formerly half-Ironman bike speed.",
+    ],
+    relatedHubs: ["triathlon-cycling", "cycling-nutrition"],
+  },
+
+  "mick-clohisey": {
+    description:
+      "Irish professional marathon runner. Rio 2016 Olympic marathoner. Coached since his teens by 3x Irish Olympian Dick Hooper. Marathon PB in the 2:13 range.",
+    whyMatters:
+      "Mick Clohisey is the Irish Olympic marathon runner who cut 1 hour 47 minutes off his marathon PB en route to representing Ireland at Rio 2016 — a transformation built on a long-arc coaching relationship with Dick Hooper, the right event match for his physiology, and the harder-than-it-looks reality of training around a part-time job. His perspective on long-arc development, event selection, and what Olympic-level distance running actually looks like outside the international elite tier is unusually honest. For amateur marathoners and triathletes, his story is a case study in patience.",
+    keyIdeas: [
+      "The marathon vs track decision matters more than most amateurs realise — picking the right event for your physiology saves years of chasing the wrong one.",
+      "A long-arc coach–athlete relationship from the teenage years is the single biggest factor in steady late-twenties development.",
+      "Olympic-level training is often sustained around a day job — distance running outside the international elite tier looks nothing like the sponsorship narrative.",
+      "Selection process drama (CAS appeals, qualification windows) is part of the Olympic story — getting the time isn't always enough.",
+      "Casual hygiene errors at altitude camps — flip-flops, sweaty feet, dust into skin — can ruin a marathon. 'Not professional enough' costs results.",
+    ],
+    relatedHubs: ["triathlon-cycling", "cycling-training-plans"],
+  },
+
+  "david-gillick": {
+    description:
+      "Irish former professional sprinter. Two-time European Indoor 400m Champion (2005, 2009). Beijing 2008 Olympic semi-finalist. Now a public speaker, mental health advocate, and broadcaster on athlete identity and life after sport.",
+    sameAs: [
+      "https://en.wikipedia.org/wiki/David_Gillick",
+    ],
+    whyMatters:
+      "David Gillick is the Irish two-time European Indoor 400m Champion who, after retirement, became one of the most articulate public voices on athlete identity loss and depression. His honesty about the psychological collapse that followed his career — and his work since on Celebrity Hell Week and as a mental-health speaker — has helped reframe how Irish sport talks about life after the stadium goes quiet. For amateur athletes who attach too much identity to their sport, his perspective is one of the more useful warnings in the show's archive.",
+    keyIdeas: [
+      "Retirement triggers a genuine psychological collapse for elite athletes, not a career change — the void where the stadium crowd used to be is real.",
+      "Celebrity Hell Week (RTÉ) — ~6h 20m of sleep across six days — forced a confrontation that revealed resilience Gillick hadn't credited himself with.",
+      "The hardest part isn't the sport ending — it's the impossibility of replacing '80,000 people shouting your name' in the next chapter.",
+      "Sporting environments teach people to mask weakness — there's no vocabulary for vulnerability, so retiring athletes never learned how to ask for help.",
+      "Genuine support for retired athletes is helping them build a new life in parallel with the old one — find new people, not a new pedestal.",
+    ],
+    relatedHubs: ["cycling-recovery"],
+  },
+
+  "shannon-malseed": {
+    description:
+      "Australian professional cyclist. Australian National Road Race Champion in her first year as a pro. UCI Women's WorldTour rider. Now a public voice on sport psychology and the gap between professional success and personal fulfilment.",
+    sameAs: [
+      "https://www.procyclingstats.com/rider/shannon-malseed",
+    ],
+    whyMatters:
+      "Shannon Malseed is the Australian rider who won the national championships in her first year as a pro and was miserable doing it. Her honest reckoning with the gap between professional success and personal fulfilment — and her articulation of what 'I was just blocked' actually means as an athletic state — makes her one of the most useful voices on the show for any rider whose performances stop matching their effort. For amateurs whose worst training weeks coincide with their worst weeks at home, the framing alone is worth the episode.",
+    keyIdeas: [
+      "Winning a national championship doesn't fix the self-worth gap — every WWT race that year still ended in being thrashed, and the green-and-gold stripes added pressure rather than resolved it.",
+      "Relying on the team and peloton to keep telling you you're good enough wears thin fast — external validation is not a sustainable model.",
+      "Lockdown lifted the cycling-bubble — once self-worth no longer needed cycling as the proof, the sport itself became optional.",
+      "'I was just blocked' is the term riders use for a bad day — emotional blockage shows up as physical performance, but coaches and physiologists rarely address it.",
+      "There's no point of no return — coming back from a dark place is simple but real: do something positive, today, and let the cycle restart.",
+    ],
+    relatedHubs: ["cycling-recovery"],
+  },
+
   "uli-schoberer": {
     description:
       "German engineer. Founder of SRM (Schoberer Rad Messtechnik) in 1986. Designer of the first commercially available bicycle power meter, used as the research and pro-team standard for two decades.",
