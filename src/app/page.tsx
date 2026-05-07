@@ -441,7 +441,7 @@ export default function HomePage() {
                   hoverable={false}
                 >
                   <p className="font-heading text-[10px] tracking-[0.3em] text-amber-400 mb-3">
-                    04 · $475/MO
+                    04 · $525/MO
                   </p>
                   <h3 className="font-heading text-2xl text-off-white mb-3">
                     INNER CIRCLE

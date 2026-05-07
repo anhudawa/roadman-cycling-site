@@ -502,11 +502,10 @@ export const GUEST_PROFILE_OVERRIDES: Record<string, GuestProfileOverride> = {
       "https://www.procyclingstats.com/rider/andre-greipel",
     ],
     featuredArticles: [
-      "andre-greipel-sprint-captaincy-burnout",
       "andre-greipel-sprint-captains-code",
     ],
     whyMatters:
-      "André Greipel is one of the most decorated Grand Tour sprinters of his generation — eleven Tour de France stage wins, twenty-two Grand Tour stages in total, and a fifteen-year top-flight career across Lotto, Arkéa, and Israel. He is also one of the few sprinters who has talked openly about the mental cost of the role: managing leadout teams, surviving non-sprint stages, and the burnout cycle that ends most sprinting careers early. As Germany's national road coach since 2023 he sees the next generation up close, which makes his perspective on what amateur sprinters get wrong unusually current.",
+      "André Greipel is one of the most decorated Grand Tour sprinters of his generation — eleven Tour de France stage wins, twenty-two Grand Tour stages in total, and a fifteen-year top-flight career across Lotto, Arkéa, and Israel. He is also one of the few sprinters who has talked openly about the mental cost of the role: managing leadout teams, surviving non-sprint stages, and the burnout cycle that ends most sprinting careers early. Having served as Germany's national road coach from 2023 to 2025, he saw the next generation up close, which makes his perspective on what amateur sprinters get wrong unusually current.",
     keyIdeas: [
       "Sprinting is captaincy, not just kick — the leadout train, the protection in the bunch, and the radio calls determine whether the sprint even starts in the right position.",
       "Surviving the mountain stages is the unsexy skill that decides Grand Tour sprint careers — pure speed without resilience does not translate to GT stage wins.",
