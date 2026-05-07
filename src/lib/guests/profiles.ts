@@ -1269,6 +1269,114 @@ export const GUEST_PROFILE_OVERRIDES: Record<string, GuestProfileOverride> = {
     relatedHubs: ["cycling-training-plans"],
   },
 
+  "matt-beers": {
+    description:
+      "South African professional gravel and mountain bike racer. Three-time Absa Cape Epic winner (2021, 2022, 2024). Lifetime Grand Prix series competitor. Specialized Factory Racing rider, coached by John Wakefield at Science to Sport.",
+    worksFor: {
+      name: "Specialized Factory Racing",
+      type: "SportsTeam",
+    },
+    sameAs: [
+      "https://www.procyclingstats.com/rider/matthew-beers",
+    ],
+    whyMatters:
+      "Matt Beers is one of the best off-road cyclists in the world — three-time Absa Cape Epic winner, multiple Lifetime Grand Prix podiums, and the dominant South African MTB/gravel rider of his generation. He is part of the cohort of mountain bike pros who have crossed into US gravel without losing competitive ground, which is the model amateurs trying to balance disciplines should be looking at. His training partnership with Keegan Swenson under coach John Wakefield is one of the most-watched preparation programmes in modern gravel racing.",
+    keyIdeas: [
+      "30–35 hour training weeks before Unbound aren't really fitness blocks — they're rehearsals for fuelling at race duration.",
+      "Long-event energy patterns are predictable: a slump around hour 4, another around hour 6, then a zombie state where fatigue stops registering.",
+      "Sub-max fatigue check: 3 minutes at ~110% FTP. When you can't hold it, the body is telling you to back off — a reliable early-warning system.",
+      "Metabolic intervals at 3.8–4.2 W/kg early in long sessions, plus full-gas 3–5 minute efforts at ride's end, train buffering and lactate clearance under fatigue.",
+      "Gravel is now a real career alternative for cyclists who lack the bunch-handling or early-spec development needed for the World Tour — the pathway has matured.",
+    ],
+    relatedHubs: ["cycling-training-plans", "ftp-training"],
+  },
+
+  "tj-eisenhart": {
+    description:
+      "American former professional cyclist. U23 National Time Trial Champion. Raced for BMC's development programme. Founder of the Imaginary Collective art project. Now races gravel and works as a mural artist.",
+    sameAs: [
+      "https://www.procyclingstats.com/rider/tj-eisenhart",
+    ],
+    whyMatters:
+      "TJ Eisenhart is the U23 National Time Trial Champion who reached the WorldTour through BMC's pipeline, walked away from professional road racing, founded the art collective Imaginary, and built a second career as a mural artist while continuing to race gravel. His arc — from pro racing into breathwork, art and gravel — is one of the more thoughtful 'what next?' stories in modern cycling. For amateurs who want a richer relationship with the sport than results alone provide, his perspective is unusually grounded.",
+    keyIdeas: [
+      "The mind, not the body, is the typical weak link — a Wim Hof ice-bath session against people 30 years older is a fast way to find that out.",
+      "Daily breathwork practice resolves chronic stress states more reliably than most other tools — energy resonates, then settles, like a tuning fork.",
+      "Manifestation experiments matter less the more they work — 'worldly' wins delivered no fulfillment, which forced a deeper re-evaluation of what to ask for.",
+      "Leaving pro road racing is not a story of failure — sometimes the right call is re-evaluation, not better results.",
+      "Veterans who raced through the late-2010s read modern doping cases with the recent past in mind — the era is closer than the press treats it.",
+    ],
+    relatedHubs: ["cycling-recovery"],
+  },
+
+  "alexey-vermeulen": {
+    description:
+      "American professional gravel cyclist. Former WorldTour rider with LottoNL-Jumbo (2017–2018). Lifetime Grand Prix series competitor. Multiple Big Sugar Gravel podium finisher.",
+    sameAs: [
+      "https://en.wikipedia.org/wiki/Alexey_Vermeulen",
+      "https://www.procyclingstats.com/rider/alexey-vermeulen",
+    ],
+    whyMatters:
+      "Alexey Vermeulen went from junior road prospect to LottoNL-Jumbo WorldTour rider to one of the early stars of the US elite gravel scene. His 10-year arc from junior road to Big Sugar podiums means he has lived both sides of the road-to-gravel pathway, which makes his beginner-gravel guidance notably credible — he isn't a roadie playing dress-up, he's an ex-WT rider who actually moved the entire stack of skills over and did the work to learn the new ones.",
+    keyIdeas: [
+      "Tubeless is ongoing maintenance, not install-and-forget — check sealant monthly, replace every 2–3 months, run 3–4 oz of Orange Seal per tyre.",
+      "Race-day pressures go low — 15 PSI was the all-day call at Big Sugar; road instincts push you too high for loose terrain.",
+      "Wider tyres are generally faster on gravel — 40–45mm beats skinnier for grip and suspension benefit; the speed penalty riders fear is mostly imagined.",
+      "Practise plugging a tyre at home before race day — fumbling with unfamiliar plugs mid-race costs minutes and confidence.",
+      "Gravel cornering is a different skill — weight the outside pedal, accept some tyre slip, and read the surface. You can't muscle through it like tarmac.",
+    ],
+    relatedHubs: ["cycling-training-plans"],
+  },
+
+  "alex-wild": {
+    description:
+      "American professional mountain biker and gravel racer. Specialized Factory Racing rider. Multiple Leadville 100 podium finisher and Lifetime Grand Prix series competitor.",
+    worksFor: {
+      name: "Specialized Factory Racing",
+      type: "SportsTeam",
+    },
+    whyMatters:
+      "Alex Wild is a long-tenured US off-road pro — Specialized Factory Racing, multiple Leadville podiums, and one of the more analytically minded gravel/MTB riders in the Lifetime Grand Prix series. His willingness to open his training files publicly (power numbers, pacing decisions, drivetrain choices) makes him an unusually useful reference for amateur racers trying to understand what 'good' looks like. His read on field-strength escalation across the Grand Prix is one of the more accurate in the discipline.",
+    keyIdeas: [
+      "Race taper depends on the course — a Cape Epic taper is not a Sea Otter taper; race-to-race prep isn't one template.",
+      "Race-week activation: 7×8 minutes at ~390W normalised the week before, with 3-minute recoveries — repeatability across the set is the green light.",
+      "Drivetrain choice for varied gravel: SRAM Transmission, 50T chainring, 10–52 cassette — big enough for the flats, small enough for the climb finish.",
+      "Watts/CDA on flats and watts/kg on climbs are the next live on-bar metrics — aero is becoming the second axis of the power conversation, not a one-off wind-tunnel test.",
+      "Field-strength signal across the Grand Prix: power numbers are rising while placings aren't — Dylan Johnson hit a 317W normalised PR for a 38th-place finish.",
+    ],
+    relatedHubs: ["cycling-training-plans", "ftp-training"],
+  },
+
+  "owen-vermeulen": {
+    description:
+      "South African professional gravel cyclist. Public advocate for addiction recovery. Sustained recovery from heroin and opioid addiction before re-entering competitive endurance sport.",
+    whyMatters:
+      "Owen Vermeulen is one of the most honest voices on addiction and recovery in cycling — a South African gravel pro who went public with the full arc of teenage heroin use, a professional skateboarding career, opioid relapse after a sport-ending injury, and the five-year non-linear road back into endurance sport. His perspective matters because it cuts through the highlight-reel pro mythology and reframes addiction as a biological response, not a moral failing. For Roadman's audience — many of whom know someone, or are someone, navigating dependency — his story is one of the most useful ones the show has run.",
+    keyIdeas: [
+      "Active addiction collapses the future into a single horizon: avoiding withdrawal tomorrow morning. The inability to think past 24 hours is the central trap, not willpower.",
+      "Addiction reshapes neural pathways via trauma and repeated use — relapse is part of the recovery arc, not evidence of failure.",
+      "Cycling provides structure and an extended future horizon — race goals pull recovery out of the day-to-day grind addiction imposes.",
+      "Endurance sport fits recovery psychology well — long efforts and long-arc goals are the right shape for a rebuilt brain.",
+      "'Addiction doesn't discriminate' — pro athletes derailed by a single injury and a prescription opioid is not a rare story. Resources don't insulate.",
+    ],
+    relatedHubs: ["cycling-recovery"],
+  },
+
+  "andrew-feather": {
+    description:
+      "British amateur hill-climb specialist. Multiple-time UK national hill-climb champion. Climbed ahead of Tadej Pogačar across the line at the 2024 Pogi Challenge in Slovenia — a 15km handicap mass-start hill climb with 1,200m of elevation gain.",
+    whyMatters:
+      "Andrew Feather is the British amateur hill-climb specialist who finished ahead of Tadej Pogačar at the 2024 Pogi Challenge — admittedly with a 6–7 minute head start on a handicap, but at 6.3 W/kg for 44 minutes at age 40, the performance is itself the headline. His career is the cleanest case study in what a true amateur uphill specialist can do, and how the W/kg numbers that win UK national hill climbs compare with what WorldTour climbers are putting out at the very top end.",
+    keyIdeas: [
+      "6.3 W/kg held for 44 minutes at age 40 puts a top UK amateur hill climber inside the same W/kg bracket as a strong WorldTour climber for short uphill durations.",
+      "Handicap-format climbs are won by the rider whose actual W/kg most exceeds the organiser's assumption — Feather hit 6.2–6.3 vs an estimated 5.5.",
+      "Net-time over the climb is the real number — Pogačar was about 3.5 minutes quicker than Feather over the 15km, 1,200m ascent.",
+      "Quinn Simmons' Il Lombardia ride — 355W average across 4+ hours, climbing at 400+W — defines the modern WorldTour ceiling, and Pogačar still caught him with 2.5 minutes to spare.",
+      "Top amateur W/kg numbers are catching elite numbers for short durations, but the 4-hour durability gap is what still separates the categories.",
+    ],
+    relatedHubs: ["ftp-training", "cycling-training-plans"],
+  },
+
   "uli-schoberer": {
     description:
       "German engineer. Founder of SRM (Schoberer Rad Messtechnik) in 1986. Designer of the first commercially available bicycle power meter, used as the research and pro-team standard for two decades.",
