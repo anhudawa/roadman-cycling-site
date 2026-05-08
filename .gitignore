@@ -63,3 +63,6 @@ scripts/repurpose-state.json
 /logs/
 /tmp/
 .~lock.*
+
+# Internal-link audit output (regenerate via scripts/audit-internal-links-v2.mjs)
+scripts/audit-output/
