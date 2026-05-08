@@ -344,7 +344,7 @@ export default function ExploderPage() {
                 {video.thumbnail && (
                   <img
                     src={video.thumbnail}
-                    alt=""
+                    alt={`Thumbnail for ${video.title}`}
                     className="w-32 h-18 object-cover rounded shrink-0"
                   />
                 )}

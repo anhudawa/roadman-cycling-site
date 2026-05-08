@@ -414,7 +414,7 @@ export default function AboutPage() {
                         <>
                           <Image
                             src={member.image}
-                            alt={member.name}
+                            alt={`${member.name} — ${member.role}, Roadman Cycling`}
                             fill
                             className="object-cover group-hover:scale-105 transition-transform duration-700"
                             sizes="(max-width: 768px) 50vw, 25vw"

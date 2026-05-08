@@ -95,7 +95,7 @@ export function AthleteProfileCard({
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
               src={imageSrc}
-              alt=""
+              alt={`${name} portrait`}
               loading="lazy"
               decoding="async"
               className="w-full h-full object-cover"

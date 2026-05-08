@@ -538,7 +538,7 @@ export default async function PlateauPage() {
                 <span className="relative w-9 h-9 rounded-full overflow-hidden shrink-0 border border-white/15">
                   <Image
                     src="/images/about/anthony-profile-closeup-v2.jpg"
-                    alt="Anthony Walsh"
+                    alt="Anthony Walsh — founder, Roadman Cycling"
                     fill
                     sizes="36px"
                     className="object-cover"

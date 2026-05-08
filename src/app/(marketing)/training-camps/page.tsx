@@ -310,18 +310,30 @@ export default function TrainingCampsLandingPage() {
               <ScrollReveal direction="up" delay={0.05}>
                 <div className="grid grid-cols-2 gap-2.5 sm:gap-3">
                   {[
-                    "/images/camps/girona-onyar-houses.jpeg",
-                    "/images/camps/girona-bridge-view.jpeg",
-                    "/images/camps/girona-cathedral.jpeg",
-                    "/images/camps/girona-town-4.jpeg",
-                  ].map((src) => (
+                    {
+                      src: "/images/camps/girona-onyar-houses.jpeg",
+                      alt: "Colourful houses lining the Onyar river in Girona",
+                    },
+                    {
+                      src: "/images/camps/girona-bridge-view.jpeg",
+                      alt: "View across a bridge over the Onyar river in Girona",
+                    },
+                    {
+                      src: "/images/camps/girona-cathedral.jpeg",
+                      alt: "Girona cathedral steps and old town stonework",
+                    },
+                    {
+                      src: "/images/camps/girona-town-4.jpeg",
+                      alt: "Narrow medieval streets in Girona's old quarter",
+                    },
+                  ].map(({ src, alt }) => (
                     <div
                       key={src}
                       className="relative aspect-[4/5] rounded-lg overflow-hidden border border-white/10"
                     >
                       <Image
                         src={src}
-                        alt="Girona old town"
+                        alt={alt}
                         fill
                         sizes="(max-width: 1024px) 50vw, 25vw"
                         className="object-cover"

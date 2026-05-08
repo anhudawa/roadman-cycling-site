@@ -575,7 +575,7 @@ export default function ContentCard({
             <p className="text-xs text-foreground-subtle mb-1">Featured Image</p>
             <img
               src={featuredImage}
-              alt="Featured"
+              alt="Featured image preview for repurposed content"
               className="w-full max-h-48 object-cover rounded-lg"
             />
           </div>
