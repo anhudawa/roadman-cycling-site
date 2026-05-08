@@ -1,7 +1,15 @@
 export const CAMP_FAQS = [
   {
-    q: "What level do I need to be at?",
+    q: "What level of fitness do I need for a cycling training camp in Girona?",
     a: "If you've ridden a couple of seasons consistently, the Chill group is in your range. Fast is for riders who train regularly and are comfortable with 90 km+ in their legs. Day one is a shakedown — we sort the groups on the road, then adjust through the week. Nobody ends up in the wrong group.",
+  },
+  {
+    q: "What if I'm the slowest rider in the camp?",
+    a: "You won't be. Sixteen riders, two pace groups (Chill and Fast), sorted on day one based on what you actually ride like rather than what you said in the booking form. The whole point of running two groups is that nobody's hanging on for grim death the whole week, and nobody's rolling at half pace either. If your week is going better than expected by Wednesday, you can move up. If a long climb day humbles you, the easier group is right there.",
+  },
+  {
+    q: "Do I need a power meter or a specific FTP?",
+    a: "No. There's no FTP test on day one. Two pace groups are sorted by feel and by what we see on the road — power numbers are useful but they're not the entry ticket. Bring whatever head unit you train with; we'll talk numbers if you want to, and we'll happily ignore them if you don't.",
   },
   {
     q: "What's actually included for €995?",
@@ -40,7 +48,15 @@ export const CAMP_FAQS = [
     a: "October in Girona is the sweet spot — averages 22°C in the day, 12°C at night, after the worst of the summer heat. Empty roads. Light traffic. Some years there's a half-hour shower mid-week. Pack a gilet and arm warmers and you're sorted.",
   },
   {
-    q: "What if I'm the slowest rider in the room?",
-    a: "You won't be. Sixteen riders, two groups, sorted on day one based on what you actually ride like. The whole point of running two pace groups is that nobody's hanging on for grim death the whole week, and nobody's rolling at half pace either.",
+    q: "What's the difference between a cycling holiday and a training camp?",
+    a: "A cycling holiday is a week away with rides on the schedule. A training camp is a week structured around getting fitter — pace groups, follow car, in-ride nutrition, terrain that progresses through the week. Roadman camps lean toward the second: this is a training week with the support of a holiday, not a coach-and-cone session.",
+  },
+  {
+    q: "Are Girona's roads safe for cycling?",
+    a: "Yes. Catalan drivers are among the most cycling-aware in Europe — there's a strong cycling culture, the local police know the roads, and the back lanes we use see almost no traffic. We avoid the busy C-roads at peak hours and stick to the network of farm lanes the pros use. Use lights, ride predictably, and you'll have a quieter time on the road than at home.",
+  },
+  {
+    q: "Can solo riders book a Roadman camp?",
+    a: "Yes — most riders come solo. We pair up rooms by default (twin shares with another camper of the same gender), or you can take a single room for an extra €200. Sixteen riders eating dinner at one long table every night means nobody is on their own at this kind of camp.",
   },
 ];

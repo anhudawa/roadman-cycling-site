@@ -5,25 +5,41 @@ import { CampDetail } from "../_components/CampDetail";
 const camp = CAMPS.road;
 
 export const metadata: Metadata = {
-  title: `${camp.name} — 10–15 October 2026 | Roadman Cycling`,
+  title: `Girona Road Cycling Training Camp — 10–15 Oct 2026 | Roadman`,
   description:
-    "Six days on the climbs Girona's pros ride twelve months a year — Rocacorba, Els Àngels, Mare de Déu del Mont. Two pace groups, follow car, sixteen spots. €995 from a private Catalan farmhouse.",
+    "Road cycling training camp in Girona, Spain — 10–15 October 2026. Six days on the pro climbs (Rocacorba, Els Àngels, Mare de Déu del Mont), two pace groups, follow car, sixteen spots. €995 from a private Catalan farmhouse.",
+  keywords: [
+    "Girona road cycling camp",
+    "cycling training camp Girona",
+    "road cycling holiday Spain",
+    "Rocacorba training camp",
+    "cycling camp October 2026",
+    "Roadman Girona camp",
+    "road cycling camp Europe",
+  ],
   alternates: {
     canonical: "https://roadmancycling.com/training-camps/girona-road",
   },
   openGraph: {
     title: `${camp.name} — 10–15 October 2026`,
     description:
-      "Six days on the climbs the World Tour rides twelve months a year. Anthony in the group every day. €995, sixteen spots.",
+      "Six days on Girona's pro climbs — Rocacorba, Els Àngels, Mare de Déu del Mont. Anthony in the group every day. €995, sixteen spots.",
     type: "website",
     url: "https://roadmancycling.com/training-camps/girona-road",
     images: [
       {
         url: "https://roadmancycling.com/images/camps/girona-road-coast.jpeg",
-        alt: "Group of road cyclists on a coastal road above a turquoise Costa Brava cove",
+        alt: "Roadman Girona Road Cycling Training Camp — riders on a Costa Brava coastal road",
       },
     ],
   },
+  twitter: {
+    card: "summary_large_image",
+    title: "Girona Road Cycling Training Camp — Roadman 2026",
+    description:
+      "Six days on Girona's pro climbs. Sixteen spots, two pace groups, follow car, €995.",
+  },
+  robots: { index: true, follow: true },
 };
 
 export default function GironaRoadCampPage() {

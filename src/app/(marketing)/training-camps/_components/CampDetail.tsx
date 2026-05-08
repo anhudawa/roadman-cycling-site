@@ -6,6 +6,7 @@ import { JsonLd, FAQPageJsonLd } from "@/components/seo/JsonLd";
 import { CAMPS, formatCampDates, type CampConfig } from "@/lib/camps/camps";
 import { ITINERARIES } from "@/lib/camps/itineraries";
 import { CAMP_FAQS } from "@/lib/camps/faqs";
+import { GIRONA_ROUTE_LIST } from "@/lib/girona/routes";
 import { Itinerary } from "./Itinerary";
 import { FAQ } from "./FAQ";
 import { BookingForm } from "./BookingForm";
@@ -17,38 +18,38 @@ interface Props {
 const CAN_SAGNARI_GALLERY = [
   {
     src: "/images/camps/can-sagnari-pool.png",
-    alt: "Can Sagnari — the pool with loungers, open all year",
+    alt: "Can Sagnari farmhouse — Roadman cycling camp pool, open year-round, near Girona",
   },
   {
     src: "/images/camps/can-sagnari-interior.png",
-    alt: "Can Sagnari — stone-walled interior lounge",
+    alt: "Can Sagnari farmhouse — stone-walled interior lounge, Roadman cycling camp base near Girona",
   },
   {
     src: "/images/camps/can-sagnari-exterior.png",
-    alt: "Can Sagnari — the 1749 Catalan farmhouse from outside",
+    alt: "Can Sagnari — the 1749 Catalan stone farmhouse, base for the Roadman cycling training camps in Girona",
   },
   {
     src: "/images/camps/can-sagnari-aerial.png",
-    alt: "Can Sagnari — aerial view of the farmhouse and pool",
+    alt: "Aerial view of Can Sagnari farmhouse and pool — Roadman cycling camp base, Cornellà del Terri, Girona",
   },
 ];
 
 const GIRONA_GALLERY = [
   {
     src: "/images/camps/girona-onyar-houses.jpeg",
-    alt: "The coloured houses along the Onyar river — the postcard shot of Girona old town",
+    alt: "Coloured houses along the Onyar river in Girona old town — Europe's pro cycling capital",
   },
   {
     src: "/images/camps/girona-bridge-view.jpeg",
-    alt: "The Eiffel bridge framing the river and the colourful buildings of Girona",
+    alt: "The Eiffel bridge over the Onyar in Girona — postcard view of the cycling base city",
   },
   {
     src: "/images/camps/girona-cathedral.jpeg",
-    alt: "The Girona cathedral tower above the old town",
+    alt: "Girona cathedral tower above the old town — the cycling capital of Catalonia, Spain",
   },
   {
     src: "/images/camps/girona-town-5.jpeg",
-    alt: "The streets and stonework of Girona old town",
+    alt: "Stone streets of Girona old town — base of the Roadman cycling training camps",
   },
 ];
 
@@ -97,8 +98,14 @@ export function CampDetail({ camp }: Props) {
               "@type": "PostalAddress",
               streetAddress: "Cornellà del Terri",
               addressLocality: "Girona",
-              addressRegion: "Girona",
+              addressRegion: "Catalunya",
+              postalCode: "17844",
               addressCountry: "ES",
+            },
+            geo: {
+              "@type": "GeoCoordinates",
+              latitude: 42.0867,
+              longitude: 2.8222,
             },
           },
           offers: {
@@ -109,6 +116,7 @@ export function CampDetail({ camp }: Props) {
             url: `https://roadmancycling.com${camp.href}`,
             validFrom: "2026-05-04",
             validThrough: camp.startDate,
+            category: "Cycling Training Camp",
           },
           organizer: {
             "@type": "Organization",
@@ -121,6 +129,59 @@ export function CampDetail({ camp }: Props) {
           },
           maximumAttendeeCapacity: camp.capacity,
           image: [`https://roadmancycling.com${camp.heroImage}`],
+        }}
+      />
+      {/* TouristTrip — duplicates the trip product layer for travel-aware crawlers. */}
+      <JsonLd
+        data={{
+          "@context": "https://schema.org",
+          "@type": "TouristTrip",
+          name: camp.name,
+          description: camp.description,
+          url: `https://roadmancycling.com${camp.href}`,
+          image: [`https://roadmancycling.com${camp.heroImage}`],
+          touristType: [
+            "Cyclists",
+            "Endurance athletes",
+            "Recreational riders",
+            camp.type === "Road" ? "Road cyclists" : "Gravel cyclists",
+          ],
+          itinerary: {
+            "@type": "ItemList",
+            numberOfItems: days.length,
+            itemListOrder: "https://schema.org/ItemListOrderAscending",
+            itemListElement: days.map((d) => ({
+              "@type": "ListItem",
+              position: d.day,
+              item: {
+                "@type": "TouristAttraction",
+                name: d.title,
+                description: d.description,
+              },
+            })),
+          },
+          offers: {
+            "@type": "Offer",
+            price: String(camp.pricePerPerson),
+            priceCurrency: "EUR",
+            availability: "https://schema.org/InStock",
+            url: `https://roadmancycling.com${camp.href}#book`,
+            validFrom: "2026-05-04",
+          },
+          provider: {
+            "@type": "Organization",
+            name: "Roadman Cycling",
+            url: "https://roadmancycling.com",
+          },
+          subjectOf: {
+            "@type": "Place",
+            name: "Girona, Catalunya, Spain",
+            geo: {
+              "@type": "GeoCoordinates",
+              latitude: 41.9794,
+              longitude: 2.8214,
+            },
+          },
         }}
       />
       <FAQPageJsonLd
@@ -546,8 +607,66 @@ export function CampDetail({ camp }: Props) {
           </Container>
         </Section>
 
-        {/* FAQ ──────────────────────────────────────────────── */}
+        {/* CYCLING IN GIRONA — internal links to route guides + pillar */}
         <Section background="charcoal" className="!py-16 md:!py-24">
+          <Container>
+            <ScrollReveal direction="up">
+              <p className="font-heading text-coral text-[11px] md:text-xs tracking-[0.35em] md:tracking-[0.4em] mb-4 text-center">
+                THE ROUTES, IN DEPTH
+              </p>
+              <h2
+                className="font-heading text-off-white leading-[1.05] mb-5 md:mb-6 text-center"
+                style={{ fontSize: "clamp(2rem, 4vw, 2.75rem)" }}
+              >
+                CYCLING IN GIRONA —
+                <br />
+                <span className="text-coral">THE FULL HANDBOOK.</span>
+              </h2>
+              <p className="text-foreground-muted text-center max-w-2xl mx-auto leading-relaxed mb-10 md:mb-12 text-[15px] md:text-base">
+                Want to know what each climb actually rides like before you
+                book? We&apos;ve put guides up for the ones that anchor the
+                week — the test pieces, the tempo climbs, the big mountain
+                day — plus the broader cycling-in-Girona handbook.
+              </p>
+            </ScrollReveal>
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-5 max-w-5xl mx-auto">
+              {GIRONA_ROUTE_LIST.slice(0, 3).map((route, i) => (
+                <ScrollReveal key={route.slug} direction="up" delay={i * 0.04}>
+                  <Link
+                    href={`/cycling-girona/${route.slug}`}
+                    className="group block h-full rounded-xl border border-white/10 bg-white/[0.02] hover:bg-white/[0.05] hover:border-coral/40 transition-all p-5 sm:p-6"
+                  >
+                    <p className="font-heading text-coral text-[10px] tracking-[0.3em] uppercase mb-2">
+                      {route.surface} · {route.climbLength}
+                    </p>
+                    <h3 className="font-heading text-off-white text-xl md:text-2xl leading-tight mb-3 group-hover:text-coral transition-colors">
+                      {route.name.toUpperCase()}
+                    </h3>
+                    <p className="text-foreground-muted text-[14px] leading-relaxed line-clamp-3 mb-3">
+                      {route.summary}
+                    </p>
+                    <span className="font-heading text-coral text-xs tracking-[0.2em] uppercase">
+                      Climb guide →
+                    </span>
+                  </Link>
+                </ScrollReveal>
+              ))}
+            </div>
+            <ScrollReveal direction="up" delay={0.16}>
+              <div className="mt-6 md:mt-8 text-center">
+                <Link
+                  href="/cycling-girona"
+                  className="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-md font-heading tracking-[0.15em] uppercase text-foreground-muted border border-white/15 hover:text-off-white hover:border-coral/40 transition-colors text-sm"
+                >
+                  Read the full Cycling in Girona guide →
+                </Link>
+              </div>
+            </ScrollReveal>
+          </Container>
+        </Section>
+
+        {/* FAQ ──────────────────────────────────────────────── */}
+        <Section background="deep-purple" grain className="!py-16 md:!py-24">
           <Container width="narrow">
             <ScrollReveal direction="up">
               <p className="font-heading text-coral text-[11px] md:text-xs tracking-[0.35em] md:tracking-[0.4em] mb-4 text-center">

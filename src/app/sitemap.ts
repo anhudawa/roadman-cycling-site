@@ -14,6 +14,8 @@ import { getAllEntities } from "@/lib/entities";
 import { RACES } from "@/data/races";
 import { SEGMENT_SLUGS } from "@/lib/coaching-segments";
 import { getAllCaseStudySlugs } from "@/lib/case-studies";
+import { CAMP_LIST } from "@/lib/camps/camps";
+import { getAllGironaRouteSlugs } from "@/lib/girona/routes";
 
 const BASE_URL = "https://roadmancycling.com";
 
@@ -212,10 +214,35 @@ function buildStaticSitemap(): MetadataRoute.Sitemap {
     { url: `${BASE_URL}/wrapped`, lastModified: new Date(), changeFrequency: "weekly", priority: 0.7 },
     { url: `${BASE_URL}/inner-circle`, lastModified: new Date(), changeFrequency: "monthly", priority: 0.8 },
     // Training-camps hub + per-camp landing pages. /booking-confirmed
-    // is robots:noindex so it stays out.
-    { url: `${BASE_URL}/training-camps`, lastModified: new Date(), changeFrequency: "monthly", priority: 0.8 },
-    { url: `${BASE_URL}/training-camps/girona-road`, lastModified: new Date(), changeFrequency: "monthly", priority: 0.8 },
-    { url: `${BASE_URL}/training-camps/girona-gravel`, lastModified: new Date(), changeFrequency: "monthly", priority: 0.8 },
+    // is robots:noindex so it stays out. Camp roster comes from
+    // CAMP_LIST so we can't drift from the canonical config.
+    {
+      url: `${BASE_URL}/training-camps`,
+      lastModified: new Date("2026-05-08"),
+      changeFrequency: "weekly" as const,
+      priority: 0.9,
+    },
+    ...CAMP_LIST.map((camp) => ({
+      url: `${BASE_URL}${camp.href}`,
+      lastModified: new Date("2026-05-08"),
+      changeFrequency: "weekly" as const,
+      priority: 0.85,
+    })),
+    // Cycling-in-Girona pillar guide + per-climb route guides — supports
+    // the camps cluster, captures organic traffic for "cycling in Girona"
+    // and the famous-climb long-tail (Rocacorba, Els Àngels, etc).
+    {
+      url: `${BASE_URL}/cycling-girona`,
+      lastModified: new Date("2026-05-08"),
+      changeFrequency: "monthly" as const,
+      priority: 0.85,
+    },
+    ...getAllGironaRouteSlugs().map((slug) => ({
+      url: `${BASE_URL}/cycling-girona/${slug}`,
+      lastModified: new Date("2026-05-08"),
+      changeFrequency: "monthly" as const,
+      priority: 0.75,
+    })),
     // Legal pages. Indexable per spec — keeps the corporate footprint
     // discoverable in GSC and reduces "missing legal page" trust flags.
     { url: `${BASE_URL}/privacy`, lastModified: new Date("2026-03-01"), changeFrequency: "yearly", priority: 0.3 },

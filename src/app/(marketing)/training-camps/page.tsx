@@ -7,25 +7,46 @@ import { JsonLd } from "@/components/seo/JsonLd";
 import { CAMP_LIST, formatCampDates } from "@/lib/camps/camps";
 
 export const metadata: Metadata = {
-  title: "Roadman Training Camps — Girona, October 2026",
+  title:
+    "Cycling Training Camps in Girona, Spain — October 2026 | Roadman Cycling",
   description:
-    "Two six-day camps in Girona, October 2026. Road 10–15 October, Gravel 16–21 October. Sixteen riders per camp, Anthony in the group every day. €995 per camp, or €1,700 for both back-to-back.",
+    "Road and gravel cycling training camps in Girona, October 2026. Six days each, sixteen riders, two pace groups, follow car, Anthony in the group every day. €995 per camp or €1,700 for both back-to-back from a private Catalan farmhouse.",
+  keywords: [
+    "cycling training camp",
+    "cycling training camps",
+    "cycling holiday Girona",
+    "Girona cycling camp",
+    "cycling holiday Spain",
+    "road cycling camp Europe",
+    "gravel cycling camp",
+    "gravel camp Girona",
+    "cycling camp October 2026",
+    "Roadman training camp",
+  ],
   alternates: {
     canonical: "https://roadmancycling.com/training-camps",
   },
   openGraph: {
-    title: "Roadman Training Camps — Girona, October 2026",
+    title:
+      "Cycling Training Camps in Girona — Roadman Camps · October 2026",
     description:
-      "Two six-day camps in Girona. Road and Gravel, back-to-back. Anthony, Sarah and Matthew on hand all week. Sixteen spots, €995 per camp, €1,700 for both.",
+      "Road and Gravel camps from a private Catalan farmhouse. Two pace groups, follow car, sixteen spots, Anthony in the group every day. €995 per camp.",
     type: "website",
     url: "https://roadmancycling.com/training-camps",
     images: [
       {
         url: "https://roadmancycling.com/images/camps/girona-onyar-houses.jpeg",
-        alt: "Girona old town along the Onyar river",
+        alt: "Girona old town along the Onyar river — base of the Roadman cycling training camps",
       },
     ],
   },
+  twitter: {
+    card: "summary_large_image",
+    title: "Cycling Training Camps in Girona — Roadman 2026",
+    description:
+      "Two six-day camps in Girona. Road and Gravel, back-to-back. Sixteen spots per camp, €995 each.",
+  },
+  robots: { index: true, follow: true },
 };
 
 const HERO_IMAGES = [
@@ -47,53 +68,130 @@ export default function TrainingCampsLandingPage() {
       <JsonLd
         data={{
           "@context": "https://schema.org",
-          "@type": "WebPage",
-          name: "Roadman Training Camps — Girona 2026",
+          "@type": "CollectionPage",
+          name: "Cycling Training Camps in Girona — Roadman 2026",
           url: "https://roadmancycling.com/training-camps",
           description:
-            "Two six-day cycling camps in Girona, October 2026. Road and Gravel formats. Led by Anthony Walsh.",
+            "Road and gravel cycling training camps in Girona, October 2026. Led by Anthony Walsh from a private Catalan farmhouse. Sixteen riders per camp, two pace groups, follow car, €995 per camp.",
           isPartOf: { "@id": "https://roadmancycling.com#website" },
+          about: {
+            "@type": "Place",
+            name: "Girona, Catalunya, Spain",
+            geo: {
+              "@type": "GeoCoordinates",
+              latitude: 41.9794,
+              longitude: 2.8214,
+            },
+          },
         }}
       />
       <JsonLd
         data={{
           "@context": "https://schema.org",
-          "@graph": CAMP_LIST.map((c) => ({
-            "@type": "Event",
-            name: c.name,
-            description: c.description,
-            startDate: c.startDate,
-            endDate: c.endDate,
-            url: `https://roadmancycling.com${c.href}`,
-            eventAttendanceMode:
-              "https://schema.org/OfflineEventAttendanceMode",
-            eventStatus: "https://schema.org/EventScheduled",
-            location: {
-              "@type": "Place",
-              name: "Can Sagnari",
-              address: {
-                "@type": "PostalAddress",
-                addressLocality: "Cornellà del Terri",
-                addressRegion: "Catalunya",
-                addressCountry: "ES",
+          "@type": "BreadcrumbList",
+          itemListElement: [
+            {
+              "@type": "ListItem",
+              position: 1,
+              name: "Home",
+              item: "https://roadmancycling.com",
+            },
+            {
+              "@type": "ListItem",
+              position: 2,
+              name: "Training Camps",
+              item: "https://roadmancycling.com/training-camps",
+            },
+          ],
+        }}
+      />
+      <JsonLd
+        data={{
+          "@context": "https://schema.org",
+          "@graph": CAMP_LIST.flatMap((c) => [
+            {
+              "@type": "Event",
+              name: c.name,
+              description: c.description,
+              startDate: c.startDate,
+              endDate: c.endDate,
+              url: `https://roadmancycling.com${c.href}`,
+              image: [`https://roadmancycling.com${c.heroImage}`],
+              eventAttendanceMode:
+                "https://schema.org/OfflineEventAttendanceMode",
+              eventStatus: "https://schema.org/EventScheduled",
+              location: {
+                "@type": "Place",
+                name: "Can Sagnari",
+                address: {
+                  "@type": "PostalAddress",
+                  addressLocality: "Cornellà del Terri",
+                  addressRegion: "Catalunya",
+                  postalCode: "17844",
+                  addressCountry: "ES",
+                },
+                geo: {
+                  "@type": "GeoCoordinates",
+                  latitude: 42.0867,
+                  longitude: 2.8222,
+                },
+              },
+              offers: {
+                "@type": "Offer",
+                price: String(c.pricePerPerson),
+                priceCurrency: "EUR",
+                availability: "https://schema.org/InStock",
+                url: `https://roadmancycling.com${c.href}`,
+                validFrom: "2026-05-04",
+                validThrough: c.startDate,
+                category: "Cycling Training Camp",
+              },
+              organizer: {
+                "@type": "Organization",
+                name: "Roadman Cycling",
+                url: "https://roadmancycling.com",
+              },
+              performer: { "@type": "Person", name: "Anthony Walsh" },
+              maximumAttendeeCapacity: c.capacity,
+            },
+            {
+              "@type": "TouristTrip",
+              name: c.name,
+              description: c.description,
+              url: `https://roadmancycling.com${c.href}`,
+              image: [`https://roadmancycling.com${c.heroImage}`],
+              touristType: [
+                "Cyclists",
+                "Endurance athletes",
+                "Recreational riders",
+                c.type === "Road"
+                  ? "Road cyclists"
+                  : "Gravel cyclists",
+              ],
+              itinerary: {
+                "@type": "ItemList",
+                numberOfItems: 6,
+                itemListOrder: "https://schema.org/ItemListOrderAscending",
+              },
+              offers: {
+                "@type": "Offer",
+                price: String(c.pricePerPerson),
+                priceCurrency: "EUR",
+                availability: "https://schema.org/InStock",
+                url: `https://roadmancycling.com${c.href}`,
+                validFrom: "2026-05-04",
+              },
+              provider: {
+                "@type": "Organization",
+                name: "Roadman Cycling",
+                url: "https://roadmancycling.com",
+              },
+              subjectOf: {
+                "@type": "Place",
+                name: "Girona, Catalunya, Spain",
               },
             },
-            offers: {
-              "@type": "Offer",
-              price: String(c.pricePerPerson),
-              priceCurrency: "EUR",
-              availability: "https://schema.org/InStock",
-              url: `https://roadmancycling.com${c.href}`,
-              validFrom: "2026-05-04",
-            },
-            organizer: {
-              "@type": "Organization",
-              name: "Roadman Cycling",
-              url: "https://roadmancycling.com",
-            },
-            performer: { "@type": "Person", name: "Anthony Walsh" },
-            maximumAttendeeCapacity: c.capacity,
-          })),
+          ]),
         }}
       />
 

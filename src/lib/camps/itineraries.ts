@@ -77,14 +77,28 @@ export const ITINERARIES: Record<CampSlug, ItineraryDay[]> = {
     {
       day: 5,
       title: "Rocacorba",
-      ride: "Rocacorba & farewell roll",
+      ride: "Rocacorba — the test piece",
       distance: "70 km",
       elevation: "1,400 m",
       description:
-        "The legend. Quiet roads out to Pujarnol, then 11 km of the climb every pro in town uses for testing. Time it. Ride it easy. Your call — both groups regroup at the top. Easy roll home, quick clean-up, airport transfers in the afternoon.",
+        "The legend. Quiet roads out to Pujarnol, then 11 km of the climb every pro in town uses for testing. Time it. Ride it easy. Your call — both groups regroup at the top. Coffee in Banyoles on the roll-back home.",
       highlights: [
         "Rocacorba — the test piece",
         "Group regroup at the summit",
+        "Coffee in Banyoles on the roll-back",
+      ],
+    },
+    {
+      day: 6,
+      title: "Farewell coffee roll",
+      ride: "Easy spin & coffee in Girona old town",
+      distance: "30 km",
+      elevation: "150 m",
+      description:
+        "Last morning. An easy social spin into Girona old town for coffee at La Fábrica or Espresso Mafia, a roll back along the Ter river path, and a long pre-departure breakfast at the house. Quick clean-up, airport transfers in the afternoon.",
+      highlights: [
+        "Coffee at the cyclists' cafés in Girona",
+        "Ter river roll-back",
         "Airport transfers in the afternoon",
       ],
     },
@@ -148,15 +162,29 @@ export const ITINERARIES: Record<CampSlug, ItineraryDay[]> = {
     },
     {
       day: 5,
-      title: "Coast & farewell",
+      title: "Costa Brava coastal day",
       ride: "Costa Brava coastal gravel",
       distance: "55 km",
       elevation: "600 m",
       description:
-        "Last ride: the coastal gravel paths that drop down toward the Med. Short. Photogenic. Exactly the right finale for the legs you'll have by now. Easy roll home, quick clean-up, airport transfers in the afternoon.",
+        "The coastal gravel paths that drop down toward the Med. Short. Photogenic. Exactly the right ride before the bigger format day tomorrow. Pool back at the house in the afternoon.",
       highlights: [
         "Coastal gravel paths",
-        "Short & scenic — legs-friendly",
+        "Short & scenic",
+        "Pool day on return",
+      ],
+    },
+    {
+      day: 6,
+      title: "Farewell roll",
+      ride: "Mixed-surface roll into Girona for coffee",
+      distance: "35 km",
+      elevation: "300 m",
+      description:
+        "Last morning. A mixed-surface social spin into Girona old town for coffee at La Fábrica, a roll back along the Ter river path, and a long pre-departure breakfast at the house. Quick clean-up, airport transfers in the afternoon.",
+      highlights: [
+        "Mixed-surface social ride",
+        "Coffee at the cyclists' cafés in Girona",
         "Airport transfers in the afternoon",
       ],
     },
