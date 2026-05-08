@@ -5,6 +5,8 @@ import { Button, Card, ScrollReveal, GradientText } from "@/components/ui";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { ENTITY_IDS } from "@/lib/brand-facts";
 import { FAQSchema } from "@/components/seo/FAQSchema";
+import { TrustpilotProof } from "@/components/proof";
+import { TRUSTPILOT, getTrustpilotReviews } from "@/lib/trustpilot";
 import { getTestimonialsByName } from "@/lib/testimonials";
 import { BeforeAfterMetrics, type MetricRow } from "@/components/proof";
 import { JourneyBlock } from "@/components/journey";
@@ -243,11 +245,31 @@ export default function CoachingPage() {
             availability: "https://schema.org/InStock",
             url: "https://roadmancycling.com/apply",
           },
-          // Testimonials render on the page but are NOT marked up as
-          // schema.org/Review — Google requires reviewRating on every
-          // Review, and we collect narrative testimonials not star ratings.
-          // Emitting Review without reviewRating triggers the structured-
-          // data spam policy. Re-add with real ratings if we ever collect them.
+          aggregateRating: {
+            "@type": "AggregateRating",
+            ratingValue: TRUSTPILOT.rating,
+            bestRating: TRUSTPILOT.bestRating,
+            worstRating: TRUSTPILOT.worstRating,
+            reviewCount: TRUSTPILOT.reviewCount,
+          },
+          review: getTrustpilotReviews("coaching", 5).map((r) => ({
+            "@type": "Review",
+            author: { "@type": "Person", name: r.author },
+            datePublished: r.date,
+            reviewRating: {
+              "@type": "Rating",
+              ratingValue: r.rating,
+              bestRating: TRUSTPILOT.bestRating,
+              worstRating: TRUSTPILOT.worstRating,
+            },
+            name: r.title,
+            reviewBody: r.quote,
+            publisher: {
+              "@type": "Organization",
+              name: "Trustpilot",
+              url: TRUSTPILOT.profileUrl,
+            },
+          })),
         }}
       />
       {/* Course schema — structured coaching programme with instructor + delivery mode */}
@@ -706,6 +728,22 @@ export default function CoachingPage() {
                 </ScrollReveal>
               ))}
             </div>
+          </Container>
+        </Section>
+
+        {/* Trustpilot — third-party verified proof. Sits after the
+            internal testimonials so visitors who suspect cherry-picking
+            see neutral-platform reviews next, with the live aggregate
+            rating from Trustpilot. */}
+        <Section background="charcoal" className="border-t border-white/5">
+          <Container>
+            <ScrollReveal direction="up">
+              <TrustpilotProof
+                audience="coaching"
+                heading="VERIFIED ON TRUSTPILOT"
+                subheading="Coaching reviews on a platform we don't control. Real names. Real outcomes."
+              />
+            </ScrollReveal>
           </Container>
         </Section>
 

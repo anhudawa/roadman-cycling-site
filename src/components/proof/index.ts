@@ -3,3 +3,8 @@ export { BeforeAfterMetrics, type MetricRow } from "./BeforeAfterMetrics";
 export { TestimonialBlock } from "./TestimonialBlock";
 export { CoachingCTA } from "./CoachingCTA";
 export { ProofModule } from "./ProofModule";
+export {
+  TrustpilotProof,
+  TrustpilotBadge,
+  TrustpilotRating,
+} from "./TrustpilotProof";

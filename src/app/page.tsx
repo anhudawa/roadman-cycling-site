@@ -9,6 +9,9 @@ import { PersonaRouter } from "@/components/features/home/PersonaRouter";
 import { PillarIcon } from "@/components/features/home/PillarIcon";
 import { ChoosePath } from "@/components/features/routing/ChoosePath";
 import { EmailCapture } from "@/components/features/conversion/EmailCapture";
+import { TrustpilotProof } from "@/components/proof";
+import { ReviewsJsonLd } from "@/components/seo/TrustpilotSchema";
+import { getTrustpilotReviews } from "@/lib/trustpilot";
 import { CONTENT_PILLARS, type ContentPillar } from "@/types";
 
 const marqueeGuests = [
@@ -97,8 +100,13 @@ export default function HomePage() {
   });
 
   const latestEpisode = getLatestEpisode();
+  // Mix of podcast + coaching reviews for the homepage social-proof
+  // strip — Roadman straddles both, and the homepage audience is the
+  // widest funnel of the site.
+  const homepageReviews = getTrustpilotReviews("mixed", 3);
   return (
     <>
+      <ReviewsJsonLd reviews={homepageReviews} />
       <Header />
 
       <main id="main-content">
@@ -477,6 +485,25 @@ export default function HomePage() {
                   a decade ago.&rdquo;
                 </p>
               </div>
+            </ScrollReveal>
+          </Container>
+        </Section>
+
+        {/* TRUSTPILOT — third-party validation between the offer ladder
+            and featured content. Visitors who scrolled this far are
+            evaluating; the live 4.5/5 from a neutral source converts
+            harder than another internal testimonial wall. Mixed audience
+            so podcast listeners and prospective coaching clients both
+            see relevant quotes. */}
+        <Section background="charcoal" className="border-y border-white/5">
+          <Container>
+            <ScrollReveal direction="up">
+              <TrustpilotProof
+                audience="mixed"
+                reviews={homepageReviews}
+                heading="VERIFIED ON TRUSTPILOT"
+                subheading="Listeners and coached athletes — in their own words. Real names, real reviews, on a platform we don't control."
+              />
             </ScrollReveal>
           </Container>
         </Section>

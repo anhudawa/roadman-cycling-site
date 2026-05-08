@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import { Header, Footer, Section, Container } from "@/components/layout";
 import { Card, ScrollReveal } from "@/components/ui";
 import { JsonLd } from "@/components/seo/JsonLd";
+import { TrustpilotProof } from "@/components/proof";
+import { TRUSTPILOT, getTrustpilotReviews } from "@/lib/trustpilot";
 import { CohortApplicationForm } from "./CohortApplicationForm";
 import { CountdownTimer } from "./CountdownTimer";
 import {
@@ -151,6 +153,13 @@ export default function ApplyPage() {
             priceCurrency: "USD",
             availability: "https://schema.org/InStock",
           },
+          aggregateRating: {
+            "@type": "AggregateRating",
+            ratingValue: TRUSTPILOT.rating,
+            bestRating: TRUSTPILOT.bestRating,
+            worstRating: TRUSTPILOT.worstRating,
+            reviewCount: TRUSTPILOT.reviewCount,
+          },
           url: "https://roadmancycling.com/apply",
           review: [
             {
@@ -168,6 +177,24 @@ export default function ApplyPage() {
               author: { "@type": "Person", name: "Chris O'Connor" },
               reviewBody: "Anthony is an educator, a mentor, and a coach. He rebuilt my diet, my head, and my riding. Average wattage doubled and weekly 100km+ rides are now the norm.",
             },
+            ...getTrustpilotReviews("coaching", 6).map((r) => ({
+              "@type": "Review",
+              author: { "@type": "Person", name: r.author },
+              datePublished: r.date,
+              reviewRating: {
+                "@type": "Rating",
+                ratingValue: r.rating,
+                bestRating: TRUSTPILOT.bestRating,
+                worstRating: TRUSTPILOT.worstRating,
+              },
+              name: r.title,
+              reviewBody: r.quote,
+              publisher: {
+                "@type": "Organization",
+                name: "Trustpilot",
+                url: TRUSTPILOT.profileUrl,
+              },
+            })),
           ],
         }}
       />
@@ -430,6 +457,22 @@ export default function ApplyPage() {
                 </ScrollReveal>
               ))}
             </div>
+          </Container>
+        </Section>
+
+        {/* ── Gradient divider ──────────────────────────── */}
+        <div className="gradient-divider" />
+
+        {/* ── Trustpilot proof ───────────────────────────── */}
+        <Section background="charcoal">
+          <Container>
+            <ScrollReveal direction="up">
+              <TrustpilotProof
+                audience="coaching"
+                heading="VERIFIED ON TRUSTPILOT"
+                subheading="Coaching reviews from Not Done Yet members and 1:1 athletes — on a platform we don't control."
+              />
+            </ScrollReveal>
           </Container>
         </Section>
 

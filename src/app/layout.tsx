@@ -8,6 +8,7 @@ import { ConsentAwarePixel } from "@/components/analytics/ConsentAwarePixel";
 import { WebVitalsReporter } from "@/components/analytics/WebVitalsReporter";
 import { Analytics as VercelAnalytics } from "@vercel/analytics/next";
 import { OrganizationJsonLd } from "@/components/seo/JsonLd";
+import { OrganizationAggregateRatingJsonLd } from "@/components/seo/TrustpilotSchema";
 import { ServiceWorkerRegister } from "@/components/pwa/ServiceWorkerRegister";
 import { BRAND_STATS } from "@/lib/brand-facts";
 import "./globals.css";
@@ -158,6 +159,7 @@ export default function RootLayout({
       </head>
       <body className="min-h-screen bg-charcoal text-off-white font-body antialiased">
         <OrganizationJsonLd />
+        <OrganizationAggregateRatingJsonLd />
         <a
           href="#main-content"
           className="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[9999] focus:bg-coral focus:text-off-white focus:px-4 focus:py-2 focus:rounded-md focus:font-heading focus:text-sm focus:tracking-wider"
