@@ -912,8 +912,14 @@ export default async function CoachingLocationPage({ params }: Props) {
         }}
       />
 
-      {/* LocalBusiness schema — triggers Google local business features for geo-targeted pages */}
-      {data.localBusiness && (
+      {/* LocalBusiness schema — only emitted on the canonical Dublin pages where
+          Roadman has an actual physical presence. For other cities/countries
+          the Service schema above (with areaServed: Country) is the honest
+          structural signal. Schema.org's LocalBusiness requires a real address
+          at the locality named — emitting it for cities Anthony doesn't operate
+          out of (e.g. London, Manchester, New York) is a schema misuse that
+          Google can manually action. */}
+      {data.localBusiness && data.localBusiness.locality === "Dublin" && (
         <JsonLd
           data={{
             "@context": "https://schema.org",
@@ -932,9 +938,14 @@ export default async function CoachingLocationPage({ params }: Props) {
             },
             url: `https://roadmancycling.com/coaching/${location}`,
             priceRange: "$195/month",
+            areaServed: {
+              "@type": "Country",
+              name: "Ireland",
+            },
             sameAs: [
               "https://youtube.com/@theroadmanpodcast",
               "https://instagram.com/roadman.cycling",
+              "https://www.skool.com/roadman-cycling-not-done-yet",
             ],
           }}
         />

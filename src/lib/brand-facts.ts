@@ -97,12 +97,16 @@ export const SAME_AS = {
     "https://tiktok.com/@roadmancyclingpodcast",
     "https://open.spotify.com/show/2oCs3N4ahypwzzUrFqgUmC",
     "https://podcasts.apple.com/us/podcast/the-roadman-cycling-podcast/id1224143549",
+    "https://www.linkedin.com/company/roadman-cycling",
+    "https://www.skool.com/roadman-cycling-clubhouse",
+    "https://www.skool.com/roadman-cycling-not-done-yet",
   ],
   person: [
     "https://youtube.com/@theroadmanpodcast",
     "https://instagram.com/roadman.cycling",
     "https://facebook.com/roadmancycling",
     "https://x.com/Roadman_Podcast",
+    "https://www.linkedin.com/in/anthony-walsh-cycling",
   ],
 } as const;
 

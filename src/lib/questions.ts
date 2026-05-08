@@ -56,7 +56,8 @@ export type QuestionCluster =
   | "masters"
   | "nutrition"
   | "coaching"
-  | "events";
+  | "events"
+  | "training";
 
 export interface QuestionPage {
   slug: string;
@@ -3010,6 +3011,495 @@ export const QUESTION_PAGES: QuestionPage[] = [
       label: "Take the Plateau Diagnostic",
     },
   },
+  // ============================================================
+  // TRAINING METHODOLOGY CLUSTER
+  // ============================================================
+  {
+    slug: "how-often-vo2max-intervals-cycling",
+    cluster: "training",
+    question: "How Often Should I Do VO2max Intervals?",
+    seoTitle: "How Often Should I Do VO2max Intervals Cycling?",
+    seoDescription:
+      "How often serious amateur cyclists should do VO2max intervals — once a week as a baseline, twice in a focused block, never more. The session frequency that lifts the ceiling without breaking the rest of the week.",
+    pillar: "coaching",
+    shortAnswer:
+      "Once a week as a baseline. Twice a week in a focused 3-4 week block. More than that and you accumulate fatigue faster than you adapt — the session quality collapses and so does the rest of the week. Allow 48 hours minimum between VO2max sessions and any other quality work.",
+    bestFor:
+      "Trained amateurs who already have a base, ride 6-12 hours a week, and want to lift their FTP ceiling rather than rebuild it.",
+    notFor:
+      "Riders inside their first three months of structured training — VO2max work is the icing on a base that has to be built first.",
+    keyTakeaway:
+      "VO2max sessions are an injection, not a routine — the week is built around them, not on top of them.",
+    evidenceLevel: "strong",
+    evidenceNote:
+      "Anchored in Stephen Seiler's polarised-distribution research, John Wakefield's published Bora-Hansgrohe protocols, and Roberto Vukovic's amateur dose-response work.",
+    fullExplanation: [
+      "VO2max work is the highest-intensity quality session most amateurs ever run — typically 4-8 efforts of 3-5 minutes at 105-115% of FTP. It lifts the aerobic ceiling that everything else sits underneath. Stephen Seiler has been clear on the podcast: a single weekly VO2max session, kept genuinely hard, will move the needle for almost any trained amateur. The mistake isn't doing too few — it's adding more before the first one has produced any adaptation.",
+      "The realistic frequency picture looks like this. In an aerobic base block, drop VO2max work entirely and protect zone 2 plus tempo. In a build phase, one VO2max session a week is the baseline. In a focused 3-4 week 'block periodisation' push — the John Wakefield-style protocol Roadman has covered with the Bora coaching staff — twice a week works, but only inside that block, and only for riders who can recover. Past three weeks at twice a week, performance starts collapsing. Drop back to one a week, or to maintenance.",
+      "The recovery rule is the part that's easy to miss. A real VO2max session leaves a 48-hour shadow on power. Stack a sweet-spot or threshold day on top of that and quality plummets in both. The structure that consistently works for amateurs is: VO2max Tuesday, easy zone 2 Wednesday, threshold or sweet spot Friday, long zone 2 Saturday or Sunday. The rest of the week is genuinely easy. If easy days creep into tempo, the VO2max session can't be the right intensity by Tuesday — and the cycle breaks.",
+      "Two practical signals to watch. First, your interval power should hold across the session — if reps 6-8 collapse to 92% of rep 1, the dose was correct. If they collapse to 78%, you went out too hard or you weren't recovered enough. Second, if your easy-day power feels noticeably harder a day after a VO2max, you are absorbing the work — that's the signal. If your easy-day power feels heroic, you're not recovered, and the next VO2max should be deferred 48 hours.",
+    ],
+    evidence: [
+      {
+        label: "Stephen Seiler — polarised training, podcast",
+        detail:
+          "Seiler's distribution research: roughly 80% of training below VT1 and 20% well above VT2 produces the most reliable amateur adaptation. The 20% covers VO2max once or twice a week, not three.",
+        href: "/guests/stephen-seiler",
+      },
+      {
+        label: "John Wakefield — Bora-Hansgrohe protocols, podcast",
+        detail:
+          "Wakefield (Director of Coaching at Red Bull-Bora-Hansgrohe) has detailed the block-periodisation pattern Roadman uses for amateurs — short focused blocks of higher VO2max density, then back off.",
+        href: "/guests/john-wakefield",
+      },
+      {
+        label: "Roberto Vukovic — VO2max dose-response",
+        detail:
+          "Vukovic's published amateur protocols and case data show clear diminishing returns past 2 sessions per week, and accelerated overtraining risk at 3+.",
+        href: "https://robertovukovic.com/vo2max-intervals-cycling/",
+      },
+      {
+        label: "Habis 2024 — low-cadence interval study, PLOS ONE",
+        detail:
+          "Adjacent evidence — the Habis et al. study on cadence and VO2max gain reinforces that the dose at the high end is small and high-quality.",
+      },
+    ],
+    faq: [
+      {
+        question: "Can I do VO2max intervals twice a week?",
+        answer:
+          "Yes, but only inside a defined 3-4 week block, and only if the rest of the week is genuinely easy. Twice-a-week VO2max as a default routine doesn't survive — the second session always slips in quality, and the recovery debt compounds across the month.",
+      },
+      {
+        question: "How many weeks of VO2max work before I see results?",
+        answer:
+          "Three to six weeks of consistent quality work. Most of the visible FTP gain shows up in the recovery week after the block, not during it. If you tested mid-block expecting a number to lift, you'll usually be disappointed — that's training fatigue masking the gain.",
+      },
+      {
+        question: "What's the best VO2max interval session for amateurs?",
+        answer:
+          "5-minute repeats at 105-115% FTP are the workhorse: 4-6 efforts with 3-5 minutes recovery. 30/30s (30 seconds on, 30 off, 13 reps) work well as a variation in the second half of a block. 8-minute repeats are the highest dose — usually 3 efforts max.",
+      },
+      {
+        question: "Should masters cyclists do VO2max work less often?",
+        answer:
+          "Not less often — but with longer recovery. Masters cyclists over 50 typically need 72-96 hours between VO2max and any other quality work, where a 30-year-old can stack at 48. Once a week, fully recovered, beats twice a week half-cooked.",
+      },
+    ],
+    related: [
+      {
+        label: "Polarised, Pyramidal or Sweet Spot — Honest Comparison",
+        href: "/question/polarised-vs-pyramidal-vs-sweet-spot",
+      },
+      {
+        label: "How Long Does It Take to Increase FTP?",
+        href: "/question/how-long-to-increase-ftp",
+      },
+      {
+        label: "Why Is My FTP Not Improving?",
+        href: "/question/why-ftp-not-improving",
+      },
+      {
+        label: "Polarised Training Cycling Guide",
+        href: "/blog/polarised-training-cycling-guide",
+      },
+      {
+        label: "FTP Training Topic Hub",
+        href: "/topics/ftp-training",
+      },
+    ],
+  },
+  {
+    slug: "should-cyclists-train-fasted",
+    cluster: "training",
+    question: "Should I Train Fasted as a Cyclist?",
+    seoTitle: "Should I Train Fasted as a Cyclist? — The Honest Answer",
+    seoDescription:
+      "When fasted training helps, when it wrecks your week, and how to use it without bonking 60km from home. The Roadman position grounded in the published research and real World Tour practice.",
+    pillar: "nutrition",
+    shortAnswer:
+      "Sometimes — and never on the days that matter. One or two short, easy fasted zone 2 rides a week (60-90 minutes, conversational, no quality work after) can produce a small fat-oxidation adaptation. Fasted threshold, VO2max, or rides over 90 minutes are a trap — they crater the session, the recovery, and usually the rest of the week.",
+    bestFor:
+      "Trained amateurs adding a small periodisation lever in base season — already eating enough on hard days, already protecting protein.",
+    notFor:
+      "Anyone trying to lose weight by fasting on the bike. Fasted training is not a weight-loss tactic. Riders with a history of low energy availability should skip this entirely.",
+    keyTakeaway:
+      "Fasted training is a niche tool for base-phase aerobic riders. It's not a shortcut, and it isn't free — every fasted ride costs something elsewhere.",
+    evidenceLevel: "moderate",
+    evidenceNote:
+      "Built on Van Proeyen 2011 (PMC), the Burke train-low review, World Tour practice as discussed by Dr David Dunne, and the consistent picture across Roadman coaching cases.",
+    fullExplanation: [
+      "Fasted training has been a debate in cycling for fifteen years — much of it heat, very little of it light. The Van Proeyen 2011 paper showed real adaptation in fat oxidation and intramuscular triglyceride use when riders trained fasted in base. The follow-up Burke 'train low, race high' literature confirmed the basic mechanism. Both papers also flagged the cost: fasted high-intensity work compromises adaptation, and chronic under-fuelling produces the energy-availability problems behind RED-S. The honest answer sits in the middle of those two findings.",
+      "What fasted training is good for: a short, easy aerobic ride done before breakfast, in base season, when the body has time to absorb a low-intensity stimulus without competing demands. 60-90 minutes, conversational, zone 2. The metabolic signal is real — slightly improved fat oxidation and a small mitochondrial bump — and the cost is contained. Dr David Dunne's framing on the podcast is the cleanest summary: 'A periodised tool, not a default. Used carefully, in the right phase, on the right rider.'",
+      "What it isn't good for: anything that matters. Fasted threshold work, fasted VO2max, fasted long rides over 90 minutes — these reliably tank the session, increase muscle-protein breakdown, and steal recovery from whatever you do next. Anthony has been explicit on the podcast: 'You end up bonking 60k from home and end up absolutely hating your life — that's not training, that's a withdrawal symptom dressed up as discipline.' The sessions that produce FTP gain need to be fully fuelled. Always.",
+      "The other red flag is using fasted training as a weight-loss tactic. The cycling research is unambiguous on this: training under-fuelled to lose weight reliably costs FTP, immune function, and (in women) menstrual function. The RED-S literature (relative energy deficiency in sport) is now the dominant frame for understanding what goes wrong. The Roadman position, anchored in those studies and in the published Lorang/Wakefield comments on World Tour fuelling, is direct: fuel the work, take the deficit on rest days, and don't try to shortcut body composition by riding hungry.",
+      "Practical pattern that works for amateurs: in base phase, one or two short pre-breakfast zone 2 rides a week, with a high-protein breakfast immediately after. Don't stack fasted with hard sessions. Once you're in build or peak phases, drop them — every ride needs to be fuelled. Female cyclists, particularly perimenopausal masters, should treat fasted training with extra caution; the published literature on hormonal disruption from low energy availability is clear.",
+    ],
+    evidence: [
+      {
+        label: "Van Proeyen 2011 — fasted training adaptations, PMC",
+        detail:
+          "The foundational study on fasted endurance training adaptations — fat oxidation and intramuscular triglyceride changes documented in trained cyclists.",
+        href: "https://pmc.ncbi.nlm.nih.gov/articles/PMC3253005/",
+      },
+      {
+        label: "Dr David Dunne — Roadman Podcast",
+        detail:
+          "Dunne (World Tour nutritionist) framed fasted training as a periodised tool, never a default. The interview is the closest thing to a definitive Roadman position on the topic.",
+        href: "/blog/david-dunne-world-tour-nutritionist-cycling-weight-loss",
+      },
+      {
+        label: "Louise Burke — Train Low Race High research",
+        detail:
+          "Burke's review of train-low protocols clarifies which adaptations are real, which are exaggerated, and the conditions under which the costs exceed the gains.",
+      },
+      {
+        label: "RED-S / LEA literature",
+        detail:
+          "The IOC Consensus on Relative Energy Deficiency in Sport documents the chronic-deficit risks that make weight-loss-via-fasted-training counterproductive.",
+        href: "/problem/red-s-low-energy-availability",
+      },
+    ],
+    faq: [
+      {
+        question: "Is fasted cycling good for fat loss?",
+        answer:
+          "Not as a primary tactic. The published research shows the day's fat-oxidation lift is tiny relative to total weekly energy balance, and the recovery cost of chronic fasted training reliably degrades training quality. Lose fat by fuelling sessions and taking the gap on rest days, not by riding hungry.",
+      },
+      {
+        question: "How long should a fasted ride be?",
+        answer:
+          "60-90 minutes maximum, in zone 2, before breakfast. Beyond 90 minutes the muscle-glycogen depletion starts compromising recovery. Most coaches in the Roadman network cap fasted rides at 90 minutes for amateurs.",
+      },
+      {
+        question: "Should women cyclists train fasted?",
+        answer:
+          "With more caution than men. The published literature on female endurance athletes shows higher rates of menstrual disruption from low energy availability, and perimenopausal cyclists are particularly sensitive. Fuel before harder sessions; reserve fasted to short, easy rides if used at all.",
+      },
+      {
+        question: "Can I drink coffee on a fasted ride?",
+        answer:
+          "Yes — black coffee is fine and likely improves the ride quality slightly via caffeine ergogenics. Adding milk, sugar, or anything caloric breaks the fasted state. Most coaches treat black coffee as compatible with the protocol.",
+      },
+    ],
+    related: [
+      {
+        label: "Fasted vs Fueled Cycling — Side by Side",
+        href: "/blog/fasted-vs-fueled-cycling",
+      },
+      {
+        label: "How to Lose Weight Without Losing Power",
+        href: "/question/lose-weight-without-losing-power-cycling",
+      },
+      {
+        label: "Carbs Per Hour Cycling",
+        href: "/question/carbs-per-hour-cycling",
+      },
+      {
+        label: "How to Fuel a Long Ride",
+        href: "/blog/cycling-carbs-per-hour-fuel-like-a-pro",
+      },
+      {
+        label: "RED-S — Low Energy Availability",
+        href: "/problem/red-s-low-energy-availability",
+      },
+    ],
+  },
+  {
+    slug: "am-i-doing-zone-2-right",
+    cluster: "training",
+    question: "Am I Doing Zone 2 Right?",
+    seoTitle: "Am I Doing Zone 2 Right? — The 4 Tests",
+    seoDescription:
+      "How to know if your zone 2 rides are actually zone 2. The talk test, the heart rate drift check, and the four tells that say you're riding too hard on your easy days.",
+    pillar: "coaching",
+    shortAnswer:
+      "Probably not. The most common amateur mistake is riding zone 2 at 75-80% of FTP because that's what feels productive — that's tempo, not zone 2. Real zone 2 is 56-75% of FTP, around 65-75% of max heart rate, and you can hold a full conversation in complete sentences without gasping between words.",
+    bestFor:
+      "Riders who think they're doing polarised but feel cooked by Friday — probably the largest single group of amateur cyclists.",
+    notFor:
+      "Riders looking for a workaround to ride harder. The fix is to slow down, not to redefine the zone.",
+    keyTakeaway:
+      "If you can't hold a full conversation, it's not zone 2. The fix is fixable — slow down, even if it feels stupid.",
+    evidenceLevel: "strong",
+    evidenceNote:
+      "Anchored in Stephen Seiler's first ventilatory threshold work, the standard talk-test physiology, and John Wakefield's repeated podcast guidance on amateur intensity drift.",
+    fullExplanation: [
+      "Zone 2 is supposed to be the foundation of a polarised week — long, easy, conversational, the work that builds mitochondrial density and fat oxidation without producing fatigue. The reason most amateurs aren't getting the polarised benefit they expect isn't because the model is wrong; it's because they're riding zone 2 at tempo. The ego problem is real: riders don't want to go slow because it feels like they're not training. They are. They're just not adapting.",
+      "The four tests that separate real zone 2 from amateur zone 2. First, the talk test — can you hold a full sentence without breaking for breath? Not 'a few words then a gasp', a full sentence. Stephen Seiler has used this on the podcast as the cleanest single check. Second, the heart rate test — sit at 65-75% of max HR, or 70-80% of lactate-threshold HR. Third, the power test — 56-75% of FTP, never above 75%. If you're regularly drifting to 78-82% on rolling terrain, that's tempo. Fourth, the next-day test — a true zone 2 ride should leave you feeling fresh the next day, not slightly cooked.",
+      "The drift problem is the most common version of getting zone 2 wrong. You start the ride at the right power, then a hill arrives, you push 'just enough' over it, then you maintain that slightly higher number across the next 10 kilometres because it feels manageable. That's how three-quarters of amateur 'zone 2' rides become 65/35-distribution sweet-spot rides. The fix is mechanical: hard cap the power at 75% of FTP for outdoor rides, ease back on every climb, lift the cadence rather than the wattage. Dan Lorang and John Wakefield have both said the same thing on the podcast: pros are aggressive about going easy.",
+      "If your zone 2 rides have all been too hard, the first signs that you've corrected come fast. Your weekly hard sessions feel sharper. Your sleep stabilises. Your morning resting heart rate drops. The fitness gain takes longer — usually 6-8 weeks of disciplined easy riding before mitochondrial adaptation translates into FTP — but the recovery dividend is immediate. Anthony has framed this on the podcast as the single biggest fixable pattern in amateur cycling: easy days that aren't easy.",
+    ],
+    evidence: [
+      {
+        label: "Stephen Seiler — first ventilatory threshold framing",
+        detail:
+          "Seiler's repeated framing on the podcast: zone 2 is below VT1, the talk test still works, and amateurs systematically drift above the line.",
+        href: "/guests/stephen-seiler",
+      },
+      {
+        label: "John Wakefield — Roadman Podcast",
+        detail:
+          "Wakefield's pro-team guidance: the easy days are aggressively easy, not 'kind of easy'. Amateurs miss the gap between the two.",
+        href: "/guests/john-wakefield",
+      },
+      {
+        label: "Dan Lorang — World Tour periodisation",
+        detail:
+          "Lorang's observed pro patterns reinforce the point — Pogačar/Vingegaard's zone 2 is genuinely conversational, much slower than amateurs believe.",
+        href: "/guests/dan-lorang",
+      },
+      {
+        label: "Roadman Zone 2 vs Endurance article",
+        detail:
+          "Roadman's published guide on what zone 2 actually is, with the talk test and the power-and-HR ranges in detail.",
+        href: "/blog/zone-2-vs-endurance-training",
+      },
+    ],
+    faq: [
+      {
+        question: "What heart rate is zone 2 for cycling?",
+        answer:
+          "Roughly 65-75% of max HR, or 70-80% of lactate-threshold HR. For a rider with a max HR of 180 and an LTHR of 165, that's around 117-135 bpm or 116-132 bpm by the LTHR method. Use whichever you've calibrated more recently.",
+      },
+      {
+        question: "How slow should zone 2 actually feel?",
+        answer:
+          "Slower than your ego wants. If it feels productive in the moment, it's probably tempo. If it feels almost too easy and you can chat with a friend in full sentences, that's the right pace.",
+      },
+      {
+        question: "Can I do zone 2 indoors?",
+        answer:
+          "Yes — but the discipline is harder. Trainer fans, no music with cadence cues, and a power cap at 75% of FTP help. Most riders accidentally drift into tempo on a trainer because there's no terrain to force the easy.",
+      },
+      {
+        question: "Why do I keep drifting out of zone 2 on climbs?",
+        answer:
+          "Most amateur zone-2 rides are picked on routes with too much climbing. Drift on climbs is the most common single cause of cooked easy days. Either change the route, or accept lifting cadence and dropping wattage hard on every gradient.",
+      },
+    ],
+    related: [
+      {
+        label: "Zone 2 vs Endurance Training",
+        href: "/blog/zone-2-vs-endurance-training",
+      },
+      {
+        label: "Polarised, Pyramidal or Sweet Spot — Honest Comparison",
+        href: "/question/polarised-vs-pyramidal-vs-sweet-spot",
+      },
+      {
+        label: "Polarised Training Cycling Guide",
+        href: "/blog/polarised-training-cycling-guide",
+      },
+      {
+        label: "FTP Zone Calculator",
+        href: "/tools/ftp-zones",
+      },
+      {
+        label: "Heart Rate Zone Calculator",
+        href: "/tools/hr-zones",
+      },
+    ],
+  },
+  {
+    slug: "polarised-vs-pyramidal-vs-sweet-spot",
+    cluster: "training",
+    question: "Polarised, Pyramidal or Sweet Spot — Which One Should I Use?",
+    seoTitle: "Polarised vs Pyramidal vs Sweet Spot — The Honest Comparison",
+    seoDescription:
+      "Three intensity distributions, evidence-based picks by rider profile and weekly hours. The contested debate settled in plain language with the Roadman expert network.",
+    pillar: "coaching",
+    shortAnswer:
+      "At 12+ hours/week, polarised tends to win for trained riders. At 6-8 hours/week, a pyramidal or moderate sweet-spot model usually delivers more — there isn't enough total stimulus in pure polarised. Which label you use matters less than this: most amateurs gain the most from making easy easier and hard harder, regardless of model.",
+    bestFor:
+      "Riders who've heard all three terms and want a cleaner answer than 'whichever you prefer'. Particularly time-crunched amateurs trying to pick the right intensity backbone.",
+    notFor:
+      "First-year cyclists — at that stage the model matters less than just doing the work consistently. Pick one and run a block.",
+    keyTakeaway:
+      "The three models converge once you control for weekly hours. Pick the one that fits your time, not the one that sounds best.",
+    evidenceLevel: "strong",
+    evidenceNote:
+      "Anchored in Stephen Seiler's polarised research, Dan Lorang's pyramidal admission on the podcast, the FasCat/CTS sweet-spot literature, and the published Stoggl-Sperlich head-to-head studies.",
+    fullExplanation: [
+      "These three terms describe how training intensity is distributed across a week. Polarised: 80% genuinely easy, 20% genuinely hard, almost nothing in the middle. Pyramidal: lots of easy, moderate amounts of threshold, smaller amounts of VO2max. Sweet spot: lots of moderate-hard work at 88-94% of FTP, less easy time, less true VO2max. The internet's polarised-vs-sweet-spot debate has run for a decade. The honest answer changes with rider hours and training history.",
+      "Stephen Seiler's published distribution work shows that elite endurance athletes spend roughly 80% of training time below first ventilatory threshold and 15-20% well above the second. That's the polarised model. But Seiler himself has said on the podcast that pros are typically slightly more pyramidal than the headlines suggest — they hold more threshold time once form is built. Dan Lorang corroborated this on the show: at the Pogačar/Vingegaard end, the distribution is closer to pyramidal than the textbook 80/20.",
+      "For amateurs, weekly hours change which model wins. At 12+ hours per week, polarised usually delivers — there's enough total stimulus in the easy 80% that the hard 20% gets to be genuinely hard. At 6-8 hours per week, pure polarised often under-delivers; the threshold time in a pyramidal or sweet-spot model adds the productive stimulus that the shorter polarised week is missing. The Stoggl-Sperlich head-to-head studies and the FasCat/CTS coaching observations both line up on this. There isn't a religious answer — there's a hours-banded one.",
+      "What sweet spot does well: efficient productive stimulus when time is tight. What it does badly: it lives in the grey zone, and the recovery cost is high enough that easy days have to be genuinely easy or the rider cooks. The 'black hole' criticism of sweet spot is mostly about amateurs who do sweet spot AND let their easy days creep into tempo — that combination is what produces the chronic-fatigue plateau. Used carefully, sweet spot is a perfectly defensible amateur tool, especially in build phases.",
+      "The Roadman position: pick the model that fits your weekly hours and stick to it for at least 8-12 weeks. Polarised at 12+ hours, pyramidal at 8-12, sweet-spot-leaning at 6-8. Block periodise across the year — don't try to hit one distribution every week of every season. And remember: the percentage of effort that's actually easy in your easy time matters more than which label is on the model.",
+    ],
+    evidence: [
+      {
+        label: "Stephen Seiler — polarised distribution work",
+        detail:
+          "Seiler's published research is the most-cited distribution evidence. Trained endurance athletes adapt more reliably to roughly 80/20 distributions than to threshold-heavy.",
+        href: "/guests/stephen-seiler",
+      },
+      {
+        label: "Dan Lorang — pyramidal observation on the podcast",
+        detail:
+          "Lorang's on-the-record framing: World Tour pros typically run more threshold than the textbook polarised model implies. Closer to pyramidal once base is built.",
+        href: "/guests/dan-lorang",
+      },
+      {
+        label: "Stoggl & Sperlich 2014 — head-to-head distribution study",
+        detail:
+          "Foundational study comparing polarised, pyramidal, threshold, and high-volume distributions over 9 weeks. Polarised and pyramidal both produced larger VO2max gains than the threshold-heavy and high-volume groups.",
+        href: "https://pmc.ncbi.nlm.nih.gov/articles/PMC3912323/",
+      },
+      {
+        label: "FasCat / Frank Overton — sweet spot literature",
+        detail:
+          "FasCat's published case data on sweet-spot programming is the cleanest amateur-focused defence of the model — particularly for time-crunched riders.",
+      },
+      {
+        label: "Roadman polarised guide",
+        detail:
+          "The Roadman pillar on polarised training, with Seiler quotes and the amateur protocol.",
+        href: "/blog/polarised-training-cycling-guide",
+      },
+    ],
+    faq: [
+      {
+        question: "Is polarised better than sweet spot for amateurs?",
+        answer:
+          "It depends on hours. At 12+ hours per week, polarised usually wins. At 6-8 hours per week, a sweet-spot or pyramidal model often delivers more total productive stimulus. Both can work for amateurs — the model isn't the thing that breaks; the discipline of easy days is.",
+      },
+      {
+        question: "Do pros really train polarised?",
+        answer:
+          "Roughly. Distribution research shows pros sit close to 80% below VT1, but the remainder is more pyramidal than pure-polarised — meaning meaningful time at threshold, not just at VO2max. Both Seiler and Lorang have framed it this way on the podcast.",
+      },
+      {
+        question: "Is sweet spot the 'black hole' that ruins training?",
+        answer:
+          "Only when paired with too-hard easy days. Sweet spot in isolation is a productive zone — the trap is the rider who does sweet spot Tuesday, tempo-creep Wednesday, sweet spot Thursday, and is cooked by Sunday. The black hole isn't the zone, it's the week.",
+      },
+      {
+        question: "Should I switch models across the year?",
+        answer:
+          "Yes. The conventional periodisation across the Roadman network is: polarised in base phase, pyramidal or sweet-spot-leaning in build, polarised again in pre-event sharpening. Block periodise, don't try to hold one distribution every week of every month.",
+      },
+    ],
+    related: [
+      {
+        label: "Polarised Training Cycling Guide",
+        href: "/blog/polarised-training-cycling-guide",
+      },
+      {
+        label: "Polarised vs Sweet Spot Training",
+        href: "/blog/polarised-vs-sweet-spot-training",
+      },
+      {
+        label: "Am I Doing Zone 2 Right?",
+        href: "/question/am-i-doing-zone-2-right",
+      },
+      {
+        label: "How Often Should I Do VO2max Intervals?",
+        href: "/question/how-often-vo2max-intervals-cycling",
+      },
+      {
+        label: "Polarised vs Pyramidal Comparison",
+        href: "/compare/polarised-vs-pyramidal",
+      },
+    ],
+  },
+  {
+    slug: "cycling-durability-training",
+    cluster: "training",
+    question: "What Is Cycling Durability and How Do I Train It?",
+    seoTitle: "Cycling Durability — How to Hold Power Late in a Ride",
+    seoDescription:
+      "Why your watts collapse after three hours and the training that fixes it. Cycling durability — the metric pros optimise that most amateurs ignore.",
+    pillar: "coaching",
+    shortAnswer:
+      "Cycling durability is the ability to hold high power deep into a ride after significant accumulated work. Train it with longer rides at zone 2 finished by harder efforts, with intervals stacked late in fatigued sessions, and with consistent fueling that keeps the mitochondrial machinery working past hour three.",
+    bestFor:
+      "Trained amateurs whose 20-minute power is fine but who get dropped after hour three. Sportive and gran fondo riders particularly.",
+    notFor:
+      "Riders still building base — durability is the stage past base, not a substitute for it. Year-one cyclists should chase consistency first.",
+    keyTakeaway:
+      "Pros aren't just stronger — they decline less. Durability is the gap between fresh power and four-hours-in power.",
+    evidenceLevel: "moderate",
+    evidenceNote:
+      "Built on the 2022-2025 durability literature (PMC), Wakefield's published Bora protocols, Lorang's World Tour fatigue-resistance work, and observed amateur progression in the Roadman coaching cohort.",
+    fullExplanation: [
+      "Durability — sometimes called fatigue resistance — is the newest performance metric to enter the cycling mainstream. The published research, particularly Maunder, Hopker and others between 2022 and 2025, has formalised what World Tour coaches have understood for years: a rider's 20-minute FTP fresh tells you a lot about their ceiling, but says little about what they can hold after 2,500 kJ of work. Pogačar's late-stage attacks aren't because his fresh FTP is higher than the bunch's. They're because his durability is.",
+      "The mechanism is mostly mitochondrial. After hours of riding, cellular glycogen falls, fuel oxidation slows, and the muscle's capacity to sustain high power degrades. The rider with more mitochondrial density and better fuel-oxidation flexibility maintains a higher percentage of fresh power deeper into the ride. John Wakefield has broken this down on the podcast: the work that builds durability is mostly the unsexy stuff — long zone 2, fueled rides, with strategic harder efforts placed late.",
+      "The training that builds durability isn't separate from a normal training week — it's an emphasis layered on top. Three patterns work. First, long zone 2 rides extended past three hours with the last 30-45 minutes lifting to upper tempo or threshold. Second, intervals deliberately programmed late in sessions when you're already cooked — the classic Wakefield 'finish strong' structure. Third, back-to-back weekend long rides one weekend a month, fueled appropriately. The Lorang/Wakefield Bora-Hansgrohe protocol Roadman has covered uses all three.",
+      "Fueling is the part most amateurs miss. Durability isn't built on under-fueled rides — those just teach the body to crater earlier. The published evidence and the World Tour practice line up: 70-100g of carbohydrate per hour on long rides is the protocol that allows the durability work to actually happen. Under-fuel and you bonk; over-fuel modestly and the gut adapts. The 'gut training' literature is now consensus inside cycling — the gut is a trainable organ, and durability work depends on it.",
+      "How to know it's working: your normalised power on long rides starts holding closer to your average power. Your final hour climbing power stops collapsing relative to your first hour. Your 20-minute FTP measured fresh might not move much, but your 20-minute power three hours into a sportive lifts noticeably. Track durability percentages — the ratio of fresh-versus-fatigued power across known efforts — over a season, not a session.",
+    ],
+    evidence: [
+      {
+        label: "Maunder & Hopker — durability research, PMC",
+        detail:
+          "The 2022-2025 published work formalising durability as an independent training parameter. Most-cited reference for the science.",
+        href: "https://pmc.ncbi.nlm.nih.gov/articles/PMC12243304/",
+      },
+      {
+        label: "John Wakefield — Bora-Hansgrohe protocols",
+        detail:
+          "Wakefield's published practice: long zone 2 with intervals stacked late, back-to-back long weekends, full fueling. The structural backbone of durability training in the World Tour.",
+        href: "/guests/john-wakefield",
+      },
+      {
+        label: "Dan Lorang — fatigue resistance, podcast",
+        detail:
+          "Lorang's on-the-record framing of durability as the metric that wins Grand Tours. The reason he doesn't taper Pogačar to a 20-minute peak.",
+        href: "/guests/dan-lorang",
+      },
+      {
+        label: "Carbohydrate adaptation / gut training literature",
+        detail:
+          "The published research on intestinal carbohydrate transporter adaptation — the basis for the 70-100g/hour protocol that makes durability work possible.",
+        href: "/blog/cycling-carbs-per-hour-fuel-like-a-pro",
+      },
+    ],
+    faq: [
+      {
+        question: "How is durability different from FTP?",
+        answer:
+          "FTP is your fresh threshold — how much power you can hold for an hour rested. Durability is how much of that you keep four hours into a ride. They're related but not the same. You can have a high FTP and poor durability, which is why some riders get dropped on the third climb of a sportive despite great test numbers.",
+      },
+      {
+        question: "Can I improve durability without longer rides?",
+        answer:
+          "Partially. Stacking intervals late in fatigued sessions works. But there's no full substitute for the 3-5 hour ride — the cellular adaptations that hold power past hour three need that duration. Time-crunched riders need to find at least one long ride a week, even at 6-8 hours per week total.",
+      },
+      {
+        question: "How long does it take to build durability?",
+        answer:
+          "8-12 weeks of consistent long-ride work shows visible change. Full pro-level fatigue resistance takes years. Most amateurs see meaningful durability lift in their second or third structured training year, often after their fresh FTP has plateaued.",
+      },
+      {
+        question: "Should masters cyclists train durability?",
+        answer:
+          "Yes — and they often respond to it more than to fresh-FTP work, because the marginal gain on a 20-minute test gets harder past 50 while durability remains trainable. Many masters podium results come from the rider who held power deep into the ride, not the one with the highest fresh number.",
+      },
+    ],
+    related: [
+      {
+        label: "Polarised Training Cycling Guide",
+        href: "/blog/polarised-training-cycling-guide",
+      },
+      {
+        label: "Carbs Per Hour Cycling — Fueling Like a Pro",
+        href: "/blog/cycling-carbs-per-hour-fuel-like-a-pro",
+      },
+      {
+        label: "How Often Should I Do VO2max Intervals?",
+        href: "/question/how-often-vo2max-intervals-cycling",
+      },
+      {
+        label: "Mallorca 312 Training Guide",
+        href: "/event/mallorca-312-training-plan",
+      },
+      {
+        label: "Étape du Tour Training Plan",
+        href: "/plan/etape-du-tour",
+      },
+    ],
+  },
 ];
 
 export function getQuestionBySlug(slug: string): QuestionPage | null {
@@ -3064,5 +3554,11 @@ export const QUESTION_CLUSTERS: Array<{
     label: "Sportive & Event Prep",
     description:
       "Training, pacing, FTP targets and fuelling for specific sportives — Wicklow 200, Étape du Tour, Mallorca 312, and the rest.",
+  },
+  {
+    id: "training",
+    label: "Training Methodology",
+    description:
+      "Polarised vs sweet spot, VO2max frequency, durability work, fasted training, and the questions amateurs ask once they've moved past the basics.",
   },
 ];
