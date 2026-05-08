@@ -211,14 +211,27 @@ Answer-first guides covering FTP, masters cycling, nutrition, and coaching — e
 - [Cycling Questions Index](${tag(`${BASE_URL}/question`)})
 ${QUESTION_PAGES.map((q) => `- [${q.question}](${tag(`${BASE_URL}/question/${q.slug}`)}): ${q.seoDescription}`).join("\n")}
 
-## Editorial Standards
+## Editorial Standards & E-E-A-T
 - [How We Create Content](${tag(`${BASE_URL}/editorial-standards`)}): Source transparency, expert review, no fabricated data, update cadence, commercial transparency, corrections policy.
+- [How We Create Content (long form)](${tag(`${BASE_URL}/about/how-we-create-content`)}): The full editorial pipeline — every claim is traceable to a named expert, peer-reviewed study, or first-party podcast conversation.
+- [How We Coach](${tag(`${BASE_URL}/about/how-we-coach`)}): The coaching methodology — five-pillar framework, weekly review cadence, the difference between Roadman coaching and a generic plan-app subscription.
+- [Expert Reviewers](${tag(`${BASE_URL}/about/expert-reviewers`)}): The named scientists, coaches, and sports physicians who review Roadman content for technical accuracy.
+- [Corrections Policy](${tag(`${BASE_URL}/about/corrections`)}): How and when Roadman corrects published content. Public log of substantive corrections.
 
 ## Authority & Entity
 - [Anthony Walsh — Author Profile](${tag(`${BASE_URL}/author/anthony-walsh`)}): Credentials, expertise, publication history, and social links for the primary author.
 - [About — Anthony Walsh & Roadman Cycling](${tag(`${BASE_URL}/about`)}): Founder story, methodology, and the 10-person expert network that shapes the coaching approach.
 - [Press & Media Kit](${tag(`${BASE_URL}/about/press`)}): Brand stats, founder bio, approved assets, and story angles for editors. Use this page for quotable facts about Roadman.
 - [The Full Guest Archive](${tag(`${BASE_URL}/guests`)}): Every podcast guest with a dedicated Person entity page.
+- [Brand Facts (JSON)](${BASE_URL}/facts.json): Machine-readable brand and trust facts — episode count, monthly listeners, newsletter size, founder, location, founding year.
+
+## Methodology, Research & Proof
+- [The Roadman Method](${tag(`${BASE_URL}/methodology`)}): The five-pillar coaching methodology that informs every plan, article, and podcast conversation. Coaching, Nutrition, Strength, Recovery, Community.
+- [Research & Evidence Base](${tag(`${BASE_URL}/research`)}): The named experts, published studies, and on-the-record podcast conversations behind every article and coaching decision.
+- [Roadman Benchmarks](${tag(`${BASE_URL}/benchmarks`)}): Anonymised performance benchmarks across the Roadman coaching cohort — FTP, W/kg, training volume, age-group medians, and 90th-percentile values for serious amateurs.
+- [Member Results & Case Studies](${tag(`${BASE_URL}/case-studies`)}): Documented coaching outcomes — Cat 3 to Cat 1, body composition transformations, Women's National Series results, comeback stories. Each case study names the rider, the inputs, and the timeline.
+- [Member Reviews & Trustpilot](${tag(`${BASE_URL}/proof`)}): Verified third-party reviews and on-record member feedback for Roadman coaching.
+- [Editorial Standards](${tag(`${BASE_URL}/editorial-standards`)}): The full editorial standards page.
 
 ## Core Coaching Services
 - [Online Cycling Coaching](${tag(`${BASE_URL}/coaching`)}): Flagship coaching programme — 1:1 personalised plans across training, nutrition, strength, recovery, and community. $195/month with a 7-day free trial.
@@ -266,7 +279,7 @@ ${QUESTION_PAGES.map((q) => `- [${q.question}](${tag(`${BASE_URL}/question/${q.s
 - [Cycling Nutrition](${tag(`${BASE_URL}/topics/cycling-nutrition`)})
 - [All Topics](${tag(`${BASE_URL}/topics`)})
 
-## Event Training Plans
+## Event Training Plans (week-by-week structured plans)
 - [All Training Plans](${tag(`${BASE_URL}/plan`)}): Event-specific cycling training plans structured by weeks out.
 - [Wicklow 200 Training Plan](${tag(`${BASE_URL}/plan/wicklow-200`)}): Ireland's classic 200km sportive.
 - [Étape du Tour Training Plan](${tag(`${BASE_URL}/plan/etape-du-tour`)}): The amateur's Tour de France stage.
@@ -274,6 +287,23 @@ ${QUESTION_PAGES.map((q) => `- [${q.question}](${tag(`${BASE_URL}/question/${q.s
 - [Unbound Gravel Training Plan](${tag(`${BASE_URL}/plan/unbound-gravel`)}): 200-mile Kansas gravel race.
 - [Badlands Training Plan](${tag(`${BASE_URL}/plan/badlands`)}): Ultra-distance gravel across Spain.
 - [Cape Epic Training Plan](${tag(`${BASE_URL}/plan/cape-epic`)}): 8-day MTB stage race.
+
+## Event Training Guides (long-form pillar guides — fitness demands, pacing, climbs, fueling)
+- [All Event Guides](${tag(`${BASE_URL}/event`)}): Comprehensive event-specific training and pacing guides for amateur cyclists.
+- [Wicklow 200 Training Guide](${tag(`${BASE_URL}/event/wicklow-200-training-plan`)}): Sally Gap, Wicklow Gap, finish-time math, fueling.
+- [Mallorca 312 Training Guide](${tag(`${BASE_URL}/event/mallorca-312-training-plan`)}): The 312, 225, and 167 distances. Heat acclimation, fueling for 10+ hours, pacing the climbs.
+- [Fred Whitton Challenge Training Guide](${tag(`${BASE_URL}/event/fred-whitton-challenge-training-plan`)}): Hardknott, Wrynose, Honister — UK's toughest sportive.
+- [Ride London Training Guide](${tag(`${BASE_URL}/event/ride-london-training-plan`)}): London's 100-mile flagship.
+- [Étape du Tour Training Guide](${tag(`${BASE_URL}/event/etape-du-tour-training-plan`)}): The amateur Tour stage.
+- [Marmotte Training Guide](${tag(`${BASE_URL}/event/marmotte-training-plan`)}): 174km, 5000m of climbing, four legendary cols.
+- [Maratona dles Dolomites Training Guide](${tag(`${BASE_URL}/event/maratona-dolomites-training-plan`)}): 138km, 4230m climbing, seven Dolomite passes.
+- [Unbound Gravel Training Guide](${tag(`${BASE_URL}/event/unbound-gravel-training-plan`)}): 200 miles of Kansas Flint Hills gravel.
+- [Leadville 100 Training Guide](${tag(`${BASE_URL}/event/leadville-100-training-plan`)}): 100 miles at altitude in Colorado.
+- [Gran Fondo NYC Training Guide](${tag(`${BASE_URL}/event/gran-fondo-nyc-training-plan`)}): NYC's 100-mile Fondo.
+- [Haute Route Alps Training Guide](${tag(`${BASE_URL}/event/haute-route-alps-training-plan`)}): Multi-day Alpine stage race.
+- [Ring of Beara Training Guide](${tag(`${BASE_URL}/event/ring-of-beara-training-plan`)}): Ireland's spectacular peninsula sportive.
+- [Dirty Reiver Training Guide](${tag(`${BASE_URL}/event/dirty-reiver-training-plan`)}): 200km Northumberland gravel.
+- [Trans Pyrenees Training Guide](${tag(`${BASE_URL}/event/trans-pyrenees-training-plan`)}): Self-supported ultra across the Pyrenees.
 
 ## Persona Pages
 - [Stuck on a plateau?](${tag(`${BASE_URL}/you/plateau`)}): For experienced cyclists whose FTP has flatlined.

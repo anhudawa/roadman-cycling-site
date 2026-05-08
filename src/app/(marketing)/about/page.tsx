@@ -4,7 +4,21 @@ import Link from "next/link";
 import { Header, Footer, Section, Container } from "@/components/layout";
 import { Button, Card, ScrollReveal, ParallaxImage } from "@/components/ui";
 import { JsonLd } from "@/components/seo/JsonLd";
-import { ENTITY_IDS } from "@/lib/brand-facts";
+import { ENTITY_IDS, SITE_ORIGIN } from "@/lib/brand-facts";
+
+/**
+ * Slug helper kept consistent with the visible Card href above so the
+ * mentions array in JSON-LD points at the same /guests/[slug] target the
+ * UI links to. Drops curly apostrophes and any non-alphanumeric, then
+ * trims leading/trailing dashes.
+ */
+function expertSlug(name: string) {
+  return name
+    .toLowerCase()
+    .replace(/['']/g, "")
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/^-|-$/g, "");
+}
 
 export const metadata: Metadata = {
   title: "About — Anthony Walsh",
@@ -76,6 +90,18 @@ export default function AboutPage() {
           mainEntity: { "@id": ENTITY_IDS.person },
           isPartOf: { "@id": ENTITY_IDS.website },
           about: { "@id": ENTITY_IDS.organization },
+          // The expert network surfaces as `mentions: [Person]` so AI
+          // crawlers reading the about page extract the named coaches,
+          // scientists, and pros that anchor Roadman's authority. Each
+          // name links to the canonical /guests/[slug] entity page.
+          mentions: expertNetwork.map((expert) => ({
+            "@type": "Person",
+            "@id": `${SITE_ORIGIN}/guests/${expertSlug(expert.name)}#person`,
+            name: expert.name,
+            jobTitle: expert.role,
+            description: expert.highlight,
+            url: `${SITE_ORIGIN}/guests/${expertSlug(expert.name)}`,
+          })),
         }}
       />
 

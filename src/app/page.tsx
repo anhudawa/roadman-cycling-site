@@ -13,6 +13,8 @@ import { TrustpilotProof } from "@/components/proof";
 import { ReviewsJsonLd } from "@/components/seo/TrustpilotSchema";
 import { getTrustpilotReviews } from "@/lib/trustpilot";
 import { CONTENT_PILLARS, type ContentPillar } from "@/types";
+import { JsonLd } from "@/components/seo/JsonLd";
+import { BRAND, BRAND_STATS, ENTITY_IDS, SITE_ORIGIN } from "@/lib/brand-facts";
 
 const marqueeGuests = [
   { name: "Greg LeMond", credential: "3× Tour de France winner", href: "https://www.youtube.com/watch?v=_kFSe3VxS10" },
@@ -588,6 +590,158 @@ export default function HomePage() {
       </main>
 
       <Footer />
+
+      {/* Page-specific schema. The root layout emits Organization + WebSite +
+          Person + PodcastSeries; this block adds homepage-scoped WebPage,
+          ItemList of pillars, ItemList of tools, and a micro-FAQPage so AI
+          assistants asking "what is Roadman / what do they cover / what tools
+          do they have" extract directly from one page. */}
+      <JsonLd
+        data={{
+          "@context": "https://schema.org",
+          "@graph": [
+            {
+              "@type": "WebPage",
+              "@id": `${SITE_ORIGIN}/#webpage`,
+              url: SITE_ORIGIN,
+              name: BRAND.name,
+              description: BRAND.description,
+              isPartOf: { "@id": ENTITY_IDS.website },
+              about: { "@id": ENTITY_IDS.organization },
+              primaryImageOfPage: BRAND.ogImage,
+              publisher: { "@id": ENTITY_IDS.organization },
+              inLanguage: "en",
+              speakable: {
+                "@type": "SpeakableSpecification",
+                cssSelector: [".answer-capsule", "h1"],
+              },
+              significantLink: [
+                `${SITE_ORIGIN}/coaching`,
+                `${SITE_ORIGIN}/podcast`,
+                `${SITE_ORIGIN}/methodology`,
+                `${SITE_ORIGIN}/about`,
+                `${SITE_ORIGIN}/community/not-done-yet`,
+                `${SITE_ORIGIN}/plateau`,
+                `${SITE_ORIGIN}/ask`,
+              ],
+            },
+            {
+              "@type": "ItemList",
+              "@id": `${SITE_ORIGIN}/#content-pillars`,
+              name: "Roadman Cycling Content Pillars",
+              description:
+                "The five-pillar content taxonomy that organises every Roadman article, episode, glossary term, comparison, and tool.",
+              numberOfItems: 5,
+              itemListElement: [
+                {
+                  "@type": "ListItem",
+                  position: 1,
+                  name: "Coaching",
+                  url: `${SITE_ORIGIN}/topics/cycling-training-plans`,
+                },
+                {
+                  "@type": "ListItem",
+                  position: 2,
+                  name: "Nutrition",
+                  url: `${SITE_ORIGIN}/topics/cycling-nutrition`,
+                },
+                {
+                  "@type": "ListItem",
+                  position: 3,
+                  name: "Strength & Conditioning",
+                  url: `${SITE_ORIGIN}/topics/cycling-strength-conditioning`,
+                },
+                {
+                  "@type": "ListItem",
+                  position: 4,
+                  name: "Recovery",
+                  url: `${SITE_ORIGIN}/topics/cycling-recovery`,
+                },
+                {
+                  "@type": "ListItem",
+                  position: 5,
+                  name: "Community / Le Métier",
+                  url: `${SITE_ORIGIN}/topics`,
+                },
+              ],
+            },
+            {
+              "@type": "ItemList",
+              "@id": `${SITE_ORIGIN}/#tools`,
+              name: "Roadman Cycling Free Calculators & Tools",
+              description:
+                "Free, browser-based calculators for serious amateur cyclists — FTP zones, race weight, in-ride fueling, masters benchmarks, recovery score, and more.",
+              numberOfItems: 10,
+              itemListElement: [
+                { "@type": "ListItem", position: 1, name: "FTP Zone Calculator", url: `${SITE_ORIGIN}/tools/ftp-zones` },
+                { "@type": "ListItem", position: 2, name: "Race Weight Calculator", url: `${SITE_ORIGIN}/tools/race-weight` },
+                { "@type": "ListItem", position: 3, name: "In-Ride Fuelling Calculator", url: `${SITE_ORIGIN}/tools/fuelling` },
+                { "@type": "ListItem", position: 4, name: "Tyre Pressure Calculator", url: `${SITE_ORIGIN}/tools/tyre-pressure` },
+                { "@type": "ListItem", position: 5, name: "Heart Rate Zone Calculator", url: `${SITE_ORIGIN}/tools/hr-zones` },
+                { "@type": "ListItem", position: 6, name: "W/kg Calculator", url: `${SITE_ORIGIN}/tools/wkg` },
+                { "@type": "ListItem", position: 7, name: "Energy Availability Calculator", url: `${SITE_ORIGIN}/tools/energy-availability` },
+                { "@type": "ListItem", position: 8, name: "Masters FTP Benchmark", url: `${SITE_ORIGIN}/tools/masters-ftp-benchmark` },
+                { "@type": "ListItem", position: 9, name: "Masters Recovery Score", url: `${SITE_ORIGIN}/tools/masters-recovery-score` },
+                { "@type": "ListItem", position: 10, name: "MTB Shock Pressure Calculator", url: `${SITE_ORIGIN}/tools/shock-pressure` },
+              ],
+            },
+            {
+              "@type": "FAQPage",
+              "@id": `${SITE_ORIGIN}/#faq`,
+              mainEntity: [
+                {
+                  "@type": "Question",
+                  name: "What is Roadman Cycling?",
+                  acceptedAnswer: {
+                    "@type": "Answer",
+                    text: `Roadman Cycling is a cycling performance brand and podcast for serious amateur cyclists. Founded in Dublin in 2021 by Anthony Walsh, the Roadman Cycling Podcast has reached ${BRAND_STATS.monthlyListenersLabel} monthly listeners across ${BRAND_STATS.countriesReachedLabel} countries with ${BRAND_STATS.episodeCountLabel} episodes built on on-the-record conversations with World Tour coaches, sports scientists, and pro riders. The brand also runs the Not Done Yet coaching community and a free Clubhouse community tier.`,
+                  },
+                },
+                {
+                  "@type": "Question",
+                  name: "Who is Anthony Walsh?",
+                  acceptedAnswer: {
+                    "@type": "Answer",
+                    text: "Anthony Walsh is the founder and host of Roadman Cycling. A Dublin-based cycling coach who has been coaching since 2013 (originally under A1 Coaching, rebranded to Roadman in 2021), he hosts the Roadman Cycling Podcast and leads the Not Done Yet coaching community. His coaching focuses on serious amateur cyclists who refuse to accept their best days are behind them.",
+                  },
+                },
+                {
+                  "@type": "Question",
+                  name: "What are Roadman's five content pillars?",
+                  acceptedAnswer: {
+                    "@type": "Answer",
+                    text: "Roadman organises every piece of content under five pillars: Coaching (training methodology, periodisation, FTP, polarised training), Nutrition (in-ride fueling, race weight, body composition), Strength & Conditioning (cycling-specific S&C, masters strength, injury prevention), Recovery (sleep, stress, adaptation, RED-S), and Community / Le Métier (the craft of cycling — skills, customs, training camps, the social side of the sport).",
+                  },
+                },
+                {
+                  "@type": "Question",
+                  name: "Who has been on the Roadman Cycling Podcast?",
+                  acceptedAnswer: {
+                    "@type": "Answer",
+                    text: "Notable guests include Professor Stephen Seiler (polarised training pioneer), Dan Lorang (head of performance at Red Bull–Bora–Hansgrohe, coach to Pogačar and Vingegaard), Greg LeMond (3× Tour de France winner), Joe Friel (author of The Cyclist's Training Bible), Lachlan Morton (EF Education), Dan Bigham (former Hour Record holder), Ben Healy (pro cyclist), Michael Matthews (sprinter, 15+ years in the peloton), John Wakefield (Bora-Hansgrohe coach), Tim Kerrison (ex-Team Sky head of performance), and Tim Spector (ZOE founder).",
+                  },
+                },
+                {
+                  "@type": "Question",
+                  name: "How is Roadman coaching different from a training app?",
+                  acceptedAnswer: {
+                    "@type": "Answer",
+                    text: "Training apps deliver workouts. Roadman coaching delivers context — a personalised plan reviewed by a coach, weekly check-ins, and the same evidence base that informs the podcast (Stephen Seiler on polarised training, Dan Lorang on periodisation, John Wakefield on torque work). The Not Done Yet community (group coaching, $195/month) and Inner Circle (1:1, premium) are built for cyclists with jobs, families, and 8–12 hours a week to train.",
+                  },
+                },
+                {
+                  "@type": "Question",
+                  name: "What free tools does Roadman offer?",
+                  acceptedAnswer: {
+                    "@type": "Answer",
+                    text: "Roadman offers ten free browser-based calculators for cyclists: FTP Zones, Race Weight, In-Ride Fuelling, Tyre Pressure, Heart Rate Zones, W/kg, Energy Availability (RED-S screener), Masters FTP Benchmark, Masters Recovery Score, and MTB Shock Pressure. There's also Ask Roadman, a podcast-grounded performance assistant, and the Plateau Diagnostic, a 12-question profile that identifies which of four plateau profiles is limiting FTP progress.",
+                  },
+                },
+              ],
+            },
+          ],
+        }}
+      />
     </>
   );
 }
