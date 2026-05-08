@@ -23,22 +23,22 @@ The MVP unifies five moving parts that already partially exist:
 ┌──────────────────────────────────────────────────────────────────────┐
 │                     roadmancycling.com (Next.js 16)                  │
 │                                                                      │
-│  /ask                  /diagnostic             /tools/fuelling       │
+│  /ask                  /assessment             /tools/fuelling       │
 │  ┌──────────┐          ┌─────────────┐         ┌──────────────┐      │
 │  │AskShell  │          │PlateauForm  │         │FuellingCalc  │      │
 │  │+stream   │          │+save+email  │         │+save+email   │      │
 │  └────│─────┘          └──────│──────┘         └──────│───────┘      │
 │       │                       │                       │              │
-│       $��                       $��                       $��              │
+│       $��                       $��                       $��              │
 │  /api/ask (stream)   /api/diagnostic/submit   /api/tools/*/save      │
 │       │                       │                       │              │
-│       $��                       └────────│──────────────┘              │
-│  ┌───────────────┐                     $��                             │
+│       $��                       └────────│──────────────┘              │
+│  ┌───────────────┐                     $��                             │
 │  │ask-orchestrator│          rider-profile.upsert()                  │
-│  │ (server-only)  │$��────────────────┐                                │
+│  │ (server-only)  │$��────────────────┐                                │
 │  └──────│─────────┘                 │ load saved profile             │
 │         │                           │ on /ask load                   │
-│         $��                           │                                │
+│         $��                           │                                │
 │  retrieval.search(query, filters) ──┘                                │
 │   ├── search_episodes (existing)                                     │
 │   ├── search_methodology (existing)                                  │
@@ -363,7 +363,7 @@ src/app/(marketing)/tools/
 │   └── FtpZoneCalculator.tsx
 ```
 
-Plateau Diagnostic already at `/diagnostic` (existing). We are not redesigning it — we wire up its saved results into rider_profiles + Ask Roadman context.
+Plateau Diagnostic already at `/assessment` (existing). We are not redesigning it — we wire up its saved results into rider_profiles + Ask Roadman context.
 
 ### New: admin surfaces
 
@@ -644,7 +644,7 @@ These are the items I'll block on — I cannot decide them alone.
    - Roadman Clubhouse (Skool free URL)
    - Roadman+ / Not Done Yet paid (Skool paid URL)
    - VIP coaching (application URL)
-   - Plateau Diagnostic (`/diagnostic`, confirmed)
+   - Plateau Diagnostic (`/assessment`, confirmed)
    - Fuelling Calculator (confirm path — I'll use `/tools/fuelling`)
    - FTP Zone Calculator (confirm path — I'll use `/tools/ftp-zones`)
    I'll use sensible defaults from the brand skill where missing.

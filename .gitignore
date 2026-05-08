@@ -3,6 +3,10 @@
 # YouTube sync state
 scripts/sync-state.json
 
+# Link-audit artifacts — regenerated on each run by `npm run audit:links`
+scripts/audit-links-report.json
+scripts/route-inventory.json
+
 # SEO content drafts (generated, reviewed before publishing)
 content/drafts/
 

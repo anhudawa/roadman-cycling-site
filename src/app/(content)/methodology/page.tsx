@@ -59,7 +59,7 @@ const PILLARS: PillarSpec[] = [
       },
     ],
     see: [
-      { label: "Polarised vs Sweet Spot", href: "/compare/polarised-vs-sweet-spot-training" },
+      { label: "Polarised vs Sweet Spot", href: "/compare/polarised-vs-pyramidal" },
       { label: "Zone 2 Training Guide", href: "/blog/zone-2-training-complete-guide" },
       { label: "FTP Zone Calculator", href: "/tools/ftp-zones" },
     ],
@@ -113,7 +113,7 @@ const PILLARS: PillarSpec[] = [
     ],
     see: [
       { label: "Strength Training for Cyclists", href: "/strength-training" },
-      { label: "Cycling vs Endurance Strength", href: "/compare/strength-vs-endurance-cyclist" },
+      { label: "Cycling vs Endurance Strength", href: "/compare/strength-vs-more-miles" },
     ],
   },
   {
@@ -136,7 +136,7 @@ const PILLARS: PillarSpec[] = [
     ],
     see: [
       { label: "Energy Availability Tool", href: "/tools/energy-availability" },
-      { label: "Always Tired On The Bike", href: "/problem/always-tired-on-the-bike" },
+      { label: "Always Tired On The Bike", href: "/problem/tired-all-the-time" },
     ],
   },
   {

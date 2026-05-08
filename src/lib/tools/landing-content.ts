@@ -217,7 +217,7 @@ export const TOOL_LANDING_CONTENT: Record<string, ToolLandingContent> = {
       { label: "W/kg Calculator", href: "/tools/wkg", kind: "tool" },
       { label: "Energy Availability Calculator", href: "/tools/energy-availability", kind: "tool" },
       { label: "FTP Zone Calculator", href: "/tools/ftp-zones", kind: "tool" },
-      { label: "Race-weight strategy guide", href: "/blog/race-weight-cycling-guide", kind: "article" },
+      { label: "Race-weight strategy guide", href: "/blog/cycling-weight-loss-fuel-for-the-work-required", kind: "article" },
       { label: "Nutrition topic hub", href: "/topics/cycling-nutrition", kind: "topic" },
     ],
     webAppFeatures: [
@@ -448,7 +448,7 @@ export const TOOL_LANDING_CONTENT: Record<string, ToolLandingContent> = {
     related: [
       { label: "FTP Zone Calculator", href: "/tools/ftp-zones", kind: "tool" },
       { label: "W/kg Calculator", href: "/tools/wkg", kind: "tool" },
-      { label: "Heart-rate vs power training guide", href: "/blog/heart-rate-vs-power-cycling", kind: "article" },
+      { label: "Heart-rate vs power training guide", href: "/blog/zone-2-cycling-heart-rate-vs-power-vs-rpe", kind: "article" },
       { label: "FTP training topic hub", href: "/topics/ftp-training", kind: "topic" },
     ],
     webAppFeatures: [
@@ -527,7 +527,7 @@ export const TOOL_LANDING_CONTENT: Record<string, ToolLandingContent> = {
       { label: "MTB Setup Calculator", href: "/tools/shock-pressure", kind: "tool" },
       { label: "Race Predictor", href: "/predict", kind: "tool" },
       { label: "Tyre pressure complete guide", href: "/blog/cycling-tyre-pressure-guide", kind: "article" },
-      { label: "Equipment topic hub", href: "/topics/cycling-equipment", kind: "topic" },
+      { label: "Equipment topic hub", href: "/topics/cycling-coaching", kind: "topic" },
     ],
     webAppFeatures: [
       "Front and rear PSI based on system weight",
@@ -605,8 +605,8 @@ export const TOOL_LANDING_CONTENT: Record<string, ToolLandingContent> = {
     ],
     related: [
       { label: "Tyre Pressure Calculator", href: "/tools/tyre-pressure", kind: "tool" },
-      { label: "MTB suspension setup guide", href: "/blog/mtb-suspension-setup-guide", kind: "article" },
-      { label: "Equipment topic hub", href: "/topics/cycling-equipment", kind: "topic" },
+      { label: "MTB suspension setup guide", href: "/blog/mtb-suspension-setup-complete-guide", kind: "article" },
+      { label: "Equipment topic hub", href: "/topics/cycling-coaching", kind: "topic" },
     ],
     webAppFeatures: [
       "Fork and shock pressure starting values",
@@ -684,7 +684,7 @@ export const TOOL_LANDING_CONTENT: Record<string, ToolLandingContent> = {
     related: [
       { label: "Race Weight Calculator", href: "/tools/race-weight", kind: "tool" },
       { label: "In-Ride Fuelling Calculator", href: "/tools/fuelling", kind: "tool" },
-      { label: "RED-S complete guide", href: "/blog/red-s-cycling-guide", kind: "article" },
+      { label: "RED-S complete guide", href: "/blog/cycling-weight-loss-fuel-for-the-work-required", kind: "article" },
       { label: "Cycling nutrition topic hub", href: "/topics/cycling-nutrition", kind: "topic" },
     ],
     webAppFeatures: [

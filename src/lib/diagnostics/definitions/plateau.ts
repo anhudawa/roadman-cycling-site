@@ -35,7 +35,7 @@ export const plateauDefinition: DiagnosticDefinition = {
         "Re-test FTP once RPE drops two points at the same wattage.",
       ],
       recommendedResource: {
-        href: "/blog/overtraining-vs-overreaching-cyclists",
+        href: "/blog/cycling-overtraining-signs-guide",
         label: "Overtraining vs Overreaching — the 10 warning signs",
       },
       riskAdvice: {
@@ -75,7 +75,7 @@ export const plateauDefinition: DiagnosticDefinition = {
         "Core + hip work twice a week, 10 minutes is plenty.",
       ],
       recommendedResource: {
-        href: "/blog/strength-training-for-cyclists-complete-guide",
+        href: "/blog/cycling-strength-training-guide",
         label: "Strength Training for Cyclists — the full guide",
       },
       crmTags: ["limiter_strength_gap"],

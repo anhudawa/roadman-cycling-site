@@ -55,7 +55,7 @@ export const CTA_CATALOG: Record<Exclude<CtaKey, "none">, CtaDescriptor> = {
     key: "ndy_coaching",
     title: "Inside Not Done Yet",
     body: "The paid Roadman community with Vekta plans, weekly coaching calls, and S&C roadmap.",
-    href: "https://www.skool.com/roadman-not-done-yet",
+    href: "https://www.skool.com/roadmancycling/about",
     analyticsEvent: "cta_clicked:ndy_coaching",
   },
   vip_coaching: {

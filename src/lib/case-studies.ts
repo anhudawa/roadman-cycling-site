@@ -371,7 +371,7 @@ export const CASE_STUDIES: CaseStudy[] = [
       },
       {
         label: "Why most cyclists can't lose race weight",
-        href: "/problem/cant-lose-race-weight",
+        href: "/problem/cant-lose-weight-cycling",
         description:
           "The diagnostic for athletes who've been chronically dieting and not getting lighter or faster.",
       },

@@ -993,7 +993,7 @@ export const COACHING_SEGMENTS: Record<string, SegmentData> = {
       },
       {
         label: "Coaching Assessment",
-        href: "/diagnostic",
+        href: "/assessment",
         description:
           "Five-minute coaching diagnostic. Where the gains are, what to fix first, and whether structured coaching is the right next step.",
       },
@@ -1164,7 +1164,7 @@ export const COACHING_SEGMENTS: Record<string, SegmentData> = {
       },
       {
         label: "Coaching Assessment",
-        href: "/diagnostic",
+        href: "/assessment",
         description:
           "Five-minute coaching diagnostic. Where the gains are, what to fix first, and whether structured coaching is the right next step.",
       },

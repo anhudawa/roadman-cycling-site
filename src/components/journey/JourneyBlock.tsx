@@ -209,24 +209,24 @@ function pillarCompare(pillar?: ContentPillar): string {
     case "nutrition":
       return "/compare/fasted-vs-fueled-cycling";
     case "strength":
-      return "/compare/strength-vs-endurance-cyclist";
+      return "/compare/strength-vs-more-miles";
     case "recovery":
       return "/compare/zone-2-vs-endurance-training";
     case "coaching":
     case "community":
     default:
-      return "/compare/polarised-vs-sweet-spot-training";
+      return "/compare/polarised-vs-pyramidal";
   }
 }
 
 function pillarProblem(pillar?: ContentPillar): string {
   switch (pillar) {
     case "nutrition":
-      return "/problem/cant-lose-race-weight";
+      return "/problem/cant-lose-weight-cycling";
     case "strength":
       return "/problem/cycling-leg-strength-gap";
     case "recovery":
-      return "/problem/always-tired-on-the-bike";
+      return "/problem/tired-all-the-time";
     case "coaching":
     case "community":
     default:

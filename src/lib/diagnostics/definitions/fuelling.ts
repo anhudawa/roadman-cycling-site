@@ -72,7 +72,7 @@ export const fuellingDefinition: DiagnosticDefinition = {
         "Use this as a base — increase intake 20–30% for warmer days.",
       ],
       recommendedResource: {
-        href: "/blog/zone-2-training-cycling-guide",
+        href: "/blog/zone-2-training-complete-guide",
         label: "Zone 2 Training — why easy rides still need fuel",
       },
       crmTags: ["fuelling-low-carb"],

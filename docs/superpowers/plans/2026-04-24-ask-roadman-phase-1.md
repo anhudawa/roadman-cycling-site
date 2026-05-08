@@ -1545,7 +1545,7 @@ describe("ask/cta pickCta", () => {
   it("plateau intent routes to plateau_diagnostic", () => {
     const c = pickCta({ intent: "plateau", safety: { flags: [], block: false }, retrieval: { chunks: [], totalCandidates: 0 } });
     expect(c.key).toBe("plateau_diagnostic");
-    expect(c.href).toBe("/diagnostic");
+    expect(c.href).toBe("/assessment");
   });
 
   it("fuelling intent routes to fuelling_calculator", () => {
@@ -1603,7 +1603,7 @@ export const CTA_CATALOG: Record<CtaKey, CtaDescriptor> = {
     key: "plateau_diagnostic",
     title: "Diagnose your plateau in 3 minutes",
     body: "12 questions, 1 page of answers. See exactly what's holding you back.",
-    href: "/diagnostic",
+    href: "/assessment",
     analyticsEvent: "cta_clicked:plateau_diagnostic",
   },
   fuelling_calculator: {
@@ -3062,10 +3062,10 @@ git commit -m "test(ask): 20-question QA battery for production-readiness"
 
 - [ ] **Step 1:** Find and read the nav component:
 ```bash
-grep -r "/diagnostic" src/components/ | head -5
+grep -r "/assessment" src/components/ | head -5
 ```
 
-- [ ] **Step 2:** Add an `Ask Roadman` nav link to the primary header component — add next to existing links like `/diagnostic`, using the same pattern. If no nav exists, skip this step.
+- [ ] **Step 2:** Add an `Ask Roadman` nav link to the primary header component — add next to existing links like `/assessment`, using the same pattern. If no nav exists, skip this step.
 
 - [ ] **Step 3:** Add `/ask` to `src/app/sitemap.ts` (find the route list and insert `{ url: new URL("/ask", base).toString(), lastModified: new Date(), changeFrequency: "weekly", priority: 0.9 }`).
 
@@ -3176,5 +3176,5 @@ Completed inline by the plan author before handoff:
 
 **Unresolved decisions requiring Anthony's input (escalate if needed, otherwise default):**
 - Exact CTA copy — defaults written against brand skill voice
-- CTA URLs — defaulted to `/diagnostic`, `/tools/fuelling`, `/saturday-spin`, `/plus`, `/ndy`, `/ndy/vip`, `skool.com/roadman-cycling-clubhouse`
+- CTA URLs — defaulted to `/assessment`, `/tools/fuelling`, `/saturday-spin`, `/plus`, `/ndy`, `/ndy/vip`, `skool.com/roadman-cycling-clubhouse`
 - Cost ceiling — Opus routed only for deep intents; intent classification is Haiku. Log `inputTokens`/`outputTokens` per message so we can audit.

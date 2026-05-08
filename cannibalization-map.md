@@ -194,7 +194,7 @@
 |---|---|---|---|
 | 1 | `/topics/cycling-weight-loss` (published) vs `content/drafts/hubs/cycling-weight-loss.mdx` (draft) | Draft duplicate of published hub. | **Action:** confirm draft is intentional WIP or delete to prevent SEO confusion. (Drafts directory not in this PR's scope to publish — flagged for editorial.) |
 | 2 | RED-S has no glossary entry | `/tools/energy-availability` references RED-S but there's no `/glossary/red-s` definition page. | **Gap, not cannibalization.** Recommend adding `/glossary/red-s` and `/glossary/energy-availability` so the tool can link UP to definitions. Flagged as content gap. |
-| 3 | Race weight education risks duplication if a `/blog/race-weight-cycling-guide` is later added | The tool already includes education. | **Forward guard:** if a guide is added, position it as the *process and plateau-breaking* (diagnostic/problem flavour), not the calculator output. |
+| 3 | Race weight education risks duplication if a `/blog/cycling-weight-loss-fuel-for-the-work-required` is later added | The tool already includes education. | **Forward guard:** if a guide is added, position it as the *process and plateau-breaking* (diagnostic/problem flavour), not the calculator output. |
 
 ---
 

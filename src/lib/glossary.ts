@@ -505,7 +505,7 @@ export const GLOSSARY_TERMS: GlossaryTerm[] = [
     extendedDefinition: "Durability is a 2020s-era concept that has reshaped how coaches think about long-distance performance. Traditional metrics (FTP, VO2max) describe fresh power. Durability describes power after 3+ hours of work — when races are actually won. Research on World Tour riders shows elite pros retain 95%+ of their fresh power after 3000 kJ of work; amateurs often drop 15-25%. Durability is built specifically through long rides at moderate intensity with late-ride efforts (the 'durability interval') — not through any amount of short interval work.",
     pillar: "coaching",
     relatedTerms: ["aerobic-decoupling", "zone-2", "critical-power"],
-    relatedArticle: "/blog/cycling-durability-training",
+    relatedArticle: "/blog/aerobic-decoupling-cycling-cardiac-drift",
     relatedTopicHub: "/topics/ftp-training",
   },
   {
@@ -652,7 +652,7 @@ export const GLOSSARY_TERMS: GlossaryTerm[] = [
     extendedDefinition: "Heavy salty sweaters often struggle in hot events unless they aggressively replace sodium; low salty sweaters over-supplement and get GI issues. Simple check: if your kit is covered in visible white streaks after a hard ride, you are likely in the high-sodium category. Lab tests (Precision Hydration, Levelen) quantify the rate. Typical replacement targets: 300mg/L for low sweaters, 700mg/L for moderate, 1000mg+/L for heavy. Sodium is particularly important over 3+ hour rides in heat.",
     pillar: "nutrition",
     relatedTerms: ["cramp-on-long-rides", "gut-training"],
-    relatedArticle: "/blog/cycling-electrolyte-strategy",
+    relatedArticle: "/blog/cycling-hydration-guide",
     relatedTool: "/tools/fuelling",
   },
   {

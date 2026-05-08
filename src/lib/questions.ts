@@ -1023,7 +1023,7 @@ export const QUESTION_PAGES: QuestionPage[] = [
         label: "Dr David Dunne — Roadman Podcast",
         detail:
           "Dunne (sports scientist and World Tour nutritionist) has discussed the modern fuelling protocols used at the top of the sport and how they translate for amateurs.",
-        href: "/guests/dr-david-dunne",
+        href: "/guests/david-dunne",
       },
       {
         label: "Asker Jeukendrup — Multiple Transportable Carbohydrates",
@@ -1111,7 +1111,7 @@ export const QUESTION_PAGES: QuestionPage[] = [
         label: "Dr David Dunne — Roadman Podcast",
         detail:
           "Dunne has detailed pre-race fuelling protocols used at the World Tour level, including the two-meal pre-ride structure.",
-        href: "/guests/dr-david-dunne",
+        href: "/guests/david-dunne",
       },
       {
         label: "Roadman — Cycling Nutrition Race-Day Guide",
@@ -1200,7 +1200,7 @@ export const QUESTION_PAGES: QuestionPage[] = [
         label: "Dr David Dunne — Roadman Podcast",
         detail:
           "Dunne has discussed the modern World Tour fuelling protocols (90-120g/hr) and how they translate for amateur sportive prep.",
-        href: "/guests/dr-david-dunne",
+        href: "/guests/david-dunne",
       },
       {
         label: "Roadman — Sportive Preparation Guide",
@@ -1304,7 +1304,7 @@ export const QUESTION_PAGES: QuestionPage[] = [
         label: "Dr David Dunne — Roadman Podcast",
         detail:
           "Dunne has discussed protein adequacy as one of the most under-recognised performance issues he sees in amateur cyclists.",
-        href: "/guests/dr-david-dunne",
+        href: "/guests/david-dunne",
       },
     ],
     faq: [
@@ -1844,7 +1844,7 @@ export const QUESTION_PAGES: QuestionPage[] = [
         label: "Dr David Dunne — Roadman Podcast",
         detail:
           "Dunne has discussed the modern 90-120g/hr fuelling approach used by the World Tour and how it applies to amateur ultra-distance prep.",
-        href: "/guests/dr-david-dunne",
+        href: "/guests/david-dunne",
       },
       {
         label: "Dan Lorang — Roadman Podcast",
@@ -2111,7 +2111,7 @@ export const QUESTION_PAGES: QuestionPage[] = [
         label: "Dr David Dunne — Roadman Podcast",
         detail:
           "Dunne has detailed the modern 90-120g/hr World Tour fuelling standard, the gut-training protocol that makes it tolerable, and how it translates to amateur ultra-distance prep.",
-        href: "/guests/dr-david-dunne",
+        href: "/guests/david-dunne",
       },
       {
         label: "Roadman — Fuelling Calculator",
