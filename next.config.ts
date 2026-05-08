@@ -213,6 +213,16 @@ const nextConfig: NextConfig = {
       { source: "/skool", destination: "/community/clubhouse", permanent: true },
       { source: "/blog/i-lost-7kg-eating-more-cycling", destination: "/blog/cycling-weight-loss-fuel-for-the-work-required", permanent: true },
       { source: "/blog/cycling-periodisation-training", destination: "/blog/cycling-periodisation-plan-guide", permanent: true },
+      // Legacy product URL — strength-training course used to live under /products
+      { source: "/products/strength-training", destination: "/strength-training", permanent: true },
+      // Renamed/typo blog slugs surfaced in body links
+      { source: "/blog/british-cycling-toxic-culture-toxic-sports-culture", destination: "/blog/british-cycling-toxic-culture-win-at-all-costs", permanent: true },
+      { source: "/blog/why-cyclists-cant-lose-weight-five-causes", destination: "/blog/cycling-weight-loss-mistakes", permanent: true },
+      // Sportive plan body links → existing event guides under /event/*
+      { source: "/blog/marmotte-training-plan-cyclists", destination: "/event/marmotte-training-plan", permanent: true },
+      { source: "/blog/la-marmotte-training-plan", destination: "/event/marmotte-training-plan", permanent: true },
+      { source: "/blog/maratona-dles-dolomites-training-plan", destination: "/event/maratona-dolomites-training-plan", permanent: true },
+      { source: "/blog/mallorca-312-training-plan", destination: "/event/mallorca-312-training-plan", permanent: true },
       // ClickFunnels funnel pages — P0 redirects (revenue + backlinks)
       { source: "/2026-optin", destination: "/apply", permanent: true },
       { source: "/application", destination: "/apply", permanent: true },
