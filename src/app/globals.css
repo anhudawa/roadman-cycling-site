@@ -433,6 +433,179 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 /* ============================================
+   Method Protocol Prose
+   ============================================
+   Dark-theme prose for /method module pages. Same spirit as
+   .prose-roadman but tuned for the in-product members area:
+   tighter heading rhythm, coral list markers, attribution-style
+   blockquote treatment. */
+
+.prose-method { color: var(--color-off-white); }
+.prose-method h2 {
+  font-family: var(--font-heading);
+  font-size: 1.625rem;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+  color: var(--color-off-white);
+  margin-top: 2.75rem;
+  margin-bottom: 1rem;
+  line-height: 1.1;
+}
+.prose-method h2:first-child { margin-top: 0; }
+.prose-method h3 {
+  font-family: var(--font-heading);
+  font-size: 1.25rem;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+  color: var(--color-coral);
+  margin-top: 2rem;
+  margin-bottom: 0.625rem;
+  line-height: 1.15;
+}
+.prose-method p {
+  color: rgba(250, 250, 250, 0.82);
+  line-height: 1.75;
+  margin-bottom: 1.1rem;
+  font-size: 1rem;
+}
+.prose-method strong { color: var(--color-off-white); font-weight: 600; }
+.prose-method em { color: rgba(250, 250, 250, 0.92); font-style: italic; }
+.prose-method a {
+  color: var(--color-coral);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  text-decoration-thickness: 1px;
+}
+.prose-method a:hover { color: var(--color-coral-hover); }
+
+.prose-method ul {
+  list-style: none;
+  padding-left: 0;
+  margin: 1rem 0 1.5rem;
+}
+.prose-method ul li {
+  position: relative;
+  padding-left: 1.5rem;
+  color: rgba(250, 250, 250, 0.82);
+  line-height: 1.7;
+  margin-bottom: 0.6rem;
+}
+.prose-method ul li::before {
+  content: "";
+  position: absolute;
+  left: 0.1rem;
+  top: 0.65rem;
+  width: 0.5rem;
+  height: 0.5rem;
+  background: var(--color-coral);
+  border-radius: 1px;
+  transform: rotate(45deg);
+}
+.prose-method ol {
+  list-style: none;
+  counter-reset: method-ol;
+  padding-left: 0;
+  margin: 1rem 0 1.5rem;
+}
+.prose-method ol li {
+  counter-increment: method-ol;
+  position: relative;
+  padding-left: 2.25rem;
+  color: rgba(250, 250, 250, 0.82);
+  line-height: 1.7;
+  margin-bottom: 0.6rem;
+}
+.prose-method ol li::before {
+  content: counter(method-ol, decimal-leading-zero);
+  position: absolute;
+  left: 0;
+  top: 0;
+  font-family: var(--font-heading);
+  color: var(--color-coral);
+  font-size: 0.9rem;
+  letter-spacing: 0.05em;
+}
+
+.prose-method blockquote {
+  position: relative;
+  border-left: 3px solid var(--color-coral);
+  padding: 1rem 1.25rem 1rem 1.5rem;
+  margin: 1.5rem 0;
+  color: var(--color-off-white);
+  background: rgba(241, 99, 99, 0.05);
+  border-radius: 0 var(--radius-md) var(--radius-md) 0;
+  font-style: italic;
+}
+.prose-method blockquote p { color: var(--color-off-white); margin-bottom: 0.6rem; }
+.prose-method blockquote p:last-child { margin-bottom: 0; }
+
+.prose-method hr { border: 0; border-top: 1px solid rgba(255, 255, 255, 0.08); margin: 2.5rem 0; }
+
+.prose-method code {
+  font-family: var(--font-mono, ui-monospace, SFMono-Regular, monospace);
+  font-size: 0.875em;
+  background: rgba(241, 99, 99, 0.1);
+  color: var(--color-coral);
+  padding: 0.1rem 0.4rem;
+  border-radius: 4px;
+  word-break: break-word;
+}
+.prose-method pre {
+  background: rgba(0, 0, 0, 0.3);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: var(--radius-md);
+  padding: 1rem 1.25rem;
+  overflow-x: auto;
+  margin: 1.5rem 0;
+}
+.prose-method pre code {
+  background: transparent;
+  color: var(--color-off-white);
+  padding: 0;
+}
+
+.prose-method table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 1.5rem 0;
+  display: block;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  font-size: 0.9rem;
+}
+.prose-method th {
+  text-align: left;
+  padding: 0.6rem 0.85rem;
+  border-bottom: 1px solid rgba(241, 99, 99, 0.4);
+  color: var(--color-coral);
+  font-family: var(--font-heading);
+  font-weight: 400;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+.prose-method td {
+  padding: 0.6rem 0.85rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+  color: rgba(250, 250, 250, 0.82);
+}
+
+.prose-method p,
+.prose-method li,
+.prose-method h2,
+.prose-method h3,
+.prose-method blockquote {
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+  hyphens: auto;
+}
+
+@media (min-width: 768px) {
+  .prose-method h2 { font-size: 2rem; }
+  .prose-method h3 { font-size: 1.4rem; }
+  .prose-method p { font-size: 1.0625rem; }
+}
+
+/* ============================================
    Newsletter Content (Beehiiv HTML overrides)
    ============================================ */
 .newsletter-content { color: var(--color-foreground-muted); line-height: 1.8; font-size: 1.0625rem; }
