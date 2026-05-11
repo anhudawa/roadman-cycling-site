@@ -6,7 +6,6 @@ import { getMethodSession } from "@/lib/method/auth";
 import { getProgressSummary } from "@/lib/method/progress";
 import { isModuleUnlocked } from "@/lib/method/access";
 import {
-  METHOD_MODULES,
   METHOD_MODULE_BY_SLUG,
   METHOD_TOTAL_MODULES,
   type MethodModule,
@@ -28,10 +27,6 @@ import { LearningOutcomes } from "../../_components/LearningOutcomes";
 import { WeekChecklist } from "../../_components/WeekChecklist";
 
 export const dynamic = "force-dynamic";
-
-export async function generateStaticParams() {
-  return METHOD_MODULES.map((m) => ({ slug: m.slug }));
-}
 
 export async function generateMetadata({
   params,

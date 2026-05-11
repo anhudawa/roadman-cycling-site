@@ -44,7 +44,7 @@ export function Hero() {
               href="#pricing"
               className="inline-flex justify-center font-heading uppercase tracking-wider text-base bg-coral text-charcoal hover:bg-coral-hover transition-colors px-7 py-4 rounded-sm"
             >
-              Get The Method — $297
+              Enrol Now — $297
             </a>
             <a
               href="#what-you-get"

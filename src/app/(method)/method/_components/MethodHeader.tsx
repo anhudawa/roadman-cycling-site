@@ -8,7 +8,7 @@ interface MethodHeaderProps {
 /**
  * Header for the /method route group.
  *
- * - "marketing" (sales page): logo + Sign in + a primary "Get The Method" CTA.
+ * - "marketing" (sales page): logo + Sign in + a primary "Enrol Now" CTA.
  * - "members" (dashboard, modules, account): logo + Modules + Account.
  */
 export function MethodHeader({ sessionEmail, variant = "members" }: MethodHeaderProps) {
@@ -37,7 +37,7 @@ export function MethodHeader({ sessionEmail, variant = "members" }: MethodHeader
               href="#pricing"
               className="font-heading uppercase tracking-wider text-xs md:text-sm bg-coral text-charcoal hover:bg-coral-hover transition-colors px-4 py-2.5 rounded-sm"
             >
-              Get The Method
+              Enrol Now
             </a>
           </nav>
         ) : (
