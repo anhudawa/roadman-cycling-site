@@ -1675,3 +1675,14 @@ export const campRoomAssignments = pgTable(
     ),
   ],
 );
+
+// ------------------------------------------------------------
+// The Roadman Method — Course Enrolments & Progress
+// ------------------------------------------------------------
+// Re-exported from src/lib/method/schema.ts so drizzle-kit push
+// picks them up alongside every other table in the project.
+export {
+  methodEnrollments,
+  methodProgress,
+  methodLoginTokens,
+} from "../method/schema";
