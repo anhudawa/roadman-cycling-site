@@ -12,6 +12,7 @@ export const metadata: Metadata = {
 };
 
 const PREMIUM_THRESHOLD_CENTS = 35000; // $350+ → Premium tier
+const DAY_MS = 24 * 60 * 60 * 1000;
 
 /**
  * /method/account
@@ -40,14 +41,15 @@ export default async function MethodAccountPage() {
   const billingPortalUrl = process.env.STRIPE_METHOD_BILLING_PORTAL_URL ?? null;
   const supportEmail =
     process.env.METHOD_SUPPORT_EMAIL ?? "sarah@roadmancycling.com";
+  const daysEnrolled = daysSince(enrollment.paidAt);
 
   return (
-    <Container as="section" width="narrow" className="py-14 md:py-20 space-y-12">
+    <Container as="section" width="narrow" className="py-12 md:py-20 space-y-10 md:space-y-12">
       <header>
-        <p className="font-heading text-sm tracking-[0.3em] text-coral mb-3">
+        <p className="font-heading text-xs sm:text-sm tracking-[0.3em] text-coral mb-3">
           THE ROADMAN METHOD
         </p>
-        <h1 className="font-heading uppercase leading-[0.95] text-5xl md:text-6xl">
+        <h1 className="font-heading uppercase leading-[0.95] text-4xl sm:text-5xl md:text-6xl">
           Account
         </h1>
         <p className="mt-3 text-foreground-muted max-w-lg">
@@ -62,6 +64,13 @@ export default async function MethodAccountPage() {
           .
         </p>
       </header>
+
+      <SummaryStrip
+        tier={tier}
+        completedCount={progress.completedCount}
+        totalCount={progress.totalCount}
+        daysEnrolled={daysEnrolled}
+      />
 
       <Section title="Enrollment">
         <DetailGrid>
@@ -158,6 +167,46 @@ export default async function MethodAccountPage() {
 function inferTier(amountCents: number | null): string {
   if (!amountCents) return "Standard";
   return amountCents >= PREMIUM_THRESHOLD_CENTS ? "Premium" : "Standard";
+}
+
+function daysSince(start: Date | null): number {
+  if (!start) return 0;
+  return Math.max(0, Math.floor((Date.now() - start.getTime()) / DAY_MS));
+}
+
+function SummaryStrip({
+  tier,
+  completedCount,
+  totalCount,
+  daysEnrolled,
+}: {
+  tier: string;
+  completedCount: number;
+  totalCount: number;
+  daysEnrolled: number;
+}) {
+  const items = [
+    { label: "Tier", value: tier },
+    { label: "Progress", value: `${completedCount}/${totalCount}` },
+    {
+      label: "Enrolled",
+      value: daysEnrolled > 0 ? `${daysEnrolled}d` : "Today",
+    },
+  ];
+  return (
+    <dl className="grid grid-cols-3 gap-2 sm:gap-4 rounded-xl border border-white/10 bg-charcoal/60 p-4 sm:p-5">
+      {items.map((item) => (
+        <div key={item.label} className="text-center">
+          <dt className="text-[10px] sm:text-[11px] font-heading uppercase tracking-[0.25em] text-foreground-muted mb-1">
+            {item.label}
+          </dt>
+          <dd className="font-heading uppercase text-base sm:text-xl text-off-white">
+            {item.value}
+          </dd>
+        </div>
+      ))}
+    </dl>
+  );
 }
 
 function formatPrice(cents: number, currency: string): string {
