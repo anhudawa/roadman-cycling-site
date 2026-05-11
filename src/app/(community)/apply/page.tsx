@@ -22,7 +22,7 @@ export async function generateMetadata(): Promise<Metadata> {
     ? `Cohort ${state.targetCohort} Waitlist — Not Done Yet Coaching`
     : `Cohort ${state.currentCohort} — Not Done Yet Coaching`;
   const description = isWaitlist
-    ? `Cohort ${state.targetCohort} is coming soon. Apply now to join the waitlist and get 24-hour early access. Personalised cycling coaching with Anthony Walsh.`
+    ? `Cohort ${state.targetCohort} is coming soon. Apply now and get 24-hour early access. Personalised cycling coaching with Anthony Walsh.`
     : "30 places. 5 pillars. $195/month. Applications open now. Personalised cycling coaching with Anthony Walsh.";
   return {
     title,
@@ -222,7 +222,7 @@ export default function ApplyPage() {
                 <span className="w-2 h-2 rounded-full bg-coral animate-pulse" />
                 <span className="text-coral text-sm font-medium tracking-wide">
                   {isWaitlist
-                    ? `COHORT ${cohortState.targetCohort} COMING SOON — JOIN THE WAITLIST`
+                    ? `COHORT ${cohortState.targetCohort} COMING SOON — APPLY NOW`
                     : "APPLICATIONS OPEN — 30 PLACES"}
                 </span>
               </div>
@@ -260,7 +260,7 @@ export default function ApplyPage() {
                 href="#apply"
                 className="inline-flex items-center px-8 py-4 rounded-xl bg-coral text-off-white font-heading text-lg tracking-wider hover:bg-coral/90 transition-all shadow-lg shadow-coral/20 mb-10"
               >
-                {isWaitlist ? "APPLY NOW — JOIN THE WAITLIST" : "APPLY NOW"}
+                {"APPLY NOW"}
               </a>
             </ScrollReveal>
 
@@ -626,7 +626,7 @@ export default function ApplyPage() {
                   href="#apply"
                   className="inline-flex items-center px-8 py-4 rounded-xl bg-coral text-off-white font-heading text-lg tracking-wider hover:bg-coral/90 transition-all shadow-lg shadow-coral/20"
                 >
-                  {isWaitlist ? "APPLY NOW — JOIN THE WAITLIST" : "APPLY NOW"}
+                  {"APPLY NOW"}
                 </a>
               </div>
             </ScrollReveal>

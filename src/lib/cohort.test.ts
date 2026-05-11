@@ -65,7 +65,7 @@ describe("getCohortState", () => {
     expect(open.form.submittedHeadline).toBe("APPLICATION RECEIVED");
 
     const waitlist = getCohortState(new Date("2026-04-18T10:00:00Z"));
-    expect(waitlist.form.buttonText).toBe("JOIN THE WAITLIST");
+    expect(waitlist.form.buttonText).toBe("APPLY NOW");
     expect(waitlist.form.submittedHeadline).toBe("YOU'RE ON THE LIST");
   });
 });

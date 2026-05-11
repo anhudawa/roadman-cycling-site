@@ -153,8 +153,7 @@ export function ExitIntentPopup() {
                 {showCoachingVariant ? (
                   isWaitlist ? (
                     <>
-                      Cohort 3 is coming soon. Apply now to join the waitlist
-                      and get{" "}
+                      Cohort 3 is coming soon. Apply now and get{" "}
                       <span className="text-off-white font-medium">
                         24-hour early access
                       </span>{" "}
@@ -191,7 +190,7 @@ export function ExitIntentPopup() {
                   style={{ transitionDuration: "var(--duration-fast)" }}
                 >
                   {isWaitlist
-                    ? "APPLY NOW — JOIN THE WAITLIST"
+                    ? "APPLY NOW"
                     : "APPLY — 7-DAY FREE TRIAL"}
                 </Link>
                 <button

@@ -38,9 +38,9 @@ export interface CohortState {
     ctaHref: string;        // "/apply"
   };
   form: {
-    kicker: string;         // "APPLY NOW" / "APPLY NOW — JOIN THE WAITLIST"
+    kicker: string;         // "APPLY NOW"
     subheading: string;     // pricing + trial line OR waitlist promise
-    buttonText: string;     // "APPLY FOR YOUR SPOT" / "JOIN THE WAITLIST"
+    buttonText: string;     // "APPLY FOR YOUR SPOT" / "APPLY NOW"
     submittedHeadline: string;
     submittedBody: string;
   };
@@ -135,10 +135,10 @@ function cohort3Waitlist(): CohortState {
       ctaHref: "/apply",
     },
     form: {
-      kicker: "APPLY NOW — JOIN THE WAITLIST",
+      kicker: "APPLY NOW",
       subheading:
-        "Cohort 3 is coming soon. Apply now to secure your spot on the waitlist — members get 24-hour early access before public launch.",
-      buttonText: "JOIN THE WAITLIST",
+        "Cohort 3 is coming soon. Apply now to secure your spot — members get 24-hour early access before public launch.",
+      buttonText: "APPLY NOW",
       submittedHeadline: "YOU'RE ON THE LIST",
       submittedBody:
         "You'll get 24-hour early access when Cohort 3 opens. In the meantime we'll drop in with weekly updates on what's working inside the current cohort.",
