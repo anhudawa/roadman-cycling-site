@@ -53,7 +53,7 @@ export async function generateMetadata({
  *
  * Module page. Two-column on desktop:
  *   - Left rail (260px): module nav (12 items, status pips)
- *   - Right column: header → video → protocol → pager
+ *   - Right column: header → outcomes → video → protocol → checklist → pager
  *     With a sticky-ish sidebar (Complete / Resources / TP / Discuss)
  *     on lg+ screens.
  *
@@ -86,76 +86,97 @@ export default async function MethodModulePage({
   );
 
   return (
-    <Container as="article" width="wide" className="pt-10 pb-12">
-      <Link
-        href="/method"
-        className="inline-flex items-center gap-2 text-sm text-foreground-muted hover:text-coral mb-6 transition-colors"
+    <div className="relative">
+      <div
+        aria-hidden
+        className="pointer-events-none absolute inset-x-0 top-0 -z-10 h-[520px] overflow-hidden"
       >
-        ← All modules
-      </Link>
+        <div className="absolute -top-32 left-1/2 h-[520px] w-[1100px] -translate-x-1/2 rounded-full bg-[radial-gradient(circle,_rgba(241,99,99,0.10),_transparent_60%)]" />
+        <div className="absolute top-24 right-[-120px] h-[360px] w-[360px] rounded-full bg-deep-purple/30 blur-3xl" />
+      </div>
 
-      <div className="grid gap-12 lg:grid-cols-[260px_1fr]">
-        <aside className="lg:sticky lg:top-24 lg:self-start">
-          <ModuleNav
-            currentSlug={module.slug}
-            enrollment={session.enrollment}
-            completedSlugs={progress.completedSlugs}
-          />
-        </aside>
+      <Container as="article" width="wide" className="pt-10 pb-16">
+        <Link
+          href="/method"
+          className="group inline-flex items-center gap-2 text-sm text-foreground-muted hover:text-coral mb-6 transition-colors"
+        >
+          <span
+            aria-hidden
+            className="inline-block transition-transform group-hover:-translate-x-0.5"
+          >
+            ←
+          </span>
+          All modules
+        </Link>
 
-        <div className="grid gap-10 lg:grid-cols-12">
-          <ModuleHeader
-            module={module}
-            phase={phase}
-            completedSlugs={progress.completedSlugs}
-          />
-
-          {!availability.unlocked ? (
-            <LockedModuleNotice
-              availability={availability}
-              className="lg:col-span-12"
-            />
-          ) : (
-            <>
-              <div className="lg:col-span-8 space-y-8">
-                <LearningOutcomes outcomes={module.learningOutcomes} />
-                <VideoEmbed
-                  youTubeId={module.videoYouTubeId}
-                  title={module.title}
-                />
-                <MethodProtocol module={module} />
-                <WeekChecklist
-                  moduleSlug={module.slug}
-                  items={module.checklist}
-                />
-              </div>
-              <aside className="lg:col-span-4 space-y-5">
-                <CompleteToggle
-                  moduleSlug={module.slug}
-                  initialComplete={isComplete}
-                />
-                {trainingPeaksResource && (
-                  <TrainingPeaksCallout resource={trainingPeaksResource} />
-                )}
-                <ResourceList resources={module.resources} />
-                <DiscussionCTA
-                  moduleTitle={module.title}
-                  weekIndex={module.weekIndex}
-                  url={module.discussionUrl}
-                />
-              </aside>
-            </>
-          )}
-
-          <div className="lg:col-span-12">
-            <ModulePager
+        <div className="grid gap-12 lg:grid-cols-[260px_1fr]">
+          <aside className="lg:sticky lg:top-24 lg:self-start motion-safe:animate-fade-in">
+            <ModuleNav
               currentSlug={module.slug}
               enrollment={session.enrollment}
+              completedSlugs={progress.completedSlugs}
             />
+          </aside>
+
+          <div className="grid gap-10 lg:grid-cols-12">
+            <ModuleHeader
+              module={module}
+              phase={phase}
+              completedSlugs={progress.completedSlugs}
+            />
+
+            {!availability.unlocked ? (
+              <div className="lg:col-span-12 motion-safe:animate-slide-up">
+                <LockedModuleNotice availability={availability} />
+              </div>
+            ) : (
+              <>
+                <div
+                  className="lg:col-span-8 space-y-8 motion-safe:animate-slide-up"
+                  style={{ animationDelay: "60ms" }}
+                >
+                  <LearningOutcomes outcomes={module.learningOutcomes} />
+                  <VideoEmbed
+                    youTubeId={module.videoYouTubeId}
+                    title={module.title}
+                  />
+                  <MethodProtocol module={module} />
+                  <WeekChecklist
+                    moduleSlug={module.slug}
+                    items={module.checklist}
+                  />
+                </div>
+                <aside
+                  className="lg:col-span-4 space-y-5 motion-safe:animate-slide-up"
+                  style={{ animationDelay: "120ms" }}
+                >
+                  <CompleteToggle
+                    moduleSlug={module.slug}
+                    initialComplete={isComplete}
+                  />
+                  {trainingPeaksResource && (
+                    <TrainingPeaksCallout resource={trainingPeaksResource} />
+                  )}
+                  <ResourceList resources={module.resources} />
+                  <DiscussionCTA
+                    moduleTitle={module.title}
+                    weekIndex={module.weekIndex}
+                    url={module.discussionUrl}
+                  />
+                </aside>
+              </>
+            )}
+
+            <div className="lg:col-span-12">
+              <ModulePager
+                currentSlug={module.slug}
+                enrollment={session.enrollment}
+              />
+            </div>
           </div>
         </div>
-      </div>
-    </Container>
+      </Container>
+    </div>
   );
 }
 
@@ -204,4 +225,3 @@ function ModuleHeader({ module, phase, completedSlugs }: ModuleHeaderProps) {
     </header>
   );
 }
-

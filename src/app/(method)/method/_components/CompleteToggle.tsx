@@ -31,13 +31,16 @@ export function CompleteToggle({
   const [complete, setComplete] = useState(initialComplete);
   const [error, setError] = useState<string | null>(null);
   const [bursting, setBursting] = useState(false);
+  const [saving, setSaving] = useState(false);
   const [, startTransition] = useTransition();
   const router = useRouter();
 
   async function toggle() {
+    if (saving) return;
     const next = !complete;
     setComplete(next);
     setError(null);
+    setSaving(true);
     if (next) {
       setBursting(true);
       window.setTimeout(() => setBursting(false), 1100);
@@ -66,6 +69,8 @@ export function CompleteToggle({
       setComplete(!next);
       setBursting(false);
       setError("Network error — please try again.");
+    } finally {
+      setSaving(false);
     }
   }
 
@@ -80,14 +85,27 @@ export function CompleteToggle({
           type="button"
           onClick={toggle}
           aria-pressed={complete}
-          className={`relative w-full inline-flex items-center justify-center gap-2 rounded-md px-5 py-3.5 font-heading uppercase tracking-wider transition-all cursor-pointer active:scale-[0.97] ${
+          aria-busy={saving}
+          disabled={saving}
+          className={`relative w-full inline-flex items-center justify-center gap-2 rounded-md px-5 py-3.5 font-heading uppercase tracking-wider transition-all cursor-pointer active:scale-[0.97] disabled:cursor-wait ${
             complete
               ? "bg-coral/15 text-coral border border-coral/40"
               : "bg-coral text-off-white hover:bg-coral-hover shadow-[var(--shadow-glow-coral)]"
           }`}
         >
           <AnimatePresence mode="wait" initial={false}>
-            {complete ? (
+            {saving ? (
+              <motion.span
+                key="saving"
+                initial={{ opacity: 0, y: 6 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -6 }}
+                transition={{ duration: 0.2 }}
+                className="inline-flex items-center gap-2"
+              >
+                <Spinner /> Saving…
+              </motion.span>
+            ) : complete ? (
               <motion.span
                 key="done"
                 initial={{ opacity: 0, y: 6 }}
@@ -123,6 +141,36 @@ export function CompleteToggle({
         </p>
       )}
     </section>
+  );
+}
+
+function Spinner() {
+  return (
+    <motion.svg
+      width="14"
+      height="14"
+      viewBox="0 0 16 16"
+      aria-hidden
+      animate={{ rotate: 360 }}
+      transition={{ duration: 0.85, ease: "linear", repeat: Infinity }}
+    >
+      <circle
+        cx="8"
+        cy="8"
+        r="6"
+        fill="none"
+        stroke="currentColor"
+        strokeOpacity="0.25"
+        strokeWidth="2"
+      />
+      <path
+        d="M14 8 A6 6 0 0 0 8 2"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="2"
+        strokeLinecap="round"
+      />
+    </motion.svg>
   );
 }
 
