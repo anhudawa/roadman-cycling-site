@@ -46,13 +46,16 @@ export default async function MethodDashboard() {
   const dayCount = daysSinceStart(enrollment.dripStartAt ?? enrollment.paidAt);
 
   return (
-    <Container as="section" width="wide" className="pt-10 pb-16 md:pt-16 space-y-12 md:space-y-16">
+    <Container as="section" width="wide" className="pt-8 pb-16 md:pt-16 space-y-10 md:space-y-16">
+      {allComplete && <GraduationBanner firstName={firstNameOf(enrollment.name)} />}
+
       <DashboardHero
         firstName={firstNameOf(enrollment.name)}
         phase={referencePhase}
         percent={progress.percentComplete}
         completedCount={progress.completedCount}
         totalCount={progress.totalCount}
+        allComplete={allComplete}
       />
 
       <QuickStats
@@ -133,6 +136,7 @@ interface DashboardHeroProps {
   percent: number;
   completedCount: number;
   totalCount: number;
+  allComplete: boolean;
 }
 
 function DashboardHero({
@@ -141,26 +145,74 @@ function DashboardHero({
   percent,
   completedCount,
   totalCount,
+  allComplete,
 }: DashboardHeroProps) {
   const greeting = firstName
     ? `Welcome back, ${firstName.toUpperCase()}`
     : "Welcome back";
 
   return (
-    <header className="grid gap-10 md:grid-cols-[1fr_auto] md:items-end">
-      <div>
+    <header className="grid gap-8 md:gap-10 md:grid-cols-[1fr_auto] md:items-end">
+      <div className="min-w-0">
         <PhaseBadge phase={phase} className="mb-4" />
-        <h1 className="font-heading uppercase leading-[0.9] text-[clamp(3rem,7vw,6rem)] mb-3">
+        <h1 className="font-heading uppercase leading-[0.9] text-[clamp(2.5rem,7vw,6rem)] mb-3">
           {greeting}
         </h1>
-        <p className="max-w-xl text-lg text-off-white">{phase.cue}</p>
-        <p className="mt-2 max-w-xl text-foreground-muted">
-          You&apos;re {completedCount} of {totalCount} modules deep. Keep the
-          rhythm — small commits compound.
+        <p className="max-w-xl text-base sm:text-lg text-off-white">{phase.cue}</p>
+        <p className="mt-2 max-w-xl text-sm sm:text-base text-foreground-muted">
+          {allComplete ? (
+            <>
+              You&apos;ve worked all twelve. Re-run any module any time — the
+              system is yours.
+            </>
+          ) : (
+            <>
+              You&apos;re {completedCount} of {totalCount} modules deep. Keep
+              the rhythm — small commits compound.
+            </>
+          )}
         </p>
       </div>
-      <ProgressRing percent={percent} />
+      <div className="self-start md:self-end">
+        <ProgressRing percent={percent} />
+      </div>
     </header>
+  );
+}
+
+function GraduationBanner({ firstName }: { firstName: string | null }) {
+  const name = firstName ? `, ${firstName.toUpperCase()}` : "";
+  return (
+    <section
+      aria-label="All modules complete"
+      className="relative overflow-hidden rounded-xl border border-coral/40 bg-gradient-to-br from-deep-purple/40 via-charcoal to-charcoal p-6 md:p-8 motion-safe:animate-fade-in"
+    >
+      <div
+        aria-hidden
+        className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,_rgba(241,99,99,0.18)_0%,_transparent_55%)]"
+      />
+      <div className="relative grid gap-4 md:grid-cols-[auto_1fr] md:items-center">
+        <span
+          aria-hidden
+          className="font-heading text-5xl md:text-6xl text-coral leading-none"
+        >
+          12/12
+        </span>
+        <div>
+          <p className="font-heading text-xs tracking-[0.3em] text-coral mb-2">
+            GRADUATED · YOU FINISHED THE METHOD
+          </p>
+          <h2 className="font-heading uppercase leading-[0.95] text-2xl md:text-4xl mb-2">
+            Twelve weeks. Done{name}.
+          </h2>
+          <p className="text-foreground-muted max-w-2xl">
+            You&apos;re not following a plan anymore — you&apos;re running the
+            system. Every module stays open for life: re-run a phase before
+            your next event, or hand the framework to a training partner.
+          </p>
+        </div>
+      </div>
+    </section>
   );
 }
 

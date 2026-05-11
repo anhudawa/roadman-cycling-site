@@ -31,7 +31,25 @@ export function RecentActivity({
 }: RecentActivityProps) {
   const [expanded, setExpanded] = useState(false);
 
-  if (completions.length === 0) return null;
+  if (completions.length === 0) {
+    return (
+      <section className="rounded-xl border border-white/10 bg-charcoal/60 p-6">
+        <header className="flex items-baseline justify-between gap-3 mb-3">
+          <h2 className="font-heading uppercase tracking-wider text-sm text-coral">
+            Recent work
+          </h2>
+          <span className="text-[11px] text-foreground-muted">0 logged</span>
+        </header>
+        <p className="text-sm text-foreground-muted">
+          The log&apos;s empty for now — tick a module complete and it shows up
+          here.
+        </p>
+        <p className="mt-1.5 text-[11px] text-foreground-muted/80">
+          Small, in-order check-ins. That&apos;s the whole game.
+        </p>
+      </section>
+    );
+  }
 
   const hasMore = completions.length > initialLimit;
   const visible = expanded ? completions : completions.slice(0, initialLimit);

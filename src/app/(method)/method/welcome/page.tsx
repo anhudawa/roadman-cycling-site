@@ -36,7 +36,7 @@ export default function MethodWelcomePage() {
           aria-hidden
           className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_top,_rgba(241,99,99,0.18)_0%,_transparent_55%)]"
         />
-        <Container as="div" width="wide" className="relative pt-16 md:pt-24 pb-16 md:pb-20">
+        <Container as="div" width="wide" className="relative pt-12 sm:pt-16 md:pt-24 pb-12 sm:pb-16 md:pb-20">
           <WelcomeStaggerIn delay={0}>
             <p className="font-heading text-xs tracking-[0.3em] text-coral mb-4">
               ENROLLED · LIFETIME ACCESS
@@ -45,20 +45,20 @@ export default function MethodWelcomePage() {
           <WelcomeStaggerIn delay={0.08}>
             <h1
               id="welcome-headline"
-              className="font-heading uppercase leading-[0.9] text-[clamp(3.5rem,10vw,8rem)]"
+              className="font-heading uppercase leading-[0.9] text-[clamp(3rem,10vw,8rem)]"
             >
               You&apos;re in.
             </h1>
           </WelcomeStaggerIn>
           <WelcomeStaggerIn delay={0.16}>
-            <p className="mt-6 max-w-2xl text-lg md:text-xl text-off-white">
+            <p className="mt-5 sm:mt-6 max-w-2xl text-base sm:text-lg md:text-xl text-off-white">
               Twelve weeks. Five pillars. One framework — built on conversations
               with World Tour coaches and the sport scientists who actually move
               the needle.
             </p>
           </WelcomeStaggerIn>
           <WelcomeStaggerIn delay={0.22}>
-            <p className="mt-3 max-w-2xl text-foreground-muted">
+            <p className="mt-3 max-w-2xl text-sm sm:text-base text-foreground-muted">
               The work starts at the start. We&apos;ll send your sign-in link in the
               next minute — open it, and Module 01 is waiting.
             </p>
