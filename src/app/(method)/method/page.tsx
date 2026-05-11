@@ -1,79 +1,48 @@
-import { redirect } from "next/navigation";
-import Link from "next/link";
-import { Container } from "@/components/layout/Container";
-import { getMethodSession } from "@/lib/method/auth";
-import { getProgressSummary } from "@/lib/method/progress";
-import { isModuleUnlocked } from "@/lib/method/access";
-import { METHOD_MODULES } from "@/lib/method/modules";
-import { ProgressRing } from "./_components/ProgressRing";
-import { ModuleCard } from "./_components/ModuleCard";
+import type { Metadata } from "next";
+import { Hero } from "./_components/sales/Hero";
+import { ProblemSection } from "./_components/sales/ProblemSection";
+import { WhatIfSection } from "./_components/sales/WhatIfSection";
+import { MethodOverview } from "./_components/sales/MethodOverview";
+import { WhatYouGet } from "./_components/sales/WhatYouGet";
+import { WhoThisIsFor } from "./_components/sales/WhoThisIsFor";
+import { SocialProof } from "./_components/sales/SocialProof";
+import { Pricing } from "./_components/sales/Pricing";
+import { FAQ } from "./_components/sales/FAQ";
+import { AnthonyNote } from "./_components/sales/AnthonyNote";
+import { FinalCTA } from "./_components/sales/FinalCTA";
+
+export const metadata: Metadata = {
+  title: "The Roadman Method — A 12-Week System for Cyclists Who Are Stuck",
+  description:
+    "Twelve weeks. Five pillars. One system. Built on 300+ conversations with World Tour coaches, sports scientists and pro cyclists. From $297 — lifetime access.",
+  openGraph: {
+    title: "The Roadman Method",
+    description:
+      "A 12-week signature course for serious amateur cyclists. Built on 300+ podcast episodes with the people who actually move performance forward.",
+    type: "website",
+  },
+};
 
 /**
- * /method — course dashboard.
+ * /method — public sales page for The Roadman Method.
  *
- * Server component. Pulls the session + progress, renders the 12-module
- * grid with per-module unlock state. Layout already redirects to /login
- * if no session, so this component can assume a session exists.
+ * Long-form VSL-style layout. Members are redirected to /method/dashboard
+ * by the route layout, so this page only ever renders for prospects.
  */
-export default async function MethodDashboard() {
-  const session = await getMethodSession();
-  if (!session) redirect("/method/login");
-
-  const progress = await getProgressSummary(session.enrollment.id);
-
+export default function MethodSalesPage() {
   return (
-    <Container as="section" width="wide" className="pt-12 pb-12 md:pt-20">
-      <header className="grid gap-10 md:grid-cols-[1fr_auto] md:items-end mb-16">
-        <div>
-          <p className="font-heading text-sm tracking-[0.3em] text-coral mb-3">
-            THE ROADMAN METHOD
-          </p>
-          <h1 className="font-heading uppercase leading-[0.95] text-[clamp(3rem,7vw,6rem)] mb-4">
-            {greetingFor(session.enrollment.name)}
-          </h1>
-          <p className="max-w-xl text-lg text-foreground-muted">
-            Twelve modules. One framework. Work them in order. Take your time
-            on Module 01 — everything else builds on it.
-          </p>
-        </div>
-        <ProgressRing percent={progress.percentComplete} />
-      </header>
-
-      <div className="flex items-baseline justify-between mb-6">
-        <h2 className="font-heading uppercase tracking-wider text-2xl">
-          Modules
-        </h2>
-        <p className="text-sm text-foreground-muted">
-          {progress.completedCount} of {progress.totalCount} complete
-        </p>
-      </div>
-
-      <ul className="grid gap-4 md:grid-cols-2 xl:grid-cols-3">
-        {METHOD_MODULES.map((module) => {
-          const availability = isModuleUnlocked(session.enrollment, module);
-          const completed = progress.completedSlugs.has(module.slug);
-          return (
-            <li key={module.slug}>
-              <ModuleCard
-                module={module}
-                availability={availability}
-                completed={completed}
-              />
-            </li>
-          );
-        })}
-      </ul>
-
-      <p className="mt-12 text-sm text-foreground-muted">
-        Need help? <Link href="/method/account" className="text-coral underline-offset-4 hover:underline">Account & support →</Link>
-      </p>
-    </Container>
+    <>
+      <Hero />
+      <ProblemSection />
+      <WhatIfSection />
+      <MethodOverview />
+      <WhatYouGet />
+      <WhoThisIsFor />
+      <SocialProof />
+      <Pricing />
+      <FAQ />
+      <AnthonyNote />
+      <FinalCTA />
+    </>
   );
-}
-
-function greetingFor(name: string | null): string {
-  if (!name) return "WELCOME BACK";
-  const first = name.split(" ")[0]?.trim() ?? "";
-  if (!first) return "WELCOME BACK";
-  return `WELCOME BACK, ${first.toUpperCase()}`;
 }
