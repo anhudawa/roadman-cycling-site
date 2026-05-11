@@ -26,7 +26,12 @@ const PREMIUM_THRESHOLD_CENTS = 35000; // $350+ → Premium tier
  * Self-service email change / re-enrollment lives in Phase 2.
  */
 export default async function MethodAccountPage() {
-  const session = await getMethodSession();
+  let session: Awaited<ReturnType<typeof getMethodSession>> = null;
+  try {
+    session = await getMethodSession();
+  } catch (err) {
+    console.error("[method/account] session read failed:", err);
+  }
   if (!session) redirect("/method/login");
 
   const enrollment = session.enrollment;

@@ -13,23 +13,26 @@ export const metadata: Metadata = {
 /**
  * Shell layout for /method/*.
  *
- * Auth redirects (public vs protected, sales → dashboard) are handled
- * entirely by src/middleware.ts at the edge. This layout only renders
- * the chrome. Individual page components still call getMethodSession()
- * for their own data needs and as a server-side safety net.
+ * ★ DOES NOT REDIRECT. Auth routing is handled entirely by
+ * src/middleware.ts at the edge. This layout only renders chrome.
+ *
+ * Session read is wrapped in try/catch so a DB outage or missing
+ * env var can't take down the entire /method tree.
  */
-export default async function MethodLayout({ children }: { children: ReactNode }) {
+export default async function MethodLayout({
+  children,
+}: {
+  children: ReactNode;
+}) {
   const hdrs = await headers();
   const pathname = hdrs.get("x-pathname") ?? "/method";
 
-  // Safety: if getMethodSession() throws (e.g. DB down, env missing),
-  // degrade to "no session" so the layout still renders. Individual
-  // pages do their own session checks and redirect as needed.
-  let session: Awaited<ReturnType<typeof getMethodSession>> = null;
+  let email: string | null = null;
   try {
-    session = await getMethodSession();
+    const session = await getMethodSession();
+    email = session?.payload.email ?? null;
   } catch {
-    // Swallow — treat as unauthenticated.
+    // Swallow — treat as unauthenticated for header display.
   }
 
   const isSalesPage = pathname === "/method";
@@ -41,7 +44,7 @@ export default async function MethodLayout({ children }: { children: ReactNode }
         className="pointer-events-none fixed inset-0 -z-10 bg-[radial-gradient(ellipse_at_top,_var(--color-deep-purple)_0%,_var(--color-charcoal)_55%)]"
       />
       <MethodHeader
-        sessionEmail={session?.payload.email ?? null}
+        sessionEmail={email}
         variant={isSalesPage ? "marketing" : "members"}
       />
       <main id="method-main" className={isSalesPage ? "" : "pb-24"}>

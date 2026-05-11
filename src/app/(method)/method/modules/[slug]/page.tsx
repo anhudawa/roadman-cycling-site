@@ -65,7 +65,12 @@ export default async function MethodModulePage({
   const module = METHOD_MODULE_BY_SLUG.get(slug);
   if (!module) notFound();
 
-  const session = await getMethodSession();
+  let session: Awaited<ReturnType<typeof getMethodSession>> = null;
+  try {
+    session = await getMethodSession();
+  } catch (err) {
+    console.error("[method/module] session read failed:", err);
+  }
   if (!session) redirect("/method/login");
 
   const availability = isModuleUnlocked(session.enrollment, module);

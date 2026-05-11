@@ -3,55 +3,56 @@ import {
   consumeLoginToken,
   signSessionToken,
   METHOD_SESSION_COOKIE,
+  SESSION_COOKIE_OPTS,
 } from "@/lib/method/auth";
 
 /**
  * GET /api/method/login/verify?token=...
  *
- * Consumes a magic-link token. On success, sets the `method_session`
- * cookie directly on the redirect response and 302s to /method/dashboard.
+ * Consumes a one-time magic-link token.
  *
- * IMPORTANT: we set the cookie on the NextResponse object itself (not
- * via the `cookies()` helper from next/headers) because the helper
- * writes to a mutable store that may not be flushed onto a separately
- * created NextResponse.redirect(). Setting it on the response object
- * guarantees the Set-Cookie header is present on the actual 302.
+ * On success: sets `method_session` cookie directly on the 302
+ * response, then redirects to /method/dashboard. The cookie is
+ * set on the response object — NOT via the cookies() helper —
+ * so the Set-Cookie header is guaranteed to be present.
+ *
+ * On failure: redirects to /method/login?error=invalid.
  */
 export async function GET(request: NextRequest) {
   const url = new URL(request.url);
-  const token = url.searchParams.get("token")?.trim() ?? "";
-  const baseUrl = url.origin;
+  const rawToken = url.searchParams.get("token")?.trim() ?? "";
+  const origin = url.origin;
 
-  if (!token) {
-    return NextResponse.redirect(`${baseUrl}/method/login?error=invalid`);
+  if (!rawToken) {
+    return NextResponse.redirect(`${origin}/method/login?error=invalid`);
   }
 
-  const enrollment = await consumeLoginToken(token);
+  let enrollment;
+  try {
+    enrollment = await consumeLoginToken(rawToken);
+  } catch (err) {
+    console.error("[method/verify] token consumption failed:", err);
+    return NextResponse.redirect(`${origin}/method/login?error=invalid`);
+  }
+
   if (!enrollment) {
-    return NextResponse.redirect(`${baseUrl}/method/login?error=invalid`);
+    return NextResponse.redirect(`${origin}/method/login?error=invalid`);
   }
 
-  const { jwt, maxAge, secure } = signSessionToken(enrollment);
+  /* ── Build redirect with cookie attached ── */
+  const { jwt } = signSessionToken(enrollment);
+  const response = NextResponse.redirect(`${origin}/method/dashboard`);
 
-  // Redirect straight to /method/dashboard — avoids the extra hop
-  // through /method that the middleware would add anyway.
-  const response = NextResponse.redirect(`${baseUrl}/method/dashboard`);
-  response.cookies.set(METHOD_SESSION_COOKIE, jwt, {
-    httpOnly: true,
-    secure,
-    sameSite: "lax",
-    path: "/",
-    maxAge,
-  });
+  response.cookies.set(METHOD_SESSION_COOKIE, jwt, SESSION_COOKIE_OPTS);
 
-  // Drop a non-httpOnly hint so the login page can show "Welcome back"
-  // on future visits. Carries no PII — it's just a boolean flag.
+  // Non-httpOnly hint so the login page can say "Welcome back" on
+  // future visits. No PII — just a boolean flag.
   response.cookies.set("method_return_hint", "1", {
     httpOnly: false,
-    secure,
+    secure: SESSION_COOKIE_OPTS.secure,
     sameSite: "lax",
     path: "/",
-    maxAge: 60 * 60 * 24 * 365, // 1 year
+    maxAge: 60 * 60 * 24 * 365,
   });
 
   return response;

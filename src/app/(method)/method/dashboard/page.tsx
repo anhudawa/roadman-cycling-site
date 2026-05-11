@@ -23,22 +23,15 @@ const DAY_MS = 24 * 60 * 60 * 1000;
 /**
  * /method/dashboard — premium dashboard.
  *
- * Layout, top-down:
- *   1. HERO  — greeting (name) + arc cue + animated progress ring
- *   2. STATS — streak / modules complete / minutes invested / day count
- *   3. CONTINUE — big "next module" card (or graduation card)
- *   4. PHASE GRID — 12 modules grouped under their 4 phases
- *   5. RECENT — last few completions
- *   6. SUPPORT line
- *
- * All gating happens in the layout; this page assumes a session.
+ * Auth gating is in the middleware. The session read here is for
+ * data — if it fails, we redirect to login as a safety net.
  */
 export default async function MethodDashboard() {
   let session: Awaited<ReturnType<typeof getMethodSession>> = null;
   try {
     session = await getMethodSession();
-  } catch {
-    // DB or env error — treat as unauthenticated.
+  } catch (err) {
+    console.error("[method/dashboard] session read failed:", err);
   }
   if (!session) redirect("/method/login");
 

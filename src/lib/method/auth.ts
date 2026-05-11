@@ -1,18 +1,21 @@
 /**
- * The Method — passwordless auth (custom, separate from admin NextAuth).
+ * The Method — passwordless auth helpers.
  *
- * Why custom: see docs/method-architecture.md §3.1. The admin NextAuth
- * instance is locked to an env allowlist; mixing paid-customer surface
- * area into it widens the blast radius of an admin-cookie compromise.
+ * Rebuilt 2026-05-11. Architecture rule: cookie mutations NEVER use
+ * the `cookies()` helper from `next/headers`. Callers that need to
+ * set or clear the session cookie operate on a NextResponse object
+ * directly (see signSessionToken / SESSION_COOKIE_OPTS). This avoids
+ * the Next.js footgun where `cookies().set()` modifies an internal
+ * store that may not be flushed to a separately created NextResponse.
  *
  * Flow:
- *   1. POST /api/method/login {email}
- *      → mint 32-byte random token, bcrypt-hash, insert into
- *        method_login_tokens with 15-min TTL, email raw token via Resend.
+ *   1. POST /api/method/login { email }
+ *      → mint bcrypt-hashed token, email raw token via Resend.
  *   2. GET /api/method/login/verify?token=...
- *      → bcrypt-compare against unused, unexpired hashes; mark used;
- *        set `method_session` cookie (HMAC-signed JWT, 30-day expiry).
- *   3. Server components call `getMethodSession()` to read + verify.
+ *      → bcrypt-compare, set `method_session` cookie ON the redirect
+ *        response, 302 to /method/dashboard.
+ *   3. Server components call getMethodSession() to read + verify.
+ *      Read-only — never mutates cookies.
  */
 
 import { createHmac, randomBytes, timingSafeEqual } from "node:crypto";
@@ -26,73 +29,82 @@ import {
   type MethodEnrollment,
 } from "./schema";
 
+/* ─── Constants ─────────────────────────────────────────────── */
+
 export const METHOD_SESSION_COOKIE = "method_session";
-const SESSION_TTL_SECONDS = 60 * 60 * 24 * 30; // 30 days
+const SESSION_MAX_AGE = 60 * 60 * 24 * 30; // 30 days
 const TOKEN_TTL_SECONDS = 60 * 15; // 15 minutes
 const BCRYPT_ROUNDS = 12;
 
-interface MethodSessionPayload {
-  /** Enrollment row id. */
+/** Cookie attributes for callers that set/clear on their own response. */
+export const SESSION_COOKIE_OPTS = {
+  httpOnly: true,
+  secure: process.env.NODE_ENV === "production",
+  sameSite: "lax" as const,
+  path: "/",
+  maxAge: SESSION_MAX_AGE,
+};
+
+/* ─── Types ─────────────────────────────────────────────────── */
+
+interface SessionPayload {
   eid: number;
-  /** Lowercased email (for display; do NOT use as the source of truth). */
   email: string;
-  /** Issued-at, seconds since epoch. */
   iat: number;
-  /** Expires-at, seconds since epoch. */
   exp: number;
 }
 
-function getSessionSecret(): string {
-  const secret = process.env.METHOD_SESSION_SECRET;
-  if (!secret || secret.length < 32) {
+export interface MethodSession {
+  enrollment: MethodEnrollment;
+  payload: SessionPayload;
+}
+
+export class MethodAuthError extends Error {
+  readonly status = 401;
+}
+
+/* ─── Secret ────────────────────────────────────────────────── */
+
+function getSecret(): string {
+  const s = process.env.METHOD_SESSION_SECRET;
+  if (!s || s.length < 32) {
     throw new Error(
-      "METHOD_SESSION_SECRET must be set to a value of at least 32 characters",
+      "METHOD_SESSION_SECRET must be ≥ 32 characters",
     );
   }
-  return secret;
+  return s;
 }
 
-function base64url(buf: Buffer): string {
-  return buf.toString("base64").replace(/\+/g, "-").replace(/\//g, "_").replace(/=+$/, "");
+/* ─── Base64url helpers ─────────────────────────────────────── */
+
+function b64url(buf: Buffer): string {
+  return buf
+    .toString("base64")
+    .replace(/\+/g, "-")
+    .replace(/\//g, "_")
+    .replace(/=+$/, "");
 }
 
-function base64urlDecode(input: string): Buffer {
-  const padded = input.replace(/-/g, "+").replace(/_/g, "/");
-  return Buffer.from(padded, "base64");
+function b64urlDecode(s: string): Buffer {
+  return Buffer.from(s.replace(/-/g, "+").replace(/_/g, "/"), "base64");
 }
 
-/* ─────────────────────────────────────────────────────────── */
-/*  Magic-link tokens                                          */
-/* ─────────────────────────────────────────────────────────── */
+/* ─── Magic-link tokens ─────────────────────────────────────── */
 
-/** Mint a one-time login token for an enrollment. Returns the RAW token —
- *  caller must email it; the database only ever stores the hash. */
-export async function mintLoginToken(enrollmentId: number): Promise<{
-  rawToken: string;
-  expiresAt: Date;
-}> {
-  const rawToken = base64url(randomBytes(32));
+export async function mintLoginToken(
+  enrollmentId: number,
+): Promise<{ rawToken: string; expiresAt: Date }> {
+  const rawToken = b64url(randomBytes(32));
   const tokenHash = await bcrypt.hash(rawToken, BCRYPT_ROUNDS);
   const expiresAt = new Date(Date.now() + TOKEN_TTL_SECONDS * 1000);
-
   await db.insert(methodLoginTokens).values({
     enrollmentId,
     tokenHash,
     expiresAt,
   });
-
   return { rawToken, expiresAt };
 }
 
-/**
- * Consume a raw token. Returns the enrollment if the token is valid,
- * unused, and unexpired. Marks the token used. Single-use is enforced
- * by the `usedAt` column (set in the same statement that selects).
- *
- * NOTE: bcrypt forces a per-row compare, so this scans unused/unexpired
- * tokens. With 15-min TTL the working set stays tiny in practice. If
- * volume changes, swap to HMAC-prefix lookup.
- */
 export async function consumeLoginToken(
   rawToken: string,
 ): Promise<MethodEnrollment | null> {
@@ -107,71 +119,64 @@ export async function consumeLoginToken(
     )
     .limit(50);
 
-  for (const candidate of candidates) {
-    const matches = await bcrypt.compare(rawToken, candidate.tokenHash);
-    if (!matches) continue;
+  for (const row of candidates) {
+    if (!(await bcrypt.compare(rawToken, row.tokenHash))) continue;
 
-    // Race-tolerant single-use: only succeeds if usedAt is still NULL.
     const claimed = await db
       .update(methodLoginTokens)
       .set({ usedAt: new Date() })
       .where(
         and(
-          eq(methodLoginTokens.id, candidate.id),
+          eq(methodLoginTokens.id, row.id),
           isNull(methodLoginTokens.usedAt),
         ),
       )
       .returning({ id: methodLoginTokens.id });
     if (claimed.length === 0) return null;
 
-    const enrollmentRows = await db
+    const [enrollment] = await db
       .select()
       .from(methodEnrollments)
-      .where(eq(methodEnrollments.id, candidate.enrollmentId))
+      .where(eq(methodEnrollments.id, row.enrollmentId))
       .limit(1);
-    const enrollment = enrollmentRows[0];
     if (!enrollment || enrollment.status !== "active") return null;
     return enrollment;
   }
   return null;
 }
 
-/* ─────────────────────────────────────────────────────────── */
-/*  Session JWT (HMAC, no external lib)                        */
-/* ─────────────────────────────────────────────────────────── */
+/* ─── JWT (HMAC-signed, no external lib) ────────────────────── */
 
-function signSessionPayload(payload: MethodSessionPayload): string {
-  const headerJson = JSON.stringify({ alg: "HS256", typ: "JWT" });
-  const payloadJson = JSON.stringify(payload);
-  const header = base64url(Buffer.from(headerJson));
-  const body = base64url(Buffer.from(payloadJson));
-  const signingInput = `${header}.${body}`;
-  const signature = base64url(
-    createHmac("sha256", getSessionSecret()).update(signingInput).digest(),
+function signPayload(payload: SessionPayload): string {
+  const h = b64url(Buffer.from(JSON.stringify({ alg: "HS256", typ: "JWT" })));
+  const p = b64url(Buffer.from(JSON.stringify(payload)));
+  const sig = b64url(
+    createHmac("sha256", getSecret()).update(`${h}.${p}`).digest(),
   );
-  return `${signingInput}.${signature}`;
+  return `${h}.${p}.${sig}`;
 }
 
-function verifySessionToken(token: string): MethodSessionPayload | null {
+function verifyJwt(token: string): SessionPayload | null {
   const parts = token.split(".");
   if (parts.length !== 3) return null;
-  const [header, body, signature] = parts;
-  const signingInput = `${header}.${body}`;
-  const expected = createHmac("sha256", getSessionSecret())
-    .update(signingInput)
+
+  const [header, body, sig] = parts;
+  const expected = createHmac("sha256", getSecret())
+    .update(`${header}.${body}`)
     .digest();
-  let providedBuf: Buffer;
+
+  let provided: Buffer;
   try {
-    providedBuf = base64urlDecode(signature);
+    provided = b64urlDecode(sig);
   } catch {
     return null;
   }
-  if (providedBuf.length !== expected.length) return null;
-  if (!timingSafeEqual(providedBuf, expected)) return null;
+  if (provided.length !== expected.length) return null;
+  if (!timingSafeEqual(provided, expected)) return null;
 
-  let payload: MethodSessionPayload;
+  let payload: SessionPayload;
   try {
-    payload = JSON.parse(base64urlDecode(body).toString("utf8"));
+    payload = JSON.parse(b64urlDecode(body).toString("utf8"));
   } catch {
     return null;
   }
@@ -179,93 +184,81 @@ function verifySessionToken(token: string): MethodSessionPayload | null {
   return payload;
 }
 
+/* ─── Public API ────────────────────────────────────────────── */
+
 /**
- * Sign a session JWT for an enrollment. Returns the raw JWT string plus
- * cookie attributes so callers can attach it to any response object.
- * Prefer this over `setMethodSessionCookie` in route handlers where
- * you are building your own NextResponse (e.g. redirects).
+ * Sign a session JWT for an enrollment. Returns the raw JWT and
+ * cookie config so the caller can attach it to any NextResponse.
+ *
+ * Usage in a route handler:
+ *   const { jwt } = signSessionToken(enrollment);
+ *   response.cookies.set(METHOD_SESSION_COOKIE, jwt, SESSION_COOKIE_OPTS);
  */
 export function signSessionToken(enrollment: MethodEnrollment): {
   jwt: string;
-  maxAge: number;
-  secure: boolean;
 } {
   const now = Math.floor(Date.now() / 1000);
-  const jwt = signSessionPayload({
-    eid: enrollment.id,
-    email: enrollment.email,
-    iat: now,
-    exp: now + SESSION_TTL_SECONDS,
-  });
   return {
-    jwt,
-    maxAge: SESSION_TTL_SECONDS,
-    secure: process.env.NODE_ENV === "production",
+    jwt: signPayload({
+      eid: enrollment.id,
+      email: enrollment.email,
+      iat: now,
+      exp: now + SESSION_MAX_AGE,
+    }),
   };
 }
 
-export async function setMethodSessionCookie(enrollment: MethodEnrollment): Promise<void> {
-  const { jwt, maxAge, secure } = signSessionToken(enrollment);
-  const store = await cookies();
-  store.set(METHOD_SESSION_COOKIE, jwt, {
-    httpOnly: true,
-    secure,
-    sameSite: "lax",
-    path: "/",
-    maxAge,
-  });
-}
-
-export async function clearMethodSessionCookie(): Promise<void> {
-  const store = await cookies();
-  store.set(METHOD_SESSION_COOKIE, "", {
-    httpOnly: true,
-    secure: process.env.NODE_ENV === "production",
-    sameSite: "lax",
-    path: "/",
-    maxAge: 0,
-  });
-}
-
-export interface MethodSession {
-  enrollment: MethodEnrollment;
-  payload: MethodSessionPayload;
-}
-
 /**
- * Read + verify the session cookie. Returns null if the cookie is missing,
- * tampered, expired, or the underlying enrollment is no longer active.
+ * Read + verify the session cookie. Returns null if the cookie is
+ * missing, tampered, expired, or the enrollment is no longer active.
  *
- * IMPORTANT: every check goes back to the DB so `status='refunded'` takes
- * effect on the next request — we do NOT trust the JWT to encode status.
+ * Read-only — never mutates cookies. Safe to call in layouts and
+ * pages without risk of interfering with responses.
  */
 export async function getMethodSession(): Promise<MethodSession | null> {
   const store = await cookies();
   const cookie = store.get(METHOD_SESSION_COOKIE);
   if (!cookie?.value) return null;
-  const payload = verifySessionToken(cookie.value);
+
+  const payload = verifyJwt(cookie.value);
   if (!payload) return null;
 
-  const rows = await db
+  const [enrollment] = await db
     .select()
     .from(methodEnrollments)
     .where(eq(methodEnrollments.id, payload.eid))
     .limit(1);
-  const enrollment = rows[0];
   if (!enrollment || enrollment.status !== "active") return null;
   return { enrollment, payload };
 }
 
-/** Convenience wrapper that throws on missing/invalid session. Use in API
- *  routes; in pages prefer redirect-based gating in the layout. */
+/**
+ * Throws on missing/invalid session. Use in API routes;
+ * in pages prefer the middleware gate.
+ */
 export async function requireMethodSession(): Promise<MethodSession> {
   const session = await getMethodSession();
-  if (!session) {
-    throw new MethodAuthError("Not signed in");
-  }
+  if (!session) throw new MethodAuthError("Not signed in");
   return session;
 }
 
-export class MethodAuthError extends Error {
-  readonly status = 401;
+/**
+ * @deprecated Use signSessionToken + response.cookies.set instead.
+ * Kept only for the Stripe webhook handler which doesn't return
+ * a NextResponse.
+ */
+export async function setMethodSessionCookie(
+  enrollment: MethodEnrollment,
+): Promise<void> {
+  const { jwt } = signSessionToken(enrollment);
+  const store = await cookies();
+  store.set(METHOD_SESSION_COOKIE, jwt, SESSION_COOKIE_OPTS);
+}
+
+/**
+ * @deprecated Use response.cookies.set with maxAge:0 instead.
+ */
+export async function clearMethodSessionCookie(): Promise<void> {
+  const store = await cookies();
+  store.set(METHOD_SESSION_COOKIE, "", { ...SESSION_COOKIE_OPTS, maxAge: 0 });
 }
