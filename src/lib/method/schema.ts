@@ -1,0 +1,110 @@
+/**
+ * Drizzle schema additions for The Roadman Method course.
+ *
+ * On merge into `main`, re-export these from `src/lib/db/schema.ts` so
+ * `import { methodEnrollments } from "@/lib/db/schema"` works alongside
+ * the rest of the schema. See docs/method-architecture.md §12.
+ */
+
+import {
+  pgTable,
+  serial,
+  text,
+  timestamp,
+  integer,
+  jsonb,
+  index,
+  uniqueIndex,
+} from "drizzle-orm/pg-core";
+
+export const METHOD_ENROLLMENT_STATUSES = [
+  "pending",
+  "active",
+  "refunded",
+  "cancelled",
+] as const;
+export type MethodEnrollmentStatus = (typeof METHOD_ENROLLMENT_STATUSES)[number];
+
+export const methodEnrollments = pgTable(
+  "method_enrollments",
+  {
+    id: serial("id").primaryKey(),
+    email: text("email").notNull().unique(),
+    name: text("name"),
+    // 'pending' | 'active' | 'refunded' | 'cancelled'
+    // 'pending' = checkout started, webhook hasn't fired yet.
+    // 'active'  = paid + access granted.
+    status: text("status").notNull().default("pending"),
+    paidAt: timestamp("paid_at", { withTimezone: true }),
+    // When the drip schedule starts for this enrollment. Defaults to paidAt
+    // on webhook completion. Admin can adjust to gift a VIP early access.
+    dripStartAt: timestamp("drip_start_at", { withTimezone: true }),
+    amountCents: integer("amount_cents"),
+    currency: text("currency").notNull().default("usd"),
+    stripeSessionId: text("stripe_session_id").unique(),
+    stripePaymentIntentId: text("stripe_payment_intent_id"),
+    // Mirrors the orders table: idempotency log so re-delivered webhooks
+    // can detect duplicates without separate ledger.
+    stripeEventIds: jsonb("stripe_event_ids").$type<string[]>().notNull().default([]),
+    notes: text("notes"),
+    createdAt: timestamp("created_at", { withTimezone: true }).notNull().defaultNow(),
+    updatedAt: timestamp("updated_at", { withTimezone: true }).notNull().defaultNow(),
+  },
+  (table) => [
+    index("method_enrollments_email_idx").on(table.email),
+    index("method_enrollments_status_idx").on(table.status),
+    index("method_enrollments_paid_at_idx").on(table.paidAt),
+  ],
+);
+
+export const methodProgress = pgTable(
+  "method_progress",
+  {
+    id: serial("id").primaryKey(),
+    enrollmentId: integer("enrollment_id")
+      .notNull()
+      .references(() => methodEnrollments.id, { onDelete: "cascade" }),
+    moduleSlug: text("module_slug").notNull(),
+    completedAt: timestamp("completed_at", { withTimezone: true })
+      .notNull()
+      .defaultNow(),
+  },
+  (table) => [
+    index("method_progress_enrollment_id_idx").on(table.enrollmentId),
+    index("method_progress_module_slug_idx").on(table.moduleSlug),
+    // Upsert target — re-marking a module complete is a no-op rather
+    // than a duplicate row.
+    uniqueIndex("method_progress_enrollment_module_unique").on(
+      table.enrollmentId,
+      table.moduleSlug,
+    ),
+  ],
+);
+
+export const methodLoginTokens = pgTable(
+  "method_login_tokens",
+  {
+    id: serial("id").primaryKey(),
+    enrollmentId: integer("enrollment_id")
+      .notNull()
+      .references(() => methodEnrollments.id, { onDelete: "cascade" }),
+    // bcrypt-hashed magic-link token. Raw token is 32 random bytes (base64url)
+    // and is sent over email; only the hash lives in the database.
+    tokenHash: text("token_hash").notNull().unique(),
+    expiresAt: timestamp("expires_at", { withTimezone: true }).notNull(),
+    // Single-use enforcement: a successful verify sets this column. Any
+    // subsequent attempt to consume the same raw token finds usedAt set
+    // and refuses.
+    usedAt: timestamp("used_at", { withTimezone: true }),
+    createdAt: timestamp("created_at", { withTimezone: true }).notNull().defaultNow(),
+  },
+  (table) => [
+    index("method_login_tokens_enrollment_id_idx").on(table.enrollmentId),
+    index("method_login_tokens_expires_at_idx").on(table.expiresAt),
+  ],
+);
+
+export type MethodEnrollment = typeof methodEnrollments.$inferSelect;
+export type NewMethodEnrollment = typeof methodEnrollments.$inferInsert;
+export type MethodProgressRow = typeof methodProgress.$inferSelect;
+export type MethodLoginToken = typeof methodLoginTokens.$inferSelect;
