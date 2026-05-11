@@ -1,5 +1,6 @@
 import { redirect } from "next/navigation";
-import type { Metadata, ReactNode } from "react";
+import type { Metadata } from "next";
+import type { ReactNode } from "react";
 import { headers } from "next/headers";
 import { getMethodSession } from "@/lib/method/auth";
 import { MethodHeader } from "./_components/MethodHeader";
