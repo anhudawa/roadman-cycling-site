@@ -1,4 +1,3 @@
-import { redirect } from "next/navigation";
 import type { Metadata } from "next";
 import type { ReactNode } from "react";
 import { headers } from "next/headers";
@@ -11,36 +10,18 @@ export const metadata: Metadata = {
     "Twelve weeks. Five pillars. One system. Built on 1,400+ conversations with World Tour coaches, sports scientists and pro cyclists. For serious amateurs who are training hard but not getting faster.",
 };
 
-const PUBLIC_PATHS: ReadonlySet<string> = new Set([
-  "/method",
-  "/method/login",
-  "/method/login/check-email",
-  "/method/login/verify",
-  "/method/checkout",
-  "/method/welcome",
-]);
-
 /**
- * Server-component gate for /method/*.
+ * Shell layout for /method/*.
  *
- * /method itself is the public sales page. Members go to /method/dashboard.
- * If a signed-in member lands on the sales page, send them to the dashboard
- * so they don't see the marketing screen they already paid for.
+ * Auth redirects (public vs protected, sales → dashboard) are handled
+ * entirely by src/middleware.ts at the edge. This layout only renders
+ * the chrome. Individual page components still call getMethodSession()
+ * for their own data needs and as a server-side safety net.
  */
 export default async function MethodLayout({ children }: { children: ReactNode }) {
   const hdrs = await headers();
-  const pathname = resolvePathname(hdrs);
+  const pathname = hdrs.get("x-pathname") ?? "/method";
   const session = await getMethodSession();
-
-  if (!isPublicPath(pathname) && !session) {
-    redirect("/method/login");
-  }
-
-  // Only redirect sales page → dashboard, never redirect if already deeper
-  if (pathname === "/method" && session) {
-    redirect("/method/dashboard");
-  }
-
   const isSalesPage = pathname === "/method";
 
   return (
@@ -61,44 +42,4 @@ export default async function MethodLayout({ children }: { children: ReactNode }
       </footer>
     </div>
   );
-}
-
-/**
- * Extract the pathname from request headers. Priority:
- *   1. x-pathname — set by our middleware (src/middleware.ts)
- *   2. x-invoke-path — set by Next.js internally on some routes
- *   3. Parse from x-forwarded-url / referer as a last resort
- *   4. Fall back to "/method" only if nothing else is available
- *
- * The "/method" default is safe: it's a public path, so unauthenticated
- * users see the sales page, and authenticated users redirect to dashboard.
- * The redirect loop that prompted this fix happened when deeper paths
- * (e.g. /method/dashboard) fell through to the "/method" default while
- * a session was active.
- */
-function resolvePathname(hdrs: Headers): string {
-  const direct = hdrs.get("x-pathname") ?? hdrs.get("x-invoke-path");
-  if (direct) return direct;
-
-  // Vercel and other proxies often set x-forwarded-url or x-url
-  for (const h of ["x-forwarded-url", "x-url", "x-original-url"]) {
-    const raw = hdrs.get(h);
-    if (raw) {
-      try {
-        return new URL(raw).pathname;
-      } catch {
-        // malformed — skip
-      }
-    }
-  }
-
-  return "/method";
-}
-
-function isPublicPath(pathname: string): boolean {
-  if (PUBLIC_PATHS.has(pathname)) return true;
-  for (const p of PUBLIC_PATHS) {
-    if (pathname.startsWith(`${p}/`)) return true;
-  }
-  return false;
 }
