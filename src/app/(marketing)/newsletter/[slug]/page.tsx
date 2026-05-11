@@ -59,7 +59,10 @@ function hasMeaningfulContent(html: string | null): boolean {
 export default async function NewsletterIssuePage({ params }: Props) {
   const { slug } = await params;
   const issue = await fetchNewsletterIssueBySlug(slug);
-  if (!issue || !hasMeaningfulContent(issue.content)) redirect("/newsletter");
+  if (!issue || !hasMeaningfulContent(issue.content)) {
+    redirect("/newsletter");
+  }
+  const content: string = issue.content!;
 
   const publishDate = issue.publishDate
     ? new Date(issue.publishDate).toLocaleDateString("en-GB", {
@@ -99,7 +102,7 @@ export default async function NewsletterIssuePage({ params }: Props) {
           <Container width="narrow">
             <article
               className="newsletter-content prose-roadman prose-enhanced"
-              dangerouslySetInnerHTML={{ __html: issue.content }}
+              dangerouslySetInnerHTML={{ __html: content }}
             />
           </Container>
         </Section>
