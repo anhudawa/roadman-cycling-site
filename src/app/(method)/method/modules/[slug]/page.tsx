@@ -23,6 +23,9 @@ import { PhaseBadge } from "../../_components/PhaseBadge";
 import { TrainingPeaksCallout } from "../../_components/TrainingPeaksCallout";
 import { ModulePager } from "../../_components/ModulePager";
 import { WeekProgressDots } from "../../_components/WeekProgressDots";
+import { MethodProtocol } from "../../_components/MethodProtocol";
+import { LearningOutcomes } from "../../_components/LearningOutcomes";
+import { WeekChecklist } from "../../_components/WeekChecklist";
 
 export const dynamic = "force-dynamic";
 
@@ -115,11 +118,16 @@ export default async function MethodModulePage({
           ) : (
             <>
               <div className="lg:col-span-8 space-y-8">
+                <LearningOutcomes outcomes={module.learningOutcomes} />
                 <VideoEmbed
                   youTubeId={module.videoYouTubeId}
                   title={module.title}
                 />
-                <ProtocolPlaceholder module={module} />
+                <MethodProtocol module={module} />
+                <WeekChecklist
+                  moduleSlug={module.slug}
+                  items={module.checklist}
+                />
               </div>
               <aside className="lg:col-span-4 space-y-5">
                 <CompleteToggle
@@ -197,25 +205,3 @@ function ModuleHeader({ module, phase, completedSlugs }: ModuleHeaderProps) {
   );
 }
 
-function ProtocolPlaceholder({ module }: { module: MethodModule }) {
-  if (module.protocolMdxPath) {
-    // Phase 2: render the MDX from content/method/{slug}.mdx via
-    // next-mdx-remote (already in deps). Phase 1 ships placeholder.
-    return null;
-  }
-  return (
-    <section className="rounded-xl border border-white/10 bg-charcoal/60 p-6 md:p-8 prose-method">
-      <h2 className="font-heading uppercase tracking-wider text-2xl mb-4">
-        Protocol
-      </h2>
-      <p className="text-foreground-muted leading-relaxed mb-3">
-        Written protocol for this module is being finalised. When it
-        publishes, you&apos;ll see the full breakdown here — the work, the why,
-        and how it sits inside the twelve-week build.
-      </p>
-      <p className="text-sm text-foreground-muted">
-        Approximate read: {module.estimatedReadMinutes} min when published.
-      </p>
-    </section>
-  );
-}
