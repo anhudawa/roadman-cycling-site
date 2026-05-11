@@ -61,5 +61,7 @@ function isPublicPath(pathname: string): boolean {
 }
 
 export const config = {
-  matcher: ["/method/:path*"],
+  // "/method" explicitly listed — ":path*" is zero-or-more segments but
+  // some Next.js versions only match when at least one segment is present.
+  matcher: ["/method", "/method/:path*"],
 };
