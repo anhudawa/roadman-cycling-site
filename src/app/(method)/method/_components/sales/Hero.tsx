@@ -31,7 +31,7 @@ export function Hero() {
 
         <Reveal delay={160}>
           <p className="mt-8 max-w-[58ch] text-lg md:text-xl text-foreground-muted leading-relaxed">
-            Twelve weeks. Five pillars. One system — built on 300+ conversations with World
+            Twelve weeks. Five pillars. One system — built on 1,400+ conversations with World
             Tour coaches, sports scientists and pro cyclists. The same framework Anthony
             Walsh uses to coach the Not Done Yet community, distilled into a course you
             can finish on your own time.

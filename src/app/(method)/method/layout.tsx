@@ -8,7 +8,7 @@ import { MethodHeader } from "./_components/MethodHeader";
 export const metadata: Metadata = {
   title: "The Roadman Method — A 12-Week System for Cyclists Who Are Stuck",
   description:
-    "Twelve weeks. Five pillars. One system. Built on 300+ conversations with World Tour coaches, sports scientists and pro cyclists. For serious amateurs who are training hard but not getting faster.",
+    "Twelve weeks. Five pillars. One system. Built on 1,400+ conversations with World Tour coaches, sports scientists and pro cyclists. For serious amateurs who are training hard but not getting faster.",
 };
 
 const PUBLIC_PATHS: ReadonlySet<string> = new Set([

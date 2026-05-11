@@ -37,7 +37,7 @@ export function FinalCTA() {
           <p className="mt-8 max-w-[55ch] mx-auto text-lg md:text-xl text-foreground-muted leading-relaxed">
             Twelve weeks from now, you can be in the same place — same FTP, same questions,
             same folder of saved tweets. Or you can be on the other side of a system that
-            took 300+ podcast episodes to build. Your call.
+            took 1,400+ podcast conversations to build. Your call.
           </p>
         </Reveal>
         <Reveal delay={240}>

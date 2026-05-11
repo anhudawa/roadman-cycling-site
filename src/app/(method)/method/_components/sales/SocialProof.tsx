@@ -42,7 +42,7 @@ export function SocialProof() {
           </Reveal>
           <Reveal delay={140}>
             <p className="mt-6 text-lg text-foreground-muted leading-relaxed">
-              The Roadman Cycling Podcast has crossed 100 million downloads. Across 300+
+              The Roadman Cycling Podcast has crossed 100 million downloads. Across 1,400+
               long-form episodes, Anthony has put the people who actually move performance
               forward — World Tour coaches, sports scientists, pros — on record. Every
               module in this course is built from those conversations.
