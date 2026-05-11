@@ -5,13 +5,13 @@ import { getMethodSession } from "@/lib/method/auth";
 import { MethodHeader } from "./_components/MethodHeader";
 
 export const metadata: Metadata = {
-  title: "The Roadman Method",
+  title: "The Roadman Method — A 12-Week System for Cyclists Who Are Stuck",
   description:
-    "Twelve weeks. One framework. Built on conversations with World Tour coaches and sport scientists.",
-  robots: { index: false, follow: false },
+    "Twelve weeks. Five pillars. One system. Built on 300+ conversations with World Tour coaches, sports scientists and pro cyclists. For serious amateurs who are training hard but not getting faster.",
 };
 
 const PUBLIC_PATHS: ReadonlySet<string> = new Set([
+  "/method",
   "/method/login",
   "/method/login/check-email",
   "/method/login/verify",
@@ -22,10 +22,9 @@ const PUBLIC_PATHS: ReadonlySet<string> = new Set([
 /**
  * Server-component gate for /method/*.
  *
- * Reads the request path from the `x-pathname` header (set by the proxy
- * for the route-group layout). For public paths (sales page, login flow,
- * welcome), no session is required. For everything else, no session →
- * redirect to /method/login.
+ * /method itself is the public sales page. Members go to /method/dashboard.
+ * If a signed-in member lands on the sales page, send them to the dashboard
+ * so they don't see the marketing screen they already paid for.
  */
 export default async function MethodLayout({ children }: { children: ReactNode }) {
   const hdrs = await headers();
@@ -37,18 +36,27 @@ export default async function MethodLayout({ children }: { children: ReactNode }
     redirect("/method/login");
   }
 
+  if (pathname === "/method" && session) {
+    redirect("/method/dashboard");
+  }
+
+  const isSalesPage = pathname === "/method";
+
   return (
     <div className="min-h-screen bg-charcoal text-off-white antialiased">
       <div
         aria-hidden
         className="pointer-events-none fixed inset-0 -z-10 bg-[radial-gradient(ellipse_at_top,_var(--color-deep-purple)_0%,_var(--color-charcoal)_55%)]"
       />
-      <MethodHeader sessionEmail={session?.payload.email ?? null} />
-      <main id="method-main" className="pb-24">
+      <MethodHeader
+        sessionEmail={session?.payload.email ?? null}
+        variant={isSalesPage ? "marketing" : "members"}
+      />
+      <main id="method-main" className={isSalesPage ? "" : "pb-24"}>
         {children}
       </main>
-      <footer className="border-t border-white/5 py-8 text-center text-xs text-foreground-muted">
-        <p>The Roadman Method · © Roadman Cycling. All access lifetime.</p>
+      <footer className="border-t border-white/5 py-10 text-center text-xs text-foreground-muted">
+        <p>The Roadman Method · © Roadman Cycling. Built in Ireland.</p>
       </footer>
     </div>
   );
