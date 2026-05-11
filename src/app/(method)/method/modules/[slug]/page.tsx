@@ -8,14 +8,21 @@ import { isModuleUnlocked } from "@/lib/method/access";
 import {
   METHOD_MODULES,
   METHOD_MODULE_BY_SLUG,
+  METHOD_TOTAL_MODULES,
   type MethodModule,
+  type ResourceLink,
 } from "@/lib/method/modules";
+import { getPhaseForWeek } from "@/lib/method/phases";
 import { ModuleNav } from "../../_components/ModuleNav";
 import { VideoEmbed } from "../../_components/VideoEmbed";
 import { ResourceList } from "../../_components/ResourceList";
 import { CompleteToggle } from "../../_components/CompleteToggle";
 import { DiscussionCTA } from "../../_components/DiscussionCTA";
 import { LockedModuleNotice } from "../../_components/LockedModuleNotice";
+import { PhaseBadge } from "../../_components/PhaseBadge";
+import { TrainingPeaksCallout } from "../../_components/TrainingPeaksCallout";
+import { ModulePager } from "../../_components/ModulePager";
+import { WeekProgressDots } from "../../_components/WeekProgressDots";
 
 export const dynamic = "force-dynamic";
 
@@ -41,13 +48,13 @@ export async function generateMetadata({
 /**
  * /method/modules/[slug]
  *
- * Module page template. Two-column on desktop:
- *   - Left (8 cols): video → protocol body
- *   - Right (4 cols): resources, discussion CTA, complete toggle
+ * Module page. Two-column on desktop:
+ *   - Left rail (260px): module nav (12 items, status pips)
+ *   - Right column: header → video → protocol → pager
+ *     With a sticky-ish sidebar (Complete / Resources / TP / Discuss)
+ *     on lg+ screens.
  *
- * Locked modules show LockedModuleNotice rather than the body. The
- * "mark complete" mutation is a client component; the rest is server-
- * rendered for fast first paint.
+ * Locked modules show LockedModuleNotice in place of the body.
  */
 export default async function MethodModulePage({
   params,
@@ -64,12 +71,17 @@ export default async function MethodModulePage({
   const availability = isModuleUnlocked(session.enrollment, module);
   const progress = await getProgressSummary(session.enrollment.id);
   const isComplete = progress.completedSlugs.has(module.slug);
+  const phase = getPhaseForWeek(module.weekIndex);
+  const trainingPeaksResource = module.resources.find(
+    (r): r is Extract<ResourceLink, { kind: "training-peaks" }> =>
+      r.kind === "training-peaks",
+  );
 
   return (
     <Container as="article" width="wide" className="pt-10 pb-12">
       <Link
         href="/method"
-        className="inline-flex items-center gap-2 text-sm text-foreground-muted hover:text-coral mb-8"
+        className="inline-flex items-center gap-2 text-sm text-foreground-muted hover:text-coral mb-6 transition-colors"
       >
         ← All modules
       </Link>
@@ -83,29 +95,12 @@ export default async function MethodModulePage({
           />
         </aside>
 
-        <div className="grid gap-8 lg:grid-cols-12">
-          <header className="lg:col-span-12">
-            <p className="font-heading text-sm tracking-[0.3em] text-coral mb-2">
-              WEEK {module.weekIndex.toString().padStart(2, "0")} ·{" "}
-              {module.pillar.toUpperCase()}
-            </p>
-            <div className="grid gap-6 md:grid-cols-[auto_1fr] md:items-end">
-              <span
-                className="font-heading text-[clamp(5rem,12vw,9rem)] leading-none text-coral/70 select-none"
-                aria-hidden
-              >
-                {module.weekIndex.toString().padStart(2, "0")}
-              </span>
-              <div>
-                <h1 className="font-heading uppercase leading-[0.95] text-[clamp(2.5rem,5vw,4.5rem)] mb-3">
-                  {module.title}
-                </h1>
-                <p className="text-lg text-foreground-muted max-w-2xl">
-                  {module.oneLiner}
-                </p>
-              </div>
-            </div>
-          </header>
+        <div className="grid gap-10 lg:grid-cols-12">
+          <ModuleHeader
+            module={module}
+            phase={phase}
+            completedSlugs={progress.completedSlugs}
+          />
 
           {!availability.unlocked ? (
             <LockedModuleNotice
@@ -121,11 +116,14 @@ export default async function MethodModulePage({
                 />
                 <ProtocolPlaceholder module={module} />
               </div>
-              <aside className="lg:col-span-4 space-y-6">
+              <aside className="lg:col-span-4 space-y-5">
                 <CompleteToggle
                   moduleSlug={module.slug}
                   initialComplete={isComplete}
                 />
+                {trainingPeaksResource && (
+                  <TrainingPeaksCallout resource={trainingPeaksResource} />
+                )}
                 <ResourceList resources={module.resources} />
                 <DiscussionCTA
                   moduleTitle={module.title}
@@ -135,9 +133,62 @@ export default async function MethodModulePage({
               </aside>
             </>
           )}
+
+          <div className="lg:col-span-12">
+            <ModulePager
+              currentSlug={module.slug}
+              enrollment={session.enrollment}
+            />
+          </div>
         </div>
       </div>
     </Container>
+  );
+}
+
+interface ModuleHeaderProps {
+  module: MethodModule;
+  phase: ReturnType<typeof getPhaseForWeek>;
+  completedSlugs: ReadonlySet<string>;
+}
+
+function ModuleHeader({ module, phase, completedSlugs }: ModuleHeaderProps) {
+  const week = module.weekIndex.toString().padStart(2, "0");
+  return (
+    <header className="lg:col-span-12 space-y-5">
+      <div className="flex flex-wrap items-center gap-3">
+        <PhaseBadge phase={phase} size="sm" />
+        <span className="font-heading text-[11px] tracking-[0.3em] text-foreground-muted uppercase">
+          Week {week} of {METHOD_TOTAL_MODULES.toString().padStart(2, "0")} ·{" "}
+          {module.pillar}
+        </span>
+      </div>
+      <div className="grid gap-6 md:grid-cols-[auto_1fr] md:items-end">
+        <span
+          className="font-heading text-[clamp(5rem,12vw,9rem)] leading-none text-coral/70 select-none"
+          aria-hidden
+        >
+          {week}
+        </span>
+        <div>
+          <h1 className="font-heading uppercase leading-[0.95] text-[clamp(2.5rem,5vw,4.5rem)] mb-3">
+            {module.title}
+          </h1>
+          <p className="text-lg text-foreground-muted max-w-2xl">
+            {module.oneLiner}
+          </p>
+        </div>
+      </div>
+      <div className="flex flex-wrap items-center gap-4 pt-2">
+        <WeekProgressDots
+          currentSlug={module.slug}
+          completedSlugs={completedSlugs}
+        />
+        <span className="text-[11px] text-foreground-muted">
+          {module.estimatedReadMinutes} min protocol · video + downloads
+        </span>
+      </div>
+    </header>
   );
 }
 
@@ -148,13 +199,13 @@ function ProtocolPlaceholder({ module }: { module: MethodModule }) {
     return null;
   }
   return (
-    <section className="rounded-lg border border-white/10 bg-charcoal/60 p-6 md:p-8">
+    <section className="rounded-xl border border-white/10 bg-charcoal/60 p-6 md:p-8 prose-method">
       <h2 className="font-heading uppercase tracking-wider text-2xl mb-4">
         Protocol
       </h2>
       <p className="text-foreground-muted leading-relaxed mb-3">
         Written protocol for this module is being finalised. When it
-        publishes, you'll see the full breakdown here — the work, the why,
+        publishes, you&apos;ll see the full breakdown here — the work, the why,
         and how it sits inside the twelve-week build.
       </p>
       <p className="text-sm text-foreground-muted">
