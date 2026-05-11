@@ -34,7 +34,12 @@ const DAY_MS = 24 * 60 * 60 * 1000;
  * All gating happens in the layout; this page assumes a session.
  */
 export default async function MethodDashboard() {
-  const session = await getMethodSession();
+  let session: Awaited<ReturnType<typeof getMethodSession>> = null;
+  try {
+    session = await getMethodSession();
+  } catch {
+    // DB or env error — treat as unauthenticated.
+  }
   if (!session) redirect("/method/login");
 
   const enrollment = session.enrollment;

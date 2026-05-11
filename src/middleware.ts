@@ -18,7 +18,18 @@ import { NextResponse, type NextRequest } from "next/server";
  * for rendering decisions (e.g. sales vs members header variant).
  */
 
-const PUBLIC_PATHS: ReadonlySet<string> = new Set([
+/**
+ * Paths that don't require a session cookie. The /method root is the
+ * sales page — it's public, but it's handled by its own explicit check
+ * above (authenticated → dashboard), so it's listed here too.
+ *
+ * IMPORTANT: only list leaf paths and their direct children. The
+ * `isPublicPath` helper below also matches child segments (e.g.
+ * /method/login/check-email matches because /method/login is listed),
+ * but we deliberately exclude "/method" from the prefix list to avoid
+ * treating /method/dashboard, /method/account etc. as public.
+ */
+const PUBLIC_EXACT: ReadonlySet<string> = new Set([
   "/method",
   "/method/login",
   "/method/login/check-email",
@@ -26,6 +37,16 @@ const PUBLIC_PATHS: ReadonlySet<string> = new Set([
   "/method/checkout",
   "/method/welcome",
 ]);
+
+/**
+ * Prefixes whose child segments are also public. "/method" itself is
+ * NOT here — only specific subtrees that need prefix matching.
+ */
+const PUBLIC_PREFIXES: readonly string[] = [
+  "/method/login",
+  "/method/checkout",
+  "/method/welcome",
+];
 
 const SESSION_COOKIE = "method_session";
 
@@ -53,9 +74,9 @@ export function middleware(request: NextRequest) {
 }
 
 function isPublicPath(pathname: string): boolean {
-  if (PUBLIC_PATHS.has(pathname)) return true;
-  for (const p of PUBLIC_PATHS) {
-    if (pathname.startsWith(`${p}/`)) return true;
+  if (PUBLIC_EXACT.has(pathname)) return true;
+  for (const prefix of PUBLIC_PREFIXES) {
+    if (pathname.startsWith(`${prefix}/`)) return true;
   }
   return false;
 }

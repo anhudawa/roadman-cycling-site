@@ -21,7 +21,17 @@ export const metadata: Metadata = {
 export default async function MethodLayout({ children }: { children: ReactNode }) {
   const hdrs = await headers();
   const pathname = hdrs.get("x-pathname") ?? "/method";
-  const session = await getMethodSession();
+
+  // Safety: if getMethodSession() throws (e.g. DB down, env missing),
+  // degrade to "no session" so the layout still renders. Individual
+  // pages do their own session checks and redirect as needed.
+  let session: Awaited<ReturnType<typeof getMethodSession>> = null;
+  try {
+    session = await getMethodSession();
+  } catch {
+    // Swallow — treat as unauthenticated.
+  }
+
   const isSalesPage = pathname === "/method";
 
   return (

@@ -179,21 +179,40 @@ function verifySessionToken(token: string): MethodSessionPayload | null {
   return payload;
 }
 
-export async function setMethodSessionCookie(enrollment: MethodEnrollment): Promise<void> {
+/**
+ * Sign a session JWT for an enrollment. Returns the raw JWT string plus
+ * cookie attributes so callers can attach it to any response object.
+ * Prefer this over `setMethodSessionCookie` in route handlers where
+ * you are building your own NextResponse (e.g. redirects).
+ */
+export function signSessionToken(enrollment: MethodEnrollment): {
+  jwt: string;
+  maxAge: number;
+  secure: boolean;
+} {
   const now = Math.floor(Date.now() / 1000);
-  const token = signSessionPayload({
+  const jwt = signSessionPayload({
     eid: enrollment.id,
     email: enrollment.email,
     iat: now,
     exp: now + SESSION_TTL_SECONDS,
   });
-  const store = await cookies();
-  store.set(METHOD_SESSION_COOKIE, token, {
-    httpOnly: true,
+  return {
+    jwt,
+    maxAge: SESSION_TTL_SECONDS,
     secure: process.env.NODE_ENV === "production",
+  };
+}
+
+export async function setMethodSessionCookie(enrollment: MethodEnrollment): Promise<void> {
+  const { jwt, maxAge, secure } = signSessionToken(enrollment);
+  const store = await cookies();
+  store.set(METHOD_SESSION_COOKIE, jwt, {
+    httpOnly: true,
+    secure,
     sameSite: "lax",
     path: "/",
-    maxAge: SESSION_TTL_SECONDS,
+    maxAge,
   });
 }
 
