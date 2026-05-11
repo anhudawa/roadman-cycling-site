@@ -59,7 +59,7 @@ export function Pricing() {
               price={COURSE_PRICE_STANDARD_USD}
               tagline="The full course. Self-directed."
               includes={STANDARD_INCLUDES}
-              ctaLabel="Get The Method — Standard"
+              ctaLabel="Enrol Now — Standard"
               ctaHref="/method/checkout?tier=standard"
               recommended={false}
             />
@@ -70,7 +70,7 @@ export function Pricing() {
               price={COURSE_PRICE_PREMIUM_USD}
               tagline="Course + your own TrainingPeaks plan."
               includes={PREMIUM_INCLUDES}
-              ctaLabel="Get The Method — Premium"
+              ctaLabel="Enrol Now — Premium"
               ctaHref="/method/checkout?tier=premium"
               recommended
             />

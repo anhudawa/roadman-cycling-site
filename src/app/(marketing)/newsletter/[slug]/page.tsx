@@ -1,20 +1,17 @@
 import type { Metadata } from "next";
-import { notFound } from "next/navigation";
+import { redirect } from "next/navigation";
 import { Header, Footer, Section, Container } from "@/components/layout";
 import { EmailCapture } from "@/components/features/conversion/EmailCapture";
-import {
-  fetchNewsletterIssues,
-  fetchNewsletterIssueBySlug,
-} from "@/lib/integrations/beehiiv";
+import { fetchNewsletterIssueBySlug } from "@/lib/integrations/beehiiv";
 
 interface Props {
   params: Promise<{ slug: string }>;
 }
 
-export async function generateStaticParams() {
-  const issues = await fetchNewsletterIssues(100);
-  return issues.map((issue) => ({ slug: issue.slug }));
-}
+// Newsletter slug content depends on a live Beehiiv fetch that filters out
+// issues whose web content hasn't been generated. Pre-listing slugs here
+// promised pages we can't actually render; let them resolve on demand instead.
+export const dynamic = "force-dynamic";
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params;
@@ -44,12 +41,25 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   };
 }
 
-export const revalidate = 3600; // Revalidate every hour
+function hasMeaningfulContent(html: string | null): boolean {
+  if (!html) return false;
+  // Strip tags + entities and check there's actual readable copy. Beehiiv has
+  // shipped issues where the post exists but `content.free.web` is an empty
+  // wrapper like `<div></div>` — those used to render as a blank article body
+  // below the hero. Redirect those to /newsletter rather than show nothing.
+  const text = html
+    .replace(/<style[\s\S]*?<\/style>/gi, "")
+    .replace(/<script[\s\S]*?<\/script>/gi, "")
+    .replace(/<[^>]+>/g, "")
+    .replace(/&nbsp;|&#160;/g, " ")
+    .trim();
+  return text.length > 20;
+}
 
 export default async function NewsletterIssuePage({ params }: Props) {
   const { slug } = await params;
   const issue = await fetchNewsletterIssueBySlug(slug);
-  if (!issue || !issue.content) notFound();
+  if (!issue || !hasMeaningfulContent(issue.content)) redirect("/newsletter");
 
   const publishDate = issue.publishDate
     ? new Date(issue.publishDate).toLocaleDateString("en-GB", {
