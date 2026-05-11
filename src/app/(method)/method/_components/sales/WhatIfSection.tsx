@@ -55,9 +55,9 @@ export function WhatIfSection() {
         <Reveal delay={280}>
           <blockquote className="mt-20 border-l-2 border-coral pl-6 md:pl-10 max-w-[65ch]">
             <p className="font-heading uppercase text-2xl md:text-3xl leading-tight text-off-white">
-              "The unglamorous reality of high performance — it's the compounding effect
-              of hundreds and thousands of good decisions over the course of weeks,
-              months, and years."
+              "Doing things right involves training in an ordinary way with great
+              consistency — and amazingly, that prepares us for extraordinary
+              performances."
             </p>
             <footer className="mt-4 text-sm text-foreground-muted">
               <span className="text-coral">—</span> Professor Stephen Seiler, on the
