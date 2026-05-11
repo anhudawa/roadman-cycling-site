@@ -6,6 +6,8 @@ import { getProgressSummary } from "@/lib/method/progress";
 import { LogoutButton } from "../_components/LogoutButton";
 import { ResetProgressButton } from "../_components/ResetProgressButton";
 
+export const dynamic = "force-dynamic";
+
 export const metadata: Metadata = {
   title: "Account · The Method",
   robots: { index: false, follow: false },

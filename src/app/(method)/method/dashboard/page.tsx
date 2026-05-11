@@ -18,6 +18,8 @@ import { QuickStats } from "../_components/QuickStats";
 import { PhaseSection } from "../_components/PhaseSection";
 import { RecentActivity } from "../_components/RecentActivity";
 
+export const dynamic = "force-dynamic";
+
 const DAY_MS = 24 * 60 * 60 * 1000;
 
 /**
