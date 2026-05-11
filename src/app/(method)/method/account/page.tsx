@@ -34,7 +34,7 @@ export default async function MethodAccountPage() {
   const tier = inferTier(enrollment.amountCents);
   const billingPortalUrl = process.env.STRIPE_METHOD_BILLING_PORTAL_URL ?? null;
   const supportEmail =
-    process.env.METHOD_SUPPORT_EMAIL ?? "support@roadmancycling.com";
+    process.env.METHOD_SUPPORT_EMAIL ?? "sarah@roadmancycling.com";
 
   return (
     <Container as="section" width="narrow" className="py-14 md:py-20 space-y-12">

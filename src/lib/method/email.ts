@@ -15,7 +15,7 @@ import { Resend } from "resend";
 const FROM = "The Roadman Method <method@roadmancycling.com>";
 
 function getReplyTo(): string {
-  return process.env.METHOD_SUPPORT_EMAIL ?? "support@roadmancycling.com";
+  return process.env.METHOD_SUPPORT_EMAIL ?? "sarah@roadmancycling.com";
 }
 
 function getSiteUrl(): string {

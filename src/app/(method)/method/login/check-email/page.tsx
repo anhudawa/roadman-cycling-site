@@ -73,10 +73,10 @@ export default async function CheckEmailPage({
       <p className="mt-10 text-xs text-foreground-muted text-center">
         Wrong email at checkout? Write to{" "}
         <a
-          href="mailto:support@roadmancycling.com"
+          href="mailto:sarah@roadmancycling.com"
           className="text-coral underline-offset-4 hover:underline"
         >
-          support@roadmancycling.com
+          sarah@roadmancycling.com
         </a>{" "}
         and we&apos;ll move your access.
       </p>

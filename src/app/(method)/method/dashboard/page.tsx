@@ -184,7 +184,7 @@ function SupportCard() {
           Manage your account →
         </Link>
         <a
-          href="mailto:support@roadmancycling.com"
+          href="mailto:sarah@roadmancycling.com"
           className="text-coral hover:text-coral-hover underline-offset-4 hover:underline"
         >
           Email support →

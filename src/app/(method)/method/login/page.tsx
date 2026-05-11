@@ -75,10 +75,10 @@ export default async function MethodLoginPage({
         <p>
           Need a hand?{" "}
           <a
-            href="mailto:support@roadmancycling.com"
+            href="mailto:sarah@roadmancycling.com"
             className="text-coral underline-offset-4 hover:underline"
           >
-            support@roadmancycling.com
+            sarah@roadmancycling.com
           </a>
         </p>
       </div>
