@@ -281,22 +281,23 @@ export default function GoLandingPage() {
         />
 
         {/* Logo mark — brand identity, not navigation. Unlinked so it
-            doesn't compete with the CTA as an exit. Decorative role. */}
-        <div className="absolute top-5 left-5 md:top-7 md:left-8 z-10">
+            doesn't compete with the CTA as an exit. Decorative role.
+            Drop-shadow guarantees contrast against the purple gradient. */}
+        <div className="absolute top-5 left-5 md:top-7 md:left-8 z-20">
           <Image
             src="/images/logo-white.png"
             alt="Roadman Cycling"
             width={763}
             height={345}
             priority
-            sizes="(min-width: 768px) 112px, 84px"
-            className="w-[84px] md:w-[112px] h-auto select-none"
+            sizes="(min-width: 768px) 130px, 100px"
+            className="w-[100px] md:w-[130px] h-auto select-none drop-shadow-[0_2px_8px_rgba(0,0,0,0.6)]"
           />
         </div>
 
         <Container width="narrow" className="relative text-center">
           <p className="text-coral font-heading text-[11px] md:text-xs tracking-[0.3em] mb-6">
-            FOR CYCLISTS WHO REFUSE TO PLATEAU
+            FOR CYCLISTS TRAINING 6&ndash;12 HOURS A WEEK
           </p>
           <h1 className="font-heading text-off-white mb-6 leading-[0.95]">
             <span
@@ -319,9 +320,10 @@ export default function GoLandingPage() {
             </span>
           </h1>
           <p className="text-foreground-muted text-base md:text-xl leading-relaxed mb-8 max-w-xl mx-auto">
-            Twelve questions. Four minutes. A specific answer for why your
-            progress has stalled &mdash; and the exact fix, written for riders
-            who train 6 to 12 hours a week around a real life.
+            In four minutes you&rsquo;ll have a specific diagnosis for why your
+            FTP has stalled &mdash; and the three changes to make this week.
+            Built from on-the-record conversations with World Tour coaches and
+            the sports scientists their riders trust.
           </p>
 
           <Link
@@ -330,7 +332,7 @@ export default function GoLandingPage() {
             data-track="go_hero_cta"
             className={ctaButtonClass}
           >
-            FIND OUT WHY <CtaArrow />
+            GET MY FREE DIAGNOSIS <CtaArrow />
           </Link>
 
           <div className="flex flex-wrap items-center justify-center gap-x-4 gap-y-2 text-foreground-subtle text-xs md:text-sm mt-5 px-4">
@@ -339,6 +341,52 @@ export default function GoLandingPage() {
             <span className="whitespace-nowrap">No card</span>
             <span className="opacity-40">&middot;</span>
             <span className="whitespace-nowrap">4 minutes</span>
+          </div>
+
+          {/* Value stack — enriches the CTA area for cold traffic so the
+              click feels like it leads to something concrete, not a quiz
+              for the sake of a quiz. Subtle styling on purpose: this is a
+              footnote to the CTA, not a new section. */}
+          <div className="mt-7 md:mt-8 mx-auto max-w-md text-left">
+            <p className="text-foreground-subtle font-heading text-[10px] md:text-[11px] tracking-[0.28em] text-center mb-3">
+              YOUR RESULT INCLUDES
+            </p>
+            <ul className="space-y-1.5 list-none p-0 text-foreground-muted text-[13px] md:text-sm leading-relaxed">
+              <li className="flex items-start gap-2.5">
+                <span
+                  aria-hidden="true"
+                  className="mt-1.5 inline-block w-1.5 h-1.5 rounded-full bg-coral shrink-0"
+                />
+                <span>
+                  Your specific plateau type &mdash; under-recovered,
+                  grey-zone, strength gap or fuelling deficit
+                </span>
+              </li>
+              <li className="flex items-start gap-2.5">
+                <span
+                  aria-hidden="true"
+                  className="mt-1.5 inline-block w-1.5 h-1.5 rounded-full bg-coral shrink-0"
+                />
+                <span>The root cause behind it, in plain English</span>
+              </li>
+              <li className="flex items-start gap-2.5">
+                <span
+                  aria-hidden="true"
+                  className="mt-1.5 inline-block w-1.5 h-1.5 rounded-full bg-coral shrink-0"
+                />
+                <span>Three changes to make this week</span>
+              </li>
+              <li className="flex items-start gap-2.5">
+                <span
+                  aria-hidden="true"
+                  className="mt-1.5 inline-block w-1.5 h-1.5 rounded-full bg-coral shrink-0"
+                />
+                <span>
+                  Why the generic plans you&rsquo;ve tried haven&rsquo;t moved
+                  your FTP
+                </span>
+              </li>
+            </ul>
           </div>
 
           {/* Trustpilot rating — cold-traffic credibility next to the CTA.
@@ -505,7 +553,7 @@ export default function GoLandingPage() {
               data-track="go_four_reasons_cta"
               className={ctaButtonClass}
             >
-              FIND OUT WHICH IS MINE <CtaArrow />
+              GET MY FREE DIAGNOSIS <CtaArrow />
             </Link>
             <p className="text-foreground-subtle text-xs mt-4">
               4 minutes &middot; No card
@@ -517,138 +565,22 @@ export default function GoLandingPage() {
       <div className="gradient-divider" />
 
       {/* ── Social proof ─────────────────────────────────────────────── */}
+      {/* Order is deliberate for cold traffic: lead with member outcomes
+          ("people like me got results"), then back it with podcast scale
+          and named experts as supporting credibility. The Trustpilot
+          strip closes the section as the third-party check. */}
       <Section background="deep-purple" grain>
         <Container width="default">
+          {/* Members — in their own words (lead) */}
           <p className="text-coral font-heading text-[11px] md:text-xs tracking-[0.3em] text-center mb-3">
-            WHY TRUST THIS
+            REAL RIDERS &middot; REAL CHANGES
           </p>
           <h2
             className="font-heading text-off-white text-center mb-10 md:mb-12"
             style={{ fontSize: "clamp(1.875rem, 4.5vw, 3rem)" }}
           >
-            THE WORLD&rsquo;S LARGEST CYCLING PERFORMANCE PODCAST
-          </h2>
-
-          {/* Stat row */}
-          <dl className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6 mb-8 max-w-3xl mx-auto">
-            <div className="text-center">
-              <dt className="font-heading text-3xl md:text-5xl text-coral leading-none">
-                100M+
-              </dt>
-              <dd className="text-foreground-subtle text-xs md:text-sm mt-2">
-                Podcast downloads
-              </dd>
-              <dd className="mt-2 flex items-center justify-center gap-2 text-off-white/55">
-                <a
-                  href={PODCAST.appleUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  aria-label="Listen on Apple Podcasts"
-                  className="hover:text-off-white transition-colors"
-                >
-                  <ApplePodcastsIcon size={16} />
-                </a>
-                <a
-                  href={PODCAST.spotifyUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  aria-label="Listen on Spotify"
-                  className="hover:text-off-white transition-colors"
-                >
-                  <SpotifyIcon size={16} />
-                </a>
-              </dd>
-            </div>
-            <div className="text-center">
-              <dt className="font-heading text-3xl md:text-5xl text-coral leading-none">
-                {BRAND_STATS.episodeCountLabel}
-              </dt>
-              <dd className="text-foreground-subtle text-xs md:text-sm mt-2">
-                Episodes recorded
-              </dd>
-            </div>
-            <div className="text-center">
-              <dt className="font-heading text-3xl md:text-5xl text-coral leading-none">
-                {BRAND_STATS.monthlyListenersLabel}
-              </dt>
-              <dd className="text-foreground-subtle text-xs md:text-sm mt-2">
-                Monthly listeners
-              </dd>
-            </div>
-            <div className="text-center">
-              <dt className="font-heading text-3xl md:text-5xl text-coral leading-none">
-                {BRAND_STATS.countriesReachedLabel}
-              </dt>
-              <dd className="text-foreground-subtle text-xs md:text-sm mt-2">
-                Countries
-              </dd>
-            </div>
-          </dl>
-
-          {/* Named experts */}
-          <p className="text-foreground-muted text-center max-w-2xl mx-auto leading-relaxed mb-14 md:mb-16 text-sm md:text-base">
-            Built on on-the-record conversations with{" "}
-            <span className="text-off-white">Prof. Stephen Seiler</span>,{" "}
-            <span className="text-off-white">Dan Lorang</span>,{" "}
-            <span className="text-off-white">Dr. David Dunne</span> and the
-            coaches behind the riders winning at the World Tour. The
-            diagnostic is that pattern recognition, distilled.
-          </p>
-
-          {/* Prominent Trustpilot strip */}
-          <a
-            href="https://www.trustpilot.com/review/roadmancycling.com"
-            target="_blank"
-            rel="noopener noreferrer"
-            data-track="go_trustpilot_link"
-            className="
-              group block max-w-xl mx-auto mb-16 md:mb-20
-              rounded-2xl border border-white/15 bg-white/[0.04]
-              hover:bg-white/[0.06] hover:border-white/25
-              transition-all px-6 py-7 md:px-8 md:py-8
-              shadow-[0_10px_30px_rgba(0,0,0,0.25)]
-            "
-          >
-            <div className="flex flex-col items-center gap-3 text-center">
-              <p className="font-heading text-foreground-muted text-[10px] md:text-xs tracking-[0.3em]">
-                REVIEWED ON TRUSTPILOT
-              </p>
-              <div className="flex items-center gap-1.5 md:gap-2">
-                <TrustpilotStar size={26} />
-                <TrustpilotStar size={26} />
-                <TrustpilotStar size={26} />
-                <TrustpilotStar size={26} />
-                <TrustpilotStar size={26} />
-              </div>
-              <div className="flex items-baseline gap-3 mt-1">
-                <span className="font-heading text-off-white text-5xl md:text-6xl leading-none">
-                  4.5
-                </span>
-                <span className="font-heading text-coral text-lg md:text-xl tracking-[0.2em]">
-                  EXCELLENT
-                </span>
-              </div>
-              <p className="text-foreground-muted text-sm">
-                Based on{" "}
-                <span className="text-off-white font-medium">16 reviews</span>{" "}
-                on Trustpilot
-                <span className="text-coral ml-1.5 group-hover:translate-x-0.5 inline-block transition-transform">
-                  →
-                </span>
-              </p>
-            </div>
-          </a>
-
-          {/* Members — in their own words */}
-          <p className="text-coral font-heading text-[11px] md:text-xs tracking-[0.3em] text-center mb-3">
-            IN THEIR OWN WORDS
-          </p>
-          <h3
-            className="font-heading text-off-white text-center mb-10 md:mb-12"
-            style={{ fontSize: "clamp(1.5rem, 3.5vw, 2.25rem)" }}
-          >
             WHAT HAPPENS WHEN THE PLAN FITS THE LIFE
-          </h3>
+          </h2>
 
           {/* Featured testimonial — Damien */}
           <figure
@@ -739,6 +671,131 @@ export default function GoLandingPage() {
               <span aria-hidden="true">→</span>
             </a>
           </div>
+
+          {/* Divider between member outcomes (lead) and the podcast
+              credibility block (support). */}
+          <div className="mx-auto max-w-3xl mt-16 md:mt-20 mb-12 md:mb-14 h-px bg-gradient-to-r from-transparent via-white/15 to-transparent" />
+
+          {/* Podcast scale + experts — supporting credibility */}
+          <p className="text-coral font-heading text-[11px] md:text-xs tracking-[0.3em] text-center mb-3">
+            THE CREDENTIALS BEHIND THE METHOD
+          </p>
+          <h3
+            className="font-heading text-off-white text-center mb-10 md:mb-12"
+            style={{ fontSize: "clamp(1.5rem, 3.5vw, 2.25rem)" }}
+          >
+            THE WORLD&rsquo;S LARGEST CYCLING PERFORMANCE PODCAST
+          </h3>
+
+          {/* Stat row */}
+          <dl className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6 mb-8 max-w-3xl mx-auto">
+            <div className="text-center">
+              <dt className="font-heading text-3xl md:text-5xl text-coral leading-none">
+                100M+
+              </dt>
+              <dd className="text-foreground-subtle text-xs md:text-sm mt-2">
+                Podcast downloads
+              </dd>
+              <dd className="mt-2 flex items-center justify-center gap-2 text-off-white/55">
+                <a
+                  href={PODCAST.appleUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="Listen on Apple Podcasts"
+                  className="hover:text-off-white transition-colors"
+                >
+                  <ApplePodcastsIcon size={16} />
+                </a>
+                <a
+                  href={PODCAST.spotifyUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="Listen on Spotify"
+                  className="hover:text-off-white transition-colors"
+                >
+                  <SpotifyIcon size={16} />
+                </a>
+              </dd>
+            </div>
+            <div className="text-center">
+              <dt className="font-heading text-3xl md:text-5xl text-coral leading-none">
+                {BRAND_STATS.episodeCountLabel}
+              </dt>
+              <dd className="text-foreground-subtle text-xs md:text-sm mt-2">
+                Episodes recorded
+              </dd>
+            </div>
+            <div className="text-center">
+              <dt className="font-heading text-3xl md:text-5xl text-coral leading-none">
+                {BRAND_STATS.monthlyListenersLabel}
+              </dt>
+              <dd className="text-foreground-subtle text-xs md:text-sm mt-2">
+                Monthly listeners
+              </dd>
+            </div>
+            <div className="text-center">
+              <dt className="font-heading text-3xl md:text-5xl text-coral leading-none">
+                {BRAND_STATS.countriesReachedLabel}
+              </dt>
+              <dd className="text-foreground-subtle text-xs md:text-sm mt-2">
+                Countries
+              </dd>
+            </div>
+          </dl>
+
+          {/* Named experts */}
+          <p className="text-foreground-muted text-center max-w-2xl mx-auto leading-relaxed mb-14 md:mb-16 text-sm md:text-base">
+            Built on on-the-record conversations with{" "}
+            <span className="text-off-white">Prof. Stephen Seiler</span>,{" "}
+            <span className="text-off-white">Dan Lorang</span>,{" "}
+            <span className="text-off-white">Dr. David Dunne</span> and the
+            coaches behind the riders winning at the World Tour. The
+            diagnostic is that pattern recognition, distilled.
+          </p>
+
+          {/* Prominent Trustpilot strip */}
+          <a
+            href="https://www.trustpilot.com/review/roadmancycling.com"
+            target="_blank"
+            rel="noopener noreferrer"
+            data-track="go_trustpilot_link"
+            className="
+              group block max-w-xl mx-auto
+              rounded-2xl border border-white/15 bg-white/[0.04]
+              hover:bg-white/[0.06] hover:border-white/25
+              transition-all px-6 py-7 md:px-8 md:py-8
+              shadow-[0_10px_30px_rgba(0,0,0,0.25)]
+            "
+          >
+            <div className="flex flex-col items-center gap-3 text-center">
+              <p className="font-heading text-foreground-muted text-[10px] md:text-xs tracking-[0.3em]">
+                REVIEWED ON TRUSTPILOT
+              </p>
+              <div className="flex items-center gap-1.5 md:gap-2">
+                <TrustpilotStar size={26} />
+                <TrustpilotStar size={26} />
+                <TrustpilotStar size={26} />
+                <TrustpilotStar size={26} />
+                <TrustpilotStar size={26} />
+              </div>
+              <div className="flex items-baseline gap-3 mt-1">
+                <span className="font-heading text-off-white text-5xl md:text-6xl leading-none">
+                  4.5
+                </span>
+                <span className="font-heading text-coral text-lg md:text-xl tracking-[0.2em]">
+                  EXCELLENT
+                </span>
+              </div>
+              <p className="text-foreground-muted text-sm">
+                Based on{" "}
+                <span className="text-off-white font-medium">16 reviews</span>{" "}
+                on Trustpilot
+                <span className="text-coral ml-1.5 group-hover:translate-x-0.5 inline-block transition-transform">
+                  →
+                </span>
+              </p>
+            </div>
+          </a>
         </Container>
       </Section>
 
@@ -772,7 +829,7 @@ export default function GoLandingPage() {
             data-track="go_final_cta"
             className={ctaButtonClass}
           >
-            FIND OUT WHY <CtaArrow />
+            GET MY FREE DIAGNOSIS <CtaArrow />
           </Link>
           <p className="text-foreground-subtle text-xs mt-5">
             Free &middot; No card &middot; 4 minutes &middot; Email only when
@@ -786,14 +843,18 @@ export default function GoLandingPage() {
         <Container width="default">
           <div className="flex flex-col items-center gap-3 text-center">
             {/* Escape hatch for skeptics — lets them verify the brand
-                without competing with the CTA. External-style link by
-                intent: opens the main site in the same tab. */}
-            <Link
-              href="/"
+                without losing the /go tab. New-tab on purpose: cold
+                traffic can sanity-check Roadman is a real thing while
+                their CTA stays one click away. */}
+            <a
+              href={SITE_ORIGIN}
+              target="_blank"
+              rel="noopener noreferrer"
+              data-track="go_footer_site_link"
               className="text-foreground-muted text-xs tracking-[0.18em] uppercase hover:text-coral transition-colors"
             >
               {SITE_ORIGIN.replace(/^https?:\/\//, "")}
-            </Link>
+            </a>
             <div className="flex flex-col sm:flex-row items-center justify-between gap-3 w-full text-foreground-subtle text-xs">
               <p>
                 &copy; {new Date().getFullYear()} Roadman Cycling &middot;{" "}
