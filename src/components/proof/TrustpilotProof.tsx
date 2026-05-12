@@ -40,12 +40,17 @@ interface RatingHeaderProps {
   /** When true, renders the score + count + Trustpilot link compactly
    *  with no eyebrow or surrounding heading copy. */
   bare?: boolean;
+  /** When true, omits the "based on N reviews" suffix. The current
+   *  review count (16) reads as weak alongside other proof points like
+   *  100M+ podcast downloads, so PPC/cold-traffic surfaces hide it. */
+  hideCount?: boolean;
 }
 
 /** Stars + numeric score + review count + link to Trustpilot. */
 export function TrustpilotRating({
   align = "center",
   bare = false,
+  hideCount = false,
 }: RatingHeaderProps) {
   const alignClass = align === "center" ? "items-center text-center" : "items-start text-left";
   return (
@@ -64,17 +69,28 @@ export function TrustpilotRating({
         <span className="font-heading text-2xl tracking-wide mr-2 align-middle">
           {TRUSTPILOT.rating.toFixed(1)}
         </span>
-        <span className="text-foreground-muted">
-          {TRUSTPILOT.tierLabel} · based on{" "}
+        {hideCount ? (
           <a
             href={TRUSTPILOT.profileUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="text-coral hover:text-coral/80 underline-offset-2 hover:underline"
+            className="text-foreground-muted hover:text-off-white underline-offset-2 hover:underline"
           >
-            {TRUSTPILOT.reviewCount} reviews on Trustpilot
+            {TRUSTPILOT.tierLabel} on Trustpilot
           </a>
-        </span>
+        ) : (
+          <span className="text-foreground-muted">
+            {TRUSTPILOT.tierLabel} · based on{" "}
+            <a
+              href={TRUSTPILOT.profileUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-coral hover:text-coral/80 underline-offset-2 hover:underline"
+            >
+              {TRUSTPILOT.reviewCount} reviews on Trustpilot
+            </a>
+          </span>
+        )}
       </p>
     </div>
   );
@@ -238,13 +254,15 @@ export function TrustpilotProof({
 export function TrustpilotBadge({
   className = "",
   align = "center",
+  hideCount = false,
 }: {
   className?: string;
   align?: "left" | "center";
+  hideCount?: boolean;
 }) {
   return (
     <div className={className}>
-      <TrustpilotRating align={align} bare />
+      <TrustpilotRating align={align} bare hideCount={hideCount} />
     </div>
   );
 }

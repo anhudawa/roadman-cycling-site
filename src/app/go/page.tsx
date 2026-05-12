@@ -425,7 +425,7 @@ export default function GoLandingPage() {
           {/* Trustpilot rating — cold-traffic credibility next to the CTA.
               Pulls the live aggregate (rating, count) from /lib/trustpilot. */}
           <div className="mt-7 md:mt-8 flex justify-center">
-            <TrustpilotBadge align="center" />
+            <TrustpilotBadge align="center" hideCount />
           </div>
 
           {/* Built-by row — names the author and the experts behind the
