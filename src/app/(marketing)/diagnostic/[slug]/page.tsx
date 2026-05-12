@@ -7,7 +7,7 @@ import { ScrollReveal } from "@/components/ui";
 import { maskEmail } from "@/lib/admin/events-store";
 import { getSubmissionBySlug } from "@/lib/diagnostic/store";
 import { CLOSE_TO_BREAKTHROUGH, labelFor } from "@/lib/diagnostic/profiles";
-import { resolveBookingUrl, resolveCta } from "@/lib/diagnostic/config";
+import { resolveCta } from "@/lib/diagnostic/config";
 import { ResultsAnalytics } from "@/components/features/diagnostic/ResultsAnalytics";
 import { ShareButton } from "@/components/features/diagnostic/ShareButton";
 import { MetaPixel } from "@/components/features/diagnostic/MetaPixel";
@@ -67,12 +67,13 @@ export default async function DiagnosticResultsPage({
     isCloseToBreakthrough
   );
 
-  // Close-to-breakthrough always routes to a direct call. Otherwise
-  // use the per-profile matrix from §12.
+  // Every result — profile-specific or close-to-breakthrough —
+  // routes to the Not Done Yet sales page. Direct call bookings were
+  // retired here because they don't scale at diagnostic volume.
   const cta = isCloseToBreakthrough
     ? {
-        primaryLabel: "Book a 15-minute call with Anthony",
-        primaryHref: resolveBookingUrl(),
+        primaryLabel: "Try Not Done Yet free for 7 days",
+        primaryHref: "/coaching",
         secondaryLabel: "",
         secondaryHref: "",
       }
@@ -225,13 +226,103 @@ export default async function DiagnosticResultsPage({
           </Container>
         </Section>
 
-        {/* ── CTA + secondary ────────────────────────── */}
+        {/* ── Inside Not Done Yet ────────────────────── */}
+        {/* The hard offer. The personalised handoff sits in YOUR NEXT
+            MOVE below this — this section just lays out pricing, the
+            trial, and what's inside, so the rider isn't clicking a CTA
+            without knowing the price. */}
         <Section background="charcoal">
+          <Container width="narrow">
+            <ScrollReveal direction="up">
+              <p className="text-coral font-heading text-xs tracking-widest mb-3">
+                THE SYSTEM BUILT FOR THIS
+              </p>
+              <h2 className="font-heading text-off-white text-2xl md:text-3xl mb-4">
+                INSIDE NOT DONE YET
+              </h2>
+              <p className="text-off-white/90 leading-relaxed mb-8">
+                Not Done Yet is the coaching system most riders on this
+                diagnostic actually need — the diagnosis above, applied
+                week after week with someone watching the file.
+              </p>
+            </ScrollReveal>
+
+            <ScrollReveal direction="up" delay={0.1}>
+              <div className="rounded-xl border border-coral/30 bg-coral/5 p-6 md:p-8 mb-8">
+                <div className="flex flex-col sm:flex-row sm:items-baseline sm:justify-between gap-2 mb-2">
+                  <p className="font-heading text-off-white text-3xl md:text-4xl">
+                    $195
+                    <span className="text-foreground-muted text-lg font-normal">
+                      {" "}
+                      / month USD
+                    </span>
+                  </p>
+                  <p className="text-coral font-heading tracking-widest text-sm">
+                    7-DAY FREE TRIAL
+                  </p>
+                </div>
+                <p className="text-foreground-muted text-sm">
+                  Cancel anytime. No contracts.
+                </p>
+              </div>
+            </ScrollReveal>
+
+            <ScrollReveal direction="up" delay={0.2}>
+              <p className="font-heading text-off-white text-lg mb-4 tracking-wide">
+                WHAT&rsquo;S IN IT
+              </p>
+              <ul className="space-y-3 text-off-white/90 leading-relaxed mb-10">
+                {[
+                  "Personalised TrainingPeaks plan, written for your diagnosis — not a template",
+                  "Weekly coaching call with Anthony — your week reviewed, next week planned",
+                  "Cycling-specific S&C roadmap, paired with the bike work",
+                  "Nutrition framework and weekly check-ins on fuelling and race weight",
+                  "Recovery, sleep and HRV protocols sitting alongside the plan",
+                  "A private community of riders running the same system — not beginners",
+                ].map((item) => (
+                  <li key={item} className="flex gap-3">
+                    <span
+                      aria-hidden="true"
+                      className="text-coral font-heading shrink-0 mt-0.5"
+                    >
+                      →
+                    </span>
+                    <span>{item}</span>
+                  </li>
+                ))}
+              </ul>
+            </ScrollReveal>
+
+            <ScrollReveal direction="up" delay={0.3}>
+              <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 rounded-lg border border-white/10 bg-background-elevated p-6">
+                <div>
+                  <p className="font-heading text-off-white text-lg leading-tight">
+                    Try the system for 7 days. No charge.
+                  </p>
+                  <p className="text-foreground-muted text-sm mt-1">
+                    If it&rsquo;s not the structure you need, walk away.
+                  </p>
+                </div>
+                <Link
+                  href="/coaching"
+                  data-cta="ndy-pitch"
+                  data-profile={submission.primaryProfile}
+                  className="shrink-0 font-heading tracking-wider bg-coral hover:bg-coral-hover text-off-white px-6 py-3 rounded-md transition-colors cursor-pointer text-sm md:text-base whitespace-nowrap"
+                >
+                  TRY NOT DONE YET FREE
+                </Link>
+              </div>
+            </ScrollReveal>
+          </Container>
+        </Section>
+
+        {/* ── CTA + secondary ────────────────────────── */}
+        <Section background="deep-purple" grain>
           <Container width="narrow" className="text-center space-y-6">
             <h2 className="font-heading text-off-white text-2xl md:text-3xl">
               YOUR NEXT MOVE
             </h2>
-            <p className="text-foreground-muted leading-relaxed max-w-xl mx-auto">
+            <p className="text-off-white/90 leading-relaxed max-w-xl mx-auto">
               {breakdown.nextMove}
             </p>
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4 pt-4">

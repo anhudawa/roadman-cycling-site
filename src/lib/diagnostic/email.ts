@@ -38,12 +38,14 @@ export async function sendDiagnosisConfirmation(
 
   const profileLabel = labelFor(input.primary, input.closeToBreakthrough);
   const url = absoluteUrl(`/diagnostic/${input.slug}`);
+  const ndyUrl = absoluteUrl("/coaching");
 
   const subject = `Your diagnosis: ${profileLabel}`;
   const { html, text } = renderTemplate({
     profileLabel,
     headline: input.breakdown.headline,
     url,
+    ndyUrl,
   });
 
   try {
@@ -67,13 +69,15 @@ interface TemplateInput {
   profileLabel: string;
   headline: string;
   url: string;
+  ndyUrl: string;
 }
 
 function renderTemplate(input: TemplateInput): { html: string; text: string } {
-  const { profileLabel, headline, url } = input;
+  const { profileLabel, headline, url, ndyUrl } = input;
   const safeLabel = escapeHtml(profileLabel);
   const safeHeadline = escapeHtml(headline);
   const safeUrl = escapeHtml(url);
+  const safeNdyUrl = escapeHtml(ndyUrl);
 
   const html = `<!DOCTYPE html>
 <html>
@@ -106,6 +110,29 @@ function renderTemplate(input: TemplateInput): { html: string; text: string } {
         Save the link. Some riders come back to this a few weeks in,
         once the denial wears off.
       </p>
+
+      <hr style="border:none;border-top:1px solid #e5e5e3;margin:32px 0;" />
+
+      <p style="font-size:12px;letter-spacing:2px;color:#4C1273;margin:0 0 8px;text-transform:uppercase;font-weight:600;">
+        While you&rsquo;re here
+      </p>
+      <p style="font-size:20px;line-height:1.3;margin:0 0 14px;color:#252526;font-weight:600;">
+        Not Done Yet is the coaching system most riders on this diagnostic actually need.
+      </p>
+      <p style="font-size:16px;line-height:1.6;margin:0 0 16px;color:#333;">
+        Personalised TrainingPeaks plan, weekly coaching calls with me,
+        cycling-specific S&amp;C, nutrition framework, and a private
+        community of riders running the same system.
+      </p>
+      <p style="font-size:16px;line-height:1.6;margin:0 0 8px;color:#333;">
+        <strong>$195/month USD &middot; 7-day free trial &middot; cancel anytime.</strong>
+      </p>
+      <p style="margin:18px 0 28px;text-align:left;">
+        <a href="${safeNdyUrl}" style="display:inline-block;background:#4C1273;color:#fff;text-decoration:none;padding:12px 22px;border-radius:6px;font-weight:600;letter-spacing:0.5px;font-size:15px;">
+          Try Not Done Yet free for 7 days &rarr;
+        </a>
+      </p>
+
       <p style="font-size:16px;line-height:1.6;margin:0 0 8px;color:#333;">
         Anthony
       </p>
@@ -133,6 +160,16 @@ function renderTemplate(input: TemplateInput): { html: string; text: string } {
     url,
     "",
     "Save the link. Some riders come back to this a few weeks in, once the denial wears off.",
+    "",
+    "—",
+    "",
+    "WHILE YOU'RE HERE",
+    "",
+    "Not Done Yet is the coaching system most riders on this diagnostic actually need. Personalised TrainingPeaks plan, weekly coaching calls with me, cycling-specific S&C, nutrition framework, and a private community of riders running the same system.",
+    "",
+    "$195/month USD. 7-day free trial. Cancel anytime.",
+    "",
+    `Try it: ${ndyUrl}`,
     "",
     "Anthony",
     "",

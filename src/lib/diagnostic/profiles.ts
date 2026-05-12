@@ -38,7 +38,7 @@ export const PROFILE_BREAKDOWNS: Record<Profile, Breakdown> = {
     whyAlone:
       "Because admitting you need less is the hardest thing in cycling. Everyone around you is training more. The coaches behind Tadej Pogačar and the ones Professor Seiler has studied for decades know this. The riders who break through are the ones who back off first.",
     nextMove:
-      "For Under-recovered profiles I'd rather jump on a 15-minute call than send you to a sales page. Book a slot — I'll tell you what I'd do if it were your training.",
+      "Not Done Yet is built for exactly this. Weekly coaching with me, a TrainingPeaks plan that backs the load off before you do, and the recovery, nutrition and S&C work sitting alongside it. $195/month, 7-day free trial. Cancel anytime.",
     secondaryNote: null,
   },
 
@@ -72,7 +72,7 @@ export const PROFILE_BREAKDOWNS: Record<Profile, Breakdown> = {
     whyAlone:
       "Because slow riding feels like wasted time. Every instinct says push a bit harder. A plan on a screen won't fix this — you need someone looking at your actual weekly output and calling the ride before you start.",
     nextMove:
-      "Have a look at Not Done Yet Premium. It's built for exactly the profile you got.",
+      "This is the profile Not Done Yet is most directly built for. A TrainingPeaks plan that calls the easy ride easy and the hard one hard, weekly coaching to keep you honest when the legs feel good, and a community of riders who already get it. $195/month with a 7-day free trial. Cancel anytime.",
     secondaryNote: null,
   },
 
@@ -107,7 +107,7 @@ export const PROFILE_BREAKDOWNS: Record<Profile, Breakdown> = {
     whyAlone:
       "Because strength training for cyclists is counterintuitive. Most plans are endurance-first and bolt on a token strength block. That's backwards for masters athletes. You need someone who programs the whole picture.",
     nextMove:
-      "Have a look at Not Done Yet — the S&C roadmap and oversight is built in.",
+      "Not Done Yet runs across the five pillars — and the S&C roadmap sits inside it, not bolted on the end. Cycling-specific lifting, the bike work paired with it, and weekly oversight from me so you actually do the work. $195/month, 7-day free trial. Cancel anytime.",
     secondaryNote: null,
   },
 
@@ -141,7 +141,7 @@ export const PROFILE_BREAKDOWNS: Record<Profile, Breakdown> = {
     whyAlone:
       "Because the cycling internet has spent 20 years telling you lighter is faster. That advice is outdated. The coaches who work with pros now fuel them aggressively. You need someone in your corner who'll tell you to eat the second breakfast.",
     nextMove:
-      "For Fuelling Deficit profiles I'd rather jump on a 15-minute call than send you to a sales page. Book a slot — I'll tell you what I'd do if it were your training.",
+      "Not Done Yet wraps nutrition into the same plan as the training, with weekly coaching to call out where you're under-fuelling and what to change this week. The S&C, recovery and community sit alongside. $195/month with a 7-day free trial. Cancel anytime.",
     secondaryNote: null,
   },
 };
@@ -179,54 +179,57 @@ export const CLOSE_TO_BREAKTHROUGH: Breakdown = {
   whyAlone:
     "Because the hardest plateaus to break are the ones that aren't really plateaus. You can stare at your own data for months and never see it.",
   nextMove:
-    "Book a 15-minute call. For this one we'll just look at the last 12 weeks together and point at the specific thing.",
+    "Not Done Yet is still the right move if you want eyes on your file every week — even when the fundamentals are mostly there. Weekly coaching with me, the S&C roadmap, nutrition oversight, and a community of riders running the same system. $195/month, 7-day free trial. Cancel anytime.",
   secondaryNote: null,
 };
 
 /**
- * CTA routing per spec §12.
+ * CTA routing. Every profile points at Not Done Yet (the /coaching
+ * sales page) — direct call bookings were retired here because they
+ * don't scale and split the conversion path. The personalised handoff
+ * still lives in each profile's `nextMove` copy; this matrix just
+ * decides which secondary content piece, if any, runs alongside.
  *
- *   Under-recovered / Fueling → direct call booking first, NDY second
- *   Polarisation / Strength Gap → NDY first, secondary resource second
- *
- * severeMultiSystem (§8) forces the direct-call variant regardless of
- * profile — these folks need human diagnosis, not more content.
+ * severeMultiSystem (§8) still routes through NDY — the sales page
+ * itself surfaces the 1:1 application form for riders who need a
+ * human conversation before they commit.
  */
 export function ctaFor(
   profile: Profile,
   severeMultiSystem: boolean
 ): CtaConfig {
+  const PRIMARY: Pick<CtaConfig, "primaryLabel" | "primaryHref"> = {
+    primaryLabel: "Try Not Done Yet free for 7 days",
+    primaryHref: "/coaching",
+  };
+
   if (severeMultiSystem) {
     return {
-      primaryLabel: "Book a 15-minute call with Anthony",
-      primaryHref: "{{BOOKING_URL}}",
-      secondaryLabel: "Or explore NDY Premium",
-      secondaryHref: "/ndy/fit",
+      ...PRIMARY,
+      secondaryLabel: "",
+      secondaryHref: "",
     };
   }
 
   switch (profile) {
     case "underRecovered":
-    case "fuelingDeficit":
-      return {
-        primaryLabel: "Book a 15-minute call with Anthony",
-        primaryHref: "{{BOOKING_URL}}",
-        secondaryLabel: "Or explore NDY Premium",
-        secondaryHref: "/ndy/fit",
-      };
     case "polarisation":
       return {
-        primaryLabel: "See if NDY Premium is right for you",
-        primaryHref: "/ndy/fit",
-        secondaryLabel: "Or book a 15-minute call",
-        secondaryHref: "{{BOOKING_URL}}",
+        ...PRIMARY,
+        secondaryLabel: "",
+        secondaryHref: "",
       };
     case "strengthGap":
       return {
-        primaryLabel: "See if NDY is right for you",
-        primaryHref: "/ndy/fit",
+        ...PRIMARY,
         secondaryLabel: "Or read the strength training piece",
         secondaryHref: "/strength-training",
+      };
+    case "fuelingDeficit":
+      return {
+        ...PRIMARY,
+        secondaryLabel: "Or run the fuelling calculator",
+        secondaryHref: "/tools/fuelling",
       };
   }
 }

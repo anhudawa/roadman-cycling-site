@@ -71,6 +71,22 @@ describe("sendDiagnosisConfirmation", () => {
     expect(args.subject).toContain("Closer to breakthrough");
   });
 
+  it("includes the Not Done Yet pitch, price, trial and a /coaching link", async () => {
+    const { sendDiagnosisConfirmation } = await import("./email");
+    await sendDiagnosisConfirmation(INPUT);
+    const args = sendMock.mock.calls[0][0];
+    const html = args.html as string;
+    const text = args.text as string;
+    expect(html).toContain("Not Done Yet");
+    expect(html).toContain("$195/month");
+    expect(html).toContain("7-day free trial");
+    expect(html).toContain("https://test.example.com/coaching");
+    expect(text).toContain("Not Done Yet");
+    expect(text).toContain("$195/month");
+    expect(text).toContain("7-day free trial");
+    expect(text).toContain("https://test.example.com/coaching");
+  });
+
   it("HTML-escapes a hostile headline", async () => {
     const hostile: Breakdown = {
       ...BREAKDOWN,
