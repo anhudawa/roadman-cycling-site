@@ -17,10 +17,11 @@ import type { ReactNode } from "react";
 
 export const metadata: Metadata = {
   title: {
-    absolute: "Stuck on a Plateau? Find Out Why in 4 Minutes — Roadman Cycling",
+    absolute:
+      "Before You Hire a Cycling Coach — Diagnose Why Your FTP Is Stuck",
   },
   description:
-    "Your FTP is stuck. Your training isn't working. Twelve questions, four minutes, a specific answer for why you've stopped getting faster.",
+    "Considering a cycling coach or another training plan? In four minutes, find out why your FTP has actually stalled — and whether you need a coach, a new plan, or three specific changes you can make this week.",
   robots: {
     index: false,
     follow: false,

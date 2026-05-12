@@ -7,6 +7,14 @@ import { BRAND_STATS, FOUNDER, PODCAST, SITE_ORIGIN } from "@/lib/brand-facts";
 /**
  * /go — PPC landing page for Google Ads cold traffic.
  *
+ * Cold-traffic frame: visitors arrive from "cycling coach" / "why is
+ * my FTP stuck" / "cycling training plan" searches. They're
+ * problem-aware but not brand-aware — they've never heard of Roadman
+ * and are comparing options. Copy positions the diagnostic as the
+ * smart pre-step before they spend on any coach or plan, rather than
+ * leading with "buy our thing". Credentials follow the problem, not
+ * the other way around.
+ *
  * Cold-traffic credibility layering on top of the single-CTA quiz
  * funnel. Layout choices:
  *
@@ -33,10 +41,10 @@ import { BRAND_STATS, FOUNDER, PODCAST, SITE_ORIGIN } from "@/lib/brand-facts";
 const CTA_HREF = "/plateau?source=go";
 
 const PAIN_BULLETS = [
-  "You're putting in the hours, but the FTP number won't move.",
-  "You've tried plans from YouTube, TrainerRoad, magazines — and you're still stuck.",
-  "You're 40-plus and you can feel the punch fading on the climbs and the sprints.",
-  "You don't want another generic plan. You want to know what's actually wrong.",
+  "You've been training consistently for months. The FTP number won't move.",
+  "You've tried plans from TrainerRoad, Zwift, YouTube, the magazines. Each one started strong and stalled.",
+  "You're 40-plus and you can feel the punch fading on the climbs and in the sprints.",
+  "You're considering a coach — but you've spent on training before and got nothing back.",
 ];
 
 const FOUR_REASONS = [
@@ -297,33 +305,33 @@ export default function GoLandingPage() {
 
         <Container width="narrow" className="relative text-center">
           <p className="text-coral font-heading text-[11px] md:text-xs tracking-[0.3em] mb-6">
-            FOR CYCLISTS TRAINING 6&ndash;12 HOURS A WEEK
+            BEFORE YOU SPEND ON A COACH OR ANOTHER PLAN
           </p>
           <h1 className="font-heading text-off-white mb-6 leading-[0.95]">
             <span
               className="block"
               style={{ fontSize: "clamp(2.5rem, 7vw, 5.5rem)" }}
             >
-              YOUR FTP IS STUCK.
+              BEFORE YOU HIRE A COACH
             </span>
             <span
               className="block mt-1"
               style={{ fontSize: "clamp(2.5rem, 7vw, 5.5rem)" }}
             >
-              YOUR TRAINING ISN&rsquo;T WORKING.
+              OR PAY FOR ANOTHER PLAN&mdash;
             </span>
             <span
               className="block mt-3 text-coral"
               style={{ fontSize: "clamp(1.75rem, 4.8vw, 3.75rem)" }}
             >
-              YOU KNOW THERE&rsquo;S MORE IN YOU.
+              FIND OUT WHY YOU&rsquo;RE STUCK.
             </span>
           </h1>
           <p className="text-foreground-muted text-base md:text-xl leading-relaxed mb-8 max-w-xl mx-auto">
-            In four minutes you&rsquo;ll have a specific diagnosis for why your
-            FTP has stalled &mdash; and the three changes to make this week.
-            Built from on-the-record conversations with World Tour coaches and
-            the sports scientists their riders trust.
+            In four minutes, you&rsquo;ll know exactly why your FTP has stalled
+            &mdash; and whether you need a coach, a different plan, or three
+            specific changes you can make this week. Built from on-the-record
+            conversations with the coaches behind World Tour wins.
           </p>
 
           <Link
@@ -382,8 +390,8 @@ export default function GoLandingPage() {
                   className="mt-1.5 inline-block w-1.5 h-1.5 rounded-full bg-coral shrink-0"
                 />
                 <span>
-                  Why the generic plans you&rsquo;ve tried haven&rsquo;t moved
-                  your FTP
+                  Whether you need a coach &mdash; or just a sharper plan you
+                  can run yourself
                 </span>
               </li>
             </ul>
@@ -412,11 +420,12 @@ export default function GoLandingPage() {
             </span>
             <span className="text-left text-foreground-muted text-[12px] md:text-sm leading-snug">
               <span className="block text-off-white">
-                Built by Anthony Walsh — host, Roadman Cycling Podcast
+                Built by Anthony Walsh &mdash; host of the Roadman Cycling
+                Podcast
               </span>
               <span className="block mt-0.5">
-                Methods drawn from Prof. Stephen Seiler, Dan Lorang and Dr.
-                David Dunne.
+                Drawn from on-the-record conversations with Prof. Stephen
+                Seiler, Dan Lorang and Dr. David Dunne.
               </span>
             </span>
           </div>
@@ -465,14 +474,34 @@ export default function GoLandingPage() {
       <Section background="deep-purple">
         <Container width="narrow">
           <p className="text-coral font-heading text-[11px] md:text-xs tracking-[0.3em] text-center mb-3">
-            DOES THIS SOUND LIKE YOU?
+            WHY THE LAST PLAN DIDN&rsquo;T WORK
           </p>
           <h2
-            className="font-heading text-off-white text-center mb-10"
+            className="font-heading text-off-white text-center mb-8"
             style={{ fontSize: "clamp(1.875rem, 4.5vw, 3rem)" }}
           >
-            THE PLATEAU NOBODY HAS BEEN ABLE TO EXPLAIN
+            YOU&rsquo;VE BEEN FIXING THE WRONG PROBLEM.
           </h2>
+
+          <div className="max-w-xl mx-auto text-foreground-muted text-base md:text-lg leading-relaxed space-y-4 mb-10">
+            <p>
+              You&rsquo;ve been training. The numbers aren&rsquo;t moving.
+              You&rsquo;re starting to wonder if you need a coach &mdash; a
+              different plan, a sharper structure, somebody who actually knows
+              what they&rsquo;re doing.
+            </p>
+            <p>
+              But you&rsquo;ve been here before. The YouTube workouts. The
+              TrainerRoad blocks. The plan from the magazine. Each one sounded
+              like the answer. None of them moved the FTP.
+            </p>
+            <p>
+              <span className="text-off-white">
+                The problem isn&rsquo;t the plan. It&rsquo;s that nobody has
+                told you what&rsquo;s actually broken.
+              </span>
+            </p>
+          </div>
 
           <ul className="space-y-3 md:space-y-4 list-none p-0 max-w-xl mx-auto">
             {PAIN_BULLETS.map((line) => (
@@ -492,8 +521,8 @@ export default function GoLandingPage() {
           <p className="text-foreground-muted text-base md:text-lg leading-relaxed text-center max-w-xl mx-auto mt-10">
             You&rsquo;re not lazy. You&rsquo;re not undertrained. There are only{" "}
             <span className="text-off-white">four reasons</span> a serious
-            masters cyclist&rsquo;s FTP stops moving. Find out which one is
-            yours.
+            masters cyclist&rsquo;s FTP stops moving. Find which one is yours
+            before you spend a dollar on the fix.
           </p>
         </Container>
       </Section>
@@ -510,11 +539,12 @@ export default function GoLandingPage() {
             className="font-heading text-off-white text-center mb-3"
             style={{ fontSize: "clamp(1.875rem, 4.5vw, 3rem)" }}
           >
-            YOUR PLATEAU IS ONE OF THESE.
+            EVERY STUCK FTP HAS ONE OF FOUR CAUSES.
           </h2>
           <p className="text-foreground-muted text-center max-w-lg mx-auto mb-10 md:mb-12 leading-relaxed">
-            Each one has a specific cause and a specific fix. Twelve questions
-            tells us which is yours.
+            Each one has a specific cause and a specific fix. The wrong fix
+            wastes months &mdash; and your money. Twelve questions tells you
+            which is yours.
           </p>
 
           <ul className="grid sm:grid-cols-2 gap-4 md:gap-5 list-none p-0 max-w-3xl mx-auto">
@@ -573,14 +603,20 @@ export default function GoLandingPage() {
         <Container width="default">
           {/* Members — in their own words (lead) */}
           <p className="text-coral font-heading text-[11px] md:text-xs tracking-[0.3em] text-center mb-3">
-            REAL RIDERS &middot; REAL CHANGES
+            PEOPLE WHO STARTED WHERE YOU ARE
           </p>
           <h2
-            className="font-heading text-off-white text-center mb-10 md:mb-12"
+            className="font-heading text-off-white text-center mb-6"
             style={{ fontSize: "clamp(1.875rem, 4.5vw, 3rem)" }}
           >
-            WHAT HAPPENS WHEN THE PLAN FITS THE LIFE
+            THEY WERE SEARCHING FOR ANSWERS TOO.
           </h2>
+          <p className="text-foreground-muted text-base md:text-lg text-center max-w-xl mx-auto leading-relaxed mb-10 md:mb-12">
+            Every rider below sat where you&rsquo;re sitting now. Stuck.
+            Doubting the next plan. Considering a coach. Then they spent four
+            minutes finding out what was actually broken &mdash; and the
+            changes followed.
+          </p>
 
           {/* Featured testimonial — Damien */}
           <figure
@@ -816,12 +852,13 @@ export default function GoLandingPage() {
             className="font-heading text-off-white mb-6 leading-tight"
             style={{ fontSize: "clamp(2rem, 5vw, 3.5rem)" }}
           >
-            STOP GUESSING.{" "}
-            <span className="text-coral">START GETTING FASTER.</span>
+            BEFORE YOU PAY FOR THE FIX,{" "}
+            <span className="text-coral">FIND THE REAL PROBLEM.</span>
           </h2>
           <p className="text-foreground-muted mb-10 max-w-md mx-auto leading-relaxed">
-            Four minutes from now you&rsquo;ll have a specific answer for why
-            your FTP has stalled &mdash; and the exact three steps to fix it.
+            Four minutes from now you&rsquo;ll know exactly why your FTP has
+            stalled &mdash; and whether you need a coach, a different plan, or
+            three specific changes you can make this week.
           </p>
           <Link
             href={CTA_HREF}
