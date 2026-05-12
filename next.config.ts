@@ -164,6 +164,12 @@ const nextConfig: NextConfig = {
       { source: "/trial", destination: "/apply", permanent: true },
       { source: "/coaching-application", destination: "/apply", permanent: true },
       { source: "/apply-now", destination: "/apply", permanent: true },
+      // Plateau Diagnostic CTAs historically pointed at /ndy/fit (a
+      // conversational qualifier page that was never built). Route any
+      // surviving links — old emails, cached HTML, third-party shares —
+      // to /coaching, the canonical NDY sales page. Must come BEFORE
+      // the bare /ndy rule below; Next matches in declaration order.
+      { source: "/ndy/fit", destination: "/coaching", permanent: true },
       { source: "/ndy", destination: "/community/not-done-yet", permanent: true },
       { source: "/not-done-yet", destination: "/community/not-done-yet", permanent: true },
       { source: "/episodes", destination: "/podcast", permanent: true },

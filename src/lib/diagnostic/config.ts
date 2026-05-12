@@ -2,28 +2,24 @@ import type { CtaConfig, Profile } from "./types";
 import { ctaFor } from "./profiles";
 
 /**
- * Resolves CTA hrefs for the results page. The static CTA config uses
- * `{{BOOKING_URL}}` as a placeholder so the profile definitions stay
- * pure — the actual Cal.com URL is environment-specific and pulled
- * from env here.
+ * Resolves CTA hrefs for the results page. All CTAs now point at
+ * static internal paths (the Not Done Yet sales page and a handful
+ * of relevant content pieces), so this is a thin wrapper kept for
+ * call-site stability — every consumer goes through resolveCta.
  */
 export function resolveCta(
   profile: Profile,
   severeMultiSystem: boolean
 ): CtaConfig {
-  const cfg = ctaFor(profile, severeMultiSystem);
-  const bookingUrl = resolveBookingUrl();
-  return {
-    ...cfg,
-    primaryHref: cfg.primaryHref.replace("{{BOOKING_URL}}", bookingUrl),
-    secondaryHref: cfg.secondaryHref.replace("{{BOOKING_URL}}", bookingUrl),
-  };
+  return ctaFor(profile, severeMultiSystem);
 }
 
 /**
- * Cal.com booking link for Anthony's 15-minute call. Falls back to
- * `/contact` when unconfigured so the CTA never 404s in a dev or
- * preview environment.
+ * Cal.com booking link, retained for any non-diagnostic flow that
+ * may still hand a rider to a call. The diagnostic itself no longer
+ * routes anyone here — every profile pushes Not Done Yet directly,
+ * because call bookings don't scale at the volume the diagnostic
+ * funnels in.
  */
 export function resolveBookingUrl(): string {
   return (
