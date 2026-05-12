@@ -1,30 +1,30 @@
 import Image from "next/image";
 import Link from "next/link";
 import { Container, Section } from "@/components/layout";
-import { BRAND_STATS, FOUNDER } from "@/lib/brand-facts";
+import { TrustpilotBadge } from "@/components/proof/TrustpilotProof";
+import { BRAND_STATS, FOUNDER, PODCAST, SITE_ORIGIN } from "@/lib/brand-facts";
 
 /**
  * /go — PPC landing page for Google Ads cold traffic.
  *
- * This is NOT the canonical /plateau diagnostic landing page. It is a
- * stripped-down, single-CTA surface that exists to bridge ad click to
- * diagnostic start. Conversion logic on this page:
+ * Cold-traffic credibility layering on top of the single-CTA quiz
+ * funnel. Layout choices:
  *
  *  - No Header, no Footer, no mini-player, no exit-intent, no cohort
  *    banner — every distraction would compete with the one button.
- *  - Single CTA, repeated three times, all pointing to /plateau where
- *    the actual diagnostic flow lives. The diagnostic is the entry
- *    point to the Not Done Yet community sales motion (email nurture
- *    after the result).
- *  - Pure server-rendered: no framer-motion ScrollReveal, no Suspense,
- *    no per-request DB queries. The whole page should be on the wire
- *    in one round trip so it lands fast on mobile 4G.
+ *  - The page DOES carry a small Roadman logo top-left and a quiet
+ *    `roadmancycling.com` link in the footer. Both are non-navigation
+ *    brand-identity signals: they let a skeptic verify the brand
+ *    exists without giving them a tab to wander off into.
+ *  - Single CTA, repeated three times, all pointing to /plateau
+ *    where the diagnostic flow lives. The diagnostic is the entry
+ *    point to the Not Done Yet community sales motion. There is no
+ *    call-booking, no strategy session, no high-ticket leak.
+ *  - Pure server-rendered: no framer-motion, no Suspense, no
+ *    per-request DB queries. Whole page on the wire in one round
+ *    trip so it lands fast on mobile 4G.
  *  - `noindex` (set in layout.tsx) so it doesn't compete with
  *    /plateau in organic search.
- *
- * Copy is identity-led — "Not Done Yet" framing, not feature-led.
- * The hook is the user's exact words: FTP stuck, training isn't
- * working, you know there's more in you.
  */
 
 // Source param flows through to the diagnostic so attribution survives
@@ -105,6 +105,30 @@ const CtaArrow = () => (
   </svg>
 );
 
+const SpotifyIcon = ({ size = 18 }: { size?: number }) => (
+  <svg
+    width={size}
+    height={size}
+    viewBox="0 0 24 24"
+    fill="currentColor"
+    aria-hidden="true"
+  >
+    <path d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.66 0 12 0zm5.521 17.34c-.24.359-.66.48-1.021.24-2.82-1.74-6.36-2.101-10.561-1.141-.418.122-.779-.179-.899-.539-.12-.421.18-.78.54-.9 4.56-1.021 8.52-.6 11.64 1.32.42.18.479.659.301 1.02zm1.44-3.3c-.301.42-.841.6-1.262.3-3.239-1.98-8.159-2.58-11.939-1.38-.479.12-1.02-.12-1.14-.6-.12-.48.12-1.021.6-1.141C9.6 9.9 15 10.561 18.72 12.84c.361.181.54.78.241 1.2zm.12-3.36C15.24 8.4 8.82 8.16 5.16 9.301c-.6.179-1.2-.181-1.38-.721-.18-.601.18-1.2.72-1.381 4.26-1.26 11.28-1.02 15.721 1.621.539.3.719 1.02.419 1.56-.299.421-1.02.599-1.559.3z" />
+  </svg>
+);
+
+const ApplePodcastsIcon = ({ size = 18 }: { size?: number }) => (
+  <svg
+    width={size}
+    height={size}
+    viewBox="0 0 24 24"
+    fill="currentColor"
+    aria-hidden="true"
+  >
+    <path d="M5.34 0A5.328 5.328 0 000 5.34v13.32A5.328 5.328 0 005.34 24h13.32A5.328 5.328 0 0024 18.66V5.34A5.328 5.328 0 0018.66 0H5.34zm6.525 2.568c2.336 0 4.448.902 6.056 2.587 1.224 1.272 1.912 2.619 2.264 4.392.12.6-.12 1.2-.72 1.32-.6.12-1.2-.12-1.32-.72-.264-1.368-.816-2.4-1.74-3.36-1.32-1.392-2.94-2.088-4.92-2.088-3.456 0-6.48 3.024-6.48 6.48 0 1.584.576 3.024 1.536 4.176.36.432.312 1.08-.12 1.44-.432.36-1.08.312-1.44-.12C3.744 15.264 2.904 13.392 2.904 11.4c0-4.464 3.72-8.832 8.96-8.832zM11.7 6.744c1.584 0 3.072.624 4.2 1.776 1.032 1.056 1.584 2.4 1.584 3.84 0 .984-.264 1.968-.768 2.856-.36.6-1.08.84-1.68.48-.6-.36-.84-1.08-.48-1.68.288-.504.432-1.056.432-1.632 0-.912-.36-1.776-.984-2.424-.72-.72-1.68-1.104-2.712-1.08-2.064.048-3.648 1.776-3.648 3.96 0 .816.24 1.608.672 2.28.36.6.12 1.32-.48 1.68-.6.36-1.32.12-1.68-.48-.672-1.08-1.008-2.28-1.008-3.48.024-3.36 2.784-6.12 6.552-6.096zM12 10.8c.72 0 1.2.504 1.2 1.2 0 .168-.024.312-.072.456l-.696 4.416c-.096.6-.504.888-1.056.888-.552 0-.96-.288-1.056-.888l-.696-4.416c-.048-.144-.072-.288-.072-.456 0-.696.48-1.2 1.2-1.2h1.248zm-.624 8.568c0-.72.576-1.296 1.296-1.296s1.296.576 1.296 1.296-.576 1.296-1.296 1.296-1.296-.576-1.296-1.296z" />
+  </svg>
+);
+
 export default function GoLandingPage() {
   return (
     <main id="main-content" className="bg-charcoal">
@@ -113,7 +137,7 @@ export default function GoLandingPage() {
         className="
           relative overflow-hidden
           min-h-[88vh] md:min-h-[92vh] flex items-center
-          pt-16 pb-16 md:pt-24 md:pb-24
+          pt-24 pb-16 md:pt-28 md:pb-24
           bg-charcoal grain-overlay
         "
       >
@@ -134,6 +158,20 @@ export default function GoLandingPage() {
               "linear-gradient(90deg, transparent, rgba(241,99,99,0.6), transparent)",
           }}
         />
+
+        {/* Logo mark — brand identity, not navigation. Unlinked so it
+            doesn't compete with the CTA as an exit. Decorative role. */}
+        <div className="absolute top-5 left-5 md:top-7 md:left-8 z-10">
+          <Image
+            src="/images/logo-white.png"
+            alt="Roadman Cycling"
+            width={763}
+            height={345}
+            priority
+            sizes="(min-width: 768px) 112px, 84px"
+            className="w-[84px] md:w-[112px] h-auto select-none"
+          />
+        </div>
 
         <Container width="narrow" className="relative text-center">
           <p className="text-coral font-heading text-[11px] md:text-xs tracking-[0.3em] mb-6">
@@ -182,27 +220,75 @@ export default function GoLandingPage() {
             <span className="whitespace-nowrap">4 minutes</span>
           </div>
 
-          {/* Built-by strip — Anthony presence above the fold */}
-          <div className="mt-10 md:mt-12 inline-flex items-center gap-3 rounded-full border border-white/10 bg-white/[0.03] backdrop-blur-sm py-2 pl-2 pr-5 max-w-full">
-            <span className="relative w-9 h-9 rounded-full overflow-hidden shrink-0 border border-white/15">
+          {/* Trustpilot rating — cold-traffic credibility next to the CTA.
+              Pulls the live aggregate (rating, count) from /lib/trustpilot. */}
+          <div className="mt-7 md:mt-8 flex justify-center">
+            <TrustpilotBadge align="center" />
+          </div>
+
+          {/* Built-by row — names the author and the experts behind the
+              method. The single biggest credibility gap for cold traffic
+              is "who built this and on what basis?", so we answer it
+              above the fold. */}
+          <div className="mt-8 md:mt-10 mx-auto inline-flex items-center gap-3 rounded-2xl border border-white/10 bg-white/[0.03] backdrop-blur-sm py-3 pl-3 pr-4 md:pr-5 max-w-md">
+            <span className="relative w-11 h-11 rounded-full overflow-hidden shrink-0 border border-white/15">
               <Image
                 src="/images/about/anthony-profile-closeup-v2.jpg"
                 alt="Anthony Walsh — host, Roadman Cycling"
                 fill
-                sizes="36px"
+                sizes="44px"
                 priority
                 className="object-cover"
               />
             </span>
-            <span className="text-left text-foreground-muted text-xs md:text-sm leading-snug">
-              Built by{" "}
-              <span className="text-off-white">Anthony Walsh</span> from{" "}
-              <span className="text-off-white">
-                {BRAND_STATS.episodeCountLabel}
-              </span>{" "}
-              conversations with World Tour coaches and sports scientists.
+            <span className="text-left text-foreground-muted text-[12px] md:text-sm leading-snug">
+              <span className="block text-off-white">
+                Built by Anthony Walsh — host, Roadman Cycling Podcast
+              </span>
+              <span className="block mt-0.5">
+                Methods drawn from Prof. Stephen Seiler, Dan Lorang and Dr.
+                David Dunne.
+              </span>
             </span>
           </div>
+        </Container>
+      </section>
+
+      {/* ── Credibility bar ──────────────────────────────────────────── */}
+      <section
+        aria-label="Roadman Cycling at a glance"
+        className="bg-deep-purple border-y border-white/5"
+      >
+        <Container width="default">
+          <ul className="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-x-8 md:gap-x-12 list-none p-0 py-5 md:py-6 text-center">
+            <li className="flex items-center gap-2 font-heading text-[11px] md:text-[12px] tracking-[0.18em] text-off-white/85">
+              <span className="text-coral">100M+</span>
+              <span className="text-foreground-muted">PODCAST DOWNLOADS</span>
+              <span className="ml-1 flex items-center gap-1.5 text-off-white/55">
+                <ApplePodcastsIcon size={14} />
+                <SpotifyIcon size={14} />
+              </span>
+            </li>
+            <li
+              aria-hidden="true"
+              className="hidden sm:block h-3 w-px bg-white/15"
+            />
+            <li className="flex items-center gap-2 font-heading text-[11px] md:text-[12px] tracking-[0.18em] text-off-white/85">
+              <span className="text-coral">
+                {BRAND_STATS.youtubeSubscribersLabel}
+              </span>
+              <span className="text-foreground-muted">YOUTUBE SUBSCRIBERS</span>
+            </li>
+            <li
+              aria-hidden="true"
+              className="hidden sm:block h-3 w-px bg-white/15"
+            />
+            <li className="font-heading text-[11px] md:text-[12px] tracking-[0.18em] text-foreground-muted">
+              METHODS FROM{" "}
+              <span className="text-off-white">WORLD TOUR COACHES</span> &amp;{" "}
+              <span className="text-off-white">SPORTS SCIENTISTS</span>
+            </li>
+          </ul>
         </Container>
       </section>
 
@@ -323,13 +409,33 @@ export default function GoLandingPage() {
           </h2>
 
           {/* Stat row */}
-          <dl className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6 mb-12 max-w-3xl mx-auto">
+          <dl className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6 mb-8 max-w-3xl mx-auto">
             <div className="text-center">
               <dt className="font-heading text-3xl md:text-5xl text-coral leading-none">
                 100M+
               </dt>
               <dd className="text-foreground-subtle text-xs md:text-sm mt-2">
                 Podcast downloads
+              </dd>
+              <dd className="mt-2 flex items-center justify-center gap-2 text-off-white/55">
+                <a
+                  href={PODCAST.appleUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="Listen on Apple Podcasts"
+                  className="hover:text-off-white transition-colors"
+                >
+                  <ApplePodcastsIcon size={16} />
+                </a>
+                <a
+                  href={PODCAST.spotifyUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="Listen on Spotify"
+                  className="hover:text-off-white transition-colors"
+                >
+                  <SpotifyIcon size={16} />
+                </a>
               </dd>
             </div>
             <div className="text-center">
@@ -447,24 +553,35 @@ export default function GoLandingPage() {
       {/* ── Minimal legal footer ─────────────────────────────────────── */}
       <footer className="bg-charcoal border-t border-white/5 py-8">
         <Container width="default">
-          <div className="flex flex-col sm:flex-row items-center justify-between gap-3 text-foreground-subtle text-xs">
-            <p>
-              &copy; {new Date().getFullYear()} Roadman Cycling &middot;{" "}
-              {FOUNDER.location}
-            </p>
-            <div className="flex items-center gap-4">
-              <Link
-                href="/privacy"
-                className="hover:text-coral transition-colors"
-              >
-                Privacy
-              </Link>
-              <Link
-                href="/terms"
-                className="hover:text-coral transition-colors"
-              >
-                Terms
-              </Link>
+          <div className="flex flex-col items-center gap-3 text-center">
+            {/* Escape hatch for skeptics — lets them verify the brand
+                without competing with the CTA. External-style link by
+                intent: opens the main site in the same tab. */}
+            <Link
+              href="/"
+              className="text-foreground-muted text-xs tracking-[0.18em] uppercase hover:text-coral transition-colors"
+            >
+              {SITE_ORIGIN.replace(/^https?:\/\//, "")}
+            </Link>
+            <div className="flex flex-col sm:flex-row items-center justify-between gap-3 w-full text-foreground-subtle text-xs">
+              <p>
+                &copy; {new Date().getFullYear()} Roadman Cycling &middot;{" "}
+                {FOUNDER.location}
+              </p>
+              <div className="flex items-center gap-4">
+                <Link
+                  href="/privacy"
+                  className="hover:text-coral transition-colors"
+                >
+                  Privacy
+                </Link>
+                <Link
+                  href="/terms"
+                  className="hover:text-coral transition-colors"
+                >
+                  Terms
+                </Link>
+              </div>
             </div>
           </div>
         </Container>

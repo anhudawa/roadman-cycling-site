@@ -76,6 +76,11 @@ export const BRAND_STATS = {
   searchableEpisodePagesLabel: "311+",
   monthlyListeners: 1_000_000,
   monthlyListenersLabel: "1M+",
+  // Combined YouTube subscriber count — main channel (~61.7K) plus the
+  // Roadman Podcast Clips channel (~13.2K) round to 60K+ for the
+  // headline-safe figure. Update when the live count meaningfully shifts.
+  youtubeSubscribers: 60_000,
+  youtubeSubscribersLabel: "60,000+",
   newsletterSubscribers: 65_000,
   newsletterSubscribersLabel: "65K+",
   newsletterSubscribersLongLabel: "65,000+",
