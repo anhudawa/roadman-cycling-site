@@ -79,7 +79,7 @@ export default function FtpZonesEmbedPage() {
           <p className="text-xs text-[#B0B0B5] leading-relaxed">
             Enter your Functional Threshold Power to see your seven training
             zones. Use a recent 20-minute test power × 0.95, or take it from
-            your TrainerRoad FTP test.
+            your Vekta / TrainerRoad FTP test.
           </p>
         )}
       </div>

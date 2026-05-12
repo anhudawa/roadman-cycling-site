@@ -281,11 +281,11 @@ const nextConfig: NextConfig = {
         permanent: true,
       },
 
-      // Today's Plan has shut down as a product — redirect to the
-      // TrainerRoad vs TrainingPeaks comparison instead.
+      // Today's Plan has shut down as a product — the old comparison
+      // page is now framed as TrainingPeaks vs Vekta at a new slug.
       {
         source: "/compare/trainingpeaks-vs-todays-plan",
-        destination: "/compare/trainerroad-vs-trainingpeaks",
+        destination: "/compare/trainingpeaks-vs-vekta",
         permanent: true,
       },
 
