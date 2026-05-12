@@ -262,4 +262,17 @@ describe("POST /api/diagnostic/submit", () => {
     expect(mocks.subscribeToBeehiiv).toHaveBeenCalled();
     expect(mocks.sendDiagnosisConfirmation).toHaveBeenCalled();
   });
+
+  it("fires both diagnostic_complete and signup events so plateau captures show up in the admin email-signups metric", async () => {
+    const { POST } = await import("./route");
+    await POST(req(VALID_BODY));
+    const eventTypes = mocks.recordEvent.mock.calls.map((c) => c[0]);
+    expect(eventTypes).toContain("diagnostic_complete");
+    expect(eventTypes).toContain("signup");
+    const signupCall = mocks.recordEvent.mock.calls.find(
+      (c) => c[0] === "signup",
+    );
+    expect(signupCall?.[1]).toBe("/plateau");
+    expect(signupCall?.[2]?.email).toBe("test@example.com");
+  });
 });
