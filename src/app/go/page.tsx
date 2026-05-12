@@ -131,11 +131,11 @@ const TESTIMONIALS: readonly Testimonial[] = [
     name: "Ian Hennessy",
     initials: "IH",
     photoSrc: "/images/testimonials/ian.jpg",
-    hasPhoto: false,
-    stat: "Haute Route Alps finisher",
+    hasPhoto: true,
+    stat: "Haute Route Pyrenees finisher",
     detail: "From weight-loss riding to event finisher",
     quote:
-      "Took up cycling to lose weight and get fit. With Roadman I learned how to actually train. This year I finished the Haute Route Alps — and I already know what's next.",
+      "Took up cycling to lose weight and get fit. With Roadman I learned how to actually train. This year I finished the Haute Route Pyrenees — and I already know what's next.",
   },
   {
     name: "Mark O'Donnell",
