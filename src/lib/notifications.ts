@@ -386,20 +386,8 @@ export async function notifyCohortApplication(data: {
   persona: string;
   isInnerCircle?: boolean;
 }) {
-  // Lazy import to avoid a circular dep between notifications.ts and
-  // src/lib/cohort.ts (both imported from several API routes).
-  const { getCohortState } = await import("@/lib/cohort");
-  const state = getCohortState();
   const isInnerCircle = data.isInnerCircle === true;
-  const isWaitlist = !isInnerCircle && state.phase === "waitlist";
-  const cohortLabel = isInnerCircle
-    ? "Inner Circle"
-    : `Cohort ${state.targetCohort}`;
-  const typeLabel = isInnerCircle
-    ? "INNER CIRCLE APPLICATION"
-    : isWaitlist
-      ? "WAITLIST SIGNUP"
-      : "APPLICATION";
+  const typeLabel = isInnerCircle ? "INNER CIRCLE APPLICATION" : "APPLICATION";
 
   const personaLabels: Record<string, string> = {
     plateau: "Plateau",
@@ -408,9 +396,7 @@ export async function notifyCohortApplication(data: {
     listener: "Listener / New",
   };
 
-  const heading = isInnerCircle
-    ? `🥇 NEW ${typeLabel}`
-    : `NEW ${cohortLabel.toUpperCase()} ${typeLabel}`;
+  const heading = isInnerCircle ? `🥇 NEW ${typeLabel}` : `NEW NDY ${typeLabel}`;
 
   const html = emailWrapper(
     heading,
@@ -422,8 +408,7 @@ export async function notifyCohortApplication(data: {
       row("Hours/week", data.hours) +
       row("FTP", data.ftp || "Not provided") +
       row(isInnerCircle ? "Detail" : "Frustration", data.frustration) +
-      row("Persona", personaLabels[data.persona] ?? data.persona) +
-      row("Phase", isInnerCircle ? "inner-circle" : state.phase)
+      row("Persona", personaLabels[data.persona] ?? data.persona)
     ) +
     `<p style="margin-top: 16px;">
       <a href="https://roadmancycling.com/admin/applications${isInnerCircle ? "?cohort=inner-circle" : ""}" style="color: #F16363; text-decoration: underline;">
@@ -434,9 +419,7 @@ export async function notifyCohortApplication(data: {
 
   const subjectPrefix = isInnerCircle
     ? "Inner Circle Application"
-    : isWaitlist
-      ? `${cohortLabel} Waitlist`
-      : `${cohortLabel} Application`;
+    : "Not Done Yet Application";
 
   return sendEmail({
     to: RECIPIENTS.anthony,

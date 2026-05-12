@@ -179,10 +179,7 @@ export function ApplicationsList() {
                   )}
                   <a
                     href={`mailto:${selected.email}?subject=${encodeURIComponent(
-                      // selected.cohort is stored as "cohort-2" / "cohort-3"
-                      // — pretty-print it in the email subject so the recipient
-                      // sees e.g. "Your NDY Cohort 3 Application".
-                      `Your NDY ${selected.cohort.replace(/^cohort-/, "Cohort ")} Application`,
+                      "Your Not Done Yet Application",
                     )}`}
                     className="inline-flex items-center gap-1.5 px-4 py-2 rounded-[var(--radius-admin-md)] bg-[var(--color-elevated)] hover:bg-[var(--color-raised)] text-[var(--color-fg)] border border-[var(--color-border-strong)] font-body font-semibold text-[14px] transition-colors"
                   >
