@@ -111,7 +111,7 @@ const TESTIMONIALS: readonly Testimonial[] = [
     name: "Brian Morrisey",
     initials: "BM",
     photoSrc: "/images/testimonials/brian.jpg",
-    hasPhoto: false,
+    hasPhoto: true,
     stat: "FTP +15% at 46",
     detail: "Plan moved around shift work",
     quote:
