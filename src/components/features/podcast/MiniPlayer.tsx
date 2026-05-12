@@ -116,8 +116,9 @@ export function MiniPlayer() {
 
   if (!currentEpisode) return null;
   // Public embed routes render inside third-party iframes — the floating
-  // mini player has no place there.
+  // mini player has no place there. /go is the single-CTA PPC landing.
   if (pathname?.startsWith("/embed")) return null;
+  if (pathname?.startsWith("/go")) return null;
 
   const formatTime = (s: number) => {
     const h = Math.floor(s / 3600);

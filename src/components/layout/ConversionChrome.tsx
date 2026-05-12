@@ -19,6 +19,11 @@ const LEAN_PATH_PREFIXES = [
   // Public embeddable widgets rendered inside third-party iframes —
   // exit-intent / cohort banner / sticky-apply CTAs do not belong here.
   "/embed",
+  // PPC landing pages: single-CTA, zero-distraction surface for paid
+  // ad traffic. Funnel chrome would compete with the primary CTA and
+  // tank conversion. The page itself drives users to /plateau where
+  // the full conversion machinery lives.
+  "/go",
 ];
 
 function isLeanRoute(pathname: string | null): boolean {
