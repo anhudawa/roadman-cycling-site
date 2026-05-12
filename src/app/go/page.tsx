@@ -141,7 +141,7 @@ const TESTIMONIALS: readonly Testimonial[] = [
     name: "Mark O'Donnell",
     initials: "MO",
     photoSrc: "/images/testimonials/mark.jpg",
-    hasPhoto: false,
+    hasPhoto: true,
     stat: "4 years coached",
     detail: "Balancing training around work and family",
     quote:
