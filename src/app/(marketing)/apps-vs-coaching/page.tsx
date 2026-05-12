@@ -35,7 +35,7 @@ const APPS: readonly AppEntry[] = [
     name: "TrainingPeaks",
     role: "The plan calendar",
     strength:
-      "The standard the coaching world runs on. Workout structure, TSS, CTL/ATL/TSB, post-ride compliance, the comments thread between rider and coach — all in one place. Roadman partners with TrainingPeaks because Vekta plans push directly into it. If you only have one paid app, this is the one that earns it.",
+      "The standard the coaching world runs on. Workout structure, TSS, CTL/ATL/TSB, post-ride compliance, the comments thread between rider and coach — all in one place. Roadman runs Not Done Yet coaching on TrainingPeaks — plans push directly into your calendar. If you only have one paid app, this is the one that earns it.",
     cost: "USD $19.95/mo Premium",
     favourable: true,
   },
@@ -173,7 +173,7 @@ const STACK: readonly StackEntry[] = [
 const FAQ = [
   {
     q: "Does Roadman coaching replace TrainingPeaks or Zwift?",
-    a: "No. We use TrainingPeaks — Roadman is a partner, the Vekta-built plans inside Not Done Yet Coaching push directly into your TrainingPeaks calendar, and most members keep their existing Zwift, Strava, Whoop and Garmin set-up. The coaching is the interpretation layer on top of the tools you already have. If you don't have TrainingPeaks Premium yet, you'll want it; if you do, you'll use it the way it was actually designed to be used.",
+    a: "No. We use TrainingPeaks — the plans inside Not Done Yet Coaching push directly into your TrainingPeaks calendar, and most members keep their existing Zwift, Strava, Whoop and Garmin set-up. The coaching is the interpretation layer on top of the tools you already have. If you don't have TrainingPeaks Premium yet, you'll want it; if you do, you'll use it the way it was actually designed to be used.",
   },
   {
     q: "I'm already paying $50–$80/month in app subscriptions. Why add coaching?",

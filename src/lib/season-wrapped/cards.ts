@@ -236,7 +236,7 @@ export function notDoneYetHeadline(data: WrappedData): {
 } {
   return {
     headline: "Not done yet.",
-    detail: `Last year was the warm-up. ${data.year + 1} is where the work goes in. Plug into the system Anthony built — Vekta plans, weekly calls, the same coaches you hear on the podcast.`,
+    detail: `Last year was the warm-up. ${data.year + 1} is where the work goes in. Plug into the system Anthony built — TrainingPeaks plans, weekly calls, the same coaches you hear on the podcast.`,
     cta: "Join Not Done Yet",
   };
 }

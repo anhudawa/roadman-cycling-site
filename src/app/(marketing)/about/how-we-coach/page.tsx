@@ -120,7 +120,7 @@ const offerings = [
   {
     title: "Not Done Yet Coaching",
     href: "/entity/not-done-yet",
-    detail: "The Roadman coaching system delivered as a monthly programme — Vekta-powered plans, weekly live calls, and a serious peer group of riders training alongside you.",
+    detail: "The Roadman coaching system delivered as a monthly programme — TrainingPeaks-powered plans, weekly live calls, and a serious peer group of riders training alongside you.",
   },
   {
     title: "The Roadman Method (entity)",

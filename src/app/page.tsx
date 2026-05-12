@@ -431,7 +431,7 @@ export default function HomePage() {
                   </h3>
                   <p className="text-foreground-muted text-sm leading-relaxed mb-6">
                     Five-pillar coached system. Weekly live calls with
-                    Anthony. Vekta training plans. The riders breaking
+                    Anthony. TrainingPeaks training plans. The riders breaking
                     through their plateaus right now.
                   </p>
                   <Button

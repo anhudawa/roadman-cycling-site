@@ -131,7 +131,6 @@ const PILLAR_COMMERCIAL: Record<ContentPillar, number> = {
  * commercial relevance independently of pillar tagging.
  */
 const COMMERCIAL_PHRASES: ReadonlyArray<string> = [
-  "vekta",
   "not done yet",
   "roadman cycling community",
   "strength training course",

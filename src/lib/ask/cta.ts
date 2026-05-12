@@ -54,7 +54,7 @@ export const CTA_CATALOG: Record<Exclude<CtaKey, "none">, CtaDescriptor> = {
   ndy_coaching: {
     key: "ndy_coaching",
     title: "Inside Not Done Yet",
-    body: "The paid Roadman community with Vekta plans, weekly coaching calls, and S&C roadmap.",
+    body: "The paid Roadman community with TrainingPeaks plans, weekly coaching calls, and S&C roadmap.",
     href: "https://www.skool.com/roadmancycling/about",
     analyticsEvent: "cta_clicked:ndy_coaching",
   },

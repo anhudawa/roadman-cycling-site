@@ -328,7 +328,7 @@ const DEST_INNER_CIRCLE: JourneyDestination = {
   href: "/inner-circle",
   eyebrow: "THE NEXT STEP",
   headline: "Join the Inner Circle.",
-  body: "The serious-cyclist coaching community — weekly live calls with Anthony, Vekta-powered training, masterclasses with World Tour coaches.",
+  body: "The serious-cyclist coaching community — weekly live calls with Anthony, TrainingPeaks-powered training, masterclasses with World Tour coaches.",
   ctaLabel: "See the Inner Circle",
 };
 
