@@ -101,7 +101,7 @@ const TESTIMONIALS: readonly Testimonial[] = [
     name: "Damien Maloney",
     initials: "DM",
     photoSrc: "/images/testimonials/damien.jpg",
-    hasPhoto: false,
+    hasPhoto: true,
     stat: "FTP 200s → 295w",
     detail: "Plateaued sportive rider, plan built around shift work",
     quote:
