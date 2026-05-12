@@ -856,21 +856,61 @@ export default function GoLandingPage() {
           >
             THE QUESTIONS I GET ASKED MOST
           </h2>
+          {/* Checkbox-hack disclosure so we ship zero JS. Collapsed by
+              default on mobile to keep the section scannable (six expanded
+              cards = ~1500px on iPhone SE). On sm: and above the answer is
+              forced visible and the toggle affordance is muted, so the
+              section reads as a static FAQ. CSS is inlined because the
+              chained `has-[:checked]:` arbitrary variants we'd otherwise
+              need do not survive Tailwind v4's content scanner. */}
+          <style>{`
+            .go-faq-card .go-faq-answer { display: none; }
+            .go-faq-card .go-faq-chevron::before { content: "▾"; }
+            .go-faq-card:has(input:checked) .go-faq-answer { display: block; }
+            .go-faq-card:has(input:checked) .go-faq-chevron::before { content: "▴"; }
+            @media (min-width: 640px) {
+              .go-faq-card .go-faq-answer { display: block; }
+              .go-faq-card .go-faq-label { cursor: default; }
+              .go-faq-card .go-faq-chevron { display: none; }
+            }
+          `}</style>
           <ul className="space-y-3 md:space-y-4 list-none p-0 max-w-2xl mx-auto">
             {FAQS.map(({ q, a }, i) => (
               <li key={q}>
                 <div
                   data-track={`go_faq_q${i + 1}`}
                   className="
+                    go-faq-card
                     rounded-2xl bg-deep-purple border border-white/10
                     p-5 md:p-6
                     shadow-[0_6px_20px_rgba(0,0,0,0.2)]
                   "
                 >
-                  <h3 className="font-heading text-coral text-lg md:text-xl tracking-wide leading-snug mb-2">
-                    {q.toUpperCase()}
-                  </h3>
-                  <p className="text-foreground-muted text-[15px] md:text-base leading-relaxed m-0">
+                  <input
+                    type="checkbox"
+                    id={`go-faq-${i + 1}`}
+                    className="sr-only"
+                  />
+                  <label
+                    htmlFor={`go-faq-${i + 1}`}
+                    className="
+                      go-faq-label
+                      flex items-start justify-between gap-3
+                      cursor-pointer select-none
+                    "
+                  >
+                    <h3 className="font-heading text-coral text-lg md:text-xl tracking-wide leading-snug m-0">
+                      {q.toUpperCase()}
+                    </h3>
+                    <span
+                      aria-hidden="true"
+                      className="
+                        go-faq-chevron
+                        shrink-0 mt-1 text-coral/70 text-base
+                      "
+                    />
+                  </label>
+                  <p className="go-faq-answer text-foreground-muted text-[15px] md:text-base leading-relaxed m-0 mt-3">
                     {a}
                   </p>
                 </div>
