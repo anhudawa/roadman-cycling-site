@@ -35,11 +35,11 @@ const CTA_HREF = "/plateau?source=go";
 const FAQS: ReadonlyArray<{ q: string; a: string }> = [
   {
     q: "What does the diagnostic actually do?",
-    a: "Twelve questions about your training, recovery and fuelling, and you get one of four plateau patterns — plus the three specific changes to make this week. Four minutes, on screen, done.",
+    a: "Twelve questions about your training, recovery and fuelling. You get one of four plateau patterns back, plus the three changes to make this week. Four minutes, on screen, done.",
   },
   {
     q: "Is the result accurate or generic?",
-    a: "It's the same four-cause pattern I've built from years of conversations with the coaches behind World Tour wins. Generic plans treat every plateaued rider the same. This doesn't — the result is keyed off your answers.",
+    a: "It's the same four-cause pattern I've built from years of conversations with the coaches behind World Tour wins. Generic plans treat every plateaued rider the same. This doesn't — what you tell me changes what you get back.",
   },
   {
     q: "What happens to my email?",
@@ -47,7 +47,7 @@ const FAQS: ReadonlyArray<{ q: string; a: string }> = [
   },
   {
     q: "I don't have a power meter — can I still use this?",
-    a: "Yes. Most questions are about how your training feels and how you're recovering. Power data sharpens the answer; if you don't have it, you tell me what you've noticed on the road and we work from there.",
+    a: "Yes. Most questions are about how your training feels and how you're recovering. Power data sharpens the answer. If you don't have it, you tell me what you've noticed on the road and we work from there.",
   },
   {
     q: "What's Not Done Yet?",
@@ -55,7 +55,7 @@ const FAQS: ReadonlyArray<{ q: string; a: string }> = [
   },
   {
     q: "What happens after I get my result?",
-    a: "You see your plateau type and the three changes to make this week. From there you can run with it yourself or look at how Not Done Yet fits. Either way, you leave clearer than you arrived.",
+    a: "You see your plateau type and the three changes to make this week. From there you can run with it yourself or see if Not Done Yet is the right fit. Either way, you leave clearer than you arrived.",
   },
 ];
 
