@@ -62,7 +62,7 @@ export default function ClubhousePage() {
               Just tools and a community that gets it.
             </p>
             <SkoolTrialButton
-              href="https://www.skool.com/roadman"
+              href="https://www.skool.com/roadmancycling"
               source="clubhouse_hero"
               size="lg"
             >
@@ -133,7 +133,7 @@ export default function ClubhousePage() {
                 you&apos;re losing is time by not being part of this.
               </p>
               <SkoolTrialButton
-                href="https://www.skool.com/roadman"
+                href="https://www.skool.com/roadmancycling"
                 source="clubhouse_footer"
                 size="lg"
               >

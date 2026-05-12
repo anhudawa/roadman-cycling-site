@@ -96,7 +96,7 @@ const CLUBHOUSE_CTA: CtaDescriptor = {
   key: "clubhouse",
   title: "Join the Clubhouse",
   body: "Free Roadman community — ask riders and coaches who've been there.",
-  href: "https://www.skool.com/roadman",
+  href: "https://www.skool.com/roadmancycling",
   analyticsEvent: "cta_clicked:clubhouse",
 };
 

@@ -56,7 +56,7 @@ const weeklyEvents: RecurringEvent[] = [
     type: "ride",
     color: "coral",
     cta: "Join Roadman CC — $75/year",
-    ctaHref: "https://www.skool.com/roadmancycling/about",
+    ctaHref: "https://www.skool.com/roadmancycling",
     external: true,
   },
   {
@@ -75,7 +75,7 @@ const weeklyEvents: RecurringEvent[] = [
     type: "ride",
     color: "coral",
     cta: "Join Roadman CC — $75/year",
-    ctaHref: "https://www.skool.com/roadmancycling/about",
+    ctaHref: "https://www.skool.com/roadmancycling",
     external: true,
   },
 ];
@@ -614,7 +614,7 @@ export function EventsClient() {
                 </p>
                 <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
                   <Button
-                    href="https://www.skool.com/roadmancycling/about"
+                    href="https://www.skool.com/roadmancycling"
                     external
                     size="lg"
                   >

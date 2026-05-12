@@ -3,8 +3,8 @@
 
 export const NDY_CONFIG = {
   // Skool checkout links
-  skoolStandard: 'https://www.skool.com/roadmancycling/about',
-  skoolPremium: 'https://www.skool.com/roadmancycling/about',
+  skoolStandard: 'https://www.skool.com/roadmancycling',
+  skoolPremium: 'https://www.skool.com/roadmancycling',
 
   // Calendly links — update when account is created
   // Falls back to /contact until Calendly is configured

@@ -945,7 +945,7 @@ export default async function CoachingLocationPage({ params }: Props) {
             sameAs: [
               "https://youtube.com/@theroadmanpodcast",
               "https://instagram.com/roadman.cycling",
-              "https://www.skool.com/roadman-cycling-not-done-yet",
+              "https://www.skool.com/roadmancycling",
             ],
           }}
         />
