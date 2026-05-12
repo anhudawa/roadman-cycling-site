@@ -247,13 +247,13 @@ const HOW_IT_WORKS = [
 ];
 
 /**
- * The four profiles surfaced as a teaser grid.
+ * The four profiles surfaced as a teaser grid — the user-facing names
+ * of the Roadman Four-Cause Diagnostic.
  *
- * `Polarisation Failure` was renamed to `Grey-zone trap` for cold
- * traffic — the clinical name stays inside the diagnosis itself and
- * is preserved in `PROFILE_LABELS`/`profiles.ts` so analytics, OG
- * images and the result pages keep their existing taxonomy. This is
- * a pure presentation rename, not a model change.
+ * The polarisation profile is labelled "No-man's-land" everywhere
+ * cold traffic sees it. The internal key (`polarisation`) is preserved
+ * in analytics, schema, and `PROFILE_LABELS`/`profiles.ts` so the data
+ * taxonomy stays stable.
  *
  * Pillar colours are the canonical content-pillar palette from the
  * design tokens — Recovery (blue), Coaching (coral), Strength
@@ -273,7 +273,7 @@ const PROFILE_PREVIEWS = [
   },
   {
     n: "02",
-    title: "Grey-zone trap",
+    title: "No-man's-land",
     line: "Most of your riding is neither easy enough to recover from nor hard enough to drive change. The middle is where progress dies.",
     tells: ["Tempo by default", "Easy isn't easy", "Hard isn't hard"],
     accent: "var(--color-pillar-coaching)",

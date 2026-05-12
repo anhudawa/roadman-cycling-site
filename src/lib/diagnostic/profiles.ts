@@ -43,9 +43,9 @@ export const PROFILE_BREAKDOWNS: Record<Profile, Breakdown> = {
   },
 
   polarisation: {
-    headline: "You're living in the grey zone.",
+    headline: "You're stuck in no-man's-land.",
     diagnosis:
-      "Your diagnosis is Polarisation Failure. Most of your riding is neither easy enough to aid recovery nor hard enough to drive adaptation.",
+      "Your diagnosis is No-man's-land. Most of your riding is neither easy enough to aid recovery nor hard enough to drive adaptation — what Professor Seiler calls the grey zone.",
     whyThisIsHappening:
       "Most of your riding is neither easy enough to aid recovery nor hard enough to drive adaptation. Tempo, sweet spot, \"moderately hard\" — it all feels productive. It's not.\n\nStephen Seiler's research shows elite endurance athletes spend roughly 80% of their time at an intensity so easy that most recreational riders would find it frustrating to hold back. That's not an accident. That's the work.",
     whatItsCosting:
@@ -236,7 +236,7 @@ export function ctaFor(
 
 export const PROFILE_LABELS: Record<Profile, string> = {
   underRecovered: "Under-recovered",
-  polarisation: "Polarisation Failure",
+  polarisation: "No-man's-land",
   strengthGap: "Strength Gap",
   fuelingDeficit: "Fuelling Deficit",
 };
