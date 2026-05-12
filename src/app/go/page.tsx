@@ -589,7 +589,7 @@ export default function GoLandingPage() {
             className="font-heading text-off-white text-center mb-10 md:mb-12"
             style={{ fontSize: "clamp(1.875rem, 4.5vw, 3rem)" }}
           >
-            WHAT HAPPENS WHEN THE PLAN FITS THE LIFE
+            THE RIDERS WHO STOPPED GUESSING
           </h2>
 
           {/* Featured testimonial — Damien */}
@@ -694,7 +694,7 @@ export default function GoLandingPage() {
             className="font-heading text-off-white text-center mb-10 md:mb-12"
             style={{ fontSize: "clamp(1.5rem, 3.5vw, 2.25rem)" }}
           >
-            THE WORLD&rsquo;S LARGEST CYCLING PERFORMANCE PODCAST
+            THE CYCLING PODCAST THE PROS&rsquo; COACHES ACTUALLY COME ON
           </h3>
 
           {/* Stat row */}
@@ -755,12 +755,13 @@ export default function GoLandingPage() {
 
           {/* Named experts */}
           <p className="text-foreground-muted text-center max-w-2xl mx-auto leading-relaxed mb-14 md:mb-16 text-sm md:text-base">
-            Built on on-the-record conversations with{" "}
+            Built on conversations with{" "}
             <span className="text-off-white">Prof. Stephen Seiler</span>,{" "}
             <span className="text-off-white">Dan Lorang</span>,{" "}
             <span className="text-off-white">Dr. David Dunne</span> and the
-            coaches behind the riders winning at the World Tour. The
-            diagnostic is that pattern recognition, distilled.
+            coaches behind World Tour wins. Twelve questions, four plateau
+            patterns, the changes that work &mdash; that&rsquo;s the
+            diagnostic.
           </p>
 
           {/* Prominent Trustpilot strip */}
@@ -797,9 +798,7 @@ export default function GoLandingPage() {
                 </span>
               </div>
               <p className="text-foreground-muted text-sm">
-                Based on{" "}
-                <span className="text-off-white font-medium">16 reviews</span>{" "}
-                on Trustpilot
+                Verified on Trustpilot
                 <span className="text-coral ml-1.5 group-hover:translate-x-0.5 inline-block transition-transform">
                   →
                 </span>
