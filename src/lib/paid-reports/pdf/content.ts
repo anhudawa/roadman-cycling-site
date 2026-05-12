@@ -229,7 +229,7 @@ function renderSection(
         kind: "community_invite",
         title: section.title ?? "The room matters",
         paragraphs: [
-          "You can keep guessing alone, or plug into a group that's already solving the same problem you are. Not Done Yet is the paid community — 113 serious amateur cyclists, Anthony on weekly calls, Vekta training plans, the accountability you've been missing.",
+          "You can keep guessing alone, or plug into a group that's already solving the same problem you are. Not Done Yet is the paid community — 113 serious amateur cyclists, Anthony on weekly calls, TrainingPeaks training plans, the accountability you've been missing.",
           "Free tier if you want to lurk first: the Roadman Cycling Clubhouse — 1,800+ members, weekly Q&A, no cost.",
         ],
       };
@@ -622,7 +622,7 @@ function renderSection(
         ],
         bullets: [
           "Weekly live coaching call with Anthony Walsh — bring your numbers, your questions, this report",
-          "Vekta-powered training plan built for your specific goal, event date, and available weekly hours",
+          "TrainingPeaks-powered training plan built for your specific goal, event date, and available weekly hours",
           "Private community of 113+ serious amateurs — not beginners, not a ghost town",
           "Monthly masterclasses with World Tour coaches and sports scientists (Dan Lorang, Prof. Seiler, and others)",
           "Ask Roadman AI pre-loaded with your report result — use it between calls",

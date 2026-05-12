@@ -203,7 +203,7 @@ export default async function PaidReportSuccess({
               <p className="text-foreground-muted text-sm md:text-base leading-relaxed mb-4">
                 The report tells you what to do. Not Done Yet is where serious
                 amateur racers train alongside Anthony — weekly live calls,
-                Vekta-driven plans, and the same expert access this report
+                TrainingPeaks-driven plans, and the same expert access this report
                 draws on (Dan Lorang, Professor Seiler, Dr. David Dunne).
               </p>
               <ul className="text-foreground-muted text-sm space-y-2 mb-5">
@@ -213,7 +213,7 @@ export default async function PaidReportSuccess({
                 </li>
                 <li className="flex gap-2.5 items-start">
                   <span className="text-coral mt-1 leading-none shrink-0">▸</span>
-                  Vekta-powered training plans built around your power profile
+                  TrainingPeaks-powered training plans built around your power profile
                 </li>
                 <li className="flex gap-2.5 items-start">
                   <span className="text-coral mt-1 leading-none shrink-0">▸</span>

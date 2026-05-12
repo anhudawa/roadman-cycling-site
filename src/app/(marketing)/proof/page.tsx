@@ -580,7 +580,7 @@ export default function ProofLibraryPage() {
           metricsTitle="Race-day proof"
           metricsSubtitle="Category upgrades, power PRs, race wins."
           ctaHeading="WANT TO RACE WITH A REAL PLAN BEHIND YOU?"
-          ctaBody="Inner Circle is the small-group coaching room for serious racers and event riders. Weekly check-ins with Anthony, Vekta-built training plans, and the same five-pillar system that put Daniel Stone in Cat 1 in one season."
+          ctaBody="Inner Circle is the small-group coaching room for serious racers and event riders. Weekly check-ins with Anthony, TrainingPeaks training plans, and the same five-pillar system that put Daniel Stone in Cat 1 in one season."
           ctaPrimaryLabel="Apply for Inner Circle"
           ctaPrimaryHref="/inner-circle/apply"
           ctaSecondaryLabel="Apply for Not Done Yet"

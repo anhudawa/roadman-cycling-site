@@ -46,7 +46,7 @@ const VARIANTS: Record<EpisodeCtaVariant, Omit<EpisodeCtaSpec, "reason">> = {
   community: {
     variant: "community",
     headline: "Stop guessing. Plug into Not Done Yet.",
-    body: "Weekly calls with Anthony, Vekta-built training plans, and a community of serious cyclists who refuse to accept their best days are behind them.",
+    body: "Weekly calls with Anthony, TrainingPeaks training plans, and a community of serious cyclists who refuse to accept their best days are behind them.",
     cta: "Join Not Done Yet",
     href: "/community",
   },
