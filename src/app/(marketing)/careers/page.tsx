@@ -79,7 +79,7 @@ const aboutFacts = [
   {
     stat: "TrainingPeaks",
     label: "Partner network",
-    detail: "Plus Vekta, expert reviewers, and a coaching platform scaling across Ireland, the UK, and the USA",
+    detail: "Plus TrainingPeaks, expert reviewers, and a coaching platform scaling across Ireland, the UK, and the USA",
   },
 ];
 
