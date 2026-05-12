@@ -32,20 +32,13 @@ import { BRAND_STATS, FOUNDER, PODCAST, SITE_ORIGIN } from "@/lib/brand-facts";
 // cta_click event with the specific position on this page.
 const CTA_HREF = "/plateau?source=go";
 
-const PAIN_BULLETS = [
-  "You're putting in the hours, but the FTP number won't move.",
-  "You've tried plans from YouTube, TrainerRoad, magazines — and you're still stuck.",
-  "You're 40-plus and you can feel the punch fading on the climbs and the sprints.",
-  "You don't want another generic plan. You want to know what's actually wrong.",
-];
-
 const FOUR_REASONS = [
   {
     label: "Under-recovered",
     body: "You're doing the training. You're not getting the adaptation. Sleep, life stress and back-to-back hard sessions are eating the gains.",
   },
   {
-    label: "Grey-zone trap",
+    label: "No-man's-land",
     body: "Most of your riding is neither easy enough to recover from nor hard enough to drive change. The middle is where progress dies.",
   },
   {
@@ -362,7 +355,7 @@ export default function GoLandingPage() {
                 />
                 <span>
                   Your specific plateau type &mdash; under-recovered,
-                  grey-zone, strength gap or fuelling deficit
+                  no-man&rsquo;s-land, strength gap or fuelling deficit
                 </span>
               </li>
               <li className="flex items-start gap-2.5">
@@ -484,23 +477,21 @@ export default function GoLandingPage() {
             className="font-heading text-off-white text-center mb-10"
             style={{ fontSize: "clamp(1.875rem, 4.5vw, 3rem)" }}
           >
-            THE PLATEAU NOBODY HAS BEEN ABLE TO EXPLAIN
+            THE PLATEAU NOBODY&rsquo;S EXPLAINED TO YOU
           </h2>
 
-          <ul className="space-y-3 md:space-y-4 list-none p-0 max-w-xl mx-auto">
-            {PAIN_BULLETS.map((line) => (
-              <li
-                key={line}
-                className="flex items-start gap-3 text-foreground-muted text-base md:text-lg leading-relaxed"
-              >
-                <span
-                  aria-hidden="true"
-                  className="mt-2 inline-block w-2 h-2 rounded-full bg-coral shrink-0"
-                />
-                <span>{line}</span>
-              </li>
-            ))}
-          </ul>
+          <div className="max-w-xl mx-auto text-foreground-muted text-base md:text-lg leading-relaxed space-y-4">
+            <p>
+              You&rsquo;re putting in the hours and the FTP number won&rsquo;t
+              move. You&rsquo;ve tried the YouTube plans, the TrainerRoad plans,
+              the ones in the magazines &mdash; same story.
+            </p>
+            <p>
+              You can feel the punch fading on the climbs and the sprints, and
+              you&rsquo;re not ready to accept it. You don&rsquo;t want another
+              generic plan. You want to know what&rsquo;s actually wrong.
+            </p>
+          </div>
 
           <p className="text-foreground-muted text-base md:text-lg leading-relaxed text-center max-w-xl mx-auto mt-10">
             You&rsquo;re not lazy. You&rsquo;re not undertrained. There are only{" "}
@@ -517,7 +508,7 @@ export default function GoLandingPage() {
       <Section background="charcoal">
         <Container width="default">
           <p className="text-coral font-heading text-[11px] md:text-xs tracking-[0.3em] text-center mb-3">
-            THE FOUR
+            THE ROADMAN FOUR-CAUSE DIAGNOSTIC
           </p>
           <h2
             className="font-heading text-off-white text-center mb-3"
@@ -527,7 +518,7 @@ export default function GoLandingPage() {
           </h2>
           <p className="text-foreground-muted text-center max-w-lg mx-auto mb-10 md:mb-12 leading-relaxed">
             Each one has a specific cause and a specific fix. Twelve questions
-            tells us which is yours.
+            tell you which of the four is yours.
           </p>
 
           <ul className="grid sm:grid-cols-2 gap-4 md:gap-5 list-none p-0 max-w-3xl mx-auto">
@@ -559,7 +550,13 @@ export default function GoLandingPage() {
             ))}
           </ul>
 
-          <div className="mt-10 md:mt-12 text-center">
+          <p className="text-off-white text-center max-w-2xl mx-auto mt-10 md:mt-12 text-lg md:text-xl leading-relaxed">
+            Plans give you workouts. This tells you which workout has been the
+            wrong one &mdash; and why the next plan you start should be
+            different.
+          </p>
+
+          <div className="mt-8 md:mt-10 text-center">
             <Link
               href={CTA_HREF}
               data-cta="mid"
