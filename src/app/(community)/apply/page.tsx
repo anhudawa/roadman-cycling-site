@@ -12,9 +12,9 @@ import {
 import { getCohortState } from "@/lib/cohort";
 
 export async function generateMetadata(): Promise<Metadata> {
-  const title = "Apply — Not Done Yet Coaching";
+  const title = "Apply for Not Done Yet — Cycling Coaching with Anthony";
   const description =
-    "30 places. 5 pillars. $195/month. Applications open now. Personalised cycling coaching with Anthony Walsh.";
+    "30 places, five pillars, $195/month. Personalised cycling coaching with Anthony Walsh — TrainingPeaks plans, weekly live calls, the riders breaking through right now.";
   return {
     title,
     description,

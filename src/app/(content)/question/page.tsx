@@ -11,9 +11,9 @@ import {
 import { SITE_ORIGIN } from "@/lib/brand-facts";
 
 export const metadata: Metadata = {
-  title: "Cycling Questions Answered — FTP, Masters, Nutrition, Coaching",
+  title: "Cycling Questions Answered — Direct Answers, Sourced",
   description:
-    "Answer-first guides to the questions amateur cyclists actually ask — FTP benchmarks, masters training, nutrition, and coaching. Grounded in 1,400+ podcast conversations.",
+    "Direct answers to the questions amateur cyclists actually type into Google — FTP, masters training, nutrition, coaching. Cited to the 1,400+ Roadman podcast archive.",
   alternates: {
     canonical: `${SITE_ORIGIN}/question`,
   },

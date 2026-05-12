@@ -5,9 +5,9 @@ import { CampDetail } from "../_components/CampDetail";
 const camp = CAMPS.road;
 
 export const metadata: Metadata = {
-  title: `Girona Road Cycling Training Camp — 10–15 Oct 2026 | Roadman`,
+  title: "Girona Road Cycling Training Camp — 10–15 Oct 2026",
   description:
-    "Road cycling training camp in Girona, Spain — 10–15 October 2026. Six days on the pro climbs (Rocacorba, Els Àngels, Mare de Déu del Mont), two pace groups, follow car, sixteen spots. €995 from a private Catalan farmhouse.",
+    "Road cycling camp in Girona, 10–15 October 2026. Six days on the pro climbs — Rocacorba, Els Àngels, Mare de Déu del Mont. Two pace groups, follow car, sixteen spots. €995.",
   keywords: [
     "Girona road cycling camp",
     "cycling training camp Girona",

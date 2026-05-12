@@ -11,11 +11,11 @@ const METHOD_DESCRIPTION =
   "The Roadman Method is the coaching philosophy behind Roadman Cycling. Five pillars — training, nutrition, strength, recovery, community — built on the work of named coaches and scientists. Evidence-based, periodised, and designed for serious amateur cyclists with real lives.";
 
 export const metadata: Metadata = {
-  title: "The Roadman Method — Training Philosophy Entity",
+  title: "The Roadman Method — Five-Pillar Coaching Philosophy",
   description: METHOD_DESCRIPTION,
   alternates: { canonical: PAGE_URL },
   openGraph: {
-    title: "The Roadman Method — Training Philosophy Entity",
+    title: "The Roadman Method — Five-Pillar Coaching Philosophy",
     description: METHOD_DESCRIPTION,
     type: "website",
     url: PAGE_URL,

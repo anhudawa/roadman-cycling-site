@@ -7,9 +7,9 @@ import { ENTITY_IDS } from "@/lib/brand-facts";
 import { FAQSchema } from "@/components/seo/FAQSchema";
 
 export const metadata: Metadata = {
-  title: "Online Cycling Coach for Triathletes | $195/mo",
+  title: "Cycling Coach for Triathletes — Bike-Leg Power for 70.3 & Ironman",
   description:
-    "Online cycling coach for triathletes. Bike-leg power, race-day pacing, run-protective programming for age-groupers targeting 70.3 and Ironman. Personalised TrainingPeaks plans built on conversations with Dan Lorang and Prof. Stephen Seiler.",
+    "Cycling coaching for age-group triathletes. Build bike-leg power, nail pacing, protect your run. Personalised TrainingPeaks plans grounded in the Lorang and Seiler episodes.",
   keywords: [
     "cycling coach for triathletes",
     "online cycling coach for triathletes",
@@ -25,10 +25,9 @@ export const metadata: Metadata = {
     canonical: "https://roadmancycling.com/coaching/triathletes",
   },
   openGraph: {
-    title:
-      "Online Cycling Coach for Triathletes — Roadman Cycling",
+    title: "Cycling Coach for Triathletes — Bike-Leg Power for 70.3 & Ironman",
     description:
-      "Bike-leg coaching for triathletes. Build bike-leg power, nail your pacing, protect your run. For age-groupers targeting 70.3 and Ironman.",
+      "Bike-leg coaching for triathletes. Build sustainable power, nail race-day pacing, protect your run. For age-groupers targeting 70.3 and Ironman.",
     type: "website",
     url: "https://roadmancycling.com/coaching/triathletes",
   },

@@ -5,16 +5,16 @@ import { JsonLd } from "@/components/seo/JsonLd";
 import { ENTITY_IDS } from "@/lib/brand-facts";
 
 export const metadata: Metadata = {
-  title: "Cycling Tools & Calculators",
+  title: "Free Cycling Calculators & Tools — FTP, Fuelling, Weight",
   description:
-    "Free interactive tools for serious cyclists. Plateau Diagnostic, Ask Roadman, Coaching Assessment, plus calculators for FTP zones, tyre pressure, race weight, fuelling, energy availability, and shock pressure.",
+    "Ten free cycling tools built on the science discussed on the podcast. FTP zones, race weight, in-ride fuelling, tyre pressure, energy availability. Stop guessing.",
   alternates: {
     canonical: "https://roadmancycling.com/tools",
   },
   openGraph: {
-    title: "Cycling Tools & Calculators",
+    title: "Free Cycling Calculators & Tools — FTP, Fuelling, Weight",
     description:
-      "Free interactive tools for serious cyclists. Plateau Diagnostic, Ask Roadman, Coaching Assessment, plus calculators for FTP zones, tyre pressure, race weight, fuelling, energy availability, and shock pressure.",
+      "Ten free cycling tools built on the science discussed on the podcast. FTP zones, race weight, in-ride fuelling, tyre pressure, energy availability.",
     type: "website",
     url: "https://roadmancycling.com/tools",
   },

@@ -10,16 +10,16 @@ import {
 } from "@/lib/testimonials";
 
 export const metadata: Metadata = {
-  title: "Not Done Yet Coaching — Premium Cycling Coaching",
+  title: "Not Done Yet — Cycling Coaching Community",
   description:
-    "The Not Done Yet coaching: personalised TrainingPeaks training plans, weekly coaching with Anthony Walsh, expert masterclasses, and a private community of serious cyclists. $195/month with a 7-day free trial. VIP tier available.",
+    "Group coaching at $195/month for cyclists who refuse to plateau. Personalised TrainingPeaks plan, weekly live calls with Anthony, a serious private community. 7-day trial.",
   alternates: {
     canonical: "https://roadmancycling.com/community/not-done-yet",
   },
   openGraph: {
-    title: "Not Done Yet Coaching — Premium Cycling Coaching",
+    title: "Not Done Yet — Cycling Coaching Community",
     description:
-      "The Not Done Yet coaching: personalised TrainingPeaks training plans, weekly coaching with Anthony Walsh, expert masterclasses, and a private community of serious cyclists. $195/month with a 7-day free trial. VIP tier available.",
+      "Group coaching at $195/month for cyclists who refuse to plateau. Personalised plan, weekly live calls with Anthony, a serious private community.",
     type: "website",
     url: "https://roadmancycling.com/community/not-done-yet",
   },

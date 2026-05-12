@@ -4,16 +4,16 @@ import { JsonLd } from "@/components/seo/JsonLd";
 import { EventsClient } from "@/components/features/events/EventsClient";
 
 export const metadata: Metadata = {
-  title: "Events — Weekly Rides, Coaching Calls & Community",
+  title: "Roadman Cycling Events — Dublin Rides & Coaching Calls",
   description:
-    "Join the Roadman Cycling community for weekly group rides in Dublin, live coaching calls, and structured training sessions. All levels welcome.",
+    "Group rides in Dublin and live coaching calls with Anthony, week in week out. The events calendar for the Roadman community. Roadman CC pace groups for every level.",
   alternates: {
     canonical: "https://roadmancycling.com/events",
   },
   openGraph: {
-    title: "Events — Weekly Rides, Coaching Calls & Community",
+    title: "Roadman Cycling Events — Dublin Rides & Coaching Calls",
     description:
-      "Join the Roadman Cycling community for weekly group rides in Dublin, live coaching calls, and structured training sessions.",
+      "Group rides in Dublin and live coaching calls with Anthony, week in week out. Roadman CC pace groups for every level.",
     type: "website",
     url: "https://roadmancycling.com/events",
   },

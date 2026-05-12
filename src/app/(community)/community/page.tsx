@@ -6,16 +6,16 @@ import { JsonLd } from "@/components/seo/JsonLd";
 import { ENTITY_IDS } from "@/lib/brand-facts";
 
 export const metadata: Metadata = {
-  title: "Community — Serious Cyclists Who Refuse to Settle",
+  title: "Roadman Cycling Community — Free Clubhouse or Coached",
   description:
-    "Two communities. One mission. Join the free Clubhouse or go premium with the Not Done Yet coaching — personalised coaching, training plans, and the five-pillar system (training, nutrition, strength, recovery, community).",
+    "Two communities, one mission. The free Clubhouse for serious amateurs, or Not Done Yet group coaching for riders who want a plan, weekly calls and a coach who reads the data.",
   alternates: {
     canonical: "https://roadmancycling.com/community",
   },
   openGraph: {
-    title: "Community — Serious Cyclists Who Refuse to Settle",
+    title: "Roadman Cycling Community — Free Clubhouse or Coached",
     description:
-      "Two communities. One mission. Join the free Clubhouse or go premium with the Not Done Yet coaching — personalised coaching, training plans, and the five-pillar system (training, nutrition, strength, recovery, community).",
+      "Two communities, one mission. Free Clubhouse for serious amateurs, or Not Done Yet group coaching with weekly calls and a coach who reads the data.",
     type: "website",
     url: "https://roadmancycling.com/community",
   },

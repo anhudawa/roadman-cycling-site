@@ -10,16 +10,16 @@ import { getAllPosts } from "@/lib/blog";
 import { EmailCapture } from "@/components/features/conversion/EmailCapture";
 
 export const metadata: Metadata = {
-  title: "Anthony Walsh — Cycling Coach & Podcast Host",
+  title: "Anthony Walsh — Cycling Coach, Author & Roadman Founder",
   description:
-    "Anthony Walsh is a cycling coach and founder of Roadman Cycling. Host of 1,400+ podcast episodes with World Tour coaches, scientists, and pro riders. Based in Dublin, Ireland.",
+    "Anthony Walsh — Dublin-based cycling coach, founder of Roadman Cycling, host of 1,400+ on-the-record podcast interviews with World Tour coaches, sport scientists and pro riders.",
   alternates: {
     canonical: "https://roadmancycling.com/author/anthony-walsh",
   },
   openGraph: {
-    title: "Anthony Walsh — Cycling Coach & Podcast Host",
+    title: "Anthony Walsh — Cycling Coach, Author & Roadman Founder",
     description:
-      "Cycling coach and founder of Roadman Cycling. 1,400+ podcast interviews with the best minds in cycling performance.",
+      "Dublin-based cycling coach. Founder of Roadman Cycling. 1,400+ on-the-record podcast interviews with the best minds in cycling performance.",
     type: "profile",
     url: "https://roadmancycling.com/author/anthony-walsh",
     images: [

@@ -250,10 +250,9 @@ const masterTestimonials = getTestimonialsByName([
 ]);
 
 export const metadata: Metadata = {
-  title:
-    "Masters Cycling Performance Hub — Still Improving at 40, 45, 50+ | Roadman Cycling",
+  title: "Masters Cycling — Still Improving at 40, 45, 50+",
   description:
-    "The Roadman Cycling masters performance hub. Evidence-based training, strength, recovery, and nutrition for serious cyclists 35-55+. Friel, Seiler, Lipman, the 2026 Masters Report, and the tools to put it to work.",
+    "Cycling training, strength, recovery and nutrition for serious riders 35-55+. Friel, Seiler, Lipman and the 2026 Masters Report — with the tools to actually run it next Monday.",
   keywords: [
     "masters cycling",
     "cycling after 40",
@@ -270,9 +269,9 @@ export const metadata: Metadata = {
     canonical: HUB_URL,
   },
   openGraph: {
-    title: "Masters Cycling Performance Hub — Still Improving at 40, 45, 50+",
+    title: "Masters Cycling — Still Improving at 40, 45, 50+",
     description:
-      "Evidence-based training, strength, recovery, and nutrition for serious cyclists 35-55+. The Roadman archive, the 2026 Masters Report, and the tools to put it to work.",
+      "Training, strength, recovery and nutrition for serious cyclists 35-55+. The Roadman archive, the 2026 Masters Report, and the tools to run it next Monday.",
     type: "website",
     url: HUB_URL,
     images: [

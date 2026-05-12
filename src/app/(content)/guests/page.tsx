@@ -7,16 +7,16 @@ import { getAllGuests } from "@/lib/guests";
 import { GuestGrid } from "@/components/features/guests/GuestGrid";
 
 export const metadata: Metadata = {
-  title: "Podcast Guests — World-Class Coaches, Scientists & Pro Cyclists",
+  title: "Cycling Podcast Guests — Coaches, Scientists & Pro Riders",
   description:
-    "Browse every guest who's appeared on The Roadman Cycling Podcast. World Tour coaches, exercise scientists, pro cyclists, nutritionists, and endurance athletes sharing real knowledge.",
+    "Every guest on the Roadman Cycling Podcast. Seiler, Lorang, Wakefield, LeMond, Morton, Bigham, Spector, Friel — World Tour coaches, sport scientists and pro cyclists, on the record.",
   alternates: {
     canonical: "https://roadmancycling.com/guests",
   },
   openGraph: {
-    title: "Podcast Guests — World-Class Coaches, Scientists & Pro Cyclists",
+    title: "Cycling Podcast Guests — Coaches, Scientists & Pro Riders",
     description:
-      "Browse every guest who's appeared on The Roadman Cycling Podcast. World Tour coaches, exercise scientists, pro cyclists, nutritionists, and endurance athletes sharing real knowledge.",
+      "Every guest on the Roadman Cycling Podcast. Seiler, Lorang, LeMond, Morton, Bigham, Friel — World Tour coaches, sport scientists and pro cyclists, on the record.",
     type: "website",
     url: "https://roadmancycling.com/guests",
   },

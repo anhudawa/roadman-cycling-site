@@ -17,11 +17,11 @@ import {
 const PAGE_URL = `${SITE_ORIGIN}/entity/roadman-cycling`;
 
 export const metadata: Metadata = {
-  title: "Roadman Cycling — Brand Entity & Facts",
+  title: "Roadman Cycling — Brand Facts, Stats & Sources",
   description: BRAND_SUMMARY,
   alternates: { canonical: PAGE_URL },
   openGraph: {
-    title: "Roadman Cycling — Brand Entity",
+    title: "Roadman Cycling — Brand Facts, Stats & Sources",
     description: BRAND_SUMMARY,
     type: "website",
     url: PAGE_URL,

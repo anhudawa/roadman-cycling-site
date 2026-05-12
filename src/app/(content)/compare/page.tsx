@@ -6,9 +6,9 @@ import { JsonLd } from "@/components/seo/JsonLd";
 import { COMPARISONS } from "@/lib/comparisons";
 
 export const metadata: Metadata = {
-  title: "Compare — Cycling Training Decisions Made Simple",
+  title: "Cycling Training Comparisons — Coach vs App, Power vs HR & More",
   description:
-    "Side-by-side comparisons for cycling training decisions. Coach vs app, power vs heart rate, polarised vs pyramidal, and more.",
+    "Side-by-side cycling decisions, settled. Coach vs app, power vs heart rate, polarised vs pyramidal, sweet spot vs threshold — what the science and the pros actually say.",
   alternates: {
     canonical: "https://roadmancycling.com/compare",
   },

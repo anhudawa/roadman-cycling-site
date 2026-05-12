@@ -8,16 +8,16 @@ import { BlogSearch } from "@/components/features/blog/BlogSearch";
 import { TrustpilotBadge } from "@/components/proof";
 
 export const metadata: Metadata = {
-  title: "Blog — Training, Nutrition & Performance",
+  title: "Cycling Blog — Training, Nutrition & Performance",
   description:
-    "Expert cycling content grounded in science. Training methodology, nutrition, strength & conditioning, recovery, and cycling culture — from the conversations with the world's best.",
+    "Cycling articles grounded in the science Anthony actually discusses with the pros. Training methodology, nutrition, strength, recovery, and the craft of being a cyclist.",
   alternates: {
     canonical: "https://roadmancycling.com/blog",
   },
   openGraph: {
-    title: "Blog — Training, Nutrition & Performance",
+    title: "Cycling Blog — Training, Nutrition & Performance",
     description:
-      "Expert cycling content grounded in science. Training methodology, nutrition, strength & conditioning, recovery, and cycling culture — from the conversations with the world's best.",
+      "Cycling articles grounded in the science Anthony actually discusses with the pros. Training, nutrition, strength, recovery, and the craft of being a cyclist.",
     type: "website",
     url: "https://roadmancycling.com/blog",
   },

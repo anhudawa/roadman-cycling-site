@@ -5,9 +5,9 @@ import { CampDetail } from "../_components/CampDetail";
 const camp = CAMPS.gravel;
 
 export const metadata: Metadata = {
-  title: `Girona Gravel Cycling Camp — 16–21 Oct 2026 | Roadman`,
+  title: "Girona Gravel Cycling Camp — 16–21 Oct 2026",
   description:
-    "Gravel cycling camp in Girona, Spain — 16–21 October 2026. Six days off the tarmac on La Garrotxa volcanic dirt, Les Gavarres cork-oak singletrack, Empordà vineyard tracks and Costa Brava gravel. Two pace groups, sixteen spots, €995.",
+    "Gravel camp in Girona, 16–21 October 2026. La Garrotxa volcanic dirt, Les Gavarres cork-oak singletrack, Empordà vineyard tracks, Costa Brava gravel. Sixteen spots, €995.",
   keywords: [
     "Girona gravel camp",
     "gravel cycling camp",

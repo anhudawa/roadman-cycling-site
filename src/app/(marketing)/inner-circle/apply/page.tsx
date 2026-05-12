@@ -5,16 +5,16 @@ import { JsonLd } from "@/components/seo/JsonLd";
 import { InnerCircleApplicationForm } from "./InnerCircleApplicationForm";
 
 export const metadata: Metadata = {
-  title: "Apply for the Roadman Inner Circle — Premium 1:1 Cycling Coaching",
+  title: "Apply — Roadman Inner Circle 1:1 Cycling Coaching",
   description:
-    "Apply for the Roadman Inner Circle. Premium 1:1 coaching across six pillars — training, nutrition, recovery, strength, community, and Performance Health. Daily session feedback. Quarterly bloods. $525 / month.",
+    "Apply for Inner Circle. 1:1 coaching across six pillars — training, nutrition, recovery, strength, community and Performance Health. Daily session review. $525/month.",
   alternates: {
     canonical: "https://roadmancycling.com/inner-circle/apply",
   },
   openGraph: {
-    title: "Apply for the Roadman Inner Circle",
+    title: "Apply — Roadman Inner Circle 1:1 Cycling Coaching",
     description:
-      "Daily session review. Weekly written check-in. Monthly video review. Quarterly bloods. Limited intake. $525 / month.",
+      "Daily session review. Weekly written check-in. Monthly video review. Quarterly bloods. Limited intake. $525/month.",
     type: "website",
     url: "https://roadmancycling.com/inner-circle/apply",
   },

@@ -17,9 +17,9 @@ const DublinRouteMap = dynamic(
 );
 
 export const metadata: Metadata = {
-  title: "Roadman CC — Dublin Cycling Club",
+  title: "Roadman CC — Dublin Cycling Club for Serious Riders",
   description:
-    "Three rides a week. One community. Dublin's cycling club for riders who still believe the best is ahead. Thursday Phoenix Park. Saturday and Sunday from Clontarf.",
+    "Three rides a week. One community. Dublin's cycling club for riders who still believe the best is ahead. Thursday Phoenix Park, Saturday and Sunday from Clontarf.",
   keywords: [
     "cycling club Dublin",
     "Dublin cycling club",
@@ -29,9 +29,9 @@ export const metadata: Metadata = {
   ],
   alternates: { canonical: "https://roadmancycling.com/community/club" },
   openGraph: {
-    title: "Roadman CC — Dublin Cycling Club",
+    title: "Roadman CC — Dublin Cycling Club for Serious Riders",
     description:
-      "Three rides a week. One community. Dublin's cycling club for riders who still believe the best is ahead. Thursday Phoenix Park. Saturday and Sunday from Clontarf.",
+      "Three rides a week. One community. Dublin's cycling club for riders who still believe the best is ahead. Thursday Phoenix Park, Saturday and Sunday from Clontarf.",
     type: "website",
     url: "https://roadmancycling.com/community/club",
   },

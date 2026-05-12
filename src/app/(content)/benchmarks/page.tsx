@@ -21,9 +21,9 @@ import {
 } from "./BenchmarkCharts";
 
 export const metadata: Metadata = {
-  title: "Amateur Cycling Performance Report 2026 — FTP, W/kg & Training Benchmarks",
+  title: "Amateur Cycling Benchmarks 2026 — FTP, W/kg & Training Hours",
   description:
-    "FTP, watts-per-kilo, training hours, sportive times, and FTP improvement benchmarks for actively-training amateur road cyclists. Percentile data by age group, with full methodology and a downloadable JSON dataset.",
+    "Where your watts actually place you. FTP, W/kg, training hours and sportive times for actively training amateur cyclists — percentile data by age group, with methodology.",
   keywords: [
     "FTP percentile by age",
     "watts per kilo benchmark",
@@ -37,18 +37,18 @@ export const metadata: Metadata = {
     canonical: "https://roadmancycling.com/benchmarks",
   },
   openGraph: {
-    title: "The Roadman Amateur Cycling Performance Report 2026",
+    title: "Amateur Cycling Benchmarks 2026 — FTP, W/kg & Training Hours",
     description:
-      "Percentile benchmarks for FTP, W/kg, training hours, sportive times, and FTP improvement rates — by age group, with methodology and downloadable dataset.",
+      "Where your watts actually place you. FTP, W/kg, training hours and sportive times for amateur cyclists — percentile data by age group, with methodology.",
     type: "article",
     url: "https://roadmancycling.com/benchmarks",
     images: [{ url: "/og-image.jpg", width: 1200, height: 630, alt: "Roadman Cycling Benchmarks 2026" }],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Amateur Cycling Performance Report 2026",
+    title: "Amateur Cycling Benchmarks 2026 — FTP, W/kg & Training Hours",
     description:
-      "FTP, W/kg, training hours, sportive times, and improvement rates for amateur cyclists. Percentile data + methodology + downloadable JSON.",
+      "FTP, W/kg, training hours and sportive times for amateur cyclists. Percentile data by age group, plus methodology and a downloadable JSON dataset.",
   },
 };
 

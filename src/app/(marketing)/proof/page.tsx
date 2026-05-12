@@ -34,9 +34,9 @@ function caseStudyHref(name: string): string | undefined {
 }
 
 export const metadata: Metadata = {
-  title: "Real Cyclist Results — Proof Library",
+  title: "Cycling Coaching Results — The Roadman Proof Library",
   description:
-    "Verified results from cyclists coached by Roadman Cycling. FTP gains, body composition shifts, category jumps, comebacks after injury, and masters performance — quotes verbatim, numbers from TrainingPeaks, caveats included.",
+    "Real results from cyclists coached by Roadman. FTP gains, body composition shifts, category jumps, masters comebacks. Quotes verbatim, numbers from TrainingPeaks, caveats included.",
   keywords: [
     "cycling coaching results",
     "Roadman Cycling testimonials",
@@ -50,9 +50,9 @@ export const metadata: Metadata = {
     canonical: `${SITE_ORIGIN}/proof`,
   },
   openGraph: {
-    title: "Real Cyclist Results — Proof Library | Roadman Cycling",
+    title: "Cycling Coaching Results — The Roadman Proof Library",
     description:
-      "Real riders. Real results. No hype. The full library of athlete proof from Roadman Cycling coaching.",
+      "FTP gains, body composition shifts, category jumps, masters comebacks. Quotes verbatim, numbers from TrainingPeaks. The full proof library from Roadman coaching.",
     type: "website",
     url: `${SITE_ORIGIN}/proof`,
     images: [

@@ -12,11 +12,11 @@ const NDY_DESCRIPTION =
   "Not Done Yet is Roadman Cycling's coaching product — personalised training plans, weekly coaching calls with Anthony Walsh, expert masterclasses, and a private group of serious amateur cyclists who refuse to accept their best days are behind them.";
 
 export const metadata: Metadata = {
-  title: "Not Done Yet — Coaching Entity",
+  title: "Not Done Yet — The Roadman Coaching Community",
   description: NDY_DESCRIPTION,
   alternates: { canonical: PAGE_URL },
   openGraph: {
-    title: "Not Done Yet — Coaching Entity",
+    title: "Not Done Yet — The Roadman Coaching Community",
     description: NDY_DESCRIPTION,
     type: "website",
     url: PAGE_URL,

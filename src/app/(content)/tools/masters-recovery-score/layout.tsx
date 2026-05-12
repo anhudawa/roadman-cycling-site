@@ -4,9 +4,9 @@ import { JsonLd } from "@/components/seo/JsonLd";
 import { SoftwareApplicationSchema } from "@/components/seo/SoftwareApplicationSchema";
 
 export const metadata: Metadata = {
-  title: "Masters Recovery Score — Cycling Recovery Calculator (40+)",
+  title: "Masters Recovery Score — Are You Training Above Your Limit?",
   description:
-    "Free recovery calculator for masters cyclists. Combines age, training load, sleep, and life stress into a 0–100 score with a recovery recommendation calibrated to riders over 40.",
+    "A recovery audit calibrated for cyclists 40+. Combines age, weekly hours, sleep and life stress into a 0–100 score plus the single biggest lever to change this week. Free.",
   keywords: [
     "masters recovery score",
     "cycling recovery calculator",
@@ -17,9 +17,9 @@ export const metadata: Metadata = {
   ],
   alternates: { canonical: "https://roadmancycling.com/tools/masters-recovery-score" },
   openGraph: {
-    title: "Masters Recovery Score — Cycling Recovery Calculator (40+)",
+    title: "Masters Recovery Score — Are You Training Above Your Limit?",
     description:
-      "Free recovery calculator for masters cyclists. Combines age, training load, sleep, and life stress into a 0–100 score with a recovery recommendation calibrated to riders over 40.",
+      "A recovery audit calibrated for cyclists 40+. Combines age, weekly hours, sleep and life stress into a 0–100 score plus the biggest lever to change.",
     type: "website",
     url: "https://roadmancycling.com/tools/masters-recovery-score",
     images: [{ url: "/og-image.jpg", width: 1200, height: 630, alt: "Roadman Cycling" }],

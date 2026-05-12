@@ -7,10 +7,9 @@ import { JsonLd } from "@/components/seo/JsonLd";
 import { CAMP_LIST, formatCampDates } from "@/lib/camps/camps";
 
 export const metadata: Metadata = {
-  title:
-    "Cycling Training Camps in Girona, Spain — October 2026 | Roadman Cycling",
+  title: "Cycling Training Camps in Girona, Spain — October 2026",
   description:
-    "Road and gravel cycling training camps in Girona, October 2026. Six days each, sixteen riders, two pace groups, follow car, Anthony in the group every day. €995 per camp or €1,700 for both back-to-back from a private Catalan farmhouse.",
+    "Road and gravel cycling camps in Girona, October 2026. Six days each, sixteen riders, two pace groups, follow car, Anthony in the group every day. €995 each or €1,700 for both.",
   keywords: [
     "cycling training camp",
     "cycling training camps",
@@ -27,8 +26,7 @@ export const metadata: Metadata = {
     canonical: "https://roadmancycling.com/training-camps",
   },
   openGraph: {
-    title:
-      "Cycling Training Camps in Girona — Roadman Camps · October 2026",
+    title: "Cycling Training Camps in Girona, Spain — October 2026",
     description:
       "Road and Gravel camps from a private Catalan farmhouse. Two pace groups, follow car, sixteen spots, Anthony in the group every day. €995 per camp.",
     type: "website",

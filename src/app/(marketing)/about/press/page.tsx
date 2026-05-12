@@ -7,16 +7,16 @@ import { JsonLd } from "@/components/seo/JsonLd";
 import { ENTITY_IDS } from "@/lib/brand-facts";
 
 export const metadata: Metadata = {
-  title: "Press & Media Kit — Anthony Walsh",
+  title: "Press & Media Kit — Anthony Walsh & Roadman Cycling",
   description:
-    "Press kit and media enquiries for Roadman Cycling and Anthony Walsh. Brand stats, founder bio, guest credentials, approved assets, and podcast-guesting availability.",
+    "Press enquiries, brand stats, founder bio, guest credentials, approved assets, and podcast-guesting availability for Roadman Cycling and Anthony Walsh.",
   alternates: {
     canonical: "https://roadmancycling.com/about/press",
   },
   openGraph: {
     title: "Press & Media Kit — Anthony Walsh & Roadman Cycling",
     description:
-      "Press kit and media enquiries for Roadman Cycling and Anthony Walsh. Brand stats, founder bio, guest credentials, approved assets.",
+      "Press enquiries, brand stats, founder bio, guest credentials and approved assets for Roadman Cycling and Anthony Walsh.",
     type: "profile",
     url: "https://roadmancycling.com/about/press",
   },
