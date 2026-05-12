@@ -320,10 +320,11 @@ export default function GoLandingPage() {
             </span>
           </h1>
           <p className="text-foreground-muted text-base md:text-xl leading-relaxed mb-8 max-w-xl mx-auto">
-            In four minutes you&rsquo;ll have a specific diagnosis for why your
-            FTP has stalled &mdash; and the three changes to make this week.
-            Built from on-the-record conversations with World Tour coaches and
-            the sports scientists their riders trust.
+            Four minutes, twelve questions, and I&rsquo;ll tell you exactly why
+            your FTP has stalled &mdash; and the three changes to make this
+            week. It&rsquo;s the same pattern I&rsquo;ve watched Dan Lorang,
+            Stephen Seiler and the World Tour coaches I&rsquo;ve interviewed
+            apply to riders for years.
           </p>
 
           <Link
@@ -341,6 +342,8 @@ export default function GoLandingPage() {
             <span className="whitespace-nowrap">No card</span>
             <span className="opacity-40">&middot;</span>
             <span className="whitespace-nowrap">4 minutes</span>
+            <span className="opacity-40">&middot;</span>
+            <span className="whitespace-nowrap">Email is optional</span>
           </div>
 
           {/* Value stack — enriches the CTA area for cold traffic so the
@@ -386,6 +389,16 @@ export default function GoLandingPage() {
                   your FTP
                 </span>
               </li>
+              <li className="flex items-start gap-2.5">
+                <span
+                  aria-hidden="true"
+                  className="mt-1.5 inline-block w-1.5 h-1.5 rounded-full bg-coral shrink-0"
+                />
+                <span>
+                  Result shown on screen in 4 minutes. No email required to
+                  start.
+                </span>
+              </li>
             </ul>
           </div>
 
@@ -415,8 +428,8 @@ export default function GoLandingPage() {
                 Built by Anthony Walsh — host, Roadman Cycling Podcast
               </span>
               <span className="block mt-0.5">
-                Methods drawn from Prof. Stephen Seiler, Dan Lorang and Dr.
-                David Dunne.
+                The same coaches you&rsquo;ve heard on the show: Seiler, Lorang,
+                Dunne.
               </span>
             </span>
           </div>
