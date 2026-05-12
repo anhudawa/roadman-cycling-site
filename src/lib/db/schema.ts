@@ -1145,6 +1145,15 @@ export const riderProfiles = pgTable(
     dataStorageConsent: boolean("data_storage_consent").notNull().default(false),
     researchConsent: boolean("research_consent").notNull().default(false),
     lastLeadScoreAt: timestamp("last_lead_score_at", { withTimezone: true }),
+    // Unified-profile fields (migration 0043).
+    heightCm: integer("height_cm"),
+    // 'lose' | 'maintain' | 'gain' — used by the fuel-planner engine.
+    bodyCompositionGoal: text("body_composition_goal"),
+    // 'self_guided' | 'community' | 'coached' — shapes which CTAs surface.
+    preferredSupportLevel: text("preferred_support_level"),
+    injuryHistory: text("injury_history"),
+    // Multi-select. Lower-case slugs: 'strava' | 'garmin' | 'wahoo' | 'zwift' | 'trainingpeaks' | 'trainerroad' | 'other'.
+    currentTools: jsonb("current_tools").$type<string[]>().notNull().default([]),
     createdAt: timestamp("created_at", { withTimezone: true }).notNull().defaultNow(),
     updatedAt: timestamp("updated_at", { withTimezone: true }).notNull().defaultNow(),
   },
@@ -1152,6 +1161,25 @@ export const riderProfiles = pgTable(
     index("rider_profiles_email_idx").on(table.email),
     index("rider_profiles_contact_id_idx").on(table.contactId),
     index("rider_profiles_lead_score_idx").on(table.leadScore),
+  ]
+);
+
+export const riderLoginTokens = pgTable(
+  "rider_login_tokens",
+  {
+    id: serial("id").primaryKey(),
+    riderProfileId: integer("rider_profile_id")
+      .notNull()
+      .references(() => riderProfiles.id, { onDelete: "cascade" }),
+    // bcrypt-hashed magic-link token; raw token only sent over email.
+    tokenHash: text("token_hash").notNull().unique(),
+    expiresAt: timestamp("expires_at", { withTimezone: true }).notNull(),
+    usedAt: timestamp("used_at", { withTimezone: true }),
+    createdAt: timestamp("created_at", { withTimezone: true }).notNull().defaultNow(),
+  },
+  (table) => [
+    index("rider_login_tokens_rider_profile_id_idx").on(table.riderProfileId),
+    index("rider_login_tokens_expires_at_idx").on(table.expiresAt),
   ]
 );
 

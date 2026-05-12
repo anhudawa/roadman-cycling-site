@@ -17,6 +17,10 @@ import type {
 
 interface AssessmentFormProps {
   redirectAfter?: string;
+  /** Pre-fill seeded from the server-side rider profile when present.
+   *  Browser localStorage still wins if the rider has used the planner
+   *  before — the server values are only a first-paint default. */
+  initialProfile?: Partial<UserProfile> | null;
 }
 
 const ACTIVITY_OPTIONS: { value: ActivityLevel; label: string; hint: string }[] = [
@@ -32,14 +36,21 @@ const GOAL_OPTIONS: { value: BodyCompGoal; label: string; hint: string }[] = [
   { value: "gain", label: "Build", hint: "Daily surplus applied" },
 ];
 
-export function AssessmentForm({ redirectAfter = "/method/fuel-planner/week" }: AssessmentFormProps) {
+export function AssessmentForm({
+  redirectAfter = "/method/fuel-planner/week",
+  initialProfile,
+}: AssessmentFormProps) {
   const router = useRouter();
-  const [profile, setProfile] = useState<UserProfile>(defaultProfile());
+  const [profile, setProfile] = useState<UserProfile>(() => ({
+    ...defaultProfile(),
+    ...(initialProfile ?? {}),
+  }));
   const [hydrated, setHydrated] = useState(false);
   const [saving, setSaving] = useState(false);
   const [savedAt, setSavedAt] = useState<string | null>(null);
 
-  // Hydrate from storage if present
+  // Hydrate from storage if present. localStorage trumps the seeded
+  // server values because the rider may have tuned them locally.
   useEffect(() => {
     const existing = loadState();
     if (existing) {
@@ -53,6 +64,25 @@ export function AssessmentForm({ redirectAfter = "/method/fuel-planner/week" }: 
     setProfile((p) => ({ ...p, [key]: value }));
   }
 
+  async function persistToRiderProfile(p: UserProfile): Promise<void> {
+    // Best-effort: failures don't block the local save / redirect.
+    try {
+      await fetch("/api/profile/update", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          currentFtp: p.ftp,
+          currentWeight: p.weightKg,
+          weightUnit: "kg",
+          heightCm: p.heightCm,
+          bodyCompositionGoal: p.bodyCompGoal,
+        }),
+      });
+    } catch (err) {
+      console.error("[fuel-planner/assessment] rider-profile sync failed:", err);
+    }
+  }
+
   function onSubmit(e: FormEvent) {
     e.preventDefault();
     setSaving(true);
@@ -63,6 +93,8 @@ export function AssessmentForm({ redirectAfter = "/method/fuel-planner/week" }: 
       meals: existing.meals,
       startDate: existing.startDate,
     });
+    // Fire the rider-profile sync alongside — non-blocking.
+    void persistToRiderProfile(profile);
     // Brief tick so the user sees the saving state before navigating.
     setTimeout(() => router.push(redirectAfter), 200);
   }
@@ -200,7 +232,7 @@ export function AssessmentForm({ redirectAfter = "/method/fuel-planner/week" }: 
         <p className="text-xs text-foreground-muted">
           {savedAt
             ? `Last saved ${new Date(savedAt).toLocaleString()}`
-            : "Saved to your browser only — no profile is sent to the server."}
+            : "Saved locally and to your Roadman rider profile."}
         </p>
         <button
           type="submit"
