@@ -914,15 +914,15 @@ export default function GoLandingPage() {
           </p>
           {/* Soft fallback for riders not ready to commit to four minutes.
               Quiet on purpose — small, foreground-subtle, well below the
-              primary CTA. The toolkit funnel is the lower-intent door. */}
+              primary CTA. /tools is the lower-intent door. */}
           <p className="text-foreground-subtle text-xs mt-8">
             Not ready?{" "}
             <Link
-              href="/toolkit"
-              data-track="go_toolkit_fallback"
+              href="/tools"
+              data-track="go_tools_fallback"
               className="text-foreground-muted underline decoration-foreground-subtle underline-offset-2 hover:text-coral hover:decoration-coral transition-colors"
             >
-              Get the free Roadman Toolkit
+              Get the free Roadman tools
             </Link>{" "}
             &mdash; five-minute setup, no spam.
           </p>
