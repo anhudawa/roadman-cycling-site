@@ -5,25 +5,16 @@ import { JsonLd } from "@/components/seo/JsonLd";
 import { TrustpilotProof } from "@/components/proof";
 import { TRUSTPILOT, getTrustpilotReviews } from "@/lib/trustpilot";
 import { CohortApplicationForm } from "./CohortApplicationForm";
-import { CountdownTimer } from "./CountdownTimer";
 import {
   TESTIMONIALS,
   getTestimonialsByName,
 } from "@/lib/testimonials";
 import { getCohortState } from "@/lib/cohort";
 
-// Metadata is cohort-aware. Copy is keyed off getCohortState() so it
-// flips automatically between "open" and "waitlist" phases with no
-// hardcoded cohort numbers or dates.
 export async function generateMetadata(): Promise<Metadata> {
-  const state = getCohortState();
-  const isWaitlist = state.phase === "waitlist";
-  const title = isWaitlist
-    ? `Cohort ${state.targetCohort} Waitlist — Not Done Yet Coaching`
-    : `Cohort ${state.currentCohort} — Not Done Yet Coaching`;
-  const description = isWaitlist
-    ? `Cohort ${state.targetCohort} is coming soon. Apply now and get 24-hour early access. Personalised cycling coaching with Anthony Walsh.`
-    : "30 places. 5 pillars. $195/month. Applications open now. Personalised cycling coaching with Anthony Walsh.";
+  const title = "Apply — Not Done Yet Coaching";
+  const description =
+    "30 places. 5 pillars. $195/month. Applications open now. Personalised cycling coaching with Anthony Walsh.";
   return {
     title,
     description,
@@ -132,7 +123,6 @@ const objections = [
 
 export default function ApplyPage() {
   const cohortState = getCohortState();
-  const isWaitlist = cohortState.phase === "waitlist";
   return (
     <>
       <JsonLd
@@ -221,9 +211,7 @@ export default function ApplyPage() {
               <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-coral/10 border border-coral/20 mb-6">
                 <span className="w-2 h-2 rounded-full bg-coral animate-pulse" />
                 <span className="text-coral text-sm font-medium tracking-wide">
-                  {isWaitlist
-                    ? `COHORT ${cohortState.targetCohort} COMING SOON — APPLY NOW`
-                    : "APPLICATIONS OPEN — 30 PLACES"}
+                  APPLICATIONS OPEN — 30 PLACES
                 </span>
               </div>
 
@@ -240,21 +228,11 @@ export default function ApplyPage() {
                 className="font-heading text-off-white/60 mb-4 tracking-widest"
                 style={{ fontSize: "clamp(0.9rem, 2vw, 1.2rem)" }}
               >
-                {isWaitlist
-                  ? `COHORT ${cohortState.targetCohort} · WAITLIST`
-                  : "COACHING PROGRAM"}
+                COACHING PROGRAM
               </p>
               <p className="text-foreground-muted text-lg max-w-md mx-auto mb-6">
-                {isWaitlist
-                  ? `Cohort ${cohortState.targetCohort} is coming soon. Apply now to secure your spot on the waitlist — members get 24-hour early access before public launch.`
-                  : "7-day free trial. 5 pillars. $195/mo. Cancel anytime."}
+                7-day free trial. 5 pillars. $195/mo. Cancel anytime.
               </p>
-
-              {!isWaitlist && (
-                <div className="mb-6">
-                  <CountdownTimer />
-                </div>
-              )}
 
               <a
                 href="#apply"
@@ -504,42 +482,23 @@ export default function ApplyPage() {
                 concrete next step looks like. */}
             <ScrollReveal direction="up" delay={0.05}>
               <div className="mb-10 grid grid-cols-1 sm:grid-cols-3 gap-3 sm:gap-4 max-w-2xl mx-auto">
-                {(isWaitlist
-                  ? [
-                      {
-                        n: "01",
-                        t: "Apply now for the waitlist",
-                        d: "Two minutes. Four questions so we know where you are now and what you're aiming at.",
-                      },
-                      {
-                        n: "02",
-                        t: "Weekly updates from inside the current cohort",
-                        d: "What's working, what members are achieving, and the coaching ideas worth trying now.",
-                      },
-                      {
-                        n: "03",
-                        t: "24-hour early access",
-                        d: `Cohort ${cohortState.targetCohort} is coming soon. Waitlist members get 24 hours before public launch. 30 places, first served.`,
-                      },
-                    ]
-                  : [
-                      {
-                        n: "01",
-                        t: "Answer four questions",
-                        d: "Takes under 2 minutes. No credit card.",
-                      },
-                      {
-                        n: "02",
-                        t: "Anthony reviews it personally",
-                        d: "Usually within 48 hours. You get a reply from Anthony, not an autoresponder.",
-                      },
-                      {
-                        n: "03",
-                        t: "Start your 7-day trial",
-                        d: "Onboarding call, your first plan, full access to the community. Cancel inside the week if it isn't for you.",
-                      },
-                    ]
-                ).map((step) => (
+                {[
+                  {
+                    n: "01",
+                    t: "Answer four questions",
+                    d: "Takes under 2 minutes. No credit card.",
+                  },
+                  {
+                    n: "02",
+                    t: "Anthony reviews it personally",
+                    d: "Usually within 48 hours. You get a reply from Anthony, not an autoresponder.",
+                  },
+                  {
+                    n: "03",
+                    t: "Start your 7-day trial",
+                    d: "Onboarding call, your first plan, full access to the community. Cancel inside the week if it isn't for you.",
+                  },
+                ].map((step) => (
                   <div
                     key={step.n}
                     className="rounded-xl border border-white/10 bg-white/[0.02] p-5 text-left"
@@ -618,9 +577,7 @@ export default function ApplyPage() {
                   YOU&apos;RE NOT DONE YET.
                 </h2>
                 <p className="text-foreground-muted mb-6 max-w-md mx-auto">
-                  {isWaitlist
-                    ? `Cohort ${cohortState.targetCohort} is coming soon. 30 places. Apply now — waitlist members get first access.`
-                    : "30 places. Same coaches. Same system. Your turn."}
+                  30 places. Same coaches. Same system. Your turn.
                 </p>
                 <a
                   href="#apply"

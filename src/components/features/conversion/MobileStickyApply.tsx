@@ -11,9 +11,8 @@ import { getCohortState } from "@/lib/cohort";
  *
  * Desktop users don't see this — they have the header CTA always visible.
  *
- * Copy is driven entirely by src/lib/cohort.ts so it flips automatically
- * between "Cohort X Open" and "Cohort X Coming Soon" with no hardcoded
- * references to any specific cohort number.
+ * Copy is driven entirely by src/lib/cohort.ts so we can change the
+ * primary CTA in one place.
  *
  * Shown on: /coaching, /coaching/[location], /community/not-done-yet,
  *   /about, /community

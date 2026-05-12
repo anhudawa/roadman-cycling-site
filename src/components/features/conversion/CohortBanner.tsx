@@ -6,18 +6,11 @@ import { usePathname } from "next/navigation";
 import { getCohortState, type CohortPhase } from "@/lib/cohort";
 
 /**
- * Site-wide cohort banner. Driven entirely by src/lib/cohort.ts — to
- * change copy, deadlines, or flip from "open" → "waitlist", edit the
- * state lib, not this component.
+ * Site-wide apply banner. Driven entirely by src/lib/cohort.ts — to
+ * change copy, edit the state lib, not this component.
  *
- * Renders differently per phase:
- *   open           — "COHORT N IS OPEN" · countdown · APPLY
- *   closing-today  — "FINAL HOURS" · urgent copy · APPLY
- *   waitlist       — "COHORT N+1 COMING SOON" · 24h early access · APPLY NOW
- *
- * Dismissible — dismissal persists in localStorage per-phase, so
- * dismissing an "open" banner doesn't hide the subsequent "waitlist"
- * banner when the site flips between phases.
+ * Dismissible — dismissal persists in localStorage per-phase, so future
+ * copy changes (a new phase) won't be hidden by a prior dismissal.
  *
  * Auto-hides:
  *  - on /apply (already there)

@@ -2,70 +2,35 @@ import { describe, it, expect } from "vitest";
 import { getCohortState } from "./cohort";
 
 /**
- * The cohort state machine is a single source of truth with high
- * blast radius — a regression here would silently break the banner,
- * the /apply form copy, and the Beehiiv tagging. Lock it down.
- *
- * These tests pin behaviour against a fixed `now` rather than the
- * actual clock so CI stays deterministic regardless of when the
- * cohort deadline is set.
+ * The cohort state is the single source of truth for NDY application
+ * copy — banner, /apply form, and Beehiiv tagging. Lock the surface
+ * area down so a regression here can't silently swap user-facing
+ * strings back to cohort-numbered or waitlist phrasing.
  */
 describe("getCohortState", () => {
-  // These deadlines live in src/lib/cohort.ts — keep in sync if the
-  // file changes. COHORT_2_CLOSE = 2026-04-17T23:00:00Z.
-
-  it("returns 'open' phase well before Cohort 2 close", () => {
-    const state = getCohortState(new Date("2026-04-10T12:00:00Z"));
-    expect(state.phase).toBe("open");
-    expect(state.currentCohort).toBe(2);
-    expect(state.targetCohort).toBe(2);
-    expect(state.submissionTag).toBe("cohort-2-applicant");
-    expect(state.banner.eyebrow).toBe("COHORT 2 IS OPEN");
-    expect(state.banner.cta).toBe("APPLY");
+  it("returns the unified 'apply now' state regardless of date", () => {
+    const a = getCohortState(new Date("2026-01-01T00:00:00Z"));
+    const b = getCohortState(new Date("2027-06-15T10:00:00Z"));
+    expect(a.phase).toBe("open");
+    expect(b.phase).toBe("open");
+    expect(a.submissionTag).toBe("ndy-applicant");
+    expect(b.submissionTag).toBe("ndy-applicant");
   });
 
-  it("flips to 'closing-today' within the final hour", () => {
-    const state = getCohortState(new Date("2026-04-17T22:30:00Z"));
-    expect(state.phase).toBe("closing-today");
-    expect(state.currentCohort).toBe(2);
-    expect(state.banner.eyebrow).toBe("FINAL HOURS");
-    // Still accepting apps — same tag
-    expect(state.submissionTag).toBe("cohort-2-applicant");
+  it("uses cohort-number-free banner copy", () => {
+    const { banner } = getCohortState();
+    expect(banner.eyebrow).toBe("APPLY NOW");
+    expect(banner.ctaHref).toBe("/apply");
+    expect(banner.eyebrow).not.toMatch(/cohort/i);
+    expect(banner.detail).not.toMatch(/cohort|waitlist|coming soon|early access/i);
   });
 
-  it("auto-flips to 'waitlist' at the close time", () => {
-    const state = getCohortState(new Date("2026-04-17T23:00:01Z"));
-    expect(state.phase).toBe("waitlist");
-    expect(state.currentCohort).toBe(3);
-    expect(state.targetCohort).toBe(3);
-    expect(state.submissionTag).toBe("cohort-3-waitlist");
-    expect(state.banner.eyebrow).toBe("COHORT 3 COMING SOON");
-    // CTA uses "apply now" framing to match the user-facing marketing line
-    // even though the action is joining the waitlist — keeps the primary
-    // verb consistent between phases.
-    expect(state.banner.cta).toBe("APPLY NOW");
-  });
-
-  it("stays in 'waitlist' indefinitely after Cohort 2 close", () => {
-    const state = getCohortState(new Date("2026-06-15T10:00:00Z"));
-    expect(state.phase).toBe("waitlist");
-    expect(state.submissionTag).toBe("cohort-3-waitlist");
-  });
-
-  it("provides next-cohort dates in waitlist phase", () => {
-    const state = getCohortState(new Date("2026-05-01T10:00:00Z"));
-    expect(state.phase).toBe("waitlist");
-    expect(state.nextOpens).toBeInstanceOf(Date);
-    expect(state.nextStarts).toBeInstanceOf(Date);
-  });
-
-  it("form copy adapts per phase", () => {
-    const open = getCohortState(new Date("2026-04-10T12:00:00Z"));
-    expect(open.form.buttonText).toBe("APPLY FOR YOUR SPOT");
-    expect(open.form.submittedHeadline).toBe("APPLICATION RECEIVED");
-
-    const waitlist = getCohortState(new Date("2026-04-18T10:00:00Z"));
-    expect(waitlist.form.buttonText).toBe("APPLY NOW");
-    expect(waitlist.form.submittedHeadline).toBe("YOU'RE ON THE LIST");
+  it("uses cohort-number-free form copy", () => {
+    const { form } = getCohortState();
+    expect(form.kicker).toBe("APPLY NOW");
+    expect(form.buttonText).toBe("APPLY FOR YOUR SPOT");
+    expect(form.submittedHeadline).toBe("APPLICATION RECEIVED");
+    expect(form.subheading).not.toMatch(/cohort|waitlist|coming soon|early access/i);
+    expect(form.submittedBody).not.toMatch(/cohort|waitlist|coming soon|early access/i);
   });
 });

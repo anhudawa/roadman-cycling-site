@@ -54,27 +54,14 @@ function clearDraft() {
  * Consent-gated: only fires if the user accepted marketing cookies.
  * Silently no-ops if fbq isn't loaded yet (ad blocker, consent denied,
  * DNT etc.).
- *
- * Phase-aware: when on a waitlist the content_name reflects that, so
- * we can segment ad audiences by "applied while open" vs "waitlisted"
- * in Meta's reporting.
  */
-function trackLead(
-  email: string,
-  persona: string | undefined,
-  phase: "open" | "closing-today" | "waitlist",
-  cohortNumber: number,
-) {
+function trackLead(email: string, persona: string | undefined) {
   if (typeof window === "undefined") return;
   const fbq = (window as unknown as { fbq?: (...args: unknown[]) => void }).fbq;
   if (typeof fbq !== "function") return;
-  const contentName =
-    phase === "waitlist"
-      ? `Cohort ${cohortNumber} Waitlist`
-      : `Cohort ${cohortNumber} Application`;
   try {
     fbq("track", "Lead", {
-      content_name: contentName,
+      content_name: "NDY Application",
       content_category: "coaching",
       ...(persona ? { content_type: persona } : {}),
       value: 195,
@@ -89,12 +76,10 @@ function trackLead(
       gtag?: (...args: unknown[]) => void;
     }).gtag;
     if (typeof gtag === "function") {
-      gtag("event", "cohort_application_submit", {
+      gtag("event", "ndy_application_submit", {
         event_category: "coaching",
         value: 195,
         persona,
-        phase,
-        cohort: cohortNumber,
         email_hash: email.length, // privacy-safe signal; swap for sha256 later
       });
     }
@@ -141,7 +126,6 @@ export function CohortApplicationForm() {
   const [error, setError] = useState("");
 
   const cohortState = getCohortState();
-  const isWaitlist = cohortState.phase === "waitlist";
   const cohortCopy = cohortState.form;
 
   // Restore in-progress draft on mount so a failed submit or
@@ -205,12 +189,7 @@ export function CohortApplicationForm() {
         persona?: string;
       };
       // Lead event (FB Pixel + GA) — attribution for ad spend
-      trackLead(
-        trimmedEmail,
-        data.persona,
-        cohortState.phase,
-        cohortState.targetCohort,
-      );
+      trackLead(trimmedEmail, data.persona);
       // Internal funnel event (DEV-DATA-01): terminal step of the
       // content -> coaching funnel on the measurement dashboard.
       try {
@@ -412,9 +391,7 @@ export function CohortApplicationForm() {
                 {submitting ? "SUBMITTING..." : cohortCopy.buttonText}
               </button>
               <p className="text-foreground-subtle text-xs text-center">
-                {isWaitlist
-                  ? `Cohort ${cohortState.targetCohort} is coming soon. Waitlist members get 24-hour early access.`
-                  : "We review every application. You'll hear back within 24 hours."}
+                We review every application. You&apos;ll hear back within 24 hours.
               </p>
             </div>
           </motion.div>
@@ -430,7 +407,7 @@ export function CohortApplicationForm() {
             transition={{ duration: 0.3 }}
             className="text-center py-8"
           >
-            <div className="text-5xl mb-4">{isWaitlist ? "✅" : "🎯"}</div>
+            <div className="text-5xl mb-4">🎯</div>
             <h3 className="font-heading text-off-white text-3xl mb-3">
               {cohortCopy.submittedHeadline}
             </h3>
@@ -439,9 +416,7 @@ export function CohortApplicationForm() {
               {" "}Confirmation at <span className="text-coral">{email}</span>.
             </p>
             <p className="text-foreground-subtle text-sm">
-              {isWaitlist
-                ? `Cohort ${cohortState.targetCohort} is coming soon. You'll get 24-hour early access before public launch.`
-                : `Only 30 spots for Cohort ${cohortState.currentCohort}. Apply now.`}
+              Only 30 spots. Apply now.
             </p>
           </motion.div>
         )}

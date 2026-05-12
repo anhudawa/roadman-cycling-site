@@ -66,14 +66,11 @@ export async function POST(request: Request) {
     const normalisedEmail = email.trim().toLowerCase();
 
     // Inner Circle applications come through the same endpoint but get a
-    // distinct cohort label so the admin Kanban filters them into their
-    // own column. Anything else falls back to the live cohort state.
+    // distinct label so the admin Kanban filters them into their own column.
     const isInnerCircle =
       typeof cohortOverride === "string" && cohortOverride.trim() === "inner-circle";
     const cohortState = getCohortState();
-    const cohortLabel = isInnerCircle
-      ? "inner-circle"
-      : `cohort-${cohortState.targetCohort}`;
+    const cohortLabel = isInnerCircle ? "inner-circle" : "ndy";
 
     // Inner Circle has two extra free-form questions that don't have
     // their own DB columns. Fold them into the frustration field as
@@ -122,14 +119,10 @@ export async function POST(request: Request) {
 
     const sourceLabel = isInnerCircle
       ? "inner_circle_application"
-      : cohortState.phase === "waitlist"
-        ? "cohort_waitlist"
-        : "cohort_application";
+      : "cohort_application";
     const activityTitle = isInnerCircle
       ? `Applied to Inner Circle (${persona})`
-      : cohortState.phase === "waitlist"
-        ? `Joined ${cohortLabel} waitlist (${persona})`
-        : `Applied to ${cohortLabel} (${persona})`;
+      : `Applied to Not Done Yet (${persona})`;
 
     // CRM: upsert contact + activity (non-fatal)
     try {
@@ -167,9 +160,8 @@ export async function POST(request: Request) {
     }
 
     // Beehiiv: upsert subscriber + tag.
-    //   Inner Circle             → "inner-circle-applicant"
-    //   open / closing-today     → "cohort-N-applicant"
-    //   waitlist                 → "cohort-N-waitlist"
+    //   Inner Circle  → "inner-circle-applicant"
+    //   otherwise     → cohortState.submissionTag (currently "ndy-applicant")
     // Non-fatal — application still succeeds if Beehiiv is down.
     const beehiivTag = isInnerCircle
       ? "inner-circle-applicant"
@@ -189,11 +181,7 @@ export async function POST(request: Request) {
       },
       utm: {
         source: "site",
-        medium: isInnerCircle
-          ? "inner-circle-application"
-          : cohortState.phase === "waitlist"
-            ? "cohort-waitlist"
-            : "cohort-application",
+        medium: isInnerCircle ? "inner-circle-application" : "ndy-application",
         campaign: beehiivTag,
       },
     }).catch((err) =>
@@ -223,7 +211,7 @@ export async function POST(request: Request) {
       success: true,
       persona,
       phase: isInnerCircle ? "inner-circle" : cohortState.phase,
-      cohort: isInnerCircle ? "inner-circle" : cohortState.targetCohort,
+      cohort: isInnerCircle ? "inner-circle" : cohortLabel,
     });
   } catch (error) {
     console.error("[Cohort Apply] Error:", error);
