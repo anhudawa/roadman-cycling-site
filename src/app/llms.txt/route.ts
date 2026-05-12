@@ -268,7 +268,7 @@ ${QUESTION_PAGES.map((q) => `- [${q.question}](${tag(`${BASE_URL}/question/${q.s
 
 ## Interactive Guides
 - [Ask Roadman](${tag(`${BASE_URL}/ask`)}): On-site cycling performance assistant grounded in ${BRAND_STATS.episodeCountLabel} Roadman Cycling Podcast conversations (${BRAND_STATS.monthlyListenersLabel} monthly listeners). Streamed, cited answers on training, fuelling, recovery, strength, and event prep.
-- [The Masters Plateau Diagnostic](${tag(`${BASE_URL}/plateau`)}): Twelve-question diagnostic that identifies which of four plateau profiles is limiting your FTP progress.
+- [The Masters Plateau Diagnostic](${tag(`${BASE_URL}/plateau`)}): Twelve-question application of the Roadman Four-Cause Diagnostic that identifies which of four named profiles (Under-recovered, No-man's-land, Strength Gap, or Fuelling Deficit) is limiting your FTP progress.
 - [Race Predictor — Plan My Race](${tag(`${BASE_URL}/predict`)}): GPX-driven physics-based finish-time and pacing simulator. Upload a course (or pick from the curated library at /predict/courses), set your FTP and position, and get split-by-split power, pace, and fuelling targets. Two modes: "Plan My Race" (target time) and "Can I Make It?" (cutoff feasibility).
 - [Race Course Library](${tag(`${BASE_URL}/predict/courses`)}): Curated GPX-verified race courses (Etape du Tour, Ring of Beara, Traka, Wicklow 200, Ride London, and more) with elevation profiles, climb counts, and ready-to-simulate pages.
 - [Find Your Fit](${tag(`${BASE_URL}/find-your-fit`)}): Coaching pathway finder for new riders — five questions, one recommended next step.

@@ -706,7 +706,7 @@ export default async function PlateauPage() {
           <Container width="default">
             <ScrollReveal direction="up" eager>
               <p className="text-coral font-heading text-xs tracking-[0.3em] text-center mb-3">
-                THE FOUR
+                THE ROADMAN FOUR-CAUSE DIAGNOSTIC
               </p>
               <h2
                 className="font-heading text-off-white text-center mb-4"
@@ -715,8 +715,8 @@ export default async function PlateauPage() {
                 YOU&rsquo;LL BE ONE OF THESE FOUR.
               </h2>
               <p className="text-foreground-muted text-center max-w-xl mx-auto mb-12 leading-relaxed">
-                Each one has a specific cause and a specific fix. Twelve
-                questions tells us which is yours.
+                Each cause has a specific fix. Twelve questions tells us
+                which of the four is yours.
               </p>
             </ScrollReveal>
 
