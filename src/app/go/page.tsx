@@ -58,22 +58,74 @@ const FOUR_REASONS = [
   },
 ];
 
-const MEMBER_RESULTS = [
+/**
+ * Real testimonials sourced from https://testimonial.to/roadman-cycling/all.
+ *
+ * Photos live at /public/images/testimonials/*.jpg. Until the file
+ * lands on disk, set `hasPhoto: false` and the card falls back to a
+ * coral initials chip — drop the JPG in and flip the flag to upgrade
+ * a card to a real headshot without touching layout.
+ */
+type Testimonial = {
+  name: string;
+  initials: string;
+  photoSrc: string;
+  hasPhoto: boolean;
+  stat: string;
+  detail: string;
+  quote: string;
+};
+
+const TESTIMONIALS: readonly Testimonial[] = [
   {
-    stat: "+90W",
-    label: "FTP gain",
-    quote:
-      "I'd been stuck on 205 watts for two seasons. Six months in I tested 295. I'm racing again.",
     name: "Damien Maloney",
-    detail: "Ireland · FTP 205w → 295w",
+    initials: "DM",
+    photoSrc: "/images/testimonials/damien.jpg",
+    hasPhoto: false,
+    stat: "FTP 200s → 295w",
+    detail: "Plateaued sportive rider, plan built around shift work",
+    quote:
+      "Average sportive rider, plateaued, going nowhere. Anthony built a custom plan around my work week and what time I actually had. My FTP went from the low 200s to 295.",
   },
   {
-    stat: "3 → 1",
-    label: "Category jump",
+    name: "Brian Morrisey",
+    initials: "BM",
+    photoSrc: "/images/testimonials/brian.jpg",
+    hasPhoto: false,
+    stat: "FTP +15% at 46",
+    detail: "Plan moved around shift work",
     quote:
-      "I went from Cat 3 to Cat 1 in a year. The diagnosis told me exactly what I'd been doing wrong.",
-    name: "Daniel Stone",
-    detail: "Roadman Cycling Club · Category jump",
+      "Week 10 of base. FTP up 15%, peak HR back to 193 — at 46. I'm training so much less than last year, at lower intensities, and not getting sick. This really works.",
+  },
+  {
+    name: "Chris O'Connor",
+    initials: "CO",
+    photoSrc: "/images/testimonials/chris.jpg",
+    hasPhoto: false,
+    stat: "Body fat 20% → 7%",
+    detail: "Decades out of the saddle, came back with a bang",
+    quote:
+      "Decades out of the saddle when I came back. Body fat 20% to 7%. 84 kg to 68. Average wattage doubled — weekly 100 km rides are now the norm.",
+  },
+  {
+    name: "Ian Hennessy",
+    initials: "IH",
+    photoSrc: "/images/testimonials/ian.jpg",
+    hasPhoto: false,
+    stat: "Haute Route Alps finisher",
+    detail: "From weight-loss riding to event finisher",
+    quote:
+      "Took up cycling to lose weight and get fit. With Roadman I learned how to actually train. This year I finished the Haute Route Alps — and I already know what's next.",
+  },
+  {
+    name: "Mark O'Donnell",
+    initials: "MO",
+    photoSrc: "/images/testimonials/mark.jpg",
+    hasPhoto: false,
+    stat: "4 years coached",
+    detail: "Balancing training around work and family",
+    quote:
+      "Almost four years as a coaching client. Came from three decades of structured martial arts wanting the same for cycling. Real flexibility around work and family — that's been the difference.",
   },
 ];
 
@@ -128,6 +180,75 @@ const ApplePodcastsIcon = ({ size = 18 }: { size?: number }) => (
     <path d="M5.34 0A5.328 5.328 0 000 5.34v13.32A5.328 5.328 0 005.34 24h13.32A5.328 5.328 0 0024 18.66V5.34A5.328 5.328 0 0018.66 0H5.34zm6.525 2.568c2.336 0 4.448.902 6.056 2.587 1.224 1.272 1.912 2.619 2.264 4.392.12.6-.12 1.2-.72 1.32-.6.12-1.2-.12-1.32-.72-.264-1.368-.816-2.4-1.74-3.36-1.32-1.392-2.94-2.088-4.92-2.088-3.456 0-6.48 3.024-6.48 6.48 0 1.584.576 3.024 1.536 4.176.36.432.312 1.08-.12 1.44-.432.36-1.08.312-1.44-.12C3.744 15.264 2.904 13.392 2.904 11.4c0-4.464 3.72-8.832 8.96-8.832zM11.7 6.744c1.584 0 3.072.624 4.2 1.776 1.032 1.056 1.584 2.4 1.584 3.84 0 .984-.264 1.968-.768 2.856-.36.6-1.08.84-1.68.48-.6-.36-.84-1.08-.48-1.68.288-.504.432-1.056.432-1.632 0-.912-.36-1.776-.984-2.424-.72-.72-1.68-1.104-2.712-1.08-2.064.048-3.648 1.776-3.648 3.96 0 .816.24 1.608.672 2.28.36.6.12 1.32-.48 1.68-.6.36-1.32.12-1.68-.48-.672-1.08-1.008-2.28-1.008-3.48.024-3.36 2.784-6.12 6.552-6.096zM12 10.8c.72 0 1.2.504 1.2 1.2 0 .168-.024.312-.072.456l-.696 4.416c-.096.6-.504.888-1.056.888-.552 0-.96-.288-1.056-.888l-.696-4.416c-.048-.144-.072-.288-.072-.456 0-.696.48-1.2 1.2-1.2h1.248zm-.624 8.568c0-.72.576-1.296 1.296-1.296s1.296.576 1.296 1.296-.576 1.296-1.296 1.296-1.296-.576-1.296-1.296z" />
   </svg>
 );
+
+const TRUSTPILOT_GREEN = "#00B67A";
+
+const TrustpilotStar = ({ size = 28 }: { size?: number }) => (
+  <span
+    aria-hidden="true"
+    style={{
+      width: size,
+      height: size,
+      background: TRUSTPILOT_GREEN,
+      display: "inline-flex",
+      alignItems: "center",
+      justifyContent: "center",
+      borderRadius: 2,
+    }}
+  >
+    <svg
+      width={size * 0.72}
+      height={size * 0.72}
+      viewBox="0 0 24 24"
+      fill="white"
+      aria-hidden="true"
+    >
+      <path d="M12 2l2.95 6.69L22 9.74l-5.5 4.93L18.18 22 12 18.27 5.82 22l1.68-7.33L2 9.74l7.05-1.05L12 2z" />
+    </svg>
+  </span>
+);
+
+const TestimonialAvatar = ({
+  testimonial,
+  size = "md",
+}: {
+  testimonial: Testimonial;
+  size?: "md" | "lg";
+}) => {
+  const dimensions =
+    size === "lg" ? "w-16 h-16 md:w-20 md:h-20" : "w-12 h-12 md:w-14 md:h-14";
+  const textSize = size === "lg" ? "text-xl md:text-2xl" : "text-base md:text-lg";
+
+  if (testimonial.hasPhoto) {
+    return (
+      <span
+        className={`relative ${dimensions} rounded-full overflow-hidden shrink-0 border border-white/15`}
+      >
+        <Image
+          src={testimonial.photoSrc}
+          alt={testimonial.name}
+          fill
+          sizes={size === "lg" ? "80px" : "56px"}
+          className="object-cover"
+        />
+      </span>
+    );
+  }
+  return (
+    <span
+      aria-hidden="true"
+      className={`
+        inline-flex items-center justify-center
+        ${dimensions} shrink-0 rounded-full
+        bg-coral/15 border border-coral/30
+      `}
+    >
+      <span className={`font-heading text-coral tracking-wider ${textSize}`}>
+        {testimonial.initials}
+      </span>
+    </span>
+  );
+};
 
 export default function GoLandingPage() {
   return (
@@ -465,7 +586,7 @@ export default function GoLandingPage() {
           </dl>
 
           {/* Named experts */}
-          <p className="text-foreground-muted text-center max-w-2xl mx-auto leading-relaxed mb-12 md:mb-14 text-sm md:text-base">
+          <p className="text-foreground-muted text-center max-w-2xl mx-auto leading-relaxed mb-14 md:mb-16 text-sm md:text-base">
             Built on on-the-record conversations with{" "}
             <span className="text-off-white">Prof. Stephen Seiler</span>,{" "}
             <span className="text-off-white">Dan Lorang</span>,{" "}
@@ -474,33 +595,125 @@ export default function GoLandingPage() {
             diagnostic is that pattern recognition, distilled.
           </p>
 
-          {/* Member results */}
-          <ul className="grid md:grid-cols-2 gap-4 md:gap-5 list-none p-0 max-w-3xl mx-auto">
-            {MEMBER_RESULTS.map((t) => (
+          {/* Prominent Trustpilot strip */}
+          <a
+            href="https://www.trustpilot.com/review/roadmancycling.com"
+            target="_blank"
+            rel="noopener noreferrer"
+            data-track="go_trustpilot_link"
+            className="
+              group block max-w-xl mx-auto mb-16 md:mb-20
+              rounded-2xl border border-white/15 bg-white/[0.04]
+              hover:bg-white/[0.06] hover:border-white/25
+              transition-all px-6 py-7 md:px-8 md:py-8
+              shadow-[0_10px_30px_rgba(0,0,0,0.25)]
+            "
+          >
+            <div className="flex flex-col items-center gap-3 text-center">
+              <p className="font-heading text-foreground-muted text-[10px] md:text-xs tracking-[0.3em]">
+                REVIEWED ON TRUSTPILOT
+              </p>
+              <div className="flex items-center gap-1.5 md:gap-2">
+                <TrustpilotStar size={26} />
+                <TrustpilotStar size={26} />
+                <TrustpilotStar size={26} />
+                <TrustpilotStar size={26} />
+                <TrustpilotStar size={26} />
+              </div>
+              <div className="flex items-baseline gap-3 mt-1">
+                <span className="font-heading text-off-white text-5xl md:text-6xl leading-none">
+                  4.5
+                </span>
+                <span className="font-heading text-coral text-lg md:text-xl tracking-[0.2em]">
+                  EXCELLENT
+                </span>
+              </div>
+              <p className="text-foreground-muted text-sm">
+                Based on{" "}
+                <span className="text-off-white font-medium">16 reviews</span>{" "}
+                on Trustpilot
+                <span className="text-coral ml-1.5 group-hover:translate-x-0.5 inline-block transition-transform">
+                  →
+                </span>
+              </p>
+            </div>
+          </a>
+
+          {/* Members — in their own words */}
+          <p className="text-coral font-heading text-[11px] md:text-xs tracking-[0.3em] text-center mb-3">
+            IN THEIR OWN WORDS
+          </p>
+          <h3
+            className="font-heading text-off-white text-center mb-10 md:mb-12"
+            style={{ fontSize: "clamp(1.5rem, 3.5vw, 2.25rem)" }}
+          >
+            WHAT HAPPENS WHEN THE PLAN FITS THE LIFE
+          </h3>
+
+          {/* Featured testimonial — Damien */}
+          <figure
+            className="
+              relative max-w-4xl mx-auto mb-4 md:mb-5
+              rounded-2xl bg-charcoal border border-white/10
+              p-6 md:p-8
+              shadow-[0_10px_30px_rgba(0,0,0,0.25)]
+            "
+          >
+            <span
+              aria-hidden="true"
+              className="absolute left-0 top-6 bottom-6 w-[3px] rounded-r bg-coral"
+            />
+            <div className="flex flex-col md:flex-row gap-5 md:gap-7 items-start">
+              <TestimonialAvatar testimonial={TESTIMONIALS[0]} size="lg" />
+              <div className="flex-1">
+                <div className="mb-3 inline-flex items-center gap-2 rounded-full bg-coral/10 border border-coral/30 px-3 py-1">
+                  <span className="font-heading text-coral text-sm md:text-base tracking-wide">
+                    {TESTIMONIALS[0].stat}
+                  </span>
+                </div>
+                <blockquote className="text-off-white text-lg md:text-xl leading-relaxed m-0">
+                  &ldquo;{TESTIMONIALS[0].quote}&rdquo;
+                </blockquote>
+                <figcaption className="mt-5 pt-4 border-t border-white/10">
+                  <p className="font-heading text-off-white tracking-wide">
+                    {TESTIMONIALS[0].name.toUpperCase()}
+                  </p>
+                  <p className="text-foreground-subtle text-xs mt-1">
+                    {TESTIMONIALS[0].detail}
+                  </p>
+                </figcaption>
+              </div>
+            </div>
+          </figure>
+
+          {/* Grid — remaining 4 testimonials */}
+          <ul className="grid sm:grid-cols-2 gap-4 md:gap-5 list-none p-0 max-w-4xl mx-auto">
+            {TESTIMONIALS.slice(1).map((t) => (
               <li key={t.name}>
                 <figure
                   className="
                     h-full rounded-2xl bg-charcoal
                     border border-white/10 p-5 md:p-6
                     flex flex-col
+                    shadow-[0_6px_20px_rgba(0,0,0,0.2)]
                   "
                 >
-                  <div className="mb-4 inline-flex items-center self-start gap-2 rounded-full bg-coral/10 border border-coral/30 px-3 py-1">
-                    <span className="font-heading text-coral text-base tracking-wide">
-                      {t.stat}
-                    </span>
-                    <span className="text-foreground-muted text-xs">
-                      {t.label}
-                    </span>
+                  <div className="flex items-center gap-3 mb-4">
+                    <TestimonialAvatar testimonial={t} />
+                    <div className="flex-1 min-w-0">
+                      <p className="font-heading text-off-white text-sm md:text-base tracking-wide leading-tight">
+                        {t.name.toUpperCase()}
+                      </p>
+                      <p className="font-heading text-coral text-xs md:text-sm tracking-wide mt-0.5">
+                        {t.stat}
+                      </p>
+                    </div>
                   </div>
-                  <blockquote className="text-off-white text-[15px] md:text-base leading-relaxed flex-1">
+                  <blockquote className="text-foreground-muted text-sm md:text-[15px] leading-relaxed flex-1 m-0">
                     &ldquo;{t.quote}&rdquo;
                   </blockquote>
-                  <figcaption className="mt-4 pt-4 border-t border-white/10">
-                    <p className="font-heading text-off-white tracking-wide">
-                      {t.name.toUpperCase()}
-                    </p>
-                    <p className="text-foreground-subtle text-xs mt-1">
+                  <figcaption className="mt-4 pt-3 border-t border-white/5">
+                    <p className="text-foreground-subtle text-xs">
                       {t.detail}
                     </p>
                   </figcaption>
@@ -508,6 +721,24 @@ export default function GoLandingPage() {
               </li>
             ))}
           </ul>
+
+          {/* See all reviews — testimonial.to wall */}
+          <div className="text-center mt-10 md:mt-12">
+            <a
+              href="https://testimonial.to/roadman-cycling/all"
+              target="_blank"
+              rel="noopener noreferrer"
+              data-track="go_all_testimonials_link"
+              className="
+                inline-flex items-center gap-2
+                font-heading text-coral text-xs md:text-sm tracking-[0.25em]
+                hover:text-off-white transition-colors
+              "
+            >
+              SEE ALL REVIEWS
+              <span aria-hidden="true">→</span>
+            </a>
+          </div>
         </Container>
       </Section>
 
