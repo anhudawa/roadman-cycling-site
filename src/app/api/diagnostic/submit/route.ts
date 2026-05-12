@@ -189,6 +189,18 @@ export async function POST(request: Request) {
       },
     }).catch((err) => console.error("[Diagnostic] recordEvent failed:", err)),
 
+    // Generic signup event so plateau email captures show up alongside
+    // newsletter and lead-magnet signups in the admin "Email Signups"
+    // metric (which counts type === "signup"). Separate from
+    // diagnostic_complete, which feeds the diagnostic-specific funnel.
+    recordEvent("signup", "/plateau", {
+      email,
+      source: utm.utmSource ?? "plateau-diagnostic",
+      sessionId,
+      userAgent: userAgent ?? undefined,
+      variantId: utm.utmContent ?? undefined,
+    }).catch((err) => console.error("[Diagnostic] signup event failed:", err)),
+
     // Unified subscribers upsert so this lead shows up alongside
     // newsletter signups in the CRM.
     upsertOnSignup(email, "/plateau", "plateau-diagnostic").catch((err) =>
