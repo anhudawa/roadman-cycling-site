@@ -32,6 +32,33 @@ import { BRAND_STATS, FOUNDER, PODCAST, SITE_ORIGIN } from "@/lib/brand-facts";
 // cta_click event with the specific position on this page.
 const CTA_HREF = "/plateau?source=go";
 
+const FAQS: ReadonlyArray<{ q: string; a: string }> = [
+  {
+    q: "What does the diagnostic actually do?",
+    a: "Twelve questions about your training, recovery and fuelling, and you get one of four plateau patterns — plus the three specific changes to make this week. Four minutes, on screen, done.",
+  },
+  {
+    q: "Is the result accurate or generic?",
+    a: "It's the same four-cause pattern I've built from years of conversations with the coaches behind World Tour wins. Generic plans treat every plateaued rider the same. This doesn't — the result is keyed off your answers.",
+  },
+  {
+    q: "What happens to my email?",
+    a: "Nothing, unless you give it to me — the result shows on screen. If you do leave your email you'll get the Saturday Spin newsletter and nothing else. One-click unsubscribe.",
+  },
+  {
+    q: "I don't have a power meter — can I still use this?",
+    a: "Yes. Most questions are about how your training feels and how you're recovering. Power data sharpens the answer; if you don't have it, you tell me what you've noticed on the road and we work from there.",
+  },
+  {
+    q: "What's Not Done Yet?",
+    a: "The paid community I run for serious masters cyclists who refuse to accept their best days are behind them. Training plans, weekly live calls with me, the S&C roadmap. You don't have to join anything to take the diagnostic.",
+  },
+  {
+    q: "What happens after I get my result?",
+    a: "You see your plateau type and the three changes to make this week. From there you can run with it yourself or look at how Not Done Yet fits. Either way, you leave clearer than you arrived.",
+  },
+];
+
 const FOUR_REASONS = [
   {
     label: "Under-recovered",
@@ -810,6 +837,47 @@ export default function GoLandingPage() {
 
       <div className="gradient-divider" />
 
+      {/* ── FAQ ──────────────────────────────────────────────────────── */}
+      {/* Sits before the final CTA so the rider's last-mile objections
+          ("what about my email?", "I don't have a power meter") get
+          answered while the CTA is still on screen. Anthony's voice:
+          first person, casual, direct. Each answer 2-3 sentences max. */}
+      <Section background="charcoal">
+        <Container width="narrow">
+          <p className="text-coral font-heading text-[11px] md:text-xs tracking-[0.3em] text-center mb-3">
+            BEFORE YOU CLICK
+          </p>
+          <h2
+            className="font-heading text-off-white text-center mb-10 md:mb-12"
+            style={{ fontSize: "clamp(1.875rem, 4.5vw, 3rem)" }}
+          >
+            THE QUESTIONS I GET ASKED MOST
+          </h2>
+          <ul className="space-y-3 md:space-y-4 list-none p-0 max-w-2xl mx-auto">
+            {FAQS.map(({ q, a }) => (
+              <li key={q}>
+                <div
+                  className="
+                    rounded-2xl bg-deep-purple border border-white/10
+                    p-5 md:p-6
+                    shadow-[0_6px_20px_rgba(0,0,0,0.2)]
+                  "
+                >
+                  <h3 className="font-heading text-coral text-lg md:text-xl tracking-wide leading-snug mb-2">
+                    {q.toUpperCase()}
+                  </h3>
+                  <p className="text-foreground-muted text-[15px] md:text-base leading-relaxed m-0">
+                    {a}
+                  </p>
+                </div>
+              </li>
+            ))}
+          </ul>
+        </Container>
+      </Section>
+
+      <div className="gradient-divider" />
+
       {/* ── Final CTA ────────────────────────────────────────────────── */}
       <section className="relative overflow-hidden bg-charcoal grain-overlay py-20 md:py-28">
         <div
@@ -843,6 +911,20 @@ export default function GoLandingPage() {
           <p className="text-foreground-subtle text-xs mt-5">
             Free &middot; No card &middot; 4 minutes &middot; Email only when
             you want the result
+          </p>
+          {/* Soft fallback for riders not ready to commit to four minutes.
+              Quiet on purpose — small, foreground-subtle, well below the
+              primary CTA. The toolkit funnel is the lower-intent door. */}
+          <p className="text-foreground-subtle text-xs mt-8">
+            Not ready?{" "}
+            <Link
+              href="/toolkit"
+              data-track="go_toolkit_fallback"
+              className="text-foreground-muted underline decoration-foreground-subtle underline-offset-2 hover:text-coral hover:decoration-coral transition-colors"
+            >
+              Get the free Roadman Toolkit
+            </Link>{" "}
+            &mdash; five-minute setup, no spam.
           </p>
         </Container>
       </section>
