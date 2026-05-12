@@ -577,7 +577,10 @@ export default function GoLandingPage() {
             ))}
           </ul>
 
-          <p className="text-off-white text-center max-w-2xl mx-auto mt-10 md:mt-12 text-lg md:text-xl leading-relaxed">
+          <p
+            data-track="go_competitive_line"
+            className="text-off-white text-center max-w-2xl mx-auto mt-10 md:mt-12 text-lg md:text-xl leading-relaxed"
+          >
             Plans give you workouts. This tells you which workout has been the
             wrong one &mdash; and why the next plan you start should be
             different.
@@ -854,9 +857,10 @@ export default function GoLandingPage() {
             THE QUESTIONS I GET ASKED MOST
           </h2>
           <ul className="space-y-3 md:space-y-4 list-none p-0 max-w-2xl mx-auto">
-            {FAQS.map(({ q, a }) => (
+            {FAQS.map(({ q, a }, i) => (
               <li key={q}>
                 <div
+                  data-track={`go_faq_q${i + 1}`}
                   className="
                     rounded-2xl bg-deep-purple border border-white/10
                     p-5 md:p-6
