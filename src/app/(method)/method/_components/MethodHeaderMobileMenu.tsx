@@ -79,6 +79,7 @@ export function MethodHeaderMobileMenu() {
           >
             <ul className="px-4 py-2 divide-y divide-white/5">
               <MobileLink href="/method/dashboard">Dashboard</MobileLink>
+              <MobileLink href="/method/fuel-planner">Fuel Planner</MobileLink>
               <MobileLink href="/method/account">Account</MobileLink>
               <li className="py-3">
                 <a

@@ -50,3 +50,23 @@ export {
   getSessionTemplate,
   getSessionsByCategory,
 } from './sessions';
+
+// Calendar generation
+export {
+  generateCalendar,
+  generateWeek,
+  patternEntryToSession,
+  startOfWeekMonday,
+  findWeekIndex,
+  DEFAULT_WEEK_PATTERN,
+  DEFAULT_MEAL_CONFIG,
+  REST_ENTRY,
+  DAY_LABELS,
+  DAY_LABELS_LONG,
+} from './calendar';
+export type {
+  WeekPattern,
+  WeekPatternEntry,
+  DayIndex,
+  CalendarOptions,
+} from './calendar';

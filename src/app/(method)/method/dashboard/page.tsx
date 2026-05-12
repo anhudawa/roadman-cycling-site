@@ -124,6 +124,8 @@ export default async function MethodDashboard() {
         ))}
       </section>
 
+      <FuelPlannerTile />
+
       <div className="grid gap-6 lg:grid-cols-2">
         <RecentActivity completions={progress.completions} />
         <SupportCard />
@@ -213,6 +215,41 @@ function GraduationBanner({ firstName }: { firstName: string | null }) {
             your next event, or hand the framework to a training partner.
           </p>
         </div>
+      </div>
+    </section>
+  );
+}
+
+function FuelPlannerTile() {
+  return (
+    <section
+      aria-label="Fuel planner"
+      className="relative overflow-hidden rounded-xl border border-white/10 bg-gradient-to-br from-deep-purple/30 via-charcoal to-charcoal p-6 md:p-8"
+    >
+      <div
+        aria-hidden
+        className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,_rgba(241,99,99,0.12)_0%,_transparent_60%)]"
+      />
+      <div className="relative grid gap-4 md:grid-cols-[1fr_auto] md:items-center">
+        <div>
+          <p className="font-heading text-xs tracking-[0.3em] text-coral mb-2">
+            NEW · FUEL PLANNER
+          </p>
+          <h2 className="font-heading uppercase leading-[0.95] text-2xl md:text-3xl mb-2">
+            Eat for the work required.
+          </h2>
+          <p className="text-foreground-muted max-w-xl">
+            A 12-week fuelling calendar mapped to your training. Daily macros
+            and in-ride carbs prescribed session by session — built on the
+            Hexis FFTWR methodology.
+          </p>
+        </div>
+        <Link
+          href="/method/fuel-planner"
+          className="self-start md:self-center font-heading uppercase tracking-wider text-sm bg-coral text-charcoal hover:bg-coral-hover px-5 py-3 rounded-sm transition-colors whitespace-nowrap"
+        >
+          Open planner →
+        </Link>
       </div>
     </section>
   );
