@@ -363,7 +363,7 @@ export default function GoLandingPage() {
             <span className="opacity-40">&middot;</span>
             <span className="whitespace-nowrap">4 minutes</span>
             <span className="opacity-40">&middot;</span>
-            <span className="whitespace-nowrap">Email is optional</span>
+            <span className="whitespace-nowrap">No email needed to start</span>
           </div>
 
           {/* Value stack — enriches the CTA area for cold traffic so the
@@ -415,7 +415,7 @@ export default function GoLandingPage() {
                   className="mt-1.5 inline-block w-1.5 h-1.5 rounded-full bg-coral shrink-0"
                 />
                 <span>
-                  Result shown on screen in 4 minutes. No email required to
+                  Result shown on screen in 4 minutes. No email needed to
                   start.
                 </span>
               </li>
@@ -913,8 +913,8 @@ export default function GoLandingPage() {
             GET MY FREE DIAGNOSIS <CtaArrow />
           </Link>
           <p className="text-foreground-subtle text-xs mt-5">
-            Free &middot; No card &middot; 4 minutes &middot; Email only when
-            you want the result
+            Free &middot; No card &middot; 4 minutes &middot; No email needed
+            to start
           </p>
           {/* Soft fallback for riders not ready to commit to four minutes.
               Quiet on purpose — small, foreground-subtle, well below the
