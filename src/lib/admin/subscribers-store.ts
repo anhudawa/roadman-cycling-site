@@ -224,6 +224,93 @@ export async function getCohortData(from: Date, to: Date): Promise<CohortRow[]> 
   }));
 }
 
+// ── Email-signups dashboard helpers ──────────────────────
+//
+// These power the "Email Signups" section on /admin. They're written
+// as one round-trip per window so the dashboard reads three numbers
+// without N source-breakdown queries firing in parallel.
+
+export interface SignupWindowTotals {
+  last24h: number;
+  last7d: number;
+  last30d: number;
+}
+
+export interface SignupBySourceRow {
+  /** Raw source string as stored in the subscribers table (e.g.
+   * "plateau-diagnostic", "lead-magnet-zones-plan", "/newsletter"). */
+  source: string;
+  signups: number;
+}
+
+export interface SignupsByWindowBreakdown {
+  /** Total signups in this window across all sources. */
+  total: number;
+  /** Per-source counts ordered by signup count desc. Capped to top 20
+   * to keep the dashboard scannable; the tail is rolled into "Other". */
+  sources: SignupBySourceRow[];
+}
+
+export async function getSignupWindowTotals(now: Date = new Date()): Promise<SignupWindowTotals> {
+  const t24h = new Date(now.getTime() - 24 * 60 * 60 * 1000);
+  const t7d = new Date(now.getTime() - 7 * 24 * 60 * 60 * 1000);
+  const t30d = new Date(now.getTime() - 30 * 24 * 60 * 60 * 1000);
+
+  const rows = await db
+    .select({
+      last24h: sql<number>`COUNT(CASE WHEN ${subscribers.signedUpAt} >= ${t24h.toISOString()} THEN 1 END)`,
+      last7d: sql<number>`COUNT(CASE WHEN ${subscribers.signedUpAt} >= ${t7d.toISOString()} THEN 1 END)`,
+      last30d: sql<number>`COUNT(CASE WHEN ${subscribers.signedUpAt} >= ${t30d.toISOString()} THEN 1 END)`,
+    })
+    .from(subscribers)
+    .where(isNotNull(subscribers.signedUpAt));
+
+  const row = rows[0];
+  return {
+    last24h: Number(row?.last24h ?? 0),
+    last7d: Number(row?.last7d ?? 0),
+    last30d: Number(row?.last30d ?? 0),
+  };
+}
+
+export async function getSignupsByWindow(
+  hours: number,
+  now: Date = new Date(),
+): Promise<SignupsByWindowBreakdown> {
+  const from = new Date(now.getTime() - hours * 60 * 60 * 1000);
+  const rows = await db
+    .select({
+      source: sql<string>`COALESCE(${subscribers.source}, 'unknown')`,
+      signups: count(),
+    })
+    .from(subscribers)
+    .where(and(isNotNull(subscribers.signedUpAt), gte(subscribers.signedUpAt, from)))
+    .groupBy(sql`COALESCE(${subscribers.source}, 'unknown')`)
+    .orderBy(desc(count()));
+
+  const sources: SignupBySourceRow[] = rows.map((r) => ({
+    source: r.source,
+    signups: Number(r.signups),
+  }));
+
+  const total = sources.reduce((sum, r) => sum + r.signups, 0);
+
+  // Roll the long tail into "Other" so the table stays readable when
+  // many one-off referrer pages contribute a single signup each.
+  const TOP_N = 12;
+  if (sources.length > TOP_N) {
+    const head = sources.slice(0, TOP_N);
+    const tail = sources.slice(TOP_N);
+    const otherTotal = tail.reduce((s, r) => s + r.signups, 0);
+    if (otherTotal > 0) {
+      head.push({ source: "other", signups: otherTotal });
+    }
+    return { total, sources: head };
+  }
+
+  return { total, sources };
+}
+
 export async function getSourceBreakdown(from: Date, to: Date): Promise<SourceRow[]> {
   const rows = await db
     .select({
