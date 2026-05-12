@@ -25,6 +25,27 @@ export const metadata: Metadata = {
     index: false,
     follow: false,
   },
+  alternates: {
+    canonical: "https://roadmancycling.com/go",
+  },
+  openGraph: {
+    type: "website",
+    title: "Stuck on a Plateau? Find Out Why in 4 Minutes",
+    description:
+      "Twelve questions, four minutes, a specific diagnosis for why your FTP has stalled.",
+    url: "https://roadmancycling.com/go",
+    images: [
+      {
+        url: "/og-image.jpg",
+        width: 1200,
+        height: 630,
+        alt: "Roadman Cycling diagnostic",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+  },
 };
 
 export const viewport: Viewport = {
