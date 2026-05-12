@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import { redirect } from "next/navigation";
 import { Container } from "@/components/layout/Container";
 import { getMethodSession } from "@/lib/method/auth";
+import { loadByEmail } from "@/lib/rider-profile/store";
+import type { UserProfile } from "@/lib/fuel-planner/types";
 import { AssessmentForm } from "../_components/AssessmentForm";
 import { PlannerNav } from "../_components/PlannerNav";
 
@@ -21,6 +23,29 @@ export default async function FuelPlannerSetupPage() {
   }
   if (!session) redirect("/method/login");
 
+  // Seed the assessment form from the rider's unified profile. The
+  // client component still lets localStorage override these on hydrate
+  // (the rider may have tuned them locally for the planner).
+  const profile = await loadByEmail(session.enrollment.email).catch(() => null);
+  const initialProfile: Partial<UserProfile> | null = profile
+    ? {
+        ftp: profile.currentFtp ?? undefined,
+        weightKg:
+          profile.currentWeight != null
+            ? profile.weightUnit === "lb"
+              ? Math.round(profile.currentWeight * 0.45359237 * 10) / 10
+              : profile.currentWeight
+            : undefined,
+        heightCm: profile.heightCm ?? undefined,
+        bodyCompGoal:
+          profile.bodyCompositionGoal === "lose" ||
+          profile.bodyCompositionGoal === "maintain" ||
+          profile.bodyCompositionGoal === "gain"
+            ? profile.bodyCompositionGoal
+            : undefined,
+      }
+    : null;
+
   return (
     <Container as="section" width="narrow" className="py-8 md:py-12">
       <header className="mb-6">
@@ -37,7 +62,7 @@ export default async function FuelPlannerSetupPage() {
       </header>
 
       <PlannerNav active="setup" />
-      <AssessmentForm />
+      <AssessmentForm initialProfile={initialProfile} />
     </Container>
   );
 }
