@@ -5,6 +5,7 @@ import { ConversionChrome } from "@/components/layout/ConversionChrome";
 import { LazyCookieConsent } from "@/components/features/consent/LazyCookieConsent";
 import { Tracker } from "@/components/analytics/Tracker";
 import { ConsentAwarePixel } from "@/components/analytics/ConsentAwarePixel";
+import { GoogleAdsTag } from "@/components/analytics/GoogleAdsTag";
 import { WebVitalsReporter } from "@/components/analytics/WebVitalsReporter";
 import { Analytics as VercelAnalytics } from "@vercel/analytics/next";
 import { OrganizationJsonLd } from "@/components/seo/JsonLd";
@@ -173,6 +174,7 @@ export default function RootLayout({
         <LazyCookieConsent />
         <Tracker />
         <ConsentAwarePixel />
+        <GoogleAdsTag />
         <WebVitalsReporter />
         <VercelAnalytics />
         <ServiceWorkerRegister />
