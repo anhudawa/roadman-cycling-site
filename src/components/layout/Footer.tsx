@@ -67,6 +67,7 @@ const footerColumns = {
       { label: "Research & Evidence", href: "/research" },
       { label: "Editorial Standards", href: "/editorial-standards" },
       { label: "Partners", href: "/partners" },
+      { label: "Careers", href: "/careers" },
       { label: "Contact", href: "/contact" },
     ],
   },

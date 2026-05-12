@@ -101,6 +101,7 @@ function buildStaticSitemap(): MetadataRoute.Sitemap {
     { url: `${BASE_URL}/about/expert-reviewers`, lastModified: new Date(), changeFrequency: "monthly", priority: 0.6 },
     { url: `${BASE_URL}/about/how-we-coach`, lastModified: new Date(), changeFrequency: "monthly", priority: 0.6 },
     { url: `${BASE_URL}/about/how-we-create-content`, lastModified: new Date(), changeFrequency: "monthly", priority: 0.6 },
+    { url: `${BASE_URL}/careers`, lastModified: new Date(), changeFrequency: "monthly", priority: 0.5 },
     { url: `${BASE_URL}/author/anthony-walsh`, lastModified: new Date(), changeFrequency: "monthly", priority: 0.8 },
     { url: `${BASE_URL}/facts`, lastModified: new Date(), changeFrequency: "monthly", priority: 0.7 },
     { url: `${BASE_URL}/entity/roadman-cycling`, lastModified: new Date(), changeFrequency: "monthly", priority: 0.8 },
