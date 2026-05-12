@@ -52,6 +52,12 @@ export function MethodHeader({ sessionEmail, variant = "members" }: MethodHeader
                 Dashboard
               </Link>
               <Link
+                href="/method/fuel-planner"
+                className="font-heading uppercase tracking-wider text-foreground-muted hover:text-off-white transition-colors"
+              >
+                Fuel Planner
+              </Link>
+              <Link
                 href="/method/account"
                 className="font-heading uppercase tracking-wider text-foreground-muted hover:text-off-white transition-colors"
               >
