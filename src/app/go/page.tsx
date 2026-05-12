@@ -121,7 +121,7 @@ const TESTIMONIALS: readonly Testimonial[] = [
     name: "Chris O'Connor",
     initials: "CO",
     photoSrc: "/images/testimonials/chris.jpg",
-    hasPhoto: false,
+    hasPhoto: true,
     stat: "Body fat 20% → 7%",
     detail: "Decades out of the saddle, came back with a bang",
     quote:
