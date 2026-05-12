@@ -500,7 +500,7 @@ export default function NotDoneYetPage() {
                   knowledge. Same coaching. Your turn.
                 </p>
                 <Button
-                  href="https://www.skool.com/roadmancycling/about"
+                  href="https://www.skool.com/roadmancycling"
                   external
                   size="lg"
                 >

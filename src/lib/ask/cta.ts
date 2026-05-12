@@ -48,14 +48,14 @@ export const CTA_CATALOG: Record<Exclude<CtaKey, "none">, CtaDescriptor> = {
     key: "clubhouse",
     title: "Join the Roadman Clubhouse",
     body: "Free community of serious amateur cyclists. Live Q&As with Anthony weekly.",
-    href: "https://www.skool.com/roadman",
+    href: "https://www.skool.com/roadmancycling",
     analyticsEvent: "cta_clicked:clubhouse",
   },
   ndy_coaching: {
     key: "ndy_coaching",
     title: "Inside Not Done Yet",
     body: "The paid Roadman community with TrainingPeaks plans, weekly coaching calls, and S&C roadmap.",
-    href: "https://www.skool.com/roadmancycling/about",
+    href: "https://www.skool.com/roadmancycling",
     analyticsEvent: "cta_clicked:ndy_coaching",
   },
   vip_coaching: {
