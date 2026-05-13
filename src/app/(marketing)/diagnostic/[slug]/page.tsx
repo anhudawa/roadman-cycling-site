@@ -10,6 +10,7 @@ import { CLOSE_TO_BREAKTHROUGH, labelFor } from "@/lib/diagnostic/profiles";
 import { resolveCta } from "@/lib/diagnostic/config";
 import { ResultsAnalytics } from "@/components/features/diagnostic/ResultsAnalytics";
 import { ShareButton } from "@/components/features/diagnostic/ShareButton";
+import { DownloadPdfButton } from "@/components/features/diagnostic/DownloadPdfButton";
 import { MetaPixel } from "@/components/features/diagnostic/MetaPixel";
 import { ReadingProgress } from "@/components/features/diagnostic/ReadingProgress";
 import { StickyCta } from "@/components/features/diagnostic/StickyCta";
@@ -385,10 +386,16 @@ export default async function DiagnosticResultsPage({
                   in.
                 </p>
               </div>
-              <ShareButton
-                slug={submission.slug}
-                profileLabel={profileLabel}
-              />
+              <div className="flex flex-wrap items-center gap-3">
+                <DownloadPdfButton
+                  slug={submission.slug}
+                  profile={submission.primaryProfile}
+                />
+                <ShareButton
+                  slug={submission.slug}
+                  profileLabel={profileLabel}
+                />
+              </div>
             </div>
           </Container>
         </Section>
