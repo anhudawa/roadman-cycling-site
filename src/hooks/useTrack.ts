@@ -28,6 +28,18 @@ import type { EventType } from "@/lib/admin/events-store";
 
 const SID_KEY = "roadman_funnel_sid";
 
+// JS-readable mirror of GO_HERO_COOKIE from @/lib/ab/go-hero. Kept
+// inline so this client hook doesn't pull in `next/headers`. The
+// variant id flows onto every fired event so the funnel can attribute
+// conversions back to the /go headline variant a visitor saw.
+function readGoHeroVariantCookie(): string | undefined {
+  if (typeof document === "undefined") return undefined;
+  const match = document.cookie.match(/(?:^|; )roadman_ab_go_hero=([^;]+)/);
+  if (!match) return undefined;
+  const value = match[1];
+  return value === "A" || value === "B" ? value : undefined;
+}
+
 function readOrCreateClientSid(): string | undefined {
   if (typeof window === "undefined") return undefined;
   try {
@@ -80,10 +92,11 @@ export function useTrack(): TrackFunction {
       // Cast through `unknown` because the public `track` is overloaded —
       // the runtime accepts any string event name; the overloads only
       // enforce typed props for known funnel events at call sites.
+      const variantId = ctx?.variantId ?? readGoHeroVariantCookie();
       (dispatch as unknown as (n: string, p?: Record<string, unknown>, c?: TrackContext) => void)(
         name,
         props,
-        { page, sessionId, referrer, variantId: ctx?.variantId },
+        { page, sessionId, referrer, variantId },
       );
     },
     [pathname],
