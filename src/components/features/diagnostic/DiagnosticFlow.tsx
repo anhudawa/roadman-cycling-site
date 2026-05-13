@@ -173,11 +173,18 @@ export function DiagnosticFlow() {
   }, [state, hydrated]);
 
   const utm = useMemo(() => {
+    // `variant` is the human-readable alias used by the /go PPC surface;
+    // it back-fills `utm_content`, which the submit endpoint maps to
+    // `variantId` on diagnostic_complete and signup events. Lets us split-
+    // test headlines without bolting a separate parameter onto the API.
     return {
       source: searchParams.get("utm_source") ?? undefined,
       medium: searchParams.get("utm_medium") ?? undefined,
       campaign: searchParams.get("utm_campaign") ?? undefined,
-      content: searchParams.get("utm_content") ?? undefined,
+      content:
+        searchParams.get("utm_content") ??
+        searchParams.get("variant") ??
+        undefined,
       term: searchParams.get("utm_term") ?? undefined,
     };
   }, [searchParams]);

@@ -34,6 +34,20 @@ function getSessionId(): string {
   return sid;
 }
 
+// ── A/B variant cookie ────────────────────────────────────
+// Mirrors GO_HERO_COOKIE from @/lib/ab/go-hero. Read inline (rather
+// than importing the server module) so this file stays free of the
+// `next/headers` dependency, which can't be used in a "use client"
+// boundary. Returns undefined when no test is active or the cookie
+// isn't readable yet.
+function readGoHeroVariantCookie(): string | undefined {
+  if (typeof document === "undefined") return undefined;
+  const match = document.cookie.match(/(?:^|; )roadman_ab_go_hero=([^;]+)/);
+  if (!match) return undefined;
+  const value = match[1];
+  return value === "A" || value === "B" ? value : undefined;
+}
+
 // ── Send Event ────────────────────────────────────────────
 function sendEvent(type: string, data: Record<string, string> = {}) {
   // Always check consent before sending
@@ -45,6 +59,8 @@ function sendEvent(type: string, data: Record<string, string> = {}) {
   // just the landing pageview — inherits the attribution.
   const aiReferrer = getStoredAIReferrer();
 
+  const variantId = readGoHeroVariantCookie();
+
   const payload: Record<string, unknown> = {
     type,
     page: window.location.pathname,
@@ -54,6 +70,9 @@ function sendEvent(type: string, data: Record<string, string> = {}) {
   };
   if (aiReferrer) {
     payload.ai_referrer = aiReferrer;
+  }
+  if (variantId) {
+    payload.variant_id = variantId;
   }
 
   const body = JSON.stringify(payload);

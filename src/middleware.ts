@@ -1,4 +1,5 @@
 import { NextResponse, type NextRequest } from "next/server";
+import { GO_HERO_COOKIE, isGoHeroVariant, type GoHeroVariant } from "@/lib/ab/go-hero";
 
 /* ═══════════════════════════════════════════════════════════════
  * Unified middleware — Method auth gate + A/B proxy + SEO cleanup
@@ -107,7 +108,37 @@ export async function middleware(request: NextRequest) {
    * ──────────────────────────────────────────────────────────── */
   const origin = new URL(request.url).origin;
   const activeTests = await getActiveTests(origin);
-  const response = NextResponse.next();
+
+  // ── /go hero headline split (static, code-owned) ──────────
+  // Path-scoped to /go so the cookie is only seeded for visitors who
+  // actually land on the PPC surface. Mutating `request.cookies` here
+  // is what lets the server component read the fresh value on the
+  // first paint — the response cookie alone wouldn't be in scope until
+  // the next request. The forwarded request headers below carry the
+  // mutation through.
+  let goHeroAssigned: GoHeroVariant | null = null;
+  if (pathname === "/go") {
+    const existing = request.cookies.get(GO_HERO_COOKIE)?.value;
+    if (isGoHeroVariant(existing)) {
+      goHeroAssigned = null; // already sticky, no response cookie needed
+    } else {
+      goHeroAssigned = Math.random() < 0.5 ? "A" : "B";
+      request.cookies.set(GO_HERO_COOKIE, goHeroAssigned);
+    }
+  }
+
+  const response = NextResponse.next({
+    request: { headers: request.headers },
+  });
+
+  if (goHeroAssigned) {
+    response.cookies.set(GO_HERO_COOKIE, goHeroAssigned, {
+      path: "/",
+      httpOnly: false,
+      maxAge: 60 * 60 * 24 * 90,
+      sameSite: "lax",
+    });
+  }
 
   // Global visitor variant cookie
   if (!request.cookies.get("ab_variant")?.value) {
