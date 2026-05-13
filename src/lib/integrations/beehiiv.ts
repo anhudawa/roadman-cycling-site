@@ -202,6 +202,37 @@ export interface NewsletterIssue {
   content: string | null;
 }
 
+// Beehiiv ships `content.free.web` as a full HTML document (DOCTYPE / html /
+// head / body wrappers around the article). When we drop that into an <article>
+// via dangerouslySetInnerHTML, two things break the page:
+//
+// 1. The <body> opening tag carries `class="bg-wt-background"` and
+//    `style="color: var(--wt-text-on-background-color) !important;"`. Per the
+//    HTML5 parser spec, encountering a second <body> tag during fragment parse
+//    merges its attributes onto the page's actual <body> element — forcing a
+//    white background and dark grey text across the whole site.
+//
+// 2. The <head> contains a <style> block defining `:root { --wt-*: ... }` CSS
+//    variables. Beehiiv's inline element styles reference those with !important
+//    (e.g. `color: var(--wt-text-on-background-color) !important`), resolving
+//    to #222222 against our charcoal background — i.e. body copy renders as
+//    near-invisible dark grey on near-black. Inline !important beats stylesheet
+//    !important, so our `.newsletter-content` overrides lose this fight head-on.
+//
+// Strip the wrapper tags. The inline `var(--wt-*) !important` references then
+// resolve against an undefined variable, become invalid at computed-value time,
+// and are discarded — letting our stylesheet's `!important` colours win.
+export function sanitizeBeehiivHtml(html: string | null): string | null {
+  if (!html) return html;
+  return html
+    .replace(/<!DOCTYPE[^>]*>/gi, "")
+    .replace(/<\/?html[^>]*>/gi, "")
+    .replace(/<head[\s\S]*?<\/head>/gi, "")
+    .replace(/<\/?head[^>]*>/gi, "")
+    .replace(/<\/?body[^>]*>/gi, "")
+    .trim();
+}
+
 export async function fetchNewsletterIssues(
   limit = 50
 ): Promise<NewsletterIssue[]> {
@@ -246,7 +277,7 @@ export async function fetchNewsletterIssues(
           publishDate: p.publish_date
             ? new Date(p.publish_date * 1000).toISOString()
             : null,
-          content: p.content?.free?.web ?? null,
+          content: sanitizeBeehiivHtml(p.content?.free?.web ?? null),
         });
       }
 
