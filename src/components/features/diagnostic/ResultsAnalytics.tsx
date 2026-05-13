@@ -20,10 +20,26 @@ interface GtagFn {
 
 function fireGoogleAdsConversion() {
   if (typeof window === "undefined") return;
-  const w = window as unknown as { gtag?: GtagFn };
-  if (typeof w.gtag !== "function") return;
+  const w = window as unknown as {
+    gtag?: GtagFn;
+    dataLayer?: IArguments[];
+  };
   try {
-    w.gtag("event", "conversion", { send_to: GADS_CONVERSION_SEND_TO });
+    // gtag.js loads with strategy="afterInteractive", which can fire AFTER
+    // this effect runs. If window.gtag isn't there yet, install a stub
+    // that buffers via dataLayer — gtag.js drains the queue once loaded.
+    if (typeof w.gtag !== "function") {
+      w.dataLayer = w.dataLayer || [];
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      w.gtag = function gtag(...args: any[]) {
+        (w.dataLayer as unknown as unknown[][]).push(args);
+      } as unknown as GtagFn;
+    }
+    w.gtag("event", "conversion", {
+      send_to: GADS_CONVERSION_SEND_TO,
+      value: 10.0,
+      currency: "EUR",
+    });
   } catch {
     // analytics never breaks user flow
   }
