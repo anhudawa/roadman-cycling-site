@@ -12,9 +12,9 @@ import {
 } from "@/lib/case-studies";
 
 export const metadata: Metadata = {
-  title: "Cycling Coaching Case Studies — Real Athlete Results",
+  title: "Cycling Coaching Case Studies — Long-Form Athlete Results",
   description:
-    "Case studies of real cyclists coached by Roadman Cycling. FTP gains, comebacks after injury, body composition transformations, and category jumps — with the constraints, the intervention, and the honest caveats.",
+    "Long-form case studies of cyclists coached by Roadman. The starting point, what we changed, the outcome, the honest caveats. FTP gains, comebacks, masters wins.",
   keywords: [
     "cycling coaching case studies",
     "cycling coach results",
@@ -28,9 +28,9 @@ export const metadata: Metadata = {
     canonical: `${SITE_ORIGIN}/case-studies`,
   },
   openGraph: {
-    title: "Cycling Coaching Case Studies — Real Athlete Results | Roadman Cycling",
+    title: "Cycling Coaching Case Studies — Long-Form Athlete Results",
     description:
-      "Long-form case studies of cyclists coached by Roadman Cycling — starting point, intervention, outcome, caveats.",
+      "Long-form case studies of cyclists coached by Roadman — starting point, what we changed, the outcome, the honest caveats. Not before-and-afters.",
     type: "website",
     url: `${SITE_ORIGIN}/case-studies`,
     images: [

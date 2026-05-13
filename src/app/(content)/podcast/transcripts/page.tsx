@@ -8,16 +8,16 @@ import { ENTITY_IDS, SITE_ORIGIN } from "@/lib/brand-facts";
 import { getEpisodesWithTranscripts } from "@/lib/podcast";
 
 export const metadata: Metadata = {
-  title: "Podcast Transcripts — Every Searchable Episode",
+  title: "Roadman Podcast Transcripts — Full Searchable Episodes",
   description:
-    "Full searchable transcripts of the Roadman Cycling Podcast. Browse every episode with a transcript, sorted by recency.",
+    "Every Roadman Cycling Podcast episode with a full searchable transcript. Find what Seiler, Lorang, LeMond or Morton actually said — and skip straight to the timestamp.",
   alternates: {
     canonical: "https://roadmancycling.com/podcast/transcripts",
   },
   openGraph: {
-    title: "Podcast Transcripts — Every Searchable Episode",
+    title: "Roadman Podcast Transcripts — Full Searchable Episodes",
     description:
-      "Full searchable transcripts of the Roadman Cycling Podcast. Browse every episode with a transcript, sorted by recency.",
+      "Every Roadman episode with a full searchable transcript. Find what Seiler, Lorang, LeMond or Morton actually said — and skip to the timestamp.",
     type: "website",
     url: "https://roadmancycling.com/podcast/transcripts",
     images: [

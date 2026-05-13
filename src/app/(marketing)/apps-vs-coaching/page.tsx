@@ -257,10 +257,9 @@ const appsTestimonials = getTestimonialsByName([
 ]);
 
 export const metadata: Metadata = {
-  title:
-    "Apps vs Coaching — TrainingPeaks, Zwift, Whoop, and the Layer Above | Roadman Cycling",
+  title: "Cycling Apps vs Coaching — TrainingPeaks, Zwift, Whoop & the Layer Above",
   description:
-    "Apps deliver the work. Coaching writes it. An honest comparison of the cycling app stack — TrainingPeaks, Zwift, TrainerRoad, Strava, Garmin, Whoop — and where coaching sits as the interpretation layer above them. USD pricing, no sales spin.",
+    "Apps deliver the workout. Coaching writes it. An honest comparison of TrainingPeaks, Zwift, TrainerRoad, Strava, Garmin and Whoop — and where a coach sits above the stack.",
   keywords: [
     "apps vs coaching",
     "TrainingPeaks vs coaching",
@@ -275,9 +274,9 @@ export const metadata: Metadata = {
     canonical: PAGE_URL,
   },
   openGraph: {
-    title: "Apps vs Coaching — TrainingPeaks, Zwift, Whoop, and the Layer Above",
+    title: "Cycling Apps vs Coaching — TrainingPeaks, Zwift, Whoop & the Layer Above",
     description:
-      "Apps deliver the work. Coaching writes it. An honest comparison of the cycling app stack and where coaching sits as the layer above.",
+      "Apps deliver the workout. Coaching writes it. Honest comparison of TrainingPeaks, Zwift, TrainerRoad, Strava, Garmin and Whoop — and where a coach sits above the stack.",
     type: "website",
     url: PAGE_URL,
     images: [

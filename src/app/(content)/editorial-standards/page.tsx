@@ -5,9 +5,9 @@ import { Card, ScrollReveal, GradientText } from "@/components/ui";
 import { JsonLd } from "@/components/seo/JsonLd";
 
 export const metadata: Metadata = {
-  title: "Editorial Standards — How We Write and Review Content",
+  title: "Editorial Standards — How Roadman Writes & Reviews Content",
   description:
-    "How Roadman Cycling creates, reviews, and maintains its content. Sources, methodology, review process, and the standards every article and episode must meet.",
+    "How Roadman writes, reviews and corrects content. Named sources, expert review, no anonymous claims, no AI-pattern slop. The bar every article and episode has to clear.",
   alternates: {
     canonical: "https://roadmancycling.com/editorial-standards",
   },

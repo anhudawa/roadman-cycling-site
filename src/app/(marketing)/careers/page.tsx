@@ -6,16 +6,16 @@ import { JsonLd } from "@/components/seo/JsonLd";
 import { ENTITY_IDS } from "@/lib/brand-facts";
 
 export const metadata: Metadata = {
-  title: "Careers — Cycling Coach (Remote) | Roadman Cycling",
+  title: "Cycling Coach Careers — Remote Coaching Role at Roadman",
   description:
-    "Roadman Cycling is hiring a cycling coach to work with serious amateur and masters athletes. Remote, 10 hours per week scaling to full-time, TrainingPeaks-based, evidence-led methodology.",
+    "Roadman is hiring a remote cycling coach for serious amateur and masters athletes. 10 hours a week, scaling to full-time. TrainingPeaks-based, evidence-led, no spreadsheets.",
   alternates: {
     canonical: "https://roadmancycling.com/careers",
   },
   openGraph: {
-    title: "We're Hiring — Cycling Coach | Roadman Cycling",
+    title: "Cycling Coach Careers — Remote Coaching Role at Roadman",
     description:
-      "Join Roadman Cycling. Remote cycling coach role working with serious amateurs and masters cyclists. 10 hours/week to start, scaling with the roster.",
+      "Remote cycling coach role at Roadman Cycling. Serious amateurs and masters cyclists. 10 hours a week to start, scaling with the roster.",
     type: "website",
     url: "https://roadmancycling.com/careers",
     images: [{ url: "/og-image.jpg", width: 1200, height: 630, alt: "Roadman Cycling" }],

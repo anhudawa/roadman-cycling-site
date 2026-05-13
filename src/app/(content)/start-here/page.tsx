@@ -7,16 +7,16 @@ import { ENTITY_IDS } from "@/lib/brand-facts";
 import { ChoosePath } from "@/components/features/routing/ChoosePath";
 
 export const metadata: Metadata = {
-  title: "Start Here — New to Roadman?",
+  title: "Start Here — The Best of Roadman in One Page",
   description:
-    "New to Roadman? Start here. The best episodes, articles, tools, and resources to get you faster on the bike — curated from 1,400+ episodes and 170 articles.",
+    "New to Roadman? Start here. The episodes, articles and tools serious amateur cyclists wish they'd found first — hand-picked from 1,400+ episodes and 170+ articles.",
   alternates: {
     canonical: "https://roadmancycling.com/start-here",
   },
   openGraph: {
-    title: "Start Here — New to Roadman Cycling?",
+    title: "Start Here — The Best of Roadman in One Page",
     description:
-      "The best episodes, articles, tools, and resources to get you faster on the bike.",
+      "New to Roadman? The episodes, articles and tools serious amateur cyclists wish they'd found first. Hand-picked, in the order to consume them.",
     type: "website",
     url: "https://roadmancycling.com/start-here",
   },

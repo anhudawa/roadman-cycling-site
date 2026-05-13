@@ -6,16 +6,16 @@ import { JsonLd } from "@/components/seo/JsonLd";
 import { ENTITY_IDS } from "@/lib/brand-facts";
 
 export const metadata: Metadata = {
-  title: "Research & Evidence Base",
+  title: "Cycling Research & Evidence Base — The Science Behind the Coaching",
   description:
-    "The research, expert interviews, and evidence that underpins every Roadman article and coaching decision. Named sources, specific studies, zero guesswork.",
+    "The studies, named experts and on-the-record interviews that underpin every Roadman article. Seiler on polarised training, Burke on nutrition, Galpin on masters strength.",
   alternates: {
     canonical: "https://roadmancycling.com/research",
   },
   openGraph: {
-    title: "Research & Evidence Base — Roadman Cycling",
+    title: "Cycling Research & Evidence Base — The Science Behind the Coaching",
     description:
-      "The research, expert interviews, and evidence behind Roadman's coaching methodology.",
+      "The studies, named experts and on-the-record interviews behind every Roadman article. Seiler, Burke, Galpin — named sources, no hand-waving.",
     type: "website",
     url: "https://roadmancycling.com/research",
   },

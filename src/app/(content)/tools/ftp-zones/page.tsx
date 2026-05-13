@@ -5,16 +5,16 @@ import { loadByEmail } from "@/lib/rider-profile/store";
 import { FTPZonesClient } from "./FTPZonesClient";
 
 export const metadata: Metadata = {
-  title: "FTP Power Zone Calculator | Roadman Cycling",
+  title: "FTP Power Zone Calculator — Your 7 Cycling Training Zones",
   description:
-    "Enter your FTP and get your 7-zone power table instantly. Free, no signup needed. Pre-filled with your saved FTP if you have a Roadman profile.",
+    "Enter your FTP, get your 7-zone power table instantly. Free, no signup, pre-filled if you've saved an FTP to your Roadman profile. Built on the Coggan zone model.",
   alternates: {
     canonical: "https://roadmancycling.com/tools/ftp-zones",
   },
   openGraph: {
-    title: "FTP Power Zone Calculator | Roadman Cycling",
+    title: "FTP Power Zone Calculator — Your 7 Cycling Training Zones",
     description:
-      "Enter your FTP and get your 7-zone power table instantly. Free, no signup needed.",
+      "Enter your FTP and get your 7-zone power table instantly. Free, no signup needed. Built on the Coggan zone model.",
     type: "website",
     url: "https://roadmancycling.com/tools/ftp-zones",
   },

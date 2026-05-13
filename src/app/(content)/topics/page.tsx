@@ -7,16 +7,16 @@ import { ENTITY_IDS } from "@/lib/brand-facts";
 import { getAllTopics } from "@/lib/topics";
 
 export const metadata: Metadata = {
-  title: "Cycling Topics — In-Depth Guides & Resources",
+  title: "Cycling Topics — FTP, Nutrition, Training Plans & Recovery",
   description:
-    "Browse cycling topics: FTP training, nutrition, training plans, recovery, strength & conditioning, weight loss, and beginner guides. Curated expert content from the podcast.",
+    "The Roadman topic hubs. FTP training, in-ride nutrition, periodised plans, recovery, strength & conditioning, weight loss — each one a curated home for a single search intent.",
   alternates: {
     canonical: "https://roadmancycling.com/topics",
   },
   openGraph: {
-    title: "Cycling Topics — In-Depth Guides & Resources",
+    title: "Cycling Topics — FTP, Nutrition, Training Plans & Recovery",
     description:
-      "Browse cycling topics: FTP training, nutrition, training plans, recovery, strength & conditioning, weight loss, and beginner guides. Curated expert content from the podcast.",
+      "FTP training, in-ride nutrition, periodised plans, recovery, S&C, weight loss — each topic hub a curated home for a single search intent.",
     type: "website",
     url: "https://roadmancycling.com/topics",
   },

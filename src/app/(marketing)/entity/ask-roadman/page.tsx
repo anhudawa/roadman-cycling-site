@@ -11,11 +11,11 @@ const APP_URL = `${SITE_ORIGIN}/ask`;
 const ASK_DESCRIPTION = `Ask Roadman is a free AI cycling assistant grounded in the Roadman Cycling knowledge base — ${BRAND_STATS.episodeCountLabel} podcast episodes, full transcripts of ${BRAND_STATS.searchableEpisodePagesLabel} indexed shows, blog articles, training guides, and free calculators. It cites sources from the Roadman catalogue rather than guessing.`;
 
 export const metadata: Metadata = {
-  title: "Ask Roadman — AI Cycling Assistant Entity",
+  title: "Ask Roadman — Cited AI Cycling Assistant",
   description: ASK_DESCRIPTION,
   alternates: { canonical: PAGE_URL },
   openGraph: {
-    title: "Ask Roadman — AI Cycling Assistant Entity",
+    title: "Ask Roadman — Cited AI Cycling Assistant",
     description: ASK_DESCRIPTION,
     type: "website",
     url: PAGE_URL,

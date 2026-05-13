@@ -21,16 +21,16 @@ import { FitFinder } from "./_components/FitFinder";
  */
 
 export const metadata: Metadata = {
-  title: "Which Roadman Option Fits You? | Find Your Fit",
+  title: "Find Your Fit — Which Roadman Option Suits How You Train",
   description:
-    "Five questions, two minutes, one specific recommendation. Find out whether the free Clubhouse, Not Done Yet, the Inner Circle, or 1:1 coaching is the right next step.",
+    "Five questions. Two minutes. One specific recommendation — free Clubhouse, Not Done Yet, Inner Circle, or 1:1. The path that fits how you actually train right now.",
   alternates: {
     canonical: `${SITE_ORIGIN}/find-your-fit`,
   },
   openGraph: {
-    title: "Which Roadman Option Fits You?",
+    title: "Find Your Fit — Which Roadman Option Suits How You Train",
     description:
-      "Five questions. One clear recommendation. Find the Roadman product that fits how you actually train.",
+      "Five questions, one clear recommendation. The Roadman path that fits how you actually train right now — free Clubhouse, Not Done Yet, Inner Circle, or 1:1.",
     type: "website",
     url: `${SITE_ORIGIN}/find-your-fit`,
     images: [

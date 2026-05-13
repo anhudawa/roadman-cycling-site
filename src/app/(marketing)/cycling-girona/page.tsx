@@ -11,9 +11,9 @@ import { GIRONA_ROUTE_LIST } from "@/lib/girona/routes";
 const SITE = "https://roadmancycling.com";
 
 export const metadata: Metadata = {
-  title: "Cycling in Girona — The Complete Guide for Riders | Roadman Cycling",
+  title: "Cycling in Girona — The Complete Guide for Riders",
   description:
-    "Why every World Tour pro lives in Girona, what the famous climbs really ride like, when to visit, where to coffee, and how to actually plan a cycling holiday here. Written by riders who train here.",
+    "Why every World Tour pro lives in Girona, what the famous climbs really ride like, when to visit, where to coffee, and how to plan a cycling holiday here. Written by riders.",
   alternates: {
     canonical: `${SITE}/cycling-girona`,
   },

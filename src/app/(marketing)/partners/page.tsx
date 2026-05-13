@@ -16,16 +16,16 @@ const brandPartners = [
 ];
 
 export const metadata: Metadata = {
-  title: "Partner With Us — Media Kit",
+  title: "Cycling Brand Partnerships — The Roadman Media Kit",
   description:
-    "Reach 1M+ serious cyclists through podcast sponsorship, newsletter ads, community integration, and custom content. Download the Roadman Cycling media kit.",
+    "Reach 1M+ serious cyclists. Podcast sponsorship, newsletter ads, community integration, custom content. Download the Roadman media kit — real rates, real audience data.",
   alternates: {
     canonical: "https://roadmancycling.com/partners",
   },
   openGraph: {
-    title: "Partner With Us — Roadman Cycling Media Kit",
+    title: "Cycling Brand Partnerships — The Roadman Media Kit",
     description:
-      "Reach 1M+ serious cyclists through podcast sponsorship, newsletter ads, community integration, and custom content.",
+      "Reach 1M+ serious cyclists. Podcast sponsorship, newsletter ads, community integration, custom content. Real rates, real audience data.",
     type: "website",
     url: "https://roadmancycling.com/partners",
   },

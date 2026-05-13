@@ -3,15 +3,15 @@ import { ToolSchemas } from "@/components/seo/ToolSchemas";
 import { ToolJourney } from "@/components/features/tools/ToolJourney";
 
 export const metadata: Metadata = {
-  title: "FTP Zone Calculator — Free Cycling Power Zone Tool",
+  title: "FTP Power Zone Calculator — Your 7 Cycling Training Zones",
   description:
-    "Calculate your 7 cycling power zones from your FTP instantly. Free tool based on the training methodology discussed with Professor Seiler and World Tour coaches.",
+    "Enter your FTP, get your 7 cycling power zones instantly. Free, no signup. The same Coggan zone model the World Tour coaches on the podcast use to write training plans.",
   keywords: ["FTP zone calculator", "cycling power zones", "FTP calculator", "training zones cycling"],
   alternates: { canonical: "https://roadmancycling.com/tools/ftp-zones" },
   openGraph: {
-    title: "FTP Zone Calculator — Free Cycling Power Zone Tool",
+    title: "FTP Power Zone Calculator — Your 7 Cycling Training Zones",
     description:
-      "Calculate your 7 cycling power zones from your FTP instantly. Free tool based on the training methodology discussed with Professor Seiler and World Tour coaches.",
+      "Enter your FTP, get your 7 cycling power zones instantly. The same Coggan zone model the World Tour coaches on the podcast use.",
     type: "website",
     url: "https://roadmancycling.com/tools/ftp-zones",
     images: [{ url: "/og-image.jpg", width: 1200, height: 630, alt: "Roadman Cycling" }],

@@ -4,9 +4,9 @@ import { JsonLd } from "@/components/seo/JsonLd";
 import { SoftwareApplicationSchema } from "@/components/seo/SoftwareApplicationSchema";
 
 export const metadata: Metadata = {
-  title: "Masters FTP Benchmark Calculator (40-44, 45-49, 50-54, 55-59, 60+)",
+  title: "Masters FTP Benchmark — Where Your Watts Place You by Age",
   description:
-    "Free FTP benchmark calculator for masters cyclists. Enter age, FTP, and weight to see your percentile ranking among trained amateur masters cyclists in your age group — 40-44, 45-49, 50-54, 55-59, 60+.",
+    "Enter age, FTP and weight. See your percentile against trained amateur masters cyclists in your decade — 40-44, 45-49, 50-54, 55-59, 60+. Plus your watts-to-next-band.",
   keywords: [
     "masters ftp benchmark",
     "ftp by age group",
@@ -17,9 +17,9 @@ export const metadata: Metadata = {
   ],
   alternates: { canonical: "https://roadmancycling.com/tools/masters-ftp-benchmark" },
   openGraph: {
-    title: "Masters FTP Benchmark Calculator (40-44, 45-49, 50-54, 55-59, 60+)",
+    title: "Masters FTP Benchmark — Where Your Watts Place You by Age",
     description:
-      "Free FTP benchmark calculator for masters cyclists. Enter age, FTP, and weight to see your percentile ranking among trained amateur masters cyclists in your age group.",
+      "Enter age, FTP and weight. See your percentile against trained amateur masters cyclists in your decade — plus your watts-to-next-band.",
     type: "website",
     url: "https://roadmancycling.com/tools/masters-ftp-benchmark",
     images: [{ url: "/og-image.jpg", width: 1200, height: 630, alt: "Roadman Cycling" }],

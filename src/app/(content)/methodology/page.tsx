@@ -8,16 +8,16 @@ import { CoachingCTA } from "@/components/proof";
 import { JourneyBlock } from "@/components/journey";
 
 export const metadata: Metadata = {
-  title: "Coaching Methodology — How Roadman Coaches Cyclists",
+  title: "Cycling Coaching Methodology — The Five Roadman Pillars",
   description:
-    "The Roadman coaching methodology — five pillars, the science it sits on, and the guests who shaped it. Evidence-based coaching for serious amateur and masters cyclists.",
+    "How Roadman actually coaches cyclists. Five pillars built on Seiler, Lorang, Wakefield and 1,400+ podcast conversations. The training the pros do — adapted for 8–12 hour weeks.",
   alternates: {
     canonical: "https://roadmancycling.com/methodology",
   },
   openGraph: {
-    title: "Coaching Methodology — Roadman Cycling",
+    title: "Cycling Coaching Methodology — The Five Roadman Pillars",
     description:
-      "Evidence-based coaching for serious amateur and masters cyclists. Five pillars, real science, real results.",
+      "How we actually coach cyclists. Five pillars built on Seiler, Lorang and the people who train the pros — adapted for the 8–12 hour amateur week.",
     type: "website",
     url: "https://roadmancycling.com/methodology",
   },

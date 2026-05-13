@@ -6,14 +6,14 @@ import { RACES } from "@/data/races";
 import { RaceGrid } from "./RaceGrid";
 
 export const metadata: Metadata = {
-  title: "Major Cycling Sportives & Gran Fondos — Race Guides",
+  title: "Cycling Sportive & Gran Fondo Race Guides — 20+ Events",
   description:
-    "Complete race guides for 20+ major cycling sportives and gran fondos — Étape du Tour, La Marmotte, Fred Whitton, Ötztaler Radmarathon, Maratona dles Dolomites and more. Distances, elevation, finish times and training advice from Roadman Cycling.",
+    "Honest race guides for 20+ sportives — Étape du Tour, Marmotte, Fred Whitton, Ötztaler, Maratona dles Dolomites. Distances, elevation, realistic finish times by ability.",
   alternates: { canonical: "https://roadmancycling.com/races" },
   openGraph: {
-    title: "Major Cycling Sportives & Gran Fondos — Race Guides",
+    title: "Cycling Sportive & Gran Fondo Race Guides — 20+ Events",
     description:
-      "Race guides for 20+ major sportives. Key stats, climbs, finish times by ability and training advice.",
+      "Honest race guides for 20+ sportives. Distances, elevation, climbs, realistic finish times by ability, training advice for each event.",
     type: "website",
     url: "https://roadmancycling.com/races",
     images: [{ url: "/og-image.jpg", width: 1200, height: 630, alt: "Roadman Cycling Race Guides" }],

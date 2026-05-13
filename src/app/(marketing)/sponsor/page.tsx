@@ -7,16 +7,16 @@ import type { AvailabilityByMonth } from "@/lib/inventory";
 import BookingFlow, { FAQSection } from "./SponsorClientSections";
 
 export const metadata: Metadata = {
-  title: "Sponsor",
+  title: "Sponsor the Roadman Cycling Podcast — Live Inventory",
   description:
     "Real inventory. Live pricing. Actual dates. Sponsor the biggest cycling podcast in Europe — pick a moment or a duration, choose your slot, upload your assets, done.",
   alternates: {
     canonical: "https://roadmancycling.com/sponsor",
   },
   openGraph: {
-    title: "Sponsor Roadman Cycling",
+    title: "Sponsor the Roadman Cycling Podcast — Live Inventory",
     description:
-      "No media kit fluff. Pick a moment or a duration. Choose your slot. Upload your assets. Done.",
+      "No media kit fluff. Real inventory, live pricing, actual dates. Pick a moment or a duration. Choose your slot. Upload your assets. Done.",
     type: "website",
     url: "https://roadmancycling.com/sponsor",
   },

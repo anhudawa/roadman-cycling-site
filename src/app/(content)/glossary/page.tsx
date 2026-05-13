@@ -48,9 +48,9 @@ const GLOSSARY_FAQS = [
 ];
 
 export const metadata: Metadata = {
-  title: "Cycling Performance Glossary — Key Terms Explained",
+  title: "Cycling Glossary — FTP, VO2max, Polarised, Sweet Spot & More",
   description:
-    "Cycling performance glossary. FTP, VO2max, polarised training, sweet spot, W/kg, lactate threshold, periodisation, and more — defined by a cycling coach, not a textbook.",
+    "Cycling performance terms defined by a coach, not a textbook. FTP, VO2max, polarised training, sweet spot, W/kg, lactate threshold, periodisation — with how to actually use them.",
   alternates: {
     canonical: "https://roadmancycling.com/glossary",
   },

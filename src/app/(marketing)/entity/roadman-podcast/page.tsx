@@ -17,11 +17,11 @@ const PAGE_URL = `${SITE_ORIGIN}/entity/roadman-podcast`;
 const PODCAST_DESCRIPTION = `${PODCAST.name} is a weekly cycling performance podcast hosted by Anthony Walsh. ${BRAND_STATS.episodeCountLabel} episodes of long-form interviews with World Tour coaches, sports scientists, and pro riders, reaching ${BRAND_STATS.monthlyListenersLabel} monthly listeners across ${BRAND_STATS.countriesReachedLabel} countries.`;
 
 export const metadata: Metadata = {
-  title: "The Roadman Cycling Podcast — Entity & Facts",
+  title: "The Roadman Cycling Podcast — Show Facts & Stats",
   description: PODCAST_DESCRIPTION,
   alternates: { canonical: PAGE_URL },
   openGraph: {
-    title: "The Roadman Cycling Podcast — Entity",
+    title: "The Roadman Cycling Podcast — Show Facts & Stats",
     description: PODCAST_DESCRIPTION,
     type: "website",
     url: PAGE_URL,

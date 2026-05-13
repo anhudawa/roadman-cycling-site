@@ -3,15 +3,15 @@ import { ToolSchemas } from "@/components/seo/ToolSchemas";
 import { ToolJourney } from "@/components/features/tools/ToolJourney";
 
 export const metadata: Metadata = {
-  title: "Cycling Carbs-Per-Hour Calculator — Fuel by Ride Duration",
+  title: "Cycling Fuelling Calculator — Carbs, Fluid & Sodium Per Hour",
   description:
-    "Calculate exactly how many carbs and how much fluid you need per hour while cycling. Based on ride duration, intensity, and body weight.",
+    "Exactly what to eat and drink, hour by hour. Carbs, fluid and sodium calibrated to your weight, intensity and ride length — the modern fuelling numbers, not the 2014 ones.",
   keywords: ["cycling fuelling calculator", "carbs per hour cycling", "cycling nutrition calculator", "in ride nutrition"],
   alternates: { canonical: "https://roadmancycling.com/tools/fuelling" },
   openGraph: {
-    title: "Cycling Carbs-Per-Hour Calculator — Fuel by Ride Duration",
+    title: "Cycling Fuelling Calculator — Carbs, Fluid & Sodium Per Hour",
     description:
-      "Calculate exactly how many carbs and how much fluid you need per hour while cycling. Based on ride duration, intensity, and body weight.",
+      "Exactly what to eat and drink, hour by hour. Carbs, fluid and sodium calibrated to your weight, intensity and ride length.",
     type: "website",
     url: "https://roadmancycling.com/tools/fuelling",
     images: [{ url: "/og-image.jpg", width: 1200, height: 630, alt: "Roadman Cycling" }],

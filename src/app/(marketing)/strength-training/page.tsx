@@ -5,16 +5,16 @@ import { CheckoutButton } from "@/components/features/conversion/CheckoutButton"
 import { JsonLd } from "@/components/seo/JsonLd";
 
 export const metadata: Metadata = {
-  title: "Strength Training for Cyclists — 12-Week S&C Plan",
+  title: "Strength Training for Cyclists — 12-Week S&C Plan for Riders 30+",
   description:
-    "The 12-week S&C plan built specifically for cyclists over 30. Training plan, instructional videos, stretching guide, core guide, and goal setting audio. One-time payment. 100% money back guarantee.",
+    "The 12-week S&C plan built for cyclists over 30. Periodised weekly programme, video demos, core and mobility guides. One-time payment, money-back guarantee.",
   alternates: {
     canonical: "https://roadmancycling.com/strength-training",
   },
   openGraph: {
-    title: "Strength Training for Cyclists — 12-Week S&C Plan",
+    title: "Strength Training for Cyclists — 12-Week S&C Plan for Riders 30+",
     description:
-      "The 12-week S&C plan built specifically for cyclists over 30. Training plan, instructional videos, stretching guide, core guide, and goal setting audio. One-time payment.",
+      "The 12-week S&C plan built for cyclists over 30. Periodised weekly programme, video demos, core and mobility guides. One-time payment.",
     type: "website",
     url: "https://roadmancycling.com/strength-training",
   },

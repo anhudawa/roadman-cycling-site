@@ -6,16 +6,16 @@ import { SoftwareApplicationSchema } from "@/components/seo/SoftwareApplicationS
 import { CoachingAssessment } from "./CoachingAssessment";
 
 export const metadata: Metadata = {
-  title: "Free Coaching Assessment — Are You Ready for a Cycling Coach?",
+  title: "Cycling Coaching Assessment — Is a Coach Worth It For You?",
   description:
-    "Answer 5 questions to find out if coaching would accelerate your cycling goals. Free, instant result, no commitment. Takes 60 seconds.",
+    "Five questions to find out if cycling coaching would actually move you forward right now — or if you should fix something else first. Sixty seconds, free, no email needed.",
   alternates: {
     canonical: "https://roadmancycling.com/assessment",
   },
   openGraph: {
-    title: "Free Coaching Assessment — Are You Ready for a Cycling Coach?",
+    title: "Cycling Coaching Assessment — Is a Coach Worth It For You?",
     description:
-      "Answer 5 questions to find out if coaching would accelerate your cycling goals. Free, instant result.",
+      "Five questions to find out if cycling coaching would actually move you forward right now. Sixty seconds, free, instant result.",
     type: "website",
     url: "https://roadmancycling.com/assessment",
   },

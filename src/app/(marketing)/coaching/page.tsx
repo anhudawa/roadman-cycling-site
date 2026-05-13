@@ -14,9 +14,9 @@ import { SEGMENT_DISPLAY_ORDER } from "@/lib/coaching-segments";
 import { ChoosePath } from "@/components/features/routing/ChoosePath";
 
 export const metadata: Metadata = {
-  title: "Online Cycling Coach — Evidence-Based Coaching | $195/month",
+  title: "Online Cycling Coach — Coaching for Serious Amateurs",
   description:
-    "Evidence-based cycling coaching for serious amateur and masters cyclists. Personalised plans built on 1,400+ expert podcast conversations. Training, nutrition, strength, recovery, and community. Trusted by cyclists in Ireland, UK, and USA.",
+    "Cycling coaching for serious amateurs whose FTP hasn't moved in a year. Five pillars, weekly live calls with Anthony, a plan built around your week. From $195/month.",
   keywords: [
     "cycling coach",
     "cycling coaching",
@@ -31,9 +31,9 @@ export const metadata: Metadata = {
     canonical: "https://roadmancycling.com/coaching",
   },
   openGraph: {
-    title: "Online Cycling Coach — Personalised Coaching | $195/month",
+    title: "Online Cycling Coach — Coaching for Serious Amateurs",
     description:
-      "Personalised cycling coaching built on 1,400+ expert podcast conversations. Training, nutrition, strength, recovery, and community.",
+      "Cycling coaching for serious amateurs whose FTP hasn't moved in a year. Five pillars, weekly live calls, a plan built around your week.",
     type: "website",
     url: "https://roadmancycling.com/coaching",
     images: [{ url: "/og-image.jpg", width: 1200, height: 630, alt: "Roadman Cycling" }],

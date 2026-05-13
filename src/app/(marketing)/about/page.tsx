@@ -21,16 +21,16 @@ function expertSlug(name: string) {
 }
 
 export const metadata: Metadata = {
-  title: "About — Anthony Walsh",
+  title: "About Anthony Walsh — The Story Behind Roadman Cycling",
   description:
-    "The story behind Roadman Cycling. How Anthony Walsh built a 1M+ listener podcast and a community of serious cyclists who refuse to accept their best days are behind them.",
+    "Anthony Walsh built Roadman Cycling from a podcast in a Dublin spare room to 100M+ downloads. Here's why he keeps asking the world's best coaches the same questions.",
   alternates: {
     canonical: "https://roadmancycling.com/about",
   },
   openGraph: {
-    title: "About — Anthony Walsh & Roadman Cycling",
+    title: "About Anthony Walsh — The Story Behind Roadman Cycling",
     description:
-      "The story behind Roadman Cycling. How Anthony Walsh built a 1M+ listener podcast and a community of serious cyclists who refuse to accept their best days are behind them.",
+      "From a podcast in a Dublin spare room to 100M+ downloads. The story of Roadman Cycling and the community of cyclists who refuse to settle.",
     type: "profile",
     url: "https://roadmancycling.com/about",
     images: [{ url: "/og-image.jpg", width: 1200, height: 630, alt: "Roadman Cycling" }],

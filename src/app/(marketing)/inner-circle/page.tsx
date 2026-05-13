@@ -11,17 +11,16 @@ import { ENTITY_IDS } from "@/lib/brand-facts";
 const APPLY_URL = "/inner-circle/apply";
 
 export const metadata: Metadata = {
-  title:
-    "Roadman Inner Circle — Premium 1:1 Cycling Coaching | $525/month",
+  title: "Inner Circle — 1:1 Cycling Coaching with Anthony Walsh",
   description:
-    "The five Roadman pillars — training, nutrition, recovery, strength, community — levelled up with daily coach feedback. Plus a sixth pillar nobody else gives you: Performance Health. $525/month. Limited intake.",
+    "1:1 cycling coaching with daily data review, bloods, biomarkers, and a coach who reads every session the day you ride it. $525/month. Limited intake, application only.",
   alternates: {
     canonical: "https://roadmancycling.com/inner-circle",
   },
   openGraph: {
-    title: "Roadman Inner Circle — Premium 1:1 Cycling Coaching",
+    title: "Inner Circle — 1:1 Cycling Coaching with Anthony Walsh",
     description:
-      "Everything Not Done Yet gives you, with a coach reading your data daily. Plus Performance Health: bloods, biomarkers, hormones, inflammation. $525/month.",
+      "Everything Not Done Yet gives you, plus daily coach data review and Performance Health — bloods, biomarkers, hormones, inflammation. $525/month.",
     type: "website",
     url: "https://roadmancycling.com/inner-circle",
   },

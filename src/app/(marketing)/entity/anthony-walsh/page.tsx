@@ -19,11 +19,11 @@ const PERSON_DESCRIPTION =
   "Anthony Walsh is a cycling coach, the host of The Roadman Cycling Podcast, and the founder of Roadman Cycling. Based in Dublin, Ireland, he has recorded over 1,400 on-the-record interviews with World Tour coaches, sports scientists, and pro cyclists.";
 
 export const metadata: Metadata = {
-  title: "Anthony Walsh — Entity & Facts",
+  title: "Anthony Walsh — Cycling Coach & Roadman Podcast Host",
   description: PERSON_DESCRIPTION,
   alternates: { canonical: PAGE_URL },
   openGraph: {
-    title: "Anthony Walsh — Cycling Coach & Podcast Host",
+    title: "Anthony Walsh — Cycling Coach & Roadman Podcast Host",
     description: PERSON_DESCRIPTION,
     type: "profile",
     url: PAGE_URL,

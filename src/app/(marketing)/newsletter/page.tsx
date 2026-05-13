@@ -8,16 +8,16 @@ import { ENTITY_IDS } from "@/lib/brand-facts";
 import { fetchNewsletterIssues } from "@/lib/integrations/beehiiv";
 
 export const metadata: Metadata = {
-  title: "Newsletter — Weekly Cycling Insights",
+  title: "The Saturday Spin — Weekly Cycling Newsletter",
   description:
-    "Get the stuff that actually makes you faster. Once a week. No fluff. Training, nutrition, and performance insights from Anthony Walsh and the Roadman Cycling Podcast.",
+    "The weekly training breakdown 65,000+ serious cyclists read on Saturday. What's working, what the pros do, how to apply it this week. From Anthony. Free.",
   alternates: {
     canonical: "https://roadmancycling.com/newsletter",
   },
   openGraph: {
-    title: "Newsletter — Weekly Cycling Insights",
+    title: "The Saturday Spin — Weekly Cycling Newsletter",
     description:
-      "Get the stuff that actually makes you faster. Once a week. No fluff. Training, nutrition, and performance insights from Anthony Walsh and the Roadman Cycling Podcast.",
+      "The weekly training breakdown 65,000+ serious cyclists read on Saturday. What's working, what the pros do, how to apply it this week.",
     type: "website",
     url: "https://roadmancycling.com/newsletter",
   },

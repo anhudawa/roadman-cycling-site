@@ -5,16 +5,16 @@ import { ENTITY_IDS } from "@/lib/brand-facts";
 import { SkoolTrialButton } from "@/components/features/community/SkoolTrialButton";
 
 export const metadata: Metadata = {
-  title: "The Clubhouse — Free Cycling Community",
+  title: "The Roadman Clubhouse — Free Cycling Community",
   description:
-    "Join 2,100+ serious cyclists in the free Roadman Cycling Clubhouse. Weekly live Q&A with Anthony Walsh, free training plans, and a community that gets it.",
+    "2,100+ serious cyclists, one room. Weekly live Q&A with Anthony, free training plans, and the conversations the podcast triggers but doesn't have time to finish. Free.",
   alternates: {
     canonical: "https://roadmancycling.com/community/clubhouse",
   },
   openGraph: {
-    title: "The Clubhouse — Free Cycling Community",
+    title: "The Roadman Clubhouse — Free Cycling Community",
     description:
-      "Join 2,100+ serious cyclists in the free Roadman Cycling Clubhouse. Weekly live Q&A with Anthony Walsh, free training plans, and a community that gets it.",
+      "2,100+ serious cyclists, one room. Weekly live Q&A with Anthony, free training plans, and the conversations the podcast doesn't have time to finish.",
     type: "website",
     url: "https://roadmancycling.com/community/clubhouse",
   },

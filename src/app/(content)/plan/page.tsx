@@ -7,16 +7,16 @@ import { EVENTS, PHASES } from "@/lib/training-plans";
 import { getAllPosts } from "@/lib/blog";
 
 export const metadata: Metadata = {
-  title: "Cycling Training Plans by Event and Weeks Out",
+  title: "Cycling Training Plans by Event — Étape, Marmotte, Fred Whitton",
   description:
-    "Event-specific cycling training plans for the Wicklow 200, Ride London, Fred Whitton, Étape du Tour, Maratona Dolomites and more. Structured by weeks out from your event — base, build, peak, taper.",
+    "Event-specific cycling training plans. Wicklow 200, Ride London, Fred Whitton, Étape du Tour, Maratona Dolomites. Structured by weeks out — base, build, peak, taper.",
   alternates: {
     canonical: "https://roadmancycling.com/plan",
   },
   openGraph: {
-    title: "Cycling Training Plans by Event and Weeks Out",
+    title: "Cycling Training Plans by Event — Étape, Marmotte, Fred Whitton",
     description:
-      "Structured training plans for the world's best cycling sportives. Find the plan built around your event date and your weeks remaining.",
+      "Event-specific plans for the world's hardest sportives. Find the plan built around your event date and the weeks you've got left.",
     type: "website",
     url: "https://roadmancycling.com/plan",
   },

@@ -8,14 +8,14 @@ import { isToolSlug } from "@/lib/tool-results/types";
 import { getDefinition } from "@/lib/diagnostics/framework/registry";
 
 export const metadata: Metadata = {
-  title: "Ask Roadman — The Cycling Performance Assistant",
+  title: "Ask Roadman — Cycling Questions Answered with Citations",
   description:
-    "Ask Roadman is the on-site cycling performance assistant from Roadman Cycling. Grounded in 1,400+ podcast conversations with Dan Lorang, Professor Seiler, Dr David Dunne, and the rest of the Roadman guest roster. Honest, cited, on-brand answers for serious amateur cyclists.",
+    "Anthony's coaching brain on tap. Ask any cycling question — every answer grounded in 1,400+ podcast conversations with the coaches behind Grand Tour wins. Free.",
   alternates: { canonical: "https://roadmancycling.com/ask" },
   openGraph: {
-    title: "Ask Roadman",
+    title: "Ask Roadman — Cycling Questions Answered with Citations",
     description:
-      "The on-site cycling performance assistant from Roadman Cycling. Grounded answers for serious riders.",
+      "Ask any cycling question. Every answer grounded in 1,400+ podcast conversations with the coaches and scientists behind Grand Tour wins.",
     type: "website",
     url: "https://roadmancycling.com/ask",
     images: [{ url: "/og-image.jpg", width: 1200, height: 630, alt: "Roadman Cycling" }],

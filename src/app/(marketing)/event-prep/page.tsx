@@ -19,16 +19,16 @@ import { getAllPosts } from "@/lib/blog";
  */
 
 export const metadata: Metadata = {
-  title: "Cycling Event Prep Hub — Train, Fuel, and Pace Your Target Event",
+  title: "Cycling Event Prep — Train, Fuel & Pace Your Target Sportive",
   description:
-    "Your event is on the calendar. Get the training plan, fuelling math, pacing strategy, and taper protocol that turn a bucket-list sportive into a finish you're proud of. Étape, Marmotte, Ride London, Fred Whitton, Mallorca 312 and more.",
+    "Your event is in the calendar. Get the training plan, fuelling maths, pacing strategy and taper that turn a bucket-list sportive into a finish you're proud of.",
   alternates: {
     canonical: `${SITE_ORIGIN}/event-prep`,
   },
   openGraph: {
-    title: "Cycling Event Prep Hub — Roadman Cycling",
+    title: "Cycling Event Prep — Train, Fuel & Pace Your Target Sportive",
     description:
-      "The training plan, fuelling math, pacing strategy, and taper protocol for your target event. Direct, evidence-based, no fluff.",
+      "Training plan, fuelling maths, pacing strategy and taper for your target event. Étape, Marmotte, Ride London, Fred Whitton, Mallorca 312.",
     type: "website",
     url: `${SITE_ORIGIN}/event-prep`,
     images: [
@@ -42,9 +42,9 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Cycling Event Prep Hub — Roadman Cycling",
+    title: "Cycling Event Prep — Train, Fuel & Pace Your Target Sportive",
     description:
-      "Train, fuel, pace and taper for your target sportive. Built around the events you're actually riding.",
+      "Training plan, fuelling maths, pacing strategy and taper protocol for your target event. Built around the sportives you're actually riding.",
   },
   robots: { index: true, follow: true },
 };

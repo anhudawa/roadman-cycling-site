@@ -12,16 +12,16 @@ import { ENTITY_IDS, SITE_ORIGIN, BRAND_STATS, PODCAST } from "@/lib/brand-facts
 import { getTrustpilotReviews } from "@/lib/trustpilot";
 
 export const metadata: Metadata = {
-  title: "Podcast Archive — Every Episode",
+  title: "Cycling Podcast Archive — Every Episode of Roadman",
   description:
-    "Browse every episode of the Roadman Cycling Podcast. 1M+ monthly listeners. Expert interviews with Professor Seiler, Dan Lorang, Lachlan Morton, Greg LeMond, and more.",
+    "Every episode of the Roadman Cycling Podcast. 100M+ downloads, 1M+ monthly listeners. Seiler, Lorang, LeMond, Morton, Bigham — the conversations behind serious training.",
   alternates: {
     canonical: "https://roadmancycling.com/podcast",
   },
   openGraph: {
-    title: "Podcast Archive — Every Episode",
+    title: "Cycling Podcast Archive — Every Episode of Roadman",
     description:
-      "Browse every episode of the Roadman Cycling Podcast. 1M+ monthly listeners. Expert interviews with Professor Seiler, Dan Lorang, Lachlan Morton, Greg LeMond, and more.",
+      "Every episode of the Roadman Cycling Podcast. Seiler, Lorang, LeMond, Morton, Bigham — the conversations behind serious cycling training.",
     type: "website",
     url: "https://roadmancycling.com/podcast",
     images: [{ url: "/og-image.jpg", width: 1200, height: 630, alt: "Roadman Cycling" }],

@@ -38,16 +38,16 @@ import { StickyMobileCta } from "./_components/StickyMobileCta";
  */
 
 export const metadata: Metadata = {
-  title: "The Masters Plateau Diagnostic",
+  title: "Cycling Plateau Diagnostic — Why Your FTP Has Stalled",
   description:
-    "Twelve questions. Four minutes. A specific answer for why your FTP has stalled — and the exact fix, written for riders who train 6 to 12 hours a week around a real life.",
+    "Twelve questions. Four minutes. The specific reason your FTP has stalled — and the exact fix, for cyclists training 6 to 12 hours a week around a real life. Free.",
   alternates: {
     canonical: "https://roadmancycling.com/plateau",
   },
   openGraph: {
-    title: "The Masters Plateau Diagnostic",
+    title: "Cycling Plateau Diagnostic — Why Your FTP Has Stalled",
     description:
-      "If you're over 40 and your FTP hasn't moved in 18 months, it's one of four things. Find out which one in four minutes.",
+      "Over 40 and your FTP hasn't moved in 18 months? It's one of four things. Find out which one in four minutes.",
     type: "website",
     url: "https://roadmancycling.com/plateau",
     images: [{ url: "/og-image.jpg", width: 1200, height: 630, alt: "Roadman Cycling" }],
