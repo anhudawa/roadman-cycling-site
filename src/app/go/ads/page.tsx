@@ -1,41 +1,34 @@
 import Image from "next/image";
 import Link from "next/link";
 import { Container, Section } from "@/components/layout";
-import { TrustpilotBadge } from "@/components/proof/TrustpilotProof";
-import { BRAND_STATS, FOUNDER, PODCAST, SITE_ORIGIN } from "@/lib/brand-facts";
-import { readGoHeroVariant, type GoHeroVariant } from "@/lib/ab/go-hero";
+import { BRAND_STATS } from "@/lib/brand-facts";
+import { TRUSTPILOT } from "@/lib/trustpilot";
 
 /**
- * /go — PPC landing page for Google Ads cold traffic.
+ * /go/ads — bare-metal Google Ads landing page.
  *
- * Cold-traffic credibility layering on top of the single-CTA quiz
- * funnel. Layout choices:
+ * Sister page to /go. Same content spine, but stripped of every
+ * external link, footer escape route and A/B variant cookie. The
+ * only clickable thing on the page is the CTA → /plateau?source=ads.
  *
- *  - No Header, no Footer, no mini-player, no exit-intent, no cohort
- *    banner — every distraction would compete with the one button.
- *  - The page DOES carry a small Roadman logo top-left and a quiet
- *    `roadmancycling.com` link in the footer. Both are non-navigation
- *    brand-identity signals: they let a skeptic verify the brand
- *    exists without giving them a tab to wander off into.
- *  - Single CTA, repeated three times, all pointing to /plateau
- *    where the diagnostic flow lives. The diagnostic is the entry
- *    point to the Not Done Yet community sales motion. There is no
- *    call-booking, no strategy session, no high-ticket leak.
- *  - Pure server-rendered: no framer-motion, no Suspense, no
- *    per-request DB queries. Whole page on the wire in one round
- *    trip so it lands fast on mobile 4G.
- *  - `noindex` (set in layout.tsx) so it doesn't compete with
- *    /plateau in organic search.
+ * Why a separate route (not just a query param on /go):
+ *  - The /go path is wired into a middleware-driven A/B headline test.
+ *    Adding "is this an ads-only render?" branching there would muddy
+ *    the test sample. Splitting paths keeps both surfaces clean.
+ *  - The ad-side and the cold-organic-side of /go diverge over time
+ *    (different creative, different offers, different test cycles).
+ *    A separate file lets each evolve without merge-conflict pain.
+ *  - Reporting: every conversion attribution stays clear — /go traffic
+ *    is from organic / direct / non-Google-ads paid; /go/ads is the
+ *    paid surface. No source-param sniffing required downstream.
+ *
+ * Server-rendered, pure CSS interactions, no client hydration in the
+ * page itself. Goal: smallest TTFB + LCP we can ship on mobile 4G.
  */
 
 // Source param flows through to the diagnostic so attribution survives
-// the page hop. The Tracker.tsx data-track attributes also fire a
-// cta_click event with the specific position on this page. The variant
-// is appended at render time so diagnostic_complete events can be
-// attributed back to the headline variant the visitor saw.
-const CTA_HREF_BASE = "/plateau?source=go";
-const ctaHrefForVariant = (variant: GoHeroVariant) =>
-  `${CTA_HREF_BASE}&variant=${variant}`;
+// the page hop. No A/B variant — this page renders one fixed headline.
+const CTA_HREF = "/plateau?source=ads";
 
 const FAQS: ReadonlyArray<{ q: string; a: string }> = [
   {
@@ -83,14 +76,6 @@ const FOUR_REASONS = [
   },
 ];
 
-/**
- * Real testimonials sourced from https://testimonial.to/roadman-cycling/all.
- *
- * Photos live at /public/images/testimonials/*.jpg. Until the file
- * lands on disk, set `hasPhoto: false` and the card falls back to a
- * coral initials chip — drop the JPG in and flip the flag to upgrade
- * a card to a real headshot without touching layout.
- */
 type Testimonial = {
   name: string;
   initials: string;
@@ -100,44 +85,6 @@ type Testimonial = {
   detail: string;
   quote: string;
 };
-
-/**
- * Hero-only chip strip — three real member outcomes shown alongside
- * the primary CTA. Kept separate from `TESTIMONIALS` (the lower social
- * proof grid) so the hero stays minimal and the variety of wins —
- * raw power, category jump, body composition — represents the real
- * spread of outcomes documented in src/lib/testimonials.ts. All three
- * stats are real, attributed members; no fabricated outcomes.
- */
-const HERO_CHIPS: readonly Testimonial[] = [
-  {
-    name: "Damien Maloney",
-    initials: "DM",
-    photoSrc: "/images/testimonials/damien.jpg",
-    hasPhoto: true,
-    stat: "FTP +90w",
-    detail: "Plateaued sportive rider",
-    quote: "",
-  },
-  {
-    name: "Daniel Stone",
-    initials: "DS",
-    photoSrc: "/images/testimonials/daniel.jpg",
-    hasPhoto: false,
-    stat: "Cat 3 → Cat 1",
-    detail: "One season with the system",
-    quote: "",
-  },
-  {
-    name: "Chris O'Connor",
-    initials: "CO",
-    photoSrc: "/images/testimonials/chris.jpg",
-    hasPhoto: true,
-    stat: "Body fat 20% → 7%",
-    detail: "Decades out of the saddle",
-    quote: "",
-  },
-];
 
 const TESTIMONIALS: readonly Testimonial[] = [
   {
@@ -313,11 +260,9 @@ const TestimonialAvatar = ({
   );
 };
 
-export default async function GoLandingPage() {
-  const variant = await readGoHeroVariant();
-  const ctaHref = ctaHrefForVariant(variant);
+export default function GoAdsLandingPage() {
   return (
-    <main id="main-content" className="bg-charcoal" data-go-variant={variant}>
+    <main id="main-content" className="bg-charcoal" data-go-variant="ads">
       {/* ── Hero ─────────────────────────────────────────────────────── */}
       <section
         className="
@@ -345,9 +290,9 @@ export default async function GoLandingPage() {
           }}
         />
 
-        {/* Logo mark — brand identity, not navigation. Unlinked so it
-            doesn't compete with the CTA as an exit. Decorative role.
-            Drop-shadow guarantees contrast against the purple gradient. */}
+        {/* Brand logo — decorative, unlinked. Same affordance as /go:
+            cold ad traffic can see this is a real brand, but the mark
+            isn't a navigation handle that would steal the click. */}
         <div className="absolute top-5 left-5 md:top-7 md:left-8 z-20">
           <Image
             src="/images/logo-white.png"
@@ -364,64 +309,38 @@ export default async function GoLandingPage() {
           <p className="text-coral font-heading text-[11px] md:text-xs tracking-[0.3em] mb-6">
             FOR CYCLISTS TRAINING 6&ndash;12 HOURS A WEEK
           </p>
-          {variant === "B" ? (
-            <>
-              <h1 className="font-heading text-off-white mb-6 leading-[0.95]">
-                <span
-                  className="block"
-                  style={{ fontSize: "clamp(2.5rem, 7vw, 5.5rem)" }}
-                >
-                  WHY YOUR FTP IS STUCK
-                </span>
-                <span
-                  className="block mt-3 text-coral"
-                  style={{ fontSize: "clamp(1.75rem, 4.8vw, 3.75rem)" }}
-                >
-                  (AND THE EXACT FIX THIS WEEK)
-                </span>
-              </h1>
-              <p className="text-foreground-muted text-base md:text-xl leading-relaxed mb-8 max-w-xl mx-auto">
-                Four minutes. Twelve questions. One specific answer &mdash;
-                built on methods from the coaches behind Pog&aacute;car,
-                verified by Professor Seiler&rsquo;s research.
-              </p>
-            </>
-          ) : (
-            <>
-              <h1 className="font-heading text-off-white mb-6 leading-[0.95]">
-                <span
-                  className="block"
-                  style={{ fontSize: "clamp(2.5rem, 7vw, 5.5rem)" }}
-                >
-                  YOUR FTP IS STUCK.
-                </span>
-                <span
-                  className="block mt-1"
-                  style={{ fontSize: "clamp(2.5rem, 7vw, 5.5rem)" }}
-                >
-                  YOUR TRAINING ISN&rsquo;T WORKING.
-                </span>
-                <span
-                  className="block mt-3 text-coral"
-                  style={{ fontSize: "clamp(1.75rem, 4.8vw, 3.75rem)" }}
-                >
-                  YOU KNOW THERE&rsquo;S MORE IN YOU.
-                </span>
-              </h1>
-              <p className="text-foreground-muted text-base md:text-xl leading-relaxed mb-8 max-w-xl mx-auto">
-                Four minutes, twelve questions, and I&rsquo;ll tell you exactly
-                why your FTP has stalled &mdash; and the three changes to make
-                this week. It&rsquo;s the same pattern I&rsquo;ve watched Dan
-                Lorang, Stephen Seiler and the World Tour coaches I&rsquo;ve
-                interviewed apply to riders for years.
-              </p>
-            </>
-          )}
+          <h1 className="font-heading text-off-white mb-6 leading-[0.95]">
+            <span
+              className="block"
+              style={{ fontSize: "clamp(2.5rem, 7vw, 5.5rem)" }}
+            >
+              YOUR FTP IS STUCK.
+            </span>
+            <span
+              className="block mt-1"
+              style={{ fontSize: "clamp(2.5rem, 7vw, 5.5rem)" }}
+            >
+              YOUR TRAINING ISN&rsquo;T WORKING.
+            </span>
+            <span
+              className="block mt-3 text-coral"
+              style={{ fontSize: "clamp(1.75rem, 4.8vw, 3.75rem)" }}
+            >
+              YOU KNOW THERE&rsquo;S MORE IN YOU.
+            </span>
+          </h1>
+          <p className="text-foreground-muted text-base md:text-xl leading-relaxed mb-8 max-w-xl mx-auto">
+            Four minutes, twelve questions, and I&rsquo;ll tell you exactly why
+            your FTP has stalled &mdash; and the three changes to make this
+            week. It&rsquo;s the same pattern I&rsquo;ve watched Dan Lorang,
+            Stephen Seiler and the World Tour coaches I&rsquo;ve interviewed
+            apply to riders for years.
+          </p>
 
           <Link
-            href={ctaHref}
+            href={CTA_HREF}
             data-cta="hero"
-            data-track="go_hero_cta"
+            data-track="go_ads_hero_cta"
             className={ctaButtonClass}
           >
             GET MY FREE DIAGNOSIS <CtaArrow />
@@ -437,50 +356,8 @@ export default async function GoLandingPage() {
             <span className="whitespace-nowrap">No email needed to start</span>
           </div>
 
-          {/* Outcome chips — three real member results positioned right
-              under the CTA + microcopy so the first thumb-flick after
-              the button lands on proof, not cold space. Stats are pulled
-              from real, attributed Roadman members in
-              src/lib/testimonials.ts. The 100M+ stat below the row
-              grounds the chips in scale without overlapping the
-              dedicated credibility bar in the next section. */}
-          <div className="mt-7 md:mt-8 mx-auto max-w-2xl">
-            <p className="text-foreground-subtle font-heading text-[10px] md:text-[11px] tracking-[0.28em] text-center mb-4">
-              REAL RIDERS &middot; REAL CHANGES
-            </p>
-            <ul className="grid grid-cols-1 sm:grid-cols-3 gap-2.5 list-none p-0">
-              {HERO_CHIPS.map((t) => (
-                <li key={t.name}>
-                  <div
-                    className="
-                      h-full flex items-center gap-3
-                      rounded-xl border border-white/10 bg-white/[0.03]
-                      px-3 py-2.5
-                    "
-                  >
-                    <TestimonialAvatar testimonial={t} />
-                    <div className="flex-1 min-w-0 text-left">
-                      <p className="font-heading text-coral text-sm md:text-base tracking-wide leading-tight">
-                        {t.stat}
-                      </p>
-                      <p className="text-foreground-subtle text-[11px] md:text-xs mt-0.5">
-                        {t.name}
-                      </p>
-                    </div>
-                  </div>
-                </li>
-              ))}
-            </ul>
-            <p className="text-foreground-subtle text-[11px] md:text-xs text-center mt-4 px-2 leading-relaxed">
-              Drawn from 100M+ podcast downloads with World Tour coaches
-              and sports scientists &mdash; distilled into 4 minutes.
-            </p>
-          </div>
-
-          {/* Value stack — enriches the CTA area for cold traffic so the
-              click feels like it leads to something concrete, not a quiz
-              for the sake of a quiz. Subtle styling on purpose: this is a
-              footnote to the CTA, not a new section. */}
+          {/* Value stack — enriches the CTA area for cold ad traffic so
+              the click feels like it leads to something concrete. */}
           <div className="mt-7 md:mt-8 mx-auto max-w-md text-left">
             <p className="text-foreground-subtle font-heading text-[10px] md:text-[11px] tracking-[0.28em] text-center mb-3">
               YOUR RESULT INCLUDES
@@ -533,21 +410,33 @@ export default async function GoLandingPage() {
             </ul>
           </div>
 
-          {/* Trustpilot rating — cold-traffic credibility next to the CTA.
-              Pulls the live aggregate (rating, count) from /lib/trustpilot. */}
-          <div className="mt-7 md:mt-8 flex justify-center">
-            <TrustpilotBadge align="center" hideCount />
+          {/* Trustpilot rating — cold-ad credibility next to the CTA.
+              The shared TrustpilotBadge always wraps the score in an
+              anchor to trustpilot.com, which would leak the click. We
+              inline a static version here so the page stays
+              zero-escape. */}
+          <div className="mt-7 md:mt-8 flex flex-col items-center gap-2">
+            <div className="flex items-center gap-1.5">
+              <TrustpilotStar size={20} />
+              <TrustpilotStar size={20} />
+              <TrustpilotStar size={20} />
+              <TrustpilotStar size={20} />
+              <TrustpilotStar size={20} />
+            </div>
+            <p className="text-off-white font-body text-sm leading-snug">
+              <span className="font-heading text-2xl tracking-wide mr-2 align-middle">
+                {TRUSTPILOT.rating.toFixed(1)}
+              </span>
+              <span className="text-foreground-muted">
+                {TRUSTPILOT.tierLabel} on Trustpilot
+              </span>
+            </p>
           </div>
 
           {/* Built-by row — names the author and the experts behind the
-              method. The single biggest credibility gap for cold traffic
-              is "who built this and on what basis?", so we answer it
-              above the fold. */}
+              method. Same as /go but without the second priority image. */}
           <div className="mt-8 md:mt-10 mx-auto inline-flex items-center gap-3 rounded-2xl border border-white/10 bg-white/[0.03] backdrop-blur-sm py-3 pl-3 pr-4 md:pr-5 max-w-md">
             <span className="relative w-11 h-11 rounded-full overflow-hidden shrink-0 border border-white/15">
-              {/* No `priority` — the logo is the LCP candidate; layering a
-                  second priority hint on a 44px image below the value
-                  stack starves the actual LCP. Default lazy is fine. */}
               <Image
                 src="/images/about/anthony-profile-closeup-v2.jpg"
                 alt="Anthony Walsh — host, Roadman Cycling"
@@ -570,6 +459,9 @@ export default async function GoLandingPage() {
       </section>
 
       {/* ── Credibility bar ──────────────────────────────────────────── */}
+      {/* Icons are non-link decoration. On /go these double as podcast
+          platform deep-links; here they stay as static credibility
+          signals so the only clickable thing remains the CTA. */}
       <section
         aria-label="Roadman Cycling at a glance"
         className="bg-deep-purple border-y border-white/5"
@@ -698,9 +590,9 @@ export default async function GoLandingPage() {
 
           <div className="mt-8 md:mt-10 text-center">
             <Link
-              href={ctaHref}
+              href={CTA_HREF}
               data-cta="mid"
-              data-track="go_four_reasons_cta"
+              data-track="go_ads_four_reasons_cta"
               className={ctaButtonClass}
             >
               GET MY FREE DIAGNOSIS <CtaArrow />
@@ -715,13 +607,13 @@ export default async function GoLandingPage() {
       <div className="gradient-divider" />
 
       {/* ── Social proof ─────────────────────────────────────────────── */}
-      {/* Order is deliberate for cold traffic: lead with member outcomes
-          ("people like me got results"), then back it with podcast scale
-          and named experts as supporting credibility. The Trustpilot
-          strip closes the section as the third-party check. */}
+      {/* Same content spine as /go but with every outbound link removed
+          — no testimonial.to "see all reviews", no podcast platform
+          links, no Trustpilot review-site click-through. The Trustpilot
+          card stays as a visual credibility cue rendered as a static
+          element rather than an anchor. */}
       <Section background="deep-purple" grain>
         <Container width="default">
-          {/* Members — in their own words (lead) */}
           <p className="text-coral font-heading text-[11px] md:text-xs tracking-[0.3em] text-center mb-3">
             REAL RIDERS &middot; REAL CHANGES
           </p>
@@ -804,26 +696,7 @@ export default async function GoLandingPage() {
             ))}
           </ul>
 
-          {/* See all reviews — testimonial.to wall */}
-          <div className="text-center mt-10 md:mt-12">
-            <a
-              href="https://testimonial.to/roadman-cycling/all"
-              target="_blank"
-              rel="noopener noreferrer"
-              data-track="go_all_testimonials_link"
-              className="
-                inline-flex items-center gap-2
-                font-heading text-coral text-xs md:text-sm tracking-[0.25em]
-                hover:text-off-white transition-colors
-              "
-            >
-              SEE ALL REVIEWS
-              <span aria-hidden="true">→</span>
-            </a>
-          </div>
-
-          {/* Divider between member outcomes (lead) and the podcast
-              credibility block (support). */}
+          {/* Divider between member outcomes and podcast credibility */}
           <div className="mx-auto max-w-3xl mt-16 md:mt-20 mb-12 md:mb-14 h-px bg-gradient-to-r from-transparent via-white/15 to-transparent" />
 
           {/* Podcast scale + experts — supporting credibility */}
@@ -837,7 +710,8 @@ export default async function GoLandingPage() {
             THE CYCLING PODCAST THE PROS&rsquo; COACHES ACTUALLY COME ON
           </h3>
 
-          {/* Stat row */}
+          {/* Stat row — podcast platform icons rendered as static
+              decoration (no anchors). */}
           <dl className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6 mb-8 max-w-3xl mx-auto">
             <div className="text-center">
               <dt className="font-heading text-3xl md:text-5xl text-coral leading-none">
@@ -847,24 +721,8 @@ export default async function GoLandingPage() {
                 Podcast downloads
               </dd>
               <dd className="mt-2 flex items-center justify-center gap-2 text-off-white/55">
-                <a
-                  href={PODCAST.appleUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  aria-label="Listen on Apple Podcasts"
-                  className="hover:text-off-white transition-colors"
-                >
-                  <ApplePodcastsIcon size={16} />
-                </a>
-                <a
-                  href={PODCAST.spotifyUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  aria-label="Listen on Spotify"
-                  className="hover:text-off-white transition-colors"
-                >
-                  <SpotifyIcon size={16} />
-                </a>
+                <ApplePodcastsIcon size={16} />
+                <SpotifyIcon size={16} />
               </dd>
             </div>
             <div className="text-center">
@@ -904,17 +762,15 @@ export default async function GoLandingPage() {
             diagnostic.
           </p>
 
-          {/* Prominent Trustpilot strip */}
-          <a
-            href="https://www.trustpilot.com/review/roadmancycling.com"
-            target="_blank"
-            rel="noopener noreferrer"
-            data-track="go_trustpilot_link"
+          {/* Trustpilot strip — rendered as a static card. On /go this
+              is wrapped in an anchor to trustpilot.com; here we keep
+              only the visual element so the page has no outbound
+              clicks. */}
+          <div
             className="
-              group block max-w-xl mx-auto
+              block max-w-xl mx-auto
               rounded-2xl border border-white/15 bg-white/[0.04]
-              hover:bg-white/[0.06] hover:border-white/25
-              transition-all px-6 py-7 md:px-8 md:py-8
+              px-6 py-7 md:px-8 md:py-8
               shadow-[0_10px_30px_rgba(0,0,0,0.25)]
             "
           >
@@ -939,22 +795,15 @@ export default async function GoLandingPage() {
               </div>
               <p className="text-foreground-muted text-sm">
                 Verified on Trustpilot
-                <span className="text-coral ml-1.5 group-hover:translate-x-0.5 inline-block transition-transform">
-                  →
-                </span>
               </p>
             </div>
-          </a>
+          </div>
         </Container>
       </Section>
 
       <div className="gradient-divider" />
 
       {/* ── FAQ ──────────────────────────────────────────────────────── */}
-      {/* Sits before the final CTA so the rider's last-mile objections
-          ("what about my email?", "I don't have a power meter") get
-          answered while the CTA is still on screen. Anthony's voice:
-          first person, casual, direct. Each answer 2-3 sentences max. */}
       <Section background="charcoal">
         <Container width="narrow">
           <p className="text-coral font-heading text-[11px] md:text-xs tracking-[0.3em] text-center mb-3">
@@ -966,13 +815,8 @@ export default async function GoLandingPage() {
           >
             THE QUESTIONS I GET ASKED MOST
           </h2>
-          {/* Checkbox-hack disclosure so we ship zero JS. Collapsed by
-              default on mobile to keep the section scannable (six expanded
-              cards = ~1500px on iPhone SE). On sm: and above the answer is
-              forced visible and the toggle affordance is muted, so the
-              section reads as a static FAQ. CSS is inlined because the
-              chained `has-[:checked]:` arbitrary variants we'd otherwise
-              need do not survive Tailwind v4's content scanner. */}
+          {/* Checkbox-hack disclosure, identical to /go: zero JS, mobile
+              collapsed, desktop expanded. */}
           <style>{`
             .go-faq-card .go-faq-answer { display: none; }
             .go-faq-card .go-faq-chevron::before { content: "▾"; }
@@ -988,7 +832,7 @@ export default async function GoLandingPage() {
             {FAQS.map(({ q, a }, i) => (
               <li key={q}>
                 <div
-                  data-track={`go_faq_q${i + 1}`}
+                  data-track={`go_ads_faq_q${i + 1}`}
                   className="
                     go-faq-card
                     rounded-2xl bg-deep-purple border border-white/10
@@ -998,11 +842,11 @@ export default async function GoLandingPage() {
                 >
                   <input
                     type="checkbox"
-                    id={`go-faq-${i + 1}`}
+                    id={`go-ads-faq-${i + 1}`}
                     className="sr-only"
                   />
                   <label
-                    htmlFor={`go-faq-${i + 1}`}
+                    htmlFor={`go-ads-faq-${i + 1}`}
                     className="
                       go-faq-label
                       flex items-start justify-between gap-3
@@ -1033,6 +877,9 @@ export default async function GoLandingPage() {
       <div className="gradient-divider" />
 
       {/* ── Final CTA ────────────────────────────────────────────────── */}
+      {/* The page ends here. No legal footer, no /tools fallback, no
+          outbound brand-verify link. The only thing left on screen is
+          the CTA. */}
       <section className="relative overflow-hidden bg-charcoal grain-overlay py-20 md:py-28">
         <div
           aria-hidden="true"
@@ -1055,9 +902,9 @@ export default async function GoLandingPage() {
             your FTP has stalled &mdash; and the exact three steps to fix it.
           </p>
           <Link
-            href={ctaHref}
+            href={CTA_HREF}
             data-cta="bottom"
-            data-track="go_final_cta"
+            data-track="go_ads_final_cta"
             className={ctaButtonClass}
           >
             GET MY FREE DIAGNOSIS <CtaArrow />
@@ -1066,63 +913,8 @@ export default async function GoLandingPage() {
             Free &middot; No card &middot; 4 minutes &middot; No email needed
             to start
           </p>
-          {/* Soft fallback for riders not ready to commit to four minutes.
-              Quiet on purpose — small, foreground-subtle, well below the
-              primary CTA. /tools is the lower-intent door. */}
-          <p className="text-foreground-subtle text-xs mt-8">
-            Not ready?{" "}
-            <Link
-              href="/tools"
-              data-track="go_tools_fallback"
-              className="text-foreground-muted underline decoration-foreground-subtle underline-offset-2 hover:text-coral hover:decoration-coral transition-colors"
-            >
-              Get the free Roadman tools
-            </Link>{" "}
-            &mdash; five-minute setup, no spam.
-          </p>
         </Container>
       </section>
-
-      {/* ── Minimal legal footer ─────────────────────────────────────── */}
-      <footer className="bg-charcoal border-t border-white/5 py-8">
-        <Container width="default">
-          <div className="flex flex-col items-center gap-3 text-center">
-            {/* Escape hatch for skeptics — lets them verify the brand
-                without losing the /go tab. New-tab on purpose: cold
-                traffic can sanity-check Roadman is a real thing while
-                their CTA stays one click away. */}
-            <a
-              href={SITE_ORIGIN}
-              target="_blank"
-              rel="noopener noreferrer"
-              data-track="go_footer_site_link"
-              className="text-foreground-muted text-xs tracking-[0.18em] uppercase hover:text-coral transition-colors"
-            >
-              {SITE_ORIGIN.replace(/^https?:\/\//, "")}
-            </a>
-            <div className="flex flex-col sm:flex-row items-center justify-between gap-3 w-full text-foreground-subtle text-xs">
-              <p>
-                &copy; {new Date().getFullYear()} Roadman Cycling &middot;{" "}
-                {FOUNDER.location}
-              </p>
-              <div className="flex items-center gap-4">
-                <Link
-                  href="/privacy"
-                  className="hover:text-coral transition-colors"
-                >
-                  Privacy
-                </Link>
-                <Link
-                  href="/terms"
-                  className="hover:text-coral transition-colors"
-                >
-                  Terms
-                </Link>
-              </div>
-            </div>
-          </div>
-        </Container>
-      </footer>
     </main>
   );
 }
