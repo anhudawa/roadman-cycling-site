@@ -3,6 +3,7 @@ import Link from "next/link";
 import { Container, Section } from "@/components/layout";
 import { BRAND_STATS } from "@/lib/brand-facts";
 import { TRUSTPILOT } from "@/lib/trustpilot";
+import { AdsLandingAnalytics } from "./AdsLandingAnalytics";
 
 /**
  * /go/ads — bare-metal Google Ads landing page.
@@ -263,6 +264,7 @@ const TestimonialAvatar = ({
 export default function GoAdsLandingPage() {
   return (
     <main id="main-content" className="bg-charcoal" data-go-variant="ads">
+      <AdsLandingAnalytics />
       {/* ── Hero ─────────────────────────────────────────────────────── */}
       <section
         className="
