@@ -1,9 +1,41 @@
 import { NextResponse } from "next/server";
 import { recordEvent } from "@/lib/admin/events-store";
 import { upsertOnSignup } from "@/lib/admin/subscribers-store";
+import { buildMastersReportWelcomeEmail } from "@/lib/emails/masters-report-welcome";
 import { subscribeToBeehiiv } from "@/lib/integrations/beehiiv";
+import { getResendClient } from "@/lib/integrations/resend";
 import { rateLimitOr429 } from "@/lib/rate-limit/ip-rate-limit";
 import { clampString, LIMITS, normaliseEmail } from "@/lib/validation";
+
+const RESEND_FROM_ADDRESS = "Roadman Cycling <noreply@roadmancycling.com>";
+
+/**
+ * Some funnels need a transactional welcome email that arrives *now* with
+ * the asset the user signed up for. /masters-report is the first — the
+ * Beehiiv welcome can't carry a PDF reliably and Anthony got a complaint
+ * about people subscribing and receiving nothing. Returning the matched
+ * record keeps this declarative so future funnels (e.g. /age-group-ftp)
+ * can plug in without changing the route handler.
+ */
+type ImmediateAssetDeliverable = {
+  /** Beehiiv tag(s) applied alongside the source tag. */
+  tags: readonly string[];
+  /** Build a Resend payload for this signup. */
+  build: () => { subject: string; html: string; text: string };
+  /** UTM campaign code propagated to Beehiiv for attribution. */
+  campaign: string;
+};
+
+function matchAssetDeliverable(source: string): ImmediateAssetDeliverable | null {
+  if (source.startsWith("masters-report")) {
+    return {
+      tags: ["masters-report"],
+      build: () => buildMastersReportWelcomeEmail(),
+      campaign: "masters-report",
+    };
+  }
+  return null;
+}
 
 /**
  * Saturday Spin / newsletter subscribe endpoint.
@@ -44,6 +76,7 @@ export async function POST(request: Request) {
 
     const source = clampString(raw.source, LIMITS.shortText) ?? "/newsletter";
     const name = clampString(raw.name, LIMITS.name) ?? undefined;
+    const asset = matchAssetDeliverable(source);
 
     // Analytics event + subscriber upsert — non-fatal group.
     try {
@@ -60,20 +93,65 @@ export async function POST(request: Request) {
     }
 
     // Beehiiv subscribe via the shared helper. Handles reactivation +
-    // 409 dedup + tagging. Sends the Beehiiv welcome email so this
-    // path differs from /apply (apply suppresses the welcome so
-    // Anthony's personal reply arrives first).
+    // 409 dedup + tagging. We suppress the Beehiiv welcome on
+    // asset-delivery flows (e.g. /masters-report) because our own
+    // Resend send below carries the PDF link — sending both would
+    // confuse subscribers and step on each other in the inbox.
+    const beehiivTags = asset
+      ? ["saturday-spin", ...asset.tags]
+      : ["saturday-spin"];
+    const beehiivCampaign = asset ? asset.campaign : "saturday-spin";
     const result = await subscribeToBeehiiv({
       email,
       name,
-      tags: ["saturday-spin"],
-      sendWelcomeEmail: true,
+      tags: beehiivTags,
+      sendWelcomeEmail: !asset,
       utm: {
         source: "website",
         medium: source,
-        campaign: "saturday-spin",
+        campaign: beehiivCampaign,
       },
     });
+
+    // Transactional welcome (asset delivery). Fired after Beehiiv so the
+    // subscriber row exists before the email lands — keeps the customer
+    // record consistent for support if someone replies to the welcome.
+    // Non-fatal: a Resend hiccup mustn't 500 a signup that was already
+    // recorded in our CRM + Beehiiv.
+    if (asset) {
+      const resend = getResendClient();
+      if (resend) {
+        try {
+          const payload = asset.build();
+          const sendResult = await resend.emails.send({
+            from: RESEND_FROM_ADDRESS,
+            to: email,
+            subject: payload.subject,
+            html: payload.html,
+            text: payload.text,
+            replyTo: "anthony@roadmancycling.com",
+            tags: [
+              { name: "campaign", value: asset.campaign },
+              { name: "source", value: source.slice(0, 40) },
+            ],
+          });
+          console.log(
+            "[Newsletter] Asset welcome sent:",
+            asset.campaign,
+            JSON.stringify(sendResult),
+          );
+        } catch (emailErr) {
+          console.error(
+            "[Newsletter] Resend asset welcome failed:",
+            emailErr,
+          );
+        }
+      } else {
+        console.warn(
+          "[Newsletter] RESEND_API_KEY not configured — asset welcome skipped",
+        );
+      }
+    }
 
     if (!result.subscriberId) {
       // Beehiiv couldn't be reached OR credentials missing. The signup
