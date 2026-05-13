@@ -3,6 +3,7 @@ import Link from "next/link";
 import { Container, Section } from "@/components/layout";
 import { TrustpilotBadge } from "@/components/proof/TrustpilotProof";
 import { BRAND_STATS, FOUNDER, PODCAST, SITE_ORIGIN } from "@/lib/brand-facts";
+import { readGoHeroVariant, type GoHeroVariant } from "@/lib/ab/go-hero";
 
 /**
  * /go — PPC landing page for Google Ads cold traffic.
@@ -29,8 +30,12 @@ import { BRAND_STATS, FOUNDER, PODCAST, SITE_ORIGIN } from "@/lib/brand-facts";
 
 // Source param flows through to the diagnostic so attribution survives
 // the page hop. The Tracker.tsx data-track attributes also fire a
-// cta_click event with the specific position on this page.
-const CTA_HREF = "/plateau?source=go";
+// cta_click event with the specific position on this page. The variant
+// is appended at render time so diagnostic_complete events can be
+// attributed back to the headline variant the visitor saw.
+const CTA_HREF_BASE = "/plateau?source=go";
+const ctaHrefForVariant = (variant: GoHeroVariant) =>
+  `${CTA_HREF_BASE}&variant=${variant}`;
 
 const FAQS: ReadonlyArray<{ q: string; a: string }> = [
   {
@@ -270,9 +275,11 @@ const TestimonialAvatar = ({
   );
 };
 
-export default function GoLandingPage() {
+export default async function GoLandingPage() {
+  const variant = await readGoHeroVariant();
+  const ctaHref = ctaHrefForVariant(variant);
   return (
-    <main id="main-content" className="bg-charcoal">
+    <main id="main-content" className="bg-charcoal" data-go-variant={variant}>
       {/* ── Hero ─────────────────────────────────────────────────────── */}
       <section
         className="
@@ -319,36 +326,62 @@ export default function GoLandingPage() {
           <p className="text-coral font-heading text-[11px] md:text-xs tracking-[0.3em] mb-6">
             FOR CYCLISTS TRAINING 6&ndash;12 HOURS A WEEK
           </p>
-          <h1 className="font-heading text-off-white mb-6 leading-[0.95]">
-            <span
-              className="block"
-              style={{ fontSize: "clamp(2.5rem, 7vw, 5.5rem)" }}
-            >
-              YOUR FTP IS STUCK.
-            </span>
-            <span
-              className="block mt-1"
-              style={{ fontSize: "clamp(2.5rem, 7vw, 5.5rem)" }}
-            >
-              YOUR TRAINING ISN&rsquo;T WORKING.
-            </span>
-            <span
-              className="block mt-3 text-coral"
-              style={{ fontSize: "clamp(1.75rem, 4.8vw, 3.75rem)" }}
-            >
-              YOU KNOW THERE&rsquo;S MORE IN YOU.
-            </span>
-          </h1>
-          <p className="text-foreground-muted text-base md:text-xl leading-relaxed mb-8 max-w-xl mx-auto">
-            Four minutes, twelve questions, and I&rsquo;ll tell you exactly why
-            your FTP has stalled &mdash; and the three changes to make this
-            week. It&rsquo;s the same pattern I&rsquo;ve watched Dan Lorang,
-            Stephen Seiler and the World Tour coaches I&rsquo;ve interviewed
-            apply to riders for years.
-          </p>
+          {variant === "B" ? (
+            <>
+              <h1 className="font-heading text-off-white mb-6 leading-[0.95]">
+                <span
+                  className="block"
+                  style={{ fontSize: "clamp(2.5rem, 7vw, 5.5rem)" }}
+                >
+                  WHY YOUR FTP IS STUCK
+                </span>
+                <span
+                  className="block mt-3 text-coral"
+                  style={{ fontSize: "clamp(1.75rem, 4.8vw, 3.75rem)" }}
+                >
+                  (AND THE EXACT FIX THIS WEEK)
+                </span>
+              </h1>
+              <p className="text-foreground-muted text-base md:text-xl leading-relaxed mb-8 max-w-xl mx-auto">
+                Four minutes. Twelve questions. One specific answer &mdash;
+                built on methods from the coaches behind Pog&aacute;car,
+                verified by Professor Seiler&rsquo;s research.
+              </p>
+            </>
+          ) : (
+            <>
+              <h1 className="font-heading text-off-white mb-6 leading-[0.95]">
+                <span
+                  className="block"
+                  style={{ fontSize: "clamp(2.5rem, 7vw, 5.5rem)" }}
+                >
+                  YOUR FTP IS STUCK.
+                </span>
+                <span
+                  className="block mt-1"
+                  style={{ fontSize: "clamp(2.5rem, 7vw, 5.5rem)" }}
+                >
+                  YOUR TRAINING ISN&rsquo;T WORKING.
+                </span>
+                <span
+                  className="block mt-3 text-coral"
+                  style={{ fontSize: "clamp(1.75rem, 4.8vw, 3.75rem)" }}
+                >
+                  YOU KNOW THERE&rsquo;S MORE IN YOU.
+                </span>
+              </h1>
+              <p className="text-foreground-muted text-base md:text-xl leading-relaxed mb-8 max-w-xl mx-auto">
+                Four minutes, twelve questions, and I&rsquo;ll tell you exactly
+                why your FTP has stalled &mdash; and the three changes to make
+                this week. It&rsquo;s the same pattern I&rsquo;ve watched Dan
+                Lorang, Stephen Seiler and the World Tour coaches I&rsquo;ve
+                interviewed apply to riders for years.
+              </p>
+            </>
+          )}
 
           <Link
-            href={CTA_HREF}
+            href={ctaHref}
             data-cta="hero"
             data-track="go_hero_cta"
             className={ctaButtonClass}
@@ -585,7 +618,7 @@ export default function GoLandingPage() {
 
           <div className="mt-8 md:mt-10 text-center">
             <Link
-              href={CTA_HREF}
+              href={ctaHref}
               data-cta="mid"
               data-track="go_four_reasons_cta"
               className={ctaButtonClass}
@@ -942,7 +975,7 @@ export default function GoLandingPage() {
             your FTP has stalled &mdash; and the exact three steps to fix it.
           </p>
           <Link
-            href={CTA_HREF}
+            href={ctaHref}
             data-cta="bottom"
             data-track="go_final_cta"
             className={ctaButtonClass}
