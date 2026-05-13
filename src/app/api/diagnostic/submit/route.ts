@@ -14,6 +14,10 @@ import {
 import { parseAnswers, parseUtm } from "@/lib/diagnostic/parse";
 import { PROFILE_LABELS } from "@/lib/diagnostic/profiles";
 import { sendDiagnosisConfirmation } from "@/lib/diagnostic/email";
+import {
+  renderDiagnosticPdf,
+  diagnosticPdfFilename,
+} from "@/lib/diagnostic/pdf";
 import { checkRateLimit } from "@/lib/diagnostic/rate-limit";
 import { upsertByEmail as upsertRiderProfile } from "@/lib/rider-profile/store";
 import { riderProfilePatchFromDiagnostic } from "@/lib/diagnostic/rider-profile-patch";
@@ -155,6 +159,31 @@ export async function POST(request: Request) {
   // prevent the user from seeing their results.
   const profileLabel = PROFILE_LABELS[scoring.primary];
 
+  // Render the branded PDF in parallel with the other side effects so
+  // the email send can attach it without serialising the work. Failure
+  // here is non-fatal — the email still ships, just without the PDF.
+  const pdfPromise: Promise<
+    { filename: string; content: Buffer } | null
+  > = renderDiagnosticPdf({
+    slug: submission.slug,
+    primary: scoring.primary,
+    closeToBreakthrough: scoring.closeToBreakthrough,
+    breakdown: submission.breakdown,
+    createdAt: submission.createdAt,
+  })
+    .then((content) => ({
+      filename: diagnosticPdfFilename({
+        primary: scoring.primary,
+        closeToBreakthrough: scoring.closeToBreakthrough,
+        slug: submission.slug,
+      }),
+      content,
+    }))
+    .catch((err) => {
+      console.error("[Diagnostic] PDF render failed:", err);
+      return null;
+    });
+
   // Rider profile upsert — progressive, undefined preserves existing
   // values. Runs before the Promise.all below so the rider_profile_id
   // attach can piggyback on the returned row without extra awaits.
@@ -240,15 +269,20 @@ export async function POST(request: Request) {
     // "here's your link" email so the funnel works even before the
     // Beehiiv nurture sequence (§13) is authored. The Beehiiv Email 1
     // ("Your diagnosis: [Profile]") is a separate, deeper touch.
-    sendDiagnosisConfirmation({
-      email,
-      slug: submission.slug,
-      primary: scoring.primary,
-      closeToBreakthrough: scoring.closeToBreakthrough,
-      breakdown: submission.breakdown,
-    }).catch((err) =>
-      console.error("[Diagnostic] confirmation email failed:", err)
-    ),
+    pdfPromise
+      .then((pdfAttachment) =>
+        sendDiagnosisConfirmation({
+          email,
+          slug: submission.slug,
+          primary: scoring.primary,
+          closeToBreakthrough: scoring.closeToBreakthrough,
+          breakdown: submission.breakdown,
+          pdfAttachment,
+        })
+      )
+      .catch((err) =>
+        console.error("[Diagnostic] confirmation email failed:", err)
+      ),
   ]);
 
   return NextResponse.json({

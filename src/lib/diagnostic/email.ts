@@ -23,6 +23,15 @@ export interface ConfirmationEmailInput {
   primary: Profile;
   closeToBreakthrough: boolean;
   breakdown: Breakdown;
+  /**
+   * Optional branded PDF of the diagnosis. Rendered upstream (in the
+   * submit route) so this function stays synchronous-rendering and
+   * easy to test. When absent the email still ships with the link.
+   */
+  pdfAttachment?: {
+    filename: string;
+    content: Buffer;
+  } | null;
 }
 
 export async function sendDiagnosisConfirmation(
@@ -46,6 +55,7 @@ export async function sendDiagnosisConfirmation(
     headline: input.breakdown.headline,
     url,
     ndyUrl,
+    hasPdf: Boolean(input.pdfAttachment),
   });
 
   try {
@@ -56,6 +66,16 @@ export async function sendDiagnosisConfirmation(
       subject,
       html,
       text,
+      ...(input.pdfAttachment
+        ? {
+            attachments: [
+              {
+                filename: input.pdfAttachment.filename,
+                content: input.pdfAttachment.content,
+              },
+            ],
+          }
+        : {}),
     });
     return { sent: true, messageId: result.data?.id };
   } catch (err) {
@@ -72,8 +92,11 @@ interface TemplateInput {
   ndyUrl: string;
 }
 
-function renderTemplate(input: TemplateInput): { html: string; text: string } {
-  const { profileLabel, headline, url, ndyUrl } = input;
+function renderTemplate(input: TemplateInput & { hasPdf?: boolean }): {
+  html: string;
+  text: string;
+} {
+  const { profileLabel, headline, url, ndyUrl, hasPdf } = input;
   const safeLabel = escapeHtml(profileLabel);
   const safeHeadline = escapeHtml(headline);
   const safeUrl = escapeHtml(url);
@@ -110,6 +133,14 @@ function renderTemplate(input: TemplateInput): { html: string; text: string } {
         Save the link. Some riders come back to this a few weeks in,
         once the denial wears off.
       </p>
+      ${
+        hasPdf
+          ? `<p style="font-size:14px;line-height:1.6;margin:0 0 20px;color:#555;">
+        A branded PDF of your full diagnosis is attached to this email
+        too &mdash; print it, save it, share it with your coach.
+      </p>`
+          : ""
+      }
 
       <hr style="border:none;border-top:1px solid #e5e5e3;margin:32px 0;" />
 
@@ -160,6 +191,12 @@ function renderTemplate(input: TemplateInput): { html: string; text: string } {
     url,
     "",
     "Save the link. Some riders come back to this a few weeks in, once the denial wears off.",
+    ...(hasPdf
+      ? [
+          "",
+          "A branded PDF of your full diagnosis is attached to this email — print it, save it, share it with your coach.",
+        ]
+      : []),
     "",
     "—",
     "",
