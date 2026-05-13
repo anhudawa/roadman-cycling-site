@@ -577,13 +577,10 @@ export default function GoLandingPage() {
             ))}
           </ul>
 
-          <p
-            data-track="go_competitive_line"
-            className="text-off-white text-center max-w-2xl mx-auto mt-10 md:mt-12 text-lg md:text-xl leading-relaxed"
-          >
-            Plans give you workouts. This tells you which workout has been the
-            wrong one &mdash; and why the next plan you start should be
-            different.
+          <p className="text-off-white text-center max-w-2xl mx-auto mt-10 md:mt-12 text-lg md:text-xl leading-relaxed">
+            Plans give you workouts. This tells you the one reason none of them
+            have moved your FTP &mdash; and what the next plan you start has to
+            fix first.
           </p>
 
           <div className="mt-8 md:mt-10 text-center">
