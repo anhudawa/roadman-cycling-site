@@ -24,6 +24,9 @@ const LEAN_PATH_PREFIXES = [
   // tank conversion. The page itself drives users to /plateau where
   // the full conversion machinery lives.
   "/go",
+  // Lead-magnet squeeze page for the Masters Cycling Training Report.
+  // Same single-purpose rationale as /go — the form is the page.
+  "/masters-report",
 ];
 
 function isLeanRoute(pathname: string | null): boolean {

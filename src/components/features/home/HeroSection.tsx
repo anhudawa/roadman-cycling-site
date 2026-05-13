@@ -5,11 +5,6 @@ import Link from "next/link";
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui";
 import { GlitchHero } from "./GlitchHero";
-import type { EpisodeMeta } from "@/lib/podcast";
-
-interface HeroSectionProps {
-  latestEpisode: EpisodeMeta | null;
-}
 
 /**
  * Homepage hero — Direction 3 "Hero Crop", unified across all viewports.
@@ -31,7 +26,7 @@ interface HeroSectionProps {
  * 4 lines as YOUR BEST / NUMBERS / AREN'T / BEHIND YOU. Line breaks are
  * hand-tuned — if the copy changes, rebalance manually. Do not auto-wrap.
  */
-export function HeroSection({ latestEpisode }: HeroSectionProps) {
+export function HeroSection() {
   const sectionRef = useRef<HTMLElement>(null);
   const [scrolled, setScrolled] = useState(false);
 
@@ -198,12 +193,12 @@ export function HeroSection({ latestEpisode }: HeroSectionProps) {
                 Take the Plateau Diagnostic →
               </Button>
               <Link
-                href={latestEpisode ? `/podcast/${latestEpisode.slug}` : "/podcast"}
+                href="/masters-report"
                 className="font-heading text-sm tracking-[0.18em] uppercase text-off-white/75 hover:text-coral hover:underline underline-offset-4 transition-colors py-3"
                 style={{ transitionDuration: "var(--duration-fast)" }}
-                data-track="home_hero_listen"
+                data-track="home_hero_masters_report"
               >
-                listen to the podcast <span aria-hidden="true">→</span>
+                get the masters report <span aria-hidden="true">→</span>
               </Link>
             </motion.div>
 
