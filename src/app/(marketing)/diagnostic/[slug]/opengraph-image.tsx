@@ -108,8 +108,8 @@ export default async function Image({
               maxWidth: "900px",
             }}
           >
-            Find out which of four plateau profiles fits you — and the
-            exact fix. Four minutes at roadmancycling.com/plateau.
+            The Roadman Four-Cause Diagnostic — find your profile and
+            the exact fix at roadmancycling.com/plateau.
           </div>
           <div
             style={{
