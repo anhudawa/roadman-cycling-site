@@ -3,9 +3,16 @@ import type { MethodModule } from "./modules";
 
 const DAY_MS = 24 * 60 * 60 * 1000;
 
-/** Drip mode is `weekly` by default; admin can flip to `all-at-once` via env. */
+/**
+ * Drip mode.
+ *
+ * TEMPORARY: defaulted to `all-at-once` so Anthony can review every module
+ * end-to-end without waiting on the weekly drip. To restore the original
+ * weekly drip, set `METHOD_DRIP_MODE=weekly` (or revert this function to
+ * default to `"weekly"`).
+ */
 export function methodDripMode(): "weekly" | "all-at-once" {
-  return process.env.METHOD_DRIP_MODE === "all-at-once" ? "all-at-once" : "weekly";
+  return process.env.METHOD_DRIP_MODE === "weekly" ? "weekly" : "all-at-once";
 }
 
 export interface ModuleAvailability {
