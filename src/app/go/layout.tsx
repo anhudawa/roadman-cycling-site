@@ -7,8 +7,10 @@ import type { ReactNode } from "react";
  * The page inherits the root layout (fonts, analytics, podcast player
  * provider, cookie consent) but renders no shared chrome of its own —
  * no Header, no Footer, no mini-player (path-suppressed in
- * MiniPlayer.tsx), no exit-intent / cohort banner / mobile sticky
- * apply (path-suppressed in ConversionChrome.tsx).
+ * MiniPlayer.tsx), no shared exit-intent / cohort banner / mobile
+ * sticky apply (path-suppressed in ConversionChrome.tsx). The /go
+ * page mounts its own dedicated `GoExitIntent` popup directly inside
+ * page.tsx — see the file header there for the rationale.
  *
  * `robots: noindex` keeps the bare ad surface out of organic search
  * so it can't dilute or compete with /plateau, which is the canonical
