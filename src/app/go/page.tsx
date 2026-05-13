@@ -101,6 +101,44 @@ type Testimonial = {
   quote: string;
 };
 
+/**
+ * Hero-only chip strip — three real member outcomes shown alongside
+ * the primary CTA. Kept separate from `TESTIMONIALS` (the lower social
+ * proof grid) so the hero stays minimal and the variety of wins —
+ * raw power, category jump, body composition — represents the real
+ * spread of outcomes documented in src/lib/testimonials.ts. All three
+ * stats are real, attributed members; no fabricated outcomes.
+ */
+const HERO_CHIPS: readonly Testimonial[] = [
+  {
+    name: "Damien Maloney",
+    initials: "DM",
+    photoSrc: "/images/testimonials/damien.jpg",
+    hasPhoto: true,
+    stat: "FTP +90w",
+    detail: "Plateaued sportive rider",
+    quote: "",
+  },
+  {
+    name: "Daniel Stone",
+    initials: "DS",
+    photoSrc: "/images/testimonials/daniel.jpg",
+    hasPhoto: false,
+    stat: "Cat 3 → Cat 1",
+    detail: "One season with the system",
+    quote: "",
+  },
+  {
+    name: "Chris O'Connor",
+    initials: "CO",
+    photoSrc: "/images/testimonials/chris.jpg",
+    hasPhoto: true,
+    stat: "Body fat 20% → 7%",
+    detail: "Decades out of the saddle",
+    quote: "",
+  },
+];
+
 const TESTIMONIALS: readonly Testimonial[] = [
   {
     name: "Damien Maloney",
@@ -397,6 +435,46 @@ export default async function GoLandingPage() {
             <span className="whitespace-nowrap">4 minutes</span>
             <span className="opacity-40">&middot;</span>
             <span className="whitespace-nowrap">No email needed to start</span>
+          </div>
+
+          {/* Outcome chips — three real member results positioned right
+              under the CTA + microcopy so the first thumb-flick after
+              the button lands on proof, not cold space. Stats are pulled
+              from real, attributed Roadman members in
+              src/lib/testimonials.ts. The 100M+ stat below the row
+              grounds the chips in scale without overlapping the
+              dedicated credibility bar in the next section. */}
+          <div className="mt-7 md:mt-8 mx-auto max-w-2xl">
+            <p className="text-foreground-subtle font-heading text-[10px] md:text-[11px] tracking-[0.28em] text-center mb-4">
+              REAL RIDERS &middot; REAL CHANGES
+            </p>
+            <ul className="grid grid-cols-1 sm:grid-cols-3 gap-2.5 list-none p-0">
+              {HERO_CHIPS.map((t) => (
+                <li key={t.name}>
+                  <div
+                    className="
+                      h-full flex items-center gap-3
+                      rounded-xl border border-white/10 bg-white/[0.03]
+                      px-3 py-2.5
+                    "
+                  >
+                    <TestimonialAvatar testimonial={t} />
+                    <div className="flex-1 min-w-0 text-left">
+                      <p className="font-heading text-coral text-sm md:text-base tracking-wide leading-tight">
+                        {t.stat}
+                      </p>
+                      <p className="text-foreground-subtle text-[11px] md:text-xs mt-0.5">
+                        {t.name}
+                      </p>
+                    </div>
+                  </div>
+                </li>
+              ))}
+            </ul>
+            <p className="text-foreground-subtle text-[11px] md:text-xs text-center mt-4 px-2 leading-relaxed">
+              Drawn from 100M+ podcast downloads with World Tour coaches
+              and sports scientists &mdash; distilled into 4 minutes.
+            </p>
           </div>
 
           {/* Value stack — enriches the CTA area for cold traffic so the
