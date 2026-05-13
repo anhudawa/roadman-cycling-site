@@ -9,6 +9,7 @@ import { TimeRangePicker } from "./components/TimeRangePicker";
 import { TimeSeriesChart } from "./components/charts/TimeSeriesChart";
 import { DonutChart } from "./components/charts/DonutChart";
 import { FunnelDisplay } from "./components/charts/FunnelDisplay";
+import { EmailSignupsSection } from "./components/EmailSignupsSection";
 import { Card, CardBody, PageHeader } from "@/components/admin/ui";
 
 const SECTION_H2 =
@@ -180,6 +181,13 @@ export default async function AdminDashboardPage({
           </Suspense>
         }
       />
+
+      {/* Email signups — fixed 24h/7d/30d windows independent of the
+          range picker so this top-of-page glance always means the same
+          thing (Anthony's North Star metric across all signup surfaces). */}
+      <Suspense fallback={null}>
+        <EmailSignupsSection />
+      </Suspense>
 
       {/* Stat cards — reflect selected range */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 xl:grid-cols-5 gap-4">
