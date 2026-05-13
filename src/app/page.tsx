@@ -3,7 +3,6 @@ import { Header, Footer, Section, Container } from "@/components/layout";
 import { Button, Card, ScrollReveal, ParallaxImage, GradientText, GuestMarquee } from "@/components/ui";
 import Link from "next/link";
 import { HeroSection } from "@/components/features/home/HeroSection";
-import { getLatestEpisode } from "@/lib/podcast";
 import { StatsSection } from "@/components/features/home/StatsSection";
 import { PersonaRouter } from "@/components/features/home/PersonaRouter";
 import { PillarIcon } from "@/components/features/home/PillarIcon";
@@ -101,7 +100,6 @@ export default function HomePage() {
     fetchPriority: "high",
   });
 
-  const latestEpisode = getLatestEpisode();
   // Mix of podcast + coaching reviews for the homepage social-proof
   // strip — Roadman straddles both, and the homepage audience is the
   // widest funnel of the site.
@@ -114,9 +112,11 @@ export default function HomePage() {
       <main id="main-content">
         {/* HERO — leads with the rider problem ("Stop plateauing. Start
             progressing.") and routes the highest-intent visitor straight
-            into the Plateau Diagnostic. Listen sits as a soft secondary
-            link; Apply lives further down the page in the offer ladder. */}
-        <HeroSection latestEpisode={latestEpisode} />
+            into the Plateau Diagnostic. Secondary CTA hands the Masters
+            Cycling Training Report to lower-intent visitors as a
+            lead-magnet entry point. Apply lives further down the page
+            in the offer ladder. */}
+        <HeroSection />
 
         {/* MANIFESTO — positioning. We are not a media brand. We are the
             clearest path back to progress for serious amateurs who
