@@ -4,6 +4,7 @@ import { Container, Section } from "@/components/layout";
 import { TrustpilotBadge } from "@/components/proof/TrustpilotProof";
 import { BRAND_STATS, FOUNDER, PODCAST, SITE_ORIGIN } from "@/lib/brand-facts";
 import { readGoHeroVariant, type GoHeroVariant } from "@/lib/ab/go-hero";
+import { GoExitIntent } from "./_components/GoExitIntent";
 
 /**
  * /go — PPC landing page for Google Ads cold traffic.
@@ -11,8 +12,13 @@ import { readGoHeroVariant, type GoHeroVariant } from "@/lib/ab/go-hero";
  * Cold-traffic credibility layering on top of the single-CTA quiz
  * funnel. Layout choices:
  *
- *  - No Header, no Footer, no mini-player, no exit-intent, no cohort
- *    banner — every distraction would compete with the one button.
+ *  - No Header, no Footer, no mini-player, no cohort banner — every
+ *    distraction would compete with the one button on the way IN.
+ *  - One exception: a Toolkit exit-intent popup (GoExitIntent). It
+ *    only fires when the visitor is already leaving (top-edge
+ *    mouseleave on desktop, 30s of inactivity on touch), so it can't
+ *    poach a forward click. Captured emails are a consolation lead
+ *    the PPC spend would otherwise burn.
  *  - The page DOES carry a small Roadman logo top-left and a quiet
  *    `roadmancycling.com` link in the footer. Both are non-navigation
  *    brand-identity signals: they let a skeptic verify the brand
@@ -1123,6 +1129,11 @@ export default async function GoLandingPage() {
           </div>
         </Container>
       </footer>
+
+      {/* Exit-intent toolkit offer — see GoExitIntent header for the
+          rationale. Rendered last so the dialog overlay sits above
+          every page section without needing to climb a z-stack. */}
+      <GoExitIntent />
     </main>
   );
 }
