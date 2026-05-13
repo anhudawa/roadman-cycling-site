@@ -2,6 +2,13 @@ import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
   trailingSlash: false,
+  // MDX-heavy podcast and blog pages (especially ones with long
+  // transcripts) routinely brush against the 60s default on Vercel's
+  // CPU-constrained build workers. Most recover on retry; ep-40 hit
+  // the wall on all three attempts and failed the production deploy.
+  // 180s gives the long-transcript pages enough headroom without
+  // hiding a real perf regression elsewhere.
+  staticPageGenerationTimeout: 180,
   images: {
     remotePatterns: [
       {
