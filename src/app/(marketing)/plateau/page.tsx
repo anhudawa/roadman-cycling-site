@@ -441,6 +441,35 @@ export default async function PlateauPage() {
           "Built on the methodology behind Roadman Cycling coaching",
         ]}
       />
+      {/* HowTo: the diagnostic is a 3-step flow with explicit per-step
+          time. Built from the same HOW_IT_WORKS array that drives the
+          on-page timeline so the schema and the rendered steps can never
+          drift. totalTime sums the three steps (4 minutes ≈ PT4M). */}
+      <JsonLd
+        data={{
+          "@context": "https://schema.org",
+          "@type": "HowTo",
+          name: "How to take the Masters Plateau Diagnostic",
+          description:
+            "Diagnose why your FTP has stalled in four minutes. Twelve questions return one of four named plateau profiles with the specific fix for each.",
+          totalTime: "PT4M",
+          estimatedCost: { "@type": "MonetaryAmount", currency: "USD", value: "0" },
+          tool: [{ "@type": "HowToTool", name: "Email address (to receive your diagnosis)" }],
+          supply: [{ "@type": "HowToSupply", name: "Your weekly training hours and (optional) FTP" }],
+          yield: "A named plateau profile (one of four) with a two-page personalised breakdown and the three steps to fix it",
+          step: HOW_IT_WORKS.map((s, i) => ({
+            "@type": "HowToStep",
+            position: i + 1,
+            name: s.title,
+            text: s.body,
+            url: "https://roadmancycling.com/plateau#start",
+          })),
+          inLanguage: "en",
+          isPartOf: { "@id": ENTITY_IDS.website },
+          publisher: { "@id": ENTITY_IDS.organization },
+          author: { "@id": ENTITY_IDS.person },
+        }}
+      />
       <FAQPageJsonLd
         questions={FAQS.map((f) => ({ question: f.q, answer: f.a }))}
       />
