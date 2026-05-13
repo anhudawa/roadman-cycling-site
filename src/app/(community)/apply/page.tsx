@@ -5,11 +5,24 @@ import { JsonLd } from "@/components/seo/JsonLd";
 import { TrustpilotProof } from "@/components/proof";
 import { TRUSTPILOT, getTrustpilotReviews } from "@/lib/trustpilot";
 import { CohortApplicationForm } from "./CohortApplicationForm";
+import { PersonalisedDiagnosticBlock } from "./PersonalisedDiagnosticBlock";
 import {
   TESTIMONIALS,
   getTestimonialsByName,
 } from "@/lib/testimonials";
 import { getCohortState } from "@/lib/cohort";
+import { getSubmissionBySlug } from "@/lib/diagnostic/store";
+
+/**
+ * Diagnostic riders who land here via /apply?from=<slug> have already
+ * qualified themselves by completing the Plateau Diagnostic. We swap
+ * the cold-traffic hero + cohort application for a personalised summary
+ * and route them straight to the Skool free trial. Unknown or missing
+ * slugs silently fall back to the direct-visitor variant so stale links
+ * still work.
+ */
+const SKOOL_TRIAL_URL =
+  "https://www.skool.com/roadmancycling/about?utm_source=diagnostic&utm_medium=apply&utm_campaign=apply-bottom";
 
 export async function generateMetadata(): Promise<Metadata> {
   const title = "Apply for Not Done Yet — Cycling Coaching with Anthony";
@@ -121,8 +134,24 @@ const objections = [
   },
 ];
 
-export default function ApplyPage() {
+export default async function ApplyPage({
+  searchParams,
+}: {
+  searchParams: Promise<{ from?: string }>;
+}) {
   const cohortState = getCohortState();
+  const { from } = await searchParams;
+  // Stale/missing slugs and DB hiccups silently fall back to the
+  // cold-traffic variant — a broken share link should never 500 /apply.
+  let submission: Awaited<ReturnType<typeof getSubmissionBySlug>> = null;
+  if (from) {
+    try {
+      submission = await getSubmissionBySlug(from);
+    } catch {
+      submission = null;
+    }
+  }
+  const personalised = submission !== null;
   return (
     <>
       <JsonLd
@@ -201,8 +230,11 @@ export default function ApplyPage() {
       <Header />
 
       <main id="main-content">
-        {/* ── Hero ───────────────────────────────────────── */}
-        <Section background="deep-purple" grain className="pt-32 pb-16 relative overflow-hidden">
+        {personalised && submission ? (
+          <PersonalisedDiagnosticBlock submission={submission} />
+        ) : (
+          /* ── Hero ───────────────────────────────────────── */
+          <Section background="deep-purple" grain className="pt-32 pb-16 relative overflow-hidden">
           {/* Animated gradient orb behind text */}
           <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] rounded-full bg-coral/5 blur-[120px] pointer-events-none" />
 
@@ -255,6 +287,7 @@ export default function ApplyPage() {
             </ScrollReveal>
           </Container>
         </Section>
+        )}
 
         {/* ── YouTube intro video ────────────────────────── */}
         <Section background="charcoal">
@@ -457,7 +490,8 @@ export default function ApplyPage() {
         {/* ── Gradient divider ──────────────────────────── */}
         <div className="gradient-divider" />
 
-        {/* ── Application Form ───────────────────────────── */}
+        {/* ── Application Form (cold visitors only) ────────── */}
+        {!personalised && (
         <Section background="deep-purple" grain className="relative overflow-hidden">
           <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[400px] rounded-full bg-coral/5 blur-[150px] pointer-events-none" />
 
@@ -528,6 +562,7 @@ export default function ApplyPage() {
             </ScrollReveal>
           </Container>
         </Section>
+        )}
 
         {/* ── FAQ with schema ───────────────────────────── */}
         <JsonLd
@@ -570,21 +605,35 @@ export default function ApplyPage() {
               ))}
             </div>
 
-            {/* Final urgency CTA */}
+            {/* Final urgency CTA — cold visitors apply, diagnostic
+                visitors go straight to the Skool free trial. */}
             <ScrollReveal direction="up">
               <div className="mt-16 text-center bg-coral/5 rounded-xl border border-coral/20 p-10">
                 <h2 className="font-heading text-3xl text-off-white mb-3">
                   YOU&apos;RE NOT DONE YET.
                 </h2>
                 <p className="text-foreground-muted mb-6 max-w-md mx-auto">
-                  30 places. Same coaches. Same system. Your turn.
+                  {personalised
+                    ? "Same coaches. Same system. 7 days free to see if it fits."
+                    : "30 places. Same coaches. Same system. Your turn."}
                 </p>
-                <a
-                  href="#apply"
-                  className="inline-flex items-center px-8 py-4 rounded-xl bg-coral text-off-white font-heading text-lg tracking-wider hover:bg-coral/90 transition-all shadow-lg shadow-coral/20"
-                >
-                  {"APPLY NOW"}
-                </a>
+                {personalised ? (
+                  <a
+                    href={SKOOL_TRIAL_URL}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center px-8 py-4 rounded-xl bg-coral text-off-white font-heading text-lg tracking-wider hover:bg-coral/90 transition-all shadow-lg shadow-coral/20"
+                  >
+                    START YOUR 7-DAY FREE TRIAL →
+                  </a>
+                ) : (
+                  <a
+                    href="#apply"
+                    className="inline-flex items-center px-8 py-4 rounded-xl bg-coral text-off-white font-heading text-lg tracking-wider hover:bg-coral/90 transition-all shadow-lg shadow-coral/20"
+                  >
+                    {"APPLY NOW"}
+                  </a>
+                )}
               </div>
             </ScrollReveal>
           </Container>
