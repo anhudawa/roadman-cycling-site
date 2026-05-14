@@ -16,7 +16,60 @@ import { ReadingProgress } from "@/components/features/diagnostic/ReadingProgres
 import { StickyCta } from "@/components/features/diagnostic/StickyCta";
 import { SuccessBanner } from "@/components/features/diagnostic/SuccessBanner";
 import { AskRoadmanHandoff } from "@/components/features/diagnostic/AskRoadmanHandoff";
-import type { Breakdown } from "@/lib/diagnostic/types";
+import type { Breakdown, Profile } from "@/lib/diagnostic/types";
+import { getTestimonialsByName, type Testimonial } from "@/lib/testimonials";
+
+/**
+ * Per-profile testimonial picks. Two each — the first lines up tightly
+ * with the diagnosis (e.g. Damien is the canonical "I plateaued, the
+ * plan broke it" story for the polarisation/under-recovered set), the
+ * second adds a second proof angle. Close-to-breakthrough reuses the
+ * plateau set because that's the closest emotional match.
+ */
+const TESTIMONIAL_NAMES_BY_PROFILE: Record<Profile, string[]> = {
+  underRecovered: ["Damien Maloney", "Brian Morrissey"],
+  polarisation: ["Damien Maloney", "Blair Corey"],
+  strengthGap: ["Brian Morrissey", "Mary K"],
+  fuelingDeficit: ["Chris O'Connor", "Gregory Gross"],
+};
+const CLOSE_TO_BREAKTHROUGH_TESTIMONIAL_NAMES = [
+  "Rob Capps",
+  "Damien Maloney",
+];
+
+/**
+ * Per-profile ordering of the "what's inside Not Done Yet" bullets. The
+ * rider's diagnosis bullet leads; the rest follow in the original order
+ * with the lead bullet removed from the tail. Close-to-breakthrough
+ * uses the default order.
+ */
+const NDY_BULLETS = [
+  "Personalised TrainingPeaks plan, written for your diagnosis — not a template",
+  "Weekly coaching call with Anthony — your week reviewed, next week planned",
+  "Cycling-specific S&C roadmap, paired with the bike work",
+  "Nutrition framework and weekly check-ins on fuelling and race weight",
+  "Recovery, sleep and HRV protocols sitting alongside the plan",
+  "A private community of riders running the same system — not beginners",
+] as const;
+
+const NDY_LEAD_BULLET_BY_PROFILE: Record<Profile, string> = {
+  underRecovered:
+    "Recovery, sleep and HRV protocols sitting alongside the plan",
+  polarisation:
+    "Personalised TrainingPeaks plan, written for your diagnosis — not a template",
+  strengthGap: "Cycling-specific S&C roadmap, paired with the bike work",
+  fuelingDeficit:
+    "Nutrition framework and weekly check-ins on fuelling and race weight",
+};
+
+function ndyBulletsFor(
+  profile: Profile,
+  closeToBreakthrough: boolean,
+): readonly string[] {
+  if (closeToBreakthrough) return NDY_BULLETS;
+  const lead = NDY_LEAD_BULLET_BY_PROFILE[profile];
+  return [lead, ...NDY_BULLETS.filter((b) => b !== lead)];
+}
 
 /**
  * Results page. Reads straight from the DB on the server so the
@@ -79,6 +132,17 @@ export default async function DiagnosticResultsPage({
         secondaryHref: "",
       }
     : resolveCta(submission.primaryProfile, submission.severeMultiSystem);
+
+  const testimonialNames = isCloseToBreakthrough
+    ? CLOSE_TO_BREAKTHROUGH_TESTIMONIAL_NAMES
+    : TESTIMONIAL_NAMES_BY_PROFILE[submission.primaryProfile];
+  const profileTestimonials: Testimonial[] =
+    getTestimonialsByName(testimonialNames);
+
+  const ndyBullets = ndyBulletsFor(
+    submission.primaryProfile,
+    isCloseToBreakthrough,
+  );
 
   return (
     <>
@@ -227,6 +291,61 @@ export default async function DiagnosticResultsPage({
           </Container>
         </Section>
 
+        {/* ── Profile-matched proof ──────────────────── */}
+        {/* Two testimonials whose story lines up with this diagnosis —
+            e.g. Damien for plateau, Chris for fuelling. Sits between
+            the diagnosis copy and the NDY pitch so the rider sees
+            "someone like me did this" before they see the price. */}
+        {profileTestimonials.length > 0 && (
+          <Section background="charcoal">
+            <Container width="narrow">
+              <ScrollReveal direction="up">
+                <p className="text-coral font-heading text-xs tracking-widest mb-3">
+                  RIDERS WHO WERE HERE
+                </p>
+                <h2 className="font-heading text-off-white text-2xl md:text-3xl mb-8">
+                  THEY HAD THE SAME DIAGNOSIS
+                </h2>
+              </ScrollReveal>
+              <div className="grid gap-4 md:grid-cols-2">
+                {profileTestimonials.map((t, i) => (
+                  <ScrollReveal
+                    key={t.name}
+                    direction="up"
+                    delay={i * 0.1}
+                  >
+                    <figure className="h-full rounded-xl border border-white/10 bg-background-elevated p-6 flex flex-col gap-4">
+                      {t.stat && (
+                        <div className="flex items-baseline gap-2">
+                          <span className="font-heading text-coral text-3xl tracking-wide">
+                            {t.stat}
+                          </span>
+                          {t.statLabel && (
+                            <span className="text-foreground-muted text-xs uppercase tracking-widest">
+                              {t.statLabel}
+                            </span>
+                          )}
+                        </div>
+                      )}
+                      <blockquote className="text-off-white/90 leading-relaxed">
+                        &ldquo;{t.shortQuote ?? t.quote}&rdquo;
+                      </blockquote>
+                      <figcaption className="mt-auto pt-2 border-t border-white/5">
+                        <p className="font-heading text-off-white text-sm tracking-wide">
+                          {t.name.toUpperCase()}
+                        </p>
+                        <p className="text-foreground-subtle text-xs mt-1">
+                          {t.detail}
+                        </p>
+                      </figcaption>
+                    </figure>
+                  </ScrollReveal>
+                ))}
+              </div>
+            </Container>
+          </Section>
+        )}
+
         {/* ── Inside Not Done Yet ────────────────────── */}
         {/* The hard offer. The personalised handoff sits in YOUR NEXT
             MOVE below this — this section just lays out pricing, the
@@ -265,6 +384,19 @@ export default async function DiagnosticResultsPage({
                 <p className="text-foreground-muted text-sm">
                   Cancel anytime. No contracts.
                 </p>
+                <p className="mt-3 pt-3 border-t border-coral/15 text-off-white/80 text-sm flex items-center gap-2">
+                  <span
+                    aria-hidden="true"
+                    className="inline-block w-1.5 h-1.5 rounded-full bg-coral shrink-0"
+                  />
+                  <span>
+                    Next weekly coaching call:{" "}
+                    <span className="text-off-white font-semibold">
+                      Thursday, 7pm GMT
+                    </span>
+                    . Start the trial today and you&rsquo;re on it.
+                  </span>
+                </p>
               </div>
             </ScrollReveal>
 
@@ -273,14 +405,7 @@ export default async function DiagnosticResultsPage({
                 WHAT&rsquo;S IN IT
               </p>
               <ul className="space-y-3 text-off-white/90 leading-relaxed mb-10">
-                {[
-                  "Personalised TrainingPeaks plan, written for your diagnosis — not a template",
-                  "Weekly coaching call with Anthony — your week reviewed, next week planned",
-                  "Cycling-specific S&C roadmap, paired with the bike work",
-                  "Nutrition framework and weekly check-ins on fuelling and race weight",
-                  "Recovery, sleep and HRV protocols sitting alongside the plan",
-                  "A private community of riders running the same system — not beginners",
-                ].map((item) => (
+                {ndyBullets.map((item) => (
                   <li key={item} className="flex gap-3">
                     <span
                       aria-hidden="true"

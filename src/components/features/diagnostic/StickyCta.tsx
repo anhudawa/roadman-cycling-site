@@ -28,8 +28,10 @@ export function StickyCta({
     const onScroll = () => {
       cancelAnimationFrame(raf);
       raf = requestAnimationFrame(() => {
-        // Show after the user has moved past the first viewport.
-        const threshold = window.innerHeight * 0.6;
+        // Show after the user has moved past the hero block on mobile.
+        // 0.2 means the bar appears as soon as the diagnosis paragraph
+        // is in view, which is when the rider is most likely to convert.
+        const threshold = window.innerHeight * 0.2;
         setVisible((prev) => {
           const next = window.scrollY > threshold;
           return next === prev ? prev : next;
