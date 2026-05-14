@@ -1,4 +1,4 @@
-import { NextResponse } from "next/server";
+import { NextResponse, after } from "next/server";
 import { recordEvent } from "@/lib/admin/events-store";
 import { upsertOnSignup } from "@/lib/admin/subscribers-store";
 import { upsertContact, addActivity } from "@/lib/crm/contacts";
@@ -33,11 +33,13 @@ import { riderProfilePatchFromDiagnostic } from "@/lib/diagnostic/rider-profile-
  *      static §9 template if the LLM fails twice or the API key is
  *      missing. The fallback path is deliberately first-class — the
  *      user never waits on a broken LLM.
- *   4. Persist everything (raw answers, scores, breakdown, UTMs).
- *   5. Best-effort Beehiiv subscribe + profile tag + CRM upsert +
- *      analytics event. Each is try/catch'd so a single failure in
- *      the side-effects group doesn't lose the lead.
- *   6. Return the slug so the client can route to /diagnostic/[slug].
+ *   4. Persist everything (raw answers, scores, breakdown, UTMs) and
+ *      respond to the client with the slug. The user can navigate to
+ *      /diagnostic/[slug] as soon as the row exists.
+ *   5. Schedule the rest via Next.js `after()` so the response isn't
+ *      held up by PDF rendering, Beehiiv, Resend, analytics, or the
+ *      rider-profile upsert. Each is try/catch'd so a single failure
+ *      in the side-effects group doesn't lose the lead.
  *
  * POST body shape:
  *   {
@@ -118,7 +120,9 @@ export async function POST(request: Request) {
 
   // generateBreakdown never throws — it catches its own errors and
   // returns the static §9 fallback when Claude is unavailable or the
-  // output fails validation twice in a row.
+  // output fails validation twice in a row. We keep this in-line
+  // because the breakdown is persisted with the row and read by the
+  // results page on the next request.
   const generation = await generateBreakdown(
     scoring.primary,
     scoring.secondary,
@@ -155,9 +159,53 @@ export async function POST(request: Request) {
     );
   }
 
-  // ── Non-fatal side-effects group ─────────────────────
-  // Everything below is best-effort — failures get logged but never
-  // prevent the user from seeing their results.
+  // ── Background side-effects ──────────────────────────────
+  // Everything below ships after the response has been flushed. The
+  // user only needs the slug to navigate; the PDF, email, CRM, and
+  // Beehiiv work happens in the background so they don't sit on the
+  // spinner for 8–15s. Failures are logged but can't break the lead.
+  after(runSideEffects({
+    submission,
+    scoring,
+    answers,
+    consent: body.consent === true,
+    email,
+    sessionId,
+    userAgent,
+    utm,
+    retakeNumber,
+  }));
+
+  return NextResponse.json({
+    success: true,
+    slug: submission.slug,
+    profile: scoring.primary,
+  });
+}
+
+type SideEffectArgs = {
+  submission: Awaited<ReturnType<typeof insertSubmission>>;
+  scoring: ReturnType<typeof scoreDiagnostic>;
+  answers: NonNullable<ReturnType<typeof parseAnswers>>;
+  consent: boolean;
+  email: string;
+  sessionId: string;
+  userAgent: string | null;
+  utm: ReturnType<typeof parseUtm>;
+  retakeNumber: number;
+};
+
+async function runSideEffects({
+  submission,
+  scoring,
+  answers,
+  consent,
+  email,
+  sessionId,
+  userAgent,
+  utm,
+  retakeNumber,
+}: SideEffectArgs): Promise<void> {
   const profileLabel = PROFILE_LABELS[scoring.primary];
 
   // Render the branded PDF in parallel with the other side effects so
@@ -186,14 +234,14 @@ export async function POST(request: Request) {
     });
 
   // Rider profile upsert — progressive, undefined preserves existing
-  // values. Runs before the Promise.all below so the rider_profile_id
-  // attach can piggyback on the returned row without extra awaits.
+  // values. Kicked off as a separate promise so the attach can chain
+  // without blocking the analytics/Beehiiv/Resend group below.
   const profilePatch = riderProfilePatchFromDiagnostic({
     answers,
     primary: scoring.primary,
-    consent: body.consent === true,
+    consent,
   });
-  upsertRiderProfile({ email, ...profilePatch })
+  const profilePromise = upsertRiderProfile({ email, ...profilePatch })
     .then((profile) =>
       attachRiderProfileId(submission.slug, profile.id).catch((err) =>
         console.error("[Diagnostic] attachRiderProfileId failed:", err),
@@ -204,6 +252,8 @@ export async function POST(request: Request) {
     );
 
   await Promise.all([
+    profilePromise,
+
     // Analytics event. We mask the email inside recordEvent.
     recordEvent("diagnostic_complete", "/plateau", {
       email,
@@ -214,7 +264,7 @@ export async function POST(request: Request) {
       meta: {
         profile: scoring.primary,
         secondary: scoring.secondary ?? "none",
-        source: generation.source,
+        source: submission.generationSource,
         slug: submission.slug,
       },
     }).catch((err) => console.error("[Diagnostic] recordEvent failed:", err)),
@@ -328,10 +378,4 @@ export async function POST(request: Request) {
         console.error("[Diagnostic] confirmation email failed:", err)
       ),
   ]);
-
-  return NextResponse.json({
-    success: true,
-    slug: submission.slug,
-    profile: scoring.primary,
-  });
 }
