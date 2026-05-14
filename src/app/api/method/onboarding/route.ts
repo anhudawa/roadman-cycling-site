@@ -13,6 +13,8 @@ import {
   type Level,
   type WeeklyHours,
 } from "@/lib/method/onboarding/types";
+import { upsertContact } from "@/lib/crm/contacts";
+import { recordAssignment } from "@/lib/crm/trainingpeaks-assignments";
 
 interface OnboardingBody {
   planCode?: unknown;
@@ -112,6 +114,27 @@ export async function POST(request: Request) {
         at: new Date().toISOString(),
       }),
     );
+
+    // Drop a pending row in training_peaks_assignments + activity onto the
+    // CRM contact. Soft-fail: the rider response should never depend on
+    // CRM availability. Once the TrainingPeaks partner API lands, this is
+    // also where assignPlan() will fire.
+    try {
+      const contact = await upsertContact({
+        email: session.enrollment.email,
+        name: session.enrollment.name ?? null,
+      });
+      await recordAssignment({
+        contactId: contact.id,
+        planCode: result.plan.code,
+        planName: result.plan.name,
+        planStartDate: eventDate,
+        assignedBy: "method-onboarding",
+        skipIfPendingDuplicate: true,
+      });
+    } catch (err) {
+      console.error("[method/onboarding] CRM assignment write failed", err);
+    }
 
     return NextResponse.json({
       ok: true,

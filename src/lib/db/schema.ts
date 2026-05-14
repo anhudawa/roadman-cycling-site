@@ -1704,6 +1704,45 @@ export const campRoomAssignments = pgTable(
   ],
 );
 
+// --- CRM: TrainingPeaks Plan Assignments ---
+//
+// One row per assignment of a Method plan to an athlete. The same contact
+// may have many rows across blocks (e.g. a gran-fondo build, then a
+// general-fitness off-season block). tp_athlete_id and tp_plan_id are
+// nullable: rows arrive in 'pending' status from the Method onboarding
+// quiz before an account has been created in TrainingPeaks; ops fills
+// them in and flips status to 'active' once the plan has been assigned
+// inside TP.
+export const trainingPeaksAssignments = pgTable(
+  "training_peaks_assignments",
+  {
+    id: serial("id").primaryKey(),
+    contactId: integer("contact_id")
+      .notNull()
+      .references(() => contacts.id, { onDelete: "cascade" }),
+    /** Code from the Method plan matrix, e.g. 'gran-fondo--intermediate--8h'. */
+    planCode: text("plan_code").notNull(),
+    /** Human label, e.g. 'Method: Gran Fondo — Intermediate — 8h/wk'. */
+    planName: text("plan_name").notNull(),
+    planStartDate: date("plan_start_date"),
+    /** 'pending' | 'active' | 'completed' | 'cancelled' */
+    status: text("status").notNull().default("pending"),
+    tpAthleteId: text("tp_athlete_id"),
+    tpPlanId: text("tp_plan_id"),
+    notes: text("notes"),
+    /** team_user slug, or trigger source slug like 'method-onboarding'. */
+    assignedBy: text("assigned_by"),
+    createdAt: timestamp("created_at", { withTimezone: true }).notNull().defaultNow(),
+    updatedAt: timestamp("updated_at", { withTimezone: true }).notNull().defaultNow(),
+  },
+  (table) => [
+    index("training_peaks_assignments_contact_id_idx").on(table.contactId),
+    index("training_peaks_assignments_status_idx").on(table.status),
+    index("training_peaks_assignments_tp_athlete_id_idx").on(table.tpAthleteId),
+    index("training_peaks_assignments_created_at_idx").on(table.createdAt),
+  ]
+);
+
 // ------------------------------------------------------------
 // The Roadman Method — Course Enrolments & Progress
 // ------------------------------------------------------------

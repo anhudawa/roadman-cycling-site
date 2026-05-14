@@ -6,6 +6,8 @@ import { ContactDealsSection } from "./ContactDealsSection";
 import { ContactBookingsSection } from "./ContactBookingsSection";
 import { ContactAttachments, type AttachmentRow } from "./ContactAttachments";
 import { ContactCustomFields } from "./ContactCustomFields";
+import { ContactTrainingPeaksSection } from "./ContactTrainingPeaksSection";
+import type { TrainingPeaksAssignmentRow } from "@/lib/crm/trainingpeaks-assignments";
 import { Button } from "@/components/admin/ui";
 
 type CustomFieldType = "text" | "longtext" | "number" | "date" | "url" | "select" | "boolean";
@@ -325,6 +327,7 @@ export function ContactDetail({
   initialCustomValues = {},
   initialEmails = [],
   applications = [],
+  trainingPeaksAssignments = [],
 }: {
   contact: Contact;
   activities: Activity[];
@@ -338,6 +341,7 @@ export function ContactDetail({
   initialCustomValues?: Record<string, unknown>;
   initialEmails?: EmailRow[];
   applications?: ApplicationRow[];
+  trainingPeaksAssignments?: TrainingPeaksAssignmentRow[];
 }) {
   const router = useRouter();
   const [contact, setContact] = useState(initialContact);
@@ -939,6 +943,8 @@ export function ContactDetail({
             {apps.length > 0 && (
               <ApplicationsSection applications={apps} />
             )}
+
+            <ContactTrainingPeaksSection initial={trainingPeaksAssignments} />
 
             <ContactCustomFields
               contactId={contact.id}

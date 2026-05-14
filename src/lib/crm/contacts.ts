@@ -39,7 +39,8 @@ export type ActivityType =
   | "contact_merged"
   | "booking_scheduled"
   | "booking_completed"
-  | "booking_cancelled";
+  | "booking_cancelled"
+  | "trainingpeaks_plan_assigned";
 
 export interface UpsertContactParams {
   email: string;
