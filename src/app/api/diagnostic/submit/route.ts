@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server";
 import { recordEvent } from "@/lib/admin/events-store";
 import { upsertOnSignup } from "@/lib/admin/subscribers-store";
+import { upsertContact, addActivity } from "@/lib/crm/contacts";
 import { subscribeToBeehiiv } from "@/lib/integrations/beehiiv";
 import { normaliseEmail, clampString, LIMITS } from "@/lib/validation";
 import { scoreDiagnostic } from "@/lib/diagnostic/scoring";
@@ -235,6 +236,49 @@ export async function POST(request: Request) {
     upsertOnSignup(email, "/plateau", "plateau-diagnostic").catch((err) =>
       console.error("[Diagnostic] upsertOnSignup failed:", err)
     ),
+
+    // CRM contact + diagnostic activity. Without this the diagnostic
+    // completer is invisible to the admin contacts UI. Soft-fail —
+    // never blocks the rider response.
+    upsertContact({
+      email,
+      source: "plateau-diagnostic",
+      customFields: {
+        diagnostic_primary_profile: scoring.primary,
+        diagnostic_secondary_profile: scoring.secondary ?? null,
+        diagnostic_score_under_recovered: scoring.scores.underRecovered,
+        diagnostic_score_polarisation: scoring.scores.polarisation,
+        diagnostic_score_strength_gap: scoring.scores.strengthGap,
+        diagnostic_score_fueling_deficit: scoring.scores.fuelingDeficit,
+        diagnostic_close_to_breakthrough: scoring.closeToBreakthrough,
+        diagnostic_severe_multi_system: scoring.severeMultiSystem,
+        diagnostic_retake_number: retakeNumber,
+        diagnostic_latest_slug: submission.slug,
+        utm_source: utm.utmSource ?? null,
+        utm_medium: utm.utmMedium ?? null,
+        utm_campaign: utm.utmCampaign ?? null,
+        utm_content: utm.utmContent ?? null,
+        utm_term: utm.utmTerm ?? null,
+      },
+    })
+      .then((contact) =>
+        addActivity(contact.id, {
+          type: "diagnostic_completed",
+          title: `Completed plateau diagnostic: ${profileLabel}`,
+          meta: {
+            primary: scoring.primary,
+            secondary: scoring.secondary ?? null,
+            scores: scoring.scores,
+            slug: submission.slug,
+            retakeNumber,
+            closeToBreakthrough: scoring.closeToBreakthrough,
+            severeMultiSystem: scoring.severeMultiSystem,
+          },
+        }),
+      )
+      .catch((err) =>
+        console.error("[Diagnostic] CRM contact/activity failed:", err),
+      ),
 
     // Beehiiv subscribe + profile tag. Handles reactivation and 409
     // dedup internally. UTM values flow through so we can segment

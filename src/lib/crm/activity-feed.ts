@@ -115,4 +115,5 @@ export const ALL_ACTIVITY_TYPES: ActivityType[] = [
   "file_removed",
   "contact_merged",
   "trainingpeaks_plan_assigned",
+  "diagnostic_completed",
 ];
