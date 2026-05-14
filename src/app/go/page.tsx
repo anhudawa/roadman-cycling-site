@@ -129,7 +129,7 @@ const HERO_CHIPS: readonly Testimonial[] = [
     name: "Daniel Stone",
     initials: "DS",
     photoSrc: "/images/testimonials/daniel.jpg",
-    hasPhoto: false,
+    hasPhoto: true,
     stat: "Cat 3 → Cat 1",
     detail: "One season with the system",
     quote: "",

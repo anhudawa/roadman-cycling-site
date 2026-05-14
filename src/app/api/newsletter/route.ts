@@ -34,6 +34,17 @@ function matchAssetDeliverable(source: string): ImmediateAssetDeliverable | null
       campaign: "masters-report",
     };
   }
+  // /go exit-intent promises the Masters Report PDF — same asset as
+  // /masters-report, kept as a distinct campaign so Beehiiv segmentation
+  // and Resend tagging can attribute conversions to the PPC consolation
+  // capture rather than the dedicated squeeze page.
+  if (source === "go-exit-intent") {
+    return {
+      tags: ["masters-report", "go-exit-intent"],
+      build: () => buildMastersReportWelcomeEmail(),
+      campaign: "go-exit-intent",
+    };
+  }
   return null;
 }
 

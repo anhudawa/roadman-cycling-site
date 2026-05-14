@@ -243,8 +243,8 @@ export function GoExitIntent() {
               CHECK YOUR INBOX.
             </h2>
             <p className="text-foreground-muted leading-relaxed">
-              The Roadman Toolkit is on its way. If it&rsquo;s not there in a
-              minute, check promotions.
+              The Masters Cycling Training Report 2026 is on its way. If it&rsquo;s
+              not there in a minute, check promotions.
             </p>
             <button
               type="button"
@@ -270,8 +270,9 @@ export function GoExitIntent() {
               BEFORE YOU GO&hellip;
             </h2>
             <p className="text-foreground-muted leading-relaxed mb-6">
-              Get the free Roadman Cycling Toolkit &mdash; training tips from
-              World Tour coaches, delivered to your inbox.
+              Get the free Masters Cycling Training Report 2026 &mdash; what
+              actually works after 40, built from World Tour coaches and the
+              evidence, delivered as a PDF.
             </p>
             <form onSubmit={onSubmit} className="space-y-3">
               <label htmlFor="go-exit-intent-email" className="sr-only">
@@ -315,7 +316,7 @@ export function GoExitIntent() {
                   hover:shadow-[0_14px_40px_rgba(241,99,99,0.55)]
                 "
               >
-                {submitting ? "SENDING..." : "SEND ME THE TOOLKIT"}
+                {submitting ? "SENDING..." : "SEND ME THE REPORT"}
               </button>
             </form>
             <p className="text-foreground-subtle text-xs mt-4 text-center">
