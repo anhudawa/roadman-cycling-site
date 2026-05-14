@@ -8,6 +8,7 @@ import { listTemplates, listEmailsForContact } from "@/lib/crm/email";
 import { listAttachments } from "@/lib/crm/attachments";
 import { getPotentialDuplicatesFor } from "@/lib/crm/dedup";
 import { listFieldDefs, getContactCustomValues } from "@/lib/crm/custom-fields";
+import { listAssignmentsForContact } from "@/lib/crm/trainingpeaks-assignments";
 import { ContactDetail } from "../_components/ContactDetail";
 
 export const dynamic = "force-dynamic";
@@ -28,7 +29,7 @@ export default async function ContactDetailPage({
   const contact = await getContactById(id);
   if (!contact) notFound();
 
-  const [activities, taskRows, templateRows, attachmentRows, duplicateCandidates, customFieldDefsList, customValues, emailRows, applicationRows] =
+  const [activities, taskRows, templateRows, attachmentRows, duplicateCandidates, customFieldDefsList, customValues, emailRows, applicationRows, trainingPeaksAssignmentRows] =
     await Promise.all([
       getTimeline(id, { limit: 200 }),
       db
@@ -49,6 +50,10 @@ export default async function ContactDetailPage({
             .where(eq(sql`lower(${cohortApplications.email})`, contact.email))
             .orderBy(desc(cohortApplications.createdAt))
         : Promise.resolve([]),
+      listAssignmentsForContact(id).catch((err) => {
+        console.error("[contacts/[id]] failed to load TP assignments", err);
+        return [];
+      }),
     ]);
 
   return (
@@ -124,6 +129,7 @@ export default async function ContactDetailPage({
         status: a.status,
         createdAt: a.createdAt.toISOString(),
       }))}
+      trainingPeaksAssignments={trainingPeaksAssignmentRows}
     />
   );
 }
