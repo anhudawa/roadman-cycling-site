@@ -14,7 +14,8 @@ export type ContactSource =
   | "import"
   | "subscribers"
   | "beehiiv"
-  | "stripe";
+  | "stripe"
+  | "plateau-diagnostic";
 
 export type ActivityType =
   | "contact_submission"
@@ -40,7 +41,8 @@ export type ActivityType =
   | "booking_scheduled"
   | "booking_completed"
   | "booking_cancelled"
-  | "trainingpeaks_plan_assigned";
+  | "trainingpeaks_plan_assigned"
+  | "diagnostic_completed";
 
 export interface UpsertContactParams {
   email: string;

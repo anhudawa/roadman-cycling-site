@@ -314,6 +314,32 @@ export interface ApplicationRow {
   createdAt: string;
 }
 
+export interface DiagnosticSubmissionRow {
+  id: number;
+  slug: string;
+  primaryProfile: string;
+  secondaryProfile: string | null;
+  scores: Record<string, number>;
+  severeMultiSystem: boolean;
+  closeToBreakthrough: boolean;
+  retakeNumber: number;
+  createdAt: string;
+}
+
+const DIAGNOSTIC_PROFILE_LABELS: Record<string, string> = {
+  underRecovered: "Under-recovered",
+  polarisation: "No-man's-land",
+  strengthGap: "Strength Gap",
+  fuelingDeficit: "Fuelling Deficit",
+};
+
+const DIAGNOSTIC_SCORE_LABELS: Record<string, string> = {
+  underRecovered: "Under-recovered",
+  polarisation: "Polarisation",
+  strengthGap: "Strength gap",
+  fuelingDeficit: "Fuelling deficit",
+};
+
 export function ContactDetail({
   contact: initialContact,
   activities: initialActivities,
@@ -328,6 +354,7 @@ export function ContactDetail({
   initialEmails = [],
   applications = [],
   trainingPeaksAssignments = [],
+  diagnosticSubmissions = [],
 }: {
   contact: Contact;
   activities: Activity[];
@@ -342,6 +369,7 @@ export function ContactDetail({
   initialEmails?: EmailRow[];
   applications?: ApplicationRow[];
   trainingPeaksAssignments?: TrainingPeaksAssignmentRow[];
+  diagnosticSubmissions?: DiagnosticSubmissionRow[];
 }) {
   const router = useRouter();
   const [contact, setContact] = useState(initialContact);
@@ -942,6 +970,10 @@ export function ContactDetail({
           <div className="lg:col-span-2 space-y-6">
             {apps.length > 0 && (
               <ApplicationsSection applications={apps} />
+            )}
+
+            {diagnosticSubmissions.length > 0 && (
+              <DiagnosticSection submissions={diagnosticSubmissions} />
             )}
 
             <ContactTrainingPeaksSection initial={trainingPeaksAssignments} />
@@ -1638,6 +1670,165 @@ export function ContactDetail({
               </Button>
             </div>
           </div>
+        </div>
+      )}
+    </div>
+  );
+}
+
+function DiagnosticSection({
+  submissions,
+}: {
+  submissions: DiagnosticSubmissionRow[];
+}) {
+  const latest = submissions[0];
+  const retakeCount = submissions.length;
+  return (
+    <div className="bg-[var(--color-elevated)] rounded-[var(--radius-admin-lg)] border border-[var(--color-good)]/30 overflow-hidden">
+      <div className="px-4 py-3 border-b border-[var(--color-good)]/30 bg-[var(--color-good-tint)] flex items-center gap-2 flex-wrap">
+        <span className="w-2 h-2 rounded-full bg-[var(--color-good)]" />
+        <p className="font-body font-semibold text-[13px] text-[var(--color-fg)]">
+          Plateau Diagnostic
+        </p>
+        <span className="ml-auto text-[10px] text-foreground-subtle">
+          {retakeCount} submission{retakeCount === 1 ? "" : "s"}
+        </span>
+      </div>
+      <div className="divide-y divide-white/5">
+        {submissions.map((s) => (
+          <DiagnosticCard
+            key={s.id}
+            submission={s}
+            isLatest={s.id === latest.id}
+            totalCount={retakeCount}
+          />
+        ))}
+      </div>
+    </div>
+  );
+}
+
+function DiagnosticCard({
+  submission,
+  isLatest,
+  totalCount,
+}: {
+  submission: DiagnosticSubmissionRow;
+  isLatest: boolean;
+  totalCount: number;
+}) {
+  const taken = new Date(submission.createdAt).toLocaleString("en-GB", {
+    day: "numeric",
+    month: "short",
+    year: "numeric",
+    hour: "2-digit",
+    minute: "2-digit",
+  });
+  const profileLabel =
+    DIAGNOSTIC_PROFILE_LABELS[submission.primaryProfile] ??
+    submission.primaryProfile;
+  const secondaryLabel = submission.secondaryProfile
+    ? DIAGNOSTIC_PROFILE_LABELS[submission.secondaryProfile] ??
+      submission.secondaryProfile
+    : null;
+  const scoreEntries = Object.entries(submission.scores ?? {}).sort(
+    (a, b) => Number(b[1]) - Number(a[1]),
+  );
+  const maxScore = scoreEntries.reduce(
+    (m, [, v]) => Math.max(m, Number(v) || 0),
+    0,
+  );
+
+  return (
+    <div className="p-4 space-y-3">
+      <div className="flex items-center gap-3 flex-wrap text-[11px]">
+        <span className="text-foreground-subtle">
+          Taken <span className="text-off-white">{taken}</span>
+        </span>
+        <span className="text-foreground-subtle">·</span>
+        <span className="text-foreground-subtle">
+          Retake{" "}
+          <span className="text-off-white">
+            #{submission.retakeNumber}
+            {totalCount > 1 ? ` of ${totalCount}` : ""}
+          </span>
+        </span>
+        {isLatest && totalCount > 1 && (
+          <span className="px-2 py-0.5 rounded-full border border-[var(--color-good)]/40 bg-[var(--color-good-tint)] text-[var(--color-good)] text-[10px] font-medium">
+            Latest
+          </span>
+        )}
+        {submission.closeToBreakthrough && (
+          <span className="px-2 py-0.5 rounded-full border border-[var(--color-good)]/40 bg-[var(--color-good-tint)] text-[var(--color-good)] text-[10px] font-medium">
+            Close to breakthrough
+          </span>
+        )}
+        {submission.severeMultiSystem && (
+          <span className="px-2 py-0.5 rounded-full border border-[var(--color-warn)]/40 bg-[var(--color-warn-tint)] text-[var(--color-warn)] text-[10px] font-medium">
+            Multi-system
+          </span>
+        )}
+        <a
+          href={`/diagnostic/${submission.slug}`}
+          target="_blank"
+          rel="noreferrer"
+          className="ml-auto text-[10px] px-2 py-1 rounded border font-medium bg-[var(--color-elevated)] text-[var(--color-fg-muted)] border-[var(--color-border-strong)] hover:bg-[var(--color-raised)]"
+        >
+          View results ↗
+        </a>
+      </div>
+
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+        <div className="p-3 rounded-lg border border-[var(--color-good)]/30 bg-[var(--color-good-tint)]">
+          <p className="text-foreground-subtle text-[10px] tracking-widest uppercase mb-1">
+            Primary profile
+          </p>
+          <p className="text-off-white text-sm font-medium">{profileLabel}</p>
+        </div>
+        <div className="p-3 rounded-lg border border-white/5 bg-white/[0.02]">
+          <p className="text-foreground-subtle text-[10px] tracking-widest uppercase mb-1">
+            Secondary
+          </p>
+          <p
+            className={`text-sm ${
+              secondaryLabel
+                ? "text-off-white"
+                : "text-foreground-subtle italic"
+            }`}
+          >
+            {secondaryLabel ?? "—"}
+          </p>
+        </div>
+      </div>
+
+      {scoreEntries.length > 0 && (
+        <div className="space-y-1.5">
+          <p className="text-foreground-subtle text-[10px] tracking-widest uppercase">
+            Scores
+          </p>
+          <ul className="space-y-1.5">
+            {scoreEntries.map(([key, value]) => {
+              const label = DIAGNOSTIC_SCORE_LABELS[key] ?? key;
+              const v = Number(value) || 0;
+              const pct = maxScore > 0 ? Math.round((v / maxScore) * 100) : 0;
+              return (
+                <li key={key} className="flex items-center gap-3 text-[12px]">
+                  <span className="w-32 shrink-0 text-foreground-subtle">
+                    {label}
+                  </span>
+                  <div className="flex-1 h-1.5 rounded-full bg-white/5 overflow-hidden">
+                    <div
+                      className="h-full bg-[var(--color-good)]"
+                      style={{ width: `${pct}%` }}
+                    />
+                  </div>
+                  <span className="w-8 text-right font-mono text-off-white">
+                    {v}
+                  </span>
+                </li>
+              );
+            })}
+          </ul>
         </div>
       )}
     </div>

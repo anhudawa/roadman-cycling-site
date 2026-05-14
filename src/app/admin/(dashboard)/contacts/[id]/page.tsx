@@ -2,7 +2,11 @@ import { notFound } from "next/navigation";
 import { requireAuth } from "@/lib/admin/auth";
 import { getContactById, getTimeline } from "@/lib/crm/contacts";
 import { db } from "@/lib/db";
-import { tasks as tasksTable, cohortApplications } from "@/lib/db/schema";
+import {
+  tasks as tasksTable,
+  cohortApplications,
+  diagnosticSubmissions,
+} from "@/lib/db/schema";
 import { desc, eq, sql } from "drizzle-orm";
 import { listTemplates, listEmailsForContact } from "@/lib/crm/email";
 import { listAttachments } from "@/lib/crm/attachments";
@@ -29,7 +33,7 @@ export default async function ContactDetailPage({
   const contact = await getContactById(id);
   if (!contact) notFound();
 
-  const [activities, taskRows, templateRows, attachmentRows, duplicateCandidates, customFieldDefsList, customValues, emailRows, applicationRows, trainingPeaksAssignmentRows] =
+  const [activities, taskRows, templateRows, attachmentRows, duplicateCandidates, customFieldDefsList, customValues, emailRows, applicationRows, trainingPeaksAssignmentRows, diagnosticRows] =
     await Promise.all([
       getTimeline(id, { limit: 200 }),
       db
@@ -54,6 +58,30 @@ export default async function ContactDetailPage({
         console.error("[contacts/[id]] failed to load TP assignments", err);
         return [];
       }),
+      contact.email
+        ? (async () => {
+            try {
+              return await db
+                .select({
+                  id: diagnosticSubmissions.id,
+                  slug: diagnosticSubmissions.slug,
+                  primaryProfile: diagnosticSubmissions.primaryProfile,
+                  secondaryProfile: diagnosticSubmissions.secondaryProfile,
+                  scores: diagnosticSubmissions.scores,
+                  severeMultiSystem: diagnosticSubmissions.severeMultiSystem,
+                  closeToBreakthrough: diagnosticSubmissions.closeToBreakthrough,
+                  retakeNumber: diagnosticSubmissions.retakeNumber,
+                  createdAt: diagnosticSubmissions.createdAt,
+                })
+                .from(diagnosticSubmissions)
+                .where(eq(diagnosticSubmissions.email, contact.email))
+                .orderBy(desc(diagnosticSubmissions.createdAt));
+            } catch (err) {
+              console.error("[contacts/[id]] failed to load diagnostic submissions", err);
+              return [];
+            }
+          })()
+        : Promise.resolve([]),
     ]);
 
   return (
@@ -130,6 +158,17 @@ export default async function ContactDetailPage({
         createdAt: a.createdAt.toISOString(),
       }))}
       trainingPeaksAssignments={trainingPeaksAssignmentRows}
+      diagnosticSubmissions={diagnosticRows.map((d) => ({
+        id: d.id,
+        slug: d.slug,
+        primaryProfile: d.primaryProfile,
+        secondaryProfile: d.secondaryProfile,
+        scores: (d.scores ?? {}) as Record<string, number>,
+        severeMultiSystem: d.severeMultiSystem,
+        closeToBreakthrough: d.closeToBreakthrough,
+        retakeNumber: d.retakeNumber,
+        createdAt: d.createdAt.toISOString(),
+      }))}
     />
   );
 }
