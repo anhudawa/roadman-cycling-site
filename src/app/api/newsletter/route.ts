@@ -108,9 +108,18 @@ export async function POST(request: Request) {
     // asset-delivery flows (e.g. /masters-report) because our own
     // Resend send below carries the PDF link — sending both would
     // confuse subscribers and step on each other in the inbox.
-    const beehiivTags = asset
+    // Tag with the acquisition channel (e.g. "go-exit-intent",
+    // "masters-report-hero", "ndy-fit-not-a-fit") so subscribers can be
+    // segmented in Beehiiv by where they came in. Strip a leading slash
+    // so the default "/newsletter" becomes a clean "newsletter" tag.
+    const sourceTag = source.replace(/^\/+/, "").trim();
+    const baseTags = asset
       ? ["saturday-spin", ...asset.tags]
       : ["saturday-spin"];
+    const beehiivTags =
+      sourceTag && !baseTags.includes(sourceTag)
+        ? [...baseTags, sourceTag]
+        : baseTags;
     const beehiivCampaign = asset ? asset.campaign : "saturday-spin";
     const result = await subscribeToBeehiiv({
       email,

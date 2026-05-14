@@ -41,6 +41,20 @@ const CACHE_TTL = 60_000;
 
 const STRIP_QUERY_PARAMS = ["post_page", "post_pages", "replytocom"] as const;
 
+// Paths where an admin-defined A/B test may run. Acts as a fast-path so
+// cold edge instances skip the /api/admin/experiments/active fetch
+// (50–200ms) for paths that can't possibly match a registered test —
+// most notably /go/ads, where any extra latency directly burns ad spend.
+// When a new admin experiment targets a different page, add its prefix
+// here. The static /go hero split below is unaffected.
+const AB_TEST_CANDIDATE_PREFIXES: readonly string[] = [];
+
+function pathMayHaveActiveTest(pathname: string): boolean {
+  return AB_TEST_CANDIDATE_PREFIXES.some((prefix) =>
+    pathname.startsWith(prefix),
+  );
+}
+
 async function getActiveTests(origin: string): Promise<ActiveTest[]> {
   const now = Date.now();
   if (now - cacheTimestamp < CACHE_TTL) return cachedTests;
@@ -106,8 +120,12 @@ export async function middleware(request: NextRequest) {
   /* ────────────────────────────────────────────────────────────
    * 3. A/B TEST VARIANT ASSIGNMENT
    * ──────────────────────────────────────────────────────────── */
-  const origin = new URL(request.url).origin;
-  const activeTests = await getActiveTests(origin);
+  // Fast-path: skip the experiments fetch entirely for paths that
+  // aren't candidates for an admin-defined test. The /go hero split
+  // below is static and runs unconditionally.
+  const activeTests: ActiveTest[] = pathMayHaveActiveTest(pathname)
+    ? await getActiveTests(new URL(request.url).origin)
+    : [];
 
   // ── /go hero headline split (static, code-owned) ──────────
   // Path-scoped to /go so the cookie is only seeded for visitors who
