@@ -20,8 +20,9 @@ import { trackAnalyticsEvent } from "@/lib/analytics/client";
  *    doesn't get interrupted.
  *
  * Suppressed for the session once shown or dismissed via
- * `sessionStorage`. mailto submit is a placeholder until the Beehiiv
- * wiring lands — see TODO below.
+ * `sessionStorage`. Submissions POST to /api/newsletter with
+ * source="go-exit-intent" so Beehiiv can segment these leads from
+ * the other capture surfaces.
  */
 
 const SESSION_KEY = "go-exit-intent-shown-v1";
@@ -33,6 +34,7 @@ const ARM_DELAY_MS = 4_000;
 export function GoExitIntent() {
   const [open, setOpen] = useState(false);
   const [submitted, setSubmitted] = useState(false);
+  const [submitting, setSubmitting] = useState(false);
   const [email, setEmail] = useState("");
   const [error, setError] = useState<string | null>(null);
   const dialogRef = useRef<HTMLDivElement | null>(null);
@@ -134,24 +136,42 @@ export function GoExitIntent() {
     (input ?? node).focus();
   }, [open]);
 
-  const onSubmit = (e: FormEvent) => {
+  const onSubmit = async (e: FormEvent) => {
     e.preventDefault();
+    if (submitting) return;
     const value = email.trim();
     if (!value.includes("@") || !value.includes(".")) {
       setError("Please enter a valid email.");
       return;
     }
     setError(null);
-    setSubmitted(true);
-    trackAnalyticsEvent({
-      type: "go_exit_intent_submit",
-      page: "/go",
-      meta: { email_domain: value.split("@")[1] ?? "" },
-    });
-    // TODO(beehiiv): wire this to /api/subscribe once the Toolkit
-    // sequence lands in Beehiiv. Until then the confirmation UI is
-    // honest about what happens — the lead is captured client-side
-    // only and Anthony picks it up out-of-band.
+    setSubmitting(true);
+
+    try {
+      const res = await fetch("/api/newsletter", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email: value, source: "go-exit-intent" }),
+      });
+
+      if (res.ok) {
+        trackAnalyticsEvent({
+          type: "go_exit_intent_submit",
+          page: "/go",
+          meta: { email_domain: value.split("@")[1] ?? "" },
+        });
+        setSubmitted(true);
+      } else {
+        const data = (await res.json().catch(() => ({}))) as {
+          error?: string;
+        };
+        setError(data.error ?? "Something went wrong. Try again.");
+      }
+    } catch {
+      setError("Something went wrong. Try again.");
+    } finally {
+      setSubmitting(false);
+    }
   };
 
   if (!open) return null;
@@ -282,18 +302,20 @@ export function GoExitIntent() {
               )}
               <button
                 type="submit"
+                disabled={submitting}
                 data-track="go_exit_intent_submit"
                 className="
                   w-full inline-flex items-center justify-center
                   font-heading tracking-wider text-base md:text-lg
-                  bg-coral hover:bg-coral-hover text-off-white
+                  bg-coral hover:bg-coral-hover disabled:opacity-50
+                  text-off-white
                   px-6 py-3.5 rounded-md
                   transition-all cursor-pointer
                   shadow-[0_10px_30px_rgba(241,99,99,0.35)]
                   hover:shadow-[0_14px_40px_rgba(241,99,99,0.55)]
                 "
               >
-                SEND ME THE TOOLKIT
+                {submitting ? "SENDING..." : "SEND ME THE TOOLKIT"}
               </button>
             </form>
             <p className="text-foreground-subtle text-xs mt-4 text-center">
