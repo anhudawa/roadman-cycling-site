@@ -819,24 +819,32 @@ function EmailStep({
 }
 
 function ProcessingStep() {
-  // Matches the spec's "3-4 second loader with real-time 'Analysing
-  // your answers…' messaging". We rotate phases on a timer so the
-  // wait feels deliberate rather than broken.
+  // Rotate phases on a steady interval so the wait reads as active work
+  // even if the request takes longer than expected. We loop through the
+  // list rather than freezing on the last phase — a stuck message reads
+  // as a broken page, not a busy one.
   const phases = useMemo(
     () => [
       "Scoring your answers across four profiles…",
       "Applying the cross-score bumps…",
       "Checking for multi-system patterns…",
+      "Cross-referencing your hours and FTP…",
+      "Pulling the close-to-breakthrough heuristics…",
       "Writing your personalised breakdown…",
+      "Drafting your three-step fix…",
+      "Tightening the language…",
+      "Almost there — saving your diagnosis…",
     ],
     []
   );
   const [phaseIndex, setPhaseIndex] = useState(0);
   useEffect(() => {
-    if (phaseIndex >= phases.length - 1) return;
-    const t = setTimeout(() => setPhaseIndex((i) => i + 1), 900);
-    return () => clearTimeout(t);
-  }, [phaseIndex, phases.length]);
+    const t = setInterval(
+      () => setPhaseIndex((i) => (i + 1) % phases.length),
+      1100
+    );
+    return () => clearInterval(t);
+  }, [phases.length]);
 
   return (
     <div
