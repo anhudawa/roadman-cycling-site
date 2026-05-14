@@ -3,13 +3,16 @@
 import { useEffect } from "react";
 
 /**
- * Fires the Google Ads "Plateau Diagnostic Complete" conversion when an
- * ads-sourced visitor lands on /go/ads. Mirrors the results-page firing
- * in ResultsAnalytics: stub gtag onto window.dataLayer if the script
- * hasn't initialized yet so the event buffers rather than no-ops.
+ * Fires the Google Ads "Ads Landing Page View" conversion once per
+ * mount when an ads-sourced visitor lands on /go/ads. Separate from
+ * the diagnostic-complete conversion fired in ResultsAnalytics — this
+ * one tracks the landing event itself. Mirrors the same dataLayer
+ * gtag-stub pattern: GoogleAdsTag loads with strategy="afterInteractive"
+ * which can fire after this effect, so we buffer via dataLayer and
+ * gtag.js drains the queue on load.
  */
 
-const GADS_CONVERSION_SEND_TO = "AW-18123737652/WDZ_CNiOvKwcELSUicJD";
+const GADS_CONVERSION_SEND_TO = "AW-18123737652/up0JCJqHxKwcELSUicJD";
 
 interface GtagFn {
   (command: string, action: string, params?: Record<string, unknown>): void;
@@ -32,7 +35,7 @@ export function AdsLandingAnalytics() {
       }
       w.gtag("event", "conversion", {
         send_to: GADS_CONVERSION_SEND_TO,
-        value: 10.0,
+        value: 1.0,
         currency: "EUR",
       });
     } catch {
