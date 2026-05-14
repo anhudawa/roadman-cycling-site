@@ -884,7 +884,7 @@ export function FitFlow(_props: FitFlowProps = {}) {
                         headers: { "Content-Type": "application/json" },
                         body: JSON.stringify({
                           email,
-                          source: "ndy_fit_not_a_fit",
+                          source: "ndy-fit-not-a-fit",
                         }),
                       });
                     } catch {
