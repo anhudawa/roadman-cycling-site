@@ -217,6 +217,29 @@ export function DiagnosticFlow() {
   })();
   const progress = Math.min(100, Math.round((stepNumber / totalSteps) * 100));
 
+  // What the user sees above the progress bar. The absolute step
+  // number (1..18) leaks plumbing — demographics and the email gate
+  // aren't "questions", so counting them contradicts the "12 questions"
+  // promise on /go and /plateau. Show contextual labels instead.
+  const progressLabel = (() => {
+    switch (step.kind) {
+      case "age":
+      case "hours":
+      case "ftp":
+      case "goal":
+        return "Getting started";
+      case "question":
+        return `Question ${step.index + 1} of 12`;
+      case "q13":
+        return "Almost done";
+      case "email":
+        return "Last step";
+      case "processing":
+      case "error":
+        return "";
+    }
+  })();
+
   // ── Navigation helpers ─────────────────────────────────
   const goBack = useCallback(() => {
     setStep((prev) => {
@@ -332,7 +355,12 @@ export function DiagnosticFlow() {
   // ── Render ─────────────────────────────────────────────
   return (
     <div className="mx-auto w-full max-w-[640px]">
-      <ProgressBar percent={progress} stepNumber={stepNumber} total={totalSteps} />
+      <ProgressBar
+        percent={progress}
+        label={progressLabel}
+        stepNumber={stepNumber}
+        total={totalSteps}
+      />
 
       <div className="mt-8 rounded-2xl bg-white/5 border border-white/10 p-6 md:p-10">
 
@@ -407,7 +435,7 @@ export function DiagnosticFlow() {
 
         {step.kind === "q13" && (
           <TextStep
-            kicker="Last question · Optional"
+            kicker="Almost done · Optional"
             heading="Anything else you want us to know?"
             hint="What's your best guess at why you're stuck? Takes the diagnosis from good to precise."
             value={state.q13}
@@ -454,10 +482,12 @@ export function DiagnosticFlow() {
 
 function ProgressBar({
   percent,
+  label,
   stepNumber,
   total,
 }: {
   percent: number;
+  label: string;
   stepNumber: number;
   total: number;
 }) {
@@ -470,10 +500,8 @@ function ProgressBar({
       aria-valuemax={100}
       aria-valuetext={`Step ${Math.min(stepNumber, total)} of ${total}`}
     >
-      <div className="flex justify-between items-baseline mb-2 text-xs font-heading tracking-widest text-foreground-subtle">
-        <span>
-          STEP {Math.min(stepNumber, total)} OF {total}
-        </span>
+      <div className="flex justify-between items-baseline mb-2 text-xs font-heading tracking-widest text-foreground-muted">
+        <span>{label.toUpperCase()}</span>
         <span>{percent}%</span>
       </div>
       <div className="h-1.5 w-full bg-white/10 rounded-full overflow-hidden">
@@ -617,7 +645,7 @@ function NumberStep({
         <button
           type="button"
           onClick={onSkip}
-          className="text-sm text-foreground-subtle hover:text-off-white cursor-pointer py-2 px-2 rounded"
+          className="text-sm text-foreground-muted hover:text-off-white underline underline-offset-4 decoration-foreground-muted/60 hover:decoration-off-white cursor-pointer py-2 px-2 rounded"
         >
           Skip this
         </button>
@@ -691,7 +719,7 @@ function TextStep({
         <button
           type="button"
           onClick={onSkip}
-          className="text-sm text-foreground-subtle hover:text-off-white cursor-pointer py-2 px-2 rounded"
+          className="text-sm text-foreground-muted hover:text-off-white underline underline-offset-4 decoration-foreground-muted/60 hover:decoration-off-white cursor-pointer py-2 px-2 rounded"
         >
           Skip this
         </button>
@@ -746,7 +774,6 @@ function EmailStep({
         type="email"
         required
         autoComplete="email"
-        autoFocus
         inputMode="email"
         value={email}
         onChange={(e) => {
@@ -888,7 +915,7 @@ function BackLink({ onBack }: { onBack: () => void }) {
       onClick={onBack}
       // py-2 + the text gives a ~40px hit area, comfortable on mobile
       // without expanding the visible chrome.
-      className="text-sm text-foreground-subtle hover:text-off-white cursor-pointer py-2 -ml-2 pl-2 pr-3 rounded"
+      className="text-sm text-foreground-muted hover:text-off-white underline underline-offset-4 decoration-foreground-muted/60 hover:decoration-off-white cursor-pointer py-2 -ml-2 pl-2 pr-3 rounded"
     >
       ← Back
     </button>
