@@ -1,8 +1,8 @@
 import Image from "next/image";
 import Link from "next/link";
 import { Container, Section } from "@/components/layout";
-import { TrustpilotBadge } from "@/components/proof/TrustpilotProof";
 import { BRAND_STATS, FOUNDER, PODCAST, SITE_ORIGIN } from "@/lib/brand-facts";
+import { TRUSTPILOT } from "@/lib/trustpilot";
 import { readGoHeroVariant, type GoHeroVariant } from "@/lib/ab/go-hero";
 import { GoExitIntent } from "./_components/GoExitIntent";
 
@@ -540,9 +540,26 @@ export default async function GoLandingPage() {
           </div>
 
           {/* Trustpilot rating — cold-traffic credibility next to the CTA.
-              Pulls the live aggregate (rating, count) from /lib/trustpilot. */}
-          <div className="mt-7 md:mt-8 flex justify-center">
-            <TrustpilotBadge align="center" hideCount />
+              The shared TrustpilotBadge wraps the score in an anchor to
+              trustpilot.com, which leaks the click. We inline a static
+              version here so the hero stays zero-escape (the footer
+              keeps a single outbound Trustpilot link for verifiability). */}
+          <div className="mt-7 md:mt-8 flex flex-col items-center gap-2">
+            <div className="flex items-center gap-1.5">
+              <TrustpilotStar size={20} />
+              <TrustpilotStar size={20} />
+              <TrustpilotStar size={20} />
+              <TrustpilotStar size={20} />
+              <TrustpilotStar size={20} />
+            </div>
+            <p className="text-off-white font-body text-sm leading-snug">
+              <span className="font-heading text-2xl tracking-wide mr-2 align-middle">
+                {TRUSTPILOT.rating.toFixed(1)}
+              </span>
+              <span className="text-foreground-muted">
+                {TRUSTPILOT.tierLabel} on Trustpilot
+              </span>
+            </p>
           </div>
 
           {/* Built-by row — names the author and the experts behind the
