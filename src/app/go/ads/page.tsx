@@ -834,7 +834,6 @@ export default function GoAdsLandingPage() {
             {FAQS.map(({ q, a }, i) => (
               <li key={q}>
                 <div
-                  data-track={`go_ads_faq_q${i + 1}`}
                   className="
                     go-faq-card
                     rounded-2xl bg-deep-purple border border-white/10
@@ -848,6 +847,7 @@ export default function GoAdsLandingPage() {
                     className="sr-only"
                   />
                   <label
+                    data-track={`go_ads_faq_q${i + 1}`}
                     htmlFor={`go-ads-faq-${i + 1}`}
                     className="
                       go-faq-label

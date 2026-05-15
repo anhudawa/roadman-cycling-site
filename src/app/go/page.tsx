@@ -1011,7 +1011,6 @@ export default async function GoLandingPage() {
             {FAQS.map(({ q, a }, i) => (
               <li key={q}>
                 <div
-                  data-track={`go_faq_q${i + 1}`}
                   className="
                     go-faq-card
                     rounded-2xl bg-deep-purple border border-white/10
@@ -1025,6 +1024,7 @@ export default async function GoLandingPage() {
                     className="sr-only"
                   />
                   <label
+                    data-track={`go_faq_q${i + 1}`}
                     htmlFor={`go-faq-${i + 1}`}
                     className="
                       go-faq-label
