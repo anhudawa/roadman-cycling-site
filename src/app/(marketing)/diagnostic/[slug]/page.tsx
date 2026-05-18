@@ -22,14 +22,18 @@ import { getTestimonialsByName, type Testimonial } from "@/lib/testimonials";
 /**
  * Per-profile testimonial picks. Two each — the first lines up tightly
  * with the diagnosis (e.g. Damien is the canonical "I plateaued, the
- * plan broke it" story for the polarisation/under-recovered set), the
- * second adds a second proof angle. Close-to-breakthrough reuses the
- * plateau set because that's the closest emotional match.
+ * plan broke it" story; Mary K is the canonical cycling-specific S&C
+ * story for the strength gap), the second adds a second proof angle.
+ * Brian Morrissey is the recovery/volume story, so he proves the
+ * under-recovered diagnosis — not the strength gap, where Vern Locke's
+ * raw sprint-power jump speaks to the neuromuscular leak directly.
+ * Close-to-breakthrough reuses the plateau set because that's the
+ * closest emotional match.
  */
 const TESTIMONIAL_NAMES_BY_PROFILE: Record<Profile, string[]> = {
   underRecovered: ["Damien Maloney", "Brian Morrissey"],
   polarisation: ["Damien Maloney", "Blair Corey"],
-  strengthGap: ["Brian Morrissey", "Mary K"],
+  strengthGap: ["Mary K", "Vern Locke"],
   fuelingDeficit: ["Chris O'Connor", "Gregory Gross"],
 };
 const CLOSE_TO_BREAKTHROUGH_TESTIMONIAL_NAMES = [
