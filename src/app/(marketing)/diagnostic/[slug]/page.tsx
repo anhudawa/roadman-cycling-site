@@ -76,6 +76,29 @@ function ndyBulletsFor(
 }
 
 /**
+ * One honest, season-aware nudge above the final CTA. The page is
+ * force-dynamic, so `new Date()` on the server is correct per request
+ * and there's no hydration concern — this subtree never renders on the
+ * client. Deliberately no fake scarcity (no "X spots left", no
+ * countdowns): this audience has been burned and reads hype instantly.
+ * The only deadline is the calendar, and the calendar is real.
+ * Northern-hemisphere framing — the audience skews IE/UK/EU/US masters.
+ */
+function seasonUrgencyLine(now: Date): string {
+  const m = now.getMonth(); // 0 = Jan
+  if (m >= 2 && m <= 4) {
+    return "It’s spring. The season’s already rolling for the riders you’ll be on the road with this year — and every week you stay at this number is a week of it you don’t get back.";
+  }
+  if (m >= 5 && m <= 7) {
+    return "It’s mid-season. You can’t fake the form in August that you don’t build now. The plateau won’t break on its own — it breaks the week you change something.";
+  }
+  if (m >= 8 && m <= 9) {
+    return "The season’s winding down — which makes right now the window to fix the base for next year, while everyone else waits until March to start.";
+  }
+  return "It’s the off-season — where next year is actually won. What you build now is the form you line up with in spring. Wait, and you start the year already behind.";
+}
+
+/**
  * Results page. Reads straight from the DB on the server so the
  * initial render is already populated — no loading spinner, no
  * client round-trip. Safe to share the URL because slugs are
@@ -147,6 +170,8 @@ export default async function DiagnosticResultsPage({
     submission.primaryProfile,
     isCloseToBreakthrough,
   );
+
+  const seasonLine = seasonUrgencyLine(new Date());
 
   return (
     <>
@@ -455,6 +480,14 @@ export default async function DiagnosticResultsPage({
             <p className="text-off-white/90 leading-relaxed max-w-xl mx-auto">
               {breakdown.nextMove}
             </p>
+            {/* Honest, season-aware nudge — no fake scarcity, no
+                countdowns. The calendar is the only real deadline this
+                audience trusts. */}
+            <div className="mx-auto max-w-xl rounded-lg border border-coral/25 bg-coral/5 px-5 py-4">
+              <p className="text-off-white/90 text-sm md:text-[15px] leading-relaxed">
+                {seasonLine}
+              </p>
+            </div>
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4 pt-4">
               <Link
                 href={cta.primaryHref}
@@ -474,6 +507,13 @@ export default async function DiagnosticResultsPage({
                 </Link>
               )}
             </div>
+            {/* Risk reversal at the decision point — restates only
+                claims already made on this page (7-day trial, cancel
+                anytime, no contracts), placed where the click happens. */}
+            <p className="text-foreground-subtle text-xs md:text-sm">
+              Seven days free. Cancel anytime, no contracts &mdash; you only
+              continue if it&rsquo;s working.
+            </p>
             {/* Phase 2 handoff — rider can dig into the result with the
                 on-site assistant. Appears below the primary CTA so it
                 never competes with a booking/coaching conversion. */}
