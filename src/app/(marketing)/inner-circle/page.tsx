@@ -959,7 +959,7 @@ export default function InnerCirclePage() {
               <TrustpilotProof
                 audience="coaching"
                 heading="REVIEWED BY THE PEOPLE WE'VE COACHED"
-                subheading="Inner Circle is the premium tier of the same coaching system rated 4.5 on Trustpilot. Reviews from members coached on the methodology — verified, named, neutral platform."
+                subheading="Inner Circle is the premium tier of the same coaching system rated 4.5 on Trustpilot. Reviews from members coached on the methodology — named, on a neutral platform."
                 count={3}
               />
             </ScrollReveal>

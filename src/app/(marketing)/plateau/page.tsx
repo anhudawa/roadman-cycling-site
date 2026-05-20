@@ -1088,7 +1088,7 @@ export default async function PlateauPage() {
                 audience="coaching"
                 reviews={plateauReviews}
                 heading="REVIEWED BY THE PEOPLE WE'VE COACHED"
-                subheading="The diagnostic is a free entry point to a coaching system rated 4.5 on Trustpilot — verified, named, on a platform we don't control."
+                subheading="The diagnostic is a free entry point to a coaching system rated 4.5 on Trustpilot — named reviews, on a platform we don't control."
               />
             </ScrollReveal>
           </Container>

@@ -243,31 +243,16 @@ const ApplePodcastsIcon = ({ size = 18 }: { size?: number }) => (
   </svg>
 );
 
-const TRUSTPILOT_GREEN = "#00B67A";
-
 const TrustpilotStar = ({ size = 28 }: { size?: number }) => (
-  <span
+  <svg
     aria-hidden="true"
-    style={{
-      width: size,
-      height: size,
-      background: TRUSTPILOT_GREEN,
-      display: "inline-flex",
-      alignItems: "center",
-      justifyContent: "center",
-      borderRadius: 2,
-    }}
+    width={size}
+    height={size}
+    viewBox="0 0 24 24"
+    fill="#F16363"
   >
-    <svg
-      width={size * 0.72}
-      height={size * 0.72}
-      viewBox="0 0 24 24"
-      fill="white"
-      aria-hidden="true"
-    >
-      <path d="M12 2l2.95 6.69L22 9.74l-5.5 4.93L18.18 22 12 18.27 5.82 22l1.68-7.33L2 9.74l7.05-1.05L12 2z" />
-    </svg>
-  </span>
+    <path d="M12 2l2.95 6.69L22 9.74l-5.5 4.93L18.18 22 12 18.27 5.82 22l1.68-7.33L2 9.74l7.05-1.05L12 2z" />
+  </svg>
 );
 
 const TestimonialAvatar = ({
@@ -936,7 +921,7 @@ export default function GoAdsLandingPage() {
                 </span>
               </div>
               <p className="text-foreground-muted text-sm">
-                Verified on Trustpilot
+                Reviewed on Trustpilot
               </p>
             </div>
           </div>

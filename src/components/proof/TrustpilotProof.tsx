@@ -4,34 +4,19 @@ import {
   type TrustpilotReview,
 } from "@/lib/trustpilot";
 
-const TRUSTPILOT_GREEN = "#00B67A";
-
-/** Trustpilot-style filled star inside a green tile. Always 5 are
- *  rendered; the score text below reflects the actual aggregate. */
-function StarTile({ size = 18 }: { size?: number }) {
+/** Generic filled star icon. Uses the site's coral accent — no
+ *  Trustpilot-trademarked green tiles or brand assets. */
+function Star({ size = 18 }: { size?: number }) {
   return (
-    <span
+    <svg
       aria-hidden="true"
-      style={{
-        width: size,
-        height: size,
-        background: TRUSTPILOT_GREEN,
-        display: "inline-flex",
-        alignItems: "center",
-        justifyContent: "center",
-        borderRadius: 1,
-      }}
+      width={size}
+      height={size}
+      viewBox="0 0 24 24"
+      fill="#F16363"
     >
-      <svg
-        width={size * 0.72}
-        height={size * 0.72}
-        viewBox="0 0 24 24"
-        fill="white"
-        aria-hidden="true"
-      >
-        <path d="M12 2l2.95 6.69L22 9.74l-5.5 4.93L18.18 22 12 18.27 5.82 22l1.68-7.33L2 9.74l7.05-1.05L12 2z" />
-      </svg>
-    </span>
+      <path d="M12 2l2.95 6.69L22 9.74l-5.5 4.93L18.18 22 12 18.27 5.82 22l1.68-7.33L2 9.74l7.05-1.05L12 2z" />
+    </svg>
   );
 }
 
@@ -62,7 +47,7 @@ export function TrustpilotRating({
       )}
       <div className={`flex items-center gap-1.5 ${align === "center" ? "justify-center" : ""}`}>
         {Array.from({ length: 5 }).map((_, i) => (
-          <StarTile key={i} size={20} />
+          <Star key={i} size={20} />
         ))}
       </div>
       <p className="text-off-white font-body text-sm leading-snug">
@@ -108,7 +93,7 @@ function ReviewCard({ review, preferShort = false }: ReviewCardProps) {
     <figure className="flex flex-col h-full rounded-xl border border-white/10 bg-white/[0.03] p-6 md:p-7">
       <div className="flex items-center gap-1 mb-3">
         {Array.from({ length: review.rating }).map((_, i) => (
-          <StarTile key={i} size={14} />
+          <Star key={i} size={14} />
         ))}
       </div>
       {review.title && (
@@ -124,7 +109,15 @@ function ReviewCard({ review, preferShort = false }: ReviewCardProps) {
           {review.author}
         </p>
         <p className="text-foreground-subtle text-xs mt-0.5 leading-snug">
-          Verified Trustpilot review · {review.country}
+          <a
+            href={TRUSTPILOT.profileUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="hover:text-foreground-muted underline-offset-2 hover:underline"
+          >
+            Trustpilot review
+          </a>{" "}
+          · {review.country}
         </p>
       </figcaption>
     </figure>
@@ -161,12 +154,12 @@ const DEFAULTS: Record<
   coaching: {
     heading: "WHAT MEMBERS SAY",
     subheading:
-      "Coaching reviews from Not Done Yet members and 1:1 athletes — verified on Trustpilot.",
+      "Coaching reviews from Not Done Yet members and 1:1 athletes — reviewed on Trustpilot.",
   },
   mixed: {
     heading: "RATED 4.5 ON TRUSTPILOT",
     subheading:
-      "Listeners, members, and coached athletes — in their own words. Verified by Trustpilot.",
+      "Listeners, members, and coached athletes — in their own words. Reviewed on Trustpilot.",
   },
 };
 
