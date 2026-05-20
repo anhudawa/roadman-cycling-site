@@ -16,8 +16,8 @@
 
 ### Email 1 of 3 — Diagnose & Educate
 
-**Subject:** Your diagnostic came back: you're cooked  
-**Preview text:** Training more won't fix this  
+**Subject:** Your diagnostic came back: you're cooked
+**Preview text:** Training more won't fix this
 **Delay:** Immediate (on tag)
 
 Hey,
@@ -51,8 +51,8 @@ Anthony
 
 ### Email 2 of 3 — Actionable Fix
 
-**Subject:** The 72-hour recovery reset  
-**Preview text:** Do this before your next hard session  
+**Subject:** The 72-hour recovery reset
+**Preview text:** Do this before your next hard session
 **Delay:** +2 days after Email 1
 
 Hey,
@@ -93,32 +93,33 @@ Anthony
 
 ### Email 3 of 3 — Soft Sell
 
-**Subject:** Recovery isn't a rest day — it's a system  
-**Preview text:** How we build this into every training block  
+**Subject:** Brian was exactly where you are six months ago
+**Preview text:** Constantly tired. FTP flatlined. Then he changed one thing.
 **Delay:** +4 days after Email 1
 
 Hey,
 
-Quick question: did you try the 72-hour reset?
+I want to tell you about Brian Morrissey because his story is probably going to sound familiar.
 
-If you did and felt better — good. That tells you exactly how far in the red you were running. If you didn't, no judgement, but that resistance to resting is part of the problem.
+Brian came into Not Done Yet in a hole. Constantly tired. Overtrained. He knew he was doing too much — most riders in his position do, deep down — but he didn't know what "enough" actually looked like. So he kept pushing, kept adding volume, kept wondering why the numbers wouldn't budge.
 
-Here's what I've learned coaching riders over the past few years: one-off fixes don't stick. You reset, feel good for a week, then slide back into the same pattern. Six hard days, one guilty rest day, repeat.
+Here's what changed: he stopped treating recovery as the absence of training and started treating it as training itself. Structured recovery. Planned deloads. HRV-guided intensity decisions. Within a few months, his FTP started climbing — not because he was training more, but because his body was finally getting the space to adapt to the work he was already doing.
 
-Inside Not Done Yet, recovery is built into the system:
+That's the shift. You don't need to become a rider who trains harder. You need to become a rider who recovers with the same intention and precision you bring to your intervals.
 
-- **Structured deload weeks** every 3rd or 4th week depending on your training age and load tolerance
-- **HRV-guided adjustments** — we teach you what your numbers actually mean so you can make real-time calls on session intensity
-- **Sleep and nutrition protocols** based on what Littlehales and Dunne recommend for endurance athletes, adapted for people with jobs and families
-- **Weekly check-ins** where we catch the early warning signs before you dig yourself into a hole
+And I know what you might be thinking — $195 a month is real money. So let me put it in context.
 
-The riders who progress fastest aren't the ones training hardest. They're the ones who recover properly between the hard sessions. Seiler's research backs this up consistently.
+TrainerRoad is about $20 a month. It'll give you workouts. What it won't do is look at your HRV trend on a Thursday and tell you to swap tomorrow's VO2max session for an easy spin. It won't catch the early signs of overreaching before you've dug yourself into a three-week hole. It won't build a recovery structure around YOUR life, your sleep, your stress.
 
-Not Done Yet is $195/month with a 7-day free trial. If you get in and it's not for you, cancel before the trial ends and you pay nothing.
+A personal coach who does all that? You're looking at $300 a month minimum. And that's before you factor in the community — riders going through the same thing, holding each other accountable, sharing what's working.
+
+Then there's the cost of not fixing this. Another season of accumulated fatigue. Race entries you paid for where you turned up flat. Training blocks that cost you time away from your family for zero adaptation. That adds up to far more than $195.
+
+Not Done Yet is $195/month with a 7-day free trial. Get in, see the recovery protocols, see how the coached riders structure their weeks. If it's not for you, cancel before the trial ends and you pay nothing.
 
 Join here: https://www.skool.com/roadmancycling/about
 
-You've already identified the problem. The diagnostic did its job. Now it's about whether you build a system around the fix or keep cycling through the same pattern.
+You already know what's wrong. Brian did too. The difference is he put a system around the fix.
 
 Anthony
 
@@ -132,8 +133,8 @@ Anthony
 
 ### Email 1 of 3 — Diagnose & Educate
 
-**Subject:** Your diagnostic result: you're stuck in the grey zone  
-**Preview text:** 80% of your training is doing almost nothing  
+**Subject:** 80% of your riding is in no-man's land
+**Preview text:** Your easy rides aren't easy and your hard rides aren't hard
 **Delay:** Immediate (on tag)
 
 Hey,
@@ -165,8 +166,8 @@ Anthony
 
 ### Email 2 of 3 — Actionable Fix
 
-**Subject:** The nose-breathing test (and one interval session)  
-**Preview text:** Two changes that fix your distribution  
+**Subject:** The nose-breathing test (and one interval session)
+**Preview text:** Two changes that fix your distribution
 **Delay:** +2 days after Email 1
 
 Hey,
@@ -209,32 +210,41 @@ Anthony
 
 ### Email 3 of 3 — Soft Sell
 
-**Subject:** Polarisation only works inside a system  
-**Preview text:** Why most riders drift back to the grey zone  
+**Subject:** The Norwegian secret that changed professional cycling
+**Preview text:** Seiler proved it. The pros live it. Most amateurs ignore it.
 **Delay:** +4 days after Email 1
 
 Hey,
 
-Here's what usually happens: rider learns about polarised training, nails it for 2-3 weeks, then gradually drifts back to the grey zone. The group ride picks up. The Strava segment is right there. The ego says "this is too easy."
+Let me tell you what happened in Norway.
 
-Six weeks later they're back to a 45/40/15 distribution and wondering why nothing changed.
+Prof Stephen Seiler spent two decades studying the training logs of Norwegian Olympic medallists — cross-country skiers, rowers, cyclists. World-class endurance athletes across multiple sports. The pattern was the same everywhere: roughly 80% of their training was at low intensity. Properly low. Embarrassingly low if you're an age-grouper used to smashing every ride.
 
-I've seen it hundreds of times. The knowledge isn't the problem. The system is.
+When Seiler published this, most amateur cyclists ignored it. Too slow. Too boring. Doesn't look impressive on Strava. But the coaches behind the best riders in the world — Dan Lorang, Tim Kerrison, the coaches at Jumbo-Visma — they didn't ignore it. They built their entire training systems around it. And the results at the highest level of the sport speak for themselves.
 
-Inside Not Done Yet, polarisation is built into how we structure every training block:
+Here's the thing nobody tells you about polarised training: knowing the theory isn't the hard part. You've read the 80/20 articles. You tried the nose-breathing test from my last email. You probably nailed it for a few rides.
 
-- **Periodised plans** that lock in the 80/20 distribution across your week, with intensity targets for every session
-- **Weekly structure reviews** so we catch the drift before it costs you 3 weeks of progress
-- **Race-specific intensity work** programmed by Dan Lorang's principles — the hard days are purposeful, not random
-- **Accountability** — when everyone around you is doing their easy rides properly easy, you stop feeling like you're the only one going slow
+The hard part is week 3. The group ride where everyone pushes the pace. The Strava KOM that's right there. The voice in your head that says "this can't possibly be enough." That's where the discipline breaks. Not because you lack willpower — because you lack a system that holds the line for you.
 
-Seiler's data is clear: the riders who maintain polarised distribution over months and years are the ones who see continuous FTP progression. The ones who know about it but can't sustain it stay on the same plateau.
+I've watched it hundreds of times. Rider discovers polarised training, executes beautifully for 2-3 weeks, then the grey zone creeps back in. Six weeks later the distribution is back to 45/40/15 and they're emailing me wondering why nothing changed.
 
-Not Done Yet is $195/month with a 7-day free trial. Cancel before the trial ends if it's not right for you.
+That's exactly what Not Done Yet exists to fix.
+
+Inside the community, every rider's week has a structure — the 80/20 distribution is built into the plan, not left to self-discipline. We review your intensity data weekly so the drift gets caught before it costs you a training block. When race-specific work is needed, it's programmed with purpose — not random efforts because the road tilted up and your ego took over.
+
+And here's what makes it work: when every rider around you is doing their easy rides properly easy, you stop feeling like you're the only one going slow. The community reinforces the discipline that willpower alone can't sustain.
+
+Now, $195 a month. I know. Let me be direct about this.
+
+You could piece together a polarised plan from free resources. Seiler's papers are public. The 80/20 framework isn't a secret. But if free information was enough, your distribution would already be fixed. The gap isn't knowledge — it's execution, accountability, and someone watching the data who'll tell you the truth when you're slipping.
+
+A personal coach costs $300+ a month. TrainerRoad costs $20 but it can't look at your week and tell you Wednesday's session needs to drop to zone 1 because your last three "easy" rides drifted into tempo. Not Done Yet sits right in the middle — proper coaching structure, a community that keeps you honest, and a price that makes sense for someone serious about this sport.
+
+$195/month. 7-day free trial. Cancel if it's not right.
 
 Join here: https://www.skool.com/roadmancycling/about
 
-You've identified the gap. The question is whether you can maintain the discipline to stay out of zone 3 on your own, or whether you need a system that holds you to it.
+Seiler proved the model works. The question is whether you can hold the discipline alone, or whether you need the system that makes it stick.
 
 Anthony
 
@@ -248,8 +258,8 @@ Anthony
 
 ### Email 1 of 3 — Diagnose & Educate
 
-**Subject:** Your diagnostic result: you're missing half the equation  
-**Preview text:** The off-bike work most cyclists skip entirely  
+**Subject:** You're leaving watts on the table (and they're not on the bike)
+**Preview text:** The off-bike work most cyclists skip entirely
 **Delay:** Immediate (on tag)
 
 Hey,
@@ -282,8 +292,8 @@ Anthony
 
 ### Email 2 of 3 — Actionable Fix
 
-**Subject:** 2 sessions per week, 30 minutes each  
-**Preview text:** The cycling-specific strength framework  
+**Subject:** 2 sessions per week, 30 minutes each
+**Preview text:** The cycling-specific strength framework
 **Delay:** +2 days after Email 1
 
 Hey,
@@ -326,36 +336,43 @@ Anthony
 
 ### Email 3 of 3 — Soft Sell
 
-**Subject:** Strength work needs programming, not just exercises  
-**Preview text:** Why the list of exercises isn't enough  
+**Subject:** 77 watts to 832. Read that again.
+**Preview text:** What happens when cyclists actually commit to S&C
 **Delay:** +4 days after Email 1
 
 Hey,
 
-The framework I sent works. But I want to be straight with you about its limitations.
+I want to hit you with two numbers and a name.
 
-A list of exercises is a starting point. A programme is something different. A programme accounts for:
+Vern Locke. Sprint power: 77 watts when he started. After committing to cycling-specific strength and conditioning work inside the programme: 832 watts max.
 
-- Where you are in your racing or event season
-- How your strength work phases from general to cycling-specific
-- When to increase load vs when to back off (periodisation applies to the gym too — Dan Lorang is clear on this)
-- How to adjust when travel, illness, or life disrupts your schedule
-- Which imbalances you specifically need to address (Phil Burt's assessment framework identifies 7 common cyclist-specific patterns)
+I'll let that sit for a second.
 
-Inside Not Done Yet, the off-bike component is fully integrated:
+Now, Vern's result is at the extreme end. Not everyone's going to see that kind of jump. But it tells you something important about what's possible when you stop treating the gym as optional and start treating it as the other half of your cycling performance.
 
-- **Periodised strength programming** that aligns with your on-bike training phases — building strength in base, converting to power in build, maintaining through race season
-- **Movement screening guidance** so you know which patterns to prioritise based on your specific imbalances
-- **Weekly programming updates** — not a static PDF you got 6 months ago, but programming that adapts as you progress
-- **Direct coaching input** when form questions come up or you need substitutions for equipment you don't have
+Mary K is another rider in the community. She'd been cycling for years, training consistently, doing everything right on the bike. What she wasn't doing was any structured S&C work. When she started — proper cycling-specific programming, not random gym sessions — her power output transformed. That's the word she used. Transformed.
 
-The riders in the community who commit to 2 sessions per week for 12+ weeks consistently see their best power numbers. Not because the gym replaced their riding — because it made their riding count for more.
+Here's what I want you to notice about both of those stories. Neither rider added more hours on the bike. Neither changed their on-bike training dramatically. They added the piece that was missing, and everything else started working better.
 
-Not Done Yet is $195/month with a 7-day free trial. If it's not for you, cancel before the trial ends.
+That's the identity shift I'm talking about. You don't need to become someone who lives in the gym. You need to become a cyclist who treats 60 minutes a week of targeted S&C as non-negotiable as your Tuesday intervals. Two sessions, 30 minutes each. That's it. But those 60 minutes change what your body is capable of when you clip in.
+
+The exercises I sent you in the last email work. But let me be straight with you — the reason most riders abandon gym work after 3-4 weeks isn't that the exercises are wrong. It's that a list of exercises on a screen isn't a programme.
+
+A programme tells you when to increase load. A programme phases from general strength into cycling-specific power as your event approaches. A programme adjusts when you miss a week because life happened. A programme accounts for the fact that your S&C in December should look completely different from your S&C in June.
+
+That's what you get inside Not Done Yet. The off-bike component is fully integrated with your on-bike plan — periodised, progressive, and coached. Phil Burt's assessment framework identifies 7 common cyclist-specific imbalance patterns, and the programming addresses the ones that are holding YOU back, not a generic rider.
+
+So — $195/month. Let's talk about that honestly.
+
+You could hire a personal trainer for $60-80 a session. Two sessions a week, that's $500-640 a month, and unless they specialise in cycling performance, they're giving you a programme built for someone who wants to look good at the beach, not someone who wants to hold 300 watts for 20 minutes.
+
+You could keep doing it alone with the exercise list I gave you. Some riders do. Most don't stick with it past a month. And even if you do, you're guessing at progression, guessing at periodisation, guessing at which imbalances to prioritise.
+
+Or you could plug into a system where the S&C is programmed alongside your riding, coached by people who understand the sport, inside a community of riders who are doing the same work and holding each other to it. That's $195/month with a 7-day free trial.
 
 Join here: https://www.skool.com/roadmancycling/about
 
-You've got the exercises. The question is whether you want a programme that evolves with you, or a static list you'll abandon in 3 weeks.
+You've got the exercises. What Vern and Mary found was that the programme — and the accountability that comes with it — made them into riders who actually do the work consistently. That's the difference.
 
 Anthony
 
@@ -369,8 +386,8 @@ Anthony
 
 ### Email 1 of 3 — Diagnose & Educate
 
-**Subject:** Your diagnostic result: you're not eating enough  
-**Preview text:** Under-fuelling is sabotaging your training  
+**Subject:** You're training hard and starving your results
+**Preview text:** Under-fuelling is the plateau most riders never suspect
 **Delay:** Immediate (on tag)
 
 Hey,
@@ -401,8 +418,8 @@ Anthony
 
 ### Email 2 of 3 — Actionable Fix
 
-**Subject:** Your fuelling numbers for this week  
-**Preview text:** Exactly what to eat around your key sessions  
+**Subject:** Your fuelling numbers for this week
+**Preview text:** Exactly what to eat around your key sessions
 **Delay:** +2 days after Email 1
 
 Hey,
@@ -447,38 +464,44 @@ Anthony
 
 ### Email 3 of 3 — Soft Sell
 
-**Subject:** Fuelling properly is harder than it sounds  
-**Preview text:** Why riders who know better still under-eat  
+**Subject:** Chris went from 20% body fat to 7%. He was eating MORE.
+**Preview text:** The result that broke everything I thought I knew about cycling nutrition
 **Delay:** +4 days after Email 1
 
 Hey,
 
-Did you hit the fuelling targets this week?
+I need to tell you about Chris O'Connor because his result still stops people mid-conversation when I mention it.
 
-If you did — you probably noticed you felt better in the back end of those sessions. That's your body actually having the substrate it needs to produce power.
+Chris came in at 20% body fat. Doing the thing most cyclists do — training hard, eating cautiously, wondering why the body composition wasn't shifting. Classic under-fuelling pattern. His body was in survival mode, clinging to every gram of fat because it didn't trust that enough fuel was coming in.
 
-If you didn't, you're not alone. Knowing the numbers and consistently executing them are two different things. The old habits run deep: skip breakfast, take one bottle, wonder why you bonk at hour 3.
+When we rebuilt his nutrition around proper fuelling strategy — not a diet, not restriction, not calorie counting — his body fat dropped to 7%. Seven percent. And here's the part that breaks people's brains: he was eating more food. More carbs around sessions. More protein for recovery. More total energy.
 
-Prof Impey's FFTWR model works. Dr Dunne's protein recommendations work. The research is settled. But implementation requires:
+That's not a typo. He ate more and got leaner. Because when your body has the fuel it needs, it stops hoarding and starts performing.
 
-- **Personalised daily targets** based on your weight, training load, and body composition goals
-- **Session-specific fuelling plans** that tell you exactly what to eat before, during, and after each type of session
-- **Macro tracking support** so you know whether you're actually hitting the numbers or just estimating (most riders overestimate protein by 30-40%)
-- **Ongoing adjustments** as your training load changes through the season
+I share Chris's story because it captures something I see over and over with the riders who join Not Done Yet. The transformation isn't really about macros and meal timing — although those matter. The transformation is in how you see yourself as a cyclist.
 
-Inside Not Done Yet, fuelling is a core pillar of the system:
+Right now, you're probably a rider who thinks about food in terms of restriction. Less is lighter. Lighter is faster. Skip the breakfast, take one bottle, maybe a gel if you're really pushing it. That mindset is baked in from decades of cycling culture, and it's actively making you slower.
 
-- **Periodised nutrition guidance** aligned to your training blocks — base phase nutrition looks different from build phase
-- **Race fuelling protocols** so you're not experimenting on event day
-- **Weekly accountability** on whether you're actually eating what you planned
-- **Community of riders** going through the same shift from under-fuelling to proper performance nutrition
+The rider you need to become is someone who fuels with the same precision they bring to their intervals. Someone who sees a pre-ride meal as part of the session, not a guilty indulgence. Someone who eats 80-90g of carbs per hour on a hard ride without the voice in their head saying "but the weight."
 
-The riders who fix their fuelling see results fast — often within 2-3 weeks. More power in the back half of rides, better recovery between sessions, and body composition changes that actually stick because their metabolism isn't in survival mode.
+That's an identity shift. And it's harder to make alone than you'd think.
 
-Not Done Yet is $195/month with a 7-day free trial. Cancel before the trial ends if it's not a fit.
+The fuelling numbers I sent you in the last email are accurate. Prof Impey's FFTWR model works. Dr Dunne's protein recommendations are evidence-based. The science is there. But I've watched enough riders get the numbers, execute them for 10 days, then slowly drift back to the old patterns — the skipped breakfast, the single bottle, the under-fuelled long ride — because changing your relationship with food as a cyclist requires more than a spreadsheet. It requires a structure that reinforces the new behaviour until it becomes automatic.
+
+That's what Not Done Yet provides. Periodised nutrition guidance that adapts across your training blocks. Race-day fuelling protocols so you're not experimenting when it matters. Weekly accountability on whether you actually hit the targets. And a community of riders who are going through the same shift — from the restrictive "eat less, ride more" mindset to genuine performance nutrition.
+
+The riders who make this shift see results fast. More power in the back half of rides. Better recovery. Body composition changes that actually stick because their metabolism isn't running on fumes. Chris is the headline number, but he's not an outlier — he's what happens when you fuel properly and stay consistent with it.
+
+Right. The price. $195 a month.
+
+Here's how I think about it. The average UK cyclist spends more than that on race entries, sportive fees, and coffee stops in a quarter. One decent set of race wheels costs more than a year of membership. TrainerRoad will sell you a training plan for $20 a month, but it won't tell you what to eat before your Sunday long ride or catch the fact that you've been under-fuelling your Thursday intervals for the last six weeks.
+
+A sports nutritionist consultation? That's $150-200 for a single session. Inside Not Done Yet, the nutritional guidance is ongoing, adapted to your training, and backed by a coaching team that understands the whole picture — not just the food, but how it fits with your riding, your recovery, and your goals.
+
+$195/month. 7-day free trial. Cancel if it's not for you.
 
 Join here: https://www.skool.com/roadmancycling/about
 
-You've got the numbers. The question is whether you can execute them consistently on your own, or whether you need the structure and accountability to make it stick.
+Chris didn't just change his numbers. He changed how he thinks about food on the bike. That's the shift that made the difference, and it's the shift I want to help you make.
 
 Anthony
