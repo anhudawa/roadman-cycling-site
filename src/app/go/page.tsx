@@ -89,6 +89,23 @@ const FOUR_REASONS = [
   },
 ];
 
+// Qualifier copy. Serious riders self-select in; beginners and
+// quick-fix seekers self-select out before they hit the testimonials.
+const WHO_FOR: readonly string[] = [
+  "You've been riding 2+ years and still feel stuck at the same level",
+  "You train 6-12 hours a week but your FTP hasn't moved in months",
+  "You're a serious amateur who refuses to accept your best days are behind you",
+  "You want structure and accountability, not another generic training plan",
+  "You're willing to invest in yourself like the competitive athlete you are",
+];
+
+const WHO_NOT_FOR: readonly string[] = [
+  "You're just getting into cycling and need beginner basics",
+  "You want a quick fix or magic shortcut to race fitness",
+  "You're not willing to follow a structured programme",
+  "You're looking for the cheapest option, not the most effective one",
+];
+
 /**
  * Real testimonials sourced from https://testimonial.to/roadman-cycling/all.
  *
@@ -223,6 +240,40 @@ const CtaArrow = () => (
     aria-hidden="true"
   >
     <path d="M3 9h12M10 4l5 5-5 5" />
+  </svg>
+);
+
+const CheckIcon = () => (
+  <svg
+    width="18"
+    height="18"
+    viewBox="0 0 18 18"
+    fill="none"
+    stroke="currentColor"
+    strokeWidth="2.5"
+    strokeLinecap="round"
+    strokeLinejoin="round"
+    aria-hidden="true"
+    className="mt-0.5 shrink-0"
+  >
+    <path d="M3.5 9.5l3.5 3.5 7.5-8" />
+  </svg>
+);
+
+const CrossIcon = () => (
+  <svg
+    width="18"
+    height="18"
+    viewBox="0 0 18 18"
+    fill="none"
+    stroke="currentColor"
+    strokeWidth="2.5"
+    strokeLinecap="round"
+    strokeLinejoin="round"
+    aria-hidden="true"
+    className="mt-0.5 shrink-0"
+  >
+    <path d="M4.5 4.5l9 9M13.5 4.5l-9 9" />
   </svg>
 );
 
@@ -731,6 +782,95 @@ export default async function GoLandingPage() {
             <p className="text-foreground-subtle text-xs mt-4">
               4 minutes &middot; No card
             </p>
+          </div>
+        </Container>
+      </Section>
+
+      <div className="gradient-divider" />
+
+      {/* ── Who this is for ──────────────────────────────────────────── */}
+      {/* Qualifier section. Sits after the four-cause framework (the
+          reader now believes the diagnosis is specific, not generic) and
+          before social proof (so the testimonials land on a reader who
+          has already self-identified as the target rider). Highest-
+          performing conversion element in the Precision Nutrition
+          competitive teardown: serious riders opt in, tyre-kickers opt
+          out. */}
+      <Section background="deep-purple">
+        <Container width="default">
+          <p className="text-coral font-heading text-[11px] md:text-xs tracking-[0.3em] text-center mb-3">
+            WHO THIS IS FOR
+          </p>
+          <h2
+            className="font-heading text-off-white text-center mb-3"
+            style={{ fontSize: "clamp(1.875rem, 4.5vw, 3rem)" }}
+          >
+            IS THIS FOR YOU?
+          </h2>
+          <p className="text-foreground-muted text-center max-w-lg mx-auto mb-10 md:mb-12 leading-relaxed">
+            The Plateau Diagnostic is designed for a specific type of cyclist.
+          </p>
+
+          <div className="grid md:grid-cols-2 gap-4 md:gap-5 max-w-4xl mx-auto">
+            <div
+              className="
+                relative h-full rounded-2xl
+                bg-charcoal border border-white/10
+                p-6 md:p-8
+                shadow-[0_6px_20px_rgba(0,0,0,0.25)]
+              "
+            >
+              <span
+                aria-hidden="true"
+                className="absolute left-0 top-6 bottom-6 w-[3px] rounded-r bg-emerald-400"
+              />
+              <h3 className="font-heading text-emerald-400 text-xl md:text-2xl tracking-wide mb-5">
+                THIS IS FOR YOU IF
+              </h3>
+              <ul className="space-y-3.5 list-none p-0 m-0">
+                {WHO_FOR.map((item) => (
+                  <li
+                    key={item}
+                    className="flex items-start gap-3 text-foreground-muted text-sm md:text-[15px] leading-relaxed"
+                  >
+                    <span className="text-emerald-400">
+                      <CheckIcon />
+                    </span>
+                    <span>{item}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            <div
+              className="
+                relative h-full rounded-2xl
+                bg-charcoal border border-white/10
+                p-6 md:p-8
+                shadow-[0_6px_20px_rgba(0,0,0,0.25)]
+              "
+            >
+              <span
+                aria-hidden="true"
+                className="absolute left-0 top-6 bottom-6 w-[3px] rounded-r bg-red-400"
+              />
+              <h3 className="font-heading text-red-400 text-xl md:text-2xl tracking-wide mb-5">
+                THIS IS NOT FOR YOU IF
+              </h3>
+              <ul className="space-y-3.5 list-none p-0 m-0">
+                {WHO_NOT_FOR.map((item) => (
+                  <li
+                    key={item}
+                    className="flex items-start gap-3 text-foreground-muted text-sm md:text-[15px] leading-relaxed"
+                  >
+                    <span className="text-red-400">
+                      <CrossIcon />
+                    </span>
+                    <span>{item}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
           </div>
         </Container>
       </Section>
