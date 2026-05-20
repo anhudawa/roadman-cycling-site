@@ -22,14 +22,18 @@ import { getTestimonialsByName, type Testimonial } from "@/lib/testimonials";
 /**
  * Per-profile testimonial picks. Two each — the first lines up tightly
  * with the diagnosis (e.g. Damien is the canonical "I plateaued, the
- * plan broke it" story for the polarisation/under-recovered set), the
- * second adds a second proof angle. Close-to-breakthrough reuses the
- * plateau set because that's the closest emotional match.
+ * plan broke it" story; Mary K is the canonical cycling-specific S&C
+ * story for the strength gap), the second adds a second proof angle.
+ * Brian Morrissey is the recovery/volume story, so he proves the
+ * under-recovered diagnosis — not the strength gap, where Vern Locke's
+ * raw sprint-power jump speaks to the neuromuscular leak directly.
+ * Close-to-breakthrough reuses the plateau set because that's the
+ * closest emotional match.
  */
 const TESTIMONIAL_NAMES_BY_PROFILE: Record<Profile, string[]> = {
   underRecovered: ["Damien Maloney", "Brian Morrissey"],
   polarisation: ["Damien Maloney", "Blair Corey"],
-  strengthGap: ["Brian Morrissey", "Mary K"],
+  strengthGap: ["Mary K", "Vern Locke"],
   fuelingDeficit: ["Chris O'Connor", "Gregory Gross"],
 };
 const CLOSE_TO_BREAKTHROUGH_TESTIMONIAL_NAMES = [
@@ -69,6 +73,29 @@ function ndyBulletsFor(
   if (closeToBreakthrough) return NDY_BULLETS;
   const lead = NDY_LEAD_BULLET_BY_PROFILE[profile];
   return [lead, ...NDY_BULLETS.filter((b) => b !== lead)];
+}
+
+/**
+ * One honest, season-aware nudge above the final CTA. The page is
+ * force-dynamic, so `new Date()` on the server is correct per request
+ * and there's no hydration concern — this subtree never renders on the
+ * client. Deliberately no fake scarcity (no "X spots left", no
+ * countdowns): this audience has been burned and reads hype instantly.
+ * The only deadline is the calendar, and the calendar is real.
+ * Northern-hemisphere framing — the audience skews IE/UK/EU/US masters.
+ */
+function seasonUrgencyLine(now: Date): string {
+  const m = now.getMonth(); // 0 = Jan
+  if (m >= 2 && m <= 4) {
+    return "It’s spring. The season’s already rolling for the riders you’ll be on the road with this year — and every week you stay at this number is a week of it you don’t get back.";
+  }
+  if (m >= 5 && m <= 7) {
+    return "It’s mid-season. You can’t fake the form in August that you don’t build now. The plateau won’t break on its own — it breaks the week you change something.";
+  }
+  if (m >= 8 && m <= 9) {
+    return "The season’s winding down — which makes right now the window to fix the base for next year, while everyone else waits until March to start.";
+  }
+  return "It’s the off-season — where next year is actually won. What you build now is the form you line up with in spring. Wait, and you start the year already behind.";
 }
 
 /**
@@ -143,6 +170,8 @@ export default async function DiagnosticResultsPage({
     submission.primaryProfile,
     isCloseToBreakthrough,
   );
+
+  const seasonLine = seasonUrgencyLine(new Date());
 
   return (
     <>
@@ -451,6 +480,14 @@ export default async function DiagnosticResultsPage({
             <p className="text-off-white/90 leading-relaxed max-w-xl mx-auto">
               {breakdown.nextMove}
             </p>
+            {/* Honest, season-aware nudge — no fake scarcity, no
+                countdowns. The calendar is the only real deadline this
+                audience trusts. */}
+            <div className="mx-auto max-w-xl rounded-lg border border-coral/25 bg-coral/5 px-5 py-4">
+              <p className="text-off-white/90 text-sm md:text-[15px] leading-relaxed">
+                {seasonLine}
+              </p>
+            </div>
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4 pt-4">
               <Link
                 href={cta.primaryHref}
@@ -470,6 +507,13 @@ export default async function DiagnosticResultsPage({
                 </Link>
               )}
             </div>
+            {/* Risk reversal at the decision point — restates only
+                claims already made on this page (7-day trial, cancel
+                anytime, no contracts), placed where the click happens. */}
+            <p className="text-foreground-subtle text-xs md:text-sm">
+              Seven days free. Cancel anytime, no contracts &mdash; you only
+              continue if it&rsquo;s working.
+            </p>
             {/* Phase 2 handoff — rider can dig into the result with the
                 on-site assistant. Appears below the primary CTA so it
                 never competes with a booking/coaching conversion. */}
