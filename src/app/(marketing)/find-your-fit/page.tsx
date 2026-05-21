@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { Header, Footer, Section, Container } from "@/components/layout";
 import { JsonLd } from "@/components/seo/JsonLd";
-import { MetaPixel } from "@/components/features/diagnostic/MetaPixel";
 import { ENTITY_IDS, SITE_ORIGIN } from "@/lib/brand-facts";
 import { FitFinder } from "./_components/FitFinder";
 
@@ -108,7 +107,6 @@ export default function FindYourFitPage() {
 
   return (
     <>
-      <MetaPixel />
       <JsonLd data={breadcrumbsJsonLd} />
       <JsonLd data={webPageJsonLd} />
       <JsonLd data={faqJsonLd} />

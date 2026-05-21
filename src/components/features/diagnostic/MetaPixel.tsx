@@ -1,16 +1,16 @@
 "use client";
 
-import Script from "next/script";
 import { useEffect } from "react";
 
 /**
- * Lightweight Meta (Facebook) Pixel loader. Drops the standard fbq
- * snippet and fires a PageView on mount. When an `event` prop is
- * passed, fires that standard event in addition to PageView — used on
- * the results page to emit a `Lead` conversion.
+ * Fire a Meta Pixel standard event on mount. Does NOT initialise the
+ * pixel or fire PageView — that's handled globally by
+ * `ConsentAwarePixel` in the root layout. This component is purely an
+ * event emitter for page-specific conversions (Lead on results page,
+ * ViewContent on diagnostic pages, etc.).
  *
- * Completely no-op when `NEXT_PUBLIC_META_PIXEL_ID` isn't set, so this
- * is safe to drop into pages without guarding at every call site.
+ * Silently no-ops when fbq isn't loaded (consent denied, ad blocker,
+ * or NEXT_PUBLIC_META_PIXEL_ID not set in the global component).
  *
  * Server-side (Conversions API) deduplication isn't wired yet — when
  * Anthony plugs in the CAPI token, make sure server and client events
@@ -23,45 +23,16 @@ export function MetaPixel({
   event?: "Lead" | "CompleteRegistration" | "ViewContent";
   eventParams?: Record<string, string | number | boolean>;
 }) {
-  const pixelId = process.env.NEXT_PUBLIC_META_PIXEL_ID?.trim();
-
   useEffect(() => {
-    if (!pixelId) return;
+    if (!event) return;
     if (typeof window === "undefined") return;
     const fbq = (window as unknown as { fbq?: (...args: unknown[]) => void })
       .fbq;
-    if (!fbq) return;
-    fbq("track", "PageView");
-    if (event) fbq("track", event, eventParams ?? {});
-  }, [pixelId, event, eventParams]);
+    if (typeof fbq !== "function") return;
+    fbq("track", event, eventParams ?? {});
+  }, [event, eventParams]);
 
-  if (!pixelId) return null;
-
-  const snippet = `!function(f,b,e,v,n,t,s)
-{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-n.callMethod.apply(n,arguments):n.queue.push(arguments)};
-if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
-n.queue=[];t=b.createElement(e);t.async=!0;
-t.src=v;s=b.getElementsByTagName(e)[0];
-s.parentNode.insertBefore(t,s)}(window, document,'script',
-'https://connect.facebook.net/en_US/fbevents.js');
-fbq('init', '${pixelId}');`;
-
-  return (
-    <>
-      <Script id="meta-pixel-init" strategy="afterInteractive">
-        {snippet}
-      </Script>
-      <noscript>
-        {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img
-          height="1"
-          width="1"
-          style={{ display: "none" }}
-          alt=""
-          src={`https://www.facebook.com/tr?id=${pixelId}&ev=PageView&noscript=1`}
-        />
-      </noscript>
-    </>
-  );
+  // No markup — init + PageView + noscript fallback all live in
+  // ConsentAwarePixel (root layout). This is event-only.
+  return null;
 }

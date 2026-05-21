@@ -183,8 +183,9 @@ export default async function DiagnosticResultsPage({
       <Suspense fallback={null}>
         <SuccessBanner emailHint={maskEmail(submission.email)} />
       </Suspense>
-      {/* Fires fbq PageView + Lead when the pixel env is configured —
-          this is the diagnostic funnel's primary conversion signal. */}
+      {/* Fires fbq Lead event — PageView is handled globally by
+          ConsentAwarePixel in root layout. This is the diagnostic
+          funnel's primary conversion signal. */}
       <MetaPixel
         event="Lead"
         eventParams={{

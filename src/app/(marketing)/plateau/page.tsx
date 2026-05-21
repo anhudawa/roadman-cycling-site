@@ -13,7 +13,6 @@ import { TrustpilotProof } from "@/components/proof";
 import { ReviewsJsonLd } from "@/components/seo/TrustpilotSchema";
 import { getTrustpilotReviews } from "@/lib/trustpilot";
 import { DiagnosticFlow } from "@/components/features/diagnostic/DiagnosticFlow";
-import { MetaPixel } from "@/components/features/diagnostic/MetaPixel";
 import { BRAND_STATS, ENTITY_IDS, FOUNDER } from "@/lib/brand-facts";
 import { getTestimonialsByName } from "@/lib/testimonials";
 import { FaqAccordion } from "./_components/FaqAccordion";
@@ -415,7 +414,6 @@ export default async function PlateauPage() {
 
   return (
     <>
-      <MetaPixel />
       <ReviewsJsonLd reviews={plateauReviews} />
       <JsonLd
         data={{
