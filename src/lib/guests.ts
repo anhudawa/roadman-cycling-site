@@ -93,6 +93,7 @@ const NAME_ALIASES: Record<string, string> = {
   '"Professor Stephen Seiler"': "Stephen Seiler",
   "Aron D": "Aron D'Souza",
   "Dr David Dunne": "David Dunne",
+  "Dr. David Dunne": "David Dunne",
   "Dr Sam Impey": "Sam Impey",
   "Dr. Sam Impey": "Sam Impey",
   "Dr Tim Podlogar": "Tim Podlogar",

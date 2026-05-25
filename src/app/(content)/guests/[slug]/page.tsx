@@ -5,7 +5,7 @@ import { Header, Footer, Section, Container } from "@/components/layout";
 import { ScrollReveal, Card, Badge, Button } from "@/components/ui";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { Breadcrumbs } from "@/components/seo/Breadcrumbs";
-import { getGuestBySlug, getAllGuestSlugs } from "@/lib/guests";
+import { getGuestBySlug, getAllGuestSlugs, slugifyGuestName } from "@/lib/guests";
 import { getGuestProfileOverride } from "@/lib/guests/profiles";
 import { getPostBySlug } from "@/lib/blog";
 import { PlateauCTA } from "@/components/cta";
@@ -388,13 +388,22 @@ export default async function GuestPage({
               );
             })()}
 
-            {/* Key quotes from this guest's episodes */}
+            {/* Key quotes from this guest's episodes.
+                Match on the normalised slug, not raw string equality:
+                episode keyQuotes attribute speakers with honorifics
+                ("Dr Stephen Seiler", "Prof Seiler", "Dr. Sam Impey")
+                that never equal the normalised guest.name, which was
+                silently hiding every quote for titled experts. */}
             {(() => {
               const allQuotes = sortedEpisodes
                 .flatMap((ep) =>
                   (ep.keyQuotes || [])
-                    .filter((q) => q.speaker === guest.name)
-                    .map((q) => ({ ...q, episodeSlug: ep.slug }))
+                    .filter((q) => slugifyGuestName(q.speaker) === guest.slug)
+                    .map((q) => ({
+                      ...q,
+                      episodeSlug: ep.slug,
+                      episodeTitle: ep.title,
+                    }))
                 )
                 .slice(0, 3);
               if (allQuotes.length === 0) return null;
@@ -412,9 +421,17 @@ export default async function GuestPage({
                         <p className="text-foreground-muted text-sm leading-relaxed italic">
                           &ldquo;{q.text}&rdquo;
                         </p>
-                        <footer className="mt-2 text-xs text-foreground-subtle">
-                          — {q.speaker}
-                          {q.credential && `, ${q.credential}`}
+                        <footer className="mt-3 text-xs text-foreground-subtle">
+                          <span className="text-off-white/80">{guest.name}</span>
+                          {(q.credential || guest.credential) &&
+                            `, ${q.credential || guest.credential}`}
+                          <span aria-hidden="true"> &middot; </span>
+                          <Link
+                            href={`/podcast/${q.episodeSlug}`}
+                            className="text-coral hover:underline"
+                          >
+                            {q.episodeTitle}
+                          </Link>
                         </footer>
                       </blockquote>
                     ))}
