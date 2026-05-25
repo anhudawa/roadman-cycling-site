@@ -123,7 +123,7 @@ export async function GET() {
       pages: [
         { url: `${BASE_URL}/compare/coach-vs-app`, title: "Cycling Coach vs Training App", description: "Personalisation, accountability, and cost compared." },
         { url: `${BASE_URL}/compare/polarised-vs-pyramidal`, title: "Polarised vs Pyramidal Training", description: "Two intensity distributions, evidence-based picks by rider profile." },
-        { url: `${BASE_URL}/compare/zwift-vs-trainerroad`, title: "Zwift vs TrainerRoad", description: "Indoor platform decision — gamified social vs adaptive structured." },
+        { url: `${BASE_URL}/blog/zwift-vs-trainerroad`, title: "Zwift vs TrainerRoad", description: "Indoor platform decision — gamified social vs adaptive structured." },
         { url: `${BASE_URL}/compare/heart-rate-vs-power`, title: "Heart Rate vs Power Training", description: "When each metric leads, when each lies." },
         { url: `${BASE_URL}/compare/strength-vs-more-miles`, title: "Strength Training vs More Miles", description: "When strength beats volume — and when it doesn't." },
         { url: `${BASE_URL}/compare`, title: "All Comparisons", description: "Browse every Roadman side-by-side." },

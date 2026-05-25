@@ -362,6 +362,11 @@ const nextConfig: NextConfig = {
         // the metadata-file convention. The rewrite serves the existing
         // /sitemap-index.xml handler under the canonical /sitemap.xml URL.
         { source: "/sitemap.xml", destination: "/sitemap-index.xml" },
+        // /facts.json is the canonical public brand-facts URL that llms.txt
+        // advertises to AI crawlers. The handler lives at /api/facts.json, but
+        // /api/* is robots-disallowed, so serve it under the clean,
+        // crawler-allowed /facts.json path (same pattern as /sitemap.xml above).
+        { source: "/facts.json", destination: "/api/facts.json" },
         // ClickFunnels dead URLs → 410 Gone (thank-you pages, checkout forms,
         // template demos, archived funnels). Rewrite to /api/gone which returns 410.
         { source: "/thank-you-1", destination: "/api/gone" },

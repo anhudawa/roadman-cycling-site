@@ -123,7 +123,7 @@ export async function GET() {
       lines: [
         `${BASE_URL}/compare/coach-vs-app — Coach vs training app.`,
         `${BASE_URL}/compare/polarised-vs-pyramidal — Polarised vs pyramidal training.`,
-        `${BASE_URL}/compare/zwift-vs-trainerroad — Zwift vs TrainerRoad.`,
+        `${BASE_URL}/blog/zwift-vs-trainerroad — Zwift vs TrainerRoad.`,
         `${BASE_URL}/compare/heart-rate-vs-power — Heart rate vs power training.`,
         `${BASE_URL}/compare/strength-vs-more-miles — Strength vs more miles.`,
       ],
