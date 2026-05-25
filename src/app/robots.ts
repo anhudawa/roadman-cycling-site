@@ -6,6 +6,16 @@ import { SITE_ORIGIN } from "@/lib/brand-facts";
  * /account, /sign-in, /login) don't exist today but are listed
  * defensively so any future ClickFunnels-style route lands
  * non-indexable by default.
+ *
+ * IMPORTANT: only list paths here that should never be CRAWLED — API
+ * endpoints, the admin app, build internals, preview/draft surfaces.
+ * Do NOT add pages that we de-index another way (a `robots: noindex`
+ * meta tag, or a 410/404 response). Disallowing those is
+ * counterproductive: it stops Googlebot from fetching the page, so it
+ * never sees the noindex/410 and the URL lingers as "Indexed, though
+ * blocked by robots.txt" in Search Console. The conversion/thank-you
+ * pages (/strength-training/success → noindex, /thank-you* → 410 Gone
+ * via next.config.ts) are handled that way and must stay crawlable.
  */
 const DISALLOW_PATHS = [
   "/api/",
@@ -15,9 +25,6 @@ const DISALLOW_PATHS = [
   "/checkout/",
   "/sign-in",
   "/login",
-  "/strength-training/success",
-  "/success/",
-  "/thank-you",
   "/unsubscribe",
   "/preview/",
   "/draft/",

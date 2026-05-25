@@ -26,17 +26,30 @@ describe("/robots.ts", () => {
     expect(wildcard?.allow).toContain("/_next/static/");
   });
 
-  it("disallows transactional + admin paths for the wildcard agent", () => {
+  it("disallows transactional + admin + build-internal paths for the wildcard agent", () => {
     const wildcard = (result.rules as Array<{ userAgent: string; disallow: string[] }>).find(
       (r) => r.userAgent === "*",
     );
     const disallow = wildcard?.disallow ?? [];
     for (const path of [
       "/api/", "/admin/", "/account/", "/cart/", "/checkout/",
-      "/sign-in", "/login", "/strength-training/success", "/success/",
-      "/thank-you", "/unsubscribe", "/preview/", "/draft/", "/_next/",
+      "/sign-in", "/login", "/unsubscribe", "/preview/", "/draft/", "/_next/",
     ]) {
       expect(disallow).toContain(path);
+    }
+  });
+
+  it("does NOT disallow pages that de-index themselves via noindex or 410", () => {
+    // Blocking these in robots.txt stops Googlebot fetching them, so it
+    // never sees the noindex / 410 Gone and the URL lingers as "Indexed,
+    // though blocked by robots.txt". /strength-training/success sets a
+    // noindex meta; /thank-you* is rewritten to a 410 in next.config.ts.
+    const wildcard = (result.rules as Array<{ userAgent: string; disallow: string[] }>).find(
+      (r) => r.userAgent === "*",
+    );
+    const disallow = wildcard?.disallow ?? [];
+    for (const path of ["/strength-training/success", "/success/", "/thank-you"]) {
+      expect(disallow).not.toContain(path);
     }
   });
 

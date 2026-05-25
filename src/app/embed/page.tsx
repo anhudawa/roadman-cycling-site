@@ -8,7 +8,9 @@ export const metadata: Metadata = {
   title: { absolute: "Embeddable Cycling Calculators — Roadman Cycling" },
   description:
     "Free embeddable widgets for cycling sites and coaches: FTP zones calculator, sportive finish-time predictor, and carbs-per-hour fuelling planner. Copy a single iframe snippet.",
-  alternates: { canonical: "https://roadmancycling.com/embed" },
+  // No canonical: /embed is `noindex` (set in layout.tsx) so it can't
+  // compete with the indexable /tools/<name> pages. A self-canonical
+  // would contradict that noindex.
 };
 
 const SITE_URL = "https://roadmancycling.com";

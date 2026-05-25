@@ -32,9 +32,9 @@ export const metadata: Metadata = {
     index: false,
     follow: false,
   },
-  alternates: {
-    canonical: "https://roadmancycling.com/go/ads",
-  },
+  // No canonical: this surface is `noindex`, and pairing noindex with a
+  // self-canonical is a contradictory signal Google may resolve by
+  // ignoring the noindex. /plateau is the indexable diagnostic page.
   openGraph: {
     type: "website",
     title: "Stuck on a Plateau? Find Out Why in 4 Minutes",

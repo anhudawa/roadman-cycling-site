@@ -25,9 +25,9 @@ export const metadata: Metadata = {
     index: false,
     follow: false,
   },
-  alternates: {
-    canonical: REPORT_URL,
-  },
+  // No canonical: this squeeze page is `noindex`. The indexable report
+  // lives at /blog/masters-cycling-training-report-2026; a self-canonical
+  // here would contradict the noindex.
   openGraph: {
     type: "website",
     title:
