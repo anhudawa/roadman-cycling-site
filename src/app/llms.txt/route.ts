@@ -230,7 +230,7 @@ ${QUESTION_PAGES.map((q) => `- [${q.question}](${tag(`${BASE_URL}/question/${q.s
 - [Research & Evidence Base](${tag(`${BASE_URL}/research`)}): The named experts, published studies, and on-the-record podcast conversations behind every article and coaching decision.
 - [Roadman Benchmarks](${tag(`${BASE_URL}/benchmarks`)}): Anonymised performance benchmarks across the Roadman coaching cohort — FTP, W/kg, training volume, age-group medians, and 90th-percentile values for serious amateurs.
 - [Member Results & Case Studies](${tag(`${BASE_URL}/case-studies`)}): Documented coaching outcomes — Cat 3 to Cat 1, body composition transformations, Women's National Series results, comeback stories. Each case study names the rider, the inputs, and the timeline.
-- [Member Reviews & Trustpilot](${tag(`${BASE_URL}/proof`)}): Verified third-party reviews and on-record member feedback for Roadman coaching.
+- [Member Reviews & Testimonials](${tag(`${BASE_URL}/proof`)}): On-record member reviews and testimonials for Roadman coaching and the podcast.
 - [Editorial Standards](${tag(`${BASE_URL}/editorial-standards`)}): The full editorial standards page.
 
 ## Core Coaching Services

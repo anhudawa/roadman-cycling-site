@@ -4,8 +4,7 @@ import { Header, Footer, Section, Container } from "@/components/layout";
 import { Button, Card, ScrollReveal } from "@/components/ui";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { FAQSchema } from "@/components/seo/FAQSchema";
-import { TrustpilotProof } from "@/components/proof";
-import { TRUSTPILOT, getTrustpilotReviews } from "@/lib/trustpilot";
+import { SocialProof } from "@/components/proof";
 import { ENTITY_IDS } from "@/lib/brand-facts";
 
 const APPLY_URL = "/inner-circle/apply";
@@ -285,31 +284,6 @@ export default function InnerCirclePage() {
               referenceQuantity: { "@type": "QuantitativeValue", value: 1, unitCode: "MON" },
             },
           },
-          aggregateRating: {
-            "@type": "AggregateRating",
-            ratingValue: TRUSTPILOT.rating,
-            bestRating: TRUSTPILOT.bestRating,
-            worstRating: TRUSTPILOT.worstRating,
-            reviewCount: TRUSTPILOT.reviewCount,
-          },
-          review: getTrustpilotReviews("coaching", 4).map((r) => ({
-            "@type": "Review",
-            author: { "@type": "Person", name: r.author },
-            datePublished: r.date,
-            reviewRating: {
-              "@type": "Rating",
-              ratingValue: r.rating,
-              bestRating: TRUSTPILOT.bestRating,
-              worstRating: TRUSTPILOT.worstRating,
-            },
-            name: r.title,
-            reviewBody: r.quote,
-            publisher: {
-              "@type": "Organization",
-              name: "Trustpilot",
-              url: TRUSTPILOT.profileUrl,
-            },
-          })),
         }}
       />
       <JsonLd
@@ -951,15 +925,15 @@ export default function InnerCirclePage() {
         <div className="gradient-divider" />
 
         {/* ===========================================================
-            TRUSTPILOT — third-party proof before the pricing reveal
+            SOCIAL PROOF — member voices before the pricing reveal
             =========================================================== */}
         <Section background="deep-purple" grain className="!py-24 md:!py-32">
           <Container>
             <ScrollReveal direction="up">
-              <TrustpilotProof
+              <SocialProof
                 audience="coaching"
                 heading="REVIEWED BY THE PEOPLE WE'VE COACHED"
-                subheading="Inner Circle is the premium tier of the same coaching system rated 4.5 on Trustpilot. Reviews from members coached on the methodology — named, on a neutral platform."
+                subheading="Inner Circle is the premium tier of the same coaching system these riders used. Their words, their outcomes."
                 count={3}
               />
             </ScrollReveal>

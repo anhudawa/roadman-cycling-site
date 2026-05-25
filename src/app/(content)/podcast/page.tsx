@@ -3,13 +3,11 @@ import Image from "next/image";
 import Link from "next/link";
 import { Header, Footer, Section, Container } from "@/components/layout";
 import { JsonLd } from "@/components/seo/JsonLd";
-import { ReviewsJsonLd } from "@/components/seo/TrustpilotSchema";
-import { TrustpilotProof } from "@/components/proof";
+import { SocialProof } from "@/components/proof";
 import { ScrollReveal } from "@/components/ui";
 import { getAllEpisodes } from "@/lib/podcast";
 import { PodcastSearch } from "@/components/features/podcast/PodcastSearch";
 import { ENTITY_IDS, SITE_ORIGIN, BRAND_STATS, PODCAST } from "@/lib/brand-facts";
-import { getTrustpilotReviews } from "@/lib/trustpilot";
 
 export const metadata: Metadata = {
   title: "Cycling Podcast Archive — Every Episode of Roadman",
@@ -30,11 +28,9 @@ export const metadata: Metadata = {
 
 export default function PodcastPage() {
   const episodes = getAllEpisodes();
-  const podcastReviews = getTrustpilotReviews("podcast", 3);
 
   return (
     <>
-      <ReviewsJsonLd reviews={podcastReviews} />
       {/* Augment the canonical PodcastSeries declared in OrganizationJsonLd
           with hub-page specifics (numberOfEpisodes, web feed, cross-platform
           same-as links). Same @id so crawlers merge this into one entity. */}
@@ -186,18 +182,16 @@ export default function PodcastPage() {
           </Container>
         </Section>
 
-        {/* Trustpilot — listener reviews from a neutral platform.
-            Sits before the podcast guides so it lands as proof of the
-            archive's value before pushing visitors deeper into the
-            cluster content. */}
+        {/* Social proof — listener voices. Sits before the podcast
+            guides so it lands as proof of the archive's value before
+            pushing visitors deeper into the cluster content. */}
         <Section background="charcoal" className="border-y border-white/5">
           <Container>
             <ScrollReveal direction="up">
-              <TrustpilotProof
+              <SocialProof
                 audience="podcast"
-                reviews={podcastReviews}
                 heading="WHAT LISTENERS SAY"
-                subheading="Reviews from listeners who took the time to write it down — verified on Trustpilot."
+                subheading="From listeners who took the time to write it down — in their own words."
               />
             </ScrollReveal>
           </Container>

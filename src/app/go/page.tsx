@@ -2,7 +2,6 @@ import Image from "next/image";
 import Link from "next/link";
 import { Container, Section } from "@/components/layout";
 import { BRAND_STATS, FOUNDER, PODCAST, SITE_ORIGIN } from "@/lib/brand-facts";
-import { TRUSTPILOT } from "@/lib/trustpilot";
 import { readGoHeroVariant, type GoHeroVariant } from "@/lib/ab/go-hero";
 import { GoExitIntent } from "./_components/GoExitIntent";
 
@@ -301,18 +300,6 @@ const ApplePodcastsIcon = ({ size = 18 }: { size?: number }) => (
   </svg>
 );
 
-const TrustpilotStar = ({ size = 28 }: { size?: number }) => (
-  <svg
-    aria-hidden="true"
-    width={size}
-    height={size}
-    viewBox="0 0 24 24"
-    fill="#F16363"
-  >
-    <path d="M12 2l2.95 6.69L22 9.74l-5.5 4.93L18.18 22 12 18.27 5.82 22l1.68-7.33L2 9.74l7.05-1.05L12 2z" />
-  </svg>
-);
-
 const TestimonialAvatar = ({
   testimonial,
   size = "md",
@@ -575,25 +562,19 @@ export default async function GoLandingPage() {
             </ul>
           </div>
 
-          {/* Trustpilot rating — cold-traffic credibility next to the CTA.
-              The shared TrustpilotBadge wraps the score in an anchor to
-              trustpilot.com, which leaks the click. We inline a static
-              version here so the hero stays zero-escape (the footer
-              keeps a single outbound Trustpilot link for verifiability). */}
+          {/* Cold-traffic credibility next to the CTA — anchored on the
+              podcast's audited scale rather than a review-platform rating,
+              so the hero stays zero-escape with no outbound clicks. */}
           <div className="mt-7 md:mt-8 flex flex-col items-center gap-2">
-            <div className="flex items-center gap-1.5">
-              <TrustpilotStar size={20} />
-              <TrustpilotStar size={20} />
-              <TrustpilotStar size={20} />
-              <TrustpilotStar size={20} />
-              <TrustpilotStar size={20} />
-            </div>
-            <p className="text-off-white font-body text-sm leading-snug">
+            <p className="font-heading text-coral text-[11px] tracking-[0.3em]">
+              TRUSTED BY SERIOUS CYCLISTS
+            </p>
+            <p className="text-off-white font-body text-sm leading-snug text-center">
               <span className="font-heading text-2xl tracking-wide mr-2 align-middle">
-                {TRUSTPILOT.rating.toFixed(1)}
+                {BRAND_STATS.monthlyListenersLabel}
               </span>
               <span className="text-foreground-muted">
-                {TRUSTPILOT.tierLabel} on Trustpilot
+                riders a month · {BRAND_STATS.episodeCountLabel} episodes
               </span>
             </p>
           </div>
@@ -865,8 +846,8 @@ export default async function GoLandingPage() {
       {/* ── Social proof ─────────────────────────────────────────────── */}
       {/* Order is deliberate for cold traffic: lead with member outcomes
           ("people like me got results"), then back it with podcast scale
-          and named experts as supporting credibility. The Trustpilot
-          strip closes the section as the third-party check. */}
+          and named experts as supporting credibility. The by-the-numbers
+          strip closes the section. */}
       <Section background="deep-purple" grain>
         <Container width="default">
           {/* Members — in their own words (lead) */}
@@ -1052,47 +1033,49 @@ export default async function GoLandingPage() {
             diagnostic.
           </p>
 
-          {/* Prominent Trustpilot strip */}
-          <a
-            href="https://www.trustpilot.com/review/roadmancycling.com"
-            target="_blank"
-            rel="noopener noreferrer"
-            data-track="go_trustpilot_link"
+          {/* Prominent proof strip — the podcast's audited scale as a
+              static card. No outbound clicks so the page stays
+              zero-escape. */}
+          <div
             className="
-              group block max-w-xl mx-auto
+              block max-w-xl mx-auto
               rounded-2xl border border-white/15 bg-white/[0.04]
-              hover:bg-white/[0.06] hover:border-white/25
-              transition-all px-6 py-7 md:px-8 md:py-8
+              px-6 py-7 md:px-8 md:py-8
               shadow-[0_10px_30px_rgba(0,0,0,0.25)]
             "
           >
-            <div className="flex flex-col items-center gap-3 text-center">
+            <div className="flex flex-col items-center gap-5 text-center">
               <p className="font-heading text-foreground-muted text-[10px] md:text-xs tracking-[0.3em]">
-                REVIEWED ON TRUSTPILOT
+                TRUSTED BY CYCLISTS WORLDWIDE
               </p>
-              <div className="flex items-center gap-1.5 md:gap-2">
-                <TrustpilotStar size={26} />
-                <TrustpilotStar size={26} />
-                <TrustpilotStar size={26} />
-                <TrustpilotStar size={26} />
-                <TrustpilotStar size={26} />
+              <div className="grid grid-cols-3 gap-4 md:gap-8 w-full">
+                <div>
+                  <p className="font-heading text-off-white text-3xl md:text-4xl leading-none">
+                    {BRAND_STATS.monthlyListenersLabel}
+                  </p>
+                  <p className="text-foreground-muted text-xs mt-1.5 leading-snug">
+                    monthly listeners
+                  </p>
+                </div>
+                <div>
+                  <p className="font-heading text-off-white text-3xl md:text-4xl leading-none">
+                    {BRAND_STATS.episodeCountLabel}
+                  </p>
+                  <p className="text-foreground-muted text-xs mt-1.5 leading-snug">
+                    episodes
+                  </p>
+                </div>
+                <div>
+                  <p className="font-heading text-off-white text-3xl md:text-4xl leading-none">
+                    {BRAND_STATS.countriesReachedLabel}
+                  </p>
+                  <p className="text-foreground-muted text-xs mt-1.5 leading-snug">
+                    countries reached
+                  </p>
+                </div>
               </div>
-              <div className="flex items-baseline gap-3 mt-1">
-                <span className="font-heading text-off-white text-5xl md:text-6xl leading-none">
-                  4.5
-                </span>
-                <span className="font-heading text-coral text-lg md:text-xl tracking-[0.2em]">
-                  EXCELLENT
-                </span>
-              </div>
-              <p className="text-foreground-muted text-sm">
-                Reviewed on Trustpilot
-                <span className="text-coral ml-1.5 group-hover:translate-x-0.5 inline-block transition-transform">
-                  →
-                </span>
-              </p>
             </div>
-          </a>
+          </div>
         </Container>
       </Section>
 

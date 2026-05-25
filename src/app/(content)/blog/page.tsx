@@ -5,7 +5,6 @@ import { JsonLd } from "@/components/seo/JsonLd";
 import { ENTITY_IDS } from "@/lib/brand-facts";
 import { getAllPosts } from "@/lib/blog";
 import { BlogSearch } from "@/components/features/blog/BlogSearch";
-import { TrustpilotBadge } from "@/components/proof";
 
 export const metadata: Metadata = {
   title: "Cycling Blog — Training, Nutrition & Performance",
@@ -91,9 +90,6 @@ export default function BlogPage() {
                 Evidence-based cycling content — grounded in real conversations
                 with the world&apos;s best coaches, scientists, and riders.
               </p>
-              <div className="mt-8">
-                <TrustpilotBadge />
-              </div>
             </ScrollReveal>
           </Container>
         </Section>

@@ -10,7 +10,6 @@ import { WebVitalsReporter } from "@/components/analytics/WebVitalsReporter";
 import { Analytics as VercelAnalytics } from "@vercel/analytics/next";
 import { OrganizationJsonLd } from "@/components/seo/JsonLd";
 import { RouteBreadcrumbJsonLd } from "@/components/seo/RouteBreadcrumbJsonLd";
-import { OrganizationAggregateRatingJsonLd } from "@/components/seo/TrustpilotSchema";
 import { ServiceWorkerRegister } from "@/components/pwa/ServiceWorkerRegister";
 import { BRAND_STATS } from "@/lib/brand-facts";
 import "./globals.css";
@@ -75,10 +74,14 @@ export const metadata: Metadata = {
   authors: [{ name: "Anthony Walsh", url: "https://roadmancycling.com" }],
   creator: "Roadman Cycling",
   metadataBase: new URL("https://roadmancycling.com"),
-  alternates: {
-    canonical: "https://roadmancycling.com",
-    languages: { en: "https://roadmancycling.com" },
-  },
+  // NOTE: no `alternates.canonical` here. Metadata merges shallowly
+  // (Next 16), so a canonical set on the root layout is inherited by
+  // every page that doesn't override `alternates` — which made pages
+  // like /method declare the homepage as their canonical and triggered
+  // "Duplicate, Google chose different canonical than user" in Search
+  // Console. The homepage sets its own canonical in app/page.tsx;
+  // every other route sets its own. Pages with no canonical (noindex
+  // funnel/thank-you surfaces) correctly emit none.
   openGraph: {
     type: "website",
     locale: "en_US",
@@ -161,7 +164,6 @@ export default function RootLayout({
       </head>
       <body className="min-h-screen bg-charcoal text-off-white font-body antialiased">
         <OrganizationJsonLd />
-        <OrganizationAggregateRatingJsonLd />
         <RouteBreadcrumbJsonLd />
         <a
           href="#main-content"

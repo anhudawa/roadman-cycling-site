@@ -9,9 +9,7 @@ import { db } from "@/lib/db";
 import { diagnosticSubmissions } from "@/lib/db/schema";
 import { JsonLd, FAQPageJsonLd } from "@/components/seo/JsonLd";
 import { SoftwareApplicationSchema } from "@/components/seo/SoftwareApplicationSchema";
-import { TrustpilotProof } from "@/components/proof";
-import { ReviewsJsonLd } from "@/components/seo/TrustpilotSchema";
-import { getTrustpilotReviews } from "@/lib/trustpilot";
+import { SocialProof } from "@/components/proof";
 import { DiagnosticFlow } from "@/components/features/diagnostic/DiagnosticFlow";
 import { BRAND_STATS, ENTITY_IDS, FOUNDER } from "@/lib/brand-facts";
 import { getTestimonialsByName } from "@/lib/testimonials";
@@ -410,11 +408,9 @@ const ctaArrow = (
 export default async function PlateauPage() {
   const recentCount = await recentSubmissionCount();
   const testimonials = getTestimonialsByName(TESTIMONIAL_NAMES);
-  const plateauReviews = getTrustpilotReviews("coaching", 3);
 
   return (
     <>
-      <ReviewsJsonLd reviews={plateauReviews} />
       <JsonLd
         data={{
           "@context": "https://schema.org",
@@ -1075,18 +1071,17 @@ export default async function PlateauPage() {
 
         <div className="gradient-divider" />
 
-        {/* ── Trustpilot — neutral platform review proof.
+        {/* ── Social proof — member voices.
             Sits before the FAQ so cold-traffic doubts ("is this just
-            a lead magnet for an upsell?") meet third-party verification
+            a lead magnet for an upsell?") meet real member outcomes
             before the FAQ asks them what's stopping them. */}
         <Section background="charcoal" className="border-y border-white/5">
           <Container>
             <ScrollReveal direction="up" eager>
-              <TrustpilotProof
+              <SocialProof
                 audience="coaching"
-                reviews={plateauReviews}
                 heading="REVIEWED BY THE PEOPLE WE'VE COACHED"
-                subheading="The diagnostic is a free entry point to a coaching system rated 4.5 on Trustpilot — named reviews, on a platform we don't control."
+                subheading="The diagnostic is a free entry point to the same coaching system these riders used — in their own words."
               />
             </ScrollReveal>
           </Container>

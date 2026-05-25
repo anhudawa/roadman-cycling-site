@@ -2,8 +2,7 @@ import type { Metadata } from "next";
 import { Header, Footer, Section, Container } from "@/components/layout";
 import { Card, ScrollReveal } from "@/components/ui";
 import { JsonLd } from "@/components/seo/JsonLd";
-import { TrustpilotProof } from "@/components/proof";
-import { TRUSTPILOT, getTrustpilotReviews } from "@/lib/trustpilot";
+import { SocialProof } from "@/components/proof";
 import { CohortApplicationForm } from "./CohortApplicationForm";
 import { PersonalisedDiagnosticBlock } from "./PersonalisedDiagnosticBlock";
 import {
@@ -172,49 +171,7 @@ export default async function ApplyPage({
             priceCurrency: "USD",
             availability: "https://schema.org/InStock",
           },
-          aggregateRating: {
-            "@type": "AggregateRating",
-            ratingValue: TRUSTPILOT.rating,
-            bestRating: TRUSTPILOT.bestRating,
-            worstRating: TRUSTPILOT.worstRating,
-            reviewCount: TRUSTPILOT.reviewCount,
-          },
           url: "https://roadmancycling.com/apply",
-          review: [
-            {
-              "@type": "Review",
-              author: { "@type": "Person", name: "Damien Maloney" },
-              reviewBody: "I was an average sportive rider who had plateaued. Roadman custom built a plan to achieve my goals. FTP went from 205w to 295w.",
-            },
-            {
-              "@type": "Review",
-              author: { "@type": "Person", name: "Daniel Stone" },
-              reviewBody: "The system took me from Cat 3 to Cat 1. The structured approach changed everything about how I train and race.",
-            },
-            {
-              "@type": "Review",
-              author: { "@type": "Person", name: "Chris O'Connor" },
-              reviewBody: "Anthony is an educator, a mentor, and a coach. He rebuilt my diet, my head, and my riding. Average wattage doubled and weekly 100km+ rides are now the norm.",
-            },
-            ...getTrustpilotReviews("coaching", 6).map((r) => ({
-              "@type": "Review",
-              author: { "@type": "Person", name: r.author },
-              datePublished: r.date,
-              reviewRating: {
-                "@type": "Rating",
-                ratingValue: r.rating,
-                bestRating: TRUSTPILOT.bestRating,
-                worstRating: TRUSTPILOT.worstRating,
-              },
-              name: r.title,
-              reviewBody: r.quote,
-              publisher: {
-                "@type": "Organization",
-                name: "Trustpilot",
-                url: TRUSTPILOT.profileUrl,
-              },
-            })),
-          ],
         }}
       />
       <JsonLd
@@ -474,14 +431,14 @@ export default async function ApplyPage({
         {/* ── Gradient divider ──────────────────────────── */}
         <div className="gradient-divider" />
 
-        {/* ── Trustpilot proof ───────────────────────────── */}
+        {/* ── Social proof ───────────────────────────────── */}
         <Section background="charcoal">
           <Container>
             <ScrollReveal direction="up">
-              <TrustpilotProof
+              <SocialProof
                 audience="coaching"
-                heading="VERIFIED ON TRUSTPILOT"
-                subheading="Coaching reviews from Not Done Yet members and 1:1 athletes — on a platform we don't control."
+                heading="WHAT OUR MEMBERS SAY"
+                subheading="Coaching reviews from Not Done Yet members and 1:1 athletes — in their own words."
               />
             </ScrollReveal>
           </Container>

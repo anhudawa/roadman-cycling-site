@@ -8,12 +8,18 @@ import { PersonaRouter } from "@/components/features/home/PersonaRouter";
 import { PillarIcon } from "@/components/features/home/PillarIcon";
 import { ChoosePath } from "@/components/features/routing/ChoosePath";
 import { EmailCapture } from "@/components/features/conversion/EmailCapture";
-import { TrustpilotProof } from "@/components/proof";
-import { ReviewsJsonLd } from "@/components/seo/TrustpilotSchema";
-import { getTrustpilotReviews } from "@/lib/trustpilot";
+import { SocialProof } from "@/components/proof";
 import { CONTENT_PILLARS, type ContentPillar } from "@/types";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { BRAND, BRAND_STATS, ENTITY_IDS, SITE_ORIGIN } from "@/lib/brand-facts";
+import type { Metadata } from "next";
+
+// Canonical lives here, not on the root layout: a layout-level canonical
+// leaks to every child route via shallow metadata merging. The homepage
+// is the only page whose canonical is the apex origin.
+export const metadata: Metadata = {
+  alternates: { canonical: SITE_ORIGIN },
+};
 
 const marqueeGuests = [
   { name: "Greg LeMond", credential: "3× Tour de France winner", href: "https://www.youtube.com/watch?v=_kFSe3VxS10" },
@@ -100,13 +106,8 @@ export default function HomePage() {
     fetchPriority: "high",
   });
 
-  // Mix of podcast + coaching reviews for the homepage social-proof
-  // strip — Roadman straddles both, and the homepage audience is the
-  // widest funnel of the site.
-  const homepageReviews = getTrustpilotReviews("mixed", 3);
   return (
     <>
-      <ReviewsJsonLd reviews={homepageReviews} />
       <Header />
 
       <main id="main-content">
@@ -491,20 +492,18 @@ export default function HomePage() {
           </Container>
         </Section>
 
-        {/* TRUSTPILOT — third-party validation between the offer ladder
-            and featured content. Visitors who scrolled this far are
-            evaluating; the live 4.5/5 from a neutral source converts
-            harder than another internal testimonial wall. Mixed audience
-            so podcast listeners and prospective coaching clients both
-            see relevant quotes. */}
+        {/* SOCIAL PROOF — member voices between the offer ladder and
+            featured content. Visitors who scrolled this far are
+            evaluating; real names and outcomes convert harder here than
+            another marketing claim. Mixed audience so podcast listeners
+            and prospective coaching clients both see relevant quotes. */}
         <Section background="charcoal" className="border-y border-white/5">
           <Container>
             <ScrollReveal direction="up">
-              <TrustpilotProof
+              <SocialProof
                 audience="mixed"
-                reviews={homepageReviews}
-                heading="VERIFIED ON TRUSTPILOT"
-                subheading="Listeners and coached athletes — in their own words. Real names, real reviews, on a platform we don't control."
+                heading="REAL RESULTS FROM REAL CYCLISTS"
+                subheading="Listeners and coached athletes — in their own words. Real names, real outcomes."
               />
             </ScrollReveal>
           </Container>

@@ -2,7 +2,6 @@ import Image from "next/image";
 import Link from "next/link";
 import { Container, Section } from "@/components/layout";
 import { BRAND_STATS } from "@/lib/brand-facts";
-import { TRUSTPILOT } from "@/lib/trustpilot";
 import { AdsLandingAnalytics } from "./AdsLandingAnalytics";
 
 /**
@@ -243,17 +242,6 @@ const ApplePodcastsIcon = ({ size = 18 }: { size?: number }) => (
   </svg>
 );
 
-const TrustpilotStar = ({ size = 28 }: { size?: number }) => (
-  <svg
-    aria-hidden="true"
-    width={size}
-    height={size}
-    viewBox="0 0 24 24"
-    fill="#F16363"
-  >
-    <path d="M12 2l2.95 6.69L22 9.74l-5.5 4.93L18.18 22 12 18.27 5.82 22l1.68-7.33L2 9.74l7.05-1.05L12 2z" />
-  </svg>
-);
 
 const TestimonialAvatar = ({
   testimonial,
@@ -448,25 +436,19 @@ export default function GoAdsLandingPage() {
             </ul>
           </div>
 
-          {/* Trustpilot rating — cold-ad credibility next to the CTA.
-              The shared TrustpilotBadge always wraps the score in an
-              anchor to trustpilot.com, which would leak the click. We
-              inline a static version here so the page stays
-              zero-escape. */}
+          {/* Cold-ad credibility next to the CTA — anchored on the
+              podcast's audited scale rather than a review-platform
+              rating, so the page stays zero-escape. */}
           <div className="mt-7 md:mt-8 flex flex-col items-center gap-2">
-            <div className="flex items-center gap-1.5">
-              <TrustpilotStar size={20} />
-              <TrustpilotStar size={20} />
-              <TrustpilotStar size={20} />
-              <TrustpilotStar size={20} />
-              <TrustpilotStar size={20} />
-            </div>
-            <p className="text-off-white font-body text-sm leading-snug">
+            <p className="font-heading text-coral text-[11px] tracking-[0.3em]">
+              TRUSTED BY SERIOUS CYCLISTS
+            </p>
+            <p className="text-off-white font-body text-sm leading-snug text-center">
               <span className="font-heading text-2xl tracking-wide mr-2 align-middle">
-                {TRUSTPILOT.rating.toFixed(1)}
+                {BRAND_STATS.monthlyListenersLabel}
               </span>
               <span className="text-foreground-muted">
-                {TRUSTPILOT.tierLabel} on Trustpilot
+                riders a month · {BRAND_STATS.episodeCountLabel} episodes
               </span>
             </p>
           </div>
@@ -736,9 +718,8 @@ export default function GoAdsLandingPage() {
       {/* ── Social proof ─────────────────────────────────────────────── */}
       {/* Same content spine as /go but with every outbound link removed
           — no testimonial.to "see all reviews", no podcast platform
-          links, no Trustpilot review-site click-through. The Trustpilot
-          card stays as a visual credibility cue rendered as a static
-          element rather than an anchor. */}
+          links. The by-the-numbers card stays as a visual credibility
+          cue rendered as a static element rather than an anchor. */}
       <Section background="deep-purple" grain>
         <Container width="default">
           <p className="text-coral font-heading text-[11px] md:text-xs tracking-[0.3em] text-center mb-3">
@@ -889,10 +870,8 @@ export default function GoAdsLandingPage() {
             diagnostic.
           </p>
 
-          {/* Trustpilot strip — rendered as a static card. On /go this
-              is wrapped in an anchor to trustpilot.com; here we keep
-              only the visual element so the page has no outbound
-              clicks. */}
+          {/* By-the-numbers strip — the podcast's audited scale as a
+              static card, no outbound clicks. */}
           <div
             className="
               block max-w-xl mx-auto
@@ -901,28 +880,36 @@ export default function GoAdsLandingPage() {
               shadow-[0_10px_30px_rgba(0,0,0,0.25)]
             "
           >
-            <div className="flex flex-col items-center gap-3 text-center">
+            <div className="flex flex-col items-center gap-5 text-center">
               <p className="font-heading text-foreground-muted text-[10px] md:text-xs tracking-[0.3em]">
-                REVIEWED ON TRUSTPILOT
+                TRUSTED BY CYCLISTS WORLDWIDE
               </p>
-              <div className="flex items-center gap-1.5 md:gap-2">
-                <TrustpilotStar size={26} />
-                <TrustpilotStar size={26} />
-                <TrustpilotStar size={26} />
-                <TrustpilotStar size={26} />
-                <TrustpilotStar size={26} />
+              <div className="grid grid-cols-3 gap-4 md:gap-8 w-full">
+                <div>
+                  <p className="font-heading text-off-white text-3xl md:text-4xl leading-none">
+                    {BRAND_STATS.monthlyListenersLabel}
+                  </p>
+                  <p className="text-foreground-muted text-xs mt-1.5 leading-snug">
+                    monthly listeners
+                  </p>
+                </div>
+                <div>
+                  <p className="font-heading text-off-white text-3xl md:text-4xl leading-none">
+                    {BRAND_STATS.episodeCountLabel}
+                  </p>
+                  <p className="text-foreground-muted text-xs mt-1.5 leading-snug">
+                    episodes
+                  </p>
+                </div>
+                <div>
+                  <p className="font-heading text-off-white text-3xl md:text-4xl leading-none">
+                    {BRAND_STATS.countriesReachedLabel}
+                  </p>
+                  <p className="text-foreground-muted text-xs mt-1.5 leading-snug">
+                    countries reached
+                  </p>
+                </div>
               </div>
-              <div className="flex items-baseline gap-3 mt-1">
-                <span className="font-heading text-off-white text-5xl md:text-6xl leading-none">
-                  4.5
-                </span>
-                <span className="font-heading text-coral text-lg md:text-xl tracking-[0.2em]">
-                  EXCELLENT
-                </span>
-              </div>
-              <p className="text-foreground-muted text-sm">
-                Reviewed on Trustpilot
-              </p>
             </div>
           </div>
         </Container>
