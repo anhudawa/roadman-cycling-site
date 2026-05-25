@@ -12,6 +12,7 @@ export { SmoothCursor } from "./SmoothCursor";
 export { TiltCard } from "./TiltCard";
 export { FloatingParticles } from "./FloatingParticles";
 export { GradientText } from "./GradientText";
+export { HeroVideo } from "./HeroVideo";
 export { SplitText } from "./SplitText";
 export { GuestMarquee } from "./GuestMarquee";
 export { Skeleton, PodcastSearchSkeleton, GuestGridSkeleton, EpisodeCardSkeleton, GuestCardSkeleton } from "./Skeleton";
