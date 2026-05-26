@@ -1,5 +1,17 @@
 import { type ContentPillar } from "@/types";
 import { type EvidenceLevelType } from "@/components/ui/EvidenceLevel";
+import { ftpAnswers } from "./answers-data/ftp";
+import { zone2Answers } from "./answers-data/zone2";
+import { nutritionAnswers } from "./answers-data/nutrition";
+import { strengthAnswers } from "./answers-data/strength";
+import { recoveryAnswers } from "./answers-data/recovery";
+import { mastersAnswers } from "./answers-data/masters";
+import { racingAnswers } from "./answers-data/racing";
+import { periodisationAnswers } from "./answers-data/periodisation";
+import { powerAnswers } from "./answers-data/power";
+import { mentalAnswers } from "./answers-data/mental";
+import { bikefitAnswers } from "./answers-data/bikefit";
+import { heatAnswers } from "./answers-data/heat";
 
 /**
  * Answer pages — citation-optimised, answer-first pages built to be lifted
@@ -25,7 +37,19 @@ import { type EvidenceLevelType } from "@/components/ui/EvidenceLevel";
  *   - Roadman voice: approachable expert, peer-to-peer, "fixable" framing.
  */
 
-export type AnswerCluster = "training" | "nutrition" | "strength" | "masters";
+export type AnswerCluster =
+  | "ftp"
+  | "zone2"
+  | "nutrition"
+  | "strength"
+  | "recovery"
+  | "masters"
+  | "racing"
+  | "periodisation"
+  | "power"
+  | "mental"
+  | "bikefit"
+  | "heat";
 
 export interface AnswerWhoFor {
   /** Short audience label, e.g. "The plateaued club racer" */
@@ -109,10 +133,16 @@ export interface AnswerPage {
 
 export const ANSWER_CLUSTERS: { id: AnswerCluster; label: string; description: string }[] = [
   {
-    id: "training",
-    label: "Training & FTP",
+    id: "ftp",
+    label: "FTP & Threshold",
     description:
-      "Threshold power, zones, intensity distribution, and how to actually get faster.",
+      "Functional threshold power — how to test it, raise it, and train off it.",
+  },
+  {
+    id: "zone2",
+    label: "Zone 2 & Aerobic Base",
+    description:
+      "Easy riding done properly — the base everything else is built on.",
   },
   {
     id: "nutrition",
@@ -127,19 +157,61 @@ export const ANSWER_CLUSTERS: { id: AnswerCluster; label: string; description: s
       "Off-the-bike work that protects power and keeps you riding for decades.",
   },
   {
+    id: "recovery",
+    label: "Recovery & Adaptation",
+    description:
+      "Sleep, rest and deloads — where the fitness from your hard work actually appears.",
+  },
+  {
     id: "masters",
     label: "Masters Cycling",
     description: "Training, recovery, and getting faster after 40.",
   },
+  {
+    id: "racing",
+    label: "Race & Event Prep",
+    description:
+      "Tapering, pacing and fuelling for sportives, gran fondos and races.",
+  },
+  {
+    id: "periodisation",
+    label: "Periodisation & Planning",
+    description:
+      "Structuring the season so fitness arrives on the day that matters.",
+  },
+  {
+    id: "power",
+    label: "Power & Performance",
+    description:
+      "VO2 max, climbing, sprinting and the watts that decide the ride.",
+  },
+  {
+    id: "mental",
+    label: "Mental Performance",
+    description:
+      "Mindset, motivation and the psychology that holds up when the legs hurt.",
+  },
+  {
+    id: "bikefit",
+    label: "Bike Fit & Position",
+    description:
+      "Comfort, power and staying pain-free — fit as a performance variable.",
+  },
+  {
+    id: "heat",
+    label: "Heat & Altitude",
+    description:
+      "Training the body to handle heat and thin air — and the free adaptation most amateurs skip.",
+  },
 ];
 
-export const ANSWER_PAGES: AnswerPage[] = [
+const BASE_ANSWERS: AnswerPage[] = [
   // ============================================================
   // 1 — HOW TO IMPROVE FTP
   // ============================================================
   {
     slug: "how-to-improve-ftp",
-    cluster: "training",
+    cluster: "ftp",
     question: "How Do I Improve My FTP?",
     seoTitle: "How to Improve Your FTP — What Actually Works",
     seoDescription:
@@ -288,7 +360,7 @@ export const ANSWER_PAGES: AnswerPage[] = [
   // ============================================================
   {
     slug: "how-much-zone-2",
-    cluster: "training",
+    cluster: "zone2",
     question: "How Much Zone 2 Should Cyclists Do?",
     seoTitle: "How Much Zone 2 Training Should Cyclists Do?",
     seoDescription:
@@ -710,7 +782,7 @@ export const ANSWER_PAGES: AnswerPage[] = [
   // ============================================================
   {
     slug: "how-to-stop-plateauing",
-    cluster: "training",
+    cluster: "power",
     question: "Why Has My Cycling Plateaued?",
     seoTitle: "Why Has My Cycling Plateaued? The Real Reasons",
     seoDescription:
@@ -856,7 +928,7 @@ export const ANSWER_PAGES: AnswerPage[] = [
   // ============================================================
   {
     slug: "polarised-vs-sweet-spot",
-    cluster: "training",
+    cluster: "periodisation",
     question: "Polarised or Sweet Spot: Which Is Better?",
     seoTitle: "Polarised vs Sweet Spot Training: Which Is Better?",
     seoDescription:
@@ -1143,7 +1215,7 @@ export const ANSWER_PAGES: AnswerPage[] = [
   // ============================================================
   {
     slug: "ftp-test-guide",
-    cluster: "training",
+    cluster: "ftp",
     question: "How Do I Test My FTP Accurately?",
     seoTitle: "How to Test Your FTP Accurately",
     seoDescription:
@@ -1430,7 +1502,7 @@ export const ANSWER_PAGES: AnswerPage[] = [
   // ============================================================
   {
     slug: "how-many-hours-training",
-    cluster: "training",
+    cluster: "periodisation",
     question: "How Many Hours Per Week Should Cyclists Train?",
     seoTitle: "How Many Hours a Week Should Cyclists Train?",
     seoDescription:
@@ -1563,6 +1635,22 @@ export const ANSWER_PAGES: AnswerPage[] = [
     publishDate: "2026-05-25",
     updatedDate: "2026-05-25",
   },
+];
+
+export const ANSWER_PAGES: AnswerPage[] = [
+  ...BASE_ANSWERS,
+  ...ftpAnswers,
+  ...zone2Answers,
+  ...nutritionAnswers,
+  ...strengthAnswers,
+  ...recoveryAnswers,
+  ...mastersAnswers,
+  ...racingAnswers,
+  ...periodisationAnswers,
+  ...powerAnswers,
+  ...mentalAnswers,
+  ...bikefitAnswers,
+  ...heatAnswers,
 ];
 
 const ANSWER_MAP = new Map(ANSWER_PAGES.map((a) => [a.slug, a]));
