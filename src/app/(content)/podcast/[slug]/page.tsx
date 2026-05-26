@@ -9,7 +9,7 @@ import { JsonLd } from "@/components/seo/JsonLd";
 import { FAQSchema } from "@/components/seo/FAQSchema";
 import { Breadcrumbs } from "@/components/seo/Breadcrumbs";
 import { EvidenceBlock } from "@/components/seo/EvidenceBlock";
-import { ENTITY_IDS, SITE_ORIGIN } from "@/lib/brand-facts";
+import { ENTITY_IDS, SITE_ORIGIN, FOUNDER, SAME_AS } from "@/lib/brand-facts";
 import {
   getEpisodeBySlug,
   getAllEpisodeSlugs,
@@ -142,6 +142,52 @@ export default async function EpisodePage({
     episode.guestBio ?? guestOverride?.whyMatters ?? guestOverride?.description;
   const guestSameAs = episode.guestSameAs ?? guestOverride?.sameAs ?? [];
   const guestKnowsAbout = episode.guestKnowsAbout ?? [];
+
+  // Resolve a key-quote speaker into a rich `creator` for Quotation
+  // schema. When the speaker is the episode guest or the host, link the
+  // quote to that person's canonical Person @id and carry jobTitle /
+  // affiliation / sameAs so the quote is attributable on its own — the
+  // strongest signal for AI engines citing the line back to a named,
+  // credentialed expert. Unknown speakers fall back to name + jobTitle.
+  const HOST_SLUG = "anthony-walsh";
+  const resolveQuoteCreator = (speaker: string, credential?: string) => {
+    const speakerSlug = slugifyGuestName(speaker);
+    if (speakerSlug === HOST_SLUG) {
+      return {
+        "@type": "Person",
+        "@id": ENTITY_IDS.person,
+        name: FOUNDER.name,
+        jobTitle: FOUNDER.jobTitle,
+        url: FOUNDER.url,
+        affiliation: { "@id": ENTITY_IDS.organization },
+        sameAs: [...SAME_AS.person],
+      };
+    }
+    if (guestSlug && episode.guest && speakerSlug === guestSlug) {
+      const jobTitle = credential ?? episode.guestCredential;
+      return {
+        "@type": "Person",
+        "@id": `${SITE_ORIGIN}/guests/${guestSlug}#person`,
+        name: episode.guest,
+        url: `${SITE_ORIGIN}/guests/${guestSlug}`,
+        ...(jobTitle && { jobTitle }),
+        ...(guestOverride?.worksFor && {
+          affiliation: {
+            "@type": guestOverride.worksFor.type,
+            name: guestOverride.worksFor.name,
+            ...(guestOverride.worksFor.url && { url: guestOverride.worksFor.url }),
+          },
+        }),
+        ...(guestSameAs.length > 0 && { sameAs: guestSameAs }),
+        ...(guestKnowsAbout.length > 0 && { knowsAbout: guestKnowsAbout }),
+      };
+    }
+    return {
+      "@type": "Person",
+      name: speaker,
+      ...(credential && { jobTitle: credential }),
+    };
+  };
 
   const mentionedEvents = EVENTS.filter((e) => {
     const haystack = `${episode.title} ${episode.description} ${episode.transcript || ""}`.toLowerCase();
@@ -435,13 +481,10 @@ export default async function EpisodePage({
             "@graph": episode.keyQuotes.map((quote) => ({
               "@type": "Quotation",
               text: quote.text,
-              creator: {
-                "@type": "Person",
-                name: quote.speaker,
-                ...(quote.credential && { description: quote.credential }),
-              },
+              creator: resolveQuoteCreator(quote.speaker, quote.credential),
               isPartOf: {
                 "@type": "PodcastEpisode",
+                "@id": `${episodeUrl}#episode`,
                 name: episode.title,
                 url: episodeUrl,
               },
