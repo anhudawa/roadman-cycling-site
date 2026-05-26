@@ -6,6 +6,7 @@ export {
   type QuestionFaq,
   type CoachingCta,
 } from "./QuestionTemplate";
+export { AnswerTemplate } from "./AnswerTemplate";
 export { ComparisonTemplate, type ComparisonRow } from "./ComparisonTemplate";
 export {
   BenchmarkTemplate,
