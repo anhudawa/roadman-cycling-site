@@ -1,7 +1,7 @@
 {
   "version": 1,
   "feedUrl": "https://anchor.fm/s/a09110e0/podcast/rss",
-  "lastRun": "2026-05-26T14:39:59.043Z",
+  "lastRun": "2026-05-26T16:09:20.422Z",
   "episodes": {
     "603e6ee5-ad89-4d4f-825c-e2d6f86d9665": {
       "status": "written",
@@ -149,6 +149,342 @@
       "title": "If you can't TT go home",
       "words": 2693,
       "updatedAt": "2026-05-26T14:39:59.043Z"
+    },
+    "94714f525d7f444d8c0cc6b3e2011d60": {
+      "status": "written",
+      "slug": "sometimes-dreams-come-true",
+      "title": "Sometimes dreams come true",
+      "words": 3523,
+      "updatedAt": "2026-05-26T14:58:24.499Z"
+    },
+    "f12692a0446a40a7b576c8d1500e346e": {
+      "status": "written",
+      "slug": "a-fans-favourite",
+      "title": "A fans Favourite",
+      "words": 3374,
+      "updatedAt": "2026-05-26T14:58:24.501Z"
+    },
+    "19a43f6d6bad46408c28a96d8c254cf0": {
+      "status": "written",
+      "slug": "the-hardest-climb-ive-ever-seen",
+      "title": "The hardest climb i've ever seen",
+      "words": 3415,
+      "updatedAt": "2026-05-26T14:58:24.503Z"
+    },
+    "8ef9160e35184592ac8f8728b4c0c0e0": {
+      "status": "written",
+      "slug": "not-a-conventional-sprint",
+      "title": "Not a conventional sprint",
+      "words": 3012,
+      "updatedAt": "2026-05-26T14:58:24.504Z"
+    },
+    "fa61adf9c2884a15b3e252e5d98a5724": {
+      "status": "written",
+      "slug": "its-champagne-for-jumbo-visma",
+      "title": "It's Champagne for Jumbo Visma",
+      "words": 3844,
+      "updatedAt": "2026-05-26T14:58:24.505Z"
+    },
+    "f62f599f87844756a040c07b6af162bc": {
+      "status": "written",
+      "slug": "faith-lost-in-lopez",
+      "title": "Faith lost in Lopez",
+      "words": 3123,
+      "updatedAt": "2026-05-26T14:58:24.506Z"
+    },
+    "c315af54925f4a2b82d802a9fee1f91f": {
+      "status": "written",
+      "slug": "fastest-day-of-the-vuelta",
+      "title": "Fastest day of the Vuelta",
+      "words": 4272,
+      "updatedAt": "2026-05-26T14:58:24.508Z"
+    },
+    "dfe2427bf4134b9683ecba5c7cce3134": {
+      "status": "written",
+      "slug": "they-think-its-all-over",
+      "title": "They think it's all over",
+      "words": 2759,
+      "updatedAt": "2026-05-26T14:58:24.509Z"
+    },
+    "f49caa0018184e1f9893ad54d2130952": {
+      "status": "written",
+      "slug": "they-ripped-up-the-rule-book-shameful",
+      "title": "They ripped up the rule book - shameful?",
+      "words": 2543,
+      "updatedAt": "2026-05-26T14:58:24.510Z"
+    },
+    "f7ae50c1db654a7cb8a51b709ebb013b": {
+      "status": "written",
+      "slug": "roglic-wins-the-vuelta-as-pogacar-comes-of-age",
+      "title": "Roglic wins the Vuelta as Pogacar comes of age",
+      "words": 2789,
+      "updatedAt": "2026-05-26T14:58:24.511Z"
+    },
+    "704df392865c403ebce171be3f92f229": {
+      "status": "written",
+      "slug": "the-vuelta-is-over",
+      "title": "The Vuelta is over",
+      "words": 3654,
+      "updatedAt": "2026-05-26T14:58:24.513Z"
+    },
+    "562f1fe5b0784d169f8feaa03a668d57": {
+      "status": "written",
+      "slug": "cdb-oil-for-enhancing-sleep-and-improving-pre-race-anxiety",
+      "title": "CDB Oil for Enhancing Sleep and Improving Pre Race Anxiety",
+      "words": 5759,
+      "updatedAt": "2026-05-26T14:58:24.514Z"
+    },
+    "cd6d500d35f9451fa119174d6062a9cc": {
+      "status": "written",
+      "slug": "inside-the-world-tour-with-mitchelton-scott-physio-scott-murphy",
+      "title": "Inside the World Tour with Mitchelton Scott Physio - Scott Murphy",
+      "words": 6102,
+      "updatedAt": "2026-05-26T15:14:47.225Z"
+    },
+    "9538ec42b3eb441faddc71d15b30548f": {
+      "status": "written",
+      "slug": "heading-to-tokyo-2020",
+      "title": "Heading to Tokyo 2020?",
+      "words": 5178,
+      "updatedAt": "2026-05-26T15:14:47.228Z"
+    },
+    "cc1b0205e14b4d0a963f9902dff00285": {
+      "status": "written",
+      "slug": "enhance-your-performance-through-sleep",
+      "title": "Enhance your performance through Sleep",
+      "words": 6888,
+      "updatedAt": "2026-05-26T15:14:47.230Z"
+    },
+    "7c667fe7765143a6bac4f7993a9e227d": {
+      "status": "written",
+      "slug": "cycling-lessons-from-project-1-59",
+      "title": "Cycling lessons from Project 1.59",
+      "words": 5345,
+      "updatedAt": "2026-05-26T15:14:47.232Z"
+    },
+    "9265f33d2cea43d898dea7b90e25e903": {
+      "status": "written",
+      "slug": "should-you-use-a-power-meter",
+      "title": "Should you use a power meter?",
+      "words": 6098,
+      "updatedAt": "2026-05-26T15:14:47.234Z"
+    },
+    "bf8d48f6f14c4021a861750a0676ace0": {
+      "status": "written",
+      "slug": "using-your-power-meter-to-win-races",
+      "title": "Using your Power Meter to win races",
+      "words": 4417,
+      "updatedAt": "2026-05-26T15:14:47.235Z"
+    },
+    "e71f2dca-feb0-4e04-8f1a-be38525ef226": {
+      "status": "written",
+      "slug": "why-i-love-cycling",
+      "title": "Why I love Cycling",
+      "words": 3280,
+      "updatedAt": "2026-05-26T15:14:47.236Z"
+    },
+    "03149da5-9069-407e-a082-4af7970b80af": {
+      "status": "written",
+      "slug": "building-unstoppable-momentum",
+      "title": "Building unstoppable momentum",
+      "words": 4968,
+      "updatedAt": "2026-05-26T15:14:47.237Z"
+    },
+    "00cea358-ed5d-466c-a3e4-fcb2e604aa0d": {
+      "status": "written",
+      "slug": "cycling-minimalism",
+      "title": "Cycling Minimalism",
+      "words": 4745,
+      "updatedAt": "2026-05-26T15:14:47.239Z"
+    },
+    "be26ca67-a3fd-4f90-bafd-0980c5c25eb4": {
+      "status": "written",
+      "slug": "how-to-increase-your-productivity",
+      "title": "How To Increase Your Productivity",
+      "words": 4170,
+      "updatedAt": "2026-05-26T15:14:47.240Z"
+    },
+    "b0ac34a8-3953-4c7e-b9e6-80ed0e8fed6d": {
+      "status": "written",
+      "slug": "alternative-calendar-gravel",
+      "title": "Alternative Calendar - Gravel",
+      "words": 4454,
+      "updatedAt": "2026-05-26T15:14:47.241Z"
+    },
+    "09579813-2a93-432a-ac91-799f0628105b": {
+      "status": "written",
+      "slug": "how-to-defeat-ego",
+      "title": "How to defeat ego",
+      "words": 3704,
+      "updatedAt": "2026-05-26T15:14:47.243Z"
+    },
+    "9e564bee-f42e-40e9-b3a2-3feb8be73b4c": {
+      "status": "written",
+      "slug": "how-top-performers-are-succeeding",
+      "title": "How Top Performers are Succeeding",
+      "words": 4308,
+      "updatedAt": "2026-05-26T15:44:36.536Z"
+    },
+    "3c8965de-e2be-4f0a-aa9b-9d56998a54b2": {
+      "status": "written",
+      "slug": "the-olympics-are-off-what-it-means",
+      "title": "The Olympics Are Off - What It Means",
+      "words": 4623,
+      "updatedAt": "2026-05-26T15:44:36.539Z"
+    },
+    "4f7f6fe8-d76e-405a-a3bf-e1fb8ac3350c": {
+      "status": "written",
+      "slug": "stop-before-you-quit-on-your-dream-listen-to-this-my-story",
+      "title": "STOP!.....Before You Quit On Your Dream listen To This (My Story)",
+      "words": 2809,
+      "updatedAt": "2026-05-26T15:44:36.540Z"
+    },
+    "cb966bde-441a-4be8-98ed-72bfc37724fc": {
+      "status": "written",
+      "slug": "ed-veal-zwift-world-record",
+      "title": "Ed Veal - Zwift World Record",
+      "words": 14128,
+      "updatedAt": "2026-05-26T15:44:36.543Z"
+    },
+    "dfe56f8a-8f44-4e82-94ff-f9b7064f2fc8": {
+      "status": "written",
+      "slug": "ian-boswell-trading-world-tour-for-gravel",
+      "title": "Ian Boswell - Trading World Tour For Gravel",
+      "words": 8661,
+      "updatedAt": "2026-05-26T15:44:36.546Z"
+    },
+    "f9ee9510-0179-4fe8-ba74-99f38676d528": {
+      "status": "written",
+      "slug": "tyler-hamilton-forgiveness-and-rebirth",
+      "title": "Tyler Hamilton - Forgiveness & Rebirth",
+      "words": 12474,
+      "updatedAt": "2026-05-26T15:44:36.549Z"
+    },
+    "d2931206-fea1-432f-9035-9c226566d671": {
+      "status": "written",
+      "slug": "ted-king-the-king-of-gravel-cycling",
+      "title": "Ted King - The King of Gravel Cycling",
+      "words": 8867,
+      "updatedAt": "2026-05-26T15:44:36.552Z"
+    },
+    "eca6a140-9a82-4ed8-ae81-aae4f3e123f6": {
+      "status": "written",
+      "slug": "christian-meier-developing-a-life-long-cycling-passion",
+      "title": "Christian Meier - Developing a Life Long Cycling Passion",
+      "words": 9596,
+      "updatedAt": "2026-05-26T15:44:36.554Z"
+    },
+    "117f9aba-0ee4-40bf-8c5e-ea9b53b191c4": {
+      "status": "written",
+      "slug": "steve-cummings-the-peletons-last-maverick",
+      "title": "Steve Cummings - The Peleton's Last Maverick",
+      "words": 7673,
+      "updatedAt": "2026-05-26T15:44:36.556Z"
+    },
+    "f8fec447-5218-4ce9-96d2-26194676f31a": {
+      "status": "written",
+      "slug": "mike-woods-the-day-he-was-almost-world-champion",
+      "title": "Mike Woods - The Day He Was Almost World Champion",
+      "words": 9200,
+      "updatedAt": "2026-05-26T15:44:36.559Z"
+    },
+    "7a8fe118-582e-4cb8-b50f-db58598e381e": {
+      "status": "written",
+      "slug": "chris-juul-jensen-the-irishman",
+      "title": "Chris Juul Jensen - The Irishman",
+      "words": 11736,
+      "updatedAt": "2026-05-26T15:44:36.562Z"
+    },
+    "56af1bce-1b89-4c76-9e32-ab65b604d3ec": {
+      "status": "written",
+      "slug": "matt-white-what-it-takes-to-run-one-of-the-most-successful-teams-in-cy",
+      "title": "Matt White - What it takes to run one of the most successful teams in cycling",
+      "words": 12191,
+      "updatedAt": "2026-05-26T15:44:36.566Z"
+    },
+    "e1a38cd1-70f8-46c2-8326-8c3ae4b93e8d": {
+      "status": "written",
+      "slug": "pete-stetina-what-it-takes-to-dominate",
+      "title": "Pete Stetina - What it takes to dominate",
+      "words": 12261,
+      "updatedAt": "2026-05-26T16:09:20.397Z"
+    },
+    "c91a5a13-4bc4-4df2-bb4d-c9131d739603": {
+      "status": "written",
+      "slug": "mitch-docker-dietary-advice-mindset-and-bio-hacks",
+      "title": "Mitch Docker - Dietary Advice, Mindset & Bio-hacks",
+      "words": 11764,
+      "updatedAt": "2026-05-26T16:09:20.402Z"
+    },
+    "e8643bbe-b334-48ba-9010-68bcbe98f76a": {
+      "status": "written",
+      "slug": "willie-smit-racism-in-cycling-ketones-and-never-giving-up",
+      "title": "Willie Smit - Racism in Cycling, Ketones & Never Giving up",
+      "words": 11041,
+      "updatedAt": "2026-05-26T16:09:20.404Z"
+    },
+    "e0f3b387-5267-46e9-a7e2-60869af0f648": {
+      "status": "written",
+      "slug": "jani-brajkovi-battling-demons",
+      "title": "Jani Brajkovič - Battling Demons",
+      "words": 7716,
+      "updatedAt": "2026-05-26T16:09:20.407Z"
+    },
+    "6700ebbf-6506-4763-be3b-cac34c768729": {
+      "status": "written",
+      "slug": "bling-matthews-the-hunt-for-green-jerseys",
+      "title": "Bling Matthews - The Hunt for Green Jerseys",
+      "words": 9403,
+      "updatedAt": "2026-05-26T16:09:20.409Z"
+    },
+    "18e2e123-8020-4979-b845-6ff34c6b3d0d": {
+      "status": "written",
+      "slug": "why-do-some-succeed-and-others-dont",
+      "title": "Why Do Some Succeed & Others Don't",
+      "words": 6836,
+      "updatedAt": "2026-05-26T16:09:20.411Z"
+    },
+    "a481b83c-b066-4e23-b0aa-0a3eb4abd800": {
+      "status": "written",
+      "slug": "nicolas-roche-what-it-means-to-be-irish",
+      "title": "Nicolas Roche - What it means to be Irish",
+      "words": 11119,
+      "updatedAt": "2026-05-26T16:09:20.414Z"
+    },
+    "e7061f26-afc8-452d-94a9-4c16ea80944c": {
+      "status": "written",
+      "slug": "genesis-episode-roadman-bites",
+      "title": "Genesis Episode - Roadman Bites",
+      "words": 1881,
+      "updatedAt": "2026-05-26T16:09:20.416Z"
+    },
+    "d5a8fc57-26a5-417b-a073-4ce3172b135c": {
+      "status": "written",
+      "slug": "a-short-cut-to-success-who-not-how",
+      "title": "A Short Cut to Success - Who not how",
+      "words": 1755,
+      "updatedAt": "2026-05-26T16:09:20.417Z"
+    },
+    "9a33b79d-c6f9-4955-ae84-adf78d15a14b": {
+      "status": "written",
+      "slug": "ryan-mullen-how-to-go-fast-in-a-time-trial",
+      "title": "Ryan Mullen - How To Go Fast In A Time Trial",
+      "words": 10631,
+      "updatedAt": "2026-05-26T16:09:20.419Z"
+    },
+    "7d16dd6b-0431-4468-923c-21935c373173": {
+      "status": "written",
+      "slug": "tips-for-riding-in-traffic",
+      "title": "Tips For Riding In Traffic",
+      "words": 1652,
+      "updatedAt": "2026-05-26T16:09:20.421Z"
+    },
+    "9721d28d-dbd9-4836-b0b5-9ba9081eb367": {
+      "status": "written",
+      "slug": "preparation-for-bike-packing",
+      "title": "Preparation for Bike Packing",
+      "words": 1835,
+      "updatedAt": "2026-05-26T16:09:20.422Z"
     }
   }
 }
