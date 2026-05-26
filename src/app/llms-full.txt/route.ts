@@ -31,19 +31,22 @@ const tag = (url: string) => tagUrlForAICrawler(url, "llms-txt");
  * capsule + every recent episode's TL;DR, concatenated into one text
  * file LLMs can ingest in a single fetch.
  *
- * Scope decision: we include answer capsules and seoDescriptions rather
- * than full blog-post bodies or transcripts. Full transcripts (~3–6M
- * words across the full episode catalogue) would blow past every context window and
- * degrade — rather than improve — AI retrieval. Individual page URLs
- * remain the right retrieval target for deep content; llms-full.txt is
- * the index that tells the LLM which page to fetch.
+ * Scope decision: we include each entry's answer capsule (the citation-
+ * ready TL;DR) plus its seoDescription — and deliberately NOT the full
+ * FAQ lists, blog-post bodies, or transcripts. With 350+ blog posts the
+ * FAQ blocks alone ran to ~790KB and pushed the file past 1.2MB, which
+ * hurts crawler ingestion economics without improving citation quality
+ * (the per-page URL carries the FAQPage schema). Capsules + summaries are
+ * the high-value chunk an LLM lifts; the page URL is the retrieval target
+ * for FAQ and deep content. This keeps the export under ~500KB.
  */
 export async function GET() {
   const posts = getAllPosts();
   const episodes = getAllEpisodes();
   const transcriptSlugs = new Set(getTranscriptSlugs());
 
-  // All blog posts get included (112) — they're authored long-form content
+  // Every blog post is included as title + URL + answer capsule + summary
+  // (no FAQ — see scope note above). They're authored long-form content
   // with curated answer capsules, so this is net-positive for AI retrieval.
   const blogSections = posts
     .map((postMeta) => {
@@ -56,9 +59,6 @@ export async function GET() {
         `Published: ${post.publishDate}${post.updatedDate ? ` (updated ${post.updatedDate})` : ""}`,
         post.answerCapsule ? `\nAnswer:\n${post.answerCapsule}` : "",
         `\nSummary:\n${post.seoDescription}`,
-        post.faq && post.faq.length > 0
-          ? `\nFAQ:\n${post.faq.map((f: { question: string; answer: string }) => `Q: ${f.question}\nA: ${f.answer}`).join("\n\n")}`
-          : "",
         "",
       ]
         .filter(Boolean)
@@ -150,9 +150,6 @@ export async function GET() {
         transcriptLine,
         ep.answerCapsule ? `\nAnswer:\n${ep.answerCapsule}` : "",
         `\nSummary:\n${ep.seoDescription}`,
-        ep.faq && ep.faq.length > 0
-          ? `\nFAQ:\n${ep.faq.map((f: { question: string; answer: string }) => `Q: ${f.question}\nA: ${f.answer}`).join("\n\n")}`
-          : "",
         "",
       ]
         .filter(Boolean)
