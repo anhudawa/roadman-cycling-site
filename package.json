@@ -16,6 +16,8 @@
     "sync:youtube:full": "tsx scripts/sync-youtube.ts --full",
     "sync:youtube:dry": "tsx scripts/sync-youtube.ts --full --dry-run",
     "sync:youtube:enrich": "tsx scripts/sync-youtube.ts --re-enrich",
+    "transcribe:audio": "tsx scripts/transcribe-audio-episodes.ts",
+    "transcribe:audio:dry": "tsx scripts/transcribe-audio-episodes.ts --dry-run",
     "db:generate": "drizzle-kit generate",
     "db:migrate": "drizzle-kit migrate",
     "db:push": "drizzle-kit push",
