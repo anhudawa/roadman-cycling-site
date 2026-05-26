@@ -1199,7 +1199,7 @@ const BASE_ANSWERS: AnswerPage[] = [
         label: "Should cyclists do strength training?",
         href: "/answers/should-cyclists-lift-weights",
       },
-      { label: "Masters FTP Benchmark Calculator", href: "/tools/masters-ftp-benchmark" },
+      { label: "Power-to-Weight (W/kg) Calculator", href: "/tools/wkg" },
       { label: "Strength Training for Cyclists Over 50", href: "/blog/strength-training-cyclists-over-50" },
       { label: "Strength vs More Miles", href: "/compare/strength-vs-more-miles" },
     ],

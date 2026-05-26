@@ -1858,4 +1858,970 @@ export const racingAnswers: AnswerPage[] = [
     publishDate: "2026-05-26",
     updatedDate: "2026-05-26",
   },
+
+  // ============================================================
+  // HOW TO PREPARE FOR YOUR FIRST ROAD RACE
+  // ============================================================
+  {
+    slug: "how-to-prepare-for-your-first-road-race",
+    cluster: "racing",
+    question: "How Do I Prepare for My First Road Race?",
+    seoTitle: "How to Prepare for Your First Road Race",
+    seoDescription:
+      "Your first road race is won on positioning and bike-handling in a bunch, not raw FTP. How to train the surges, hold position, fuel, and survive the first race so you finish in the pack.",
+    pillar: "coaching",
+    directAnswer:
+      "For your first road race, train the repeated surges that define bunch racing — short, hard efforts off easy riding — and practise holding a wheel in a group before race day. Most first-timers have the fitness to finish but get shelled because they sit at the back, miss the accelerations, and waste energy. Position near the front third, stay on wheels, fuel from the gun, and your first goal is simple: finish in the bunch.",
+    keyTakeaways: [
+      "Road racing is decided by positioning and surges, not your fresh FTP.",
+      "Train repeated hard efforts — racing is stochastic, not steady.",
+      "Practise riding in a bunch before race day; handling skills keep you safe and save energy.",
+      "First-race goal: finish in the pack. Stay near the front third and on wheels.",
+    ],
+    whoFor: [
+      {
+        label: "The fit rider new to racing",
+        detail:
+          "You've got decent numbers from training but have never pinned a number on.",
+      },
+      {
+        label: "The club rider stepping up",
+        detail:
+          "You do the chain gang and want to race properly without getting dropped on lap one.",
+      },
+    ],
+    roadmanView: [
+      "Almost every first-timer makes the same discovery: road racing barely resembles their training. You can have a perfectly good FTP and still get shelled in the first ten minutes, because a race isn't a steady effort — it's a series of violent surges out of corners and up rises, with long stretches of sitting in between. The riders who get dropped are usually the fittest-looking ones who never learned to handle the accelerations or hold position in a bunch.",
+      "Cory Williams talks about this on the podcast in the context of criteriums, and it applies to your first road race too: the energy you save by sitting in the front third, on good wheels, out of the wind, is enormous compared to the rider fighting at the back, closing gaps every time the pace lifts. Brian Smith, who's directed at the top of the sport, frames racing as a thinking game — knowing where to be and when, not just how hard you can pull. That's a skill you train, not one you're born with.",
+      "So prepare like a racer, not just a fit rider. Do the short, repeated efforts that mirror race surges. Get into bunch rides and practise being comfortable inches off a wheel. Fuel from the start because you'll burn through glycogen faster than on any training ride. And set the right first goal — not to win, but to still be in the pack at the finish. Do that and you've already beaten most debutants.",
+    ],
+    expertEvidence: [
+      {
+        name: "Cory Williams",
+        credential: "Pro criterium racer, founder of Legion Cycling",
+        insight:
+          "Bunch racing rewards positioning over raw power. Staying near the front, out of the wind and ready for the surges, saves the energy that decides whether you finish with the group or get spat out the back.",
+        episodeSlug: "ep-2191-criterium-secrets-get-ahead-of-99-of-your-competition-cory-w",
+        guestSlug: "cory-williams",
+      },
+      {
+        name: "Brian Smith",
+        credential: "Former British champion and WorldTour sports director",
+        insight:
+          "Racing is a thinking sport — reading the race, knowing where to position, and conserving energy matter as much as fitness. First-timers improve fastest by learning tactics and bunch skills, not by chasing more watts.",
+        episodeSlug: "ep-2244-brian-smith-roadman-cycling-podcast",
+        guestSlug: "brian-smith",
+      },
+    ],
+    practicalApplication: [
+      {
+        title: "Train the surges",
+        detail:
+          "Add sessions of short, repeated hard efforts — 30s to 2min near and above threshold, off an easy base — to mimic the stochastic accelerations of a race. Steady threshold work alone won't prepare you for the punchy reality.",
+      },
+      {
+        title: "Practise riding in a bunch",
+        detail:
+          "Do fast group rides and chain gangs before race day. Get comfortable holding a wheel, riding close, and cornering in a pack. Handling confidence keeps you safe and saves energy.",
+      },
+      {
+        title: "Fuel from the start",
+        detail:
+          "Eat a carb-rich meal beforehand and take on carbs from early in the race — you'll burn glycogen faster than in any training ride. Don't wait until you feel empty in a race that may already be decided by then.",
+      },
+      {
+        title: "Set a finish-in-the-bunch goal",
+        detail:
+          "For race one, aim to stay near the front third, on wheels, and finish in the pack. Learning to survive and read the race is the foundation; chasing results comes later.",
+      },
+    ],
+    commonMistakes: [
+      {
+        mistake: "Sitting at the back to 'stay out of trouble'.",
+        fix:
+          "The back is where you close gaps all day and get dropped. Ride the front third — it's safer and far less tiring.",
+      },
+      {
+        mistake: "Training only steady efforts for a stochastic race.",
+        fix:
+          "Add short, repeated surges. Racing is accelerations off corners and rises, not a flat threshold test.",
+      },
+      {
+        mistake: "Showing up with no bunch-riding experience.",
+        fix:
+          "Practise in group rides first. Poor handling in a pack is dangerous and burns energy fighting for position.",
+      },
+    ],
+    faq: [
+      {
+        question: "How fit do I need to be for my first road race?",
+        answer:
+          "Fitter than a casual rider, but most people who do regular fast group rides have enough fitness to finish. The bigger gap for first-timers is racecraft — positioning, surges and bunch skills — not raw FTP.",
+      },
+      {
+        question: "What's the most common first-race mistake?",
+        answer:
+          "Sitting at the back. It feels safe but it's the hardest place to ride: you're constantly closing gaps when the pace surges, you can't see what's happening, and you're first to get dropped. Ride the front third instead.",
+      },
+      {
+        question: "How do I train for the surges in a race?",
+        answer:
+          "Add short, repeated hard efforts to your week — sets of 30-second to 2-minute efforts near and above threshold, with easy recovery. These mimic the accelerations out of corners and over rises that decide who stays in the bunch.",
+      },
+      {
+        question: "Should I eat during a short road race?",
+        answer:
+          "Yes — fuel beforehand and take carbs early, even in a sub-90-minute race. The intensity burns glycogen fast, and running empty in the closing laps is a common way first-timers fade exactly when the race heats up.",
+      },
+      {
+        question: "What category do I start racing in?",
+        answer:
+          "The lowest category for newcomers in your federation (a cat 4 or equivalent). Field sizes and speeds are more manageable, and you'll learn bunch skills against riders at a similar level before stepping up.",
+      },
+      {
+        question: "How do I not get dropped in my first race?",
+        answer:
+          "Position near the front, stay on wheels and out of the wind, anticipate the surges rather than reacting late, and fuel from the start. Most riders get dropped from poor positioning and missed accelerations, not from lack of fitness.",
+      },
+    ],
+    relatedEpisodes: [
+      "ep-2191-criterium-secrets-get-ahead-of-99-of-your-competition-cory-w",
+      "ep-2244-brian-smith-roadman-cycling-podcast",
+      "ep-2240-what-makes-a-sprinter-unbeatable-andr-greipel",
+    ],
+    relatedTopics: [
+      { label: "How to race a criterium", href: "/answers/how-to-race-a-criterium" },
+      { label: "Race-day warm-up for cycling", href: "/answers/race-day-warm-up-cycling" },
+      { label: "How to taper for a race", href: "/answers/how-to-taper-for-a-race" },
+      { label: "Cycling Training Plans — Topic Hub", href: "/topics/cycling-training-plans" },
+      { label: "Volume vs Intensity", href: "/compare/volume-vs-intensity" },
+    ],
+    evidenceLevel: "moderate",
+    evidenceNote:
+      "First-race guidance reflects racing-craft consensus from pro racers and directors (Williams, Smith) and Roadman racing coverage rather than a single study.",
+    publishDate: "2026-05-26",
+    updatedDate: "2026-05-26",
+  },
+
+  // ============================================================
+  // PACING A RACE WITH POWER
+  // ============================================================
+  {
+    slug: "pacing-a-race-with-power",
+    cluster: "racing",
+    question: "How Do I Pace a Race Using Power?",
+    seoTitle: "How to Pace a Race With Power — Numbers That Win",
+    seoDescription:
+      "Pace a race with power by setting effort ceilings off your FTP — 88–94% on sustained climbs, 75% on the flat — and never burning matches above 120% you don't need to. The pacing the front does that the back doesn't.",
+    pillar: "coaching",
+    directAnswer:
+      "Pace a race with power by anchoring every effort to your FTP: hold 70–78% in the bunch on the flat, cap sustained climbs at 88–94%, and only spend efforts above 120% FTP when they buy you a result. Power removes the guesswork that wrecks amateurs — the rider who burns three needless matches in the first hour has nothing left when the race actually starts.",
+    keyTakeaways: [
+      "Sitting in the bunch should read 65–78% of FTP — anything higher means you're working too hard for your position.",
+      "Cap sustained climbs at 88–94% FTP unless you're committing to a decisive move.",
+      "Treat efforts above 120% FTP as matches — you have a finite number, so spend them on results.",
+      "Power is leading data; heart rate lags 60–90 seconds and is useless for the surges that decide races.",
+    ],
+    whoFor: [
+      {
+        label: "The club racer with a power meter who still rides on feel",
+        detail:
+          "You have the data but you race by sensation and keep ending up empty when the decisive move goes.",
+      },
+      {
+        label: "The gran fondo rider who wants to race the result, not just finish",
+        detail:
+          "You want to use power to budget your effort across hours rather than reacting to whoever is around you.",
+      },
+    ],
+    roadmanView: [
+      "Here's the thing nobody tells you about racing with power: the meter isn't there to make you go harder. It's there to stop you wasting energy you'll need later. Most amateurs treat the number as a target to chase. The riders who actually win treat it as a ceiling that keeps them out of trouble. Anthony has made this point repeatedly on the podcast — the data is only useful if it changes a decision, and the decision it should change most often is when to back off.",
+      "When Alex Welburn came on the show to talk about the metrics Pogačar's level of rider actually uses, the takeaway wasn't some exotic number. It was that the best riders understand their own critical power and W' — how much work they can do above threshold before the tank runs dry — and they manage it deliberately. Every surge out of a corner, every gap you close, every time you sit on the front for an extra minute is a withdrawal from an account that doesn't refill mid-race.",
+      "The good news is this is genuinely fixable in a single race. Set your zones, write two numbers on your stem — your bunch ceiling and your climb ceiling — and ride to them. The first time you do it, you'll feel like you're holding back. Then the decisive move goes on the final climb and you've got the matches to follow it. That's the whole game.",
+    ],
+    expertEvidence: [
+      {
+        name: "Alex Welburn",
+        credential: "Cycling coach and physiologist; PhD researcher on critical power and W'",
+        insight:
+          "Racing well off power is less about hitting big numbers and more about managing the work you do above threshold. Every rider has a finite anaerobic capacity — W' — and the riders who finish strongest are the ones who don't spend it on efforts that don't change the race.",
+        episodeSlug: "ep-26-3-training-metrics-that-pogacar-uses-that-you-don-t",
+        guestSlug: "alex-welburn",
+      },
+      {
+        name: "Alex Dowsett",
+        credential: "Professional cyclist; former UCI Hour Record holder",
+        insight:
+          "Pacing discipline is suppressing the urge to chase a number or a wheel when the legs feel good early. The riders who pace by a deliberate ceiling rather than by sensation are the ones who are still in contention when the race is decided in the final third.",
+        episodeSlug: "ep-2119-13-years-of-pro-riding-what-amateurs-dont-know-dowsett",
+        guestSlug: "alex-dowsett",
+      },
+    ],
+    practicalApplication: [
+      {
+        title: "Write two numbers on your stem before the start",
+        detail:
+          "Your flat-bunch ceiling (roughly 78% of FTP) and your sustained-climb ceiling (88–94% of FTP). These are the limits you ride to when nothing decisive is happening. They keep you in the race without bleeding energy you'll need when it matters.",
+      },
+      {
+        title: "Audit your matches after every race",
+        detail:
+          "Open the file and count every effort above 120% FTP. For each one, ask: did it buy me a result, or did I just react? Most amateurs find half their hard efforts were unnecessary. Cutting those is free fitness on the day.",
+      },
+      {
+        title: "Use power for the surges, perceived effort for the steady state",
+        detail:
+          "On accelerations and corner exits, glance at power to cap the spike — heart rate is too slow to help. On long steady efforts, you can cross-check with RPE and breathing. Power leads; the body confirms.",
+      },
+    ],
+    commonMistakes: [
+      {
+        mistake: "Treating your FTP number as a target to hit rather than a ceiling to respect.",
+        fix:
+          "In a bunch, lower power is better — it means you're using the draft and your position. Chase the result, not the number.",
+      },
+      {
+        mistake: "Pacing surges and climbs by heart rate.",
+        fix:
+          "Heart rate lags 60–90 seconds behind effort. By the time it tells you you've gone too hard, the match is already burned. Use power for anything short and sharp.",
+      },
+      {
+        mistake: "Spending efforts above threshold on moves that change nothing.",
+        fix:
+          "Before you close a gap or follow a surge, ask whether it affects your result. Your W' is finite — save it for the efforts that decide the race.",
+      },
+    ],
+    faq: [
+      {
+        question: "Do I need a power meter to race well?",
+        answer:
+          "No — riders won races for a century without one. But power removes the single biggest amateur error, which is misjudging effort early. If you race regularly, a power meter is one of the highest-return purchases you can make for pacing decisions.",
+      },
+      {
+        question: "What percentage of FTP should I sit at in the bunch?",
+        answer:
+          "On flat roads in a sheltered position, 65–78% of FTP is normal. If you're seeing higher than that just to hold your place, you're badly positioned and burning energy — move up or find better shelter.",
+      },
+      {
+        question: "How do I pace a power effort on a punchy climb?",
+        answer:
+          "Short steep climbs of 1–3 minutes can be ridden above threshold — 105–120% FTP — because they're over quickly. Longer sustained climbs should be capped at 88–94% unless you're committing to a decisive selection.",
+      },
+      {
+        question: "What is W' and why does it matter for racing?",
+        answer:
+          "W' (pronounced 'W-prime') is your finite store of work available above critical power — roughly your anaerobic capacity. Every surge depletes it and it only refills when you ride below threshold. Managing W' is the core of racing well on power.",
+      },
+      {
+        question: "Should I look at normalised power or average power in a race?",
+        answer:
+          "Normalised power. In a race full of surges, average power hides how spiky your ride was. Normalised power weights the hard efforts and gives a truer picture of the physiological cost — and of how many matches you spent.",
+      },
+      {
+        question: "Can I pace a criterium with power?",
+        answer:
+          "Partly. A crit is too reactive to ride to a steady number, but power is invaluable afterwards — reviewing your file shows whether your accelerations out of corners were efficient or whether your position forced you to spend matches you didn't need to.",
+      },
+    ],
+    relatedEpisodes: [
+      "ep-26-3-training-metrics-that-pogacar-uses-that-you-don-t",
+      "ep-2119-13-years-of-pro-riding-what-amateurs-dont-know-dowsett",
+      "ep-2191-criterium-secrets-get-ahead-of-99-of-your-competition-cory-w",
+    ],
+    relatedTopics: [
+      { label: "How to Pace a Time Trial", href: "/answers/how-to-pace-a-time-trial" },
+      { label: "How to Pace a Gran Fondo", href: "/answers/how-to-pace-a-gran-fondo" },
+      { label: "FTP Zone Calculator", href: "/tools/ftp-zones" },
+      { label: "Heart Rate vs Power", href: "/compare/heart-rate-vs-power" },
+      { label: "FTP Training — Topic Hub", href: "/topics/ftp-training" },
+    ],
+    evidenceLevel: "moderate",
+    publishDate: "2026-05-26",
+    updatedDate: "2026-05-26",
+  },
+
+  // ============================================================
+  // FIRST BIKE RACE PREPARATION
+  // ============================================================
+  {
+    slug: "first-bike-race-preparation",
+    cluster: "racing",
+    question: "How Do I Prepare for My First Bike Race?",
+    seoTitle: "How to Prepare for Your First Bike Race",
+    seoDescription:
+      "Prepare for your first bike race with 6–8 weeks of practising repeated 30–60 second efforts, group-riding skills, and a recce of the course. Why bunch skills matter more than FTP for a first-timer.",
+    pillar: "coaching",
+    directAnswer:
+      "Prepare for your first bike race by spending 6–8 weeks practising two things fitness alone won't give you: repeated 30–60 second surges at 130–150% of FTP, and confident bunch riding in fast group rides. The fitness to finish a Cat 4 or beginner race is modest — the limiter is almost always handling and positioning in a tight, surging bunch, not your engine.",
+    keyTakeaways: [
+      "Bunch skills decide your first race far more than FTP — practise group riding for 6–8 weeks.",
+      "Train the specific demand: 10–15 reps of 30–60 second efforts at 130–150% FTP, twice a week.",
+      "Recce or research the course — know where the corners, hills and finish are before you line up.",
+      "Start near the front; the back of the bunch does the most braking and the most sprinting.",
+    ],
+    whoFor: [
+      {
+        label: "The fit rider entering their first licensed race",
+        detail:
+          "You ride well solo but have never raced in a bunch and don't want the rookie errors to define your day.",
+      },
+      {
+        label: "The club rider stepping up from group rides to racing",
+        detail:
+          "You're comfortable in a chaingang but want to understand what changes when results are on the line.",
+      },
+    ],
+    roadmanView: [
+      "The biggest surprise for almost every first-time racer is how little their fitness is the problem. You've trained, you've got a respectable FTP, and you assume the engine is what gets tested. Then the flag drops and you discover the race is a constant series of surges, brakes, gaps and reshuffles — and you're spending twice the energy of the rider next to you just to hold your place. The fitness was never the limiter. The skills were.",
+      "Cory Williams has built a whole racing programme around teaching people exactly this, and his point is blunt: positioning and bunch craft are worth more than watts in any race shorter than a mountain stage. Brian Smith, who's seen it from the rider and directeur side, says the same thing in different words — your first race is a lesson, not a result. You're there to learn how a bunch breathes, where the danger is, and how to be near the front without panicking.",
+      "Here's the good news, and it's the same good news Anthony gives every nervous first-timer: this is the most fixable thing in cycling. You don't need a winter of training to fix it. You need a handful of fast group rides where you practise holding a wheel, cornering in close company, and surging out of a slow section without gapping yourself. Six weeks of that and your first race becomes something you race, not something you survive.",
+    ],
+    expertEvidence: [
+      {
+        name: "Cory Williams",
+        credential: "Professional cyclist; founder of Legion Cycling Team",
+        insight:
+          "For a first-time racer, positioning and bunch skills matter more than raw fitness. The energy cost of being badly placed in a surging bunch is enormous, and most newcomers exhaust themselves fighting to stay in contact rather than racing. Learning to read and hold position is the first skill to build.",
+        episodeSlug: "ep-2191-criterium-secrets-get-ahead-of-99-of-your-competition-cory-w",
+        guestSlug: "cory-williams",
+      },
+      {
+        name: "Brian Smith",
+        credential: "Former British National Champion; sports director and commentator",
+        insight:
+          "A first race should be treated as a learning exercise, not a results day. The riders who develop fastest go in expecting to read the race, hold a wheel, and understand the rhythm of a bunch — and they build genuine racecraft from there rather than blowing themselves up chasing a placing.",
+        episodeSlug: "ep-2244-brian-smith-roadman-cycling-podcast",
+        guestSlug: "brian-smith",
+      },
+    ],
+    practicalApplication: [
+      {
+        title: "Do the race-specific intervals twice a week",
+        detail:
+          "From 6–8 weeks out: 10–15 reps of 30–60 seconds at 130–150% FTP with 60–90 seconds easy between. This builds the ability to repeatedly surge and recover — the actual physiological demand of a bunch race, which is nothing like a steady solo ride.",
+      },
+      {
+        title: "Use fast group rides as skills sessions",
+        detail:
+          "Join a chaingang or fast club ride weekly and treat it as practice: hold a wheel a hand's width off the rider in front, corner in close company, and surge out of slow sections without leaving a gap. These are the skills a race tests constantly.",
+      },
+      {
+        title: "Recce the course and arrive early",
+        detail:
+          "Ride or study the circuit beforehand. Know where the corners, the drag uphill, the wind and the finish straight are. On the day, arrive early, warm up properly with a few openers, and line up near the front rather than drifting to the back.",
+      },
+    ],
+    commonMistakes: [
+      {
+        mistake: "Assuming fitness is the limiter and skipping bunch-skills practice.",
+        fix:
+          "Spend 6–8 weeks in fast group rides. Handling and positioning decide a first race far more than your FTP does.",
+      },
+      {
+        mistake: "Sitting at the back to feel safe.",
+        fix:
+          "The back does the most braking and the most sprinting — it's harder and more crash-prone. Start near the front and work to hold position there.",
+      },
+      {
+        mistake: "Going to the front and driving the pace early to 'show form'.",
+        fix:
+          "Sitting on the front into the wind for no tactical reason wastes the energy you'll need later. Shelter in the bunch, conserve, and save your efforts for when they count.",
+      },
+    ],
+    faq: [
+      {
+        question: "How fit do I need to be for my first race?",
+        answer:
+          "Less than you think. If you can complete 10×30 seconds at 130% FTP and ride 90 minutes at a decent pace, you have the fitness for a beginner or Cat 4 race. The limiter is skills, not engine — fit riders get dropped through bad positioning all the time.",
+      },
+      {
+        question: "What category should I start in?",
+        answer:
+          "Start at the entry level for your federation — Cat 4 in the US, Cat 4 or a beginners' race in the UK. There's no shame in it and it's where you learn racecraft against riders at your own stage. Upgrading happens through results, not by skipping the learning.",
+      },
+      {
+        question: "What should I do the week before my first race?",
+        answer:
+          "Keep training light and short with a couple of openers — 30–60 second efforts at race intensity — to stay sharp. Prioritise sleep, check your bike over fully, and prepare your kit and nutrition the night before so race morning is calm.",
+      },
+      {
+        question: "How do I deal with first-race nerves?",
+        answer:
+          "Nerves are normal and largely useful — they mean you care. Channel them into a thorough warm-up and a clear, simple plan: hold position, follow wheels, don't panic at surges. Having one or two concrete tasks to focus on is the best antidote to anxiety.",
+      },
+      {
+        question: "Is it safe to race in a bunch as a beginner?",
+        answer:
+          "Bunch racing carries risk, but most of it is reducible. Hold your line, don't overlap wheels, brake smoothly and gradually, and stay near the front where there's more room and fewer crashes. Practising in group rides first is the single best safety measure.",
+      },
+      {
+        question: "Should I race a criterium or a road race first?",
+        answer:
+          "A road race or circuit race with fewer tight corners is often a gentler introduction than a technical criterium. Criteriums are more intense and skills-heavy. If a beginner-friendly crit series is available locally, it's a fast way to learn — but expect a steep curve.",
+      },
+    ],
+    relatedEpisodes: [
+      "ep-2191-criterium-secrets-get-ahead-of-99-of-your-competition-cory-w",
+      "ep-2244-brian-smith-roadman-cycling-podcast",
+      "ep-2249-first-race-of-the-season-a-cycling-vlog",
+    ],
+    relatedTopics: [
+      { label: "How to Race a Criterium", href: "/answers/how-to-race-a-criterium" },
+      { label: "Confidence Riding in a Bunch", href: "/answers/confidence-riding-in-a-bunch" },
+      { label: "Racing Tactics for Amateur Cyclists", href: "/blog/cycling-race-tactics-guide" },
+      { label: "How to Manage Race-Day Nerves", href: "/answers/how-to-manage-race-day-nerves" },
+      { label: "Cycling Coaching — Topic Hub", href: "/topics/cycling-coaching" },
+    ],
+    evidenceLevel: "moderate",
+    publishDate: "2026-05-26",
+    updatedDate: "2026-05-26",
+  },
+
+  // ============================================================
+  // RACING STAGE EVENTS
+  // ============================================================
+  {
+    slug: "racing-stage-events",
+    cluster: "racing",
+    question: "How Do I Race a Multi-Day or Stage Event?",
+    seoTitle: "How to Race a Multi-Day or Stage Event",
+    seoDescription:
+      "Race a multi-day event by managing the whole week as one effort: ride 5–10% inside your one-day limit on early stages, prioritise recovery and 100g/hr refuelling, and time your decisive efforts.",
+    pillar: "coaching",
+    directAnswer:
+      "Race a multi-day or stage event by treating the whole week as a single effort, not a series of one-day races. Ride the early stages 5–10% inside your one-day limit, then spend recovery as seriously as you spend race effort — refuelling toward 90–100g of carbohydrate per hour and protecting sleep. The rider who wins on day five is usually the one who held back on day one.",
+    keyTakeaways: [
+      "Race the week as one effort — early stages should feel 5–10% easier than a one-day race.",
+      "Recovery between stages is where stage races are won: refuel fast, sleep long, stay off your feet.",
+      "Target 90–100g of carbohydrate per hour in racing and keep eating hard the moment you finish.",
+      "Pick your stages — you cannot contest every day, so commit fully to the ones that suit you.",
+    ],
+    whoFor: [
+      {
+        label: "The club racer doing their first stage race or weekend tour",
+        detail:
+          "You can handle a one-day race but have never managed fatigue across consecutive racing days.",
+      },
+      {
+        label: "The event rider tackling a multi-day gran fondo or gravel block",
+        detail:
+          "You've signed up for a multi-stage event and want to arrive at the final day with something left.",
+      },
+    ],
+    roadmanView: [
+      "Here's where stage racing breaks people who are used to one-day events: the race isn't the stage, it's the week. You can have a blinder on day one, feel like a hero, and then discover on day three that you've written a cheque your recovery can't cash. The riders who finish multi-day events strongly almost always describe the same discipline — they deliberately rode within themselves early, and it felt frustrating, and it was the right call.",
+      "Laurens ten Dam spent sixteen years in the World Tour riding Grand Tours, and his framing of multi-day racing is the one that lands: the stage doesn't end when you cross the line. It ends when you've eaten, drunk, got your legs up and started sleeping. The recovery window after each stage is part of the race. Fred Wright, racing the biggest one-day Classics and Grand Tours, makes the same point from the sharp end — the freshness you carry into the decisive stage was banked days earlier in how seriously you took the easy days and the food.",
+      "So the fix is a mindset shift more than a fitness one. Stop racing today's stage as if it's the only one. Ride 5–10% inside your one-day ceiling on the days that don't suit you, refuel the second you finish, sleep like it's your job, and save your real efforts for the one or two stages where you can actually make something happen. That's not survival riding — that's how stage races are won.",
+    ],
+    expertEvidence: [
+      {
+        name: "Laurens Ten Dam",
+        credential: "16 years in the World Tour; Tour de France top-10 finisher",
+        insight:
+          "Across a multi-day race, recovery between stages matters as much as the racing itself. The stage doesn't end at the finish line — it ends once you've refuelled, hydrated and started sleeping. The riders who manage the days between stages well are the ones still strong at the end of the week.",
+        episodeSlug: "ep-2097-riding-the-worlds-most-beautiful-race-laurens-ten-dam",
+        guestSlug: "laurens-ten-dam",
+      },
+      {
+        name: "Fred Wright",
+        credential: "Professional cyclist; Grand Tour and Classics rider",
+        insight:
+          "Freshness late in a hard block is banked in the days before, through disciplined fuelling and recovery rather than heroics on every stage. The decisive efforts have to be chosen — you cannot contest every day and still be there when it matters most.",
+        episodeSlug: "ep-2229-fred-wright-opens-up-about-primoz-roglic-crash-roadman-podca",
+        guestSlug: "fred-wright",
+      },
+    ],
+    practicalApplication: [
+      {
+        title: "Set a weekly effort budget, not a daily one",
+        detail:
+          "On stages that don't suit you, ride 5–10% inside your one-day power ceiling — sit in, shelter, conserve. Identify the one or two stages that suit your strengths in advance and ring-fence your hard efforts for those days.",
+      },
+      {
+        title: "Start refuelling the instant you cross the line",
+        detail:
+          "The 30–60 minutes after a stage is the highest-value refuelling window. Take on carbohydrate and protein immediately, keep drinking, and aim to replace the glycogen you've burned before the next day. Across racing days, fuel toward 90–100g of carbohydrate per hour on the bike.",
+      },
+      {
+        title: "Treat recovery as a scheduled session",
+        detail:
+          "After each stage: get off your feet, elevate the legs, eat properly, and protect 8+ hours of sleep. Easy spinning the morning of a hard stage can help, but the biggest levers are food and sleep. Recovery is a discipline, not an afterthought.",
+      },
+    ],
+    commonMistakes: [
+      {
+        mistake: "Racing every stage flat out like a one-day event.",
+        fix:
+          "Budget your effort across the whole week. Ride the stages that don't suit you 5–10% inside your limit and save your matches for the ones that do.",
+      },
+      {
+        mistake: "Neglecting the refuelling and recovery window after each stage.",
+        fix:
+          "Start eating and drinking within minutes of finishing. The day between stages is when the race is won — treat recovery with the same seriousness as the racing.",
+      },
+      {
+        mistake: "Going too deep on day one because the legs feel good.",
+        fix:
+          "Fresh legs on day one are not a licence to empty the tank. Accumulated fatigue arrives later than you expect and bites harder. Ride conservatively early.",
+      },
+    ],
+    faq: [
+      {
+        question: "How is racing a stage event different from a one-day race?",
+        answer:
+          "In a one-day race you can empty the tank because there's no tomorrow. In a stage race, today's effort has a cost paid on the following days. The skill is budgeting effort and recovery across the whole event rather than racing each day in isolation.",
+      },
+      {
+        question: "How much should I eat between stages?",
+        answer:
+          "More than feels comfortable. Start with immediate post-stage carbohydrate and protein, then keep intake high through the evening to replace glycogen. On the bike during racing, aim toward 90–100g of carbohydrate per hour — under-fuelling compounds across consecutive days.",
+      },
+      {
+        question: "Should I do anything active on rest days or between stages?",
+        answer:
+          "Light active recovery — 30–45 minutes of very easy spinning — can help clear the legs and aid blood flow. But it should be genuinely easy. The priority between stages is food, hydration and sleep; active recovery is a minor addition, not the main event.",
+      },
+      {
+        question: "How do I pick which stages to target?",
+        answer:
+          "Match the stage profile to your strengths. If you climb well, target the mountain stage; if you sprint, target the flat finish. You cannot contest every day, so commit fully to the one or two stages where you have a genuine chance and conserve on the rest.",
+      },
+      {
+        question: "How do I sleep well during a multi-day event?",
+        answer:
+          "Keep a consistent wind-down routine, finish eating a couple of hours before bed, and avoid caffeine late and alcohol entirely. Late finishes and adrenaline make stage-race sleep hard — protect it deliberately, because it's the single biggest recovery lever you have.",
+      },
+      {
+        question: "What if I have a bad day mid-event?",
+        answer:
+          "Ride to survive it. Sit in, shelter, eat, and get to the line conserving everything you can. A bad day is rarely the end of a stage event — riders frequently come back strong the next day once they've refuelled and slept. Don't compound it by panicking.",
+      },
+    ],
+    relatedEpisodes: [
+      "ep-2097-riding-the-worlds-most-beautiful-race-laurens-ten-dam",
+      "ep-2229-fred-wright-opens-up-about-primoz-roglic-crash-roadman-podca",
+      "ep-2124-worlds-most-grueling-bike-race-6-days-nonstop-colin-o-brady",
+    ],
+    relatedTopics: [
+      { label: "How to Recover After a Race", href: "/answers/how-to-recover-after-a-race" },
+      { label: "What to Eat During a Race", href: "/answers/what-to-eat-during-a-race" },
+      { label: "How to Pace a Race Using Power", href: "/answers/pacing-a-race-with-power" },
+      { label: "Fuelling Calculator", href: "/tools/fuelling" },
+      { label: "Cycling Recovery — Topic Hub", href: "/topics/cycling-recovery" },
+    ],
+    evidenceLevel: "moderate",
+    publishDate: "2026-05-26",
+    updatedDate: "2026-05-26",
+  },
+
+  // ============================================================
+  // TRAINING FOR A HILL CLIMB
+  // ============================================================
+  {
+    slug: "training-for-a-hill-climb",
+    cluster: "racing",
+    question: "How Do I Train for a Hill Climb?",
+    seoTitle: "How to Train for a Hill Climb — All-Out Power",
+    seoDescription:
+      "Train for a hill climb event by building the specific power for its duration: VO2 max intervals for climbs under 5 minutes, threshold work above. The pacing and weight strategy a national champion uses.",
+    pillar: "coaching",
+    directAnswer:
+      "Train for a hill climb by matching your intervals to the event duration: for climbs under 5 minutes, build VO2 max power with 3–5 minute efforts at 105–120% of FTP; for longer climbs, train threshold with 2×20 minutes at 95–105%. A hill climb is a maximal, fully committed effort — you finish on the rivet, not within yourself. Pacing is the difference between a personal best and blowing up halfway.",
+    keyTakeaways: [
+      "Match the interval to the climb: VO2 max work (3–5 min, 105–120% FTP) for short climbs, threshold for long.",
+      "A hill climb is raced flat-out — pace to finish exactly empty at the top, not before.",
+      "Power-to-weight (W/kg) is the number that matters, but never under-fuel training to chase weight.",
+      "Practise the exact climb effort in training so race day isn't the first time you've gone that deep.",
+    ],
+    whoFor: [
+      {
+        label: "The club rider entering a hill climb event",
+        detail:
+          "You've signed up for a hill climb championship or club event and need to train the specific effort.",
+      },
+      {
+        label: "The gran fondo rider who wants to climb faster on the day",
+        detail:
+          "You want to improve your power on sustained ascents and understand how to pace a maximal climb.",
+      },
+    ],
+    roadmanView: [
+      "A hill climb is the purest test in the sport — no tactics, no drafting, no hiding. Just you, the gradient, and a number on the clock. And here's what makes it different from every other event you've trained for: you are supposed to blow up. You're supposed to cross the line unable to see straight. The skill isn't holding back, it's pacing the effort so you arrive at the top with exactly nothing left — not a watt early, not a watt spare.",
+      "Jack Burke, one of the fastest hill climbers around, talks about the brutal specificity of it. The duration dictates everything. A 90-second climb is a VO2 max and anaerobic effort that bears no resemblance to a 20-minute mountain time trial. Train the wrong system and you'll pace it wrong on the day. Andrew Feather — a four-time British national hill climb champion who's a 40-year-old amateur — proved you don't need a pro contract to win national titles at this; you need the right specific work and the willingness to hurt.",
+      "The weight conversation is unavoidable in hill climbing because it's a power-to-weight event, and the lighter rider at the same power goes faster. But Anthony has hammered this point on the podcast: chasing race weight by under-fuelling your training is how you arrive light and weak instead of light and strong. Build the watts on proper fuel first. The weight, managed sensibly, comes second.",
+    ],
+    expertEvidence: [
+      {
+        name: "Jack Burke",
+        credential: "Former British national hill climb champion",
+        insight:
+          "Hill climb training has to be matched to the duration of the climb. A short climb is a maximal anaerobic and VO2 max effort; a long one is a sustained threshold effort. Training the wrong energy system leaves a rider unable to produce the right power on the day, no matter how fit they are overall.",
+        episodeSlug: "ep-2083-secrets-of-the-worlds-fastest-hill-climber-jack-burke",
+        guestSlug: "jack-burke",
+      },
+      {
+        name: "Andrew Feather",
+        credential: "Four-time British National Hill Climb Champion; amateur cyclist",
+        insight:
+          "Excelling at hill climbs as an amateur comes from specific, repeatable training on the right energy system combined with a willingness to commit to a fully maximal effort. The result is about producing the highest sustainable power for the exact duration of the climb, not general fitness.",
+        episodeSlug: "ep-24-i-asked-a-40-year-old-amateur-how-he-beat-pogacar",
+        guestSlug: "andrew-feather",
+      },
+    ],
+    practicalApplication: [
+      {
+        title: "Match your intervals to the climb's duration",
+        detail:
+          "Under 2 minutes: anaerobic and neuromuscular work — 60–90 second efforts well above 120% FTP. 2–5 minutes: VO2 max — 3–5×4 minutes at 105–120% FTP. 8–20 minutes: threshold — 2×20 minutes at 95–105% FTP. Train the system the event actually demands.",
+      },
+      {
+        title: "Rehearse the full climb effort on the real gradient",
+        detail:
+          "In the final 4 weeks, do 2–3 timed full-effort runs on the actual climb or one with the same gradient and duration. Race day should not be the first time you've buried yourself for that exact effort. Learn where you can push and where you'll blow.",
+      },
+      {
+        title: "Manage weight through fuelling, not starvation",
+        detail:
+          "Improve power-to-weight by building watts on properly fuelled training first. If you carry excess weight, lose it gradually in the base phase by eating for the work required — never by under-fuelling hard sessions, which costs you the power that wins hill climbs.",
+      },
+    ],
+    commonMistakes: [
+      {
+        mistake: "Training general fitness instead of the specific climb duration.",
+        fix:
+          "A 90-second climb and a 15-minute climb need completely different intervals. Identify the exact duration and train that energy system specifically.",
+      },
+      {
+        mistake: "Pacing a hill climb conservatively like a road climb.",
+        fix:
+          "A hill climb is a maximal effort. Pace it to finish completely empty at the line — go too easy and you've left time on the road you can never get back.",
+      },
+      {
+        mistake: "Crash-dieting in the weeks before to drop weight.",
+        fix:
+          "Under-fuelling cuts your power as much as your weight. Build watts on proper fuel and manage weight gradually and early — light and weak loses to strong and slightly heavier.",
+      },
+    ],
+    faq: [
+      {
+        question: "How do I pace a short hill climb?",
+        answer:
+          "For a climb under 3 minutes, start hard but not absolutely flat-out — slightly above your target average for the first 20 seconds, settle into the highest power you can sustain, then empty everything in the final third. The goal is to cross the line with nothing left.",
+      },
+      {
+        question: "What intervals should I do for a 10-minute climb?",
+        answer:
+          "Threshold and over-threshold work: 2×20 minutes at 95–100% FTP for sustainable power, plus 4–5×4 minutes at 110–115% FTP to lift the ceiling you can hold. Build both the engine and the top end the climb will demand.",
+      },
+      {
+        question: "Does losing weight make me faster on climbs?",
+        answer:
+          "Yes — power-to-weight (W/kg) determines climbing speed, so a lighter rider at the same power climbs faster. But only if the power is preserved. Lose weight gradually and early through eating for the work required, never by under-fuelling the sessions that build your watts.",
+      },
+      {
+        question: "Should I use a lighter bike for a hill climb?",
+        answer:
+          "A lighter bike helps marginally, and dedicated hill climbers strip weight aggressively. But the rider is the bigger lever. Sort your training, pacing and your own power-to-weight first — a featherweight bike under an under-prepared rider is wasted.",
+      },
+      {
+        question: "How should I warm up for a hill climb?",
+        answer:
+          "Thoroughly. A hill climb is a maximal effort from the gun, so you need to be fully primed: 15–20 minutes of easy spinning building to 3–4 sharp openers at 110–130% FTP, finishing 5–10 minutes before your start so you're primed but not cooled down.",
+      },
+      {
+        question: "How often should I do climbing-specific sessions?",
+        answer:
+          "One to two specific sessions per week in the 6–8 weeks before the event, with full recovery between them. These are very hard sessions, so they need surrounding easy riding to absorb the work. Quality over quantity — you can't go maximal every day.",
+      },
+    ],
+    relatedEpisodes: [
+      "ep-2083-secrets-of-the-worlds-fastest-hill-climber-jack-burke",
+      "ep-24-i-asked-a-40-year-old-amateur-how-he-beat-pogacar",
+      "ep-6-5-fixable-reasons-your-climbing-is-slow",
+    ],
+    relatedTopics: [
+      { label: "How to Pace a Long Climb", href: "/answers/how-to-pace-a-long-climb" },
+      { label: "How to Climb Faster on the Bike", href: "/answers/how-to-climb-faster-cycling" },
+      { label: "How to Improve Power-to-Weight", href: "/answers/how-to-improve-power-to-weight" },
+      { label: "Watts per Kilo Calculator", href: "/tools/wkg" },
+      { label: "FTP Training — Topic Hub", href: "/topics/ftp-training" },
+    ],
+    evidenceLevel: "moderate",
+    publishDate: "2026-05-26",
+    updatedDate: "2026-05-26",
+  },
+
+  // ============================================================
+  // ROAD RACE POSITIONING
+  // ============================================================
+  {
+    slug: "road-race-positioning",
+    cluster: "racing",
+    question: "How Do I Position Myself in a Road Race?",
+    seoTitle: "How to Position Yourself in a Road Race",
+    seoDescription:
+      "Position yourself in a road race by staying in the first 10–20 riders, moving up before key points not during, and saving 20–30% of energy through the draft. Where pros sit and why the back is the hardest place to be.",
+    pillar: "coaching",
+    directAnswer:
+      "Position yourself in a road race by holding the first 10–20 wheels at all times, moving forward before the critical points — climbs, narrow sections, the finish — rather than during them. Good position saves 20–30% of your energy through the draft and keeps you out of crashes and splits. The back of the bunch is the most exhausting and dangerous place to be, not the safest.",
+    keyTakeaways: [
+      "Hold the first 10–20 riders — position is constant active work, not a place you settle into.",
+      "Move up before climbs, narrowings and the finish, never during them when everyone else is too.",
+      "Sitting in the draft saves 20–30% of your energy versus riding in the wind.",
+      "The back of the bunch does the most braking, surging and crashing — it is the hardest place to ride.",
+    ],
+    whoFor: [
+      {
+        label: "The club racer who keeps getting caught out of position",
+        detail:
+          "You're fit enough but you're always too far back when the race splits or the climb starts.",
+      },
+      {
+        label: "The rider stepping up to bigger road races",
+        detail:
+          "You can finish races but want to learn how the front of a bunch actually works tactically.",
+      },
+    ],
+    roadmanView: [
+      "Positioning is the skill that separates riders who are racing from riders who are merely surviving, and almost nobody teaches it before your first season. You can be the strongest engine in the field and still get dropped, get caught behind a split, or get taken out in a crash — all because you were in the wrong twenty metres of road at the wrong moment. Position isn't where you happen to be. It's a decision you make continuously, lap after lap.",
+      "George Hincapie spent a career as one of the best-positioned riders in the world — the man Lance and Boonen wanted beside them in the chaos of the Classics. His point about Roubaix and races like it is that positioning before the decisive sector is everything; by the time you hit the cobbles or the bottom of the climb, the race for position is already over and you've either done the work or you haven't. Michael Matthews says the same thing about reading a race: knowing when a move is about to go and being at the front before it does is a skill you build by racing, not by training watts.",
+      "Here's the fixable bit, and it's the part most amateurs get wrong: they try to move up at exactly the moment everyone else does — into the climb, into the narrowing, into the final kilometre. That's the most expensive place to move. The riders who do it well are always shuffling forward in the quiet moments, on the wide sections, when nobody's fighting, so that when the race tightens they're already where they need to be. Do that and you save energy and avoid danger at the same time.",
+    ],
+    expertEvidence: [
+      {
+        name: "George Hincapie",
+        credential: "Former professional cyclist; current team director",
+        insight:
+          "In races decided on cobbles or climbs, positioning before the decisive sector is everything. By the time the bunch hits the critical point, the fight for position is already over. The riders who are well placed did the work in the kilometres before, while everyone else was relaxed.",
+        episodeSlug: "ep-2536-hincape-opens-up-about-how-pogacar-can-win-roubaix",
+        guestSlug: "george-hincapie",
+      },
+      {
+        name: "Michael Matthews",
+        credential: "Professional cyclist; 15 years WorldTour experience",
+        insight:
+          "Reading a race — sensing when a move is about to go and being at the front before it happens — is learned by racing, not by training. Positioning is anticipation: the well-placed rider is already moving forward before the moment that forces everyone else to scramble.",
+        episodeSlug: "ep-4-15-years-of-pro-riding-what-amateurs-don-t-know-matthews",
+        guestSlug: "michael-matthews",
+      },
+    ],
+    practicalApplication: [
+      {
+        title: "Default to the first 10–20 wheels",
+        detail:
+          "Make the front quarter of the bunch your home. It costs energy to get there and a little to hold it, but far less than the constant braking and surging at the back. Reassess your position every few minutes and correct it before it drifts.",
+      },
+      {
+        title: "Move up before the critical points, not during",
+        detail:
+          "Identify the climbs, narrowings, exposed crosswind sections and the finish in advance. Drift forward in the calm sections before each one. Trying to move up into a climb when the whole bunch is doing the same is the single most expensive moment to spend energy.",
+      },
+      {
+        title: "Use the draft deliberately to bank energy",
+        detail:
+          "Sitting in the bunch saves 20–30% of your energy versus the wind. Stay sheltered, tuck out of crosswinds by sitting on the sheltered side of the rider ahead, and only take the wind when it serves a purpose. Conserved energy is what you spend on the move that matters.",
+      },
+    ],
+    commonMistakes: [
+      {
+        mistake: "Sitting at the back of the bunch to conserve energy.",
+        fix:
+          "The back is the hardest, most dangerous place to ride — constant braking and surging from the accordion effect. Move up to the front quarter and hold it.",
+      },
+      {
+        mistake: "Trying to move up during the climb or into the finish.",
+        fix:
+          "Move forward in the quiet sections before the critical points. Fighting for position when everyone else is doing the same wastes maximum energy for minimum gain.",
+      },
+      {
+        mistake: "Riding in the wind on the front for no tactical reason.",
+        fix:
+          "Shelter in the bunch unless you have a reason to be exposed. The draft is free energy — spend the watts you save on the decisive moment, not on pulling the bunch around.",
+      },
+    ],
+    faq: [
+      {
+        question: "Where exactly should I sit in a road race bunch?",
+        answer:
+          "In the first 10–20 riders for most of the race — far enough forward to react to moves and avoid splits, sheltered enough to save energy. Move into the top five only in the final approach to the decisive point. Never settle at the back to 'save energy'; it does the opposite.",
+      },
+      {
+        question: "How much energy does drafting actually save?",
+        answer:
+          "Sitting in a bunch saves roughly 20–30% of the energy compared to riding alone in the wind, and even more in a tight, large group. This is why position and shelter matter so much — the draft is the biggest free energy saving available in a road race.",
+      },
+      {
+        question: "How do I move up through a bunch safely?",
+        answer:
+          "Move up the sheltered side, on the wide and calm sections, in small confident steps rather than big surges. Look for moving wheels to follow forward, hold your line, and avoid squeezing into gaps that aren't there. Anticipate the calm windows — they're where moving up is cheap.",
+      },
+      {
+        question: "What is the 'accordion effect' and why does it punish the back?",
+        answer:
+          "When the front of a bunch slows and speeds up — through corners, climbs or pace changes — the effect amplifies toward the back. Riders at the rear brake harder and accelerate more violently than those at the front, doing far more high-intensity efforts over a race for the same average speed.",
+      },
+      {
+        question: "How do I position for a crosswind section?",
+        answer:
+          "Get to the front before the exposed section starts. In a crosswind, shelter comes from sitting on the downwind side of the rider ahead, forming echelons. If you're caught at the back when an echelon forms, you can be split off the front group entirely — so be forward before the wind hits.",
+      },
+      {
+        question: "Is positioning more important than fitness in a road race?",
+        answer:
+          "For most amateurs, yes. A well-positioned rider with a modest engine routinely beats a stronger rider who's badly placed and wasting energy. Fitness sets your ceiling; positioning determines how much of it you have left when the race is decided.",
+      },
+    ],
+    relatedEpisodes: [
+      "ep-2536-hincape-opens-up-about-how-pogacar-can-win-roubaix",
+      "ep-4-15-years-of-pro-riding-what-amateurs-don-t-know-matthews",
+      "ep-2191-criterium-secrets-get-ahead-of-99-of-your-competition-cory-w",
+    ],
+    relatedTopics: [
+      { label: "How to Race a Criterium", href: "/answers/how-to-race-a-criterium" },
+      { label: "Confidence Riding in a Bunch", href: "/answers/confidence-riding-in-a-bunch" },
+      { label: "Racing Tactics for Amateur Cyclists", href: "/blog/cycling-race-tactics-guide" },
+      { label: "How to Prepare for My First Bike Race", href: "/answers/first-bike-race-preparation" },
+      { label: "Cycling Coaching — Topic Hub", href: "/topics/cycling-coaching" },
+    ],
+    evidenceLevel: "moderate",
+    publishDate: "2026-05-26",
+    updatedDate: "2026-05-26",
+  },
+
+  // ============================================================
+  // HOW TO SPRINT FOR THE LINE
+  // ============================================================
+  {
+    slug: "how-to-sprint-for-the-line",
+    cluster: "racing",
+    question: "How Do I Sprint for the Line?",
+    seoTitle: "How to Sprint for the Line — Timing and Position",
+    seoDescription:
+      "Sprint for the line by getting on the right wheel, launching from 200–250m, and holding 1,000–1,600 watts to the finish. Why timing and position beat raw power — and the winning-power lesson from a pro sprinter.",
+    pillar: "coaching",
+    directAnswer:
+      "Sprint for the line by getting on the right wheel before the launch, opening your effort from 200–250 metres out, and committing fully through the line. A field sprint is decided by timing and position as much as raw watts — a pro sprinter might peak at 1,600 watts but only need 1,100 to win, because they launched from the perfect place. Going too early into a headwind is the most common way amateurs lose a sprint they could have won.",
+    keyTakeaways: [
+      "Position and the right wheel win sprints — find shelter until the moment you launch.",
+      "Open your sprint from 200–250m on a flat finish; later into a headwind, earlier with a tailwind.",
+      "Winning power is lower than peak power — Cory Williams peaks near 1,640W but wins on ~1,100W.",
+      "Commit fully once you launch: hold your line, stay low, and drive all the way through the line.",
+    ],
+    whoFor: [
+      {
+        label: "The club racer who keeps finishing in the top ten of the sprint",
+        detail:
+          "You have the power but you mistime the launch or you're on the wrong wheel when it matters.",
+      },
+      {
+        label: "The bunch rider who wants to contest a finish safely",
+        detail:
+          "You want to learn to sprint with confidence and hold your line in a fast, close finish.",
+      },
+    ],
+    roadmanView: [
+      "Here's what nobody tells you about sprinting: the watts are the least interesting part. Amateurs obsess over peak power — what number their head unit flashed in the last 200 metres — when the riders who actually win are thinking about wheels, timing and the wind. A field sprint is a positioning puzzle that happens to end with a maximal effort, not a pure power contest. The strongest sprinter in the bunch loses all the time because they were three wheels back when it mattered.",
+      "Cory Williams gave the most useful number on this on the podcast: he can hit something near 1,640 watts in a sprint, but he only needs around 1,100 to win. The gap between those two numbers is everything — it's all the energy he didn't have to waste because he was on the right wheel, launched at the right moment, and didn't open up into a headwind too early. André Greipel, with 158 professional wins, made a career out of exactly this: not being the rider with the highest peak power, but being the rider who used his power at precisely the right second.",
+      "So the fix is to stop training your sprint as a number and start practising it as a decision. Where's the shelter? Which wheel carries me to the front? Where does the wind hit? When do I commit? Get those right and you'll win sprints on less power than the riders you beat. Get them wrong and 1,600 watts launched from the wrong place still gets you fourth.",
+    ],
+    expertEvidence: [
+      {
+        name: "Cory Williams",
+        credential: "Professional cyclist; founder of Legion Cycling Team",
+        insight:
+          "Peak sprint power and winning power are different numbers. A sprinter might produce well over 1,600 watts at peak, but the power that actually wins is closer to 1,100 — because timing, position and the right wheel let you spend far less energy to cross the line first.",
+        episodeSlug: "ep-2191-criterium-secrets-get-ahead-of-99-of-your-competition-cory-w",
+        guestSlug: "cory-williams",
+      },
+      {
+        name: "André Greipel",
+        credential: "Professional cyclist; 158 professional wins, 11 Tour de France stage wins",
+        insight:
+          "Winning sprints is built on positioning, timing and reading the finish rather than on having the single highest peak power in the field. The decisive skill is knowing exactly when to commit — too early into a headwind and the effort fades before the line.",
+        episodeSlug: "ep-2240-what-makes-a-sprinter-unbeatable-andr-greipel",
+        guestSlug: "andre-greipel",
+      },
+    ],
+    practicalApplication: [
+      {
+        title: "Find the right wheel before the final kilometre",
+        detail:
+          "In the closing kilometres, identify a fast, reliable wheel that will carry you toward the front and stay on it. The lead-out you follow matters more than your own engine — a good wheel delivers you to the launch point with energy to spare.",
+      },
+      {
+        title: "Launch from 200–250m and adjust for the wind",
+        detail:
+          "On a flat finish in still air, open your sprint from 200–250 metres. Into a headwind, hold longer and launch later — 150 metres or less. With a tailwind or downhill finish, you can open earlier. Wind direction at the line decides your timing more than anything else.",
+      },
+      {
+        title: "Practise the maximal effort and the position in training",
+        detail:
+          "Train standing-start and rolling sprints: 6–10 second maximal efforts from 30kph, fully committed, on the drops. Practise holding a low, stable position at full power and on a straight line. Race day should not be the first time you've gone fully maximal in the drops.",
+      },
+    ],
+    commonMistakes: [
+      {
+        mistake: "Launching the sprint too early, especially into a headwind.",
+        fix:
+          "Opening from 300m+ into a headwind means fading before the line. Hold the wheel longer, launch from 200m or less in wind, and time the commitment to the conditions.",
+      },
+      {
+        mistake: "Sprinting from the wrong wheel or too far back.",
+        fix:
+          "Position before you sprint. Find a fast wheel in the final kilometres — the lead-out you follow matters more than your peak power.",
+      },
+      {
+        mistake: "Sitting up or deviating off your line near the finish.",
+        fix:
+          "Once committed, stay low and hold a dead-straight line to the line. Sitting up early throws away momentum, and swerving is dangerous and can get you relegated.",
+      },
+    ],
+    faq: [
+      {
+        question: "How many watts do I need to win a sprint?",
+        answer:
+          "Less than you'd think, and it depends entirely on position. A pro might peak near 1,600 watts but win on around 1,100 because they launched from the right place. Among amateurs, the rider who times the launch and holds the right wheel routinely beats riders with higher peak power.",
+      },
+      {
+        question: "When should I start my sprint?",
+        answer:
+          "From 200–250 metres on a flat finish in still conditions. Adjust for wind: launch later (150m or less) into a headwind so you don't fade, and earlier with a tailwind. The finish profile and wind direction matter more than a fixed distance.",
+      },
+      {
+        question: "Should I sprint seated or standing?",
+        answer:
+          "Most riders launch out of the saddle for the initial acceleration to get power down fast, then settle low onto the drops for the final drive to maintain speed and aerodynamics. The transition from standing to seated as you reach top speed is part of an efficient sprint.",
+      },
+      {
+        question: "How do I improve my sprint power in training?",
+        answer:
+          "Do short maximal efforts: 6–10 second standing-start and rolling sprints, fully committed, with long recoveries, once or twice a week. Strength work in the gym supports peak power. But train the timing and position alongside the watts — power alone doesn't win sprints.",
+      },
+      {
+        question: "How do I sprint safely in a tight bunch finish?",
+        answer:
+          "Hold a dead-straight line once you commit, keep your hands on the drops for control and braking access, and never make sudden movements at speed. Deviating from your line is both dangerous and grounds for relegation. Confidence and predictability keep you and others safe.",
+      },
+      {
+        question: "What's the difference between a lead-out and an attack?",
+        answer:
+          "A lead-out is a teammate or a fast wheel driving the pace to deliver a sprinter to the launch point at high speed, sheltered until the final moment. An attack is a solo move to break away before the sprint. In a bunch finish, following a good lead-out is usually the higher-percentage play.",
+      },
+    ],
+    relatedEpisodes: [
+      "ep-2240-what-makes-a-sprinter-unbeatable-andr-greipel",
+      "ep-2191-criterium-secrets-get-ahead-of-99-of-your-competition-cory-w",
+      "ep-4-15-years-of-pro-riding-what-amateurs-don-t-know-matthews",
+    ],
+    relatedTopics: [
+      { label: "How to Improve Your Cycling Sprint", href: "/answers/how-to-improve-cycling-sprint" },
+      { label: "How to Race a Criterium", href: "/answers/how-to-race-a-criterium" },
+      { label: "Cory Williams: Sprint Power vs Winning Power", href: "/blog/cory-williams-sprint-power-vs-winning-power" },
+      { label: "How to Position Myself in a Road Race", href: "/answers/road-race-positioning" },
+      { label: "André Greipel: The Sprint Captain's Code", href: "/blog/andre-greipel-sprint-captains-code" },
+    ],
+    evidenceLevel: "moderate",
+    publishDate: "2026-05-26",
+    updatedDate: "2026-05-26",
+  },
 ];

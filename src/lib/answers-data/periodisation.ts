@@ -1757,4 +1757,714 @@ export const periodisationAnswers: AnswerPage[] = [
     publishDate: "2026-05-26",
     updatedDate: "2026-05-26",
   },
+
+  // ============================================================
+  // 14 — WHAT IS THE PEAK PHASE
+  // ============================================================
+  {
+    slug: "peak-phase-cycling",
+    cluster: "periodisation",
+    question: "What Is the Peak Phase in Cycling Training?",
+    seoTitle: "What Is the Peak Phase in Cycling Training?",
+    seoDescription:
+      "The peak phase is the final 2–3 weeks before your A-event: volume drops 30–50% while intensity stays sharp, clearing fatigue so your fitness finally shows.",
+    pillar: "coaching",
+    directAnswer:
+      "The peak phase is the final 2–3 weeks before your A-event, where you cut training volume by 30–50% while keeping short bursts of intensity. The goal isn't to build fitness — that's already done — but to shed the accumulated fatigue that's been masking it. Done right, the form you built across base and build finally rises to the surface. Cut volume too late or keep hammering and you arrive at the start line flat.",
+    keyTakeaways: [
+      "The peak phase is 2–3 weeks of reduced volume — usually a 30–50% cut — with intensity kept sharp.",
+      "No fitness is built here; the peak phase is about clearing fatigue so existing fitness becomes visible.",
+      "Keep one or two short, punchy sessions per week — eliminating intensity entirely leaves you flat.",
+      "Peaking is a timing problem: the form arrives on a schedule, and the peak phase aligns that schedule to event day.",
+    ],
+    whoFor: [
+      {
+        label: "The rider entering the final weeks before an A-event",
+        detail:
+          "You've done the base and build and want to know exactly how to handle the last fortnight.",
+      },
+      {
+        label: "The rider who trains well but races flat",
+        detail:
+          "Your numbers look great three weeks out, then you arrive at the event heavy-legged. The peak phase is the fix.",
+      },
+    ],
+    roadmanView: [
+      "The peak phase is the part of periodisation amateurs trust the least, because it asks you to do less right when your instinct screams to do more. The event is close, the nerves are up, and easing off feels like throwing away fitness. It isn't. When Joe Friel talked through this on the podcast, the framing that stuck with Anthony was that you cannot build fitness in the final two weeks — you can only reveal it or bury it under fatigue.",
+      "Here's what's actually happening physiologically. Across the build phase you've been carrying a layer of fatigue that sits on top of your real fitness. Your form is the fitness minus the fatigue. In the peak phase, you keep the fitness high by holding intensity, but you let the fatigue drain away by cutting volume. The gap between the two opens up, and that gap is your race-day form. It's not magic — it's subtraction.",
+      "The most common way riders ruin this is by panicking in the last fortnight and adding sessions because they feel behind. That's fixable, and the fix is discipline: the peak phase plan is decided in advance, and a good day in the legs eight days out is not a reason to go and empty yourself. Trust the build. The peak phase just brings it to the surface on the right day.",
+    ],
+    expertEvidence: [
+      {
+        name: "Joe Friel",
+        credential: "Author of The Cyclist's Training Bible; co-founder of TrainingPeaks",
+        insight:
+          "The peak phase reduces training volume while preserving intensity, so the athlete sheds fatigue without losing the sharpness built in the build phase. Most amateurs get the volume reduction roughly right but eliminate intensity entirely, which leaves them rested but dull rather than fresh and fast.",
+        episodeSlug: "ep-40-how-joe-friel-structures-the-ideal-cycling-training-week",
+        guestSlug: "joe-friel",
+      },
+      {
+        name: "Dan Lorang",
+        credential: "Head of Performance, Red Bull–Bora–Hansgrohe",
+        insight:
+          "At Grand Tour level the peak is engineered backwards from the event date, with volume dropping and quality being protected in the final weeks. Lorang's point for amateurs is that fatigue takes longer to clear than most riders assume — the peak phase has to start early enough that the legs are genuinely fresh on the day, not still emptying out.",
+        episodeSlug: "ep-2134-roglics-coach-builds-a-training-plan-for-amateur-riders-dan",
+        guestSlug: "dan-lorang",
+      },
+    ],
+    practicalApplication: [
+      {
+        title: "Cut volume by 30–50% across the peak weeks",
+        detail:
+          "Take your normal build-phase weekly hours and reduce them by a third to a half. The reduction comes from easy volume, not from the hard sessions. Fewer and shorter rides, but the quality efforts stay on the calendar.",
+      },
+      {
+        title: "Keep one or two short, sharp sessions per week",
+        detail:
+          "Short race-pace efforts or openers — 3–5 minute efforts or a handful of 30-second bursts — keep the neuromuscular system switched on. These aren't fitness-building sessions; they're reminders to the legs of what fast feels like.",
+      },
+      {
+        title: "Protect the 48 hours before the event",
+        detail:
+          "The final two days should be very easy or rest, with one short pre-event opener the day before — a 30–45 minute spin with two or three short accelerations. Arrive rested but activated, not stiff from total rest.",
+      },
+    ],
+    commonMistakes: [
+      {
+        mistake: "Treating the peak phase as a chance to build last-minute fitness.",
+        fix:
+          "No fitness is built in the final two weeks — only fatigue. The peak phase reveals what you already have. Train to sharpen, not to gain.",
+      },
+      {
+        mistake: "Cutting volume but also dropping all intensity.",
+        fix:
+          "Keep short, sharp efforts in the peak weeks. Removing intensity entirely leaves you rested but flat, which feels worse on race day than mild fatigue.",
+      },
+      {
+        mistake: "Adding panic sessions because the event feels close.",
+        fix:
+          "Decide the peak phase plan before the nerves arrive and stick to it. A good day in the legs eight days out is not a reason to empty yourself.",
+      },
+    ],
+    faq: [
+      {
+        question: "Is the peak phase the same as the taper?",
+        answer:
+          "They overlap heavily but aren't identical. The peak phase is the broader 2–3 week period of reduced volume and maintained intensity that brings fitness to its highest point. The taper is the sharper final part of it — typically the last 7–14 days — focused specifically on clearing fatigue before event day.",
+      },
+      {
+        question: "How long should the peak phase last?",
+        answer:
+          "Two to three weeks for most amateurs. Shorter than two weeks and accumulated fatigue may not fully clear; longer than three and you start to lose the sharpness built in the build phase. The exact length depends on how much fatigue you carried out of the build.",
+      },
+      {
+        question: "Will I lose fitness during the peak phase?",
+        answer:
+          "Genuine fitness — your aerobic base and threshold capacity — barely moves in two to three weeks of reduced volume. What changes is fatigue, which drops sharply. The net effect is that your usable form rises, not falls, provided you keep some intensity in the legs.",
+      },
+      {
+        question: "How do I know the peak phase is working?",
+        answer:
+          "Your easy rides start to feel effortless, your hard efforts produce power you haven't seen in weeks, and your legs feel alive rather than heavy. On a training file, fitness (CTL) holds roughly steady while acute fatigue (ATL) falls — that widening gap is your form rising.",
+      },
+      {
+        question: "Can I peak for more than one event in a row?",
+        answer:
+          "You can hold a peak for a window of roughly 7–14 days, which can cover two events close together. Beyond that the form fades and you need a short rebuild block before peaking again. Trying to hold a single peak across a month of racing rarely works.",
+      },
+      {
+        question: "What should I eat during the peak phase?",
+        answer:
+          "Keep carbohydrate intake reasonably high even though volume drops — under-fuelling during the peak undermines the sharp sessions and the glycogen stores you want full on event day. This isn't the time for a calorie deficit; the goal is fresh, fuelled legs, not weight loss.",
+      },
+    ],
+    relatedEpisodes: [
+      "ep-40-how-joe-friel-structures-the-ideal-cycling-training-week",
+      "ep-2134-roglics-coach-builds-a-training-plan-for-amateur-riders-dan",
+      "ep-2067-boost-your-cycling-fitness-in-30-days-complete-training-plan",
+    ],
+    relatedTopics: [
+      { label: "How Many Weeks Does It Take to Peak?", href: "/answers/how-many-weeks-to-peak" },
+      { label: "How to Taper for a Race", href: "/answers/how-to-taper-for-a-race" },
+      { label: "How to Peak for a Cycling Event", href: "/blog/cycling-taper-race-preparation-system" },
+      { label: "How to Structure a Cycling Season", href: "/answers/how-to-structure-a-cycling-season" },
+      { label: "Cycling Training Plans — Topic Hub", href: "/topics/cycling-training-plans" },
+    ],
+    evidenceLevel: "moderate",
+    evidenceNote:
+      "Peak-phase prescription reflects coaching consensus (Friel, Lorang); the 2–3 week window and volume reductions are practical guidelines rather than fixed physiological thresholds.",
+    publishDate: "2026-05-26",
+    updatedDate: "2026-05-26",
+  },
+
+  // ============================================================
+  // 15 — WHAT IS A TRANSITION OR OFF-SEASON PHASE
+  // ============================================================
+  {
+    slug: "transition-off-season-phase",
+    cluster: "periodisation",
+    question: "What Is a Transition or Off-Season Phase?",
+    seoTitle: "What Is a Transition or Off-Season Phase in Cycling?",
+    seoDescription:
+      "The transition phase is 2–4 weeks of unstructured, low-volume riding after your last event. Why a deliberate off-season resets body and mind for next year.",
+    pillar: "coaching",
+    directAnswer:
+      "The transition phase — often called the off-season — is 2–4 weeks of deliberately unstructured, low-volume riding after your final A-event of the year. No targets, no intervals, no watching power. Its job is to clear the accumulated physical and mental fatigue of a full season so the next base phase starts from a genuine reset. Skipping it is one of the most reliable ways to begin the new year already depleted.",
+    keyTakeaways: [
+      "The transition phase is 2–4 weeks of unstructured, low-intensity riding after your last big event.",
+      "Its purpose is recovery — physical and mental — not fitness maintenance or building.",
+      "A small amount of fitness loss here is the point; it allows a fresh, hungry restart of base.",
+      "Skipping the off-season leaves accumulated fatigue that quietly caps next season's ceiling.",
+    ],
+    whoFor: [
+      {
+        label: "The rider who never takes a real break",
+        detail:
+          "You roll straight from your last event into next year's training and wonder why motivation and form both sag by spring.",
+      },
+      {
+        label: "The rider who feels guilty about easing off",
+        detail:
+          "You see rest as lost fitness and need to understand why a deliberate down phase makes you faster, not slower.",
+      },
+    ],
+    roadmanView: [
+      "The off-season has an image problem among amateurs because it looks like the opposite of progress. You've spent a year chasing form, and now the plan is to deliberately let some of it go. That feels wrong until you understand what a full season actually does to you — not just the legs, but the head. The mental load of structured training, the discipline of easy days and hard days, the watching of numbers — it accumulates, and the transition phase is where it gets cleared.",
+      "Jonas Abrahamsen described his version of this on the podcast: a genuine de-training period, even some weight gain, before rebuilding the base. That's a pro at the top of the sport choosing to let go at the end of the year, because he knows the next base phase will be better for it. The amateurs who refuse to take an off-season are the ones who arrive at January already a bit stale, training on top of fatigue they never cleared.",
+      "Anthony's framing is that this is fixable and the fix is permission. Two to four weeks of riding for the pure enjoyment of it — no structure, no targets, ride when you feel like it, skip days, do something else entirely. The small fitness dip is real and it doesn't matter. You'll rebuild it faster from a rested, motivated start than you'd ever build by grinding through the winter on an empty tank.",
+    ],
+    expertEvidence: [
+      {
+        name: "Jonas Abrahamsen",
+        credential: "Professional cyclist, Uno-X; Tour de France stage winner",
+        insight:
+          "Abrahamsen's described off-season involves substantial de-training from race condition — including deliberate weight gain — before rebuilding through a structured base. The reset is intentional: stepping fully away from race sharpness allows a higher-quality rebuild than trying to hold form through the winter.",
+        episodeSlug: "ep-29-untold-story-ofjonas-abrahamsens-pro-winter-training",
+        guestSlug: "jonas-abrahamsen",
+      },
+      {
+        name: "Joe Friel",
+        credential: "Author of The Cyclist's Training Bible; co-founder of TrainingPeaks",
+        insight:
+          "The transition phase is a planned part of the annual cycle, not an afterthought. A short period of unstructured, low-stress activity restores mental freshness and allows minor injuries and accumulated fatigue to resolve before the next base block begins. The brief fitness loss is more than repaid by the quality of the restart.",
+        episodeSlug: "ep-40-how-joe-friel-structures-the-ideal-cycling-training-week",
+        guestSlug: "joe-friel",
+      },
+    ],
+    practicalApplication: [
+      {
+        title: "Take 2–4 weeks of fully unstructured riding",
+        detail:
+          "After your last A-event, drop the plan entirely. Ride when you feel like it, for as long as you feel like, at whatever pace feels good. No prescribed sessions, no power targets, no calendar. If you don't want to ride a given day, don't.",
+      },
+      {
+        title: "Use the time for something different",
+        detail:
+          "Cross-training, hiking, a different sport, or simply less of everything. A change of stimulus refreshes the mind more than easy bike riding alone. The aim is to end the phase wanting to train again, not dreading it.",
+      },
+      {
+        title: "Don't watch your numbers",
+        detail:
+          "Turn off the power readout if you can, or just ignore it. This is the one phase of the year where data has no role. Watching fitness metrics fall day by day defeats the entire point of a mental reset.",
+      },
+    ],
+    commonMistakes: [
+      {
+        mistake: "Skipping the transition and rolling straight into next year's base.",
+        fix:
+          "Take the 2–4 weeks. Starting base on top of season-long fatigue caps how much you can build over the winter.",
+      },
+      {
+        mistake: "Treating the off-season as total inactivity for months.",
+        fix:
+          "Two to four weeks of light, unstructured riding is the target — not three months on the sofa. Detraining over a long layoff costs months of rebuilding.",
+      },
+      {
+        mistake: "Sneaking structure back in 'just to stay sharp'.",
+        fix:
+          "The phase only works if it's genuinely unstructured. Adding intervals to protect fitness keeps the fatigue you're trying to clear.",
+      },
+    ],
+    faq: [
+      {
+        question: "How long should the off-season be?",
+        answer:
+          "Two to four weeks for most amateurs. Riders coming off a long, hard season or carrying niggling injuries lean toward four weeks; riders who raced lightly may need only two. The marker is mental — you're ready to end it when you genuinely want to train with structure again.",
+      },
+      {
+        question: "Will I lose all my fitness during the off-season?",
+        answer:
+          "No. Two to four weeks of reduced riding causes only a modest dip in fitness, most of which returns quickly once base training resumes. The aerobic adaptations built over a year don't vanish in a fortnight — and the rested, motivated restart more than compensates for the small loss.",
+      },
+      {
+        question: "Should I stop riding completely in the transition phase?",
+        answer:
+          "Not necessarily. Most riders keep riding, just without structure — easy, enjoyable, unplanned rides. Complete rest for a few days is fine, but several weeks of zero activity tips from recovery into detraining. Light movement keeps the body ticking over without the stress of structured training.",
+      },
+      {
+        question: "When does the transition phase happen in the year?",
+        answer:
+          "Right after your final A-event of the season, before the next base phase begins. For most Northern Hemisphere riders targeting summer events, that's typically autumn — late September through October — before winter base training starts.",
+      },
+      {
+        question: "Can I do strength training during the off-season?",
+        answer:
+          "Light, general strength work is fine and some riders use the transition to start an early gym habit before the winter base block. But keep it relaxed and unstructured like the rest of the phase. Heavy, progressive lifting belongs in the winter base, not the recovery transition.",
+      },
+      {
+        question: "What if I lose motivation during the off-season and don't want to start again?",
+        answer:
+          "That usually signals the previous season was too long or too hard without enough recovery, not that you've lost your appetite for cycling. Extend the transition a little, do other things you enjoy, and the desire to train tends to return. If it doesn't after a month, it's worth examining your season structure rather than forcing the restart.",
+      },
+    ],
+    relatedEpisodes: [
+      "ep-29-untold-story-ofjonas-abrahamsens-pro-winter-training",
+      "ep-40-how-joe-friel-structures-the-ideal-cycling-training-week",
+      "ep-16-5-things-pros-secretly-do-in-winter-that-you-don-t",
+    ],
+    relatedTopics: [
+      { label: "How Should I Structure Winter Training?", href: "/answers/how-to-structure-winter-training" },
+      { label: "What Is a Recovery Week?", href: "/answers/what-is-a-recovery-week" },
+      { label: "Pro Cyclist Winter Habits", href: "/blog/pro-cyclist-winter-habits-offseason-playbook" },
+      { label: "How to Build an Annual Training Plan", href: "/answers/annual-training-plan" },
+      { label: "Cycling Training Plans — Topic Hub", href: "/topics/cycling-training-plans" },
+    ],
+    evidenceLevel: "moderate",
+    evidenceNote:
+      "Transition-phase guidance reflects coaching consensus (Friel) and pro practice (Abrahamsen); the 2–4 week window is a practical guideline, not a fixed physiological threshold.",
+    publishDate: "2026-05-26",
+    updatedDate: "2026-05-26",
+  },
+
+  // ============================================================
+  // 16 — HOW TO BUILD AN ANNUAL TRAINING PLAN
+  // ============================================================
+  {
+    slug: "annual-training-plan",
+    cluster: "periodisation",
+    question: "How Do I Build an Annual Training Plan?",
+    seoTitle: "How to Build an Annual Cycling Training Plan",
+    seoDescription:
+      "Build an annual cycling plan in 5 steps: pick 1–2 A-events, work backwards through peak, build, base and transition phases, then fill in the weeks.",
+    pillar: "coaching",
+    directAnswer:
+      "Build an annual training plan by picking one or two A-events, then working backwards from each: 2–3 weeks of peak, 8–10 weeks of build, 12–16 weeks of base, and a 2–4 week transition to close the year. Map those phases onto a calendar first, then fill in the weekly detail. The plan is a skeleton of phases and dates — not a session-by-session script you lock in months ahead.",
+    keyTakeaways: [
+      "Start with 1–2 A-events, then work backwards: peak (2–3 wks), build (8–10 wks), base (12–16 wks), transition (2–4 wks).",
+      "Map the phases and dates first; fill in weekly sessions only a block or two ahead.",
+      "The annual plan is a flexible skeleton, not a fixed script — it should absorb disruption, not collapse under it.",
+      "Even on limited hours, a planned year of phases beats riding the same way every month.",
+    ],
+    whoFor: [
+      {
+        label: "The self-coached rider planning a full season",
+        detail:
+          "You have events in mind and want a framework to organise the whole year around them.",
+      },
+      {
+        label: "The rider whose training drifts without a plan",
+        detail:
+          "You train consistently but with no overarching structure, and your fitness peaks at random times.",
+      },
+    ],
+    roadmanView: [
+      "An annual training plan sounds like a coaching-software project — twenty tabs, every session mapped out to December. It isn't, and it shouldn't be. When Joe Friel talked about the annual training plan on the podcast, the version he described is closer to a one-page sketch: your A-events, the phases working back from them, and the rough hours each phase needs. That's the whole thing. The detail of which intervals on which Tuesday gets decided a few weeks out, not in January.",
+      "The reason the annual plan matters isn't precision — it's that it turns every daily decision into a framework decision. When you know February is base, you don't get sucked into a Zwift race on a cold Tuesday. When you know April is build, you know exactly why you're doing 2×20s. Without the plan, every session is a fresh negotiation with your motivation, and motivation loses more often than it wins.",
+      "Here's the part that trips people up: the plan is a skeleton, not a script. Life will disrupt it — a work trip, an illness, a bad week. A good annual plan absorbs that. You shift a phase by a week, you shorten the base if you started late, you protect the build and taper at the expense of base. The riders who fail aren't the ones who get disrupted — everyone gets disrupted. They're the ones who treat the plan as so rigid that the first missed week makes them abandon it entirely.",
+    ],
+    expertEvidence: [
+      {
+        name: "Joe Friel",
+        credential: "Author of The Cyclist's Training Bible; co-founder of TrainingPeaks",
+        insight:
+          "The annual training plan is the single most valuable planning tool a self-coached rider has. You don't fill in every session in advance — you lock in the A-events, the phase durations, and the recovery weeks, so that daily training decisions have a framework to sit inside rather than being made on impulse.",
+        episodeSlug: "ep-40-how-joe-friel-structures-the-ideal-cycling-training-week",
+        guestSlug: "joe-friel",
+      },
+      {
+        name: "Dan Lorang",
+        credential: "Head of Performance, Red Bull–Bora–Hansgrohe",
+        insight:
+          "Planning a season starts with the race calendar and works backwards, with each phase defined by the adaptation it needs to produce in sequence. Lorang's amateur translation is the same as the pro version with fewer events and more flexibility: pick the targets that matter, build the year around them, and protect the recovery.",
+        episodeSlug: "ep-2134-roglics-coach-builds-a-training-plan-for-amateur-riders-dan",
+        guestSlug: "dan-lorang",
+      },
+    ],
+    practicalApplication: [
+      {
+        title: "Pick one or two A-events and mark them on a calendar",
+        detail:
+          "These are the events you genuinely want to be at your best for. Two is ideal for most amateurs; three is the realistic maximum. Everything else in the year becomes a B-event (useful training race) or a C-event (a ride you complete without tapering).",
+      },
+      {
+        title: "Work backwards through the phases",
+        detail:
+          "From each A-event, count back 2–3 weeks for the peak, 8–10 weeks for build, and 12–16 weeks for base. That gives you your base start date. Add a 2–4 week transition after your final event of the year. If the calendar is tight, shorten the base before the build or taper.",
+      },
+      {
+        title: "Schedule deload weeks into every phase",
+        detail:
+          "Within each phase, plan a recovery week every third or fourth week — a 30–40% volume drop. Put them in the calendar now. They're not optional rest; they're when the adaptation from the preceding weeks actually consolidates.",
+      },
+      {
+        title: "Fill in weekly detail only a block ahead",
+        detail:
+          "Don't script individual sessions for the whole year. Plan the current and next mesocycle in detail; leave the rest as phase headings. This keeps the plan responsive to how your body is actually adapting rather than locked to a guess made months ago.",
+      },
+    ],
+    commonMistakes: [
+      {
+        mistake: "Scripting every session for the entire year in advance.",
+        fix:
+          "Plan phases and dates for the year, but detailed sessions only a block or two ahead. Your body's response should shape the detail, not a guess from January.",
+      },
+      {
+        mistake: "Choosing four or five A-events and trying to peak for all of them.",
+        fix:
+          "Pick one or two genuine A-events. Real peaks require tapering, and you can't taper repeatedly while still building fitness between events.",
+      },
+      {
+        mistake: "Abandoning the whole plan after one disrupted week.",
+        fix:
+          "Adjust within the phase — extend it by a week, shift the taper. A flexible plan absorbs disruption; it doesn't collapse the first time life intervenes.",
+      },
+    ],
+    faq: [
+      {
+        question: "When should I start planning my year?",
+        answer:
+          "Build the annual plan in the off-season or early transition phase, before base training starts. For most riders targeting summer events, that means sketching the plan in autumn so the base phase can begin in late autumn or early winter on a clear structure.",
+      },
+      {
+        question: "Do I need software to build an annual training plan?",
+        answer:
+          "No. A calendar and a pen are enough for the skeleton — A-events, phase blocks, deload weeks. TrainingPeaks and similar tools help with tracking load once you're executing, but the framework decisions are yours. Don't confuse filling in an app with having a plan.",
+      },
+      {
+        question: "How many A-events should an annual plan have?",
+        answer:
+          "One or two for most amateurs, three at the absolute maximum. Each A-event needs its own build-to-peak run, and tapering more than two or three times a year leaves too little time to actually build fitness between events.",
+      },
+      {
+        question: "Can I build an annual plan around two events months apart?",
+        answer:
+          "Yes — this is the classic two-peak season. Run a full base-build-peak cycle into the first A-event, take a short recovery block, then run a shortened build-to-peak into the second. You don't repeat the full base for the second peak; you build on the fitness you already have.",
+      },
+      {
+        question: "What if I don't have a specific event to plan around?",
+        answer:
+          "Pick a target anyway — a date to hit a power number, a benchmark climb, a charity ride. Periodisation needs a focal point to work backwards from. Without one, you drift into year-round grey-zone riding that never produces a genuine peak.",
+      },
+      {
+        question: "How does an annual plan change if I have very limited time?",
+        answer:
+          "The phases get shorter and the volume swings smaller, but the structure holds. Even on 6–8 hours a week, a base block followed by a focused build into a target event beats riding the same sessions all year. The framework scales down — it doesn't stop applying.",
+      },
+    ],
+    relatedEpisodes: [
+      "ep-40-how-joe-friel-structures-the-ideal-cycling-training-week",
+      "ep-2134-roglics-coach-builds-a-training-plan-for-amateur-riders-dan",
+      "ep-2148-80-20-training-to-ride-faster-dr-stephen-seiler",
+    ],
+    relatedTopics: [
+      { label: "How to Structure a Cycling Season", href: "/answers/how-to-structure-a-cycling-season" },
+      { label: "What Is Periodisation?", href: "/answers/what-is-periodisation-cycling" },
+      { label: "How to Plan Around A, B and C Races", href: "/answers/planning-a-b-c-races" },
+      { label: "How to Periodise Your Season", href: "/blog/how-to-periodise-cycling-season" },
+      { label: "Cycling Training Plans — Topic Hub", href: "/topics/cycling-training-plans" },
+    ],
+    evidenceLevel: "strong",
+    evidenceNote:
+      "Annual training plan framework is well established in coaching practice; corroborated by Joe Friel and Dan Lorang across the Roadman podcast.",
+    publishDate: "2026-05-26",
+    updatedDate: "2026-05-26",
+  },
+
+  // ============================================================
+  // 17 — HOW TO PLAN AROUND A, B AND C RACES
+  // ============================================================
+  {
+    slug: "planning-a-b-c-races",
+    cluster: "periodisation",
+    question: "How Do I Plan Around A, B and C Races?",
+    seoTitle: "How to Plan Around A, B and C Races in Cycling",
+    seoDescription:
+      "A-races get a full taper, B-races a 2–3 day mini-taper, C-races none. How to categorise your events so you peak for the ones that actually matter.",
+    pillar: "coaching",
+    directAnswer:
+      "Categorise your events into A, B and C races by priority. A-races — one or two per year — get a full 2–3 week peak and taper. B-races get a short 2–3 day mini-taper and are ridden as hard training or fitness checks. C-races get no taper at all; you train through them as part of your normal load. The mistake that wrecks seasons is tapering for everything, which means you never genuinely peak for anything.",
+    keyTakeaways: [
+      "A-races: one or two a year, full 2–3 week peak and taper, everything is built around them.",
+      "B-races: a 2–3 day mini-taper, ridden hard as fitness checks or training stimulus.",
+      "C-races: no taper, trained through as part of normal load — for experience or fun.",
+      "Tapering for every event means peaking for none — categorising ruthlessly is the whole point.",
+    ],
+    whoFor: [
+      {
+        label: "The rider with a busy race calendar",
+        detail:
+          "You've entered a lot of events and need to know how to prioritise them without burning out.",
+      },
+      {
+        label: "The rider who tapers for everything",
+        detail:
+          "You ease off before every event and wonder why you're never truly flying for the ones that matter most.",
+      },
+    ],
+    roadmanView: [
+      "The A-B-C system is one of those ideas that sounds obvious until you look at how most amateurs actually race. They enter ten events and treat all ten like they matter equally — easing off before each, getting nervous before each, trying to be fresh for each. The result is a season with no genuine peaks and no real training stimulus either, because you can't build fitness while perpetually tapering. Categorising your events ruthlessly is what fixes that.",
+      "Here's the framing Anthony comes back to: B and C races aren't lesser events, they're tools. A B-race is a hard training session you happen to pin a number on — you ride it tired, you use it to sharpen race skills, you find out where your fitness actually is under pressure. A C-race is even more relaxed: you train through it entirely, no easing off, treating it as a fun hard day in the saddle. Neither gets a taper because neither is the point of your season.",
+      "The A-race is where the discipline pays off. Because you didn't taper for the other eight events, you arrive at your one or two A-races genuinely fresh, having used the rest of the calendar to build and sharpen. That's fixable for anyone — it just requires the honesty to admit, in advance, that not every event you've entered actually matters equally. Pick the one or two that do, and let the rest serve them.",
+    ],
+    expertEvidence: [
+      {
+        name: "Joe Friel",
+        credential: "Author of The Cyclist's Training Bible; co-founder of TrainingPeaks",
+        insight:
+          "Friel's A-B-C race classification is the backbone of the annual plan: A-races are the one or two events you peak for with a full taper, B-races get a short freshening, and C-races are trained through with no taper at all. The system exists precisely because you cannot peak for everything — prioritising is what makes a genuine peak possible.",
+        episodeSlug: "ep-40-how-joe-friel-structures-the-ideal-cycling-training-week",
+        guestSlug: "joe-friel",
+      },
+      {
+        name: "Dan Lorang",
+        credential: "Head of Performance, Red Bull–Bora–Hansgrohe",
+        insight:
+          "Even at the top of the sport, riders cannot be at peak condition for every race on the calendar. Lorang plans Roglič's season around a small number of true targets, with other races serving as preparation and form-finders. The amateur lesson is identical: pick the events that matter, and let the rest build toward them rather than competing with them.",
+        episodeSlug: "ep-2134-roglics-coach-builds-a-training-plan-for-amateur-riders-dan",
+        guestSlug: "dan-lorang",
+      },
+    ],
+    practicalApplication: [
+      {
+        title: "Classify every event on your calendar as A, B or C",
+        detail:
+          "A: the one or two events you most want to perform at. B: events you'll race hard but won't fully taper for — strong secondary goals or form checks. C: events you'll train through entirely. Be honest and ruthless — most events on a typical calendar are B or C, not A.",
+      },
+      {
+        title: "Give A-races a full peak and taper",
+        detail:
+          "Build the year around your A-races. Each gets a 2–3 week peak phase and a proper taper, with the build phase timed so peak fitness lands on the event date. This is where the season's discipline is repaid.",
+      },
+      {
+        title: "Give B-races a 2–3 day mini-taper",
+        detail:
+          "Reduce volume slightly for two or three days before a B-race so you're not completely buried, but don't interrupt the training block. Ride them as hard fitness checks — useful data on where your form is, and a sharper stimulus than a solo session.",
+      },
+      {
+        title: "Train through C-races with no taper",
+        detail:
+          "Slot C-races into your normal weekly load as a hard day. No easing off, no special preparation. They build race fitness, sharpen skills like pack positioning and pacing, and keep racing fun without disrupting the plan.",
+      },
+    ],
+    commonMistakes: [
+      {
+        mistake: "Tapering for every event on the calendar.",
+        fix:
+          "Reserve the full taper for one or two A-races. Tapering for everything means you're either freshening or recovering all season and never building fitness.",
+      },
+      {
+        mistake: "Labelling five or six events as A-races.",
+        fix:
+          "One or two A-races a year. If everything is a priority, nothing is — and the peaks become meaningless because you can't taper that often and still build between events.",
+      },
+      {
+        mistake: "Skipping B and C races to 'protect' your legs for the A-race.",
+        fix:
+          "B and C races are valuable training and skill practice. Used correctly they sharpen you for the A-race rather than threatening it. Train through them; don't avoid them.",
+      },
+    ],
+    faq: [
+      {
+        question: "What is the difference between an A, B and C race?",
+        answer:
+          "An A-race is a top-priority event you fully peak and taper for — one or two a year. A B-race is a secondary goal ridden hard with only a 2–3 day mini-taper. A C-race is a low-priority event trained through with no taper, used for experience, skills, or fun. The categories define how much you disrupt training for each.",
+      },
+      {
+        question: "How many A-races should I have in a season?",
+        answer:
+          "One or two for most amateurs, three at the absolute maximum. Each A-race needs its own taper and a peak phase, and you can't taper more than two or three times a year while still building meaningful fitness between events.",
+      },
+      {
+        question: "Should I taper for a B-race?",
+        answer:
+          "Only lightly — a 2–3 day reduction in volume so you're not completely buried, without interrupting the training block. The point of a B-race is to race it as a hard, useful session and a form check, not to arrive fully fresh. Save the full taper for A-races.",
+      },
+      {
+        question: "Can a B-race become an A-race during the season?",
+        answer:
+          "Yes, plans shift. If your form is exceptional or your goals change, you can promote a B-race to an A-race and adjust the surrounding training to peak for it. The reverse is also fine — demote an A-race if it no longer matters. The categories are a planning tool, not a contract.",
+      },
+      {
+        question: "How do I use C-races to get faster?",
+        answer:
+          "Treat them as hard training days that happen to have a number on them. They build race-specific fitness, let you practise pack positioning, pacing and nutrition under pressure, and add a sharper stimulus than solo intervals — all without disrupting your block or requiring a taper.",
+      },
+      {
+        question: "What if all my events are within a few weeks of each other?",
+        answer:
+          "Pick the single most important one as your A-race and peak for it. The others within that window become B or C races you ride on the form you've already built. You can hold a peak for roughly 7–14 days, so tightly clustered events can share one peak rather than each demanding their own.",
+      },
+    ],
+    relatedEpisodes: [
+      "ep-40-how-joe-friel-structures-the-ideal-cycling-training-week",
+      "ep-2134-roglics-coach-builds-a-training-plan-for-amateur-riders-dan",
+      "ep-2249-first-race-of-the-season-a-cycling-vlog",
+    ],
+    relatedTopics: [
+      { label: "How to Build an Annual Training Plan", href: "/answers/annual-training-plan" },
+      { label: "How to Structure a Cycling Season", href: "/answers/how-to-structure-a-cycling-season" },
+      { label: "How Many Weeks Does It Take to Peak?", href: "/answers/how-many-weeks-to-peak" },
+      { label: "How to Taper for a Race", href: "/answers/how-to-taper-for-a-race" },
+      { label: "Cycling Training Plans — Topic Hub", href: "/topics/cycling-training-plans" },
+    ],
+    evidenceLevel: "moderate",
+    evidenceNote:
+      "The A-B-C race classification is a long-standing coaching framework (Friel); priority-based tapering corroborated by Dan Lorang's account of planning a pro season.",
+    publishDate: "2026-05-26",
+    updatedDate: "2026-05-26",
+  },
+
+  // ============================================================
+  // 18 — HOW TO PERIODISE WITH LIMITED TIME
+  // ============================================================
+  {
+    slug: "periodisation-limited-time",
+    cluster: "periodisation",
+    question: "How Do I Periodise Training With Limited Time?",
+    seoTitle: "How to Periodise Cycling Training With Limited Time",
+    seoDescription:
+      "Periodise on 6–8 hours a week by compressing the phases, not dropping them: a shorter base, a sharp build with 2 quality sessions, and a tight taper.",
+    pillar: "coaching",
+    directAnswer:
+      "Periodise on limited time by compressing the phases rather than abandoning them. On 6–8 hours a week, run a shorter base of 8–10 weeks, a focused build with two quality sessions per week, and a tight 7–10 day taper. The phases get shorter and the volume swings smaller, but the structure — base, build, peak — still produces far more than riding the same sessions year-round. Time-crunched doesn't mean structure-free.",
+    keyTakeaways: [
+      "Periodisation scales down: on 6–8 hours a week, compress the phases rather than dropping them.",
+      "Limited-time build phases lean on two quality sessions per week, with the easy riding genuinely easy.",
+      "Protect the build and taper first; shorten the base when the calendar or weekly hours are tight.",
+      "Intensity becomes proportionally more important at low volume — but easy days must still be easy.",
+    ],
+    whoFor: [
+      {
+        label: "The time-crunched rider with 6–8 hours a week",
+        detail:
+          "You have a job, a family, and limited training time, and want to know how periodisation applies to you.",
+      },
+      {
+        label: "The rider who thinks structure is only for high-volume athletes",
+        detail:
+          "You assume periodisation needs 15-hour weeks and so you ride the same way all year. It doesn't.",
+      },
+    ],
+    roadmanView: [
+      "The biggest myth about periodisation is that it's a high-volume sport's luxury — something only riders with 15-hour weeks can do. The opposite is true. The less time you have, the more it matters that every hour is doing a specific job. When Dan Lorang talked about building a plan for amateur riders on the podcast, the principles he applied to a time-crunched rider on six hours a week were the same ones he uses for Roglič — they were just compressed.",
+      "What changes at low volume is the ratio. A 15-hour rider can fill most of the week with easy zone 2 and still get plenty of total intensity. A six-hour rider can't afford to spend all six hours pottering — so the build phase leans harder on two genuinely quality sessions a week, and the easy riding that's left has to be properly easy to allow those sessions to land. The error time-crunched riders make is the opposite of what you'd expect: not too little intensity, but too much grey-zone riding that's neither easy enough to recover from nor hard enough to drive adaptation.",
+      "Anthony's practical take is that the time-crunched rider should protect the build and the taper above all else, and shorten the base when something has to give. A compressed 8-week base into a sharp 6–8 week build into a tight taper produces a real peak on limited hours. It won't match what's possible on 12 hours a week — but it absolutely beats the alternative of riding the same moderate sessions every week and wondering why nothing changes. The structure is what makes the few hours count.",
+    ],
+    expertEvidence: [
+      {
+        name: "Dan Lorang",
+        credential: "Head of Performance, Red Bull–Bora–Hansgrohe",
+        insight:
+          "The periodisation principles that apply to a Grand Tour rider apply to a time-crunched amateur on six hours a week — the phases simply compress. For limited-time riders, the priority is making each session count: a smaller number of well-placed quality sessions on a foundation of genuinely easy riding, rather than a week of moderate, undifferentiated efforts.",
+        episodeSlug: "ep-2134-roglics-coach-builds-a-training-plan-for-amateur-riders-dan",
+        guestSlug: "dan-lorang",
+      },
+      {
+        name: "Professor Stephen Seiler",
+        credential: "Exercise physiologist, University of Agder",
+        insight:
+          "At low training volume the cost of grey-zone riding is even higher — there are fewer hours to waste on efforts that are too hard to recover from and too easy to drive adaptation. Time-crunched riders benefit from keeping a clear separation between genuinely easy aerobic work and a small dose of focused intensity, rather than spreading moderate effort across every session.",
+        episodeSlug: "ep-2148-80-20-training-to-ride-faster-dr-stephen-seiler",
+        guestSlug: "stephen-seiler",
+      },
+    ],
+    practicalApplication: [
+      {
+        title: "Compress the phases, don't abandon them",
+        detail:
+          "On 6–8 hours a week, run an 8–10 week base, a 6–8 week build, and a 7–10 day taper into your target event. The blocks are shorter than a high-volume rider's, but the base-build-peak sequence stays intact. A compressed plan still peaks; an unstructured year doesn't.",
+      },
+      {
+        title: "Anchor the build phase on two quality sessions",
+        detail:
+          "With limited hours, two focused quality sessions per week carry the build: one threshold (2×20 at 95–105% FTP) and one VO2max (5×4 min at 110–120% FTP). These are your highest-return hours. Place them on non-consecutive days so both land with quality.",
+      },
+      {
+        title: "Make every remaining hour genuinely easy",
+        detail:
+          "The hours around your two quality sessions must be true zone 2 or recovery — not moderate. At low volume the temptation to make every ride 'count' by pushing the pace is exactly what blunts the quality sessions. Protect the easy riding so the hard riding can be hard.",
+      },
+      {
+        title: "Protect the build and taper; shorten the base if needed",
+        detail:
+          "If the calendar forces a cut, take it from the base, not the build or the taper. A slightly shorter base into a full build and a clean taper produces a better event-day result than a long base with a rushed, compromised finish.",
+      },
+    ],
+    commonMistakes: [
+      {
+        mistake: "Assuming periodisation needs high volume and skipping it entirely.",
+        fix:
+          "Periodisation scales down. Compress the phases to fit 6–8 hours a week — the structure matters more at low volume, not less.",
+      },
+      {
+        mistake: "Filling limited hours with moderate grey-zone riding to 'make them count'.",
+        fix:
+          "At low volume, grey-zone riding is the worst use of time. Keep easy rides genuinely easy and concentrate intensity in two focused quality sessions.",
+      },
+      {
+        mistake: "Cutting the build or taper when time runs short.",
+        fix:
+          "Protect the build and taper; shorten the base instead. The build is where fitness is sharpened and the taper is where it's expressed — those are the last things to compromise.",
+      },
+    ],
+    faq: [
+      {
+        question: "Can I really periodise on 6 hours a week?",
+        answer:
+          "Yes. The phases shorten and the volume swings between them are smaller, but the base-build-peak structure still applies and still produces a genuine peak. A focused 8-week base into a 6–8 week build beats riding the same sessions every week, even on six hours.",
+      },
+      {
+        question: "How much of my limited time should be intensity?",
+        answer:
+          "In a base phase, mostly easy with one modest quality session. In a build phase on 6–8 hours, two quality sessions a week is the sweet spot, with the remaining hours genuinely easy. Intensity becomes proportionally more important at low volume, but it still shouldn't dominate the week.",
+      },
+      {
+        question: "Should a time-crunched rider use polarised or pyramidal training?",
+        answer:
+          "At 6–8 hours a week, some pyramidal threshold work is defensible because you have fewer hours to fill with purely easy riding. Higher-volume riders can run a cleaner polarised split. Either way, the non-negotiable is that your easy rides stay genuinely easy.",
+      },
+      {
+        question: "What should a limited-time build week look like?",
+        answer:
+          "On 6–8 hours: one threshold session, one VO2max session on a non-consecutive day, one longer easy zone 2 ride at the weekend, and one or two short easy rides or rest. Two hard, the rest easy. Stack any strength work onto the hard days to keep easy days easy.",
+      },
+      {
+        question: "Do I still need a base phase if I'm short on time?",
+        answer:
+          "Yes, but a compressed one — 8–10 weeks rather than 12–16. The base still builds the aerobic engine the build phase needs. If you skip it and go straight to intensity, you get fast early gains that plateau quickly, which is a poor return on already-limited hours.",
+      },
+      {
+        question: "Is indoor training better for time-crunched periodisation?",
+        answer:
+          "Often, yes. A smart trainer lets you hit precise zone 2 and clean intervals without traffic, lights, or wasted warm-up time, which makes limited hours more productive. Many time-crunched riders do their two quality sessions indoors and save outdoor riding for the longer easy weekend ride.",
+      },
+    ],
+    relatedEpisodes: [
+      "ep-2134-roglics-coach-builds-a-training-plan-for-amateur-riders-dan",
+      "ep-2148-80-20-training-to-ride-faster-dr-stephen-seiler",
+      "ep-2072-boost-your-cycling-fitness-in-7-days-complete-training-plan",
+    ],
+    relatedTopics: [
+      { label: "How Many Hours Per Week Should Cyclists Train?", href: "/answers/how-many-hours-training" },
+      { label: "How to Build an Annual Training Plan", href: "/answers/annual-training-plan" },
+      { label: "Cycling Training with a Full-Time Job", href: "/blog/cycling-training-full-time-job" },
+      { label: "How to Get Faster on 6 Hours a Week", href: "/blog/cycling-training-six-hours-roglic-coach" },
+      { label: "Cycling Training Plans — Topic Hub", href: "/topics/cycling-training-plans" },
+    ],
+    evidenceLevel: "moderate",
+    evidenceNote:
+      "Time-crunched periodisation guidance reflects coaching practice; corroborated by Dan Lorang's prescription for amateur riders and Seiler's intensity-distribution research.",
+    publishDate: "2026-05-26",
+    updatedDate: "2026-05-26",
+  },
 ];

@@ -1761,4 +1761,699 @@ export const ftpAnswers: AnswerPage[] = [
     publishDate: "2026-05-26",
     updatedDate: "2026-05-26",
   },
+
+  // ============================================================
+  // 14 — WHAT IS FTP
+  // ============================================================
+  {
+    slug: "what-is-ftp",
+    cluster: "ftp",
+    question: "What Is FTP and Why Does It Matter?",
+    seoTitle: "What Is FTP? The One Number That Anchors Your Training",
+    seoDescription:
+      "FTP is the highest power you can hold for roughly 60 minutes — typically 200–300 W for amateurs. It sets every training zone. Here's what it means and why it matters.",
+    pillar: "coaching",
+    directAnswer:
+      "FTP — functional threshold power — is the highest average power in watts you can sustain for roughly 60 minutes before fatigue forces you to slow. For most amateur cyclists that sits at 200–300 W. It matters because it is the single anchor every power-based training zone is calculated from: get FTP right and your easy rides stay easy and your hard intervals land where they should.",
+    keyTakeaways: [
+      "FTP is your ~60-minute maximum sustainable power, measured in watts.",
+      "It's the reference point for all seven power training zones — a wrong FTP mis-targets every session.",
+      "It approximates lactate threshold — the effort above which lactate accumulates faster than you clear it.",
+      "FTP is a training tool, not a race result — its value is in calibrating sessions, not winning bragging rights.",
+    ],
+    whoFor: [
+      {
+        label: "The rider who just bought a power meter",
+        detail:
+          "You keep seeing FTP referenced everywhere and want to understand what it actually is before testing.",
+      },
+      {
+        label: "The rider whose zones feel off",
+        detail:
+          "Your easy rides feel hard and your intervals feel easy — a sign your FTP anchor is wrong.",
+      },
+    ],
+    roadmanView: [
+      "Here's the thing nobody explains clearly when you first hear the term: FTP is not a mystical fitness score. It is one plain physical fact about you — the power you can hold for about an hour before you fall apart. That's it. Everything else in power-based training is built on top of that single number. When Anthony first started training with power, the penny dropped the moment he stopped thinking of FTP as a leaderboard stat and started treating it as a calibration tool. Get it right and the whole training system clicks into place.",
+      "The reason it matters so much is reach. Every zone you train in is a percentage of FTP. Your easy zone 2 is 56–75% of it. Your threshold intervals are 91–105% of it. Your VO2max work sits above it. So if your FTP is set 15 watts too high, every single one of those sessions runs slightly too hard, and you spend months wondering why you're tired and not improving. If it's set too low, your hard days aren't actually hard. The number is the foundation. A cracked foundation cracks everything above it.",
+      "What FTP physiologically approximates is your lactate threshold — the intensity above which your body produces lactate faster than it can clear it. Alex Welburn, the physiologist Anthony had on to talk about the metrics Pogačar's team actually uses, made the point that FTP is a useful field proxy for that threshold, not a perfect lab measurement. You don't need a lab. You need an honest test, a consistent protocol, and the discipline to retest as you get fitter. That's the whole game.",
+    ],
+    expertEvidence: [
+      {
+        name: "Alex Welburn",
+        credential: "Cycling coach and physiologist; PhD researcher at Loughborough University on critical power and W'",
+        insight:
+          "FTP is best understood as a practical field estimate of the metabolic threshold — the boundary between sustainable aerobic effort and the rapidly-fatiguing zone above it. It is not a perfect physiological marker, but as a reference for setting training zones it is the most actionable number an amateur can build their week around.",
+        episodeSlug: "ep-26-3-training-metrics-that-pogacar-uses-that-you-don-t",
+        guestSlug: "alex-welburn",
+      },
+      {
+        name: "Joe Friel",
+        credential: "Author of The Cyclist's Training Bible; co-founder of TrainingPeaks",
+        insight:
+          "FTP functions as the organising principle of structured power training. Every zone is a percentage of it, every interval target is derived from it, and progress is tracked against it. The discipline that matters is keeping it current — a stale FTP quietly mis-calibrates an entire training block.",
+        episodeSlug: "ep-40-how-joe-friel-structures-the-ideal-cycling-training-week",
+        guestSlug: "joe-friel",
+      },
+    ],
+    practicalApplication: [
+      {
+        title: "Establish your FTP with a single repeatable test",
+        detail:
+          "Pick one protocol — a 20-minute test or a ramp test — and run it rested. That first number becomes your baseline. Don't agonise over a few watts; you need a starting anchor, and you'll refine it every block.",
+      },
+      {
+        title: "Calculate your zones from it immediately",
+        detail:
+          "Feed your FTP into the FTP Zone Calculator. Zone 2 = 56–75%, threshold (zone 4) = 91–105%, VO2max (zone 5) = 106–120%. These watt bands are what actually drive your training, not the FTP figure on its own.",
+      },
+      {
+        title: "Treat W/kg as the companion number",
+        detail:
+          "Divide your FTP by your body weight in kilograms. A 250 W rider at 75 kg is 3.3 W/kg. FTP in watts governs flat-road speed; W/kg governs climbing. Track both so you know which lever to pull.",
+      },
+    ],
+    commonMistakes: [
+      {
+        mistake: "Treating FTP as a fixed personal score rather than a moving training input.",
+        fix:
+          "FTP changes with fitness, fatigue, heat and form. Retest every 6–8 weeks and update your zones — the number is meant to move.",
+      },
+      {
+        mistake: "Comparing your FTP in raw watts to other riders.",
+        fix:
+          "Convert to W/kg before any comparison. Raw watts without body weight tells you almost nothing about relative fitness.",
+      },
+      {
+        mistake: "Setting FTP high to feel good, then training to inflated zones.",
+        fix:
+          "An honest FTP makes your easy days easy and your hard days hard. An inflated one turns every session into grey-zone fatigue. Test honestly.",
+      },
+    ],
+    faq: [
+      {
+        question: "Is FTP the same as my one-hour power?",
+        answer:
+          "Almost. FTP is defined as the power you can hold for roughly 60 minutes. In practice most riders test over 20 minutes and take 95% of that figure, because a true all-out 60-minute test is brutal and rarely repeatable. The 20-minute proxy is close enough for setting zones.",
+      },
+      {
+        question: "What does FTP stand for?",
+        answer:
+          "Functional threshold power. 'Functional' because it's a usable field measure rather than a lab value, 'threshold' because it sits near your lactate threshold, and 'power' because it's measured in watts. The term was popularised by Andrew Coggan and Hunter Allen.",
+      },
+      {
+        question: "Do I need a power meter to have an FTP?",
+        answer:
+          "To measure it precisely, yes — a power meter or smart trainer. You can estimate a rough equivalent using heart rate (threshold HR is about 90–95% of max) or RPE, but those methods are noisier and less reliable for tracking small changes over time.",
+      },
+      {
+        question: "Is a higher FTP always better?",
+        answer:
+          "For flat-road and time-trial speed, raw FTP is decisive. For climbing and head-to-head racing, what matters is FTP relative to body weight (W/kg). A higher FTP helps everywhere, but it's only half the picture — weight is the other half.",
+      },
+      {
+        question: "How is FTP different from VO2max?",
+        answer:
+          "VO2max is the maximum rate your body can use oxygen — a ceiling on your aerobic engine. FTP is the sustainable power you can hold near your lactate threshold, which sits below VO2max. You can raise FTP toward your VO2max ceiling with training; raising the ceiling itself is harder.",
+      },
+      {
+        question: "Does FTP matter for casual riders who don't race?",
+        answer:
+          "Only if you train with structure. If you ride purely for enjoyment with no interval work, FTP is optional. But the moment you want to train efficiently — to get faster in limited hours — FTP is the number that lets you target your sessions instead of guessing.",
+      },
+    ],
+    relatedEpisodes: [
+      "ep-26-3-training-metrics-that-pogacar-uses-that-you-don-t",
+      "ep-40-how-joe-friel-structures-the-ideal-cycling-training-week",
+      "ep-2027-train-slower-ride-faster-why-it-actually-works",
+    ],
+    relatedTopics: [
+      { label: "FTP Training — Topic Hub", href: "/topics/ftp-training" },
+      { label: "FTP Zone Calculator", href: "/tools/ftp-zones" },
+      { label: "W/kg Calculator", href: "/tools/wkg" },
+      { label: "How do I test my FTP accurately?", href: "/answers/ftp-test-guide" },
+      { label: "FTP Training Zones Guide", href: "/blog/ftp-training-zones-cycling-complete-guide" },
+    ],
+    evidenceLevel: "strong",
+    evidenceNote:
+      "The definition of FTP and its role in zone-based training is standard across Coggan, TrainingPeaks and coaching practice. The lactate-threshold relationship is well-established.",
+    publishDate: "2026-05-26",
+    updatedDate: "2026-05-26",
+  },
+
+  // ============================================================
+  // 15 — 20-MINUTE FTP TEST
+  // ============================================================
+  {
+    slug: "20-minute-ftp-test",
+    cluster: "ftp",
+    question: "How Do I Do a 20-Minute FTP Test?",
+    seoTitle: "How to Do a 20-Minute FTP Test (Step by Step)",
+    seoDescription:
+      "Warm up, ride 20 minutes all-out, then take 95% of your average power as your FTP. Here's the full protocol, pacing, and the mistakes that wreck the result.",
+    pillar: "coaching",
+    directAnswer:
+      "Warm up for 15–20 minutes, ride a hard 5-minute opener to clear the legs, recover, then ride 20 minutes as hard as you can hold evenly. Take 95% of your average power for those 20 minutes — that's your FTP. A 250 W average gives an FTP of 238 W. Arrive rested, pace the effort steadily, and run the same protocol every time so results are comparable.",
+    keyTakeaways: [
+      "FTP = 95% of your 20-minute average power — the 5% accounts for the longer one-hour definition.",
+      "Pacing is everything: start at a power you're sure you can hold, then build, never fade.",
+      "Arrive rested — 2–3 easy days beforehand — or the result reads artificially low.",
+      "Use the same course, trainer, and warm-up every time so the trend means something.",
+    ],
+    whoFor: [
+      {
+        label: "The rider running their first formal test",
+        detail:
+          "You want a precise, repeatable protocol rather than a vague all-out effort.",
+      },
+      {
+        label: "The rider whose 20-minute tests keep blowing up",
+        detail:
+          "You go out too hard, die at minute twelve, and the number never reflects your real fitness.",
+      },
+    ],
+    roadmanView: [
+      "The 20-minute test is the most widely used FTP protocol for a reason: it's long enough to genuinely tax your threshold but short enough that most riders can mentally commit to it. The catch — and Anthony has watched this play out with club riders again and again — is that the test is almost always lost in the first five minutes. The adrenaline kicks in, the legs feel fresh, and people go out 20 watts above what they can hold. By minute twelve they're hanging on, the power's collapsing, and the average ends up lower than if they'd paced it honestly from the start.",
+      "The fix is to treat it like a controlled effort, not a heroic one. The opening five-minute hard effort before the test exists specifically to take the top-end sharpness off your legs so you don't sandbag the real 20 minutes by going anaerobic early. Then in the test itself, you start at a power you are genuinely confident you can sustain, settle in, and if anything is left in the tank you push in the final five minutes. A test that finishes strong almost always beats one that finishes clinging on.",
+      "And the prep matters as much as the protocol. Joe Friel's whole framing of testing is that the number only means something if you arrive rested and repeat the conditions. Test on a Friday after a big week and you'll read 5–10% low. Test rested, on the same trainer or the same climb, with the same warm-up, and you've got a number you can actually compare block to block. That comparison — the trend — is the entire point. One test in isolation tells you very little.",
+    ],
+    expertEvidence: [
+      {
+        name: "Joe Friel",
+        credential: "Author of The Cyclist's Training Bible; co-founder of TrainingPeaks",
+        insight:
+          "A valid FTP test depends as much on preparation and consistency as on the effort itself. Arriving rested, using an identical warm-up and environment each time, and pacing the effort evenly are what make the result comparable across a season. The 20-minute protocol with a 5% reduction is a reliable field estimate when executed honestly.",
+        episodeSlug: "ep-40-how-joe-friel-structures-the-ideal-cycling-training-week",
+        guestSlug: "joe-friel",
+      },
+      {
+        name: "Stephen Barrett",
+        credential: "Head coach, Decathlon AG2R La Mondiale (UCI WorldTour)",
+        insight:
+          "At World Tour level, testing is treated with the same rigour as a key session — fuelled, prepared for, and paced deliberately. Amateurs gain the most from a 20-minute test when they stop racing the clock and start pacing it as a controlled, even effort that builds rather than fades.",
+        episodeSlug: "ep-38-world-tour-coach-s-most-valuable-training-secrets-revealed",
+        guestSlug: "stephen-barrett",
+      },
+    ],
+    practicalApplication: [
+      {
+        title: "Run the full warm-up — don't skip it",
+        detail:
+          "15–20 minutes building from easy zone 2, then a single hard 5-minute effort near threshold, then 5 minutes easy spinning. This primes your body to produce power from minute one of the test rather than spending the first third warming into it.",
+      },
+      {
+        title: "Pace the 20 minutes in three parts",
+        detail:
+          "First 5 minutes: hold back deliberately at a power you know you can sustain — it should feel almost too easy. Middle 10 minutes: settle into your hardest sustainable effort. Final 5 minutes: empty the tank. Check your power at the 5-minute mark and correct early.",
+      },
+      {
+        title: "Calculate FTP and set your zones",
+        detail:
+          "Take your average power for the 20 minutes and multiply by 0.95. A 280 W average is an FTP of 266 W. Enter that into the FTP Zone Calculator to set every training zone in watts.",
+      },
+    ],
+    commonMistakes: [
+      {
+        mistake: "Starting the 20 minutes at maximum because the legs feel fresh.",
+        fix:
+          "Open at a power you're certain you can hold for the full duration, then build. A fast start guarantees a fade and a lower average than honest pacing.",
+      },
+      {
+        mistake: "Testing on accumulated fatigue and treating the low number as your real FTP.",
+        fix:
+          "Take 2–3 genuinely easy days before testing. A fatigued test reads 5–10% low and sets your zones too soft for the next block.",
+      },
+      {
+        mistake: "Changing the course, trainer, or warm-up between tests.",
+        fix:
+          "Keep every variable identical. The value of testing is the trend across tests — different conditions produce different numbers that aren't comparable.",
+      },
+    ],
+    faq: [
+      {
+        question: "Why do I multiply the 20-minute power by 95%?",
+        answer:
+          "FTP is defined as roughly one-hour power, but a 20-minute effort can be held at a higher wattage than you'd sustain for a full hour. The 5% reduction bridges that gap, giving a 60-minute estimate from a more manageable 20-minute test. It's an approximation, but a consistent one.",
+      },
+      {
+        question: "Should I do a 5-minute effort before the 20-minute test?",
+        answer:
+          "Yes — it's part of the standard protocol. A hard 5-minute effort followed by easy spinning blunts your anaerobic contribution so the 20-minute test reflects your aerobic threshold rather than your top-end sprint. Skip it and you can over-read your FTP.",
+      },
+      {
+        question: "Can I do the 20-minute test outdoors?",
+        answer:
+          "Yes, on a long steady climb or a quiet, flat, uninterrupted road. A climb is ideal because it removes the temptation to coast and keeps your power steady. Just make sure you use the same route every time so results stay comparable.",
+      },
+      {
+        question: "How is the 20-minute test different from a ramp test?",
+        answer:
+          "The 20-minute test measures sustained power directly and tends to suit experienced riders with good pacing. A ramp test increases power until failure and estimates FTP from your peak minute — it's shorter and easier to pace, but can under- or over-read depending on your physiology. Pick one and stick with it.",
+      },
+      {
+        question: "Should I fuel before a 20-minute FTP test?",
+        answer:
+          "Yes. Eat 40–60g of carbohydrate in the hour or two before — porridge, toast and jam, or a carb drink. The test is a maximal threshold effort that burns carbohydrate heavily. Testing under-fuelled produces a lower number that reflects depletion, not fitness.",
+      },
+      {
+        question: "How often should I repeat the 20-minute test?",
+        answer:
+          "Every 6–8 weeks, at the end of a training block after a recovery week. Testing more often burns hard efforts on data collection and the results blur into day-to-day fatigue noise. Block boundaries give you the cleanest read on real progress.",
+      },
+    ],
+    relatedEpisodes: [
+      "ep-40-how-joe-friel-structures-the-ideal-cycling-training-week",
+      "ep-38-world-tour-coach-s-most-valuable-training-secrets-revealed",
+      "ep-26-3-training-metrics-that-pogacar-uses-that-you-don-t",
+    ],
+    relatedTopics: [
+      { label: "FTP Ramp Test vs 20-Minute Test", href: "/compare/ftp-ramp-test-vs-20-minute" },
+      { label: "How Do I Do a Ramp Test?", href: "/answers/how-to-do-a-ramp-test" },
+      { label: "FTP Zone Calculator", href: "/tools/ftp-zones" },
+      { label: "How do I test my FTP accurately?", href: "/answers/ftp-test-guide" },
+      { label: "How Often Should I Test My FTP?", href: "/answers/how-often-test-ftp" },
+    ],
+    evidenceLevel: "strong",
+    evidenceNote:
+      "The 20-minute protocol with a 5% reduction is the Coggan/TrainingPeaks standard. Pacing and preparation guidance is consistent with Friel and World Tour coaching practice.",
+    publishDate: "2026-05-26",
+    updatedDate: "2026-05-26",
+  },
+
+  // ============================================================
+  // 16 — HOW TO DO A RAMP TEST
+  // ============================================================
+  {
+    slug: "how-to-do-a-ramp-test",
+    cluster: "ftp",
+    question: "How Do I Do a Ramp Test?",
+    seoTitle: "How to Do a Ramp Test for FTP (Full Protocol)",
+    seoDescription:
+      "A ramp test raises power in steps until you can't continue, then estimates FTP as 75% of your best 1-minute power. Here's the protocol, when to use it, and its limits.",
+    pillar: "coaching",
+    directAnswer:
+      "A ramp test increases power in small steps — typically 20 W every minute — until you can no longer hold the target and stop. Your FTP is estimated as 75% of your best 1-minute power. If your final minute averaged 320 W, your FTP estimate is 240 W. It takes 8–25 minutes, needs no pacing skill, and suits riders new to testing or anyone who paces a 20-minute effort badly.",
+    keyTakeaways: [
+      "FTP estimate = 75% of your best 1-minute power at the point of failure.",
+      "Power rises in steps (commonly 20 W/min) until you can't sustain the target — no pacing required.",
+      "Best suited to riders new to testing or those who blow up in 20-minute efforts.",
+      "It can under-read for highly aerobic riders and over-read for punchy, anaerobic ones.",
+    ],
+    whoFor: [
+      {
+        label: "The rider who can't pace a 20-minute test",
+        detail:
+          "You go out too hard and fade — a ramp removes pacing from the equation entirely.",
+      },
+      {
+        label: "The indoor trainer user on Zwift or TrainerRoad",
+        detail:
+          "Your platform offers a built-in ramp test in ERG mode and you want to know what it's measuring.",
+      },
+    ],
+    roadmanView: [
+      "The ramp test earned its popularity for one honest reason: it removes the single hardest part of FTP testing, which is pacing. There's no judgement call, no risk of going out too hot and dying — the trainer simply ratchets the power up step by step and your only job is to keep turning the pedals until you physically can't. For riders who consistently butcher the 20-minute test by starting too hard, the ramp is genuinely the better tool. It meets you where you are.",
+      "The trade-off is that it's an estimate built on an assumption — that your FTP is 75% of your one-minute peak. That ratio holds up well for a lot of riders, but it's a generalisation. If you're a deeply aerobic diesel with a modest sprint, the ramp can under-read your true sustainable power because your one-minute peak is relatively low. If you're a punchy, anaerobic rider with a big top end, it can flatter you — your peak minute is high, but you couldn't hold anywhere near that ratio for an hour. Knowing which type you are tells you how much to trust the number.",
+      "Anthony's practical take, after the conversations on the podcast about training metrics with people like Alex Welburn, is that the ramp test is a brilliant entry point and a fine ongoing tool if you're consistent with it — but it measures a slightly different thing to a 20-minute test. The cardinal rule applies here as much as anywhere: pick one protocol and stay with it. A ramp this block and a 20-minute test next block isn't tracking progress, it's comparing apples and oranges.",
+    ],
+    expertEvidence: [
+      {
+        name: "Alex Welburn",
+        credential: "Cycling coach and physiologist; PhD researcher at Loughborough University on critical power and W'",
+        insight:
+          "The ramp test estimates FTP from maximal aerobic power using a fixed percentage, which makes it simple but population-based. Riders with strong anaerobic capacity can see their FTP over-estimated, while highly aerobic riders may see it under-estimated. It's a useful, repeatable field tool provided you understand it's a model, not a direct measurement.",
+        episodeSlug: "ep-26-3-training-metrics-that-pogacar-uses-that-you-don-t",
+        guestSlug: "alex-welburn",
+      },
+      {
+        name: "Joe Friel",
+        credential: "Author of The Cyclist's Training Bible; co-founder of TrainingPeaks",
+        insight:
+          "Any FTP testing method is valid as long as it's repeatable and used consistently. The ramp test's strength is that it removes pacing error and is easy to standardise on a smart trainer. Its result should be treated as a calibration input for training zones, then refined against how interval sessions actually feel.",
+        episodeSlug: "ep-40-how-joe-friel-structures-the-ideal-cycling-training-week",
+        guestSlug: "joe-friel",
+      },
+    ],
+    practicalApplication: [
+      {
+        title: "Set up the ramp on a smart trainer in ERG mode",
+        detail:
+          "Most platforms (Zwift, TrainerRoad, Wahoo) have a built-in ramp protocol. A common structure starts around 100 W (or roughly 50% of estimated FTP) and adds 20 W per minute. ERG mode holds each step automatically so you only have to keep pedalling.",
+      },
+      {
+        title: "Ride to genuine failure, not discomfort",
+        detail:
+          "Hold each step until you physically cannot maintain the target cadence and the power drops away. The test depends on reaching true failure — stopping early because it hurts gives a falsely low FTP. Expect the last two or three minutes to be brutal.",
+      },
+      {
+        title: "Take 75% of your best 1-minute power",
+        detail:
+          "Your platform usually calculates this automatically. Manually: find your highest 1-minute average power during the test and multiply by 0.75. A 300 W best minute gives an FTP estimate of 225 W. Set your zones from that figure.",
+      },
+    ],
+    commonMistakes: [
+      {
+        mistake: "Stopping the moment it gets hard rather than at true failure.",
+        fix:
+          "The result is only valid if you ride to the point you genuinely cannot hold the step. Push through the final painful minutes — that's where the test actually measures you.",
+      },
+      {
+        mistake: "Switching between ramp and 20-minute tests across blocks.",
+        fix:
+          "The two protocols can give different numbers for the same fitness. Pick one and use it every time, or you're comparing incompatible measurements.",
+      },
+      {
+        mistake: "Trusting the ramp blindly if you're a very punchy or very aerobic rider.",
+        fix:
+          "If interval sessions at your ramp-derived zones feel consistently too easy or too hard, the 75% assumption may not fit you. Adjust your FTP by feel, or cross-check with a 20-minute test.",
+      },
+    ],
+    faq: [
+      {
+        question: "Why is FTP 75% of the best 1-minute power in a ramp test?",
+        answer:
+          "The 75% figure is derived from the relationship between maximal aerobic power and sustainable threshold power across large groups of athletes. It's a population average, so it works well for most riders but can be a few percent off for those with unusual aerobic or anaerobic profiles.",
+      },
+      {
+        question: "How long does a ramp test take?",
+        answer:
+          "Usually 8–25 minutes including the build, depending on your fitness and the starting wattage. Stronger riders take longer to reach failure. The effort is only genuinely maximal for the final two or three minutes, which makes it less mentally daunting than a 20-minute test.",
+      },
+      {
+        question: "Is a ramp test easier than a 20-minute test?",
+        answer:
+          "Mentally, yes — there's no pacing decision and the hard part is short. Physically, the final minutes are extremely demanding. Many riders prefer it precisely because the suffering is concentrated and brief rather than drawn out over 20 minutes.",
+      },
+      {
+        question: "Can I do a ramp test outdoors?",
+        answer:
+          "It's difficult outdoors because you need precise, steadily increasing power steps that are hard to control on the road. The ramp test is really designed for a smart trainer in ERG mode. For outdoor testing, the 20-minute protocol on a steady climb is more practical.",
+      },
+      {
+        question: "Should I warm up before a ramp test?",
+        answer:
+          "The early low-power steps of the ramp act as a built-in warm-up, so a long separate warm-up isn't essential. A few minutes of easy spinning beforehand to loosen the legs is enough. Don't do hard efforts first — you'll compromise the result.",
+      },
+      {
+        question: "Does the ramp test work without a smart trainer?",
+        answer:
+          "Not well. It relies on holding precise, incrementing power targets that a smart trainer controls automatically in ERG mode. With only a power meter and a dumb trainer you'd struggle to hold the steps accurately, which undermines the result. Use the 20-minute test instead.",
+      },
+    ],
+    relatedEpisodes: [
+      "ep-26-3-training-metrics-that-pogacar-uses-that-you-don-t",
+      "ep-40-how-joe-friel-structures-the-ideal-cycling-training-week",
+      "ep-2027-train-slower-ride-faster-why-it-actually-works",
+    ],
+    relatedTopics: [
+      { label: "FTP Ramp Test vs 20-Minute Test", href: "/compare/ftp-ramp-test-vs-20-minute" },
+      { label: "How Do I Do a 20-Minute FTP Test?", href: "/answers/20-minute-ftp-test" },
+      { label: "FTP Zone Calculator", href: "/tools/ftp-zones" },
+      { label: "How do I test my FTP accurately?", href: "/answers/ftp-test-guide" },
+      { label: "Why Is My Indoor FTP Lower Than Outdoor?", href: "/answers/indoor-vs-outdoor-ftp" },
+    ],
+    evidenceLevel: "strong",
+    evidenceNote:
+      "The ramp test protocol and 75% estimation are well-established and used across TrainerRoad and Zwift. Its limitations for atypical rider profiles are documented in coaching practice.",
+    publishDate: "2026-05-26",
+    updatedDate: "2026-05-26",
+  },
+
+  // ============================================================
+  // 17 — SWEET SPOT TRAINING BLOCK
+  // ============================================================
+  {
+    slug: "sweet-spot-training-block",
+    cluster: "ftp",
+    question: "How Do I Build a Sweet Spot Training Block?",
+    seoTitle: "How to Build a Sweet Spot Training Block (6-Week Plan)",
+    seoDescription:
+      "A sweet spot block runs 6 weeks: two sessions a week at 84–94% FTP, building from 2×15 to 3×20 minutes, with everything else easy. Here's the full structure.",
+    pillar: "coaching",
+    directAnswer:
+      "Build a sweet spot block over 6 weeks: two sessions a week at 84–94% of FTP, progressing from 2×15 minutes in week one to 3×20 minutes by week five, with a recovery week in week six. Keep every other ride genuinely easy zone 2. This delivers a strong threshold stimulus at a manageable fatigue cost — ideal for time-crunched riders building base before a sharper VO2max phase.",
+    keyTakeaways: [
+      "Two sweet spot sessions a week is the ceiling — more crowds out recovery and tips you into the grey zone.",
+      "Progress duration, not intensity: build from 2×15 to 3×20 minutes over five weeks at the same 84–94% FTP.",
+      "Every non-sweet-spot ride must be genuinely easy zone 2, or the block becomes all grey-zone fatigue.",
+      "End the block with a recovery week and use sweet spot as a base-phase tool, not a year-round default.",
+    ],
+    whoFor: [
+      {
+        label: "The time-crunched rider with 6–8 hours a week",
+        detail:
+          "You need a high-stimulus block you can recover from, structured across a defined six weeks.",
+      },
+      {
+        label: "The rider moving from unstructured riding to a plan",
+        detail:
+          "You want your first proper training block and sweet spot is the most forgiving entry point.",
+      },
+    ],
+    roadmanView: [
+      "Sweet spot became the default amateur training block because the maths works in your favour when time is tight. It sits at 84–94% of FTP — hard enough to build genuine threshold fitness, but recoverable enough that you can do it twice a week and still come back fresh. For a rider with six to eight hours, two focused sweet spot sessions plus a few easy rides is a genuinely productive week. TrainerRoad built a whole platform on this, and the reason it works is that it concentrates the stimulus where time-crunched riders can actually absorb it.",
+      "The way you build the block matters more than people think. The instinct is to make each session harder — to creep the power up week on week. Don't. You build a sweet spot block by adding duration at the same intensity, not by chasing watts. Start at 2×15 minutes, add five minutes to your blocks every couple of weeks, and by week five you're holding 3×20 — roughly an hour of productive sweet spot in a single session. That progression of time-in-zone is what drives the adaptation. The intensity stays put inside the band.",
+      "And here's the part that decides whether the block works: the easy rides. Stephen Seiler's research keeps hammering the same point, and it applies directly here — if your easy days drift up into zone 3, your sweet spot sessions never fully land because you're never properly recovered. Two quality sessions a week, everything else genuinely easy, one recovery week to close it out. Then move on. Sweet spot builds the base beautifully, but it's a phase, not a permanent home. The eight to ten weeks before a target event belong to threshold and VO2max work.",
+    ],
+    expertEvidence: [
+      {
+        name: "Professor Stephen Seiler",
+        credential: "Exercise physiologist, University of Agder; polarised-training researcher",
+        insight:
+          "Sweet spot can drive real threshold adaptation in a defined block, but only if the surrounding easy rides stay genuinely easy. The common failure is that the moderate intensity of sweet spot bleeds into the rest of the week, leaving the athlete chronically under-recovered and the quality sessions blunted. Protect the easy days and the block delivers.",
+        episodeSlug: "ep-2148-80-20-training-to-ride-faster-dr-stephen-seiler",
+        guestSlug: "stephen-seiler",
+      },
+      {
+        name: "Dan Lorang",
+        credential: "Head of Performance, Red Bull–Bora–Hansgrohe; coach to Jan Frodeno",
+        insight:
+          "Sweet spot has a clear place in amateur periodisation, particularly in the base phase where the full fatigue of pure threshold work can't always be absorbed. The discipline is to treat it as a time-limited block that builds toward sharper, more specific intensity later — not as the entire training plan repeated indefinitely.",
+        episodeSlug: "ep-2134-roglics-coach-builds-a-training-plan-for-amateur-riders-dan",
+        guestSlug: "dan-lorang",
+      },
+    ],
+    practicalApplication: [
+      {
+        title: "Map the six weeks before you start",
+        detail:
+          "Weeks 1–2: 2×15 min at 84–94% FTP, twice weekly. Weeks 3–4: 2×20 min or 3×15 min. Week 5: 3×20 min — the peak load. Week 6: recovery, volume cut 40%, no sweet spot. Two quality sessions per week throughout, with at least one easy day between them.",
+      },
+      {
+        title: "Set the power band precisely and stay in it",
+        detail:
+          "84–94% of current FTP. For a 250 W FTP, that's 210–235 W. Don't drift above 95% (that's threshold) or below 82% (that's tempo). On a smart trainer, ERG mode holds the band for you; outdoors, watch your power and resist the urge to push.",
+      },
+      {
+        title: "Keep every other ride genuinely zone 2",
+        detail:
+          "The two sweet spot sessions are your only quality work. Everything else stays under 75% FTP — easy enough to hold a conversation. Adding a third hard ride sabotages the recovery the block depends on.",
+      },
+    ],
+    commonMistakes: [
+      {
+        mistake: "Adding a third sweet spot session because two feels too easy.",
+        fix:
+          "Two is the ceiling for most amateurs. A third pushes total load past what you can recover from and turns the block into chronic grey-zone fatigue.",
+      },
+      {
+        mistake: "Progressing by raising intensity instead of duration.",
+        fix:
+          "Hold the 84–94% band and add time in zone — build from 2×15 to 3×20 over the block. Creeping the watts up turns sweet spot into threshold and breaks the recovery balance.",
+      },
+      {
+        mistake: "Running sweet spot blocks back-to-back all year with no shift to sharper work.",
+        fix:
+          "Use sweet spot in base and early build, then transition to threshold and VO2max in the final 8–10 weeks before a target event. The base needs sharpening to lift the ceiling.",
+      },
+    ],
+    faq: [
+      {
+        question: "How long should a sweet spot block last?",
+        answer:
+          "Six weeks is a clean structure — five weeks of progressive loading plus a recovery week. You can run a shorter four-week block, but six gives the time-in-zone room to build from 2×15 to 3×20 minutes, which is where the meaningful threshold adaptation accumulates.",
+      },
+      {
+        question: "What should the rest of my week look like during a sweet spot block?",
+        answer:
+          "Two sweet spot sessions, then everything else genuinely easy zone 2 — short recovery spins and any longer endurance rides kept under 75% FTP. The total intensity load comes from the two quality sessions; the easy rides exist to let you recover and adapt, not to add more stress.",
+      },
+      {
+        question: "Can I do a sweet spot block indoors?",
+        answer:
+          "Yes — it's arguably ideal indoors. ERG mode on a smart trainer holds you in the 84–94% band without wind, traffic or gradient changes, so every minute counts. Just run a good fan and keep the room cool, because heat will quietly drag your sustainable power down.",
+      },
+      {
+        question: "Will a sweet spot block raise my FTP?",
+        answer:
+          "For most riders building base or new to structure, yes — a well-executed six-week block commonly adds meaningful watts. The gains are largest if you arrive rested, fuel the sessions, and keep your easy days easy. Riders already near their ceiling may need sharper VO2max work to keep progressing.",
+      },
+      {
+        question: "How do I fuel a sweet spot session?",
+        answer:
+          "Take 40–60g of carbohydrate in the hour beforehand and consider 30–60g during the longer sessions. Sweet spot is sustained, carbohydrate-hungry work — going in depleted lowers the quality of every interval and blunts the adaptation you're training for.",
+      },
+      {
+        question: "What comes after a sweet spot block?",
+        answer:
+          "Typically a build phase with threshold (2×20 at 95–105% FTP) and VO2max intervals (5×4 min at 110–120%) to sharpen the ceiling the sweet spot block raised. Sweet spot builds the aerobic-threshold base; the harder, more specific work converts it into peak performance.",
+      },
+    ],
+    relatedEpisodes: [
+      "ep-2148-80-20-training-to-ride-faster-dr-stephen-seiler",
+      "ep-2134-roglics-coach-builds-a-training-plan-for-amateur-riders-dan",
+      "ep-2027-train-slower-ride-faster-why-it-actually-works",
+    ],
+    relatedTopics: [
+      { label: "What Is Sweet Spot Training?", href: "/answers/sweet-spot-training-explained" },
+      { label: "Sweet Spot vs Threshold", href: "/compare/sweet-spot-vs-threshold" },
+      { label: "Sweet Spot vs Zone 2", href: "/compare/sweet-spot-vs-zone-2" },
+      { label: "FTP Zone Calculator", href: "/tools/ftp-zones" },
+      { label: "Sweet Spot Training for Cycling", href: "/blog/sweet-spot-training-cycling" },
+    ],
+    evidenceLevel: "strong",
+    evidenceNote:
+      "Sweet spot block structure is well-established in coaching practice. The importance of protecting easy rides draws directly on Seiler's polarised-training research.",
+    publishDate: "2026-05-26",
+    updatedDate: "2026-05-26",
+  },
+
+  // ============================================================
+  // 18 — RAISE FTP IN 8 WEEKS
+  // ============================================================
+  {
+    slug: "raise-ftp-in-8-weeks",
+    cluster: "ftp",
+    question: "Can I Raise My FTP in 8 Weeks?",
+    seoTitle: "Can You Raise Your FTP in 8 Weeks? What's Realistic",
+    seoDescription:
+      "Yes — most structured riders add 5–10% to FTP in 8 weeks, often 15–25 watts. Newer riders gain more, experienced ones less. Here's the plan that delivers it.",
+    pillar: "coaching",
+    directAnswer:
+      "Yes. Eight weeks is enough to raise FTP meaningfully for most riders — typically a 5–10% gain, often 15–25 watts. Newer-to-structure riders can see 10–15% or more; riders already near their ceiling should expect 3–5%. The result hinges on three things: arriving rested, executing quality threshold and VO2max sessions at the right intensity, and fuelling them properly. Skip recovery and the gains stall.",
+    keyTakeaways: [
+      "A realistic 8-week gain is 5–10% of FTP for most structured riders — roughly 15–25 watts.",
+      "Training age sets the ceiling: beginners gain fast, riders near their limit gain slowly.",
+      "The block needs structure — base, threshold, VO2max, then a recovery week before retesting.",
+      "Rest and fuelling are not optional extras — they're where the adaptation actually consolidates.",
+    ],
+    whoFor: [
+      {
+        label: "The rider with a target 8 weeks out",
+        detail:
+          "You have an event or a goal date and want to know what's realistically achievable in the time.",
+      },
+      {
+        label: "The rider wanting a concrete 8-week plan",
+        detail:
+          "You're motivated and consistent but need a week-by-week structure that actually delivers a gain.",
+      },
+    ],
+    roadmanView: [
+      "Eight weeks is a real block — long enough for genuine physiological adaptation, short enough to stay motivated and focused. So the honest answer to whether you can raise your FTP in that window is yes, almost certainly, provided you train with structure and arrive rested. The thing that varies is how much. A rider new to structured training can put 10–15% on their FTP in eight weeks because there's so much low-hanging fruit. A seasoned rider already close to their genetic ceiling might fight for 3–5%. Both are real progress — they're just different sizes of win.",
+      "What separates the riders who hit their target from the ones who don't isn't talent or hours, it's three boringly consistent things. They start the block off the back of a recovery week, so they're adapting from fresh rather than digging out of a hole. They execute their quality sessions at the prescribed intensity instead of going over-target and blowing up. And they fuel those hard sessions — 40–60g of carbs before threshold and VO2max work — because under-fuelled intervals are low-quality intervals. Anthony has watched riders miss their target by getting two of those three right and the third wrong.",
+      "The structure that reliably works over eight weeks is a progression, not a grind. A short base to settle in, a threshold block to build sustainable power, a VO2max block to lift the ceiling, and a recovery week before you test. Joe Friel's framing is worth holding onto here: the final few weeks before testing should be the hardest, and the adaptation only shows up once you've rested. Test mid-block on fatigue and you'll see a flat number that's hiding real fitness. Rest, then test, and the eight weeks of work shows up on the screen.",
+    ],
+    expertEvidence: [
+      {
+        name: "Joe Friel",
+        credential: "Author of The Cyclist's Training Bible; co-founder of TrainingPeaks",
+        insight:
+          "Cyclists new to structured training can expect 15–25% FTP gains across a season, with much of it arriving in the first focused blocks. More experienced riders gain 3–8% per block. An 8-week target should be planned as progressive overload toward a peak, with a recovery week before testing rather than a flat grind of hard sessions.",
+        episodeSlug: "ep-40-how-joe-friel-structures-the-ideal-cycling-training-week",
+        guestSlug: "joe-friel",
+      },
+      {
+        name: "Dan Lorang",
+        credential: "Head of Performance, Red Bull–Bora–Hansgrohe; coach to Jan Frodeno",
+        insight:
+          "Meaningful adaptation over a short block comes from progressive, well-recovered training — not from stacking maximum load every week. The athletes who improve fastest in a defined window are those who vary the stimulus across the block and treat the recovery week as the mechanism that converts training into measurable fitness.",
+        episodeSlug: "ep-2056-13-years-of-coaching-pros-what-amateurs-dont-know",
+        guestSlug: "dan-lorang",
+      },
+    ],
+    practicalApplication: [
+      {
+        title: "Follow an 8-week progression with structure",
+        detail:
+          "Weeks 1–2: base with easy zone 2 plus one sweet spot session. Weeks 3–5: threshold block, 2×20 min at 95–105% FTP twice weekly. Weeks 6–7: VO2max block, 5×4 min at 110–120% FTP. Week 8: recovery week, then test. This sequence reliably produces 5–10% in motivated, well-fuelled riders.",
+      },
+      {
+        title: "Arrive rested and protect the easy days",
+        detail:
+          "Take a genuine recovery week before week one so you're adapting from fresh. Throughout the block, keep every non-quality ride under 75% FTP. The hard sessions only work if the easy days are actually easy.",
+      },
+      {
+        title: "Fuel the quality sessions and skip mid-block testing",
+        detail:
+          "Take 40–60g of carbs before every threshold and VO2max session. Use interval feel — not weekly tests — as your progress signal during the block. Test only at the end, after the recovery week, when the adaptation can actually show.",
+      },
+    ],
+    commonMistakes: [
+      {
+        mistake: "Expecting a fixed number of watts regardless of training age.",
+        fix:
+          "Set your target as a percentage of current FTP — 5–10% for most riders. A beginner may smash that; a rider near their ceiling may need two blocks. Match the goal to where you are.",
+      },
+      {
+        mistake: "Stacking hard sessions every week with no recovery week.",
+        fix:
+          "Adaptation consolidates during rest. A flat-out 8 weeks without a deload produces fatigue, not fitness. Build in the recovery week before testing — it's not lost training, it's where the gain appears.",
+      },
+      {
+        mistake: "Testing mid-block and panicking at a flat result.",
+        fix:
+          "Fatigue suppresses test numbers. The gain is in your body even when a tired test hides it. Only test at the end of the block after resting, and judge progress on that.",
+      },
+    ],
+    faq: [
+      {
+        question: "How many watts can I realistically gain in 8 weeks?",
+        answer:
+          "For most structured riders, 15–25 watts (5–10% of FTP). Riders new to structured training can gain more — sometimes 30+ watts — because they have so much to develop. Experienced riders near their ceiling may gain 8–15 watts. Set your expectation to your training history.",
+      },
+      {
+        question: "Is 8 weeks long enough for real adaptation?",
+        answer:
+          "Yes. Physiological adaptations to threshold and VO2max work begin within 2–3 weeks and accumulate meaningfully over 6–8. Eight weeks is a genuine training block — long enough to build sustainable power and lift your VO2max ceiling if structured properly.",
+      },
+      {
+        question: "Can beginners raise FTP faster than experienced riders?",
+        answer:
+          "Considerably faster. Newer riders have large untapped aerobic and neuromuscular adaptations to make, so their FTP can climb 10–15% or more in a single 8-week block. Experienced riders have already captured those gains and improve in smaller, harder-won increments.",
+      },
+      {
+        question: "Do I need a coach to raise FTP in 8 weeks?",
+        answer:
+          "No — a clear, structured plan and the discipline to follow it can deliver the gain on its own. A coach helps with individualisation, accountability and adjusting the plan when life intervenes, but the physiology responds to good structure whether it comes from a coach, an app, or a self-built plan.",
+      },
+      {
+        question: "Will I keep the FTP gain after the 8 weeks?",
+        answer:
+          "If you keep training consistently, yes — the new FTP becomes your baseline. If you stop training entirely, fitness detrains over a few weeks. The way to hold a gain is to maintain a sustainable training rhythm rather than treating the 8-week block as a one-off push.",
+      },
+      {
+        question: "What if my FTP doesn't move after 8 weeks?",
+        answer:
+          "First check the obvious: were you rested for the test, properly fuelled, and consistent through the block? A flat result is often a prep or recovery failure rather than a genuine plateau. If everything was right and the number truly didn't move across two blocks, it's worth changing the stimulus — a different interval type or intensity distribution.",
+      },
+    ],
+    relatedEpisodes: [
+      "ep-40-how-joe-friel-structures-the-ideal-cycling-training-week",
+      "ep-2056-13-years-of-coaching-pros-what-amateurs-dont-know",
+      "ep-2026-ftp-jumped-30-watts-after-this-workout",
+    ],
+    relatedTopics: [
+      { label: "How do I improve my FTP?", href: "/answers/how-to-improve-ftp" },
+      { label: "How Long to Add 20 Watts to FTP?", href: "/answers/how-long-to-raise-ftp-20-watts" },
+      { label: "How Do I Build a Sweet Spot Training Block?", href: "/answers/sweet-spot-training-block" },
+      { label: "FTP Training — Topic Hub", href: "/topics/ftp-training" },
+      { label: "How to Improve Your FTP", href: "/blog/how-to-improve-ftp-cycling" },
+    ],
+    evidenceLevel: "moderate",
+    evidenceNote:
+      "Gain estimates are consistent with Friel and coaching practice. Individual variation is significant — training age and starting fitness are the primary drivers of how much an 8-week block delivers.",
+    publishDate: "2026-05-26",
+    updatedDate: "2026-05-26",
+  },
 ];

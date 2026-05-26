@@ -1722,4 +1722,970 @@ export const powerAnswers: AnswerPage[] = [
     publishDate: "2026-05-26",
     updatedDate: "2026-05-26",
   },
+
+  // ============================================================
+  // HOW TO IMPROVE REPEATED HARD EFFORTS
+  // ============================================================
+  {
+    slug: "how-to-improve-repeated-efforts-cycling",
+    cluster: "power",
+    question: "How Do I Improve Repeated Hard Efforts on the Bike?",
+    seoTitle: "How to Improve Repeated Hard Efforts in Cycling",
+    seoDescription:
+      "Repeatability comes from a bigger aerobic engine, a larger anaerobic reserve (W'), and faster recovery between efforts. How to train the surges that decide races and hard group rides.",
+    pillar: "coaching",
+    directAnswer:
+      "Repeated efforts improve when you build three things: a bigger aerobic base so you recover faster between surges, a larger anaerobic reserve (your W') for each hard effort, and the specific ability to clear and refill that reserve quickly. Train it with over-unders and short, repeated above-threshold reps off a strong Zone 2 foundation. The rider who recovers fastest between efforts — not the one with the single biggest sprint — wins the repeat-surge battle.",
+    keyTakeaways: [
+      "Repeatability is mostly aerobic — the engine that refills your reserve between efforts.",
+      "Your anaerobic reserve (W') is finite; the skill is refilling it fast, not just spending it.",
+      "Over-unders and short repeated above-threshold reps train surge recovery directly.",
+      "A bigger Zone 2 base is what lets you back up surge after surge late in a ride.",
+    ],
+    whoFor: [
+      {
+        label: "The racer who fades on repeated surges",
+        detail:
+          "Your first few accelerations feel fine, then you're cooked and off the back.",
+      },
+      {
+        label: "The punchy-course rider",
+        detail:
+          "You ride rolling, attacking terrain and need to back up effort after effort.",
+      },
+    ],
+    roadmanView: [
+      "Most riders train their repeated-effort ability by accident, then wonder why they blow up the fourth time the pace surges. The thing to understand is that each hard effort spends a finite battery — your anaerobic reserve, what coaches call W' — and the race isn't decided by how big that battery is so much as how fast you refill it between efforts. And the refilling is aerobic.",
+      "Alex Welburn's work on critical power and W' makes this concrete on the podcast: above your critical power you're draining a fixed tank, and below it you're refilling. A rider with a strong aerobic engine recovers the tank quickly in the lulls between surges, so they can go again. A rider with a small engine spends the same battery once and spends the rest of the race in survival mode. That's why John Wakefield's emphasis on building deep endurance underpins everything punchy — durability and repeatability are the same coin.",
+      "So the training is two-sided. Keep building the Zone 2 base that does the refilling, then add sessions that specifically rehearse the spend-recover-spend pattern: over-unders that dip above and below threshold, and sets of short hard reps with short recoveries. Done off a real aerobic foundation, that's how you become the rider still there when the accelerations come thick and fast.",
+    ],
+    expertEvidence: [
+      {
+        name: "Alex Welburn",
+        credential: "Cycling coach and physiologist (critical power / W' researcher)",
+        insight:
+          "Above critical power you deplete a finite anaerobic reserve (W'); below it you replenish it. Repeated-effort performance depends heavily on how quickly you can refill that reserve between surges — which is an aerobic quality.",
+        episodeSlug: "ep-26-3-training-metrics-that-pogacar-uses-that-you-don-t",
+        guestSlug: "alex-welburn",
+      },
+      {
+        name: "John Wakefield",
+        credential: "World Tour coach, Red Bull–Bora–Hansgrohe",
+        insight:
+          "Deep aerobic endurance is what lets a rider back up hard efforts late in a race. Durability and repeatability come from the size and resilience of the aerobic base, not just from top-end power.",
+        episodeSlug: "ep-2132-how-do-team-bora-approach-building-endurance-we-find-out-joh",
+        guestSlug: "john-wakefield",
+      },
+    ],
+    practicalApplication: [
+      {
+        title: "Build the aerobic base that refills the tank",
+        detail:
+          "Keep a big block of Zone 2 in your week. The bigger your aerobic engine, the faster you replenish your anaerobic reserve between surges — this is the foundation of repeatability.",
+      },
+      {
+        title: "Do over-unders",
+        detail:
+          "Sessions like 3×(2 min at 105% FTP / 2 min at 90% FTP) train your body to clear and tolerate the by-products of repeated hard efforts without fully stopping.",
+      },
+      {
+        title: "Train short repeats with short recovery",
+        detail:
+          "Sets of 30s–60s hard efforts (above threshold) with equal or shorter easy recovery rehearse the spend-recover-spend pattern of racing. Build the number of reps over weeks.",
+      },
+      {
+        title: "Practise on race-like terrain",
+        detail:
+          "If you race rolling or punchy courses, do some of this work outdoors on similar terrain, surging over rises and recovering on descents, to make the adaptation specific.",
+      },
+    ],
+    commonMistakes: [
+      {
+        mistake: "Only training single, fully-recovered hard efforts.",
+        fix:
+          "Races demand repeated surges with little recovery. Train sets with short rest so you rehearse refilling the reserve, not just one big effort.",
+      },
+      {
+        mistake: "Neglecting the aerobic base while chasing top-end.",
+        fix:
+          "Recovery between efforts is aerobic. A small engine means you spend your reserve once; keep building Zone 2 underneath the intensity.",
+      },
+      {
+        mistake: "Going maximal on every rep until you blow up.",
+        fix:
+          "Pace the set so you can complete all reps at target. Repeatability is trained by finishing the work, not by detonating on rep three.",
+      },
+    ],
+    faq: [
+      {
+        question: "What is W' (W prime) in cycling?",
+        answer:
+          "W' is your finite anaerobic work capacity above critical power — the battery you drain during hard efforts. The faster you replenish it between efforts, the more repeated surges you can produce, which is why a strong aerobic base matters for punchy racing.",
+      },
+      {
+        question: "Why do I fade after a few hard efforts?",
+        answer:
+          "Usually because your aerobic engine is refilling your anaerobic reserve too slowly between surges. Each effort spends the battery; if you can't recharge it in the lulls, you run out. The fix is a bigger base plus repeated-effort training.",
+      },
+      {
+        question: "What sessions improve repeated efforts best?",
+        answer:
+          "Over-unders (alternating just above and below threshold) and sets of short, repeated above-threshold reps with short recovery. Both rehearse the clear-and-refill pattern of racing, and both work best built on a solid Zone 2 base.",
+      },
+      {
+        question: "Is repeatability more important than peak power?",
+        answer:
+          "For most road and group racing, yes. The rider who can back up surge after surge usually beats the one with a single bigger effort. Peak power matters in a final sprint; repeatability decides whether you're there for it.",
+      },
+      {
+        question: "How long does it take to improve repeated-effort ability?",
+        answer:
+          "You can feel improvements within a 4–6 week block of dedicated over-under and repeat work, provided the aerobic base is in place. The base itself takes longer to build, so the best gains come from running this work on top of consistent Zone 2.",
+      },
+      {
+        question: "Can I train repeated efforts indoors?",
+        answer:
+          "Yes — over-unders and short repeats are well suited to the trainer, where you can hold targets precisely. Just do some work outdoors on race-like terrain too, so the adaptation transfers to the surging, stochastic demands of real racing.",
+      },
+    ],
+    relatedEpisodes: [
+      "ep-26-3-training-metrics-that-pogacar-uses-that-you-don-t",
+      "ep-2132-how-do-team-bora-approach-building-endurance-we-find-out-joh",
+      "ep-2089-how-to-ride-faster-than-98-of-people-john-archibald",
+    ],
+    relatedTopics: [
+      { label: "How to build anaerobic capacity", href: "/answers/how-to-build-anaerobic-capacity" },
+      { label: "How to do VO2max intervals", href: "/answers/how-to-do-vo2-max-intervals" },
+      { label: "What is durability in cycling?", href: "/answers/what-is-durability-cycling" },
+      { label: "Short vs Long Intervals", href: "/compare/short-vs-long-intervals" },
+      { label: "FTP Training — Topic Hub", href: "/topics/ftp-training" },
+    ],
+    evidenceLevel: "moderate",
+    evidenceNote:
+      "Critical power / W' framework is well established in exercise physiology (Welburn); repeatability-through-aerobic-base corroborated by World Tour coaching practice (Wakefield).",
+    publishDate: "2026-05-26",
+    updatedDate: "2026-05-26",
+  },
+
+  // ============================================================
+  // HOW TO IMPROVE THRESHOLD POWER
+  // ============================================================
+  {
+    slug: "improve-threshold-power",
+    cluster: "power",
+    question: "How Do I Improve My Threshold Power?",
+    seoTitle: "How to Improve Threshold Power for Cycling — The Sessions",
+    seoDescription:
+      "Improve threshold power with 2 sessions a week of 2×20 minutes at 95–105% FTP, built on a genuine Zone 2 base. Most amateurs gain 5–10% in an 8-week block by training the right intensity, not more of it.",
+    pillar: "coaching",
+    directAnswer:
+      "Improve threshold power with two targeted sessions a week — long intervals of 10–20 minutes at 95–105% of FTP, with short recoveries — built on a base of genuinely easy aerobic riding. A focused 8-week block typically raises FTP 5–10% in amateurs who weren't already doing threshold work. The limiter is almost never effort. It's that most riders train just below threshold, in the grey zone, where the adaptation never properly arrives.",
+    keyTakeaways: [
+      "2×20 minutes at 95–105% FTP, twice a week, is the highest-return threshold session for most amateurs.",
+      "Threshold is your lactate-clearance ceiling — train it just at or fractionally above, not 10% below.",
+      "Grey-zone riding (the moderate-but-not-hard pace) suppresses threshold gains more than any other error.",
+      "An 8-week threshold block on a real aerobic base typically moves FTP 5–10% in previously undertrained riders.",
+    ],
+    whoFor: [
+      {
+        label: "The rider whose FTP has stalled for months",
+        detail:
+          "You train consistently, you're not new to structure, but the FTP number hasn't moved in a season.",
+      },
+      {
+        label: "The time-crunched amateur who needs the highest-return session",
+        detail:
+          "You have 6–8 hours a week and want to know which sessions actually raise sustainable power.",
+      },
+    ],
+    roadmanView: [
+      "Threshold power is the number most amateurs obsess over and the one most of them train wrong. Here's the thing nobody tells you: the problem is rarely that you're not working hard enough. It's that you're working hard in the wrong place — somewhere between tempo and threshold, the grey zone that feels productive and delivers almost nothing. Anthony has come back to this on the podcast repeatedly, and the World Tour coaches all say a version of the same thing.",
+      "Stephen Seiler's research is the clearest frame for it. Threshold sits at the top of your sustainable aerobic range — the point where lactate production and clearance balance. To push it up, you have to spend time right at it or fractionally above, with the rest of your week genuinely easy so you arrive fresh enough to hit the target. John Wakefield, who coaches Roglič at Bora, describes the same pattern: hard days hard, easy days easy, and the threshold work protected by everything around it.",
+      "The good news is that for a rider who's never done structured threshold work, the gains come fast. An 8-week block of two threshold sessions a week — 2×20 at FTP, building to 3×15 or over-unders — on top of an honest Zone 2 base will move most amateur FTPs 5–10%. That's a fixable problem. You don't need more hours. You need the right two sessions, and the discipline to keep everything else easy.",
+    ],
+    expertEvidence: [
+      {
+        name: "Professor Stephen Seiler",
+        credential: "Exercise physiologist, University of Agder; codified 80/20 polarised training",
+        insight:
+          "Sustainable threshold power rises when you train at or just above it on a small number of quality days, supported by a large base of genuinely easy riding. The most common amateur error is filling the week with moderate-intensity efforts that fatigue the rider without delivering the specific threshold stimulus.",
+        episodeSlug: "ep-2148-80-20-training-to-ride-faster-dr-stephen-seiler",
+        guestSlug: "stephen-seiler",
+      },
+      {
+        name: "John Wakefield",
+        credential: "World Tour coach, Team Bora-Hansgrohe; coaches Primož Roglič",
+        insight:
+          "Threshold development at the top level depends on the contrast between hard and easy days. The threshold sessions only work if the riding around them is easy enough to arrive recovered. Amateurs who blur that contrast — moderate every day — undercut the exact adaptation they're chasing.",
+        episodeSlug: "ep-2132-how-do-team-bora-approach-building-endurance-we-find-out-joh",
+        guestSlug: "john-wakefield",
+      },
+    ],
+    practicalApplication: [
+      {
+        title: "Run the 2×20 as your foundation session",
+        detail:
+          "After a 15-minute warm-up: 20 minutes at 95–100% FTP, 5 minutes easy, then a second 20 minutes at the same power. Hold the power steady — the back third of each rep should feel honestly hard but completeable. Do this twice a week with 48 hours between.",
+      },
+      {
+        title: "Progress with over-unders once 2×20 feels controlled",
+        detail:
+          "After 3–4 weeks, swap one session for over-unders: 3×12 minutes alternating 2 minutes at 105% FTP with 2 minutes at 90% FTP. This trains lactate clearance while still riding hard — the specific demand that raises threshold faster than steady work alone.",
+      },
+      {
+        title: "Keep every other ride genuinely easy",
+        detail:
+          "The threshold sessions only pay off if the rest of the week is true Zone 2 — conversational, nasal-breathing pace. If your easy rides creep into tempo, you arrive at the threshold sessions fatigued and unable to hold target power. Slow the easy days down.",
+      },
+    ],
+    commonMistakes: [
+      {
+        mistake: "Training at 85–90% FTP and calling it threshold work.",
+        fix:
+          "That's sweet spot, not threshold. To raise FTP you need time at 95–105% FTP. Sweet spot builds a base for it but won't push the ceiling on its own.",
+      },
+      {
+        mistake: "Doing threshold sessions four or five times a week.",
+        fix:
+          "Two quality threshold sessions a week is the ceiling for most amateurs. More just accumulates fatigue and degrades the power you can hit. Hard days hard, easy days easy.",
+      },
+      {
+        mistake: "Retesting FTP every two weeks and chasing the number.",
+        fix:
+          "Adaptation takes 4–8 weeks to show. Test at the start and end of a block, not constantly. Frequent testing replaces training time with testing time and tells you nothing new.",
+      },
+    ],
+    faq: [
+      {
+        question: "How long does it take to improve threshold power?",
+        answer:
+          "A structured 8-week block of two threshold sessions a week typically raises FTP 5–10% in riders who weren't already doing threshold work. Riders with years of structured training behind them see smaller gains — 2–4% — but those still translate to faster sustained efforts.",
+      },
+      {
+        question: "What's the difference between threshold and FTP?",
+        answer:
+          "FTP (functional threshold power) is the practical estimate of your physiological lactate threshold — the highest power you can sustain in a quasi-steady state for roughly an hour. In training terms they're used interchangeably: improving your threshold means raising your FTP.",
+      },
+      {
+        question: "Is sweet spot or threshold better for raising FTP?",
+        answer:
+          "Sweet spot (88–94% FTP) lets you accumulate more total time at high intensity with less fatigue, which builds the platform. Threshold (95–105% FTP) provides the specific stimulus that pushes the ceiling. Most effective blocks use sweet spot to build volume early, then sharpen with threshold work.",
+      },
+      {
+        question: "How many threshold intervals should I do per session?",
+        answer:
+          "Aim for 30–40 minutes of total time at threshold per session — typically 2×20, 3×12, or 4×10 minutes. Beginners can start at 2×15. The total time at intensity matters more than the rep structure, as long as each rep is genuinely at threshold.",
+      },
+      {
+        question: "Can I improve threshold power with Zone 2 alone?",
+        answer:
+          "Zone 2 builds the aerobic base threshold work stands on, and in completely untrained riders it nudges FTP up early. But once you're trained, Zone 2 alone won't push threshold. You need specific time at or just above FTP to raise the ceiling.",
+      },
+      {
+        question: "Should threshold intervals be done indoors or outdoors?",
+        answer:
+          "Indoors on a smart trainer is easier to control — you hold exact power without descents or junctions interrupting the rep. A steady climb works well outdoors. Either is effective; the priority is holding the target power consistently across the full interval.",
+      },
+    ],
+    relatedEpisodes: [
+      "ep-2148-80-20-training-to-ride-faster-dr-stephen-seiler",
+      "ep-2132-how-do-team-bora-approach-building-endurance-we-find-out-joh",
+      "ep-8-one-interval-to-rule-them-all-vlog-008",
+    ],
+    relatedTopics: [
+      { label: "How to Improve FTP — Evidence-Based Methods", href: "/blog/improve-ftp-cycling-evidence-based-methods" },
+      { label: "FTP Training Zones Guide", href: "/blog/ftp-training-zones-cycling-complete-guide" },
+      { label: "FTP Training — Topic Hub", href: "/topics/ftp-training" },
+      { label: "How do I improve my FTP?", href: "/answers/how-to-improve-ftp" },
+      { label: "Sweet Spot vs Threshold", href: "/compare/sweet-spot-vs-threshold" },
+    ],
+    evidenceLevel: "strong",
+    publishDate: "2026-05-26",
+    updatedDate: "2026-05-26",
+  },
+
+  // ============================================================
+  // HOW DO I TRAIN REPEATED HARD EFFORTS
+  // ============================================================
+  {
+    slug: "training-repeated-efforts",
+    cluster: "power",
+    question: "How Do I Train Repeated Hard Efforts?",
+    seoTitle: "How to Train Repeated Hard Efforts for Cycling",
+    seoDescription:
+      "Train repeated hard efforts with clustered maximal repeats on incomplete recovery and the race-craft of recovering in the draft. Crits are decided by the 5th surge, not the 1st — and it's a fixable gap.",
+    pillar: "coaching",
+    directAnswer:
+      "Train repeated hard efforts by rehearsing the exact race demand: clustered repeats of 30–60 seconds well above FTP with deliberately short recovery between reps, so you start each effort before you've fully recovered. Two sessions a week for 4–6 weeks transforms how many surges you can answer. Cory Williams wins criteriums not with his peak number but with his fifth and sixth effort still being good enough — that repeatability is trained, not gifted.",
+    keyTakeaways: [
+      "The training stimulus is the incomplete recovery — start each rep before you feel ready, because that's the race.",
+      "Clustered short repeats rehearse the surge-recover-surge pattern; over-unders train the lactate clearance underneath it.",
+      "Recovering in the draft between efforts is a tactical skill — train it in group rides, not just on the turbo.",
+      "Cory Williams' criterium racing is decided by repeated 1,000W+ efforts, not a single peak sprint.",
+    ],
+    whoFor: [
+      {
+        label: "The rider who answers the first attack and loses the second",
+        detail:
+          "You can match one surge but get shelled the moment the pace lifts again before you've recovered.",
+      },
+      {
+        label: "The criterium and punchy-course racer",
+        detail:
+          "Your events feature repeated accelerations out of corners or over rollers, and that repeatability is your limiter.",
+      },
+    ],
+    roadmanView: [
+      "Here's the gap most amateurs never train: you can hold one hard effort. The first attack goes, you grit your teeth, you bridge across, you're fine. Then the pace lifts again forty seconds later and you're done. That's not an FTP problem and it's not a sprint problem — it's repeatability, and the way you build it is by rehearsing the exact demand: clustered hard reps on deliberately incomplete recovery. The short rest is the whole point. Full recovery between reps just trains a single big effort.",
+      "Cory Williams is the case study that makes it land. He talked on the podcast about criterium racing being decided by the rider who can produce a hard effort, recover just enough in the wheels, and produce another — corner after corner, lap after lap. His winning power isn't his peak number; it's his fifth and sixth effort still being good enough. And crucially, half of that is tactical. Knowing how to sit in the draft and let the bunch do the work between your surges is a skill you practise in racing, not something the turbo can teach you.",
+      "Alex Welburn's critical-power framing explains the physiology: each effort above threshold draws down a finite reserve, and the sessions that grow your ability to answer repeated surges are the ones that keep dragging you back into that depleted state and asking for more. The work is genuinely uncomfortable, which is exactly why it gets skipped. Four to six weeks of clustered repeats plus deliberate draft-recovery practice in group rides is the difference between surviving the surges and being the one making them.",
+    ],
+    expertEvidence: [
+      {
+        name: "Cory Williams",
+        credential: "Professional criterium specialist, Legion Cycling Team",
+        insight:
+          "Criterium racing is won by repeatability, not peak power. The rider who can produce a hard effort, recover briefly in the bunch, and produce another — over and over — controls the race. That repeatability is trained deliberately by clustering hard efforts with short recovery, and by practising how to recover in the draft between them.",
+        episodeSlug: "ep-2191-criterium-secrets-get-ahead-of-99-of-your-competition-cory-w",
+        guestSlug: "cory-williams",
+      },
+      {
+        name: "Alex Welburn",
+        credential: "Cycling coach and physiologist; PhD researcher on critical power and W'",
+        insight:
+          "Each effort above critical power draws down a finite anaerobic reserve. Training that keeps returning you to the depleted state and demanding another quality effort is what builds the capacity to answer a second, third and fourth surge — the exact moment most amateur racing is decided.",
+        episodeSlug: "ep-26-3-training-metrics-that-pogacar-uses-that-you-don-t",
+        guestSlug: "alex-welburn",
+      },
+    ],
+    practicalApplication: [
+      {
+        title: "Build a clustered repeat session",
+        detail:
+          "After a 20-minute warm-up: 3 sets of (4×40 seconds at 120–130% FTP, 20 seconds easy between reps), with 5 minutes easy between sets. The short within-set recovery forces you to start each rep before you've fully recovered — exactly the race demand.",
+      },
+      {
+        title: "Add over-unders for lactate clearance",
+        detail:
+          "12–16 minutes alternating 1 minute at 110% FTP with 1 minute at 90% FTP. The 'under' periods aren't rest — they're where you practise clearing lactate while still working. This is the engine that lets you recover in the wheels and go again.",
+      },
+      {
+        title: "Practise draft-recovery in group rides",
+        detail:
+          "On chaingangs or training races, deliberately answer every surge for the first half, then recover in the bunch and answer again. The tactical skill of recovering in the draft between efforts is half of repeatability — and the turbo can't teach it.",
+      },
+    ],
+    commonMistakes: [
+      {
+        mistake: "Taking full recovery between every hard effort in training.",
+        fix:
+          "Full recovery trains peak power, not repeatability. To train repeated efforts you need deliberately incomplete recovery — start the next rep before you feel fully ready, because that's the race.",
+      },
+      {
+        mistake: "Only ever training steady FTP intervals and wondering why surges drop you.",
+        fix:
+          "Steady threshold work builds your sustainable ceiling but not your ability to repeatedly exceed it. Add clustered repeats and over-unders in the weeks before a race block.",
+      },
+      {
+        mistake: "Burning matches fighting through the bunch between surges.",
+        fix:
+          "If you spend the lulls riding in the wind, the reserve never recharges. Learn to recover in the draft — positioning is what makes the next surge possible.",
+      },
+    ],
+    faq: [
+      {
+        question: "What's the difference between repeated-effort training and intervals?",
+        answer:
+          "All repeated efforts are intervals, but the defining feature here is the incomplete recovery between hard efforts. Standard VO2max or threshold intervals use generous rest to keep each rep high quality. Repeated-effort training deliberately shortens the recovery so you practise going hard while still fatigued from the last effort.",
+      },
+      {
+        question: "How long does it take to improve repeatability?",
+        answer:
+          "Repeated-effort adaptations come relatively fast — most riders notice a clear difference in how many surges they can answer within 4–6 weeks of twice-weekly sessions. The tactical skill of recovering in the bunch develops alongside the physiology.",
+      },
+      {
+        question: "Why does recovering in the draft matter for repeated efforts?",
+        answer:
+          "The reserve you spend on each surge only refills when you drop below threshold. Sitting in the draft lets you recover at a much lower power than the riders around you, so you arrive at the next surge with more in the tank. It's a tactical multiplier on your physical repeatability.",
+      },
+      {
+        question: "How much recovery should I take between repeated efforts?",
+        answer:
+          "Deliberately less than full. For 40-second efforts, 20 seconds between reps within a set forces incomplete recovery; longer recoveries (3–5 minutes) between sets let you maintain quality across the whole session. The short within-set recovery is the training stimulus.",
+      },
+      {
+        question: "Does repeated-effort training help road racing as well as crits?",
+        answer:
+          "Yes. Road races are decided by repeated accelerations — climbs, attacks, surges to close gaps. The ability to answer a third or fourth effort is exactly what keeps you in the selection. The demand is most concentrated in crits but present in almost every mass-start race.",
+      },
+      {
+        question: "Can older cyclists train repeated efforts effectively?",
+        answer:
+          "Yes, though recovery between sessions takes longer with age. Masters riders often do well with one clustered-repeat session and one over-under session per week, with a full easy day either side. The repeatability gains are real — the schedule just needs more spacing.",
+      },
+    ],
+    relatedEpisodes: [
+      "ep-2191-criterium-secrets-get-ahead-of-99-of-your-competition-cory-w",
+      "ep-26-3-training-metrics-that-pogacar-uses-that-you-don-t",
+      "ep-2248-cory-williams-roadman-cycling-podcast",
+    ],
+    relatedTopics: [
+      { label: "Cory Williams: 1,640 Watts in the Sprint", href: "/blog/cory-williams-sprint-power-vs-winning-power" },
+      { label: "How to race a criterium", href: "/answers/how-to-race-a-criterium" },
+      { label: "How to build anaerobic capacity", href: "/answers/how-to-build-anaerobic-capacity" },
+      { label: "Short vs Long Intervals", href: "/compare/short-vs-long-intervals" },
+      { label: "FTP Training — Topic Hub", href: "/topics/ftp-training" },
+    ],
+    evidenceLevel: "moderate",
+    publishDate: "2026-05-26",
+    updatedDate: "2026-05-26",
+  },
+
+  // ============================================================
+  // HOW DO I INCREASE MY PEAK SPRINT POWER
+  // ============================================================
+  {
+    slug: "increase-peak-sprint-power",
+    cluster: "power",
+    question: "How Do I Increase My Peak Sprint Power?",
+    seoTitle: "How to Increase Peak Sprint Power for Cycling",
+    seoDescription:
+      "Increase peak sprint power with maximal 6–10 second efforts fully recovered, heavy gym work, and torque starts. Peak wattage is trainable — most amateurs gain 5–15% in a 6-week block they never do.",
+    pillar: "coaching",
+    directAnswer:
+      "Increase peak sprint power with very short maximal efforts — 6–10 seconds, fully recovered, twice a week — combined with heavy strength work and low-cadence torque starts. Peak wattage is the most neuromuscular of all cycling numbers, and it responds fast: most amateurs gain 5–15% in a focused 6-week block. The work is brief and brutal, which is exactly why almost nobody does it properly.",
+    keyTakeaways: [
+      "Peak sprint power is neuromuscular — built with 6–10 second maximal efforts, not longer 'sprint' intervals.",
+      "Full recovery (5+ minutes) between efforts is mandatory; fatigued efforts train fatigue, not peak power.",
+      "Heavy gym work (squats, hip hinges, plyometrics) raises the force-production ceiling that peak power draws on.",
+      "Track sprinters like Ed Clancy build peak power through years of strength and explosive specificity — the model scales down.",
+    ],
+    whoFor: [
+      {
+        label: "The rider whose peak number won't move",
+        detail:
+          "Your sprint tops out at the same wattage every time and you want to raise the ceiling, not just the timing.",
+      },
+      {
+        label: "The track or kilo-style rider chasing raw watts",
+        detail:
+          "You need maximal explosive power for standing starts, track events, or short steep finishes.",
+      },
+    ],
+    roadmanView: [
+      "Peak sprint power is the one number most amateurs assume is fixed at birth — you either have fast-twitch genetics or you don't. There's a grain of truth in it: fibre type sets your ceiling. But the gap between where most riders sit and their actual ceiling is enormous, because almost nobody trains peak power specifically. They do 30-second 'sprints' that are really anaerobic efforts, and wonder why the peak wattage never climbs.",
+      "Ed Clancy's episode is the masterclass here. Three Olympic team-pursuit golds were built on a foundation of brutal track-specific power — standing starts, gym strength, explosive specificity repeated for years. The track world understands something the road world often forgets: peak power is a neuromuscular skill as much as a physical capacity, and it's built with maximal, fully-recovered efforts and heavy strength work, not with volume.",
+      "André Greipel made the same point about sprinting from the other end of the sport. The natural ability gives you a starting point, but the riders who actually express big peak numbers are the ones who train the specific movement — maximal efforts, gym work, the lot — consistently for years. For an amateur, the encouraging part is that the first 6 weeks of doing it properly typically move the peak number 5–15%, because you've simply never trained it before. It's brief, it's uncomfortable, and it works.",
+    ],
+    expertEvidence: [
+      {
+        name: "Ed Clancy",
+        credential: "Three-time Olympic team pursuit gold medallist; six-time UCI Track World Champion",
+        insight:
+          "Track sprint and pursuit power is built on a foundation of heavy strength work and short, maximal, fully-recovered efforts repeated over years. Peak power is a neuromuscular quality — it responds to maximal force production and explosive specificity, not to volume or sub-maximal repetition.",
+        episodeSlug: "ep-39-how-cavendish-thomas-became-legends-with-ed-clancy",
+        guestSlug: "ed-clancy",
+      },
+      {
+        name: "André Greipel",
+        credential: "Professional cyclist, 158 career wins, 11 Tour de France stages",
+        insight:
+          "Big peak sprint numbers come from years of specific work — maximal efforts, gym strength, and explosive practice — layered on whatever natural fibre-type advantage a rider starts with. The ceiling is partly genetic, but the distance between an amateur's current peak and their potential is mostly untrained.",
+        episodeSlug: "ep-2240-what-makes-a-sprinter-unbeatable-andr-greipel",
+        guestSlug: "andre-greipel",
+      },
+    ],
+    practicalApplication: [
+      {
+        title: "Do true peak-power efforts twice a week",
+        detail:
+          "After a thorough 20-minute warm-up: 5–6 efforts of 6–10 seconds, absolutely maximal, from a rolling 25–30 km/h, with 5 full minutes of easy spinning between each. Record peak watts every rep. When peak power stops climbing within a session, you're done for the day.",
+      },
+      {
+        title: "Build force production in the gym",
+        detail:
+          "Two short strength sessions a week: heavy squats or trap-bar deadlifts in the 3–5 rep range, plus a plyometric movement like box jumps. Heavy lifting raises the force-production ceiling; plyometrics train the rate at which you express it. Both feed peak sprint wattage directly.",
+      },
+      {
+        title: "Add low-cadence torque starts",
+        detail:
+          "From a near stop in a big gear, drive 8–10 maximal standing-start accelerations of 8 seconds, full recovery between. These train the high-torque, low-cadence portion of the sprint — the part that gets you off the line and up to speed before top-end takes over.",
+      },
+    ],
+    commonMistakes: [
+      {
+        mistake: "Doing 20–30 second efforts and calling them sprint training.",
+        fix:
+          "Peak power lives in the first 6–10 seconds. Anything longer becomes an anaerobic capacity effort and trains a different system. For peak watts, keep efforts short and absolutely maximal.",
+      },
+      {
+        mistake: "Sprinting on fatigued legs at the end of a hard ride.",
+        fix:
+          "Peak power requires fresh neuromuscular capacity. Do peak-power efforts early in a session or on a dedicated day. Tacking them onto the end of a hard ride trains fatigue resistance, not peak wattage.",
+      },
+      {
+        mistake: "Skipping the gym and expecting peak power to climb.",
+        fix:
+          "Maximal sprint wattage is limited by force production. Heavy strength work raises that ceiling in a way on-bike sprints alone cannot. Two short gym sessions a week is the highest-leverage addition for most riders.",
+      },
+    ],
+    faq: [
+      {
+        question: "How much can I increase my peak sprint power?",
+        answer:
+          "Riders new to specific sprint and strength work commonly gain 5–15% in peak wattage over a focused 6-week block, because they've simply never trained the system. Experienced sprinters see smaller gains. Your fibre-type makeup sets the ceiling, but most amateurs are well below their own.",
+      },
+      {
+        question: "Does gym strength actually transfer to sprint power?",
+        answer:
+          "Yes. Heavy lower-body strength work raises maximal force production and improves rate of force development — both directly underpin peak sprint wattage. Squats, hip hinges and plyometrics are the most transferable. The transfer is strongest when combined with on-bike maximal efforts.",
+      },
+      {
+        question: "How long should a peak-power sprint effort be?",
+        answer:
+          "6–10 seconds. Peak instantaneous power occurs in the first few seconds of a maximal sprint and falls away quickly. Efforts longer than about 10 seconds start shifting the stimulus toward anaerobic capacity rather than pure peak power.",
+      },
+      {
+        question: "Can masters cyclists increase peak sprint power?",
+        answer:
+          "Yes, though the ceiling lowers with age as fast-twitch fibres decline. This is precisely why strength and explosive work matter more after 40 — they help preserve and rebuild the neuromuscular capacity that drives peak power. Consistent specific work can maintain and modestly raise peak watts into the 50s.",
+      },
+      {
+        question: "Should I train peak power seated or standing?",
+        answer:
+          "Standing produces higher peak wattage for most riders because you can recruit body weight and upper-body leverage. Train both: standing for absolute peak numbers, seated for the situations where stability matters more, such as track starts or uphill kicks. Variety builds a more complete sprint.",
+      },
+      {
+        question: "How is peak sprint power different from anaerobic capacity?",
+        answer:
+          "Peak power is the maximal instantaneous wattage in the first seconds, driven by phosphocreatine and neuromuscular force. Anaerobic capacity is the total work you can do above threshold over 30–120 seconds. They overlap but train differently — peak power needs short maximal efforts, capacity needs longer near-maximal ones.",
+      },
+    ],
+    relatedEpisodes: [
+      "ep-39-how-cavendish-thomas-became-legends-with-ed-clancy",
+      "ep-2240-what-makes-a-sprinter-unbeatable-andr-greipel",
+      "ep-2248-cory-williams-roadman-cycling-podcast",
+    ],
+    relatedTopics: [
+      { label: "Sprint Interval Training Masters", href: "/blog/sprint-interval-training-cyclists-masters" },
+      { label: "How to improve my sprint", href: "/answers/how-to-improve-cycling-sprint" },
+      { label: "Should cyclists lift weights?", href: "/answers/should-cyclists-lift-weights" },
+      { label: "Cycling Strength & Conditioning", href: "/topics/cycling-strength-conditioning" },
+      { label: "Strength vs More Miles", href: "/compare/strength-vs-more-miles" },
+    ],
+    evidenceLevel: "moderate",
+    publishDate: "2026-05-26",
+    updatedDate: "2026-05-26",
+  },
+
+  // ============================================================
+  // WHAT IS W' (ANAEROBIC CAPACITY) AND HOW DO I TRAIN IT
+  // ============================================================
+  {
+    slug: "w-prime-anaerobic-capacity",
+    cluster: "power",
+    question: "What Is W' (Anaerobic Capacity) and How Do I Train It?",
+    seoTitle: "What Is W' in Cycling and How Do I Train It?",
+    seoDescription:
+      "W' (W prime) is the fixed amount of work you can do above critical power — measured in kilojoules, typically 15–25 kJ in amateurs. Here's what the number means and how to make the battery bigger.",
+    pillar: "coaching",
+    directAnswer:
+      "W' (pronounced 'W prime') is the finite amount of work, measured in kilojoules, that you can perform above your critical power before you have to ease off — typically 15–25 kJ in trained amateurs. It behaves like a rechargeable battery: every effort above critical power drains it, and it refills only when you drop below. You enlarge it with repeated short maximal efforts, and you preserve it in races by pacing the early surges.",
+    keyTakeaways: [
+      "W' is the work (in kilojoules) you can do above critical power before stopping — a finite, measurable battery.",
+      "Critical power is the sustainable ceiling; W' is everything you can spend above it. Together they model your power-duration curve.",
+      "Trained amateurs typically carry 15–25 kJ of W'; the number is enlarged by repeated short maximal efforts.",
+      "W'bal tracking shows how much battery you have left in real time — a sharper race-pacing tool than FTP alone.",
+    ],
+    whoFor: [
+      {
+        label: "The data-driven rider who's heard of critical power",
+        detail:
+          "You track FTP and TSS but keep seeing 'CP' and 'W prime' and want to understand what they actually mean.",
+      },
+      {
+        label: "The racer who keeps emptying the tank too early",
+        detail:
+          "You burn through your hard efforts in the first half of a race and have nothing left for the decisive moment.",
+      },
+    ],
+    roadmanView: [
+      "Alex Welburn brought this to the podcast in a way that finally made it land. The metrics most amateurs live by — FTP, TSS, CTL — describe your sustainable engine. They tell you nothing about the bit that actually wins races: the finite reserve you can spend above that sustainable ceiling. That reserve has a name, W', and unlike a lot of sports-science jargon, it's a concrete, measurable number you can train.",
+      "The model behind it is the critical power concept. Your power-duration curve has two parts: critical power, the asymptote you can theoretically hold for a long time, and W', the fixed pool of work you can do above it. Welburn's framing is the rechargeable battery — every attack, every surge, every effort over critical power draws the battery down, and it only recharges when you drop back below. Empty the battery and you're done, no matter how good your FTP looks on paper.",
+      "Here's where it gets genuinely useful. W'bal — the running calculation of how much battery you have left — turns this from theory into a race tool. Pacing a hard climb or a breakaway becomes a question of managing the battery, not just holding a power number. And the battery itself is trainable: repeated short maximal efforts enlarge it. We've covered the session side of this in the anaerobic capacity answer — this one is about understanding the number so you can actually use it.",
+    ],
+    expertEvidence: [
+      {
+        name: "Alex Welburn",
+        credential: "Cycling coach and physiologist; PhD researcher on critical power and W'",
+        insight:
+          "W' is the finite quantity of work, in kilojoules, that a rider can perform above critical power — and it functions like a battery that drains during hard efforts and recharges below threshold. It's measurable, trainable, and far more predictive of what happens in the decisive moments of a race than FTP or training-load metrics alone.",
+        episodeSlug: "ep-26-3-training-metrics-that-pogacar-uses-that-you-don-t",
+        guestSlug: "alex-welburn",
+      },
+      {
+        name: "Dr Tim Podlogar",
+        credential: "Nutrition consultant, Tudor Pro Cycling; researcher, University of Birmingham",
+        insight:
+          "The capacity to repeatedly perform high-intensity efforts depends on muscle glycogen availability as well as the size of the anaerobic reserve. A rider who arrives at a race under-fuelled cannot fully access or refill their W' — the battery is there, but the fuel to recharge it isn't.",
+        episodeSlug: "ep-3-is-losing-weight-actually-making-you-slower",
+        guestSlug: "tim-podlogar",
+      },
+    ],
+    practicalApplication: [
+      {
+        title: "Estimate your critical power and W'",
+        detail:
+          "Do two maximal efforts on separate days — typically a 3-minute and a 12-minute all-out test. Most modern platforms (WKO, Intervals.icu, TrainingPeaks) compute critical power and W' from the data. The W' figure, in kilojoules, is your anaerobic battery size.",
+      },
+      {
+        title: "Train the battery bigger with short maximal repeats",
+        detail:
+          "Sessions of 8–12 efforts of 30–60 seconds well above critical power, with enough recovery to go hard again, enlarge W' over a 4–6 week block. This is the same family of work as anaerobic capacity training — short, maximal, repeated.",
+      },
+      {
+        title: "Use W'bal to pace races",
+        detail:
+          "If your head unit or analysis platform supports W'bal, watch it during hard efforts: it shows the battery draining and recharging live. Don't fully empty it before the decisive moment. Spending early surges you can't afford is how riders blow up with kilometres to go.",
+      },
+    ],
+    commonMistakes: [
+      {
+        mistake: "Confusing W' with FTP or critical power.",
+        fix:
+          "FTP and critical power describe your sustainable ceiling. W' is the separate, finite reserve above that ceiling. They're different numbers measuring different things — you need both to model your real capability.",
+      },
+      {
+        mistake: "Emptying your W' battery early in a race.",
+        fix:
+          "Every surge above critical power drains the battery. Spend it deliberately and keep enough for the decisive effort. W'bal tracking makes this visible — without it, riders routinely run empty before the finish.",
+      },
+      {
+        mistake: "Assuming W' is fixed and untrainable.",
+        fix:
+          "W' enlarges with repeated short maximal efforts over a focused block. It's one of the more trainable physiological qualities — the battery genuinely gets bigger with the right work.",
+      },
+    ],
+    faq: [
+      {
+        question: "What does W' stand for in cycling?",
+        answer:
+          "W' (W prime) is a term from the critical power model. It represents the fixed amount of work — measured in joules or kilojoules — that you can perform above your critical power before fatigue forces you to slow. It's effectively your anaerobic work capacity expressed as a battery.",
+      },
+      {
+        question: "What is a good W' value for a cyclist?",
+        answer:
+          "Trained amateurs typically have a W' of 15–25 kJ; elite riders can exceed 25–30 kJ. Sprinters and punchy riders tend to carry larger W' values, while diesel-engine endurance riders often have a higher critical power but smaller W'. The useful comparison is your own number over time.",
+      },
+      {
+        question: "How is W' different from critical power?",
+        answer:
+          "Critical power is the highest power you can theoretically sustain for a long time — your aerobic ceiling. W' is the additional finite work you can do above that ceiling. Together they define your power-duration curve: critical power sets the floor for hard efforts, W' sets how far above it you can go and for how long.",
+      },
+      {
+        question: "What is W'bal?",
+        answer:
+          "W'bal (W prime balance) is a real-time calculation of how much of your W' battery remains during a ride. It drains when you ride above critical power and recharges below it. Several platforms and head units display it live, making it a practical tool for pacing hard efforts and avoiding blowing up.",
+      },
+      {
+        question: "Can you train W' to be bigger?",
+        answer:
+          "Yes. Repeated short maximal efforts above critical power, with sufficient recovery to maintain quality, enlarge W' over a 4–6 week block. It's among the more responsive physiological qualities — the battery measurably grows with targeted anaerobic work.",
+      },
+      {
+        question: "Do I need a special device to measure W'?",
+        answer:
+          "You need a power meter and an analysis platform that models critical power — WKO, Intervals.icu and TrainingPeaks all do. You estimate critical power and W' from two or more maximal efforts of different durations, then the platform calculates the values and can track W'bal in your files.",
+      },
+    ],
+    relatedEpisodes: [
+      "ep-26-3-training-metrics-that-pogacar-uses-that-you-don-t",
+      "ep-3-is-losing-weight-actually-making-you-slower",
+      "ep-2191-criterium-secrets-get-ahead-of-99-of-your-competition-cory-w",
+    ],
+    relatedTopics: [
+      { label: "How to build anaerobic capacity", href: "/answers/how-to-build-anaerobic-capacity" },
+      { label: "How do I train repeated efforts?", href: "/answers/training-repeated-efforts" },
+      { label: "Power Meter Training Guide", href: "/blog/power-meter-training-cyclists-how-to-use" },
+      { label: "FTP Training — Topic Hub", href: "/topics/ftp-training" },
+      { label: "Short vs Long Intervals", href: "/compare/short-vs-long-intervals" },
+    ],
+    evidenceLevel: "moderate",
+    publishDate: "2026-05-26",
+    updatedDate: "2026-05-26",
+  },
+
+  // ============================================================
+  // HOW DO I IMPROVE MY 5-MINUTE POWER
+  // ============================================================
+  {
+    slug: "improve-5-minute-power",
+    cluster: "power",
+    question: "How Do I Improve My 5-Minute Power?",
+    seoTitle: "How to Improve 5-Minute Power for Cycling",
+    seoDescription:
+      "Improve 5-minute power with VO2max intervals of 3–5 minutes at 106–120% FTP, twice a week. It's the number that decides short climbs and breakaways — and most amateurs gain 5–10% in a 6-week block.",
+    pillar: "coaching",
+    directAnswer:
+      "Improve 5-minute power with VO2max-style intervals — efforts of 3–5 minutes at 106–120% of FTP, equal recovery, twice a week — sitting on a genuine aerobic base. Five-minute power is the number that decides short climbs, breakaway bridges and the final selection on a punchy course. It sits right at your VO2max, so it responds to specific high-intensity work: most amateurs gain 5–10% in a focused 6-week block.",
+    keyTakeaways: [
+      "5-minute power sits essentially at your VO2max — it's trained by 3–5 minute efforts at 106–120% FTP.",
+      "It's the decisive number on short climbs, bridging moves, and punchy finishes that last 2–6 minutes.",
+      "Pacing the effort matters: start controlled and build, rather than going out hard and fading in minute 3.",
+      "A 6-week block of twice-weekly VO2max intervals typically lifts 5-minute power 5–10% in undertrained riders.",
+    ],
+    whoFor: [
+      {
+        label: "The rider who gets dropped on short, sharp climbs",
+        detail:
+          "You're fine on long steady climbs but lose contact on the 3–6 minute punchy efforts where the race splits.",
+      },
+      {
+        label: "The pursuit, hill-climb or breakaway specialist",
+        detail:
+          "Your event hinges on a few minutes of maximal aerobic power and you want to raise that specific number.",
+      },
+    ],
+    roadmanView: [
+      "Five-minute power is one of the most race-relevant numbers most amateurs never train directly. It's the power that decides whether you make the breakaway, hold the wheel up a 4-minute climb, or get spat out the back when the pace lifts on a punchy finish. And it sits almost exactly at your VO2max — which means it responds to the specific intensity most riders avoid because it genuinely hurts.",
+      "John Archibald, the national pursuit champion, has been clear on the podcast about what it takes to lift power at this duration: long enough efforts to drive heart rate to its ceiling and hold it there, repeated, with proper recovery between. Three to five minutes is the window. Shorter and you never reach VO2max; longer and you've dropped below it into threshold territory. The riders who improve this number most reliably are the ones willing to go uncomfortably hard for uncomfortably long.",
+      "Vasilis Anastopoulos, the Astana head coach, has talked about the calibration that makes these sessions work — start controlled, let the effort build, and make the back half genuinely hard rather than blowing up in minute two. That's the difference between a 5-minute interval that drives adaptation and one that just produces fatigue. The encouraging part: for a rider who's never done this specifically, six weeks of two sessions a week typically moves the number 5–10%. It's fixable, and it's fast.",
+    ],
+    expertEvidence: [
+      {
+        name: "John Archibald",
+        credential: "British national pursuit champion",
+        insight:
+          "Power at the 3–5 minute mark is essentially VO2max power, and it improves through efforts long enough to drive maximum cardiac output — not short sprints, not steady sweet-spot work. The riders who raise it most reliably commit to genuinely hard efforts of several minutes, fully recovered between, repeated consistently.",
+        episodeSlug: "ep-2089-how-to-ride-faster-than-98-of-people-john-archibald",
+        guestSlug: "john-archibald",
+      },
+      {
+        name: "Vasilis Anastopoulos",
+        credential: "Head of Performance, Astana Pro Team",
+        insight:
+          "The calibration of a multi-minute maximal interval decides whether it works. Start too hard and you implode before the adaptation signal arrives; start too easy and you never reach the stimulus. The target is an effort that builds and becomes genuinely hard in the final minute or two — that's where the gain lives.",
+        episodeSlug: "ep-2-i-asked-astana-coach-about-zone-2-heres-what-he-said",
+        guestSlug: "vasilis-anastopoulos",
+      },
+    ],
+    practicalApplication: [
+      {
+        title: "Run 4×4-minute VO2max intervals",
+        detail:
+          "After a 20-minute warm-up with two short openers: 4 minutes at 110–115% FTP, 4 minutes easy, repeated four times. Pace each rep to build — controlled first minute, genuinely hard final minute. Heart rate should reach near-maximum by the end of each effort.",
+      },
+      {
+        title: "Test and track the number specifically",
+        detail:
+          "Do a dedicated 5-minute maximal effort on a steady climb or trainer every 4–6 weeks. This is your benchmark. Many platforms also surface your best 5-minute power automatically from ride data — but a fresh, paced test gives the cleanest comparison.",
+      },
+      {
+        title: "Practise the pacing under fatigue",
+        detail:
+          "Occasionally place a 5-minute maximal effort late in a ride, after 90 minutes of steady work, to rehearse the race demand — the breakaway rarely comes when you're fresh. This bridges raw 5-minute power and the durability to express it deep into an event.",
+      },
+    ],
+    commonMistakes: [
+      {
+        mistake: "Going out at 130% FTP and dying in minute three.",
+        fix:
+          "Start at 110% FTP and build. A 5-minute effort is paced — the goal is to be at your hardest in the final minute, not to blow up early and limp through the rest.",
+      },
+      {
+        mistake: "Using 30–60 second efforts to try to build 5-minute power.",
+        fix:
+          "Short sprints train a different system and never reach VO2max. To raise 5-minute power you need 3–5 minute efforts long enough to drive heart rate to its ceiling.",
+      },
+      {
+        mistake: "Cutting recovery between intervals to 'make it harder'.",
+        fix:
+          "Each rep needs near-equal recovery to be repeated at quality. Short recovery degrades the later efforts below the VO2max stimulus — fewer high-quality reps beat more compromised ones.",
+      },
+    ],
+    faq: [
+      {
+        question: "Why is 5-minute power important in cycling?",
+        answer:
+          "Five-minute power decides the efforts that most often split a race: short climbs, bridging to a breakaway, and punchy finishes lasting 2–6 minutes. It sits at your VO2max, so it reflects your aerobic ceiling under maximal load — a key predictor of how you fare when the pace lifts hard.",
+      },
+      {
+        question: "What is a good 5-minute power for a cyclist?",
+        answer:
+          "It's usefully expressed in watts per kilo. A trained male amateur often produces around 4.5–5.5 W/kg for 5 minutes; competitive amateurs 5.5–6.5; elite riders above 7. The number scales with VO2max, and the meaningful comparison is your own progression over a training block.",
+      },
+      {
+        question: "How is 5-minute power related to VO2max?",
+        answer:
+          "Five-minute maximal power corresponds closely to the power you produce at VO2max — it's one of the cleanest field proxies for it. Raising your VO2max raises your 5-minute power, and the same intervals (3–5 minutes at 106–120% FTP) train both.",
+      },
+      {
+        question: "How long does it take to improve 5-minute power?",
+        answer:
+          "A focused 6-week block of twice-weekly VO2max intervals typically lifts 5-minute power 5–10% in riders who weren't already doing the work. Well-trained riders see smaller gains, but even 2–4% meaningfully changes what you can do on a short climb.",
+      },
+      {
+        question: "Should I train 5-minute power year-round?",
+        answer:
+          "It's most effective in focused blocks rather than continuously, because the intensity is taxing and gains plateau if held too long. Build it in a 6-week block ahead of your key events, then maintain with one session a week while you focus on other qualities.",
+      },
+      {
+        question: "Can I improve 5-minute power without a power meter?",
+        answer:
+          "Yes, using a steady climb and a stopwatch — time a known climb and track it, or use rate of perceived exertion with heart rate as a guide. A power meter makes pacing and tracking far easier, but the core stimulus (hard 3–5 minute efforts, fully recovered) works without one.",
+      },
+    ],
+    relatedEpisodes: [
+      "ep-2089-how-to-ride-faster-than-98-of-people-john-archibald",
+      "ep-2-i-asked-astana-coach-about-zone-2-heres-what-he-said",
+      "ep-17-7-fixable-reasons-your-v02-max-is-low-while-cycling",
+    ],
+    relatedTopics: [
+      { label: "VO2max Intervals Guide", href: "/blog/cycling-vo2max-intervals" },
+      { label: "How to do VO2 max intervals", href: "/answers/how-to-do-vo2-max-intervals" },
+      { label: "How to increase VO2 max", href: "/answers/how-to-increase-vo2-max-cycling" },
+      { label: "FTP Training — Topic Hub", href: "/topics/ftp-training" },
+      { label: "Short vs Long Intervals", href: "/compare/short-vs-long-intervals" },
+    ],
+    evidenceLevel: "strong",
+    publishDate: "2026-05-26",
+    updatedDate: "2026-05-26",
+  },
+
+  // ============================================================
+  // WHY CAN'T I HOLD POWER ON REPEATED CLIMBS
+  // ============================================================
+  {
+    slug: "power-fade-repeated-climbs",
+    cluster: "power",
+    question: "Why Can't I Hold Power on Repeated Climbs?",
+    seoTitle: "Why Can't I Hold Power on Repeated Climbs?",
+    seoDescription:
+      "Power fades on repeated climbs because you overcook the early ones, drain your anaerobic battery, or under-fuel — not because you're unfit. The fix is pacing each climb to the same number, not the same feel.",
+    pillar: "coaching",
+    directAnswer:
+      "Power fades across repeated climbs mainly because riders overcook the early ascents — going 10–15% too hard on climbs one and two drains the anaerobic battery that climbs four and five depend on. Under-fuelling and a thin aerobic base compound it. The fix is pacing every climb to the same sustainable number rather than chasing the same feeling, and training the repeatability to recover between efforts.",
+    keyTakeaways: [
+      "The main cause is over-pacing the early climbs — you spend the battery before the climbs that decide the day.",
+      "Each climb above your sustainable power drains your W' reserve, which only refills on the descents and flats.",
+      "Under-fuelling turns a pacing problem into a glycogen problem — the fade comes earlier and harder.",
+      "Pace to a power number, not to the group or the feel — the same RPE means a higher cost each time you climb.",
+    ],
+    whoFor: [
+      {
+        label: "The sportive rider on a multi-climb route",
+        detail:
+          "You're strong on the first two climbs of a hilly day and visibly fade on the last ones, every time.",
+      },
+      {
+        label: "The racer dropped on the decisive late climb",
+        detail:
+          "The selection happens on the final ascent and you've already emptied the tank on the earlier ones.",
+      },
+    ],
+    roadmanView: [
+      "This is one of the most common and most fixable problems on any hilly route. You feel great on the first climb, strong on the second, and by the fourth or fifth you're crawling, watching wheels drift away, convinced you're just not fit enough. Here's what nobody tells you: the fade on the late climbs was usually caused by what you did on the early ones. You spent power you couldn't afford when it felt easy.",
+      "Andrew Feather, the amateur hill-climb champion who beat Pogačar at his own challenge, has talked about exactly this discipline — knowing your sustainable climbing power and refusing to exceed it, even when the legs feel good and the group surges. The riders who hold power across repeated climbs aren't the ones who go hardest early. They're the ones who pace every climb to the same number, so the last one is no worse than the first. It's counterintuitive and it's where most amateur climbing days are lost.",
+      "There's a mechanism underneath it that Alex Welburn's critical-power work makes concrete: every climb above your sustainable ceiling draws down a finite anaerobic battery that only recharges on the descents and flats. Overcook climbs one and two and the battery's empty before the climb that matters. Dan Lorang's World Tour framing rounds it out — fuel matters as much as pacing, because a depleted rider can't refill the battery at all. The fade isn't a fitness verdict. It's a pacing-and-fuelling problem you can fix this month.",
+    ],
+    expertEvidence: [
+      {
+        name: "Andrew Feather",
+        credential: "Four-time British National Hill Climb Champion",
+        insight:
+          "Holding power across repeated climbs comes down to pacing discipline — knowing your sustainable climbing power and refusing to exceed it on the early efforts, even when the legs feel strong. Riders who match the group's surges on the first climbs almost always pay for it on the last ones.",
+        episodeSlug: "ep-24-i-asked-a-40-year-old-amateur-how-he-beat-pogacar",
+        guestSlug: "andrew-feather",
+      },
+      {
+        name: "Dan Lorang",
+        credential: "Head of Performance, Red Bull–Bora–Hansgrohe",
+        insight:
+          "Repeated high-intensity efforts deplete both the anaerobic reserve and muscle glycogen. A rider who paces the early climbs too hard, or arrives under-fuelled, cannot recover between efforts — the power simply isn't there on the later climbs no matter how hard they try. Pacing and fuelling are the two levers, not raw fitness.",
+        episodeSlug: "ep-2056-13-years-of-coaching-pros-what-amateurs-dont-know",
+        guestSlug: "dan-lorang",
+      },
+    ],
+    practicalApplication: [
+      {
+        title: "Set a climbing power ceiling and hold it on every climb",
+        detail:
+          "Calculate 90–95% of FTP and treat it as your cap for every climb on a multi-climb day — not a target you exceed when you feel good. Watch the power number, not the rider next to you. The discipline on climb one is what preserves climb five.",
+      },
+      {
+        title: "Fuel proactively across the whole ride",
+        detail:
+          "Take 60g of carbohydrate per hour from 30–45 minutes in, before the climbs start biting. The anaerobic battery can only recharge if there's glycogen to do it with — arriving at the later climbs depleted guarantees the fade no matter how well you pace.",
+      },
+      {
+        title: "Train the demand with repeated climbing intervals",
+        detail:
+          "On a training climb, do 4–5 efforts of 4–6 minutes at threshold pace with the descent as recovery, holding the same power on the last rep as the first. This rehearses both the pacing discipline and the physiological repeatability the route demands.",
+      },
+    ],
+    commonMistakes: [
+      {
+        mistake: "Pacing each climb by feel instead of by power.",
+        fix:
+          "The same effort costs more each time you climb because fatigue accumulates. Pace to a power number and accept that the later climbs will feel harder at the same watts — that's normal and correct.",
+      },
+      {
+        mistake: "Matching the group's surge on the early climbs.",
+        fix:
+          "Let them go and ride your ceiling. On a multi-climb day the riders who surged early are the ones you'll pass on the final ascent. Spending the battery early is the single most common cause of late fade.",
+      },
+      {
+        mistake: "Blaming fitness and adding more training volume.",
+        fix:
+          "Fix pacing and fuelling first. A rider who fades on repeated climbs from over-pacing doesn't need more fitness — they need to spend the fitness they have more intelligently across the day.",
+      },
+    ],
+    faq: [
+      {
+        question: "Is power fade on repeated climbs a fitness problem?",
+        answer:
+          "Usually not. It's most often a pacing problem — going too hard on the early climbs and draining the anaerobic reserve — compounded by under-fuelling. Genuine fitness limits exist, but for most amateurs the fade is fixable through pacing and fuelling before any extra training is needed.",
+      },
+      {
+        question: "How do I pace repeated climbs in a sportive?",
+        answer:
+          "Set a power ceiling at 90–95% of FTP and hold it on every climb, regardless of how good the early ones feel. Accept that later climbs feel harder at the same watts. The goal is for your last climb's power to match your first, not to be fastest early and fade.",
+      },
+      {
+        question: "Why do my legs feel fine but my power drops on later climbs?",
+        answer:
+          "Perceived effort and actual power decouple under accumulated fatigue. You can feel like you're pushing hard while the wattage quietly falls — a sign your anaerobic reserve and glycogen are running low. Watching the power number, not the feeling, is the only reliable check.",
+      },
+      {
+        question: "Does fuelling really affect power on repeated climbs?",
+        answer:
+          "Significantly. Each hard climb draws on muscle glycogen, and the anaerobic reserve can only recharge between climbs if glycogen is available. Riders who fuel 60g of carbohydrate per hour from early in the ride hold power far better across repeated climbs than those who wait until they feel empty.",
+      },
+      {
+        question: "What training fixes power fade on climbs?",
+        answer:
+          "Repeated climbing intervals at threshold pace — 4–5 efforts of 4–6 minutes with the descent as recovery, holding equal power across all reps — rehearse both the pacing discipline and the physiological repeatability. Combine with a solid aerobic base so the reserve recharges efficiently.",
+      },
+      {
+        question: "How is this different from power fading on long flat rides?",
+        answer:
+          "On long flat rides the fade is usually pure glycogen depletion over time. On repeated climbs it's that plus the draining and incomplete recharging of the anaerobic reserve with each above-threshold effort. The climbs add a pacing dimension — overcooking the early ones is the distinctive cause here.",
+      },
+    ],
+    relatedEpisodes: [
+      "ep-24-i-asked-a-40-year-old-amateur-how-he-beat-pogacar",
+      "ep-2056-13-years-of-coaching-pros-what-amateurs-dont-know",
+      "ep-6-5-fixable-reasons-your-climbing-is-slow",
+    ],
+    relatedTopics: [
+      { label: "How to pace a long climb", href: "/answers/how-to-pace-a-long-climb" },
+      { label: "Why does my power fade on long rides?", href: "/answers/why-does-my-power-fade-on-long-rides" },
+      { label: "What is W' (anaerobic capacity)?", href: "/answers/w-prime-anaerobic-capacity" },
+      { label: "How to climb faster", href: "/answers/how-to-climb-faster-cycling" },
+      { label: "Fuelling Calculator", href: "/tools/fuelling" },
+    ],
+    evidenceLevel: "moderate",
+    publishDate: "2026-05-26",
+    updatedDate: "2026-05-26",
+  },
 ];

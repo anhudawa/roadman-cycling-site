@@ -1754,4 +1754,1286 @@ export const heatAnswers: AnswerPage[] = [
     publishDate: "2026-05-26",
     updatedDate: "2026-05-26",
   },
+
+  // ============================================================
+  // 14 — HOW TO PREPARE FOR A RACE AT ALTITUDE
+  // ============================================================
+  {
+    slug: "preparing-for-altitude-races",
+    cluster: "heat",
+    question: "How Do I Prepare for a Race at Altitude?",
+    seoTitle: "How to Prepare for a Race at Altitude — Cycling Guide",
+    seoDescription:
+      "Preparing for an altitude race: either arrive 2+ weeks early to acclimatise, or race within 24 hours before the EPO dip hits at days 3–5. Pace 6–10% lower and hydrate harder. The exact protocol.",
+    pillar: "coaching",
+    directAnswer:
+      "There are only two good ways to race at altitude: arrive at least 14 days early so red blood cell mass has adapted, or race within the first 24 hours before the acute performance dip lands at days 3–5. Arriving 3–7 days out is the worst window — you carry the cost of thin air without the haematological payoff. Whichever you choose, drop power targets 6–10% above 1,800m and front-load hydration.",
+    keyTakeaways: [
+      "Two viable windows: 24 hours before arrival fatigue, or 14+ days after full acclimatisation. Avoid days 3–7.",
+      "Power drops roughly 6–10% per 1,000m above 1,500m — pace by feel and heart rate, not sea-level watts.",
+      "Altitude dehydrates faster: respiratory water loss and higher breathing rates push fluid needs up 20–30%.",
+      "A pre-trip heat block or altitude-tent block primes the haematological system before you ever arrive.",
+    ],
+    whoFor: [
+      {
+        label: "The amateur travelling to a high-altitude gran fondo",
+        detail:
+          "Leadville, the Haute Route, a Pyrenean or Alpine sportive — events that finish above 2,000m and punish riders who arrive unprepared.",
+      },
+      {
+        label: "The rider who can only arrive a few days before",
+        detail:
+          "Work and life mean you can't get there two weeks early. You need to know how to race in the worst acclimatisation window without blowing up.",
+      },
+    ],
+    roadmanView: [
+      "Here's the thing nobody tells you about altitude races: the timing of your arrival matters more than almost anything you do in training. There are two windows that work and one that wrecks you. Land the day before and race within 24 hours — you've not yet hit the acute fatigue that altitude dumps on you around days 3 to 5. Or commit to arriving two weeks out and let your body actually build the red cells. The trap is the middle: showing up four or five days before, which is exactly when most amateurs book their flights, and racing straight into the worst of the adjustment.",
+      "Anthony has dug into this on the podcast through the altitude-camp conversations with coaches like Dan Lorang. The pros don't roll the dice on this. They either live at altitude for weeks before a high mountain Grand Tour, or they manage the descent-and-recovery timing precisely. The amateur version is the same logic scaled down — you just have fewer weeks to play with, so you have to be deliberate about which window you're targeting.",
+      "The free adaptation most amateurs skip is priming the system before they travel. A 10–14 day heat block at home, or an altitude-tent block if you have access, gets some of the plasma volume and red cell work done in advance. You arrive partway adapted instead of starting from zero. It won't replace genuine altitude exposure, but it shrinks the hole you're climbing out of when the air gets thin.",
+    ],
+    expertEvidence: [
+      {
+        name: "Dan Lorang",
+        credential: "Head of Performance, Red Bull–Bora–Hansgrohe; coach to Jan Frodeno and Anne Haug",
+        insight:
+          "World Tour teams treat altitude-race timing as a planned variable, not a hope. The haematological adaptation that matters takes 2–3 weeks to build, so riders either commit to that full window or manage the acute phase deliberately. Arriving mid-acclimatisation, when the body is still adjusting and performance is suppressed, is the scenario coaches work hardest to avoid.",
+        episodeSlug: "ep-2056-13-years-of-coaching-pros-what-amateurs-dont-know",
+        guestSlug: "dan-lorang",
+      },
+      {
+        name: "Dr Benjamin Levine",
+        credential: "Director, Institute for Exercise and Environmental Medicine; lead researcher on live-high train-low altitude protocols",
+        insight:
+          "Acute exposure to altitude produces a well-documented performance dip that bottoms out around days 3–5 as the body downregulates plasma volume before red cell mass rises. The practical consequence: a rider racing in that window performs worse than they would have on either arrival day or after two weeks of acclimatisation.",
+      },
+    ],
+    practicalApplication: [
+      {
+        title: "Pick your arrival window deliberately",
+        detail:
+          "If you can arrive 14+ days before the event, do it — that allows red blood cell adaptation. If you can't, arrive within 24 hours of the start and race before the acute dip lands. Do not arrive 3–7 days out; it's the worst of both worlds.",
+      },
+      {
+        title: "Recalibrate your power targets",
+        detail:
+          "Expect to lose roughly 6–10% of sustainable power per 1,000m above 1,500m. At 2,500m that's a meaningful chunk. Race by heart rate and perceived effort rather than chasing your sea-level numbers — the watts simply will not be there, and forcing them is how you blow up early.",
+      },
+      {
+        title: "Increase fluid intake by 20–30%",
+        detail:
+          "Altitude air is dry and your breathing rate climbs, so respiratory and urinary water losses rise. Add 20–30% to your normal daily fluid intake from the day you arrive, with electrolytes, and monitor urine colour. Dehydration at altitude compounds the performance hit fast.",
+      },
+      {
+        title: "Prime the system before you travel",
+        detail:
+          "Run a 10–14 day heat block or altitude-tent block ending the week before you leave. This pre-builds some plasma volume and red cell adaptation, so you arrive partway acclimatised rather than starting the clock at zero.",
+      },
+    ],
+    commonMistakes: [
+      {
+        mistake: "Arriving 4–5 days before the race.",
+        fix:
+          "This is the acute fatigue window — your body has downregulated plasma volume but not yet built red cells. Either arrive 24 hours out, or commit to 14+ days early. The middle window is the one to avoid.",
+      },
+      {
+        mistake: "Racing to sea-level power numbers at altitude.",
+        fix:
+          "Your sustainable power drops 6–10% per 1,000m of elevation. Pace by heart rate and feel for the first part of the race. Chasing familiar watts at 2,500m guarantees an early implosion.",
+      },
+      {
+        mistake: "Hydrating as if you were at sea level.",
+        fix:
+          "Dry air and elevated breathing rates increase water loss significantly. Add 20–30% to your fluid intake from arrival, include electrolytes, and check urine colour daily.",
+      },
+    ],
+    faq: [
+      {
+        question: "How early should I arrive before a high-altitude race?",
+        answer:
+          "Either 24 hours before, to race ahead of the acute fatigue that lands at days 3–5, or at least 14 days before, to let red blood cell mass adapt. The window between those two — roughly days 3 to 7 — is where performance is most suppressed, so avoid arriving then.",
+      },
+      {
+        question: "How much slower will I be at altitude?",
+        answer:
+          "Sustainable power drops roughly 6–10% per 1,000m above 1,500m. At 2,500m an unacclimatised rider might lose 12–18% of sea-level power. The effect is steeper for harder efforts above threshold, where oxygen delivery is the hard limiter.",
+      },
+      {
+        question: "Does sleeping at altitude before the race help?",
+        answer:
+          "Yes, if you have enough time. Sleeping at 2,000m+ for two weeks or more drives the red blood cell adaptation that protects performance. A few nights does little for red cells but does begin the acclimatisation that reduces acute altitude sickness symptoms.",
+      },
+      {
+        question: "Can I use an altitude tent to prepare for an altitude race?",
+        answer:
+          "Yes. Sleeping in an altitude tent at simulated 2,500–3,000m for 3–4 weeks before travelling pre-builds some red cell adaptation, so you arrive partway acclimatised. It requires consistent nightly use to work — sporadic use costs sleep quality without delivering the adaptation.",
+      },
+      {
+        question: "Should I change my fuelling for an altitude race?",
+        answer:
+          "Carbohydrate needs stay broadly the same, but appetite is often suppressed at altitude, so deliberate fuelling matters more. Hydration needs rise 20–30%. Iron status also matters — red cell production depends on it, so check iron levels well before an altitude block if you're adapting in advance.",
+      },
+      {
+        question: "Will altitude sickness affect my race?",
+        answer:
+          "Mild acute mountain sickness — headache, poor sleep, breathlessness — is common in the first 24–72 hours above 2,500m and can blunt performance. Arriving early enough to move through it, staying well hydrated, and avoiding hard efforts in the first days reduces the risk. Severe symptoms mean descend, not race.",
+      },
+    ],
+    relatedEpisodes: [
+      "ep-2056-13-years-of-coaching-pros-what-amateurs-dont-know",
+      "ep-2026-ftp-jumped-30-watts-after-this-workout",
+      "ep-2121-remcos-heat-training-why-it-works-how-to-gain-from-it",
+    ],
+    relatedTopics: [
+      { label: "Does Altitude Training Work?", href: "/answers/does-altitude-training-work" },
+      { label: "What Is Live High, Train Low?", href: "/answers/live-high-train-low" },
+      { label: "Altitude Training Blog Guide", href: "/blog/cycling-altitude-training" },
+      { label: "How to Pace a Long Climb", href: "/answers/how-to-pace-a-long-climb" },
+      { label: "Cycling Training Plans — Hub", href: "/topics/cycling-training-plans" },
+    ],
+    evidenceLevel: "strong",
+    evidenceNote:
+      "Altitude acclimatisation timing and the acute performance dip are well-established in altitude physiology (Levine and colleagues). WorldTour application via Dan Lorang on the Roadman podcast.",
+    publishDate: "2026-05-26",
+    updatedDate: "2026-05-26",
+  },
+
+  // ============================================================
+  // 15 — WHAT IS LIVE HIGH, TRAIN LOW
+  // ============================================================
+  {
+    slug: "live-high-train-low",
+    cluster: "heat",
+    question: "What Is Live High, Train Low?",
+    seoTitle: "What Is Live High, Train Low? Altitude Training Explained",
+    seoDescription:
+      "Live high, train low means sleeping at 2,000–2,500m to build red blood cells while training lower so you can hit full intensity. The model that adds 3–5% VO2max — and how amateurs apply it.",
+    pillar: "coaching",
+    directAnswer:
+      "Live high, train low (LHTL) means sleeping and living at 2,000–2,500m to stimulate red blood cell production, while doing your hard training at lower altitude where the thicker air lets you hit real intensity. It solves altitude training's central problem: high enough to adapt, low enough to train properly. Done over 3–4 weeks, it can raise VO2max by 3–5% — the model most World Tour altitude camps are built on.",
+    keyTakeaways: [
+      "Sleep high (2,000–2,500m) to drive EPO and red blood cells; train low to preserve session quality.",
+      "It fixes the core altitude problem — you can't train hard enough at the altitude that drives adaptation.",
+      "The dose target is roughly 12+ hours per day at altitude, sustained across 3–4 weeks.",
+      "Altitude tents replicate the 'live high' half for amateurs who can't relocate to the mountains.",
+    ],
+    whoFor: [
+      {
+        label: "The rider planning a structured altitude camp",
+        detail:
+          "You want to understand the model the pros actually use before booking a camp, rather than just riding high and hoping.",
+      },
+      {
+        label: "The amateur with an altitude tent",
+        detail:
+          "You have or are considering a tent and want to know how to replicate the live-high half of the model at home.",
+      },
+    ],
+    roadmanView: [
+      "Live high, train low is one of those ideas that sounds like a contradiction until you understand the problem it solves. Altitude drives red blood cell production — that's the adaptation everyone wants. But here's the catch: at the altitude that drives that adaptation, you physically can't train hard enough to maintain your fitness. Your VO2max sessions fall apart because there isn't enough oxygen. So you'd be building red cells while detraining your top end. LHTL splits the difference: sleep high to adapt, drop down to train at full gas.",
+      "Anthony has covered this through the altitude conversations on the podcast, and the model the coaches describe is exactly this. The pros don't just camp at 2,400m and grind out intervals up there. They sleep high, and they bring the quality work down to a lower altitude where the legs and lungs can actually deliver. It's the difference between a camp that builds the engine and a camp that just leaves you tired.",
+      "For amateurs, the honest version is that the full geographical setup — a mountain base with valley training roads — is hard to arrange. The altitude tent is the workaround that gets you the live-high half: sleep at simulated altitude, train normally outdoors. It's not as clean as the real thing, and the sleep cost is real, but it's the most accessible route to the LHTL principle if you can't relocate to the Alps for a month.",
+    ],
+    expertEvidence: [
+      {
+        name: "Dr Benjamin Levine",
+        credential: "Director, Institute for Exercise and Environmental Medicine; co-developed the live-high train-low altitude model",
+        insight:
+          "The live-high train-low model was developed specifically to separate the adaptation stimulus from the training stimulus. Living at altitude (around 2,500m) raises erythropoietin and red blood cell mass, while training near sea level preserves the oxygen flux needed to sustain high-intensity work. The combination produced larger performance gains than either living-high-training-high or staying at sea level.",
+      },
+      {
+        name: "Dan Lorang",
+        credential: "Head of Performance, Red Bull–Bora–Hansgrohe",
+        insight:
+          "World Tour altitude camps are structured around the live-high train-low logic: easy and recovery riding stays high, while key threshold and VO2max sessions are either dropped to lower altitude or have their targets adjusted. The aim is to bank the haematological adaptation without sacrificing the quality of the training that the camp is also meant to deliver.",
+        episodeSlug: "ep-2056-13-years-of-coaching-pros-what-amateurs-dont-know",
+        guestSlug: "dan-lorang",
+      },
+    ],
+    practicalApplication: [
+      {
+        title: "Sleep at 2,000–2,500m for the adaptation",
+        detail:
+          "The 'live high' dose is roughly 12+ hours a day at altitude, sustained for 3–4 weeks. Below 2,000m the EPO stimulus is weak; much above 2,500m the sleep disruption and training cost climb sharply. The 2,000–2,500m band is the sweet spot.",
+      },
+      {
+        title: "Bring your hard sessions lower",
+        detail:
+          "Do your threshold and VO2max work at a lower altitude — drive down a mountain road, or accept that those sessions happen at the bottom of the valley. The goal is preserving the intensity that altitude would otherwise rob from you.",
+      },
+      {
+        title: "Keep high-altitude rides easy",
+        detail:
+          "The riding you do up high should be zone 2 and recovery. You're not trying to train hard at altitude — you're trying to live there. Save the quality for the low sessions and let the high time do the adaptation work.",
+      },
+      {
+        title: "Replicate live-high with a tent if you can't relocate",
+        detail:
+          "If a mountain base isn't realistic, sleep in an altitude tent at simulated 2,500m and train normally outdoors. Consistent nightly use over 3–4 weeks is what makes it work. Manage sleep quality actively — dry air and breathing changes can blunt the benefit.",
+      },
+    ],
+    commonMistakes: [
+      {
+        mistake: "Training hard at the altitude you're living at.",
+        fix:
+          "That defeats the whole point of the model. High-altitude intervals are lower quality because of reduced oxygen. Keep high riding easy and bring the hard sessions to lower elevation.",
+      },
+      {
+        mistake: "Living too low to get the adaptation.",
+        fix:
+          "Sleeping at 1,500m or below produces minimal EPO stimulus. The 'live high' half needs 2,000–2,500m to actually drive red blood cell production. A pretty mountain village at 1,200m is a holiday, not an altitude camp.",
+      },
+      {
+        mistake: "Doing too short a block to adapt.",
+        fix:
+          "Red blood cell mass needs 3–4 weeks of consistent altitude exposure to build meaningfully. A long weekend high does almost nothing for the haematological adaptation LHTL is designed to produce.",
+      },
+    ],
+    faq: [
+      {
+        question: "Why not just live and train high?",
+        answer:
+          "Because at the altitude that drives red blood cell adaptation, you can't sustain the intensity needed to maintain or build fitness — there isn't enough oxygen for quality VO2max and threshold work. Living high but training low lets you get the adaptation without detraining your top end.",
+      },
+      {
+        question: "What altitude counts as 'high' for live-high train-low?",
+        answer:
+          "Roughly 2,000–2,500m for sleeping. That band is high enough to stimulate erythropoietin and red blood cell production but not so high that sleep quality and training capacity collapse. Below 2,000m the stimulus weakens; well above 2,500m the costs rise.",
+      },
+      {
+        question: "How long does a live-high train-low block need to be?",
+        answer:
+          "Three to four weeks of consistent exposure is the standard for meaningful red blood cell adaptation. The dose target is around 12+ hours per day at altitude. Shorter blocks give acclimatisation but limited haematological gain.",
+      },
+      {
+        question: "Can amateurs realistically do live-high train-low?",
+        answer:
+          "The full geographic version is hard to arrange, but an altitude tent replicates the live-high half — sleep at simulated altitude, train normally outdoors. It requires consistent nightly use over several weeks and active sleep management to be worth it.",
+      },
+      {
+        question: "Is live-high train-low better than heat training?",
+        answer:
+          "For raw red blood cell mass adaptation, a well-executed LHTL block is the stronger stimulus. But it requires altitude access, time, and money. Heat training delivers a meaningful share of the haematological benefit at home for free, which is why most amateurs get more practical value from a heat block.",
+      },
+      {
+        question: "What's the difference between live-high train-low and an altitude tent?",
+        answer:
+          "An altitude tent is one way to deliver the 'live high' half of LHTL — you sleep at simulated altitude while training at your real (low) elevation. Classic LHTL uses natural altitude for living. Both share the same logic: adapt while you sleep, train hard where the air is thicker.",
+      },
+    ],
+    relatedEpisodes: [
+      "ep-2056-13-years-of-coaching-pros-what-amateurs-dont-know",
+      "ep-2026-ftp-jumped-30-watts-after-this-workout",
+      "ep-2121-remcos-heat-training-why-it-works-how-to-gain-from-it",
+    ],
+    relatedTopics: [
+      { label: "Does Altitude Training Work?", href: "/answers/does-altitude-training-work" },
+      { label: "Are Altitude Tents Worth It?", href: "/answers/are-altitude-tents-worth-it" },
+      { label: "How Do I Prepare for a Race at Altitude?", href: "/answers/preparing-for-altitude-races" },
+      { label: "Altitude or Heat Training?", href: "/answers/altitude-or-heat-training" },
+      { label: "Altitude Training Blog Guide", href: "/blog/cycling-altitude-training" },
+    ],
+    evidenceLevel: "strong",
+    evidenceNote:
+      "Live-high train-low is one of the most rigorously studied altitude protocols (Levine and colleagues). WorldTour camp application corroborated by Dan Lorang on the Roadman podcast.",
+    publishDate: "2026-05-26",
+    updatedDate: "2026-05-26",
+  },
+
+  // ============================================================
+  // 16 — HOW LONG BEFORE A HOT EVENT SHOULD I HEAT TRAIN
+  // ============================================================
+  {
+    slug: "heat-training-timing-before-event",
+    cluster: "heat",
+    question: "How Long Before a Hot Event Should I Heat Train?",
+    seoTitle: "When to Start Heat Training Before a Hot Event",
+    seoDescription:
+      "Start a 10–14 day heat block so it finishes 5–10 days before your hot event. That clears fatigue while keeping adaptation fresh. Begin roughly 3 weeks out. The exact countdown, week by week.",
+    pillar: "coaching",
+    directAnswer:
+      "Run a 10–14 day heat block that finishes 5–10 days before your hot event. Working backwards, that means starting the block roughly 3 weeks out. Finishing too early lets plasma volume fade; finishing in race week leaves you carrying the fatigue of daily heat stress on the start line. The 5–10 day gap clears acute fatigue while the adaptation is still fresh.",
+    keyTakeaways: [
+      "Finish the heat block 5–10 days before the event — not the day before, not three weeks before.",
+      "Working back from a 10–14 day block, start it roughly 3 weeks out.",
+      "Finishing too early lets plasma volume fade; finishing too late means racing fatigued.",
+      "If your event is 4+ weeks after a block, add 2–3 maintenance heat sessions a week to hold the adaptation.",
+    ],
+    whoFor: [
+      {
+        label: "The rider with a fixed hot-weather race date",
+        detail:
+          "You know exactly when your event is and want to reverse-engineer when to start heat training to peak on the day.",
+      },
+      {
+        label: "The rider planning around a packed calendar",
+        detail:
+          "You have other training priorities and need to slot a heat block in without sabotaging the rest of your build.",
+      },
+    ],
+    roadmanView: [
+      "The timing question is where most amateurs get heat training wrong, and it's a shame because the protocol itself is the easy part. People do the work — 14 days of sweating on the turbo — and then mistime it. Either they finish three weeks before the event and the plasma volume has quietly drained away by race day, or they're still doing heat sessions in race week and they roll up to the start line cooked. Both waste the adaptation.",
+      "Anthony has talked through this on the podcast off the back of the Remco heat protocol coverage. The pros don't guess the timing — they count back from the target. The number that matters is the gap between your last heat session and the event: you want 5 to 10 days. Long enough that the fatigue from daily heat stress has cleared, short enough that the plasma volume and red cell adaptation are still in play. Slot a 10–14 day block in front of that gap and you start it around three weeks out.",
+      "The free adaptation most amateurs skip isn't the heat block itself — plenty of riders do that. It's the maintenance dose afterwards. If your event sits four or five weeks past the block, two or three short heat sessions a week holds most of the adaptation in place. It's a fraction of the original effort and it's the difference between arriving acclimatised and arriving with a faded memory of being acclimatised.",
+    ],
+    expertEvidence: [
+      {
+        name: "Roadman Podcast — Remco heat training breakdown",
+        credential: "Roadman Cycling, coaching pillar",
+        insight:
+          "The WorldTour heat protocol coverage was specific on timing: teams schedule heat blocks to finish 7–14 days before the target race, never the day before, because the last days of a block carry fatigue. Plasma volume begins reversing within 1–2 weeks of stopping, so the block is timed to land its peak benefit on race day rather than ahead of it.",
+        episodeSlug: "ep-2121-remcos-heat-training-why-it-works-how-to-gain-from-it",
+      },
+      {
+        name: "Dr Stephen Seiler",
+        credential: "Exercise physiologist, University of Agder; codified 80/20 polarised training",
+        insight:
+          "Any adaptation block has to be timed against its own fatigue and decay curves. With heat training, the adaptation peaks while the acute fatigue from daily thermal stress is still present, so a short recovery gap before the event is essential — long enough to shed fatigue, short enough that the physiological gains haven't reversed.",
+        episodeSlug: "ep-2148-80-20-training-to-ride-faster-dr-stephen-seiler",
+        guestSlug: "stephen-seiler",
+      },
+    ],
+    practicalApplication: [
+      {
+        title: "Count backwards from the event",
+        detail:
+          "Mark race day. Subtract 5–10 days for the recovery gap — that's your last heat session. Subtract another 10–14 days for the block itself. That start date is roughly 3 weeks before the event. Put the block in your calendar around it.",
+      },
+      {
+        title: "Protect the 5–10 day gap",
+        detail:
+          "Between the last heat session and the event, return to normal (non-heat) training and a taper. This window clears the accumulated fatigue of daily heat exposure while the plasma volume and red cell adaptation are still fresh.",
+      },
+      {
+        title: "Add maintenance if the event is further out",
+        detail:
+          "If your block finishes more than two weeks before the event, run 2–3 maintenance heat sessions per week — a 60-minute moderate ride with 20 minutes post-ride passive heat. This holds most of the adaptation through to race day.",
+      },
+      {
+        title: "Don't stack the block on top of your hardest training",
+        detail:
+          "Reduce other intensity during the block. Daily heat stress plus full interval load accumulates fatigue faster than adaptation. Treat the heat block as a dedicated phase, then return to your normal sessions in the recovery gap.",
+      },
+    ],
+    commonMistakes: [
+      {
+        mistake: "Finishing the heat block the day before the event.",
+        fix:
+          "The final days of a block carry real fatigue. Leave a 5–10 day gap between your last heat session and the event so that fatigue clears while the adaptation stays fresh.",
+      },
+      {
+        mistake: "Finishing the block three or more weeks early.",
+        fix:
+          "Plasma volume starts reversing within 1–2 weeks. If the event is that far out, keep the adaptation alive with 2–3 maintenance heat sessions a week rather than letting it fade.",
+      },
+      {
+        mistake: "Cramming the whole block into the final week before the event.",
+        fix:
+          "There's no time for fatigue to clear, and the deeper adaptation isn't even complete at 7 days. Start roughly 3 weeks out so the block can run its full 10–14 days with a recovery gap after it.",
+      },
+    ],
+    faq: [
+      {
+        question: "How many days before a hot race should I finish heat training?",
+        answer:
+          "Finish your last heat session 5–10 days before the event. That gap clears the fatigue from daily heat stress while the plasma volume and red blood cell adaptation are still at or near their peak. Finishing the day before leaves you fatigued on the start line.",
+      },
+      {
+        question: "How far in advance do I need to start a heat block?",
+        answer:
+          "Roughly 3 weeks before the event. A 10–14 day block plus a 5–10 day recovery gap works backwards to a start date around 21 days out. Earlier than that and you'll need maintenance sessions to stop the adaptation fading.",
+      },
+      {
+        question: "What if I only have a week before my hot event?",
+        answer:
+          "A 7-day block won't produce full adaptation, but it still drives early plasma volume expansion and useful acclimatisation. Do it, accept partial benefit, and keep the last day at least 2–3 days before the event so the worst of the fatigue clears.",
+      },
+      {
+        question: "Can I keep the adaptation if my event is a month after the block?",
+        answer:
+          "Yes — run 2–3 maintenance heat sessions per week after the block. A 60-minute moderate ride with 20 minutes of post-ride passive heat is enough to hold most of the plasma volume and red cell adaptation for several extra weeks.",
+      },
+      {
+        question: "Should the heat block replace my taper?",
+        answer:
+          "No. The heat block sits before the taper. Finish the block 5–10 days out, then taper as you normally would into the event. The block builds the heat adaptation; the taper sheds fatigue. They're separate jobs done in sequence.",
+      },
+      {
+        question: "Does the timing change for a very long event versus a short one?",
+        answer:
+          "The block and gap structure is the same, but for very long hot events the hydration and pacing strategy matters even more, since the heat tax compounds over hours. The acclimatisation buys you a higher plasma volume and better sweat efficiency that pays off most over long durations.",
+      },
+    ],
+    relatedEpisodes: [
+      "ep-2121-remcos-heat-training-why-it-works-how-to-gain-from-it",
+      "ep-2148-80-20-training-to-ride-faster-dr-stephen-seiler",
+      "ep-2026-ftp-jumped-30-watts-after-this-workout",
+    ],
+    relatedTopics: [
+      { label: "Heat Acclimation Protocol", href: "/answers/heat-acclimation-protocol" },
+      { label: "How Long Does Heat Adaptation Last?", href: "/answers/how-long-does-heat-adaptation-last" },
+      { label: "How to Race in Extreme Heat", href: "/answers/how-to-race-in-extreme-heat" },
+      { label: "How to Taper for a Race", href: "/answers/how-to-taper-for-a-race" },
+      { label: "Heat Training Protocol Blog", href: "/blog/cycling-heat-training-protocol-at-home" },
+    ],
+    evidenceLevel: "strong",
+    evidenceNote:
+      "Heat adaptation decay and block-timing principles are well-established in exercise physiology. WorldTour timing practice corroborated via Roadman podcast coverage; periodisation logic via Stephen Seiler.",
+    publishDate: "2026-05-26",
+    updatedDate: "2026-05-26",
+  },
+
+  // ============================================================
+  // 17 — WHY DO I CRAMP IN HOT WEATHER
+  // ============================================================
+  {
+    slug: "cramping-in-hot-weather",
+    cluster: "heat",
+    question: "Why Do I Cramp in Hot Weather?",
+    seoTitle: "Why Do I Cramp in Hot Weather Cycling? The Real Causes",
+    seoDescription:
+      "Hot-weather cramps come from two things: neuromuscular fatigue from riding harder than you're trained for, and sodium loss through heavy sweating. Lose 1–2g sodium per litre and cramps follow. The fixes.",
+    pillar: "nutrition",
+    directAnswer:
+      "Hot-weather cramps have two main drivers. The first is neuromuscular fatigue — heat makes any given effort harder, so you fatigue the muscle faster than your training prepared it for. The second is sodium loss: heavy sweating in heat can strip 1–2 grams of sodium per litre, and salty sweaters lose far more. Cramps usually come from both at once, which is why electrolytes alone rarely fix the problem.",
+    keyTakeaways: [
+      "Cramps are driven by two things at once — neuromuscular fatigue and sodium loss — not just one.",
+      "Heat raises the cardiovascular cost of any effort, so you fatigue muscles faster than you're trained to.",
+      "Salty sweaters can lose 1.5–2g of sodium per litre of sweat; plain water makes that worse, not better.",
+      "Prevention is pacing plus pre-loading sodium — reacting mid-ride with one electrolyte tab rarely works.",
+    ],
+    whoFor: [
+      {
+        label: "The rider who only cramps in summer",
+        detail:
+          "Your winter and indoor rides are fine, but every hot ride or summer race ends with seized hamstrings or calves.",
+      },
+      {
+        label: "The heavy or salty sweater",
+        detail:
+          "You finish rides with white salt crusts on your kit and suspect your sweat chemistry is part of the problem.",
+      },
+    ],
+    roadmanView: [
+      "Cramping is one of the most misunderstood problems in cycling, and the hot-weather version is where the myths run thickest. The cycling internet will tell you it's a magnesium deficiency, or that you just need more bananas, and you'll buy a tub of something and keep cramping. Here's what nobody tells you: the evidence points to two causes working together, and most riders only ever address one of them.",
+      "The first cause is neuromuscular — your muscles are firing under more fatigue than they're trained to handle. Heat is the multiplier. A ride that's comfortable at 15°C becomes a much harder cardiovascular effort at 32°C, so the muscle reaches its fatigue threshold sooner and the cramp protection mechanism gives way. The second cause is sodium. In heat you sweat hard, and if you're a salty sweater you can lose one and a half to two grams of sodium per litre. Drink plain water on top of that and you dilute things further, which is exactly the wrong direction.",
+      "Anthony has had Sam Impey and David Dunne — both World Tour nutritionists — on the podcast on the hydration and sodium side, and the message lines up: prevention beats reaction. You can't fix a cramp with one electrolyte tab the moment your hamstring twinges. You fix it by pacing the heat sensibly so you're not fatiguing the muscle prematurely, and by pre-loading sodium before the ride so you're not starting from a deficit. Do both. Doing one and wondering why you still cramp is the trap.",
+    ],
+    expertEvidence: [
+      {
+        name: "Sam Impey",
+        credential: "World Tour nutritionist",
+        insight:
+          "In hot conditions, sodium losses through sweat are substantial — and highly individual. The World Tour approach to cramp-prone riders is pre-loading sodium before the event and maintaining electrolyte intake throughout, rather than reacting to cramps once they start. Plain water at high intake in heat dilutes blood sodium and works against the rider.",
+        episodeSlug: "ep-2035-world-tour-nutritionist-we-got-fuelling-wrong",
+        guestSlug: "sam-impey",
+      },
+      {
+        name: "Dr Martin Schwellnus",
+        credential: "Sports physician; lead author of the neuromuscular fatigue model of exercise-associated muscle cramping",
+        insight:
+          "The dominant research model attributes exercise-associated cramping primarily to altered neuromuscular control under fatigue — muscles working beyond their trained capacity, where the reflexes that normally prevent involuntary contraction break down. Heat accelerates this by raising the physiological cost of the effort, which is why cramps cluster in hot races even when hydration looks adequate.",
+      },
+    ],
+    practicalApplication: [
+      {
+        title: "Pace the heat so you don't outrun your training",
+        detail:
+          "Drop your effort 5–8% on hot rides. A cramp is partly a sign you've pushed the muscle past what it's conditioned for under the added load of heat. Riding within your trained capacity is the first and most underrated cramp defence.",
+      },
+      {
+        title: "Pre-load sodium before hot rides",
+        detail:
+          "Take 500–750ml of fluid with added sodium in the 2 hours before a hot ride. For known salty sweaters, a higher-sodium electrolyte mix (around 1,000mg sodium per litre) is worth using rather than a standard low-dose tab.",
+      },
+      {
+        title: "Match electrolytes to your sweat, not a generic dose",
+        detail:
+          "If you crust white with salt and cramp regularly, you're a high-sodium sweater and need more sodium than the label's standard serving. Increase the dose deliberately rather than assuming one tab per bottle covers you.",
+      },
+      {
+        title: "Train into the conditions",
+        detail:
+          "A 10–14 day heat acclimatisation block improves sweat efficiency and lowers the cardiovascular cost of riding in heat, which reduces both cramp triggers. Acclimatised riders cramp less because the muscle isn't being pushed as hard for the same output.",
+      },
+    ],
+    commonMistakes: [
+      {
+        mistake: "Blaming cramps on magnesium and loading up on supplements.",
+        fix:
+          "The evidence for magnesium curing exercise cramps is weak. Address the two real drivers — neuromuscular fatigue from over-pacing in heat, and sodium loss from heavy sweating. That's where the fix actually lives.",
+      },
+      {
+        mistake: "Drinking only plain water on hot rides.",
+        fix:
+          "Plain water at high intake dilutes blood sodium, which makes cramping more likely, not less. Add sodium on any ride over 90 minutes in heat — electrolyte tabs, a sports drink, or salty food.",
+      },
+      {
+        mistake: "Reacting to the first twinge instead of preventing it.",
+        fix:
+          "Once a cramp is brewing, a single electrolyte tab rarely stops it. Prevention is the strategy: pace sensibly, pre-load sodium, and acclimatise before hot events.",
+      },
+    ],
+    faq: [
+      {
+        question: "Is hot-weather cramping caused by dehydration?",
+        answer:
+          "Dehydration and sodium loss contribute, but the dominant model points to neuromuscular fatigue — the muscle working beyond its trained capacity — as the primary trigger. Heat makes that worse by raising the cost of the effort. So it's rarely dehydration alone; it's usually fatigue plus electrolyte loss together.",
+      },
+      {
+        question: "Will electrolytes stop me cramping in the heat?",
+        answer:
+          "Electrolytes help, especially pre-loaded sodium for heavy sweaters, but they're only half the picture. If you're cramping mainly from riding harder than your training prepared you for in the heat, no amount of electrolytes fixes that — you also need to pace and condition for the conditions.",
+      },
+      {
+        question: "Why do I cramp in summer but never in winter?",
+        answer:
+          "Heat raises the cardiovascular and muscular cost of any given effort, so you reach the fatigue threshold that triggers cramps sooner. You also sweat far more, losing more sodium. Both cramp drivers are amplified in summer, which is why a rider with no winter issues seizes up in July.",
+      },
+      {
+        question: "Does heat acclimatisation reduce cramping?",
+        answer:
+          "Yes. A heat block improves sweat efficiency and lowers the cardiovascular cost of riding in heat, so the muscle isn't pushed as hard for the same output. Acclimatised riders generally cramp less in hot events than unacclimatised ones at the same effort.",
+      },
+      {
+        question: "How do I know if I'm a salty sweater?",
+        answer:
+          "White salt crusts on your kit, helmet straps, or skin after a ride are the everyday sign. Stinging eyes from sweat and a salty taste are others. Salty sweaters lose more sodium per litre — often 1.5–2g — and need a higher-sodium electrolyte strategy than the standard serving.",
+      },
+      {
+        question: "What should I do mid-ride if I start to cramp?",
+        answer:
+          "Ease off immediately and reduce the muscle's load — cramps are a fatigue signal. Gentle stretching of the affected muscle can interrupt the contraction. Take on fluid with sodium, but understand that's damage limitation; the real fix is preventing the next one through pacing and pre-loading.",
+      },
+    ],
+    relatedEpisodes: [
+      "ep-2035-world-tour-nutritionist-we-got-fuelling-wrong",
+      "ep-20-5-fixable-reasons-your-heart-rate-is-high-while-cycling",
+      "ep-2121-remcos-heat-training-why-it-works-how-to-gain-from-it",
+    ],
+    relatedTopics: [
+      { label: "How to Stop Cramping in Races", href: "/answers/how-to-stop-cramping-in-races" },
+      { label: "Do Cyclists Need Electrolytes?", href: "/answers/do-cyclists-need-electrolytes" },
+      { label: "How to Hydrate for Hot-Weather Rides", href: "/answers/how-to-hydrate-in-hot-weather-cycling" },
+      { label: "Cramp Prevention Blog", href: "/blog/cycling-cramp-prevention" },
+      { label: "Cycling Nutrition — Topic Hub", href: "/topics/cycling-nutrition" },
+    ],
+    evidenceLevel: "moderate",
+    evidenceNote:
+      "The neuromuscular fatigue model of cramping (Schwellnus) is the dominant scientific framework; the electrolyte contribution is supported but individual. Hydration application corroborated by Sam Impey on the Roadman podcast.",
+    publishDate: "2026-05-26",
+    updatedDate: "2026-05-26",
+  },
+
+  // ============================================================
+  // 18 — DOES TRAINING IN HUMIDITY DIFFER FROM DRY HEAT
+  // ============================================================
+  {
+    slug: "humidity-vs-dry-heat-training",
+    cluster: "heat",
+    question: "Does Training in Humidity Differ From Dry Heat?",
+    seoTitle: "Humidity vs Dry Heat Training for Cyclists — The Difference",
+    seoDescription:
+      "Humidity is harder than dry heat: above 75% humidity, sweat can't evaporate, so cooling fails and core temperature climbs faster. 28°C and humid beats 34°C and dry for thermal load. How to train for each.",
+    pillar: "coaching",
+    directAnswer:
+      "Yes — humidity is the harder stress. In dry heat, sweat evaporates and cools you efficiently. Above roughly 75% humidity, sweat can't evaporate, so your main cooling system fails and core temperature climbs faster despite heavy sweating. That's why 28°C in high humidity feels and performs worse than 34°C in dry air. If your event is humid, you must train in humid conditions — dry-heat acclimatisation only partly transfers.",
+    keyTakeaways: [
+      "Dry heat cools through sweat evaporation; high humidity blocks evaporation, so cooling fails.",
+      "Above ~75% humidity, you sweat heavily but lose little cooling benefit — core temperature rises faster.",
+      "28°C and humid imposes a higher thermal load than 34°C and dry.",
+      "Acclimatise in conditions that match your event — dry-heat training only partly transfers to humid races.",
+    ],
+    whoFor: [
+      {
+        label: "The rider racing somewhere humid",
+        detail:
+          "A tropical sportive, a humid summer race, or an event near the coast where the air is thick — and you've only ever trained in dry heat.",
+      },
+      {
+        label: "The rider confused by why mild humid days feel brutal",
+        detail:
+          "You wonder why a 27°C humid ride wrecks you while a hotter, drier day feels manageable.",
+      },
+    ],
+    roadmanView: [
+      "Here's the thing the temperature on your head unit doesn't tell you: humidity changes everything about how heat affects you. In dry air, your body's cooling system works the way it's meant to — you sweat, the sweat evaporates, and evaporation pulls heat off your skin. It's efficient. Now crank the humidity up past about 75% and that system stops working. The air is already so full of water that your sweat has nowhere to go. It pours off you, soaks your kit, and does almost nothing to cool you. Your core temperature keeps climbing even though you're sweating buckets.",
+      "This is why riders get caught out. A 28°C humid day feels worse than a 34°C dry day, and it genuinely is worse — the thermal load on your body is higher because the cooling mechanism has failed. Anthony has covered the heat side of this on the podcast through the acclimatisation work, and the practical upshot for amateurs is that you can't judge a hot day by temperature alone. Humidity is the hidden multiplier.",
+      "The free adaptation most amateurs skip here is specificity. If your event is humid, training in dry heat only gets you part of the way. The cardiovascular adaptations — the plasma volume, the lower heart rate — carry over. But the sweat-rate and cooling adaptations that matter most in humidity are best built by training in humid conditions, or by deliberately recreating them: less airflow, more layers, a humid room. Match the training to the race and you arrive prepared for the actual stress, not a drier version of it.",
+    ],
+    expertEvidence: [
+      {
+        name: "Roadman Podcast — heat training and FTP protocol",
+        credential: "Roadman Cycling, coaching pillar",
+        insight:
+          "The heat training coverage established that the cooling efficiency of the environment determines the thermal load on the rider, not just the air temperature. The cardiovascular adaptations from heat exposure — plasma volume expansion, lower resting heart rate — transfer broadly, but the sweat-rate and cooling adaptations are most specific to the conditions trained in.",
+        episodeSlug: "ep-2026-ftp-jumped-30-watts-after-this-workout",
+      },
+      {
+        name: "Professor George Havenith",
+        credential: "Professor of Environmental Physiology and Ergonomics, Loughborough University",
+        insight:
+          "Evaporative cooling is the body's primary defence against heat during exercise, and it depends on the surrounding air being able to absorb sweat. In high humidity that capacity is saturated, so even heavy sweating yields little cooling and core temperature rises faster. This is why humid conditions impose a greater physiological strain than hotter but drier environments at equivalent workloads.",
+      },
+    ],
+    practicalApplication: [
+      {
+        title: "Read humidity, not just temperature",
+        detail:
+          "Check the humidity alongside the forecast temperature. Above 70–75% humidity, treat a moderately warm day as a serious heat day — drop power targets, increase fluid, and plan cooling. A 28°C humid forecast deserves more respect than a 34°C dry one.",
+      },
+      {
+        title: "Acclimatise in conditions that match the event",
+        detail:
+          "If your race is humid, train in humid heat where you can — or recreate it on the turbo with minimal airflow and an extra layer to trap moisture. The sweat-rate and cooling adaptations that matter most in humidity are built by training in it.",
+      },
+      {
+        title: "Lean harder on external cooling in humidity",
+        detail:
+          "Because evaporative cooling fails in humidity, external cooling matters more: ice on the neck and forearms, cold drinks, and any shade. These remove heat directly rather than relying on the sweat evaporation that humidity has blocked.",
+      },
+      {
+        title: "Expect a higher sweat rate and plan fluids accordingly",
+        detail:
+          "In humidity you sweat more for less cooling, so fluid losses are high. Plan for the top of your hydration range — up to 1 litre or more per hour with electrolytes — and weigh yourself before and after to calibrate your personal humid-day sweat rate.",
+      },
+    ],
+    commonMistakes: [
+      {
+        mistake: "Judging the difficulty of a hot day by temperature alone.",
+        fix:
+          "Humidity is the hidden multiplier. A 28°C humid day can be harder than a 34°C dry day because evaporative cooling fails. Always check humidity and adjust pacing and hydration accordingly.",
+      },
+      {
+        mistake: "Assuming dry-heat acclimatisation fully prepares you for a humid event.",
+        fix:
+          "The cardiovascular adaptations transfer, but the cooling and sweat-rate adaptations are condition-specific. Train in humid heat — or recreate it — if your event is humid.",
+      },
+      {
+        mistake: "Relying on sweating to cool you in high humidity.",
+        fix:
+          "Sweat that can't evaporate doesn't cool you. In humidity, prioritise external cooling — ice, cold fluids, shade — and pace conservatively, because your body's main cooling tool is offline.",
+      },
+    ],
+    faq: [
+      {
+        question: "Why is humid heat harder than dry heat for cycling?",
+        answer:
+          "Your body cools mainly by evaporating sweat. In dry air that works well; in high humidity the air is already saturated, so sweat can't evaporate and the cooling fails. You sweat heavily but core temperature still rises, which is why humid heat imposes a greater physiological strain than equivalent dry heat.",
+      },
+      {
+        question: "At what humidity does cooling start to fail?",
+        answer:
+          "Evaporative cooling becomes progressively less effective as humidity rises, and is severely impaired above roughly 75%. Combined with warm temperatures, that's where core temperature climbs fast despite heavy sweating, and where pacing and external cooling become essential.",
+      },
+      {
+        question: "Does heat training in dry conditions help for a humid race?",
+        answer:
+          "Partly. The cardiovascular adaptations — plasma volume expansion, lower heart rate at effort — transfer across both. But the cooling and sweat-rate adaptations most relevant to humidity are best built by training in humid conditions, so dry-heat training alone leaves a gap for a humid event.",
+      },
+      {
+        question: "How do I train for humidity if I live somewhere dry?",
+        answer:
+          "Recreate humid conditions on the turbo: train indoors with minimal airflow and an extra layer or two to trap moisture against the skin, simulating the failed-evaporation environment. It's not identical to genuine tropical humidity but it builds some of the specific cooling adaptation.",
+      },
+      {
+        question: "Should I drink more in humidity than in dry heat?",
+        answer:
+          "Generally yes — you sweat heavily in humidity for little cooling return, so fluid losses are high. Plan for the upper end of your hydration range, around 1 litre per hour or more with electrolytes, and calibrate with before-and-after weigh-ins on humid rides.",
+      },
+      {
+        question: "Does the 'feels like' temperature matter for cycling?",
+        answer:
+          "Yes — heat-index or 'feels like' figures combine temperature and humidity to estimate the actual thermal stress, which is closer to what your body experiences than air temperature alone. Use it as a quick guide, but on the bike, airflow from riding also affects cooling, so treat it as an indicator rather than a precise number.",
+      },
+    ],
+    relatedEpisodes: [
+      "ep-2026-ftp-jumped-30-watts-after-this-workout",
+      "ep-2121-remcos-heat-training-why-it-works-how-to-gain-from-it",
+      "ep-20-5-fixable-reasons-your-heart-rate-is-high-while-cycling",
+    ],
+    relatedTopics: [
+      { label: "How to Ride Better in the Heat", href: "/answers/how-to-ride-better-in-the-heat" },
+      { label: "How to Race in Extreme Heat", href: "/answers/how-to-race-in-extreme-heat" },
+      { label: "Heat Acclimation Protocol", href: "/answers/heat-acclimation-protocol" },
+      { label: "How to Hydrate for Hot-Weather Rides", href: "/answers/how-to-hydrate-in-hot-weather-cycling" },
+      { label: "Heat Training Guide", href: "/blog/cycling-heat-training-guide" },
+    ],
+    evidenceLevel: "strong",
+    evidenceNote:
+      "The role of evaporative cooling and humidity in heat strain is well-established environmental physiology (Havenith and colleagues). Application corroborated by Roadman podcast heat training coverage.",
+    publishDate: "2026-05-26",
+    updatedDate: "2026-05-26",
+  },
+
+  // ============================================================
+  // 19 — HOW DO ALTITUDE TRAINING CAMPS WORK
+  // ============================================================
+  {
+    slug: "altitude-training-camps",
+    cluster: "heat",
+    question: "How Do Altitude Training Camps Work?",
+    seoTitle: "How Do Altitude Training Camps Work? Cycling Guide",
+    seoDescription:
+      "Altitude camps run 3–4 weeks at 2,000–2,500m to drive red blood cell mass up via EPO. The first week is acclimatisation, not training. What pros actually do at camp — and what amateurs get wrong.",
+    pillar: "coaching",
+    directAnswer:
+      "An altitude camp works by living at 2,000–2,500m for 3–4 weeks so reduced oxygen drives erythropoietin (EPO) production, which raises red blood cell mass over time. The structure matters: the first week is acclimatisation with easy riding, not hard training. Quality sessions come later and often at lower altitude. A well-run camp adds 3–5% to VO2max — but only with enough altitude, enough duration, and the right internal structure.",
+    keyTakeaways: [
+      "The mechanism is EPO-driven red blood cell production from sustained exposure at 2,000–2,500m.",
+      "Week one is acclimatisation and easy riding — not the time for hard intervals.",
+      "Quality sessions are often dropped to lower altitude (live-high, train-low) to keep intensity real.",
+      "It takes 3–4 weeks for meaningful red cell adaptation; a long weekend high does almost nothing.",
+    ],
+    whoFor: [
+      {
+        label: "The amateur considering their first altitude camp",
+        detail:
+          "You've booked or are planning a camp in the mountains and want to understand how to structure it rather than just riding around at height.",
+      },
+      {
+        label: "The rider curious what pros actually do up there",
+        detail:
+          "You've seen the photos from Tenerife and Sierra Nevada and want to know the structure behind the postcard.",
+      },
+    ],
+    roadmanView: [
+      "Altitude camps have a romance to them — the photos from Mount Teide, the pros stacked into a hotel at 2,000m, the sense that this is where the real work happens. And the work is real, but the structure behind it is far more disciplined than the postcards suggest. A camp is not three weeks of hammering yourself in thin air. The first week is mostly easy riding while your body adjusts — push hard in those first days and you dig a hole you never climb out of for the rest of the camp.",
+      "Anthony has unpacked the camp logic on the podcast through coaches like Dan Lorang, and the recurring theme is that amateurs get the intensity backwards. They arrive at altitude fired up, do their normal interval sessions in week one, feel terrible, and conclude altitude doesn't work. What the pros do is let the acclimatisation happen first, keep the early riding genuinely easy, and bring the quality sessions in later — often dropping to lower altitude for the hard efforts so the intensity is actually there.",
+      "The honest framing for amateurs is this: a camp is a serious commitment of time and money, and the adaptation only shows up if you give it the full 3–4 weeks and structure it properly. A week at altitude is a nice training holiday, not a haematological intervention. If the full camp isn't realistic, the free adaptation most amateurs skip — a 10–14 day heat block at home — gets you a meaningful share of the same red cell and plasma volume benefit without the flights.",
+    ],
+    expertEvidence: [
+      {
+        name: "Dan Lorang",
+        credential: "Head of Performance, Red Bull–Bora–Hansgrohe; coach to Jan Frodeno and Anne Haug",
+        insight:
+          "A well-structured altitude camp front-loads acclimatisation: the first days are easy, intensity is reintroduced gradually, and the hardest sessions are managed so they don't collapse under the reduced oxygen. The camp is built to drive red blood cell adaptation while still protecting the quality of the key training — getting that balance wrong is the most common way a camp underdelivers.",
+        episodeSlug: "ep-2056-13-years-of-coaching-pros-what-amateurs-dont-know",
+        guestSlug: "dan-lorang",
+      },
+      {
+        name: "John Wakefield",
+        credential: "World Tour coach, Bora-Hansgrohe; works with Primož Roglič and Jai Hindley",
+        insight:
+          "Endurance is built at camp through high volume at controlled intensity, and altitude adds the haematological layer on top. The coaching emphasis is on managing internal load carefully — at altitude the same external workload costs the rider more, so monitoring and adjusting day to day is essential to avoid turning an adaptation block into an overreaching one.",
+        episodeSlug: "ep-2132-how-do-team-bora-approach-building-endurance-we-find-out-joh",
+        guestSlug: "john-wakefield",
+      },
+    ],
+    practicalApplication: [
+      {
+        title: "Make week one acclimatisation, not training",
+        detail:
+          "Keep the first 5–7 days easy — zone 1 to low zone 2 — while your body adjusts to the altitude. Power will feel poor and heart rate elevated; that's expected. Pushing hard in this window is the single fastest way to ruin the rest of the camp.",
+      },
+      {
+        title: "Reintroduce intensity gradually, ideally lower down",
+        detail:
+          "From week two, bring back threshold and VO2max work. Where possible, descend to a lower altitude for these sessions so you can hit real intensity (live-high, train-low). If you must train high, cut target power 5–8% and accept the numbers will look worse.",
+      },
+      {
+        title: "Manage internal load day to day",
+        detail:
+          "At altitude the same ride costs you more. Track heart rate, sleep, and how you feel rather than chasing external power targets. Build in genuine recovery days. The goal is adaptation, not accumulated fatigue.",
+      },
+      {
+        title: "Time the camp to your event",
+        detail:
+          "Red blood cell mass peaks roughly 2–4 weeks after returning to sea level. Schedule the camp so your target event falls inside that window. Returning six or more weeks before the race means much of the gain has faded by race day.",
+      },
+    ],
+    commonMistakes: [
+      {
+        mistake: "Training hard in the first week at altitude.",
+        fix:
+          "The opening 5–7 days are for acclimatisation, not intervals. Keep them easy. Hard efforts before your body has adjusted produce poor sessions and a deep hole of fatigue that compromises the whole camp.",
+      },
+      {
+        mistake: "Doing a camp that's too short to adapt.",
+        fix:
+          "Meaningful red blood cell adaptation needs 3–4 weeks of exposure. A week at altitude is a training holiday — good for focus and weather, but not the haematological intervention a camp is supposed to be.",
+      },
+      {
+        mistake: "Chasing sea-level power numbers on every session.",
+        fix:
+          "At altitude your sustainable power is lower. Manage by heart rate and internal load, drop hard sessions to lower elevation where you can, and don't judge the camp by the watts on the climbs.",
+      },
+    ],
+    faq: [
+      {
+        question: "How long should an altitude training camp be?",
+        answer:
+          "Three to four weeks for meaningful red blood cell adaptation. The first week is largely acclimatisation, so a camp shorter than two weeks delivers little haematological benefit — it becomes a training holiday with good weather rather than an altitude intervention.",
+      },
+      {
+        question: "What altitude do training camps use?",
+        answer:
+          "Typically 2,000–2,500m for living and sleeping. That's high enough to stimulate EPO and red blood cell production but not so high that sleep and training capacity collapse. Some camps use a higher sleeping base with lower training roads to apply live-high, train-low.",
+      },
+      {
+        question: "Why is the first week at altitude so hard?",
+        answer:
+          "Your body is adjusting to reduced oxygen — plasma volume shifts, breathing rate rises, sleep is often disrupted, and power at a given heart rate drops. This acute phase is why the first 5–7 days should be easy riding, not hard training. It passes as acclimatisation sets in.",
+      },
+      {
+        question: "When should I race after an altitude camp?",
+        answer:
+          "Red blood cell mass peaks roughly 2–4 weeks after returning to sea level. Aim to have your target event in that window. Racing in the first week back, while you re-adapt to sea level, often feels flat, so most riders avoid scheduling key events immediately on return.",
+      },
+      {
+        question: "Can amateurs benefit from an altitude camp?",
+        answer:
+          "Yes, if they commit to real altitude (2,000m+), enough duration (2–4 weeks), and the right structure. The gains are smaller and more variable than for full-time pros, and the cost is significant. For many amateurs a home heat block delivers a meaningful share of the benefit at a fraction of the cost.",
+      },
+      {
+        question: "Do I need to monitor iron levels for an altitude camp?",
+        answer:
+          "Yes. Red blood cell production depends on adequate iron, so low iron stores can blunt the entire adaptation. Check iron status well before a camp and address any deficiency in advance — turning up iron-deficient wastes much of the altitude stimulus.",
+      },
+    ],
+    relatedEpisodes: [
+      "ep-2056-13-years-of-coaching-pros-what-amateurs-dont-know",
+      "ep-2132-how-do-team-bora-approach-building-endurance-we-find-out-joh",
+      "ep-2026-ftp-jumped-30-watts-after-this-workout",
+    ],
+    relatedTopics: [
+      { label: "Does Altitude Training Work?", href: "/answers/does-altitude-training-work" },
+      { label: "What Is Live High, Train Low?", href: "/answers/live-high-train-low" },
+      { label: "How Do I Prepare for a Race at Altitude?", href: "/answers/preparing-for-altitude-races" },
+      { label: "Are Altitude Tents Worth It?", href: "/answers/are-altitude-tents-worth-it" },
+      { label: "Altitude Training Blog Guide", href: "/blog/cycling-altitude-training" },
+    ],
+    evidenceLevel: "strong",
+    evidenceNote:
+      "Altitude camp physiology and structure are well-established in endurance research. WorldTour camp practice corroborated by Dan Lorang and John Wakefield on the Roadman podcast.",
+    publishDate: "2026-05-26",
+    updatedDate: "2026-05-26",
+  },
+
+  // ============================================================
+  // 20 — CAN I COMBINE HEAT AND ALTITUDE TRAINING
+  // ============================================================
+  {
+    slug: "combining-heat-and-altitude",
+    cluster: "heat",
+    question: "Can I Combine Heat and Altitude Training?",
+    seoTitle: "Can You Combine Heat and Altitude Training? Cycling Guide",
+    seoDescription:
+      "Heat and altitude both drive plasma volume and red blood cells, so combining them is additive — but not at the same time. Sequence them: altitude first, then a 10–14 day heat block before your event.",
+    pillar: "coaching",
+    directAnswer:
+      "Yes, but in sequence, not simultaneously. Heat and altitude both drive plasma volume expansion and red blood cell mass through overlapping pathways, so stacking them adds total adaptation. The mistake is doing both at full intensity at once — the combined load overwhelms recovery. The proven structure is altitude first (3–4 weeks), heat maintenance through the gap, then a 10–14 day heat block finishing 5–10 days before the event.",
+    keyTakeaways: [
+      "Heat and altitude adaptations are largely additive — both build plasma volume and red blood cells.",
+      "Don't stack them at full load simultaneously; the combined stress overwhelms recovery.",
+      "Sequence them: altitude camp first, then heat maintenance, then a heat block before the event.",
+      "For amateurs without altitude access, heat alone delivers most of the benefit — the combination is the premium layer.",
+    ],
+    whoFor: [
+      {
+        label: "The rider with access to both altitude and heat",
+        detail:
+          "You can do a camp and a heat block, and want to know how to sequence them for maximum adaptation rather than burning out trying both at once.",
+      },
+      {
+        label: "The rider planning a big summer mountain target",
+        detail:
+          "Your goal event is both high and hot, and you want a season structure that prepares for both stresses.",
+      },
+    ],
+    roadmanView: [
+      "This is where it gets really interesting, because heat and altitude aren't competing tools — they're hitting overlapping physiology from two directions. Both push your plasma volume up. Both nudge red blood cell mass higher. So the instinct that combining them should give you more is correct. The catch is in the how. Try to do a hard altitude camp and a daily heat block at the same time and you're not doubling the adaptation — you're doubling the stress, and your recovery can't keep up. You end up overreached, not over-adapted.",
+      "The structure the pros use, which Anthony has covered through the altitude and heat conversations on the podcast, is sequencing. Altitude camp first — that's the heavier, longer stimulus that builds the ceiling. Come home, and rather than dropping the adaptation entirely, hold it with two or three heat maintenance sessions a week. Then, a couple of weeks before the target event, run a full 10–14 day heat block to re-peak everything. You get both pathways, layered in time, with recovery protected at each stage.",
+      "For most of the audience, the honest version is simpler. Altitude camps are expensive and hard to arrange, and the free adaptation most amateurs skip is just the heat block. If you can only do one, do heat — it gives you the larger share of the benefit for nothing. The combination is genuinely powerful, but it's the premium option for riders who already have altitude access, not a requirement for getting most of the gain.",
+    ],
+    expertEvidence: [
+      {
+        name: "Dan Lorang",
+        credential: "Head of Performance, Red Bull–Bora–Hansgrohe",
+        insight:
+          "At WorldTour level, altitude is the primary haematological stimulus and heat training is layered on as a complementary block — typically after altitude — to extend and consolidate the adaptation into the race season. The two are sequenced deliberately rather than stacked, because the combined acute load of doing both hard at once compromises recovery and adaptation.",
+        episodeSlug: "ep-2056-13-years-of-coaching-pros-what-amateurs-dont-know",
+        guestSlug: "dan-lorang",
+      },
+      {
+        name: "Roadman Podcast — heat training and FTP protocol",
+        credential: "Roadman Cycling, coaching pillar",
+        insight:
+          "The heat training coverage made clear that heat and altitude target overlapping pathways — plasma volume expansion and red blood cell mass — so their adaptations are broadly additive. The practical message for amateurs is that heat alone captures most of the benefit, and the altitude-plus-heat combination is the layered, premium approach for those with access to both.",
+        episodeSlug: "ep-2026-ftp-jumped-30-watts-after-this-workout",
+      },
+    ],
+    practicalApplication: [
+      {
+        title: "Do altitude first as the primary block",
+        detail:
+          "Run the altitude camp (3–4 weeks at 2,000–2,500m) as the foundational stimulus. It's the longer, heavier intervention that builds red blood cell mass. Treat this as the ceiling-raising phase before any heat work.",
+      },
+      {
+        title: "Bridge with heat maintenance",
+        detail:
+          "After returning from altitude, hold the adaptation with 2–3 heat sessions per week — a 60-minute moderate ride with 20 minutes post-ride passive heat. This extends the altitude gains rather than letting them fade in the weeks before your event.",
+      },
+      {
+        title: "Re-peak with a heat block before the event",
+        detail:
+          "Run a full 10–14 day heat block finishing 5–10 days before the target event. This re-elevates plasma volume on top of the altitude-built red cell base, timing the combined peak for race day.",
+      },
+      {
+        title: "Never run both hard at once",
+        detail:
+          "Don't do daily heat sessions during an altitude camp, or hard altitude work during a heat block. The combined acute load outpaces recovery. If you ever overlap them (e.g. altitude tent at night, heat by day), keep both moderate and monitor recovery closely.",
+      },
+    ],
+    commonMistakes: [
+      {
+        mistake: "Stacking a hard altitude camp and a daily heat block simultaneously.",
+        fix:
+          "The combined stress overwhelms recovery and produces overreaching, not extra adaptation. Sequence the two — altitude first, heat maintenance, then a heat block — with recovery protected between phases.",
+      },
+      {
+        mistake: "Doing altitude and then letting the adaptation fade before the event.",
+        fix:
+          "Bridge the gap with 2–3 heat maintenance sessions a week. This holds the plasma volume and red cell adaptation from the camp through to a re-peaking heat block before the event.",
+      },
+      {
+        mistake: "Assuming you need both to get the benefit.",
+        fix:
+          "You don't. Heat training alone delivers the larger share of the accessible adaptation for amateurs. The combination is a premium layer for riders who already have altitude access, not a prerequisite.",
+      },
+    ],
+    faq: [
+      {
+        question: "Do heat and altitude adaptations add together?",
+        answer:
+          "Largely yes. Both drive plasma volume expansion and red blood cell mass through overlapping pathways, so their adaptations are broadly additive. Combining them produces more total adaptation than either alone — which is why World Tour teams use both, sequenced across a block.",
+      },
+      {
+        question: "Can I do heat training during an altitude camp?",
+        answer:
+          "Not at full intensity. A hard altitude camp plus a daily heat block stacks too much acute stress and compromises recovery. If you overlap them at all, keep both moderate and monitor recovery closely. The cleaner approach is to sequence them rather than combine them simultaneously.",
+      },
+      {
+        question: "What's the best order — heat or altitude first?",
+        answer:
+          "Altitude first. It's the longer, heavier stimulus that builds red blood cell mass and raises the ceiling. Follow it with heat maintenance and then a heat block before the event, so the heat work consolidates and re-peaks the adaptation the altitude built.",
+      },
+      {
+        question: "Can I use an altitude tent and heat train at the same time?",
+        answer:
+          "It's theoretically additive — tent at night, heat by day — but the combined load is significant. Keep training sessions moderate, monitor recovery and HRV closely, and don't layer this combination during an already-heavy training block. Many riders are better off sequencing.",
+      },
+      {
+        question: "If I can only do one, which should I choose?",
+        answer:
+          "For most amateurs, heat training. It delivers the larger share of the accessible adaptation, costs nothing, can be done at home, and can be repeated around each key event. Altitude is the stronger single stimulus but requires time, money, and travel that most riders can't commit to.",
+      },
+      {
+        question: "Does combining heat and altitude help for a hot mountain event?",
+        answer:
+          "Yes — a hot, high event is exactly where the combination pays off. Altitude builds the red cell base for the thin air, and heat acclimatisation prepares your thermoregulation for the temperature. Sequenced properly, you arrive adapted to both stresses the event imposes.",
+      },
+    ],
+    relatedEpisodes: [
+      "ep-2056-13-years-of-coaching-pros-what-amateurs-dont-know",
+      "ep-2026-ftp-jumped-30-watts-after-this-workout",
+      "ep-2121-remcos-heat-training-why-it-works-how-to-gain-from-it",
+    ],
+    relatedTopics: [
+      { label: "Altitude or Heat Training?", href: "/answers/altitude-or-heat-training" },
+      { label: "Does Altitude Training Work?", href: "/answers/does-altitude-training-work" },
+      { label: "How Do Altitude Training Camps Work?", href: "/answers/altitude-training-camps" },
+      { label: "Heat Acclimation Protocol", href: "/answers/heat-acclimation-protocol" },
+      { label: "FTP Training — Topic Hub", href: "/topics/ftp-training" },
+    ],
+    evidenceLevel: "moderate",
+    evidenceNote:
+      "Additivity of heat and altitude adaptations is supported by emerging research; sequencing is established WorldTour practice. Corroborated by Dan Lorang and Roadman podcast heat training coverage.",
+    publishDate: "2026-05-26",
+    updatedDate: "2026-05-26",
+  },
+
+  // ============================================================
+  // HOW TO STOP OVERHEATING ON THE INDOOR TRAINER
+  // ============================================================
+  {
+    slug: "how-to-stop-overheating-on-the-indoor-trainer",
+    cluster: "heat",
+    question: "How Do I Stop Overheating on the Indoor Trainer?",
+    seoTitle: "How to Stop Overheating on the Indoor Trainer",
+    seoDescription:
+      "Indoor overheating wrecks power and inflates heart rate because there's no airflow to cool you. How to set up fans, hydration and cooling so your turbo sessions match outdoor numbers.",
+    pillar: "coaching",
+    directAnswer:
+      "You overheat indoors because there's no wind to carry heat away, so your core temperature climbs, your heart rate drifts up, and your power falls. Fix it with airflow first: a powerful fan (or two) aimed at your core and face does more than anything else. Add a cool room, pre-session cooling, and steady hydration with electrolytes. Get cooling right and your indoor numbers stop lagging your outdoor ones.",
+    keyTakeaways: [
+      "No airflow indoors means heat builds, HR drifts up and power drops.",
+      "A powerful fan aimed at your torso and face is the single biggest fix.",
+      "A cool room and pre-cooling lower the temperature you start the session at.",
+      "Hydrate with electrolytes — you sweat more indoors than you think.",
+    ],
+    whoFor: [
+      {
+        label: "The indoor trainer rider",
+        detail:
+          "Your turbo power is well below your outdoor numbers and your HR is sky-high.",
+      },
+      {
+        label: "The winter-block rider",
+        detail:
+          "You're doing serious indoor training and sessions keep falling apart from heat.",
+      },
+    ],
+    roadmanView: [
+      "Almost every rider who complains that their indoor power is rubbish, or that their heart rate is 15 beats higher than outside for the same effort, has a heat problem, not a fitness problem. Outdoors, you're riding through moving air that constantly strips heat off your skin. On the trainer you're stationary in still air, so your core temperature climbs, your body shunts blood to the skin to dump that heat, and your heart rate drifts up while your power sags. As the podcast covered in breaking down why your indoor heart rate runs high, heat with no airflow is one of the top culprits.",
+      "The fix is unglamorous and it's mostly about air. A serious fan — not a desk fan, a proper high-output one — aimed at your torso and face is transformative, and many riders use two. The same cardiovascular drift you feel building through a long hot ride, which is exactly the mechanism behind heat training adaptations, is what's quietly wrecking your unventilated turbo sessions. Cool the room, open a window, and start the session cool rather than already warm from a hot shower or a heated room.",
+      "Then treat hydration like you mean it. You sweat heavily indoors even though you don't notice it evaporating, so drink to a plan with electrolytes, not just plain water. Get airflow, room temperature and hydration sorted and the difference is dramatic — your indoor and outdoor numbers converge, and the trainer stops feeling like a punishment chamber.",
+    ],
+    expertEvidence: [
+      {
+        name: "Roadman Podcast",
+        credential: "On why your indoor heart rate runs high",
+        insight:
+          "A high indoor heart rate for a given power is frequently a heat problem, not a fitness one. With no airflow to cool the body, core temperature rises and the heart rate drifts up to manage it — fix the cooling and the numbers normalise.",
+        episodeSlug: "ep-20-5-fixable-reasons-your-heart-rate-is-high-while-cycling",
+      },
+      {
+        name: "Dan Lorang",
+        credential: "Head of Performance, Red Bull–Bora–Hansgrohe",
+        insight:
+          "Heat is a major limiter of endurance performance, and cooling is a controllable lever. The same heat stress that teams use deliberately for adaptation will silently degrade an indoor session if it isn't managed with airflow and hydration.",
+        episodeSlug: "ep-2056-13-years-of-coaching-pros-what-amateurs-dont-know",
+        guestSlug: "dan-lorang",
+      },
+    ],
+    practicalApplication: [
+      {
+        title: "Get a proper fan — or two",
+        detail:
+          "Use a high-output fan aimed at your torso and face, not a small desk fan. Two fans (one on the core, one on the head) get most riders close to outdoor performance. This is the highest-impact change you can make.",
+      },
+      {
+        title: "Cool the room and pre-cool yourself",
+        detail:
+          "Train in the coolest room you have, open a window, and start the session cool rather than warm. A cold drink or a cool shower beforehand lowers the temperature you begin from.",
+      },
+      {
+        title: "Hydrate to a plan with electrolytes",
+        detail:
+          "You sweat heavily indoors even though it evaporates less. Drink steadily through the session and include electrolytes, not just water, especially on longer or harder turbo rides.",
+      },
+      {
+        title: "Judge effort by power, not heart rate",
+        detail:
+          "If you're still warm, expect some heart-rate drift and pace by power. Don't ease off a power target just because HR looks high — fix the cooling instead.",
+      },
+    ],
+    commonMistakes: [
+      {
+        mistake: "Using a small desk fan or none at all.",
+        fix:
+          "Airflow is everything indoors. Use a high-output fan (or two) aimed at your core and face — it does more than any other single change.",
+      },
+      {
+        mistake: "Blaming low indoor power on lost fitness.",
+        fix:
+          "It's usually heat, not fitness. Cool the body properly and your indoor numbers move back toward your outdoor ones.",
+      },
+      {
+        mistake: "Drinking only plain water through long turbo sessions.",
+        fix:
+          "You lose significant electrolytes sweating indoors. Use an electrolyte drink and hydrate to a plan, not just when thirsty.",
+      },
+    ],
+    faq: [
+      {
+        question: "Why is my heart rate so high on the indoor trainer?",
+        answer:
+          "Usually heat. With no airflow to cool you, core temperature rises and your heart rate drifts up to shed that heat, even at the same power you'd ride comfortably outdoors. A powerful fan and a cooler room typically bring it back down.",
+      },
+      {
+        question: "Why is my power lower indoors than outdoors?",
+        answer:
+          "Largely the same heat issue — as your core temperature climbs without cooling airflow, your body prioritises dumping heat over producing power, so output sags. Improve cooling and hydration and the gap between your indoor and outdoor power usually shrinks.",
+      },
+      {
+        question: "How many fans do I need for indoor cycling?",
+        answer:
+          "One powerful fan helps a lot; two is better for hard or long sessions — one aimed at your torso, one at your head. Output matters more than count: a single high-velocity fan beats two weak ones.",
+      },
+      {
+        question: "Should I drink more on the trainer than outdoors?",
+        answer:
+          "Often yes, because you sweat heavily indoors with little evaporative cooling and rarely notice the loss. Drink to a plan with electrolytes through the session rather than waiting until you're thirsty, particularly on rides over an hour.",
+      },
+      {
+        question: "Does overheating indoors count as heat training?",
+        answer:
+          "Not in a useful, controlled way. Unmanaged overheating just degrades the session. Heat training is a deliberate, dosed protocol — for normal turbo work you want to cool aggressively so you can hit your targets, not cook yourself by accident.",
+      },
+      {
+        question: "Should I lower my power targets because my HR is high indoors?",
+        answer:
+          "No — fix the cooling instead. If you drop power every time heat pushes your heart rate up, you under-train. Pace by power, manage temperature with fans and hydration, and accept some HR drift when you're warm.",
+      },
+    ],
+    relatedEpisodes: [
+      "ep-20-5-fixable-reasons-your-heart-rate-is-high-while-cycling",
+      "ep-2121-remcos-heat-training-why-it-works-how-to-gain-from-it",
+      "ep-2056-13-years-of-coaching-pros-what-amateurs-dont-know",
+    ],
+    relatedTopics: [
+      { label: "How to hydrate in hot weather", href: "/answers/how-to-hydrate-in-hot-weather-cycling" },
+      { label: "How to ride better in the heat", href: "/answers/how-to-ride-better-in-the-heat" },
+      { label: "Zone 2 on the indoor trainer", href: "/answers/zone-2-indoor-trainer" },
+      { label: "Cycling Training Plans — Topic Hub", href: "/topics/cycling-training-plans" },
+    ],
+    evidenceLevel: "moderate",
+    evidenceNote:
+      "The cooling/airflow mechanism behind indoor heat strain is well established in thermoregulation science; applied via Roadman podcast coverage and World Tour practice (Lorang).",
+    publishDate: "2026-05-26",
+    updatedDate: "2026-05-26",
+  },
+
+  // ============================================================
+  // DOES HEAT TRAINING HELP FOR A COOL-WEATHER RACE
+  // ============================================================
+  {
+    slug: "does-heat-training-help-for-a-cool-race",
+    cluster: "heat",
+    question: "Does Heat Training Help Even for a Cool-Weather Race?",
+    seoTitle: "Does Heat Training Help for a Cool-Weather Race?",
+    seoDescription:
+      "Yes — heat training expands plasma volume, an aerobic adaptation that benefits performance even when the event is cool. Why it's been called a 'poor man's altitude' and how to use it.",
+    pillar: "coaching",
+    directAnswer:
+      "Yes. Beyond helping you cope with heat, a heat-training block expands your plasma volume — effectively increasing blood volume — which is a genuine aerobic adaptation that carries over to cool conditions, not just hot ones. That's why it's been called a 'poor man's altitude'. For an amateur who can't get to altitude, a structured heat block is one of the few low-cost ways to nudge aerobic performance even for a cool-weather target.",
+    keyTakeaways: [
+      "Heat training expands plasma (blood) volume — an aerobic adaptation, not just heat tolerance.",
+      "That adaptation carries over to cool-weather events, not only hot ones.",
+      "It's been called a 'poor man's altitude' — similar aerobic aim, far more accessible.",
+      "It still needs to be dosed properly; it's a deliberate block, not random sweating.",
+    ],
+    whoFor: [
+      {
+        label: "The rider targeting a cool event",
+        detail:
+          "Your goal race is in mild conditions and you wonder if heat work is pointless.",
+      },
+      {
+        label: "The amateur who can't reach altitude",
+        detail:
+          "You want an accessible aerobic edge without a mountain training camp.",
+      },
+    ],
+    roadmanView: [
+      "Most riders think heat training is only for hot races — sweat it out now so you don't blow up in a July sportive. That's a real benefit, but it undersells what's actually happening. The headline adaptation from a heat block is plasma volume expansion: your body responds to repeated heat stress by increasing the fluid portion of your blood, which improves cardiovascular efficiency. And crucially, that adaptation doesn't switch off when the weather cools.",
+      "This is why heat training has earned the nickname 'poor man's altitude'. Altitude camps aim to boost the oxygen-carrying side of your blood; heat work boosts the volume side, and both feed into the same goal of a more capable aerobic system. The podcast dug into exactly this with the breakdown of Remco's heat training and why it works — the gains are physiological, not just about tolerating temperature. For an amateur who can't disappear to a mountain for three weeks, a heat block done at home is one of the few genuinely accessible levers on aerobic performance.",
+      "The honest caveat is that it's a real training stress, not a free hack. As the World Tour coaches Anthony has spoken to treat it, heat work is a dosed block — a set number of structured sessions, properly fuelled and hydrated, with recovery built in. Done randomly it just cooks you. Done deliberately in the weeks before a target — hot or cool — it can hand you an aerobic edge most amateurs leave on the table.",
+    ],
+    expertEvidence: [
+      {
+        name: "Roadman Podcast",
+        credential: "On Remco's heat training and why it works",
+        insight:
+          "The core adaptation from heat training is plasma volume expansion — an increase in blood volume that improves aerobic function. Because it's a physiological change rather than mere heat tolerance, the benefit transfers to performance in cool conditions too.",
+        episodeSlug: "ep-2121-remcos-heat-training-why-it-works-how-to-gain-from-it",
+      },
+      {
+        name: "Dan Lorang",
+        credential: "Head of Performance, Red Bull–Bora–Hansgrohe",
+        insight:
+          "World Tour teams use heat blocks deliberately as an accessible aerobic stimulus, not just as preparation for hot races. Dosed correctly — structured sessions with proper fuelling and recovery — it's a legitimate tool for amateurs who can't access altitude.",
+        episodeSlug: "ep-2056-13-years-of-coaching-pros-what-amateurs-dont-know",
+        guestSlug: "dan-lorang",
+      },
+    ],
+    practicalApplication: [
+      {
+        title: "Run a structured block, not random sweating",
+        detail:
+          "Aim for roughly 5–10 heat sessions over a couple of weeks — controlled heat exposure on the bike, or a sauna protocol after riding — rather than occasional hot rides. The adaptation needs a consistent dose.",
+      },
+      {
+        title: "Time it before your target",
+        detail:
+          "Schedule the block in the weeks leading into your event. Plasma volume gains build over the block and then taper, so finish heat work a little before the race, not the day before.",
+      },
+      {
+        title: "Fuel and hydrate the sessions hard",
+        detail:
+          "Heat work is a real stress. Hydrate with electrolytes and fuel properly so you can complete the block without digging a recovery hole, and keep the rest of your week appropriately easy.",
+      },
+      {
+        title: "Keep your normal aerobic training underneath",
+        detail:
+          "Heat work supplements your training; it doesn't replace your Zone 2 base and key sessions. Layer the block on top of, not instead of, your usual structure.",
+      },
+    ],
+    commonMistakes: [
+      {
+        mistake: "Skipping heat training because your race is cool.",
+        fix:
+          "The plasma-volume adaptation benefits performance in any conditions. A cool target is not a reason to skip a heat block.",
+      },
+      {
+        mistake: "Treating heat training as random hot rides.",
+        fix:
+          "It needs a deliberate dose — a structured block of sessions. Occasional sweating doesn't drive the adaptation.",
+      },
+      {
+        mistake: "Under-fuelling and under-hydrating heat sessions.",
+        fix:
+          "Heat work is a real stress. Hydrate with electrolytes, fuel properly, and build in recovery so the block helps rather than breaks you.",
+      },
+    ],
+    faq: [
+      {
+        question: "Does heat training only help in hot races?",
+        answer:
+          "No. While it does improve heat tolerance, its main adaptation — plasma volume expansion — is an aerobic benefit that carries over to cool conditions too. That's why it's useful even when your target event is in mild weather.",
+      },
+      {
+        question: "Why is heat training called 'poor man's altitude'?",
+        answer:
+          "Because, like altitude training, it aims to improve your blood and aerobic system — altitude works on oxygen-carrying capacity, heat on plasma (blood) volume. Heat work is far more accessible, since you don't need a mountain or an altitude tent.",
+      },
+      {
+        question: "How long does a heat-training block take?",
+        answer:
+          "Typically a couple of weeks of consistent exposure — roughly 5–10 sessions, whether structured heat rides or post-ride sauna protocols. The adaptation needs a regular dose over that window rather than occasional hot sessions.",
+      },
+      {
+        question: "How long do the benefits of heat training last?",
+        answer:
+          "Plasma volume gains build over the block and then fade over a few weeks once heat exposure stops, so time the block to finish close to — but not on top of — your target event to carry the benefit into race day.",
+      },
+      {
+        question: "Can I heat train using a sauna instead of riding in heat?",
+        answer:
+          "Yes. Post-ride sauna sessions are a well-used way to apply heat stress and drive plasma volume adaptation, and they're convenient if you can't ride in heat. The same rules apply: do it as a consistent, dosed block and hydrate well.",
+      },
+      {
+        question: "Is heat training safe for amateurs?",
+        answer:
+          "Done sensibly, yes — but it's a genuine stress. Hydrate with electrolytes, fuel the sessions, build in recovery, and stop if you feel unwell. Beginners should ease into the dose rather than attempting a full pro protocol straight away.",
+      },
+    ],
+    relatedEpisodes: [
+      "ep-2121-remcos-heat-training-why-it-works-how-to-gain-from-it",
+      "ep-2056-13-years-of-coaching-pros-what-amateurs-dont-know",
+      "ep-29-untold-story-ofjonas-abrahamsens-pro-winter-training",
+    ],
+    relatedTopics: [
+      { label: "What is heat training?", href: "/answers/what-is-heat-training-cycling" },
+      { label: "Can heat training raise FTP?", href: "/answers/can-heat-training-raise-ftp" },
+      { label: "Altitude or heat training?", href: "/answers/altitude-or-heat-training" },
+      { label: "Does altitude training work?", href: "/answers/does-altitude-training-work" },
+      { label: "Cycling Training Plans — Topic Hub", href: "/topics/cycling-training-plans" },
+    ],
+    evidenceLevel: "moderate",
+    evidenceNote:
+      "Plasma-volume expansion from heat acclimation and its cross-over to cool conditions are established in exercise physiology; applied via Roadman podcast coverage and World Tour practice (Lorang).",
+    publishDate: "2026-05-26",
+    updatedDate: "2026-05-26",
+  },
 ];

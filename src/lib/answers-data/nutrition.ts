@@ -1893,4 +1893,699 @@ export const nutritionAnswers: AnswerPage[] = [
     publishDate: "2026-05-26",
     updatedDate: "2026-05-26",
   },
+
+  // ============================================================
+  // — HOW TO IMPROVE BODY COMPOSITION FOR CYCLING
+  // ============================================================
+  {
+    slug: "cycling-body-composition",
+    cluster: "nutrition",
+    question: "How Do I Improve My Body Composition for Cycling?",
+    seoTitle: "How to Improve Body Composition for Cycling",
+    seoDescription:
+      "Improve cycling body composition with a 200–300 kcal deficit, 1.8–2.2g/kg protein, and full fuelling on hard days. Why the scale lies and what to track instead at 0.3–0.5kg per week.",
+    pillar: "nutrition",
+    directAnswer:
+      "Improve body composition by losing fat while protecting muscle: run a small 200–300 kcal daily deficit, eat 1.8–2.2g of protein per kg, fully fuel hard sessions, and keep strength training. Target 0.3–0.5kg of fat loss per week, not faster. The goal is a better power-to-weight ratio, which means losing fat without surrendering the muscle that produces watts. Chasing scale weight alone costs power.",
+    keyTakeaways: [
+      "Aim to lose fat, not weight — power-to-weight improves only if muscle stays intact.",
+      "A 200–300 kcal daily deficit with 1.8–2.2g/kg protein protects muscle while fat drops.",
+      "Keep strength training and full fuelling on hard days through the whole process.",
+      "Target 0.3–0.5kg per week and track waist and power, not just the scale.",
+    ],
+    whoFor: [
+      {
+        label: "The rider whose scale weight is stuck but body has changed",
+        detail:
+          "You have been training and eating well, the scale barely moves, and you cannot tell whether you are gaining muscle, losing fat, or spinning your wheels.",
+      },
+      {
+        label: "The climber chasing a better power-to-weight ratio",
+        detail:
+          "You want to get leaner for the hills but are wary of the flat, powerless feeling that came with previous attempts to drop weight.",
+      },
+    ],
+    roadmanView: [
+      "Body composition is the question behind most weight questions riders actually ask. They say they want to lose weight, but what they want is to climb better — and that is power-to-weight, not bodyweight. Anthony has hammered this on the podcast: a kilo of fat lost improves your ratio, a kilo of muscle lost wrecks it. Same number on the scale, opposite outcome on the road.",
+      "Alex Larson laid out the framework clearly when she came on the show — the riders who get lean and stay lean share two non-negotiables: they never under-fuel the hard work, and they eat high protein every single day. The body composition changes come from the deficit being small and the protein being high, not from heroic restriction. Crash diets strip muscle alongside fat, and the muscle is the bit you spent years building.",
+      "The fixable mistake here is letting the bathroom scale run the show. It swings two kilos overnight on glycogen and water and tells you nothing about whether the change is fat or muscle. Track a weekly average, watch your waistband, and watch your power numbers on the same climbs. If watts hold while the waist shrinks, the composition is moving the right way — regardless of what the scale says on any given morning.",
+    ],
+    expertEvidence: [
+      {
+        name: "Alex Larson",
+        credential: "Sports dietitian specialising in body composition for cyclists",
+        insight:
+          "Lasting body composition change comes from a moderate deficit paired with high protein and consistent strength work — not aggressive restriction. Cyclists who keep power while leaning out protect protein at every meal and never under-fuel their hard sessions. The ones who lose power restrict everything uniformly and watch muscle disappear with the fat.",
+        episodeSlug: "ep-2088-how-cyclists-can-get-lean-stay-lean-forever-alex-larson",
+        guestSlug: "alex-larson",
+      },
+      {
+        name: "Dr Tim Podlogar",
+        credential: "Nutrition consultant to Tudor Pro Cycling",
+        insight:
+          "Pros manage body composition by periodising energy around training rather than cutting calories flat across the week. Fat loss is pursued in dedicated phases with full carbohydrate availability on key sessions, so the muscle and the adaptation that drive power are preserved while body fat comes down gradually.",
+        episodeSlug: "ep-34-how-pro-cyclists-get-so-lean-what-amateurs-don-t-know",
+        guestSlug: "tim-podlogar",
+      },
+    ],
+    practicalApplication: [
+      {
+        title: "Set a small deficit and a protein floor",
+        detail:
+          "Reduce daily intake by 200–300 kcal below maintenance, taken from easy days and off-bike meals. Set a protein floor of 1.8–2.2g/kg — for a 75kg rider, 135–165g per day, spread across four meals of 30–40g. Protein is what tells the body to keep muscle while the deficit works on fat.",
+      },
+      {
+        title: "Keep lifting twice a week through the cut",
+        detail:
+          "Strength training is the strongest signal to retain muscle in a deficit. Two sessions a week of compound lifts — squats, deadlifts, hinges — preserves the muscle that produces power. Drop strength work during a cut and you lose muscle faster than fat.",
+      },
+      {
+        title: "Track the right things, weekly",
+        detail:
+          "Weigh on the same morning each week and use the four-week trend, not daily readings. Add a waist measurement and note your power on a repeated climb or interval. Fat loss with power held is the win; if power drops, the deficit is too big or protein too low.",
+      },
+    ],
+    commonMistakes: [
+      {
+        mistake: "Judging progress by daily scale weight.",
+        fix:
+          "Daily swings of 1–2kg are water and glycogen, not fat. Use a weekly average over four weeks alongside waist and power, which actually reflect composition.",
+      },
+      {
+        mistake: "Cutting calories hard to speed up fat loss.",
+        fix:
+          "A deficit above 500 kcal pulls muscle and power down with the fat. Keep it at 200–300 kcal and accept 0.3–0.5kg per week — slower, but the loss is fat.",
+      },
+      {
+        mistake: "Dropping strength training while trying to get lean.",
+        fix:
+          "Lifting is the muscle-retention insurance during a cut. Keep two compound sessions a week so the deficit takes fat, not the muscle that makes your watts.",
+      },
+    ],
+    faq: [
+      {
+        question: "What body fat percentage should a cyclist aim for?",
+        answer:
+          "Competitive amateur men typically sit around 8–15% and women 16–24%, but there is no single target that suits everyone. Chasing an extreme low figure usually costs power, hormonal health, and immunity. Aim for the leanest point you can hold while fully fuelling training and keeping power stable — that is your useful body composition, not a number off a chart.",
+      },
+      {
+        question: "Can I build muscle and lose fat at the same time as a cyclist?",
+        answer:
+          "Yes, in specific conditions — newer riders, those returning from a break, or anyone carrying excess fat can recomposition for a period. Well-trained athletes near race weight find it much harder to do both at once. For most, the practical route is a fuelled build phase followed by a moderate fat-loss phase, rather than chasing both simultaneously.",
+      },
+      {
+        question: "Does losing fat always make me faster on climbs?",
+        answer:
+          "Only if power holds. Power-to-weight improves when fat comes off and watts stay the same. If you lose weight by under-fuelling and shed muscle, your power drops too and the ratio may not improve at all. That is why protein and full session fuelling matter as much as the deficit.",
+      },
+      {
+        question: "How long does it take to change body composition?",
+        answer:
+          "At a safe rate of 0.3–0.5kg of fat per week, a 3–4kg fat loss takes roughly 8–12 weeks. Meaningful composition change is a season-long process, not a four-week fix. Trying to rush it compresses the deficit and starts costing muscle and training quality.",
+      },
+      {
+        question: "Should masters cyclists approach body composition differently?",
+        answer:
+          "Yes. Over 40, muscle is harder to keep and easier to lose, so the protein and strength-training pieces become even more important. Push protein toward 2.0–2.4g/kg and treat strength sessions as non-negotiable. The deficit should be gentler too — older riders recover more slowly from aggressive restriction.",
+      },
+      {
+        question: "Do I need to count calories to change my body composition?",
+        answer:
+          "Not permanently. Tracking for two to four weeks is useful to learn your portions and confirm you are hitting protein and not under-fuelling. After that, many riders manage on consistent meal structure, a protein anchor at each meal, and the rule of fuelling hard sessions fully. The tracking phase is educational, not a life sentence.",
+      },
+    ],
+    relatedEpisodes: [
+      "ep-2088-how-cyclists-can-get-lean-stay-lean-forever-alex-larson",
+      "ep-34-how-pro-cyclists-get-so-lean-what-amateurs-don-t-know",
+      "ep-2044-world-tour-nutritionist-we-got-weight-loss-wrong",
+    ],
+    relatedTopics: [
+      { label: "Cycling Weight Loss — Topic Hub", href: "/topics/cycling-weight-loss" },
+      { label: "Body Composition for Cyclists", href: "/blog/body-composition-cyclists-lighter-faster-myth" },
+      { label: "How to lose weight without losing power", href: "/answers/lose-weight-without-losing-power" },
+      { label: "Race Weight Calculator", href: "/tools/race-weight" },
+      { label: "Weight Loss vs FTP Gain", href: "/compare/weight-loss-vs-ftp-gain" },
+    ],
+    evidenceLevel: "strong",
+    evidenceNote:
+      "Muscle preservation during caloric restriction via high protein and resistance training is well established; cycling application corroborated by Alex Larson and Dr Tim Podlogar.",
+    publishDate: "2026-05-26",
+    updatedDate: "2026-05-26",
+  },
+
+  // ============================================================
+  // — LOW-CARB VS HIGH-CARB FOR CYCLING
+  // ============================================================
+  {
+    slug: "low-carb-vs-high-carb-cycling",
+    cluster: "nutrition",
+    question: "Should I Eat Low-Carb or High-Carb for Cycling?",
+    seoTitle: "Low-Carb vs High-Carb for Cycling: What Works",
+    seoDescription:
+      "High-carb wins for cycling performance: 5–12g/kg daily and 60–90g/hr in races. Why low-carb suits only short easy work, and the evidence on carbs vs fat adaptation for cyclists.",
+    pillar: "nutrition",
+    directAnswer:
+      "Eat high-carb if you care about cycling performance. Carbohydrate fuels every effort above easy pace, and the research is consistent: high-carb riders produce more power in hard and long efforts than fat-adapted ones. Target 5–12g of carbs per kg daily, scaled to training load, plus 60–90g per hour in racing. Low-carb suits only short, genuinely easy sessions — it cannot fuel intensity.",
+    keyTakeaways: [
+      "Carbohydrate is the limiter for any effort above easy pace — high-carb wins on performance.",
+      "Periodise daily carbs from 5g/kg on easy days to 10–12g/kg on hard and race days.",
+      "Fat adaptation increases fat burning but reduces high-intensity power output.",
+      "Low-carb has a narrow use case: short, easy sessions only, never the hard work.",
+    ],
+    whoFor: [
+      {
+        label: "The rider tempted by low-carb for weight loss",
+        detail:
+          "You have heard low-carb burns more fat and are wondering whether to cut carbs to get leaner without wrecking your riding.",
+      },
+      {
+        label: "The cyclist confused by conflicting online advice",
+        detail:
+          "One source says carbs are king, another says fat adaptation is the secret, and you cannot tell which applies to your training.",
+      },
+    ],
+    roadmanView: [
+      "This debate is mostly settled at the top of the sport, and it went the way of carbohydrate. Anthony has had World Tour nutritionists on the podcast describe how the pro peloton went the opposite direction to the low-carb trend — fuelling rates climbed from 60g an hour to 90, 120, even Ben Healy's reported 140g an hour. You do not push fuelling that hard if carbs are the enemy. They are the fuel that lets the best riders in the world hold the power they hold.",
+      "The low-carb case rests on a real fact: train your body without carbohydrate and it gets better at burning fat. The problem is that fat is a slower fuel. It cannot release energy fast enough for threshold efforts, sprints, or hard climbs. So you become superbly efficient at the intensity that does not matter and worse at the intensities that decide races. Dr Sam Impey has made this point plainly — you train one energy system while competing on another.",
+      "Where it gets useful is periodisation, not picking a team. The smart move is high-carb when it counts and lower-carb when it does not — full carbohydrate on hard and long days, leaner on easy and rest days. That is fuel for the work required, and it gives you the metabolic flexibility benefits people chase with low-carb without paying the performance tax on the days that actually build fitness.",
+    ],
+    expertEvidence: [
+      {
+        name: "Dr Sam Impey",
+        credential: "World Tour nutritionist",
+        insight:
+          "Carbohydrate availability is the single biggest dietary lever on high-intensity performance. Fat-adaptation strategies reliably increase fat oxidation but blunt the ability to produce power at race intensities, because fat simply cannot be metabolised fast enough. For any rider who trains or races hard, high carbohydrate availability around the key work is non-negotiable.",
+        episodeSlug: "ep-2035-world-tour-nutritionist-we-got-fuelling-wrong",
+        guestSlug: "sam-impey",
+      },
+      {
+        name: "Dr Tim Podlogar",
+        credential: "Nutrition consultant to Tudor Pro Cycling",
+        insight:
+          "The trajectory of professional fuelling has moved firmly toward higher carbohydrate intake, not lower. Riders now train their guts to absorb 90g an hour and beyond because more available carbohydrate translates directly into sustained power. Low-carb approaches are reserved, at most, for low-intensity sessions where fat oxidation is the deliberate target.",
+        episodeSlug: "ep-3-is-losing-weight-actually-making-you-slower",
+        guestSlug: "tim-podlogar",
+      },
+    ],
+    practicalApplication: [
+      {
+        title: "Periodise daily carbs to the work",
+        detail:
+          "Set carbohydrate by the day's demand: 5–6g/kg on easy and rest days, 7–8g/kg on moderate days, 10–12g/kg on hard sessions and race days. For a 75kg rider that ranges from roughly 375g to 900g. The total follows the training, not a fixed daily rule.",
+      },
+      {
+        title: "Fuel hard sessions and races with 60–90g per hour",
+        detail:
+          "Any session over 90 minutes or with hard intervals gets in-ride carbohydrate at 60–90g per hour using a glucose-fructose mix. This is the practical end of high-carb — keeping blood glucose and glycogen available so power holds to the finish.",
+      },
+      {
+        title: "Use lower-carb only on short, easy rides",
+        detail:
+          "If you want the fat-oxidation stimulus, restrict carbs only on a short, genuinely easy zone 2 ride — under 90 minutes, fully conversational. Keep carbs high everywhere else. This captures the metabolic upside of low-carb without sacrificing the hard-day power that builds fitness.",
+      },
+    ],
+    commonMistakes: [
+      {
+        mistake: "Going low-carb across the board to lose weight.",
+        fix:
+          "Weight loss is driven by total calories and protein, not carb cutting. Stay high-carb around training, run a small deficit elsewhere, and you lose fat without losing power.",
+      },
+      {
+        mistake: "Doing hard intervals on a low-carb diet.",
+        fix:
+          "Fat cannot fuel high intensity fast enough. Carb up before and during hard sessions so the power and the adaptation are there.",
+      },
+      {
+        mistake: "Eating the same high carbs every day regardless of training.",
+        fix:
+          "Periodise. Full carbs on hard and long days, leaner on easy and rest days — fuel for the work required rather than a flat daily number.",
+      },
+    ],
+    faq: [
+      {
+        question: "Is low-carb ever better than high-carb for cycling?",
+        answer:
+          "Only for a narrow purpose: short, easy sessions where you want to nudge fat oxidation up. For anything hard, long, or competitive, high carbohydrate availability produces more power and better adaptation. Low-carb does not improve race performance — it improves fat burning at intensities that do not decide races.",
+      },
+      {
+        question: "Will eating high-carb make me gain weight?",
+        answer:
+          "Not if total calories are controlled. Carbohydrate fuels training and refills glycogen; it only adds fat if you eat more energy than you burn. Plenty of lean pros eat very high carb because they periodise it around heavy training loads. Manage total calories and protein, and high carb intake supports performance without adding fat.",
+      },
+      {
+        question: "What is fat adaptation and does it work for cyclists?",
+        answer:
+          "Fat adaptation is training the body to rely more on fat for fuel by chronically restricting carbohydrate. It reliably increases fat oxidation, but research shows it impairs exercise economy at high intensity and reduces the ability to use carbohydrate when you need it. For performance-focused cyclists, the trade-off is a net negative.",
+      },
+      {
+        question: "How many carbs should I eat per day for cycling?",
+        answer:
+          "Between 5 and 12g per kg of bodyweight, scaled to the day's training. Easy and rest days sit at the low end, hard sessions and race days at the high end. A 75kg rider might eat 375g on a rest day and 750–900g before a big event. The total tracks the work, not a fixed figure.",
+      },
+      {
+        question: "Can I cycle on a ketogenic diet?",
+        answer:
+          "You can ride easy on keto, but high-intensity and prolonged hard efforts suffer because the body cannot access carbohydrate quickly when it matters. Studies on keto in endurance athletes consistently show reduced economy and power at race intensities. For recreational easy riding it is workable; for performance it is a handicap.",
+      },
+      {
+        question: "Does low-carb training improve metabolic flexibility?",
+        answer:
+          "Occasional low-carb easy sessions can improve the body's ability to use fat at low intensities. But you do not need a full low-carb diet for this — periodising a few easy rides with low carbohydrate availability captures most of the benefit while keeping hard days fully fuelled, which protects performance.",
+      },
+    ],
+    relatedEpisodes: [
+      "ep-2035-world-tour-nutritionist-we-got-fuelling-wrong",
+      "ep-3-is-losing-weight-actually-making-you-slower",
+      "ep-2031-ben-healy-s-insane-fueling-strategy-revealed",
+    ],
+    relatedTopics: [
+      { label: "Cycling Nutrition — Topic Hub", href: "/topics/cycling-nutrition" },
+      { label: "Fuelling for Cycling: What World Tour Nutritionists Recommend", href: "/blog/cycling-nutrition-world-tour-nutritionists" },
+      { label: "How many carbs per hour for cycling?", href: "/answers/carbs-per-hour-cycling" },
+      { label: "Carbs vs Fat Adaptation", href: "/compare/carbs-vs-fat-adaptation" },
+      { label: "Fuelling Calculator", href: "/tools/fuelling" },
+    ],
+    evidenceLevel: "strong",
+    evidenceNote:
+      "The performance advantage of high carbohydrate availability over fat adaptation at race intensities is well established in the literature; corroborated by Dr Sam Impey and Dr Tim Podlogar.",
+    publishDate: "2026-05-26",
+    updatedDate: "2026-05-26",
+  },
+
+  // ============================================================
+  // — HOW TO FUEL A HARD INTERVAL SESSION
+  // ============================================================
+  {
+    slug: "fuelling-interval-sessions",
+    cluster: "nutrition",
+    question: "How Do I Fuel a Hard Interval Session?",
+    seoTitle: "How to Fuel a Hard Interval Session on the Bike",
+    seoDescription:
+      "Fuel hard intervals fully: 1–2g/kg carbs in the 1–3 hours before, then 60g per hour during sessions over 75 minutes. Why under-fuelling intervals blunts the adaptation you trained for.",
+    pillar: "nutrition",
+    directAnswer:
+      "Fuel hard interval sessions fully — they are not the place to save calories. Eat 1–2g of carbs per kg in the 1–3 hours before, and take 60g per hour during any session lasting over 75 minutes. Carbohydrate availability is what lets you hit target power on the work intervals, and the quality of those intervals is what drives the adaptation. Under-fuelling intervals wastes the session.",
+    keyTakeaways: [
+      "Always fuel hard intervals fully — the deficit belongs on easy days, never here.",
+      "Eat 1–2g/kg of carbs 1–3 hours before the session to top up glycogen.",
+      "Take 60g of carbs per hour during interval sessions over 75 minutes.",
+      "Quality intervals drive the adaptation; under-fuelling lowers power and wastes the work.",
+    ],
+    whoFor: [
+      {
+        label: "The rider whose intervals fall apart in the final reps",
+        detail:
+          "You start strong but cannot hold target power by the last two or three intervals, and you suspect fuelling rather than fitness.",
+      },
+      {
+        label: "The weight-conscious cyclist riding intervals fasted",
+        detail:
+          "You skip pre-session food to keep calories down and wonder why your hard sessions feel harder than they should.",
+      },
+    ],
+    roadmanView: [
+      "Intervals are where fitness is built, and they are the worst possible place to be on empty. Anthony's own under-versus-optimal fuelling experiment made this concrete — when he ran the same sessions under-fuelled, the power numbers were worse and the sessions felt worse. The adaptation you are chasing comes from the quality of the work intervals, so half-fuelling them is sabotaging the very thing you got on the bike to do.",
+      "The mistake usually comes from a good intention gone wrong: trying to lose weight by riding hard sessions fasted. It backfires twice. You hit lower power, so the training stimulus shrinks, and you tend to overeat later because you are running on empty. Dr Sam Impey has made the case repeatedly — fuel for the work required means the hard work gets the fuel, and the deficit, if you want one, comes from the easy days instead.",
+      "Get the timing right and intervals transform. A carbohydrate-rich meal one to three hours before tops the tank, a small top-up just before sharpens the start, and 60g an hour during anything over about 75 minutes keeps the last reps as strong as the first. The good news is this is simple and repeatable — a bowl of oats and a banana beforehand, a gel or two during, and your hardest sessions land the way they are supposed to.",
+    ],
+    expertEvidence: [
+      {
+        name: "Dr Sam Impey",
+        credential: "World Tour nutritionist",
+        insight:
+          "High-intensity sessions are the priority for carbohydrate fuelling, not the place to restrict. Glycogen availability directly limits the power you can produce in intervals, and the quality of those efforts determines the adaptation. Riders should arrive at hard sessions with topped-up stores and fuel through longer ones, reserving any energy restriction for low-intensity days.",
+        episodeSlug: "ep-2035-world-tour-nutritionist-we-got-fuelling-wrong",
+        guestSlug: "sam-impey",
+      },
+      {
+        name: "Uri Carlson",
+        credential: "Registered dietitian nutritionist; fuelling specialist",
+        insight:
+          "A controlled comparison of under-fuelled, optimally fuelled, and over-fuelled riding showed the under-fuelled sessions consistently produced the lowest power and felt the hardest. For interval work specifically, arriving and riding fuelled is the difference between hitting target watts on every rep and fading through the set.",
+        episodeSlug: "ep-36-i-tried-under-over-optimal-fuelling-heres-what-no-one-tells",
+        guestSlug: "uri-carlson",
+      },
+    ],
+    practicalApplication: [
+      {
+        title: "Top up carbs 1–3 hours before",
+        detail:
+          "Eat 1–2g/kg of carbohydrate in the window before the session — for a 75kg rider, 75–150g. Oats and banana, toast and honey, or rice the night before plus a light pre-ride snack. Keep it low in fat and fibre so it sits easily before hard efforts.",
+      },
+      {
+        title: "Add a fast carb just before the first interval",
+        detail:
+          "A gel or a few chews 10–15 minutes before the work starts sharpens the opening efforts, especially for shorter morning sessions where you could not eat a full meal. It tops blood glucose without sitting heavy in the stomach.",
+      },
+      {
+        title: "Fuel through sessions over 75 minutes at 60g/hr",
+        detail:
+          "For longer interval blocks — over-unders, sweet spot sets, or VO2 work with a long warm-up and cool-down — take 60g of carbohydrate per hour as drink mix, gels, or chews. This keeps the final intervals as strong as the first rather than fading on fumes.",
+      },
+    ],
+    commonMistakes: [
+      {
+        mistake: "Riding hard intervals fasted to save calories.",
+        fix:
+          "Under-fuelling lowers interval power and shrinks the adaptation. Fuel the hard session fully and take any deficit from easy days and off-bike meals.",
+      },
+      {
+        mistake: "Eating nothing during long interval sessions.",
+        fix:
+          "Anything over 75 minutes needs 60g of carbs per hour. Without it, the last intervals collapse and the most valuable part of the session is lost.",
+      },
+      {
+        mistake: "Eating a high-fat, high-fibre meal right before intervals.",
+        fix:
+          "Heavy, fatty, or fibrous food sits in the gut and causes discomfort at intensity. Choose low-fibre, low-fat carbs in the pre-session window.",
+      },
+    ],
+    faq: [
+      {
+        question: "Should I do intervals fasted to burn more fat?",
+        answer:
+          "No. Intervals are high-intensity work that runs on carbohydrate, not fat, so fasting them just lowers your power and the quality of the adaptation. Fat burning at low intensity does not help your interval session. Save any fasted work for short, easy rides and fuel the hard sessions fully.",
+      },
+      {
+        question: "What should I eat before an interval session?",
+        answer:
+          "A carbohydrate-rich, low-fat, low-fibre meal 1–3 hours before — oats and banana, toast and honey, or rice and a light protein source. For a 75kg rider, aim for 75–150g of carbs. If you are short on time, a banana and a gel 30 minutes out is enough to top up.",
+      },
+      {
+        question: "Do I need carbs during a one-hour interval session?",
+        answer:
+          "If you arrived well-fuelled, a single hour of intervals can be completed on stored glycogen alone. A gel partway through still helps maintain power and sharpens the back end. For anything beyond about 75 minutes total, in-ride carbohydrate at 60g per hour becomes worthwhile rather than optional.",
+      },
+      {
+        question: "Can I drink my carbs during intervals instead of eating?",
+        answer:
+          "Yes — a carbohydrate drink mix is often easier than solid food during hard efforts when breathing is heavy and chewing is awkward. A 60g-per-hour drink in your bottle covers both fuelling and some hydration. Many riders find liquid carbs sit better than gels or bars at high intensity.",
+      },
+      {
+        question: "What if I train intervals first thing in the morning?",
+        answer:
+          "You do not have time for a full meal to digest, so prioritise a fast, easy carbohydrate hit — a banana and a gel, a slice of toast with honey, or a small carbohydrate drink. Even 30–50g of quick carbs before an early session meaningfully improves the power you can hold compared with riding on an empty overnight tank.",
+      },
+      {
+        question: "Does under-fuelling intervals affect recovery too?",
+        answer:
+          "Yes. Riding intervals with low glycogen increases muscle protein breakdown and leaves you starting recovery from a deeper hole, which slows adaptation and can compromise the next day's session. Fuelling the work properly protects both the quality of the session and how well you bounce back from it.",
+      },
+    ],
+    relatedEpisodes: [
+      "ep-36-i-tried-under-over-optimal-fuelling-heres-what-no-one-tells",
+      "ep-2035-world-tour-nutritionist-we-got-fuelling-wrong",
+      "ep-2031-ben-healy-s-insane-fueling-strategy-revealed",
+    ],
+    relatedTopics: [
+      { label: "Cycling Nutrition — Topic Hub", href: "/topics/cycling-nutrition" },
+      { label: "In-Ride Nutrition Guide", href: "/blog/cycling-in-ride-nutrition-guide" },
+      { label: "How many carbs per hour for cycling?", href: "/answers/carbs-per-hour-cycling" },
+      { label: "Fuelled vs Fasted Sessions", href: "/compare/fueled-vs-fasted-sessions" },
+      { label: "Fuelling Calculator", href: "/tools/fuelling" },
+    ],
+    evidenceLevel: "strong",
+    evidenceNote:
+      "Carbohydrate availability as a determinant of high-intensity performance and adaptation is well established; corroborated by Dr Sam Impey and the Roadman fuelling experiments with Uri Carlson.",
+    publishDate: "2026-05-26",
+    updatedDate: "2026-05-26",
+  },
+
+  // ============================================================
+  // — SPORTS NUTRITION PRODUCTS VS REAL FOOD
+  // ============================================================
+  {
+    slug: "sports-nutrition-vs-real-food",
+    cluster: "nutrition",
+    question: "Do Cyclists Need Sports Nutrition Products or Real Food?",
+    seoTitle: "Sports Nutrition Products vs Real Food for Cycling",
+    seoDescription:
+      "Cyclists need both: real food for daily nutrition and most rides, sports products only above 60g/hr or in racing. How to fuel well for far less, and when gels actually earn their place.",
+    pillar: "nutrition",
+    directAnswer:
+      "Cyclists need both, but most riders over-rely on products. Real food covers daily nutrition and the majority of rides perfectly well — rice cakes, bananas, sandwiches all fuel fine up to around 60g per hour. Engineered products earn their place above 60g per hour, in racing, and when convenience or a precise glucose-fructose ratio matters. For everyday training, real food is cheaper and works just as well.",
+    keyTakeaways: [
+      "Real food fuels most training rides perfectly well up to around 60g per hour.",
+      "Sports products earn their place above 60g/hr, in racing, and when convenience counts.",
+      "Engineered gels and drinks offer precise glucose-fructose ratios and zero prep, not magic.",
+      "Most amateurs spend heavily on products they do not need for everyday training.",
+    ],
+    whoFor: [
+      {
+        label: "The rider spending a fortune on gels and drink mix",
+        detail:
+          "Your training fuelling bill is climbing and you are starting to wonder whether you actually need the branded products for every ride.",
+      },
+      {
+        label: "The cyclist building a race-day fuelling plan",
+        detail:
+          "You want to know when real food is enough and when high-carb sports products genuinely earn their place.",
+      },
+    ],
+    roadmanView: [
+      "The sports nutrition industry has done a brilliant job convincing amateurs that fuelling means buying things. It does not, for the most part. Alan Murchison — a Michelin-star chef who cooked for professional teams — came on the podcast and made the point that pro fuelling is built on real food far more than the gel adverts suggest. Rice is the staple. Rice cakes, sandwiches, bananas, dates: that is what fills a lot of pockets at the highest level, not a bottomless supply of branded gels.",
+      "Where products genuinely earn their place is at the sharp end. Once you are fuelling above 60g an hour, or racing, or doing a session where you cannot afford a heavy stomach, the engineering matters — a precise glucose-fructose ratio, fast absorption, easy to carry, no prep. That is a real advantage in those settings, and Anthony does not pretend otherwise. The mistake is extending that race-day logic to every easy three-hour ride, where a sandwich would do the same job for a fraction of the cost.",
+      "The honest framing is horses for courses. Build your everyday training fuelling on real food and save the products for when the situation actually calls for them — high intake, racing, or convenience under pressure. Your gut gets trained on real food just as well at moderate intake, your wallet survives, and you are not dependent on a product you forgot to pack. The fixable habit is treating gels as the default rather than the specialist tool they are.",
+    ],
+    expertEvidence: [
+      {
+        name: "Alan Murchison",
+        credential: "Michelin-star chef and elite sports nutritionist",
+        insight:
+          "Professional fuelling is built far more on real food than the supplement industry implies. Rice, rice cakes, and simple homemade options form the backbone of what riders eat day to day and on many training rides. Engineered products have their place at high intake and in racing, but real food does most of the work and does it well.",
+        episodeSlug: "what-pros-actually-eat-to-win-michelin-chef-alan-murchison",
+        guestSlug: "alan-murchison",
+      },
+      {
+        name: "Dr Sam Impey",
+        credential: "World Tour nutritionist",
+        insight:
+          "The case for sports products strengthens as intake rises. Below about 60g per hour, real food fuels well and is well tolerated. Above that, the precise glucose-to-fructose ratios and rapid absorption of engineered products become genuinely useful for hitting high carbohydrate targets without gut distress — which is where they justify their cost.",
+        episodeSlug: "ep-2035-world-tour-nutritionist-we-got-fuelling-wrong",
+        guestSlug: "sam-impey",
+      },
+    ],
+    practicalApplication: [
+      {
+        title: "Fuel everyday rides with real food",
+        detail:
+          "For training rides up to around 60g/hr, use real food: bananas, rice cakes, dates, jam sandwiches, malt loaf, or homemade oat bars. It is cheaper, tolerated well at moderate intake, and trains your gut just as effectively as branded products at these rates.",
+      },
+      {
+        title: "Reach for products above 60g/hr and on race day",
+        detail:
+          "When targeting 70–90g per hour or more, or racing where a heavy stomach is not an option, use a 2:1 glucose-fructose drink mix, gels, or chews. The engineered ratio and fast absorption are what make high intake achievable without GI trouble.",
+      },
+      {
+        title: "Keep electrolytes and convenience in mind",
+        detail:
+          "On long hot rides, a sports drink that combines carbohydrate and sodium can simplify fuelling and hydration in one bottle. Use products where the convenience genuinely helps — early morning sessions, races, or hot days — rather than as the automatic default.",
+      },
+    ],
+    commonMistakes: [
+      {
+        mistake: "Using gels and drink mix for every easy training ride.",
+        fix:
+          "Real food fuels moderate-intake rides just as well for a fraction of the cost. Save the products for high intake, racing, and convenience.",
+      },
+      {
+        mistake: "Assuming sports products are nutritionally superior to food.",
+        fix:
+          "They are not — they are faster and more precise at high intake. For daily nutrition and most rides, whole food provides the same fuel plus micronutrients.",
+      },
+      {
+        mistake: "Trying to hit 90g/hr on real food alone.",
+        fix:
+          "The volume of food needed at very high intake is hard to stomach. Above 60g/hr, lean on engineered products with a 2:1 glucose-fructose ratio.",
+      },
+    ],
+    faq: [
+      {
+        question: "Are energy gels better than real food for cycling?",
+        answer:
+          "Not better, just different. Gels are faster to absorb, easy to carry, and offer precise carbohydrate ratios, which matters at high intake and in racing. Real food provides the same usable carbohydrate at moderate rates plus micronutrients and better satiety. For most training rides, real food is the smarter default; gels are the specialist tool.",
+      },
+      {
+        question: "Can I fuel a long ride entirely on real food?",
+        answer:
+          "Yes, up to around 60g of carbohydrate per hour, which covers most training and many sportives. Bananas, rice cakes, sandwiches, and dates do the job well. Above 60g/hr the volume of food becomes hard to eat on the bike, so high-intake racing usually mixes real food with gels and drinks.",
+      },
+      {
+        question: "What sports nutrition products are actually worth buying?",
+        answer:
+          "The ones with evidence and a clear use: a 2:1 glucose-fructose carbohydrate drink or gels for high-intake fuelling, electrolyte tabs for long hot rides, and protein powder if you struggle to hit daily targets from food. Most other products — fat burners, exotic recovery blends, branded superfoods — add cost without adding much.",
+      },
+      {
+        question: "Are homemade rice cakes as good as commercial bars?",
+        answer:
+          "For moderate-intake fuelling, yes, and often better tolerated. Homemade rice cakes are cheap, easy to digest, and a staple at pro level. Commercial bars win on convenience and shelf life but offer no nutritional advantage at the carbohydrate rates most amateurs ride at.",
+      },
+      {
+        question: "Do I need a recovery shake or can I just eat a meal?",
+        answer:
+          "A normal meal with 20–40g of protein and carbohydrate within the hour after a hard ride works just as well as a shake. Shakes are useful when appetite is suppressed post-ride or time is tight, but they are a convenience tool, not a requirement. Real food covers recovery for most riders.",
+      },
+      {
+        question: "Why do pros use sports products if real food works?",
+        answer:
+          "Because pros routinely fuel at 90g per hour or more in racing, where engineered products are the practical way to hit those rates without GI distress. They also eat plenty of real food — rice cakes and sandwiches are pro staples. The products solve a high-intake, race-specific problem that most amateur training does not present.",
+      },
+    ],
+    relatedEpisodes: [
+      "what-pros-actually-eat-to-win-michelin-chef-alan-murchison",
+      "ep-2035-world-tour-nutritionist-we-got-fuelling-wrong",
+      "ep-2092-sports-nutritionist-the-one-food-thats-slowing-us-down",
+    ],
+    relatedTopics: [
+      { label: "Cycling Nutrition — Topic Hub", href: "/topics/cycling-nutrition" },
+      { label: "What a Michelin-Star Chef Knows About Cycling Nutrition", href: "/blog/alan-murchison-michelin-star-chef-cycling-nutrition" },
+      { label: "How many carbs per hour for cycling?", href: "/answers/carbs-per-hour-cycling" },
+      { label: "How to train your gut for cycling", href: "/answers/how-to-train-your-gut-cycling" },
+      { label: "Fuelling Calculator", href: "/tools/fuelling" },
+    ],
+    evidenceLevel: "moderate",
+    evidenceNote:
+      "The real-food-versus-product balance reflects sports nutrition consensus that food suffices at moderate intake while engineered products aid high-rate fuelling; corroborated by Alan Murchison and Dr Sam Impey.",
+    publishDate: "2026-05-26",
+    updatedDate: "2026-05-26",
+  },
+
+  // ============================================================
+  // — HOW TO EAT ON A REST DAY
+  // ============================================================
+  {
+    slug: "cycling-rest-day-nutrition",
+    cluster: "nutrition",
+    question: "How Should I Eat on a Rest Day?",
+    seoTitle: "How to Eat on a Cycling Rest Day",
+    seoDescription:
+      "On a cycling rest day, lower carbs to 3–5g/kg but keep protein high at 1.8–2.2g/kg. Why you should not slash calories on rest days and how to fuel recovery without overeating.",
+    pillar: "nutrition",
+    directAnswer:
+      "On a rest day, lower carbohydrate to 3–5g of carbs per kg since you are not burning training fuel, but keep protein high at 1.8–2.2g per kg because recovery and muscle repair continue. Do not slash calories to near zero — rest days are when adaptation happens, and under-eating undermines it. Reduce carbs sensibly, hold protein, and eat enough to support recovery.",
+    keyTakeaways: [
+      "Lower carbs to 3–5g/kg on rest days — you are not fuelling training, but recovery continues.",
+      "Keep protein high at 1.8–2.2g/kg; muscle repair does not take a day off.",
+      "Do not crash calories — adaptation happens on rest days and needs energy.",
+      "Use rest days for nutrient-dense whole foods, vegetables, and a protein anchor at each meal.",
+    ],
+    whoFor: [
+      {
+        label: "The rider who either over-eats or starves on rest days",
+        detail:
+          "You swing between treating rest days as cheat days and slashing calories to compensate for not riding, and neither feels right.",
+      },
+      {
+        label: "The cyclist trying to lose fat without losing recovery",
+        detail:
+          "You want rest days to support a small deficit without compromising the recovery and adaptation those days are for.",
+      },
+    ],
+    roadmanView: [
+      "Rest days confuse riders more than any other. Two instincts pull in opposite directions: reward yourself because you trained hard all week, or punish the lack of riding by cutting food to the bone. Both are wrong. A rest day is not a day off from nutrition — it is the day the adaptation from all that training actually lands, and adaptation needs energy and protein to happen.",
+      "The principle is the same fuel-for-the-work-required logic Anthony keeps coming back to on the podcast, just applied in reverse. No training means less carbohydrate is required, so you ease it down to 3–5g/kg rather than the 8–12 you might eat on a hard day. But protein does not drop, because muscle repair runs around the clock regardless of whether you rode. Dr Michael Ormsbee's work on protein and overnight recovery applies just as much on a Tuesday off as on a training day — arguably more, since rest is when the repair work gets done.",
+      "The fixable mistake is treating rest-day calories as something to claw back. Crashing your intake on rest days blunts the recovery you took the day off to get, and it usually backfires anyway — you end up ravenous and overeating that evening. Lower the carbs, hold the protein, lean into nutrient-dense whole foods and vegetables, and eat enough to recover. If fat loss is the goal, the rest-day deficit should be gentle, not a self-imposed famine.",
+    ],
+    expertEvidence: [
+      {
+        name: "Dr Michael Ormsbee",
+        credential: "Sports nutrition researcher, Florida State University",
+        insight:
+          "Muscle repair and protein synthesis continue on non-training days, so protein intake should stay high regardless of whether you rode. Maintaining 1.8–2.2g/kg and including a protein feeding before sleep supports the recovery and adaptation that rest days are designed to deliver — dropping protein on rest days undercuts the whole purpose of the rest.",
+        episodeSlug: "ep-27-protein-before-bed-builds-cyclists-muscles-faster-new-study",
+        guestSlug: "michael-ormsbee",
+      },
+      {
+        name: "Dr David Dunne",
+        credential: "Performance nutritionist to INEOS Grenadiers, EF Education, and Uno-X",
+        insight:
+          "Energy and carbohydrate should be periodised to the day's demand, which means rest days carry lower carbohydrate than training days — but not slashed calories. The pro approach matches intake to the work while protecting recovery, so rest days reduce carbs sensibly while keeping protein and overall energy high enough to support adaptation.",
+        episodeSlug: "ep-2044-world-tour-nutritionist-we-got-weight-loss-wrong",
+        guestSlug: "david-dunne",
+      },
+    ],
+    practicalApplication: [
+      {
+        title: "Drop carbs to 3–5g/kg, not to zero",
+        detail:
+          "With no training to fuel, reduce carbohydrate to 3–5g/kg — for a 75kg rider, roughly 225–375g across the day. Pull back on the in-ride fuelling carbs and the big plates of rice and pasta, but keep some carbohydrate in every meal to support recovery.",
+      },
+      {
+        title: "Hold protein at 1.8–2.2g/kg",
+        detail:
+          "Keep protein exactly where it is on training days — 135–165g for a 75kg rider, spread across four meals of 30–40g. Anchor each meal with eggs, Greek yoghurt, fish, chicken, or legumes, and keep the bedtime protein hit if you use one.",
+      },
+      {
+        title: "Lean into nutrient-dense whole foods",
+        detail:
+          "Use the lower carbohydrate budget on rest days to prioritise vegetables, fruit, and whole foods that may get crowded out by training-day fuelling. It is a good day to eat more colour on the plate and support recovery with micronutrients rather than empty calories.",
+      },
+    ],
+    commonMistakes: [
+      {
+        mistake: "Slashing calories to near zero because you did not ride.",
+        fix:
+          "Adaptation and recovery need energy. Lower carbs sensibly to 3–5g/kg but keep total intake high enough to recover, and hold protein steady.",
+      },
+      {
+        mistake: "Dropping protein on rest days alongside carbs.",
+        fix:
+          "Muscle repair runs every day. Keep protein at 1.8–2.2g/kg on rest days exactly as on training days — it is the recovery driver, not training fuel.",
+      },
+      {
+        mistake: "Treating the rest day as a cheat day with no structure.",
+        fix:
+          "Reward eating that ignores protein and overshoots calories undermines both recovery and any fat-loss goal. Lower carbs, hold protein, eat whole foods.",
+      },
+    ],
+    faq: [
+      {
+        question: "Should I eat less on a cycling rest day?",
+        answer:
+          "Slightly — mainly by lowering carbohydrate, since you are not fuelling training. Drop to around 3–5g/kg of carbs but keep protein high and total energy adequate for recovery. Crashing calories on rest days blunts the adaptation you took the day off to achieve, and usually triggers overeating later anyway.",
+      },
+      {
+        question: "How many carbs should I eat on a rest day?",
+        answer:
+          "Around 3–5g per kg of bodyweight, compared with 8–12g/kg on a hard training day. For a 75kg rider that is roughly 225–375g of carbohydrate. Keep some carbohydrate in every meal to support glycogen replenishment and recovery; you are reducing it, not eliminating it.",
+      },
+      {
+        question: "Do I still need high protein on a rest day?",
+        answer:
+          "Yes, just as much as on training days. Muscle repair and protein synthesis continue around the clock, and rest days are when much of that recovery happens. Hold protein at 1.8–2.2g/kg, spread across the day, including a feeding before sleep if you use one.",
+      },
+      {
+        question: "Is a rest day a good time to run a calorie deficit?",
+        answer:
+          "It is a sensible day to apply a gentle deficit, since carbohydrate needs are lower. Reduce carbs while keeping protein high and the deficit modest — around 200–300 kcal. A harsh rest-day deficit compromises recovery, so keep it light and let training days stay fully fuelled.",
+      },
+      {
+        question: "Can I have a treat meal on a rest day?",
+        answer:
+          "A treat meal fits fine if the rest of the day stays structured — protein at each meal, vegetables, and overall calories in check. The problem is when the whole day becomes unstructured eating that overshoots energy and skimps protein. Enjoy the meal, but keep the day's protein and balance intact.",
+      },
+      {
+        question: "Should masters cyclists eat differently on rest days?",
+        answer:
+          "The principles hold, but protein matters even more over 40. Push rest-day protein toward 2.0–2.4g/kg and keep the bedtime feeding, since older muscle repairs more slowly and benefits from a steady protein supply. Avoid heavy calorie cuts on rest days, as recovery is already slower with age.",
+      },
+    ],
+    relatedEpisodes: [
+      "ep-27-protein-before-bed-builds-cyclists-muscles-faster-new-study",
+      "ep-2044-world-tour-nutritionist-we-got-weight-loss-wrong",
+      "ep-2035-world-tour-nutritionist-we-got-fuelling-wrong",
+    ],
+    relatedTopics: [
+      { label: "Cycling Recovery — Topic Hub", href: "/topics/cycling-recovery" },
+      { label: "Nutrition Periodisation: Base, Build, Race", href: "/blog/nutrition-periodisation-base-build-race" },
+      { label: "How to periodise cycling nutrition", href: "/answers/how-to-periodise-cycling-nutrition" },
+      { label: "How much protein do cyclists need?", href: "/answers/how-much-protein-do-cyclists-need" },
+      { label: "Energy Availability Calculator", href: "/tools/energy-availability" },
+    ],
+    evidenceLevel: "strong",
+    evidenceNote:
+      "Carbohydrate periodisation to training load alongside maintained protein for recovery is well established; corroborated by Dr Michael Ormsbee and Dr David Dunne.",
+    publishDate: "2026-05-26",
+    updatedDate: "2026-05-26",
+  },
 ];

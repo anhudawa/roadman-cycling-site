@@ -1720,4 +1720,1269 @@ export const bikefitAnswers: AnswerPage[] = [
     publishDate: "2026-05-26",
     updatedDate: "2026-05-26",
   },
+
+  // ============================================================
+  // HOW TO CHOOSE THE RIGHT SADDLE
+  // ============================================================
+  {
+    slug: "how-to-choose-the-right-saddle",
+    cluster: "bikefit",
+    question: "How Do I Choose the Right Saddle?",
+    seoTitle: "How to Choose the Right Cycling Saddle",
+    seoDescription:
+      "The right saddle is about sit-bone width, your riding position, and pressure relief — not padding. How to get measured, why comfort beats weight, and the test-before-you-buy rule.",
+    pillar: "recovery",
+    directAnswer:
+      "Choose a saddle by sit-bone width first, then shape for your position, then pressure relief — not by how much padding it has. Get your sit bones measured, match the saddle width to them, and pick a shape (flat or waved, with or without a cut-out) that suits how far forward you ride. A softer saddle usually makes things worse, not better. Where possible, test before you commit — fit is individual.",
+    keyTakeaways: [
+      "Start with sit-bone width, not padding — a too-narrow saddle causes soft-tissue pressure.",
+      "Saddle shape should match your position: more forward-rolled riders often need a cut-out.",
+      "More padding usually means more pressure, not less — firm and supportive beats squishy.",
+      "Saddle choice is individual; test before you buy whenever you can.",
+    ],
+    whoFor: [
+      {
+        label: "The rider with saddle discomfort",
+        detail:
+          "You're getting numbness, soreness or saddle sores and suspect the saddle itself.",
+      },
+      {
+        label: "The rider buying blind",
+        detail:
+          "You're about to spend on a saddle and don't know how to choose beyond reviews.",
+      },
+    ],
+    roadmanView: [
+      "Saddle choice is where riders waste the most money and suffer the most needlessly, usually because they're solving the wrong problem. The instinct when a saddle hurts is to buy a softer, more padded one. Phil Burt — who fitted Team Sky and British Cycling — is emphatic on the podcast that this is backwards: extra padding lets you sink in, which increases soft-tissue pressure rather than relieving it. The fix is rarely more cushioning.",
+      "What actually matters is a short list. First, sit-bone width: your saddle has to support the bones you sit on, and if it's too narrow those bones hang off the edges and your soft tissue takes the load. Get measured — most good shops can do it. Second, shape for your position: the more aggressively forward you ride, the more you roll onto sensitive tissue, which is where a cut-out or channel earns its place. Dr Andy Pruitt's bike-fit work makes the same point — saddle, position and anatomy are one system, not three separate choices.",
+      "And accept that this is individual in a way few components are. Two riders with identical bikes can need completely different saddles. The pro move isn't reading more reviews — it's getting your sit bones measured, narrowing to a couple of candidates that fit your width and position, and testing them before you commit. A demo saddle for a fortnight tells you more than any spec sheet.",
+    ],
+    expertEvidence: [
+      {
+        name: "Phil Burt",
+        credential: "Former Team Sky and British Cycling physiotherapist and bike fitter",
+        insight:
+          "More padding is usually the wrong fix — it increases soft-tissue pressure by letting you sink in. The priorities are correct width for your sit bones and a shape that relieves pressure in your actual riding position, not a softer seat.",
+        episodeSlug: "ep-2535-5-fixable-bike-fit-mistake-most-riders-make",
+        guestSlug: "phil-burt",
+      },
+      {
+        name: "Dr Andy Pruitt",
+        credential: "Bike-fit pioneer; founder of the Boulder Center for Sports Medicine",
+        insight:
+          "Saddle, position and anatomy work as one system. The right saddle supports the sit bones and matches how far forward you ride — choosing it in isolation from your fit is why so many riders cycle through saddles that never quite work.",
+        episodeSlug: "ep-2186-the-correct-bike-fit-simplified-dr-pruitt",
+        guestSlug: "dr-andy-pruitt",
+      },
+    ],
+    practicalApplication: [
+      {
+        title: "Get your sit bones measured",
+        detail:
+          "Most good bike shops can measure sit-bone width in minutes. Match your saddle width to that measurement — this is the single biggest factor in whether a saddle supports you or pressures your soft tissue.",
+      },
+      {
+        title: "Match shape to your position",
+        detail:
+          "If you ride rolled forward and low, look at saddles with a pronounced channel or cut-out and a flatter profile. More upright riders often suit a slightly waved saddle with more rear support.",
+      },
+      {
+        title: "Resist the soft saddle",
+        detail:
+          "Choose firm and supportive over squishy. Excess padding lets your sit bones sink and loads the soft tissue — the opposite of what you want.",
+      },
+      {
+        title: "Test before you commit",
+        detail:
+          "Use a demo or test-saddle scheme where possible, or buy from somewhere with a comfort guarantee. A fortnight of real riding reveals what a shop car-park sit cannot.",
+      },
+    ],
+    commonMistakes: [
+      {
+        mistake: "Buying a more padded saddle to fix discomfort.",
+        fix:
+          "Padding usually increases pressure by letting you sink in. Prioritise correct width and a pressure-relieving shape instead.",
+      },
+      {
+        mistake: "Choosing a saddle on reviews alone.",
+        fix:
+          "Fit is individual. Get measured, narrow to candidates that match your width and position, and test before committing.",
+      },
+      {
+        mistake: "Ignoring your riding position when picking a saddle.",
+        fix:
+          "Saddle and position are one system. A forward, low position needs a different shape than an upright one — match the saddle to how you actually ride.",
+      },
+    ],
+    faq: [
+      {
+        question: "How do I know what saddle width I need?",
+        answer:
+          "Get your sit-bone width measured — most good shops have a measuring pad. Your saddle should support those bones, so its width is matched to (usually slightly wider than) your measurement. Width is the first and most important factor in saddle choice.",
+      },
+      {
+        question: "Does a more padded saddle mean more comfort?",
+        answer:
+          "Usually the opposite. Extra padding lets your sit bones sink in, which loads the soft tissue and increases pressure. A firmer, well-shaped saddle that supports the sit bones is more comfortable over distance than a squishy one.",
+      },
+      {
+        question: "Do I need a saddle with a cut-out?",
+        answer:
+          "Many riders benefit, especially those who ride rolled forward in a low position, where pressure shifts onto sensitive soft tissue. It's not universal, though — the right answer depends on your anatomy and position, which is why testing matters.",
+      },
+      {
+        question: "Why does my saddle hurt even though it's expensive?",
+        answer:
+          "Price doesn't equal fit. An expensive saddle that's the wrong width or shape for your sit bones and position will still hurt. Comfort comes from matching the saddle to you, not from the price tag or the marketing.",
+      },
+      {
+        question: "Can the right saddle fix saddle sores and numbness?",
+        answer:
+          "Often, when paired with correct saddle height and position. Numbness and sores usually signal too much pressure on soft tissue — the right width, shape and a level or slightly nose-down tilt relieve it. Persistent problems warrant a professional fit.",
+      },
+      {
+        question: "Should men and women use different saddles?",
+        answer:
+          "There's no strict rule, but average sit-bone width and soft-tissue anatomy differ, so many women suit wider saddles or specific pressure-relief shapes. The principle is the same for everyone: choose by your own measured width and position, not by category labels.",
+      },
+    ],
+    relatedEpisodes: [
+      "ep-2535-5-fixable-bike-fit-mistake-most-riders-make",
+      "ep-2186-the-correct-bike-fit-simplified-dr-pruitt",
+      "ep-2-i-tried-a-bike-fit-from-team-gb-bike-fitter-heres-what-happe",
+    ],
+    relatedTopics: [
+      { label: "How to prevent saddle sores", href: "/answers/how-to-prevent-saddle-sores" },
+      { label: "How to set saddle height", href: "/answers/how-to-set-saddle-height" },
+      { label: "Is a professional bike fit worth it?", href: "/answers/is-a-professional-bike-fit-worth-it" },
+      { label: "Signs you need a bike fit", href: "/answers/signs-you-need-a-bike-fit" },
+    ],
+    evidenceLevel: "moderate",
+    evidenceNote:
+      "Saddle-fit principles (sit-bone width, pressure relief, padding) are well established in bike-fitting practice and corroborated by Phil Burt and Dr Andy Pruitt.",
+    publishDate: "2026-05-26",
+    updatedDate: "2026-05-26",
+  },
+
+  // ============================================================
+  // DOES BIKE FIT CHANGE WITH AGE
+  // ============================================================
+  {
+    slug: "does-bike-fit-change-with-age",
+    cluster: "bikefit",
+    question: "Does Your Bike Fit Change as You Get Older?",
+    seoTitle: "Does Your Bike Fit Change as You Get Older?",
+    seoDescription:
+      "Yes — reduced flexibility, old injuries and changing comfort mean your bike fit should evolve with age. Why a more upright position can keep you riding pain-free for longer.",
+    pillar: "recovery",
+    directAnswer:
+      "Yes. As flexibility declines and old injuries accumulate, the aggressive position that suited you at 30 can cause back, neck and hand pain at 50. A bike fit should evolve with you — usually toward a slightly higher front end and shorter reach that keeps you comfortable and sustainable. A position you can hold pain-free for hours beats an aerodynamic one you can't, especially as a masters rider.",
+    keyTakeaways: [
+      "Reduced flexibility with age often means your old position no longer fits.",
+      "Raising the front end and shortening reach relieves back, neck and hand strain.",
+      "A sustainable position you can hold for hours beats an aggressive one you can't.",
+      "Re-fit periodically as you age, after injuries, or when comfort changes.",
+    ],
+    whoFor: [
+      {
+        label: "The masters rider in new discomfort",
+        detail:
+          "Your long-held position has started causing back, neck or hand pain.",
+      },
+      {
+        label: "The returning rider",
+        detail:
+          "You're coming back after years off and your old setup no longer feels right.",
+      },
+    ],
+    roadmanView: [
+      "A bike fit is not a one-time event you bank for life, and that catches a lot of masters riders out. The position you dialled in at 30 — low, long, aggressive — assumed a certain amount of flexibility and an injury-free back. A decade or two later, that flexibility has usually declined, you've likely collected a niggle or two, and the same setup that once felt fast now leaves you with a sore neck and numb hands by the end of a long ride.",
+      "Daryl Fitzgerald and Phil Burt both make versions of this point on the podcast: fit follows the body, and the body changes. The single most common adjustment for an older rider is raising the front end and shortening the reach — a few centimetres up and back that take the strain off the lower back and the hands without meaningfully slowing you down. Pros chase marginal aero gains because they have the flexibility and the team to support extreme positions; a masters amateur trying to copy that is buying pain, not watts.",
+      "The Roadman framing is simple: the best position is the one you can hold comfortably for the whole ride. An aero tuck that wrecks your back by hour two costs you far more than the drag it saves. As you age, get re-fitted when your comfort changes, favour sustainability over aggression, and you'll keep riding pain-free for decades — which is the whole point.",
+    ],
+    expertEvidence: [
+      {
+        name: "Daryl Fitzgerald",
+        credential: "World Tour bike fitter at Science to Sport",
+        insight:
+          "Bike fit should follow the rider's body, which changes over time. As flexibility and comfort shift with age, the fit needs to be revisited — most often by raising and shortening the front end to keep the position sustainable.",
+        episodeSlug: "ep-1-pro-bike-fitter-reveals-the-1-change-amateurs-should-make",
+        guestSlug: "daryl-fitzgerald",
+      },
+      {
+        name: "Phil Burt",
+        credential: "Former Team Sky and British Cycling physiotherapist and bike fitter",
+        insight:
+          "A position has to match the body in front of him, not a pro template. For older riders, chasing an aggressive aero position they can't sustain causes back, neck and hand problems — comfort and sustainability come first.",
+        episodeSlug: "ep-2-i-tried-a-bike-fit-from-team-gb-bike-fitter-heres-what-happe",
+        guestSlug: "phil-burt",
+      },
+    ],
+    practicalApplication: [
+      {
+        title: "Re-fit when comfort changes",
+        detail:
+          "Don't assume an old fit still holds. New back, neck or hand pain, a return from time off, or an injury are all signals to revisit your position rather than ride through it.",
+      },
+      {
+        title: "Raise and shorten the front end",
+        detail:
+          "The most common masters adjustment is a higher bar and slightly shorter reach — spacers up, or a shorter/higher stem. A few centimetres can transform comfort with negligible speed cost.",
+      },
+      {
+        title: "Prioritise sustainability over aggression",
+        detail:
+          "Choose the position you can hold pain-free for the whole ride. An aero position you abandon after an hour of discomfort is slower in practice than a comfortable one you hold throughout.",
+      },
+      {
+        title: "Work on flexibility alongside the fit",
+        detail:
+          "Mobility and core work can widen the range of positions you tolerate. Fit the bike to the body you have now, and keep some of that adjustment in your own flexibility.",
+      },
+    ],
+    commonMistakes: [
+      {
+        mistake: "Treating a bike fit as permanent.",
+        fix:
+          "Your body changes with age and injury. Revisit the fit when comfort shifts rather than riding an outdated position into pain.",
+      },
+      {
+        mistake: "Copying a pro's aggressive position as a masters rider.",
+        fix:
+          "Pros have the flexibility and support for extreme positions. Fit to your own body — usually higher and shorter — and favour sustainability.",
+      },
+      {
+        mistake: "Riding through new back, neck or hand pain.",
+        fix:
+          "That's your fit telling you it no longer suits you. Get re-fitted; small adjustments often resolve pain that volume and painkillers won't.",
+      },
+    ],
+    faq: [
+      {
+        question: "Should I get re-fitted as I get older?",
+        answer:
+          "Yes, periodically. Declining flexibility, old injuries and changing comfort mean the position that suited you years ago may now cause pain. Revisit your fit when your comfort changes, after a return from time off, or following an injury.",
+      },
+      {
+        question: "Why does my back hurt now in a position I used to ride fine?",
+        answer:
+          "Usually reduced flexibility and core strength over time, which the old low, long position now over-stresses. Raising the front end and shortening the reach typically relieves it, alongside mobility and core work to widen the positions you tolerate.",
+      },
+      {
+        question: "Is a more upright position slower?",
+        answer:
+          "Slightly less aerodynamic, but for a masters amateur the trade is almost always worth it. A position you can hold comfortably for the whole ride produces more usable power and less pain than an aggressive one you can't sustain.",
+      },
+      {
+        question: "How often should masters cyclists get a bike fit?",
+        answer:
+          "There's no fixed schedule, but every few years, or whenever comfort changes, is sensible. Bodies change gradually, so a fit that was perfect five years ago may quietly stop suiting you — periodic checks catch that before it becomes pain.",
+      },
+      {
+        question: "Can flexibility work let me keep a lower position?",
+        answer:
+          "Often, yes. Targeted mobility and core strength widen the range of positions you can hold comfortably, so improving them can preserve some of your lower position. Fit the bike to your current body, and use flexibility work to expand what that body can do.",
+      },
+      {
+        question: "What's the most common bike-fit change for older riders?",
+        answer:
+          "Raising the handlebars and shortening the reach. This opens the hip angle and takes load off the lower back, neck and hands — the areas that most commonly start complaining as flexibility declines with age.",
+      },
+    ],
+    relatedEpisodes: [
+      "ep-1-pro-bike-fitter-reveals-the-1-change-amateurs-should-make",
+      "ep-2-i-tried-a-bike-fit-from-team-gb-bike-fitter-heres-what-happe",
+      "ep-2185-hidden-cause-of-back-neck-pain-in-cycling-how-to-beat-it-rdm",
+    ],
+    relatedTopics: [
+      { label: "Should I switch to shorter cranks?", href: "/answers/should-i-switch-to-shorter-cranks" },
+      { label: "How aggressive should my position be?", href: "/answers/how-aggressive-should-my-position-be" },
+      { label: "Signs you need a bike fit", href: "/answers/signs-you-need-a-bike-fit" },
+      { label: "How should cyclists train over 40?", href: "/answers/cycling-training-over-40" },
+    ],
+    evidenceLevel: "moderate",
+    evidenceNote:
+      "Age-related changes in flexibility and their fit implications are well established in bike-fitting practice; corroborated by Daryl Fitzgerald and Phil Burt.",
+    publishDate: "2026-05-26",
+    updatedDate: "2026-05-26",
+  },
+
+  // ============================================================
+  // HOW DO I GET MORE AERO WITHOUT LOSING POWER
+  // ============================================================
+  {
+    slug: "aero-without-losing-power",
+    cluster: "bikefit",
+    question: "How Do I Get More Aero Without Losing Power?",
+    seoTitle: "How to Get More Aero Without Losing Power",
+    seoDescription:
+      "Lowering your front end 20mm can save 15–20 watts of drag — but only if you can still produce power in that position. The fit changes that buy aero without costing watts.",
+    pillar: "coaching",
+    directAnswer:
+      "Get more aero without losing power by changing the variables that lower your frontal area without closing your hip angle: roll the pelvis forward with a touch more saddle setback and a level-to-nose-down saddle, narrow your shoulders, and drop the bars gradually — 5mm at a time — while protecting hip clearance with shorter cranks. A 20mm front-end drop can save 15–20 watts of drag, but the moment your hip angle pinches and your power falls, you've gone too far. The aero position you can produce full power in is the fast one.",
+    keyTakeaways: [
+      "Aero gains come from frontal area; power comes from an open hip angle — the trick is to lower the body without closing the hip.",
+      "Rolling the pelvis forward — more setback, level saddle — drops your back without crunching your hip flexors.",
+      "Shorter cranks buy hip clearance, which lets you go lower without losing the top of your pedal stroke.",
+      "Drop the front end 5mm at a time and re-test power — if watts fall, you've passed your aero-power ceiling.",
+    ],
+    whoFor: [
+      {
+        label: "The rider chasing free speed without buying kit",
+        detail:
+          "You've watched the wind-tunnel videos and want the position changes that cost nothing rather than another aero frame.",
+      },
+      {
+        label: "The time triallist or fast group rider",
+        detail:
+          "You hold a low position for an hour but your power sags the moment you tuck — the position is fighting you.",
+      },
+    ],
+    roadmanView: [
+      "Anthony keeps coming back to one point on the aero episodes: the rider is the engine and the brick wall. Roughly 80% of the drag on a bike at speed is you, not the machine. So the cheapest aero gain on the planet is your own position — and the expensive mistake is buying a deep wheelset while ignoring the fact that your back is sitting up like a sail.",
+      "But here's the part the wind-tunnel clips skip past. You can fold yourself into a beautifully low position and lose 30 watts of power because your hip angle has slammed shut and your glutes can't fire. Drag saved, power gone, net result slower. When Anthony spoke to David Millar about time trialling, the message was the same one the pros live by: the aero position is only worth having if you can still drive the pedals in it. Position without power is just a nice photo.",
+      "The Roadman way to do this is methodical and fixable. Roll the pelvis forward rather than just slamming the stem — more setback and a level saddle drop your torso while keeping the hip open. Bring your elbows and shoulders in, because narrow beats low for a lot of riders. And if the hip starts pinching as you go lower, that's your cue to fit shorter cranks rather than force it. Drop 5mm, re-test your power, and only keep the change if the watts hold. That's how you find your own aero-power ceiling instead of copying someone else's.",
+    ],
+    expertEvidence: [
+      {
+        name: "Dan Bigham",
+        credential: "Head of Engineering, Red Bull–Bora–Hansgrohe; former UCI Hour Record holder",
+        insight:
+          "The rider is the overwhelming majority of the aerodynamic drag on a bike, so position is the highest-value place to find speed. But a position is only fast if the rider can sustain it and produce power in it — an extreme tuck that costs watts is slower than a slightly higher one the rider can actually drive.",
+        episodeSlug: "ep-2106-he-accidentally-mastered-aerodynamics-dan-bigham",
+        guestSlug: "dan-bigham",
+      },
+      {
+        name: "David Millar",
+        credential: "Former professional cyclist with 20 years of experience in time trialling",
+        insight:
+          "A time trial position is a balance between cheating the wind and being able to put the power down for the full duration. Riders who chase the lowest possible front end often discover their sustainable power drops more than the drag they saved — the optimum is the lowest position that doesn't compromise the hip angle they make power through.",
+        episodeSlug: "ep-2256-time-trial-how-to-time-trial-faster-with-david-millar",
+        guestSlug: "david-millar",
+      },
+    ],
+    practicalApplication: [
+      {
+        title: "Lower the front end in 5mm steps and re-test power",
+        detail:
+          "Remove one 5mm spacer at a time. After each change, ride the same 10-minute effort on the same stretch or turbo and compare average power. If power holds, keep the drop and try the next 5mm. The ride where your power falls is the ride you've gone one step too far — put the spacer back.",
+      },
+      {
+        title: "Roll the pelvis forward instead of just dropping the bars",
+        detail:
+          "Move the saddle back 3–5mm and set it level or 1–2 degrees nose-down so your pelvis rotates forward onto the sit bones. This lowers your torso and flattens your back while keeping the hip angle open — you get the aero benefit of a lower front without the power loss of a closed hip.",
+      },
+      {
+        title: "Bring shoulders and elbows in before you go lower",
+        detail:
+          "Narrowing your frontal width is often a bigger drag saving than dropping height, and it costs no power. On the hoods or in the drops, draw the elbows in toward the top tube and round the shoulders slightly forward. Practise holding it for 20-minute blocks so it becomes your default at speed, not a pose you forget under fatigue.",
+      },
+      {
+        title: "Use shorter cranks to protect hip clearance",
+        detail:
+          "If a lower front end makes your hip pinch at the top of the stroke, a 5mm shorter crank opens that clearance back up and lets you keep the aero gain. This is the structural fix that lets riders go lower without losing the top of the pedal stroke — raise the saddle 2–3mm afterwards to keep leg extension correct.",
+      },
+    ],
+    commonMistakes: [
+      {
+        mistake: "Slamming the stem in one go to look pro.",
+        fix:
+          "A big drop closes the hip angle and kills power overnight. Drop 5mm at a time and verify your power holds before keeping the change.",
+      },
+      {
+        mistake: "Chasing aero kit while ignoring your own position.",
+        fix:
+          "You are roughly 80% of the drag. Sort the body first — narrower shoulders and a forward-rolled pelvis are free and beat a deep wheelset for most riders.",
+      },
+      {
+        mistake: "Judging an aero position by how it looks rather than what it does to your power.",
+        fix:
+          "Test it. Same effort, same segment, compare watts. If a lower position drops your sustainable power by more than a couple of percent, the drag saving rarely makes it back.",
+      },
+    ],
+    faq: [
+      {
+        question: "How much power does a lower position actually save?",
+        answer:
+          "Dropping the front end and narrowing your frontal area can cut aerodynamic drag by the equivalent of 15–20 watts at 40km/h for a typical rider — a large saving for a free change. But the figure only counts if your power output stays the same in the new position. If you lose 25 watts of power to gain 20 watts of drag saving, you're slower.",
+      },
+      {
+        question: "What is the hip angle and why does it matter for power?",
+        answer:
+          "The hip angle is the angle between your torso and thigh at the top of the pedal stroke. Drop the bars too far and that angle closes, restricting the glutes and hip flexors that drive the pedal. An open hip angle is where your power lives — protecting it while lowering the rest of the body is the whole game of getting aero without losing watts.",
+      },
+      {
+        question: "Should I get an aero position assessment or just experiment?",
+        answer:
+          "For a flat time trial or fast triathlon where aerodynamics dominate, a proper aero assessment — ideally with power data in each position — is worth it. For everyday road riding, you can self-test with the 5mm-at-a-time method and a power meter. Either way, the data, not the mirror, decides the position.",
+      },
+      {
+        question: "Does saddle setback affect how aero I can get?",
+        answer:
+          "Yes. More setback combined with a level saddle rotates your pelvis forward, which lowers your back and flattens your spine without closing the hip. It's one of the most underused aero changes because riders think aero means dropping the bars, when rolling the pelvis often delivers the lower torso for free.",
+      },
+      {
+        question: "Will narrower handlebars make me more aero?",
+        answer:
+          "Narrower bars reduce your frontal width, which is a genuine drag saving, and they cost nothing in power. The limit is bike handling and breathing — go too narrow and control and lung capacity suffer. Many riders can drop one bar size and gain aero with no downside, but test it on quiet roads first.",
+      },
+      {
+        question: "Can I get aero on a normal road bike or do I need a TT bike?",
+        answer:
+          "You can find most of the position-based aero on a road bike: a forward-rolled pelvis, narrow shoulders, elbows tucked and a sustainable low position in the drops. A TT bike with aerobars takes the hip angle and arm position further, but for road events and group riding, optimising your road position is where the free speed is.",
+      },
+    ],
+    relatedEpisodes: [
+      "ep-2216-wind-tunnel-secrets-for-aero-gains-on-your-bike-roadman-podc",
+      "ep-2256-time-trial-how-to-time-trial-faster-with-david-millar",
+      "ep-2106-he-accidentally-mastered-aerodynamics-dan-bigham",
+    ],
+    relatedTopics: [
+      { label: "How to Get More Aero Cycling", href: "/answers/how-to-get-more-aero-cycling" },
+      { label: "How Aggressive Should My Position Be?", href: "/answers/how-aggressive-should-my-position-be" },
+      { label: "Dan Bigham on Aerodynamics", href: "/blog/dan-bigham-aerodynamics-amateur-cyclists" },
+      { label: "Should I Switch to Shorter Cranks?", href: "/answers/should-i-switch-to-shorter-cranks" },
+      { label: "Aero Position Training for Triathletes", href: "/blog/aero-position-training-for-triathletes" },
+    ],
+    evidenceLevel: "moderate",
+    publishDate: "2026-05-26",
+    updatedDate: "2026-05-26",
+  },
+
+  // ============================================================
+  // HOW DO I CHOOSE THE RIGHT SADDLE
+  // ============================================================
+  {
+    slug: "how-to-choose-a-saddle",
+    cluster: "bikefit",
+    question: "How Do I Choose the Right Saddle?",
+    seoTitle: "How to Choose a Bike Saddle That Fits You",
+    seoDescription:
+      "Choosing a saddle starts with sit bone width plus 20–30mm, then matches shape and cut-out to your riding position. Why price tells you almost nothing about the right fit.",
+    pillar: "coaching",
+    directAnswer:
+      "Choose a saddle by your sit bone width first — measure it, then pick a saddle roughly 20–30mm wider so your bones bear the load, not your soft tissue. Match the shape to how you ride: flatter saddles suit riders who move around and sit upright, waved saddles suit a fixed aggressive position. A central cut-out or channel relieves perineal pressure for most riders. Price and pro-team logos tell you almost nothing — the right saddle is the one that fits your anatomy and position, and that often isn't the expensive one.",
+    keyTakeaways: [
+      "Sit bone width plus 20–30mm is the starting number — a saddle too narrow loads soft tissue instead of bone.",
+      "Shape follows position: flat saddles for movers and upright riders, waved saddles for a locked aggressive position.",
+      "A cut-out or pressure-relief channel helps most riders, especially in lower positions where weight shifts forward.",
+      "Price is not a fit signal — comfort comes from matching anatomy and position, not from spending more.",
+    ],
+    whoFor: [
+      {
+        label: "The rider who's tried three saddles and still aches",
+        detail:
+          "You keep buying saddles on reviews and recommendations and none of them solve the numbness or pressure.",
+      },
+      {
+        label: "The rider setting up a new bike or position",
+        detail:
+          "You want to get the saddle right from the start rather than work through the expensive trial-and-error route.",
+      },
+    ],
+    roadmanView: [
+      "Saddle choice is where a lot of riders waste real money. Anthony has seen it in the community inbox over and over: someone's on their fourth saddle, they've spent the best part of £600, and they're still going numb. The problem is they're buying by review and by logo, not by anatomy. A saddle that's perfect for a mate with different sit bones and a different position is the wrong saddle for you.",
+      "The starting point is boring and it works: measure your sit bones. Most decent bike shops will do it in two minutes with a piece of memory gel or cardboard, and plenty of riders are stunned to find they've been riding a saddle 20mm too narrow for years. When the saddle is too narrow, your bones slip off the sides and your weight lands on soft tissue — which is exactly the pressure and numbness you've been blaming on everything else. Phil Burt has made this point on the podcast: width is the variable people get wrong before they get anything else wrong.",
+      "After width comes shape, and shape follows your position. If you sit fairly upright and shift around the saddle a lot, a flatter profile lets you move. If you're locked low and aggressive, a waved saddle with a defined nose supports you in one spot. The cut-out question is mostly settled for most riders now — a channel or relief cut-out takes pressure off the perineum, and it matters more the lower and more forward you ride. The honest truth is the right saddle is findable, but it starts with a measurement, not a credit card.",
+    ],
+    expertEvidence: [
+      {
+        name: "Phil Burt",
+        credential: "Former Team Sky and British Cycling physiotherapist and bike fitter",
+        insight:
+          "Most riders choose a saddle by recommendation or appearance rather than by their own anatomy, and saddle width is the variable they get wrong most often. The saddle must be wide enough to support the sit bones; when it isn't, the rider's weight falls onto soft tissue and pressure problems follow no matter how premium the saddle is.",
+        episodeSlug: "ep-2535-5-fixable-bike-fit-mistake-most-riders-make",
+        guestSlug: "phil-burt",
+      },
+      {
+        name: "Dr Andy Pruitt",
+        credential: "Pioneer of medical-based bike fitting; founder of the Boulder Center for Sports Medicine",
+        insight:
+          "The right saddle supports the rider on the bony structures of the pelvis and relieves pressure on the soft tissue and perineum. Saddle choice is a function of the rider's anatomy and their riding position together — there is no universally best saddle, only the right saddle for a specific rider in a specific position.",
+        episodeSlug: "ep-2186-the-correct-bike-fit-simplified-dr-pruitt",
+        guestSlug: "dr-andy-pruitt",
+      },
+    ],
+    practicalApplication: [
+      {
+        title: "Measure your sit bone width before you shop",
+        detail:
+          "Sit on a piece of corrugated cardboard or a sit-bone measuring gel in your riding posture, then measure between the two deepest impressions. Add 20–30mm to that number — that's your target saddle width. Many shops and brands offer this measurement free, and it instantly cuts your saddle options down to the ones that actually fit you.",
+      },
+      {
+        title: "Match the saddle profile to your position",
+        detail:
+          "Flat saddle: for riders who sit more upright and move fore-and-aft. Waved or curved saddle: for riders locked in an aggressive low position who want support in one spot. Look at how you actually ride — if you're always shifting around, a fixed waved profile will fight you.",
+      },
+      {
+        title: "Use a demo programme before committing",
+        detail:
+          "Most premium saddle brands and good bike shops run a demo or test-ride scheme. Borrow a saddle that matches your width and shape, ride it for two or three real rides, and only buy once you've confirmed it on the road. This is far cheaper than buying blind and stacking up rejects in a drawer.",
+      },
+      {
+        title: "Set the new saddle up properly before judging it",
+        detail:
+          "A new saddle changes your contact height and reach slightly. Re-check saddle height (the top surface may sit higher or lower than the old one), level the saddle, and adjust fore-aft so your knee position stays correct. A good saddle set up wrong will feel like a bad saddle.",
+      },
+    ],
+    commonMistakes: [
+      {
+        mistake: "Buying the saddle a pro or a mate rides.",
+        fix:
+          "Their sit bone width and position aren't yours. Measure your own sit bones and buy to your anatomy, not someone else's recommendation.",
+      },
+      {
+        mistake: "Assuming a more expensive saddle is more comfortable.",
+        fix:
+          "Price buys lighter materials, not better fit. A correctly sized £60 saddle beats a £300 one that's the wrong width every time.",
+      },
+      {
+        mistake: "Judging a saddle on the first ride.",
+        fix:
+          "Give a correctly sized saddle two or three rides to settle, and make sure it's set up at the right height and tilt first. Snap judgements bin good saddles that just needed adjusting.",
+      },
+    ],
+    faq: [
+      {
+        question: "How do I measure my sit bone width at home?",
+        answer:
+          "Sit on a piece of corrugated cardboard placed on a carpeted stair or firm chair, lean forward into your riding posture for a few seconds, then stand up and measure between the centres of the two deepest dents. That distance is your sit bone width. Add 20–30mm for your target saddle width.",
+      },
+      {
+        question: "Do I need a saddle with a cut-out?",
+        answer:
+          "Most riders benefit from a central channel or cut-out, especially in lower, more forward positions where weight shifts off the sit bones toward the perineum. It relieves pressure on the soft tissue and the nerves and blood vessels that run through it. A small number of riders find the edges of a cut-out create pressure instead — which is why demoing matters.",
+      },
+      {
+        question: "Are women's-specific saddles necessary?",
+        answer:
+          "Some women are well served by women's-specific saddles, which tend to be wider at the rear and have a shorter or more relieved nose to suit different pelvic anatomy. But it's not universal — sit bone width and personal anatomy matter more than the label. Measure first and choose by fit, regardless of how the saddle is marketed.",
+      },
+      {
+        question: "Why does my saddle feel fine on short rides but awful after two hours?",
+        answer:
+          "Short-ride comfort hides fit problems that only show up under sustained pressure. A saddle slightly too narrow or set at the wrong tilt feels acceptable for 30 minutes, then loads soft tissue progressively over hours. If a saddle is great for an hour and miserable at two, the width or setup is the cause, not the padding.",
+      },
+      {
+        question: "Should a saddle be soft or firm?",
+        answer:
+          "Firmer than most beginners expect. A very soft saddle lets your sit bones sink in until the soft tissue between them takes the load — the opposite of what you want. A firm saddle of the correct width supports the bones and keeps pressure off the perineum. Comfort comes from correct width and shape, not from thick padding.",
+      },
+      {
+        question: "How long does a saddle last?",
+        answer:
+          "A quality saddle lasts several years and thousands of kilometres, but the shell and rails can fatigue and the cover can wear. If a saddle that was comfortable starts causing new pressure, or you notice a sag or crack in the shell, it may have broken down internally. Replace it rather than trying to adjust around a worn saddle.",
+      },
+    ],
+    relatedEpisodes: [
+      "ep-2535-5-fixable-bike-fit-mistake-most-riders-make",
+      "ep-2186-the-correct-bike-fit-simplified-dr-pruitt",
+      "ep-2-i-tried-a-bike-fit-from-team-gb-bike-fitter-heres-what-happe",
+    ],
+    relatedTopics: [
+      { label: "How Do I Prevent Saddle Sores?", href: "/answers/how-to-prevent-saddle-sores" },
+      { label: "How Do I Set My Saddle Height?", href: "/answers/how-to-set-saddle-height" },
+      { label: "Saddle Sore Prevention Guide", href: "/blog/cycling-saddle-sore-prevention" },
+      { label: "Signs You Need a Bike Fit", href: "/answers/signs-you-need-a-bike-fit" },
+      { label: "Is a Professional Bike Fit Worth It?", href: "/answers/is-a-professional-bike-fit-worth-it" },
+    ],
+    evidenceLevel: "moderate",
+    publishDate: "2026-05-26",
+    updatedDate: "2026-05-26",
+  },
+
+  // ============================================================
+  // HOW DO I SET MY HANDLEBAR REACH AND STEM LENGTH
+  // ============================================================
+  {
+    slug: "handlebar-reach-and-stem",
+    cluster: "bikefit",
+    question: "How Do I Set My Handlebar Reach and Stem Length?",
+    seoTitle: "How to Set Handlebar Reach and Stem Length",
+    seoDescription:
+      "Set reach so your elbows hold a 10–15 degree bend on the hoods with relaxed shoulders and a flat back. Most amateurs run 10–20mm too much reach. How to find your number.",
+    pillar: "coaching",
+    directAnswer:
+      "Set your reach so that on the hoods your elbows hold a slight 10–15 degree bend, your shoulders are relaxed, and your back is flat rather than rounded. Most amateur cyclists run 10–20mm too much reach because their bike was bought a size too big. Adjust reach with stem length first — a 10mm shorter stem is a cheap, reversible change. Too much reach rounds the back, loads the hands and stretches the neck; too little makes the bike twitchy and cramped. Get the stem right before touching anything else.",
+    keyTakeaways: [
+      "On the hoods, aim for a 10–15 degree bend in the elbows with relaxed shoulders and a flat back, not a rounded one.",
+      "Too much reach is the single most common fit error — it rounds the back, numbs the hands and strains the neck.",
+      "Change reach with stem length first: stems come in 10mm increments and a swap costs £30–50.",
+      "Reach is a system with saddle setback — set saddle fore-aft for your knees first, then fit the stem to the bars.",
+    ],
+    whoFor: [
+      {
+        label: "The rider who feels stretched out and uncomfortable",
+        detail:
+          "Your lower back rounds, your hands go numb and your neck aches — classic signs of too much reach.",
+      },
+      {
+        label: "The rider who bought their bike online",
+        detail:
+          "You sized the frame off a chart and want to dial in reach without a full professional fit.",
+      },
+    ],
+    roadmanView: [
+      "If there's one fit error Anthony hears about more than any other, it's too much reach — and it traces straight back to how most people buy bikes. The shop or the online size chart pushes you toward the bigger frame, you stretch out to reach the bars, and from that day on your back is rounding, your hands are taking your bodyweight and your neck is craning. Daryl Fitzgerald, who fits World Tour riders, calls the too-big, too-long bike the single most common mistake amateurs make, and reach is where it bites.",
+      "The fix is one of the cheapest in cycling. A stem is £30–50 and comes in 10mm steps, and swapping it is a five-minute job with an Allen key. The mistake riders make is reaching for a new bike when a 10mm shorter stem would transform the position. Anthony's framing here is the usual one: this is fixable, and it's fixable today, not after another £4,000 of frame.",
+      "The one thing to get right is the order. Reach and saddle setback are a system, and people muddle them. Set your saddle fore-aft for your knees first — knee over pedal spindle, neutral pelvis — and lock that in. Only then do you size the stem to bring the bars to where your arms want them. If you slide the saddle forward to shorten reach, you've just wrecked your knee position to fix your hands. Saddle for the legs, stem for the arms — keep those two jobs separate and the whole front end falls into place.",
+    ],
+    expertEvidence: [
+      {
+        name: "Daryl Fitzgerald",
+        credential: "World Tour bike fitter at Science to Sport",
+        insight:
+          "The most common mistake amateurs make is riding a bike that is too big and too long, and excess reach is where that error does its damage. More reach than the rider needs rounds the lower back, loads the hands and stretches the neck — three of the most common fit complaints all stemming from one measurement that's too long.",
+        episodeSlug: "ep-1-pro-bike-fitter-reveals-the-1-change-amateurs-should-make",
+        guestSlug: "daryl-fitzgerald",
+      },
+      {
+        name: "Phil Burt",
+        credential: "Former Team Sky and British Cycling physiotherapist and bike fitter",
+        insight:
+          "Reach should be set so the rider can hold a relaxed, slightly bent-arm position with a flat back rather than a stretched, rounded one. A shorter stem is one of the highest-return changes a fitter makes, because it takes load off the hands, neck and lower back at once — and it's fully reversible if it turns out to be too much.",
+        episodeSlug: "ep-2535-5-fixable-bike-fit-mistake-most-riders-make",
+        guestSlug: "phil-burt",
+      },
+    ],
+    practicalApplication: [
+      {
+        title: "Set saddle setback for your knees first",
+        detail:
+          "Before touching the stem, sit on the bike (on a turbo) with the cranks horizontal. Drop a plumb line from the front of your forward knee — it should pass roughly through the pedal spindle. Adjust saddle fore-aft to achieve this. This is a knee-position decision, not a reach decision — lock it in before sizing the stem.",
+      },
+      {
+        title: "Photograph yourself on the hoods and check the arms and back",
+        detail:
+          "Have someone film or photograph you from the side, riding on the hoods at a steady effort. Your elbows should show a slight 10–15 degree bend, your shoulders should look relaxed rather than hunched up by your ears, and your back should be flat, not rounded into a C. Locked-out elbows or a rounded back mean too much reach.",
+      },
+      {
+        title: "Change the stem in 10mm steps",
+        detail:
+          "If you're stretched out, fit a stem 10mm shorter and ride it two or three times. Stems are cheap, reversible and come in 10mm increments, so you can dial reach precisely without committing. If 10mm shorter feels cramped and twitchy, go back up. Adjust one increment at a time and let your body judge it over real rides.",
+      },
+      {
+        title: "Mind the handling, not just the comfort",
+        detail:
+          "A stem that's too short makes the steering feel quick and nervous, especially descending; too long makes the bike feel sluggish and stretched. Test any stem change on a descent and in a tight corner, not just on a flat road. The right reach feels comfortable and keeps the handling predictable.",
+      },
+    ],
+    commonMistakes: [
+      {
+        mistake: "Sliding the saddle forward to shorten reach.",
+        fix:
+          "That moves your knee out of position and creates knee pain. Set saddle fore-aft for your knees, then change the stem to fix reach.",
+      },
+      {
+        mistake: "Buying a new bike when a stem swap would solve it.",
+        fix:
+          "Most reach problems are a £30–50 stem change, not a £4,000 frame. Try the stem first — it's reversible and immediate.",
+      },
+      {
+        mistake: "Setting reach to look aggressive rather than to fit.",
+        fix:
+          "A stretched-out, rounded-back position isn't fast, it's just sore. Set reach so you can hold a flat back with relaxed shoulders for the whole ride.",
+      },
+    ],
+    faq: [
+      {
+        question: "What's the difference between reach and stem length?",
+        answer:
+          "Stem length is the physical length of the stem in millimetres. Reach is the total distance from the saddle to the bars that your body actually experiences, which is set by frame geometry, stem length, stem angle and bar shape combined. You change the bike's reach mainly by changing the stem, which is why stem length is the practical lever for most riders.",
+      },
+      {
+        question: "How do I know if my stem is too long?",
+        answer:
+          "Signs of a too-long stem: your back rounds rather than staying flat, your elbows lock out straight, your hands go numb on longer rides, and your neck aches from craning to see the road. If you find yourself sitting back on the hoods or shifting your hands forward to feel comfortable, the reach is probably too long.",
+      },
+      {
+        question: "Can I fix reach by rotating my handlebars?",
+        answer:
+          "Rotating the bars changes the angle and position of the hoods slightly, which can fine-tune reach by a few millimetres and adjust comfort. It's a useful small adjustment, but it can't fix a stem that's genuinely 10–20mm too long. Use bar rotation to refine, not to rescue a poorly sized stem.",
+      },
+      {
+        question: "Does stem length affect handling?",
+        answer:
+          "Yes, significantly. A shorter stem makes the steering feel quicker and more responsive but can feel twitchy; a longer stem slows and stabilises the steering but can feel sluggish. This is why you test a stem change on descents and in corners, not just on a straight road — comfort and handling both matter.",
+      },
+      {
+        question: "What stem angle should I use?",
+        answer:
+          "Stem angle (rise) sets bar height rather than reach. A positive-angle (rising) stem brings the bars up and slightly back, useful for a more comfortable position; a negative-angle (slammed) stem drops them lower and slightly forward. Choose angle to set your bar height, and length to set your reach — treat them as two separate adjustments.",
+      },
+      {
+        question: "Should reach change between road and gravel bikes?",
+        answer:
+          "Often slightly. Gravel bikes typically use a shorter reach and more upright position for control on rough terrain, so your gravel stem may be shorter than your road stem even at the same frame size. Set each bike to a comfortable, sustainable reach for how you ride it rather than copying one number across both.",
+      },
+    ],
+    relatedEpisodes: [
+      "ep-1-pro-bike-fitter-reveals-the-1-change-amateurs-should-make",
+      "ep-2535-5-fixable-bike-fit-mistake-most-riders-make",
+      "ep-2-i-tried-a-bike-fit-from-team-gb-bike-fitter-heres-what-happe",
+    ],
+    relatedTopics: [
+      { label: "Signs You Need a Bike Fit", href: "/answers/signs-you-need-a-bike-fit" },
+      { label: "How to Fix Lower Back Pain Cycling", href: "/answers/how-to-fix-lower-back-pain-cycling" },
+      { label: "Why Do My Hands Go Numb Cycling?", href: "/answers/why-do-my-hands-go-numb-cycling" },
+      { label: "Does Handlebar Width Matter for Cycling?", href: "/answers/handlebar-width-cycling" },
+      { label: "Is a Professional Bike Fit Worth It?", href: "/answers/is-a-professional-bike-fit-worth-it" },
+    ],
+    evidenceLevel: "moderate",
+    publishDate: "2026-05-26",
+    updatedDate: "2026-05-26",
+  },
+
+  // ============================================================
+  // DOES HANDLEBAR WIDTH MATTER FOR CYCLING
+  // ============================================================
+  {
+    slug: "handlebar-width-cycling",
+    cluster: "bikefit",
+    question: "Does Handlebar Width Matter for Cycling?",
+    seoTitle: "Does Handlebar Width Matter for Cycling?",
+    seoDescription:
+      "Handlebar width matters for both aerodynamics and comfort — narrower bars cut drag and frontal area, wider bars aid control. How to find the width that suits your shoulders.",
+    pillar: "coaching",
+    directAnswer:
+      "Handlebar width matters for both aerodynamics and control. The traditional rule — match bar width to shoulder width — gives a comfortable, stable starting point, but the trend in road racing is toward narrower bars because narrowing your frontal area can save several watts of drag at speed. Going 20–40mm narrower than shoulder width often costs nothing in power and gains aero, but too narrow compromises breathing, leverage on climbs and bike control. Match width to your shoulders first, then narrow cautiously if aero matters for your riding.",
+    keyTakeaways: [
+      "Bar width affects both drag (narrower is more aero) and control (wider is more stable) — it's a genuine trade-off.",
+      "Shoulder width is the classic starting point and the safe default for comfort and handling.",
+      "Narrowing 20–40mm can cut frontal area and save watts at speed with no power cost for many riders.",
+      "Too narrow hurts breathing, climbing leverage and descending control — narrow with care and test it first.",
+    ],
+    whoFor: [
+      {
+        label: "The rider considering narrower bars for speed",
+        detail:
+          "You've seen the pro peloton go narrow and want to know whether it's worth it for your riding.",
+      },
+      {
+        label: "The rider with shoulder, neck or breathing discomfort",
+        detail:
+          "Your current bars may be too wide or too narrow for your shoulders, and it's showing up as discomfort.",
+      },
+    ],
+    roadmanView: [
+      "Handlebar width used to be a settled question — match the bars to your shoulders and forget about it. Then the wind-tunnel era arrived and the whole peloton went narrow, and now the cycling internet is full of riders chopping their bars down to chase free watts. Anthony's covered this on the aero side of the podcast, and the honest answer is: yes, width matters, but the narrow trend isn't a free lunch for everyone.",
+      "The aero case is real. Your frontal area is most of your drag, and bringing your hands and shoulders in narrows that area. For a flat, fast rider chasing every watt, dropping a bar size or two can be a genuine saving that costs nothing in power. Dan Bigham, who built his career on finding aero gains nobody else bothered with, is clear that the rider's own frontal area is where the big numbers hide — and bar width feeds straight into that.",
+      "But here's where the fixable framing comes in. Go too narrow and you pay for it in places that matter for amateur riding: breathing gets restricted because your chest can't open, climbing out of the saddle loses leverage, and descending and cornering get nervier because you've shortened your steering lever. For a time triallist on a flat course, narrow makes sense. For someone riding hilly sportives and technical descents, shoulder width or a touch narrower is usually the smart call. Start from your shoulders, narrow in small steps if aero genuinely matters to you, and test the handling before you commit.",
+    ],
+    expertEvidence: [
+      {
+        name: "Dan Bigham",
+        credential: "Head of Engineering, Red Bull–Bora–Hansgrohe; former UCI Hour Record holder",
+        insight:
+          "The rider's frontal area is the dominant source of aerodynamic drag, and handlebar width feeds directly into how much of the wind the body catches. Narrowing the bars and bringing the arms in reduces frontal area and saves watts — but the gain only holds if the rider can still breathe, handle the bike and produce power in the narrower position.",
+        episodeSlug: "ep-2106-he-accidentally-mastered-aerodynamics-dan-bigham",
+        guestSlug: "dan-bigham",
+      },
+      {
+        name: "Phil Burt",
+        credential: "Former Team Sky and British Cycling physiotherapist and bike fitter",
+        insight:
+          "Handlebar width should match the rider's anatomy and intended use rather than blindly following the narrow trend. Bars sized to the shoulders give a stable, comfortable platform for breathing and control; going narrower for aero is valid for the right rider but trades away stability and leverage that matter on climbs and descents.",
+        episodeSlug: "ep-2535-5-fixable-bike-fit-mistake-most-riders-make",
+        guestSlug: "phil-burt",
+      },
+    ],
+    practicalApplication: [
+      {
+        title: "Measure your shoulder width as a baseline",
+        detail:
+          "Measure the distance between the bony points at the front of each shoulder (the acromion processes). Bars are measured either centre-to-centre or outside-to-outside, so check the brand's convention. Matching bar width to this measurement is the comfortable, stable default — your starting point before any aero experimentation.",
+      },
+      {
+        title: "Narrow in one size at a time if aero matters",
+        detail:
+          "If you ride fast, flat routes and want the aero gain, drop one bar size (typically 20mm narrower) and ride it for several rides. Check that your breathing feels unrestricted, your climbing out of the saddle still feels powerful, and your descending stays confident. Only narrow again if all three pass.",
+      },
+      {
+        title: "Test the handling before you commit",
+        detail:
+          "Narrower bars shorten your steering leverage, which makes the bike feel quicker and twitchier. Test any new width on a technical descent and in tight corners, not just on a flat straight. If the bike feels nervous at speed or hard to control out of the saddle, the bars are too narrow for you regardless of the aero number.",
+      },
+    ],
+    commonMistakes: [
+      {
+        mistake: "Going as narrow as the pros without testing it.",
+        fix:
+          "Pros narrow bars with team support, controlled courses and years of adaptation. Narrow one size at a time and verify breathing, climbing and handling all hold before going further.",
+      },
+      {
+        mistake: "Ignoring width entirely and riding whatever came on the bike.",
+        fix:
+          "Stock bars are sized to the frame, not to you. Check them against your shoulder width — bars too wide or too narrow show up as shoulder, neck or breathing discomfort.",
+      },
+      {
+        mistake: "Chasing narrow-bar aero on a hilly, technical route.",
+        fix:
+          "On climbs and descents you need leverage and control more than a couple of watts of drag saving. Match width to how and where you actually ride.",
+      },
+    ],
+    faq: [
+      {
+        question: "How much aero benefit do narrower handlebars give?",
+        answer:
+          "Narrowing your bars reduces frontal area and can save the equivalent of a few watts at 40km/h, with the saving growing at higher speeds. It's a modest but real gain that costs nothing in power for many riders. The benefit is largest for flat, fast riding and smallest at the lower speeds of climbing.",
+      },
+      {
+        question: "Are narrow handlebars bad for breathing?",
+        answer:
+          "They can be if you go too narrow. Very narrow bars draw the shoulders and arms in, which can compress the chest and restrict how fully the ribcage expands. Most riders can narrow modestly without any breathing penalty, but if you feel your breathing is restricted in the position, the bars are too narrow for you.",
+      },
+      {
+        question: "Do wider bars give more control?",
+        answer:
+          "Yes. Wider bars lengthen your steering leverage, which makes the bike feel more stable and predictable, especially when descending, cornering and climbing out of the saddle. This is why gravel and mountain bikes use wider bars — control on rough or steep terrain matters more than aerodynamics.",
+      },
+      {
+        question: "How is handlebar width measured?",
+        answer:
+          "Road bars are measured either centre-to-centre (from the middle of one drop to the middle of the other) or outside-to-outside. The two conventions differ by roughly the diameter of the bar, so a 40cm centre-to-centre bar is wider than a 40cm outside-to-outside bar. Always check which method a brand uses before comparing sizes.",
+      },
+      {
+        question: "Should I match my handlebar width to my shoulders?",
+        answer:
+          "Shoulder width is the traditional and safest starting point — it gives a stable, comfortable platform for breathing, climbing and control. From there you can narrow for aero if it suits your riding, but matching the shoulders is the default that works for most riders and most terrain.",
+      },
+      {
+        question: "Do flared gravel bars change the width rules?",
+        answer:
+          "Yes. Flared gravel bars are narrow at the hoods for aerodynamics and comfort on the tops, then flare out at the drops for control and leverage on descents and rough ground. They give you a narrow position when you want aero and a wide one when you want control, which is why they suit mixed gravel terrain so well.",
+      },
+    ],
+    relatedEpisodes: [
+      "ep-2188-what-is-the-fastest-handlebars-for-road-cycling-rdmn-clips",
+      "ep-2106-he-accidentally-mastered-aerodynamics-dan-bigham",
+      "ep-2535-5-fixable-bike-fit-mistake-most-riders-make",
+    ],
+    relatedTopics: [
+      { label: "How Do I Set Handlebar Reach and Stem Length?", href: "/answers/handlebar-reach-and-stem" },
+      { label: "How Do I Get More Aero Without Losing Power?", href: "/answers/aero-without-losing-power" },
+      { label: "Dan Bigham on Aerodynamics", href: "/blog/dan-bigham-aerodynamics-amateur-cyclists" },
+      { label: "How to Get More Aero Cycling", href: "/answers/how-to-get-more-aero-cycling" },
+      { label: "Signs You Need a Bike Fit", href: "/answers/signs-you-need-a-bike-fit" },
+    ],
+    evidenceLevel: "moderate",
+    publishDate: "2026-05-26",
+    updatedDate: "2026-05-26",
+  },
+
+  // ============================================================
+  // SHOULD WOMEN GET A DIFFERENT BIKE FIT
+  // ============================================================
+  {
+    slug: "womens-bike-fit",
+    cluster: "bikefit",
+    question: "Should Women Get a Different Bike Fit?",
+    seoTitle: "Should Women Get a Different Bike Fit?",
+    seoDescription:
+      "Women don't need a different fit method, but the variables that matter most often differ: saddle choice, reach, and contact points. Why fitting the individual beats fitting a gender.",
+    pillar: "coaching",
+    directAnswer:
+      "Women don't need a different bike fit method — the same process of fitting to the individual applies — but several variables matter more often for women: saddle width and shape (to suit different pelvic anatomy), reach (to suit on average a longer leg-to-torso ratio), and contact points like grip width and lever reach. The key word is on average. The right fit is built around the rider in front of you, not their gender. A blanket women's-specific setup is as wrong as ignoring anatomy entirely.",
+    keyTakeaways: [
+      "There's no separate fit method for women — the process is the same: fit to the individual, not to a category.",
+      "Saddle choice matters more often for women, as pelvic anatomy differs and soft-tissue pressure needs careful relief.",
+      "Reach and frame size are frequently set too long because of average leg-to-torso proportions.",
+      "Contact points — lever reach, grip width — should suit smaller hands rather than being left at factory settings.",
+    ],
+    whoFor: [
+      {
+        label: "The woman whose bike never feels quite right",
+        detail:
+          "You've been sold a bike off a standard chart and you're stretched out, uncomfortable on the saddle, or struggling to reach the brakes.",
+      },
+      {
+        label: "The rider or partner shopping for a first proper bike",
+        detail:
+          "You want to know what genuinely matters versus what's marketing, before spending money on a women's-specific frame.",
+      },
+    ],
+    roadmanView: [
+      "This is a question Anthony gets a lot through the community, and the honest answer cuts against a lot of the marketing. There's no secret women's-only fitting method. The process Phil Burt or Daryl Fitzgerald runs is the same one they'd run for anyone: assess the rider's anatomy, flexibility and goals, then build the position around the body in front of them. Fitting to the individual is the whole job, and it always was.",
+      "What does change is which variables tend to need the most attention. On average — and average is the important word — women have a different pelvic structure, which makes saddle choice and soft-tissue relief a bigger deal, and a longer leg relative to torso, which means standard frames and stems are often too long in reach. Add smaller hands, where the factory brake-lever reach leaves you stretching for the levers on a descent, and you've got three areas that a generic off-the-shelf setup gets wrong more often for women than men. None of that needs a women's-branded bike to fix — it needs a fitter paying attention to the right things.",
+      "The Roadman framing is the same as always: this is fixable, and most of it is fixable on the bike you already own. A saddle sized to your sit bones, a shorter stem to pull the reach in, and the brake levers wound in so your hands can actually work them — those three changes solve the bulk of what women write in about. The danger is at both ends: ignoring anatomy entirely and selling everyone the same setup, or going the other way and assuming every woman needs the pink-badged version. The truth sits in the middle. Fit the rider, watch the variables that matter, and don't let a label do your thinking for you.",
+    ],
+    expertEvidence: [
+      {
+        name: "Phil Burt",
+        credential: "Former Team Sky and British Cycling bike fitter who has fitted elite cyclists including Victoria Pendleton",
+        insight:
+          "The fitting process is the same regardless of gender — assess the individual rider and build the position around their anatomy and goals. What differs is emphasis: saddle choice and soft-tissue relief, reach, and contact-point sizing often need closer attention for women, because off-the-shelf bikes are specced to a male-skewed average that doesn't suit many female riders.",
+        episodeSlug: "ep-2-i-tried-a-bike-fit-from-team-gb-bike-fitter-heres-what-happe",
+        guestSlug: "phil-burt",
+      },
+      {
+        name: "Daryl Fitzgerald",
+        credential: "World Tour bike fitter at Science to Sport",
+        insight:
+          "The most common fit error — a bike that's too big and too long — hits women particularly hard, because a longer leg-to-torso ratio means a frame sized for leg length frequently ends up far too long in reach. Pulling the reach back with a shorter stem and getting saddle width right resolves the majority of the discomfort, without any need for a gender-specific frame.",
+        episodeSlug: "ep-1-pro-bike-fitter-reveals-the-1-change-amateurs-should-make",
+        guestSlug: "daryl-fitzgerald",
+      },
+    ],
+    practicalApplication: [
+      {
+        title: "Get the saddle right first",
+        detail:
+          "Measure sit bone width and choose a saddle of that width plus 20–30mm, with a cut-out or relief channel to take pressure off the soft tissue. This is the contact point that causes the most discomfort when it's wrong, and it's the one a generic bike setup most often gets wrong for women. Use a demo programme before committing.",
+      },
+      {
+        title: "Check reach against your proportions, not the size chart",
+        detail:
+          "If you have a longer leg relative to your torso, the frame sized for your leg length is likely too long in reach. Photograph yourself on the hoods — if your back rounds and your arms lock out, fit a shorter stem (10mm at a time) to pull the bars back to where your arms want them.",
+      },
+      {
+        title: "Adjust the brake-lever reach for your hands",
+        detail:
+          "Most modern brake/shift levers have a reach-adjust screw that brings the lever closer to the bar for smaller hands. If you're stretching to reach the brakes on a descent — which is a safety issue, not just comfort — wind the reach adjustment in until you can brake confidently from the hoods and the drops.",
+      },
+    ],
+    commonMistakes: [
+      {
+        mistake: "Assuming a women's-specific frame automatically fits.",
+        fix:
+          "A gender label is not a fit. Measure your sit bones, check your reach, and adjust contact points — fit the individual whatever the badge on the frame says.",
+      },
+      {
+        mistake: "Riding a saddle that's too narrow because it came with the bike.",
+        fix:
+          "Stock saddles are a generic guess. Measure your sit bones and choose a saddle to your anatomy with proper soft-tissue relief.",
+      },
+      {
+        mistake: "Stretching for brake levers you can't comfortably reach.",
+        fix:
+          "This is a control and safety problem. Use the lever reach-adjust screw to bring the brakes within easy reach of your hands.",
+      },
+    ],
+    faq: [
+      {
+        question: "Do women need a women's-specific bike?",
+        answer:
+          "Not necessarily. A correctly fitted unisex bike — with the right saddle, reach and contact-point adjustments — works for most women. Women's-specific bikes can shortcut some of those adjustments, but they're not essential. What matters is fitting the bike to your body, which can be done on a unisex frame with the right components and setup.",
+      },
+      {
+        question: "Why does my saddle hurt more than my partner's?",
+        answer:
+          "Pelvic anatomy differs, and saddles that suit one rider load soft tissue differently on another. Women often need a saddle that's wider at the rear and has a generous cut-out or relief channel to take pressure off sensitive soft tissue. Measure your sit bones and choose a saddle to your own anatomy rather than matching your partner's.",
+      },
+      {
+        question: "Is reach really different for women?",
+        answer:
+          "On average women have a longer leg relative to torso, so a frame sized for leg length often ends up too long in reach. That's an average, not a rule — but it's why so many women feel stretched out on stock bikes. A shorter stem usually solves it. Check your own proportions rather than assuming either way.",
+      },
+      {
+        question: "Should women use shorter cranks?",
+        answer:
+          "Crank length should be set by leg length and hip mobility, not gender. Because many women are shorter, shorter cranks (165mm or below) are frequently appropriate — but the deciding factor is your leg length and hip clearance, exactly as it is for men. Assess the individual, not the category.",
+      },
+      {
+        question: "Do contact points like grips and levers matter for women?",
+        answer:
+          "Yes, often more so. Smaller hands mean factory brake-lever reach can leave you stretching for the levers, which is a control and safety issue. Most modern levers have a reach-adjust screw to bring them closer. Bar width and grip diameter also matter for comfort and control — adjust them to your hands.",
+      },
+      {
+        question: "Does a bike fit change during pregnancy?",
+        answer:
+          "It can. Posture, comfort and centre of gravity change through pregnancy, and many riders raise the bars for a more upright position and adjust reach as the body changes. This is individual and medical guidance comes first — but the fitting principle is the same: adjust the bike to the rider's current body, not a fixed ideal.",
+      },
+    ],
+    relatedEpisodes: [
+      "ep-2-i-tried-a-bike-fit-from-team-gb-bike-fitter-heres-what-happe",
+      "ep-1-pro-bike-fitter-reveals-the-1-change-amateurs-should-make",
+      "ep-2186-the-correct-bike-fit-simplified-dr-pruitt",
+    ],
+    relatedTopics: [
+      { label: "How Do I Choose the Right Saddle?", href: "/answers/how-to-choose-a-saddle" },
+      { label: "How Do I Set Handlebar Reach and Stem Length?", href: "/answers/handlebar-reach-and-stem" },
+      { label: "Signs You Need a Bike Fit", href: "/answers/signs-you-need-a-bike-fit" },
+      { label: "Is a Professional Bike Fit Worth It?", href: "/answers/is-a-professional-bike-fit-worth-it" },
+      { label: "Should I Switch to Shorter Cranks?", href: "/answers/should-i-switch-to-shorter-cranks" },
+    ],
+    evidenceLevel: "moderate",
+    publishDate: "2026-05-26",
+    updatedDate: "2026-05-26",
+  },
+
+  // ============================================================
+  // HOW OFTEN SHOULD I UPDATE MY BIKE FIT
+  // ============================================================
+  {
+    slug: "how-often-update-bike-fit",
+    cluster: "bikefit",
+    question: "How Often Should I Update My Bike Fit?",
+    seoTitle: "How Often Should You Update Your Bike Fit?",
+    seoDescription:
+      "Review your bike fit every 2–3 years, or sooner after any significant change in flexibility, weight, age, injury, or equipment. Why a fit is a snapshot, not a lifetime setting.",
+    pillar: "coaching",
+    directAnswer:
+      "Review your bike fit every 2–3 years as a baseline, and sooner whenever something meaningful changes: a flexibility shift, a significant weight change, advancing age, an injury or surgery, a new bike, or new components like a saddle, cranks or shoes. A fit is a snapshot of your body at one moment, not a lifetime setting. The body that was fitted three years ago has changed — and a position that was perfect then can quietly become the cause of new pain now.",
+    keyTakeaways: [
+      "Every 2–3 years is a sensible baseline review even with no symptoms — the body changes slowly and silently.",
+      "Re-fit sooner after any trigger: flexibility change, weight change, age, injury, new bike or new components.",
+      "New pain on a position that used to feel fine is a signal that your body has moved on from the old fit.",
+      "Keep a written record of your fit numbers so you can transfer and compare your position over time.",
+    ],
+    whoFor: [
+      {
+        label: "The rider who had one fit years ago",
+        detail:
+          "You were fitted once, it felt great, and you've never revisited it — but new niggles are creeping in.",
+      },
+      {
+        label: "The masters rider whose flexibility is changing",
+        detail:
+          "You're getting older and noticing your old position feels more aggressive than it used to.",
+      },
+    ],
+    roadmanView: [
+      "A lot of riders treat a bike fit like a one-time purchase — pay your £200, get your numbers, done forever. Anthony's point, echoing what Phil Burt and Dr Andy Pruitt have said on the podcast, is that a fit is a snapshot of one body on one day. The body keeps changing. Your flexibility three years ago isn't your flexibility now, especially if you've stopped doing the mobility work, picked up an injury, or simply got older. The position doesn't drift, but you do — and eventually the gap between the two shows up as pain.",
+      "The triggers are the useful part to remember. A new bike obviously needs the fit transferred and checked. New components do too — a different saddle changes your contact height, new cranks change your leg extension, new shoes change your stack and cleat position. Then there are the body triggers: a meaningful weight change alters how you sit and where pressure lands, an injury or surgery changes your mechanics, and age steadily reduces hip and thoracic mobility. Any one of those is a reason to revisit the fit rather than soldier on with numbers set for a body you no longer have.",
+      "The Roadman habit here is simple and cheap: keep a record. Write down your saddle height, setback, stem length, bar drop and cleat position somewhere you won't lose them. That way you can transfer your position to a new bike without paying for a full fit, spot when something's been knocked out of place after a service, and have a baseline to compare against when you do go back for a review. New pain on a position that used to feel fine isn't a mystery — it's your body telling you the snapshot is out of date.",
+    ],
+    expertEvidence: [
+      {
+        name: "Dr Andy Pruitt",
+        credential: "Pioneer of medical-based bike fitting; founder of the Boulder Center for Sports Medicine",
+        insight:
+          "A bike fit reflects the rider's body, flexibility and goals at the time it was done, and all of those change over time. Position should be reviewed periodically and whenever the rider's circumstances change — age, injury, weight, flexibility or equipment — because a position that suited the body years ago can become a source of new problems as the body changes.",
+        episodeSlug: "ep-2186-the-correct-bike-fit-simplified-dr-pruitt",
+        guestSlug: "dr-andy-pruitt",
+      },
+      {
+        name: "Phil Burt",
+        credential: "Former Team Sky and British Cycling physiotherapist and bike fitter",
+        insight:
+          "New pain on a position that previously felt comfortable is a clear signal that something has changed — usually the rider's flexibility or strength, sometimes equipment knocked out of place. Rather than pushing through it, treat it as a prompt to reassess the fit against the body's current state, not the state it was in at the last fitting.",
+        episodeSlug: "ep-2535-5-fixable-bike-fit-mistake-most-riders-make",
+        guestSlug: "phil-burt",
+      },
+    ],
+    practicalApplication: [
+      {
+        title: "Record your fit numbers and store them safely",
+        detail:
+          "Write down saddle height (bottom bracket to saddle top), saddle setback, saddle-to-bar drop, stem length and angle, and cleat fore-aft and rotation. Save it in a note on your phone and a backup somewhere else. This lets you transfer your position to a new bike, restore it after a service, and compare against future reviews.",
+      },
+      {
+        title: "Schedule a baseline review every 2–3 years",
+        detail:
+          "Even with no symptoms, book a fit review every two to three years. The body changes slowly enough that you won't notice the drift until pain appears — a periodic review catches the gap before it becomes a problem. Tie it to something memorable, like the start of a new season's build.",
+      },
+      {
+        title: "Re-check the fit after any trigger event",
+        detail:
+          "Treat these as automatic prompts to reassess: a new bike, a new saddle, cranks or shoes, a weight change of more than a few kilos, an injury or surgery, a long lay-off, or noticeably reduced flexibility. Don't wait for the next scheduled review — these changes alter the fit immediately.",
+      },
+    ],
+    commonMistakes: [
+      {
+        mistake: "Treating a bike fit as a permanent, one-time setting.",
+        fix:
+          "A fit is a snapshot of your body on one day. Review it every 2–3 years and after any change in your body or equipment.",
+      },
+      {
+        mistake: "Pushing through new pain on an old position.",
+        fix:
+          "New pain on a position that used to feel fine means your body has changed. Reassess the fit rather than soldiering on.",
+      },
+      {
+        mistake: "Transferring an old fit to a new bike without rechecking.",
+        fix:
+          "Copy your recorded numbers across, then ride and reassess. Different geometry and components mean the same numbers can feel different — verify on the road.",
+      },
+    ],
+    faq: [
+      {
+        question: "How often should I get a professional bike fit?",
+        answer:
+          "Every 2–3 years as a baseline, and sooner if anything significant changes — flexibility, weight, age, injury, a new bike or new components. Riders whose bodies are changing faster, such as masters cyclists losing mobility or anyone recovering from injury, benefit from more frequent reviews than that baseline.",
+      },
+      {
+        question: "Does my bike fit change as I get older?",
+        answer:
+          "Yes. Hip flexor and thoracic mobility both decline with age, which means a position that was sustainable in your thirties can feel too aggressive in your fifties. Many masters riders gradually raise their bars and shorten their reach to keep producing power comfortably. Revisiting the fit as you age keeps the position matched to your current mobility.",
+      },
+      {
+        question: "Do I need a new fit if I buy a new bike?",
+        answer:
+          "At minimum, transfer your recorded fit numbers to the new bike and then ride and reassess. Different frame geometry, a different saddle and different components can make the same numbers feel different. If the new bike is a meaningfully different type — say moving from a road to a gravel bike — a fresh fit review is worth it.",
+      },
+      {
+        question: "Will losing or gaining weight affect my bike fit?",
+        answer:
+          "A significant weight change can. It alters how you sit on the saddle, where pressure lands, and sometimes your flexibility and core support. A few kilos either way is rarely an issue, but a larger change is a reason to recheck saddle comfort and reach as part of a fit review.",
+      },
+      {
+        question: "Should I re-fit after an injury?",
+        answer:
+          "Yes. Injuries and surgery change your mechanics, flexibility and sometimes leg length or alignment. A position set before an injury may load the recovering area or compensate in ways that cause new problems. Reassess the fit once you're back riding, ideally with input from whoever managed your rehab.",
+      },
+      {
+        question: "How do I keep track of my fit between reviews?",
+        answer:
+          "Record your key numbers — saddle height, setback, bar drop, stem length and angle, cleat position — and store them on your phone and a backup. Check them periodically against the bike, especially after a service, so you can spot if anything has been knocked out of place and restore your position without paying for a full fit.",
+      },
+    ],
+    relatedEpisodes: [
+      "ep-2186-the-correct-bike-fit-simplified-dr-pruitt",
+      "ep-2535-5-fixable-bike-fit-mistake-most-riders-make",
+      "ep-2-i-tried-a-bike-fit-from-team-gb-bike-fitter-heres-what-happe",
+    ],
+    relatedTopics: [
+      { label: "Signs You Need a Bike Fit", href: "/answers/signs-you-need-a-bike-fit" },
+      { label: "Is a Professional Bike Fit Worth It?", href: "/answers/is-a-professional-bike-fit-worth-it" },
+      { label: "Cycling Training Over 40", href: "/answers/cycling-training-over-40" },
+      { label: "How Do I Set My Saddle Height?", href: "/answers/how-to-set-saddle-height" },
+      { label: "Cycling Coaching — Topic Hub", href: "/topics/cycling-coaching" },
+    ],
+    evidenceLevel: "moderate",
+    publishDate: "2026-05-26",
+    updatedDate: "2026-05-26",
+  },
+
+  // ============================================================
+  // HOW DO I SET UP MY POSITION FOR INDOOR TRAINING
+  // ============================================================
+  {
+    slug: "indoor-training-position",
+    cluster: "bikefit",
+    question: "How Do I Set Up My Position for Indoor Training?",
+    seoTitle: "How to Set Up Your Position for Indoor Training",
+    seoDescription:
+      "Indoor riding fixes you in one position with no road movement, so small fit issues become big ones. Why a 5mm bar rise, a rocker plate, and a fan change everything.",
+    pillar: "coaching",
+    directAnswer:
+      "Set your indoor position the same as outdoors as a starting point, then make small allowances for the fact that you don't move on a trainer: a fixed bike removes the natural micro-movements that relieve pressure outdoors, so issues like saddle pressure and a too-aggressive front end hit harder. Raise the bars 5–10mm if your saddle gets uncomfortable, add a rocker plate to restore some movement, and run a strong fan — overheating wrecks more indoor sessions than position does. Keep the same saddle height and cleats so adaptations transfer to the road.",
+    keyTakeaways: [
+      "Start from your outdoor fit, then adjust for the lack of movement — a fixed trainer hides nowhere.",
+      "Saddle pressure is worse indoors because you don't shift around; a 5–10mm bar rise often fixes it.",
+      "A rocker plate restores natural side-to-side movement and noticeably improves indoor comfort.",
+      "Cooling matters more than position indoors — a strong fan prevents the overheating that ends sessions early.",
+    ],
+    whoFor: [
+      {
+        label: "The rider doing big indoor winter blocks",
+        detail:
+          "You're spending hours on the trainer through winter and the saddle discomfort and stiffness are getting hard to ignore.",
+      },
+      {
+        label: "The Zwift or structured-training rider",
+        detail:
+          "You want your indoor setup to match outdoors so your fitness and adaptations carry over to real rides.",
+      },
+    ],
+    roadmanView: [
+      "Indoor training has a fit problem nobody warns you about. Outdoors, you're constantly moving — standing on climbs, shifting on the saddle, soft-pedalling on descents, rolling your shoulders. Those micro-movements quietly relieve pressure all ride long. Lock the bike to a trainer and all of that disappears. You sit in exactly one spot, grinding through the intervals, and any small fit issue you got away with outdoors suddenly becomes the thing that ends your session. Anthony's covered the indoor-versus-outdoor difference on the podcast, and the contact-point pressure is the part riders underestimate most.",
+      "The instinct is to think indoor needs a totally different position, but that's the wrong move — you want your trainer fit to match the road so the work transfers. Keep your saddle height and cleats identical. What you do allow for is the lack of movement. If the saddle starts to ache on long turbo sessions when it's fine outdoors, a 5–10mm bar rise takes a little weight off the front and eases the pressure. Better still, a rocker plate puts the side-to-side movement back into the setup, and riders who fit one almost always say it's the single biggest comfort upgrade they've made indoors.",
+      "And then there's the thing that actually ruins most indoor sessions, and it isn't fit at all — it's heat. Outdoors you've got wind chill doing the cooling for free. Indoors there's no airflow, your core temperature climbs, your power sags, and you bail on the session blaming your legs when it was really your cooling. A proper fan, pointed at your chest and face, does more for your indoor training than any tweak to your stem. Sort the fan, match your outdoor fit, allow for the lack of movement, and the trainer stops being a sufferfest you dread.",
+    ],
+    expertEvidence: [
+      {
+        name: "Phil Burt",
+        credential: "Former Team Sky and British Cycling physiotherapist and bike fitter",
+        insight:
+          "Indoor riding removes the natural movement that relieves pressure on the road, so the rider sits in a single fixed position for the whole session. That makes contact-point issues — particularly saddle pressure — far more noticeable indoors than out, and means small comfort adjustments like a touch more bar height matter more on a trainer than they do on the road.",
+        episodeSlug: "ep-2535-5-fixable-bike-fit-mistake-most-riders-make",
+        guestSlug: "phil-burt",
+      },
+      {
+        name: "Daryl Fitzgerald",
+        credential: "World Tour bike fitter at Science to Sport",
+        insight:
+          "Keeping the indoor position matched to the outdoor fit is what makes indoor training transfer to the road — the same saddle height and cleat position so the body adapts to the position it actually races and rides in. Allowances for the trainer should be small comfort adjustments, not a wholesale different setup that trains a position you never use outside.",
+        episodeSlug: "ep-1-pro-bike-fitter-reveals-the-1-change-amateurs-should-make",
+        guestSlug: "daryl-fitzgerald",
+      },
+    ],
+    practicalApplication: [
+      {
+        title: "Match your outdoor fit, then adjust for comfort",
+        detail:
+          "Set the trainer bike to your outdoor saddle height, setback and cleats exactly — these should not change. Then, if saddle pressure builds on long sessions, raise the bars 5–10mm to shift a little weight off the contact points. Keep the changes small so the position still transfers to the road.",
+      },
+      {
+        title: "Fit a rocker plate to restore movement",
+        detail:
+          "A rocker plate lets the trainer and bike move side to side and slightly fore-and-aft, replicating the natural sway you have outdoors. This redistributes saddle pressure over time instead of fixing it on one spot, and most riders find it the biggest single comfort improvement for long indoor sessions. You can buy one or build a basic version cheaply.",
+      },
+      {
+        title: "Set up serious cooling before you worry about anything else",
+        detail:
+          "Position a powerful fan to blow across your chest and face, and consider a second fan for higher-intensity work. Without airflow your core temperature rises, power drops and the session falls apart — cooling prevents more abandoned indoor sessions than any fit change. Train in minimal kit and keep fluids within reach.",
+      },
+      {
+        title: "Use a level surface and a stable trainer setup",
+        detail:
+          "Make sure the trainer is on a level floor and the bike is properly secured, with a mat underneath to catch sweat. An unlevel or unstable setup subtly changes your effective position and makes the ride feel wrong even when the fit numbers are right. A stable, level platform is the foundation everything else sits on.",
+      },
+    ],
+    commonMistakes: [
+      {
+        mistake: "Running a completely different position indoors.",
+        fix:
+          "Keep your saddle height and cleats the same as outdoors so your adaptations transfer. Only make small comfort allowances for the lack of movement.",
+      },
+      {
+        mistake: "Blaming your legs when overheating ends the session.",
+        fix:
+          "Most indoor session failures are cooling, not fitness. Set up a strong fan across your chest and face before adjusting anything about your position.",
+      },
+      {
+        mistake: "Ignoring saddle pressure that's worse indoors than out.",
+        fix:
+          "A fixed trainer removes the movement that relieves pressure on the road. A 5–10mm bar rise or a rocker plate restores comfort without changing the position that matters.",
+      },
+    ],
+    faq: [
+      {
+        question: "Should my indoor position match my outdoor position?",
+        answer:
+          "Yes, as a starting point — keep your saddle height, setback and cleat position identical so your fitness and adaptations transfer to the road. The only changes you should make for indoor are small comfort allowances for the lack of movement, such as a touch more bar height. A wholesale different indoor position trains a setup you never actually ride outside.",
+      },
+      {
+        question: "Why does my saddle hurt more indoors than outdoors?",
+        answer:
+          "Outdoors you constantly shift position — standing on climbs, moving on the saddle, soft-pedalling — which relieves pressure all ride. On a fixed trainer you sit in one spot for the whole session, so saddle pressure builds with nowhere to escape. A 5–10mm bar rise, a rocker plate, and deliberately standing up periodically all help.",
+      },
+      {
+        question: "Do I need a rocker plate for indoor training?",
+        answer:
+          "You don't need one, but it's one of the most effective comfort upgrades for long indoor sessions. A rocker plate restores the natural side-to-side movement you have outdoors, which redistributes saddle pressure and makes the ride feel more like real cycling. You can buy a commercial one or build a basic version cheaply.",
+      },
+      {
+        question: "How important is a fan for indoor cycling?",
+        answer:
+          "Very. Indoors there's no wind chill to cool you, so your core temperature rises, your power drops and sessions fall apart — often blamed on the legs when it's really overheating. A powerful fan aimed at your chest and face prevents this and does more for your indoor performance than almost any fit change.",
+      },
+      {
+        question: "Should I use a different saddle for the turbo?",
+        answer:
+          "Usually no — keep the same saddle so your contact points stay consistent with outdoor riding. If the saddle is genuinely uncomfortable indoors, the better fix is usually a small bar-height change or a rocker plate to relieve pressure, rather than a separate turbo saddle that changes your position from the one you ride outside.",
+      },
+      {
+        question: "Does indoor training affect my bike fit needs?",
+        answer:
+          "It highlights existing fit issues rather than creating new ones. Because you sit in a fixed position with no movement, a slightly too-aggressive front end or a saddle problem that you got away with outdoors becomes obvious indoors. If big indoor blocks reveal persistent discomfort, treat it as a prompt to review your overall fit.",
+      },
+    ],
+    relatedEpisodes: [
+      "ep-2535-5-fixable-bike-fit-mistake-most-riders-make",
+      "ep-1-pro-bike-fitter-reveals-the-1-change-amateurs-should-make",
+      "ep-2-i-tried-a-bike-fit-from-team-gb-bike-fitter-heres-what-happe",
+    ],
+    relatedTopics: [
+      { label: "Indoor vs Outdoor FTP", href: "/answers/indoor-vs-outdoor-ftp" },
+      { label: "Zone 2 on the Indoor Trainer", href: "/answers/zone-2-indoor-trainer" },
+      { label: "Indoor vs Outdoor Training", href: "/compare/indoor-vs-outdoor-training" },
+      { label: "Signs You Need a Bike Fit", href: "/answers/signs-you-need-a-bike-fit" },
+      { label: "How Do I Prevent Saddle Sores?", href: "/answers/how-to-prevent-saddle-sores" },
+    ],
+    evidenceLevel: "moderate",
+    publishDate: "2026-05-26",
+    updatedDate: "2026-05-26",
+  },
 ];
