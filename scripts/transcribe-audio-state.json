@@ -1,0 +1,154 @@
+{
+  "version": 1,
+  "feedUrl": "https://anchor.fm/s/a09110e0/podcast/rss",
+  "lastRun": "2026-05-26T14:39:59.043Z",
+  "episodes": {
+    "603e6ee5-ad89-4d4f-825c-e2d6f86d9665": {
+      "status": "written",
+      "slug": "welcome-to-the-roadman-cycling-podcast",
+      "title": "Welcome to The Roadman Cycling Podcast",
+      "words": 1081,
+      "updatedAt": "2026-05-26T14:20:26.586Z"
+    },
+    "7bdcda16a8824b77931862dcb5d30904": {
+      "status": "written",
+      "slug": "bernal-takes-yellow-as-tour-stage-cancelled",
+      "title": "Bernal Takes Yellow as Tour Stage Cancelled",
+      "words": 5085,
+      "updatedAt": "2026-05-26T14:39:59.001Z"
+    },
+    "ebab7dab833f4859a65a20709a7102b7": {
+      "status": "written",
+      "slug": "merci-alaphilippe",
+      "title": "Merci Alaphilippe",
+      "words": 6423,
+      "updatedAt": "2026-05-26T14:39:59.006Z"
+    },
+    "c8feb5763e824969b8dda53e77415d8b": {
+      "status": "written",
+      "slug": "egan-bernal-tour-de-france-winner",
+      "title": "Egan Bernal - Tour de France Winner",
+      "words": 7122,
+      "updatedAt": "2026-05-26T14:39:59.009Z"
+    },
+    "b20ca4c3e2d742a3a8ad6839daf65cb8": {
+      "status": "written",
+      "slug": "tour-de-france-prize-money-pinot-tears-and-new-whoop",
+      "title": "Tour de France Prize Money, Pinot Tears and new Whoop",
+      "words": 7621,
+      "updatedAt": "2026-05-26T14:39:59.012Z"
+    },
+    "1fe0f0a67a384ef7981d1c06eac0fa64": {
+      "status": "written",
+      "slug": "death-of-group-ride",
+      "title": "Death of Group Ride",
+      "words": 6981,
+      "updatedAt": "2026-05-26T14:39:59.014Z"
+    },
+    "117c059ff6c74b47aaeef58e427eb6c3": {
+      "status": "written",
+      "slug": "start-of-a-wonderful-journey",
+      "title": "Start of a wonderful journey",
+      "words": 9652,
+      "updatedAt": "2026-05-26T14:39:59.019Z"
+    },
+    "398ae3b44529430a91bd151e4239de7c": {
+      "status": "written",
+      "slug": "macro-planning-productivity-hacks-and-energy-ball-recipe",
+      "title": "Macro Planning, Productivity Hacks & Energy Ball Recipe",
+      "words": 5839,
+      "updatedAt": "2026-05-26T14:39:59.022Z"
+    },
+    "2463955913fc458683d7308aa20c2924": {
+      "status": "written",
+      "slug": "dan-martin-heading-to-israel-tips-on-building-resilience-and-8-week-ch",
+      "title": "Dan Martin heading to Israel, Tips on building Resilience and 8 Week Challenge",
+      "words": 6085,
+      "updatedAt": "2026-05-26T14:39:59.024Z"
+    },
+    "c2e6290d27b04aba9c8d18d9ba783d3d": {
+      "status": "written",
+      "slug": "are-you-brave-enough",
+      "title": "Are you brave enough?",
+      "words": 6217,
+      "updatedAt": "2026-05-26T14:39:59.026Z"
+    },
+    "a88ed0fe758b469c94d842352dae39d4": {
+      "status": "written",
+      "slug": "vuelta-passive-recovery-and-inside-the-8-week-challenge",
+      "title": "Vuelta, Passive Recovery & Inside the 8 Week Challenge",
+      "words": 4515,
+      "updatedAt": "2026-05-26T14:39:59.028Z"
+    },
+    "0bd7c97a951b4e68a717ebd282c62807": {
+      "status": "written",
+      "slug": "stage-1-vuelta-daily-show",
+      "title": "Stage 1 - Vuelta Daily Show",
+      "words": 3736,
+      "updatedAt": "2026-05-26T14:39:59.029Z"
+    },
+    "e66cf3a1f8da4f0d9f148cdf943dabbd": {
+      "status": "written",
+      "slug": "irish-eyes-are-smiling",
+      "title": "Irish Eyes are Smiling",
+      "words": 3342,
+      "updatedAt": "2026-05-26T14:39:59.031Z"
+    },
+    "bbff722399be43ffaa574eabe7ee8b67": {
+      "status": "written",
+      "slug": "ireland-lead-the-world",
+      "title": "Ireland lead the world",
+      "words": 3130,
+      "updatedAt": "2026-05-26T14:39:59.032Z"
+    },
+    "95e837beadd34252b04b7596fbb6b02d": {
+      "status": "written",
+      "slug": "2-jerseys-are-better-than-1",
+      "title": "2 Jerseys are better than 1",
+      "words": 3685,
+      "updatedAt": "2026-05-26T14:39:59.033Z"
+    },
+    "2bb8e86c9868462e82718ebcba322282": {
+      "status": "written",
+      "slug": "the-cream-begins-to-rise",
+      "title": "The cream begins to rise",
+      "words": 3500,
+      "updatedAt": "2026-05-26T14:39:59.035Z"
+    },
+    "b02a26892f8343eb933646a6c5b4629f": {
+      "status": "written",
+      "slug": "boom-and-down-go-the-favourites",
+      "title": "BOOM! And down go the favourites",
+      "words": 3338,
+      "updatedAt": "2026-05-26T14:39:59.037Z"
+    },
+    "dcaf4b8ebb65405286065c8d65951e16": {
+      "status": "written",
+      "slug": "all-hail-king-valverde",
+      "title": "All hail king Valverde",
+      "words": 3130,
+      "updatedAt": "2026-05-26T14:39:59.038Z"
+    },
+    "e6af2b153bb942e0b00176f18b375358": {
+      "status": "written",
+      "slug": "the-rain-in-spain",
+      "title": "The rain in Spain",
+      "words": 4130,
+      "updatedAt": "2026-05-26T14:39:59.040Z"
+    },
+    "b915fa7f9f2946bbb2c44fe5e8c3bd29": {
+      "status": "written",
+      "slug": "it-lived-up-to-the-hype-the-queens-stage",
+      "title": "It lived up to the hype - the Queens Stage.",
+      "words": 4139,
+      "updatedAt": "2026-05-26T14:39:59.041Z"
+    },
+    "7620d72d8b224c0e9990eff7d95136ff": {
+      "status": "written",
+      "slug": "if-you-cant-tt-go-home",
+      "title": "If you can't TT go home",
+      "words": 2693,
+      "updatedAt": "2026-05-26T14:39:59.043Z"
+    }
+  }
+}

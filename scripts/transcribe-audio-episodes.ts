@@ -70,6 +70,9 @@ const flag = (n: string) => args.includes(`--${n}`);
 const val = (n: string) => args.find((a) => a.startsWith(`--${n}=`))?.split("=")[1];
 
 const dryRun = flag("dry-run");
+// Re-generate MDX for already-transcribed episodes from saved .txt transcripts
+// (re-applies classifier/format changes; no re-download or re-transcription).
+const rebuild = flag("rebuild");
 const limit = Number(val("limit") ?? (dryRun ? 0 : 8));
 const order = (val("order") as "oldest" | "newest") ?? "oldest";
 const minChars = Number(val("min-chars") ?? 200);
@@ -367,9 +370,22 @@ function buildMdx(item: RssItem, transcript: string, slug: string): string {
   const cleanTitle = item.title
     .replace(/^(?:EP?|Episode|#)\s*\d+\s*[:\-–—|]\s*/i, "")
     .trim();
-  const guest = extractGuest(item.title, item.description);
+
+  // Guest extraction is gated on an explicit interview connector IN THE TITLE.
+  // The shared classifier's loose dash/colon patterns otherwise turn solo
+  // race-recap titles ("Egan Bernal - Tour de France Winner") into fake guests
+  // with bogus /guests/<slug> profile links — bad on an SEO-sensitive site.
+  // (The description is not used for the gate: prose "with" is far too noisy.)
+  const connector =
+    /\b(?:with|ft\.?|feat\.?|featuring|interview|joins|in conversation|talks? to|sits down with|chats? (?:to|with))\b/i;
+  const guestRaw = extractGuest(item.title, item.description);
+  const guest = guestRaw && connector.test(item.title) ? guestRaw : undefined;
+
   const pillar = classifyPillar(item.title, item.description, item.keywords);
-  const type = classifyType(item.title, item.description);
+  // No confident guest ⇒ treat as a solo cast (the show is solo-heavy) rather
+  // than leaving a guest-less "interview" with an empty guest slot.
+  let type = classifyType(item.title, item.description);
+  if (!guest && type === "interview") type = "solo";
   const keywords = extractKeywords(item.title, item.keywords, guest);
   const descFirst = item.description.split("\n").find((l) => l.trim()) || cleanTitle;
 
@@ -425,6 +441,29 @@ async function main() {
   console.log(`   ${feed.length} episodes in feed`);
 
   const state = loadState();
+
+  // --rebuild: regenerate MDX for transcribed episodes from saved .txt files.
+  if (rebuild) {
+    const byGuid = new Map(feed.map((ep) => [ep.guid, ep]));
+    let rebuilt = 0;
+    let missing = 0;
+    for (const [guid, st] of Object.entries(state.episodes)) {
+      if (st.status !== "written" || !st.slug) continue;
+      const item = byGuid.get(guid);
+      const txtPath = path.join(TRANSCRIPT_DIR, `${st.slug}.txt`);
+      if (!item || !fs.existsSync(txtPath)) {
+        missing++;
+        continue;
+      }
+      const transcript = fs.readFileSync(txtPath, "utf-8").trim();
+      const mdx = buildMdx(item, transcript, st.slug);
+      writeFileAtomic(path.join(PODCAST_DIR, `${st.slug}.mdx`), mdx);
+      rebuilt++;
+    }
+    console.log(`Rebuilt ${rebuilt} MDX file(s) from saved transcripts (${missing} could not be matched).`);
+    return;
+  }
+
   const idx = buildExistingIndex();
   const slugs = existingSlugs();
   console.log(`   ${idx.titleKeys.size} episodes already have MDX (YouTube + prior runs)`);
