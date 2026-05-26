@@ -299,12 +299,15 @@ export async function extractFromEpisode(
         relevance,
       });
     } else {
+      // Didn't reconcile to a canonical entity — record it as a subject.
+      // Invariant: kind 'entity' always carries an entitySlug, so an
+      // unresolved tag (even one the model labelled 'entity') is a 'topic'.
       const slug = slugify(t.tag);
       if (!slug) continue;
       mergeTag(tagsBySlug, {
         tag: t.tag.trim(),
         slug,
-        kind: t.kind === "entity" ? "entity" : "topic",
+        kind: "topic",
         entitySlug: null,
         relevance,
       });
