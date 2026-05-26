@@ -70,3 +70,6 @@ scripts/repurpose-state.json
 
 # Internal-link audit output (regenerate via scripts/audit-internal-links-v2.mjs)
 scripts/audit-output/
+
+# Claim-extraction dry-run artifacts (regenerate via npm run extract:claims:dry)
+agents/transcript-indexer/output/

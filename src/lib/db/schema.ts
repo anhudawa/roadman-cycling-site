@@ -1753,3 +1753,129 @@ export {
   methodProgress,
   methodLoginTokens,
 } from "../method/schema";
+
+// ------------------------------------------------------------
+// Structured transcript extraction — claims, quotes, topic tags
+// ------------------------------------------------------------
+// Output of the claim-extraction pipeline (agents/transcript-indexer
+// `extract.ts`). Each row is structured knowledge pulled from a podcast
+// episode transcript so AI search and the on-site expert/topic surfaces
+// can query it.
+//
+// Episodes are referenced by `episode_slug` (the MDX filename stem in
+// content/podcast/), not a foreign key — the MDX library is the source of
+// truth for the episode set and is not guaranteed to have a row in
+// `mcp_episodes`. `*_entity_slug` columns are canonical-entity slugs from
+// src/data/canonical-entities.ts (resolved via `findEntityByVariation`),
+// left null when a speaker/mention doesn't reconcile to a known entity.
+//
+// `reviewed` defaults to false: the extractor writes unreviewed rows; an
+// editorial pass flips the flag before they surface publicly (mirrors the
+// claims/citations review gate in content/podcast MDX frontmatter).
+
+// --- Extraction: Claims (factual statements with a confidence score) ---
+export const claims = pgTable(
+  "claims",
+  {
+    id: serial("id").primaryKey(),
+    episodeSlug: text("episode_slug").notNull(),
+    claim: text("claim").notNull(),
+    /** Model-assigned confidence the claim is accurately stated, 0–1. */
+    confidence: real("confidence").notNull().default(0),
+    /**
+     * Evidence basis, aligned with the on-site claims taxonomy in
+     * content/podcast MDX (study | expert | practice | anecdote | opinion).
+     */
+    evidence: text("evidence"),
+    /** Coarse shape of the claim, e.g. statistic | recommendation | mechanism. */
+    claimType: text("claim_type"),
+    /** Raw attributed speaker as it appeared in the transcript. */
+    speaker: text("speaker"),
+    /** Canonical-entity slug for the speaker when it reconciles, else null. */
+    speakerEntitySlug: text("speaker_entity_slug"),
+    /** Optional verbatim transcript snippet that backs the claim. */
+    supportingQuote: text("supporting_quote"),
+    /**
+     * Transcript time reference for the claim (e.g. "12:34"), captured only
+     * when the transcript carries explicit time markers. Null for the current
+     * plain-text transcripts; populated once Whisper emits timestamped output.
+     */
+    timestamp: text("timestamp"),
+    /** Canonical subject/entity slugs this claim is tagged with. */
+    topicTags: text("topic_tags").array(),
+    reviewed: boolean("reviewed").notNull().default(false),
+    /** Model id that produced the extraction (provenance / re-run audit). */
+    model: text("model"),
+    createdAt: timestamp("created_at", { withTimezone: true })
+      .notNull()
+      .defaultNow(),
+  },
+  (t) => [
+    index("claims_episode_slug_idx").on(t.episodeSlug),
+    index("claims_speaker_entity_slug_idx").on(t.speakerEntitySlug),
+  ]
+);
+
+// --- Extraction: Quotes (verbatim, with speaker attribution) ---
+export const quotes = pgTable(
+  "quotes",
+  {
+    id: serial("id").primaryKey(),
+    episodeSlug: text("episode_slug").notNull(),
+    quote: text("quote").notNull(),
+    /** Speaker attribution is required for a quote to be citable. */
+    speaker: text("speaker").notNull(),
+    speakerCredential: text("speaker_credential"),
+    /** Canonical-entity slug for the speaker when it reconciles, else null. */
+    speakerEntitySlug: text("speaker_entity_slug"),
+    /** Word count of `quote`, stored so callers can filter without recompute. */
+    wordCount: integer("word_count").notNull().default(0),
+    /** One-line framing of when/why it was said. */
+    context: text("context"),
+    /**
+     * Transcript time reference for the quote (e.g. "12:34"), captured only
+     * when the transcript carries explicit time markers. Null for the current
+     * plain-text transcripts; populated once Whisper emits timestamped output.
+     */
+    timestamp: text("timestamp"),
+    topicTags: text("topic_tags").array(),
+    reviewed: boolean("reviewed").notNull().default(false),
+    model: text("model"),
+    createdAt: timestamp("created_at", { withTimezone: true })
+      .notNull()
+      .defaultNow(),
+  },
+  (t) => [
+    index("quotes_episode_slug_idx").on(t.episodeSlug),
+    index("quotes_speaker_entity_slug_idx").on(t.speakerEntitySlug),
+  ]
+);
+
+// --- Extraction: Topic tags (episode ↔ canonical subject/entity) ---
+export const topicTags = pgTable(
+  "topic_tags",
+  {
+    id: serial("id").primaryKey(),
+    episodeSlug: text("episode_slug").notNull(),
+    /** Display label, e.g. "Polarised Training" or "Professor Stephen Seiler". */
+    tag: text("tag").notNull(),
+    /** Normalised kebab slug; equals `entitySlug` when kind = 'entity'. */
+    slug: text("slug").notNull(),
+    /** 'entity' (a person from canonical-entities) or 'topic' (a subject). */
+    kind: text("kind").notNull(),
+    /** Canonical-entity slug when kind = 'entity', else null. */
+    entitySlug: text("entity_slug"),
+    /** Model-assigned relevance of the tag to the episode, 0–1. */
+    relevance: real("relevance").notNull().default(0),
+    reviewed: boolean("reviewed").notNull().default(false),
+    model: text("model"),
+    createdAt: timestamp("created_at", { withTimezone: true })
+      .notNull()
+      .defaultNow(),
+  },
+  (t) => [
+    index("topic_tags_episode_slug_idx").on(t.episodeSlug),
+    index("topic_tags_slug_idx").on(t.slug),
+    uniqueIndex("topic_tags_episode_slug_slug_uniq").on(t.episodeSlug, t.slug),
+  ]
+);
