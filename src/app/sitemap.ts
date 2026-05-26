@@ -8,6 +8,7 @@ import { getAllComparisonSlugs } from "@/lib/comparisons";
 import { getAllBestForSlugs } from "@/lib/best-for";
 import { getAllProblemSlugs } from "@/lib/problems";
 import { getAllQuestionSlugs } from "@/lib/questions";
+import { getAllAnswers } from "@/lib/answers";
 import { getAllPlanCombinations, getAllEventSlugs } from "@/lib/training-plans";
 import { getAllEventGuideSlugs } from "@/lib/event-guides";
 import { getAllEntities } from "@/lib/entities";
@@ -16,6 +17,10 @@ import { SEGMENT_SLUGS } from "@/lib/coaching-segments";
 import { getAllCaseStudySlugs } from "@/lib/case-studies";
 import { CAMP_LIST } from "@/lib/camps/camps";
 import { getAllGironaRouteSlugs } from "@/lib/girona/routes";
+import {
+  getAllExpertTopicPairs,
+  getExpertsWithTopics,
+} from "@/lib/experts";
 
 const BASE_URL = "https://roadmancycling.com";
 
@@ -35,6 +40,7 @@ const BASE_URL = "https://roadmancycling.com";
  *   /sitemap/3.xml — guest pages
  *   /sitemap/4.xml — plan pages (event hubs + phase pages)
  *   /sitemap/5.xml — topics + glossary + comparisons + best-for + problems + questions
+ *   /sitemap/6.xml — expert × topic pages (/experts, /experts/[slug], /experts/[slug]/[topic])
  *
  * Per-issue newsletter URLs (/newsletter/{slug}) are intentionally NOT in
  * the sitemap. Each issue page sets robots:noindex (one-time email
@@ -43,7 +49,7 @@ const BASE_URL = "https://roadmancycling.com";
  * stays in /sitemap/0.xml.
  */
 
-const SITEMAP_IDS = [0, 1, 2, 3, 4, 5] as const;
+const SITEMAP_IDS = [0, 1, 2, 3, 4, 5, 6] as const;
 
 export async function generateSitemaps() {
   return SITEMAP_IDS.map((id) => ({ id }));
@@ -83,6 +89,7 @@ export default async function sitemap(props: {
   if (numId === 3) return buildGuestSitemap();
   if (numId === 4) return buildPlanSitemap();
   if (numId === 5) return buildTopicAndMoreSitemap();
+  if (numId === 6) return buildExpertSitemap();
   return [];
 }
 
@@ -385,6 +392,22 @@ function buildTopicAndMoreSitemap(): MetadataRoute.Sitemap {
     priority: 0.8,
   };
 
+  // Answer pages — citation-optimised /answers/[slug] routes. The index
+  // (/answers) sits alongside its children, same as /question above.
+  const answerIndex = {
+    url: `${BASE_URL}/answers`,
+    lastModified: new Date(),
+    changeFrequency: "weekly" as const,
+    priority: 0.8,
+  };
+
+  const answerPages = getAllAnswers().map((a) => ({
+    url: `${BASE_URL}/answers/${a.slug}`,
+    lastModified: safeDate(a.updatedDate ?? a.publishDate),
+    changeFrequency: changeFreqByAge(safeDate(a.updatedDate ?? a.publishDate)),
+    priority: 0.7,
+  }));
+
   return [
     ...topicPages,
     ...glossaryPages,
@@ -393,5 +416,39 @@ function buildTopicAndMoreSitemap(): MetadataRoute.Sitemap {
     ...problemPages,
     questionIndex,
     ...questionPages,
+    answerIndex,
+    ...answerPages,
   ];
+}
+
+// Expert × topic pages — the programmatic "What does {Expert} say about
+// {Topic}?" AEO layer. Three tiers: the /experts index, one index per
+// expert (/experts/[slug]), and the answer pages themselves
+// (/experts/[slug]/[topic]). All are real, schema-rich content driven by
+// curated entity data, so they belong in the indexable sitemap.
+function buildExpertSitemap(): MetadataRoute.Sitemap {
+  const indexEntry = {
+    url: `${BASE_URL}/experts`,
+    lastModified: new Date(),
+    changeFrequency: "weekly" as const,
+    priority: 0.8,
+  };
+
+  const expertIndexPages = getExpertsWithTopics().map((e) => ({
+    url: `${BASE_URL}/experts/${e.slug}`,
+    lastModified: new Date(),
+    changeFrequency: "monthly" as const,
+    priority: 0.7,
+  }));
+
+  const expertTopicPages = getAllExpertTopicPairs().map(
+    ({ expertSlug, topicSlug }) => ({
+      url: `${BASE_URL}/experts/${expertSlug}/${topicSlug}`,
+      lastModified: new Date(),
+      changeFrequency: "monthly" as const,
+      priority: 0.65,
+    }),
+  );
+
+  return [indexEntry, ...expertIndexPages, ...expertTopicPages];
 }

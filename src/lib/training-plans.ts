@@ -329,6 +329,37 @@ export const EVENTS: TrainingEvent[] = [
       "Long-finger gloves + gilet for the first two hours (cold on the climbs pre-dawn). 34x30 minimum, 34x32 recommended for Sa Calobra late in the day. Extra bottle cages or a frame bag for the long desert-like middle section.",
   },
   {
+    slug: "tour-of-flanders-sportive",
+    name: "Tour of Flanders Cyclo (Ronde van Vlaanderen)",
+    shortName: "Tour of Flanders",
+    region: "Belgium",
+    type: "sportive",
+    distanceKm: 229,
+    elevationGainM: 2600,
+    typicalFinishTime: "8-12 hours",
+    defaultMonth: "April",
+    description:
+      "The Ronde van Vlaanderen Cyclo is the amateur Tour of Flanders — ridden the day before the pros, on the same roads, finishing in Oudenaarde. The long route is 229km with around 2,600m of climbing across seventeen hellingen, most of them cobbled, including the Koppenberg, the Oude Kwaremont and the Paterberg. The elevation total undersells the day: this is repeated short, violent climbs on stones, not long Alpine cols.",
+    keyCharacteristics: [
+      "Seventeen short bergs — Koppenberg (22% max), Paterberg (20% max), Oude Kwaremont — most under a kilometre but savagely steep",
+      "Cobbled climbs and cobbled flat sectors that punish anyone who can't hold a wheel or a line",
+      "Open Flandrian farmland means crosswinds and echelons — positioning matters as much as watts",
+      "Four distances (75 / 130 / 177 / 229km) — pick the one that matches your spring fitness",
+      "Early-April weather: cold, wind, frequent rain, and greasy cobbles",
+    ],
+    commonMistakes: [
+      "Training for steady power when the day is decided by 30-90 second max efforts on each berg",
+      "Hitting the Koppenberg in the wrong gear and getting forced to walk in a clipped-out conga line",
+      "Treating the cobbles as a fitness problem — it's a bike-handling and tyre-pressure problem first",
+    ],
+    pacingStrategy:
+      "Flanders isn't paced like a sportive, it's paced like a series of sprints with long recoveries between them. The bergs come in clusters in the back half — Koppenberg, then Taaienberg, then the Oude Kwaremont–Paterberg one-two near the finish. Each is a 30-90 second effort well over threshold. The skill is recovering on the flat, arriving at the base of each climb near the front, in the right gear, carrying momentum onto the stones. Burn your matches surging for position in the first 100km and you'll be walking the Koppenberg with the day still in front of you.",
+    nutritionAngle:
+      "A cold 8-12 hour day burns more than riders expect, and appetite drops in the cold, so you eat on a timer or not at all. Target 60-90g carbs/hour, front-loaded into the first half before the bergs come thick and fast — you cannot eat mid-cobble. Use the feed zones for real food and a warm drink; Flandrian classics culture runs on rice cake and waffle, not just gels. Insulate one bottle enough that you'll actually drink from it in April.",
+    kitAngle:
+      "Tyre choice and pressure decide your day on the cobbles: 28-30mm run softer than you would on tarmac, tubeless if you have it. Compact gearing (34x30 minimum) for the Koppenberg's 22% ramp on wet stone. Pack a rain shell, full-finger gloves and a cap under the helmet — April in Flanders is genuinely cold and wet. Cushioned bar tape, or doubled-up tape, saves your hands across 35km+ of pavé.",
+  },
+  {
     slug: "badlands",
     name: "Badlands",
     shortName: "Badlands",

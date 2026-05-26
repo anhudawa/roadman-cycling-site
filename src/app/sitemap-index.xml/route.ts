@@ -1,5 +1,5 @@
 const BASE_URL = "https://roadmancycling.com";
-const SITEMAP_IDS = [0, 1, 2, 3, 4, 5] as const;
+const SITEMAP_IDS = [0, 1, 2, 3, 4, 5, 6] as const;
 
 export async function GET() {
   const now = new Date().toISOString();

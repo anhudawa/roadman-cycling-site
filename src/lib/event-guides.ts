@@ -130,6 +130,15 @@ export interface EventGuide {
    * Slugs must match files in content/blog/. Optional.
    */
   relatedReading?: RelatedReading[];
+
+  /**
+   * Curated podcast episode slugs relevant to this event — surfaced as a
+   * "Related listening" section. Slugs must match files in
+   * content/podcast/ (without the .mdx extension); any that don't resolve
+   * are dropped at render time, so a stale slug degrades gracefully
+   * rather than breaking the build. Optional.
+   */
+  relatedEpisodes?: string[];
 }
 
 /* ============================================================ */
