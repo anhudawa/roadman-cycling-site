@@ -12,14 +12,6 @@ export interface YouTubeVideo {
   likeCount: number;
 }
 
-interface YtDlpFlatItem {
-  id: string;
-  title: string;
-  description?: string;
-  duration?: number;
-  url: string;
-}
-
 interface YtDlpFullItem {
   id: string;
   title: string;
@@ -33,29 +25,40 @@ interface YtDlpFullItem {
 }
 
 /**
- * Get all video IDs from a YouTube channel using yt-dlp --flat-playlist
- * This is fast and doesn't need an API key.
+ * List video IDs from a single channel tab (videos, streams, …).
  */
-export function getAllVideoIds(channelHandle: string): string[] {
-  console.log(`   Fetching video list from @${channelHandle}...`);
-
+function getTabVideoIds(channelHandle: string, tab: string): string[] {
   const output = execSync(
-    `python3 -m yt_dlp --flat-playlist --dump-json "https://www.youtube.com/@${channelHandle}/videos" 2>/dev/null`,
+    `python3 -m yt_dlp --flat-playlist --print id "https://www.youtube.com/@${channelHandle}/${tab}" 2>/dev/null`,
     { maxBuffer: 50 * 1024 * 1024, encoding: "utf-8" }
   );
+  return output.trim().split("\n").map((l) => l.trim()).filter(Boolean);
+}
 
-  const lines = output.trim().split("\n").filter(Boolean);
+/**
+ * Get all video IDs from a YouTube channel using yt-dlp --flat-playlist.
+ * Unions the /videos and /streams tabs so past livestream episodes are
+ * captured too. Fast and doesn't need an API key.
+ */
+export function getAllVideoIds(channelHandle: string): string[] {
+  console.log(`   Fetching video list from @${channelHandle} (videos + streams)...`);
+
+  const seen = new Set<string>();
   const ids: string[] = [];
-
-  for (const line of lines) {
+  for (const tab of ["videos", "streams"]) {
+    let tabIds: string[] = [];
     try {
-      const item = JSON.parse(line) as YtDlpFlatItem;
-      if (item.id) {
-        ids.push(item.id);
-      }
+      tabIds = getTabVideoIds(channelHandle, tab);
     } catch {
-      // Skip malformed lines
+      // Tab may not exist (e.g. no streams) — skip silently.
     }
+    for (const id of tabIds) {
+      if (!seen.has(id)) {
+        seen.add(id);
+        ids.push(id);
+      }
+    }
+    console.log(`     ${tab}: ${tabIds.length}`);
   }
 
   return ids;
