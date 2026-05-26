@@ -1833,6 +1833,146 @@ export const GUEST_PROFILE_OVERRIDES: Record<string, GuestProfileOverride> = {
     ],
     relatedHubs: ["ftp-training"],
   },
+
+  "daryl-fitzgerald": {
+    description:
+      "World Tour bike fitter at Science to Sport. Works with professional and amateur riders on position, comfort and power transfer.",
+    whyMatters:
+      "Daryl Fitzgerald fits riders at the sharp end of the World Tour and brings that same eye to amateurs. His recurring point on the podcast is that the single highest-return change most amateurs can make isn't a power upgrade — it's a position that stops fighting them. A good bike fit protects the knees, lower back and hands that take the beating over long rides, and it quietly unlocks an aerodynamic position the rider can actually hold. He's the practitioner's counterweight to the kit-buying instinct: fit first, then everything else.",
+    keyIdeas: [
+      "The one change most amateurs should make is a proper bike fit — saddle height and cleat position fix more problems than any component upgrade.",
+      "An aggressive aerodynamic position is worthless if you can't hold it — fit determines how much aero you can actually keep.",
+      "Knee pain, lower-back pain and numb hands are usually fit problems, not weakness problems — chase the position before the physio.",
+      "Comfort and power are the same conversation: a rider who isn't fighting the bike puts more of their training into the pedals.",
+    ],
+    relatedHubs: ["cycling-strength-conditioning", "ftp-training"],
+  },
+
+  "sam-calder": {
+    description:
+      "Founder of Rule 28, an aero-testing and cycling apparel company specialising in wind-tunnel optimisation.",
+    whyMatters:
+      "Sam Calder built Rule 28 on the unglamorous truth most amateurs ignore: aerodynamics is the cheapest speed in cycling, and almost nobody tests it. His work in the wind tunnel — including the much-discussed aero test that saved Dylan Johnson 13 minutes — reframes free speed as an engineering problem rather than a marketing claim. For Roadman's audience the lesson is blunt: at the same FTP, position and clothing decide more of your time on flat and rolling terrain than another winter of intervals will.",
+    keyIdeas: [
+      "Aerodynamics is the highest-return speed for the money — CdA gains beat power gains for most amateurs on flat and rolling roads.",
+      "Position and clothing are tested, not guessed — a wind-tunnel or field aero test routinely finds free minutes a rider didn't know they had.",
+      "Skinsuit and fabric choice matter more than frame marketing at amateur speeds — the rider is the biggest source of drag.",
+      "A time trial is the cleanest aero test there is — no draft, no tactics, just position and equipment against the clock.",
+    ],
+    relatedHubs: ["ftp-training"],
+  },
+
+  "alex-welburn": {
+    description:
+      "Cycling coach and physiologist; PhD researcher at Loughborough University focused on critical power and W'. Founder of The Performance Project.",
+    whyMatters:
+      "Alex Welburn sits where the lab meets the road — a coach and physiologist whose research is on critical power and W', the maths behind how long you can hold any given effort. His value to amateurs is translating those models into training that actually moves the number: which intervals build the threshold, which build the engine above it, and which metrics are worth tracking versus the ones Pogačar's team uses that you don't need. He's a sharp voice against chasing pro data points that mean nothing for a rider on eight hours a week.",
+    keyIdeas: [
+      "Critical power and W' describe your real limits better than FTP alone — they separate the size of the engine from the size of the battery above threshold.",
+      "Threshold and VO2 max intervals build different systems — the trick is knowing which one your fitness actually needs next.",
+      "Most amateurs track too many training metrics — a small number, watched consistently, beats a dashboard you never act on.",
+      "The pro metrics that get clicks are often irrelevant to a time-crunched amateur — train the limiter you actually have.",
+    ],
+    relatedHubs: ["ftp-training", "cycling-training-plans"],
+  },
+
+  "dr-andrew-sellars": {
+    description:
+      "Anaesthesiologist, cycling coach and respiratory-physiology researcher. Co-founder of VO2 Master and Isocapnic, team director of Balance Point Racing.",
+    whyMatters:
+      "Dr Andrew Sellars argues the limiter most cyclists never train is their breathing. As a respiratory physiologist and co-founder of VO2 Master, his point is that for some riders the legs aren't the problem at all — inefficient breathing mechanics and a low tolerance to CO2 cap the effort before the muscles do. It's an unfashionable corner of performance, and that's exactly why it's full of free gains: respiratory muscles are trainable, and for the right rider that work shows up directly in sustainable power and recovery between efforts.",
+    keyIdeas: [
+      "For many cyclists the limiter isn't the legs, it's the breathing — inefficient respiratory mechanics cap the effort before the muscles fail.",
+      "Respiratory muscles are trainable like any other — targeted breathing work improves CO2 tolerance and recovery between hard efforts.",
+      "VO2 is a delivery problem as much as a leg problem — how you move air feeds straight into sustainable power.",
+      "Breathing pattern under load is a skill — panic-breathing on a climb wastes oxygen the legs need.",
+    ],
+    relatedHubs: ["cycling-recovery", "ftp-training"],
+  },
+
+  "uri-carlson": {
+    description:
+      "Registered dietitian nutritionist. Founder of Inner Wild Nutrition and a fuelling specialist associated with Skratch Labs.",
+    whyMatters:
+      "Uri Carlson is the registered dietitian who turns fuelling theory into something a rider will actually do. Her work — and her contribution to the Roadman under- versus optimal- versus over-fuelling experiment — lands on the same practical point the pros have learned the hard way: most amateurs under-fuel their training and then wonder why the quality and recovery aren't there. She's pragmatic about real food versus engineered products, and clear that the best fuelling plan is the one you'll repeat, not the most elaborate one on paper.",
+    keyIdeas: [
+      "Most amateurs under-fuel rides and pay for it in quality and recovery — eating enough carbohydrate is the most common fix.",
+      "Carbs-per-hour targets are trainable — the gut adapts to higher intake with weeks of practice, it isn't fixed.",
+      "Real food and engineered products both work — the best in-ride fuel is the one you'll actually take, ride after ride.",
+      "Hydration and sodium are part of fuelling, not separate — losing the plot on either ends the same way as bonking.",
+    ],
+    relatedHubs: ["cycling-nutrition"],
+  },
+
+  "stephen-barrett": {
+    description:
+      "Head coach for Decathlon AG2R La Mondiale (UCI WorldTour). Irish coach of Felix Gall and a former Irish national track pursuit rider.",
+    whyMatters:
+      "Stephen Barrett coaches at the very top — head coach at a WorldTour team and the man behind Felix Gall's rise — and he's unusually willing to explain what actually transfers to amateurs. His most valuable training secrets, as he framed them on the podcast, aren't secret sessions; they're the discipline of individualising the plan, periodising the season properly, and protecting the easy riding that makes the hard work land. He's a credible bridge between WorldTour methodology and the rider trying to apply it on a normal life.",
+    keyIdeas: [
+      "WorldTour gains come from individualisation and periodisation, not secret sessions — the plan is built around the athlete, not copied.",
+      "Protecting the easy riding is what makes the hard work transfer — pros are religious about the 80% being genuinely easy.",
+      "Season structure decides whether form arrives on the right day — base, build and peak each have a distinct job.",
+      "Amateurs over-index on single workouts and under-index on the shape of the whole year.",
+    ],
+    relatedHubs: ["cycling-coaching", "cycling-training-plans"],
+  },
+
+  "dr-heather-mcgee": {
+    description:
+      "Behavioural-change psychologist and researcher specialising in habit formation and long-term health-behaviour change.",
+    whyMatters:
+      "Dr Heather McGee studies the part of training nobody can do for you: the behaviour. Her research on habit formation reframes the amateur's real problem — it's rarely a lack of the right plan, it's the failure to repeat it. The three habits of effective cyclists she's discussed on the podcast are less about physiology than about building systems that survive a busy life: consistency over intensity, identity over motivation, and structuring the environment so the right choice is the easy one. It's the psychology that turns a good plan into actual fitness.",
+    keyIdeas: [
+      "Consistency beats intensity — the rider who repeats a modest plan for a year beats the one who nails a heroic month.",
+      "Motivation is unreliable; systems and identity are not — build habits that survive the days you don't feel like training.",
+      "Structure the environment so the right choice is the easy one — kit laid out, sessions scheduled, friction removed.",
+      "Behaviour change is the hidden limiter for most amateurs — the plan is rarely the problem, the repetition is.",
+    ],
+    relatedHubs: ["cycling-recovery"],
+  },
+
+  "dr-filip-larsen": {
+    description:
+      "Exercise physiologist and Chief Scientific Officer at Nomio. Researcher at the Swedish School of Sport and Health Sciences (GIH) specialising in mitochondrial function and exercise adaptation.",
+    whyMatters:
+      "Dr Filip Larsen researches the cellular machinery behind endurance — mitochondrial function and the compounds that influence it — and brings a scientist's scepticism to the supplement aisle. His work on what's actually inside the 'green shots' pros are using cuts through marketing to mechanism: what's plausible, what's measured, and what's hype. For Roadman's audience he's a useful filter on recovery and adaptation claims, anchoring the conversation in physiology rather than the latest pro fad.",
+    keyIdeas: [
+      "Endurance adaptation is mitochondrial — the aerobic base works by building the cell's energy machinery, not by magic.",
+      "Most performance supplements are hype; a few are measured — judge them by mechanism and evidence, not pro endorsement.",
+      "Recovery and adaptation are the same process viewed from two sides — the stimulus only counts once it's absorbed.",
+      "Nitrate and similar compounds have plausible mechanisms but modest, individual effects — useful, not transformative.",
+    ],
+    relatedHubs: ["cycling-recovery", "cycling-nutrition"],
+  },
+
+  "chris-melman": {
+    description:
+      "Ultra-endurance racer. Third-place finisher at the Badlands 800km gravel ultra.",
+    whyMatters:
+      "Chris Melman races at the brutal end of the sport — a Badlands 800km podium — where the limiter stops being fitness and becomes fuelling, pacing and the head. His account of how a pro's fuelling plan almost won Badlands is a masterclass in the ultra truth amateurs underestimate: the rider who finishes strongest is rarely the fittest, but the one who paced the first half like Zone 2 discipline and never let the fuelling slide. For anyone eyeing a first long gravel race, he's the cautionary, practical voice.",
+    keyIdeas: [
+      "In ultra-distance racing, fuelling and pacing beat raw fitness — the strongest finisher is rarely the strongest engine.",
+      "The riders who blow up in ultras race the first half — pacing it like disciplined Zone 2 is what keeps the legs at the end.",
+      "Bikepacking and ultra events are a fuelling project first — a missed feed hours earlier is what ends most rides.",
+      "Sleep, kit and logistics decide multi-day results as much as training does.",
+    ],
+    relatedHubs: ["cycling-training-plans"],
+  },
+
+  "ryan-collins": {
+    description:
+      "Ultra cyclist holding multiple WUCA/Guinness world records, including the 6-hour indoor velodrome record (~277km) and the 6-hour outdoor velodrome record (259km) set in 2024.",
+    whyMatters:
+      "Ryan Collins holds world records for sheer sustained output — riding 46.6km/h for six hours to set a velodrome distance mark. What makes him useful to amateurs isn't the number, it's the three tweaks that made it possible: a position he could hold aerodynamically for six hours, fuelling dialled to the gram, and pacing that never spiked. It's a clean demonstration that ultra-distance performance is an engineering and discipline problem stacked on top of fitness, not a test of how hard you can suffer.",
+    keyIdeas: [
+      "Holding 46.6km/h for six hours is a position and pacing problem as much as a power one — aero you can sustain beats aero you can't.",
+      "Sustained ultra efforts are paced flat — spikes in power cost far more over hours than they save.",
+      "Fuelling to the gram is what keeps power from fading across a multi-hour effort — the engine is only as good as its supply.",
+      "Marginal position tweaks compound over hours — small drag savings are huge across a six-hour record.",
+    ],
+    relatedHubs: ["ftp-training", "cycling-training-plans"],
+  },
 };
 
 /** Look up overrides for a guest by slug. Returns undefined if no curated data. */

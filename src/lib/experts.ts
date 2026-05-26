@@ -428,6 +428,56 @@ export const EXPERT_TOPICS: ExpertTopic[] = [
     match: /triath|ironman|70\.?3|brick|bike leg|age.?group|swim.?bike|bike.?run/i,
     aliases: ["triathlon bike leg", "ironman bike pacing", "triathlon cycling"],
   },
+
+  // ---- Tier-1 cross-cutting topics ----
+  {
+    slug: "reverse-periodisation",
+    label: "Reverse Periodisation",
+    phrase: "reverse periodisation",
+    parentHub: "cycling-training-plans",
+    pillar: "coaching",
+    blurb:
+      "Flipping the traditional model — building intensity early and volume later, and when it actually fits.",
+    match:
+      /reverse.?periodis|reverse.?taper|intensity.?first|build.?to.?base|hiit.?first|inverted (model|periodis)/i,
+    aliases: [
+      "reverse periodisation",
+      "reverse periodization cycling",
+      "intensity-first training",
+    ],
+  },
+  {
+    slug: "masters-training",
+    label: "Masters Training",
+    phrase: "training as a masters cyclist",
+    parentHub: "cycling-training-plans",
+    pillar: "coaching",
+    blurb:
+      "How the plan has to change after 40 — fewer, sharper sessions and recovery built in from day one.",
+    match:
+      /masters (training|athlete|cyclist|rider|racing)|training (after|over|past) (40|50|fifty|forty)|faster after (40|50)|fast after (50|fifty)|veteran (rider|cyclist)|getting faster after/i,
+    aliases: [
+      "masters cycling training",
+      "training over 40",
+      "cycling training after 50",
+    ],
+  },
+  {
+    slug: "cycling-longevity",
+    label: "Cycling Longevity",
+    phrase: "longevity in cycling",
+    parentHub: "cycling-recovery",
+    pillar: "recovery",
+    blurb:
+      "Riding strong for decades — protecting muscle, power and health span well past your supposed peak.",
+    match:
+      /longevity|healthspan|lifespan|riding (into|past) (your )?(60|70|sixties|seventies)|cycling for life|stay(ing)? (healthy|strong)|protect(ing)? muscle|sarcopenia/i,
+    aliases: [
+      "cycling longevity",
+      "cycling into your 60s",
+      "healthy ageing cyclist",
+    ],
+  },
 ];
 
 const EXPERT_TOPIC_BY_SLUG: Map<string, ExpertTopic> = new Map(
@@ -492,22 +542,72 @@ const EXPERT_TOPIC_OVERRIDES: Record<string, string[]> = {
     "zone-2",
     "threshold-training",
     "ftp",
+    "vo2-max",
+    "reverse-periodisation",
   ],
-  "joe-friel": ["periodisation", "base-training", "strength-after-40", "ftp"],
+  "joe-friel": [
+    "periodisation",
+    "base-training",
+    "strength-after-40",
+    "ftp",
+    "reverse-periodisation",
+    "masters-training",
+    "cycling-longevity",
+  ],
   "dan-bigham": ["aerodynamics", "time-trialling", "ftp"],
   "alex-dowsett": ["time-trialling", "aerodynamics", "ftp"],
-  "andy-galpin": ["strength-after-40", "strength-training", "recovery"],
+  "andy-galpin": [
+    "strength-after-40",
+    "strength-training",
+    "recovery",
+    "masters-training",
+    "cycling-longevity",
+  ],
   "david-dunne": ["carb-periodisation", "in-ride-fuelling", "race-weight"],
   "alan-murchison": ["in-ride-fuelling", "race-weight", "gut-health"],
-  "tim-spector": ["gut-health", "body-composition"],
-  "dan-lorang": ["periodisation", "threshold-training", "triathlon-bike"],
-  "olav-bu": ["threshold-training", "triathlon-bike", "ftp"],
-  "john-wakefield": ["zone-2", "coaching", "threshold-training"],
+  "tim-spector": ["gut-health", "body-composition", "cycling-longevity"],
+  "dan-lorang": [
+    "periodisation",
+    "threshold-training",
+    "triathlon-bike",
+    "reverse-periodisation",
+    "zone-2",
+    "vo2-max",
+  ],
+  "olav-bu": ["threshold-training", "triathlon-bike", "ftp", "vo2-max"],
+  "john-wakefield": [
+    "zone-2",
+    "coaching",
+    "threshold-training",
+    "reverse-periodisation",
+    "ftp",
+  ],
   "lachlan-morton": ["ultra-endurance", "zone-2"],
-  "derek-teel": ["strength-training", "strength-after-40"],
+  "derek-teel": ["strength-training", "strength-after-40", "masters-training"],
   "alistair-brownlee": ["triathlon-bike", "base-training"],
   "andre-greipel": ["sprinting", "coaching"],
   "michael-matthews": ["sprinting", "ftp"],
+  "dr-david-lipman": [
+    "masters-training",
+    "cycling-longevity",
+    "strength-after-40",
+    "vo2-max",
+  ],
+  "mark-sisson": ["cycling-longevity", "zone-2", "body-composition"],
+  "vasilis-anastopoulos": [
+    "coaching",
+    "periodisation",
+    "threshold-training",
+    "reverse-periodisation",
+    "ftp",
+  ],
+  "matt-bottrill": [
+    "ftp",
+    "aerodynamics",
+    "time-trialling",
+    "periodisation",
+    "reverse-periodisation",
+  ],
 };
 
 function signalText(
@@ -625,6 +725,28 @@ const CURATED_EDITORIAL: Record<string, string> = {
     "Greipel won eleven Tour de France stages, and he'll tell you sprinting is captaincy, not just a kick. The leadout train, the protection in the bunch, the positioning in the last five kilometres — that's where the sprint is won, long before the last 200 metres. He's blunt that amateur sprinters over-index on raw watts and skip the positioning work that actually decides finishes. The other thing he talks about that most won't: surviving the mountain stages is the unsexy skill that keeps a sprinter's season alive. Speed without resilience doesn't win bunch kicks three weeks deep.",
   "derek-teel/strength-training":
     "Teel built Dialed Health around one idea most cyclists resist: the gym makes you a better rider, not a bulkier one. His programming is cycling-specific — movements that protect the hips, knees and back that take a beating in the saddle, loaded enough to actually drive adaptation. He's practical about fitting it around riding rather than treating it as a competing sport, because the riders who quit strength work are usually the ones who made it too complicated. Build durable, capable strength off the bike and you hold your position longer, resist injury and put more of your training into the pedals.",
+  "joe-friel/reverse-periodisation":
+    "Friel's classic model runs base-to-build — long aerobic miles first, race intensity layered on as the event nears. Reverse periodisation flips that, and he's clear it isn't heresy, it's a tool for a specific problem: the time-crunched rider, or the one whose target races sit early in the season before the weather allows big volume. You sharpen the high end indoors through winter, then grow the aerobic engine underneath it as the days get longer. His caution is the one most people skip — reverse only works if you protect the easy riding around the hard blocks, or you just end up training grey all winter. Pick the model that fits your calendar, not the one that sounds hardest.",
+  "joe-friel/masters-training":
+    "Friel wrote Fast After 50 because the standard advice — just train less — was costing masters riders the very thing that keeps them fast. His framework is the opposite of backing off: protect intensity, because high-end power is what fades first and what disappears for good if you stop chasing it. What changes is the recovery around it. Two genuinely hard sessions a week, more days between them, and strength work treated as non-negotiable rather than optional. He's blunt that the riders who decline fastest are the ones who quietly drop the gym and the hard efforts at the same time. Train hard, recover harder, and the engine holds up far longer than the cycling internet assumes.",
+  "joe-friel/cycling-longevity":
+    "Ask Friel what keeps a rider competitive into their 60s and he won't talk about a magic session — he'll talk about not quitting the things that get uncomfortable with age. Strength training to defend muscle and bone. Intensity to defend the top end. Recovery and sleep treated as part of the plan, not an afterthought. His whole later body of work is a rebuttal to the idea that decline is a cliff: it's a slope, and most amateurs sit nowhere near the bottom of it. The riders who lose the most are the ones who let fear of injury talk them out of lifting and pushing. Keep doing the hard, boring, protective work and the years are far kinder than you expect.",
+  "andy-galpin/masters-training":
+    "Galpin's lab work gives masters training its mechanism. The order of decline is the key insight: power goes before strength, strength goes before muscle mass, so the nervous system ages first. That's why the masters athlete who only rides is protecting the wrong half of the system — endurance riding maintains the slow-twitch fibres while the fast-twitch ones quietly shrink. His prescription is heavy, fast lifting a couple of times a week, enough protein to actually trigger the repair older muscle is slower to start, and recovery managed like a job. Train the qualities that fade fastest, not just the ones that feel comfortable, and you hold onto far more of your engine.",
+  "andy-galpin/cycling-longevity":
+    "For Galpin, longevity isn't a separate goal from performance — the same levers protect both. Muscle mass is the organ of healthy ageing as much as it's the source of power, so the strength work that keeps a cyclist fast also keeps them independent decades later. He's relentless on the basics that compound: sleep as the foundation, protein distributed across the day, resistance training that defends fast-twitch fibre, and intensity kept in the programme rather than retired. His framing reassures and challenges in the same breath — the body is far more trainable late in life than people fear, but only if you keep asking it to do hard things. Stop, and the decline accelerates; keep going, and it barely shows.",
+  "dan-lorang/reverse-periodisation":
+    "Lorang coaches across triathlon and the World Tour, and his take on reverse periodisation is pragmatic rather than dogmatic: the model serves the athlete's calendar, not the other way round. For an athlete with early targets or a winter stuck indoors, building intensity first and volume later is a legitimate way to arrive sharp without faking big base miles in bad weather. But his core principle still rules everything — he adjusts to the human in front of him daily, watching how they absorb the load rather than forcing a template through. Reverse, traditional or block, the question he asks is the same: is this athlete adapting, or just accumulating fatigue?",
+  "stephen-seiler/reverse-periodisation":
+    "Seiler's research is about distribution more than sequence, and that's exactly how he frames reverse periodisation: the order you build base and intensity matters less than keeping the 80/20 split honest throughout. He's wary of any model that quietly becomes an excuse to ride grey all winter under the banner of 'intensity first'. Done properly, a reverse approach still means most of the work is easy, with a small, potent dose of genuinely hard efforts — just front-loaded in the calendar. His test is unchanged: if your easy days have crept up to moderate to support the hard blocks, the periodisation label doesn't matter, you've lost the plot.",
+  "dr-david-lipman/masters-training":
+    "Lipman's whole message to ageing riders is that most of what they read about decline is wrong, or at least premature. The sports physician's point is that the average masters cyclist is nowhere near their physiological ceiling — they've just been training in a way that lets fitness leak away. Fix the intensity distribution, add the strength work, respect recovery, and a 50-year-old can absolutely set personal bests. He's especially sharp on the difference between chronological age and trainability: the number on the licence tells you far less than how consistently and intelligently you've trained. The window isn't closing nearly as fast as the panic suggests.",
+  "dr-david-lipman/cycling-longevity":
+    "Lipman treats longevity on the bike as a trainability question, not a countdown. His clinical view is that the levers which extend a riding career — protecting muscle, keeping intensity in the plan, managing recovery and the metabolic basics — are the same ones that extend health span generally. He's pragmatic about what masters riders can control versus what they can't, and impatient with the fatalism that has people backing off in their 40s. The riders who stay strong into their 60s and 70s, in his telling, aren't genetic outliers — they're the ones who never let the hard, protective work slide.",
+  "tim-spector/cycling-longevity":
+    "Spector comes at cycling longevity from the gut and the plate. His research ties long-term health to the diversity of what you eat — the 30-plants-a-week target — and to cutting the ultra-processed food that quietly drives inflammation regardless of calories. For an ageing cyclist that matters twice over: the microbiome underpins recovery and immune resilience now, and metabolic health decades out. He's also a champion of individual variation — the same meal spikes one rider and barely moves another — which is why he's sceptical of one-size diet rules. Feed the gut well and consistently, and you're protecting both the rides you do this year and the ones you want to still be doing at 70.",
+  "mark-sisson/cycling-longevity":
+    "Sisson's pitch to endurance athletes is a warning dressed as encouragement: chronic, grey-zone volume is the enemy of a long, healthy riding life. His model leans on a big aerobic base ridden genuinely easy, a small dose of real intensity, and serious attention to strength and recovery — the opposite of grinding moderate miles until something breaks. He's spent decades arguing that the way many endurance athletes train ages them faster, not slower, and that the fix is more restraint on the easy days and more intent on the hard ones. Ride easy easy, hard hard, lift, and protect the body you want to still be using in your seventies.",
 };
 
 /* ------------------------------------------------------------------ *
@@ -921,12 +1043,18 @@ export function getAllExpertTopicPairs(): ExpertTopicPair[] {
   // Touch episodes once so the underlying guest cache is warm.
   getAllEpisodes();
   const pairs: ExpertTopicPair[] = [];
+  // Dedupe on expert/topic — two episode guest-name castings can slugify to
+  // the same expert, which would otherwise emit duplicate static routes.
+  const seen = new Set<string>();
   for (const guest of getAllGuests()) {
     const override = getGuestProfileOverride(guest.slug);
     // Only generate for experts we have curated entity data for — that's
     // the quality gate that keeps this from becoming a doorway-page farm.
     if (!override) continue;
     for (const topicSlug of getTopicSlugsForExpert(guest.slug)) {
+      const key = `${guest.slug}/${topicSlug}`;
+      if (seen.has(key)) continue;
+      seen.add(key);
       pairs.push({ expertSlug: guest.slug, topicSlug });
     }
   }
