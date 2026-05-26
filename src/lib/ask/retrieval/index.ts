@@ -10,11 +10,13 @@
 
 import { searchEpisodes } from "@/lib/mcp/services/episodes";
 import { searchMethodology } from "@/lib/mcp/services/methodology";
+import { searchExpertQuotes } from "@/lib/mcp/services/quotes";
 import { searchContentChunks } from "./content-chunks";
 import type { Intent, RetrievalResult, RetrievedChunk } from "../types";
 
 const EPISODE_LIMIT = 6;
 const METHODOLOGY_LIMIT = 4;
+const EXPERT_QUOTE_LIMIT = 4;
 const CONTENT_LIMIT = 4;
 
 // intents that shouldn't retrieve at all
@@ -28,6 +30,7 @@ export interface RetrieveInput {
 
 type EpisodeResult = Awaited<ReturnType<typeof searchEpisodes>>[number];
 type MethodologyResult = Awaited<ReturnType<typeof searchMethodology>>[number];
+type ExpertQuoteResult = Awaited<ReturnType<typeof searchExpertQuotes>>[number];
 
 function episodeToChunk(r: EpisodeResult): RetrievedChunk {
   return {
@@ -57,6 +60,22 @@ function methodologyToChunk(r: MethodologyResult): RetrievedChunk {
   };
 }
 
+function expertQuoteToChunk(r: ExpertQuoteResult): RetrievedChunk {
+  const who = r.credential ? `${r.speaker}, ${r.credential}` : r.speaker;
+  const title = r.episodeTitle ? `${who} · ${r.episodeTitle}` : who;
+  const url = r.episodeUrl ?? (r.episodeSlug ? `/podcast/${r.episodeSlug}` : undefined);
+  const excerpt = r.timestamp ? `"${r.text}" (${r.timestamp})` : `"${r.text}"`;
+  return {
+    sourceType: "expert_quote",
+    // Prefix by source table so quote #5 and claim #5 don't collide on dedupe.
+    sourceId: `${r.source === "quote" ? "q" : "c"}${r.id}`,
+    title,
+    url,
+    excerpt,
+    score: r.relevance_score,
+  };
+}
+
 export async function retrieve(input: RetrieveInput): Promise<RetrievalResult> {
   if (NON_RETRIEVING.includes(input.intent)) {
     return { chunks: [], totalCandidates: 0 };
@@ -64,9 +83,10 @@ export async function retrieve(input: RetrieveInput): Promise<RetrievalResult> {
 
   const cap = input.limit ?? 10;
 
-  const [epRes, methRes, contentRes] = await Promise.allSettled([
+  const [epRes, methRes, quoteRes, contentRes] = await Promise.allSettled([
     searchEpisodes(input.query, EPISODE_LIMIT),
     searchMethodology(input.query),
+    searchExpertQuotes(input.query, EXPERT_QUOTE_LIMIT),
     searchContentChunks(input.query, CONTENT_LIMIT),
   ]);
 
@@ -77,13 +97,16 @@ export async function retrieve(input: RetrieveInput): Promise<RetrievalResult> {
     ? (methRes.value as MethodologyResult[]).slice(0, METHODOLOGY_LIMIT)
     : [];
   const meths: RetrievedChunk[] = methRaw.map(methodologyToChunk);
+  const quotes: RetrievedChunk[] = quoteRes.status === "fulfilled"
+    ? quoteRes.value.map(expertQuoteToChunk)
+    : [];
   const content: RetrievedChunk[] = contentRes.status === "fulfilled" ? contentRes.value : [];
 
-  const totalCandidates = eps.length + meths.length + content.length;
+  const totalCandidates = eps.length + meths.length + quotes.length + content.length;
 
   const seen = new Set<string>();
   const merged: RetrievedChunk[] = [];
-  for (const c of [...eps, ...meths, ...content]) {
+  for (const c of [...eps, ...meths, ...quotes, ...content]) {
     const key = `${c.sourceType}:${c.sourceId}`;
     if (seen.has(key)) continue;
     seen.add(key);

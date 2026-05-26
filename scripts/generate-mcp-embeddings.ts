@@ -4,10 +4,18 @@
  * Populates:
  *   mcp_episode_embeddings      — one row per chunk per episode
  *   mcp_methodology_embeddings  — one row per methodology principle
+ *   quote_embeddings            — one row per extracted quote
+ *   claim_embeddings            — one row per extracted claim
  *
  * Source:
  *   mcp_episodes (title, summary, key_insights, transcript_text)
  *   mcp_methodology_principles (principle, explanation, topic_tags)
+ *   quotes (quote, speaker, speaker_credential, context, topic_tags)
+ *   claims (claim, supporting_quote, speaker, topic_tags)
+ *
+ * Quotes/claims are embedded regardless of their `reviewed` flag — embedding
+ * is data prep, not publication. The Ask Roadman retriever applies the
+ * editorial gate at query time (src/lib/mcp/services/quotes.ts).
  *
  * Provider (auto-selected, controlled by env):
  *   VOYAGE_API_KEY set           → Voyage voyage-3-large (1024 dims)
@@ -18,7 +26,9 @@
  * Rate-limited: 200 ms between batches, exponential backoff on 429.
  *
  * Flags:
- *   --only=episodes|methodology   restrict to one table
+ *   --only=episodes|methodology|quotes|claims|both|all
+ *                                 both = episodes + methodology (default);
+ *                                 all  = + quotes + claims
  *   --limit=N                     cap number of source rows processed
  *   --batch-size=N                embeddings per API call (default 16)
  *   --chunk-size=N                target chars per transcript chunk (default 1800)
@@ -36,12 +46,18 @@ import {
   mcpEpisodeEmbeddings,
   mcpMethodologyPrinciples,
   mcpMethodologyEmbeddings,
+  quotes,
+  quoteEmbeddings,
+  claims,
+  claimEmbeddings,
 } from "../src/lib/db/schema";
 
 // ─── CLI args ───────────────────────────────────────────────
 
+type Only = "episodes" | "methodology" | "quotes" | "claims" | "both" | "all";
+
 interface Args {
-  only: "episodes" | "methodology" | "both";
+  only: Only;
   limit: number | null;
   batchSize: number;
   chunkSize: number;
@@ -58,9 +74,11 @@ function parseArgs(): Args {
   };
   const has = (name: string): boolean => argv.includes(`--${name}`);
 
-  const only = (get("only") as "episodes" | "methodology" | "both" | undefined) ?? "both";
-  if (!["episodes", "methodology", "both"].includes(only)) {
-    throw new Error(`--only must be episodes|methodology|both, got: ${only}`);
+  const only = (get("only") as Only | undefined) ?? "both";
+  if (!["episodes", "methodology", "quotes", "claims", "both", "all"].includes(only)) {
+    throw new Error(
+      `--only must be episodes|methodology|quotes|claims|both|all, got: ${only}`,
+    );
   }
 
   return {
@@ -249,6 +267,31 @@ function methodologyText(p: {
   return `Principle: ${p.principle}\n\n${p.explanation}${tagLine}`;
 }
 
+function quoteText(q: {
+  quote: string;
+  speaker: string;
+  speakerCredential: string | null;
+  context: string | null;
+  topicTags: string[] | null;
+}): string {
+  const who = q.speakerCredential ? `${q.speaker}, ${q.speakerCredential}` : q.speaker;
+  const ctx = q.context ? `\nContext: ${q.context}` : "";
+  const tags = q.topicTags?.length ? `\nTopics: ${q.topicTags.join(", ")}` : "";
+  return `"${q.quote}" — ${who}${ctx}${tags}`;
+}
+
+function claimText(c: {
+  claim: string;
+  supportingQuote: string | null;
+  speaker: string | null;
+  topicTags: string[] | null;
+}): string {
+  const quote = c.supportingQuote ? `\nQuote: "${c.supportingQuote}"` : "";
+  const who = c.speaker ? `\nSpeaker: ${c.speaker}` : "";
+  const tags = c.topicTags?.length ? `\nTopics: ${c.topicTags.join(", ")}` : "";
+  return `${c.claim}${quote}${who}${tags}`;
+}
+
 // ─── Episode embedding pipeline ─────────────────────────────
 
 interface EpisodeTask {
@@ -414,6 +457,133 @@ async function embedMethodology(args: Args, provider: Provider) {
   console.log(`\n  ✓ ${rows.length} methodology principles embedded`);
 }
 
+// ─── Quote embedding pipeline ───────────────────────────────
+
+async function loadQuotes(args: Args) {
+  const rows = await db
+    .select({
+      id: quotes.id,
+      quote: quotes.quote,
+      speaker: quotes.speaker,
+      speakerCredential: quotes.speakerCredential,
+      context: quotes.context,
+      topicTags: quotes.topicTags,
+    })
+    .from(quotes);
+
+  if (args.force) return args.limit ? rows.slice(0, args.limit) : rows;
+
+  const existing = await db
+    .select({ quoteId: quoteEmbeddings.quoteId })
+    .from(quoteEmbeddings);
+  const done = new Set(existing.map((r) => r.quoteId));
+  const pending = rows.filter((r) => !done.has(r.id));
+  return args.limit ? pending.slice(0, args.limit) : pending;
+}
+
+async function embedQuotes(args: Args, provider: Provider) {
+  console.log(`\n→ Quotes (provider=${provider})`);
+  const rows = await loadQuotes(args);
+  if (rows.length === 0) {
+    console.log("  nothing to do");
+    return;
+  }
+  console.log(`  ${rows.length} quotes, batch size ${args.batchSize}`);
+  if (args.dryRun) {
+    console.log("  (dry-run) skipping API calls + DB writes");
+    return;
+  }
+
+  if (args.force) {
+    const ids = rows.map((r) => r.id);
+    await db.execute(
+      sql`DELETE FROM quote_embeddings WHERE quote_id = ANY(${ids}::integer[])`
+    );
+  }
+
+  let done = 0;
+  for (let i = 0; i < rows.length; i += args.batchSize) {
+    const batch = rows.slice(i, i + args.batchSize);
+    const embeddings = await embedBatch(
+      batch.map((r) => quoteText(r)),
+      provider
+    );
+    await db.insert(quoteEmbeddings).values(
+      batch.map((r, idx) => ({
+        quoteId: r.id,
+        embedding: embeddings[idx],
+      }))
+    );
+    done += batch.length;
+    process.stdout.write(`  ${done}/${rows.length}\r`);
+    await sleep(200);
+  }
+  console.log(`\n  ✓ ${rows.length} quotes embedded`);
+}
+
+// ─── Claim embedding pipeline ───────────────────────────────
+
+async function loadClaims(args: Args) {
+  const rows = await db
+    .select({
+      id: claims.id,
+      claim: claims.claim,
+      supportingQuote: claims.supportingQuote,
+      speaker: claims.speaker,
+      topicTags: claims.topicTags,
+    })
+    .from(claims);
+
+  if (args.force) return args.limit ? rows.slice(0, args.limit) : rows;
+
+  const existing = await db
+    .select({ claimId: claimEmbeddings.claimId })
+    .from(claimEmbeddings);
+  const done = new Set(existing.map((r) => r.claimId));
+  const pending = rows.filter((r) => !done.has(r.id));
+  return args.limit ? pending.slice(0, args.limit) : pending;
+}
+
+async function embedClaims(args: Args, provider: Provider) {
+  console.log(`\n→ Claims (provider=${provider})`);
+  const rows = await loadClaims(args);
+  if (rows.length === 0) {
+    console.log("  nothing to do");
+    return;
+  }
+  console.log(`  ${rows.length} claims, batch size ${args.batchSize}`);
+  if (args.dryRun) {
+    console.log("  (dry-run) skipping API calls + DB writes");
+    return;
+  }
+
+  if (args.force) {
+    const ids = rows.map((r) => r.id);
+    await db.execute(
+      sql`DELETE FROM claim_embeddings WHERE claim_id = ANY(${ids}::integer[])`
+    );
+  }
+
+  let done = 0;
+  for (let i = 0; i < rows.length; i += args.batchSize) {
+    const batch = rows.slice(i, i + args.batchSize);
+    const embeddings = await embedBatch(
+      batch.map((r) => claimText(r)),
+      provider
+    );
+    await db.insert(claimEmbeddings).values(
+      batch.map((r, idx) => ({
+        claimId: r.id,
+        embedding: embeddings[idx],
+      }))
+    );
+    done += batch.length;
+    process.stdout.write(`  ${done}/${rows.length}\r`);
+    await sleep(200);
+  }
+  console.log(`\n  ✓ ${rows.length} claims embedded`);
+}
+
 // ─── Main ───────────────────────────────────────────────────
 
 async function main() {
@@ -424,11 +594,17 @@ async function main() {
     `  only=${args.only} force=${args.force} dryRun=${args.dryRun} limit=${args.limit ?? "-"}`
   );
 
-  if (args.only === "episodes" || args.only === "both") {
+  if (args.only === "episodes" || args.only === "both" || args.only === "all") {
     await embedEpisodes(args, provider);
   }
-  if (args.only === "methodology" || args.only === "both") {
+  if (args.only === "methodology" || args.only === "both" || args.only === "all") {
     await embedMethodology(args, provider);
+  }
+  if (args.only === "quotes" || args.only === "all") {
+    await embedQuotes(args, provider);
+  }
+  if (args.only === "claims" || args.only === "all") {
+    await embedClaims(args, provider);
   }
 
   console.log("\n✓ done");

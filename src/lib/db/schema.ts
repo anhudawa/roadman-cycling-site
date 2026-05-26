@@ -1879,3 +1879,30 @@ export const topicTags = pgTable(
     uniqueIndex("topic_tags_episode_slug_slug_uniq").on(t.episodeSlug, t.slug),
   ]
 );
+
+// --- Extraction: Quote Embeddings ---
+// One pgvector row per quote, populated by scripts/generate-mcp-embeddings.ts.
+// Decoupled from the editorial `reviewed` gate: every quote is embedded, but
+// the Ask Roadman retriever only surfaces reviewed quotes (see
+// src/lib/mcp/services/quotes.ts).
+export const quoteEmbeddings = pgTable(
+  "quote_embeddings",
+  {
+    id: serial("id").primaryKey(),
+    quoteId: integer("quote_id").notNull().references(() => quotes.id, { onDelete: "cascade" }),
+    embedding: vector1024("embedding"),
+  },
+  (t) => [uniqueIndex("quote_embeddings_quote_id_uniq").on(t.quoteId)]
+);
+
+// --- Extraction: Claim Embeddings ---
+// One pgvector row per claim. Same decoupling as quote_embeddings above.
+export const claimEmbeddings = pgTable(
+  "claim_embeddings",
+  {
+    id: serial("id").primaryKey(),
+    claimId: integer("claim_id").notNull().references(() => claims.id, { onDelete: "cascade" }),
+    embedding: vector1024("embedding"),
+  },
+  (t) => [uniqueIndex("claim_embeddings_claim_id_uniq").on(t.claimId)]
+);

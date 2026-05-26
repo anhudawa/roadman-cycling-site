@@ -4,6 +4,7 @@ const TYPE_LABEL: Record<AskCitation["type"], string> = {
   episode: "Podcast",
   methodology: "Methodology",
   content_chunk: "Article",
+  expert_quote: "Expert quote",
 };
 
 export function CitationCard({ citation }: { citation: AskCitation }) {

@@ -14,7 +14,7 @@ import { trackAsk, ASK_EVENTS } from "@/lib/analytics/ask-events";
 import { parseSseFrames } from "@/lib/ask/sse-parse";
 
 export interface AskCitation {
-  type: "episode" | "methodology" | "content_chunk";
+  type: "episode" | "methodology" | "content_chunk" | "expert_quote";
   source_id: string;
   title: string;
   url?: string | null;
