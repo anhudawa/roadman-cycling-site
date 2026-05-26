@@ -18,6 +18,12 @@ export const metadata: Metadata = {
 };
 
 export default function AnswersIndexPage() {
+  const clusterGroups = ANSWER_CLUSTERS.map((cluster) => ({
+    ...cluster,
+    answers: getAnswersByCluster(cluster.id),
+  })).filter((group) => group.answers.length > 0);
+  const totalAnswers = ANSWER_PAGES.length;
+
   return (
     <>
       <JsonLd
@@ -78,22 +84,51 @@ export default function AnswersIndexPage() {
               actually ask — grounded in on-the-record conversations with World
               Tour coaches, sports scientists, and pro riders.
             </p>
+            <p className="text-coral/90 font-heading text-sm tracking-widest mt-6">
+              {totalAnswers} ANSWERS &middot; {clusterGroups.length} TOPICS
+            </p>
           </Container>
         </Section>
 
         <Section background="charcoal">
           <Container width="narrow">
+            <nav
+              aria-label="Jump to a topic"
+              className="mb-14 flex flex-wrap justify-center gap-2"
+            >
+              {clusterGroups.map((group) => (
+                <a
+                  key={group.id}
+                  href={`#cluster-${group.id}`}
+                  className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/[0.03] px-4 py-2 text-sm text-foreground-muted transition-all hover:border-coral/30 hover:text-off-white"
+                >
+                  {group.label}
+                  <span className="font-heading text-xs text-coral">
+                    {group.answers.length}
+                  </span>
+                </a>
+              ))}
+            </nav>
+
             <div className="space-y-12">
-              {ANSWER_CLUSTERS.map((cluster) => {
-                const answers = getAnswersByCluster(cluster.id);
-                if (answers.length === 0) return null;
+              {clusterGroups.map((cluster) => {
+                const answers = cluster.answers;
 
                 return (
-                  <div key={cluster.id}>
+                  <div
+                    key={cluster.id}
+                    id={`cluster-${cluster.id}`}
+                    className="scroll-mt-28"
+                  >
                     <div className="mb-5">
-                      <h2 className="font-heading text-off-white text-2xl mb-2">
-                        {cluster.label.toUpperCase()}
-                      </h2>
+                      <div className="flex items-baseline gap-3">
+                        <h2 className="font-heading text-off-white text-2xl mb-2">
+                          {cluster.label.toUpperCase()}
+                        </h2>
+                        <span className="font-heading text-sm text-coral">
+                          {answers.length}
+                        </span>
+                      </div>
                       <p className="text-foreground-muted text-sm leading-relaxed">
                         {cluster.description}
                       </p>
