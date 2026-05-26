@@ -5,6 +5,7 @@ import readingTime from "reading-time";
 import { type ContentPillar } from "@/types";
 import { type CitedClaim } from "@/components/ui/CitedClaimTable";
 import { type EvidenceLevelType } from "@/components/ui/EvidenceLevel";
+import { type ClaimReviewItem } from "@/components/seo/ClaimReviewSchema";
 
 const BLOG_DIR = path.join(process.cwd(), "content/blog");
 const PUBLIC_DIR = path.join(process.cwd(), "public");
@@ -33,7 +34,22 @@ export interface ExpertSource {
   href?: string;
 }
 
-export type { CitedClaim, EvidenceLevelType };
+export interface HowToStepItem {
+  name: string;
+  text: string;
+}
+
+export interface HowToContent {
+  /** Defaults to the post title when omitted. */
+  name?: string;
+  /** Defaults to the post seoDescription when omitted. */
+  description?: string;
+  /** ISO 8601 duration, e.g. "PT20M". */
+  totalTime?: string;
+  steps: HowToStepItem[];
+}
+
+export type { CitedClaim, EvidenceLevelType, ClaimReviewItem };
 
 export interface BlogFrontmatter {
   title: string;
@@ -92,6 +108,15 @@ export interface BlogFrontmatter {
   // via citedClaims instead.
   evidenceLevel?: EvidenceLevelType;
   evidenceNote?: string;
+  // Optional ClaimReview entries for myth-busting / contrarian posts.
+  // Each rates one claim the article corrects; rendered as ClaimReview
+  // JSON-LD (no visible UI). Editor-authored — keep ratings measured and
+  // claimReviewed phrased as the myth, not Roadman's counter-position.
+  claimReviews?: ClaimReviewItem[];
+  // Optional HowTo structured data for procedural posts (test protocols,
+  // step-by-step plans). Emitted as HowTo JSON-LD; name/description fall
+  // back to the post title / seoDescription when omitted.
+  howTo?: HowToContent;
 }
 
 export interface BlogPostMeta extends BlogFrontmatter {

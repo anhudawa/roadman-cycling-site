@@ -5,6 +5,8 @@ import { MDXRemote } from "next-mdx-remote/rsc";
 import { Header, Footer, Section, Container } from "@/components/layout";
 import { Badge, Button } from "@/components/ui";
 import { JsonLd } from "@/components/seo/JsonLd";
+import { ClaimReviewSchema } from "@/components/seo/ClaimReviewSchema";
+import { HowToSchema } from "@/components/seo/HowToSchema";
 import { ENTITY_IDS, SITE_ORIGIN } from "@/lib/brand-facts";
 import { getPostBySlug, getAllSlugs, getRelatedPosts } from "@/lib/blog";
 import { getEpisodeBySlug } from "@/lib/podcast";
@@ -364,6 +366,25 @@ export default async function BlogPostPage({
               },
             })),
           }}
+        />
+      )}
+
+      {/* ClaimReview schema for myth-busting / contrarian posts */}
+      {post.claimReviews && post.claimReviews.length > 0 && (
+        <ClaimReviewSchema
+          items={post.claimReviews}
+          url={`${SITE_ORIGIN}/blog/${slug}`}
+          datePublished={post.updatedDate || post.publishDate}
+        />
+      )}
+
+      {/* HowTo schema for procedural posts (test protocols, step plans) */}
+      {post.howTo && post.howTo.steps.length > 0 && (
+        <HowToSchema
+          name={post.howTo.name ?? post.title}
+          description={post.howTo.description ?? post.seoDescription}
+          totalTime={post.howTo.totalTime}
+          steps={post.howTo.steps}
         />
       )}
 
