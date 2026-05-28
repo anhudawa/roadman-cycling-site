@@ -156,6 +156,15 @@ const nextConfig: NextConfig = {
       { source: "/shop", destination: "/tools", permanent: true },
       { source: "/store", destination: "/tools", permanent: true },
       { source: "/products", destination: "/tools", permanent: true },
+      // ClickFunnels "Roadman Toolkit" pillar-suffix variants. The bare
+      // /toolkit + /the-toolkit redirects live further down with the other
+      // ClickFunnels P1 rules; these catch the per-pillar lead magnets
+      // (/toolkit-nutrition, /toolkit-recovery, etc.), deep paths, and
+      // the prefixed variants Anthony used on Instagram/Skool.
+      { source: "/toolkit-:rest(.*)", destination: "/tools", permanent: true },
+      { source: "/toolkit/:slug*", destination: "/tools", permanent: true },
+      { source: "/roadman-toolkit", destination: "/tools", permanent: true },
+      { source: "/free-toolkit", destination: "/tools", permanent: true },
       { source: "/join", destination: "/apply", permanent: true },
       { source: "/signup", destination: "/apply", permanent: true },
       { source: "/sign-up", destination: "/apply", permanent: true },
@@ -223,6 +232,15 @@ const nextConfig: NextConfig = {
       { source: "/training-plan", destination: "/training-plans", permanent: true },
       { source: "/community/skool", destination: "/community/clubhouse", permanent: true },
       { source: "/skool", destination: "/community/clubhouse", permanent: true },
+      // ClickFunnels "Clubhouse" suffix + deep-path variants. The bare
+      // /clubhouse, /the-clubhouse, and /free-clubhouse rules live further
+      // down with the other ClickFunnels P1 rules; these catch the
+      // suffixed variants (/clubhouse-join, /clubhouse/about, etc.) and
+      // the /roadman-clubhouse / /free-community aliases.
+      { source: "/clubhouse-:rest(.*)", destination: "/community/clubhouse", permanent: true },
+      { source: "/clubhouse/:slug*", destination: "/community/clubhouse", permanent: true },
+      { source: "/roadman-clubhouse", destination: "/community/clubhouse", permanent: true },
+      { source: "/free-community", destination: "/community/clubhouse", permanent: true },
       { source: "/blog/i-lost-7kg-eating-more-cycling", destination: "/blog/cycling-weight-loss-fuel-for-the-work-required", permanent: true },
       { source: "/blog/cycling-periodisation-training", destination: "/blog/cycling-periodisation-plan-guide", permanent: true },
       // Legacy product URL — strength-training course used to live under /products
