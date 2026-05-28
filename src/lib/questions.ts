@@ -2321,7 +2321,7 @@ export const QUESTION_PAGES: QuestionPage[] = [
       {
         label: "Dan Lorang — Roadman Podcast",
         detail:
-          "Lorang (long-time coach to Pogacar and Vingegaard at the start of their careers) has stressed that the work-life-recovery balance dictates the right volume — copy the prescription, never the volume.",
+          "Lorang (Head of Performance at Red Bull–Bora–Hansgrohe; long-time triathlon coach to Jan Frodeno and Anne Haug) has stressed that the work-life-recovery balance dictates the right volume — copy the prescription, never the volume.",
         href: "/guests/dan-lorang",
       },
       {
@@ -3246,7 +3246,7 @@ export const QUESTION_PAGES: QuestionPage[] = [
       {
         label: "Dan Lorang — World Tour periodisation",
         detail:
-          "Lorang's observed pro patterns reinforce the point — Pogačar/Vingegaard's zone 2 is genuinely conversational, much slower than amateurs believe.",
+          "Lorang's observed pro patterns reinforce the point — at the World Tour level zone 2 is genuinely conversational, much slower than amateurs believe.",
         href: "/guests/dan-lorang",
       },
       {
@@ -3322,7 +3322,7 @@ export const QUESTION_PAGES: QuestionPage[] = [
       "Anchored in Stephen Seiler's polarised research, Dan Lorang's pyramidal admission on the podcast, the FasCat/CTS sweet-spot literature, and the published Stoggl-Sperlich head-to-head studies.",
     fullExplanation: [
       "These three terms describe how training intensity is distributed across a week. Polarised: 80% genuinely easy, 20% genuinely hard, almost nothing in the middle. Pyramidal: lots of easy, moderate amounts of threshold, smaller amounts of VO2max. Sweet spot: lots of moderate-hard work at 88-94% of FTP, less easy time, less true VO2max. The internet's polarised-vs-sweet-spot debate has run for a decade. The honest answer changes with rider hours and training history.",
-      "Stephen Seiler's published distribution work shows that elite endurance athletes spend roughly 80% of training time below first ventilatory threshold and 15-20% well above the second. That's the polarised model. But Seiler himself has said on the podcast that pros are typically slightly more pyramidal than the headlines suggest — they hold more threshold time once form is built. Dan Lorang corroborated this on the show: at the Pogačar/Vingegaard end, the distribution is closer to pyramidal than the textbook 80/20.",
+      "Stephen Seiler's published distribution work shows that elite endurance athletes spend roughly 80% of training time below first ventilatory threshold and 15-20% well above the second. That's the polarised model. But Seiler himself has said on the podcast that pros are typically slightly more pyramidal than the headlines suggest — they hold more threshold time once form is built. Dan Lorang corroborated this on the show: at the World Tour level the distribution is closer to pyramidal than the textbook 80/20.",
       "For amateurs, weekly hours change which model wins. At 12+ hours per week, polarised usually delivers — there's enough total stimulus in the easy 80% that the hard 20% gets to be genuinely hard. At 6-8 hours per week, pure polarised often under-delivers; the threshold time in a pyramidal or sweet-spot model adds the productive stimulus that the shorter polarised week is missing. The Stoggl-Sperlich head-to-head studies and the FasCat/CTS coaching observations both line up on this. There isn't a religious answer — there's a hours-banded one.",
       "What sweet spot does well: efficient productive stimulus when time is tight. What it does badly: it lives in the grey zone, and the recovery cost is high enough that easy days have to be genuinely easy or the rider cooks. The 'black hole' criticism of sweet spot is mostly about amateurs who do sweet spot AND let their easy days creep into tempo — that combination is what produces the chronic-fatigue plateau. Used carefully, sweet spot is a perfectly defensible amateur tool, especially in build phases.",
       "The Roadman position: pick the model that fits your weekly hours and stick to it for at least 8-12 weeks. Polarised at 12+ hours, pyramidal at 8-12, sweet-spot-leaning at 6-8. Block periodise across the year — don't try to hit one distribution every week of every season. And remember: the percentage of effort that's actually easy in your easy time matters more than which label is on the model.",
@@ -3445,7 +3445,7 @@ export const QUESTION_PAGES: QuestionPage[] = [
       {
         label: "Dan Lorang — fatigue resistance, podcast",
         detail:
-          "Lorang's on-the-record framing of durability as the metric that wins Grand Tours. The reason he doesn't taper Pogačar to a 20-minute peak.",
+          "Lorang's on-the-record framing of durability as the metric that wins Grand Tours. The reason Red Bull–Bora–Hansgrohe don't build their Grand Tour riders to a 20-minute peak.",
         href: "/guests/dan-lorang",
       },
       {

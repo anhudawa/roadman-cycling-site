@@ -214,7 +214,7 @@ export function HeroSection() {
             >
               <span>100M+ downloads</span>
               <span className="mx-2 opacity-50">·</span>
-              <span>65K newsletter</span>
+              <span>29K newsletter</span>
               <span className="mx-2 opacity-50">·</span>
               <span>1,400+ episodes</span>
             </motion.p>

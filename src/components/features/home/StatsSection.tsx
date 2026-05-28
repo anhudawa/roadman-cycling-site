@@ -5,7 +5,7 @@ import { ScrollReveal, AnimatedCounter } from "@/components/ui";
 const stats = [
   { value: "100M+", label: "Podcast Downloads" },
   { value: "1,400+", label: "Episodes Recorded" },
-  { value: "65K+", label: "Newsletter Subscribers" },
+  { value: "29K+", label: "Newsletter Subscribers" },
   { value: "2,100+", label: "Community Members" },
 ];
 

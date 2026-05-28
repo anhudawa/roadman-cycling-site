@@ -38,7 +38,7 @@ const brandStats = [
       "In-depth interviews with World Tour coaches, sports scientists and pro riders — weekly since 2021, available everywhere podcasts are",
   },
   {
-    stat: "65K",
+    stat: "29K+",
     label: "Newsletter subscribers",
     detail:
       "Engaged inbox audience receiving weekly performance breakdowns distilled from the podcast",

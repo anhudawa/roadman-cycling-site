@@ -121,7 +121,7 @@ export const PROOF_STATS = {
   /** Monthly listeners across audio platforms. */
   monthlyListeners: BRAND_STATS.monthlyListenersLabel, // "1M+"
   /** Newsletter subscribers — the Saturday Spin list. */
-  newsletterSubscribers: BRAND_STATS.newsletterSubscribersLabel, // "65K+"
+  newsletterSubscribers: BRAND_STATS.newsletterSubscribersLabel, // "29K+"
   /** Countries with active listeners. */
   countriesReached: BRAND_STATS.countriesReachedLabel,
   /** Continuous coaching trading years. */

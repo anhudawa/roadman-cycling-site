@@ -98,7 +98,7 @@ export const COACHING_SEGMENTS: Record<string, SegmentData> = {
       "This is coaching for cyclists over 40 who refuse to accept that their best days are behind them. You've still got watts to find — but the way you trained at 30 will start breaking you down at 45. Masters coaching is built around the recovery, intensity distribution, and strength work that lets the engine keep growing while the body keeps holding up.",
     problem: [
       "Most masters cyclists ride 50% too hard when they think they're riding easy. The same gain-or-bust rides that worked at 30 are now the reason you're flat for three days after a hard Sunday. The internet keeps telling you to grind. Your body keeps telling you that doesn't work anymore.",
-      "It's not your age. It's the method. The science from Professor Seiler and the work coaches like Dan Lorang do with Vingegaard and Pogacar all point the same way — the older the rider, the more polarised the training has to be. More true Zone 2. Fewer, sharper hard days. And actual recovery — not the kind where you ride easy but still drift into Zone 3.",
+      "It's not your age. It's the method. The science from Professor Seiler and the work coaches like Dan Lorang do at the World Tour all point the same way — the older the rider, the more polarised the training has to be. More true Zone 2. Fewer, sharper hard days. And actual recovery — not the kind where you ride easy but still drift into Zone 3.",
       "The gains are still there. They just stop arriving when you train through fatigue.",
     ],
     whatChanges: [

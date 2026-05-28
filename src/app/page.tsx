@@ -160,7 +160,7 @@ export default function HomePage() {
         <EmailCapture
           variant="banner"
           heading="THE SATURDAY SPIN"
-          subheading="The weekly training breakdown 65,000+ serious cyclists use to break plateaus. What's working, what the pros do, how to apply it this week. Free."
+          subheading="The weekly training breakdown 29,000+ serious cyclists use to break plateaus. What's working, what the pros do, how to apply it this week. Free."
           source="homepage-top"
         />
 
@@ -717,7 +717,7 @@ export default function HomePage() {
                   name: "Who has been on the Roadman Cycling Podcast?",
                   acceptedAnswer: {
                     "@type": "Answer",
-                    text: "Notable guests include Professor Stephen Seiler (polarised training pioneer), Dan Lorang (head of performance at Red Bull–Bora–Hansgrohe, coach to Pogačar and Vingegaard), Greg LeMond (3× Tour de France winner), Joe Friel (author of The Cyclist's Training Bible), Lachlan Morton (EF Education), Dan Bigham (former Hour Record holder), Ben Healy (pro cyclist), Michael Matthews (sprinter, 15+ years in the peloton), John Wakefield (Bora-Hansgrohe coach), Tim Kerrison (ex-Team Sky head of performance), and Tim Spector (ZOE founder).",
+                    text: "Notable guests include Professor Stephen Seiler (polarised training pioneer), Dan Lorang (Head of Performance at Red Bull–Bora–Hansgrohe, Primož Roglič's team; long-time coach to Jan Frodeno), Greg LeMond (3× Tour de France winner), Joe Friel (author of The Cyclist's Training Bible), Lachlan Morton (EF Education), Dan Bigham (former Hour Record holder), Ben Healy (pro cyclist), Michael Matthews (sprinter, 15+ years in the peloton), John Wakefield (Bora-Hansgrohe coach), Tim Kerrison (ex-Team Sky head of performance), and Tim Spector (ZOE founder).",
                   },
                 },
                 {

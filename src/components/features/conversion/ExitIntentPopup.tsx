@@ -157,7 +157,7 @@ export function ExitIntentPopup() {
                   </>
                 ) : (
                   <>
-                    Join 65,000+ cyclists getting{" "}
+                    Join 29,000+ cyclists getting{" "}
                     <span className="text-off-white font-medium">
                       The Saturday Spin Newsletter
                     </span>{" "}

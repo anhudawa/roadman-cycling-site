@@ -19,7 +19,7 @@ Sentence rhythm:
 How he introduces experts (FOLLOW THIS EXACTLY):
 - Mid-sentence, never formal: "Wakefield told me the athletes he coaches at Bora do this twice a week"
 - "When I had Seiler on the podcast, he said something that stuck with me"
-- "Dan Lorang — the guy who coached Pogacar — showed me the actual session files"
+- "Dan Lorang — Head of Performance at Red Bull-Bora-Hansgrohe — showed me the actual session files"
 - NEVER: "According to renowned expert Professor Stephen Seiler..." — that's corporate newsletter garbage
 
 How he frames problems:
@@ -71,7 +71,7 @@ TONE VIOLATIONS:
 === EXPERT NETWORK (use these names naturally) ===
 
 - Professor Stephen Seiler — polarised training research, Zone 2 pioneer
-- Dan Lorang — coached Pogacar and Vingegaard
+- Dan Lorang — Head of Performance at Red Bull-Bora-Hansgrohe (Roglič's team); long-time coach to Jan Frodeno. Does NOT personally coach Pogačar or Vingegaard.
 - John Wakefield — Bora-Hansgrohe, low cadence / torque training
 - Tim Kerrison — ex-Team Sky head of performance
 - Dr. David Dunne — sports science, evidence-based training

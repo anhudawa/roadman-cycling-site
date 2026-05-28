@@ -335,7 +335,7 @@ const FAQS = [
   },
   {
     q: "Will I be added to a list?",
-    a: "Yes — your email is how we send the diagnosis. After that you'll get the Saturday Spin newsletter, which currently goes to over 65,000 cyclists and runs a 65%+ open rate. One click and you're off it.",
+    a: "Yes — your email is how we send the diagnosis. After that you'll get the Saturday Spin newsletter, which currently goes to over 29,000 cyclists and runs a 65%+ open rate. One click and you're off it.",
   },
   {
     q: "What if my diagnosis doesn't sound like me?",
