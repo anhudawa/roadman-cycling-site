@@ -252,6 +252,19 @@ const nextConfig: NextConfig = {
       { source: "/getstrong", destination: "/strength-training", permanent: true },
       { source: "/s-c-plan", destination: "/strength-training", permanent: true },
 
+      // Bare-slug ClickFunnels lead-magnet paths. The audit found these
+      // returning 404 — they were the canonical short URLs Anthony shared
+      // in the podcast, on Instagram, and on the Skool community for
+      // years. Every 404 here leaks accumulated link equity.
+      //
+      // /toolkit was the free calculators lead magnet → /tools
+      // /clubhouse was the free Skool community → /community/clubhouse
+      { source: "/toolkit", destination: "/tools", permanent: true },
+      { source: "/the-toolkit", destination: "/tools", permanent: true },
+      { source: "/clubhouse", destination: "/community/clubhouse", permanent: true },
+      { source: "/the-clubhouse", destination: "/community/clubhouse", permanent: true },
+      { source: "/free-clubhouse", destination: "/community/clubhouse", permanent: true },
+
       // Episode count slug update — old URL had 1300, corrected to 1400
       {
         source: "/blog/common-training-mistakes-from-1300-podcast-episodes",
