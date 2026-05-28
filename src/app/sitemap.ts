@@ -18,7 +18,7 @@ import { getAllCaseStudySlugs } from "@/lib/case-studies";
 import { CAMP_LIST } from "@/lib/camps/camps";
 import { getAllGironaRouteSlugs } from "@/lib/girona/routes";
 import {
-  getAllExpertTopicPairs,
+  getIndexableExpertTopicPairs,
   getExpertsWithTopics,
 } from "@/lib/experts";
 
@@ -424,8 +424,15 @@ function buildTopicAndMoreSitemap(): MetadataRoute.Sitemap {
 // Expert × topic pages — the programmatic "What does {Expert} say about
 // {Topic}?" AEO layer. Three tiers: the /experts index, one index per
 // expert (/experts/[slug]), and the answer pages themselves
-// (/experts/[slug]/[topic]). All are real, schema-rich content driven by
-// curated entity data, so they belong in the indexable sitemap.
+// (/experts/[slug]/[topic]).
+//
+// Only substantive topic pages are listed here — pairs without a curated
+// editorial summary, an on-topic quote, or real topic-matched episode
+// evidence render `<meta name="robots" content="noindex,follow">` and
+// would create a Search Console contradiction if also sitemapped.
+// `getIndexableExpertTopicPairs()` and the page's metadata both consult
+// the same indexability rule (`isIndexableExpertTopicPair`), so the two
+// stay in lockstep.
 function buildExpertSitemap(): MetadataRoute.Sitemap {
   const indexEntry = {
     url: `${BASE_URL}/experts`,
@@ -441,7 +448,7 @@ function buildExpertSitemap(): MetadataRoute.Sitemap {
     priority: 0.7,
   }));
 
-  const expertTopicPages = getAllExpertTopicPairs().map(
+  const expertTopicPages = getIndexableExpertTopicPairs().map(
     ({ expertSlug, topicSlug }) => ({
       url: `${BASE_URL}/experts/${expertSlug}/${topicSlug}`,
       lastModified: new Date(),

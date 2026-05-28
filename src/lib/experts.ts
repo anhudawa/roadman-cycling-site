@@ -809,6 +809,63 @@ export interface ExpertTopicPage {
   relatedTopics: { slug: string; label: string }[];
   /** Other experts who speak on this topic. */
   relatedExperts: RelatedExpertRef[];
+  /**
+   * Whether the page carries enough unique substance to be indexed by
+   * search engines. Thin pages stay live (internal nav, link equity) but
+   * render `<meta name="robots" content="noindex,follow">` and drop out
+   * of the sitemap — defusing the "scaled content abuse" signal Google's
+   * 2024+ updates target at programmatic SEO.
+   */
+  indexable: boolean;
+}
+
+/**
+ * Per-pair index overrides — force a specific `expertSlug/topicSlug` into
+ * or out of the index regardless of the heuristic. Empty by default;
+ * populate when a thin page is worth keeping (live event, freshly added
+ * curated quote) or a substantive one needs hiding.
+ */
+const EXPERT_INDEX_OVERRIDES: Record<string, "index" | "noindex"> = {};
+
+/**
+ * Whether an expert-topic page is substantive enough to keep in the index.
+ *
+ * The pages have a real spine — bio, schema, internal links — but the
+ * `summary` falls back to a templated structured lead when no curated
+ * editorial exists, and `keyPositions` / `quotes` / `episodes` quietly
+ * fall back to wider-scope material when nothing topic-specific is found.
+ * For Google's purposes that wider fallback content reads as boilerplate,
+ * which is what the "scaled content abuse" signal targets.
+ *
+ * A page is judged substantive if it clears any of:
+ *   - hand-written editorial summary (unique voice-matched content), or
+ *   - at least one direct quote whose text actually mentions the topic, or
+ *   - real topic-matched episode evidence combined with multiple
+ *     topic-filtered expert positions.
+ */
+function computeIndexability({
+  expertSlug,
+  topicSlug,
+  enrichment,
+  onTopicQuotesCount,
+  topicEpisodeCount,
+  topicIdeasCount,
+}: {
+  expertSlug: string;
+  topicSlug: string;
+  enrichment: EnrichmentStatus;
+  onTopicQuotesCount: number;
+  topicEpisodeCount: number;
+  topicIdeasCount: number;
+}): boolean {
+  const override = EXPERT_INDEX_OVERRIDES[`${expertSlug}/${topicSlug}`];
+  if (override === "index") return true;
+  if (override === "noindex") return false;
+
+  if (enrichment === "editorial") return true;
+  if (onTopicQuotesCount >= 1) return true;
+  if (topicEpisodeCount >= 1 && topicIdeasCount >= 2) return true;
+  return false;
 }
 
 /** Speaker on a keyQuote belongs to the expert if it slugifies to them. */
@@ -972,6 +1029,15 @@ export function getExpertTopicPage(
     curated ?? buildStructuredLead(guest, topic, quotes.length > 0);
   const enrichment: EnrichmentStatus = curated ? "editorial" : "structured";
 
+  const indexable = computeIndexability({
+    expertSlug,
+    topicSlug,
+    enrichment,
+    onTopicQuotesCount: onTopicQuotes.length,
+    topicEpisodeCount: topicEpisodes.length,
+    topicIdeasCount: topicIdeas.length,
+  });
+
   const faqs = buildFaqs(guest, topic, summary, keyPositions, episodes);
 
   // Related topics — the expert's other assigned topics.
@@ -1023,6 +1089,7 @@ export function getExpertTopicPage(
     faqs,
     relatedTopics,
     relatedExperts,
+    indexable,
   };
 }
 
@@ -1139,5 +1206,37 @@ export function getEnrichmentQueue(): ExpertTopicPair[] {
   return getAllExpertTopicPairs().filter(
     ({ expertSlug, topicSlug }) =>
       !(`${expertSlug}/${topicSlug}` in CURATED_EDITORIAL),
+  );
+}
+
+let _indexableKeysCache: Set<string> | null = null;
+
+function indexableKeyCache(): Set<string> {
+  if (_indexableKeysCache) return _indexableKeysCache;
+  const set = new Set<string>();
+  for (const { expertSlug, topicSlug } of getAllExpertTopicPairs()) {
+    const page = getExpertTopicPage(expertSlug, topicSlug);
+    if (page?.indexable) set.add(`${expertSlug}/${topicSlug}`);
+  }
+  _indexableKeysCache = set;
+  return set;
+}
+
+/**
+ * Whether an expert-topic pair is indexable, cached across the build so
+ * the sitemap, robots metadata and any audits agree without rebuilding
+ * the full page object for every check.
+ */
+export function isIndexableExpertTopicPair(
+  expertSlug: string,
+  topicSlug: string,
+): boolean {
+  return indexableKeyCache().has(`${expertSlug}/${topicSlug}`);
+}
+
+/** The subset of expert-topic pairs we want in Google's index. */
+export function getIndexableExpertTopicPairs(): ExpertTopicPair[] {
+  return getAllExpertTopicPairs().filter(({ expertSlug, topicSlug }) =>
+    isIndexableExpertTopicPair(expertSlug, topicSlug),
   );
 }

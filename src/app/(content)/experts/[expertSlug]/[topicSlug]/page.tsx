@@ -49,6 +49,12 @@ export async function generateMetadata({
       ...topic.aliases,
     ],
     alternates: { canonical: url },
+    // Thin pages stay live for internal navigation but drop out of the
+    // index — `noindex,follow` removes the URL from Google while letting
+    // crawlers walk the related-expert / related-topic links.
+    robots: page.indexable
+      ? { index: true, follow: true }
+      : { index: false, follow: true },
     openGraph: {
       title: `${title} — The Roadman Cycling Podcast`,
       description,
