@@ -1787,6 +1787,7 @@ export {
   methodProgress,
   methodLoginTokens,
   methodOnboarding,
+  methodChecklistState,
 } from "../method/schema";
 
 // ------------------------------------------------------------

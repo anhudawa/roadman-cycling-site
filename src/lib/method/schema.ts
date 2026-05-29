@@ -152,3 +152,33 @@ export const methodOnboarding = pgTable(
 
 export type MethodOnboardingRow = typeof methodOnboarding.$inferSelect;
 export type NewMethodOnboardingRow = typeof methodOnboarding.$inferInsert;
+
+/**
+ * Per-module week-checklist tick state, persisted server-side so progress
+ * survives a device/browser change (localStorage remains a fast offline
+ * cache on the client). Distinct from `method_progress`, which tracks
+ * whole-module completion. Stores the set of ticked item indexes.
+ */
+export const methodChecklistState = pgTable(
+  "method_checklist_state",
+  {
+    id: serial("id").primaryKey(),
+    enrollmentId: integer("enrollment_id")
+      .notNull()
+      .references(() => methodEnrollments.id, { onDelete: "cascade" }),
+    moduleSlug: text("module_slug").notNull(),
+    /** Indexes of ticked checklist items. */
+    checkedIndexes: jsonb("checked_indexes").$type<number[]>().notNull().default([]),
+    updatedAt: timestamp("updated_at", { withTimezone: true }).notNull().defaultNow(),
+  },
+  (table) => [
+    index("method_checklist_state_enrollment_id_idx").on(table.enrollmentId),
+    // Upsert target — one row per (enrollment, module).
+    uniqueIndex("method_checklist_state_enrollment_module_unique").on(
+      table.enrollmentId,
+      table.moduleSlug,
+    ),
+  ],
+);
+
+export type MethodChecklistStateRow = typeof methodChecklistState.$inferSelect;
