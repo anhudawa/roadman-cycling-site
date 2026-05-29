@@ -8,6 +8,7 @@ import {
   PredictedTimeHero,
   ElevationProfile,
   SegmentTable,
+  SplitsTable,
   ScenarioCards,
   deriveDefaultScenarios,
   GapToCutoffBar,
@@ -21,7 +22,7 @@ import {
   getCourseBySlug,
   type CourseRow,
 } from "@/lib/race-predictor/store";
-import type { Course } from "@/lib/race-predictor/types";
+import type { Course, CheckpointSplit } from "@/lib/race-predictor/types";
 import { RACES } from "@/data/races";
 import { UpgradeForm } from "./upgrade-form";
 
@@ -50,7 +51,12 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
           description: `Estimate your finish time, confidence range, pacing needs, and premium Race Report for ${courseName}.`,
           type: "website",
           url,
-          images: [{ url: "/og-image.jpg", width: 1200, height: 630, alt: courseName }],
+          // og:image is injected automatically by the colocated
+          // opengraph-image.tsx, which renders a branded generic event card for
+          // curated landing slugs (no personal prediction). File-based metadata
+          // overrides openGraph.images, so hardcoding the static /og-image.jpg
+          // here had no effect on the actual unfurl — removed to avoid
+          // confusion and keep dimensions/type/alt consistent with the route.
         },
         robots: { index: true, follow: true },
       };
@@ -74,7 +80,22 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
       description: `Climb-by-climb breakdown, fuelling targets, and pacing scenarios for ${courseName}.`,
       type: "website",
       url,
-      images: [{ url: "/og-image.jpg", width: 1200, height: 630, alt: courseName }],
+      // NB: og:image is injected automatically by Next.js from the colocated
+      // src/app/(content)/predict/[slug]/opengraph-image.tsx — a Satori-backed
+      // 1200×630 per-prediction poster (finish time + course + elevation
+      // profile). File-based metadata has higher priority than and OVERRIDES
+      // openGraph.images set here, and the file convention generates the
+      // correct hashed URL + width/height/type/alt automatically. Do NOT
+      // hardcode openGraph.images — that was the bug this change fixes: the
+      // page previously pointed social unfurls at the generic static
+      // /og-image.jpg instead of the rider's actual result.
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: `${courseName} — Your Predicted Finish Time`,
+      description: `Climb-by-climb breakdown, fuelling targets, and pacing scenarios for ${courseName}.`,
+      // twitter:image falls back to the auto-injected opengraph-image when no
+      // twitter-image.[ext] exists in the route segment.
     },
     robots: { index: false, follow: true },
   };
@@ -123,6 +144,13 @@ export default async function PredictResultPage({ params }: PageProps) {
     (prediction.resultSummary?.insight as
       | { headline: string; body: string; tag?: string }
       | undefined) ?? null;
+
+  // Per-checkpoint split predictions persisted by POST /api/predict at
+  // prediction.resultSummary.splits. Surfaced as a free taste of the paid plan.
+  const rawSplits = prediction.resultSummary?.splits;
+  const splits: CheckpointSplit[] = Array.isArray(rawSplits)
+    ? (rawSplits as CheckpointSplit[])
+    : [];
 
   const avgSpeedKmh =
     distanceKm > 0 ? distanceKm / (prediction.predictedTimeS / 3600) : 0;
@@ -381,6 +409,27 @@ export default async function PredictResultPage({ params }: PageProps) {
                 pacingPlan={prediction.pacingPlan}
                 averageSpeed={avgSpeedKmh / 3.6}
               />
+            </Container>
+          </Section>
+        )}
+
+        {/* SPLIT TIMES — per-checkpoint pacing preview (free taste of the plan,
+            shown even before the email gate to entice the upgrade). */}
+        {splits.length > 0 && (
+          <Section background="charcoal" className="!py-8 md:!py-10">
+            <Container>
+              <div className="mb-5">
+                <p
+                  className="text-[0.65rem] tracking-[0.22em] uppercase text-coral mb-2"
+                  style={{ fontFamily: "var(--font-jetbrains-mono)" }}
+                >
+                  SPLITS · YOUR DAY IN TIME
+                </p>
+                <h2 className="font-heading text-3xl uppercase tracking-tight text-off-white">
+                  Checkpoint splits
+                </h2>
+              </div>
+              <SplitsTable splits={splits} />
             </Container>
           </Section>
         )}

@@ -8,6 +8,7 @@ import {
   detectClimbs,
   removeElevationSpikes,
   removeGpsSpikes,
+  cleanTrackPointsWithQuality,
 } from './gpx';
 import type { Segment, TrackPoint } from './types';
 
@@ -300,10 +301,23 @@ describe('detectClimbs', () => {
     expect(detectClimbs(makeSegments(grades))).toHaveLength(0);
   });
 
-  it('separates two climbs joined by a flat section', () => {
+  it('separates two climbs joined by a long flat section', () => {
+    // 12 × 50 m = 600 m of flat between the climbs — beyond the 500 m merge
+    // window, so these stay two distinct climbs.
     const grades = [
       ...Array.from({ length: 8 }, () => Math.atan(0.05)),
-      ...Array.from({ length: 5 }, () => 0),
+      ...Array.from({ length: 12 }, () => 0),
+      ...Array.from({ length: 8 }, () => Math.atan(0.05)),
+    ];
+    const climbs = detectClimbs(makeSegments(grades));
+    expect(climbs).toHaveLength(2);
+  });
+
+  it('separates two climbs joined by a descent regardless of gap length', () => {
+    // A genuine descent between the climbs is never merged, even when short.
+    const grades = [
+      ...Array.from({ length: 8 }, () => Math.atan(0.05)),
+      ...Array.from({ length: 4 }, () => Math.atan(-0.05)), // 200 m descent
       ...Array.from({ length: 8 }, () => Math.atan(0.05)),
     ];
     const climbs = detectClimbs(makeSegments(grades));
@@ -320,5 +334,143 @@ describe('detectClimbs', () => {
     const grades = Array.from({ length: 240 }, () => Math.atan(0.08));
     const climbs = detectClimbs(makeSegments(grades));
     expect(climbs[0].category).toBe('hc');
+  });
+
+  it('reports a climb with a short mid-saddle as ONE merged climb', () => {
+    // Stelvio/Ventoux shape: 4 km @ 7 %, a 300 m false-flat plateau, then
+    // another 4 km @ 7 %. The forward-window detector splits this into two
+    // fragments; the merge step (gap 300 m < 500 m, gap grade ~0 % not a
+    // descent) stitches it back into a single climb.
+    const grades = [
+      ...Array.from({ length: 80 }, () => Math.atan(0.07)), // 4 km
+      ...Array.from({ length: 6 }, () => 0), // 300 m saddle
+      ...Array.from({ length: 80 }, () => Math.atan(0.07)), // 4 km
+    ];
+    const climbs = detectClimbs(makeSegments(grades));
+    expect(climbs).toHaveLength(1);
+    // Length spans both pitches plus the saddle: 4000 + 300 + 4000 = 8300 m.
+    expect(climbs[0].length).toBeCloseTo(8300, 0);
+    expect(climbs[0].startSegmentIndex).toBe(0);
+    expect(climbs[0].endSegmentIndex).toBe(165);
+    // Gain is recomputed end-to-end across the merged span (581 m for this
+    // synthetic elevation series) — the single mountain, not a fragment.
+    expect(climbs[0].elevationGain).toBeCloseTo(581, 0);
+    expect(Math.tan(climbs[0].averageGradient)).toBeCloseTo(0.07, 3);
+    expect(climbs[0].category).toBe('cat1');
+  });
+
+  it('does not merge across a saddle longer than 500 m', () => {
+    // Same two pitches but a 700 m plateau between them — too long to be a
+    // false-flat on one mountain, so they remain two climbs.
+    const grades = [
+      ...Array.from({ length: 80 }, () => Math.atan(0.07)),
+      ...Array.from({ length: 14 }, () => 0), // 700 m saddle
+      ...Array.from({ length: 80 }, () => Math.atan(0.07)),
+    ];
+    const climbs = detectClimbs(makeSegments(grades));
+    expect(climbs).toHaveLength(2);
+  });
+});
+
+// Track point ~spacing helper: build a north-bound track with a fixed
+// great-circle spacing between consecutive points.
+function northTrack(count: number, spacingM: number, startLat = 45): TrackPoint[] {
+  const dLat = spacingM / 111_320; // metres per degree of latitude
+  return Array.from({ length: count }, (_, i) => ({
+    lat: startLat + i * dLat,
+    lon: 0,
+    elevation: 100 + i, // gentle, real elevation so coverage stays 1
+  }));
+}
+
+describe('track quality — sparse track detection', () => {
+  it('flags a track whose median spacing exceeds 200 m', () => {
+    const { quality } = cleanTrackPointsWithQuality(northTrack(10, 300));
+    expect(quality.medianPointSpacingM).toBeGreaterThan(290);
+    expect(quality.medianPointSpacingM).toBeLessThan(310);
+    expect(quality.sparseTrack).toBe(true);
+    expect(quality.warnings.some((w) => /apart on average/.test(w))).toBe(true);
+  });
+
+  it('does not flag a dense ~25 m track', () => {
+    const { quality } = cleanTrackPointsWithQuality(northTrack(40, 25));
+    expect(quality.sparseTrack).toBe(false);
+    expect(quality.warnings.some((w) => /apart on average/.test(w))).toBe(false);
+  });
+});
+
+describe('track quality — missing elevation safety', () => {
+  it('warns loudly when fewer than half the points carry elevation', () => {
+    // 5 points: 3 missing <ele>, 2 present → coverage 40 % < 50 %.
+    const gpx = `<?xml version="1.0"?>
+<gpx version="1.1"><trk><trkseg>
+  <trkpt lat="45.000" lon="0.0"></trkpt>
+  <trkpt lat="45.001" lon="0.0"></trkpt>
+  <trkpt lat="45.002" lon="0.0"><ele>120</ele></trkpt>
+  <trkpt lat="45.003" lon="0.0"></trkpt>
+  <trkpt lat="45.004" lon="0.0"><ele>140</ele></trkpt>
+</trkseg></trk></gpx>`;
+    const { quality } = parseGpx(gpx);
+    expect(quality.missingElevationCount).toBe(3);
+    expect(quality.elevationCoverageRatio).toBeCloseTo(0.4, 5);
+    expect(quality.missingElevationMajority).toBe(true);
+    expect(quality.warnings.some((w) => /elevation data/.test(w))).toBe(true);
+  });
+
+  it('does not warn when every point carries elevation', () => {
+    const gpx = `<?xml version="1.0"?>
+<gpx version="1.1"><trk><trkseg>
+  <trkpt lat="45.000" lon="0.0"><ele>100</ele></trkpt>
+  <trkpt lat="45.001" lon="0.0"><ele>110</ele></trkpt>
+  <trkpt lat="45.002" lon="0.0"><ele>120</ele></trkpt>
+</trkseg></trk></gpx>`;
+    const { quality } = parseGpx(gpx);
+    expect(quality.elevationCoverageRatio).toBe(1);
+    expect(quality.missingElevationMajority).toBe(false);
+    expect(quality.warnings.some((w) => /elevation data/.test(w))).toBe(false);
+  });
+});
+
+describe('track quality — non-monotonic timestamps', () => {
+  it('counts timestamps that go backwards and warns', () => {
+    const base = northTrack(4, 50);
+    base[0].time = new Date('2026-05-29T10:00:00Z');
+    base[1].time = new Date('2026-05-29T10:00:10Z');
+    base[2].time = new Date('2026-05-29T10:00:05Z'); // clock jumps back
+    base[3].time = new Date('2026-05-29T10:00:20Z');
+    const { quality } = cleanTrackPointsWithQuality(base);
+    expect(quality.nonMonotonicTimestampCount).toBe(1);
+    expect(quality.warnings.some((w) => /backwards in time/.test(w))).toBe(true);
+  });
+
+  it('does not warn on monotonically increasing timestamps', () => {
+    const base = northTrack(3, 50);
+    base.forEach((p, i) => {
+      p.time = new Date(Date.UTC(2026, 4, 29, 10, 0, i * 10));
+    });
+    const { quality } = cleanTrackPointsWithQuality(base);
+    expect(quality.nonMonotonicTimestampCount).toBe(0);
+    expect(quality.warnings.some((w) => /backwards in time/.test(w))).toBe(false);
+  });
+});
+
+describe('track quality — backtracking / out-and-back overlap', () => {
+  it('detects a route that doubles back on itself and warns', () => {
+    // Out-and-back: ride north 4 points, then retrace south over the same
+    // line. Each fold past the apex is a ~180° reversal with overlapping legs.
+    const out = northTrack(4, 100);
+    const back: TrackPoint[] = [];
+    for (let i = out.length - 2; i >= 0; i--) {
+      back.push({ ...out[i] });
+    }
+    const { quality } = cleanTrackPointsWithQuality([...out, ...back]);
+    expect(quality.backtrackCount).toBeGreaterThanOrEqual(1);
+    expect(quality.warnings.some((w) => /doubles back/.test(w))).toBe(true);
+  });
+
+  it('does not flag a normal forward-progressing track', () => {
+    const { quality } = cleanTrackPointsWithQuality(northTrack(10, 100));
+    expect(quality.backtrackCount).toBe(0);
+    expect(quality.warnings.some((w) => /doubles back/.test(w))).toBe(false);
   });
 });

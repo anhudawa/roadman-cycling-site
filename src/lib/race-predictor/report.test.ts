@@ -69,4 +69,72 @@ describe("renderRaceReportHtml", () => {
     expect(html).toContain("small group");
     expect(html).toContain("178 cm");
   });
+
+  it("renders the checkpoint splits table when splits are present", () => {
+    const fixture = getFixtureCourseBySlug("fred-whitton-challenge");
+    expect(fixture).not.toBeNull();
+    const html = renderRaceReportHtml({
+      id: 2,
+      slug: "split-report",
+      riderProfileId: null,
+      courseId: fixture!.id,
+      rider,
+      environment,
+      predictedTimeS: 8 * 3600,
+      confidenceLowS: 7.5 * 3600,
+      confidenceHighS: 8.5 * 3600,
+      averagePower: 205,
+      normalizedPower: 235,
+      variabilityIndex: 1.14,
+      pacingPlan: fixture!.courseData.segments.map(() => 205),
+      resultSummary: {
+        splits: [
+          {
+            label: "25 km",
+            kind: "distance",
+            distance: 25_000,
+            cumulativeTime: 3_600,
+            cumulativeElevationGain: 800,
+            legSpeed: 6.94,
+            legPower: 205,
+          },
+          {
+            label: "Finish",
+            kind: "finish",
+            distance: 180_000,
+            cumulativeTime: 8 * 3600,
+            cumulativeElevationGain: 3_950,
+            legSpeed: 6.5,
+            legPower: 200,
+          },
+        ],
+      },
+      course: fixture!.courseData,
+    });
+    expect(html).toContain("<h2>Checkpoint splits</h2>");
+    expect(html).toContain("25 km");
+    expect(html).toContain("🏁 finish");
+  });
+
+  it("omits the checkpoint splits table when no splits are present", () => {
+    const fixture = getFixtureCourseBySlug("fred-whitton-challenge");
+    const html = renderRaceReportHtml({
+      id: 3,
+      slug: "no-split-report",
+      riderProfileId: null,
+      courseId: fixture!.id,
+      rider,
+      environment,
+      predictedTimeS: 8 * 3600,
+      confidenceLowS: 7.5 * 3600,
+      confidenceHighS: 8.5 * 3600,
+      averagePower: 205,
+      normalizedPower: 235,
+      variabilityIndex: 1.14,
+      pacingPlan: fixture!.courseData.segments.map(() => 205),
+      resultSummary: {},
+      course: fixture!.courseData,
+    });
+    expect(html).not.toContain("<h2>Checkpoint splits</h2>");
+  });
 });

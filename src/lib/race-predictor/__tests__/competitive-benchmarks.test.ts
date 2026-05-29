@@ -809,7 +809,11 @@ describe("CdA estimation accuracy", () => {
       drivetrainEfficiency: 0.97,
     });
     const error = Math.abs(cda - trueCda) / trueCda;
-    expect(error).toBeLessThan(0.05);
+    // Whole-ride Chung residual objective (sum of squared VE-vs-actual deviations
+    // with the constant offset removed) nails a clean ride to well under 0.5 %,
+    // comfortably beating BBS Aero Analyzer's published 1.35 % MAE. The old
+    // endpoint-only objective only managed ~5 %; this tight bound is the point.
+    expect(error).toBeLessThan(0.005);
   });
 });
 
@@ -830,8 +834,15 @@ describe("Energy conservation and VI parity", () => {
   });
 
   it("Surging pacing yields VI > 1.05", () => {
+    // NP is now a true 30 s rolling-mean (matches Garmin/Wahoo), so a
+    // segment-by-segment 350/150 flutter (period < 30 s) correctly smooths
+    // back to the mean and would NOT raise VI — that is physically right.
+    // Real variability lives in sustained blocks, so we test sustained blocks:
+    // hard first half, easy second half. NP must exceed AP and VI must exceed
+    // 1.05.
     const course = flatCourse(20);
-    const surgePacing = course.segments.map((_, i) => (i % 2 === 0 ? 350 : 150));
+    const half = Math.floor(course.segments.length / 2);
+    const surgePacing = course.segments.map((_, i) => (i < half ? 350 : 150));
     const result = simulateCourse({
       course,
       rider: BBS_RIDER_AERO,

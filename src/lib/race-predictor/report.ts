@@ -23,7 +23,15 @@ import {
 } from "@/lib/analytics/paid-report-events";
 import { getCourseById, getPredictionById } from "./store";
 import { runScenarioComparison } from "./scenarios";
-import type { Climb, Course, Environment, RiderProfile } from "./types";
+import { recommendTyrePressure } from "./tyre-pressure";
+import type {
+  CheckpointSplit,
+  Climb,
+  Course,
+  Environment,
+  RiderProfile,
+  SurfaceType,
+} from "./types";
 
 const GENERATOR_VERSION = "race-v1.0.0";
 
@@ -515,26 +523,48 @@ function windStrategy(environment: Environment): string {
   return "Strong wind: ride by power, not speed. In headwinds, keep pressure steady and use groups wisely; in tailwinds and descents, eat, drink, and conserve.";
 }
 
+/** Pick a representative surface + sensible tyre width from the course/rider. */
+function inferSurfaceAndWidth(
+  course: Course | null,
+  rider: RiderProfile,
+): { surface: SurfaceType; widthMm: number } {
+  const surfaces = new Set(
+    (course?.segments ?? [])
+      .map((s) => s.surface)
+      .filter((s): s is SurfaceType => Boolean(s)),
+  );
+  if (surfaces.has("cobbles")) return { surface: "cobbles", widthMm: 30 };
+  if (surfaces.has("gravel_rough")) return { surface: "gravel_rough", widthMm: 45 };
+  if (surfaces.has("gravel_smooth")) return { surface: "gravel_smooth", widthMm: 40 };
+  if (surfaces.has("tarmac_rough") || rider.crr >= 0.0045)
+    return { surface: "tarmac_rough", widthMm: 30 };
+  if (surfaces.has("chip_seal")) return { surface: "chip_seal", widthMm: 30 };
+  if (surfaces.has("tarmac_mixed") || rider.crr >= 0.0036)
+    return { surface: "tarmac_mixed", widthMm: 28 };
+  return { surface: "tarmac_smooth", widthMm: 26 };
+}
+
 function tyrePressureGuidance(course: Course | null, rider: RiderProfile): string {
   const systemMass = rider.bodyMass + rider.bikeMass;
-  const roughSurface =
-    rider.crr >= 0.01 ||
-    course?.segments.some((segment) =>
-      ["gravel_rough", "cobbles"].includes(segment.surface ?? ""),
-    );
+  const { surface, widthMm } = inferSurfaceAndWidth(course, rider);
+  const rec = recommendTyrePressure({
+    systemMassKg: systemMass,
+    tyreWidthMm: widthMm,
+    surface,
+  });
+  const numbers = `For a ${Math.round(systemMass)} kg rider+bike system on ~${widthMm} mm tyres, a defensible starting point is <strong>${Math.round(rec.frontPsi)} psi front / ${Math.round(rec.rearPsi)} psi rear</strong> (${rec.frontBar.toFixed(1)}/${rec.rearBar.toFixed(1)} bar). Treat it as a baseline and fine-tune ±5 psi by feel and weather.`;
+
+  const roughSurface = surface === "cobbles" || surface === "gravel_rough";
   const mixedSurface =
-    rider.crr >= 0.006 ||
-    course?.segments.some((segment) =>
-      ["tarmac_rough", "chip_seal", "gravel_smooth"].includes(segment.surface ?? ""),
-    );
+    surface === "tarmac_rough" || surface === "chip_seal" || surface === "gravel_smooth";
 
   if (roughSurface) {
-    return `Start lower than road pressure and prioritise grip: for a ${Math.round(systemMass)} kg rider+bike system, use your tyre maker's chart for the exact width, then bias 5-10 psi lower than smooth-road instincts. If you are on tubeless gravel tyres, comfort and control will likely save more time than a rock-hard setup.`;
+    return `${numbers} On this surface, lower wins: pressure above the impedance breakpoint makes the tyre skip over rough ground and actually <em>increases</em> rolling resistance. Run tubeless if you can — comfort and control will save more time than a rock-hard setup.`;
   }
   if (mixedSurface) {
-    return `The route/surface model points to meaningful rolling losses. For a ${Math.round(systemMass)} kg rider+bike system, start from a modern tyre-pressure chart and bias slightly lower than old-school high-pressure habits, especially on rough lanes or chip seal.`;
+    return `${numbers} The surface model points to meaningful rolling losses, so bias slightly lower than old-school high-pressure habits, especially on rough lanes or chip seal.`;
   }
-  return `Surface looks comparatively fast. For a ${Math.round(systemMass)} kg rider+bike system on good road tyres, use a width-specific pressure chart and avoid over-inflating: the aim is low rolling loss with enough comfort to hold position late in the ride.`;
+  return `${numbers} The road looks comparatively fast, so avoid over-inflating: the aim is low rolling loss with enough comfort to hold position late in the ride.`;
 }
 
 function gearingGuidance(course: Course | null): string {
@@ -581,6 +611,30 @@ export function renderRaceReportHtml(p: RenderHtmlArgs): string {
     ? buildScenarioRows(course, p.rider, p.environment, p.pacingPlan)
     : "";
   const fuellingNote = formatFuelling(p.predictedTimeS, p.averagePower ?? 0);
+  // Structured fuelling plan from the prediction summary (wave-2). Falls back to
+  // the heuristic note when absent (older predictions).
+  const fuelPlan =
+    p.resultSummary && typeof p.resultSummary.fueling === "object"
+      ? (p.resultSummary.fueling as {
+          carbsPerHourG: number;
+          fluidPerHourMl: number;
+          sodiumPerHourMg: number;
+          totalCarbsG: number;
+          totalFluidMl: number;
+          summary?: string;
+          caffeineNote?: string;
+        })
+      : null;
+  const fuelPlanHtml = fuelPlan
+    ? `<div class="stat-grid">
+         <div class="stat"><div class="stat-label">Carbs</div><div class="stat-value">${Math.round(fuelPlan.carbsPerHourG)} g/h</div></div>
+         <div class="stat"><div class="stat-label">Fluid</div><div class="stat-value">${Math.round(fuelPlan.fluidPerHourMl)} ml/h</div></div>
+         <div class="stat"><div class="stat-label">Sodium</div><div class="stat-value">${Math.round(fuelPlan.sodiumPerHourMg)} mg/h</div></div>
+         <div class="stat"><div class="stat-label">Total carbs</div><div class="stat-value">${Math.round(fuelPlan.totalCarbsG)} g</div></div>
+       </div>
+       ${fuelPlan.summary ? `<p>${escape(fuelPlan.summary)}</p>` : ""}
+       ${fuelPlan.caffeineNote ? `<p><strong>Caffeine:</strong> ${escape(fuelPlan.caffeineNote)}</p>` : ""}`
+    : "";
   const surfaceSummary = course ? buildSurfaceSummary(course) : "Course surface not supplied";
   const biggestGains = buildBiggestGains({
     course,
@@ -610,6 +664,29 @@ export function renderRaceReportHtml(p: RenderHtmlArgs): string {
       const length = (c.length / 1000).toFixed(1);
       const gain = Math.round(c.elevationGain);
       return `<tr><td>${climbCategoryLabel(c)}</td><td>${length} km<br><span>${gain} m gain</span></td><td>${grade}%</td><td>${formatPower(avgPower)}<br><span>${avgPower ? powerZone(avgPower, ftp) : "—"}</span></td><td>${escape(advice)}</td></tr>`;
+    })
+    .join("");
+
+  // Checkpoint splits (BBS-style "where will I be, when"). Read straight from
+  // the saved prediction summary so the report never re-simulates.
+  const splits = Array.isArray(p.resultSummary?.splits)
+    ? (p.resultSummary!.splits as CheckpointSplit[])
+    : [];
+  const splitRows = splits
+    .map((s) => {
+      const km = (s.distance / 1000).toFixed(1);
+      const elapsed = formatDuration(Math.round(s.cumulativeTime));
+      const speed = (s.legSpeed * 3.6).toFixed(1);
+      const power = s.legPower ? `${Math.round(s.legPower)} W` : "—";
+      const climbCell =
+        s.kind === "climb_top"
+          ? "▲ top"
+          : s.kind === "climb_start"
+            ? "△ foot"
+            : s.kind === "finish"
+              ? "🏁 finish"
+              : "";
+      return `<tr><td><strong>${escape(s.label)}</strong> ${climbCell}</td><td>${km} km</td><td>${elapsed}</td><td>${speed} km/h</td><td>${power}</td><td>${Math.round(s.cumulativeElevationGain)} m</td></tr>`;
     })
     .join("");
 
@@ -727,9 +804,22 @@ export function renderRaceReportHtml(p: RenderHtmlArgs): string {
       : ""
   }
 
+  ${
+    splitRows
+      ? `<h2>Checkpoint splits</h2>
+         <div class="block">
+           <p>Where you should be, and when. Print this or tape it to your top tube — if you are well ahead of the elapsed column early, you went out too hard. Leg speed and power are the averages since the previous checkpoint.</p>
+         </div>
+         <table>
+           <thead><tr><th>Checkpoint</th><th>Distance</th><th>Elapsed</th><th>Leg speed</th><th>Leg power</th><th>Climbed</th></tr></thead>
+           <tbody>${splitRows}</tbody>
+         </table>`
+      : ""
+  }
+
   <h2>Fuelling target</h2>
   <div class="block">
-    <p>${escape(fuellingNote)}</p>
+    ${fuelPlanHtml || `<p>${escape(fuellingNote)}</p>`}
     <p><strong>Rule for the day:</strong> start eating in the first 20 minutes, then keep the drip feed going. If you wait until you feel low, you are already paying interest.</p>
   </div>
 
@@ -752,7 +842,7 @@ export function renderRaceReportHtml(p: RenderHtmlArgs): string {
   <div class="two-col">
     <div class="block">
       <h3>Tyre pressure</h3>
-      <p>${escape(tyreNote)}</p>
+      <p>${tyreNote}</p>
     </div>
     <div class="block">
       <h3>Gearing</h3>

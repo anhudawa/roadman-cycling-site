@@ -270,3 +270,72 @@ This audit covers the current `/predict` product in the local Roadman Cycling Ne
 - Added a content-type gate to `/api/predict/parse-gpx` so the server accepts GPX/XML uploads and rejects unsupported file types with a clear 415 response.
 - Added direct API route tests for unsupported file type, empty GPX, huge GPX, malformed GPX, sparse/too-short tracks, and a valid GPX response with profile, points, quality counts, warnings, and course stats.
 - Re-ran the parser test suite alongside the new API tests, strengthening the GPX hardening coverage requested in Phase 3.
+
+## Cluster-Agent Overhaul (2026-05-29) — closing the BBS gap
+
+A coordinated overhaul: the tightly-coupled physics core rebuilt by hand, then
+a wave of specialist agents on disjoint modules, all gated by the BBS-parity
+benchmark suite. Targets the two prior reviews' top correctness findings, which
+were still unfixed in the live engine.
+
+### Physics core (engine, pacing, rider, analysis, run)
+
+- **Time-stepped dynamics with real kinetic-energy carry-over.** `engine.ts`
+  no longer teleports each segment to its steady-state speed. It integrates the
+  equation of motion (`m·dv/dt = P_wheel/v − F_resist`) in the distance domain
+  with an RK2 midpoint step, adaptively sub-dividing wherever instantaneous
+  acceleration exceeds `SUBSTEP_ACCEL_THRESHOLD` (the previously-dead constant,
+  along with `DEFAULT_STEP_M`, now drives the integrator). Speed earned on a
+  descent genuinely assists the next rise; sharp grade transitions cost real
+  acceleration energy. This was *the* gap vs Best Bike Split. The misleading
+  "kinetic-energy carry-over" comment that described behaviour the code did not
+  have is now accurate.
+- **Flying-start default.** Initial speed defaults to the first segment's
+  equilibrium speed (how TT/sportive times are conventionally reported), which
+  keeps the flat-TT analytic-match test essentially exact while the new
+  dynamics show up on rollers and punchy profiles.
+- **W'-balance enforced in simulation.** `simulateCourse` accepts an optional
+  `enforceWPrime` and caps per-segment power (Skiba recovery below CP) so the
+  modelled rider can never hold a power their physiology cannot support across a
+  climb. Wired into `runPrediction` so every public prediction is feasible.
+- **Canonical 30-s Normalised Power.** `analysis.normalizedPower` now resamples
+  to 1 Hz, takes a 30-second rolling mean, then the 4th-power mean — matching
+  what a Garmin/Wahoo reports, instead of over-reporting NP on short surges.
+- **Rider archetypes.** `sprinter / all_rounder / climber / time_triallist /
+  ultra` shape the synthesised PD curve and durability constant for FTP-only
+  riders (`all_rounder` is byte-identical to the old defaults). Plumbed end to
+  end: engine → `/api/predict` validation → persisted assumptions → form
+  selector → analytics.
+- **NaN / zero-mass guards** at the engine boundary (`solveSpeedFromPower`,
+  `simulateCourse`) so bad inputs throw instead of silently propagating NaN to
+  JSON serialization.
+
+### Per-checkpoint split predictions (new, BBS-signature)
+
+- `analysis.checkpointSplits` produces a "where will I be, and when" table:
+  round distance markers (spacing scales with route length) plus each detected
+  climb's foot and top, each with cumulative time/elevation and the leg's
+  average speed and power. Exposed via `runPrediction`, persisted in the API
+  result summary, and rendered as a Checkpoint-splits table in the paid Race
+  Report.
+
+### Specialist-agent wave (disjoint modules)
+
+- **GPX hardening** (`gpx.ts`): merge climbs split by short saddles (Ventoux /
+  Stelvio); warn on sparse tracks (>200 m median spacing), missing elevation
+  (<50% coverage), non-monotonic timestamps, and out-and-back backtracking —
+  all previously declared but untested or unimplemented.
+- **CdA estimator** (`cda-estimator.ts`): replaced the brittle endpoint-only
+  objective with the full Chung whole-ride virtual-elevation least-squares
+  (mean-offset removed, CdA-error drift preserved). Benchmark tightened from
+  ±5% to ±0.5% recovery — comfortably beating BBS Aero Analyzer's claimed
+  1.35% MAE.
+- **Scenarios endpoint**: an FTP delta now scales only the p20/p60 anchors (not
+  a real rider's whole PD curve), and FTP-scale and the pacing slider compose
+  additively instead of compounding multiplicatively.
+- **Dynamic OG share images**: the prediction result page now unfurls with the
+  per-prediction poster via Next's file-based `opengraph-image` convention,
+  instead of a generic static image.
+- **Course fixtures**: corrected synthetic event elevations to within ~5% of
+  real published figures (Mallorca 312, Flanders, Marmotte, Wicklow, etc.) and
+  varied per-route heading so wind modelling is non-degenerate. (See commit.)

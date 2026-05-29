@@ -72,6 +72,31 @@ export interface Environment {
   windDirection: number;
 }
 
+/**
+ * One sample on an along-route weather timeline. Conditions a rider meets
+ * change over a long day — the morning is cool and calm, the afternoon warms
+ * and the wind picks up and backs round. Each sample applies at `atSeconds`
+ * elapsed from the start; the engine interpolates between samples and layers
+ * them over the base `Environment` (any omitted field falls back to the base).
+ */
+export interface WeatherSample {
+  /** Elapsed seconds from the race start at which this sample applies. */
+  atSeconds: number;
+  /** °C */
+  airTemperature?: number;
+  /** 0-1 */
+  relativeHumidity?: number;
+  /** Pa */
+  airPressure?: number;
+  /** m/s */
+  windSpeed?: number;
+  /** Radians, meteorological (0 = wind FROM north). */
+  windDirection?: number;
+}
+
+/** An ordered along-route weather timeline (sorted by `atSeconds`). */
+export type WeatherTimeline = WeatherSample[];
+
 /** Computed air state for a single segment. */
 export interface SegmentAirState {
   airDensity: number;
@@ -115,6 +140,19 @@ export type RidingPosition =
   | 'endurance_hoods'
   | 'standard_hoods'
   | 'climbing';
+
+/**
+ * Rider archetype. Shapes the synthesised power-duration curve and the
+ * durability decay constant for FTP-only inputs, where a single FTP number
+ * cannot say whether the rider is a punchy sprinter or a diesel ultra-rider.
+ * Ignored once a rider supplies real anchor powers.
+ */
+export type RiderArchetype =
+  | 'sprinter'
+  | 'all_rounder'
+  | 'climber'
+  | 'time_triallist'
+  | 'ultra';
 
 export interface RiderProfile {
   bodyMass: number;
@@ -168,6 +206,26 @@ export interface WPrimeBalanceTrace {
   time: number;
   /** J remaining. */
   wPrimeBalance: number;
+}
+
+/**
+ * A predicted timing checkpoint along the course — what BBS calls a "split".
+ * Either a distance marker (every N km) or a named climb top/bottom.
+ */
+export interface CheckpointSplit {
+  /** Human label, e.g. "50 km", "Top of Galibier", "Foot of Alpe d'Huez". */
+  label: string;
+  kind: 'distance' | 'climb_start' | 'climb_top' | 'finish';
+  /** Distance from the start line, m. */
+  distance: number;
+  /** Cumulative elapsed time at this point, s. */
+  cumulativeTime: number;
+  /** Cumulative elevation gained to this point, m. */
+  cumulativeElevationGain: number;
+  /** Average speed over the leg since the previous checkpoint, m/s. */
+  legSpeed: number;
+  /** Average power over the leg since the previous checkpoint, W. */
+  legPower: number;
 }
 
 export interface ScenarioDelta {

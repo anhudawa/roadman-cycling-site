@@ -236,4 +236,182 @@ describe('simulateCourse', () => {
       }),
     ).toThrow();
   });
+
+  it('throws on non-finite / zero rider mass (NaN safety at the boundary)', () => {
+    const course = buildCourse(flatPoints());
+    expect(() =>
+      simulateCourse({
+        course,
+        rider: { ...FLAT_RIDER, bodyMass: 0, bikeMass: 0 },
+        environment: CALM,
+        pacing: course.segments.map(() => 250),
+      }),
+    ).toThrow();
+    expect(() =>
+      simulateCourse({
+        course,
+        rider: { ...FLAT_RIDER, bodyMass: NaN },
+        environment: CALM,
+        pacing: course.segments.map(() => 250),
+      }),
+    ).toThrow();
+  });
+});
+
+// --- Time-stepped dynamics: kinetic energy is real, not teleported ---------
+
+function gradeCourse(
+  segs: { km: number; gradePct: number }[],
+  startLat = 45,
+  startElevation = 400,
+  stepM = 20,
+): ReturnType<typeof buildCourse> {
+  const mPerDeg = 111_320 * Math.cos((startLat * Math.PI) / 180);
+  const points: TrackPoint[] = [];
+  let lon = 0;
+  let elev = startElevation;
+  points.push({ lat: startLat, lon, elevation: elev });
+  for (const s of segs) {
+    const n = Math.ceil((s.km * 1000) / stepM);
+    for (let i = 0; i < n; i++) {
+      lon += stepM / mPerDeg;
+      elev += stepM * (s.gradePct / 100);
+      points.push({ lat: startLat, lon, elevation: elev });
+    }
+  }
+  return buildCourse(points);
+}
+
+describe('simulateCourse — dynamics (kinetic energy carry-over)', () => {
+  it('a climb entered off a fast descent is quicker than the same climb from equilibrium', () => {
+    // KE carry-over: speed earned descending must assist the start of the next
+    // rise. A pure steady-state engine cannot show this — both would be equal.
+    const climbOnly = gradeCourse([{ km: 2, gradePct: 6 }]);
+    const descentThenClimb = gradeCourse([
+      { km: 2, gradePct: -6 },
+      { km: 2, gradePct: 6 },
+    ]);
+    const rOnly = simulateCourse({
+      course: climbOnly,
+      rider: FLAT_RIDER,
+      environment: CALM,
+      pacing: climbOnly.segments.map(() => 280),
+    });
+    const rDC = simulateCourse({
+      course: descentThenClimb,
+      rider: FLAT_RIDER,
+      environment: CALM,
+      pacing: descentThenClimb.segments.map(() => 280),
+    });
+    const half = descentThenClimb.segments.length / 2;
+    const climbTimeInDC = rDC.segmentResults
+      .slice(half)
+      .reduce((s, r) => s + r.duration, 0);
+    // Entry speed onto the climb (after the descent) must exceed the climb's
+    // own equilibrium speed, and the climb portion must therefore be faster.
+    expect(rDC.segmentResults[half].startSpeed).toBeGreaterThan(
+      rOnly.segmentResults[0].startSpeed,
+    );
+    expect(climbTimeInDC).toBeLessThan(rOnly.totalTime);
+  });
+
+  it('refining the integration is stable — flat result is grid-independent', () => {
+    // The adaptive sub-stepper must converge: doubling the point density on a
+    // flat course should not move the time by more than 0.1%.
+    const coarse = gradeCourse([{ km: 5, gradePct: 0 }], 45, 100, 50);
+    const fine = gradeCourse([{ km: 5, gradePct: 0 }], 45, 100, 10);
+    const rc = simulateCourse({
+      course: coarse,
+      rider: FLAT_RIDER,
+      environment: CALM,
+      pacing: coarse.segments.map(() => 250),
+    });
+    const rf = simulateCourse({
+      course: fine,
+      rider: FLAT_RIDER,
+      environment: CALM,
+      pacing: fine.segments.map(() => 250),
+    });
+    const rel = Math.abs(rc.totalTime - rf.totalTime) / rf.totalTime;
+    expect(rel).toBeLessThan(0.001);
+  });
+});
+
+describe('simulateCourse — W′-balance enforcement', () => {
+  it('caps an over-ambitious surge so the modelled rider stays feasible', () => {
+    // A heavy surge plan that would overdraw W′. With enforcement on, the
+    // delivered average power must drop (the rider physically cannot hold it),
+    // so the enforced run is never faster than the unconstrained one.
+    const course = gradeCourse([{ km: 6, gradePct: 7 }], 45, 600, 20);
+    const surge = course.segments.map(() => 400); // ~well above CP for this rider
+    const cp = 300;
+    const wPrime = 20_000;
+    const unconstrained = simulateCourse({
+      course,
+      rider: FLAT_RIDER,
+      environment: CALM,
+      pacing: surge,
+    });
+    const enforced = simulateCourse({
+      course,
+      rider: FLAT_RIDER,
+      environment: CALM,
+      pacing: surge,
+      enforceWPrime: { cp, wPrime },
+    });
+    expect(enforced.averagePower).toBeLessThan(unconstrained.averagePower);
+    expect(enforced.totalTime).toBeGreaterThanOrEqual(unconstrained.totalTime);
+    // No segment may be left demanding more than the plan once capped.
+    for (const seg of enforced.segmentResults) {
+      expect(seg.riderPower).toBeLessThanOrEqual(400 + 1e-6);
+    }
+  });
+
+  it('an along-route weather timeline that builds a headwind slows the prediction', () => {
+    // Flat east-bound course. Base: calm. Timeline: wind from the east (π/2)
+    // ramps from 0 to 10 m/s over the ride → growing headwind → slower than
+    // the no-timeline run, and the second half is slower than the first.
+    const course = gradeCourse([{ km: 30, gradePct: 0 }], 45, 100, 50);
+    const calm = simulateCourse({
+      course,
+      rider: FLAT_RIDER,
+      environment: CALM,
+      pacing: course.segments.map(() => 250),
+    });
+    const windy = simulateCourse({
+      course,
+      rider: FLAT_RIDER,
+      environment: CALM,
+      pacing: course.segments.map(() => 250),
+      weatherTimeline: [
+        { atSeconds: 0, windSpeed: 0, windDirection: Math.PI / 2 },
+        { atSeconds: 3600, windSpeed: 10, windDirection: Math.PI / 2 },
+      ],
+    });
+    expect(windy.totalTime).toBeGreaterThan(calm.totalTime);
+    const half = Math.floor(windy.segmentResults.length / 2);
+    const firstHalf = windy.segmentResults.slice(0, half).reduce((s, r) => s + r.duration, 0);
+    const secondHalf = windy.segmentResults.slice(half).reduce((s, r) => s + r.duration, 0);
+    expect(secondHalf).toBeGreaterThan(firstHalf);
+  });
+
+  it('leaves a sub-CP plan untouched (battery only recovers)', () => {
+    const course = gradeCourse([{ km: 10, gradePct: 0 }], 45, 100, 50);
+    const easy = course.segments.map(() => 200);
+    const free = simulateCourse({
+      course,
+      rider: FLAT_RIDER,
+      environment: CALM,
+      pacing: easy,
+    });
+    const enforced = simulateCourse({
+      course,
+      rider: FLAT_RIDER,
+      environment: CALM,
+      pacing: easy,
+      enforceWPrime: { cp: 280, wPrime: 20_000 },
+    });
+    expect(enforced.totalTime).toBeCloseTo(free.totalTime, 5);
+    expect(enforced.averagePower).toBeCloseTo(200, 5);
+  });
 });

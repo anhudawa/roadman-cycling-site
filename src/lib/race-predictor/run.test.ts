@@ -274,4 +274,43 @@ describe("runPrediction", () => {
     expect(env.airPressure).toBe(101325);
     expect(env.windSpeed).toBe(0);
   });
+
+  it("rider archetype shapes the synthesised PD curve and durability", () => {
+    // Same FTP, different archetype: sprinter gets a far bigger anaerobic
+    // ceiling and faster long-effort fade; ultra gets a flatter, more durable
+    // curve. all_rounder must equal the historical default (regression guard).
+    const base = { bodyMass: 72, bikeMass: 8, position: "aero_hoods" as const };
+    const sprinter = buildRiderProfile({
+      ...base,
+      riderType: "sprinter",
+      powerProfile: { ftp: 250 },
+    });
+    const ultra = buildRiderProfile({
+      ...base,
+      riderType: "ultra",
+      powerProfile: { ftp: 250 },
+    });
+    const allRounder = buildRiderProfile({ ...base, powerProfile: { ftp: 250 } });
+
+    expect(sprinter.powerProfile.p5s).toBeGreaterThan(ultra.powerProfile.p5s);
+    expect(sprinter.powerProfile.durabilityFactor).toBeGreaterThan(
+      ultra.powerProfile.durabilityFactor,
+    );
+    // all_rounder == historical defaults.
+    expect(allRounder.powerProfile.p5s).toBeCloseTo(250 * 3.6, 5);
+    expect(allRounder.powerProfile.durabilityFactor).toBeCloseTo(0.05, 5);
+  });
+
+  it("explicit anchor powers override the archetype synthesis", () => {
+    const rider = buildRiderProfile({
+      bodyMass: 72,
+      bikeMass: 8,
+      position: "aero_hoods",
+      riderType: "sprinter",
+      powerProfile: { p20min: 300, p60min: 270 },
+    });
+    // Supplied anchors win; not the sprinter synthesis.
+    expect(rider.powerProfile.p20min).toBe(300);
+    expect(rider.powerProfile.p60min).toBe(270);
+  });
 });

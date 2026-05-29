@@ -23,6 +23,10 @@ interface PredictBody {
   environment?: EnvironmentInputDTO;
   mode?: PredictMode;
   email?: string;
+  /** Optional along-route weather timeline; parsed defensively. */
+  weatherTimeline?: unknown;
+  /** Number of circuit laps to ride. Default 1. */
+  laps?: number;
 }
 
 const VALID_POSITIONS = new Set([
@@ -52,6 +56,44 @@ const VALID_SURFACES = new Set([
   "gravel_rough",
   "cobbles",
 ]);
+const VALID_RIDER_TYPES = new Set([
+  "sprinter",
+  "all_rounder",
+  "climber",
+  "time_triallist",
+  "ultra",
+]);
+
+/**
+ * Defensively parse an optional along-route weather timeline from the request.
+ * Returns undefined when absent/invalid (the engine then uses the single
+ * environment). Coerces numbers, drops malformed samples, clamps to 24 entries.
+ */
+function parseWeatherTimeline(
+  raw: unknown,
+): import("@/lib/race-predictor/run").RunPredictArgs["weatherTimeline"] {
+  if (!Array.isArray(raw) || raw.length === 0) return undefined;
+  const num = (v: unknown): number | undefined =>
+    typeof v === "number" && Number.isFinite(v) ? v : undefined;
+  const samples = raw
+    .slice(0, 24)
+    .map((s) => {
+      if (typeof s !== "object" || s === null) return null;
+      const o = s as Record<string, unknown>;
+      const atSeconds = num(o.atSeconds);
+      if (atSeconds === undefined || atSeconds < 0) return null;
+      return {
+        atSeconds,
+        airTemperature: num(o.airTemperature),
+        relativeHumidity: num(o.relativeHumidity),
+        airPressure: num(o.airPressure),
+        windSpeed: num(o.windSpeed),
+        windDirection: num(o.windDirection),
+      };
+    })
+    .filter((s): s is NonNullable<typeof s> => s !== null);
+  return samples.length > 0 ? samples : undefined;
+}
 
 function validateRider(rider: RiderInputDTO | undefined): string | null {
   if (!rider) return "Missing rider profile.";
@@ -97,6 +139,13 @@ function validateRider(rider: RiderInputDTO | undefined): string | null {
     (typeof rider.surface !== "string" || !VALID_SURFACES.has(rider.surface))
   ) {
     return "Surface type is not recognised.";
+  }
+  if (
+    rider.riderType !== undefined &&
+    (typeof rider.riderType !== "string" ||
+      !VALID_RIDER_TYPES.has(rider.riderType))
+  ) {
+    return "Rider type is not recognised.";
   }
   // FTP / power profile sanity check. The engine accepts a partial profile
   // (just FTP), but if a value is supplied it has to be plausible.
@@ -161,6 +210,19 @@ export async function POST(request: Request) {
   const riderError = validateRider(body.rider);
   if (riderError) return NextResponse.json({ error: riderError }, { status: 400 });
 
+  if (
+    body.laps !== undefined &&
+    (typeof body.laps !== "number" ||
+      !Number.isInteger(body.laps) ||
+      body.laps < 1 ||
+      body.laps > 50)
+  ) {
+    return NextResponse.json(
+      { error: "Laps must be a whole number between 1 and 50." },
+      { status: 400 },
+    );
+  }
+
   // Free-tier rate limit. Capped at PREDICT_FREE_DAILY (default 3) per
   // anon session per 24h. Returns 429 with a clear nudge toward the
   // Race Report when exhausted.
@@ -216,11 +278,14 @@ export async function POST(request: Request) {
   }
 
   const riderInput = body.rider as RiderInputDTO;
+  const weatherTimeline = parseWeatherTimeline(body.weatherTimeline);
   const run = runPrediction({
     course,
     rider: riderInput,
     environment: body.environment,
     mode,
+    weatherTimeline,
+    laps: body.laps,
   });
 
   const prediction = await createPrediction({
@@ -242,11 +307,15 @@ export async function POST(request: Request) {
       averageSpeedKmh: run.result.averageSpeed * 3.6,
       totalDistanceKm: run.result.totalDistance / 1000,
       climbCount: course.climbs.length,
+      splits: run.splits,
+      fueling: run.fueling,
       assumptions: {
+        laps: body.laps ?? 1,
         eventType: riderInput.eventType ?? "sportive",
         drafting: riderInput.drafting ?? "solo",
         surface: riderInput.surface ?? null,
         heightCm: riderInput.heightCm ?? null,
+        riderType: riderInput.riderType ?? "all_rounder",
         drivetrainEfficiency: run.rider.drivetrainEfficiency,
         cdaSource: typeof riderInput.cda === "number" ? "explicit" : "preset",
         crrSource:

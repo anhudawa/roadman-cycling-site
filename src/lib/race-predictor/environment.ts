@@ -1,7 +1,92 @@
 // Air density and wind resolution for the race predictor.
 
-import type { Environment, SegmentAirState } from './types';
+import type {
+  Environment,
+  SegmentAirState,
+  WeatherTimeline,
+} from './types';
 import { R_DRY_AIR, R_WATER_VAPOR, P_SEA_LEVEL, G } from './constants';
+
+/** Shortest-arc interpolation between two angles (radians), fraction f ∈ [0,1]. */
+function lerpAngle(a: number, b: number, f: number): number {
+  const twoPi = Math.PI * 2;
+  let delta = ((b - a) % twoPi + twoPi) % twoPi;
+  if (delta > Math.PI) delta -= twoPi;
+  const result = a + delta * f;
+  return ((result % twoPi) + twoPi) % twoPi;
+}
+
+/**
+ * Resolve the effective environment at a given elapsed time by interpolating an
+ * along-route weather timeline over a base `Environment`. Any field a sample
+ * omits falls back to the base value. Numeric fields interpolate linearly;
+ * wind direction interpolates along the shortest arc. Before the first sample
+ * the earliest is held; after the last, the latest is held (no extrapolation).
+ *
+ * With no timeline (or an empty one) this returns the base environment
+ * unchanged — the engine's default single-condition behaviour.
+ */
+export function resolveEnvironmentAt(
+  base: Environment,
+  elapsedSeconds: number,
+  timeline?: WeatherTimeline,
+): Environment {
+  if (!timeline || timeline.length === 0) return base;
+
+  const sorted =
+    timeline.length === 1
+      ? timeline
+      : [...timeline].sort((a, b) => a.atSeconds - b.atSeconds);
+
+  const field = (
+    key: 'airTemperature' | 'relativeHumidity' | 'airPressure' | 'windSpeed' | 'windDirection',
+    sampleVal: number | undefined,
+  ): number => (typeof sampleVal === 'number' ? sampleVal : base[key]);
+
+  // Clamp before first / after last sample.
+  if (elapsedSeconds <= sorted[0].atSeconds) {
+    const s = sorted[0];
+    return {
+      airTemperature: field('airTemperature', s.airTemperature),
+      relativeHumidity: field('relativeHumidity', s.relativeHumidity),
+      airPressure: field('airPressure', s.airPressure),
+      windSpeed: field('windSpeed', s.windSpeed),
+      windDirection: field('windDirection', s.windDirection),
+    };
+  }
+  const last = sorted[sorted.length - 1];
+  if (elapsedSeconds >= last.atSeconds) {
+    return {
+      airTemperature: field('airTemperature', last.airTemperature),
+      relativeHumidity: field('relativeHumidity', last.relativeHumidity),
+      airPressure: field('airPressure', last.airPressure),
+      windSpeed: field('windSpeed', last.windSpeed),
+      windDirection: field('windDirection', last.windDirection),
+    };
+  }
+
+  // Find the bracketing pair and interpolate.
+  let lo = sorted[0];
+  let hi = sorted[1];
+  for (let i = 1; i < sorted.length; i++) {
+    if (sorted[i].atSeconds >= elapsedSeconds) {
+      hi = sorted[i];
+      lo = sorted[i - 1];
+      break;
+    }
+  }
+  const span = hi.atSeconds - lo.atSeconds;
+  const f = span > 0 ? (elapsedSeconds - lo.atSeconds) / span : 0;
+  const lerp = (lv: number, hv: number) => lv + (hv - lv) * f;
+
+  return {
+    airTemperature: lerp(field('airTemperature', lo.airTemperature), field('airTemperature', hi.airTemperature)),
+    relativeHumidity: lerp(field('relativeHumidity', lo.relativeHumidity), field('relativeHumidity', hi.relativeHumidity)),
+    airPressure: lerp(field('airPressure', lo.airPressure), field('airPressure', hi.airPressure)),
+    windSpeed: lerp(field('windSpeed', lo.windSpeed), field('windSpeed', hi.windSpeed)),
+    windDirection: lerpAngle(field('windDirection', lo.windDirection), field('windDirection', hi.windDirection), f),
+  };
+}
 
 /**
  * Saturation vapor pressure of water (Tetens equation), Pa.

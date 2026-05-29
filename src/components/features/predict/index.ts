@@ -9,6 +9,7 @@ export type { GpxUploadResult } from "./GpxDropzone";
 export { WhatIfSliders } from "./WhatIfSliders";
 export { PredictedTimeHero } from "./PredictedTimeHero";
 export { SegmentTable } from "./SegmentTable";
+export { SplitsTable } from "./SplitsTable";
 export { ScenarioCards, deriveDefaultScenarios } from "./ScenarioCards";
 export { GapToCutoffBar } from "./GapToCutoffBar";
 export { ShareCard } from "./ShareCard";
