@@ -116,6 +116,19 @@ export type RidingPosition =
   | 'standard_hoods'
   | 'climbing';
 
+/**
+ * Rider archetype. Shapes the synthesised power-duration curve and the
+ * durability decay constant for FTP-only inputs, where a single FTP number
+ * cannot say whether the rider is a punchy sprinter or a diesel ultra-rider.
+ * Ignored once a rider supplies real anchor powers.
+ */
+export type RiderArchetype =
+  | 'sprinter'
+  | 'all_rounder'
+  | 'climber'
+  | 'time_triallist'
+  | 'ultra';
+
 export interface RiderProfile {
   bodyMass: number;
   bikeMass: number;
@@ -168,6 +181,26 @@ export interface WPrimeBalanceTrace {
   time: number;
   /** J remaining. */
   wPrimeBalance: number;
+}
+
+/**
+ * A predicted timing checkpoint along the course — what BBS calls a "split".
+ * Either a distance marker (every N km) or a named climb top/bottom.
+ */
+export interface CheckpointSplit {
+  /** Human label, e.g. "50 km", "Top of Galibier", "Foot of Alpe d'Huez". */
+  label: string;
+  kind: 'distance' | 'climb_start' | 'climb_top' | 'finish';
+  /** Distance from the start line, m. */
+  distance: number;
+  /** Cumulative elapsed time at this point, s. */
+  cumulativeTime: number;
+  /** Cumulative elevation gained to this point, m. */
+  cumulativeElevationGain: number;
+  /** Average speed over the leg since the previous checkpoint, m/s. */
+  legSpeed: number;
+  /** Average power over the leg since the previous checkpoint, W. */
+  legPower: number;
 }
 
 export interface ScenarioDelta {

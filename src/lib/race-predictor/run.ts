@@ -7,6 +7,7 @@ import {
   DEFAULT_DRIVETRAIN_EFFICIENCY,
 } from "./constants";
 import { simulateCourse } from "./engine";
+import { checkpointSplits } from "./analysis";
 import { optimizePacing } from "./pacing";
 import { fitCpModel, sustainablePower } from "./rider";
 import {
@@ -16,10 +17,12 @@ import {
   type Precision,
 } from "./insights";
 import type {
+  CheckpointSplit,
   Course,
   CourseResult,
   Environment,
   PowerProfile,
+  RiderArchetype,
   RiderProfile,
   RidingPosition,
   SurfaceType,
@@ -36,6 +39,8 @@ export interface RiderInputDTO {
   crr?: number;            // optional override; otherwise from surface
   surface?: SurfaceType;
   drivetrainEfficiency?: number;
+  /** Shapes the synthesised PD curve for FTP-only riders. Default all_rounder. */
+  riderType?: RiderArchetype;
   /** Either supply a full PD curve, or just FTP (we'll synthesise a curve). */
   powerProfile?: Partial<PowerProfile> & { ftp?: number };
 }
@@ -93,17 +98,46 @@ export interface PredictionRunResult {
   pacing: number[];
   insight: KeyInsight;
   confidence: { low: number; high: number };
+  /** Per-checkpoint timing splits (distance markers + climb feet/tops). */
+  splits: CheckpointSplit[];
 }
 
-/** Default PD curve given just FTP. Conservative — better data improves it. */
-export function synthesizePowerProfile(ftp: number): PowerProfile {
+/**
+ * Per-archetype PD-curve multipliers (× FTP) and durability constant k.
+ * `all_rounder` reproduces the historical defaults exactly so existing
+ * predictions are unchanged when no archetype is supplied. The others encode
+ * the well-known shape differences a single FTP number cannot: a sprinter's
+ * huge anaerobic ceiling (and faster long-effort fade), a climber/TT diesel's
+ * flatter curve, an ultra-rider's exceptional durability.
+ */
+const ARCHETYPE_PROFILE: Record<
+  RiderArchetype,
+  { p5s: number; p1min: number; p5min: number; p20min: number; p60min: number; k: number }
+> = {
+  sprinter: { p5s: 5.0, p1min: 2.30, p5min: 1.25, p20min: 1.06, p60min: 0.95, k: 0.07 },
+  all_rounder: { p5s: 3.6, p1min: 1.85, p5min: 1.15, p20min: 1.05, p60min: 0.95, k: 0.05 },
+  climber: { p5s: 2.9, p1min: 1.60, p5min: 1.18, p20min: 1.06, p60min: 0.96, k: 0.04 },
+  time_triallist: { p5s: 2.8, p1min: 1.55, p5min: 1.14, p20min: 1.05, p60min: 0.97, k: 0.045 },
+  ultra: { p5s: 2.6, p1min: 1.50, p5min: 1.12, p20min: 1.04, p60min: 0.97, k: 0.03 },
+};
+
+/**
+ * Default PD curve given just FTP. Conservative — better data improves it.
+ * The archetype shapes the curve and durability for riders who only supply FTP;
+ * `all_rounder` (the default) is identical to the historical behaviour.
+ */
+export function synthesizePowerProfile(
+  ftp: number,
+  archetype: RiderArchetype = "all_rounder",
+): PowerProfile {
+  const a = ARCHETYPE_PROFILE[archetype] ?? ARCHETYPE_PROFILE.all_rounder;
   return {
-    p5s: ftp * 3.6,
-    p1min: ftp * 1.85,
-    p5min: ftp * 1.15,
-    p20min: ftp * 1.05,
-    p60min: ftp * 0.95,
-    durabilityFactor: 0.05,
+    p5s: ftp * a.p5s,
+    p1min: ftp * a.p1min,
+    p5min: ftp * a.p5min,
+    p20min: ftp * a.p20min,
+    p60min: ftp * a.p60min,
+    durabilityFactor: a.k,
   };
 }
 
@@ -120,14 +154,16 @@ export function buildRiderProfile(input: RiderInputDTO): RiderProfile {
     (input.powerProfile?.p20min
       ? Math.round(input.powerProfile.p20min * 0.95)
       : 250);
-  const fallback = synthesizePowerProfile(ftp);
+  const archetype = input.riderType ?? "all_rounder";
+  const fallback = synthesizePowerProfile(ftp, archetype);
   const powerProfile: PowerProfile = {
     p5s: input.powerProfile?.p5s ?? fallback.p5s,
     p1min: input.powerProfile?.p1min ?? fallback.p1min,
     p5min: input.powerProfile?.p5min ?? fallback.p5min,
     p20min: input.powerProfile?.p20min ?? fallback.p20min,
     p60min: input.powerProfile?.p60min ?? fallback.p60min,
-    durabilityFactor: input.powerProfile?.durabilityFactor ?? 0.05,
+    durabilityFactor:
+      input.powerProfile?.durabilityFactor ?? fallback.durabilityFactor,
   };
   return {
     bodyMass: input.bodyMass,
@@ -223,19 +259,22 @@ export function runPrediction(args: RunPredictArgs): PredictionRunResult {
       ? pacing.map((p) => p * (sustainable / meanCurrent))
       : pacing;
 
-  const result =
-    adjustedPacing === pacing
-      ? baseline
-      : simulateCourse({
-          course: args.course,
-          rider,
-          environment,
-          pacing: adjustedPacing,
-        });
+  // Final simulation enforces the rider's anaerobic battery (W'-balance): the
+  // reported time can never depend on the rider holding a power their
+  // physiology can't support across a climb. This closes the loophole where a
+  // surge-heavy pacing plan would silently overdraw W' and still "finish".
+  const result = simulateCourse({
+    course: args.course,
+    rider,
+    environment,
+    pacing: adjustedPacing,
+    enforceWPrime: { cp: cpModel.cp, wPrime: cpModel.wPrime },
+  });
 
   const precision = inferPrecision(args.rider);
   const confidence = confidenceBracket(result.totalTime, { precision });
   const insight = pickKeyInsight({ course: args.course, result, rider });
+  const splits = checkpointSplits(args.course, result);
 
   return {
     rider,
@@ -244,5 +283,6 @@ export function runPrediction(args: RunPredictArgs): PredictionRunResult {
     pacing: adjustedPacing,
     insight,
     confidence,
+    splits,
   };
 }

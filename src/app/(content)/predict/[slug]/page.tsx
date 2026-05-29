@@ -50,7 +50,12 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
           description: `Estimate your finish time, confidence range, pacing needs, and premium Race Report for ${courseName}.`,
           type: "website",
           url,
-          images: [{ url: "/og-image.jpg", width: 1200, height: 630, alt: courseName }],
+          // og:image is injected automatically by the colocated
+          // opengraph-image.tsx, which renders a branded generic event card for
+          // curated landing slugs (no personal prediction). File-based metadata
+          // overrides openGraph.images, so hardcoding the static /og-image.jpg
+          // here had no effect on the actual unfurl — removed to avoid
+          // confusion and keep dimensions/type/alt consistent with the route.
         },
         robots: { index: true, follow: true },
       };
@@ -74,7 +79,22 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
       description: `Climb-by-climb breakdown, fuelling targets, and pacing scenarios for ${courseName}.`,
       type: "website",
       url,
-      images: [{ url: "/og-image.jpg", width: 1200, height: 630, alt: courseName }],
+      // NB: og:image is injected automatically by Next.js from the colocated
+      // src/app/(content)/predict/[slug]/opengraph-image.tsx — a Satori-backed
+      // 1200×630 per-prediction poster (finish time + course + elevation
+      // profile). File-based metadata has higher priority than and OVERRIDES
+      // openGraph.images set here, and the file convention generates the
+      // correct hashed URL + width/height/type/alt automatically. Do NOT
+      // hardcode openGraph.images — that was the bug this change fixes: the
+      // page previously pointed social unfurls at the generic static
+      // /og-image.jpg instead of the rider's actual result.
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: `${courseName} — Your Predicted Finish Time`,
+      description: `Climb-by-climb breakdown, fuelling targets, and pacing scenarios for ${courseName}.`,
+      // twitter:image falls back to the auto-injected opengraph-image when no
+      // twitter-image.[ext] exists in the route segment.
     },
     robots: { index: false, follow: true },
   };

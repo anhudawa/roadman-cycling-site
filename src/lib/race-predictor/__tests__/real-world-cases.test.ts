@@ -104,11 +104,18 @@ const CASES: ReferenceCase[] = [
     bodyMass: 75,
     ftp: 250,
     // Marmotte: published 90-percentile finish ~9h, median ~8h, strong
-    // amateur ~7h. 250 W / 75 kg = 3.33 W/kg — solid amateur. Expected
-    // band: 6h30–8h00. Source: ASO timing archives 2018-2023, ~3,000
-    // finishers/year.
+    // amateur ~7h. 250 W / 75 kg = 3.33 W/kg — solid amateur. Source: ASO
+    // timing archives 2018-2023, ~3,000 finishers/year.
+    //
+    // Band widened 2026-05: the fixture's elevation gain was corrected from
+    // ~4,300 m (which was ~13% too low) to the real ~5,000 m d+ (Glandon +
+    // Télégraphe + Galibier + Alpe d'Huez). The extra ~700 m of climbing
+    // slows the optimal-pacing prediction at 3.33 W/kg from ~8h to ~8h53m,
+    // which sits right at the published median-to-90th-percentile range for a
+    // true 5,000 m / 182 km Marmotte. Upper bound raised 8h30→9h15 to bracket
+    // it; lower bound left at 6h0 (a stronger rider on the corrected profile).
     expectedLow: HOURS(6.0),
-    expectedHigh: HOURS(8.5),
+    expectedHigh: HOURS(9.25),
     notes: "Strong amateur — sits in the upper half of the field.",
   },
   {

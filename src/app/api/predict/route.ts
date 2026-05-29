@@ -52,6 +52,13 @@ const VALID_SURFACES = new Set([
   "gravel_rough",
   "cobbles",
 ]);
+const VALID_RIDER_TYPES = new Set([
+  "sprinter",
+  "all_rounder",
+  "climber",
+  "time_triallist",
+  "ultra",
+]);
 
 function validateRider(rider: RiderInputDTO | undefined): string | null {
   if (!rider) return "Missing rider profile.";
@@ -97,6 +104,13 @@ function validateRider(rider: RiderInputDTO | undefined): string | null {
     (typeof rider.surface !== "string" || !VALID_SURFACES.has(rider.surface))
   ) {
     return "Surface type is not recognised.";
+  }
+  if (
+    rider.riderType !== undefined &&
+    (typeof rider.riderType !== "string" ||
+      !VALID_RIDER_TYPES.has(rider.riderType))
+  ) {
+    return "Rider type is not recognised.";
   }
   // FTP / power profile sanity check. The engine accepts a partial profile
   // (just FTP), but if a value is supplied it has to be plausible.
@@ -242,11 +256,13 @@ export async function POST(request: Request) {
       averageSpeedKmh: run.result.averageSpeed * 3.6,
       totalDistanceKm: run.result.totalDistance / 1000,
       climbCount: course.climbs.length,
+      splits: run.splits,
       assumptions: {
         eventType: riderInput.eventType ?? "sportive",
         drafting: riderInput.drafting ?? "solo",
         surface: riderInput.surface ?? null,
         heightCm: riderInput.heightCm ?? null,
+        riderType: riderInput.riderType ?? "all_rounder",
         drivetrainEfficiency: run.rider.drivetrainEfficiency,
         cdaSource: typeof riderInput.cda === "number" ? "explicit" : "preset",
         crrSource:

@@ -25,6 +25,7 @@ import type { Course, SurfaceType } from "@/lib/race-predictor/types";
 type Mode = "plan_my_race" | "can_i_make_it";
 type Drafting = "solo" | "small_group" | "large_group";
 type EventType = "sportive" | "gran_fondo" | "road_race" | "time_trial" | "gravel" | "triathlon";
+type RiderType = "sprinter" | "all_rounder" | "climber" | "time_triallist" | "ultra";
 type Surface = SurfaceType;
 type DrivetrainCondition = "race_ready" | "normal" | "dirty" | "poor";
 type Position =
@@ -110,6 +111,14 @@ const EVENT_TYPE_OPTIONS: { value: EventType; label: string; detail: string }[] 
   { value: "triathlon", label: "Triathlon", detail: "Bike split with run legs" },
 ];
 
+const RIDER_TYPE_OPTIONS: { value: RiderType; label: string; detail: string }[] = [
+  { value: "all_rounder", label: "All-rounder", detail: "Balanced — the safe default" },
+  { value: "sprinter", label: "Sprinter", detail: "Big punch, fades on long days" },
+  { value: "climber", label: "Climber", detail: "Light, strong sustained power" },
+  { value: "time_triallist", label: "TT / diesel", detail: "Flat curve, holds threshold" },
+  { value: "ultra", label: "Ultra-endurance", detail: "Exceptional late-race durability" },
+];
+
 const SURFACE_OPTIONS: { value: Surface; label: string; detail: string }[] = [
   { value: "tarmac_smooth", label: "Fast road", detail: "Smooth tarmac, good tyres" },
   { value: "tarmac_mixed", label: "Mixed road", detail: "Normal sportive roads" },
@@ -160,6 +169,7 @@ export default function PredictPage() {
   const [heightCm, setHeightCm] = useState<number>(NaN);
   const [bikeMass, setBikeMass] = useState<number>(NaN);
   const [position, setPosition] = useState<Position>("aero_hoods");
+  const [riderType, setRiderType] = useState<RiderType>("all_rounder");
   const [surface, setSurface] = useState<Surface>("tarmac_mixed");
   const [drivetrain, setDrivetrain] = useState<DrivetrainCondition>("normal");
   const [ftp, setFtp] = useState<number>(NaN);
@@ -417,6 +427,7 @@ export default function PredictPage() {
       courseSlug: gpx ? null : courseSlug,
       drafting,
       eventType,
+      riderType,
       heightCm: Number.isFinite(heightCm) ? heightCm : null,
       drivetrain,
       windSpeedMs,
@@ -438,6 +449,7 @@ export default function PredictPage() {
             heightCm: Number.isFinite(heightCm) ? heightCm : undefined,
             bikeMass,
             position,
+            riderType,
             powerProfile: { ftp },
             cda: aiResult?.cda,
             crr: aiResult?.crr,
@@ -868,6 +880,21 @@ export default function PredictPage() {
                       onChange={setBikeMass}
                       error={fieldErrors.bikeMass}
                     />
+                  </div>
+
+                  <div className="mt-4">
+                    <div className="flex items-baseline justify-between mb-3 flex-wrap gap-2">
+                      <p
+                        className="text-[0.62rem] tracking-[0.22em] uppercase text-foreground-muted"
+                        style={{ fontFamily: "var(--font-jetbrains-mono)" }}
+                      >
+                        RIDER TYPE
+                      </p>
+                      <p className="text-[0.62rem] text-foreground-subtle">
+                        Shapes your power curve &amp; late-race fade from FTP alone
+                      </p>
+                    </div>
+                    <RiderTypePicker value={riderType} onChange={setRiderType} />
                   </div>
 
                   <button
@@ -1605,6 +1632,37 @@ function EventTypePicker({
   return (
     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2">
       {EVENT_TYPE_OPTIONS.map((option) => (
+        <button
+          key={option.value}
+          type="button"
+          onClick={() => onChange(option.value)}
+          aria-pressed={value === option.value}
+          className={`min-h-[74px] rounded-lg border p-3 text-left transition-colors ${
+            value === option.value
+              ? "border-coral bg-coral/10 text-off-white"
+              : "border-white/10 bg-white/[0.03] text-off-white/70 hover:border-white/25"
+          }`}
+        >
+          <span className="block text-sm font-semibold">{option.label}</span>
+          <span className="mt-1 block text-xs leading-snug text-foreground-muted">
+            {option.detail}
+          </span>
+        </button>
+      ))}
+    </div>
+  );
+}
+
+function RiderTypePicker({
+  value,
+  onChange,
+}: {
+  value: RiderType;
+  onChange: (v: RiderType) => void;
+}) {
+  return (
+    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2">
+      {RIDER_TYPE_OPTIONS.map((option) => (
         <button
           key={option.value}
           type="button"

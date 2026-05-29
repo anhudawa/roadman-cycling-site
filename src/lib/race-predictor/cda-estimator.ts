@@ -55,49 +55,114 @@ interface EstimateArgs {
   drivetrainEfficiency: number;
 }
 
+const CDA_MIN = 0.15;
+const CDA_MAX = 0.60;
+
 /**
- * Recover CdA by minimising |VE_final − actual_final|.
+ * Chung-method residual cost: sum of squared deviations between the
+ * virtual-elevation trace and the actual elevation profile over EVERY sample,
+ * after removing a constant mean offset.
  *
- * 1. Coarse scan from 0.15 to 0.60 in steps of 0.005.
- * 2. Golden-section refine ±0.01 around the coarse minimum.
+ * Why whole-ride, not just the endpoint:
+ *   The previous objective minimised only |VE_final − actual_final| — a single
+ *   point. Two completely different CdA values can land at the same final
+ *   altitude (e.g. a VE that bulges high mid-ride then sags back, vs. one that
+ *   overlays the real profile the whole way). The endpoint objective scores
+ *   them identically and is degenerate / non-convex in practice. The classical
+ *   Chung "virtual elevation" criterion instead requires the VE trace to OVERLAY
+ *   the real elevation across all laps; the correct CdA is the one that makes
+ *   the two profiles coincide everywhere, so we sum squared residuals over the
+ *   whole trace. This is sharply minimised at the true CdA and is smooth/convex
+ *   enough for golden-section search.
  *
- * Best applied to clean rides (constant power preferred, smooth course, no traffic stops).
- * Real-world data needs filtering before this is meaningful — that's a Phase 2 follow-on.
+ * Why remove the mean offset (detrend):
+ *   `virtualElevation` seeds VE[0] at the first actual elevation, but only the
+ *   SHAPE of the VE trace carries CdA information — an absolute altitude bias
+ *   (GPS/barometric offset, or simply where we anchor VE[0]) is a nuisance
+ *   parameter that should not influence the CdA estimate. We therefore subtract
+ *   the mean of (VE − actual) before summing squares, which is the closed-form
+ *   least-squares optimal constant offset. (We intentionally do NOT remove a
+ *   linear drift: a residual linear drift IS the CdA-error signal in the Chung
+ *   method, so detrending it out would erase exactly what we are fitting.)
+ */
+function chungResidualCost(ride: RidePoint[], args: VEArgs): number {
+  const ve = virtualElevation(ride, args);
+  // Accumulate residuals (VE − actual) only on samples that carry elevation.
+  let sum = 0;
+  let n = 0;
+  for (let i = 0; i < ride.length; i++) {
+    const actual = ride[i].elevation;
+    if (actual === undefined) continue;
+    sum += ve[i] - actual;
+    n++;
+  }
+  if (n === 0) return Infinity;
+  const meanOffset = sum / n;
+  let cost = 0;
+  for (let i = 0; i < ride.length; i++) {
+    const actual = ride[i].elevation;
+    if (actual === undefined) continue;
+    const r = ve[i] - actual - meanOffset;
+    cost += r * r;
+  }
+  return cost;
+}
+
+/**
+ * Recover CdA via Chung's virtual-elevation method: find the CdA whose VE trace
+ * best overlays the actual elevation profile across the WHOLE ride, minimising
+ * the mean-offset-removed sum of squared residuals (see {@link chungResidualCost}).
+ *
+ * Search strategy (stable & convergent on a bounded bracket):
+ *   1. Coarse scan over [0.15, 0.60] in steps of 0.005 to locate the basin.
+ *   2. Golden-section refine within a bracket around the coarse minimum,
+ *      clamped to the global bounds so the search can never diverge.
+ *
+ * Best applied to clean rides (constant power preferred, smooth course, no
+ * traffic stops). Real-world data needs filtering before this is meaningful —
+ * that's a Phase 2 follow-on.
  */
 export function estimateCda(ride: RidePoint[], args: EstimateArgs): number {
   if (ride.length < 2) {
     throw new Error('estimateCda requires at least 2 ride points');
   }
-  const finalActual = ride[ride.length - 1].elevation;
-  if (finalActual === undefined) {
-    throw new Error('estimateCda requires elevation on the final ride point');
+  const hasElevation = ride.some((p) => p.elevation !== undefined);
+  if (!hasElevation) {
+    throw new Error('estimateCda requires elevation on the ride points');
   }
 
-  // Coarse scan
+  const cost = (cda: number) => chungResidualCost(ride, { ...args, cda });
+
+  // Coarse scan to find the basin of the global minimum.
   let bestCda = 0.30;
-  let bestErr = Infinity;
-  for (let cda = 0.15; cda <= 0.60; cda += 0.005) {
-    const ve = virtualElevation(ride, { ...args, cda });
-    const err = Math.abs(ve[ve.length - 1] - finalActual);
-    if (err < bestErr) {
-      bestErr = err;
+  let bestCost = Infinity;
+  for (let cda = CDA_MIN; cda <= CDA_MAX + 1e-9; cda += 0.005) {
+    const c = cost(cda);
+    if (c < bestCost) {
+      bestCost = c;
       bestCda = cda;
     }
   }
 
-  // Golden-section refine ±0.01 around bestCda
+  // Golden-section refine in a small bracket around the coarse minimum,
+  // clamped to the global bounds so it stays bounded and convergent.
   const phi = (Math.sqrt(5) - 1) / 2;
-  let lo = bestCda - 0.01;
-  let hi = bestCda + 0.01;
-  const errAt = (cda: number) => {
-    const ve = virtualElevation(ride, { ...args, cda });
-    return Math.abs(ve[ve.length - 1] - finalActual);
-  };
-  for (let i = 0; i < 30; i++) {
+  let lo = Math.max(CDA_MIN, bestCda - 0.01);
+  let hi = Math.min(CDA_MAX, bestCda + 0.01);
+  let fc = cost(hi - phi * (hi - lo));
+  let fd = cost(lo + phi * (hi - lo));
+  for (let i = 0; i < 40 && hi - lo > 1e-5; i++) {
     const c = hi - phi * (hi - lo);
     const d = lo + phi * (hi - lo);
-    if (errAt(c) < errAt(d)) hi = d;
-    else lo = c;
+    if (fc < fd) {
+      hi = d;
+      fd = fc;
+      fc = cost(hi - phi * (hi - lo));
+    } else {
+      lo = c;
+      fc = fd;
+      fd = cost(lo + phi * (hi - lo));
+    }
   }
   return (lo + hi) / 2;
 }

@@ -22,6 +22,32 @@ const MAX_REASONABLE_POINT_GAP_M = 5_000;
 const MAX_REASONABLE_GRADE = 0.35;
 const SPIKE_DETOUR_RATIO = 8;
 
+// --- Climb post-processing ------------------------------------------------
+// Real climbs (Ventoux, Stelvio, Galibier) carry brief false-flat or even
+// gently-descending saddles. The forward-window detector ends a climb the
+// moment the grade dips below endGradient, so a single mountain comes back as
+// 2-3 fragments. Adjacent climbs whose gap is shorter than this — and whose
+// net trend over the gap is not a sustained descent — are one climb in
+// reality and get merged back together.
+const CLIMB_MERGE_MAX_GAP_M = 500;
+// A gap that drops more than this fraction (rise/run) is a genuine descent
+// between two separate climbs, not a saddle — never merge across it.
+const CLIMB_MERGE_MAX_GAP_DESCENT = 0.03;
+
+// --- Track-quality thresholds ---------------------------------------------
+// Above this median point spacing the track is too coarse for the 100 m
+// forward window to mean anything: gradients and climbs become guesses.
+const SPARSE_TRACK_MEDIAN_SPACING_M = 200;
+// If fewer than this fraction of points carry a real (non-zero, present)
+// elevation, the elevation-0 fallback dominates and the prediction is wildly
+// optimistic. Warn loudly rather than silently returning a fast time.
+const MIN_ELEVATION_COVERAGE = 0.5;
+// Backtracking: a point that sits well behind its predecessor relative to the
+// local direction of travel (out-and-back overlap or a GPS fold). We flag a
+// reversal only when the route doubles back by more than this distance, to
+// avoid firing on ordinary switchbacks.
+const BACKTRACK_MIN_RETURN_M = 25;
+
 function validLatLon(lat: number, lon: number): boolean {
   return (
     Number.isFinite(lat) &&
@@ -112,6 +138,23 @@ export interface TrackPointQuality {
   gpsSpikeCount: number;
   elevationSpikeCount: number;
   cleanedPointCount: number;
+  /** Median spacing between consecutive cleaned points, m. */
+  medianPointSpacingM: number;
+  /** True when the track is too coarse (median spacing > ~200 m) for
+   *  meaningful gradient/climb detection. */
+  sparseTrack: boolean;
+  /** Fraction of cleaned points carrying a real elevation reading (0-1). */
+  elevationCoverageRatio: number;
+  /** True when fewer than ~50 % of points have real elevation, so the
+   *  elevation-0 fallback would silently produce a too-fast prediction. */
+  missingElevationMajority: boolean;
+  /** Count of consecutive points whose timestamp went backwards. */
+  nonMonotonicTimestampCount: number;
+  /** Count of points where the route doubled back on itself (out-and-back
+   *  overlap or GPS fold). */
+  backtrackCount: number;
+  /** Human-readable quality warnings, most severe first. */
+  warnings: string[];
 }
 
 export interface CleanTrackResult {
@@ -346,6 +389,90 @@ export function cleanTrackPoints(points: TrackPoint[]): TrackPoint[] {
   return cleanTrackPointsWithQuality(points).points;
 }
 
+/** Median of consecutive great-circle point spacings, m. 0 for <2 points. */
+function medianPointSpacing(points: TrackPoint[]): number {
+  if (points.length < 2) return 0;
+  const gaps: number[] = [];
+  for (let i = 1; i < points.length; i++) {
+    gaps.push(
+      haversineDistance(
+        points[i - 1].lat,
+        points[i - 1].lon,
+        points[i].lat,
+        points[i].lon,
+      ),
+    );
+  }
+  gaps.sort((a, b) => a - b);
+  const mid = Math.floor(gaps.length / 2);
+  return gaps.length % 2 === 0 ? (gaps[mid - 1] + gaps[mid]) / 2 : gaps[mid];
+}
+
+/** Count consecutive timestamps that go backwards (non-monotonic GPS clock). */
+function countNonMonotonicTimestamps(points: TrackPoint[]): number {
+  let count = 0;
+  for (let i = 1; i < points.length; i++) {
+    const prev = points[i - 1].time;
+    const curr = points[i].time;
+    if (prev && curr && curr.getTime() < prev.getTime()) count += 1;
+  }
+  return count;
+}
+
+/**
+ * Count obvious backtracks: points where the route reverses onto itself by
+ * more than BACKTRACK_MIN_RETURN_M. We project the outgoing leg onto the
+ * incoming leg's direction; a strongly negative projection means we turned
+ * around and rode back over where we came from (out-and-back double-count or a
+ * GPS fold), not merely a switchback hairpin.
+ */
+function countBacktracks(points: TrackPoint[]): number {
+  if (points.length < 3) return 0;
+  let count = 0;
+  for (let i = 1; i < points.length - 1; i++) {
+    const prev = points[i - 1];
+    const curr = points[i];
+    const next = points[i + 1];
+    const inLeg = haversineDistance(prev.lat, prev.lon, curr.lat, curr.lon);
+    const outLeg = haversineDistance(curr.lat, curr.lon, next.lat, next.lon);
+    if (inLeg <= 0 || outLeg <= 0) continue;
+    const inBearing = bearing(prev.lat, prev.lon, curr.lat, curr.lon);
+    const outBearing = bearing(curr.lat, curr.lon, next.lat, next.lon);
+    let turn = Math.abs(outBearing - inBearing);
+    if (turn > Math.PI) turn = 2 * Math.PI - turn;
+    // Near-180° turn AND the return leg long enough to overlap the inbound
+    // path: this is doubling back, not a hairpin curve.
+    const reverses = turn > (5 * Math.PI) / 6; // > 150°
+    const overlaps = Math.min(inLeg, outLeg) > BACKTRACK_MIN_RETURN_M;
+    if (reverses && overlaps) count += 1;
+  }
+  return count;
+}
+
+/**
+ * Fraction of points carrying a real elevation reading. When parse-time
+ * missing/invalid counts are known, use them directly (the authoritative
+ * signal). Otherwise fall back to detecting an all-flat track, the tell-tale
+ * shape of the elevation-0 default having been applied wholesale.
+ */
+function elevationCoverage(
+  points: TrackPoint[],
+  parseCounts?: { missingElevationCount?: number; invalidElevationCount?: number },
+  rawValidCount?: number,
+): number {
+  if (points.length === 0) return 1;
+  if (parseCounts) {
+    const denom = rawValidCount && rawValidCount > 0 ? rawValidCount : points.length;
+    const missing =
+      (parseCounts.missingElevationCount ?? 0) +
+      (parseCounts.invalidElevationCount ?? 0);
+    return Math.max(0, Math.min(1, (denom - missing) / denom));
+  }
+  // Direct call: treat an entirely flat elevation series as "no real data".
+  const allFlat = points.every((p) => p.elevation === points[0].elevation);
+  return allFlat ? 0 : 1;
+}
+
 export function cleanTrackPointsWithQuality(
   points: TrackPoint[],
   parseCounts?: {
@@ -361,9 +488,46 @@ export function cleanTrackPointsWithQuality(
   const invalidCoordinateCount = parseCounts?.invalidCoordinateCount ?? 0;
   const missingElevationCount = parseCounts?.missingElevationCount ?? 0;
   const invalidElevationCount = parseCounts?.invalidElevationCount ?? 0;
+  const cleaned = elevation.points;
+
+  const medianPointSpacingM = medianPointSpacing(cleaned);
+  const sparseTrack =
+    cleaned.length >= 2 && medianPointSpacingM > SPARSE_TRACK_MEDIAN_SPACING_M;
+
+  const elevationCoverageRatio = elevationCoverage(
+    cleaned,
+    parseCounts ? { missingElevationCount, invalidElevationCount } : undefined,
+    parseCounts ? points.length : undefined,
+  );
+  const missingElevationMajority = elevationCoverageRatio < MIN_ELEVATION_COVERAGE;
+
+  const nonMonotonicTimestampCount = countNonMonotonicTimestamps(cleaned);
+  const backtrackCount = countBacktracks(cleaned);
+
+  const warnings: string[] = [];
+  if (missingElevationMajority) {
+    warnings.push(
+      `Only ${Math.round(elevationCoverageRatio * 100)}% of points have elevation data — climbing and gradient estimates are unreliable and the predicted time may be far too fast.`,
+    );
+  }
+  if (sparseTrack) {
+    warnings.push(
+      `Track points are ~${Math.round(medianPointSpacingM)} m apart on average (median); above ${SPARSE_TRACK_MEDIAN_SPACING_M} m, gradient and climb detection are unreliable.`,
+    );
+  }
+  if (nonMonotonicTimestampCount > 0) {
+    warnings.push(
+      `${nonMonotonicTimestampCount} timestamp${nonMonotonicTimestampCount === 1 ? "" : "s"} go backwards in time — the recording device clock is inconsistent.`,
+    );
+  }
+  if (backtrackCount > 0) {
+    warnings.push(
+      `Route doubles back on itself in ${backtrackCount} place${backtrackCount === 1 ? "" : "s"} — out-and-back overlaps can be double-counted.`,
+    );
+  }
 
   return {
-    points: elevation.points,
+    points: cleaned,
     quality: {
       rawPointCount,
       validPointCount: points.length,
@@ -372,7 +536,14 @@ export function cleanTrackPointsWithQuality(
       invalidElevationCount,
       gpsSpikeCount: gps.removed,
       elevationSpikeCount: elevation.corrected,
-      cleanedPointCount: elevation.points.length,
+      cleanedPointCount: cleaned.length,
+      medianPointSpacingM,
+      sparseTrack,
+      elevationCoverageRatio,
+      missingElevationMajority,
+      nonMonotonicTimestampCount,
+      backtrackCount,
+      warnings,
     },
   };
 }
@@ -456,6 +627,8 @@ export function buildCourse(
  * Climb starts when avg forward grade >3% over 100m.
  * Climb ends when avg forward grade <1% over 100m.
  * Reject climbs <250m. Categorise from cat4 → HC by length+grade thresholds.
+ * Finally merge fragments split by a short shallow saddle (see
+ * mergeAdjacentClimbs) so one real mountain is reported as one climb.
  */
 export function detectClimbs(segments: Segment[]): Climb[] {
   const climbs: Climb[] = [];
@@ -503,7 +676,71 @@ export function detectClimbs(segments: Segment[]): Climb[] {
       i++;
     }
   }
-  return climbs;
+  return mergeAdjacentClimbs(climbs, segments);
+}
+
+/**
+ * Merge climbs split by a short false-flat / shallow-saddle gap.
+ *
+ * The forward-window detector terminates a climb the instant the windowed
+ * grade dips below endGradient, so Ventoux's Chalet-Reynard plateau, the
+ * Stelvio's hairpin terraces, or the Galibier's Plan-Lachat dip each chop one
+ * mountain into 2-3 fragments. We stitch consecutive climbs back together when
+ * the gap between them is short (< CLIMB_MERGE_MAX_GAP_M) AND the gap is not a
+ * sustained descent (its net grade is shallower than CLIMB_MERGE_MAX_GAP_DESCENT).
+ * Length, elevationGain, averageGradient and category are recomputed from the
+ * merged span so the result is a faithful single climb.
+ */
+function mergeAdjacentClimbs(climbs: Climb[], segments: Segment[]): Climb[] {
+  if (climbs.length < 2) return climbs;
+
+  const merged: Climb[] = [climbs[0]];
+  for (let k = 1; k < climbs.length; k++) {
+    const prev = merged[merged.length - 1];
+    const curr = climbs[k];
+
+    // The gap is the run between the end of the previous climb and the start
+    // of this one (the saddle the detector decided wasn't climbing).
+    let gapDistance = 0;
+    let gapElevDelta = 0;
+    for (let s = prev.endSegmentIndex + 1; s < curr.startSegmentIndex; s++) {
+      gapDistance += segments[s].distance;
+      gapElevDelta += segments[s].endElevation - segments[s].startElevation;
+    }
+    const gapGrade = gapDistance > 0 ? gapElevDelta / gapDistance : 0;
+
+    const shortGap = gapDistance < CLIMB_MERGE_MAX_GAP_M;
+    const notDescent = gapGrade > -CLIMB_MERGE_MAX_GAP_DESCENT;
+
+    if (shortGap && notDescent) {
+      // Fold curr into prev and recompute the merged climb from the segments.
+      const startIdx = prev.startSegmentIndex;
+      const endIdx = curr.endSegmentIndex;
+      let length = 0;
+      for (let s = startIdx; s <= endIdx; s++) length += segments[s].distance;
+      const elevationGain =
+        segments[endIdx].endElevation - segments[startIdx].startElevation;
+      const averageGradient = Math.atan2(elevationGain, length);
+      const category = categoriseClimb(length, averageGradient);
+      // A merged span is longer and steeper than either fragment, so it can
+      // only categorise up the ladder; the null guard is defensive.
+      if (category) {
+        merged[merged.length - 1] = {
+          startSegmentIndex: startIdx,
+          endSegmentIndex: endIdx,
+          startDistance: prev.startDistance,
+          endDistance: curr.endDistance,
+          length,
+          averageGradient,
+          elevationGain,
+          category,
+        };
+        continue;
+      }
+    }
+    merged.push(curr);
+  }
+  return merged;
 }
 
 function forwardWindowAvgGrade(

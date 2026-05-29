@@ -23,7 +23,13 @@ import {
 } from "@/lib/analytics/paid-report-events";
 import { getCourseById, getPredictionById } from "./store";
 import { runScenarioComparison } from "./scenarios";
-import type { Climb, Course, Environment, RiderProfile } from "./types";
+import type {
+  CheckpointSplit,
+  Climb,
+  Course,
+  Environment,
+  RiderProfile,
+} from "./types";
 
 const GENERATOR_VERSION = "race-v1.0.0";
 
@@ -613,6 +619,29 @@ export function renderRaceReportHtml(p: RenderHtmlArgs): string {
     })
     .join("");
 
+  // Checkpoint splits (BBS-style "where will I be, when"). Read straight from
+  // the saved prediction summary so the report never re-simulates.
+  const splits = Array.isArray(p.resultSummary?.splits)
+    ? (p.resultSummary!.splits as CheckpointSplit[])
+    : [];
+  const splitRows = splits
+    .map((s) => {
+      const km = (s.distance / 1000).toFixed(1);
+      const elapsed = formatDuration(Math.round(s.cumulativeTime));
+      const speed = (s.legSpeed * 3.6).toFixed(1);
+      const power = s.legPower ? `${Math.round(s.legPower)} W` : "—";
+      const climbCell =
+        s.kind === "climb_top"
+          ? "▲ top"
+          : s.kind === "climb_start"
+            ? "△ foot"
+            : s.kind === "finish"
+              ? "🏁 finish"
+              : "";
+      return `<tr><td><strong>${escape(s.label)}</strong> ${climbCell}</td><td>${km} km</td><td>${elapsed}</td><td>${speed} km/h</td><td>${power}</td><td>${Math.round(s.cumulativeElevationGain)} m</td></tr>`;
+    })
+    .join("");
+
   return `<!DOCTYPE html>
 <html lang="en">
 <head>
@@ -723,6 +752,19 @@ export function renderRaceReportHtml(p: RenderHtmlArgs): string {
          <table>
            <thead><tr><th>Climb</th><th>Length</th><th>Grade</th><th>Target</th><th>How to ride it</th></tr></thead>
            <tbody>${climbRows}</tbody>
+         </table>`
+      : ""
+  }
+
+  ${
+    splitRows
+      ? `<h2>Checkpoint splits</h2>
+         <div class="block">
+           <p>Where you should be, and when. Print this or tape it to your top tube — if you are well ahead of the elapsed column early, you went out too hard. Leg speed and power are the averages since the previous checkpoint.</p>
+         </div>
+         <table>
+           <thead><tr><th>Checkpoint</th><th>Distance</th><th>Elapsed</th><th>Leg speed</th><th>Leg power</th><th>Climbed</th></tr></thead>
+           <tbody>${splitRows}</tbody>
          </table>`
       : ""
   }

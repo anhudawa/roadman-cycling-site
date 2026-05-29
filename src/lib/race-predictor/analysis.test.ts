@@ -1,6 +1,13 @@
 import { describe, it, expect } from 'vitest';
-import { normalizedPower, variabilityIndex, yawHistogram } from './analysis';
-import type { SegmentResult } from './types';
+import {
+  normalizedPower,
+  variabilityIndex,
+  yawHistogram,
+  checkpointSplits,
+} from './analysis';
+import { buildCourse } from './gpx';
+import { simulateCourse } from './engine';
+import type { RiderProfile, SegmentResult, TrackPoint } from './types';
 
 function fakeSegments(powers: number[], durations: number[]): SegmentResult[] {
   return powers.map((p, i) => ({
@@ -89,5 +96,116 @@ describe('yawHistogram', () => {
     for (let i = 1; i < hist.length; i++) {
       expect(hist[i].binCenter).toBeGreaterThan(hist[i - 1].binCenter);
     }
+  });
+});
+
+describe('checkpointSplits', () => {
+  const RIDER: RiderProfile = {
+    bodyMass: 72,
+    bikeMass: 8,
+    position: 'aero_hoods',
+    cda: 0.32,
+    crr: 0.0032,
+    drivetrainEfficiency: 0.97,
+    powerProfile: {
+      p5s: 1100,
+      p1min: 600,
+      p5min: 380,
+      p20min: 320,
+      p60min: 285,
+      durabilityFactor: 0.05,
+    },
+  };
+  const CALM = {
+    airTemperature: 15,
+    relativeHumidity: 0.5,
+    airPressure: 101325,
+    windSpeed: 0,
+    windDirection: 0,
+  };
+
+  function course(segs: { km: number; gradePct: number }[]) {
+    const lat = 45;
+    const mPerDeg = 111_320 * Math.cos((lat * Math.PI) / 180);
+    const points: TrackPoint[] = [];
+    let lon = 0;
+    let elev = 200;
+    const stepM = 50;
+    points.push({ lat, lon, elevation: elev });
+    for (const s of segs) {
+      const n = Math.ceil((s.km * 1000) / stepM);
+      for (let i = 0; i < n; i++) {
+        lon += stepM / mPerDeg;
+        elev += stepM * (s.gradePct / 100);
+        points.push({ lat, lon, elevation: elev });
+      }
+    }
+    return buildCourse(points);
+  }
+
+  it('produces monotonically increasing distance and cumulative time, ending at the finish', () => {
+    const c = course([
+      { km: 20, gradePct: 0.5 },
+      { km: 8, gradePct: 6 }, // a climb
+      { km: 12, gradePct: -3 },
+      { km: 20, gradePct: 0.5 },
+    ]);
+    const result = simulateCourse({
+      course: c,
+      rider: RIDER,
+      environment: CALM,
+      pacing: c.segments.map(() => 250),
+    });
+    const splits = checkpointSplits(c, result);
+    expect(splits.length).toBeGreaterThan(2);
+    for (let i = 1; i < splits.length; i++) {
+      expect(splits[i].distance).toBeGreaterThan(splits[i - 1].distance);
+      expect(splits[i].cumulativeTime).toBeGreaterThanOrEqual(
+        splits[i - 1].cumulativeTime,
+      );
+      expect(splits[i].cumulativeElevationGain).toBeGreaterThanOrEqual(
+        splits[i - 1].cumulativeElevationGain,
+      );
+    }
+    const last = splits[splits.length - 1];
+    expect(last.kind).toBe('finish');
+    // Finish cumulative time matches the simulation total within a segment.
+    expect(Math.abs(last.cumulativeTime - result.totalTime)).toBeLessThan(30);
+  });
+
+  it('flags climb feet and tops, and the climb leg is slower than flat legs', () => {
+    const c = course([
+      { km: 20, gradePct: 0 },
+      { km: 8, gradePct: 7 }, // hard climb
+      { km: 20, gradePct: 0 },
+    ]);
+    const result = simulateCourse({
+      course: c,
+      rider: RIDER,
+      environment: CALM,
+      pacing: c.segments.map(() => 280),
+    });
+    const splits = checkpointSplits(c, result);
+    const top = splits.find((s) => s.kind === 'climb_top');
+    const foot = splits.find((s) => s.kind === 'climb_start');
+    expect(foot).toBeDefined();
+    expect(top).toBeDefined();
+    // The leg ending at the climb top is slower than the overall finish leg pace.
+    expect(top!.legSpeed).toBeLessThan(result.averageSpeed);
+  });
+
+  it('returns empty for an empty result', () => {
+    const c = course([{ km: 5, gradePct: 0 }]);
+    expect(
+      checkpointSplits(c, {
+        segmentResults: [],
+        totalTime: 0,
+        totalDistance: 0,
+        averageSpeed: 0,
+        averagePower: 0,
+        normalizedPower: 0,
+        variabilityIndex: 1,
+      }),
+    ).toEqual([]);
   });
 });

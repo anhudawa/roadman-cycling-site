@@ -1,6 +1,10 @@
 import { NextResponse } from "next/server";
 import { simulateCourse } from "@/lib/race-predictor/engine";
 import {
+  composePacingMultiplier,
+  scalePowerProfileForFtp,
+} from "@/lib/race-predictor/scenarios";
+import {
   getCourseById,
   getPredictionBySlug,
 } from "@/lib/race-predictor/store";
@@ -75,17 +79,23 @@ export async function POST(
   const massDelta = clamp(body.bodyMassDeltaKg ?? 0, -10, 10);
   const baselineFtp = baselineRider.powerProfile.p60min;
 
+  // FTP-delta scaling: a change in FTP is a change in *threshold* fitness, so
+  // only the threshold anchors (p20min, p60min) move with it; the
+  // neuromuscular/anaerobic anchors (p5s, p1min, p5min) reflect a separate
+  // physiological system and are left untouched. (The old code shifted every
+  // anchor by ftpDelta times the FTP-*synthesis* multipliers — 3.6, 1.85, ...
+  // — which only make sense as ×FTP absolute estimates for an FTP-only rider,
+  // never as per-watt deltas: it turned a +30 W FTP gain into a nonsensical
+  // +108 W sprint gain.) See scalePowerProfileForFtp.
+  const scaledProfile = scalePowerProfileForFtp(
+    baselineRider.powerProfile,
+    ftpDelta,
+  );
+  const newFtp = scaledProfile.p60min;
   const rider: RiderProfile = {
     ...baselineRider,
     bodyMass: clamp(baselineRider.bodyMass + massDelta, 35, 140),
-    powerProfile: {
-      ...baselineRider.powerProfile,
-      p5s: baselineRider.powerProfile.p5s + ftpDelta * 3.6,
-      p1min: baselineRider.powerProfile.p1min + ftpDelta * 1.85,
-      p5min: baselineRider.powerProfile.p5min + ftpDelta * 1.15,
-      p20min: baselineRider.powerProfile.p20min + ftpDelta * 1.05,
-      p60min: Math.max(80, baselineFtp + ftpDelta),
-    },
+    powerProfile: scaledProfile,
   };
 
   const environment: Environment = {
@@ -100,11 +110,30 @@ export async function POST(
         : baselineEnv.windSpeed,
   };
 
-  // Pacing: scale baseline plan; if power changed, anchor target to the
-  // new FTP so the pacing target moves with the rider.
+  // Pacing composition.
+  //
+  // An FTP change *re-anchors* the sustainable pacing target to the new
+  // threshold; the user's pacing slider then biases *around* that re-anchored
+  // target. These are two conceptually different moves, so they must NOT
+  // compound multiplicatively (the old code used
+  // `clamp(slider) * ftpScale`, so e.g. +10% FTP and a 1.10 slider became
+  // 1.21 — a 21% jump the user never asked for).
+  //
+  // Composition chosen — additive in fractional terms (see
+  // composePacingMultiplier):
+  //   ftpScale   = newFtp / baselineFtp            (re-anchor, e.g. 1.10)
+  //   sliderBias = clamp(slider, 0.7, 1.15) − 1    (bias *around* anchor)
+  //   multiplier = ftpScale + sliderBias
+  // So +10% FTP with a +10% slider gives 1.10 + 0.10 = 1.20, i.e. the two
+  // effects add rather than multiply (1.21). With the slider at its neutral
+  // 1.0, multiplier === ftpScale (pure re-anchor); with FTP unchanged,
+  // multiplier === clamp(slider) (pure slider).
   const baselinePacing = prediction.pacingPlan ?? course.segments.map(() => baselineFtp * 0.85);
-  const ftpScale = baselineFtp > 0 ? rider.powerProfile.p60min / baselineFtp : 1;
-  const multiplier = clamp(body.pacingMultiplier ?? 1, 0.7, 1.15) * ftpScale;
+  const multiplier = composePacingMultiplier(
+    baselineFtp,
+    newFtp,
+    body.pacingMultiplier ?? 1,
+  );
   const pacing = baselinePacing.map((p) => p * multiplier);
 
   const result = simulateCourse({ course, rider, environment, pacing });
