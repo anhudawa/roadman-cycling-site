@@ -1,7 +1,7 @@
 {
   "version": 1,
   "feedUrl": "https://anchor.fm/s/a09110e0/podcast/rss",
-  "lastRun": "2026-05-29T11:50:25.253Z",
+  "lastRun": "2026-05-29T13:24:41.063Z",
   "episodes": {
     "603e6ee5-ad89-4d4f-825c-e2d6f86d9665": {
       "status": "written",
@@ -1185,6 +1185,706 @@
       "title": "Sebastian Weber - Sports Scientist",
       "words": 7729,
       "updatedAt": "2026-05-29T11:50:25.249Z"
+    },
+    "e98ab322-168e-43e1-97cd-3e8f70fb008a": {
+      "status": "written",
+      "slug": "which-recovery-gadgets-do-you-need",
+      "title": "Which Recovery Gadgets Do You Need?",
+      "words": 2614,
+      "updatedAt": "2026-05-29T13:24:40.874Z"
+    },
+    "5a5b196f-6ed7-4d3e-ac82-81ef7b7c31ca": {
+      "status": "written",
+      "slug": "wade-lightheart-bio-optimizing-your-body",
+      "title": "Wade Lightheart - Bio Optimizing Your Body",
+      "words": 8433,
+      "updatedAt": "2026-05-29T13:24:40.880Z"
+    },
+    "3ee3da3c-700e-4b7e-9b1b-474461b5454e": {
+      "status": "written",
+      "slug": "the-only-reason-to-ride-in-the-ice-you-love-hospital-food",
+      "title": "The Only Reason To Ride In The Ice - You Love Hospital Food",
+      "words": 1646,
+      "updatedAt": "2026-05-29T13:24:40.882Z"
+    },
+    "557f7d65-4154-473c-bde9-35f5c719144c": {
+      "status": "written",
+      "slug": "the-happy-pear-connected-humans",
+      "title": "The Happy Pear - Connected Humans",
+      "words": 4869,
+      "updatedAt": "2026-05-29T13:24:40.885Z"
+    },
+    "a407354a-e606-45e2-9d5a-d2c7af961121": {
+      "status": "written",
+      "slug": "boomber-anderson-decoding-superhuman",
+      "title": "Boomber Anderson - Decoding Superhuman",
+      "words": 11332,
+      "updatedAt": "2026-05-29T13:24:40.888Z"
+    },
+    "05ac2298-3c37-4670-b855-0e4d7276e316": {
+      "status": "written",
+      "slug": "nicki-strobel-how-the-pros-fuel",
+      "title": "Nicki Strobel - How The Pro's Fuel",
+      "words": 5566,
+      "updatedAt": "2026-05-29T13:24:40.890Z"
+    },
+    "2d7e0103-6310-4d9f-a829-6e31fbd55cc7": {
+      "status": "written",
+      "slug": "imogen-cotter-life-as-a-full-time-athlete",
+      "title": "Imogen Cotter - Life As A Full Time Athlete",
+      "words": 6423,
+      "updatedAt": "2026-05-29T13:24:40.895Z"
+    },
+    "e7572058-2a05-4e75-a3e1-1c3d5a6c3247": {
+      "status": "written",
+      "slug": "how-sea-swimming-can-improve-your-cycling",
+      "title": "How Sea Swimming Can Improve Your Cycling",
+      "words": 1668,
+      "updatedAt": "2026-05-29T13:24:40.897Z"
+    },
+    "4ead5056-a604-45ee-bec4-590fa3194bb8": {
+      "status": "written",
+      "slug": "how-should-you-dress-in-the-winter",
+      "title": "How Should You Dress In The Winter?",
+      "words": 2874,
+      "updatedAt": "2026-05-29T13:24:40.898Z"
+    },
+    "bac5d177-471f-409c-99a1-22cca15d8bd2": {
+      "status": "written",
+      "slug": "tyler-hamilton-the-evolution-of-coaching",
+      "title": "Tyler Hamilton - The Evolution Of Coaching",
+      "words": 6691,
+      "updatedAt": "2026-05-29T13:24:40.900Z"
+    },
+    "7d490336-2c05-40fa-acbd-c9cb8d21f449": {
+      "status": "written",
+      "slug": "ed-veal-the-winners-mind",
+      "title": "Ed Veal - The Winner's Mind",
+      "words": 10501,
+      "updatedAt": "2026-05-29T13:24:40.903Z"
+    },
+    "a167b652-de0c-41f0-b051-dc1553aa99cb": {
+      "status": "written",
+      "slug": "christmas-gift-guide",
+      "title": "Christmas Gift Guide",
+      "words": 2248,
+      "updatedAt": "2026-05-29T13:24:40.904Z"
+    },
+    "89fb91e0-d785-44c4-99bd-22b16f1e7e85": {
+      "status": "written",
+      "slug": "alcohol-and-christmas-fact-and-fiction",
+      "title": "Alcohol & Christmas, Fact & Fiction",
+      "words": 2454,
+      "updatedAt": "2026-05-29T13:24:40.905Z"
+    },
+    "1a181237-6b5f-48b5-84a4-c4898a193497": {
+      "status": "written",
+      "slug": "peloton-is-it-worth-the-money",
+      "title": "Peloton - Is It Worth The Money?",
+      "words": 2977,
+      "updatedAt": "2026-05-29T13:24:40.907Z"
+    },
+    "a02e06f4-3e22-4ec1-bcb5-6dde38310162": {
+      "status": "written",
+      "slug": "pete-stetina-a-road-less-travelled",
+      "title": "Pete Stetina - A Road Less Travelled",
+      "words": 6935,
+      "updatedAt": "2026-05-29T13:24:40.909Z"
+    },
+    "61934691-23f5-45dc-b2ab-4b3a956a6637": {
+      "status": "written",
+      "slug": "rapha-festive-500-a-survival-guide",
+      "title": "Rapha Festive 500 - A Survival Guide",
+      "words": 2874,
+      "updatedAt": "2026-05-29T13:24:40.910Z"
+    },
+    "de713641-35d8-4b6e-b42d-f45b76ed43c9": {
+      "status": "written",
+      "slug": "its-christmas",
+      "title": "It's Christmas!",
+      "words": 1660,
+      "updatedAt": "2026-05-29T13:24:40.911Z"
+    },
+    "c868a60a-3b13-4f58-b676-2dd8e984d8ad": {
+      "status": "written",
+      "slug": "stop-listen-before-your-make-a-new-year-resolution",
+      "title": "Stop! Listen Before Your Make a New Year Resolution",
+      "words": 2090,
+      "updatedAt": "2026-05-29T13:24:40.913Z"
+    },
+    "f67f4d3c-ba7b-42ce-89e3-08dc9056980c": {
+      "status": "written",
+      "slug": "my-best-habits-from-2020",
+      "title": "My Best Habits from 2020",
+      "words": 3471,
+      "updatedAt": "2026-05-29T13:24:40.914Z"
+    },
+    "33b86961-daf6-476e-ace0-80a755e8fe5d": {
+      "status": "written",
+      "slug": "jani-brajkovi-training-principles",
+      "title": "Jani Brajkovič - Training Principles",
+      "words": 5050,
+      "updatedAt": "2026-05-29T13:24:40.916Z"
+    },
+    "7e954f8b-9223-492f-aaf5-fb897bb08c7f": {
+      "status": "written",
+      "slug": "take-the-stress-out-of-travelling-with-a-bike",
+      "title": "Take The Stress Out Of Travelling With A Bike",
+      "words": 2933,
+      "updatedAt": "2026-05-29T13:24:40.917Z"
+    },
+    "fcd5a0ee-eef5-4ad2-b5a6-259a1d3a4273": {
+      "status": "written",
+      "slug": "how-to-beat-long-haul-travel",
+      "title": "How To Beat Long Haul Travel",
+      "words": 1841,
+      "updatedAt": "2026-05-29T13:24:40.918Z"
+    },
+    "149076d7-3949-4f56-841d-b9ff27603ac4": {
+      "status": "written",
+      "slug": "how-to-thrive-in-2021",
+      "title": "How To Thrive In 2021",
+      "words": 2220,
+      "updatedAt": "2026-05-29T13:24:40.919Z"
+    },
+    "51c2d5ae-08df-479b-8096-b94785a92d5f": {
+      "status": "written",
+      "slug": "i-get-ready-for-an-80km-climb",
+      "title": "I Get Ready For An 80km Climb",
+      "words": 2189,
+      "updatedAt": "2026-05-29T13:24:40.920Z"
+    },
+    "ca3ff4bc-0241-4b25-93c5-da3fa32883a0": {
+      "status": "written",
+      "slug": "clare-walsh-breath",
+      "title": "Clare Walsh - Breath",
+      "words": 5939,
+      "updatedAt": "2026-05-29T13:24:40.941Z"
+    },
+    "2fe44b54-8f62-42c9-a97f-07c326c87b60": {
+      "status": "written",
+      "slug": "what-it-was-like-to-ride-the-longest-climb-in-the-world",
+      "title": "What It Was Like To Ride The Longest Climb In The World",
+      "words": 3107,
+      "updatedAt": "2026-05-29T13:24:40.943Z"
+    },
+    "c34be68e-208a-4f61-8fae-e158119bfbcb": {
+      "status": "written",
+      "slug": "what-makes-an-ideal-cycling-location",
+      "title": "What Makes An Ideal Cycling Location",
+      "words": 2790,
+      "updatedAt": "2026-05-29T13:24:40.944Z"
+    },
+    "8b95d302-3aec-4fec-bf2a-17365baacd01": {
+      "status": "written",
+      "slug": "julie-b-yoga-using-yoga-to-improve-performance",
+      "title": "Julie B Yoga - Using Yoga To Improve Performance",
+      "words": 6753,
+      "updatedAt": "2026-05-29T13:24:40.946Z"
+    },
+    "a9544511-aafe-4f46-8b95-c342cddde96c": {
+      "status": "written",
+      "slug": "what-causes-muscle-cramp-and-how-to-avoid-it",
+      "title": "What Causes Muscle Cramp & How To Avoid It",
+      "words": 2525,
+      "updatedAt": "2026-05-29T13:24:40.948Z"
+    },
+    "48768429-77ad-49b7-a7e5-d8fb68ddd323": {
+      "status": "written",
+      "slug": "dealing-with-extreme-altitude-colombia-edition",
+      "title": "Dealing With Extreme Altitude - Colombia Edition",
+      "words": 2783,
+      "updatedAt": "2026-05-29T13:24:40.949Z"
+    },
+    "32ada560-9569-4d2e-8387-ba2081e617bc": {
+      "status": "written",
+      "slug": "peter-ryan-building-mental-resilience",
+      "title": "Peter Ryan - Building Mental Resilience",
+      "words": 8735,
+      "updatedAt": "2026-05-29T13:24:40.951Z"
+    },
+    "b3b14956-6c98-422a-b02a-c0fa0f3b4f73": {
+      "status": "written",
+      "slug": "master-frame-builder-agustin-hincapie",
+      "title": "Master Frame Builder - Agustin Hincapie",
+      "words": 2237,
+      "updatedAt": "2026-05-29T13:24:40.952Z"
+    },
+    "57bbeda5-594b-4e96-9dcb-96be9a45a4ae": {
+      "status": "written",
+      "slug": "why-ill-always-remember-the-year-2020",
+      "title": "Why I'll Always Remember The Year 2020",
+      "words": 3190,
+      "updatedAt": "2026-05-29T13:24:40.953Z"
+    },
+    "74220555-367a-40c6-81b1-c7a55f1a48b0": {
+      "status": "written",
+      "slug": "open-your-mind-to-solutions",
+      "title": "Open Your Mind To Solutions",
+      "words": 2231,
+      "updatedAt": "2026-05-29T13:24:40.954Z"
+    },
+    "ca1366d4-1107-4ddc-ba08-45fc964c38eb": {
+      "status": "written",
+      "slug": "the-secret-to-progress",
+      "title": "The Secret To Progress",
+      "words": 1815,
+      "updatedAt": "2026-05-29T13:24:40.955Z"
+    },
+    "66d38409-0332-4c7a-aa7e-88d0f0b5473e": {
+      "status": "written",
+      "slug": "ger-redmond-the-winners-mind",
+      "title": "Ger Redmond - The Winners Mind",
+      "words": 4766,
+      "updatedAt": "2026-05-29T13:24:40.957Z"
+    },
+    "2e1a8bcd-9901-4a6f-b815-318cb267e003": {
+      "status": "written",
+      "slug": "the-secret-velominati-rules-part-1",
+      "title": "The Secret Velominati Rules Part 1",
+      "words": 1414,
+      "updatedAt": "2026-05-29T13:24:40.958Z"
+    },
+    "ec4adb7c-2e83-45ff-af13-717f1d9a4fc0": {
+      "status": "written",
+      "slug": "the-secret-velominati-rules-part-2",
+      "title": "The Secret Velominati Rules Part 2",
+      "words": 1625,
+      "updatedAt": "2026-05-29T13:24:40.959Z"
+    },
+    "dd65f782-b1ea-4d2d-9487-3113dcaf0791": {
+      "status": "written",
+      "slug": "the-secret-velominati-rules-part-3",
+      "title": "The Secret Velominati Rules Part 3",
+      "words": 1442,
+      "updatedAt": "2026-05-29T13:24:40.960Z"
+    },
+    "1d4725dc-2a2b-42ff-b830-feb33cdc4a62": {
+      "status": "written",
+      "slug": "shed-weight-and-improve-mood-breath-with-niall",
+      "title": "Shed Weight & Improve Mood - Breath With Niall",
+      "words": 6981,
+      "updatedAt": "2026-05-29T13:24:40.962Z"
+    },
+    "a2830482-6f38-435d-9706-7fb8b64f854a": {
+      "status": "written",
+      "slug": "control-the-controllables",
+      "title": "Control the Controllables",
+      "words": 1908,
+      "updatedAt": "2026-05-29T13:24:40.963Z"
+    },
+    "ea5f924b-22d5-448a-ba6a-951baa7e01f8": {
+      "status": "written",
+      "slug": "what-it-means-to-be-a-roadman",
+      "title": "What It Means To Be A Roadman",
+      "words": 1950,
+      "updatedAt": "2026-05-29T13:24:40.964Z"
+    },
+    "468a344c-b619-4259-85b6-7908f77b141e": {
+      "status": "written",
+      "slug": "why-i-fast-daily",
+      "title": "Why I Fast Daily",
+      "words": 1951,
+      "updatedAt": "2026-05-29T13:24:40.965Z"
+    },
+    "aa0d2769-7c28-48a8-b4ff-f1560b2238bb": {
+      "status": "written",
+      "slug": "derek-cullen-cultivating-happiness",
+      "title": "Derek Cullen - Cultivating Happiness",
+      "words": 7158,
+      "updatedAt": "2026-05-29T13:24:40.967Z"
+    },
+    "8e340dc1-5a71-4942-a0f4-355076e3c208": {
+      "status": "written",
+      "slug": "lets-ditch-the-disc-breaks",
+      "title": "Lets Ditch The Disc Breaks",
+      "words": 1752,
+      "updatedAt": "2026-05-29T13:24:40.968Z"
+    },
+    "d60ab981-d38a-42f8-a681-eb4a1de85f0e": {
+      "status": "written",
+      "slug": "why-zwift-doesnt-work-cycling-coaching-is-dead",
+      "title": "Why Zwift Doesn't Work Cycling Coaching Is Dead",
+      "words": 1661,
+      "updatedAt": "2026-05-29T13:24:40.969Z"
+    },
+    "52e436f0-ea76-40ee-8261-1df31dccd02e": {
+      "status": "written",
+      "slug": "eric-glader-powerdot-founder",
+      "title": "Eric Glader - Powerdot Founder",
+      "words": 5718,
+      "updatedAt": "2026-05-29T13:24:40.972Z"
+    },
+    "94be94a1-fb42-4be1-90da-63f30262eeab": {
+      "status": "written",
+      "slug": "a-habit-im-trying-to-build-this-year",
+      "title": "A Habit Im Trying To Build This Year",
+      "words": 1748,
+      "updatedAt": "2026-05-29T13:24:40.973Z"
+    },
+    "c4b45b5d-84ec-4ad7-9749-1c5f06999021": {
+      "status": "written",
+      "slug": "5-steps-to-lazer-focus-and-achieving-flow-state",
+      "title": "5 Steps To Lazer Focus & Achieving Flow State",
+      "words": 2037,
+      "updatedAt": "2026-05-29T13:24:40.974Z"
+    },
+    "99d5111b-0ec1-4544-93cf-e6305613a1dd": {
+      "status": "written",
+      "slug": "do-you-have-a-loser-mentality",
+      "title": "Do You Have A Loser Mentality",
+      "words": 1238,
+      "updatedAt": "2026-05-29T13:24:40.975Z"
+    },
+    "b64a277e-c9b1-4b90-b909-2b63774f0cf9": {
+      "status": "written",
+      "slug": "3-ways-to-pimp-your-ride-in-2021",
+      "title": "3 Ways To Pimp Your Ride In 2021",
+      "words": 1490,
+      "updatedAt": "2026-05-29T13:24:40.976Z"
+    },
+    "ce99d857-7c0e-4564-b20f-857459d28d25": {
+      "status": "written",
+      "slug": "tayler-wiles-inequality-within-cycling",
+      "title": "Tayler Wiles - Inequality Within Cycling",
+      "words": 6139,
+      "updatedAt": "2026-05-29T13:24:40.979Z"
+    },
+    "3827c859-b5e7-4089-90e6-c114e85f8caa": {
+      "status": "written",
+      "slug": "success-aint-a-straight-line",
+      "title": "Success Ain't A Straight Line",
+      "words": 1348,
+      "updatedAt": "2026-05-29T13:24:40.996Z"
+    },
+    "059fb816-bb6a-436c-b49c-d3681c9c1568": {
+      "status": "written",
+      "slug": "breaking-the-invisible-tether-linking-you-to-your-mobile-phone",
+      "title": "Breaking The Invisible Tether Linking You To Your Mobile Phone",
+      "words": 1669,
+      "updatedAt": "2026-05-29T13:24:40.997Z"
+    },
+    "d3a77107-afe2-441d-b292-c110d8da5a06": {
+      "status": "written",
+      "slug": "training-through-a-race",
+      "title": "Training Through A Race",
+      "words": 1517,
+      "updatedAt": "2026-05-29T13:24:40.998Z"
+    },
+    "531bc46e-6704-4b10-b4e7-a191aea7ef01": {
+      "status": "written",
+      "slug": "why-are-so-many-people-depressed",
+      "title": "Why Are So Many People Depressed",
+      "words": 1951,
+      "updatedAt": "2026-05-29T13:24:40.999Z"
+    },
+    "577ecf28-7d93-4ec5-93e9-c13f93a29979": {
+      "status": "written",
+      "slug": "tomas-molina-colombia-by-bike",
+      "title": "Tomas Molina - Colombia By Bike",
+      "words": 4493,
+      "updatedAt": "2026-05-29T13:24:41.001Z"
+    },
+    "c10abb82-70d2-4965-ac95-07e19e2c4910": {
+      "status": "written",
+      "slug": "van-life",
+      "title": "Van Life",
+      "words": 1802,
+      "updatedAt": "2026-05-29T13:24:41.002Z"
+    },
+    "32a74a93-9778-4d3f-98ba-bb9255d8b2ee": {
+      "status": "written",
+      "slug": "why-are-you-always-tired",
+      "title": "Why Are You Always Tired?",
+      "words": 2322,
+      "updatedAt": "2026-05-29T13:24:41.003Z"
+    },
+    "142122bd-b2d1-48a2-8bf7-c7ad409cbab5": {
+      "status": "written",
+      "slug": "have-you-ever-seen-power-figures-like-this",
+      "title": "Have You Ever Seen Power Figures Like This?",
+      "words": 2109,
+      "updatedAt": "2026-05-29T13:24:41.004Z"
+    },
+    "4b5a3e1f-68e3-43bf-ae66-97983ddc9d81": {
+      "status": "written",
+      "slug": "how-to-manufacture-happiness",
+      "title": "How To Manufacture Happiness",
+      "words": 1482,
+      "updatedAt": "2026-05-29T13:24:41.005Z"
+    },
+    "c2009f1a-6366-46a9-a387-352730853c41": {
+      "status": "written",
+      "slug": "jonny-brown-success-is-never-a-straight-line",
+      "title": "Jonny Brown - Success Is Never A Straight Line",
+      "words": 5393,
+      "updatedAt": "2026-05-29T13:24:41.006Z"
+    },
+    "e907c5ab-96ac-4231-85b8-30d8ea3460b8": {
+      "status": "written",
+      "slug": "another-way-to-approach-productivity",
+      "title": "Another Way To Approach Productivity",
+      "words": 1623,
+      "updatedAt": "2026-05-29T13:24:41.007Z"
+    },
+    "1ff21a9e-72a7-4324-8398-3f38336adffc": {
+      "status": "written",
+      "slug": "an-easy-weight-loss-strategy",
+      "title": "An Easy Weight Loss Strategy",
+      "words": 1302,
+      "updatedAt": "2026-05-29T13:24:41.008Z"
+    },
+    "f468d9fa-6311-49fa-9de5-e425d02e67d7": {
+      "status": "written",
+      "slug": "how-to-become-an-overnight-success",
+      "title": "How To Become An Overnight Success",
+      "words": 1896,
+      "updatedAt": "2026-05-29T13:24:41.009Z"
+    },
+    "e5a74a72-b33c-4e08-a40c-001f2073aa45": {
+      "status": "written",
+      "slug": "who-is-the-greatest-rider-on-the-planet",
+      "title": "Who Is The Greatest Rider On The Planet?",
+      "words": 2291,
+      "updatedAt": "2026-05-29T13:24:41.010Z"
+    },
+    "32916c28-d080-4445-b5b6-059042820b9e": {
+      "status": "written",
+      "slug": "barry-murray-time-to-end-nonsense-covid-19-restrictions",
+      "title": "Barry Murray - Time To End Nonsense COVID-19 Restrictions",
+      "words": 8618,
+      "updatedAt": "2026-05-29T13:24:41.013Z"
+    },
+    "e7e9d4c5-eb44-4889-9a9f-9706c9d267a3": {
+      "status": "written",
+      "slug": "the-underdog-shines-milan-san-remo",
+      "title": "The Underdog Shines - Milan San Remo",
+      "words": 2357,
+      "updatedAt": "2026-05-29T13:24:41.014Z"
+    },
+    "5973c3db-c2d1-48d9-b419-2f46477ae47c": {
+      "status": "written",
+      "slug": "could-roubaix-be-cancelled",
+      "title": "Could Roubaix Be Cancelled?",
+      "words": 1206,
+      "updatedAt": "2026-05-29T13:24:41.016Z"
+    },
+    "b005c3c2-0511-4819-add5-071b4fc43c89": {
+      "status": "written",
+      "slug": "2021-season-predictions",
+      "title": "2021 Season Predictions",
+      "words": 3344,
+      "updatedAt": "2026-05-29T13:24:41.017Z"
+    },
+    "631532e7-3077-4368-94d6-c684be551f65": {
+      "status": "written",
+      "slug": "sam-bennett-takes-another-step-forward",
+      "title": "Sam Bennett Takes Another Step Forward",
+      "words": 1231,
+      "updatedAt": "2026-05-29T13:24:41.018Z"
+    },
+    "fe1e1e22-4d1a-4206-9d9e-dcf47d45b8f1": {
+      "status": "written",
+      "slug": "can-we-not-just-kick-bouhanni-out-of-the-sport",
+      "title": "Can We Not Just Kick Bouhanni Out Of The Sport",
+      "words": 1940,
+      "updatedAt": "2026-05-29T13:24:41.019Z"
+    },
+    "43481864-68bb-4dc9-842e-b68b6818b112": {
+      "status": "written",
+      "slug": "pointless-uci-reform",
+      "title": "Pointless UCI Reform",
+      "words": 1461,
+      "updatedAt": "2026-05-29T13:24:41.020Z"
+    },
+    "e39c015d-6425-4255-8231-e939b5d732c8": {
+      "status": "written",
+      "slug": "jay-vine-life-of-a-neo-pro",
+      "title": "Jay Vine - Life Of A Neo Pro",
+      "words": 5892,
+      "updatedAt": "2026-05-29T13:24:41.021Z"
+    },
+    "9c1459a9-d596-495d-8c77-f37d2aa4ebc9": {
+      "status": "written",
+      "slug": "tour-of-flanders-reaction",
+      "title": "Tour Of Flanders Reaction",
+      "words": 1782,
+      "updatedAt": "2026-05-29T13:24:41.022Z"
+    },
+    "c3bf4066-748c-44c8-a10b-cfbb680b16a7": {
+      "status": "written",
+      "slug": "can-you-succeed-without-ego",
+      "title": "Can You Succeed Without Ego",
+      "words": 1082,
+      "updatedAt": "2026-05-29T13:24:41.023Z"
+    },
+    "86cfc461-52f8-49c2-bc48-f99afdaeaeec": {
+      "status": "written",
+      "slug": "5-things-we-learnt-from-basque-tour",
+      "title": "5 Things We Learnt From Basque Tour",
+      "words": 1750,
+      "updatedAt": "2026-05-29T13:24:41.025Z"
+    },
+    "f1082c87-ae22-4bdc-adcd-8c534d00892e": {
+      "status": "written",
+      "slug": "team-ineos-announce-grand-tour-lineup",
+      "title": "Team Ineos Announce Grand Tour Lineup",
+      "words": 1539,
+      "updatedAt": "2026-05-29T13:24:41.026Z"
+    },
+    "f1a3dce5-2568-4854-9851-eac19b4103e3": {
+      "status": "written",
+      "slug": "tj-eisenhart-mindful-cycling",
+      "title": "TJ Eisenhart - Mindful Cycling",
+      "words": 9935,
+      "updatedAt": "2026-05-29T13:24:41.028Z"
+    },
+    "284779bc-d301-4fea-b651-02a7aadc0634": {
+      "status": "written",
+      "slug": "what-is-the-ideal-diet",
+      "title": "What Is The Ideal Diet",
+      "words": 2081,
+      "updatedAt": "2026-05-29T13:24:41.029Z"
+    },
+    "cdeef5cc-582a-4d3d-bbb8-36de9a31af90": {
+      "status": "written",
+      "slug": "suppressed-immunity-stop-doing-these-2-things",
+      "title": "Suppressed Immunity? Stop Doing These 2 Things",
+      "words": 1345,
+      "updatedAt": "2026-05-29T13:24:41.030Z"
+    },
+    "9de88f2a-ea44-4951-b297-a6466dd851bb": {
+      "status": "written",
+      "slug": "lessons-from-leige-la-doyenne",
+      "title": "Lessons From Leige (La Doyenne)",
+      "words": 2152,
+      "updatedAt": "2026-05-29T13:24:41.031Z"
+    },
+    "a2b38c74-c424-4c7d-9290-7cd22941d3da": {
+      "status": "written",
+      "slug": "getting-back-on-track-when-youve-faltered",
+      "title": "Getting Back On Track When You've Faltered",
+      "words": 2141,
+      "updatedAt": "2026-05-29T13:24:41.032Z"
+    },
+    "598cd089-47f3-4f53-977b-331166fe2281": {
+      "status": "written",
+      "slug": "cormac-mcgeough-living-like-a-monk",
+      "title": "Cormac McGeough - Living Like A Monk",
+      "words": 7018,
+      "updatedAt": "2026-05-29T13:24:41.034Z"
+    },
+    "e16b28c6-d5b8-4591-b9b5-50bdea150f28": {
+      "status": "written",
+      "slug": "why-you-need-to-create-urgency",
+      "title": "Why You Need To Create Urgency",
+      "words": 1535,
+      "updatedAt": "2026-05-29T13:24:41.036Z"
+    },
+    "f6598c59-3c59-4972-a583-73229bda3dc0": {
+      "status": "written",
+      "slug": "jay-vine-battling-the-big-boys",
+      "title": "Jay Vine - Battling The Big Boys",
+      "words": 7463,
+      "updatedAt": "2026-05-29T13:24:41.038Z"
+    },
+    "1fbbf698-fa4c-49f0-97c4-440e8ba4d8ff": {
+      "status": "written",
+      "slug": "giro-stage-race-preview-and-tt",
+      "title": "Giro Stage Race Preview &  TT",
+      "words": 2607,
+      "updatedAt": "2026-05-29T13:24:41.048Z"
+    },
+    "47700645-b08e-4feb-b30d-90db5ca3dce7": {
+      "status": "written",
+      "slug": "giro-stage-2-our-first-bunch-sprint",
+      "title": "Giro Stage 2 - Our First Bunch Sprint",
+      "words": 2080,
+      "updatedAt": "2026-05-29T13:24:41.049Z"
+    },
+    "a5b5328c-18f8-4ed7-a437-b9e5a73ec582": {
+      "status": "written",
+      "slug": "giro-stage-3-expected-the-unexpected",
+      "title": "Giro Stage 3 - Expected the unexpected",
+      "words": 1998,
+      "updatedAt": "2026-05-29T13:24:41.051Z"
+    },
+    "fe98565c-da0d-4f79-bb74-e98eefbb42f7": {
+      "status": "written",
+      "slug": "giro-stage-4-so-close-to-an-irish-win",
+      "title": "Giro Stage 4 - So Close To An Irish Win",
+      "words": 2113,
+      "updatedAt": "2026-05-29T13:24:41.052Z"
+    },
+    "ce277ec6-49fa-4baa-adb9-3f1a69b6dbda": {
+      "status": "written",
+      "slug": "giro-stage-5-uci-need-to-sort-this-out",
+      "title": "Giro Stage 5 - UCI Need To Sort This Out",
+      "words": 2363,
+      "updatedAt": "2026-05-29T13:24:41.053Z"
+    },
+    "48537efb-54cf-4cd7-b587-685a9a73e8d2": {
+      "status": "written",
+      "slug": "giro-stage-6-team-mate-makes-the-dream-work",
+      "title": "Giro Stage 6 - Team Mate Makes The Dream Work",
+      "words": 1960,
+      "updatedAt": "2026-05-29T13:24:41.054Z"
+    },
+    "4086a191-32f5-4ea6-bce6-7fe76bcad119": {
+      "status": "written",
+      "slug": "giro-stage-8-ready-aim-hold-your-fire",
+      "title": "Giro Stage 8 - Ready Aim - Hold Your Fire",
+      "words": 2544,
+      "updatedAt": "2026-05-29T13:24:41.056Z"
+    },
+    "1d707bf3-e4d7-499b-b6dc-510e8d537455": {
+      "status": "written",
+      "slug": "giro-stage-9-big-guns-come-out-to-play",
+      "title": "Giro Stage 9 - Big Guns Come Out To Play",
+      "words": 2154,
+      "updatedAt": "2026-05-29T13:24:41.057Z"
+    },
+    "3f387f3a-59f5-480b-8fc8-84f780b2089d": {
+      "status": "written",
+      "slug": "giro-stage-10-you-couldnt-pay-me-enough-to-ride-for-bora",
+      "title": "Giro Stage 10 - You Couldn't Pay Me Enough To ride For Bora",
+      "words": 1948,
+      "updatedAt": "2026-05-29T13:24:41.058Z"
+    },
+    "c26bb6d8-f179-42bb-a814-8668de6312e6": {
+      "status": "written",
+      "slug": "giro-stage-11-weve-been-waiting-for-this",
+      "title": "Giro Stage 11 - We've Been Waiting For This",
+      "words": 1456,
+      "updatedAt": "2026-05-29T13:24:41.059Z"
+    },
+    "8dfd7686-4d2b-40c7-88ab-a81757dfa966": {
+      "status": "written",
+      "slug": "giro-stage-12-sharks-bite",
+      "title": "Giro Stage 12 - Sharks Bite",
+      "words": 1871,
+      "updatedAt": "2026-05-29T13:24:41.060Z"
+    },
+    "000f57d2-1c4c-4c9a-bb36-730a3ce3f756": {
+      "status": "written",
+      "slug": "giro-stage-13-we-get-ready-for-war",
+      "title": "Giro Stage 13 - We Get Ready For War",
+      "words": 1745,
+      "updatedAt": "2026-05-29T13:24:41.061Z"
+    },
+    "662bee29-1c91-4d0f-8e60-407d5c174f44": {
+      "status": "written",
+      "slug": "giro-stage-14-mont-zoncolan",
+      "title": "Giro Stage 14 - Mont Zoncolan",
+      "words": 1863,
+      "updatedAt": "2026-05-29T13:24:41.062Z"
+    },
+    "df7850ee-f73c-4f99-8a9e-84fca113d510": {
+      "status": "written",
+      "slug": "giro-stage-15-ubuntu",
+      "title": "Giro Stage 15 - Ubuntu",
+      "words": 2098,
+      "updatedAt": "2026-05-29T13:24:41.063Z"
     }
   }
 }
