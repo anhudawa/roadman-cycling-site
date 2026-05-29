@@ -126,10 +126,16 @@ function splitSpacing(totalDistanceM: number): number {
  * Every checkpoint reports cumulative time/elevation plus the average speed and
  * power of the leg *since the previous checkpoint*, so a rider can read pacing
  * off the table directly. Markers are de-duplicated and sorted by distance.
+ *
+ * When `laps > 1` the course has been expanded to an N-lap circuit: distance
+ * markers gain a `Lap k/N — ` prefix, and an explicit `Lap k/N complete`
+ * checkpoint is added at each lap boundary. The lap context lives entirely in
+ * the label string — the CheckpointSplit type is unchanged.
  */
 export function checkpointSplits(
   course: Course,
   result: CourseResult,
+  laps = 1,
 ): CheckpointSplit[] {
   const segs = result.segmentResults;
   if (segs.length === 0 || course.segments.length === 0) return [];
@@ -160,15 +166,32 @@ export function checkpointSplits(
     return n - 1;
   };
 
+  // Multi-lap circuit context. lapAware tags distance markers with their lap
+  // and inserts explicit lap-boundary checkpoints; laps <= 1 is unchanged.
+  const lapAware = laps > 1;
+  const lapDistance = lapAware ? totalDistance / laps : 0;
+
   // Collect (distance, label, kind) markers.
   const markers: { distance: number; label: string; kind: CheckpointSplit['kind'] }[] = [];
   const spacing = splitSpacing(totalDistance);
   for (let mark = spacing; mark < totalDistance - spacing * 0.25; mark += spacing) {
+    const lapPrefix = lapAware
+      ? `Lap ${Math.min(laps, Math.floor(mark / lapDistance) + 1)}/${laps} — `
+      : '';
     markers.push({
       distance: mark,
-      label: `${Math.round(mark / 1000)} km`,
+      label: `${lapPrefix}${Math.round(mark / 1000)} km`,
       kind: 'distance',
     });
+  }
+  if (lapAware) {
+    for (let k = 1; k < laps; k++) {
+      markers.push({
+        distance: k * lapDistance,
+        label: `Lap ${k}/${laps} complete`,
+        kind: 'distance',
+      });
+    }
   }
   course.climbs.forEach((climb, idx) => {
     const name = course.name ? `climb ${idx + 1}` : `climb ${idx + 1}`;

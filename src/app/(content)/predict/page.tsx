@@ -155,6 +155,7 @@ export default function PredictPage() {
   }, []);
 
   const [mode, setMode] = useState<Mode>("plan_my_race");
+  const [laps, setLaps] = useState<number>(1);
   const [courses, setCourses] = useState<CourseAPIItem[]>([]);
   const [coursesLoading, setCoursesLoading] = useState(true);
   const [courseSlug, setCourseSlug] = useState<string>("");
@@ -423,6 +424,7 @@ export default function PredictPage() {
     track("prediction_started", {
       tool: "race_predictor",
       mode,
+      laps,
       source: gpx ? "gpx_upload" : "event_catalog",
       courseSlug: gpx ? null : courseSlug,
       drafting,
@@ -444,6 +446,7 @@ export default function PredictPage() {
           courseSlug: gpx ? undefined : courseSlug,
           gpxPoints: gpx?.points,
           mode,
+          laps: Number.isFinite(laps) && laps > 1 ? laps : undefined,
           rider: {
             bodyMass,
             heightCm: Number.isFinite(heightCm) ? heightCm : undefined,
@@ -1118,6 +1121,31 @@ export default function PredictPage() {
                       </p>
                     </div>
                     <EventTypePicker value={eventType} onChange={setEventType} />
+                  </div>
+                  <div className="mb-4">
+                    <div className="flex items-baseline justify-between mb-3 flex-wrap gap-2">
+                      <p
+                        className="text-[0.62rem] tracking-[0.22em] uppercase text-foreground-muted"
+                        style={{ fontFamily: "var(--font-jetbrains-mono)" }}
+                      >
+                        LAPS
+                      </p>
+                      <p className="text-[0.62rem] text-foreground-subtle">
+                        For circuit races — repeats the course this many times
+                      </p>
+                    </div>
+                    <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
+                      <NumberField
+                        label="Laps"
+                        unit="×"
+                        value={laps}
+                        step={1}
+                        min={1}
+                        max={50}
+                        placeholder="1"
+                        onChange={setLaps}
+                      />
+                    </div>
                   </div>
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                     <ModeToggle

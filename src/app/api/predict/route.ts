@@ -25,6 +25,8 @@ interface PredictBody {
   email?: string;
   /** Optional along-route weather timeline; parsed defensively. */
   weatherTimeline?: unknown;
+  /** Number of circuit laps to ride. Default 1. */
+  laps?: number;
 }
 
 const VALID_POSITIONS = new Set([
@@ -208,6 +210,19 @@ export async function POST(request: Request) {
   const riderError = validateRider(body.rider);
   if (riderError) return NextResponse.json({ error: riderError }, { status: 400 });
 
+  if (
+    body.laps !== undefined &&
+    (typeof body.laps !== "number" ||
+      !Number.isInteger(body.laps) ||
+      body.laps < 1 ||
+      body.laps > 50)
+  ) {
+    return NextResponse.json(
+      { error: "Laps must be a whole number between 1 and 50." },
+      { status: 400 },
+    );
+  }
+
   // Free-tier rate limit. Capped at PREDICT_FREE_DAILY (default 3) per
   // anon session per 24h. Returns 429 with a clear nudge toward the
   // Race Report when exhausted.
@@ -270,6 +285,7 @@ export async function POST(request: Request) {
     environment: body.environment,
     mode,
     weatherTimeline,
+    laps: body.laps,
   });
 
   const prediction = await createPrediction({
@@ -294,6 +310,7 @@ export async function POST(request: Request) {
       splits: run.splits,
       fueling: run.fueling,
       assumptions: {
+        laps: body.laps ?? 1,
         eventType: riderInput.eventType ?? "sportive",
         drafting: riderInput.drafting ?? "solo",
         surface: riderInput.surface ?? null,

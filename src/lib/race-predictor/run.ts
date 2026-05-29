@@ -7,6 +7,7 @@ import {
   DEFAULT_DRIVETRAIN_EFFICIENCY,
 } from "./constants";
 import { simulateCourse } from "./engine";
+import { expandCourseToLaps } from "./gpx";
 import { checkpointSplits } from "./analysis";
 import { planFuelling, type FuellingPlan } from "./fueling";
 import { optimizePacing } from "./pacing";
@@ -93,6 +94,8 @@ export interface RunPredictArgs {
   mode: PredictMode;
   /** Optional along-route weather timeline (elapsed-time keyed). */
   weatherTimeline?: WeatherTimeline;
+  /** Number of circuit laps to ride. Default 1 (course used as-is). */
+  laps?: number;
 }
 
 export interface PredictionRunResult {
@@ -231,15 +234,21 @@ export function runPrediction(args: RunPredictArgs): PredictionRunResult {
   const rider = buildRiderProfile(args.rider);
   const environment = buildEnvironment(args.environment);
 
+  // Expand a circuit course to N laps before any simulation. laps=1 leaves the
+  // course object untouched (course === args.course), so single-lap predictions
+  // are unaffected.
+  const laps = args.laps && args.laps > 1 ? Math.min(50, Math.floor(args.laps)) : 1;
+  const course = laps > 1 ? expandCourseToLaps(args.course, laps) : args.course;
+
   const cpModel = fitCpModel(rider.powerProfile);
   const eventType = args.rider.eventType ?? "sportive";
   const targetIF = targetIntensityFactor(args.mode, eventType);
 
   const pacing =
     args.mode === "can_i_make_it"
-      ? args.course.segments.map(() => cpModel.cp * targetIF)
+      ? course.segments.map(() => cpModel.cp * targetIF)
       : optimizePacing({
-          course: args.course,
+          course,
           rider,
           environment,
           targetIF,
@@ -249,7 +258,7 @@ export function runPrediction(args: RunPredictArgs): PredictionRunResult {
   // sustainable level so we don't promise the rider a time their PD curve
   // can't hold. This is the core differentiator vs BBS.
   const baseline = simulateCourse({
-    course: args.course,
+    course,
     rider,
     environment,
     pacing,
@@ -271,7 +280,7 @@ export function runPrediction(args: RunPredictArgs): PredictionRunResult {
   // physiology can't support across a climb. This closes the loophole where a
   // surge-heavy pacing plan would silently overdraw W' and still "finish".
   const result = simulateCourse({
-    course: args.course,
+    course,
     rider,
     environment,
     pacing: adjustedPacing,
@@ -281,8 +290,8 @@ export function runPrediction(args: RunPredictArgs): PredictionRunResult {
 
   const precision = inferPrecision(args.rider);
   const confidence = confidenceBracket(result.totalTime, { precision });
-  const insight = pickKeyInsight({ course: args.course, result, rider });
-  const splits = checkpointSplits(args.course, result);
+  const insight = pickKeyInsight({ course, result, rider });
+  const splits = checkpointSplits(course, result, laps);
   // Threshold proxy for fuelling intensity: align with the synthesis convention
   // (p20min ≈ FTP × 1.05). Works for both supplied and synthesised curves.
   const ftpW = Math.round(rider.powerProfile.p20min / 1.05);

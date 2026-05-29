@@ -623,6 +623,51 @@ export function buildCourse(
 }
 
 /**
+ * Expand a single-lap course into an `n`-lap circuit.
+ *
+ * POINT-BASED: we reconstruct the lap's track points from the course segments
+ * and repeat the point series, then re-run the canonical `buildCourse` factory.
+ * Re-deriving from points (rather than hand-repeating Segment objects) keeps
+ * climb indices, elevation seams, smoothing and totals all in sync — repeating
+ * Segment objects would corrupt the `index` fields and create elevation steps
+ * at each seam.
+ *
+ * Assumes a CLOSED circuit (each lap returns near its start), which is the only
+ * shape a multi-lap race takes. Kinetic energy carries across the seam via the
+ * engine's existing segment-to-segment velocity carry. Because the expanded
+ * course is re-smoothed end to end, elevation gain and climb totals come out
+ * ≈×n (not exactly ×n, the seams smooth slightly) while the segment count is
+ * exactly n×(original).
+ */
+export function expandCourseToLaps(course: Course, laps: number): Course {
+  // laps ≤ 1 (or non-finite) is a no-op: return the SAME object so a single-lap
+  // prediction is byte-identical to one made without the laps feature.
+  if (!Number.isFinite(laps) || laps <= 1) return course;
+  const n = Math.min(50, Math.max(1, Math.floor(laps)));
+  if (n <= 1 || course.segments.length === 0) return course;
+
+  // Reconstruct the single lap's points from the segment endpoints.
+  const first = course.segments[0];
+  const lapPoints: TrackPoint[] = [
+    { lat: first.startLat, lon: first.startLon, elevation: first.startElevation },
+  ];
+  for (const seg of course.segments) {
+    lapPoints.push({
+      lat: seg.endLat,
+      lon: seg.endLon,
+      elevation: seg.endElevation,
+    });
+  }
+
+  // Append the lap (minus its duplicated seam start point) n-1 more times.
+  const expanded: TrackPoint[] = [...lapPoints];
+  const tail = lapPoints.slice(1);
+  for (let lap = 1; lap < n; lap++) expanded.push(...tail);
+
+  return buildCourse(expanded, { name: course.name });
+}
+
+/**
  * Identify climbs using a forward sliding window.
  * Climb starts when avg forward grade >3% over 100m.
  * Climb ends when avg forward grade <1% over 100m.
