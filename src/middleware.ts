@@ -145,8 +145,13 @@ export async function middleware(request: NextRequest) {
     }
   }
 
+  // Forward x-pathname to all server components — used by Blood Engine's
+  // MembersHeader and any other component that needs the current route.
+  const fwdHeaders = new Headers(request.headers);
+  fwdHeaders.set("x-pathname", pathname);
+
   const response = NextResponse.next({
-    request: { headers: request.headers },
+    request: { headers: fwdHeaders },
   });
 
   if (goHeroAssigned) {

@@ -53,6 +53,7 @@ const NAV_SECTIONS: NavSection[] = [
       { href: "/admin/measurement", label: "Measurement", icon: "pulse" },
       { href: "/admin/funnel", label: "Funnel", icon: "funnel" },
       { href: "/admin/health", label: "Health", icon: "heart" },
+      { href: "/admin/blood-engine/waitlist", label: "Blood Engine", icon: "clipboard" },
       { href: "/admin/newsletter", label: "Newsletter", icon: "newspaper" },
       { href: "/admin/diagnostic", label: "Plateau Diagnostic", icon: "trending" },
       { href: "/admin/diagnostics", label: "Diagnostics", icon: "beaker" },

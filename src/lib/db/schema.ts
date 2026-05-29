@@ -1940,3 +1940,76 @@ export const claimEmbeddings = pgTable(
   },
   (t) => [uniqueIndex("claim_embeddings_claim_id_uniq").on(t.claimId)]
 );
+
+// ═══════════════════════════════════════════════════════════════════════
+// Blood Engine — bloodwork interpretation product
+// ═══════════════════════════════════════════════════════════════════════
+
+export const bloodEngineUsers = pgTable(
+  "blood_engine_users",
+  {
+    id: serial("id").primaryKey(),
+    email: text("email").notNull().unique(),
+    hasAccess: boolean("has_access").notNull().default(false),
+    stripeCustomerId: text("stripe_customer_id"),
+    stripeSessionId: text("stripe_session_id"),
+    accessGrantedAt: timestamp("access_granted_at", { withTimezone: true }),
+    tosAcceptedAt: timestamp("tos_accepted_at", { withTimezone: true }),
+    tosVersion: text("tos_version"),
+    lastLoginAt: timestamp("last_login_at", { withTimezone: true }),
+    createdAt: timestamp("created_at", { withTimezone: true }).notNull().defaultNow(),
+  },
+  (table) => [index("blood_engine_users_email_idx").on(table.email)]
+);
+
+export const bloodReports = pgTable(
+  "blood_reports",
+  {
+    id: serial("id").primaryKey(),
+    userId: integer("user_id").notNull().references(() => bloodEngineUsers.id, { onDelete: "cascade" }),
+    drawDate: date("draw_date"),
+    context: jsonb("context").notNull(),
+    results: jsonb("results").notNull(),
+    interpretation: jsonb("interpretation"),
+    promptVersion: text("prompt_version"),
+    retestDueAt: timestamp("retest_due_at", { withTimezone: true }),
+    retestNudgeSentAt: timestamp("retest_nudge_sent_at", { withTimezone: true }),
+    createdAt: timestamp("created_at", { withTimezone: true }).notNull().defaultNow(),
+  },
+  (table) => [
+    index("blood_reports_user_id_idx").on(table.userId),
+    index("blood_reports_retest_due_idx").on(table.retestDueAt),
+  ]
+);
+
+export const bloodEngineWaitlist = pgTable(
+  "blood_engine_waitlist",
+  {
+    id: serial("id").primaryKey(),
+    email: text("email").notNull().unique(),
+    source: text("source"),
+    referrer: text("referrer"),
+    userAgent: text("user_agent"),
+    ip: text("ip"),
+    notifiedAt: timestamp("notified_at", { withTimezone: true }),
+    unsubscribedAt: timestamp("unsubscribed_at", { withTimezone: true }),
+    createdAt: timestamp("created_at", { withTimezone: true }).notNull().defaultNow(),
+  },
+  (table) => [
+    index("blood_engine_waitlist_created_at_idx").on(table.createdAt),
+    index("blood_engine_waitlist_source_idx").on(table.source),
+  ]
+);
+
+export const bloodEngineApiCalls = pgTable(
+  "blood_engine_api_calls",
+  {
+    id: serial("id").primaryKey(),
+    userId: integer("user_id").notNull().references(() => bloodEngineUsers.id, { onDelete: "cascade" }),
+    action: text("action").notNull(),
+    createdAt: timestamp("created_at", { withTimezone: true }).notNull().defaultNow(),
+  },
+  (table) => [
+    index("blood_engine_api_calls_user_action_idx").on(table.userId, table.action, table.createdAt),
+  ]
+);

@@ -142,6 +142,7 @@ export const NAV_ITEMS: NavItem[] = [
       { label: "FTP Zones", href: "/tools/ftp-zones" },
       { label: "HR Zones", href: "/tools/hr-zones" },
       { label: "W/kg Calculator", href: "/tools/wkg" },
+      { label: "Blood Engine", href: "/blood-engine" },
       { label: "Tyre Pressure", href: "/tools/tyre-pressure" },
       { label: "Race Weight", href: "/tools/race-weight" },
       { label: "In-Ride Fuelling", href: "/tools/fuelling" },
