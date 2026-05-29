@@ -12,6 +12,7 @@ import type { CtaDescriptor, RetrievedChunk } from "./types";
 import type { RiderProfile } from "@/lib/rider-profile/types";
 import type { SeedContext } from "./seed";
 import { seedToPromptSection } from "./seed";
+import { renderCorrectionsBlock } from "./corrections";
 
 const CORE_PERSONA = `You are Ask Roadman — the on-site cycling performance assistant for RoadmanCycling.com, hosted by Anthony Walsh.
 
@@ -130,6 +131,13 @@ export function buildSystemPrompt(input: BuildPromptInput): string {
   const seedBlock = input.seed
     ? [`---`, `SEED CONTEXT (handed off from the rider's saved result)`, seedToPromptSection(input.seed)]
     : [];
+
+  // Corrections block is appended LAST so it sits closest to the user
+  // turn and clearly post-dates the retrieved chunks — the model treats
+  // the most recent override as authoritative.
+  const corrections = renderCorrectionsBlock();
+  const correctionsBlock = corrections ? [`---`, corrections] : [];
+
   return [
     CORE_PERSONA,
     VOICE_RULES,
@@ -148,5 +156,6 @@ export function buildSystemPrompt(input: BuildPromptInput): string {
     `---`,
     `RETRIEVED ROADMAN SOURCES (ground every claim here)`,
     formatChunks(input.chunks),
+    ...correctionsBlock,
   ].join("\n\n");
 }

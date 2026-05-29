@@ -20,6 +20,7 @@
 
 import Anthropic from "@anthropic-ai/sdk";
 import { detectSafety, buildSafeResponse, postFilterCitations } from "./safety";
+import { detectKnownErrors } from "./corrections";
 import { classifyIntent } from "./intent";
 import { retrieve } from "./retrieval";
 import { pickCta } from "./cta";
@@ -165,7 +166,14 @@ export async function streamAnswer(
     full.text,
     retrieval.chunks.map((c) => c.title),
   );
-  const flagged = flaggedInvented.length > 0;
+  const knownErrorHits = detectKnownErrors(full.text);
+  if (knownErrorHits.length > 0) {
+    console.error(
+      "[ask/orchestrator] known-error override leaked through:",
+      knownErrorHits.map((h) => h.id).join(", "),
+    );
+  }
+  const flagged = flaggedInvented.length > 0 || knownErrorHits.length > 0;
 
   let assistantId: string | null = null;
   if (!input.sessionEphemeral) {
@@ -182,7 +190,12 @@ export async function streamAnswer(
           excerpt: c.excerpt.slice(0, 280),
         })),
         ctaRecommended: cta.key,
-        safetyFlags: flagged ? ["invented_citation"] : [],
+        safetyFlags: [
+          ...(flaggedInvented.length > 0 ? ["invented_citation"] : []),
+          ...(knownErrorHits.length > 0
+            ? knownErrorHits.map((h) => `known_error:${h.id}`)
+            : []),
+        ],
         confidence: classification.confidence,
         model: classification.deep ? MODEL_DEEP : MODEL_FAST,
         inputTokens: full.inputTokens ?? null,

@@ -30,6 +30,7 @@
     "seed:beehiiv:plateau:dry": "tsx scripts/seed-beehiiv-plateau.ts --dry-run",
     "seed:brand-prompts": "tsx scripts/seed-brand-prompts.ts",
     "smoke:plateau": "tsx scripts/plateau-smoke.ts",
+    "qa:ask": "tsx scripts/qa-ask-roadman.ts",
     "enrich:transcripts": "tsx scripts/enrich-transcripts.ts",
     "repurpose:episode": "tsx scripts/repurpose-episode.ts",
     "repurpose:latest": "tsx scripts/repurpose-episode.ts --latest",
