@@ -40,10 +40,10 @@ export function CurrentModuleCard({ module, allComplete }: CurrentModuleCardProp
         </p>
         <div className="flex flex-col sm:flex-row gap-3 sm:items-center">
           <Link
-            href="/community/not-done-yet?from=method-grad"
+            href="/method/whats-next"
             className="inline-flex items-center gap-2 rounded-md bg-coral hover:bg-coral-hover px-6 py-3 font-heading uppercase tracking-wider text-off-white shadow-[var(--shadow-glow-coral)] transition-all"
           >
-            Continue into Not Done Yet →
+            See what&apos;s next →
           </Link>
           <Link
             href="/method/account"

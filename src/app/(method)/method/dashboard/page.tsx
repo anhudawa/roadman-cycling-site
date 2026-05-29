@@ -3,6 +3,8 @@ import Link from "next/link";
 import { Container } from "@/components/layout/Container";
 import { getMethodSession } from "@/lib/method/auth";
 import { getProgressSummary } from "@/lib/method/progress";
+import { getOnboardingByEnrollment } from "@/lib/method/onboarding/store";
+import type { MethodOnboardingRow } from "@/lib/method/schema";
 import { isModuleUnlocked } from "@/lib/method/access";
 import { METHOD_MODULES, type MethodModule } from "@/lib/method/modules";
 import {
@@ -39,6 +41,12 @@ export default async function MethodDashboard() {
 
   const enrollment = session.enrollment;
   const progress = await getProgressSummary(enrollment.id);
+  let onboarding: MethodOnboardingRow | null = null;
+  try {
+    onboarding = await getOnboardingByEnrollment(enrollment.id);
+  } catch (err) {
+    console.error("[method/dashboard] onboarding read failed:", err);
+  }
 
   const nextModule = pickNextModule(enrollment, progress.completedSlugs);
   const allComplete = progress.completedCount === progress.totalCount;
@@ -125,7 +133,7 @@ export default async function MethodDashboard() {
       </section>
 
       <div className="grid gap-6 lg:grid-cols-2">
-        <RiderProfileTile />
+        <RiderProfileTile onboarding={onboarding} />
         <FuelPlannerTile />
       </div>
 
@@ -223,7 +231,12 @@ function GraduationBanner({ firstName }: { firstName: string | null }) {
   );
 }
 
-function RiderProfileTile() {
+function RiderProfileTile({
+  onboarding,
+}: {
+  onboarding: MethodOnboardingRow | null;
+}) {
+  const hasPlan = onboarding !== null;
   return (
     <section
       aria-label="Rider profile"
@@ -236,22 +249,40 @@ function RiderProfileTile() {
       <div className="relative grid gap-4 md:grid-cols-[1fr_auto] md:items-center">
         <div>
           <p className="font-heading text-xs tracking-[0.3em] text-coral mb-2">
-            START HERE · RIDER PROFILE
+            {hasPlan ? "YOUR PLAN · RIDER PROFILE" : "START HERE · RIDER PROFILE"}
           </p>
-          <h2 className="font-heading uppercase leading-[0.95] text-2xl md:text-3xl mb-2">
-            Tune the system to you.
-          </h2>
-          <p className="text-foreground-muted max-w-xl">
-            Three minutes on your goal, your hours and your history. It sets
-            how you run the twelve weeks — and, on Premium, the plan we build
-            around your Week-1 audit.
-          </p>
+          {hasPlan ? (
+            <>
+              <h2 className="font-heading uppercase leading-[0.95] text-2xl md:text-3xl mb-2">
+                {onboarding.planName}
+              </h2>
+              <p className="text-foreground-muted max-w-xl">
+                Matched to your goal, {onboarding.hours}h/week and{" "}
+                {onboarding.level} level
+                {onboarding.weeksToEvent !== null
+                  ? ` · ${onboarding.weeksToEvent} weeks to your event`
+                  : ""}
+                . Retake any time your goal or availability changes.
+              </p>
+            </>
+          ) : (
+            <>
+              <h2 className="font-heading uppercase leading-[0.95] text-2xl md:text-3xl mb-2">
+                Tune the system to you.
+              </h2>
+              <p className="text-foreground-muted max-w-xl">
+                Three minutes on your goal, your hours and your history. It sets
+                how you run the twelve weeks — and, on Premium, the plan we build
+                around your Week-1 audit.
+              </p>
+            </>
+          )}
         </div>
         <Link
           href="/method/onboarding"
           className="self-start md:self-center font-heading uppercase tracking-wider text-sm bg-coral text-charcoal hover:bg-coral-hover px-5 py-3 rounded-sm transition-colors whitespace-nowrap"
         >
-          Build my profile →
+          {hasPlan ? "Retake →" : "Build my profile →"}
         </Link>
       </div>
     </section>

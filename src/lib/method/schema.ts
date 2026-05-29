@@ -113,3 +113,42 @@ export type MethodEnrollment = typeof methodEnrollments.$inferSelect;
 export type NewMethodEnrollment = typeof methodEnrollments.$inferInsert;
 export type MethodProgressRow = typeof methodProgress.$inferSelect;
 export type MethodLoginToken = typeof methodLoginTokens.$inferSelect;
+
+/**
+ * Persisted result of the onboarding quiz (goal × hours × level → plan).
+ *
+ * One current recommendation per enrollment (unique enrollmentId, upserted
+ * on retake), so the dashboard and account can surface the rider's saved
+ * plan and the ops team can fulfil the matching TrainingPeaks block. Mirrors
+ * what the onboarding API previously only logged to stdout.
+ */
+export const methodOnboarding = pgTable(
+  "method_onboarding",
+  {
+    id: serial("id").primaryKey(),
+    enrollmentId: integer("enrollment_id")
+      .notNull()
+      .references(() => methodEnrollments.id, { onDelete: "cascade" }),
+    planCode: text("plan_code").notNull(),
+    planName: text("plan_name").notNull(),
+    goal: text("goal").notNull(),
+    hours: integer("hours").notNull(),
+    level: text("level").notNull(),
+    /** Optional — calibrates zones, not plan selection. */
+    ftp: integer("ftp"),
+    /** Optional ISO date (YYYY-MM-DD). */
+    eventDate: text("event_date"),
+    /** Optional — weeks until target event at time of submission. */
+    weeksToEvent: integer("weeks_to_event"),
+    createdAt: timestamp("created_at", { withTimezone: true }).notNull().defaultNow(),
+    updatedAt: timestamp("updated_at", { withTimezone: true }).notNull().defaultNow(),
+  },
+  (table) => [
+    // Upsert target — a retake replaces the rider's current recommendation
+    // rather than spawning a second row.
+    uniqueIndex("method_onboarding_enrollment_unique").on(table.enrollmentId),
+  ],
+);
+
+export type MethodOnboardingRow = typeof methodOnboarding.$inferSelect;
+export type NewMethodOnboardingRow = typeof methodOnboarding.$inferInsert;
