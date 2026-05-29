@@ -31,6 +31,11 @@ export const methodEnrollments = pgTable(
     id: serial("id").primaryKey(),
     email: text("email").notNull().unique(),
     name: text("name"),
+    // 'standard' ($297) | 'premium' ($397). Captured at checkout so the
+    // webhook + members area can gate Premium-only fulfilment (personalised
+    // TrainingPeaks plan, mid-course adjustment, NDY trial). Source of truth
+    // for entitlement; `amount_cents` is the audited paid figure from Stripe.
+    tier: text("tier").notNull().default("standard"),
     // 'pending' | 'active' | 'refunded' | 'cancelled'
     // 'pending' = checkout started, webhook hasn't fired yet.
     // 'active'  = paid + access granted.

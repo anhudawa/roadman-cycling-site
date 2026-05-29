@@ -39,7 +39,11 @@ export default async function MethodAccountPage() {
 
   const enrollment = session.enrollment;
   const progress = await getProgressSummary(enrollment.id);
-  const tier = inferTier(enrollment.amountCents);
+  const tier = resolveTier(enrollment.tier, enrollment.amountCents);
+  const isPremium = tier === "Premium";
+  const ndyTrialUrl =
+    process.env.METHOD_NDY_TRIAL_URL ??
+    "/community/not-done-yet?from=method-premium";
   const billingPortalUrl = process.env.STRIPE_METHOD_BILLING_PORTAL_URL ?? null;
   const supportEmail =
     process.env.METHOD_SUPPORT_EMAIL ?? "sarah@roadmancycling.com";
@@ -146,6 +150,46 @@ export default async function MethodAccountPage() {
         <ResetProgressButton completedCount={progress.completedCount} />
       </Section>
 
+      <section className="rounded-xl border border-coral/30 bg-gradient-to-br from-deep-purple/30 via-charcoal/70 to-charcoal p-6 md:p-8">
+        <p className="font-heading text-xs tracking-[0.3em] text-coral mb-3">
+          WHERE THE METHOD LEADS
+        </p>
+        <h2 className="font-heading uppercase tracking-wider text-xl md:text-2xl mb-3">
+          Not Done Yet
+        </h2>
+        {isPremium ? (
+          <>
+            <p className="text-foreground-muted mb-5 max-w-xl">
+              Your Premium enrolment includes priority access to a Not Done Yet
+              trial — the ongoing coaching community where the Method framework
+              gets sharpened week after week: live calls with Anthony, updated
+              TrainingPeaks plans, and a cohort training to the same standard.
+            </p>
+            <a
+              href={ndyTrialUrl}
+              className="inline-flex items-center gap-2 rounded-md bg-coral hover:bg-coral-hover px-5 py-2.5 font-heading uppercase tracking-wider text-sm text-off-white shadow-[var(--shadow-glow-coral)] transition-all active:scale-[0.97]"
+            >
+              Claim your Not Done Yet trial →
+            </a>
+          </>
+        ) : (
+          <>
+            <p className="text-foreground-muted mb-5 max-w-xl">
+              The Method is the system. Not Done Yet is where riders keep it
+              sharp — weekly live coaching with Anthony, updated TrainingPeaks
+              plans, and the accountability of a cohort. Most graduates who
+              keep climbing carry on here.
+            </p>
+            <a
+              href="/community/not-done-yet?from=method-account"
+              className="inline-flex items-center gap-2 rounded-md border border-coral/50 hover:bg-coral hover:text-off-white px-5 py-2.5 font-heading uppercase tracking-wider text-sm text-coral transition-colors active:scale-[0.97]"
+            >
+              See Not Done Yet →
+            </a>
+          </>
+        )}
+      </section>
+
       <Section title="Support">
         <p className="text-foreground-muted mb-3">
           Stuck on the work, the protocol, or the platform? Write to us. We
@@ -166,9 +210,15 @@ export default async function MethodAccountPage() {
   );
 }
 
-function inferTier(amountCents: number | null): string {
-  if (!amountCents) return "Standard";
-  return amountCents >= PREMIUM_THRESHOLD_CENTS ? "Premium" : "Standard";
+/**
+ * The `tier` column is the source of truth (set at checkout). For rows
+ * created before the column existed it defaults to "standard", so we let a
+ * Premium-sized payment override an apparent Standard tier as a corrective.
+ */
+function resolveTier(tier: string | null, amountCents: number | null): string {
+  if (tier === "premium") return "Premium";
+  if (amountCents && amountCents >= PREMIUM_THRESHOLD_CENTS) return "Premium";
+  return "Standard";
 }
 
 function daysSince(start: Date | null): number {

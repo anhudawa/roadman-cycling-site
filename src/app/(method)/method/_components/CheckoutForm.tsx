@@ -1,11 +1,13 @@
 "use client";
 
 import { useState, type FormEvent } from "react";
+import { METHOD_TIER_INFO, normaliseTier, type MethodTier } from "@/lib/method/tiers";
 
-const PRICE_DISPLAY =
-  process.env.NEXT_PUBLIC_METHOD_PRICE_LABEL ?? "$297 · One payment · Lifetime access";
-
-export function CheckoutForm() {
+export function CheckoutForm({ tier = "standard" }: { tier?: MethodTier }) {
+  const selectedTier = normaliseTier(tier);
+  const priceDisplay =
+    process.env.NEXT_PUBLIC_METHOD_PRICE_LABEL ??
+    METHOD_TIER_INFO[selectedTier].checkoutLabel;
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [pending, setPending] = useState(false);
@@ -22,6 +24,7 @@ export function CheckoutForm() {
         body: JSON.stringify({
           name: name.trim(),
           email: email.trim().toLowerCase(),
+          tier: selectedTier,
         }),
       });
       const payload = (await res.json().catch(() => ({}))) as {
@@ -43,8 +46,9 @@ export function CheckoutForm() {
   return (
     <form onSubmit={onSubmit} className="grid gap-4">
       <p className="font-heading uppercase tracking-wider text-coral text-sm">
-        {PRICE_DISPLAY}
+        {priceDisplay}
       </p>
+      <input type="hidden" name="tier" value={selectedTier} />
       <label className="grid gap-2">
         <span className="font-heading text-xs tracking-[0.25em] text-foreground-muted uppercase">
           Your name

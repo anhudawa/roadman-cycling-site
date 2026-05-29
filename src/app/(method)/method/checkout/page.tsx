@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Container } from "@/components/layout/Container";
 import { CheckoutForm } from "../_components/CheckoutForm";
 import { Reveal } from "../_components/sales/Reveal";
+import { METHOD_TESTIMONIALS } from "../_components/sales/data";
 
 export const metadata: Metadata = {
   title: "Join · The Roadman Method",
@@ -32,7 +33,7 @@ export default async function MethodCheckoutPage({
           </div>
 
           <aside className="lg:sticky lg:top-24 lg:self-start">
-            <CheckoutCard cancelled={cancelled} />
+            <CheckoutCard cancelled={cancelled} tier={tier} />
           </aside>
         </div>
       </Container>
@@ -63,7 +64,13 @@ function Hero() {
   );
 }
 
-function CheckoutCard({ cancelled }: { cancelled: boolean }) {
+function CheckoutCard({
+  cancelled,
+  tier,
+}: {
+  cancelled: boolean;
+  tier: "standard" | "premium";
+}) {
   return (
     <div className="rounded-sm border border-coral/30 bg-[color:var(--color-elevated)] p-6 md:p-8 shadow-[0_30px_80px_-30px_rgba(241,99,99,0.3)]">
       {cancelled && (
@@ -75,12 +82,12 @@ function CheckoutCard({ cancelled }: { cancelled: boolean }) {
         </p>
       )}
       <p className="font-heading text-xs tracking-[0.4em] text-foreground-muted mb-2">
-        ENROL
+        ENROL — {tier === "premium" ? "PREMIUM" : "STANDARD"}
       </p>
       <p className="font-heading uppercase text-3xl text-off-white leading-tight mb-6">
         Get The Method.
       </p>
-      <CheckoutForm />
+      <CheckoutForm tier={tier} />
       <ul className="mt-7 pt-6 border-t border-white/10 space-y-3 text-xs md:text-sm text-foreground-muted">
         <Reassurance>
           Secure checkout handled by Stripe. We never see or store your card
@@ -246,19 +253,19 @@ function TrustBand() {
       </p>
 
       <div className="mt-10 grid gap-5 md:grid-cols-3">
-        {MEMBER_QUOTES.map((q) => (
+        {METHOD_TESTIMONIALS.slice(0, 3).map((q) => (
           <div
-            key={q.who}
+            key={q.member}
             className="rounded-sm border border-white/10 bg-[color:var(--color-elevated)]/40 p-6"
           >
             <p className="font-heading uppercase text-xl text-coral leading-tight mb-3">
               {q.headline}
             </p>
             <p className="text-sm text-off-white/90 leading-relaxed mb-4">
-              {q.detail}
+              {q.body}
             </p>
             <p className="font-heading text-xs tracking-[0.3em] text-foreground-muted uppercase">
-              — {q.who}
+              — {q.member}
             </p>
           </div>
         ))}
@@ -372,23 +379,3 @@ const STATS: ReadonlyArray<{ metric: string; label: string }> = [
   { metric: "300+", label: "Expert interviews" },
 ];
 
-const MEMBER_QUOTES = [
-  {
-    headline: "Cat 3 to Cat 1.",
-    detail:
-      "Eighteen months in the system. The structure was the difference, not the volume.",
-    who: "James, 41",
-  },
-  {
-    headline: "20% body fat to 7%.",
-    detail:
-      "Without restriction, without losing power. Race-week W/kg up 12%.",
-    who: "Mark, 47",
-  },
-  {
-    headline: "Women's National Series.",
-    detail:
-      "From group-ride survivor to top-ten in the local national series — at 44, after a six-year break.",
-    who: "Sarah, 44",
-  },
-] as const;

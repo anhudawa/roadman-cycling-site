@@ -31,21 +31,18 @@ export function DiscussionCTA({ moduleTitle, weekIndex, url }: DiscussionCTAProp
             Discuss · Not Done Yet
           </h2>
           <p className="text-sm text-foreground-muted mb-4 leading-relaxed">
-            The Module {week} thread opens inside the community soon —
-            compare notes on{" "}
-            <span className="text-off-white">{moduleTitle}</span> with the rest
-            of the cohort.
+            Want to compare notes on{" "}
+            <span className="text-off-white">{moduleTitle}</span> with riders
+            working the same system? That conversation lives inside Not Done
+            Yet — weekly calls with Anthony and a cohort going through the same
+            twelve weeks.
           </p>
-          <span className="inline-flex items-center gap-2 rounded-md border border-white/10 bg-charcoal/80 px-4 py-2 font-heading uppercase tracking-wider text-foreground-muted text-sm">
-            <span
-              aria-hidden
-              className="relative flex h-1.5 w-1.5"
-            >
-              <span className="absolute inset-0 animate-ping rounded-full bg-coral/60" />
-              <span className="relative h-1.5 w-1.5 rounded-full bg-coral" />
-            </span>
-            Threads coming soon
-          </span>
+          <a
+            href="/community/not-done-yet?from=method-module"
+            className="inline-flex items-center gap-2 rounded-md border border-coral/40 bg-coral/10 hover:bg-coral/15 px-4 py-2 font-heading uppercase tracking-wider text-coral text-sm transition-all active:scale-[0.97]"
+          >
+            See Not Done Yet →
+          </a>
         </div>
       </section>
     );

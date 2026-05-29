@@ -124,7 +124,10 @@ export default async function MethodDashboard() {
         ))}
       </section>
 
-      <FuelPlannerTile />
+      <div className="grid gap-6 lg:grid-cols-2">
+        <RiderProfileTile />
+        <FuelPlannerTile />
+      </div>
 
       <div className="grid gap-6 lg:grid-cols-2">
         <RecentActivity completions={progress.completions} />
@@ -215,6 +218,41 @@ function GraduationBanner({ firstName }: { firstName: string | null }) {
             your next event, or hand the framework to a training partner.
           </p>
         </div>
+      </div>
+    </section>
+  );
+}
+
+function RiderProfileTile() {
+  return (
+    <section
+      aria-label="Rider profile"
+      className="relative overflow-hidden rounded-xl border border-white/10 bg-gradient-to-br from-deep-purple/30 via-charcoal to-charcoal p-6 md:p-8"
+    >
+      <div
+        aria-hidden
+        className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,_rgba(241,99,99,0.12)_0%,_transparent_60%)]"
+      />
+      <div className="relative grid gap-4 md:grid-cols-[1fr_auto] md:items-center">
+        <div>
+          <p className="font-heading text-xs tracking-[0.3em] text-coral mb-2">
+            START HERE · RIDER PROFILE
+          </p>
+          <h2 className="font-heading uppercase leading-[0.95] text-2xl md:text-3xl mb-2">
+            Tune the system to you.
+          </h2>
+          <p className="text-foreground-muted max-w-xl">
+            Three minutes on your goal, your hours and your history. It sets
+            how you run the twelve weeks — and, on Premium, the plan we build
+            around your Week-1 audit.
+          </p>
+        </div>
+        <Link
+          href="/method/onboarding"
+          className="self-start md:self-center font-heading uppercase tracking-wider text-sm bg-coral text-charcoal hover:bg-coral-hover px-5 py-3 rounded-sm transition-colors whitespace-nowrap"
+        >
+          Build my profile →
+        </Link>
       </div>
     </section>
   );

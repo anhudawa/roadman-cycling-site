@@ -162,6 +162,8 @@ export const NAV_ITEMS: NavItem[] = [
     href: "/community/not-done-yet",
     children: [
       { label: "Find Your Fit", href: "/find-your-fit" },
+      { label: "The Roadman Method (Course)", href: "/method" },
+      { label: "Method vs Coaching", href: "/method-vs-coaching" },
       { label: "Masters Hub", href: "/masters" },
       { label: "Not Done Yet Coaching", href: "/community/not-done-yet" },
       { label: "Inner Circle", href: "/inner-circle" },

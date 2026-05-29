@@ -357,7 +357,7 @@ export default function HomePage() {
                 className="font-heading mb-4"
                 style={{ fontSize: "var(--text-section)" }}
               >
-                <GradientText as="span">FOUR STEPS. ONE DIRECTION.</GradientText>
+                <GradientText as="span">FIVE STEPS. ONE DIRECTION.</GradientText>
               </h2>
               <p className="text-foreground-muted max-w-2xl mx-auto text-lg">
                 Not every cyclist is ready for the same step. Start where
@@ -365,7 +365,7 @@ export default function HomePage() {
               </p>
             </ScrollReveal>
 
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4">
               {/* RUNG 1 — Free content. The way in. */}
               <ScrollReveal direction="up" delay={0}>
                 <Card className="p-6 h-full" hoverable={false}>
@@ -418,14 +418,42 @@ export default function HomePage() {
                 </Card>
               </ScrollReveal>
 
-              {/* RUNG 3 — Not Done Yet. The core membership. */}
+              {/* RUNG 3 — The Roadman Method. Self-paced course, the bridge
+                  between the free diagnostic and recurring coaching. */}
               <ScrollReveal direction="up" delay={0.16}>
+                <Card
+                  className="p-6 h-full border border-coral/40 rounded-lg bg-gradient-to-br from-background-elevated to-deep-purple/30"
+                  hoverable={false}
+                >
+                  <p className="font-heading text-[10px] tracking-[0.3em] text-coral mb-3">
+                    03 · $297 · SELF-PACED
+                  </p>
+                  <h3 className="font-heading text-2xl text-off-white mb-3">
+                    THE ROADMAN METHOD
+                  </h3>
+                  <p className="text-foreground-muted text-sm leading-relaxed mb-6">
+                    The five-pillar system as a 12-week course you run on your
+                    own time. One payment, lifetime access. The fastest way to
+                    train like the pros without a coach&apos;s retainer.
+                  </p>
+                  <Button
+                    href="/method"
+                    className="w-full"
+                    dataTrack="home_ladder_method"
+                  >
+                    Explore the Course
+                  </Button>
+                </Card>
+              </ScrollReveal>
+
+              {/* RUNG 4 — Not Done Yet. The core membership. */}
+              <ScrollReveal direction="up" delay={0.24}>
                 <Card
                   className="p-6 h-full border-rotating rounded-lg bg-gradient-to-br from-background-elevated to-deep-purple/30"
                   hoverable={false}
                 >
                   <p className="font-heading text-[10px] tracking-[0.3em] text-coral mb-3">
-                    03 · $195/MO
+                    04 · $195/MO
                   </p>
                   <h3 className="font-heading text-2xl text-off-white mb-3">
                     NOT DONE YET
@@ -445,14 +473,14 @@ export default function HomePage() {
                 </Card>
               </ScrollReveal>
 
-              {/* RUNG 4 — Inner Circle. The premium tier. */}
-              <ScrollReveal direction="up" delay={0.24}>
+              {/* RUNG 5 — Inner Circle. The premium tier. */}
+              <ScrollReveal direction="up" delay={0.32}>
                 <Card
                   className="p-6 h-full border-amber-500/40 rounded-lg bg-gradient-to-br from-background-elevated to-amber-900/20"
                   hoverable={false}
                 >
                   <p className="font-heading text-[10px] tracking-[0.3em] text-amber-400 mb-3">
-                    04 · $525/MO
+                    05 · $525/MO
                   </p>
                   <h3 className="font-heading text-2xl text-off-white mb-3">
                     INNER CIRCLE
@@ -482,10 +510,9 @@ export default function HomePage() {
                   <span className="text-coral">WHEN IT WORKS</span>
                 </h3>
                 <p className="text-foreground-muted text-sm md:text-base leading-relaxed">
-                  Cat 3 to Cat 1. Body fat from 20% to 7%. Women&apos;s
-                  National Series results. Riders moving from
-                  &ldquo;stuck&rdquo; to &ldquo;ahead of where they were
-                  a decade ago.&rdquo;
+                  Cat 3 to Cat 1. Body fat from 20% to 7%. FTP from 205w to
+                  295w. 4 w/kg at 52. Riders moving from &ldquo;stuck&rdquo;
+                  to &ldquo;ahead of where they were a decade ago.&rdquo;
                 </p>
               </div>
             </ScrollReveal>

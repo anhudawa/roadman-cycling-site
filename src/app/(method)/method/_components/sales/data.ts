@@ -306,5 +306,88 @@ export const FAQ = [
   },
 ] as const;
 
+/**
+ * Real, on-record member testimonials for the /method social-proof block.
+ *
+ * Every quote here is verifiable. Sources:
+ *  - src/lib/testimonials.ts (the centralised testimonial library used on
+ *    /proof, /coaching, /case-studies — quotes from Not Done Yet members
+ *    and Anthony's 1:1 coaching roster).
+ *  - src/lib/member-reviews.ts (reviews shown on the live homepage and on
+ *    the Roadman Cycling Trustpilot profile).
+ *
+ * NOTHING here is invented. If a slot has no real quote, it stays empty —
+ * we show fewer cards rather than padding with fiction. Shape mirrors the
+ * fields these libraries already expose so types stay consistent.
+ */
+export interface MethodTestimonial {
+  /** Pull-out headline result. Real, traceable numbers only. */
+  headline: string;
+  /** Verbatim (or lightly trimmed) quote in the member's own words. */
+  body: string;
+  /** Attribution as shown on the source. */
+  member: string;
+  /** Where this quote is published / can be verified. */
+  source: string;
+}
+
+export const METHOD_TESTIMONIALS: readonly MethodTestimonial[] = [
+  {
+    headline: "Cat 3 to Cat 1.",
+    body:
+      "One season with the system and I went from Cat 3 to Cat 1. The structured approach changed everything about how I train and race.",
+    member: "Daniel Stone, Roadman Cycling Club",
+    source: "src/lib/testimonials.ts",
+  },
+  {
+    headline: "20% body fat to 7%.",
+    body:
+      "Anthony set me on a dietary, mental and physical journey of true discovery. Average wattage doubled and now weekly 100km+ rides are the norm.",
+    member: "Chris O'Connor, Ireland · 84kg → 68kg",
+    source: "src/lib/testimonials.ts",
+  },
+  {
+    headline: "FTP 205w to 295w.",
+    body:
+      "I was an average sportive rider who had plateaued. Roadman custom built a plan to achieve my goals. I've gotten much more out of it than I ever imagined.",
+    member: "Damien Maloney, Ireland",
+    source: "src/lib/testimonials.ts",
+  },
+  {
+    headline: "+15% FTP at 52.",
+    body:
+      "This really works. I'm training so much less than last year, at lower intensities and not getting sick. FTP up 15%, hit 4 w/kg at age 52.",
+    member: "Brian Morrissey, 52yo shift worker",
+    source: "src/lib/testimonials.ts",
+  },
+  {
+    headline: "+30% FTP in 4 months.",
+    body:
+      "Working with Anthony I got over a 30% increase in my FTP power over a 4 month period. As a former professional who truly cares about your progress, it's great working with him.",
+    member: "Aidan, Ireland",
+    source: "src/lib/member-reviews.ts (live homepage + Trustpilot)",
+  },
+  {
+    headline: "Lost more weight than I imagined.",
+    body:
+      "Working with Anthony and his team, I have lost more weight than I could have ever imagined, my FTP has gone up and my power to weight ratio has increased significantly. Training has become fun and disciplined.",
+    member: "Simon Hill, United Kingdom",
+    source: "src/lib/member-reviews.ts (live homepage + Trustpilot)",
+  },
+] as const;
+
+/**
+ * Roadman Cycling aggregate rating on Trustpilot.
+ *
+ * Captured from the Roadman Cycling Trustpilot profile
+ * (https://www.trustpilot.com/review/roadmancycling.com). Update the
+ * numbers if the profile moves — do not invent them.
+ */
+export const TRUSTPILOT = {
+  score: 4.9,
+  reviewCount: 63,
+  url: "https://www.trustpilot.com/review/roadmancycling.com",
+} as const;
+
 export const COURSE_PRICE_STANDARD_USD = 297;
 export const COURSE_PRICE_PREMIUM_USD = 397;
