@@ -160,7 +160,7 @@ export default function HomePage() {
         <EmailCapture
           variant="banner"
           heading="THE SATURDAY SPIN"
-          subheading="The weekly training breakdown 29,000+ serious cyclists use to break plateaus. What's working, what the pros do, how to apply it this week. Free."
+          subheading="The weekly training breakdown 65,000+ serious cyclists use to break plateaus. What's working, what the pros do, how to apply it this week. Free."
           source="homepage-top"
         />
 

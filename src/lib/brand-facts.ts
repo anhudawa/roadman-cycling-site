@@ -81,9 +81,9 @@ export const BRAND_STATS = {
   // headline-safe figure. Update when the live count meaningfully shifts.
   youtubeSubscribers: 60_000,
   youtubeSubscribersLabel: "60,000+",
-  newsletterSubscribers: 29_000,
-  newsletterSubscribersLabel: "29K+",
-  newsletterSubscribersLongLabel: "29,000+",
+  newsletterSubscribers: 65_000,
+  newsletterSubscribersLabel: "65K+",
+  newsletterSubscribersLongLabel: "65,000+",
   newsletterOpenRate: "65%+",
   countriesReached: 18,
   countriesReachedLabel: "18",

@@ -10,14 +10,14 @@ import { fetchNewsletterIssues } from "@/lib/integrations/beehiiv";
 export const metadata: Metadata = {
   title: "The Saturday Spin — Weekly Cycling Newsletter",
   description:
-    "The weekly training breakdown 29,000+ serious cyclists read on Saturday. What's working, what the pros do, how to apply it this week. From Anthony. Free.",
+    "The weekly training breakdown 65,000+ serious cyclists read on Saturday. What's working, what the pros do, how to apply it this week. From Anthony. Free.",
   alternates: {
     canonical: "https://roadmancycling.com/newsletter",
   },
   openGraph: {
     title: "The Saturday Spin — Weekly Cycling Newsletter",
     description:
-      "The weekly training breakdown 29,000+ serious cyclists read on Saturday. What's working, what the pros do, how to apply it this week.",
+      "The weekly training breakdown 65,000+ serious cyclists read on Saturday. What's working, what the pros do, how to apply it this week.",
     type: "website",
     url: "https://roadmancycling.com/newsletter",
   },
@@ -76,7 +76,7 @@ export default async function NewsletterPage() {
 
             <ScrollReveal direction="up" delay={0.3}>
               <p className="text-foreground-subtle text-sm mt-6">
-                Join 29,000+ cyclists. One email a week. Unsubscribe anytime.
+                Join 65,000+ cyclists. One email a week. Unsubscribe anytime.
               </p>
             </ScrollReveal>
           </Container>
@@ -182,7 +182,7 @@ export default async function NewsletterPage() {
         <EmailCapture
           variant="banner"
           heading="STOP GUESSING. START KNOWING."
-          subheading="29,000+ cyclists get the week's sharpest training insights every Saturday. Join them."
+          subheading="65,000+ cyclists get the week's sharpest training insights every Saturday. Join them."
           source="newsletter-page-bottom"
         />
       </main>
