@@ -656,16 +656,6 @@ export const GLOSSARY_TERMS: GlossaryTerm[] = [
     relatedTool: "/tools/fuelling",
   },
   {
-    slug: "energy-availability",
-    term: "Energy Availability (EA)",
-    definition: "The calories remaining for normal physiological function after subtracting exercise energy expenditure from dietary intake, expressed per kilogram of fat-free mass. Chronic EA below 30 kcal/kg FFM/day is the clinical cutoff for RED-S risk.",
-    extendedDefinition: "EA = (energy intake − exercise energy expenditure) / fat-free mass. A 65kg cyclist with 55kg FFM consuming 2800 kcal/day and burning 1000 kcal in training has an EA of (2800 − 1000) / 55 = 33 kcal/kg FFM — just above the clinical threshold. Below 30 triggers hormonal disruption, immune suppression, and stress-fracture risk. EA is a more meaningful number than total calories because it accounts for training load and body composition.",
-    pillar: "nutrition",
-    relatedTerms: ["red-s", "fasted-training"],
-    relatedArticle: "/blog/cycling-body-composition-guide",
-    relatedTool: "/tools/energy-availability",
-  },
-  {
     slug: "ketone-esters",
     term: "Ketone Esters",
     definition: "Exogenous ketone supplements (primarily ketone monoester) used by some pro cycling teams as a recovery and performance aid, raising blood β-hydroxybutyrate without requiring a ketogenic diet.",

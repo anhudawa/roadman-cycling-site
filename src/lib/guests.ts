@@ -107,6 +107,12 @@ const NAME_ALIASES: Record<string, string> = {
   "Dr. Christian Schrot": "Christian Schrot",
   "Dr Christian Schrot": "Christian Schrot",
   "Darren Raferty": "Darren Rafferty",
+  // Case-only variants that previously slipped through dedup because
+  // the Map keys on the (case-sensitive) display name, while the slug
+  // is lower-cased — without these aliases the same person emitted two
+  // sitemap URLs with identical slugs.
+  "Greg Lemond": "Greg LeMond",
+  "Laurens ten Dam": "Laurens Ten Dam",
 };
 
 /** Known credentials for guests (enrichment data) */

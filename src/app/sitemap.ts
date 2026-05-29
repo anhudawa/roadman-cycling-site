@@ -221,6 +221,16 @@ function buildStaticSitemap(): MetadataRoute.Sitemap {
     { url: `${BASE_URL}/event-prep`, lastModified: new Date(), changeFrequency: "monthly", priority: 0.8 },
     { url: `${BASE_URL}/wrapped`, lastModified: new Date(), changeFrequency: "weekly", priority: 0.7 },
     { url: `${BASE_URL}/inner-circle`, lastModified: new Date(), changeFrequency: "monthly", priority: 0.8 },
+    // Training-plans pillar — top-level cycling-training-plans hub,
+    // indexable per its metadata. Lives here (not in buildPlanSitemap)
+    // because buildPlanSitemap covers programmatic /plan/[event]/[weeks]
+    // pages, while /training-plans is the marketing pillar above them.
+    {
+      url: `${BASE_URL}/training-plans`,
+      lastModified: new Date(),
+      changeFrequency: "weekly" as const,
+      priority: 0.85,
+    },
     // Training-camps hub + per-camp landing pages. /booking-confirmed
     // is robots:noindex so it stays out. Camp roster comes from
     // CAMP_LIST so we can't drift from the canonical config.

@@ -5,19 +5,20 @@ import { Header, Footer, Section, Container } from "@/components/layout";
 import { Button, Card, ScrollReveal, ParallaxImage } from "@/components/ui";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { ENTITY_IDS, SITE_ORIGIN } from "@/lib/brand-facts";
+import { slugifyGuestName } from "@/lib/guests";
 
 /**
- * Slug helper kept consistent with the visible Card href above so the
- * mentions array in JSON-LD points at the same /guests/[slug] target the
- * UI links to. Drops curly apostrophes and any non-alphanumeric, then
- * trims leading/trailing dashes.
+ * Slug helper that mirrors the canonical guest-page slug rule. We delegate
+ * to `slugifyGuestName` so the JSON-LD `mentions[].@id` URLs resolve to the
+ * exact same `/guests/<slug>#person` node emitted by /guests/[slug] — name
+ * aliases (e.g. "Professor Stephen Seiler" → "stephen-seiler") and
+ * diacritic normalisation (e.g. "Rosa Klöser" → "rosa-kloser") both apply.
+ * A previous local implementation skipped both and produced @ids that
+ * pointed at non-canonical (or 404) guest URLs for any name with a
+ * Dr/Professor prefix or an accented character.
  */
 function expertSlug(name: string) {
-  return name
-    .toLowerCase()
-    .replace(/['']/g, "")
-    .replace(/[^a-z0-9]+/g, "-")
-    .replace(/^-|-$/g, "");
+  return slugifyGuestName(name);
 }
 
 export const metadata: Metadata = {
@@ -375,7 +376,7 @@ export default function AboutPage() {
                 const style = categoryStyles[expert.category];
                 return (
                   <ScrollReveal key={expert.name} direction="up" delay={i * 0.04}>
-                    <Card className={`p-5 h-full border-l-2 ${style.border} card-shimmer`} href={`/guests/${expert.name.toLowerCase().replace(/['']/g, "").replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "")}`} glass>
+                    <Card className={`p-5 h-full border-l-2 ${style.border} card-shimmer`} href={`/guests/${expertSlug(expert.name)}`} glass>
                       <div className="flex items-start justify-between gap-3 mb-2">
                         <p className="font-heading text-lg text-off-white leading-tight group-hover:text-coral transition-colors">
                           {expert.name.toUpperCase()}
