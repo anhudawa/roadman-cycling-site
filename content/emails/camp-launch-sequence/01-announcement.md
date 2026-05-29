@@ -35,4 +35,4 @@ If you've ever messaged me about a camp, this is the one.
 *Notes for Beehiiv:*
 - *CTA links should render in coral (#F16363), bold.*
 - *Use the Bebas Neue style for any pull-quotes if a header pattern is added.*
-- *Audience: full list (29K). No segmentation needed for email 1.*
+- *Audience: full list (65K). No segmentation needed for email 1.*

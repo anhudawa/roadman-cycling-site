@@ -161,7 +161,7 @@ export async function fetchSubscriberGrowth(
         hasMore = false;
       } else {
         page++;
-        // Safety limit — with a ~30k subscriber list we cap pagination to stay sane
+        // Safety limit — with 60k+ subscribers, we can't page through all of them
         if (page > 5) hasMore = false;
       }
     }

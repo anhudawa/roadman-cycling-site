@@ -98,7 +98,7 @@ async function main() {
       currency: "USD",
       billingPeriod: null,
       description:
-        "Free weekly newsletter — 29,000+ subscribers. The best podcast takeaways of the week, one actionable training idea, and the single piece of gear / research / story that's worth your attention. 65%+ open rate.",
+        "Free weekly newsletter — 65,000+ subscribers. The best podcast takeaways of the week, one actionable training idea, and the single piece of gear / research / story that's worth your attention. 65%+ open rate.",
       whoItsFor:
         "Any cyclist who wants a short, signal-dense weekly read they'll actually open — written for riders who train around real life, not full-time.",
       url: `${SITE_ORIGIN}`,
