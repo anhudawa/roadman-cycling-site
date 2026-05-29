@@ -7,8 +7,9 @@ import type {
   PacingPlan,
   RiderProfile,
   SegmentResult,
+  WeatherTimeline,
 } from './types';
-import { segmentAirState } from './environment';
+import { segmentAirState, resolveEnvironmentAt } from './environment';
 import { normalizedPower, variabilityIndex } from './analysis';
 import {
   G,
@@ -206,6 +207,13 @@ interface SimulateCourseArgs {
    * which the bare pacing plan does not guarantee.
    */
   enforceWPrime?: { cp: number; wPrime: number; tau?: number };
+  /**
+   * Optional along-route weather timeline. When supplied, the effective
+   * environment for each segment is resolved at that segment's elapsed time, so
+   * conditions (temperature, wind speed/direction) evolve across a long day
+   * instead of being fixed. Absent → the base environment applies throughout.
+   */
+  weatherTimeline?: WeatherTimeline;
 }
 
 /**
@@ -238,7 +246,8 @@ export function simulateCourse(args: SimulateCourseArgs): CourseResult {
     v = args.initialSpeed;
   } else if (course.segments.length > 0) {
     const seg0 = course.segments[0];
-    const air0 = segmentAirState(environment, {
+    const env0 = resolveEnvironmentAt(environment, 0, args.weatherTimeline);
+    const air0 = segmentAirState(env0, {
       roadHeading: seg0.heading,
       altitude: (seg0.startElevation + seg0.endElevation) / 2,
     });
@@ -265,7 +274,10 @@ export function simulateCourse(args: SimulateCourseArgs): CourseResult {
     const seg = course.segments[i];
     let targetPower = pacing[i];
     const altitude = (seg.startElevation + seg.endElevation) / 2;
-    const air = segmentAirState(environment, { roadHeading: seg.heading, altitude });
+    // Resolve weather at this segment's start time so conditions evolve along
+    // the route; with no timeline this is exactly the base environment.
+    const segEnv = resolveEnvironmentAt(environment, totalTime, args.weatherTimeline);
+    const air = segmentAirState(segEnv, { roadHeading: seg.heading, altitude });
 
     const physics: SegmentPhysics = {
       gravTerm: totalMass * G * Math.sin(seg.gradient),

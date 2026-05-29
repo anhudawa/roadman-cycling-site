@@ -23,6 +23,8 @@ interface PredictBody {
   environment?: EnvironmentInputDTO;
   mode?: PredictMode;
   email?: string;
+  /** Optional along-route weather timeline; parsed defensively. */
+  weatherTimeline?: unknown;
 }
 
 const VALID_POSITIONS = new Set([
@@ -59,6 +61,37 @@ const VALID_RIDER_TYPES = new Set([
   "time_triallist",
   "ultra",
 ]);
+
+/**
+ * Defensively parse an optional along-route weather timeline from the request.
+ * Returns undefined when absent/invalid (the engine then uses the single
+ * environment). Coerces numbers, drops malformed samples, clamps to 24 entries.
+ */
+function parseWeatherTimeline(
+  raw: unknown,
+): import("@/lib/race-predictor/run").RunPredictArgs["weatherTimeline"] {
+  if (!Array.isArray(raw) || raw.length === 0) return undefined;
+  const num = (v: unknown): number | undefined =>
+    typeof v === "number" && Number.isFinite(v) ? v : undefined;
+  const samples = raw
+    .slice(0, 24)
+    .map((s) => {
+      if (typeof s !== "object" || s === null) return null;
+      const o = s as Record<string, unknown>;
+      const atSeconds = num(o.atSeconds);
+      if (atSeconds === undefined || atSeconds < 0) return null;
+      return {
+        atSeconds,
+        airTemperature: num(o.airTemperature),
+        relativeHumidity: num(o.relativeHumidity),
+        airPressure: num(o.airPressure),
+        windSpeed: num(o.windSpeed),
+        windDirection: num(o.windDirection),
+      };
+    })
+    .filter((s): s is NonNullable<typeof s> => s !== null);
+  return samples.length > 0 ? samples : undefined;
+}
 
 function validateRider(rider: RiderInputDTO | undefined): string | null {
   if (!rider) return "Missing rider profile.";
@@ -230,11 +263,13 @@ export async function POST(request: Request) {
   }
 
   const riderInput = body.rider as RiderInputDTO;
+  const weatherTimeline = parseWeatherTimeline(body.weatherTimeline);
   const run = runPrediction({
     course,
     rider: riderInput,
     environment: body.environment,
     mode,
+    weatherTimeline,
   });
 
   const prediction = await createPrediction({
@@ -257,6 +292,7 @@ export async function POST(request: Request) {
       totalDistanceKm: run.result.totalDistance / 1000,
       climbCount: course.climbs.length,
       splits: run.splits,
+      fueling: run.fueling,
       assumptions: {
         eventType: riderInput.eventType ?? "sportive",
         drafting: riderInput.drafting ?? "solo",

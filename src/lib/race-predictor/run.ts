@@ -8,6 +8,7 @@ import {
 } from "./constants";
 import { simulateCourse } from "./engine";
 import { checkpointSplits } from "./analysis";
+import { planFuelling, type FuellingPlan } from "./fueling";
 import { optimizePacing } from "./pacing";
 import { fitCpModel, sustainablePower } from "./rider";
 import {
@@ -26,6 +27,7 @@ import type {
   RiderProfile,
   RidingPosition,
   SurfaceType,
+  WeatherTimeline,
 } from "./types";
 
 export interface RiderInputDTO {
@@ -89,6 +91,8 @@ export interface RunPredictArgs {
   rider: RiderInputDTO;
   environment?: EnvironmentInputDTO;
   mode: PredictMode;
+  /** Optional along-route weather timeline (elapsed-time keyed). */
+  weatherTimeline?: WeatherTimeline;
 }
 
 export interface PredictionRunResult {
@@ -100,6 +104,8 @@ export interface PredictionRunResult {
   confidence: { low: number; high: number };
   /** Per-checkpoint timing splits (distance markers + climb feet/tops). */
   splits: CheckpointSplit[];
+  /** Fuelling & hydration plan for the predicted effort. */
+  fueling: FuellingPlan;
 }
 
 /**
@@ -247,6 +253,7 @@ export function runPrediction(args: RunPredictArgs): PredictionRunResult {
     rider,
     environment,
     pacing,
+    weatherTimeline: args.weatherTimeline,
   });
   const sustainable = sustainablePower(
     { ...cpModel, durabilityFactor: rider.powerProfile.durabilityFactor },
@@ -269,12 +276,23 @@ export function runPrediction(args: RunPredictArgs): PredictionRunResult {
     environment,
     pacing: adjustedPacing,
     enforceWPrime: { cp: cpModel.cp, wPrime: cpModel.wPrime },
+    weatherTimeline: args.weatherTimeline,
   });
 
   const precision = inferPrecision(args.rider);
   const confidence = confidenceBracket(result.totalTime, { precision });
   const insight = pickKeyInsight({ course: args.course, result, rider });
   const splits = checkpointSplits(args.course, result);
+  // Threshold proxy for fuelling intensity: align with the synthesis convention
+  // (p20min ≈ FTP × 1.05). Works for both supplied and synthesised curves.
+  const ftpW = Math.round(rider.powerProfile.p20min / 1.05);
+  const fueling = planFuelling({
+    durationS: result.totalTime,
+    normalizedPowerW: result.normalizedPower,
+    ftpW,
+    bodyMassKg: rider.bodyMass,
+    airTemperatureC: environment.airTemperature,
+  });
 
   return {
     rider,
@@ -284,5 +302,6 @@ export function runPrediction(args: RunPredictArgs): PredictionRunResult {
     insight,
     confidence,
     splits,
+    fueling,
   };
 }

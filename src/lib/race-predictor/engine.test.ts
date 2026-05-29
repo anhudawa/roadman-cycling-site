@@ -367,6 +367,34 @@ describe('simulateCourse — W′-balance enforcement', () => {
     }
   });
 
+  it('an along-route weather timeline that builds a headwind slows the prediction', () => {
+    // Flat east-bound course. Base: calm. Timeline: wind from the east (π/2)
+    // ramps from 0 to 10 m/s over the ride → growing headwind → slower than
+    // the no-timeline run, and the second half is slower than the first.
+    const course = gradeCourse([{ km: 30, gradePct: 0 }], 45, 100, 50);
+    const calm = simulateCourse({
+      course,
+      rider: FLAT_RIDER,
+      environment: CALM,
+      pacing: course.segments.map(() => 250),
+    });
+    const windy = simulateCourse({
+      course,
+      rider: FLAT_RIDER,
+      environment: CALM,
+      pacing: course.segments.map(() => 250),
+      weatherTimeline: [
+        { atSeconds: 0, windSpeed: 0, windDirection: Math.PI / 2 },
+        { atSeconds: 3600, windSpeed: 10, windDirection: Math.PI / 2 },
+      ],
+    });
+    expect(windy.totalTime).toBeGreaterThan(calm.totalTime);
+    const half = Math.floor(windy.segmentResults.length / 2);
+    const firstHalf = windy.segmentResults.slice(0, half).reduce((s, r) => s + r.duration, 0);
+    const secondHalf = windy.segmentResults.slice(half).reduce((s, r) => s + r.duration, 0);
+    expect(secondHalf).toBeGreaterThan(firstHalf);
+  });
+
   it('leaves a sub-CP plan untouched (battery only recovers)', () => {
     const course = gradeCourse([{ km: 10, gradePct: 0 }], 45, 100, 50);
     const easy = course.segments.map(() => 200);

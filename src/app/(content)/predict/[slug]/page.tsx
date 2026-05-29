@@ -8,6 +8,7 @@ import {
   PredictedTimeHero,
   ElevationProfile,
   SegmentTable,
+  SplitsTable,
   ScenarioCards,
   deriveDefaultScenarios,
   GapToCutoffBar,
@@ -21,7 +22,7 @@ import {
   getCourseBySlug,
   type CourseRow,
 } from "@/lib/race-predictor/store";
-import type { Course } from "@/lib/race-predictor/types";
+import type { Course, CheckpointSplit } from "@/lib/race-predictor/types";
 import { RACES } from "@/data/races";
 import { UpgradeForm } from "./upgrade-form";
 
@@ -143,6 +144,13 @@ export default async function PredictResultPage({ params }: PageProps) {
     (prediction.resultSummary?.insight as
       | { headline: string; body: string; tag?: string }
       | undefined) ?? null;
+
+  // Per-checkpoint split predictions persisted by POST /api/predict at
+  // prediction.resultSummary.splits. Surfaced as a free taste of the paid plan.
+  const rawSplits = prediction.resultSummary?.splits;
+  const splits: CheckpointSplit[] = Array.isArray(rawSplits)
+    ? (rawSplits as CheckpointSplit[])
+    : [];
 
   const avgSpeedKmh =
     distanceKm > 0 ? distanceKm / (prediction.predictedTimeS / 3600) : 0;
@@ -401,6 +409,27 @@ export default async function PredictResultPage({ params }: PageProps) {
                 pacingPlan={prediction.pacingPlan}
                 averageSpeed={avgSpeedKmh / 3.6}
               />
+            </Container>
+          </Section>
+        )}
+
+        {/* SPLIT TIMES — per-checkpoint pacing preview (free taste of the plan,
+            shown even before the email gate to entice the upgrade). */}
+        {splits.length > 0 && (
+          <Section background="charcoal" className="!py-8 md:!py-10">
+            <Container>
+              <div className="mb-5">
+                <p
+                  className="text-[0.65rem] tracking-[0.22em] uppercase text-coral mb-2"
+                  style={{ fontFamily: "var(--font-jetbrains-mono)" }}
+                >
+                  SPLITS · YOUR DAY IN TIME
+                </p>
+                <h2 className="font-heading text-3xl uppercase tracking-tight text-off-white">
+                  Checkpoint splits
+                </h2>
+              </div>
+              <SplitsTable splits={splits} />
             </Container>
           </Section>
         )}

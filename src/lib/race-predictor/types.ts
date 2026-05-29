@@ -72,6 +72,31 @@ export interface Environment {
   windDirection: number;
 }
 
+/**
+ * One sample on an along-route weather timeline. Conditions a rider meets
+ * change over a long day — the morning is cool and calm, the afternoon warms
+ * and the wind picks up and backs round. Each sample applies at `atSeconds`
+ * elapsed from the start; the engine interpolates between samples and layers
+ * them over the base `Environment` (any omitted field falls back to the base).
+ */
+export interface WeatherSample {
+  /** Elapsed seconds from the race start at which this sample applies. */
+  atSeconds: number;
+  /** °C */
+  airTemperature?: number;
+  /** 0-1 */
+  relativeHumidity?: number;
+  /** Pa */
+  airPressure?: number;
+  /** m/s */
+  windSpeed?: number;
+  /** Radians, meteorological (0 = wind FROM north). */
+  windDirection?: number;
+}
+
+/** An ordered along-route weather timeline (sorted by `atSeconds`). */
+export type WeatherTimeline = WeatherSample[];
+
 /** Computed air state for a single segment. */
 export interface SegmentAirState {
   airDensity: number;

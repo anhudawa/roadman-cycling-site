@@ -5,7 +5,9 @@ import {
   pressureAtAltitude,
   resolveWind,
   segmentAirState,
+  resolveEnvironmentAt,
 } from './environment';
+import type { Environment } from './types';
 
 describe('saturationVaporPressure (Tetens)', () => {
   it('matches expected value at 20°C (~2.34 kPa)', () => {
@@ -200,5 +202,63 @@ describe('segmentAirState', () => {
       { roadHeading: 0, altitude: 1500 },
     );
     expect(high.airDensity).toBeLessThan(sea.airDensity);
+  });
+});
+
+describe('resolveEnvironmentAt (along-route weather timeline)', () => {
+  const base: Environment = {
+    airTemperature: 10,
+    relativeHumidity: 0.6,
+    airPressure: 101325,
+    windSpeed: 2,
+    windDirection: 0,
+  };
+
+  it('returns the base environment unchanged when no timeline is given', () => {
+    expect(resolveEnvironmentAt(base, 5000)).toEqual(base);
+    expect(resolveEnvironmentAt(base, 5000, [])).toEqual(base);
+  });
+
+  it('interpolates linearly between two samples', () => {
+    const tl = [
+      { atSeconds: 0, airTemperature: 10, windSpeed: 2 },
+      { atSeconds: 3600, airTemperature: 20, windSpeed: 8 },
+    ];
+    const mid = resolveEnvironmentAt(base, 1800, tl);
+    expect(mid.airTemperature).toBeCloseTo(15, 6);
+    expect(mid.windSpeed).toBeCloseTo(5, 6);
+  });
+
+  it('holds the endpoints before the first and after the last sample', () => {
+    const tl = [
+      { atSeconds: 1000, airTemperature: 12 },
+      { atSeconds: 5000, airTemperature: 24 },
+    ];
+    expect(resolveEnvironmentAt(base, 0, tl).airTemperature).toBe(12);
+    expect(resolveEnvironmentAt(base, 10_000, tl).airTemperature).toBe(24);
+  });
+
+  it('falls back to the base value for fields a sample omits', () => {
+    const tl = [
+      { atSeconds: 0, windSpeed: 4 }, // no temperature
+      { atSeconds: 3600, windSpeed: 4 },
+    ];
+    const mid = resolveEnvironmentAt(base, 1800, tl);
+    expect(mid.airTemperature).toBe(base.airTemperature);
+    expect(mid.windSpeed).toBe(4);
+  });
+
+  it('interpolates wind direction along the shortest arc (wraparound)', () => {
+    // From 350° to 10° should pass through 0°, not sweep backwards through 180°.
+    const deg = (d: number) => (d * Math.PI) / 180;
+    const tl = [
+      { atSeconds: 0, windDirection: deg(350) },
+      { atSeconds: 100, windDirection: deg(10) },
+    ];
+    const mid = resolveEnvironmentAt(base, 50, tl);
+    const midDeg = (mid.windDirection * 180) / Math.PI;
+    // Halfway should be ~0° (=360°), not ~180°.
+    const distTo0 = Math.min(midDeg, 360 - midDeg);
+    expect(distTo0).toBeLessThan(2);
   });
 });
