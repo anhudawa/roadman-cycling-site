@@ -4,6 +4,7 @@ import { useCallback, useEffect, useRef, useState } from "react";
 import { useAskStream, type AskCitation } from "@/app/(marketing)/ask/use-ask-stream";
 import { MessageList } from "./MessageList";
 import { StarterPrompts } from "./StarterPrompts";
+import { AskGate } from "./AskGate";
 import { track } from "@/lib/analytics/events";
 
 export interface AskSeed {
@@ -21,6 +22,11 @@ function initialPromptFromSeed(seed: AskSeed | null): string {
     ? `Based on my "${seed.primaryCategoryLabel}" result from the ${seed.toolTitle.toLowerCase()}, what should I do first?`
     : `Based on my ${seed.toolTitle.toLowerCase()} result, what should I do first?`;
 }
+
+type AuthState =
+  | { kind: "loading" }
+  | { kind: "authed"; email: string }
+  | { kind: "anonymous"; initialError: string | null };
 
 export function AskRoadmanClient({
   seed = null,
@@ -41,13 +47,56 @@ export function AskRoadmanClient({
     if (seeded) return seeded;
     return initialQuestion;
   });
+  const [auth, setAuth] = useState<AuthState>({ kind: "loading" });
   const messagesRef = useRef<HTMLDivElement>(null);
   const pendingScrollRef = useRef(false);
   const hasMessages = messages.length > 0;
   const seedConsumedRef = useRef(false);
 
-  // Rehydrate any prior session so a returning user sees their history.
+  // Resolve auth state on mount. The gate-screen vs. chat-screen choice
+  // depends on whether the ask_session cookie is present and valid.
   useEffect(() => {
+    let cancelled = false;
+    (async () => {
+      const initialError = (() => {
+        if (typeof window === "undefined") return null;
+        const params = new URLSearchParams(window.location.search);
+        return params.get("auth") === "invalid"
+          ? "That link expired or was already used. Enter your email to get a fresh one."
+          : null;
+      })();
+      try {
+        const res = await fetch("/api/ask/auth/me", { cache: "no-store" });
+        if (cancelled) return;
+        if (res.ok) {
+          const body = (await res.json()) as { authenticated?: boolean; email?: string };
+          if (body.authenticated && typeof body.email === "string") {
+            setAuth({ kind: "authed", email: body.email });
+            // Strip the ?auth=ok param so a refresh doesn't keep it.
+            if (typeof window !== "undefined") {
+              const url = new URL(window.location.href);
+              if (url.searchParams.has("auth")) {
+                url.searchParams.delete("auth");
+                window.history.replaceState(null, "", url.toString());
+              }
+            }
+            return;
+          }
+        }
+        setAuth({ kind: "anonymous", initialError });
+      } catch {
+        setAuth({ kind: "anonymous", initialError });
+      }
+    })();
+    return () => {
+      cancelled = true;
+    };
+  }, []);
+
+  // Rehydrate any prior session so a returning user sees their history.
+  // Only after authentication — anonymous users have no session to show.
+  useEffect(() => {
+    if (auth.kind !== "authed") return;
     let cancelled = false;
     (async () => {
       try {
@@ -84,7 +133,7 @@ export function AskRoadmanClient({
     return () => {
       cancelled = true;
     };
-  }, [hydrate]);
+  }, [hydrate, auth.kind]);
 
   // After the user submits, smoothly scroll the page so the latest
   // exchange (their question + the answer streaming in below it) is in
@@ -147,6 +196,27 @@ export function AskRoadmanClient({
     setInput("");
     await sendWithSeed(prompt, starter);
   };
+
+  // Loading-state placeholder — keeps the page from flashing the gate
+  // screen for an authenticated user with a valid cookie.
+  if (auth.kind === "loading") {
+    return (
+      <div className="pt-6 pb-12" aria-busy="true">
+        <div className="h-32 rounded-xl bg-white/[0.03] border border-white/[0.05] animate-pulse" />
+      </div>
+    );
+  }
+
+  if (auth.kind === "anonymous") {
+    return (
+      <AskGate
+        initialError={auth.initialError}
+        onSubmitted={() => {
+          /* nothing — the gate handles its own success state */
+        }}
+      />
+    );
+  }
 
   return (
     <>

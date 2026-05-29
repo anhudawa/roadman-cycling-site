@@ -1253,6 +1253,40 @@ export const askRetrievals = pgTable(
   ]
 );
 
+// --- Ask Roadman email magic-link auth ---
+export const askAuthSubscribers = pgTable(
+  "ask_auth_subscribers",
+  {
+    id: serial("id").primaryKey(),
+    email: text("email").notNull().unique(),
+    firstAuthenticatedAt: timestamp("first_authenticated_at", { withTimezone: true }).notNull().defaultNow(),
+    lastAuthenticatedAt: timestamp("last_authenticated_at", { withTimezone: true }).notNull().defaultNow(),
+    beehiivSubscriberId: text("beehiiv_subscriber_id"),
+    beehiivSyncedAt: timestamp("beehiiv_synced_at", { withTimezone: true }),
+    authCount: integer("auth_count").notNull().default(1),
+    source: text("source"),
+  },
+  (table) => [
+    index("ask_auth_subscribers_email_idx").on(table.email),
+  ]
+);
+
+export const askAuthTokens = pgTable(
+  "ask_auth_tokens",
+  {
+    id: serial("id").primaryKey(),
+    email: text("email").notNull(),
+    tokenHash: text("token_hash").notNull().unique(),
+    expiresAt: timestamp("expires_at", { withTimezone: true }).notNull(),
+    usedAt: timestamp("used_at", { withTimezone: true }),
+    createdAt: timestamp("created_at", { withTimezone: true }).notNull().defaultNow(),
+  },
+  (table) => [
+    index("ask_auth_tokens_email_idx").on(table.email),
+    index("ask_auth_tokens_expires_at_idx").on(table.expiresAt),
+  ]
+);
+
 // ------------------------------------------------------------
 // Phase 2: Saved Diagnostics — tool_results
 // ------------------------------------------------------------

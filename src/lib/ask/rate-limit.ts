@@ -12,7 +12,12 @@
 import { Ratelimit } from "@upstash/ratelimit";
 import { Redis } from "@upstash/redis";
 
-type LimiterKind = "anon_short" | "anon_daily" | "profile_hourly";
+type LimiterKind =
+  | "anon_short"
+  | "anon_daily"
+  | "profile_hourly"
+  | "email_short"
+  | "email_daily";
 
 const limiters: Partial<Record<LimiterKind, Ratelimit>> = {};
 
@@ -34,11 +39,18 @@ function limiterFor(kind: LimiterKind): Ratelimit {
   const anonRpm = Number(process.env.ASK_ROADMAN_ANON_RPM ?? 5);
   const anonDaily = Number(process.env.ASK_ROADMAN_ANON_DAILY ?? 10);
   const profileRph = Number(process.env.ASK_ROADMAN_PROFILE_RPH ?? 30);
+  // Email tier — for users who completed the magic-link gate. More
+  // generous than anon (we have their address and they're a lead)
+  // but capped so a single account can't run up Anthropic costs.
+  const emailRpm = Number(process.env.ASK_ROADMAN_EMAIL_RPM ?? 10);
+  const emailDaily = Number(process.env.ASK_ROADMAN_EMAIL_DAILY ?? 20);
 
   const configs: Record<LimiterKind, { tokens: number; window: `${number} ${"m" | "h" | "d" | "s"}` }> = {
     anon_short: { tokens: anonRpm, window: "10 m" },
     anon_daily: { tokens: anonDaily, window: "24 h" },
     profile_hourly: { tokens: profileRph, window: "1 h" },
+    email_short: { tokens: emailRpm, window: "10 m" },
+    email_daily: { tokens: emailDaily, window: "24 h" },
   };
   const cfg = configs[kind];
 
@@ -52,8 +64,8 @@ function limiterFor(kind: LimiterKind): Ratelimit {
 }
 
 export interface AskRateLimitInput {
-  tier: "anon" | "profile";
-  sessionKey: string;           // anon cookie or `profile:<id>`
+  tier: "anon" | "profile" | "email";
+  sessionKey: string;           // anon cookie, `profile:<id>`, or `email:<hash>`
   ipHash?: string | null;       // fallback key for anon if cookie missing
 }
 
@@ -77,10 +89,15 @@ export async function checkAskRateLimit(
   const checks: Array<{ kind: LimiterKind; key: string }> =
     input.tier === "profile"
       ? [{ kind: "profile_hourly", key: input.sessionKey }]
-      : [
-          { kind: "anon_short", key: anonKey },
-          { kind: "anon_daily", key: anonKey },
-        ];
+      : input.tier === "email"
+        ? [
+            { kind: "email_short", key: input.sessionKey },
+            { kind: "email_daily", key: input.sessionKey },
+          ]
+        : [
+            { kind: "anon_short", key: anonKey },
+            { kind: "anon_daily", key: anonKey },
+          ];
 
   for (const c of checks) {
     const res = await limiterFor(c.kind).limit(c.key);

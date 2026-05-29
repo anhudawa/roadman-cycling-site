@@ -4,6 +4,7 @@ import { streamAnswer } from "@/lib/ask/orchestrator";
 import { createSseStream, sseFormat } from "@/lib/ask/stream";
 import { checkAskRateLimit } from "@/lib/ask/rate-limit";
 import { getOrCreateAnonSessionKey } from "@/lib/rider-profile/anon-session";
+import { getAskSessionFromRequest } from "@/lib/ask-auth/auth";
 import {
   createSession,
   loadSessionByAnonKey,
@@ -61,6 +62,17 @@ export async function POST(request: Request): Promise<Response> {
   }
   const { query, sessionId: incomingSessionId, riderProfileId, seed } = parsed.data;
 
+  // Lead-gen gate: /ask is open to anyone with a magic-link session.
+  // A profile id supersedes the email gate (paying riders skip it).
+  const askAuth = getAskSessionFromRequest(request);
+  if (!askAuth && !riderProfileId) {
+    return jsonError(
+      401,
+      "auth_required",
+      "Enter your email on /ask to start a session.",
+    );
+  }
+
   const ip = ipFromRequest(request);
   const ipHash = hashIp(ip);
   const userAgent = request.headers.get("user-agent")?.slice(0, 240) ?? null;
@@ -72,10 +84,21 @@ export async function POST(request: Request): Promise<Response> {
     anonKey = ipHash;
   }
 
-  // Rate limit (tier-aware) — 429 stays JSON; the client handles it specifically
+  // Rate limit (tier-aware) — 429 stays JSON; the client handles it specifically.
+  // Order: rider profile (paid) → email (gated lead) → anon (legacy).
+  const tier: "profile" | "email" | "anon" = riderProfileId
+    ? "profile"
+    : askAuth
+      ? "email"
+      : "anon";
+  const sessionKey = riderProfileId
+    ? `profile:${riderProfileId}`
+    : askAuth
+      ? `email:${hashIp(askAuth.email)}`
+      : anonKey;
   const rl = await checkAskRateLimit({
-    tier: riderProfileId ? "profile" : "anon",
-    sessionKey: riderProfileId ? `profile:${riderProfileId}` : anonKey,
+    tier,
+    sessionKey,
     ipHash,
   });
   if (!rl.success) {
