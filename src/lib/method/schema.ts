@@ -182,3 +182,28 @@ export const methodChecklistState = pgTable(
 );
 
 export type MethodChecklistStateRow = typeof methodChecklistState.$inferSelect;
+
+/**
+ * Server-persisted Fuel Planner state (profile + week pattern + meals +
+ * start date) so a rider's plan survives a device/browser change. The whole
+ * client-side FuelPlannerState is stored as a jsonb blob; localStorage stays
+ * the fast offline cache and the two reconcile by `updatedAt`. One row per
+ * enrollment.
+ */
+export const methodFuelState = pgTable(
+  "method_fuel_state",
+  {
+    id: serial("id").primaryKey(),
+    enrollmentId: integer("enrollment_id")
+      .notNull()
+      .references(() => methodEnrollments.id, { onDelete: "cascade" }),
+    /** Full FuelPlannerState (see src/lib/fuel-planner/storage.ts). */
+    state: jsonb("state").notNull(),
+    updatedAt: timestamp("updated_at", { withTimezone: true }).notNull().defaultNow(),
+  },
+  (table) => [
+    uniqueIndex("method_fuel_state_enrollment_unique").on(table.enrollmentId),
+  ],
+);
+
+export type MethodFuelStateRow = typeof methodFuelState.$inferSelect;

@@ -56,6 +56,30 @@ export function saveState(state: Omit<FuelPlannerState, 'updatedAt'>): void {
     updatedAt: new Date().toISOString(),
   };
   window.localStorage.setItem(STORAGE_KEY, JSON.stringify(next));
+  // Write-through to the server so the plan survives a device change.
+  // Fire-and-forget — localStorage already gave instant feedback.
+  void fetch('/api/method/fuel-planner', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(next),
+    keepalive: true,
+  }).catch(() => {
+    // Offline / transient — the next save resyncs.
+  });
+}
+
+/**
+ * Write a server-sourced state straight into localStorage WITHOUT echoing it
+ * back to the server. Used by the cross-device reconcile on page load when
+ * the server copy is newer (or local is empty).
+ */
+export function adoptServerState(state: FuelPlannerState): void {
+  if (!isBrowser()) return;
+  try {
+    window.localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+  } catch {
+    // quota / disabled — keep whatever is in memory.
+  }
 }
 
 export function clearState(): void {
