@@ -106,8 +106,10 @@ export default function MethodWelcomePage() {
                 />
                 <NextStep
                   number="02"
-                  title="Connect TrainingPeaks"
-                  body="Premium members link TrainingPeaks from the dashboard. Workouts land on your calendar — targets, RPE and notes already filled in."
+                  title="Build your rider profile"
+                  body="Answer a few questions about your goal, hours and history. It takes three minutes and shapes how you run the next twelve weeks — and, for Premium, the plan we build around your Week-1 audit."
+                  ctaLabel="Start the rider profile"
+                  ctaHref="/method/onboarding"
                 />
                 <NextStep
                   number="03"
@@ -189,6 +191,20 @@ export default function MethodWelcomePage() {
             </a>
           </section>
         </WelcomeStaggerIn>
+
+        <WelcomeStaggerIn delay={0.74}>
+          <p className="mt-10 text-center text-sm text-foreground-muted max-w-2xl mx-auto">
+            The Method is yours for life. When you want weekly eyes on your
+            training and a cohort to ride with, it carries straight on into{" "}
+            <a
+              href="/community/not-done-yet?from=method-welcome"
+              className="text-coral underline-offset-4 hover:underline"
+            >
+              Not Done Yet
+            </a>
+            . No rush — finish the work first.
+          </p>
+        </WelcomeStaggerIn>
       </Container>
     </>
   );
@@ -198,9 +214,11 @@ interface NextStepProps {
   number: string;
   title: string;
   body: string;
+  ctaLabel?: string;
+  ctaHref?: string;
 }
 
-function NextStep({ number, title, body }: NextStepProps) {
+function NextStep({ number, title, body, ctaLabel, ctaHref }: NextStepProps) {
   return (
     <li className="grid grid-cols-[auto_1fr] gap-5 rounded-lg border border-white/10 bg-charcoal/60 p-5 hover:border-coral/40 transition-colors">
       <span
@@ -214,6 +232,14 @@ function NextStep({ number, title, body }: NextStepProps) {
           {title}
         </p>
         <p className="text-sm text-foreground-muted">{body}</p>
+        {ctaLabel && ctaHref && (
+          <a
+            href={ctaHref}
+            className="mt-3 inline-flex items-center gap-2 font-heading uppercase tracking-wider text-sm text-coral hover:text-coral-hover"
+          >
+            {ctaLabel} →
+          </a>
+        )}
       </div>
     </li>
   );

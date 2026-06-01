@@ -105,6 +105,14 @@ export interface CtaConfig {
   primaryHref: string;
   secondaryLabel: string;
   secondaryHref: string;
+  /**
+   * Self-paced alternative for riders who aren't ready for recurring
+   * coaching. Points at the $297 Roadman Method course. Kept distinct from
+   * the primary NDY push so the high-volume diagnostic still funnels into
+   * coaching first, but a budget-/autonomy-minded rider isn't dead-ended.
+   */
+  methodLabel: string;
+  methodHref: string;
 }
 
 export const GENERATION_SOURCES = ["llm", "fallback"] as const;

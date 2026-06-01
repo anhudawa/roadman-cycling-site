@@ -1786,6 +1786,9 @@ export {
   methodEnrollments,
   methodProgress,
   methodLoginTokens,
+  methodOnboarding,
+  methodChecklistState,
+  methodFuelState,
 } from "../method/schema";
 
 // ------------------------------------------------------------

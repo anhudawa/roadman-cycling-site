@@ -2,7 +2,10 @@ import type { Metadata } from "next";
 import { redirect } from "next/navigation";
 import { Container } from "@/components/layout/Container";
 import { getMethodSession } from "@/lib/method/auth";
+import { getFuelState } from "@/lib/method/fuel-state";
+import type { FuelPlannerState } from "@/lib/fuel-planner/storage";
 import { WeekPatternEditor } from "../_components/WeekPatternEditor";
+import { FuelPlannerSync } from "../_components/FuelPlannerSync";
 import { PlannerNav } from "../_components/PlannerNav";
 
 export const dynamic = "force-dynamic";
@@ -21,6 +24,10 @@ export default async function FuelPlannerWeekPage() {
   }
   if (!session) redirect("/method/login");
 
+  const serverFuelState = (await getFuelState(session.enrollment.id).catch(
+    () => null,
+  )) as FuelPlannerState | null;
+
   return (
     <Container as="section" width="narrow" className="py-8 md:py-12">
       <header className="mb-6">
@@ -38,7 +45,9 @@ export default async function FuelPlannerWeekPage() {
       </header>
 
       <PlannerNav active="week" />
-      <WeekPatternEditor />
+      <FuelPlannerSync serverState={serverFuelState}>
+        <WeekPatternEditor />
+      </FuelPlannerSync>
     </Container>
   );
 }

@@ -2,9 +2,12 @@ import type { Metadata } from "next";
 import { redirect } from "next/navigation";
 import { Container } from "@/components/layout/Container";
 import { getMethodSession } from "@/lib/method/auth";
+import { getFuelState } from "@/lib/method/fuel-state";
 import { loadByEmail } from "@/lib/rider-profile/store";
 import type { UserProfile } from "@/lib/fuel-planner/types";
+import type { FuelPlannerState } from "@/lib/fuel-planner/storage";
 import { AssessmentForm } from "../_components/AssessmentForm";
+import { FuelPlannerSync } from "../_components/FuelPlannerSync";
 import { PlannerNav } from "../_components/PlannerNav";
 
 export const dynamic = "force-dynamic";
@@ -26,6 +29,9 @@ export default async function FuelPlannerSetupPage() {
   // Seed the assessment form from the rider's unified profile. The
   // client component still lets localStorage override these on hydrate
   // (the rider may have tuned them locally for the planner).
+  const serverFuelState = (await getFuelState(session.enrollment.id).catch(
+    () => null,
+  )) as FuelPlannerState | null;
   const profile = await loadByEmail(session.enrollment.email).catch(() => null);
   const initialProfile: Partial<UserProfile> | null = profile
     ? {
@@ -62,7 +68,9 @@ export default async function FuelPlannerSetupPage() {
       </header>
 
       <PlannerNav active="setup" />
-      <AssessmentForm initialProfile={initialProfile} />
+      <FuelPlannerSync serverState={serverFuelState}>
+        <AssessmentForm initialProfile={initialProfile} />
+      </FuelPlannerSync>
     </Container>
   );
 }

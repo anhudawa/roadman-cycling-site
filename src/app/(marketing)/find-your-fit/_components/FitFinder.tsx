@@ -4,7 +4,7 @@ import { useEffect, useMemo, useState } from "react";
 import Link from "next/link";
 import { trackAnalyticsEvent } from "@/lib/analytics/client";
 
-type TierId = "clubhouse" | "notDoneYet" | "innerCircle" | "oneOnOne";
+type TierId = "clubhouse" | "method" | "notDoneYet" | "innerCircle" | "oneOnOne";
 
 type Scores = Record<TierId, number>;
 
@@ -40,7 +40,7 @@ const QUESTIONS: Question[] = [
         id: "structured",
         label: "Get faster on a structured plan with a real community",
         blurb: "You want a system you can trust, with people pulling alongside you.",
-        scores: { notDoneYet: 3, innerCircle: 1 },
+        scores: { notDoneYet: 3, innerCircle: 1, method: 2 },
       },
       {
         id: "peak",
@@ -66,7 +66,7 @@ const QUESTIONS: Question[] = [
         id: "under-5",
         label: "Under 5 hours",
         blurb: "Time-crunched. Every session has to count.",
-        scores: { clubhouse: 2, notDoneYet: 1 },
+        scores: { clubhouse: 2, notDoneYet: 1, method: 2 },
       },
       {
         id: "5-8",
@@ -103,7 +103,7 @@ const QUESTIONS: Question[] = [
         id: "noise",
         label: "Conflicting advice. No clear plan I trust",
         blurb: "Everyone has a hot take. You want one system that actually works.",
-        scores: { notDoneYet: 3, innerCircle: 1 },
+        scores: { notDoneYet: 3, innerCircle: 1, method: 2 },
       },
       {
         id: "plateau",
@@ -128,7 +128,7 @@ const QUESTIONS: Question[] = [
         id: "self-directed",
         label: "Self-directed — podcasts, threads, dig till I find it",
         blurb: "You'll do the work. You just want quality signal.",
-        scores: { clubhouse: 3 },
+        scores: { clubhouse: 3, method: 3 },
       },
       {
         id: "structure-community",
@@ -166,7 +166,7 @@ const QUESTIONS: Question[] = [
         id: "under-100",
         label: "Up to about $100 a month",
         blurb: "A real system without a 1:1 price tag.",
-        scores: { notDoneYet: 4 },
+        scores: { notDoneYet: 4, method: 3 },
       },
       {
         id: "300-600",
@@ -212,6 +212,22 @@ const TIERS: Record<
     cta: "Join the Clubhouse",
     track: "find_your_fit_result_clubhouse",
     pixelValue: 0,
+  },
+  method: {
+    name: "The Roadman Method",
+    price: "$297 · one payment",
+    href: "/method",
+    tagline:
+      "The whole five-pillar system as a 12-week course you run on your own time. One payment, lifetime access.",
+    bullets: [
+      "12-week structured course across all five pillars",
+      "Written protocols, worksheets, and a TrainingPeaks plan for every block",
+      "Self-paced — no calls to make, no monthly commitment",
+      "Finish it once, run it again next season, keep it for life",
+    ],
+    cta: "Explore The Method",
+    track: "find_your_fit_result_method",
+    pixelValue: 297,
   },
   notDoneYet: {
     name: "Not Done Yet",
@@ -265,6 +281,7 @@ const TIERS: Record<
 
 const EMPTY_SCORES: Scores = {
   clubhouse: 0,
+  method: 0,
   notDoneYet: 0,
   innerCircle: 0,
   oneOnOne: 0,
@@ -273,6 +290,9 @@ const EMPTY_SCORES: Scores = {
 type Answers = Partial<Record<Question["id"], string>>;
 
 const TIER_CEILING_BY_INVESTMENT: Record<string, TierId> = {
+  // The Method is a one-time $297 — it sits below the recurring NDY tier in
+  // rank, so the "up to $100/mo" ceiling keeps it eligible for a budget-
+  // minded, self-directed rider while still preferring NDY on score.
   free: "clubhouse",
   "under-100": "notDoneYet",
   "300-600": "innerCircle",
@@ -281,6 +301,7 @@ const TIER_CEILING_BY_INVESTMENT: Record<string, TierId> = {
 
 const TIER_RANK: TierId[] = [
   "clubhouse",
+  "method",
   "notDoneYet",
   "innerCircle",
   "oneOnOne",
@@ -645,6 +666,8 @@ function buildReasons(tier: TierId, answers: Answers): string[] {
   const goal = answers.goal;
   if (tier === "clubhouse" && goal === "explore")
     reasons.push("You said you want to learn and hang out — the room comes first, the rest is optional.");
+  if (tier === "method" && goal === "structured")
+    reasons.push("You want a structured plan you can trust — the Method hands you the whole system to run on your own time.");
   if (tier === "notDoneYet" && goal === "structured")
     reasons.push("You want a structured plan with people pulling alongside you — that's exactly the Not Done Yet model.");
   if (tier === "innerCircle" && goal === "peak")
@@ -662,7 +685,13 @@ function buildReasons(tier: TierId, answers: Answers): string[] {
   if (hours === "13-plus" && (tier === "oneOnOne" || tier === "innerCircle"))
     reasons.push("At thirteen-plus hours a week you're training like a serious athlete — coaching should match.");
 
+  const hoursMethod = answers.hours;
+  if (tier === "method" && hoursMethod === "under-5")
+    reasons.push("Under 5 hours a week — a self-paced course lets you run the system around your life, not the other way round.");
+
   const frustration = answers.frustration;
+  if (frustration === "noise" && tier === "method")
+    reasons.push("You're tired of conflicting advice — the Method is one trusted system, start to finish, no hot takes.");
   if (frustration === "noise" && tier === "notDoneYet")
     reasons.push("You're tired of conflicting advice. One trusted system beats ten half-followed ones.");
   if (frustration === "plateau" && tier === "innerCircle")
@@ -673,6 +702,8 @@ function buildReasons(tier: TierId, answers: Answers): string[] {
     reasons.push("Nothing's broken — you just want quality cycling chat. The Clubhouse is the room for that.");
 
   const style = answers.style;
+  if (style === "self-directed" && tier === "method")
+    reasons.push("You're self-directed and will do the work — the Method gives you the full system to run yourself, no calls to schedule.");
   if (style === "self-directed" && tier === "clubhouse")
     reasons.push("You like to dig — the Clubhouse plus the podcast back-catalogue is the deepest free signal you'll find.");
   if (style === "structure-community" && tier === "notDoneYet")
@@ -685,6 +716,8 @@ function buildReasons(tier: TierId, answers: Answers): string[] {
   const investment = answers.investment;
   if (investment === "free" && tier === "clubhouse")
     reasons.push("Free for now — start here, prove the system to yourself, and ascend when you're ready.");
+  if (investment === "under-100" && tier === "method")
+    reasons.push("One payment of $297 for the whole system — no subscription, and you keep it for life.");
   if (investment === "under-100" && tier === "notDoneYet")
     reasons.push("At $195 a month, Not Done Yet is the most coaching leverage you can get short of a 1:1 seat.");
   if (investment === "300-600" && tier === "innerCircle")
@@ -700,6 +733,8 @@ function buildReasons(tier: TierId, answers: Answers): string[] {
     const fallback: Record<TierId, string> = {
       clubhouse:
         "Right now, the room is the best place to start — no card, no pressure, real cyclists.",
+      method:
+        "The Method is the whole system in a self-paced course — the fastest way to train like the pros without a monthly coaching commitment.",
       notDoneYet:
         "It's the sweet spot — a real coaching system, a real community, without a 1:1 price tag.",
       innerCircle:

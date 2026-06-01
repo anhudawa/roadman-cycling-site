@@ -192,7 +192,7 @@ function renderInnerCircle(ctx: TemplateContext): RenderedResponse {
     recommendation: {
       tierName: 'Inner Circle',
       tagline: 'Direct access to Anthony. By conversation only.',
-      price: '$697',
+      price: '$525',
       period: '/month',
       features: [
         'Direct access to Anthony',

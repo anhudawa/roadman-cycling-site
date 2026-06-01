@@ -5,15 +5,15 @@ import {
   attachStripeSessionId,
   upsertPendingEnrollment,
 } from "@/lib/method/enrollments";
+import { METHOD_TIER_INFO, normaliseTier } from "@/lib/method/tiers";
 
 const STR = (v: unknown, max = 500) =>
   typeof v === "string" ? v.trim().slice(0, max) : "";
 
-const DEFAULT_PRICE_CENTS = 29700; // $297
-
 interface CheckoutBody {
   email: string;
   name: string;
+  tier: string;
 }
 
 /**
@@ -36,6 +36,8 @@ export async function POST(request: Request) {
     const body = (await request.json().catch(() => ({}))) as Partial<CheckoutBody>;
     const email = STR(body.email, 200).toLowerCase();
     const name = STR(body.name, 200);
+    const tier = normaliseTier(body.tier);
+    const tierInfo = METHOD_TIER_INFO[tier];
 
     if (!email) {
       return NextResponse.json(
@@ -68,7 +70,7 @@ export async function POST(request: Request) {
       );
     }
 
-    const enrollment = await upsertPendingEnrollment({ email, name });
+    const enrollment = await upsertPendingEnrollment({ email, name, tier });
 
     const baseUrl = new URL(request.url).origin;
     const stripe = new Stripe(stripeKey);
@@ -78,15 +80,17 @@ export async function POST(request: Request) {
     >;
     const lineItems: NonNullable<CreateParams["line_items"]> = [];
 
-    const explicitPriceId = process.env.STRIPE_METHOD_PRICE_ID?.trim();
+    // Select the price for the tier the rider actually chose. Pre-created
+    // Stripe Price IDs are preferred for production (editable without a
+    // deploy); inline price_data is the fallback so dev/test works with no
+    // dashboard setup.
+    const explicitPriceId = process.env[tierInfo.priceIdEnvKey]?.trim();
     if (explicitPriceId) {
-      // Pre-created Stripe Price object — preferred for production so
-      // pricing is editable in the Stripe dashboard without a deploy.
       lineItems.push({ price: explicitPriceId, quantity: 1 });
     } else {
       const priceCents = parseUnitAmount(
-        process.env.STRIPE_METHOD_PRICE_CENTS,
-        DEFAULT_PRICE_CENTS,
+        process.env[tierInfo.priceCentsEnvKey],
+        tierInfo.defaultPriceCents,
       );
       lineItems.push({
         quantity: 1,
@@ -94,9 +98,11 @@ export async function POST(request: Request) {
           currency: "usd",
           unit_amount: priceCents,
           product_data: {
-            name: "The Roadman Method — 12-Week Course",
+            name: `${tierInfo.name} — 12-Week Course`,
             description:
-              "Twelve modules. One framework. Built on conversations with World Tour coaches and sport scientists.",
+              tier === "premium"
+                ? "Twelve modules + a personalised TrainingPeaks plan, a Week-6 plan adjustment, and an end-of-course training-data review."
+                : "Twelve modules. One framework. Built on conversations with World Tour coaches and sport scientists.",
           },
         },
       });
@@ -112,6 +118,7 @@ export async function POST(request: Request) {
         type: "method_course",
         enrollment_id: String(enrollment.id),
         rider_name: name,
+        tier,
       },
       success_url: `${baseUrl}/method/welcome?session_id={CHECKOUT_SESSION_ID}`,
       cancel_url: `${baseUrl}/method/checkout?cancelled=1`,

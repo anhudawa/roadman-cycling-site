@@ -1,27 +1,6 @@
 import { Container } from "@/components/layout/Container";
 import { Reveal } from "./Reveal";
-import { EXPERTS } from "./data";
-
-const MEMBER_RESULTS = [
-  {
-    headline: "Cat 3 to Cat 1.",
-    body:
-      "Eighteen months in the system. The structure was the difference, not the volume.",
-    member: "James, 41",
-  },
-  {
-    headline: "20% body fat to 7%.",
-    body:
-      "Without restriction, without losing power. Race-week W/kg up 12%.",
-    member: "Mark, 47",
-  },
-  {
-    headline: "Women's National Series.",
-    body:
-      "From group-ride survivor to top-ten in the local national series — at 44, after a six-year break.",
-    member: "Sarah, 44",
-  },
-] as const;
+import { EXPERTS, METHOD_TESTIMONIALS, TRUSTPILOT } from "./data";
 
 export function SocialProof() {
   return (
@@ -72,15 +51,32 @@ export function SocialProof() {
           <p className="font-heading text-sm tracking-[0.3em] text-coral mb-4">
             FROM THE COMMUNITY
           </p>
-          <h3 className="font-heading uppercase text-3xl md:text-4xl text-off-white mb-12 max-w-[24ch]">
+          <h3 className="font-heading uppercase text-3xl md:text-4xl text-off-white mb-6 max-w-[24ch]">
             Real results, the same system.
           </h3>
         </Reveal>
 
+        <Reveal delay={60}>
+          <a
+            href={TRUSTPILOT.url}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex flex-wrap items-baseline gap-x-3 gap-y-1 mb-12 text-sm text-foreground-muted hover:text-off-white transition-colors"
+          >
+            <span className="font-heading uppercase tracking-[0.2em] text-coral">
+              ★ {TRUSTPILOT.score.toFixed(1)} on Trustpilot
+            </span>
+            <span>
+              from {TRUSTPILOT.reviewCount} verified reviews — the quotes below
+              are from real members.
+            </span>
+          </a>
+        </Reveal>
+
         <ul className="grid gap-6 md:grid-cols-3">
-          {MEMBER_RESULTS.map((result, i) => (
+          {METHOD_TESTIMONIALS.map((result, i) => (
             <Reveal
-              key={result.headline}
+              key={result.member}
               delay={80 * i}
               as="li"
               className="rounded-sm border border-white/10 bg-[color:var(--color-elevated)]/40 p-8"
@@ -92,7 +88,7 @@ export function SocialProof() {
                 {result.body}
               </p>
               <p className="text-xs font-heading uppercase tracking-[0.3em] text-foreground-muted">
-                — {result.member}, Not Done Yet community
+                — {result.member}
               </p>
             </Reveal>
           ))}

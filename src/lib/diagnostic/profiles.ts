@@ -198,9 +198,16 @@ export function ctaFor(
   profile: Profile,
   severeMultiSystem: boolean
 ): CtaConfig {
-  const PRIMARY: Pick<CtaConfig, "primaryLabel" | "primaryHref"> = {
+  const PRIMARY: Pick<
+    CtaConfig,
+    "primaryLabel" | "primaryHref" | "methodLabel" | "methodHref"
+  > = {
     primaryLabel: "Try Not Done Yet free for 7 days",
     primaryHref: "/coaching",
+    // Self-paced alternative — same framework, one payment, no recurring
+    // commitment. For the rider who wants to fix this on their own first.
+    methodLabel: "Prefer to work through it yourself? Start with The Roadman Method ($297)",
+    methodHref: "/method?from=plateau-diagnostic",
   };
 
   if (severeMultiSystem) {

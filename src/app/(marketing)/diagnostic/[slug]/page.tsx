@@ -157,6 +157,9 @@ export default async function DiagnosticResultsPage({
         primaryHref: "/coaching",
         secondaryLabel: "",
         secondaryHref: "",
+        methodLabel:
+          "Prefer to work through it yourself? Start with The Roadman Method ($297)",
+        methodHref: "/method?from=plateau-diagnostic",
       }
     : resolveCta(submission.primaryProfile, submission.severeMultiSystem);
 
@@ -515,6 +518,21 @@ export default async function DiagnosticResultsPage({
               Seven days free. Cancel anytime, no contracts &mdash; you only
               continue if it&rsquo;s working.
             </p>
+            {/* Self-paced alternative — connects the highest-volume capture
+                event to the otherwise-orphaned Method without pulling focus
+                from the primary NDY push. */}
+            {cta.methodHref && (
+              <p className="text-foreground-subtle text-xs md:text-sm pt-1">
+                <Link
+                  href={cta.methodHref}
+                  data-cta="method-alt"
+                  data-profile={submission.primaryProfile}
+                  className="text-foreground-muted hover:text-off-white underline underline-offset-4"
+                >
+                  {cta.methodLabel}
+                </Link>
+              </p>
+            )}
             {/* Phase 2 handoff — rider can dig into the result with the
                 on-site assistant. Appears below the primary CTA so it
                 never competes with a booking/coaching conversion. */}

@@ -3,6 +3,7 @@ import Link from "next/link";
 import type { Metadata } from "next";
 import { Container } from "@/components/layout/Container";
 import { getMethodSession } from "@/lib/method/auth";
+import { getChecklistState, checkedBooleans } from "@/lib/method/checklist";
 import { getProgressSummary } from "@/lib/method/progress";
 import { isModuleUnlocked } from "@/lib/method/access";
 import {
@@ -74,6 +75,17 @@ export default async function MethodModulePage({
   const availability = isModuleUnlocked(session.enrollment, module);
   const progress = await getProgressSummary(session.enrollment.id);
   const isComplete = progress.completedSlugs.has(module.slug);
+
+  // Durable checklist state — server is the source of truth across devices;
+  // the client keeps localStorage as a fast/offline cache. Soft-fail to an
+  // empty set so a DB hiccup never blocks the module page.
+  let initialChecked: boolean[] = module.checklist.map(() => false);
+  try {
+    const saved = await getChecklistState(session.enrollment.id, module.slug);
+    initialChecked = checkedBooleans(saved, module.checklist.length);
+  } catch (err) {
+    console.error("[method/module] checklist read failed:", err);
+  }
   const phase = getPhaseForWeek(module.weekIndex);
   const trainingPeaksResource = module.resources.find(
     (r): r is Extract<ResourceLink, { kind: "training-peaks" }> =>
@@ -139,6 +151,7 @@ export default async function MethodModulePage({
                   <WeekChecklist
                     moduleSlug={module.slug}
                     items={module.checklist}
+                    initialChecked={initialChecked}
                   />
                 </div>
                 <aside

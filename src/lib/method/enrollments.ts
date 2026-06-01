@@ -13,6 +13,7 @@ import {
   methodProgress,
   type MethodEnrollment,
 } from "./schema";
+import type { MethodTier } from "./tiers";
 
 export async function getEnrollmentByEmail(
   email: string,
@@ -56,18 +57,24 @@ export async function getEnrollmentByStripeSessionId(
 export async function upsertPendingEnrollment(input: {
   email: string;
   name: string | null;
+  tier?: MethodTier;
 }): Promise<MethodEnrollment> {
+  const tier: MethodTier = input.tier ?? "standard";
   const inserted = await db
     .insert(methodEnrollments)
     .values({
       email: input.email,
       name: input.name,
+      tier,
       status: "pending",
     })
     .onConflictDoUpdate({
       target: methodEnrollments.email,
       set: {
         name: input.name,
+        // Re-clicking Buy with a different tier selection updates the row,
+        // so the Stripe line item and the stored tier stay in lock-step.
+        tier,
         updatedAt: new Date(),
       },
     })

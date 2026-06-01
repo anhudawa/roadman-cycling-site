@@ -32,17 +32,26 @@ export function CurrentModuleCard({ module, allComplete }: CurrentModuleCardProp
           Twelve weeks. One framework. Yours now.
         </h2>
         <p className="text-foreground-muted max-w-2xl mb-6">
-          You've worked every module. The system is in your hands. Keep
-          sharpening it inside Not Done Yet — weekly calls with Anthony,
-          updated TrainingPeaks plans, and the cohort that's been through
-          the same work.
+          You&apos;ve worked every module. The system is in your hands. The riders
+          who keep climbing don&apos;t stop here — they keep sharpening it
+          inside Not Done Yet: weekly calls with Anthony, updated TrainingPeaks
+          plans, and the cohort that&apos;s been through the same work.
+          Your 7-day trial is waiting.
         </p>
-        <Link
-          href="/method/account"
-          className="inline-flex items-center gap-2 rounded-md bg-coral hover:bg-coral-hover px-6 py-3 font-heading uppercase tracking-wider text-off-white shadow-[var(--shadow-glow-coral)] transition-all"
-        >
-          What&apos;s next →
-        </Link>
+        <div className="flex flex-col sm:flex-row gap-3 sm:items-center">
+          <Link
+            href="/method/whats-next"
+            className="inline-flex items-center gap-2 rounded-md bg-coral hover:bg-coral-hover px-6 py-3 font-heading uppercase tracking-wider text-off-white shadow-[var(--shadow-glow-coral)] transition-all"
+          >
+            See what&apos;s next →
+          </Link>
+          <Link
+            href="/method/account"
+            className="text-sm text-foreground-muted hover:text-off-white underline underline-offset-4"
+          >
+            Manage your account
+          </Link>
+        </div>
       </section>
     );
   }

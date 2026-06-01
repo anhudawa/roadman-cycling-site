@@ -57,6 +57,7 @@ const NAV_SECTIONS: NavSection[] = [
       { href: "/admin/diagnostic", label: "Plateau Diagnostic", icon: "trending" },
       { href: "/admin/diagnostics", label: "Diagnostics", icon: "beaker" },
       { href: "/admin/paid-reports", label: "Paid Reports", icon: "dollar" },
+      { href: "/admin/method", label: "The Method", icon: "dollar" },
       { href: "/admin/ask", label: "Ask Roadman", icon: "sparkle" },
       { href: "/admin/insights", label: "Insights", icon: "pulse" },
       { href: "/admin/integrations/skool", label: "Skool Clubhouse", icon: "users" },

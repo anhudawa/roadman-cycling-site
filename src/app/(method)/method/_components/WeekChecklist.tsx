@@ -1,42 +1,84 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 interface WeekChecklistProps {
   moduleSlug: string;
   items: readonly string[];
+  /** Server-persisted tick state (source of truth across devices). */
+  initialChecked?: boolean[];
 }
 
 /**
- * Per-module checklist that persists ticked state in localStorage.
+ * Per-module checklist. Ticked state is persisted server-side (scoped to the
+ * enrollment) so it survives a device/browser change; localStorage is kept
+ * as a fast offline cache. Distinct from `method_progress`, which tracks
+ * whole-module completion rather than per-task ticks.
  *
- * Deliberately *not* wired into `method_progress` — that table tracks
- * module completion, not per-task ticks. Local persistence keeps the
- * surface light (no extra round-trips, no schema migration) while
- * still giving riders a satisfying "tick it off" interaction across
- * the week.
+ * The initial render uses `initialChecked` (from the server) so there's no
+ * hydration mismatch. On mount we adopt any newer offline localStorage state
+ * if the server had nothing saved (covers riders from before this synced).
  */
-export function WeekChecklist({ moduleSlug, items }: WeekChecklistProps) {
+export function WeekChecklist({
+  moduleSlug,
+  items,
+  initialChecked,
+}: WeekChecklistProps) {
   const storageKey = `method:checklist:${moduleSlug}`;
-  const [checked, setChecked] = useState<boolean[]>(() =>
-    items.map(() => false),
-  );
+  const seed =
+    initialChecked && initialChecked.length === items.length
+      ? initialChecked
+      : items.map(() => false);
+  const [checked, setChecked] = useState<boolean[]>(seed);
   const [hydrated, setHydrated] = useState(false);
+  const saveTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
+
+  // Debounced server persist. Fire-and-forget — localStorage already gave the
+  // instant feedback, so a transient network error just retries on next tick.
+  function persistToServer(next: boolean[]) {
+    if (saveTimer.current) clearTimeout(saveTimer.current);
+    saveTimer.current = setTimeout(() => {
+      const checkedIndexes = next
+        .map((v, i) => (v ? i : -1))
+        .filter((i) => i >= 0);
+      void fetch("/api/method/checklist", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ moduleSlug, checkedIndexes }),
+        keepalive: true,
+      }).catch(() => {
+        // Offline / transient — localStorage holds the state; next change resyncs.
+      });
+    }, 600);
+  }
 
   useEffect(() => {
-    try {
-      const raw = localStorage.getItem(storageKey);
-      if (raw) {
-        const parsed = JSON.parse(raw);
-        if (Array.isArray(parsed) && parsed.length === items.length) {
-          setChecked(parsed.map((v) => Boolean(v)));
+    // If the server had nothing ticked but this device has offline progress,
+    // adopt it and push it up so the two converge.
+    const serverEmpty = seed.every((v) => !v);
+    if (serverEmpty) {
+      try {
+        const raw = localStorage.getItem(storageKey);
+        if (raw) {
+          const parsed = JSON.parse(raw);
+          if (
+            Array.isArray(parsed) &&
+            parsed.length === items.length &&
+            parsed.some((v) => Boolean(v))
+          ) {
+            const adopted = parsed.map((v) => Boolean(v));
+            setChecked(adopted);
+            persistToServer(adopted);
+          }
         }
+      } catch {
+        // localStorage unavailable or corrupt — keep server state.
       }
-    } catch {
-      // localStorage unavailable or corrupt — start fresh.
     }
     setHydrated(true);
-  }, [storageKey, items.length]);
+    // Intentionally run once on mount.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   useEffect(() => {
     if (!hydrated) return;
@@ -47,12 +89,17 @@ export function WeekChecklist({ moduleSlug, items }: WeekChecklistProps) {
     }
   }, [checked, storageKey, hydrated]);
 
+  function commit(next: boolean[]) {
+    setChecked(next);
+    persistToServer(next);
+  }
+
   function toggle(idx: number) {
-    setChecked((prev) => prev.map((v, i) => (i === idx ? !v : v)));
+    commit(checked.map((v, i) => (i === idx ? !v : v)));
   }
 
   function reset() {
-    setChecked(items.map(() => false));
+    commit(items.map(() => false));
   }
 
   const doneCount = checked.filter(Boolean).length;
@@ -80,7 +127,7 @@ export function WeekChecklist({ moduleSlug, items }: WeekChecklistProps) {
         Tick it off across the week
       </h2>
       <p className="text-foreground-muted text-sm mb-5">
-        Saved locally on this device — no sync, no judgment.
+        Saved to your account — picks up wherever you log in. No judgment.
       </p>
 
       <div

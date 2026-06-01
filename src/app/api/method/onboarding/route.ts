@@ -15,6 +15,7 @@ import {
 } from "@/lib/method/onboarding/types";
 import { upsertContact } from "@/lib/crm/contacts";
 import { recordAssignment } from "@/lib/crm/trainingpeaks-assignments";
+import { saveOnboarding } from "@/lib/method/onboarding/store";
 
 interface OnboardingBody {
   planCode?: unknown;
@@ -42,10 +43,9 @@ function isHours(v: unknown): v is WeeklyHours {
  * POST /api/method/onboarding
  *
  * Records the rider's selected training plan so the team knows which
- * TrainingPeaks block to assign. No DB write yet — we log to stdout
- * (captured by the platform) so the ops team can pick it up from the
- * runtime logs. A follow-up migration will add a `method_onboarding`
- * table and an automated email to sarah@roadmancycling.com.
+ * TrainingPeaks block to assign, and so the rider's saved plan survives a
+ * refresh. Persists to `method_onboarding` (one row per enrollment, upserted
+ * on retake) and also drops a pending CRM/TrainingPeaks assignment for ops.
  *
  * The endpoint validates the payload server-side so a tampered client
  * can't request a plan code that isn't in the matrix.
@@ -114,6 +114,26 @@ export async function POST(request: Request) {
         at: new Date().toISOString(),
       }),
     );
+
+    // Persist the recommendation against the enrollment so the rider's
+    // saved plan survives a refresh and the dashboard/account can surface
+    // it. Soft-fail so a transient DB hiccup never blocks the rider — they
+    // still get their on-screen result.
+    try {
+      await saveOnboarding({
+        enrollmentId: session.enrollment.id,
+        planCode: result.plan.code,
+        planName: result.plan.name,
+        goal,
+        hours,
+        level,
+        ftp,
+        eventDate,
+        weeksToEvent: result.weeksToEvent,
+      });
+    } catch (err) {
+      console.error("[method/onboarding] saveOnboarding failed", err);
+    }
 
     // Drop a pending row in training_peaks_assignments + activity onto the
     // CRM contact. Soft-fail: the rider response should never depend on
