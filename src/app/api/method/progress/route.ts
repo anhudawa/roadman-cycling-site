@@ -7,8 +7,32 @@ import {
   markModuleComplete,
   unmarkModuleComplete,
 } from "@/lib/method/progress";
-import { METHOD_MODULE_BY_SLUG } from "@/lib/method/modules";
+import { getCompletedSlugs } from "@/lib/method/enrollments";
+import { METHOD_MODULE_BY_SLUG, METHOD_MODULES } from "@/lib/method/modules";
 import { isModuleUnlocked } from "@/lib/method/access";
+
+/**
+ * On the transition to 12/12, tag the rider `method-graduate` in Beehiiv so
+ * the graduate → Not Done Yet ascension nurture sequence can fire. Best-effort
+ * and fire-and-forget — graduation must never depend on the email provider.
+ */
+async function onGraduation(email: string, name: string | null): Promise<void> {
+  try {
+    const { subscribeToBeehiiv } = await import("@/lib/integrations/beehiiv");
+    await subscribeToBeehiiv({
+      email,
+      name: name ?? "",
+      tags: ["method-graduate"],
+      customFields: {
+        method_status: "graduated",
+        method_graduated_at: new Date().toISOString(),
+      },
+      utm: { source: "site", medium: "method-app", campaign: "method-graduate" },
+    });
+  } catch (err) {
+    console.error("[method/progress] graduation tag failed:", err);
+  }
+}
 
 const STR = (v: unknown, max = 200) =>
   typeof v === "string" ? v.trim().slice(0, max) : "";
@@ -50,6 +74,14 @@ export async function POST(request: Request) {
         );
       }
       const result = await markModuleComplete(session.enrollment.id, moduleSlug);
+      // Fire the graduate hook only on the transition to all-complete, and
+      // only when this call actually inserted the final completion.
+      if (result.inserted) {
+        const completed = await getCompletedSlugs(session.enrollment.id);
+        if (completed.length >= METHOD_MODULES.length) {
+          await onGraduation(session.enrollment.email, session.enrollment.name);
+        }
+      }
       return NextResponse.json({ ok: true, inserted: result.inserted });
     }
 
