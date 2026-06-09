@@ -71,6 +71,12 @@ export interface BlogFrontmatter {
   featuredImage?: string;
   keywords: string[];
   relatedEpisodes?: string[];
+  // Author-curated sibling articles, by slug. When present, these take
+  // priority over the pillar/keyword heuristic in getRelatedPosts() so the
+  // on-page "Related Posts" strip shows hand-picked siblings rather than
+  // whatever else happens to share the article's broad pillar. Validated by
+  // scripts/audit-today.ts (each slug must resolve to a real post).
+  relatedPosts?: string[];
   faq?: FaqItem[];
   answerCapsule?: string;
   // 2-3 brief, scannable takeaways rendered inside the AnswerCapsule as a
@@ -190,31 +196,51 @@ export function getRelatedPosts(
   currentSlug: string,
   pillar: ContentPillar,
   keywords: string[],
-  limit: number = 3
+  limit: number = 3,
+  curatedSlugs?: string[],
 ): BlogPostMeta[] {
   const allPosts = getAllPosts().filter((p) => p.slug !== currentSlug);
 
-  // Score each post by relevance: pillar match + keyword overlap.
+  // Author-curated `relatedPosts` (frontmatter) take priority over the
+  // pillar/keyword heuristic — a hand-picked sibling beats an algorithmic
+  // guess, and stops broad-pillar posts (e.g. a horology feature in the
+  // `community` pillar) from surfacing unrelated community articles like
+  // doping or gravel guides. Resolve curated slugs against real posts,
+  // then top up with scored matches if the curated list is short.
+  const bySlug = new Map(allPosts.map((p) => [p.slug, p]));
+  const curated: BlogPostMeta[] = [];
+  const taken = new Set<string>([currentSlug]);
+  for (const s of curatedSlugs ?? []) {
+    const match = bySlug.get(s);
+    if (match && !taken.has(s)) {
+      curated.push(match);
+      taken.add(s);
+    }
+  }
+  if (curated.length >= limit) return curated.slice(0, limit);
+
+  // Score each remaining post by relevance: pillar match + keyword overlap.
   // `?? []` guards against MDX files whose frontmatter is missing the
   // required `keywords` array — without it, one bad file would crash
   // the prerender of every blog page that calls getRelatedPosts.
-  const scored = allPosts.map((post) => {
-    let score = 0;
-    if (post.pillar === pillar) score += 10;
-    const postKeywords = new Set(
-      (post.keywords ?? []).map((k) => k.toLowerCase()),
-    );
-    for (const kw of keywords) {
-      if (postKeywords.has(kw.toLowerCase())) score += 3;
-    }
-    return { post, score };
-  });
-
-  return scored
+  const filled = allPosts
+    .filter((p) => !taken.has(p.slug))
+    .map((post) => {
+      let score = 0;
+      if (post.pillar === pillar) score += 10;
+      const postKeywords = new Set(
+        (post.keywords ?? []).map((k) => k.toLowerCase()),
+      );
+      for (const kw of keywords) {
+        if (postKeywords.has(kw.toLowerCase())) score += 3;
+      }
+      return { post, score };
+    })
     .filter((s) => s.score > 0)
     .sort((a, b) => b.score - a.score)
-    .slice(0, limit)
     .map((s) => s.post);
+
+  return [...curated, ...filled].slice(0, limit);
 }
 
 export function getAllSlugs(): string[] {

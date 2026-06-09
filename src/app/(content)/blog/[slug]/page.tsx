@@ -104,7 +104,13 @@ export default async function BlogPostPage({
     notFound();
   }
 
-  const relatedPosts = getRelatedPosts(slug, post.pillar, post.keywords, 3);
+  const relatedPosts = getRelatedPosts(
+    slug,
+    post.pillar,
+    post.keywords,
+    3,
+    post.relatedPosts,
+  );
   const parentTopics = getTopicsForPost(slug);
   // Resolve the primary topic hub for the in-article hub link. Prefer
   // the explicit `primaryHub` frontmatter field; fall back to the first
