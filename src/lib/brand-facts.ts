@@ -110,8 +110,11 @@ export const SAME_AS = {
     "https://instagram.com/roadman.cycling",
     "https://facebook.com/roadmancycling",
     "https://x.com/Roadman_Podcast",
-    "https://www.linkedin.com/in/anthony-walsh-cycling",
+    "https://www.linkedin.com/in/anthony-walsh-5522b326",
+    "https://www.wikidata.org/wiki/Q140138269",
   ],
+  // Organization Wikidata item is pending — create in phase 2, then add
+  // its Q-URL to `organization` above.
 } as const;
 
 export const PODCAST = {
@@ -143,6 +146,7 @@ export const PODCAST_SAME_AS: readonly string[] = [
   PODCAST.youtubeUrl,
   "https://www.podchaser.com/podcasts/the-roadman-cycling-podcast-516594",
   "https://goodpods.com/podcasts/the-roadman-cycling-podcast-205537",
+  "https://www.wikidata.org/wiki/Q140138232",
 ] as const;
 
 export const CONTACT = {
