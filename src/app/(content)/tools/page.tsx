@@ -85,6 +85,13 @@ const tools = [
     status: "live" as const,
   },
   {
+    title: "Cycling Fuel Planner",
+    description:
+      "Daily calorie target, macro split, in-ride carbs, and hydration for the session you're riding. Fuel-for-the-work-required, the way the pros eat.",
+    href: "/tools/fuel-planner",
+    status: "live" as const,
+  },
+  {
     title: "Energy Availability Calculator",
     description:
       "Check whether you're eating enough to support your training. Identify RED-S risk before it becomes a problem.",

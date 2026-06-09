@@ -55,6 +55,13 @@ export const TOOLS: ToolEntry[] = [
     pillar: "recovery",
   },
   {
+    slug: "fuel-planner",
+    title: "Cycling Fuel Planner",
+    description:
+      "Daily calorie target, macro split, in-ride carbs, and hydration for the session you're riding — fuel-for-the-work-required.",
+    pillar: "nutrition",
+  },
+  {
     slug: "wkg",
     title: "W/kg Calculator",
     description:

@@ -775,6 +775,89 @@ export const TOOL_LANDING_CONTENT: Record<string, ToolLandingContent> = {
     ],
   },
 
+  "fuel-planner": {
+    slug: "fuel-planner",
+    title: "Cycling Fuel Planner",
+    description:
+      "Calculate your daily calorie target, carb/protein/fat split, in-ride carbs, and hydration for the session you're riding. Free, evidence-based, built on fuel-for-the-work-required.",
+    url: `${ROADMAN_BASE}/tools/fuel-planner`,
+    breadcrumbName: "Cycling Fuel Planner",
+    answerSummary:
+      "Enter your age, sex, height, weight, FTP, body-composition goal, and the ride you're doing. The planner returns a training-day and rest-day calorie target, your carb/protein/fat split in grams, in-ride carbs in grams per hour, and a hydration estimate — using the fuel-for-the-work-required method the World Tour runs on.",
+    whatItDoes:
+      "Most amateurs eat the same every day, then wonder why they bonk on hard rides and gain weight on easy weeks. This planner periodises your nutrition the way the pros do: more carbs on training days, fewer on rest days, protein held steady throughout. You get a calorie target, a macro split in grams, an in-ride carb prescription, and a hydration estimate for the actual session in front of you.\n\nThe basic plan is free. The full 12-week periodised calendar — meal by meal, with recovery-week and race-day adjustments — lives inside the Roadman community.",
+    whoItsFor: [
+      "Riders who train hard but fuel the same every day",
+      "Cyclists chasing race weight without losing power",
+      "Anyone who bonks on long rides or fades in the final hour",
+      "Self-coached athletes who want a structured starting point, not another generic macro ratio",
+    ],
+    howItWorks:
+      "We estimate your resting metabolic rate with the Mifflin-St Jeor equation, add daily activity and the energy cost of your ride (from FTP, intensity, and duration), then apply your body-composition goal. Protein is held at 1.8 g/kg, carbs scale with the work you do, and fat fills the rest — the Hexis/Impey fuel-for-the-work-required model. In-ride carbs follow current sports-science ceilings; hydration scales with body weight, intensity, and duration.",
+    howToSteps: [
+      { name: "Enter your details", text: "Age, sex, height, weight, and FTP. FTP drives the energy cost of your ride, so use a recent number — multiply your best 20-minute power by 0.95 if you're not sure." },
+      { name: "Set your goal and lifestyle", text: "Choose lose, maintain, or build, and how active you are off the bike. This sets your baseline calorie target before any training is added." },
+      { name: "Describe the ride", text: "Pick the session — easy, endurance, tempo, threshold, or race — and how long it lasts. Carb demand and sweat rate both scale sharply with intensity." },
+      { name: "Read your fuel plan", text: "You get a training-day and rest-day calorie target, your macros in grams, in-ride carbs per hour, and a hydration estimate. Start there and refine over a few weeks against how you feel." },
+    ],
+    howToTotalTime: "PT3M",
+    limitations:
+      "Every number here is an estimate from population averages — RMR equations carry a ±10% error, and carb absorption and sweat rate vary widely between riders. The planner shows a single representative day; it doesn't periodise across a full training block, manage recovery weeks, or build meal-by-meal plans. Treat the output as a starting prescription you dial in with experience, not a fixed rule.",
+    whenToSeeACoach:
+      "If you're fuelling well and still bonking, losing power while dieting, getting ill often, or your weight won't move despite doing everything right — the issue is rarely a single day's macros. That's where a structured, periodised plan and a coach who can see your whole week beats another calculator.",
+    examples: [
+      {
+        scenario: "75kg male, FTP 250W, maintaining, 2hr endurance ride",
+        inputs: ["Weight: 75kg", "FTP: 250W", "Goal: maintain", "Ride: endurance, 2h"],
+        output: "Training day ≈ 3,400 kcal vs rest day ≈ 2,790 kcal. ~290g carbs / 135g protein / 160g fat. 50 g/hr in-ride carbs, ~675 ml/hr fluid.",
+      },
+      {
+        scenario: "68kg female, FTP 220W, losing weight, 1hr threshold session",
+        inputs: ["Weight: 68kg", "FTP: 220W", "Goal: lose", "Ride: threshold, 1h"],
+        output: "A modest deficit on the rest day, more carbs restored on the hard day, protein held at ~122g, 70 g/hr in-ride carbs with a 2:1 glucose:fructose mix.",
+      },
+    ],
+    faqs: [
+      {
+        question: "How many calories should a cyclist eat per day?",
+        answer: "It depends on the day. On a rest day, most amateur cyclists need roughly their bodyweight-driven maintenance — often 2,400-3,000 kcal. On a hard or long training day, that can rise by 600-1,200 kcal to pay back the session. Eating the same every day is the most common amateur mistake: you under-fuel hard days and overeat on easy ones. The planner gives you both numbers.",
+      },
+      {
+        question: "What is fuel-for-the-work-required?",
+        answer: "It's the modern periodised-nutrition method developed by Professor James Morton and used across the World Tour. Instead of a fixed daily diet, you match carbohydrate intake to the training you're actually doing — high carbs around hard and long sessions, lower carbs on easy and rest days — while keeping protein steady. It improves body composition and performance at the same time.",
+      },
+      {
+        question: "How much protein does a cyclist need?",
+        answer: "Around 1.6-2.2 g per kg of body weight per day, with 1.8 g/kg a sensible default for most trained cyclists. Protein protects muscle while you periodise carbs and is especially important if you're in a calorie deficit chasing race weight. The planner holds protein steady at 1.8 g/kg every day regardless of training.",
+      },
+      {
+        question: "How many carbs should I eat during a ride?",
+        answer: "It scales with intensity and duration. Easy or short rides (under an hour): water is often enough. Endurance rides: 50-60 g/hr. Tempo and threshold sessions: 60-70 g/hr. Racing or very high intensity: up to 90-100 g/hr if your gut is trained, using a 2:1 glucose:fructose mix to absorb above 60 g/hr.",
+      },
+      {
+        question: "How much should I drink on the bike?",
+        answer: "As a rough guide, 500-1,000 ml per hour depending on body weight, intensity, and heat. The planner estimates sweat rate from your body weight and ride intensity. Add 300-700 mg of sodium per hour, and increase fluid in hot or humid conditions where sweat losses can double. Aim to limit weight loss during a ride to under 2% of body weight.",
+      },
+      {
+        question: "Is the full 12-week plan free?",
+        answer: "The daily plan — calorie target, macros, in-ride carbs, and hydration — is completely free. The full 12-week periodised fuel calendar, with meal-by-meal macros, pre and post-ride timing, recovery-week and race-day adjustments, lives inside the Roadman community alongside weekly live calls with Anthony.",
+      },
+    ],
+    related: [
+      { label: "In-Ride Fuelling Calculator", href: "/tools/fuelling", kind: "tool" },
+      { label: "Race Weight Calculator", href: "/tools/race-weight", kind: "tool" },
+      { label: "Energy Availability Calculator", href: "/tools/energy-availability", kind: "tool" },
+      { label: "Cycling nutrition topic hub", href: "/topics/cycling-nutrition", kind: "topic" },
+      { label: "Race-weight strategy guide", href: "/blog/cycling-weight-loss-fuel-for-the-work-required", kind: "article" },
+    ],
+    webAppFeatures: [
+      "Training-day and rest-day calorie targets",
+      "Carb / protein / fat split in grams",
+      "Fuel-for-the-work-required carb periodisation",
+      "In-ride carbs per hour by session intensity",
+      "Hydration estimate from body weight and ride duration",
+    ],
+  },
 };
 
 /** Helper for components that look up a tool by slug. */
