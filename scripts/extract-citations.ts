@@ -266,9 +266,14 @@ function writeCitations(ep: EpisodeRecord, citations: ExtractedCitation[]) {
 
 function shouldProcess(ep: EpisodeRecord): boolean {
   if (force) return true;
-  const existing = ep.existingCitations ?? [];
-  const reviewed = existing.filter((c) => c.reviewed !== false);
-  return reviewed.length === 0;
+  // Skip any episode that already carries a `citations` array — whether it was
+  // human-reviewed (reviewed:true) or auto-extracted (reviewed:false, including
+  // the empty-array write below that marks "extracted, nothing found"). A failed
+  // extraction never writes the key, so it stays eligible. This keeps a full
+  // 700+ episode run idempotent and resumable: re-running advances onto the
+  // not-yet-extracted episodes instead of re-billing the whole catalogue.
+  // Use --force to deliberately regenerate.
+  return !Array.isArray(ep.existingCitations);
 }
 
 async function main() {
