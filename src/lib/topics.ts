@@ -236,6 +236,25 @@ const TOPIC_DEFINITIONS: Omit<TopicHub, "posts" | "episodes" | "tools" | "commer
       "cycling coach uk",
     ],
   },
+  {
+    slug: "against-the-clock",
+    title: "Against the Clock: Cycling and the Race Against Time",
+    headline: "AGAINST THE CLOCK",
+    ctaHeadline: "COACHING THAT MAKES EVERY SECOND COUNT.",
+    description:
+      "Everything in cycling settled by the clock — the Hour Record, the time trial, and the watches that ended up on the wrist. This is the home for cycling's oldest obsession: the race against time.",
+    pillar: "community",
+    keywords: [
+      "hour record cycling",
+      "cycling time trial",
+      "race of truth cycling",
+      "cycling watches",
+      "richard mille cycling",
+      "festina affair",
+      "dan bigham hour record",
+      "cycling and time",
+    ],
+  },
 ];
 
 /** Map of topic slugs to relevant blog post slugs */
@@ -400,6 +419,16 @@ const TOPIC_POST_MAP: Record<string, string[]> = {
     "mtb-vs-road-cycling-fitness",
     "mtb-heart-rate-zones-guide",
     "mtb-nutrition-trail-fuelling",
+  ],
+  "against-the-clock": [
+    "dan-bigham-aerodynamics-amateur-cyclists",
+    "alex-dowsett-pro-cycling-lessons-amateur",
+    "ryan-collins-six-hour-velodrome-record-three-tweaks",
+    "cycling-time-trial-tips",
+    "matt-bottrill-7-pro-hacks",
+    "mental-tools-long-climbs-time-trials",
+    "aero-vs-weight-cyclist",
+    "wind-tunnel-aero-gains-gravel-cyclists",
   ],
 };
 
@@ -570,6 +599,18 @@ const TOPIC_ENRICHMENT: Record<string, {
       "not-done-yet-coaching-review",
     ],
   },
+  "against-the-clock": {
+    // No tool strip on this hub — deliberately omitted per the brief.
+    tools: [],
+    // Route into the Plateau Diagnostic funnel.
+    commercialPath: "/go",
+    relatedTopics: ["ftp-training", "cycling-coaching"],
+    featuredPostSlugs: [
+      "dan-bigham-aerodynamics-amateur-cyclists",
+      "ryan-collins-six-hour-velodrome-record-three-tweaks",
+      "cycling-time-trial-tips",
+    ],
+  },
 };
 
 /** Keyword patterns for matching episodes to topics */
@@ -585,6 +626,8 @@ const TOPIC_EPISODE_KEYWORDS: Record<string, RegExp> = {
   "triathlon-cycling": /triath|ironman|70\.3|half iron|brick|swim.bike|bike.run|t1|t2|aero position|tri bike|tt bike/i,
   "cycling-coaching": /coach|coaching|personalise|structured|methodology|plan.?review|self.?coach|mentor|guided|accountability/i,
   "mountain-biking": /mountain.?bik|mtb|enduro|downhill|trail.?rid|suspension|fork.?setup|sag|shock.?pressur|dropper|trail.?centre/i,
+  "against-the-clock":
+    /hour record|time trial|race of truth|against the clock|watch|wristwatch|aero|velodrome|pursuit/i,
 };
 
 /**
