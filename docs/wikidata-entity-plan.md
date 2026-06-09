@@ -81,7 +81,7 @@ Wikidata claims should carry **reference URL (P854)** + **retrieved (P813)** poi
 | Facebook ID | **P2013** | `roadmancycling` | ✅ `facebook.com/roadmancycling`. |
 | TikTok username | **P7085** | `roadmancyclingpodcast` | ✅ `tiktok.com/@roadmancyclingpodcast`. |
 | YouTube channel ID | **P2397** | `‹confirm UC… id›` | Same `UC…` id as the podcast item if the channel is shared. |
-| LinkedIn personal profile ID | **P6634** | `anthony-walsh-cycling` `‹confirm›` | ⚠️ The site claims `linkedin.com/in/anthony-walsh-cycling`; a public search also surfaces `linkedin.com/in/anthony-walsh-5522b326`. Confirm which is the live canonical profile **before** recording (and reconcile `SAME_AS.person` in `brand-facts.ts` to match). |
+| LinkedIn personal profile ID | **P6634** | `anthony-walsh-5522b326` | ✅ `linkedin.com/in/anthony-walsh-5522b326` is the live canonical profile. `SAME_AS.person` in `brand-facts.ts` now matches. |
 
 ### Independent references needed
 
@@ -137,7 +137,7 @@ These flow automatically into the root `@graph` (`src/components/seo/JsonLd.tsx`
 - [ ] Get the `UC…` YouTube channel ID (Share → Copy channel ID) for **P2397** — do **not** use P1651.
 - [ ] Get the Podcast Index feed ID for **P11740**.
 - [ ] Confirm the podcast's true first-publish date for **P571**.
-- [ ] Reconcile the personal LinkedIn slug (`anthony-walsh-cycling` vs `anthony-walsh-5522b326`).
+- [x] Reconcile the personal LinkedIn slug — canonical is `anthony-walsh-5522b326`.
 - [ ] Create **The Roadman Cycling Podcast** item; add P31, P856, identifiers, references.
 - [ ] Create **Anthony Walsh** item; link via presenter (P371).
 - [ ] (Phase 2) Create **Roadman Cycling** org item; link founded-by / publisher.
