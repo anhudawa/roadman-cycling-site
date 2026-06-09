@@ -335,7 +335,7 @@ const FAQS = [
   },
   {
     q: "Will I be added to a list?",
-    a: "Yes — your email is how we send the diagnosis. After that you'll get the Saturday Spin newsletter, which currently goes to over 65,000 cyclists and runs a 65%+ open rate. One click and you're off it.",
+    a: "Yes — your email is how we send the diagnosis. After that you'll get the Saturday Spin newsletter, which currently goes to over 30,000 cyclists and runs a 65%+ open rate. One click and you're off it.",
   },
   {
     q: "What if my diagnosis doesn't sound like me?",
@@ -687,7 +687,7 @@ export default async function PlateauPage() {
                   diagnostic is that pattern recognition, distilled.
                 </p>
 
-                <dl className="grid grid-cols-3 gap-3 md:gap-6 max-w-md">
+                <dl className="grid grid-cols-2 gap-3 md:gap-6 max-w-md">
                   <div>
                     <dt className="font-heading text-2xl md:text-3xl text-coral">
                       {BRAND_STATS.episodeCountLabel}
@@ -698,18 +698,10 @@ export default async function PlateauPage() {
                   </div>
                   <div>
                     <dt className="font-heading text-2xl md:text-3xl text-coral">
-                      {BRAND_STATS.monthlyListenersLabel}
+                      {BRAND_STATS.podcastDownloadsLabel}
                     </dt>
                     <dd className="text-foreground-subtle text-xs md:text-sm mt-1">
-                      Monthly listeners
-                    </dd>
-                  </div>
-                  <div>
-                    <dt className="font-heading text-2xl md:text-3xl text-coral">
-                      {BRAND_STATS.countriesReachedLabel}
-                    </dt>
-                    <dd className="text-foreground-subtle text-xs md:text-sm mt-1">
-                      Countries
+                      Podcast downloads
                     </dd>
                   </div>
                 </dl>

@@ -35,7 +35,7 @@ export const metadata: Metadata = {
 
 const credentials = [
   "Cycling coach — Not Done Yet coaching",
-  "Host of the Roadman Cycling Podcast (1M+ monthly listeners)",
+  "Host of the Roadman Cycling Podcast (100M+ podcast downloads)",
   "1,400+ on-the-record interviews with World Tour coaches, sports scientists, and professional riders",
   "Guests include Prof. Stephen Seiler, Dan Lorang, Greg LeMond, Joe Friel, Tim Spector, and Ben Healy",
   "Based in Dublin, Ireland",
@@ -142,7 +142,7 @@ export default function AuthorPage() {
                 { label: "Podcast Episodes", value: BRAND_STATS.episodeCountLabel },
                 { label: "Video Episodes", value: BRAND_STATS.videoEpisodesLabel },
                 { label: "Expert Guests", value: `${stats.guests}+` },
-                { label: "Monthly Listeners", value: BRAND_STATS.monthlyListenersLabel },
+                { label: "Podcast Downloads", value: BRAND_STATS.podcastDownloadsLabel },
               ].map((stat) => (
                 <div
                   key={stat.label}

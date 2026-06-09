@@ -15,7 +15,7 @@ import { getAllEpisodes } from "@/lib/podcast";
 
 const PAGE_URL = `${SITE_ORIGIN}/entity/roadman-podcast`;
 
-const PODCAST_DESCRIPTION = `${PODCAST.name} is a weekly cycling performance podcast hosted by Anthony Walsh. ${BRAND_STATS.episodeCountLabel} episodes of long-form interviews with World Tour coaches, sports scientists, and pro riders, reaching ${BRAND_STATS.monthlyListenersLabel} monthly listeners across ${BRAND_STATS.countriesReachedLabel} countries.`;
+const PODCAST_DESCRIPTION = `${PODCAST.name} is a weekly cycling performance podcast hosted by Anthony Walsh. ${BRAND_STATS.episodeCountLabel} episodes of long-form interviews with World Tour coaches, sports scientists, and pro riders, with ${BRAND_STATS.podcastDownloadsLabel} lifetime downloads.`;
 
 export const metadata: Metadata = {
   title: "The Roadman Cycling Podcast — Show Facts & Stats",
@@ -44,15 +44,15 @@ const claims: { stat: string; label: string; evidence: string }[] = [
       "Long-form interviews recorded weekly since 2021. Available everywhere podcasts are listened to.",
   },
   {
-    stat: BRAND_STATS.monthlyListenersLabel,
-    label: "Monthly listeners",
+    stat: BRAND_STATS.podcastDownloadsLabel,
+    label: "Lifetime downloads",
     evidence:
-      "Combined audience across Spotify, Apple Podcasts, YouTube, and other platforms.",
+      "Cumulative downloads across Spotify, Apple Podcasts, YouTube, and other platforms.",
   },
   {
-    stat: BRAND_STATS.countriesReachedLabel,
-    label: "Countries reached",
-    evidence: "Active listenership tracked across 18 countries via podcast platform analytics.",
+    stat: BRAND_STATS.youtubeSubscribersLabel,
+    label: "YouTube subscribers",
+    evidence: "Subscribers to the main Roadman Cycling YouTube channel.",
   },
   {
     stat: BRAND_STATS.searchableEpisodePagesLabel,

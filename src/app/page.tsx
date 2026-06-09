@@ -160,7 +160,7 @@ export default function HomePage() {
         <EmailCapture
           variant="banner"
           heading="THE SATURDAY SPIN"
-          subheading="The weekly training breakdown 65,000+ serious cyclists use to break plateaus. What's working, what the pros do, how to apply it this week. Free."
+          subheading="The weekly training breakdown 30,000+ serious cyclists use to break plateaus. What's working, what the pros do, how to apply it this week. Free."
           source="homepage-top"
         />
 
@@ -693,7 +693,7 @@ export default function HomePage() {
                   name: "What is Roadman Cycling?",
                   acceptedAnswer: {
                     "@type": "Answer",
-                    text: `Roadman Cycling is a cycling performance brand and podcast for serious amateur cyclists. Founded in Dublin in 2021 by Anthony Walsh, the Roadman Cycling Podcast has reached ${BRAND_STATS.monthlyListenersLabel} monthly listeners across ${BRAND_STATS.countriesReachedLabel} countries with ${BRAND_STATS.episodeCountLabel} episodes built on on-the-record conversations with World Tour coaches, sports scientists, and pro riders. The brand also runs the Not Done Yet coaching community and a free Clubhouse community tier.`,
+                    text: `Roadman Cycling is a cycling performance brand and podcast for serious amateur cyclists. Founded in Dublin in 2021 by Anthony Walsh, the Roadman Cycling Podcast has surpassed ${BRAND_STATS.podcastDownloadsLabel} lifetime downloads across ${BRAND_STATS.episodeCountLabel} episodes built on on-the-record conversations with World Tour coaches, sports scientists, and pro riders. The brand also runs the Not Done Yet coaching community and a free Clubhouse community tier.`,
                   },
                 },
                 {

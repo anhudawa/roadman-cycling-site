@@ -18,14 +18,14 @@ const brandPartners = [
 export const metadata: Metadata = {
   title: "Cycling Brand Partnerships — The Roadman Media Kit",
   description:
-    "Reach 1M+ serious cyclists. Podcast sponsorship, newsletter ads, community integration, custom content. Download the Roadman media kit — real rates, real audience data.",
+    "Reach a serious-cyclist audience with 100M+ podcast downloads. Podcast sponsorship, newsletter ads, community integration, custom content. Download the Roadman media kit — real rates, real audience data.",
   alternates: {
     canonical: "https://roadmancycling.com/partners",
   },
   openGraph: {
     title: "Cycling Brand Partnerships — The Roadman Media Kit",
     description:
-      "Reach 1M+ serious cyclists. Podcast sponsorship, newsletter ads, community integration, custom content. Real rates, real audience data.",
+      "Reach a serious-cyclist audience with 100M+ podcast downloads. Podcast sponsorship, newsletter ads, community integration, custom content. Real rates, real audience data.",
     type: "website",
     url: "https://roadmancycling.com/partners",
   },
@@ -42,8 +42,8 @@ const platformReach = [
         <line x1="8" y1="23" x2="16" y2="23" />
       </svg>
     ),
-    stat: "1M+",
-    statLabel: "monthly listeners",
+    stat: "100M+",
+    statLabel: "podcast downloads",
     description: "Top 3 cycling podcast worldwide. 12 new episodes per month.",
     color: "from-coral/20 to-coral/5",
   },
@@ -103,7 +103,7 @@ const platformReach = [
         <polyline points="22,6 12,13 2,6" />
       </svg>
     ),
-    stat: "65K+",
+    stat: "30K+",
     statLabel: "weekly readers",
     description: "65%+ open rate (industry avg: 21%). The Saturday Spin Newsletter every week. Direct click-through.",
     color: "from-emerald-500/20 to-emerald-500/5",
@@ -118,7 +118,7 @@ const partnershipOptions = [
       "Host-read ads that land. Pre-roll, mid-roll, or post-roll placements across 1,400+ episodes. Anthony delivers every read personally — no generic scripts, no phoned-in endorsements.",
     features: [
       "Host-read ad placements (pre-roll, mid-roll, post-roll)",
-      "1M+ monthly listeners across all platforms",
+      "100M+ podcast downloads across all platforms",
       "Evergreen back-catalogue exposure",
       "Custom talking points tailored to your brand",
     ],
@@ -135,9 +135,9 @@ const partnershipOptions = [
     title: "NEWSLETTER SPONSORSHIP",
     badge: "Highest ROI",
     description:
-      "The Saturday Spin Newsletter lands in 65,000+ inboxes every week with a 65%+ open rate. Dedicated sends or banner placements — your brand in front of cyclists who actually open, read, and click.",
+      "The Saturday Spin Newsletter lands in 30,000+ inboxes every week with a 65%+ open rate. Dedicated sends or banner placements — your brand in front of cyclists who actually open, read, and click.",
     features: [
-      "65,000+ engaged subscribers",
+      "30,000+ engaged subscribers",
       "65%+ open rate — 3x industry average",
       "Dedicated send or banner placement",
       "Direct link to purchase or landing page",
@@ -311,7 +311,7 @@ export default function PartnersPage() {
             </ScrollReveal>
             <ScrollReveal direction="up" delay={0.2}>
               <p className="text-foreground-muted text-lg md:text-xl max-w-3xl mx-auto leading-relaxed mb-4">
-                1 million monthly listeners. 65,000+ newsletter subscribers.
+                100 million podcast downloads. 30,000+ newsletter subscribers.
                 A community of serious cyclists who train with power meters,
                 race on weekends, and spend real money on equipment, nutrition, and coaching.
               </p>
@@ -624,7 +624,7 @@ export default function PartnersPage() {
                 {
                   step: "03",
                   title: "LIVE",
-                  description: "Your campaign goes out to 1M+ engaged cyclists. We share performance data, listener feedback, and optimise for the next run.",
+                  description: "Your campaign goes out across a catalogue with 100M+ podcast downloads. We share performance data, listener feedback, and optimise for the next run.",
                 },
               ].map((item, i) => (
                 <ScrollReveal key={item.step} direction="up" delay={i * 0.15}>

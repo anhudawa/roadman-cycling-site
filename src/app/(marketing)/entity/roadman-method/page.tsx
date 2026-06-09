@@ -71,7 +71,7 @@ const evidenceBase = [
   "1,400+ on-the-record podcast interviews with World Tour coaches, scientists, and pro riders",
   "Direct conversations with the people building elite training plans, not summaries of what others wrote",
   "Cross-referenced against peer-reviewed sports science where the literature exists",
-  "Pressure-tested across hundreds of coached cyclists in 18 countries",
+  "Pressure-tested across hundreds of coached cyclists worldwide",
   "Updated as the science evolves — the methodology is not frozen",
 ];
 

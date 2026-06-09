@@ -58,7 +58,7 @@ export const metadata: Metadata = {
     default: "Roadman Cycling — Cycling Coaching, Training & Performance Podcast",
     template: "%s | Roadman Cycling",
   },
-  description: `The cycling podcast trusted by ${BRAND_STATS.monthlyListenersLabel} monthly listeners across ${BRAND_STATS.countriesReachedLabel} countries. Expert coaching, training plans, nutrition, and a community that refuses to settle. ${BRAND_STATS.episodeCountLabel} episodes. ${BRAND_STATS.newsletterSubscribersLabel} newsletter readers.`,
+  description: `The cycling podcast with ${BRAND_STATS.podcastDownloadsLabel} downloads. Expert coaching, training plans, nutrition, and a community that refuses to settle. ${BRAND_STATS.episodeCountLabel} episodes. ${BRAND_STATS.newsletterSubscribersLabel} newsletter readers.`,
   keywords: [
     "cycling podcast",
     "cycling training",
@@ -88,7 +88,7 @@ export const metadata: Metadata = {
     url: "https://roadmancycling.com",
     siteName: "Roadman Cycling",
     title: "Roadman Cycling — Cycling Coaching, Training & Performance Podcast",
-    description: `The podcast trusted by ${BRAND_STATS.monthlyListenersLabel} monthly listeners. Expert cycling coaching, training, nutrition, and community. ${BRAND_STATS.episodeCountLabel} episodes.`,
+    description: `The podcast with ${BRAND_STATS.podcastDownloadsLabel} downloads. Expert cycling coaching, training, nutrition, and community. ${BRAND_STATS.episodeCountLabel} episodes.`,
     images: [
       {
         url: "/og-image.jpg",

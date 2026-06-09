@@ -12,7 +12,7 @@ import { ENTITY_IDS, SITE_ORIGIN, BRAND_STATS, PODCAST } from "@/lib/brand-facts
 export const metadata: Metadata = {
   title: "Cycling Podcast Archive — Every Episode of Roadman",
   description:
-    "Every episode of the Roadman Cycling Podcast. 100M+ downloads, 1M+ monthly listeners. Seiler, Lorang, LeMond, Morton, Bigham — the conversations behind serious training.",
+    "Every episode of the Roadman Cycling Podcast. 100M+ podcast downloads. Seiler, Lorang, LeMond, Morton, Bigham — the conversations behind serious training.",
   alternates: {
     canonical: "https://roadmancycling.com/podcast",
   },
@@ -113,7 +113,7 @@ export default function PodcastPage() {
               ready for you.
             </p>
             <p className="text-coral font-heading text-xl">
-              1M+ MONTHLY LISTENERS
+              100M+ PODCAST DOWNLOADS
             </p>
 
             {/* Archive-scope disclosure: the on-site index covers the

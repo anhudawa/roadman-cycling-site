@@ -18,13 +18,13 @@ import { BRAND_STATS } from "../src/lib/brand-facts";
 // ─── Platform numbers (manual refresh) ──────────────────────
 // Source + last-refreshed date as a comment next to every number.
 
-// YouTube Studio → The Roadman Podcast (main channel) · refreshed 2026-04
-const YT_MAIN_SUBS = 65_000;
-// YouTube Studio → Roadman Podcast Clips · refreshed 2026-04
-const YT_CLIPS_SUBS = 18_500;
-// Skool → Clubhouse (free tier) · refreshed 2026-04
-const CLUBHOUSE_FREE_MEMBERS = 2_100;
-// Skool → Not Done Yet (paid tier) · refreshed 2026-04
+// YouTube Studio → The Roadman Podcast (main channel) · refreshed 2026-06
+const YT_MAIN_SUBS = 61_000;
+// YouTube Studio → Roadman Podcast Clips · refreshed 2026-06
+const YT_CLIPS_SUBS = 13_000;
+// Skool → Clubhouse (free tier) · refreshed 2026-06
+const CLUBHOUSE_FREE_MEMBERS = 1_800;
+// Skool → Not Done Yet (paid tier) · refreshed 2026-06
 const NDY_PAID_MEMBERS = 140;
 
 async function main() {
@@ -32,9 +32,8 @@ async function main() {
 
   await db.insert(mcpCommunityStats).values({
     // Derived from brand-facts for consistency with on-page copy.
-    // BRAND_STATS.monthlyListeners is a floor estimate; we expose the
-    // round number via podcastDownloadsTotal for simple AI summaries.
-    podcastDownloadsTotal: BRAND_STATS.monthlyListeners * 12,
+    // BRAND_STATS.podcastDownloads is the verified lifetime download total.
+    podcastDownloadsTotal: BRAND_STATS.podcastDownloads,
     youtubeSubscribersMain: YT_MAIN_SUBS,
     youtubeSubscribersClips: YT_CLIPS_SUBS,
     freeCommunityMembers: CLUBHOUSE_FREE_MEMBERS,
@@ -65,9 +64,7 @@ async function main() {
 
   console.log("✓ mcp_community_stats seeded");
   console.log(
-    `  podcast downloads (annual): ${(
-      BRAND_STATS.monthlyListeners * 12
-    ).toLocaleString()}`
+    `  podcast downloads (lifetime): ${BRAND_STATS.podcastDownloads.toLocaleString()}`
   );
   console.log(`  YouTube main: ${YT_MAIN_SUBS.toLocaleString()}`);
   console.log(`  YouTube clips: ${YT_CLIPS_SUBS.toLocaleString()}`);

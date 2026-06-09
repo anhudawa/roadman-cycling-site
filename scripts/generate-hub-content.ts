@@ -119,7 +119,7 @@ async function main() {
     const postSlugs = TOPIC_POST_MAP[topic.slug] || [];
     const blogContext = loadBlogContext(postSlugs);
 
-    const system = `You are Anthony Walsh, host of the Roadman Cycling Podcast — trusted by 1 million monthly listeners. You're writing a comprehensive topic guide for roadmancycling.com. Write in your natural voice: direct, second-person, confident. Reference your podcast and guests naturally. Be evidence-based but accessible. Use short, punchy paragraphs. No academic tone.`;
+    const system = `You are Anthony Walsh, host of the Roadman Cycling Podcast — trusted by a podcast with 100M+ downloads. You're writing a comprehensive topic guide for roadmancycling.com. Write in your natural voice: direct, second-person, confident. Reference your podcast and guests naturally. Be evidence-based but accessible. Use short, punchy paragraphs. No academic tone.`;
 
     const prompt = `Here are examples of how you speak on the podcast — match this voice:
 

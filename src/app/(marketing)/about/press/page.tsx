@@ -27,8 +27,8 @@ export const metadata: Metadata = {
 // Do not add claims here that are not substantiated elsewhere on the site.
 const brandStats = [
   {
-    stat: "1M+",
-    label: "Monthly listeners",
+    stat: "100M+",
+    label: "Podcast downloads",
     detail: "Across Spotify, Apple Podcasts, YouTube and all podcast platforms",
   },
   {
@@ -38,16 +38,16 @@ const brandStats = [
       "In-depth interviews with World Tour coaches, sports scientists and pro riders — weekly since 2021, available everywhere podcasts are",
   },
   {
-    stat: "65K+",
+    stat: "30,000+",
     label: "Newsletter subscribers",
     detail:
       "Engaged inbox audience receiving weekly performance breakdowns distilled from the podcast",
   },
   {
-    stat: "18",
-    label: "Countries coached",
+    stat: "61,000+",
+    label: "YouTube subscribers",
     detail:
-      "Full coaching programme serving serious amateur cyclists across 18 countries",
+      "On the main channel, with full-length video episodes and clips published weekly",
   },
 ];
 
@@ -79,7 +79,7 @@ const notableGuests = [
 const pitchAngles = [
   {
     title: "The cycling podcast built on access, not algorithms",
-    body: "How one host's 1,400+ on-the-record interviews with the world's best coaches and scientists built a million-listener audience — and changed how amateur cyclists train.",
+    body: "How one host's 1,400+ on-the-record interviews with the world's best coaches and scientists built a 100M-download audience — and changed how amateur cyclists train.",
   },
   {
     title: "What the World Tour knows that age-groupers don't — yet",
@@ -278,7 +278,7 @@ export default function PressPage() {
                 <p>
                   Based in Dublin, Ireland, Anthony built Roadman from a
                   one-man recording setup into a company coaching cyclists
-                  across 18 countries. His interview catalogue runs to over
+                  worldwide. His interview catalogue runs to over
                   1,400 on-the-record conversations with the coaches,
                   scientists, and athletes who are actively shaping elite
                   cycling — from polarised training pioneer Prof. Stephen
@@ -297,8 +297,8 @@ export default function PressPage() {
                   Anthony Walsh is the founder of Roadman Cycling and host of
                   The Roadman Cycling Podcast. Over 1,400 interviews with
                   World Tour coaches, sports scientists and pro cyclists
-                  have built a community of one million monthly listeners
-                  and a coaching programme serving cyclists in 18 countries.
+                  have built a podcast with 100M+ downloads and a coaching
+                  programme serving serious amateur cyclists worldwide.
                 </p>
               </ScrollReveal>
             </div>

@@ -66,7 +66,7 @@ const milestones = [
   { year: "2022", event: "1 million downloads", icon: "📈" },
   { year: "2023", event: "Sarah joins the podcast team", icon: "🤝" },
   { year: "2024", event: "Greg LeMond interview — a career highlight", icon: "🏆" },
-  { year: "2025", event: "1 million monthly listeners", icon: "🔊" },
+  { year: "2025", event: "100 million podcast downloads", icon: "🔊" },
   { year: "2026", event: "Not Done Yet coaching launches", icon: "💪" },
   { year: "NOW", event: "New site. New era. We're just getting started.", icon: "🚀" },
 ];
@@ -207,10 +207,11 @@ export default function AboutPage() {
 
               <ScrollReveal direction="up" delay={0.25}>
                 <p>
-                  Today, 1 million monthly listeners tune in — not casual fans,
-                  but serious cyclists with families, limited time, and real
-                  ambitions on the bike. People who refuse to accept that their
-                  best days are behind them.
+                  Today, with 100 million podcast downloads behind us, the
+                  audience isn&apos;t casual fans — it&apos;s serious cyclists
+                  with families, limited time, and real ambitions on the bike.
+                  People who refuse to accept that their best days are behind
+                  them.
                 </p>
               </ScrollReveal>
 

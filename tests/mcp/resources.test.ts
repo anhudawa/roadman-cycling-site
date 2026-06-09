@@ -49,9 +49,9 @@ describe("MCP resources — content", () => {
     const text = result.contents[0].text;
     expect(text).toContain("Anthony Walsh");
     expect(text).toContain("Not Done Yet");
-    // The headline trust claim is "1M+ monthly listeners" (current),
-    // not the older cumulative-downloads framing.
-    expect(text).toContain("1M+");
+    // The headline trust claim is "100M+ podcast downloads" (lifetime,
+    // cumulative) — not the older monthly-listeners framing.
+    expect(text).toContain("100M+");
     expect(text).toContain("1,400+");
   });
 

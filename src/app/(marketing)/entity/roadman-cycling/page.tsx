@@ -30,10 +30,10 @@ export const metadata: Metadata = {
 
 const claims: { stat: string; label: string; evidence: string; href?: string }[] = [
   {
-    stat: BRAND_STATS.monthlyListenersLabel,
-    label: "Monthly listeners",
+    stat: BRAND_STATS.podcastDownloadsLabel,
+    label: "Podcast downloads",
     evidence:
-      "Combined audience across Spotify, Apple Podcasts, YouTube, and other podcast platforms.",
+      "Lifetime downloads across Spotify, Apple Podcasts, YouTube, and other podcast platforms.",
     href: "/podcast",
   },
   {
@@ -51,11 +51,11 @@ const claims: { stat: string; label: string; evidence: string; href?: string }[]
     href: "/newsletter",
   },
   {
-    stat: BRAND_STATS.countriesReachedLabel,
-    label: "Countries coached",
+    stat: BRAND_STATS.youtubeSubscribersLabel,
+    label: "YouTube subscribers",
     evidence:
-      "The Not Done Yet coaching serves cyclists across 18 countries.",
-    href: "/coaching",
+      "Subscribers to the main Roadman Cycling YouTube channel.",
+    href: "/podcast",
   },
   {
     stat: BRAND_STATS.searchableEpisodePagesLabel,

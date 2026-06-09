@@ -55,9 +55,19 @@ const productFacts: { label: string; value: string }[] = [
 
 const numberFacts: { label: string; value: string; note?: string }[] = [
   {
-    label: "Monthly listeners",
-    value: BRAND_STATS.monthlyListenersLabel,
-    note: "Combined across Spotify, Apple Podcasts, YouTube and other platforms",
+    label: "Podcast downloads",
+    value: BRAND_STATS.podcastDownloadsLabel,
+    note: "Lifetime, across Spotify, Apple Podcasts, YouTube and other platforms",
+  },
+  {
+    label: "YouTube subscribers",
+    value: BRAND_STATS.youtubeSubscribersLabel,
+    note: "Main Roadman Cycling channel",
+  },
+  {
+    label: "Instagram followers",
+    value: BRAND_STATS.instagramFollowersLabel,
+    note: "@roadman.cycling",
   },
   {
     label: "Newsletter subscribers",
@@ -75,9 +85,9 @@ const numberFacts: { label: string; value: string; note?: string }[] = [
     note: "Featured episodes with full transcripts",
   },
   {
-    label: "Countries coached",
-    value: BRAND_STATS.countriesReachedLabel,
-    note: "Through the Not Done Yet coaching community",
+    label: "Free community members",
+    value: BRAND_STATS.communityMembersLabel,
+    note: "The free Roadman Clubhouse on Skool",
   },
 ];
 

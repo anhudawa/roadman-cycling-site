@@ -51,7 +51,7 @@ export const BRAND = {
   // Short, press-ready description reused by Organization schema,
   // root layout metadata, llms.txt preamble, and press pages.
   description:
-    "The world's largest cycling performance podcast. Evidence-based coaching, nutrition, strength, recovery, and community for serious amateur cyclists. Founded in Dublin in 2021 by Anthony Walsh (rebranded from A1 Coaching, est. 2013), Roadman has grown to 1M+ monthly listeners across 18 countries.",
+    "The world's largest cycling performance podcast. Evidence-based coaching, nutrition, strength, recovery, and community for serious amateur cyclists. Founded in Dublin in 2021 by Anthony Walsh (rebranded from A1 Coaching, est. 2013), Roadman's podcast has surpassed 100M+ lifetime downloads across 1,400+ episodes.",
 } as const;
 
 /**
@@ -74,19 +74,28 @@ export const BRAND_STATS = {
   // not the same as the total Apple/Spotify count.
   searchableEpisodePages: 311,
   searchableEpisodePagesLabel: "311+",
-  monthlyListeners: 1_000_000,
-  monthlyListenersLabel: "1M+",
-  // Combined YouTube subscriber count — main channel (~61.7K) plus the
-  // Roadman Podcast Clips channel (~13.2K) round to 60K+ for the
-  // headline-safe figure. Update when the live count meaningfully shifts.
-  youtubeSubscribers: 60_000,
-  youtubeSubscribersLabel: "60,000+",
-  newsletterSubscribers: 65_000,
-  newsletterSubscribersLabel: "65K+",
-  newsletterSubscribersLongLabel: "65,000+",
+  // Lifetime podcast downloads across all audio platforms. This is the
+  // verified cumulative figure — NOT a monthly-listener number. Use it
+  // as the headline reach stat everywhere reach is claimed.
+  podcastDownloads: 100_000_000,
+  podcastDownloadsLabel: "100M+",
+  // Main YouTube channel subscriber count (~61.7K). Headline-safe figure
+  // is the main channel only; the Roadman Podcast Clips channel (~13.2K)
+  // is tracked separately and not folded into this number.
+  youtubeSubscribers: 61_000,
+  youtubeSubscribersLabel: "61,000+",
+  // Instagram followers on the main @roadman.cycling account.
+  instagramFollowers: 49_000,
+  instagramFollowersLabel: "49,000+",
+  // Beehiiv email list — the Saturday Spin newsletter. Volatile; keep in
+  // lockstep with the live list count.
+  newsletterSubscribers: 30_000,
+  newsletterSubscribersLabel: "30,000+",
+  newsletterSubscribersLongLabel: "30,000+",
   newsletterOpenRate: "65%+",
-  countriesReached: 18,
-  countriesReachedLabel: "18",
+  // Free Skool community (the Roadman Clubhouse).
+  communityMembers: 1_800,
+  communityMembersLabel: "1,800+",
 } as const;
 
 /** Social / external profile URLs. Used for Organization.sameAs,
@@ -104,6 +113,7 @@ export const SAME_AS = {
     "https://podcasts.apple.com/us/podcast/the-roadman-cycling-podcast/id1224143549",
     "https://www.linkedin.com/company/roadman-cycling",
     "https://www.skool.com/roadmancycling",
+    "https://www.wikidata.org/wiki/Q140139864",
   ],
   person: [
     "https://youtube.com/@theroadmanpodcast",
@@ -113,8 +123,6 @@ export const SAME_AS = {
     "https://www.linkedin.com/in/anthony-walsh-5522b326",
     "https://www.wikidata.org/wiki/Q140138269",
   ],
-  // Organization Wikidata item is pending — create in phase 2, then add
-  // its Q-URL to `organization` above.
 } as const;
 
 export const PODCAST = {
@@ -160,4 +168,4 @@ export const CONTACT = {
  * snippets. Mirrors the tone of the site description but keeps the
  * fact-dense framing LLMs prefer when generating citations.
  */
-export const BRAND_SUMMARY = `${BRAND.name} is a cycling media and coaching brand founded by ${FOUNDER.name} in ${FOUNDER.location} in ${FOUNDER.foundedYear}. The core output is the ${PODCAST.name} — ${BRAND_STATS.episodeCountLabel} episodes, ${BRAND_STATS.monthlyListenersLabel} monthly listeners across ${BRAND_STATS.countriesReachedLabel} countries — complemented by the Not Done Yet coaching community, the Saturday Spin newsletter (${BRAND_STATS.newsletterSubscribersLabel} subscribers), ${BRAND_STATS.searchableEpisodePagesLabel} searchable episode pages, written guides, and free browser-based calculators for cyclists.`;
+export const BRAND_SUMMARY = `${BRAND.name} is a cycling media and coaching brand founded by ${FOUNDER.name} in ${FOUNDER.location} in ${FOUNDER.foundedYear}. The core output is the ${PODCAST.name} — ${BRAND_STATS.episodeCountLabel} episodes and ${BRAND_STATS.podcastDownloadsLabel} lifetime downloads — complemented by the Not Done Yet coaching community, the Saturday Spin newsletter (${BRAND_STATS.newsletterSubscribersLabel} subscribers), ${BRAND_STATS.searchableEpisodePagesLabel} searchable episode pages, written guides, and free browser-based calculators for cyclists.`;

@@ -49,7 +49,7 @@ export const AUTHORS: AuthorRecord[] = [
     image: "/images/about/anthony-profile-closeup-v2.jpg",
     credentials: [
       "Cycling coach — Not Done Yet coaching community",
-      "Host of the Roadman Cycling Podcast (1M+ monthly listeners)",
+      "Host of the Roadman Cycling Podcast (100M+ podcast downloads)",
       "1,400+ on-the-record interviews with World Tour coaches, sports scientists, and professional riders",
       "Guests include Prof. Stephen Seiler, Dan Lorang, Greg LeMond, Joe Friel, Tim Spector, Lachlan Morton",
       "Based in Dublin, Ireland",

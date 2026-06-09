@@ -111,7 +111,7 @@ export function OrganizationJsonLd() {
             "@id": ENTITY_IDS.podcast,
             name: PODCAST.name,
             url: PODCAST.url,
-            description: `${PODCAST.name} — ${BRAND_STATS.episodeCountLabel} episodes, ${BRAND_STATS.monthlyListenersLabel} monthly listeners across ${BRAND_STATS.countriesReachedLabel} countries.`,
+            description: `${PODCAST.name} — ${BRAND_STATS.episodeCountLabel} episodes, ${BRAND_STATS.podcastDownloadsLabel} lifetime downloads.`,
             webFeed: PODCAST.rssFeed,
             image: BRAND.ogImage,
             author: { "@id": ENTITY_IDS.person },

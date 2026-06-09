@@ -445,10 +445,10 @@ export default function GoAdsLandingPage() {
             </p>
             <p className="text-off-white font-body text-sm leading-snug text-center">
               <span className="font-heading text-2xl tracking-wide mr-2 align-middle">
-                {BRAND_STATS.monthlyListenersLabel}
+                {BRAND_STATS.podcastDownloadsLabel}
               </span>
               <span className="text-foreground-muted">
-                riders a month · {BRAND_STATS.episodeCountLabel} episodes
+                podcast downloads · {BRAND_STATS.episodeCountLabel} episodes
               </span>
             </p>
           </div>
@@ -843,18 +843,18 @@ export default function GoAdsLandingPage() {
             </div>
             <div className="text-center">
               <dt className="font-heading text-3xl md:text-5xl text-coral leading-none">
-                {BRAND_STATS.monthlyListenersLabel}
+                {BRAND_STATS.podcastDownloadsLabel}
               </dt>
               <dd className="text-foreground-subtle text-xs md:text-sm mt-2">
-                Monthly listeners
+                Podcast downloads
               </dd>
             </div>
             <div className="text-center">
               <dt className="font-heading text-3xl md:text-5xl text-coral leading-none">
-                {BRAND_STATS.countriesReachedLabel}
+                {BRAND_STATS.youtubeSubscribersLabel}
               </dt>
               <dd className="text-foreground-subtle text-xs md:text-sm mt-2">
-                Countries
+                YouTube subscribers
               </dd>
             </div>
           </dl>
@@ -887,10 +887,10 @@ export default function GoAdsLandingPage() {
               <div className="grid grid-cols-3 gap-4 md:gap-8 w-full">
                 <div>
                   <p className="font-heading text-off-white text-3xl md:text-4xl leading-none">
-                    {BRAND_STATS.monthlyListenersLabel}
+                    {BRAND_STATS.podcastDownloadsLabel}
                   </p>
                   <p className="text-foreground-muted text-xs mt-1.5 leading-snug">
-                    monthly listeners
+                    podcast downloads
                   </p>
                 </div>
                 <div>
@@ -903,10 +903,10 @@ export default function GoAdsLandingPage() {
                 </div>
                 <div>
                   <p className="font-heading text-off-white text-3xl md:text-4xl leading-none">
-                    {BRAND_STATS.countriesReachedLabel}
+                    {BRAND_STATS.youtubeSubscribersLabel}
                   </p>
                   <p className="text-foreground-muted text-xs mt-1.5 leading-snug">
-                    countries reached
+                    YouTube subscribers
                   </p>
                 </div>
               </div>

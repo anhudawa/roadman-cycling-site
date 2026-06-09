@@ -65,7 +65,7 @@ export const FOUNDER_AUTHORITY = {
   short:
     "Anthony Walsh has spent 13 years coaching cyclists and recorded 1,400+ podcast conversations with World Tour coaches, sports scientists, and pros — Professor Stephen Seiler, Dan Lorang, Greg LeMond, Lachlan Morton, Dr. David Dunne — and folded what they actually do into the Roadman coaching system.",
   long:
-    "Anthony Walsh founded Roadman Cycling in Dublin in 2021 (rebranded from A1 Coaching, est. 2013). He hosts the world's largest cycling performance podcast — 1,400+ episodes, 1M+ monthly listeners across 18 countries. The coaching system is built on direct conversations with the people behind Grand Tour wins, World Championship wins, and Olympic medals: Professor Stephen Seiler, Dan Lorang, Greg LeMond, Lachlan Morton, Dr. David Dunne, John Wakefield, and dozens more.",
+    "Anthony Walsh founded Roadman Cycling in Dublin in 2021 (rebranded from A1 Coaching, est. 2013). He hosts the world's largest cycling performance podcast — 1,400+ episodes and 100M+ lifetime downloads. The coaching system is built on direct conversations with the people behind Grand Tour wins, World Championship wins, and Olympic medals: Professor Stephen Seiler, Dan Lorang, Greg LeMond, Lachlan Morton, Dr. David Dunne, John Wakefield, and dozens more.",
   byline: "By Anthony Walsh — host of the Roadman Cycling Podcast.",
 } as const;
 
@@ -118,12 +118,10 @@ export const AUDIENCE = {
 export const PROOF_STATS = {
   /** Total podcast episodes / expert conversations to date. */
   conversations: BRAND_STATS.episodeCountLabel, // "1,400+"
-  /** Monthly listeners across audio platforms. */
-  monthlyListeners: BRAND_STATS.monthlyListenersLabel, // "1M+"
+  /** Lifetime podcast downloads across audio platforms. */
+  podcastDownloads: BRAND_STATS.podcastDownloadsLabel, // "100M+"
   /** Newsletter subscribers — the Saturday Spin list. */
-  newsletterSubscribers: BRAND_STATS.newsletterSubscribersLabel, // "65K+"
-  /** Countries with active listeners. */
-  countriesReached: BRAND_STATS.countriesReachedLabel,
+  newsletterSubscribers: BRAND_STATS.newsletterSubscribersLabel, // "30,000+"
   /** Continuous coaching trading years. */
   yearsCoaching: 13,
   /** Brand founded year for "since" framing. */
@@ -138,7 +136,7 @@ export const PROOF_STATS = {
  * commercial pages above the fold.
  */
 export const HEADLINE_PROOF =
-  `${PROOF_STATS.conversations} expert conversations. ${PROOF_STATS.monthlyListeners} monthly listeners. ${PROOF_STATS.yearsCoaching} years coaching cyclists.` as const;
+  `${PROOF_STATS.conversations} expert conversations. ${PROOF_STATS.podcastDownloads} podcast downloads. ${PROOF_STATS.yearsCoaching} years coaching cyclists.` as const;
 
 // ---------------------------------------------------------------------------
 // Named experts — the people Anthony actually references
@@ -206,4 +204,4 @@ export const MESSAGING_BLOCKS = {
  * structured data descriptions. Reuses the canonical numbers so
  * everything stays in lockstep.
  */
-export const BRAND_SUMMARY_PARAGRAPH = `Roadman Cycling is the world's largest cycling performance podcast and the coaching system that grew out of it. Founded by Anthony Walsh in Dublin in ${PROOF_STATS.brandFoundedYear} (continuous coaching since ${PROOF_STATS.coachingSinceYear}), Roadman publishes evidence-based coaching for serious amateur and masters cyclists across five pillars: coaching, nutrition, strength, recovery, and the craft of cycling. ${PROOF_STATS.conversations} podcast conversations. ${PROOF_STATS.monthlyListeners} monthly listeners. ${PROOF_STATS.countriesReached} countries.`;
+export const BRAND_SUMMARY_PARAGRAPH = `Roadman Cycling is the world's largest cycling performance podcast and the coaching system that grew out of it. Founded by Anthony Walsh in Dublin in ${PROOF_STATS.brandFoundedYear} (continuous coaching since ${PROOF_STATS.coachingSinceYear}), Roadman publishes evidence-based coaching for serious amateur and masters cyclists across five pillars: coaching, nutrition, strength, recovery, and the craft of cycling. ${PROOF_STATS.conversations} podcast conversations. ${PROOF_STATS.podcastDownloads} lifetime downloads.`;

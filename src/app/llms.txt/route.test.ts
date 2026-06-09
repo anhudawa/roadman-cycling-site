@@ -13,8 +13,7 @@ vi.mock("@/lib/analytics/ai-referrer", () => ({
 }));
 vi.mock("@/lib/brand-facts", () => ({
   BRAND_STATS: {
-    monthlyListenersLabel: "100k",
-    countriesReachedLabel: "60",
+    podcastDownloadsLabel: "100M+",
     episodeCountLabel: "200",
     searchableEpisodePagesLabel: "180",
     newsletterSubscribersLabel: "30k",

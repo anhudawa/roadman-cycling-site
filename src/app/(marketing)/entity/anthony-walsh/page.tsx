@@ -40,7 +40,7 @@ const credentials = [
   {
     title: "Host",
     org: PODCAST.name,
-    detail: `${BRAND_STATS.episodeCountLabel} episodes · ${BRAND_STATS.monthlyListenersLabel} monthly listeners across ${BRAND_STATS.countriesReachedLabel} countries.`,
+    detail: `${BRAND_STATS.episodeCountLabel} episodes · ${BRAND_STATS.podcastDownloadsLabel} podcast downloads.`,
     href: "/entity/roadman-podcast",
   },
   {
