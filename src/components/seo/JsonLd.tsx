@@ -5,6 +5,7 @@ import {
   ENTITY_IDS,
   FOUNDER,
   PODCAST,
+  PODCAST_SAME_AS,
   SAME_AS,
   SITE_ORIGIN,
 } from "@/lib/brand-facts";
@@ -116,7 +117,7 @@ export function OrganizationJsonLd() {
             author: { "@id": ENTITY_IDS.person },
             publisher: { "@id": ENTITY_IDS.organization },
             inLanguage: "en",
-            sameAs: [PODCAST.appleUrl, PODCAST.spotifyUrl, PODCAST.youtubeUrl],
+            sameAs: [...PODCAST_SAME_AS],
           },
         ],
       }}

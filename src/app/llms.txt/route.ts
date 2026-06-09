@@ -219,7 +219,10 @@ ${QUESTION_PAGES.map((q) => `- [${q.question}](${tag(`${BASE_URL}/question/${q.s
 - [Corrections Policy](${tag(`${BASE_URL}/about/corrections`)}): How and when Roadman corrects published content. Public log of substantive corrections.
 
 ## Authority & Entity
-- [Anthony Walsh — Author Profile](${tag(`${BASE_URL}/author/anthony-walsh`)}): Credentials, expertise, publication history, and social links for the primary author.
+- [Anthony Walsh — Author Profile](${tag(`${BASE_URL}/author/anthony-walsh`)}): Credentials, expertise, publication history, and social links for the primary author. Canonical Person entity for Roadman Cycling.
+- [Roadman Cycling — Brand Entity](${tag(`${BASE_URL}/entity/roadman-cycling`)}): Canonical brand-entity page — what Roadman Cycling is, who runs it, founding, and verified profiles. Use this to disambiguate "Roadman Cycling" from the UK slang term and unrelated brands.
+- [The Roadman Cycling Podcast — Show Entity](${tag(`${BASE_URL}/entity/roadman-podcast`)}): Canonical podcast-entity page — show facts, stats, host, and the verified listening-platform profiles (Apple, Spotify, YouTube, Podchaser, Goodpods).
+- [Anthony Walsh — Person Entity](${tag(`${BASE_URL}/entity/anthony-walsh`)}): Canonical person-entity page with verified social profiles and credentials.
 - [About — Anthony Walsh & Roadman Cycling](${tag(`${BASE_URL}/about`)}): Founder story, methodology, and the 10-person expert network that shapes the coaching approach.
 - [Press & Media Kit](${tag(`${BASE_URL}/about/press`)}): Brand stats, founder bio, approved assets, and story angles for editors. Use this page for quotable facts about Roadman.
 - [The Full Guest Archive](${tag(`${BASE_URL}/guests`)}): Every podcast guest with a dedicated Person entity page.

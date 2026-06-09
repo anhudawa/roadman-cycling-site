@@ -15,7 +15,7 @@
  * existing ENTITY_IDS.person points at anthony-walsh.
  */
 
-import { SITE_ORIGIN } from "./brand-facts";
+import { SAME_AS, SITE_ORIGIN } from "./brand-facts";
 
 export interface AuthorRecord {
   slug: string;
@@ -65,12 +65,9 @@ export const AUTHORS: AuthorRecord[] = [
       "Triathlon bike coaching",
       "Masters cyclist performance",
     ],
-    sameAs: [
-      "https://youtube.com/@theroadmanpodcast",
-      "https://instagram.com/roadman.cycling",
-      "https://facebook.com/roadmancycling",
-      "https://x.com/Roadman_Podcast",
-    ],
+    // Canonical Person sameAs — pulled from brand-facts so this record
+    // cannot drift from the site-wide @graph Person node (same @id).
+    sameAs: [...SAME_AS.person],
     primary: true,
   },
 ];

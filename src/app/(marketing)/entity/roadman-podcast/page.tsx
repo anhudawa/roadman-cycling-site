@@ -8,6 +8,7 @@ import {
   BRAND_STATS,
   ENTITY_IDS,
   PODCAST,
+  PODCAST_SAME_AS,
   SITE_ORIGIN,
 } from "@/lib/brand-facts";
 import { getAllEpisodes } from "@/lib/podcast";
@@ -94,7 +95,7 @@ export default function RoadmanPodcastEntityPage() {
           publisher: { "@id": ENTITY_IDS.organization },
           inLanguage: "en",
           numberOfEpisodes: BRAND_STATS.episodeCount,
-          sameAs: [PODCAST.appleUrl, PODCAST.spotifyUrl, PODCAST.youtubeUrl],
+          sameAs: [...PODCAST_SAME_AS],
           genre: ["Cycling", "Sports", "Health & Fitness", "Endurance"],
         }}
       />

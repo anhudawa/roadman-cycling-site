@@ -4,6 +4,7 @@ import {
   BRAND_STATS,
   FOUNDER,
   PODCAST,
+  PODCAST_SAME_AS,
   SAME_AS,
   SITE_ORIGIN,
 } from "@/lib/brand-facts";
@@ -49,7 +50,7 @@ export async function GET() {
     sameAs: {
       organization: [...SAME_AS.organization],
       person: [...SAME_AS.person],
-      podcast: [PODCAST.appleUrl, PODCAST.spotifyUrl, PODCAST.youtubeUrl],
+      podcast: [...PODCAST_SAME_AS],
     },
     lastUpdated: new Date().toISOString().slice(0, 10),
   };

@@ -124,6 +124,27 @@ export const PODCAST = {
   youtubeUrl: "https://youtube.com/@theroadmanpodcast",
 } as const;
 
+/**
+ * Canonical `sameAs` set for the PodcastSeries entity — every external
+ * surface that unambiguously resolves to *the show* (not the org or the
+ * person). Single source of truth: JSON-LD (PodcastSeries), the
+ * /entity/roadman-podcast page, and /facts.json all read this so the
+ * podcast resolves to one entity across Google/AI knowledge graphs.
+ *
+ * Podchaser and Goodpods are podcast-database entity pages (verified to
+ * point at this exact show); they are first-class disambiguation signals
+ * that Google's Knowledge Graph ingests. Add a platform here only after
+ * its URL is confirmed to resolve to The Roadman Cycling Podcast — an
+ * invented sameAs is worse than a missing one.
+ */
+export const PODCAST_SAME_AS: readonly string[] = [
+  PODCAST.appleUrl,
+  PODCAST.spotifyUrl,
+  PODCAST.youtubeUrl,
+  "https://www.podchaser.com/podcasts/the-roadman-cycling-podcast-516594",
+  "https://goodpods.com/podcasts/the-roadman-cycling-podcast-205537",
+] as const;
+
 export const CONTACT = {
   email: FOUNDER.email,
   correctionsEmail: FOUNDER.email,
