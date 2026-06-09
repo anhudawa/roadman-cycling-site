@@ -341,6 +341,29 @@ const nextConfig: NextConfig = {
         permanent: true,
       },
 
+      // ==========================================================
+      // Legacy ClickFunnels paths flagged as live 404s in the
+      // 2026-06 SEO audit. Each accumulated inbound links during the
+      // ClickFunnels era, so every 404 leaks authority. Map to the
+      // closest canonical equivalent (308). Notes:
+      //  - /join is already handled above (→ /apply).
+      //  - /order and /thankyou are dead transactional pages and go
+      //    to 410 Gone in the rewrites block below, matching the
+      //    other order-form / thank-you rules — not a 301.
+      // ==========================================================
+      { source: "/podcast-page", destination: "/podcast", permanent: true },
+      { source: "/home-page", destination: "/", permanent: true },
+      // Membership = the Not Done Yet community
+      { source: "/membership", destination: "/community/not-done-yet", permanent: true },
+      // 14-Day Kickstart Challenge funnel (same retired product as /14day → /apply)
+      { source: "/challenge", destination: "/apply", permanent: true },
+      // Sales webinar funnel — sold 1:1 coaching → coaching sales page
+      { source: "/webinar", destination: "/coaching", permanent: true },
+      // Bare free lead-magnet entry — the free calculator toolkit
+      { source: "/free", destination: "/tools", permanent: true },
+      // "Start here" entry funnel → coaching application
+      { source: "/start", destination: "/apply", permanent: true },
+
       // ClickFunnels orphan landing pages — P2 redirects
       { source: "/tyre-pressure-2-page--64de3", destination: "/tools/tyre-pressure", permanent: true },
       { source: "/toolkit2-page", destination: "/tools", permanent: true },
@@ -418,6 +441,11 @@ const nextConfig: NextConfig = {
         { source: "/application-thank-you", destination: "/api/gone" },
         { source: "/s-c-order-form", destination: "/api/gone" },
         { source: "/s-c-order-confirmed", destination: "/api/gone" },
+        // Bare ClickFunnels checkout/thank-you slugs (SEO audit, 2026-06).
+        // Dead transactional pages — 410 Gone, consistent with the
+        // order-form and thank-you rules above.
+        { source: "/order", destination: "/api/gone" },
+        { source: "/thankyou", destination: "/api/gone" },
         { source: "/confirmation--5562c", destination: "/api/gone" },
         { source: "/anthony-walsh", destination: "/api/gone" },
         { source: "/grow-with-the-flow-order-form", destination: "/api/gone" },
