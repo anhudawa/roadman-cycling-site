@@ -287,6 +287,32 @@ const TOPIC_POST_MAP: Record<string, string[]> = {
     "cycling-body-recomposition",
     "cycling-protein-timing-guide",
     "alan-murchison-michelin-star-chef-cycling-nutrition",
+    "gut-training-cycling-absorb-more-carbs",
+    "bonking-cycling-what-happens-how-to-prevent",
+    "electrolytes-sweat-rate-cycling",
+    "post-ride-recovery-nutrition-cyclists",
+    "carbohydrate-per-hour-cyclists",
+    "cycling-carb-loading-protocol-race-week",
+    "race-day-fuelling-24-hour-timeline",
+    "cycling-nutrition-plan-100-mile-sportive",
+    "badlands-800km-fuelling-strategy",
+    "nutrition-periodisation-base-build-race",
+    "amateur-cyclist-fuelling-benchmarks-report-2026",
+    "pre-ride-breakfast-cyclists-guide",
+    "post-ride-recovery-window-cyclists-over-40",
+    "fuel-for-the-work-required-fftwr-explained",
+    "cycling-protein-requirements",
+    "bedtime-protein-cyclists-recovery-protocol",
+    "cycling-caffeine-performance",
+    "creatine-for-cyclists-thirty-day-data",
+    "mtb-nutrition-trail-fuelling",
+    "triathlon-bike-nutrition-strategy",
+    "cycling-nutrition-world-tour-nutritionists",
+    "what-experts-say-about-cycling-nutrition",
+    "david-dunne-world-tour-nutritionist-cycling-weight-loss",
+    "hannah-grant-pro-team-chef-weight-loss",
+    "tim-spector-gut-microbiome-cycling-weight-loss",
+    "best-roadman-episodes-nutrition",
   ],
   "cycling-training-plans": [
     "cycling-periodisation-plan-guide",
@@ -421,6 +447,7 @@ const TOPIC_POST_MAP: Record<string, string[]> = {
     "mtb-nutrition-trail-fuelling",
   ],
   "against-the-clock": [
+    "against-the-clock-cycling-watches",
     "dan-bigham-aerodynamics-amateur-cyclists",
     "alex-dowsett-pro-cycling-lessons-amateur",
     "ryan-collins-six-hour-velodrome-record-three-tweaks",
@@ -429,6 +456,11 @@ const TOPIC_POST_MAP: Record<string, string[]> = {
     "mental-tools-long-climbs-time-trials",
     "aero-vs-weight-cyclist",
     "wind-tunnel-aero-gains-gravel-cyclists",
+    "aero-position-training-for-triathletes",
+    "triathlon-aero-position-guide",
+    "shorter-cranks-cycling-power-gains",
+    "cycling-headwind-strategies",
+    "cycling-pacing-strategy-long-climbs",
   ],
 };
 
@@ -606,9 +638,9 @@ const TOPIC_ENRICHMENT: Record<string, {
     commercialPath: "/go",
     relatedTopics: ["ftp-training", "cycling-coaching"],
     featuredPostSlugs: [
+      "against-the-clock-cycling-watches",
       "dan-bigham-aerodynamics-amateur-cyclists",
       "ryan-collins-six-hour-velodrome-record-three-tweaks",
-      "cycling-time-trial-tips",
     ],
   },
 };
@@ -627,7 +659,7 @@ const TOPIC_EPISODE_KEYWORDS: Record<string, RegExp> = {
   "cycling-coaching": /coach|coaching|personalise|structured|methodology|plan.?review|self.?coach|mentor|guided|accountability/i,
   "mountain-biking": /mountain.?bik|mtb|enduro|downhill|trail.?rid|suspension|fork.?setup|sag|shock.?pressur|dropper|trail.?centre/i,
   "against-the-clock":
-    /hour record|time trial|race of truth|against the clock|watch|wristwatch|aero|velodrome|pursuit/i,
+    /hour record|time.?trial|\btt\b|race of truth|against the clock|watch|wristwatch|aero|velodrome|pursuit|pacing|track cycl|track racing|track bike|skinsuit|wind tunnel/i,
 };
 
 /**
