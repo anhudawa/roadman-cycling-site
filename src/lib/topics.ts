@@ -43,6 +43,14 @@ export interface TopicHub {
   citedClaims: CitedClaim[];
   claimsHeading?: string;
   claimsCaption?: string;
+  /**
+   * Question/answer pairs for the hub, derived from the topic's own
+   * content. Rendered as a visible <details> accordion AND emitted as
+   * FAQPage JSON-LD so the structured data has on-page content behind it
+   * (Google requires FAQ answers be visible to users). Answers are kept
+   * to 2-3 authoritative sentences.
+   */
+  faqs: TopicFAQ[];
 }
 
 export interface TopicTool {
@@ -51,11 +59,16 @@ export interface TopicTool {
   href: string;
 }
 
+export interface TopicFAQ {
+  question: string;
+  answer: string;
+}
+
 /**
  * Topic hubs — curated landing pages that group related content.
  * Each one targets a high-value keyword cluster.
  */
-const TOPIC_DEFINITIONS: Omit<TopicHub, "posts" | "episodes" | "tools" | "commercialPath" | "relatedTopics" | "featuredPostSlugs" | "pillarContent" | "citedClaims" | "claimsHeading" | "claimsCaption">[] = [
+const TOPIC_DEFINITIONS: Omit<TopicHub, "posts" | "episodes" | "tools" | "commercialPath" | "relatedTopics" | "featuredPostSlugs" | "pillarContent" | "citedClaims" | "claimsHeading" | "claimsCaption" | "faqs">[] = [
   {
     slug: "ftp-training",
     title: "FTP Training for Cyclists — The Complete Evidence-Based Guide",
@@ -663,6 +676,256 @@ const TOPIC_EPISODE_KEYWORDS: Record<string, RegExp> = {
 };
 
 /**
+ * Hub FAQs — question/answer pairs derived from each topic's own
+ * content. Surfaced as a visible accordion and as FAQPage JSON-LD. Three
+ * to four questions per hub, answers held to 2-3 authoritative sentences.
+ */
+const TOPIC_FAQS: Record<string, TopicFAQ[]> = {
+  "ftp-training": [
+    {
+      question: "What is FTP in cycling?",
+      answer:
+        "FTP (Functional Threshold Power) is the highest power output you can sustain for roughly an hour, measured in watts. It's the anchor for setting training zones, because almost every structured session is prescribed as a percentage of it.",
+    },
+    {
+      question: "How do I test my FTP?",
+      answer:
+        "The most common field test is a 20-minute all-out effort, with FTP estimated at 95% of your average power. Use the same warm-up, terrain and pacing every time so the number stays comparable, and retest no more than once every six to eight weeks.",
+    },
+    {
+      question: "How long does it take to improve FTP?",
+      answer:
+        "Beginners often see quick gains in the first few months, while experienced amateurs progress block by block over 8–12 weeks. Judge progress on the trend across several tests rather than a single result, and expect smaller jumps as your training age increases.",
+    },
+    {
+      question: "What is a good FTP for a cyclist?",
+      answer:
+        "Raw FTP matters less than power-to-weight, measured in watts per kilogram. A fit amateur is often around 3–4 W/kg and competitive club riders 4–5 W/kg, but the only number that matters for your training is your own.",
+    },
+  ],
+  "cycling-nutrition": [
+    {
+      question: "How many carbs per hour should I eat while cycling?",
+      answer:
+        "For rides over about 90 minutes, aim for 60–90g of carbohydrate per hour, reaching the higher end only once you've trained your gut to absorb it. Easy rides under an hour usually need little or no fuelling.",
+    },
+    {
+      question: "What should I eat before a long ride?",
+      answer:
+        "Eat a carbohydrate-rich meal 2–3 hours before — porridge, toast or rice work well — keeping fat and fibre moderate to avoid stomach trouble. Top up with a small snack in the final hour if the ride is long or hard.",
+    },
+    {
+      question: "Should I ride fasted to lose weight?",
+      answer:
+        "Fasted riding has a place for easy, low-intensity sessions, but it doesn't burn meaningfully more fat over time and it compromises quality on harder days. Fuelling for the work required is the more reliable route to both performance and body composition.",
+    },
+    {
+      question: "How much protein do cyclists need?",
+      answer:
+        "Endurance cyclists generally need around 1.6–2.0g of protein per kilogram of bodyweight per day, spread across meals. Intakes at the higher end help protect muscle when training hard or eating in a deficit.",
+    },
+  ],
+  "cycling-training-plans": [
+    {
+      question: "How should I structure a cycling training plan?",
+      answer:
+        "Build from a base of easy aerobic volume, add targeted intensity as your event approaches, and schedule regular recovery weeks to absorb the work. Periodisation — organising training into progressive blocks — is what separates a plan from random hard riding.",
+    },
+    {
+      question: "What is polarised training?",
+      answer:
+        "Polarised training keeps most of your riding easy (around 80%) and a small portion genuinely hard (around 20%), with little time in the moderate middle. It's well supported by research and used widely by elite endurance athletes.",
+    },
+    {
+      question: "How many hours a week do I need to train?",
+      answer:
+        "Meaningful progress is possible on 6–8 structured hours a week, and time-crunched riders still improve on less when the intensity is well placed. Consistency week to week matters far more than the occasional big week.",
+    },
+    {
+      question: "What is base training?",
+      answer:
+        "Base training is an extended period of mostly easy, aerobic riding that builds endurance, efficiency and the durability to handle harder work later. It's the foundation the rest of the season is built on, not junk miles.",
+    },
+  ],
+  "cycling-recovery": [
+    {
+      question: "How important is sleep for cycling performance?",
+      answer:
+        "Sleep is where most adaptation and repair happens, which makes it the highest-leverage recovery tool a cyclist has. Consistently getting 7–9 hours does more for performance than any supplement or gadget.",
+    },
+    {
+      question: "What is active recovery?",
+      answer:
+        "Active recovery is very easy riding, well below endurance pace, that promotes blood flow without adding training stress. Done correctly it should feel almost too easy; if it leaves you tired, it was too hard.",
+    },
+    {
+      question: "How do I know if I'm overtraining?",
+      answer:
+        "Persistent fatigue, declining performance, poor sleep, an elevated resting heart rate and low motivation are common warning signs. The fix is almost always more recovery and reduced intensity, not pushing harder.",
+    },
+    {
+      question: "How many rest days should cyclists take?",
+      answer:
+        "Most cyclists benefit from at least one full rest day a week, plus a lighter recovery week roughly every three to four weeks. Recovery isn't lost fitness — it's when the training you've done actually takes effect.",
+    },
+  ],
+  "cycling-strength-conditioning": [
+    {
+      question: "Should cyclists lift weights?",
+      answer:
+        "Yes. Heavy strength training improves economy, power and durability without adding meaningful bulk, and the benefits are especially pronounced for masters cyclists. It complements riding rather than competing with it.",
+    },
+    {
+      question: "What strength exercises are best for cyclists?",
+      answer:
+        "Compound lower-body lifts — squats, deadlifts and their variations — give the most return, supported by core and single-leg work. Lift heavy for low reps with good form rather than chasing high-rep endurance sets.",
+    },
+    {
+      question: "How often should cyclists strength train?",
+      answer:
+        "Two sessions a week is enough to build and maintain strength alongside riding, dropping to one in your hardest training or racing periods. Place gym work on harder ride days so easy days stay genuinely easy.",
+    },
+    {
+      question: "Will lifting weights make me too heavy for climbing?",
+      answer:
+        "No. Cycling-specific strength training builds force and neuromuscular efficiency with minimal mass, so power-to-weight tends to improve. Significant muscle gain needs a calorie surplus and hypertrophy training most cyclists never do.",
+    },
+  ],
+  "cycling-weight-loss": [
+    {
+      question: "How do I lose weight without losing cycling power?",
+      answer:
+        "Hold a modest deficit, keep protein high, and fuel your hard sessions so quality doesn't collapse — the tactic known as fuel for the work required. Slow, steady loss protects muscle and watts; crash diets cost you both.",
+    },
+    {
+      question: "What is power-to-weight ratio?",
+      answer:
+        "Power-to-weight is your sustainable power divided by your bodyweight, expressed in watts per kilogram (W/kg). It's the key metric for climbing, because two riders with the same FTP perform very differently if one is lighter.",
+    },
+    {
+      question: "Is it better to lose weight or gain power?",
+      answer:
+        "For most amateurs, building power is more sustainable than chasing a low weight and carries less risk to health and performance. The best results usually come from improving power first and trimming weight gradually around it.",
+    },
+    {
+      question: "How fast should cyclists lose weight?",
+      answer:
+        "Around 0.5kg per week is a sensible ceiling — slow enough to preserve muscle and training quality. Faster loss tends to sacrifice power, immunity and recovery.",
+    },
+  ],
+  "cycling-beginners": [
+    {
+      question: "How do I start cycling?",
+      answer:
+        "Begin with consistent, easy rides to build the habit and a base of fitness, prioritising time in the saddle over speed or distance. A basic bike fit and a few group-riding fundamentals make everything more comfortable and safer.",
+    },
+    {
+      question: "What tyre pressure should I run on a road bike?",
+      answer:
+        "There's no single number — it depends on your weight, tyre width and the road surface. Most riders run higher than they need; wider tyres at lower pressure are often faster and far more comfortable.",
+    },
+    {
+      question: "How do I behave on a group ride?",
+      answer:
+        "Hold a steady line, point out hazards, never overlap wheels, and take smooth turns on the front. Good etiquette keeps everyone safe and is the fastest way to be welcomed back.",
+    },
+    {
+      question: "How often should a beginner cycle?",
+      answer:
+        "Three to four rides a week builds fitness steadily while leaving room to recover and stay motivated. Consistency over months matters far more than any single hard ride.",
+    },
+  ],
+  "triathlon-cycling": [
+    {
+      question: "How should I pace the bike leg of a triathlon?",
+      answer:
+        "Ride to a controlled percentage of your FTP — often around 70–80% for long course — so you protect your run rather than chasing bike splits. The fastest overall triathletes rarely post the fastest bike leg.",
+    },
+    {
+      question: "How do I fuel the bike leg?",
+      answer:
+        "The bike is where you take on most of your race-day carbohydrate, because it's easier to eat and drink than on the run. Aim for 60–90g of carbohydrate per hour, practised in training so your gut can handle it.",
+    },
+    {
+      question: "Does an aero position cost me run performance?",
+      answer:
+        "An aggressive aero position only hurts your run if you can't hold it comfortably or haven't trained in it. Built up gradually, a good position saves real time and leaves your legs fresher off the bike.",
+    },
+    {
+      question: "How much should triathletes focus on cycling?",
+      answer:
+        "The bike is the longest leg and where most age-groupers lose or gain the most time, so it deserves a serious share of training. Improving sustainable bike power pays off across the whole race.",
+    },
+  ],
+  "mountain-biking": [
+    {
+      question: "What tyre pressure should I run on a mountain bike?",
+      answer:
+        "MTB pressures are much lower than road — often 18–26 psi depending on your weight, tyre volume, terrain and whether you run tubeless. Start lower than you'd expect for grip and comfort, then add pressure if you feel the rim or burp air.",
+    },
+    {
+      question: "How do I set up my suspension sag?",
+      answer:
+        "Set sag — how much the suspension compresses under your static weight — to roughly 25–30% of travel as a starting point, front and rear. From there, tune rebound and compression to suit the trails you ride.",
+    },
+    {
+      question: "Is mountain biking good for fitness?",
+      answer:
+        "Yes. The constant changes in effort, terrain and body position build strong aerobic fitness, handling and core strength, often at a higher average heart rate than equivalent time on the road.",
+    },
+    {
+      question: "Do I need a dropper post?",
+      answer:
+        "A dropper post is one of the highest-impact upgrades for trail riding, letting you drop the saddle for descents and corners without stopping. Most riders who fit one never go back.",
+    },
+  ],
+  "cycling-coaching": [
+    {
+      question: "Is a cycling coach worth it?",
+      answer:
+        "A coach is worth it if you're plateauing, short on time, or unsure how to structure your training — the value is in personalisation and accountability, not just a plan. Most amateurs leak fitness through unstructured riding a coach would redirect.",
+    },
+    {
+      question: "How does online cycling coaching work?",
+      answer:
+        "An online coach builds your training around your goals, schedule and data, then adjusts it week to week based on how you respond and what you tell them. For most riders this is as effective as in-person coaching.",
+    },
+    {
+      question: "How much does a cycling coach cost?",
+      answer:
+        "Quality online coaching typically runs from around $150–250 a month depending on the level of contact and personalisation. Roadman's Not Done Yet coaching is $195/month with a 7-day free trial.",
+    },
+    {
+      question: "Does my cycling coach need to be local?",
+      answer:
+        "No. Because coaching is built on data, communication and a personalised plan, location rarely matters — what counts is the coach's methodology and how well they understand your goals.",
+    },
+  ],
+  "against-the-clock": [
+    {
+      question: "What is against the clock in cycling?",
+      answer:
+        "It's shorthand for every discipline settled purely by time rather than position — chiefly the time trial and the Hour Record, cycling's oldest and most honest tests. The rider races the clock, not the wheel in front.",
+    },
+    {
+      question: "What is the Hour Record?",
+      answer:
+        "The Hour Record is the furthest distance a cyclist can ride in one hour on a velodrome, a benchmark contested since the 1890s. It rewards a rare blend of sustainable power, aerodynamics and pacing discipline, which is why it's so revered.",
+    },
+    {
+      question: "Why is the time trial called the race of truth?",
+      answer:
+        "Because there's nowhere to hide — no drafting, no tactics, no teammates, just the rider against the clock. The result is a direct readout of your fitness, position and pacing on the day.",
+    },
+    {
+      question: "For a time trial, what matters more: aero or weight?",
+      answer:
+        "On flat and rolling courses, aerodynamics dominates — small gains in position save more time than shaving grams. Weight only outweighs aero when the course turns sharply uphill.",
+    },
+  ],
+};
+
+/**
  * Reads the long-form pillar MDX for a topic, if one exists.
  * Returns null if no file — so topic hubs without pillar content fall
  * back to the original hero-only layout (no change in behaviour).
@@ -715,6 +978,7 @@ export function getAllTopics(): TopicHub[] {
       citedClaims: enrichment.citedClaims ?? [],
       claimsHeading: enrichment.claimsHeading,
       claimsCaption: enrichment.claimsCaption,
+      faqs: TOPIC_FAQS[topic.slug] ?? [],
     };
   });
 }

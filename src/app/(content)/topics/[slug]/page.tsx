@@ -6,6 +6,7 @@ import remarkGfm from "remark-gfm";
 import { Header, Footer, Section, Container } from "@/components/layout";
 import { ScrollReveal, Card, Badge, Button, CitedClaimTable } from "@/components/ui";
 import { JsonLd } from "@/components/seo/JsonLd";
+import { FAQSchema } from "@/components/seo/FAQSchema";
 import { ENTITY_IDS, SITE_ORIGIN } from "@/lib/brand-facts";
 import { Breadcrumbs } from "@/components/seo/Breadcrumbs";
 import { EmailCapture } from "@/components/features/conversion/EmailCapture";
@@ -142,6 +143,10 @@ export default async function TopicPage({
           ],
         }}
       />
+      {/* FAQPage schema — only emitted when the hub has FAQ pairs, and
+          backed by the visible accordion rendered below so the answers
+          are present on-page per Google's FAQ guidelines. */}
+      {topic.faqs.length > 0 && <FAQSchema faqs={topic.faqs} />}
 
       <Header />
 
@@ -532,6 +537,42 @@ export default async function TopicPage({
             </ScrollReveal>
           </Container>
         </Section>
+
+        {/* FAQ — visible answers that back the FAQPage JSON-LD emitted
+            in the head. Rendered only on hubs that define FAQ pairs. */}
+        {topic.faqs.length > 0 && (
+          <Section background="deep-purple" grain>
+            <Container width="narrow">
+              <ScrollReveal direction="up" className="text-center mb-12">
+                <p className="text-coral font-heading text-xs tracking-widest mb-3">
+                  COMMON QUESTIONS
+                </p>
+                <h2
+                  className="font-heading text-off-white mb-4"
+                  style={{ fontSize: "var(--text-section)" }}
+                >
+                  FREQUENTLY ASKED
+                </h2>
+              </ScrollReveal>
+
+              <div className="divide-y divide-white/10 border-y border-white/10">
+                {topic.faqs.map((f) => (
+                  <details key={f.question} className="group py-5">
+                    <summary className="cursor-pointer flex items-center justify-between gap-4 font-heading tracking-wide uppercase text-off-white text-base md:text-lg list-none">
+                      <span>{f.question}</span>
+                      <span className="text-coral transition-transform group-open:rotate-45 shrink-0">
+                        +
+                      </span>
+                    </summary>
+                    <p className="mt-3 text-foreground-muted leading-relaxed">
+                      {f.answer}
+                    </p>
+                  </details>
+                ))}
+              </div>
+            </Container>
+          </Section>
+        )}
 
         {/* CTA — coaching hub gets a coaching-specific funnel */}
         {topic.slug === "cycling-coaching" ? (
