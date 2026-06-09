@@ -40,11 +40,18 @@ idea") — episode numbering decision is closed.
   text-preservation and timestamp-ordering proven by tests. Falls back to
   speaker-less Whisper segments pre-diarization (claims then route to review
   as ambiguous_speaker — never guessed).
-- 63 unit tests passing, lint clean.
+- **Stage 2 alignment half implemented** (`stages/diarize.py`): Whisper words
+  assigned to pyannote speaker intervals by greatest overlap (gap words snap
+  to the nearest interval within 2s, else stay unassigned), consecutive
+  same-label words grouped into turns, new immutable transcript version with
+  `speaker_turns`. Unresolved labels keep `speaker_expert_id` NULL — never
+  guessed. Remaining half (running pyannote + label→expert resolution via
+  guest list / host voice-print / LLM opening cues) needs the GPU box.
+- 69 unit tests passing, lint clean.
 
 ### ⏭ Next
 
-- Stage 2 (pyannote diarization + speaker ID) — the remaining P0-4 piece.
+- Stage 2 remainder: run pyannote on the worker box + speaker resolution.
 - Stage 4 extraction API driver wiring (validation/routing already built).
 - On DB arrival: run the full chain on 3 sample episodes (P0-4 acceptance).
 
