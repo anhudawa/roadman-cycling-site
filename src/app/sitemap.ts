@@ -117,6 +117,7 @@ function buildStaticSitemap(): MetadataRoute.Sitemap {
     { url: `${BASE_URL}/entity/not-done-yet`, lastModified: new Date(), changeFrequency: "monthly", priority: 0.7 },
     { url: `${BASE_URL}/entity/ask-roadman`, lastModified: new Date(), changeFrequency: "monthly", priority: 0.7 },
     { url: `${BASE_URL}/entity/roadman-method`, lastModified: new Date(), changeFrequency: "monthly", priority: 0.7 },
+    { url: `${BASE_URL}/entity/against-the-clock`, lastModified: new Date(), changeFrequency: "monthly", priority: 0.7 },
     // Expert-network entities (driven by content/entities/*.mdx via the
     // dynamic /entity/[slug] route). Sitemap entries here so GSC sees
     // them in the static sitemap alongside the brand-entity pages,

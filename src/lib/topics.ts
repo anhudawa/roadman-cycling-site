@@ -263,7 +263,7 @@ const TOPIC_DEFINITIONS: Omit<TopicHub, "posts" | "episodes" | "tools" | "commer
       "race of truth cycling",
       "cycling watches",
       "richard mille cycling",
-      "festina affair",
+      "tudor pro cycling",
       "dan bigham hour record",
       "cycling and time",
     ],
@@ -642,23 +642,18 @@ const TOPIC_POST_MAP: Record<string, string[]> = {
     "mtb-heart-rate-zones-guide",
     "mtb-nutrition-trail-fuelling",
   ],
+  // Curated to the horology / time angle: watches, timing history, the Hour
+  // Record, and the time trial's "race of truth." Pure aero and generic
+  // training pieces (aero-vs-weight, crank length, triathlon aero, headwind
+  // tactics, gravel/bikepacking, the Netflix doc, etc.) were stripped out —
+  // they diluted the watch-and-time focus this hub is built on.
   "against-the-clock": [
     "against-the-clock-cycling-watches",
     "dan-bigham-aerodynamics-amateur-cyclists",
     "alex-dowsett-pro-cycling-lessons-amateur",
     "ryan-collins-six-hour-velodrome-record-three-tweaks",
     "cycling-time-trial-tips",
-    "matt-bottrill-7-pro-hacks",
-    "mental-tools-long-climbs-time-trials",
-    "aero-vs-weight-cyclist",
-    "wind-tunnel-aero-gains-gravel-cyclists",
-    "aero-position-training-for-triathletes",
-    "triathlon-aero-position-guide",
-    "shorter-cranks-cycling-power-gains",
-    "cycling-headwind-strategies",
-    "cycling-pacing-strategy-long-climbs",
-    "sebastian-breuer-badlands-aero-bikepacking",
-    "why-netflix-unchained-failed-cycling",
+    "uli-schoberer-first-power-meter-cycling-history",
   ],
 };
 
@@ -857,7 +852,20 @@ const TOPIC_EPISODE_KEYWORDS: Record<string, RegExp> = {
   "cycling-coaching": /coach|coaching|personalise|structured|methodology|plan.?review|self.?coach|mentor|guided|accountability/i,
   "mountain-biking": /mountain.?bik|mtb|enduro|downhill|trail.?rid|suspension|fork.?setup|sag|shock.?pressur|dropper|trail.?centre/i,
   "against-the-clock":
-    /hour record|time.?trial|\btt\b|race of truth|against the clock|watch|wristwatch|aero|velodrome|pursuit|pacing|track cycl|track racing|track bike|skinsuit|wind tunnel/i,
+    /hour record|time.?trial|\btt\b|race of truth|against the clock|contre la montre|\bwatches\b|wristwatch|watchmaker|chronograph|richard mille|velodrome|pursuit|track cycl|track racing|track bike/i,
+};
+
+/**
+ * Per-topic episode exclusions, matched against the episode TITLE only.
+ * The include pattern above matches any episode whose description merely
+ * *mentions* a keyword in passing — for against-the-clock that drags in
+ * doping, painkiller and general-training episodes that name-drop "time
+ * trial" but have nothing to do with horology or the race of truth. This
+ * list keeps the hub focused on watches / timing / Hour Record culture.
+ * Topics without an entry here are unaffected.
+ */
+const TOPIC_EPISODE_EXCLUDE: Record<string, RegExp> = {
+  "against-the-clock": /\bepo\b|doping|painkiller|drug|cheat|exploding|strength training|over 40/i,
 };
 
 /**
@@ -1103,9 +1111,9 @@ const TOPIC_FAQS: Record<string, TopicFAQ[]> = {
         "Because there's nowhere to hide — no drafting, no tactics, no teammates, just the rider against the clock. The result is a direct readout of your fitness, position and pacing on the day.",
     },
     {
-      question: "For a time trial, what matters more: aero or weight?",
+      question: "Why do pro cyclists wear luxury watches like Richard Mille?",
       answer:
-        "On flat and rolling courses, aerodynamics dominates — small gains in position save more time than shaving grams. Weight only outweighs aero when the course turns sharply uphill.",
+        "Mostly sponsorship — a watch visible through three weeks of close-up television is worth far more than the few grams it costs, and modern carbon-and-titanium cases weigh almost nothing. But it rhymes with something real: the chronograph was invented to measure exactly what cycling measures — elapsed time, to a fraction of a second. The stopwatch and the time trial are siblings.",
     },
   ],
 };
@@ -1134,6 +1142,7 @@ export function getAllTopics(): TopicHub[] {
 
     // Get relevant episodes by keyword matching (limit to 12 most relevant)
     const keywordPattern = TOPIC_EPISODE_KEYWORDS[topic.slug];
+    const excludePattern = TOPIC_EPISODE_EXCLUDE[topic.slug];
     const episodes = keywordPattern
       ? allEpisodes
           .filter(
@@ -1141,6 +1150,7 @@ export function getAllTopics(): TopicHub[] {
               keywordPattern.test(ep.title) ||
               keywordPattern.test(ep.description)
           )
+          .filter((ep) => !excludePattern || !excludePattern.test(ep.title))
           .slice(0, 12)
       : [];
 
