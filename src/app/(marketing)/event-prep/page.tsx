@@ -87,7 +87,7 @@ const EVENT_PREP_BLOG_SLUGS = [
   "cycling-nutrition-race-day-guide",
   "cycling-tapering-guide",
   "cycling-taper-discipline-15-percent-gain",
-  "cycling-carbs-per-hour-fuel-like-a-pro",
+  "carbohydrate-per-hour-cyclists",
   "cycling-nutrition-plan-100-mile-sportive",
   "cycling-heat-training-guide",
   "cycling-altitude-training",

@@ -523,7 +523,7 @@ export const PROBLEM_PAGES: ProblemPage[] = [
     ],
     solutions: [
       { title: "Plan your fuelling", description: "60-90g carbs/hour from minute 30 for rides over 90 min", href: "/tools/fuelling" },
-      { title: "Read the carbs-per-hour guide", description: "The gut training ladder from 30g to 120g", href: "/blog/cycling-carbs-per-hour-fuel-like-a-pro" },
+      { title: "Read the carbs-per-hour guide", description: "The gut training ladder from 30g to 120g", href: "/blog/carbohydrate-per-hour-cyclists" },
       { title: "Fix pre-ride nutrition", description: "2-4g carbs per kg body weight 2-3 hours before", href: "/blog/cycling-nutrition-race-day-guide" },
       { title: "Learn pacing", description: "Even effort prevents the early glycogen burn", href: "/glossary/pacing-strategy" },
     ],

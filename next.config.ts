@@ -295,6 +295,15 @@ const nextConfig: NextConfig = {
         destination: "/blog/best-cycling-podcasts-2026",
         permanent: true,
       },
+      // Carbs-per-hour cannibalisation fix — two posts targeted the same
+      // "carbs per hour cycling" query. The longer, expert-cited
+      // carbohydrate-per-hour-cyclists is canonical; the "fuel like a pro"
+      // variant 301s here so the two stop splitting link equity.
+      {
+        source: "/blog/cycling-carbs-per-hour-fuel-like-a-pro",
+        destination: "/blog/carbohydrate-per-hour-cyclists",
+        permanent: true,
+      },
       // FTP coach consensus consolidation — the 25-coaches piece is the
       // broader, more citable canonical. The narrower World Tour-only post
       // 301s here so internal links and external backlinks consolidate.

@@ -430,8 +430,8 @@ export const EVENT_GUIDES: EventGuide[] = [
           "The deeper article on training for Mallorca — methodology, sessions, and the fuelling strategy that defines who finishes.",
       },
       {
-        slug: "cycling-carbs-per-hour-fuel-like-a-pro",
-        title: "Carbs Per Hour: Fuel Like a Pro",
+        slug: "carbohydrate-per-hour-cyclists",
+        title: "Carbs Per Hour for Cyclists",
         whyItMatters:
           "Mallorca demands 80-100g/hour for 10+ hours. Most amateurs ride below the gut's actual ceiling — this is how you train it up before race day.",
       },
@@ -853,8 +853,8 @@ export const EVENT_GUIDES: EventGuide[] = [
           "Pacing, cadence, and the mental game on long sustained efforts. Useful framing for the Galibier and Alpe d'Huez specifically.",
       },
       {
-        slug: "cycling-carbs-per-hour-fuel-like-a-pro",
-        title: "Carbs Per Hour: Fuel Like a Pro",
+        slug: "carbohydrate-per-hour-cyclists",
+        title: "Carbs Per Hour for Cyclists",
         whyItMatters:
           "Marmotte demands 90-110g/hour for 8-10 hours. Most amateurs ride below the gut's actual ceiling — this is how you train it up before race day.",
       },

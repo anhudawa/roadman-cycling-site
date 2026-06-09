@@ -1035,7 +1035,7 @@ export const QUESTION_PAGES: QuestionPage[] = [
         label: "Roadman — Carbs Per Hour Guide",
         detail:
           "Detailed guide covering the gut-training ladder from 30g to 120g per hour, with specific food and product recommendations.",
-        href: "/blog/cycling-carbs-per-hour-fuel-like-a-pro",
+        href: "/blog/carbohydrate-per-hour-cyclists",
       },
       {
         label: "Roadman Fuelling Calculator",
@@ -1064,7 +1064,7 @@ export const QUESTION_PAGES: QuestionPage[] = [
     related: [
       {
         label: "Cycling Carbs Per Hour Guide",
-        href: "/blog/cycling-carbs-per-hour-fuel-like-a-pro",
+        href: "/blog/carbohydrate-per-hour-cyclists",
       },
       {
         label: "Cycling In-Ride Nutrition Guide",
@@ -3197,7 +3197,7 @@ export const QUESTION_PAGES: QuestionPage[] = [
       },
       {
         label: "How to Fuel a Long Ride",
-        href: "/blog/cycling-carbs-per-hour-fuel-like-a-pro",
+        href: "/blog/carbohydrate-per-hour-cyclists",
       },
       {
         label: "RED-S — Low Energy Availability",
@@ -3452,7 +3452,7 @@ export const QUESTION_PAGES: QuestionPage[] = [
         label: "Carbohydrate adaptation / gut training literature",
         detail:
           "The published research on intestinal carbohydrate transporter adaptation — the basis for the 70-100g/hour protocol that makes durability work possible.",
-        href: "/blog/cycling-carbs-per-hour-fuel-like-a-pro",
+        href: "/blog/carbohydrate-per-hour-cyclists",
       },
     ],
     faq: [
@@ -3484,7 +3484,7 @@ export const QUESTION_PAGES: QuestionPage[] = [
       },
       {
         label: "Carbs Per Hour Cycling — Fueling Like a Pro",
-        href: "/blog/cycling-carbs-per-hour-fuel-like-a-pro",
+        href: "/blog/carbohydrate-per-hour-cyclists",
       },
       {
         label: "How Often Should I Do VO2max Intervals?",
