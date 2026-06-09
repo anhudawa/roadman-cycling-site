@@ -45,6 +45,7 @@ const SITEMAPS = [
   `${SITE_ORIGIN}/sitemap/3.xml`,
   `${SITE_ORIGIN}/sitemap/4.xml`,
   `${SITE_ORIGIN}/sitemap/5.xml`,
+  `${SITE_ORIGIN}/sitemap/6.xml`,
 ];
 
 export default function robots(): MetadataRoute.Robots {
