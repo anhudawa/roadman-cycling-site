@@ -3,7 +3,12 @@
 from datetime import date
 from pathlib import Path
 
-from pipeline.inventory import _parse_duration, inventory_report, parse_feed
+from pipeline.inventory import (
+    _parse_duration,
+    assign_episode_numbers,
+    inventory_report,
+    parse_feed,
+)
 
 FEED_XML = (Path(__file__).parent / "fixtures" / "feed_sample.xml").read_text(encoding="utf-8")
 
@@ -35,6 +40,22 @@ def test_report_flags_duplicates_and_unnumbered():
     assert report["duplicate_numbers"] == [1003]
     assert report["duplicate_guids"] == 0
     assert report["date_range"] == ["2019-01-01", "2026-06-03"]
+
+
+def test_duplicate_numbers_withheld_from_both_claimants():
+    numbers = assign_episode_numbers(parse_feed(FEED_XML))
+    # 1003 appears twice in the fixture feed: neither episode gets it.
+    assert numbers["fixture-guid-0003"] is None
+    assert numbers["fixture-guid-0002"] is None
+    assert numbers["fixture-guid-0001"] is None  # unnumbered stays None
+
+
+def test_unambiguous_numbers_assigned():
+    episodes = parse_feed(FEED_XML)
+    episodes[1].episode_number = 1002  # resolve the fixture's duplicate
+    numbers = assign_episode_numbers(episodes)
+    assert numbers["fixture-guid-0003"] == 1003
+    assert numbers["fixture-guid-0002"] == 1002
 
 
 def test_duration_parsing_variants():

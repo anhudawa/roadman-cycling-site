@@ -110,12 +110,9 @@ def main(argv: list[str] | None = None) -> int:
         print(json.dumps(inventory.inventory_report(episodes), indent=2))
         if args.dry_run:
             return 0
-        raise SystemExit(
-            "inventory: DB application is gated on Ted's episode-numbering "
-            "decision — itunes:episode has duplicates and ~500 items carry no "
-            "number, so episodes.episode_number (unique) cannot be populated "
-            "from the feed alone. See STATUS.md. Run with --dry-run for the report."
-        )
+        counts = inventory.apply_inventory(cfg, episodes)
+        print(f"inventory applied (idempotent): {json.dumps(counts)}")
+        return 0
 
     if args.command == "status":
         raise SystemExit("status: not yet implemented (needs DB; lands with P0-4).")

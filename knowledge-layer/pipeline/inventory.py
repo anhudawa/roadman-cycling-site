@@ -4,11 +4,11 @@ The audio archive is the public Anchor (Spotify for Podcasters) RSS feed —
 every item carries a downloadable enclosure (verified 2026-06-09: 1,283
 items, ~64 GB total, audio/mpeg).
 
-Feed reality check, why guid is the natural key:
-  - itunes:episode is present on only ~61% of items AND contains duplicate
-    numbers, so it cannot populate episodes.episode_number (unique) unaided.
-  - DB application is therefore gated until Ted decides the numbering scheme
-    (see STATUS.md); the parser and dry-run report work now.
+Identity scheme (approved by Anthony 2026-06-09, migration 003):
+  - rss_guid is the stable unique key (zero duplicates in the feed)
+  - episode_number is display-only and nullable: populated only where the
+    feed number is unambiguous (used exactly once); duplicated numbers load
+    as NULL for editorial resolution.
 """
 
 from __future__ import annotations
@@ -95,6 +95,65 @@ def inventory_report(episodes: list[FeedEpisode]) -> dict:
             str(max(e.publish_date for e in episodes if e.publish_date)),
         ] if any(e.publish_date for e in episodes) else None,
     }
+
+
+def assign_episode_numbers(episodes: list[FeedEpisode]) -> dict[str, int | None]:
+    """Map guid -> display episode number, or None where the feed is ambiguous.
+
+    A number is assigned only when the feed uses it exactly once. Duplicated
+    numbers are withheld entirely (both claimants load as NULL) — wrongly
+    citing "Ep N" to members is worse than citing no number.
+    """
+    counts: dict[int, int] = {}
+    for e in episodes:
+        if e.episode_number is not None:
+            counts[e.episode_number] = counts.get(e.episode_number, 0) + 1
+    return {
+        e.guid: e.episode_number
+        if e.episode_number is not None and counts[e.episode_number] == 1
+        else None
+        for e in episodes
+    }
+
+
+def apply_inventory(cfg, episodes: list[FeedEpisode]) -> dict[str, int]:
+    """Upsert the feed into `episodes`, keyed on rss_guid. Idempotent.
+
+    Existing rows: metadata refreshed, processing status untouched, and a
+    non-null episode_number in the DB is never clobbered (editorial fixes win
+    over feed re-derivation).
+    """
+    from . import db
+
+    numbers = assign_episode_numbers(episodes)
+    counts = {"inserted": 0, "updated": 0, "number_withheld": sum(
+        1 for e in episodes if e.episode_number is not None and numbers[e.guid] is None
+    )}
+    with db.connect(cfg) as conn:
+        with conn.cursor() as cur:
+            for e in episodes:
+                cur.execute(
+                    """
+                    insert into episodes
+                      (rss_guid, episode_number, title, publish_date, audio_url,
+                       duration_seconds, pipeline_version)
+                    values (%s, %s, %s, %s, %s, %s, %s)
+                    on conflict (rss_guid) do update set
+                      title = excluded.title,
+                      publish_date = excluded.publish_date,
+                      audio_url = excluded.audio_url,
+                      duration_seconds = excluded.duration_seconds,
+                      episode_number = coalesce(episodes.episode_number,
+                                                excluded.episode_number),
+                      updated_at = now()
+                    returning (xmax = 0) as inserted
+                    """,
+                    (e.guid, numbers[e.guid], e.title, e.publish_date,
+                     e.audio_url, e.duration_seconds, cfg.pipeline_version),
+                )
+                counts["inserted" if cur.fetchone()[0] else "updated"] += 1
+        conn.commit()
+    return counts
 
 
 def fetch_feed(feed_url: str) -> str:

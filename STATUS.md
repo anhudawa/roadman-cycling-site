@@ -4,6 +4,56 @@ Maintained per handover §0.5. Newest session first. Decisions needed at the top
 
 ---
 
+## Session 2026-06-09 (update 2) — guid identity approved, Stage 1 + 3 built
+
+Anthony approved the rss_guid identity scheme ("run with your episode numbers
+idea") — episode numbering decision is closed.
+
+### 🔴 Still needed (now the critical path)
+
+1. **Supabase project + credentials** — everything below is coded and
+   unit-tested but nothing has touched a real database yet. Once provisioned:
+   apply migrations 001–003, `pipeline seed`, `pipeline inventory`, run the
+   P0-2 integration test, then Stage 1 on 3 sample episodes (P0-4 acceptance).
+2. **Worker box with GPU** for Whisper large-v3 over 1,283 episodes
+   (runbook written: `knowledge-layer/docs/runbooks/stage1-transcription.md`).
+3. Carried: pilot episode list; golden-set review; rights review; MCP spec.
+
+### ✅ Completed
+
+- **Migration 003** (`003_episode_identity.sql`): `rss_guid` unique key on
+  episodes; `episode_number` now nullable, display-only, unique where present.
+- **Inventory DB loader**: upsert by guid, idempotent; display numbers
+  assigned only where the feed number is used exactly once — duplicated
+  numbers withheld from BOTH claimants (wrong "Ep N" in citations is worse
+  than none); editorial fixes in the DB are never clobbered by re-runs.
+- **Stage 1 implemented** (`stages/transcribe.py`): atomic cached enclosure
+  download (cache doubles as the owned audio mirror), faster-whisper /
+  openai-whisper backends with word timestamps, transcript quality scoring
+  (avg word confidence + low-confidence ratio + garbage-segment ratio),
+  versioned immutable transcript rows, per-episode failure isolation with
+  `failed`+detail status. Unit-tested (scoring, cache logic); end-to-end
+  needs DB + GPU box.
+- **Stage 3 implemented** (`stages/segment.py`): speaker-pure segmentation —
+  consecutive same-speaker turns merge, long monologues split at sentence
+  boundaries with proportional timestamp interpolation, 200–500 word bounds,
+  text-preservation and timestamp-ordering proven by tests. Falls back to
+  speaker-less Whisper segments pre-diarization (claims then route to review
+  as ambiguous_speaker — never guessed).
+- 63 unit tests passing, lint clean.
+
+### ⏭ Next
+
+- Stage 2 (pyannote diarization + speaker ID) — the remaining P0-4 piece.
+- Stage 4 extraction API driver wiring (validation/routing already built).
+- On DB arrival: run the full chain on 3 sample episodes (P0-4 acceptance).
+
+### 💰 Spend
+
+Still zero Anthropic API spend.
+
+---
+
 ## Session 2026-06-09 (update) — audio blocker RESOLVED, feed inventory built
 
 Anthony confirmed the episodes live on Spotify/Apple. Verified what that means

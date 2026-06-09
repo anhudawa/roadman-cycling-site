@@ -28,7 +28,9 @@ class Config:
     embedding_model: str = ""
     embedding_dim: int = 1536
     batch_budget_usd: float = 0.0  # 0 = unset; batch submission refuses to run
-    audio_archive_uri: str = ""  # BLOCKER: unset until Ted provides (§9.1)
+    audio_archive_uri: str = ""  # resolved 2026-06-09: public Anchor RSS feed
+    audio_cache_dir: str = "./audio-cache"  # local mirror of downloaded enclosures
+    whisper_model: str = "large-v3"
     pipeline_version: str = field(default="pipe-0.1.0")
 
     @classmethod
@@ -44,6 +46,8 @@ class Config:
             embedding_dim=int(os.environ.get("EMBEDDING_DIM", "1536")),
             batch_budget_usd=float(os.environ.get("BATCH_BUDGET_USD", "0") or "0"),
             audio_archive_uri=os.environ.get("AUDIO_ARCHIVE_URI", ""),
+            audio_cache_dir=os.environ.get("AUDIO_CACHE_DIR", "./audio-cache"),
+            whisper_model=os.environ.get("WHISPER_MODEL", "large-v3"),
             pipeline_version=os.environ.get("PIPELINE_VERSION", "pipe-0.1.0"),
         )
 

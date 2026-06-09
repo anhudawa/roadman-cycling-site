@@ -22,9 +22,12 @@ def test_stage_stubs_exit_with_clear_message(command):
     assert exc.value.code != 0
 
 
-def test_transcribe_surfaces_audio_blocker(monkeypatch):
+def test_transcribe_requires_db_not_audio_blocker(monkeypatch):
+    # §9.1 resolved: audio comes from the RSS feed, so the first requirement
+    # transcribe surfaces is database access, not AUDIO_ARCHIVE_URI.
     monkeypatch.delenv("AUDIO_ARCHIVE_URI", raising=False)
-    with pytest.raises(SystemExit, match="AUDIO_ARCHIVE_URI"):
+    monkeypatch.delenv("SUPABASE_DB_URL", raising=False)
+    with pytest.raises(SystemExit, match="psycopg|SUPABASE_DB_URL"):
         main(["transcribe", "--episode", "1"])
 
 
