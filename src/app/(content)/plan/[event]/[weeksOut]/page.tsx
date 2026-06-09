@@ -44,7 +44,15 @@ export async function generateMetadata({
   if (!event || !phase) return { title: "Training Plan" };
 
   const title = `${event.name} Training Plan — ${phase.weeksOut} Weeks Out`;
-  const description = `Personalised ${phase.weeksOut}-week training plan for the ${event.name} (${event.distanceKm}km, ${event.elevationGainM}m climbing, ${event.region}). ${phase.tagline}`;
+  // Bounded meta description (≤160 chars for every event × phase combo).
+  // The phase tagline is appended only when it still fits — for the
+  // longest event names the structured base alone is the description, so
+  // it never spills past the SERP truncation point.
+  const descriptionBase = `Personalised ${phase.weeksOut}-week training plan for the ${event.name}: ${event.distanceKm}km, ${event.elevationGainM.toLocaleString()}m climbing.`;
+  const description =
+    descriptionBase.length + 1 + phase.tagline.length <= 160
+      ? `${descriptionBase} ${phase.tagline}`
+      : descriptionBase;
 
   return {
     title,

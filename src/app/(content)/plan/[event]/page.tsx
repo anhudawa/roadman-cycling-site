@@ -41,7 +41,11 @@ export async function generateMetadata({
   if (!event) return { title: "Training Plan" };
 
   const title = `${event.name} Training Plan — ${event.distanceKm}km, ${event.elevationGainM.toLocaleString()}m`;
-  const description = `Complete training framework for the ${event.name} in ${event.region}. ${event.description.split(".")[0]}. Pick your weeks-out window.`;
+  // Bounded meta description (≤160 chars for every event in the dataset).
+  // The old template injected `event.description`'s full first sentence,
+  // which pushed every event's description to 210–317 chars and got
+  // truncated in SERPs. Structured specifics keep it both useful and short.
+  const description = `${event.name} training plan: ${event.distanceKm}km, ${event.elevationGainM.toLocaleString()}m climbing. Pick the weeks-out window that matches your build — 16, 12, 8, 4, 2 or 1.`;
 
   return {
     title,

@@ -58,7 +58,11 @@ export const metadata: Metadata = {
     default: "Roadman Cycling — Cycling Coaching, Training & Performance Podcast",
     template: "%s | Roadman Cycling",
   },
-  description: `The cycling podcast with ${BRAND_STATS.podcastDownloadsLabel} downloads. Expert coaching, training plans, nutrition, and a community that refuses to settle. ${BRAND_STATS.episodeCountLabel} episodes. ${BRAND_STATS.newsletterSubscribersLabel} newsletter readers.`,
+  // Default/site-wide meta description. Kept under 160 chars so it isn't
+  // truncated in SERPs — pages that don't set their own description (incl.
+  // the homepage) inherit this. The newsletter-reader stat lives on
+  // /newsletter and in the OG copy; it's dropped here to stay within budget.
+  description: `The cycling podcast with ${BRAND_STATS.podcastDownloadsLabel} downloads and ${BRAND_STATS.episodeCountLabel} episodes. Expert coaching, training plans, nutrition, and a community that refuses to settle.`,
   keywords: [
     "cycling podcast",
     "cycling training",
