@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- FIXTURE: synthetic RSS feed for parser tests. Mirrors the structure of the
+     real Anchor feed (guid, itunes:episode, enclosure, duration) but all
+     content is invented test data. -->
+<rss xmlns:itunes="http://www.itunes.com/dtds/podcast-1.0.dtd" version="2.0">
+  <channel>
+    <title>FIXTURE Podcast</title>
+    <item>
+      <title><![CDATA[FIXTURE Episode With Number]]></title>
+      <guid isPermaLink="false">fixture-guid-0003</guid>
+      <pubDate>Tue, 03 Jun 2026 10:00:00 GMT</pubDate>
+      <itunes:episode>1003</itunes:episode>
+      <itunes:duration>01:02:03</itunes:duration>
+      <enclosure url="https://example.com/fixture/ep1003.mp3" length="1000" type="audio/mpeg"/>
+    </item>
+    <item>
+      <title><![CDATA[FIXTURE Duplicate-Numbered Episode]]></title>
+      <guid isPermaLink="false">fixture-guid-0002</guid>
+      <pubDate>Tue, 27 May 2026 10:00:00 GMT</pubDate>
+      <itunes:episode>1003</itunes:episode>
+      <itunes:duration>45:10</itunes:duration>
+      <enclosure url="https://example.com/fixture/ep1003b.mp3" length="1000" type="audio/mpeg"/>
+    </item>
+    <item>
+      <title><![CDATA[FIXTURE Unnumbered Episode]]></title>
+      <guid isPermaLink="false">fixture-guid-0001</guid>
+      <pubDate>Tue, 01 Jan 2019 10:00:00 GMT</pubDate>
+      <itunes:duration>1830</itunes:duration>
+      <enclosure url="https://example.com/fixture/ep-old.mp3" length="1000" type="audio/mpeg"/>
+    </item>
+  </channel>
+</rss>

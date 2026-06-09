@@ -4,13 +4,50 @@ Maintained per handover §0.5. Newest session first. Decisions needed at the top
 
 ---
 
+## Session 2026-06-09 (update) — audio blocker RESOLVED, feed inventory built
+
+Anthony confirmed the episodes live on Spotify/Apple. Verified what that means
+in practice: the show is hosted on Anchor (Spotify for Podcasters) with a
+**public RSS feed** — Apple/Spotify are just distribution.
+
+### ✅ Blocker §9.1 resolved
+
+- Feed: `https://anchor.fm/s/a09110e0/podcast/rss` (now the default
+  `AUDIO_ARCHIVE_URI` in `.env.example`).
+- Verified live: **1,283 items, all 1,283 with downloadable audio/mpeg
+  enclosures** (HEAD-checked; CloudFront), **~64.4 GB total**, durations on
+  every item, span Jan 2019 → today.
+- Recommendation: **mirror audio to owned storage before the corpus run**
+  (stable bytes for reproducibility + provenance; no dependence on Anchor
+  availability/rate limits during a 1,283-episode batch). ~64 GB ≈ trivial
+  S3/R2 cost. Will build the mirror step into Stage 1.
+
+### 🔴 NEW decision needed from Ted: episode numbering
+
+The feed's `itunes:episode` tags are unreliable: only **783/1,283 items are
+numbered, with 35 numbers used more than once**, and 500 items (scattered, not just
+old ones) carry no number. The schema keys `episodes.episode_number` as
+unique NOT NULL, and the answer engine cites "Ep N" to members — so numbering
+must match what listeners see. Proposal: add `rss_guid` as the stable unique
+key (small migration 003), make `episode_number` nullable for display, and
+resolve duplicates/gaps editorially over time. Need Ted's sign-off since this
+touches schema (§0.2).
+
+### ✅ Also completed
+
+- `pipeline inventory` command: fetches + parses the feed (stdlib XML, no new
+  deps), reports feed health (`--dry-run` run against the live feed: matches
+  the numbers above). DB application deliberately gated until the numbering
+  decision lands. Parser unit-tested against a FIXTURE feed (48 tests total).
+
+---
+
 ## Session 2026-06-09 — Phase 0 kickoff (P0-1, P0-2/3 code, transcript-pipeline audit)
 
 ### 🔴 Decisions / inputs needed from Ted (blocking)
 
-1. **Audio archive location (§9.1) — HARD BLOCKER for P0-4.** `AUDIO_ARCHIVE_URI`
-   is unset. The RSS feed lists ~1,277 episodes; we need the canonical audio
-   store (S3/host/drive?), access method, and total size.
+1. ~~**Audio archive location (§9.1) — HARD BLOCKER for P0-4.**~~ **RESOLVED
+   same day — see update above.** Archive = public Anchor RSS enclosures.
 2. **Phase0 companion package missing.** `roadman-knowledge-layer-phase0.zip`
    was not in the repo. Per the handover, migrations/prompts/seeds were
    **regenerated from Appendix A–C**. Please confirm that's expected, or supply

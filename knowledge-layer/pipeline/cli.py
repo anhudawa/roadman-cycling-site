@@ -71,6 +71,12 @@ def build_parser() -> argparse.ArgumentParser:
     p.add_argument("--dry-run", action="store_true",
                    help="validate seed files locally without touching the database")
 
+    p = sub.add_parser("inventory", help="parse the podcast RSS feed into the episodes inventory")
+    p.add_argument("--feed-url", default=None,
+                   help="RSS feed URL (default: AUDIO_ARCHIVE_URI)")
+    p.add_argument("--dry-run", action="store_true",
+                   help="fetch + parse + report feed health without touching the database")
+
     sub.add_parser("status", help="show per-stage episode counts and open review-queue depth")
 
     return parser
@@ -93,6 +99,23 @@ def main(argv: list[str] | None = None) -> int:
         counts = seed_loader.apply_seeds(cfg)
         print(f"seeds applied (idempotent): {json.dumps(counts)}")
         return 0
+
+    if args.command == "inventory":
+        from . import inventory
+
+        feed_url = args.feed_url or cfg.audio_archive_uri
+        if not feed_url:
+            raise SystemExit("inventory: no feed URL — pass --feed-url or set AUDIO_ARCHIVE_URI.")
+        episodes = inventory.parse_feed(inventory.fetch_feed(feed_url))
+        print(json.dumps(inventory.inventory_report(episodes), indent=2))
+        if args.dry_run:
+            return 0
+        raise SystemExit(
+            "inventory: DB application is gated on Ted's episode-numbering "
+            "decision — itunes:episode has duplicates and ~500 items carry no "
+            "number, so episodes.episode_number (unique) cannot be populated "
+            "from the feed alone. See STATUS.md. Run with --dry-run for the report."
+        )
 
     if args.command == "status":
         raise SystemExit("status: not yet implemented (needs DB; lands with P0-4).")
