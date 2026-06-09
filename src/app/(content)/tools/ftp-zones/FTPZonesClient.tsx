@@ -163,13 +163,15 @@ export function FTPZonesClient({ initialFtp }: FTPZonesClientProps = {}) {
                 Don&apos;t know your FTP? Use your best 20-minute power and
                 multiply by 0.95.
               </p>
-              <div className="flex gap-3">
+              <div className="flex flex-col sm:flex-row gap-3">
                 <input
                   id="ftp-input"
                   type="number"
+                  inputMode="numeric"
                   min="50"
                   max="600"
                   aria-label="Your Functional Threshold Power in watts"
+                  aria-invalid={!!ftpError}
                   placeholder="e.g. 250"
                   value={ftp}
                   onChange={(e) => {
@@ -189,7 +191,7 @@ export function FTPZonesClient({ initialFtp }: FTPZonesClientProps = {}) {
                   `}
                   style={{ transitionDuration: "var(--duration-fast)" }}
                 />
-                <Button onClick={handleCalculate} size="lg" aria-label="Calculate your FTP power zones">
+                <Button onClick={handleCalculate} size="lg" className="w-full sm:w-auto">
                   Calculate
                 </Button>
               </div>
@@ -210,14 +212,14 @@ export function FTPZonesClient({ initialFtp }: FTPZonesClientProps = {}) {
                 exit={{ opacity: 0, y: -10 }}
                 transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
               >
-                <div className="flex items-center justify-between mb-6">
-                  <h2 className="font-heading text-2xl text-off-white">
+                <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 mb-6">
+                  <h2 className="font-heading text-xl sm:text-2xl text-off-white">
                     YOUR POWER ZONES — {ftpValue}W FTP
                   </h2>
                   <button
                     onClick={handleCopyResults}
                     aria-label={copied ? "Results copied to clipboard" : "Copy zone results to clipboard"}
-                    className="text-sm text-coral hover:text-coral/80 font-heading tracking-wider transition-colors cursor-pointer"
+                    className="self-start sm:self-auto shrink-0 inline-flex items-center min-h-[44px] px-3 -ml-3 sm:ml-0 text-sm text-coral hover:text-coral/80 font-heading tracking-wider transition-colors cursor-pointer"
                   >
                     {copied ? "Copied!" : "Copy Results"}
                   </button>

@@ -31,12 +31,23 @@ const ZONES_LTHR: HRZone[] = [
   { name: "Zone 5 — VO2max", description: "Very hard. Short intervals.", minPercent: 100, maxPercent: 106, color: "#EF4444" },
 ];
 
+function getHrError(value: string): string | null {
+  if (!value) return null;
+  const num = parseInt(value);
+  if (isNaN(num)) return "Please enter a valid number";
+  if (num < 100) return "Heart rate must be at least 100 bpm";
+  if (num > 220) return "Heart rate must be under 220 bpm";
+  return null;
+}
+
 export default function HRZonesPage() {
   const [method, setMethod] = useState<"maxhr" | "lthr">("maxhr");
   const [hr, setHr] = useState("");
   const [calculated, setCalculated] = useState(false);
   const [copied, setCopied] = useState(false);
   const hrValue = parseInt(hr) || 0;
+  const hrError = getHrError(hr);
+  const canCalculate = hrValue >= 100 && hrValue <= 220 && !hrError;
 
   const zones = method === "maxhr" ? ZONES_MAX_HR : ZONES_LTHR;
 
@@ -78,7 +89,7 @@ export default function HRZonesPage() {
                   aria-selected={method === "maxhr"}
                   aria-label="Calculate from maximum heart rate"
                   onClick={() => { setMethod("maxhr"); setCalculated(false); }}
-                  className={`flex-1 py-2 rounded-lg font-heading text-sm tracking-wider transition-all cursor-pointer ${method === "maxhr" ? "bg-coral text-off-white" : "bg-white/5 text-foreground-muted hover:bg-white/10"}`}
+                  className={`flex-1 min-h-[44px] py-2.5 rounded-lg font-heading text-sm tracking-wider transition-all cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-coral ${method === "maxhr" ? "bg-coral text-off-white" : "bg-white/5 text-foreground-muted hover:bg-white/10"}`}
                 >
                   MAX HR
                 </button>
@@ -87,7 +98,7 @@ export default function HRZonesPage() {
                   aria-selected={method === "lthr"}
                   aria-label="Calculate from lactate threshold heart rate"
                   onClick={() => { setMethod("lthr"); setCalculated(false); }}
-                  className={`flex-1 py-2 rounded-lg font-heading text-sm tracking-wider transition-all cursor-pointer ${method === "lthr" ? "bg-coral text-off-white" : "bg-white/5 text-foreground-muted hover:bg-white/10"}`}
+                  className={`flex-1 min-h-[44px] py-2.5 rounded-lg font-heading text-sm tracking-wider transition-all cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-coral ${method === "lthr" ? "bg-coral text-off-white" : "bg-white/5 text-foreground-muted hover:bg-white/10"}`}
                 >
                   LTHR
                 </button>
@@ -101,26 +112,33 @@ export default function HRZonesPage() {
                   ? "Don't know? Try 220 minus your age as a starting estimate."
                   : "Average HR from a 30-minute all-out effort."}
               </p>
-              <div className="flex gap-3">
+              <div className="flex flex-col sm:flex-row gap-3">
                 <input
                   id="hr-input"
                   type="number"
+                  inputMode="numeric"
                   min="100"
                   max="220"
+                  aria-label={method === "maxhr" ? "Your maximum heart rate in bpm" : "Your lactate threshold heart rate in bpm"}
+                  aria-invalid={!!hrError}
                   placeholder={method === "maxhr" ? "e.g. 185" : "e.g. 170"}
                   value={hr}
                   onChange={(e) => { setHr(e.target.value); setCalculated(false); }}
-                  onKeyDown={(e) => { if (e.key === "Enter" && hrValue > 100) setCalculated(true); }}
-                  className="flex-1 bg-white/5 border border-white/10 focus:border-coral rounded-lg px-4 py-3 text-off-white text-xl font-heading tracking-wider placeholder:text-foreground-subtle focus:outline-none transition-colors"
+                  onKeyDown={(e) => { if (e.key === "Enter" && canCalculate) setCalculated(true); }}
+                  className={`flex-1 bg-white/5 border rounded-lg px-4 py-3 text-off-white text-xl font-heading tracking-wider placeholder:text-foreground-subtle focus:outline-none transition-colors ${hrError ? "border-red-500/60 focus:border-red-500" : "border-white/10 focus:border-coral"}`}
                 />
-                <Button onClick={() => hrValue > 100 && setCalculated(true)} size="lg">
+                <Button onClick={() => canCalculate && setCalculated(true)} size="lg" className="w-full sm:w-auto">
                   Calculate
                 </Button>
               </div>
+              {hrError && (
+                <p className="text-red-400 text-xs mt-2" role="alert">{hrError}</p>
+              )}
             </div>
 
+            <div aria-live="polite" aria-atomic="false">
             <AnimatePresence mode="wait">
-              {calculated && hrValue > 100 && (
+              {calculated && canCalculate && (
                 <motion.div
                   key={`${method}-${hrValue}`}
                   initial={{ opacity: 0, y: 20 }}
@@ -129,11 +147,11 @@ export default function HRZonesPage() {
                   transition={{ duration: 0.4 }}
                   className="space-y-3"
                 >
-                  <div className="flex items-center justify-between mb-4">
-                    <h2 className="font-heading text-2xl text-off-white">
+                  <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 mb-4">
+                    <h2 className="font-heading text-xl sm:text-2xl text-off-white">
                       YOUR HR ZONES — {hrValue} BPM {method === "maxhr" ? "MAX" : "LTHR"}
                     </h2>
-                    <button onClick={handleCopy} className="text-sm text-coral hover:text-coral/80 font-heading tracking-wider transition-colors cursor-pointer">
+                    <button onClick={handleCopy} aria-label={copied ? "Results copied to clipboard" : "Copy heart rate zones to clipboard"} className="self-start sm:self-auto shrink-0 inline-flex items-center min-h-[44px] px-3 -ml-3 sm:ml-0 text-sm text-coral hover:text-coral/80 font-heading tracking-wider transition-colors cursor-pointer">
                       {copied ? "Copied!" : "Copy"}
                     </button>
                   </div>
@@ -142,13 +160,13 @@ export default function HRZonesPage() {
                     const min = Math.round((z.minPercent / 100) * hrValue);
                     const max = z.maxPercent >= 100 && method === "maxhr" ? hrValue : Math.round((z.maxPercent / 100) * hrValue);
                     return (
-                      <div key={z.name} className="bg-background-elevated rounded-lg border border-white/5 p-4 flex items-center gap-4">
+                      <div key={z.name} className="bg-background-elevated rounded-lg border border-white/5 p-4 flex items-center gap-3 sm:gap-4">
                         <div className="w-3 h-3 rounded-full shrink-0" style={{ backgroundColor: z.color }} />
-                        <div className="flex-1">
+                        <div className="flex-1 min-w-0">
                           <p className="font-heading text-off-white text-sm">{z.name}</p>
                           <p className="text-xs text-foreground-muted">{z.description}</p>
                         </div>
-                        <p className="font-heading text-off-white text-lg tracking-wider shrink-0">
+                        <p className="font-heading text-off-white text-base sm:text-lg tracking-wider shrink-0 whitespace-nowrap">
                           {min}–{max} <span className="text-xs text-foreground-subtle">bpm</span>
                         </p>
                       </div>
@@ -188,6 +206,7 @@ export default function HRZonesPage() {
                 </motion.div>
               )}
             </AnimatePresence>
+            </div>
           </Container>
         </Section>
 

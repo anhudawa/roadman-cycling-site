@@ -311,13 +311,14 @@ export function PredictForm({ courses }: PredictFormProps) {
             onChange={setFtp}
           />
           <div>
-            <label className="text-off-white/65 text-[11px] uppercase tracking-wider block mb-1.5">
+            <label htmlFor="predict-position" className="text-off-white/65 text-[11px] uppercase tracking-wider block mb-1.5">
               Position
             </label>
             <select
+              id="predict-position"
               value={position}
               onChange={(e) => setPosition(e.target.value as Position)}
-              className="w-full bg-white/[0.04] text-off-white border border-white/10 rounded-md px-3 py-2.5 text-sm focus:outline-none focus:border-coral/60"
+              className="w-full min-h-[44px] bg-white/[0.04] text-off-white border border-white/10 rounded-md px-3 py-2.5 text-sm focus:outline-none focus:border-coral/60 focus-visible:ring-2 focus-visible:ring-coral"
             >
               {POSITIONS.map((p) => (
                 <option key={p.value} value={p.value}>
@@ -513,13 +514,18 @@ function NumberSlider({
         step={step}
         value={value}
         onChange={(e) => onChange(Number(e.target.value))}
-        className="w-full -mt-2 appearance-none bg-transparent cursor-pointer
+        aria-label={`${label} in ${unit}`}
+        aria-valuetext={`${Number.isInteger(value) ? value : value.toFixed(1)} ${unit}`}
+        className="w-full h-6 -mt-4 appearance-none bg-transparent cursor-pointer touch-none align-middle
+          focus:outline-none
           [&::-webkit-slider-thumb]:appearance-none
-          [&::-webkit-slider-thumb]:w-4 [&::-webkit-slider-thumb]:h-4
+          [&::-webkit-slider-thumb]:w-6 [&::-webkit-slider-thumb]:h-6
           [&::-webkit-slider-thumb]:rounded-full
           [&::-webkit-slider-thumb]:bg-off-white
           [&::-webkit-slider-thumb]:border-2 [&::-webkit-slider-thumb]:border-coral
-          [&::-moz-range-thumb]:w-4 [&::-moz-range-thumb]:h-4
+          [&::-webkit-slider-thumb]:shadow-[0_1px_4px_rgba(0,0,0,0.4)]
+          [&:focus-visible::-webkit-slider-thumb]:ring-2 [&:focus-visible::-webkit-slider-thumb]:ring-coral
+          [&::-moz-range-thumb]:w-6 [&::-moz-range-thumb]:h-6
           [&::-moz-range-thumb]:rounded-full
           [&::-moz-range-thumb]:bg-off-white
           [&::-moz-range-thumb]:border-2 [&::-moz-range-thumb]:border-coral"

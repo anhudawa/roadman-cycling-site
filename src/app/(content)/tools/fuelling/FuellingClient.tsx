@@ -477,7 +477,8 @@ export function FuellingClient({
               {/* Duration */}
               <div>
                 <label htmlFor="fuel-duration" className="block font-heading text-sm text-off-white mb-2 tracking-wider">RIDE DURATION (MINUTES)</label>
-                <input id="fuel-duration" type="number" min="15" max="600" placeholder="e.g. 180"
+                <input id="fuel-duration" type="number" inputMode="numeric" min="15" max="600" placeholder="e.g. 180"
+                  aria-invalid={!!durationError}
                   value={duration} onChange={(e) => { setDuration(e.target.value); setResult(null); }}
                   className={`${durationError ? errorInputClasses : inputClasses} text-xl`}
                 />
@@ -516,7 +517,8 @@ export function FuellingClient({
                 <p className="text-foreground-subtle text-[11px] mb-2">
                   Your expected average power for this session. A Z2 ride at 100W needs very different fuel than Z2 at 300W.
                 </p>
-                <input id="fuel-watts" type="number" min="30" max="600" placeholder="e.g. 200"
+                <input id="fuel-watts" type="number" inputMode="numeric" min="30" max="600" placeholder="e.g. 200"
+                  aria-invalid={!!wattsError}
                   value={watts} onChange={(e) => { setWatts(e.target.value); setResult(null); }}
                   className={wattsError ? errorInputClasses : inputClasses}
                 />
@@ -526,7 +528,8 @@ export function FuellingClient({
               {/* Body Weight */}
               <div>
                 <label htmlFor="fuel-weight" className="block font-heading text-sm text-off-white mb-2 tracking-wider">BODY WEIGHT (KG)</label>
-                <input id="fuel-weight" type="number" min="40" max="150" step="0.1" placeholder="e.g. 75"
+                <input id="fuel-weight" type="number" inputMode="decimal" min="40" max="150" step="0.1" placeholder="e.g. 75"
+                  aria-invalid={!!weightError}
                   value={weight} onChange={(e) => { setWeight(e.target.value); setResult(null); }}
                   className={weightError ? errorInputClasses : inputClasses}
                 />
@@ -559,7 +562,7 @@ export function FuellingClient({
                 </div>
               </div>
 
-              <Button onClick={handleCalculate} size="lg" className="w-full">Calculate</Button>
+              <Button onClick={handleCalculate} size="lg" className="w-full" disabled={hasErrors}>Calculate</Button>
             </div>
 
             <div aria-live="polite" aria-atomic="false">
@@ -573,12 +576,12 @@ export function FuellingClient({
                   exit={{ opacity: 0, y: -10 }}
                   transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
                 >
-                  <div className="flex items-center justify-between">
-                    <h2 className="font-heading text-2xl text-off-white">YOUR FUELLING PLAN</h2>
+                  <div className="flex items-center justify-between gap-2">
+                    <h2 className="font-heading text-xl sm:text-2xl text-off-white">YOUR FUELLING PLAN</h2>
                     <button
                       onClick={handleCopyResults}
                       aria-label={copied ? "Results copied to clipboard" : "Copy fuelling plan to clipboard"}
-                      className="text-sm text-coral hover:text-coral/80 font-heading tracking-wider transition-colors cursor-pointer"
+                      className="shrink-0 inline-flex items-center min-h-[44px] px-3 -mr-3 text-sm text-coral hover:text-coral/80 font-heading tracking-wider transition-colors cursor-pointer"
                     >
                       {copied ? "Copied!" : "Copy Results"}
                     </button>

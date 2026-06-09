@@ -261,6 +261,7 @@ export default function RacePredictorPage() {
               </Button>
             </div>
 
+            <div aria-live="polite" aria-atomic="false">
             <AnimatePresence mode="wait">
               {result && (
                 <motion.div
@@ -349,6 +350,7 @@ export default function RacePredictorPage() {
                 </motion.div>
               )}
             </AnimatePresence>
+            </div>
           </Container>
         </Section>
 

@@ -22,6 +22,24 @@ function getLevel(wkg: number) {
   return BENCHMARKS.find((b) => wkg >= b.min && wkg < b.max) || BENCHMARKS[BENCHMARKS.length - 1];
 }
 
+function getFtpError(value: string): string | null {
+  if (!value) return null;
+  const num = parseInt(value);
+  if (isNaN(num)) return "Please enter a valid number";
+  if (num < 50) return "FTP must be at least 50W";
+  if (num > 600) return "FTP must be under 600W";
+  return null;
+}
+
+function getWeightError(value: string): string | null {
+  if (!value) return null;
+  const num = parseFloat(value);
+  if (isNaN(num)) return "Please enter a valid number";
+  if (num < 40) return "Weight must be at least 40kg";
+  if (num > 150) return "Weight must be under 150kg";
+  return null;
+}
+
 export default function WkgPage() {
   const [ftp, setFtp] = useState("");
   const [weight, setWeight] = useState("");
@@ -31,6 +49,9 @@ export default function WkgPage() {
   const weightVal = parseFloat(weight) || 0;
   const wkg = weightVal > 0 ? ftpVal / weightVal : 0;
   const level = getLevel(wkg);
+  const ftpError = getFtpError(ftp);
+  const weightError = getWeightError(weight);
+  const canCalculate = ftpVal > 0 && weightVal > 0 && !ftpError && !weightError;
 
   return (
     <>
@@ -57,37 +78,44 @@ export default function WkgPage() {
                   <input
                     id="ftp-input"
                     type="number"
+                    inputMode="numeric"
                     min="50"
                     aria-label="Your Functional Threshold Power in watts"
+                    aria-invalid={!!ftpError}
                     max="600"
                     placeholder="e.g. 250"
                     value={ftp}
                     onChange={(e) => { setFtp(e.target.value); setCalculated(false); }}
-                    className="w-full bg-white/5 border border-white/10 focus:border-coral rounded-lg px-4 py-3 text-off-white text-xl font-heading tracking-wider placeholder:text-foreground-subtle focus:outline-none transition-colors"
+                    className={`w-full bg-white/5 border rounded-lg px-4 py-3 text-off-white text-xl font-heading tracking-wider placeholder:text-foreground-subtle focus:outline-none transition-colors ${ftpError ? "border-red-500/60 focus:border-red-500" : "border-white/10 focus:border-coral"}`}
                   />
+                  {ftpError && <p className="text-red-400 text-xs mt-1" role="alert">{ftpError}</p>}
                 </div>
                 <div>
                   <label htmlFor="weight-input" className="block font-heading text-sm text-off-white mb-2">WEIGHT (KG)</label>
                   <input
                     id="weight-input"
                     type="number"
+                    inputMode="decimal"
                     min="40"
                     max="150"
                     step="0.1"
                     aria-label="Your body weight in kilograms"
+                    aria-invalid={!!weightError}
                     placeholder="e.g. 75"
                     value={weight}
                     onChange={(e) => { setWeight(e.target.value); setCalculated(false); }}
-                    onKeyDown={(e) => { if (e.key === "Enter" && ftpVal > 0 && weightVal > 0) setCalculated(true); }}
-                    className="w-full bg-white/5 border border-white/10 focus:border-coral rounded-lg px-4 py-3 text-off-white text-xl font-heading tracking-wider placeholder:text-foreground-subtle focus:outline-none transition-colors"
+                    onKeyDown={(e) => { if (e.key === "Enter" && canCalculate) setCalculated(true); }}
+                    className={`w-full bg-white/5 border rounded-lg px-4 py-3 text-off-white text-xl font-heading tracking-wider placeholder:text-foreground-subtle focus:outline-none transition-colors ${weightError ? "border-red-500/60 focus:border-red-500" : "border-white/10 focus:border-coral"}`}
                   />
+                  {weightError && <p className="text-red-400 text-xs mt-1" role="alert">{weightError}</p>}
                 </div>
               </div>
-              <Button onClick={() => ftpVal > 0 && weightVal > 0 && setCalculated(true)} size="lg" className="w-full">
+              <Button onClick={() => canCalculate && setCalculated(true)} size="lg" className="w-full">
                 Calculate W/kg
               </Button>
             </div>
 
+            <div aria-live="polite" aria-atomic="false">
             <AnimatePresence mode="wait">
               {calculated && wkg > 0 && (
                 <motion.div
@@ -143,6 +171,7 @@ export default function WkgPage() {
                 </motion.div>
               )}
             </AnimatePresence>
+            </div>
           </Container>
         </Section>
 
