@@ -29,6 +29,13 @@ const tools = [
     status: "live" as const,
   },
   {
+    title: "Race Time Predictor",
+    description:
+      "No GPX file? Enter your weight, power, distance, and total climbing for a physics-based finish time, average speed, and average power. Free — pacing, fuelling, and per-segment detail open in the community.",
+    href: "/tools/race-predictor",
+    status: "live" as const,
+  },
+  {
     title: "Plateau Diagnostic",
     description:
       "Stuck on the same FTP for a year? Twelve questions. Four minutes. One specific answer keyed to your limiter.",

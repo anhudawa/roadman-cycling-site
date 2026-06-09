@@ -75,6 +75,14 @@ export const TOOLS: ToolEntry[] = [
       "Suspension pressure, sag targets, and tyre pressure for your mountain bike.",
     pillar: "coaching",
   },
+  {
+    slug: "race-predictor",
+    title: "Race Time Predictor",
+    description:
+      "Physics-based finish-time estimate from your weight, power, and the course distance and climbing — gravity, rolling resistance, aero drag, and drivetrain loss.",
+    pillar: "coaching",
+    inputs: ["riderWeight", "bikeWeight", "power", "distance", "elevation", "crr", "cda"],
+  },
 ];
 
 export function getAllTools(): ToolEntry[] {

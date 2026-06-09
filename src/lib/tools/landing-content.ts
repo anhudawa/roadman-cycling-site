@@ -694,6 +694,87 @@ export const TOOL_LANDING_CONTENT: Record<string, ToolLandingContent> = {
       "Recommendations to lift above clinical low",
     ],
   },
+
+  "race-predictor": {
+    slug: "race-predictor",
+    title: "Race Time Predictor",
+    description:
+      "Predict your cycling race or sportive finish time from real physics. Enter your weight, power, the course distance and climbing, and get an estimated time, average speed, and average power — free.",
+    url: `${ROADMAN_BASE}/tools/race-predictor`,
+    breadcrumbName: "Race Time Predictor",
+    answerSummary:
+      "Enter rider and bike weight, the power you can hold, course distance and total climbing, plus rolling resistance and CdA. The tool solves the cycling power-balance equation — gravity, rolling resistance, aerodynamic drag, and drivetrain loss — and returns your estimated finish time, average speed, and average power. The detailed per-segment breakdown, pacing plan, and fuelling timing are members-only.",
+    whatItDoes:
+      "This calculator turns your numbers into a finish time using the same physics a coach uses to build a race plan. It models the course as a climb-and-descent split derived from your distance and total elevation gain, then solves the steady-state speed your power can sustain against gravity, rolling resistance, and air. The preview is free; the full pacing and fuelling plan lives inside the Roadman community.",
+    whoItsFor: [
+      "Riders pacing a first gran fondo, sportive, or time trial",
+      "Cyclists choosing realistic power targets for a known course",
+      "Anyone weighing kit changes — lighter bike, faster tyres, better position",
+      "Self-coached athletes who want a physics check on their goal time",
+    ],
+    howItWorks:
+      "The engine solves the cycling power equation P·η = (m·g·sinθ + Crr·m·g·cosθ + ½·ρ·CdA·v²)·v for speed v on each part of the course, then sums the time. With only distance and total ascent available, the route is modelled as half climbing and half descending at an average gradient of 2 × (ascent ÷ distance), which correctly captures that climbs cost more time than descents return.",
+    howToSteps: [
+      { name: "Enter your weights", text: "Add your body weight and your bike-plus-kit weight in kilograms. Total system mass drives both the climbing and rolling-resistance terms." },
+      { name: "Enter your power", text: "Put in the average power you can realistically hold for the effort — your FTP for a hard hour, a little under it for longer events." },
+      { name: "Describe the course", text: "Enter total distance in kilometres and total elevation gain in metres. Pick your surface and riding position, or fine-tune Crr and CdA directly." },
+      { name: "Read your prediction", text: "The tool returns estimated finish time, average speed, and average power instantly. Unlock the per-segment breakdown, pacing split, and fuelling plan inside the community." },
+    ],
+    howToTotalTime: "PT2M",
+    limitations:
+      "With only distance and total ascent, the tool models an average gradient rather than the real profile — a route with one long climb behaves differently from constant rolling, and the upload-the-GPX predictor at /predict is more precise. It assumes still air, sea-level air density, and a constant power output, so wind, altitude, drafting, and fatigue are not modelled. Treat the result as a well-grounded estimate, not a guarantee.",
+    whenToSeeACoach:
+      "A predicted time only matters if your training is building the engine to hit it. If you can model the finish but keep falling short on the day, the gap is usually pacing discipline, fuelling, or how your training week is structured — which is exactly what coaching is for.",
+    examples: [
+      {
+        scenario: "Hilly gran fondo",
+        inputs: ["Rider 75kg + bike 8kg", "Power: 230W", "120 km, 2,000 m climbing", "Crr 0.004, CdA 0.31"],
+        output: "Roughly a 4½-hour finish at ~26 km/h average. The pacing plan shows where to spend the extra watts to take time off that.",
+      },
+      {
+        scenario: "Flat 40 km TT",
+        inputs: ["Rider 70kg + bike 8kg", "Power: 290W", "40 km, 150 m climbing", "Crr 0.0032, CdA 0.24"],
+        output: "Around 58 minutes at ~41 km/h. Tightening CdA toward 0.21 with a better position is worth more here than any weight saving.",
+      },
+    ],
+    faqs: [
+      {
+        question: "How accurate is a physics-based race time predictor?",
+        answer: "For a steady effort on a known course, power-balance physics is accurate to within a few percent — it's the same maths used in professional race modelling. The biggest sources of error are wind, how evenly you pace, and whether your real average power matches what you entered. This tool assumes still air and constant power, so use the GPX-based predictor at /predict when you need profile-level precision.",
+      },
+      {
+        question: "What power should I enter — FTP or something lower?",
+        answer: "Enter the average power you can actually hold for the event. For an all-out hour that's roughly your FTP. For a 2-3 hour sportive most riders sustain about 75-85% of FTP; for all-day events, lower still. The unlocked pacing plan converts your number into climb, flat, and descent targets.",
+      },
+      {
+        question: "Why does the tool ask for rolling resistance and CdA?",
+        answer: "They're the two biggest non-gravity forces. Crr (rolling resistance) depends on your tyres and the road surface; CdA (drag area) depends on your position and equipment. The tool gives sensible presets by surface and riding position, but entering measured values makes the prediction sharper — and lets you test what new tyres or an aero position would actually save.",
+      },
+      {
+        question: "Does elevation gain alone tell you enough about the course?",
+        answer: "It's a strong proxy. The tool derives an average gradient of twice the climbing-per-kilometre and splits the route into climbing and descending halves, which captures the key fact that hills cost more time than descents give back. It can't tell a single mountain pass from constant rolling — for that, upload your GPX file to the full predictor at /predict.",
+      },
+      {
+        question: "Is the Race Time Predictor free?",
+        answer: "Yes. The estimated finish time, average speed, and average power are free with no sign-up. The detailed per-segment analysis, the climb-and-descent pacing strategy, and the fuelling timing are part of the Roadman community at skool.com/roadmancycling.",
+      },
+    ],
+    related: [
+      { label: "Full GPX Race Predictor", href: "/predict", kind: "tool" },
+      { label: "W/kg Calculator", href: "/tools/wkg", kind: "tool" },
+      { label: "In-Ride Fuelling Calculator", href: "/tools/fuelling", kind: "tool" },
+      { label: "FTP Zone Calculator", href: "/tools/ftp-zones", kind: "tool" },
+      { label: "Cycling pacing strategy for long climbs", href: "/blog/cycling-pacing-strategy-long-climbs", kind: "article" },
+    ],
+    webAppFeatures: [
+      "Physics-based finish-time prediction",
+      "Solves gravity, rolling resistance, aero drag, and drivetrain loss",
+      "Estimated time, average speed, and average power",
+      "Surface and riding-position presets for Crr and CdA",
+      "Per-segment breakdown, pacing, and fuelling (members)",
+    ],
+  },
+
 };
 
 /** Helper for components that look up a tool by slug. */
