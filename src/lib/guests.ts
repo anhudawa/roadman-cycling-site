@@ -81,6 +81,7 @@ const NAME_ALIASES: Record<string, string> = {
   "Dr Gervais": "Dr Michael Gervais",
   "Dr Lim": "Dr Allen Lim",
   "Dr Pruitt": "Dr Andy Pruitt",
+  "Dr Andrew Pruitt": "Dr Andy Pruitt",
   "Dowsett": "Alex Dowsett",
   "Hincapie": "George Hincapie",
   "Hincape": "George Hincapie",

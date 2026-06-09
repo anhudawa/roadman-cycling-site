@@ -478,6 +478,42 @@ export const EXPERT_TOPICS: ExpertTopic[] = [
       "healthy ageing cyclist",
     ],
   },
+  {
+    slug: "testosterone",
+    label: "Testosterone & Hormones",
+    phrase: "testosterone and hormones after 40",
+    parentHub: "cycling-recovery",
+    pillar: "recovery",
+    blurb:
+      "What happens to testosterone, DHEA and cortisol as a male endurance athlete ages — and what's worth measuring.",
+    match:
+      /testosteron|\bfree t\b|\blow t\b|\bdhea\b|androgen|cortisol|hormon(e|al)|endocrin|\bhrt\b|trt\b/i,
+    aliases: [
+      "testosterone and cycling",
+      "testosterone after 40",
+      "free testosterone",
+      "DHEA endurance athlete",
+      "hormones masters cyclist",
+    ],
+  },
+  {
+    slug: "menopause",
+    label: "Menopause & Cycling",
+    phrase: "training through menopause",
+    parentHub: "cycling-recovery",
+    pillar: "recovery",
+    blurb:
+      "Training, fuelling and protecting muscle and bone through perimenopause and menopause — the most under-served question in the sport.",
+    match:
+      /menopaus|peri.?menopaus|oestrogen|estrogen|\bhrt\b|hot flush|night sweats|women'?s hormones|hormone replacement|female (athlete|hormone)|menstrual/i,
+    aliases: [
+      "menopause and cycling",
+      "perimenopause cycling",
+      "training through menopause",
+      "menopause cyclist",
+      "women's cycling hormones",
+    ],
+  },
 ];
 
 const EXPERT_TOPIC_BY_SLUG: Map<string, ExpertTopic> = new Map(
@@ -550,6 +586,7 @@ const EXPERT_TOPIC_OVERRIDES: Record<string, string[]> = {
     "base-training",
     "strength-after-40",
     "ftp",
+    "vo2-max",
     "reverse-periodisation",
     "masters-training",
     "cycling-longevity",
@@ -608,6 +645,12 @@ const EXPERT_TOPIC_OVERRIDES: Record<string, string[]> = {
     "periodisation",
     "reverse-periodisation",
   ],
+  // Hormone/health specialist — anchors the otherwise-unclaimed masters
+  // testosterone query, plus the recovery/sleep ground he covers on ep 2451.
+  "dr-mark-gordon": ["testosterone", "recovery", "sleep"],
+  // Women's-hormone and metabolic-health voice — first mover on the
+  // completely unclaimed menopause-and-cycling query.
+  "cynthia-thurlow": ["menopause", "race-weight", "gut-health"],
 };
 
 function signalText(
@@ -747,6 +790,20 @@ const CURATED_EDITORIAL: Record<string, string> = {
     "Spector comes at cycling longevity from the gut and the plate. His research ties long-term health to the diversity of what you eat — the 30-plants-a-week target — and to cutting the ultra-processed food that quietly drives inflammation regardless of calories. For an ageing cyclist that matters twice over: the microbiome underpins recovery and immune resilience now, and metabolic health decades out. He's also a champion of individual variation — the same meal spikes one rider and barely moves another — which is why he's sceptical of one-size diet rules. Feed the gut well and consistently, and you're protecting both the rides you do this year and the ones you want to still be doing at 70.",
   "mark-sisson/cycling-longevity":
     "Sisson's pitch to endurance athletes is a warning dressed as encouragement: chronic, grey-zone volume is the enemy of a long, healthy riding life. His model leans on a big aerobic base ridden genuinely easy, a small dose of real intensity, and serious attention to strength and recovery — the opposite of grinding moderate miles until something breaks. He's spent decades arguing that the way many endurance athletes train ages them faster, not slower, and that the fix is more restraint on the easy days and more intent on the hard ones. Ride easy easy, hard hard, lift, and protect the body you want to still be using in your seventies.",
+  "dr-mark-gordon/testosterone":
+    "Here's the thing most masters riders get wrong when they finally test their hormones: they look at the wrong number. Gordon, a neuroendocrinologist, is blunt about it on the podcast — total testosterone is, in his words, worthless, because only about 2% of it is the free testosterone your body can actually use. He wants male athletes in the 50th to 75th percentile of free testosterone, not chasing a total that tells you nothing. He's just as practical about the levers that move it without a prescription: he points to a study where 40-to-70-year-olds taking 50mg of DHEA a night saw real gains in cognitive and physical function in three months, and he's adamant that cortisol is the quiet saboteur — 15 minutes of meditation three times a week, he says, can halve it. The takeaway for an ageing rider isn't to panic about a fading engine. It's to measure the right thing, manage stress like it's training load, and stop guessing.",
+  "cynthia-thurlow/menopause":
+    "This is the question the whole sport has left unanswered, and Thurlow — a nurse practitioner who's built her work around women's metabolic health — is one of the few experts who'll actually take it on. Her recurring theme is the protection of muscle, and it gets more urgent, not less, through perimenopause and menopause. She's careful with fasting for exactly this reason: past about 24 hours you start breaking down muscle, and she's not willing to run that risk in women who are already losing the hormonal support that defends lean mass and bone. She's also clear that hormonal depletion isn't only a midlife problem — a younger woman who's lost her cycle to under-fuelling is exposed to the same risks a menopausal woman faces: bone, heart, brain, cognition. For the female rider who's been handed training advice built entirely on male physiology, her message is simple — fuel enough, protect the muscle, and stop treating your hormones as an afterthought.",
+  "joe-friel/vo2-max":
+    "Friel wrote Fast After 50, so he's not going to pretend the decline isn't coming — he'll tell you straight that the first thing an ageing athlete notices is their VO2 max sliding, and that it starts quietly somewhere in your mid-to-late 30s whether you feel it or not. Here's the part that catches people out: for years your growing race-craft and pacing smarts hide it, so the numbers hold up even as the ceiling drops. Then one season the cover runs out. His answer is the opposite of the advice most riders follow, which is to quietly drop the hard stuff as they age. Protect the intensity — the high-end work is exactly what defends the top of the engine, and it's the first thing to disappear for good if you stop chasing it. The volume keeps the base honest; the VO2max sessions, done with real intent and proper recovery around them, are what keep you fast.",
+  "andy-galpin/recovery":
+    "Ask Galpin what recovery actually is and he reframes it on the spot: it isn't the absence of training, it's the active process that turns the training you've already done into adaptation. That distinction matters most for masters riders, because the recovery window genuinely gets longer with age and the cost of ignoring it gets steeper. His warning is precise — cut your sleep, stack life stress, and under-eat protein, and you're running a body that can't bank what you're spending on the bike. The fix isn't softer training. It's treating sleep, food and the gap between hard days as part of the session, not an optional extra. Get the recovery side right and the same training that was digging you into a hole starts producing the gains it was supposed to.",
+  "alex-larson/body-composition":
+    "Larson, a dietitian who works with endurance athletes, has a point about ageing bodies that most riders chasing race weight never hear: the way you handle protein changes. In your 20s you absorb it efficiently — but once you're into the masters category, that efficiency drops, so you need a little more, not less, to hold onto lean mass. She works in the 1.5 to 2 grams per kilo range, and she's deliberate about building up to it gradually rather than overwhelming someone overnight. Her bigger warning is the one that wrecks most amateurs' body composition: don't diet on the bike. Under-fuel your sessions to lose weight and you'll strip the muscle you're trying to protect and blunt the training you're trying to absorb. The way to change your composition after 40 is to feed the work, defend the protein, and let the leanness come as a result — not to starve your way to it.",
+  "derek-teel/strength-after-40":
+    "Teel's pitch to time-crunched masters riders kills the main excuse for skipping the gym. You don't need a separate training block — he points out that even cutting 60 minutes of riding a week and putting it into two 30-minute strength sessions is enough to start defending the power that fades with age. Two sessions, he says, is the sweet spot: it gives the body a better chance to catch the recovery curve than trying to cram more in. His other masters-specific point is the hardest one for driven riders to swallow — you have to get comfortable prioritising maintenance over chasing new numbers in the gym. The goal off the bike isn't to get bigger or stronger for its own sake; it's to hold onto the fast-twitch strength and joint integrity that endurance riding quietly lets slide. Keep it simple, keep it twice a week, and protect what you've got.",
+  "dr-andy-pruitt/bike-fit":
+    "Pruitt has been fitting riders since before bike fit was a profession, and his framing turns it from a comfort tweak into injury insurance — which is exactly what a masters rider needs. He talks about a sweet spot around 45 degrees of torso angle where the weight splits evenly between saddle, feet and hands, with your core holding you there; tip too far forward and your hands take the load and the nerves complain, sit too upright and it all lands on the saddle. The line that matters most for older riders, though, is that fit isn't one-and-done. Your body changes — flexibility goes, feet flatten, you need more arch support and forefoot correction as you age — so he recommends a yearly look from someone who's tracked your records over time. His whole philosophy lands in one phrase: comfort and speed go hand in hand. Stay fitted to the body you have now, not the one you had a decade ago, and you keep riding pain-free for longer.",
 };
 
 /* ------------------------------------------------------------------ *
