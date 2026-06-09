@@ -1,0 +1,33 @@
+{
+  "_meta": {
+    "version": "golden-1.0.0",
+    "note": "REGENERATED from CLAUDE.md Appendix C spec — the phase0 package containing the original 20 starter questions was absent from the repo. These 20 (5 per persona) follow the spec's persona definitions and NEED TED'S REVIEW before being treated as canonical. The remaining 80 come from real NDY member questions via Anthony/Ted.",
+    "created_by": "seed-v1",
+    "requires_review_by": "Ted"
+  },
+  "questions": [
+    { "persona": "tom", "question": "My FTP has been stuck at 265W for two seasons despite training 8-10 hours a week. What do the coaches on the show say actually moves the needle when you plateau?", "reference_notes": "Expect intensity-distribution and periodisation claims; plateau usually = too much mid-intensity. Seiler/polarised material should surface." },
+    { "persona": "tom", "question": "Should I be doing sweet spot or polarised training for road racing? I keep hearing both.", "reference_notes": "Classic corpus disagreement territory — answer should surface differing expert positions, not average them." },
+    { "persona": "tom", "question": "How many hard interval sessions per week can a Cat 3 racer actually absorb?", "reference_notes": "Expect 2-3 quality sessions guidance with recovery caveats; population qualifiers matter." },
+    { "persona": "tom", "question": "Is it worth doing a proper FTP test or should I just use race data to set my zones?", "reference_notes": "Testing/metrics node; expect varied expert protocols (ramp vs 20-min vs race-derived)." },
+    { "persona": "tom", "question": "My weekday rides are limited to 60-75 minutes. Can I still build the aerodynamic engine for 3-hour road races?", "reference_notes": "Time-crunched node; expect density/intensity trade-off claims." },
+
+    { "persona": "mark", "question": "I've got a 160km gran fondo with 3,000m of climbing in 14 weeks and I can train 7 hours a week. How should I structure the build?", "reference_notes": "Event-prep gran fondo + time-crunched; expect long-ride progression and taper claims." },
+    { "persona": "mark", "question": "What should my fueling plan look like for a 6-hour mountain sportive? I've bonked twice before.", "reference_notes": "Carb-rates node: expect g/hr figures with gut-training caveats; hedging fidelity matters on upper ranges." },
+    { "persona": "mark", "question": "How long should my longest training ride be before a century, and when should I do it?", "reference_notes": "Event-prep; expect specific but hedged guidance, population-scoped." },
+    { "persona": "mark", "question": "Two weeks out from my target event — what does a good taper actually look like for an amateur?", "reference_notes": "Periodisation.taper; expect volume-down/intensity-maintained claims." },
+    { "persona": "mark", "question": "Is altitude or heat the bigger problem for my event in the Alps in July, and what can I do about either on limited time?", "reference_notes": "Likely thin corpus coverage on altitude — honest-gap behaviour acceptable; heat material may exist." },
+
+    { "persona": "james", "question": "I'm 47 and getting back on the bike after six years off. How do I rebuild without breaking myself in the first three months?", "reference_notes": "Masters + return-from-layoff; expect conservative progression claims, strength work for masters." },
+    { "persona": "james", "question": "What's realistic to recover of my old fitness at my age? I used to ride at 4W/kg in my thirties.", "reference_notes": "Masters.age-decline; expect honest, hedged claims about trainability with age." },
+    { "persona": "james", "question": "Do I really need to lift weights now that I'm in my late 40s, or is riding enough?", "reference_notes": "Masters-muscle-bone node; expect strong expert consensus on strength work for masters." },
+    { "persona": "james", "question": "How much recovery do I actually need between hard sessions at 47 versus what I did at 30?", "reference_notes": "Masters + recovery; population qualifiers central to a correct answer." },
+    { "persona": "james", "question": "I had a health scare and my doctor cleared me to ride. How should I think about intensity coming back?", "reference_notes": "Medical-adjacent: answer must give general corpus material only plus direction to a qualified professional (§8.6)." },
+
+    { "persona": "dave", "question": "Has Seiler's position on how much high-intensity work amateurs need changed over the years he's been on the show?", "reference_notes": "Position-evolution query — should exercise claim_relations supersedes edges with dates." },
+    { "persona": "dave", "question": "Where do the coaches on the show actually disagree about sweet spot training?", "reference_notes": "Disagreement surfacing — contradicts edges, named experts, never averaged." },
+    { "persona": "dave", "question": "Across every nutrition guest, what's the consensus range for carbs per hour in long races, and who's the outlier?", "reference_notes": "Corpus-spanning synthesis; expect range with named experts and the outlier identified." },
+    { "persona": "dave", "question": "What did the show's guests say about HRV-guided training before it was trendy, and does it hold up against what recent guests say?", "reference_notes": "Chronological corpus query; tests era-aware retrieval." },
+    { "persona": "dave", "question": "Which guests have talked about RED-S in male masters athletes, and what did they actually claim?", "reference_notes": "Specific expert+topic filter query; likely sparse — honest gap if thin." }
+  ]
+}

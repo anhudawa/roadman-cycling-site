@@ -1,0 +1,162 @@
+{
+  "_meta": {
+    "FIXTURE": true,
+    "note": "FIXTURE — synthetic extraction outputs for unit-testing validation/routing. All content is invented test data; speakers GUEST A / GUEST B are fictional. NOT real corpus data and must never be loaded into a production table."
+  },
+  "valid_clean_claim": {
+    "claims": [
+      {
+        "speaker_label": "SPK1",
+        "speaker_uncertain": false,
+        "timestamp_s": 845.2,
+        "claim_text": "FIXTURE: Guest A suggests that riders training under eight hours a week might benefit from keeping one weekly session strictly easy.",
+        "verbatim_quote": "FIXTURE: if you're under eight hours, it might be worth keeping one of those rides genuinely easy",
+        "claim_type": "recommendation",
+        "topic_path": "coaching.time-crunched",
+        "population_qualifier": "riders training under eight hours a week",
+        "hedging": "speculative",
+        "confidence": 0.92
+      }
+    ]
+  },
+  "low_confidence_claim": {
+    "claims": [
+      {
+        "speaker_label": "SPK1",
+        "speaker_uncertain": false,
+        "timestamp_s": 1200.0,
+        "claim_text": "FIXTURE: Guest A says threshold work twice a week is plenty.",
+        "verbatim_quote": "FIXTURE: twice a week at threshold is plenty",
+        "claim_type": "recommendation",
+        "topic_path": "coaching.intervals.threshold",
+        "population_qualifier": "general",
+        "hedging": "confident",
+        "confidence": 0.55
+      }
+    ]
+  },
+  "uncertain_speaker_claim": {
+    "claims": [
+      {
+        "speaker_label": "SPK2",
+        "speaker_uncertain": true,
+        "timestamp_s": 2100.7,
+        "claim_text": "FIXTURE: One guest states that fasted rides are overrated for amateurs.",
+        "verbatim_quote": "FIXTURE: honestly, fasted riding is overrated for most amateurs",
+        "claim_type": "opinion",
+        "topic_path": "nutrition.daily.carb-periodisation",
+        "population_qualifier": "amateurs",
+        "hedging": "confident",
+        "confidence": 0.88
+      }
+    ]
+  },
+  "unmapped_topic_claim": {
+    "claims": [
+      {
+        "speaker_label": "SPK1",
+        "speaker_uncertain": false,
+        "timestamp_s": 3010.0,
+        "claim_text": "FIXTURE: Guest A claims cyclocross dismount drills transfer to road handling.",
+        "verbatim_quote": "FIXTURE: those cross dismount drills carry straight over to the road",
+        "claim_type": "opinion",
+        "topic_path": "UNMAPPED",
+        "suggested_topic": "le-metier.skills.cyclocross",
+        "population_qualifier": "general",
+        "hedging": "qualified",
+        "confidence": 0.81
+      }
+    ]
+  },
+  "invented_topic_claim": {
+    "claims": [
+      {
+        "speaker_label": "SPK1",
+        "speaker_uncertain": false,
+        "timestamp_s": 3300.0,
+        "claim_text": "FIXTURE: Guest A recommends weekly sauna use for heat adaptation.",
+        "verbatim_quote": "FIXTURE: I have everyone do sauna once a week before a hot race",
+        "claim_type": "recommendation",
+        "topic_path": "recovery.sauna-protocols",
+        "population_qualifier": "general",
+        "hedging": "confident",
+        "confidence": 0.9
+      }
+    ]
+  },
+  "schema_violation_missing_field": {
+    "claims": [
+      {
+        "speaker_label": "SPK1",
+        "speaker_uncertain": false,
+        "timestamp_s": 400.0,
+        "claim_text": "FIXTURE: Guest A says something about intervals.",
+        "claim_type": "recommendation",
+        "topic_path": "coaching.intervals",
+        "population_qualifier": "general",
+        "hedging": "confident",
+        "confidence": 0.9
+      }
+    ]
+  },
+  "schema_violation_bad_hedging": {
+    "claims": [
+      {
+        "speaker_label": "SPK1",
+        "speaker_uncertain": false,
+        "timestamp_s": 500.0,
+        "claim_text": "FIXTURE: Guest A says zone 2 is key.",
+        "verbatim_quote": "FIXTURE: zone two is the key, definitely",
+        "claim_type": "recommendation",
+        "topic_path": "coaching.intensity-distribution.zone-2",
+        "population_qualifier": "general",
+        "hedging": "very_sure",
+        "confidence": 0.9
+      }
+    ]
+  },
+  "blocklist_bait_claim": {
+    "claims": [
+      {
+        "speaker_label": "SPK1",
+        "speaker_uncertain": false,
+        "timestamp_s": 620.0,
+        "claim_text": "FIXTURE: A guest asserts that Dan Lorang coached Tadej Pogačar early in his career.",
+        "verbatim_quote": "FIXTURE: people forget Lorang actually coached Pogačar back then",
+        "claim_type": "anecdote",
+        "topic_path": "le-metier.pro-cycling",
+        "population_qualifier": "general",
+        "hedging": "confident",
+        "confidence": 0.85
+      }
+    ]
+  },
+  "hedging_roundtrip_claims": {
+    "claims": [
+      {
+        "speaker_label": "SPK1",
+        "speaker_uncertain": false,
+        "timestamp_s": 700.0,
+        "claim_text": "FIXTURE: Guest A muses it might be worth trying cadence drills.",
+        "verbatim_quote": "FIXTURE: might be worth playing with cadence drills",
+        "claim_type": "recommendation",
+        "topic_path": "coaching.intervals",
+        "population_qualifier": "general",
+        "hedging": "speculative",
+        "confidence": 0.9
+      },
+      {
+        "speaker_label": "SPK1",
+        "speaker_uncertain": false,
+        "timestamp_s": 760.0,
+        "claim_text": "FIXTURE: Guest A insists riders must never skip the post-race meal.",
+        "verbatim_quote": "FIXTURE: never, ever skip that post-race meal",
+        "claim_type": "recommendation",
+        "topic_path": "nutrition.recovery-nutrition",
+        "population_qualifier": "general",
+        "hedging": "emphatic",
+        "confidence": 0.95
+      }
+    ]
+  }
+}

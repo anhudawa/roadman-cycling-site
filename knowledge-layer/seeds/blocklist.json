@@ -1,0 +1,21 @@
+{
+  "_meta": {
+    "version": "block-1.0.0",
+    "note": "Regenerated from CLAUDE.md Appendix C / §8 spec (phase0 package absent). Checked by pipeline/qa/blocklist_check.py over every extraction batch.",
+    "created_by": "seed-v1"
+  },
+  "entries": [
+    {
+      "pattern": "Dan Lorang coached Tadej Pogačar",
+      "detail": "FALSE. This claim exists as an error in legacy brand documents and must never enter the graph as fact from any source. If asserted on-air by a guest, it is stored only as a thing-said and flagged for review; it never surfaces in synthesis as established fact. Dan Lorang is known for coaching at Bora-Hansgrohe / Red Bull and athletes such as Jan Frodeno — not Tadej Pogačar.",
+      "match_hints": ["lorang", "pogacar", "pogačar"],
+      "added_by": "seed-v1"
+    },
+    {
+      "pattern": "STRUCTURAL: pipeline-asserted expert biography or credentials",
+      "detail": "Expert biographies and credentials are human-curated only (§8.1). No statement extracted from audio about a person's credentials, employment, or coaching history may be written to experts.credentials or surface in synthesis as established biographical fact. Such statements are stored only as things-said (claim_type anecdote/opinion) and flagged for review.",
+      "match_hints": ["coached by", "coach of", "credentials", "phd in", "head coach at", "worked with"],
+      "added_by": "seed-v1"
+    }
+  ]
+}

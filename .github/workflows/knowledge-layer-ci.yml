@@ -1,0 +1,33 @@
+name: knowledge-layer-ci
+
+on:
+  push:
+    paths:
+      - "knowledge-layer/**"
+      - ".github/workflows/knowledge-layer-ci.yml"
+  pull_request:
+    paths:
+      - "knowledge-layer/**"
+      - ".github/workflows/knowledge-layer-ci.yml"
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: knowledge-layer
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Install dev dependencies
+        run: pip install -e ".[dev]"
+      - name: Lint (ruff)
+        run: ruff check .
+      - name: Tests (integration tests auto-skip without SUPABASE_DB_URL)
+        run: pytest -q
+      - name: CLI smoke — all stage commands registered
+        run: |
+          python -m pipeline.cli --help
+          python -m pipeline.cli seed --dry-run
