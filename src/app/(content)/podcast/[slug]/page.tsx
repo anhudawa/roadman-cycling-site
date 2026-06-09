@@ -259,18 +259,25 @@ export default async function EpisodePage({
           publisher: { "@id": ENTITY_IDS.organization },
           // AudioObject is the schema.org canonical for podcast audio —
           // tells crawlers this is the playable episode payload, not just
-          // a generic media reference. Falls through when neither Spotify
-          // nor YouTube IDs are present (rare, legacy episodes only).
-          ...(episode.spotifyId || episode.youtubeId
+          // a generic media reference. Prefer the direct MP3 (`audioUrl`,
+          // Anchor CDN) as `contentUrl`: a real playable audio file is the
+          // canonical AudioObject payload, stronger than a Spotify/YouTube
+          // page URL. The audio-only back catalogue (~369 eps) carries
+          // `audioUrl` with no platform IDs, so this is the only way those
+          // episodes get associatedMedia at all. Falls back to the platform
+          // page when no direct file URL exists, then to nothing (rare,
+          // legacy episodes with no media reference).
+          ...(episode.audioUrl || episode.spotifyId || episode.youtubeId
             ? {
                 associatedMedia: {
                   "@type": "AudioObject",
+                  ...(episode.audioUrl
+                    ? { contentUrl: episode.audioUrl }
+                    : episode.spotifyId
+                      ? { contentUrl: `https://open.spotify.com/episode/${episode.spotifyId}` }
+                      : { contentUrl: `https://www.youtube.com/watch?v=${episode.youtubeId}` }),
                   ...(episode.spotifyId && {
-                    contentUrl: `https://open.spotify.com/episode/${episode.spotifyId}`,
                     embedUrl: `https://open.spotify.com/embed/episode/${episode.spotifyId}`,
-                  }),
-                  ...(!episode.spotifyId && episode.youtubeId && {
-                    contentUrl: `https://www.youtube.com/watch?v=${episode.youtubeId}`,
                   }),
                   encodingFormat: "audio/mpeg",
                   duration: (() => {

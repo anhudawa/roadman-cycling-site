@@ -16,6 +16,14 @@ export interface EpisodeFrontmatter {
   duration: string;
   spotifyId?: string;
   youtubeId?: string;
+  /**
+   * Direct URL to the episode's audio file (Anchor/Spotify-for-Podcasters
+   * CDN MP3), carried by the audio-only back catalogue imported from the
+   * RSS feed. These episodes have no Spotify/YouTube IDs, so this is the
+   * canonical playable payload used for the PodcastEpisode `associatedMedia`
+   * AudioObject `contentUrl`.
+   */
+  audioUrl?: string;
   pillar: ContentPillar;
   type: EpisodeType;
   keywords: string[];
