@@ -37,7 +37,7 @@ export function VideoEmbed({ youTubeId, title }: VideoEmbedProps) {
 
         <div className="absolute top-4 left-4 inline-flex items-center gap-2 rounded-full border border-coral/40 bg-charcoal/70 px-3 py-1 backdrop-blur-sm">
           <span className="relative flex h-2 w-2">
-            <span className="absolute inset-0 animate-ping rounded-full bg-coral/70" />
+            <span className="absolute inset-0 motion-safe:animate-ping rounded-full bg-coral/70" />
             <span className="relative h-2 w-2 rounded-full bg-coral" />
           </span>
           <span className="font-heading text-[10px] tracking-[0.3em] text-coral">
@@ -50,7 +50,7 @@ export function VideoEmbed({ youTubeId, title }: VideoEmbedProps) {
             aria-hidden
             className="relative flex h-20 w-20 items-center justify-center rounded-full border border-coral/40 bg-coral/10 shadow-[0_0_36px_rgba(241,99,99,0.25)] transition-transform group-hover:scale-105"
           >
-            <span className="absolute inset-0 rounded-full border border-coral/20 animate-[ping_2.8s_cubic-bezier(0,0,0.2,1)_infinite]" />
+            <span className="absolute inset-0 rounded-full border border-coral/20 motion-safe:animate-[ping_2.8s_cubic-bezier(0,0,0.2,1)_infinite]" />
             <svg viewBox="0 0 24 24" className="relative h-8 w-8 translate-x-[2px] text-coral">
               <path d="M8 5v14l11-7z" fill="currentColor" />
             </svg>

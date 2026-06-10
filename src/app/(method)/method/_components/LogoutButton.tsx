@@ -26,7 +26,7 @@ export function LogoutButton() {
       type="button"
       onClick={onClick}
       disabled={pending}
-      className="inline-flex items-center justify-center gap-2 rounded-md border border-white/20 hover:border-coral hover:text-coral disabled:opacity-60 px-6 py-3 font-heading uppercase tracking-wider transition-colors cursor-pointer active:scale-[0.97]"
+      className="inline-flex items-center justify-center gap-2 rounded-md border border-white/20 hover:border-coral hover:text-coral disabled:opacity-60 disabled:cursor-not-allowed px-6 py-3 font-heading uppercase tracking-wider transition-colors cursor-pointer active:scale-[0.97]"
     >
       {pending ? "Signing out..." : "Sign out"}
     </button>

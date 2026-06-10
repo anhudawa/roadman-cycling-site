@@ -45,7 +45,7 @@ export function Reveal({ children, delay = 0, className = "", as: Tag = "div" }:
   return (
     <Tag
       ref={ref as never}
-      className={`${className} transition-all duration-700 ease-out ${
+      className={`${className} transition-all duration-700 ease-out motion-reduce:!translate-y-0 motion-reduce:!opacity-100 motion-reduce:transition-none ${
         shown ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"
       }`}
       style={{ transitionDelay: `${delay}ms` }}

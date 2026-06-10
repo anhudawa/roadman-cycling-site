@@ -30,9 +30,12 @@ export function CheckoutForm() {
       };
       if (!res.ok || !payload.checkoutUrl) {
         setError(payload.error ?? "Could not start checkout. Try again.");
+        setPending(false);
         return;
       }
-      // Hard navigation — Stripe Checkout is hosted off-site.
+      // Hard navigation — Stripe Checkout is hosted off-site. We leave
+      // `pending` true here so the button stays in its loading state right
+      // up until the off-site redirect commits.
       window.location.assign(payload.checkoutUrl);
     } catch {
       setError("Network error — please try again.");
@@ -67,23 +70,33 @@ export function CheckoutForm() {
           type="email"
           name="email"
           autoComplete="email"
+          inputMode="email"
           required
           value={email}
           onChange={(e) => setEmail(e.target.value)}
+          aria-invalid={error ? true : undefined}
+          aria-describedby={error ? "checkout-error" : undefined}
           className="w-full rounded-md border border-white/15 bg-charcoal/80 px-4 py-3 text-off-white placeholder:text-foreground-muted/60 focus:border-coral focus:outline-none"
           placeholder="you@example.com"
         />
       </label>
       {error && (
-        <p role="alert" className="text-sm text-coral">
+        <p id="checkout-error" role="alert" className="text-sm text-coral">
           {error}
         </p>
       )}
       <button
         type="submit"
         disabled={pending}
-        className="inline-flex items-center justify-center gap-2 rounded-md bg-coral hover:bg-coral-hover disabled:opacity-60 px-6 py-4 font-heading uppercase tracking-wider text-off-white shadow-[var(--shadow-glow-coral)] transition-all active:scale-[0.97] text-lg"
+        aria-busy={pending}
+        className="inline-flex items-center justify-center gap-2 rounded-md bg-coral hover:bg-coral-hover disabled:opacity-60 disabled:cursor-not-allowed px-6 py-4 font-heading uppercase tracking-wider text-off-white shadow-[var(--shadow-glow-coral)] transition-all active:scale-[0.97] text-lg"
       >
+        {pending && (
+          <span
+            aria-hidden
+            className="h-4 w-4 rounded-full border-2 border-off-white/30 border-t-off-white motion-safe:animate-spin"
+          />
+        )}
         {pending ? "Opening checkout..." : "Join The Method"}
       </button>
     </form>

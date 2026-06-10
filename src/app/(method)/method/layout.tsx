@@ -3,6 +3,7 @@ import type { ReactNode } from "react";
 import { headers } from "next/headers";
 import { getMethodSession } from "@/lib/method/auth";
 import { MethodHeader } from "./_components/MethodHeader";
+import { MethodMotionProvider } from "./_components/MethodMotionProvider";
 
 export const metadata: Metadata = {
   title: "The Roadman Method — A 12-Week System for Cyclists Who Are Stuck",
@@ -38,21 +39,25 @@ export default async function MethodLayout({
   const isSalesPage = pathname === "/method";
 
   return (
-    <div className="min-h-screen bg-charcoal text-off-white antialiased">
-      <div
-        aria-hidden
-        className="pointer-events-none fixed inset-0 -z-10 bg-[radial-gradient(ellipse_at_top,_var(--color-deep-purple)_0%,_var(--color-charcoal)_55%)]"
-      />
-      <MethodHeader
-        sessionEmail={email}
-        variant={isSalesPage ? "marketing" : "members"}
-      />
-      <main id="method-main" className={isSalesPage ? "" : "pb-24"}>
-        {children}
-      </main>
-      <footer className="border-t border-white/5 py-10 text-center text-xs text-foreground-muted">
-        <p>The Roadman Method · © Roadman Cycling. Built in Ireland.</p>
-      </footer>
-    </div>
+    <MethodMotionProvider>
+      <div className="min-h-screen bg-charcoal text-off-white antialiased">
+        <div
+          aria-hidden
+          className="pointer-events-none fixed inset-0 -z-10 bg-[radial-gradient(ellipse_at_top,_var(--color-deep-purple)_0%,_var(--color-charcoal)_55%)]"
+        />
+        <MethodHeader
+          sessionEmail={email}
+          variant={isSalesPage ? "marketing" : "members"}
+        />
+        {/* id matches the site-wide skip-to-content target in the root
+            layout — without it the global skip link is dead on /method/*. */}
+        <main id="main-content" className={isSalesPage ? "" : "pb-24"}>
+          {children}
+        </main>
+        <footer className="border-t border-white/5 py-10 text-center text-xs text-foreground-muted">
+          <p>The Roadman Method · © Roadman Cycling. Built in Ireland.</p>
+        </footer>
+      </div>
+    </MethodMotionProvider>
   );
 }

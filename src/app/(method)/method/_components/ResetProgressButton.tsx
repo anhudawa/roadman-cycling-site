@@ -83,7 +83,7 @@ export function ResetProgressButton({ completedCount }: ResetProgressButtonProps
           type="button"
           onClick={reset}
           disabled={pending}
-          className="inline-flex items-center gap-2 rounded-md bg-coral hover:bg-coral-hover disabled:opacity-60 px-4 py-2 text-sm font-heading uppercase tracking-wider text-off-white transition-all active:scale-[0.97]"
+          className="inline-flex items-center gap-2 rounded-md bg-coral hover:bg-coral-hover disabled:opacity-60 disabled:cursor-not-allowed px-4 py-2 text-sm font-heading uppercase tracking-wider text-off-white transition-all active:scale-[0.97]"
         >
           {pending ? "Resetting..." : "Yes, reset"}
         </button>

@@ -194,10 +194,10 @@ function PricingCard({
 
       <Link
         href={ctaHref}
-        className={`block text-center font-heading uppercase tracking-wider px-6 py-4 rounded-sm transition-colors ${
+        className={`block text-center font-heading uppercase tracking-wider px-6 py-4 rounded-sm transition-all active:scale-[0.98] ${
           recommended
             ? "bg-coral text-charcoal hover:bg-coral-hover"
-            : "border border-white/20 text-off-white hover:border-coral hover:text-coral"
+            : "border border-white/20 text-off-white hover:border-coral hover:text-coral active:border-coral active:text-coral"
         }`}
       >
         {ctaLabel}

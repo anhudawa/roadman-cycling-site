@@ -32,11 +32,20 @@ export function WeekProgressDots({
           className =
             "h-2 w-2 rounded-full border-2 border-coral bg-charcoal";
         }
+        const week = module.weekIndex.toString().padStart(2, "0");
+        const status = isComplete
+          ? "complete"
+          : isCurrent
+            ? "current"
+            : "not started";
+        const label = `Week ${week} · ${module.title} — ${status}`;
         return (
           <li
             key={module.slug}
             className={className}
-            title={`Week ${module.weekIndex.toString().padStart(2, "0")} · ${module.title}`}
+            title={label}
+            aria-label={label}
+            aria-current={isCurrent ? "step" : undefined}
           />
         );
       })}

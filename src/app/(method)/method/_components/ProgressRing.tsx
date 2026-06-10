@@ -1,6 +1,6 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { motion, useReducedMotion } from "framer-motion";
 
 interface ProgressRingProps {
   percent: number;
@@ -21,13 +21,18 @@ export function ProgressRing({
   const radius = (size - stroke) / 2;
   const circumference = 2 * Math.PI * radius;
   const offset = circumference - (safe / 100) * circumference;
+  const reduceMotion = useReducedMotion();
 
   return (
     <div
       className="relative flex items-center justify-center"
       style={{ width: size, height: size }}
-      role="img"
-      aria-label={`${safe}% complete`}
+      role="progressbar"
+      aria-valuenow={safe}
+      aria-valuemin={0}
+      aria-valuemax={100}
+      aria-valuetext={`${safe}% complete`}
+      aria-label="Course progress"
     >
       <svg
         width={size}
@@ -52,15 +57,18 @@ export function ProgressRing({
           strokeWidth={stroke}
           strokeLinecap="round"
           strokeDasharray={circumference}
-          initial={{ strokeDashoffset: circumference }}
+          initial={{ strokeDashoffset: reduceMotion ? offset : circumference }}
           animate={{ strokeDashoffset: offset }}
-          transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
+          transition={{ duration: reduceMotion ? 0 : 1.2, ease: [0.16, 1, 0.3, 1] }}
           style={{
             filter: "drop-shadow(0 0 12px rgba(241,99,99,0.45))",
           }}
         />
       </svg>
-      <div className="absolute inset-0 flex flex-col items-center justify-center">
+      <div
+        aria-hidden
+        className="absolute inset-0 flex flex-col items-center justify-center"
+      >
         <span className="font-heading text-4xl tracking-wide">{safe}%</span>
         <span className="text-xs uppercase tracking-[0.3em] text-foreground-muted mt-1">
           Complete

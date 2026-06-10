@@ -162,7 +162,8 @@ export function WeekChecklist({ moduleSlug, items }: WeekChecklistProps) {
         <button
           type="button"
           onClick={reset}
-          className="mt-5 text-xs text-foreground-muted hover:text-coral transition-colors"
+          aria-label="Reset this week's checklist"
+          className="mt-5 rounded-sm text-xs text-foreground-muted hover:text-coral active:text-coral-hover transition-colors"
         >
           Reset week
         </button>

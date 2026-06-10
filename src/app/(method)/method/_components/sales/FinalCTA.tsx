@@ -50,13 +50,13 @@ export function FinalCTA() {
           <div className="mt-12 flex flex-col sm:flex-row gap-4 sm:gap-6 justify-center items-center">
             <Link
               href="/method/checkout?tier=standard"
-              className="inline-flex justify-center font-heading uppercase tracking-wider text-base bg-coral text-charcoal hover:bg-coral-hover transition-colors px-8 py-4 rounded-sm w-full sm:w-auto"
+              className="inline-flex justify-center font-heading uppercase tracking-wider text-base bg-coral text-charcoal hover:bg-coral-hover transition-all active:scale-[0.97] px-8 py-4 rounded-sm w-full sm:w-auto"
             >
               Enrol Now — $297
             </Link>
             <Link
               href="/method/checkout?tier=premium"
-              className="inline-flex justify-center font-heading uppercase tracking-wider text-base border border-white/20 text-off-white hover:border-coral hover:text-coral transition-colors px-8 py-4 rounded-sm w-full sm:w-auto"
+              className="inline-flex justify-center font-heading uppercase tracking-wider text-base border border-white/20 text-off-white hover:border-coral hover:text-coral active:border-coral active:text-coral transition-all active:scale-[0.97] px-8 py-4 rounded-sm w-full sm:w-auto"
             >
               Premium — $397
             </Link>

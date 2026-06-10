@@ -27,7 +27,7 @@ export function FAQ() {
                   </h3>
                   <span
                     aria-hidden
-                    className="font-heading text-coral text-2xl leading-none mt-0.5 transition-transform duration-200 group-open:rotate-45"
+                    className="font-heading text-coral text-2xl leading-none mt-0.5 transition-transform duration-200 motion-reduce:transition-none group-open:rotate-45"
                   >
                     +
                   </span>

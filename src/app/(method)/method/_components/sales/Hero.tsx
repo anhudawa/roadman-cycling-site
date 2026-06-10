@@ -42,13 +42,13 @@ export function Hero() {
           <div className="mt-10 flex flex-col sm:flex-row gap-4 sm:items-center">
             <a
               href="#pricing"
-              className="inline-flex justify-center font-heading uppercase tracking-wider text-base bg-coral text-charcoal hover:bg-coral-hover transition-colors px-7 py-4 rounded-sm"
+              className="inline-flex justify-center font-heading uppercase tracking-wider text-base bg-coral text-charcoal hover:bg-coral-hover transition-all active:scale-[0.97] px-7 py-4 rounded-sm"
             >
               Enrol Now — $297
             </a>
             <a
               href="#what-you-get"
-              className="inline-flex justify-center font-heading uppercase tracking-wider text-sm text-off-white hover:text-coral transition-colors px-2 py-4"
+              className="inline-flex justify-center font-heading uppercase tracking-wider text-sm text-off-white hover:text-coral active:text-coral-hover transition-colors px-2 py-4"
             >
               See the 12 weeks →
             </a>

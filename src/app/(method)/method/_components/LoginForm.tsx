@@ -53,16 +53,20 @@ export function LoginForm({ defaultEmail = "" }: LoginFormProps) {
           type="email"
           name="email"
           autoComplete="email"
+          inputMode="email"
           required
           autoFocus
           value={email}
           onChange={(e) => setEmail(e.target.value)}
+          aria-invalid={error ? true : undefined}
+          aria-describedby={error ? "login-error" : undefined}
           className="w-full rounded-md border border-white/15 bg-charcoal/80 px-4 py-3.5 text-off-white placeholder:text-foreground-muted/60 focus:border-coral focus:outline-none focus:ring-2 focus:ring-coral/30 transition-all"
           placeholder="you@example.com"
         />
       </label>
       {error && (
         <p
+          id="login-error"
           role="alert"
           className="rounded-md border border-coral/40 bg-coral/10 px-4 py-2.5 text-sm text-coral"
         >
@@ -72,12 +76,13 @@ export function LoginForm({ defaultEmail = "" }: LoginFormProps) {
       <button
         type="submit"
         disabled={pending}
-        className="inline-flex items-center justify-center gap-2 rounded-md bg-coral hover:bg-coral-hover disabled:opacity-60 px-6 py-3.5 font-heading uppercase tracking-wider text-off-white shadow-[var(--shadow-glow-coral)] transition-all active:scale-[0.97]"
+        aria-busy={pending}
+        className="inline-flex items-center justify-center gap-2 rounded-md bg-coral hover:bg-coral-hover disabled:opacity-60 disabled:cursor-not-allowed px-6 py-3.5 font-heading uppercase tracking-wider text-off-white shadow-[var(--shadow-glow-coral)] transition-all active:scale-[0.97]"
       >
         {pending ? (
           <span className="inline-flex items-center gap-2">
             <span
-              className="h-3 w-3 rounded-full border-2 border-off-white/40 border-t-off-white animate-spin"
+              className="h-3 w-3 rounded-full border-2 border-off-white/40 border-t-off-white motion-safe:animate-spin"
               aria-hidden
             />
             Sending...

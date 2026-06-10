@@ -281,6 +281,10 @@ function FtpField({
   value: string;
   onChange: (v: string) => void;
 }) {
+  const trimmed = value.trim();
+  const num = Number(trimmed);
+  const invalid =
+    trimmed !== "" && (!Number.isFinite(num) || num < 50 || num > 500);
   return (
     <label className="block max-w-sm">
       <span className="block font-heading uppercase tracking-wider text-xs text-foreground-muted mb-2">
@@ -295,9 +299,20 @@ function FtpField({
         value={value}
         onChange={(e) => onChange(e.target.value)}
         placeholder="e.g. 245"
-        className="w-full rounded-md border border-white/10 bg-charcoal/60 px-4 py-3 text-off-white text-lg focus:border-coral focus:outline-none focus:ring-1 focus:ring-coral"
+        aria-invalid={invalid || undefined}
+        aria-describedby={invalid ? "ftp-hint ftp-error" : "ftp-hint"}
+        className={`w-full rounded-md border bg-charcoal/60 px-4 py-3 text-off-white text-lg focus:outline-none focus:ring-1 ${
+          invalid
+            ? "border-coral focus:border-coral focus:ring-coral"
+            : "border-white/10 focus:border-coral focus:ring-coral"
+        }`}
       />
-      <span className="block text-xs text-foreground-muted mt-2">
+      {invalid && (
+        <span id="ftp-error" role="alert" className="block text-xs text-coral mt-2">
+          Enter a number between 50 and 500 watts — or clear it to skip.
+        </span>
+      )}
+      <span id="ftp-hint" className="block text-xs text-foreground-muted mt-2">
         Used to seed your TrainingPeaks zones. Skip if you don&apos;t have a recent number — we test honestly in Module 01.
       </span>
     </label>

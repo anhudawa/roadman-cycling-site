@@ -41,7 +41,7 @@ export function DiscussionCTA({ moduleTitle, weekIndex, url }: DiscussionCTAProp
               aria-hidden
               className="relative flex h-1.5 w-1.5"
             >
-              <span className="absolute inset-0 animate-ping rounded-full bg-coral/60" />
+              <span className="absolute inset-0 motion-safe:animate-ping rounded-full bg-coral/60" />
               <span className="relative h-1.5 w-1.5 rounded-full bg-coral" />
             </span>
             Threads coming soon
