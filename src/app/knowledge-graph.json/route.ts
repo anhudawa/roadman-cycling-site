@@ -11,6 +11,7 @@ import { QUESTION_PAGES } from "@/lib/questions";
 import { BEST_FOR_PAGES } from "@/lib/best-for";
 import { EVENTS } from "@/lib/training-plans";
 import { getAllTools } from "@/lib/tools-registry";
+import { getExpertsWithTopics, getExpertTopic } from "@/lib/experts";
 import {
   FEED_BASE_URL,
   FEED_CACHE_HEADERS,
@@ -50,7 +51,8 @@ interface GraphNode {
   id: string;
   type: NodeType;
   /** Sub-classification for `type: "entity"` nodes (comparison, problem,
-   *  question, best-for). Unset on the eight first-class types. */
+   *  question, best-for, expert-topic, property). Unset on the eight
+   *  first-class types. */
   subtype?: string;
   name: string;
   url: string | null;
@@ -78,6 +80,7 @@ interface GraphEdge {
    *   - featured_in             (person → article)
    *   - recommends              (problem|best-for → any)
    *   - covered_by_article      (event → article)
+   *   - about_expert            (expert-topic page → person)
    */
   relationship: string;
 }
@@ -301,6 +304,59 @@ export function GET() {
     }
     for (const topicSlug of ent.relatedTopicHubs ?? []) {
       pushEdge(id, `topic:${topicSlug}`, "knows_about");
+    }
+  }
+
+  // ----- BRAND / EDITORIAL PROPERTIES -----
+  //  Static `/entity/*` pages that aren't in the MDX entity registry
+  //  (getAllEntities only reads content/entities/*.mdx). Against the Clock
+  //  is Roadman's cycling × horology property — modelled as an `entity`
+  //  node so AI agents can traverse property → hub → flagship feature.
+  {
+    const atcId = "entity:property:against-the-clock";
+    upsertNode({
+      id: atcId,
+      type: "entity",
+      subtype: "property",
+      name: "Against the Clock",
+      url: feedUrl("/entity/against-the-clock"),
+      description:
+        "Roadman Cycling's cycling × horology property — the culture, history and identity where cycling meets fine watchmaking: the Hour Record, the time trial's race of truth, and the watches that end up on a rider's wrist.",
+      pillar: "community",
+    });
+    pushEdge(atcId, "topic:against-the-clock", "related_to");
+    pushEdge(
+      atcId,
+      "article:against-the-clock-cycling-watches",
+      "features_article",
+    );
+    pushEdge(atcId, "person:anthony-walsh", "related_to");
+  }
+
+  // ----- EXPERT × TOPIC PAGES (/experts/[expert]/[topic]) -----
+  //  The programmatic AEO layer in src/lib/experts.ts ("what {expert} says
+  //  about {topic}"). Built from getExpertsWithTopics()/getExpertTopic()
+  //  — pure registry lookups — rather than getExpertTopicPage(), which
+  //  rebuilds the full page (episode/quote scans across the whole catalogue)
+  //  and is far too heavy to run per-pair inside a feed route. Each page
+  //  links to its expert and its parent topic hub; the episodes it draws on
+  //  stay reachable transitively via those two nodes.
+  for (const expert of getExpertsWithTopics()) {
+    for (const t of expert.topics) {
+      const topic = getExpertTopic(t.slug);
+      if (!topic) continue;
+      const id = `entity:expert-topic:${expert.slug}--${t.slug}`;
+      upsertNode({
+        id,
+        type: "entity",
+        subtype: "expert-topic",
+        name: `What ${expert.name} says about ${topic.label}`,
+        url: feedUrl(`/experts/${expert.slug}/${t.slug}`),
+        description: summarise(topic.blurb),
+        pillar: topic.pillar,
+      });
+      pushEdge(id, `person:${expert.slug}`, "about_expert");
+      pushEdge(id, `topic:${topic.parentHub}`, "about_topic");
     }
   }
 
