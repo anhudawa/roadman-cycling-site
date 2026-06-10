@@ -7,6 +7,8 @@ interface CurrentModuleCardProps {
   module: MethodModule | null;
   /** True when every module is marked complete. */
   allComplete: boolean;
+  /** False for a brand-new member who hasn't completed a module yet. */
+  started?: boolean;
 }
 
 /**
@@ -21,7 +23,11 @@ interface CurrentModuleCardProps {
  * celebration card that points at module 12 and the Not Done Yet
  * community as the natural next step.
  */
-export function CurrentModuleCard({ module, allComplete }: CurrentModuleCardProps) {
+export function CurrentModuleCard({
+  module,
+  allComplete,
+  started = true,
+}: CurrentModuleCardProps) {
   if (allComplete) {
     return (
       <section className="rounded-xl border border-coral/40 bg-gradient-to-br from-deep-purple/40 via-charcoal/80 to-charcoal p-8 md:p-10 shadow-[0_0_48px_rgba(241,99,99,0.18)]">
@@ -32,9 +38,9 @@ export function CurrentModuleCard({ module, allComplete }: CurrentModuleCardProp
           Twelve weeks. One framework. Yours now.
         </h2>
         <p className="text-foreground-muted max-w-2xl mb-6">
-          You've worked every module. The system is in your hands. Keep
+          You&apos;ve worked every module. The system is in your hands. Keep
           sharpening it inside Not Done Yet — weekly calls with Anthony,
-          updated TrainingPeaks plans, and the cohort that's been through
+          updated TrainingPeaks plans, and the cohort that&apos;s been through
           the same work.
         </p>
         <Link
@@ -61,7 +67,7 @@ export function CurrentModuleCard({ module, allComplete }: CurrentModuleCardProp
       <div className="relative grid gap-6 md:grid-cols-[auto_1fr_auto] md:items-end">
         <div>
           <p className="font-heading text-xs tracking-[0.3em] text-coral mb-2">
-            CONTINUE · {phase.label.toUpperCase()}
+            {started ? "CONTINUE" : "START HERE"} · {phase.label.toUpperCase()}
           </p>
           <span
             className="block font-heading text-[clamp(5rem,12vw,9rem)] leading-none text-coral select-none"
@@ -86,7 +92,7 @@ export function CurrentModuleCard({ module, allComplete }: CurrentModuleCardProp
           href={`/method/modules/${module.slug}`}
           className="inline-flex items-center justify-center gap-2 rounded-md bg-coral hover:bg-coral-hover px-7 py-4 font-heading uppercase tracking-wider text-off-white shadow-[var(--shadow-glow-coral)] transition-all active:scale-[0.97]"
         >
-          Continue →
+          {started ? "Continue →" : `Start Module ${week} →`}
         </Link>
       </div>
     </section>

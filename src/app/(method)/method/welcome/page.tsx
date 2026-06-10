@@ -63,6 +63,13 @@ export default function MethodWelcomePage() {
               next minute — open it, and Module 01 is waiting.
             </p>
           </WelcomeStaggerIn>
+          <WelcomeStaggerIn delay={0.28}>
+            <p className="mt-6 inline-flex items-center gap-2.5 rounded-full border border-coral/30 bg-coral/5 px-4 py-2 text-xs sm:text-sm text-off-white">
+              <span aria-hidden className="text-coral">●</span>
+              You just joined the riders who decided guessing wasn&apos;t good
+              enough. Welcome to the work.
+            </p>
+          </WelcomeStaggerIn>
         </Container>
       </section>
 

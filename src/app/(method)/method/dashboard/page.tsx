@@ -85,7 +85,11 @@ export default async function MethodDashboard() {
         ]}
       />
 
-      <CurrentModuleCard module={nextModule} allComplete={allComplete} />
+      <CurrentModuleCard
+        module={nextModule}
+        allComplete={allComplete}
+        started={progress.completedCount > 0}
+      />
 
       <section aria-label="Modules" className="space-y-12">
         <header className="flex flex-wrap items-end justify-between gap-3">
@@ -151,9 +155,14 @@ function DashboardHero({
   totalCount,
   allComplete,
 }: DashboardHeroProps) {
-  const greeting = firstName
-    ? `Welcome back, ${firstName.toUpperCase()}`
-    : "Welcome back";
+  const isFirstVisit = completedCount === 0 && !allComplete;
+  const greeting = isFirstVisit
+    ? firstName
+      ? `Welcome in, ${firstName.toUpperCase()}`
+      : "Welcome in"
+    : firstName
+      ? `Welcome back, ${firstName.toUpperCase()}`
+      : "Welcome back";
 
   return (
     <header className="grid gap-8 md:gap-10 md:grid-cols-[1fr_auto] md:items-end">
@@ -162,12 +171,22 @@ function DashboardHero({
         <h1 className="font-heading uppercase leading-[0.9] text-[clamp(2.5rem,7vw,6rem)] mb-3">
           {greeting}
         </h1>
-        <p className="max-w-xl text-base sm:text-lg text-off-white">{phase.cue}</p>
+        <p className="max-w-xl text-base sm:text-lg text-off-white">
+          {isFirstVisit
+            ? "This is your home for the next twelve weeks. Everything lives here — modules, downloads, your plan, your progress."
+            : phase.cue}
+        </p>
         <p className="mt-2 max-w-xl text-sm sm:text-base text-foreground-muted">
           {allComplete ? (
             <>
               You&apos;ve worked all twelve. Re-run any module any time — the
               system is yours.
+            </>
+          ) : isFirstVisit ? (
+            <>
+              Day one. Module 01 is unlocked and waiting — the next eleven build
+              on what you map this week. No rush, no catch-up. Start when
+              you&apos;re ready.
             </>
           ) : (
             <>
@@ -308,14 +327,14 @@ function pickNextModule(
   enrollment: { status: string; dripStartAt: Date | null },
   completed: ReadonlySet<string>,
 ): MethodModule | null {
-  for (const module of METHOD_MODULES) {
-    if (completed.has(module.slug)) continue;
-    if (!isModuleUnlocked(enrollment, module).unlocked) continue;
-    return module;
+  for (const mod of METHOD_MODULES) {
+    if (completed.has(mod.slug)) continue;
+    if (!isModuleUnlocked(enrollment, mod).unlocked) continue;
+    return mod;
   }
   // No unlocked-incomplete module: fall back to first incomplete (locked).
-  for (const module of METHOD_MODULES) {
-    if (!completed.has(module.slug)) return module;
+  for (const mod of METHOD_MODULES) {
+    if (!completed.has(mod.slug)) return mod;
   }
   return null;
 }

@@ -27,6 +27,7 @@ export default async function MethodCheckoutPage({
           <div className="space-y-16 lg:space-y-20">
             <OrderSummary tier={tier} />
             <TrustBand />
+            <PriceAnchor />
             <Guarantee />
             <ClosingNote />
           </div>
@@ -339,6 +340,53 @@ function ClosingNote() {
   );
 }
 
+function PriceAnchor() {
+  return (
+    <Reveal>
+      <SectionHeader eyebrow="DO THE MATHS" title="What this work costs everywhere else." />
+
+      <ul className="mt-10 space-y-px bg-white/10 rounded-sm overflow-hidden">
+        {PRICE_COMPARISONS.map((row) => (
+          <li
+            key={row.label}
+            className="flex items-baseline justify-between gap-4 bg-charcoal px-5 py-4 md:px-6 md:py-5"
+          >
+            <div className="min-w-0">
+              <p className="font-heading uppercase text-base md:text-lg text-off-white leading-tight">
+                {row.label}
+              </p>
+              <p className="text-sm text-foreground-muted">{row.note}</p>
+            </div>
+            <p className="font-heading text-xl md:text-2xl text-foreground-muted whitespace-nowrap shrink-0">
+              {row.price}
+            </p>
+          </li>
+        ))}
+        <li className="flex items-baseline justify-between gap-4 bg-coral/10 px-5 py-5 md:px-6 md:py-6">
+          <div className="min-w-0">
+            <p className="font-heading uppercase text-lg md:text-xl text-off-white leading-tight">
+              The Roadman Method
+            </p>
+            <p className="text-sm text-off-white/80">
+              One payment. Lifetime access. Run it again every season.
+            </p>
+          </div>
+          <p className="font-heading text-2xl md:text-3xl text-coral whitespace-nowrap shrink-0">
+            Once
+          </p>
+        </li>
+      </ul>
+
+      <p className="mt-6 text-base md:text-lg text-off-white/90 leading-relaxed max-w-[58ch]">
+        A one-to-one coach for a single season costs more than the Method costs
+        once — and you&apos;d hand it back the day you stopped paying. This is the
+        same thinking, the same names, the same sessions, built to keep. You
+        finish owning the framework, not renting it.
+      </p>
+    </Reveal>
+  );
+}
+
 function SectionHeader({
   eyebrow,
   title,
@@ -364,6 +412,28 @@ const PILLAR_TILES: ReadonlyArray<{ num: string; label: string }> = [
   { num: "03", label: "Strength & Conditioning" },
   { num: "04", label: "Recovery" },
   { num: "05", label: "Le Métier" },
+];
+
+const PRICE_COMPARISONS: ReadonlyArray<{
+  label: string;
+  note: string;
+  price: string;
+}> = [
+  {
+    label: "A one-to-one coach",
+    note: "Monthly fee, every month, forever — stop paying and it stops.",
+    price: "$200–400/mo",
+  },
+  {
+    label: "A week at a training camp",
+    note: "One block of structure. Flights and hotel on top.",
+    price: "$2,000+",
+  },
+  {
+    label: "A training-app subscription",
+    note: "Workouts, not understanding. Billed for as long as you ride.",
+    price: "$20/mo",
+  },
 ];
 
 const STATS: ReadonlyArray<{ metric: string; label: string }> = [
