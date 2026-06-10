@@ -7,7 +7,8 @@ import { ScrollReveal } from "@/components/ui";
 import { maskEmail } from "@/lib/admin/events-store";
 import { getSubmissionBySlug } from "@/lib/diagnostic/store";
 import { CLOSE_TO_BREAKTHROUGH, labelFor } from "@/lib/diagnostic/profiles";
-import { resolveCta } from "@/lib/diagnostic/config";
+import { getProductRecommendation } from "@/lib/diagnostic/product-routing";
+import { ProductRecommendation } from "@/components/features/diagnostic/ProductRecommendation";
 import { ResultsAnalytics } from "@/components/features/diagnostic/ResultsAnalytics";
 import { ShareButton } from "@/components/features/diagnostic/ShareButton";
 import { DownloadPdfButton } from "@/components/features/diagnostic/DownloadPdfButton";
@@ -40,40 +41,6 @@ const CLOSE_TO_BREAKTHROUGH_TESTIMONIAL_NAMES = [
   "Rob Capps",
   "Damien Maloney",
 ];
-
-/**
- * Per-profile ordering of the "what's inside Not Done Yet" bullets. The
- * rider's diagnosis bullet leads; the rest follow in the original order
- * with the lead bullet removed from the tail. Close-to-breakthrough
- * uses the default order.
- */
-const NDY_BULLETS = [
-  "Personalised TrainingPeaks plan, written for your diagnosis — not a template",
-  "Weekly coaching call with Anthony — your week reviewed, next week planned",
-  "Cycling-specific S&C roadmap, paired with the bike work",
-  "Nutrition framework and weekly check-ins on fuelling and race weight",
-  "Recovery, sleep and HRV protocols sitting alongside the plan",
-  "A private community of riders running the same system — not beginners",
-] as const;
-
-const NDY_LEAD_BULLET_BY_PROFILE: Record<Profile, string> = {
-  underRecovered:
-    "Recovery, sleep and HRV protocols sitting alongside the plan",
-  polarisation:
-    "Personalised TrainingPeaks plan, written for your diagnosis — not a template",
-  strengthGap: "Cycling-specific S&C roadmap, paired with the bike work",
-  fuelingDeficit:
-    "Nutrition framework and weekly check-ins on fuelling and race weight",
-};
-
-function ndyBulletsFor(
-  profile: Profile,
-  closeToBreakthrough: boolean,
-): readonly string[] {
-  if (closeToBreakthrough) return NDY_BULLETS;
-  const lead = NDY_LEAD_BULLET_BY_PROFILE[profile];
-  return [lead, ...NDY_BULLETS.filter((b) => b !== lead)];
-}
 
 /**
  * One honest, season-aware nudge above the final CTA. The page is
@@ -148,17 +115,12 @@ export default async function DiagnosticResultsPage({
     isCloseToBreakthrough
   );
 
-  // Every result — profile-specific or close-to-breakthrough —
-  // routes to the Not Done Yet sales page. Direct call bookings were
-  // retired here because they don't scale at diagnostic volume.
-  const cta = isCloseToBreakthrough
-    ? {
-        primaryLabel: "Try Not Done Yet free for 7 days",
-        primaryHref: "/coaching",
-        secondaryLabel: "",
-        secondaryHref: "",
-      }
-    : resolveCta(submission.primaryProfile, submission.severeMultiSystem);
+  // Segment the rider toward the product their result actually calls for:
+  // the Method (self-serve system), Not Done Yet (ongoing coaching), or
+  // the Inner Circle (premium 1:1). Routing is driven by the scored
+  // profiles, co-limiters, the severe-multi-system flag and retake history.
+  const recommendation = getProductRecommendation(submission);
+  const product = recommendation.product;
 
   const testimonialNames = isCloseToBreakthrough
     ? CLOSE_TO_BREAKTHROUGH_TESTIMONIAL_NAMES
@@ -166,17 +128,16 @@ export default async function DiagnosticResultsPage({
   const profileTestimonials: Testimonial[] =
     getTestimonialsByName(testimonialNames);
 
-  const ndyBullets = ndyBulletsFor(
-    submission.primaryProfile,
-    isCloseToBreakthrough,
-  );
-
   const seasonLine = seasonUrgencyLine(new Date());
 
   return (
     <>
       <ReadingProgress />
-      <StickyCta href={cta.primaryHref} label={cta.primaryLabel} />
+      <StickyCta
+        href={product.href}
+        label={product.ctaLabel}
+        ctaTag={`${product.ctaTag}-sticky`}
+      />
       {/* SuccessBanner is gated by ?fresh=1 so it only shows on the
           post-submit redirect; Suspense is required because it reads
           useSearchParams. */}
@@ -219,8 +180,9 @@ export default async function DiagnosticResultsPage({
                   </strong>{" "}
                   Your answers lit up more than one profile meaningfully.
                   That&rsquo;s rare, and it means I&rsquo;d rather talk than
-                  have you self-diagnose off a sales page. Book the call at
-                  the bottom.
+                  have you self-diagnose off a sales page. The Inner Circle
+                  below is built for exactly this — it starts with a
+                  conversation.
                 </div>
               )}
             </ScrollReveal>
@@ -262,11 +224,15 @@ export default async function DiagnosticResultsPage({
                   reading?
                 </p>
                 <a
-                  href={cta.primaryHref}
-                  data-cta="mid-content"
+                  href={product.href}
+                  data-cta={`${product.ctaTag}-mid-content`}
+                  data-product={product.path}
+                  {...(product.external
+                    ? { target: "_blank", rel: "noopener noreferrer" }
+                    : {})}
                   className="shrink-0 font-heading tracking-wider bg-coral hover:bg-coral-hover text-off-white px-5 py-2 rounded-md transition-colors cursor-pointer text-sm whitespace-nowrap"
                 >
-                  {cta.primaryLabel.toUpperCase()}
+                  {product.ctaLabel.toUpperCase()}
                 </a>
               </div>
             </ScrollReveal>
@@ -376,101 +342,15 @@ export default async function DiagnosticResultsPage({
           </Section>
         )}
 
-        {/* ── Inside Not Done Yet ────────────────────── */}
-        {/* The hard offer. The personalised handoff sits in YOUR NEXT
-            MOVE below this — this section just lays out pricing, the
-            trial, and what's inside, so the rider isn't clicking a CTA
-            without knowing the price. */}
-        <Section background="charcoal">
-          <Container width="narrow">
-            <ScrollReveal direction="up">
-              <p className="text-coral font-heading text-xs tracking-widest mb-3">
-                THE SYSTEM BUILT FOR THIS
-              </p>
-              <h2 className="font-heading text-off-white text-2xl md:text-3xl mb-4">
-                INSIDE NOT DONE YET
-              </h2>
-              <p className="text-off-white/90 leading-relaxed mb-8">
-                Not Done Yet is the coaching system most riders on this
-                diagnostic actually need — the diagnosis above, applied
-                week after week with someone watching the file.
-              </p>
-            </ScrollReveal>
-
-            <ScrollReveal direction="up" delay={0.1}>
-              <div className="rounded-xl border border-coral/30 bg-coral/5 p-6 md:p-8 mb-8">
-                <div className="flex flex-col sm:flex-row sm:items-baseline sm:justify-between gap-2 mb-2">
-                  <p className="font-heading text-off-white text-3xl md:text-4xl">
-                    $195
-                    <span className="text-foreground-muted text-lg font-normal">
-                      {" "}
-                      / month USD
-                    </span>
-                  </p>
-                  <p className="text-coral font-heading tracking-widest text-sm">
-                    7-DAY FREE TRIAL
-                  </p>
-                </div>
-                <p className="text-foreground-muted text-sm">
-                  Cancel anytime. No contracts.
-                </p>
-                <p className="mt-3 pt-3 border-t border-coral/15 text-off-white/80 text-sm flex items-center gap-2">
-                  <span
-                    aria-hidden="true"
-                    className="inline-block w-1.5 h-1.5 rounded-full bg-coral shrink-0"
-                  />
-                  <span>
-                    Next weekly coaching call:{" "}
-                    <span className="text-off-white font-semibold">
-                      Thursday, 7pm GMT
-                    </span>
-                    . Start the trial today and you&rsquo;re on it.
-                  </span>
-                </p>
-              </div>
-            </ScrollReveal>
-
-            <ScrollReveal direction="up" delay={0.2}>
-              <p className="font-heading text-off-white text-lg mb-4 tracking-wide">
-                WHAT&rsquo;S IN IT
-              </p>
-              <ul className="space-y-3 text-off-white/90 leading-relaxed mb-10">
-                {ndyBullets.map((item) => (
-                  <li key={item} className="flex gap-3">
-                    <span
-                      aria-hidden="true"
-                      className="text-coral font-heading shrink-0 mt-0.5"
-                    >
-                      →
-                    </span>
-                    <span>{item}</span>
-                  </li>
-                ))}
-              </ul>
-            </ScrollReveal>
-
-            <ScrollReveal direction="up" delay={0.3}>
-              <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 rounded-lg border border-white/10 bg-background-elevated p-6">
-                <div>
-                  <p className="font-heading text-off-white text-lg leading-tight">
-                    Try the system for 7 days. No charge.
-                  </p>
-                  <p className="text-foreground-muted text-sm mt-1">
-                    If it&rsquo;s not the structure you need, walk away.
-                  </p>
-                </div>
-                <Link
-                  href="/coaching"
-                  data-cta="ndy-pitch"
-                  data-profile={submission.primaryProfile}
-                  className="shrink-0 font-heading tracking-wider bg-coral hover:bg-coral-hover text-off-white px-6 py-3 rounded-md transition-colors cursor-pointer text-sm md:text-base whitespace-nowrap"
-                >
-                  TRY NOT DONE YET FREE
-                </Link>
-              </div>
-            </ScrollReveal>
-          </Container>
-        </Section>
+        {/* ── Segmented product recommendation ───────── */}
+        {/* The hard offer — the one product this rider's result funnels
+            toward (Method / Not Done Yet / Inner Circle), with a callout
+            personalised to their diagnosis, the price, what's included,
+            one proof line and a single CTA. */}
+        <ProductRecommendation
+          rec={recommendation}
+          profile={submission.primaryProfile}
+        />
 
         {/* ── CTA + secondary ────────────────────────── */}
         <Section background="deep-purple" grain>
@@ -479,7 +359,7 @@ export default async function DiagnosticResultsPage({
               YOUR NEXT MOVE
             </h2>
             <p className="text-off-white/90 leading-relaxed max-w-xl mx-auto">
-              {breakdown.nextMove}
+              {product.finalNudge}
             </p>
             {/* Honest, season-aware nudge — no fake scarcity, no
                 countdowns. The calendar is the only real deadline this
@@ -490,30 +370,34 @@ export default async function DiagnosticResultsPage({
               </p>
             </div>
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4 pt-4">
-              <Link
-                href={cta.primaryHref}
-                data-cta="primary"
-                data-profile={submission.primaryProfile}
-                className="font-heading tracking-wider bg-coral hover:bg-coral-hover text-off-white px-8 py-4 rounded-md transition-colors cursor-pointer text-lg"
-              >
-                {cta.primaryLabel.toUpperCase()}
-              </Link>
-              {cta.secondaryHref && (
-                <Link
-                  href={cta.secondaryHref}
-                  data-cta="secondary"
-                  className="text-foreground-muted hover:text-off-white text-sm underline underline-offset-4"
+              {product.external ? (
+                <a
+                  href={product.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  data-cta={`${product.ctaTag}-primary`}
+                  data-product={product.path}
+                  data-profile={submission.primaryProfile}
+                  className="font-heading tracking-wider bg-coral hover:bg-coral-hover text-off-white px-8 py-4 rounded-md transition-colors cursor-pointer text-lg"
                 >
-                  {cta.secondaryLabel}
+                  {product.ctaLabel.toUpperCase()}
+                </a>
+              ) : (
+                <Link
+                  href={product.href}
+                  data-cta={`${product.ctaTag}-primary`}
+                  data-product={product.path}
+                  data-profile={submission.primaryProfile}
+                  className="font-heading tracking-wider bg-coral hover:bg-coral-hover text-off-white px-8 py-4 rounded-md transition-colors cursor-pointer text-lg"
+                >
+                  {product.ctaLabel.toUpperCase()}
                 </Link>
               )}
             </div>
-            {/* Risk reversal at the decision point — restates only
-                claims already made on this page (7-day trial, cancel
-                anytime, no contracts), placed where the click happens. */}
+            {/* Risk reversal at the decision point — product-appropriate,
+                restating only claims already made for this offer. */}
             <p className="text-foreground-subtle text-xs md:text-sm">
-              Seven days free. Cancel anytime, no contracts &mdash; you only
-              continue if it&rsquo;s working.
+              {product.riskReversal}
             </p>
             {/* Phase 2 handoff — rider can dig into the result with the
                 on-site assistant. Appears below the primary CTA so it
