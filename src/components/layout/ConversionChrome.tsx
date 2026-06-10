@@ -44,10 +44,13 @@ const SmoothCursorWrapper = dynamic(
   { ssr: false },
 );
 
-const CohortBanner = dynamic(
+// Single top-banner slot. BannerStack renders the yellow Tour banner during
+// the Tour window and the cohort apply banner otherwise — ssr:false so the
+// date-driven choice never causes a hydration mismatch.
+const BannerStack = dynamic(
   () =>
-    import("@/components/features/conversion/CohortBanner").then(
-      (mod) => mod.CohortBanner,
+    import("@/components/features/tour/BannerStack").then(
+      (mod) => mod.BannerStack,
     ),
   { ssr: false },
 );
@@ -69,12 +72,14 @@ const LazyExitIntent = dynamic(
 );
 
 export function ConversionChrome() {
+  // Tour overlay: BannerStack occupies the top banner slot (Tour banner vs
+  // cohort apply banner) — see BannerStack.tsx.
   const pathname = usePathname();
   if (isLeanRoute(pathname)) return null;
   return (
     <>
       <SmoothCursorWrapper />
-      <CohortBanner />
+      <BannerStack />
       <MobileStickyApply />
       <LazyExitIntent />
     </>
