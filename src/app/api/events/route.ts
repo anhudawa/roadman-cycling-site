@@ -94,6 +94,12 @@ export async function POST(request: Request) {
       "race_page_viewed",
       "share_clicked",
       "coaching_apply_submitted",
+      // Racing IQ funnel
+      "scenario_started",
+      "decision_made",
+      "gate_shown",
+      "result_viewed",
+      "card_downloaded",
       // Micro-events (engagement signal layer)
       "scroll_depth",
       "cta_click",

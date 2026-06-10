@@ -59,6 +59,15 @@ export type EventType =
   | "ask_roadman_used"
   | "race_page_viewed"
   | "share_clicked"
+  // ── Racing IQ funnel ───────────────────────────────────
+  // Fired from /racing-iq (src/lib/racing-iq/analytics.ts). The game
+  // reuses `email_captured` and `share_clicked` from the canonical
+  // conversion names above; these cover the play loop itself.
+  | "scenario_started"
+  | "decision_made"
+  | "gate_shown"
+  | "result_viewed"
+  | "card_downloaded"
   // ── Coaching funnel ────────────────────────────────────
   | "coaching_apply_submitted"
   // ── Micro-events (engagement signal layer) ─────────────

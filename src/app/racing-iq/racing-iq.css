@@ -1,0 +1,170 @@
+/* Racing IQ — route-scoped styles: the matches meter flame, the
+   broadcast freeze treatment, and the route-profile loader. All
+   animations are gated by prefers-reduced-motion at the bottom. */
+
+/* ── Matches meter ─────────────────────────────────────────── */
+
+.riq-match-head-lit {
+  filter: drop-shadow(0 0 5px rgba(241, 99, 99, 0.65));
+}
+
+.riq-flame {
+  transform-origin: 12px 14px;
+  animation: riq-flicker 0.22s infinite alternate ease-in-out;
+}
+
+.riq-flame-inner {
+  transform-origin: 12px 13px;
+  animation: riq-flicker 0.17s infinite alternate-reverse ease-in-out;
+}
+
+@keyframes riq-flicker {
+  from {
+    transform: scaleY(0.92) scaleX(1.04) rotate(-2.5deg);
+    opacity: 0.92;
+  }
+  to {
+    transform: scaleY(1.12) scaleX(0.94) rotate(2.5deg);
+    opacity: 1;
+  }
+}
+
+.riq-smoke {
+  animation: riq-smoke 1.4s ease-out forwards;
+}
+
+@keyframes riq-smoke {
+  0% {
+    opacity: 0;
+    transform: translateY(0) scale(0.6);
+  }
+  25% {
+    opacity: 0.5;
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(-14px) scale(1.4);
+  }
+}
+
+.riq-burning-stick {
+  animation: riq-char 1.5s ease-in forwards;
+}
+
+@keyframes riq-char {
+  from {
+    fill: #d9b38c;
+  }
+  to {
+    fill: #3a3a3c;
+  }
+}
+
+/* ── Broadcast chrome ──────────────────────────────────────── */
+
+.riq-letterbox {
+  transition: transform 0.9s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.riq-vignette {
+  background: radial-gradient(
+    ellipse at center,
+    transparent 52%,
+    rgba(20, 8, 36, 0.55) 100%
+  );
+}
+
+.riq-lower-third-in {
+  animation: riq-slide-up 0.7s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+@keyframes riq-slide-up {
+  from {
+    opacity: 0;
+    transform: translateY(28px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.riq-fade-in {
+  animation: riq-fade 0.6s ease-out both;
+}
+
+@keyframes riq-fade {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.riq-kicker-in {
+  animation: riq-kicker 0.5s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+@keyframes riq-kicker {
+  from {
+    opacity: 0;
+    transform: translateX(-18px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* ── Loader: the route profile draws itself ────────────────── */
+
+.riq-route-path {
+  stroke-dasharray: 1000;
+  stroke-dashoffset: 1000;
+  animation: riq-draw 2.6s ease-in-out forwards;
+}
+
+@keyframes riq-draw {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+.riq-loader-dot {
+  offset-path: path(
+    "M 0 88 L 60 84 L 110 86 L 160 70 L 205 74 L 250 52 L 290 58 L 330 30 L 365 44 L 420 40 L 470 16 L 510 36 L 560 32"
+  );
+  animation: riq-ride 2.6s ease-in-out forwards;
+}
+
+@keyframes riq-ride {
+  from {
+    offset-distance: 0%;
+  }
+  to {
+    offset-distance: 100%;
+  }
+}
+
+/* ── Reduced motion: nothing moves that doesn't have to ────── */
+
+@media (prefers-reduced-motion: reduce) {
+  .riq-flame,
+  .riq-flame-inner,
+  .riq-loader-dot {
+    animation: none;
+  }
+  .riq-route-path {
+    animation: none;
+    stroke-dashoffset: 0;
+  }
+  .riq-lower-third-in,
+  .riq-fade-in,
+  .riq-kicker-in {
+    animation-duration: 0.01s;
+  }
+  .riq-letterbox {
+    transition-duration: 0.01s;
+  }
+}

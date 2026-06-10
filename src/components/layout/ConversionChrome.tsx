@@ -27,6 +27,9 @@ const LEAN_PATH_PREFIXES = [
   // Lead-magnet squeeze page for the Masters Cycling Training Report.
   // Same single-purpose rationale as /go — the form is the page.
   "/masters-report",
+  // Racing IQ game: a full-screen cinematic surface with its own email
+  // gate. Exit-intent or banners over the race world would wreck it.
+  "/racing-iq",
 ];
 
 function isLeanRoute(pathname: string | null): boolean {
