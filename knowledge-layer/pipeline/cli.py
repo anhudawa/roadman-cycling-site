@@ -62,6 +62,9 @@ def build_parser() -> argparse.ArgumentParser:
         if name == "index":
             p.add_argument("--force", action="store_true",
                            help="re-embed rows that already have embeddings")
+        if name == "extract":
+            p.add_argument("--force", action="store_true",
+                           help="re-extract episodes that already have claims")
 
     p = sub.add_parser("ingest", help="Phase 4: one-command new-episode ingestion (all stages)")
     p.add_argument("--latest", action="store_true", help="ingest the newest unprocessed episode(s)")
@@ -115,7 +118,21 @@ def main(argv: list[str] | None = None) -> int:
         return 0
 
     if args.command == "status":
-        raise SystemExit("status: not yet implemented (needs DB; lands with P0-4).")
+        from . import db
+
+        with db.connect(cfg) as conn, conn.cursor() as cur:
+            cur.execute("select status, count(*) from episodes group by status order by status")
+            episode_counts = {str(s): n for s, n in cur.fetchall()}
+            cur.execute("select count(*) from review_queue where status = 'open'")
+            open_reviews = cur.fetchone()[0]
+            cur.execute("select count(*) from claims where superseded_by is null")
+            live_claims = cur.fetchone()[0]
+        print(json.dumps({
+            "episodes_by_status": episode_counts,
+            "review_queue_open": open_reviews,
+            "claims_live": live_claims,
+        }, indent=2))
+        return 0
 
     if args.command == "ingest":
         raise SystemExit("ingest: not yet implemented (Phase 4, task P4-1).")
@@ -132,7 +149,7 @@ def main(argv: list[str] | None = None) -> int:
         segment.run(cfg, episodes)
     elif args.command == "extract":
         from .stages import extract
-        extract.run(cfg, episodes)
+        extract.run(cfg, episodes, force=args.force)
     elif args.command == "normalise":
         from .stages import normalise
         normalise.run(cfg, episodes)

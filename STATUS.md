@@ -4,6 +4,49 @@ Maintained per handover §0.5. Newest session first. Decisions needed at the top
 
 ---
 
+## Session 2026-06-09 (update 3) — Stage 4 extraction driver built
+
+### ✅ Completed
+
+- **Stage 4 API driver implemented** (`stages/extract.py` now complete,
+  ~"the heart" of the pipeline): per-segment-window Claude calls wired around
+  the already-tested validation/routing layer.
+  - Model: `claude-opus-4-8` (frontier tier per handover §2; $5/$25 per MTok,
+    verified against current docs at build time as §2 requires).
+  - **Spec correction, documented in code:** the handover's "temperature 0"
+    is not possible on current frontier models (sampling params removed —
+    the API rejects them). The determinism intent is met by **structured
+    outputs** (server-enforced JSON schema) + our code-level validation,
+    which is strictly stronger than temp-0-and-hope.
+  - **Prompt caching:** extraction prompt + sorted taxonomy form a stable
+    cached prefix; only the segment window varies per call. At corpus scale
+    this is roughly a 90% cost cut on the repeated prefix.
+  - **Cost tracking:** per-episode and total USD reported on every run
+    (pilot cost figure for P0-6 falls out automatically); hard stop when
+    cumulative cost exceeds BATCH_BUDGET_USD (committed work is kept).
+  - Routing to review_queue exactly as specced; blocklist pre-screen runs on
+    every otherwise-live claim; review-routed claims keep expert_id NULL;
+    UNMAPPED/invented topics stored as NULL topic_path.
+  - Idempotent: episodes with existing claims are skipped unless `--force`
+    (which deletes + re-extracts).
+- **`pipeline status` implemented**: episodes by status, open review-queue
+  depth, live claim count — Ted's one-shot health check.
+- 75 unit tests passing (prompt assembly determinism, cost math, output
+  schema ↔ validator contract), lint clean.
+
+### ⏭ Remaining before the pilot can run
+
+Supabase project + GPU worker box (unchanged — see update 2). With those,
+the full chain pending→transcribe→segment→extract is code-complete; Stage 2
+speaker resolution and Stage 6 embeddings (P0-7 benchmark) are the remaining
+build items.
+
+### 💰 Spend
+
+Still zero — no API calls made; driver is unit-tested offline only.
+
+---
+
 ## Session 2026-06-09 (update 2) — guid identity approved, Stage 1 + 3 built
 
 Anthony approved the rss_guid identity scheme ("run with your episode numbers
