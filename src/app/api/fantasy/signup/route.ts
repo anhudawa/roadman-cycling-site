@@ -6,7 +6,7 @@ import { normaliseEmail, clampString } from "@/lib/validation";
 import { rateLimitOr429 } from "@/lib/rate-limit/ip-rate-limit";
 import { mintFantasyToken } from "@/lib/fantasy/auth";
 import { sendFantasyMagicLinkEmail } from "@/lib/fantasy/emails";
-import { loadGameConfig, replaceSquadPreTour, isPreTour, audit } from "@/lib/fantasy/queries";
+import { loadGameConfig, replaceSquadPreTour, isPreTour, setCaptain, audit } from "@/lib/fantasy/queries";
 import { validateSquad } from "@/lib/fantasy/rules";
 
 export const runtime = "nodejs";
@@ -40,6 +40,7 @@ export async function POST(request: Request) {
     consent?: unknown;
     teamName?: unknown;
     riderIds?: unknown;
+    captainRiderId?: unknown;
   };
   try {
     body = await request.json();
@@ -138,6 +139,12 @@ export async function POST(request: Request) {
       teamId = created.id;
     }
     await replaceSquadPreTour(teamId, riderIds);
+
+    // Optional Stage 1 captain straight from the builder, so nobody
+    // starts the Tour with an unset (undoubled) captain.
+    if (typeof body.captainRiderId === "number" && riderIds.includes(body.captainRiderId)) {
+      await setCaptain(teamId, 1, body.captainRiderId);
+    }
 
     const { rawToken } = await mintFantasyToken(email, "login");
     await sendFantasyMagicLinkEmail({ to: email, firstName, rawToken, teamName });
