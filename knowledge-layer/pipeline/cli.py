@@ -82,6 +82,11 @@ def build_parser() -> argparse.ArgumentParser:
 
     sub.add_parser("status", help="show per-stage episode counts and open review-queue depth")
 
+    p = sub.add_parser("audit-sample",
+                       help="export the 200-claim stratified attribution audit CSV (P0-8)")
+    p.add_argument("--out", default="attribution_audit_sample.csv", help="output CSV path")
+    p.add_argument("--seed", type=int, default=0, help="sampling seed (reproducible audits)")
+
     return parser
 
 
@@ -132,6 +137,12 @@ def main(argv: list[str] | None = None) -> int:
             "review_queue_open": open_reviews,
             "claims_live": live_claims,
         }, indent=2))
+        return 0
+
+    if args.command == "audit-sample":
+        from .qa import attribution_sample
+
+        attribution_sample.run(cfg, out_path=args.out, seed=args.seed)
         return 0
 
     if args.command == "ingest":

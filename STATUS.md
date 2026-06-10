@@ -4,6 +4,27 @@ Maintained per handover §0.5. Newest session first. Decisions needed at the top
 
 ---
 
+## Session 2026-06-09 (update 4) — P0-8 audit instrument + relations grouping
+
+### ✅ Completed
+
+- **Attribution audit sampler implemented** (`pipeline audit-sample`):
+  200 claims stratified by expert × era (3-year buckets), proportional
+  allocation with a floor of one per stratum (a one-appearance guest still
+  gets audited), deterministic per seed (reproducible audits), exported as
+  CSV with auditor columns (attribution_ok / faithfulness_ok / notes) and
+  audio URLs. This is the P0-8 phase-gate instrument — ready the moment
+  pilot claims exist.
+- **Relations grouping logic implemented** (`stages/relations.py`): claims
+  grouped per taxonomy node AND per parent node (cross-sibling visibility:
+  polarised vs pyramidal claims meet in the same call), chronological,
+  chunked ≤30/call, singletons and duplicate parent groups dropped,
+  NULL-topic (review-routed) claims excluded from the live graph pass.
+  API driver remains for P2-1.
+- 83 unit tests passing, lint clean.
+
+---
+
 ## Session 2026-06-09 (update 3) — Stage 4 extraction driver built
 
 ### ✅ Completed
