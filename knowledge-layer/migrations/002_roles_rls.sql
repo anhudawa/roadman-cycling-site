@@ -21,6 +21,11 @@ begin
   if not exists (select 1 from pg_roles where rolname = 'pipeline_worker') then
     create role pipeline_worker nologin;
   end if;
+  -- `authenticated` always exists on Supabase; created here only so the
+  -- migration also applies to plain Postgres (local validation, CI).
+  if not exists (select 1 from pg_roles where rolname = 'authenticated') then
+    create role authenticated nologin;
+  end if;
 end
 $$;
 
@@ -29,8 +34,10 @@ grant usage on schema public to pipeline_worker;
 -- Full pipeline tables
 grant select, insert, update on episodes      to pipeline_worker;
 grant select, insert         on transcripts   to pipeline_worker;  -- immutable: no update/delete
-grant select, insert, update on segments      to pipeline_worker;
-grant select, insert, update on claims        to pipeline_worker;
+-- delete: re-segmentation replaces an episode's segments; --force re-extraction
+-- replaces its claims (claims/review entries cascade). Transcripts stay immutable.
+grant select, insert, update, delete on segments to pipeline_worker;
+grant select, insert, update, delete on claims   to pipeline_worker;
 grant select, insert, update on claim_relations to pipeline_worker;
 grant select, insert         on episode_guests to pipeline_worker;
 grant select, insert, update on review_queue  to pipeline_worker;

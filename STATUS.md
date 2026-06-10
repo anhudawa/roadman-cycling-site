@@ -4,6 +4,54 @@ Maintained per handover §0.5. Newest session first. Decisions needed at the top
 
 ---
 
+## Session 2026-06-10 (update 6) — end-to-end validation on a throwaway local DB
+
+Anthony asked what's actually needed and whether the missing infra is a
+bottleneck. To answer with facts, I stood up a disposable Postgres+pgvector
+inside this session and ran the real pipeline against it.
+
+### ✅ Proven working against a real database
+
+- Migrations 001–003 apply cleanly. **P0-2 acceptance passed for real**: all
+  4 integration tests green (pipeline role cannot write credentials; can
+  update identity fields; privileged role can; transcripts immutable).
+- Seeds: 64 taxonomy / 2 blocklist / 20 golden / host expert; re-run proven
+  idempotent.
+- **Live inventory: all 1,283 episodes loaded from the RSS feed**
+  (insert 1,283 → re-run update 1,283/insert 0; 71 ambiguous display numbers
+  withheld as designed).
+- **Stage 1 ran on real audio**: episode 912 downloaded from the feed and
+  transcribed (CPU, `base` model for speed — NOT corpus quality), word
+  timestamps, quality 0.87, versioned transcript row, correct status flow.
+- **Stage 3 ran on the result**: 3 segments with timestamps, speaker NULL
+  (no diarization yet — exactly the designed fallback).
+
+### 🐛 Two real bugs caught and fixed in 002 by the live run
+
+1. Assumed Supabase's `authenticated` role exists — now created if absent
+   (plain-Postgres/CI portability).
+2. No DELETE grant on segments/claims for pipeline_worker — but
+   re-segmentation and --force re-extraction replace rows. Granted, with
+   rationale comment. Transcripts remain immutable.
+
+### ⚠️ This local DB is throwaway
+
+The container is ephemeral; nothing here is corpus data (base-model
+transcript, local-only). Production runs go to Supabase.
+
+### 📌 The actual irreducible needs (plain-English answer given to Anthony)
+
+1. **A Supabase project** (~15 min of Ted's time: create project, paste
+   3 secrets). Everything DB-shaped is now proven to work on arrival.
+2. **Transcription compute** — the one true bottleneck for quality at scale:
+   either a rented GPU box (handover stack: Whisper large-v3 + pyannote) or,
+   pending Ted/Anthony approval, a transcription API with diarization
+   (e.g. ~$0.25–0.45/audio-hr ≈ low hundreds of $ for the full archive,
+   zero infra). Pilot (20 eps) is feasible either way.
+3. **Anthropic API key + pilot budget** — only when extraction starts.
+
+---
+
 ## Session 2026-06-09 (update 5) — Stage 5 entity resolution logic
 
 ### ✅ Completed
