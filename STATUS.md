@@ -4,6 +4,41 @@ Maintained per handover §0.5. Newest session first. Decisions needed at the top
 
 ---
 
+## Session 2026-06-09 (update 5) — Stage 5 entity resolution logic
+
+### ✅ Completed
+
+- **Expert name resolution implemented** (`stages/normalise.py`):
+  diacritic/honorific/punctuation-insensitive matching against canonical
+  names + aliases, unique-surname fallback for bare references ("Friel").
+  Testing caught a real never-guess bug: an alias like "Prof Seiler"
+  collapsing to a bare surname could beat another expert sharing that
+  surname — resolver now merges exact and surname candidates and resolves
+  only when exactly one expert is plausible. Two plausible experts = NULL.
+- New-guest rows carry identity fields only — `credentials` structurally
+  absent (§8.1) — tagged `unreviewed-new-guest` for Ted.
+- DB driver (trigram fallback + embedding claim dedupe) lands with the pilot.
+- 88 unit tests passing, lint clean.
+
+### 📋 Code-complete vs blocked summary (end of session)
+
+| Piece | State |
+|---|---|
+| Schema (001–003), roles/RLS, seeds, loaders | ✅ written; awaits Supabase |
+| Inventory from RSS (guid identity) | ✅ implemented |
+| Stage 1 transcribe (Whisper large-v3 + audio mirror) | ✅ implemented; needs GPU box |
+| Stage 2 diarize | ◐ alignment done; pyannote run + speaker ID on GPU box |
+| Stage 3 segment | ✅ implemented |
+| Stage 4 extract (Opus 4.8, structured outputs, cost-capped) | ✅ implemented |
+| Stage 5 normalise | ◐ resolution logic done; DB driver with pilot |
+| Stage 6 index | ⏸ blocked on P0-7 embedding benchmark |
+| Relations (P2) | ◐ grouping done; API driver with P2-1 |
+| Citation validator + adversarial suite starter | ✅ implemented |
+| P0-8 audit sampler (`audit-sample`) | ✅ implemented |
+| Batch API (P1-1), golden runner (P2-3), app/MCP (P3) | ⏸ later phases |
+
+---
+
 ## Session 2026-06-09 (update 4) — P0-8 audit instrument + relations grouping
 
 ### ✅ Completed
