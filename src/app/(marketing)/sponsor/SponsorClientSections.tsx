@@ -1203,7 +1203,7 @@ export default function BookingFlow({ eventBlocks }: BookingFlowProps) {
 // FAQ Section (trimmed to 4 questions per spec)
 // ---------------------------------------------------------------------------
 
-const FAQ_DATA = [
+export const FAQ_DATA = [
   {
     question: "What\u2019s the turnaround from brief to live?",
     answer:
