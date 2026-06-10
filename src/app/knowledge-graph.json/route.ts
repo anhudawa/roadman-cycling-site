@@ -333,6 +333,63 @@ export function GET() {
     pushEdge(atcId, "person:anthony-walsh", "related_to");
   }
 
+  // ----- NEW-TOOL WIRING -----
+  //  tool:* nodes are created automatically from the registry, but they
+  //  only acquire edges when a topic/term/problem/comparison references
+  //  them. The two newest calculators aren't yet referenced by any of
+  //  those data sources, so without this block they'd sit in the graph as
+  //  orphans. Wire them to the topics and articles they actually serve.
+  //  These are graph-only edges — they do NOT add a tool strip to the hub
+  //  pages (that lives in TOPIC_ENRICHMENT in src/lib/topics.ts). The
+  //  dangling-edge filter at the end drops any target that doesn't
+  //  resolve, so this stays safe if an article is renamed or removed.
+  {
+    // Race Time Predictor — physics-based finish-time from power + course.
+    const racePredictor = "tool:race-predictor";
+    for (const topic of [
+      "topic:ftp-training",
+      "topic:cycling-training-plans",
+      "topic:triathlon-cycling",
+      "topic:against-the-clock",
+    ]) {
+      pushEdge(topic, racePredictor, "uses_tool");
+    }
+    for (const art of [
+      "article:ride-faster-less-effort-cycling-durability",
+      "article:sweet-spot-training-cycling-guide",
+      "article:cycling-pacing-strategy-long-climbs",
+    ]) {
+      pushEdge(art, racePredictor, "uses_tool");
+    }
+    // The Against the Clock property is built on the race of truth — the
+    // time trial and Hour Record — so the finish-time predictor is its
+    // natural calculator.
+    pushEdge(
+      "entity:property:against-the-clock",
+      racePredictor,
+      "uses_tool",
+    );
+
+    // Cycling Fuel Planner — fuel-for-the-work-required day/session plan.
+    const fuelPlanner = "tool:fuel-planner";
+    for (const topic of [
+      "topic:cycling-nutrition",
+      "topic:cycling-weight-loss",
+      "topic:triathlon-cycling",
+    ]) {
+      pushEdge(topic, fuelPlanner, "uses_tool");
+    }
+    for (const art of [
+      "article:gut-training-cycling-absorb-more-carbs",
+      "article:electrolytes-sweat-rate-cycling",
+      "article:bonking-cycling-what-happens-how-to-prevent",
+      "article:post-ride-recovery-nutrition-cyclists",
+      "article:menopause-cycling-fuelling-female-cyclists",
+    ]) {
+      pushEdge(art, fuelPlanner, "uses_tool");
+    }
+  }
+
   // ----- EXPERT × TOPIC PAGES (/experts/[expert]/[topic]) -----
   //  The programmatic AEO layer in src/lib/experts.ts ("what {expert} says
   //  about {topic}"). Built from getExpertsWithTopics()/getExpertTopic()
