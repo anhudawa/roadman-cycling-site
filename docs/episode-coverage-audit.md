@@ -1,108 +1,123 @@
 # Episode Coverage Audit
 
 **Date:** 2026-06-10  
-**Audited by:** Claude Code
+**Audited by:** Claude Code  
+**Method:** live Anchor podcast RSS (`https://anchor.fm/s/a09110e0/podcast/rss`, fetched 2026-06-10) matched per-episode against `content/podcast/*.mdx`.
+
+> This supersedes the earlier estimate-only version of this file. The earlier pass computed the gap as `1,277 − 709 = 568` and *guessed* the date ranges. This pass actually **fetched the live feed (1,283 items) and matched each one against the site files**, so the missing list is enumerated, not estimated — see `docs/episode-coverage-missing.csv`.
 
 ---
 
-## Summary
+## Headline numbers
 
 | Metric | Value |
-|--------|-------|
-| Total episode files on site (`content/podcast/*.mdx`) | **709** |
-| Canonical RSS feed total (Spotify/Apple) | **1,277** |
-| Brand / marketing figure ("1,400+ conversations") | **1,400+** |
-| YouTube long-form uploads | **~338** (ceiling for transcript pipeline) |
-| Coverage of RSS catalogue (709 / 1,277) | **55.5%** |
-| Coverage of brand "1,400+" figure (709 / 1,400) | **~50.6%** |
-| Gap vs RSS catalogue | **568** |
-| Gap vs brand figure | **~691** |
+|---|---|
+| **Episodes in the podcast catalog** (live Anchor RSS, canonical) | **1,283** |
+| **Podcast pages on site** (`content/podcast/*.mdx`) | **709** |
+| &nbsp;&nbsp;— sourced from audio RSS (`source: audio-rss`, GUID-matched) | 369 |
+| &nbsp;&nbsp;— sourced from YouTube (`youtubeId`) | 340 |
+| **Catalog episodes covered on site** (after matching) | **≈ 639** |
+| **Catalog episodes missing from site** | **≈ 644** |
+| **Coverage** | **≈ 49.8%** |
 
-> **Note on the two denominators.** The verifiable catalogue is the **1,277** entries in the canonical Anchor/Apple RSS feed — this is the number every coverage figure below is calculated against. The **1,400+** figure used in marketing copy (`docs/ask-roadman-launch-email.md`, cold-traffic landing pages) counts "conversations" more loosely (interviews, clips, side-projects, cross-pod appearances) and is **not** reconcilable to a single feed. Against that looser figure, on-site coverage is roughly **half**. The `plateau-cold-traffic-audit.md` already flags the 1,400+ claim as a sceptic-magnet that should be verified or rephrased — this audit confirms the on-site corpus does not substantiate it.
-
----
-
-## Source Breakdown
-
-| Source | Count | Date Range |
-|--------|-------|------------|
-| YouTube (`youtubeId` field) | 340 | 2016-09-04 → 2026-06-08 |
-| Audio-RSS transcribed (`source: audio-rss`) | 369 | 2019-01-01 → 2022-02-09 |
-| **Total** | **709** | 2016-06-28 → 2026-06-08 |
-
-There is **no overlap** between sources — YouTube and audio-RSS episodes cover distinct episodes within the same calendar years (confirmed by year-level cross-check).
+> **The "~500 missing" estimate is confirmed — and is slightly conservative.** It corresponds almost exactly to the single large contiguous gap: the daily-episode back-catalog from **Feb 2022 → Dec 2023 = 492 missing episodes**. Counting the whole feed, total missing is **≈ 644 (~50% of the catalog)**.
 
 ---
 
-## Coverage by Year
+## What's actually missing
 
-| Year | On Site | Source(s) | Notes |
-|------|---------|-----------|-------|
-| 2016 | 1 | YouTube only | Earliest YouTube upload |
-| 2017 | 2 | YouTube only | |
-| 2018 | 0 | — | RSS starts Jan 2019; no YouTube uploads found |
-| 2019 | 40 | Audio-RSS only | RSS started Jan 2019; no YouTube uploads this year |
-| 2020 | 174 | 24 YT + 150 audio-RSS | Best-covered year |
-| 2021 | 157 | 3 YT + 154 audio-RSS | |
-| 2022 | 35 | 10 YT + 25 audio-RSS | **Audio pipeline stopped Feb 2022** — ~9 months of audio-only missing |
-| 2023 | 69 | 69 YouTube only | Audio-only RSS episodes not transcribed |
-| 2024 | 100 | 100 YouTube only | Audio-only RSS episodes not transcribed |
-| 2025 | 98 | 98 YouTube only | Audio-only RSS episodes not transcribed |
-| 2026 | 33 | 33 YouTube only | Partial year (to Jun 2026) |
-| **Total** | **709** | | |
+The gap is **not** spread evenly. It is overwhelmingly the **2022–2023 daily-podcast back-catalog**, which was never imported by either pipeline.
+
+| Era | Feed episodes | On site | Status |
+|---|---|---|---|
+| 2019–2021 | 345 | ~344 | ✅ Essentially complete (imported via audio RSS by GUID) |
+| **2022–2023** | **592** | **~100** | ❌ **The hole — 492 missing, ~25/month every month** |
+| 2024–2026 | 346 | ~195 | ◐ Long-form covered by YouTube; ~152 short audio-only dailies missing (low value) |
+
+**The cutover, in one sentence:** the site switched from **audio-RSS import (2019–2022)** to **YouTube import (2023→)**, and the **daily audio episodes from Feb 2022 through Dec 2023 fell through the crack between the two pipelines** — YouTube only carried the long-form interviews/vlogs from those years, not the daily audio episodes.
 
 ---
 
-## Gap Analysis
+## Source breakdown (site files)
 
-The 568-episode gap breaks down into two distinct ranges:
+| Source | Count | Date range |
+|---|---|---|
+| Audio-RSS (`source: audio-rss`, has `rssGuid`) | 369 | 2019-01 → 2022-02 |
+| YouTube (`youtubeId`) | 340 | 2016-09 → 2026-06 |
+| **Total** | **709** | |
 
-### Gap 1 — Audio-only pipeline stalled (Est. ~140–200 episodes)
-**Period:** Feb 2022 – Dec 2023 (audio-only episodes not yet transcribed)
-
-The `transcribe:audio` pipeline ran through **2022-02-09** and then stopped. The recommended safe backfill window per the pipeline docs is `--max-date=2024-01-01`, meaning:
-
-- ~9 months of 2022 audio-only episodes are untranscribed
-- All of 2023 audio-only episodes are untranscribed
-- 2022–2023 had ~150–180 RSS publications per year (based on 2020–2021 averages)
-- YouTube covered 79 episodes in 2022–2023; the remaining audio-only count is unknown but estimated at **140–200 episodes**
-
-**Resolution:** Resume `npm run transcribe:audio -- --max-date=2024-01-01 --order=oldest` (safe; no YouTube/RSS dedup ambiguity before 2024).
-
-### Gap 2 — Post-2024 audio-only RSS episodes (Est. ~370 episodes)
-**Period:** 2024–2026 (audio-only RSS episodes, YouTube pipeline only captures ~338 long-form videos)
-
-The YouTube pipeline captured 231 episodes from 2024–2026 (100 + 98 + 33). However, the RSS feed has ~1,277 total episodes while the site has 709. The remaining ~337–568 episodes are audio-only RSS entries in 2022–2026 that have **not** been processed via either pipeline.
-
-**Caution:** Post-2024 audio-RSS backfill requires manual dedup — YouTube and RSS use divergent titles for the same recent episodes, so the automated title-normalisation + date-fuzzy guard will miss overlaps. Do not run `transcribe:audio` past `--max-date=2024-01-01` unattended.
+The two sources are essentially non-overlapping by era: audio-RSS handled 2019–early-2022, YouTube handled 2023→. ~70 of the YouTube pages (incl. the 2016–2017 uploads) predate or sit outside the Anchor feed entirely — i.e. they're site content that is *not* counted in the 1,283 catalog.
 
 ---
 
-## Coverage Percentage by Period
+## Missing episodes by month
 
-| Period | On Site | Est. RSS Total | Coverage |
-|--------|---------|----------------|----------|
-| Pre-2019 (2016–2018) | 3 | ~3 (no RSS) | ~100% for YouTube |
-| 2019–2022 (safe audio range) | 406 | ~560 | ~72% |
-| 2022 Feb onwards (stalled) | 303 | ~714 | ~42% |
-| **Overall (vs RSS catalogue)** | **709** | **1,277** | **55.5%** |
-| **Overall (vs brand "1,400+")** | **709** | **1,400+** | **~50.6%** |
+Complete month-by-month count of catalog episodes with **no** page on the site. Full per-episode list (date, duration, title, GUID) is in **`docs/episode-coverage-missing.csv`** (644 rows).
+
+| Month | Missing | Month | Missing | Month | Missing |
+|---|---|---|---|---|---|
+| 2022-02 | 10 | 2023-01 | 25 | 2024-07 | 4 |
+| 2022-03 | 23 | 2023-02 | 21 | 2024-08 | 6 |
+| 2022-04 | 22 | 2023-03 | 23 | 2024-09 | 8 |
+| 2022-05 | 25 | 2023-04 | 21 | 2024-10 | 5 |
+| 2022-06 | 25 | 2023-05 | 23 | 2024-11 | 8 |
+| 2022-07 | 26 | 2023-06 | 19 | 2024-12 | 6 |
+| 2022-08 | 25 | 2023-07 | 27 | 2025-01 | 6 |
+| 2022-09 | 21 | 2023-08 | 14 | 2025-02 | 2 |
+| 2022-10 | 23 | 2023-09 | 15 | 2025-03 | 6 |
+| 2022-11 | 23 | 2023-10 | 17 | 2025-04 | 3 |
+| 2022-12 | 24 | 2023-11 | 22 | 2025-05 | 3 |
+| | | 2023-12 | 18 | 2025-06 | 2 |
+| | | | | 2025-07 | 3 |
+| | | | | 2025-08 | 9 |
+| | | | | 2025-09 | 6 |
+| | | | | 2025-10 | 6 |
+| | | | | 2025-11 | 3 |
+| | | | | 2025-12 | 5 |
+| | | | | 2026-01 | 6 |
+| | | | | 2026-02 | 3 |
+| | | | | 2026-03 | 5 |
+| | | | | 2026-04 | 5 |
+| | | | | 2026-05 | 5 |
+| | | | | 2026-06 | 3 |
+
+**Gap ranges (the actionable backlog):**
+- **2022-02 → 2023-12 — 492 episodes (priority).** Near-continuous daily back-catalog, ~25/month.
+- **2024-01 → 2026-06 — 152 episodes.** Sparse residual; mostly short audio-only dailies. Lower priority.
 
 ---
 
-## Recommended Next Steps
+## YouTube side
 
-1. **Run audio pipeline to 2024 cutoff** — safe, no dedup risk:
-   ```
-   npm run transcribe:audio -- --max-date=2024-01-01 --order=oldest --limit=50
-   ```
-   Estimated: ~140–200 new episodes added incrementally.
-
-2. **Manual dedup pass for 2024–2026** — required before processing recent audio-only RSS episodes. Compare RSS titles against existing YouTube episode titles to identify true audio-only entries.
-
-3. **Re-run this audit after each batch** to track progress toward full RSS coverage.
+YouTube long-form coverage is effectively complete: the site has **340 pages with a `youtubeId`**, against a channel of **~338 long-form uploads** (per project memory; the YouTube channel RSS only exposes the latest ~15 items, so it cannot be counted directly). **The missing episodes are an audio-catalog problem, not a YouTube problem.**
 
 ---
 
-*Audio RSS feed: `https://anchor.fm/s/a09110e0/podcast/rss` (Apple Podcasts id 1224143549)*  
-*YouTube channel: `UCkRq6Nr_yEdn5493tXTOo6w`*
+## Methodology
+
+1. **Catalog (denominator):** fetched the live Anchor RSS feed — **1,283** `<item>` entries, each with GUID, title, pubDate, and `itunes:duration`. Podcast RSS returns the full back-catalog (unlike YouTube RSS, which truncates), so this is the canonical count. (The earlier audit's 1,277 was a slightly older snapshot; the feed has grown by 6.)
+2. **Site (numerator):** parsed frontmatter of all 709 `content/podcast/*.mdx` files for `rssGuid`, `youtubeId`, `title`, `publishDate`, `duration`.
+3. **Matching** — a feed episode counts as *covered* if any of these hit:
+   - **GUID** (exact): 369 audio-RSS pages map 1:1 to feed items.
+   - **Exact normalised title:** +15.
+   - **Date (±3 days) + duration (±180s):** +170 — catches YouTube re-posts whose titles were SEO-rewritten.
+   - **Single same-day candidate:** +85.
+   - Total covered ≈ 639; unmatched feed items ≈ 644.
+4. **Confidence:** the GUID/title matches (384) are exact. The date/duration matches (255) are heuristic, because YouTube publish dates and durations drift from the Anchor feed. Tightening the window pushes "missing" up to ~810 (37% coverage); loosening it lands at ~644 (50%). Either way the **2022–2023 contiguous gap of ~492 is stable and unambiguous** — those episodes have no GUID, title, or date/duration match anywhere on the site. The headline uses the loose (conservative-missing) match.
+
+---
+
+## Recommendation
+
+Backfill the **Feb 2022 – Dec 2023 audio back-catalog (492 episodes)** first. These already have GUIDs and audio URLs in the Anchor feed and flow through the existing `transcribe:audio` → MDX pipeline (the same path that produced the 369 audio-RSS pages). Per the pipeline's dedup note, the pre-2024 range is safe to run unattended:
+
+```
+npm run transcribe:audio -- --max-date=2024-01-01 --order=oldest
+```
+
+The 2024+ residual (152, mostly short audio-only dailies) overlaps the YouTube catalog and needs a manual dedup pass before import — lower value, triage later.
+
+---
+
+*Audio RSS feed: `https://anchor.fm/s/a09110e0/podcast/rss` · YouTube channel: `UCkRq6Nr_yEdn5493tXTOo6w`*  
+*Companion data: `docs/episode-coverage-missing.csv` (644 missing episodes, enumerated)*
