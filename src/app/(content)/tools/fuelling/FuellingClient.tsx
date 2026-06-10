@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect, useCallback } from "react";
+import { useState, useEffect, useCallback, useRef } from "react";
 import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
 import { Header, Footer, Section, Container } from "@/components/layout";
@@ -11,6 +11,8 @@ import { TOOL_EVENTS, trackTool } from "@/lib/analytics/tool-events";
 
 type GutTraining = "none" | "some" | "trained";
 type SessionType = "recovery" | "endurance" | "tempo" | "sweetspot" | "threshold" | "vo2" | "race" | "intervals";
+type WeatherMode = "location" | "manual" | "skip";
+type TempUnit = "C" | "F";
 
 /**
  * Evidence-based fuelling calculator v3.
@@ -317,6 +319,27 @@ function getValidationError(value: string, field: keyof typeof VALIDATION): stri
   return null;
 }
 
+// Weather validation — temperature range depends on the selected unit.
+function getTempError(value: string, unit: TempUnit): string | null {
+  if (!value) return null;
+  const num = parseFloat(value);
+  if (isNaN(num)) return "Please enter a valid number";
+  const min = -40;
+  const max = unit === "F" ? 131 : 55;
+  if (num < min) return `Temperature must be at least ${min}°${unit}`;
+  if (num > max) return `Temperature must be under ${max}°${unit}`;
+  return null;
+}
+
+function getHumidityError(value: string): string | null {
+  if (!value) return null;
+  const num = parseFloat(value);
+  if (isNaN(num)) return "Please enter a valid number";
+  if (num < 0) return "Humidity must be at least 0%";
+  if (num > 100) return "Humidity must be 100% or less";
+  return null;
+}
+
 const heatColors: Record<string, string> = {
   cool: "text-blue-400",
   mild: "text-green-400",
@@ -351,6 +374,16 @@ export function FuellingClient({
   const [weather, setWeather] = useState<WeatherData | null>(null);
   const [weatherLoading, setWeatherLoading] = useState(false);
   const [weatherError, setWeatherError] = useState<string | null>(null);
+  const [weatherMode, setWeatherMode] = useState<WeatherMode>("location");
+  const [manualTemp, setManualTemp] = useState("");
+  const [manualHumidity, setManualHumidity] = useState("");
+  const [tempUnit, setTempUnit] = useState<TempUnit>("C");
+  const [manualLocation, setManualLocation] = useState("");
+
+  // Keep the live mode readable inside the async fetch closure so a late
+  // location response can't overwrite manual or skipped weather.
+  const weatherModeRef = useRef<WeatherMode>(weatherMode);
+  weatherModeRef.current = weatherMode;
 
   // Auto-fetch weather from Open-Meteo (free, no API key)
   const fetchWeather = useCallback(async () => {
@@ -371,13 +404,17 @@ export function FuellingClient({
       const geoData = await geoRes.json();
       const location = geoData.address?.city || geoData.address?.town || geoData.address?.county || "Your location";
 
-      setWeather({
-        temperature: Math.round(weatherData.current.temperature_2m),
-        humidity: Math.round(weatherData.current.relative_humidity_2m),
-        location,
-      });
+      if (weatherModeRef.current === "location") {
+        setWeather({
+          temperature: Math.round(weatherData.current.temperature_2m),
+          humidity: Math.round(weatherData.current.relative_humidity_2m),
+          location,
+        });
+      }
     } catch {
-      setWeatherError("Location unavailable — using standard estimates for sodium and fluid.");
+      if (weatherModeRef.current === "location") {
+        setWeatherError("Location unavailable — using standard estimates for sodium and fluid.");
+      }
     } finally {
       setWeatherLoading(false);
     }
@@ -389,10 +426,62 @@ export function FuellingClient({
     }
   }, [fetchWeather]);
 
+  // Derive the weather used by the calculation from the manual fields.
+  // Stored internally as °C, matching the auto-detected path.
+  useEffect(() => {
+    if (weatherMode !== "manual") return;
+    const tErr = getTempError(manualTemp, tempUnit);
+    const hErr = getHumidityError(manualHumidity);
+    if (manualTemp === "" || manualHumidity === "" || tErr || hErr) {
+      setWeather(null);
+      return;
+    }
+    const raw = parseFloat(manualTemp);
+    const tempC = tempUnit === "F" ? (raw - 32) * 5 / 9 : raw;
+    setWeather({
+      temperature: Math.round(tempC),
+      humidity: Math.round(parseFloat(manualHumidity)),
+      location: manualLocation.trim() || "Manual entry",
+    });
+  }, [weatherMode, manualTemp, manualHumidity, tempUnit, manualLocation]);
+
+  // Switching mode always invalidates the last result so the rider
+  // re-calculates against the new conditions.
+  const handleWeatherMode = (mode: WeatherMode) => {
+    if (mode === weatherMode) return;
+    setResult(null);
+    setWeatherError(null);
+    setWeatherMode(mode);
+    if (mode === "location") {
+      setWeather(null);
+      fetchWeather();
+    } else if (mode === "skip") {
+      setWeather(null);
+      setWeatherLoading(false);
+    } else {
+      setWeatherLoading(false);
+    }
+  };
+
+  // Toggle the input unit and convert the displayed value so the real
+  // temperature stays put. Calculation still receives °C.
+  const handleTempUnit = (unit: TempUnit) => {
+    if (unit === tempUnit) return;
+    if (manualTemp !== "" && !isNaN(parseFloat(manualTemp))) {
+      const v = parseFloat(manualTemp);
+      const converted = unit === "F" ? v * 9 / 5 + 32 : (v - 32) * 5 / 9;
+      setManualTemp(String(Math.round(converted)));
+    }
+    setTempUnit(unit);
+    setResult(null);
+  };
+
   const durationError = getValidationError(duration, "duration");
   const weightError = getValidationError(weight, "weight");
   const wattsError = getValidationError(watts, "watts");
-  const hasErrors = !!durationError || !!weightError || !!wattsError;
+  const tempError = weatherMode === "manual" ? getTempError(manualTemp, tempUnit) : null;
+  const humidityError = weatherMode === "manual" ? getHumidityError(manualHumidity) : null;
+  const hasErrors = !!durationError || !!weightError || !!wattsError || !!tempError || !!humidityError;
 
   const handleCalculate = () => {
     if (hasErrors) return;
@@ -444,34 +533,133 @@ export function FuellingClient({
 
         <Section background="charcoal" className="!py-12">
           <Container width="narrow">
-            {/* Weather banner */}
-            {weather && (
-              <motion.div
-                className="mb-4 bg-background-elevated rounded-lg border border-white/5 px-4 py-3 flex items-center justify-between"
-                initial={{ opacity: 0, y: -10 }}
-                animate={{ opacity: 1, y: 0 }}
-              >
-                <div className="flex items-center gap-2">
-                  <span className="text-lg">
-                    {weather.temperature <= 10 ? "🥶" : weather.temperature <= 20 ? "🌤" : weather.temperature <= 28 ? "☀️" : "🔥"}
-                  </span>
-                  <span className="text-sm text-foreground-muted">
-                    {weather.location}: <span className={heatColors[weather.temperature <= 10 ? "cool" : weather.temperature <= 20 ? "mild" : weather.temperature <= 28 ? "warm" : "hot"]}>{weather.temperature}°C</span>, {weather.humidity}% humidity
-                  </span>
+            {/* Weather conditions panel */}
+            <div className="mb-4 space-y-3">
+              <div>
+                <label id="weather-mode-label" className="block font-heading text-sm text-off-white mb-1 tracking-wider">WEATHER CONDITIONS</label>
+                <p className="text-foreground-subtle text-[11px] mb-3">
+                  Heat and humidity set your fluid and sodium needs. Auto-detect from your location, type it in for a ride you&apos;re planning, or skip for standard estimates.
+                </p>
+                <div className="grid grid-cols-3 gap-2" role="group" aria-labelledby="weather-mode-label">
+                  {([
+                    ["location", "Use My Location", "Auto-detect"],
+                    ["manual", "Manual Input", "Type it in"],
+                    ["skip", "Skip Weather", "Standard est."],
+                  ] as const).map(([val, label, desc]) => (
+                    <button key={val} type="button"
+                      onClick={() => handleWeatherMode(val)}
+                      aria-pressed={weatherMode === val}
+                      className={`min-h-[44px] py-3 px-2 rounded-lg transition-colors cursor-pointer text-center ${
+                        weatherMode === val ? "bg-coral text-off-white" : "bg-white/5 text-foreground-muted hover:bg-white/10"
+                      }`}
+                    >
+                      <span className="font-heading text-[11px] tracking-wider block leading-tight">{label}</span>
+                      <span className="text-[9px] opacity-60 block mt-0.5">{desc}</span>
+                    </button>
+                  ))}
                 </div>
-                <span className="text-[10px] text-foreground-subtle">LIVE WEATHER</span>
-              </motion.div>
-            )}
-            {weatherLoading && (
-              <div className="mb-4 bg-background-elevated rounded-lg border border-white/5 px-4 py-3 text-sm text-foreground-subtle">
-                Fetching local weather for sodium & fluid estimates...
               </div>
-            )}
-            {weatherError && (
-              <div className="mb-4 bg-background-elevated rounded-lg border border-white/5 px-4 py-3 text-sm text-foreground-subtle">
-                {weatherError}
-              </div>
-            )}
+
+              {/* Manual entry fields */}
+              {weatherMode === "manual" && (
+                <motion.div
+                  className="space-y-3"
+                  initial={{ opacity: 0, y: -6 }}
+                  animate={{ opacity: 1, y: 0 }}
+                >
+                  <div className="grid grid-cols-2 gap-3">
+                    {/* Temperature with inline °C / °F toggle */}
+                    <div>
+                      <label htmlFor="weather-temp" className="block font-heading text-xs text-off-white mb-2 tracking-wider">TEMPERATURE</label>
+                      <div className="flex gap-2 items-stretch">
+                        <input id="weather-temp" type="number"
+                          placeholder={tempUnit === "C" ? "e.g. 18" : "e.g. 64"}
+                          aria-invalid={!!tempError}
+                          value={manualTemp}
+                          onChange={(e) => { setManualTemp(e.target.value); setResult(null); }}
+                          className={`${tempError ? errorInputClasses : inputClasses} flex-1 min-w-0`}
+                        />
+                        <div className="flex shrink-0 rounded-lg bg-white/5 border border-white/10 p-0.5" role="group" aria-label="Temperature unit">
+                          {(["C", "F"] as const).map((u) => (
+                            <button key={u} type="button"
+                              onClick={() => handleTempUnit(u)}
+                              aria-pressed={tempUnit === u}
+                              className={`min-h-[44px] px-3 rounded-md font-heading text-xs tracking-wider transition-colors cursor-pointer ${
+                                tempUnit === u ? "bg-coral text-off-white" : "text-foreground-muted hover:text-off-white"
+                              }`}
+                            >°{u}</button>
+                          ))}
+                        </div>
+                      </div>
+                      {tempError && <p className="text-red-400 text-xs mt-1" role="alert">{tempError}</p>}
+                    </div>
+                    {/* Humidity */}
+                    <div>
+                      <label htmlFor="weather-humidity" className="block font-heading text-xs text-off-white mb-2 tracking-wider">HUMIDITY (%)</label>
+                      <input id="weather-humidity" type="number" inputMode="numeric" min="0" max="100"
+                        placeholder="e.g. 55"
+                        aria-invalid={!!humidityError}
+                        value={manualHumidity}
+                        onChange={(e) => { setManualHumidity(e.target.value); setResult(null); }}
+                        className={humidityError ? errorInputClasses : inputClasses}
+                      />
+                      {humidityError && <p className="text-red-400 text-xs mt-1" role="alert">{humidityError}</p>}
+                    </div>
+                  </div>
+                  {/* Label — display only, shown in the banner and results */}
+                  <div>
+                    <label htmlFor="weather-location" className="block font-heading text-xs text-off-white mb-2 tracking-wider">
+                      LABEL <span className="text-foreground-subtle font-body normal-case tracking-normal">(optional)</span>
+                    </label>
+                    <input id="weather-location" type="text"
+                      placeholder="e.g. Tomorrow's ride"
+                      value={manualLocation}
+                      onChange={(e) => { setManualLocation(e.target.value); setResult(null); }}
+                      className={inputClasses}
+                    />
+                  </div>
+                </motion.div>
+              )}
+
+              {/* Status banner */}
+              {weather && (weatherMode === "location" || weatherMode === "manual") && (
+                <motion.div
+                  className="bg-background-elevated rounded-lg border border-white/5 px-4 py-3 flex items-center justify-between"
+                  initial={{ opacity: 0, y: -10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                >
+                  <div className="flex items-center gap-2">
+                    <span className="text-lg">
+                      {weather.temperature <= 10 ? "🥶" : weather.temperature <= 20 ? "🌤" : weather.temperature <= 28 ? "☀️" : "🔥"}
+                    </span>
+                    <span className="text-sm text-foreground-muted">
+                      {weather.location}: <span className={heatColors[weather.temperature <= 10 ? "cool" : weather.temperature <= 20 ? "mild" : weather.temperature <= 28 ? "warm" : "hot"]}>{weather.temperature}°C</span>, {weather.humidity}% humidity
+                    </span>
+                  </div>
+                  <span className="text-[10px] text-foreground-subtle">{weatherMode === "manual" ? "MANUAL" : "LIVE WEATHER"}</span>
+                </motion.div>
+              )}
+              {weatherMode === "location" && weatherLoading && (
+                <div className="bg-background-elevated rounded-lg border border-white/5 px-4 py-3 text-sm text-foreground-subtle">
+                  Fetching local weather for sodium &amp; fluid estimates...
+                </div>
+              )}
+              {weatherMode === "location" && weatherError && !weather && (
+                <div className="bg-background-elevated rounded-lg border border-white/5 px-4 py-3 text-sm text-foreground-subtle">
+                  {weatherError}
+                </div>
+              )}
+              {weatherMode === "manual" && !weather && !tempError && !humidityError && (
+                <div className="bg-background-elevated rounded-lg border border-white/5 px-4 py-3 text-sm text-foreground-subtle">
+                  Enter a temperature and humidity to adjust fluid and sodium for the heat.
+                </div>
+              )}
+              {weatherMode === "skip" && (
+                <div className="bg-background-elevated rounded-lg border border-white/5 px-4 py-3 text-sm text-foreground-subtle">
+                  Skipping weather — fluid and sodium use standard estimates.
+                </div>
+              )}
+            </div>
 
             <div className="bg-background-elevated rounded-xl border border-white/5 p-8 space-y-6">
               {/* Duration */}
