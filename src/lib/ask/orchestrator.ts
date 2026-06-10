@@ -24,6 +24,7 @@ import { detectKnownErrors } from "./corrections";
 import { classifyIntent } from "./intent";
 import { retrieve } from "./retrieval";
 import { pickCta } from "./cta";
+import { buildFollowups } from "./followups";
 import { buildSystemPrompt } from "./system-prompt";
 import { loadSeedContext, type SeedContext } from "./seed";
 import {
@@ -135,6 +136,18 @@ export async function streamAnswer(
   }
   if (cta.key !== "none") {
     sse.enqueue({ type: "cta", data: cta });
+  }
+
+  // 8b — contextual follow-up suggestions, mined from the matched answer
+  // pages' FAQs (with per-intent fallbacks). Emitted upfront alongside the
+  // citations; the UI only reveals them once the answer finishes streaming.
+  const followups = buildFollowups({
+    query: input.query,
+    intent: classification.intent,
+    chunks: retrieval.chunks,
+  });
+  if (followups.length > 0) {
+    sse.enqueue({ type: "followups", data: followups });
   }
 
   // 9 — stream the answer. The Anthropic call is the only step that

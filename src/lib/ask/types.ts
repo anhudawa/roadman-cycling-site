@@ -115,6 +115,7 @@ export type OrchestratorEmitType =
   | "citation"
   | "cta"
   | "safety"
+  | "followups"
   | "done"
   | "error";
 

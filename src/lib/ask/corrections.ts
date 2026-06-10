@@ -57,6 +57,62 @@ export const KNOWN_CORRECTIONS: CorrectionEntry[] = [
     addedAt: "2026-05-29",
     source: "Recurring misattribution in older episodes / member questions.",
   },
+  {
+    id: "wakefield-uae",
+    wrong: "John Wakefield is the head coach at UAE Team Emirates",
+    correct:
+      "John Wakefield is Director of Coaching & Sports Science at Red Bull–Bora–Hansgrohe and runs the Science to Sport performance lab in Girona. UAE Team Emirates is his former team, not his current one — so he is not Tadej Pogačar's coach.",
+    aliases: [
+      "John Wakefield coaches UAE Team Emirates",
+      "John Wakefield is UAE Team Emirates' coach",
+      "Wakefield is Pogačar's coach",
+      "John Wakefield coaches Tadej Pogačar",
+      "John Wakefield coaches Pogacar",
+    ],
+    addedAt: "2026-06-10",
+    source: "canonical-entities.ts (current team Red Bull–Bora–Hansgrohe; previously UAE).",
+  },
+  {
+    id: "bigham-hour-record",
+    wrong: "Dan Bigham is the current UCI Hour Record holder",
+    correct:
+      "Dan Bigham is a former UCI Hour Record holder — he set the record in August 2022 and Filippo Ganna surpassed it weeks later in October 2022. Bigham now works on aerodynamics and performance engineering at Red Bull–Bora–Hansgrohe.",
+    aliases: [
+      "Dan Bigham holds the Hour Record",
+      "Dan Bigham currently holds the UCI Hour Record",
+      "Dan Bigham is the Hour Record holder",
+      "Dan Bigham is the current Hour Record holder",
+    ],
+    addedAt: "2026-06-10",
+    source: "canonical-entities.ts (title: 'Former UCI Hour Record holder').",
+  },
+  {
+    id: "phil-burt-team-sky",
+    wrong: "Phil Burt is Team Sky's physiotherapist",
+    correct:
+      "Phil Burt is a former Team Sky and British Cycling physiotherapist and bike fitter — that work is in the past (Team Sky became INEOS Grenadiers in 2019). He now runs his own practice, Phil Burt Innovation.",
+    aliases: [
+      "Phil Burt is the Team Sky physio",
+      "Phil Burt works for Team Sky",
+      "Phil Burt is British Cycling's physiotherapist",
+      "Phil Burt is the current Team Sky physiotherapist",
+    ],
+    addedAt: "2026-06-10",
+    source: "canonical-entities.ts (title: 'Former Team Sky and British Cycling physiotherapist').",
+  },
+  {
+    id: "derek-teel-team",
+    wrong: "Derek Teel is a World Tour team's strength coach",
+    correct:
+      "Derek Teel is the founder of Dialed Health and an independent strength-and-conditioning coach for cyclists. He is not employed by a World Tour team.",
+    aliases: [
+      "Derek Teel is a World Tour strength coach",
+      "Derek Teel coaches strength for a pro cycling team",
+      "Derek Teel works for a WorldTour team",
+    ],
+    addedAt: "2026-06-10",
+    source: "canonical-entities.ts (Founder of Dialed Health; independent S&C coach).",
+  },
 ];
 
 /**

@@ -9,10 +9,14 @@ const mocks = vi.hoisted(() => ({
   loadSessionByAnonKey: vi.fn(),
   loadSessionByRiderProfile: vi.fn(),
   touchSession: vi.fn(),
+  getAskSessionFromRequest: vi.fn(),
 }));
 
 vi.mock("@/lib/ask/orchestrator", () => ({
   streamAnswer: mocks.streamAnswer,
+}));
+vi.mock("@/lib/ask-auth/auth", () => ({
+  getAskSessionFromRequest: mocks.getAskSessionFromRequest,
 }));
 vi.mock("@/lib/ask/rate-limit", () => ({
   checkAskRateLimit: mocks.checkAskRateLimit,
@@ -71,6 +75,9 @@ describe("POST /api/ask", () => {
     mocks.streamAnswer.mockImplementation(async (_args, ctrl) => {
       ctrl.close();
     });
+    // Default: requester holds a valid magic-link (email) session so the
+    // lead-gen gate lets them through. Individual tests override this.
+    mocks.getAskSessionFromRequest.mockReturnValue({ email: "rider@example.test" });
   });
 
   afterEach(() => vi.restoreAllMocks());
@@ -112,12 +119,21 @@ describe("POST /api/ask", () => {
     expect(body.error.retryAfterSeconds).toBe(42);
   });
 
-  it("uses anon tier when no riderProfileId", async () => {
+  it("returns 401 auth_required when neither an email session nor a riderProfileId is present", async () => {
+    mocks.getAskSessionFromRequest.mockReturnValue(null);
+    const { POST } = await import("@/app/api/ask/route");
+    const res = await POST(req({ query: "How should I train?" }));
+    expect(res.status).toBe(401);
+    const body = await res.json();
+    expect(body.error.code).toBe("auth_required");
+  });
+
+  it("uses email tier when authed via magic-link without a riderProfileId", async () => {
     const { POST } = await import("@/app/api/ask/route");
     await POST(req({ query: "How should I train?" }));
     const args = mocks.checkAskRateLimit.mock.calls[0]?.[0];
-    expect(args.tier).toBe("anon");
-    expect(args.sessionKey).toBe("anon-abc");
+    expect(args.tier).toBe("email");
+    expect(args.sessionKey).toMatch(/^email:[0-9a-f]{16}$/);
   });
 
   it("uses profile tier when riderProfileId is set", async () => {

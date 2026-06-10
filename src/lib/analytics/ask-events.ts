@@ -22,6 +22,7 @@ export const ASK_EVENTS = {
   FEEDBACK_SUBMITTED: "ask_feedback_submitted",
   PROFILE_SAVED: "ask_profile_saved",
   STARTER_PROMPT_CLICKED: "ask_starter_prompt_clicked",
+  FOLLOWUP_CLICKED: "ask_followup_clicked",
   RATE_LIMITED: "ask_rate_limited",
   ERROR_SHOWN: "ask_error_shown",
   SEED_LOADED: "ask_seed_loaded",

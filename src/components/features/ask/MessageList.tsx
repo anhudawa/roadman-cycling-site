@@ -10,13 +10,19 @@ import { ASK_EVENTS, trackAsk } from "@/lib/analytics/ask-events";
 interface MessageListProps {
   messages: AskStreamMessage[];
   sessionId: string | null;
+  onFollowup?: (question: string) => void;
 }
 
-export function MessageList({ messages, sessionId }: MessageListProps) {
+export function MessageList({ messages, sessionId, onFollowup }: MessageListProps) {
   return (
     <div className="space-y-8">
       {messages.map((m) => (
-        <MessageRow key={m.id} message={m} sessionId={sessionId} />
+        <MessageRow
+          key={m.id}
+          message={m}
+          sessionId={sessionId}
+          onFollowup={onFollowup}
+        />
       ))}
     </div>
   );
@@ -25,9 +31,11 @@ export function MessageList({ messages, sessionId }: MessageListProps) {
 function MessageRow({
   message,
   sessionId,
+  onFollowup,
 }: {
   message: AskStreamMessage;
   sessionId: string | null;
+  onFollowup?: (question: string) => void;
 }) {
   if (message.role === "user") {
     return (
@@ -85,9 +93,58 @@ function MessageRow({
           />
         )}
 
+        {!message.streaming &&
+          !message.safetyFlags?.length &&
+          message.followups &&
+          message.followups.length > 0 &&
+          onFollowup && (
+            <FollowupRow
+              followups={message.followups}
+              sessionId={sessionId}
+              onFollowup={onFollowup}
+            />
+          )}
+
         {!message.streaming && !message.safetyFlags?.length && (
           <FeedbackRow sessionId={sessionId} messageId={message.id} />
         )}
+      </div>
+    </div>
+  );
+}
+
+function FollowupRow({
+  followups,
+  sessionId,
+  onFollowup,
+}: {
+  followups: string[];
+  sessionId: string | null;
+  onFollowup: (question: string) => void;
+}) {
+  return (
+    <div className="mt-5">
+      <p className="font-heading text-xs tracking-widest text-foreground-muted uppercase mb-2">
+        You might also ask
+      </p>
+      <div className="flex flex-col gap-2">
+        {followups.map((q) => (
+          <button
+            key={q}
+            type="button"
+            onClick={() => {
+              trackAsk({
+                name: ASK_EVENTS.FOLLOWUP_CLICKED,
+                sessionId: sessionId ?? undefined,
+                meta: { question: q },
+              });
+              onFollowup(q);
+            }}
+            className="text-left rounded-lg border border-white/10 bg-white/[0.03] hover:bg-white/[0.07] hover:border-coral/40 px-3 py-2 text-sm text-off-white transition-colors"
+          >
+            {q}
+          </button>
+        ))}
       </div>
     </div>
   );

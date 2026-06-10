@@ -197,6 +197,12 @@ export function AskRoadmanClient({
     await sendWithSeed(prompt, starter);
   };
 
+  const onFollowup = (question: string) => {
+    if (isStreaming) return;
+    setInput("");
+    void sendWithSeed(question, "followup");
+  };
+
   // Loading-state placeholder — keeps the page from flashing the gate
   // screen for an authenticated user with a valid cookie.
   if (auth.kind === "loading") {
@@ -239,7 +245,11 @@ export function AskRoadmanClient({
             <StarterPrompts onPick={onStarter} sessionId={sessionId} />
           </div>
         )}
-        <MessageList messages={messages} sessionId={sessionId} />
+        <MessageList
+          messages={messages}
+          sessionId={sessionId}
+          onFollowup={onFollowup}
+        />
       </div>
 
       {/* Sticky composer at the viewport bottom. Backdrop blur + a soft

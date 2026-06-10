@@ -36,6 +36,7 @@ export interface AskStreamMessage {
   citations?: AskCitation[];
   cta?: AskCta | null;
   safetyFlags?: string[];
+  followups?: string[];
   streaming?: boolean;
   flaggedForReview?: boolean;
 }
@@ -239,6 +240,19 @@ export function useAskStream(): UseAskStreamResult {
                     sessionId: currentSessionId ?? undefined,
                     meta: { ctaKey: cta.key, href: cta.href },
                   });
+                }
+              } catch {
+                // ignore
+              }
+            } else if (frame.event === "followups") {
+              try {
+                const followups = JSON.parse(frame.data) as string[];
+                if (Array.isArray(followups) && followups.length > 0) {
+                  setMessages((prev) =>
+                    prev.map((m) =>
+                      m.id === assistantId ? { ...m, followups } : m,
+                    ),
+                  );
                 }
               } catch {
                 // ignore
