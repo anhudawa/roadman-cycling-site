@@ -3,6 +3,8 @@ import { Header, Footer, Section, Container } from "@/components/layout";
 import { Button, Card, ScrollReveal, ParallaxImage, GradientText, GuestMarquee } from "@/components/ui";
 import Link from "next/link";
 import { HeroSection } from "@/components/features/home/HeroSection";
+import { TourHomeHero } from "@/components/features/tour";
+import { getTourPhase } from "@/lib/tour";
 import { StatsSection } from "@/components/features/home/StatsSection";
 import { PersonaRouter } from "@/components/features/home/PersonaRouter";
 import { PillarIcon } from "@/components/features/home/PillarIcon";
@@ -20,6 +22,10 @@ import type { Metadata } from "next";
 export const metadata: Metadata = {
   alternates: { canonical: SITE_ORIGIN },
 };
+
+// Short ISR window so the date-driven Tour overlay flips phase
+// (countdown → live → fade-out → off) without a redeploy.
+export const revalidate = 900;
 
 const marqueeGuests = [
   { name: "Greg LeMond", credential: "3× Tour de France winner", href: "https://www.youtube.com/watch?v=_kFSe3VxS10" },
@@ -106,6 +112,11 @@ export default function HomePage() {
     fetchPriority: "high",
   });
 
+  // Tour de France facade: during the race window (countdown → live →
+  // fade-out) the hero is replaced by the Tour overlay. Outside it, the
+  // normal hero shows and the overlay leaves no trace.
+  const tourActive = getTourPhase() !== "off";
+
   return (
     <>
       <Header />
@@ -116,8 +127,9 @@ export default function HomePage() {
             into the Plateau Diagnostic. Secondary CTA hands the Masters
             Cycling Training Report to lower-intent visitors as a
             lead-magnet entry point. Apply lives further down the page
-            in the offer ladder. */}
-        <HeroSection />
+            in the offer ladder. During the Tour, TourHomeHero takes the
+            top slot instead. */}
+        {tourActive ? <TourHomeHero /> : <HeroSection />}
 
         {/* MANIFESTO — positioning. We are not a media brand. We are the
             clearest path back to progress for serious amateurs who

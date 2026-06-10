@@ -14,6 +14,8 @@ import { getAllPlanCombinations, getAllEventSlugs } from "@/lib/training-plans";
 import { getAllEventGuideSlugs } from "@/lib/event-guides";
 import { getAllEntities } from "@/lib/entities";
 import { RACES } from "@/data/races";
+import { TOUR_STAGES } from "@/data/tour-de-france-2026";
+import { TOUR_HISTORY } from "@/data/tour-history";
 import { SEGMENT_SLUGS } from "@/lib/coaching-segments";
 import { getAllCaseStudySlugs } from "@/lib/case-studies";
 import { CAMP_LIST } from "@/lib/camps/camps";
@@ -153,6 +155,23 @@ function buildStaticSitemap(): MetadataRoute.Sitemap {
       lastModified: new Date("2026-05-05"),
       changeFrequency: "monthly" as const,
       priority: 0.78,
+    })),
+    // Tour de France 2026 overlay — hub + all 21 stage pages. Time-boxed
+    // facade, but the stage pages are evergreen route references worth
+    // indexing through the race window.
+    { url: `${BASE_URL}/tour-de-france`, lastModified: new Date("2026-06-10"), changeFrequency: "daily", priority: 0.85 },
+    ...TOUR_STAGES.map((s) => ({
+      url: `${BASE_URL}/tour-de-france/stage/${s.number}`,
+      lastModified: new Date("2026-06-10"),
+      changeFrequency: "weekly" as const,
+      priority: 0.6,
+    })),
+    { url: `${BASE_URL}/tour-de-france/history`, lastModified: new Date("2026-06-11"), changeFrequency: "monthly", priority: 0.7 },
+    ...TOUR_HISTORY.map((a) => ({
+      url: `${BASE_URL}/tour-de-france/history/${a.slug}`,
+      lastModified: new Date(a.published),
+      changeFrequency: "monthly" as const,
+      priority: 0.65,
     })),
     { url: `${BASE_URL}/apply`, lastModified: new Date(), changeFrequency: "weekly", priority: 0.9 },
     { url: `${BASE_URL}/coaching`, lastModified: new Date(), changeFrequency: "weekly", priority: 0.8 },
