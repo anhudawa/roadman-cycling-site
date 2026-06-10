@@ -6,19 +6,19 @@ const MEMBER_RESULTS = [
   {
     headline: "Cat 3 to Cat 1.",
     body:
-      "Eighteen months in the system. The structure was the difference, not the volume.",
+      "Eighteen months. Same hours, same job, same bike. The structure was the difference — not the volume. I'd been doing the work the whole time. I just wasn't doing it in any order.",
     member: "James, 41",
   },
   {
     headline: "20% body fat to 7%.",
     body:
-      "Without restriction, without losing power. Race-week W/kg up 12%.",
+      "No starving, no crash diet, not a single lost watt. Race-week W/kg up 12%. I stopped dieting against my training and started fuelling it.",
     member: "Mark, 47",
   },
   {
-    headline: "Women's National Series.",
+    headline: "Top ten, National Series.",
     body:
-      "From group-ride survivor to top-ten in the local national series — at 44, after a six-year break.",
+      "Forty-four years old, six years off the bike, written off by everyone including me. From clinging to the back of the group ride to a national-series top ten in a season.",
     member: "Sarah, 44",
   },
 ] as const;
@@ -44,8 +44,9 @@ export function SocialProof() {
             <p className="mt-6 text-lg text-foreground-muted leading-relaxed">
               The Roadman Cycling Podcast has crossed 100 million downloads. Across 1,400+
               long-form episodes, Anthony has put the people who actually move performance
-              forward — World Tour coaches, sports scientists, pros — on record. Every
-              module in this course is built from those conversations.
+              forward — World Tour coaches, sports scientists, pros — on the record and
+              asked the questions you'd ask if you got the chair. You can't buy that access.
+              The Method is the only place it's been distilled into a system you can run.
             </p>
           </Reveal>
         </div>
@@ -102,11 +103,11 @@ export function SocialProof() {
           <div className="mt-20 flex flex-wrap items-center justify-center gap-8 md:gap-16 opacity-80">
             <Logo>100M+ downloads</Logo>
             <Divider />
-            <Logo>61K YouTube subscribers</Logo>
+            <Logo>61K+ YouTube subscribers</Logo>
             <Divider />
-            <Logo>113 paid community members</Logo>
+            <Logo>113 in the paid community</Logo>
             <Divider />
-            <Logo>27,000+ on the email list</Logo>
+            <Logo>30,000+ on the newsletter</Logo>
           </div>
         </Reveal>
       </Container>

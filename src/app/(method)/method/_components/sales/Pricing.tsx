@@ -1,7 +1,11 @@
 import Link from "next/link";
 import { Container } from "@/components/layout/Container";
 import { Reveal } from "./Reveal";
-import { COURSE_PRICE_STANDARD_USD, COURSE_PRICE_PREMIUM_USD } from "./data";
+import {
+  COURSE_PRICE_STANDARD_USD,
+  COURSE_PRICE_PREMIUM_USD,
+  PRICE_ANCHORS,
+} from "./data";
 
 const STANDARD_INCLUDES = [
   "All 12 video modules — lifetime access",
@@ -52,6 +56,48 @@ export function Pricing() {
           </Reveal>
         </div>
 
+        {/* Price anchoring — what the alternatives actually cost */}
+        <Reveal delay={160}>
+          <div className="mb-16 max-w-[820px] mx-auto">
+            <p className="font-heading text-xs tracking-[0.3em] text-foreground-muted text-center mb-6">
+              WHAT GETTING FASTER USUALLY COSTS
+            </p>
+            <ul className="rounded-sm border border-white/10 overflow-hidden divide-y divide-white/10">
+              {PRICE_ANCHORS.map((row) => (
+                <li
+                  key={row.label}
+                  className={`flex flex-wrap items-baseline justify-between gap-x-6 gap-y-1 px-6 py-5 ${
+                    row.highlight ? "bg-coral/10" : ""
+                  }`}
+                >
+                  <div className="min-w-[16ch] flex-1">
+                    <p
+                      className={`font-heading uppercase tracking-wide text-base md:text-lg ${
+                        row.highlight ? "text-coral" : "text-off-white"
+                      }`}
+                    >
+                      {row.label}
+                    </p>
+                    <p className="text-sm text-foreground-muted leading-relaxed">{row.note}</p>
+                  </div>
+                  <p
+                    className={`font-heading text-xl md:text-2xl shrink-0 ${
+                      row.highlight ? "text-coral" : "text-off-white"
+                    }`}
+                  >
+                    {row.price}
+                  </p>
+                </li>
+              ))}
+            </ul>
+            <p className="mt-5 text-center text-sm text-foreground-muted max-w-[60ch] mx-auto">
+              One wasted training block costs you more than this course. One crash diet that
+              kills a season costs you more. $297 isn&apos;t the expense. Another year stuck
+              is.
+            </p>
+          </div>
+        </Reveal>
+
         <div className="grid gap-6 md:grid-cols-2 max-w-[1000px] mx-auto">
           <Reveal as="article">
             <PricingCard
@@ -79,8 +125,9 @@ export function Pricing() {
 
         <Reveal delay={160}>
           <p className="mt-12 text-center text-sm text-foreground-muted max-w-[60ch] mx-auto">
-            All prices in USD. Secure checkout via Stripe. The Method opens immediately
-            after payment — Module 01 unlocks the moment you log in.
+            All prices in USD. One payment — never a subscription. Secure checkout via
+            Stripe. The Method opens the moment you pay — Module 01 is waiting when you
+            log in.
           </p>
         </Reveal>
       </Container>

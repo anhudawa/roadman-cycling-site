@@ -17,24 +17,24 @@ export function Hero() {
       <Container as="section" width="wide" className="pt-20 md:pt-32 pb-16 md:pb-24">
         <Reveal>
           <p className="font-heading text-xs md:text-sm tracking-[0.4em] text-coral mb-6">
-            A 12-WEEK SIGNATURE COURSE FROM ROADMAN CYCLING
+            THE ROADMAN METHOD · A 12-WEEK COACHING SYSTEM
           </p>
         </Reveal>
 
         <Reveal delay={80}>
           <h1 className="font-heading uppercase leading-[0.92] text-[clamp(2.75rem,9vw,8rem)] max-w-[18ch]">
-            You're training hard.
+            Build the system that
             <br />
-            <span className="text-coral">You're not getting</span> faster.
+            <span className="text-coral">breaks your plateau.</span>
           </h1>
         </Reveal>
 
         <Reveal delay={160}>
           <p className="mt-8 max-w-[58ch] text-lg md:text-xl text-foreground-muted leading-relaxed">
-            Twelve weeks. Five pillars. One system — built on 1,400+ conversations with World
-            Tour coaches, sports scientists and pro cyclists. The same framework Anthony
-            Walsh uses to coach the Not Done Yet community, distilled into a course you
-            can finish on your own time.
+            You're training hard. You're just not getting faster. The Roadman Method is the
+            12-week system that fixes that — five pillars, built from 1,400+ conversations
+            with the coaches, scientists and pros who move the World Tour. Six hours a week.
+            Lifetime access. Yours to keep.
           </p>
         </Reveal>
 
@@ -50,7 +50,7 @@ export function Hero() {
               href="#what-you-get"
               className="inline-flex justify-center font-heading uppercase tracking-wider text-sm text-off-white hover:text-coral transition-colors px-2 py-4"
             >
-              See what's inside →
+              See the 12 weeks →
             </a>
           </div>
         </Reveal>
@@ -59,8 +59,8 @@ export function Hero() {
           <div className="mt-14 md:mt-20 grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-10 max-w-[900px]">
             <Stat metric="100M+" label="podcast downloads" />
             <Stat metric="12" label="weekly modules" />
-            <Stat metric="5" label="content pillars" />
-            <Stat metric="Lifetime" label="access" />
+            <Stat metric="5" label="performance pillars" />
+            <Stat metric="Lifetime" label="access, one payment" />
           </div>
         </Reveal>
       </Container>

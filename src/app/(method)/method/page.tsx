@@ -7,6 +7,7 @@ import { WhatYouGet } from "./_components/sales/WhatYouGet";
 import { WhoThisIsFor } from "./_components/sales/WhoThisIsFor";
 import { SocialProof } from "./_components/sales/SocialProof";
 import { Pricing } from "./_components/sales/Pricing";
+import { Guarantee } from "./_components/sales/Guarantee";
 import { FAQ } from "./_components/sales/FAQ";
 import { AnthonyNote } from "./_components/sales/AnthonyNote";
 import { FinalCTA } from "./_components/sales/FinalCTA";
@@ -40,6 +41,7 @@ export default function MethodSalesPage() {
       <WhoThisIsFor />
       <SocialProof />
       <Pricing />
+      <Guarantee />
       <FAQ />
       <AnthonyNote />
       <FinalCTA />

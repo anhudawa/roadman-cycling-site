@@ -35,9 +35,15 @@ export function FinalCTA() {
         </Reveal>
         <Reveal delay={160}>
           <p className="mt-8 max-w-[55ch] mx-auto text-lg md:text-xl text-foreground-muted leading-relaxed">
-            Twelve weeks from now, you can be in the same place — same FTP, same questions,
-            same folder of saved tweets. Or you can be on the other side of a system that
-            took 1,400+ podcast conversations to build. Your call.
+            Twelve weeks from now, you can be in the exact same place — same FTP, same
+            questions, same folder of saved tweets, same week on repeat. Or you can be on the
+            other side of a system that took 1,400+ conversations to build. The twelve weeks
+            pass either way.
+          </p>
+        </Reveal>
+        <Reveal delay={200}>
+          <p className="mt-6 max-w-[48ch] mx-auto font-heading uppercase text-base md:text-lg text-off-white leading-snug">
+            If you&apos;re still reading this far down, you already know it&apos;s for you.
           </p>
         </Reveal>
         <Reveal delay={240}>

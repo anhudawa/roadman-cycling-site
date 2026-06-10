@@ -19,32 +19,39 @@ export function AnthonyNote() {
         <Reveal delay={140}>
           <div className="space-y-6 text-lg text-off-white/90 leading-relaxed">
             <p>
-              I started the podcast because I had questions nobody was answering properly.
-              How do real World Tour coaches actually build a season? What does Pogačar's
-              week look like? Why does my FTP plateau when my mate's keeps climbing on
-              less volume?
+              I'll be honest with you. I started the podcast because I was stuck and a
+              bit embarrassed about it. Eighty-six kilos. A flat FTP. Riding the same
+              week over and over, telling everyone I was training, quietly wondering what
+              everyone else knew that I didn't.
             </p>
 
             <p>
-              Three hundred episodes in, I had answers. Better than answers — I had
-              patterns. The same principles came back again and again, from completely
-              different parts of the sport. Seiler on intensity distribution. Lorang on
-              consistency. Dunne on fuelling. Wakefield on torque. Every conversation,
-              another piece of the same puzzle.
+              So I started asking. How does a real World Tour coach build a season? Why
+              does my FTP sit there while my mate's climbs on half the volume? I got the
+              people who actually know in a room and I asked them the questions I was too
+              proud to ask out loud.
             </p>
 
             <p>
-              The problem was — that's a lot of podcasts. Hundreds of hours. And serious
-              amateur cyclists, the people who actually want to get faster, don't have
-              hundreds of hours. They have jobs and families and a Saturday morning.
+              Three hundred episodes in, I had answers. Better than answers — patterns.
+              The same principles kept coming back from completely different corners of the
+              sport. Seiler on intensity distribution. Lorang on consistency. Dunne on
+              fuelling. Wakefield on torque. Every conversation, another piece of the same
+              puzzle clicking into place.
             </p>
 
             <p>
-              The Roadman Method is what happens when you take everything I've learned
-              from those conversations, throw away the fluff, and build it into a 12-week
-              system that respects the fact you have a life. It's the course I wish
-              someone had handed me when I was stuck at 86 kilos and a flat FTP, doing
-              the same week over and over and wondering what I was missing.
+              And here's the thing that bothered me. That's hundreds of hours of podcast.
+              The riders who most need it — the ones with a job, a family, a Saturday
+              morning and a real desire to get faster — are the ones who can't sit through
+              it. The answers existed. They were just buried.
+            </p>
+
+            <p>
+              The Roadman Method is me digging them out. Everything I've learned from those
+              conversations, the fluff thrown away, built into twelve weeks that respect the
+              fact you have a life. It's the course I wish someone had handed me at 86 kilos
+              and a flat FTP — instead of another plan that ignored everything except the bike.
             </p>
 
             <p>

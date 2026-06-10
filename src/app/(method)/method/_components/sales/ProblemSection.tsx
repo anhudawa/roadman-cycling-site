@@ -28,9 +28,14 @@ const SYMPTOMS = [
       "Everyone says so. You don't know what to do, when to do it, or how to fit it in without destroying tomorrow's session. So you don't.",
   },
   {
+    headline: "It's the same week, 52 times a year.",
+    body:
+      "Tuesday intervals. Thursday threshold. The long Saturday ride. You've run that week since January — since last January — and called it training. It isn't. It's exercise on repeat.",
+  },
+  {
     headline: "You're information-rich and system-poor.",
     body:
-      "You've consumed more training content than most coaches have read. You don't have a system. You have a folder of saved tweets.",
+      "You've consumed more training content than most coaches have read. You still don't have a system. You have a folder of saved tweets and a vague sense you're missing one thing.",
   },
 ] as const;
 
@@ -53,10 +58,12 @@ export function ProblemSection() {
 
         <Reveal delay={160}>
           <p className="mt-8 max-w-[60ch] text-lg text-foreground-muted leading-relaxed">
-            This is the quiet shame of the serious amateur. You're doing more than most.
-            You care about it more than your friends understand. And the bike has stopped
-            paying you back. If any of the below sounds like the inside of your head right
-            now — you're in the right place.
+            This is the quiet shame of the serious amateur. You train more than your mates.
+            You care about it more than they understand. And the bike has stopped paying you
+            back. It's not effort. It's not desire. It's that nobody ever handed you a system —
+            so you've been doing the work without the structure that makes the work count.
+            If any of the below is the inside of your head right now, keep reading. You're
+            in the right place.
           </p>
         </Reveal>
 

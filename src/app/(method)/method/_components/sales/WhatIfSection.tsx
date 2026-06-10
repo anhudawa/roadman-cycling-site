@@ -37,17 +37,17 @@ export function WhatIfSection() {
             <Outcome
               week="WEEKS 1–3"
               title="Clarity"
-              body="The noise stops. You stop second-guessing every session. You understand why you've been stuck and what specifically needs to change."
+              body="The noise stops. You open your training app and you know exactly what today's session is for — and what it isn't. The two leaks costing you watts have names. You've stopped second-guessing every ride."
             />
             <Outcome
               week="WEEKS 4–9"
               title="Momentum"
-              body="The numbers start moving. Not because you're training more — because you're training with precision. Body composition shifts. Power holds where it used to fade."
+              body="The numbers move. Not because you're riding more — because you're riding right. The climb you used to dread, you settle into. The group ride where you clung on at 90%, you sit in at 75%. The scale moves and the power holds."
             />
             <Outcome
               week="WEEKS 10–12"
               title="Ownership"
-              body="You don't have a plan anymore. You have a system. You understand your physiology well enough to make decisions. You've become your own best coach."
+              body="You don't have a plan anymore. You have a system. Work blows up, you get sick, the week falls apart — and you adjust it yourself, calmly, because you understand why every piece is there. You've become the coach you were paying to look for."
             />
           </div>
         </Reveal>
