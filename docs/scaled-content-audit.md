@@ -5,6 +5,8 @@
 **Trigger:** Audit flagged scaled-content-abuse risk on the programmatic page corpus.
 **Verdict:** **Not scaled-content abuse — but two fixable risks.** The corpus is genuinely grounded (zero fabricated citations, all internal links resolve, real editorial voice). Risk is concentrated in (1) the thin `/problem` category and (2) answer↔question query cannibalisation. Both are fixable without mass de-indexing.
 
+> **Update — 2026-06-10 (actioned):** The §4.A answer↔question cannibalisation (6 pairs) and the §4.B FTP-plateau `/problem` cluster have been **resolved**. The 6 weaker `/question` entries and the 2 long-tail FTP-plateau `/problem` entries were removed from their data sources (so they drop out of `generateStaticParams` and the sitemap) and 301'd (`permanent: true` → 308) to the canonical survivor in `next.config.ts`. Inbound cross-links were repointed to the canonical `/answers` URLs. All 8 redirects verified resolving to live 200 pages; removed slugs verified absent from `/sitemap/5.xml`. See the "Resolution log" at the end of this doc. The remaining open items (27 thin `/problem` pages needing expert grounding, glossary `relatedTerms`, Tier-3 attribution) are unchanged.
+
 ---
 
 ## 1. Corpus inventory (actual counts)
@@ -187,3 +189,39 @@ This is **not** scaled-content abuse. Every machine-checkable citation resolves 
 ---
 
 *Methodology: full inventory via source-file parsing; 10 full-page samples per category scored against the 4-point gate by independent review; citation integrity checked by resolving every `episodeSlug`/`guestSlug`/`/blog` reference against the actual content tree; duplicate detection via normalised-title Jaccard similarity across all 487 pages. No content files were modified.*
+
+---
+
+## Resolution log — 2026-06-10
+
+Actioned the §4.A duplicate pairs and the §4.B FTP-plateau cluster. Pattern: keep the stronger page, remove the weaker entry from its data source (drops it from `generateStaticParams` + sitemap), add a `permanent` redirect, and repoint any inbound internal links to the canonical URL.
+
+### Answer ↔ Question (6 pairs) — survivor is the richer `/answers` page
+
+| Removed `/question` | 301 → canonical `/answers` |
+|---|---|
+| `ftp-vs-heart-rate-training` | `train-by-ftp-or-heart-rate` |
+| `how-often-test-ftp` | `how-often-test-ftp` |
+| `how-much-protein-cyclists-need` | `how-much-protein-do-cyclists-need` |
+| `what-is-good-ftp-for-amateur` | `what-is-a-good-ftp` |
+| `lose-weight-without-losing-power-cycling` | `lose-weight-without-losing-power` |
+| `cycling-durability-training` | `what-is-durability-cycling` |
+
+`/question` corpus: 36 → **30** entries.
+
+### FTP-plateau `/problem` cluster — consolidated to 2 distinct angles
+
+Kept **`stuck-on-plateau`** ("Cycling FTP Plateau — How to Break Through") as the canonical FTP-plateau page, and kept **`not-getting-faster`** ("Why Am I Not Getting Faster at Cycling?") as the deliberately broader query (it already funnels into `stuck-on-plateau` via an in-body link). The two long-tail FTP-plateau variants — which both already named `stuck-on-plateau` as "the canonical plateau diagnostic" — were folded in:
+
+| Removed `/problem` | 301 → canonical `/problem` |
+|---|---|
+| `flat-ftp` | `stuck-on-plateau` |
+| `ftp-stuck-250-watts` | `stuck-on-plateau` |
+
+`/problem` corpus: 27 → **25** entries.
+
+### Implementation notes
+- Redirects live in `next.config.ts` (block: "Scaled-content consolidation"), `permanent: true` (Next emits **308**, treated by search engines as a permanent redirect equivalent to 301 — matches every other redirect in the file).
+- Removed entries deleted from `src/lib/questions.ts` and `src/lib/problems.ts`; survivors render 200, removed slugs verified absent from `/sitemap/5.xml`.
+- Inbound cross-links repointed to the canonical `/answers` URLs: `src/lib/questions.ts` ×3 (in surviving entries) and `src/lib/answers.ts` ×1 (`ftp-test-guide` related link). No other repo references to the removed slugs existed.
+- Verified on the dev server: all 8 sources return 308 with the correct `Location`, and every destination returns 200.

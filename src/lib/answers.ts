@@ -1342,7 +1342,7 @@ const BASE_ANSWERS: AnswerPage[] = [
     relatedTopics: [
       { label: "FTP Ramp Test vs 20-Minute Test", href: "/compare/ftp-ramp-test-vs-20-minute" },
       { label: "FTP Zone Calculator", href: "/tools/ftp-zones" },
-      { label: "How often should I test FTP?", href: "/question/how-often-test-ftp" },
+      { label: "How often should I test FTP?", href: "/answers/how-often-test-ftp" },
       { label: "How do I improve my FTP?", href: "/answers/how-to-improve-ftp" },
       { label: "FTP Training — Topic Hub", href: "/topics/ftp-training" },
     ],

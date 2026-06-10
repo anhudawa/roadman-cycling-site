@@ -400,6 +400,31 @@ const nextConfig: NextConfig = {
       { source: "/blog/tag/:slug*", destination: "/blog", permanent: true },
 
       // ==========================================================
+      // Scaled-content consolidation (see docs/scaled-content-audit.md)
+      // ----------------------------------------------------------
+      // 301s that collapse query cannibalisation found in the audit.
+      // The destination page is the canonical survivor; the redirected
+      // slugs were removed from their data sources (questions.ts /
+      // problems.ts) so they no longer build or appear in the sitemap.
+      //
+      // (a) Answer ↔ Question duplicates — both were Q&A answer pages on
+      // the same query. The richer, citation-optimised /answers entry is
+      // kept; the thinner /question twin redirects to it.
+      // ==========================================================
+      { source: "/question/ftp-vs-heart-rate-training", destination: "/answers/train-by-ftp-or-heart-rate", permanent: true },
+      { source: "/question/how-often-test-ftp", destination: "/answers/how-often-test-ftp", permanent: true },
+      { source: "/question/how-much-protein-cyclists-need", destination: "/answers/how-much-protein-do-cyclists-need", permanent: true },
+      { source: "/question/what-is-good-ftp-for-amateur", destination: "/answers/what-is-a-good-ftp", permanent: true },
+      { source: "/question/lose-weight-without-losing-power-cycling", destination: "/answers/lose-weight-without-losing-power", permanent: true },
+      { source: "/question/cycling-durability-training", destination: "/answers/what-is-durability-cycling", permanent: true },
+      // (b) FTP-plateau /problem cluster — consolidated onto the canonical
+      // plateau diagnostic (/problem/stuck-on-plateau). The broad
+      // "not getting faster" page is kept as a distinct angle; the two
+      // long-tail FTP-plateau variants fold into the canonical page.
+      { source: "/problem/flat-ftp", destination: "/problem/stuck-on-plateau", permanent: true },
+      { source: "/problem/ftp-stuck-250-watts", destination: "/problem/stuck-on-plateau", permanent: true },
+
+      // ==========================================================
       // coaching.roadmancycling.com subdomain catch-all
       // ----------------------------------------------------------
       // This fires only when the host is coaching.roadmancycling.com
