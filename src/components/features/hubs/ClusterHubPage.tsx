@@ -128,7 +128,7 @@ export function ClusterHubPage({ def }: { def: ClusterHubDef }) {
 
       <main id="main-content">
         {/* Hero */}
-        <Section background="deep-purple" grain className="pt-32 pb-12">
+        <Section background="deep-purple" grain className="pt-24 md:pt-32 pb-10 md:pb-12">
           <Container>
             <Breadcrumbs
               items={[
