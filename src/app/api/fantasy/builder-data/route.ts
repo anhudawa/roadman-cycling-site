@@ -1,5 +1,7 @@
 import { NextResponse } from "next/server";
 import { listRidersWithTeams, listStages, loadGameConfig } from "@/lib/fantasy/queries";
+import { LAUNCH_DEFAULTS } from "@/lib/fantasy/config";
+import stagesData from "@/data/fantasy/stages-2026.json";
 
 export const runtime = "nodejs";
 
@@ -50,7 +52,26 @@ export async function GET() {
       },
     );
   } catch (error) {
-    console.error("[fantasy/builder-data] failed:", error);
-    return NextResponse.json({ error: "Could not load game data." }, { status: 500 });
+    // Database unreachable: degrade to the verified stage data file +
+    // launch-default rules with an empty startlist. The builder renders
+    // its "startlist is landing" state instead of an error wall, and
+    // the route never 500s under load.
+    console.error("[fantasy/builder-data] db unavailable, serving static fallback:", error);
+    return NextResponse.json(
+      {
+        riders: [],
+        stages: stagesData.stages,
+        rules: {
+          budget: LAUNCH_DEFAULTS.budget,
+          squadSize: LAUNCH_DEFAULTS.squadSize,
+          maxPerProTeam: LAUNCH_DEFAULTS.maxPerProTeam,
+          minCheapRiders: LAUNCH_DEFAULTS.minCheapRiders,
+          transfersTotal: LAUNCH_DEFAULTS.transfersTotal,
+          transfersPerStage: LAUNCH_DEFAULTS.transfersPerStage,
+          captainMultiplier: LAUNCH_DEFAULTS.captainMultiplier,
+        },
+      },
+      { headers: { "Cache-Control": "public, s-maxage=60, stale-while-revalidate=300" } },
+    );
   }
 }

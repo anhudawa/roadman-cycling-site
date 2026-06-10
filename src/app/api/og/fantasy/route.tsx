@@ -59,7 +59,8 @@ export async function GET(request: NextRequest) {
               {team}
             </span>
             <span style={{ fontSize: 110, fontWeight: 800, lineHeight: 1 }}>
-              STAGE {stage}: <span style={{ color: "#F16363" }}>{points} PTS</span>
+              {`STAGE ${stage}: `}
+              <span style={{ color: "#F16363" }}>{` ${points} PTS`}</span>
             </span>
             {standing && (
               <span style={{ fontSize: 44, fontWeight: 700, color: "#FAFAFA", letterSpacing: 2 }}>
