@@ -347,6 +347,13 @@ export function TeamDashboard() {
         )}
       </section>
 
+      <ShareCardPanel
+        teamName={data.team.name}
+        squadNames={data.squad.map((r) => r.name)}
+        lastScore={lastScore ? { stageNumber: lastScore.stageNumber, points: lastScore.points } : null}
+        globalRank={data.totals?.globalRank ?? null}
+      />
+
       <LeaguesPanel leagues={data.leagues} onChanged={reload} teamName={data.team.name} />
 
       {transferOut && market && (
@@ -451,6 +458,90 @@ function TransferModal({
         </button>
       </div>
     </div>
+  );
+}
+
+/**
+ * Shareable cards (Section 8.4): brand-styled OG images rendered by
+ * /api/og/fantasy. Web Share API with the image attached where the
+ * platform allows it; clipboard text + link everywhere else.
+ */
+function ShareCardPanel({
+  teamName,
+  squadNames,
+  lastScore,
+  globalRank,
+}: {
+  teamName: string;
+  squadNames: string[];
+  lastScore: { stageNumber: number; points: number } | null;
+  globalRank: number | null;
+}) {
+  const [message, setMessage] = useState<string | null>(null);
+
+  function cardUrl(): string {
+    const base = `${window.location.origin}/api/og/fantasy`;
+    if (lastScore) {
+      const params = new URLSearchParams({
+        card: "stage",
+        team: teamName,
+        stage: String(lastScore.stageNumber),
+        points: String(lastScore.points),
+      });
+      if (globalRank) params.set("standing", `global #${globalRank.toLocaleString()}`);
+      return `${base}?${params}`;
+    }
+    const surnames = squadNames.map((n) => n.split(" ").slice(-1)[0]).join("|");
+    return `${base}?${new URLSearchParams({ card: "team", team: teamName, riders: surnames })}`;
+  }
+
+  async function share() {
+    const url = cardUrl();
+    const text = lastScore
+      ? `Stage ${lastScore.stageNumber}: ${lastScore.points} pts for "${teamName}" in the Roadman Fantasy Tour.`
+      : `"${teamName}" is in the Roadman Fantasy Tour.`;
+    const gameUrl = `${window.location.origin}/fantasy`;
+    try {
+      const blob = await fetch(url).then((r) => r.blob());
+      const file = new File([blob], "roadman-fantasy.png", { type: "image/png" });
+      if (navigator.canShare?.({ files: [file] })) {
+        await navigator.share({ files: [file], text: `${text} ${gameUrl}` });
+        return;
+      }
+    } catch {
+      // Card fetch or share failed — fall through to the clipboard path.
+    }
+    try {
+      await navigator.clipboard.writeText(`${text}\n${gameUrl}\n${url}`);
+      setMessage("Copied — card image link included.");
+    } catch {
+      window.open(url, "_blank", "noopener");
+    }
+  }
+
+  return (
+    <section aria-label="Share" className="mt-10">
+      <div className="flex items-center justify-between gap-3 rounded-xl border border-white/10 bg-deep-purple/40 p-4">
+        <div>
+          <h2 className="font-heading text-xl tracking-wide">
+            {lastScore ? `BRAG ABOUT STAGE ${lastScore.stageNumber}` : "SHOW OFF YOUR EIGHT"}
+          </h2>
+          <p className="text-xs text-mid-grey">A card for the group chat, in full Roadman colours.</p>
+        </div>
+        <button
+          type="button"
+          onClick={share}
+          className="shrink-0 rounded-md bg-coral px-4 py-2.5 font-heading text-sm tracking-widest text-charcoal hover:bg-coral-hover"
+        >
+          SHARE CARD
+        </button>
+      </div>
+      {message && (
+        <p role="status" className="mt-2 text-sm text-coral">
+          {message}
+        </p>
+      )}
+    </section>
   );
 }
 
