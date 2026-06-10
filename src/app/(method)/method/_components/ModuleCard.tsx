@@ -58,7 +58,7 @@ export function ModuleCard({ module, availability, completed }: ModuleCardProps)
         </p>
         <p className="mt-3 text-xs text-foreground-muted">
           {isLocked
-            ? `Unlocks in ${availability.daysUntilUnlock} day${
+            ? `Opens in ${availability.daysUntilUnlock} day${
                 availability.daysUntilUnlock === 1 ? "" : "s"
               }`
             : completed

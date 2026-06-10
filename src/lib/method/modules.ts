@@ -202,7 +202,7 @@ export const METHOD_MODULES: readonly MethodModule[] = [
     weekIndex: 5,
     title: "The Art of Getting Faster by Doing Less",
     subtitle: "Adaptation is where improvement happens — and almost everyone gets it wrong",
-    oneLiner: "Sleep, daily readiness, and why recovery is the highest-leverage thing in the system.",
+    oneLiner: "Sleep, daily readiness, and why recovery is the highest-return thing in the system.",
     pillar: "recovery",
     unlocksOnDayOffset: 28,
     videoYouTubeId: null,

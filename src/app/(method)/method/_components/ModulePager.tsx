@@ -65,7 +65,7 @@ function PagerSlot({ module, direction, available }: PagerSlotProps) {
       </span>
       {!available && (
         <span className="text-[11px] text-foreground-muted">
-          Unlocks once you&apos;ve worked the current week.
+          Opens once you&apos;ve worked the current week.
         </span>
       )}
     </div>

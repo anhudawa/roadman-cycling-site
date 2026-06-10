@@ -19,7 +19,7 @@ export function LockedModuleNotice({
         LOCKED
       </p>
       <h2 className="font-heading uppercase leading-[0.95] text-3xl md:text-4xl mb-4">
-        Unlocks in {days} day{days === 1 ? "" : "s"}
+        Opens in {days} day{days === 1 ? "" : "s"}
       </h2>
       <p className="text-foreground-muted max-w-md mx-auto">
         We drip the modules one per week so you can do the work, not just read
@@ -27,7 +27,7 @@ export function LockedModuleNotice({
       </p>
       {unlocksAt && (
         <p className="mt-4 text-xs text-foreground-muted">
-          Unlocks{" "}
+          Opens{" "}
           {unlocksAt.toLocaleDateString(undefined, {
             year: "numeric",
             month: "long",

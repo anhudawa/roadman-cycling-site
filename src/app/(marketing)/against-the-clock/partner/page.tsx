@@ -126,6 +126,42 @@ const surfaces = [
 ];
 
 /* ------------------------------------------------------------------ */
+/*  Production quality — grounded in the real body of work            */
+/* ------------------------------------------------------------------ */
+
+const production = [
+  {
+    label: "ON-CAMERA STUDIO",
+    body: `${BRAND_STATS.videoEpisodesLabel} episodes filmed for video, not just recorded for audio. A consistent studio look that frames a timepiece the way it deserves to be seen.`,
+  },
+  {
+    label: "WORLD TOUR ACCESS",
+    body:
+      "Guests the rest of cycling media cannot book — World Tour coaches, sports scientists, and Grand Tour riders. Your brand sits inside conversations that carry real authority.",
+  },
+  {
+    label: "LONG-FORM CRAFT",
+    body:
+      "Hour-long interviews edited with care, not churned. The pacing and detail a considered audience expects — and the room to tell a brand story properly.",
+  },
+  {
+    label: "EDITORIAL STANDARDS",
+    body:
+      "Every claim sourced and fact-checked to a published editorial standard. A partner brand is associated with credibility, not hype.",
+  },
+  {
+    label: "MULTI-FORMAT MASTERS",
+    body:
+      "One shoot becomes a long-form episode, social cuts, newsletter features, and an evergreen page — your placement worked across formats, not spent in a single slot.",
+  },
+  {
+    label: "OWN-CHANNEL RIGHTS",
+    body:
+      "Usage rights to the assets we create together, cleared for your own website, social, and retail screens. The work keeps earning on your channels too.",
+  },
+];
+
+/* ------------------------------------------------------------------ */
 /*  Partnership tiers                                                  */
 /* ------------------------------------------------------------------ */
 
@@ -427,6 +463,36 @@ export default function AgainstTheClockPartnerPage() {
                 </ScrollReveal>
               ))}
             </div>
+          </Container>
+        </Section>
+
+        {/* Production quality */}
+        <Section background="deep-purple" grain>
+          <Container width="narrow">
+            <ScrollReveal direction="up" className="mb-8">
+              <h2 className="font-heading text-2xl text-off-white tracking-wide mb-3">
+                PRODUCTION QUALITY
+              </h2>
+              <p className="text-foreground-muted leading-relaxed">
+                A property is only worth your name if it is made to your
+                standard. Here is how Against the Clock is built.
+              </p>
+            </ScrollReveal>
+            <div className="grid sm:grid-cols-2 gap-4">
+              {production.map((p) => (
+                <Card key={p.label} className="p-6" hoverable={false}>
+                  <p className="font-heading text-coral tracking-widest text-sm mb-2">
+                    {p.label}
+                  </p>
+                  <p className="text-sm text-foreground-muted leading-relaxed">{p.body}</p>
+                </Card>
+              ))}
+            </div>
+            <ScrollReveal direction="up" className="mt-8 text-center">
+              <Button href="/against-the-clock/partner/one-pager" variant="ghost" size="md">
+                Download the One-Pager
+              </Button>
+            </ScrollReveal>
           </Container>
         </Section>
 

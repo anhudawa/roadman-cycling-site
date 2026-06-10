@@ -56,7 +56,7 @@ function Hero() {
       <Reveal delay={140}>
         <p className="text-lg md:text-xl text-foreground-muted max-w-[58ch] leading-relaxed">
           Twelve weeks of structured training. Five pillars covered properly.
-          A system you keep for life. Module 01 unlocks the second you log in.
+          A system you keep for life. Module 01 opens the second you log in.
         </p>
       </Reveal>
     </Container>
@@ -145,7 +145,7 @@ function OrderSummary({ tier }: { tier: "standard" | "premium" }) {
             ))}
           </ul>
           <p className="mt-4 text-sm text-foreground-muted leading-relaxed">
-            Coaching architecture from the people behind Pogačar and Froome.
+            Coaching architecture from the people behind Froome and Cavendish.
             Nutrition from a World Tour performance dietitian. S&amp;C built on
             the 2025 masters meta-analysis. Recovery treated as training.
             Le Métier — the craft the spreadsheet can&apos;t teach you.
