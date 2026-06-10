@@ -140,7 +140,17 @@ function ensureBlogDir() {
   }
 }
 
+// Build-time memoisation of the parsed blog corpus. Mirrors getAllEpisodes()
+// in podcast.ts: called many times per page across thousands of pages
+// (directly and via the content graph), so re-reading and parsing all ~370
+// post files on every call was a major contributor to the `next build`
+// per-page timeout. Cached only in production so the dev server still
+// reflects content edits without a restart; callers get a shallow copy.
+let allPostsCache: BlogPostMeta[] | null = null;
+
 export function getAllPosts(): BlogPostMeta[] {
+  if (allPostsCache) return allPostsCache.slice();
+
   ensureBlogDir();
   const files = fs.readdirSync(BLOG_DIR).filter((f) => f.endsWith(".mdx"));
 
@@ -160,10 +170,13 @@ export function getAllPosts(): BlogPostMeta[] {
     };
   });
 
-  return posts.sort(
+  const sorted = posts.sort(
     (a, b) =>
       new Date(b.publishDate).getTime() - new Date(a.publishDate).getTime()
   );
+
+  if (process.env.NODE_ENV === "production") allPostsCache = sorted;
+  return sorted.slice();
 }
 
 export function getPostBySlug(slug: string): BlogPostFull | null {

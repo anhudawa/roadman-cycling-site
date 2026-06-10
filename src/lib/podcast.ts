@@ -180,7 +180,22 @@ function applyReviewGate(frontmatter: EpisodeFrontmatter): EpisodeFrontmatter {
   };
 }
 
+// Build-time memoisation of the parsed episode corpus. The MDX files are
+// immutable during a production build, yet getAllEpisodes() is called many
+// times per page across thousands of pages — directly, via getAllGuests(),
+// and via the content graph. Re-reading and gray-matter-parsing all ~700
+// episode files on every call made `next build` time out at 180s/page and
+// fail. Caching collapses that to a single parse per worker process.
+//
+// Only cached when NODE_ENV === "production" (i.e. `next build`/serve) so
+// the dev server keeps picking up content edits — including the background
+// jobs that rewrite podcast MDX mid-session — without a restart. Callers
+// get a shallow copy so an in-place sort/reverse can't corrupt the cache.
+let allEpisodesCache: EpisodeMeta[] | null = null;
+
 export function getAllEpisodes(): EpisodeMeta[] {
+  if (allEpisodesCache) return allEpisodesCache.slice();
+
   ensurePodcastDir();
   const files = fs.readdirSync(PODCAST_DIR).filter((f) => f.endsWith(".mdx"));
 
@@ -197,10 +212,13 @@ export function getAllEpisodes(): EpisodeMeta[] {
     };
   });
 
-  return episodes.sort(
+  const sorted = episodes.sort(
     (a, b) =>
       new Date(b.publishDate).getTime() - new Date(a.publishDate).getTime()
   );
+
+  if (process.env.NODE_ENV === "production") allEpisodesCache = sorted;
+  return sorted.slice();
 }
 
 /**

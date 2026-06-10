@@ -1131,11 +1131,20 @@ function loadPillarContent(slug: string): string | null {
   return fs.readFileSync(mdxPath, "utf-8");
 }
 
+// Build-time memoisation — getAllTopics() filters the full post/episode
+// corpus and reads pillar-content MDX from disk for every topic, and
+// getTopicBySlug() rebuilds the whole set on each call. The content graph and
+// topic pages hit this per page. Cached in production only (shallow copy
+// returned); dev stays live so content edits show without a restart.
+let allTopicsCache: TopicHub[] | null = null;
+
 export function getAllTopics(): TopicHub[] {
+  if (allTopicsCache) return allTopicsCache.slice();
+
   const allPosts = getAllPosts();
   const allEpisodes = getAllEpisodes();
 
-  return TOPIC_DEFINITIONS.map((topic) => {
+  const topics = TOPIC_DEFINITIONS.map((topic) => {
     // Get mapped blog posts
     const postSlugs = new Set(TOPIC_POST_MAP[topic.slug] || []);
     const posts = allPosts.filter((p) => postSlugs.has(p.slug));
@@ -1176,6 +1185,9 @@ export function getAllTopics(): TopicHub[] {
       faqs: TOPIC_FAQS[topic.slug] ?? [],
     };
   });
+
+  if (process.env.NODE_ENV === "production") allTopicsCache = topics;
+  return topics.slice();
 }
 
 export function getTopicBySlug(slug: string): TopicHub | null {

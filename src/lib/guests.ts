@@ -420,7 +420,15 @@ function normalizeName(name: string): string {
   return NAME_ALIASES[cleaned] || NAME_ALIASES[name] || cleaned;
 }
 
+// Build-time memoisation — getAllGuests() re-derives every guest profile by
+// iterating the full episode corpus, and the content graph calls it once per
+// page. Cached in production only (shallow copy returned) so the build does
+// the aggregation once per worker; dev stays live. See getAllEpisodes().
+let allGuestsCache: GuestProfile[] | null = null;
+
 export function getAllGuests(): GuestProfile[] {
+  if (allGuestsCache) return allGuestsCache.slice();
+
   const episodes = getAllEpisodes();
   const guestMap = new Map<string, GuestProfile>();
 
@@ -473,7 +481,7 @@ export function getAllGuests(): GuestProfile[] {
   }
 
   // Sort by prominence (featured guests first), then episode count, then alphabetically
-  return Array.from(guestMap.values()).sort((a, b) => {
+  const sorted = Array.from(guestMap.values()).sort((a, b) => {
     const aWeight = GUEST_PROMINENCE[a.name] || 0;
     const bWeight = GUEST_PROMINENCE[b.name] || 0;
     if (bWeight !== aWeight) return bWeight - aWeight;
@@ -481,6 +489,9 @@ export function getAllGuests(): GuestProfile[] {
       return b.episodeCount - a.episodeCount;
     return a.name.localeCompare(b.name);
   });
+
+  if (process.env.NODE_ENV === "production") allGuestsCache = sorted;
+  return sorted.slice();
 }
 
 export function getGuestBySlug(slug: string): GuestProfile | null {
