@@ -288,6 +288,13 @@
       "when": 1778809200000,
       "tag": "0040_camp_bookings_stripe",
       "breakpoints": true
+    },
+    {
+      "idx": 41,
+      "version": "7",
+      "when": 1781130321181,
+      "tag": "0041_fantasy_tour",
+      "breakpoints": true
     }
   ]
 }

@@ -1940,3 +1940,327 @@ export const claimEmbeddings = pgTable(
   },
   (t) => [uniqueIndex("claim_embeddings_claim_id_uniq").on(t.claimId)]
 );
+
+// ============================================================
+// ROADMAN FANTASY TOUR — Tour de France 2026 fantasy game
+// ------------------------------------------------------------
+// Data-accuracy contract: every row in fantasy_pro_teams,
+// fantasy_riders, and fantasy_stages carries source_url +
+// verified_at. The seed script and admin panel refuse to mark
+// anything "confirmed" without a source. Riders are NEVER
+// seeded from model memory — they enter via the PCS/official
+// import workflow (scripts/fantasy/import-startlist.ts) or the
+// admin startlist manager.
+// ============================================================
+
+// --- Fantasy: tunable game config (key/value, editable in admin) ---
+export const fantasyGameConfig = pgTable(
+  "fantasy_game_config",
+  {
+    id: serial("id").primaryKey(),
+    key: text("key").notNull().unique(),
+    value: jsonb("value").notNull().$type<unknown>(),
+    updatedBy: text("updated_by"),
+    updatedAt: timestamp("updated_at", { withTimezone: true }).notNull().defaultNow(),
+  }
+);
+
+// --- Fantasy: the 23 real pro teams ---
+export const fantasyProTeams = pgTable(
+  "fantasy_pro_teams",
+  {
+    id: serial("id").primaryKey(),
+    name: text("name").notNull().unique(),
+    /** Short display code, e.g. "UAE", "VLB". */
+    code: text("code").notNull(),
+    category: text("category").notNull().$type<"worldteam" | "proteam">(),
+    /** Accent strip colour on rider cards (no official kit imagery — see Section 9). */
+    jerseyHex: text("jersey_hex"),
+    sourceUrl: text("source_url").notNull(),
+    verifiedAt: timestamp("verified_at", { withTimezone: true }).notNull(),
+    createdAt: timestamp("created_at", { withTimezone: true }).notNull().defaultNow(),
+  }
+);
+
+// --- Fantasy: riders (provisional → confirmed lifecycle, Section 6.2) ---
+export const fantasyRiders = pgTable(
+  "fantasy_riders",
+  {
+    id: serial("id").primaryKey(),
+    name: text("name").notNull(),
+    /** ProCyclingStats slug, e.g. "tadej-pogacar" — stable cross-source key. */
+    pcsId: text("pcs_id").unique(),
+    proTeamId: integer("pro_team_id").notNull().references(() => fantasyProTeams.id),
+    /** Credits, 4–24. Fixed at launch (no in-Tour price changes). */
+    price: integer("price").notNull(),
+    riderClass: text("rider_class").notNull().$type<"gc" | "sprint" | "climb" | "break">(),
+    countryCode: text("country_code"),
+    status: text("status")
+      .notNull()
+      .default("provisional")
+      .$type<"provisional" | "confirmed" | "removed" | "dns" | "abandoned">(),
+    /** Stage after which the rider left the race (DNF/DNS/HD). Scores nothing beyond it. */
+    abandonedAfterStage: integer("abandoned_after_stage"),
+    confirmedSource: text("confirmed_source"),
+    sourceUrl: text("source_url").notNull(),
+    verifiedAt: timestamp("verified_at", { withTimezone: true }).notNull(),
+    createdAt: timestamp("created_at", { withTimezone: true }).notNull().defaultNow(),
+    updatedAt: timestamp("updated_at", { withTimezone: true }).notNull().defaultNow(),
+  },
+  (t) => [
+    index("fantasy_riders_team_idx").on(t.proTeamId),
+    index("fantasy_riders_status_idx").on(t.status),
+  ]
+);
+
+// --- Fantasy: the 21 stages (verified rows only — Section 2) ---
+export const fantasyStages = pgTable(
+  "fantasy_stages",
+  {
+    id: serial("id").primaryKey(),
+    stageNumber: integer("stage_number").notNull().unique(),
+    date: date("date").notNull(),
+    startTown: text("start_town").notNull(),
+    finishTown: text("finish_town").notNull(),
+    distanceKm: numeric("distance_km", { precision: 5, scale: 1 }).notNull(),
+    stageType: text("stage_type").notNull().$type<"ttt" | "itt" | "flat" | "hilly" | "mountain">(),
+    summitFinish: boolean("summit_finish").notNull().default(false),
+    /** Official start time — transfer deadline. Null until ASO publishes timetables. */
+    startTimeCest: timestamp("start_time_cest", { withTimezone: true }),
+    /** Monday rest day follows this stage (drives the bonus-transfer + rest-day email). */
+    restDayAfter: boolean("rest_day_after").notNull().default(false),
+    /** Anthony's 2–3 sentence stage note for the daily email. Human-reviewed. */
+    roadmanTake: text("roadman_take"),
+    sourceUrl: text("source_url").notNull(),
+    crossCheckUrl: text("cross_check_url"),
+    verifiedAt: timestamp("verified_at", { withTimezone: true }).notNull(),
+    createdAt: timestamp("created_at", { withTimezone: true }).notNull().defaultNow(),
+  }
+);
+
+// --- Fantasy: players (the email-gate output — Section 5.1) ---
+export const fantasyPlayers = pgTable(
+  "fantasy_players",
+  {
+    id: serial("id").primaryKey(),
+    email: text("email").notNull().unique(),
+    firstName: text("first_name").notNull(),
+    country: text("country"),
+    /** Optional one-question persona signal ("What kind of rider are you?"). */
+    riderPersona: text("rider_persona"),
+    /** Explicit GDPR consent to the daily Tour email + Roadman updates. */
+    consentAt: timestamp("consent_at", { withTimezone: true }),
+    /** Set when the magic link is first clicked — doubles as double-opt-in. */
+    verifiedAt: timestamp("verified_at", { withTimezone: true }),
+    beehiivSubscriberId: text("beehiiv_subscriber_id"),
+    beehiivSyncedAt: timestamp("beehiiv_synced_at", { withTimezone: true }),
+    /** Retry-queue counter for failed Beehiiv syncs (cron retries until set). */
+    beehiivSyncAttempts: integer("beehiiv_sync_attempts").notNull().default(0),
+    capiSentAt: timestamp("capi_sent_at", { withTimezone: true }),
+    /** GDPR deletion: anonymised, team preserved for league integrity. */
+    deletedAt: timestamp("deleted_at", { withTimezone: true }),
+    createdAt: timestamp("created_at", { withTimezone: true }).notNull().defaultNow(),
+  },
+  (t) => [index("fantasy_players_email_idx").on(t.email)]
+);
+
+// --- Fantasy: magic-link + email deep-link tokens ---
+export const fantasyAuthTokens = pgTable(
+  "fantasy_auth_tokens",
+  {
+    id: serial("id").primaryKey(),
+    email: text("email").notNull(),
+    tokenHash: text("token_hash").notNull().unique(),
+    /** "login" = single-use 24h; "deeplink" = multi-use 7d, play scope only. */
+    purpose: text("purpose").notNull().default("login").$type<"login" | "deeplink">(),
+    expiresAt: timestamp("expires_at", { withTimezone: true }).notNull(),
+    usedAt: timestamp("used_at", { withTimezone: true }),
+    useCount: integer("use_count").notNull().default(0),
+    createdAt: timestamp("created_at", { withTimezone: true }).notNull().defaultNow(),
+  },
+  (t) => [
+    index("fantasy_auth_tokens_email_idx").on(t.email),
+    index("fantasy_auth_tokens_expires_at_idx").on(t.expiresAt),
+  ]
+);
+
+// --- Fantasy: one team per player ---
+export const fantasyTeams = pgTable(
+  "fantasy_teams",
+  {
+    id: serial("id").primaryKey(),
+    playerId: integer("player_id").notNull().unique().references(() => fantasyPlayers.id),
+    name: text("name").notNull(),
+    createdAt: timestamp("created_at", { withTimezone: true }).notNull().defaultNow(),
+  }
+);
+
+// --- Fantasy: effective-dated squad membership (Section 6.4 — never overwrite) ---
+// "What was my team on Stage 7" = rows where effectiveFromStage <= 7
+// AND (effectiveToStage IS NULL OR effectiveToStage >= 7).
+export const fantasyTeamRiders = pgTable(
+  "fantasy_team_riders",
+  {
+    id: serial("id").primaryKey(),
+    teamId: integer("team_id").notNull().references(() => fantasyTeams.id),
+    riderId: integer("rider_id").notNull().references(() => fantasyRiders.id),
+    effectiveFromStage: integer("effective_from_stage").notNull(),
+    effectiveToStage: integer("effective_to_stage"),
+    addedVia: text("added_via").notNull().default("initial").$type<"initial" | "transfer" | "grace">(),
+    createdAt: timestamp("created_at", { withTimezone: true }).notNull().defaultNow(),
+  },
+  (t) => [
+    index("fantasy_team_riders_team_idx").on(t.teamId),
+    index("fantasy_team_riders_team_from_idx").on(t.teamId, t.effectiveFromStage),
+  ]
+);
+
+// --- Fantasy: transfer ledger ---
+export const fantasyTransfers = pgTable(
+  "fantasy_transfers",
+  {
+    id: serial("id").primaryKey(),
+    teamId: integer("team_id").notNull().references(() => fantasyTeams.id),
+    /** First stage the incoming rider scores for. */
+    effectiveFromStage: integer("effective_from_stage").notNull(),
+    riderOutId: integer("rider_out_id").notNull().references(() => fantasyRiders.id),
+    riderInId: integer("rider_in_id").notNull().references(() => fantasyRiders.id),
+    /** standard counts against the 8; rest_day_bonus consumes an unlocked bonus;
+     *  grace (pre-Stage-1 DNS swap window) is free. */
+    kind: text("kind").notNull().default("standard").$type<"standard" | "rest_day_bonus" | "grace">(),
+    createdAt: timestamp("created_at", { withTimezone: true }).notNull().defaultNow(),
+  },
+  (t) => [index("fantasy_transfers_team_idx").on(t.teamId)]
+);
+
+// --- Fantasy: captain per stage (scores double) ---
+export const fantasyCaptainPicks = pgTable(
+  "fantasy_captain_picks",
+  {
+    id: serial("id").primaryKey(),
+    teamId: integer("team_id").notNull().references(() => fantasyTeams.id),
+    stageNumber: integer("stage_number").notNull(),
+    riderId: integer("rider_id").notNull().references(() => fantasyRiders.id),
+    updatedAt: timestamp("updated_at", { withTimezone: true }).notNull().defaultNow(),
+  },
+  (t) => [uniqueIndex("fantasy_captain_picks_team_stage_uniq").on(t.teamId, t.stageNumber)]
+);
+
+// --- Fantasy: raw stage results (Section 6.3 — two-step publish) ---
+export const fantasyStageResults = pgTable(
+  "fantasy_stage_results",
+  {
+    id: serial("id").primaryKey(),
+    stageNumber: integer("stage_number").notNull().unique(),
+    /** StageResultData — the full raw result payload scoring recomputes from. */
+    payload: jsonb("payload").notNull().$type<Record<string, unknown>>(),
+    /** Bumped on every correction; scoring_events carry the version they came from. */
+    version: integer("version").notNull().default(1),
+    status: text("status").notNull().default("draft").$type<"draft" | "previewed" | "published">(),
+    sourceUrl: text("source_url"),
+    enteredBy: text("entered_by"),
+    publishedAt: timestamp("published_at", { withTimezone: true }),
+    updatedAt: timestamp("updated_at", { withTimezone: true }).notNull().defaultNow(),
+  }
+);
+
+// --- Fantasy: per-rider scoring ledger (fully recomputable — Section 4.4) ---
+export const fantasyScoringEvents = pgTable(
+  "fantasy_scoring_events",
+  {
+    id: serial("id").primaryKey(),
+    stageNumber: integer("stage_number").notNull(),
+    riderId: integer("rider_id").notNull().references(() => fantasyRiders.id),
+    rule: text("rule").notNull(),
+    points: integer("points").notNull(),
+    sourceRef: text("source_ref"),
+    resultVersion: integer("result_version").notNull().default(1),
+    createdAt: timestamp("created_at", { withTimezone: true }).notNull().defaultNow(),
+  },
+  (t) => [
+    index("fantasy_scoring_events_stage_idx").on(t.stageNumber),
+    index("fantasy_scoring_events_rider_stage_idx").on(t.riderId, t.stageNumber),
+  ]
+);
+
+// --- Fantasy: computed per-team per-stage scores (rebuilt on publish) ---
+export const fantasyTeamStageScores = pgTable(
+  "fantasy_team_stage_scores",
+  {
+    id: serial("id").primaryKey(),
+    teamId: integer("team_id").notNull().references(() => fantasyTeams.id),
+    stageNumber: integer("stage_number").notNull(),
+    points: integer("points").notNull(),
+    captainRiderId: integer("captain_rider_id").references(() => fantasyRiders.id),
+    /** Per-rider breakdown for the points-reveal UI. */
+    breakdown: jsonb("breakdown").notNull().$type<Record<string, unknown>>(),
+    computedAt: timestamp("computed_at", { withTimezone: true }).notNull().defaultNow(),
+  },
+  (t) => [
+    uniqueIndex("fantasy_team_stage_scores_uniq").on(t.teamId, t.stageNumber),
+    index("fantasy_team_stage_scores_stage_idx").on(t.stageNumber),
+  ]
+);
+
+// --- Fantasy: computed totals (the leaderboard reads this, never live queries) ---
+export const fantasyTeamTotals = pgTable(
+  "fantasy_team_totals",
+  {
+    id: serial("id").primaryKey(),
+    teamId: integer("team_id").notNull().unique().references(() => fantasyTeams.id),
+    totalPoints: integer("total_points").notNull().default(0),
+    /** Weekly podium leaderboards: Stages 1–9, 10–15, 16–21 (Section 4.5). */
+    week1Points: integer("week1_points").notNull().default(0),
+    week2Points: integer("week2_points").notNull().default(0),
+    week3Points: integer("week3_points").notNull().default(0),
+    /** Tie-break: highest single-stage score, then earliest team creation. */
+    bestStagePoints: integer("best_stage_points").notNull().default(0),
+    globalRank: integer("global_rank"),
+    lastScoredStage: integer("last_scored_stage"),
+    updatedAt: timestamp("updated_at", { withTimezone: true }).notNull().defaultNow(),
+  },
+  (t) => [index("fantasy_team_totals_rank_idx").on(t.globalRank)]
+);
+
+// --- Fantasy: mini-leagues (the viral mechanic) ---
+export const fantasyLeagues = pgTable(
+  "fantasy_leagues",
+  {
+    id: serial("id").primaryKey(),
+    code: text("code").notNull().unique(),
+    name: text("name").notNull(),
+    createdByPlayerId: integer("created_by_player_id").references(() => fantasyPlayers.id),
+    /** The pre-seeded "Roadman Clubhouse" league everyone can join. */
+    isOfficial: boolean("is_official").notNull().default(false),
+    createdAt: timestamp("created_at", { withTimezone: true }).notNull().defaultNow(),
+  }
+);
+
+export const fantasyLeagueMembers = pgTable(
+  "fantasy_league_members",
+  {
+    id: serial("id").primaryKey(),
+    leagueId: integer("league_id").notNull().references(() => fantasyLeagues.id),
+    playerId: integer("player_id").notNull().references(() => fantasyPlayers.id),
+    joinedAt: timestamp("joined_at", { withTimezone: true }).notNull().defaultNow(),
+  },
+  (t) => [
+    uniqueIndex("fantasy_league_members_uniq").on(t.leagueId, t.playerId),
+    index("fantasy_league_members_player_idx").on(t.playerId),
+  ]
+);
+
+// --- Fantasy: audit trail (corrections, confirmations, config edits) ---
+export const fantasyAuditLog = pgTable(
+  "fantasy_audit_log",
+  {
+    id: serial("id").primaryKey(),
+    actor: text("actor").notNull(),
+    action: text("action").notNull(),
+    entity: text("entity").notNull(),
+    entityId: text("entity_id"),
+    detail: jsonb("detail").$type<Record<string, unknown>>(),
+    createdAt: timestamp("created_at", { withTimezone: true }).notNull().defaultNow(),
+  },
+  (t) => [index("fantasy_audit_log_entity_idx").on(t.entity, t.entityId)]
+);
