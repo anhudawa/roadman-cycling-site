@@ -15,7 +15,7 @@
 | 1 | Slop scan | 28 metaphorical `leverage` (business-speak) | **Fixed in place** |
 | 2 | CTA audit | No broken targets; rule conflicts with the deliberate coaching funnel | **Flagged — not mass-rewritten** |
 | 3 | Pricing | USD correct; NDY = $195/mo ✓; no GBP; EUR only on real European camp prices | **Flagged EUR — not auto-converted** |
-| 4 | Expert attribution | Lorang: no Pogačar misattribution ✓. Vekta: absent from all blog content ✓ | **Pass** (Vekta note below) |
+| 4 | Expert attribution | Lorang: **5 frontmatter `role:` fields wrongly stated "coached Pogačar/Vingegaard"**. Vekta: absent from all blog content ✓ | **Fixed 5 role fields** (Vekta note below) |
 | 5 | Heavy compounds | Rule premise conflicts with the site's expert-backed position | **Flagged — not rewritten** |
 | 6 | Episode numbering in prose | 6 violations across 4 files | **Fixed in place** |
 | 7 | Broken internal links | `/blog`, `/podcast`, `/coaching/*` clean; **15 broken `/guests/` refs found** | **Fixed: 2 repointed, 13 de-linked/repointed** |
@@ -63,9 +63,19 @@ Files touched (28 edits): strength-training-cyclists-complete-guide, rpe-and-pow
 
 ---
 
-## 4. Expert attribution — PASS
+## 4. Expert attribution — 5 role fields FIXED
 
-**Dan Lorang:** no misattribution. Zero co-occurrence of "Lorang" + "Pogačar". Every reference correctly ties him to Jan Frodeno / Anne Haug, Lucy Charles-Barclay, Primož Roglič's programme, and Red Bull–Bora–Hansgrohe. ✓
+**Dan Lorang:** article *bodies* are clean (every prose reference correctly ties him to Jan Frodeno / Anne Haug, Lucy Charles-Barclay, Primož Roglič's programme, and Red Bull–Bora–Hansgrohe). **However, a same-line "Lorang"+"Pogačar" sweep misses the frontmatter `experts:` blocks**, where the `name:` and `role:` sit on separate lines. A `name: Dan Lorang` + next-line `role:` check surfaced **5 `role:` fields wrongly crediting him with Pogačar/Vingegaard** — all fixed to his real athletes (Frodeno, Roglič):
+
+| File | Was | Now |
+|------|-----|-----|
+| `jay-vine-less-training-made-me-faster.mdx` | "Coach to Pogačar and Vingegaard at various points" | "Head of Performance at Red Bull–Bora–Hansgrohe; coached Frodeno and Roglič" |
+| `zone-2-cycling-heart-rate-vs-power-vs-rpe.mdx` | "coached Pogačar and Vingegaard" | "coached Frodeno and Roglič" |
+| `five-mistakes-self-coached-cyclists-make.mdx` | "Coached Vingegaard, Roglic" | "Coached Frodeno, Roglič" |
+| `polarised-training-cycling-world-tour-prescription.mdx` | "Coached Vingegaard, Pogacar early-career" | "Coached Frodeno and Roglič" |
+| `cycling-training-plan-masters-over-40.mdx` | "coached Pogačar and Vingegaard" | "coached Frodeno and Roglič" |
+
+`climb-faster-cycling-five-fixable-reasons.mdx` has `role: Amateur cyclist who beat Pogacar` — that's **Andrew Feather** (factually correct), not Lorang. Left unchanged.
 
 **TrainingPeaks / Vekta:** **"Vekta" appears in zero `content/blog/` files.** ✓ TrainingPeaks references are correct.
 
@@ -123,6 +133,10 @@ Verified every internal-link class against the live route tree / data registries
 After fixes, re-running the real generator against the current tree: **all 42 distinct `/guests/` slugs referenced in the blog resolve — 0 broken.**
 
 **Systemic recommendation:** `EvidenceBlock` renders any `experts[].href` verbatim. Adding a slug-existence check (render a link only when `getGuestBySlug(slug)` resolves, else plain text) would make future frontmatter typos non-breaking by construction. The same `getAllGuestSlugs` check would keep the Article JSON-LD `mentions` free of 404 `@id`s.
+
+**Broken hero image — FIXED.** `cycling-over-40-complete-guide.mdx` set `featuredImage: /images/blog/cyclist-over-40-climbing.webp`, which does not exist (sibling files in `/images/blog/` do). Repointed to the existing, thematically-matched `/images/cycling/gravel-road-climb.jpg` used by its sibling over-40 articles.
+
+**Audit-tool blind spot — recommend fixing the tooling.** `npm run audit:links:offline` does **not** recognise the `/answers/` route (`getAllAnswerSlugs`, 259 valid slugs), so it reports **568 valid `/answers/` links sitewide as broken "unknown"** — all false positives (every blog `/answers/` link was verified to resolve). This masks real breakage; teaching `scripts/audit-links.mjs` about `/answers/` is recommended. The remaining non-`/answers/` "unknown" hits (95 legacy `https://www.roadmancycling.com/...` CTAs in old `content/podcast/` episodes, 6 `/method` refs in `src/lib`) are outside blog scope.
 
 ---
 
