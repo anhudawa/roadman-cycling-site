@@ -12,8 +12,9 @@ import {
  * Product registry — thin read-through cache around `report_products`.
  *
  * Prices are stored in cents so we can display them without rounding
- * drift; currency defaults to EUR but the column is a text field so
- * USD/GBP pricing lands cleanly if we localise later. Bundles reference
+ * drift; currency defaults to USD (migration 0035 flipped the column
+ * default from EUR) but the column is text so other currencies land
+ * cleanly if we localise later. Bundles reference
  * child slugs in a JSON array so we don't need a join table — admin
  * can re-order bundle items without a schema migration.
  */

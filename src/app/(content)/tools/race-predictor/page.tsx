@@ -301,7 +301,7 @@ export default function RacePredictorPage() {
                     <div className="flex items-center gap-2 mb-5">
                       <LockIcon />
                       <p className="font-heading text-coral text-xs tracking-widest">
-                        UNLOCK YOUR FULL RACE PLAN
+                        YOUR FULL RACE PLAN
                       </p>
                     </div>
 
@@ -331,7 +331,7 @@ export default function RacePredictorPage() {
                       data-track="tool_race_predictor_skool"
                       className="inline-flex items-center justify-center gap-2 font-heading tracking-wider uppercase rounded-md bg-coral text-off-white hover:bg-coral/90 px-6 py-3 text-sm transition-all"
                     >
-                      Unlock the Full Plan →
+                      Get the Full Plan →
                     </a>
                     <p className="text-foreground-subtle text-xs mt-4">
                       Free preview above is yours to keep. Pacing, fuelling, and

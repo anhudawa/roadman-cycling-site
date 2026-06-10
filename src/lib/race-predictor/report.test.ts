@@ -68,5 +68,5 @@ describe("renderRaceReportHtml", () => {
     expect(html).toContain("<h2>Model assumptions</h2>");
     expect(html).toContain("small group");
     expect(html).toContain("178 cm");
-  });
+  }, 30_000); // heavy module graph + 5× scenario engine runs; generous timeout for parallel-suite CPU contention
 });

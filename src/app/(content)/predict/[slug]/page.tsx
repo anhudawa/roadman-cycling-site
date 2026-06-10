@@ -802,7 +802,7 @@ function PredictEventLanding({ course }: { course: CourseRow }) {
               </h2>
               <p className="mt-4 text-off-white/80 leading-relaxed">
                 Start with the free finish-time prediction. If this is an A race,
-                unlock the Race Report for climb pacing, wind strategy, fuelling
+                get the Race Report for climb pacing, wind strategy, fuelling
                 targets, equipment changes, and the biggest time gains.
               </p>
               <div className="mt-6">

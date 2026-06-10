@@ -32,7 +32,7 @@ export default function PredictLayout({ children }: { children: React.ReactNode 
           "What-if sliders for FTP, weight, drafting, wind, drivetrain",
           "Confidence range based on physiological inputs",
           "Gap-to-cutoff bar for events with published sweep times",
-          "Free; premium Race Report unlocks expanded scenarios",
+          "Free; premium Race Report adds expanded scenarios",
         ]}
       />
       <JsonLd
