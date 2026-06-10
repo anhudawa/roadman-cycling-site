@@ -1,5 +1,27 @@
 import { type ContentPillar } from "@/types";
 
+/**
+ * Named-expert evidence for a problem page — a verified podcast guest, their
+ * credential, a relevant episode, and 2-3 sentences of expert-backed advice.
+ *
+ * Every field is verified, not generated: `name`/`credential`/`guestSlug`/
+ * `episodeSlug` are reused from the editorially-checked answer corpus
+ * (`src/lib/answers-data/*`), where the scaled-content audit confirmed all
+ * guest and episode references resolve. `insight` is a faithful paraphrase of
+ * that guest's documented position from the linked episode — never a
+ * fabricated quote. Rendered on the page (guest + episode links) to turn the
+ * previously thin diagnostic stubs into grounded, attributed pages.
+ */
+export interface ProblemExpertEvidence {
+  name: string;
+  credential: string;
+  insight: string;
+  /** Resolves to /podcast/[slug]; verified against content/podcast. */
+  episodeSlug: string;
+  /** Resolves to /guests/[slug]. */
+  guestSlug: string;
+}
+
 export interface ProblemPage {
   slug: string;
   title: string;
@@ -11,11 +33,26 @@ export interface ProblemPage {
   solutions: { title: string; description: string; href: string }[];
   toolHref?: string;
   toolLabel?: string;
+  /**
+   * Optional named-expert evidence. Present on every problem page that has a
+   * natural, verifiable guest/episode match. Deliberately absent where no
+   * episode genuinely backs the topic — see `injury-return`, flagged below —
+   * rather than forcing a tenuous attribution.
+   */
+  expertEvidence?: ProblemExpertEvidence;
 }
 
 export const PROBLEM_PAGES: ProblemPage[] = [
   {
     slug: "not-getting-faster",
+    expertEvidence: {
+      name: "Stephen Barrett",
+      credential: "Head coach, Decathlon AG2R La Mondiale (UCI WorldTour)",
+      insight:
+        "Barrett's read on stalled amateurs is that they train too hard on easy days and not hard enough on hard ones, then skip the recovery that lets adaptation happen. The riders who improve most aren't the ones with the biggest engine — they're the ones who test honestly and build the aerobic base before chasing the ceiling.",
+      episodeSlug: "ep-38-world-tour-coach-s-most-valuable-training-secrets-revealed",
+      guestSlug: "stephen-barrett",
+    },
     title: "Why Am I Not Getting Faster at Cycling?",
     seoTitle: "Why Am I Not Getting Faster Cycling?",
     seoDescription: "Stuck at the same speed? The 6 most common reasons cyclists stop improving — and the fix for each one.",
@@ -41,6 +78,14 @@ export const PROBLEM_PAGES: ProblemPage[] = [
   },
   {
     slug: "stuck-on-plateau",
+    expertEvidence: {
+      name: "Dan Lorang",
+      credential: "Head of Performance, Red Bull–Bora–Hansgrohe; coach to Jan Frodeno",
+      insight:
+        "After thirteen years coaching pros, Lorang's view is that most amateur plateaus mean the easy gains from unstructured riding are gone — the next step isn't more intensity but real periodisation and proper recovery between hard sessions. Adaptation needs an aerobic base deep enough to support the work you keep stacking on top of it.",
+      episodeSlug: "ep-2056-13-years-of-coaching-pros-what-amateurs-dont-know",
+      guestSlug: "dan-lorang",
+    },
     title: "Cycling FTP Plateau — How to Break Through",
     seoTitle: "Stuck on a Cycling Plateau? How to Break Through",
     seoDescription: "FTP plateaued? The most common reasons cyclists get stuck — and the structured approach that breaks through.",
@@ -64,6 +109,14 @@ export const PROBLEM_PAGES: ProblemPage[] = [
   },
   {
     slug: "coming-back-after-break",
+    expertEvidence: {
+      name: "Dan Lorang",
+      credential: "Head of Performance, Red Bull–Bora–Hansgrohe; coach to Jan Frodeno",
+      insight:
+        "Lorang builds amateur plans backward from the goal, not from how fit the rider used to be. Coming back, the trap is training to your old numbers — the fix is to recalibrate zones to current fitness and rebuild the aerobic platform first. Consistency at an honest intensity beats trying to claw back the block you lost.",
+      episodeSlug: "ep-2134-roglics-coach-builds-a-training-plan-for-amateur-riders-dan",
+      guestSlug: "dan-lorang",
+    },
     title: "Coming Back to Cycling After Time Off",
     seoTitle: "Getting Back Into Cycling After a Break",
     seoDescription: "Returning to cycling after time off? How to rebuild fitness safely, set realistic expectations, and avoid the mistakes that cause injuries.",
@@ -86,6 +139,14 @@ export const PROBLEM_PAGES: ProblemPage[] = [
   },
   {
     slug: "losing-power-after-40",
+    expertEvidence: {
+      name: "Joe Friel",
+      credential: "Author of Fast After 50 and The Cyclist's Training Bible",
+      insight:
+        "Friel's work on masters athletes shows the decline curve flattens sharply for riders who keep training structured and lift heavy. The power loss most over-40s blame on age is largely lost muscle and lost recovery capacity — both trainable. Treat strength work as non-negotiable and protect recovery, and the drop is far smaller than the calendar suggests.",
+      episodeSlug: "ep-2205-the-training-secret-to-going-faster-after-40-joe-friel",
+      guestSlug: "joe-friel",
+    },
     title: "Losing Power After 40 — What to Do About It",
     seoTitle: "Losing Cycling Power After 40? Here's What to Do",
     seoDescription: "Power declining after 40? It's not inevitable. The evidence-based approach to maintaining and even gaining FTP as a masters cyclist.",
@@ -108,6 +169,14 @@ export const PROBLEM_PAGES: ProblemPage[] = [
   },
   {
     slug: "slow-climbing",
+    expertEvidence: {
+      name: "Jack Burke",
+      credential: "World's fastest hill climber, multiple Strava KOM holder",
+      insight:
+        "Burke's whole approach to climbing comes down to power-to-weight, and the riders who get faster work both sides of that fraction — structured intervals to raise the power, sensible body composition to manage the weight. Trying to climb faster by simply pushing harder almost always ends in blowing up before the summit.",
+      episodeSlug: "ep-2083-secrets-of-the-worlds-fastest-hill-climber-jack-burke",
+      guestSlug: "jack-burke",
+    },
     title: "Why Am I Slow on Climbs?",
     seoTitle: "Slow on Cycling Climbs? The Real Reasons Why",
     seoDescription: "Getting dropped on climbs? The physiological, pacing, and training reasons cyclists struggle uphill — and the specific fixes for each.",
@@ -132,6 +201,14 @@ export const PROBLEM_PAGES: ProblemPage[] = [
   },
   {
     slug: "hr-too-high",
+    expertEvidence: {
+      name: "Professor Stephen Seiler",
+      credential: "Exercise physiologist, University of Agder",
+      insight:
+        "Seiler's point about riding fast at a low heart rate is that most amateurs let their easy rides drift up into the moderate zone, so they never fully recover and the aerobic base stops growing. A genuinely easy ride should feel almost too easy — when heart rate runs high for the power, the usual cause is accumulated fatigue from training that's never truly easy.",
+      episodeSlug: "ep-2095-secret-to-cycling-fast-at-a-low-heart-rate-prof-seiler",
+      guestSlug: "stephen-seiler",
+    },
     title: "Why Is My Cycling Heart Rate So High?",
     seoTitle: "Cycling Heart Rate Too High? Here's What's Going On",
     seoDescription: "Heart rate higher than it should be at a given pace or power? The 8 most common causes — and the fix for each.",
@@ -158,6 +235,14 @@ export const PROBLEM_PAGES: ProblemPage[] = [
   },
   {
     slug: "cant-lose-weight-cycling",
+    expertEvidence: {
+      name: "David Dunne",
+      credential: "Performance nutritionist, INEOS Grenadiers, EF Education, Uno-X",
+      insight:
+        "Dunne's message to amateurs is that the lean weight you see in pro cycling comes from periodised fuelling, not blanket restriction. Fuel the sessions that need fuelling, run a modest deficit through everyday choices, and keep protein high to protect muscle. Under-eating around hard training backfires — it costs power and stalls the body-composition change you're chasing.",
+      episodeSlug: "ep-2044-world-tour-nutritionist-we-got-weight-loss-wrong",
+      guestSlug: "david-dunne",
+    },
     title: "Why Can't I Lose Weight From Cycling?",
     seoTitle: "Cycling But Not Losing Weight? Here's Why",
     seoDescription: "Riding consistently but the scale won't budge? The 7 reasons cycling alone doesn't drop weight — and what actually works.",
@@ -183,6 +268,14 @@ export const PROBLEM_PAGES: ProblemPage[] = [
   },
   {
     slug: "tired-all-the-time",
+    expertEvidence: {
+      name: "Dan Lorang",
+      credential: "Head of Performance, Red Bull–Bora–Hansgrohe; coach to Jan Frodeno",
+      insight:
+        "Lorang manages elite riders by watching the balance between load and recovery, not just the training itself. Chronic tiredness is rarely one thing — it's intensity, sleep, fuelling and life stress stacking faster than the body can absorb. The intervention is almost always to pull intensity back and let a recovery block do its job before adding work again.",
+      episodeSlug: "ep-2056-13-years-of-coaching-pros-what-amateurs-dont-know",
+      guestSlug: "dan-lorang",
+    },
     title: "Why Am I Always Tired From Cycling?",
     seoTitle: "Cycling Exhaustion: Why Am I Always Tired?",
     seoDescription: "Chronic fatigue from cycling? How to tell the difference between normal training fatigue, overreaching, and full overtraining syndrome — plus the recovery protocol.",
@@ -208,6 +301,14 @@ export const PROBLEM_PAGES: ProblemPage[] = [
   },
   {
     slug: "group-ride-dropped",
+    expertEvidence: {
+      name: "Cory Williams",
+      credential: "Professional cyclist, founder of Legion Cycling Team, criterium specialist",
+      insight:
+        "Williams treats the ability to hold a surging bunch as a trainable skill, built through exposure at the right level rather than raw fitness alone. The riders who get dropped either avoid groups or jump into ones that are too fast; the path is deliberate progression — repeated short, hard efforts plus time in predictable groups until the accelerations stop hurting.",
+      episodeSlug: "ep-2191-criterium-secrets-get-ahead-of-99-of-your-competition-cory-w",
+      guestSlug: "cory-williams",
+    },
     title: "Why Do I Get Dropped on Group Rides?",
     seoTitle: "Getting Dropped on Group Rides? Fix This",
     seoDescription: "Getting shelled on the club ride? The physiological, positioning, and tactical reasons stronger riders pull away — and how to close the gap.",
@@ -233,6 +334,14 @@ export const PROBLEM_PAGES: ProblemPage[] = [
   },
   {
     slug: "cant-stick-to-plan",
+    expertEvidence: {
+      name: "Erin Ayala",
+      credential: "Sport psychologist specialising in endurance athlete motivation and performance",
+      insight:
+        "Ayala's core point is that motivation follows action, not the other way around — the athletes who struggle most are waiting to feel ready. The ones who stay consistent design their environment and commitments so the decision is already made before they're tired or reluctant. Adherence is a system you build, not a feeling you summon.",
+      episodeSlug: "ep-2078-how-to-increase-your-motivation-erin-ayala",
+      guestSlug: "erin-ayala",
+    },
     title: "Why Can't I Stick to a Cycling Plan?",
     seoTitle: "Can't Stick to a Cycling Training Plan? Try This",
     seoDescription: "Keep falling off the plan after 3-4 weeks? The accountability, life-fit, and plan-quality reasons consistency fails — and what actually sustains it.",
@@ -257,6 +366,12 @@ export const PROBLEM_PAGES: ProblemPage[] = [
     toolLabel: "Take the coaching assessment",
   },
   {
+    // FLAGGED — no expertEvidence. No podcast guest has a verified episode
+    // specifically about returning from injury/illness. Phil Burt (physio)
+    // is a credential match, but his episodes cover bike fit and back/neck
+    // pain, not injury rehab/comeback — attaching one here would be a
+    // tenuous, off-topic attribution. Left ungrounded pending a real
+    // injury-comeback episode rather than forcing a fabricated-by-context fit.
     slug: "injury-return",
     title: "Returning to Cycling After Injury",
     seoTitle: "Returning to Cycling After Injury — How to Rebuild",
@@ -282,6 +397,14 @@ export const PROBLEM_PAGES: ProblemPage[] = [
   },
   {
     slug: "numb-hands-feet",
+    expertEvidence: {
+      name: "Phil Burt",
+      credential: "Former Team Sky and British Cycling physiotherapist and bike fitter",
+      insight:
+        "Burt treats numbness as a pressure problem, not a medical one — too much weight on the hands from excess reach or a nose-down saddle, or feet loaded by cleat position and tight shoes. The diagnostic sequence is fit first: saddle position and tilt, then reach, then contact points, before reaching for gel pads or assuming nerve damage.",
+      episodeSlug: "ep-2535-5-fixable-bike-fit-mistake-most-riders-make",
+      guestSlug: "phil-burt",
+    },
     title: "Numb Hands or Feet on the Bike — What's Wrong?",
     seoTitle: "Numb Hands or Feet Cycling? How to Fix It",
     seoDescription: "Cycling-induced numbness in hands or feet is almost always fit, position, or equipment — rarely medical. The 6-point troubleshooting guide.",
@@ -307,6 +430,14 @@ export const PROBLEM_PAGES: ProblemPage[] = [
   },
   {
     slug: "saddle-pain",
+    expertEvidence: {
+      name: "Dr Andy Pruitt",
+      credential: "Pioneer of medical-based bike fitting; founder of the Boulder Center for Sports Medicine",
+      insight:
+        "Pruitt's fitting work puts saddle height and tilt at the centre of most saddle pain: too high and the hips rock and chafe, the wrong tilt and pressure shifts onto soft tissue. Start the saddle level, get the height into the established knee-flexion range, and match the saddle to your sit-bone width before blaming the shorts.",
+      episodeSlug: "ep-2186-the-correct-bike-fit-simplified-dr-pruitt",
+      guestSlug: "dr-andy-pruitt",
+    },
     title: "Cycling Saddle Pain — Why It Happens and How to Fix It",
     seoTitle: "Cycling Saddle Pain? Here's the Real Fix",
     seoDescription: "Saddle pain, numbness, or sores? The 5-step troubleshooting protocol from fit to saddle choice to chamois — what actually works.",
@@ -332,6 +463,14 @@ export const PROBLEM_PAGES: ProblemPage[] = [
   },
   {
     slug: "cramp-on-long-rides",
+    expertEvidence: {
+      name: "Sam Impey",
+      credential: "World Tour nutritionist",
+      insight:
+        "Impey's take is that late-ride cramps track with under-fuelling and big sweat-sodium losses as much as anything mechanical. Hydration and electrolyte strategy has to start hours before the ride — once you are out in the heat under-fuelled, you are already behind. Plan sodium for long, hot efforts rather than reaching for it once the cramp has hit.",
+      episodeSlug: "ep-2035-world-tour-nutritionist-we-got-fuelling-wrong",
+      guestSlug: "sam-impey",
+    },
     title: "Cramping on Long Rides — Why and How to Stop It",
     seoTitle: "Cycling Cramps on Long Rides? Here's Why",
     seoDescription: "Cramping 3+ hours into rides? The electrolyte, fitness, and pacing reasons cyclists cramp — and the evidence-based prevention protocol.",
@@ -357,6 +496,14 @@ export const PROBLEM_PAGES: ProblemPage[] = [
   },
   {
     slug: "blowing-up-on-climbs",
+    expertEvidence: {
+      name: "John Archibald",
+      credential: "British national pursuit champion",
+      insight:
+        "Archibald races the pursuit, where blowing up means pacing the effort wrong, not lacking fitness. The discipline transfers straight to climbing: set a target power off your FTP and the climb's length, then ride your own watts rather than chasing the wheel in front. Going out at VO2 max in the first minute is what empties the tank before the summit.",
+      episodeSlug: "ep-2089-how-to-ride-faster-than-98-of-people-john-archibald",
+      guestSlug: "john-archibald",
+    },
     title: "Blowing Up on Climbs — The Pacing Fix",
     seoTitle: "Blowing Up on Cycling Climbs? Here's the Pacing Fix",
     seoDescription: "Start a climb strong, implode halfway up? The pacing, fuelling, and power-management errors that cause cyclists to blow up — and the 3-phase framework that stops it.",
@@ -382,6 +529,14 @@ export const PROBLEM_PAGES: ProblemPage[] = [
   },
   {
     slug: "red-s-low-energy-availability",
+    expertEvidence: {
+      name: "Tim Podlogar",
+      credential: "Nutrition consultant to Tudor Pro Cycling",
+      insight:
+        "Podlogar is blunt that the lean weight cycling rewards comes from periodised fuelling, not chronic restriction. The amateur version is simple: fuel the work that needs fuelling and create any deficit through general eating, not by under-eating before hard sessions. When energy availability drops too low, the fix is eating more — not training less.",
+      episodeSlug: "ep-3-is-losing-weight-actually-making-you-slower",
+      guestSlug: "tim-podlogar",
+    },
     title: "RED-S and Low Energy Availability in Cyclists",
     seoTitle: "RED-S for Cyclists — Warning Signs and What to Do",
     seoDescription: "Underfuelled cycling is a performance killer and a health risk. The warning signs of RED-S (Relative Energy Deficiency in Sport), who's most at risk, and the recovery protocol.",
@@ -407,6 +562,14 @@ export const PROBLEM_PAGES: ProblemPage[] = [
   },
   {
     slug: "travel-fatigue-cycling",
+    expertEvidence: {
+      name: "Laurens ten Dam",
+      credential: "Professional cyclist, 16 World Tour seasons; Tour de France top-10 finisher",
+      insight:
+        "Across sixteen World Tour seasons ten Dam learned to treat the days after travel and disruption as easy rebuilding, not catch-up. The instinct to slam in a hard session the day you land is exactly wrong — prioritise sleep and easy riding for a couple of days, let the body resettle, then add intensity back once it's resilient again.",
+      episodeSlug: "ep-2247-laurens-ten-dam-roadman-cycling-podcast",
+      guestSlug: "laurens-ten-dam",
+    },
     title: "Travel Fatigue — Why You Ride Poorly After Trips",
     seoTitle: "Cycling Travel Fatigue — How to Train Through a Travel Week",
     seoDescription: "Every trip kills your fitness for 10 days? The circadian, nutritional, and training-structure reasons cyclists crash after travel — and the protocol to stop it.",
@@ -432,6 +595,14 @@ export const PROBLEM_PAGES: ProblemPage[] = [
   },
   {
     slug: "heat-performance-drop",
+    expertEvidence: {
+      name: "John Wakefield",
+      credential: "World Tour coach, Bora-Hansgrohe; works with Primož Roglič and Jai Hindley",
+      insight:
+        "Wakefield coaches around internal load — the cost of a session to the rider, not just the watts on the screen. Heat is the clearest case: the same power costs more when it's hot, so the answer is a structured 10-14 day acclimation block and monitoring day to day, rather than forcing through and turning an adaptation week into overreaching.",
+      episodeSlug: "ep-2132-how-do-team-bora-approach-building-endurance-we-find-out-joh",
+      guestSlug: "john-wakefield",
+    },
     title: "Heat Performance Drop — When Summer Wrecks Your Numbers",
     seoTitle: "Cycling Performance in the Heat — Why You're Slower in Summer",
     seoDescription: "Your power drops 15% the moment it hits 28°C? The physiological reasons heat wrecks cycling performance — and the heat-acclimation protocol that restores it within 14 days.",
@@ -457,6 +628,14 @@ export const PROBLEM_PAGES: ProblemPage[] = [
   },
   {
     slug: "bad-winter-motivation",
+    expertEvidence: {
+      name: "Jonas Abrahamsen",
+      credential: "Professional cyclist, Uno-X, Tour de France stage winner",
+      insight:
+        "Abrahamsen puts in enormous volume through Norwegian winters without losing quality by treating the cold as a manageable environment rather than an excuse. The principle is correct layering, executing the planned pace whatever the conditions, and accepting that some winter days are about accumulating hours, not hitting numbers.",
+      episodeSlug: "ep-29-untold-story-ofjonas-abrahamsens-pro-winter-training",
+      guestSlug: "jonas-abrahamsen",
+    },
     title: "Winter Cycling Motivation — How to Stay Consistent",
     seoTitle: "Can't Train Through Winter? Here's How",
     seoDescription: "Losing motivation through the winter months? The adherence, environment, and plan-design fixes that keep cyclists consistent when it's dark and cold.",
@@ -482,6 +661,14 @@ export const PROBLEM_PAGES: ProblemPage[] = [
   },
   {
     slug: "energy-crash-mid-ride",
+    expertEvidence: {
+      name: "Uri Carlson",
+      credential: "Registered dietitian nutritionist; fuelling specialist",
+      insight:
+        "Carlson ran the comparison directly — under-fuelled, optimally fuelled, and over-fuelled riding — and the under-fuelled sessions consistently produced the lowest power and felt the hardest. The practical lesson is to start fuelling early and keep carbs coming before you feel empty, because by the time you bonk the glycogen is already gone.",
+      episodeSlug: "ep-36-i-tried-under-over-optimal-fuelling-heres-what-no-one-tells",
+      guestSlug: "uri-carlson",
+    },
     title: "Why Do I Bonk Mid-Ride?",
     seoTitle: "Bonking on Rides? Why You Hit the Wall Cycling",
     seoDescription: "Hitting the wall 2-3 hours in? The glycogen, pacing, and fuelling reasons cyclists bonk — and the prevention protocol.",
@@ -506,6 +693,14 @@ export const PROBLEM_PAGES: ProblemPage[] = [
   },
   {
     slug: "breathing-too-hard",
+    expertEvidence: {
+      name: "James Nestor",
+      credential: "Author of Breath: The New Science of a Lost Art",
+      insight:
+        "Nestor's work shows breathing is a mechanic you can train, not just a symptom of effort. Gasping at what should be an easy pace usually means you're above your aerobic threshold or chest-breathing rather than using the diaphragm. Slower nasal and diaphragmatic breathing lowers perceived effort — but if easy still feels breathless, your zones are probably set too high.",
+      episodeSlug: "ep-2238-how-to-breathe-when-cycling-mouth-vs-nose-roadman-podcast",
+      guestSlug: "james-nestor",
+    },
     title: "Why Am I Breathing So Hard on the Bike?",
     seoTitle: "Breathing Too Hard Cycling? Here's Why",
     seoDescription: "Gasping at moderate intensity? The ventilatory, fitness, and pacing reasons your breathing is out of proportion.",
@@ -530,6 +725,14 @@ export const PROBLEM_PAGES: ProblemPage[] = [
   },
   {
     slug: "knee-pain-cycling",
+    expertEvidence: {
+      name: "Daryl Fitzgerald",
+      credential: "World Tour bike fitter at Science to Sport",
+      insight:
+        "Fitzgerald's experience is that most cycling knee pain is a fit problem, not a joint problem. Saddle height and cleat position drive how the knee tracks through the pedal stroke, and getting those right resolves the large majority of cases. Check the position before assuming the joint is the issue or spiking your training load.",
+      episodeSlug: "ep-1-pro-bike-fitter-reveals-the-1-change-amateurs-should-make",
+      guestSlug: "daryl-fitzgerald",
+    },
     title: "Cycling Knee Pain — Causes and Fixes",
     seoTitle: "Cycling Knee Pain? The Real Causes and Fixes",
     seoDescription: "Knee pain from cycling is almost always load, fit, or technique. The 6-point diagnosis and fix for each pattern.",
@@ -555,6 +758,14 @@ export const PROBLEM_PAGES: ProblemPage[] = [
   },
   {
     slug: "back-pain-cycling",
+    expertEvidence: {
+      name: "Phil Burt",
+      credential: "Former Team Sky and British Cycling physiotherapist and bike fitter",
+      insight:
+        "Burt frames back pain on the bike as two levers most riders address neither of: position and preparation. The position fix is usually reducing reach, which cuts the flexion demand on the lumbar spine; the preparation fix is building the core capacity to hold the position for the whole ride. Together they resolve far more back pain than a new saddle ever will.",
+      episodeSlug: "ep-2185-hidden-cause-of-back-neck-pain-in-cycling-how-to-beat-it-rdm",
+      guestSlug: "phil-burt",
+    },
     title: "Lower Back Pain From Cycling — How to Fix It",
     seoTitle: "Cycling Back Pain? The Position and Core Fixes",
     seoDescription: "Lower back pain after rides? The position, core, and flexibility causes — and the fixes that work long-term.",
@@ -579,6 +790,14 @@ export const PROBLEM_PAGES: ProblemPage[] = [
   },
   {
     slug: "sleep-disruption-training",
+    expertEvidence: {
+      name: "Andy Galpin",
+      credential: "Professor of Kinesiology, Cal State Fullerton; muscle physiologist",
+      insight:
+        "Galpin treats sleep as a primary training variable, not an afterthought — it's where adaptation and nervous-system recovery actually happen. Late, intense sessions and chronic high load keep the sympathetic system switched on, so the fix is finishing hard efforts well before bed, fuelling enough to keep cortisol down, and deloading when sleep and HRV both slide.",
+      episodeSlug: "the-science-of-getting-faster-after-40-dr-andy-galpin",
+      guestSlug: "andy-galpin",
+    },
     title: "Training Ruining Your Sleep? Here's Why",
     seoTitle: "Cycling Training Disrupting Sleep? Fix This",
     seoDescription: "Can't sleep after hard rides? The cortisol, timing, and overtraining reasons — and the recovery protocol.",
@@ -603,6 +822,14 @@ export const PROBLEM_PAGES: ProblemPage[] = [
   },
   {
     slug: "race-anxiety",
+    expertEvidence: {
+      name: "Dr Michael Gervais",
+      credential: "High-performance psychologist, worked with NFL, Olympic, and World Tour athletes",
+      insight:
+        "Gervais teaches that controlling negative thoughts under pressure is a trainable skill, and the people who fail at it usually haven't pre-scripted their response to the moments that hurt most. A written, rehearsed self-talk plan — practised in hard training before race day — changes the internal dialogue when the nerves arrive.",
+      episodeSlug: "ep-2181-beating-negative-thoughts-why-99-fail-and-how-you-wont-dr-ge",
+      guestSlug: "dr-michael-gervais",
+    },
     title: "Pre-Race Nerves — How to Manage Race Anxiety",
     seoTitle: "Race Anxiety Cycling? How to Manage Pre-Race Nerves",
     seoDescription: "Race-day nerves destroying performance? Mental, physical, and preparation strategies that turn anxiety into fuel.",

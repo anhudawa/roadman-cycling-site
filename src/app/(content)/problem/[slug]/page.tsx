@@ -1,10 +1,12 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import { notFound } from "next/navigation";
 import { Header, Footer, Section, Container } from "@/components/layout";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { SourceMethodology } from "@/components/features/aeo/SourceMethodology";
 import { AskRoadmanCTA } from "@/components/features/aeo/AskRoadmanCTA";
 import { getProblemBySlug, getAllProblemSlugs } from "@/lib/problems";
+import { getEpisodeBySlug } from "@/lib/podcast";
 import { queryContentGraph } from "@/lib/content-graph";
 import {
   DiagnosisTemplate,
@@ -82,6 +84,13 @@ export default async function ProblemPageRoute({
     href: s.href,
   }));
 
+  // Named-expert evidence — resolve the linked episode title server-side so
+  // the "Hear it" link only renders when the episode actually exists.
+  const evidence = page.expertEvidence;
+  const evidenceEpisode = evidence
+    ? getEpisodeBySlug(evidence.episodeSlug)
+    : null;
+
   return (
     <>
       <JsonLd
@@ -113,6 +122,23 @@ export default async function ProblemPageRoute({
               "@type": "Answer",
               text: shortAnswer,
               url: `https://roadmancycling.com/problem/${slug}`,
+              // When the page carries named-expert evidence, cite the source
+              // podcast episode so crawlers can see the answer is backed by a
+              // real, attributable conversation rather than generic text.
+              ...(evidence && evidenceEpisode
+                ? {
+                    citation: {
+                      "@type": "CreativeWork",
+                      name: evidenceEpisode.title,
+                      url: `https://roadmancycling.com/podcast/${evidence.episodeSlug}`,
+                      author: {
+                        "@type": "Person",
+                        name: evidence.name,
+                        url: `https://roadmancycling.com/guests/${evidence.guestSlug}`,
+                      },
+                    },
+                  }
+                : {}),
             },
           },
         }}
@@ -144,6 +170,48 @@ export default async function ProblemPageRoute({
         }
         source={`problem-${slug}`}
       />
+
+      {/* Named-expert evidence — a verified podcast guest with credential,
+          a relevant episode link, and grounded advice. Mirrors the
+          answer-page pattern and is what turns these diagnostic pages from
+          thin templates into attributed, citation-worthy content. */}
+      {evidence && (
+        <Section background="deep-purple" grain className="!py-12 border-t border-white/5">
+          <Container width="narrow">
+            <p className="font-heading text-coral text-xs tracking-[0.3em] mb-3">
+              EXPERT EVIDENCE
+            </p>
+            <h2 className="font-heading text-off-white text-2xl mb-6">
+              WHAT THE EXPERTS SAY
+            </h2>
+            <div className="rounded-lg border border-white/10 bg-white/[0.03] p-5">
+              <div className="flex flex-wrap items-baseline gap-x-2 mb-2">
+                <Link
+                  href={`/guests/${evidence.guestSlug}`}
+                  className="font-heading text-off-white hover:text-coral transition-colors"
+                >
+                  {evidence.name}
+                </Link>
+                <span className="text-foreground-subtle text-xs">
+                  {evidence.credential}
+                </span>
+              </div>
+              <p className="text-foreground-muted text-sm md:text-base leading-relaxed m-0">
+                {evidence.insight}
+              </p>
+              {evidenceEpisode && (
+                <Link
+                  href={`/podcast/${evidence.episodeSlug}`}
+                  className="inline-flex items-center gap-1 mt-3 text-coral text-sm hover:text-coral/80 transition-colors"
+                >
+                  Hear it: {evidenceEpisode.title}
+                  <span aria-hidden="true">&rarr;</span>
+                </Link>
+              )}
+            </div>
+          </Container>
+        </Section>
+      )}
 
       {(sourceEpisodes.length > 0 || sourceArticles.length > 0) && (
         <Section background="charcoal" className="!py-12 border-t border-white/5">
