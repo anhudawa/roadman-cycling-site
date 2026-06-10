@@ -6,6 +6,7 @@
  */
 
 import { generateDayPlan } from './engine';
+import { applyCompetitionProtocol } from './competition';
 import { getSessionTemplate } from './sessions';
 import type {
   DayPlan,
@@ -264,7 +265,8 @@ export function generateCalendar(
     );
   }
 
-  return weeks;
+  // Layer the Impey 48hr carb-load + taper sequence onto any race days.
+  return applyCompetitionProtocol(weeks, profile.weightKg);
 }
 
 /** Map week number → training phase. Mirrors method-architecture phase grid (12-week base). */

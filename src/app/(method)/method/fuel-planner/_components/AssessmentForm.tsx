@@ -11,9 +11,11 @@ import {
 import type {
   ActivityLevel,
   BodyCompGoal,
+  DietaryPreference,
   Sex,
   UserProfile,
 } from "@/lib/fuel-planner/types";
+import { DIETARY_OPTIONS } from "@/lib/fuel-planner/dietary";
 
 interface AssessmentFormProps {
   redirectAfter?: string;
@@ -63,6 +65,16 @@ export function AssessmentForm({
 
   function update<K extends keyof UserProfile>(key: K, value: UserProfile[K]) {
     setProfile((p) => ({ ...p, [key]: value }));
+  }
+
+  function toggleDiet(pref: DietaryPreference) {
+    setProfile((p) => {
+      const current = p.dietaryPreferences ?? [];
+      const next = current.includes(pref)
+        ? current.filter((d) => d !== pref)
+        : [...current, pref];
+      return { ...p, dietaryPreferences: next };
+    });
   }
 
   async function persistToRiderProfile(p: UserProfile): Promise<void> {
@@ -227,6 +239,37 @@ export function AssessmentForm({
             />
           </div>
         )}
+      </FieldGroup>
+
+      <FieldGroup
+        title="Dietary preferences"
+        hint="Optional. Targets stay the same — we flag how to hit them with foods that fit."
+      >
+        <div className="grid sm:grid-cols-3 gap-2">
+          {DIETARY_OPTIONS.map((opt) => {
+            const active =
+              profile.dietaryPreferences?.includes(opt.value) ?? false;
+            return (
+              <button
+                key={opt.value}
+                type="button"
+                aria-pressed={active}
+                onClick={() => toggleDiet(opt.value)}
+                className={[
+                  "text-left rounded-lg border p-4 transition-colors",
+                  active
+                    ? "border-coral bg-coral/10"
+                    : "border-white/10 bg-charcoal/40 hover:border-white/30",
+                ].join(" ")}
+              >
+                <p className="font-heading uppercase text-sm tracking-wider mb-1">
+                  {opt.label}
+                </p>
+                <p className="text-xs text-foreground-muted">{opt.guidance}</p>
+              </button>
+            );
+          })}
+        </div>
       </FieldGroup>
 
       <div className="flex flex-wrap items-center justify-between gap-3 pt-2">

@@ -7,7 +7,14 @@ import {
   DAY_LABELS,
   generateCalendar,
 } from "@/lib/fuel-planner";
-import type { DayPlan, MealMacros, WeekPlan } from "@/lib/fuel-planner/types";
+import type {
+  CarbLoadAnnotation,
+  DayPlan,
+  MealMacros,
+  UserProfile,
+  WeekPlan,
+} from "@/lib/fuel-planner/types";
+import { dietaryMeta } from "@/lib/fuel-planner/dietary";
 import { loadState } from "@/lib/fuel-planner/storage";
 
 const FUEL_CATEGORY_COLOUR: Record<string, string> = {
@@ -39,6 +46,7 @@ const PHASE_LABEL: Record<WeekPlan["phase"], string> = {
 export function FuelCalendar() {
   const router = useRouter();
   const [weeks, setWeeks] = useState<WeekPlan[] | null>(null);
+  const [profile, setProfile] = useState<UserProfile | null>(null);
   const [missingProfile, setMissingProfile] = useState(false);
   const [activeWeek, setActiveWeek] = useState(0);
 
@@ -54,6 +62,7 @@ export function FuelCalendar() {
       numWeeks: 12,
     });
     setWeeks(generated);
+    setProfile(state.profile);
   }, []);
 
   // Redirect once we detect no profile
@@ -81,26 +90,39 @@ export function FuelCalendar() {
     return <p className="text-foreground-muted">Building your calendar…</p>;
   }
 
+  const diet = profile?.dietaryPreferences ?? [];
+
   return (
-    <div className="space-y-6">
-      <WeekNav
-        weeks={weeks}
-        activeIndex={activeWeek}
-        onChange={setActiveWeek}
-      />
+    <>
+      <div className="space-y-6 print:hidden">
+        <WeekNav
+          weeks={weeks}
+          activeIndex={activeWeek}
+          onChange={setActiveWeek}
+          onPrint={() => window.print()}
+        />
 
-      <WeekSummary week={week} />
+        {diet.length > 0 && <DietaryBanner prefs={diet} />}
 
-      <ol className="grid gap-3 md:gap-4">
-        {week.days.map((day, i) => (
-          <li key={day.date}>
-            <DayCard day={day} dayLabel={DAY_LABELS[i] ?? ""} />
-          </li>
-        ))}
-      </ol>
+        <CarbLoadPanel week={week} />
 
-      <ProfileBar />
-    </div>
+        <WeekSummary week={week} />
+
+        <ol className="grid gap-3 md:gap-4">
+          {week.days.map((day, i) => (
+            <li key={day.date}>
+              <DayCard day={day} dayLabel={DAY_LABELS[i] ?? ""} />
+            </li>
+          ))}
+        </ol>
+
+        <MethodologyFooter />
+
+        <ProfileBar />
+      </div>
+
+      {profile && <PrintableWeek week={week} profile={profile} />}
+    </>
   );
 }
 
@@ -110,10 +132,12 @@ function WeekNav({
   weeks,
   activeIndex,
   onChange,
+  onPrint,
 }: {
   weeks: WeekPlan[];
   activeIndex: number;
   onChange: (i: number) => void;
+  onPrint: () => void;
 }) {
   const active = weeks[activeIndex];
   if (!active) return null;
@@ -142,6 +166,13 @@ function WeekNav({
             disabled={activeIndex >= weeks.length - 1}
             label="Next →"
           />
+          <button
+            type="button"
+            onClick={onPrint}
+            className="font-heading uppercase tracking-wider text-xs border border-coral/60 bg-coral/10 text-coral hover:bg-coral/20 px-3 py-2 rounded-sm transition-colors"
+          >
+            Print / PDF
+          </button>
         </div>
       </div>
       <div className="mt-4 flex flex-wrap gap-1">
@@ -284,6 +315,8 @@ function DayCard({ day, dayLabel }: { day: DayPlan; dayLabel: string }) {
         </div>
       </header>
 
+      {day.carbLoad && <CarbLoadStrip load={day.carbLoad} />}
+
       <ol className="divide-y divide-white/5">
         {day.meals.map((meal) => (
           <li key={meal.slot}>
@@ -292,6 +325,31 @@ function DayCard({ day, dayLabel }: { day: DayPlan; dayLabel: string }) {
         ))}
       </ol>
     </article>
+  );
+}
+
+const CARB_LOAD_STAGE_LABEL: Record<CarbLoadAnnotation["stage"], string> = {
+  load: "Carb-load",
+  peak: "Peak load",
+  race: "Race day",
+};
+
+function CarbLoadStrip({ load }: { load: CarbLoadAnnotation }) {
+  return (
+    <div className="border-b border-coral/20 bg-coral/[0.07] px-4 md:px-5 py-3">
+      <div className="flex flex-wrap items-baseline gap-x-3 gap-y-1">
+        <span className="font-heading uppercase tracking-wider text-xs text-coral">
+          {CARB_LOAD_STAGE_LABEL[load.stage]} · {load.label}
+        </span>
+        <span className="font-heading text-lg text-off-white">
+          {load.targetCarbsG}g carbs
+        </span>
+        <span className="text-xs text-foreground-muted">
+          {load.gPerKg} g/kg target
+        </span>
+      </div>
+      <p className="text-xs text-foreground-muted mt-1">{load.trainingNote}</p>
+    </div>
   );
 }
 
@@ -363,6 +421,263 @@ function ProfileBar() {
           Edit week
         </Link>
       </div>
+    </div>
+  );
+}
+
+/* ─── Dietary banner ──────────────────────────────────────── */
+
+function DietaryBanner({
+  prefs,
+}: {
+  prefs: NonNullable<UserProfile["dietaryPreferences"]>;
+}) {
+  const metas = prefs.map(dietaryMeta);
+  return (
+    <div className="rounded-xl border border-pillar-nutrition/30 bg-pillar-nutrition/[0.06] p-4 md:p-5">
+      <div className="flex flex-wrap items-center gap-2 mb-2">
+        <span className="font-heading uppercase tracking-wider text-xs text-foreground-muted">
+          Eating
+        </span>
+        {metas.map((m) => (
+          <span
+            key={m.value}
+            className="font-heading uppercase tracking-wider text-[10px] px-2 py-1 rounded-sm border border-pillar-nutrition/50 text-pillar-nutrition"
+          >
+            {m.label}
+          </span>
+        ))}
+      </div>
+      <ul className="space-y-1">
+        {metas.map((m) => (
+          <li key={m.value} className="text-xs text-foreground-muted">
+            <span className="text-off-white">{m.short}:</span> {m.guidance}
+          </li>
+        ))}
+      </ul>
+      <p className="text-[11px] text-foreground-muted/70 mt-2">
+        Targets are unchanged — these are food-source swaps to hit the same
+        macros.
+      </p>
+    </div>
+  );
+}
+
+/* ─── Competition carb-load protocol panel ────────────────── */
+
+function CarbLoadPanel({ week }: { week: WeekPlan }) {
+  const loadDays = week.days
+    .map((d, i) => ({ day: d, label: DAY_LABELS[i] ?? "" }))
+    .filter((x) => x.day.carbLoad);
+
+  if (loadDays.length === 0) return null;
+
+  return (
+    <div className="rounded-xl border border-coral/30 bg-coral/[0.06] p-4 md:p-5">
+      <p className="font-heading text-xs tracking-[0.3em] text-coral mb-1">
+        COMPETITION CARB-LOAD PROTOCOL
+      </p>
+      <p className="text-sm text-foreground-muted mb-4 max-w-2xl">
+        A race needs glycogen stores topped right out. This is the Impey
+        48-hour carbohydrate-load and taper — 8–12 g/kg across the two days
+        into the race, layered on top of your daily plan.
+      </p>
+      <ol className="grid sm:grid-cols-3 gap-3">
+        {loadDays.map(({ day, label }) => {
+          const load = day.carbLoad!;
+          return (
+            <li
+              key={day.date}
+              className="rounded-lg border border-white/10 bg-charcoal/40 p-3"
+            >
+              <p className="font-heading uppercase tracking-wider text-[10px] text-coral mb-1">
+                {label} · {load.label}
+              </p>
+              <p className="font-heading text-2xl text-off-white">
+                {load.targetCarbsG}
+                <span className="text-sm text-foreground-muted ml-1">
+                  g carbs
+                </span>
+              </p>
+              <p className="text-[11px] text-foreground-muted mb-1.5">
+                {load.gPerKg} g/kg bodyweight
+              </p>
+              <p className="text-xs text-foreground-muted">
+                {load.trainingNote}
+              </p>
+            </li>
+          );
+        })}
+      </ol>
+      <p className="text-[11px] text-foreground-muted/70 mt-3">
+        Protocol: Impey, building on Morton&apos;s Fuel For The Work Required.
+        On-the-bike fuelling targets follow Jeukendrup.
+      </p>
+    </div>
+  );
+}
+
+/* ─── Methodology attribution + resources ─────────────────── */
+
+function MethodologyFooter() {
+  return (
+    <div className="rounded-xl border border-white/10 bg-charcoal/40 p-4 md:p-5 space-y-4">
+      <div>
+        <p className="font-heading uppercase tracking-wider text-xs text-foreground-muted mb-2">
+          The methodology
+        </p>
+        <p className="text-xs text-foreground-muted max-w-2xl">
+          Daily macros use Mifflin-St Jeor for resting metabolic rate and the
+          Hexis/Impey Fuel For The Work Required model to periodise carbs
+          around training. Carbohydrate periodisation builds on{" "}
+          <span className="text-off-white">Morton</span>; the race carb-load is{" "}
+          <span className="text-off-white">Impey</span>; in-ride carb targets
+          (up to 90 g/hr of multiple transportable carbohydrates) follow{" "}
+          <span className="text-off-white">Jeukendrup</span>.
+        </p>
+      </div>
+      <div className="flex flex-wrap gap-2">
+        <Link
+          href="/methodology"
+          className="font-heading uppercase tracking-wider text-xs border border-white/10 hover:border-white/30 px-3 py-1.5 rounded-sm transition-colors"
+        >
+          The Method protocol →
+        </Link>
+        <Link
+          href="/tools/fuelling"
+          className="font-heading uppercase tracking-wider text-xs border border-white/10 hover:border-white/30 px-3 py-1.5 rounded-sm transition-colors"
+        >
+          In-ride fuelling calculator →
+        </Link>
+        <a
+          href="https://www.myfitnesspal.com"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="font-heading uppercase tracking-wider text-xs border border-white/10 hover:border-white/30 px-3 py-1.5 rounded-sm transition-colors"
+        >
+          Track in MyFitnessPal ↗
+        </a>
+      </div>
+      <p className="text-[11px] text-foreground-muted/70">
+        Log the day&apos;s carb, protein and fat targets in MyFitnessPal (or
+        your tracker of choice) to keep yourself honest against the plan.
+      </p>
+    </div>
+  );
+}
+
+/* ─── Printable week (light theme, print-only) ────────────── */
+
+function PrintableWeek({
+  week,
+  profile,
+}: {
+  week: WeekPlan;
+  profile: UserProfile;
+}) {
+  const diet = profile.dietaryPreferences ?? [];
+  return (
+    <div className="fuel-print-area hidden print:block text-black">
+      <div className="mb-4 border-b border-black/30 pb-2">
+        <p className="text-[11px] tracking-[0.3em] uppercase">
+          Roadman Method · Fuel Planner
+        </p>
+        <h1 className="font-heading uppercase text-3xl leading-none">
+          Week {week.weekNumber} · {PHASE_LABEL[week.phase]}
+          {week.isRecoveryWeek ? " · Recovery" : ""}
+        </h1>
+        <p className="text-sm">{formatRange(week.startDate)}</p>
+        <p className="text-xs mt-1">
+          {profile.weightKg}kg · {profile.ftp}W FTP ·{" "}
+          {goalLabel(profile.bodyCompGoal)}
+          {diet.length > 0
+            ? ` · ${diet.map((d) => dietaryMeta(d).label).join(", ")}`
+            : ""}
+        </p>
+      </div>
+
+      <table className="w-full text-left text-xs border-collapse">
+        <thead>
+          <tr className="border-b border-black/40">
+            <th className="py-1 pr-2 font-heading uppercase">Day</th>
+            <th className="py-1 pr-2 font-heading uppercase">Session</th>
+            <th className="py-1 pr-2 font-heading uppercase text-right">Kcal</th>
+            <th className="py-1 pr-2 font-heading uppercase text-right">Carb</th>
+            <th className="py-1 pr-2 font-heading uppercase text-right">Prot</th>
+            <th className="py-1 pr-2 font-heading uppercase text-right">Fat</th>
+            <th className="py-1 font-heading uppercase text-right">In-ride</th>
+          </tr>
+        </thead>
+        <tbody>
+          {week.days.map((day, i) => (
+            <tr key={day.date} className="border-b border-black/15 align-top">
+              <td className="py-1.5 pr-2 whitespace-nowrap">
+                {DAY_LABELS[i]} {formatShortDate(day.date)}
+              </td>
+              <td className="py-1.5 pr-2">
+                {day.session ? day.session.name : "Rest"}
+                {day.session?.isCompetition ? " (RACE)" : ""}
+                {day.carbLoad ? (
+                  <div className="text-[10px]">
+                    Carb-load {day.carbLoad.label}: {day.carbLoad.targetCarbsG}g
+                    ({day.carbLoad.gPerKg} g/kg)
+                  </div>
+                ) : null}
+              </td>
+              <td className="py-1.5 pr-2 text-right">{day.totals.calories}</td>
+              <td className="py-1.5 pr-2 text-right">{day.totals.carbsG}g</td>
+              <td className="py-1.5 pr-2 text-right">{day.totals.proteinG}g</td>
+              <td className="py-1.5 pr-2 text-right">{day.totals.fatG}g</td>
+              <td className="py-1.5 text-right">
+                {day.totals.inRideCarbsGPerHr > 0
+                  ? `${day.totals.inRideCarbsGPerHr}g/hr`
+                  : "—"}
+              </td>
+            </tr>
+          ))}
+        </tbody>
+        <tfoot>
+          <tr className="border-t border-black/40 font-heading">
+            <td className="py-1.5 pr-2 uppercase" colSpan={2}>
+              Week total
+            </td>
+            <td className="py-1.5 pr-2 text-right">
+              {Math.round(week.weeklyTotals.calories)}
+            </td>
+            <td className="py-1.5 pr-2 text-right">
+              {week.weeklyTotals.carbsG}g
+            </td>
+            <td className="py-1.5 pr-2 text-right">
+              {week.weeklyTotals.proteinG}g
+            </td>
+            <td className="py-1.5 pr-2 text-right">{week.weeklyTotals.fatG}g</td>
+            <td className="py-1.5 text-right">
+              {week.weeklyTotals.trainingHours}h
+            </td>
+          </tr>
+        </tfoot>
+      </table>
+
+      {diet.length > 0 && (
+        <div className="mt-3 text-[11px]">
+          <p className="font-heading uppercase">Dietary notes</p>
+          {diet.map((d) => {
+            const m = dietaryMeta(d);
+            return (
+              <p key={m.value}>
+                <strong>{m.short}:</strong> {m.guidance}
+              </p>
+            );
+          })}
+        </div>
+      )}
+
+      <p className="mt-4 text-[10px] text-black/60">
+        Roadman Method Fuel Planner · Mifflin-St Jeor RMR + Hexis/Impey FFTWR ·
+        carb periodisation after Morton · race carb-load after Impey · in-ride
+        carbs after Jeukendrup. Targets are a starting point — adjust to how you
+        feel and perform.
+      </p>
     </div>
   );
 }

@@ -60,8 +60,8 @@ describe('estimateRMR', () => {
   test('calculates Mifflin-St Jeor when no override', () => {
     const profile = { ...HEXIS_PROFILE, rmrOverride: undefined };
     const rmr = estimateRMR(profile);
-    // Male: 10 × 81.8 + 6.25 × 188 - 5 × 42 + 5 = 1783
-    expect(rmr).toBe(1783);
+    // Male: 10 × 81.8 + 6.25 × 188 - 5 × 42 + 5 = 1788
+    expect(rmr).toBe(1788);
   });
 
   test('female calculation', () => {
@@ -71,8 +71,8 @@ describe('estimateRMR', () => {
       rmrOverride: undefined,
     };
     const rmr = estimateRMR(profile);
-    // Female: 10 × 81.8 + 6.25 × 188 - 5 × 42 - 161 = 1617
-    expect(rmr).toBe(1617);
+    // Female: 10 × 81.8 + 6.25 × 188 - 5 × 42 - 161 = 1622
+    expect(rmr).toBe(1622);
   });
 });
 

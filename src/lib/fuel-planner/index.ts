@@ -26,6 +26,9 @@ export type {
   BodyCompGoal,
   ActivityLevel,
   TrainingPhase,
+  DietaryPreference,
+  CarbLoadAnnotation,
+  CarbLoadStageKind,
 } from './types';
 
 // Engine functions
@@ -70,3 +73,16 @@ export type {
   DayIndex,
   CalendarOptions,
 } from './calendar';
+
+// Dietary preferences
+export { DIETARY_OPTIONS, dietaryMeta } from './dietary';
+export type { DietaryMeta } from './dietary';
+
+// Competition carb-load protocol
+export {
+  IMPEY_CARB_LOAD_SEQUENCE,
+  carbLoadTargetG,
+  buildAnnotation,
+  applyCompetitionProtocol,
+} from './competition';
+export type { CarbLoadStage } from './competition';

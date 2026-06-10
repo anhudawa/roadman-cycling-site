@@ -16,6 +16,13 @@ export type BodyCompGoal = 'lose' | 'maintain' | 'gain';
 
 export type ActivityLevel = 'sedentary' | 'light' | 'moderate' | 'active';
 
+/**
+ * Dietary preferences. These do not change the macro maths — they flag
+ * food-source guidance in the UI so a rider hits the same targets with
+ * compatible foods.
+ */
+export type DietaryPreference = 'vegetarian' | 'vegan' | 'gluten_free';
+
 export interface UserProfile {
   sex: Sex;
   age: number; // years
@@ -31,6 +38,8 @@ export interface UserProfile {
   rmrOverride?: number;
   /** Gross metabolic efficiency, default 0.217 (21.7%) */
   gme?: number;
+  /** Dietary preferences — label-only, does not alter macro targets. */
+  dietaryPreferences?: DietaryPreference[];
 }
 
 /* ------------------------------------------------------------------ */
@@ -102,6 +111,28 @@ export interface DayPlan {
   weekNumber: number; // 1-12 in the course
   mesocycleWeek: number; // 1-4 within the mesocycle
   isRecoveryWeek: boolean;
+  /**
+   * Competition carb-load annotation. Set on the race day and the two
+   * days leading in when a session is flagged as a competition. Layered
+   * on top of the FFTWR daily macros — see lib/fuel-planner/competition.ts.
+   */
+  carbLoad?: CarbLoadAnnotation;
+}
+
+export type CarbLoadStageKind = 'load' | 'peak' | 'race';
+
+export interface CarbLoadAnnotation {
+  stage: CarbLoadStageKind;
+  /** Human label e.g. "48h out". */
+  label: string;
+  /** Target carbohydrate in g per kg bodyweight for this stage. */
+  gPerKg: number;
+  /** Absolute carbohydrate target (g) for the rider's bodyweight. */
+  targetCarbsG: number;
+  /** Training/taper instruction for the day. */
+  trainingNote: string;
+  /** ISO date of the race this load is building toward. */
+  raceDate: string;
 }
 
 export interface DayTotals {

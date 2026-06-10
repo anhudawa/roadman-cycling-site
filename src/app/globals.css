@@ -1248,3 +1248,23 @@ h1, h2, h3, h4, h5, h6 {
   border-color: var(--color-coral) !important;
   border-radius: 0.75rem;
 }
+
+/* ============================================
+   Fuel Planner — print / Save-as-PDF
+   Hides the app chrome and prints only the
+   light-themed weekly plan (.fuel-print-area).
+   ============================================ */
+
+@media print {
+  @page { margin: 14mm; }
+  body { background: #fff !important; }
+  body * { visibility: hidden !important; }
+  .fuel-print-area,
+  .fuel-print-area * { visibility: visible !important; }
+  .fuel-print-area {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+  }
+}
