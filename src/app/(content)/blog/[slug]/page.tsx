@@ -19,6 +19,8 @@ import { ShareButtons } from "@/components/features/blog/ShareButtons";
 import { RelatedPosts } from "@/components/features/blog/RelatedPosts";
 import { AuthorBio } from "@/components/features/blog/AuthorBio";
 import { PrimaryHubLink } from "@/components/features/blog/PrimaryHubLink";
+import { ClusterHubLink } from "@/components/features/blog/ClusterHubLink";
+import { getClusterHubForArticle } from "@/lib/cluster-hubs";
 import { FeaturedExperts } from "@/components/features/blog/FeaturedExperts";
 import { EvidenceBlock } from "@/components/seo/EvidenceBlock";
 import { ArticleCitationBlock } from "@/components/seo/ArticleCitationBlock";
@@ -121,6 +123,10 @@ export default async function BlogPostPage({
   const primaryHubTitle = primaryHubSlug
     ? getTopicTitleBySlug(primaryHubSlug)
     : null;
+  // Topic-cluster hub this article is aggregated into (e.g. /training/zone-2).
+  // Renders a visible backlink near the top — the article→hub half of the
+  // bidirectional cluster link. Null for posts outside any cluster hub.
+  const clusterHub = getClusterHubForArticle(slug);
   // Reverse-lookup: does any event's blogSlug match this post? If so,
   // we render a WeeksOutSelector widget in the article.
   const planEvent = EVENTS.find((e) => e.blogSlug === slug) ?? null;
@@ -500,6 +506,13 @@ export default async function BlogPostPage({
                 hubSlug={primaryHubSlug}
                 hubTitle={primaryHubTitle}
               />
+            )}
+
+            {/* Topic-cluster hub backlink — the article→hub half of the
+                bidirectional cluster link, rendered for every post an
+                intent hub aggregates. */}
+            {clusterHub && (
+              <ClusterHubLink path={clusterHub.path} label={clusterHub.label} />
             )}
 
             {post.featuredEntities && post.featuredEntities.length > 0 && (

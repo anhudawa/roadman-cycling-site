@@ -3,6 +3,7 @@ import { getAllPosts } from "@/lib/blog";
 import { getAllEpisodes, getTranscriptSlugs } from "@/lib/podcast";
 import { getAllGuests } from "@/lib/guests";
 import { getAllTopicSlugs } from "@/lib/topics";
+import { getAllClusterHubPaths } from "@/lib/cluster-hubs";
 import { getAllTermSlugs } from "@/lib/glossary";
 import { getAllComparisonSlugs } from "@/lib/comparisons";
 import { getAllBestForSlugs } from "@/lib/best-for";
@@ -102,6 +103,13 @@ function buildStaticSitemap(): MetadataRoute.Sitemap {
     { url: `${BASE_URL}/tools`, lastModified: new Date(), changeFrequency: "monthly", priority: 0.8 },
     { url: `${BASE_URL}/guests`, lastModified: new Date(), changeFrequency: "weekly", priority: 0.8 },
     { url: `${BASE_URL}/topics`, lastModified: new Date(), changeFrequency: "weekly", priority: 0.8 },
+    // Topic-cluster hub pages (/masters/vo2max, /training/zone-2, …).
+    ...getAllClusterHubPaths().map((path) => ({
+      url: `${BASE_URL}${path}`,
+      lastModified: new Date(),
+      changeFrequency: "weekly" as const,
+      priority: 0.8,
+    })),
     { url: `${BASE_URL}/about`, lastModified: new Date("2026-03-01"), changeFrequency: "monthly", priority: 0.8 },
     { url: `${BASE_URL}/about/press`, lastModified: new Date(), changeFrequency: "monthly", priority: 0.6 },
     { url: `${BASE_URL}/about/corrections`, lastModified: new Date(), changeFrequency: "monthly", priority: 0.5 },
