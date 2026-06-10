@@ -106,6 +106,7 @@ const MASTERS_VO2MAX: ClusterHubDef = {
     "cycling-over-40-getting-faster",
     "sprint-interval-training-cyclists-masters",
     "masters-cycling-training-plan-over-40",
+    "training-load-management-cyclists-40s-50s",
   ],
   newArticleSlugs: ["vo2max-decline-reversibility-masters-cyclists"],
   pillarContent: `Here's what nobody tells you about getting older on a bike. It isn't your endurance that fades first — it's your ceiling. The long Sunday rides hold up well into your fifties and beyond. What goes is the top end: the four-minute effort up the local climb, the bridge to a move, the surge that used to come for free. That top end is VO2max, and on a masters cyclist it is both the first thing to decline and the single most responsive thing you can train.
@@ -126,7 +127,7 @@ If your number is stubbornly low, it is almost never genetics. [Seven fixable re
 
 ## Putting it in a masters week
 
-The top end is not trained in isolation. It sits inside a week that has to respect a 45-year-old's recovery rate, which means two hard sessions with 72 hours between them, not three crammed into a weekend. [Getting faster after 40](/blog/cycling-over-40-getting-faster) and [the masters training plan for riders over 40](/blog/masters-cycling-training-plan-over-40) put the VO2max work in its place inside a structured, sustainable block. Build the sessions into a periodised plan in [TrainingPeaks](https://www.trainingpeaks.com) so you can see the intensity distribution and stop the easy days drifting hard — the most common reason masters intervals fail.
+The top end is not trained in isolation. It sits inside a week that has to respect a 45-year-old's recovery rate, which means two hard sessions with 72 hours between them, not three crammed into a weekend. [Getting faster after 40](/blog/cycling-over-40-getting-faster) and [the masters training plan for riders over 40](/blog/masters-cycling-training-plan-over-40) put the VO2max work in its place inside a structured, sustainable block, and [managing training load through your 40s and 50s](/blog/training-load-management-cyclists-40s-50s) keeps that balance honest week to week — ramp rate, acute-to-chronic load, and the autoregulation that stops a hard session landing on a day your body hasn't recovered for. Build the sessions into a periodised plan in [TrainingPeaks](https://www.trainingpeaks.com) so you can see the intensity distribution and stop the easy days drifting hard — the most common reason masters intervals fail.
 
 The headline is simple, and it is the Roadman position: your top end is not a fixed inheritance you spend down with age. It is a training response. You're not done yet.`,
   faqs: [

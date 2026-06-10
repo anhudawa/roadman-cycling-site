@@ -632,6 +632,7 @@ function NumberStep({
       <input
         type="number"
         inputMode="numeric"
+        aria-label={heading}
         placeholder={placeholder}
         value={value}
         onChange={(e) => onChange(e.target.value.replace(/[^0-9]/g, ""))}
@@ -692,6 +693,7 @@ function TextStep({
         <textarea
           rows={4}
           maxLength={500}
+          aria-label={heading}
           value={value}
           onChange={(e) => onChange(e.target.value)}
           placeholder={placeholder}
@@ -704,6 +706,7 @@ function TextStep({
       ) : (
         <input
           type="text"
+          aria-label={heading}
           value={value}
           onChange={(e) => onChange(e.target.value)}
           placeholder={placeholder}

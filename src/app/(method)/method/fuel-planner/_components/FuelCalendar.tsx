@@ -286,7 +286,7 @@ function DayCard({ day, dayLabel }: { day: DayPlan; dayLabel: string }) {
           )}
         </div>
 
-        <div className="grid grid-cols-4 gap-2 md:gap-3">
+        <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 md:gap-3">
           <MacroPill label="Kcal" value={day.totals.calories.toString()} />
           <MacroPill label="Carbs" value={`${day.totals.carbsG}g`} />
           <MacroPill label="Protein" value={`${day.totals.proteinG}g`} />
@@ -367,7 +367,7 @@ function MacroPill({ label, value }: { label: string; value: string }) {
 function MealRow({ meal }: { meal: MealMacros }) {
   const tag = meal.isPostWorkout ? "POST" : meal.isPreWorkout ? "PRE" : null;
   return (
-    <div className="grid grid-cols-[80px_120px_1fr_auto] md:grid-cols-[100px_180px_1fr_auto] gap-3 items-center px-4 md:px-5 py-3">
+    <div className="grid grid-cols-[52px_100px_minmax(0,1fr)_auto] gap-2 sm:grid-cols-[80px_120px_minmax(0,1fr)_auto] sm:gap-3 md:grid-cols-[100px_180px_minmax(0,1fr)_auto] items-center px-4 md:px-5 py-3">
       <span className="font-mono text-xs text-foreground-muted">{meal.time}</span>
       <span className="font-heading uppercase tracking-wider text-sm text-off-white">
         {MEAL_LABEL[meal.slot] ?? meal.slot}

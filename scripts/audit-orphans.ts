@@ -158,6 +158,10 @@ function extractLinksFromTsx(text: string): string[] {
     /href=["'](\/[^"']+)["']/g,
     /href:\s*["'](\/[^"']+)["']/g,
     /["'](\/(?:blog|podcast|coaching|tools|guests|topics|about|community)\/?[^"'\s?#)]*)["']/g,
+    // Markdown links inside template-literal prose, e.g. the cluster-hub
+    // pillarContent strings: [label](/blog/slug). Without this, articles
+    // linked only from a hub's connective prose look like false orphans.
+    /\]\((\/(?:blog|podcast)\/[^)\s]+)\)/g,
   ];
   for (const re of patterns) {
     let m: RegExpExecArray | null;

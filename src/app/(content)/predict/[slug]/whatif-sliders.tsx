@@ -350,6 +350,7 @@ export function WhatIfSliders({
                 step={spec.step}
                 value={value}
                 onChange={(e) => onSlide(spec.key, parseFloat(e.target.value))}
+                aria-valuetext={spec.formatDelta(value)}
                 className="whatif-slider w-full"
                 style={
                   {

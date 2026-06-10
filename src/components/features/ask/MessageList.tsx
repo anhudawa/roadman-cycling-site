@@ -60,7 +60,11 @@ function MessageRow({
           <p className="font-heading text-coral tracking-widest text-[10px] uppercase mb-2">
             Roadman says
           </p>
-          <div className="text-off-white text-[1rem] leading-relaxed whitespace-pre-wrap min-h-[1.5em]">
+          <div
+            className="text-off-white text-[1rem] leading-relaxed whitespace-pre-wrap min-h-[1.5em]"
+            aria-live="polite"
+            aria-atomic="false"
+          >
             {message.content}
             {message.streaming && (
               <span
@@ -191,7 +195,7 @@ function FeedbackRow({
         type="button"
         onClick={() => send("up")}
         disabled={submitted !== null}
-        className={`px-2 py-1 rounded border border-white/10 hover:border-white/25 hover:text-off-white transition-colors ${submitted === "up" ? "bg-white/10 text-off-white" : ""}`}
+        className={`px-2.5 py-1.5 rounded border border-white/10 hover:border-white/25 hover:text-off-white transition-colors ${submitted === "up" ? "bg-white/10 text-off-white" : ""}`}
         aria-label="Helpful"
       >
         👍
@@ -200,7 +204,7 @@ function FeedbackRow({
         type="button"
         onClick={() => send("down")}
         disabled={submitted !== null}
-        className={`px-2 py-1 rounded border border-white/10 hover:border-white/25 hover:text-off-white transition-colors ${submitted === "down" ? "bg-white/10 text-off-white" : ""}`}
+        className={`px-2.5 py-1.5 rounded border border-white/10 hover:border-white/25 hover:text-off-white transition-colors ${submitted === "down" ? "bg-white/10 text-off-white" : ""}`}
         aria-label="Not helpful"
       >
         👎

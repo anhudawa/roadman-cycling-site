@@ -34,6 +34,17 @@ const EXCLUDED_NAMES = new Set([
   "World Tour Nutritionist",
   "Eva Lovia",
   "Joss Ross",
+  // Video titles / episode topics that slipped through isLikelyPersonName
+  // and were generating thin, junk /guests/[slug] pages.
+  "Cavendish Accused",
+  "Dealing With Extreme Altitude",
+  "Olympic Time Trial Mayhem",
+  "Shed Weight & Improve Mood",
+  "Vuelta Stage 3",
+  "Vuelta Stage 4",
+  "Breath With Niall",
+  "No Handouts",
+  "Time To Be Vulnerable",
 ]);
 
 /**
@@ -134,10 +145,12 @@ const KNOWN_CREDENTIALS: Record<string, string> = {
   "Andy McGrath": "Cycling journalist, former Rouleur editor, author of Tom Simpson: Bird on the Wire",
   "Aron D'Souza": "Founder of the Enhanced Games",
   "Ben Hoffman": "Professional triathlete, Ironman podium finisher",
+  "Ben Oliver": "Professional cyclist, Modern Adventure Pro Cycling",
   "Brian Smith": "Former British pro cyclist, Olympic road racer",
   "Chris Kresser": "Functional medicine practitioner, author",
   "Chris Voss": "Former FBI lead negotiator, author of Never Split the Difference",
   "Colin O Brady": "Endurance athlete, first solo Antarctic crossing",
+  "Conor Griffin": "Category A4 amateur cyclist, Everesting finisher",
   "Courtney Conley": "Foot health specialist, founder of Gait Happens",
   "Cynthia Thurlow": "Intermittent fasting expert, nurse practitioner",
   "Dan Bigham": "Former Hour Record holder, Head of Engineering at Red Bull-Bora-Hansgrohe",
@@ -157,6 +170,7 @@ const KNOWN_CREDENTIALS: Record<string, string> = {
   "Ed Clancy": "Olympic gold medallist, team pursuit",
   "Eddie Dunbar": "Irish pro cyclist, Jayco-AlUla",
   "Erin Ayala": "Sport psychologist, mental performance consultant",
+  "Fred Wright": "Professional World Tour cyclist",
   "Gareth Joyce": "CEO of Wahoo Fitness",
   "Geneviève Jeanson": "Former pro cyclist",
   "George Hincapie": "17x Tour de France starter, team leader",
@@ -183,6 +197,7 @@ const KNOWN_CREDENTIALS: Record<string, string> = {
   "Owen Vermeulen": "Professional gravel cyclist, addiction recovery advocate",
   "Rosa Klöser": "Professional gravel racer, Unbound 200 winner",
   "Sean Landers": "Irish cyclist, road safety campaigner",
+  "Scott Murphy": "World Tour physiotherapist, Mitchelton-Scott",
   "Shannon Malseed": "Professional cyclist, Australian national team",
   "Sofiane Sehili": "Ultra-endurance cyclist, bikepacking record holder",
   "Tayler Wiles": "Former Trek-Segafredo pro cyclist",

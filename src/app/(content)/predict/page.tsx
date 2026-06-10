@@ -873,6 +873,7 @@ export default function PredictPage() {
                   <button
                     type="button"
                     onClick={() => setShowAdvanced((v) => !v)}
+                    aria-expanded={showAdvanced}
                     className="mt-4 inline-flex items-center gap-2 text-xs uppercase tracking-[0.18em] text-foreground-muted hover:text-coral transition-colors"
                     style={{ fontFamily: "var(--font-jetbrains-mono)" }}
                   >
@@ -984,6 +985,7 @@ export default function PredictPage() {
                         key={option.value}
                         type="button"
                         onClick={() => setDrafting(option.value)}
+                        aria-pressed={drafting === option.value}
                         className={`rounded-lg border p-3 text-left transition-colors ${
                           drafting === option.value
                             ? "border-coral bg-coral/10 text-off-white"

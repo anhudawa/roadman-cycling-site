@@ -293,6 +293,7 @@ export function AskRoadmanClient({
                 <button
                   type="submit"
                   disabled={isStreaming || input.trim().length < 2}
+                  aria-label="Send question"
                   className="shrink-0 whitespace-nowrap font-heading tracking-wider uppercase text-sm bg-coral hover:bg-coral-hover disabled:opacity-40 disabled:cursor-not-allowed text-off-white px-5 py-3 min-h-[44px] rounded-md transition-colors"
                 >
                   {isStreaming ? "…" : "Send"}
