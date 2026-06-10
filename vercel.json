@@ -1,19 +1,65 @@
 {
   "ignoreCommand": "if [ \"$VERCEL_ENV\" = \"production\" ]; then exit 1; fi; case \"$VERCEL_GIT_COMMIT_REF\" in main|feat/*) exit 1 ;; esac; exit 0",
   "crons": [
-    { "path": "/api/admin/sync/beehiiv", "schedule": "0 6 * * *" },
-    { "path": "/api/admin/sync/stripe", "schedule": "0 6 * * *" },
-    { "path": "/api/admin/agent/weekly-analysis", "schedule": "0 8 * * 1" },
-    { "path": "/api/cron/daily-digest", "schedule": "0 8 * * *" },
-    { "path": "/api/cron/weekly-digest", "schedule": "0 8 * * 1" },
-    { "path": "/api/cron/sync-all", "schedule": "0 6 * * *" },
-    { "path": "/api/cron/score-all", "schedule": "30 6 * * *" },
-    { "path": "/api/cron/ted-weekly-digest", "schedule": "0 9 * * 1" },
-    { "path": "/api/cron/ted-heartbeat", "schedule": "0 */6 * * *" },
-    { "path": "/api/cron/complete-past-bookings", "schedule": "15 * * * *" },
-    { "path": "/api/cron/beehiiv-snapshot", "schedule": "45 6 * * *" },
-    { "path": "/api/cron/stripe-snapshot", "schedule": "50 6 * * *" },
-    { "path": "/api/cron/diagnostic-digest", "schedule": "0 8 * * *" },
-    { "path": "/api/cron/brand-citations", "schedule": "0 9 * * 1" }
+    {
+      "path": "/api/admin/sync/beehiiv",
+      "schedule": "0 6 * * *"
+    },
+    {
+      "path": "/api/admin/sync/stripe",
+      "schedule": "0 6 * * *"
+    },
+    {
+      "path": "/api/admin/agent/weekly-analysis",
+      "schedule": "0 8 * * 1"
+    },
+    {
+      "path": "/api/cron/daily-digest",
+      "schedule": "0 8 * * *"
+    },
+    {
+      "path": "/api/cron/weekly-digest",
+      "schedule": "0 8 * * 1"
+    },
+    {
+      "path": "/api/cron/sync-all",
+      "schedule": "0 6 * * *"
+    },
+    {
+      "path": "/api/cron/score-all",
+      "schedule": "30 6 * * *"
+    },
+    {
+      "path": "/api/cron/ted-weekly-digest",
+      "schedule": "0 9 * * 1"
+    },
+    {
+      "path": "/api/cron/ted-heartbeat",
+      "schedule": "0 */6 * * *"
+    },
+    {
+      "path": "/api/cron/complete-past-bookings",
+      "schedule": "15 * * * *"
+    },
+    {
+      "path": "/api/cron/beehiiv-snapshot",
+      "schedule": "45 6 * * *"
+    },
+    {
+      "path": "/api/cron/stripe-snapshot",
+      "schedule": "50 6 * * *"
+    },
+    {
+      "path": "/api/cron/diagnostic-digest",
+      "schedule": "0 8 * * *"
+    },
+    {
+      "path": "/api/cron/brand-citations",
+      "schedule": "0 9 * * 1"
+    },
+    {
+      "path": "/api/cron/fantasy-daily-email",
+      "schedule": "30 5 * 7 *"
+    }
   ]
 }

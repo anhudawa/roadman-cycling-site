@@ -1,0 +1,35 @@
+{
+  "race": "Tour de France 2026",
+  "verification": {
+    "verifiedAt": "2026-06-10T22:30:00Z",
+    "verifiedBy": "build verification pass (web cross-check, two independent sources)",
+    "primarySource": "https://en.wikipedia.org/wiki/List_of_teams_and_cyclists_in_the_2026_Tour_de_France",
+    "crossCheckSource": "https://www.cyclingweekly.com/racing/teams-announced-for-2026-tour-de-france-pinarello-q36-5-caja-rural-and-totalenergies-make-cut-unibet-rose-rockets-miss-out",
+    "note": "23 teams announced by ASO on 30 January 2026: all 18 UCI WorldTeams plus 5 ProTeams. Codes are Roadman display codes, not UCI codes. jerseyHex values are Roadman display accents for rider cards — deliberately NOT official kit colours (Section 9: no official jersey graphics)."
+  },
+  "teams": [
+    { "name": "Alpecin–Premier Tech", "code": "ALP", "category": "worldteam", "jerseyHex": "#7A8BD9" },
+    { "name": "Decathlon CMA CGM", "code": "DEC", "category": "worldteam", "jerseyHex": "#5BB8D9" },
+    { "name": "EF Education–EasyPost", "code": "EFE", "category": "worldteam", "jerseyHex": "#E07BB1" },
+    { "name": "Groupama–FDJ United", "code": "GFU", "category": "worldteam", "jerseyHex": "#6A9AD9" },
+    { "name": "Lidl–Trek", "code": "LTK", "category": "worldteam", "jerseyHex": "#D94F4F" },
+    { "name": "Lotto–Intermarché", "code": "LOT", "category": "worldteam", "jerseyHex": "#D9B84A" },
+    { "name": "Movistar Team", "code": "MOV", "category": "worldteam", "jerseyHex": "#4AAE8C" },
+    { "name": "Netcompany INEOS", "code": "NIN", "category": "worldteam", "jerseyHex": "#8C5BD9" },
+    { "name": "NSN Cycling Team", "code": "NSN", "category": "worldteam", "jerseyHex": "#D98A4A" },
+    { "name": "Red Bull–Bora–Hansgrohe", "code": "RBH", "category": "worldteam", "jerseyHex": "#5B6BD9" },
+    { "name": "Soudal–Quick-Step", "code": "SOQ", "category": "worldteam", "jerseyHex": "#4A8BD9" },
+    { "name": "Team Bahrain Victorious", "code": "TBV", "category": "worldteam", "jerseyHex": "#D9744A" },
+    { "name": "Team Jayco–AlUla", "code": "JAY", "category": "worldteam", "jerseyHex": "#9C4AD9" },
+    { "name": "Team Picnic–PostNL", "code": "PIC", "category": "worldteam", "jerseyHex": "#4AC2D9" },
+    { "name": "Visma–Lease a Bike", "code": "VLB", "category": "worldteam", "jerseyHex": "#E0C04A" },
+    { "name": "UAE Team Emirates XRG", "code": "UAE", "category": "worldteam", "jerseyHex": "#D95B5B" },
+    { "name": "Uno-X Mobility", "code": "UNO", "category": "worldteam", "jerseyHex": "#D9A84A" },
+    { "name": "XDS Astana Team", "code": "XDS", "category": "worldteam", "jerseyHex": "#4AAED9" },
+    { "name": "Caja Rural–Seguros RGA", "code": "CJR", "category": "proteam", "jerseyHex": "#5BAE6B" },
+    { "name": "Cofidis", "code": "COF", "category": "proteam", "jerseyHex": "#D94F8B" },
+    { "name": "Pinarello–Q36.5 Pro Cycling Team", "code": "PNQ", "category": "proteam", "jerseyHex": "#6BD9C2" },
+    { "name": "Team TotalEnergies", "code": "TOT", "category": "proteam", "jerseyHex": "#D9C24A" },
+    { "name": "Tudor Pro Cycling Team", "code": "TUD", "category": "proteam", "jerseyHex": "#B05BD9" }
+  ]
+}
