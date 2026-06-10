@@ -11,6 +11,7 @@ import { ENTITY_IDS, SITE_ORIGIN } from "@/lib/brand-facts";
 import { getPostBySlug, getAllSlugs, getRelatedPosts } from "@/lib/blog";
 import { getEpisodeBySlug } from "@/lib/podcast";
 import { getEntityBySlug } from "@/lib/entities";
+import { getGuestBySlug } from "@/lib/guests";
 import { getTopicsForPost, getTopicTitleBySlug } from "@/lib/topics";
 import { EVENTS } from "@/lib/training-plans";
 import { WeeksOutSelector } from "@/components/features/plan/WeeksOutSelector";
@@ -253,7 +254,14 @@ export default async function BlogPostPage({
           // duplicate entities.
           ...((() => {
             const expertMentions = (post.experts ?? [])
-              .filter((e) => e.href && e.href.startsWith("/guests/"))
+              .filter((e) => {
+                // Only emit a Person @id when the /guests/<slug> page
+                // actually exists — a typo'd or retired slug in
+                // experts: frontmatter must not pollute JSON-LD with a
+                // mention that resolves to a 404.
+                const m = e.href?.match(/^\/guests\/([a-z0-9-]+)\/?$/);
+                return m ? getGuestBySlug(m[1]) !== null : false;
+              })
               .map((e) => ({
                 "@type": "Person" as const,
                 "@id": `${SITE_ORIGIN}${e.href}#person`,

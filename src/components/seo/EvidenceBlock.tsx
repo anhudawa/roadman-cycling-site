@@ -1,10 +1,26 @@
 import Link from "next/link";
 import { CONTACT, FOUNDER } from "@/lib/brand-facts";
+import { getGuestBySlug } from "@/lib/guests";
 
 interface EvidenceSource {
   name: string;
   role?: string;
   href?: string;
+}
+
+/**
+ * Whether an expert `href` should render as a link. Non-`/guests/` hrefs
+ * are passed through unchanged. A `/guests/<slug>` href only links when
+ * the slug resolves to a real guest page — so a typo'd or retired slug in
+ * `experts:` frontmatter degrades to plain text (name + role retained for
+ * E-E-A-T) instead of emitting a user-facing 404. This makes the whole
+ * class of broken guest links non-breaking by construction.
+ */
+function isRenderableHref(href?: string): href is string {
+  if (!href) return false;
+  const m = href.match(/^\/guests\/([a-z0-9-]+)\/?$/);
+  if (!m) return true;
+  return getGuestBySlug(m[1]) !== null;
 }
 
 interface EvidenceBlockProps {
@@ -68,7 +84,7 @@ export function EvidenceBlock({
               <li key={e.name} className="text-sm text-foreground-muted">
                 <span className="text-off-white">{e.name}</span>
                 {e.role && ` — ${e.role}`}
-                {e.href && (
+                {isRenderableHref(e.href) && (
                   <>
                     {" "}
                     <Link
