@@ -9,11 +9,16 @@
 
 | Metric | Value |
 |--------|-------|
-| Total episode files on site | **709** |
+| Total episode files on site (`content/podcast/*.mdx`) | **709** |
 | Canonical RSS feed total (Spotify/Apple) | **1,277** |
+| Brand / marketing figure ("1,400+ conversations") | **1,400+** |
 | YouTube long-form uploads | **~338** (ceiling for transcript pipeline) |
-| Coverage of RSS catalogue | **55.5%** (709 / 1,277) |
-| Gap (missing episodes) | **568** |
+| Coverage of RSS catalogue (709 / 1,277) | **55.5%** |
+| Coverage of brand "1,400+" figure (709 / 1,400) | **~50.6%** |
+| Gap vs RSS catalogue | **568** |
+| Gap vs brand figure | **~691** |
+
+> **Note on the two denominators.** The verifiable catalogue is the **1,277** entries in the canonical Anchor/Apple RSS feed — this is the number every coverage figure below is calculated against. The **1,400+** figure used in marketing copy (`docs/ask-roadman-launch-email.md`, cold-traffic landing pages) counts "conversations" more loosely (interviews, clips, side-projects, cross-pod appearances) and is **not** reconcilable to a single feed. Against that looser figure, on-site coverage is roughly **half**. The `plateau-cold-traffic-audit.md` already flags the 1,400+ claim as a sceptic-magnet that should be verified or rephrased — this audit confirms the on-site corpus does not substantiate it.
 
 ---
 
@@ -80,7 +85,8 @@ The YouTube pipeline captured 231 episodes from 2024–2026 (100 + 98 + 33). How
 | Pre-2019 (2016–2018) | 3 | ~3 (no RSS) | ~100% for YouTube |
 | 2019–2022 (safe audio range) | 406 | ~560 | ~72% |
 | 2022 Feb onwards (stalled) | 303 | ~714 | ~42% |
-| **Overall** | **709** | **1,277** | **55.5%** |
+| **Overall (vs RSS catalogue)** | **709** | **1,277** | **55.5%** |
+| **Overall (vs brand "1,400+")** | **709** | **1,400+** | **~50.6%** |
 
 ---
 
