@@ -69,8 +69,8 @@ export function RecentActivity({
       <ol className="space-y-3">
         <AnimatePresence initial={false}>
           {visible.map((row, idx) => {
-            const module = METHOD_MODULE_BY_SLUG.get(row.slug);
-            if (!module) return null;
+            const mod = METHOD_MODULE_BY_SLUG.get(row.slug);
+            if (!mod) return null;
             const isNewlyRevealed = expanded && idx >= initialLimit;
             return (
               <motion.li
@@ -84,17 +84,17 @@ export function RecentActivity({
                 transition={{ duration: 0.2, delay: isNewlyRevealed ? idx * 0.02 : 0 }}
               >
                 <Link
-                  href={`/method/modules/${module.slug}`}
+                  href={`/method/modules/${mod.slug}`}
                   className="group grid grid-cols-[auto_1fr_auto] items-baseline gap-4 rounded-md py-1 px-1 -mx-1 hover:bg-white/5"
                 >
                   <span
                     aria-hidden
                     className="font-heading text-xs tracking-wider text-coral w-8"
                   >
-                    {module.weekIndex.toString().padStart(2, "0")}
+                    {mod.weekIndex.toString().padStart(2, "0")}
                   </span>
                   <span className="font-heading uppercase tracking-wide text-off-white truncate group-hover:text-coral transition-colors">
-                    {module.title}
+                    {mod.title}
                   </span>
                   <span className="text-[11px] text-foreground-muted whitespace-nowrap">
                     {relativeFromNow(row.completedAt)}

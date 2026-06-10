@@ -34,11 +34,11 @@ export async function generateMetadata({
   params: Promise<{ slug: string }>;
 }): Promise<Metadata> {
   const { slug } = await params;
-  const module = METHOD_MODULE_BY_SLUG.get(slug);
-  if (!module) return { title: "The Method" };
+  const mod = METHOD_MODULE_BY_SLUG.get(slug);
+  if (!mod) return { title: "The Method" };
   return {
-    title: `${module.weekIndex.toString().padStart(2, "0")} · ${module.title} · The Method`,
-    description: module.oneLiner,
+    title: `${mod.weekIndex.toString().padStart(2, "0")} · ${mod.title} · The Method`,
+    description: mod.oneLiner,
     robots: { index: false, follow: false },
   };
 }
@@ -60,8 +60,8 @@ export default async function MethodModulePage({
   params: Promise<{ slug: string }>;
 }) {
   const { slug } = await params;
-  const module = METHOD_MODULE_BY_SLUG.get(slug);
-  if (!module) notFound();
+  const mod = METHOD_MODULE_BY_SLUG.get(slug);
+  if (!mod) notFound();
 
   let session: Awaited<ReturnType<typeof getMethodSession>> = null;
   try {
@@ -71,11 +71,11 @@ export default async function MethodModulePage({
   }
   if (!session) redirect("/method/login");
 
-  const availability = isModuleUnlocked(session.enrollment, module);
+  const availability = isModuleUnlocked(session.enrollment, mod);
   const progress = await getProgressSummary(session.enrollment.id);
-  const isComplete = progress.completedSlugs.has(module.slug);
-  const phase = getPhaseForWeek(module.weekIndex);
-  const trainingPeaksResource = module.resources.find(
+  const isComplete = progress.completedSlugs.has(mod.slug);
+  const phase = getPhaseForWeek(mod.weekIndex);
+  const trainingPeaksResource = mod.resources.find(
     (r): r is Extract<ResourceLink, { kind: "training-peaks" }> =>
       r.kind === "training-peaks",
   );
@@ -107,7 +107,7 @@ export default async function MethodModulePage({
         <div className="grid gap-12 lg:grid-cols-[260px_1fr]">
           <aside className="lg:sticky lg:top-24 lg:self-start motion-safe:animate-fade-in">
             <ModuleNav
-              currentSlug={module.slug}
+              currentSlug={mod.slug}
               enrollment={session.enrollment}
               completedSlugs={progress.completedSlugs}
             />
@@ -115,7 +115,7 @@ export default async function MethodModulePage({
 
           <div className="grid gap-10 lg:grid-cols-12">
             <ModuleHeader
-              module={module}
+              module={mod}
               phase={phase}
               completedSlugs={progress.completedSlugs}
             />
@@ -130,15 +130,15 @@ export default async function MethodModulePage({
                   className="lg:col-span-8 space-y-8 motion-safe:animate-slide-up"
                   style={{ animationDelay: "60ms" }}
                 >
-                  <LearningOutcomes outcomes={module.learningOutcomes} />
+                  <LearningOutcomes outcomes={mod.learningOutcomes} />
                   <VideoEmbed
-                    youTubeId={module.videoYouTubeId}
-                    title={module.title}
+                    youTubeId={mod.videoYouTubeId}
+                    title={mod.title}
                   />
-                  <MethodProtocol module={module} />
+                  <MethodProtocol module={mod} />
                   <WeekChecklist
-                    moduleSlug={module.slug}
-                    items={module.checklist}
+                    moduleSlug={mod.slug}
+                    items={mod.checklist}
                   />
                 </div>
                 <aside
@@ -146,17 +146,17 @@ export default async function MethodModulePage({
                   style={{ animationDelay: "120ms" }}
                 >
                   <CompleteToggle
-                    moduleSlug={module.slug}
+                    moduleSlug={mod.slug}
                     initialComplete={isComplete}
                   />
                   {trainingPeaksResource && (
                     <TrainingPeaksCallout resource={trainingPeaksResource} />
                   )}
-                  <ResourceList resources={module.resources} />
+                  <ResourceList resources={mod.resources} />
                   <DiscussionCTA
-                    moduleTitle={module.title}
-                    weekIndex={module.weekIndex}
-                    url={module.discussionUrl}
+                    moduleTitle={mod.title}
+                    weekIndex={mod.weekIndex}
+                    url={mod.discussionUrl}
                   />
                 </aside>
               </>
@@ -164,7 +164,7 @@ export default async function MethodModulePage({
 
             <div className="lg:col-span-12">
               <ModulePager
-                currentSlug={module.slug}
+                currentSlug={mod.slug}
                 enrollment={session.enrollment}
               />
             </div>

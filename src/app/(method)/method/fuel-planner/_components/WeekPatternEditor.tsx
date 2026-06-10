@@ -45,6 +45,7 @@ export function WeekPatternEditor() {
 
   useEffect(() => {
     const existing = loadState() ?? defaultState();
+    // eslint-disable-next-line react-hooks/set-state-in-effect -- hydrate from localStorage on mount
     setPattern(existing.pattern);
     setStartDate(existing.startDate);
     setHydrated(true);

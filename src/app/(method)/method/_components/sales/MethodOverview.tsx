@@ -22,8 +22,8 @@ export function MethodOverview() {
           </Reveal>
           <Reveal delay={120}>
             <p className="text-lg text-foreground-muted leading-relaxed max-w-[55ch]">
-              Most training programmes give you a calendar of workouts. That's not a
-              system — that's a queue. The Roadman Method is built on the principle that
+              Most training programmes give you a calendar of workouts. That&apos;s not a
+              system — that&apos;s a queue. The Roadman Method is built on the principle that
               every pillar interacts with the others. Train without recovering and you
               stagnate. Recover without fuelling and you go backwards. Lift without
               periodising and you arrive at your event broken.
@@ -72,7 +72,7 @@ export function MethodOverview() {
           <p className="mt-16 max-w-[60ch] text-base text-foreground-muted leading-relaxed">
             Each pillar appears at least twice across the 12 weeks. The first pass builds
             the foundation. The second pass goes deeper at a higher level. By Week 12 you
-            haven't just learned the components — you've practised the integration.
+            haven&apos;t just learned the components — you&apos;ve practised the integration.
           </p>
         </Reveal>
       </Container>

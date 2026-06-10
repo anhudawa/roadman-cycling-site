@@ -10,16 +10,6 @@ import {
 import type { DayPlan, MealMacros, WeekPlan } from "@/lib/fuel-planner/types";
 import { loadState } from "@/lib/fuel-planner/storage";
 
-const FUEL_CATEGORY_LABEL: Record<string, string> = {
-  REST: "Rest",
-  LOW: "Low",
-  LOW_MODERATE: "Low-Mod",
-  MODERATE: "Moderate",
-  MODERATE_HIGH: "Mod-High",
-  HIGH: "High",
-  VERY_HIGH: "V.High",
-};
-
 const FUEL_CATEGORY_COLOUR: Record<string, string> = {
   REST: "text-foreground-muted",
   LOW: "text-sky-300",
@@ -55,6 +45,7 @@ export function FuelCalendar() {
   useEffect(() => {
     const state = loadState();
     if (!state) {
+      // eslint-disable-next-line react-hooks/set-state-in-effect -- reflect empty localStorage on mount
       setMissingProfile(true);
       return;
     }
@@ -340,6 +331,7 @@ function MealRow({ meal }: { meal: MealMacros }) {
 
 function ProfileBar() {
   const [state, setState] = useState<ReturnType<typeof loadState>>(null);
+  // eslint-disable-next-line react-hooks/set-state-in-effect -- hydrate from localStorage on mount
   useEffect(() => setState(loadState()), []);
   if (!state) return null;
 

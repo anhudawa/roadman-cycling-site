@@ -19,15 +19,15 @@ export function AnthonyNote() {
         <Reveal delay={140}>
           <div className="space-y-6 text-lg text-off-white/90 leading-relaxed">
             <p>
-              I'll be honest with you. I started the podcast because I was stuck and a
+              I&apos;ll be honest with you. I started the podcast because I was stuck and a
               bit embarrassed about it. Eighty-six kilos. A flat FTP. Riding the same
               week over and over, telling everyone I was training, quietly wondering what
-              everyone else knew that I didn't.
+              everyone else knew that I didn&apos;t.
             </p>
 
             <p>
               So I started asking. How does a real World Tour coach build a season? Why
-              does my FTP sit there while my mate's climbs on half the volume? I got the
+              does my FTP sit there while my mate&apos;s climbs on half the volume? I got the
               people who actually know in a room and I asked them the questions I was too
               proud to ask out loud.
             </p>
@@ -41,21 +41,21 @@ export function AnthonyNote() {
             </p>
 
             <p>
-              And here's the thing that bothered me. That's hundreds of hours of podcast.
+              And here&apos;s the thing that bothered me. That&apos;s hundreds of hours of podcast.
               The riders who most need it — the ones with a job, a family, a Saturday
-              morning and a real desire to get faster — are the ones who can't sit through
+              morning and a real desire to get faster — are the ones who can&apos;t sit through
               it. The answers existed. They were just buried.
             </p>
 
             <p>
-              The Roadman Method is me digging them out. Everything I've learned from those
+              The Roadman Method is me digging them out. Everything I&apos;ve learned from those
               conversations, the fluff thrown away, built into twelve weeks that respect the
-              fact you have a life. It's the course I wish someone had handed me at 86 kilos
+              fact you have a life. It&apos;s the course I wish someone had handed me at 86 kilos
               and a flat FTP — instead of another plan that ignored everything except the bike.
             </p>
 
             <p>
-              You're not done yet. Neither am I. Let's go.
+              You&apos;re not done yet. Neither am I. Let&apos;s go.
             </p>
 
             <p className="pt-4 font-heading uppercase tracking-wider text-coral">

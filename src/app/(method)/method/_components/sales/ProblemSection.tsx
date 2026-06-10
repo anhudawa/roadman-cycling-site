@@ -50,7 +50,7 @@ export function ProblemSection() {
         </Reveal>
         <Reveal delay={80}>
           <h2 className="font-heading uppercase leading-[0.95] text-[clamp(2rem,5vw,4.5rem)] max-w-[20ch]">
-            You've done the hours.
+            You&apos;ve done the hours.
             <br />
             <span className="text-foreground-muted">The hours stopped working.</span>
           </h2>
@@ -60,9 +60,9 @@ export function ProblemSection() {
           <p className="mt-8 max-w-[60ch] text-lg text-foreground-muted leading-relaxed">
             This is the quiet shame of the serious amateur. You train more than your mates.
             You care about it more than they understand. And the bike has stopped paying you
-            back. It's not effort. It's not desire. It's that nobody ever handed you a system —
-            so you've been doing the work without the structure that makes the work count.
-            If any of the below is the inside of your head right now, keep reading. You're
+            back. It&apos;s not effort. It&apos;s not desire. It&apos;s that nobody ever handed you a system —
+            so you&apos;ve been doing the work without the structure that makes the work count.
+            If any of the below is the inside of your head right now, keep reading. You&apos;re
             in the right place.
           </p>
         </Reveal>

@@ -23,6 +23,7 @@ export function Reveal({ children, delay = 0, className = "", as: Tag = "div" }:
     const node = ref.current;
     if (!node) return;
     if (typeof IntersectionObserver === "undefined") {
+      // eslint-disable-next-line react-hooks/set-state-in-effect -- fallback when IntersectionObserver unsupported
       setShown(true);
       return;
     }

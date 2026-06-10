@@ -29,6 +29,7 @@ export function WeekChecklist({ moduleSlug, items }: WeekChecklistProps) {
       if (raw) {
         const parsed = JSON.parse(raw);
         if (Array.isArray(parsed) && parsed.length === items.length) {
+          // eslint-disable-next-line react-hooks/set-state-in-effect -- hydrate from localStorage on mount
           setChecked(parsed.map((v) => Boolean(v)));
         }
       }

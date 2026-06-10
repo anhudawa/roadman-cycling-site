@@ -45,8 +45,8 @@ export function SocialProof() {
               The Roadman Cycling Podcast has crossed 100 million downloads. Across 1,400+
               long-form episodes, Anthony has put the people who actually move performance
               forward — World Tour coaches, sports scientists, pros — on the record and
-              asked the questions you'd ask if you got the chair. You can't buy that access.
-              The Method is the only place it's been distilled into a system you can run.
+              asked the questions you&apos;d ask if you got the chair. You can&apos;t buy that access.
+              The Method is the only place it&apos;s been distilled into a system you can run.
             </p>
           </Reveal>
         </div>

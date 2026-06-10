@@ -18,7 +18,7 @@ export function WhoThisIsFor() {
         </Reveal>
         <Reveal delay={140}>
           <p className="mt-6 max-w-[60ch] text-lg text-foreground-muted leading-relaxed">
-            This isn't a course for everyone. The riders who finish it and tell us it
+            This isn&apos;t a course for everyone. The riders who finish it and tell us it
             changed how they think about cycling have a few things in common. Read both
             lists. If the right column sounds like you, save your money.
           </p>

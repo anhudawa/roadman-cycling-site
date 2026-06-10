@@ -13,7 +13,7 @@ export function FAQ() {
         </Reveal>
         <Reveal delay={80}>
           <h2 className="font-heading uppercase leading-[0.95] text-[clamp(2rem,5vw,4.5rem)] mb-16 max-w-[20ch]">
-            Things you'd ask if we were on the phone.
+            Things you&apos;d ask if we were on the phone.
           </h2>
         </Reveal>
 

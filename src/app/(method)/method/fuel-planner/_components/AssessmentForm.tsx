@@ -54,6 +54,7 @@ export function AssessmentForm({
   useEffect(() => {
     const existing = loadState();
     if (existing) {
+      // eslint-disable-next-line react-hooks/set-state-in-effect -- hydrate from localStorage on mount
       setProfile(existing.profile);
       setSavedAt(existing.updatedAt);
     }

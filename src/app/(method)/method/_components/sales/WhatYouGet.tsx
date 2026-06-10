@@ -66,7 +66,7 @@ export function WhatYouGet() {
                       {week.problem}
                     </p>
                     <p className="text-sm md:text-base text-off-white/90 leading-relaxed">
-                      <span className="text-coral font-medium">What you'll do: </span>
+                      <span className="text-coral font-medium">What you&apos;ll do: </span>
                       {week.promise}
                     </p>
                   </div>
