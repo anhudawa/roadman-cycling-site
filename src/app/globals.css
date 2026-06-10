@@ -17,6 +17,12 @@
   --color-charcoal: #252526;
   --color-deep-purple: #210140;
 
+  /* Tour de France overlay — yellow-jersey accent. Time-boxed facade
+     accent woven into the brand palette; pairs with charcoal/deep-purple
+     text for AA contrast (never white text on yellow). */
+  --color-jersey-yellow: #FFD700;
+  --color-jersey-yellow-deep: #E6BE00;
+
   /* Semantic Colours */
   --color-background: #252526;
   --color-background-deep: #210140;
