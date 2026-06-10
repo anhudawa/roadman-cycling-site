@@ -101,10 +101,8 @@ build handover brief; deadlines: picking live **26 June**, scoring live
 
 - Mini-league nudge (48 h after signup, no league) and post-Tour
   sequence — straightforward crons once launch settles
-- Share-card buttons in the dashboard wired to `/api/og/fantasy`
-  (route exists; the dashboard currently shares text links)
-- Pre-generation of all 21 stage emails via Claude API into a review
-  queue — the render pipeline + guard exist; generation script pending
-  stage notes
 - Results-ingestion automation (PCS blocks scraping; manual admin entry
   is the shipped reliability floor per Section 6.1)
+- Meta CAPI: server event implemented; the client pixel needs the
+  matching `fantasy-signup-{id}` eventID wired for dedup when Anthony
+  enables paid acquisition (open decision #4)
