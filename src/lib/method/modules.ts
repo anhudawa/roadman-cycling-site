@@ -355,7 +355,7 @@ export const METHOD_MODULES: readonly MethodModule[] = [
     estimatedReadMinutes: 26,
     keyExperts: ["John Wakefield", "Tim Kerrison", "Dan Lorang", "Anthony Walsh"],
     learningOutcomes: [
-      "Master the low-cadence torque protocols used by Bora-Hansgrohe and Team Sky / Ineos coaches",
+      "Master the low-cadence torque protocols used by Red Bull–Bora–Hansgrohe and Team Sky / Ineos coaches",
       "Understand how muscle fibre recruitment drives power — and how to train both type 1 and type 2 for cycling",
       "Build a power development block that targets your specific limiter",
       "Integrate on-bike power work with the gym strength foundation from Week 4",
