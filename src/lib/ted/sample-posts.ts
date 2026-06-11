@@ -233,7 +233,7 @@ Reply with the event, when it is, and where the training's at. People will share
 export const SAMPLE_SURFACES: SampleSurfaceSeed[] = [
   {
     skoolPostId: "sample-thread-vo2",
-    threadUrl: "https://www.skool.com/roadman/sample-vo2-thread",
+    threadUrl: "https://www.skool.com/roadmancycling/sample-vo2-thread",
     threadAuthor: "Niamh",
     threadTitle: "Anyone else find VO2 sessions destroy their week?",
     threadBody:
@@ -245,7 +245,7 @@ export const SAMPLE_SURFACES: SampleSurfaceSeed[] = [
   },
   {
     skoolPostId: "sample-thread-fuel",
-    threadUrl: "https://www.skool.com/roadman/sample-fuelling-thread",
+    threadUrl: "https://www.skool.com/roadmancycling/sample-fuelling-thread",
     threadAuthor: "Matthew",
     threadTitle: "How do you fuel a 4-hour gravel race?",
     threadBody:
@@ -257,7 +257,7 @@ export const SAMPLE_SURFACES: SampleSurfaceSeed[] = [
   },
   {
     skoolPostId: "sample-thread-winter",
-    threadUrl: "https://www.skool.com/roadman/sample-winter-thread",
+    threadUrl: "https://www.skool.com/roadmancycling/sample-winter-thread",
     threadAuthor: "Priya",
     threadTitle: "Winter training — how many Z2 hours is enough?",
     threadBody:
@@ -271,7 +271,7 @@ What's the fourth?
   },
   {
     skoolPostId: "sample-thread-bonk",
-    threadUrl: "https://www.skool.com/roadman/sample-bonk-thread",
+    threadUrl: "https://www.skool.com/roadmancycling/sample-bonk-thread",
     threadAuthor: "Darragh",
     threadTitle: "Bonked on my long ride AGAIN — what am I missing?",
     threadBody:
@@ -285,7 +285,7 @@ What's the angle nobody's said yet?
   },
   {
     skoolPostId: "sample-thread-deload",
-    threadUrl: "https://www.skool.com/roadman/sample-deload-thread",
+    threadUrl: "https://www.skool.com/roadmancycling/sample-deload-thread",
     threadAuthor: "Kate",
     threadTitle: "Is a deload week actually necessary every 4 weeks?",
     threadBody:

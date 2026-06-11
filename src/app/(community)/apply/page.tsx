@@ -21,7 +21,7 @@ import { getSubmissionBySlug } from "@/lib/diagnostic/store";
  * still work.
  */
 const SKOOL_TRIAL_URL =
-  "https://www.skool.com/roadmancycling/about?utm_source=diagnostic&utm_medium=apply&utm_campaign=apply-bottom";
+  "https://www.skool.com/roadmancycling?utm_source=diagnostic&utm_medium=apply&utm_campaign=apply-bottom";
 
 export async function generateMetadata(): Promise<Metadata> {
   const title = "Apply for Not Done Yet — Cycling Coaching with Anthony";

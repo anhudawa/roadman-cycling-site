@@ -4,7 +4,7 @@ import { labelFor } from "@/lib/diagnostic/profiles";
 import type { StoredSubmission } from "@/lib/diagnostic/store";
 import { firstNameFromEmail } from "./firstNameFromEmail";
 
-const SKOOL_BASE = "https://www.skool.com/roadmancycling/about";
+const SKOOL_BASE = "https://www.skool.com/roadmancycling";
 
 function skoolUrlFor(profile: StoredSubmission["primaryProfile"]): string {
   const params = new URLSearchParams({

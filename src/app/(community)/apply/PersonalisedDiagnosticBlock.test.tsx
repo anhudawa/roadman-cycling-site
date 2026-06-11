@@ -136,11 +136,13 @@ describe("PersonalisedDiagnosticBlock", () => {
     expect(html).toContain("9-12");
   });
 
-  it("links the primary CTA to the Skool /about page", () => {
+  it("links the primary CTA to the canonical Skool community URL", () => {
     const html = renderToStaticMarkup(
       <PersonalisedDiagnosticBlock submission={makeSubmission()} />
     );
-    expect(html).toContain("https://www.skool.com/roadmancycling/about");
+    expect(html).toContain("https://www.skool.com/roadmancycling");
+    // Must be the canonical community URL, never the /about variant.
+    expect(html).not.toContain("skool.com/roadmancycling/about");
   });
 
   it("appends utm_source=diagnostic, utm_medium=apply, and utm_campaign=<profile>", () => {

@@ -66,7 +66,7 @@ function sanitiseForPdf(s: string): string {
  *   charcoal #252526, off-white #FAFAFA, mid grey #545559.
  */
 
-const NDY_URL = "https://www.skool.com/roadmancycling/about";
+const NDY_URL = "https://www.skool.com/roadmancycling";
 
 const styles = StyleSheet.create({
   // ── Cover ─────────────────────────────────────

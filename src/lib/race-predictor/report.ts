@@ -802,7 +802,7 @@ export function renderRaceReportHtml(p: RenderHtmlArgs): string {
   <div class="premium">
     <h2>The next step is the Finish Line</h2>
     <p>The report tells you what the course demands. The Roadman <strong>Not Done Yet</strong> coaching community is where we turn that into training: TrainingPeaks delivery, weekly live calls with Anthony, coach feedback, and a group of serious amateur cyclists who still have big days ahead of them.</p>
-    <a class="cta" href="${BASE_URL}/not-done-yet">Join Not Done Yet</a>
+    <a class="cta" href="https://www.skool.com/roadmancycling">Join Not Done Yet</a>
   </div>
 
   <div class="footer">

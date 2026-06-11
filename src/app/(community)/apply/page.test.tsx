@@ -136,7 +136,8 @@ describe("ApplyPage", () => {
   it("uses the Skool CTA at the bottom of the page when personalised", async () => {
     getSubmissionBySlugMock.mockResolvedValue(makeSubmission());
     const html = await renderApplyPage({ from: "abc123xyz0" });
-    expect(html).toContain("https://www.skool.com/roadmancycling/about");
+    expect(html).toContain("https://www.skool.com/roadmancycling");
+    expect(html).not.toContain("skool.com/roadmancycling/about");
   });
 
   it("ignores empty `from` and falls back to the cohort form", async () => {
