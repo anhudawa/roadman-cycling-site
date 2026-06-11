@@ -1,12 +1,12 @@
-import { describe, expect, it, vi } from "vitest";
+import { describe, expect, it } from "vitest";
 
 import { GET } from "@/app/api/v1/search/route";
 
 // The search handler eagerly loads every content source (posts, episodes,
-// topics, glossary, guests, tools) on first call. That cold read can exceed
-// the 5s default under full-suite parallel load, so give this I/O-heavy file
-// more headroom — the assertions themselves are fast.
-vi.setConfig({ testTimeout: 30000 });
+// topics, glossary, guests, tools) on first call. Under full-suite parallel
+// transform that cold read can take ~40s, so this file relies on the generous
+// global testTimeout in vitest.config.mts rather than a per-file override
+// (the old 30s cap was both redundant and, on a loaded machine, too tight).
 
 function makeRequest(query: string): Request {
   return new Request(`https://roadmancycling.com/api/v1/search${query}`);
@@ -39,7 +39,12 @@ describe("GET /api/v1/search", () => {
   });
 
   it("advertises all six indexed types in the response", async () => {
-    const res = GET(makeRequest("?q=ftp"));
+    // `indexedTypes` is a static capabilities list the route always returns,
+    // independent of the query or type filter. Scope to `type=tool` so the
+    // handler only loads the tools source — an unfiltered query would cold-read
+    // the entire content corpus (hundreds of MDX files) purely as a side effect,
+    // which is wasted work for a static-array assertion.
+    const res = GET(makeRequest("?q=ftp&type=tool"));
     expect(res.status).toBe(200);
     const body = await res.json();
     expect(body.indexedTypes).toEqual(
