@@ -37,6 +37,7 @@ const mocks = vi.hoisted(() => ({
   getSlots: vi.fn(),
   updateSlot: vi.fn(),
   notifySpotlightPurchase: vi.fn(),
+  handleMethodCourseCheckoutCompleted: vi.fn(),
   dbSelect: vi.fn(),
 }));
 
@@ -81,6 +82,10 @@ vi.mock("@/lib/inventory", () => ({
 }));
 vi.mock("@/lib/notifications", () => ({
   notifySpotlightPurchase: mocks.notifySpotlightPurchase,
+}));
+vi.mock("@/lib/stripe/method-dispatch", () => ({
+  handleMethodCourseCheckoutCompleted:
+    mocks.handleMethodCourseCheckoutCompleted,
 }));
 vi.mock("@/lib/db", () => ({
   db: {
@@ -223,6 +228,39 @@ describe("dispatchStripeEvent — paid_report pipeline", () => {
     });
     expect(mocks.sendStripeSaleNotification).toHaveBeenCalledOnce();
     expect(mocks.markOrderPaid).not.toHaveBeenCalled();
+  });
+
+  it("routes a method_course checkout to the Method enrollment handler", async () => {
+    mocks.handleMethodCourseCheckoutCompleted.mockResolvedValue(undefined);
+    const event: Stripe.Event = {
+      id: "evt_method_1",
+      type: "checkout.session.completed",
+      data: {
+        object: {
+          id: "cs_method_1",
+          customer_email: "rider@example.com",
+          payment_status: "paid",
+          amount_total: 29700,
+          currency: "usd",
+          metadata: {
+            type: "method_course",
+            enrollment_id: "12",
+            rider_name: "Rider",
+          },
+        } as unknown as Stripe.Checkout.Session,
+      },
+    } as unknown as Stripe.Event;
+    const { dispatchStripeEvent } = await import("@/lib/stripe/dispatch");
+    await dispatchStripeEvent(event, {
+      stripe: fakeStripe(),
+      webhookPath: "/api/webhooks/stripe",
+    });
+    expect(mocks.handleMethodCourseCheckoutCompleted).toHaveBeenCalledWith(
+      event.data.object,
+      "evt_method_1",
+    );
+    // Must NOT fall through to the legacy S&C admin-notification path.
+    expect(mocks.sendStripeSaleNotification).not.toHaveBeenCalled();
   });
 
   it("cascades a refund to the paid_report row", async () => {

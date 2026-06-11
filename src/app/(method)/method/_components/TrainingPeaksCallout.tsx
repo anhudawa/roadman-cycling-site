@@ -14,6 +14,12 @@ interface TrainingPeaksCalloutProps {
  * plan includes.
  */
 export function TrainingPeaksCallout({ resource }: TrainingPeaksCalloutProps) {
+  // The plan is applied to the rider's TrainingPeaks account during
+  // onboarding, so this per-module link stays a placeholder until a real
+  // (absolute) plan URL is dropped in. Until then, show a status pill
+  // instead of a CTA that would open a 404 in a new tab.
+  const isLive = /^https?:\/\//i.test(resource.href);
+
   return (
     <section className="relative overflow-hidden rounded-xl border border-coral/30 bg-gradient-to-br from-charcoal via-charcoal/90 to-deep-purple/40 p-6">
       <div
@@ -37,14 +43,24 @@ export function TrainingPeaksCallout({ resource }: TrainingPeaksCalloutProps) {
             <span>Targets, RPE, and notes built in — open the bike app, ride.</span>
           </li>
         </ul>
-        <a
-          href={resource.href}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="inline-flex items-center gap-2 rounded-md bg-coral hover:bg-coral-hover px-5 py-2.5 font-heading uppercase tracking-wider text-off-white text-sm shadow-[var(--shadow-glow-coral)] transition-all active:scale-[0.97]"
-        >
-          Open in TrainingPeaks →
-        </a>
+        {isLive ? (
+          <a
+            href={resource.href}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-2 rounded-md bg-coral hover:bg-coral-hover px-5 py-2.5 font-heading uppercase tracking-wider text-off-white text-sm shadow-[var(--shadow-glow-coral)] transition-all active:scale-[0.97]"
+          >
+            Open in TrainingPeaks →
+          </a>
+        ) : (
+          <span className="inline-flex items-center gap-2 rounded-md border border-coral/40 bg-charcoal/70 px-5 py-2.5 font-heading uppercase tracking-wider text-coral text-sm">
+            <span className="relative flex h-2 w-2">
+              <span className="absolute inset-0 motion-safe:animate-ping rounded-full bg-coral/70" />
+              <span className="relative h-2 w-2 rounded-full bg-coral" />
+            </span>
+            Applied to your account at onboarding
+          </span>
+        )}
       </div>
     </section>
   );

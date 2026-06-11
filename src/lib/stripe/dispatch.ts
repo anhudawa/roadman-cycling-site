@@ -127,6 +127,13 @@ async function handleCheckoutCompleted(
     await handleCampBookingCheckoutCompleted(session);
     return;
   }
+  if (metadata.type === "method_course") {
+    const { handleMethodCourseCheckoutCompleted } = await import(
+      "./method-dispatch"
+    );
+    await handleMethodCourseCheckoutCompleted(session, eventId);
+    return;
+  }
 
   // Fallback: legacy S&C strength training course. No metadata.type set
   // because the original `/api/checkout` route predates the typed flow.
