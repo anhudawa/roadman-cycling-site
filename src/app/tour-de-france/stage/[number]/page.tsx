@@ -211,6 +211,41 @@ export default async function StagePage({
           </Section>
         )}
 
+        {/* The tactical read */}
+        <Section background="charcoal" className="!py-12 border-b border-white/5">
+          <Container width="narrow">
+            <h2 className="font-heading text-off-white text-2xl tracking-wide mb-6">
+              THE TACTICAL READ
+            </h2>
+            <div className="space-y-6">
+              <div>
+                <p className="font-heading text-jersey-yellow text-[11px] tracking-[0.25em] mb-2">
+                  WHO IT SUITS
+                </p>
+                <p className="text-off-white leading-relaxed">
+                  {stage.tactical.whoBenefits}
+                </p>
+              </div>
+              <div>
+                <p className="font-heading text-jersey-yellow text-[11px] tracking-[0.25em] mb-2">
+                  WHAT TO WATCH
+                </p>
+                <p className="text-off-white leading-relaxed">
+                  {stage.tactical.whatToWatch}
+                </p>
+              </div>
+              <div className="rounded-xl border-l-2 border-jersey-yellow bg-white/[0.03] p-5">
+                <p className="font-heading text-foreground-subtle text-[11px] tracking-[0.25em] mb-2">
+                  ROADMAN PREDICTION
+                </p>
+                <p className="text-foreground-muted leading-relaxed">
+                  {stage.prediction}
+                </p>
+              </div>
+            </div>
+          </Container>
+        </Section>
+
         {/* The Roadman take */}
         <Section background="deep-purple" grain className="!py-14">
           <Container width="narrow">
