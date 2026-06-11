@@ -3545,4 +3545,436 @@ export const mastersAnswers: AnswerPage[] = [
     publishDate: "2026-05-29",
     updatedDate: "2026-05-29",
   },
+
+  // ============================================================
+  // IS ZONE 2 ENOUGH FOR MASTERS CYCLISTS
+  // ============================================================
+  {
+    slug: "is-zone-2-enough-for-masters-cyclists",
+    cluster: "masters",
+    question: "Is Zone 2 Training Enough for Masters Cyclists?",
+    seoTitle: "Is Zone 2 Enough for Masters Cyclists? The Honest Answer",
+    seoDescription:
+      "Zone 2 builds the aerobic base every masters cyclist needs — but on its own it lets your top end fade. Why riders over 40 need easy volume and protected intensity, not one or the other.",
+    pillar: "coaching",
+    directAnswer:
+      "No — Zone 2 is necessary but not sufficient for masters cyclists. Easy aerobic riding builds the base everything sits on, and it should make up roughly 80% of your week. But the thing age takes first is the top end — VO2 max, neuromuscular snap, the ability to go hard and recover. Zone 2 does nothing to defend that. After 40 you need the base and a small, protected dose of genuine intensity: one VO2 max session and one threshold session a week, kept in the plan year-round.",
+    keyTakeaways: [
+      "Zone 2 should be the majority of a masters week — but majority is not the whole.",
+      "What declines fastest after 40 is the top end, and only hard sessions defend it.",
+      "The polarised model still holds at 50: a big easy base, a small slice of genuinely hard work.",
+      "Dropping intensity to 'protect recovery' is the most common way masters riders quietly slow down.",
+    ],
+    whoFor: [
+      {
+        label: "The masters rider who went all-in on easy riding",
+        detail:
+          "You read about Zone 2, cut out the hard sessions, and your endurance improved — but your sharpness disappeared.",
+      },
+      {
+        label: "The over-40 cyclist deciding how to spend limited hours",
+        detail:
+          "You train 6–10 hours a week and want to know whether intensity is still worth the recovery cost.",
+      },
+    ],
+    roadmanView: [
+      "Zone 2 has become the headline of amateur training, and for good reason — most riders genuinely do too much of their easy riding too hard. But the message got flattened on the way down. 'Ride Zone 2' turned into 'only ride Zone 2', and for masters cyclists that is a slow-motion mistake. The base is the foundation. It is not the house.",
+      "Anthony has put this directly to Stephen Seiler on the podcast, and the model that comes back is consistent: the best aerobic athletes spend around 80% of their time easy and about 20% genuinely hard. The 80 is what makes the 20 repeatable. But the 20 is not optional padding — it is the part that lifts your ceiling, and the ceiling is exactly what age erodes. A masters rider who keeps the 80 and quietly drops the 20 is training the one quality that holds up well with age and neglecting the one that does not.",
+      "The honest answer is that 'is Zone 2 enough' is the wrong question. The right one is 'is my easy easy enough, and is my hard hard enough, and are both still in the plan after 40?' Get the distribution right and Zone 2 becomes the engine that lets you keep doing the hard sessions that actually defend your speed. Skip the hard work and all the base in the world will not stop your top end fading.",
+    ],
+    expertEvidence: [
+      {
+        name: "Professor Stephen Seiler",
+        credential: "Exercise physiologist, polarised-training researcher, University of Agder",
+        insight:
+          "Across elite endurance athletes the pattern is remarkably stable: roughly 80% of training sits in the easy aerobic zone and about 20% sits well above threshold. The easy volume is what allows the hard sessions to be repeated without breaking down — but the hard sessions are still the stimulus that develops the high end. The grey zone in the middle is where most amateurs lose progress.",
+        episodeSlug: "ep-2148-80-20-training-to-ride-faster-dr-stephen-seiler",
+        guestSlug: "stephen-seiler",
+      },
+      {
+        name: "Joe Friel",
+        credential: "Author of Fast After 50 and The Cyclist's Training Bible",
+        insight:
+          "The masters athletes who hold their performance the longest are the ones who keep high-intensity work in the programme. Endurance volume alone preserves the aerobic base but not the top end. After 40 the protocol changes — more recovery, fewer reps — but removing intensity entirely is what accelerates the decline most.",
+        episodeSlug: "ep-2205-the-training-secret-to-going-faster-after-40-joe-friel",
+        guestSlug: "joe-friel",
+      },
+    ],
+    practicalApplication: [
+      {
+        title: "Make your easy days genuinely easy",
+        detail:
+          "Hold Zone 2 at 56–75% of FTP — a pace where you can talk in full sentences and breathe mostly through your nose. If you are mouth-breathing on a 'recovery' ride, you have drifted into the grey zone and you are stealing from your hard days.",
+      },
+      {
+        title: "Protect two hard sessions a week",
+        detail:
+          "One VO2 max session (4 x 4 minutes at 95–110% of max aerobic power) and one threshold session (2 x 20 minutes at 95–105% of FTP). Keep both in the plan all year, not just in a build block. These are the sessions that defend the speed age takes first.",
+      },
+      {
+        title: "Buy the intensity back with recovery",
+        detail:
+          "Space hard sessions with two easy days between them, and take a full rest day. The session that worked at 30 needs more recovery around it at 50 — but it still needs to happen. Cut frequency before you cut intensity.",
+      },
+    ],
+    commonMistakes: [
+      {
+        mistake: "Treating Zone 2 as the entire programme rather than the base of it.",
+        fix:
+          "Keep easy riding as the majority of your week, but ring-fence one VO2 max and one threshold session. Base plus protected intensity, not base alone.",
+      },
+      {
+        mistake: "Riding the easy days too hard, then being too tired to do the hard days properly.",
+        fix:
+          "Discipline the easy rides down to true Zone 2. The fatigue you save is what lets the two hard sessions hit their targets.",
+      },
+      {
+        mistake: "Dropping intensity the moment recovery feels harder with age.",
+        fix:
+          "Reduce how often you go hard, not whether you go hard. Two quality sessions a week, fully recovered, beats four you can never complete.",
+      },
+    ],
+    faq: [
+      {
+        question: "How much of a masters cyclist's week should be Zone 2?",
+        answer:
+          "Around 80% of training time should be genuinely easy aerobic riding, with the remaining 20% as hard, structured intensity. The exact split flexes with your hours, but the principle — mostly easy, a little properly hard — holds at every age.",
+      },
+      {
+        question: "Will Zone 2 alone make me faster after 40?",
+        answer:
+          "It will improve your endurance and aerobic efficiency, and for an over-trained rider it can deliver a real jump. But it will not defend your VO2 max or your ability to respond to accelerations. Those need intensity, which Zone 2 does not provide.",
+      },
+      {
+        question: "How many hard sessions can a masters cyclist handle?",
+        answer:
+          "Most masters riders do best with two genuinely hard sessions a week, occasionally three in a focused block. The limit is recovery, not motivation — quality each session matters more than the count.",
+      },
+      {
+        question: "Is polarised training still right for older cyclists?",
+        answer:
+          "Yes. The polarised model — a large easy base and a small slice of high intensity — applies as well after 40 as before it. What changes is the recovery around the hard work, not the shape of the distribution.",
+      },
+      {
+        question: "If I only have time for Zone 2 or intervals, which wins?",
+        answer:
+          "Neither in isolation. If your hours are very limited, a polarised week of a couple of short hard sessions plus whatever easy riding you can fit beats stacking only one or the other. Both qualities are trainable; only intensity defends the top end.",
+      },
+      {
+        question: "Does Zone 2 help recovery for masters riders?",
+        answer:
+          "Yes — genuinely easy riding promotes blood flow and aerobic adaptation without adding meaningful fatigue, which makes it ideal between hard sessions. That recovery role is one of the reasons it should dominate the week.",
+      },
+    ],
+    relatedEpisodes: [
+      "ep-2148-80-20-training-to-ride-faster-dr-stephen-seiler",
+      "ep-2205-the-training-secret-to-going-faster-after-40-joe-friel",
+      "ep-2037-the-new-science-of-getting-faster-after-40",
+    ],
+    relatedTopics: [
+      { label: "What is Zone 2 training?", href: "/answers/what-is-zone-2-training" },
+      { label: "How many hard sessions after 50?", href: "/answers/how-many-hard-sessions-after-50" },
+      { label: "Can you improve FTP after 40?", href: "/answers/can-you-improve-ftp-after-40" },
+      { label: "Zone 2 Done Right — Masters Hub", href: "/training/zone-2", description: "The base, paced properly, with the intensity that defends your top end." },
+      { label: "Set your training zones — FTP Zones tool", href: "/tools/ftp-zones", description: "Get your Zone 2 ceiling and interval targets from one FTP number." },
+    ],
+    evidenceLevel: "strong",
+    evidenceNote:
+      "The polarised distribution and the trainability of the high end in masters athletes are well documented; Seiler and Friel corroborate the base-plus-intensity approach on the Roadman podcast.",
+    publishDate: "2026-06-11",
+    updatedDate: "2026-06-11",
+  },
+
+  // ============================================================
+  // CAN YOU IMPROVE FTP AFTER 40
+  // ============================================================
+  {
+    slug: "can-you-improve-ftp-after-40",
+    cluster: "masters",
+    question: "Can You Improve FTP After 40?",
+    seoTitle: "Can You Improve FTP After 40? Yes — Here's How",
+    seoDescription:
+      "FTP is highly trainable after 40, and masters riders new to structure often gain the most. The sessions, fuelling and strength work that raise threshold power over 40 — grounded in the Roadman podcast.",
+    pillar: "coaching",
+    directAnswer:
+      "Yes — FTP is highly responsive to training at any age, and a masters rider moving from unstructured riding to a proper plan often gains the most of all. Age slowly lowers your ceiling, but FTP is about how much of that ceiling you can hold, and that responds strongly to structured work. The levers are the same as at 30 — get the easy/hard split right, run one threshold and one VO2 max session a week, fuel the hard days, and recover them in. The added job after 40 is protecting the muscle that produces the watts.",
+    keyTakeaways: [
+      "FTP responds to training at any age; under-structured masters riders often see the biggest first-block gains.",
+      "The work is the same shape — polarised base, one threshold and one VO2 max session a week.",
+      "Strength work twice a week protects the muscle mass that holds your power as you age.",
+      "Under-fuelled and under-recovered hard sessions cap FTP no matter how old you are.",
+    ],
+    whoFor: [
+      {
+        label: "The over-40 rider who thinks the number is fixed",
+        detail:
+          "You've assumed FTP only goes down after 40 and stopped chasing it.",
+      },
+      {
+        label: "The masters cyclist who rides a lot but never structures it",
+        detail:
+          "You put in the hours but have never run a proper threshold or VO2 max block, and your FTP has flattened.",
+      },
+    ],
+    roadmanView: [
+      "There is a quiet defeatism among riders over 40 — the idea that FTP is now a number that only falls. It is one of the most common things Anthony hears, and the evidence from the coaches and physiologists on the podcast contradicts it flatly. Threshold power is trainable in your 40s, your 50s and beyond. The masters riders who give up on it are usually the ones who never trained it properly in the first place.",
+      "The mechanism is worth understanding. Your VO2 max — the ceiling — does drift down slowly with age. But FTP is the fraction of that ceiling you can sustain, and that fraction is built by training, not handed to you by youth. A rider who fixes a sloppy easy/hard split, adds a weekly threshold session and a weekly VO2 max session, and fuels both, will move the number. Joe Friel and Andy Galpin have both made versions of this point: the decline is real, partly negotiable, and far slower in people who keep doing structured hard work.",
+      "What changes after 40 is the support around the watts. Muscle mass and fast-twitch fibres fade if you let them, and they are part of what produces high power. That is why strength work stops being optional — it protects the engine that your FTP runs on. Build the plan around two hard rides, two short strength sessions, real fuel and real recovery, and the number you were told to give up on starts climbing again.",
+    ],
+    expertEvidence: [
+      {
+        name: "Joe Friel",
+        credential: "Author of Fast After 50 and The Cyclist's Training Bible",
+        insight:
+          "Threshold power and the high-intensity qualities behind it remain trainable well past 40. Masters athletes who keep structured intensity in their programme — and pair it with adequate protein and recovery — hold and often improve their FTP, while those who drift into easy-only riding watch it fall.",
+        episodeSlug: "ep-2205-the-training-secret-to-going-faster-after-40-joe-friel",
+        guestSlug: "joe-friel",
+      },
+      {
+        name: "Dr Andy Galpin",
+        credential: "Professor of Kinesiology, Cal State Fullerton; muscle physiologist",
+        insight:
+          "After 40 the fast-twitch fibres and muscle mass that contribute to high power are the first to go if they are not trained. Endurance riding alone will not defend them. Maintaining strength and power off the bike protects the physiological machinery that high threshold power depends on.",
+        episodeSlug: "the-science-of-getting-faster-after-40-dr-andy-galpin",
+        guestSlug: "andy-galpin",
+      },
+    ],
+    practicalApplication: [
+      {
+        title: "Run one threshold session a week",
+        detail:
+          "2 x 20 minutes at 95–105% of FTP, or 3 x 12 minutes if you're building up. This is the session that most directly raises the power you can hold for an hour. Done weekly and fuelled, it is the core driver of FTP gains over 40.",
+      },
+      {
+        title: "Keep one VO2 max session a week",
+        detail:
+          "4 x 4 minutes at 95–110% of max aerobic power, with equal recovery. Lifting the ceiling raises the floor your FTP can be built from. After 50, extend the recovery between reps before you cut the reps themselves.",
+      },
+      {
+        title: "Add two short strength sessions",
+        detail:
+          "Two 40-minute sessions a week of cycling-specific resistance work — single-leg step-ups, lunges, hip and core strength — protects the muscle and fast-twitch fibres that produce high power. This is the masters-specific addition that defends FTP from the muscle side.",
+      },
+      {
+        title: "Fuel and retest honestly",
+        detail:
+          "Carbohydrate your hard sessions properly — under-fuelled intervals cap your top end. Retest FTP every 6–8 weeks on a fresh, not fatigued, week so you see real gains rather than noise.",
+      },
+    ],
+    commonMistakes: [
+      {
+        mistake: "Assuming FTP only declines after 40 and stopping the work that builds it.",
+        fix:
+          "Treat FTP as trainable. Add a structured threshold and VO2 max session each week and give it a full 12-week block before judging the trajectory.",
+      },
+      {
+        mistake: "Dropping strength work and losing the muscle that produces high power.",
+        fix:
+          "Keep two short, cycling-specific strength sessions a week to protect muscle mass and fast-twitch fibres as you age.",
+      },
+      {
+        mistake: "Doing hard sessions under-fuelled to chase weight loss.",
+        fix:
+          "Fuel the intervals that drive FTP. Body composition is built across the week, not by starving the two sessions that make you faster.",
+      },
+    ],
+    faq: [
+      {
+        question: "How much can FTP improve after 40?",
+        answer:
+          "A masters rider moving from unstructured riding to a proper plan can expect a 5–15% lift in the first 12-week block when testing is honest. Already-structured riders gain more slowly, but the number still responds to focused threshold and VO2 max work.",
+      },
+      {
+        question: "Does FTP naturally decline with age?",
+        answer:
+          "Your aerobic ceiling drifts down slowly after 40, but FTP is the share of that ceiling you can hold, and that is built by training. Consistently trained riders decline far more slowly than the population average and can still improve from an under-trained baseline.",
+      },
+      {
+        question: "What's the best FTP workout for masters cyclists?",
+        answer:
+          "Threshold intervals — 2 x 20 minutes at 95–105% of FTP — are the most direct driver, paired with a weekly VO2 max session to lift the ceiling. One of each a week, fuelled and recovered, is the core.",
+      },
+      {
+        question: "How often should masters riders test FTP?",
+        answer:
+          "Every 6–8 weeks, on a rested week rather than a fatigued one. Testing too often, or on tired legs, hides the gains you're actually making.",
+      },
+      {
+        question: "Does strength training help FTP after 40?",
+        answer:
+          "Indirectly but importantly. Strength work protects the muscle mass and fast-twitch fibres that produce high power, which age erodes first. It defends the engine your FTP runs on rather than raising the number directly.",
+      },
+      {
+        question: "Is it too late to start structured training at 50?",
+        answer:
+          "No. Riders starting structured intensity for the first time in their 50s frequently see the largest gains, because they're training qualities they've never deliberately developed. The decline is real but the trainability is real too.",
+      },
+    ],
+    relatedEpisodes: [
+      "ep-2205-the-training-secret-to-going-faster-after-40-joe-friel",
+      "the-science-of-getting-faster-after-40-dr-andy-galpin",
+      "ep-1-5-fixable-reasons-your-losing-power-as-you-age",
+    ],
+    relatedTopics: [
+      { label: "Does VO2 max decline with age?", href: "/answers/does-vo2-max-decline-with-age" },
+      { label: "Is Zone 2 enough for masters cyclists?", href: "/answers/is-zone-2-enough-for-masters-cyclists" },
+      { label: "Strength training for masters cyclists", href: "/answers/strength-training-for-masters-cyclists" },
+      { label: "Benchmark your FTP — Masters FTP tool", href: "/tools/masters-ftp-benchmark", description: "See where your FTP and W/kg sit against your age group." },
+      { label: "VO2 Max After 40 — Masters Hub", href: "/masters/vo2max", description: "How to defend and rebuild the ceiling your FTP is built from." },
+    ],
+    evidenceLevel: "strong",
+    evidenceNote:
+      "The trainability of threshold power in older athletes is well documented; Friel and Galpin corroborate the training-plus-strength approach on the Roadman podcast.",
+    publishDate: "2026-06-11",
+    updatedDate: "2026-06-11",
+  },
+
+  // ============================================================
+  // HOW TO PREVENT CYCLING INJURIES OVER 40
+  // ============================================================
+  {
+    slug: "how-to-prevent-cycling-injuries-over-40",
+    cluster: "masters",
+    question: "How Do You Prevent Cycling Injuries Over 40?",
+    seoTitle: "How to Prevent Cycling Injuries Over 40 — A Masters Guide",
+    seoDescription:
+      "Most cycling injuries over 40 are overuse, not crashes. How masters riders prevent knee, low-back and tendon problems with bike fit, progressive loading, strength and early intervention.",
+    pillar: "strength",
+    directAnswer:
+      "Most cycling injuries over 40 are overuse problems, not crashes — knee pain, low-back pain, Achilles and neck issues that build up over weeks. You prevent them by managing load rather than chasing it: a proper bike fit, increasing volume gradually instead of in spikes, two strength sessions a week to build tissue capacity, real recovery, and treating small niggles before they become lay-offs. Tissue tolerance recovers more slowly after 40, so the margin for a sudden jump in training is smaller — respect it and most overuse injuries never start.",
+    keyTakeaways: [
+      "Over-40 cycling injuries are mostly overuse — built over weeks, not caused in a moment.",
+      "Bike fit is the first line of defence for knee, back and neck problems.",
+      "Ramp volume gradually; sudden spikes are the single biggest overuse trigger after 40.",
+      "Strength work builds the tissue capacity that lets older joints and tendons handle the load.",
+    ],
+    whoFor: [
+      {
+        label: "The returning rider ramping up too fast",
+        detail:
+          "You've come back to cycling with enthusiasm and your knees or back are complaining.",
+      },
+      {
+        label: "The masters cyclist managing recurring niggles",
+        detail:
+          "You keep getting the same low-back or knee flare-up and want to stop it returning rather than rehab it again.",
+      },
+    ],
+    roadmanView: [
+      "The injuries that end masters riders' seasons are rarely dramatic. They are the slow ones — a knee that grumbles after every long ride, a low back that tightens on the third hour, an Achilles that flares when you add intensity. These are load-management failures, and the good news is that load is the one thing you control completely.",
+      "When Anthony spoke with Scott Murphy, the physio out of the Mitchelton-Scott World Tour set-up, the theme was managing the rider's load and catching problems early rather than training through them. Tissue — tendons, joints, the connective structures that take the strain of pedalling — adapts more slowly after 40 than the aerobic system does. So when you add hours or intensity, the engine is ready before the chassis is. Spike the training and the chassis is where it breaks.",
+      "The fix is unglamorous and it works: get the bike fit right so the load lands where it should, build volume in steps rather than leaps, and put two short strength sessions a week in to raise the capacity of the tissue itself. Derek Teel makes the case on the podcast that strength is not about lifting heavy for its own sake — it is about giving the body the resilience to absorb the repetitive load of cycling. And when something does niggle, treat it early. A week of attention now is cheaper than a month off later.",
+    ],
+    expertEvidence: [
+      {
+        name: "Scott Murphy",
+        credential: "Physiotherapist, Mitchelton-Scott (World Tour)",
+        insight:
+          "Most cycling complaints are about how load is managed, not about a single injury event. The riders who stay healthy address small issues early and progress their training in steps rather than spikes. Bike fit and gradual load progression do more to prevent overuse problems than any treatment does to fix them after the fact.",
+        episodeSlug: "inside-the-world-tour-with-mitchelton-scott-physio-scott-murphy",
+        guestSlug: "scott-murphy",
+      },
+      {
+        name: "Derek Teel",
+        credential: "Strength coach for cyclists, founder of Dialed Health",
+        insight:
+          "Strength training for cyclists is about building resilience, not maximal lifting. Progressive, cycling-specific resistance work raises the tissue's capacity to handle the repetitive load of riding — which is exactly what protects ageing joints, tendons and the low back from overuse injury.",
+        episodeSlug: "ep-2183-strength-training-for-cycling-simplified-derek-teel",
+        guestSlug: "derek-teel",
+      },
+    ],
+    practicalApplication: [
+      {
+        title: "Get a proper bike fit",
+        detail:
+          "Most over-40 knee, low-back and neck pain traces back to position. A professional fit — or a careful self-fit of saddle height, setback, reach and cleat position — puts the load where the body can take it. Re-check it after any flexibility change or a new bike.",
+      },
+      {
+        title: "Progress volume in steps, not spikes",
+        detail:
+          "Add training gradually — a rough guide is no more than about 10% more volume week to week — and build in a lighter week every third or fourth. Tissue adapts more slowly than fitness after 40, so the sudden 'big week' is where overuse injuries start.",
+      },
+      {
+        title: "Strength-train twice a week for resilience",
+        detail:
+          "Two 30–40 minute sessions of cycling-specific work — single-leg step-ups, lunges, hip and glute strength, and anti-rotation core work — build the tissue capacity that protects joints and the low back. This is resilience training, not heavy lifting for its own sake.",
+      },
+      {
+        title: "Treat niggles in the first week",
+        detail:
+          "A new ache that lasts more than a couple of rides is a signal, not noise. Back off the aggravating session, address it early — mobility, load reduction, or a physio if it persists — and you keep a niggle from becoming a lay-off.",
+      },
+    ],
+    commonMistakes: [
+      {
+        mistake: "Ramping training volume up fast after a break or a good spell of form.",
+        fix:
+          "Build in steps with regular lighter weeks. Let tissue tolerance catch up to your aerobic enthusiasm — the chassis adapts slower than the engine.",
+      },
+      {
+        mistake: "Riding through a niggle and hoping it settles on its own.",
+        fix:
+          "Address small issues in the first week. Reduce the aggravating load early; persistent pain warrants a physio, not another hard block.",
+      },
+      {
+        mistake: "Skipping strength work because cycling 'doesn't need it'.",
+        fix:
+          "Two short, cycling-specific strength sessions a week build the resilience that keeps ageing joints and tendons handling repetitive load.",
+      },
+      {
+        mistake: "Leaving a poor bike fit unchecked for years.",
+        fix:
+          "Revisit your fit periodically and after any change in flexibility or equipment. Position is the root cause of most overuse pain over 40.",
+      },
+    ],
+    faq: [
+      {
+        question: "What are the most common cycling injuries over 40?",
+        answer:
+          "Overuse problems dominate: anterior knee pain, low-back pain, Achilles and patellar tendon issues, and neck or shoulder pain from position. These build up over weeks of load rather than happening in a single moment.",
+      },
+      {
+        question: "Does strength training prevent cycling injuries?",
+        answer:
+          "Yes — cycling-specific resistance work raises the capacity of muscles, tendons and joints to handle repetitive load, which is the main protective factor against overuse injury. The goal is resilience and tissue tolerance, not maximal lifting.",
+      },
+      {
+        question: "How quickly can masters cyclists increase training load?",
+        answer:
+          "Gradually. A useful guide is keeping weekly volume increases modest — around 10% — with a lighter week every third or fourth. Tissue adapts more slowly after 40, so sudden jumps are the main trigger for overuse injury.",
+      },
+      {
+        question: "Should I keep riding through knee or back pain?",
+        answer:
+          "Not through pain that persists. Back off the aggravating sessions, look first at bike fit and load, and address it early. Pain that lasts beyond a couple of rides warrants assessment rather than training through it.",
+      },
+      {
+        question: "Can a bike fit really prevent injury?",
+        answer:
+          "For knee, low-back and neck problems, position is often the root cause. A proper fit places the repetitive load where the body tolerates it, and re-checking it after any flexibility or equipment change is one of the highest-value preventive steps a masters rider can take.",
+      },
+      {
+        question: "How much recovery do masters cyclists need to stay injury-free?",
+        answer:
+          "Enough to let tissue adapt — generally a full rest day each week, lighter weeks built into the plan, and two easy days between hard sessions. Recovery is where the body rebuilds the capacity that load testing breaks down.",
+      },
+    ],
+    relatedEpisodes: [
+      "inside-the-world-tour-with-mitchelton-scott-physio-scott-murphy",
+      "ep-2087-how-to-fix-low-back-pain-while-cycling",
+      "ep-2183-strength-training-for-cycling-simplified-derek-teel",
+    ],
+    relatedTopics: [
+      { label: "Strength training for masters cyclists", href: "/answers/strength-training-for-masters-cyclists" },
+      { label: "Why does recovery take longer with age?", href: "/answers/why-does-recovery-take-longer-with-age" },
+      { label: "Can you improve FTP after 40?", href: "/answers/can-you-improve-ftp-after-40" },
+      { label: "Check your recovery — Masters Recovery Score", href: "/tools/masters-recovery-score", description: "A quick read on whether your recovery is keeping pace with your load." },
+      { label: "Masters Cycling — Hub", href: "/masters", description: "Training, recovery and staying healthy after 40." },
+    ],
+    evidenceLevel: "strong",
+    evidenceNote:
+      "Overuse-injury prevention through load management, bike fit and progressive strengthening is well established in sports medicine; Murphy and Teel corroborate the masters application on the Roadman podcast.",
+    publishDate: "2026-06-11",
+    updatedDate: "2026-06-11",
+  },
 ];
