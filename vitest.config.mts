@@ -22,7 +22,6 @@ export default defineConfig({
     // generous timeout is the safety net on a loaded machine — a ceiling,
     // not a delay, so fast tests are unaffected.
     maxWorkers: 4,
-    minWorkers: 1,
     testTimeout: 60000,
     hookTimeout: 60000,
   },
