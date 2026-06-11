@@ -458,6 +458,7 @@ const INDOOR: ClusterHubDef = {
   articleSlugs: [
     "cycling-indoor-training-tips",
     "indoor-vs-outdoor-cycling-training-when-each-wins",
+    "heart-rate-zones-indoor-vs-outdoor-cycling",
     "winter-cycling-training-indoor-protocol-pros",
     "winter-training-cycling-guide",
     "indoor-trainer-vs-rollers",
