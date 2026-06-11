@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { MethodCourseJsonLd } from "./_components/MethodCourseJsonLd";
 import { Hero } from "./_components/sales/Hero";
 import { ProblemSection } from "./_components/sales/ProblemSection";
 import { WhatIfSection } from "./_components/sales/WhatIfSection";
@@ -33,6 +34,7 @@ export const metadata: Metadata = {
 export default function MethodSalesPage() {
   return (
     <>
+      <MethodCourseJsonLd />
       <Hero />
       <ProblemSection />
       <WhatIfSection />
