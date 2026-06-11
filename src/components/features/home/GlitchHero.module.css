@@ -43,6 +43,44 @@
   );
 }
 
+/* Mobile: gentler glitch — halve shard displacement, thinner slices,
+   lower opacity so the portrait reads clearly on small screens. */
+@media (max-width: 47.999rem) {
+  .shardRed {
+    animation-name: glitchRedMobile;
+  }
+  .shardCyan {
+    animation-name: glitchCyanMobile;
+  }
+  .sliceA {
+    clip-path: polygon(
+      0% calc(20% - 5px),
+      100% calc(20% - 5px),
+      100% calc(20% + 5px),
+      0% calc(20% + 5px)
+    );
+    animation-name: sliceAMobile;
+  }
+  .sliceB {
+    clip-path: polygon(
+      0% calc(48% - 5px),
+      100% calc(48% - 5px),
+      100% calc(48% + 5px),
+      0% calc(48% + 5px)
+    );
+    animation-name: sliceBMobile;
+  }
+  .sliceC {
+    clip-path: polygon(
+      0% calc(72% - 5px),
+      100% calc(72% - 5px),
+      100% calc(72% + 5px),
+      0% calc(72% + 5px)
+    );
+    animation-name: sliceCMobile;
+  }
+}
+
 @media (min-width: 48rem) {
   .hero {
     width: min(88vmin, 640px);
@@ -336,6 +374,115 @@
     transparent 45%,
     rgba(33, 1, 64, 0.55) 100%
   );
+}
+
+/* Mobile-tuned keyframes — halved displacements, lower peak opacity,
+   shorter active windows so the portrait stays readable on phones. */
+@keyframes glitchRedMobile {
+  0%,
+  90% {
+    opacity: 0;
+    transform: translate(0, 0);
+  }
+  91% {
+    opacity: 0.5;
+    transform: translate(-5px, 2px);
+  }
+  94% {
+    opacity: 0.55;
+    transform: translate(6px, -2px);
+  }
+  97% {
+    opacity: 0.45;
+    transform: translate(-3px, 0);
+  }
+  100% {
+    opacity: 0;
+    transform: translate(0, 0);
+  }
+}
+@keyframes glitchCyanMobile {
+  0%,
+  90% {
+    opacity: 0;
+    transform: translate(0, 0);
+  }
+  91% {
+    opacity: 0.5;
+    transform: translate(5px, -2px);
+  }
+  94% {
+    opacity: 0.55;
+    transform: translate(-6px, 2px);
+  }
+  97% {
+    opacity: 0.45;
+    transform: translate(3px, 0);
+  }
+  100% {
+    opacity: 0;
+    transform: translate(0, 0);
+  }
+}
+@keyframes sliceAMobile {
+  0%,
+  70%,
+  100% {
+    transform: translateX(0);
+    opacity: 0;
+  }
+  75% {
+    transform: translateX(-8px);
+    opacity: 0.45;
+  }
+  85% {
+    transform: translateX(8px);
+    opacity: 0.4;
+  }
+  95% {
+    transform: translateX(0);
+    opacity: 0;
+  }
+}
+@keyframes sliceBMobile {
+  0%,
+  70%,
+  100% {
+    transform: translateX(0);
+    opacity: 0;
+  }
+  75% {
+    transform: translateX(8px);
+    opacity: 0.45;
+  }
+  85% {
+    transform: translateX(-8px);
+    opacity: 0.4;
+  }
+  95% {
+    transform: translateX(0);
+    opacity: 0;
+  }
+}
+@keyframes sliceCMobile {
+  0%,
+  70%,
+  100% {
+    transform: translateX(0);
+    opacity: 0;
+  }
+  75% {
+    transform: translateX(-5px);
+    opacity: 0.4;
+  }
+  85% {
+    transform: translateX(6px);
+    opacity: 0.35;
+  }
+  95% {
+    transform: translateX(0);
+    opacity: 0;
+  }
 }
 
 /* Accessibility — kill all motion when requested */
