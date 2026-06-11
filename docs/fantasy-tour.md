@@ -64,6 +64,45 @@ build handover brief; deadlines: picking live **26 June**, scoring live
   curve, 24 down to 4) — feed it PCS points, then **Anthony signs off the
   full sheet** via the admin pricing CSV export/import before launch.
 
+## Private beta demo — getting it live on a shareable URL
+
+The branch deploys as a Vercel **preview** (vercel.json now builds
+`claude/*` branches alongside `main` and `feat/*`), and the whole
+/fantasy surface sits behind an access-code gate so only the beta
+group gets in. One-time setup in Vercel (≈15 min):
+
+1. **Environment variables, scoped to "Preview"** (Project → Settings →
+   Environment Variables): `POSTGRES_URL` pointing at a **staging**
+   database (a separate Neon/Vercel Postgres DB — do not point the demo
+   at production), `FANTASY_SESSION_SECRET` (any 32+ char string),
+   `FANTASY_BETA_CODE` (the code you'll give the beta group, e.g.
+   `girona26`), and `RESEND_API_KEY` if you want magic links + daily
+   emails to actually send during the demo.
+2. **Prepare the staging DB** (from a machine with that POSTGRES_URL in
+   `.env.local`):
+   `npm run db:migrate` → `npm run fantasy:seed` → set `demoMode` to
+   `true` (admin → Fantasy → Config, or insert the game_config row) →
+   `npx tsx scripts/fantasy/seed-demo.ts --teams=12 --with-results=5`
+   — 184 fictional riders, 12 demo teams on the leaderboard, stages 1–5
+   scored through the real publish pipeline.
+3. **Get the URL**: push anything to the branch; Vercel's deployment
+   list shows the preview URL (stable per-branch alias of the form
+   `roadman-cycling-site-git-<branch>-<team>.vercel.app`).
+4. **Share with the beta group**:
+   `https://<preview-url>/api/fantasy/beta?code=girona26` — one tap
+   sets the access cookie and lands on the game. Anyone hitting the
+   URL without the code sees the access-code screen. Rotate
+   `FANTASY_BETA_CODE` (and redeploy) to revoke everyone at once.
+
+Notes: Vercel crons don't run on previews — fire the daily email by
+hand if you want to demo it
+(`curl -H "Authorization: Bearer $CRON_SECRET" <preview-url>/api/cron/fantasy-daily-email`).
+Beta testers who build teams *after* the seeded results were published
+show 0 points until the next publish — re-publishing any stage from
+admin → Results rescores everyone, which is itself a good demo beat.
+Production never sets `FANTASY_BETA_CODE`, so the gate doesn't exist
+there and the landing stays statically rendered.
+
 ## Demo window → launch (Anthony's demo-then-reset flow)
 
 1. Admin → Fantasy → Config: set `demoMode` to `true`. Game surfaces
