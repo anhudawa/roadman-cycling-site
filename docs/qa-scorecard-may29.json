@@ -1,0 +1,85 @@
+{
+  "runAt": "2026-05-29T00:00:00.000Z",
+  "url": "https://roadmancycling.com",
+  "status": "skipped_auth_gate",
+  "reason": "Ask Roadman magic-link auth gate (commit b91e4658) requires an ask_session JWT cookie or a riderProfileId in the POST body. The QA script (scripts/qa-ask-roadman.ts) currently sends neither, so /api/ask returns 401 auth_required for every request.",
+  "probe": {
+    "endpoint": "POST https://roadmancycling.com/api/ask",
+    "httpStatus": 401,
+    "responseBody": {
+      "error": {
+        "code": "auth_required",
+        "message": "Enter your email on /ask to start a session."
+      }
+    },
+    "latencyMs": 291,
+    "caseId": "coach-01",
+    "query": "My FTP has been stuck at 250W for two seasons. I do four-by-five intervals every Wednesday and can't move the needle. What am I missing?"
+  },
+  "scorecard": {
+    "totalCases": 0,
+    "inCorpusTotal": 50,
+    "inCorpusGrounded": 0,
+    "inCorpusGroundedPct": null,
+    "inCorpusGroundingTarget": 95,
+    "inCorpusGroundingPass": false,
+    "outOfCorpusTotal": 20,
+    "outOfCorpusRefused": 0,
+    "outOfCorpusRefusedPct": null,
+    "outOfCorpusRefusalTarget": 90,
+    "outOfCorpusRefusalPass": false,
+    "citationsChecked": 0,
+    "citationsResolved": 0,
+    "citationResolutionPct": null,
+    "citationResolutionPass": null,
+    "coachMeTotal": 5,
+    "coachMePass": 0,
+    "coachMeBoundaryPass": null,
+    "latencyP50": null,
+    "latencyP95": null,
+    "latencyMax": null,
+    "latencyTypicalPass": null,
+    "overallPass": false,
+    "note": "All metrics null because no cases executed against /api/ask — auth gate blocks unauthenticated POSTs."
+  },
+  "infrastructureCheck": {
+    "migration_0047_ask_auth": {
+      "deployed": true,
+      "evidence": "401 response surfaces the well-formed auth_required error path defined in src/app/api/ask/route.ts:67-74. If the ask_auth_subscribers / ask_auth_tokens tables were missing, the magic-link flow would 500 on token mint; the fact that the gate is up and returning a clean 401 means the schema is live."
+    }
+  },
+  "whatIsNeededToRun": {
+    "summary": "The QA script needs a valid ask_session cookie attached to every fetch, OR the script needs to be extended to mint one server-side.",
+    "options": [
+      {
+        "name": "Complete magic-link flow once and capture cookie",
+        "steps": [
+          "POST https://roadmancycling.com/api/ask/auth/request with body {\"email\":\"anthony@roadmancycling.com\"}",
+          "Open the magic link from the resulting email",
+          "GET https://roadmancycling.com/api/ask/auth/verify?token=... — response sets the ask_session cookie",
+          "Copy the cookie value (7-day TTL) and pass it to the QA script via a new --cookie flag (the script does not yet support this — it'd be a ~10-line patch to scripts/qa-ask-roadman.ts adding the Cookie header to askOnce())"
+        ]
+      },
+      {
+        "name": "Mint a JWT directly with the server secret",
+        "steps": [
+          "Read ASK_SESSION_SECRET (or METHOD_SESSION_SECRET / RIDER_SESSION_SECRET fallback) from Vercel env",
+          "Import signAskSessionToken from src/lib/ask-auth/auth.ts at the top of qa-ask-roadman.ts",
+          "Sign a token for any email at script start, send it as Cookie: ask_session=<jwt> on every /api/ask POST",
+          "Caveat: depends on which secret prod is using — verify in Vercel before running"
+        ]
+      },
+      {
+        "name": "Pass a riderProfileId in the body",
+        "steps": [
+          "/api/ask bypasses the auth gate when the POST body includes a valid riderProfileId (a paying rider's profile UUID)",
+          "Extend BodySchema submission in askOnce() to attach a known profile id",
+          "Caveat: this exercises the paid-tier rate limit path, not the email-gated path, so the corpus + rate-limit signal differs slightly"
+        ]
+      }
+    ],
+    "recommendation": "Option 1 (capture cookie via the real magic-link flow). It is the closest to what an actual /ask user experiences and needs no env-var access. The script patch is small: add --cookie=<value> and pass it through to fetch."
+  },
+  "results": [],
+  "casesIncluded": []
+}

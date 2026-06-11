@@ -158,7 +158,7 @@ export default async function ProfilePage() {
             )}
 
             <div className="mt-12 flex justify-between text-sm">
-              <a href="/profile/privacy" className="text-foreground-muted underline">
+              <a href="/privacy" className="text-foreground-muted underline">
                 What we store and why
               </a>
               <LogoutButton />

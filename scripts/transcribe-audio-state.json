@@ -1,7 +1,7 @@
 {
   "version": 1,
   "feedUrl": "https://anchor.fm/s/a09110e0/podcast/rss",
-  "lastRun": "2026-05-29T13:24:41.063Z",
+  "lastRun": "2026-06-01T13:23:49.590Z",
   "episodes": {
     "603e6ee5-ad89-4d4f-825c-e2d6f86d9665": {
       "status": "written",
@@ -1885,6 +1885,706 @@
       "title": "Giro Stage 15 - Ubuntu",
       "words": 2098,
       "updatedAt": "2026-05-29T13:24:41.063Z"
+    },
+    "f1e27022-0392-4e84-ada6-511b50d50210": {
+      "status": "written",
+      "slug": "giro-stage-16-queens-stage-chaos",
+      "title": "Giro Stage 16 - Queens Stage Chaos",
+      "words": 2092,
+      "updatedAt": "2026-06-01T13:23:49.365Z"
+    },
+    "7c8b9e51-b2e7-4a84-8959-1260dd66899b": {
+      "status": "written",
+      "slug": "giro-stage-17-bernal-comes-undone",
+      "title": "Giro Stage 17 - Bernal Comes Undone",
+      "words": 2694,
+      "updatedAt": "2026-06-01T13:23:49.371Z"
+    },
+    "ae18f6de-b368-4466-b6dc-67bb1f05abf1": {
+      "status": "written",
+      "slug": "giro-stage-18-sagan-disgraced",
+      "title": "Giro Stage 18 - Sagan Disgraced?",
+      "words": 2703,
+      "updatedAt": "2026-06-01T13:23:49.373Z"
+    },
+    "d773d635-57c7-486e-b463-5f9ceab62ad6": {
+      "status": "written",
+      "slug": "giro-stage-19-one-hand-on-the-trophy",
+      "title": "Giro Stage 19 - One Hand On The Trophy",
+      "words": 2151,
+      "updatedAt": "2026-06-01T13:23:49.374Z"
+    },
+    "b584ed27-eeb2-4310-be68-aa11068783c6": {
+      "status": "written",
+      "slug": "giro-stage-20-ineos-have-ruined-cycling",
+      "title": "Giro Stage 20 - Ineos Have Ruined Cycling",
+      "words": 1921,
+      "updatedAt": "2026-06-01T13:23:49.378Z"
+    },
+    "0c103433-7a89-41d1-b4c0-98ba27bf5d01": {
+      "status": "written",
+      "slug": "a-trick-to-create-motivation",
+      "title": "A Trick To Create Motivation",
+      "words": 2242,
+      "updatedAt": "2026-06-01T13:23:49.379Z"
+    },
+    "bfb69344-41dd-4d1e-ad3f-aa00a78e4e36": {
+      "status": "written",
+      "slug": "svein-tuft-born-to-be-wild",
+      "title": "Svein Tuft - Born To Be Wild",
+      "words": 10201,
+      "updatedAt": "2026-06-01T13:23:49.382Z"
+    },
+    "0de92e8a-a0b3-4b27-9332-2a890ee92a0f": {
+      "status": "written",
+      "slug": "should-froome-be-riding-the-tour",
+      "title": "Should Froome be Riding The Tour?",
+      "words": 2121,
+      "updatedAt": "2026-06-01T13:23:49.384Z"
+    },
+    "ffc90b0c-17b8-4f1b-98e2-3171babbb51d": {
+      "status": "written",
+      "slug": "how-to-make-the-most-of-every-day",
+      "title": "How To Make The Most Of Every Day",
+      "words": 1843,
+      "updatedAt": "2026-06-01T13:23:49.386Z"
+    },
+    "34f13016-0547-4811-bfa0-018e3572c869": {
+      "status": "written",
+      "slug": "free-speed",
+      "title": "Free Speed?",
+      "words": 2068,
+      "updatedAt": "2026-06-01T13:23:49.388Z"
+    },
+    "6bf90e09-ec19-474a-8bfc-dc8aeac8d241": {
+      "status": "written",
+      "slug": "the-mystery-around-sam-bennett-and-la-tour-de-france",
+      "title": "The Mystery Around Sam Bennett & La tour de France",
+      "words": 1664,
+      "updatedAt": "2026-06-01T13:23:49.390Z"
+    },
+    "aaf8c614-a0a2-4183-9486-557438125208": {
+      "status": "written",
+      "slug": "conor-griffin-everesting-with-a-full-time-job",
+      "title": "Conor Griffin - Everesting With A Full Time Job",
+      "words": 5866,
+      "updatedAt": "2026-06-01T13:23:49.391Z"
+    },
+    "0eaf7f38-731f-470a-899e-073b52b384ab": {
+      "status": "written",
+      "slug": "the-number-one-reason-our-clients-miss-training",
+      "title": "The Number One Reason Our Clients Miss Training",
+      "words": 2486,
+      "updatedAt": "2026-06-01T13:23:49.394Z"
+    },
+    "d5472504-741f-4696-8201-acfb218b572a": {
+      "status": "written",
+      "slug": "tour-de-france-2021-preview",
+      "title": "Tour de France 2021 Preview",
+      "words": 2243,
+      "updatedAt": "2026-06-01T13:23:49.395Z"
+    },
+    "9e984e7d-f3a6-4925-b3ce-6973d932ac93": {
+      "status": "written",
+      "slug": "tour-de-france-stage-1-chaos",
+      "title": "Tour de France Stage 1 Chaos",
+      "words": 2240,
+      "updatedAt": "2026-06-01T13:23:49.396Z"
+    },
+    "85823bb8-6d37-41c3-b704-e0fc9d1a9d0f": {
+      "status": "written",
+      "slug": "tdf-stage-2-its-all-about-mvp",
+      "title": "TDF Stage 2 - Its All About MVP",
+      "words": 2079,
+      "updatedAt": "2026-06-01T13:23:49.398Z"
+    },
+    "0f2cb7b1-16ef-4548-a3d7-83585898a283": {
+      "status": "written",
+      "slug": "tdf-stage-3-theyve-all-gone-down",
+      "title": "TDF Stage 3 - They've All Gone Down",
+      "words": 2113,
+      "updatedAt": "2026-06-01T13:23:49.399Z"
+    },
+    "41e080e0-1274-4eb4-b442-305484c863e5": {
+      "status": "written",
+      "slug": "tdf-stage-4-cav-rolls-back-the-years",
+      "title": "TDF Stage 4- Cav Rolls Back The Years",
+      "words": 2063,
+      "updatedAt": "2026-06-01T13:23:49.400Z"
+    },
+    "fa47dffb-130c-4b98-8a85-a333087c8877": {
+      "status": "written",
+      "slug": "tdf-stage-6-there-is-a-new-king-but-hes-the-old-king",
+      "title": "TDF Stage 6 - There Is A New King (But He's The Old King)",
+      "words": 2134,
+      "updatedAt": "2026-06-01T13:23:49.402Z"
+    },
+    "0a940057-13e5-420e-a7ef-c87a3c961916": {
+      "status": "written",
+      "slug": "tdf-stage-7-attack-is-the-best-form-of-defence",
+      "title": "TDF Stage 7 - Attack Is The Best Form Of Defence",
+      "words": 1958,
+      "updatedAt": "2026-06-01T13:23:49.405Z"
+    },
+    "2cbdbe6b-2f45-4279-aa60-570c3c0bdc08": {
+      "status": "written",
+      "slug": "tdf-stage-8-they-think-its-all-over",
+      "title": "TDF Stage 8 - They Think It's All Over",
+      "words": 2053,
+      "updatedAt": "2026-06-01T13:23:49.407Z"
+    },
+    "dd1fa143-6576-4bfb-8bbe-44a0bfbd5c63": {
+      "status": "written",
+      "slug": "tdf-stage-9-brutal-battle-for-time-cut",
+      "title": "TDF Stage 9 - Brutal Battle For Time Cut",
+      "words": 2192,
+      "updatedAt": "2026-06-01T13:23:49.408Z"
+    },
+    "db15a4e5-1947-4076-a861-9ed79a7ad42c": {
+      "status": "written",
+      "slug": "tdf-stage-10-cav-is-one-step-closer-to-the-record",
+      "title": "TDF Stage 10 - Cav Is One Step Closer To The Record",
+      "words": 2404,
+      "updatedAt": "2026-06-01T13:23:49.411Z"
+    },
+    "82de03ed-b177-4950-a723-64c0c38a52f3": {
+      "status": "written",
+      "slug": "tdf-stage-11-a-sprinter-wins-on-ventoux",
+      "title": "TDF Stage 11 - A Sprinter Wins On Ventoux",
+      "words": 1990,
+      "updatedAt": "2026-06-01T13:23:49.412Z"
+    },
+    "cbc1ff26-6fb6-4f16-93b1-32405d090e00": {
+      "status": "written",
+      "slug": "record-breaking-cavendish-chapeau",
+      "title": "Record Breaking Cavendish - Chapeau",
+      "words": 1708,
+      "updatedAt": "2026-06-01T13:23:49.414Z"
+    },
+    "1cc963b3-b40f-4f51-b306-26efe73b80ea": {
+      "status": "written",
+      "slug": "tdf-stage-14-canada-celebrates-mike-woods",
+      "title": "TDF Stage 14 - Canada Celebrates Mike Woods",
+      "words": 1956,
+      "updatedAt": "2026-06-01T13:23:49.415Z"
+    },
+    "feada1f9-0037-4bb4-bb29-00f16a436cb2": {
+      "status": "written",
+      "slug": "tdf-stage-15-death-defying-descent",
+      "title": "TDF Stage 15 - Death-Defying Descent",
+      "words": 2173,
+      "updatedAt": "2026-06-01T13:23:49.416Z"
+    },
+    "af747acc-a235-4221-a4b4-4f75fd6d624c": {
+      "status": "written",
+      "slug": "tdf-stage-16-how-to-win-from-a-breakaway",
+      "title": "TDF Stage 16 - How To Win From A Breakaway",
+      "words": 2316,
+      "updatedAt": "2026-06-01T13:23:49.417Z"
+    },
+    "8651652f-5dff-4fc5-904e-fc0254f8f736": {
+      "status": "written",
+      "slug": "tdf-stage-17-the-least-liked-rider-in-the-peleton",
+      "title": "TDF Stage 17 - The Least Liked Rider In The Peleton",
+      "words": 2325,
+      "updatedAt": "2026-06-01T13:23:49.419Z"
+    },
+    "6d794318-82f0-4a25-a943-87e67254750c": {
+      "status": "written",
+      "slug": "tdf-stage-18-police-raid-in-pau",
+      "title": "TDF Stage 18 - Police Raid in Pau",
+      "words": 2449,
+      "updatedAt": "2026-06-01T13:23:49.420Z"
+    },
+    "c416615d-20ab-4961-b69b-84836a072543": {
+      "status": "written",
+      "slug": "tdf-stage-21-is-motor-doping-happening",
+      "title": "TDF Stage 21 - Is Motor Doping Happening?",
+      "words": 2653,
+      "updatedAt": "2026-06-01T13:23:49.421Z"
+    },
+    "bae901ac-92ba-4e66-ad9d-3760c63f4345": {
+      "status": "written",
+      "slug": "my-first-overnight-bike-packing-trip",
+      "title": "My First Overnight Bike Packing Trip",
+      "words": 2291,
+      "updatedAt": "2026-06-01T13:23:49.422Z"
+    },
+    "901ade34-c05e-4ab6-81d2-68c5d1d62c2b": {
+      "status": "written",
+      "slug": "sami-sauri-life-should-be-an-adventure",
+      "title": "Sami Sauri - Life Should Be An Adventure",
+      "words": 5292,
+      "updatedAt": "2026-06-01T13:23:49.424Z"
+    },
+    "a6fac139-2c8a-4aea-9dce-c52d7c8b20d1": {
+      "status": "written",
+      "slug": "what-do-you-need-to-bring-bike-packing",
+      "title": "What Do You Need To Bring Bike Packing",
+      "words": 1980,
+      "updatedAt": "2026-06-01T13:23:49.425Z"
+    },
+    "381e683c-e341-4343-9bcd-08c1329a8da1": {
+      "status": "written",
+      "slug": "olympics-mtb-mishap-whos-at-fault",
+      "title": "Olympics MTB Mishap - Who's At Fault?",
+      "words": 2289,
+      "updatedAt": "2026-06-01T13:23:49.427Z"
+    },
+    "9e135551-d933-4ada-a191-4babe0a3be9c": {
+      "status": "written",
+      "slug": "how-i-survived-the-wicklow-way-bike-packing",
+      "title": "How I Survived The Wicklow Way (Bike Packing)",
+      "words": 3811,
+      "updatedAt": "2026-06-01T13:23:49.428Z"
+    },
+    "edbd15d6-56cd-4f81-bfdf-1f40fb407252": {
+      "status": "written",
+      "slug": "fiola-foley-is-komoot-the-new-strava",
+      "title": "Fiola Foley - Is Komoot The New Strava",
+      "words": 8375,
+      "updatedAt": "2026-06-01T13:23:49.431Z"
+    },
+    "c1ca6451-aa5c-4a8f-9b5e-5a2b26d53309": {
+      "status": "written",
+      "slug": "why-you-need-to-do-less",
+      "title": "Why You Need To Do Less",
+      "words": 1783,
+      "updatedAt": "2026-06-01T13:23:49.454Z"
+    },
+    "6cb44323-d7f9-4a74-a1ff-5b8a989c6ee1": {
+      "status": "written",
+      "slug": "olympics-where-is-the-line-between-safety-aero",
+      "title": "Olympics - Where Is The Line Between Safety Aero",
+      "words": 2786,
+      "updatedAt": "2026-06-01T13:23:49.457Z"
+    },
+    "7ab94d17-6569-488b-bfa4-20b9c75f1ed1": {
+      "status": "written",
+      "slug": "joe-distefano-biohacks-for-bike-performance",
+      "title": "Joe DiStefano - Biohacks For Bike Performance",
+      "words": 11202,
+      "updatedAt": "2026-06-01T13:23:49.460Z"
+    },
+    "2bfcf595-d58a-429b-9119-35c00f365d07": {
+      "status": "written",
+      "slug": "how-to-biohack-your-testosterone",
+      "title": "How To Biohack Your Testosterone",
+      "words": 2687,
+      "updatedAt": "2026-06-01T13:23:49.461Z"
+    },
+    "041162b0-0ee3-4a28-a7b3-afa7d428b8bc": {
+      "status": "written",
+      "slug": "how-to-avoid-feeling-tired-in-the-mornings",
+      "title": "How To Avoid Feeling Tired In The Mornings",
+      "words": 2327,
+      "updatedAt": "2026-06-01T13:23:49.463Z"
+    },
+    "b640dccb-b937-4ce7-8cbc-36d8adcaba81": {
+      "status": "written",
+      "slug": "3-ways-to-reduce-the-duration-and-severity-of-illness",
+      "title": "3 Ways To Reduce The Duration & Severity Of Illness",
+      "words": 1709,
+      "updatedAt": "2026-06-01T13:23:49.464Z"
+    },
+    "0076d90f-9a02-43b2-b052-75d85c4031d9": {
+      "status": "written",
+      "slug": "the-craziest-grand-tour-la-vuelta",
+      "title": "The Craziest Grand Tour - La Vuelta",
+      "words": 1958,
+      "updatedAt": "2026-06-01T13:23:49.465Z"
+    },
+    "0648a4a8-e78c-4f03-8159-dbf5bbc4da87": {
+      "status": "written",
+      "slug": "from-death-bed-to-vuleta-stage-winner",
+      "title": "From Death Bed To Vuleta Stage Winner",
+      "words": 1910,
+      "updatedAt": "2026-06-01T13:23:49.466Z"
+    },
+    "6355f9b8-3bbf-46a0-8186-9eef01e21a20": {
+      "status": "written",
+      "slug": "wyatt-ewing-ice-barrel-hack-to-reduce-body-fat",
+      "title": "Wyatt Ewing (Ice Barrel) - Hack To Reduce Body Fat",
+      "words": 5436,
+      "updatedAt": "2026-06-01T13:23:49.468Z"
+    },
+    "15557206-6b71-4296-99b1-e8b7d1e97ebd": {
+      "status": "written",
+      "slug": "vuleta-stage-6-movistar-poised-to-strike",
+      "title": "Vuleta Stage 6 - Movistar Poised To Strike",
+      "words": 1969,
+      "updatedAt": "2026-06-01T13:23:49.470Z"
+    },
+    "c5815fa2-10f5-4f42-b647-f82dbe89eb01": {
+      "status": "written",
+      "slug": "vuleta-stage-7-the-end-for-valverde",
+      "title": "Vuleta Stage 7 - The End For Valverde",
+      "words": 1845,
+      "updatedAt": "2026-06-01T13:23:49.471Z"
+    },
+    "f4984cfc-0f97-4664-b556-62d1ad41d341": {
+      "status": "written",
+      "slug": "5-things-i-wish-i-knew-in-my-20s",
+      "title": "5 Things I wish I knew In My 20s",
+      "words": 1620,
+      "updatedAt": "2026-06-01T13:23:49.473Z"
+    },
+    "65ceaf46-9555-45b1-a5fc-c498175d152c": {
+      "status": "written",
+      "slug": "2-strategies-that-will-change-your-productivity-forever",
+      "title": "2 Strategies That Will Change Your Productivity Forever",
+      "words": 2093,
+      "updatedAt": "2026-06-01T13:23:49.474Z"
+    },
+    "d1055822-0a48-432a-98bf-cfae76462dd0": {
+      "status": "written",
+      "slug": "danny-morel-awakening-your-potential",
+      "title": "Danny Morel - Awakening your Potential",
+      "words": 5541,
+      "updatedAt": "2026-06-01T13:23:49.476Z"
+    },
+    "c0030d60-fb85-4377-b332-8318c4bd4030": {
+      "status": "written",
+      "slug": "my-next-gravel-adventure-will-be",
+      "title": "My Next Gravel Adventure Will Be....",
+      "words": 1912,
+      "updatedAt": "2026-06-01T13:23:49.477Z"
+    },
+    "f5e08fd3-92b6-4a06-918a-8db290e15348": {
+      "status": "written",
+      "slug": "when-should-you-change-your-cleats",
+      "title": "When Should You Change Your Cleats?",
+      "words": 1550,
+      "updatedAt": "2026-06-01T13:23:49.478Z"
+    },
+    "47e24067-39b2-4365-8886-4b8955dd9945": {
+      "status": "written",
+      "slug": "anthony-diclementi-biohacking-secrets",
+      "title": "Anthony DiClementi - Biohacking Secrets",
+      "words": 10491,
+      "updatedAt": "2026-06-01T13:23:49.481Z"
+    },
+    "76e470ec-5791-4f45-9fdd-0c5934c160fe": {
+      "status": "written",
+      "slug": "biohacking-brittany-gut-health",
+      "title": "Biohacking Brittany  - Gut Health",
+      "words": 8105,
+      "updatedAt": "2026-06-01T13:23:49.483Z"
+    },
+    "bb1940b1-a1ee-4177-b3da-f30ede999e46": {
+      "status": "written",
+      "slug": "why-zwift-is-a-waste-of-time",
+      "title": "Why Zwift Is A Waste Of Time",
+      "words": 2531,
+      "updatedAt": "2026-06-01T13:23:49.484Z"
+    },
+    "2307d912-2913-4e13-9a74-0982f3c402c1": {
+      "status": "written",
+      "slug": "time-to-be-vulnerable-my-struggle-with-balance-diet-and-career",
+      "title": "Time To Be Vulnerable - My Struggle With Balance, Diet and Career",
+      "words": 4724,
+      "updatedAt": "2026-06-01T13:23:49.486Z"
+    },
+    "2e69284a-ffad-4f57-9e2d-8e4b63ea6932": {
+      "status": "written",
+      "slug": "jon-dorn-gm-of-outside-magazine",
+      "title": "Jon Dorn - GM Of Outside Magazine",
+      "words": 6325,
+      "updatedAt": "2026-06-01T13:23:49.488Z"
+    },
+    "bfe045c3-3b9d-4b87-9bf6-fe49f959f916": {
+      "status": "written",
+      "slug": "do-hard-things",
+      "title": "Do Hard Things",
+      "words": 1155,
+      "updatedAt": "2026-06-01T13:23:49.490Z"
+    },
+    "dd6761fc-7cc5-41d4-a353-28512076175c": {
+      "status": "written",
+      "slug": "dr-sam-rhee-using-crossfit-as-a-tool-to-improve-cycling",
+      "title": "Dr Sam Rhee - Using Crossfit As A Tool To Improve Cycling",
+      "words": 8831,
+      "updatedAt": "2026-06-01T13:23:49.493Z"
+    },
+    "40cebe2b-03ec-4e86-94db-9f822dd825f1": {
+      "status": "written",
+      "slug": "rory-townsend-is-this-the-end",
+      "title": "Rory Townsend - Is This The End?",
+      "words": 9574,
+      "updatedAt": "2026-06-01T13:23:49.495Z"
+    },
+    "5b11498f-11ab-4056-9b11-13d5e654ee53": {
+      "status": "written",
+      "slug": "paris-roubaix-preview",
+      "title": "Paris Roubaix Preview",
+      "words": 1608,
+      "updatedAt": "2026-06-01T13:23:49.496Z"
+    },
+    "0eb4d833-294f-4cb0-9c24-526f50d41fa8": {
+      "status": "written",
+      "slug": "a-wet-paris-roubaix",
+      "title": "A Wet Paris Roubaix",
+      "words": 1854,
+      "updatedAt": "2026-06-01T13:23:49.512Z"
+    },
+    "e3a65dfb-29e2-488e-b4a8-bd9a59369490": {
+      "status": "written",
+      "slug": "how-your-restrictive-schedule-and-limited-availability-could-become-yo",
+      "title": "How Your Restrictive Schedule & Limited Availability Could Become Your #1 Training Asset",
+      "words": 2170,
+      "updatedAt": "2026-06-01T13:23:49.515Z"
+    },
+    "ce4f66af-53bb-4f06-ac19-87d6ab653808": {
+      "status": "written",
+      "slug": "the-secret-to-experiencing-motivation-like-never-before",
+      "title": "The Secret To Experiencing Motivation Like Never Before",
+      "words": 2796,
+      "updatedAt": "2026-06-01T13:23:49.517Z"
+    },
+    "1d60c1f1-1490-4592-a4ae-04624fa89bb2": {
+      "status": "written",
+      "slug": "nicolas-roche-the-next-chapter",
+      "title": "Nicolas Roche - The Next Chapter",
+      "words": 9404,
+      "updatedAt": "2026-06-01T13:23:49.519Z"
+    },
+    "79eacccf-276c-4242-87be-0c067c8e8b64": {
+      "status": "written",
+      "slug": "imogen-cotter-becoming-national-champ",
+      "title": "Imogen Cotter - Becoming National Champ",
+      "words": 7528,
+      "updatedAt": "2026-06-01T13:23:49.523Z"
+    },
+    "0ef02f25-64a1-473b-9535-73e2d2078563": {
+      "status": "written",
+      "slug": "how-to-recover-after-a-hard-training-block",
+      "title": "How To Recover After A Hard Training Block",
+      "words": 2100,
+      "updatedAt": "2026-06-01T13:23:49.525Z"
+    },
+    "3f7bec74-33ea-42a8-a019-0f064a50673c": {
+      "status": "written",
+      "slug": "importance-of-the-group-ride-this-winter",
+      "title": "Importance Of The Group Ride This Winter",
+      "words": 2190,
+      "updatedAt": "2026-06-01T13:23:49.526Z"
+    },
+    "f9b2291d-ea32-4ca7-9025-d2c004a1f943": {
+      "status": "written",
+      "slug": "how-to-succeed-this-season-a-framework",
+      "title": "How To Succeed This Season - A Framework",
+      "words": 1896,
+      "updatedAt": "2026-06-01T13:23:49.527Z"
+    },
+    "31c1cf98-6eaf-4cf2-94f9-5dd7d399a72c": {
+      "status": "written",
+      "slug": "how-to-prevent-your-bike-from-being-stolen",
+      "title": "How To Prevent Your Bike From Being Stolen",
+      "words": 1422,
+      "updatedAt": "2026-06-01T13:23:49.528Z"
+    },
+    "0f0614d0-aba6-4b38-a3f7-96dcc3342206": {
+      "status": "written",
+      "slug": "how-many-hours-should-you-ride-this-winter",
+      "title": "How Many Hours Should You Ride This Winter?",
+      "words": 2059,
+      "updatedAt": "2026-06-01T13:23:49.529Z"
+    },
+    "9e15392c-37b6-45ea-9d30-1031f107133a": {
+      "status": "written",
+      "slug": "why-do-your-days-feel-like-they-are-passing-so-fast",
+      "title": "Why Do Your Days Feel Like They Are Passing So Fast?",
+      "words": 1660,
+      "updatedAt": "2026-06-01T13:23:49.530Z"
+    },
+    "b36d23d0-d7ed-4b0f-8d5d-1f31dac5fe7c": {
+      "status": "written",
+      "slug": "5-things-i-wish-i-knew-starting-out",
+      "title": "5 Things I Wish I Knew Starting Out",
+      "words": 2075,
+      "updatedAt": "2026-06-01T13:23:49.531Z"
+    },
+    "40f4af3e-3902-4417-af67-aa4857f2055a": {
+      "status": "written",
+      "slug": "3-key-cyclocross-sessions-for-you-this-season",
+      "title": "3 Key Cyclocross Sessions For You This Season",
+      "words": 1543,
+      "updatedAt": "2026-06-01T13:23:49.533Z"
+    },
+    "8d95c7ba-808f-4fbf-9099-65e95db6edf7": {
+      "status": "written",
+      "slug": "why-new-year-resolutions-fail",
+      "title": "Why New Year Resolutions Fail",
+      "words": 2827,
+      "updatedAt": "2026-06-01T13:23:49.534Z"
+    },
+    "6f71eb85-ab87-4552-be03-2f436725f39d": {
+      "status": "written",
+      "slug": "3-ways-to-kick-start-your-new-year",
+      "title": "3 Ways To Kick Start Your New Year",
+      "words": 1988,
+      "updatedAt": "2026-06-01T13:23:49.535Z"
+    },
+    "9fbf0a62-efbc-438d-9491-6e6879a123f5": {
+      "status": "written",
+      "slug": "who-were-the-best-riders-of-2021",
+      "title": "Who Were The Best Riders Of 2021",
+      "words": 1614,
+      "updatedAt": "2026-06-01T13:23:49.536Z"
+    },
+    "4fa74065-db72-47e1-bf62-4e219d8b6dc7": {
+      "status": "written",
+      "slug": "roadman-cycling-club-is-born",
+      "title": "Roadman Cycling Club Is Born",
+      "words": 1782,
+      "updatedAt": "2026-06-01T13:23:49.537Z"
+    },
+    "2e97e06a-fcc5-4c19-a935-716504c37822": {
+      "status": "written",
+      "slug": "10-lessons-from-10-years-cycling",
+      "title": "10 Lessons From 10 Years Cycling",
+      "words": 2123,
+      "updatedAt": "2026-06-01T13:23:49.538Z"
+    },
+    "a19faebd-0a62-4358-99b5-1bb9462ba0ca": {
+      "status": "written",
+      "slug": "how-to-defeat-procrastination",
+      "title": "How To Defeat Procrastination",
+      "words": 1627,
+      "updatedAt": "2026-06-01T13:23:49.539Z"
+    },
+    "732cdadd-5352-4d23-9ec4-0259dfee2933": {
+      "status": "written",
+      "slug": "dont-buy-upgrades-ride-up-grades",
+      "title": "Don't Buy Upgrades, Ride Up Grades",
+      "words": 1341,
+      "updatedAt": "2026-06-01T13:23:49.540Z"
+    },
+    "82a7568d-c6e1-462c-84bf-8b6dc2aac13e": {
+      "status": "written",
+      "slug": "2-recovery-strategies-youre-missing",
+      "title": "2 Recovery Strategies You're Missing",
+      "words": 2091,
+      "updatedAt": "2026-06-01T13:23:49.542Z"
+    },
+    "018e6c5f-add5-42e7-890f-ade9f11d17d0": {
+      "status": "written",
+      "slug": "laying-the-foundation-for-a-successful-season",
+      "title": "Laying The Foundation For A Successful Season",
+      "words": 2041,
+      "updatedAt": "2026-06-01T13:23:49.543Z"
+    },
+    "e90c2b6a-d93b-4540-8a08-5d686f083f28": {
+      "status": "written",
+      "slug": "sam-hill-zwift-academy-finalist",
+      "title": "Sam Hill - Zwift Academy Finalist",
+      "words": 8983,
+      "updatedAt": "2026-06-01T13:23:49.545Z"
+    },
+    "6348fbfc-3104-461a-9557-3c73f55f1810": {
+      "status": "written",
+      "slug": "conn-mcdunphy-evo-pro-the-journey",
+      "title": "Conn McDunphy (Evo Pro) - The Journey",
+      "words": 9156,
+      "updatedAt": "2026-06-01T13:23:49.547Z"
+    },
+    "bb2da928-92c5-44f3-bff2-a3b930b62bbe": {
+      "status": "written",
+      "slug": "finding-your-happiest-moments-in-life-s-simplest-acts-with-alex-dowset",
+      "title": "Finding Your Happiest Moments In Life’s Simplest Acts with Alex Dowsett",
+      "words": 10030,
+      "updatedAt": "2026-06-01T13:23:49.550Z"
+    },
+    "54dd1fe3-5bb1-48f9-b09d-81ed9ca6f030": {
+      "status": "written",
+      "slug": "get-started-before-youre-ready",
+      "title": "Get Started Before You're Ready",
+      "words": 2001,
+      "updatedAt": "2026-06-01T13:23:49.551Z"
+    },
+    "1a3e8bd1-5a2d-4186-b34c-9ea104890a64": {
+      "status": "written",
+      "slug": "john-lally-hard-to-kill",
+      "title": "John Lally - Hard To Kill",
+      "words": 10804,
+      "updatedAt": "2026-06-01T13:23:49.555Z"
+    },
+    "3eeaa3ab-0783-401f-8245-8dcd6e7c1cc1": {
+      "status": "written",
+      "slug": "top-3-climbing-mistakes",
+      "title": "Top 3 Climbing Mistakes",
+      "words": 1796,
+      "updatedAt": "2026-06-01T13:23:49.556Z"
+    },
+    "9498da04-0f07-4585-b97f-ddb8b84bfe20": {
+      "status": "written",
+      "slug": "alice-sharpe-balancing-track-and-road",
+      "title": "Alice Sharpe - Balancing Track & Road",
+      "words": 7426,
+      "updatedAt": "2026-06-01T13:23:49.574Z"
+    },
+    "e54479a5-0216-4b69-b99a-60eb8d0b3445": {
+      "status": "written",
+      "slug": "momento-mori",
+      "title": "Momento Mori",
+      "words": 1539,
+      "updatedAt": "2026-06-01T13:23:49.575Z"
+    },
+    "be0f4943-a49a-4433-b0e6-c912c4a73212": {
+      "status": "written",
+      "slug": "do-you-want-free-kit",
+      "title": "Do You Want Free Kit?",
+      "words": 2059,
+      "updatedAt": "2026-06-01T13:23:49.577Z"
+    },
+    "0573110d-00a6-465e-aed8-2a57216b8ae8": {
+      "status": "written",
+      "slug": "the-day-i-shit-myself",
+      "title": "The Day I Shit Myself",
+      "words": 1277,
+      "updatedAt": "2026-06-01T13:23:49.578Z"
+    },
+    "73725ae8-8aac-4a12-8e93-fa61d9d81119": {
+      "status": "written",
+      "slug": "rick-zabel-beyond-dads-shadow",
+      "title": "Rick Zabel - Beyond Dad's Shadow",
+      "words": 9462,
+      "updatedAt": "2026-06-01T13:23:49.580Z"
+    },
+    "3c6fe03c-b2d9-467e-8154-95c7a6144148": {
+      "status": "written",
+      "slug": "how-to-stand-out-from-the-crowd",
+      "title": "How To Stand Out From The Crowd",
+      "words": 2983,
+      "updatedAt": "2026-06-01T13:23:49.582Z"
+    },
+    "5366adb7-7e54-488f-9644-9562abb49dd3": {
+      "status": "written",
+      "slug": "ashley-stahl-my-favourite-ted-talk",
+      "title": "Ashley Stahl - My Favourite Ted Talk",
+      "words": 6468,
+      "updatedAt": "2026-06-01T13:23:49.584Z"
+    },
+    "5cdf6d39-309e-446b-978d-71ac884c4c28": {
+      "status": "written",
+      "slug": "i-messed-up-co-vid-19",
+      "title": "I Messed Up (Co-Vid 19)",
+      "words": 2295,
+      "updatedAt": "2026-06-01T13:23:49.586Z"
+    },
+    "89c53fde-a147-47a7-9b81-93a8ee54c976": {
+      "status": "written",
+      "slug": "jay-vine-here-for-the-long-run",
+      "title": "Jay Vine - Here For The Long Run",
+      "words": 6694,
+      "updatedAt": "2026-06-01T13:23:49.588Z"
+    },
+    "934b3a56-7654-466c-802e-eaec6c738bd5": {
+      "status": "written",
+      "slug": "3-tips-to-get-off-to-a-flyer-this-season",
+      "title": "3 Tips To Get Off To A Flyer This Season",
+      "words": 1222,
+      "updatedAt": "2026-06-01T13:23:49.590Z"
     }
   }
 }

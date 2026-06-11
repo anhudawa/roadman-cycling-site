@@ -62,6 +62,7 @@ import {
   type PriorityContext,
 } from "@/lib/podcast/seo-priority";
 import { type EpisodeFrontmatter, type EpisodeMeta } from "@/lib/podcast";
+import { scoreViralPotential, type ViralScoreBreakdown } from "@/lib/podcast/viral-score";
 
 const args = process.argv.slice(2);
 const dryRun = args.includes("--dry-run");
@@ -210,6 +211,7 @@ interface RunReport {
   slug: string;
   rank: number;
   score: number;
+  viral: ViralScoreBreakdown;
   ranBefore: string[]; // fields already present before run
   ranSteps: Array<{ label: string; status: "skipped-present" | "ran-ok" | "ran-failed" | "skipped-cli"; durationMs: number }>;
   finalCoverage: string[];
@@ -265,6 +267,7 @@ async function main() {
       console.log(`   Frontmatter missing — skipping`);
       continue;
     }
+    const viral = scoreViralPotential(before as EpisodeMeta & { transcript?: string });
 
     const ranBefore = STEPS.filter((s) => fieldPresent(before, s)).map((s) => s.label);
     const ranSteps: RunReport["ranSteps"] = [];
@@ -305,7 +308,7 @@ async function main() {
     const finalCoverage = after
       ? STEPS.filter((s) => fieldPresent(after, s)).map((s) => s.label)
       : [];
-    reports.push({ slug, rank, score, ranBefore, ranSteps, finalCoverage });
+    reports.push({ slug, rank, score, viral, ranBefore, ranSteps, finalCoverage });
   }
 
   // Run cross-cutting populator once, after all per-episode work, since
@@ -356,12 +359,12 @@ function renderBatchReport(args: {
   lines.push(``);
   lines.push(`## Per-episode summary`);
   lines.push(``);
-  lines.push(`| Rank | Score | Episode | Ran | Failed |`);
-  lines.push(`|---:|---:|---|---|---|`);
+  lines.push(`| Rank | SEO | Viral | Episode | Ran | Failed |`);
+  lines.push(`|---:|---:|---:|---|---|---|`);
   for (const r of reports) {
     const ran = r.ranSteps.filter((s) => s.status === "ran-ok").map((s) => s.label).join("; ") || "—";
     const failed = r.ranSteps.filter((s) => s.status === "ran-failed").map((s) => s.label).join("; ") || "—";
-    lines.push(`| ${r.rank} | ${r.score} | ${r.slug} | ${ran} | ${failed} |`);
+    lines.push(`| ${r.rank} | ${r.score} | ${r.viral.total} | ${r.slug} | ${ran} | ${failed} |`);
   }
   lines.push(``);
   return lines.join("\n");
