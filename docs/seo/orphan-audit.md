@@ -1,6 +1,6 @@
 # Orphan page audit
 
-Generated: 2026-06-10
+Generated: 2026-06-11
 
 Pages with zero incoming internal links. Google can still
 discover them via sitemap.xml, but they don't accumulate
@@ -10,10 +10,10 @@ link equity from the rest of the site.
 
 - Blog posts total: **378**
   - Orphans (0 inbound): **0**
-  - Weak (1 inbound): **16**
+  - Weak (1 inbound): **0**
 - Episodes total: **709**
-  - Orphans (0 inbound): **473**
-  - Weak (1 inbound): **88**
+  - Orphans (0 inbound): **472**
+  - Weak (1 inbound): **89**
 
 ## Orphan episodes
 
@@ -160,7 +160,6 @@ link equity from the rest of the site.
 - [Eva Lovia : I Had To Transform My Life After Porn](/podcast/ep-2170-eva-lovia-i-had-to-transform-my-life-after-porn)
 - [99% Overlook This: Tailoring a Health Strategy For You | Chris Kresser](/podcast/ep-2171-99-overlook-this-tailoring-a-health-strategy-for-you-chris-k)
 - [Fred Wright Opens Up About Losing With Friend Gino Mader | Roadman Podcast](/podcast/ep-2172-fred-wright-opens-up-about-losing-with-friend-gino-mader-roa)
-- [LeMond Opens Up About Relationship With Hinault | RDMN Clips](/podcast/ep-2176-lemond-opens-up-about-relationship-with-hinault-rdmn-clips)
 - [Alex Dowsett Opens Up About Benji & Lanterne Rouge | RDMN Clips](/podcast/ep-2182-alex-dowsett-opens-up-about-benji-lanterne-rouge-rdmn-clips)
 - [What Is The Fastest Handlebars For Road Cycling? | RDMN Clips](/podcast/ep-2188-what-is-the-fastest-handlebars-for-road-cycling-rdmn-clips)
 - [The ONLY Tyre Sealant Dylan Johnson Will Use | RDMN Clips](/podcast/ep-2192-the-only-tyre-sealant-dylan-johnson-will-use-rdmn-clips)
@@ -490,23 +489,4 @@ link equity from the rest of the site.
 - [Without A Vision The Kingdom Will Perish](/podcast/without-a-vision-the-kingdom-will-perish)
 - [World Race Race Preview - Imola](/podcast/world-race-race-preview-imola)
 - [Wyatt Ewing (Ice Barrel) - Hack To Reduce Body Fat](/podcast/wyatt-ewing-ice-barrel-hack-to-reduce-body-fat)
-
-## Weakly-linked blog posts (1 inbound)
-
-- [Best Cycling Coach in the USA: How to Choose (No Rankings)](/blog/best-cycling-coach-usa) — linked only from `/blog/best-cycling-coach-guide`
-- [Core Strength for Cyclists: Beyond the Plank](/blog/core-strength-cyclists-beyond-planks) — linked only from `/blog/cycling-core-workout-routine`
-- [Creatine for Cyclists: What 30 Days on 5 Grams Actually Did](/blog/creatine-for-cyclists-30-day-protocol) — linked only from `/blog/nomio-green-shots-isothiocyanates-cyclists`
-- [Find YOUR Zone 2: Lactate Testing and the San Millán Method](/blog/find-your-zone-2-lactate-testing-san-millan) — linked only from `[src]`
-- [Indoor Cycling Heat Management: Why Your Power Fades, and How to Fix It](/blog/indoor-cycling-heat-management-trainingpeaks-virtual) — linked only from `[src]`
-- [Jack Burke's Strava Records On The Stelvio, Alpe d'Huez And Mortirolo](/blog/jack-burke-strava-records-stelvio-alpe-dhuez) — linked only from `/blog/cycling-climbing-tips-stop-getting-dropped`
-- [L'Eroica Training Plan: 14 Weeks for Strade Bianche on a Vintage Bike](/blog/leroica-training-guide) — linked only from `/blog/gravel-cycling-beginners-guide`
-- [Anabolic Resistance: Why Masters Cyclists Need to Eat Differently After 40](/blog/masters-metabolism-anabolic-resistance-nutrition) — linked only from `[src]`
-- [Nomio Green Shots: What Pro Cyclists Are Actually Drinking](/blog/nomio-green-shots-cycling-science-filip-larsen) — linked only from `/blog/best-roadman-episodes-nutrition`
-- [Nomio Green Shots Explained: What Isothiocyanates Actually Do for Cyclists](/blog/nomio-green-shots-isothiocyanates-cyclists) — linked only from `/blog/best-roadman-episodes-nutrition`
-- [Ötztaler Radmarathon Training Plan: 18 Weeks for Four Alpine Passes](/blog/otztaler-radmarathon-training-guide) — linked only from `/blog/etape-du-tour-training-plan`
-- [Raid Pyrénéen Training Plan: 20 Weeks for the Pyrenees Crossing](/blog/raid-pyreneen-training-guide) — linked only from `/blog/etape-du-tour-training-plan`
-- [Sportive Training Readiness Index 2026 (Coming Q3 2026)](/blog/sportive-training-readiness-index-2026) — linked only from `/blog/cycling-sportive-preparation`
-- [Prof Tim Spector on the Gut, Cycling Performance, and Why 99% Get It Wrong](/blog/tim-spector-gut-microbiome-cycling-weight-loss) — linked only from `/blog/best-roadman-episodes-nutrition`
-- [Managing Training Load in Your 40s and 50s](/blog/training-load-management-cyclists-40s-50s) — linked only from `[src]`
-- [VO2max Decline After 40: How Much Is Real, and How Much You Can Get Back](/blog/vo2max-decline-reversibility-masters-cyclists) — linked only from `[src]`
 
