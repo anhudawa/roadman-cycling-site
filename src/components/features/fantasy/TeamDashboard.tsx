@@ -17,6 +17,7 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import Link from "next/link";
 import { StageStrip, type StageStripStage } from "./StageStrip";
+import { DemoBanner } from "./TeamBuilder";
 
 interface SquadRider {
   riderId: number;
@@ -62,6 +63,7 @@ interface TeamPayload {
 interface BuilderData {
   riders: MarketRider[];
   stages: StageStripStage[];
+  demoMode?: boolean;
 }
 
 function prefersReducedMotion(): boolean {
@@ -200,6 +202,11 @@ export function TeamDashboard() {
 
   return (
     <div className="mx-auto max-w-6xl px-4 py-8">
+      {market?.demoMode && (
+        <div className="mb-6">
+          <DemoBanner />
+        </div>
+      )}
       <header className="flex flex-wrap items-end justify-between gap-4">
         <div>
           <p className="text-sm text-mid-grey">{data.player.firstName}&apos;s squad</p>

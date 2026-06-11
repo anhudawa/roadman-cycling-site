@@ -64,6 +64,34 @@ build handover brief; deadlines: picking live **26 June**, scoring live
   curve, 24 down to 4) — feed it PCS points, then **Anthony signs off the
   full sheet** via the admin pricing CSV export/import before launch.
 
+## Demo window → launch (Anthony's demo-then-reset flow)
+
+1. Admin → Fantasy → Config: set `demoMode` to `true`. Game surfaces
+   show a demo banner; signups get tagged `is_demo` and never sync to
+   Beehiiv or Meta.
+2. `npm run fantasy:seed-demo` — 184 fictional riders (clearly invented
+   names, `source_url demo://seed`), priced on the real curve. Build
+   teams, enter results in admin → Results, publish, watch the
+   leaderboards and points reveal work end to end.
+3. Before launch: admin → Fantasy → Demo & reset → **Full demo wipe**
+   (preview counts, type RESET). Demo players, teams, leagues, riders,
+   and all scoring artifacts are gone; stages, the 23 real teams,
+   config, and the audit log are untouched. Set `demoMode` back to
+   `false`, then import the real startlist.
+4. Safety: the reset API refuses to run once the Stage 1 deadline has
+   passed — live standings can never be wiped.
+
+The lighter **Wipe scoring only** reset exists for re-running a demo
+without losing the test accounts.
+
+## Prizes (confirmed by Anthony, 11 June 2026)
+
+Grand prize: a place at the Roadman Girona training camp, excluding
+flights and transfers — stated on /fantasy/terms (with the no-cash-
+alternative and booking-conditions language), on /fantasy/rules, and
+in the landing hero. Weekly-podium prizes still TBC; the terms page
+says further prizes are announced before Stage 1.
+
 ## Daily race-ops runbook (Ted, ~10 min)
 
 1. Stage finishes (~17:30 CEST). **Wait for official results** — jury
@@ -90,7 +118,10 @@ build handover brief; deadlines: picking live **26 June**, scoring live
       (content guard runs automatically on save AND at send time)
 - [ ] Startlist confirmation pass as squads announce (27 Jun–2 Jul);
       final human audit 3 July (Anthony or Ted) — log it in the audit trail
-- [ ] Prize terms confirmed by Anthony → update `/fantasy/terms`
+- [x] Prize terms confirmed by Anthony (Girona camp, ex flights &
+      transfers) → live on `/fantasy/terms`, `/fantasy/rules`, landing
+- [ ] Run the Full demo wipe + set `demoMode` to `false` (see the demo
+      window section above)
 - [ ] Send-time check: 06:30 Irish vs existing broadcast calendar (open
       decision #3) — adjust the cron in vercel.json if it collides
 - [ ] T-minus emails to the 30k list (launch / 3 days / teams lock tonight)

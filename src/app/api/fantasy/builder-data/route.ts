@@ -44,6 +44,7 @@ export async function GET() {
           transfersPerStage: config.transfersPerStage,
           captainMultiplier: config.captainMultiplier,
         },
+        demoMode: config.demoMode,
       },
       {
         headers: {
@@ -70,6 +71,7 @@ export async function GET() {
           transfersPerStage: LAUNCH_DEFAULTS.transfersPerStage,
           captainMultiplier: LAUNCH_DEFAULTS.captainMultiplier,
         },
+        demoMode: LAUNCH_DEFAULTS.demoMode,
       },
       { headers: { "Cache-Control": "public, s-maxage=60, stale-while-revalidate=300" } },
     );

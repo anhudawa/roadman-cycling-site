@@ -70,6 +70,9 @@ export async function GET(request: NextRequest) {
         isNotNull(fantasyPlayers.verifiedAt),
         isNull(fantasyPlayers.beehiivSyncedAt),
         isNull(fantasyPlayers.deletedAt),
+        // Demo players still get the daily email (that's part of the
+        // demo) but never enter Beehiiv.
+        eq(fantasyPlayers.isDemo, false),
         lt(fantasyPlayers.beehiivSyncAttempts, MAX_BEEHIIV_RETRIES),
       ),
     )

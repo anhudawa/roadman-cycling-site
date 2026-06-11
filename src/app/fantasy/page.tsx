@@ -61,6 +61,13 @@ export default function FantasyLandingPage() {
               Teams lock when Stage 1 rolls out of Barcelona.
             </p>
           </div>
+          <p className="mt-6 inline-block rounded-md border border-coral/40 bg-coral/10 px-4 py-2.5 text-sm text-off-white/90">
+            <span className="font-heading tracking-[0.2em] text-coral">THE PRIZE: </span>
+            win the global league, ride our Girona training camp on us (ex flights &amp; transfers).{" "}
+            <Link href="/fantasy/rules" className="underline hover:text-off-white">
+              Full rules
+            </Link>
+          </p>
         </div>
 
         <div className="mx-auto max-w-6xl px-4 pb-14">

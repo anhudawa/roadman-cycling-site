@@ -65,6 +65,13 @@ export interface FantasyGameConfig {
 
   /** Stages followed by a rest day (unlock bonus transfers from the next stage). */
   restDaysAfterStages: number[];
+
+  /**
+   * Demo mode: players who sign up are tagged is_demo (swept by the
+   * pre-Tour reset), and the game surfaces show a "demo data" banner.
+   * Toggle from admin → Fantasy → Config; MUST be false before launch.
+   */
+  demoMode: boolean;
 }
 
 export const LAUNCH_DEFAULTS: FantasyGameConfig = {
@@ -102,6 +109,8 @@ export const LAUNCH_DEFAULTS: FantasyGameConfig = {
 
   weeks: { week1: [1, 9], week2: [10, 15], week3: [16, 21] },
   restDaysAfterStages: [9, 15],
+
+  demoMode: false,
 };
 
 /**

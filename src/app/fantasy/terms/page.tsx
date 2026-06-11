@@ -45,9 +45,20 @@ export default function TermsPage() {
         <section>
           <h2 className="font-heading text-2xl tracking-wide text-off-white">Prizes</h2>
           <p className="mt-2">
-            Prize details are announced before Stage 1 and listed on this page. Prizes have no
-            cash alternative and can&apos;t be transferred. Winners are contacted at the email on
-            their account within 7 days of the final standings publishing.
+            <strong className="text-off-white">Grand prize (1st in the global league):</strong> one
+            place at a Roadman Cycling training camp in Girona, Spain — accommodation, coaching,
+            and the camp programme included. Flights and airport transfers are{" "}
+            <strong className="text-off-white">not</strong> included: the winner makes their own
+            way to Girona. The place is for a scheduled camp date agreed with Roadman, is personal
+            to the winner, can&apos;t be transferred or exchanged, and has no cash alternative.
+            Camp participation is subject to the camp&apos;s own booking conditions, including
+            being fit to ride.
+          </p>
+          <p className="mt-2">
+            Any further prizes (weekly podiums and others) are announced before Stage 1 and listed
+            on this page. Winners are contacted at the email on their account within 7 days of the
+            final standings publishing; if a winner doesn&apos;t respond within 14 days, the prize
+            rolls to the next eligible player.
           </p>
         </section>
         <section>

@@ -74,8 +74,11 @@ export async function GET(request: NextRequest) {
     if (player) {
       // Fire-and-forget: the player is mid-redirect. Failures land in
       // the retry queue (beehiivSyncedAt stays null; cron sweeps it).
-      void syncPlayerToBeehiiv(player);
-      void sendCapiLeadEvent(player);
+      // Demo-window players never reach Beehiiv or Meta.
+      if (!player.isDemo) {
+        void syncPlayerToBeehiiv(player);
+        void sendCapiLeadEvent(player);
+      }
       void audit(email, "player.verified", "player", String(player.id));
     }
   }

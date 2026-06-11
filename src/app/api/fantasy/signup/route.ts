@@ -110,6 +110,9 @@ export async function POST(request: Request) {
       country,
       riderPersona,
       consentAt: new Date(),
+      // Demo-window signups are swept by the pre-launch reset and
+      // never treated as real leads.
+      isDemo: config.demoMode,
     };
     let playerId: number;
     if (existing) {

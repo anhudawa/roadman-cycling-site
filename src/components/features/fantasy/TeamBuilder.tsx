@@ -39,6 +39,17 @@ interface BuilderData {
     FantasyGameConfig,
     "budget" | "squadSize" | "maxPerProTeam" | "minCheapRiders" | "captainMultiplier"
   >;
+  demoMode?: boolean;
+}
+
+/** Shown on game surfaces while the pre-launch demo window is open. */
+export function DemoBanner() {
+  return (
+    <p className="rounded-md border border-warn/40 bg-warn-tint px-4 py-2.5 text-center text-sm text-warn">
+      Demo mode — riders and scores here are test data. Everything resets before the Tour starts
+      on 4 July.
+    </p>
+  );
 }
 
 const CLASS_LABEL: Record<BuilderRider["riderClass"], string> = {
@@ -170,6 +181,8 @@ export function TeamBuilder() {
 
   return (
     <div className="mx-auto max-w-6xl px-4 pb-28 pt-8">
+      {data?.demoMode && <DemoBanner />}
+
       {/* Budget bar — fills coral as you spend. */}
       <div className="sticky top-14 z-30 -mx-4 border-b border-white/10 bg-charcoal/95 px-4 py-3 backdrop-blur">
         <div className="flex items-baseline justify-between">

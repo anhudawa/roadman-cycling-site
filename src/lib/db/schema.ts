@@ -2059,6 +2059,9 @@ export const fantasyPlayers = pgTable(
     capiSentAt: timestamp("capi_sent_at", { withTimezone: true }),
     /** GDPR deletion: anonymised, team preserved for league integrity. */
     deletedAt: timestamp("deleted_at", { withTimezone: true }),
+    /** Signed up while game_config demoMode was on — swept by the
+     *  pre-Tour demo reset, never counted as a real lead. */
+    isDemo: boolean("is_demo").notNull().default(false),
     createdAt: timestamp("created_at", { withTimezone: true }).notNull().defaultNow(),
   },
   (t) => [index("fantasy_players_email_idx").on(t.email)]

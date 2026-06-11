@@ -28,6 +28,8 @@
     "fantasy:seed": "tsx scripts/fantasy/seed-fantasy.ts",
     "fantasy:seed:dry": "tsx scripts/fantasy/seed-fantasy.ts --dry-run",
     "fantasy:import-startlist": "tsx scripts/fantasy/import-startlist.ts",
+    "fantasy:seed-demo": "tsx scripts/fantasy/seed-demo.ts",
+    "fantasy:seed-demo:dry": "tsx scripts/fantasy/seed-demo.ts --dry-run",
     "fantasy:stage-takes": "tsx scripts/fantasy/generate-stage-takes.ts",
     "fantasy:stage-takes:dry": "tsx scripts/fantasy/generate-stage-takes.ts --dry-run",
     "fantasy:stage-takes:import": "tsx scripts/fantasy/generate-stage-takes.ts --import-approved",

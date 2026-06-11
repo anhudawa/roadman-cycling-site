@@ -51,6 +51,12 @@ export default function FantasyLayout({ children }: { children: React.ReactNode 
             >
               STANDINGS
             </Link>
+            <Link
+              href="/fantasy/rules"
+              className="hidden rounded-md px-3 py-2 font-heading text-sm tracking-widest text-off-white/80 transition-colors hover:text-off-white sm:block"
+            >
+              RULES
+            </Link>
           </nav>
         </div>
       </header>
@@ -64,6 +70,9 @@ export default function FantasyLayout({ children }: { children: React.ReactNode 
             <span className="text-off-white/50">A Roadman Cycling production.</span>
           </p>
           <nav aria-label="Legal" className="flex gap-4">
+            <Link href="/fantasy/rules" className="hover:text-off-white">
+              Rules
+            </Link>
             <Link href="/fantasy/terms" className="hover:text-off-white">
               Game terms
             </Link>

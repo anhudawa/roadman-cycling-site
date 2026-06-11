@@ -91,6 +91,9 @@ export default async function FantasyOverviewPage() {
             <Button variant="secondary" size="sm" href="/admin/fantasy/config">
               Config
             </Button>
+            <Button variant="secondary" size="sm" href="/admin/fantasy/reset">
+              Demo &amp; reset
+            </Button>
           </>
         }
       />
