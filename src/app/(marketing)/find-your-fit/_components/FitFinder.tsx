@@ -686,11 +686,11 @@ function buildReasons(tier: TierId, answers: Answers): string[] {
   if (investment === "free" && tier === "clubhouse")
     reasons.push("Free for now — start here, prove the system to yourself, and ascend when you're ready.");
   if (investment === "under-100" && tier === "notDoneYet")
-    reasons.push("At $195 a month, Not Done Yet is the most coaching leverage you can get short of a 1:1 seat.");
+    reasons.push("At $195 a month, Not Done Yet is the most coaching you can get short of a 1:1 seat.");
   if (investment === "300-600" && tier === "innerCircle")
     reasons.push("Inner Circle sits in your investment range and gives you daily coach feedback for it.");
   if (investment === "premium" && tier === "oneOnOne")
-    reasons.push("You're willing to invest in premium — 1:1 coaching is the highest-leverage seat we offer.");
+    reasons.push("You're willing to invest in premium — 1:1 coaching is the most hands-on seat we offer.");
 
   // Always include at least two reasons so the result never feels
   // empty. If the answers don't all line up cleanly with the

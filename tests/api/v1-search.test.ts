@@ -1,6 +1,12 @@
-import { describe, expect, it } from "vitest";
+import { describe, expect, it, vi } from "vitest";
 
 import { GET } from "@/app/api/v1/search/route";
+
+// The search handler eagerly loads every content source (posts, episodes,
+// topics, glossary, guests, tools) on first call. That cold read can exceed
+// the 5s default under full-suite parallel load, so give this I/O-heavy file
+// more headroom — the assertions themselves are fast.
+vi.setConfig({ testTimeout: 30000 });
 
 function makeRequest(query: string): Request {
   return new Request(`https://roadmancycling.com/api/v1/search${query}`);

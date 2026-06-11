@@ -122,7 +122,7 @@ export function JourneyLinks({
 
   return (
     <section
-      aria-label="Where to next — your journey through Roadman content"
+      aria-label="Where to next — more Roadman content"
       className={className}
       data-journey-stage={journey.currentStage}
     >

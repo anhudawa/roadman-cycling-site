@@ -478,7 +478,7 @@ export function FuelPlannerClient() {
                     {/* Gated 12-week plan CTA */}
                     <div className="relative overflow-hidden rounded-2xl border border-coral/30 bg-gradient-to-br from-coral/10 via-deep-purple/50 to-charcoal p-6 md:p-8">
                       <p className="font-heading text-coral text-xs tracking-widest mb-3">
-                        UNLOCK THE FULL 12-WEEK PLAN
+                        GET THE FULL 12-WEEK PLAN
                       </p>
                       <h3 className="font-heading text-2xl text-off-white mb-3">
                         This is one day. Inside the community, you get the whole block.

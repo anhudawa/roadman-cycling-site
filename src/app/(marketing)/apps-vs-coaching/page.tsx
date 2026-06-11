@@ -189,7 +189,7 @@ const FAQ = [
   },
   {
     q: "Do I need a power meter and a smart trainer to make any of this work?",
-    a: "A power meter on the bike — outside or inside — is the single highest-leverage purchase a serious cyclist makes after a working bike. A smart trainer matters if your weather, schedule, or family pattern means you're indoors a lot. If you only have heart rate, you can still train well; the prescription just has to lean on RPE and HR, and the load tracking is fuzzier. The Coaching membership doesn't require either, but it gets a lot more precise once you have power.",
+    a: "A power meter on the bike — outside or inside — is the single most worthwhile purchase a serious cyclist makes after a working bike. A smart trainer matters if your weather, schedule, or family pattern means you're indoors a lot. If you only have heart rate, you can still train well; the prescription just has to lean on RPE and HR, and the load tracking is fuzzier. The Coaching membership doesn't require either, but it gets a lot more precise once you have power.",
   },
   {
     q: "What does the full stack actually cost in USD per month?",
