@@ -1,22 +1,28 @@
 # STATUS — The Roadman Manifesto
 
-**Phase:** 0 — transcript audit **COMPLETE**, awaiting Anthony's review (gate before Phase 1)
-**Last updated:** 2026-06-11
+**Phase:** 0 complete · evidence map done · **proposed outline awaiting Anthony's approval** (`outline/proposed-v1.md`) · priority transcription running
+**Last updated:** 2026-06-12
 **Operator:** Claude Code
 
 ---
 
 ## FLAGS FOR ANTHONY (decisions needed)
 
-1. **Knowledge graph repo location.** The Supabase `transcripts` table (knowledge graph Phase 0 package) is NOT in this repo — no Supabase config exists anywhere here. The DB here is Vercel Postgres. Need Ted's pointer to the repo/project before fresh transcription can be written in a compatible format (Section 2 rule). This session is also scoped to `roadman-cycling-site` only, so I could not check other repos.
-2. **Timestamps don't exist in any current transcript store.** The "episode + approximate timestamp" traceability rule cannot be met from existing transcripts. Recommend re-transcribing only the ~15–25 priority evidence episodes (Seiler/Friel/Wakefield + secondary) with Whisper large-v3 + word timestamps (+ diarization), into the knowledge-graph schema once located. Approve?
-3. **Three Joe Friel audio episodes are missing entirely** (no page, no transcript) — likely high-value for the masters chapters:
-   - "How to Train Smarter with Less Time With Joe Friel" (2025-08-06)
-   - "Triathletes CAN Self Coach! With Joe Friel" (2024-01-17)
-   - "Founders Series: The Training Peaks Story with Joe Friel" (2022-12-20)
-   - (also Dirk Friel, "The Evolution of Coaching", 2022-06-23 — lower priority)
-   Transcribe these as part of item 2?
-4. **Verbatim-quote risk.** No current transcript has speaker labels; all are raw ASR with visible errors (details below). Until priority episodes are re-transcribed, any quote must be re-verified by ear against audio/YouTube. This is workable but slow — another reason for item 2.
+1. **Four decisions at the top of `outline/proposed-v1.md`** — thesis precision (the archive supports *inverted levers + recovery-governed*, not literal reverse-blocks; Seiler's own study is equivocal), the attack-our-own-thesis chapter, a voice memo for the personal-story chapter, and whether limited external sources are allowed for history/physiology. Nothing drafts until you rule.
+2. **Knowledge graph repo location** (open from 06-11). Supabase `transcripts` store is not in this repo; need Ted's pointer. New timestamped transcripts are written in a KG-shaped JSON (versioned raw segments, diarization field reserved) so ingestion is a mapping job, not a redo.
+3. **Five priority episodes are YouTube-only** — ep-2148 (Seiler 80/20), ep-2205 (Friel after-40), ep-40 (Friel training week), ep-38 (Barrett), ep-2035 (Impey). No audio in the Anchor feed, and YouTube blocks this environment (bot wall — tried captions and audio). They need re-transcription from a machine with YouTube access, OR quotes from them get ear-verified by you/Ted. The first three are load-bearing for the outline.
+4. **Good news, blocklist:** the false "Lorang coached Pogačar" claim does **not** exist anywhere in the archive (full grep, all transcripts). It's purely a brand-bible import. Lorang is correctly described in ep-2134 as Red Bull–Bora head of performance / Roglič's coach.
+
+## Re-transcription (in progress, runs unattended)
+
+Whisper **large-v3**, word timestamps, VAD; output to `sources/transcripts/` as KG-shaped `.json` + readable `[mm:ss]` `.txt`. Acting under the Phase 0 mandate (priority episodes missing or unusable) + Anthony's 06-12 "move without my input" instruction. Queue, in order:
+
+1. ~~Friel — How to Train Smarter with Less Time~~ ← running
+2. Friel — Triathletes CAN Self Coach
+3. Friel — Founders Series: Training Peaks Story
+4. Seiler — ep-2095 audio twin · 5. Wakefield — ep-2132 twin · 6. Galpin · 7. Bigham ep-2106 · 8. Lipman ep-2154
+
+~7.4h audio ≈ 1.4–2.8× wall each on this box; resumable (`sources/transcribe-priority.py`, skips finished episodes). Each lands as its own commit.
 
 ---
 
@@ -76,4 +82,5 @@
 
 ## Session log
 
+- **2026-06-12 (am)** — On Anthony's "move without my input" instruction: (1) evidence map built from full archive sweep, `sources/evidence-map.md` — 10 themes, verbatim-ASR excerpts with inferred speakers, honest GAPS section; key finding: thesis must be framed as inverted levers/recovery-governed, not literal reverse blocks (Seiler ep-2095 contradicts the naive version). (2) Proposed outline `outline/proposed-v1.md` — 12 chapters, Sacred Cow arc, page budget 62–82, decisions for Anthony up top. **Stopped at the outline gate.** (3) Large-v3 timestamped transcription queue running (8 episodes: 3 recovered Friel + 5 priority audio twins). (4) Verify scanner `verify/scan.py` built and tested (blocklist hard-fail, banned words/openers, structural tells, uncited quotes). (5) Found 5 priority episodes are YouTube-only and unreachable from this environment — flagged.
 - **2026-06-11** — Phase 0 audit run. Created `/manifesto` skeleton (STATUS.md, CLAUDE.md, blocklist.md). No outline drafted, no chapters drafted. **Stopped at the Phase 0 gate for Anthony's review.**
