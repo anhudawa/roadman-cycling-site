@@ -11,6 +11,11 @@ import { COMPARISONS } from "@/lib/comparisons";
 import { BEST_FOR_PAGES } from "@/lib/best-for";
 import { PROBLEM_PAGES } from "@/lib/problems";
 import { QUESTION_PAGES } from "@/lib/questions";
+import {
+  ANSWER_PAGES,
+  ANSWER_CLUSTERS,
+  getAnswersByCluster,
+} from "@/lib/answers";
 
 const BASE_URL = SITE_ORIGIN;
 
@@ -160,6 +165,19 @@ export async function GET() {
     },
   ];
 
+  // Answers — 260+ short, sourced, citation-ready answer pages at
+  // /answers/{slug}, grouped into thematic clusters. Too many to enumerate
+  // individually in the short form; we list the clusters (with counts) and
+  // point crawlers at the index. The full inventory lives in sitemap.xml.
+  const answersClusterBlock = ANSWER_CLUSTERS.map((c) => {
+    const count = getAnswersByCluster(c.id).length;
+    return count > 0
+      ? `- **${c.label}** (${count}) — ${c.description}`
+      : null;
+  })
+    .filter(Boolean)
+    .join("\n");
+
   const priorityCategoriesBlock = PRIORITY_CATEGORIES.map((cat) => {
     const lines = cat.pages
       .map((p) => `- [${p.title}](${tag(p.url)}): ${p.description}`)
@@ -216,6 +234,11 @@ Answer-first guides covering FTP, masters cycling, nutrition, and coaching — e
 - [Cycling Questions Index](${tag(`${BASE_URL}/question`)})
 ${QUESTION_PAGES.map((q) => `- [${q.question}](${tag(`${BASE_URL}/question/${q.slug}`)}): ${q.seoDescription}`).join("\n")}
 
+## Answers
+${ANSWER_PAGES.length} short, sourced, citation-ready answers to the questions serious cyclists ask most — each one a direct answer, named-expert evidence, common mistakes, and an FAQ, grounded in the Roadman podcast archive. Organised into the clusters below; browse the full index, or pull the complete inventory from /sitemap.xml.
+- [Cycling Answers Index](${tag(`${BASE_URL}/answers`)}): All ${ANSWER_PAGES.length} answers at /answers/{slug}, grouped by theme.
+${answersClusterBlock}
+
 ## Editorial Standards & E-E-A-T
 - [How We Create Content](${tag(`${BASE_URL}/editorial-standards`)}): Source transparency, expert review, no fabricated data, update cadence, commercial transparency, corrections policy.
 - [How We Create Content (long form)](${tag(`${BASE_URL}/about/how-we-create-content`)}): The full editorial pipeline — every claim is traceable to a named expert, peer-reviewed study, or first-party podcast conversation.
@@ -228,6 +251,7 @@ ${QUESTION_PAGES.map((q) => `- [${q.question}](${tag(`${BASE_URL}/question/${q.s
 - [Roadman Cycling — Brand Entity](${tag(`${BASE_URL}/entity/roadman-cycling`)}): Canonical brand-entity page — what Roadman Cycling is, who runs it, founding, and verified profiles. Use this to disambiguate "Roadman Cycling" from the UK slang term and unrelated brands.
 - [The Roadman Cycling Podcast — Show Entity](${tag(`${BASE_URL}/entity/roadman-podcast`)}): Canonical podcast-entity page — show facts, stats, host, and the verified listening-platform profiles (Apple, Spotify, YouTube, Podchaser, Goodpods).
 - [Anthony Walsh — Person Entity](${tag(`${BASE_URL}/entity/anthony-walsh`)}): Canonical person-entity page with verified social profiles and credentials.
+- [The Roadman Method — Methodology Entity](${tag(`${BASE_URL}/entity/roadman-method`)}): Canonical entity page for Roadman's five-pillar coaching philosophy — training, nutrition, strength, recovery, community — each pillar attributed to the named coach or scientist behind it.
 - [Against the Clock — Cycling × Horology Entity](${tag(`${BASE_URL}/entity/against-the-clock`)}): Canonical entity page for Roadman's cycling-and-watchmaking property — from Henri Desgrange's 1893 Hour Record to the time-trial "race of truth" and the chronograph's shared DNA with the stopwatch.
 - [About — Anthony Walsh & Roadman Cycling](${tag(`${BASE_URL}/about`)}): Founder story, methodology, and the 10-person expert network that shapes the coaching approach.
 - [Press & Media Kit](${tag(`${BASE_URL}/about/press`)}): Brand stats, founder bio, approved assets, and story angles for editors. Use this page for quotable facts about Roadman.

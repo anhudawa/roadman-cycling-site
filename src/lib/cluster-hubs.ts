@@ -107,6 +107,9 @@ const MASTERS_VO2MAX: ClusterHubDef = {
     "sprint-interval-training-cyclists-masters",
     "masters-cycling-training-plan-over-40",
     "training-load-management-cyclists-40s-50s",
+    "sleep-and-the-masters-cyclist",
+    "detraining-after-40",
+    "racing-at-50-plus-masters-cycling",
   ],
   newArticleSlugs: ["vo2max-decline-reversibility-masters-cyclists"],
   pillarContent: `Here's what nobody tells you about getting older on a bike. It isn't your endurance that fades first — it's your ceiling. The long Sunday rides hold up well into your fifties and beyond. What goes is the top end: the four-minute effort up the local climb, the bridge to a move, the surge that used to come for free. That top end is VO2max, and on a masters cyclist it is both the first thing to decline and the single most responsive thing you can train.
